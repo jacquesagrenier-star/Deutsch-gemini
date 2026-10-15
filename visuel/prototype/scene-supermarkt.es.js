@@ -51,7 +51,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "la bouteille",
      "en": "bottle",
-     "pt": "a garrafa"
+     "pt": "a garrafa",
+     "ar": "زجاجة"
     }
    ],
    "sur": null,
@@ -200,7 +201,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "la bouteille",
      "en": "bottle",
-     "pt": "a garrafa"
+     "pt": "a garrafa",
+     "ar": "زجاجة"
     }
    ],
    "sur": null,
@@ -270,7 +272,7 @@ window.SCENE = {
    "fr": "le sac à main",
    "en": "the handbag",
    "pt": "a bolsa",
-   "ar": "حقيبة",
+   "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -351,7 +353,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -432,7 +434,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -544,7 +546,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -571,7 +573,7 @@ window.SCENE = {
    "fr": "le sac",
    "en": "the bag",
    "pt": "a sacola",
-   "ar": "كيس (ورقي أو بلاستيكي)",
+   "ar": "كيس",
    "pl": "torba, torebka (papierowa, foliowa)",
    "ru": "пакет",
    "latam": null
@@ -592,7 +594,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": null,
@@ -743,7 +746,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1211,9 +1214,40 @@ window.SCENE = {
     "consigne": "آنا تتسوّق في السوبرماركت. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "المقارنة والتفضيل",
+    "B2": "المجاملة: condicional",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El pan está en la cesta.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La cesta está en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La cesta está en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El hombre está sentado en la caja.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Hay una bicicleta detrás de la ventana.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | La botella de agua está al lado de la bolsa.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Los huevos están en la cesta.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La chica está al lado de la estantería.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El arroz está en la estantería.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "B1 | La bolsa de papel es más grande que el bolso.": "المقارنة: <b>más</b> + صفة + <b>que</b>.",
+    "B1 | La chica es más pequeña que Anna.": "الصفة تطابق: la chica → pequeñ<b>a</b>.",
+    "B1 | El hombre de la caja es mayor que Anna.": "للعمر: <b>mayor</b> = أكبر سنّاً.",
+    "B1 | Las botellas están más arriba que las latas.": "<b>más</b> … <b>que</b>: الطرف الثاني يأتي بعد <b>que</b>.",
+    "B1 | Para Anna, el queso es mejor que la leche.": "<b>bueno</b> شاذّة ← <b>mejor</b>.",
+    "B1 | Es el pan más fresco de la tienda.": "التفضيل: <b>el</b> + اسم + <b>más</b> + صفة + <b>de</b>.",
+    "B1 | La chaqueta de Anna es más larga que la de la chica.": "المقارنة: <b>más</b> + صفة + <b>que</b>.",
+    "B2 | ¿Podría darme una bolsa, por favor?": "مجاملة: <b>condicional</b> → podría.",
+    "B2 | Me gustaría llevar este queso.": "<b>me gustaría</b> = أودّ (condicional من gustar).",
+    "B2 | ¿Sería tan amable de ayudarme con la cesta?": "<b>¿Sería tan amable de…?</b>: condicional من ser.",
+    "B2 | Yo en tu lugar compraría la leche fresca.": "نصيحة: <b>yo en tu lugar</b> + condicional.",
+    "B2 | ¿Me podría decir dónde está el arroz?": "مجاملة: <b>condicional</b> → podría.",
+    "B2 | Me gustaría pagar con tarjeta.": "<b>me gustaría</b> = أودّ (condicional من gustar).",
+    "C1 | Debe de querer chocolate.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el hombre de la caja sea el dueño.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Estará a punto de cerrar.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que el pan de aquí es el mejor del barrio.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

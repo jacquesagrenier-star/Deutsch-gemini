@@ -78,7 +78,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -213,7 +213,7 @@ window.SCENE = {
    "fr": "la campagne, le champ",
    "en": "the countryside, the field",
    "pt": "o campo",
-   "ar": "حقل",
+   "ar": "ريف، حقل",
    "pl": "pole",
    "ru": "поле",
    "latam": null
@@ -408,7 +408,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -493,7 +493,7 @@ window.SCENE = {
    "fr": "le pain",
    "en": "bread",
    "pt": "o pão",
-   "ar": "خبز صغير (كعك)",
+   "ar": "خبز",
    "pl": "bułka",
    "ru": "булочка",
    "latam": null
@@ -578,7 +578,7 @@ window.SCENE = {
    "fr": "le billet",
    "en": "the ticket",
    "pt": "a passagem, o bilhete",
-   "ar": "تذكرة السفر",
+   "ar": "تذكرة",
    "pl": "bilet",
    "ru": "билет (на проезд)",
    "latam": {
@@ -636,7 +636,7 @@ window.SCENE = {
    "fr": "le sac",
    "en": "the bag",
    "pt": "a sacola",
-   "ar": "حقيبة",
+   "ar": "كيس",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -663,7 +663,7 @@ window.SCENE = {
    "fr": "l'écharpe",
    "en": "the scarf",
    "pt": "o cachecol",
-   "ar": "وشاح، شال",
+   "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
    "latam": null
@@ -1278,9 +1278,44 @@ window.SCENE = {
     "consigne": "مارك يسافر بالقطار. المس شيئًا أو انظر من النافذة."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "في السفر: en وa وpor",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La laptop está en la mesa.": "<b>en</b> = على، في. المكان ← <b>estar</b>.",
+    "A2 | El portátil está en la mesa.": "<b>en</b> = على، في. المكان ← <b>estar</b>.",
+    "A2 | La maleta azul está encima de la ventana.": "<b>encima de</b> = فوق.",
+    "A2 | La bufanda está en el asiento.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | Las vacas están en el prado.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La iglesia está en el pueblo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El celular está al lado del pan.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El móvil está al lado del pan.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La mochila está al lado de la maleta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Hay un río debajo del puente.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "B1 | Mark viaja en tren.": "وسيلة النقل ← <b>en</b> tren (لكن <b>a</b> pie).",
+    "B1 | Va a las montañas.": "الاتجاه ← <b>a</b>.",
+    "B1 | Mira por la ventana.": "عبر ← <b>por</b>.",
+    "B1 | El tren pasa por el puente.": "المرور، المسار ← <b>por</b>.",
+    "B1 | Ha puesto la maleta en la rejilla.": "وضع شيء في مكان ← <b>en</b>.",
+    "B1 | Las vacas comen en el prado.": "مكان الوجود ← <b>en</b>.",
+    "B1 | Mark lo ha dejado en la mesa.": "مفعول به مباشر مذكر (el billete) → <b>lo</b>.",
+    "B1 | Alguien la ha olvidado en el asiento.": "مفعول به مباشر مؤنث (la bufanda) → <b>la</b>.",
+    "B2 | El hombre que mira por la ventana se llama Mark.": "جملة موصولة بلا فاصلة، فاعل ← <b>que</b>.",
+    "B2 | El pueblo, cuya iglesia tiene una torre puntiaguda, está en el valle.": "<b>cuyo</b> يطابق الشيء المملوك: la iglesia → <b>cuya</b>.",
+    "B2 | La mesa en la que está la laptop es gris.": "حرف جرّ + أداة + <b>que</b>، بمطابقة la mesa.",
+    "B2 | La mesa en la que está el portátil es gris.": "حرف جرّ + أداة + <b>que</b>، بمطابقة la mesa.",
+    "B2 | El boleto tiene que ser revisado en el tren.": "مبني للمجهول <b>ser</b> + اسم المفعول بالمطابقة: el boleto → revisad<b>o</b>.",
+    "B2 | El billete tiene que ser revisado en el tren.": "مبني للمجهول <b>ser</b> + اسم المفعول بالمطابقة: el billete → revisad<b>o</b>.",
+    "B2 | El periódico está doblado sobre la mesa.": "<b>estar</b> + اسم المفعول، بالمطابقة: el periódico → doblad<b>o</b>.",
+    "B2 | En este tren no se puede fumar.": "<b>se</b> غير الشخصية + مصدر ← الفعل بالمفرد.",
+    "C1 | El paisaje debe de gustarle.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que la bufanda sea de alguien que vuelve enseguida.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | El tren estará ya cerca de Múnich.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que en ese pueblo hacen el mejor queso de la región.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

@@ -63,7 +63,7 @@ window.SCENE = {
    "fr": "le plafond, le toit",
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
-   "ar": "بطانية",
+   "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
    "latam": null
@@ -117,7 +117,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -138,7 +138,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le thé",
      "en": "tea",
-     "pt": "o chá"
+     "pt": "o chá",
+     "ar": "شاي"
     }
    ],
    "sur": "regal",
@@ -154,7 +155,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -235,7 +236,7 @@ window.SCENE = {
    "fr": "le pansement, le bandage",
    "en": "the bandage",
    "pt": "o curativo, a bandagem",
-   "ar": "ضمادة؛ اتحاد، جمعية",
+   "ar": "ضمادة",
    "pl": "opatrunek, bandaż; związek, stowarzyszenie",
    "ru": "повязка; союз, объединение",
    "latam": null
@@ -262,7 +263,7 @@ window.SCENE = {
    "fr": "le pansement",
    "en": "the plaster",
    "pt": "o curativo, o band-aid",
-   "ar": "لصقة جروح",
+   "ar": "لاصق جروح",
    "pl": "plaster",
    "ru": "пластырь",
    "latam": {
@@ -293,7 +294,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -314,7 +315,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     }
    ],
    "sur": "regal",
@@ -405,7 +407,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     }
    ],
    "sur": "regal",
@@ -442,7 +445,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     }
    ],
    "sur": "regal",
@@ -506,7 +510,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     }
    ],
    "sur": "regal",
@@ -543,7 +548,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     }
    ],
    "sur": "regal",
@@ -725,7 +731,7 @@ window.SCENE = {
    "fr": "l'ordonnance",
    "en": "the prescription",
    "pt": "a receita (médica)",
-   "ar": "وصفة طبخ",
+   "ar": "وصفة طبية",
    "pl": "przepis",
    "ru": "рецепт",
    "latam": null
@@ -752,7 +758,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -779,7 +785,7 @@ window.SCENE = {
    "fr": "l'écharpe",
    "en": "the scarf",
    "pt": "o cachecol",
-   "ar": "وشاح، شال",
+   "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
    "latam": null
@@ -866,7 +872,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -892,6 +898,7 @@ window.SCENE = {
      "fr": "le jean",
      "en": "the jeans",
      "pt": "a calça jeans",
+     "ar": "بنطال جينز",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -912,7 +919,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -934,6 +941,7 @@ window.SCENE = {
      "fr": "la basket",
      "en": "the trainer",
      "pt": "o tênis",
+     "ar": "حذاء رياضي",
      "latam": {
       "mot": "tenis",
       "genre": "el",
@@ -976,6 +984,7 @@ window.SCENE = {
      "fr": "l'ordinateur",
      "en": "the computer",
      "pt": "o computador",
+     "ar": "حاسوب",
      "latam": {
       "mot": "computadora",
       "genre": "la",
@@ -1023,7 +1032,7 @@ window.SCENE = {
    "fr": "le clavier",
    "en": "the keyboard",
    "pt": "o teclado",
-   "ar": "لوحة المفاتيح",
+   "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
    "latam": null
@@ -1077,7 +1086,7 @@ window.SCENE = {
    "fr": "le sac",
    "en": "the bag",
    "pt": "a sacola",
-   "ar": "كيس (ورقي أو بلاستيكي)",
+   "ar": "كيس",
    "pl": "torba, torebka (papierowa, foliowa)",
    "ru": "пакет",
    "latam": null
@@ -1098,7 +1107,8 @@ window.SCENE = {
      "theme": "el_cuerpo",
      "fr": "le comprimé",
      "en": "the pill",
-     "pt": "o comprimido"
+     "pt": "o comprimido",
+     "ar": "قرص، حبّة دواء"
     },
     {
      "mot": "caja",
@@ -1107,7 +1117,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     }
    ],
    "sur": "schalter",
@@ -1198,7 +1209,8 @@ window.SCENE = {
      "theme": "la_salud_b1",
      "fr": "la carte d'assurance maladie",
      "en": "the health card",
-     "pt": "o cartão do plano de saúde, o cartão do SUS"
+     "pt": "o cartão do plano de saúde, o cartão do SUS",
+     "ar": "بطاقة التأمين الصحّي"
     }
    ],
    "sur": "schalter",
@@ -1214,7 +1226,7 @@ window.SCENE = {
    "fr": "la carte (bancaire)",
    "en": "the card",
    "pt": "o cartão",
-   "ar": "بطاقة، تذكرة",
+   "ar": "بطاقة (مصرفية)",
    "pl": "bilet, karta",
    "ru": "карта, билет",
    "latam": null
@@ -1241,7 +1253,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -1268,7 +1280,7 @@ window.SCENE = {
    "fr": "le comptoir",
    "en": "the desk, the counter",
    "pt": "o balcão, o guichê",
-   "ar": "شبّاك؛ مفتاح كهربائي",
+   "ar": "مكتب، منضدة",
    "pl": "okienko, kasa; włącznik",
    "ru": "окошко, касса; выключатель",
    "latam": null
@@ -1375,6 +1387,7 @@ window.SCENE = {
      "fr": "la vitrine",
      "en": "the shop window",
      "pt": "a vitrine",
+     "ar": "واجهة المتجر",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -1507,7 +1520,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -1534,7 +1547,7 @@ window.SCENE = {
    "fr": "le bonnet (la tuque)",
    "en": "the woolly hat",
    "pt": "o gorro",
-   "ar": "قبعة صوفية",
+   "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
    "latam": null
@@ -1615,7 +1628,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -1723,7 +1736,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -2188,9 +2201,42 @@ window.SCENE = {
     "consigne": "مارك مصاب بالزكام: يذهب إلى صيدلية حيّه. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "التكرار والجرعة",
+    "B2": "الشرط الواقعي: si + المضارع",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El reloj está en la pared.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Los medicamentos están en la estantería.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La planta está en el mostrador.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El señor está sentado en la silla.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La báscula está al lado de la silla.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Hay un carro rojo en la calle.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | Hay un coche rojo en la calle.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | El bote de basura está al lado de la puerta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La papelera está al lado de la puerta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La caja de cartón está en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La caja de cartón está en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "B1 | Mark toma una pastilla cada ocho horas.": "<b>cada</b> + مفرد: cada ocho horas.",
+    "B1 | Toma el jarabe dos veces al día.": "<b>vez</b> بالجمع ← dos <b>veces</b>.",
+    "B1 | Nunca tome las pastillas con alcohol.": "<b>nunca</b> قبل الفعل: بلا «no».",
+    "B1 | La farmacéutica trabaja todos los días.": "<b>todos los días</b> = كل يوم.",
+    "B1 | Mark nunca ha tenido fiebre.": "<b>nunca</b> = أبداً؛ <b>nada</b> = لا شيء؛ <b>nadie</b> = لا أحد.",
+    "B1 | ¿Con qué frecuencia toma el jarabe?": "<b>¿con qué frecuencia?</b> = كم مرة؟",
+    "B1 | El señor viene a la farmacia una vez a la semana.": "una vez <b>a la</b> semana = مرة في الأسبوع.",
+    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "شرط واقعي: <b>si</b> + المضارع indicativo.",
+    "B2 | Si no mejora, vaya al médico.": "جواب الشرط في صيغة الأمر (usted): <b>vaya</b>.",
+    "B2 | Si el jarabe no funciona, vuelva a la farmacia.": "بعد <b>si</b> الواقعية، لا subjuntivo مضارع أبداً: funciona.",
+    "B2 | Si toma las pastillas, estará mejor mañana.": "جواب الشرط في المستقبل: <b>estará</b>.",
+    "B2 | Si el señor espera mucho tiempo, se sentará.": "شرط واقعي: <b>si</b> + المضارع indicativo.",
+    "B2 | Si tienes tos, toma este jarabe.": "جواب الشرط في صيغة الأمر (tú): <b>toma</b>.",
+    "C1 | Debe de estar resfriado.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el señor esté esperando sus medicamentos.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Mark estará mejor en dos días.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que esta farmacia es la más antigua del barrio.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

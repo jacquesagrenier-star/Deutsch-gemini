@@ -51,7 +51,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -190,7 +190,7 @@ window.SCENE = {
    "fr": "le bonnet (la tuque)",
    "en": "the woolly hat",
    "pt": "o gorro",
-   "ar": "قبعة صوفية",
+   "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
    "latam": null
@@ -217,7 +217,7 @@ window.SCENE = {
    "fr": "le sac à main",
    "en": "the handbag",
    "pt": "a bolsa",
-   "ar": "حقيبة",
+   "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -244,7 +244,7 @@ window.SCENE = {
    "fr": "le sac à main",
    "en": "the handbag",
    "pt": "a bolsa",
-   "ar": "حقيبة",
+   "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -295,7 +295,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -334,7 +334,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -359,7 +359,8 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "le pantalon",
      "en": "the trousers",
-     "pt": "a calça"
+     "pt": "a calça",
+     "ar": "بنطال، سروال"
     }
    ],
    "sur": "regal",
@@ -375,7 +376,7 @@ window.SCENE = {
    "fr": "le jean",
    "en": "the jeans",
    "pt": "a calça jeans",
-   "ar": "جينز",
+   "ar": "بنطال جينز",
    "pl": "dżinsy",
    "ru": "джинсы",
    "latam": {
@@ -433,7 +434,7 @@ window.SCENE = {
    "fr": "la jupe",
    "en": "the skirt",
    "pt": "a saia",
-   "ar": "تنورة",
+   "ar": "تنّورة",
    "pl": "spódnica",
    "ru": "юбка",
    "latam": null
@@ -541,7 +542,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -616,7 +617,8 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "le rideau",
      "en": "the curtain",
-     "pt": "a cortina"
+     "pt": "a cortina",
+     "ar": "ستارة"
     }
    ],
    "sur": null,
@@ -686,7 +688,7 @@ window.SCENE = {
    "fr": "le tabouret",
    "en": "the stool",
    "pt": "o banquinho, o tamborete",
-   "ar": "مقعد بلا ظهر",
+   "ar": "كرسي بلا ظهر",
    "pl": "taboret",
    "ru": "табурет",
    "latam": null
@@ -767,7 +769,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -821,7 +823,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -852,7 +854,7 @@ window.SCENE = {
    "fr": "le sac à main",
    "en": "the handbag",
    "pt": "a bolsa",
-   "ar": "حقيبة",
+   "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -873,7 +875,8 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "le pantalon",
      "en": "the trousers",
-     "pt": "a calça"
+     "pt": "a calça",
+     "ar": "بنطال، سروال"
     }
    ],
    "sur": null,
@@ -889,7 +892,7 @@ window.SCENE = {
    "fr": "le jean",
    "en": "the jeans",
    "pt": "a calça jeans",
-   "ar": "جينز",
+   "ar": "بنطال جينز",
    "pl": "dżinsy",
    "ru": "джинсы",
    "latam": {
@@ -953,7 +956,7 @@ window.SCENE = {
    "fr": "la botte",
    "en": "the boot",
    "pt": "a bota",
-   "ar": "جزمة",
+   "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
    "latam": null
@@ -1060,6 +1063,7 @@ window.SCENE = {
      "fr": "la vendeuse",
      "en": "the shop assistant",
      "pt": "a vendedora",
+     "ar": "بائعة",
      "latam": {
       "mot": "vendedora",
       "genre": "la",
@@ -1107,7 +1111,7 @@ window.SCENE = {
    "fr": "l'écharpe",
    "en": "the scarf",
    "pt": "o cachecol",
-   "ar": "وشاح، شال",
+   "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
    "latam": null
@@ -1188,7 +1192,7 @@ window.SCENE = {
    "fr": "le gant",
    "en": "the glove",
    "pt": "a luva",
-   "ar": "قفاز",
+   "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
    "latam": null
@@ -1209,7 +1213,8 @@ window.SCENE = {
      "theme": "el_restaurante",
      "fr": "le client",
      "en": "the customer",
-     "pt": "o cliente"
+     "pt": "o cliente",
+     "ar": "زبون"
     }
    ],
    "sur": null,
@@ -1225,7 +1230,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -1306,7 +1311,7 @@ window.SCENE = {
    "fr": "la banque, le banc",
    "en": "the bank, the bench",
    "pt": "o banco",
-   "ar": "بنك، مصرف",
+   "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
    "latam": null
@@ -1333,7 +1338,7 @@ window.SCENE = {
    "fr": "le comptoir",
    "en": "the bar (counter)",
    "pt": "o balcão",
-   "ar": "منضدة",
+   "ar": "بار، منضدة المقهى",
    "pl": "lada",
    "ru": "стойка",
    "latam": null
@@ -1819,9 +1824,46 @@ window.SCENE = {
     "consigne": "آنا تتسوّق. المس قطعة ملابس أو شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "مطابقة الصفة",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El sombrero está en la estantería.": "<b>en</b> = على أو في. المكان ← <b>estar</b>.",
+    "A2 | El hombre está sentado en el banco.": "<b>el</b> banco مذكر، و<b>en el</b> لا يُدمج أبداً.",
+    "A2 | El taburete está delante del espejo.": "<b>delante de</b> = أمام. de + el = <b>del</b>.",
+    "A2 | El cinturón está al lado de la corbata.": "<b>la</b> corbata مؤنث: <b>de la</b>، بلا دمج.",
+    "A2 | Los calcetines están en la cesta.": "المكان ← <b>estar</b>، بالجمع: <b>están</b>.",
+    "A2 | Anna está delante del probador.": "<b>delante de</b> = أمام. de + el = <b>del</b>.",
+    "A2 | El otro zapato está en el piso.": "<b>el</b> piso مذكر ← <b>en el</b> piso.",
+    "A2 | El otro zapato está en el suelo.": "<b>el</b> suelo مذكر ← <b>en el</b> suelo.",
+    "A2 | Hay un vestido rojo al lado de la falda.": "<b>hay</b> يقدّم شيئاً جديداً («يوجد فستان»)؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "B1 | Anna tiene un suéter amarillo.": "<b>el</b> suéter مذكر مفرد ← amarill<b>o</b>.",
+    "B1 | Anna tiene un jersey amarillo.": "<b>el</b> jersey مذكر مفرد ← amarill<b>o</b>.",
+    "B1 | El vestido rojo está a la izquierda.": "الصفة تتبع الاسم وتطابقه: <b>el</b> vestido → roj<b>o</b>.",
+    "B1 | El hombre se prueba un zapato marrón.": "<b>marrón</b> صيغة واحدة للمذكر والمؤنث؛ الجمع وحده يتغيّر (marrones).",
+    "B1 | Los calcetines de la cesta son muy coloridos.": "<b>los</b> calcetines: مذكر جمع ← colorid<b>os</b>.",
+    "B1 | En la estantería hay un bolso negro.": "<b>el</b> bolso مذكر ← negr<b>o</b>. (La bolsa، المؤنثة، تكون negra.)",
+    "B1 | Anna lleva un pantalón azul claro.": "لون بدرجة (<b>azul claro</b>) يبقى بلا تغيير.",
+    "B1 | El hombre de pelo gris se prueba zapatos.": "<b>gris</b> صيغة واحدة للمذكر والمؤنث.",
+    "B1 | Un abrigo largo cuelga al lado del traje.": "<b>el</b> abrigo مذكر ← larg<b>o</b>. انتبه: <b>largo</b> تعني طويلاً، لا عريضاً.",
+    "B2 | La mujer que tiene el suéter amarillo se llama Anna.": "جملة موصولة بلا فاصلة، فاعل ← <b>que</b>. أما <b>quien</b> فلا تأتي إلا بعد فاصلة أو حرف جرّ.",
+    "B2 | La mujer que tiene el jersey amarillo se llama Anna.": "جملة موصولة بلا فاصلة، فاعل ← <b>que</b>. أما <b>quien</b> فلا تأتي إلا بعد فاصلة أو حرف جرّ.",
+    "B2 | El hombre cuyo zapato está en el piso se prueba el otro.": "<b>cuyo</b> يطابق الشيء المملوك: el zapato → <b>cuyo</b>.",
+    "B2 | El hombre cuyo zapato está en el suelo se prueba el otro.": "<b>cuyo</b> يطابق الشيء المملوك: el zapato → <b>cuyo</b>.",
+    "B2 | El espejo delante del cual está el taburete tiene marco de madera.": "بعد حرف جرّ، <b>el cual</b>؛ delante de + el cual → <b>del cual</b>.",
+    "B2 | Los calcetines, que están en la cesta, son de colores.": "أشياء، فاعل ← <b>que</b>. أما <b>quienes</b> فلا تُقال إلا عن الأشخاص.",
+    "B2 | Los suéteres de la estantería están doblados.": "<b>estar</b> + اسم المفعول = النتيجة، بالمطابقة: los suéteres → doblad<b>os</b>.",
+    "B2 | Los jerséis de la estantería están doblados.": "<b>estar</b> + اسم المفعول = النتيجة، بالمطابقة: los jerséis → doblad<b>os</b>.",
+    "B2 | En esta tienda se vende ropa de calidad.": "المبني للمجهول بـ <b>se</b>: الفعل يطابق الشيء. <b>la ropa</b> مفرد ← se vende.",
+    "C1 | El suéter debe de gustarle.": "<b>deber de</b> + مصدر = استنتاج: لا بدّ أنه يعجبها.",
+    "C1 | El jersey debe de gustarle.": "<b>deber de</b> + مصدر = استنتاج: لا بدّ أنه يعجبها.",
+    "C1 | Puede que se lo pruebe enseguida en el probador.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Tendrá una boda pronto.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر: <b>tendrá</b> = لا بدّ أن عنده.",
+    "C1 | Dicen que la mujer del mostrador trabaja aquí desde hace treinta años.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

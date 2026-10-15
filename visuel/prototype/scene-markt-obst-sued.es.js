@@ -18,7 +18,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -27,7 +28,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -43,7 +45,7 @@ window.SCENE = {
    "fr": "la pastèque",
    "en": "the watermelon",
    "pt": "a melancia",
-   "ar": "بطّيخ",
+   "ar": "بطّيخة حمراء",
    "pl": "arbuz",
    "ru": "арбуз",
    "latam": null
@@ -64,7 +66,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -73,7 +76,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -110,7 +114,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -119,7 +124,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -156,7 +162,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -165,7 +172,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -202,7 +210,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -211,7 +220,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -248,7 +258,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -257,7 +268,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -294,7 +306,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -303,7 +316,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -340,7 +354,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -349,7 +364,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -386,7 +402,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -395,7 +412,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -432,7 +450,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -441,7 +460,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -478,7 +498,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -487,7 +508,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -524,7 +546,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -533,7 +556,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -549,7 +573,7 @@ window.SCENE = {
    "fr": "le citron vert",
    "en": "the lime",
    "pt": "o limão (verde)",
-   "ar": "ليمون أخضر (ليم)",
+   "ar": "ليمون أخضر",
    "pl": "limonka",
    "ru": "лайм",
    "latam": null
@@ -570,7 +594,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -579,7 +604,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -620,7 +646,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -629,7 +656,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -666,7 +694,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -675,7 +704,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -712,7 +742,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la caisse",
      "en": "the checkout",
-     "pt": "o caixa"
+     "pt": "o caixa",
+     "ar": "صندوق الدفع"
     },
     {
      "mot": "fruta",
@@ -721,7 +752,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le fruit",
      "en": "fruit",
-     "pt": "a fruta"
+     "pt": "a fruta",
+     "ar": "فاكهة"
     }
    ],
    "sur": null,
@@ -737,7 +769,7 @@ window.SCENE = {
    "fr": "la grenade (fruit)",
    "en": "the pomegranate",
    "pt": "a romã",
-   "ar": "رمّان",
+   "ar": "رمّانة",
    "pl": "granat (owoc)",
    "ru": "гранат",
    "latam": null
@@ -1152,9 +1184,35 @@ window.SCENE = {
     "autre_vue": "← الخضار"
    },
    "couches": {
-    "A1": "في السوق"
+    "A1": "في السوق",
+    "A2": "¿Dónde está? — في السوق",
+    "B1": "التسوّق: الكميات والأسعار",
+    "B2": "المبني للمجهول، والموصولات، والمطابقة",
+    "C1": "الفرضيات، وcuanto más، والاستدراك"
    },
-   "questions": {}
+   "questions": {
+    "A2 | Los aguacates están entre las naranjas y las papayas.": "<b>entre</b> … <b>y</b> … = بين … و….",
+    "A2 | Anna toma unos plátanos.": "<b>unos</b> = بضعة (بعض). el plátano → unos plátanos.",
+    "A2 | Las limas están al lado de los higos.": "<b>al lado de</b> = بجانب.",
+    "A2 | Los mangos están entre las toronjas y los plátanos.": "<b>entre</b> … <b>y</b> … = بين … و….",
+    "A2 | Los mangos están entre los pomelos y los plátanos.": "<b>entre</b> … <b>y</b> … = بين … و….",
+    "A2 | La media sandía está encima de las otras sandías.": "<b>encima de</b> = على، فوق.",
+    "B1 | ¿Cuánto cuesta una piña?": "<b>la</b> piña مؤنث ← <b>una</b>.",
+    "B1 | Quería un trozo de sandía, por favor.": "<b>un trozo</b> = قطعة.",
+    "B1 | La sandía es más grande que el melón.": "<b>más</b> … <b>que</b> = أكثر … من.",
+    "B1 | ¿Ya están maduros los mangos?": "<b>estar maduro</b> = يكون ناضجاً (حالة). <b>ser maduro</b> = يكون ناضجاً عقلياً (شخص).",
+    "B1 | Quería tres limones, por favor.": "el limón → los <b>limones</b>: في الجمع تختفي علامة النبر.",
+    "B2 | La fruta tropical se transporta casi siempre en barco.": "المبني للمجهول بـ <b>se</b>: se transporta.",
+    "B2 | El mango, cuya piel es roja y verde, ya está maduro.": "<b>cuyo</b> يطابق الشيء المملوك: la piel → <b>cuya</b>.",
+    "B2 | Encima de las otras hay una papaya abierta.": "اسم المفعول الصفة يطابق: una papaya → <b>abierta</b>.",
+    "B2 | Los plátanos que Anna se lleva vienen de Ecuador.": "مفعول به مباشر في الجملة الموصولة ← <b>que</b>. أما <b>quienes</b> فلا تدلّ إلا على الأشخاص.",
+    "B2 | El coco ya está abierto.": "نتيجة فعل ← <b>estar</b> + اسم المفعول.",
+    "C1 | A pesar del largo viaje, los mangos son bastante baratos aquí.": "<b>a pesar de</b> = رغم. قبل el: a pesar <b>del</b>.",
+    "C1 | Cuanto más oscuros son los higos, más dulces son.": "<b>cuanto más</b> …, <b>más</b> … = كلّما …، زاد ….",
+    "C1 | Si Anna tuviera más tiempo, compraría una piña y la pelaría.": "فرضية غير واقعية: <b>si</b> + subjuntivo الماضي (tuviera)، ثم condicional.",
+    "C1 | Es mejor que los aguacates no estén en el frío.": "<b>es mejor que</b> (نصيحة) ← <b>subjuntivo</b>.",
+    "C1 | El coco debe de haber sido abierto con un martillo.": "<b>deber de</b> + مصدر ماضٍ = استنتاج بشأن الماضي."
+   }
   },
   "pt": {
    "champs": {

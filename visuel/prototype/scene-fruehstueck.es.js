@@ -51,7 +51,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -250,7 +250,7 @@ window.SCENE = {
    "fr": "l'écharpe",
    "en": "the scarf",
    "pt": "o cachecol",
-   "ar": "وشاح، شال",
+   "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
    "latam": null
@@ -277,7 +277,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -304,7 +304,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة",
+   "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
    "latam": null
@@ -331,7 +331,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة",
+   "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
    "latam": null
@@ -358,7 +358,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة",
+   "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
    "latam": null
@@ -379,7 +379,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le café",
      "en": "coffee",
-     "pt": "o café"
+     "pt": "o café",
+     "ar": "قهوة"
     }
    ],
    "sur": null,
@@ -416,7 +417,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le café",
      "en": "coffee",
-     "pt": "o café"
+     "pt": "o café",
+     "ar": "قهوة"
     }
    ],
    "sur": "tisch",
@@ -480,7 +482,8 @@ window.SCENE = {
      "theme": "el_restaurante",
      "fr": "le client",
      "en": "the customer",
-     "pt": "o cliente"
+     "pt": "o cliente",
+     "ar": "زبون"
     }
    ],
    "sur": null,
@@ -496,7 +499,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -523,7 +526,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -549,6 +552,7 @@ window.SCENE = {
      "fr": "la serveuse",
      "en": "the waitress",
      "pt": "a garçonete",
+     "ar": "نادلة",
      "latam": {
       "mot": "mesera",
       "genre": "la",
@@ -596,7 +600,8 @@ window.SCENE = {
      "theme": "el_restaurante",
      "fr": "le client",
      "en": "the customer",
-     "pt": "o cliente"
+     "pt": "o cliente",
+     "ar": "زبون"
     }
    ],
    "sur": null,
@@ -612,7 +617,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -772,7 +777,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": "tisch",
@@ -788,7 +794,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -809,7 +815,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le lait",
      "en": "milk",
-     "pt": "o leite"
+     "pt": "o leite",
+     "ar": "حليب"
     }
    ],
    "sur": "tisch",
@@ -825,7 +832,7 @@ window.SCENE = {
    "fr": "la carafe, le pichet",
    "en": "the jug",
    "pt": "a jarra",
-   "ar": "إبريق",
+   "ar": "إبريق، دورق",
    "pl": "dzbanek",
    "ru": "кофейник, кувшин",
    "latam": null
@@ -852,7 +859,7 @@ window.SCENE = {
    "fr": "le sucre",
    "en": "sugar",
    "pt": "o açúcar",
-   "ar": "سكر",
+   "ar": "سكّر",
    "pl": "cukier",
    "ru": "сахар",
    "latam": null
@@ -873,7 +880,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le verre",
      "en": "glass",
-     "pt": "o copo"
+     "pt": "o copo",
+     "ar": "كوب"
     }
    ],
    "sur": "tisch",
@@ -959,7 +967,7 @@ window.SCENE = {
    "fr": "l'assiette, le plat",
    "en": "plate, dish",
    "pt": "o prato",
-   "ar": "صحن",
+   "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
    "latam": null
@@ -986,7 +994,7 @@ window.SCENE = {
    "fr": "le pain",
    "en": "bread",
    "pt": "o pão",
-   "ar": "خبز صغير (كعك)",
+   "ar": "خبز",
    "pl": "bułka",
    "ru": "булочка",
    "latam": null
@@ -1040,7 +1048,7 @@ window.SCENE = {
    "fr": "le jambon",
    "en": "the ham",
    "pt": "o presunto",
-   "ar": "لحم مقدّد (جامبون)",
+   "ar": "لحم خنزير مقدّد (خامون)",
    "pl": "szynka",
    "ru": "ветчина",
    "latam": null
@@ -1148,7 +1156,7 @@ window.SCENE = {
    "fr": "la serviette",
    "en": "the napkin",
    "pt": "o guardanapo",
-   "ar": "منديل المائدة",
+   "ar": "منديل",
    "pl": "serwetka",
    "ru": "салфетка",
    "latam": null
@@ -1349,7 +1357,7 @@ window.SCENE = {
    "fr": "le comptoir",
    "en": "the bar (counter)",
    "pt": "o balcão",
-   "ar": "منضدة",
+   "ar": "بار، منضدة المقهى",
    "pl": "lada",
    "ru": "стойка",
    "latam": null
@@ -1875,9 +1883,49 @@ window.SCENE = {
     "consigne": "مارك يتناول فطوره في مقهى الزاوية. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الضمائر: le وla وlo",
+    "B2": "الجمل الموصولة واسم المفعول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El celular está encima de la mesa.": "<b>encima de</b> = على. المكان ← <b>estar</b>.",
+    "A2 | El móvil está encima de la mesa.": "<b>encima de</b> = على. المكان ← <b>estar</b>.",
+    "A2 | La chaqueta está sobre la silla.": "<b>sobre</b> = على، موضوع فوق (هنا، على ظهر الكرسي).",
+    "A2 | La bufanda está al lado de la puerta.": "<b>al lado de</b> = بجانب.",
+    "A2 | La mochila está al lado de la mesa.": "<b>la</b> mesa مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El pan está en el plato.": "<b>en</b> = في أو على. <b>el</b> plato مذكر، و<b>en el</b> لا يُدمج أبداً.",
+    "A2 | El tenedor está delante del plato.": "<b>delante de</b> = أمام. de + el = <b>del</b>.",
+    "A2 | El jugo está al lado del huevo.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El zumo está al lado del huevo.": "<b>de + el = del</b>، دائماً.",
+    "A2 | Hay una planta al lado de la ventana.": "<b>hay</b> يقدّم شيئاً جديداً («توجد نبتة»)؛ و<b>está</b> يحدّد مكان شيء معروف من قبل («النبتة في…»).",
+    "B1 | La mesera le trae un pastel a Mark.": "لمن؟ ← مفعول غير مباشر: <b>le</b>. والإسبانية تضعه حتى حين يتبعه «a Mark».",
+    "B1 | La camarera le trae una tarta a Mark.": "لمن؟ ← مفعول غير مباشر: <b>le</b>. والإسبانية تضعه حتى حين يتبعه «a Mark».",
+    "B1 | A Mark le gusta el café.": "<b>gustar</b>: الشيء يعجب <b>شخصاً</b> ← <b>le</b> (له).",
+    "B1 | Mark lo ha pedido a la mesera.": "مفعول به مباشر مذكر (el pastel) → <b>lo</b>.",
+    "B1 | Mark la ha pedido a la camarera.": "مفعول به مباشر مؤنث (la tarta) → <b>la</b>.",
+    "B1 | ¿Me pasas la sal, por favor?": "<b>pasar</b> = يناول (على المائدة). بين الأصدقاء، <b>tú</b> → pasas؛ <b>me</b> = لي.",
+    "B1 | Mark lo corta con el cuchillo.": "مفعول به مباشر مذكر (el pan) → <b>lo</b>.",
+    "B1 | La mesera le sonríe a Mark.": "نبتسم <b>لـ</b> شخص ← مفعول غير مباشر: <b>le</b>.",
+    "B1 | La camarera le sonríe a Mark.": "نبتسم <b>لـ</b> شخص ← مفعول غير مباشر: <b>le</b>.",
+    "B1 | Alguien la ha dejado sobre la silla.": "مفعول به مباشر مؤنث (la chaqueta) → <b>la</b>.",
+    "B1 | La mesera le da el plato a Mark.": "من يتلقّى ← <b>le</b>؛ والشيء المعطى (el plato) يبقى مفعولاً به مباشراً.",
+    "B1 | La camarera le da el plato a Mark.": "من يتلقّى ← <b>le</b>؛ والشيء المعطى (el plato) يبقى مفعولاً به مباشراً.",
+    "B2 | El cliente al que la mesera trae el pastel se llama Mark.": "تُحضَر الكعكة <b>له</b>: حرف الجرّ <b>a</b> يتقدّم على الموصول ← <b>al que</b>.",
+    "B2 | El cliente al que la camarera trae la tarta se llama Mark.": "تُحضَر الكعكة <b>له</b>: حرف الجرّ <b>a</b> يتقدّم على الموصول ← <b>al que</b>.",
+    "B2 | La mesera, que lleva lentes, trae el pastel.": "فاعل الجملة الموصولة ← <b>que</b>.",
+    "B2 | La camarera, que lleva gafas, trae la tarta.": "فاعل الجملة الموصولة ← <b>que</b>.",
+    "B2 | La mesa en la que está sentado Mark está junto a la ventana.": "<b>estar sentado en</b> كرسي، طاولة: حرف الجرّ يتقدّم ← <b>en la que</b>.",
+    "B2 | La mesa ya está puesta.": "<b>estar</b> + اسم المفعول = النتيجة. <b>poner</b> شاذّ ← <b>puesto</b>، بالمطابقة: la mesa → <b>puesta</b>.",
+    "B2 | El pan ya está cortado.": "اسم المفعول يطابق الاسم: <b>el</b> pan → corta<b>do</b>.",
+    "B2 | La puerta está abierta.": "<b>abrir</b> ← اسم مفعول شاذّ <b>abierto</b>، بالمطابقة: la puerta → <b>abierta</b>.",
+    "C1 | Mark debe de tener mucha hambre.": "<b>deber de</b> + مصدر = استنتاج: لا بدّ أنه جائع.",
+    "C1 | Puede que la chaqueta sea del señor del fondo.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Será un cliente habitual.": "<b>المستقبل</b> قد يعبّر عن افتراض بشأن الحاضر: <b>será</b> = لا بدّ أنه.",
+    "C1 | Dicen que este pastel de manzana es el mejor de Berlín.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>. أما subjuntivo فيأتي مع «no dicen que».",
+    "C1 | Dicen que esta tarta de manzana es la mejor de Berlín.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>. أما subjuntivo فيأتي مع «no dicen que»."
+   }
   },
   "pt": {
    "champs": {

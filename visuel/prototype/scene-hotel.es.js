@@ -24,7 +24,7 @@ window.SCENE = {
    "fr": "le plafond, le toit",
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
-   "ar": "بطانية",
+   "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
    "latam": null
@@ -90,7 +90,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -162,7 +162,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -270,7 +270,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -297,7 +297,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -324,7 +324,7 @@ window.SCENE = {
    "fr": "l'escalier",
    "en": "the stairs",
    "pt": "a escada",
-   "ar": "درج، سلّم",
+   "ar": "سلّم، درج",
    "pl": "schody",
    "ru": "лестница",
    "latam": null
@@ -351,7 +351,7 @@ window.SCENE = {
    "fr": "le tableau",
    "en": "the picture",
    "pt": "o quadro",
-   "ar": "صورة، لوحة",
+   "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
    "latam": null
@@ -378,7 +378,7 @@ window.SCENE = {
    "fr": "le tableau",
    "en": "the picture",
    "pt": "o quadro",
-   "ar": "صورة، لوحة",
+   "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
    "latam": null
@@ -426,7 +426,8 @@ window.SCENE = {
      "theme": "nom_casa",
      "fr": "le lampadaire",
      "en": "the floor lamp",
-     "pt": "a luminária de chão"
+     "pt": "a luminária de chão",
+     "ar": "مصباح أرضي"
     }
    ],
    "sur": null,
@@ -502,7 +503,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -605,6 +606,7 @@ window.SCENE = {
      "fr": "l'ordinateur",
      "en": "the computer",
      "pt": "o computador",
+     "ar": "حاسوب",
      "latam": {
       "mot": "computadora",
       "genre": "la",
@@ -652,7 +654,7 @@ window.SCENE = {
    "fr": "le clavier",
    "en": "the keyboard",
    "pt": "o teclado",
-   "ar": "لوحة المفاتيح",
+   "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
    "latam": null
@@ -733,7 +735,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -760,7 +762,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -840,6 +842,7 @@ window.SCENE = {
      "fr": "le jean",
      "en": "the jeans",
      "pt": "a calça jeans",
+     "ar": "بنطال جينز",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -860,7 +863,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -995,7 +998,7 @@ window.SCENE = {
    "fr": "le canapé",
    "en": "the sofa",
    "pt": "o sofá",
-   "ar": "أريكة، كنبة",
+   "ar": "أريكة",
    "pl": "kanapa",
    "ru": "диван",
    "latam": null
@@ -1188,7 +1191,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -1209,7 +1212,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le café",
      "en": "coffee",
-     "pt": "o café"
+     "pt": "o café",
+     "ar": "قهوة"
     }
    ],
    "sur": "couchtisch",
@@ -1246,7 +1250,8 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "la table",
      "en": "the table",
-     "pt": "a mesa"
+     "pt": "a mesa",
+     "ar": "طاولة"
     }
    ],
    "sur": null,
@@ -1262,7 +1267,7 @@ window.SCENE = {
    "fr": "la table basse",
    "en": "the coffee table",
    "pt": "a mesa de centro",
-   "ar": "طاولة القهوة",
+   "ar": "طاولة منخفضة",
    "pl": "stolik kawowy, ława",
    "ru": "журнальный столик",
    "latam": {
@@ -1293,7 +1298,7 @@ window.SCENE = {
    "fr": "la sonnette",
    "en": "the doorbell",
    "pt": "a campainha",
-   "ar": "جرس",
+   "ar": "جرس الباب",
    "pl": "dzwonek",
    "ru": "звонок",
    "latam": null
@@ -1347,7 +1352,7 @@ window.SCENE = {
    "fr": "la brochure",
    "en": "the leaflet",
    "pt": "o folheto",
-   "ar": "نشرة إعلانية",
+   "ar": "كتيّب، منشور",
    "pl": "prospekt, ulotka",
    "ru": "рекламный проспект",
    "latam": null
@@ -1368,7 +1373,8 @@ window.SCENE = {
      "theme": "los_servicios",
      "fr": "le formulaire",
      "en": "the form",
-     "pt": "o formulário"
+     "pt": "o formulário",
+     "ar": "استمارة"
     }
    ],
    "sur": "rezeption",
@@ -1442,7 +1448,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -1469,7 +1475,7 @@ window.SCENE = {
    "fr": "la réception",
    "en": "the reception",
    "pt": "a recepção",
-   "ar": "مكتب الاستقبال",
+   "ar": "استقبال",
    "pl": "recepcja",
    "ru": "стойка регистрации, ресепшен",
    "latam": null
@@ -1490,7 +1496,8 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "le tapis",
      "en": "the rug",
-     "pt": "o tapete"
+     "pt": "o tapete",
+     "ar": "سجّادة"
     }
    ],
    "sur": null,
@@ -1512,7 +1519,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1971,9 +1978,41 @@ window.SCENE = {
     "consigne": "مارك يقضي عطلة نهاية الأسبوع في هامبورغ: يصل إلى فندقه. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الساعة والمواعيد",
+    "B2": "subjuntivo في الجمل الموصولة",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El reloj está en la pared.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Las llaves están en la estantería.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La maleta está en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La maleta está en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La señora está sentada en el sofá.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La taza está en la mesa de centro.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La taza está en la mesa baja.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Hay un timbre en la recepción.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | El cuadro está encima del sofá.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La lámpara está al lado del espejo.": "<b>de + el = del</b>، دائماً.",
+    "B1 | ¿A qué hora cierra la recepción?": "<b>¿a qué hora?</b> = في أيّ ساعة؟",
+    "B1 | La recepción cierra a las once de la noche.": "ساعة وقوع الفعل ← <b>a las</b> + الساعة.",
+    "B1 | Son las ocho y media.": "الساعات بالجمع: <b>las</b> ocho (إلا la una).",
+    "B1 | Es la una y cuarto.": "<b>la una</b>: الساعة الوحيدة بالمفرد.",
+    "B1 | Mark llega el viernes por la noche.": "اليوم ← <b>el</b> viernes، بلا حرف جرّ.",
+    "B1 | El desayuno se sirve por la mañana.": "<b>por la mañana</b> = في الصباح (وقت غير محدّد).",
+    "B1 | Mark se queda hasta el domingo.": "<b>hasta</b> = حتى.",
+    "B2 | Mark busca una habitación que sea tranquila.": "الموصوف غير محدّد (لا نعرف إن كان موجوداً) ← subjuntivo.",
+    "B2 | La señora quiere un hotel que esté cerca del puerto.": "الموصوف غير محدّد (لا نعرف إن كان موجوداً) ← subjuntivo.",
+    "B2 | Este es el hotel que está más cerca de la estación.": "الموصوف معروف، حقيقي ← indicativo.",
+    "B2 | ¿Hay alguien que hable inglés en la recepción?": "<b>¿hay alguien que…?</b> → subjuntivo.",
+    "B2 | No hay ninguna habitación que tenga vistas al mar.": "موصوف منفي (<b>ninguna</b>) → subjuntivo.",
+    "B2 | Mark tiene una llave que abre la puerta de su habitación.": "الموصوف معروف، حقيقي ← indicativo.",
+    "C1 | Debe de estar contento de llegar.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que la señora sea clienta habitual.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Su habitación estará en la segunda planta.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que este hotel es el más antiguo de Hamburgo.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

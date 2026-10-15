@@ -18,7 +18,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'homme",
      "en": "the man",
-     "pt": "o homem"
+     "pt": "o homem",
+     "ar": "رجل"
     },
     {
      "mot": "cuerpo",
@@ -27,7 +28,8 @@ window.SCENE = {
      "theme": "el_cuerpo",
      "fr": "le corps",
      "en": "the body",
-     "pt": "o corpo"
+     "pt": "o corpo",
+     "ar": "جسم"
     }
    ],
    "sur": null,
@@ -109,7 +111,7 @@ window.SCENE = {
    "fr": "le cou",
    "en": "the neck",
    "pt": "o pescoço",
-   "ar": "رقبة، حلق",
+   "ar": "رقبة، عنق",
    "pl": "szyja, gardło",
    "ru": "шея, горло",
    "latam": null
@@ -355,7 +357,7 @@ window.SCENE = {
    "fr": "le poignet, la poupée",
    "en": "the wrist, the doll",
    "pt": "o pulso, a boneca",
-   "ar": "معصم",
+   "ar": "معصم، دمية",
    "pl": "nadgarstek",
    "ru": "запястье",
    "latam": null
@@ -547,7 +549,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "pt": "a perna",
-   "ar": "ساق",
+   "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
    "latam": null
@@ -574,7 +576,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "pt": "a perna",
-   "ar": "ساق",
+   "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
    "latam": null
@@ -649,7 +651,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "la femme, l'épouse",
      "en": "the wife, the woman",
-     "pt": "a mulher, a esposa"
+     "pt": "a mulher, a esposa",
+     "ar": "امرأة، زوجة"
     }
    ],
    "sur": null,
@@ -764,7 +767,7 @@ window.SCENE = {
    "fr": "le stéthoscope",
    "en": "the stethoscope",
    "pt": "o estetoscópio",
-   "ar": "سمّاعة الطبيب",
+   "ar": "سمّاعة طبّية",
    "pl": "stetoskop",
    "ru": "стетоскоп",
    "latam": null
@@ -857,7 +860,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -973,7 +976,7 @@ window.SCENE = {
    "fr": "le front",
    "en": "the forehead",
    "pt": "a testa",
-   "ar": "جبهة",
+   "ar": "جبين",
    "pl": "czoło",
    "ru": "лоб",
    "latam": null
@@ -2244,9 +2247,39 @@ window.SCENE = {
     "autre_vue": "↻ أدِر مارك"
    },
    "couches": {
-    "A1": "جسم الإنسان"
+    "A1": "جسم الإنسان",
+    "A2": "¿Dónde está? — الجسم",
+    "B1": "تعليمات الطبيبة",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La báscula está junto a la pared.": "<b>junto a</b> = بمحاذاة، قرب.",
+    "A2 | La médica está al lado del paciente.": "<b>al lado de</b> = بجانب؛ de + el = <b>del</b>.",
+    "A2 | Mark está delante de la báscula.": "<b>delante de</b> = أمام: لم يصعد عليه بعد.",
+    "A2 | La médica le pone el estetoscopio en el pecho.": "لأعضاء الجسم، تضع الإسبانية <b>أداة التعريف</b>، لا ضمير الملكية: الضمير <b>le</b> يقول أصلاً لمن.",
+    "A2 | Mark tiene las manos junto a los muslos.": "<b>junto a</b> = على طول، بمحاذاة.",
+    "A2 | Mark tiene los pies en el piso.": "<b>en</b> el piso = على الأرض. أما «encima» و«dentro» فتستلزمان <b>de</b>.",
+    "A2 | Mark tiene los pies en el suelo.": "<b>en</b> el suelo = على الأرض. أما «encima» و«dentro» فتستلزمان <b>de</b>.",
+    "B1 | Señor, respire hondo, por favor.": "مخاطبة احترام (usted): أمر بـ <b>-e</b> لفعل منتهٍ بـ -ar → <b>respire</b>.",
+    "B1 | La médica le escucha los pulmones.": "مضارع، غائب: la médica <b>escucha</b>.",
+    "B1 | Mark se ha quitado la ropa: lleva solo los calzoncillos.": "<b>llevar</b> = يرتدي (ثوباً).",
+    "B1 | Ahora, súbase a la báscula, por favor.": "أمر usted + ضمير ملتصق: <b>súbase</b> (علامة النبر تحفظ المقطع المنبور).",
+    "B1 | No se mueva, por favor.": "<b>النهي</b> يأخذ subjuntivo: no se <b>mueva</b>.",
+    "B1 | La médica le ha pedido que respire hondo.": "الطلب <b>من</b> شخص: مفعول غير مباشر ← <b>le</b>. وpedir que + subjuntivo.",
+    "B2 | Sus pulmones están siendo examinados.": "مبني للمجهول جارٍ: <b>estar siendo</b> + اسم المفعول.",
+    "B2 | El paciente cuyo pecho examina la médica se llama Mark.": "<b>cuyo</b> يطابق el pecho → <b>cuyo</b>.",
+    "B2 | La médica que lo examina es su médica de cabecera.": "فاعل الجملة الموصولة ← <b>que</b>. <b>médica de cabecera</b> = طبيبة العائلة.",
+    "B2 | La báscula a la que se va a subir está junto a la pared.": "Subirse <b>a</b> algo: a + la que → <b>a la que</b>. أما <b>quien</b> فلا تدلّ إلا على الأشخاص.",
+    "B2 | Su altura será medida enseguida.": "فعل مقبل، بالمبني للمجهول: <b>ser</b> + اسم المفعول ← <b>será</b> medida.",
+    "B2 | Mark no se mueve mientras la médica lo examina.": "<b>mientras</b> + فعل = بينما. أما <b>durante</b> فتوضع قبل اسم.",
+    "C1 | Mark debe de hacer mucho deporte: tiene los brazos fuertes.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Es probable que Mark esté sano.": "احتمال ← <b>subjuntivo</b> (esté). بعد es seguro أو creo، يكون indicativo: está.",
+    "C1 | Dicen que esta médica es muy minuciosa.": "بعد <b>dicen que</b> (نقل قول) ← <b>indicativo</b>.",
+    "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "فرضية غير واقعية: <b>si</b> + subjuntivo الماضي (latiera)، ثم condicional.",
+    "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "فرضية بشأن الماضي: <b>si</b> + الماضي التامّ من subjuntivo، ثم condicional الماضي.",
+    "C1 | Cuanto más deporte hace Mark, más sano está.": "<b>cuanto más</b> …, <b>más</b> … = كلّما …، زاد …."
+   }
   },
   "pt": {
    "champs": {

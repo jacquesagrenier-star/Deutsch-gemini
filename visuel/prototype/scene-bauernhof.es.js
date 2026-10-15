@@ -84,7 +84,7 @@ window.SCENE = {
    "fr": "l'oiseau",
    "en": "the bird",
    "pt": "o pássaro",
-   "ar": "طائر",
+   "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
    "latam": null
@@ -138,7 +138,7 @@ window.SCENE = {
    "fr": "la campagne, le champ",
    "en": "the countryside, the field",
    "pt": "o campo",
-   "ar": "حقل",
+   "ar": "ريف، حقل",
    "pl": "pole",
    "ru": "поле",
    "latam": null
@@ -204,7 +204,7 @@ window.SCENE = {
    "fr": "le mouton",
    "en": "the sheep",
    "pt": "a ovelha",
-   "ar": "خروف",
+   "ar": "خروف، نعجة",
    "pl": "owca",
    "ru": "овца",
    "latam": null
@@ -258,7 +258,7 @@ window.SCENE = {
    "fr": "le toit",
    "en": "the roof",
    "pt": "o telhado",
-   "ar": "سقف",
+   "ar": "سطح، سقف",
    "pl": "dach",
    "ru": "крыша",
    "latam": null
@@ -285,7 +285,7 @@ window.SCENE = {
    "fr": "la maison",
    "en": "the house",
    "pt": "a casa",
-   "ar": "بيت، منزل",
+   "ar": "بيت",
    "pl": "dom",
    "ru": "дом",
    "latam": null
@@ -426,7 +426,7 @@ window.SCENE = {
    "fr": "l'escalier",
    "en": "the stairs",
    "pt": "a escada",
-   "ar": "سُلّم",
+   "ar": "سلّم، درج",
    "pl": "drabina",
    "ru": "лестница (стремянка)",
    "latam": null
@@ -453,7 +453,7 @@ window.SCENE = {
    "fr": "la citrouille, la courge",
    "en": "the pumpkin",
    "pt": "a abóbora",
-   "ar": "يقطين",
+   "ar": "يقطين، قرع",
    "pl": "dynia",
    "ru": "тыква",
    "latam": null
@@ -480,7 +480,7 @@ window.SCENE = {
    "fr": "le chat",
    "en": "the cat",
    "pt": "o gato",
-   "ar": "قطة",
+   "ar": "قطّ",
    "pl": "kot",
    "ru": "кошка",
    "latam": null
@@ -507,7 +507,7 @@ window.SCENE = {
    "fr": "le mur (extérieur)",
    "en": "the wall",
    "pt": "o muro",
-   "ar": "سور، جدار",
+   "ar": "سور، جدار خارجي",
    "pl": "mur",
    "ru": "стена (каменная)",
    "latam": null
@@ -534,7 +534,7 @@ window.SCENE = {
    "fr": "la banque, le banc",
    "en": "the bank, the bench",
    "pt": "o banco",
-   "ar": "بنك، مصرف",
+   "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
    "latam": null
@@ -594,7 +594,7 @@ window.SCENE = {
    "fr": "le puits",
    "en": "the well",
    "pt": "o poço",
-   "ar": "نافورة",
+   "ar": "بئر",
    "pl": "fontanna, studnia",
    "ru": "фонтан, колодец",
    "latam": null
@@ -646,7 +646,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'homme",
      "en": "the man",
-     "pt": "o homem"
+     "pt": "o homem",
+     "ar": "رجل"
     }
    ],
    "sur": null,
@@ -689,7 +690,7 @@ window.SCENE = {
    "fr": "le bonnet (la tuque)",
    "en": "the woolly hat",
    "pt": "o gorro",
-   "ar": "قبعة صوفية",
+   "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
    "latam": null
@@ -851,7 +852,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'enfant, le garçon",
      "en": "the child, the boy",
-     "pt": "a criança, o menino"
+     "pt": "a criança, o menino",
+     "ar": "طفل، ولد"
     }
    ],
    "sur": null,
@@ -1002,7 +1004,7 @@ window.SCENE = {
    "fr": "le tee-shirt",
    "en": "the T-shirt",
    "pt": "a camiseta",
-   "ar": "قميص قصير الأكمام (تي شيرت)",
+   "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
    "latam": null
@@ -1024,6 +1026,7 @@ window.SCENE = {
      "fr": "le jean",
      "en": "the jeans",
      "pt": "a calça jeans",
+     "ar": "بنطال جينز",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -1044,7 +1047,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -1071,7 +1074,7 @@ window.SCENE = {
    "fr": "la botte",
    "en": "the boot",
    "pt": "a bota",
-   "ar": "جزمة",
+   "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
    "latam": null
@@ -1098,7 +1101,7 @@ window.SCENE = {
    "fr": "la pomme",
    "en": "apple",
    "pt": "a maçã",
-   "ar": "تفاحة",
+   "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
    "latam": null
@@ -1125,7 +1128,7 @@ window.SCENE = {
    "fr": "la pomme",
    "en": "apple",
    "pt": "a maçã",
-   "ar": "تفاحة",
+   "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
    "latam": null
@@ -1152,7 +1155,7 @@ window.SCENE = {
    "fr": "la pomme",
    "en": "apple",
    "pt": "a maçã",
-   "ar": "تفاحة",
+   "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
    "latam": null
@@ -1179,7 +1182,7 @@ window.SCENE = {
    "fr": "la caisse",
    "en": "the checkout",
    "pt": "o caixa",
-   "ar": "صندوق",
+   "ar": "صندوق الدفع",
    "pl": "skrzynia, skrzynka",
    "ru": "ящик",
    "latam": null
@@ -1200,7 +1203,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le lait",
      "en": "milk",
-     "pt": "o leite"
+     "pt": "o leite",
+     "ar": "حليب"
     }
    ],
    "sur": null,
@@ -1216,7 +1220,7 @@ window.SCENE = {
    "fr": "la carafe, le pichet",
    "en": "the jug",
    "pt": "a jarra",
-   "ar": "إبريق",
+   "ar": "إبريق، دورق",
    "pl": "dzbanek",
    "ru": "кофейник, кувшин",
    "latam": null
@@ -1486,7 +1490,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1966,9 +1970,43 @@ window.SCENE = {
     "consigne": "آنا تقضي الصباح في مزرعة عمّها في براندنبورغ. المس شيئًا أو حيوانًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الأفعال الانعكاسية",
+    "B2": "gustar والأفعال المشابهة",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El gato está en el muro.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El perro está en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El perro está en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | Los huevos están en la cesta.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La escalera está al lado de la madera.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Hay un pájaro en el tejado.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | Las manzanas están en la caja.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La vaca está en el prado.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La cubeta está al lado del pozo.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El cubo está al lado del pozo.": "<b>de + el = del</b>، دائماً.",
+    "B1 | Anna se ríe con el caballo.": "<b>reírse</b>: في الغائب ← <b>se</b>.",
+    "B1 | El perro se tumba en el piso.": "<b>tumbarse</b> = يتمدّد؛ él → <b>se</b>.",
+    "B1 | El perro se tumba en el suelo.": "<b>tumbarse</b> = يتمدّد؛ él → <b>se</b>.",
+    "B1 | El gato se sienta en el muro.": "<b>sentarse</b> = يجلس؛ él → <b>se</b>.",
+    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "<b>agacharse</b> = ينحني، يجثو؛ él → <b>se</b>.",
+    "B1 | Nosotros nos levantamos temprano en la granja.": "nosotros → <b>nos</b>.",
+    "B1 | ¿Tú te lavas las manos después?": "tú → <b>te</b>، قبل الفعل.",
+    "B1 | Yo me pongo las botas.": "<b>ponerse</b> + ثوب: yo → <b>me</b>.",
+    "B1 | Las gallinas se acercan a la cesta.": "<b>acercarse</b> = يقترب؛ ellas → <b>se</b>.",
+    "B2 | A Anna le gustan los caballos.": "من يُحبّ هو مفعول: <b>le</b> (له، لها) — كما في «تعجبه».",
+    "B2 | Al caballo le encanta la manzana.": "<b>encantar</b> يعمل مثل gustar → <b>le</b>.",
+    "B2 | A los niños les gustan las gallinas.": "جمع (a los niños) → <b>les</b>.",
+    "B2 | A mí me gusta la vida en el campo.": "a mí → <b>me</b>؛ فاعل الفعل هو الشيء المحبوب.",
+    "B2 | ¿A ti te gustan los cerdos?": "a ti → <b>te</b>.",
+    "B2 | Al tío de Anna le duele la espalda.": "<b>doler</b> يعمل مثل gustar → <b>le</b> duele.",
+    "C1 | El caballo debe de ser muy cariñoso.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el perro sea del primo de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Serán de esta mañana.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que la granja tiene más de cien años.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

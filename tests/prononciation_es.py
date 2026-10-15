@@ -12,6 +12,7 @@ doit garder les voyelles pures (no « go-w »), taire le h, ne pas reduire les
 voyelles en « uh ». Chaque explication est donc ecrite POUR sa langue.
 
 L'interface de l'espagnol existe en francais et en anglais : deux langues.
+(Puis le portugais du Bresil, 13 oct. 2026, et l'arabe, 15 oct. 2026.)
 
 LA VARIANTE. Une regle change de texte selon l'Espagne ou l'Amerique latine :
 c / z (« th » a Madrid, « s » a Mexico). Elle porte « variantes » ; l'app
@@ -28,7 +29,7 @@ import hashlib, io, json, os, re, sys
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATOS = os.path.join(RACINE, "espanol", "datos")
-LANGUES = ("fr", "en", "pt")
+LANGUES = ("fr", "en", "pt", "ar")
 
 
 def guillemets(t):
@@ -197,6 +198,53 @@ PT = {
             "Cada palavra tem uma sílaba mais forte. Palavra terminada em vogal, n ou s: a penúltima (casa, hablan). Outra consoante: a última (ciudad, hablar). Senão, o acento escrito a mostra (café, médico, canción). As regras são parecidas com as do português; nos monossílabos, o acento serve para distinguir (más / mas, sí / si, él / el)."),
 }
 
+# L'ARABE (15 oct. 2026), ecrit CONTRE l'arabe : trois voyelles seulement (le
+# piege e / i et o / u), ni p ni v, le j comme le kha, le h toujours muet.
+# Meme forme que PT ; pose par espanol/ar/poser_autres.py, entre les deux bornes.
+AR = {
+ "voyelles": ("خمس حركات، تُلفظ كاملة دائماً",
+      "خمس حركات تُلفظ دائماً بالطريقة نفسها وكاملةً: a وe وi وo وu. لا تُسكَّن أبداً ولا تُخفَّف. وفي العربية ثلاث حركات فقط، فانتبه إلى الفرق بين e وi — e بين الفتحة والكسرة، كفتحة ممالة: peso (وزن) ≠ piso (شقّة) — وبين o وu — o بين الفتحة والضمة: coro (جوقة) ≠ curo (أعالج). هنا تقع أكثر أخطاء الناطقين بالعربية."),
+ "u": ("دائماً ضمة مشبعة «و»",
+      "تُلفظ u دائماً كضمة مشبعة «و»: luna تُقرأ «لونا»، uva «أوبا»، fruta «فروتا». وتُسمع دائماً، إلا في que وqui وgue وgui حيث تصمت."),
+ "e-final": ("الـ e في آخر الكلمة تُلفظ",
+      "تُلفظ e دائماً، حتى في آخر الكلمة: noche تُقرأ «نوتشِه»، grande «غراندِه»، leche «لِتشِه». لا تحذفها، ولا تحوّلها إلى كسرة: noche ليست «نوتشي»."),
+ "sans-nasale": ("لا أصوات أنفية: الحركة ثم n",
+      "لا حركات أنفية في الإسبانية: في pan وtambién وcinco تُلفظ الحركة ثم تُلفظ n واضحة بعدها، كما في «بان» و«كان» بالعربية: «بان»، «تامبْيِن»، «ثينكو»."),
+ "diphtongues": ("حركتان دفعة واحدة",
+      "حركتان متجاورتان تُلفظان دفعة واحدة، في مقطع واحد: bueno «بْوِينو»، tiempo «تْيِمبو»، nuevo «نْوِيبو». الـ u هنا تقترب من الواو «و»، والـ i من الياء «ي»."),
+ "c-z": ("حسب المنطقة",
+      "أمام e أو i، تُلفظ c — وz في كل موضع — كالثاء «ث» في إسبانيا، وكالسين «س» في أمريكا اللاتينية."),
+ "c-z.es": ("كالثاء «ث»",
+      "في إسبانيا، أمام e أو i، تُلفظ c — وz في كل موضع — كالثاء العربية «ث»، اللسان بين الأسنان: cielo «ثْيِلو»، zapato «ثاباتو»، cerveza «ثِربِثا». وفي أمريكا اللاتينية تُلفظ سيناً «س»: الاثنتان صحيحتان."),
+ "c-z.latam": ("«س»",
+      "في أمريكا اللاتينية، أمام e أو i، تُلفظ c — وz في كل موضع — سيناً «س»: cielo «سْيِلو»، zapato «ساباتو»، cerveza «سِربِسا». وفي إسبانيا تُلفظ ثاءً «ث»: الاثنتان صحيحتان."),
+ "c-qu": ("دائماً «ك»",
+      "ca وco وcu تُلفظ «كا، كو، كو»: casa «كاسا». أمام e وi تُكتب qu ولا تُسمع الـ u: queso «كِيسو»، aquí «أكي»."),
+ "j": ("كالخاء «خ»",
+      "j، وكذلك g أمام e أو i، تُلفظ كالخاء العربية «خ»: jamón «خامون»، ojo «أوخو»، gente «خِنتِه». وفي المكسيك والكاريبي تكون أخفّ، أقرب إلى الهاء «ه»."),
+ "g-gu": ("g قوية؛ في gue وgui الـ u صامتة",
+      "ga وgo وgu تُلفظ بصوت g القوي، كالجيم القاهرية، أو كغين «غ» بانغلاق تامّ: gato «غاتو». أمام e وi تُكتب gu ولا تُسمع الـ u: guerra «غِرّا». والنقطتان فوق الـ u تجعلانها تُسمع: bilingüe «بيلينغْوِه»."),
+ "ch": ("«تش»",
+      "ch تُلفظ «تش»، كما في «تشاد»: noche «نوتشِه»، ocho «أوتشو»، chico «تشيكو». ليست شيناً «ش» وحدها."),
+ "ll-y": ("كالياء «ي»",
+      "ll وy تُلفظان كالياء «ي»: calle «كايِه»، playa «بلايا»، llave «يابِه». وفي الأرجنتين والأوروغواي تُسمع أقرب إلى الشين «ش»: calle «كاشِه»."),
+ "n-tilde": ("«ني»",
+      "ñ تُلفظ نوناً تليها ياء خفيفة «ني»، في مقطع واحد: niño «نينيو»، mañana «مانيانا»، año «أنيو»."),
+ "h": ("صامتة دائماً",
+      "h لا تُلفظ أبداً، على خلاف الهاء العربية: hoy «أوي»، hermano «إرمانو»، hora «أورا». لا تنفخها."),
+ "r-rr": ("كالراء العربية، خفيفة أو مشدّدة",
+      "r بين حركتين ضربة واحدة بطرف اللسان، كراء عربية خفيفة (caro). وفي أول الكلمة، أو حين تُكتب rr، تُكرَّر الضربات كراء مشدّدة «رّ» (rojo، perro). والفرق يغيّر المعنى: caro (غالٍ) وcarro (عربة) كلمتان مختلفتان — كالفرق بين راء خفيفة وراء مشدّدة في العربية."),
+ "b-v": ("b وv: الصوت نفسه",
+      "b وv تُلفظان بالطريقة نفسها تماماً: باء «ب» في أول الكلمة (vino «بينو»)، وباء خفيفة جداً، بالكاد تنطبق فيها الشفتان، بين حركتين (uva، beber). لا يوجد صوت v (الشفة على الأسنان) في الإسبانية. أما p فحرف آخر، لا يُلفظ باءً: peso (وزن) ≠ beso (قبلة)."),
+ "d": ("خفيفة بين الحركات، كالذال",
+      "بين حركتين وفي آخر الكلمة، تُلفظ d خفيفة جداً، أقرب إلى الذال «ذ»: cansado «كانساذو»، nada «ناذا»، ciudad «ثيوذاذ». وفي أول الكلمة دال عادية «د»: dos."),
+ "s": ("دائماً «س»، لا «ز»",
+      "تُلفظ s دائماً سيناً «س»، حتى بين حركتين: casa «كاسا»، mesa «مِيسا»، rosa «روسا». لا تتحوّل أبداً إلى زاي «ز»."),
+ "accent": ("مقطع واحد أقوى",
+      "لكل كلمة مقطع يُنبَر أكثر من غيره. إن انتهت الكلمة بحركة أو n أو s: المقطع قبل الأخير (casa، hablan). وإن انتهت بحرف صامت آخر: المقطع الأخير (ciudad، hablar). وإلا فعلامة النبر المكتوبة تدلّ عليه (café، médico، canción). ليس في العربية نبر مكتوب، فاعتد على سماعه: هو ما يميّز hablo (أتكلّم) من habló (تكلّم)."),
+# AR-FIN
+}
+
 GROUPES = [("voyelles", VOYELLES), ("consonnes", CONSONNES), ("accent", ACCENT)]
 
 
@@ -227,12 +275,18 @@ def construire():
             rid, graphie, api, court, expl, exemples = regle[:6]
             variantes = regle[6] if len(regle) > 6 else None
             # Le portugais vient de PT, ecrit contre le portugais (13 oct. 2026).
+            # L'arabe vient de AR, ecrit contre l'arabe (15 oct. 2026).
             if rid in PT:
                 court = dict(court, pt=PT[rid][0])
                 expl = dict(expl, pt=PT[rid][1])
+            if rid in AR:
+                court = dict(court, ar=AR[rid][0])
+                expl = dict(expl, ar=AR[rid][1])
             if variantes:
-                variantes = {v: {"court": dict(t["court"], pt=PT[rid + "." + v][0]),
-                                 "explication": dict(t["explication"], pt=PT[rid + "." + v][1])}
+                variantes = {v: {"court": dict(t["court"], pt=PT[rid + "." + v][0],
+                                               **({"ar": AR[rid + "." + v][0]} if rid + "." + v in AR else {})),
+                                 "explication": dict(t["explication"], pt=PT[rid + "." + v][1],
+                                                     **({"ar": AR[rid + "." + v][1]} if rid + "." + v in AR else {}))}
                              for v, t in variantes.items()}
             if rid in ids:
                 fautes.append("id en double : " + rid)
@@ -257,7 +311,7 @@ def construire():
                 for voix in ("es-es", "es-419"):
                     if not os.path.exists(os.path.join(RACINE, "audio", "mp3", voix, h + ".mp3")):
                         fautes.append("%s : « %s » sans voix %s" % (rid, mot, voix))
-                ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_pt") if e.get(c)}})
+                ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_pt", "traduction_ar") if e.get(c)}})
             if len(ex) < 2:
                 fautes.append("%s : moins de deux exemples" % rid)
             r = {"id": rid, "graphie": graphie, "api": api, "court": court, "explication": expl, "exemples": ex}

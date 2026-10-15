@@ -105,7 +105,7 @@ window.SCENE = {
    "fr": "l'oiseau",
    "en": "the bird",
    "pt": "o pássaro",
-   "ar": "طائر",
+   "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
    "latam": null
@@ -132,7 +132,7 @@ window.SCENE = {
    "fr": "l'oiseau",
    "en": "the bird",
    "pt": "o pássaro",
-   "ar": "طائر",
+   "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
    "latam": null
@@ -186,7 +186,7 @@ window.SCENE = {
    "fr": "le bateau",
    "en": "the boat, the ship",
    "pt": "o barco, o navio",
-   "ar": "قارب",
+   "ar": "سفينة، مركب",
    "pl": "łódź, łódka",
    "ru": "лодка",
    "latam": null
@@ -294,7 +294,7 @@ window.SCENE = {
    "fr": "l'enfant, le garçon",
    "en": "the child, the boy",
    "pt": "a criança, o menino",
-   "ar": "ولد، صبي",
+   "ar": "طفل، ولد",
    "pl": "chłopiec",
    "ru": "мальчик",
    "latam": null
@@ -429,7 +429,7 @@ window.SCENE = {
    "fr": "la glace",
    "en": "ice cream",
    "pt": "o sorvete",
-   "ar": "جليد",
+   "ar": "مثلّجات، آيس كريم",
    "pl": "lód",
    "ru": "лёд",
    "latam": null
@@ -620,7 +620,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": "handtuch",
@@ -711,7 +712,8 @@ window.SCENE = {
      "theme": "el_ocio",
      "fr": "la plage",
      "en": "the beach",
-     "pt": "a praia"
+     "pt": "a praia",
+     "ar": "شاطئ"
     }
    ],
    "sur": null,
@@ -754,7 +756,7 @@ window.SCENE = {
    "fr": "le parasol",
    "en": "the parasol",
    "pt": "o guarda-sol",
-   "ar": "مظلّة شمسية",
+   "ar": "شمسية",
    "pl": "parasol",
    "ru": "пляжный зонт",
    "latam": null
@@ -1283,9 +1285,41 @@ window.SCENE = {
     "consigne": "آنا في عطلة على شاطئ البحر. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الـ pretérito indefinido",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El libro está encima de la toalla.": "<b>encima de</b> = على.",
+    "A2 | El perro está detrás de la cesta.": "<b>detrás de</b> = خلف.",
+    "A2 | El niño juega en el mar.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El faro está en la isla.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La cubeta está al lado de la cesta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El cubo está al lado de la cesta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El barco está en el mar.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | Hay un pájaro en la piedra.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | El sol está en el cielo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "B1 | Ayer Anna voló a España.": "فعل منتهٍ، في لحظة محدّدة (ayer) → <b>indefinido</b>.",
+    "B1 | Esta mañana nadó en el mar.": "هي ← <b>-ó</b>، بعلامة النبر.",
+    "B1 | Compró un helado en la playa.": "شراء محدّد ← <b>indefinido</b>: compró.",
+    "B1 | El niño tiró la pelota al agua.": "<b>tirar</b> → tiró.",
+    "B1 | El perro se durmió a la sombra.": "<b>dormir</b> → <b>durmió</b>: الـ o تصير u.",
+    "B1 | Anna puso el libro en la toalla.": "<b>poner</b> شاذّ ← <b>puso</b>.",
+    "B1 | El barco salió del puerto esta mañana.": "<b>salir</b> → salió.",
+    "B1 | Anna estuvo todo el día al sol.": "مدة محدودة (todo el día) → <b>indefinido</b>: estuvo.",
+    "B2 | La mujer que come un helado se llama Anna.": "جملة موصولة بلا فاصلة، فاعل ← <b>que</b>.",
+    "B2 | El niño cuya pelota es de colores juega en el agua.": "<b>cuyo</b> يطابق الشيء المملوك: la pelota → <b>cuya</b>.",
+    "B2 | La isla en la que hay un faro es pequeña.": "حرف جرّ + أداة + <b>que</b>، بمطابقة la isla.",
+    "B2 | El helado ya está medio comido.": "<b>estar</b> + اسم المفعول، بالمطابقة: el helado → comid<b>o</b>.",
+    "B2 | Aquí se nada mucho en verano.": "<b>se</b> غير الشخصية: «يُسبَح»، والفعل بالمفرد.",
+    "B2 | La toalla, cuyas rayas son azules y blancas, es de Anna.": "<b>cuyo</b> يطابق الشيء المملوك: las rayas → <b>cuyas</b>.",
+    "C1 | Debe de estar muy a gusto de vacaciones.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el perro sea del niño.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Estará bastante caliente.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que desde el faro se puede ver África.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

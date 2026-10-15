@@ -641,12 +641,64 @@ def verifier_libelles_espagnol(r, source):
     for k in sorted(fr ^ en):
         r.echec("i18n", "I18N_ESPAGNOL : %s n'existe qu'en %s" % (k, "francais" if k in fr else "anglais"))
     # Le portugais du Bresil (13 oct. 2026) : meme jeu de cles que le francais.
+    # L'arabe (15 oct. 2026) : pareil.
     pt = set(couche.get("pt", {}))
-    for k in sorted(fr ^ pt):
-        r.echec("i18n", "I18N_ESPAGNOL : %s %s en portugais" % (k, "manque" if k in fr else "en trop"))
-    r.controle(len(fr | en | pt))
-    print("   libelles espagnol: %d cles (fr, en et pt)" % len(fr & en & pt))
-    return fr | en | pt
+    ar = set(couche.get("ar", {}))
+    for nom, autre in (("portugais", pt), ("arabe", ar)):
+        for k in sorted(fr ^ autre):
+            r.echec("i18n", "I18N_ESPAGNOL : %s %s en %s" % (k, "manque" if k in fr else "en trop", nom))
+    r.controle(len(fr | en | pt | ar))
+    print("   libelles espagnol: %d cles (fr, en, pt et ar)" % len(fr & en & pt & ar))
+    return fr | en | pt | ar
+
+
+def verifier_arabe_espagnol(r):
+    """L'espagnol enseigne en arabe (15 oct. 2026) : partout ou le portugais
+    existe, l'arabe aussi. Le portugais est la derniere langue completee avant
+    lui ; un champ _pt sans son _ar, c'est un texte qui s'afficherait en
+    anglais (le repli) a un arabophone. Donnees, fiches et scenes."""
+    n = 0
+    datos = os.path.join(RACINE, "espanol", "datos")
+    for fichier in sorted(os.listdir(datos)):
+        if not fichier.endswith(".json"):
+            continue
+        with io.open(os.path.join(datos, fichier), encoding="utf-8") as f:
+            d = json.load(f)
+        manques = []
+
+        def marcher(o, chemin):
+            if isinstance(o, dict):
+                for k, v in o.items():
+                    if k == "pt" or k.endswith("_pt") or k.endswith("Pt"):
+                        cle = "ar" if k == "pt" else (k[:-3] + "_ar" if k.endswith("_pt") else k[:-2] + "Ar")
+                        if v and not o.get(cle):
+                            manques.append(chemin + "/" + cle)
+                    marcher(v, chemin + "/" + k)
+            elif isinstance(o, list):
+                for i, v in enumerate(o):
+                    marcher(v, chemin + "/" + str(i))
+        marcher(d, "")
+        n += 1
+        for m in manques[:5]:
+            r.echec("arabe", "espanol/datos/%s : %s absent" % (fichier, m))
+        if len(manques) > 5:
+            r.echec("arabe", "espanol/datos/%s : %d champs arabes absents en tout" % (fichier, len(manques)))
+    scenes = os.path.join(RACINE, "visuel", "prototype", "espanol")
+    if os.path.isdir(scenes):
+        for fichier in sorted(os.listdir(scenes)):
+            if not fichier.endswith(".json") or fichier == "mots.json":
+                continue
+            with io.open(os.path.join(scenes, fichier), encoding="utf-8") as f:
+                d = json.load(f)
+            for niv, c in d.get("couches", {}).items():
+                if c.get("titre_pt") and not c.get("titre_ar"):
+                    r.echec("arabe", "scene %s %s : titre_ar absent" % (fichier, niv))
+                for q in c.get("qs", []) + [q["latam"] for q in c.get("qs", []) if q.get("latam")]:
+                    if q.get("n_pt") and not q.get("n_ar"):
+                        r.echec("arabe", "scene %s %s : n_ar absent -- %s" % (fichier, niv, q.get("q", "")))
+            n += 1
+    r.controle(n)
+    print("   espagnol en arabe : %d fichiers, ar partout ou pt existe" % n)
 
 
 def verifier_scenes_espagnol(r):
@@ -894,7 +946,7 @@ def verifier_prononciation(r):
     total = 0
     for fichier, script, langues in (
             ("prononciation.json", "prononciation.py", ("fr", "en", "tr", "uk", "fa", "ar")),
-            (os.path.join("espanol", "datos", "prononciation.json"), "prononciation_es.py", ("fr", "en", "pt"))):
+            (os.path.join("espanol", "datos", "prononciation.json"), "prononciation_es.py", ("fr", "en", "pt", "ar"))):
         chemin = os.path.join(RACINE, fichier)
         if not os.path.exists(chemin):
             r.echec("prononciation", fichier + " absent")
@@ -1599,6 +1651,7 @@ def main():
     verifier_indices_revelateurs(r)
     verifier_langue_enseignee(r, source)
     verifier_scenes_espagnol(r)
+    verifier_arabe_espagnol(r)
     cles = cles | verifier_libelles_espagnol(r, source)
     verifier_cles_utilisees(r, source, cles)
     verifier_comptes_figes(r, source)

@@ -117,7 +117,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -198,7 +198,7 @@ window.SCENE = {
    "fr": "la banque, le banc",
    "en": "the bank, the bench",
    "pt": "o banco",
-   "ar": "بنك، مصرف",
+   "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
    "latam": null
@@ -225,7 +225,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -312,7 +312,7 @@ window.SCENE = {
    "fr": "le chemin",
    "en": "the way, the path",
    "pt": "o caminho",
-   "ar": "طريق",
+   "ar": "طريق، درب",
    "pl": "droga",
    "ru": "дорога, путь",
    "latam": null
@@ -366,7 +366,7 @@ window.SCENE = {
    "fr": "le gant",
    "en": "the glove",
    "pt": "a luva",
-   "ar": "قفاز",
+   "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
    "latam": null
@@ -393,7 +393,7 @@ window.SCENE = {
    "fr": "le tee-shirt",
    "en": "the T-shirt",
    "pt": "a camiseta",
-   "ar": "قميص رياضي",
+   "ar": "تي شيرت، قميص قطني",
    "pl": "koszulka (sportowa)",
    "ru": "спортивная форма, майка",
    "latam": null
@@ -420,7 +420,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -495,7 +495,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'homme",
      "en": "the man",
-     "pt": "o homem"
+     "pt": "o homem",
+     "ar": "رجل"
     }
    ],
    "sur": null,
@@ -538,7 +539,7 @@ window.SCENE = {
    "fr": "le sifflet",
    "en": "the whistle",
    "pt": "o apito",
-   "ar": "غليون؛ صفّارة",
+   "ar": "صفّارة",
    "pl": "fajka; gwizdek",
    "ru": "трубка; свисток",
    "latam": null
@@ -667,7 +668,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": "tasche",
@@ -710,7 +712,7 @@ window.SCENE = {
    "fr": "le sac",
    "en": "the bag",
    "pt": "a sacola",
-   "ar": "حقيبة",
+   "ar": "كيس",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -762,7 +764,8 @@ window.SCENE = {
      "theme": "la_naturaleza",
      "fr": "la campagne, le champ",
      "en": "the countryside, the field",
-     "pt": "o campo"
+     "pt": "o campo",
+     "ar": "ريف، حقل"
     }
    ],
    "sur": null,
@@ -1242,9 +1245,41 @@ window.SCENE = {
     "consigne": "مارك يلعب كرة القدم مع فريقه. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "Indefinido أم imperfecto؟",
+    "B2": "Indicativo أم subjuntivo بعد أداة الربط",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El balón está en la red.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El jugador de amarillo está delante de la red.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El hombre mayor está sentado en el banco.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La toalla está en la bolsa.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El balón está al lado de la bolsa.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Hay una bicicleta detrás de la red.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | La nube está en el cielo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La botella está en la bolsa.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "B1 | Mark marcó un gol.": "فعل محدّد ← <b>indefinido</b>: marcó.",
+    "B1 | El jugador de amarillo se cayó al piso.": "<b>caer</b> → <b>cayó</b>: الـ i تصير y.",
+    "B1 | El jugador de amarillo se cayó al suelo.": "<b>caer</b> → <b>cayó</b>: الـ i تصير y.",
+    "B1 | Los compañeros corrieron hacia Mark.": "هم ← <b>-ieron</b>: corrieron.",
+    "B1 | La entrenadora aplaudió cuando Mark marcó.": "فعلان محدّدان متتابعان ← <b>indefinido</b>.",
+    "B1 | Esa mañana hacía mucho sol.": "الخلفية، الوصف ← <b>imperfecto</b>: hacía.",
+    "B1 | Los espectadores estaban sentados en el banco.": "حالة تدوم في السرد ← <b>imperfecto</b>: estaban.",
+    "B1 | El partido empezó a las diez.": "<b>empezar</b> → empezó، في لحظة محدّدة.",
+    "B1 | Al final, el equipo de Mark ganó.": "النتيجة النهائية ← <b>indefinido</b>: ganó.",
+    "B2 | Mark grita de alegría porque ha marcado un gol.": "<b>porque</b> + indicativo: السبب واقعة.",
+    "B2 | El jugador de amarillo se ríe aunque no ha parado el balón.": "<b>aunque</b> + indicativo: واقعة حقيقية نسلّم بها.",
+    "B2 | Entrenan cada sábado para que el equipo esté en forma.": "<b>para que</b> ← دائماً <b>subjuntivo</b>.",
+    "B2 | Mark beberá agua cuando termine el partido.": "<b>cuando</b> + مستقبل ← <b>subjuntivo</b>: cuando termine.",
+    "B2 | Los espectadores miran mientras los jugadores corren.": "<b>mientras</b> + واقعة متزامنة ← indicativo.",
+    "B2 | Antes de que empezara el partido, todos calentaron.": "<b>antes de que</b> ← دائماً subjuntivo؛ وفي الماضي: empezara.",
+    "C1 | Debe de ser su primer gol.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | El partido estará a punto de terminar.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que la entrenadora fue profesional.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

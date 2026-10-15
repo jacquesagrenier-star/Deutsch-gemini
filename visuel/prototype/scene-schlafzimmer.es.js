@@ -51,7 +51,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -130,7 +130,8 @@ window.SCENE = {
      "theme": "nom_casa",
      "fr": "le poster",
      "en": "the poster",
-     "pt": "o pôster"
+     "pt": "o pôster",
+     "ar": "ملصق، بوستر"
     }
    ],
    "sur": null,
@@ -146,7 +147,7 @@ window.SCENE = {
    "fr": "le tableau",
    "en": "the picture",
    "pt": "o quadro",
-   "ar": "صورة، لوحة",
+   "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
    "latam": null
@@ -289,7 +290,7 @@ window.SCENE = {
    "fr": "le bureau (meuble)",
    "en": "the desk",
    "pt": "a escrivaninha, a mesa de trabalho",
-   "ar": "مكتب (قطعة أثاث)",
+   "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
    "latam": null
@@ -482,7 +483,7 @@ window.SCENE = {
    "fr": "le portefeuille",
    "en": "the wallet",
    "pt": "a carteira",
-   "ar": "محفظة نقود",
+   "ar": "محفظة",
    "pl": "portmonetka",
    "ru": "кошелёк",
    "latam": null
@@ -617,7 +618,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -648,7 +649,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -762,7 +763,7 @@ window.SCENE = {
    "fr": "la table de nuit",
    "en": "the bedside table",
    "pt": "a mesa de cabeceira",
-   "ar": "طاولة جانب السرير",
+   "ar": "طاولة السرير (كومودينو)",
    "pl": "szafka nocna",
    "ru": "прикроватная тумбочка",
    "latam": {
@@ -1258,9 +1259,44 @@ window.SCENE = {
     "consigne": "آنا تحزم حقيبتها للسفر. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "ir a + مصدر والضمائر",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El sombrero está en la cama.": "<b>en</b> = على، في. المكان ← <b>estar</b>.",
+    "A2 | El despertador está al lado de la lámpara.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El cuadro está encima de la cama.": "<b>encima de</b> = فوق.",
+    "A2 | La laptop está en el escritorio.": "<b>el</b> escritorio مذكر ← <b>en el</b> escritorio.",
+    "A2 | El portátil está en el escritorio.": "<b>el</b> escritorio مذكر ← <b>en el</b> escritorio.",
+    "A2 | Anna está de pie sobre la alfombra.": "<b>sobre</b> = على. <b>bajo</b> = تحت.",
+    "A2 | El pasaporte está al lado de la cartera.": "<b>al lado de</b> = بجانب.",
+    "A2 | El cargador está al lado del mapa.": "<b>el</b> mapa مذكر، رغم الـ -a: al lado <b>del</b> mapa.",
+    "A2 | Hay un clóset blanco detrás de Anna.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | Hay un armario blanco detrás de Anna.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "B1 | Anna va a viajar mañana.": "<b>ir a</b> + مصدر = المستقبل القريب. هي ← <b>va</b>.",
+    "B1 | Anna lo va a meter en la maleta.": "بعد <b>ir a</b>، دائماً <b>المصدر</b>.",
+    "B1 | Anna la va a llevar.": "مفعول به مباشر مؤنث (la cámara) → <b>la</b>.",
+    "B1 | Anna los lleva puestos.": "مفعول به مباشر مذكر جمع (los calcetines) → <b>los</b>.",
+    "B1 | Anna no puede viajar sin su pasaporte.": "جواز سفر واحد ← <b>su</b>. أما <b>sus</b> فمع الجمع.",
+    "B1 | Casi lo ha olvidado.": "الماضي المركّب ← دائماً <b>haber</b>: ha olvidado.",
+    "B1 | Anna tiene que hacer la maleta hoy.": "<b>tener que</b> + مصدر = يجب عليه. أما <b>hay que</b> فغير شخصية.",
+    "B1 | Mañana hará calor en el sur.": "حال الطقس غداً: <b>hacer</b> في المستقبل ← <b>hará</b>.",
+    "B2 | La maleta que está en la cama es azul.": "شيء، فاعل ← <b>que</b>.",
+    "B2 | El pasaporte, sin el cual Anna no puede viajar, está en la cama.": "بعد حرف جرّ: <b>el cual</b>.",
+    "B2 | La mujer, cuyo suéter es verde, piensa.": "<b>cuyo</b> يطابق الشيء المملوك: el suéter → <b>cuyo</b>.",
+    "B2 | La mujer, cuyo jersey es verde, piensa.": "<b>cuyo</b> يطابق الشيء المملوك: el jersey → <b>cuyo</b>.",
+    "B2 | La maleta ya está medio hecha.": "<b>hacer la maleta</b> = يحزم حقيبته؛ اسم مفعول شاذّ، بالمطابقة: hech<b>a</b>.",
+    "B2 | Todo tiene que estar guardado hoy.": "النتيجة المنتظرة ← <b>estar</b> + اسم المفعول.",
+    "B2 | La cámara con la que Anna quiere hacer fotos está en la cama.": "حرف جرّ + أداة + <b>que</b>، بمطابقة la cámara → <b>la que</b>.",
+    "C1 | Debe de estar contenta con el viaje.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el suéter sea demasiado caliente para el sur.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Puede que el jersey sea demasiado caliente para el sur.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Saldrá mañana temprano.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que en esa playa hace calor todo el año.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

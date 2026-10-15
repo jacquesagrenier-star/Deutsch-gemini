@@ -51,7 +51,7 @@ window.SCENE = {
    "fr": "le plafond, le toit",
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
-   "ar": "بطانية",
+   "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
    "latam": null
@@ -111,7 +111,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -159,7 +159,8 @@ window.SCENE = {
      "theme": "el_ocio",
      "fr": "la photo",
      "en": "the photo",
-     "pt": "a foto"
+     "pt": "a foto",
+     "ar": "صورة"
     }
    ],
    "sur": null,
@@ -175,7 +176,7 @@ window.SCENE = {
    "fr": "le tableau",
    "en": "the picture",
    "pt": "o quadro",
-   "ar": "صورة، لوحة",
+   "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
    "latam": null
@@ -289,7 +290,7 @@ window.SCENE = {
    "fr": "le radiateur",
    "en": "the radiator",
    "pt": "o radiador",
-   "ar": "مشعاع التدفئة",
+   "ar": "مشعّ تدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
    "latam": null
@@ -343,7 +344,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -424,7 +425,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -478,7 +479,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -724,6 +725,7 @@ window.SCENE = {
      "fr": "l'ordinateur",
      "en": "the computer",
      "pt": "o computador",
+     "ar": "حاسوب",
      "latam": {
       "mot": "computadora",
       "genre": "la",
@@ -771,7 +773,7 @@ window.SCENE = {
    "fr": "le clavier",
    "en": "the keyboard",
    "pt": "o teclado",
-   "ar": "لوحة المفاتيح",
+   "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
    "latam": null
@@ -852,7 +854,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -873,7 +875,8 @@ window.SCENE = {
      "theme": "los_materiales",
      "fr": "le papier",
      "en": "the paper",
-     "pt": "o papel"
+     "pt": "o papel",
+     "ar": "ورق"
     }
    ],
    "sur": "schreibtisch",
@@ -974,7 +977,7 @@ window.SCENE = {
    "fr": "le timbre",
    "en": "the stamp",
    "pt": "o selo",
-   "ar": "ختم",
+   "ar": "طابع بريدي",
    "pl": "pieczątka, stempel",
    "ru": "штамп, печать",
    "latam": null
@@ -1001,7 +1004,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -1022,7 +1025,8 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "la table",
      "en": "the table",
-     "pt": "a mesa"
+     "pt": "a mesa",
+     "ar": "طاولة"
     }
    ],
    "sur": null,
@@ -1038,7 +1042,7 @@ window.SCENE = {
    "fr": "le bureau (meuble)",
    "en": "the desk",
    "pt": "a escrivaninha, a mesa de trabalho",
-   "ar": "مكتب (قطعة أثاث)",
+   "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
    "latam": null
@@ -1086,7 +1090,8 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "la table",
      "en": "the table",
-     "pt": "a mesa"
+     "pt": "a mesa",
+     "ar": "طاولة"
     }
    ],
    "sur": null,
@@ -1102,7 +1107,7 @@ window.SCENE = {
    "fr": "le bureau (meuble)",
    "en": "the desk",
    "pt": "a escrivaninha, a mesa de trabalho",
-   "ar": "مكتب (قطعة أثاث)",
+   "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
    "latam": null
@@ -1129,7 +1134,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -1205,6 +1210,7 @@ window.SCENE = {
      "fr": "le jean",
      "en": "the jeans",
      "pt": "a calça jeans",
+     "ar": "بنطال جينز",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -1225,7 +1231,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -1466,7 +1472,8 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "le tapis",
      "en": "the rug",
-     "pt": "o tapete"
+     "pt": "o tapete",
+     "ar": "سجّادة"
     }
    ],
    "sur": null,
@@ -1488,7 +1495,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1954,9 +1961,43 @@ window.SCENE = {
     "consigne": "مارك يسجّل في <span lang=\"de\">Bürgeramt</span>: يوقّع الاستمارة. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الأعداد الترتيبية: primero, segundo, tercero…",
+    "B2": "الـ pluscuamperfecto",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El cuadro está al lado de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Las carpetas están en la estantería.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El pasaporte está en el escritorio.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La mochila está en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La mochila está en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La joven está sentada en la silla.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Hay un bebé en brazos de la joven.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | El bote de basura está al lado de la puerta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La papelera está al lado de la puerta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La impresora está encima del clóset.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La impresora está encima del armario.": "<b>de + el = del</b>، دائماً.",
+    "B1 | La oficina de Mark está en la segunda planta.": "العدد الترتيبي يطابق الاسم: la segund<b>a</b> planta.",
+    "B1 | Es el primer formulario que Mark rellena hoy.": "<b>primero</b> يفقد الـ -o قبل اسم مذكر: el <b>primer</b> formulario.",
+    "B1 | Mark es el tercero de la fila.": "بلا اسم بعده، الصيغة الكاملة: el <b>tercero</b>.",
+    "B1 | La señora del bebé es la última en esperar.": "مؤنث: la <b>última</b>.",
+    "B1 | Hoy es el quinto día de Mark en Berlín.": "<b>quinto</b> = الخامس؛ cinco = خمسة.",
+    "B1 | Es la segunda vez que Mark viene a esta oficina.": "<b>la vez</b> مؤنث ← segund<b>a</b>.",
+    "B1 | Firme en la tercera línea, por favor.": "مؤنث: la tercer<b>a</b> línea.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "Pluscuamperfecto: <b>había</b> + اسم المفعول، الفعل الذي سبق فعلاً ماضياً آخر.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "Pluscuamperfecto: <b>había</b> + اسم المفعول، الفعل الذي سبق فعلاً ماضياً آخر.",
+    "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "<b>nunca … antes</b> → pluscuamperfecto.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "الأسبقية (<b>antes que</b>) → pluscuamperfecto.",
+    "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "Pluscuamperfecto: <b>había</b> + اسم المفعول، الفعل الذي سبق فعلاً ماضياً آخر.",
+    "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "Pluscuamperfecto: <b>había</b> + اسم المفعول، الفعل الذي سبق فعلاً ماضياً آخر.",
+    "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "<b>hasta entonces</b> → pluscuamperfecto.",
+    "C1 | El formulario debe de ser importante.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que la joven también sea nueva en Berlín.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | La cita terminará en diez minutos.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que en esta oficina hay que esperar mucho.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

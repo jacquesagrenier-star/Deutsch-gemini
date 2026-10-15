@@ -51,7 +51,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -136,7 +136,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -163,7 +163,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -190,7 +190,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -248,7 +248,7 @@ window.SCENE = {
    "fr": "l'assiette, le plat",
    "en": "plate, dish",
    "pt": "o prato",
-   "ar": "صحن",
+   "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
    "latam": null
@@ -275,7 +275,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -329,7 +329,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -383,7 +383,7 @@ window.SCENE = {
    "fr": "la tapa",
    "en": "the tapa",
    "pt": "a tapa (petisco)",
-   "ar": "غطاء",
+   "ar": "تاباس (مقبّلات إسبانية)",
    "pl": "pokrywka",
    "ru": "крышка",
    "latam": null
@@ -518,7 +518,7 @@ window.SCENE = {
    "fr": "le lave-vaisselle",
    "en": "the dishwasher",
    "pt": "a lava-louças",
-   "ar": "غسّالة الصحون",
+   "ar": "غسّالة صحون",
    "pl": "zmywarka",
    "ru": "посудомоечная машина",
    "latam": null
@@ -545,7 +545,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -599,7 +599,7 @@ window.SCENE = {
    "fr": "la carotte",
    "en": "the carrot",
    "pt": "a cenoura",
-   "ar": "جزر",
+   "ar": "جزرة",
    "pl": "marchewka",
    "ru": "морковь",
    "latam": null
@@ -647,7 +647,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "la bouteille",
      "en": "bottle",
-     "pt": "a garrafa"
+     "pt": "a garrafa",
+     "ar": "زجاجة"
     }
    ],
    "sur": "tisch",
@@ -711,7 +712,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "la bouteille",
      "en": "bottle",
-     "pt": "a garrafa"
+     "pt": "a garrafa",
+     "ar": "زجاجة"
     }
    ],
    "sur": "tisch",
@@ -835,7 +837,7 @@ window.SCENE = {
    "fr": "la pomme de terre",
    "en": "potato",
    "pt": "a batata",
-   "ar": "بطاطس",
+   "ar": "بطاطا",
    "pl": "ziemniak",
    "ru": "картофель",
    "latam": {
@@ -920,7 +922,7 @@ window.SCENE = {
    "fr": "la pomme",
    "en": "apple",
    "pt": "a maçã",
-   "ar": "تفاحة",
+   "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
    "latam": null
@@ -1059,7 +1061,7 @@ window.SCENE = {
    "fr": "le chat",
    "en": "the cat",
    "pt": "o gato",
-   "ar": "قطة",
+   "ar": "قطّ",
    "pl": "kot",
    "ru": "кошка",
    "latam": null
@@ -1729,9 +1731,45 @@ window.SCENE = {
     "consigne": "مارك يطبخ حساءً. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الـ pretérito perfecto (he cortado)",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La olla está al lado de la sartén.": "<b>al lado de</b> = بجانب. المكان ← <b>estar</b>.",
+    "A2 | El reloj está encima de la estantería.": "<b>encima de</b> = فوق، على.",
+    "A2 | La planta está encima del refrigerador.": "<b>el</b> refrigerador مذكر: de + el = <b>del</b>.",
+    "A2 | La planta está encima de la nevera.": "<b>encima de</b> = على. <b>la</b> nevera مؤنث: de la.",
+    "A2 | El gato está sentado en la silla.": "<b>la</b> silla مؤنث ← <b>en la</b> silla.",
+    "A2 | Las papas están en la mesa.": "بالجمع: <b>están</b>.",
+    "A2 | Las patatas están en la mesa.": "بالجمع: <b>están</b>.",
+    "A2 | La toalla cuelga del horno.": "<b>colgar de</b> = يتدلّى من. de + el = <b>del</b>.",
+    "A2 | Hay un bote de basura al lado del refrigerador.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | Hay una papelera al lado de la nevera.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | La leche está al lado del pan.": "<b>de + el = del</b>، دائماً.",
+    "B1 | Mark ha cortado la zanahoria.": "بعد <b>haber</b>، لا يُطابق اسم المفعول أبداً: cortad<b>o</b>.",
+    "B1 | Ha puesto dos huevos en la sartén.": "<b>poner</b> شاذّ ← <b>puesto</b>.",
+    "B1 | La sopa ha hervido una hora.": "فعل بـ -ir ← اسم مفعول بـ <b>-ido</b>، بلا تغيير.",
+    "B1 | Mark ha puesto el pan en la mesa.": "الماضي المركّب الإسباني يُبنى دائماً بـ <b>haber</b>.",
+    "B1 | El gato ha subido a la silla.": "حتى مع فعل حركة، <b>haber</b>: ha subido.",
+    "B1 | Mark la ha puesto en la mesa.": "حتى مع <b>la</b> قبله، لا يُطابق اسم المفعول.",
+    "B1 | Mark ha colgado la toalla del horno.": "<b>colgar</b> → <b>colgado</b>، بلا تغيير بعد haber.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de departamento.": "<b>hoy</b> + فعل منتهٍ ← pretérito perfecto: ha cocinado.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de piso.": "<b>hoy</b> + فعل منتهٍ ← pretérito perfecto: ha cocinado.",
+    "B2 | Aquí se cortan las verduras antes de cocinarlas.": "المبني للمجهول بـ <b>se</b>: الفعل يطابق الشيء، بالجمع هنا (las verduras).",
+    "B2 | La mesa en la que están las verduras es de madera.": "بعد حرف جرّ: أداة + <b>que</b>، بمطابقة la mesa → <b>la que</b>.",
+    "B2 | El gato, que está sentado en la silla, mira la mesa.": "حيوان، فاعل ← <b>que</b>. أما <b>quien</b> فللأشخاص.",
+    "B2 | El libro, cuyas páginas están llenas de fotos, está en la mesa.": "<b>cuyo</b> يطابق الشيء المملوك: las páginas → <b>cuyas</b>.",
+    "B2 | Los huevos de la sartén ya están hechos.": "<b>estar</b> + اسم المفعول = النتيجة، بالمطابقة: los huevos → hech<b>os</b>.",
+    "B2 | La sopa tiene que hervir diez minutos más.": "<b>tener que</b> + مصدر = يجب.",
+    "C1 | La sopa debe de oler bien.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el gato espere un trozo de zanahoria.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Tendrá invitados esta noche.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que Mark hace la mejor sopa del departamento.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>.",
+    "C1 | Dicen que Mark hace la mejor sopa del piso.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

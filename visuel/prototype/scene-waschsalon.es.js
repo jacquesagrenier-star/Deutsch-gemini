@@ -84,7 +84,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -165,7 +165,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -219,7 +219,7 @@ window.SCENE = {
    "fr": "le radiateur",
    "en": "the radiator",
    "pt": "o radiador",
-   "ar": "مشعاع التدفئة",
+   "ar": "مشعّ تدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
    "latam": null
@@ -268,6 +268,7 @@ window.SCENE = {
      "fr": "la vitrine",
      "en": "the shop window",
      "pt": "a vitrine",
+     "ar": "واجهة المتجر",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -315,7 +316,7 @@ window.SCENE = {
    "fr": "le panneau",
    "en": "the sign",
    "pt": "a placa, o sinal",
-   "ar": "لافتة",
+   "ar": "لافتة، إشارة",
    "pl": "tabliczka, szyld",
    "ru": "табличка, вывеска",
    "latam": null
@@ -336,7 +337,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'homme",
      "en": "the man",
-     "pt": "o homem"
+     "pt": "o homem",
+     "ar": "رجل"
     }
    ],
    "sur": null,
@@ -352,7 +354,7 @@ window.SCENE = {
    "fr": "le piéton",
    "en": "the pedestrian",
    "pt": "o pedestre",
-   "ar": "راجل، ماشٍ",
+   "ar": "مُشاة",
    "pl": "pieszy",
    "ru": "пешеход",
    "latam": null
@@ -433,7 +435,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -460,7 +462,7 @@ window.SCENE = {
    "fr": "le lave-linge",
    "en": "the washing machine",
    "pt": "a máquina de lavar",
-   "ar": "غسّالة الملابس",
+   "ar": "غسّالة",
    "pl": "pralka",
    "ru": "стиральная машина",
    "latam": null
@@ -481,7 +483,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "la bouteille",
      "en": "bottle",
-     "pt": "a garrafa"
+     "pt": "a garrafa",
+     "ar": "زجاجة"
     }
    ],
    "sur": null,
@@ -497,7 +500,7 @@ window.SCENE = {
    "fr": "la lessive",
    "en": "the detergent",
    "pt": "o sabão (em pó), o detergente",
-   "ar": "مسحوق الغسيل",
+   "ar": "مسحوق غسيل",
    "pl": "proszek do prania",
    "ru": "стиральный порошок",
    "latam": null
@@ -545,7 +548,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "l'argent",
      "en": "the money",
-     "pt": "o dinheiro"
+     "pt": "o dinheiro",
+     "ar": "مال، نقود"
     }
    ],
    "sur": null,
@@ -561,7 +565,7 @@ window.SCENE = {
    "fr": "la pièce, la monnaie",
    "en": "the coin, the currency",
    "pt": "a moeda",
-   "ar": "قطعة نقدية",
+   "ar": "قطعة نقدية، عملة",
    "pl": "moneta",
    "ru": "монета",
    "latam": null
@@ -588,7 +592,7 @@ window.SCENE = {
    "fr": "le lave-linge",
    "en": "the washing machine",
    "pt": "a máquina de lavar",
-   "ar": "غسّالة الملابس",
+   "ar": "غسّالة",
    "pl": "pralka",
    "ru": "стиральная машина",
    "latam": null
@@ -615,7 +619,7 @@ window.SCENE = {
    "fr": "le lave-linge",
    "en": "the washing machine",
    "pt": "a máquina de lavar",
-   "ar": "غسّالة الملابس",
+   "ar": "غسّالة",
    "pl": "pralka",
    "ru": "стиральная машина",
    "latam": null
@@ -696,7 +700,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -754,7 +758,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -776,6 +780,7 @@ window.SCENE = {
      "fr": "la basket",
      "en": "the trainer",
      "pt": "o tênis",
+     "ar": "حذاء رياضي",
      "latam": {
       "mot": "tenis",
       "genre": "el",
@@ -844,7 +849,8 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "le pantalon",
      "en": "the trousers",
-     "pt": "a calça"
+     "pt": "a calça",
+     "ar": "بنطال، سروال"
     }
    ],
    "sur": "korb",
@@ -860,7 +866,7 @@ window.SCENE = {
    "fr": "le jean",
    "en": "the jeans",
    "pt": "a calça jeans",
-   "ar": "جينز",
+   "ar": "بنطال جينز",
    "pl": "dżinsy",
    "ru": "джинсы",
    "latam": {
@@ -891,7 +897,7 @@ window.SCENE = {
    "fr": "le tee-shirt",
    "en": "the T-shirt",
    "pt": "a camiseta",
-   "ar": "قميص قصير الأكمام (تي شيرت)",
+   "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
    "latam": null
@@ -999,7 +1005,7 @@ window.SCENE = {
    "fr": "la couverture",
    "en": "the blanket",
    "pt": "o cobertor",
-   "ar": "بطانية",
+   "ar": "بطّانية",
    "pl": "koc",
    "ru": "одеяло, плед",
    "latam": null
@@ -1026,7 +1032,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -1196,7 +1202,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le café",
      "en": "coffee",
-     "pt": "o café"
+     "pt": "o café",
+     "ar": "قهوة"
     }
    ],
    "sur": "bank",
@@ -1233,7 +1240,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'enfant, le garçon",
      "en": "the child, the boy",
-     "pt": "a criança, o menino"
+     "pt": "a criança, o menino",
+     "ar": "طفل، ولد"
     }
    ],
    "sur": null,
@@ -1276,7 +1284,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -1333,6 +1341,7 @@ window.SCENE = {
      "fr": "le jean",
      "en": "the jeans",
      "pt": "a calça jeans",
+     "ar": "بنطال جينز",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -1353,7 +1362,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -1407,7 +1416,7 @@ window.SCENE = {
    "fr": "la banque, le banc",
    "en": "the bank, the bench",
    "pt": "o banco",
-   "ar": "بنك، مصرف",
+   "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
    "latam": null
@@ -1440,7 +1449,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1914,9 +1923,41 @@ window.SCENE = {
     "consigne": "آنا تغسل ثيابها في مغسلة حيّها. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "subjuntivo بعد الشكّ",
+    "B2": "Cuando + subjuntivo: المستقبل",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El reloj está en la pared.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El suéter verde está en la mesa.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El jersey verde está en la mesa.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La niña está sentada en el banco.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | Los jeans están en la cesta.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Los vaqueros están en la cesta.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El detergente está encima de la lavadora.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El espejo está encima del radiador.": "<b>de + el = del</b>، دائماً.",
+    "A2 | Hay una bicicleta en la calle.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | Las toallas están en la estantería.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "B1 | No creo que la lavadora esté rota.": "<b>no creer que</b> → subjuntivo.",
+    "B1 | Dudo que la ropa esté lista en diez minutos.": "<b>dudar que</b> → subjuntivo.",
+    "B1 | Es posible que la señora sea la vecina de Anna.": "<b>es posible que</b> → subjuntivo.",
+    "B1 | No es seguro que la niña viva con la señora.": "<b>no es seguro que</b> → subjuntivo.",
+    "B1 | Quizás Anna use la plancha después.": "<b>quizás</b> + subjuntivo = شكّ واضح.",
+    "B1 | No pienso que el detergente sea suficiente.": "<b>no pensar que</b> → subjuntivo.",
+    "B1 | Creo que la camisa es de Anna.": "<b>creer que</b> في الإثبات ← indicativo.",
+    "B2 | Cuando la ropa esté limpia, Anna la doblará.": "<b>cuando</b> + فعل مقبل ← subjuntivo.",
+    "B2 | Anna se irá cuando termine la lavadora.": "<b>cuando</b> + فعل مقبل ← subjuntivo.",
+    "B2 | En cuanto llegue a casa, planchará la camisa.": "<b>en cuanto</b> + فعل مقبل ← subjuntivo.",
+    "B2 | La niña jugará hasta que su abuela termine el periódico.": "<b>hasta que</b> + فعل مقبل ← subjuntivo.",
+    "B2 | Cuando Anna viene a la lavandería, siempre trae su cesta.": "عادة (<b>siempre</b>) → indicativo، لا subjuntivo.",
+    "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "<b>tan pronto como</b> + فعل مقبل ← subjuntivo.",
+    "C1 | Debe de llevar tiempo sin lavar.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que la niña sea la nieta de la señora.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Estará lista en una hora.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que esta lavandería cierra pronto.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

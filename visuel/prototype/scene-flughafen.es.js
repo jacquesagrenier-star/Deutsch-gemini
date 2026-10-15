@@ -63,7 +63,7 @@ window.SCENE = {
    "fr": "le plafond, le toit",
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
-   "ar": "بطانية",
+   "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
    "latam": null
@@ -117,7 +117,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -144,7 +144,7 @@ window.SCENE = {
    "fr": "le panneau",
    "en": "the sign",
    "pt": "a placa, o sinal",
-   "ar": "لافتة",
+   "ar": "لافتة، إشارة",
    "pl": "tabliczka, szyld",
    "ru": "табличка, вывеска",
    "latam": null
@@ -171,7 +171,7 @@ window.SCENE = {
    "fr": "l'escalier",
    "en": "the stairs",
    "pt": "a escada",
-   "ar": "درج، سلّم",
+   "ar": "سلّم، درج",
    "pl": "schody",
    "ru": "лестница",
    "latam": null
@@ -306,7 +306,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'homme",
      "en": "the man",
-     "pt": "o homem"
+     "pt": "o homem",
+     "ar": "رجل"
     }
    ],
    "sur": null,
@@ -461,7 +462,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -591,6 +592,7 @@ window.SCENE = {
      "fr": "l'ordinateur",
      "en": "the computer",
      "pt": "o computador",
+     "ar": "حاسوب",
      "latam": {
       "mot": "computadora",
       "genre": "la",
@@ -638,7 +640,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -665,7 +667,7 @@ window.SCENE = {
    "fr": "le clavier",
    "en": "the keyboard",
    "pt": "o teclado",
-   "ar": "لوحة المفاتيح",
+   "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
    "latam": null
@@ -804,7 +806,7 @@ window.SCENE = {
    "fr": "l'écharpe",
    "en": "the scarf",
    "pt": "o cachecol",
-   "ar": "وشاح، شال",
+   "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
    "latam": null
@@ -858,7 +860,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -889,7 +891,7 @@ window.SCENE = {
    "fr": "le sac à main",
    "en": "the handbag",
    "pt": "a bolsa",
-   "ar": "حقيبة",
+   "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -911,6 +913,7 @@ window.SCENE = {
      "fr": "le jean",
      "en": "the jeans",
      "pt": "a calça jeans",
+     "ar": "بنطال جينز",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -931,7 +934,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -953,6 +956,7 @@ window.SCENE = {
      "fr": "la basket",
      "en": "the trainer",
      "pt": "o tênis",
+     "ar": "حذاء رياضي",
      "latam": {
       "mot": "tenis",
       "genre": "el",
@@ -1021,7 +1025,8 @@ window.SCENE = {
      "theme": "el_transporte",
      "fr": "les bagages",
      "en": "the luggage",
-     "pt": "a bagagem"
+     "pt": "a bagagem",
+     "ar": "أمتعة"
     }
    ],
    "sur": "waage",
@@ -1091,7 +1096,7 @@ window.SCENE = {
    "fr": "le comptoir",
    "en": "the desk, the counter",
    "pt": "o balcão, o guichê",
-   "ar": "شبّاك؛ مفتاح كهربائي",
+   "ar": "مكتب، منضدة",
    "pl": "okienko, kasa; włącznik",
    "ru": "окошко, касса; выключатель",
    "latam": null
@@ -1139,7 +1144,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": null,
@@ -1182,7 +1188,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1674,9 +1680,46 @@ window.SCENE = {
     "consigne": "آنا مسافرة: تسجّل حقيبتها في المطار. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "por أم para؟",
+    "B2": "Pretérito perfecto أم indefinido؟",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La maleta grande está en la báscula.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El reloj está en la pared.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El avión está detrás de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El periódico está en la silla.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La botella está en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La botella está en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El bote de basura está al lado de la puerta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La papelera está al lado de la puerta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Hay un boleto en el mostrador.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | Hay un billete en el mostrador.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | El piloto está delante de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "B1 | Anna viaja a España por una semana.": "مدة ← <b>por</b>.",
+    "B1 | El avión sale para Madrid.": "الوجهة ← <b>para</b>.",
+    "B1 | Anna va a España para ver a su amiga.": "الهدف (لكي) ← <b>para</b> + مصدر.",
+    "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "<b>gracias por</b>: السبب، الشكر.",
+    "B1 | Este boleto es para Anna.": "المتلقّي ← <b>para</b>.",
+    "B1 | Este billete es para Anna.": "المتلقّي ← <b>para</b>.",
+    "B1 | Anna pasa por el control de pasaportes.": "المرور عبر مكان ← <b>por</b>.",
+    "B1 | Ha pagado cien euros por el boleto.": "ثمن، مبادلة ← <b>por</b>.",
+    "B1 | Ha pagado cien euros por el billete.": "ثمن، مبادلة ← <b>por</b>.",
+    "B1 | La maleta tiene que estar lista para las ocho.": "موعد نهائي (لساعة معيّنة) ← <b>para</b>.",
+    "B2 | Esta mañana Anna ha facturado la maleta.": "<b>esta mañana</b>: وقت ما زال جارياً ← pretérito perfecto.",
+    "B2 | Ayer hizo la maleta en casa.": "<b>ayer</b>: وقت منتهٍ ← indefinido.",
+    "B2 | El año pasado Anna viajó a Italia.": "<b>el año pasado</b>: وقت منتهٍ ← indefinido.",
+    "B2 | Hoy el avión ha llegado con retraso.": "<b>hoy</b> → pretérito perfecto.",
+    "B2 | ¿Ya has comprado el boleto?": "<b>ya</b> (قد، بالفعل): صلة بالحاضر ← pretérito perfecto.",
+    "B2 | ¿Ya has comprado el billete?": "<b>ya</b> (قد، بالفعل): صلة بالحاضر ← pretérito perfecto.",
+    "B2 | El piloto ha pilotado ese avión muchas veces.": "تجربة حتى اليوم (<b>muchas veces</b>) → pretérito perfecto.",
+    "C1 | Debe de estar contenta de viajar.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el piloto pilote el avión de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Pesará más de veinte kilos.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que este aeropuerto es el más moderno de Alemania.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

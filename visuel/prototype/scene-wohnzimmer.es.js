@@ -24,7 +24,7 @@ window.SCENE = {
    "fr": "le plafond, le toit",
    "en": "the ceiling, the roof",
    "pt": "o teto, o telhado",
-   "ar": "بطانية",
+   "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
    "latam": null
@@ -78,7 +78,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -103,7 +103,8 @@ window.SCENE = {
      "theme": "nom_casa",
      "fr": "l'abat-jour",
      "en": "the lampshade",
-     "pt": "a cúpula (do abajur)"
+     "pt": "a cúpula (do abajur)",
+     "ar": "غطاء المصباح"
     }
    ],
    "sur": null,
@@ -198,7 +199,8 @@ window.SCENE = {
      "theme": "el_deporte",
      "fr": "le ballon",
      "en": "the ball (football)",
-     "pt": "a bola (de futebol)"
+     "pt": "a bola (de futebol)",
+     "ar": "كرة"
     }
    ],
    "sur": "schrank",
@@ -241,7 +243,7 @@ window.SCENE = {
    "fr": "le tableau",
    "en": "the picture",
    "pt": "o quadro",
-   "ar": "صورة، لوحة",
+   "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
    "latam": null
@@ -295,7 +297,7 @@ window.SCENE = {
    "fr": "le radiateur",
    "en": "the radiator",
    "pt": "o radiador",
-   "ar": "مشعاع التدفئة",
+   "ar": "مشعّ تدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
    "latam": null
@@ -316,7 +318,8 @@ window.SCENE = {
      "theme": "nom_casa",
      "fr": "la guirlande lumineuse",
      "en": "the string of fairy lights",
-     "pt": "o pisca-pisca, a guirlanda de luzes"
+     "pt": "o pisca-pisca, a guirlanda de luzes",
+     "ar": "سلسلة أضواء"
     }
    ],
    "sur": null,
@@ -332,7 +335,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -353,7 +356,8 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "la lampe",
      "en": "the lamp",
-     "pt": "a lâmpada, o abajur"
+     "pt": "a lâmpada, o abajur",
+     "ar": "مصباح"
     },
     {
      "mot": "pantalla",
@@ -362,7 +366,8 @@ window.SCENE = {
      "theme": "nom_casa",
      "fr": "l'abat-jour",
      "en": "the lampshade",
-     "pt": "a cúpula (do abajur)"
+     "pt": "a cúpula (do abajur)",
+     "ar": "غطاء المصباح"
     }
    ],
    "sur": null,
@@ -432,7 +437,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -453,7 +458,8 @@ window.SCENE = {
      "theme": "los_animales",
      "fr": "le poisson (vivant)",
      "en": "the fish (alive)",
-     "pt": "o peixe (vivo)"
+     "pt": "o peixe (vivo)",
+     "ar": "سمكة (حيّة)"
     }
    ],
    "sur": "regal",
@@ -469,7 +475,7 @@ window.SCENE = {
    "fr": "le poisson rouge",
    "en": "the goldfish",
    "pt": "o peixinho dourado",
-   "ar": "سمكة ذهبية",
+   "ar": "سمكة زينة ذهبية",
    "pl": "złota rybka",
    "ru": "золотая рыбка",
    "latam": {
@@ -554,7 +560,7 @@ window.SCENE = {
    "fr": "le canapé",
    "en": "the sofa",
    "pt": "o sofá",
-   "ar": "أريكة، كنبة",
+   "ar": "أريكة",
    "pl": "kanapa",
    "ru": "диван",
    "latam": null
@@ -629,7 +635,8 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "la chaussure",
      "en": "the shoe",
-     "pt": "o sapato"
+     "pt": "o sapato",
+     "ar": "حذاء"
     }
    ],
    "sur": null,
@@ -697,7 +704,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'assiette, le plat",
      "en": "plate, dish",
-     "pt": "o prato"
+     "pt": "o prato",
+     "ar": "صحن، طبق"
     }
    ],
    "sur": null,
@@ -734,7 +742,8 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "la table",
      "en": "the table",
-     "pt": "a mesa"
+     "pt": "a mesa",
+     "ar": "طاولة"
     }
    ],
    "sur": null,
@@ -750,7 +759,7 @@ window.SCENE = {
    "fr": "la table basse",
    "en": "the coffee table",
    "pt": "a mesa de centro",
-   "ar": "طاولة القهوة",
+   "ar": "طاولة منخفضة",
    "pl": "stolik kawowy, ława",
    "ru": "журнальный столик",
    "latam": {
@@ -802,7 +811,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "la pizza",
      "en": "the pizza",
-     "pt": "a pizza"
+     "pt": "a pizza",
+     "ar": "بيتزا"
     }
    ],
    "sur": "couchtisch",
@@ -957,7 +967,7 @@ window.SCENE = {
    "fr": "le chat",
    "en": "the cat",
    "pt": "o gato",
-   "ar": "قطة",
+   "ar": "قطّ",
    "pl": "kot",
    "ru": "кошка",
    "latam": null
@@ -1548,9 +1558,50 @@ window.SCENE = {
     "consigne": "مارك عائد من السفر… وزملاؤه في السكن أقاموا حفلة. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "hay وestar وser والضمائر",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El balón está encima del clóset.": "<b>encima de</b> = على. de + el = <b>del</b>: encima <b>del</b> armario.",
+    "A2 | El balón está encima del armario.": "<b>encima de</b> = على. de + el = <b>del</b>: encima <b>del</b> armario.",
+    "A2 | El perro está debajo de la mesa de centro.": "<b>debajo de</b> = تحت. المكان يُقال بـ <b>estar</b>.",
+    "A2 | El perro está debajo de la mesa baja.": "<b>debajo de</b> = تحت. المكان يُقال بـ <b>estar</b>.",
+    "A2 | El gato está en la caja de cartón.": "<b>en</b> = في، مكان الوجود. ويُقال أيضاً <b>dentro de</b>.",
+    "A2 | El paraguas está colgado de la lámpara.": "<b>colgado de</b> = معلّق على. ويطابق: el paraguas → colgad<b>o</b>.",
+    "A2 | La bicicleta está delante de la estantería.": "<b>delante de</b> = أمام؛ <b>detrás de</b> = خلف.",
+    "A2 | La guitarra está entre el clóset y el sofá.": "<b>entre</b> = بين، بلا «de»: entre el armario y el sofá.",
+    "A2 | La guitarra está entre el armario y el sofá.": "<b>entre</b> = بين، بلا «de»: entre el armario y el sofá.",
+    "A2 | Los tenis están debajo del sofá.": "جمع ← <b>están</b>. de + el = <b>del</b>: debajo <b>del</b> sofá.",
+    "A2 | Las zapatillas están debajo del sofá.": "جمع ← <b>están</b>. de + el = <b>del</b>: debajo <b>del</b> sofá.",
+    "A2 | El radiador está debajo de la ventana.": "<b>debajo de</b> = تحت.",
+    "A2 | El calcetín está colgado de la lámpara de pie.": "<b>colgado de</b> = معلّق على: el calcetín → colgad<b>o</b>.",
+    "A2 | La pecera con el pez dorado está encima de la estantería.": "<b>encima de</b> = على. La pecera = حوض السمك.",
+    "A2 | La pecera con el pez de colores está encima de la estantería.": "<b>encima de</b> = على. La pecera = حوض السمك.",
+    "B1 | En el piso hay muchos globos.": "لقول إن شيئاً موجود، بلا تحديده ← <b>hay</b> (لا يتغيّر).",
+    "B1 | En el suelo hay muchos globos.": "لقول إن شيئاً موجود، بلا تحديده ← <b>hay</b> (لا يتغيّر).",
+    "B1 | Los globos están en el piso.": "مع أداة التعريف (<b>los</b> globos) → <b>estar</b>، لا hay.",
+    "B1 | Los globos están en el suelo.": "مع أداة التعريف (<b>los</b> globos) → <b>estar</b>، لا hay.",
+    "B1 | Mark la pone en la estantería.": "مفعول به مباشر مؤنث (la taza) → <b>la</b>.",
+    "B1 | Mark lo cuelga detrás de la puerta.": "مفعول به مباشر مذكر (el paraguas) → <b>lo</b>.",
+    "B1 | Mark las tira a la basura.": "مفعول به مباشر مؤنث جمع (las botellas) → <b>las</b>.",
+    "B1 | El sofá es gris.": "خاصية (اللون) ← <b>ser</b>.",
+    "B1 | El perro está dormido debajo de la mesa.": "حالة (dormido) ومكان ← <b>estar</b>.",
+    "B1 | La puerta está abierta.": "نتيجة، حالة ← <b>estar</b> + اسم المفعول بالمطابقة: abiert<b>a</b>.",
+    "B2 | La lámpara de la que cuelga el paraguas es redonda.": "حرف جرّ + موصول: de <b>la que</b> (la lámpara). بلا الأداة، تكون «de que» خطأ.",
+    "B2 | El perro, que duerme debajo de la mesa, no oyó la fiesta.": "فاعل الجملة الموصولة ← <b>que</b>. أما <b>quien</b> فلا تعود إلا على شخص.",
+    "B2 | El gato, cuya cabeza sale de la caja, parece tranquilo.": "<b>cuyo</b> = الذي… ـه (ملكية). يطابق الشيء المملوك: la cabeza → <b>cuya</b>.",
+    "B2 | La estantería delante de la cual está la bicicleta está llena de libros.": "بعد حرف جرّ من كلمات عدّة (delante de)، نستعمل <b>la cual</b>.",
+    "B2 | Los globos fueron inflados por los invitados.": "مبني للمجهول بـ <b>ser</b>: ser + اسم المفعول بالمطابقة (los globos → inflad<b>os</b>).",
+    "B2 | La puerta está abierta desde anoche.": "مبني للمجهول للحالة: <b>estar</b> + اسم المفعول بالمطابقة. النتيجة تدوم.",
+    "C1 | La fiesta debió de terminar muy tarde.": "<b>deber de</b> + مصدر = استنتاج: شبه مؤكَّد، بالنظر إلى البالونات.",
+    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = ممكن، بلا دليل. أما <b>debe</b> فتكون يقيناً.",
+    "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "شرط غير واقعي في الماضي (hubiera viajado)، ونتيجة في الحاضر ← condicional: <b>estaría</b>.",
+    "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "توقّع ← المستقبل: <b>se enfadará</b>. و<b>cuando</b> + مستقبل تأخذ subjuntivo: vea.",
+    "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "توقّع ← المستقبل: <b>se enfadará</b>. و<b>cuando</b> + مستقبل تأخذ subjuntivo: vea."
+   }
   },
   "pt": {
    "champs": {

@@ -78,7 +78,7 @@ window.SCENE = {
    "fr": "le toit",
    "en": "the roof",
    "pt": "o telhado",
-   "ar": "سقف",
+   "ar": "سطح، سقف",
    "pl": "dach",
    "ru": "крыша",
    "latam": null
@@ -213,7 +213,7 @@ window.SCENE = {
    "fr": "la maison",
    "en": "the house",
    "pt": "a casa",
-   "ar": "بيت، منزل",
+   "ar": "بيت",
    "pl": "dom",
    "ru": "дом",
    "latam": null
@@ -240,7 +240,7 @@ window.SCENE = {
    "fr": "l'oiseau",
    "en": "the bird",
    "pt": "o pássaro",
-   "ar": "طائر",
+   "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
    "latam": null
@@ -267,7 +267,7 @@ window.SCENE = {
    "fr": "l'oiseau",
    "en": "the bird",
    "pt": "o pássaro",
-   "ar": "طائر",
+   "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
    "latam": null
@@ -437,7 +437,7 @@ window.SCENE = {
    "fr": "la banque, le banc",
    "en": "the bank, the bench",
    "pt": "o banco",
-   "ar": "بنك، مصرف",
+   "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
    "latam": null
@@ -491,7 +491,7 @@ window.SCENE = {
    "fr": "la carotte",
    "en": "the carrot",
    "pt": "a cenoura",
-   "ar": "جزر",
+   "ar": "جزرة",
    "pl": "marchewka",
    "ru": "морковь",
    "latam": null
@@ -518,7 +518,7 @@ window.SCENE = {
    "fr": "l'écharpe",
    "en": "the scarf",
    "pt": "o cachecol",
-   "ar": "وشاح، شال",
+   "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
    "latam": null
@@ -632,7 +632,7 @@ window.SCENE = {
    "fr": "le bonnet (la tuque)",
    "en": "the woolly hat",
    "pt": "o gorro",
-   "ar": "قبعة صوفية",
+   "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
    "latam": null
@@ -659,7 +659,7 @@ window.SCENE = {
    "fr": "l'écharpe",
    "en": "the scarf",
    "pt": "o cachecol",
-   "ar": "وشاح، شال",
+   "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
    "latam": null
@@ -686,7 +686,7 @@ window.SCENE = {
    "fr": "le gant",
    "en": "the glove",
    "pt": "a luva",
-   "ar": "قفاز",
+   "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
    "latam": null
@@ -713,7 +713,7 @@ window.SCENE = {
    "fr": "la botte",
    "en": "the boot",
    "pt": "a bota",
-   "ar": "جزمة",
+   "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
    "latam": null
@@ -1291,9 +1291,44 @@ window.SCENE = {
     "consigne": "تساقط الثلج هذه الليلة. آنا تصنع رجل ثلج. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الضمائر: le وla وlos",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La bicicleta está al lado del farol.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La bicicleta está al lado de la farola.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La vela está en la ventana.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El carro está delante de la casa.": "<b>delante de</b> = أمام.",
+    "A2 | El coche está delante de la casa.": "<b>delante de</b> = أمام.",
+    "A2 | El pájaro está en el árbol.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El perro está en la nieve.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El humo sale del tejado.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El banco está al lado de la bicicleta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Hay un sombrero en la cabeza del muñeco.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "B1 | Anna tiene frío.": "الشعور بالبرد ← <b>tener</b> frío.",
+    "B1 | El gorro le queda bien.": "<b>quedar bien</b> لشخص (يليق به) ← <b>le</b>.",
+    "B1 | Anna le ha puesto una bufanda al muñeco.": "لمن؟ ← <b>le</b>، حتى مع «al muñeco» بعده.",
+    "B1 | Anna los lleva puestos.": "مفعول به مباشر مذكر جمع ← <b>los</b>.",
+    "B1 | Al perro le han puesto un abrigo rojo.": "لمن؟ ← <b>le</b>.",
+    "B1 | Son suyas.": "ضمير الملكية وحده يطابق الشيء: las botas → <b>suyas</b>.",
+    "B1 | Anna le da una zanahoria al muñeco.": "لمن؟ ← <b>le</b>.",
+    "B1 | Anna la ha dejado junto al muro.": "مفعول به مباشر مؤنث (la escoba) → <b>la</b>.",
+    "B2 | La mujer que hace un muñeco de nieve se llama Anna.": "جملة موصولة بلا فاصلة، فاعل ← <b>que</b>.",
+    "B2 | El perro, cuyo abrigo es rojo, olfatea la nieve.": "<b>cuyo</b> يطابق الشيء المملوك: el abrigo → <b>cuyo</b>.",
+    "B2 | La casa delante de la cual está el carro es amarilla.": "بعد حرف جرّ مركّب: <b>la cual</b>، بمطابقة la casa.",
+    "B2 | La casa delante de la cual está el coche es amarilla.": "بعد حرف جرّ مركّب: <b>la cual</b>، بمطابقة la casa.",
+    "B2 | El carro está cubierto de nieve.": "<b>cubrir</b> ← اسم مفعول شاذّ <b>cubierto</b>.",
+    "B2 | El coche está cubierto de nieve.": "<b>cubrir</b> ← اسم مفعول شاذّ <b>cubierto</b>.",
+    "B2 | El camino tiene que ser barrido.": "مبني للمجهول <b>ser</b> + اسم المفعول بالمطابقة: el camino → barrid<b>o</b>.",
+    "B2 | La vela está encendida en la ventana.": "<b>estar</b> + اسم المفعول، بالمطابقة: la vela → encendid<b>a</b>.",
+    "C1 | El muñeco debe de gustarle mucho.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que la bicicleta esté ahí desde anoche.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | La nieve durará hasta mañana.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen en la radio que será el invierno más frío en diez años.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

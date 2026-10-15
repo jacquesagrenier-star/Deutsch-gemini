@@ -18,7 +18,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'homme",
      "en": "the man",
-     "pt": "o homem"
+     "pt": "o homem",
+     "ar": "رجل"
     },
     {
      "mot": "cuerpo",
@@ -27,7 +28,8 @@ window.SCENE = {
      "theme": "el_cuerpo",
      "fr": "le corps",
      "en": "the body",
-     "pt": "o corpo"
+     "pt": "o corpo",
+     "ar": "جسم"
     }
    ],
    "sur": null,
@@ -163,7 +165,8 @@ window.SCENE = {
      "theme": "el_cuerpo",
      "fr": "le cou",
      "en": "the neck",
-     "pt": "o pescoço"
+     "pt": "o pescoço",
+     "ar": "رقبة، عنق"
     }
    ],
    "sur": "mark",
@@ -179,7 +182,7 @@ window.SCENE = {
    "fr": "la nuque",
    "en": "the nape of the neck",
    "pt": "a nuca",
-   "ar": "مؤخرة العنق، القفا",
+   "ar": "قفا، مؤخّرة العنق",
    "pl": "kark",
    "ru": "затылок, шея сзади",
    "latam": null
@@ -272,7 +275,7 @@ window.SCENE = {
    "fr": "la colonne vertébrale",
    "en": "the spine",
    "pt": "a coluna vertebral",
-   "ar": "العمود الفقري",
+   "ar": "عمود فقري",
    "pl": "kręgosłup",
    "ru": "позвоночник",
    "latam": null
@@ -320,7 +323,8 @@ window.SCENE = {
      "theme": "el_cuerpo_b2",
      "fr": "les fesses",
      "en": "the buttocks",
-     "pt": "as nádegas"
+     "pt": "as nádegas",
+     "ar": "أرداف"
     },
     {
      "mot": "calzoncillos",
@@ -329,7 +333,8 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "le caleçon, le slip",
      "en": "the underpants",
-     "pt": "a cueca"
+     "pt": "a cueca",
+     "ar": "سروال داخلي"
     }
    ],
    "sur": "mark",
@@ -591,7 +596,7 @@ window.SCENE = {
    "fr": "le creux du genou",
    "en": "the back of the knee",
    "pt": "a parte de trás do joelho",
-   "ar": "باطن الركبة",
+   "ar": "مأبض الركبة",
    "pl": "dół podkolanowy",
    "ru": "подколенная ямка",
    "latam": null
@@ -651,7 +656,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "pt": "a perna",
-   "ar": "ساق",
+   "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
    "latam": null
@@ -678,7 +683,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "pt": "a perna",
-   "ar": "ساق",
+   "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
    "latam": null
@@ -711,7 +716,7 @@ window.SCENE = {
    "fr": "le talon",
    "en": "the heel",
    "pt": "o calcanhar",
-   "ar": "كعب القدم",
+   "ar": "كعب (القدم)",
    "pl": "pięta",
    "ru": "пятка",
    "latam": null
@@ -786,7 +791,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "la femme, l'épouse",
      "en": "the wife, the woman",
-     "pt": "a mulher, a esposa"
+     "pt": "a mulher, a esposa",
+     "ar": "امرأة، زوجة"
     }
    ],
    "sur": null,
@@ -901,7 +907,7 @@ window.SCENE = {
    "fr": "le stéthoscope",
    "en": "the stethoscope",
    "pt": "o estetoscópio",
-   "ar": "سمّاعة الطبيب",
+   "ar": "سمّاعة طبّية",
    "pl": "stetoskop",
    "ru": "стетоскоп",
    "latam": null
@@ -994,7 +1000,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1520,9 +1526,38 @@ window.SCENE = {
     "autre_vue": "↻ أدِر مارك"
    },
    "couches": {
-    "A1": "جسم الإنسان، من الخلف"
+    "A1": "جسم الإنسان، من الخلف",
+    "A2": "¿Dónde está? — الجسم",
+    "B1": "تعليمات الطبيبة",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La médica le pone el estetoscopio en la espalda.": "عضو من الجسم ← <b>أداة التعريف</b> (la espalda)، لا ضمير الملكية.",
+    "A2 | La médica está al lado del paciente.": "<b>al lado de</b> = بجانب.",
+    "A2 | Mark tiene las manos al lado del trasero.": "<b>al lado de</b> + el trasero → al lado <b>del</b> trasero.",
+    "A2 | La columna vertebral está entre los omóplatos.": "<b>entre</b> = بين.",
+    "A2 | Las pantorrillas están debajo de las corvas.": "<b>debajo de</b> = تحت، أسفل.",
+    "A2 | La báscula está junto a la pared.": "مع <b>la</b> (شيء محدّد) ← <b>estar</b>.",
+    "B1 | Señor, dese la vuelta, por favor.": "<b>darse la vuelta</b> = يستدير. أمر usted: dé + se → <b>dese</b>.",
+    "B1 | Mark se ha dado la vuelta para que la médica le escuche la espalda.": "<b>para que</b> (غاية) ← دائماً <b>subjuntivo</b>.",
+    "B1 | La médica pone el estetoscopio en la espalda.": "<b>poner</b> = يضع (شيئاً). <b>ponerse</b> = يلبس، يضع على نفسه.",
+    "B1 | Deje los brazos sueltos, por favor.": "الصفة تطابق: los brazos → <b>sueltos</b>.",
+    "B1 | Se le ven las palmas de las manos.": "<b>se</b> + فعل يطابق ما يُرى: las palmas → <b>ven</b>.",
+    "B1 | Señor, ahora suelte el aire despacio.": "أمر usted: soltar → <b>suelte</b> (الـ o تصير ue).",
+    "B2 | Su espalda está siendo examinada.": "مبني للمجهول جارٍ: <b>estar siendo</b> + اسم المفعول.",
+    "B2 | Este es el paciente cuya espalda examina la médica.": "<b>cuyo</b> يطابق la espalda → <b>cuya</b>.",
+    "B2 | La médica, cuyo estetoscopio está en la espalda de Mark, escucha con atención.": "<b>cuyo</b> يطابق el estetoscopio → <b>cuyo</b>، وإن كانت la médica مؤنثاً.",
+    "B2 | Antes de que la médica examine la espalda, Mark tiene que respirar hondo.": "<b>antes de que</b> ← دائماً <b>subjuntivo</b>.",
+    "B2 | Los omóplatos, entre los cuales está la columna, se ven bien.": "بعد <b>entre</b>: <b>los cuales</b> (أو los que).",
+    "B2 | Los pies de Mark están descalzos.": "حالة في اللحظة ← <b>estar</b> descalzo (حافي القدمين).",
+    "C1 | Ya debe de haberlo examinado muchas veces.": "<b>deber de</b> + مصدر ماضٍ = استنتاج بشأن الماضي.",
+    "C1 | Si a Mark le doliera la espalda, se lo habría dicho a la médica.": "<b>si</b> + subjuntivo الماضي (doliera): فرضية مخالفة للواقع.",
+    "C1 | Si la médica oyera un ruido raro, le haría una radiografía.": "فرضية غير واقعية: <b>si</b> + subjuntivo الماضي، ثم condicional.",
+    "C1 | Dicen que Mark nunca ha estado enfermo de verdad.": "بعد <b>dicen que</b> → <b>indicativo</b> (ha estado).",
+    "C1 | Que tenga la espalda tan recta se debe al deporte.": "<b>deberse a</b> = يعود إلى، يرجع سببه إلى. (<b>deber de</b> تعبّر عن افتراض.)",
+    "C1 | Si no hubiera oído nada, ya habría terminado.": "فرضية بشأن الماضي: <b>si</b> + الماضي التامّ من subjuntivo."
+   }
   },
   "pt": {
    "champs": {

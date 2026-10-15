@@ -24,7 +24,7 @@ window.SCENE = {
    "fr": "le tableau",
    "en": "the picture",
    "pt": "o quadro",
-   "ar": "صورة، لوحة",
+   "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
    "latam": null
@@ -45,7 +45,8 @@ window.SCENE = {
      "theme": "la_casa",
      "fr": "le rideau",
      "en": "the curtain",
-     "pt": "a cortina"
+     "pt": "a cortina",
+     "ar": "ستارة"
     }
    ],
    "sur": null,
@@ -88,7 +89,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -115,7 +116,7 @@ window.SCENE = {
    "fr": "l'assiette, le plat",
    "en": "plate, dish",
    "pt": "o prato",
-   "ar": "صحن",
+   "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
    "latam": null
@@ -173,7 +174,7 @@ window.SCENE = {
    "fr": "le chat",
    "en": "the cat",
    "pt": "o gato",
-   "ar": "قطة",
+   "ar": "قطّ",
    "pl": "kot",
    "ru": "кошка",
    "latam": null
@@ -227,7 +228,7 @@ window.SCENE = {
    "fr": "le grand-père",
    "en": "the grandfather",
    "pt": "o avô",
-   "ar": "جدّ (عامية)",
+   "ar": "جدّ",
    "pl": "dziadek",
    "ru": "дедушка, дедуля",
    "latam": null
@@ -254,7 +255,7 @@ window.SCENE = {
    "fr": "la grand-mère",
    "en": "the grandmother",
    "pt": "a avó",
-   "ar": "جدّة (عامية)",
+   "ar": "جدّة",
    "pl": "babcia",
    "ru": "бабушка, бабуля",
    "latam": null
@@ -356,7 +357,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "la sœur",
      "en": "the sister",
-     "pt": "a irmã"
+     "pt": "a irmã",
+     "ar": "أخت"
     }
    ],
    "sur": null,
@@ -471,7 +473,7 @@ window.SCENE = {
    "fr": "la pomme de terre",
    "en": "potato",
    "pt": "a batata",
-   "ar": "بطاطس",
+   "ar": "بطاطا",
    "pl": "ziemniak",
    "ru": "картофель",
    "latam": {
@@ -535,7 +537,7 @@ window.SCENE = {
    "fr": "la laitue, la salade",
    "en": "the lettuce",
    "pt": "a alface",
-   "ar": "خس، سلطة",
+   "ar": "خسّ",
    "pl": "sałata, sałatka",
    "ru": "салат",
    "latam": null
@@ -643,7 +645,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "la bouteille",
      "en": "bottle",
-     "pt": "a garrafa"
+     "pt": "a garrafa",
+     "ar": "زجاجة"
     }
    ],
    "sur": null,
@@ -690,7 +693,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -717,7 +720,7 @@ window.SCENE = {
    "fr": "l'assiette, le plat",
    "en": "plate, dish",
    "pt": "o prato",
-   "ar": "صحن",
+   "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
    "latam": null
@@ -825,7 +828,7 @@ window.SCENE = {
    "fr": "la serviette",
    "en": "the napkin",
    "pt": "o guardanapo",
-   "ar": "منديل المائدة",
+   "ar": "منديل",
    "pl": "serwetka",
    "ru": "салфетка",
    "latam": null
@@ -1325,9 +1328,41 @@ window.SCENE = {
     "consigne": "عائلة آنا كلّها حول المائدة. المس شيئًا أو شخصًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "ضمائر الملكية",
+    "B2": "ser أم estar؟",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El gato duerme en la silla.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Hay un cuadro en la pared.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | La sopa está en la mesa.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El pan está en la cesta.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El tenedor está al lado del plato.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El jugo está al lado del vaso.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El zumo está al lado del vaso.": "<b>de + el = del</b>، دائماً.",
+    "A2 | Las flores están delante de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La cuchara está encima de la servilleta.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "B1 | Su padre sirve las papas.": "مالك واحد، شيء واحد ← <b>su</b>.",
+    "B1 | Su padre sirve las patatas.": "مالك واحد، شيء واحد ← <b>su</b>.",
+    "B1 | El hermano echa agua en su vaso.": "مالك واحد، شيء واحد ← <b>su</b>.",
+    "B1 | La madre tiene a su bebé en brazos.": "مالك واحد، شيء واحد ← <b>su</b>.",
+    "B1 | Anna quiere mucho a sus abuelos.": "أشياء عدّة ← <b>sus</b> abuelos.",
+    "B1 | Comemos los domingos en casa de nuestros abuelos.": "<b>nuestro</b> يطابق الاسم: los abuelos → nuestr<b>os</b>.",
+    "B1 | El abuelo habla de su juventud.": "مالك واحد، شيء واحد ← <b>su</b>.",
+    "B1 | Este tenedor es mío.": "بعد <b>ser</b>، الصيغة الطويلة: <b>mío</b> (el tenedor).",
+    "B2 | Anna está muy contenta.": "حالة في اللحظة ← <b>estar</b>.",
+    "B2 | El abuelo es muy divertido.": "سمة في الشخصية ← <b>ser</b>.",
+    "B2 | La sopa está caliente.": "حالة عابرة ← <b>estar</b>.",
+    "B2 | La comida es en casa de los abuelos.": "حدث يقع ← <b>ser</b> («la comida es en…»).",
+    "B2 | El bebé está en brazos de su madre.": "تحديد مكان شخص ← <b>estar</b>.",
+    "B2 | Los platos son de porcelana.": "المادة ← <b>ser de</b>.",
+    "C1 | El abuelo debe de contar algo gracioso.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el gato sea de la abuela.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Estará muy caliente.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que el abuelo fue cocinero.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

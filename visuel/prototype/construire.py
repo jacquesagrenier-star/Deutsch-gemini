@@ -390,7 +390,9 @@ def mot_espagnol(valeur, idx, variantes):
               "pluriel": pluriel_avec_article(mot, genre, pl),
               "fr": m.get("traduction"), "en": m.get("traduction_en"),
               # v782 : le portugais du Bresil, 3e langue d'interface de l'espagnol.
-              "pt": m.get("traduction_pt")}
+              "pt": m.get("traduction_pt"),
+              # 15 oct. 2026 : l'arabe, 4e langue d'interface de l'espagnol.
+              "ar": m.get("traduction_ar")}
     v = variantes.get(mot)
     if v and (not art or art == m.get("genre")):
         sortie["latam"] = {"mot": v["mot"], "genre": v["genre"],
@@ -432,8 +434,8 @@ def construire_espagnol(nom, scene_de):
                 aussi.append({k: v for k, v in ra.items() if k != "pluriel"})
         if r:
             points.append(dict(p, aussi=aussi, **{k: r.get(k) for k in
-                          ("mot", "genre", "pluriel", "niveau", "theme", "fr", "en", "pt", "latam")}))
-    for cle in ("tr", "uk", "fa"):     # le corpus espagnol n'a que fr, en et pt (v782)
+                          ("mot", "genre", "pluriel", "niveau", "theme", "fr", "en", "pt", "ar", "latam")}))
+    for cle in ("tr", "uk", "fa"):     # le corpus espagnol n'a que fr, en, pt (v782) et ar
         for p in points:
             p.pop(cle, None)
             for a in p["aussi"]:
@@ -458,6 +460,7 @@ def construire_espagnol(nom, scene_de):
     couches = {"A1": a1}
     trad_en = {"couches": {}, "questions": {}}
     trad_pt = {"couches": {}, "questions": {}}
+    trad_ar = {"couches": {}, "questions": {}}
     connus = {p["id"] for p in points}
     verbes = {e["infinitif"] for n in json.load(io.open(os.path.join(RACINE, "espanol", "datos", "verbos.json"),
                                                         encoding="utf-8")).values() for e in n}
@@ -470,10 +473,13 @@ def construire_espagnol(nom, scene_de):
             trad_en["couches"][niv] = c["titre_en"]
         if c.get("titre_pt"):
             trad_pt["couches"][niv] = c["titre_pt"]
+        if c.get("titre_ar"):
+            trad_ar["couches"][niv] = c["titre_ar"]
         for q in c.get("qs", []):
             q = dict(q)
             n_en = q.pop("n_en", None)
             n_pt = q.pop("n_pt", None)
+            n_ar = q.pop("n_ar", None)
             if "___" in q["q"] and not q["q"].replace("___", q["c"][0]).lower().endswith(q["phrase"].lower()):
                 # La phrase dite et gardee doit etre la question remplie par la
                 # bonne reponse (une amorce « Seguro: » peut la preceder) :
@@ -508,7 +514,7 @@ def construire_espagnol(nom, scene_de):
                 erreurs.append("%s : %s change en Amerique latine, la question n'a pas de « latam » -- %s"
                                % (niv, ", ".join(cites), q["q"]))
             if lat:
-                lq = dict(q, **{k: v for k, v in lat.items() if k not in ("n_en", "n_pt")})
+                lq = dict(q, **{k: v for k, v in lat.items() if k not in ("n_en", "n_pt", "n_ar")})
                 if "___" in lq["q"] and not lq["q"].replace("___", lq["c"][0]).lower().endswith(lq["phrase"].lower()):
                     erreurs.append("%s : (latam) la phrase ne remplit pas le trou -- %s" % (niv, lq["q"]))
                 lat_en = lat.get("n_en", n_en)
@@ -517,11 +523,16 @@ def construire_espagnol(nom, scene_de):
                 lat_pt = lat.get("n_pt", n_pt)
                 if lat_pt:
                     trad_pt["questions"][niv + " | " + lq["phrase"]] = lat_pt
-                q["latam"] = {k: v for k, v in lat.items() if k not in ("n_en", "n_pt")}
+                lat_ar = lat.get("n_ar", n_ar)
+                if lat_ar:
+                    trad_ar["questions"][niv + " | " + lq["phrase"]] = lat_ar
+                q["latam"] = {k: v for k, v in lat.items() if k not in ("n_en", "n_pt", "n_ar")}
             if n_en:
                 trad_en["questions"][niv + " | " + q["phrase"]] = n_en
             if n_pt:
                 trad_pt["questions"][niv + " | " + q["phrase"]] = n_pt
+            if n_ar:
+                trad_ar["questions"][niv + " | " + q["phrase"]] = n_ar
             sortie_c["qs"].append(q)
         couches[niv] = sortie_c
     if erreurs:
@@ -544,6 +555,11 @@ def construire_espagnol(nom, scene_de):
     pt = traductions.setdefault("pt", {"champs": {}, "couches": {}, "questions": {}})
     pt["couches"].update(trad_pt["couches"])
     pt["questions"].update(trad_pt["questions"])
+    # L'arabe (15 oct. 2026) : titre_ar et n_ar. Son entree existe deja (la
+    # scene allemande lui donne alt, consigne et le titre A1).
+    ar = traductions.setdefault("ar", {"champs": {}, "couches": {}, "questions": {}})
+    ar["couches"].update(trad_ar["couches"])
+    ar["questions"].update(trad_ar["questions"])
     scene["traductions"] = traductions
     js = ("// GENERE par construire.py (espanol/%s.json) -- ne pas modifier a la main.\n" % nom
           + "window.SCENE = " + json.dumps(scene, ensure_ascii=False, indent=1) + ";\n")

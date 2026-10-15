@@ -138,7 +138,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -165,7 +165,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -192,7 +192,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -219,7 +219,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -294,7 +294,8 @@ window.SCENE = {
      "theme": "los_servicios",
      "fr": "l'enveloppe",
      "en": "the envelope",
-     "pt": "o envelope"
+     "pt": "o envelope",
+     "ar": "ظرف"
     }
    ],
    "sur": null,
@@ -310,7 +311,7 @@ window.SCENE = {
    "fr": "la carte",
    "en": "the menu (à la carte)",
    "pt": "o cardápio",
-   "ar": "رسالة (بريدية)",
+   "ar": "قائمة الطعام",
    "pl": "list",
    "ru": "письмо",
    "latam": null
@@ -364,7 +365,7 @@ window.SCENE = {
    "fr": "le sac à main",
    "en": "the handbag",
    "pt": "a bolsa",
-   "ar": "حقيبة",
+   "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -557,7 +558,7 @@ window.SCENE = {
    "fr": "le guichet",
    "en": "the counter, the window",
    "pt": "o guichê",
-   "ar": "شبّاك؛ مفتاح كهربائي",
+   "ar": "شبّاك (الخدمة)",
    "pl": "okienko, kasa; włącznik",
    "ru": "окошко, касса; выключатель",
    "latam": null
@@ -611,7 +612,7 @@ window.SCENE = {
    "fr": "la carte",
    "en": "the menu (à la carte)",
    "pt": "o cardápio",
-   "ar": "رسالة (بريدية)",
+   "ar": "قائمة الطعام",
    "pl": "list",
    "ru": "письмо",
    "latam": null
@@ -719,7 +720,7 @@ window.SCENE = {
    "fr": "la banque, le banc",
    "en": "the bank, the bench",
    "pt": "o banco",
-   "ar": "بنك، مصرف",
+   "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
    "latam": null
@@ -746,7 +747,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1222,9 +1223,39 @@ window.SCENE = {
     "consigne": "آنا ترسل رسالة وطردًا. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "ضمائر المفعول",
+    "B2": "المبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El paquete está en la báscula.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Hay un buzón detrás de la ventana.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | El reloj está en la pared.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Los sellos están al lado de los sobres.": "مذكر جمع: <b>de los</b> sobres.",
+    "A2 | Las cartas están en la cesta.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El paraguas está al lado del banco.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El paquete grande está delante de la ventanilla.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El hombre está detrás de la ventanilla.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "B1 | Anna le envía una carta a su madre.": "مفعول غير مباشر (لشخص) ← <b>le</b>.",
+    "B1 | El hombre le da el recibo a Anna.": "مفعول غير مباشر (لشخص) ← <b>le</b>.",
+    "B1 | ¿La carta? Anna se la da al hombre.": "<b>le</b> + <b>la</b> → <b>se la</b>: le تصير se قبل lo وla.",
+    "B1 | ¿El paquete? El hombre lo pesa.": "مفعول به مباشر مذكر ← <b>lo</b>.",
+    "B1 | La señora quiere enviarle un paquete a su nieto.": "مع المصدر، يلتصق الضمير بآخره: <b>enviarle</b>.",
+    "B1 | ¿Me das un sello, por favor?": "«لي» ← <b>me</b>، قبل الفعل.",
+    "B1 | Anna le enseña el carné al hombre.": "مفعول غير مباشر (لشخص) ← <b>le</b>.",
+    "B2 | Aquí se envían paquetes a todo el mundo.": "المبني للمجهول بـ <b>se</b>: الفعل يطابق الفاعل الجمع (paquetes).",
+    "B2 | La carta fue enviada ayer.": "مبني للمجهول للفعل في الماضي: <b>ser</b> + اسم المفعول ← fue enviada.",
+    "B2 | Las cartas ya están clasificadas.": "<b>estar</b> + اسم المفعول، بالمطابقة: las cartas → clasificad<b>as</b>.",
+    "B2 | En Correos se venden sellos.": "مبني للمجهول بـ <b>se</b>، فاعل جمع ← se venden.",
+    "B2 | El paquete es pesado por el empleado.": "مبني للمجهول للفعل: <b>ser</b> + اسم المفعول + <b>por</b>.",
+    "B2 | El sobre está cerrado.": "<b>estar</b> + اسم المفعول، بالمطابقة: el sobre → cerrad<b>o</b>.",
+    "C1 | La carta debe de ser para alguien importante.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el paquete de la señora sea un regalo.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | La oficina estará a punto de cerrar.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que esta oficina de correos cierra pronto.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

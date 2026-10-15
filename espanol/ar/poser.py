@@ -4,6 +4,7 @@
     python espanol/ar/poser.py etat
     python espanol/ar/poser.py reste <fichier> [n] [--depuis k]
     python espanol/ar/poser.py pose <lot.txt> [<lot2.txt> ...]
+    python espanol/ar/poser.py pose --essai <lot.txt>   # controles seuls, rien n'est ecrit
     python espanol/ar/poser.py controle          # vraisemblance des champs poses
 
 NE LE 13 OCT. 2026, copie de espanol/pt/poser.py (le portugais du Bresil,
@@ -60,6 +61,7 @@ DATOS = os.path.join(RACINE, "espanol", "datos")
 NIVEAUX = ["A1", "A2", "B1", "B2", "C1"]
 CORPUS = ["temas", "verbos", "adjetivos", "adverbios", "expresiones", "funcionales"]
 TEMPS = ["preterito", "imperfecto", "perfecto", "futuro", "condicional", "subjuntivo"]
+ESSAI = False   # pose --essai : tous les controles, aucune ecriture
 ARABE = re.compile(u"[؀-ۿ]")
 
 
@@ -197,6 +199,9 @@ def poser_corpus(nom, lignes):
     for num, (trad, ex) in voulus.items():
         es[num][1]["traduction_ar"] = trad
         es[num][1]["exemple_ar"] = ex
+    if ESSAI:
+        print("  %-12s %d entrees verifiees (essai, rien n'est ecrit)" % (nom, len(voulus)))
+        return
     io.open(chemin, "w", encoding="utf-8", newline="").write(serialiser(d, brut))
     d2, _, _ = charger(nom)
     es2 = entrees(nom, d2)
@@ -238,6 +243,9 @@ def poser_tiempos(lignes):
         voulus[num] = champs
     for num, champs in voulus.items():
         es[num][1].update(champs)
+    if ESSAI:
+        print("  %-12s %d entrees verifiees (essai, rien n'est ecrit)" % (nom, len(voulus)))
+        return
     io.open(chemin, "w", encoding="utf-8", newline="").write(serialiser(d, brut))
     d2, _, _ = charger(nom)
     es2 = entrees(nom, d2)
@@ -295,6 +303,9 @@ def poser_exercices(lignes):
             e["optionsAr"] = list(e["options"])
         if "correct" in e and "correctEn" in e and e["correct"] == e["correctEn"]:
             e["correctAr"] = e["correct"]
+    if ESSAI:
+        print("  %-12s %d entrees verifiees (essai, rien n'est ecrit)" % (nom, len(voulus)))
+        return
     io.open(chemin, "w", encoding="utf-8", newline="").write(serialiser(d, brut))
     d2, _, _ = charger(nom)
     es2 = {ctx: x for ctx, x in entrees(nom, d2)}
@@ -337,6 +348,12 @@ def controle():
                           ("hint_ar", "hint"), ("question_ar", "question"))
                 source = e.get("question", "") + " " + " ".join(e.get("options", []) or []) \
                     + " " + " ".join(e.get("answers", []) or [])
+                # Les mots espagnols cites par l'explication : ceux que le
+                # francais, l'anglais et le portugais ont en commun.
+                for groupe in (("explanation", "explanation_en", "explanation_pt"), ("hint", "hint_en", "hint_pt")):
+                    mots = [set(LATIN.findall(e.get(c, "") or "")) for c in groupe if e.get(c)]
+                    if len(mots) > 1:
+                        source += " " + " ".join(set.intersection(*mots))
             else:
                 champs = [("traduction_ar", "traduction"), ("exemple_ar", "exemple_fr")]
                 source = e.get("exemple", "") + " " + e.get("mot", "")
@@ -350,6 +367,10 @@ def controle():
                 if not v:
                     continue
                 if car == "hint_ar" and v == e.get("hint"):
+                    if e.get("hint_pt") and e["hint_pt"] != e["hint"]:
+                        # le portugais l'a traduit : il n'etait pas neutre
+                        print("  %s %s : hint_ar recopie du francais : %s" % (nom, ctx, v[:70]))
+                        suspects += 1
                     continue        # un indice neutre « (vivir) » recopie
                 if not ARABE.search(v):
                     print("  %s %s : %s sans arabe : %s" % (nom, ctx, car, v[:70]))
@@ -360,7 +381,8 @@ def controle():
                     suspects += 1
                     continue
                 for m in LATIN.findall(v):
-                    if m.lower() not in source and m.lower() not in ("ser", "estar", "hay", "usted", "ustedes", "vosotros"):
+                    if m.lower() not in source and m.lower() not in ("ser", "estar", "hay", "usted", "ustedes", "vosotros", "gerundio", "subjuntivo",
+                                                                              "imperfecto", "condicional", "presente", "pretérito", "futuro", "infinitivo", "imperativo"):
                         print("  %s %s : %s mot latin « %s » : %s" % (nom, ctx, car, m, v[:70]))
                         suspects += 1
                         break
@@ -378,7 +400,9 @@ def main():
         depuis = int(a[a.index("--depuis") + 1]) if "--depuis" in a else 0
         reste(nom, n, depuis)
     elif a[0] == "pose":
-        pose(a[1:])
+        global ESSAI
+        ESSAI = "--essai" in a
+        pose([x for x in a[1:] if x != "--essai"])
     elif a[0] == "controle":
         sys.exit(1 if controle() else 0)
     else:

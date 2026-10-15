@@ -57,7 +57,7 @@ window.SCENE = {
    "fr": "l'escalier",
    "en": "the stairs",
    "pt": "a escada",
-   "ar": "درج، سلّم",
+   "ar": "سلّم، درج",
    "pl": "schody",
    "ru": "лестница",
    "latam": null
@@ -84,7 +84,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -123,7 +123,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -150,7 +150,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -177,7 +177,7 @@ window.SCENE = {
    "fr": "l'escalier",
    "en": "the stairs",
    "pt": "a escada",
-   "ar": "سُلّم",
+   "ar": "سلّم، درج",
    "pl": "drabina",
    "ru": "лестница (стремянка)",
    "latam": null
@@ -258,7 +258,7 @@ window.SCENE = {
    "fr": "l'étudiant",
    "en": "the student",
    "pt": "o estudante",
-   "ar": "طالب جامعي",
+   "ar": "طالب",
    "pl": "student",
    "ru": "студент",
    "latam": null
@@ -285,7 +285,7 @@ window.SCENE = {
    "fr": "l'étudiant",
    "en": "the student",
    "pt": "o estudante",
-   "ar": "طالبة جامعية",
+   "ar": "طالب",
    "pl": "studentka",
    "ru": "студентка",
    "latam": null
@@ -449,7 +449,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": "tisch",
@@ -546,7 +547,7 @@ window.SCENE = {
    "fr": "la note",
    "en": "the mark, the grade",
    "pt": "a nota",
-   "ar": "ورقة صغيرة",
+   "ar": "علامة، درجة",
    "pl": "karteczka, świstek",
    "ru": "записка, листок",
    "latam": null
@@ -654,7 +655,7 @@ window.SCENE = {
    "fr": "le globe",
    "en": "the globe",
    "pt": "o globo terrestre",
-   "ar": "مجسّم الكرة الأرضية",
+   "ar": "كرة أرضية (مجسّم)",
    "pl": "globus",
    "ru": "глобус",
    "latam": null
@@ -681,7 +682,7 @@ window.SCENE = {
    "fr": "le casque audio",
    "en": "the headphones",
    "pt": "os fones de ouvido",
-   "ar": "سمّاعات الرأس",
+   "ar": "سمّاعات رأس",
    "pl": "słuchawki",
    "ru": "наушники",
    "latam": {
@@ -1217,9 +1218,40 @@ window.SCENE = {
     "consigne": "آنا تدرس في مكتبة الجامعة. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الأفعال مع حروف الجرّ",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El lápiz está encima del cuaderno.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La botella está al lado del libro.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La mochila está en la silla.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La lámpara está al lado de los libros.": "مذكر جمع: <b>de los</b> libros.",
+    "A2 | La planta está delante de la estantería.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | El reloj está en la pared.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Hay una escalera junto a la estantería.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | La laptop está en la mesa.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El portátil está en la mesa.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "B1 | Anna piensa en su examen.": "<b>pensar en</b> = يفكّر في.",
+    "B1 | El estudiante sueña con las vacaciones.": "<b>soñar con</b> = يحلم بـ.",
+    "B1 | Anna se interesa por la historia.": "<b>interesarse por</b> = يهتمّ بـ.",
+    "B1 | Anna espera a su amiga.": "<b>esperar a</b> + شخص: الـ <b>a</b> أمام الأشخاص.",
+    "B1 | Anna se acuerda de la clase de ayer.": "<b>acordarse de</b> = يتذكّر.",
+    "B1 | El estudiante se concentra en su libro.": "<b>concentrarse en</b> = يركّز على.",
+    "B1 | Anna tarda mucho en terminar el capítulo.": "<b>tardar en</b> + مصدر = يستغرق وقتاً في.",
+    "B2 | La estudiante que lee el libro se llama Anna.": "جملة موصولة بلا فاصلة، فاعل ← <b>que</b>.",
+    "B2 | El estudiante, cuyo pelo es rizado, lee en la otra mesa.": "<b>cuyo</b> يطابق الشيء المملوك: el pelo → <b>cuyo</b>.",
+    "B2 | La estantería en la que se apoya la escalera es muy alta.": "حرف جرّ + أداة + <b>que</b>، بمطابقة la estantería.",
+    "B2 | Aquí no se habla en voz alta.": "<b>se</b> غير الشخصية: «لا يُتكلَّم»، والفعل بالمفرد.",
+    "B2 | El libro ya está medio leído.": "<b>estar</b> + اسم المفعول: leer → <b>leído</b>، بعلامة النبر.",
+    "B2 | La lámpara está encendida.": "<b>estar</b> + اسم المفعول، بالمطابقة: la lámpara → encendid<b>a</b>.",
+    "C1 | Debe de tener un examen pronto.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el estudiante sea compañero de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Fuera hará mucho frío.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que esta biblioteca tiene más de un millón de libros.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

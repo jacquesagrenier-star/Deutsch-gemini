@@ -24,7 +24,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -45,7 +45,8 @@ window.SCENE = {
      "theme": "la_publicidad",
      "fr": "l'affiche",
      "en": "the poster",
-     "pt": "o cartaz"
+     "pt": "o cartaz",
+     "ar": "ملصق إعلاني"
     }
    ],
    "sur": "wand",
@@ -115,7 +116,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -190,7 +191,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'homme",
      "en": "the man",
-     "pt": "o homem"
+     "pt": "o homem",
+     "ar": "رجل"
     }
    ],
    "sur": null,
@@ -245,7 +247,7 @@ window.SCENE = {
    "fr": "le tee-shirt",
    "en": "the T-shirt",
    "pt": "a camiseta",
-   "ar": "قميص قصير الأكمام (تي شيرت)",
+   "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
    "latam": null
@@ -272,7 +274,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -299,7 +301,7 @@ window.SCENE = {
    "fr": "le pansement",
    "en": "the plaster",
    "pt": "o curativo, o band-aid",
-   "ar": "لصقة جروح",
+   "ar": "لاصق جروح",
    "pl": "plaster",
    "ru": "пластырь",
    "latam": {
@@ -603,7 +605,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "pt": "a perna",
-   "ar": "ساق",
+   "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
    "latam": null
@@ -630,7 +632,7 @@ window.SCENE = {
    "fr": "la jambe",
    "en": "the leg",
    "pt": "a perna",
-   "ar": "ساق",
+   "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
    "latam": null
@@ -705,7 +707,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "la femme, l'épouse",
      "en": "the wife, the woman",
-     "pt": "a mulher, a esposa"
+     "pt": "a mulher, a esposa",
+     "ar": "امرأة، زوجة"
     }
    ],
    "sur": null,
@@ -766,7 +769,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -820,7 +823,7 @@ window.SCENE = {
    "fr": "le pansement, le bandage",
    "en": "the bandage",
    "pt": "o curativo, a bandagem",
-   "ar": "ضمادة؛ اتحاد، جمعية",
+   "ar": "ضمادة",
    "pl": "opatrunek, bandaż; związek, stowarzyszenie",
    "ru": "повязка; союз, объединение",
    "latam": null
@@ -859,7 +862,7 @@ window.SCENE = {
    "fr": "le stéthoscope",
    "en": "the stethoscope",
    "pt": "o estetoscópio",
-   "ar": "سمّاعة الطبيب",
+   "ar": "سمّاعة طبّية",
    "pl": "stetoskop",
    "ru": "стетоскоп",
    "latam": null
@@ -940,7 +943,7 @@ window.SCENE = {
    "fr": "le tabouret",
    "en": "the stool",
    "pt": "o banquinho, o tamborete",
-   "ar": "مقعد بلا ظهر",
+   "ar": "كرسي بلا ظهر",
    "pl": "taboret",
    "ru": "табурет",
    "latam": null
@@ -967,7 +970,7 @@ window.SCENE = {
    "fr": "la seringue",
    "en": "the syringe",
    "pt": "a seringa",
-   "ar": "حقنة",
+   "ar": "حقنة، محقن",
    "pl": "zastrzyk, strzykawka",
    "ru": "укол; шприц",
    "latam": null
@@ -1021,7 +1024,7 @@ window.SCENE = {
    "fr": "la caisse",
    "en": "the checkout",
    "pt": "o caixa",
-   "ar": "علبة",
+   "ar": "صندوق الدفع",
    "pl": "pudełko",
    "ru": "коробка, коробочка",
    "latam": null
@@ -1048,7 +1051,7 @@ window.SCENE = {
    "fr": "le gant",
    "en": "the glove",
    "pt": "a luva",
-   "ar": "قفاز",
+   "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
    "latam": null
@@ -1075,7 +1078,7 @@ window.SCENE = {
    "fr": "le bureau (meuble)",
    "en": "the desk",
    "pt": "a escrivaninha, a mesa de trabalho",
-   "ar": "مكتب (قطعة أثاث)",
+   "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
    "latam": null
@@ -1097,6 +1100,7 @@ window.SCENE = {
      "fr": "l'ordinateur",
      "en": "the computer",
      "pt": "o computador",
+     "ar": "حاسوب",
      "latam": {
       "mot": "computadora",
       "genre": "la",
@@ -1165,7 +1169,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": "schreibtisch",
@@ -1181,7 +1186,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -1208,7 +1213,7 @@ window.SCENE = {
    "fr": "le clavier",
    "en": "the keyboard",
    "pt": "o teclado",
-   "ar": "لوحة المفاتيح",
+   "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
    "latam": null
@@ -1289,7 +1294,7 @@ window.SCENE = {
    "fr": "le comprimé",
    "en": "the pill",
    "pt": "o comprimido",
-   "ar": "قرص دواء",
+   "ar": "قرص، حبّة دواء",
    "pl": "tabletka",
    "ru": "таблетка",
    "latam": null
@@ -1316,7 +1321,7 @@ window.SCENE = {
    "fr": "le stylo",
    "en": "the pen",
    "pt": "a caneta",
-   "ar": "قلم",
+   "ar": "قلم حبر جاف",
    "pl": "długopis, ołówek",
    "ru": "ручка, карандаш",
    "latam": {
@@ -1341,7 +1346,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "la carte (bancaire)",
      "en": "the card",
-     "pt": "o cartão"
+     "pt": "o cartão",
+     "ar": "بطاقة (مصرفية)"
     }
    ],
    "sur": "schreibtisch",
@@ -1357,7 +1363,7 @@ window.SCENE = {
    "fr": "la carte d'assurance maladie",
    "en": "the health card",
    "pt": "o cartão do plano de saúde, o cartão do SUS",
-   "ar": "بطاقة التأمين الصحي",
+   "ar": "بطاقة التأمين الصحّي",
    "pl": "karta ubezpieczenia zdrowotnego",
    "ru": "карточка медицинского страхования",
    "latam": null
@@ -1409,7 +1415,8 @@ window.SCENE = {
      "theme": "el_deporte",
      "fr": "le sac de sport",
      "en": "the sports bag",
-     "pt": "a bolsa de esporte"
+     "pt": "a bolsa de esporte",
+     "ar": "حقيبة رياضية"
     }
    ],
    "sur": null,
@@ -1425,7 +1432,7 @@ window.SCENE = {
    "fr": "le sac",
    "en": "the bag",
    "pt": "a sacola",
-   "ar": "حقيبة",
+   "ar": "كيس",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -1446,7 +1453,8 @@ window.SCENE = {
      "theme": "el_deporte",
      "fr": "le ballon",
      "en": "the ball (football)",
-     "pt": "a bola (de futebol)"
+     "pt": "a bola (de futebol)",
+     "ar": "كرة"
     }
    ],
    "sur": "tasche",
@@ -1570,7 +1578,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1685,7 +1693,7 @@ window.SCENE = {
    "fr": "la colonne vertébrale",
    "en": "the spine",
    "pt": "a coluna vertebral",
-   "ar": "العمود الفقري",
+   "ar": "عمود فقري",
    "pl": "kręgosłup",
    "ru": "позвоночник",
    "latam": null
@@ -2262,9 +2270,42 @@ window.SCENE = {
     "consigne": "المس شيئًا أو مارك أو الطبيبة. المس الملصق لتراه عن قرب."
    },
    "couches": {
-    "A1": "الجسم والأشياء"
+    "A1": "الجسم والأشياء",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الضمائر، وser وestar",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La pelota está encima de la bolsa.": "<b>encima de</b> = فوق، على. المكان ← <b>estar</b>.",
+    "A2 | El reloj está encima del póster.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La planta está junto a la ventana.": "<b>junto a</b> = قرب، بمحاذاة.",
+    "A2 | La médica está sentada al lado del paciente.": "<b>al lado de</b> + el paciente → al lado <b>del</b> paciente.",
+    "A2 | Hay una chaqueta al lado de la puerta.": "مع <b>una</b> (شيء نكتشفه) ← <b>hay</b>.",
+    "A2 | Los calcetines están encima de los zapatos.": "مع <b>los</b> (أشياء محدّدة) ← <b>estar</b>، لا hay.",
+    "A2 | La curita está en la rodilla.": "<b>en</b> = على، في: en la rodilla.",
+    "A2 | La tirita está en la rodilla.": "<b>en</b> = على، في: en la rodilla.",
+    "A2 | El póster está detrás del paciente.": "<b>detrás de</b> = خلف.",
+    "B1 | Mark la ha dejado encima de la bolsa.": "مفعول به مباشر مؤنث (la pelota) → <b>la</b>.",
+    "B1 | Mark los ha puesto al lado de la bolsa.": "مفعول به مباشر مذكر جمع (los zapatos) → <b>los</b>.",
+    "B1 | La médica está sentada en un taburete.": "<b>estar sentado</b>: حالة، وضعية.",
+    "B1 | La médica le sonríe a Mark.": "الابتسام <b>لـ</b> شخص: مفعول غير مباشر ← <b>le</b>. والإسبانية تكرّره عن طيب خاطر: le sonríe <b>a Mark</b>.",
+    "B1 | El vaso está encima del escritorio.": "مكان الوجود ← <b>estar</b>.",
+    "B1 | La médica la ha dejado en el escritorio.": "مفعول به مباشر مؤنث (la tarjeta) → <b>la</b>.",
+    "B1 | Mark está herido en la rodilla.": "الإصابة حالة ← <b>estar</b> herido.",
+    "B1 | Mark se ha quitado los zapatos y los calcetines.": "<b>quitarse</b> = يخلع (ثيابه)؛ <b>ponerse</b> = يلبس. هو حافي القدمين: لقد خلعها.",
+    "B2 | El paciente cuya rodilla está herida se llama Mark.": "<b>cuyo</b> يطابق الشيء المملوك: la rodilla → <b>cuya</b>.",
+    "B2 | La médica, que tiene un vendaje en la mano, sonríe.": "فاعل الجملة الموصولة ← <b>que</b>. أما <b>cuya</b> فتستلزم اسماً مملوكاً بعدها مباشرة.",
+    "B2 | El paciente al que sonríe la médica se llama Mark.": "الابتسام <b>a</b> alguien: a + el que → <b>al que</b>. ومع quien تكون «<b>a</b> quien»، بلا أداة.",
+    "B2 | La bolsa encima de la cual está la pelota es de Mark.": "بعد <b>encima de</b>: <b>la cual</b> (أو la que)، وأبداً que وحدها.",
+    "B2 | La ventana está cerrada.": "النتيجة (أحدهم أغلقها) ← <b>estar</b> + اسم المفعول.",
+    "B2 | La curita ya está puesta.": "حالة ناتجة ← <b>estar</b> puesta. أما «es puesta» فتكون الفعل نفسه، بالمبني للمجهول.",
+    "B2 | La tirita ya está puesta.": "حالة ناتجة ← <b>estar</b> puesta. أما «es puesta» فتكون الفعل نفسه، بالمبني للمجهول.",
+    "C1 | Mark debe de haberse caído jugando al fútbol.": "<b>deber de</b> + مصدر ماضٍ = استنتاج بشأن الماضي: لا بدّ أنه وقع.",
+    "C1 | Puede que la médica le ponga un vendaje enseguida.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "فرضية بشأن الماضي: <b>si</b> + الماضي التامّ من subjuntivo، ثم condicional الماضي.",
+    "C1 | Dicen que esta médica es muy buena.": "بعد <b>dicen que</b> (نقل واقعة) ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

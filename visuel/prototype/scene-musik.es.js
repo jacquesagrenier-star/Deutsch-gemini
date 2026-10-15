@@ -24,7 +24,7 @@ window.SCENE = {
    "fr": "le tableau",
    "en": "the picture",
    "pt": "o quadro",
-   "ar": "صورة، لوحة",
+   "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
    "latam": null
@@ -78,7 +78,7 @@ window.SCENE = {
    "fr": "le toit",
    "en": "the roof",
    "pt": "o telhado",
-   "ar": "سقف",
+   "ar": "سطح، سقف",
    "pl": "dach",
    "ru": "крыша",
    "latam": null
@@ -186,7 +186,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -213,7 +213,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -433,7 +433,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -491,7 +491,7 @@ window.SCENE = {
    "fr": "l'écharpe",
    "en": "the scarf",
    "pt": "o cachecol",
-   "ar": "وشاح، شال",
+   "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
    "latam": null
@@ -539,7 +539,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": null,
@@ -648,7 +649,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1174,9 +1175,39 @@ window.SCENE = {
     "consigne": "مارك يأخذ درس غيتار. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "يستطيع، يجب، يريد",
+    "B2": "subjuntivo: يريد أن، يطلب أن",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La lámpara está encima del piano.": "<b>de + el = del</b>، دائماً.",
+    "A2 | Hay un violín al lado del piano.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | El cuadro está en la pared.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Los libros están en la estantería.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La planta está al lado de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La botella está en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La botella está en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | Mark está sentado en la silla.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La lámpara grande está al lado de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "B1 | Mark ya sabe tocar tres acordes.": "<b>saber</b> + مصدر = يعرف كيف يفعل.",
+    "B1 | Mark tiene que practicar cada día.": "التزام: <b>tener que</b> + مصدر.",
+    "B1 | En clase no se puede usar el teléfono.": "منع غير شخصي: <b>no se puede</b> + مصدر.",
+    "B1 | Mark quiere tocar en un grupo algún día.": "مشروع، رغبة: <b>querer</b> + مصدر.",
+    "B1 | No debes apretar tanto la guitarra.": "نصيحة: <b>deber</b> + مصدر.",
+    "B1 | ¿Puedo abrir la ventana?": "طلب الإذن: <b>¿Puedo…?</b>",
+    "B2 | La profesora quiere que Mark toque más despacio.": "<b>querer que</b> + فاعل آخر ← subjuntivo.",
+    "B2 | Le pide que practique cada día.": "<b>pedir que</b> → subjuntivo: practi<b>que</b>.",
+    "B2 | Mark espera que la clase salga bien.": "<b>esperar que</b> → subjuntivo.",
+    "B2 | Es importante que lea las notas.": "<b>es importante que</b> → subjuntivo.",
+    "B2 | Mark quiere tocar en un grupo.": "الفاعل نفسه ← <b>querer</b> + مصدر، بلا subjuntivo.",
+    "B2 | La profesora se alegra de que Mark haga progresos.": "انفعال (<b>alegrarse de que</b>) → subjuntivo.",
+    "C1 | El acorde debe de ser difícil.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el violín sea de la profesora.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Serán las siete.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que la profesora tocaba en una orquesta.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

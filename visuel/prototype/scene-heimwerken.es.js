@@ -51,7 +51,7 @@ window.SCENE = {
    "fr": "la peinture",
    "en": "the painting",
    "pt": "a pintura",
-   "ar": "لون",
+   "ar": "لوحة، رسم",
    "pl": "kolor",
    "ru": "цвет, краска",
    "latam": null
@@ -132,7 +132,7 @@ window.SCENE = {
    "fr": "le chat",
    "en": "the cat",
    "pt": "o gato",
-   "ar": "قطة",
+   "ar": "قطّ",
    "pl": "kot",
    "ru": "кошка",
    "latam": null
@@ -159,7 +159,7 @@ window.SCENE = {
    "fr": "la prise",
    "en": "the socket",
    "pt": "a tomada",
-   "ar": "مقبس كهربائي (في الحائط)",
+   "ar": "مقبس كهربائي",
    "pl": "gniazdko (elektryczne)",
    "ru": "розетка",
    "latam": null
@@ -283,7 +283,7 @@ window.SCENE = {
    "fr": "l'escalier",
    "en": "the stairs",
    "pt": "a escada",
-   "ar": "سُلّم",
+   "ar": "سلّم، درج",
    "pl": "drabina",
    "ru": "лестница (стремянка)",
    "latam": null
@@ -310,7 +310,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -395,7 +395,7 @@ window.SCENE = {
    "fr": "le tee-shirt",
    "en": "the T-shirt",
    "pt": "a camiseta",
-   "ar": "قميص قصير الأكمام (تي شيرت)",
+   "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
    "latam": null
@@ -422,7 +422,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -449,7 +449,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -530,7 +530,7 @@ window.SCENE = {
    "fr": "le gant",
    "en": "the glove",
    "pt": "a luva",
-   "ar": "قفاز",
+   "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
    "latam": null
@@ -557,7 +557,7 @@ window.SCENE = {
    "fr": "l'outil",
    "en": "the tool",
    "pt": "a ferramenta",
-   "ar": "أدوات، عُدّة",
+   "ar": "أداة",
    "pl": "narzędzie, narzędzia",
    "ru": "инструмент",
    "latam": null
@@ -638,7 +638,7 @@ window.SCENE = {
    "fr": "le clou",
    "en": "the nail",
    "pt": "o prego",
-   "ar": "ظفر",
+   "ar": "مسمار",
    "pl": "paznokieć",
    "ru": "ноготь",
    "latam": null
@@ -665,7 +665,7 @@ window.SCENE = {
    "fr": "le métro",
    "en": "the underground",
    "pt": "o metrô",
-   "ar": "مسطرة قابلة للطيّ",
+   "ar": "مترو",
    "pl": "miarka składana",
    "ru": "складной метр",
    "latam": null
@@ -746,7 +746,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1289,9 +1289,44 @@ window.SCENE = {
     "consigne": "مارك يركّب رفّ كتب في شقّته الجديدة. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الأمر",
+    "B2": "الغاية: para وpara que",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El enchufe está en la pared.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La cubeta está en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El cubo está en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La escalera está al lado de la estantería.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La lámpara cuelga del techo.": "<b>de + el = del</b>، دائماً.",
+    "A2 | Las cajas están al lado de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Los guantes están en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | Los guantes están en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | Hay un gato en la ventana.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | La madera está en la caja.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "B1 | Mark, pásame el martillo, por favor.": "الأمر (tú) + ضمير ملتصق: <b>pásame</b>، بعلامة النبر.",
+    "B1 | Lee bien las instrucciones.": "الأمر (tú) = صيغة الغائب في المضارع: <b>lee</b>.",
+    "B1 | Pon el pincel en la cubeta.": "<b>poner</b> ← أمر شاذّ <b>pon</b>.",
+    "B1 | Pon el pincel en el cubo.": "<b>poner</b> ← أمر شاذّ <b>pon</b>.",
+    "B1 | Ponte los guantes.": "فعل انعكاسي: <b>ponte</b> (pon + te).",
+    "B1 | ¡No te caigas de la escalera!": "النهي ← <b>subjuntivo</b>: no te caigas.",
+    "B1 | Ten cuidado, Mark.": "<b>tener</b> ← أمر شاذّ <b>ten</b>.",
+    "B1 | Gato, baja de la ventana.": "أمر (tú) قياسي: <b>baja</b>.",
+    "B1 | Señor vecino, sujete la escalera, por favor.": "أمر مهذّب (usted) → <b>sujete</b>.",
+    "B2 | Mark compró pintura para pintar la pared de azul.": "<b>para</b> + مصدر: غاية، والفاعل نفسه.",
+    "B2 | Lee las instrucciones para que la estantería no se caiga.": "<b>para que</b> ← دائماً <b>subjuntivo</b>.",
+    "B2 | Se le olvidó ponerse los guantes.": "بعد <b>olvidar</b>، المصدر؛ انعكاسي ← <b>ponerse</b>.",
+    "B2 | No es fácil montar una estantería sin que nadie te ayude.": "<b>sin que</b> ← دائماً subjuntivo.",
+    "B2 | La pared ya está medio pintada.": "<b>estar</b> + اسم المفعول، بالمطابقة: la pared → pintad<b>a</b>.",
+    "B2 | Sin leer las instrucciones, no se puede montar.": "<b>sin</b> + مصدر = بدون + مصدر.",
+    "C1 | Las instrucciones deben de ser difíciles.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el gato sea del vecino.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Estará cansado.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que en este departamento vivía un pintor.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>.",
+    "C1 | Dicen que en este piso vivía un pintor.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

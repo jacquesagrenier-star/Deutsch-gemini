@@ -111,7 +111,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -223,7 +223,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -250,7 +250,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -331,7 +331,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -412,7 +412,7 @@ window.SCENE = {
    "fr": "le clavier",
    "en": "the keyboard",
    "pt": "o teclado",
-   "ar": "لوحة المفاتيح",
+   "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
    "latam": null
@@ -605,7 +605,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -690,7 +690,7 @@ window.SCENE = {
    "fr": "le bureau (meuble)",
    "en": "the desk",
    "pt": "a escrivaninha, a mesa de trabalho",
-   "ar": "مكتب (قطعة أثاث)",
+   "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
    "latam": null
@@ -744,7 +744,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -1298,9 +1298,43 @@ window.SCENE = {
     "consigne": "مارك يتدرّب في مكتب. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "estar + gerundio: يفعل الآن",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La taza está al lado del teclado.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El reloj está encima del pizarrón.": "<b>encima de</b> = فوق. de + el = <b>del</b>.",
+    "A2 | El reloj está encima de la pizarra.": "<b>encima de</b> = فوق.",
+    "A2 | La impresora está al lado de la estantería.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La pluma está encima del papel.": "<b>encima de</b> = على. de + el = <b>del</b>.",
+    "A2 | El bolígrafo está encima del papel.": "<b>encima de</b> = على. de + el = <b>del</b>.",
+    "A2 | La planta grande está al lado de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Las carpetas están en la estantería.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Hay un cuaderno en el escritorio.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | El bote de basura está detrás del escritorio.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La papelera está detrás del escritorio.": "<b>de + el = del</b>، دائماً.",
+    "B1 | Mark está hablando por teléfono.": "الفعل الجاري الآن ← <b>estar</b> + gerundio.",
+    "B1 | Está apuntando el número en el cuaderno.": "الـ gerundio للأفعال المنتهية بـ -ar → <b>-ando</b>.",
+    "B1 | La compañera está leyendo un papel.": "<b>leer</b> → <b>leyendo</b>: الـ i بين حركتين تصير y.",
+    "B1 | Mark lo apunta en el cuaderno.": "مفعول به مباشر مذكر (el número) → <b>lo</b>.",
+    "B1 | La impresora está imprimiendo una carta.": "الأفعال المنتهية بـ -ir → <b>-iendo</b>.",
+    "B1 | ¿Me llamas mañana, por favor?": "بين زميلين يتخاطبان بـ tú: <b>tú</b> → llamas.",
+    "B1 | Mark termina de trabajar a las cinco.": "هو ← <b>termina</b>.",
+    "B1 | Mark cuelga el teléfono enseguida.": "<b>colgar</b>: الـ o تصير <b>ue</b> → cuelga.",
+    "B2 | El hombre que habla por teléfono se llama Mark.": "جملة موصولة بلا فاصلة، فاعل ← <b>que</b>.",
+    "B2 | La compañera, cuyo pelo es gris, lee una carta.": "<b>cuyo</b> يطابق الشيء المملوك: el pelo → <b>cuyo</b>.",
+    "B2 | La estantería en la que están las carpetas es de metal.": "حرف جرّ + أداة + <b>que</b>، بمطابقة la estantería.",
+    "B2 | Las carpetas están ordenadas por colores.": "<b>estar</b> + اسم المفعول، بالمطابقة: las carpetas → ordenad<b>as</b>.",
+    "B2 | Aquí se trabaja mucho por teléfono.": "<b>se</b> غير الشخصية: «يُعمَل»، والفعل بالمفرد.",
+    "B2 | El cuaderno ya está medio escrito.": "<b>escribir</b> ← اسم مفعول شاذّ <b>escrito</b>.",
+    "C1 | La llamada debe de ser importante.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que la compañera sea su jefa.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Mark ya habrá hecho unas veinte llamadas hoy.": "<b>المستقبل التامّ</b> يعبّر عن افتراض بشأن الماضي: لا بدّ أنه أجرى عشرين مكالمة.",
+    "C1 | Dicen en la oficina que la empresa se muda pronto.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

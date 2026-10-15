@@ -78,7 +78,7 @@ window.SCENE = {
    "fr": "la montre, l'horloge",
    "en": "the watch, the clock",
    "pt": "o relógio",
-   "ar": "ساعة حائط",
+   "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
    "latam": null
@@ -127,6 +127,7 @@ window.SCENE = {
      "fr": "la vitrine",
      "en": "the shop window",
      "pt": "a vitrine",
+     "ar": "واجهة المتجر",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -298,7 +299,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -319,7 +320,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "la bouteille",
      "en": "bottle",
-     "pt": "a garrafa"
+     "pt": "a garrafa",
+     "ar": "زجاجة"
     }
    ],
    "sur": "regal",
@@ -360,7 +362,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "la bouteille",
      "en": "bottle",
-     "pt": "a garrafa"
+     "pt": "a garrafa",
+     "ar": "زجاجة"
     }
    ],
    "sur": "regal",
@@ -403,7 +406,7 @@ window.SCENE = {
    "fr": "la farine",
    "en": "the flour",
    "pt": "a farinha",
-   "ar": "طحين",
+   "ar": "دقيق، طحين",
    "pl": "mąka",
    "ru": "мука",
    "latam": null
@@ -424,7 +427,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le verre",
      "en": "glass",
-     "pt": "o copo"
+     "pt": "o copo",
+     "ar": "كوب"
     }
    ],
    "sur": "regal",
@@ -440,7 +444,7 @@ window.SCENE = {
    "fr": "le sucre",
    "en": "sugar",
    "pt": "o açúcar",
-   "ar": "سكر",
+   "ar": "سكّر",
    "pl": "cukier",
    "ru": "сахар",
    "latam": null
@@ -467,7 +471,7 @@ window.SCENE = {
    "fr": "la carafe, le pichet",
    "en": "the jug",
    "pt": "a jarra",
-   "ar": "إبريق",
+   "ar": "إبريق، دورق",
    "pl": "dzbanek",
    "ru": "кофейник, кувшин",
    "latam": null
@@ -560,7 +564,7 @@ window.SCENE = {
    "fr": "le pain",
    "en": "bread",
    "pt": "o pão",
-   "ar": "خبز صغير (كعك)",
+   "ar": "خبز",
    "pl": "bułka",
    "ru": "булочка",
    "latam": null
@@ -582,6 +586,7 @@ window.SCENE = {
      "fr": "la vendeuse",
      "en": "the shop assistant",
      "pt": "a vendedora",
+     "ar": "بائعة",
      "latam": {
       "mot": "vendedora",
       "genre": "la",
@@ -629,7 +634,7 @@ window.SCENE = {
    "fr": "le bonnet (la tuque)",
    "en": "the woolly hat",
    "pt": "o gorro",
-   "ar": "قبعة صوفية",
+   "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
    "latam": null
@@ -683,7 +688,7 @@ window.SCENE = {
    "fr": "le sac",
    "en": "the bag",
    "pt": "a sacola",
-   "ar": "كيس (ورقي أو بلاستيكي)",
+   "ar": "كيس",
    "pl": "torba, torebka (papierowa, foliowa)",
    "ru": "пакет",
    "latam": null
@@ -704,7 +709,8 @@ window.SCENE = {
      "theme": "las_compras",
      "fr": "l'argent",
      "en": "the money",
-     "pt": "o dinheiro"
+     "pt": "o dinheiro",
+     "ar": "مال، نقود"
     }
    ],
    "sur": null,
@@ -720,7 +726,7 @@ window.SCENE = {
    "fr": "la pièce, la monnaie",
    "en": "the coin, the currency",
    "pt": "a moeda",
-   "ar": "قطعة نقدية",
+   "ar": "قطعة نقدية، عملة",
    "pl": "moneta",
    "ru": "монета",
    "latam": null
@@ -801,7 +807,7 @@ window.SCENE = {
    "fr": "le pull",
    "en": "the jumper",
    "pt": "o suéter, a blusa de lã",
-   "ar": "كنزة صوف",
+   "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
    "latam": {
@@ -832,7 +838,7 @@ window.SCENE = {
    "fr": "le sac à main",
    "en": "the handbag",
    "pt": "a bolsa",
-   "ar": "حقيبة",
+   "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
    "latam": null
@@ -854,6 +860,7 @@ window.SCENE = {
      "fr": "le jean",
      "en": "the jeans",
      "pt": "a calça jeans",
+     "ar": "بنطال جينز",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -874,7 +881,7 @@ window.SCENE = {
    "fr": "le pantalon",
    "en": "the trousers",
    "pt": "a calça",
-   "ar": "بنطال",
+   "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
    "latam": null
@@ -895,7 +902,8 @@ window.SCENE = {
      "theme": "la_ropa",
      "fr": "la chaussure",
      "en": "the shoe",
-     "pt": "o sapato"
+     "pt": "o sapato",
+     "ar": "حذاء"
     }
    ],
    "sur": null,
@@ -911,7 +919,7 @@ window.SCENE = {
    "fr": "la botte",
    "en": "the boot",
    "pt": "a bota",
-   "ar": "جزمة",
+   "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
    "latam": null
@@ -932,7 +940,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'homme",
      "en": "the man",
-     "pt": "o homem"
+     "pt": "o homem",
+     "ar": "رجل"
     }
    ],
    "sur": null,
@@ -1027,7 +1036,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "le café",
      "en": "coffee",
-     "pt": "o café"
+     "pt": "o café",
+     "ar": "قهوة"
     }
    ],
    "sur": "tisch",
@@ -1070,7 +1080,7 @@ window.SCENE = {
    "fr": "l'assiette, le plat",
    "en": "plate, dish",
    "pt": "o prato",
-   "ar": "صحن",
+   "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
    "latam": null
@@ -1097,7 +1107,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة",
+   "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
    "latam": null
@@ -1211,7 +1221,7 @@ window.SCENE = {
    "fr": "le radiateur",
    "en": "the radiator",
    "pt": "o radiador",
-   "ar": "مشعاع التدفئة",
+   "ar": "مشعّ تدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
    "latam": null
@@ -1400,7 +1410,7 @@ window.SCENE = {
    "fr": "le pain",
    "en": "bread",
    "pt": "o pão",
-   "ar": "خبز صغير (كعك)",
+   "ar": "خبز",
    "pl": "bułka",
    "ru": "булочка",
    "latam": null
@@ -1427,7 +1437,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة (بطبقات)",
+   "ar": "كعكة، فطيرة",
    "pl": "tort",
    "ru": "торт",
    "latam": null
@@ -1481,7 +1491,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة",
+   "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
    "latam": null
@@ -1508,7 +1518,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة",
+   "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
    "latam": null
@@ -1535,7 +1545,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة",
+   "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
    "latam": null
@@ -1562,7 +1572,7 @@ window.SCENE = {
    "fr": "le bretzel",
    "en": "the pretzel",
    "pt": "o pretzel",
-   "ar": "بريتزل (خبز معقود)",
+   "ar": "بريتزل (كعك ألماني مملّح)",
    "pl": "precel",
    "ru": "брецель (крендель)",
    "latam": null
@@ -1589,7 +1599,7 @@ window.SCENE = {
    "fr": "le comptoir",
    "en": "the desk, the counter",
    "pt": "o balcão, o guichê",
-   "ar": "شبّاك؛ مفتاح كهربائي",
+   "ar": "مكتب، منضدة",
    "pl": "okienko, kasa; włącznik",
    "ru": "окошко, касса; выключатель",
    "latam": null
@@ -1643,7 +1653,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -1670,7 +1680,7 @@ window.SCENE = {
    "fr": "la plante",
    "en": "the plant",
    "pt": "a planta",
-   "ar": "نبات",
+   "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
    "latam": null
@@ -1697,7 +1707,7 @@ window.SCENE = {
    "fr": "le sol",
    "en": "the floor",
    "pt": "o chão, o piso",
-   "ar": "أرض، تربة",
+   "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
    "latam": {
@@ -2183,9 +2193,41 @@ window.SCENE = {
     "consigne": "آنا تشتري خبزًا صغيرًا من مخبز حيّها. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "التراكيب الفعلية",
+    "B2": "الكلام غير المباشر",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El reloj está en la pared.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | La leche está en la estantería.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | El perro está debajo de la mesa.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La bicicleta está delante de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | Hay una caja en el mostrador.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | Las flores están en el vaso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El vecino está al lado de la ventana.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La planta está en el piso.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | La planta está en el suelo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "B1 | La panadera acaba de sacar el pan del horno.": "<b>acabar de</b> + مصدر = فعل للتوّ.",
+    "B1 | El vecino sigue leyendo el periódico.": "<b>seguir</b> + gerundio = يواصل.",
+    "B1 | Anna está pagando los panecillos.": "<b>estar</b> + gerundio = يفعل الآن.",
+    "B1 | Anna va a comer un panecillo en casa.": "<b>ir a</b> + مصدر = المستقبل القريب.",
+    "B1 | El vecino vuelve a pedir un café.": "<b>volver a</b> + مصدر = يعيد الفعل.",
+    "B1 | El perro acaba de dormirse.": "<b>acabar de</b> + مصدر = فعل للتوّ.",
+    "B1 | La panadera lleva diez años haciendo pan.": "<b>llevar</b> + مدة + gerundio = يفعل منذ.",
+    "B1 | Anna tiene que volver a casa antes de las ocho.": "<b>tener que</b> + مصدر = يجب عليه.",
+    "B2 | La panadera dice que el pan está recién hecho.": "<b>decir que</b> في المضارع ينقل واقعة ← indicativo.",
+    "B2 | Anna pregunta cuánto cuestan los panecillos.": "سؤال غير مباشر في المضارع ← indicativo.",
+    "B2 | El vecino dijo que el café estaba muy bueno.": "فعل القول في الماضي (<b>dijo</b>) → imperfecto.",
+    "B2 | La panadera le pide a Anna que vuelva mañana.": "أمر منقول (<b>pedir que</b>) → subjuntivo.",
+    "B2 | Anna dijo que volvería al día siguiente.": "مستقبل منقول في الماضي ← <b>condicional</b>.",
+    "B2 | El vecino pregunta si hay tarta de fresa.": "<b>preguntar si</b> → indicativo.",
+    "C1 | Los panecillos deben de estar recién hechos.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el perro sea del vecino.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Será de esta mañana.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que esta panadería es la mejor del barrio.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

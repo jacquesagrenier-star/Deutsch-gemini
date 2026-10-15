@@ -159,7 +159,7 @@ window.SCENE = {
    "fr": "le bateau",
    "en": "the boat, the ship",
    "pt": "o barco, o navio",
-   "ar": "قارب",
+   "ar": "سفينة، مركب",
    "pl": "łódź, łódka",
    "ru": "лодка",
    "latam": null
@@ -186,7 +186,7 @@ window.SCENE = {
    "fr": "le magasin",
    "en": "the shop",
    "pt": "a loja",
-   "ar": "خيمة",
+   "ar": "متجر، دكّان",
    "pl": "namiot",
    "ru": "палатка",
    "latam": null
@@ -213,7 +213,7 @@ window.SCENE = {
    "fr": "le champignon de Paris",
    "en": "the mushroom",
    "pt": "o champignon, o cogumelo",
-   "ar": "فطر",
+   "ar": "فطر (مزروع)",
    "pl": "grzyb",
    "ru": "гриб",
    "latam": null
@@ -348,7 +348,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -603,7 +603,7 @@ window.SCENE = {
    "fr": "le tapis de sol",
    "en": "the sleeping mat",
    "pt": "o isolante térmico",
-   "ar": "حصيرة التخييم",
+   "ar": "حصيرة",
    "pl": "karimata",
    "ru": "туристический коврик",
    "latam": null
@@ -1047,9 +1047,39 @@ window.SCENE = {
     "consigne": "آنا تخيّم على ضفّة بحيرة. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "المستقبل",
+    "B2": "الشرط غير الواقعي: si + subjuntivo",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La luna está en el cielo.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
+    "A2 | El barco está a la orilla del lago.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La olla está encima del fuego.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La mochila está delante de la tienda.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La seta está al lado de la tienda.": "<b>la</b> مؤنث: <b>de la</b>، بلا دمج. وحدها <b>de + el</b> تصير <b>del</b>.",
+    "A2 | La taza está en la piedra.": "<b>la</b> مؤنث ← <b>en la</b>.",
+    "A2 | Hay una lámpara al lado de la madera.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | La tienda está cerca del lago.": "<b>de + el = del</b>، دائماً.",
+    "B1 | Mañana Anna va a nadar en el lago.": "المستقبل القريب: <b>ir a</b> + مصدر ← va a nadar.",
+    "B1 | Esta noche van a dormir en la tienda.": "هم ← <b>van a</b> + مصدر.",
+    "B1 | Te tocaré una canción.": "المستقبل: المصدر + <b>-é</b> → tocaré.",
+    "B1 | La sopa estará lista enseguida.": "مستقبل estar: <b>estará</b>.",
+    "B1 | Mañana saldremos en barco.": "<b>salir</b> ← مستقبل شاذّ: <b>saldr-</b> → saldremos.",
+    "B1 | Esta noche hará frío.": "<b>hacer</b> ← مستقبل شاذّ <b>hará</b>.",
+    "B1 | ¿Vas a apagar el fuego luego?": "أنت ← <b>vas a</b> + مصدر.",
+    "B2 | Si no fuera tan oscuro, irían a nadar.": "غير واقعي: <b>si</b> + subjuntivo الماضي ← fuera.",
+    "B2 | Si tuvieran tiempo, se quedarían una semana más.": "<b>tener</b> → subjuntivo الماضي <b>tuvieran</b>.",
+    "B2 | Si el chico tuviera hambre, comería la salchicha.": "جواب الشرط: <b>condicional</b> → comería.",
+    "B2 | Ojalá pudiera tocar la guitarra como Anna.": "<b>ojalá</b> + subjuntivo الماضي: أمنية غير واقعية.",
+    "B2 | Si el barco fuera más grande, cabrían todos.": "غير واقعي: <b>si</b> + subjuntivo الماضي ← fuera.",
+    "B2 | Ojalá hubieran traído más madera.": "ندم على الماضي: <b>ojalá</b> + <b>hubiera</b> + اسم المفعول.",
+    "C1 | Debe de estar pasándolo muy bien.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el chico sea el primo de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Serán las diez.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que en el bosque hay lobos.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

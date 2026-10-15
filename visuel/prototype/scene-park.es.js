@@ -105,7 +105,7 @@ window.SCENE = {
    "fr": "la source",
    "en": "the source",
    "pt": "a fonte",
-   "ar": "نافورة",
+   "ar": "مصدر، نافورة",
    "pl": "fontanna, studnia",
    "ru": "фонтан, колодец",
    "latam": null
@@ -159,7 +159,7 @@ window.SCENE = {
    "fr": "le bateau",
    "en": "the boat, the ship",
    "pt": "o barco, o navio",
-   "ar": "قارب",
+   "ar": "سفينة، مركب",
    "pl": "łódź, łódka",
    "ru": "лодка",
    "latam": null
@@ -302,7 +302,7 @@ window.SCENE = {
    "fr": "la banque, le banc",
    "en": "the bank, the bench",
    "pt": "o banco",
-   "ar": "بنك، مصرف",
+   "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
    "latam": null
@@ -329,7 +329,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -356,7 +356,7 @@ window.SCENE = {
    "fr": "l'oiseau",
    "en": "the bird",
    "pt": "o pássaro",
-   "ar": "طائر",
+   "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
    "latam": null
@@ -383,7 +383,7 @@ window.SCENE = {
    "fr": "l'enfant, le garçon",
    "en": "the child, the boy",
    "pt": "a criança, o menino",
-   "ar": "ولد، صبي",
+   "ar": "طفل، ولد",
    "pl": "chłopiec",
    "ru": "мальчик",
    "latam": null
@@ -518,7 +518,7 @@ window.SCENE = {
    "fr": "le chemin",
    "en": "the way, the path",
    "pt": "o caminho",
-   "ar": "طريق",
+   "ar": "طريق، درب",
    "pl": "droga",
    "ru": "дорога, путь",
    "latam": null
@@ -674,7 +674,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": "decke",
@@ -717,7 +718,7 @@ window.SCENE = {
    "fr": "la pomme",
    "en": "apple",
    "pt": "a maçã",
-   "ar": "تفاحة",
+   "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
    "latam": null
@@ -744,7 +745,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة",
+   "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
    "latam": null
@@ -771,7 +772,7 @@ window.SCENE = {
    "fr": "l'assiette, le plat",
    "en": "plate, dish",
    "pt": "o prato",
-   "ar": "صحن",
+   "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
    "latam": null
@@ -825,7 +826,7 @@ window.SCENE = {
    "fr": "la couverture",
    "en": "the blanket",
    "pt": "o cobertor",
-   "ar": "بطانية",
+   "ar": "بطّانية",
    "pl": "koc",
    "ru": "одеяло, плед",
    "latam": null
@@ -1419,9 +1420,42 @@ window.SCENE = {
     "consigne": "آنا في نزهة في الحديقة. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الـ pretérito indefinido والـ imperfecto",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | El hombre está sentado en el banco.": "<b>en</b> = على، في. المكان ← <b>estar</b>.",
+    "A2 | El barco está en el lago.": "على الماء، تقول الإسبانية ببساطة <b>en</b>: en el lago.",
+    "A2 | El pájaro está en el banco.": "<b>el</b> banco مذكر ← <b>en el</b> banco.",
+    "A2 | El niño va en bicicleta por el camino.": "<b>por</b> = على طول، عبر: por el camino.",
+    "A2 | La cesta está encima de la manta.": "<b>encima de</b> = على.",
+    "A2 | El celular está al lado de la mochila.": "<b>la</b> mochila مؤنث: <b>de la</b>، بلا دمج.",
+    "A2 | El móvil está al lado de la mochila.": "<b>la</b> mochila مؤنث: <b>de la</b>، بلا دمج.",
+    "A2 | Hay un farol al lado del bote de basura.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | Hay una farola al lado de la papelera.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "A2 | La pelota está por encima de la hierba.": "<b>por encima de</b> = فوق، من دون ملامسة.",
+    "B1 | Hace un momento, Anna lanzó la pelota.": "فعل محدّد، منتهٍ ← <b>indefinido</b>: lanzó.",
+    "B1 | Mientras Anna estaba en la manta, el perro jugaba.": "الخلفية، وضع يدوم ← <b>imperfecto</b>: estaba.",
+    "B1 | Ayer Anna leyó un libro entero.": "<b>leer</b> → <b>leyó</b>: الـ i بين حركتين تصير y.",
+    "B1 | El domingo pasado, Anna fue al parque.": "<b>ir</b> → <b>fue</b> (الصيغة نفسها لـ ser).",
+    "B1 | Anna se la lanzó al perro.": "<b>le</b> + <b>la</b> → <b>se la</b>: le تصير se قبل la وlo وlas وlos.",
+    "B1 | Antes, el hombre del banco leía el periódico cada domingo.": "عادة في الماضي ← <b>imperfecto</b>: leía.",
+    "B1 | Esta mañana, el hombre de la barca remó hasta el puente.": "هو ← <b>-ó</b>، بعلامة النبر. remé = أنا (ماضٍ)، remo = أنا (مضارع).",
+    "B1 | Al llegar, Anna puso la manta en la hierba.": "<b>poner</b> شاذّ ← <b>puso</b>.",
+    "B2 | La mujer que lanza la pelota se llama Anna.": "جملة موصولة بلا فاصلة، فاعل ← <b>que</b>. أما <b>quien</b> فلا تأتي إلا بعد فاصلة أو حرف جرّ.",
+    "B2 | El niño cuyo casco es azul va en bicicleta.": "<b>cuyo</b> يطابق الشيء المملوك: el casco → <b>cuyo</b>.",
+    "B2 | El banco en el que está sentado el hombre es verde.": "حرف جرّ + أداة + <b>que</b>: en el que.",
+    "B2 | El perro va corriendo hacia la pelota.": "<b>ir</b> + gerundio = فعل يجري الآن: va corriendo.",
+    "B2 | El libro está abierto.": "<b>abrir</b> ← اسم مفعول شاذّ <b>abierto</b>.",
+    "B2 | La manta está extendida sobre la hierba.": "<b>estar</b> + اسم المفعول، بالمطابقة: la manta → extendid<b>a</b>.",
+    "C1 | Debe de conocer al perro.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el perro atrape la pelota enseguida.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | Vendrá aquí todos los domingos.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen en el barrio que en el lago hay peces enormes.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

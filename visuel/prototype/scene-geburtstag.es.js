@@ -105,7 +105,7 @@ window.SCENE = {
    "fr": "le tableau",
    "en": "the picture",
    "pt": "o quadro",
-   "ar": "صورة، لوحة",
+   "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
    "latam": null
@@ -132,7 +132,7 @@ window.SCENE = {
    "fr": "l'étagère",
    "en": "the shelf unit",
    "pt": "a estante",
-   "ar": "رفّ",
+   "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
    "latam": null
@@ -240,7 +240,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -315,7 +315,8 @@ window.SCENE = {
      "theme": "la_familia",
      "fr": "l'ami",
      "en": "the friend",
-     "pt": "o amigo"
+     "pt": "o amigo",
+     "ar": "صديق"
     }
    ],
    "sur": null,
@@ -331,7 +332,7 @@ window.SCENE = {
    "fr": "l'homme",
    "en": "the man",
    "pt": "o homem",
-   "ar": "رجل، زوج",
+   "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
    "latam": null
@@ -416,7 +417,7 @@ window.SCENE = {
    "fr": "le canapé",
    "en": "the sofa",
    "pt": "o sofá",
-   "ar": "أريكة، كنبة",
+   "ar": "أريكة",
    "pl": "kanapa",
    "ru": "диван",
    "latam": null
@@ -437,7 +438,8 @@ window.SCENE = {
      "theme": "la_comida",
      "fr": "l'eau",
      "en": "water",
-     "pt": "a água"
+     "pt": "a água",
+     "ar": "ماء"
     }
    ],
    "sur": "tisch",
@@ -517,7 +519,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -544,7 +546,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -571,7 +573,7 @@ window.SCENE = {
    "fr": "le verre",
    "en": "glass",
    "pt": "o copo",
-   "ar": "كوب زجاجي",
+   "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
    "latam": null
@@ -625,7 +627,7 @@ window.SCENE = {
    "fr": "le gâteau, la tarte",
    "en": "cake",
    "pt": "o bolo, a torta",
-   "ar": "كعكة (بطبقات)",
+   "ar": "كعكة، فطيرة",
    "pl": "tort",
    "ru": "торт",
    "latam": null
@@ -652,7 +654,7 @@ window.SCENE = {
    "fr": "l'assiette, le plat",
    "en": "plate, dish",
    "pt": "o prato",
-   "ar": "صحن",
+   "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
    "latam": null
@@ -679,7 +681,7 @@ window.SCENE = {
    "fr": "l'assiette, le plat",
    "en": "plate, dish",
    "pt": "o prato",
-   "ar": "صحن",
+   "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
    "latam": null
@@ -787,7 +789,7 @@ window.SCENE = {
    "fr": "la carte (bancaire)",
    "en": "the card",
    "pt": "o cartão",
-   "ar": "بطاقة، تذكرة",
+   "ar": "بطاقة (مصرفية)",
    "pl": "bilet, karta",
    "ru": "карта, билет",
    "latam": null
@@ -1278,9 +1280,43 @@ window.SCENE = {
     "consigne": "إنه عيد ميلاد مارك. المس شيئًا."
    },
    "couches": {
-    "A1": "الأسماء وأدوات التعريف"
+    "A1": "الأسماء وأدوات التعريف",
+    "A2": "¿Dónde está? — estar وحروف الجرّ",
+    "B1": "الضمائر: le وlo وse lo",
+    "B2": "الجمل الموصولة والمبني للمجهول",
+    "C1": "الفرضيات والاحتمال"
    },
-   "questions": {}
+   "questions": {
+    "A2 | La tarta está en la mesa.": "<b>en</b> = على، في. المكان ← <b>estar</b>.",
+    "A2 | Los globos están delante de la ventana.": "<b>delante de</b> = أمام.",
+    "A2 | Mark está sentado en el sofá.": "<b>el</b> sofá مذكر ← <b>en el</b> sofá.",
+    "A2 | La guitarra está al lado del sofá.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El cuadro está en la pared.": "معلّقة على الحائط: الإسبانية تقول ببساطة <b>en</b> la pared.",
+    "A2 | La tarjeta está delante del regalo rojo.": "<b>delante de</b> = أمام. de + el = <b>del</b>.",
+    "A2 | Los libros están en la estantería.": "بالجمع: <b>están</b>؛ على رفّ ← <b>en</b>.",
+    "A2 | Hay una lámpara al lado de la estantería.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
+    "B1 | Anna le da un regalo a Mark.": "لمن؟ ← مفعول غير مباشر: <b>le</b>، حتى حين يتبعه «a Mark».",
+    "B1 | Anna se lo da ahora.": "<b>le</b> + <b>lo</b> → <b>se lo</b>: le تصير se قبل lo وla وlos وlas.",
+    "B1 | A Mark le gusta mucho la fiesta.": "<b>gustar</b>: الشيء يعجب <b>شخصاً</b> ← <b>le</b>.",
+    "B1 | Su amigo le toma una foto.": "التقاط صورة <b>لـ</b> شخص ← <b>le</b>.",
+    "B1 | Su amigo le hace una foto.": "التقاط صورة <b>لـ</b> شخص ← <b>le</b>.",
+    "B1 | Mark las va a apagar enseguida.": "مفعول به مباشر مؤنث جمع (las velas) → <b>las</b>.",
+    "B1 | Los amigos la han pedido para la fiesta.": "مفعول به مباشر مؤنث (la pizza) → <b>la</b>.",
+    "B1 | La amiga les sirve jugo a todos.": "لمن؟ أشخاص عدّة ← <b>les</b>.",
+    "B1 | La amiga les sirve zumo a todos.": "لمن؟ أشخاص عدّة ← <b>les</b>.",
+    "B1 | Las he comprado yo.": "مفعول به مباشر مؤنث جمع (las fresas) → <b>las</b>.",
+    "B2 | El regalo que Anna tiene en las manos es verde.": "شيء، مفعول ← <b>que</b>.",
+    "B2 | El amigo que toma la foto está sentado en el sofá.": "وضعية (جالس) ← <b>estar</b>.",
+    "B2 | El amigo que hace la foto está sentado en el sofá.": "وضعية (جالس) ← <b>estar</b>.",
+    "B2 | La tarta, encima de la cual arden cinco velas, es de chocolate.": "بعد حرف جرّ مركّب: <b>la cual</b>، بمطابقة la tarta.",
+    "B2 | Las velas van a ser apagadas enseguida.": "مبني للمجهول للفعل: <b>ser</b> + اسم المفعول بالمطابقة (apagad<b>as</b>).",
+    "B2 | El regalo rojo está bien envuelto.": "<b>envolver</b> ← اسم مفعول شاذّ <b>envuelto</b>.",
+    "B2 | La amiga cuyo pelo es rojo aplaude.": "<b>cuyo</b> يطابق الشيء المملوك: el pelo → <b>cuyo</b>، وإن كانت الصديقة مؤنثاً.",
+    "C1 | El regalo debe de ser una sorpresa.": "<b>deber de</b> + مصدر = استنتاج.",
+    "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
+    "C1 | La fiesta durará hasta medianoche.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Dicen que Anna hizo la tarta ella misma.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   }
   },
   "pt": {
    "champs": {

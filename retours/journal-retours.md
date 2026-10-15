@@ -8994,3 +8994,19 @@ Jacques : « publier le travail de Fable pour l'arabe, puis ces nouvelles scenes
 - L'espagnol en arabe : les champs deja faits (vocabulaire, verbes, 150 exercices sur 1 041) sont
   publies, mais inertes -- l'app ne propose pas encore l'espagnol en arabe, il reste les
   exercices, les fiches de grammaire, la prononciation, les scenes et l'interface.
+
+## 15 octobre 2026 -- v808 : l'espagnol propose en arabe
+
+Jacques : « publier le travail de Fable pour l'arabe » ; puis finir le chantier et le proposer
+dans l'app, en confiant le maximum a Fable.
+- Fable (trois lots en parallele) a traduit les 891 exercices restants, l'interface de
+  l'espagnol, les 17 fiches de grammaire (reecrites pour un arabophone : genres qui ne
+  coincident pas, pas de verbe « etre » au present, un seul passe arabe contre
+  preterito / imperfecto, gustar qui marche exactement comme « تعجبني »), la prononciation
+  (trois voyelles arabes : e/i, o/u ; ni p ni v), les notes des 35 scenes.
+- Relu et pose par Claude ; deux erreurs corrigees dans les fiches. Les fleches « ← » entre
+  deux mots espagnols s'affichaient a l'envers (algorithme bidirectionnel) : 175 textes
+  remis dans le bon sens par espanol/ar/fleches.py. Les phrases espagnoles des fiches
+  perdaient leur ponctuation de droite a gauche : isolees (dir="auto").
+- L'espagnol est desormais propose en fr, en, pt et ar. Reste : la relecture par un natif,
+  et la voix de la visite guidee en arabe pour l'espagnol. Detail : espanol/AVANCEMENT-AR.md.
