@@ -977,6 +977,8 @@ header{
 
 .screen{display:none}
 .screen.active{display:block; animation:screenFadeIn .2s ease;}
+/* v804 : l'ecran qui succede a une scene arrive sans fondu (page blanche sur iPhone). */
+.screen.active.sans-fondu{animation:none;}
 
 /* ⚠️ « EXERCICE SUIVANT » RESTE SOUS LE POUCE (v621). Signale deux fois par
    Jacques : « il faut que je swipe vers le haut pour rejoindre le bouton ».
@@ -7428,7 +7430,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v803</span>
+    <span class="subtitle-version">v804</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10818,6 +10820,7 @@ const I18N = {
         reperes_seance: "Ta séance du jour : chaque jour, touche « Commencer ». Quelques mots nouveaux, et les révisions qui reviennent au bon moment. C'est le plus simple pour progresser. Les autres points ambre t'expliquent le reste de l'accueil : touche-les quand tu veux, ils disparaissent ensuite.",
         reperes_niveau: "Ton niveau : les nouveaux mots viennent du niveau choisi ici, de A1 (débutant) à C1 (avancé). Tu peux en changer quand tu veux.",
         reperes_gardes: "Mis de côté : les mots que tu mets de côté pour les retravailler t'attendent ici.",
+        gardes_explication: "« Mis de côté » : pendant ta séance du jour, quand un mot te résiste, touche « {bouton} » sur sa carte. Il se retrouve ici, et tu le retravailles quand tu veux.",
         reperes_themes: "Par thème : tu préfères un sujet précis ? La famille, la maison, la nourriture…",
         reperes_mots: "Chaque tuile ouvre des cartes et des exercices : les noms, les verbes, les adjectifs… Descends pour tout voir.",
         reperes_phrase: "La grammaire de la phrase : chaque tuile explique une règle, puis la fait pratiquer.",
@@ -11976,6 +11979,7 @@ const I18N = {
         reperes_seance: "Today's session: every day, tap “Start”. A few new words, and reviews that come back at the right moment. It's the easiest way to make progress. The other amber dots explain the rest of the home screen: tap them whenever you like, then they disappear.",
         reperes_niveau: "Your level: new words come from the level chosen here, from A1 (beginner) to C1 (advanced). You can change it whenever you like.",
         reperes_gardes: "Set aside: the words you set aside to work on again are waiting for you here.",
+        gardes_explication: "“Set aside”: during today's session, when a word gives you trouble, tap “{bouton}” on its card. It ends up here, and you can practise it again whenever you like.",
         reperes_themes: "By theme: prefer a specific topic? Family, home, food…",
         reperes_mots: "Each tile opens cards and exercises: nouns, verbs, adjectives… Scroll down to see everything.",
         reperes_phrase: "Sentence grammar: each tile explains a rule, then lets you practise it.",
@@ -13136,6 +13140,7 @@ const I18N = {
         reperes_seance: "Bugünkü oturumun: her gün «Başla»ya dokun. Birkaç yeni kelime ve tam zamanında geri gelen tekrarlar. İlerlemenin en kolay yolu bu. Diğer turuncu noktalar ana ekranın geri kalanını açıklar: istediğin zaman onlara dokun, sonra kaybolurlar.",
         reperes_niveau: "Seviyen: yeni kelimeler burada seçtiğin seviyeden gelir, A1'den (başlangıç) C1'e (ileri) kadar. İstediğin zaman değiştirebilirsin.",
         reperes_gardes: "Kenara ayrılanlar: yeniden çalışmak için kenara ayırdığın kelimeler seni burada bekliyor.",
+        gardes_explication: "« Kenara ayrılanlar »: bugünkü oturumunda bir kelime seni zorlarsa, kartındaki « {bouton} » düğmesine dokun. Kelime buraya gelir, istediğin zaman yeniden çalışırsın.",
         reperes_themes: "Temaya göre: belirli bir konu mu istiyorsun? Aile, ev, yiyecek…",
         reperes_mots: "Her kutucuk kartlar ve alıştırmalar açar: isimler, fiiller, sıfatlar… Hepsini görmek için aşağı kaydır.",
         reperes_phrase: "Cümle dilbilgisi: her kutucuk bir kuralı açıklar, sonra alıştırmasını yaptırır.",
@@ -14619,6 +14624,7 @@ const I18N = {
         reperes_seance: "Твій сеанс на сьогодні: щодня торкайся «Почати». Кілька нових слів і повторення, що повертаються в потрібний момент. Це найпростіший спосіб просуватися. Інші бурштинові точки пояснюють решту головного екрана: торкайся їх, коли захочеш, і вони зникнуть.",
         reperes_niveau: "Твій рівень: нові слова беруться з рівня, обраного тут, від A1 (початковий) до C1 (просунутий). Його можна змінити будь-коли.",
         reperes_gardes: "Відкладені: слова, які ти відкладаєш, щоб попрацювати з ними знову, чекають тут.",
+        gardes_explication: "«Відкладені»: під час сеансу на сьогодні, якщо слово дається важко, торкнися «{bouton}» на його картці. Воно опиниться тут, і ти повернешся до нього, коли захочеш.",
         reperes_themes: "За темою: хочеш конкретну тему? Сім'я, дім, їжа…",
         reperes_mots: "Кожна плитка відкриває картки й вправи: іменники, дієслова, прикметники… Прогорни вниз, щоб побачити все.",
         reperes_phrase: "Граматика речення: кожна плитка пояснює правило, а потім дає його потренувати.",
@@ -16489,6 +16495,7 @@ const I18N = {
         reperes_seance: "جلسهٔ امروزت: هر روز «شروع» را بزن. چند واژهٔ تازه، و مرورهایی که درست به‌موقع برمی‌گردند. ساده‌ترین راه پیشرفت همین است. نقطه‌های کهربایی دیگر بقیهٔ صفحهٔ اصلی را توضیح می‌دهند: هر وقت خواستی رویشان بزن؛ بعد ناپدید می‌شوند.",
         reperes_niveau: "سطح تو: واژه‌های تازه از سطحی می‌آیند که این‌جا انتخاب می‌کنی، از A1 (مبتدی) تا C1 (پیشرفته). هر وقت خواستی می‌توانی عوضش کنی.",
         reperes_gardes: "کنارگذاشته‌ها: واژه‌هایی که برای کار دوباره کنار می‌گذاری این‌جا منتظرت هستند.",
+        gardes_explication: "«کنارگذاشته‌ها»: در جلسهٔ امروزت، وقتی واژه‌ای برایت سخت است، روی کارتش «{bouton}» را بزن. به این‌جا می‌آید و هر وقت خواستی دوباره تمرینش می‌کنی.",
         reperes_themes: "بر پایهٔ موضوع: موضوع خاصی را ترجیح می‌دهی؟ خانواده، خانه، غذا…",
         reperes_mots: "هر کاشی کارت‌ها و تمرین‌هایی را باز می‌کند: اسم‌ها، فعل‌ها، صفت‌ها… برای دیدن همه، پایین برو.",
         reperes_phrase: "دستور جمله: هر کاشی یک قاعده را توضیح می‌دهد و بعد تمرینش را می‌دهد.",
@@ -17771,6 +17778,7 @@ const I18N = {
         reperes_seance: "جلستك اليوم: كل يوم، المس «ابدأ». بضع كلمات جديدة، ومراجعات تعود في الوقت المناسب. هذه أسهل طريقة للتقدّم. النقاط الكهرمانية الأخرى تشرح بقية الشاشة الرئيسية: المسها متى شئت، ثم تختفي.",
         reperes_niveau: "مستواك: تأتي الكلمات الجديدة من المستوى الذي تختاره هنا، من A1 (مبتدئ) إلى C1 (متقدّم). يمكنك تغييره متى شئت.",
         reperes_gardes: "الموضوعة جانبًا: الكلمات التي تضعها جانبًا لتعيد العمل عليها تنتظرك هنا.",
+        gardes_explication: "«الموضوعة جانبًا»: خلال جلستك اليوم، حين تصعب عليك كلمة، المس «{bouton}» على بطاقتها. ستجدها هنا، وتعيد التدرّب عليها متى شئت.",
         reperes_themes: "حسب الموضوع: تفضّل موضوعًا محددًا؟ العائلة، البيت، الطعام…",
         reperes_mots: "كل مربّع يفتح بطاقات وتمارين: الأسماء، الأفعال، الصفات… مرّر إلى الأسفل لترى كل شيء.",
         reperes_phrase: "قواعد الجملة: كل مربّع يشرح قاعدة، ثم يدعك تتدرّب عليها.",
@@ -17948,6 +17956,7 @@ const I18N = {
         reperes_seance: "A sua sessão do dia: todos os dias, toque em «Começar». Algumas palavras novas e as revisões que voltam na hora certa. É o jeito mais simples de progredir. Os outros pontos âmbar explicam o resto da tela inicial: toque neles quando quiser, depois eles somem.",
         reperes_niveau: "O seu nível: as palavras novas vêm do nível escolhido aqui, de A1 (iniciante) a C1 (avançado). Você pode mudar quando quiser.",
         reperes_gardes: "Separadas: as palavras que você separa para trabalhar de novo esperam por você aqui.",
+        gardes_explication: "« Separadas »: durante a sua sessão do dia, quando uma palavra for difícil, toque em « {bouton} » no cartão dela. Ela vem para cá, e você pratica de novo quando quiser.",
         reperes_themes: "Por tema: prefere um assunto específico? A família, a casa, a comida…",
         reperes_mots: "Cada bloco abre cartões e exercícios: substantivos, verbos, adjetivos… Role para baixo para ver tudo.",
         reperes_phrase: "A gramática da frase: cada bloco explica uma regra e depois a faz praticar.",
@@ -19171,6 +19180,7 @@ const I18N = {
         reperes_seance: "Twoja dzisiejsza sesja: codziennie dotknij „Zacznij”. Kilka nowych słów i powtórki, które wracają we właściwym momencie. To najprostszy sposób na postępy. Pozostałe bursztynowe kropki objaśniają resztę ekranu głównego: dotknij ich, kiedy chcesz, potem znikną.",
         reperes_niveau: "Twój poziom: nowe słowa pochodzą z poziomu wybranego tutaj, od A1 (początkujący) do C1 (zaawansowany). Możesz go zmienić w dowolnej chwili.",
         reperes_gardes: "Odłożone: słowa, które odkładasz, żeby do nich wrócić, czekają tutaj.",
+        gardes_explication: "„Odłożone”: podczas dzisiejszej sesji, gdy słowo sprawia ci trudność, dotknij „{bouton}” na jego karcie. Trafi tutaj i wrócisz do niego, kiedy zechcesz.",
         reperes_themes: "Według tematu: wolisz konkretny temat? Rodzina, dom, jedzenie…",
         reperes_mots: "Każdy kafelek otwiera fiszki i ćwiczenia: rzeczowniki, czasowniki, przymiotniki… Przewiń w dół, żeby zobaczyć wszystko.",
         reperes_phrase: "Gramatyka zdania: każdy kafelek wyjaśnia regułę, a potem pozwala ją przećwiczyć.",
@@ -20392,6 +20402,7 @@ const I18N = {
         reperes_seance: "Твоё занятие на сегодня: каждый день нажимай «Начать». Несколько новых слов и повторения, которые возвращаются в нужный момент. Это самый простой способ двигаться вперёд. Другие янтарные точки объясняют остальную часть главного экрана: нажимай на них, когда захочешь, потом они исчезнут.",
         reperes_niveau: "Твой уровень: новые слова берутся с уровня, выбранного здесь, от A1 (начальный) до C1 (продвинутый). Его можно сменить в любой момент.",
         reperes_gardes: "Отложенные: слова, которые ты откладываешь, чтобы поработать над ними снова, ждут тебя здесь.",
+        gardes_explication: "«Отложенные»: во время занятия на сегодня, если слово даётся с трудом, нажми «{bouton}» на его карточке. Оно окажется здесь, и ты вернёшься к нему, когда захочешь.",
         reperes_themes: "По темам: хочешь конкретную тему? Семья, дом, еда…",
         reperes_mots: "Каждая плитка открывает карточки и упражнения: существительные, глаголы, прилагательные… Прокрути вниз, чтобы увидеть всё.",
         reperes_phrase: "Грамматика предложения: каждая плитка объясняет правило, а потом даёт его отработать.",
@@ -32635,16 +32646,32 @@ function showScreen(id){
     if(id !== 'ecoute') arreterEcoute();
     // Meme raison pour la scene (essai v713) : quitter son ecran vide le
     // cadre, sinon la voix de la scene continuerait derriere l'accueil.
+    // v804 (15 oct. 2026) : LE CADRE SE VIDE UN PEU APRES. Jacques, sur iPhone :
+    // au retour d'une scene, une page blanche, et il faut toucher l'ecran pour
+    // que la liste des scenes reapparaisse. Le cadre plein ecran etait vide dans
+    // le meme instant ou le nouvel ecran commencait son fondu (de l'opacite 0 a
+    // 1) : WebKit ne repeignait pas, et l'ecran restait a 0 jusqu'au toucher.
+    // On vide donc le cadre une fois le nouvel ecran affiche, et l'ecran qui
+    // succede a une scene arrive sans fondu.
+    const depuisScene = (document.querySelector(".screen.active") || {}).id === "sceneSeance";
     if(id !== 'sceneSeance'){
         const cadre = document.getElementById("sceneCadre");
-        if(cadre && cadre.getAttribute("src") && cadre.getAttribute("src") !== "about:blank") cadre.src = "about:blank";
+        if(cadre && cadre.getAttribute("src") && cadre.getAttribute("src") !== "about:blank"){
+            setTimeout(() => {
+                const actif = document.querySelector(".screen.active");
+                if(!actif || actif.id !== "sceneSeance") cadre.src = "about:blank";
+            }, 400);
+        }
     }
     // L'etiquette « Aperçu gratuit » suit l'etat, y compris apres un
     // rechargement : une lecture de localStorage, rien de plus.
     try{ document.body.classList.toggle("apercu-gratuit", apercuGratuitActif()); }catch(e){}
-    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active", "sans-fondu"));
     const target = document.getElementById(id);
-    if(target) target.classList.add("active");
+    if(target){
+        if(depuisScene) target.classList.add("sans-fondu");
+        target.classList.add("active");
+    }
     window.scrollTo(0,0);
     updateGlobalProgress();
     updateOrbBadges();
@@ -33279,7 +33306,12 @@ function marquerRepere(id){
 }
 
 function installerReperes(){
-    if(!essaiActif("reperes")){
+    // v804 (15 oct. 2026) : PLUS DE POINTS SUR L'ACCUEIL. Jacques : « les petites
+    // pastilles jaunes, ca pollue la page d'accueil » ; le reste est clair de
+    // lui-meme, seul « Mis de cote » demande une explication, et elle vient au
+    // premier clic sur la tuile (voir ouvrirGardes). Le code des points reste,
+    // inerte, pour le jour ou un autre ecran en aurait besoin.
+    if(true){
         document.querySelectorAll(".pt-decouverte").forEach(x => x.remove());
         fermerRepere();
         return;
@@ -33332,16 +33364,23 @@ function ouvrirRepere(id){
     if(!ancre) return;
     const haut0 = ancre.getBoundingClientRect();
     if(haut0.top < 0 || haut0.bottom > innerHeight) ancre.scrollIntoView({ block: "center" });
+    afficherBulle(ancre, t(r.cle));
+}
+
+// Une bulle d'explication sous (ou sur) un element, avec un bouton OK.
+// `apres` est appele quand on la ferme par OK (v804, « Mis de cote »).
+function afficherBulle(ancre, message, apres){
+    fermerRepere();
     const b = document.createElement("div");
     b.className = "bulle-repere";
     b.setAttribute("role", "dialog");
     b.setAttribute("aria-live", "polite");
     const texte = document.createElement("p");
-    texte.textContent = t(r.cle);
+    texte.textContent = message;
     const ok = document.createElement("button");
     ok.type = "button";
     ok.textContent = "OK";
-    ok.addEventListener("click", fermerRepere);
+    ok.addEventListener("click", (e) => { e.stopPropagation(); fermerRepere(); if(apres) apres(); });
     b.append(texte, ok);
     document.body.appendChild(b);
     bulleRepere = b;
@@ -38093,7 +38132,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 803;
+const APP_VERSION = 804;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -41701,12 +41740,10 @@ window.addEventListener("message", (e) => {
         if(sceneOuverteDepuis !== "admin") revisionDeScene(d);
     } else if(d.type === "fini"){
         try{ localStorage.setItem(SCENE_FAITE_KEY, new Date().toDateString()); }catch(err){}
-        if(cadre) cadre.src = "about:blank";
         // v799 : retour a l'accueil, la porte de la scene cochee ; les mots attendent.
         goHome();
         try{ majTuileSeance(); }catch(err){}
     } else if(d.type === "fermer"){
-        if(cadre) cadre.src = "about:blank";
         if(sceneOuverteDepuis === "admin") openAdminDashboard();
         else if(sceneOuverteDepuis === "libre") openOrbPanel("scenes");
         else { goHome(); try{ majTuileSeance(); }catch(err){} }
@@ -42501,7 +42538,21 @@ function majBoutonGardes(){
     if(b) b.classList.remove("hidden");
 }
 
+// v804 (15 oct. 2026) : LE PREMIER CLIC EXPLIQUE. Jacques : « lorsqu'on clique
+// sur Mis de cote, on aura une explication de ce que ca veut dire », une seule
+// fois. La bulle nomme le bouton des cartes (garder_action) tel que l'usager le
+// voit dans sa langue ; OK ouvre ensuite les mots mis de cote, comme si
+// l'explication n'avait pas interrompu le geste.
+const GARDES_EXPLIQUE_KEY = PREFIXE_STOCKAGE + "gardesExplique";
 async function ouvrirGardes(){
+    let explique = true;
+    try{ explique = localStorage.getItem(GARDES_EXPLIQUE_KEY) === "1"; }catch(e){}
+    const tuile = document.getElementById("seanceGardes");
+    if(!explique && tuile){
+        try{ localStorage.setItem(GARDES_EXPLIQUE_KEY, "1"); }catch(e){}
+        afficherBulle(tuile, tf("gardes_explication", { bouton: t("garder_action") }), () => { ouvrirGardes(); });
+        return;
+    }
     await chargerFrequence();
     const tout = [];
     NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, paquetDuNiveau(n)); });

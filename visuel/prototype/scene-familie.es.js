@@ -16,9 +16,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     6.3,
-     30,
-     13.7
+     8.8,
+     24.5,
+     13.5
     ]
    ],
    "fr": "le tableau",
@@ -52,9 +52,9 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     35,
+     27,
      2,
-     45,
+     48,
      30
     ]
    ],
@@ -79,10 +79,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     87.5,
-     10.2,
-     10,
-     6.3
+     81,
+     10.3,
+     10.5,
+     10.5
     ]
    ],
    "fr": "la montre, l'horloge",
@@ -107,9 +107,9 @@ window.SCENE = {
    "boites": [
     [
      0,
+     27,
      24.5,
-     30,
-     5.5
+     2.8
     ]
    ],
    "fr": "l'assiette, le plat",
@@ -134,9 +134,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     22,
-     34,
-     24
+     24.5,
+     29,
+     13
     ]
    ],
    "fr": "l'armoire, le placard",
@@ -164,10 +164,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     88,
-     35.5,
-     12,
-     4.5
+     88.5,
+     34.5,
+     11.5,
+     4.3
     ]
    ],
    "fr": "le chat",
@@ -194,7 +194,7 @@ window.SCENE = {
      88,
      30.5,
      12,
-     16
+     12
     ]
    ],
    "fr": "la chaise",
@@ -218,10 +218,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     41.5,
+     63,
      27,
-     21,
-     12
+     18.5,
+     14
     ]
    ],
    "fr": "le grand-père",
@@ -245,10 +245,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     61,
-     30,
-     17,
-     12.5
+     66,
+     32.5,
+     23,
+     14
     ]
    ],
    "fr": "la grand-mère",
@@ -257,33 +257,6 @@ window.SCENE = {
    "ar": "جدّة (عامية)",
    "pl": "babcia",
    "ru": "бабушка, бабуля",
-   "latam": null
-  },
-  {
-   "id": "mutter",
-   "mot": "madre",
-   "genre": "la",
-   "pluriel": "las madres",
-   "niveau": "A1",
-   "theme": "la_familia",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     75,
-     33.5,
-     17,
-     12
-    ]
-   ],
-   "fr": "la mère",
-   "en": "the mother",
-   "pt": "a mãe",
-   "ar": "أم",
-   "pl": "matka",
-   "ru": "мать",
    "latam": null
   },
   {
@@ -299,10 +272,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20.5,
-     27.5,
-     25,
-     20
+     27,
+     26,
+     28,
+     17
     ]
    ],
    "fr": "le père",
@@ -314,40 +287,30 @@ window.SCENE = {
    "latam": null
   },
   {
-   "id": "mark",
-   "mot": "hijo",
-   "genre": "el",
-   "pluriel": "los hijos",
+   "id": "mutter",
+   "mot": "madre",
+   "genre": "la",
+   "pluriel": "las madres",
    "niveau": "A1",
    "theme": "la_familia",
    "personne": null,
-   "aussi": [
-    {
-     "mot": "hermano",
-     "genre": "el",
-     "niveau": "A1",
-     "theme": "la_familia",
-     "fr": "le frère",
-     "en": "the brother",
-     "pt": "o irmão"
-    }
-   ],
+   "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
     [
-     0,
-     37.5,
+     16.5,
      30,
-     31.5
+     13,
+     18
     ]
    ],
-   "fr": "le fils",
-   "en": "the son",
-   "pt": "o filho",
-   "ar": "ابن",
-   "pl": "syn",
-   "ru": "сын",
+   "fr": "la mère",
+   "en": "the mother",
+   "pt": "a mãe",
+   "ar": "أم",
+   "pl": "matka",
+   "ru": "мать",
    "latam": null
   },
   {
@@ -363,10 +326,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     75,
-     41,
-     8.5,
-     8
+     24.5,
+     36.5,
+     14,
+     12
     ]
    ],
    "fr": "le bébé",
@@ -378,10 +341,47 @@ window.SCENE = {
    "latam": null
   },
   {
-   "id": "schwester",
-   "mot": "hermana",
+   "id": "anna",
+   "mot": "hija",
    "genre": "la",
-   "pluriel": "las hermanas",
+   "pluriel": "las hijas",
+   "niveau": "A1",
+   "theme": "la_familia",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "hermana",
+     "genre": "la",
+     "niveau": "A1",
+     "theme": "la_familia",
+     "fr": "la sœur",
+     "en": "the sister",
+     "pt": "a irmã"
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     35,
+     30,
+     29
+    ]
+   ],
+   "fr": "la fille",
+   "en": "the daughter",
+   "pt": "a filha",
+   "ar": "ابنة",
+   "pl": "córka",
+   "ru": "дочь",
+   "latam": null
+  },
+  {
+   "id": "bruder",
+   "mot": "hermano",
+   "genre": "el",
+   "pluriel": "los hermanos",
    "niveau": "A1",
    "theme": "la_familia",
    "personne": null,
@@ -390,24 +390,30 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     82,
-     44.5,
-     18,
-     6
+     83,
+     39.5,
+     17,
+     10.5
     ],
     [
-     68,
+     64,
+     45.5,
+     20,
+     4.5
+    ],
+    [
+     72,
      50,
-     32,
-     22
+     28,
+     16
     ]
    ],
-   "fr": "la sœur",
-   "en": "the sister",
-   "pt": "a irmã",
-   "ar": "أخت",
-   "pl": "siostra",
-   "ru": "сестра",
+   "fr": "le frère",
+   "en": "the brother",
+   "pt": "o irmão",
+   "ar": "أخ",
+   "pl": "brat",
+   "ru": "брат",
    "latam": null
   },
   {
@@ -423,10 +429,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     45.5,
-     37,
-     10.5,
-     8
+     46,
+     30,
+     12,
+     7.5
     ]
    ],
    "fr": "la fleur",
@@ -450,16 +456,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     43.5,
-     45.8,
-     14.5,
-     4.2
+     49.5,
+     39.5,
+     9.5,
+     2.5
     ],
     [
-     38,
-     40.3,
-     6,
-     2.2
+     42,
+     50,
+     18,
+     3.5
     ]
    ],
    "fr": "la pomme de terre",
@@ -487,10 +493,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     41.5,
-     50,
-     18,
-     6
+     47.5,
+     42.8,
+     11,
+     2.5
+    ],
+    [
+     42.5,
+     54,
+     18.5,
+     10
     ]
    ],
    "fr": "la soupe",
@@ -499,33 +511,6 @@ window.SCENE = {
    "ar": "حساء، شوربة",
    "pl": "zupa",
    "ru": "суп",
-   "latam": null
-  },
-  {
-   "id": "wasser",
-   "mot": "agua",
-   "genre": "el",
-   "pluriel": "las aguas",
-   "niveau": "A1",
-   "theme": "la_comida",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     60,
-     50,
-     11,
-     6
-    ]
-   ],
-   "fr": "l'eau",
-   "en": "water",
-   "pt": "a água",
-   "ar": "ماء",
-   "pl": "woda",
-   "ru": "вода",
    "latam": null
   },
   {
@@ -541,10 +526,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     42.5,
-     60,
-     20.5,
-     7.5
+     45,
+     45.5,
+     14,
+     4.5
     ]
    ],
    "fr": "la laitue, la salade",
@@ -553,6 +538,39 @@ window.SCENE = {
    "ar": "خس، سلطة",
    "pl": "sałata, sałatka",
    "ru": "салат",
+   "latam": null
+  },
+  {
+   "id": "wasser",
+   "mot": "agua",
+   "genre": "el",
+   "pluriel": "las aguas",
+   "niveau": "A1",
+   "theme": "la_comida",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     60.5,
+     47,
+     8,
+     3.5
+    ],
+    [
+     62.5,
+     57,
+     12,
+     10.5
+    ]
+   ],
+   "fr": "l'eau",
+   "en": "water",
+   "pt": "a água",
+   "ar": "ماء",
+   "pl": "woda",
+   "ru": "вода",
    "latam": null
   },
   {
@@ -568,10 +586,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     24.5,
-     65.5,
-     18,
-     7
+     17,
+     63,
+     23,
+     8
     ]
    ],
    "fr": "le pain",
@@ -595,10 +613,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     23,
-     65,
-     21,
-     9.5
+     13.5,
+     62.5,
+     28,
+     14
     ]
    ],
    "fr": "le panier",
@@ -632,10 +650,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     65.5,
-     59,
-     8.5,
-     13.5
+     73.5,
+     57,
+     10.5,
+     16
     ]
    ],
    "fr": "le jus",
@@ -663,10 +681,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     57.5,
-     68.5,
-     6.5,
-     6.5
+     61,
+     67.5,
+     8.5,
+     9
     ]
    ],
    "fr": "le verre",
@@ -690,10 +708,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     37.5,
-     74.5,
-     26,
-     11.5
+     33.5,
+     75.5,
+     34.5,
+     17.5
     ]
    ],
    "fr": "l'assiette, le plat",
@@ -717,10 +735,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     34.8,
-     75.5,
-     3.4,
-     10.5
+     27.5,
+     77.5,
+     6.5,
+     14.5
     ]
    ],
    "fr": "la fourchette",
@@ -744,10 +762,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     65,
-     75.5,
-     3.2,
-     10
+     67,
+     77.5,
+     5.5,
+     15
     ]
    ],
    "fr": "le couteau",
@@ -771,10 +789,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     68.2,
-     76,
-     3.6,
-     9
+     72.5,
+     77.5,
+     7.5,
+     14.5
     ]
    ],
    "fr": "la cuillère",
@@ -798,10 +816,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     62.5,
-     75,
-     14,
-     12
+     69.5,
+     76.5,
+     20.5,
+     18.5
     ]
    ],
    "fr": "la serviette",
@@ -828,7 +846,7 @@ window.SCENE = {
      0,
      47,
      100,
-     45
+     48
     ]
    ],
    "fr": "la table",
@@ -842,8 +860,8 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "La comida familiar",
- "alt": "Le repas de famille du dimanche : Mark rit, sa cuillère à la main ; son père sert les pommes de terre, sa sœur verse de l'eau, sa mère tient le bébé, la grand-mère écoute et le grand-père raconte une histoire, le doigt levé ; sur la table, une soupière, une salade, du pain, du jus d'orange et des tulipes jaunes ; un chat dort sur une chaise.",
- "consigne": "Toute la famille de Mark est à table. Touche un objet ou une personne.",
+ "alt": "Le repas de famille du dimanche : Anna rit, sa cuillère à la main ; son père sert les pommes de terre, son petit frère verse de l'eau, sa mère tient le bébé, la grand-mère écoute et le grand-père raconte une histoire, le doigt levé ; sur la table, une soupière, une salade, du pain, du jus d'orange et des tulipes jaunes ; un chat dort sur une chaise.",
+ "consigne": "Toute la famille d'Anna est à table. Touche un objet ou une personne.",
  "exclus": [],
  "couches": {
   "A1": {
@@ -928,27 +946,27 @@ window.SCENE = {
      }
     },
     {
-     "q": "La ventana está detrás ___ abuelo.",
-     "c": [
-      "del",
-      "de la",
-      "de el"
-     ],
-     "f": "fenster",
-     "r": "opa",
-     "phrase": "La ventana está detrás del abuelo.",
-     "n": "<b>de + el = del</b>, toujours."
-    },
-    {
-     "q": "El cuchillo está encima ___ servilleta.",
+     "q": "Las flores están delante ___ ventana.",
      "c": [
       "de la",
       "del",
       "a la"
      ],
-     "f": "messer",
+     "f": "blume",
+     "r": "fenster",
+     "phrase": "Las flores están delante de la ventana.",
+     "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
+    },
+    {
+     "q": "La cuchara está encima ___ servilleta.",
+     "c": [
+      "de la",
+      "del",
+      "a la"
+     ],
+     "f": "loeffel",
      "r": "serviette",
-     "phrase": "El cuchillo está encima de la servilleta.",
+     "phrase": "La cuchara está encima de la servilleta.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     }
    ]
@@ -957,31 +975,31 @@ window.SCENE = {
    "titre": "Les possessifs",
    "qs": [
     {
-     "q": "Es la familia de Mark: ___ padre sirve las patatas.",
+     "q": "Es la familia de Anna: ___ padre sirve las patatas.",
      "c": [
       "su",
       "sus",
       "suyo"
      ],
      "f": "vater",
-     "r": "mark",
+     "r": "anna",
      "phrase": "Su padre sirve las patatas.",
      "n": "Un seul possesseur, un seul objet → <b>su</b>.",
      "latam": {
-      "q": "Es la familia de Mark: ___ padre sirve las papas.",
+      "q": "Es la familia de Anna: ___ padre sirve las papas.",
       "phrase": "Su padre sirve las papas."
      }
     },
     {
-     "q": "La hermana echa agua en ___ vaso.",
+     "q": "El hermano echa agua en ___ vaso.",
      "c": [
       "su",
       "sus",
       "tu"
      ],
-     "f": "schwester",
-     "r": "glas",
-     "phrase": "La hermana echa agua en su vaso.",
+     "f": "bruder",
+     "r": "wasser",
+     "phrase": "El hermano echa agua en su vaso.",
      "n": "Un seul possesseur, un seul objet → <b>su</b>."
     },
     {
@@ -997,15 +1015,15 @@ window.SCENE = {
      "n": "Un seul possesseur, un seul objet → <b>su</b>."
     },
     {
-     "q": "Mark quiere mucho a ___ abuelos.",
+     "q": "Anna quiere mucho a ___ abuelos.",
      "c": [
       "sus",
       "su",
       "suyos"
      ],
-     "f": "mark",
+     "f": "anna",
      "r": "opa",
-     "phrase": "Mark quiere mucho a sus abuelos.",
+     "phrase": "Anna quiere mucho a sus abuelos.",
      "n": "Plusieurs objets → <b>sus</b> abuelos.",
      "revise": {
       "mot": "querer",
@@ -1055,14 +1073,14 @@ window.SCENE = {
    "titre": "Ser ou estar ?",
    "qs": [
     {
-     "q": "Mark ___ muy contento.",
+     "q": "Anna ___ muy contenta.",
      "c": [
       "está",
       "es",
       "hay"
      ],
-     "f": "mark",
-     "phrase": "Mark está muy contento.",
+     "f": "anna",
+     "phrase": "Anna está muy contenta.",
      "n": "Un état du moment → <b>estar</b>."
     },
     {
@@ -1177,8 +1195,8 @@ window.SCENE = {
  "traductions": {
   "en": {
    "champs": {
-    "alt": "Sunday family lunch: Mark laughs, his spoon in his hand; his father serves the potatoes, his sister pours water, his mother holds the baby, the grandmother listens and the grandfather tells a story, one finger raised; on the table, a soup tureen, a salad, bread, orange juice and yellow tulips; a cat sleeps on a chair.",
-    "consigne": "Mark's whole family is at the table. Tap an object or a person."
+    "alt": "Sunday family lunch: Anna laughs, her spoon in her hand; her father serves the potatoes, her little brother pours water, her mother holds the baby, the grandmother listens and the grandfather tells a story, one finger raised; on the table, a soup tureen, a salad, bread, orange juice and yellow tulips; a cat sleeps on a chair.",
+    "consigne": "Anna's whole family is at the table. Tap an object or a person."
    },
    "couches": {
     "A1": "Nouns and articles",
@@ -1195,17 +1213,17 @@ window.SCENE = {
     "A2 | El tenedor está al lado del plato.": "<b>de + el = del</b>, always.",
     "A2 | El jugo está al lado del vaso.": "<b>de + el = del</b>, always.",
     "A2 | El zumo está al lado del vaso.": "<b>de + el = del</b>, always.",
-    "A2 | La ventana está detrás del abuelo.": "<b>de + el = del</b>, always.",
-    "A2 | El cuchillo está encima de la servilleta.": "<b>la</b> is feminine: <b>de la</b>, no contraction. Only <b>de + el</b> becomes <b>del</b>.",
+    "A2 | Las flores están delante de la ventana.": "<b>la</b> is feminine: <b>de la</b>, no contraction. Only <b>de + el</b> becomes <b>del</b>.",
+    "A2 | La cuchara está encima de la servilleta.": "<b>la</b> is feminine: <b>de la</b>, no contraction. Only <b>de + el</b> becomes <b>del</b>.",
     "B1 | Su padre sirve las papas.": "One owner, one thing → <b>su</b>.",
     "B1 | Su padre sirve las patatas.": "One owner, one thing → <b>su</b>.",
-    "B1 | La hermana echa agua en su vaso.": "One owner, one thing → <b>su</b>.",
+    "B1 | El hermano echa agua en su vaso.": "One owner, one thing → <b>su</b>.",
     "B1 | La madre tiene a su bebé en brazos.": "One owner, one thing → <b>su</b>.",
-    "B1 | Mark quiere mucho a sus abuelos.": "Several things → <b>sus</b> abuelos.",
+    "B1 | Anna quiere mucho a sus abuelos.": "Several things → <b>sus</b> abuelos.",
     "B1 | Comemos los domingos en casa de nuestros abuelos.": "<b>nuestro</b> agrees: los abuelos → nuestr<b>os</b>.",
     "B1 | El abuelo habla de su juventud.": "One owner, one thing → <b>su</b>.",
     "B1 | Este tenedor es mío.": "After <b>ser</b>, the long form: <b>mío</b> (el tenedor).",
-    "B2 | Mark está muy contento.": "A state of the moment → <b>estar</b>.",
+    "B2 | Anna está muy contenta.": "A state of the moment → <b>estar</b>.",
     "B2 | El abuelo es muy divertido.": "A character trait → <b>ser</b>.",
     "B2 | La sopa está caliente.": "A passing state → <b>estar</b>.",
     "B2 | La comida es en casa de los abuelos.": "An event takes place → <b>ser</b> (“la comida es en…”).",
@@ -1219,8 +1237,8 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Pazar günü aile yemeği: Mark elinde kaşığıyla gülüyor; babası patatesleri servis ediyor, kız kardeşi su dolduruyor, annesi bebeği tutuyor, büyükanne dinliyor, büyükbaba parmağını kaldırmış bir hikâye anlatıyor; masada bir çorba kâsesi, salata, ekmek, portakal suyu ve sarı laleler; bir sandalyede bir kedi uyuyor.",
-    "consigne": "Mark'ın bütün ailesi sofrada. Bir nesneye ya da bir kişiye dokun."
+    "alt": "Pazar günü aile yemeği: Anna elinde kaşığıyla gülüyor; babası patatesleri servis ediyor, küçük erkek kardeşi su dolduruyor, annesi bebeği tutuyor, büyükanne dinliyor, büyükbaba parmağını kaldırmış bir hikâye anlatıyor; masada bir çorba kâsesi, salata, ekmek, portakal suyu ve sarı laleler; bir sandalyede bir kedi uyuyor.",
+    "consigne": "Anna'nın bütün ailesi sofrada. Bir nesneye ya da bir kişiye dokun."
    },
    "couches": {
     "A1": "İsimler ve artikeller"
@@ -1229,8 +1247,8 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Недільний сімейний обід: Марк сміється з ложкою в руці; батько накладає картоплю, сестра наливає воду, мама тримає малюка, бабуся слухає, а дідусь, піднявши палець, розповідає історію; на столі супниця, салат, хліб, апельсиновий сік і жовті тюльпани; на стільці спить кіт.",
-    "consigne": "Уся родина Марка за столом. Торкнися предмета або людини."
+    "alt": "Недільний сімейний обід: Анна сміється з ложкою в руці; батько накладає картоплю, молодший брат наливає воду, мама тримає малюка, бабуся слухає, а дідусь, піднявши палець, розповідає історію; на столі супниця, салат, хліб, апельсиновий сік і жовті тюльпани; на стільці спить кіт.",
+    "consigne": "Уся родина Анни за столом. Торкнися предмета або людини."
    },
    "couches": {
     "A1": "Іменники й артиклі"
@@ -1239,8 +1257,8 @@ window.SCENE = {
   },
   "fa": {
    "champs": {
-    "alt": "ناهار خانوادگی روز یکشنبه: مارک با قاشقی در دست می‌خندد؛ پدرش سیب‌زمینی می‌کشد، خواهرش آب می‌ریزد، مادرش نوزاد را بغل کرده، مادربزرگ گوش می‌دهد و پدربزرگ با انگشتی بالا رفته قصه می‌گوید؛ روی میز، یک ظرف سوپ، سالاد، نان، آب پرتقال و لاله‌های زرد؛ گربه‌ای روی صندلی خوابیده.",
-    "consigne": "همهٔ خانوادهٔ مارک سر میز هستند. روی یک شیء یا یک نفر بزن."
+    "alt": "ناهار خانوادگی روز یکشنبه: آنا با قاشقی در دست می‌خندد؛ پدرش سیب‌زمینی می‌کشد، برادر کوچکش آب می‌ریزد، مادرش نوزاد را بغل کرده، مادربزرگ گوش می‌دهد و پدربزرگ با انگشتی بالا رفته قصه می‌گوید؛ روی میز، یک ظرف سوپ، سالاد، نان، آب پرتقال و لاله‌های زرد؛ گربه‌ای روی صندلی خوابیده.",
+    "consigne": "همهٔ خانوادهٔ آنا سر میز هستند. روی یک شیء یا یک نفر بزن."
    },
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
@@ -1249,8 +1267,8 @@ window.SCENE = {
   },
   "ar": {
    "champs": {
-    "alt": "غداء العائلة يوم الأحد: مارك يضحك وملعقته في يده؛ أبوه يغرف البطاطس، وأخته تصبّ الماء، وأمّه تحمل الرضيع، والجدّة تصغي، والجدّ يروي حكاية رافعًا إصبعه؛ وعلى المائدة وعاء حساء وسلطة وخبز وعصير برتقال وزهور توليب صفراء؛ وقطّ نائم على كرسي.",
-    "consigne": "عائلة مارك كلّها حول المائدة. المس شيئًا أو شخصًا."
+    "alt": "غداء العائلة يوم الأحد: آنا تضحك وملعقتها في يدها؛ أبوها يغرف البطاطس، وأخوها الصغير يصبّ الماء، وأمّها تحمل الرضيع، والجدّة تصغي، والجدّ يروي حكاية رافعًا إصبعه؛ وعلى المائدة وعاء حساء وسلطة وخبز وعصير برتقال وزهور توليب صفراء؛ وقطّ نائم على كرسي.",
+    "consigne": "عائلة آنا كلّها حول المائدة. المس شيئًا أو شخصًا."
    },
    "couches": {
     "A1": "الأسماء وأدوات التعريف"
@@ -1259,8 +1277,8 @@ window.SCENE = {
   },
   "pt": {
    "champs": {
-    "alt": "O almoço de domingo em família: Mark ri, com a colher na mão; o pai serve as batatas, a irmã põe água, a mãe segura o bebê, a avó escuta e o avô conta uma história, com o dedo erguido; na mesa, uma sopeira, uma salada, pão, suco de laranja e tulipas amarelas; um gato dorme numa cadeira.",
-    "consigne": "A família toda de Mark está à mesa. Toque num objeto ou numa pessoa."
+    "alt": "O almoço de domingo em família: Anna ri, com a colher na mão; o pai serve as batatas, o irmão mais novo põe água, a mãe segura o bebê, a avó escuta e o avô conta uma história, com o dedo erguido; na mesa, uma sopeira, uma salada, pão, suco de laranja e tulipas amarelas; um gato dorme numa cadeira.",
+    "consigne": "A família toda de Anna está à mesa. Toque num objeto ou numa pessoa."
    },
    "couches": {
     "A1": "Substantivos e artigos",
@@ -1277,17 +1295,17 @@ window.SCENE = {
     "A2 | El tenedor está al lado del plato.": "<b>de + el = del</b>, sempre (como “do”).",
     "A2 | El jugo está al lado del vaso.": "<b>de + el = del</b>, sempre (como “do”).",
     "A2 | El zumo está al lado del vaso.": "<b>de + el = del</b>, sempre (como “do”).",
-    "A2 | La ventana está detrás del abuelo.": "<b>de + el = del</b>, sempre (como “do”).",
-    "A2 | El cuchillo está encima de la servilleta.": "<b>la</b> é feminino: <b>de la</b>, sem contração. Só <b>de + el</b> vira <b>del</b>.",
+    "A2 | Las flores están delante de la ventana.": "<b>la</b> é feminino: <b>de la</b>, sem contração. Só <b>de + el</b> vira <b>del</b>.",
+    "A2 | La cuchara está encima de la servilleta.": "<b>la</b> é feminino: <b>de la</b>, sem contração. Só <b>de + el</b> vira <b>del</b>.",
     "B1 | Su padre sirve las papas.": "Um só possuidor, um só objeto → <b>su</b>.",
     "B1 | Su padre sirve las patatas.": "Um só possuidor, um só objeto → <b>su</b>.",
-    "B1 | La hermana echa agua en su vaso.": "Um só possuidor, um só objeto → <b>su</b>.",
+    "B1 | El hermano echa agua en su vaso.": "Um só possuidor, um só objeto → <b>su</b>.",
     "B1 | La madre tiene a su bebé en brazos.": "Um só possuidor, um só objeto → <b>su</b>.",
-    "B1 | Mark quiere mucho a sus abuelos.": "Vários objetos → <b>sus</b> abuelos.",
+    "B1 | Anna quiere mucho a sus abuelos.": "Vários objetos → <b>sus</b> abuelos.",
     "B1 | Comemos los domingos en casa de nuestros abuelos.": "<b>nuestro</b> concorda: los abuelos → nuestr<b>os</b>.",
     "B1 | El abuelo habla de su juventud.": "Um só possuidor, um só objeto → <b>su</b>.",
     "B1 | Este tenedor es mío.": "Depois de <b>ser</b>, a forma longa: <b>mío</b> (el tenedor).",
-    "B2 | Mark está muy contento.": "Um estado do momento → <b>estar</b>.",
+    "B2 | Anna está muy contenta.": "Um estado do momento → <b>estar</b>.",
     "B2 | El abuelo es muy divertido.": "Um traço de caráter → <b>ser</b>.",
     "B2 | La sopa está caliente.": "Um estado passageiro → <b>estar</b>.",
     "B2 | La comida es en casa de los abuelos.": "Um evento acontece → <b>ser</b> (“la comida es en…”).",
@@ -1301,8 +1319,8 @@ window.SCENE = {
   },
   "pl": {
    "champs": {
-    "alt": "Niedzielny obiad rodzinny: Mark śmieje się z łyżką w ręce; tata nakłada ziemniaki, siostra nalewa wodę, mama trzyma dziecko, babcia słucha, a dziadek z uniesionym palcem opowiada historię; na stole waza z zupą, sałata, chleb, sok pomarańczowy i żółte tulipany; na krześle śpi kot.",
-    "consigne": "Cała rodzina Marka siedzi przy stole. Dotknij przedmiotu albo osoby."
+    "alt": "Niedzielny obiad rodzinny: Anna śmieje się z łyżką w ręce; tata nakłada ziemniaki, młodszy brat nalewa wodę, mama trzyma dziecko, babcia słucha, a dziadek z uniesionym palcem opowiada historię; na stole waza z zupą, sałata, chleb, sok pomarańczowy i żółte tulipany; na krześle śpi kot.",
+    "consigne": "Cała rodzina Anny siedzi przy stole. Dotknij przedmiotu albo osoby."
    },
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
@@ -1311,8 +1329,8 @@ window.SCENE = {
   },
   "ru": {
    "champs": {
-    "alt": "Воскресный семейный обед: Марк смеётся с ложкой в руке; отец накладывает картошку, сестра наливает воду, мама держит малыша, бабушка слушает, а дедушка, подняв палец, рассказывает историю; на столе супница, салат, хлеб, апельсиновый сок и жёлтые тюльпаны; на стуле спит кот.",
-    "consigne": "Вся семья Марка за столом. Нажми на предмет или на человека."
+    "alt": "Воскресный семейный обед: Анна смеётся с ложкой в руке; отец накладывает картошку, младший брат наливает воду, мама держит малыша, бабушка слушает, а дедушка, подняв палец, рассказывает историю; на столе супница, салат, хлеб, апельсиновый сок и жёлтые тюльпаны; на стуле спит кот.",
+    "consigne": "Вся семья Анны за столом. Нажми на предмет или на человека."
    },
    "couches": {
     "A1": "Существительные и артикли"

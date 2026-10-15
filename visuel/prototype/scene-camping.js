@@ -903,7 +903,7 @@ window.SCENE = {
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
-     "q": "Vielleicht, wer weiß: Der Mann ___ Annas Freund sein.",
+     "q": "Vielleicht, wer weiß: Der Mann ___ Annas Cousin sein.",
      "c": [
       "könnte",
       "muss",
@@ -911,7 +911,7 @@ window.SCENE = {
      ],
      "f": "mann",
      "r": "anna",
-     "phrase": "Der Mann könnte Annas Freund sein.",
+     "phrase": "Der Mann könnte Annas Cousin sein.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -976,7 +976,7 @@ window.SCENE = {
     "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Unreal present → <b>wäre</b>.",
     "B2 | Hätten sie doch mehr Holz mitgebracht!": "Regret about the past: <b>hätte</b> + participle.",
     "C1 | Sie muss den Abend sehr genießen.": "<b>müssen</b> = an almost certain deduction.",
-    "C1 | Der Mann könnte Annas Freund sein.": "<b>könnte</b> = one possibility among others.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
    }
@@ -1017,7 +1017,7 @@ window.SCENE = {
     "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Şimdiki zamanda gerçek dışı → <b>wäre</b>.",
     "B2 | Hätten sie doch mehr Holz mitgebracht!": "Geçmişe dair pişmanlık: <b>hätte</b> + ortaç.",
     "C1 | Sie muss den Abend sehr genießen.": "<b>müssen</b> = neredeyse kesin bir çıkarım.",
-    "C1 | Der Mann könnte Annas Freund sein.": "<b>könnte</b> = birçok olasılıktan biri.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
    }
@@ -1058,7 +1058,7 @@ window.SCENE = {
     "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Нереальне в теперішньому → <b>wäre</b>.",
     "B2 | Hätten sie doch mehr Holz mitgebracht!": "Жаль про минуле: <b>hätte</b> + дієприкметник.",
     "C1 | Sie muss den Abend sehr genießen.": "<b>müssen</b> = майже певний висновок.",
-    "C1 | Der Mann könnte Annas Freund sein.": "<b>könnte</b> = одна можливість серед інших.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
    }
@@ -1099,7 +1099,7 @@ window.SCENE = {
     "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "غیرواقعی در حال ← <b>wäre</b>.",
     "B2 | Hätten sie doch mehr Holz mitgebracht!": "افسوس دربارهٔ گذشته: <b>hätte</b> + صفت مفعولی.",
     "C1 | Sie muss den Abend sehr genießen.": "<b>müssen</b> = استنتاجی تقریباً قطعی.",
-    "C1 | Der Mann könnte Annas Freund sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
    }
@@ -1140,7 +1140,7 @@ window.SCENE = {
     "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "غير الواقعي في الحاضر ← <b>wäre</b>.",
     "B2 | Hätten sie doch mehr Holz mitgebracht!": "ندم على الماضي: <b>hätte</b> + اسم المفعول.",
     "C1 | Sie muss den Abend sehr genießen.": "<b>müssen</b> = استنتاج شبه مؤكَّد.",
-    "C1 | Der Mann könnte Annas Freund sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
    }
@@ -1181,7 +1181,7 @@ window.SCENE = {
     "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Irreal do presente → <b>wäre</b>.",
     "B2 | Hätten sie doch mehr Holz mitgebracht!": "Arrependimento no passado: <b>hätte</b> + particípio.",
     "C1 | Sie muss den Abend sehr genießen.": "<b>müssen</b> = dedução quase certa.",
-    "C1 | Der Mann könnte Annas Freund sein.": "<b>könnte</b> = uma possibilidade entre outras.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
    }
@@ -1222,7 +1222,7 @@ window.SCENE = {
     "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Nierzeczywistość w teraźniejszości → <b>wäre</b>.",
     "B2 | Hätten sie doch mehr Holz mitgebracht!": "Żal z powodu przeszłości: <b>hätte</b> + imiesłów.",
     "C1 | Sie muss den Abend sehr genießen.": "<b>müssen</b> = prawie pewny wniosek.",
-    "C1 | Der Mann könnte Annas Freund sein.": "<b>könnte</b> = jedna z możliwości.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
    }
@@ -1263,7 +1263,7 @@ window.SCENE = {
     "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Нереальное в настоящем → <b>wäre</b>.",
     "B2 | Hätten sie doch mehr Holz mitgebracht!": "Сожаление о прошлом: <b>hätte</b> + причастие.",
     "C1 | Sie muss den Abend sehr genießen.": "<b>müssen</b> = почти уверенный вывод.",
-    "C1 | Der Mann könnte Annas Freund sein.": "<b>könnte</b> = одна возможность из нескольких.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = как говорят: слух, а не вывод."
    }

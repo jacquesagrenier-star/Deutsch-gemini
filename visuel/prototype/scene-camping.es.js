@@ -880,7 +880,7 @@ window.SCENE = {
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
-     "q": "Puede que el chico ___ el novio de Anna.",
+     "q": "Puede que el chico ___ el primo de Anna.",
      "c": [
       "sea",
       "es",
@@ -888,7 +888,7 @@ window.SCENE = {
      ],
      "f": "mann",
      "r": "anna",
-     "phrase": "Puede que el chico sea el novio de Anna.",
+     "phrase": "Puede que el chico sea el primo de Anna.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -952,7 +952,7 @@ window.SCENE = {
     "B2 | Si el barco fuera más grande, cabrían todos.": "Unreal condition: <b>si</b> + imperfect subjunctive → fuera.",
     "B2 | Ojalá hubieran traído más madera.": "Regret about the past: <b>ojalá</b> + <b>hubiera</b> + participle.",
     "C1 | Debe de estar pasándolo muy bien.": "<b>deber de</b> + infinitive = a deduction.",
-    "C1 | Puede que el chico sea el novio de Anna.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
+    "C1 | Puede que el chico sea el primo de Anna.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Serán las diez.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que en el bosque hay lobos.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
    }
@@ -1032,7 +1032,7 @@ window.SCENE = {
     "B2 | Si el barco fuera más grande, cabrían todos.": "Irreal: <b>si</b> + imperfeito do subjuntivo → fuera.",
     "B2 | Ojalá hubieran traído más madera.": "Arrependimento no passado: <b>ojalá</b> + <b>hubiera</b> + particípio.",
     "C1 | Debe de estar pasándolo muy bien.": "<b>deber de</b> + infinitivo = uma dedução.",
-    "C1 | Puede que el chico sea el novio de Anna.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
+    "C1 | Puede que el chico sea el primo de Anna.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Serán las diez.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que en el bosque hay lobos.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
    }

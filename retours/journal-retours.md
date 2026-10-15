@@ -8915,3 +8915,28 @@ s'arreter. Et : « ca ne s'adresse pas seulement aux adjectifs ».
   (10 dernieres minutes, 8 lignes au plus).
 - Les points de decouverte portent un « i » (18 px, encre sur ambre) ; leurs 10 places verifiees sur
   l'accueil.
+
+## 15 octobre 2026 -- v804 : plus de pastilles, « Mis de cote » explique, page blanche, la table, la famille d'Anna
+
+- Pastilles : « ca pollue la page d'accueil » ; seul « Mis de cote » demande une explication, au
+  premier clic. Fait : plus aucun point ; au premier clic sur « Mis de cote », une bulle dit, avec
+  les mots de Jacques, « pendant ta seance du jour, quand un mot te resiste, touche « Mettre de cote »
+  sur sa carte ; il se retrouve ici » (9 langues), puis OK ouvre les mots. Une seule fois.
+- Page blanche au retour d'une scene (iPhone), il fallait toucher l'ecran : le cadre de la scene
+  se vidait dans le meme instant ou le nouvel ecran commencait son fondu. Le cadre se vide
+  maintenant apres, et l'ecran qui suit une scene arrive sans fondu. Non reproductible hors iPhone :
+  a confirmer par Jacques.
+- La table : « si on touche la table, on n'arrive plus a toucher la cuillere ». La table est une
+  zone pleine : un doigt a deux pixels de la cuillere tombait sur la table. Sur un grand fond, l'objet
+  nettement plus petit a portee de doigt passe maintenant devant. 12 scenes retestees : toutes les
+  zones joignables.
+- Le repas de famille REFAIT AVEC ANNA (Anna est allemande, la famille de Mark est a Montreal) :
+  nouvelle image (0,15 $), Anna, son petit frere, ses parents, ses grands-parents ; zones, masques,
+  couches de et es, traductions. La version avec Mark est gardee (visuel/scenes/familie-mark.png).
+- Le lac : la question C1 « Der Mann konnte Annas Freund sein » (es : « el novio de Anna ») faisait
+  de lui un petit ami, alors qu'Anna va rencontrer Mark : il devient « Annas Cousin » / « el primo ».
+- La regle est ecrite pour Fable et pour moi : `.claude/histoire-personnages.md`.
+Parcours : es 1 ecart (l'erreur 404 du chemin « Mis de cote » disparue), de 27 ecarts, tous des
+ordres de cartes decales (le premier clic sur « Mis de cote » ne charge plus la frequence) ->
+references v804.
+Reste a faire : le foot (le ballon flotte, les cones et le drapeau sans nom) -> a refaire.

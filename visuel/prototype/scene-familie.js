@@ -16,9 +16,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     6.3,
-     30,
-     13.7
+     8.8,
+     24.5,
+     13.5
     ]
    ],
    "fr": "tableau",
@@ -60,9 +60,9 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     35,
+     27,
      2,
-     45,
+     48,
      30
     ]
    ],
@@ -89,10 +89,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     87.5,
-     10.2,
-     10,
-     6.3
+     81,
+     10.3,
+     10.5,
+     10.5
     ]
    ],
    "fr": "horloge",
@@ -119,9 +119,9 @@ window.SCENE = {
    "boites": [
     [
      0,
+     27,
      24.5,
-     30,
-     5.5
+     2.8
     ]
    ],
    "fr": "assiette",
@@ -148,9 +148,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     22,
-     34,
-     24
+     24.5,
+     29,
+     13
     ]
    ],
    "fr": "armoire",
@@ -176,10 +176,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     88,
-     35.5,
-     12,
-     4.5
+     88.5,
+     34.5,
+     11.5,
+     4.3
     ]
    ],
    "fr": "chat",
@@ -208,7 +208,7 @@ window.SCENE = {
      88,
      30.5,
      12,
-     16
+     12
     ]
    ],
    "fr": "chaise",
@@ -250,10 +250,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     41.5,
+     63,
      27,
-     21,
-     12
+     18.5,
+     14
     ]
    ],
    "fr": "papi, grand-père",
@@ -295,10 +295,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     61,
-     30,
-     17,
-     12.5
+     66,
+     32.5,
+     23,
+     14
     ]
    ],
    "fr": "mamie, grand-mère",
@@ -310,35 +310,6 @@ window.SCENE = {
    "ar": "جدّة (عامية)",
    "pl": "babcia",
    "ru": "бабушка, бабуля"
-  },
-  {
-   "id": "mutter",
-   "mot": "Mutter",
-   "genre": "die",
-   "pluriel": "Mütter",
-   "niveau": "A1",
-   "theme": "familie_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     75,
-     33.5,
-     17,
-     12
-    ]
-   ],
-   "fr": "mère",
-   "en": "mother",
-   "tr": "anne",
-   "uk": "мати",
-   "fa": "مادر",
-   "pt": "mãe",
-   "ar": "أم",
-   "pl": "matka",
-   "ru": "мать"
   },
   {
    "id": "vater",
@@ -353,10 +324,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20.5,
-     27.5,
-     25,
-     20
+     27,
+     26,
+     28,
+     17
     ]
    ],
    "fr": "père",
@@ -370,49 +341,33 @@ window.SCENE = {
    "ru": "отец"
   },
   {
-   "id": "mark",
-   "mot": "Sohn",
-   "genre": "der",
-   "pluriel": "Söhne",
+   "id": "mutter",
+   "mot": "Mutter",
+   "genre": "die",
+   "pluriel": "Mütter",
    "niveau": "A1",
    "theme": "familie_a1",
    "personne": null,
-   "aussi": [
-    {
-     "mot": "Bruder",
-     "genre": "der",
-     "niveau": "A1",
-     "theme": "familie_a1",
-     "fr": "frère",
-     "en": "brother",
-     "tr": "erkek kardeş",
-     "uk": "брат",
-     "fa": "برادر",
-     "pt": "irmão",
-     "ar": "أخ",
-     "pl": "brat",
-     "ru": "брат"
-    }
-   ],
+   "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
     [
-     0,
-     37.5,
+     16.5,
      30,
-     31.5
+     13,
+     18
     ]
    ],
-   "fr": "fils",
-   "en": "son",
-   "tr": "oğul",
-   "uk": "син",
-   "fa": "پسر (فرزند)",
-   "pt": "filho",
-   "ar": "ابن",
-   "pl": "syn",
-   "ru": "сын"
+   "fr": "mère",
+   "en": "mother",
+   "tr": "anne",
+   "uk": "мати",
+   "fa": "مادر",
+   "pt": "mãe",
+   "ar": "أم",
+   "pl": "matka",
+   "ru": "мать"
   },
   {
    "id": "baby",
@@ -427,10 +382,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     75,
-     41,
-     8.5,
-     8
+     24.5,
+     36.5,
+     14,
+     12
     ]
    ],
    "fr": "bébé",
@@ -444,10 +399,55 @@ window.SCENE = {
    "ru": "младенец, малыш"
   },
   {
-   "id": "schwester",
-   "mot": "Schwester",
+   "id": "anna",
+   "mot": "Tochter",
    "genre": "die",
-   "pluriel": "Schwestern",
+   "pluriel": "Töchter",
+   "niveau": "A1",
+   "theme": "familie_a1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "Schwester",
+     "genre": "die",
+     "niveau": "A1",
+     "theme": "familie_a1",
+     "fr": "sœur",
+     "en": "sister",
+     "tr": "kız kardeş",
+     "uk": "сестра",
+     "fa": "خواهر",
+     "pt": "irmã",
+     "ar": "أخت",
+     "pl": "siostra",
+     "ru": "сестра"
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     35,
+     30,
+     29
+    ]
+   ],
+   "fr": "fille",
+   "en": "daughter",
+   "tr": "kız evlat",
+   "uk": "дочка",
+   "fa": "دختر (فرزند)",
+   "pt": "filha",
+   "ar": "ابنة",
+   "pl": "córka",
+   "ru": "дочь"
+  },
+  {
+   "id": "bruder",
+   "mot": "Bruder",
+   "genre": "der",
+   "pluriel": "Brüder",
    "niveau": "A1",
    "theme": "familie_a1",
    "personne": null,
@@ -456,27 +456,33 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     82,
-     44.5,
-     18,
-     6
+     83,
+     39.5,
+     17,
+     10.5
     ],
     [
-     68,
+     64,
+     45.5,
+     20,
+     4.5
+    ],
+    [
+     72,
      50,
-     32,
-     22
+     28,
+     16
     ]
    ],
-   "fr": "sœur",
-   "en": "sister",
-   "tr": "kız kardeş",
-   "uk": "сестра",
-   "fa": "خواهر",
-   "pt": "irmã",
-   "ar": "أخت",
-   "pl": "siostra",
-   "ru": "сестра"
+   "fr": "frère",
+   "en": "brother",
+   "tr": "erkek kardeş",
+   "uk": "брат",
+   "fa": "برادر",
+   "pt": "irmão",
+   "ar": "أخ",
+   "pl": "brat",
+   "ru": "брат"
   },
   {
    "id": "blume",
@@ -491,10 +497,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     45.5,
-     37,
-     10.5,
-     8
+     46,
+     30,
+     12,
+     7.5
     ]
    ],
    "fr": "fleur",
@@ -520,16 +526,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     43.5,
-     45.8,
-     14.5,
-     4.2
+     49.5,
+     39.5,
+     9.5,
+     2.5
     ],
     [
-     38,
-     40.3,
-     6,
-     2.2
+     42,
+     50,
+     18,
+     3.5
     ]
    ],
    "fr": "pomme de terre",
@@ -555,10 +561,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     41.5,
-     50,
-     18,
-     6
+     47.5,
+     42.8,
+     11,
+     2.5
+    ],
+    [
+     42.5,
+     54,
+     18.5,
+     10
     ]
    ],
    "fr": "soupe",
@@ -570,35 +582,6 @@ window.SCENE = {
    "ar": "حساء، شوربة",
    "pl": "zupa",
    "ru": "суп"
-  },
-  {
-   "id": "wasser",
-   "mot": "Wasser",
-   "genre": "das",
-   "pluriel": "—",
-   "niveau": "A1",
-   "theme": "essen_trinken_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     60,
-     50,
-     11,
-     6
-    ]
-   ],
-   "fr": "eau",
-   "en": "water",
-   "tr": "su",
-   "uk": "вода",
-   "fa": "آب",
-   "pt": "água",
-   "ar": "ماء",
-   "pl": "woda",
-   "ru": "вода"
   },
   {
    "id": "salat",
@@ -613,10 +596,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     42.5,
-     60,
-     20.5,
-     7.5
+     45,
+     45.5,
+     14,
+     4.5
     ]
    ],
    "fr": "salade",
@@ -628,6 +611,41 @@ window.SCENE = {
    "ar": "خس، سلطة",
    "pl": "sałata, sałatka",
    "ru": "салат"
+  },
+  {
+   "id": "wasser",
+   "mot": "Wasser",
+   "genre": "das",
+   "pluriel": "—",
+   "niveau": "A1",
+   "theme": "essen_trinken_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     60.5,
+     47,
+     8,
+     3.5
+    ],
+    [
+     62.5,
+     57,
+     12,
+     10.5
+    ]
+   ],
+   "fr": "eau",
+   "en": "water",
+   "tr": "su",
+   "uk": "вода",
+   "fa": "آب",
+   "pt": "água",
+   "ar": "ماء",
+   "pl": "woda",
+   "ru": "вода"
   },
   {
    "id": "brot",
@@ -642,10 +660,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     24.5,
-     65.5,
-     18,
-     7
+     17,
+     63,
+     23,
+     8
     ]
    ],
    "fr": "pain",
@@ -671,10 +689,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     23,
-     65,
-     21,
-     9.5
+     13.5,
+     62.5,
+     28,
+     14
     ]
    ],
    "fr": "le panier",
@@ -716,10 +734,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     65.5,
-     59,
-     8.5,
-     13.5
+     73.5,
+     57,
+     10.5,
+     16
     ]
    ],
    "fr": "jus",
@@ -745,10 +763,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     57.5,
-     68.5,
-     6.5,
-     6.5
+     61,
+     67.5,
+     8.5,
+     9
     ]
    ],
    "fr": "verre",
@@ -774,10 +792,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     37.5,
-     74.5,
-     26,
-     11.5
+     33.5,
+     75.5,
+     34.5,
+     17.5
     ]
    ],
    "fr": "assiette",
@@ -803,10 +821,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     34.8,
-     75.5,
-     3.4,
-     10.5
+     27.5,
+     77.5,
+     6.5,
+     14.5
     ]
    ],
    "fr": "fourchette",
@@ -832,10 +850,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     65,
-     75.5,
-     3.2,
-     10
+     67,
+     77.5,
+     5.5,
+     15
     ]
    ],
    "fr": "couteau",
@@ -861,10 +879,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     68.2,
-     76,
-     3.6,
-     9
+     72.5,
+     77.5,
+     7.5,
+     14.5
     ]
    ],
    "fr": "cuillère",
@@ -890,10 +908,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     62.5,
-     75,
-     14,
-     12
+     69.5,
+     76.5,
+     20.5,
+     18.5
     ]
    ],
    "fr": "serviette",
@@ -922,7 +940,7 @@ window.SCENE = {
      0,
      47,
      100,
-     45
+     48
     ]
    ],
    "fr": "table",
@@ -938,8 +956,8 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "Das Familienessen",
- "alt": "Le repas de famille du dimanche : Mark rit, sa cuillère à la main ; son père sert les pommes de terre, sa sœur verse de l'eau, sa mère tient le bébé, la grand-mère écoute et le grand-père raconte une histoire, le doigt levé ; sur la table, une soupière, une salade, du pain, du jus d'orange et des tulipes jaunes ; un chat dort sur une chaise.",
- "consigne": "Toute la famille de Mark est à table. Touche un objet ou une personne.",
+ "alt": "Le repas de famille du dimanche : Anna rit, sa cuillère à la main ; son père sert les pommes de terre, son petit frère verse de l'eau, sa mère tient le bébé, la grand-mère écoute et le grand-père raconte une histoire, le doigt levé ; sur la table, une soupière, une salade, du pain, du jus d'orange et des tulipes jaunes ; un chat dort sur une chaise.",
+ "consigne": "Toute la famille d'Anna est à table. Touche un objet ou une personne.",
  "exclus": [],
  "couches": {
   "A1": {
@@ -1049,28 +1067,28 @@ window.SCENE = {
    "titre": "Les possessifs",
    "qs": [
     {
-     "q": "Das ist Marks Familie: ___ Vater serviert Kartoffeln.",
+     "q": "Das ist Annas Familie: ___ Vater serviert Kartoffeln.",
      "c": [
-      "Sein",
       "Ihr",
-      "Seine"
+      "Sein",
+      "Ihre"
      ],
      "f": "vater",
-     "r": "mark",
-     "phrase": "Sein Vater serviert Kartoffeln.",
-     "n": "Le père de Mark (il) → <b>sein</b> Vater."
+     "r": "anna",
+     "phrase": "Ihr Vater serviert Kartoffeln.",
+     "n": "Le père d'Anna (elle) → <b>ihr</b> Vater."
     },
     {
-     "q": "Die Schwester gießt Wasser in ___ Glas.",
+     "q": "Der Bruder gießt Wasser in ___ Glas.",
      "c": [
-      "ihr",
       "sein",
-      "ihre"
+      "ihr",
+      "seine"
      ],
-     "f": "schwester",
-     "r": "glas",
-     "phrase": "Die Schwester gießt Wasser in ihr Glas.",
-     "n": "Son verre à elle, das Glas → <b>ihr</b> Glas.",
+     "f": "bruder",
+     "r": "wasser",
+     "phrase": "Der Bruder gießt Wasser in sein Glas.",
+     "n": "Son verre à lui, das Glas → <b>sein</b> Glas.",
      "revise": {
       "mot": "gießen",
       "cat": "verbe"
@@ -1124,15 +1142,15 @@ window.SCENE = {
      }
     },
     {
-     "q": "Mark und seine Schwester lieben ___ Großeltern.",
+     "q": "Anna und ihr Bruder lieben ___ Großeltern.",
      "c": [
       "ihre",
       "ihr",
       "unsere"
      ],
-     "f": "mark",
-     "r": "schwester",
-     "phrase": "Mark und seine Schwester lieben ihre Großeltern.",
+     "f": "anna",
+     "r": "bruder",
+     "phrase": "Anna und ihr Bruder lieben ihre Großeltern.",
      "n": "À eux (pluriel) → <b>ihre</b> Großeltern.",
      "revise": {
       "mot": "lieben",
@@ -1298,8 +1316,8 @@ window.SCENE = {
  "traductions": {
   "en": {
    "champs": {
-    "alt": "Sunday family lunch: Mark laughs, his spoon in his hand; his father serves the potatoes, his sister pours water, his mother holds the baby, the grandmother listens and the grandfather tells a story, one finger raised; on the table, a soup tureen, a salad, bread, orange juice and yellow tulips; a cat sleeps on a chair.",
-    "consigne": "Mark's whole family is at the table. Tap an object or a person."
+    "alt": "Sunday family lunch: Anna laughs, her spoon in her hand; her father serves the potatoes, her little brother pours water, her mother holds the baby, the grandmother listens and the grandfather tells a story, one finger raised; on the table, a soup tureen, a salad, bread, orange juice and yellow tulips; a cat sleeps on a chair.",
+    "consigne": "Anna's whole family is at the table. Tap an object or a person."
    },
    "couches": {
     "A1": "Nouns and articles",
@@ -1317,12 +1335,12 @@ window.SCENE = {
     "A2 | Das Brot liegt im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
     "A2 | Die Gabel liegt neben dem Teller.": "<b>neben</b> = next to. der Teller → neben <b>dem</b> Teller.",
     "A2 | Der Saft steht neben dem Glas.": "<b>neben</b> = next to. das Glas → neben <b>dem</b> Glas.",
-    "B1 | Sein Vater serviert Kartoffeln.": "Mark's father (his) → <b>sein</b> Vater.",
-    "B1 | Die Schwester gießt Wasser in ihr Glas.": "Her glass, das Glas → <b>ihr</b> Glas.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Anna's father (her) → <b>ihr</b> Vater.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "His glass, das Glas → <b>sein</b> Glas.",
     "B1 | Die Mutter hält ihr Baby.": "das Baby, neuter, hers → <b>ihr</b> Baby.",
     "B1 | Der Opa erzählt von seiner Jugend.": "<b>von</b> + Dativ, die Jugend → <b>seiner</b> Jugend.",
     "B1 | Die Oma hört ihrem Mann zu.": "<b>zuhören</b> + Dativ, der Mann → <b>ihrem</b> Mann.",
-    "B1 | Mark und seine Schwester lieben ihre Großeltern.": "Theirs (plural) → <b>ihre</b> Großeltern.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Theirs (plural) → <b>ihre</b> Großeltern.",
     "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "<b>bei</b> + Dativ plural → <b>unseren</b> Großeltern.",
     "B1 | Die Katze schläft auf ihrem Stuhl.": "<b>auf</b> + Wo? → Dativ, der Stuhl → <b>ihrem</b> Stuhl.",
     "B2 | Das ist der Teller des Vaters.": "Masculine Genitiv → <b>des</b> Vaters (with -s).",
@@ -1339,8 +1357,8 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Pazar günü aile yemeği: Mark elinde kaşığıyla gülüyor; babası patatesleri servis ediyor, kız kardeşi su dolduruyor, annesi bebeği tutuyor, büyükanne dinliyor, büyükbaba parmağını kaldırmış bir hikâye anlatıyor; masada bir çorba kâsesi, salata, ekmek, portakal suyu ve sarı laleler; bir sandalyede bir kedi uyuyor.",
-    "consigne": "Mark'ın bütün ailesi sofrada. Bir nesneye ya da bir kişiye dokun."
+    "alt": "Pazar günü aile yemeği: Anna elinde kaşığıyla gülüyor; babası patatesleri servis ediyor, küçük erkek kardeşi su dolduruyor, annesi bebeği tutuyor, büyükanne dinliyor, büyükbaba parmağını kaldırmış bir hikâye anlatıyor; masada bir çorba kâsesi, salata, ekmek, portakal suyu ve sarı laleler; bir sandalyede bir kedi uyuyor.",
+    "consigne": "Anna'nın bütün ailesi sofrada. Bir nesneye ya da bir kişiye dokun."
    },
    "couches": {
     "A1": "İsimler ve artikeller",
@@ -1358,12 +1376,12 @@ window.SCENE = {
     "A2 | Das Brot liegt im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
     "A2 | Die Gabel liegt neben dem Teller.": "<b>neben</b> = yanında. der Teller → neben <b>dem</b> Teller.",
     "A2 | Der Saft steht neben dem Glas.": "<b>neben</b> = yanında. das Glas → neben <b>dem</b> Glas.",
-    "B1 | Sein Vater serviert Kartoffeln.": "Mark'ın babası (onun, eril) → <b>sein</b> Vater.",
-    "B1 | Die Schwester gießt Wasser in ihr Glas.": "Onun (kadın) bardağı, das Glas → <b>ihr</b> Glas.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Anna'nın babası (onun, kadın) → <b>ihr</b> Vater.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "Onun (erkek) bardağı, das Glas → <b>sein</b> Glas.",
     "B1 | Die Mutter hält ihr Baby.": "das Baby, nötr, onun (kadın) → <b>ihr</b> Baby.",
     "B1 | Der Opa erzählt von seiner Jugend.": "<b>von</b> + Dativ, die Jugend → <b>seiner</b> Jugend.",
     "B1 | Die Oma hört ihrem Mann zu.": "<b>zuhören</b> + Dativ, der Mann → <b>ihrem</b> Mann.",
-    "B1 | Mark und seine Schwester lieben ihre Großeltern.": "Onların (çoğul) → <b>ihre</b> Großeltern.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Onların (çoğul) → <b>ihre</b> Großeltern.",
     "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "<b>bei</b> + Dativ çoğul → <b>unseren</b> Großeltern.",
     "B1 | Die Katze schläft auf ihrem Stuhl.": "<b>auf</b> + Wo? → Dativ, der Stuhl → <b>ihrem</b> Stuhl.",
     "B2 | Das ist der Teller des Vaters.": "Eril Genitiv → <b>des</b> Vaters (-s ile).",
@@ -1380,8 +1398,8 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Недільний сімейний обід: Марк сміється з ложкою в руці; батько накладає картоплю, сестра наливає воду, мама тримає малюка, бабуся слухає, а дідусь, піднявши палець, розповідає історію; на столі супниця, салат, хліб, апельсиновий сік і жовті тюльпани; на стільці спить кіт.",
-    "consigne": "Уся родина Марка за столом. Торкнися предмета або людини."
+    "alt": "Недільний сімейний обід: Анна сміється з ложкою в руці; батько накладає картоплю, молодший брат наливає воду, мама тримає малюка, бабуся слухає, а дідусь, піднявши палець, розповідає історію; на столі супниця, салат, хліб, апельсиновий сік і жовті тюльпани; на стільці спить кіт.",
+    "consigne": "Уся родина Анни за столом. Торкнися предмета або людини."
    },
    "couches": {
     "A1": "Іменники й артиклі",
@@ -1399,12 +1417,12 @@ window.SCENE = {
     "A2 | Das Brot liegt im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
     "A2 | Die Gabel liegt neben dem Teller.": "<b>neben</b> = поруч із. der Teller → neben <b>dem</b> Teller.",
     "A2 | Der Saft steht neben dem Glas.": "<b>neben</b> = поруч із. das Glas → neben <b>dem</b> Glas.",
-    "B1 | Sein Vater serviert Kartoffeln.": "Батько Марка (його) → <b>sein</b> Vater.",
-    "B1 | Die Schwester gießt Wasser in ihr Glas.": "Її склянка, das Glas → <b>ihr</b> Glas.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Батько Анни (її) → <b>ihr</b> Vater.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "Його склянка, das Glas → <b>sein</b> Glas.",
     "B1 | Die Mutter hält ihr Baby.": "das Baby, середній рід, її → <b>ihr</b> Baby.",
     "B1 | Der Opa erzählt von seiner Jugend.": "<b>von</b> + Dativ, die Jugend → <b>seiner</b> Jugend.",
     "B1 | Die Oma hört ihrem Mann zu.": "<b>zuhören</b> + Dativ, der Mann → <b>ihrem</b> Mann.",
-    "B1 | Mark und seine Schwester lieben ihre Großeltern.": "Їхні (множина) → <b>ihre</b> Großeltern.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Їхні (множина) → <b>ihre</b> Großeltern.",
     "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "<b>bei</b> + Dativ у множині → <b>unseren</b> Großeltern.",
     "B1 | Die Katze schläft auf ihrem Stuhl.": "<b>auf</b> + Wo? → Dativ, der Stuhl → <b>ihrem</b> Stuhl.",
     "B2 | Das ist der Teller des Vaters.": "Genitiv чоловічого роду → <b>des</b> Vaters (з -s).",
@@ -1421,8 +1439,8 @@ window.SCENE = {
   },
   "fa": {
    "champs": {
-    "alt": "ناهار خانوادگی روز یکشنبه: مارک با قاشقی در دست می‌خندد؛ پدرش سیب‌زمینی می‌کشد، خواهرش آب می‌ریزد، مادرش نوزاد را بغل کرده، مادربزرگ گوش می‌دهد و پدربزرگ با انگشتی بالا رفته قصه می‌گوید؛ روی میز، یک ظرف سوپ، سالاد، نان، آب پرتقال و لاله‌های زرد؛ گربه‌ای روی صندلی خوابیده.",
-    "consigne": "همهٔ خانوادهٔ مارک سر میز هستند. روی یک شیء یا یک نفر بزن."
+    "alt": "ناهار خانوادگی روز یکشنبه: آنا با قاشقی در دست می‌خندد؛ پدرش سیب‌زمینی می‌کشد، برادر کوچکش آب می‌ریزد، مادرش نوزاد را بغل کرده، مادربزرگ گوش می‌دهد و پدربزرگ با انگشتی بالا رفته قصه می‌گوید؛ روی میز، یک ظرف سوپ، سالاد، نان، آب پرتقال و لاله‌های زرد؛ گربه‌ای روی صندلی خوابیده.",
+    "consigne": "همهٔ خانوادهٔ آنا سر میز هستند. روی یک شیء یا یک نفر بزن."
    },
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف",
@@ -1440,12 +1458,12 @@ window.SCENE = {
     "A2 | Das Brot liegt im Korb.": "<b>im</b> = <span lang=\"de\">in + <b>dem</b></span>: <span lang=\"de\">der Korb → im Korb</span>.",
     "A2 | Die Gabel liegt neben dem Teller.": "<b>neben</b> = کنارِ. <span lang=\"de\">der Teller → neben <b>dem</b> Teller</span>.",
     "A2 | Der Saft steht neben dem Glas.": "<b>neben</b> = کنارِ. <span lang=\"de\">das Glas → neben <b>dem</b> Glas</span>.",
-    "B1 | Sein Vater serviert Kartoffeln.": "پدرِ مارک (مال او، مذکر) ← <span lang=\"de\"><b>sein</b> Vater</span>.",
-    "B1 | Die Schwester gießt Wasser in ihr Glas.": "لیوانِ او (مؤنث)، <span lang=\"de\">das Glas</span> ← <span lang=\"de\"><b>ihr</b> Glas</span>.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "پدرِ آنا (مال او، مؤنث) ← <span lang=\"de\"><b>ihr</b> Vater</span>.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "لیوانِ او (مذکر)، <span lang=\"de\">das Glas</span> ← <span lang=\"de\"><b>sein</b> Glas</span>.",
     "B1 | Die Mutter hält ihr Baby.": "<span lang=\"de\">das Baby</span>، خنثی، مال او (مؤنث) ← <span lang=\"de\"><b>ihr</b> Baby</span>.",
     "B1 | Der Opa erzählt von seiner Jugend.": "<b>von</b> + Dativ, <span lang=\"de\">die Jugend</span> ← <span lang=\"de\"><b>seiner</b> Jugend</span>.",
     "B1 | Die Oma hört ihrem Mann zu.": "<b>zuhören</b> + Dativ, <span lang=\"de\">der Mann</span> ← <span lang=\"de\"><b>ihrem</b> Mann</span>.",
-    "B1 | Mark und seine Schwester lieben ihre Großeltern.": "مالِ آن‌ها (جمع) ← <span lang=\"de\"><b>ihre</b> Großeltern</span>.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "مالِ آن‌ها (جمع) ← <span lang=\"de\"><b>ihre</b> Großeltern</span>.",
     "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "<b>bei</b> + Dativ در جمع ← <span lang=\"de\"><b>unseren</b> Großeltern</span>.",
     "B1 | Die Katze schläft auf ihrem Stuhl.": "<b>auf</b> + <span lang=\"de\">Wo?</span> ← Dativ, <span lang=\"de\">der Stuhl</span> ← <span lang=\"de\"><b>ihrem</b> Stuhl</span>.",
     "B2 | Das ist der Teller des Vaters.": "<span lang=\"de\">Genitiv</span>ِ مذکر ← <span lang=\"de\"><b>des</b> Vaters</span> (با <span lang=\"de\">-s</span>).",
@@ -1462,8 +1480,8 @@ window.SCENE = {
   },
   "ar": {
    "champs": {
-    "alt": "غداء العائلة يوم الأحد: مارك يضحك وملعقته في يده؛ أبوه يغرف البطاطس، وأخته تصبّ الماء، وأمّه تحمل الرضيع، والجدّة تصغي، والجدّ يروي حكاية رافعًا إصبعه؛ وعلى المائدة وعاء حساء وسلطة وخبز وعصير برتقال وزهور توليب صفراء؛ وقطّ نائم على كرسي.",
-    "consigne": "عائلة مارك كلّها حول المائدة. المس شيئًا أو شخصًا."
+    "alt": "غداء العائلة يوم الأحد: آنا تضحك وملعقتها في يدها؛ أبوها يغرف البطاطس، وأخوها الصغير يصبّ الماء، وأمّها تحمل الرضيع، والجدّة تصغي، والجدّ يروي حكاية رافعًا إصبعه؛ وعلى المائدة وعاء حساء وسلطة وخبز وعصير برتقال وزهور توليب صفراء؛ وقطّ نائم على كرسي.",
+    "consigne": "عائلة آنا كلّها حول المائدة. المس شيئًا أو شخصًا."
    },
    "couches": {
     "A1": "الأسماء وأدوات التعريف",
@@ -1481,12 +1499,12 @@ window.SCENE = {
     "A2 | Das Brot liegt im Korb.": "<b>im</b> = <span lang=\"de\">in + <b>dem</b></span>: <span lang=\"de\">der Korb → im Korb</span>.",
     "A2 | Die Gabel liegt neben dem Teller.": "<b>neben</b> = بجانب. <span lang=\"de\">der Teller → neben <b>dem</b> Teller</span>.",
     "A2 | Der Saft steht neben dem Glas.": "<b>neben</b> = بجانب. <span lang=\"de\">das Glas → neben <b>dem</b> Glas</span>.",
-    "B1 | Sein Vater serviert Kartoffeln.": "أبو مارك (له، مذكّر) ← <span lang=\"de\"><b>sein</b> Vater</span>.",
-    "B1 | Die Schwester gießt Wasser in ihr Glas.": "كوبها، <span lang=\"de\">das Glas</span> ← <span lang=\"de\"><b>ihr</b> Glas</span>.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "أبو آنا (لها، مؤنث) ← <span lang=\"de\"><b>ihr</b> Vater</span>.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "كوبه، <span lang=\"de\">das Glas</span> ← <span lang=\"de\"><b>sein</b> Glas</span>.",
     "B1 | Die Mutter hält ihr Baby.": "<span lang=\"de\">das Baby</span>، محايد، لها ← <span lang=\"de\"><b>ihr</b> Baby</span>.",
     "B1 | Der Opa erzählt von seiner Jugend.": "<b>von</b> + Dativ, <span lang=\"de\">die Jugend</span> ← <span lang=\"de\"><b>seiner</b> Jugend</span>.",
     "B1 | Die Oma hört ihrem Mann zu.": "<b>zuhören</b> + Dativ, <span lang=\"de\">der Mann</span> ← <span lang=\"de\"><b>ihrem</b> Mann</span>.",
-    "B1 | Mark und seine Schwester lieben ihre Großeltern.": "لهم (جمع) ← <span lang=\"de\"><b>ihre</b> Großeltern</span>.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "لهم (جمع) ← <span lang=\"de\"><b>ihre</b> Großeltern</span>.",
     "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "<b>bei</b> + Dativ في الجمع ← <span lang=\"de\"><b>unseren</b> Großeltern</span>.",
     "B1 | Die Katze schläft auf ihrem Stuhl.": "<b>auf</b> + <span lang=\"de\">Wo?</span> ← Dativ, <span lang=\"de\">der Stuhl</span> ← <span lang=\"de\"><b>ihrem</b> Stuhl</span>.",
     "B2 | Das ist der Teller des Vaters.": "<span lang=\"de\">Genitiv</span> المذكّر ← <span lang=\"de\"><b>des</b> Vaters</span> (مع <span lang=\"de\">-s</span>).",
@@ -1503,8 +1521,8 @@ window.SCENE = {
   },
   "pt": {
    "champs": {
-    "alt": "O almoço de domingo em família: Mark ri, com a colher na mão; o pai serve as batatas, a irmã põe água, a mãe segura o bebê, a avó escuta e o avô conta uma história, com o dedo erguido; na mesa, uma sopeira, uma salada, pão, suco de laranja e tulipas amarelas; um gato dorme numa cadeira.",
-    "consigne": "A família toda de Mark está à mesa. Toque num objeto ou numa pessoa."
+    "alt": "O almoço de domingo em família: Anna ri, com a colher na mão; o pai serve as batatas, o irmão mais novo põe água, a mãe segura o bebê, a avó escuta e o avô conta uma história, com o dedo erguido; na mesa, uma sopeira, uma salada, pão, suco de laranja e tulipas amarelas; um gato dorme numa cadeira.",
+    "consigne": "A família toda de Anna está à mesa. Toque num objeto ou numa pessoa."
    },
    "couches": {
     "A1": "Substantivos e artigos",
@@ -1522,12 +1540,12 @@ window.SCENE = {
     "A2 | Das Brot liegt im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
     "A2 | Die Gabel liegt neben dem Teller.": "<b>neben</b> = ao lado de. der Teller → neben <b>dem</b> Teller.",
     "A2 | Der Saft steht neben dem Glas.": "<b>neben</b> = ao lado de. das Glas → neben <b>dem</b> Glas.",
-    "B1 | Sein Vater serviert Kartoffeln.": "O pai de Mark (dele) → <b>sein</b> Vater.",
-    "B1 | Die Schwester gießt Wasser in ihr Glas.": "O copo dela, das Glas → <b>ihr</b> Glas.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "O pai de Anna (dela) → <b>ihr</b> Vater.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "O copo dele, das Glas → <b>sein</b> Glas.",
     "B1 | Die Mutter hält ihr Baby.": "das Baby, neutro, dela → <b>ihr</b> Baby.",
     "B1 | Der Opa erzählt von seiner Jugend.": "<b>von</b> + Dativ, die Jugend → <b>seiner</b> Jugend.",
     "B1 | Die Oma hört ihrem Mann zu.": "<b>zuhören</b> + Dativ, der Mann → <b>ihrem</b> Mann.",
-    "B1 | Mark und seine Schwester lieben ihre Großeltern.": "Deles (plural) → <b>ihre</b> Großeltern.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Deles (plural) → <b>ihre</b> Großeltern.",
     "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "<b>bei</b> + Dativ plural → <b>unseren</b> Großeltern.",
     "B1 | Die Katze schläft auf ihrem Stuhl.": "<b>auf</b> + Wo? → Dativ, der Stuhl → <b>ihrem</b> Stuhl.",
     "B2 | Das ist der Teller des Vaters.": "Genitiv masculino → <b>des</b> Vaters (com -s).",
@@ -1544,8 +1562,8 @@ window.SCENE = {
   },
   "pl": {
    "champs": {
-    "alt": "Niedzielny obiad rodzinny: Mark śmieje się z łyżką w ręce; tata nakłada ziemniaki, siostra nalewa wodę, mama trzyma dziecko, babcia słucha, a dziadek z uniesionym palcem opowiada historię; na stole waza z zupą, sałata, chleb, sok pomarańczowy i żółte tulipany; na krześle śpi kot.",
-    "consigne": "Cała rodzina Marka siedzi przy stole. Dotknij przedmiotu albo osoby."
+    "alt": "Niedzielny obiad rodzinny: Anna śmieje się z łyżką w ręce; tata nakłada ziemniaki, młodszy brat nalewa wodę, mama trzyma dziecko, babcia słucha, a dziadek z uniesionym palcem opowiada historię; na stole waza z zupą, sałata, chleb, sok pomarańczowy i żółte tulipany; na krześle śpi kot.",
+    "consigne": "Cała rodzina Anny siedzi przy stole. Dotknij przedmiotu albo osoby."
    },
    "couches": {
     "A1": "Rzeczowniki i rodzajniki",
@@ -1563,12 +1581,12 @@ window.SCENE = {
     "A2 | Das Brot liegt im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
     "A2 | Die Gabel liegt neben dem Teller.": "<b>neben</b> = obok. der Teller → neben <b>dem</b> Teller.",
     "A2 | Der Saft steht neben dem Glas.": "<b>neben</b> = obok. das Glas → neben <b>dem</b> Glas.",
-    "B1 | Sein Vater serviert Kartoffeln.": "Ojciec Marka (jego) → <b>sein</b> Vater.",
-    "B1 | Die Schwester gießt Wasser in ihr Glas.": "Jej szklanka, das Glas → <b>ihr</b> Glas.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Ojciec Anny (jej) → <b>ihr</b> Vater.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "Jego szklanka, das Glas → <b>sein</b> Glas.",
     "B1 | Die Mutter hält ihr Baby.": "das Baby, rodzaj nijaki, jej → <b>ihr</b> Baby.",
     "B1 | Der Opa erzählt von seiner Jugend.": "<b>von</b> + Dativ, die Jugend → <b>seiner</b> Jugend.",
     "B1 | Die Oma hört ihrem Mann zu.": "<b>zuhören</b> + Dativ, der Mann → <b>ihrem</b> Mann.",
-    "B1 | Mark und seine Schwester lieben ihre Großeltern.": "Ich (liczba mnoga) → <b>ihre</b> Großeltern.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Ich (liczba mnoga) → <b>ihre</b> Großeltern.",
     "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "<b>bei</b> + Dativ w liczbie mnogiej → <b>unseren</b> Großeltern.",
     "B1 | Die Katze schläft auf ihrem Stuhl.": "<b>auf</b> + Wo? → Dativ, der Stuhl → <b>ihrem</b> Stuhl.",
     "B2 | Das ist der Teller des Vaters.": "Genitiv rodzaju męskiego → <b>des</b> Vaters (z -s).",
@@ -1585,8 +1603,8 @@ window.SCENE = {
   },
   "ru": {
    "champs": {
-    "alt": "Воскресный семейный обед: Марк смеётся с ложкой в руке; отец накладывает картошку, сестра наливает воду, мама держит малыша, бабушка слушает, а дедушка, подняв палец, рассказывает историю; на столе супница, салат, хлеб, апельсиновый сок и жёлтые тюльпаны; на стуле спит кот.",
-    "consigne": "Вся семья Марка за столом. Нажми на предмет или на человека."
+    "alt": "Воскресный семейный обед: Анна смеётся с ложкой в руке; отец накладывает картошку, младший брат наливает воду, мама держит малыша, бабушка слушает, а дедушка, подняв палец, рассказывает историю; на столе супница, салат, хлеб, апельсиновый сок и жёлтые тюльпаны; на стуле спит кот.",
+    "consigne": "Вся семья Анны за столом. Нажми на предмет или на человека."
    },
    "couches": {
     "A1": "Существительные и артикли",
@@ -1604,12 +1622,12 @@ window.SCENE = {
     "A2 | Das Brot liegt im Korb.": "<b>im</b> = in + <b>dem</b>: der Korb → im Korb.",
     "A2 | Die Gabel liegt neben dem Teller.": "<b>neben</b> = рядом с. der Teller → neben <b>dem</b> Teller.",
     "A2 | Der Saft steht neben dem Glas.": "<b>neben</b> = рядом с. das Glas → neben <b>dem</b> Glas.",
-    "B1 | Sein Vater serviert Kartoffeln.": "Отец Марка (его) → <b>sein</b> Vater.",
-    "B1 | Die Schwester gießt Wasser in ihr Glas.": "Её стакан, das Glas → <b>ihr</b> Glas.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Отец Анны (её) → <b>ihr</b> Vater.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "Его стакан, das Glas → <b>sein</b> Glas.",
     "B1 | Die Mutter hält ihr Baby.": "das Baby, средний род, её → <b>ihr</b> Baby.",
     "B1 | Der Opa erzählt von seiner Jugend.": "<b>von</b> + Dativ, die Jugend → <b>seiner</b> Jugend.",
     "B1 | Die Oma hört ihrem Mann zu.": "<b>zuhören</b> + Dativ, der Mann → <b>ihrem</b> Mann.",
-    "B1 | Mark und seine Schwester lieben ihre Großeltern.": "Их (множественное число) → <b>ihre</b> Großeltern.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Их (множественное число) → <b>ihre</b> Großeltern.",
     "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "<b>bei</b> + Dativ во множественном числе → <b>unseren</b> Großeltern.",
     "B1 | Die Katze schläft auf ihrem Stuhl.": "<b>auf</b> + Wo? → Dativ, der Stuhl → <b>ihrem</b> Stuhl.",
     "B2 | Das ist der Teller des Vaters.": "Genitiv мужского рода → <b>des</b> Vaters (с -s).",

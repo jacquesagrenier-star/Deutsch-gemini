@@ -689,9 +689,33 @@ scene.addEventListener("click", e => {
   const g = grosPlanSous(pt);
   if (g && !zoom && veutGrosPlan(g)) return ouvrirGrosPlan(g);
   const {exact, proche} = sous(pt[0], pt[1]);
-  const p = exact[0] || proche[0];
+  let p = exact[0] || proche[0];
+  // 15 oct. 2026 (Jacques) : SUR UNE TABLE, LE DOIGT TOMBE TOUJOURS SUR LA TABLE.
+  // La table est une zone pleine : des que le doigt la touchait, la fourchette ou
+  // la cuillere posees a deux pixels n'etaient plus cherchees, et il fallait
+  // viser le pixel exact. Quand le doigt tombe sur un GRAND fond (table, mur,
+  // sol), l'objet nettement plus petit le plus proche, a portee de doigt et au
+  // meme plan, passe devant.
+  if (p && p.pixels > MW * MH * 0.04){
+    const autour = objetProche(pt, p);
+    if (autour) p = autour;
+  }
   if (p) toucher(p.id, pt);
 });
+function objetProche(pt, fond){
+  const cx = Math.floor(pt[0] / 100 * MW), cy = Math.floor(pt[1] / 100 * MH);
+  const R = 8;
+  let mieux = null, dMieux = Infinity;
+  for (const z of ZONES){
+    if (z === fond || z.pixels >= fond.pixels / 4 || plan(z) < plan(fond)) continue;
+    for (let dy = -R; dy <= R; dy++) for (let dx = -R; dx <= R; dx++){
+      const x = cx + dx, y = cy + dy, d = dx * dx + dy * dy;
+      if (d > R * R || d >= dMieux) continue;
+      if (x >= 0 && y >= 0 && x < MW && y < MH && z.masque[y*MW + x]){ mieux = z; dMieux = d; }
+    }
+  }
+  return mieux;
+}
 
 /* ---------- surlignage : le contour de l'objet ---------- */
 /* Le contour est un TRACE VECTORIEL (detourer.py : masque nettoye, puis
