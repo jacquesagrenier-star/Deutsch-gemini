@@ -1,0 +1,936 @@
+{
+ "_lisez_moi": [
+  "Le Buergeramt (15 oct. 2026) : un matin de semaine, Mark, nouvel arrivant a Berlin, signe son formulaire d'inscription (Anmeldung) au bureau d'une employee du Buergeramt de son arrondissement ; son passeport est ouvert a cote, le tampon attend sur le bureau ; une jeune femme attend sur une chaise avec son bebe. C'est la demarche de la serie video. Theme : l'administration, les papiers, le bureau. Scene creee a la demande de Jacques (« huit autres scenes basees sur les themes », 15 oct. 2026), construite par Fable.",
+  "Image : visuel/scenes/buergeramt.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png), rendu photo. Effaces gratuitement (buergeramt-effacer.json) : les douze chiffres de l'horloge et les armoiries du passeport -> buergeramt-propre.png. Le calendrier et les dos des classeurs ne portent que des marques grises illisibles (comme le journal du train) : gardes.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Histoire des personnages : Mark seul, a Berlin ; l'employee est die Frau, la jeune femme qui attend die Frau aussi (frau-2), avec das Baby. Le formulaire est das Formular (aussi Papier), le tampon der Stempel, le bureau der Schreibtisch (aussi Tisch), le second bureau au premier plan aussi. Le sol est der Boden (aussi Teppich). Le petit meuble sous l'imprimante est der Schrank.",
+  "SANS ZONE bien que visibles (a signaler) : la corbeille a courrier (pas de mot : on touche les feuilles, Papier), le cable de l'ecran, la poignee de la porte, le store (zone Vorhang sur les lamelles).",
+  "Mesures relues sur la grille en % du 15 oct. 2026."
+ ],
+ "image": "buergeramt.webp",
+ "source": "../scenes/buergeramt-propre.png",
+ "titre": "Im Bürgeramt",
+ "alt": "Mark au Bürgeramt de son arrondissement : assis devant le bureau de l'employée, il signe son formulaire d'inscription, son passeport ouvert à côté ; sur le bureau, un écran, un clavier, une souris, un téléphone, un tampon, une imprimante et une plante ; l'employée en gilet bleu tient une feuille ; au mur, une étagère avec des classeurs et du papier, un calendrier, une horloge et une photo de lac ; une fenêtre avec un store et un radiateur ; près de la porte, une jeune femme en manteau jaune attend sur une chaise avec son bébé, une corbeille à côté ; au premier plan, une lampe de bureau et une plante, et le sac à dos de Mark par terre.",
+ "consigne": "Mark s'inscrit au Bürgeramt : il signe le formulaire. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt das Bild?",
+     "c": [
+      "neben dem Fenster",
+      "über der Tür",
+      "an der Decke"
+     ],
+     "f": "bild",
+     "r": "fenster",
+     "phrase": "Das Bild hängt neben dem Fenster.",
+     "n": "<b>neben</b> = à côté de. das Fenster → neben <b>dem</b> Fenster."
+    },
+    {
+     "q": "Wo stehen die Ordner?",
+     "c": [
+      "im Regal",
+      "auf dem Schreibtisch",
+      "auf dem Boden"
+     ],
+     "f": "ordner",
+     "r": "regal",
+     "phrase": "Die Ordner stehen im Regal.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
+    },
+    {
+     "q": "Wo liegt der Pass?",
+     "c": [
+      "auf dem Schreibtisch",
+      "im Rucksack",
+      "auf dem Stuhl"
+     ],
+     "f": "pass",
+     "r": "schreibtisch",
+     "phrase": "Der Pass liegt auf dem Schreibtisch.",
+     "n": "der Schreibtisch → auf <b>dem</b> Schreibtisch."
+    },
+    {
+     "q": "Wo steht der Rucksack?",
+     "c": [
+      "auf dem Boden",
+      "auf dem Stuhl",
+      "im Regal"
+     ],
+     "f": "rucksack",
+     "r": "boden",
+     "phrase": "Der Rucksack steht auf dem Boden.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    },
+    {
+     "q": "Wo sitzt die junge Frau?",
+     "c": [
+      "auf dem Stuhl",
+      "am Schreibtisch",
+      "auf dem Boden"
+     ],
+     "f": "frau-2",
+     "r": "stuhl",
+     "phrase": "Die junge Frau sitzt auf dem Stuhl.",
+     "n": "der Stuhl → auf <b>dem</b> Stuhl."
+    },
+    {
+     "q": "Wo ist das Baby?",
+     "c": [
+      "bei der Frau",
+      "auf dem Schreibtisch",
+      "im Rucksack"
+     ],
+     "f": "baby",
+     "r": "frau-2",
+     "phrase": "Das Baby ist bei der Frau.",
+     "n": "die Frau → bei <b>der</b> Frau : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht der Mülleimer?",
+     "c": [
+      "neben der Tür",
+      "auf dem Schreibtisch",
+      "im Regal"
+     ],
+     "f": "muelleimer",
+     "r": "tuer",
+     "phrase": "Der Mülleimer steht neben der Tür.",
+     "n": "die Tür → neben <b>der</b> Tür : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht der Drucker?",
+     "c": [
+      "auf dem Schrank",
+      "im Regal",
+      "auf dem Boden"
+     ],
+     "f": "drucker",
+     "r": "schrank",
+     "phrase": "Der Drucker steht auf dem Schrank.",
+     "n": "der Schrank → auf <b>dem</b> Schrank."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les prépositions à cas fixe : mit, für, ohne, bei, zu, aus, seit",
+   "qs": [
+    {
+     "q": "Mark kommt ___ Kanada.",
+     "c": [
+      "aus",
+      "von",
+      "nach"
+     ],
+     "f": "mark",
+     "phrase": "Mark kommt aus Kanada.",
+     "n": "<b>aus</b> + datif = l'origine : aus Kanada.",
+     "revise": "kommen"
+    },
+    {
+     "q": "Er ist ___ einem Monat in Berlin.",
+     "c": [
+      "seit",
+      "vor",
+      "für"
+     ],
+     "f": "mark",
+     "phrase": "Er ist seit einem Monat in Berlin.",
+     "n": "<b>seit</b> + datif : seit einem Monat."
+    },
+    {
+     "q": "Mark füllt das Formular ___ einem Kugelschreiber aus.",
+     "c": [
+      "mit",
+      "für",
+      "ohne"
+     ],
+     "f": "kugelschreiber",
+     "r": "formular",
+     "phrase": "Mark füllt das Formular mit einem Kugelschreiber aus.",
+     "n": "<b>mit</b> + datif : mit einem Kugelschreiber.",
+     "revise": "ausfüllen"
+    },
+    {
+     "q": "Das Formular ist ___ die Anmeldung.",
+     "c": [
+      "für",
+      "zu",
+      "bei"
+     ],
+     "f": "formular",
+     "phrase": "Das Formular ist für die Anmeldung.",
+     "n": "<b>für</b> + accusatif : für die Anmeldung."
+    },
+    {
+     "q": "Mark geht ___ Bürgeramt.",
+     "c": [
+      "zum",
+      "zur",
+      "zu die"
+     ],
+     "f": "tuer",
+     "phrase": "Mark geht zum Bürgeramt.",
+     "n": "<b>zu</b> + datif, das Bürgeramt → zu dem = <b>zum</b>.",
+     "revise": "gehen"
+    },
+    {
+     "q": "Die Frau arbeitet ___ dem Bürgeramt.",
+     "c": [
+      "bei",
+      "zu",
+      "für"
+     ],
+     "f": "frau",
+     "phrase": "Die Frau arbeitet bei dem Bürgeramt.",
+     "n": "<b>bei</b> + datif = chez, employé de : bei dem (beim) Bürgeramt.",
+     "revise": "arbeiten"
+    },
+    {
+     "q": "Mark kommt nicht ___ seinen Pass.",
+     "c": [
+      "ohne",
+      "mit",
+      "bei"
+     ],
+     "f": "pass",
+     "r": "mark",
+     "phrase": "Mark kommt nicht ohne seinen Pass.",
+     "n": "<b>ohne</b> + accusatif : ohne seinen Pass."
+    },
+    {
+     "q": "Die junge Frau wartet ___ ihrem Baby.",
+     "c": [
+      "mit",
+      "für",
+      "ohne"
+     ],
+     "f": "frau-2",
+     "r": "baby",
+     "phrase": "Die junge Frau wartet mit ihrem Baby.",
+     "n": "<b>mit</b> + datif : mit ihrem Baby.",
+     "revise": "warten"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les connecteurs en deux parties : nicht nur … sondern auch, sowohl … als auch",
+   "qs": [
+    {
+     "q": "Mark braucht ___ seinen Pass, sondern auch das Formular.",
+     "c": [
+      "nicht nur",
+      "sowohl",
+      "entweder"
+     ],
+     "f": "pass",
+     "r": "formular",
+     "phrase": "Mark braucht nicht nur seinen Pass, sondern auch das Formular.",
+     "n": "<b>nicht nur … sondern auch</b> = non seulement… mais aussi.",
+     "revise": "brauchen"
+    },
+    {
+     "q": "Die Frau spricht ___ Deutsch als auch Englisch.",
+     "c": [
+      "sowohl",
+      "nicht nur",
+      "weder"
+     ],
+     "f": "frau",
+     "phrase": "Die Frau spricht sowohl Deutsch als auch Englisch.",
+     "n": "<b>sowohl … als auch</b> = aussi bien… que.",
+     "revise": "sprechen"
+    },
+    {
+     "q": "Die junge Frau hat ___ ein Buch noch eine Zeitung dabei.",
+     "c": [
+      "weder",
+      "entweder",
+      "nicht nur"
+     ],
+     "f": "frau-2",
+     "phrase": "Die junge Frau hat weder ein Buch noch eine Zeitung dabei.",
+     "n": "<b>weder … noch</b> = ni… ni."
+    },
+    {
+     "q": "Mark unterschreibt ___ heute, oder er kommt nächste Woche wieder.",
+     "c": [
+      "entweder",
+      "weder",
+      "sowohl"
+     ],
+     "f": "mark",
+     "r": "formular",
+     "phrase": "Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.",
+     "n": "<b>entweder … oder</b> = ou bien… ou bien.",
+     "revise": "unterschreiben"
+    },
+    {
+     "q": "___ schneller Mark schreibt, desto früher ist er fertig.",
+     "c": [
+      "Je",
+      "Desto",
+      "Umso"
+     ],
+     "f": "kugelschreiber",
+     "r": "mark",
+     "phrase": "Je schneller Mark schreibt, desto früher ist er fertig.",
+     "n": "<b>je … desto</b> + comparatifs = plus… plus.",
+     "revise": "schreiben"
+    },
+    {
+     "q": "Das Büro ist ___ klein, aber hell.",
+     "c": [
+      "zwar",
+      "weder",
+      "entweder"
+     ],
+     "f": "fenster",
+     "phrase": "Das Büro ist zwar klein, aber hell.",
+     "n": "<b>zwar … aber</b> = certes… mais."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark schreibt konzentriert — das Formular ___ wichtig sein.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "formular",
+     "r": "mark",
+     "phrase": "Das Formular muss wichtig sein.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Die junge Frau ___ auch neu in Berlin sein.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "frau-2",
+     "phrase": "Die junge Frau könnte auch neu in Berlin sein.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der Termin ___ in zehn Minuten vorbei sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "uhr",
+     "phrase": "Der Termin dürfte in zehn Minuten vorbei sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Im Bürgeramt ___ man lange warten müssen.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "stuhl",
+     "phrase": "Im Bürgeramt soll man lange warten müssen.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "plein": true,
+   "boite": [
+    73.5,
+    0,
+    17,
+    3.2
+   ]
+  },
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    10
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     10,
+     50,
+     36
+    ],
+    [
+     70,
+     10,
+     30,
+     10
+    ]
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    21,
+    17,
+    10,
+    5.8
+   ]
+  },
+  {
+   "id": "kalender",
+   "mot": "Kalender",
+   "boite": [
+    17,
+    25,
+    17.5,
+    9
+   ]
+  },
+  {
+   "id": "bild",
+   "mot": "Bild",
+   "aussi": [
+    "Foto"
+   ],
+   "boite": [
+    35,
+    22,
+    13,
+    7.8
+   ]
+  },
+  {
+   "id": "vorhang",
+   "mot": "Vorhang",
+   "plein": true,
+   "boites": [
+    [
+     49.5,
+     6,
+     6,
+     29
+    ],
+    [
+     62,
+     6,
+     8,
+     29
+    ]
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "plein": true,
+   "boite": [
+    52,
+    18,
+    10,
+    16
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    49.5,
+    6,
+    18,
+    29
+   ]
+  },
+  {
+   "id": "heizkoerper",
+   "mot": "Heizkörper",
+   "boite": [
+    51.5,
+    36,
+    16,
+    7
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "plein": true,
+   "boite": [
+    79.5,
+    20.5,
+    20.5,
+    32
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    95,
+    29.5,
+    5,
+    25
+   ]
+  },
+  {
+   "id": "ordner",
+   "mot": "Ordner",
+   "sur": "regal",
+   "boite": [
+    0,
+    23.5,
+    9,
+    7
+   ]
+  },
+  {
+   "id": "papier",
+   "mot": "Papier",
+   "sur": "regal",
+   "boite": [
+    9.5,
+    28,
+    9,
+    2.5
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "plein": true,
+   "boite": [
+    0,
+    30,
+    18,
+    2.5
+   ]
+  },
+  {
+   "id": "papier-2",
+   "mot": "Papier",
+   "boite": [
+    3.5,
+    39,
+    13,
+    5.5
+   ]
+  },
+  {
+   "id": "pflanze-2",
+   "mot": "Pflanze",
+   "boite": [
+    0.5,
+    42.5,
+    5,
+    3
+   ]
+  },
+  {
+   "id": "drucker",
+   "mot": "Drucker",
+   "sur": "schrank",
+   "boite": [
+    26.5,
+    39.5,
+    12.5,
+    5.5
+   ]
+  },
+  {
+   "id": "schrank",
+   "mot": "Schrank",
+   "plein": true,
+   "boite": [
+    26.5,
+    45,
+    15,
+    10
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "boite": [
+    5,
+    40.5,
+    30,
+    21
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    15,
+    44.5,
+    9,
+    2.5
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "boite": [
+    5,
+    47,
+    25,
+    13
+   ]
+  },
+  {
+   "id": "bluse",
+   "mot": "Bluse",
+   "boite": [
+    17,
+    47.5,
+    5,
+    5
+   ]
+  },
+  {
+   "id": "stuhl-3",
+   "mot": "Stuhl",
+   "boite": [
+    0,
+    44.5,
+    13,
+    16
+   ]
+  },
+  {
+   "id": "papier-3",
+   "mot": "Papier",
+   "boite": [
+    23,
+    53,
+    13,
+    4
+   ]
+  },
+  {
+   "id": "bildschirm",
+   "mot": "Bildschirm",
+   "aussi": [
+    "Computer"
+   ],
+   "boite": [
+    45.5,
+    40.5,
+    10.5,
+    13
+   ]
+  },
+  {
+   "id": "tastatur",
+   "mot": "Tastatur",
+   "sur": "schreibtisch",
+   "boite": [
+    36,
+    49.5,
+    15,
+    3.5
+   ]
+  },
+  {
+   "id": "maus",
+   "mot": "Maus",
+   "plein": true,
+   "sur": "schreibtisch",
+   "boite": [
+    44,
+    54,
+    4.5,
+    2.5
+   ]
+  },
+  {
+   "id": "telefon",
+   "mot": "Telefon",
+   "sur": "schreibtisch",
+   "boite": [
+    38,
+    46.5,
+    9,
+    4.5
+   ]
+  },
+  {
+   "id": "pflanze-3",
+   "mot": "Pflanze",
+   "sur": "schreibtisch",
+   "boite": [
+    57,
+    47,
+    7.5,
+    6.5
+   ]
+  },
+  {
+   "id": "formular",
+   "mot": "Formular",
+   "sur": "schreibtisch",
+   "aussi": [
+    "Papier"
+   ],
+   "boite": [
+    43.5,
+    56.5,
+    17,
+    4.5
+   ]
+  },
+  {
+   "id": "kugelschreiber",
+   "mot": "Kugelschreiber",
+   "plein": true,
+   "boite": [
+    52,
+    55,
+    4.5,
+    4
+   ]
+  },
+  {
+   "id": "pass",
+   "mot": "Pass",
+   "sur": "schreibtisch",
+   "boite": [
+    42.5,
+    60.5,
+    8.5,
+    4
+   ]
+  },
+  {
+   "id": "stempel",
+   "mot": "Stempel",
+   "sur": "schreibtisch",
+   "boite": [
+    25,
+    60,
+    10,
+    4.5
+   ]
+  },
+  {
+   "id": "pflanze-4",
+   "mot": "Pflanze",
+   "sur": "schreibtisch",
+   "boite": [
+    13.5,
+    62,
+    14.5,
+    11
+   ]
+  },
+  {
+   "id": "schreibtisch",
+   "mot": "Schreibtisch",
+   "plein": true,
+   "aussi": [
+    "Tisch"
+   ],
+   "boite": [
+    0,
+    51,
+    62,
+    27
+   ]
+  },
+  {
+   "id": "lampe-2",
+   "mot": "Lampe",
+   "sur": "schreibtisch-2",
+   "boite": [
+    0,
+    59.5,
+    11.5,
+    22
+   ]
+  },
+  {
+   "id": "schreibtisch-2",
+   "mot": "Schreibtisch",
+   "plein": true,
+   "aussi": [
+    "Tisch"
+   ],
+   "boite": [
+    0,
+    72,
+    34,
+    28
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "boite": [
+    54.5,
+    41.5,
+    31,
+    43.5
+   ]
+  },
+  {
+   "id": "jacke-2",
+   "mot": "Jacke",
+   "boite": [
+    63.5,
+    51.5,
+    23,
+    18.5
+   ]
+  },
+  {
+   "id": "hemd",
+   "mot": "Hemd",
+   "plein": true,
+   "boite": [
+    69,
+    50.5,
+    4,
+    3.5
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "boite": [
+    51.5,
+    68,
+    17,
+    11.5
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    51,
+    81,
+    13,
+    4
+   ]
+  },
+  {
+   "id": "stuhl-2",
+   "mot": "Stuhl",
+   "boite": [
+    65.5,
+    54.5,
+    31,
+    29
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "boite": [
+    50.5,
+    74,
+    30,
+    21
+   ]
+  },
+  {
+   "id": "frau-2",
+   "mot": "Frau",
+   "boite": [
+    63.5,
+    32,
+    17,
+    13.5
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "boite": [
+    65.5,
+    34.5,
+    15,
+    10.5
+   ]
+  },
+  {
+   "id": "baby",
+   "mot": "Baby",
+   "boite": [
+    68.5,
+    38,
+    9,
+    4.8
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boite": [
+    79,
+    37.5,
+    11.5,
+    12.5
+   ]
+  },
+  {
+   "id": "muelleimer",
+   "mot": "Mülleimer",
+   "boite": [
+    86.5,
+    46,
+    6.5,
+    8.5
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "aussi": [
+    "Teppich"
+   ],
+   "boites": [
+    [
+     34,
+     85,
+     66,
+     15
+    ],
+    [
+     89,
+     60,
+     11,
+     25
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

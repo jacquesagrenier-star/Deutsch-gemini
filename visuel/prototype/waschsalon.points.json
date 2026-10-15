@@ -1,0 +1,913 @@
+{
+ "_lisez_moi": [
+  "La laverie (15 oct. 2026) : un apres-midi de semaine, Anna fait sa lessive au lavomatique de son quartier de Berlin ; accroupie devant la machine ouverte, elle y pousse une chemise bleue, une serviette dans l'autre main ; son panier rouge deborde de jeans, t-shirt, robe et chaussettes ; une vieille dame lit le journal sur le banc, une petite fille joue avec un telephone. Theme : la maison, les vetements, le quartier. Scene creee a la demande de Jacques (« huit autres scenes basees sur les themes », 15 oct. 2026), construite par Fable.",
+  "Image : visuel/scenes/waschsalon.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png). Rendu photo. Aucun texte lisible (journal a lignes grises, panneau rond vide dehors).",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Histoire des personnages : aucun compagnon ; la vieille dame est die Frau, la fillette das Maedchen (aussi Kind). Trois Waschmaschine (celle qu'Anna charge, celle du premier plan a gauche avec la lessive dessus, celles du fond). La couverture pliee est die Decke (la manta en espagnol, surcharge : mots.json dit el techo, le plafond) ; par consequent le PLAFOND n'a pas de zone dans cette scene.",
+  "SANS ZONE bien que visibles (a signaler) : le plafond (voir ci-dessus), le bouton de la machine, les tresses de la fillette, le cadre de la porte.",
+  "Mesures relues sur la grille en % du 15 oct. 2026."
+ ],
+ "image": "waschsalon.webp",
+ "source": "../scenes/waschsalon.png",
+ "titre": "Im Waschsalon",
+ "alt": "Anna au lavomatique de son quartier : accroupie devant la machine à laver ouverte, elle y pousse une chemise bleue, une serviette blanche dans l'autre main ; à côté d'elle, un panier rouge plein de linge (un jean, un t-shirt jaune, une robe rouge, des chaussettes) ; sur la machine, une bouteille de lessive, un savon et des pièces ; sur la table en bois, un fer à repasser, une couverture bleue et un pull vert pliés ; une corbeille à papier ; sur le banc près de la vitrine, une vieille dame lit le journal devant une tasse de café et une petite fille joue avec un téléphone ; au mur, une horloge, une étagère avec des bouteilles et des serviettes, un radiateur et un miroir ; dehors, un passant et un vélo.",
+ "consigne": "Anna fait sa lessive au lavomatique de son quartier. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Wand",
+      "am Fenster",
+      "über der Tür"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo liegt der grüne Pullover?",
+     "c": [
+      "auf dem Tisch",
+      "im Korb",
+      "auf der Bank"
+     ],
+     "f": "pullover-2",
+     "r": "tisch",
+     "phrase": "Der grüne Pullover liegt auf dem Tisch.",
+     "n": "der Tisch → auf <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo sitzt das Mädchen?",
+     "c": [
+      "auf der Bank",
+      "auf dem Tisch",
+      "auf dem Boden"
+     ],
+     "f": "maedchen",
+     "r": "bank",
+     "phrase": "Das Mädchen sitzt auf der Bank.",
+     "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo liegt die Jeans?",
+     "c": [
+      "im Korb",
+      "auf dem Tisch",
+      "in der Waschmaschine"
+     ],
+     "f": "jeans",
+     "r": "korb",
+     "phrase": "Die Jeans liegt im Korb.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
+    },
+    {
+     "q": "Wo steht das Waschmittel?",
+     "c": [
+      "auf der Waschmaschine",
+      "im Regal",
+      "auf dem Tisch"
+     ],
+     "f": "waschmittel",
+     "r": "waschmaschine-2",
+     "phrase": "Das Waschmittel steht auf der Waschmaschine.",
+     "n": "die Waschmaschine → auf <b>der</b> Waschmaschine : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo hängt der Spiegel?",
+     "c": [
+      "über dem Heizkörper",
+      "neben der Uhr",
+      "an der Tür"
+     ],
+     "f": "spiegel",
+     "r": "heizkoerper",
+     "phrase": "Der Spiegel hängt über dem Heizkörper.",
+     "n": "<b>über</b> = au-dessus de. der Heizkörper → über <b>dem</b> Heizkörper."
+    },
+    {
+     "q": "Wo steht das Fahrrad?",
+     "c": [
+      "auf der Straße",
+      "im Waschsalon",
+      "neben der Bank"
+     ],
+     "f": "fahrrad",
+     "r": "strasse",
+     "phrase": "Das Fahrrad steht auf der Straße.",
+     "n": "die Straße → auf <b>der</b> Straße : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo liegen die Handtücher?",
+     "c": [
+      "im Regal",
+      "im Korb",
+      "auf der Bank"
+     ],
+     "f": "handtuch",
+     "r": "regal",
+     "phrase": "Die Handtücher liegen im Regal.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le verbe lassen",
+   "qs": [
+    {
+     "q": "Anna ___ die Waschmaschine laufen.",
+     "c": [
+      "lässt",
+      "lasst",
+      "lasse"
+     ],
+     "f": "anna",
+     "r": "waschmaschine",
+     "phrase": "Anna lässt die Waschmaschine laufen.",
+     "n": "<b>lassen</b> + infinitif = faire faire ; 3e personne : <b>lässt</b>.",
+     "revise": "lassen"
+    },
+    {
+     "q": "Sie lässt den Korb auf dem Boden ___.",
+     "c": [
+      "stehen",
+      "steht",
+      "gestanden"
+     ],
+     "f": "korb",
+     "r": "boden",
+     "phrase": "Sie lässt den Korb auf dem Boden stehen.",
+     "n": "<b>lassen</b> + infinitif à la fin, sans <b>zu</b>.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Die Frau ___ das Mädchen mit dem Handy spielen.",
+     "c": [
+      "lässt",
+      "lasst",
+      "lasse"
+     ],
+     "f": "frau",
+     "r": "maedchen",
+     "phrase": "Die Frau lässt das Mädchen mit dem Handy spielen.",
+     "n": "<b>lassen</b> = laisser faire : lässt … spielen.",
+     "revise": "lassen"
+    },
+    {
+     "q": "___ mich dir helfen!",
+     "c": [
+      "Lass",
+      "Lasst",
+      "Lässt"
+     ],
+     "f": "anna",
+     "phrase": "Lass mich dir helfen!",
+     "n": "Impératif de <b>lassen</b> (du) : <b>Lass</b> mich … !",
+     "revise": "helfen"
+    },
+    {
+     "q": "Ich ___ meine Jacke zu Hause.",
+     "c": [
+      "lasse",
+      "lässt",
+      "lasst"
+     ],
+     "f": "jacke",
+     "phrase": "Ich lasse meine Jacke zu Hause.",
+     "n": "<b>lassen</b> = laisser quelque part : ich <b>lasse</b>.",
+     "revise": "lassen"
+    },
+    {
+     "q": "Anna hat die Jeans im Korb ___.",
+     "c": [
+      "gelassen",
+      "lassen",
+      "gelasst"
+     ],
+     "f": "jeans",
+     "r": "korb",
+     "phrase": "Anna hat die Jeans im Korb gelassen.",
+     "n": "Participe passé : <b>gelassen</b> (sans infinitif après).",
+     "revise": "lassen"
+    },
+    {
+     "q": "Sie hat die Wäsche waschen ___.",
+     "c": [
+      "lassen",
+      "gelassen",
+      "lässt"
+     ],
+     "f": "waschmaschine",
+     "phrase": "Sie hat die Wäsche waschen lassen.",
+     "n": "Avec un infinitif, le participe devient <b>lassen</b> (double infinitif)."
+    },
+    {
+     "q": "Lasst uns nach Hause ___!",
+     "c": [
+      "gehen",
+      "gehst",
+      "gegangen"
+     ],
+     "f": "tuer",
+     "phrase": "Lasst uns nach Hause gehen!",
+     "n": "<b>Lasst uns</b> + infinitif = allons… !",
+     "revise": "gehen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les participes employés comme adjectifs",
+   "qs": [
+    {
+     "q": "Die ___ Waschmaschine ist laut.",
+     "c": [
+      "laufende",
+      "laufend",
+      "gelaufene"
+     ],
+     "f": "waschmaschine-3",
+     "phrase": "Die laufende Waschmaschine ist laut.",
+     "n": "Participe présent : laufen + <b>-d</b> + terminaison → laufend<b>e</b>."
+    },
+    {
+     "q": "Der ___ Pullover liegt auf dem Tisch.",
+     "c": [
+      "gefaltete",
+      "faltende",
+      "gefaltet"
+     ],
+     "f": "pullover-2",
+     "r": "tisch",
+     "phrase": "Der gefaltete Pullover liegt auf dem Tisch.",
+     "n": "Participe passé = un résultat : gefaltet + <b>-e</b>."
+    },
+    {
+     "q": "Die ___ Frau sitzt auf der Bank.",
+     "c": [
+      "lesende",
+      "gelesene",
+      "lesend"
+     ],
+     "f": "frau",
+     "r": "bank",
+     "phrase": "Die lesende Frau sitzt auf der Bank.",
+     "n": "Participe présent = en train de : lesend<b>e</b>.",
+     "revise": "lesen"
+    },
+    {
+     "q": "Das Mädchen hält ein ___ Handy.",
+     "c": [
+      "ausgeschaltetes",
+      "ausschaltendes",
+      "ausgeschaltet"
+     ],
+     "f": "handy",
+     "r": "maedchen",
+     "phrase": "Das Mädchen hält ein ausgeschaltetes Handy.",
+     "n": "Participe passé : ausgeschaltet + <b>-es</b> (ein … Handy)."
+    },
+    {
+     "q": "Die ___ Tür bleibt zu.",
+     "c": [
+      "geschlossene",
+      "schließende",
+      "geschlossen"
+     ],
+     "f": "tuer",
+     "phrase": "Die geschlossene Tür bleibt zu.",
+     "n": "Participe passé : geschlossen + <b>-e</b>.",
+     "revise": "schließen"
+    },
+    {
+     "q": "Anna hält ein noch ___ Hemd.",
+     "c": [
+      "ungewaschenes",
+      "ungewaschen",
+      "unwaschendes"
+     ],
+     "f": "hemd",
+     "r": "anna",
+     "phrase": "Anna hält ein noch ungewaschenes Hemd.",
+     "n": "<b>un-</b> + participe passé + <b>-es</b> (ein … Hemd).",
+     "revise": "waschen"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna hat viel Wäsche — sie ___ lange nicht gewaschen haben.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "korb",
+     "r": "anna",
+     "phrase": "Sie muss lange nicht gewaschen haben.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Das Mädchen ___ die Enkelin der Frau sein.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "maedchen",
+     "r": "frau",
+     "phrase": "Das Mädchen könnte die Enkelin der Frau sein.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Die Wäsche ___ in einer Stunde fertig sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "waschmaschine",
+     "phrase": "Die Wäsche dürfte in einer Stunde fertig sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Der Waschsalon ___ bald schließen.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "tuer",
+     "phrase": "Der Waschsalon soll bald schließen.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "plein": true,
+   "boites": [
+    [
+     18.5,
+     14.5,
+     33.5,
+     2.8
+    ],
+    [
+     31.5,
+     0,
+     4,
+     8.5
+    ]
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boite": [
+    0,
+    17,
+    60,
+    30
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    27.5,
+    24,
+    7.5,
+    4.5
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "sur": "regal",
+   "boite": [
+    19.5,
+    30,
+    12,
+    4.3
+   ]
+  },
+  {
+   "id": "handtuch",
+   "mot": "Handtuch",
+   "sur": "regal",
+   "boite": [
+    32.5,
+    32.3,
+    9,
+    2.5
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "plein": true,
+   "boite": [
+    18,
+    33,
+    23,
+    3.5
+   ]
+  },
+  {
+   "id": "spiegel",
+   "mot": "Spiegel",
+   "boite": [
+    45,
+    29,
+    12,
+    8.5
+   ]
+  },
+  {
+   "id": "heizkoerper",
+   "mot": "Heizkörper",
+   "boite": [
+    34,
+    40,
+    24,
+    6.5
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "plein": true,
+   "boite": [
+    64.5,
+    18.5,
+    9,
+    33
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "aussi": [
+    "Schaufenster"
+   ],
+   "boite": [
+    85,
+    18.5,
+    15,
+    36
+   ]
+  },
+  {
+   "id": "schild",
+   "mot": "Schild",
+   "aussi": [
+    "Verkehrszeichen"
+   ],
+   "boite": [
+    91,
+    21.5,
+    8.5,
+    5
+   ]
+  },
+  {
+   "id": "fussgaenger",
+   "mot": "Fußgänger",
+   "aussi": [
+    "Mann"
+   ],
+   "boite": [
+    87.5,
+    31.5,
+    7,
+    11.5
+   ]
+  },
+  {
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "boite": [
+    86.5,
+    40,
+    13,
+    7.5
+   ]
+  },
+  {
+   "id": "strasse",
+   "mot": "Straße",
+   "plein": true,
+   "boite": [
+    86.5,
+    43,
+    13.5,
+    7
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    71.5,
+    35.5,
+    16.5,
+    17
+   ]
+  },
+  {
+   "id": "waschmaschine-3",
+   "mot": "Waschmaschine",
+   "boite": [
+    13,
+    42.5,
+    12.5,
+    13
+   ]
+  },
+  {
+   "id": "waschmittel",
+   "mot": "Waschmittel",
+   "aussi": [
+    "Flasche"
+   ],
+   "boite": [
+    2.5,
+    42,
+    5,
+    11.5
+   ]
+  },
+  {
+   "id": "seife",
+   "mot": "Seife",
+   "plein": true,
+   "boite": [
+    10.3,
+    52.8,
+    4,
+    2
+   ]
+  },
+  {
+   "id": "muenze",
+   "mot": "Münze",
+   "plein": true,
+   "aussi": [
+    "Geld"
+   ],
+   "boite": [
+    6.5,
+    54.8,
+    4.5,
+    1.6
+   ]
+  },
+  {
+   "id": "waschmaschine-2",
+   "mot": "Waschmaschine",
+   "boite": [
+    0,
+    47,
+    10,
+    42
+   ]
+  },
+  {
+   "id": "waschmaschine",
+   "mot": "Waschmaschine",
+   "boite": [
+    9,
+    50,
+    14,
+    36
+   ]
+  },
+  {
+   "id": "hemd",
+   "mot": "Hemd",
+   "boite": [
+    14.5,
+    59,
+    10,
+    10
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "boite": [
+    18.5,
+    44.5,
+    29,
+    30
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "boite": [
+    27.5,
+    52,
+    20,
+    16
+   ]
+  },
+  {
+   "id": "handtuch-2",
+   "mot": "Handtuch",
+   "boite": [
+    29.5,
+    62,
+    10,
+    8
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "boite": [
+    22.5,
+    64.5,
+    24,
+    8.5
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "aussi": [
+    "Turnschuh"
+   ],
+   "boite": [
+    26.5,
+    69.5,
+    21,
+    5
+   ]
+  },
+  {
+   "id": "korb",
+   "mot": "Korb",
+   "boite": [
+    14,
+    73,
+    30.5,
+    13.5
+   ]
+  },
+  {
+   "id": "jeans",
+   "mot": "Jeans",
+   "sur": "korb",
+   "aussi": [
+    "Hose"
+   ],
+   "boite": [
+    16.5,
+    73,
+    12,
+    6.5
+   ]
+  },
+  {
+   "id": "t-shirt",
+   "mot": "T-Shirt",
+   "sur": "korb",
+   "boite": [
+    26,
+    72.5,
+    14.5,
+    4.8
+   ]
+  },
+  {
+   "id": "kleid",
+   "mot": "Kleid",
+   "sur": "korb",
+   "boite": [
+    32.5,
+    74.5,
+    12,
+    8.5
+   ]
+  },
+  {
+   "id": "socke",
+   "mot": "Socke",
+   "sur": "korb",
+   "boite": [
+    19,
+    77.5,
+    14.5,
+    9
+   ]
+  },
+  {
+   "id": "buegeleisen",
+   "mot": "Bügeleisen",
+   "sur": "tisch",
+   "boite": [
+    56,
+    47,
+    6.5,
+    6
+   ]
+  },
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "sur": "tisch",
+   "boite": [
+    52,
+    54,
+    17.5,
+    5
+   ]
+  },
+  {
+   "id": "pullover-2",
+   "mot": "Pullover",
+   "sur": "tisch",
+   "boite": [
+    53.5,
+    59,
+    19,
+    5.5
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "plein": true,
+   "boites": [
+    [
+     48.5,
+     50,
+     30,
+     17
+    ],
+    [
+     54,
+     66.5,
+     12,
+     16
+    ]
+   ]
+  },
+  {
+   "id": "muelleimer",
+   "mot": "Mülleimer",
+   "boite": [
+    59,
+    75,
+    15,
+    12
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "boite": [
+    68.5,
+    45.5,
+    22,
+    25
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "boite": [
+    73.5,
+    50,
+    16.5,
+    10
+   ]
+  },
+  {
+   "id": "zeitung",
+   "mot": "Zeitung",
+   "boite": [
+    68.5,
+    47.5,
+    16,
+    11
+   ]
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "sur": "bank",
+   "aussi": [
+    "Kaffee"
+   ],
+   "boite": [
+    81.5,
+    60.5,
+    6,
+    3.5
+   ]
+  },
+  {
+   "id": "maedchen",
+   "mot": "Mädchen",
+   "aussi": [
+    "Kind"
+   ],
+   "boite": [
+    74,
+    55,
+    25,
+    21
+   ]
+  },
+  {
+   "id": "pullover-3",
+   "mot": "Pullover",
+   "boite": [
+    85.5,
+    58,
+    13.5,
+    9.5
+   ]
+  },
+  {
+   "id": "handy",
+   "mot": "Handy",
+   "plein": true,
+   "boite": [
+    84.5,
+    64.5,
+    4,
+    2.5
+   ]
+  },
+  {
+   "id": "hose-2",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "boite": [
+    74.5,
+    66.5,
+    16,
+    8
+   ]
+  },
+  {
+   "id": "schuh-2",
+   "mot": "Schuh",
+   "boite": [
+    74,
+    73,
+    9,
+    3
+   ]
+  },
+  {
+   "id": "bank",
+   "mot": "Bank",
+   "boite": [
+    75.5,
+    68.5,
+    24.5,
+    11
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     86,
+     100,
+     14
+    ],
+    [
+     44,
+     72,
+     15,
+     14
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

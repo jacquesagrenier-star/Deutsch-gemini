@@ -8983,3 +8983,14 @@ visuel » ; puis « je te laisse le faire selon ton bon jugement ».
   jour. La fin ne parle plus des points ambre (retires en v804).
 - Narration refaite par Charlotte dans les 7 langues qui ont une voix (fr, en, tr, uk, fa, ar, pt),
   plus l'introduction de la visite espagnole (fr, en) : 30 clips.
+
+## 15 octobre 2026 -- sept scenes de plus et l'arabe de Fable publies (v807)
+
+Jacques : « publier le travail de Fable pour l'arabe, puis ces nouvelles scenes [...] tout ca ».
+- Sept scenes faites par Fable le matin, dans la seance, le panneau et le ruban (31 scenes) :
+  la pharmacie, la mairie (Bürgeramt) et l'hotel a Hambourg (Mark) ; la boulangerie, la ferme de
+  l'oncle d'Anna, l'aeroport et la laverie (Anna). Fable s'etait arrete avant les traductions de
+  l'hotel : ses 33 textes ont ete completes dans les 8 langues.
+- L'espagnol en arabe : les champs deja faits (vocabulaire, verbes, 150 exercices sur 1 041) sont
+  publies, mais inertes -- l'app ne propose pas encore l'espagnol en arabe, il reste les
+  exercices, les fiches de grammaire, la prononciation, les scenes et l'interface.

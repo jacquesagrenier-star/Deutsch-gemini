@@ -1,0 +1,1033 @@
+{
+ "_lisez_moi": [
+  "La boulangerie (15 oct. 2026) : un matin de semaine, Anna achete des petits pains a la boulangerie de son quartier de Berlin ; la vendeuse lui tend le sachet, Anna lui tend une piece ; son voisin, un vieux monsieur, lit le journal a la petite table avec un cafe et une part de gateau, son chien couche sous la table. Theme : la nourriture, acheter, le quartier. Scene creee a la demande de Jacques (« huit autres scenes basees sur les themes », 15 oct. 2026), construite par Fable.",
+  "Image : visuel/scenes/baeckerei.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png). Aucun texte lisible (journal a lignes grises, panneau du four a petits signes illisibles, ecran de caisse sombre). DOUTE : rendu « illustration » plutot que photo, comme la ferme ; gardee parce que tout y est net.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Histoire des personnages : le vieux monsieur est der Nachbar (aussi der Mann), le voisin d'Anna dans le Kiez ; la vendeuse die Frau (aussi Verkaeuferin). Le comptoir-vitrine est der Schalter (el mostrador, surcharge) ; le four der Backofen (aussi Ofen) ; la piece die Muenze (aussi Geld) ; la canne der Stock.",
+  "SANS ZONE bien que visibles (a signaler) : la chaise du voisin (presque cachee), les assiettes de la vitrine (on touche les gateaux), le plateau des bretzels (Tablett manque au corpus allemand), le lampadaire est die Laterne.",
+  "Mesures relues sur la grille en % du 15 oct. 2026."
+ ],
+ "image": "baeckerei.webp",
+ "source": "../scenes/baeckerei.png",
+ "titre": "In der Bäckerei",
+ "alt": "Anna à la boulangerie de son quartier, un matin : la vendeuse au bonnet blanc lui tend un sachet de petits pains par-dessus le comptoir, Anna lui tend une pièce ; dans la vitrine, une tarte aux fraises, une part de gâteau aux pommes, un gâteau aux noix, des bretzels et un panier de petits pains ; sur le comptoir, la caisse, une balance, un couteau et une boîte à gâteau ; sur les étagères, des pains, des bouteilles de jus et de lait, de la farine, du sucre, une cafetière et des tasses ; à la petite table près de la vitrine, son voisin lit le journal devant un café et une part de gâteau, sa canne contre la table, son chien couché dessous ; des jonquilles et une plante verte au premier plan, un vélo dans la rue.",
+ "consigne": "Anna achète des petits pains à la boulangerie de son quartier. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Wand",
+      "am Fenster",
+      "über der Tür"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht die Milch?",
+     "c": [
+      "im Regal",
+      "auf dem Schalter",
+      "im Backofen"
+     ],
+     "f": "milch",
+     "r": "regal",
+     "phrase": "Die Milch steht im Regal.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
+    },
+    {
+     "q": "Wo liegt der Hund?",
+     "c": [
+      "unter dem Tisch",
+      "auf dem Stuhl",
+      "vor der Tür"
+     ],
+     "f": "hund",
+     "r": "tisch",
+     "phrase": "Der Hund liegt unter dem Tisch.",
+     "n": "<b>unter</b> = sous. der Tisch → unter <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo steht das Fahrrad?",
+     "c": [
+      "vor dem Fenster",
+      "hinter der Tür",
+      "im Regal"
+     ],
+     "f": "fahrrad",
+     "r": "fenster",
+     "phrase": "Das Fahrrad steht vor dem Fenster.",
+     "n": "<b>vor</b> = devant. das Fenster → vor <b>dem</b> Fenster."
+    },
+    {
+     "q": "Wo steht die Kasse?",
+     "c": [
+      "auf dem Schalter",
+      "im Regal",
+      "auf dem Tisch"
+     ],
+     "f": "kasse",
+     "r": "schalter",
+     "phrase": "Die Kasse steht auf dem Schalter.",
+     "n": "der Schalter → auf <b>dem</b> Schalter."
+    },
+    {
+     "q": "Wo stehen die Blumen?",
+     "c": [
+      "im Glas",
+      "im Regal",
+      "im Korb"
+     ],
+     "f": "blume",
+     "r": "glas",
+     "phrase": "Die Blumen stehen im Glas.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Glas → im Glas."
+    },
+    {
+     "q": "Wo sitzt der Nachbar?",
+     "c": [
+      "am Tisch",
+      "im Backofen",
+      "auf dem Schalter"
+     ],
+     "f": "nachbar",
+     "r": "tisch",
+     "phrase": "Der Nachbar sitzt am Tisch.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Tisch → am Tisch."
+    },
+    {
+     "q": "Wo steht die Pflanze?",
+     "c": [
+      "neben dem Fenster",
+      "auf dem Tisch",
+      "im Regal"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "Die Pflanze steht neben dem Fenster.",
+     "n": "<b>neben</b> = à côté de. das Fenster → neben <b>dem</b> Fenster."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "La n-Deklination : den Nachbarn, dem Kunden",
+   "qs": [
+    {
+     "q": "Anna grüßt ihren ___.",
+     "c": [
+      "Nachbarn",
+      "Nachbar",
+      "Nachbars"
+     ],
+     "f": "anna",
+     "r": "nachbar",
+     "phrase": "Anna grüßt ihren Nachbarn.",
+     "n": "Accusatif de <b>der Nachbar</b> → den/ihren <b>Nachbarn</b>.",
+     "revise": "grüßen"
+    },
+    {
+     "q": "Der ___ liest die Zeitung.",
+     "c": [
+      "Nachbar",
+      "Nachbarn",
+      "Nachbaren"
+     ],
+     "f": "nachbar",
+     "r": "zeitung",
+     "phrase": "Der Nachbar liest die Zeitung.",
+     "n": "Au nominatif, pas de terminaison : der <b>Nachbar</b>.",
+     "revise": "lesen"
+    },
+    {
+     "q": "Die Verkäuferin kennt jeden ___ im Kiez.",
+     "c": [
+      "Kunden",
+      "Kunde",
+      "Kundes"
+     ],
+     "f": "frau",
+     "phrase": "Die Verkäuferin kennt jeden Kunden im Kiez.",
+     "n": "n-Deklination : hors du nominatif, <b>-n</b> ou <b>-en</b>.",
+     "revise": "kennen"
+    },
+    {
+     "q": "Der Hund gehört dem ___ am Tisch.",
+     "c": [
+      "Herrn",
+      "Herr",
+      "Herren"
+     ],
+     "f": "hund",
+     "r": "nachbar",
+     "phrase": "Der Hund gehört dem Herrn am Tisch.",
+     "n": "Datif singulier de <b>der Herr</b> → dem <b>Herrn</b>.",
+     "revise": "gehören"
+    },
+    {
+     "q": "Anna kauft Brötchen für ihren ___.",
+     "c": [
+      "Kollegen",
+      "Kollege",
+      "Kolleges"
+     ],
+     "f": "broetchen",
+     "r": "anna",
+     "phrase": "Anna kauft Brötchen für ihren Kollegen.",
+     "n": "n-Deklination : hors du nominatif, <b>-n</b> ou <b>-en</b>.",
+     "revise": "kaufen"
+    },
+    {
+     "q": "Kennst du den ___ der Verkäuferin?",
+     "c": [
+      "Namen",
+      "Name",
+      "Names"
+     ],
+     "f": "frau",
+     "phrase": "Kennst du den Namen der Verkäuferin?",
+     "n": "<b>der Name</b> suit la n-Deklination : den <b>Namen</b>.",
+     "revise": "kennen"
+    },
+    {
+     "q": "Der Hund wartet auf seinen ___.",
+     "c": [
+      "Herrn",
+      "Herr",
+      "Herrn-en"
+     ],
+     "f": "hund",
+     "r": "nachbar",
+     "phrase": "Der Hund wartet auf seinen Herrn.",
+     "n": "Accusatif de <b>der Herr</b> → seinen <b>Herrn</b>.",
+     "revise": "warten"
+    },
+    {
+     "q": "Die Bäckerei ist bei allen ___ beliebt.",
+     "c": [
+      "Nachbarn",
+      "Nachbar",
+      "Nachbars"
+     ],
+     "f": "schalter",
+     "phrase": "Die Bäckerei ist bei allen Nachbarn beliebt.",
+     "n": "Datif pluriel → <b>Nachbarn</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le Plusquamperfekt",
+   "qs": [
+    {
+     "q": "Bevor Anna kam, ___ die Verkäuferin das Brot gebacken.",
+     "c": [
+      "hatte",
+      "hat",
+      "war"
+     ],
+     "f": "frau",
+     "r": "brot",
+     "phrase": "Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.",
+     "n": "Plusquamperfekt : <b>hatte</b> + participe, l'action d'avant une action passée.",
+     "revise": "backen"
+    },
+    {
+     "q": "Als Anna hereinkam, ___ der Nachbar sich schon gesetzt.",
+     "c": [
+      "hatte",
+      "hat",
+      "war"
+     ],
+     "f": "nachbar",
+     "r": "anna",
+     "phrase": "Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.",
+     "n": "<b>sich setzen</b> → haben : <b>hatte</b> sich gesetzt.",
+     "revise": "sich setzen"
+    },
+    {
+     "q": "Nachdem er den Kaffee getrunken ___, las er die Zeitung.",
+     "c": [
+      "hatte",
+      "hat",
+      "ist"
+     ],
+     "f": "tasse-2",
+     "r": "zeitung",
+     "phrase": "Nachdem er den Kaffee getrunken hatte, las er die Zeitung.",
+     "n": "<b>nachdem</b> + Plusquamperfekt quand la principale est au Präteritum.",
+     "revise": "trinken"
+    },
+    {
+     "q": "Der Hund ___ schon eingeschlafen, bevor der Kaffee kam.",
+     "c": [
+      "war",
+      "hatte",
+      "ist"
+     ],
+     "f": "hund",
+     "r": "tasse-2",
+     "phrase": "Der Hund war schon eingeschlafen, bevor der Kaffee kam.",
+     "n": "<b>einschlafen</b> (changement d'état) → sein : <b>war</b> eingeschlafen."
+    },
+    {
+     "q": "Als der Laden öffnete, ___ die Verkäuferin schon drei Stunden gearbeitet.",
+     "c": [
+      "hatte",
+      "hat",
+      "war"
+     ],
+     "f": "frau",
+     "phrase": "Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.",
+     "n": "Plusquamperfekt : <b>hatte</b> + participe, l'action d'avant une action passée.",
+     "revise": "arbeiten"
+    },
+    {
+     "q": "Anna ___ die Brötchen schon bezahlt, als ihr Handy klingelte.",
+     "c": [
+      "hatte",
+      "hat",
+      "war"
+     ],
+     "f": "muenze",
+     "r": "broetchen",
+     "phrase": "Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.",
+     "n": "Plusquamperfekt : <b>hatte</b> + participe, l'action d'avant une action passée.",
+     "revise": "bezahlen"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna lächelt — die Brötchen ___ frisch sein.",
+     "c": [
+      "müssen",
+      "sollen",
+      "mögen"
+     ],
+     "f": "broetchen",
+     "r": "anna",
+     "phrase": "Die Brötchen müssen frisch sein.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der Hund ___ dem Nachbarn gehören.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "hund",
+     "r": "nachbar",
+     "phrase": "Der Hund könnte dem Nachbarn gehören.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Das Brot ___ von heute Morgen sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "brot",
+     "phrase": "Das Brot dürfte von heute Morgen sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Diese Bäckerei ___ die beste im Kiez sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "schalter",
+     "phrase": "Diese Bäckerei soll die beste im Kiez sein.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    4,
+    0,
+    54,
+    6
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boite": [
+    0,
+    6,
+    72,
+    22
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    32,
+    9,
+    12.5,
+    7.5
+   ]
+  },
+  {
+   "id": "vorhang",
+   "mot": "Vorhang",
+   "boite": [
+    73.5,
+    9,
+    17,
+    43
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "aussi": [
+    "Schaufenster"
+   ],
+   "boite": [
+    88.5,
+    9,
+    11.5,
+    44
+   ]
+  },
+  {
+   "id": "laterne",
+   "mot": "Laterne",
+   "boite": [
+    92,
+    11,
+    7,
+    28
+   ]
+  },
+  {
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "boite": [
+    84,
+    35.5,
+    16,
+    8
+   ]
+  },
+  {
+   "id": "strasse",
+   "mot": "Straße",
+   "plein": true,
+   "boite": [
+    89,
+    43,
+    11,
+    8
+   ]
+  },
+  {
+   "id": "backofen",
+   "mot": "Backofen",
+   "aussi": [
+    "Ofen"
+   ],
+   "boite": [
+    0,
+    24,
+    20,
+    33
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "plein": true,
+   "boites": [
+    [
+     17.5,
+     25,
+     49.5,
+     2
+    ],
+    [
+     20,
+     32,
+     40,
+     2
+    ],
+    [
+     21,
+     41,
+     39,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "saft",
+   "mot": "Saft",
+   "sur": "regal",
+   "aussi": [
+    "Flasche"
+   ],
+   "boite": [
+    20,
+    18,
+    13.5,
+    7.5
+   ]
+  },
+  {
+   "id": "milch",
+   "mot": "Milch",
+   "sur": "regal",
+   "aussi": [
+    "Flasche"
+   ],
+   "boite": [
+    31.5,
+    19,
+    5,
+    6.5
+   ]
+  },
+  {
+   "id": "mehl",
+   "mot": "Mehl",
+   "sur": "regal",
+   "boite": [
+    36.5,
+    19,
+    7,
+    6.5
+   ]
+  },
+  {
+   "id": "zucker",
+   "mot": "Zucker",
+   "sur": "regal",
+   "aussi": [
+    "Glas"
+   ],
+   "boite": [
+    43.5,
+    20.5,
+    7,
+    5
+   ]
+  },
+  {
+   "id": "kanne",
+   "mot": "Kanne",
+   "sur": "regal",
+   "boite": [
+    51.5,
+    19,
+    9,
+    6.5
+   ]
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "plein": true,
+   "sur": "regal",
+   "boites": [
+    [
+     49.5,
+     23,
+     5.5,
+     3
+    ],
+    [
+     58.5,
+     23,
+     7,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "brot",
+   "mot": "Brot",
+   "sur": "regal",
+   "boites": [
+    [
+     20.5,
+     28.5,
+     40,
+     5.5
+    ],
+    [
+     21,
+     35,
+     39,
+     8
+    ]
+   ]
+  },
+  {
+   "id": "broetchen-2",
+   "mot": "Brötchen",
+   "sur": "regal",
+   "boite": [
+    45,
+    43.5,
+    10,
+    5.5
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "aussi": [
+    "Verkäuferin"
+   ],
+   "boite": [
+    5,
+    32,
+    29,
+    23
+   ]
+  },
+  {
+   "id": "muetze",
+   "mot": "Mütze",
+   "boite": [
+    9,
+    31.5,
+    12,
+    5
+   ]
+  },
+  {
+   "id": "bluse",
+   "mot": "Bluse",
+   "boite": [
+    5.5,
+    41,
+    20,
+    12
+   ]
+  },
+  {
+   "id": "tuete",
+   "mot": "Tüte",
+   "boite": [
+    26,
+    43.5,
+    11.5,
+    9.5
+   ]
+  },
+  {
+   "id": "muenze",
+   "mot": "Münze",
+   "plein": true,
+   "aussi": [
+    "Geld"
+   ],
+   "boite": [
+    39,
+    45.5,
+    3.5,
+    2
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "boite": [
+    53.5,
+    32,
+    23.5,
+    57.5
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "boite": [
+    54.5,
+    41,
+    22,
+    34
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "boite": [
+    55.5,
+    42,
+    7,
+    13
+   ]
+  },
+  {
+   "id": "tasche",
+   "mot": "Tasche",
+   "boite": [
+    63,
+    55,
+    15.5,
+    9.5
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "boite": [
+    59.5,
+    69,
+    13,
+    15
+   ]
+  },
+  {
+   "id": "stiefel",
+   "mot": "Stiefel",
+   "aussi": [
+    "Schuh"
+   ],
+   "boite": [
+    54,
+    82,
+    20,
+    7.5
+   ]
+  },
+  {
+   "id": "nachbar",
+   "mot": "Nachbar",
+   "aussi": [
+    "Mann"
+   ],
+   "boite": [
+    76,
+    41.5,
+    20,
+    32.5
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    79.5,
+    44.3,
+    8,
+    2.5
+   ]
+  },
+  {
+   "id": "zeitung",
+   "mot": "Zeitung",
+   "boite": [
+    86,
+    47.5,
+    10.5,
+    7
+   ]
+  },
+  {
+   "id": "tasse-2",
+   "mot": "Tasse",
+   "sur": "tisch",
+   "aussi": [
+    "Kaffee"
+   ],
+   "boite": [
+    85,
+    54.5,
+    5.5,
+    3.5
+   ]
+  },
+  {
+   "id": "teller",
+   "mot": "Teller",
+   "sur": "tisch",
+   "boite": [
+    90.5,
+    55,
+    9,
+    3
+   ]
+  },
+  {
+   "id": "kuchen-4",
+   "mot": "Kuchen",
+   "sur": "teller",
+   "boite": [
+    92,
+    54.8,
+    6,
+    2.5
+   ]
+  },
+  {
+   "id": "blume-2",
+   "mot": "Blume",
+   "plein": true,
+   "boite": [
+    95.5,
+    50,
+    4.5,
+    5.5
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "plein": true,
+   "boites": [
+    [
+     79.5,
+     57,
+     20.5,
+     3.5
+    ],
+    [
+     88,
+     60.5,
+     5,
+     15
+    ]
+   ]
+  },
+  {
+   "id": "stock",
+   "mot": "Stock",
+   "boite": [
+    89.5,
+    57.5,
+    8.5,
+    19.5
+   ]
+  },
+  {
+   "id": "heizkoerper",
+   "mot": "Heizkörper",
+   "boite": [
+    95.5,
+    60.5,
+    4.5,
+    8.5
+   ]
+  },
+  {
+   "id": "hund",
+   "mot": "Hund",
+   "boite": [
+    73.5,
+    69.5,
+    14,
+    7.5
+   ]
+  },
+  {
+   "id": "kasse",
+   "mot": "Kasse",
+   "sur": "schalter",
+   "boite": [
+    3.5,
+    48.5,
+    17,
+    13
+   ]
+  },
+  {
+   "id": "waage",
+   "mot": "Waage",
+   "sur": "schalter",
+   "boite": [
+    19.5,
+    54,
+    9.5,
+    6.5
+   ]
+  },
+  {
+   "id": "messer",
+   "mot": "Messer",
+   "sur": "schalter",
+   "boite": [
+    25.5,
+    55,
+    12,
+    3.5
+   ]
+  },
+  {
+   "id": "karton",
+   "mot": "Karton",
+   "sur": "schalter",
+   "boite": [
+    35.5,
+    51.5,
+    17.5,
+    5.5
+   ]
+  },
+  {
+   "id": "korb",
+   "mot": "Korb",
+   "boite": [
+    34.5,
+    58,
+    20.5,
+    10
+   ]
+  },
+  {
+   "id": "broetchen",
+   "mot": "Brötchen",
+   "sur": "korb",
+   "boite": [
+    35,
+    58.5,
+    19.5,
+    7.5
+   ]
+  },
+  {
+   "id": "torte",
+   "mot": "Torte",
+   "aussi": [
+    "Kuchen"
+   ],
+   "boite": [
+    7.5,
+    65.5,
+    16,
+    7.5
+   ]
+  },
+  {
+   "id": "erdbeere",
+   "mot": "Erdbeere",
+   "sur": "torte",
+   "boite": [
+    8.5,
+    66,
+    14,
+    2.5
+   ]
+  },
+  {
+   "id": "kuchen",
+   "mot": "Kuchen",
+   "boite": [
+    23.5,
+    64.5,
+    16,
+    4.5
+   ]
+  },
+  {
+   "id": "kuchen-2",
+   "mot": "Kuchen",
+   "boite": [
+    24.5,
+    71,
+    18,
+    4.5
+   ]
+  },
+  {
+   "id": "kuchen-3",
+   "mot": "Kuchen",
+   "boite": [
+    9.5,
+    74.5,
+    15.5,
+    5
+   ]
+  },
+  {
+   "id": "brezel",
+   "mot": "Brezel",
+   "boite": [
+    41.5,
+    66.5,
+    18,
+    6.5
+   ]
+  },
+  {
+   "id": "schalter",
+   "mot": "Schalter",
+   "plein": true,
+   "boite": [
+    0,
+    55.5,
+    60,
+    42
+   ]
+  },
+  {
+   "id": "blume",
+   "mot": "Blume",
+   "boite": [
+    71.5,
+    86,
+    19,
+    14
+   ]
+  },
+  {
+   "id": "glas",
+   "mot": "Glas",
+   "boite": [
+    78.5,
+    94,
+    8,
+    6
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    82.5,
+    79,
+    17.5,
+    21
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boite": [
+    60,
+    78,
+    24,
+    22
+   ]
+  }
+ ],
+ "gros_plans": []
+}

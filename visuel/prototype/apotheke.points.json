@@ -1,0 +1,1021 @@
+{
+ "_lisez_moi": [
+  "La pharmacie (15 oct. 2026) : un matin gris, Mark, enrhume, tend son ordonnance a la pharmacienne de son quartier de Berlin, un mouchoir sur le nez ; sa carte d'assurance est posee sur le comptoir, ses medicaments deja sortis ; un vieux monsieur attend sur une chaise, les mains sur sa canne. Theme : la sante, la pharmacie, les medicaments. Scene creee a la demande de Jacques (« huit autres scenes basees sur les themes », 15 oct. 2026), construite par Fable.",
+  "Image : visuel/scenes/apotheke.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png), rendu photo. Deux textes effaces gratuitement (effacer_texte.py, apotheke-effacer.json) : le nom imprime sur la boite de pansements et l'etiquette d'expedition du carton -> apotheke-propre.png. L'ecran est sombre, l'horloge sans chiffres, la carte d'assurance unie.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Histoire des personnages : Mark seul, dans son quartier ; la pharmacienne est die Frau (die Apothekerin manque au corpus allemand), le vieux monsieur der Mann. Le comptoir est der Schalter (el mostrador, surcharge). La blouse blanche de la pharmacienne est die Jacke (der Kittel manque). Le bocal de tisane est das Glas (aussi Tee), le pot blanc das Vitamin, les boites das Medikament (aussi Schachtel), celle du comptoir aussi die Tablette, le flacon brun de sirop die Flasche (der Hustensaft manque).",
+  "SANS ZONE bien que visibles (a signaler) : la poignee de la porte, le dossier de la deuxieme chaise (presque hors cadre), le trottoir.",
+  "Mesures relues sur la grille en % du 15 oct. 2026."
+ ],
+ "image": "apotheke.webp",
+ "source": "../scenes/apotheke-propre.png",
+ "titre": "In der Apotheke",
+ "alt": "Mark, enrhumé, à la pharmacie de son quartier : un mouchoir sur le nez, il tend son ordonnance rose à la pharmacienne en blouse blanche ; sur le comptoir, un écran, un clavier, la caisse, un sachet blanc, une boîte de comprimés, un flacon de sirop, des mouchoirs, sa carte d'assurance et une plante ; sur les étagères, des boîtes de médicaments, des flacons, un bocal de tisane, un pot de vitamines, du savon, des bandages et des pansements, sous une horloge ; près de la vitrine, un vieux monsieur à la casquette attend sur une chaise, les mains sur sa canne, à côté d'une balance et d'une corbeille ; dehors, une voiture rouge ; au premier plan, un carton de livraison.",
+ "consigne": "Mark est enrhumé : il va à la pharmacie de son quartier. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Wand",
+      "am Fenster",
+      "über der Tür"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo stehen die Medikamente?",
+     "c": [
+      "im Regal",
+      "auf dem Boden",
+      "im Karton"
+     ],
+     "f": "medikament",
+     "r": "regal",
+     "phrase": "Die Medikamente stehen im Regal.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
+    },
+    {
+     "q": "Wo steht die Pflanze?",
+     "c": [
+      "auf dem Schalter",
+      "im Regal",
+      "auf dem Stuhl"
+     ],
+     "f": "pflanze",
+     "r": "schalter",
+     "phrase": "Die Pflanze steht auf dem Schalter.",
+     "n": "der Schalter → auf <b>dem</b> Schalter."
+    },
+    {
+     "q": "Wo sitzt der alte Mann?",
+     "c": [
+      "auf dem Stuhl",
+      "auf dem Boden",
+      "auf der Waage"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "Der alte Mann sitzt auf dem Stuhl.",
+     "n": "der Stuhl → auf <b>dem</b> Stuhl."
+    },
+    {
+     "q": "Wo steht die Waage?",
+     "c": [
+      "neben dem Stuhl",
+      "auf dem Schalter",
+      "im Regal"
+     ],
+     "f": "waage",
+     "r": "stuhl",
+     "phrase": "Die Waage steht neben dem Stuhl.",
+     "n": "<b>neben</b> = à côté de. der Stuhl → neben <b>dem</b> Stuhl."
+    },
+    {
+     "q": "Wo steht das Auto?",
+     "c": [
+      "auf der Straße",
+      "in der Apotheke",
+      "vor dem Regal"
+     ],
+     "f": "auto",
+     "r": "strasse",
+     "phrase": "Das Auto steht auf der Straße.",
+     "n": "die Straße → auf <b>der</b> Straße : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht der Mülleimer?",
+     "c": [
+      "neben der Tür",
+      "auf dem Schalter",
+      "im Regal"
+     ],
+     "f": "muelleimer",
+     "r": "tuer",
+     "phrase": "Der Mülleimer steht neben der Tür.",
+     "n": "die Tür → neben <b>der</b> Tür : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht der Karton?",
+     "c": [
+      "auf dem Boden",
+      "auf dem Schalter",
+      "im Regal"
+     ],
+     "f": "karton",
+     "r": "boden",
+     "phrase": "Der Karton steht auf dem Boden.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "La négation : nicht ou kein ?",
+   "qs": [
+    {
+     "q": "Mark hat ___ Fieber, nur Schnupfen.",
+     "c": [
+      "kein",
+      "nicht",
+      "keine"
+     ],
+     "f": "mark",
+     "phrase": "Mark hat kein Fieber, nur Schnupfen.",
+     "n": "<b>kein</b> nie un nom sans article : kein Fieber."
+    },
+    {
+     "q": "Die Tabletten sind ___ teuer.",
+     "c": [
+      "nicht",
+      "kein",
+      "keine"
+     ],
+     "f": "medikament-6",
+     "phrase": "Die Tabletten sind nicht teuer.",
+     "n": "<b>nicht</b> nie un adjectif : nicht teuer."
+    },
+    {
+     "q": "Mark hat ___ Zeit, zum Arzt zu gehen.",
+     "c": [
+      "keine",
+      "nicht",
+      "kein"
+     ],
+     "f": "mark",
+     "phrase": "Mark hat keine Zeit, zum Arzt zu gehen.",
+     "n": "die Zeit (féminin) → <b>keine</b> Zeit."
+    },
+    {
+     "q": "Der alte Mann wartet ___ lange.",
+     "c": [
+      "nicht",
+      "kein",
+      "keine"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "Der alte Mann wartet nicht lange.",
+     "n": "<b>nicht</b> nie un adverbe : nicht lange.",
+     "revise": "warten"
+    },
+    {
+     "q": "Mark nimmt die Tabletten ___ mit Kaffee.",
+     "c": [
+      "nicht",
+      "kein",
+      "keinen"
+     ],
+     "f": "medikament-6",
+     "phrase": "Mark nimmt die Tabletten nicht mit Kaffee.",
+     "n": "<b>nicht</b> nie le verbe ou un complément avec préposition.",
+     "revise": "nehmen"
+    },
+    {
+     "q": "Die Apothekerin hat ___ Pflaster mehr.",
+     "c": [
+      "keine",
+      "nicht",
+      "kein"
+     ],
+     "f": "pflaster",
+     "r": "frau",
+     "phrase": "Die Apothekerin hat keine Pflaster mehr.",
+     "n": "Pluriel sans article (Pflaster) → <b>keine</b>."
+    },
+    {
+     "q": "Das ist ___ mein Rezept!",
+     "c": [
+      "nicht",
+      "kein",
+      "keine"
+     ],
+     "f": "rezept",
+     "phrase": "Das ist nicht mein Rezept!",
+     "n": "Devant un possessif (mein) → <b>nicht</b>."
+    },
+    {
+     "q": "Mark hat ___ Hustensaft gekauft.",
+     "c": [
+      "keinen",
+      "nicht",
+      "kein"
+     ],
+     "f": "flasche-5",
+     "phrase": "Mark hat keinen Hustensaft gekauft.",
+     "n": "der Hustensaft, accusatif masculin → <b>keinen</b>.",
+     "revise": "kaufen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le discours rapporté : Konjunktiv I",
+   "qs": [
+    {
+     "q": "Die Apothekerin sagt, Mark ___ eine starke Erkältung.",
+     "c": [
+      "habe",
+      "hat",
+      "hätte"
+     ],
+     "f": "frau",
+     "r": "mark",
+     "phrase": "Die Apothekerin sagt, Mark habe eine starke Erkältung.",
+     "n": "Discours rapporté : Konjunktiv I de haben → <b>habe</b>.",
+     "revise": "sagen"
+    },
+    {
+     "q": "Sie sagt, er ___ die Tabletten dreimal täglich nehmen.",
+     "c": [
+      "solle",
+      "soll",
+      "sollte"
+     ],
+     "f": "medikament-6",
+     "r": "frau",
+     "phrase": "Sie sagt, er solle die Tabletten dreimal täglich nehmen.",
+     "n": "Konjunktiv I de sollen → <b>solle</b>.",
+     "revise": "nehmen"
+    },
+    {
+     "q": "Der Arzt hat gesagt, Mark ___ nicht ansteckend.",
+     "c": [
+      "sei",
+      "ist",
+      "wäre"
+     ],
+     "f": "mark",
+     "phrase": "Der Arzt hat gesagt, Mark sei nicht ansteckend.",
+     "n": "Konjunktiv I de sein → <b>sei</b>."
+    },
+    {
+     "q": "Mark sagt, er ___ seit drei Tagen Husten.",
+     "c": [
+      "habe",
+      "hat",
+      "hätte"
+     ],
+     "f": "taschentuch",
+     "r": "mark",
+     "phrase": "Mark sagt, er habe seit drei Tagen Husten.",
+     "n": "Discours rapporté : Konjunktiv I de haben → <b>habe</b>.",
+     "revise": "sagen"
+    },
+    {
+     "q": "Die Apothekerin erklärt, der Saft ___ gegen den Husten.",
+     "c": [
+      "helfe",
+      "hilft",
+      "hülfe"
+     ],
+     "f": "flasche-5",
+     "r": "frau",
+     "phrase": "Die Apothekerin erklärt, der Saft helfe gegen den Husten.",
+     "n": "Konjunktiv I : radical + <b>-e</b> → helfe.",
+     "revise": "helfen"
+    },
+    {
+     "q": "Der alte Mann sagt, er ___ schon lange hier.",
+     "c": [
+      "warte",
+      "wartet",
+      "wartete"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "Der alte Mann sagt, er warte schon lange hier.",
+     "n": "Konjunktiv I : radical + <b>-e</b> → warte.",
+     "revise": "warten"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark hält ein Taschentuch — er ___ erkältet sein.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "mark",
+     "r": "taschentuch",
+     "phrase": "Er muss erkältet sein.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der alte Mann ___ auf sein Medikament warten.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "Der alte Mann könnte auf sein Medikament warten.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Mark ___ in zwei Tagen wieder gesund sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "mark",
+     "phrase": "Mark dürfte in zwei Tagen wieder gesund sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Diese Apotheke ___ die älteste im Kiez sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "schalter",
+     "phrase": "Diese Apotheke soll die älteste im Kiez sein.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "plein": true,
+   "boites": [
+    [
+     10,
+     0.3,
+     10,
+     2.6
+    ],
+    [
+     47,
+     5.4,
+     8,
+     2
+    ],
+    [
+     86,
+     1.8,
+     6,
+     2
+    ]
+   ]
+  },
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    13
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boite": [
+    0,
+    13,
+    65,
+    20
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    12,
+    14,
+    11,
+    7.5
+   ]
+  },
+  {
+   "id": "glas",
+   "mot": "Glas",
+   "sur": "regal",
+   "aussi": [
+    "Tee"
+   ],
+   "boite": [
+    2.5,
+    19,
+    7.5,
+    6.3
+   ]
+  },
+  {
+   "id": "vitamin",
+   "mot": "Vitamin",
+   "sur": "regal",
+   "boite": [
+    12,
+    21.3,
+    5,
+    4
+   ]
+  },
+  {
+   "id": "seife",
+   "mot": "Seife",
+   "plein": true,
+   "sur": "regal",
+   "boite": [
+    24,
+    23.5,
+    5.5,
+    2
+   ]
+  },
+  {
+   "id": "verband",
+   "mot": "Verband",
+   "sur": "regal",
+   "boite": [
+    29.5,
+    21.5,
+    7,
+    3.8
+   ]
+  },
+  {
+   "id": "pflaster",
+   "mot": "Pflaster",
+   "sur": "regal",
+   "boite": [
+    35,
+    21.8,
+    10,
+    3.6
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "plein": true,
+   "boite": [
+    0,
+    24.5,
+    45.5,
+    29
+   ]
+  },
+  {
+   "id": "medikament",
+   "mot": "Medikament",
+   "sur": "regal",
+   "aussi": [
+    "Schachtel"
+   ],
+   "boite": [
+    0,
+    26.5,
+    22.5,
+    5
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "sur": "regal",
+   "boite": [
+    25,
+    26.5,
+    11,
+    4.8
+   ]
+  },
+  {
+   "id": "flasche-2",
+   "mot": "Flasche",
+   "sur": "regal",
+   "boite": [
+    35,
+    26.5,
+    10,
+    4.8
+   ]
+  },
+  {
+   "id": "medikament-2",
+   "mot": "Medikament",
+   "sur": "regal",
+   "aussi": [
+    "Schachtel"
+   ],
+   "boite": [
+    25.5,
+    32,
+    19.5,
+    5
+   ]
+  },
+  {
+   "id": "medikament-3",
+   "mot": "Medikament",
+   "sur": "regal",
+   "aussi": [
+    "Schachtel"
+   ],
+   "boite": [
+    0,
+    32.5,
+    24,
+    4.5
+   ]
+  },
+  {
+   "id": "flasche-3",
+   "mot": "Flasche",
+   "sur": "regal",
+   "boite": [
+    25,
+    36.5,
+    20,
+    5
+   ]
+  },
+  {
+   "id": "medikament-4",
+   "mot": "Medikament",
+   "sur": "regal",
+   "aussi": [
+    "Schachtel"
+   ],
+   "boite": [
+    0,
+    38,
+    24,
+    4
+   ]
+  },
+  {
+   "id": "medikament-5",
+   "mot": "Medikament",
+   "sur": "regal",
+   "aussi": [
+    "Schachtel"
+   ],
+   "boite": [
+    25.5,
+    42,
+    19.5,
+    4.5
+   ]
+  },
+  {
+   "id": "flasche-4",
+   "mot": "Flasche",
+   "sur": "regal",
+   "boite": [
+    0,
+    42.5,
+    5.5,
+    4.5
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "boite": [
+    5.5,
+    36,
+    23,
+    21
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "boite": [
+    14.5,
+    38.7,
+    6.5,
+    2.2
+   ]
+  },
+  {
+   "id": "bluse",
+   "mot": "Bluse",
+   "boite": [
+    15.5,
+    43.5,
+    6,
+    8
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "boite": [
+    5.5,
+    42,
+    19,
+    15
+   ]
+  },
+  {
+   "id": "rezept",
+   "mot": "Rezept",
+   "boite": [
+    19,
+    46.5,
+    20,
+    6
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "boite": [
+    48.5,
+    33,
+    22,
+    50
+   ]
+  },
+  {
+   "id": "schal",
+   "mot": "Schal",
+   "boite": [
+    54,
+    38.5,
+    11.5,
+    15
+   ]
+  },
+  {
+   "id": "taschentuch",
+   "mot": "Taschentuch",
+   "plein": true,
+   "boite": [
+    50,
+    40,
+    6,
+    3
+   ]
+  },
+  {
+   "id": "jacke-2",
+   "mot": "Jacke",
+   "boite": [
+    49,
+    41.5,
+    21.5,
+    22
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "plein": true,
+   "boites": [
+    [
+     59,
+     38.5,
+     11.5,
+     6.5
+    ],
+    [
+     56,
+     50,
+     4,
+     13
+    ]
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "boite": [
+    54,
+    58,
+    14.5,
+    19.5
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "aussi": [
+    "Turnschuh"
+   ],
+   "boite": [
+    50,
+    75.5,
+    16.5,
+    7.5
+   ]
+  },
+  {
+   "id": "bildschirm",
+   "mot": "Bildschirm",
+   "aussi": [
+    "Computer"
+   ],
+   "boite": [
+    0,
+    44.5,
+    9.5,
+    15
+   ]
+  },
+  {
+   "id": "tastatur",
+   "mot": "Tastatur",
+   "sur": "schalter",
+   "boite": [
+    0,
+    58,
+    11.5,
+    3
+   ]
+  },
+  {
+   "id": "kasse",
+   "mot": "Kasse",
+   "sur": "schalter",
+   "boite": [
+    11,
+    56.5,
+    9,
+    5.5
+   ]
+  },
+  {
+   "id": "tuete",
+   "mot": "Tüte",
+   "sur": "schalter",
+   "boite": [
+    20,
+    53,
+    8,
+    8
+   ]
+  },
+  {
+   "id": "medikament-6",
+   "mot": "Medikament",
+   "sur": "schalter",
+   "aussi": [
+    "Tablette",
+    "Schachtel"
+   ],
+   "boite": [
+    26,
+    54.5,
+    6,
+    4.3
+   ]
+  },
+  {
+   "id": "flasche-5",
+   "mot": "Flasche",
+   "sur": "schalter",
+   "boite": [
+    32.5,
+    53.5,
+    4.5,
+    5
+   ]
+  },
+  {
+   "id": "taschentuch-2",
+   "mot": "Taschentuch",
+   "plein": true,
+   "sur": "schalter",
+   "boite": [
+    35.5,
+    55,
+    6,
+    3
+   ]
+  },
+  {
+   "id": "karte",
+   "mot": "Karte",
+   "plein": true,
+   "sur": "schalter",
+   "aussi": [
+    "Versichertenkarte"
+   ],
+   "boite": [
+    38,
+    57,
+    5.5,
+    2
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "sur": "schalter",
+   "boite": [
+    41,
+    47,
+    9.5,
+    8
+   ]
+  },
+  {
+   "id": "schalter",
+   "mot": "Schalter",
+   "plein": true,
+   "boite": [
+    0,
+    50,
+    56,
+    36
+   ]
+  },
+  {
+   "id": "karton",
+   "mot": "Karton",
+   "boite": [
+    0,
+    77,
+    20.5,
+    23
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "plein": true,
+   "boite": [
+    65,
+    15,
+    15,
+    43
+   ]
+  },
+  {
+   "id": "muelleimer",
+   "mot": "Mülleimer",
+   "boite": [
+    68.5,
+    44,
+    9,
+    12
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "aussi": [
+    "Schaufenster"
+   ],
+   "boite": [
+    88,
+    14.5,
+    12,
+    40
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "plein": true,
+   "boite": [
+    89,
+    15,
+    11,
+    9
+   ]
+  },
+  {
+   "id": "auto",
+   "mot": "Auto",
+   "boite": [
+    88.5,
+    32.5,
+    11.5,
+    6.5
+   ]
+  },
+  {
+   "id": "strasse",
+   "mot": "Straße",
+   "plein": true,
+   "boite": [
+    88.5,
+    38.5,
+    11.5,
+    11
+   ]
+  },
+  {
+   "id": "mann",
+   "mot": "Mann",
+   "boite": [
+    69.5,
+    42.5,
+    28,
+    26
+   ]
+  },
+  {
+   "id": "muetze",
+   "mot": "Mütze",
+   "boite": [
+    84.5,
+    42.5,
+    7.5,
+    2.7
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "boite": [
+    69.5,
+    46.5,
+    27,
+    12
+   ]
+  },
+  {
+   "id": "stock",
+   "mot": "Stock",
+   "boite": [
+    74,
+    50.5,
+    6.5,
+    18.5
+   ]
+  },
+  {
+   "id": "hose-2",
+   "mot": "Hose",
+   "boite": [
+    69.5,
+    56.5,
+    14,
+    11
+   ]
+  },
+  {
+   "id": "schuh-2",
+   "mot": "Schuh",
+   "boite": [
+    74,
+    65,
+    10,
+    4
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boite": [
+    81.5,
+    54.5,
+    18.5,
+    17.5
+   ]
+  },
+  {
+   "id": "waage",
+   "mot": "Waage",
+   "boite": [
+    89.5,
+    71.5,
+    10.5,
+    6.5
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boite": [
+    20,
+    80,
+    80,
+    20
+   ]
+  }
+ ],
+ "gros_plans": []
+}

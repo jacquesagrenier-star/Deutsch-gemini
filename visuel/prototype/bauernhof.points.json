@@ -1,0 +1,948 @@
+{
+ "_lisez_moi": [
+  "La ferme (15 oct. 2026) : un matin d'automne dans la cour d'une petite ferme du Brandebourg, Anna, chez son oncle, tend une pomme au cheval par-dessus la cloture et rit ; son oncle porte une botte de paille, son petit cousin donne du grain a une poule ; vache, cochon, moutons, chat, chien, poules, oeufs, pommes, puits, maison de briques et grange. Theme : les animaux, la campagne, la nature. Scene creee a la demande de Jacques (« huit autres scenes basees sur les themes », 15 oct. 2026), construite par Fable.",
+  "Image : visuel/scenes/bauernhof.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png). Aucun texte dans l'image. DOUTE : le rendu est plus « illustration » que photo (couleurs, traits), gardee parce que tout y est net et que les objets sont bien separes.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Histoire des personnages (15 oct.) : la ferme est celle de l'ONCLE d'Anna (sa famille est allemande) ; le fermier est der Onkel (aussi der Mann), le garcon der Cousin (aussi Junge, Kind). Aucun compagnon d'Anna dans l'image ni dans les questions. Cinq Huhn, chacune sa zone (SAM detoure par le rectangle englobant : des boites eloignees d'une meme zone attraperaient la cour). Le bidon de lait est die Kanne (aussi Milch) ; le puits der Brunnen (el pozo en espagnol, surcharge). SANS ZONE bien que visibles (a signaler) : la botte de paille (Stroh manque au corpus allemand), le sac brun (der Sack : el saco manque au corpus espagnol), les clotures (Zaun manque), la grange (Scheune manque), la cheminee (Schornstein manque), les poteaux. Le soleil n'est pas dans le cadre.",
+  "Mesures relues sur la grille en % du 15 oct. 2026."
+ ],
+ "image": "bauernhof.webp",
+ "source": "../scenes/bauernhof.png",
+ "titre": "Auf dem Bauernhof",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache broute dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo sitzt die Katze?",
+     "c": [
+      "auf der Mauer",
+      "auf dem Dach",
+      "im Korb"
+     ],
+     "f": "katze",
+     "r": "mauer",
+     "phrase": "Die Katze sitzt auf der Mauer.",
+     "n": "die Mauer → auf <b>der</b> Mauer : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo liegt der Hund?",
+     "c": [
+      "auf dem Boden",
+      "im Haus",
+      "auf der Bank"
+     ],
+     "f": "hund",
+     "r": "boden",
+     "phrase": "Der Hund liegt auf dem Boden.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    },
+    {
+     "q": "Wo sind die Eier?",
+     "c": [
+      "im Korb",
+      "in der Kiste",
+      "auf der Mauer"
+     ],
+     "f": "ei",
+     "r": "korb",
+     "phrase": "Die Eier sind im Korb.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
+    },
+    {
+     "q": "Wo steht die Leiter?",
+     "c": [
+      "neben dem Holz",
+      "auf dem Dach",
+      "im Haus"
+     ],
+     "f": "leiter",
+     "r": "holz",
+     "phrase": "Die Leiter steht neben dem Holz.",
+     "n": "<b>neben</b> = à côté de. das Holz → neben <b>dem</b> Holz."
+    },
+    {
+     "q": "Wo sitzt der Vogel?",
+     "c": [
+      "auf dem Dach",
+      "im Korb",
+      "auf der Bank"
+     ],
+     "f": "vogel",
+     "phrase": "Der Vogel sitzt auf dem Dach.",
+     "n": "das Dach → auf <b>dem</b> Dach."
+    },
+    {
+     "q": "Wo liegen die Äpfel?",
+     "c": [
+      "in der Kiste",
+      "im Korb",
+      "auf der Bank"
+     ],
+     "f": "apfel-3",
+     "r": "kiste",
+     "phrase": "Die Äpfel liegen in der Kiste.",
+     "n": "die Kiste → in <b>der</b> Kiste : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht die Kuh?",
+     "c": [
+      "auf der Wiese",
+      "im Haus",
+      "hinter dem Baum"
+     ],
+     "f": "kuh",
+     "phrase": "Die Kuh steht auf der Wiese.",
+     "n": "die Wiese → auf <b>der</b> Wiese : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo hängt der Eimer?",
+     "c": [
+      "am Brunnen",
+      "an der Leiter",
+      "im Baum"
+     ],
+     "f": "eimer",
+     "r": "brunnen",
+     "phrase": "Der Eimer hängt am Brunnen.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Brunnen → am Brunnen."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les verbes pronominaux",
+   "qs": [
+    {
+     "q": "Anna freut ___ über das Pferd.",
+     "c": [
+      "sich",
+      "sie",
+      "ihr"
+     ],
+     "f": "anna",
+     "r": "pferd",
+     "phrase": "Anna freut sich über das Pferd.",
+     "n": "<b>sich freuen</b> : à la 3e personne, le pronom est <b>sich</b>.",
+     "revise": "sich freuen"
+    },
+    {
+     "q": "Der Hund legt ___ auf den Boden.",
+     "c": [
+      "sich",
+      "ihn",
+      "sein"
+     ],
+     "f": "hund",
+     "r": "boden",
+     "phrase": "Der Hund legt sich auf den Boden.",
+     "n": "<b>sich legen</b> = se coucher ; er → <b>sich</b>.",
+     "revise": "sich legen"
+    },
+    {
+     "q": "Die Katze setzt ___ auf die Mauer.",
+     "c": [
+      "sich",
+      "sie",
+      "es"
+     ],
+     "f": "katze",
+     "r": "mauer",
+     "phrase": "Die Katze setzt sich auf die Mauer.",
+     "n": "<b>sich setzen</b> = s'asseoir ; sie → <b>sich</b>.",
+     "revise": "sich setzen"
+    },
+    {
+     "q": "Ich wasche ___ nach der Arbeit.",
+     "c": [
+      "mich",
+      "mir",
+      "sich"
+     ],
+     "f": "onkel",
+     "phrase": "Ich wasche mich nach der Arbeit.",
+     "n": "<b>sich waschen</b> : ich → <b>mich</b> (accusatif)."
+    },
+    {
+     "q": "Wir setzen ___ auf die Bank.",
+     "c": [
+      "uns",
+      "sich",
+      "wir"
+     ],
+     "f": "bank",
+     "phrase": "Wir setzen uns auf die Bank.",
+     "n": "wir → <b>uns</b>.",
+     "revise": "sich setzen"
+    },
+    {
+     "q": "Erinnerst du ___ an den Bauernhof?",
+     "c": [
+      "dich",
+      "dir",
+      "sich"
+     ],
+     "f": "haus",
+     "phrase": "Erinnerst du dich an den Bauernhof?",
+     "n": "<b>sich erinnern an</b> : du → <b>dich</b>.",
+     "revise": "sich erinnern"
+    },
+    {
+     "q": "Annas Cousin wäscht ___ die Hände.",
+     "c": [
+      "sich",
+      "ihn",
+      "ihm"
+     ],
+     "f": "cousin",
+     "phrase": "Annas Cousin wäscht sich die Hände.",
+     "n": "Avec un complément (die Hände), le pronom est au datif — mais à la 3e personne, c'est toujours <b>sich</b>."
+    },
+    {
+     "q": "Die Hühner bewegen ___ schnell.",
+     "c": [
+      "sich",
+      "sie",
+      "ihnen"
+     ],
+     "f": "huhn-2",
+     "phrase": "Die Hühner bewegen sich schnell.",
+     "n": "<b>sich bewegen</b> : sie (pluriel) → <b>sich</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les subordonnées de temps : bevor, nachdem, seit, bis",
+   "qs": [
+    {
+     "q": "___ Anna das Pferd füttert, wäscht sie die Äpfel.",
+     "c": [
+      "Bevor",
+      "Nachdem",
+      "Dass"
+     ],
+     "f": "anna",
+     "r": "pferd",
+     "phrase": "Bevor Anna das Pferd füttert, wäscht sie die Äpfel.",
+     "n": "<b>bevor</b> = avant que : l'action de la subordonnée vient après.",
+     "revise": "füttern"
+    },
+    {
+     "q": "Nachdem ihr Onkel das Stroh geholt ___, füttert er das Schwein.",
+     "c": [
+      "hat",
+      "hatte",
+      "ist"
+     ],
+     "f": "onkel",
+     "r": "schwein",
+     "phrase": "Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.",
+     "n": "<b>nachdem</b> + Perfekt dans la subordonnée quand la principale est au présent.",
+     "revise": "holen"
+    },
+    {
+     "q": "___ einem Jahr lebt der Hund auf dem Bauernhof.",
+     "c": [
+      "Seit",
+      "Vor",
+      "Bis"
+     ],
+     "f": "hund",
+     "phrase": "Seit einem Jahr lebt der Hund auf dem Bauernhof.",
+     "n": "<b>seit</b> + datif = depuis, et ça continue (présent).",
+     "revise": "leben"
+    },
+    {
+     "q": "Die Katze schläft, nachdem sie ___.",
+     "c": [
+      "gefressen hat",
+      "frisst",
+      "fressen"
+     ],
+     "f": "katze",
+     "phrase": "Die Katze schläft, nachdem sie gefressen hat.",
+     "n": "<b>nachdem</b> : l'action d'avant au Perfekt, verbe conjugué à la fin.",
+     "revise": "fressen"
+    },
+    {
+     "q": "Seit Anna auf dem Bauernhof ___, steht sie früh auf.",
+     "c": [
+      "arbeitet",
+      "arbeiten",
+      "gearbeitet"
+     ],
+     "f": "anna",
+     "phrase": "Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.",
+     "n": "<b>seit</b> + subordonnée : le verbe conjugué va à la fin.",
+     "revise": "arbeiten"
+    },
+    {
+     "q": "Der Hund wartet, ___ Anna ihn ruft.",
+     "c": [
+      "bis",
+      "dass",
+      "ob"
+     ],
+     "f": "hund",
+     "r": "anna",
+     "phrase": "Der Hund wartet, bis Anna ihn ruft.",
+     "n": "<b>bis</b> = jusqu'à ce que, verbe à la fin.",
+     "revise": "warten"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna lacht — das Pferd ___ sehr lieb sein.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "pferd",
+     "r": "anna",
+     "phrase": "Das Pferd muss sehr lieb sein.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der Hund ___ Annas Cousin gehören.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "hund",
+     "r": "cousin",
+     "phrase": "Der Hund könnte Annas Cousin gehören.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Die Eier ___ von heute Morgen sein.",
+     "c": [
+      "dürften",
+      "sollen",
+      "mögen"
+     ],
+     "f": "ei",
+     "r": "korb",
+     "phrase": "Die Eier dürften von heute Morgen sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Der Bauernhof ___ über hundert Jahre alt sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "haus",
+     "phrase": "Der Bauernhof soll über hundert Jahre alt sein.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "himmel",
+   "mot": "Himmel",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    15
+   ]
+  },
+  {
+   "id": "wolke",
+   "mot": "Wolke",
+   "plein": true,
+   "boites": [
+    [
+     28,
+     1,
+     17,
+     5
+    ],
+    [
+     60,
+     3.5,
+     12,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "vogel",
+   "mot": "Vogel",
+   "plein": true,
+   "boite": [
+    1,
+    5.8,
+    4,
+    2.2
+   ]
+  },
+  {
+   "id": "wald",
+   "mot": "Wald",
+   "plein": true,
+   "boite": [
+    33,
+    14.5,
+    28,
+    4
+   ]
+  },
+  {
+   "id": "feld",
+   "mot": "Feld",
+   "plein": true,
+   "boite": [
+    32,
+    19,
+    21,
+    5
+   ]
+  },
+  {
+   "id": "wiese",
+   "mot": "Wiese",
+   "plein": true,
+   "boite": [
+    22,
+    22,
+    30,
+    12
+   ]
+  },
+  {
+   "id": "schaf",
+   "mot": "Schaf",
+   "boites": [
+    [
+     28,
+     27.5,
+     6.5,
+     3.5
+    ],
+    [
+     37.5,
+     26.5,
+     7.5,
+     3
+    ],
+    [
+     31.5,
+     26,
+     4,
+     2.5
+    ]
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "boite": [
+    10,
+    4.5,
+    31,
+    22.5
+   ]
+  },
+  {
+   "id": "dach",
+   "mot": "Dach",
+   "boite": [
+    48,
+    7,
+    52,
+    19
+   ]
+  },
+  {
+   "id": "haus",
+   "mot": "Haus",
+   "plein": true,
+   "boite": [
+    48,
+    7,
+    52,
+    33
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boites": [
+    [
+     53,
+     27.5,
+     10.5,
+     7
+    ],
+    [
+     64,
+     27.5,
+     10,
+     7
+    ]
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "boite": [
+    80,
+    27.5,
+    6.5,
+    11
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    91.5,
+    28,
+    3.5,
+    2.8
+   ]
+  },
+  {
+   "id": "holz",
+   "mot": "Holz",
+   "boite": [
+    0,
+    29,
+    8.5,
+    20
+   ]
+  },
+  {
+   "id": "leiter",
+   "mot": "Leiter",
+   "boite": [
+    13.5,
+    23,
+    12,
+    17
+   ]
+  },
+  {
+   "id": "kuerbis",
+   "mot": "Kürbis",
+   "boite": [
+    3.5,
+    38.5,
+    11,
+    4.5
+   ]
+  },
+  {
+   "id": "katze",
+   "mot": "Katze",
+   "sur": "mauer",
+   "boite": [
+    25.5,
+    31,
+    5,
+    3.5
+   ]
+  },
+  {
+   "id": "mauer",
+   "mot": "Mauer",
+   "boite": [
+    24,
+    33.5,
+    9.5,
+    5.5
+   ]
+  },
+  {
+   "id": "bank",
+   "mot": "Bank",
+   "boite": [
+    56.5,
+    36,
+    13,
+    4
+   ]
+  },
+  {
+   "id": "blume",
+   "mot": "Blume",
+   "boites": [
+    [
+     51.5,
+     34.5,
+     3.5,
+     3
+    ],
+    [
+     72.5,
+     36,
+     4,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "brunnen",
+   "mot": "Brunnen",
+   "boite": [
+    80.5,
+    34.5,
+    19,
+    13
+   ]
+  },
+  {
+   "id": "eimer",
+   "mot": "Eimer",
+   "boite": [
+    87.5,
+    40.5,
+    3.5,
+    2.5
+   ]
+  },
+  {
+   "id": "onkel",
+   "mot": "Onkel",
+   "aussi": [
+    "Mann"
+   ],
+   "boite": [
+    68.5,
+    38.5,
+    12.5,
+    23
+   ]
+  },
+  {
+   "id": "muetze",
+   "mot": "Mütze",
+   "boite": [
+    70,
+    38.7,
+    5,
+    2.6
+   ]
+  },
+  {
+   "id": "hemd",
+   "mot": "Hemd",
+   "boite": [
+    68.5,
+    41.5,
+    12,
+    6
+   ]
+  },
+  {
+   "id": "kuh",
+   "mot": "Kuh",
+   "boite": [
+    26,
+    41,
+    21.5,
+    12
+   ]
+  },
+  {
+   "id": "gras",
+   "mot": "Gras",
+   "plein": true,
+   "boites": [
+    [
+     47,
+     42,
+     18,
+     7
+    ],
+    [
+     21,
+     38.5,
+     10,
+     5
+    ]
+   ]
+  },
+  {
+   "id": "pferd",
+   "mot": "Pferd",
+   "boite": [
+    0,
+    45.5,
+    34.5,
+    23
+   ]
+  },
+  {
+   "id": "schwein",
+   "mot": "Schwein",
+   "boite": [
+    82.5,
+    54.5,
+    17.5,
+    9
+   ]
+  },
+  {
+   "id": "cousin",
+   "mot": "Cousin",
+   "aussi": [
+    "Junge",
+    "Kind"
+   ],
+   "boite": [
+    75.5,
+    62.5,
+    15,
+    12.5
+   ]
+  },
+  {
+   "id": "hut",
+   "mot": "Hut",
+   "boite": [
+    77.5,
+    62.5,
+    9,
+    4
+   ]
+  },
+  {
+   "id": "huhn",
+   "mot": "Huhn",
+   "boite": [
+    65.5,
+    67,
+    11,
+    7
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "boite": [
+    41.5,
+    45.5,
+    20,
+    36.5
+   ]
+  },
+  {
+   "id": "hemd-2",
+   "mot": "Hemd",
+   "boite": [
+    42,
+    50.5,
+    19,
+    15
+   ]
+  },
+  {
+   "id": "t-shirt",
+   "mot": "T-Shirt",
+   "boite": [
+    46,
+    54.5,
+    6.5,
+    8.5
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "boite": [
+    44,
+    62.5,
+    14.5,
+    11.5
+   ]
+  },
+  {
+   "id": "stiefel",
+   "mot": "Stiefel",
+   "boite": [
+    44,
+    72,
+    15.5,
+    10.5
+   ]
+  },
+  {
+   "id": "apfel",
+   "mot": "Apfel",
+   "boite": [
+    32,
+    56.5,
+    4.5,
+    3
+   ]
+  },
+  {
+   "id": "apfel-2",
+   "mot": "Apfel",
+   "boite": [
+    48.5,
+    54.8,
+    4.5,
+    3
+   ]
+  },
+  {
+   "id": "apfel-3",
+   "mot": "Apfel",
+   "sur": "kiste",
+   "boite": [
+    17,
+    74.5,
+    19,
+    5
+   ]
+  },
+  {
+   "id": "kiste",
+   "mot": "Kiste",
+   "boite": [
+    17,
+    74,
+    19.5,
+    9.5
+   ]
+  },
+  {
+   "id": "kanne",
+   "mot": "Kanne",
+   "aussi": [
+    "Milch"
+   ],
+   "boite": [
+    3.5,
+    74.5,
+    14,
+    14.5
+   ]
+  },
+  {
+   "id": "korb",
+   "mot": "Korb",
+   "boite": [
+    8,
+    83,
+    17.5,
+    12
+   ]
+  },
+  {
+   "id": "ei",
+   "mot": "Ei",
+   "sur": "korb",
+   "boite": [
+    9.5,
+    87,
+    15,
+    3.5
+   ]
+  },
+  {
+   "id": "ei-2",
+   "mot": "Ei",
+   "boite": [
+    25,
+    93.5,
+    4.5,
+    2.5
+   ]
+  },
+  {
+   "id": "huhn-2",
+   "mot": "Huhn",
+   "boite": [
+    20.5,
+    80,
+    13,
+    9
+   ]
+  },
+  {
+   "id": "huhn-3",
+   "mot": "Huhn",
+   "boite": [
+    32,
+    79,
+    10.5,
+    8.5
+   ]
+  },
+  {
+   "id": "huhn-4",
+   "mot": "Huhn",
+   "boite": [
+    43.5,
+    82,
+    10,
+    7.5
+   ]
+  },
+  {
+   "id": "huhn-5",
+   "mot": "Huhn",
+   "boite": [
+    33,
+    87,
+    14.5,
+    7
+   ]
+  },
+  {
+   "id": "hund",
+   "mot": "Hund",
+   "boite": [
+    63.5,
+    78,
+    36.5,
+    14
+   ]
+  },
+  {
+   "id": "wasser",
+   "mot": "Wasser",
+   "plein": true,
+   "boite": [
+    51,
+    93,
+    22,
+    5.5
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boite": [
+    25,
+    83,
+    40,
+    17
+   ]
+  }
+ ],
+ "gros_plans": []
+}

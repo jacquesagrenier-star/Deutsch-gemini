@@ -1,0 +1,969 @@
+{
+ "_lisez_moi": [
+  "L'hotel (15 oct. 2026) : un vendredi soir, Mark arrive a l'hotel ou il passe le week-end, a Hambourg (il voyage en Allemagne) ; le receptionniste lui tend la cle de sa chambre, Mark la prend, son passeport dans l'autre main ; sa valise et son sac a dos a cote de lui ; une vieille dame lit le journal sur le canape. Theme : voyager, l'hotel, les horaires. Scene creee a la demande de Jacques (« huit autres scenes basees sur les themes », 15 oct. 2026), construite par Fable.",
+  "Image : visuel/scenes/hotel.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png), rendu photo. Aucun texte lisible (journal et fiche a lignes grises, etiquette de cle unie, horloge sans chiffres).",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Histoire des personnages : Mark seul, en voyage en Allemagne ; le receptionniste est der Mann, la cliente die Frau. Le comptoir est die Rezeption. Deux Koffer (la grise de Mark, la brune de la dame). Les cles du tableau et celle de la main de Mark sont der Schluessel. Le canape bas est der Couchtisch (aussi Tisch). Le lampadaire est die Lampe (aussi Stehlampe). Le tableau du voilier est das Bild (aussi Gemaelde).",
+  "SANS ZONE bien que visibles (a signaler) : le porte-parapluie en laiton (pas de mot), le presentoir en bois des prospectus (on touche les prospectus), la soucoupe de la tasse, la rampe de l'escalier, le gilet du receptionniste.",
+  "Mesures relues sur la grille en % du 15 oct. 2026."
+ ],
+ "image": "hotel.webp",
+ "source": "../scenes/hotel.png",
+ "titre": "Im Hotel",
+ "alt": "Mark arrive à son hôtel à Hambourg, un vendredi soir : le réceptionniste en costume lui tend la clé de sa chambre par-dessus le comptoir, Mark la prend, son passeport dans l'autre main ; sa valise grise et son sac à dos sont à côté de lui ; sur le comptoir, un écran, un téléphone, une sonnette, des prospectus, une fiche et un stylo, une plante ; au mur, un tableau de clés, une horloge, l'ascenseur ; au fond, l'escalier au tapis rouge, une fenêtre au rideau vert, un parapluie ; dans le coin salon, une vieille dame lit le journal sur le canapé vert, près d'une table basse avec un café et des fleurs, d'un lampadaire, d'un miroir, d'un tableau de voilier et d'une petite valise brune.",
+ "consigne": "Mark passe le week-end à Hambourg : il arrive à son hôtel. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Wand",
+      "am Fenster",
+      "über der Tür"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo hängen die Schlüssel?",
+     "c": [
+      "im Regal",
+      "an der Tür",
+      "auf dem Sofa"
+     ],
+     "f": "schluessel",
+     "r": "regal",
+     "phrase": "Die Schlüssel hängen im Regal.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
+    },
+    {
+     "q": "Wo steht der Koffer?",
+     "c": [
+      "auf dem Boden",
+      "auf dem Sofa",
+      "auf der Treppe"
+     ],
+     "f": "koffer",
+     "r": "boden",
+     "phrase": "Der Koffer steht auf dem Boden.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    },
+    {
+     "q": "Wo sitzt die Frau?",
+     "c": [
+      "auf dem Sofa",
+      "auf der Treppe",
+      "im Aufzug"
+     ],
+     "f": "frau",
+     "r": "sofa",
+     "phrase": "Die Frau sitzt auf dem Sofa.",
+     "n": "das Sofa → auf <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo steht die Tasse?",
+     "c": [
+      "auf dem Couchtisch",
+      "auf der Rezeption",
+      "im Regal"
+     ],
+     "f": "tasse",
+     "r": "couchtisch",
+     "phrase": "Die Tasse steht auf dem Couchtisch.",
+     "n": "der Couchtisch → auf <b>dem</b> Couchtisch."
+    },
+    {
+     "q": "Wo steht die Klingel?",
+     "c": [
+      "auf der Rezeption",
+      "im Regal",
+      "auf dem Sofa"
+     ],
+     "f": "klingel",
+     "r": "rezeption",
+     "phrase": "Die Klingel steht auf der Rezeption.",
+     "n": "die Rezeption → auf <b>der</b> Rezeption : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo hängt das Bild?",
+     "c": [
+      "über dem Sofa",
+      "neben der Uhr",
+      "im Aufzug"
+     ],
+     "f": "bild",
+     "r": "sofa",
+     "phrase": "Das Bild hängt über dem Sofa.",
+     "n": "<b>über</b> = au-dessus de. das Sofa → über <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo steht die Lampe?",
+     "c": [
+      "neben dem Spiegel",
+      "auf der Treppe",
+      "vor dem Aufzug"
+     ],
+     "f": "lampe",
+     "r": "spiegel",
+     "phrase": "Die Lampe steht neben dem Spiegel.",
+     "n": "<b>neben</b> = à côté de. der Spiegel → neben <b>dem</b> Spiegel."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les prépositions de temps : am, um, im, von … bis, ab, nach",
+   "qs": [
+    {
+     "q": "Das Frühstück gibt es ___ sieben Uhr.",
+     "c": [
+      "ab",
+      "am",
+      "im"
+     ],
+     "f": "tasse",
+     "phrase": "Das Frühstück gibt es ab sieben Uhr.",
+     "n": "<b>ab</b> + heure = à partir de."
+    },
+    {
+     "q": "Mark kommt ___ Freitagabend an.",
+     "c": [
+      "am",
+      "um",
+      "im"
+     ],
+     "f": "mark",
+     "phrase": "Mark kommt am Freitagabend an.",
+     "n": "<b>am</b> + jour ou moment de la journée : am Freitagabend.",
+     "revise": "ankommen"
+    },
+    {
+     "q": "Er bleibt ___ Sonntag.",
+     "c": [
+      "bis",
+      "um",
+      "ab"
+     ],
+     "f": "koffer",
+     "r": "mark",
+     "phrase": "Er bleibt bis Sonntag.",
+     "n": "<b>bis</b> + jour = jusqu'à.",
+     "revise": "bleiben"
+    },
+    {
+     "q": "Das Zimmer ist ___ drei Uhr fertig.",
+     "c": [
+      "um",
+      "am",
+      "im"
+     ],
+     "f": "schluessel-2",
+     "phrase": "Das Zimmer ist um drei Uhr fertig.",
+     "n": "<b>um</b> + heure précise."
+    },
+    {
+     "q": "___ Winter ist das Hotel ruhig.",
+     "c": [
+      "Im",
+      "Am",
+      "Um"
+     ],
+     "f": "fenster",
+     "phrase": "Im Winter ist das Hotel ruhig.",
+     "n": "<b>im</b> + saison ou mois : im Winter."
+    },
+    {
+     "q": "Die Rezeption ist von sieben ___ dreiundzwanzig Uhr besetzt.",
+     "c": [
+      "bis",
+      "zu",
+      "nach"
+     ],
+     "f": "rezeption",
+     "phrase": "Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.",
+     "n": "<b>von … bis</b> = de… à."
+    },
+    {
+     "q": "___ dem Frühstück geht Mark in die Stadt.",
+     "c": [
+      "Nach",
+      "Ab",
+      "Um"
+     ],
+     "f": "mark",
+     "phrase": "Nach dem Frühstück geht Mark in die Stadt.",
+     "n": "<b>nach</b> + datif = après : nach dem Frühstück.",
+     "revise": "gehen"
+    },
+    {
+     "q": "Die Frau liest ___ Abend Zeitung.",
+     "c": [
+      "am",
+      "um",
+      "im"
+     ],
+     "f": "zeitung",
+     "r": "frau",
+     "phrase": "Die Frau liest am Abend Zeitung.",
+     "n": "<b>am</b> Abend, am Morgen : les moments de la journée.",
+     "revise": "lesen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les subordonnées de temps : während, solange, sobald",
+   "qs": [
+    {
+     "q": "___ Mark auf den Schlüssel wartet, liest die Frau Zeitung.",
+     "c": [
+      "Während",
+      "Sobald",
+      "Bis"
+     ],
+     "f": "mark",
+     "r": "frau",
+     "phrase": "Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.",
+     "n": "<b>während</b> = pendant que (deux actions en même temps), verbe à la fin.",
+     "revise": "warten"
+    },
+    {
+     "q": "___ Mark den Schlüssel hat, geht er auf sein Zimmer.",
+     "c": [
+      "Sobald",
+      "Während",
+      "Bevor"
+     ],
+     "f": "schluessel-2",
+     "r": "mark",
+     "phrase": "Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.",
+     "n": "<b>sobald</b> = dès que.",
+     "revise": "gehen"
+    },
+    {
+     "q": "Die Frau bleibt im Hotel, ___ es regnet.",
+     "c": [
+      "solange",
+      "sobald",
+      "bis"
+     ],
+     "f": "frau",
+     "phrase": "Die Frau bleibt im Hotel, solange es regnet.",
+     "n": "<b>solange</b> = tant que.",
+     "revise": "regnen"
+    },
+    {
+     "q": "Der Mann lächelt, während er Mark den Schlüssel ___.",
+     "c": [
+      "gibt",
+      "gab",
+      "geben"
+     ],
+     "f": "mann",
+     "r": "schluessel-2",
+     "phrase": "Der Mann lächelt, während er Mark den Schlüssel gibt.",
+     "n": "Après <b>während</b>, le verbe conjugué va à la fin : gibt.",
+     "revise": "geben"
+    },
+    {
+     "q": "Sobald das Zimmer fertig ___, ruft die Rezeption an.",
+     "c": [
+      "ist",
+      "sein",
+      "wird"
+     ],
+     "f": "telefon",
+     "phrase": "Sobald das Zimmer fertig ist, ruft die Rezeption an.",
+     "n": "<b>sobald</b> + présent, verbe à la fin : ist.",
+     "revise": "anrufen"
+    },
+    {
+     "q": "Solange der Aufzug kaputt ist, ___ die Gäste die Treppe.",
+     "c": [
+      "nehmen",
+      "nimmt",
+      "nehmt"
+     ],
+     "f": "treppe",
+     "r": "aufzug",
+     "phrase": "Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.",
+     "n": "Après la subordonnée, la principale commence par le verbe, puis le sujet (die Gäste → nehmen).",
+     "revise": "nehmen"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark lächelt — er ___ sich auf das Wochenende freuen.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "mark",
+     "phrase": "Er muss sich auf das Wochenende freuen.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Die alte Dame ___ Stammgast sein.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "frau",
+     "r": "sofa",
+     "phrase": "Die alte Dame könnte Stammgast sein.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Das Zimmer ___ im zweiten Stock liegen.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "treppe",
+     "phrase": "Das Zimmer dürfte im zweiten Stock liegen.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Dieses Hotel ___ das älteste in Hamburg sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "rezeption",
+     "phrase": "Dieses Hotel soll das älteste in Hamburg sein.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    9
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     9,
+     22,
+     24
+    ],
+    [
+     22,
+     9,
+     30,
+     15
+    ],
+    [
+     70,
+     9,
+     30,
+     20
+    ]
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    0,
+    18,
+    11,
+    8
+   ]
+  },
+  {
+   "id": "schluessel",
+   "mot": "Schlüssel",
+   "plein": true,
+   "sur": "regal",
+   "boites": [
+    [
+     1,
+     28.5,
+     3,
+     2.5
+    ],
+    [
+     10.5,
+     28.5,
+     3,
+     2.5
+    ],
+    [
+     15.5,
+     28.5,
+     3,
+     2.5
+    ],
+    [
+     6,
+     33.5,
+     3.5,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "plein": true,
+   "boite": [
+    0,
+    27,
+    20.5,
+    11.5
+   ]
+  },
+  {
+   "id": "aufzug",
+   "mot": "Aufzug",
+   "plein": true,
+   "boite": [
+    23,
+    23.5,
+    20.5,
+    27
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    51,
+    9.5,
+    12.5,
+    19
+   ]
+  },
+  {
+   "id": "vorhang",
+   "mot": "Vorhang",
+   "boite": [
+    62,
+    9.5,
+    8.5,
+    22
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    53.5,
+    22.5,
+    7,
+    4.5
+   ]
+  },
+  {
+   "id": "pflanze-2",
+   "mot": "Pflanze",
+   "boite": [
+    63.5,
+    24.5,
+    7,
+    9
+   ]
+  },
+  {
+   "id": "treppe",
+   "mot": "Treppe",
+   "boite": [
+    59.5,
+    31,
+    18,
+    14
+   ]
+  },
+  {
+   "id": "bild-2",
+   "mot": "Bild",
+   "boite": [
+    69.5,
+    15.3,
+    3,
+    6.5
+   ]
+  },
+  {
+   "id": "bild",
+   "mot": "Bild",
+   "aussi": [
+    "Gemälde"
+   ],
+   "boite": [
+    89.5,
+    24.5,
+    10.5,
+    15
+   ]
+  },
+  {
+   "id": "spiegel",
+   "mot": "Spiegel",
+   "boite": [
+    80,
+    24,
+    7,
+    28
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "plein": true,
+   "aussi": [
+    "Stehlampe"
+   ],
+   "boites": [
+    [
+     79,
+     29,
+     11,
+     8
+    ],
+    [
+     83,
+     37,
+     2.5,
+     9
+    ]
+   ]
+  },
+  {
+   "id": "regenschirm",
+   "mot": "Regenschirm",
+   "boite": [
+    43.5,
+    36,
+    7,
+    8
+   ]
+  },
+  {
+   "id": "mann",
+   "mot": "Mann",
+   "boite": [
+    0,
+    29,
+    27.5,
+    30
+   ]
+  },
+  {
+   "id": "hemd",
+   "mot": "Hemd",
+   "plein": true,
+   "boite": [
+    11,
+    36.5,
+    5,
+    4
+   ]
+  },
+  {
+   "id": "krawatte",
+   "mot": "Krawatte",
+   "boite": [
+    12,
+    39,
+    6,
+    6.5
+   ]
+  },
+  {
+   "id": "anzug",
+   "mot": "Anzug",
+   "boite": [
+    0,
+    36,
+    24,
+    23
+   ]
+  },
+  {
+   "id": "bildschirm",
+   "mot": "Bildschirm",
+   "aussi": [
+    "Computer"
+   ],
+   "boite": [
+    18,
+    41,
+    13,
+    13
+   ]
+  },
+  {
+   "id": "tastatur",
+   "mot": "Tastatur",
+   "plein": true,
+   "sur": "rezeption",
+   "boite": [
+    21.5,
+    49.5,
+    12,
+    3
+   ]
+  },
+  {
+   "id": "maus",
+   "mot": "Maus",
+   "plein": true,
+   "sur": "rezeption",
+   "boite": [
+    35,
+    51,
+    5,
+    3
+   ]
+  },
+  {
+   "id": "schluessel-2",
+   "mot": "Schlüssel",
+   "plein": true,
+   "boite": [
+    33,
+    43.5,
+    4.5,
+    3.5
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "boite": [
+    47.5,
+    32,
+    23,
+    46
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "plein": true,
+   "boite": [
+    55.5,
+    40,
+    6,
+    6
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "boite": [
+    47.5,
+    39,
+    22,
+    34.5
+   ]
+  },
+  {
+   "id": "pass",
+   "mot": "Pass",
+   "plein": true,
+   "boite": [
+    46.5,
+    48.5,
+    6,
+    4.5
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "boite": [
+    49.5,
+    63,
+    11,
+    13.5
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    46.5,
+    74.5,
+    15,
+    3.5
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "sur": "koffer",
+   "boite": [
+    59.5,
+    55.5,
+    18,
+    15.5
+   ]
+  },
+  {
+   "id": "koffer",
+   "mot": "Koffer",
+   "boite": [
+    59.5,
+    69,
+    20,
+    19.5
+   ]
+  },
+  {
+   "id": "koffer-2",
+   "mot": "Koffer",
+   "boite": [
+    83.5,
+    59,
+    15.5,
+    8
+   ]
+  },
+  {
+   "id": "sofa",
+   "mot": "Sofa",
+   "boite": [
+    68.5,
+    42,
+    31.5,
+    17.5
+   ]
+  },
+  {
+   "id": "kissen",
+   "mot": "Kissen",
+   "sur": "sofa",
+   "boite": [
+    72.5,
+    45,
+    8,
+    4
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "boite": [
+    76.5,
+    43,
+    23.5,
+    18
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "plein": true,
+   "boite": [
+    92,
+    44,
+    4.5,
+    1.6
+   ]
+  },
+  {
+   "id": "zeitung",
+   "mot": "Zeitung",
+   "boite": [
+    76.5,
+    45.5,
+    10,
+    8
+   ]
+  },
+  {
+   "id": "mantel-2",
+   "mot": "Mantel",
+   "boite": [
+    87.5,
+    46.5,
+    12.5,
+    9
+   ]
+  },
+  {
+   "id": "blume",
+   "mot": "Blume",
+   "boite": [
+    73.5,
+    40,
+    9,
+    5
+   ]
+  },
+  {
+   "id": "glas",
+   "mot": "Glas",
+   "plein": true,
+   "boite": [
+    76.5,
+    44.5,
+    4,
+    4
+   ]
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "plein": true,
+   "sur": "couchtisch",
+   "aussi": [
+    "Kaffee"
+   ],
+   "boite": [
+    68.5,
+    51.5,
+    5,
+    3
+   ]
+  },
+  {
+   "id": "couchtisch",
+   "mot": "Couchtisch",
+   "plein": true,
+   "aussi": [
+    "Tisch"
+   ],
+   "boite": [
+    67.5,
+    52.5,
+    9.5,
+    4
+   ]
+  },
+  {
+   "id": "klingel",
+   "mot": "Klingel",
+   "sur": "rezeption",
+   "boite": [
+    29,
+    57.5,
+    6,
+    5
+   ]
+  },
+  {
+   "id": "telefon",
+   "mot": "Telefon",
+   "sur": "rezeption",
+   "boite": [
+    20,
+    58,
+    8.5,
+    4
+   ]
+  },
+  {
+   "id": "prospekt",
+   "mot": "Prospekt",
+   "sur": "rezeption",
+   "boite": [
+    6.5,
+    54.5,
+    17,
+    13
+   ]
+  },
+  {
+   "id": "papier",
+   "mot": "Papier",
+   "sur": "rezeption",
+   "aussi": [
+    "Formular"
+   ],
+   "boite": [
+    29,
+    52,
+    16,
+    4
+   ]
+  },
+  {
+   "id": "kugelschreiber",
+   "mot": "Kugelschreiber",
+   "plein": true,
+   "boite": [
+    33,
+    52.8,
+    5.5,
+    1.8
+   ]
+  },
+  {
+   "id": "pflanze-3",
+   "mot": "Pflanze",
+   "boite": [
+    0,
+    48,
+    8,
+    16
+   ]
+  },
+  {
+   "id": "rezeption",
+   "mot": "Rezeption",
+   "plein": true,
+   "boite": [
+    0,
+    50,
+    47,
+    50
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "aussi": [
+    "Teppich"
+   ],
+   "boites": [
+    [
+     47,
+     78,
+     53,
+     22
+    ],
+    [
+     78,
+     60,
+     22,
+     18
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

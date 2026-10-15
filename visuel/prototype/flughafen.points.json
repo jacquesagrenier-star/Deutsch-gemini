@@ -1,0 +1,819 @@
+{
+ "_lisez_moi": [
+  "L'aeroport (15 oct. 2026) : Anna enregistre sa valise au comptoir de l'aeroport de Berlin ; elle tend son passeport a l'employee, sa grosse valise est sur la balance, sa petite valise rouge a cote d'elle ; derriere, l'avion, un pilote, l'escalier, des sieges. Theme : voyager, les bagages, l'aeroport. Scene creee a la demande de Jacques (« huit autres scenes basees sur les themes », 15 oct. 2026), construite par Fable.",
+  "Image : visuel/scenes/flughafen.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png). Aucun texte lisible : le billet porte des lignes grises illisibles (comme le journal du train), l'horloge n'a pas de chiffres, le panneau n'a qu'une fleche.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "L'employee est die Frau (die Angestellte manque au corpus espagnol). Le comptoir est der Schalter (el mostrador en espagnol, surcharge). Trois Koffer (la grosse grise sur la balance, aussi das Gepaeck ; la petite rouge d'Anna ; la noire du pilote). Le chariot a bagages n'a pas de zone (der Wagen veut dire voiture au corpus) ; le soleil n'est pas dans l'image.",
+  "Sans zone : la casquette du pilote et l'echarpe bleue de l'employee (trop petites), les piliers (pas de mot).",
+  "Mesures relues sur la grille en % du 15 oct. 2026."
+ ],
+ "image": "flughafen.webp",
+ "source": "../scenes/flughafen.png",
+ "titre": "Am Flughafen",
+ "alt": "Anna à l'aéroport de Berlin : elle tend son passeport à l'employée du comptoir d'enregistrement ; sa grosse valise grise est sur la balance, sa petite valise rouge à côté d'elle, son sac à main sur l'épaule ; sur le comptoir, un écran, un clavier, un téléphone, un billet et une plante ; derrière la baie vitrée, un avion blanc sous le ciel bleu ; un pilote passe avec sa valise, près d'un escalier, d'une horloge et d'une rangée de sièges.",
+ "consigne": "Anna part en voyage : elle enregistre sa valise à l'aéroport. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo liegt der große Koffer?",
+     "c": [
+      "auf der Waage",
+      "im Flugzeug",
+      "unter dem Stuhl"
+     ],
+     "f": "koffer-3",
+     "r": "waage",
+     "phrase": "Der große Koffer liegt auf der Waage.",
+     "n": "die Waage → auf <b>der</b> Waage : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Wand",
+      "am Fenster",
+      "über der Tür"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht das Flugzeug?",
+     "c": [
+      "hinter dem Fenster",
+      "vor der Tür",
+      "auf der Treppe"
+     ],
+     "f": "flugzeug",
+     "r": "fenster",
+     "phrase": "Das Flugzeug steht hinter dem Fenster.",
+     "n": "<b>hinter</b> = derrière. das Fenster → hinter <b>dem</b> Fenster."
+    },
+    {
+     "q": "Wo liegt die Zeitung?",
+     "c": [
+      "auf dem Stuhl",
+      "im Koffer",
+      "auf dem Schalter"
+     ],
+     "f": "zeitung",
+     "r": "stuhl-2",
+     "phrase": "Die Zeitung liegt auf dem Stuhl.",
+     "n": "der Stuhl → auf <b>dem</b> Stuhl."
+    },
+    {
+     "q": "Wo steht die Flasche?",
+     "c": [
+      "auf dem Boden",
+      "auf dem Schalter",
+      "im Rucksack"
+     ],
+     "f": "flasche",
+     "r": "boden",
+     "phrase": "Die Flasche steht auf dem Boden.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    },
+    {
+     "q": "Wo steht der Mülleimer?",
+     "c": [
+      "neben der Tür",
+      "vor dem Schalter",
+      "hinter der Treppe"
+     ],
+     "f": "muelleimer",
+     "r": "tuer",
+     "phrase": "Der Mülleimer steht neben der Tür.",
+     "n": "die Tür → neben <b>der</b> Tür : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo liegt das Ticket?",
+     "c": [
+      "auf dem Schalter",
+      "in der Tasche",
+      "auf der Waage"
+     ],
+     "f": "ticket",
+     "r": "schalter",
+     "phrase": "Das Ticket liegt auf dem Schalter.",
+     "n": "der Schalter → auf <b>dem</b> Schalter."
+    },
+    {
+     "q": "Wo hängt das Schild?",
+     "c": [
+      "an der Decke",
+      "an der Wand",
+      "auf dem Boden"
+     ],
+     "f": "schild",
+     "r": "decke",
+     "phrase": "Das Schild hängt an der Decke.",
+     "n": "die Decke → an <b>der</b> Decke : au datif, le féminin <b>die</b> devient <b>der</b>."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "L'infinitif avec zu",
+   "qs": [
+    {
+     "q": "Anna hat vor, nach Spanien ___.",
+     "c": [
+      "zu fliegen",
+      "fliegen",
+      "zu fliegt"
+     ],
+     "f": "anna",
+     "r": "flugzeug",
+     "phrase": "Anna hat vor, nach Spanien zu fliegen.",
+     "n": "<b>vorhaben</b> + <b>zu</b> + infinitif à la fin.",
+     "revise": "fliegen"
+    },
+    {
+     "q": "Sie vergisst nicht, der Frau den Pass ___.",
+     "c": [
+      "zu zeigen",
+      "zeigen zu",
+      "zu zeigt"
+     ],
+     "f": "pass",
+     "r": "frau",
+     "phrase": "Sie vergisst nicht, der Frau den Pass zu zeigen.",
+     "n": "<b>vergessen</b> + <b>zu</b> + infinitif.",
+     "revise": "zeigen"
+    },
+    {
+     "q": "Es ist wichtig, pünktlich am Flughafen ___.",
+     "c": [
+      "zu sein",
+      "sein",
+      "zu ist"
+     ],
+     "f": "uhr",
+     "phrase": "Es ist wichtig, pünktlich am Flughafen zu sein.",
+     "n": "<b>Es ist wichtig,</b> … <b>zu</b> + infinitif."
+    },
+    {
+     "q": "Die Frau bittet Anna, den Koffer auf die Waage ___.",
+     "c": [
+      "zu stellen",
+      "stellen",
+      "zu stellt"
+     ],
+     "f": "koffer-3",
+     "r": "waage",
+     "phrase": "Die Frau bittet Anna, den Koffer auf die Waage zu stellen.",
+     "n": "<b>bitten</b> + <b>zu</b> + infinitif.",
+     "revise": "stellen"
+    },
+    {
+     "q": "Der Pilot hat keine Zeit, die Zeitung ___.",
+     "c": [
+      "zu lesen",
+      "lesen",
+      "gelesen"
+     ],
+     "f": "pilot",
+     "r": "zeitung",
+     "phrase": "Der Pilot hat keine Zeit, die Zeitung zu lesen.",
+     "n": "<b>keine Zeit haben</b> + <b>zu</b> + infinitif.",
+     "revise": "lesen"
+    },
+    {
+     "q": "Anna versucht, den Rucksack nicht ___.",
+     "c": [
+      "zu vergessen",
+      "vergessen",
+      "vergisst zu"
+     ],
+     "f": "rucksack",
+     "r": "anna",
+     "phrase": "Anna versucht, den Rucksack nicht zu vergessen.",
+     "n": "<b>versuchen</b> + <b>zu</b> + infinitif ; <b>nicht</b> juste avant <b>zu</b>.",
+     "revise": "vergessen"
+    },
+    {
+     "q": "Anna hofft, pünktlich ___.",
+     "c": [
+      "anzukommen",
+      "zu ankommen",
+      "ankommen zu"
+     ],
+     "f": "flugzeug",
+     "r": "anna",
+     "phrase": "Anna hofft, pünktlich anzukommen.",
+     "n": "Verbe séparable : <b>zu</b> se glisse au milieu → an<b>zu</b>kommen.",
+     "revise": "ankommen"
+    },
+    {
+     "q": "Anna muss der Frau den Pass ___.",
+     "c": [
+      "zeigen",
+      "zu zeigen",
+      "gezeigt"
+     ],
+     "f": "pass",
+     "r": "frau",
+     "phrase": "Anna muss der Frau den Pass zeigen.",
+     "n": "Après un verbe de modalité (<b>müssen</b>), pas de <b>zu</b>.",
+     "revise": "zeigen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les questions indirectes",
+   "qs": [
+    {
+     "q": "Anna fragt die Frau, ___ das Flugzeug pünktlich ist.",
+     "c": [
+      "ob",
+      "wenn",
+      "dass"
+     ],
+     "f": "anna",
+     "r": "flugzeug",
+     "phrase": "Anna fragt die Frau, ob das Flugzeug pünktlich ist.",
+     "n": "Question fermée (oui/non) → <b>ob</b>, verbe à la fin.",
+     "revise": "fragen"
+    },
+    {
+     "q": "Sie weiß nicht, ___ der Koffer wiegt.",
+     "c": [
+      "wie viel",
+      "ob",
+      "dass"
+     ],
+     "f": "koffer-3",
+     "r": "waage",
+     "phrase": "Sie weiß nicht, wie viel der Koffer wiegt.",
+     "n": "Le mot interrogatif reste : <b>wie viel</b> … + verbe à la fin.",
+     "revise": "wiegen"
+    },
+    {
+     "q": "Der Pilot weiß, wo das Flugzeug ___.",
+     "c": [
+      "steht",
+      "stehen",
+      "steht es"
+     ],
+     "f": "pilot",
+     "r": "flugzeug",
+     "phrase": "Der Pilot weiß, wo das Flugzeug steht.",
+     "n": "Dans la question indirecte, le verbe va à la <b>fin</b>.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Die Frau fragt, ___ Anna Handgepäck hat.",
+     "c": [
+      "ob",
+      "was",
+      "wann"
+     ],
+     "f": "frau",
+     "r": "koffer",
+     "phrase": "Die Frau fragt, ob Anna Handgepäck hat.",
+     "n": "Question fermée (oui/non) → <b>ob</b>, verbe à la fin.",
+     "revise": "fragen"
+    },
+    {
+     "q": "Anna möchte wissen, ___ das Flugzeug abfliegt.",
+     "c": [
+      "wann",
+      "ob",
+      "dass"
+     ],
+     "f": "uhr",
+     "r": "flugzeug",
+     "phrase": "Anna möchte wissen, wann das Flugzeug abfliegt.",
+     "n": "Question sur l'heure → <b>wann</b> ; le verbe séparable se recolle à la fin : <b>abfliegt</b>."
+    },
+    {
+     "q": "Weißt du, ___ die Zeitung gehört?",
+     "c": [
+      "wem",
+      "wer",
+      "wen"
+     ],
+     "f": "zeitung",
+     "phrase": "Weißt du, wem die Zeitung gehört?",
+     "n": "<b>gehören</b> + datif → <b>wem</b>.",
+     "revise": "gehören"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna lächelt — sie ___ sich auf die Reise freuen.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "anna",
+     "phrase": "Sie muss sich auf die Reise freuen.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der Pilot ___ ihr Flugzeug fliegen.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "pilot",
+     "r": "flugzeug",
+     "phrase": "Der Pilot könnte ihr Flugzeug fliegen.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der große Koffer ___ zu schwer sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "koffer-3",
+     "r": "waage",
+     "phrase": "Der große Koffer dürfte zu schwer sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Dieser Flughafen ___ der modernste in Deutschland sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "fenster",
+     "phrase": "Dieser Flughafen soll der modernste in Deutschland sein.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boites": [
+    [
+     44,
+     0,
+     8,
+     2.3
+    ],
+    [
+     20.5,
+     0.3,
+     4.5,
+     2.2
+    ],
+    [
+     31,
+     4.2,
+     4,
+     1.8
+    ]
+   ]
+  },
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    3.5
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boite": [
+    0,
+    3.5,
+    42,
+    16.5
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    2.3,
+    21,
+    8.5,
+    5.5
+   ]
+  },
+  {
+   "id": "schild",
+   "mot": "Schild",
+   "boite": [
+    26.5,
+    18,
+    12.5,
+    4.3
+   ]
+  },
+  {
+   "id": "treppe",
+   "mot": "Treppe",
+   "plein": true,
+   "boite": [
+    10,
+    20,
+    35,
+    23
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    42,
+    8,
+    58,
+    37
+   ]
+  },
+  {
+   "id": "himmel",
+   "mot": "Himmel",
+   "plein": true,
+   "boite": [
+    44,
+    8.5,
+    56,
+    20
+   ]
+  },
+  {
+   "id": "wolke",
+   "mot": "Wolke",
+   "plein": true,
+   "boites": [
+    [
+     59,
+     12.5,
+     8,
+     3
+    ],
+    [
+     73,
+     10,
+     8,
+     3.5
+    ]
+   ]
+  },
+  {
+   "id": "flugzeug",
+   "mot": "Flugzeug",
+   "boite": [
+    45,
+    23,
+    27,
+    12
+   ]
+  },
+  {
+   "id": "pilot",
+   "mot": "Pilot",
+   "aussi": [
+    "Mann"
+   ],
+   "boite": [
+    63.5,
+    30.5,
+    16.5,
+    14.5
+   ]
+  },
+  {
+   "id": "koffer-2",
+   "mot": "Koffer",
+   "boite": [
+    69.5,
+    39.5,
+    10.5,
+    5.5
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boite": [
+    57,
+    36,
+    19,
+    5
+   ]
+  },
+  {
+   "id": "muelleimer",
+   "mot": "Mülleimer",
+   "boite": [
+    80,
+    37,
+    5,
+    5.8
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "plein": true,
+   "boite": [
+    89.5,
+    25.5,
+    9.5,
+    17.5
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    93.5,
+    29.5,
+    6.5,
+    11
+   ]
+  },
+  {
+   "id": "stuhl-2",
+   "mot": "Stuhl",
+   "boite": [
+    76,
+    44,
+    24,
+    19
+   ]
+  },
+  {
+   "id": "zeitung",
+   "mot": "Zeitung",
+   "sur": "stuhl-2",
+   "boite": [
+    79,
+    55.3,
+    12,
+    2.7
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "boite": [
+    3,
+    37.5,
+    20,
+    30
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "boite": [
+    0,
+    44,
+    19,
+    24
+   ]
+  },
+  {
+   "id": "bildschirm",
+   "mot": "Bildschirm",
+   "aussi": [
+    "Computer"
+   ],
+   "boite": [
+    17,
+    44,
+    19.5,
+    9
+   ]
+  },
+  {
+   "id": "pflanze-2",
+   "mot": "Pflanze",
+   "sur": "schalter",
+   "boite": [
+    38,
+    46,
+    7.5,
+    6
+   ]
+  },
+  {
+   "id": "tastatur",
+   "mot": "Tastatur",
+   "sur": "schalter",
+   "boite": [
+    19,
+    55.8,
+    10.5,
+    3.6
+   ]
+  },
+  {
+   "id": "telefon",
+   "mot": "Telefon",
+   "sur": "schalter",
+   "boite": [
+    11.5,
+    59,
+    13.5,
+    4
+   ]
+  },
+  {
+   "id": "ticket",
+   "mot": "Ticket",
+   "sur": "schalter",
+   "boite": [
+    31,
+    55,
+    6.5,
+    3
+   ]
+  },
+  {
+   "id": "pass",
+   "mot": "Pass",
+   "boite": [
+    24,
+    48.5,
+    12,
+    4.5
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "boite": [
+    47,
+    40,
+    26,
+    43
+   ]
+  },
+  {
+   "id": "schal",
+   "mot": "Schal",
+   "boite": [
+    53.5,
+    43.5,
+    11,
+    13
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "boite": [
+    47.5,
+    47,
+    25,
+    31
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "boite": [
+    52,
+    55,
+    6,
+    7.5
+   ]
+  },
+  {
+   "id": "tasche",
+   "mot": "Tasche",
+   "boite": [
+    65.5,
+    57,
+    9,
+    9
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "boite": [
+    54,
+    68,
+    10.5,
+    11.5
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "aussi": [
+    "Turnschuh"
+   ],
+   "boite": [
+    50,
+    77,
+    12.5,
+    6
+   ]
+  },
+  {
+   "id": "koffer",
+   "mot": "Koffer",
+   "boite": [
+    65,
+    62,
+    13.5,
+    25
+   ]
+  },
+  {
+   "id": "koffer-3",
+   "mot": "Koffer",
+   "sur": "waage",
+   "aussi": [
+    "Gepäck"
+   ],
+   "boite": [
+    0,
+    71.5,
+    27.5,
+    17
+   ]
+  },
+  {
+   "id": "waage",
+   "mot": "Waage",
+   "boite": [
+    0,
+    79,
+    38,
+    21
+   ]
+  },
+  {
+   "id": "schalter",
+   "mot": "Schalter",
+   "plein": true,
+   "boite": [
+    2,
+    52,
+    45,
+    32
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "boite": [
+    89.5,
+    57,
+    10.5,
+    16
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "aussi": [
+    "Wasser"
+   ],
+   "boite": [
+    86,
+    82.5,
+    6.5,
+    8
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boite": [
+    38,
+    83,
+    48,
+    17
+   ]
+  }
+ ],
+ "gros_plans": []
+}
