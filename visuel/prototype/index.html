@@ -954,7 +954,9 @@ function activerVue(v, annoncer){
    la main a l'app au lieu de mener a la maquette. */
 const PARAMS = new URLSearchParams(location.search);
 const EN_SEANCE = PARAMS.get("seance") === "1";
-const NB_SEANCE = 3;
+/* v799 : l'app envoie le nombre de questions (reglage « Questions de la scene du
+   jour », 8 par defaut). Sans parametre, l'ancien nombre : 3. */
+const NB_SEANCE = Math.max(1, Math.min(30, parseInt(PARAMS.get("nb"), 10) || 3));
 function envoyer(type, donnees){
   if (window.parent !== window)
     window.parent.postMessage(Object.assign({source: "wortando-scene", type, scene: NOM_SCENE}, donnees || {}), "*");
@@ -1001,23 +1003,28 @@ let modeA1 = EN_SEANCE ? "trouver" : "decouvrir", i = 0, bons = 0, faits = 0, at
 let etapeTrouve = false;
 const attendUnToucher = () => ((niveau === "A1" && modeA1 === "trouver") || etapeTrouve) && attenteToucher && !verrou;
 const melanger = a => a.map(v => [Math.random(), v]).sort((x,y) => x[0]-y[0]).map(v => v[1]);
-/* Les trois questions d'une seance : deux du niveau, une du niveau d'avant
-   s'il a des questions (en B1, une preposition de l'A2) ; sinon trois du
-   niveau. Chacune garde son niveau, pour l'afficher. */
+/* Les questions d'une seance (v799 : NB_SEANCE, reglable dans l'app). Toujours
+   AU MOINS UNE du niveau d'avant quand il existe (en B1, une preposition de
+   l'A2) ; et quand le niveau n'en a pas assez, les niveaux d'avant completent,
+   du plus proche au plus lointain. En A2, le niveau d'avant est l'A1 : il n'a
+   pas de questions a choix, il a « Trouve ! » (Jacques, 9 oct. : « si on est en
+   A2, on devrait avoir la possibilite de faire du A1 aussi »). Avec 3, on
+   retrouve exactement l'ancien tirage : deux du niveau, une d'avant. */
 function ordreSeance(niv){
-  const k = Object.keys(COUCHES), avant = k[k.indexOf(niv) - 1];
+  const k = Object.keys(COUCHES), idx = k.indexOf(niv);
   const ici = melanger(COUCHES[niv].qs).map(q => Object.assign({_niv: niv}, q));
-  if (avant && COUCHES[avant].qs && COUCHES[avant].qs.length)
-    return melanger([...ici.slice(0, NB_SEANCE - 1),
-                     Object.assign({_niv: avant}, melanger(COUCHES[avant].qs)[0])]);
-  // En A2, le niveau d'avant est l'A1 : il n'a pas de questions a choix, il a
-  // « Trouve ! ». Jacques, 9 oct. : « si on est en A2, on devrait avoir la
-  // possibilite de faire du A1 aussi ».
-  const aTrouver = A_TROUVER.filter(m => aSonNiveau(m, "A1"));
-  if (avant === "A1" && aTrouver.length)
-    return melanger([...ici.slice(0, NB_SEANCE - 1),
-                     {_niv: "A1", _trouve: melanger(aTrouver)[0]}]);
-  return ici.slice(0, NB_SEANCE);
+  const avant = [];
+  for (let j = idx - 1; j >= 0; j--){
+    const n = k[j];
+    if (COUCHES[n].qs && COUCHES[n].qs.length)
+      avant.push(...melanger(COUCHES[n].qs).map(q => Object.assign({_niv: n}, q)));
+    else if (n === "A1")
+      avant.push(...melanger(A_TROUVER.filter(m => aSonNiveau(m, "A1"))).map(m => ({_niv: "A1", _trouve: m})));
+  }
+  if (!avant.length) return ici.slice(0, NB_SEANCE);
+  const nAvant = Math.min(avant.length, Math.max(1, NB_SEANCE - ici.length));
+  const nIci = Math.min(ici.length, NB_SEANCE - nAvant);
+  return melanger([...ici.slice(0, nIci), ...avant.slice(0, NB_SEANCE - nIci)]);
 }
 
 /* les pastilles */

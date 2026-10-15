@@ -6392,6 +6392,44 @@ body[data-theme="dark"] #decouverte > button.primary{
 #sceneSeance.active{position:fixed; inset:0; z-index:3000; margin:0; background:#11151b;
     padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);}
 .scene-cadre{display:block; width:100%; height:100%; border:0; background:#11151b;}
+
+/* ============ v799 : LA SEANCE A DEUX PORTES, ET EXPLORER LES SCENES ============ */
+.orb-seance{cursor:default;}
+.orb-seance .seance-bas{width:auto; min-width:0; margin:2px 0 9px; gap:6px; flex-wrap:nowrap;}
+.orb-seance .seance-etiq{font-size:12.5px; white-space:nowrap;}
+.orb-seance .seance-niveau{font-size:12px; padding:4px 7px;}
+.seance-portes{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:8px;}
+/* ⚠️ LES DEUX BOUTONS A LA MEME HAUTEUR, au pixel (Jacques, deux fois). Ils sont
+   poses au BAS de chaque porte, en absolu : la longueur d'un titre, d'une
+   langue a l'autre, ne peut plus les decaler. La hauteur de la porte garde
+   un peu d'air entre le texte et le bouton (« eloigne-les un petit peu »). */
+.seance-porte{position:relative; min-width:0; height:122px; box-sizing:border-box;
+    border-radius:12px; padding:9px 10px; background:rgba(255,255,255,.08);}
+.seance-porte-scene{background-color:#2b3546; background-size:cover; background-position:center 55%;}
+.seance-porte-titre{display:block; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:#E8A23A; font-weight:800; line-height:1.25;}
+.seance-porte-val{display:block; font-size:15px; color:#fff; margin-top:3px; line-height:1.2;}
+.seance-porte .seance-compte{background:none; padding:0; font-size:inherit; font-weight:inherit; color:inherit;}
+.seance-porte .seance-compte.atteint{background:none;}
+.orb-seance .seance-porte-sous{display:block; font-size:12.5px; color:#fff; line-height:1.25; text-shadow:0 1px 2px rgba(0,0,0,.6);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.seance-porte .seance-go{position:absolute; left:10px; right:10px; bottom:10px; width:auto; padding:7px 6px;}
+.explorer-scenes{grid-column:1 / -1; background:rgba(255,255,255,.62); border:1px solid rgba(30,41,59,.22);
+    border-radius:16px; padding:11px 12px 12px;}
+.explorer-haut{display:flex; justify-content:space-between; align-items:baseline; gap:8px;}
+.explorer-haut strong{font-size:15px;}
+.explorer-tout{border:0; background:none; font:inherit; font-weight:800; color:#9a6a12; cursor:pointer; padding:2px 0 2px 8px;}
+.explorer-desc{font-size:12.5px; color:#576177; margin:2px 0 9px; line-height:1.35;}
+.explorer-ruban{display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px;}
+.explorer-ruban::-webkit-scrollbar{display:none;}
+.explorer-v{flex:0 0 auto; width:66px; border:0; background:none; padding:0; font:inherit; color:inherit; cursor:pointer; position:relative;}
+.explorer-v img{width:66px; height:100px; object-fit:cover; border-radius:10px; display:block; background:#e6dcc8;}
+.explorer-v span{display:block; font-size:11px; font-weight:600; text-align:center; margin-top:3px; line-height:1.2;}
+.explorer-v.verrou img{filter:grayscale(.6) brightness(.85);}
+.explorer-v.verrou::after{content:"🔒"; position:absolute; top:4px; inset-inline-end:4px; font-size:12px;}
+body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
+body[data-theme="dark"] .explorer-desc{color:rgba(255,255,255,.72);}
+body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -6920,110 +6958,64 @@ body[data-theme="dark"] #decouverte > button.primary{
              hauteur et de la largeur sans rien dire, et les « petites barres »
              du theme obligeaient a cliquer pour savoir ou elles menaient. Un
              mot vaut mieux qu'un dessin quand il tient dans la place. -->
-        <div class="orb orb-seance" data-orbid="seance" onclick="ouvrirSeanceDuJour()">
+        <!-- ⚠️ v799 (14 oct. 2026) : LA SEANCE A DEUX PORTES. Jacques : « que ce soit
+             clair visuellement qu'on peut commencer par les mots, ou faire des
+             scenes cette journee-la, ou faire les deux ». Le choix se faisait
+             apres « Commencer », sur un autre ecran (#choixSeance) : rien sur
+             l'accueil ne disait qu'une scene attendait. Maintenant, dans l'ordre
+             ou l'on decide : le NIVEAU d'abord (il regle les mots nouveaux ET les
+             questions de la scene), puis deux portes au meme poids, et le meme
+             verbe sur les deux boutons, alignes a la meme hauteur (demande
+             expresse). Plus de clic sur la tuile entiere : chaque porte a son
+             bouton. « Mis de cote » et « par theme » sont descendus en tuiles. -->
+        <div class="orb orb-seance" data-orbid="seance">
             <div class="seance-haut">
                 <strong data-i18n="seance_titre">Ma séance du jour</strong>
-                <!-- ⚠️ LE COMPTE DU JOUR EST ICI, ET NULLE PART AILLEURS (v550).
-                     Il etait en haut de la carte de progression, avec sa propre
-                     barre : deux hauteurs pour un chiffre qui n'a de sens qu'au
-                     moment de travailler. Demande de Jacques. Ici il est juste
-                     avant le geste, et on le voit monter d'une seance a l'autre.
-                     ⚠️ Il compte les cartes JUGEES -- « Encore » ou « Je savais ».
-                     Une carte balayee fait avancer le tableau, pas ce compte :
-                     l'objectif mesure du travail, la mosaique mesure la presence.
-                     Le ⓘ le dit, parce que rien d'autre ne peut le deviner. -->
-                <!-- ⚠️ LE COMPTE RESTE COLLE AU TITRE (v587). Je l'avais
-                     pousse au bord droit ; Jacques : « garde-le a cote de Ma
-                     seance du jour ». Un nombre colle a ce qu'il compte se lit
-                     d'un coup ; renvoye a l'autre bout, il faut le relier. -->
-                <span id="seanceCompte" class="seance-compte"></span>
                 <span id="seanceSub" class="seance-sub"></span>
-                <!-- ⚠️ LE ⓘ VIT ICI DEPUIS LA v586, et il a beaucoup voyage.
-                     Il documente « Comment lire cette carte » -- la seance du
-                     jour, le vocabulaire, la serie -- donc il ne pouvait pas
-                     rester dans l'en-tete du tableau, ou il promettait de
-                     l'aide sur le tableau seul. Jacques : « l'information ne
-                     sert pas juste pour le tableau ». Il le voulait « dans ma
-                     seance du jour, dans le coin droit en haut » : c'est le
-                     seul endroit ou il touche ce qu'il explique.
-                     ⚠️ event.stopPropagation() EST INDISPENSABLE : toute la
-                     tuile porte onclick="ouvrirSeanceDuJour()". Sans lui,
-                     toucher le ⓘ lancerait une seance. Meme piege que la
-                     loupe du tableau. -->
                 <button type="button" class="info-progression info-seance"
                         onclick="event.stopPropagation(); ouvrirInfoProgression();"
                         data-i18n-aria-label="carte_info_titre" aria-label="Comment lire cette carte">i</button>
-
             </div>
-            <!-- ⚠️ TROIS NATURES DE CONTROLE DANS UN SEUL BLOC, et la plus
-                 importante etait la moins marquee. Signale par Jacques : « il
-                 faut que je fasse attention ». Le bandeau portait une ACTION
-                 principale (commencer -- mais il fallait deviner qu'on touche
-                 le fond), un REGLAGE (d'ou viennent les mots neufs) et une
-                 SECONDE ACTION (par theme) melee aux pastilles du reglage.
-
-                 Desormais chaque nature a sa ligne : le reglage d'abord, avec
-                 ses pastilles seules ; l'action ensuite, dans un vrai bouton
-                 qu'on ne peut pas manquer ; la porte laterale en dessous, en
-                 retrait, annoncee par « ou ». -->
-            <!-- ⚠️ L'ETIQUETTE EST DESCENDUE DANS .seance-gauche (v601). Elle
-                 avait sa propre rangee pleine largeur, donc rien ne lui disait
-                 ou s'arreter : elle courait au-dessus des deux pastilles de
-                 droite. Jacques : « il glisse au-dessus de Garder ».
-                 Elle parle des niveaux et de « Commencer » : sa place est dans
-                 leur colonne, ou elle se replie toute seule sur deux lignes --
-                 dans toutes les langues, a toutes les largeurs, sans aucune
-                 largeur maximale a deviner. -->
-            <!-- ⚠️ LE BOUTON EST EMPILE SOUS LES PASTILLES, DANS LA MEME GRILLE.
-                 Demande de Jacques : qu'il commence ou commence A1 et finisse ou
-                 finit C1. Ce n'est pas une largeur recopiee a la main -- la
-                 colonne est en `max-content`, donc elle prend la largeur de la
-                 rangee de pastilles et le bouton s'y etire tout seul. Ajouter
-                 un niveau demain deplacera les deux ensemble.
-                 ⚠️ « ou par theme » reste HORS de la pile, a droite. -->
-            <div class="seance-actions">
-              <div class="seance-gauche">
-              <div class="seance-bas">
-                <span class="seance-etiq" data-i18n="seance_neufs_etiq">Nouveau vocabulaire en provenance du niveau&nbsp;:</span>
-              </div>
-              <div class="seance-pile">
+            <div class="seance-bas">
+                <span class="seance-etiq" data-i18n="seance_ton_niveau">Ton niveau</span>
                 <span class="seance-niveaux" id="seanceNiveaux" role="group"
-                      aria-label="Provenance des mots nouveaux"></span>
-                <button type="button" class="seance-go" onclick="event.stopPropagation(); ouvrirSeanceDuJour();">
-                    <span data-i18n="seance_commencer">Commencer</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
-                         stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-                </button>
-              </div>
-              </div>
-                <!-- ⚠️ TROIS PORTES, ET ELLES NE DISENT PAS LA MEME CHOSE :
-                     « Commencer » est ce que l'app choisit, « Gardes » est ce
-                     que la personne a choisi, « ou par theme » est tout le
-                     reste. Emplacement demande par Jacques : le coffre
-                     au-dessus de « ou par theme ».
-                     ⚠️ PAS DE COMPTE SUR LE BOUTON, ET PAS DE BOUTON QUAND LE
-                     COFFRE EST VIDE. Jacques : « le coffre seulement ». Le
-                     chiffre ne manque pas, parce que l'absence du bouton dit
-                     deja qu'il n'y a rien dedans -- et un coffre vide qu'on
-                     ouvre pour rien est plus decevant qu'un coffre absent. -->
-                <div class="seance-lateral">
-                    <button type="button" class="seance-gardes" id="seanceGardes"
-                            onclick="event.stopPropagation(); ouvrirGardes();">
-                        <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"
-                             aria-hidden="true">
-                            <path class="gc-corps" d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/>
-                            <rect class="gc-serrure" x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/>
-                            <path class="gc-couvercle" d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/>
-                        </svg>
-                        <span data-i18n="gardes_titre">Gardés</span>
+                      aria-label="Ton niveau"></span>
+            </div>
+            <div class="seance-portes">
+                <div class="seance-porte">
+                    <span class="seance-porte-titre" data-i18n="seance_porte_mots">Les mots</span>
+                    <b class="seance-porte-val"><span id="seanceCompte" class="seance-compte"></span> <span data-i18n="seance_porte_cartes">cartes</span></b>
+                    <button type="button" class="seance-go" onclick="ouvrirSeanceDuJour(true);">
+                        <span data-i18n="seance_commencer">Commencer</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                             stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
                     </button>
-                    <button type="button" class="seance-themes"
-                            onclick="event.stopPropagation(); ouvrirThemesDuNiveau();">
-                        <span data-i18n="seance_ou_theme">par thème</span>
+                </div>
+                <div class="seance-porte seance-porte-scene" id="seancePorteScene">
+                    <span class="seance-porte-titre"><span data-i18n="seance_porte_scene">La scène du jour</span><span id="seanceSceneFaite" class="hidden"> ✓</span></span>
+                    <b class="seance-porte-val" id="seanceSceneNb"></b>
+                    <small class="seance-porte-sous" id="seanceSceneTitre"></small>
+                    <button type="button" class="seance-go" onclick="ouvrirSceneSeance();">
+                        <span data-i18n="seance_commencer">Commencer</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
+                             stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
                     </button>
                 </div>
             </div>
+        </div>
+
+        <!-- v799 : EXPLORER LES SCENES, a part de la seance. Jacques voulait voir
+             qu'il y a beaucoup de scenes (« peut-etre une cinquantaine ») et
+             garder le mode Decouvrir (« des fois c'est ca que les gens
+             veulent »). Un bloc a part, avec ce qu'on y fait ecrit en toutes
+             lettres : une vignette ouvre la scene ENTIERE, sur Decouvrir. -->
+        <div class="explorer-scenes" id="explorerScenes">
+            <div class="explorer-haut">
+                <strong data-i18n="explorer_titre">Explorer les scènes</strong>
+                <button type="button" class="explorer-tout" onclick="openOrbPanel('scenes')"><span id="explorerNb"></span> ›</button>
+            </div>
+            <p class="explorer-desc" data-i18n="explorer_desc">Touche les objets, écoute leur nom. Librement, sans questions.</p>
+            <div class="explorer-ruban" id="explorerRuban"></div>
         </div>
 
 
@@ -7033,6 +7025,21 @@ body[data-theme="dark"] #decouverte > button.primary{
             <span class="sec-trait" aria-hidden="true"></span>
             <span data-i18n="sec_mots">Travailler les mots</span>
         </h2>
+        <!-- v799 : sortis de la tuile de seance (Jacques : « je le mettrais tout
+             simplement dans des tuiles »). Sans orb-de : valables dans les deux
+             directions, comme ils l'etaient dans la seance. -->
+        <div class="orb" data-orbid="gardes" id="seanceGardes" onclick="ouvrirGardes()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/><path d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/><path d="M10.8 14.2h2.4v3.2h-2.4z"/></svg></div>
+            <div>
+                <strong data-i18n="gardes_titre">Mis de côté</strong>
+            </div>
+        </div>
+        <div class="orb" data-orbid="themes" onclick="ouvrirThemesDuNiveau()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div>
+            <div>
+                <strong data-i18n="seance_par_theme">Par thème</strong>
+            </div>
+        </div>
         <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
@@ -7187,15 +7194,9 @@ body[data-theme="dark"] #decouverte > button.primary{
                 <strong data-i18n="orb_ecouter_title">Écouter</strong>
             </div>
         </div>
-        <!-- LES SCENES, A VOLONTE (v746). La seance n'en montre qu'une par jour,
-             choisie par l'app, et trois questions : ici on choisit la scene, et
-             on a tout -- Decouvrir, Trouve !, les cinq niveaux, les vues. -->
-        <div class="orb" data-orbid="scenes" onclick="openOrbPanel('scenes')">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 17l-5-5-9 8"/></svg></div>
-            <div>
-                <strong data-i18n="orb_scenes_title">Scènes</strong>
-            </div>
-        </div>
+        <!-- LES SCENES, A VOLONTE (v746) : la tuile est partie en v799, remplacee
+             par le bloc « Explorer les scenes » sous la seance ; son panneau
+             reste, ouvert par « 12 › » dans ce bloc. -->
         <div class="orb orb-de" data-orbid="schreiben" onclick="openOrbPanel('schreiben')">
             <div id="badge-schreiben" class="orb-badge hidden"></div>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z"/></svg></div>
@@ -7416,7 +7417,7 @@ body[data-theme="dark"] #decouverte > button.primary{
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v798</span>
+    <span class="subtitle-version">v799</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9684,6 +9685,18 @@ body[data-theme="dark"] #decouverte > button.primary{
         <button class="secondary hidden" id="resetDailyBtn" onclick="resetDailyActivityConfirm()" data-i18n="settings_reset_daily">RÉINITIALISER LE COMPTE DU JOUR (TESTS)</button>
     </div>
 
+    <!-- v799 : le nombre de questions de la scene du jour (Jacques : « on pourrait
+         changer le nombre de cartes, mais aussi le nombre de questions »). -->
+    <div class="card">
+        <strong data-i18n="reglage_questions_titre">Questions de la scène du jour</strong>
+        <div class="info-box" style="display:flex; align-items:center; justify-content:center; gap:18px;">
+            <button class="secondary" style="width:48px; padding:10px 0;" onclick="ajusterQuestionsScene(-1)">−</button>
+            <span id="questionsSceneReglage" style="font-size:22px; font-weight:800; min-width:44px; text-align:center;">8</span>
+            <button class="secondary" style="width:48px; padding:10px 0;" onclick="ajusterQuestionsScene(1)">+</button>
+        </div>
+        <small style="color:#576177;" data-i18n="reglage_questions_desc">Nombre de questions posées dans la scène du jour. Si la scène n'en a pas assez à ton niveau, elle ajoute celles du niveau d'avant, en révision.</small>
+    </div>
+
     <!-- v796 : les points de decouverte de l'accueil (installerReperes), a revoir. -->
     <div class="card">
         <strong data-i18n="reperes_titre">Points de découverte</strong>
@@ -10699,6 +10712,15 @@ const I18N = {
         seance_scene_park: "Un dimanche au parc",
         seance_scene_geburtstag: "L'anniversaire de Mark",
         seance_scene_schlafzimmer: "Anna fait sa valise",
+        seance_ton_niveau: "Ton niveau",
+        seance_porte_mots: "Les mots",
+        seance_porte_scene: "La scène du jour",
+        seance_porte_cartes: "cartes",
+        seance_n_questions: "{n} questions",
+        explorer_titre: "Explorer les scènes",
+        explorer_desc: "Touche les objets, écoute leur nom. Librement, sans questions.",
+        reglage_questions_titre: "Questions de la scène du jour",
+        reglage_questions_desc: "Nombre de questions posées dans la scène du jour. Si la scène n'en a pas assez à ton niveau, elle ajoute celles du niveau d'avant, en révision.",
         seance_sous: "Révisions et mots nouveaux",
         seance_carte: "{n} carte",
         seance_cartes: "{n} cartes",
@@ -11835,6 +11857,15 @@ const I18N = {
         seance_scene_park: "A Sunday in the park",
         seance_scene_geburtstag: "Mark's birthday",
         seance_scene_schlafzimmer: "Anna packs her suitcase",
+        seance_ton_niveau: "Your level",
+        seance_porte_mots: "Words",
+        seance_porte_scene: "Today's scene",
+        seance_porte_cartes: "cards",
+        seance_n_questions: "{n} questions",
+        explorer_titre: "Explore the scenes",
+        explorer_desc: "Tap the objects, hear their names. Freely, no questions.",
+        reglage_questions_titre: "Questions in today's scene",
+        reglage_questions_desc: "Number of questions in today's scene. If the scene doesn't have enough at your level, it adds some from the level below, as review.",
         seance_sous: "Reviews and new words",
         seance_carte: "{n} card",
         seance_cartes: "{n} cards",
@@ -12973,6 +13004,15 @@ const I18N = {
         seance_scene_park: "Parkta bir pazar",
         seance_scene_geburtstag: "Mark'ın doğum günü",
         seance_scene_schlafzimmer: "Anna bavulunu hazırlıyor",
+        seance_ton_niveau: "Seviyen",
+        seance_porte_mots: "Kelimeler",
+        seance_porte_scene: "Günün sahnesi",
+        seance_porte_cartes: "kart",
+        seance_n_questions: "{n} soru",
+        explorer_titre: "Sahneleri keşfet",
+        explorer_desc: "Nesnelere dokun, adlarını dinle. Serbestçe, soru yok.",
+        reglage_questions_titre: "Günün sahnesindeki sorular",
+        reglage_questions_desc: "Günün sahnesinde sorulan soru sayısı. Sahnede senin seviyende yeterince soru yoksa, bir önceki seviyeden tekrar soruları ekler.",
         seance_sous: "Tekrarlar ve yeni kelimeler",
         seance_carte: "{n} kart",
         seance_cartes: "{n} kart",
@@ -14446,6 +14486,15 @@ const I18N = {
         seance_scene_park: "Неділя в парку",
         seance_scene_geburtstag: "День народження Марка",
         seance_scene_schlafzimmer: "Анна збирає валізу",
+        seance_ton_niveau: "Твій рівень",
+        seance_porte_mots: "Слова",
+        seance_porte_scene: "Сцена дня",
+        seance_porte_cartes: "карток",
+        seance_n_questions: "{n} запитань",
+        explorer_titre: "Досліджуй сцени",
+        explorer_desc: "Торкайся предметів, слухай їхні назви. Вільно, без запитань.",
+        reglage_questions_titre: "Запитання сцени дня",
+        reglage_questions_desc: "Кількість запитань у сцені дня. Якщо на твоєму рівні їх замало, сцена додає запитання з попереднього рівня для повторення.",
         seance_sous: "Повторення та нові слова",
         seance_carte: "{n} картка",
         seance_cartes: "{n} карток",
@@ -16284,6 +16333,15 @@ const I18N = {
         seance_scene_park: "یک یکشنبه در پارک",
         seance_scene_geburtstag: "تولد مارک",
         seance_scene_schlafzimmer: "آنا چمدانش را می‌بندد",
+        seance_ton_niveau: "سطح تو",
+        seance_porte_mots: "کلمه‌ها",
+        seance_porte_scene: "صحنهٔ امروز",
+        seance_porte_cartes: "کارت",
+        seance_n_questions: "{n} پرسش",
+        explorer_titre: "کاوش در صحنه‌ها",
+        explorer_desc: "روی اشیا بزن، نامشان را بشنو. آزادانه، بدون پرسش.",
+        reglage_questions_titre: "پرسش‌های صحنهٔ امروز",
+        reglage_questions_desc: "تعداد پرسش‌های صحنهٔ امروز. اگر صحنه در سطح تو پرسش کافی نداشته باشد، از سطح قبلی برای مرور اضافه می‌کند.",
         seance_sous: "مرور و واژه‌های تازه",
         seance_carte: "{n} کارت",
         seance_cartes: "{n} کارت",
@@ -17553,6 +17611,15 @@ const I18N = {
         seance_scene_park: "يوم أحد في الحديقة",
         seance_scene_geburtstag: "عيد ميلاد مارك",
         seance_scene_schlafzimmer: "آنا تحزم حقيبتها",
+        seance_ton_niveau: "مستواك",
+        seance_porte_mots: "الكلمات",
+        seance_porte_scene: "مشهد اليوم",
+        seance_porte_cartes: "بطاقات",
+        seance_n_questions: "{n} أسئلة",
+        explorer_titre: "استكشف المشاهد",
+        explorer_desc: "المس الأشياء واستمع إلى أسمائها. بحرية، بلا أسئلة.",
+        reglage_questions_titre: "أسئلة مشهد اليوم",
+        reglage_questions_desc: "عدد الأسئلة في مشهد اليوم. إذا لم يكن في المشهد ما يكفي من أسئلة مستواك، يضيف أسئلة من المستوى السابق للمراجعة.",
         seance_sous: "مراجعات وكلمات جديدة",
         seance_carte: "{n} بطاقة",
         seance_cartes: "{n} بطاقات",
@@ -17697,6 +17764,15 @@ const I18N = {
         seance_scene_park: "Um domingo no parque",
         seance_scene_geburtstag: "O aniversário de Mark",
         seance_scene_schlafzimmer: "Anna faz a mala",
+        seance_ton_niveau: "Seu nível",
+        seance_porte_mots: "As palavras",
+        seance_porte_scene: "A cena do dia",
+        seance_porte_cartes: "cartões",
+        seance_n_questions: "{n} perguntas",
+        explorer_titre: "Explore as cenas",
+        explorer_desc: "Toque nos objetos, ouça o nome deles. À vontade, sem perguntas.",
+        reglage_questions_titre: "Perguntas da cena do dia",
+        reglage_questions_desc: "Número de perguntas na cena do dia. Se a cena não tiver o bastante no seu nível, ela acrescenta perguntas do nível anterior, como revisão.",
         seance_sous: "Revisões e palavras novas",
         seance_carte: "{n} carta",
         seance_cartes: "{n} cartas",
@@ -18898,6 +18974,15 @@ const I18N = {
         seance_scene_park: "Niedziela w parku",
         seance_scene_geburtstag: "Urodziny Marka",
         seance_scene_schlafzimmer: "Anna pakuje walizkę",
+        seance_ton_niveau: "Twój poziom",
+        seance_porte_mots: "Słowa",
+        seance_porte_scene: "Scena dnia",
+        seance_porte_cartes: "kart",
+        seance_n_questions: "{n} pytań",
+        explorer_titre: "Odkrywaj sceny",
+        explorer_desc: "Dotykaj przedmiotów, słuchaj ich nazw. Swobodnie, bez pytań.",
+        reglage_questions_titre: "Pytania w scenie dnia",
+        reglage_questions_desc: "Liczba pytań w scenie dnia. Jeśli na twoim poziomie jest ich za mało, scena dodaje pytania z poprzedniego poziomu jako powtórkę.",
         seance_sous: "Powtórki i nowe słowa",
         seance_carte: "{n} karta",
         seance_cartes: "Karty: {n}",
@@ -20097,6 +20182,15 @@ const I18N = {
         seance_scene_park: "Воскресенье в парке",
         seance_scene_geburtstag: "День рождения Марка",
         seance_scene_schlafzimmer: "Анна собирает чемодан",
+        seance_ton_niveau: "Твой уровень",
+        seance_porte_mots: "Слова",
+        seance_porte_scene: "Сцена дня",
+        seance_porte_cartes: "карточек",
+        seance_n_questions: "{n} вопросов",
+        explorer_titre: "Исследуй сцены",
+        explorer_desc: "Нажимай на предметы, слушай их названия. Свободно, без вопросов.",
+        reglage_questions_titre: "Вопросы сцены дня",
+        reglage_questions_desc: "Количество вопросов в сцене дня. Если на твоём уровне их не хватает, сцена добавляет вопросы с предыдущего уровня для повторения.",
         seance_sous: "Повторение и новые слова",
         seance_carte: "{n} карточка",
         seance_cartes: "Карточек: {n}",
@@ -23112,7 +23206,7 @@ function montrerSeanceDecouverte(){
     // s'ouvre sur « la scene ou les cartes ». La visite le montre tel quel,
     // en lecture seule comme la tuile, avec la scene du jour.
     const duo = document.querySelector("#choixSeance .choix-seance-duo");
-    if(duo && essaiActif("scenes")){
+    if(duo && essaiActif("scenes") && false){  // v799 : le choix est dans la tuile
         try{ preparerChoixSeance(); }catch(e){}
         emprunterBlocDecouverte(duo);
     }
@@ -28380,6 +28474,24 @@ function setDailyGoalTarget(v){
 function renderDailyGoalSetting(){
     const el = document.getElementById("dailyGoalSetting");
     if(el) el.textContent = getDailyGoalTarget();
+    const q = document.getElementById("questionsSceneReglage");
+    if(q) q.textContent = questionsScene();
+}
+
+// v799 : le nombre de questions de la scene du jour. 8 par defaut : une scene en
+// a 4 a 10 par niveau ; au-dela, le prototype ajoute celles du niveau d'avant.
+const QUESTIONS_SCENE_KEY = PREFIXE_STOCKAGE + "questionsScene";
+const QUESTIONS_SCENE_MIN = 3, QUESTIONS_SCENE_MAX = 20, QUESTIONS_SCENE_DEFAUT = 8;
+function questionsScene(){
+    let v = QUESTIONS_SCENE_DEFAUT;
+    try{ v = parseInt(localStorage.getItem(QUESTIONS_SCENE_KEY), 10) || QUESTIONS_SCENE_DEFAUT; }catch(e){}
+    return Math.max(QUESTIONS_SCENE_MIN, Math.min(QUESTIONS_SCENE_MAX, v));
+}
+function ajusterQuestionsScene(delta){
+    const v = Math.max(QUESTIONS_SCENE_MIN, Math.min(QUESTIONS_SCENE_MAX, questionsScene() + delta));
+    try{ localStorage.setItem(QUESTIONS_SCENE_KEY, String(v)); }catch(e){}
+    renderDailyGoalSetting();
+    try{ majTuileSeance(); }catch(e){}
 }
 
 function adjustDailyGoal(delta){
@@ -32978,9 +33090,9 @@ const REPERES = [
       cle: "reperes_niveau" },
     // « Mis de cote » n'apparait qu'une fois un mot mis de cote : son point
     // aussi, donc, et c'est le bon moment pour le decouvrir. (Jacques, v795.)
-    { id: "gardes", sel: "#home .orb-seance #seanceGardes",
+    { id: "gardes", sel: '#home .orb[data-orbid="gardes"] strong',
       cle: "reperes_gardes" },
-    { id: "themes", sel: "#home .orb-seance .seance-themes",
+    { id: "themes", sel: '#home .orb[data-orbid="themes"] strong',
       cle: "reperes_themes" },
     { id: "mots", sel: '#home .orb-section[data-section="mots"] [data-i18n]', apres: true,
       cle: "reperes_mots" },
@@ -37806,7 +37918,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 798;
+const APP_VERSION = 799;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -41191,6 +41303,78 @@ function preparerChoixSeance(){
     if(det) det.textContent = tf("seance_choix_detail", {titre: t(s.titre), n: 3, niveau: niveauSeance()});
 }
 
+// ============ v799 : LA PORTE DE LA SCENE DU JOUR, ET LE RUBAN ============
+// Les titres courts des vignettes : le titre de seance (« Le petit-dejeuner de
+// Mark ») ne tient pas sous une image de 66 px.
+const SCENES_COURTS = {
+    fr: ["En classe", "L'examen", "Au marché", "Le médecin", "Le salon", "En ville", "Au café", "La boutique", "La cuisine", "Au parc", "L'anniversaire", "La valise"],
+    en: ["In class", "The check-up", "At the market", "The doctor", "The living room", "In town", "At the café", "The shop", "The kitchen", "In the park", "The birthday", "The suitcase"],
+    tr: ["Sınıfta", "Muayene", "Pazarda", "Doktor", "Oturma odası", "Şehirde", "Kafede", "Mağaza", "Mutfak", "Parkta", "Doğum günü", "Bavul"],
+    uk: ["У класі", "Огляд", "На ринку", "Лікар", "Вітальня", "У місті", "У кафе", "Крамниця", "Кухня", "У парку", "День народження", "Валіза"],
+    fa: ["در کلاس", "معاینه", "در بازار", "پزشک", "اتاق نشیمن", "در شهر", "در کافه", "فروشگاه", "آشپزخانه", "در پارک", "تولد", "چمدان"],
+    ar: ["في الصف", "الفحص", "في السوق", "الطبيب", "غرفة الجلوس", "في المدينة", "في المقهى", "المتجر", "المطبخ", "في الحديقة", "عيد الميلاد", "الحقيبة"],
+    pt: ["Na aula", "O exame", "Na feira", "O médico", "A sala", "Na cidade", "No café", "A loja", "A cozinha", "No parque", "O aniversário", "A mala"],
+    pl: ["W klasie", "Badanie", "Na targu", "Lekarz", "Salon", "W mieście", "W kawiarni", "Sklep", "Kuchnia", "W parku", "Urodziny", "Walizka"],
+    ru: ["В классе", "Осмотр", "На рынке", "Врач", "Гостиная", "В городе", "В кафе", "Магазин", "Кухня", "В парке", "День рождения", "Чемодан"]
+};
+const SCENES_ORDRE_COURT = ["klassenzimmer", "untersuchung", "markt-obst-heimisch", "arztpraxis", "wohnzimmer", "kreuzung",
+                            "fruehstueck", "kleidergeschaeft", "kueche", "park", "geburtstag", "schlafzimmer"];
+function titreCourtScene(s){
+    const liste = SCENES_COURTS[getUiLang()] || SCENES_COURTS.fr;
+    const k = SCENES_ORDRE_COURT.indexOf(s.nom);
+    return (k >= 0 && liste[k]) ? liste[k] : t(s.titre);
+}
+function vignetteScene(nom){ return baseScenes() + "vignettes/" + nom + ".webp"; }
+
+function majPortesSeance(){
+    const porte = document.getElementById("seancePorteScene");
+    if(!porte) return;
+    const actif = essaiActif("scenes");
+    porte.classList.toggle("hidden", !actif);
+    if(!actif) return;
+    const s = sceneDuJour();
+    porte.style.backgroundImage = "linear-gradient(90deg, rgba(28,36,48,.96) 0%, rgba(28,36,48,.82) 55%, rgba(28,36,48,.45) 100%), url(\"" + vignetteScene(s.nom) + "\")";
+    const nb = document.getElementById("seanceSceneNb");
+    if(nb) nb.textContent = tf("seance_n_questions", {n: questionsScene()});
+    const ti = document.getElementById("seanceSceneTitre");
+    // Le titre COURT : « Anna cherche son chemin » se coupait dans la porte.
+    if(ti){ ti.textContent = titreCourtScene(s); ti.title = t(s.titre); }
+    const faite = document.getElementById("seanceSceneFaite");
+    if(faite) faite.classList.toggle("hidden", !sceneDejaFaite());
+}
+
+// Le ruban : la scene du jour d'abord, puis les autres. Une vignette ouvre la
+// scene ENTIERE, sur Decouvrir (le prototype commence la). Version gratuite :
+// la classe seule, les autres portent un cadenas et menent a l'offre.
+function majExplorerScenes(){
+    const ruban = document.getElementById("explorerRuban");
+    if(!ruban) return;
+    const nb = document.getElementById("explorerNb");
+    if(nb) nb.textContent = SCENES_SEANCE.length;
+    const jour = sceneDuJour();
+    const liste = [jour].concat(SCENES_SEANCE.filter(s => s.nom !== jour.nom));
+    const complet = accesComplet();
+    ruban.innerHTML = "";
+    liste.forEach(s => {
+        const b = document.createElement("button");
+        b.type = "button";
+        const ouverte = complet || GRATUIT.portesOuvertes.indexOf(s.ouvrir) >= 0;
+        b.className = "explorer-v" + (ouverte ? "" : " verrou");
+        const img = document.createElement("img");
+        img.loading = "lazy"; img.alt = ""; img.src = vignetteScene(s.nom);
+        const sp = document.createElement("span");
+        sp.textContent = titreCourtScene(s);
+        b.appendChild(img); b.appendChild(sp);
+        b.setAttribute("aria-label", t(s.titre));
+        b.addEventListener("click", () => { if(ouverte) ouvrirSceneDepuisAccueil(s.nom); else ouvrirAbonnement(); });
+        ruban.appendChild(b);
+    });
+}
+function ouvrirSceneDepuisAccueil(nom){
+    ouvrirSceneLibre(nom);
+    sceneOuverteDepuis = "accueil";
+}
+
 function ouvrirChoixSeance(){
     preparerChoixSeance();
     showScreen("choixSeance");
@@ -41251,6 +41435,7 @@ function ouvrirSceneSeance(){
         cadre.title = t("seance_scene_cadre");
         cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(s.nom)
                   + "&seance=1&niveau=" + encodeURIComponent(niveauSeance())
+                  + "&nb=" + questionsScene()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + langueDeScene()
                   + "&vitesse=" + facteurVitesse
@@ -41286,12 +41471,14 @@ window.addEventListener("message", (e) => {
     } else if(d.type === "fini"){
         try{ localStorage.setItem(SCENE_FAITE_KEY, new Date().toDateString()); }catch(err){}
         if(cadre) cadre.src = "about:blank";
-        ouvrirSeanceDuJour(true);
+        // v799 : retour a l'accueil, la porte de la scene cochee ; les mots attendent.
+        goHome();
+        try{ majTuileSeance(); }catch(err){}
     } else if(d.type === "fermer"){
         if(cadre) cadre.src = "about:blank";
         if(sceneOuverteDepuis === "admin") openAdminDashboard();
         else if(sceneOuverteDepuis === "libre") openOrbPanel("scenes");
-        else ouvrirChoixSeance();
+        else { goHome(); try{ majTuileSeance(); }catch(err){} }
     }
 });
 
@@ -41393,7 +41580,7 @@ function revisionDeScene(d){
 async function ouvrirSeanceDuJour(sansScene){
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
     // Depuis le 10 oct. 2026, en espagnol aussi (langueDeScene).
-    if(!sansScene && essaiActif("scenes") && !sceneDejaFaite()){ ouvrirChoixSeance(); return; }
+    // v799 : plus d'ecran de choix ici -- les deux portes sont sur l'accueil.
     const niveau = niveauSeance();
     // La frequence AVANT de constituer la seance, sinon les premiers mots neufs
     // sortiraient dans l'ordre du fichier -- une seule fois, mais c'est la
@@ -41534,6 +41721,8 @@ function majTuileSeance(){
                        // ailleurs nulle part.
                        : "";
     }
+    try{ majPortesSeance(); }catch(e){}
+    try{ majExplorerScenes(); }catch(e){}
     const box = document.getElementById("seanceNiveaux");
     if(!box) return;
     box.innerHTML = "";

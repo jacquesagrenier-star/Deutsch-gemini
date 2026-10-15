@@ -8793,3 +8793,25 @@ beaucoup de scenes (il en prevoit une cinquantaine). Propose : 1 ton niveau (une
 portes (les mots / la scene du jour, meme verbe « Commencer »), puis un ruban de vignettes « ou une
 autre scene, si tu preferes » qui ouvre la scene ENTIERE (Decouvrir d'abord) -- Jacques tient au
 mode Decouvrir, « des fois c'est ca que les gens veulent ». « Mis de cote » descend en tuile.
+
+## 14 octobre 2026 -- v799 : l'accueil a deux portes, et « Explorer les scenes »
+
+Apres une longue serie de maquettes avec Jacques (.claude/maquettes/), « on deploie » :
+- « Ma seance du jour » : le NIVEAU d'abord (« Ton niveau », il regle les mots ET la scene), puis
+  deux portes au meme poids -- « Les mots · 0 / 30 cartes » et « La scene du jour · 8 questions ·
+  Au cafe » --, chacune son « Commencer », les deux exactement a la meme hauteur. Plus d'ecran de
+  choix apres « Commencer ».
+- Sous la seance, un bloc a part « Explorer les scenes » : « Touche les objets, ecoute leur nom.
+  Librement, sans questions. » et les vignettes des 12 scenes (la scene du jour d'abord) ; une
+  vignette ouvre la scene entiere, sur Decouvrir (Jacques : « des fois c'est ca que les gens
+  veulent »). « 12 › » ouvre le panneau. La tuile « Scenes » de Pratiquer disparait.
+- « Mis de cote » et « Par theme » deviennent des tuiles sobres, en tete de « Travailler les mots ».
+- Pourquoi 3 questions ? Heritage de la v713 (echauffement avant les cartes). Maintenant 8 par
+  defaut, et un reglage « Questions de la scene du jour » (3 a 20) ; si la scene n'en a pas assez
+  au niveau, elle complete avec les niveaux d'avant, en revision.
+Teste : les deux portes, une vignette, la fermeture de la scene (retour a l'accueil), le reglage,
+en allemand et en espagnol, 0 erreur. Parcours : 45 ecarts (de) et 18 (es), tous expliques
+(tuile Scenes partie, deux tuiles nouvelles, texte de l'accueil, ordre de cartes decale) ->
+references de-v799 et es-v799.
+Puis : « tu creeras quatre nouvelles scenes sur des themes differents » (en cours : plage, train,
+hiver, bureau).
