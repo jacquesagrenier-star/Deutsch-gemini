@@ -63,6 +63,12 @@ window.SCENE = {
    "boites": [
     [
      0,
+     31,
+     100,
+     13
+    ],
+    [
+     0,
      44,
      100,
      42
@@ -115,30 +121,15 @@ window.SCENE = {
    "niveau": "A1",
    "theme": "la_ciudad",
    "personne": null,
-   "aussi": [
-    {
-     "mot": "escaparate",
-     "genre": "el",
-     "niveau": "A1",
-     "theme": "las_compras",
-     "fr": "la vitrine",
-     "en": "the shop window",
-     "pt": "a vitrine",
-     "latam": {
-      "mot": "aparador",
-      "genre": "el",
-      "pluriel": "los aparadores"
-     }
-    }
-   ],
+   "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
     [
-     3.6,
-     19,
-     19.5,
-     11.6
+     3,
+     18,
+     26,
+     13
     ]
    ],
    "fr": "la boulangerie",
@@ -1315,6 +1306,33 @@ window.SCENE = {
     "genre": "el",
     "pluriel": "los bicicleteros"
    }
+  },
+  {
+   "id": "haus",
+   "mot": "casa",
+   "genre": "la",
+   "pluriel": "las casas",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     0,
+     100,
+     18
+    ]
+   ],
+   "fr": "la maison",
+   "en": "the house",
+   "pt": "a casa",
+   "ar": "بيت، منزل",
+   "pl": "dom",
+   "ru": "дом",
+   "latam": null
   }
  ],
  "grosPlans": [],

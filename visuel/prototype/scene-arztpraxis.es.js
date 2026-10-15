@@ -1534,10 +1534,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20,
-     2,
-     68,
-     50
+     0,
+     0,
+     100,
+     55
     ]
    ],
    "fr": "le mur",
@@ -1578,6 +1578,33 @@ window.SCENE = {
     "genre": "el",
     "pluriel": "los pisos"
    }
+  },
+  {
+   "id": "liege",
+   "mot": "camilla",
+   "genre": "la",
+   "pluriel": "las camillas",
+   "niveau": "A2",
+   "theme": "la_salud",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     31,
+     55,
+     38,
+     27
+    ]
+   ],
+   "fr": "la table d'examen",
+   "en": "the examination couch",
+   "pt": "a maca",
+   "ar": "سرير الفحص",
+   "pl": "kozetka",
+   "ru": "кушетка",
+   "latam": null
   },
   {
    "id": "rippe",

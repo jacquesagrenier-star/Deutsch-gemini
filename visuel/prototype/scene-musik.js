@@ -681,10 +681,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     66,
-     90,
-     34,
-     10
+     0,
+     72,
+     100,
+     28
     ]
    ],
    "fr": "le sol",
@@ -696,6 +696,93 @@ window.SCENE = {
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол"
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "genre": "die",
+   "pluriel": "Wände",
+   "niveau": "A1",
+   "theme": "wohnen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     0,
+     100,
+     55
+    ]
+   ],
+   "fr": "mur",
+   "en": "wall",
+   "tr": "duvar",
+   "uk": "стіна",
+   "fa": "دیوار",
+   "pt": "parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена"
+  },
+  {
+   "id": "trommel",
+   "mot": "Trommel",
+   "genre": "die",
+   "pluriel": "Trommeln",
+   "niveau": "A2",
+   "theme": "musik_kunst_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     5,
+     76,
+     9,
+     15
+    ]
+   ],
+   "fr": "tambour",
+   "en": "drum",
+   "tr": "davul",
+   "uk": "барабан",
+   "fa": "طبل",
+   "pt": "tambor",
+   "ar": "طبل",
+   "pl": "bęben",
+   "ru": "барабан"
+  },
+  {
+   "id": "heizung",
+   "mot": "Heizung",
+   "genre": "die",
+   "pluriel": "Heizungen",
+   "niveau": "A2",
+   "theme": "wohnen_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     62,
+     49,
+     8,
+     7
+    ]
+   ],
+   "fr": "chauffage",
+   "en": "heating",
+   "tr": "kalorifer",
+   "uk": "опалення",
+   "fa": "شوفاژ",
+   "pt": "aquecimento",
+   "ar": "تدفئة",
+   "pl": "ogrzewanie",
+   "ru": "отопление"
   }
  ],
  "grosPlans": [],

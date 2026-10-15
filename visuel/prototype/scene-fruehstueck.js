@@ -15,10 +15,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     41,
-     1,
-     48,
-     15
+     0,
+     0,
+     100,
+     50
     ]
    ],
    "fr": "mur",
@@ -45,9 +45,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     88,
+     78,
      100,
-     12
+     22
     ]
    ],
    "fr": "le sol",
@@ -1428,6 +1428,64 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля"
+  },
+  {
+   "id": "kaffeemaschine",
+   "mot": "Kaffeemaschine",
+   "genre": "die",
+   "pluriel": "Kaffeemaschinen",
+   "niveau": "A2",
+   "theme": "kueche_kochen_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     31,
+     31,
+     24,
+     13
+    ]
+   ],
+   "fr": "machine à café",
+   "en": "coffee machine",
+   "tr": "kahve makinesi",
+   "uk": "кавоварка",
+   "fa": "قهوه‌ساز",
+   "pt": "máquina de café",
+   "ar": "آلة القهوة",
+   "pl": "ekspres do kawy",
+   "ru": "кофемашина"
+  },
+  {
+   "id": "theke",
+   "mot": "Theke",
+   "genre": "die",
+   "pluriel": "Theken",
+   "niveau": "A2",
+   "theme": "essen_trinken_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     8,
+     43,
+     48,
+     15
+    ]
+   ],
+   "fr": "comptoir",
+   "en": "counter",
+   "tr": "tezgâh",
+   "uk": "стійка",
+   "fa": "پیشخوان",
+   "pt": "balcão",
+   "ar": "منضدة",
+   "pl": "lada",
+   "ru": "стойка"
   }
  ],
  "grosPlans": [],

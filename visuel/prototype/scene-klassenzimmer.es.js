@@ -1544,10 +1544,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     10,
-     8,
-     34,
-     20
+     0,
+     5,
+     100,
+     55
     ]
    ],
    "fr": "le mur",
@@ -1557,6 +1557,37 @@ window.SCENE = {
    "pl": "ściana",
    "ru": "стена",
    "latam": null
+  },
+  {
+   "id": "boden",
+   "mot": "suelo",
+   "genre": "el",
+   "pluriel": "los suelos",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     72,
+     100,
+     28
+    ]
+   ],
+   "fr": "le sol",
+   "en": "the floor",
+   "pt": "o chão, o piso",
+   "ar": "أرض، تربة",
+   "pl": "ziemia, podłoże",
+   "ru": "почва, пол",
+   "latam": {
+    "mot": "piso",
+    "genre": "el",
+    "pluriel": "los pisos"
+   }
   }
  ],
  "grosPlans": [

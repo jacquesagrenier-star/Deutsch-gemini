@@ -6,7 +6,8 @@
   "Les gros plans : le visage, la main posee a droite de l'image, les pieds, et l'affiche. « net » = le cadre est decoupe dans la source pleine resolution.",
   "Mots manquants au corpus, donc absents de la scene : das Skelett, die Liege, der Kittel, die Tuerklinke, der Daumen, der Haken. (der Knoechel ajoute au corpus le 6 oct. pour cette scene ; die Ferse existe mais le talon ne se voit pas : pieds de face.) das Stethoskop ajoute au corpus le 10 oct. 2026 : au cou de la medecin, en ellipses (masques_ellipses.py).",
   "Les questions A2-C1 sont un BROUILLON non relu, comme celles de la classe.",
-  "9 oct. 2026 : cette scene porte la SANTE (la blessure, les soins), plus le corps. Le corps a sa scene, l'examen (untersuchung). Les gros plans visage, main et pieds sont retires ; les parties du corps restent touchables en Decouvrir mais ne sont plus demandees (exclus), sauf das Knie, celui qui est blesse. L'affiche anatomique reste."
+  "9 oct. 2026 : cette scene porte la SANTE (la blessure, les soins), plus le corps. Le corps a sa scene, l'examen (untersuchung). Les gros plans visage, main et pieds sont retires ; les parties du corps restent touchables en Decouvrir mais ne sont plus demandees (exclus), sauf das Knie, celui qui est blesse. L'affiche anatomique reste.",
+  "Revue du 15 oct. 2026 : zones ajoutees ou agrandies pour que tout objet bien visible soit touchable (scratchpad zones_revue.py)."
  ],
  "image": "arztpraxis.webp",
  "source": "../scenes/arztpraxis.png",
@@ -1044,12 +1045,13 @@
    "id": "wand",
    "mot": "Wand",
    "boite": [
-    20,
-    2,
-    68,
-    50
+    0,
+    0,
+    100,
+    55
    ],
-   "rigide": "rectangle"
+   "rigide": "rectangle",
+   "plein": true
   },
   {
    "id": "boden",
@@ -1059,6 +1061,16 @@
     80,
     100,
     20
+   ]
+  },
+  {
+   "id": "liege",
+   "mot": "Liege",
+   "boite": [
+    31,
+    55,
+    38,
+    27
    ]
   }
  ],

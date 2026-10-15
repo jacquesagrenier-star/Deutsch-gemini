@@ -980,6 +980,41 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля"
+  },
+  {
+   "id": "baum-2",
+   "mot": "Baum",
+   "genre": "der",
+   "pluriel": "Bäume",
+   "niveau": "A1",
+   "theme": "natur_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     84,
+     0,
+     16,
+     48
+    ],
+    [
+     44,
+     13,
+     42,
+     20
+    ]
+   ],
+   "fr": "arbre",
+   "en": "tree",
+   "tr": "ağaç",
+   "uk": "дерево",
+   "fa": "درخت",
+   "pt": "árvore",
+   "ar": "شجرة",
+   "pl": "drzewo",
+   "ru": "дерево"
   }
  ],
  "grosPlans": [],

@@ -738,9 +738,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     93,
-     67,
-     7
+     57,
+     100,
+     43
     ]
    ],
    "fr": "le sol",
@@ -753,6 +753,64 @@ window.SCENE = {
     "mot": "piso",
     "genre": "el",
     "pluriel": "los pisos"
+   }
+  },
+  {
+   "id": "bohrmaschine",
+   "mot": "taladro",
+   "genre": "el",
+   "pluriel": "los taladros",
+   "niveau": "A2",
+   "theme": "las_herramientas",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     26,
+     71,
+     18,
+     7
+    ]
+   ],
+   "fr": "la perceuse",
+   "en": "the drill",
+   "pt": "a furadeira",
+   "ar": "مثقاب",
+   "pl": "wiertarka",
+   "ru": "дрель",
+   "latam": null
+  },
+  {
+   "id": "zange",
+   "mot": "alicates",
+   "genre": "los",
+   "pluriel": null,
+   "niveau": "A2",
+   "theme": "las_herramientas",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     6,
+     77,
+     9,
+     5
+    ]
+   ],
+   "fr": "la pince",
+   "en": "the pliers",
+   "pt": "o alicate",
+   "ar": "كمّاشة",
+   "pl": "kombinerki, obcęgi",
+   "ru": "плоскогубцы, клещи",
+   "latam": {
+    "mot": "pinzas",
+    "genre": "las",
+    "pluriel": null
    }
   }
  ],

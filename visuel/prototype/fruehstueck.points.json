@@ -6,7 +6,8 @@
   "La serveuse est die Frau (aussi die Kellnerin, en espagnol la camarera, ajoutee au corpus le 14 oct.). Le pot de confiture n'est PAS une zone : « la mermelada » manque au corpus espagnol (a ajouter, avec el florero).",
   "Deux Mann : Mark et le vieux monsieur du fond ; tous deux sont aussi der Gast. Deux tasses a Mark (celle qu'il tient, celle du premier plan) et les tasses empilees sur la machine : une seule zone die Tasse.",
   "Mesures relues au pixel sur l'image de controle (construire.py --grille), 14 oct. 2026.",
-  "SAM cherche dans le rectangle ENGLOBANT d'une zone a plusieurs boites : lampes, gateaux et tasses, trop eloignes, sont des zones separees (14 oct. 2026). Les fenetres sont pleines (SAM ne prenait que les montants)."
+  "SAM cherche dans le rectangle ENGLOBANT d'une zone a plusieurs boites : lampes, gateaux et tasses, trop eloignes, sont des zones separees (14 oct. 2026). Les fenetres sont pleines (SAM ne prenait que les montants).",
+  "Revue du 15 oct. 2026 : zones ajoutees ou agrandies pour que tout objet bien visible soit touchable (scratchpad zones_revue.py)."
  ],
  "image": "fruehstueck.webp",
  "source": "../scenes/fruehstueck-propre.png",
@@ -366,10 +367,10 @@
    "id": "wand",
    "mot": "Wand",
    "boite": [
-    41,
-    1,
-    48,
-    15
+    0,
+    0,
+    100,
+    50
    ],
    "plein": true
   },
@@ -378,9 +379,9 @@
    "mot": "Boden",
    "boite": [
     0,
-    88,
+    78,
     100,
-    12
+    22
    ],
    "plein": true
   },
@@ -890,6 +891,27 @@
      4.5,
      3
     ]
+   ]
+  },
+  {
+   "id": "kaffeemaschine",
+   "mot": "Kaffeemaschine",
+   "boite": [
+    31,
+    31,
+    24,
+    13
+   ]
+  },
+  {
+   "id": "theke",
+   "mot": "Theke",
+   "plein": true,
+   "boite": [
+    8,
+    43,
+    48,
+    15
    ]
   }
  ],

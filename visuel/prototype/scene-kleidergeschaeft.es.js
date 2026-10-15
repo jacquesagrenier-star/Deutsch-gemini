@@ -15,10 +15,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     8,
-     6,
-     50,
-     15
+     0,
+     0,
+     100,
+     60
     ]
    ],
    "fr": "le mur",
@@ -42,10 +42,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20,
-     88,
-     37,
-     12
+     0,
+     62,
+     100,
+     38
     ]
    ],
    "fr": "le sol",
@@ -1309,6 +1309,33 @@ window.SCENE = {
    "ar": "بنك، مصرف",
    "pl": "bank",
    "ru": "банк",
+   "latam": null
+  },
+  {
+   "id": "theke",
+   "mot": "barra",
+   "genre": "la",
+   "pluriel": "las barras",
+   "niveau": "A1",
+   "theme": "el_restaurante",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     57,
+     64,
+     43,
+     36
+    ]
+   ],
+   "fr": "le comptoir",
+   "en": "the bar (counter)",
+   "pt": "o balcão",
+   "ar": "منضدة",
+   "pl": "lada",
+   "ru": "стойка",
    "latam": null
   }
  ],

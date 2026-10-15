@@ -15,10 +15,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     3,
-     4,
-     33,
-     9
+     0,
+     0,
+     100,
+     60
     ]
    ],
    "fr": "le mur",
@@ -42,10 +42,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     36,
-     84,
-     20,
-     16
+     0,
+     68,
+     100,
+     32
     ]
    ],
    "fr": "le sol",
@@ -1197,6 +1197,33 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "latam": null
+  },
+  {
+   "id": "spuele",
+   "mot": "fregadero",
+   "genre": "el",
+   "pluriel": "los fregaderos",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70,
+     44,
+     17,
+     4
+    ]
+   ],
+   "fr": "l'évier",
+   "en": "the sink",
+   "pt": "a pia (da cozinha)",
+   "ar": "حوض المطبخ",
+   "pl": "zlew",
+   "ru": "мойка",
    "latam": null
   }
  ],

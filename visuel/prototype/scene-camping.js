@@ -602,9 +602,15 @@ window.SCENE = {
    "boites": [
     [
      0,
-     92,
-     33,
-     8
+     44,
+     60,
+     56
+    ],
+    [
+     60,
+     56,
+     40,
+     44
     ]
    ],
    "fr": "herbe",
@@ -616,6 +622,35 @@ window.SCENE = {
    "ar": "عشب",
    "pl": "trawa",
    "ru": "трава"
+  },
+  {
+   "id": "isomatte",
+   "mot": "Isomatte",
+   "genre": "die",
+   "pluriel": "Isomatten",
+   "niveau": "B1",
+   "theme": "reisen_urlaub_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     52,
+     53,
+     14,
+     6
+    ]
+   ],
+   "fr": "tapis de sol",
+   "en": "sleeping mat",
+   "tr": "kamp matı",
+   "uk": "каремат",
+   "fa": "زیرانداز کمپینگ",
+   "pt": "isolante térmico",
+   "ar": "حصيرة التخييم",
+   "pl": "karimata",
+   "ru": "туристический коврик"
   }
  ],
  "grosPlans": [],

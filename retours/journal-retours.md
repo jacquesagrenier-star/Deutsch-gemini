@@ -8953,3 +8953,22 @@ Jacques : « refais le foot, et passe les scenes en revue ».
   rose = seulement un grand fond). Trois masques incomplets repares tout de suite : le tas de bois
   du lac, l'ordinateur du train, Anna au repas de famille (sa tete). Le reste (objets sans zone,
   scene par scene) est liste pour Jacques, avec ce qui demande un mot nouveau au corpus.
+
+## 15 octobre 2026 -- tout ce qui se voit devient touchable (revue des 24 scenes)
+
+Jacques : « quand une image est dans la scene, elle devrait etre touchable » ; puis « fais la
+categorie 1, et ajoute les mots ».
+- 12 mots allemands ajoutes au corpus (ajouts/mots-scenes-revue.json) : die Theke, die
+  Kaffeemaschine, die Spule, die Liege, die Gepackablage, der Sonnenschirm, die Muschel, die
+  Schaufel, der Globus, der Einkaufswagen, das Klebeband, die Isomatte -- en 9 langues, avec phrases.
+- 12 mots espagnols (espanol/ajouts/scene-revue.json) : la mesilla, los auriculares, el taladro,
+  los alicates, el tambor, la cafetera, la camilla, el portaequipajes, la concha, la pala, la
+  esterilla, el globo terraqueo (la cinta adhesiva y etait deja) ; variantes d'Amerique latine buro,
+  audifonos, pinzas ; portugais. Publies seuls : le travail arabe non publie de Fable reste a part.
+- Zones ajoutees ou agrandies dans 20 scenes : murs, sols, portes, l'etal du marche, la
+  boulangerie et les maisons du carrefour, la table d'examen, le comptoir et la machine a cafe du
+  cafe, l'evier, les arbres du parc, la table de nuit, le parasol, les coquillages, la pelle, le
+  porte-bagages, l'armoire et le ruban adhesif du bureau, le caddie, le globe, le casque, le
+  radiateur, la perceuse, la pince, le tapis de sol, le tambour... Et huit masques rates repares
+  (zone pleine) : la voiture sombre et la piste cyclable du carrefour, la table de la cuisine, le
+  canape de l'anniversaire, la caisse du supermarche, la lampe de la guitare.

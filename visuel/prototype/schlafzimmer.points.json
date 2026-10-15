@@ -4,7 +4,8 @@
   "Image : visuel/scenes/schlafzimmer.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png), puis schlafzimmer-propre.png : la legende de la carte et trois marques sous l'affiche effacees (schlafzimmer-effacer.json). Le modele n'a pas mis la pile de vetements, le maillot ni le sac a dos demandes : pas de zone pour eux.",
   "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
   "Pas de zone pour la table de nuit : der Nachttisch existe en allemand, mais « la mesita de noche » manque au corpus espagnol.",
-  "Mesures relues sur la grille en % du 14 oct. 2026."
+  "Mesures relues sur la grille en % du 14 oct. 2026.",
+  "Revue du 15 oct. 2026 : zones ajoutees ou agrandies pour que tout objet bien visible soit touchable (scratchpad zones_revue.py)."
  ],
  "image": "schlafzimmer.webp",
  "source": "../scenes/schlafzimmer-propre.png",
@@ -362,10 +363,10 @@
    "mot": "Wand",
    "plein": true,
    "boite": [
-    25,
-    2,
-    40,
-    15
+    0,
+    0,
+    100,
+    45
    ]
   },
   {
@@ -373,10 +374,10 @@
    "mot": "Boden",
    "plein": true,
    "boite": [
-    12,
-    88,
-    75,
-    12
+    0,
+    63,
+    100,
+    37
    ]
   },
   {
@@ -621,6 +622,35 @@
     63,
     43.5,
     22
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     28,
+     12,
+     72
+    ],
+    [
+     91,
+     45,
+     9,
+     55
+    ]
+   ]
+  },
+  {
+   "id": "nachttisch",
+   "mot": "Nachttisch",
+   "boite": [
+    30,
+    40,
+    17,
+    6
    ]
   }
  ],

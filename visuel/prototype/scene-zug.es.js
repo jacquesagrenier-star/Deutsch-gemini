@@ -748,6 +748,60 @@ window.SCENE = {
    "pl": "siedzenie, miejsce",
    "ru": "сиденье, место",
    "latam": null
+  },
+  {
+   "id": "gepaeckablage",
+   "mot": "portaequipajes",
+   "genre": "el",
+   "pluriel": "los portaequipajes",
+   "niveau": "A1",
+   "theme": "el_transporte",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     6,
+     75,
+     16
+    ]
+   ],
+   "fr": "le porte-bagages",
+   "en": "the luggage rack",
+   "pt": "o bagageiro",
+   "ar": "رفّ الأمتعة",
+   "pl": "półka na bagaż",
+   "ru": "багажная полка",
+   "latam": null
+  },
+  {
+   "id": "tuer",
+   "mot": "puerta",
+   "genre": "la",
+   "pluriel": "las puertas",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     53,
+     27,
+     13,
+     30
+    ]
+   ],
+   "fr": "la porte",
+   "en": "the door",
+   "pt": "a porta",
+   "ar": "باب",
+   "pl": "drzwi",
+   "ru": "дверь",
+   "latam": null
   }
  ],
  "grosPlans": [],

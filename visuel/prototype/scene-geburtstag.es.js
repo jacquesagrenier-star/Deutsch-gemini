@@ -15,10 +15,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     72,
-     5,
-     25,
-     15
+     0,
+     0,
+     100,
+     52
     ]
    ],
    "fr": "le mur",

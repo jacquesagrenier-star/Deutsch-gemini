@@ -4,7 +4,8 @@
   "Image : kreuzung-propre.png = la retouche ou Anna est au premier plan (devant la boulangerie elle etait trop grande, Jacques), puis texte et logos effaces (visuel/effacer_texte.py : TAXI, numero du tram, cor de la Poste).",
   "Memes conventions que les autres scenes. Deux Briefkasten (devant la poste, au premier plan), trois Ampel, deux Verkehrszeichen, deux Auto garees (aussi Parkplatz). La femme en manteau rouge et la dame au cabas sont toutes deux die Frau.",
   "Mesures a la grille sur la source 1536 x 2752, verifiees au toucher dans le navigateur.",
-  "Les questions A2-C1 (11 oct. 2026) sont un BROUILLON non relu, ecrit sur les faits de l'image : A2 Wo? en ville (zwischen, gegenueber, an der Ecke, vor) ; B1 indiquer le chemin (zur, ueber + Akk, an … vorbei, Sie-Imperativ) ; B2 genitif (entlang, unweit, trotz) et relatives ; C1 hypotheses."
+  "Les questions A2-C1 (11 oct. 2026) sont un BROUILLON non relu, ecrit sur les faits de l'image : A2 Wo? en ville (zwischen, gegenueber, an der Ecke, vor) ; B1 indiquer le chemin (zur, ueber + Akk, an … vorbei, Sie-Imperativ) ; B2 genitif (entlang, unweit, trotz) et relatives ; C1 hypotheses.",
+  "Revue du 15 oct. 2026 : zones ajoutees ou agrandies pour que tout objet bien visible soit touchable (scratchpad zones_revue.py)."
  ],
  "image": "kreuzung.webp",
  "source": "../scenes/kreuzung-propre.png",
@@ -407,13 +408,21 @@
    "aussi": [
     "Kreuzung"
    ],
-   "boite": [
-    0,
-    44,
-    100,
-    42
-   ],
-   "plein": true
+   "plein": true,
+   "boites": [
+    [
+     0,
+     31,
+     100,
+     13
+    ],
+    [
+     0,
+     44,
+     100,
+     42
+    ]
+   ]
   },
   {
    "id": "buergersteig",
@@ -432,16 +441,12 @@
   {
    "id": "baeckerei",
    "mot": "Bäckerei",
-   "aussi": [
-    "Schaufenster"
-   ],
    "boite": [
-    3.6,
-    19,
-    19.5,
-    11.6
-   ],
-   "rigide": "rectangle"
+    3,
+    18,
+    26,
+    13
+   ]
   },
   {
    "id": "brot",
@@ -574,7 +579,8 @@
     34.4,
     18.8,
     6.2
-   ]
+   ],
+   "plein": true
   },
   {
    "id": "auto-silber",
@@ -758,7 +764,8 @@
     72,
     88.4,
     16
-   ]
+   ],
+   "plein": true
   },
   {
    "id": "radfahrer",
@@ -871,6 +878,17 @@
    ],
    "devant": 2,
    "plein": true
+  },
+  {
+   "id": "haus",
+   "mot": "Haus",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    18
+   ]
   }
  ],
  "gros_plans": []

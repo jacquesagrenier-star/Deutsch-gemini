@@ -920,6 +920,39 @@ window.SCENE = {
    "pl": "but",
    "ru": "ботинок, туфля",
    "latam": null
+  },
+  {
+   "id": "baum-2",
+   "mot": "árbol",
+   "genre": "el",
+   "pluriel": "los árboles",
+   "niveau": "A1",
+   "theme": "los_animales",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     84,
+     0,
+     16,
+     48
+    ],
+    [
+     44,
+     13,
+     42,
+     20
+    ]
+   ],
+   "fr": "l'arbre",
+   "en": "the tree",
+   "pt": "a árvore",
+   "ar": "شجرة",
+   "pl": "drzewo",
+   "ru": "дерево",
+   "latam": null
   }
  ],
  "grosPlans": [],

@@ -15,10 +15,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     41,
-     1,
-     48,
-     15
+     0,
+     0,
+     100,
+     50
     ]
    ],
    "fr": "le mur",
@@ -43,9 +43,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     88,
+     78,
      100,
-     12
+     22
     ]
    ],
    "fr": "le sol",
@@ -1298,6 +1298,60 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "latam": null
+  },
+  {
+   "id": "kaffeemaschine",
+   "mot": "cafetera",
+   "genre": "la",
+   "pluriel": "las cafeteras",
+   "niveau": "A2",
+   "theme": "la_cocina_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     31,
+     31,
+     24,
+     13
+    ]
+   ],
+   "fr": "la machine à café",
+   "en": "the coffee machine",
+   "pt": "a cafeteira",
+   "ar": "آلة القهوة",
+   "pl": "ekspres do kawy",
+   "ru": "кофемашина",
+   "latam": null
+  },
+  {
+   "id": "theke",
+   "mot": "barra",
+   "genre": "la",
+   "pluriel": "las barras",
+   "niveau": "A1",
+   "theme": "el_restaurante",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     8,
+     43,
+     48,
+     15
+    ]
+   ],
+   "fr": "le comptoir",
+   "en": "the bar (counter)",
+   "pt": "o balcão",
+   "ar": "منضدة",
+   "pl": "lada",
+   "ru": "стойка",
    "latam": null
   }
  ],

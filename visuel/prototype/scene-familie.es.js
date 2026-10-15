@@ -856,6 +856,60 @@ window.SCENE = {
    "pl": "stół",
    "ru": "стол",
    "latam": null
+  },
+  {
+   "id": "wand",
+   "mot": "pared",
+   "genre": "la",
+   "pluriel": "las paredes",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     0,
+     100,
+     30
+    ]
+   ],
+   "fr": "le mur",
+   "en": "the wall",
+   "pt": "a parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена",
+   "latam": null
+  },
+  {
+   "id": "stuhl-2",
+   "mot": "silla",
+   "genre": "la",
+   "pluriel": "las sillas",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     46,
+     33,
+     13,
+     5
+    ]
+   ],
+   "fr": "la chaise",
+   "en": "the chair",
+   "pt": "a cadeira",
+   "ar": "كرسي",
+   "pl": "krzesło",
+   "ru": "стул",
+   "latam": null
   }
  ],
  "grosPlans": [],

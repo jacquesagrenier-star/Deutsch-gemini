@@ -77,6 +77,12 @@ window.SCENE = {
    "boites": [
     [
      0,
+     31,
+     100,
+     13
+    ],
+    [
+     0,
      44,
      100,
      42
@@ -145,31 +151,15 @@ window.SCENE = {
    "niveau": "A2",
    "theme": "stadt_gebaeude_a2",
    "personne": null,
-   "aussi": [
-    {
-     "mot": "Schaufenster",
-     "genre": "das",
-     "niveau": "B1",
-     "theme": "einkaufen_geld_b1",
-     "fr": "vitrine",
-     "en": "shop window",
-     "tr": "vitrin",
-     "uk": "вітрина",
-     "fa": "ویترین",
-     "pt": "vitrine",
-     "ar": "واجهة المحلّ",
-     "pl": "wystawa sklepowa, witryna",
-     "ru": "витрина"
-    }
-   ],
+   "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
     [
-     3.6,
-     19,
-     19.5,
-     11.6
+     3,
+     18,
+     26,
+     13
     ]
    ],
    "fr": "boulangerie",
@@ -1541,6 +1531,35 @@ window.SCENE = {
    "ar": "حامل الدرّاجات",
    "pl": "stojak na rowery",
    "ru": "велопарковка"
+  },
+  {
+   "id": "haus",
+   "mot": "Haus",
+   "genre": "das",
+   "pluriel": "Häuser",
+   "niveau": "A1",
+   "theme": "wohnen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     0,
+     100,
+     18
+    ]
+   ],
+   "fr": "maison",
+   "en": "house",
+   "tr": "ev",
+   "uk": "будинок",
+   "fa": "خانه",
+   "pt": "casa",
+   "ar": "بيت، منزل",
+   "pl": "dom",
+   "ru": "дом"
   }
  ],
  "grosPlans": [],

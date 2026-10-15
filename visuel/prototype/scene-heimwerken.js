@@ -782,9 +782,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     93,
-     67,
-     7
+     57,
+     100,
+     43
     ]
    ],
    "fr": "le sol",
@@ -796,6 +796,64 @@ window.SCENE = {
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол"
+  },
+  {
+   "id": "bohrmaschine",
+   "mot": "Bohrmaschine",
+   "genre": "die",
+   "pluriel": "Bohrmaschinen",
+   "niveau": "C1",
+   "theme": "heimwerken_c1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     26,
+     71,
+     18,
+     7
+    ]
+   ],
+   "fr": "perceuse",
+   "en": "drill",
+   "tr": "matkap",
+   "uk": "дриль",
+   "fa": "دریل",
+   "pt": "furadeira",
+   "ar": "مثقاب",
+   "pl": "wiertarka",
+   "ru": "дрель"
+  },
+  {
+   "id": "zange",
+   "mot": "Zange",
+   "genre": "die",
+   "pluriel": "Zangen",
+   "niveau": "B1",
+   "theme": "moebel_haushalt_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     6,
+     77,
+     9,
+     5
+    ]
+   ],
+   "fr": "pince",
+   "en": "pliers",
+   "tr": "pense",
+   "uk": "кліщі, плоскогубці",
+   "fa": "انبردست",
+   "pt": "alicate",
+   "ar": "كمّاشة",
+   "pl": "kombinerki, obcęgi",
+   "ru": "плоскогубцы, клещи"
   }
  ],
  "grosPlans": [],

@@ -795,9 +795,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     93,
-     70,
-     7
+     60,
+     75,
+     40
     ]
    ],
    "fr": "le sol",
@@ -809,6 +809,35 @@ window.SCENE = {
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол"
+  },
+  {
+   "id": "einkaufswagen",
+   "mot": "Einkaufswagen",
+   "genre": "der",
+   "pluriel": "Einkaufswagen",
+   "niveau": "A2",
+   "theme": "einkaufen_geld_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     71,
+     51,
+     29,
+     49
+    ]
+   ],
+   "fr": "caddie",
+   "en": "shopping trolley",
+   "tr": "alışveriş arabası",
+   "uk": "візок для покупок",
+   "fa": "چرخ خرید",
+   "pt": "carrinho de compras",
+   "ar": "عربة التسوّق",
+   "pl": "wózek sklepowy",
+   "ru": "тележка для покупок"
   }
  ],
  "grosPlans": [],

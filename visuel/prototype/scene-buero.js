@@ -732,6 +732,151 @@ window.SCENE = {
    "ar": "مكتب (قطعة أثاث)",
    "pl": "biurko",
    "ru": "письменный стол"
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "genre": "die",
+   "pluriel": "Wände",
+   "niveau": "A1",
+   "theme": "wohnen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     58,
+     0,
+     40,
+     48
+    ]
+   ],
+   "fr": "mur",
+   "en": "wall",
+   "tr": "duvar",
+   "uk": "стіна",
+   "fa": "دیوار",
+   "pt": "parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена"
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "genre": "der",
+   "pluriel": "Böden",
+   "niveau": "A2",
+   "theme": "natur_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     90,
+     100,
+     10
+    ]
+   ],
+   "fr": "le sol",
+   "en": "ground, floor",
+   "tr": "zemin / toprak",
+   "uk": "земля, підлога",
+   "fa": "زمین، کف",
+   "pt": "chão, solo",
+   "ar": "أرض، تربة",
+   "pl": "ziemia, podłoże",
+   "ru": "почва, пол"
+  },
+  {
+   "id": "schrank",
+   "mot": "Schrank",
+   "genre": "der",
+   "pluriel": "Schränke",
+   "niveau": "A1",
+   "theme": "moebel_haushalt_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     32,
+     49,
+     20,
+     12
+    ]
+   ],
+   "fr": "armoire",
+   "en": "closet, wardrobe",
+   "tr": "dolap",
+   "uk": "шафа",
+   "fa": "کمد",
+   "pt": "armário",
+   "ar": "خزانة",
+   "pl": "szafa",
+   "ru": "шкаф"
+  },
+  {
+   "id": "klebeband",
+   "mot": "Klebeband",
+   "genre": "das",
+   "pluriel": "Klebebänder",
+   "niveau": "A2",
+   "theme": "arbeit_buero_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70,
+     75,
+     9,
+     5
+    ]
+   ],
+   "fr": "ruban adhésif",
+   "en": "sticky tape",
+   "tr": "bant",
+   "uk": "скотч",
+   "fa": "چسب نواری",
+   "pt": "fita adesiva",
+   "ar": "شريط لاصق",
+   "pl": "taśma klejąca",
+   "ru": "скотч"
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "genre": "die",
+   "pluriel": "Türen",
+   "niveau": "A1",
+   "theme": "wohnen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     93,
+     0,
+     7,
+     100
+    ]
+   ],
+   "fr": "porte",
+   "en": "door",
+   "tr": "kapı",
+   "uk": "двері",
+   "fa": "در",
+   "pt": "porta",
+   "ar": "باب",
+   "pl": "drzwi",
+   "ru": "дверь"
   }
  ],
  "grosPlans": [],

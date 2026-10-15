@@ -631,6 +631,151 @@ window.SCENE = {
    "pl": "krzesło",
    "ru": "стул",
    "latam": null
+  },
+  {
+   "id": "globus",
+   "mot": "globo terráqueo",
+   "genre": "el",
+   "pluriel": "los globos terráqueos",
+   "niveau": "A1",
+   "theme": "la_escuela",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     57,
+     35,
+     17,
+     12
+    ]
+   ],
+   "fr": "le globe",
+   "en": "the globe",
+   "pt": "o globo terrestre",
+   "ar": "مجسّم الكرة الأرضية",
+   "pl": "globus",
+   "ru": "глобус",
+   "latam": null
+  },
+  {
+   "id": "kopfhoerer",
+   "mot": "auriculares",
+   "genre": "los",
+   "pluriel": null,
+   "niveau": "A2",
+   "theme": "la_tecnologia",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     32,
+     64,
+     14,
+     5
+    ]
+   ],
+   "fr": "le casque audio",
+   "en": "the headphones",
+   "pt": "os fones de ouvido",
+   "ar": "سمّاعات الرأس",
+   "pl": "słuchawki",
+   "ru": "наушники",
+   "latam": {
+    "mot": "audífonos",
+    "genre": "los",
+    "pluriel": null
+   }
+  },
+  {
+   "id": "heizung",
+   "mot": "calefacción",
+   "genre": "la",
+   "pluriel": "las calefacciones",
+   "niveau": "A2",
+   "theme": "el_hotel",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     44,
+     24,
+     10
+    ]
+   ],
+   "fr": "le chauffage",
+   "en": "the heating",
+   "pt": "o aquecimento",
+   "ar": "تدفئة",
+   "pl": "ogrzewanie",
+   "ru": "отопление",
+   "latam": null
+  },
+  {
+   "id": "stuhl-2",
+   "mot": "silla",
+   "genre": "la",
+   "pluriel": "las sillas",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     66,
+     50,
+     20,
+     12
+    ],
+    [
+     87,
+     52,
+     13,
+     10
+    ]
+   ],
+   "fr": "la chaise",
+   "en": "the chair",
+   "pt": "a cadeira",
+   "ar": "كرسي",
+   "pl": "krzesło",
+   "ru": "стул",
+   "latam": null
+  },
+  {
+   "id": "wand",
+   "mot": "pared",
+   "genre": "la",
+   "pluriel": "las paredes",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     25,
+     0,
+     55,
+     28
+    ]
+   ],
+   "fr": "le mur",
+   "en": "the wall",
+   "pt": "a parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена",
+   "latam": null
   }
  ],
  "grosPlans": [],

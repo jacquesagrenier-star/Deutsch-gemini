@@ -562,9 +562,15 @@ window.SCENE = {
    "boites": [
     [
      0,
-     92,
-     33,
-     8
+     44,
+     60,
+     56
+    ],
+    [
+     60,
+     56,
+     40,
+     44
     ]
    ],
    "fr": "l'herbe",
@@ -573,6 +579,33 @@ window.SCENE = {
    "ar": "عشب",
    "pl": "trawa",
    "ru": "трава",
+   "latam": null
+  },
+  {
+   "id": "isomatte",
+   "mot": "esterilla",
+   "genre": "la",
+   "pluriel": "las esterillas",
+   "niveau": "A2",
+   "theme": "las_vacaciones",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     52,
+     53,
+     14,
+     6
+    ]
+   ],
+   "fr": "le tapis de sol",
+   "en": "the sleeping mat",
+   "pt": "o isolante térmico",
+   "ar": "حصيرة التخييم",
+   "pl": "karimata",
+   "ru": "туристический коврик",
    "latam": null
   }
  ],

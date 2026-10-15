@@ -1665,10 +1665,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20,
-     2,
-     68,
-     50
+     0,
+     0,
+     100,
+     55
     ]
    ],
    "fr": "mur",
@@ -1709,6 +1709,35 @@ window.SCENE = {
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол"
+  },
+  {
+   "id": "liege",
+   "mot": "Liege",
+   "genre": "die",
+   "pluriel": "Liegen",
+   "niveau": "B1",
+   "theme": "gesundheit_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     31,
+     55,
+     38,
+     27
+    ]
+   ],
+   "fr": "table d'examen",
+   "en": "examination couch",
+   "tr": "muayene sedyesi",
+   "uk": "кушетка",
+   "fa": "تخت معاینه",
+   "pt": "maca",
+   "ar": "سرير الفحص",
+   "pl": "kozetka",
+   "ru": "кушетка"
   },
   {
    "id": "rippe",

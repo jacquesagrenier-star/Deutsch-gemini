@@ -791,10 +791,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     62,
-     88,
-     25,
-     12
+     50,
+     58,
+     40,
+     42
     ]
    ],
    "fr": "le sol",
@@ -806,6 +806,35 @@ window.SCENE = {
    "ar": "أرض، تربة",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол"
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "genre": "die",
+   "pluriel": "Wände",
+   "niveau": "A1",
+   "theme": "wohnen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     12,
+     5,
+     88,
+     45
+    ]
+   ],
+   "fr": "mur",
+   "en": "wall",
+   "tr": "duvar",
+   "uk": "стіна",
+   "fa": "دیوار",
+   "pt": "parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена"
   }
  ],
  "grosPlans": [],

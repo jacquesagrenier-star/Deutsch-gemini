@@ -673,6 +673,157 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул"
+  },
+  {
+   "id": "globus",
+   "mot": "Globus",
+   "genre": "der",
+   "pluriel": "Globen",
+   "niveau": "A2",
+   "theme": "schule_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     57,
+     35,
+     17,
+     12
+    ]
+   ],
+   "fr": "globe",
+   "en": "globe",
+   "tr": "yerküre",
+   "uk": "глобус",
+   "fa": "کرهٔ جغرافیایی",
+   "pt": "globo",
+   "ar": "مجسّم الكرة الأرضية",
+   "pl": "globus",
+   "ru": "глобус"
+  },
+  {
+   "id": "kopfhoerer",
+   "mot": "Kopfhörer",
+   "genre": "der",
+   "pluriel": "Kopfhörer",
+   "niveau": "A2",
+   "theme": "medien_technologie_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     32,
+     64,
+     14,
+     5
+    ]
+   ],
+   "fr": "écouteurs",
+   "en": "headphones",
+   "tr": "kulaklık",
+   "uk": "навушники",
+   "fa": "هدفون",
+   "pt": "fone de ouvido",
+   "ar": "سمّاعات الرأس",
+   "pl": "słuchawki",
+   "ru": "наушники"
+  },
+  {
+   "id": "heizung",
+   "mot": "Heizung",
+   "genre": "die",
+   "pluriel": "Heizungen",
+   "niveau": "A2",
+   "theme": "wohnen_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     44,
+     24,
+     10
+    ]
+   ],
+   "fr": "chauffage",
+   "en": "heating",
+   "tr": "kalorifer",
+   "uk": "опалення",
+   "fa": "شوفاژ",
+   "pt": "aquecimento",
+   "ar": "تدفئة",
+   "pl": "ogrzewanie",
+   "ru": "отопление"
+  },
+  {
+   "id": "stuhl-2",
+   "mot": "Stuhl",
+   "genre": "der",
+   "pluriel": "Stühle",
+   "niveau": "A1",
+   "theme": "moebel_haushalt_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     66,
+     50,
+     20,
+     12
+    ],
+    [
+     87,
+     52,
+     13,
+     10
+    ]
+   ],
+   "fr": "chaise",
+   "en": "chair",
+   "tr": "sandalye",
+   "uk": "стілець",
+   "fa": "صندلی",
+   "pt": "cadeira",
+   "ar": "كرسي",
+   "pl": "krzesło",
+   "ru": "стул"
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "genre": "die",
+   "pluriel": "Wände",
+   "niveau": "A1",
+   "theme": "wohnen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     25,
+     0,
+     55,
+     28
+    ]
+   ],
+   "fr": "mur",
+   "en": "wall",
+   "tr": "duvar",
+   "uk": "стіна",
+   "fa": "دیوار",
+   "pt": "parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена"
   }
  ],
  "grosPlans": [],

@@ -1693,10 +1693,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     10,
-     8,
-     34,
-     20
+     0,
+     5,
+     100,
+     55
     ]
    ],
    "fr": "mur",
@@ -1708,6 +1708,35 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена"
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "genre": "der",
+   "pluriel": "Böden",
+   "niveau": "A2",
+   "theme": "natur_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     72,
+     100,
+     28
+    ]
+   ],
+   "fr": "le sol",
+   "en": "ground, floor",
+   "tr": "zemin / toprak",
+   "uk": "земля, підлога",
+   "fa": "زمین، کف",
+   "pt": "chão, solo",
+   "ar": "أرض، تربة",
+   "pl": "ziemia, podłoże",
+   "ru": "почва, пол"
   }
  ],
  "grosPlans": [

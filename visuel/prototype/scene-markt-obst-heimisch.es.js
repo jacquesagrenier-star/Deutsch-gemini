@@ -759,6 +759,39 @@ window.SCENE = {
    "pl": "jabłko",
    "ru": "яблоко",
    "latam": null
+  },
+  {
+   "id": "stand",
+   "mot": "puesto",
+   "genre": "el",
+   "pluriel": "los puestos",
+   "niveau": "A2",
+   "theme": "la_oficina",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     0,
+     95,
+     25
+    ],
+    [
+     0,
+     90,
+     72,
+     10
+    ]
+   ],
+   "fr": "le poste",
+   "en": "the position",
+   "pt": "o cargo, a vaga",
+   "ar": "وضع، حالة؛ كشك",
+   "pl": "stan; stoisko",
+   "ru": "состояние; стенд, ларёк",
+   "latam": null
   }
  ],
  "grosPlans": [],

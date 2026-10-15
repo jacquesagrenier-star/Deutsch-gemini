@@ -735,9 +735,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     93,
-     70,
-     7
+     60,
+     75,
+     40
     ]
    ],
    "fr": "le sol",
@@ -751,6 +751,33 @@ window.SCENE = {
     "genre": "el",
     "pluriel": "los pisos"
    }
+  },
+  {
+   "id": "einkaufswagen",
+   "mot": "carrito",
+   "genre": "el",
+   "pluriel": "los carritos",
+   "niveau": "A1",
+   "theme": "las_compras",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     71,
+     51,
+     29,
+     49
+    ]
+   ],
+   "fr": "le chariot",
+   "en": "the trolley",
+   "pt": "o carrinho",
+   "ar": "عربة التسوّق",
+   "pl": "wózek sklepowy",
+   "ru": "тележка для покупок",
+   "latam": null
   }
  ],
  "grosPlans": [],

@@ -15,10 +15,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     25,
-     2,
-     40,
-     15
+     0,
+     0,
+     100,
+     45
     ]
    ],
    "fr": "le mur",
@@ -42,10 +42,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     12,
-     88,
-     75,
-     12
+     0,
+     63,
+     100,
+     37
     ]
    ],
    "fr": "le sol",
@@ -706,6 +706,70 @@ window.SCENE = {
    "pl": "dywan",
    "ru": "ковёр",
    "latam": null
+  },
+  {
+   "id": "tuer",
+   "mot": "puerta",
+   "genre": "la",
+   "pluriel": "las puertas",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     28,
+     12,
+     72
+    ],
+    [
+     91,
+     45,
+     9,
+     55
+    ]
+   ],
+   "fr": "la porte",
+   "en": "the door",
+   "pt": "a porta",
+   "ar": "باب",
+   "pl": "drzwi",
+   "ru": "дверь",
+   "latam": null
+  },
+  {
+   "id": "nachttisch",
+   "mot": "mesilla",
+   "genre": "la",
+   "pluriel": "las mesillas",
+   "niveau": "B2",
+   "theme": "nom_interior",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     30,
+     40,
+     17,
+     6
+    ]
+   ],
+   "fr": "la table de nuit",
+   "en": "the bedside table",
+   "pt": "a mesa de cabeceira",
+   "ar": "طاولة جانب السرير",
+   "pl": "szafka nocna",
+   "ru": "прикроватная тумбочка",
+   "latam": {
+    "mot": "buró",
+    "genre": "el",
+    "pluriel": "los burós"
+   }
   }
  ],
  "grosPlans": [],

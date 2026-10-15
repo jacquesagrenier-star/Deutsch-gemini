@@ -639,10 +639,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     66,
-     90,
-     34,
-     10
+     0,
+     72,
+     100,
+     28
     ]
    ],
    "fr": "le sol",
@@ -656,6 +656,87 @@ window.SCENE = {
     "genre": "el",
     "pluriel": "los pisos"
    }
+  },
+  {
+   "id": "wand",
+   "mot": "pared",
+   "genre": "la",
+   "pluriel": "las paredes",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     0,
+     100,
+     55
+    ]
+   ],
+   "fr": "le mur",
+   "en": "the wall",
+   "pt": "a parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена",
+   "latam": null
+  },
+  {
+   "id": "trommel",
+   "mot": "tambor",
+   "genre": "el",
+   "pluriel": "los tambores",
+   "niveau": "A2",
+   "theme": "la_musica",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     5,
+     76,
+     9,
+     15
+    ]
+   ],
+   "fr": "le tambour",
+   "en": "the drum",
+   "pt": "o tambor",
+   "ar": "طبل",
+   "pl": "bęben",
+   "ru": "барабан",
+   "latam": null
+  },
+  {
+   "id": "heizung",
+   "mot": "calefacción",
+   "genre": "la",
+   "pluriel": "las calefacciones",
+   "niveau": "A2",
+   "theme": "el_hotel",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     62,
+     49,
+     8,
+     7
+    ]
+   ],
+   "fr": "le chauffage",
+   "en": "the heating",
+   "pt": "o aquecimento",
+   "ar": "تدفئة",
+   "pl": "ogrzewanie",
+   "ru": "отопление",
+   "latam": null
   }
  ],
  "grosPlans": [],

@@ -737,10 +737,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     62,
-     88,
-     25,
-     12
+     50,
+     58,
+     40,
+     42
     ]
    ],
    "fr": "le sol",
@@ -754,6 +754,33 @@ window.SCENE = {
     "genre": "el",
     "pluriel": "los pisos"
    }
+  },
+  {
+   "id": "wand",
+   "mot": "pared",
+   "genre": "la",
+   "pluriel": "las paredes",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     12,
+     5,
+     88,
+     45
+    ]
+   ],
+   "fr": "le mur",
+   "en": "the wall",
+   "pt": "a parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена",
+   "latam": null
   }
  ],
  "grosPlans": [],

@@ -787,6 +787,105 @@ window.SCENE = {
    "ar": "رمل",
    "pl": "piasek",
    "ru": "песок"
+  },
+  {
+   "id": "sonnenschirm",
+   "mot": "Sonnenschirm",
+   "genre": "der",
+   "pluriel": "Sonnenschirme",
+   "niveau": "A2",
+   "theme": "reisen_urlaub_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70,
+     33,
+     30,
+     30
+    ]
+   ],
+   "fr": "parasol",
+   "en": "sunshade",
+   "tr": "güneş şemsiyesi",
+   "uk": "пляжна парасолька",
+   "fa": "چتر آفتابی",
+   "pt": "guarda-sol",
+   "ar": "مظلّة شمسية",
+   "pl": "parasol",
+   "ru": "пляжный зонт"
+  },
+  {
+   "id": "muschel",
+   "mot": "Muschel",
+   "genre": "die",
+   "pluriel": "Muscheln",
+   "niveau": "A2",
+   "theme": "reisen_urlaub_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     55,
+     64,
+     5,
+     3
+    ],
+    [
+     43,
+     89,
+     8,
+     4
+    ],
+    [
+     66,
+     90,
+     7,
+     3
+    ]
+   ],
+   "fr": "coquillage",
+   "en": "shell",
+   "tr": "deniz kabuğu",
+   "uk": "мушля",
+   "fa": "صدف",
+   "pt": "concha",
+   "ar": "صدفة",
+   "pl": "muszla",
+   "ru": "ракушка"
+  },
+  {
+   "id": "schaufel",
+   "mot": "Schaufel",
+   "genre": "die",
+   "pluriel": "Schaufeln",
+   "niveau": "B1",
+   "theme": "moebel_haushalt_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70,
+     68,
+     7,
+     6
+    ]
+   ],
+   "fr": "pelle",
+   "en": "shovel",
+   "tr": "kürek",
+   "uk": "лопатка",
+   "fa": "بیلچه",
+   "pt": "pá",
+   "ar": "مجرفة",
+   "pl": "łopatka",
+   "ru": "лопатка"
   }
  ],
  "grosPlans": [],

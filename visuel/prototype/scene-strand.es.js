@@ -731,6 +731,99 @@ window.SCENE = {
    "pl": "piasek",
    "ru": "песок",
    "latam": null
+  },
+  {
+   "id": "sonnenschirm",
+   "mot": "sombrilla",
+   "genre": "la",
+   "pluriel": "las sombrillas",
+   "niveau": "A2",
+   "theme": "las_vacaciones",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70,
+     33,
+     30,
+     30
+    ]
+   ],
+   "fr": "le parasol",
+   "en": "the parasol",
+   "pt": "o guarda-sol",
+   "ar": "مظلّة شمسية",
+   "pl": "parasol",
+   "ru": "пляжный зонт",
+   "latam": null
+  },
+  {
+   "id": "muschel",
+   "mot": "concha",
+   "genre": "la",
+   "pluriel": "las conchas",
+   "niveau": "A2",
+   "theme": "las_vacaciones",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     55,
+     64,
+     5,
+     3
+    ],
+    [
+     43,
+     89,
+     8,
+     4
+    ],
+    [
+     66,
+     90,
+     7,
+     3
+    ]
+   ],
+   "fr": "le coquillage",
+   "en": "the shell",
+   "pt": "a concha",
+   "ar": "صدفة",
+   "pl": "muszla",
+   "ru": "ракушка",
+   "latam": null
+  },
+  {
+   "id": "schaufel",
+   "mot": "pala",
+   "genre": "la",
+   "pluriel": "las palas",
+   "niveau": "A2",
+   "theme": "las_vacaciones",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70,
+     68,
+     7,
+     6
+    ]
+   ],
+   "fr": "la pelle",
+   "en": "the shovel",
+   "pt": "a pá",
+   "ar": "مجرفة",
+   "pl": "łopatka",
+   "ru": "лопатка",
+   "latam": null
   }
  ],
  "grosPlans": [],

@@ -15,10 +15,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     8,
-     6,
-     50,
-     15
+     0,
+     0,
+     100,
+     60
     ]
    ],
    "fr": "mur",
@@ -44,10 +44,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20,
-     88,
-     37,
-     12
+     0,
+     62,
+     100,
+     38
     ]
    ],
    "fr": "le sol",
@@ -1399,6 +1399,35 @@ window.SCENE = {
    "ar": "بنك، مصرف",
    "pl": "bank",
    "ru": "банк"
+  },
+  {
+   "id": "theke",
+   "mot": "Theke",
+   "genre": "die",
+   "pluriel": "Theken",
+   "niveau": "A2",
+   "theme": "essen_trinken_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     57,
+     64,
+     43,
+     36
+    ]
+   ],
+   "fr": "comptoir",
+   "en": "counter",
+   "tr": "tezgâh",
+   "uk": "стійка",
+   "fa": "پیشخوان",
+   "pt": "balcão",
+   "ar": "منضدة",
+   "pl": "lada",
+   "ru": "стойка"
   }
  ],
  "grosPlans": [],

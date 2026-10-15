@@ -995,6 +995,41 @@ window.SCENE = {
    "ar": "تفاحة",
    "pl": "jabłko",
    "ru": "яблоко"
+  },
+  {
+   "id": "stand",
+   "mot": "Stand",
+   "genre": "der",
+   "pluriel": "Stände",
+   "niveau": "B2",
+   "theme": "grundwortschatz_b2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     0,
+     95,
+     25
+    ],
+    [
+     0,
+     90,
+     72,
+     10
+    ]
+   ],
+   "fr": "l'état, le stand",
+   "en": "state, stall",
+   "tr": "durum; tezgâh",
+   "uk": "стан; ятка",
+   "fa": "وضع کنونی؛ غرفه",
+   "pt": "situação, estado; barraca",
+   "ar": "وضع، حالة؛ كشك",
+   "pl": "stan; stoisko",
+   "ru": "состояние; стенд, ларёк"
   }
  ],
  "grosPlans": [],

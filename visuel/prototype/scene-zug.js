@@ -790,6 +790,64 @@ window.SCENE = {
    "ar": "مقعد",
    "pl": "siedzenie, miejsce",
    "ru": "сиденье, место"
+  },
+  {
+   "id": "gepaeckablage",
+   "mot": "Gepäckablage",
+   "genre": "die",
+   "pluriel": "Gepäckablagen",
+   "niveau": "B1",
+   "theme": "verkehr_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     6,
+     75,
+     16
+    ]
+   ],
+   "fr": "porte-bagages",
+   "en": "luggage rack",
+   "tr": "bagaj rafı",
+   "uk": "багажна полиця",
+   "fa": "قفسهٔ بار",
+   "pt": "bagageiro",
+   "ar": "رفّ الأمتعة",
+   "pl": "półka na bagaż",
+   "ru": "багажная полка"
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "genre": "die",
+   "pluriel": "Türen",
+   "niveau": "A1",
+   "theme": "wohnen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     53,
+     27,
+     13,
+     30
+    ]
+   ],
+   "fr": "porte",
+   "en": "door",
+   "tr": "kapı",
+   "uk": "двері",
+   "fa": "در",
+   "pt": "porta",
+   "ar": "باب",
+   "pl": "drzwi",
+   "ru": "дверь"
   }
  ],
  "grosPlans": [],

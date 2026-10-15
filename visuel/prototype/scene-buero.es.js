@@ -694,6 +694,149 @@ window.SCENE = {
    "pl": "biurko",
    "ru": "письменный стол",
    "latam": null
+  },
+  {
+   "id": "wand",
+   "mot": "pared",
+   "genre": "la",
+   "pluriel": "las paredes",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     58,
+     0,
+     40,
+     48
+    ]
+   ],
+   "fr": "le mur",
+   "en": "the wall",
+   "pt": "a parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена",
+   "latam": null
+  },
+  {
+   "id": "boden",
+   "mot": "suelo",
+   "genre": "el",
+   "pluriel": "los suelos",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     90,
+     100,
+     10
+    ]
+   ],
+   "fr": "le sol",
+   "en": "the floor",
+   "pt": "o chão, o piso",
+   "ar": "أرض، تربة",
+   "pl": "ziemia, podłoże",
+   "ru": "почва, пол",
+   "latam": {
+    "mot": "piso",
+    "genre": "el",
+    "pluriel": "los pisos"
+   }
+  },
+  {
+   "id": "schrank",
+   "mot": "armario",
+   "genre": "el",
+   "pluriel": "los armarios",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     32,
+     49,
+     20,
+     12
+    ]
+   ],
+   "fr": "l'armoire, le placard",
+   "en": "the wardrobe",
+   "pt": "o armário, o guarda-roupa",
+   "ar": "خزانة",
+   "pl": "szafa",
+   "ru": "шкаф",
+   "latam": {
+    "mot": "clóset",
+    "genre": "el",
+    "pluriel": "los clósets"
+   }
+  },
+  {
+   "id": "klebeband",
+   "mot": "cinta adhesiva",
+   "genre": "la",
+   "pluriel": "las cintas adhesivas",
+   "niveau": "A2",
+   "theme": "las_herramientas",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70,
+     75,
+     9,
+     5
+    ]
+   ],
+   "fr": "le ruban adhésif",
+   "en": "the sticky tape",
+   "pt": "a fita adesiva",
+   "ar": "شريط لاصق",
+   "pl": "taśma klejąca",
+   "ru": "скотч",
+   "latam": null
+  },
+  {
+   "id": "tuer",
+   "mot": "puerta",
+   "genre": "la",
+   "pluriel": "las puertas",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     93,
+     0,
+     7,
+     100
+    ]
+   ],
+   "fr": "la porte",
+   "en": "the door",
+   "pt": "a porta",
+   "ar": "باب",
+   "pl": "drzwi",
+   "ru": "дверь",
+   "latam": null
   }
  ],
  "grosPlans": [],

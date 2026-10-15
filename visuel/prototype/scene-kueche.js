@@ -15,10 +15,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     3,
-     4,
-     33,
-     9
+     0,
+     0,
+     100,
+     60
     ]
    ],
    "fr": "mur",
@@ -44,10 +44,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     36,
-     84,
-     20,
-     16
+     0,
+     68,
+     100,
+     32
     ]
    ],
    "fr": "le sol",
@@ -1280,6 +1280,35 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь"
+  },
+  {
+   "id": "spuele",
+   "mot": "Spüle",
+   "genre": "die",
+   "pluriel": "Spülen",
+   "niveau": "A2",
+   "theme": "kueche_kochen_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70,
+     44,
+     17,
+     4
+    ]
+   ],
+   "fr": "évier",
+   "en": "sink",
+   "tr": "evye",
+   "uk": "мийка",
+   "fa": "سینک ظرف‌شویی",
+   "pt": "pia",
+   "ar": "حوض المطبخ",
+   "pl": "zlew",
+   "ru": "мойка"
   }
  ],
  "grosPlans": [],

@@ -952,6 +952,64 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол"
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "genre": "die",
+   "pluriel": "Wände",
+   "niveau": "A1",
+   "theme": "wohnen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     0,
+     100,
+     30
+    ]
+   ],
+   "fr": "mur",
+   "en": "wall",
+   "tr": "duvar",
+   "uk": "стіна",
+   "fa": "دیوار",
+   "pt": "parede",
+   "ar": "جدار",
+   "pl": "ściana",
+   "ru": "стена"
+  },
+  {
+   "id": "stuhl-2",
+   "mot": "Stuhl",
+   "genre": "der",
+   "pluriel": "Stühle",
+   "niveau": "A1",
+   "theme": "moebel_haushalt_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     46,
+     33,
+     13,
+     5
+    ]
+   ],
+   "fr": "chaise",
+   "en": "chair",
+   "tr": "sandalye",
+   "uk": "стілець",
+   "fa": "صندلی",
+   "pt": "cadeira",
+   "ar": "كرسي",
+   "pl": "krzesło",
+   "ru": "стул"
   }
  ],
  "grosPlans": [],
