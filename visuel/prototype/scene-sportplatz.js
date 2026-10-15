@@ -17,8 +17,8 @@ window.SCENE = {
     [
      0,
      0,
-     100,
-     13
+     65,
+     8
     ]
    ],
    "fr": "ciel",
@@ -44,39 +44,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     3,
-     4,
+     42,
+     7.5,
      22,
-     7
-    ]
-   ],
-   "fr": "nuage",
-   "en": "cloud",
-   "tr": "bulut",
-   "uk": "хмара",
-   "fa": "ابر",
-   "pt": "nuvem",
-   "ar": "غيمة، سحابة",
-   "pl": "chmura",
-   "ru": "облако, туча"
-  },
-  {
-   "id": "wolke-2",
-   "mot": "Wolke",
-   "genre": "die",
-   "pluriel": "Wolken",
-   "niveau": "A1",
-   "theme": "wetter_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     72,
-     8.5,
-     10,
-     3.5
+     7.5
     ]
    ],
    "fr": "nuage",
@@ -102,22 +73,22 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     28,
      0,
-     30,
-     33
+     8,
+     42,
+     20
     ],
     [
-     55,
-     11,
-     45,
-     30
+     63,
+     0,
+     37,
+     40
     ],
     [
-     0,
-     13,
-     28,
-     18
+     42,
+     15,
+     21,
+     12
     ]
    ],
    "fr": "arbre",
@@ -143,10 +114,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     30.5,
-     30.8,
-     6.5,
-     3.5
+     79,
+     27,
+     8,
+     4
     ]
    ],
    "fr": "horloge",
@@ -158,35 +129,6 @@ window.SCENE = {
    "ar": "ساعة حائط",
    "pl": "zegar",
    "ru": "часы"
-  },
-  {
-   "id": "ball",
-   "mot": "Ball",
-   "genre": "der",
-   "pluriel": "Bälle",
-   "niveau": "A1",
-   "theme": "sport_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     3,
-     41,
-     6,
-     3.5
-    ]
-   ],
-   "fr": "ballon",
-   "en": "ball",
-   "tr": "top",
-   "uk": "м'яч",
-   "fa": "توپ",
-   "pt": "bola",
-   "ar": "كرة",
-   "pl": "piłka",
-   "ru": "мяч"
   },
   {
    "id": "netz",
@@ -202,9 +144,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     31.5,
-     28,
-     24.5
+     27.5,
+     67,
+     26
     ]
    ],
    "fr": "le réseau, le filet",
@@ -218,33 +160,33 @@ window.SCENE = {
    "ru": "сеть"
   },
   {
-   "id": "fahrrad",
-   "mot": "Fahrrad",
-   "genre": "das",
-   "pluriel": "Fahrräder",
+   "id": "ball",
+   "mot": "Ball",
+   "genre": "der",
+   "pluriel": "Bälle",
    "niveau": "A1",
-   "theme": "verkehr_a1",
+   "theme": "sport_a1",
    "personne": null,
    "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
     [
-     1.5,
-     43.5,
-     13.5,
-     6.5
+     9,
+     57.5,
+     5.5,
+     3.5
     ]
    ],
-   "fr": "vélo",
-   "en": "bicycle",
-   "tr": "bisiklet",
-   "uk": "велосипед",
-   "fa": "دوچرخه",
-   "pt": "bicicleta",
-   "ar": "درّاجة",
-   "pl": "rower",
-   "ru": "велосипед"
+   "fr": "ballon",
+   "en": "ball",
+   "tr": "top",
+   "uk": "м'яч",
+   "fa": "توپ",
+   "pt": "bola",
+   "ar": "كرة",
+   "pl": "piłka",
+   "ru": "мяч"
   },
   {
    "id": "bank",
@@ -259,10 +201,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     15,
-     46,
-     10,
-     4
+     0,
+     48.5,
+     26,
+     5
     ]
    ],
    "fr": "la banque",
@@ -288,10 +230,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20,
+     4.5,
      43,
-     6,
-     6.5
+     8.5,
+     10
     ]
    ],
    "fr": "homme/mari",
@@ -317,10 +259,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     27.5,
-     42.8,
-     5,
-     7
+     14.5,
+     43,
+     10.5,
+     10.5
     ]
    ],
    "fr": "femme/épouse",
@@ -334,7 +276,71 @@ window.SCENE = {
    "ru": "женщина, жена"
   },
   {
-   "id": "spieler-2",
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "genre": "das",
+   "pluriel": "Fahrräder",
+   "niveau": "A1",
+   "theme": "verkehr_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     29,
+     44,
+     20,
+     9.5
+    ]
+   ],
+   "fr": "vélo",
+   "en": "bicycle",
+   "tr": "bisiklet",
+   "uk": "велосипед",
+   "fa": "دوچرخه",
+   "pt": "bicicleta",
+   "ar": "درّاجة",
+   "pl": "rower",
+   "ru": "велосипед"
+  },
+  {
+   "id": "weg",
+   "mot": "Weg",
+   "genre": "der",
+   "pluriel": "Wege",
+   "niveau": "A1",
+   "theme": "verkehr_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     53.5,
+     35,
+     4
+    ],
+    [
+     66,
+     50.5,
+     34,
+     3
+    ]
+   ],
+   "fr": "le chemin",
+   "en": "way, path",
+   "tr": "yol",
+   "uk": "шлях",
+   "fa": "راه",
+   "pt": "caminho",
+   "ar": "طريق",
+   "pl": "droga",
+   "ru": "дорога, путь"
+  },
+  {
+   "id": "torwart",
    "mot": "Spieler",
    "genre": "der",
    "pluriel": "Spieler",
@@ -346,10 +352,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     56,
-     38,
-     7,
-     17.5
+     35,
+     49,
+     17,
+     12.5
     ]
    ],
    "fr": "joueur",
@@ -363,33 +369,33 @@ window.SCENE = {
    "ru": "игрок"
   },
   {
-   "id": "spieler-3",
-   "mot": "Spieler",
+   "id": "handschuh",
+   "mot": "Handschuh",
    "genre": "der",
-   "pluriel": "Spieler",
+   "pluriel": "Handschuhe",
    "niveau": "A1",
-   "theme": "sport_a1",
+   "theme": "kleidung_a1",
    "personne": null,
    "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
     [
-     62,
      39.5,
-     10.5,
-     16.5
+     55.8,
+     10,
+     2.5
     ]
    ],
-   "fr": "joueur",
-   "en": "player",
-   "tr": "oyuncu",
-   "uk": "гравець",
-   "fa": "بازیکن",
-   "pt": "jogador",
-   "ar": "لاعب",
-   "pl": "zawodnik, gracz",
-   "ru": "игрок"
+   "fr": "gant",
+   "en": "glove",
+   "tr": "eldiven",
+   "uk": "рукавичка",
+   "fa": "دستکش",
+   "pt": "luva",
+   "ar": "قفاز",
+   "pl": "rękawiczka",
+   "ru": "перчатка"
   },
   {
    "id": "trikot",
@@ -404,9 +410,9 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     37,
-     40,
-     26,
+     49,
+     35,
+     16,
      15
     ]
    ],
@@ -419,6 +425,93 @@ window.SCENE = {
    "ar": "قميص رياضي",
    "pl": "koszulka (sportowa)",
    "ru": "спортивная форма, майка"
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "genre": "die",
+   "pluriel": "Hosen",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     50,
+     49,
+     15,
+     8.5
+    ]
+   ],
+   "fr": "pantalon",
+   "en": "pants",
+   "tr": "pantolon",
+   "uk": "штани",
+   "fa": "شلوار",
+   "pt": "calça",
+   "ar": "بنطال",
+   "pl": "spodnie",
+   "ru": "брюки"
+  },
+  {
+   "id": "socke",
+   "mot": "Socke",
+   "genre": "die",
+   "pluriel": "Socken",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     47,
+     61,
+     16,
+     8
+    ]
+   ],
+   "fr": "chaussette",
+   "en": "sock",
+   "tr": "çorap",
+   "uk": "шкарпетка",
+   "fa": "جوراب",
+   "pt": "meia",
+   "ar": "جورب",
+   "pl": "skarpetka",
+   "ru": "носок"
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "genre": "der",
+   "pluriel": "Schuhe",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     46.5,
+     64.5,
+     18.5,
+     9
+    ]
+   ],
+   "fr": "chaussure",
+   "en": "shoe",
+   "tr": "ayakkabı",
+   "uk": "черевик",
+   "fa": "کفش",
+   "pt": "sapato",
+   "ar": "حذاء",
+   "pl": "but",
+   "ru": "ботинок, туфля"
   },
   {
    "id": "mark",
@@ -449,155 +542,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     32,
-     35,
-     34,
-     42
-    ]
-   ],
-   "fr": "joueur",
-   "en": "player",
-   "tr": "oyuncu",
-   "uk": "гравець",
-   "fa": "بازیکن",
-   "pt": "jogador",
-   "ar": "لاعب",
-   "pl": "zawodnik, gracz",
-   "ru": "игрок"
-  },
-  {
-   "id": "hose",
-   "mot": "Hose",
-   "genre": "die",
-   "pluriel": "Hosen",
-   "niveau": "A1",
-   "theme": "kleidung_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     42,
-     55,
-     18,
-     8
-    ]
-   ],
-   "fr": "pantalon",
-   "en": "pants",
-   "tr": "pantolon",
-   "uk": "штани",
-   "fa": "شلوار",
-   "pt": "calça",
-   "ar": "بنطال",
-   "pl": "spodnie",
-   "ru": "брюки"
-  },
-  {
-   "id": "socke",
-   "mot": "Socke",
-   "genre": "die",
-   "pluriel": "Socken",
-   "niveau": "A1",
-   "theme": "kleidung_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     44,
-     63,
-     16,
-     6
-    ]
-   ],
-   "fr": "chaussette",
-   "en": "sock",
-   "tr": "çorap",
-   "uk": "шкарпетка",
-   "fa": "جوراب",
-   "pt": "meia",
-   "ar": "جورب",
-   "pl": "skarpetka",
-   "ru": "носок"
-  },
-  {
-   "id": "schuh",
-   "mot": "Schuh",
-   "genre": "der",
-   "pluriel": "Schuhe",
-   "niveau": "A1",
-   "theme": "kleidung_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     45,
-     69,
-     15,
-     8
-    ]
-   ],
-   "fr": "chaussure",
-   "en": "shoe",
-   "tr": "ayakkabı",
-   "uk": "черевик",
-   "fa": "کفش",
-   "pt": "sapato",
-   "ar": "حذاء",
-   "pl": "but",
-   "ru": "ботинок, туфля"
-  },
-  {
-   "id": "handschuh",
-   "mot": "Handschuh",
-   "genre": "der",
-   "pluriel": "Handschuhe",
-   "niveau": "A1",
-   "theme": "kleidung_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     15.5,
-     54,
-     9.5,
-     2.5
-    ]
-   ],
-   "fr": "gant",
-   "en": "glove",
-   "tr": "eldiven",
-   "uk": "рукавичка",
-   "fa": "دستکش",
-   "pt": "luva",
-   "ar": "قفاز",
-   "pl": "rękawiczka",
-   "ru": "перчатка"
-  },
-  {
-   "id": "torwart",
-   "mot": "Spieler",
-   "genre": "der",
-   "pluriel": "Spieler",
-   "niveau": "A1",
-   "theme": "sport_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     11,
-     50,
-     29,
-     10.5
+     49,
+     22.5,
+     22,
+     50
     ]
    ],
    "fr": "joueur",
@@ -623,10 +571,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     89.5,
-     44,
-     3,
-     3.5
+     75,
+     44.5,
+     2.5,
+     3
     ]
    ],
    "fr": "la pipe, le sifflet",
@@ -652,10 +600,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     84,
-     40,
-     13,
-     25.5
+     71,
+     38.5,
+     10.5,
+     19.5
     ]
    ],
    "fr": "femme/épouse",
@@ -667,6 +615,35 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена"
+  },
+  {
+   "id": "mannschaft",
+   "mot": "Mannschaft",
+   "genre": "die",
+   "pluriel": "Mannschaften",
+   "niveau": "A1",
+   "theme": "sport_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     85,
+     37.5,
+     15,
+     24
+    ]
+   ],
+   "fr": "équipe",
+   "en": "team",
+   "tr": "takım",
+   "uk": "команда",
+   "fa": "تیم",
+   "pt": "time, equipe",
+   "ar": "فريق",
+   "pl": "drużyna",
+   "ru": "команда"
   },
   {
    "id": "ball-2",
@@ -681,10 +658,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     7,
-     83,
-     13,
-     8
+     42,
+     82,
+     14,
+     14.5
     ]
    ],
    "fr": "ballon",
@@ -710,10 +687,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     34.5,
-     83,
-     11.5,
-     10.5
+     61.5,
+     80,
+     18,
+     15
     ]
    ],
    "fr": "serviette",
@@ -755,10 +732,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     45.5,
-     80.5,
-     4.5,
-     5
+     82,
+     81,
+     11,
+     5.5
     ]
    ],
    "fr": "bouteille",
@@ -784,10 +761,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     24,
-     80.5,
-     32,
-     12.5
+     61,
+     79,
+     39,
+     17.5
     ]
    ],
    "fr": "sac",
@@ -813,10 +790,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     56.5,
-     84.5,
-     16.5,
-     6.5
+     79.5,
+     88.5,
+     20,
+     10
     ]
    ],
    "fr": "basket",
@@ -859,9 +836,15 @@ window.SCENE = {
    "boites": [
     [
      0,
-     93,
+     58,
      100,
-     7
+     42
+    ],
+    [
+     66,
+     53.5,
+     34,
+     4.5
     ]
    ],
    "fr": "herbe",
@@ -877,7 +860,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "Auf dem Sportplatz",
- "alt": "Mark sur un terrain de foot, dans un parc de Berlin : il vient de marquer, le poing levé ; le ballon est dans le filet, le gardien rit assis dans l'herbe, deux coéquipiers accourent, l'entraîneuse applaudit ; au premier plan, un ballon, un sac de sport, une serviette, une bouteille et des baskets.",
+ "alt": "Mark sur un terrain de foot, dans un parc de Berlin : il vient de marquer, le ballon est au fond du filet et il se retourne, le poing levé ; le gardien rit, assis dans l'herbe, deux coéquipiers accourent, l'entraîneuse applaudit ; au fond, deux spectateurs sur un banc et un vélo ; au premier plan, un ballon, un sac de sport, une serviette, une bouteille et des baskets.",
  "consigne": "Mark joue au foot avec son équipe. Touche un objet.",
  "exclus": [],
  "couches": {
@@ -972,7 +955,7 @@ window.SCENE = {
      "n": "die Tasche → in <b>der</b> Tasche : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
-     "q": "Wo sind die Wolken?",
+     "q": "Wo ist die Wolke?",
      "c": [
       "am Himmel",
       "im Baum",
@@ -980,7 +963,7 @@ window.SCENE = {
      ],
      "f": "wolke",
      "r": "himmel",
-     "phrase": "Die Wolken sind am Himmel.",
+     "phrase": "Die Wolke ist am Himmel.",
      "n": "<b>am</b> = an + <b>dem</b> : der Himmel → am Himmel."
     }
    ]
@@ -1026,7 +1009,7 @@ window.SCENE = {
       "lauften",
       "laufen"
      ],
-     "f": "spieler-2",
+     "f": "mannschaft",
      "r": "mark",
      "phrase": "Die Spieler liefen zu Mark.",
      "n": "<b>laufen</b> → <b>lief</b>, au pluriel <b>liefen</b>.",
@@ -1197,14 +1180,14 @@ window.SCENE = {
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
-     "q": "Vielleicht, wer weiß: Der alte Mann ___ Marks Opa sein.",
+     "q": "Vielleicht, wer weiß: Der alte Mann ___ Marks Nachbar sein.",
      "c": [
       "könnte",
       "muss",
       "will"
      ],
      "f": "mann",
-     "phrase": "Der alte Mann könnte Marks Opa sein.",
+     "phrase": "Der alte Mann könnte Marks Nachbar sein.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1235,7 +1218,7 @@ window.SCENE = {
  "traductions": {
   "en": {
    "champs": {
-    "alt": "Mark on a football pitch in a Berlin park: he has just scored, fist in the air; the ball is in the net, the goalkeeper laughs sitting on the grass, two teammates run up, the coach claps; in the foreground, a ball, a sports bag, a towel, a bottle and trainers.",
+    "alt": "Mark on a football pitch in a Berlin park: he has just scored, the ball is at the back of the net and he turns round, fist in the air; the goalkeeper laughs sitting on the grass, two teammates run up, the coach claps; at the back, two spectators on a bench and a bike; in the foreground, a ball, a sports bag, a towel, a bottle and trainers.",
     "consigne": "Mark is playing football with his team. Tap an object."
    },
    "couches": {
@@ -1253,7 +1236,7 @@ window.SCENE = {
     "A2 | Der Ball liegt neben der Tasche.": "die Tasche → neben <b>der</b> Tasche: in the Dativ, feminine <b>die</b> becomes <b>der</b>.",
     "A2 | Das Fahrrad steht hinter dem Netz.": "<b>hinter</b> = behind. das Netz → hinter <b>dem</b> Netz.",
     "A2 | Die Flasche ist in der Tasche.": "die Tasche → in <b>der</b> Tasche: in the Dativ, feminine <b>die</b> becomes <b>der</b>.",
-    "A2 | Die Wolken sind am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
+    "A2 | Die Wolke ist am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
     "B1 | Mark schoss den Ball ins Tor.": "<b>schießen</b> → Präteritum <b>schoss</b> (irregular).",
     "B1 | Der Torwart fiel ins Gras.": "<b>fallen</b> → <b>fiel</b>.",
     "B1 | Die Spieler liefen zu Mark.": "<b>laufen</b> → <b>lief</b>, plural <b>liefen</b>.",
@@ -1269,14 +1252,14 @@ window.SCENE = {
     "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "<b>während</b> = while.",
     "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "<b>damit</b> = so that: a purpose.",
     "C1 | Das muss sein erstes Tor sein.": "<b>müssen</b> = an almost certain deduction.",
-    "C1 | Der alte Mann könnte Marks Opa sein.": "<b>könnte</b> = one possibility among others.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
    }
   },
   "tr": {
    "champs": {
-    "alt": "Mark Berlin'de bir parktaki futbol sahasında: yumruğu havada, az önce gol attı; top filelerde, kaleci çimenlere oturmuş gülüyor, iki takım arkadaşı koşarak geliyor, antrenör alkışlıyor; önde bir top, bir spor çantası, bir havlu, bir şişe ve spor ayakkabıları.",
+    "alt": "Mark Berlin'de bir parktaki futbol sahasında: az önce gol attı, top ağların dibinde, yumruğu havada arkasını dönüyor; kaleci çimenlere oturmuş gülüyor, iki takım arkadaşı koşarak geliyor, antrenör alkışlıyor; arkada bir bankta iki seyirci ve bir bisiklet; önde bir top, bir spor çantası, bir havlu, bir şişe ve spor ayakkabıları.",
     "consigne": "Mark takımıyla futbol oynuyor. Bir nesneye dokun."
    },
    "couches": {
@@ -1294,7 +1277,7 @@ window.SCENE = {
     "A2 | Der Ball liegt neben der Tasche.": "die Tasche → neben <b>der</b> Tasche: Dativ'de dişil <b>die</b>, <b>der</b> olur.",
     "A2 | Das Fahrrad steht hinter dem Netz.": "<b>hinter</b> = arkasında. das Netz → hinter <b>dem</b> Netz.",
     "A2 | Die Flasche ist in der Tasche.": "die Tasche → in <b>der</b> Tasche: Dativ'de dişil <b>die</b>, <b>der</b> olur.",
-    "A2 | Die Wolken sind am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
+    "A2 | Die Wolke ist am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
     "B1 | Mark schoss den Ball ins Tor.": "<b>schießen</b> → Präteritum <b>schoss</b> (düzensiz).",
     "B1 | Der Torwart fiel ins Gras.": "<b>fallen</b> → <b>fiel</b>.",
     "B1 | Die Spieler liefen zu Mark.": "<b>laufen</b> → <b>lief</b>, çoğulda <b>liefen</b>.",
@@ -1310,14 +1293,14 @@ window.SCENE = {
     "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "<b>während</b> = … iken.",
     "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "<b>damit</b> = -sın diye: bir amaç.",
     "C1 | Das muss sein erstes Tor sein.": "<b>müssen</b> = neredeyse kesin bir çıkarım.",
-    "C1 | Der alte Mann könnte Marks Opa sein.": "<b>könnte</b> = birçok olasılıktan biri.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
    }
   },
   "uk": {
    "champs": {
-    "alt": "Марк на футбольному полі в берлінському парку: щойно забив гол і підняв кулак; м'яч у сітці, воротар сміється, сидячи на траві, двоє товаришів по команді біжать до нього, тренерка плескає; на передньому плані м'яч, спортивна сумка, рушник, пляшка й кросівки.",
+    "alt": "Марк на футбольному полі в берлінському парку: він щойно забив гол, м'яч лежить у глибині сітки, а він обертається з піднятим кулаком; воротар сміється, сидячи на траві, двоє товаришів по команді біжать до нього, тренерка плескає; позаду двоє глядачів на лавці й велосипед; на передньому плані м'яч, спортивна сумка, рушник, пляшка й кросівки.",
     "consigne": "Марк грає у футбол зі своєю командою. Торкнися предмета."
    },
    "couches": {
@@ -1335,7 +1318,7 @@ window.SCENE = {
     "A2 | Der Ball liegt neben der Tasche.": "die Tasche → neben <b>der</b> Tasche: у Dativ жіночий рід <b>die</b> стає <b>der</b>.",
     "A2 | Das Fahrrad steht hinter dem Netz.": "<b>hinter</b> = позаду. das Netz → hinter <b>dem</b> Netz.",
     "A2 | Die Flasche ist in der Tasche.": "die Tasche → in <b>der</b> Tasche: у Dativ жіночий рід <b>die</b> стає <b>der</b>.",
-    "A2 | Die Wolken sind am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
+    "A2 | Die Wolke ist am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
     "B1 | Mark schoss den Ball ins Tor.": "<b>schießen</b> → Präteritum <b>schoss</b> (неправильна форма).",
     "B1 | Der Torwart fiel ins Gras.": "<b>fallen</b> → <b>fiel</b>.",
     "B1 | Die Spieler liefen zu Mark.": "<b>laufen</b> → <b>lief</b>, у множині <b>liefen</b>.",
@@ -1351,14 +1334,14 @@ window.SCENE = {
     "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "<b>während</b> = поки.",
     "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "<b>damit</b> = щоб: мета.",
     "C1 | Das muss sein erstes Tor sein.": "<b>müssen</b> = майже певний висновок.",
-    "C1 | Der alte Mann könnte Marks Opa sein.": "<b>könnte</b> = одна можливість серед інших.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
    }
   },
   "fa": {
    "champs": {
-    "alt": "مارک در یک زمین فوتبال در پارکی در برلین: همین الان گل زده و مشتش را بالا برده؛ توپ در تور است، دروازه‌بان روی چمن نشسته و می‌خندد، دو هم‌تیمی به سویش می‌دوند، مربی دست می‌زند؛ در جلوی تصویر یک توپ، یک ساک ورزشی، یک حوله، یک بطری و کفش ورزشی.",
+    "alt": "مارک در یک زمین فوتبال در پارکی در برلین: همین الان گل زده، توپ ته تور است و او با مشتی بالا رفته برمی‌گردد؛ دروازه‌بان روی چمن نشسته و می‌خندد، دو هم‌تیمی به سویش می‌دوند، مربی دست می‌زند؛ در انتها دو تماشاگر روی یک نیمکت و یک دوچرخه؛ در جلوی تصویر یک توپ، یک ساک ورزشی، یک حوله، یک بطری و کفش ورزشی.",
     "consigne": "مارک با تیمش فوتبال بازی می‌کند. روی یک شیء بزن."
    },
    "couches": {
@@ -1376,7 +1359,7 @@ window.SCENE = {
     "A2 | Der Ball liegt neben der Tasche.": "<span lang=\"de\">die Tasche → neben <b>der</b> Tasche</span>: در Dativ، مؤنثِ <b>die</b> به <b>der</b> تبدیل می‌شود.",
     "A2 | Das Fahrrad steht hinter dem Netz.": "<b>hinter</b> = پشتِ. <span lang=\"de\">das Netz → hinter <b>dem</b> Netz</span>.",
     "A2 | Die Flasche ist in der Tasche.": "<span lang=\"de\">die Tasche → in <b>der</b> Tasche</span>: در Dativ، مؤنثِ <b>die</b> به <b>der</b> تبدیل می‌شود.",
-    "A2 | Die Wolken sind am Himmel.": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Himmel → am Himmel</span>.",
+    "A2 | Die Wolke ist am Himmel.": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Himmel → am Himmel</span>.",
     "B1 | Mark schoss den Ball ins Tor.": "<b>schießen</b> ← <span lang=\"de\">Präteritum</span> <b>schoss</b> (بی‌قاعده).",
     "B1 | Der Torwart fiel ins Gras.": "<b>fallen</b> ← <b>fiel</b>.",
     "B1 | Die Spieler liefen zu Mark.": "<b>laufen</b> ← <b>lief</b>, در جمع <b>liefen</b>.",
@@ -1392,14 +1375,14 @@ window.SCENE = {
     "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "<b>während</b> = در حالی که.",
     "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "<b>damit</b> = تا اینکه: یک هدف.",
     "C1 | Das muss sein erstes Tor sein.": "<b>müssen</b> = استنتاجی تقریباً قطعی.",
-    "C1 | Der alte Mann könnte Marks Opa sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
    }
   },
   "ar": {
    "champs": {
-    "alt": "مارك في ملعب كرة قدم في حديقة ببرلين: سجّل للتوّ هدفًا ورفع قبضته؛ الكرة في الشبكة، وحارس المرمى يضحك جالسًا على العشب، وزميلان يركضان نحوه، والمدرّبة تصفّق؛ وفي المقدّمة كرة وحقيبة رياضية ومنشفة وزجاجة وحذاء رياضي.",
+    "alt": "مارك في ملعب كرة قدم في حديقة ببرلين: سجّل للتوّ هدفًا، والكرة في عمق الشبكة، وهو يستدير رافعًا قبضته؛ وحارس المرمى يضحك جالسًا على العشب، وزميلان يركضان نحوه، والمدرّبة تصفّق؛ وفي العمق متفرّجان على مقعد ودراجة؛ وفي المقدّمة كرة وحقيبة رياضية ومنشفة وزجاجة وحذاء رياضي.",
     "consigne": "مارك يلعب كرة القدم مع فريقه. المس شيئًا."
    },
    "couches": {
@@ -1417,7 +1400,7 @@ window.SCENE = {
     "A2 | Der Ball liegt neben der Tasche.": "<span lang=\"de\">die Tasche → neben <b>der</b> Tasche</span>: في Dativ يتحوّل المؤنث <b>die</b> إلى <b>der</b>.",
     "A2 | Das Fahrrad steht hinter dem Netz.": "<b>hinter</b> = خلف. <span lang=\"de\">das Netz → hinter <b>dem</b> Netz</span>.",
     "A2 | Die Flasche ist in der Tasche.": "<span lang=\"de\">die Tasche → in <b>der</b> Tasche</span>: في Dativ يتحوّل المؤنث <b>die</b> إلى <b>der</b>.",
-    "A2 | Die Wolken sind am Himmel.": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Himmel → am Himmel</span>.",
+    "A2 | Die Wolke ist am Himmel.": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Himmel → am Himmel</span>.",
     "B1 | Mark schoss den Ball ins Tor.": "<b>schießen</b> ← <span lang=\"de\">Präteritum</span> <b>schoss</b> (شاذّ).",
     "B1 | Der Torwart fiel ins Gras.": "<b>fallen</b> ← <b>fiel</b>.",
     "B1 | Die Spieler liefen zu Mark.": "<b>laufen</b> ← <b>lief</b>, في الجمع <b>liefen</b>.",
@@ -1433,14 +1416,14 @@ window.SCENE = {
     "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "<b>während</b> = بينما.",
     "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "<b>damit</b> = لكي: غاية.",
     "C1 | Das muss sein erstes Tor sein.": "<b>müssen</b> = استنتاج شبه مؤكَّد.",
-    "C1 | Der alte Mann könnte Marks Opa sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
    }
   },
   "pt": {
    "champs": {
-    "alt": "Mark num campo de futebol, num parque de Berlim: ele acabou de marcar, de punho erguido; a bola está na rede, o goleiro ri sentado na grama, dois colegas de time correm até ele, a treinadora aplaude; em primeiro plano, uma bola, uma bolsa esportiva, uma toalha, uma garrafa e tênis.",
+    "alt": "Mark num campo de futebol, num parque de Berlim: ele acabou de marcar, a bola está no fundo da rede e ele se vira, de punho erguido; o goleiro ri sentado na grama, dois colegas de time correm até ele, a treinadora aplaude; ao fundo, dois espectadores num banco e uma bicicleta; em primeiro plano, uma bola, uma bolsa esportiva, uma toalha, uma garrafa e tênis.",
     "consigne": "Mark está jogando futebol com o time. Toque num objeto."
    },
    "couches": {
@@ -1458,7 +1441,7 @@ window.SCENE = {
     "A2 | Der Ball liegt neben der Tasche.": "die Tasche → neben <b>der</b> Tasche: no Dativ, o feminino <b>die</b> vira <b>der</b>.",
     "A2 | Das Fahrrad steht hinter dem Netz.": "<b>hinter</b> = atrás de. das Netz → hinter <b>dem</b> Netz.",
     "A2 | Die Flasche ist in der Tasche.": "die Tasche → in <b>der</b> Tasche: no Dativ, o feminino <b>die</b> vira <b>der</b>.",
-    "A2 | Die Wolken sind am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
+    "A2 | Die Wolke ist am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
     "B1 | Mark schoss den Ball ins Tor.": "<b>schießen</b> → Präteritum <b>schoss</b> (irregular).",
     "B1 | Der Torwart fiel ins Gras.": "<b>fallen</b> → <b>fiel</b>.",
     "B1 | Die Spieler liefen zu Mark.": "<b>laufen</b> → <b>lief</b>, no plural <b>liefen</b>.",
@@ -1474,14 +1457,14 @@ window.SCENE = {
     "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "<b>während</b> = enquanto.",
     "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "<b>damit</b> = para que: uma finalidade.",
     "C1 | Das muss sein erstes Tor sein.": "<b>müssen</b> = dedução quase certa.",
-    "C1 | Der alte Mann könnte Marks Opa sein.": "<b>könnte</b> = uma possibilidade entre outras.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
    }
   },
   "pl": {
    "champs": {
-    "alt": "Mark na boisku w berlińskim parku: właśnie strzelił gola, unosi pięść; piłka jest w siatce, bramkarz śmieje się, siedząc na trawie, dwóch kolegów z drużyny biegnie do niego, trenerka klaszcze; na pierwszym planie piłka, torba sportowa, ręcznik, butelka i trampki.",
+    "alt": "Mark na boisku w berlińskim parku: właśnie strzelił gola, piłka leży w głębi siatki, a on odwraca się z uniesioną pięścią; bramkarz śmieje się, siedząc na trawie, dwoje graczy z drużyny biegnie do niego, trenerka klaszcze; w głębi dwoje widzów na ławce i rower; na pierwszym planie piłka, torba sportowa, ręcznik, butelka i trampki.",
     "consigne": "Mark gra w piłkę ze swoją drużyną. Dotknij przedmiotu."
    },
    "couches": {
@@ -1499,7 +1482,7 @@ window.SCENE = {
     "A2 | Der Ball liegt neben der Tasche.": "die Tasche → neben <b>der</b> Tasche: w Dativ rodzaj żeński <b>die</b> zmienia się w <b>der</b>.",
     "A2 | Das Fahrrad steht hinter dem Netz.": "<b>hinter</b> = za. das Netz → hinter <b>dem</b> Netz.",
     "A2 | Die Flasche ist in der Tasche.": "die Tasche → in <b>der</b> Tasche: w Dativ rodzaj żeński <b>die</b> zmienia się w <b>der</b>.",
-    "A2 | Die Wolken sind am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
+    "A2 | Die Wolke ist am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
     "B1 | Mark schoss den Ball ins Tor.": "<b>schießen</b> → Präteritum <b>schoss</b> (nieregularne).",
     "B1 | Der Torwart fiel ins Gras.": "<b>fallen</b> → <b>fiel</b>.",
     "B1 | Die Spieler liefen zu Mark.": "<b>laufen</b> → <b>lief</b>, w liczbie mnogiej <b>liefen</b>.",
@@ -1515,14 +1498,14 @@ window.SCENE = {
     "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "<b>während</b> = podczas gdy.",
     "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "<b>damit</b> = żeby: cel.",
     "C1 | Das muss sein erstes Tor sein.": "<b>müssen</b> = prawie pewny wniosek.",
-    "C1 | Der alte Mann könnte Marks Opa sein.": "<b>könnte</b> = jedna z możliwości.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
    }
   },
   "ru": {
    "champs": {
-    "alt": "Марк на футбольном поле в берлинском парке: он только что забил гол и поднял кулак; мяч в сетке, вратарь смеётся, сидя на траве, двое товарищей по команде бегут к нему, тренер хлопает; на переднем плане мяч, спортивная сумка, полотенце, бутылка и кроссовки.",
+    "alt": "Марк на футбольном поле в берлинском парке: он только что забил гол, мяч лежит в глубине сетки, а он оборачивается с поднятым кулаком; вратарь смеётся, сидя на траве, двое товарищей по команде бегут к нему, тренер хлопает; позади двое зрителей на скамейке и велосипед; на переднем плане мяч, спортивная сумка, полотенце, бутылка и кроссовки.",
     "consigne": "Марк играет в футбол со своей командой. Нажми на предмет."
    },
    "couches": {
@@ -1540,7 +1523,7 @@ window.SCENE = {
     "A2 | Der Ball liegt neben der Tasche.": "die Tasche → neben <b>der</b> Tasche: в Dativ женский род <b>die</b> становится <b>der</b>.",
     "A2 | Das Fahrrad steht hinter dem Netz.": "<b>hinter</b> = позади. das Netz → hinter <b>dem</b> Netz.",
     "A2 | Die Flasche ist in der Tasche.": "die Tasche → in <b>der</b> Tasche: в Dativ женский род <b>die</b> становится <b>der</b>.",
-    "A2 | Die Wolken sind am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
+    "A2 | Die Wolke ist am Himmel.": "<b>am</b> = an + <b>dem</b>: der Himmel → am Himmel.",
     "B1 | Mark schoss den Ball ins Tor.": "<b>schießen</b> → Präteritum <b>schoss</b> (неправильная форма).",
     "B1 | Der Torwart fiel ins Gras.": "<b>fallen</b> → <b>fiel</b>.",
     "B1 | Die Spieler liefen zu Mark.": "<b>laufen</b> → <b>lief</b>, во множественном числе <b>liefen</b>.",
@@ -1556,7 +1539,7 @@ window.SCENE = {
     "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "<b>während</b> = пока.",
     "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "<b>damit</b> = чтобы: цель.",
     "C1 | Das muss sein erstes Tor sein.": "<b>müssen</b> = почти уверенный вывод.",
-    "C1 | Der alte Mann könnte Marks Opa sein.": "<b>könnte</b> = одна возможность из нескольких.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
    }

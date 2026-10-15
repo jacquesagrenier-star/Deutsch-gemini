@@ -17,8 +17,8 @@ window.SCENE = {
     [
      0,
      0,
-     100,
-     13
+     65,
+     8
     ]
    ],
    "fr": "le ciel",
@@ -42,37 +42,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     3,
-     4,
+     42,
+     7.5,
      22,
-     7
-    ]
-   ],
-   "fr": "le nuage",
-   "en": "the cloud",
-   "pt": "a nuvem",
-   "ar": "غيمة، سحابة",
-   "pl": "chmura",
-   "ru": "облако, туча",
-   "latam": null
-  },
-  {
-   "id": "wolke-2",
-   "mot": "nube",
-   "genre": "la",
-   "pluriel": "las nubes",
-   "niveau": "A1",
-   "theme": "el_clima",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     72,
-     8.5,
-     10,
-     3.5
+     7.5
     ]
    ],
    "fr": "le nuage",
@@ -96,22 +69,22 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     28,
      0,
-     30,
-     33
+     8,
+     42,
+     20
     ],
     [
-     55,
-     11,
-     45,
-     30
+     63,
+     0,
+     37,
+     40
     ],
     [
-     0,
-     13,
-     28,
-     18
+     42,
+     15,
+     21,
+     12
     ]
    ],
    "fr": "l'arbre",
@@ -135,10 +108,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     30.5,
-     30.8,
-     6.5,
-     3.5
+     79,
+     27,
+     8,
+     4
     ]
    ],
    "fr": "la montre, l'horloge",
@@ -147,33 +120,6 @@ window.SCENE = {
    "ar": "ساعة حائط",
    "pl": "zegar",
    "ru": "часы",
-   "latam": null
-  },
-  {
-   "id": "ball",
-   "mot": "balón",
-   "genre": "el",
-   "pluriel": "los balones",
-   "niveau": "A2",
-   "theme": "el_deporte",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     3,
-     41,
-     6,
-     3.5
-    ]
-   ],
-   "fr": "le ballon",
-   "en": "the ball (football)",
-   "pt": "a bola (de futebol)",
-   "ar": "كرة",
-   "pl": "piłka",
-   "ru": "мяч",
    "latam": null
   },
   {
@@ -190,9 +136,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     31.5,
-     28,
-     24.5
+     27.5,
+     67,
+     26
     ]
    ],
    "fr": "le réseau",
@@ -204,30 +150,30 @@ window.SCENE = {
    "latam": null
   },
   {
-   "id": "fahrrad",
-   "mot": "bicicleta",
-   "genre": "la",
-   "pluriel": "las bicicletas",
-   "niveau": "A1",
-   "theme": "la_ciudad",
+   "id": "ball",
+   "mot": "balón",
+   "genre": "el",
+   "pluriel": "los balones",
+   "niveau": "A2",
+   "theme": "el_deporte",
    "personne": null,
    "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
     [
-     1.5,
-     43.5,
-     13.5,
-     6.5
+     9,
+     57.5,
+     5.5,
+     3.5
     ]
    ],
-   "fr": "le vélo",
-   "en": "the bicycle",
-   "pt": "a bicicleta",
-   "ar": "درّاجة",
-   "pl": "rower",
-   "ru": "велосипед",
+   "fr": "le ballon",
+   "en": "the ball (football)",
+   "pt": "a bola (de futebol)",
+   "ar": "كرة",
+   "pl": "piłka",
+   "ru": "мяч",
    "latam": null
   },
   {
@@ -243,10 +189,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     15,
-     46,
-     10,
-     4
+     0,
+     48.5,
+     26,
+     5
     ]
    ],
    "fr": "la banque, le banc",
@@ -270,10 +216,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20,
+     4.5,
      43,
-     6,
-     6.5
+     8.5,
+     10
     ]
    ],
    "fr": "l'homme",
@@ -297,10 +243,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     27.5,
-     42.8,
-     5,
-     7
+     14.5,
+     43,
+     10.5,
+     10.5
     ]
    ],
    "fr": "la femme, l'épouse",
@@ -312,7 +258,67 @@ window.SCENE = {
    "latam": null
   },
   {
-   "id": "spieler-2",
+   "id": "fahrrad",
+   "mot": "bicicleta",
+   "genre": "la",
+   "pluriel": "las bicicletas",
+   "niveau": "A1",
+   "theme": "la_ciudad",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     29,
+     44,
+     20,
+     9.5
+    ]
+   ],
+   "fr": "le vélo",
+   "en": "the bicycle",
+   "pt": "a bicicleta",
+   "ar": "درّاجة",
+   "pl": "rower",
+   "ru": "велосипед",
+   "latam": null
+  },
+  {
+   "id": "weg",
+   "mot": "camino",
+   "genre": "el",
+   "pluriel": "los caminos",
+   "niveau": "A2",
+   "theme": "orientarse",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     53.5,
+     35,
+     4
+    ],
+    [
+     66,
+     50.5,
+     34,
+     3
+    ]
+   ],
+   "fr": "le chemin",
+   "en": "the way, the path",
+   "pt": "o caminho",
+   "ar": "طريق",
+   "pl": "droga",
+   "ru": "дорога, путь",
+   "latam": null
+  },
+  {
+   "id": "torwart",
    "mot": "jugador",
    "genre": "el",
    "pluriel": "los jugadores",
@@ -324,10 +330,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     56,
-     38,
-     7,
-     17.5
+     35,
+     49,
+     17,
+     12.5
     ]
    ],
    "fr": "le joueur",
@@ -339,30 +345,30 @@ window.SCENE = {
    "latam": null
   },
   {
-   "id": "spieler-3",
-   "mot": "jugador",
+   "id": "handschuh",
+   "mot": "guante",
    "genre": "el",
-   "pluriel": "los jugadores",
-   "niveau": "A2",
-   "theme": "el_deporte",
+   "pluriel": "los guantes",
+   "niveau": "A1",
+   "theme": "la_ropa",
    "personne": null,
    "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
     [
-     62,
      39.5,
-     10.5,
-     16.5
+     55.8,
+     10,
+     2.5
     ]
    ],
-   "fr": "le joueur",
-   "en": "the player",
-   "pt": "o jogador",
-   "ar": "لاعب",
-   "pl": "zawodnik, gracz",
-   "ru": "игрок",
+   "fr": "le gant",
+   "en": "the glove",
+   "pt": "a luva",
+   "ar": "قفاز",
+   "pl": "rękawiczka",
+   "ru": "перчатка",
    "latam": null
   },
   {
@@ -378,9 +384,9 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     37,
-     40,
-     26,
+     49,
+     35,
+     16,
      15
     ]
    ],
@@ -390,6 +396,87 @@ window.SCENE = {
    "ar": "قميص رياضي",
    "pl": "koszulka (sportowa)",
    "ru": "спортивная форма, майка",
+   "latam": null
+  },
+  {
+   "id": "hose",
+   "mot": "pantalón",
+   "genre": "el",
+   "pluriel": "los pantalones",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     50,
+     49,
+     15,
+     8.5
+    ]
+   ],
+   "fr": "le pantalon",
+   "en": "the trousers",
+   "pt": "a calça",
+   "ar": "بنطال",
+   "pl": "spodnie",
+   "ru": "брюки",
+   "latam": null
+  },
+  {
+   "id": "socke",
+   "mot": "calcetín",
+   "genre": "el",
+   "pluriel": "los calcetines",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     47,
+     61,
+     16,
+     8
+    ]
+   ],
+   "fr": "la chaussette",
+   "en": "the sock",
+   "pt": "a meia",
+   "ar": "جورب",
+   "pl": "skarpetka",
+   "ru": "носок",
+   "latam": null
+  },
+  {
+   "id": "schuh",
+   "mot": "zapato",
+   "genre": "el",
+   "pluriel": "los zapatos",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     46.5,
+     64.5,
+     18.5,
+     9
+    ]
+   ],
+   "fr": "la chaussure",
+   "en": "the shoe",
+   "pt": "o sapato",
+   "ar": "حذاء",
+   "pl": "but",
+   "ru": "ботинок, туфля",
    "latam": null
   },
   {
@@ -415,145 +502,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     32,
-     35,
-     34,
-     42
-    ]
-   ],
-   "fr": "le joueur",
-   "en": "the player",
-   "pt": "o jogador",
-   "ar": "لاعب",
-   "pl": "zawodnik, gracz",
-   "ru": "игрок",
-   "latam": null
-  },
-  {
-   "id": "hose",
-   "mot": "pantalón",
-   "genre": "el",
-   "pluriel": "los pantalones",
-   "niveau": "A1",
-   "theme": "la_ropa",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     42,
-     55,
-     18,
-     8
-    ]
-   ],
-   "fr": "le pantalon",
-   "en": "the trousers",
-   "pt": "a calça",
-   "ar": "بنطال",
-   "pl": "spodnie",
-   "ru": "брюки",
-   "latam": null
-  },
-  {
-   "id": "socke",
-   "mot": "calcetín",
-   "genre": "el",
-   "pluriel": "los calcetines",
-   "niveau": "A1",
-   "theme": "la_ropa",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     44,
-     63,
-     16,
-     6
-    ]
-   ],
-   "fr": "la chaussette",
-   "en": "the sock",
-   "pt": "a meia",
-   "ar": "جورب",
-   "pl": "skarpetka",
-   "ru": "носок",
-   "latam": null
-  },
-  {
-   "id": "schuh",
-   "mot": "zapato",
-   "genre": "el",
-   "pluriel": "los zapatos",
-   "niveau": "A1",
-   "theme": "la_ropa",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     45,
-     69,
-     15,
-     8
-    ]
-   ],
-   "fr": "la chaussure",
-   "en": "the shoe",
-   "pt": "o sapato",
-   "ar": "حذاء",
-   "pl": "but",
-   "ru": "ботинок, туфля",
-   "latam": null
-  },
-  {
-   "id": "handschuh",
-   "mot": "guante",
-   "genre": "el",
-   "pluriel": "los guantes",
-   "niveau": "A1",
-   "theme": "la_ropa",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     15.5,
-     54,
-     9.5,
-     2.5
-    ]
-   ],
-   "fr": "le gant",
-   "en": "the glove",
-   "pt": "a luva",
-   "ar": "قفاز",
-   "pl": "rękawiczka",
-   "ru": "перчатка",
-   "latam": null
-  },
-  {
-   "id": "torwart",
-   "mot": "jugador",
-   "genre": "el",
-   "pluriel": "los jugadores",
-   "niveau": "A2",
-   "theme": "el_deporte",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     11,
-     50,
-     29,
-     10.5
+     49,
+     22.5,
+     22,
+     50
     ]
    ],
    "fr": "le joueur",
@@ -577,10 +529,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     89.5,
-     44,
-     3,
-     3.5
+     75,
+     44.5,
+     2.5,
+     3
     ]
    ],
    "fr": "le sifflet",
@@ -604,10 +556,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     84,
-     40,
-     13,
-     25.5
+     71,
+     38.5,
+     10.5,
+     19.5
     ]
    ],
    "fr": "la femme, l'épouse",
@@ -616,6 +568,33 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "latam": null
+  },
+  {
+   "id": "mannschaft",
+   "mot": "equipo",
+   "genre": "el",
+   "pluriel": "los equipos",
+   "niveau": "A1",
+   "theme": "el_ocio",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     85,
+     37.5,
+     15,
+     24
+    ]
+   ],
+   "fr": "l'équipe",
+   "en": "the team",
+   "pt": "a equipe, o time",
+   "ar": "فريق",
+   "pl": "drużyna",
+   "ru": "команда",
    "latam": null
   },
   {
@@ -631,10 +610,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     7,
-     83,
-     13,
-     8
+     42,
+     82,
+     14,
+     14.5
     ]
    ],
    "fr": "le ballon",
@@ -658,10 +637,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     34.5,
-     83,
-     11.5,
-     10.5
+     61.5,
+     80,
+     18,
+     15
     ]
    ],
    "fr": "la serviette",
@@ -695,10 +674,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     45.5,
-     80.5,
-     4.5,
-     5
+     82,
+     81,
+     11,
+     5.5
     ]
    ],
    "fr": "la bouteille",
@@ -722,10 +701,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     24,
-     80.5,
-     32,
-     12.5
+     61,
+     79,
+     39,
+     17.5
     ]
    ],
    "fr": "le sac",
@@ -749,10 +728,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     56.5,
-     84.5,
-     16.5,
-     6.5
+     79.5,
+     88.5,
+     20,
+     10
     ]
    ],
    "fr": "la basket",
@@ -791,9 +770,15 @@ window.SCENE = {
    "boites": [
     [
      0,
-     93,
+     58,
      100,
-     7
+     42
+    ],
+    [
+     66,
+     53.5,
+     34,
+     4.5
     ]
    ],
    "fr": "l'herbe",
@@ -807,7 +792,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "En el campo de fútbol",
- "alt": "Mark sur un terrain de foot, dans un parc de Berlin : il vient de marquer, le poing levé ; le ballon est dans le filet, le gardien rit assis dans l'herbe, deux coéquipiers accourent, l'entraîneuse applaudit ; au premier plan, un ballon, un sac de sport, une serviette, une bouteille et des baskets.",
+ "alt": "Mark sur un terrain de foot, dans un parc de Berlin : il vient de marquer, le ballon est au fond du filet et il se retourne, le poing levé ; le gardien rit, assis dans l'herbe, deux coéquipiers accourent, l'entraîneuse applaudit ; au fond, deux spectateurs sur un banc et un vélo ; au premier plan, un ballon, un sac de sport, une serviette, une bouteille et des baskets.",
  "consigne": "Mark joue au foot avec son équipe. Touche un objet.",
  "exclus": [],
  "couches": {
@@ -890,7 +875,7 @@ window.SCENE = {
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
-     "q": "Las nubes están ___ cielo.",
+     "q": "La nube está ___ cielo.",
      "c": [
       "en el",
       "en la",
@@ -898,7 +883,7 @@ window.SCENE = {
      ],
      "f": "wolke",
      "r": "himmel",
-     "phrase": "Las nubes están en el cielo.",
+     "phrase": "La nube está en el cielo.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -956,7 +941,7 @@ window.SCENE = {
       "corrían",
       "corren"
      ],
-     "f": "spieler-2",
+     "f": "mannschaft",
      "r": "mark",
      "phrase": "Los compañeros corrieron hacia Mark.",
      "n": "Eux → <b>-ieron</b> : corrieron.",
@@ -1143,14 +1128,14 @@ window.SCENE = {
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
-     "q": "Puede que el hombre mayor ___ el abuelo de Mark.",
+     "q": "Puede que el hombre mayor ___ el vecino de Mark.",
      "c": [
       "sea",
       "es",
       "será"
      ],
      "f": "mann",
-     "phrase": "Puede que el hombre mayor sea el abuelo de Mark.",
+     "phrase": "Puede que el hombre mayor sea el vecino de Mark.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1181,7 +1166,7 @@ window.SCENE = {
  "traductions": {
   "en": {
    "champs": {
-    "alt": "Mark on a football pitch in a Berlin park: he has just scored, fist in the air; the ball is in the net, the goalkeeper laughs sitting on the grass, two teammates run up, the coach claps; in the foreground, a ball, a sports bag, a towel, a bottle and trainers.",
+    "alt": "Mark on a football pitch in a Berlin park: he has just scored, the ball is at the back of the net and he turns round, fist in the air; the goalkeeper laughs sitting on the grass, two teammates run up, the coach claps; at the back, two spectators on a bench and a bike; in the foreground, a ball, a sports bag, a towel, a bottle and trainers.",
     "consigne": "Mark is playing football with his team. Tap an object."
    },
    "couches": {
@@ -1198,7 +1183,7 @@ window.SCENE = {
     "A2 | La toalla está en la bolsa.": "<b>la</b> is feminine → <b>en la</b>.",
     "A2 | El balón está al lado de la bolsa.": "<b>la</b> is feminine: <b>de la</b>, no contraction. Only <b>de + el</b> becomes <b>del</b>.",
     "A2 | Hay una bicicleta detrás de la red.": "<b>hay</b> introduces something new; <b>está</b> places something already known.",
-    "A2 | Las nubes están en el cielo.": "<b>el</b> is masculine → <b>en el</b>, which never contracts.",
+    "A2 | La nube está en el cielo.": "<b>el</b> is masculine → <b>en el</b>, which never contracts.",
     "A2 | La botella está en la bolsa.": "<b>la</b> is feminine → <b>en la</b>.",
     "B1 | Mark marcó un gol.": "A one-off action → <b>indefinido</b>: marcó.",
     "B1 | El jugador de amarillo se cayó al piso.": "<b>caer</b> → <b>cayó</b>: the i becomes y.",
@@ -1216,14 +1201,14 @@ window.SCENE = {
     "B2 | Los espectadores miran mientras los jugadores corren.": "<b>mientras</b> + a simultaneous fact → indicative.",
     "B2 | Antes de que empezara el partido, todos calentaron.": "<b>antes de que</b> → always the subjunctive; in the past: empezara.",
     "C1 | Debe de ser su primer gol.": "<b>deber de</b> + infinitive = a deduction.",
-    "C1 | Puede que el hombre mayor sea el abuelo de Mark.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
+    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | El partido estará a punto de terminar.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que la entrenadora fue profesional.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
    }
   },
   "tr": {
    "champs": {
-    "alt": "Mark Berlin'de bir parktaki futbol sahasında: yumruğu havada, az önce gol attı; top filelerde, kaleci çimenlere oturmuş gülüyor, iki takım arkadaşı koşarak geliyor, antrenör alkışlıyor; önde bir top, bir spor çantası, bir havlu, bir şişe ve spor ayakkabıları.",
+    "alt": "Mark Berlin'de bir parktaki futbol sahasında: az önce gol attı, top ağların dibinde, yumruğu havada arkasını dönüyor; kaleci çimenlere oturmuş gülüyor, iki takım arkadaşı koşarak geliyor, antrenör alkışlıyor; arkada bir bankta iki seyirci ve bir bisiklet; önde bir top, bir spor çantası, bir havlu, bir şişe ve spor ayakkabıları.",
     "consigne": "Mark takımıyla futbol oynuyor. Bir nesneye dokun."
    },
    "couches": {
@@ -1233,7 +1218,7 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Марк на футбольному полі в берлінському парку: щойно забив гол і підняв кулак; м'яч у сітці, воротар сміється, сидячи на траві, двоє товаришів по команді біжать до нього, тренерка плескає; на передньому плані м'яч, спортивна сумка, рушник, пляшка й кросівки.",
+    "alt": "Марк на футбольному полі в берлінському парку: він щойно забив гол, м'яч лежить у глибині сітки, а він обертається з піднятим кулаком; воротар сміється, сидячи на траві, двоє товаришів по команді біжать до нього, тренерка плескає; позаду двоє глядачів на лавці й велосипед; на передньому плані м'яч, спортивна сумка, рушник, пляшка й кросівки.",
     "consigne": "Марк грає у футбол зі своєю командою. Торкнися предмета."
    },
    "couches": {
@@ -1243,7 +1228,7 @@ window.SCENE = {
   },
   "fa": {
    "champs": {
-    "alt": "مارک در یک زمین فوتبال در پارکی در برلین: همین الان گل زده و مشتش را بالا برده؛ توپ در تور است، دروازه‌بان روی چمن نشسته و می‌خندد، دو هم‌تیمی به سویش می‌دوند، مربی دست می‌زند؛ در جلوی تصویر یک توپ، یک ساک ورزشی، یک حوله، یک بطری و کفش ورزشی.",
+    "alt": "مارک در یک زمین فوتبال در پارکی در برلین: همین الان گل زده، توپ ته تور است و او با مشتی بالا رفته برمی‌گردد؛ دروازه‌بان روی چمن نشسته و می‌خندد، دو هم‌تیمی به سویش می‌دوند، مربی دست می‌زند؛ در انتها دو تماشاگر روی یک نیمکت و یک دوچرخه؛ در جلوی تصویر یک توپ، یک ساک ورزشی، یک حوله، یک بطری و کفش ورزشی.",
     "consigne": "مارک با تیمش فوتبال بازی می‌کند. روی یک شیء بزن."
    },
    "couches": {
@@ -1253,7 +1238,7 @@ window.SCENE = {
   },
   "ar": {
    "champs": {
-    "alt": "مارك في ملعب كرة قدم في حديقة ببرلين: سجّل للتوّ هدفًا ورفع قبضته؛ الكرة في الشبكة، وحارس المرمى يضحك جالسًا على العشب، وزميلان يركضان نحوه، والمدرّبة تصفّق؛ وفي المقدّمة كرة وحقيبة رياضية ومنشفة وزجاجة وحذاء رياضي.",
+    "alt": "مارك في ملعب كرة قدم في حديقة ببرلين: سجّل للتوّ هدفًا، والكرة في عمق الشبكة، وهو يستدير رافعًا قبضته؛ وحارس المرمى يضحك جالسًا على العشب، وزميلان يركضان نحوه، والمدرّبة تصفّق؛ وفي العمق متفرّجان على مقعد ودراجة؛ وفي المقدّمة كرة وحقيبة رياضية ومنشفة وزجاجة وحذاء رياضي.",
     "consigne": "مارك يلعب كرة القدم مع فريقه. المس شيئًا."
    },
    "couches": {
@@ -1263,7 +1248,7 @@ window.SCENE = {
   },
   "pt": {
    "champs": {
-    "alt": "Mark num campo de futebol, num parque de Berlim: ele acabou de marcar, de punho erguido; a bola está na rede, o goleiro ri sentado na grama, dois colegas de time correm até ele, a treinadora aplaude; em primeiro plano, uma bola, uma bolsa esportiva, uma toalha, uma garrafa e tênis.",
+    "alt": "Mark num campo de futebol, num parque de Berlim: ele acabou de marcar, a bola está no fundo da rede e ele se vira, de punho erguido; o goleiro ri sentado na grama, dois colegas de time correm até ele, a treinadora aplaude; ao fundo, dois espectadores num banco e uma bicicleta; em primeiro plano, uma bola, uma bolsa esportiva, uma toalha, uma garrafa e tênis.",
     "consigne": "Mark está jogando futebol com o time. Toque num objeto."
    },
    "couches": {
@@ -1280,7 +1265,7 @@ window.SCENE = {
     "A2 | La toalla está en la bolsa.": "<b>la</b> é feminino → <b>en la</b>.",
     "A2 | El balón está al lado de la bolsa.": "<b>la</b> é feminino: <b>de la</b>, sem contração. Só <b>de + el</b> vira <b>del</b>.",
     "A2 | Hay una bicicleta detrás de la red.": "<b>hay</b> apresenta algo novo; <b>está</b> situa algo já conhecido.",
-    "A2 | Las nubes están en el cielo.": "<b>el</b> é masculino → <b>en el</b>, que nunca se contrai.",
+    "A2 | La nube está en el cielo.": "<b>el</b> é masculino → <b>en el</b>, que nunca se contrai.",
     "A2 | La botella está en la bolsa.": "<b>la</b> é feminino → <b>en la</b>.",
     "B1 | Mark marcó un gol.": "Uma ação pontual → <b>indefinido</b>: marcó.",
     "B1 | El jugador de amarillo se cayó al piso.": "<b>caer</b> → <b>cayó</b>: o i vira y.",
@@ -1298,14 +1283,14 @@ window.SCENE = {
     "B2 | Los espectadores miran mientras los jugadores corren.": "<b>mientras</b> + um fato simultâneo → indicativo.",
     "B2 | Antes de que empezara el partido, todos calentaron.": "<b>antes de que</b> → sempre o subjuntivo; no passado: empezara.",
     "C1 | Debe de ser su primer gol.": "<b>deber de</b> + infinitivo = uma dedução.",
-    "C1 | Puede que el hombre mayor sea el abuelo de Mark.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
+    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | El partido estará a punto de terminar.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que la entrenadora fue profesional.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
    }
   },
   "pl": {
    "champs": {
-    "alt": "Mark na boisku w berlińskim parku: właśnie strzelił gola, unosi pięść; piłka jest w siatce, bramkarz śmieje się, siedząc na trawie, dwóch kolegów z drużyny biegnie do niego, trenerka klaszcze; na pierwszym planie piłka, torba sportowa, ręcznik, butelka i trampki.",
+    "alt": "Mark na boisku w berlińskim parku: właśnie strzelił gola, piłka leży w głębi siatki, a on odwraca się z uniesioną pięścią; bramkarz śmieje się, siedząc na trawie, dwoje graczy z drużyny biegnie do niego, trenerka klaszcze; w głębi dwoje widzów na ławce i rower; na pierwszym planie piłka, torba sportowa, ręcznik, butelka i trampki.",
     "consigne": "Mark gra w piłkę ze swoją drużyną. Dotknij przedmiotu."
    },
    "couches": {
@@ -1315,7 +1300,7 @@ window.SCENE = {
   },
   "ru": {
    "champs": {
-    "alt": "Марк на футбольном поле в берлинском парке: он только что забил гол и поднял кулак; мяч в сетке, вратарь смеётся, сидя на траве, двое товарищей по команде бегут к нему, тренер хлопает; на переднем плане мяч, спортивная сумка, полотенце, бутылка и кроссовки.",
+    "alt": "Марк на футбольном поле в берлинском парке: он только что забил гол, мяч лежит в глубине сетки, а он оборачивается с поднятым кулаком; вратарь смеётся, сидя на траве, двое товарищей по команде бегут к нему, тренер хлопает; позади двое зрителей на скамейке и велосипед; на переднем плане мяч, спортивная сумка, полотенце, бутылка и кроссовки.",
     "consigne": "Марк играет в футбол со своей командой. Нажми на предмет."
    },
    "couches": {

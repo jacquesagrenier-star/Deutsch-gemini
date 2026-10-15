@@ -489,7 +489,30 @@ window.SCENE = {
      77,
      29,
      13
-    ],
+    ]
+   ],
+   "fr": "le bois",
+   "en": "wood",
+   "tr": "ahşap",
+   "uk": "деревина",
+   "fa": "چوب",
+   "pt": "madeira",
+   "ar": "خشب",
+   "pl": "drewno",
+   "ru": "дерево (материал)"
+  },
+  {
+   "id": "holz-2",
+   "mot": "Holz",
+   "genre": "das",
+   "pluriel": "Hölzer",
+   "niveau": "A1",
+   "theme": "natur_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
     [
      0,
      62,

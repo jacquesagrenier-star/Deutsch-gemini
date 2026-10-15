@@ -8940,3 +8940,16 @@ Parcours : es 1 ecart (l'erreur 404 du chemin « Mis de cote » disparue), de 27
 ordres de cartes decales (le premier clic sur « Mis de cote » ne charge plus la frequence) ->
 references v804.
 Reste a faire : le foot (le ballon flotte, les cones et le drapeau sans nom) -> a refaire.
+
+## 15 octobre 2026 -- le foot refait, et la revue des 24 scenes
+
+Jacques : « refais le foot, et passe les scenes en revue ».
+- Le foot (sportplatz) : nouvelle image (0,15 $). Le ballon est au fond du filet quand Mark fete
+  son but ; plus de cones, de drapeau de coin, de grillage ni de poussette (aucun mot dans les deux
+  corpus). Les deux coequipiers sont die Mannschaft. La question C1 « Der alte Mann konnte Marks Opa
+  sein » (es : « el abuelo de Mark ») devient « Marks Nachbar » / « el vecino de Mark » : la famille
+  de Mark est a Montreal. Premiere image gardee : visuel/scenes/sportplatz-v1.png.
+- La revue : planches ou ce qui n'est pas touchable ressort en rouge (gris = objet avec sa zone,
+  rose = seulement un grand fond). Trois masques incomplets repares tout de suite : le tas de bois
+  du lac, l'ordinateur du train, Anna au repas de famille (sa tete). Le reste (objets sans zone,
+  scene par scene) est liste pour Jacques, avec ce qui demande un mot nouveau au corpus.

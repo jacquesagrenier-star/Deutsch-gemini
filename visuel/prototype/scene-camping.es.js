@@ -457,7 +457,28 @@ window.SCENE = {
      77,
      29,
      13
-    ],
+    ]
+   ],
+   "fr": "le bois",
+   "en": "the wood",
+   "pt": "a madeira",
+   "ar": "خشب",
+   "pl": "drewno",
+   "ru": "дерево (материал)",
+   "latam": null
+  },
+  {
+   "id": "holz-2",
+   "mot": "madera",
+   "genre": "la",
+   "pluriel": "las maderas",
+   "niveau": "A2",
+   "theme": "los_materiales",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
     [
      0,
      62,

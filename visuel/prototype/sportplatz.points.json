@@ -1,16 +1,16 @@
 {
  "_lisez_moi": [
-  "Le terrain de foot (14 oct. 2026) : un samedi matin, dans un parc de Berlin, Mark vient de marquer un but ; le gardien rit, assis dans l'herbe, deux coequipiers accourent, l'entraineuse applaudit. Theme : le sport, le football, les loisirs. Scene creee a la demande de Jacques (« quatre autres scenes, deux avec Anna, deux avec Mark, en lien avec les themes », 14 oct. 2026).",
-  "Image : visuel/scenes/sportplatz.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png). Aucun texte dans l'image (maillots sans numero).",
+  "Le terrain de foot (14 oct. 2026, refait le 15 oct.) : un samedi matin, dans un parc de Berlin, Mark vient de marquer : le ballon est au fond du filet, il se retourne le poing leve ; le gardien rit, assis dans l'herbe, deux coequipiers accourent, l'entraineuse applaudit. Theme : le sport, le football, les loisirs.",
+  "REFAITE le 15 oct. 2026 a la demande de Jacques : dans la premiere image (gardee : visuel/scenes/sportplatz-v1.png), Mark celebrait alors que le ballon flottait encore, et des cones, un drapeau de coin, un grillage et une poussette n'avaient pas de mot. La regle : tout ce qui se voit nettement doit etre touchable.",
+  "Image : visuel/scenes/sportplatz.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png). Aucun texte dans l'image.",
   "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
-  "Mots absents du corpus ESPAGNOL, donc sans zone pour l'instant (on n'ajoute au corpus qu'avec l'accord de Jacques) : le but (la porteria), le drapeau de coin (la bandera), la poussette (el cochecito). Le but se touche par son filet : das Netz. Les plots orange n'ont pas de mot au corpus.",
-  "Mark, le gardien et les deux coequipiers sont der Spieler ; l'entraineuse est die Frau (die Trainerin manque au corpus allemand), comme la jeune femme du banc ; le vieux monsieur est der Mann. Deux Ball (dans le filet, et au premier plan).",
-  "Mesures relues sur la grille en % du 14 oct. 2026."
+  "Mark et le gardien sont der Spieler ; les deux coequipiers ensemble sont die Mannschaft (l'un des deux pourrait etre une joueuse : die Spielerin manque au corpus) ; l'entraineuse et la jeune femme du banc sont die Frau, le vieux monsieur der Mann. Le but se touche par son filet : das Netz (la porteria manque au corpus espagnol). Les lignes blanches font partie du terrain (das Gras, aussi der Sportplatz).",
+  "Mesures relues sur la grille en % du 15 oct. 2026."
  ],
  "image": "sportplatz.webp",
  "source": "../scenes/sportplatz.png",
  "titre": "Auf dem Sportplatz",
- "alt": "Mark sur un terrain de foot, dans un parc de Berlin : il vient de marquer, le poing levé ; le ballon est dans le filet, le gardien rit assis dans l'herbe, deux coéquipiers accourent, l'entraîneuse applaudit ; au premier plan, un ballon, un sac de sport, une serviette, une bouteille et des baskets.",
+ "alt": "Mark sur un terrain de foot, dans un parc de Berlin : il vient de marquer, le ballon est au fond du filet et il se retourne, le poing levé ; le gardien rit, assis dans l'herbe, deux coéquipiers accourent, l'entraîneuse applaudit ; au fond, deux spectateurs sur un banc et un vélo ; au premier plan, un ballon, un sac de sport, une serviette, une bouteille et des baskets.",
  "consigne": "Mark joue au foot avec son équipe. Touche un objet.",
  "exclus": [],
  "couches": {
@@ -105,7 +105,7 @@
      "n": "die Tasche → in <b>der</b> Tasche : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
-     "q": "Wo sind die Wolken?",
+     "q": "Wo ist die Wolke?",
      "c": [
       "am Himmel",
       "im Baum",
@@ -113,7 +113,7 @@
      ],
      "f": "wolke",
      "r": "himmel",
-     "phrase": "Die Wolken sind am Himmel.",
+     "phrase": "Die Wolke ist am Himmel.",
      "n": "<b>am</b> = an + <b>dem</b> : der Himmel → am Himmel."
     }
    ]
@@ -153,7 +153,7 @@
       "lauften",
       "laufen"
      ],
-     "f": "spieler-2",
+     "f": "mannschaft",
      "r": "mark",
      "phrase": "Die Spieler liefen zu Mark.",
      "n": "<b>laufen</b> → <b>lief</b>, au pluriel <b>liefen</b>.",
@@ -309,14 +309,14 @@
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
-     "q": "Vielleicht, wer weiß: Der alte Mann ___ Marks Opa sein.",
+     "q": "Vielleicht, wer weiß: Der alte Mann ___ Marks Nachbar sein.",
      "c": [
       "könnte",
       "muss",
       "will"
      ],
      "f": "mann",
-     "phrase": "Der alte Mann könnte Marks Opa sein.",
+     "phrase": "Der alte Mann könnte Marks Nachbar sein.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -352,28 +352,18 @@
    "boite": [
     0,
     0,
-    100,
-    13
+    65,
+    8
    ]
   },
   {
    "id": "wolke",
    "mot": "Wolke",
    "boite": [
-    3,
-    4,
+    42,
+    7.5,
     22,
-    7
-   ]
-  },
-  {
-   "id": "wolke-2",
-   "mot": "Wolke",
-   "boite": [
-    72,
-    8.5,
-    10,
-    3.5
+    7.5
    ]
   },
   {
@@ -382,22 +372,22 @@
    "plein": true,
    "boites": [
     [
-     28,
      0,
-     30,
-     33
+     8,
+     42,
+     20
     ],
     [
-     55,
-     11,
-     45,
-     30
+     63,
+     0,
+     37,
+     40
     ],
     [
-     0,
-     13,
-     28,
-     18
+     42,
+     15,
+     21,
+     12
     ]
    ]
   },
@@ -405,20 +395,10 @@
    "id": "uhr",
    "mot": "Uhr",
    "boite": [
-    30.5,
-    30.8,
-    6.5,
-    3.5
-   ]
-  },
-  {
-   "id": "ball",
-   "mot": "Ball",
-   "boite": [
-    3,
-    41,
-    6,
-    3.5
+    79,
+    27,
+    8,
+    4
    ]
   },
   {
@@ -427,79 +407,137 @@
    "plein": true,
    "boite": [
     0,
-    31.5,
-    28,
-    24.5
+    27.5,
+    67,
+    26
    ]
   },
   {
-   "id": "fahrrad",
-   "mot": "Fahrrad",
+   "id": "ball",
+   "mot": "Ball",
    "boite": [
-    1.5,
-    43.5,
-    13.5,
-    6.5
+    9,
+    57.5,
+    5.5,
+    3.5
    ]
   },
   {
    "id": "bank",
    "mot": "Bank",
    "boite": [
-    15,
-    46,
-    10,
-    4
+    0,
+    48.5,
+    26,
+    5
    ]
   },
   {
    "id": "mann",
    "mot": "Mann",
    "boite": [
-    20,
+    4.5,
     43,
-    6,
-    6.5
+    8.5,
+    10
    ]
   },
   {
    "id": "frau",
    "mot": "Frau",
    "boite": [
-    27.5,
-    42.8,
-    5,
-    7
-   ]
-  },
-  {
-   "id": "spieler-2",
-   "mot": "Spieler",
-   "boite": [
-    56,
-    38,
-    7,
-    17.5
-   ]
-  },
-  {
-   "id": "spieler-3",
-   "mot": "Spieler",
-   "boite": [
-    62,
-    39.5,
+    14.5,
+    43,
     10.5,
-    16.5
+    10.5
+   ]
+  },
+  {
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "boite": [
+    29,
+    44,
+    20,
+    9.5
+   ]
+  },
+  {
+   "id": "weg",
+   "mot": "Weg",
+   "boites": [
+    [
+     0,
+     53.5,
+     35,
+     4
+    ],
+    [
+     66,
+     50.5,
+     34,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "torwart",
+   "mot": "Spieler",
+   "boite": [
+    35,
+    49,
+    17,
+    12.5
+   ]
+  },
+  {
+   "id": "handschuh",
+   "mot": "Handschuh",
+   "boite": [
+    39.5,
+    55.8,
+    10,
+    2.5
    ]
   },
   {
    "id": "trikot",
    "mot": "Trikot",
    "boite": [
-    37,
-    40,
-    26,
+    49,
+    35,
+    16,
     15
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "boite": [
+    50,
+    49,
+    15,
+    8.5
+   ]
+  },
+  {
+   "id": "socke",
+   "mot": "Socke",
+   "boite": [
+    47,
+    61,
+    16,
+    8
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    46.5,
+    64.5,
+    18.5,
+    9
    ]
   },
   {
@@ -509,90 +547,50 @@
     "Mann"
    ],
    "boite": [
-    32,
-    35,
-    34,
-    42
-   ]
-  },
-  {
-   "id": "hose",
-   "mot": "Hose",
-   "boite": [
-    42,
-    55,
-    18,
-    8
-   ]
-  },
-  {
-   "id": "socke",
-   "mot": "Socke",
-   "boite": [
-    44,
-    63,
-    16,
-    6
-   ]
-  },
-  {
-   "id": "schuh",
-   "mot": "Schuh",
-   "boite": [
-    45,
-    69,
-    15,
-    8
-   ]
-  },
-  {
-   "id": "handschuh",
-   "mot": "Handschuh",
-   "boite": [
-    15.5,
-    54,
-    9.5,
-    2.5
-   ]
-  },
-  {
-   "id": "torwart",
-   "mot": "Spieler",
-   "boite": [
-    11,
-    50,
-    29,
-    10.5
+    49,
+    22.5,
+    22,
+    50
    ]
   },
   {
    "id": "pfeife",
    "mot": "Pfeife",
    "boite": [
-    89.5,
-    44,
-    3,
-    3.5
+    75,
+    44.5,
+    2.5,
+    3
    ]
   },
   {
    "id": "trainerin",
    "mot": "Frau",
    "boite": [
-    84,
-    40,
-    13,
-    25.5
+    71,
+    38.5,
+    10.5,
+    19.5
+   ]
+  },
+  {
+   "id": "mannschaft",
+   "mot": "Mannschaft",
+   "boite": [
+    85,
+    37.5,
+    15,
+    24
    ]
   },
   {
    "id": "ball-2",
    "mot": "Ball",
    "boite": [
-    7,
-    83,
-    13,
-    8
+    42,
+    82,
+    14,
+    14.5
    ]
   },
   {
@@ -600,10 +598,10 @@
    "mot": "Handtuch",
    "sur": "tasche",
    "boite": [
-    34.5,
-    83,
-    11.5,
-    10.5
+    61.5,
+    80,
+    18,
+    15
    ]
   },
   {
@@ -614,30 +612,30 @@
     "Wasser"
    ],
    "boite": [
-    45.5,
-    80.5,
-    4.5,
-    5
+    82,
+    81,
+    11,
+    5.5
    ]
   },
   {
    "id": "tasche",
    "mot": "Tasche",
    "boite": [
-    24,
-    80.5,
-    32,
-    12.5
+    61,
+    79,
+    39,
+    17.5
    ]
   },
   {
    "id": "turnschuh",
    "mot": "Turnschuh",
    "boite": [
-    56.5,
-    84.5,
-    16.5,
-    6.5
+    79.5,
+    88.5,
+    20,
+    10
    ]
   },
   {
@@ -647,11 +645,19 @@
    "aussi": [
     "Sportplatz"
    ],
-   "boite": [
-    0,
-    93,
-    100,
-    7
+   "boites": [
+    [
+     0,
+     58,
+     100,
+     42
+    ],
+    [
+     66,
+     53.5,
+     34,
+     4.5
+    ]
    ]
   }
  ],
