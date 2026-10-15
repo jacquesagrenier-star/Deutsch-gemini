@@ -6393,6 +6393,8 @@ body[data-theme="dark"] #decouverte > button.primary{
     padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);}
 .scene-cadre{display:block; width:100%; height:100%; border:0; background:#11151b;}
 
+.explorer-haut strong + .pt-decouverte{margin-inline-start:8px; margin-inline-end:auto;}
+.orb-seance .seance-niveaux + .pt-decouverte{margin-inline-start:4px;}
 /* ============ v799 : LA SEANCE A DEUX PORTES, ET EXPLORER LES SCENES ============ */
 .orb-seance{cursor:default;}
 .orb-seance .seance-bas{width:auto; min-width:0; margin:2px 0 9px; gap:6px; flex-wrap:nowrap;}
@@ -7417,7 +7419,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v799</span>
+    <span class="subtitle-version">v800</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10798,7 +10800,8 @@ const I18N = {
         reperes_themes: "Par thème : tu préfères un sujet précis ? La famille, la maison, la nourriture…",
         reperes_mots: "Chaque tuile ouvre des cartes et des exercices : les noms, les verbes, les adjectifs… Descends pour tout voir.",
         reperes_phrase: "La grammaire de la phrase : chaque tuile explique une règle, puis la fait pratiquer.",
-        reperes_pratique: "Pour t'en servir : écouter, les scènes, écrire, les expressions.",
+        reperes_pratique: "Pour t'en servir : écouter, écrire, les expressions.",
+        reperes_explorer: "Explorer les scènes : touche une image pour entrer dans une scène et y toucher les objets. Tu entends leur nom, librement, sans questions. « 12 › » les montre toutes.",
         reperes_dico: "Le dictionnaire : un mot inconnu ? Cherche-le ici.",
         reperes_reglages: "Les réglages : ta langue, ton niveau, et tout le reste.",
         reperes_titre: "Points de découverte",
@@ -11943,7 +11946,8 @@ const I18N = {
         reperes_themes: "By theme: prefer a specific topic? Family, home, food…",
         reperes_mots: "Each tile opens cards and exercises: nouns, verbs, adjectives… Scroll down to see everything.",
         reperes_phrase: "Sentence grammar: each tile explains a rule, then lets you practise it.",
-        reperes_pratique: "To put it to use: listening, scenes, writing, expressions.",
+        reperes_pratique: "To put it to use: listening, writing, expressions.",
+        reperes_explorer: "Explore the scenes: tap a picture to step into a scene and tap the objects. You hear their names, freely, no questions. “12 ›” shows them all.",
         reperes_dico: "The dictionary: an unknown word? Look it up here.",
         reperes_reglages: "Settings: your language, your level, and everything else.",
         reperes_titre: "Discovery dots",
@@ -13090,7 +13094,8 @@ const I18N = {
         reperes_themes: "Temaya göre: belirli bir konu mu istiyorsun? Aile, ev, yiyecek…",
         reperes_mots: "Her kutucuk kartlar ve alıştırmalar açar: isimler, fiiller, sıfatlar… Hepsini görmek için aşağı kaydır.",
         reperes_phrase: "Cümle dilbilgisi: her kutucuk bir kuralı açıklar, sonra alıştırmasını yaptırır.",
-        reperes_pratique: "Öğrendiklerini kullanmak için: dinleme, sahneler, yazma, deyimler.",
+        reperes_pratique: "Öğrendiklerini kullanmak için: dinleme, yazma, deyimler.",
+        reperes_explorer: "Sahneleri keşfet: bir sahneye girmek için resme dokun, sonra nesnelere dokun. Adlarını duyarsın; serbestçe, soru yok. « 12 › » hepsini gösterir.",
         reperes_dico: "Sözlük: bilmediğin bir kelime mi var? Burada ara.",
         reperes_reglages: "Ayarlar: dilin, seviyen ve geri kalan her şey.",
         reperes_titre: "Keşif noktaları",
@@ -14560,7 +14565,8 @@ const I18N = {
         reperes_themes: "За темою: хочеш конкретну тему? Сім'я, дім, їжа…",
         reperes_mots: "Кожна плитка відкриває картки й вправи: іменники, дієслова, прикметники… Прогорни вниз, щоб побачити все.",
         reperes_phrase: "Граматика речення: кожна плитка пояснює правило, а потім дає його потренувати.",
-        reperes_pratique: "Щоб використати вивчене: слухання, сцени, письмо, вирази.",
+        reperes_pratique: "Щоб використати вивчене: слухання, письмо, вирази.",
+        reperes_explorer: "Досліджуй сцени: торкнися зображення, щоб увійти в сцену, і торкайся предметів. Ти почуєш їхні назви — вільно, без запитань. « 12 › » показує всі.",
         reperes_dico: "Словник: незнайоме слово? Шукай його тут.",
         reperes_reglages: "Налаштування: твоя мова, твій рівень і все інше.",
         reperes_titre: "Точки-підказки",
@@ -16417,7 +16423,8 @@ const I18N = {
         reperes_themes: "بر پایهٔ موضوع: موضوع خاصی را ترجیح می‌دهی؟ خانواده، خانه، غذا…",
         reperes_mots: "هر کاشی کارت‌ها و تمرین‌هایی را باز می‌کند: اسم‌ها، فعل‌ها، صفت‌ها… برای دیدن همه، پایین برو.",
         reperes_phrase: "دستور جمله: هر کاشی یک قاعده را توضیح می‌دهد و بعد تمرینش را می‌دهد.",
-        reperes_pratique: "برای به‌کار بستن آموخته‌ها: شنیدن، صحنه‌ها، نوشتن، اصطلاح‌ها.",
+        reperes_pratique: "برای به‌کار بستن آموخته‌ها: شنیدن، نوشتن، اصطلاح‌ها.",
+        reperes_explorer: "کاوش در صحنه‌ها: روی یک تصویر بزن تا وارد صحنه شوی و روی اشیا بزنی. نامشان را می‌شنوی، آزادانه و بدون پرسش. « 12 › » همه را نشان می‌دهد.",
         reperes_dico: "فرهنگ لغت: واژه‌ای ناآشنا؟ این‌جا جست‌وجویش کن.",
         reperes_reglages: "تنظیمات: زبانت، سطحت و همهٔ چیزهای دیگر.",
         reperes_titre: "نقطه‌های راهنما",
@@ -17686,7 +17693,8 @@ const I18N = {
         reperes_themes: "حسب الموضوع: تفضّل موضوعًا محددًا؟ العائلة، البيت، الطعام…",
         reperes_mots: "كل مربّع يفتح بطاقات وتمارين: الأسماء، الأفعال، الصفات… مرّر إلى الأسفل لترى كل شيء.",
         reperes_phrase: "قواعد الجملة: كل مربّع يشرح قاعدة، ثم يدعك تتدرّب عليها.",
-        reperes_pratique: "لتستعمل ما تعلّمته: الاستماع، المشاهد، الكتابة، التعابير.",
+        reperes_pratique: "لتستعمل ما تعلّمته: الاستماع، الكتابة، التعابير.",
+        reperes_explorer: "استكشف المشاهد: المس صورة لتدخل المشهد وتلمس الأشياء. تسمع أسماءها بحرية، بلا أسئلة. « 12 › » يعرضها كلها.",
         reperes_dico: "القاموس: كلمة لا تعرفها؟ ابحث عنها هنا.",
         reperes_reglages: "الإعدادات: لغتك، مستواك، وكل ما تبقّى.",
         reperes_titre: "نقاط الاكتشاف",
@@ -17850,7 +17858,8 @@ const I18N = {
         reperes_themes: "Por tema: prefere um assunto específico? A família, a casa, a comida…",
         reperes_mots: "Cada bloco abre cartões e exercícios: substantivos, verbos, adjetivos… Role para baixo para ver tudo.",
         reperes_phrase: "A gramática da frase: cada bloco explica uma regra e depois a faz praticar.",
-        reperes_pratique: "Para usar o que aprendeu: ouvir, as cenas, escrever, as expressões.",
+        reperes_pratique: "Para usar o que aprendeu: ouvir, escrever, as expressões.",
+        reperes_explorer: "Explore as cenas: toque numa imagem para entrar numa cena e tocar nos objetos. Você ouve o nome deles, à vontade, sem perguntas. « 12 › » mostra todas.",
         reperes_dico: "O dicionário: uma palavra desconhecida? Procure aqui.",
         reperes_reglages: "Configurações: o seu idioma, o seu nível e todo o resto.",
         reperes_titre: "Pontos de descoberta",
@@ -19060,7 +19069,8 @@ const I18N = {
         reperes_themes: "Według tematu: wolisz konkretny temat? Rodzina, dom, jedzenie…",
         reperes_mots: "Każdy kafelek otwiera fiszki i ćwiczenia: rzeczowniki, czasowniki, przymiotniki… Przewiń w dół, żeby zobaczyć wszystko.",
         reperes_phrase: "Gramatyka zdania: każdy kafelek wyjaśnia regułę, a potem pozwala ją przećwiczyć.",
-        reperes_pratique: "Żeby z tego korzystać: słuchanie, sceny, pisanie, wyrażenia.",
+        reperes_pratique: "Żeby z tego korzystać: słuchanie, pisanie, wyrażenia.",
+        reperes_explorer: "Odkrywaj sceny: dotknij obrazka, żeby wejść do sceny i dotykać przedmiotów. Usłyszysz ich nazwy — swobodnie, bez pytań. « 12 › » pokazuje wszystkie.",
         reperes_dico: "Słownik: nieznane słowo? Wyszukaj je tutaj.",
         reperes_reglages: "Ustawienia: twój język, twój poziom i cała reszta.",
         reperes_titre: "Kropki z podpowiedziami",
@@ -20268,7 +20278,8 @@ const I18N = {
         reperes_themes: "По темам: хочешь конкретную тему? Семья, дом, еда…",
         reperes_mots: "Каждая плитка открывает карточки и упражнения: существительные, глаголы, прилагательные… Прокрути вниз, чтобы увидеть всё.",
         reperes_phrase: "Грамматика предложения: каждая плитка объясняет правило, а потом даёт его отработать.",
-        reperes_pratique: "Чтобы применять выученное: слушание, сцены, письмо, выражения.",
+        reperes_pratique: "Чтобы применять выученное: слушание, письмо, выражения.",
+        reperes_explorer: "Исследуй сцены: нажми на картинку, чтобы войти в сцену и нажимать на предметы. Ты услышишь их названия — свободно, без вопросов. « 12 › » показывает все.",
         reperes_dico: "Словарь: незнакомое слово? Ищи его здесь.",
         reperes_reglages: "Настройки: твой язык, твой уровень и всё остальное.",
         reperes_titre: "Точки-подсказки",
@@ -33086,14 +33097,21 @@ function basculerEssai(nom){
 const REPERES = [
     { id: "seance", sel: "#home .orb-seance .seance-go",
       cle: "reperes_seance" },
-    { id: "niveau", sel: "#home .orb-seance .seance-etiq",
+    // v800 : APRES les pastilles, et non dans « Ton niveau » : dans l'etiquette,
+    // le point chevauchait le texte (Jacques : « il y en a qui ne sont pas du
+    // tout au bon endroit »).
+    { id: "niveau", sel: "#home .orb-seance .seance-niveaux", apres: true,
       cle: "reperes_niveau" },
     // « Mis de cote » n'apparait qu'une fois un mot mis de cote : son point
     // aussi, donc, et c'est le bon moment pour le decouvrir. (Jacques, v795.)
-    { id: "gardes", sel: '#home .orb[data-orbid="gardes"] strong',
+    // v800 : la TUILE, et non son titre : le titre coupe ce qui depasse
+    // (line-clamp), et le point sortait a moitie mange.
+    { id: "gardes", sel: '#home .orb[data-orbid="gardes"]',
       cle: "reperes_gardes" },
-    { id: "themes", sel: '#home .orb[data-orbid="themes"] strong',
+    { id: "themes", sel: '#home .orb[data-orbid="themes"]',
       cle: "reperes_themes" },
+    { id: "explorer", sel: "#home .explorer-haut strong", apres: true,
+      cle: "reperes_explorer" },
     { id: "mots", sel: '#home .orb-section[data-section="mots"] [data-i18n]', apres: true,
       cle: "reperes_mots" },
     { id: "phrase", sel: '#home .orb-section[data-section="phrase"] [data-i18n]', apres: true,
@@ -37918,7 +37936,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 799;
+const APP_VERSION = 800;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -41351,8 +41369,15 @@ function majExplorerScenes(){
     if(!ruban) return;
     const nb = document.getElementById("explorerNb");
     if(nb) nb.textContent = SCENES_SEANCE.length;
+    // v800 : CINQ vignettes, qui changent chaque jour (Jacques : « qu'on ne voie
+    // pas toujours les memes »). La scene du jour d'abord, puis quatre autres,
+    // prises a tour de role : avec 12 scenes, on les voit toutes en trois
+    // jours. « 12 › » les montre toutes, toujours.
     const jour = sceneDuJour();
-    const liste = [jour].concat(SCENES_SEANCE.filter(s => s.nom !== jour.nom));
+    const autres = SCENES_SEANCE.filter(s => s.nom !== jour.nom);
+    const decalage = autres.length ? (Math.floor(Date.now() / 86400000) * 4) % autres.length : 0;
+    const tournees = autres.slice(decalage).concat(autres.slice(0, decalage)).slice(0, 4);
+    const liste = [jour].concat(tournees);
     const complet = accesComplet();
     ruban.innerHTML = "";
     liste.forEach(s => {

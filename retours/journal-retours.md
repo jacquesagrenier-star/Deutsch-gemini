@@ -8815,3 +8815,15 @@ en allemand et en espagnol, 0 erreur. Parcours : 45 ecarts (de) et 18 (es), tous
 references de-v799 et es-v799.
 Puis : « tu creeras quatre nouvelles scenes sur des themes differents » (en cours : plage, train,
 hiver, bureau).
+
+## 14 octobre 2026 -- v800 : les points de decouverte remis en place, et 5 scenes qui changent
+
+Jacques, sur la v799 : « les petites pastilles jaunes qui flashent, il y en a qui sont au bon
+endroit, et d'autres pas du tout ». Corrige : le point du niveau passe APRES les pastilles A1-C1
+(il chevauchait « Ton niveau ») ; ceux de « Mis de cote » et « Par theme » vont dans le coin de la
+tuile (accroches au titre, ils etaient coupes de moitie) ; un point nouveau pour « Explorer les
+scenes » (9 langues) ; la bulle de « Pratiquer » ne parle plus des scenes, parties de cette section.
+Et : « que les cinq soient sur la page d'accueil, qui changent a chaque seance, qu'on ne voie pas
+toujours les memes » -> le ruban montre 5 vignettes : la scene du jour, puis 4 autres a tour de
+role (toutes vues en trois jours) ; « 12 › » les montre toutes.
+Parcours : 3 ecarts (de et es), le ruban seul -> references de-v800 et es-v800.
