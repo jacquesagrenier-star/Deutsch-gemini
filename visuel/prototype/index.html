@@ -175,6 +175,9 @@ html,body{margin:0;background:#11151b;color:var(--encre);
    etroite -- « pour quelqu'un qui a un plus petit cellulaire, ca ne sera
    pas pratique ». */
 .en-cadre .haut{padding-top:6px;gap:5px}
+/* Dans la visite guidee de l'app (?visite=1, v806) : l'image seule, en mode
+   Decouvrir. La consigne est dans le texte de la visite, au-dessus du cadre. */
+.en-visite .haut{display:none}
 .en-cadre .gros-plan .fermer{top:8px}
 .en-cadre .titre{padding:5px 9px;font-size:14px}
 .en-cadre .niveaux button{padding:6px 8px;min-width:30px}
@@ -999,6 +1002,7 @@ function reviser(m, juste){
 }
 if (EN_SEANCE) document.body.classList.add("en-seance");
 if (window.parent !== window) document.body.classList.add("en-cadre");
+if (window.parent !== window && PARAMS.get("visite") === "1" && !EN_SEANCE) document.body.classList.add("en-visite");
 /* Ouverte DANS l'app (la seance, ou le tableau de bord admin qui ouvre une
    scene entiere pour la tester) : le lien du haut rend la main a l'app au
    lieu de mener a la maquette. */

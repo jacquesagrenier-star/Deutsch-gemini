@@ -8972,3 +8972,14 @@ categorie 1, et ajoute les mots ».
   radiateur, la perceuse, la pince, le tapis de sol, le tambour... Et huit masques rates repares
   (zone pleine) : la voiture sombre et la piste cyclable du carrefour, la table de la cuisine, le
   canape de l'anniversaire, la caisse du supermarche, la lampe de la guitare.
+
+## 15 octobre 2026 -- la visite guidee refaite (v806)
+
+Jacques : « refaire le guide narre [...] beaucoup de choses ont change, meme au niveau du
+visuel » ; puis « je te laisse le faire selon ton bon jugement ».
+- La visite datait du 3 oct., d'avant les scenes. Elle a maintenant six etapes : une scene a
+  toucher (la classe, en mode Decouvrir) est la 5e, avant la seance du jour.
+- La seance est decrite telle qu'elle est depuis la v799 : deux portes, les mots ou la scene du
+  jour. La fin ne parle plus des points ambre (retires en v804).
+- Narration refaite par Charlotte dans les 7 langues qui ont une voix (fr, en, tr, uk, fa, ar, pt),
+  plus l'introduction de la visite espagnole (fr, en) : 30 clips.

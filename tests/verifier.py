@@ -1290,7 +1290,8 @@ def verifier_chemins(r):
 # ne casse la decouverte qu'au moment ou un invite l'ouvre.
 GLOBALES_JS = {"if", "for", "of", "in", "while", "switch", "catch", "return", "function", "typeof",
                "setTimeout", "clearTimeout", "Promise", "String", "Array", "Object",
-               "JSON", "Date", "Math", "Number", "parseInt", "isNaN", "Boolean"}
+               "JSON", "Date", "Math", "Number", "parseInt", "isNaN", "Boolean",
+               "encodeURIComponent"}
 
 # Les accroches hors du bloc : sans elles, la decouverte s'ouvre mais ne
 # finit plus -- la fin du paquet tomberait sur « Paquet termine », la fin de

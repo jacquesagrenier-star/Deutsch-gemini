@@ -28,7 +28,10 @@ const ETAPES = [["accueil", "accueil vu"], ["carte", "1re carte affichee"], ["re
 // enfin `decouverte_finie` ou `decouverte_passee` -- avec, pour celle-ci,
 // `decouverte_passee_etape2` (par exemple) : la question est A QUELLE ETAPE on
 // la quitte. Une colonne la resume ; le bilan compte chaque issue.
-const DEC_ETAPES = 5;
+// v806 (15 oct. 2026) : SIX etapes -- la scene a toucher est la 5, la seance
+// passe a la 6. Un compte qui a vu la visite avant la v806 n'a pas pu atteindre
+// la 6 : chez lui « etape 5 » veut dire la seance.
+const DEC_ETAPES = 6;
 function decouverte(p){
     if(p.decouverte_finie) return "finie";
     // 0 = quittee des l'introduction (v701), avant toute carte.

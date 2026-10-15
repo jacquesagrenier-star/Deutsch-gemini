@@ -39,6 +39,9 @@ CLIPS = {
     "d4":      ["dec_t4_d4"],
     "d5":      ["dec_t4_d5"],
     "pretour": ["dec_t4_pretour"],
+    # v806 : la scene a toucher (etape 5). Les clips t5 et t6 gardent leur nom
+    # (la seance et la fin, etapes 6 et 7 depuis) : CLIPS_DE_PAGE dans index.html.
+    "scene":   ["dec_ts_titre", "dec_ts_texte"],
     "t5":      ["dec_t5_titre", "dec_t5_texte"],
     "t6":      ["dec_t6_titre", "dec_t6_texte"],
 }
