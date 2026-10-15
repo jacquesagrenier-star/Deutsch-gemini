@@ -1,0 +1,677 @@
+{
+ "_lisez_moi": [
+  "Le repas de famille (14 oct. 2026) : un dimanche midi chez les grands-parents, toute la famille de Mark est a table ; le grand-pere raconte une histoire, le pere sert les pommes de terre, la soeur verse de l'eau, la mere tient le bebe. Theme : la famille, le repas. Scene creee a la demande de Jacques (« quatre autres scenes, quatre autres themes complets, jusqu'a la publication », 14 oct. 2026).",
+  "Image : visuel/scenes/familie.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png). Aucun texte dans l'image.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Mark est der Sohn (aussi der Bruder). Les grands-parents sont der Opa et die Oma (aussi Grossvater, Grossmutter). Deux Kartoffel (le grand plat, le petit bol pres du pere), deux Teller (le buffet, l'assiette vide du premier plan).",
+  "Mesures relues sur la grille en % du 14 oct. 2026."
+ ],
+ "image": "familie.webp",
+ "source": "../scenes/familie.png",
+ "titre": "Das Familienessen",
+ "alt": "Le repas de famille du dimanche : Mark rit, sa cuillère à la main ; son père sert les pommes de terre, sa sœur verse de l'eau, sa mère tient le bébé, la grand-mère écoute et le grand-père raconte une histoire, le doigt levé ; sur la table, une soupière, une salade, du pain, du jus d'orange et des tulipes jaunes ; un chat dort sur une chaise.",
+ "consigne": "Toute la famille de Mark est à table. Touche un objet ou une personne.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo schläft die Katze?",
+     "c": [
+      "auf dem Stuhl",
+      "unter dem Tisch",
+      "auf dem Schrank"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "Die Katze schläft auf dem Stuhl.",
+     "n": "der Stuhl → auf <b>dem</b> Stuhl."
+    },
+    {
+     "q": "Wo hängt das Bild?",
+     "c": [
+      "über dem Schrank",
+      "am Fenster",
+      "neben der Uhr"
+     ],
+     "f": "bild",
+     "r": "schrank",
+     "phrase": "Das Bild hängt über dem Schrank.",
+     "n": "<b>über</b> = au-dessus de. der Schrank → über <b>dem</b> Schrank."
+    },
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Wand",
+      "am Fenster",
+      "über dem Schrank"
+     ],
+     "f": "uhr",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo ist das Baby?",
+     "c": [
+      "bei der Mutter",
+      "beim Opa",
+      "auf dem Tisch"
+     ],
+     "f": "baby",
+     "r": "mutter",
+     "phrase": "Das Baby ist bei der Mutter.",
+     "n": "die Mutter → bei <b>der</b> Mutter : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht die Suppe?",
+     "c": [
+      "auf dem Tisch",
+      "im Schrank",
+      "am Fenster"
+     ],
+     "f": "suppe",
+     "r": "tisch",
+     "phrase": "Die Suppe steht auf dem Tisch.",
+     "n": "der Tisch → auf <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo liegt das Brot?",
+     "c": [
+      "im Korb",
+      "auf dem Teller",
+      "neben der Suppe"
+     ],
+     "f": "brot",
+     "r": "korb",
+     "phrase": "Das Brot liegt im Korb.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
+    },
+    {
+     "q": "Wo liegt die Gabel?",
+     "c": [
+      "neben dem Teller",
+      "auf der Serviette",
+      "im Glas"
+     ],
+     "f": "gabel",
+     "r": "teller-2",
+     "phrase": "Die Gabel liegt neben dem Teller.",
+     "n": "<b>neben</b> = à côté de. der Teller → neben <b>dem</b> Teller."
+    },
+    {
+     "q": "Wo steht der Saft?",
+     "c": [
+      "neben dem Glas",
+      "im Schrank",
+      "auf dem Teller"
+     ],
+     "f": "saft",
+     "r": "glas",
+     "phrase": "Der Saft steht neben dem Glas.",
+     "n": "<b>neben</b> = à côté de. das Glas → neben <b>dem</b> Glas."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les possessifs",
+   "qs": [
+    {
+     "q": "Das ist Marks Familie: ___ Vater serviert Kartoffeln.",
+     "c": [
+      "Sein",
+      "Ihr",
+      "Seine"
+     ],
+     "f": "vater",
+     "r": "mark",
+     "phrase": "Sein Vater serviert Kartoffeln.",
+     "n": "Le père de Mark (il) → <b>sein</b> Vater."
+    },
+    {
+     "q": "Die Schwester gießt Wasser in ___ Glas.",
+     "c": [
+      "ihr",
+      "sein",
+      "ihre"
+     ],
+     "f": "schwester",
+     "r": "glas",
+     "phrase": "Die Schwester gießt Wasser in ihr Glas.",
+     "n": "Son verre à elle, das Glas → <b>ihr</b> Glas.",
+     "revise": "gießen"
+    },
+    {
+     "q": "Die Mutter hält ___ Baby.",
+     "c": [
+      "ihr",
+      "ihre",
+      "sein"
+     ],
+     "f": "mutter",
+     "r": "baby",
+     "phrase": "Die Mutter hält ihr Baby.",
+     "n": "das Baby, neutre, à elle → <b>ihr</b> Baby.",
+     "revise": "halten"
+    },
+    {
+     "q": "Der Opa erzählt von ___ Jugend.",
+     "c": [
+      "seiner",
+      "seine",
+      "ihrer"
+     ],
+     "f": "opa",
+     "phrase": "Der Opa erzählt von seiner Jugend.",
+     "n": "<b>von</b> + datif, die Jugend → <b>seiner</b> Jugend.",
+     "revise": "erzählen"
+    },
+    {
+     "q": "Die Oma hört ___ Mann zu.",
+     "c": [
+      "ihrem",
+      "ihren",
+      "seinem"
+     ],
+     "f": "oma",
+     "r": "opa",
+     "phrase": "Die Oma hört ihrem Mann zu.",
+     "n": "<b>zuhören</b> + datif, der Mann → <b>ihrem</b> Mann.",
+     "revise": "zuhören"
+    },
+    {
+     "q": "Mark und seine Schwester lieben ___ Großeltern.",
+     "c": [
+      "ihre",
+      "ihr",
+      "unsere"
+     ],
+     "f": "mark",
+     "r": "schwester",
+     "phrase": "Mark und seine Schwester lieben ihre Großeltern.",
+     "n": "À eux (pluriel) → <b>ihre</b> Großeltern.",
+     "revise": "lieben"
+    },
+    {
+     "q": "Wir essen jeden Sonntag bei ___ Großeltern.",
+     "c": [
+      "unseren",
+      "unsere",
+      "unser"
+     ],
+     "f": "opa",
+     "phrase": "Wir essen jeden Sonntag bei unseren Großeltern.",
+     "n": "<b>bei</b> + datif pluriel → <b>unseren</b> Großeltern.",
+     "revise": "essen"
+    },
+    {
+     "q": "Die Katze schläft auf ___ Stuhl.",
+     "c": [
+      "ihrem",
+      "ihren",
+      "ihr"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "Die Katze schläft auf ihrem Stuhl.",
+     "n": "<b>auf</b> + Wo? → datif, der Stuhl → <b>ihrem</b> Stuhl.",
+     "revise": "schlafen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le génitif",
+   "qs": [
+    {
+     "q": "Das ist der Teller ___ Vaters.",
+     "c": [
+      "des",
+      "dem",
+      "der"
+     ],
+     "f": "vater",
+     "phrase": "Das ist der Teller des Vaters.",
+     "n": "Génitif masculin → <b>des</b> Vaters (avec -s)."
+    },
+    {
+     "q": "Das Baby sitzt auf dem Schoß ___ Mutter.",
+     "c": [
+      "der",
+      "die",
+      "des"
+     ],
+     "f": "baby",
+     "r": "mutter",
+     "phrase": "Das Baby sitzt auf dem Schoß der Mutter.",
+     "n": "Génitif féminin → <b>der</b> Mutter."
+    },
+    {
+     "q": "Die Geschichte ___ Großvaters ist lustig.",
+     "c": [
+      "des",
+      "dem",
+      "den"
+     ],
+     "f": "opa",
+     "phrase": "Die Geschichte des Großvaters ist lustig.",
+     "n": "Génitif masculin → <b>des</b> + nom en <b>-s</b>."
+    },
+    {
+     "q": "Trotz ___ Sonne essen sie drinnen.",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "fenster",
+     "phrase": "Trotz der Sonne essen sie drinnen.",
+     "n": "<b>trotz</b> + génitif, féminin → <b>der</b>."
+    },
+    {
+     "q": "Die Farbe ___ Tulpen ist gelb.",
+     "c": [
+      "der",
+      "die",
+      "den"
+     ],
+     "f": "blume",
+     "phrase": "Die Farbe der Tulpen ist gelb.",
+     "n": "Génitif pluriel → <b>der</b>."
+    },
+    {
+     "q": "Das Fenster ___ Esszimmers ist groß.",
+     "c": [
+      "des",
+      "dem",
+      "das"
+     ],
+     "f": "fenster",
+     "phrase": "Das Fenster des Esszimmers ist groß.",
+     "n": "Génitif neutre → <b>des</b> Esszimmers."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Alle lachen — der Opa ___ eine lustige Geschichte erzählen.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "opa",
+     "phrase": "Der Opa muss eine lustige Geschichte erzählen.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Die Katze ___ der Oma gehören.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "katze",
+     "r": "oma",
+     "phrase": "Die Katze könnte der Oma gehören.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Nach dem Essen ___ es noch Kuchen geben.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "tisch",
+     "phrase": "Nach dem Essen dürfte es noch Kuchen geben.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Der Opa ___ früher Koch gewesen sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "opa",
+     "phrase": "Der Opa soll früher Koch gewesen sein.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "bild",
+   "mot": "Bild",
+   "boite": [
+    0,
+    6.3,
+    30,
+    13.7
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "aussi": [
+    "Vorhang"
+   ],
+   "boite": [
+    35,
+    2,
+    45,
+    30
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    87.5,
+    10.2,
+    10,
+    6.3
+   ]
+  },
+  {
+   "id": "teller",
+   "mot": "Teller",
+   "sur": "schrank",
+   "boite": [
+    0,
+    24.5,
+    30,
+    5.5
+   ]
+  },
+  {
+   "id": "schrank",
+   "mot": "Schrank",
+   "boite": [
+    0,
+    22,
+    34,
+    24
+   ]
+  },
+  {
+   "id": "katze",
+   "mot": "Katze",
+   "sur": "stuhl",
+   "boite": [
+    88,
+    35.5,
+    12,
+    4.5
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boite": [
+    88,
+    30.5,
+    12,
+    16
+   ]
+  },
+  {
+   "id": "opa",
+   "mot": "Opa",
+   "aussi": [
+    "Großvater"
+   ],
+   "boite": [
+    41.5,
+    27,
+    21,
+    12
+   ]
+  },
+  {
+   "id": "oma",
+   "mot": "Oma",
+   "aussi": [
+    "Großmutter"
+   ],
+   "boite": [
+    61,
+    30,
+    17,
+    12.5
+   ]
+  },
+  {
+   "id": "mutter",
+   "mot": "Mutter",
+   "boite": [
+    75,
+    33.5,
+    17,
+    12
+   ]
+  },
+  {
+   "id": "vater",
+   "mot": "Vater",
+   "boite": [
+    20.5,
+    27.5,
+    25,
+    20
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Sohn",
+   "aussi": [
+    "Bruder"
+   ],
+   "boite": [
+    0,
+    37.5,
+    30,
+    31.5
+   ]
+  },
+  {
+   "id": "baby",
+   "mot": "Baby",
+   "boite": [
+    75,
+    41,
+    8.5,
+    8
+   ]
+  },
+  {
+   "id": "schwester",
+   "mot": "Schwester",
+   "boites": [
+    [
+     82,
+     44.5,
+     18,
+     6
+    ],
+    [
+     68,
+     50,
+     32,
+     22
+    ]
+   ]
+  },
+  {
+   "id": "blume",
+   "mot": "Blume",
+   "boite": [
+    45.5,
+    37,
+    10.5,
+    8
+   ]
+  },
+  {
+   "id": "kartoffel",
+   "mot": "Kartoffel",
+   "boites": [
+    [
+     43.5,
+     45.8,
+     14.5,
+     4.2
+    ],
+    [
+     38,
+     40.3,
+     6,
+     2.2
+    ]
+   ]
+  },
+  {
+   "id": "suppe",
+   "mot": "Suppe",
+   "boite": [
+    41.5,
+    50,
+    18,
+    6
+   ]
+  },
+  {
+   "id": "wasser",
+   "mot": "Wasser",
+   "boite": [
+    60,
+    50,
+    11,
+    6
+   ]
+  },
+  {
+   "id": "salat",
+   "mot": "Salat",
+   "boite": [
+    42.5,
+    60,
+    20.5,
+    7.5
+   ]
+  },
+  {
+   "id": "brot",
+   "mot": "Brot",
+   "sur": "korb",
+   "boite": [
+    24.5,
+    65.5,
+    18,
+    7
+   ]
+  },
+  {
+   "id": "korb",
+   "mot": "Korb",
+   "boite": [
+    23,
+    65,
+    21,
+    9.5
+   ]
+  },
+  {
+   "id": "saft",
+   "mot": "Saft",
+   "aussi": [
+    "Flasche"
+   ],
+   "boite": [
+    65.5,
+    59,
+    8.5,
+    13.5
+   ]
+  },
+  {
+   "id": "glas",
+   "mot": "Glas",
+   "boite": [
+    57.5,
+    68.5,
+    6.5,
+    6.5
+   ]
+  },
+  {
+   "id": "teller-2",
+   "mot": "Teller",
+   "boite": [
+    37.5,
+    74.5,
+    26,
+    11.5
+   ]
+  },
+  {
+   "id": "gabel",
+   "mot": "Gabel",
+   "boite": [
+    34.8,
+    75.5,
+    3.4,
+    10.5
+   ]
+  },
+  {
+   "id": "messer",
+   "mot": "Messer",
+   "boite": [
+    65,
+    75.5,
+    3.2,
+    10
+   ]
+  },
+  {
+   "id": "loeffel",
+   "mot": "Löffel",
+   "boite": [
+    68.2,
+    76,
+    3.6,
+    9
+   ]
+  },
+  {
+   "id": "serviette",
+   "mot": "Serviette",
+   "boite": [
+    62.5,
+    75,
+    14,
+    12
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "plein": true,
+   "boite": [
+    0,
+    47,
+    100,
+    45
+   ]
+  }
+ ],
+ "gros_plans": []
+}

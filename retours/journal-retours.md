@@ -8864,3 +8864,15 @@ Mots absents du corpus espagnol, donc sans zone (a ajouter seulement si Jacques 
 chocolate, el yogur, la salchicha, la porteria, la bandera, el cochecito, el taladro, los
 alicates, las instrucciones, los auriculares.
 Puis : « quatre autres scenes, quatre autres themes complets, jusqu'a la publication » -> en cours.
+
+## 14 octobre 2026 -- quatre scenes de plus : la poste, le repas de famille, le camping, la guitare
+
+Demande : « quatre autres scenes, quatre autres themes complets, jusqu'a la publication ». Faites :
+Anna a la poste (post : datif et accusatif ensemble, puis le passif ; es : pronoms complements,
+passif avec se), le repas de famille du dimanche chez les grands-parents de Mark (familie : les
+possessifs, puis le genitif ; es : posesivos, ser o estar), Anna au camping au bord d'un lac, le
+soir (camping : le futur avec werden, puis l'irreel ; es : ir a / futuro, si + subjonctif), le
+cours de guitare de Mark (musik : les verbes de modalite, puis la declinaison de l'adjectif ; es :
+subjonctif apres querer que). 20 a 29 objets, cinq couches A1-C1 en allemand et en espagnol,
+8 langues d'interface ; 23 mots espagnols ajoutes a la table des scenes. Teste : tous les objets
+touchables, toutes les couches jouees en de/es/lat/en/ar, 0 erreur. Hors seance.
