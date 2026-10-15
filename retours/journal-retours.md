@@ -8876,3 +8876,13 @@ cours de guitare de Mark (musik : les verbes de modalite, puis la declinaison de
 subjonctif apres querer que). 20 a 29 objets, cinq couches A1-C1 en allemand et en espagnol,
 8 langues d'interface ; 23 mots espagnols ajoutes a la table des scenes. Teste : tous les objets
 touchables, toutes les couches jouees en de/es/lat/en/ar, 0 erreur. Hors seance.
+
+## 15 octobre 2026 -- v802 : les douze scenes du 14 oct. dans la seance
+
+Jacques : « Mets les douze scenes dans la seance. » Fait : la plage, le train, l'hiver, le bureau,
+le supermarche, la bibliotheque, le foot, l'etagere, la poste, le repas de famille, le lac et la
+guitare entrent dans la rotation de la scene du jour (24 scenes, une par jour), dans le panneau
+« Les scenes » (avec leur image) et dans le ruban « Explorer les scenes » ; titre, description et
+titre court de vignette dans les 9 langues ; 12 vignettes de 200 px. La bulle du point « Explorer »
+disait « « 12 › » les montre toutes » : elle dit maintenant « « › » », le nombre changeant avec
+chaque scene ajoutee.
