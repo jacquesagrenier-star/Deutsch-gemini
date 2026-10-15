@@ -4916,8 +4916,13 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 /* Points de decouverte (essai « reperes », v793). Ambre de la marque, bulle a
    l'encre : lisibles sur les deux themes sans jeu de couleurs a part. */
 .repere-ancre{position:relative;}
-.pt-decouverte{position:absolute; top:-5px; inset-inline-end:-5px; width:14px; height:14px; border-radius:50%;
+.pt-decouverte{position:absolute; top:-7px; inset-inline-end:-7px; width:18px; height:18px; border-radius:50%;
   background:#E8A23A; border:2px solid #FFFFFF; cursor:pointer; z-index:3; box-sizing:border-box;}
+/* v803 : un « i » d'information dans le point, a la demande de Jacques : un
+   rond jaune seul ne dit pas qu'on peut le toucher pour apprendre quelque
+   chose. Encre du logo sur l'ambre du logo. Le ::before reste la zone de toucher. */
+.pt-decouverte::after{content:"i"; position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font:italic 700 11px/1 Georgia, "Times New Roman", serif; color:#1C2430; pointer-events:none;}
 .pt-decouverte:focus-visible{outline:2px solid #2F62D6; outline-offset:2px;}
 /* Une zone de toucher de 34 px autour d'un point de 14 : au doigt, on le rate sinon. */
 .pt-decouverte::before{content:""; position:absolute; inset:-10px; border-radius:50%;}
@@ -7423,7 +7428,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v802</span>
+    <span class="subtitle-version">v803</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -36342,6 +36347,24 @@ function fusionnerRetoursDuNuage(distant){
     localStorage.setItem(RETOURS_KEY, tout);
 }
 
+// v803 (15 oct. 2026) : LE JOURNAL AUDIO PART AVEC LE RETOUR. Ce matin-la,
+// Jacques signale qu'un adjectif est dit deux fois, puis repris par la voix du
+// telephone et non par Aurora. Le fichier existe en ligne : la cause n'est
+// lisible que dans le journal, et le journal restait sur le telephone. Les
+// lignes des dix dernieres minutes (huit au plus, courtes) suivent le texte,
+// sur des lignes qui commencent par « ~ » : tests/retours.js ne coupe les
+// entrees que sur « [date | ... ] » en debut de ligne, il les lit donc avec le
+// retour. Rien si le journal est vide ou ancien.
+function finDuJournalAudio(){
+    try{
+        const depuis = Date.now() - 10 * 60 * 1000;
+        const lignes = journalAudio.filter(e => e && e.t && e.t >= depuis).slice(-8);
+        if(!lignes.length) return "";
+        return lignes.map(e => String.fromCharCode(10) + "  ~ " + e.h + " +" + e.d + " ms " + e.source
+            + " « " + e.texte + " »" + (e.detail ? " " + String(e.detail).slice(0, 70) : "")).join("");
+    }catch(e){ return ""; }
+}
+
 function envoyerRetour(){
     const zone = document.getElementById("retourTexte");
     const bouton = document.getElementById("retourBtn");
@@ -36362,7 +36385,7 @@ function envoyerRetour(){
     const propre = texte.replace(/^\[(?=\d{4}-\d{2}-\d{2}T\d{2}:\d{2})/gm, " [");
     const entree = "[" + new Date().toISOString().slice(0, 16) + " | v" + APP_VERSION
                  + " | " + getUiLang() + " | " + modeLancement().split(" ")[0]
-                 + " | " + contexteEcran() + "] " + propre;
+                 + " | " + contexteEcran() + "] " + propre + finDuJournalAudio();
     let tout = "";
     try{ tout = localStorage.getItem(RETOURS_KEY) || ""; }catch(e){}
     tout = (tout ? tout + String.fromCharCode(10) : "") + entree;
@@ -38070,7 +38093,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 802;
+const APP_VERSION = 803;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -38389,6 +38412,15 @@ function relacherLecteur(son){
 }
 
 function arreterAudioPregenere(){
+    // v803 (15 oct. 2026) : ARRETER, C'EST AUSSI PERIMER LA LECTURE EN COURS.
+    // Jacques : apres « Je ne savais pas » sur un adjectif, les formes
+    // continuaient, dites par la voix du telephone. Le lecteur relache ici
+    // faisait echouer sa propre lecture (play() rejete, ou erreur du src vide),
+    // et direAllemand() prenait cet echec pour un fichier absent : son repli
+    // parlait par la synthese, puisque rien n'avait change lectureCourante. Le
+    // jeton avance donc a chaque arret : un echec d'une lecture arretee ne
+    // declenche plus rien. (direAllemand avance le jeton juste apres, comme avant.)
+    lectureCourante++;
     if(audioEnCours){
         relacherLecteur(audioEnCours);
         audioEnCours = null;
@@ -38568,6 +38600,9 @@ function noterAudio(texte, source, detail){
         // un enonce avale ne laisse qu'un trou, et un trou ne se voit que si on
         // le mesure. Le premier de la seance n'en a pas.
         d: journalDernier ? (t - journalDernier) : 0,
+        // v803 : l'heure absolue, pour qu'un retour emporte les lignes des
+        // dernieres minutes (envoyerRetour), et pas celles de la veille.
+        t: t,
         texte: (texte || "").slice(0, 40),
         source: source,
         detail: detail || ""
@@ -39291,7 +39326,16 @@ function arreterChaineCarte(couper){
 function etapesChaineCarte(){
     const etapes = [];
     const mot = texteCarteAPrononcer();
-    if(mot && carteDitLeMot()) etapes.push({ groupe: "mot", texte: mot });
+    // v803 : UN ADJECTIF NE SE DIT PLUS DEUX FOIS. Le fichier de ses formes est
+    // « durstig, durstiger, am durstigsten » (audio/manifest.py) : il commence
+    // par le mot. Dire le mot d'abord le faisait entendre deux fois de suite
+    // (Jacques, 15 oct. 2026). Quand la ligne des formes sera dite, elle porte
+    // donc seule le mot ; sans elle (adjectif sans comparatif), le mot reste.
+    const plurielVu = document.getElementById("flashPlural");
+    const carteAdj = document.querySelector(".flashcard.carte-adjectif");
+    const formesDites = !!(carteAdj && texteAudioPluriel && carteDitLePluriel()
+        && plurielVu && !plurielVu.classList.contains("hidden"));
+    if(mot && carteDitLeMot() && !formesDites) etapes.push({ groupe: "mot", texte: mot });
     // Le pluriel n'est propose que si la carte l'affiche : texteAudioPluriel
     // n'est pas remis a zero par les branches qui ne le posent pas, et un nom
     // suivi d'un verbe ferait sinon dire le pluriel du nom precedent.

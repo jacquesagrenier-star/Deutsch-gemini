@@ -8886,3 +8886,32 @@ guitare entrent dans la rotation de la scene du jour (24 scenes, une par jour), 
 titre court de vignette dans les 9 langues ; 12 vignettes de 200 px. La bulle du point « Explorer »
 disait « « 12 › » les montre toutes » : elle dit maintenant « « › » », le nombre changeant avec
 chaque scene ajoutee.
+
+## 15 octobre 2026 -- huit scenes confiees a Fable
+
+Jacques : « demande a Fable de faire huit autres scenes basees sur les themes, et donne-lui toutes
+les directives pour que ca se fasse correctement ». Fait : brief complet dans
+`.claude/brief-fable-8-scenes.md` (themes deja pris et encore libres, interdits, outils copies dans
+`.claude/outils-scenes/`, sept etapes de l'image aux tests, rapport attendu), quatre scenes avec
+Anna et quatre avec Mark, au plus 10 images payees (1,50 $). Fable s'arrete avant la publication :
+je relis, je commite et je pousse.
+
+## 15 octobre 2026 -- v803 : la voix du telephone apres « Je ne savais pas », l'adjectif dit deux fois, un « i » dans les points
+
+Retour de Jacques (v801, carte adjectif « durstig », lien) : « il repete deux fois le mot, puis
+si je dis encore une fois, il continue a le dire, mais pas avec la voix d'Aurora, avec la voix du
+systeme ». Precise ensuite : « Pour voir » dit le mot deux fois puis les deux autres formes ;
+apres « Je ne savais pas », la suite continue parfois sans la voix d'Aurora, alors qu'elle devrait
+s'arreter. Et : « ca ne s'adresse pas seulement aux adjectifs ».
+- Deux fois : le fichier d'Aurora des formes est « durstig, durstiger, am durstigsten » ; la chaine
+  disait d'abord le mot seul. Sur une carte d'adjectif dont les formes seront dites, le mot seul
+  n'est plus dit.
+- La voix du telephone : la v741 (10 oct.) fait couper la voix des le clic. Mais couper le lecteur
+  faisait echouer sa propre lecture (AbortError), et ce secours prenait l'echec pour un fichier
+  absent et faisait parler la synthese -- sur TOUTES les cartes. Arreter le son perime maintenant la
+  lecture en cours. Reproduit dans un navigateur : ancien comportement 3 syntheses sur 3 arrets,
+  nouveau 0 sur 3.
+- Pour la suite : un retour emporte maintenant tout seul les dernieres lignes du journal audio
+  (10 dernieres minutes, 8 lignes au plus).
+- Les points de decouverte portent un « i » (18 px, encre sur ambre) ; leurs 10 places verifiees sur
+  l'accueil.
