@@ -8780,3 +8780,16 @@ themes, une avec Anna, puis une avec Mark. »
 Images 0,30 $ ; retouches gratuites (legende de la carte, marques sous l'affiche).
 Toutes les zones joignables au doigt en de et es ; toutes les couches jouees en 5 langues : 0
 erreur. Traductions dans les 8 langues, NON relues. Pas encore dans la seance.
+
+## 14 octobre 2026 -- v798 : la cuisine, le parc, l'anniversaire et la valise dans la seance
+
+Jacques : « Oui, mets les quatre scenes dans la seance ». Rotation de la scene du jour : 12 scenes ;
+panneau « Scenes », titres et descriptions dans les 9 langues. Parcours : allemand et espagnol,
+5 ecarts chacun, tous les quatre lignes voulues du panneau -> references de-v798 et es-v798.
+
+Puis, sur l'accueil (en discussion, maquettes .claude/maquette-*.html) : Jacques veut que le choix
+« les mots, une scene, ou les deux » se voie sans toucher « Commencer », et qu'on voie qu'il y a
+beaucoup de scenes (il en prevoit une cinquantaine). Propose : 1 ton niveau (une ligne), 2 deux
+portes (les mots / la scene du jour, meme verbe « Commencer »), puis un ruban de vignettes « ou une
+autre scene, si tu preferes » qui ouvre la scene ENTIERE (Decouvrir d'abord) -- Jacques tient au
+mode Decouvrir, « des fois c'est ca que les gens veulent ». « Mis de cote » descend en tuile.
