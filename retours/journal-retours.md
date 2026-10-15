@@ -8762,3 +8762,21 @@ Jacques : « creer deux autres scenes une avec Marc une avec Anna ».
 Images 0,30 $ en tout ; retouches gratuites (page du livre de cuisine, pictogramme de la poubelle).
 Toutes les zones joignables au doigt en de et es ; toutes les couches jouees en 5 langues : 0 erreur.
 Traductions dans les 8 langues, NON relues. Pas encore dans la seance.
+
+## 14 octobre 2026 -- Deux scenes sur d'autres themes : l'anniversaire (Mark) et la chambre (Anna)
+
+Jacques : « Apres avoir publie ces deux scenes, tu prepareras deux nouvelles scenes sur d'autres
+themes, une avec Anna, puis une avec Mark. »
+- « Marks Geburtstag » : la fete dans le salon de la coloc, Anna lui tend un cadeau, un ami le
+  photographie, une amie applaudit ; gateau aux bougies, pizza, fraises, ballons. 29 zones ;
+  couches A2 (Wo?), B1 (le datif : geben, schenken, gratulieren, gefallen, danken), B2 (relatives
+  et passif), C1 (hypotheses) ; espagnol : prepositions, pronoms le/lo/se lo, relatives et passif,
+  probabilite.
+- « Anna packt ihren Koffer » : un matin dans sa chambre, valise ouverte sur le lit, chapeau,
+  appareil photo, passeport, portefeuille, carte, chargeur. 25 zones ; couches A2 (Wo?), B1
+  (Wo? ou Wohin? : legen/liegen, in den Koffer / im Koffer), B2 (relatives et passif), C1 ;
+  espagnol : prepositions, ir a + infinitif et pronoms, relatives, probabilite.
+- Ecartee : la salle de bain (le corpus espagnol n'a ni banera, ni vater, ni cepillo de dientes).
+Images 0,30 $ ; retouches gratuites (legende de la carte, marques sous l'affiche).
+Toutes les zones joignables au doigt en de et es ; toutes les couches jouees en 5 langues : 0
+erreur. Traductions dans les 8 langues, NON relues. Pas encore dans la seance.

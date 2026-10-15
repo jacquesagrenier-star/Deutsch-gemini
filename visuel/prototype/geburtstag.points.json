@@ -1,0 +1,683 @@
+{
+ "_lisez_moi": [
+  "L'anniversaire de Mark (14 oct. 2026) : un samedi soir dans le salon de la coloc, Anna tend un cadeau a Mark, un ami prend une photo, une amie applaudit ; gateau aux bougies, pizza, fraises, ballons. Theme : la fete, les cadeaux, le datif (jemandem etwas schenken). Scene creee a la demande de Jacques (« deux nouvelles scenes sur d'autres themes »).",
+  "Image : visuel/scenes/geburtstag.png (fal, 0,15 $, refs Mark.png, Mark-troisquarts.png, Anna-troisquarts.png). Aucun texte dans l'image (bouteilles sans etiquette, carte avec un coeur seulement).",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Deux Mann (Mark, et l'ami a la photo, aussi der Freund) et deux Frau (Anna, et l'amie rousse : die Freundin manque au corpus espagnol, « la amiga »). Deux Geschenk : le vert d'Anna, le rouge sur la table. Trois Glas, deux Teller.",
+  "Mesures relues sur la grille en % du 14 oct. 2026."
+ ],
+ "image": "geburtstag.webp",
+ "source": "../scenes/geburtstag.png",
+ "titre": "Marks Geburtstag",
+ "alt": "L'anniversaire de Mark dans le salon de sa colocation : Anna lui tend un cadeau, un ami le prend en photo, une amie applaudit ; sur la table, un gâteau au chocolat avec ses bougies, une pizza, des fraises, du jus d'orange, un grand cadeau rouge et une carte.",
+ "consigne": "C'est l'anniversaire de Mark. Touche un objet.",
+ "exclus": [
+  "Wand"
+ ],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo steht die Torte?",
+     "c": [
+      "auf dem Tisch",
+      "auf dem Sofa",
+      "neben dem Fenster"
+     ],
+     "f": "torte",
+     "r": "tisch",
+     "phrase": "Die Torte steht auf dem Tisch.",
+     "n": "<b>Wo?</b> → datif : der Tisch → auf <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo sind die Luftballons?",
+     "c": [
+      "vor dem Fenster",
+      "unter dem Tisch",
+      "im Regal"
+     ],
+     "f": "luftballon",
+     "r": "fenster",
+     "phrase": "Die Luftballons sind vor dem Fenster.",
+     "n": "<b>vor</b> = devant. das Fenster → vor <b>dem</b> Fenster."
+    },
+    {
+     "q": "Wo sitzt Mark?",
+     "c": [
+      "auf dem Sofa",
+      "auf dem Tisch",
+      "neben dem Regal"
+     ],
+     "f": "mark",
+     "r": "sofa",
+     "phrase": "Mark sitzt auf dem Sofa.",
+     "n": "das Sofa est neutre : au datif → auf <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo steht die Gitarre?",
+     "c": [
+      "neben dem Sofa",
+      "auf dem Tisch",
+      "im Regal"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "Die Gitarre steht neben dem Sofa.",
+     "n": "<b>neben</b> = à côté de. das Sofa → neben <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo hängt das Bild?",
+     "c": [
+      "an der Wand",
+      "auf dem Sofa",
+      "unter dem Fenster"
+     ],
+     "f": "bild",
+     "r": "wand",
+     "phrase": "Das Bild hängt an der Wand.",
+     "n": "<b>an</b> = contre une surface verticale. die Wand → an <b>der</b> Wand."
+    },
+    {
+     "q": "Wo liegt die Karte?",
+     "c": [
+      "vor dem Geschenk",
+      "im Geschenk",
+      "unter dem Sofa"
+     ],
+     "f": "karte",
+     "r": "geschenk-2",
+     "phrase": "Die Karte liegt vor dem Geschenk.",
+     "n": "das Geschenk → vor <b>dem</b> Geschenk."
+    },
+    {
+     "q": "Wo stehen die Bücher?",
+     "c": [
+      "im Regal",
+      "auf dem Sofa",
+      "unter dem Tisch"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "Die Bücher stehen im Regal.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
+    },
+    {
+     "q": "Wo steht die Lampe?",
+     "c": [
+      "neben dem Regal",
+      "auf dem Tisch",
+      "über dem Sofa"
+     ],
+     "f": "lampe",
+     "r": "regal",
+     "phrase": "Die Lampe steht neben dem Regal.",
+     "n": "das Regal → neben <b>dem</b> Regal."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le datif : donner, offrir, féliciter",
+   "qs": [
+    {
+     "q": "Anna gibt ___ ein Geschenk.",
+     "c": [
+      "ihm",
+      "ihn",
+      "er"
+     ],
+     "f": "geschenk",
+     "r": "mark",
+     "phrase": "Anna gibt ihm ein Geschenk.",
+     "n": "On donne <b>à</b> quelqu'un → datif : er → <b>ihm</b>.",
+     "revise": "geben"
+    },
+    {
+     "q": "Alle gratulieren ___ zum Geburtstag.",
+     "c": [
+      "ihm",
+      "ihn",
+      "sein"
+     ],
+     "f": "mark",
+     "phrase": "Alle gratulieren ihm zum Geburtstag.",
+     "n": "<b>gratulieren</b> + datif : on félicite <b>à</b> quelqu'un, en allemand → ihm.",
+     "revise": "gratulieren"
+    },
+    {
+     "q": "Das Geschenk gefällt ___.",
+     "c": [
+      "ihm",
+      "ihn",
+      "er"
+     ],
+     "f": "geschenk",
+     "r": "mark",
+     "phrase": "Das Geschenk gefällt ihm.",
+     "n": "<b>gefallen</b> + datif : le cadeau plaît <b>à lui</b> → ihm.",
+     "revise": "gefallen"
+    },
+    {
+     "q": "Anna schenkt ___ Freund eine Kleinigkeit.",
+     "c": [
+      "ihrem",
+      "ihren",
+      "ihr"
+     ],
+     "f": "geschenk",
+     "r": "mark",
+     "phrase": "Anna schenkt ihrem Freund eine Kleinigkeit.",
+     "n": "<b>schenken</b> : la personne au datif. Possessif masculin au datif → ihr<b>em</b>.",
+     "revise": "schenken"
+    },
+    {
+     "q": "Der Freund macht ein Foto ___ Mark.",
+     "c": [
+      "von",
+      "mit",
+      "für"
+     ],
+     "f": "handy",
+     "r": "mark",
+     "phrase": "Der Freund macht ein Foto von Mark.",
+     "n": "Une photo <b>de</b> quelqu'un → <b>von</b> + datif."
+    },
+    {
+     "q": "Mark dankt ___ Freunden für die Party.",
+     "c": [
+      "seinen",
+      "seine",
+      "seiner"
+     ],
+     "f": "mark",
+     "phrase": "Mark dankt seinen Freunden für die Party.",
+     "n": "<b>danken</b> + datif ; au datif pluriel : possessif en <b>-en</b>, et le nom prend un <b>-n</b> (Freunde<b>n</b>).",
+     "revise": "danken"
+    },
+    {
+     "q": "Die Kerzen stehen auf ___ Torte.",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "kerze",
+     "r": "torte",
+     "phrase": "Die Kerzen stehen auf der Torte.",
+     "n": "<b>Wo?</b> → datif : die Torte → auf <b>der</b> Torte.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Gleich bringt Anna ___ Gästen Saft.",
+     "c": [
+      "den",
+      "die",
+      "dem"
+     ],
+     "f": "saft",
+     "phrase": "Gleich bringt Anna den Gästen Saft.",
+     "n": "À qui ? → datif pluriel : die Gäste → <b>den</b> Gäste<b>n</b>.",
+     "revise": "bringen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "Das Geschenk, ___ Anna in der Hand hält, ist grün.",
+     "c": [
+      "das",
+      "dem",
+      "der"
+     ],
+     "f": "geschenk",
+     "r": "anna",
+     "phrase": "Das Geschenk, das Anna in der Hand hält, ist grün.",
+     "n": "Complément d'objet (accusatif), neutre → <b>das</b>.",
+     "revise": "halten"
+    },
+    {
+     "q": "Der Freund, ___ Mark fotografiert, sitzt auf dem Sofa.",
+     "c": [
+      "der",
+      "den",
+      "dem"
+     ],
+     "f": "freund",
+     "r": "mark",
+     "phrase": "Der Freund, der Mark fotografiert, sitzt auf dem Sofa.",
+     "n": "C'est lui qui photographie : sujet → <b>der</b>.",
+     "revise": "fotografieren"
+    },
+    {
+     "q": "Die Torte, auf ___ fünf Kerzen brennen, ist aus Schokolade.",
+     "c": [
+      "der",
+      "die",
+      "dem"
+     ],
+     "f": "torte",
+     "r": "kerze",
+     "phrase": "Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.",
+     "n": "<b>auf</b> + Wo? → datif, féminin → <b>der</b>."
+    },
+    {
+     "q": "Die Kerzen ___ gleich ausgeblasen.",
+     "c": [
+      "werden",
+      "sind",
+      "haben"
+     ],
+     "f": "kerze",
+     "r": "torte",
+     "phrase": "Die Kerzen werden gleich ausgeblasen.",
+     "n": "Une action (bientôt) → passif avec <b>werden</b>."
+    },
+    {
+     "q": "Das rote Geschenk ist schön ___.",
+     "c": [
+      "eingepackt",
+      "eingepacken",
+      "einpackt"
+     ],
+     "f": "geschenk-2",
+     "phrase": "Das rote Geschenk ist schön eingepackt.",
+     "n": "Passif d'état : <b>sein</b> + participe. Verbe séparable : ein<b>ge</b>packt.",
+     "revise": "einpacken"
+    },
+    {
+     "q": "Die Freundin, ___ Haare rot sind, klatscht.",
+     "c": [
+      "deren",
+      "dessen",
+      "die"
+     ],
+     "f": "freundin",
+     "phrase": "Die Freundin, deren Haare rot sind, klatscht.",
+     "n": "Possession, antécédent féminin → <b>deren</b> (dont les cheveux)."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark lacht — das Geschenk ___ eine Überraschung sein.",
+     "c": [
+      "muss",
+      "könnte",
+      "soll"
+     ],
+     "f": "geschenk",
+     "r": "mark",
+     "phrase": "Das Geschenk muss eine Überraschung sein.",
+     "n": "<b>müssen</b> = déduction presque certaine. Il rit, il ne s'y attendait pas."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Das rote Geschenk ___ von seinen Eltern sein.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "geschenk-2",
+     "phrase": "Das rote Geschenk könnte von seinen Eltern sein.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Die Pizza ___ gleich alle sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "pizza",
+     "phrase": "Die Pizza dürfte gleich alle sein.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr. <b>alle sein</b> (familier) = être fini."
+    },
+    {
+     "q": "Man sagt es: Anna ___ die Torte selbst gebacken haben.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "torte",
+     "r": "anna",
+     "phrase": "Anna soll die Torte selbst gebacken haben.",
+     "n": "<b>sollen</b> + infinitif passé = d'après ce qu'on dit, elle l'a fait."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boite": [
+    72,
+    5,
+    25,
+    15
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    37,
+    12.5,
+    33,
+    34
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    16,
+    30.3,
+    9.5,
+    3.5
+   ]
+  },
+  {
+   "id": "bild",
+   "mot": "Bild",
+   "boite": [
+    78,
+    25,
+    14.5,
+    11
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "boite": [
+    0,
+    22.5,
+    8.5,
+    25
+   ]
+  },
+  {
+   "id": "buch",
+   "mot": "Buch",
+   "sur": "regal",
+   "boite": [
+    0,
+    25.8,
+    6.5,
+    9.5
+   ]
+  },
+  {
+   "id": "luftballon",
+   "mot": "Luftballon",
+   "boite": [
+    26,
+    33.3,
+    20.5,
+    10.5
+   ]
+  },
+  {
+   "id": "gitarre",
+   "mot": "Gitarre",
+   "boite": [
+    19.5,
+    45,
+    14,
+    18
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "sur": "sofa",
+   "boite": [
+    30,
+    42.3,
+    33,
+    33
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "boite": [
+    55,
+    42.3,
+    33,
+    35
+   ]
+  },
+  {
+   "id": "geschenk",
+   "mot": "Geschenk",
+   "boite": [
+    48.5,
+    51.3,
+    7.5,
+    5
+   ]
+  },
+  {
+   "id": "freund",
+   "mot": "Mann",
+   "aussi": [
+    "Freund"
+   ],
+   "boite": [
+    0,
+    48,
+    24,
+    30
+   ]
+  },
+  {
+   "id": "handy",
+   "mot": "Handy",
+   "boite": [
+    16.3,
+    52.3,
+    6.5,
+    3.5
+   ]
+  },
+  {
+   "id": "freundin",
+   "mot": "Frau",
+   "sur": "sofa",
+   "boite": [
+    89,
+    47.5,
+    11,
+    33
+   ]
+  },
+  {
+   "id": "sofa",
+   "mot": "Sofa",
+   "boite": [
+    24,
+    56,
+    74,
+    20
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "sur": "tisch",
+   "aussi": [
+    "Wasser"
+   ],
+   "boites": [
+    [
+     6.5,
+     67.3,
+     7.5,
+     15.3
+    ],
+    [
+     14.5,
+     65.8,
+     6.5,
+     13.5
+    ]
+   ]
+  },
+  {
+   "id": "saft",
+   "mot": "Saft",
+   "sur": "tisch",
+   "boite": [
+    19,
+    70.3,
+    11,
+    10.5
+   ]
+  },
+  {
+   "id": "glas",
+   "mot": "Glas",
+   "sur": "tisch",
+   "boite": [
+    30.3,
+    71.8,
+    5.5,
+    5.5
+   ]
+  },
+  {
+   "id": "glas-2",
+   "mot": "Glas",
+   "sur": "tisch",
+   "boite": [
+    75.3,
+    74.3,
+    6,
+    6.5
+   ]
+  },
+  {
+   "id": "glas-3",
+   "mot": "Glas",
+   "sur": "tisch",
+   "boite": [
+    83.5,
+    79.8,
+    6.5,
+    6.5
+   ]
+  },
+  {
+   "id": "kerze",
+   "mot": "Kerze",
+   "sur": "torte",
+   "boite": [
+    45.5,
+    70.8,
+    9.5,
+    4.8
+   ]
+  },
+  {
+   "id": "torte",
+   "mot": "Torte",
+   "sur": "tisch",
+   "boite": [
+    43,
+    74,
+    15.5,
+    5.3
+   ]
+  },
+  {
+   "id": "teller",
+   "mot": "Teller",
+   "sur": "tisch",
+   "boite": [
+    17.5,
+    80.3,
+    17,
+    6.3
+   ]
+  },
+  {
+   "id": "teller-2",
+   "mot": "Teller",
+   "sur": "tisch",
+   "boite": [
+    61,
+    75.3,
+    14,
+    3.8
+   ]
+  },
+  {
+   "id": "pizza",
+   "mot": "Pizza",
+   "sur": "tisch",
+   "boite": [
+    37,
+    79.3,
+    24,
+    6.8
+   ]
+  },
+  {
+   "id": "erdbeere",
+   "mot": "Erdbeere",
+   "sur": "tisch",
+   "boite": [
+    65,
+    77,
+    13,
+    4
+   ]
+  },
+  {
+   "id": "geschenk-2",
+   "mot": "Geschenk",
+   "sur": "tisch",
+   "boite": [
+    79.5,
+    75.3,
+    18.5,
+    8.8
+   ]
+  },
+  {
+   "id": "karte",
+   "mot": "Karte",
+   "sur": "tisch",
+   "boite": [
+    66.5,
+    86,
+    23.5,
+    7.7
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "rigide": "table",
+   "boite": [
+    0,
+    75,
+    98,
+    25
+   ]
+  }
+ ],
+ "gros_plans": []
+}
