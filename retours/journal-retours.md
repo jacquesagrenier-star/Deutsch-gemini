@@ -9275,3 +9275,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   voix espagnoles, pas les voix de telephone ») : 366 + 393 + 395 fichiers, ~11 430 credits Flash
   (plafond 30 000 approuve), normalises, deposes, verifies en ligne. Et la traduction des phrases
   des scenes apres la reponse (Fable), fusionnee.
+- Contours de l'hotel (Jacques : « le costume, c'est pas propre ; le pull de Mark non plus ») :
+  repris par Fable (detourer.py apprend des points sur/hors de l'objet et --zones ; un passage
+  complet en 34 s au lieu de 15 min), fusionne avec le retrait de « plein » ; costume entier sans
+  mur, manteau sans pantalon, pull entre les revers, pantalon, dame ; les lunettes en deux ellipses.
