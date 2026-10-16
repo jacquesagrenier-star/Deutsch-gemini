@@ -9241,3 +9241,10 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   qui bouge avec la voix ; verdict indulgent par la reconnaissance vocale du telephone (C'est bon /
   Presque / Je n'ai pas bien entendu), Reecouter et Modele, CONTINUER toujours possible. Jacques :
   « on va integrer aussi l'evaluation de ce qui a ete dit a l'oral ».
+- v835 : CABLE en essai (admin seul) apres « la maquette me va ». La carte d'oral a verdict : un
+  seul rond-micro (rouge, il grossit avec la voix, 15 s au plus), la reconnaissance vocale du
+  telephone pendant l'enregistrement, puis le verdict indulgent (scoreOral : 70 % des mots = C'est
+  bon, 30 % = Presque avec les mots manques soulignes, sinon Je n'ai pas bien entendu) ; Reecouter,
+  Modele, Reessayer ; PASSER puis CONTINUER toujours la. Sans reconnaissance (les apps installees
+  pour l'instant) : enregistrer et reecouter, sans verdict. Teste avec une reconnaissance simulee
+  (mon navigateur d'essai n'a pas de micro) ; le journal ORAL dira ce qui se passe sur le telephone.

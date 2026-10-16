@@ -6413,6 +6413,28 @@ body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
 .seance-aujourdhui-txt{font-size:11.5px; line-height:1.35; color:rgba(255,255,255,.85);}
 .seance-aujourdhui-txt b{display:block; font-size:12.5px; color:#fff;}
 body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c333d;}
+.cp-or-modele{align-self:flex-start; background:transparent; border:1.5px solid currentColor; border-radius:10px; padding:6px 10px; font-weight:800; font-size:13px; margin-top:6px; cursor:pointer; color:inherit;}
+.cp-or-zone{display:flex; flex-direction:column; align-items:center; gap:8px; padding:22px 0 10px;}
+.cp-or-micro{position:relative; width:104px; height:104px; border-radius:50%; border:0; background:#1C2430; color:#fff; font-size:40px; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px rgba(28,36,48,.25); cursor:pointer; transition:transform .08s linear, width .2s, height .2s; margin:8px 0;}
+.cp-or-micro.ecoute{background:#c0392b; font-size:34px; box-shadow:0 0 0 14px rgba(192,57,43,.18), 0 0 0 30px rgba(192,57,43,.08); margin:26px 0 30px;}
+.cp-or-micro.ecoute::after{content:""; position:absolute; inset:-14px; border-radius:50%; border:3px solid rgba(192,57,43,.45); animation:cp-or-onde 1.1s ease-out infinite;}
+@keyframes cp-or-onde{from{transform:scale(1); opacity:1} to{transform:scale(1.5); opacity:0}}
+.cp-or-micro.petit{width:64px; height:64px; font-size:26px; margin:2px 0;}
+.cp-or-consigne{font-weight:800; font-size:15.5px; text-align:center; margin:0;}
+.cp-or-sous{font-size:13px; color:#7b8798; text-align:center; margin:0; min-height:1em;}
+.cp-or-verdict{border-radius:14px; padding:12px; margin-top:8px;}
+.cp-or-verdict h3{margin:0 0 4px; font-size:19px;}
+.cp-or-verdict p{margin:2px 0 0; font-size:14px; line-height:1.5;}
+.cp-or-verdict.bon{background:rgba(46,139,87,.12); color:#1f6b42;}
+.cp-or-verdict.presque{background:rgba(232,162,58,.16); color:#8a5a12;}
+.cp-or-verdict.rien{background:rgba(123,135,152,.14); color:#576177;}
+.cp-or-outils{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;}
+.cp-or-outils button{flex:1; border-radius:11px; padding:9px 6px; font-weight:800; font-size:13px; border:1.5px solid #e3dccf; background:#fff; color:#1C2430; white-space:nowrap; cursor:pointer;}
+.cp-or-manque{text-decoration:underline wavy; text-underline-offset:3px; text-decoration-color:#c58a1e;}
+body[data-theme="dark"] .cp-or-outils button{background:#232a34; border-color:#2c333d; color:#eef1f5;}
+body[data-theme="dark"] .cp-or-verdict.bon{color:#7fd3a5;}
+body[data-theme="dark"] .cp-or-verdict.presque{color:#f0c27a;}
+body[data-theme="dark"] .cp-or-verdict.rien{color:#c6cdd8;}
 .cp-faute{text-decoration:underline wavy; text-decoration-thickness:1.5px; text-underline-offset:3px; font-weight:700;}
 .cp-explication{margin-top:8px; font-weight:400; font-size:14.5px;}
 .cp-oral{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px;}
@@ -7523,7 +7545,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v834</span>
+    <span class="subtitle-version">v835</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10875,6 +10897,18 @@ const I18N = {
         arret_texte: "Trois questions dans la scène, à ton niveau.",
         arret_entrer: "Entrer",
         arret_passer: "Passer",
+        or_consigne: "Touche le micro et dis la phrase",
+        or_ecoute: "Je t'écoute…",
+        or_arreter: "Le rond grossit avec ta voix. Touche-le pour arrêter.",
+        or_bon: "C'est bon !",
+        or_presque: "Presque !",
+        or_rien: "Je n'ai pas bien entendu",
+        or_entendu: "J'ai entendu :",
+        or_presque_aide: "Les mots soulignés m'ont échappé. Écoute le modèle et réessaie.",
+        or_rien_aide: "Parle un peu plus fort, le téléphone près de la bouche, et réessaie.",
+        or_reessayer: "Réessayer",
+        or_passer: "Passer",
+        or_sans_verdict: "C'est enregistré. Réécoute-toi et compare au modèle.",
         cp_q_gram: "Complète la phrase",
         cp_q_dictee: "Écris ce que tu entends",
         cp_q_parler: "Répète à voix haute",
@@ -12095,6 +12129,18 @@ const I18N = {
         arret_texte: "Three questions in the scene, at your level.",
         arret_entrer: "Enter",
         arret_passer: "Skip",
+        or_consigne: "Tap the mic and say the sentence",
+        or_ecoute: "I'm listening…",
+        or_arreter: "The circle grows with your voice. Tap it to stop.",
+        or_bon: "That's it!",
+        or_presque: "Almost!",
+        or_rien: "I didn't quite hear that",
+        or_entendu: "I heard:",
+        or_presque_aide: "I missed the underlined words. Listen to the model and try again.",
+        or_rien_aide: "Speak a little louder, with the phone close to your mouth, and try again.",
+        or_reessayer: "Try again",
+        or_passer: "Skip",
+        or_sans_verdict: "Recorded. Listen back and compare with the model.",
         cp_q_gram: "Complete the sentence",
         cp_q_dictee: "Write what you hear",
         cp_q_parler: "Say it out loud",
@@ -13317,6 +13363,18 @@ const I18N = {
         arret_texte: "Sahnede seviyene uygun üç soru.",
         arret_entrer: "Gir",
         arret_passer: "Geç",
+        or_consigne: "Mikrofona dokun ve cümleyi söyle",
+        or_ecoute: "Dinliyorum…",
+        or_arreter: "Daire sesinle büyür. Durdurmak için dokun.",
+        or_bon: "Oldu!",
+        or_presque: "Neredeyse!",
+        or_rien: "Tam duyamadım",
+        or_entendu: "Duyduğum:",
+        or_presque_aide: "Altı çizili kelimeleri kaçırdım. Modeli dinle ve tekrar dene.",
+        or_rien_aide: "Biraz daha yüksek sesle, telefonu ağzına yakın tutarak konuş ve tekrar dene.",
+        or_reessayer: "Tekrar dene",
+        or_passer: "Geç",
+        or_sans_verdict: "Kaydedildi. Kendini dinle ve modelle karşılaştır.",
         cp_q_gram: "Cümleyi tamamla",
         cp_q_dictee: "Duyduğunu yaz",
         cp_q_parler: "Yüksek sesle tekrarla",
@@ -14876,6 +14934,18 @@ const I18N = {
         arret_texte: "Три запитання в сцені, на твоєму рівні.",
         arret_entrer: "Увійти",
         arret_passer: "Пропустити",
+        or_consigne: "Торкнися мікрофона і скажи речення",
+        or_ecoute: "Слухаю…",
+        or_arreter: "Коло росте з твоїм голосом. Торкнися, щоб зупинити.",
+        or_bon: "Добре!",
+        or_presque: "Майже!",
+        or_rien: "Я не розчув",
+        or_entendu: "Я почув:",
+        or_presque_aide: "Підкреслені слова я не розчув. Послухай зразок і спробуй ще раз.",
+        or_rien_aide: "Говори трохи голосніше, тримай телефон біля рота, і спробуй ще раз.",
+        or_reessayer: "Ще раз",
+        or_passer: "Пропустити",
+        or_sans_verdict: "Записано. Послухай себе й порівняй зі зразком.",
         cp_q_gram: "Доповни речення",
         cp_q_dictee: "Напиши, що чуєш",
         cp_q_parler: "Повтори вголос",
@@ -16798,6 +16868,18 @@ const I18N = {
         arret_texte: "سه پرسش در صحنه، در سطح تو.",
         arret_entrer: "ورود",
         arret_passer: "رد شدن",
+        or_consigne: "میکروفون را لمس کن و جمله را بگو",
+        or_ecoute: "دارم گوش می‌کنم…",
+        or_arreter: "دایره با صدایت بزرگ می‌شود. برای توقف لمسش کن.",
+        or_bon: "درست است!",
+        or_presque: "تقریباً!",
+        or_rien: "خوب نشنیدم",
+        or_entendu: "شنیدم:",
+        or_presque_aide: "واژه‌های خط‌دار را نشنیدم. به نمونه گوش کن و دوباره امتحان کن.",
+        or_rien_aide: "کمی بلندتر حرف بزن، گوشی را نزدیک دهانت نگه دار و دوباره امتحان کن.",
+        or_reessayer: "دوباره",
+        or_passer: "رد شدن",
+        or_sans_verdict: "ضبط شد. صدای خودت را گوش کن و با نمونه مقایسه کن.",
         cp_q_gram: "جمله را کامل کن",
         cp_q_dictee: "آنچه می‌شنوی را بنویس",
         cp_q_parler: "بلند تکرار کن",
@@ -18151,6 +18233,18 @@ const I18N = {
         arret_texte: "ثلاثة أسئلة في المشهد، بمستواك.",
         arret_entrer: "دخول",
         arret_passer: "تخطٍّ",
+        or_consigne: "المس الميكروفون وقل الجملة",
+        or_ecoute: "أنا أستمع…",
+        or_arreter: "تكبر الدائرة مع صوتك. المسها للإيقاف.",
+        or_bon: "أحسنت!",
+        or_presque: "تقريبًا!",
+        or_rien: "لم أسمع جيدًا",
+        or_entendu: "سمعت:",
+        or_presque_aide: "فاتتني الكلمات المسطَّرة. استمع إلى النموذج وحاول مجددًا.",
+        or_rien_aide: "تكلّم بصوت أعلى قليلًا، والهاتف قريب من فمك، وحاول مجددًا.",
+        or_reessayer: "حاول مجددًا",
+        or_passer: "تخطٍّ",
+        or_sans_verdict: "تم التسجيل. استمع إلى نفسك وقارن بالنموذج.",
         cp_q_gram: "أكمل الجملة",
         cp_q_dictee: "اكتب ما تسمعه",
         cp_q_parler: "كرّرها بصوت عالٍ",
@@ -18377,6 +18471,18 @@ const I18N = {
         arret_texte: "Três perguntas na cena, no seu nível.",
         arret_entrer: "Entrar",
         arret_passer: "Pular",
+        or_consigne: "Toque no microfone e diga a frase",
+        or_ecoute: "Estou ouvindo…",
+        or_arreter: "O círculo cresce com a sua voz. Toque nele para parar.",
+        or_bon: "Isso mesmo!",
+        or_presque: "Quase!",
+        or_rien: "Não ouvi direito",
+        or_entendu: "Ouvi:",
+        or_presque_aide: "As palavras sublinhadas me escaparam. Ouça o modelo e tente de novo.",
+        or_rien_aide: "Fale um pouco mais alto, com o telefone perto da boca, e tente de novo.",
+        or_reessayer: "Tentar de novo",
+        or_passer: "Pular",
+        or_sans_verdict: "Gravado. Ouça a si mesmo e compare com o modelo.",
         cp_q_gram: "Complete a frase",
         cp_q_dictee: "Escreva o que você ouve",
         cp_q_parler: "Repita em voz alta",
@@ -19662,6 +19768,18 @@ const I18N = {
         arret_texte: "Trzy pytania w scenie, na twoim poziomie.",
         arret_entrer: "Wejdź",
         arret_passer: "Pomiń",
+        or_consigne: "Dotknij mikrofonu i powiedz zdanie",
+        or_ecoute: "Słucham…",
+        or_arreter: "Kółko rośnie wraz z głosem. Dotknij, aby zatrzymać.",
+        or_bon: "Dobrze!",
+        or_presque: "Prawie!",
+        or_rien: "Nie dosłyszałem",
+        or_entendu: "Usłyszałem:",
+        or_presque_aide: "Podkreślone słowa mi umknęły. Posłuchaj wzoru i spróbuj jeszcze raz.",
+        or_rien_aide: "Mów trochę głośniej, z telefonem przy ustach, i spróbuj jeszcze raz.",
+        or_reessayer: "Spróbuj ponownie",
+        or_passer: "Pomiń",
+        or_sans_verdict: "Nagrane. Posłuchaj siebie i porównaj ze wzorem.",
         cp_q_gram: "Uzupełnij zdanie",
         cp_q_dictee: "Napisz, co słyszysz",
         cp_q_parler: "Powtórz na głos",
@@ -20945,6 +21063,18 @@ const I18N = {
         arret_texte: "Три вопроса в сцене, на твоём уровне.",
         arret_entrer: "Войти",
         arret_passer: "Пропустить",
+        or_consigne: "Нажми на микрофон и скажи фразу",
+        or_ecoute: "Слушаю…",
+        or_arreter: "Круг растёт вместе с голосом. Нажми, чтобы остановить.",
+        or_bon: "Отлично!",
+        or_presque: "Почти!",
+        or_rien: "Я не расслышал",
+        or_entendu: "Я услышал:",
+        or_presque_aide: "Подчёркнутые слова я не расслышал. Послушай образец и попробуй ещё раз.",
+        or_rien_aide: "Говори чуть громче, держа телефон у рта, и попробуй ещё раз.",
+        or_reessayer: "Ещё раз",
+        or_passer: "Пропустить",
+        or_sans_verdict: "Записано. Послушай себя и сравни с образцом.",
         cp_q_gram: "Дополни предложение",
         cp_q_dictee: "Напиши, что слышишь",
         cp_q_parler: "Повтори вслух",
@@ -34470,6 +34600,14 @@ const ESSAIS = {
     // et la grammaire, puis un autre pour les scenes, que tout soit melange » ;
     // « seulement Trouve ! ; la decouverte, dans d'autres sections ». Maquette :
     // .claude/maquette-scene-dans-la-seance.html. Voir preparerArretScene().
+    // EN ESSAI le 16 oct. 2026 (v835), admin seul. Jacques : « comme Duolingo, que
+    // ca soit en mesure de dire oui c'est OK ou pas », « en etant indulgent ».
+    // Maquette : .claude/maquette-carte-oral.html. Voir scoreOral().
+    oral_verdict: {
+        etat: "admin",
+        titre: "L'oral avec un verdict",
+        desc: "Un seul rond-micro qui bouge avec la voix ; la reconnaissance vocale du téléphone transcrit, l'app compare avec indulgence : C'est bon / Presque / Je n'ai pas bien entendu. Sans reconnaissance (apps installées pour l'instant) : enregistrer et réécouter, sans verdict."
+    },
     scene_arret: {
         etat: "admin",
         titre: "La scène dans la séance",
@@ -39395,7 +39533,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 834;
+const APP_VERSION = 835;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43739,8 +43877,37 @@ function direMotPhrase(item){
 // L'enregistrement de l'oral : rien ne sort de l'appareil (comme le mode
 // Parler) ; la piste est rendue des l'arret, l'URL revoquee a la carte suivante.
 let oralPhrase = null;
+// v835 : LE VERDICT DE L'ORAL, INDULGENT. La reconnaissance du telephone donne
+// une ou plusieurs transcriptions ; on garde la meilleure. Un mot compte s'il
+// est entendu n'importe ou dans la phrase (l'ordre ne compte pas), a une lettre
+// pres pour les mots de quatre lettres et plus. Ni casse, ni accents, ni
+// ponctuation (normaliserSaisie). 70 % des mots : « C'est bon » ; 30 % :
+// « Presque » ; moins : « Je n'ai pas bien entendu ». Ca juge si la phrase est
+// COMPREHENSIBLE, pas la finesse de l'accent.
+const ORAL_SEUIL_BON = 0.7, ORAL_SEUIL_PRESQUE = 0.3;
+function scoreOral(attendu, entendus){
+    const mots = s => normaliserSaisie(s).split(" ").filter(Boolean);
+    const cible = mots(attendu);
+    let meilleur = { ratio: 0, manques: cible.slice(), texte: "" };
+    (entendus || []).forEach(tx => {
+        const dits = mots(tx);
+        const pris = dits.map(() => false);
+        const manques = [];
+        let ok = 0;
+        cible.forEach(m => {
+            const k = dits.findIndex((d, i) => !pris[i] && (d === m || (m.length >= 4 && ecartLettres(d, m) <= 1)));
+            if(k >= 0){ pris[k] = true; ok++; } else manques.push(m);
+        });
+        const ratio = cible.length ? ok / cible.length : 0;
+        if(ratio > meilleur.ratio || (!meilleur.texte && tx)) meilleur = { ratio: ratio, manques: manques, texte: tx };
+    });
+    meilleur.niveau = meilleur.ratio >= ORAL_SEUIL_BON ? "bon" : meilleur.ratio >= ORAL_SEUIL_PRESQUE ? "presque" : "rien";
+    return meilleur;
+}
+
 function arreterOralPhrase(){
     if(!oralPhrase) return;
+    try{ if(oralPhrase.reco) oralPhrase.reco.abort(); }catch(e){}
     try{ if(oralPhrase.arreterOnde) oralPhrase.arreterOnde(); }catch(e){}
     try{ if(oralPhrase.rec && oralPhrase.rec.state !== "inactive") oralPhrase.rec.stop(); }catch(e){}
     try{ if(oralPhrase.flux) oralPhrase.flux.getTracks().forEach(p => p.stop()); }catch(e){}
@@ -44067,6 +44234,219 @@ function montrerCartePhrase(item){
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
         if(motSeul) direMotPhrase(item); else direPhrase(item);
+    } else if(item.forme === "parler" && essaiActif("oral_verdict")){
+        // v835 : LA CARTE D'ORAL A VERDICT. Un seul rond : le toucher enregistre
+        // (il devient rouge et grossit avec la voix), le toucher encore arrete.
+        // Pendant ce temps, la reconnaissance du telephone transcrit ; a l'arret,
+        // scoreOral() juge avec indulgence. CONTINUER est toujours la. Chaque
+        // etape va au journal audio (source « ORAL »), qui part avec un retour.
+        const phrase = creer("p", "cp-phrase", item.phrase.de);
+        phrase.setAttribute("lang", langueDe);
+        el.appendChild(phrase);
+        el.appendChild(creer("p", "cp-sens", item.phrase.sens));
+        const modele = creer("button", "cp-or-modele", "🔊 " + t("cp_modele"));
+        modele.type = "button";
+        modele.addEventListener("click", () => direPhrase(item));
+        el.appendChild(modele);
+        const zone = creer("div", "cp-or-zone");
+        const micro = creer("button", "cp-or-micro", "🎙");
+        micro.type = "button";
+        micro.setAttribute("aria-label", t("cp_enregistrer"));
+        const consigne = creer("p", "cp-or-consigne", t("or_consigne"));
+        const sous = creer("p", "cp-or-sous", "");
+        zone.appendChild(micro); zone.appendChild(consigne); zone.appendChild(sous);
+        el.appendChild(zone);
+        const verdict = creer("div", "cp-or-verdict hidden");
+        el.appendChild(verdict);
+        const outils = creer("div", "cp-or-outils hidden");
+        const reessayer = creer("button", "", "🎙 " + t("or_reessayer"));
+        const relire = creer("button", "hidden", "▶ " + t("cp_reecouter"));
+        const modele2 = creer("button", "", "🔊 " + t("cp_modele"));
+        [reessayer, relire, modele2].forEach(b => { b.type = "button"; outils.appendChild(b); });
+        el.appendChild(outils);
+        modele2.addEventListener("click", () => direPhrase(item));
+        reessayer.addEventListener("click", () => micro.click());
+        fait.repondu = true;
+        suite.textContent = t("or_passer");
+        suite.className = "secondary";
+        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+        const journal = (etape, detail) => { try{ noterAudio(etape, "ORAL", detail || ""); }catch(e){} };
+        const Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const langueReco = LANGUE_APPRISE === "es" ? (VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES") : "de-DE";
+        let essai = null;
+        let lecteur = null;
+        relire.addEventListener("click", () => {
+            if(!oralPhrase || !oralPhrase.url) return;
+            try{ arreterAudioPregenere(); }catch(e){}
+            if(!lecteur){ lecteur = new Audio(); lecteur.preload = "auto"; }
+            lecteur.src = oralPhrase.url;
+            const p = lecteur.play();
+            if(p && p.catch) p.catch(e => journal("relecture", "refusee : " + (e && e.name)));
+        });
+        const montrerPhrase = manques => {
+            phrase.textContent = "";
+            const reste = (manques || []).slice();
+            item.phrase.de.split(" ").forEach((m, i) => {
+                if(i) phrase.appendChild(document.createTextNode(" "));
+                const n = normaliserSaisie(m);
+                const k = reste.indexOf(n);
+                if(k >= 0){ reste.splice(k, 1); phrase.appendChild(creer("span", "cp-or-manque", m)); }
+                else phrase.appendChild(document.createTextNode(m));
+            });
+        };
+        const juger = () => {
+            if(!essai || essai.juge) return;
+            essai.juge = true;
+            clearTimeout(essai.attente);
+            micro.classList.remove("ecoute");
+            micro.classList.add("petit");
+            micro.style.transform = "";
+            consigne.classList.add("hidden");
+            sous.textContent = "";
+            outils.classList.remove("hidden");
+            relire.classList.toggle("hidden", !(oralPhrase && oralPhrase.url));
+            suite.textContent = t("setup_continue");
+            suite.className = "primary";
+            verdict.className = "cp-or-verdict";
+            verdict.textContent = "";
+            if(!essai.avecReco){
+                verdict.classList.add("rien");
+                verdict.appendChild(creer("p", "", t("or_sans_verdict")));
+                journal("verdict", "sans reconnaissance");
+                return;
+            }
+            const s = scoreOral(item.phrase.de, essai.textes);
+            journal("verdict", s.niveau + ", " + Math.round(s.ratio * 100) + " %, entendu « " + String(s.texte).slice(0, 80) + " »");
+            verdict.classList.add(s.niveau);
+            verdict.appendChild(creer("h3", "", t("or_" + s.niveau)));
+            if(s.niveau !== "rien" && s.texte){
+                const p = creer("p", "");
+                p.appendChild(document.createTextNode(t("or_entendu") + " "));
+                const dit = creer("i", "", s.texte);
+                dit.setAttribute("lang", langueDe);
+                p.appendChild(dit);
+                verdict.appendChild(p);
+            }
+            if(s.niveau === "presque"){ verdict.appendChild(creer("p", "", t("or_presque_aide"))); montrerPhrase(s.manques); }
+            else montrerPhrase([]);
+            if(s.niveau === "rien") verdict.appendChild(creer("p", "", t("or_rien_aide")));
+            reessayer.classList.toggle("hidden", s.niveau === "bon");
+            if(s.niveau === "bon"){ try{ celebrateMastery(0, false); }catch(e){} }
+        };
+        const arreter = () => {
+            if(!essai || !essai.enCours) return;
+            essai.enCours = false;
+            clearInterval(essai.minuterie);
+            clearTimeout(essai.limite);
+            try{ if(essai.raf) cancelAnimationFrame(essai.raf); }catch(e){}
+            try{ if(essai.rec && essai.rec.state !== "inactive") essai.rec.stop(); }catch(e){}
+            try{ if(essai.reco) essai.reco.stop(); }catch(e){}
+            // La reconnaissance rend son dernier resultat un peu apres l'arret.
+            essai.attente = setTimeout(juger, 2500);
+        };
+        micro.addEventListener("click", async () => {
+            if(essai && essai.enCours){ journal("arret", "demande par l'usager"); arreter(); return; }
+            arreterOralPhrase();
+            verdict.className = "cp-or-verdict hidden";
+            outils.classList.add("hidden");
+            micro.classList.remove("petit");
+            consigne.classList.remove("hidden");
+            montrerPhrase([]);
+            essai = { enCours: false, juge: false, textes: [], avecReco: false, recoFinie: false, recFini: false };
+            const ici = essai;
+            journal("toucher", "v" + APP_VERSION + ", verdict, reconnaissance " + !!Reco + " (" + langueReco + "), MediaRecorder " + (typeof MediaRecorder !== "undefined"));
+            // Dans le geste : le moteur du rond, et la reconnaissance (iOS exige
+            // l'un et l'autre pendant le toucher).
+            let ctx = null;
+            try{ const Ctx = window.AudioContext || window.webkitAudioContext; if(Ctx){ ctx = new Ctx(); if(ctx.resume) ctx.resume().catch(() => {}); } }catch(e){ ctx = null; }
+            if(Reco){
+                try{
+                    const reco = new Reco();
+                    reco.lang = langueReco;
+                    reco.interimResults = true;
+                    reco.continuous = true;
+                    reco.maxAlternatives = 3;
+                    reco.onresult = e => {
+                        const res = e.results;
+                        const n = Math.max(1, ...Array.from(res).map(r => r.length));
+                        const textes = [];
+                        for(let a = 0; a < n; a++){
+                            textes.push(Array.from(res).map(r => (r[Math.min(a, r.length - 1)] || {}).transcript || "").join(" ").replace(/\s+/g, " ").trim());
+                        }
+                        ici.textes = textes.filter(Boolean);
+                    };
+                    reco.onerror = e => { journal("reconnaissance", "erreur " + (e && e.error)); if(e && (e.error === "not-allowed" || e.error === "service-not-allowed")) ici.avecReco = false; };
+                    reco.onend = () => { ici.recoFinie = true; if(!ici.enCours && ici.recFini) juger(); };
+                    reco.start();
+                    ici.reco = reco;
+                    ici.avecReco = true;
+                }catch(e){ journal("reconnaissance", "demarrage refuse : " + (e && e.name)); ici.avecReco = false; }
+            }
+            let flux = null;
+            try{ flux = await navigator.mediaDevices.getUserMedia({ audio: true }); }
+            catch(e){
+                journal("micro", "refuse : " + (e && e.name));
+                try{ if(ctx) ctx.close(); }catch(e2){}
+                if(!ici.avecReco){ consigne.textContent = t("parler_micro_refuse"); essai = null; return; }
+            }
+            if(essai !== ici) return;
+            if(flux){
+                try{
+                    const rec = new MediaRecorder(flux);
+                    const morceaux = [];
+                    rec.ondataavailable = e => { if(e.data && e.data.size) morceaux.push(e.data); };
+                    rec.onstop = () => {
+                        try{ flux.getTracks().forEach(x => x.stop()); }catch(e){}
+                        try{ if(ctx) ctx.close(); }catch(e){}
+                        if(morceaux.length && oralPhrase && oralPhrase.rec === rec){
+                            oralPhrase.url = URL.createObjectURL(new Blob(morceaux, { type: morceaux[0].type || rec.mimeType || "audio/mp4" }));
+                        }
+                        journal("fin", morceaux.length + " morceau(x), volume max " + (ici.pic || 0).toFixed(3) + ", textes " + ici.textes.length);
+                        ici.recFini = true;
+                        if(!ici.avecReco || ici.recoFinie) juger();
+                    };
+                    rec.start();
+                    ici.rec = rec;
+                    oralPhrase = { rec: rec, flux: flux, url: null, reco: ici.reco, arreterOnde: () => { try{ if(ici.raf) cancelAnimationFrame(ici.raf); }catch(e){} } };
+                }catch(e){ journal("enregistreur", "refuse : " + (e && e.name)); ici.recFini = true; }
+                if(ctx){
+                    try{
+                        const analyse = ctx.createAnalyser();
+                        analyse.fftSize = 512;
+                        ctx.createMediaStreamSource(flux).connect(analyse);
+                        const buf = new Uint8Array(analyse.fftSize);
+                        ici.pic = 0;
+                        const tour = () => {
+                            analyse.getByteTimeDomainData(buf);
+                            let s = 0;
+                            for(let k = 0; k < buf.length; k++){ const v = (buf[k] - 128) / 128; s += v * v; }
+                            const rms = Math.sqrt(s / buf.length);
+                            if(rms > ici.pic) ici.pic = rms;
+                            micro.style.transform = "scale(" + (1.12 + Math.min(0.6, rms * 4)).toFixed(2) + ")";
+                            ici.raf = requestAnimationFrame(tour);
+                        };
+                        ici.raf = requestAnimationFrame(tour);
+                        setTimeout(() => journal("onde", "moteur " + ctx.state + ", volume vu " + (ici.pic || 0).toFixed(3)), 1200);
+                    }catch(e){ journal("onde", "indisponible : " + (e && e.name)); }
+                }
+            } else ici.recFini = true;
+            if(!oralPhrase && ici.reco) oralPhrase = { reco: ici.reco };
+            ici.enCours = true;
+            micro.classList.add("ecoute");
+            micro.textContent = "■";
+            const debut = Date.now();
+            const majMinuterie = () => {
+                const s = Math.floor((Date.now() - debut) / 1000);
+                consigne.textContent = t("or_ecoute") + " 0:" + String(s).padStart(2, "0");
+            };
+            majMinuterie();
+            sous.textContent = t("or_arreter");
+            ici.minuterie = setInterval(majMinuterie, 500);
+            // Une phrase se dit en moins de 15 s : on arrete tout seul apres.
+            ici.limite = setTimeout(() => { journal("arret", "15 s"); arreter(); }, 15000);
+            const remettre = () => { micro.textContent = "🎙"; };
+            const fin = setInterval(() => { if(!ici.enCours){ clearInterval(fin); remettre(); } }, 200);
+        });
     } else if(item.forme === "parler"){
         // Repeter a voix haute : le modele, s'enregistrer, se reecouter. Aucune
         // note (le choix du mode Parler) ; la carte compte dans l'objectif.
