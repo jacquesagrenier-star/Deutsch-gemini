@@ -9254,3 +9254,18 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   declaration du service de reconnaissance (Android 11+). Dans les apps, la carte l'utilise : texte
   reconnu et niveau du micro pour le rond ; pas de reecoute (le module occupe le micro). Il faut
   compiler les deux apps (Codemagic) pour que ca marche.
+
+## 16 octobre 2026 -- Premiers pas en 8 etapes, et les contours (v837)
+
+- Jacques : « pour le complet debutant, on mettrait beaucoup plus d'etapes et de vocabulaire ;
+  est-ce que ca a ete fait ? je crois que non ». Fait : 8 etapes de voyage (arrivee, cafe, ville,
+  transports, hotel, courses, sante, se debrouiller), 23-24 flashcards et 9 phrases chacune, ecrites
+  par Fable (premiers-pas.json, espanol/datos/premiers-pas.json, controle tests/premiers_pas.py),
+  sens dans toutes les langues de l'interface, variantes d'Amerique latine. Chaque etape en deux
+  seances (le tableau et la 1re moitie ; la 2e moitie et la scene). L'ancienne progression (5
+  etapes) est reprise : 3 etapes faites -> etape 4, les transports.
+- Jacques, a l'hotel : « ce n'est pas decoupe comme avant, le chandail est un petit carre ». Cause :
+  33 petits objets de 8 scenes etaient marques « plein » (le reglage des cagettes du marche) : leur
+  masque etait leur boite. Reglage retire, contours refaits par SAM. Hotel publie en v837 ; les 7
+  autres scenes suivent. « Le dernier mot apparait seul » : pas reproduit (les 5 questions
+  s'enchainent), a preciser.
