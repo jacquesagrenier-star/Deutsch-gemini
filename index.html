@@ -7473,7 +7473,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v813</span>
+    <span class="subtitle-version">v814</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -38977,7 +38977,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 813;
+const APP_VERSION = 814;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42892,25 +42892,44 @@ function palierSeance(nVus){
 // La premiere serie du cours pas encore acquise, et qui a des questions
 // utilisables (reponse tapee ou tuiles ; les blocs ont leur propre ecran). Les
 // premieres du fichier d'abord : il est range par difficulte.
+//
+// ⚠️ LE MELANGE (v814). Jacques : « pour le C1, on devrait melanger la grammaire
+// des differents niveaux, pour pas que ce soit juste des flashcards ». Au
+// niveau C1 -- et a tout niveau une fois le cours fini -- chaque question est
+// tiree d'une serie au hasard parmi TOUT le cours (A1 -> B2) : la grammaire ne
+// disparait jamais de la seance. Les series a blocs restent a part.
+function grammaireUtile(liste){
+    return (liste || []).filter(ex => ex && ex.question && !(ex.chunks && ex.chunks.length) && (ex.answers || []).length);
+}
 async function prechargerGrammaireSeance(){
     const cours = COURS_GRAMMAIRE_PAR_LANGUE[LANGUE_APPRISE === "es" ? "es" : "de"] || [];
     const g = lireGrammaire(), s = lireGrammaireSeance();
-    for(const nom of cours){
-        if(serieAcquise(nom, g, s)) continue;
-        if(grammaireSeance && grammaireSeance.nom === nom && grammaireSeance.langue === LANGUE_APPRISE) return;
-        const liste = await jeu(nom);
-        const utiles = (liste || []).filter(ex => ex && ex.question && !(ex.chunks && ex.chunks.length) && (ex.answers || []).length);
-        if(!utiles.length) continue;
-        grammaireSeance = { nom: nom, langue: LANGUE_APPRISE, liste: utiles.slice(0, 30) };
-        return;
+    let melange = false;
+    try{ melange = niveauSeance() === "C1"; }catch(e){}
+    if(!melange){
+        for(const nom of cours){
+            if(serieAcquise(nom, g, s)) continue;
+            if(grammaireSeance && !grammaireSeance.melange && grammaireSeance.nom === nom && grammaireSeance.langue === LANGUE_APPRISE) return;
+            const utiles = grammaireUtile(await jeu(nom));
+            if(!utiles.length) continue;
+            grammaireSeance = { nom: nom, langue: LANGUE_APPRISE, liste: utiles.slice(0, 30).map(ex => ({ ex: ex, nom: nom })) };
+            return;
+        }
     }
-    grammaireSeance = null;
+    await grammaireMelangee(cours);
+}
+async function grammaireMelangee(cours){
+    if(grammaireSeance && grammaireSeance.melange && grammaireSeance.langue === LANGUE_APPRISE) return;
+    const liste = [];
+    for(const nom of cours){
+        grammaireUtile(await jeu(nom)).forEach(ex => liste.push({ ex: ex, nom: nom }));
+    }
+    grammaireSeance = liste.length ? { nom: null, melange: true, langue: LANGUE_APPRISE, liste: liste } : null;
 }
 function questionGrammaire(){
     if(!grammaireSeance || !grammaireSeance.liste.length) return null;
     const l = grammaireSeance.liste;
-    const ex = l[Math.floor(Math.random() * l.length)];
-    return ex;
+    return l[Math.floor(Math.random() * l.length)];
 }
 
 function insererCartesPhrases(seance, tout){
@@ -42963,9 +42982,9 @@ function insererCartesPhrases(seance, tout){
         for(let essai = 0; essai < palier.formes.length && !item; essai++){
             const f = palier.formes[(n + essai) % palier.formes.length];
             if(f === "gram"){
-                const ex = questionGrammaire();
-                if(ex) item = { mode: "phrase", forme: "gram", ex: ex, jeu: grammaireSeance.nom, cible: null,
-                                themeId: remplacee.themeId, index: remplacee.index, word: remplacee.word };
+                const q = questionGrammaire();
+                if(q) item = { mode: "phrase", forme: "gram", ex: q.ex, jeu: q.nom, cible: null,
+                               themeId: remplacee.themeId, index: remplacee.index, word: remplacee.word };
                 continue;
             }
             const e = meilleur(sortie.slice(0, k).filter(avecPhrase)) || meilleur(vus.filter(avecPhrase));

@@ -9061,3 +9061,6 @@ sur l'etude ». Maquette validee (« cable la seance melangee en essai pour moi 
   dernieres reponses d'une serie), sans quoi quelqu'un qui ne fait que sa seance serait reste sur
   der/ein. Les phrases portent aussi sur les verbes (le trou devient de la conjugaison : habe /
   hast / hat) et les adjectifs ; au palier 3, phrases jusqu'a 11 mots et deux inconnus.
+- v814 : Jacques : « pour le C1, on devrait melanger la grammaire des differents niveaux, pour
+  pas que ce soit juste des mots ». Au niveau C1 -- et a tout niveau une fois le cours fini --
+  chaque question de grammaire de la seance vient d'une serie au hasard parmi tout le cours.
