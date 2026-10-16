@@ -9196,3 +9196,15 @@ premiere phrase a la 4e carte puis toutes les 3, faite seulement de mots deja vu
   maintenant dans la langue de l'interface (toutes les scenes, allemand et espagnol ; « ¡Correcto! »
   et « Richtig! » restent). Depuis Premiers pas, Trouver s'arrete apres 5 objets du A1, puis
   propose « Jour suivant → » ou « Retour a l'accueil » (« la personne a pu vouloir continuer »).
+
+## 16 octobre 2026 -- la scene dans la seance (maquette)
+
+Jacques : « que les scenes s'integrent dans la seance du jour : au lieu d'un bouton Commencer pour
+les mots et la grammaire, puis un autre pour les scenes, que tout ca soit melange » ; puis « est-ce
+qu'on devrait seulement avoir Trouve ? La decouverte, on peut le faire apres, dans d'autres
+sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traduction de la phrase ».
+- Traduction des 1 765 phrases des scenes (allemand : 9 langues ; espagnol : fr, en, pt, ar) confiee
+  a Fable, affichee apres la reponse seulement. En cours.
+- Maquette .claude/maquette-scene-dans-la-seance.html : une seule porte ; au milieu de la seance,
+  un arret de 3 « Trouve ! » sur des mots deja vus ; retour aux cartes ; la decouverte reste dans
+  Explorer les scenes. Revient sur le choix des deux portes (v799, 14 oct.).
