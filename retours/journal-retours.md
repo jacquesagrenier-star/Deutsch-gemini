@@ -9248,3 +9248,9 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   Modele, Reessayer ; PASSER puis CONTINUER toujours la. Sans reconnaissance (les apps installees
   pour l'instant) : enregistrer et reecouter, sans verdict. Teste avec une reconnaissance simulee
   (mon navigateur d'essai n'a pas de micro) ; le journal ORAL dira ce qui se passe sur le telephone.
+- v836 : la carte d'oral a verdict dans les APPS. Le module natif @capgo/capacitor-speech-recognition
+  (8.3.2, compatible Capacitor 8 et avec le paquet Swift d'iOS ; le module « community » ne l'etait
+  pas) est ajoute au projet wortando-ios, avec NSSpeechRecognitionUsageDescription (iOS) et la
+  declaration du service de reconnaissance (Android 11+). Dans les apps, la carte l'utilise : texte
+  reconnu et niveau du micro pour le rond ; pas de reecoute (le module occupe le micro). Il faut
+  compiler les deux apps (Codemagic) pour que ca marche.

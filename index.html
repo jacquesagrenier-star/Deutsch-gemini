@@ -7545,7 +7545,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v835</span>
+    <span class="subtitle-version">v836</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39533,7 +39533,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 835;
+const APP_VERSION = 836;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43908,6 +43908,8 @@ function scoreOral(attendu, entendus){
 function arreterOralPhrase(){
     if(!oralPhrase) return;
     try{ if(oralPhrase.reco) oralPhrase.reco.abort(); }catch(e){}
+    try{ if(oralPhrase.natif) oralPhrase.natif.stop().catch(() => {}); }catch(e){}
+    try{ (oralPhrase.ecouteurs || []).forEach(h => { try{ h.remove(); }catch(e2){} }); }catch(e){}
     try{ if(oralPhrase.arreterOnde) oralPhrase.arreterOnde(); }catch(e){}
     try{ if(oralPhrase.rec && oralPhrase.rec.state !== "inactive") oralPhrase.rec.stop(); }catch(e){}
     try{ if(oralPhrase.flux) oralPhrase.flux.getTracks().forEach(p => p.stop()); }catch(e){}
@@ -44273,6 +44275,45 @@ function montrerCartePhrase(item){
         const journal = (etape, detail) => { try{ noterAudio(etape, "ORAL", detail || ""); }catch(e){} };
         const Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
         const langueReco = LANGUE_APPRISE === "es" ? (VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES") : "de-DE";
+        // v836 : DANS LES APPS, LE MODULE NATIF (@capgo/capacitor-speech-recognition,
+        // ajoute au projet wortando-ios le 16 oct. 2026). Les vues web des apps n'ont
+        // pas la reconnaissance du navigateur. Le module donne le texte et le niveau
+        // du micro ; il occupe le micro, donc pas d'enregistrement a reecouter.
+        const Natif = (() => {
+            try{
+                const C = window.Capacitor;
+                return (C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.SpeechRecognition) || null;
+            }catch(e){ return null; }
+        })();
+        const demarrerNatif = async ici => {
+            try{
+                const dispo = await Natif.available();
+                if(!dispo || !dispo.available){ journal("natif", "indisponible"); consigne.textContent = t("parler_sans_micro"); essai = null; return false; }
+                const perm = await Natif.requestPermissions();
+                journal("natif", "permissions " + JSON.stringify(perm || {}).slice(0, 80));
+                if(perm && perm.speechRecognition && perm.speechRecognition !== "granted"){ consigne.textContent = t("parler_micro_refuse"); essai = null; return false; }
+            }catch(e){ journal("natif", "erreur " + String(e && e.message).slice(0, 80)); consigne.textContent = t("parler_sans_micro"); essai = null; return false; }
+            ici.natif = true; ici.avecReco = true; ici.recFini = true; ici.pic = 0;
+            ici.ecouteurs = [];
+            try{
+                ici.ecouteurs.push(await Natif.addListener("partialResults", ev => { if(ev && ev.matches && ev.matches.length) ici.textes = ev.matches.slice(); }));
+                ici.ecouteurs.push(await Natif.addListener("audioLevel", ev => {
+                    const l = Math.max(0, Math.min(1, (ev && ev.level) || 0));
+                    if(l > ici.pic) ici.pic = l;
+                    if(ici.enCours) micro.style.transform = "scale(" + (1.12 + l * 0.6).toFixed(2) + ")";
+                }));
+                ici.ecouteurs.push(await Natif.addListener("error", ev => journal("natif", "erreur " + JSON.stringify(ev || {}).slice(0, 80))));
+                ici.ecouteurs.push(await Natif.addListener("listeningState", ev => {
+                    const etat = ev && (ev.state || ev.status);
+                    journal("natif", "etat " + etat);
+                    if(etat === "stopped"){ ici.recoFinie = true; if(!ici.enCours) juger(); }
+                }));
+                oralPhrase = { natif: Natif, ecouteurs: ici.ecouteurs };
+                const r = await Natif.start({ language: langueReco, maxResults: 3, partialResults: true, popup: false });
+                if(r && r.matches && r.matches.length) ici.textes = r.matches.slice();
+            }catch(e){ journal("natif", "start refuse : " + String(e && e.message).slice(0, 80)); ici.avecReco = false; }
+            return true;
+        };
         let essai = null;
         let lecteur = null;
         relire.addEventListener("click", () => {
@@ -44298,6 +44339,7 @@ function montrerCartePhrase(item){
             if(!essai || essai.juge) return;
             essai.juge = true;
             clearTimeout(essai.attente);
+            (essai.ecouteurs || []).forEach(h => { try{ h.remove(); }catch(e){} });
             micro.classList.remove("ecoute");
             micro.classList.add("petit");
             micro.style.transform = "";
@@ -44341,6 +44383,7 @@ function montrerCartePhrase(item){
             try{ if(essai.raf) cancelAnimationFrame(essai.raf); }catch(e){}
             try{ if(essai.rec && essai.rec.state !== "inactive") essai.rec.stop(); }catch(e){}
             try{ if(essai.reco) essai.reco.stop(); }catch(e){}
+            try{ if(essai.natif) Natif.stop().catch(() => {}); }catch(e){}
             // La reconnaissance rend son dernier resultat un peu apres l'arret.
             essai.attente = setTimeout(juger, 2500);
         };
@@ -44354,7 +44397,10 @@ function montrerCartePhrase(item){
             montrerPhrase([]);
             essai = { enCours: false, juge: false, textes: [], avecReco: false, recoFinie: false, recFini: false };
             const ici = essai;
-            journal("toucher", "v" + APP_VERSION + ", verdict, reconnaissance " + !!Reco + " (" + langueReco + "), MediaRecorder " + (typeof MediaRecorder !== "undefined"));
+            journal("toucher", "v" + APP_VERSION + ", verdict, reconnaissance " + !!Reco + ", natif " + !!Natif + " (" + langueReco + "), MediaRecorder " + (typeof MediaRecorder !== "undefined"));
+            if(Natif){
+                if(!(await demarrerNatif(ici))) return;
+            } else {
             // Dans le geste : le moteur du rond, et la reconnaissance (iOS exige
             // l'un et l'autre pendant le toucher).
             let ctx = null;
@@ -44431,6 +44477,7 @@ function montrerCartePhrase(item){
                 }
             } else ici.recFini = true;
             if(!oralPhrase && ici.reco) oralPhrase = { reco: ici.reco };
+            }
             ici.enCours = true;
             micro.classList.add("ecoute");
             micro.textContent = "■";
