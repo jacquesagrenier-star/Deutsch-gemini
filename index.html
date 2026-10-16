@@ -7479,7 +7479,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v817</span>
+    <span class="subtitle-version">v818</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39045,7 +39045,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 817;
+const APP_VERSION = 818;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43014,6 +43014,16 @@ function questionGrammaire(){
     return l[Math.floor(Math.random() * l.length)];
 }
 
+// v818 : LA SUITE DE LA SEANCE AUSSI. Jacques, en A1 : « ca a fonctionne avec
+// la variete au debut, mais apres, c'est juste des mots ». Apres le premier
+// passage, les mots revenus (premiere reussite, « Encore ») repartent en tours
+// successifs -- de simples listes de cartes. Le melange s'y applique donc
+// aussi. Une carte remplacee reste due : elle revient au tour suivant.
+function melangerLaSuite(cartes){
+    if(!essaiActif("phrases") || !currentTheme || String(currentTheme.id).indexOf("seance_") !== 0) return cartes;
+    try{ return insererCartesPhrases(cartes, currentCardsFull); }catch(e){ return cartes; }
+}
+
 function insererCartesPhrases(seance, tout){
     const langue = LANGUE_APPRISE === "es" ? "es" : "de";
     const base = new Set(MOTS_DE_BASE_PHRASES[langue]);
@@ -44951,7 +44961,7 @@ function nextFlashcard(){
         // pas seulement dans les categories recentes.
         const revenues = cartesRevenues(currentCardsFull || []);
         if(revenues.length){
-            currentCards = revenues;
+            currentCards = melangerLaSuite(revenues);
             currentFlashcard = 0;
             loadFlashcard();
             return;
@@ -44963,7 +44973,7 @@ function nextFlashcard(){
         // pas su ; "Je savais" ou le bouton retour ferment la seance.
         const encore = cartesEncoreEnAttente(currentCardsFull || []);
         if(encore.length){
-            currentCards = encore;
+            currentCards = melangerLaSuite(encore);
             currentFlashcard = 0;
             loadFlashcard();
             return;

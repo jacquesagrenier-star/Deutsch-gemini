@@ -9082,3 +9082,6 @@ on voit ton niveau ? A1, A2, B1, B2, C1. Si je n'ai pas pris de cours, ca ne me 
   « Elementaire », « Intermediaire », « Avance », « Experimente ». 9 langues, allemand et espagnol.
 - v817 : Jacques choisit « Mots et grammaire » comme titre de la porte de la seance. Il s'affiche
   avec la seance melangee (l'essai, chez lui seul) ; sans l'essai, la porte garde « Les mots ».
+- v818 : Jacques, en A1 : « ca a fonctionne avec la variete au debut, mais apres, c'est juste des
+  mots avec des flashcards ». Les tours de retour de la seance (mots revenus apres une premiere
+  reussite ou un « Encore ») repartaient en cartes seules ; ils sont maintenant melanges aussi.
