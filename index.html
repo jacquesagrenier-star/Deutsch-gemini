@@ -6379,6 +6379,10 @@ body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-col
 .cp-oral button{border-radius:999px; padding:10px 16px; font-weight:700; border:1.5px solid #1C2430; background:#fff; color:#1C2430; cursor:pointer;}
 .cp-oral button.en-cours{background:#C0392B; border-color:#C0392B; color:#fff;}
 .cp-oral-note{color:#576177; font-size:13.5px; text-align:center; margin-top:8px;}
+/* v824 : le rond qui suit la voix pendant l'enregistrement. */
+.cp-onde-zone{display:flex; justify-content:center; align-items:center; height:86px; margin-top:6px;}
+.cp-onde{width:44px; height:44px; border-radius:50%; background:rgba(192,57,43,.85); box-shadow:0 0 0 0 rgba(192,57,43,.35); transition:transform .08s linear;}
+.cp-onde-zone.hidden{display:none;}
 /* « Reecouter » (v707) : l'emoji 🔊 sortait pale et flou sur iPhone -- « on
    ne le voit pas tres bien » (Jacques). Le haut-parleur des cartes, a l'encre,
    avec le mot : on voit ce que le bouton fait sans avoir a deviner. */
@@ -7479,7 +7483,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v823</span>
+    <span class="subtitle-version">v824</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10811,6 +10815,9 @@ const I18N = {
         cp_arreter: "Arrêter",
         cp_reecouter: "Me réécouter",
         cp_micro_refuse: "Le micro n'est pas disponible : écoute le modèle et répète-le pour toi.",
+        cp_micro_demande: "Ouverture du micro…",
+        cp_micro_muet: "Le micro ne répond pas. Vérifie que Wortando a le droit d'utiliser le micro (Réglages du téléphone), puis réessaie.",
+        cp_relecture_impossible: "Ton essai est enregistré, mais ce téléphone n'arrive pas à le relire.",
         seance_ton_niveau: "Ton niveau",
         niveau_clair_A1: "Débutant : les premiers mots et les phrases du quotidien",
         niveau_clair_A2: "Élémentaire : se débrouiller dans les situations simples",
@@ -12001,6 +12008,9 @@ const I18N = {
         cp_arreter: "Stop",
         cp_reecouter: "Play me back",
         cp_micro_refuse: "The microphone isn't available: listen to the model and repeat it to yourself.",
+        cp_micro_demande: "Opening the microphone…",
+        cp_micro_muet: "The microphone isn't responding. Check that Wortando is allowed to use the microphone (phone Settings), then try again.",
+        cp_relecture_impossible: "Your attempt is recorded, but this phone can't play it back.",
         seance_ton_niveau: "Your level",
         niveau_clair_A1: "Beginner: first words and everyday phrases",
         niveau_clair_A2: "Elementary: getting by in simple situations",
@@ -13193,6 +13203,9 @@ const I18N = {
         cp_arreter: "Durdur",
         cp_reecouter: "Kendimi dinle",
         cp_micro_refuse: "Mikrofon kullanılamıyor: örneği dinle ve kendi kendine tekrarla.",
+        cp_micro_demande: "Mikrofon açılıyor…",
+        cp_micro_muet: "Mikrofon yanıt vermiyor. Wortando'nun mikrofonu kullanma izni olduğunu kontrol et (telefon Ayarları), sonra tekrar dene.",
+        cp_relecture_impossible: "Denemen kaydedildi ama bu telefon onu oynatamıyor.",
         seance_ton_niveau: "Seviyen",
         niveau_clair_A1: "Başlangıç: ilk kelimeler ve günlük ifadeler",
         niveau_clair_A2: "Temel: basit durumlarda idare etmek",
@@ -14722,6 +14735,9 @@ const I18N = {
         cp_arreter: "Зупинити",
         cp_reecouter: "Прослухати себе",
         cp_micro_refuse: "Мікрофон недоступний: послухай зразок і повтори його для себе.",
+        cp_micro_demande: "Відкриваю мікрофон…",
+        cp_micro_muet: "Мікрофон не відповідає. Перевір, чи має Wortando дозвіл на мікрофон (Налаштування телефона), і спробуй ще раз.",
+        cp_relecture_impossible: "Твою спробу записано, але цей телефон не може її відтворити.",
         seance_ton_niveau: "Твій рівень",
         niveau_clair_A1: "Початковий: перші слова й повсякденні фрази",
         niveau_clair_A2: "Елементарний: давати раду в простих ситуаціях",
@@ -16614,6 +16630,9 @@ const I18N = {
         cp_arreter: "توقف",
         cp_reecouter: "دوباره گوش دادن به خودم",
         cp_micro_refuse: "میکروفون در دسترس نیست: نمونه را گوش کن و برای خودت تکرارش کن.",
+        cp_micro_demande: "در حال باز کردن میکروفون…",
+        cp_micro_muet: "میکروفون پاسخ نمی‌دهد. بررسی کن که Wortando اجازهٔ استفاده از میکروفون را دارد (تنظیمات گوشی)، سپس دوباره امتحان کن.",
+        cp_relecture_impossible: "تلاشت ضبط شد، اما این گوشی نمی‌تواند پخشش کند.",
         seance_ton_niveau: "سطح تو",
         niveau_clair_A1: "مبتدی: نخستین واژه‌ها و جمله‌های روزمره",
         niveau_clair_A2: "پایه: از پسِ موقعیت‌های ساده برآمدن",
@@ -17937,6 +17956,9 @@ const I18N = {
         cp_arreter: "إيقاف",
         cp_reecouter: "أستمع إلى نفسي",
         cp_micro_refuse: "الميكروفون غير متاح: استمع إلى النموذج وكرّره لنفسك.",
+        cp_micro_demande: "جارٍ فتح الميكروفون…",
+        cp_micro_muet: "الميكروفون لا يستجيب. تأكّد أنّ Wortando مسموح له باستخدام الميكروفون (إعدادات الهاتف)، ثم حاول مجددًا.",
+        cp_relecture_impossible: "سُجّلت محاولتك، لكن هذا الهاتف لا يستطيع تشغيلها.",
         seance_ton_niveau: "مستواك",
         niveau_clair_A1: "مبتدئ: الكلمات الأولى وعبارات الحياة اليومية",
         niveau_clair_A2: "أساسي: التدبّر في المواقف البسيطة",
@@ -18133,6 +18155,9 @@ const I18N = {
         cp_arreter: "Parar",
         cp_reecouter: "Ouvir minha voz",
         cp_micro_refuse: "O microfone não está disponível: ouça o modelo e repita para você.",
+        cp_micro_demande: "Abrindo o microfone…",
+        cp_micro_muet: "O microfone não está respondendo. Verifique se o Wortando pode usar o microfone (Ajustes do celular) e tente de novo.",
+        cp_relecture_impossible: "Sua tentativa foi gravada, mas este celular não consegue reproduzi-la.",
         seance_ton_niveau: "Seu nível",
         niveau_clair_A1: "Iniciante: as primeiras palavras e as frases do dia a dia",
         niveau_clair_A2: "Básico: se virar em situações simples",
@@ -19388,6 +19413,9 @@ const I18N = {
         cp_arreter: "Zatrzymaj",
         cp_reecouter: "Odsłuchaj mnie",
         cp_micro_refuse: "Mikrofon jest niedostępny: posłuchaj wzoru i powtórz go sobie.",
+        cp_micro_demande: "Otwieram mikrofon…",
+        cp_micro_muet: "Mikrofon nie odpowiada. Sprawdź, czy Wortando ma dostęp do mikrofonu (Ustawienia telefonu), i spróbuj ponownie.",
+        cp_relecture_impossible: "Twoja próba została nagrana, ale ten telefon nie może jej odtworzyć.",
         seance_ton_niveau: "Twój poziom",
         niveau_clair_A1: "Początkujący: pierwsze słowa i codzienne zwroty",
         niveau_clair_A2: "Podstawowy: radzić sobie w prostych sytuacjach",
@@ -20641,6 +20669,9 @@ const I18N = {
         cp_arreter: "Остановить",
         cp_reecouter: "Прослушать себя",
         cp_micro_refuse: "Микрофон недоступен: послушай образец и повтори его про себя.",
+        cp_micro_demande: "Открываю микрофон…",
+        cp_micro_muet: "Микрофон не отвечает. Проверь, что у Wortando есть доступ к микрофону (Настройки телефона), и попробуй снова.",
+        cp_relecture_impossible: "Твоя попытка записана, но этот телефон не может её воспроизвести.",
         seance_ton_niveau: "Твой уровень",
         niveau_clair_A1: "Начальный: первые слова и повседневные фразы",
         niveau_clair_A2: "Элементарный: справляться в простых ситуациях",
@@ -39048,7 +39079,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 823;
+const APP_VERSION = 824;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43233,6 +43264,7 @@ function direMotPhrase(item){
 let oralPhrase = null;
 function arreterOralPhrase(){
     if(!oralPhrase) return;
+    try{ if(oralPhrase.arreterOnde) oralPhrase.arreterOnde(); }catch(e){}
     try{ if(oralPhrase.rec && oralPhrase.rec.state !== "inactive") oralPhrase.rec.stop(); }catch(e){}
     try{ if(oralPhrase.flux) oralPhrase.flux.getTracks().forEach(p => p.stop()); }catch(e){}
     try{ if(oralPhrase.url) URL.revokeObjectURL(oralPhrase.url); }catch(e){}
@@ -43512,30 +43544,111 @@ function montrerCartePhrase(item){
         // messages, et une fois l'essai enregistre : le signe de reussite.
         const etatOral = creer("p", "cp-oral-note");
         const dire = cle => { etatOral.textContent = t(cle); etatOral.classList.remove("hidden"); };
+        // ⚠️ v824 : RIEN NE SE VOYAIT SUR L'IPHONE DE JACQUES, ET JE NE LE
+        // REPRODUIS PAS (mon navigateur d'essai bloque le micro). Donc : un
+        // message des le toucher, un delai de garde si le micro ne repond
+        // jamais, et CHAQUE ETAPE DANS LE JOURNAL AUDIO (source « ORAL ») -- il
+        // part tout seul avec un retour « Signaler un probleme », et
+        // tests/retours.js le lit. Le rond suit le volume de la voix : on voit
+        // que l'app entend.
+        const onde = creer("div", "cp-onde-zone hidden");
+        const rond = creer("div", "cp-onde");
+        onde.appendChild(rond);
+        const journal = (etape, detail) => { try{ noterAudio(etape, "ORAL", detail || ""); }catch(e){} };
+        let anime = null;
+        const arreterOnde = () => {
+            if(anime){ try{ cancelAnimationFrame(anime.raf); }catch(e){} try{ anime.ctx.close(); }catch(e){} anime = null; }
+            rond.style.transform = "scale(1)";
+            onde.classList.add("hidden");
+        };
+        const suivreVoix = flux => {
+            try{
+                const Ctx = window.AudioContext || window.webkitAudioContext;
+                if(!Ctx) return;
+                const ctx = new Ctx();
+                if(ctx.resume) ctx.resume().catch(() => {});
+                const analyse = ctx.createAnalyser();
+                analyse.fftSize = 512;
+                ctx.createMediaStreamSource(flux).connect(analyse);
+                const buf = new Uint8Array(analyse.fftSize);
+                let pic = 0;
+                const tour = () => {
+                    analyse.getByteTimeDomainData(buf);
+                    let s = 0;
+                    for(let k = 0; k < buf.length; k++){ const v = (buf[k] - 128) / 128; s += v * v; }
+                    const rms = Math.sqrt(s / buf.length);
+                    if(rms > pic) pic = rms;
+                    rond.style.transform = "scale(" + (1 + Math.min(1.2, rms * 7)).toFixed(2) + ")";
+                    anime.raf = requestAnimationFrame(tour);
+                };
+                anime = { ctx: ctx, raf: 0, pic: () => pic };
+                onde.classList.remove("hidden");
+                anime.raf = requestAnimationFrame(tour);
+            }catch(e){ journal("onde", "indisponible : " + (e && e.name)); }
+        };
         enreg.addEventListener("click", async () => {
             if(oralPhrase && oralPhrase.rec && oralPhrase.rec.state === "recording"){
-                try{ oralPhrase.rec.stop(); }catch(e){}
+                journal("arret", "demande par l'usager");
+                try{ oralPhrase.rec.stop(); }catch(e){ journal("arret", "erreur " + (e && e.name)); }
                 return;
             }
+            let natif = false, installee = false;
+            try{ natif = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()); }catch(e){}
+            try{ installee = !!(navigator.standalone || (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches)); }catch(e){}
+            const formats = ["audio/mp4", "audio/webm", "audio/aac"].filter(f => { try{ return typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(f); }catch(e){ return false; } });
+            journal("toucher", "v" + APP_VERSION + (natif ? " app native" : installee ? " app ecran d'accueil" : " navigateur")
+                + ", getUserMedia " + !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
+                + ", MediaRecorder " + (typeof MediaRecorder !== "undefined") + ", formats " + (formats.join(" ") || "aucun"));
             if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined"){
                 dire("parler_sans_micro");
                 return;
             }
+            dire("cp_micro_demande");
+            const debut = Date.now();
+            let fini = false;
+            const garde = setTimeout(() => {
+                if(fini) return;
+                fini = true;
+                journal("micro", "aucune reponse apres " + (Date.now() - debut) + " ms");
+                dire("cp_micro_muet");
+            }, 8000);
             let flux = null;
             try{ flux = await navigator.mediaDevices.getUserMedia({ audio: true }); }
-            catch(e){ dire("parler_micro_refuse"); return; }
+            catch(e){
+                clearTimeout(garde);
+                if(fini) return;
+                fini = true;
+                journal("micro", "refuse : " + (e && e.name) + " " + String(e && e.message || "").slice(0, 60));
+                dire("parler_micro_refuse");
+                return;
+            }
+            clearTimeout(garde);
+            if(fini){ try{ flux.getTracks().forEach(x => x.stop()); }catch(e){} journal("micro", "repond trop tard"); return; }
+            fini = true;
+            journal("micro", "ouvert en " + (Date.now() - debut) + " ms, pistes " + flux.getAudioTracks().length);
             let rec = null;
             try{ rec = new MediaRecorder(flux); }
-            catch(e){ try{ flux.getTracks().forEach(x => x.stop()); }catch(e2){} dire("parler_sans_micro"); return; }
+            catch(e){
+                try{ flux.getTracks().forEach(x => x.stop()); }catch(e2){}
+                journal("enregistreur", "refuse : " + (e && e.name));
+                dire("parler_sans_micro");
+                return;
+            }
             arreterOralPhrase();
             const morceaux = [];
-            oralPhrase = { rec: rec, flux: flux, url: null };
+            oralPhrase = { rec: rec, flux: flux, url: null, arreterOnde: arreterOnde };
             relire.classList.add("hidden");
             rec.ondataavailable = e => { if(e.data && e.data.size) morceaux.push(e.data); };
+            rec.onerror = e => journal("enregistreur", "erreur " + (e && e.error && e.error.name));
             rec.onstop = () => {
+                const pic = anime ? anime.pic() : 0;
+                arreterOnde();
                 try{ flux.getTracks().forEach(x => x.stop()); }catch(e){}
                 enreg.classList.remove("en-cours");
                 enreg.textContent = "🎙 " + t("cp_enregistrer");
+                const octets = morceaux.reduce((a, b) => a + (b.size || 0), 0);
+                journal("fin", morceaux.length + " morceau(x), " + octets + " octets, type " + ((morceaux[0] && morceaux[0].type) || rec.mimeType || "?")
+                    + ", volume max " + pic.toFixed(3));
                 if(!oralPhrase || oralPhrase.rec !== rec) return;
                 if(!morceaux.length){ dire("parler_rien_entendu"); return; }
                 oralPhrase.url = URL.createObjectURL(new Blob(morceaux, { type: morceaux[0].type || rec.mimeType || "audio/mp4" }));
@@ -43544,7 +43657,10 @@ function montrerCartePhrase(item){
                 etatOral.classList.remove("hidden");
                 try{ launchConfetti(); }catch(e){}
             };
-            rec.start();
+            try{ rec.start(); }
+            catch(e){ journal("enregistreur", "start refuse : " + (e && e.name)); dire("parler_sans_micro"); return; }
+            journal("debut", "etat " + rec.state + ", type " + (rec.mimeType || "?"));
+            suivreVoix(flux);
             enreg.classList.add("en-cours");
             enreg.textContent = "⏹ " + t("cp_arreter");
             dire("parler_en_cours");
@@ -43553,15 +43669,17 @@ function montrerCartePhrase(item){
         relire.addEventListener("click", () => {
             if(!oralPhrase || !oralPhrase.url) return;
             try{ arreterAudioPregenere(); }catch(e){}
-            if(!lecteurOral){ lecteurOral = new Audio(); lecteurOral.preload = "none"; }
+            if(!lecteurOral){ lecteurOral = new Audio(); lecteurOral.preload = "auto"; }
             lecteurOral.src = oralPhrase.url;
+            lecteurOral.onerror = () => { journal("relecture", "erreur du lecteur " + (lecteurOral.error && lecteurOral.error.code)); dire("cp_relecture_impossible"); };
             const p = lecteurOral.play();
-            if(p && p.catch) p.catch(() => {});
+            if(p && p.then) p.then(() => journal("relecture", "lancee")).catch(e => { journal("relecture", "refusee : " + (e && e.name)); dire("cp_relecture_impossible"); });
         });
         oral.appendChild(modele);
         oral.appendChild(enreg);
         oral.appendChild(relire);
         el.appendChild(oral);
+        el.appendChild(onde);
         etatOral.classList.add("hidden");
         el.appendChild(etatOral);
         suite.classList.remove("hidden");

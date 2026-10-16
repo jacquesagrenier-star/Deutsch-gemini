@@ -9107,3 +9107,16 @@ on voit ton niveau ? A1, A2, B1, B2, C1. Si je n'ai pas pris de cours, ca ne me 
 - v823 : EN PRODUCTION POUR TOUS. Jacques : « publie tout, une fois pour l'ensemble des testeurs ;
   je vais la reverifier demain, on fera des petites modifications si necessaire ». La seance
   melangee (v810-v822) n'est plus un essai : tous les comptes, allemand et espagnol, 9 langues.
+
+## 16 octobre 2026 -- l'oral de la seance sur iPhone (v824)
+
+Jacques : « lorsque c'est enregistre la voix, ca fonctionne pas, il n'y a rien qui se passe ; il
+faudrait un petit rond ou on voit le sillage de la voix, puis pouvoir reecouter, ou que l'app
+mesure si la prononciation est assez bonne ».
+- Non reproductible ici (mon navigateur d'essai bloque le micro) : l'oral est INSTRUMENTE. Chaque
+  etape (toucher, ouverture du micro, debut, fin, relecture) s'ecrit dans le journal audio, qui part
+  tout seul avec un retour « Signaler un probleme ».
+- Un message des le toucher (« Ouverture du micro... »), un delai de garde de 8 s si le micro ne
+  repond jamais, un message si la relecture echoue.
+- Un rond rouge qui grossit avec le volume de la voix pendant l'enregistrement.
+- La mesure de la prononciation (le juge « bienveillant ») reste a faire, apres ce diagnostic.
