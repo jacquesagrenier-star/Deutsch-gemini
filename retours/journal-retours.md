@@ -9220,3 +9220,8 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   fin de la scene de voyage n'a plus qu'un bouton « Continuer » (le jour suivant) ; en Premiers pas
   aussi, une seule porte ; l'arret et la fin d'un jour ouvrent la scene directement (plus de carte
   Entrer / Passer, Entrer / Plus tard).
+- v833 : « est-ce realiste de dire cinq jours pour te debrouiller en voyage ? ca depend de la vitesse
+  de la personne » ; puis « on peut recommencer aussi, pour pratiquer avant le depart ». Des
+  ETAPES au lieu de jours (« Etape 2 sur 5 ») ; textes qui promettent moins (« les phrases
+  essentielles pour voyager » ; a la fin, « Tu as les phrases de base pour... ») dans les 9 langues.
+  Le bouton 🌱 reste une fois le parcours fini, et le toucher recommence a l'etape 1.
