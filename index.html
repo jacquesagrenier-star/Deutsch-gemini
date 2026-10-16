@@ -7523,7 +7523,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v831</span>
+    <span class="subtitle-version">v832</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39395,7 +39395,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 831;
+const APP_VERSION = 832;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42901,9 +42901,14 @@ function majPortesSeance(){
     let arret = false;
     try{ arret = arretSceneActif(); }catch(e){}
     try{ majAujourdhuiScene(arret && actif); }catch(e){}
-    if(porte.parentElement) porte.parentElement.classList.toggle("porte-unique", arret && actif);
-    porte.classList.toggle("hidden", !actif || arret);
-    if(!actif || arret) return;
+    // v832 : en Premiers pas aussi, une seule porte -- chaque jour de voyage
+    // finit deja par sa scene (Jacques : « la seance a encore les deux portes »).
+    let pp = false;
+    try{ pp = essaiActif("scene_arret") && premiersPasEnCours(); }catch(e){}
+    const unique = actif && (arret || pp);
+    if(porte.parentElement) porte.parentElement.classList.toggle("porte-unique", unique);
+    porte.classList.toggle("hidden", !actif || unique);
+    if(!actif || unique) return;
     const s = sceneDuJour();
     porte.style.backgroundImage = "linear-gradient(90deg, rgba(28,36,48,.96) 0%, rgba(28,36,48,.82) 55%, rgba(28,36,48,.45) 100%), url(\"" + vignetteScene(s.nom) + "\")";
     const nb = document.getElementById("seanceSceneNb");
@@ -43837,30 +43842,11 @@ function montrerCartePhrase(item){
     };
 
     if(item.forme === "scene_arret"){
-        // L'arret dans la scene du jour : l'image, ce qu'on va y faire, Entrer.
-        const s = item.scene;
-        const image = creer("div", "cp-scene-pp");
-        image.style.backgroundImage = "url(\"" + vignetteScene(s.nom) + "\")";
-        el.appendChild(image);
-        el.appendChild(creer("span", "cp-arret-badge", "🎯 " + t("arret_badge")));
-        el.appendChild(creer("h2", "cp-scene-titre", tf("arret_titre", { lieu: titreCourtScene(s) })));
-        if(item.mots && item.mots.length){
-            el.appendChild(creer("p", "cp-sens", t("arret_texte_a1")));
-            const mots = creer("div", "cp-arret-mots");
-            item.mots.slice(0, 6).forEach(m => {
-                const x = creer("span", "", m[1]);
-                x.setAttribute("lang", langueDe);
-                mots.appendChild(x);
-            });
-            el.appendChild(mots);
-        } else el.appendChild(creer("p", "cp-sens", t("arret_texte")));
-        fait.repondu = true;
-        const entrer = creer("button", "primary", t("arret_entrer") + " ›");
-        entrer.type = "button";
-        entrer.addEventListener("click", () => ouvrirArretScene(item));
-        actions.appendChild(entrer);
-        suite.textContent = t("arret_passer");
-        suite.className = "secondary";
+        // v832 : l'arret ouvre la scene DIRECTEMENT, sans carte « Entrer /
+        // Passer » (Jacques : « je ne donnerai pas le choix »). La scene rend la
+        // main a la carte suivante (revenirDeLArret).
+        ouvrirArretScene(item);
+        return;
     } else if(item.forme === "pp_tableau"){
         // Le tableau du jour : chaque ligne se touche et se prononce. Rien a
         // juger : il familiarise, les flashcards font retenir.
@@ -43901,30 +43887,13 @@ function montrerCartePhrase(item){
         }, { once: true, capture: true });
         try{ celebrateMastery(0, false); }catch(e){}
     } else if(item.forme === "pp_scene"){
-        // La scene qui correspond a la situation du jour. Le jour est fait,
-        // qu'on y entre ou non.
-        const nom = item.scene;
-        const image = creer("div", "cp-scene-pp");
-        image.style.backgroundImage = "url(\"" + vignetteScene(nom) + "\")";
-        el.appendChild(image);
-        el.appendChild(creer("span", "cp-jour-reussi", "🎉 " + tf("pp_jour_reussi", { n: (item.jourPP || 0) + 1 })));
-        el.appendChild(creer("h2", "cp-scene-titre", t("pp_scene_titre") + " : " + t("seance_scene_" + nom)));
-        el.appendChild(creer("p", "cp-sens", t("pp_scene_texte")));
-        fait.repondu = true;
-        const entrer = creer("button", "primary", t("pp_scene_bouton") + " ›");
-        entrer.type = "button";
-        entrer.addEventListener("click", () => {
-            marquerJourPremiersPas(item.jourPP || 0);
-            try{ recordDailyActivity(); }catch(e){}
-            try{ finSeanceSuivie(true); }catch(e){}
-            cacherCartePhrase();
-            ouvrirScenePremiersPas(nom, (item.jourPP || 0) >= joursPremiersPas().length - 1);
-        });
-        actions.appendChild(entrer);
-        suite.textContent = t("pp_plus_tard");
-        suite.className = "secondary";
-        suite.addEventListener("click", () => marquerJourPremiersPas(item.jourPP || 0), { once: true, capture: true });
-        try{ celebrateMastery(0, false); }catch(e){}
+        // La scene du jour de voyage, DIRECTEMENT (v832). Le jour est fait.
+        marquerJourPremiersPas(item.jourPP || 0);
+        try{ recordDailyActivity(); }catch(e){}
+        try{ finSeanceSuivie(true); }catch(e){}
+        cacherCartePhrase();
+        ouvrirScenePremiersPas(item.scene, (item.jourPP || 0) >= joursPremiersPas().length - 1);
+        return;
     } else if(item.forme === "ecoute"){
         el.appendChild(rangeeEcoute);
         const choix = creer("div", "cp-choix");

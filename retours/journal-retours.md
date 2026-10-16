@@ -9213,3 +9213,10 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   la seance, une carte « Arret dans la scene » (trois mots deja vus, tires au hasard, annonces et
   seuls demandes ; au-dessus du A1, les questions du niveau), Entrer ou Passer ; a la fin de la
   scene, retour a la carte suivante. Pas d'arret si moins de trois mots A1 de la scene ont ete vus.
+- v832 : « dans la scene, seulement Trouve ; que la premiere question se fasse automatiquement ;
+  pas de Jour suivant, tout simplement Continuer » ; « la seance du jour a encore les deux portes »
+  (il etait en Premiers pas) ; « je ne donnerai pas le choix de rentrer dans la scene ou pas ».
+  Depuis Premiers pas et depuis l'arret de la seance : Trouve ! d'emblee, sans boutons de mode ; la
+  fin de la scene de voyage n'a plus qu'un bouton « Continuer » (le jour suivant) ; en Premiers pas
+  aussi, une seule porte ; l'arret et la fin d'un jour ouvrent la scene directement (plus de carte
+  Entrer / Passer, Entrer / Plus tard).

@@ -190,7 +190,6 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .en-cadre .choix{padding:8px 10px;font-size:14px}
 .en-cadre .explication{padding:8px 10px;font-size:13.5px}
 .en-cadre .suite{padding:9px}
-.suite.pp-accueil{background:transparent;border:1.5px solid currentColor;margin-top:8px}
 .pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
 
 /* DE DROITE A GAUCHE (fa, ar ; 10 oct. 2026). Comme l'app : dir="rtl" sur
@@ -371,8 +370,6 @@ const TEXTES = {
   termine:     {fr: "terminé", en: "finished", tr: "bitti", uk: "завершено", fa: "تمام شد", ar: "انتهى", pt: "concluído", pl: "zakończone", ru: "пройдено"},
   versCartes:  {fr: "Continuer avec mes cartes →", en: "Continue with my cards →", tr: "Kartlarımla devam et →", uk: "Продовжити з картками →", fa: "ادامه با کارت‌هایم ←", ar: "تابع مع بطاقاتي ←", pt: "Continuar com os meus cartões →", pl: "Dalej z moimi kartami →", ru: "Продолжить с моими карточками →"},
   suite:       {fr: "Continuer", en: "Continue", tr: "Devam", uk: "Далі", fa: "ادامه", ar: "متابعة", pt: "Continuar", pl: "Dalej", ru: "Дальше"},
-  jourSuivant: {fr: "Jour suivant →", en: "Next day →", tr: "Sonraki gün →", uk: "Наступний день →", fa: "روز بعد ←", ar: "اليوم التالي ←", pt: "Próximo dia →", pl: "Następny dzień →", ru: "Следующий день →"},
-  accueil:     {fr: "Retour à l'accueil", en: "Back to home", tr: "Ana sayfaya dön", uk: "На головну", fa: "بازگشت به صفحهٔ اصلی", ar: "العودة إلى الرئيسية", pt: "Voltar ao início", pl: "Wróć do strony głównej", ru: "На главную"},
   encore:      {fr: "Encore une fois", en: "Once more", tr: "Bir kez daha", uk: "Ще раз", fa: "یک بار دیگر", ar: "مرة أخرى", pt: "Mais uma vez", pl: "Jeszcze raz", ru: "Ещё раз"},
   revenir:     {fr: "✕ Revenir à la scène", en: "✕ Back to the scene", tr: "✕ Sahneye dön", uk: "✕ Повернутися до сцени", fa: "✕ بازگشت به صحنه", ar: "✕ العودة إلى المشهد", pt: "✕ Voltar à cena", pl: "✕ Wróć do sceny", ru: "✕ Вернуться к сцене"},
   retourAria:  {fr: "Retour au choix de la séance", en: "Back to the session choice", tr: "Çalışma seçimine dön", uk: "Повернутися до вибору сеансу", fa: "بازگشت به انتخاب جلسه", ar: "العودة إلى اختيار الجلسة", pt: "Voltar à escolha da sessão", pl: "Wróć do wyboru sesji", ru: "Вернуться к выбору занятия"},
@@ -1000,7 +997,7 @@ const NB_SEANCE = Math.max(1, Math.min(30, parseInt(PARAMS.get("nb"), 10) || 3))
 /* v830 : ouverte depuis « Premiers pas » (?pp=1). Decouvrir et Trouver restent
    au choix, mais Trouver s'arrete apres 5 objets du niveau A1, et la fin rend la
    main a l'app au lieu de proposer « Encore » a l'infini : le jour suivant tout
-   de suite, ou l'accueil (Jacques : « la personne a pu vouloir continuer »). */
+   de suite (un seul bouton « Continuer », v832), ou ‹ Retour quand on veut. */
 const PP = PARAMS.get("pp") === "1";
 /* v831 : l'arret dans la seance (essai) -- l'app donne les mots de la scene deja
    vus dans les cartes (?mots=a|b|c) : Trouve ! ne demande qu'eux. Pas de
@@ -1049,7 +1046,7 @@ if (window.parent !== window){
 
 /* ---------- etat ---------- */
 let niveau = (EN_SEANCE && COUCHES[PARAMS.get("niveau")]) ? PARAMS.get("niveau") : "A1";
-let modeA1 = EN_SEANCE ? "trouver" : "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
+let modeA1 = (EN_SEANCE || PP) ? "trouver" : "decouvrir", i = 0, bons = 0, faits = 0, attenteToucher = null, verrou = false;
 /* Une etape « Trouve ! » glissee dans une suite de questions A2 (la seance) :
    le niveau reste A2, mais on attend un toucher. */
 let etapeTrouve = false;
@@ -1179,7 +1176,7 @@ function trouver(){
   const chez = proprietaire(p.mot);
   $("bas").classList.remove("en-haut");
   entete("A1 · " + T("trouve") + "  " + compte(i+1, fileTrouver.length),
-         `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, true);
+         `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, !EN_SEANCE && !PP);
   $("reecouter").addEventListener("click", () => dire(p.genre + " " + p.mot));
   $("bas").innerHTML = `<div class="score">${compte(bons, faits)}</div>`;
   dire(p.genre + " " + p.mot);
@@ -1338,10 +1335,11 @@ function fin(){
   }
   if (PP){
     entete(T("sceneFinie"), bilan(), false);
-    $("bas").innerHTML = (PP_DERNIER ? "" : `<button class="suite" id="jourSuivant">${T("jourSuivant")}</button>`)
-                       + `<button class="suite pp-accueil" id="versAccueil">${T("accueil")}</button>`;
-    if (!PP_DERNIER) $("jourSuivant").addEventListener("click", () => envoyer("fini", {bons, faits, suite: true}));
-    $("versAccueil").addEventListener("click", () => envoyer("fini", {bons, faits}));
+    // v832 : un seul bouton (Jacques : « tout simplement Continuer ; on peut le
+    // faire aussi longtemps qu'on veut ») -- il mene au jour suivant ; apres le
+    // dernier jour, a l'accueil. On s'arrete quand on veut avec ‹ Retour.
+    $("bas").innerHTML = `<button class="suite" id="encore">${T("suite")}</button>`;
+    $("encore").addEventListener("click", () => envoyer("fini", {bons, faits, suite: !PP_DERNIER}));
     return;
   }
   entete(niveau + " · " + T("termine"), bilan(), niveau === "A1");
