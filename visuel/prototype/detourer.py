@@ -32,6 +32,20 @@ QUAND LA BOITE NE SUFFIT PAS : DES POINTS (16 oct. 2026)
     masques-<scene>.js existant (un passage complet sur processeur prend de
     longues minutes, un reglage de points se refait dix fois).
 
+UN OBJET EN PLUSIEURS MORCEAUX : « sam » en LISTE de boites (16 oct. 2026)
+    Le pull de Mark a la pharmacie n'est visible qu'en deux endroits, la
+    capuche et une bande sur le ventre ; les deux paires de chaussures de la
+    salle de musique sont a un metre l'une de l'autre ; l'impermeable d'Anna
+    au supermarche est coupe en deux par son pull. La boite ENGLOBANTE de ces
+    morceaux couvre surtout ce qu'il y a entre eux (la veste, le pied du
+    lutrin, le pull), et SAM rend ca. Quand « sam » est une liste de boites
+        "sam": [[59, 38.5, 5, 4.5], [51.5, 49.5, 3.5, 10.5]]
+    la zone est detouree boite par boite et les masques sont reunis. Les
+    « points_sam » restent permis : chaque boite ne recoit que les points qui
+    tombent dedans. Les « boites » de la zone ne bougent pas : construire.py
+    les recopie dans scene-<nom>.js (la place de l'etiquette), « sam » ne
+    sert qu'ici.
+
 LES PARTIES DU CORPS NE PASSENT PAS PAR SAM
     SAM detoure un OBJET : demande-lui un genou, il rend la jambe, ou le
     pantalon. Une zone qui porte « ellipses » ([cx, cy, rx, ry] en % de
@@ -321,9 +335,29 @@ def main():
                 traces[z["id"]] = existant["traces"].get(z["id"], [])
                 petits.append(derle(sortie[z["id"]], w, h))
                 continue
-        x, y, bw, bh = z.get("sam") or englobe(boites_de(z))
+        sam_b = z.get("sam")
+        separe = bool(sam_b) and isinstance(sam_b[0], (list, tuple))
+        x, y, bw, bh = englobe(sam_b) if separe else (sam_b or englobe(boites_de(z)))
         b = [W * x / 100, H * y / 100, W * (x + bw) / 100, H * (y + bh) / 100]
-        if z.get("plein"):
+        if separe:
+            # Boite par boite, masques reunis (docstring du module).
+            m = np.zeros((H, W), bool)
+            for bx, by, bbw, bbh in sam_b:
+                bb = [W * bx / 100, H * by / 100, W * (bx + bbw) / 100, H * (by + bbh) / 100]
+                dedans = [p for p in z.get("points_sam") or []
+                          if bx <= p[0] <= bx + bbw and by <= p[1] <= by + bbh]
+                if dedans:
+                    mi, bilan = choisir(sam, image, bb, dedans, W, H, noyau, cv2, np)
+                    if mi is None:
+                        sys.exit("  SAM ne propose aucun masque pour %s (boite %s)" % (z["id"], [bx, by, bbw, bbh]))
+                    print("  %-13s boite %-22s %s" % (z["id"], [bx, by, bbw, bbh], bilan))
+                else:
+                    res = modele(image, bboxes=[bb], verbose=False)[0]
+                    if res.masks is None or len(res.masks.data) == 0:
+                        sys.exit("  SAM ne rend aucun masque pour %s (boite %s)" % (z["id"], [bx, by, bbw, bbh]))
+                    mi = res.masks.data[0].cpu().numpy().astype(bool)
+                m |= mi
+        elif z.get("plein"):
             # UNE CAGETTE DU MARCHE (9 oct. 2026) : la zone EST le rectangle.
             # SAM rendait le tas de fruits ou le bois, jamais les deux ; une
             # cagette vue de face est deja un rectangle, on le prend tel quel.
@@ -392,7 +426,7 @@ def main():
         petit = np.array(Image.fromarray(m8).resize((w, h), Image.BILINEAR)) > 127
         petits.append(petit)
         couverture = petit.mean() * 100
-        boite = z.get("sam") or englobe(boites_de(z))
+        boite = [x, y, bw, bh]
         part = couverture / (boite[2] * boite[3] / 100) * 100 if boite[2] * boite[3] else 0
         print("  %-13s %5.2f %% de l'image, %3.0f %% de sa boite" % (z["id"], couverture, part))
         sortie[z["id"]] = rle(petit.ravel().tolist())
