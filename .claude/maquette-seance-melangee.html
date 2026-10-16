@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Séance mélangée — maquette</title>
+<style>
+  :root{ --encre:#1C2430; --ambre:#E8A23A; --papier:#F6F2EA; --gris:#576177;
+         --c-carte:#cfc6b6; --c-ecoute:#5B8DEF; --c-trou:#E8A23A; --c-ordre:#9B6BD6; --c-gram:#2E8B57; --c-dictee:#D9534F; --c-parler:#17A2B8; }
+  *{box-sizing:border-box}
+  body{margin:0; background:#E9E4DA; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--encre);}
+  .page{max-width:1120px; margin:0 auto; padding:20px 20px 40px;}
+  h1{font-size:22px; margin:0 0 6px;}
+  .intro{color:var(--gris); line-height:1.5; font-size:14.5px; margin:0 0 18px; max-width:900px;}
+  .legende{display:flex; flex-wrap:wrap; gap:10px 18px; background:#fff; border-radius:14px; padding:12px 16px; margin-bottom:18px; font-size:13.5px;}
+  .legende span{display:flex; align-items:center; gap:6px;}
+  .legende i{width:16px; height:16px; border-radius:4px; display:inline-block;}
+  .jour{background:#fff; border-radius:16px; padding:16px 18px; margin-bottom:16px;}
+  .jour h2{font-size:17px; margin:0 0 2px;}
+  .jour .qui{color:var(--gris); font-size:13.5px; margin:0 0 10px;}
+  .bande{display:grid; grid-template-columns:repeat(30, 1fr); gap:3px; margin:6px 0 10px;}
+  .bande i{height:30px; border-radius:5px; display:block;}
+  .compte{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:13.5px;}
+  .compte b{font-weight:800;}
+  .neuf{margin-top:10px; font-size:13.5px; line-height:1.5; background:rgba(232,162,58,.10); border-radius:10px; padding:8px 12px;}
+  .exemples{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:14px; margin:6px 0 18px;}
+  .ex{background:var(--papier); border-radius:16px; padding:14px; border:1px solid #e5dccb;}
+  .ex .t{font-size:12px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px;}
+  .ex .q{font-size:17px; font-weight:700; line-height:1.4;}
+  .ex .s{font-size:13px; color:var(--gris); margin-top:4px;}
+  .ex .o{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
+  .ex .o span{background:#fff; border:1.5px solid #e2d6c0; border-radius:9px; padding:6px 10px; font-size:14px;}
+  .regles{background:#fff; border-radius:16px; padding:14px 18px; font-size:14px; line-height:1.55;}
+  .regles h2{font-size:17px; margin:0 0 6px;}
+  .regles ol{margin:4px 0 0 18px; padding:0;}
+  table{border-collapse:collapse; width:100%; font-size:13.5px; margin-top:8px;}
+  th, td{text-align:left; padding:6px 8px; border-bottom:1px solid #eee5d6; vertical-align:top;}
+  th{font-size:12px; text-transform:uppercase; letter-spacing:.05em; color:var(--gris);}
+  .note{font-size:12.5px; color:var(--gris); margin-top:6px;}
+  @media (max-width:640px){ .bande{grid-template-columns:repeat(15, 1fr);} }
+</style>
+</head>
+<body>
+<div class="page">
+<h1>La séance du jour, mélangée et progressive — maquette</h1>
+<p class="intro">Une séance garde sa longueur (ici 30 éléments). Ce qui change, c'est ce qu'on y fait : au début presque que des cartes et de l'écoute, puis la grammaire, la construction de phrases, la dictée et l'oral entrent peu à peu, chacun <b>à la place d'une carte</b>. Tout réutilise ce que l'app contient déjà : 7 700 mots, les phrases d'exemple, 2 317 questions de grammaire, la dictée, le mode « Parler ». Chaque exercice compte comme une révision des mots qu'il fait travailler. Les mots seuls restent toujours accessibles à part, par les thèmes.</p>
+
+<div class="legende">
+  <span><i style="background:var(--c-carte)"></i>Carte de mot</span>
+  <span><i style="background:var(--c-ecoute)"></i>Phrase à écouter</span>
+  <span><i style="background:var(--c-trou)"></i>Phrase à trou</span>
+  <span><i style="background:var(--c-ordre)"></i>Phrase à remettre dans l'ordre</span>
+  <span><i style="background:var(--c-gram)"></i>Question de grammaire</span>
+  <span><i style="background:var(--c-dictee)"></i>Dictée</span>
+  <span><i style="background:var(--c-parler)"></i>Répéter à voix haute</span>
+</div>
+
+<div class="jour">
+  <h2>Jour 1 — débutant complet</h2>
+  <p class="qui">0 mot vu. La séance installe l'habitude : des mots, et des phrases qu'on comprend déjà presque toutes.</p>
+  <div class="bande" data-seq="CCCCECCCCTCCCCECCCCTCCCCECCCCE"></div>
+  <div class="compte"><span><b>24</b> cartes</span><span><b>4</b> phrases à écouter</span><span><b>2</b> phrases à trou</span></div>
+  <div class="neuf">Les phrases n'utilisent que des petits mots de base et le socle : « Ich habe heute keine Zeit. », « Das ist mein Vater. ». Le trou porte sur un nom vu quelques cartes plus tôt, et son article le trahit.</div>
+</div>
+
+<div class="jour">
+  <h2>Semaine 2 — environ 150 mots vus</h2>
+  <p class="qui">Les deux premières séries de grammaire sont ouvertes : der / ein et le verbe en 2ᵉ place. La construction de phrases arrive.</p>
+  <div class="bande" data-seq="CCCECCGCTCCOCCGCCECTCCDCOCGCCE"></div>
+  <div class="compte"><span><b>19</b> cartes</span><span><b>3</b> à écouter</span><span><b>2</b> à trou</span><span><b>2</b> à remettre dans l'ordre</span><span><b>3</b> questions de grammaire</span><span><b>1</b> dictée d'un mot</span></div>
+  <div class="neuf">Nouveau : <b>la grammaire</b> (une question à la fois, expliquée, tirée de la série en cours) et <b>la dictée</b> d'un mot déjà vu. Une série s'ouvre quand ses mots ont été vus ; la suivante, quand celle-ci a été réussie deux séances sans faute.</div>
+</div>
+
+<div class="jour">
+  <h2>Mois 2 — environ 600 mots, l'A1 presque fini</h2>
+  <p class="qui">Perfekt, Wo / Wohin, weil : la grammaire prend plus de place, l'oral entre.</p>
+  <div class="bande" data-seq="CCGCECOCGTCCDCPCGCOCCECGTCDCPC"></div>
+  <div class="compte"><span><b>16</b> cartes</span><span><b>2</b> à écouter</span><span><b>2</b> à trou</span><span><b>2</b> à remettre dans l'ordre</span><span><b>4</b> questions de grammaire</span><span><b>2</b> dictées de phrase</span><span><b>2</b> à répéter</span></div>
+  <div class="neuf">Nouveau : <b>la dictée d'une phrase</b> entière et <b>répéter à voix haute</b>. On écoute le modèle, on s'enregistre, on se réécoute, sans note (le choix actuel du mode « Parler »). Un juge automatique bienveillant pourra s'y ajouter plus tard, en essai à part.</div>
+</div>
+
+<div class="exemples">
+  <div class="ex"><div class="t" style="color:var(--c-gram)">Question de grammaire</div>
+    <div class="q">Ich lege das Buch auf ___ Tisch.</div>
+    <div class="o"><span>den</span><span>dem</span><span>der</span></div>
+    <div class="s">Wohin ? → Akkusativ : <b>den</b> Tisch. (série Wo / Wohin, déjà écrite et expliquée)</div></div>
+  <div class="ex"><div class="t" style="color:var(--c-dictee)">Dictée</div>
+    <div class="q">🔊 &nbsp;Écris ce que tu entends</div>
+    <div class="o"><span style="min-width:180px">Der Bus kommt …</span></div>
+    <div class="s">Une phrase connue, lue par la voix ; les erreurs sont soulignées lettre par lettre.</div></div>
+  <div class="ex"><div class="t" style="color:var(--c-parler)">Répéter à voix haute</div>
+    <div class="q">Ich habe heute keine Zeit.</div>
+    <div class="o"><span>🔊 Modèle</span><span>🎙 M'enregistrer</span><span>▶ Me réécouter</span></div>
+    <div class="s">Rien ne sort du téléphone.</div></div>
+</div>
+
+<div class="regles">
+  <h2>Les règles de la progression (proposition, à valider)</h2>
+  <ol>
+    <li><b>Toujours la même longueur</b> : un exercice remplace une carte, il ne s'ajoute pas.</li>
+    <li><b>Jamais de mur</b> : une phrase n'utilise que des mots vus ou de base (un seul inconnu au plus) ; une série de grammaire ne s'ouvre que quand ses mots ont été vus.</li>
+    <li><b>Une marche à la fois</b> : écouter → compléter → remettre dans l'ordre → dictée → répéter. Chaque forme apparaît après la précédente.</li>
+    <li><b>La grammaire suit un ordre de cours</b>, une série à la fois, ouverte quand la précédente est réussie deux séances sans faute.</li>
+    <li><b>Une erreur fait revenir</b> les mots en cause plus tôt, comme « Encore ».</li>
+    <li><b>La liberté reste</b> : mots seuls, thèmes, séries d'exercices, scènes, tout reste ouvert à part.</li>
+  </ol>
+  <table>
+    <tr><th>Niveau</th><th>Séries de grammaire, dans l'ordre proposé (déjà dans l'app)</th></tr>
+    <tr><td>A1</td><td>der / ein · mein / dein · verbe en 2ᵉ place · les questions · nicht · Wo / Wohin</td></tr>
+    <tr><td>A2</td><td>Perfekt · Präteritum · les cas · verbes de position · weil / obwohl · deshalb / trotzdem · aber / sondern · wenn / wann · la subordonnée</td></tr>
+    <tr><td>B1</td><td>Konjunktiv II · les relatives · zu + infinitif · als / wenn · wenn / ob · la déclinaison de l'adjectif · TeKaMoLo · les connecteurs</td></tr>
+    <tr><td>B2</td><td>le génitif relatif · les particules · les nuances des connecteurs et des adverbes · transformer avec l'autre connecteur</td></tr>
+  </table>
+  <p class="note">Les séries n'ont pas de niveau dans les données : cet ordre est une proposition, à ajuster.</p>
+</div>
+</div>
+<script>
+  const COUL = {C:"--c-carte", E:"--c-ecoute", T:"--c-trou", O:"--c-ordre", G:"--c-gram", D:"--c-dictee", P:"--c-parler"};
+  document.querySelectorAll(".bande").forEach(b => {
+    b.dataset.seq.split("").forEach(c => {
+      const i = document.createElement("i");
+      i.style.background = "var(" + COUL[c] + ")";
+      b.appendChild(i);
+    });
+  });
+</script>
+</body>
+</html>

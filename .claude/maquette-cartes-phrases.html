@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cartes-phrases — maquette</title>
+<style>
+  :root{ --encre:#1C2430; --ambre:#E8A23A; --papier:#F6F2EA; --carte:#FFFDF8; --gris:#576177; --vert:#2E8B57; --rouge:#C0392B; }
+  *{box-sizing:border-box}
+  body{margin:0; background:#E9E4DA; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--encre);}
+  h1{font-size:20px; margin:20px 24px 4px;}
+  .intro{margin:0 24px 16px; color:var(--gris); max-width:1100px; line-height:1.45; font-size:14px;}
+  .rang{display:flex; gap:22px; padding:0 24px 28px; flex-wrap:wrap;}
+  .tel{width:330px; background:var(--papier); border-radius:28px; padding:16px 16px 22px; box-shadow:0 10px 30px rgba(28,36,48,.18);}
+  .legende{font-weight:800; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:#9a6b17; margin:0 0 10px;}
+  .haut{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--gris); margin-bottom:12px;}
+  .barre{height:6px; background:#e5dccb; border-radius:3px; overflow:hidden; margin-bottom:14px;}
+  .barre i{display:block; height:100%; width:45%; background:var(--ambre);}
+  .carte{background:var(--carte); border-radius:18px; padding:18px 16px; border:1px solid #eadfcb; min-height:170px;}
+  .type{font-size:12px; font-weight:700; color:var(--gris); margin-bottom:10px; display:flex; align-items:center; gap:6px;}
+  .type b{background:rgba(232,162,58,.18); color:#8a5a0e; padding:2px 8px; border-radius:10px;}
+  .phrase{font-size:21px; font-weight:700; line-height:1.4; margin:6px 0 4px;}
+  .phrase .trou{display:inline-block; min-width:74px; border-bottom:3px solid var(--ambre); margin:0 2px;}
+  .sens{color:var(--gris); font-size:14px; margin-top:6px;}
+  .haut-parleur{width:64px; height:64px; border-radius:50%; background:var(--encre); color:#fff; display:flex; align-items:center; justify-content:center; margin:14px auto 8px; font-size:26px;}
+  .petit{font-size:12px; color:var(--gris); text-align:center;}
+  .choix{display:flex; flex-direction:column; gap:8px; margin-top:14px;}
+  .choix div{background:#fff; border:1.5px solid #e2d6c0; border-radius:12px; padding:11px 12px; font-size:15px;}
+  .choix div.bon{border-color:var(--vert); background:rgba(46,139,87,.08); font-weight:700;}
+  .tuiles{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px;}
+  .tuiles span{background:#fff; border:1.5px solid #e2d6c0; border-radius:10px; padding:8px 12px; font-size:16px; font-weight:600;}
+  .tuiles span.pris{opacity:.3;}
+  .ligne{min-height:46px; border-bottom:2px dashed #d9ccb4; display:flex; flex-wrap:wrap; gap:6px; padding-bottom:8px;}
+  .ligne span{background:var(--encre); color:#fff; border-radius:10px; padding:7px 11px; font-size:16px; font-weight:600;}
+  .rg-das{color:#2E8B57} .rg-die{color:#C0392B} .rg-der{color:#2F6FB5}
+  .note{margin-top:12px; font-size:12.5px; color:var(--gris); line-height:1.4; background:rgba(232,162,58,.10); border-radius:10px; padding:8px 10px;}
+  .deroule{margin:0 24px 30px; max-width:1060px; background:#fff; border-radius:16px; padding:14px 18px; font-size:14px; line-height:1.5;}
+  .deroule ol{margin:6px 0 0 18px; padding:0;}
+  .seq{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
+  .seq span{width:30px; height:38px; border-radius:7px; background:#ece4d4; display:flex; align-items:center; justify-content:center; font-size:12px; color:var(--gris);}
+  .seq span.p{background:var(--ambre); color:#fff; font-weight:800;}
+</style>
+</head>
+<body>
+<h1>Des phrases dans la séance du jour — maquette</h1>
+<p class="intro">Une carte sur cinq devient une <b>carte-phrase</b>, à la place d'une carte de mot (la séance garde sa longueur : 30 cartes restent 30 cartes).
+La phrase vient du corpus (les phrases d'exemple, déjà traduites dans les 9 langues et lues par la voix allemande) et porte sur un mot que la personne a déjà rencontré.
+Trois formes tournent. Une bonne réponse compte comme une révision du mot visé ; une erreur le fait revenir plus tôt, comme « Encore ».</p>
+
+<div class="rang">
+  <div class="tel">
+    <p class="legende">1 · Écouter et comprendre</p>
+    <div class="haut"><span>Ma séance · A1</span><span>13 / 30</span></div>
+    <div class="barre"><i></i></div>
+    <div class="carte">
+      <div class="type"><b>Phrase</b> Qu'est-ce que tu entends ?</div>
+      <div class="haut-parleur">🔊</div>
+      <p class="petit">Das Kind spielt im Garten.<br>(le texte allemand s'affiche après la réponse)</p>
+      <div class="choix">
+        <div>L'enfant dort dans la chambre.</div>
+        <div class="bon">L'enfant joue dans le jardin. ✓</div>
+        <div>Le chien joue dans le jardin.</div>
+      </div>
+    </div>
+    <p class="note">Les deux leurres sont proches : un mot change. On doit vraiment comprendre, pas deviner au premier mot.</p>
+  </div>
+
+  <div class="tel">
+    <p class="legende">2 · Compléter le trou</p>
+    <div class="haut"><span>Ma séance · A1</span><span>18 / 30</span></div>
+    <div class="barre"><i style="width:60%"></i></div>
+    <div class="carte">
+      <div class="type"><b>Phrase</b> Quel mot manque ?</div>
+      <p class="phrase">Ich habe eine <span class="trou">&nbsp;</span>.</p>
+      <p class="sens">J'ai un chat.</p>
+      <div class="choix">
+        <div class="bon"><span class="rg-die">die</span> Katze ✓</div>
+        <div><span class="rg-der">der</span> Hund</div>
+        <div><span class="rg-das">das</span> Haus</div>
+      </div>
+    </div>
+    <p class="note">« eine » trahit le féminin : celui qui a appris l'article avec le mot trouve la réponse. C'est le mot qu'on vient de voir passer dans la séance.</p>
+  </div>
+
+  <div class="tel">
+    <p class="legende">3 · Remettre dans l'ordre</p>
+    <div class="haut"><span>Ma séance · A1</span><span>23 / 30</span></div>
+    <div class="barre"><i style="width:77%"></i></div>
+    <div class="carte">
+      <div class="type"><b>Phrase</b> Construis la phrase</div>
+      <p class="sens" style="margin-top:0">Le bus arrive dans cinq minutes.</p>
+      <div class="ligne"><span>Der Bus</span><span>kommt</span></div>
+      <div class="tuiles">
+        <span class="pris">Der Bus</span><span>in</span><span class="pris">kommt</span><span>Minuten.</span><span>fünf</span>
+      </div>
+    </div>
+    <p class="note">On touche les blocs dans l'ordre ; le verbe en 2ᵉ place est le piège travaillé. Puis la voix lit la phrase entière.</p>
+  </div>
+</div>
+
+<div class="deroule">
+  <b>Dans une séance de 30 cartes</b>
+  <div class="seq">
+    <span>1</span><span>2</span><span>3</span><span>4</span><span class="p">P</span><span>6</span><span>7</span><span>8</span><span>9</span><span class="p">P</span><span>11</span><span>12</span><span>13</span><span>14</span><span class="p">P</span><span>16</span><span>17</span><span>18</span><span>19</span><span class="p">P</span><span>21</span><span>22</span><span>23</span><span>24</span><span class="p">P</span><span>26</span><span>27</span><span>28</span><span>29</span><span class="p">P</span>
+  </div>
+  <ol>
+    <li><b>Quelle phrase :</b> celle d'un mot déjà rencontré, dont les autres mots sont déjà connus ou font partie des petits mots de base (ich, du, ist, hat, ein, der, die, das, in, mit…). Un seul inconnu au plus : le mot visé.</li>
+    <li><b>Pour un débutant</b> (les premiers jours) : les phrases courtes d'abord, avec les pronoms et sein, haben, gehen (« Ich habe… », « Das ist… », « Wir gehen… »).</li>
+    <li><b>Les langues :</b> les 9 langues d'interface (la phrase est déjà traduite partout). L'espagnol : même moteur, mêmes trois formes, avec ses propres phrases.</li>
+    <li><b>Essai :</b> d'abord pour toi seul (tableau admin → Essais), puis, avec ton accord, pour tout le monde.</li>
+  </ol>
+</div>
+</body>
+</html>

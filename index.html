@@ -6369,6 +6369,14 @@ body[data-theme="dark"] .cp-choix button{background:#273041; color:#F2F2F6; bord
 body[data-theme="dark"] .cp-retour.bon{color:#7fd3a5;} body[data-theme="dark"] .cp-retour.faux{color:#f2a197;}
 .cp-actions{display:flex; gap:10px; margin-top:14px;}
 .cp-actions button{flex:1;}
+.cp-saisie{width:100%; font-size:18px; padding:12px; border-radius:12px; border:1.5px solid #e2d6c0; margin-top:12px; background:#fff; color:#1C2430;}
+body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-color:#3a4558;}
+.cp-indice{color:#8a5a0e; font-size:14px; margin-top:4px;}
+.cp-explication{margin-top:8px; font-weight:400; font-size:14.5px;}
+.cp-oral{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px;}
+.cp-oral button{border-radius:999px; padding:10px 16px; font-weight:700; border:1.5px solid #1C2430; background:#fff; color:#1C2430; cursor:pointer;}
+.cp-oral button.en-cours{background:#C0392B; border-color:#C0392B; color:#fff;}
+.cp-oral-note{color:#576177; font-size:13.5px; text-align:center; margin-top:8px;}
 /* « Reecouter » (v707) : l'emoji 🔊 sortait pale et flou sur iPhone -- « on
    ne le voit pas tres bien » (Jacques). Le haut-parleur des cartes, a l'encre,
    avec le mot : on voit ce que le bouton fait sans avoir a deviner. */
@@ -7465,7 +7473,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v811</span>
+    <span class="subtitle-version">v812</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10789,6 +10797,14 @@ const I18N = {
         cp_bravo: "Bravo !",
         cp_reponse: "La bonne réponse :",
         cp_effacer: "Recommencer",
+        cp_q_gram: "Complète la phrase",
+        cp_q_dictee: "Écris ce que tu entends",
+        cp_q_parler: "Répète à voix haute",
+        cp_modele: "Modèle",
+        cp_enregistrer: "M'enregistrer",
+        cp_arreter: "Arrêter",
+        cp_reecouter: "Me réécouter",
+        cp_micro_refuse: "Le micro n'est pas disponible : écoute le modèle et répète-le pour toi.",
         seance_ton_niveau: "Ton niveau",
         seance_porte_mots: "Les mots",
         seance_porte_scene: "La scène du jour",
@@ -11965,6 +11981,14 @@ const I18N = {
         cp_bravo: "Well done!",
         cp_reponse: "The right answer:",
         cp_effacer: "Start over",
+        cp_q_gram: "Complete the sentence",
+        cp_q_dictee: "Write what you hear",
+        cp_q_parler: "Say it out loud",
+        cp_modele: "Model",
+        cp_enregistrer: "Record me",
+        cp_arreter: "Stop",
+        cp_reecouter: "Play me back",
+        cp_micro_refuse: "The microphone isn't available: listen to the model and repeat it to yourself.",
         seance_ton_niveau: "Your level",
         seance_porte_mots: "Words",
         seance_porte_scene: "Today's scene",
@@ -13143,6 +13167,14 @@ const I18N = {
         cp_bravo: "Aferin!",
         cp_reponse: "Doğru cevap:",
         cp_effacer: "Baştan başla",
+        cp_q_gram: "Cümleyi tamamla",
+        cp_q_dictee: "Duyduğunu yaz",
+        cp_q_parler: "Yüksek sesle tekrarla",
+        cp_modele: "Örnek",
+        cp_enregistrer: "Kendimi kaydet",
+        cp_arreter: "Durdur",
+        cp_reecouter: "Kendimi dinle",
+        cp_micro_refuse: "Mikrofon kullanılamıyor: örneği dinle ve kendi kendine tekrarla.",
         seance_ton_niveau: "Seviyen",
         seance_porte_mots: "Kelimeler",
         seance_porte_scene: "Günün sahnesi",
@@ -14658,6 +14690,14 @@ const I18N = {
         cp_bravo: "Браво!",
         cp_reponse: "Правильна відповідь:",
         cp_effacer: "Почати знову",
+        cp_q_gram: "Доповни речення",
+        cp_q_dictee: "Напиши, що чуєш",
+        cp_q_parler: "Повтори вголос",
+        cp_modele: "Зразок",
+        cp_enregistrer: "Записати себе",
+        cp_arreter: "Зупинити",
+        cp_reecouter: "Прослухати себе",
+        cp_micro_refuse: "Мікрофон недоступний: послухай зразок і повтори його для себе.",
         seance_ton_niveau: "Твій рівень",
         seance_porte_mots: "Слова",
         seance_porte_scene: "Сцена дня",
@@ -16536,6 +16576,14 @@ const I18N = {
         cp_bravo: "آفرین!",
         cp_reponse: "پاسخ درست:",
         cp_effacer: "از نو",
+        cp_q_gram: "جمله را کامل کن",
+        cp_q_dictee: "آنچه می‌شنوی را بنویس",
+        cp_q_parler: "بلند تکرار کن",
+        cp_modele: "نمونه",
+        cp_enregistrer: "ضبط صدایم",
+        cp_arreter: "توقف",
+        cp_reecouter: "دوباره گوش دادن به خودم",
+        cp_micro_refuse: "میکروفون در دسترس نیست: نمونه را گوش کن و برای خودت تکرارش کن.",
         seance_ton_niveau: "سطح تو",
         seance_porte_mots: "کلمه‌ها",
         seance_porte_scene: "صحنهٔ امروز",
@@ -17845,6 +17893,14 @@ const I18N = {
         cp_bravo: "أحسنت!",
         cp_reponse: "الإجابة الصحيحة:",
         cp_effacer: "من جديد",
+        cp_q_gram: "أكمل الجملة",
+        cp_q_dictee: "اكتب ما تسمعه",
+        cp_q_parler: "كرّرها بصوت عالٍ",
+        cp_modele: "النموذج",
+        cp_enregistrer: "سجّل صوتي",
+        cp_arreter: "إيقاف",
+        cp_reecouter: "أستمع إلى نفسي",
+        cp_micro_refuse: "الميكروفون غير متاح: استمع إلى النموذج وكرّره لنفسك.",
         seance_ton_niveau: "مستواك",
         seance_porte_mots: "الكلمات",
         seance_porte_scene: "مشهد اليوم",
@@ -18027,6 +18083,14 @@ const I18N = {
         cp_bravo: "Muito bem!",
         cp_reponse: "A resposta certa:",
         cp_effacer: "Recomeçar",
+        cp_q_gram: "Complete a frase",
+        cp_q_dictee: "Escreva o que você ouve",
+        cp_q_parler: "Repita em voz alta",
+        cp_modele: "Modelo",
+        cp_enregistrer: "Gravar minha voz",
+        cp_arreter: "Parar",
+        cp_reecouter: "Ouvir minha voz",
+        cp_micro_refuse: "O microfone não está disponível: ouça o modelo e repita para você.",
         seance_ton_niveau: "Seu nível",
         seance_porte_mots: "As palavras",
         seance_porte_scene: "A cena do dia",
@@ -19268,6 +19332,14 @@ const I18N = {
         cp_bravo: "Brawo!",
         cp_reponse: "Prawidłowa odpowiedź:",
         cp_effacer: "Od nowa",
+        cp_q_gram: "Uzupełnij zdanie",
+        cp_q_dictee: "Napisz, co słyszysz",
+        cp_q_parler: "Powtórz na głos",
+        cp_modele: "Wzór",
+        cp_enregistrer: "Nagraj mnie",
+        cp_arreter: "Zatrzymaj",
+        cp_reecouter: "Odsłuchaj mnie",
+        cp_micro_refuse: "Mikrofon jest niedostępny: posłuchaj wzoru i powtórz go sobie.",
         seance_ton_niveau: "Twój poziom",
         seance_porte_mots: "Słowa",
         seance_porte_scene: "Scena dnia",
@@ -20507,6 +20579,14 @@ const I18N = {
         cp_bravo: "Молодец!",
         cp_reponse: "Правильный ответ:",
         cp_effacer: "Заново",
+        cp_q_gram: "Дополни предложение",
+        cp_q_dictee: "Напиши, что слышишь",
+        cp_q_parler: "Повтори вслух",
+        cp_modele: "Образец",
+        cp_enregistrer: "Записать себя",
+        cp_arreter: "Остановить",
+        cp_reecouter: "Прослушать себя",
+        cp_micro_refuse: "Микрофон недоступен: послушай образец и повтори его про себя.",
         seance_ton_niveau: "Твой уровень",
         seance_porte_mots: "Слова",
         seance_porte_scene: "Сцена дня",
@@ -33980,7 +34060,7 @@ const ESSAIS = {
     phrases: {
         etat: "admin",
         titre: "Des phrases dans la séance du jour",
-        desc: "Une carte sur cinq devient une phrase : écouter et choisir le sens, compléter le trou, remettre dans l'ordre. Une réponse compte comme une révision du mot visé."
+        desc: "La séance mélangée et progressive : phrases (écouter, trou, ordre), grammaire dans l'ordre du cours, dictée, répéter à voix haute -- de plus en plus à mesure que les mots s'accumulent. Chaque exercice remplace une carte."
     }
 };
 const ESSAIS_COUPES_KEY = PREFIXE_STOCKAGE + "essaisCoupes";
@@ -38897,7 +38977,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 811;
+const APP_VERSION = 812;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42637,30 +42717,48 @@ function revisionDeScene(d){
     }catch(e){ return false; }
 }
 
-// ============ LES CARTES-PHRASES (essai v810, 15 oct. 2026) ============
-// Jacques : « on voit seulement des mots [...] qu'on commence a introduire des
-// phrases, parce que sinon, ca devient un peu ennuyant ». Une carte sur cinq de
-// la seance devient une PHRASE, a la place d'une carte de mot : la seance garde
-// sa longueur. Trois formes tournent : ecouter et choisir le sens, completer le
-// trou, remettre les mots dans l'ordre.
+// ============ LA SEANCE MELANGEE (essai « phrases », v810-v812) ============
+// v810 : Jacques : « on voit seulement des mots [...] qu'on commence a
+// introduire des phrases, parce que sinon, ca devient un peu ennuyant ».
+// v812 : « d'utiliser tout ce qu'on a pour alimenter la seance du jour, d'une
+// facon progressive pour l'apprenant » -- maquette validee le 15 oct.
+// (.claude/maquette-seance-melangee.html).
 //
-// ⚠️ LA PHRASE NE DOIT PAS ETRE UN MUR. Elle vient des phrases d'exemple du
-// corpus (deja traduites dans les 9 langues, et lues par la voix allemande), et
-// on choisit celle dont les AUTRES mots sont deja connus : petits mots de base
-// (MOTS_DE_BASE_PHRASES) ou mots deja rencontres. Un seul inconnu au plus, en
-// plus du mot vise. Pour un debutant, a egalite, la phrase qui porte le socle
-// (ich, du, wir ; sein, haben, gehen) passe devant.
+// La seance garde sa longueur : chaque exercice prend la PLACE d'une carte. Ce
+// qu'on y met depend du nombre de mots deja rencontres (PALIERS_SEANCE) :
+//   palier 1, debutant : une carte sur cinq devient une phrase (ecouter, trou) ;
+//   palier 2 : une sur trois -- s'y ajoutent l'ordre, la grammaire, la dictee
+//              d'un mot ;
+//   palier 3 : une sur deux -- la dictee d'une phrase et la repetition a voix
+//              haute (s'enregistrer, se reecouter, sans note).
+// Les mots seuls restent ouverts a part (themes) : la seance guide, elle
+// n'enferme pas.
 //
-// ⚠️ LE MOT VISE EST UN MOT QU'ON A DEJA VU : d'abord un nom passe plus tot dans
-// la meme seance, sinon un nom deja rencontre un autre jour. La reponse compte
-// comme une revision de ce mot (repondrePhrase), avec les memes regles que la
-// scene (revisionDeScene) : une erreur le fait revenir, une reussite ne
-// l'avance que s'il etait du.
+// ⚠️ LA PHRASE NE DOIT PAS ETRE UN MUR. Phrases d'exemple du corpus (deja
+// traduites dans les 9 langues, lues par la voix) dont les AUTRES mots sont de
+// base (MOTS_DE_BASE_PHRASES) ou deja rencontres : un inconnu au plus, en plus
+// du mot vise. A egalite, le socle (ich, du ; sein, haben, gehen) passe devant.
+// Le mot vise est un nom deja vu -- d'abord passe plus tot dans la seance.
 //
-// Premiere version : les NOMS seulement (leur phrase contient le mot tel quel,
-// ce qui permet le trou). Verbes et adjectifs viendront ensuite.
-const PHRASE_TOUTES_LES = 5;
+// ⚠️ LA GRAMMAIRE SUIT UN ORDRE DE COURS (COURS_GRAMMAIRE), une serie a la fois :
+// la premiere qui n'a pas encore ete reussie deux seances sans faute
+// (GRAMMAIRE_SANS_FAUTE_REQUIS, le critere du compteur de grammaire). Allemand
+// seulement pour l'instant : les series espagnoles n'ont pas encore d'ordre.
+//
+// Une reponse compte comme une revision du mot vise (repondrePhrase, regles de
+// la scene) ; la grammaire et l'oral comptent dans l'objectif du jour.
 const PHRASE_MOTS_MAX = 8;
+const PALIERS_SEANCE = [
+    { vus: 0,   tous_les: 5, formes: ["ecoute", "ecoute", "trou"] },
+    { vus: 60,  tous_les: 3, formes: ["ecoute", "gram", "trou", "ordre", "gram", "dictee_mot"] },
+    { vus: 400, tous_les: 2, formes: ["gram", "ecoute", "ordre", "trou", "gram", "dictee", "parler"] }
+];
+const COURS_GRAMMAIRE = [
+    "derEinExercises", "possessivExercises", "wortstellungV2Exercises", "wortstellungFrageExercises",
+    "wortstellungNichtExercises", "praepWoWohinExercises", "perfektExercises", "praeteritumExercises",
+    "kasusReconnaissanceExercises", "positionsverbenExercises", "weilObwohlExercises",
+    "deshalbTrotzdemExercises", "aberSondernExercises", "wennWannExercises", "wortstellungSubExercises"
+];
 const MOTS_DE_BASE_PHRASES = {
     de: ("ich du er sie es wir ihr man mein meine meinen meinem meiner dein deine deinen sein seine seinen ihre ihren unser unsere " +
          "der die das den dem des ein eine einen einem einer kein keine keinen nicht und oder aber auch sehr gern gerne noch schon " +
@@ -42677,7 +42775,9 @@ const SOCLE_PHRASES = {
     de: ["ich", "du", "wir", "bin", "bist", "ist", "habe", "hast", "hat", "gehe", "geht", "gehen"],
     es: ["yo", "tú", "soy", "es", "tengo", "tiene", "voy", "va"]
 };
-const FORMES_PHRASE = ["ecoute", "trou", "ordre"];
+// La serie de grammaire en cours, chargee a l'ouverture de la seance (jeu() est
+// asynchrone, la composition de la seance ne l'est pas).
+let grammaireSeance = null;
 
 function motsPhrase(p){
     return String(p || "").split(/\s+/).filter(Boolean);
@@ -42694,11 +42794,41 @@ function phraseDeCarte(it){
     if(mots.length < 3 || mots.length > PHRASE_MOTS_MAX) return null;
     return { de: de, sens: sens, mots: mots };
 }
-// L'indice du mot vise dans la phrase (singulier ou pluriel), -1 sinon.
 function placeDuMot(it, mots){
     const formes = [it.word[0], it.word[2]].filter(f => f && f !== "—").map(nuPhrase);
     for(let i = 0; i < mots.length; i++) if(formes.indexOf(nuPhrase(mots[i])) >= 0) return i;
     return -1;
+}
+function palierSeance(nVus){
+    let p = PALIERS_SEANCE[0];
+    PALIERS_SEANCE.forEach(x => { if(nVus >= x.vus) p = x; });
+    return p;
+}
+
+// La premiere serie du cours pas encore reussie deux seances sans faute.
+function serieGrammaireEnCours(){
+    if(LANGUE_APPRISE === "es") return null;
+    const g = lireGrammaire();
+    for(const nom of COURS_GRAMMAIRE){
+        if(((g[nom] || {}).sansFaute || 0) < GRAMMAIRE_SANS_FAUTE_REQUIS) return nom;
+    }
+    return null;
+}
+async function prechargerGrammaireSeance(){
+    const nom = serieGrammaireEnCours();
+    if(!nom){ grammaireSeance = null; return; }
+    if(grammaireSeance && grammaireSeance.nom === nom) return;
+    const liste = await jeu(nom);
+    // Les questions a reponse tapee ou a tuiles ; les blocs (chunks) ont leur
+    // propre ecran. Les premieres du fichier d'abord : il est range par difficulte.
+    const utiles = (liste || []).filter(ex => ex && ex.question && !(ex.chunks && ex.chunks.length) && (ex.answers || []).length);
+    grammaireSeance = utiles.length ? { nom: nom, liste: utiles.slice(0, 30), pris: 0 } : null;
+}
+function questionGrammaire(){
+    if(!grammaireSeance || !grammaireSeance.liste.length) return null;
+    const l = grammaireSeance.liste;
+    const ex = l[Math.floor(Math.random() * l.length)];
+    return ex;
 }
 
 function insererCartesPhrases(seance, tout){
@@ -42713,10 +42843,9 @@ function insererCartesPhrases(seance, tout){
     };
     const vus = (tout || []).filter(it => !estNeuf(getWordState(it.themeId, it.index)));
     vus.forEach(connaitre);
+    const palier = palierSeance(vus.length);
     const pris = new Set();
     const cle = it => it.themeId + "#" + it.index;
-    // Une phrase et ce qu'elle coute : le nombre de mots ni de base ni connus,
-    // le mot vise mis a part. Au-dela d'un, elle n'est pas proposee.
     const evaluer = it => {
         const p = phraseDeCarte(it);
         if(!p) return null;
@@ -42741,20 +42870,30 @@ function insererCartesPhrases(seance, tout){
         return best;
     };
     const sortie = seance.slice();
-    let forme = 0;
-    for(let k = PHRASE_TOUTES_LES - 1; k < sortie.length; k += PHRASE_TOUTES_LES){
-        // Les cartes passees plus tot dans la seance sont « vues » quand on
-        // arrive ici : elles comptent comme connues pour la suite.
+    let n = 0;
+    for(let k = palier.tous_les - 1; k < sortie.length; k += palier.tous_les){
         sortie.slice(0, k).forEach(connaitre);
-        const e = meilleur(sortie.slice(0, k).filter(it => it.mode === "nomen")) || meilleur(vus.filter(it => it.mode === "nomen"));
-        if(!e) continue;
-        pris.add(cle(e.it));
-        // Le trou demande le mot tel quel dans la phrase ; sinon la forme suivante.
-        let f = FORMES_PHRASE[forme % FORMES_PHRASE.length];
-        if(f === "trou" && e.vise < 0) f = "ordre";
-        forme++;
-        sortie[k] = { mode: "phrase", forme: f, cible: e.it, phrase: e.p, vise: e.vise,
-                      themeId: e.it.themeId, index: e.it.index, word: e.it.word };
+        const remplacee = sortie[k];
+        // La forme prevue ; si elle n'a pas de matiere (pas de serie de
+        // grammaire, pas de mot dans la phrase pour le trou), la suivante.
+        let item = null;
+        for(let essai = 0; essai < palier.formes.length && !item; essai++){
+            const f = palier.formes[(n + essai) % palier.formes.length];
+            if(f === "gram"){
+                const ex = questionGrammaire();
+                if(ex) item = { mode: "phrase", forme: "gram", ex: ex, jeu: grammaireSeance.nom, cible: null,
+                                themeId: remplacee.themeId, index: remplacee.index, word: remplacee.word };
+                continue;
+            }
+            const e = meilleur(sortie.slice(0, k).filter(it => it.mode === "nomen")) || meilleur(vus.filter(it => it.mode === "nomen"));
+            if(!e) continue;
+            if(f === "trou" && e.vise < 0) continue;
+            pris.add(cle(e.it));
+            item = { mode: "phrase", forme: f, cible: e.it, phrase: e.p, vise: e.vise,
+                     themeId: e.it.themeId, index: e.it.index, word: e.it.word };
+        }
+        n++;
+        if(item) sortie[k] = item;
     }
     return sortie;
 }
@@ -42765,9 +42904,6 @@ function melangerPhrase(t){
     return a;
 }
 
-// Les leurres : des phrases (ou des noms) du meme paquet. Pour le sens, on
-// prefere celles qui partagent un mot avec la phrase : on doit comprendre,
-// pas deviner au premier mot.
 function leurresPhrase(item, n){
     const tous = (currentCardsFull || []).filter(it => it.mode === "nomen" && Array.isArray(it.word) && !(it.themeId === item.themeId && it.index === item.index));
     if(item.forme === "trou"){
@@ -42804,8 +42940,24 @@ function classeGenrePhrase(g){
 function direPhrase(item){
     try{ direAllemand(item.phrase.de, { rate: 0.9 }); }catch(e){}
 }
+function direMotPhrase(item){
+    const w = item.cible.word;
+    try{ direAllemand(((w[1] || "") + " " + w[0]).trim(), { rate: 0.9 }); }catch(e){}
+}
+
+// L'enregistrement de l'oral : rien ne sort de l'appareil (comme le mode
+// Parler) ; la piste est rendue des l'arret, l'URL revoquee a la carte suivante.
+let oralPhrase = null;
+function arreterOralPhrase(){
+    if(!oralPhrase) return;
+    try{ if(oralPhrase.rec && oralPhrase.rec.state !== "inactive") oralPhrase.rec.stop(); }catch(e){}
+    try{ if(oralPhrase.flux) oralPhrase.flux.getTracks().forEach(p => p.stop()); }catch(e){}
+    try{ if(oralPhrase.url) URL.revokeObjectURL(oralPhrase.url); }catch(e){}
+    oralPhrase = null;
+}
 
 function cacherCartePhrase(){
+    arreterOralPhrase();
     const zone = document.getElementById("flashcards");
     if(zone) zone.classList.remove("en-phrase");
     const el = document.getElementById("cartePhrase");
@@ -42816,39 +42968,66 @@ function montrerCartePhrase(item){
     const zone = document.getElementById("flashcards");
     const el = document.getElementById("cartePhrase");
     if(!zone || !el){ nextFlashcard(); return; }
+    arreterOralPhrase();
     zone.classList.add("en-phrase");
     el.classList.remove("hidden");
     el.textContent = "";
     majCompteurCarte();
     const fait = { repondu: false };
+    const langueDe = LANGUE_APPRISE === "es" ? "es" : "de";
     const creer = (tag, cls, texte) => {
         const n = document.createElement(tag);
         if(cls) n.className = cls;
         if(texte !== undefined) n.textContent = texte;
         return n;
     };
+    const QUESTIONS = { ecoute: "cp_q_ecoute", trou: "cp_q_trou", ordre: "cp_q_ordre", gram: "cp_q_gram",
+                        dictee: "cp_q_dictee", dictee_mot: "cp_q_dictee", parler: "cp_q_parler" };
     const type = creer("div", "cp-type");
     type.appendChild(creer("b", "", t("cp_type")));
-    type.appendChild(document.createTextNode(t(item.forme === "ecoute" ? "cp_q_ecoute" : item.forme === "trou" ? "cp_q_trou" : "cp_q_ordre")));
+    type.appendChild(document.createTextNode(t(QUESTIONS[item.forme] || "cp_q_ecoute")));
     el.appendChild(type);
     const retour = creer("div", "cp-retour hidden");
     const actions = creer("div", "cp-actions");
     const suite = creer("button", "primary hidden", t("setup_continue"));
     suite.type = "button";
     suite.addEventListener("click", () => { cacherCartePhrase(); nextFlashcard(); });
-    const conclure = (juste, texteJuste) => {
+    // conclure(juste, texte de la bonne reponse, explication HTML facultative)
+    const conclure = (juste, texteJuste, explication) => {
         if(fait.repondu) return;
         fait.repondu = true;
         repondrePhrase(item, juste);
         retour.classList.remove("hidden");
         retour.classList.add(juste ? "bon" : "faux");
-        retour.textContent = juste ? t("cp_bravo") + " " + item.phrase.de : t("cp_reponse") + " " + (texteJuste || item.phrase.de);
+        const ref = texteJuste || (item.phrase ? item.phrase.de : "");
+        retour.textContent = juste ? (t("cp_bravo") + " " + ref) : (t("cp_reponse") + " " + ref);
+        if(explication){
+            const ex = creer("div", "cp-explication");
+            ex.innerHTML = explication;
+            retour.appendChild(ex);
+        }
         suite.classList.remove("hidden");
-        direPhrase(item);
+        if(item.phrase) direPhrase(item);
     };
     const ecouter = creer("button", "cp-ecouter", "🔊 " + t("cp_ecouter"));
     ecouter.type = "button";
-    ecouter.addEventListener("click", () => direPhrase(item));
+    ecouter.addEventListener("click", () => item.forme === "dictee_mot" ? direMotPhrase(item) : direPhrase(item));
+    const saisie = () => {
+        const champ = creer("input", "cp-saisie");
+        champ.type = "text";
+        champ.setAttribute("lang", langueDe);
+        champ.setAttribute("autocapitalize", "off");
+        champ.setAttribute("autocomplete", "off");
+        champ.setAttribute("autocorrect", "off");
+        champ.spellcheck = false;
+        return champ;
+    };
+    const boutonVerifier = (fn) => {
+        const b = creer("button", "primary", t("verify_button"));
+        b.type = "button";
+        b.addEventListener("click", fn);
+        return b;
+    };
 
     if(item.forme === "ecoute"){
         el.appendChild(ecouter);
@@ -42870,12 +43049,10 @@ function montrerCartePhrase(item){
             choix.appendChild(b);
         });
         el.appendChild(choix);
-        // Sur iPhone, le son demande un geste : la carte s'ouvre souvent dans
-        // le prolongement de celui qui a juge la carte d'avant, sinon le bouton.
         direPhrase(item);
     } else if(item.forme === "trou"){
         const phrase = creer("p", "cp-phrase");
-        phrase.setAttribute("lang", LANGUE_APPRISE === "es" ? "es" : "de");
+        phrase.setAttribute("lang", langueDe);
         const trou = creer("span", "cp-trou", "\u00a0");
         item.phrase.mots.forEach((m, i) => {
             if(i) phrase.appendChild(document.createTextNode(" "));
@@ -42894,8 +43071,7 @@ function montrerCartePhrase(item){
         options.forEach(o => {
             const b = creer("button", "");
             b.type = "button";
-            const art = creer("span", classeGenrePhrase(o.word[1]), (o.word[1] || "") + " ");
-            b.appendChild(art);
+            b.appendChild(creer("span", classeGenrePhrase(o.word[1]), (o.word[1] || "") + " "));
             b.appendChild(document.createTextNode(o.word[0]));
             const juste = o === bonne;
             b.addEventListener("click", () => {
@@ -42909,12 +43085,14 @@ function montrerCartePhrase(item){
             choix.appendChild(b);
         });
         el.appendChild(choix);
-    } else {
+    } else if(item.forme === "ordre"){
         el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const ligne = creer("div", "cp-ligne");
-        ligne.setAttribute("lang", LANGUE_APPRISE === "es" ? "es" : "de");
+        ligne.setAttribute("lang", langueDe);
         const banque = creer("div", "cp-banque");
-        banque.setAttribute("lang", LANGUE_APPRISE === "es" ? "es" : "de");
+        banque.setAttribute("lang", langueDe);
+        const effacer = creer("button", "secondary", t("cp_effacer"));
+        effacer.type = "button";
         let ordre = melangerPhrase(item.phrase.mots.map((m, i) => ({ m: m, i: i })));
         if(ordre.every((x, i) => x.i === i) && ordre.length > 1) ordre = ordre.slice(1).concat(ordre.slice(0, 1));
         const verifier = () => {
@@ -42939,13 +43117,143 @@ function montrerCartePhrase(item){
         });
         el.appendChild(ligne);
         el.appendChild(banque);
-        var effacer = creer("button", "secondary", t("cp_effacer"));
-        effacer.type = "button";
         effacer.addEventListener("click", () => {
             if(fait.repondu) return;
             Array.from(ligne.children).forEach(x => banque.appendChild(x));
         });
         actions.appendChild(effacer);
+    } else if(item.forme === "gram"){
+        // Une question d'une serie du cours, comme dans l'ecran d'exercices :
+        // les memes reponses acceptees, la meme explication.
+        const ex = item.ex;
+        const q = creer("p", "cp-phrase", ex.question);
+        q.setAttribute("lang", "de");
+        el.appendChild(q);
+        const sens = texteTraduit(ex, "translation");
+        if(sens) el.appendChild(creer("p", "cp-sens", sens));
+        const indice = texteTraduit(ex, "hint");
+        if(indice) el.appendChild(creer("p", "cp-indice", indice));
+        const juger = (val) => {
+            const v = String(val || "").trim();
+            if(!v) return null;
+            return ex.tolerant
+                ? ex.answers.some(a => normaliserSaisie(a) === normaliserSaisie(v))
+                : ex.answers.some(a => String(a).toLowerCase() === v.toLowerCase());
+        };
+        const opts = valeurTraduite(ex, "options");
+        if(Array.isArray(opts) && opts.length){
+            const choix = creer("div", "cp-choix");
+            opts.forEach(o => {
+                const b = creer("button", "", String(o));
+                b.type = "button";
+                b.addEventListener("click", () => {
+                    if(fait.repondu) return;
+                    const juste = !!juger(o);
+                    Array.from(choix.children).forEach(x => { x.disabled = true; if(juger(x.textContent)) x.classList.add("bon"); });
+                    if(!juste) b.classList.add("faux");
+                    conclure(juste, valeurTraduite(ex, "correct") || ex.correct, texteTraduit(ex, "explanation"));
+                });
+                choix.appendChild(b);
+            });
+            el.appendChild(choix);
+        } else {
+            const champ = saisie();
+            el.appendChild(champ);
+            const verif = boutonVerifier(() => {
+                if(fait.repondu) return;
+                const r = juger(champ.value);
+                if(r === null){ champ.focus(); return; }
+                champ.disabled = true;
+                verif.classList.add("hidden");
+                conclure(r, valeurTraduite(ex, "correct") || ex.correct, texteTraduit(ex, "explanation"));
+            });
+            champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
+            actions.appendChild(verif);
+        }
+    } else if(item.forme === "dictee" || item.forme === "dictee_mot"){
+        // La dictee : un mot (palier 2) ou la phrase entiere (palier 3), deja
+        // rencontres. Casse, ponctuation et accents ne comptent pas
+        // (normaliserSaisie) : on juge l'oreille, pas le clavier.
+        const motSeul = item.forme === "dictee_mot";
+        const w = item.cible.word;
+        const attendu = motSeul ? w[0] : item.phrase.de;
+        el.appendChild(ecouter);
+        if(!motSeul) el.appendChild(creer("p", "cp-sens", item.phrase.sens));
+        const champ = saisie();
+        el.appendChild(champ);
+        const verif = boutonVerifier(() => {
+            if(fait.repondu) return;
+            const v = champ.value.trim();
+            if(!v){ champ.focus(); return; }
+            const n = normaliserSaisie(v);
+            const juste = motSeul
+                ? (n === normaliserSaisie(w[0]) || n === normaliserSaisie((w[1] || "") + " " + w[0]))
+                : n === normaliserSaisie(attendu);
+            champ.disabled = true;
+            verif.classList.add("hidden");
+            conclure(juste, motSeul ? ((w[1] || "") + " " + w[0]).trim() : attendu);
+        });
+        champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
+        actions.appendChild(verif);
+        if(motSeul) direMotPhrase(item); else direPhrase(item);
+    } else if(item.forme === "parler"){
+        // Repeter a voix haute : le modele, s'enregistrer, se reecouter. Aucune
+        // note (le choix du mode Parler) ; la carte compte dans l'objectif.
+        const p = creer("p", "cp-phrase", item.phrase.de);
+        p.setAttribute("lang", langueDe);
+        el.appendChild(p);
+        el.appendChild(creer("p", "cp-sens", item.phrase.sens));
+        const oral = creer("div", "cp-oral");
+        const modele = creer("button", "", "🔊 " + t("cp_modele"));
+        modele.type = "button";
+        modele.addEventListener("click", () => direPhrase(item));
+        const enreg = creer("button", "", "🎙 " + t("cp_enregistrer"));
+        enreg.type = "button";
+        const relire = creer("button", "hidden", "▶ " + t("cp_reecouter"));
+        relire.type = "button";
+        const note = creer("p", "cp-oral-note hidden", t("cp_micro_refuse"));
+        enreg.addEventListener("click", async () => {
+            if(oralPhrase && oralPhrase.rec && oralPhrase.rec.state === "recording"){
+                oralPhrase.rec.stop();
+                return;
+            }
+            try{
+                if(!navigator.mediaDevices || !window.MediaRecorder) throw new Error("micro");
+                const flux = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const morceaux = [];
+                const rec = new MediaRecorder(flux);
+                arreterOralPhrase();
+                oralPhrase = { rec: rec, flux: flux, url: null };
+                rec.ondataavailable = e => { if(e.data && e.data.size) morceaux.push(e.data); };
+                rec.onstop = () => {
+                    try{ flux.getTracks().forEach(x => x.stop()); }catch(e){}
+                    if(!oralPhrase || oralPhrase.rec !== rec) return;
+                    oralPhrase.url = URL.createObjectURL(new Blob(morceaux, { type: rec.mimeType || "audio/webm" }));
+                    enreg.classList.remove("en-cours");
+                    enreg.textContent = "🎙 " + t("cp_enregistrer");
+                    relire.classList.remove("hidden");
+                    suite.classList.remove("hidden");
+                };
+                rec.start();
+                enreg.classList.add("en-cours");
+                enreg.textContent = "⏹ " + t("cp_arreter");
+            }catch(e){
+                note.classList.remove("hidden");
+                suite.classList.remove("hidden");
+            }
+        });
+        relire.addEventListener("click", () => {
+            if(!oralPhrase || !oralPhrase.url) return;
+            try{ new Audio(oralPhrase.url).play(); }catch(e){}
+        });
+        oral.appendChild(modele);
+        oral.appendChild(enreg);
+        oral.appendChild(relire);
+        el.appendChild(oral);
+        el.appendChild(note);
+        suite.classList.remove("hidden");
+        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+        direPhrase(item);
     }
     el.appendChild(retour);
     actions.appendChild(suite);
@@ -42953,12 +43261,14 @@ function montrerCartePhrase(item){
     window.scrollTo(0, 0);
 }
 
-// La reponse a une carte-phrase est une revision du mot vise, avec les regles
-// de la scene (revisionDeScene) : une erreur le fait revenir dans deux minutes,
-// une reussite ne l'avance que s'il etait du (ou neuf).
+// La reponse revise le mot vise, avec les regles de la scene (revisionDeScene) :
+// une erreur le fait revenir dans deux minutes, une reussite ne l'avance que
+// s'il etait du (ou neuf). `juste === null` (l'oral, sans note) et la grammaire
+// (pas de mot vise) ne comptent que dans l'objectif du jour.
 function repondrePhrase(item, juste){
     try{
         const it = item.cible;
+        if(!it || juste === null){ recordDailyActivity(); return; }
         const st = getWordState(it.themeId, it.index);
         const neuf = estNeuf(st);
         if(juste && !neuf && (st.due || 0) > Date.now()){ recordDailyActivity(); return; }
@@ -43010,6 +43320,7 @@ async function ouvrirSeanceDuJour(sansScene){
     let seance = cartesDeSeance(tout, pool);
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
     if(essaiActif("phrases")){
+        try{ await prechargerGrammaireSeance(); }catch(e){}
         try{ seance = insererCartesPhrases(seance, tout); }catch(e){}
     }
     if(!seance.length){

@@ -9041,3 +9041,17 @@ des mots mais des phrases, parce que sinon, ca devient un peu ennuyant ».
   La seance est raccourcie a ce qui reste de l'objectif du jour (une seule case de phrase quand
   il en reste 5 a 9), et « en faire 20 de plus » repartait sans phrases. Les phrases suivent
   maintenant dans la suite : 3 phrases sur 15 cartes, puis 4 sur les 20 suivantes.
+
+## 15 octobre 2026 -- la seance melangee et progressive (v812, essai admin)
+
+Jacques : « faire un peu comme Duolingo [...] utiliser tout ce qu'on a pour alimenter la seance du
+jour, d'une facon progressive » ; « si quelqu'un veut faire des mots, il peut aller directement
+sur l'etude ». Maquette validee (« cable la seance melangee en essai pour moi seul »).
+- Trois paliers selon les mots deja rencontres : debutant, une carte sur cinq devient une phrase
+  (ecouter, trou) ; des 60 mots, une sur trois (+ remettre dans l'ordre, grammaire, dictee d'un
+  mot) ; des 400 mots, une sur deux (+ dictee d'une phrase, repeter a voix haute).
+- La grammaire suit un ordre de cours (der/ein, possessifs, verbe en 2e place, questions, nicht,
+  Wo/Wohin, Perfekt...) : la premiere serie pas encore reussie deux seances sans faute. Allemand
+  seulement pour l'instant.
+- L'oral : modele, s'enregistrer, se reecouter, sans note ; rien ne quitte le telephone. Le juge
+  automatique « bienveillant » viendra a part, apres un test de reconnaissance sur le telephone.
