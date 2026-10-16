@@ -9314,3 +9314,12 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
 - Voix manquantes (621 phrases de scenes de + 618 x 2 es, mots nouveaux) generees, deposees ; MAIS en
   Flash, contre la regle « v2 toujours » du 12 oct. -- erreur de ma consigne ; refaire en v2 attend
   l'accord de Jacques (~93 600 credits).
+
+## 16 octobre 2026 (soir) -- apres la v842
+
+- Jacques : « mets-la en production ; voir ce que Fable a fait, le mettre aussi en production ; Anna,
+  la ferme aussi ; puis creer huit nouvelles scenes ; fais ca sans arret, entierement de Fable le plus
+  possible ». v842 en production (version.json 842). Tout le travail de Fable etait deja fusionne.
+  Ferme : les contours d'Anna et de l'oncle regardes, propres ; huhn-5 (doublon de huhn-4) retire.
+  Huit nouvelles scenes confiees a Fable (brief .claude/brief-fable-8-scenes-2.md : 4 Anna, 4 Mark,
+  contours par points, sens traduit, au plus 10 images fal, aucune voix sans accord).
