@@ -675,6 +675,7 @@ window.SCENE = {
      "f": "mond",
      "r": "himmel",
      "phrase": "Der Mond ist am Himmel.",
+     "sens": "La lune est dans le ciel.",
      "n": "<b>am</b> = an + <b>dem</b> : der Himmel → am Himmel."
     },
     {
@@ -687,6 +688,7 @@ window.SCENE = {
      "f": "boot",
      "r": "see",
      "phrase": "Das Boot liegt am See.",
+     "sens": "La barque est au bord du lac.",
      "n": "<b>am</b> = an + <b>dem</b> : der See → am See."
     },
     {
@@ -699,6 +701,7 @@ window.SCENE = {
      "f": "topf",
      "r": "feuer",
      "phrase": "Der Topf hängt über dem Feuer.",
+     "sens": "La marmite est suspendue au-dessus du feu.",
      "n": "<b>über</b> = au-dessus de. das Feuer → über <b>dem</b> Feuer."
     },
     {
@@ -711,6 +714,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "zelt",
      "phrase": "Der Rucksack steht vor dem Zelt.",
+     "sens": "Le sac à dos est devant la tente.",
      "n": "<b>vor</b> = devant. das Zelt → vor <b>dem</b> Zelt."
     },
     {
@@ -723,6 +727,7 @@ window.SCENE = {
      "f": "pilz",
      "r": "zelt",
      "phrase": "Der Pilz wächst neben dem Zelt.",
+     "sens": "Le champignon pousse à côté de la tente.",
      "n": "<b>neben</b> = à côté de. das Zelt → neben <b>dem</b> Zelt."
     },
     {
@@ -735,6 +740,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "stein",
      "phrase": "Die Tasse steht auf dem Stein.",
+     "sens": "La tasse est sur la pierre.",
      "n": "der Stein → auf <b>dem</b> Stein."
     },
     {
@@ -747,6 +753,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "holz",
      "phrase": "Die Lampe liegt neben dem Holz.",
+     "sens": "La lampe est à côté du bois.",
      "n": "<b>neben</b> = à côté de. das Holz → neben <b>dem</b> Holz."
     },
     {
@@ -759,6 +766,7 @@ window.SCENE = {
      "f": "zelt",
      "r": "see",
      "phrase": "Das Zelt steht am See.",
+     "sens": "La tente est au bord du lac.",
      "n": "<b>am</b> = an + <b>dem</b> : der See → am See."
     }
    ]
@@ -776,6 +784,7 @@ window.SCENE = {
      "f": "see",
      "r": "anna",
      "phrase": "Morgen wird Anna im See schwimmen.",
+     "sens": "Demain, Anna nagera dans le lac.",
      "n": "Futur : <b>werden</b> + infinitif à la fin.",
      "revise": {
       "mot": "schwimmen",
@@ -791,6 +800,7 @@ window.SCENE = {
      ],
      "f": "zelt",
      "phrase": "Heute Nacht werden sie im Zelt schlafen.",
+     "sens": "Cette nuit, ils dormiront dans la tente.",
      "n": "Sujet pluriel (sie = ils) → <b>werden</b>.",
      "revise": {
       "mot": "schlafen",
@@ -807,6 +817,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "anna",
      "phrase": "Ich werde dir ein Lied vorspielen.",
+     "sens": "Je vais te jouer une chanson.",
      "n": "Futur : l'infinitif à la fin → vorspielen."
     },
     {
@@ -818,6 +829,7 @@ window.SCENE = {
      ],
      "f": "topf",
      "phrase": "Gleich wird die Suppe fertig sein.",
+     "sens": "La soupe sera bientôt prête.",
      "n": "Futur de <b>sein</b> : wird … sein."
     },
     {
@@ -829,6 +841,7 @@ window.SCENE = {
      ],
      "f": "boot",
      "phrase": "Wir werden morgen früh mit dem Boot fahren.",
+     "sens": "Demain matin, nous irons en barque.",
      "n": "<b>wir</b> → werden.",
      "revise": {
       "mot": "fahren",
@@ -844,6 +857,7 @@ window.SCENE = {
      ],
      "f": "feuer",
      "phrase": "Wirst du das Feuer später ausmachen?",
+     "sens": "Tu éteindras le feu plus tard ?",
      "n": "Séparable au futur : l'infinitif entier, <b>ausmachen</b>, à la fin."
     },
     {
@@ -855,6 +869,7 @@ window.SCENE = {
      ],
      "f": "himmel",
      "phrase": "Es wird heute Nacht kalt werden.",
+     "sens": "Il va faire froid cette nuit.",
      "n": "Futur de <b>werden</b> : wird … werden."
     },
     {
@@ -866,6 +881,7 @@ window.SCENE = {
      ],
      "f": "mann",
      "phrase": "Der Mann wird gleich seine Wurst essen.",
+     "sens": "L'homme va manger sa saucisse tout de suite.",
      "n": "Futur : <b>werden</b> + infinitif à la fin.",
      "revise": {
       "mot": "essen",
@@ -886,6 +902,7 @@ window.SCENE = {
      ],
      "f": "see",
      "phrase": "Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.",
+     "sens": "S'il ne faisait pas si sombre, ils iraient nager.",
      "n": "Irréel : <b>wenn</b> + Konjunktiv II → wäre."
     },
     {
@@ -897,6 +914,7 @@ window.SCENE = {
      ],
      "f": "zelt",
      "phrase": "Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.",
+     "sens": "S'ils avaient le temps, ils resteraient une semaine de plus.",
      "n": "<b>haben</b> → Konjunktiv II <b>hätten</b>."
     },
     {
@@ -908,6 +926,7 @@ window.SCENE = {
      ],
      "f": "mann",
      "phrase": "Wenn der Mann Hunger hätte, würde er die Wurst essen.",
+     "sens": "Si l'homme avait faim, il mangerait la saucisse.",
      "n": "Proposition principale : <b>würde</b> + infinitif."
     },
     {
@@ -920,6 +939,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "anna",
      "phrase": "Ich könnte gern so gut Gitarre spielen wie Anna.",
+     "sens": "J'aimerais savoir jouer de la guitare aussi bien qu'Anna.",
      "n": "Souhait : Konjunktiv II de können → <b>könnte</b>."
     },
     {
@@ -931,6 +951,7 @@ window.SCENE = {
      ],
      "f": "boot",
      "phrase": "Wenn das Boot größer wäre, könnten alle mitfahren.",
+     "sens": "Si la barque était plus grande, tout le monde pourrait monter.",
      "n": "Irréel du présent → <b>wäre</b>."
     },
     {
@@ -942,6 +963,7 @@ window.SCENE = {
      ],
      "f": "holz",
      "phrase": "Hätten sie doch mehr Holz mitgebracht!",
+     "sens": "Si seulement ils avaient apporté plus de bois !",
      "n": "Regret au passé : <b>hätte</b> + participe."
     }
    ]
@@ -958,6 +980,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Sie muss den Abend sehr genießen.",
+     "sens": "Elle doit beaucoup apprécier la soirée.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -970,6 +993,7 @@ window.SCENE = {
      "f": "mann",
      "r": "anna",
      "phrase": "Der Mann könnte Annas Cousin sein.",
+     "sens": "L'homme est peut-être le cousin d'Anna.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -981,6 +1005,7 @@ window.SCENE = {
      ],
      "f": "mond",
      "phrase": "Es dürfte schon fast zehn Uhr sein.",
+     "sens": "Il doit être presque dix heures.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -992,6 +1017,7 @@ window.SCENE = {
      ],
      "f": "wald",
      "phrase": "Im Wald soll es Wölfe geben.",
+     "sens": "Il paraît qu'il y a des loups dans la forêt.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1037,6 +1063,34 @@ window.SCENE = {
     "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Der Mond ist am Himmel.": "The moon is in the sky.",
+    "A2 | Das Boot liegt am See.": "The boat is by the lake.",
+    "A2 | Der Topf hängt über dem Feuer.": "The pot hangs over the fire.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "The backpack is in front of the tent.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "The mushroom grows next to the tent.",
+    "A2 | Die Tasse steht auf dem Stein.": "The cup is on the stone.",
+    "A2 | Die Lampe liegt neben dem Holz.": "The lamp is next to the wood.",
+    "A2 | Das Zelt steht am See.": "The tent is by the lake.",
+    "B1 | Morgen wird Anna im See schwimmen.": "Tomorrow Anna will swim in the lake.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "Tonight they will sleep in the tent.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "I will play you a song.",
+    "B1 | Gleich wird die Suppe fertig sein.": "The soup will be ready soon.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "Tomorrow morning we will go out in the boat.",
+    "B1 | Wirst du das Feuer später ausmachen?": "Will you put out the fire later?",
+    "B1 | Es wird heute Nacht kalt werden.": "It is going to get cold tonight.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "The man is about to eat his sausage.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "If it were not so dark, they would go swimming.",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "If they had time, they would stay another week.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "If the man were hungry, he would eat the sausage.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "I wish I could play the guitar as well as Anna.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "If the boat were bigger, everyone could come along.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "If only they had brought more wood!",
+    "C1 | Sie muss den Abend sehr genießen.": "She must be really enjoying the evening.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "The man might be Anna's cousin.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "It is probably almost ten o'clock.",
+    "C1 | Im Wald soll es Wölfe geben.": "There are said to be wolves in the forest."
    }
   },
   "tr": {
@@ -1078,6 +1132,34 @@ window.SCENE = {
     "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Der Mond ist am Himmel.": "Ay gökyüzünde.",
+    "A2 | Das Boot liegt am See.": "Kayık göl kıyısında.",
+    "A2 | Der Topf hängt über dem Feuer.": "Tencere ateşin üstünde asılı.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "Sırt çantası çadırın önünde duruyor.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "Mantar çadırın yanında büyüyor.",
+    "A2 | Die Tasse steht auf dem Stein.": "Fincan taşın üstünde duruyor.",
+    "A2 | Die Lampe liegt neben dem Holz.": "Lamba odunların yanında.",
+    "A2 | Das Zelt steht am See.": "Çadır göl kıyısında.",
+    "B1 | Morgen wird Anna im See schwimmen.": "Yarın Anna gölde yüzecek.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "Bu gece çadırda uyuyacaklar.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "Sana bir şarkı çalacağım.",
+    "B1 | Gleich wird die Suppe fertig sein.": "Çorba birazdan hazır olacak.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "Yarın sabah kayıkla gezeceğiz.",
+    "B1 | Wirst du das Feuer später ausmachen?": "Ateşi sonra söndürecek misin?",
+    "B1 | Es wird heute Nacht kalt werden.": "Bu gece hava soğuyacak.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "Adam birazdan sosisini yiyecek.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "Bu kadar karanlık olmasaydı yüzmeye giderlerdi.",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "Zamanları olsaydı bir hafta daha kalırlardı.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "Adam aç olsaydı sosisi yerdi.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "Keşke Anna kadar iyi gitar çalabilseydim.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Kayık daha büyük olsaydı herkes binebilirdi.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "Keşke daha fazla odun getirselerdi!",
+    "C1 | Sie muss den Abend sehr genießen.": "Akşamın tadını çok çıkarıyor olmalı.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "Adam Anna'nın kuzeni olabilir.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "Saat neredeyse on olsa gerek.",
+    "C1 | Im Wald soll es Wölfe geben.": "Ormanda kurtlar olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1119,6 +1201,34 @@ window.SCENE = {
     "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Der Mond ist am Himmel.": "Місяць на небі.",
+    "A2 | Das Boot liegt am See.": "Човен стоїть біля озера.",
+    "A2 | Der Topf hängt über dem Feuer.": "Казанок висить над вогнем.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "Рюкзак стоїть перед наметом.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "Гриб росте біля намету.",
+    "A2 | Die Tasse steht auf dem Stein.": "Чашка стоїть на камені.",
+    "A2 | Die Lampe liegt neben dem Holz.": "Ліхтар лежить біля дров.",
+    "A2 | Das Zelt steht am See.": "Намет стоїть біля озера.",
+    "B1 | Morgen wird Anna im See schwimmen.": "Завтра Анна плаватиме в озері.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "Цієї ночі вони спатимуть у наметі.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "Я зіграю тобі пісню.",
+    "B1 | Gleich wird die Suppe fertig sein.": "Суп скоро буде готовий.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "Завтра вранці ми попливемо на човні.",
+    "B1 | Wirst du das Feuer später ausmachen?": "Ти загасиш вогонь пізніше?",
+    "B1 | Es wird heute Nacht kalt werden.": "Цієї ночі буде холодно.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "Чоловік зараз з'їсть свою сосиску.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "Якби не було так темно, вони пішли б плавати.",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "Якби вони мали час, вони залишилися б ще на тиждень.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "Якби чоловік був голодний, він з'їв би сосиску.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "Я хотів би грати на гітарі так само добре, як Анна.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Якби човен був більший, усі могли б поплисти.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "Якби ж вони принесли більше дров!",
+    "C1 | Sie muss den Abend sehr genießen.": "Їй, мабуть, дуже подобається цей вечір.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "Чоловік, можливо, двоюрідний брат Анни.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "Напевно, вже майже десята.",
+    "C1 | Im Wald soll es Wölfe geben.": "Кажуть, у лісі є вовки."
    }
   },
   "fa": {
@@ -1160,6 +1270,34 @@ window.SCENE = {
     "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Der Mond ist am Himmel.": "ماه در آسمان است.",
+    "A2 | Das Boot liegt am See.": "قایق کنار دریاچه است.",
+    "A2 | Der Topf hängt über dem Feuer.": "قابلمه بالای آتش آویزان است.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "کوله‌پشتی جلوی چادر است.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "قارچ کنار چادر می‌روید.",
+    "A2 | Die Tasse steht auf dem Stein.": "فنجان روی سنگ است.",
+    "A2 | Die Lampe liegt neben dem Holz.": "چراغ کنار هیزم‌ها است.",
+    "A2 | Das Zelt steht am See.": "چادر کنار دریاچه است.",
+    "B1 | Morgen wird Anna im See schwimmen.": "فردا آنا در دریاچه شنا خواهد کرد.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "امشب آنها در چادر خواهند خوابید.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "برایت آهنگی خواهم زد.",
+    "B1 | Gleich wird die Suppe fertig sein.": "سوپ به‌زودی آماده خواهد شد.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "فردا صبح با قایق خواهیم رفت.",
+    "B1 | Wirst du das Feuer später ausmachen?": "بعداً آتش را خاموش خواهی کرد؟",
+    "B1 | Es wird heute Nacht kalt werden.": "امشب هوا سرد خواهد شد.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "مرد همین حالا سوسیسش را خواهد خورد.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "اگر این‌قدر تاریک نبود، شنا می‌رفتند.",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "اگر وقت داشتند، یک هفتهٔ دیگر می‌ماندند.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "اگر مرد گرسنه بود، سوسیس را می‌خورد.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "کاش می‌توانستم مثل آنا خوب گیتار بزنم.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "اگر قایق بزرگ‌تر بود، همه می‌توانستند سوار شوند.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "کاش هیزم بیشتری آورده بودند!",
+    "C1 | Sie muss den Abend sehr genießen.": "او حتماً از این شب خیلی لذت می‌برد.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "مرد شاید پسرعموی آنا باشد.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "احتمالاً نزدیک ساعت ده است.",
+    "C1 | Im Wald soll es Wölfe geben.": "می‌گویند در جنگل گرگ هست."
    }
   },
   "ar": {
@@ -1201,6 +1339,34 @@ window.SCENE = {
     "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Der Mond ist am Himmel.": "القمر في السماء.",
+    "A2 | Das Boot liegt am See.": "القارب عند البحيرة.",
+    "A2 | Der Topf hängt über dem Feuer.": "القِدر معلّقة فوق النار.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "حقيبة الظهر أمام الخيمة.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "ينمو الفطر بجانب الخيمة.",
+    "A2 | Die Tasse steht auf dem Stein.": "الفنجان على الحجر.",
+    "A2 | Die Lampe liegt neben dem Holz.": "المصباح بجانب الخشب.",
+    "A2 | Das Zelt steht am See.": "الخيمة عند البحيرة.",
+    "B1 | Morgen wird Anna im See schwimmen.": "غداً ستسبح آنا في البحيرة.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "الليلة سينامون في الخيمة.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "سأعزف لك أغنية.",
+    "B1 | Gleich wird die Suppe fertig sein.": "سيجهز الحساء حالاً.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "غداً صباحاً سنركب القارب.",
+    "B1 | Wirst du das Feuer später ausmachen?": "هل ستطفئ النار لاحقاً؟",
+    "B1 | Es wird heute Nacht kalt werden.": "سيكون الجوّ بارداً الليلة.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "سيأكل الرجل نقانقه حالاً.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "لو لم يكن الظلام شديداً، لذهبوا للسباحة.",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "لو كان لديهم وقت، لبقوا أسبوعاً آخر.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "لو كان الرجل جائعاً، لأكل النقانق.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "ليتني أستطيع العزف على الغيتار مثل آنا.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "لو كان القارب أكبر، لاستطاع الجميع الركوب.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "ليتهم أحضروا مزيداً من الخشب!",
+    "C1 | Sie muss den Abend sehr genießen.": "لا بدّ أنها تستمتع كثيراً بهذه الأمسية.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "ربما يكون الرجل ابن عمّ آنا.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "على الأرجح الساعة تقارب العاشرة.",
+    "C1 | Im Wald soll es Wölfe geben.": "يُقال إن في الغابة ذئاباً."
    }
   },
   "pt": {
@@ -1242,6 +1408,34 @@ window.SCENE = {
     "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Der Mond ist am Himmel.": "A lua está no céu.",
+    "A2 | Das Boot liegt am See.": "O barco está à beira do lago.",
+    "A2 | Der Topf hängt über dem Feuer.": "A panela está pendurada sobre o fogo.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "A mochila está em frente à barraca.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "O cogumelo cresce ao lado da barraca.",
+    "A2 | Die Tasse steht auf dem Stein.": "A xícara está na pedra.",
+    "A2 | Die Lampe liegt neben dem Holz.": "A lanterna está ao lado da lenha.",
+    "A2 | Das Zelt steht am See.": "A barraca está à beira do lago.",
+    "B1 | Morgen wird Anna im See schwimmen.": "Amanhã Anna vai nadar no lago.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "Esta noite eles vão dormir na barraca.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "Vou tocar uma música para você.",
+    "B1 | Gleich wird die Suppe fertig sein.": "A sopa vai ficar pronta daqui a pouco.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "Amanhã de manhã vamos passear de barco.",
+    "B1 | Wirst du das Feuer später ausmachen?": "Você vai apagar o fogo mais tarde?",
+    "B1 | Es wird heute Nacht kalt werden.": "Esta noite vai fazer frio.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "O homem vai comer a sua salsicha agora mesmo.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "Se não estivesse tão escuro, eles iriam nadar.",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "Se tivessem tempo, ficariam mais uma semana.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "Se o homem estivesse com fome, comeria a salsicha.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "Eu gostaria de tocar violão tão bem quanto Anna.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Se o barco fosse maior, todos poderiam ir.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "Se ao menos tivessem trazido mais lenha!",
+    "C1 | Sie muss den Abend sehr genießen.": "Ela deve estar gostando muito da noite.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "O homem talvez seja o primo de Anna.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "Já devem ser quase dez horas.",
+    "C1 | Im Wald soll es Wölfe geben.": "Dizem que há lobos na floresta."
    }
   },
   "pl": {
@@ -1283,6 +1477,34 @@ window.SCENE = {
     "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Der Mond ist am Himmel.": "Księżyc jest na niebie.",
+    "A2 | Das Boot liegt am See.": "Łódka leży nad jeziorem.",
+    "A2 | Der Topf hängt über dem Feuer.": "Garnek wisi nad ogniem.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "Plecak stoi przed namiotem.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "Grzyb rośnie obok namiotu.",
+    "A2 | Die Tasse steht auf dem Stein.": "Kubek stoi na kamieniu.",
+    "A2 | Die Lampe liegt neben dem Holz.": "Lampa leży obok drewna.",
+    "A2 | Das Zelt steht am See.": "Namiot stoi nad jeziorem.",
+    "B1 | Morgen wird Anna im See schwimmen.": "Jutro Anna będzie pływać w jeziorze.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "Dziś w nocy będą spać w namiocie.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "Zagram ci piosenkę.",
+    "B1 | Gleich wird die Suppe fertig sein.": "Zupa zaraz będzie gotowa.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "Jutro rano popłyniemy łódką.",
+    "B1 | Wirst du das Feuer später ausmachen?": "Zgasisz później ogień?",
+    "B1 | Es wird heute Nacht kalt werden.": "Dziś w nocy zrobi się zimno.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "Mężczyzna zaraz zje swoją kiełbaskę.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "Gdyby nie było tak ciemno, poszliby popływać.",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "Gdyby mieli czas, zostaliby jeszcze tydzień.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "Gdyby mężczyzna był głodny, zjadłby kiełbaskę.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "Chciałbym umieć grać na gitarze tak dobrze jak Anna.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Gdyby łódka była większa, wszyscy mogliby popłynąć.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "Gdyby tylko przynieśli więcej drewna!",
+    "C1 | Sie muss den Abend sehr genießen.": "Musi bardzo cieszyć się tym wieczorem.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "Mężczyzna być może jest kuzynem Anny.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "Jest zapewne już prawie dziesiąta.",
+    "C1 | Im Wald soll es Wölfe geben.": "Podobno w lesie są wilki."
    }
   },
   "ru": {
@@ -1324,6 +1546,34 @@ window.SCENE = {
     "C1 | Der Mann könnte Annas Cousin sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Es dürfte schon fast zehn Uhr sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Im Wald soll es Wölfe geben.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Der Mond ist am Himmel.": "Луна на небе.",
+    "A2 | Das Boot liegt am See.": "Лодка стоит у озера.",
+    "A2 | Der Topf hängt über dem Feuer.": "Котелок висит над огнём.",
+    "A2 | Der Rucksack steht vor dem Zelt.": "Рюкзак стоит перед палаткой.",
+    "A2 | Der Pilz wächst neben dem Zelt.": "Гриб растёт рядом с палаткой.",
+    "A2 | Die Tasse steht auf dem Stein.": "Чашка стоит на камне.",
+    "A2 | Die Lampe liegt neben dem Holz.": "Фонарь лежит рядом с дровами.",
+    "A2 | Das Zelt steht am See.": "Палатка стоит у озера.",
+    "B1 | Morgen wird Anna im See schwimmen.": "Завтра Анна будет плавать в озере.",
+    "B1 | Heute Nacht werden sie im Zelt schlafen.": "Этой ночью они будут спать в палатке.",
+    "B1 | Ich werde dir ein Lied vorspielen.": "Я сыграю тебе песню.",
+    "B1 | Gleich wird die Suppe fertig sein.": "Суп скоро будет готов.",
+    "B1 | Wir werden morgen früh mit dem Boot fahren.": "Завтра утром мы поплывём на лодке.",
+    "B1 | Wirst du das Feuer später ausmachen?": "Ты потушишь огонь позже?",
+    "B1 | Es wird heute Nacht kalt werden.": "Этой ночью будет холодно.",
+    "B1 | Der Mann wird gleich seine Wurst essen.": "Мужчина сейчас съест свою сосиску.",
+    "B2 | Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.": "Если бы не было так темно, они пошли бы плавать.",
+    "B2 | Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.": "Если бы у них было время, они остались бы ещё на неделю.",
+    "B2 | Wenn der Mann Hunger hätte, würde er die Wurst essen.": "Если бы мужчина был голоден, он съел бы сосиску.",
+    "B2 | Ich könnte gern so gut Gitarre spielen wie Anna.": "Я хотел бы играть на гитаре так же хорошо, как Анна.",
+    "B2 | Wenn das Boot größer wäre, könnten alle mitfahren.": "Если бы лодка была больше, все могли бы поплыть.",
+    "B2 | Hätten sie doch mehr Holz mitgebracht!": "Если бы только они принесли больше дров!",
+    "C1 | Sie muss den Abend sehr genießen.": "Ей, должно быть, очень нравится этот вечер.",
+    "C1 | Der Mann könnte Annas Cousin sein.": "Мужчина, возможно, двоюродный брат Анны.",
+    "C1 | Es dürfte schon fast zehn Uhr sein.": "Вероятно, уже почти десять часов.",
+    "C1 | Im Wald soll es Wölfe geben.": "Говорят, в лесу есть волки."
    }
   }
  }

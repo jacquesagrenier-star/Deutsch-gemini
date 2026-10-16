@@ -805,6 +805,7 @@ window.SCENE = {
      "f": "brot",
      "r": "korb",
      "phrase": "El pan está en la cesta.",
+     "sens": "Le pain est dans le panier.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -817,6 +818,7 @@ window.SCENE = {
      "f": "korb",
      "r": "boden",
      "phrase": "La cesta está en el suelo.",
+     "sens": "Le panier est par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "La cesta está ___ piso.",
@@ -833,6 +835,7 @@ window.SCENE = {
      "f": "mann",
      "r": "kasse",
      "phrase": "El hombre está sentado en la caja.",
+     "sens": "L'homme est assis à la caisse.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -845,6 +848,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "fenster",
      "phrase": "Hay una bicicleta detrás de la ventana.",
+     "sens": "Il y a un vélo derrière la fenêtre.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -857,6 +861,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "tuete",
      "phrase": "La botella de agua está al lado de la bolsa.",
+     "sens": "La bouteille d'eau est à côté du sac.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -869,6 +874,7 @@ window.SCENE = {
      "f": "ei",
      "r": "korb",
      "phrase": "Los huevos están en la cesta.",
+     "sens": "Les œufs sont dans le panier.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -881,6 +887,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "regal",
      "phrase": "La chica está al lado de la estantería.",
+     "sens": "La fille est à côté du rayon.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -893,6 +900,7 @@ window.SCENE = {
      "f": "reis",
      "r": "regal",
      "phrase": "El arroz está en la estantería.",
+     "sens": "Le riz est sur le rayon.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     }
    ]
@@ -910,6 +918,7 @@ window.SCENE = {
      "f": "tuete",
      "r": "tasche",
      "phrase": "La bolsa de papel es más grande que el bolso.",
+     "sens": "Le sac en papier est plus grand que le sac à main.",
      "n": "Comparatif : <b>más</b> + adjectif + <b>que</b>."
     },
     {
@@ -922,6 +931,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "anna",
      "phrase": "La chica es más pequeña que Anna.",
+     "sens": "La fille est plus petite qu'Anna.",
      "n": "L'adjectif s'accorde : la chica → pequeñ<b>a</b>."
     },
     {
@@ -934,6 +944,7 @@ window.SCENE = {
      "f": "mann",
      "r": "anna",
      "phrase": "El hombre de la caja es mayor que Anna.",
+     "sens": "L'homme de la caisse est plus âgé qu'Anna.",
      "n": "Pour l'âge : <b>mayor</b> = plus âgé."
     },
     {
@@ -946,6 +957,7 @@ window.SCENE = {
      "f": "saft",
      "r": "dose",
      "phrase": "Las botellas están más arriba que las latas.",
+     "sens": "Les bouteilles sont plus haut que les boîtes de conserve.",
      "n": "<b>más</b> … <b>que</b> : le second terme suit <b>que</b>."
     },
     {
@@ -958,6 +970,7 @@ window.SCENE = {
      "f": "kaese",
      "r": "milch",
      "phrase": "Para Anna, el queso es mejor que la leche.",
+     "sens": "Pour Anna, le fromage est meilleur que le lait.",
      "n": "<b>bueno</b> est irrégulier → <b>mejor</b>."
     },
     {
@@ -969,6 +982,7 @@ window.SCENE = {
      ],
      "f": "brot",
      "phrase": "Es el pan más fresco de la tienda.",
+     "sens": "C'est le pain le plus frais du magasin.",
      "n": "Superlatif : <b>el</b> + nom + <b>más</b> + adjectif + <b>de</b>."
     },
     {
@@ -981,6 +995,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "maedchen",
      "phrase": "La chaqueta de Anna es más larga que la de la chica.",
+     "sens": "La veste d'Anna est plus longue que celle de la fille.",
      "n": "Comparatif : <b>más</b> + adjectif + <b>que</b>."
     }
    ]
@@ -998,6 +1013,7 @@ window.SCENE = {
      "f": "tuete",
      "r": "mann",
      "phrase": "¿Podría darme una bolsa, por favor?",
+     "sens": "Pourriez-vous me donner un sac, s'il vous plaît ?",
      "n": "Politesse : le <b>conditionnel</b> → podría.",
      "revise": {
       "mot": "poder",
@@ -1014,6 +1030,7 @@ window.SCENE = {
      "f": "kaese",
      "r": "anna",
      "phrase": "Me gustaría llevar este queso.",
+     "sens": "Je voudrais prendre ce fromage.",
      "n": "<b>me gustaría</b> = je voudrais (conditionnel de gustar).",
      "revise": {
       "mot": "gustar",
@@ -1029,6 +1046,7 @@ window.SCENE = {
      ],
      "f": "korb",
      "phrase": "¿Sería tan amable de ayudarme con la cesta?",
+     "sens": "Auriez-vous la gentillesse de m'aider avec le panier ?",
      "n": "<b>¿Sería tan amable de…?</b> : conditionnel de ser.",
      "revise": {
       "mot": "ser",
@@ -1044,6 +1062,7 @@ window.SCENE = {
      ],
      "f": "milch",
      "phrase": "Yo en tu lugar compraría la leche fresca.",
+     "sens": "À ta place, j'achèterais le lait frais.",
      "n": "Un conseil : <b>yo en tu lugar</b> + conditionnel.",
      "revise": {
       "mot": "comprar",
@@ -1060,6 +1079,7 @@ window.SCENE = {
      "f": "reis",
      "r": "mann",
      "phrase": "¿Me podría decir dónde está el arroz?",
+     "sens": "Pourriez-vous me dire où est le riz ?",
      "n": "Politesse : le <b>conditionnel</b> → podría.",
      "revise": {
       "mot": "decir",
@@ -1076,6 +1096,7 @@ window.SCENE = {
      "f": "kasse",
      "r": "anna",
      "phrase": "Me gustaría pagar con tarjeta.",
+     "sens": "Je voudrais payer par carte.",
      "n": "<b>me gustaría</b> = je voudrais (conditionnel de gustar).",
      "revise": {
       "mot": "pagar",
@@ -1097,6 +1118,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "regal",
      "phrase": "Debe de querer chocolate.",
+     "sens": "Elle doit vouloir du chocolat.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1109,6 +1131,7 @@ window.SCENE = {
      "f": "mann",
      "r": "kasse",
      "phrase": "Puede que el hombre de la caja sea el dueño.",
+     "sens": "L'homme de la caisse est peut-être le patron.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1120,6 +1143,7 @@ window.SCENE = {
      ],
      "f": "kasse",
      "phrase": "Estará a punto de cerrar.",
+     "sens": "Il doit être sur le point de fermer.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1131,6 +1155,7 @@ window.SCENE = {
      ],
      "f": "brot",
      "phrase": "Dicen que el pan de aquí es el mejor del barrio.",
+     "sens": "On dit que le pain d'ici est le meilleur du quartier.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1176,6 +1201,34 @@ window.SCENE = {
     "C1 | Puede que el hombre de la caja sea el dueño.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Estará a punto de cerrar.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que el pan de aquí es el mejor del barrio.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El pan está en la cesta.": "The bread is in the basket.",
+    "A2 | La cesta está en el piso.": "The basket is on the floor.",
+    "A2 | La cesta está en el suelo.": "The basket is on the floor.",
+    "A2 | El hombre está sentado en la caja.": "The man is sitting at the till.",
+    "A2 | Hay una bicicleta detrás de la ventana.": "There is a bicycle behind the window.",
+    "A2 | La botella de agua está al lado de la bolsa.": "The bottle of water is next to the bag.",
+    "A2 | Los huevos están en la cesta.": "The eggs are in the basket.",
+    "A2 | La chica está al lado de la estantería.": "The girl is next to the shelf.",
+    "A2 | El arroz está en la estantería.": "The rice is on the shelf.",
+    "B1 | La bolsa de papel es más grande que el bolso.": "The paper bag is bigger than the handbag.",
+    "B1 | La chica es más pequeña que Anna.": "The girl is smaller than Anna.",
+    "B1 | El hombre de la caja es mayor que Anna.": "The man at the till is older than Anna.",
+    "B1 | Las botellas están más arriba que las latas.": "The bottles are higher up than the cans.",
+    "B1 | Para Anna, el queso es mejor que la leche.": "For Anna, cheese is better than milk.",
+    "B1 | Es el pan más fresco de la tienda.": "It is the freshest bread in the shop.",
+    "B1 | La chaqueta de Anna es más larga que la de la chica.": "Anna's jacket is longer than the girl's.",
+    "B2 | ¿Podría darme una bolsa, por favor?": "Could you give me a bag, please?",
+    "B2 | Me gustaría llevar este queso.": "I would like to take this cheese.",
+    "B2 | ¿Sería tan amable de ayudarme con la cesta?": "Would you be so kind as to help me with the basket?",
+    "B2 | Yo en tu lugar compraría la leche fresca.": "If I were you, I would buy the fresh milk.",
+    "B2 | ¿Me podría decir dónde está el arroz?": "Could you tell me where the rice is?",
+    "B2 | Me gustaría pagar con tarjeta.": "I would like to pay by card.",
+    "C1 | Debe de querer chocolate.": "She must want chocolate.",
+    "C1 | Puede que el hombre de la caja sea el dueño.": "The man at the till may be the owner.",
+    "C1 | Estará a punto de cerrar.": "It is probably about to close.",
+    "C1 | Dicen que el pan de aquí es el mejor del barrio.": "They say the bread here is the best in the neighbourhood."
    }
   },
   "tr": {
@@ -1186,7 +1239,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1196,7 +1250,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1206,7 +1261,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1247,6 +1303,34 @@ window.SCENE = {
     "C1 | Puede que el hombre de la caja sea el dueño.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Estará a punto de cerrar.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que el pan de aquí es el mejor del barrio.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El pan está en la cesta.": "الخبز في السلّة.",
+    "A2 | La cesta está en el piso.": "السلّة على الأرض.",
+    "A2 | La cesta está en el suelo.": "السلّة على الأرض.",
+    "A2 | El hombre está sentado en la caja.": "الرجل جالس عند الصندوق.",
+    "A2 | Hay una bicicleta detrás de la ventana.": "هناك دراجة خلف النافذة.",
+    "A2 | La botella de agua está al lado de la bolsa.": "زجاجة الماء بجانب الكيس.",
+    "A2 | Los huevos están en la cesta.": "البيض في السلّة.",
+    "A2 | La chica está al lado de la estantería.": "الفتاة بجانب الرفّ.",
+    "A2 | El arroz está en la estantería.": "الأرزّ على الرفّ.",
+    "B1 | La bolsa de papel es más grande que el bolso.": "الكيس الورقي أكبر من حقيبة اليد.",
+    "B1 | La chica es más pequeña que Anna.": "الفتاة أصغر من آنا.",
+    "B1 | El hombre de la caja es mayor que Anna.": "رجل الصندوق أكبر سنّاً من آنا.",
+    "B1 | Las botellas están más arriba que las latas.": "الزجاجات أعلى من العلب.",
+    "B1 | Para Anna, el queso es mejor que la leche.": "بالنسبة لآنا، الجبن أفضل من الحليب.",
+    "B1 | Es el pan más fresco de la tienda.": "إنه أطزج خبز في المحل.",
+    "B1 | La chaqueta de Anna es más larga que la de la chica.": "سترة آنا أطول من سترة الفتاة.",
+    "B2 | ¿Podría darme una bolsa, por favor?": "هل يمكنك أن تعطيني كيساً، من فضلك؟",
+    "B2 | Me gustaría llevar este queso.": "أودّ أن آخذ هذا الجبن.",
+    "B2 | ¿Sería tan amable de ayudarme con la cesta?": "هل تتكرّم بمساعدتي في حمل السلّة؟",
+    "B2 | Yo en tu lugar compraría la leche fresca.": "لو كنت مكانك، لاشتريت الحليب الطازج.",
+    "B2 | ¿Me podría decir dónde está el arroz?": "هل يمكنك أن تقول لي أين الأرزّ؟",
+    "B2 | Me gustaría pagar con tarjeta.": "أودّ أن أدفع بالبطاقة.",
+    "C1 | Debe de querer chocolate.": "لا بدّ أنها تريد شوكولاتة.",
+    "C1 | Puede que el hombre de la caja sea el dueño.": "ربما يكون رجل الصندوق هو صاحب المحل.",
+    "C1 | Estará a punto de cerrar.": "على الأرجح هو على وشك الإغلاق.",
+    "C1 | Dicen que el pan de aquí es el mejor del barrio.": "يُقال إن الخبز هنا هو الأفضل في الحيّ."
    }
   },
   "pt": {
@@ -1288,6 +1372,34 @@ window.SCENE = {
     "C1 | Puede que el hombre de la caja sea el dueño.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Estará a punto de cerrar.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que el pan de aquí es el mejor del barrio.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El pan está en la cesta.": "O pão está na cesta.",
+    "A2 | La cesta está en el piso.": "A cesta está no chão.",
+    "A2 | La cesta está en el suelo.": "A cesta está no chão.",
+    "A2 | El hombre está sentado en la caja.": "O homem está sentado no caixa.",
+    "A2 | Hay una bicicleta detrás de la ventana.": "Há uma bicicleta atrás da janela.",
+    "A2 | La botella de agua está al lado de la bolsa.": "A garrafa de água está ao lado da sacola.",
+    "A2 | Los huevos están en la cesta.": "Os ovos estão na cesta.",
+    "A2 | La chica está al lado de la estantería.": "A menina está ao lado da prateleira.",
+    "A2 | El arroz está en la estantería.": "O arroz está na prateleira.",
+    "B1 | La bolsa de papel es más grande que el bolso.": "A sacola de papel é maior que a bolsa.",
+    "B1 | La chica es más pequeña que Anna.": "A menina é menor que Anna.",
+    "B1 | El hombre de la caja es mayor que Anna.": "O homem do caixa é mais velho que Anna.",
+    "B1 | Las botellas están más arriba que las latas.": "As garrafas estão mais acima que as latas.",
+    "B1 | Para Anna, el queso es mejor que la leche.": "Para Anna, o queijo é melhor que o leite.",
+    "B1 | Es el pan más fresco de la tienda.": "É o pão mais fresco da loja.",
+    "B1 | La chaqueta de Anna es más larga que la de la chica.": "A jaqueta de Anna é mais comprida que a da menina.",
+    "B2 | ¿Podría darme una bolsa, por favor?": "Poderia me dar uma sacola, por favor?",
+    "B2 | Me gustaría llevar este queso.": "Eu gostaria de levar este queijo.",
+    "B2 | ¿Sería tan amable de ayudarme con la cesta?": "Faria a gentileza de me ajudar com a cesta?",
+    "B2 | Yo en tu lugar compraría la leche fresca.": "No seu lugar, eu compraria o leite fresco.",
+    "B2 | ¿Me podría decir dónde está el arroz?": "Poderia me dizer onde está o arroz?",
+    "B2 | Me gustaría pagar con tarjeta.": "Eu gostaria de pagar com cartão.",
+    "C1 | Debe de querer chocolate.": "Ela deve querer chocolate.",
+    "C1 | Puede que el hombre de la caja sea el dueño.": "Pode ser que o homem do caixa seja o dono.",
+    "C1 | Estará a punto de cerrar.": "Deve estar prestes a fechar.",
+    "C1 | Dicen que el pan de aquí es el mejor del barrio.": "Dizem que o pão daqui é o melhor do bairro."
    }
   },
   "pl": {
@@ -1298,7 +1410,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1308,7 +1421,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

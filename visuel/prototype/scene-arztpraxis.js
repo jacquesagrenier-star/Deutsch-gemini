@@ -1978,6 +1978,7 @@ window.SCENE = {
      "f": "ball",
      "r": "tasche",
      "phrase": "Der Ball liegt auf der Tasche.",
+     "sens": "Le ballon est sur le sac.",
      "n": "<b>Wo?</b> → datif : die Tasche → auf <b>der</b> Tasche."
     },
     {
@@ -1990,6 +1991,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "poster",
      "phrase": "Die Uhr hängt über dem Poster.",
+     "sens": "L'horloge est accrochée au-dessus de l'affiche.",
      "n": "<b>über</b> = au-dessus de. das Poster → über <b>dem</b> Poster."
     },
     {
@@ -2002,6 +2004,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "fenster",
      "phrase": "Die Pflanze steht am Fenster.",
+     "sens": "La plante est près de la fenêtre.",
      "n": "<b>am</b> = an + <b>dem</b> : das Fenster → am Fenster."
     },
     {
@@ -2014,6 +2017,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "Die Ärztin sitzt neben dem Patienten.",
+     "sens": "La médecin est assise à côté du patient.",
      "n": "<b>neben</b> + datif. Et der Patient prend un <b>-en</b> : dem Patient<b>en</b>."
     },
     {
@@ -2026,6 +2030,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "tuer",
      "phrase": "Die Jacke hängt neben der Tür.",
+     "sens": "La veste est accrochée à côté de la porte.",
      "n": "Elle est au mur, à côté de la porte : <b>neben der</b> Tür (datif)."
     },
     {
@@ -2038,6 +2043,7 @@ window.SCENE = {
      "f": "socke",
      "r": "schuh",
      "phrase": "Die Socken liegen auf den Schuhen.",
+     "sens": "Les chaussettes sont sur les chaussures.",
      "n": "Datif pluriel : <b>den</b> Schuhe<b>n</b> — le nom prend un -n."
     },
     {
@@ -2050,6 +2056,7 @@ window.SCENE = {
      "f": "pflaster",
      "r": "knie",
      "phrase": "Das Pflaster ist auf dem Knie.",
+     "sens": "Le pansement est sur le genou.",
      "n": "das Knie → auf <b>dem</b> Knie."
     },
     {
@@ -2062,6 +2069,7 @@ window.SCENE = {
      "f": "poster",
      "r": "mark",
      "phrase": "Das Poster hängt hinter dem Patienten.",
+     "sens": "L'affiche est accrochée derrière le patient.",
      "n": "<b>hinter</b> = derrière. hinter <b>dem</b> Patient<b>en</b>."
     }
    ]
@@ -2079,6 +2087,7 @@ window.SCENE = {
      "f": "ball",
      "r": "tasche",
      "phrase": "Der Ball liegt auf der Tasche.",
+     "sens": "Le ballon est sur le sac.",
      "n": "<b>liegen</b> = être posé (état, Wo?). <b>legen</b> = poser (mouvement, Wohin?).",
      "revise": {
       "mot": "liegen",
@@ -2095,6 +2104,7 @@ window.SCENE = {
      "f": "ball",
      "r": "tasche",
      "phrase": "Mark hat den Ball auf die Tasche gelegt.",
+     "sens": "Mark a posé le ballon sur le sac.",
      "n": "Mouvement : <b>legen</b> → gelegt, et l'accusatif : auf <b>die</b> Tasche.",
      "revise": {
       "mot": "legen",
@@ -2111,6 +2121,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "hocker",
      "phrase": "Die Ärztin sitzt auf einem Hocker.",
+     "sens": "La médecin est assise sur un tabouret.",
      "n": "<b>sitzen</b> = être assis. <b>sich setzen</b> = s'asseoir.",
      "revise": {
       "mot": "sitzen",
@@ -2127,6 +2138,7 @@ window.SCENE = {
      "f": "schuh",
      "r": "tasche",
      "phrase": "Mark hat seine Schuhe neben die Tasche gestellt.",
+     "sens": "Mark a mis ses chaussures à côté du sac.",
      "n": "Des chaussures se posent debout : <b>stellen</b> → gestellt, + accusatif : neben <b>die</b> Tasche.",
      "revise": {
       "mot": "stellen",
@@ -2143,6 +2155,7 @@ window.SCENE = {
      "f": "schuh",
      "r": "tasche",
      "phrase": "Die Schuhe stehen neben der Tasche.",
+     "sens": "Les chaussures sont à côté du sac.",
      "n": "L'état : <b>stehen</b> + datif — neben <b>der</b> Tasche.",
      "revise": {
       "mot": "stehen",
@@ -2159,6 +2172,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "tuer",
      "phrase": "Mark hat seine Jacke neben die Tür gehängt.",
+     "sens": "Mark a accroché sa veste à côté de la porte.",
      "n": "<b>hängen</b> a deux participes : on <b>a accroché</b> → gehängt ; elle <b>était accrochée</b> → gehangen.",
      "revise": {
       "mot": "hängen",
@@ -2175,6 +2189,7 @@ window.SCENE = {
      "f": "glas",
      "r": "schreibtisch",
      "phrase": "Das Glas steht auf dem Schreibtisch.",
+     "sens": "Le verre est sur le bureau.",
      "n": "Un verre est debout : <b>stehen</b> (état) + datif.",
      "revise": {
       "mot": "stehen",
@@ -2191,6 +2206,7 @@ window.SCENE = {
      "f": "karte",
      "r": "schreibtisch",
      "phrase": "Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.",
+     "sens": "La médecin a posé la carte d'assurance sur le bureau.",
      "n": "Une carte se pose à plat : <b>legen</b> → gelegt, + accusatif : auf <b>den</b> Schreibtisch.",
      "revise": {
       "mot": "legen",
@@ -2212,6 +2228,7 @@ window.SCENE = {
      "f": "mark",
      "r": "knie",
      "phrase": "Der Patient, dessen Knie verletzt ist, heißt Mark.",
+     "sens": "Le patient dont le genou est blessé s'appelle Mark.",
      "n": "Possession, antécédent masculin → <b>dessen</b> (dont le genou)."
     },
     {
@@ -2224,6 +2241,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "verband",
      "phrase": "Die Ärztin, die einen Verband in der Hand hält, lächelt.",
+     "sens": "La médecin, qui tient un bandage à la main, sourit.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -2236,6 +2254,7 @@ window.SCENE = {
      "f": "mark",
      "r": "aerztin",
      "phrase": "Der Patient, dem die Ärztin zulächelt, heißt Mark.",
+     "sens": "Le patient à qui la médecin sourit s'appelle Mark.",
      "n": "<b>zulächeln</b> + datif : jemandem zulächeln → <b>dem</b>."
     },
     {
@@ -2248,6 +2267,7 @@ window.SCENE = {
      "f": "tasche",
      "r": "ball",
      "phrase": "Die Tasche, auf der der Ball liegt, gehört Mark.",
+     "sens": "Le sac sur lequel est posé le ballon appartient à Mark.",
      "n": "Préposition + datif (Wo?), féminin → auf <b>der</b>."
     },
     {
@@ -2259,6 +2279,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Das Fenster ist geschlossen.",
+     "sens": "La fenêtre est fermée.",
      "n": "Passif d'<b>état</b> : sein + participe. On voit le résultat : elle est fermée."
     },
     {
@@ -2271,6 +2292,7 @@ window.SCENE = {
      "f": "pflaster",
      "r": "knie",
      "phrase": "Das Pflaster ist schon aufgeklebt.",
+     "sens": "Le pansement est déjà posé.",
      "n": "Passif d'état : le pansement <b>est</b> collé — c'est fait."
     }
    ]
@@ -2288,6 +2310,7 @@ window.SCENE = {
      "f": "mark",
      "r": "ball",
      "phrase": "Mark muss beim Fußball gestürzt sein.",
+     "sens": "Mark a dû tomber en jouant au foot.",
      "n": "<b>müssen</b> + infinitif passé = presque certain. Le ballon, le sac de sport, le genou…"
     },
     {
@@ -2300,6 +2323,7 @@ window.SCENE = {
      "f": "verband",
      "r": "aerztin",
      "phrase": "Die Ärztin könnte ihm gleich einen Verband anlegen.",
+     "sens": "La médecin va peut-être lui mettre un bandage tout de suite.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -2311,6 +2335,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Es dürfte nichts Schlimmes sein.",
+     "sens": "Ce n'est sans doute rien de grave.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -2322,6 +2347,7 @@ window.SCENE = {
      ],
      "f": "aerztin",
      "phrase": "Die Ärztin soll sehr gut sein.",
+     "sens": "On dit que la médecin est très bonne.",
      "n": "<b>sollen</b> = on le dit, je le rapporte sans le garantir."
     }
    ]
@@ -2368,6 +2394,34 @@ window.SCENE = {
     "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = one possibility among others.",
     "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = people say so; I'm passing it on without vouching for it."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf der Tasche.": "The ball is on the bag.",
+    "A2 | Die Uhr hängt über dem Poster.": "The clock hangs above the poster.",
+    "A2 | Die Pflanze steht am Fenster.": "The plant is by the window.",
+    "A2 | Die Ärztin sitzt neben dem Patienten.": "The doctor is sitting next to the patient.",
+    "A2 | Die Jacke hängt neben der Tür.": "The jacket hangs next to the door.",
+    "A2 | Die Socken liegen auf den Schuhen.": "The socks are on the shoes.",
+    "A2 | Das Pflaster ist auf dem Knie.": "The plaster is on the knee.",
+    "A2 | Das Poster hängt hinter dem Patienten.": "The poster hangs behind the patient.",
+    "B1 | Der Ball liegt auf der Tasche.": "The ball is on the bag.",
+    "B1 | Mark hat den Ball auf die Tasche gelegt.": "Mark put the ball on the bag.",
+    "B1 | Die Ärztin sitzt auf einem Hocker.": "The doctor is sitting on a stool.",
+    "B1 | Mark hat seine Schuhe neben die Tasche gestellt.": "Mark put his shoes next to the bag.",
+    "B1 | Die Schuhe stehen neben der Tasche.": "The shoes are next to the bag.",
+    "B1 | Mark hat seine Jacke neben die Tür gehängt.": "Mark hung his jacket next to the door.",
+    "B1 | Das Glas steht auf dem Schreibtisch.": "The glass is on the desk.",
+    "B1 | Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.": "The doctor put the insurance card on the desk.",
+    "B2 | Der Patient, dessen Knie verletzt ist, heißt Mark.": "The patient whose knee is injured is called Mark.",
+    "B2 | Die Ärztin, die einen Verband in der Hand hält, lächelt.": "The doctor, who is holding a bandage, is smiling.",
+    "B2 | Der Patient, dem die Ärztin zulächelt, heißt Mark.": "The patient the doctor is smiling at is called Mark.",
+    "B2 | Die Tasche, auf der der Ball liegt, gehört Mark.": "The bag the ball is lying on belongs to Mark.",
+    "B2 | Das Fenster ist geschlossen.": "The window is closed.",
+    "B2 | Das Pflaster ist schon aufgeklebt.": "The plaster is already on.",
+    "C1 | Mark muss beim Fußball gestürzt sein.": "Mark must have fallen while playing football.",
+    "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "The doctor might put a bandage on him right away.",
+    "C1 | Es dürfte nichts Schlimmes sein.": "It is probably nothing serious.",
+    "C1 | Die Ärztin soll sehr gut sein.": "The doctor is said to be very good."
    }
   },
   "tr": {
@@ -2409,6 +2463,34 @@ window.SCENE = {
     "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = öyle söyleniyor; aktarıyorum ama garanti etmiyorum."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf der Tasche.": "Top çantanın üstünde.",
+    "A2 | Die Uhr hängt über dem Poster.": "Saat posterin üstünde asılı.",
+    "A2 | Die Pflanze steht am Fenster.": "Bitki pencerenin yanında duruyor.",
+    "A2 | Die Ärztin sitzt neben dem Patienten.": "Doktor hastanın yanında oturuyor.",
+    "A2 | Die Jacke hängt neben der Tür.": "Ceket kapının yanında asılı.",
+    "A2 | Die Socken liegen auf den Schuhen.": "Çoraplar ayakkabıların üstünde.",
+    "A2 | Das Pflaster ist auf dem Knie.": "Yara bandı dizin üstünde.",
+    "A2 | Das Poster hängt hinter dem Patienten.": "Poster hastanın arkasında asılı.",
+    "B1 | Der Ball liegt auf der Tasche.": "Top çantanın üstünde.",
+    "B1 | Mark hat den Ball auf die Tasche gelegt.": "Mark topu çantanın üstüne koydu.",
+    "B1 | Die Ärztin sitzt auf einem Hocker.": "Doktor bir taburede oturuyor.",
+    "B1 | Mark hat seine Schuhe neben die Tasche gestellt.": "Mark ayakkabılarını çantanın yanına koydu.",
+    "B1 | Die Schuhe stehen neben der Tasche.": "Ayakkabılar çantanın yanında duruyor.",
+    "B1 | Mark hat seine Jacke neben die Tür gehängt.": "Mark ceketini kapının yanına astı.",
+    "B1 | Das Glas steht auf dem Schreibtisch.": "Bardak masanın üstünde duruyor.",
+    "B1 | Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.": "Doktor sigorta kartını masanın üstüne koydu.",
+    "B2 | Der Patient, dessen Knie verletzt ist, heißt Mark.": "Dizi yaralı olan hastanın adı Mark.",
+    "B2 | Die Ärztin, die einen Verband in der Hand hält, lächelt.": "Elinde sargı bezi tutan doktor gülümsüyor.",
+    "B2 | Der Patient, dem die Ärztin zulächelt, heißt Mark.": "Doktorun gülümsediği hastanın adı Mark.",
+    "B2 | Die Tasche, auf der der Ball liegt, gehört Mark.": "Topun üstünde durduğu çanta Mark'ın.",
+    "B2 | Das Fenster ist geschlossen.": "Pencere kapalı.",
+    "B2 | Das Pflaster ist schon aufgeklebt.": "Yara bandı yapıştırılmış bile.",
+    "C1 | Mark muss beim Fußball gestürzt sein.": "Mark futbol oynarken düşmüş olmalı.",
+    "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "Doktor ona hemen sargı yapabilir.",
+    "C1 | Es dürfte nichts Schlimmes sein.": "Ciddi bir şey olmasa gerek.",
+    "C1 | Die Ärztin soll sehr gut sein.": "Doktorun çok iyi olduğu söyleniyor."
    }
   },
   "uk": {
@@ -2450,6 +2532,34 @@ window.SCENE = {
     "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = так кажуть; я переказую, але не ручаюся."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf der Tasche.": "М'яч лежить на сумці.",
+    "A2 | Die Uhr hängt über dem Poster.": "Годинник висить над плакатом.",
+    "A2 | Die Pflanze steht am Fenster.": "Рослина стоїть біля вікна.",
+    "A2 | Die Ärztin sitzt neben dem Patienten.": "Лікарка сидить біля пацієнта.",
+    "A2 | Die Jacke hängt neben der Tür.": "Куртка висить біля дверей.",
+    "A2 | Die Socken liegen auf den Schuhen.": "Шкарпетки лежать на черевиках.",
+    "A2 | Das Pflaster ist auf dem Knie.": "Пластир на коліні.",
+    "A2 | Das Poster hängt hinter dem Patienten.": "Плакат висить за пацієнтом.",
+    "B1 | Der Ball liegt auf der Tasche.": "М'яч лежить на сумці.",
+    "B1 | Mark hat den Ball auf die Tasche gelegt.": "Марк поклав м'яч на сумку.",
+    "B1 | Die Ärztin sitzt auf einem Hocker.": "Лікарка сидить на табуреті.",
+    "B1 | Mark hat seine Schuhe neben die Tasche gestellt.": "Марк поставив черевики біля сумки.",
+    "B1 | Die Schuhe stehen neben der Tasche.": "Черевики стоять біля сумки.",
+    "B1 | Mark hat seine Jacke neben die Tür gehängt.": "Марк повісив куртку біля дверей.",
+    "B1 | Das Glas steht auf dem Schreibtisch.": "Склянка стоїть на столі.",
+    "B1 | Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.": "Лікарка поклала страхову картку на стіл.",
+    "B2 | Der Patient, dessen Knie verletzt ist, heißt Mark.": "Пацієнта, у якого поранене коліно, звати Марк.",
+    "B2 | Die Ärztin, die einen Verband in der Hand hält, lächelt.": "Лікарка, яка тримає бинт у руці, усміхається.",
+    "B2 | Der Patient, dem die Ärztin zulächelt, heißt Mark.": "Пацієнта, якому усміхається лікарка, звати Марк.",
+    "B2 | Die Tasche, auf der der Ball liegt, gehört Mark.": "Сумка, на якій лежить м'яч, належить Марку.",
+    "B2 | Das Fenster ist geschlossen.": "Вікно зачинене.",
+    "B2 | Das Pflaster ist schon aufgeklebt.": "Пластир уже наклеєний.",
+    "C1 | Mark muss beim Fußball gestürzt sein.": "Марк, мабуть, упав, граючи у футбол.",
+    "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "Лікарка, можливо, зараз накладе йому пов'язку.",
+    "C1 | Es dürfte nichts Schlimmes sein.": "Напевно, нічого страшного.",
+    "C1 | Die Ärztin soll sehr gut sein.": "Кажуть, лікарка дуже хороша."
    }
   },
   "fa": {
@@ -2491,6 +2601,34 @@ window.SCENE = {
     "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = این‌طور می‌گویند؛ نقلش می‌کنم بی‌آنکه ضمانتش کنم."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf der Tasche.": "توپ روی کیف است.",
+    "A2 | Die Uhr hängt über dem Poster.": "ساعت بالای پوستر آویزان است.",
+    "A2 | Die Pflanze steht am Fenster.": "گیاه کنار پنجره است.",
+    "A2 | Die Ärztin sitzt neben dem Patienten.": "پزشک کنار بیمار نشسته است.",
+    "A2 | Die Jacke hängt neben der Tür.": "کاپشن کنار در آویزان است.",
+    "A2 | Die Socken liegen auf den Schuhen.": "جوراب‌ها روی کفش‌ها هستند.",
+    "A2 | Das Pflaster ist auf dem Knie.": "چسب زخم روی زانو است.",
+    "A2 | Das Poster hängt hinter dem Patienten.": "پوستر پشت بیمار آویزان است.",
+    "B1 | Der Ball liegt auf der Tasche.": "توپ روی کیف است.",
+    "B1 | Mark hat den Ball auf die Tasche gelegt.": "مارک توپ را روی کیف گذاشته است.",
+    "B1 | Die Ärztin sitzt auf einem Hocker.": "پزشک روی چهارپایه نشسته است.",
+    "B1 | Mark hat seine Schuhe neben die Tasche gestellt.": "مارک کفش‌هایش را کنار کیف گذاشته است.",
+    "B1 | Die Schuhe stehen neben der Tasche.": "کفش‌ها کنار کیف هستند.",
+    "B1 | Mark hat seine Jacke neben die Tür gehängt.": "مارک کاپشنش را کنار در آویزان کرده است.",
+    "B1 | Das Glas steht auf dem Schreibtisch.": "لیوان روی میز تحریر است.",
+    "B1 | Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.": "پزشک کارت بیمه را روی میز گذاشته است.",
+    "B2 | Der Patient, dessen Knie verletzt ist, heißt Mark.": "بیماری که زانویش زخمی است، مارک نام دارد.",
+    "B2 | Die Ärztin, die einen Verband in der Hand hält, lächelt.": "پزشکی که باندی در دست دارد، لبخند می‌زند.",
+    "B2 | Der Patient, dem die Ärztin zulächelt, heißt Mark.": "بیماری که پزشک به او لبخند می‌زند، مارک نام دارد.",
+    "B2 | Die Tasche, auf der der Ball liegt, gehört Mark.": "کیفی که توپ رویش است، مال مارک است.",
+    "B2 | Das Fenster ist geschlossen.": "پنجره بسته است.",
+    "B2 | Das Pflaster ist schon aufgeklebt.": "چسب زخم دیگر چسبانده شده است.",
+    "C1 | Mark muss beim Fußball gestürzt sein.": "مارک حتماً هنگام فوتبال زمین خورده است.",
+    "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "پزشک شاید همین حالا زانویش را ببندد.",
+    "C1 | Es dürfte nichts Schlimmes sein.": "احتمالاً چیز مهمی نیست.",
+    "C1 | Die Ärztin soll sehr gut sein.": "می‌گویند این پزشک خیلی خوب است."
    }
   },
   "ar": {
@@ -2532,6 +2670,34 @@ window.SCENE = {
     "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = هكذا يُقال؛ أنقله دون أن أضمنه."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf der Tasche.": "الكرة على الحقيبة.",
+    "A2 | Die Uhr hängt über dem Poster.": "الساعة معلّقة فوق الملصق.",
+    "A2 | Die Pflanze steht am Fenster.": "النبتة عند النافذة.",
+    "A2 | Die Ärztin sitzt neben dem Patienten.": "الطبيبة جالسة بجانب المريض.",
+    "A2 | Die Jacke hängt neben der Tür.": "السترة معلّقة بجانب الباب.",
+    "A2 | Die Socken liegen auf den Schuhen.": "الجوارب على الحذاء.",
+    "A2 | Das Pflaster ist auf dem Knie.": "اللاصقة على الركبة.",
+    "A2 | Das Poster hängt hinter dem Patienten.": "الملصق معلّق خلف المريض.",
+    "B1 | Der Ball liegt auf der Tasche.": "الكرة على الحقيبة.",
+    "B1 | Mark hat den Ball auf die Tasche gelegt.": "وضع مارك الكرة على الحقيبة.",
+    "B1 | Die Ärztin sitzt auf einem Hocker.": "الطبيبة جالسة على كرسيّ صغير.",
+    "B1 | Mark hat seine Schuhe neben die Tasche gestellt.": "وضع مارك حذاءه بجانب الحقيبة.",
+    "B1 | Die Schuhe stehen neben der Tasche.": "الحذاء بجانب الحقيبة.",
+    "B1 | Mark hat seine Jacke neben die Tür gehängt.": "علّق مارك سترته بجانب الباب.",
+    "B1 | Das Glas steht auf dem Schreibtisch.": "الكأس على المكتب.",
+    "B1 | Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.": "وضعت الطبيبة بطاقة التأمين على المكتب.",
+    "B2 | Der Patient, dessen Knie verletzt ist, heißt Mark.": "المريض الذي أُصيبت ركبته اسمه مارك.",
+    "B2 | Die Ärztin, die einen Verband in der Hand hält, lächelt.": "الطبيبة التي تحمل ضمادة في يدها تبتسم.",
+    "B2 | Der Patient, dem die Ärztin zulächelt, heißt Mark.": "المريض الذي تبتسم له الطبيبة اسمه مارك.",
+    "B2 | Die Tasche, auf der der Ball liegt, gehört Mark.": "الحقيبة التي عليها الكرة تخصّ مارك.",
+    "B2 | Das Fenster ist geschlossen.": "النافذة مغلقة.",
+    "B2 | Das Pflaster ist schon aufgeklebt.": "اللاصقة موضوعة بالفعل.",
+    "C1 | Mark muss beim Fußball gestürzt sein.": "لا بدّ أن مارك سقط أثناء لعب كرة القدم.",
+    "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "ربما تضع له الطبيبة ضمادة حالاً.",
+    "C1 | Es dürfte nichts Schlimmes sein.": "على الأرجح ليس شيئاً خطيراً.",
+    "C1 | Die Ärztin soll sehr gut sein.": "يُقال إن الطبيبة ممتازة."
    }
   },
   "pt": {
@@ -2573,6 +2739,34 @@ window.SCENE = {
     "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = é o que dizem, eu repasso sem garantir."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf der Tasche.": "A bola está em cima da bolsa.",
+    "A2 | Die Uhr hängt über dem Poster.": "O relógio está pendurado acima do pôster.",
+    "A2 | Die Pflanze steht am Fenster.": "A planta está junto à janela.",
+    "A2 | Die Ärztin sitzt neben dem Patienten.": "A médica está sentada ao lado do paciente.",
+    "A2 | Die Jacke hängt neben der Tür.": "A jaqueta está pendurada ao lado da porta.",
+    "A2 | Die Socken liegen auf den Schuhen.": "As meias estão em cima dos sapatos.",
+    "A2 | Das Pflaster ist auf dem Knie.": "O curativo está no joelho.",
+    "A2 | Das Poster hängt hinter dem Patienten.": "O pôster está pendurado atrás do paciente.",
+    "B1 | Der Ball liegt auf der Tasche.": "A bola está em cima da bolsa.",
+    "B1 | Mark hat den Ball auf die Tasche gelegt.": "Mark pôs a bola em cima da bolsa.",
+    "B1 | Die Ärztin sitzt auf einem Hocker.": "A médica está sentada num banquinho.",
+    "B1 | Mark hat seine Schuhe neben die Tasche gestellt.": "Mark pôs os sapatos ao lado da bolsa.",
+    "B1 | Die Schuhe stehen neben der Tasche.": "Os sapatos estão ao lado da bolsa.",
+    "B1 | Mark hat seine Jacke neben die Tür gehängt.": "Mark pendurou a jaqueta ao lado da porta.",
+    "B1 | Das Glas steht auf dem Schreibtisch.": "O copo está na escrivaninha.",
+    "B1 | Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.": "A médica pôs o cartão do seguro na escrivaninha.",
+    "B2 | Der Patient, dessen Knie verletzt ist, heißt Mark.": "O paciente cujo joelho está machucado se chama Mark.",
+    "B2 | Die Ärztin, die einen Verband in der Hand hält, lächelt.": "A médica, que segura uma atadura na mão, sorri.",
+    "B2 | Der Patient, dem die Ärztin zulächelt, heißt Mark.": "O paciente para quem a médica sorri se chama Mark.",
+    "B2 | Die Tasche, auf der der Ball liegt, gehört Mark.": "A bolsa em cima da qual está a bola é de Mark.",
+    "B2 | Das Fenster ist geschlossen.": "A janela está fechada.",
+    "B2 | Das Pflaster ist schon aufgeklebt.": "O curativo já está colado.",
+    "C1 | Mark muss beim Fußball gestürzt sein.": "Mark deve ter caído jogando futebol.",
+    "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "A médica talvez lhe ponha uma atadura agora mesmo.",
+    "C1 | Es dürfte nichts Schlimmes sein.": "Provavelmente não é nada grave.",
+    "C1 | Die Ärztin soll sehr gut sein.": "Dizem que a médica é muito boa."
    }
   },
   "pl": {
@@ -2614,6 +2808,34 @@ window.SCENE = {
     "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = podobno; powtarzam, nie ręcząc za to."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf der Tasche.": "Piłka leży na torbie.",
+    "A2 | Die Uhr hängt über dem Poster.": "Zegar wisi nad plakatem.",
+    "A2 | Die Pflanze steht am Fenster.": "Roślina stoi przy oknie.",
+    "A2 | Die Ärztin sitzt neben dem Patienten.": "Lekarka siedzi obok pacjenta.",
+    "A2 | Die Jacke hängt neben der Tür.": "Kurtka wisi obok drzwi.",
+    "A2 | Die Socken liegen auf den Schuhen.": "Skarpetki leżą na butach.",
+    "A2 | Das Pflaster ist auf dem Knie.": "Plaster jest na kolanie.",
+    "A2 | Das Poster hängt hinter dem Patienten.": "Plakat wisi za pacjentem.",
+    "B1 | Der Ball liegt auf der Tasche.": "Piłka leży na torbie.",
+    "B1 | Mark hat den Ball auf die Tasche gelegt.": "Mark położył piłkę na torbie.",
+    "B1 | Die Ärztin sitzt auf einem Hocker.": "Lekarka siedzi na stołku.",
+    "B1 | Mark hat seine Schuhe neben die Tasche gestellt.": "Mark postawił buty obok torby.",
+    "B1 | Die Schuhe stehen neben der Tasche.": "Buty stoją obok torby.",
+    "B1 | Mark hat seine Jacke neben die Tür gehängt.": "Mark powiesił kurtkę obok drzwi.",
+    "B1 | Das Glas steht auf dem Schreibtisch.": "Szklanka stoi na biurku.",
+    "B1 | Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.": "Lekarka położyła kartę ubezpieczenia na biurku.",
+    "B2 | Der Patient, dessen Knie verletzt ist, heißt Mark.": "Pacjent, którego kolano jest zranione, ma na imię Mark.",
+    "B2 | Die Ärztin, die einen Verband in der Hand hält, lächelt.": "Lekarka, która trzyma w ręku bandaż, uśmiecha się.",
+    "B2 | Der Patient, dem die Ärztin zulächelt, heißt Mark.": "Pacjent, do którego uśmiecha się lekarka, ma na imię Mark.",
+    "B2 | Die Tasche, auf der der Ball liegt, gehört Mark.": "Torba, na której leży piłka, należy do Marka.",
+    "B2 | Das Fenster ist geschlossen.": "Okno jest zamknięte.",
+    "B2 | Das Pflaster ist schon aufgeklebt.": "Plaster jest już przyklejony.",
+    "C1 | Mark muss beim Fußball gestürzt sein.": "Mark musiał upaść podczas gry w piłkę.",
+    "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "Lekarka być może zaraz założy mu opatrunek.",
+    "C1 | Es dürfte nichts Schlimmes sein.": "To zapewne nic poważnego.",
+    "C1 | Die Ärztin soll sehr gut sein.": "Podobno ta lekarka jest bardzo dobra."
    }
   },
   "ru": {
@@ -2655,6 +2877,34 @@ window.SCENE = {
     "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Es dürfte nichts Schlimmes sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Die Ärztin soll sehr gut sein.": "<b>sollen</b> = говорят; я передаю это, не ручаясь."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf der Tasche.": "Мяч лежит на сумке.",
+    "A2 | Die Uhr hängt über dem Poster.": "Часы висят над плакатом.",
+    "A2 | Die Pflanze steht am Fenster.": "Растение стоит у окна.",
+    "A2 | Die Ärztin sitzt neben dem Patienten.": "Врач сидит рядом с пациентом.",
+    "A2 | Die Jacke hängt neben der Tür.": "Куртка висит рядом с дверью.",
+    "A2 | Die Socken liegen auf den Schuhen.": "Носки лежат на ботинках.",
+    "A2 | Das Pflaster ist auf dem Knie.": "Пластырь на колене.",
+    "A2 | Das Poster hängt hinter dem Patienten.": "Плакат висит за пациентом.",
+    "B1 | Der Ball liegt auf der Tasche.": "Мяч лежит на сумке.",
+    "B1 | Mark hat den Ball auf die Tasche gelegt.": "Марк положил мяч на сумку.",
+    "B1 | Die Ärztin sitzt auf einem Hocker.": "Врач сидит на табурете.",
+    "B1 | Mark hat seine Schuhe neben die Tasche gestellt.": "Марк поставил ботинки рядом с сумкой.",
+    "B1 | Die Schuhe stehen neben der Tasche.": "Ботинки стоят рядом с сумкой.",
+    "B1 | Mark hat seine Jacke neben die Tür gehängt.": "Марк повесил куртку рядом с дверью.",
+    "B1 | Das Glas steht auf dem Schreibtisch.": "Стакан стоит на письменном столе.",
+    "B1 | Die Ärztin hat die Versichertenkarte auf den Schreibtisch gelegt.": "Врач положила страховую карту на стол.",
+    "B2 | Der Patient, dessen Knie verletzt ist, heißt Mark.": "Пациента, у которого ранено колено, зовут Марк.",
+    "B2 | Die Ärztin, die einen Verband in der Hand hält, lächelt.": "Врач, которая держит в руке бинт, улыбается.",
+    "B2 | Der Patient, dem die Ärztin zulächelt, heißt Mark.": "Пациента, которому улыбается врач, зовут Марк.",
+    "B2 | Die Tasche, auf der der Ball liegt, gehört Mark.": "Сумка, на которой лежит мяч, принадлежит Марку.",
+    "B2 | Das Fenster ist geschlossen.": "Окно закрыто.",
+    "B2 | Das Pflaster ist schon aufgeklebt.": "Пластырь уже наклеен.",
+    "C1 | Mark muss beim Fußball gestürzt sein.": "Марк, должно быть, упал, играя в футбол.",
+    "C1 | Die Ärztin könnte ihm gleich einen Verband anlegen.": "Врач, возможно, сейчас наложит ему повязку.",
+    "C1 | Es dürfte nichts Schlimmes sein.": "Вероятно, ничего серьёзного.",
+    "C1 | Die Ärztin soll sehr gut sein.": "Говорят, врач очень хорошая."
    }
   }
  }

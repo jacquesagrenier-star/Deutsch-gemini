@@ -1481,6 +1481,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "El reloj está en la pared.",
+     "sens": "L'horloge est au mur.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1493,6 +1494,7 @@ window.SCENE = {
      "f": "pullover-2",
      "r": "tisch",
      "phrase": "El jersey verde está en la mesa.",
+     "sens": "Le pull vert est sur la table.",
      "n": "<b>la</b> est féminin → <b>en la</b>.",
      "latam": {
       "q": "El suéter verde está ___ mesa.",
@@ -1509,6 +1511,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "bank",
      "phrase": "La niña está sentada en el banco.",
+     "sens": "La fille est assise sur le banc.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -1521,6 +1524,7 @@ window.SCENE = {
      "f": "jeans",
      "r": "korb",
      "phrase": "Los vaqueros están en la cesta.",
+     "sens": "Le jean est dans le panier.",
      "n": "<b>la</b> est féminin → <b>en la</b>.",
      "latam": {
       "q": "Los jeans están ___ cesta.",
@@ -1537,6 +1541,7 @@ window.SCENE = {
      "f": "waschmittel",
      "r": "waschmaschine-2",
      "phrase": "El detergente está encima de la lavadora.",
+     "sens": "La lessive est sur la machine à laver.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1549,6 +1554,7 @@ window.SCENE = {
      "f": "spiegel",
      "r": "heizkoerper",
      "phrase": "El espejo está encima del radiador.",
+     "sens": "Le miroir est au-dessus du radiateur.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -1561,6 +1567,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "strasse",
      "phrase": "Hay una bicicleta en la calle.",
+     "sens": "Il y a un vélo dans la rue.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -1573,6 +1580,7 @@ window.SCENE = {
      "f": "handtuch",
      "r": "regal",
      "phrase": "Las toallas están en la estantería.",
+     "sens": "Les serviettes sont sur l'étagère.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     }
    ]
@@ -1589,6 +1597,7 @@ window.SCENE = {
      ],
      "f": "waschmaschine",
      "phrase": "No creo que la lavadora esté rota.",
+     "sens": "Je ne crois pas que la machine à laver soit en panne.",
      "n": "<b>no creer que</b> → subjonctif.",
      "revise": {
       "mot": "estar",
@@ -1604,6 +1613,7 @@ window.SCENE = {
      ],
      "f": "korb",
      "phrase": "Dudo que la ropa esté lista en diez minutos.",
+     "sens": "Je doute que le linge soit prêt dans dix minutes.",
      "n": "<b>dudar que</b> → subjonctif.",
      "revise": {
       "mot": "estar",
@@ -1620,6 +1630,7 @@ window.SCENE = {
      "f": "frau",
      "r": "anna",
      "phrase": "Es posible que la señora sea la vecina de Anna.",
+     "sens": "Il est possible que la dame soit la voisine d'Anna.",
      "n": "<b>es posible que</b> → subjonctif.",
      "revise": {
       "mot": "ser",
@@ -1636,6 +1647,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "frau",
      "phrase": "No es seguro que la niña viva con la señora.",
+     "sens": "Il n'est pas sûr que la fille vive avec la dame.",
      "n": "<b>no es seguro que</b> → subjonctif.",
      "revise": {
       "mot": "vivir",
@@ -1652,6 +1664,7 @@ window.SCENE = {
      "f": "buegeleisen",
      "r": "anna",
      "phrase": "Quizás Anna use la plancha después.",
+     "sens": "Anna utilisera peut-être le fer à repasser après.",
      "n": "<b>quizás</b> + subjonctif = un doute marqué.",
      "revise": {
       "mot": "usar",
@@ -1667,6 +1680,7 @@ window.SCENE = {
      ],
      "f": "waschmittel",
      "phrase": "No pienso que el detergente sea suficiente.",
+     "sens": "Je ne pense pas que la lessive suffise.",
      "n": "<b>no pensar que</b> → subjonctif.",
      "revise": {
       "mot": "ser",
@@ -1683,6 +1697,7 @@ window.SCENE = {
      "f": "hemd",
      "r": "anna",
      "phrase": "Creo que la camisa es de Anna.",
+     "sens": "Je crois que la chemise est à Anna.",
      "n": "<b>creer que</b> à l'affirmatif → indicatif.",
      "revise": {
       "mot": "ser",
@@ -1704,6 +1719,7 @@ window.SCENE = {
      "f": "korb",
      "r": "anna",
      "phrase": "Cuando la ropa esté limpia, Anna la doblará.",
+     "sens": "Quand le linge sera propre, Anna le pliera.",
      "n": "<b>cuando</b> + action à venir → subjonctif.",
      "revise": {
       "mot": "estar",
@@ -1720,6 +1736,7 @@ window.SCENE = {
      "f": "waschmaschine",
      "r": "anna",
      "phrase": "Anna se irá cuando termine la lavadora.",
+     "sens": "Anna partira quand la machine aura fini.",
      "n": "<b>cuando</b> + action à venir → subjonctif.",
      "revise": {
       "mot": "terminar",
@@ -1736,6 +1753,7 @@ window.SCENE = {
      "f": "buegeleisen",
      "r": "hemd",
      "phrase": "En cuanto llegue a casa, planchará la camisa.",
+     "sens": "Dès qu'elle arrivera à la maison, elle repassera la chemise.",
      "n": "<b>en cuanto</b> + action à venir → subjonctif.",
      "revise": {
       "mot": "llegar",
@@ -1752,6 +1770,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "zeitung",
      "phrase": "La niña jugará hasta que su abuela termine el periódico.",
+     "sens": "La fille jouera jusqu'à ce que sa grand-mère finisse le journal.",
      "n": "<b>hasta que</b> + action à venir → subjonctif.",
      "revise": {
       "mot": "terminar",
@@ -1768,6 +1787,7 @@ window.SCENE = {
      "f": "anna",
      "r": "korb",
      "phrase": "Cuando Anna viene a la lavandería, siempre trae su cesta.",
+     "sens": "Quand Anna vient à la laverie, elle apporte toujours son panier.",
      "n": "Une habitude (<b>siempre</b>) → indicatif, pas de subjonctif.",
      "revise": {
       "mot": "venir",
@@ -1784,6 +1804,7 @@ window.SCENE = {
      "f": "handtuch",
      "r": "regal",
      "phrase": "Tan pronto como doble las toallas, las pondrá en la estantería.",
+     "sens": "Dès qu'elle aura plié les serviettes, elle les mettra sur l'étagère.",
      "n": "<b>tan pronto como</b> + action à venir → subjonctif.",
      "revise": {
       "mot": "doblar",
@@ -1805,6 +1826,7 @@ window.SCENE = {
      "f": "korb",
      "r": "anna",
      "phrase": "Debe de llevar tiempo sin lavar.",
+     "sens": "Elle n'a pas dû faire de lessive depuis longtemps.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1817,6 +1839,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "frau",
      "phrase": "Puede que la niña sea la nieta de la señora.",
+     "sens": "La fille est peut-être la petite-fille de la dame.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1828,6 +1851,7 @@ window.SCENE = {
      ],
      "f": "waschmaschine",
      "phrase": "Estará lista en una hora.",
+     "sens": "Il doit être prêt dans une heure.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1839,6 +1863,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "Dicen que esta lavandería cierra pronto.",
+     "sens": "On dit que cette laverie ferme bientôt.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1885,6 +1910,35 @@ window.SCENE = {
     "C1 | Puede que la niña sea la nieta de la señora.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Estará lista en una hora.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que esta lavandería cierra pronto.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "The clock is on the wall.",
+    "A2 | El suéter verde está en la mesa.": "The green jumper is on the table.",
+    "A2 | El jersey verde está en la mesa.": "The green jumper is on the table.",
+    "A2 | La niña está sentada en el banco.": "The girl is sitting on the bench.",
+    "A2 | Los jeans están en la cesta.": "The jeans are in the basket.",
+    "A2 | Los vaqueros están en la cesta.": "The jeans are in the basket.",
+    "A2 | El detergente está encima de la lavadora.": "The detergent is on top of the washing machine.",
+    "A2 | El espejo está encima del radiador.": "The mirror is above the radiator.",
+    "A2 | Hay una bicicleta en la calle.": "There is a bicycle in the street.",
+    "A2 | Las toallas están en la estantería.": "The towels are on the shelf.",
+    "B1 | No creo que la lavadora esté rota.": "I don't think the washing machine is broken.",
+    "B1 | Dudo que la ropa esté lista en diez minutos.": "I doubt the laundry will be ready in ten minutes.",
+    "B1 | Es posible que la señora sea la vecina de Anna.": "The lady may be Anna's neighbour.",
+    "B1 | No es seguro que la niña viva con la señora.": "It is not certain that the girl lives with the lady.",
+    "B1 | Quizás Anna use la plancha después.": "Anna may use the iron afterwards.",
+    "B1 | No pienso que el detergente sea suficiente.": "I don't think the detergent is enough.",
+    "B1 | Creo que la camisa es de Anna.": "I think the shirt is Anna's.",
+    "B2 | Cuando la ropa esté limpia, Anna la doblará.": "When the laundry is clean, Anna will fold it.",
+    "B2 | Anna se irá cuando termine la lavadora.": "Anna will leave when the washing machine finishes.",
+    "B2 | En cuanto llegue a casa, planchará la camisa.": "As soon as she gets home, she will iron the shirt.",
+    "B2 | La niña jugará hasta que su abuela termine el periódico.": "The girl will play until her grandmother finishes the newspaper.",
+    "B2 | Cuando Anna viene a la lavandería, siempre trae su cesta.": "When Anna comes to the launderette, she always brings her basket.",
+    "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "As soon as she folds the towels, she will put them on the shelf.",
+    "C1 | Debe de llevar tiempo sin lavar.": "She must not have done laundry for a while.",
+    "C1 | Puede que la niña sea la nieta de la señora.": "The girl may be the lady's granddaughter.",
+    "C1 | Estará lista en una hora.": "It will probably be ready in an hour.",
+    "C1 | Dicen que esta lavandería cierra pronto.": "They say this launderette is closing soon."
    }
   },
   "tr": {
@@ -1895,7 +1949,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1905,7 +1960,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1915,7 +1971,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1957,6 +2014,35 @@ window.SCENE = {
     "C1 | Puede que la niña sea la nieta de la señora.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Estará lista en una hora.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que esta lavandería cierra pronto.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "الساعة على الحائط.",
+    "A2 | El suéter verde está en la mesa.": "الكنزة الخضراء على الطاولة.",
+    "A2 | El jersey verde está en la mesa.": "الكنزة الخضراء على الطاولة.",
+    "A2 | La niña está sentada en el banco.": "الفتاة جالسة على المقعد.",
+    "A2 | Los jeans están en la cesta.": "بنطال الجينز في السلّة.",
+    "A2 | Los vaqueros están en la cesta.": "بنطال الجينز في السلّة.",
+    "A2 | El detergente está encima de la lavadora.": "مسحوق الغسيل فوق الغسّالة.",
+    "A2 | El espejo está encima del radiador.": "المرآة فوق المدفأة.",
+    "A2 | Hay una bicicleta en la calle.": "هناك دراجة في الشارع.",
+    "A2 | Las toallas están en la estantería.": "المناشف على الرفّ.",
+    "B1 | No creo que la lavadora esté rota.": "لا أظنّ أن الغسّالة معطّلة.",
+    "B1 | Dudo que la ropa esté lista en diez minutos.": "أشكّ في أن يجهز الغسيل خلال عشر دقائق.",
+    "B1 | Es posible que la señora sea la vecina de Anna.": "من الممكن أن تكون السيّدة جارة آنا.",
+    "B1 | No es seguro que la niña viva con la señora.": "ليس من المؤكّد أن الفتاة تعيش مع السيّدة.",
+    "B1 | Quizás Anna use la plancha después.": "ربما تستخدم آنا المكواة بعد ذلك.",
+    "B1 | No pienso que el detergente sea suficiente.": "لا أظنّ أن مسحوق الغسيل كافٍ.",
+    "B1 | Creo que la camisa es de Anna.": "أظنّ أن القميص لآنا.",
+    "B2 | Cuando la ropa esté limpia, Anna la doblará.": "عندما يصبح الغسيل نظيفاً، ستطويه آنا.",
+    "B2 | Anna se irá cuando termine la lavadora.": "ستغادر آنا عندما تنتهي الغسّالة.",
+    "B2 | En cuanto llegue a casa, planchará la camisa.": "حالما تصل إلى البيت، ستكوي القميص.",
+    "B2 | La niña jugará hasta que su abuela termine el periódico.": "ستلعب الفتاة حتى تنتهي جدّتها من الجريدة.",
+    "B2 | Cuando Anna viene a la lavandería, siempre trae su cesta.": "عندما تأتي آنا إلى المغسلة، تُحضر سلّتها دائماً.",
+    "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "حالما تطوي المناشف، ستضعها على الرفّ.",
+    "C1 | Debe de llevar tiempo sin lavar.": "لا بدّ أنها لم تغسل منذ وقت.",
+    "C1 | Puede que la niña sea la nieta de la señora.": "ربما تكون الفتاة حفيدة السيّدة.",
+    "C1 | Estará lista en una hora.": "على الأرجح يجهز خلال ساعة.",
+    "C1 | Dicen que esta lavandería cierra pronto.": "يُقال إن هذه المغسلة ستُغلق قريباً."
    }
   },
   "pt": {
@@ -1999,6 +2085,35 @@ window.SCENE = {
     "C1 | Puede que la niña sea la nieta de la señora.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Estará lista en una hora.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que esta lavandería cierra pronto.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "O relógio está na parede.",
+    "A2 | El suéter verde está en la mesa.": "O suéter verde está na mesa.",
+    "A2 | El jersey verde está en la mesa.": "O suéter verde está na mesa.",
+    "A2 | La niña está sentada en el banco.": "A menina está sentada no banco.",
+    "A2 | Los jeans están en la cesta.": "O jeans está na cesta.",
+    "A2 | Los vaqueros están en la cesta.": "O jeans está na cesta.",
+    "A2 | El detergente está encima de la lavadora.": "O sabão está em cima da máquina de lavar.",
+    "A2 | El espejo está encima del radiador.": "O espelho está acima do aquecedor.",
+    "A2 | Hay una bicicleta en la calle.": "Há uma bicicleta na rua.",
+    "A2 | Las toallas están en la estantería.": "As toalhas estão na prateleira.",
+    "B1 | No creo que la lavadora esté rota.": "Não acho que a máquina de lavar esteja quebrada.",
+    "B1 | Dudo que la ropa esté lista en diez minutos.": "Duvido que a roupa esteja pronta em dez minutos.",
+    "B1 | Es posible que la señora sea la vecina de Anna.": "É possível que a senhora seja a vizinha de Anna.",
+    "B1 | No es seguro que la niña viva con la señora.": "Não é certo que a menina more com a senhora.",
+    "B1 | Quizás Anna use la plancha después.": "Talvez Anna use o ferro depois.",
+    "B1 | No pienso que el detergente sea suficiente.": "Não acho que o sabão seja suficiente.",
+    "B1 | Creo que la camisa es de Anna.": "Acho que a camisa é de Anna.",
+    "B2 | Cuando la ropa esté limpia, Anna la doblará.": "Quando a roupa estiver limpa, Anna vai dobrá-la.",
+    "B2 | Anna se irá cuando termine la lavadora.": "Anna vai embora quando a máquina terminar.",
+    "B2 | En cuanto llegue a casa, planchará la camisa.": "Assim que chegar em casa, vai passar a camisa.",
+    "B2 | La niña jugará hasta que su abuela termine el periódico.": "A menina vai brincar até a avó terminar o jornal.",
+    "B2 | Cuando Anna viene a la lavandería, siempre trae su cesta.": "Quando Anna vem à lavanderia, sempre traz a sua cesta.",
+    "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "Assim que dobrar as toalhas, vai colocá-las na prateleira.",
+    "C1 | Debe de llevar tiempo sin lavar.": "Ela deve estar há tempo sem lavar roupa.",
+    "C1 | Puede que la niña sea la nieta de la señora.": "Pode ser que a menina seja a neta da senhora.",
+    "C1 | Estará lista en una hora.": "Deve ficar pronta em uma hora.",
+    "C1 | Dicen que esta lavandería cierra pronto.": "Dizem que esta lavanderia fecha em breve."
    }
   },
   "pl": {
@@ -2009,7 +2124,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -2019,7 +2135,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

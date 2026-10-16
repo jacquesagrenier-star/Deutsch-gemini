@@ -1190,6 +1190,7 @@ window.SCENE = {
      "f": "ball",
      "r": "schrank",
      "phrase": "Der Ball liegt auf dem Schrank.",
+     "sens": "Le ballon est sur l'armoire.",
      "n": "<b>Wo?</b> → datif : der Schrank → auf <b>dem</b> Schrank."
     },
     {
@@ -1202,6 +1203,7 @@ window.SCENE = {
      "f": "hund",
      "r": "couchtisch",
      "phrase": "Der Hund liegt unter dem Couchtisch.",
+     "sens": "Le chien est couché sous la table basse.",
      "n": "<b>unter</b> = sous. Datif : der Couchtisch → unter <b>dem</b> Couchtisch."
     },
     {
@@ -1214,6 +1216,7 @@ window.SCENE = {
      "f": "katze",
      "r": "karton",
      "phrase": "Die Katze sitzt im Karton.",
+     "sens": "Le chat est assis dans le carton.",
      "n": "<b>im</b> = in + dem. Datif : der Karton → in <b>dem</b> (im) Karton."
     },
     {
@@ -1226,6 +1229,7 @@ window.SCENE = {
      "f": "regenschirm",
      "r": "lampe",
      "phrase": "Der Regenschirm hängt an der Lampe.",
+     "sens": "Le parapluie est accroché à la lampe.",
      "n": "Accroché : <b>an</b> + datif. die Lampe → an <b>der</b> Lampe."
     },
     {
@@ -1238,6 +1242,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "regal",
      "phrase": "Das Fahrrad steht vor dem Regal.",
+     "sens": "Le vélo est devant l'étagère.",
      "n": "<b>vor</b> = devant. Datif : das Regal → vor <b>dem</b> Regal."
     },
     {
@@ -1250,6 +1255,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "sofa",
      "phrase": "Die Gitarre steht zwischen dem Schrank und dem Sofa.",
+     "sens": "La guitare est entre l'armoire et le canapé.",
      "n": "<b>zwischen</b> = entre, au datif pour les deux : zwischen <b>dem</b> Schrank und <b>dem</b> Sofa."
     },
     {
@@ -1262,6 +1268,7 @@ window.SCENE = {
      "f": "turnschuh",
      "r": "sofa",
      "phrase": "Die Turnschuhe liegen unter dem Sofa.",
+     "sens": "Les baskets sont sous le canapé.",
      "n": "Pluriel : die Turnschuhe <b>liegen</b>. Datif : unter <b>dem</b> Sofa."
     },
     {
@@ -1274,6 +1281,7 @@ window.SCENE = {
      "f": "goldfisch",
      "r": "regal",
      "phrase": "Das Glas mit dem Goldfisch steht auf dem Regal.",
+     "sens": "Le bocal avec le poisson rouge est sur l'étagère.",
      "n": "<b>auf</b> + datif : auf <b>dem</b> Regal. Et <b>mit</b> est toujours au datif : mit <b>dem</b> Goldfisch."
     },
     {
@@ -1286,6 +1294,7 @@ window.SCENE = {
      "f": "socke",
      "r": "stehlampe",
      "phrase": "Die Socke hängt an der Stehlampe.",
+     "sens": "La chaussette est accrochée au lampadaire.",
      "n": "<b>an</b> + datif : die Stehlampe → an <b>der</b> Stehlampe."
     },
     {
@@ -1298,6 +1307,7 @@ window.SCENE = {
      "f": "heizkoerper",
      "r": "fenster",
      "phrase": "Der Heizkörper ist unter dem Fenster.",
+     "sens": "Le radiateur est sous la fenêtre.",
      "n": "<b>unter</b> + datif : das Fenster → unter <b>dem</b> Fenster."
     }
    ]
@@ -1315,6 +1325,7 @@ window.SCENE = {
      "f": "ball",
      "r": "schrank",
      "phrase": "Der Ball liegt noch auf dem Schrank.",
+     "sens": "Le ballon est encore sur l'armoire.",
      "n": "Un état (<b>liegen</b>, Wo?) → datif : auf <b>dem</b> Schrank.",
      "revise": {
       "mot": "liegen",
@@ -1331,6 +1342,7 @@ window.SCENE = {
      "f": "ball",
      "r": "schrank",
      "phrase": "Mark legt den Ball in den Schrank.",
+     "sens": "Mark met le ballon dans l'armoire.",
      "n": "<b>legen</b> = poser à plat, un geste (Wohin?) → accusatif : in <b>den</b> Schrank. <b>liegen</b> = être posé, un état.",
      "revise": {
       "mot": "legen",
@@ -1347,6 +1359,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "couchtisch",
      "phrase": "Die Tasse steht auf dem Couchtisch.",
+     "sens": "La tasse est sur la table basse.",
      "n": "Un état → <b>stehen</b> + datif : auf <b>dem</b> Couchtisch.",
      "revise": {
       "mot": "stehen",
@@ -1363,6 +1376,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "regal",
      "phrase": "Mark stellt die Tasse auf das Regal.",
+     "sens": "Mark pose la tasse sur l'étagère.",
      "n": "<b>stellen</b> = poser debout, un geste (Wohin?) → accusatif : das Regal → auf <b>das</b> Regal (aufs Regal).",
      "revise": {
       "mot": "stellen",
@@ -1379,6 +1393,7 @@ window.SCENE = {
      "f": "regenschirm",
      "r": "lampe",
      "phrase": "Noch hängt der Regenschirm an der Lampe.",
+     "sens": "Le parapluie est encore accroché à la lampe.",
      "n": "<b>hängen</b> pour un état (Wo?) → datif : an <b>der</b> Lampe."
     },
     {
@@ -1391,6 +1406,7 @@ window.SCENE = {
      "f": "regenschirm",
      "r": "tuer",
      "phrase": "Mark hängt den Regenschirm an die Tür.",
+     "sens": "Mark accroche le parapluie à la porte.",
      "n": "Le même verbe <b>hängen</b>, mais un geste (Wohin?) → accusatif : an <b>die</b> Tür. C'est le cas qui dit si ça bouge."
     },
     {
@@ -1403,6 +1419,7 @@ window.SCENE = {
      "f": "buch",
      "r": "regal",
      "phrase": "Mark legt das Buch ins Regal.",
+     "sens": "Mark met le livre sur l'étagère.",
      "n": "Wohin? → accusatif : in + das = <b>ins</b>. <b>im</b> (in dem) répondrait à Wo?",
      "revise": {
       "mot": "legen",
@@ -1419,6 +1436,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "eimer",
      "phrase": "Die Flaschen stehen im Eimer.",
+     "sens": "Les bouteilles sont dans le seau.",
      "n": "Un état (<b>stehen</b>) → datif : in dem = <b>im</b> Eimer.",
      "revise": {
       "mot": "stehen",
@@ -1435,6 +1453,7 @@ window.SCENE = {
      "f": "katze",
      "r": "sofa",
      "phrase": "Die Katze springt gleich auf das Sofa.",
+     "sens": "Le chat va sauter sur le canapé tout de suite.",
      "n": "Un mouvement vers un lieu (Wohin?) → accusatif : auf <b>das</b> Sofa (aufs Sofa)."
     },
     {
@@ -1447,6 +1466,7 @@ window.SCENE = {
      "f": "luftballon",
      "r": "boden",
      "phrase": "Die Luftballons liegen auf dem Boden.",
+     "sens": "Les ballons sont par terre.",
      "n": "Un état → datif : der Boden → auf <b>dem</b> Boden.",
      "revise": {
       "mot": "liegen",
@@ -1468,6 +1488,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "regenschirm",
      "phrase": "Die Lampe, an der ein Regenschirm hängt, ist rund.",
+     "sens": "La lampe à laquelle est accroché un parapluie est ronde.",
      "n": "Préposition + relatif : <b>an der</b> (die Lampe, datif féminin)."
     },
     {
@@ -1479,6 +1500,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "Der Hund, der unter dem Tisch schläft, hat die Party verpasst.",
+     "sens": "Le chien qui dort sous la table a raté la fête.",
      "n": "Sujet de la relative, masculin → <b>der</b>."
     },
     {
@@ -1491,6 +1513,7 @@ window.SCENE = {
      "f": "katze",
      "r": "karton",
      "phrase": "Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.",
+     "sens": "Le chat dont la tête dépasse du carton a l'air tout calme.",
      "n": "Possession, antécédent féminin (die Katze) → <b>deren</b> (dont la tête)."
     },
     {
@@ -1503,6 +1526,7 @@ window.SCENE = {
      "f": "regal",
      "r": "fahrrad",
      "phrase": "Das Regal, vor dem das Fahrrad steht, ist voller Bücher.",
+     "sens": "L'étagère devant laquelle est le vélo est pleine de livres.",
      "n": "<b>vor</b> + relatif, un état (Wo?) → datif : das Regal → <b>vor dem</b>."
     },
     {
@@ -1514,6 +1538,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "Die Tür ist geöffnet.",
+     "sens": "La porte est ouverte.",
      "n": "Passif d'état : <b>sein</b> + participe passé. La porte a été ouverte, et elle le reste."
     },
     {
@@ -1525,6 +1550,7 @@ window.SCENE = {
      ],
      "f": "pflanze",
      "phrase": "Die Lichterkette ist um die Pflanze gewickelt.",
+     "sens": "La guirlande lumineuse est enroulée autour de la plante.",
      "n": "Passif d'état : <b>ist</b> + participe. Et <b>um</b> veut toujours l'accusatif : um <b>die</b> Pflanze."
     }
    ]
@@ -1541,6 +1567,7 @@ window.SCENE = {
      ],
      "f": "luftballon",
      "phrase": "Die Party muss sehr lang gewesen sein.",
+     "sens": "La fête a dû être très longue.",
      "n": "<b>müssen</b> + infinitif passé = presque certain, déduit de ce qu'on voit : les ballons partout."
     },
     {
@@ -1553,6 +1580,7 @@ window.SCENE = {
      "f": "regenschirm",
      "r": "lampe",
      "phrase": "Das dürfte einer der Gäste gewesen sein.",
+     "sens": "C'était sans doute l'un des invités.",
      "n": "<b>dürfte</b> + infinitif passé = probablement : une hypothèse prudente."
     },
     {
@@ -1564,6 +1592,7 @@ window.SCENE = {
      ],
      "f": "socke",
      "phrase": "Sie könnte einem Gast gehören.",
+     "sens": "Elle appartient peut-être à un invité.",
      "n": "<b>könnte</b> = c'est possible, mais rien ne le prouve. <b>muss</b> serait une certitude."
     },
     {
@@ -1575,6 +1604,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.",
+     "sens": "Si Mark n'avait pas raté la fête, il serait lui aussi fatigué maintenant.",
      "n": "Condition irréelle (hätte … verpasst), conséquence au présent → subjonctif II : <b>wäre</b>."
     }
    ]
@@ -1624,6 +1654,38 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + perfect infinitive = probably: a cautious guess.",
     "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = it's possible, but nothing proves it. <b>muss</b> would be a certainty.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Unreal condition (hätte … verpasst), present result → subjunctive II: <b>wäre</b>."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf dem Schrank.": "The ball is on the cupboard.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "The dog is lying under the coffee table.",
+    "A2 | Die Katze sitzt im Karton.": "The cat is sitting in the box.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "The umbrella hangs on the lamp.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "The bicycle is in front of the shelf.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "The guitar is between the cupboard and the sofa.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "The trainers are under the sofa.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "The bowl with the goldfish is on the shelf.",
+    "A2 | Die Socke hängt an der Stehlampe.": "The sock hangs on the floor lamp.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "The radiator is under the window.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "The ball is still on the cupboard.",
+    "B1 | Mark legt den Ball in den Schrank.": "Mark puts the ball in the cupboard.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "The cup is on the coffee table.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "Mark puts the cup on the shelf.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "The umbrella is still hanging on the lamp.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Mark hangs the umbrella on the door.",
+    "B1 | Mark legt das Buch ins Regal.": "Mark puts the book on the shelf.",
+    "B1 | Die Flaschen stehen im Eimer.": "The bottles are in the bucket.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "The cat is about to jump onto the sofa.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "The balloons are on the floor.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "The lamp with an umbrella hanging on it is round.",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "The dog sleeping under the table missed the party.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "The cat whose head is peeking out of the box looks very calm.",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "The shelf the bicycle is in front of is full of books.",
+    "B2 | Die Tür ist geöffnet.": "The door is open.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "The string of lights is wrapped around the plant.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "The party must have gone on very long.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "That was probably one of the guests.",
+    "C1 | Sie könnte einem Gast gehören.": "It might belong to a guest.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "If Mark had not missed the party, he would be tired now too."
    }
   },
   "tr": {
@@ -1669,6 +1731,38 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + geçmiş mastar = muhtemelen: temkinli bir varsayım.",
     "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = mümkün, ama hiçbir şey kanıtlamıyor. <b>muss</b> kesinlik olurdu.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Gerçek dışı koşul (hätte … verpasst), şimdiki sonuç → Konjunktiv II: <b>wäre</b>."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf dem Schrank.": "Top dolabın üstünde.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "Köpek sehpanın altında yatıyor.",
+    "A2 | Die Katze sitzt im Karton.": "Kedi kutunun içinde oturuyor.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "Şemsiye lambada asılı.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "Bisiklet rafın önünde duruyor.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "Gitar dolapla kanepenin arasında duruyor.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Spor ayakkabılar kanepenin altında.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "Japon balığının olduğu kavanoz rafın üstünde duruyor.",
+    "A2 | Die Socke hängt an der Stehlampe.": "Çorap ayaklı lambada asılı.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "Kalorifer pencerenin altında.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "Top hâlâ dolabın üstünde.",
+    "B1 | Mark legt den Ball in den Schrank.": "Mark topu dolaba koyuyor.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "Fincan sehpanın üstünde duruyor.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "Mark fincanı rafa koyuyor.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "Şemsiye hâlâ lambada asılı.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Mark şemsiyeyi kapıya asıyor.",
+    "B1 | Mark legt das Buch ins Regal.": "Mark kitabı rafa koyuyor.",
+    "B1 | Die Flaschen stehen im Eimer.": "Şişeler kovanın içinde.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "Kedi birazdan kanepeye atlayacak.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Balonlar yerde.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "Üstünde şemsiye asılı olan lamba yuvarlak.",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "Masanın altında uyuyan köpek partiyi kaçırdı.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "Başı kutudan çıkan kedi çok sakin görünüyor.",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "Bisikletin önünde durduğu raf kitap dolu.",
+    "B2 | Die Tür ist geöffnet.": "Kapı açık.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "Işık zinciri bitkiye sarılmış.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "Parti çok uzun sürmüş olmalı.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "Bu misafirlerden biri olsa gerek.",
+    "C1 | Sie könnte einem Gast gehören.": "Bir misafirin olabilir.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Mark partiyi kaçırmasaydı o da şimdi yorgun olurdu."
    }
   },
   "uk": {
@@ -1714,6 +1808,38 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + інфінітив минулого = мабуть: обережне припущення.",
     "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = можливо, але ніщо цього не доводить. <b>muss</b> означало б певність.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Нереальна умова (hätte … verpasst), наслідок у теперішньому → Konjunktiv II: <b>wäre</b>."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf dem Schrank.": "М'яч лежить на шафі.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "Собака лежить під журнальним столиком.",
+    "A2 | Die Katze sitzt im Karton.": "Кіт сидить у коробці.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "Парасолька висить на лампі.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "Велосипед стоїть перед полицею.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "Гітара стоїть між шафою та диваном.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Кросівки лежать під диваном.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "Акваріум із золотою рибкою стоїть на полиці.",
+    "A2 | Die Socke hängt an der Stehlampe.": "Шкарпетка висить на торшері.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "Батарея під вікном.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "М'яч ще лежить на шафі.",
+    "B1 | Mark legt den Ball in den Schrank.": "Марк кладе м'яч у шафу.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "Чашка стоїть на журнальному столику.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "Марк ставить чашку на полицю.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "Парасолька ще висить на лампі.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Марк вішає парасольку на двері.",
+    "B1 | Mark legt das Buch ins Regal.": "Марк кладе книжку на полицю.",
+    "B1 | Die Flaschen stehen im Eimer.": "Пляшки стоять у відрі.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "Кіт зараз стрибне на диван.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Повітряні кульки лежать на підлозі.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "Лампа, на якій висить парасолька, кругла.",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "Собака, що спить під столом, проспала вечірку.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "Кіт, чия голова визирає з коробки, здається зовсім спокійним.",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "Полиця, перед якою стоїть велосипед, повна книжок.",
+    "B2 | Die Tür ist geöffnet.": "Двері відчинені.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "Гірлянда обмотана навколо рослини.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "Вечірка, мабуть, тривала дуже довго.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "Це, напевно, був хтось із гостей.",
+    "C1 | Sie könnte einem Gast gehören.": "Вона, можливо, належить комусь із гостей.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Якби Марк не пропустив вечірку, він теж був би зараз утомлений."
    }
   },
   "fa": {
@@ -1759,6 +1885,38 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + مصدرِ گذشته = احتمالاً: گمانی محتاطانه.",
     "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = ممکن است، ولی چیزی ثابتش نمی‌کند. <b>muss</b> یعنی یقین.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "شرطِ غیرواقعی (<span lang=\"de\">hätte … verpasst</span>)، نتیجه در زمان حال ← Konjunktiv II: <b>wäre</b>."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf dem Schrank.": "توپ روی کمد است.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "سگ زیر میز جلومبلی دراز کشیده است.",
+    "A2 | Die Katze sitzt im Karton.": "گربه در جعبه نشسته است.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "چتر به چراغ آویزان است.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "دوچرخه جلوی قفسه است.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "گیتار بین کمد و کاناپه است.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "کفش‌های ورزشی زیر کاناپه هستند.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "تنگ ماهی قرمز روی قفسه است.",
+    "A2 | Die Socke hängt an der Stehlampe.": "جوراب به چراغ ایستاده آویزان است.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "شوفاژ زیر پنجره است.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "توپ هنوز روی کمد است.",
+    "B1 | Mark legt den Ball in den Schrank.": "مارک توپ را در کمد می‌گذارد.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "فنجان روی میز جلومبلی است.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "مارک فنجان را روی قفسه می‌گذارد.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "چتر هنوز به چراغ آویزان است.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "مارک چتر را به در آویزان می‌کند.",
+    "B1 | Mark legt das Buch ins Regal.": "مارک کتاب را در قفسه می‌گذارد.",
+    "B1 | Die Flaschen stehen im Eimer.": "بطری‌ها در سطل هستند.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "گربه همین حالا روی کاناپه می‌پرد.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "بادکنک‌ها روی زمین هستند.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "چراغی که چتر به آن آویزان است، گرد است.",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "سگی که زیر میز خوابیده، مهمانی را از دست داده است.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "گربه‌ای که سرش از جعبه بیرون است، کاملاً آرام به نظر می‌رسد.",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "قفسه‌ای که دوچرخه جلویش است، پر از کتاب است.",
+    "B2 | Die Tür ist geöffnet.": "در باز است.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "ریسهٔ چراغ دور گیاه پیچیده شده است.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "مهمانی حتماً خیلی طولانی بوده است.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "احتمالاً یکی از مهمان‌ها بوده است.",
+    "C1 | Sie könnte einem Gast gehören.": "شاید مال یکی از مهمان‌ها باشد.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "اگر مارک مهمانی را از دست نداده بود، حالا او هم خسته بود."
    }
   },
   "ar": {
@@ -1804,6 +1962,38 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + المصدر الماضي = على الأرجح: افتراض حذر.",
     "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = هذا ممكن، لكن لا شيء يثبته. أما <b>muss</b> فيعني اليقين.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "شرط غير واقعي (<span lang=\"de\">hätte … verpasst</span>)، والنتيجة في الحاضر ← Konjunktiv II: <b>wäre</b>."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf dem Schrank.": "الكرة على الخزانة.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "الكلب مستلقٍ تحت الطاولة الصغيرة.",
+    "A2 | Die Katze sitzt im Karton.": "القطة جالسة في الصندوق.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "المظلّة معلّقة على المصباح.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "الدراجة أمام الرفّ.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "الغيتار بين الخزانة والأريكة.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "الحذاء الرياضي تحت الأريكة.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "الحوض الذي فيه السمكة الذهبية على الرفّ.",
+    "A2 | Die Socke hängt an der Stehlampe.": "الجورب معلّق على المصباح الأرضي.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "المدفأة تحت النافذة.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "ما زالت الكرة على الخزانة.",
+    "B1 | Mark legt den Ball in den Schrank.": "يضع مارك الكرة في الخزانة.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "الفنجان على الطاولة الصغيرة.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "يضع مارك الفنجان على الرفّ.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "ما زالت المظلّة معلّقة على المصباح.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "يعلّق مارك المظلّة على الباب.",
+    "B1 | Mark legt das Buch ins Regal.": "يضع مارك الكتاب في الرفّ.",
+    "B1 | Die Flaschen stehen im Eimer.": "الزجاجات في الدلو.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "ستقفز القطة على الأريكة حالاً.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "البالونات على الأرض.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "المصباح الذي تتدلّى منه مظلّة مستدير.",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "الكلب النائم تحت الطاولة فاتته الحفلة.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "القطة التي يطلّ رأسها من الصندوق تبدو هادئة تماماً.",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "الرفّ الذي أمامه الدراجة مليء بالكتب.",
+    "B2 | Die Tür ist geöffnet.": "الباب مفتوح.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "سلسلة الأضواء ملفوفة حول النبتة.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "لا بدّ أن الحفلة كانت طويلة جداً.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "على الأرجح كان ذلك أحد الضيوف.",
+    "C1 | Sie könnte einem Gast gehören.": "ربما تكون لأحد الضيوف.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "لو لم تفت مارك الحفلة، لكان هو أيضاً متعباً الآن."
    }
   },
   "pt": {
@@ -1849,6 +2039,38 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + infinitivo passado = provavelmente: uma hipótese cautelosa.",
     "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = é possível, mas nada prova. <b>muss</b> seria uma certeza.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Condição irreal (hätte … verpasst), consequência no presente → Konjunktiv II: <b>wäre</b>."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf dem Schrank.": "A bola está em cima do armário.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "O cachorro está deitado debaixo da mesa de centro.",
+    "A2 | Die Katze sitzt im Karton.": "O gato está sentado na caixa.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "O guarda-chuva está pendurado na luminária.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "A bicicleta está em frente à estante.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "O violão está entre o armário e o sofá.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Os tênis estão debaixo do sofá.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "O aquário com o peixinho dourado está na estante.",
+    "A2 | Die Socke hängt an der Stehlampe.": "A meia está pendurada no abajur de pé.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "O aquecedor fica debaixo da janela.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "A bola ainda está em cima do armário.",
+    "B1 | Mark legt den Ball in den Schrank.": "Mark põe a bola no armário.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "A xícara está na mesa de centro.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "Mark põe a xícara na estante.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "O guarda-chuva ainda está pendurado na luminária.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Mark pendura o guarda-chuva na porta.",
+    "B1 | Mark legt das Buch ins Regal.": "Mark põe o livro na estante.",
+    "B1 | Die Flaschen stehen im Eimer.": "As garrafas estão no balde.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "O gato vai já pular no sofá.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Os balões estão no chão.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "A luminária em que está pendurado um guarda-chuva é redonda.",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "O cachorro que dorme debaixo da mesa perdeu a festa.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "O gato cuja cabeça aparece na caixa parece bem tranquilo.",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "A estante em frente à qual está a bicicleta está cheia de livros.",
+    "B2 | Die Tür ist geöffnet.": "A porta está aberta.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "O pisca-pisca está enrolado na planta.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "A festa deve ter sido muito longa.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "Isso provavelmente foi um dos convidados.",
+    "C1 | Sie könnte einem Gast gehören.": "Talvez seja de um convidado.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Se Mark não tivesse perdido a festa, agora também estaria cansado."
    }
   },
   "pl": {
@@ -1894,6 +2116,38 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + bezokolicznik przeszły = prawdopodobnie: ostrożne przypuszczenie.",
     "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = to możliwe, ale nic tego nie dowodzi. <b>muss</b> oznaczałoby pewność.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Warunek nierzeczywisty (hätte … verpasst), skutek w teraźniejszości → Konjunktiv II: <b>wäre</b>."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf dem Schrank.": "Piłka leży na szafie.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "Pies leży pod stolikiem.",
+    "A2 | Die Katze sitzt im Karton.": "Kot siedzi w kartonie.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "Parasol wisi na lampie.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "Rower stoi przed regałem.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "Gitara stoi między szafą a kanapą.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Trampki leżą pod kanapą.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "Słój ze złotą rybką stoi na regale.",
+    "A2 | Die Socke hängt an der Stehlampe.": "Skarpetka wisi na lampie stojącej.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "Grzejnik jest pod oknem.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "Piłka wciąż leży na szafie.",
+    "B1 | Mark legt den Ball in den Schrank.": "Mark wkłada piłkę do szafy.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "Filiżanka stoi na stoliku.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "Mark stawia filiżankę na regale.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "Parasol wciąż wisi na lampie.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Mark wiesza parasol na drzwiach.",
+    "B1 | Mark legt das Buch ins Regal.": "Mark kładzie książkę na regale.",
+    "B1 | Die Flaschen stehen im Eimer.": "Butelki stoją w wiadrze.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "Kot zaraz wskoczy na kanapę.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Balony leżą na podłodze.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "Lampa, na której wisi parasol, jest okrągła.",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "Pies, który śpi pod stołem, przegapił imprezę.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "Kot, którego głowa wystaje z kartonu, wygląda na zupełnie spokojnego.",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "Regał, przed którym stoi rower, jest pełen książek.",
+    "B2 | Die Tür ist geöffnet.": "Drzwi są otwarte.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "Lampki są owinięte wokół rośliny.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "Impreza musiała trwać bardzo długo.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "To był zapewne jeden z gości.",
+    "C1 | Sie könnte einem Gast gehören.": "Być może należy do któregoś z gości.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Gdyby Mark nie przegapił imprezy, teraz też byłby zmęczony."
    }
   },
   "ru": {
@@ -1939,6 +2193,38 @@ window.SCENE = {
     "C1 | Das dürfte einer der Gäste gewesen sein.": "<b>dürfte</b> + инфинитив прошедшего = вероятно: осторожная гипотеза.",
     "C1 | Sie könnte einem Gast gehören.": "<b>könnte</b> = это возможно, но ничто этого не доказывает. <b>muss</b> было бы уверенностью.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Нереальное условие (hätte … verpasst), следствие в настоящем → Konjunktiv II: <b>wäre</b>. По-русски: «Не пропусти Марк вечеринку, он бы сейчас тоже был уставшим»."
+   },
+   "sens": {
+    "A2 | Der Ball liegt auf dem Schrank.": "Мяч лежит на шкафу.",
+    "A2 | Der Hund liegt unter dem Couchtisch.": "Собака лежит под журнальным столиком.",
+    "A2 | Die Katze sitzt im Karton.": "Кошка сидит в коробке.",
+    "A2 | Der Regenschirm hängt an der Lampe.": "Зонт висит на лампе.",
+    "A2 | Das Fahrrad steht vor dem Regal.": "Велосипед стоит перед полкой.",
+    "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "Гитара стоит между шкафом и диваном.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "Кроссовки лежат под диваном.",
+    "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "Банка с золотой рыбкой стоит на полке.",
+    "A2 | Die Socke hängt an der Stehlampe.": "Носок висит на торшере.",
+    "A2 | Der Heizkörper ist unter dem Fenster.": "Батарея под окном.",
+    "B1 | Der Ball liegt noch auf dem Schrank.": "Мяч ещё лежит на шкафу.",
+    "B1 | Mark legt den Ball in den Schrank.": "Марк кладёт мяч в шкаф.",
+    "B1 | Die Tasse steht auf dem Couchtisch.": "Чашка стоит на журнальном столике.",
+    "B1 | Mark stellt die Tasse auf das Regal.": "Марк ставит чашку на полку.",
+    "B1 | Noch hängt der Regenschirm an der Lampe.": "Зонт ещё висит на лампе.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Марк вешает зонт на дверь.",
+    "B1 | Mark legt das Buch ins Regal.": "Марк кладёт книгу на полку.",
+    "B1 | Die Flaschen stehen im Eimer.": "Бутылки стоят в ведре.",
+    "B1 | Die Katze springt gleich auf das Sofa.": "Кошка сейчас прыгнет на диван.",
+    "B1 | Die Luftballons liegen auf dem Boden.": "Воздушные шары лежат на полу.",
+    "B2 | Die Lampe, an der ein Regenschirm hängt, ist rund.": "Лампа, на которой висит зонт, круглая.",
+    "B2 | Der Hund, der unter dem Tisch schläft, hat die Party verpasst.": "Собака, которая спит под столом, пропустила вечеринку.",
+    "B2 | Die Katze, deren Kopf aus dem Karton schaut, wirkt ganz ruhig.": "Кошка, чья голова выглядывает из коробки, выглядит совсем спокойной.",
+    "B2 | Das Regal, vor dem das Fahrrad steht, ist voller Bücher.": "Полка, перед которой стоит велосипед, полна книг.",
+    "B2 | Die Tür ist geöffnet.": "Дверь открыта.",
+    "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "Гирлянда обмотана вокруг растения.",
+    "C1 | Die Party muss sehr lang gewesen sein.": "Вечеринка, должно быть, была очень долгой.",
+    "C1 | Das dürfte einer der Gäste gewesen sein.": "Это, вероятно, был один из гостей.",
+    "C1 | Sie könnte einem Gast gehören.": "Он, возможно, принадлежит кому-то из гостей.",
+    "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Если бы Марк не пропустил вечеринку, он тоже сейчас был бы уставшим."
    }
   }
  }

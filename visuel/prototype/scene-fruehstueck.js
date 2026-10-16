@@ -1513,6 +1513,7 @@ window.SCENE = {
      "f": "handy",
      "r": "tisch",
      "phrase": "Das Handy liegt auf dem Tisch.",
+     "sens": "Le téléphone est sur la table.",
      "n": "<b>Wo?</b> → datif : der Tisch → auf <b>dem</b> Tisch."
     },
     {
@@ -1525,6 +1526,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "stuhl",
      "phrase": "Die Jacke hängt über dem Stuhl.",
+     "sens": "La veste est posée sur le dossier de la chaise.",
      "n": "<b>über</b> = par-dessus. der Stuhl → über <b>dem</b> Stuhl."
     },
     {
@@ -1537,6 +1539,7 @@ window.SCENE = {
      "f": "schal",
      "r": "tuer",
      "phrase": "Der Schal hängt neben der Tür.",
+     "sens": "L'écharpe est accrochée à côté de la porte.",
      "n": "die Tür → neben <b>der</b> Tür : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1549,6 +1552,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "fenster",
      "phrase": "Die Pflanze steht am Fenster.",
+     "sens": "La plante est près de la fenêtre.",
      "n": "<b>am</b> = an + <b>dem</b> : das Fenster → am Fenster."
     },
     {
@@ -1561,6 +1565,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "tisch",
      "phrase": "Der Rucksack steht neben dem Tisch.",
+     "sens": "Le sac à dos est à côté de la table.",
      "n": "<b>neben</b> = à côté de. der Tisch → neben <b>dem</b> Tisch."
     },
     {
@@ -1573,6 +1578,7 @@ window.SCENE = {
      "f": "broetchen",
      "r": "teller",
      "phrase": "Das Brötchen liegt auf dem Teller.",
+     "sens": "Le petit pain est sur l'assiette.",
      "n": "der Teller → auf <b>dem</b> Teller."
     },
     {
@@ -1585,6 +1591,7 @@ window.SCENE = {
      "f": "gabel",
      "r": "teller",
      "phrase": "Die Gabel liegt vor dem Teller.",
+     "sens": "La fourchette est devant l'assiette.",
      "n": "<b>vor</b> = devant. Toujours <b>dem</b> : der Teller → vor <b>dem</b> Teller."
     },
     {
@@ -1597,6 +1604,7 @@ window.SCENE = {
      "f": "saft",
      "r": "ei",
      "phrase": "Der Saft steht neben dem Ei.",
+     "sens": "Le jus est à côté de l'œuf.",
      "n": "das Ei est neutre : au datif, comme le masculin → neben <b>dem</b> Ei."
     }
    ]
@@ -1614,6 +1622,7 @@ window.SCENE = {
      "f": "kuchen-mark",
      "r": "mark",
      "phrase": "Die Kellnerin bringt ihm einen Kuchen.",
+     "sens": "La serveuse lui apporte un gâteau.",
      "revise": {
       "mot": "bringen",
       "cat": "verbe"
@@ -1630,6 +1639,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "mark",
      "phrase": "Der Kaffee schmeckt ihm gut.",
+     "sens": "Il trouve le café bon.",
      "revise": {
       "mot": "schmecken",
       "cat": "verbe"
@@ -1646,6 +1656,7 @@ window.SCENE = {
      "f": "serveuse",
      "r": "kuchen-mark",
      "phrase": "Mark hat bei der Kellnerin einen Kuchen bestellt.",
+     "sens": "Mark a commandé un gâteau à la serveuse.",
      "revise": {
       "mot": "bestellen",
       "cat": "verbe"
@@ -1661,6 +1672,7 @@ window.SCENE = {
      ],
      "f": "salz",
      "phrase": "Kannst du mir bitte das Salz geben?",
+     "sens": "Tu peux me passer le sel, s'il te plaît ?",
      "revise": {
       "mot": "geben",
       "cat": "verbe"
@@ -1677,6 +1689,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "monsieur",
      "phrase": "Gehört die Jacke dem Mann dort hinten?",
+     "sens": "La veste appartient-elle à l'homme là-bas au fond ?",
      "revise": {
       "mot": "gehören",
       "cat": "verbe"
@@ -1693,6 +1706,7 @@ window.SCENE = {
      "f": "teller",
      "r": "mark",
      "phrase": "Die Kellnerin reicht dem Gast den Teller.",
+     "sens": "La serveuse tend l'assiette au client.",
      "revise": {
       "mot": "reichen",
       "cat": "verbe"
@@ -1709,6 +1723,7 @@ window.SCENE = {
      "f": "messer",
      "r": "broetchen",
      "phrase": "Mark schneidet das Brötchen mit dem Messer.",
+     "sens": "Mark coupe le petit pain avec le couteau.",
      "revise": {
       "mot": "schneiden",
       "cat": "verbe"
@@ -1725,6 +1740,7 @@ window.SCENE = {
      "f": "serveuse",
      "r": "mark",
      "phrase": "Mark dankt ihr für den Kuchen.",
+     "sens": "Mark la remercie pour le gâteau.",
      "revise": {
       "mot": "danken",
       "cat": "verbe"
@@ -1746,6 +1762,7 @@ window.SCENE = {
      "f": "mark",
      "r": "kuchen-mark",
      "phrase": "Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.",
+     "sens": "Le client à qui la serveuse apporte le gâteau s'appelle Mark.",
      "n": "On apporte le gâteau <b>à</b> lui : datif, masculin → <b>dem</b>."
     },
     {
@@ -1758,6 +1775,7 @@ window.SCENE = {
      "f": "serveuse",
      "r": "kuchen-mark",
      "phrase": "Die Kellnerin, die eine Brille trägt, bringt den Kuchen.",
+     "sens": "La serveuse, qui porte des lunettes, apporte le gâteau.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -1770,6 +1788,7 @@ window.SCENE = {
      "f": "tisch",
      "r": "mark",
      "phrase": "Der Tisch, an dem Mark sitzt, steht am Fenster.",
+     "sens": "La table à laquelle Mark est assis est près de la fenêtre.",
      "n": "<b>an</b> + Wo? → datif : der Tisch → an <b>dem</b>."
     },
     {
@@ -1781,6 +1800,7 @@ window.SCENE = {
      ],
      "f": "tisch",
      "phrase": "Der Tisch ist schon gedeckt.",
+     "sens": "La table est déjà mise.",
      "revise": {
       "mot": "decken",
       "cat": "verbe"
@@ -1797,6 +1817,7 @@ window.SCENE = {
      "f": "broetchen",
      "r": "teller",
      "phrase": "Das Brötchen ist schon aufgeschnitten.",
+     "sens": "Le petit pain est déjà coupé.",
      "revise": {
       "mot": "schneiden",
       "cat": "verbe"
@@ -1812,6 +1833,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "Die Tür ist geöffnet.",
+     "sens": "La porte est ouverte.",
      "revise": {
       "mot": "öffnen",
       "cat": "verbe"
@@ -1833,6 +1855,7 @@ window.SCENE = {
      "f": "kuchen-mark",
      "r": "mark",
      "phrase": "Mark muss großen Hunger haben.",
+     "sens": "Mark doit avoir très faim.",
      "n": "<b>müssen</b> = presque certain : un petit pain, un œuf, et maintenant un gâteau…"
     },
     {
@@ -1845,6 +1868,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "monsieur",
      "phrase": "Die Jacke könnte dem Mann dort hinten gehören.",
+     "sens": "La veste appartient peut-être à l'homme là-bas au fond.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1857,6 +1881,7 @@ window.SCENE = {
      "f": "mark",
      "r": "serveuse",
      "phrase": "Mark dürfte hier Stammgast sein.",
+     "sens": "Mark est sans doute un habitué ici.",
      "n": "<b>dürfte</b> = probable, sans en être sûr. Un <b>Stammgast</b> = un habitué."
     },
     {
@@ -1868,6 +1893,7 @@ window.SCENE = {
      ],
      "f": "kuchen",
      "phrase": "Der Apfelkuchen hier soll der beste in Berlin sein.",
+     "sens": "Il paraît que la tarte aux pommes d'ici est la meilleure de Berlin.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1913,6 +1939,34 @@ window.SCENE = {
     "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "<b>könnte</b> = one possibility among others.",
     "C1 | Mark dürfte hier Stammgast sein.": "<b>dürfte</b> = probable, without being sure. A <b>Stammgast</b> = a regular.",
     "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Das Handy liegt auf dem Tisch.": "The phone is on the table.",
+    "A2 | Die Jacke hängt über dem Stuhl.": "The jacket hangs over the chair.",
+    "A2 | Der Schal hängt neben der Tür.": "The scarf hangs next to the door.",
+    "A2 | Die Pflanze steht am Fenster.": "The plant is by the window.",
+    "A2 | Der Rucksack steht neben dem Tisch.": "The backpack is next to the table.",
+    "A2 | Das Brötchen liegt auf dem Teller.": "The bread roll is on the plate.",
+    "A2 | Die Gabel liegt vor dem Teller.": "The fork is in front of the plate.",
+    "A2 | Der Saft steht neben dem Ei.": "The juice is next to the egg.",
+    "B1 | Die Kellnerin bringt ihm einen Kuchen.": "The waitress brings him a cake.",
+    "B1 | Der Kaffee schmeckt ihm gut.": "He likes the coffee.",
+    "B1 | Mark hat bei der Kellnerin einen Kuchen bestellt.": "Mark ordered a cake from the waitress.",
+    "B1 | Kannst du mir bitte das Salz geben?": "Can you pass me the salt, please?",
+    "B1 | Gehört die Jacke dem Mann dort hinten?": "Does the jacket belong to the man back there?",
+    "B1 | Die Kellnerin reicht dem Gast den Teller.": "The waitress hands the guest the plate.",
+    "B1 | Mark schneidet das Brötchen mit dem Messer.": "Mark cuts the bread roll with the knife.",
+    "B1 | Mark dankt ihr für den Kuchen.": "Mark thanks her for the cake.",
+    "B2 | Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.": "The guest the waitress brings the cake to is called Mark.",
+    "B2 | Die Kellnerin, die eine Brille trägt, bringt den Kuchen.": "The waitress, who wears glasses, brings the cake.",
+    "B2 | Der Tisch, an dem Mark sitzt, steht am Fenster.": "The table Mark is sitting at is by the window.",
+    "B2 | Der Tisch ist schon gedeckt.": "The table is already laid.",
+    "B2 | Das Brötchen ist schon aufgeschnitten.": "The bread roll is already cut open.",
+    "B2 | Die Tür ist geöffnet.": "The door is open.",
+    "C1 | Mark muss großen Hunger haben.": "Mark must be very hungry.",
+    "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "The jacket might belong to the man back there.",
+    "C1 | Mark dürfte hier Stammgast sein.": "Mark is probably a regular here.",
+    "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "The apple cake here is said to be the best in Berlin."
    }
   },
   "tr": {
@@ -1954,6 +2008,34 @@ window.SCENE = {
     "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Mark dürfte hier Stammgast sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan. <b>Stammgast</b> = müdavim.",
     "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Das Handy liegt auf dem Tisch.": "Telefon masanın üstünde.",
+    "A2 | Die Jacke hängt über dem Stuhl.": "Ceket sandalyenin üstünde asılı.",
+    "A2 | Der Schal hängt neben der Tür.": "Atkı kapının yanında asılı.",
+    "A2 | Die Pflanze steht am Fenster.": "Bitki pencerenin yanında duruyor.",
+    "A2 | Der Rucksack steht neben dem Tisch.": "Sırt çantası masanın yanında duruyor.",
+    "A2 | Das Brötchen liegt auf dem Teller.": "Ekmek tabağın üstünde.",
+    "A2 | Die Gabel liegt vor dem Teller.": "Çatal tabağın önünde.",
+    "A2 | Der Saft steht neben dem Ei.": "Meyve suyu yumurtanın yanında.",
+    "B1 | Die Kellnerin bringt ihm einen Kuchen.": "Garson kız ona bir pasta getiriyor.",
+    "B1 | Der Kaffee schmeckt ihm gut.": "Kahveyi beğeniyor.",
+    "B1 | Mark hat bei der Kellnerin einen Kuchen bestellt.": "Mark garson kızdan bir pasta istedi.",
+    "B1 | Kannst du mir bitte das Salz geben?": "Bana tuzu uzatır mısın lütfen?",
+    "B1 | Gehört die Jacke dem Mann dort hinten?": "Ceket arkadaki adamın mı?",
+    "B1 | Die Kellnerin reicht dem Gast den Teller.": "Garson kız müşteriye tabağı uzatıyor.",
+    "B1 | Mark schneidet das Brötchen mit dem Messer.": "Mark ekmeği bıçakla kesiyor.",
+    "B1 | Mark dankt ihr für den Kuchen.": "Mark pasta için ona teşekkür ediyor.",
+    "B2 | Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.": "Garson kızın pasta getirdiği müşterinin adı Mark.",
+    "B2 | Die Kellnerin, die eine Brille trägt, bringt den Kuchen.": "Gözlük takan garson kız pastayı getiriyor.",
+    "B2 | Der Tisch, an dem Mark sitzt, steht am Fenster.": "Mark'ın oturduğu masa pencerenin yanında.",
+    "B2 | Der Tisch ist schon gedeckt.": "Masa kurulmuş bile.",
+    "B2 | Das Brötchen ist schon aufgeschnitten.": "Ekmek kesilmiş bile.",
+    "B2 | Die Tür ist geöffnet.": "Kapı açık.",
+    "C1 | Mark muss großen Hunger haben.": "Mark çok aç olmalı.",
+    "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "Ceket arkadaki adamın olabilir.",
+    "C1 | Mark dürfte hier Stammgast sein.": "Mark buranın müdavimi olsa gerek.",
+    "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "Buranın elmalı pastasının Berlin'in en iyisi olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1995,6 +2077,34 @@ window.SCENE = {
     "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Mark dürfte hier Stammgast sein.": "<b>dürfte</b> = імовірно, але без певності. <b>Stammgast</b> = постійний відвідувач.",
     "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Das Handy liegt auf dem Tisch.": "Телефон лежить на столі.",
+    "A2 | Die Jacke hängt über dem Stuhl.": "Куртка висить на стільці.",
+    "A2 | Der Schal hängt neben der Tür.": "Шарф висить біля дверей.",
+    "A2 | Die Pflanze steht am Fenster.": "Рослина стоїть біля вікна.",
+    "A2 | Der Rucksack steht neben dem Tisch.": "Рюкзак стоїть біля столу.",
+    "A2 | Das Brötchen liegt auf dem Teller.": "Булочка лежить на тарілці.",
+    "A2 | Die Gabel liegt vor dem Teller.": "Виделка лежить перед тарілкою.",
+    "A2 | Der Saft steht neben dem Ei.": "Сік стоїть біля яйця.",
+    "B1 | Die Kellnerin bringt ihm einen Kuchen.": "Офіціантка приносить йому пиріг.",
+    "B1 | Der Kaffee schmeckt ihm gut.": "Йому смакує кава.",
+    "B1 | Mark hat bei der Kellnerin einen Kuchen bestellt.": "Марк замовив у офіціантки пиріг.",
+    "B1 | Kannst du mir bitte das Salz geben?": "Можеш передати мені сіль, будь ласка?",
+    "B1 | Gehört die Jacke dem Mann dort hinten?": "Куртка належить чоловікові там, у глибині?",
+    "B1 | Die Kellnerin reicht dem Gast den Teller.": "Офіціантка подає гостеві тарілку.",
+    "B1 | Mark schneidet das Brötchen mit dem Messer.": "Марк ріже булочку ножем.",
+    "B1 | Mark dankt ihr für den Kuchen.": "Марк дякує їй за пиріг.",
+    "B2 | Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.": "Гостя, якому офіціантка приносить пиріг, звати Марк.",
+    "B2 | Die Kellnerin, die eine Brille trägt, bringt den Kuchen.": "Офіціантка в окулярах приносить пиріг.",
+    "B2 | Der Tisch, an dem Mark sitzt, steht am Fenster.": "Стіл, за яким сидить Марк, стоїть біля вікна.",
+    "B2 | Der Tisch ist schon gedeckt.": "Стіл уже накритий.",
+    "B2 | Das Brötchen ist schon aufgeschnitten.": "Булочка вже розрізана.",
+    "B2 | Die Tür ist geöffnet.": "Двері відчинені.",
+    "C1 | Mark muss großen Hunger haben.": "Марк, мабуть, дуже голодний.",
+    "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "Куртка, можливо, належить чоловікові там, у глибині.",
+    "C1 | Mark dürfte hier Stammgast sein.": "Марк, напевно, тут постійний відвідувач.",
+    "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "Кажуть, яблучний пиріг тут — найкращий у Берліні."
    }
   },
   "fa": {
@@ -2036,6 +2146,34 @@ window.SCENE = {
     "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Mark dürfte hier Stammgast sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم. <b>Stammgast</b> = مشتری همیشگی.",
     "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Das Handy liegt auf dem Tisch.": "گوشی روی میز است.",
+    "A2 | Die Jacke hängt über dem Stuhl.": "کاپشن روی صندلی آویزان است.",
+    "A2 | Der Schal hängt neben der Tür.": "شال‌گردن کنار در آویزان است.",
+    "A2 | Die Pflanze steht am Fenster.": "گیاه کنار پنجره است.",
+    "A2 | Der Rucksack steht neben dem Tisch.": "کوله‌پشتی کنار میز است.",
+    "A2 | Das Brötchen liegt auf dem Teller.": "نان روی بشقاب است.",
+    "A2 | Die Gabel liegt vor dem Teller.": "چنگال جلوی بشقاب است.",
+    "A2 | Der Saft steht neben dem Ei.": "آبمیوه کنار تخم‌مرغ است.",
+    "B1 | Die Kellnerin bringt ihm einen Kuchen.": "پیشخدمت برایش کیک می‌آورد.",
+    "B1 | Der Kaffee schmeckt ihm gut.": "قهوه به مذاقش خوش می‌آید.",
+    "B1 | Mark hat bei der Kellnerin einen Kuchen bestellt.": "مارک از پیشخدمت کیک سفارش داده است.",
+    "B1 | Kannst du mir bitte das Salz geben?": "می‌توانی لطفاً نمک را به من بدهی؟",
+    "B1 | Gehört die Jacke dem Mann dort hinten?": "کاپشن مال آن مرد آن پشت است؟",
+    "B1 | Die Kellnerin reicht dem Gast den Teller.": "پیشخدمت بشقاب را به مشتری می‌دهد.",
+    "B1 | Mark schneidet das Brötchen mit dem Messer.": "مارک نان را با چاقو می‌برد.",
+    "B1 | Mark dankt ihr für den Kuchen.": "مارک به‌خاطر کیک از او تشکر می‌کند.",
+    "B2 | Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.": "مشتری‌ای که پیشخدمت برایش کیک می‌آورد، مارک نام دارد.",
+    "B2 | Die Kellnerin, die eine Brille trägt, bringt den Kuchen.": "پیشخدمتی که عینک دارد، کیک را می‌آورد.",
+    "B2 | Der Tisch, an dem Mark sitzt, steht am Fenster.": "میزی که مارک پشتش نشسته، کنار پنجره است.",
+    "B2 | Der Tisch ist schon gedeckt.": "میز چیده شده است.",
+    "B2 | Das Brötchen ist schon aufgeschnitten.": "نان بریده شده است.",
+    "B2 | Die Tür ist geöffnet.": "در باز است.",
+    "C1 | Mark muss großen Hunger haben.": "مارک حتماً خیلی گرسنه است.",
+    "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "کاپشن شاید مال آن مرد آن پشت باشد.",
+    "C1 | Mark dürfte hier Stammgast sein.": "مارک احتمالاً اینجا مشتری همیشگی است.",
+    "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "می‌گویند کیک سیب اینجا بهترین کیک برلین است."
    }
   },
   "ar": {
@@ -2077,6 +2215,34 @@ window.SCENE = {
     "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Mark dürfte hier Stammgast sein.": "<b>dürfte</b> = مرجَّح، دون يقين. <b>Stammgast</b> = زبون دائم.",
     "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Das Handy liegt auf dem Tisch.": "الهاتف على الطاولة.",
+    "A2 | Die Jacke hängt über dem Stuhl.": "السترة معلّقة على الكرسي.",
+    "A2 | Der Schal hängt neben der Tür.": "الوشاح معلّق بجانب الباب.",
+    "A2 | Die Pflanze steht am Fenster.": "النبتة عند النافذة.",
+    "A2 | Der Rucksack steht neben dem Tisch.": "حقيبة الظهر بجانب الطاولة.",
+    "A2 | Das Brötchen liegt auf dem Teller.": "الخبزة على الصحن.",
+    "A2 | Die Gabel liegt vor dem Teller.": "الشوكة أمام الصحن.",
+    "A2 | Der Saft steht neben dem Ei.": "العصير بجانب البيضة.",
+    "B1 | Die Kellnerin bringt ihm einen Kuchen.": "تُحضر له النادلة كعكة.",
+    "B1 | Der Kaffee schmeckt ihm gut.": "القهوة تعجبه.",
+    "B1 | Mark hat bei der Kellnerin einen Kuchen bestellt.": "طلب مارك كعكة من النادلة.",
+    "B1 | Kannst du mir bitte das Salz geben?": "هل يمكنك أن تناولني الملح، من فضلك؟",
+    "B1 | Gehört die Jacke dem Mann dort hinten?": "هل السترة للرجل الجالس هناك في الخلف؟",
+    "B1 | Die Kellnerin reicht dem Gast den Teller.": "تناول النادلة الزبون الصحن.",
+    "B1 | Mark schneidet das Brötchen mit dem Messer.": "يقطع مارك الخبزة بالسكّين.",
+    "B1 | Mark dankt ihr für den Kuchen.": "يشكرها مارك على الكعكة.",
+    "B2 | Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.": "الزبون الذي تُحضر له النادلة الكعكة اسمه مارك.",
+    "B2 | Die Kellnerin, die eine Brille trägt, bringt den Kuchen.": "النادلة التي ترتدي نظّارة تُحضر الكعكة.",
+    "B2 | Der Tisch, an dem Mark sitzt, steht am Fenster.": "الطاولة التي يجلس إليها مارك عند النافذة.",
+    "B2 | Der Tisch ist schon gedeckt.": "الطاولة مجهّزة بالفعل.",
+    "B2 | Das Brötchen ist schon aufgeschnitten.": "الخبزة مقطوعة بالفعل.",
+    "B2 | Die Tür ist geöffnet.": "الباب مفتوح.",
+    "C1 | Mark muss großen Hunger haben.": "لا بدّ أن مارك جائع جداً.",
+    "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "ربما تكون السترة للرجل الجالس هناك في الخلف.",
+    "C1 | Mark dürfte hier Stammgast sein.": "على الأرجح مارك زبون دائم هنا.",
+    "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "يُقال إن كعكة التفاح هنا هي الأفضل في برلين."
    }
   },
   "pt": {
@@ -2118,6 +2284,34 @@ window.SCENE = {
     "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Mark dürfte hier Stammgast sein.": "<b>dürfte</b> = provável, sem ter certeza. Um <b>Stammgast</b> = um cliente habitual.",
     "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Das Handy liegt auf dem Tisch.": "O celular está na mesa.",
+    "A2 | Die Jacke hängt über dem Stuhl.": "A jaqueta está pendurada na cadeira.",
+    "A2 | Der Schal hängt neben der Tür.": "O cachecol está pendurado ao lado da porta.",
+    "A2 | Die Pflanze steht am Fenster.": "A planta está junto à janela.",
+    "A2 | Der Rucksack steht neben dem Tisch.": "A mochila está ao lado da mesa.",
+    "A2 | Das Brötchen liegt auf dem Teller.": "O pãozinho está no prato.",
+    "A2 | Die Gabel liegt vor dem Teller.": "O garfo está em frente ao prato.",
+    "A2 | Der Saft steht neben dem Ei.": "O suco está ao lado do ovo.",
+    "B1 | Die Kellnerin bringt ihm einen Kuchen.": "A garçonete traz um bolo para ele.",
+    "B1 | Der Kaffee schmeckt ihm gut.": "Ele acha o café gostoso.",
+    "B1 | Mark hat bei der Kellnerin einen Kuchen bestellt.": "Mark pediu um bolo à garçonete.",
+    "B1 | Kannst du mir bitte das Salz geben?": "Você pode me passar o sal, por favor?",
+    "B1 | Gehört die Jacke dem Mann dort hinten?": "A jaqueta é do homem lá no fundo?",
+    "B1 | Die Kellnerin reicht dem Gast den Teller.": "A garçonete entrega o prato ao cliente.",
+    "B1 | Mark schneidet das Brötchen mit dem Messer.": "Mark corta o pãozinho com a faca.",
+    "B1 | Mark dankt ihr für den Kuchen.": "Mark agradece a ela pelo bolo.",
+    "B2 | Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.": "O cliente a quem a garçonete traz o bolo se chama Mark.",
+    "B2 | Die Kellnerin, die eine Brille trägt, bringt den Kuchen.": "A garçonete, que usa óculos, traz o bolo.",
+    "B2 | Der Tisch, an dem Mark sitzt, steht am Fenster.": "A mesa em que Mark está sentado fica junto à janela.",
+    "B2 | Der Tisch ist schon gedeckt.": "A mesa já está posta.",
+    "B2 | Das Brötchen ist schon aufgeschnitten.": "O pãozinho já está cortado.",
+    "B2 | Die Tür ist geöffnet.": "A porta está aberta.",
+    "C1 | Mark muss großen Hunger haben.": "Mark deve estar com muita fome.",
+    "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "A jaqueta talvez seja do homem lá no fundo.",
+    "C1 | Mark dürfte hier Stammgast sein.": "Mark provavelmente é cliente habitual aqui.",
+    "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "Dizem que a torta de maçã daqui é a melhor de Berlim."
    }
   },
   "pl": {
@@ -2159,6 +2353,34 @@ window.SCENE = {
     "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Mark dürfte hier Stammgast sein.": "<b>dürfte</b> = prawdopodobne, ale bez pewności. <b>Stammgast</b> = stały bywalec.",
     "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Das Handy liegt auf dem Tisch.": "Telefon leży na stole.",
+    "A2 | Die Jacke hängt über dem Stuhl.": "Kurtka wisi na krześle.",
+    "A2 | Der Schal hängt neben der Tür.": "Szalik wisi obok drzwi.",
+    "A2 | Die Pflanze steht am Fenster.": "Roślina stoi przy oknie.",
+    "A2 | Der Rucksack steht neben dem Tisch.": "Plecak stoi obok stołu.",
+    "A2 | Das Brötchen liegt auf dem Teller.": "Bułka leży na talerzu.",
+    "A2 | Die Gabel liegt vor dem Teller.": "Widelec leży przed talerzem.",
+    "A2 | Der Saft steht neben dem Ei.": "Sok stoi obok jajka.",
+    "B1 | Die Kellnerin bringt ihm einen Kuchen.": "Kelnerka przynosi mu ciasto.",
+    "B1 | Der Kaffee schmeckt ihm gut.": "Kawa mu smakuje.",
+    "B1 | Mark hat bei der Kellnerin einen Kuchen bestellt.": "Mark zamówił u kelnerki ciasto.",
+    "B1 | Kannst du mir bitte das Salz geben?": "Możesz mi podać sól, proszę?",
+    "B1 | Gehört die Jacke dem Mann dort hinten?": "Czy kurtka należy do mężczyzny tam z tyłu?",
+    "B1 | Die Kellnerin reicht dem Gast den Teller.": "Kelnerka podaje gościowi talerz.",
+    "B1 | Mark schneidet das Brötchen mit dem Messer.": "Mark kroi bułkę nożem.",
+    "B1 | Mark dankt ihr für den Kuchen.": "Mark dziękuje jej za ciasto.",
+    "B2 | Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.": "Gość, któremu kelnerka przynosi ciasto, ma na imię Mark.",
+    "B2 | Die Kellnerin, die eine Brille trägt, bringt den Kuchen.": "Kelnerka, która nosi okulary, przynosi ciasto.",
+    "B2 | Der Tisch, an dem Mark sitzt, steht am Fenster.": "Stół, przy którym siedzi Mark, stoi przy oknie.",
+    "B2 | Der Tisch ist schon gedeckt.": "Stół jest już nakryty.",
+    "B2 | Das Brötchen ist schon aufgeschnitten.": "Bułka jest już przekrojona.",
+    "B2 | Die Tür ist geöffnet.": "Drzwi są otwarte.",
+    "C1 | Mark muss großen Hunger haben.": "Mark musi być bardzo głodny.",
+    "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "Kurtka być może należy do mężczyzny tam z tyłu.",
+    "C1 | Mark dürfte hier Stammgast sein.": "Mark jest zapewne tutaj stałym gościem.",
+    "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "Podobno tutejsza szarlotka jest najlepsza w Berlinie."
    }
   },
   "ru": {
@@ -2200,6 +2422,34 @@ window.SCENE = {
     "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Mark dürfte hier Stammgast sein.": "<b>dürfte</b> = вероятно, но без уверенности. <b>Stammgast</b> = завсегдатай.",
     "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Das Handy liegt auf dem Tisch.": "Телефон лежит на столе.",
+    "A2 | Die Jacke hängt über dem Stuhl.": "Куртка висит на стуле.",
+    "A2 | Der Schal hängt neben der Tür.": "Шарф висит рядом с дверью.",
+    "A2 | Die Pflanze steht am Fenster.": "Растение стоит у окна.",
+    "A2 | Der Rucksack steht neben dem Tisch.": "Рюкзак стоит рядом со столом.",
+    "A2 | Das Brötchen liegt auf dem Teller.": "Булочка лежит на тарелке.",
+    "A2 | Die Gabel liegt vor dem Teller.": "Вилка лежит перед тарелкой.",
+    "A2 | Der Saft steht neben dem Ei.": "Сок стоит рядом с яйцом.",
+    "B1 | Die Kellnerin bringt ihm einen Kuchen.": "Официантка приносит ему пирог.",
+    "B1 | Der Kaffee schmeckt ihm gut.": "Кофе ему нравится.",
+    "B1 | Mark hat bei der Kellnerin einen Kuchen bestellt.": "Марк заказал у официантки пирог.",
+    "B1 | Kannst du mir bitte das Salz geben?": "Ты можешь передать мне соль, пожалуйста?",
+    "B1 | Gehört die Jacke dem Mann dort hinten?": "Куртка принадлежит мужчине там, сзади?",
+    "B1 | Die Kellnerin reicht dem Gast den Teller.": "Официантка подаёт гостю тарелку.",
+    "B1 | Mark schneidet das Brötchen mit dem Messer.": "Марк режет булочку ножом.",
+    "B1 | Mark dankt ihr für den Kuchen.": "Марк благодарит её за пирог.",
+    "B2 | Der Gast, dem die Kellnerin den Kuchen bringt, heißt Mark.": "Гостя, которому официантка приносит пирог, зовут Марк.",
+    "B2 | Die Kellnerin, die eine Brille trägt, bringt den Kuchen.": "Официантка, которая носит очки, приносит пирог.",
+    "B2 | Der Tisch, an dem Mark sitzt, steht am Fenster.": "Стол, за которым сидит Марк, стоит у окна.",
+    "B2 | Der Tisch ist schon gedeckt.": "Стол уже накрыт.",
+    "B2 | Das Brötchen ist schon aufgeschnitten.": "Булочка уже разрезана.",
+    "B2 | Die Tür ist geöffnet.": "Дверь открыта.",
+    "C1 | Mark muss großen Hunger haben.": "Марк, должно быть, очень голоден.",
+    "C1 | Die Jacke könnte dem Mann dort hinten gehören.": "Куртка, возможно, принадлежит мужчине там, сзади.",
+    "C1 | Mark dürfte hier Stammgast sein.": "Марк, вероятно, здесь завсегдатай.",
+    "C1 | Der Apfelkuchen hier soll der beste in Berlin sein.": "Говорят, яблочный пирог здесь — лучший в Берлине."
    }
   }
  }

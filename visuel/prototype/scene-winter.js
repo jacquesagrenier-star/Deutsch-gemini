@@ -901,6 +901,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "laterne",
      "phrase": "Das Fahrrad steht an der Laterne.",
+     "sens": "Le vélo est contre le lampadaire.",
      "n": "<b>an</b> = contre. die Laterne → an <b>der</b> Laterne."
     },
     {
@@ -913,6 +914,7 @@ window.SCENE = {
      "f": "kerze",
      "r": "fenster-2",
      "phrase": "Die Kerze ist im Fenster.",
+     "sens": "La bougie est à la fenêtre.",
      "n": "<b>im</b> = in + <b>dem</b> : das Fenster → im Fenster."
     },
     {
@@ -925,6 +927,7 @@ window.SCENE = {
      "f": "auto",
      "r": "haus",
      "phrase": "Das Auto steht vor dem Haus.",
+     "sens": "La voiture est devant la maison.",
      "n": "<b>vor</b> = devant. das Haus → vor <b>dem</b> Haus."
     },
     {
@@ -937,6 +940,7 @@ window.SCENE = {
      "f": "vogel",
      "r": "baum",
      "phrase": "Der Vogel sitzt auf dem Baum.",
+     "sens": "L'oiseau est perché sur l'arbre.",
      "n": "der Baum → auf <b>dem</b> Baum."
     },
     {
@@ -949,6 +953,7 @@ window.SCENE = {
      "f": "hund",
      "r": "schnee",
      "phrase": "Der Hund steht im Schnee.",
+     "sens": "Le chien est dans la neige.",
      "n": "<b>im</b> = in + <b>dem</b> : der Schnee → im Schnee."
     },
     {
@@ -961,6 +966,7 @@ window.SCENE = {
      "f": "rauch",
      "r": "dach",
      "phrase": "Der Rauch ist über dem Dach.",
+     "sens": "La fumée est au-dessus du toit.",
      "n": "<b>über</b> = au-dessus de. das Dach → über <b>dem</b> Dach."
     },
     {
@@ -973,6 +979,7 @@ window.SCENE = {
      "f": "bank",
      "r": "fahrrad",
      "phrase": "Die Bank steht neben dem Fahrrad.",
+     "sens": "Le banc est à côté du vélo.",
      "n": "das Fahrrad → neben <b>dem</b> Fahrrad."
     },
     {
@@ -985,6 +992,7 @@ window.SCENE = {
      "f": "hut",
      "r": "schneemann",
      "phrase": "Der Hut ist auf dem Schneemann.",
+     "sens": "Le chapeau est sur le bonhomme de neige.",
      "n": "der Schneemann → auf <b>dem</b> Schneemann."
     }
    ]
@@ -1001,6 +1009,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Ihr ist kalt.",
+     "sens": "Elle a froid.",
      "n": "Avoir froid → datif : <b>mir</b>, <b>dir</b>, <b>ihm</b>, <b>ihr</b> ist kalt."
     },
     {
@@ -1013,6 +1022,7 @@ window.SCENE = {
      "f": "muetze",
      "r": "anna",
      "phrase": "Die Mütze steht ihr gut.",
+     "sens": "Le bonnet lui va bien.",
      "n": "<b>stehen</b> (aller bien) + datif : sie → <b>ihr</b>.",
      "revise": {
       "mot": "stehen",
@@ -1029,6 +1039,7 @@ window.SCENE = {
      "f": "schal",
      "r": "schneemann",
      "phrase": "Anna hat dem Schneemann einen Schal umgebunden.",
+     "sens": "Anna a noué une écharpe au bonhomme de neige.",
      "n": "À qui ? → datif : <b>dem</b> Schneemann."
     },
     {
@@ -1040,6 +1051,7 @@ window.SCENE = {
      ],
      "f": "handschuh",
      "phrase": "Sie hat die Handschuhe angezogen.",
+     "sens": "Elle a mis les gants.",
      "n": "Quoi ? → accusatif pluriel : <b>die</b> Handschuhe."
     },
     {
@@ -1051,6 +1063,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "Der Hund trägt einen Mantel, damit ihm nicht kalt ist.",
+     "sens": "Le chien porte un manteau pour ne pas avoir froid.",
      "n": "Avoir froid → datif : er → <b>ihm</b>.",
      "revise": {
       "mot": "tragen",
@@ -1067,6 +1080,7 @@ window.SCENE = {
      "f": "stiefel",
      "r": "anna",
      "phrase": "Die Stiefel gehören ihr.",
+     "sens": "Les bottes sont à elle.",
      "n": "<b>gehören</b> + datif : sie → <b>ihr</b>.",
      "revise": {
       "mot": "gehören",
@@ -1083,6 +1097,7 @@ window.SCENE = {
      "f": "karotte",
      "r": "schneemann",
      "phrase": "Anna gibt dem Schneemann eine Karotte als Nase.",
+     "sens": "Anna donne une carotte au bonhomme de neige comme nez.",
      "n": "<b>geben</b> : la personne (ici le bonhomme) au datif → <b>dem</b>.",
      "revise": {
       "mot": "geben",
@@ -1098,6 +1113,7 @@ window.SCENE = {
      ],
      "f": "besen",
      "phrase": "Mit dem Besen macht sie den Weg frei.",
+     "sens": "Avec le balai, elle dégage le chemin.",
      "n": "<b>mit</b> + datif : der Besen → mit <b>dem</b> Besen."
     }
    ]
@@ -1115,6 +1131,7 @@ window.SCENE = {
      "f": "anna",
      "r": "schneemann",
      "phrase": "Die Frau, die einen Schneemann baut, heißt Anna.",
+     "sens": "La femme qui fait un bonhomme de neige s'appelle Anna.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -1126,6 +1143,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "Der Hund, dessen Mantel rot ist, schnuppert am Schnee.",
+     "sens": "Le chien au manteau rouge renifle la neige.",
      "n": "Possession, antécédent masculin → <b>dessen</b> (dont le manteau)."
     },
     {
@@ -1138,6 +1156,7 @@ window.SCENE = {
      "f": "haus",
      "r": "auto",
      "phrase": "Das Haus, vor dem das Auto steht, ist gelb.",
+     "sens": "La maison devant laquelle est la voiture est jaune.",
      "n": "<b>vor</b> + Wo? → datif, neutre → <b>dem</b>."
     },
     {
@@ -1149,6 +1168,7 @@ window.SCENE = {
      ],
      "f": "auto",
      "phrase": "Das Auto ist mit Schnee bedeckt.",
+     "sens": "La voiture est couverte de neige.",
      "n": "Passif d'état : <b>sein</b> + participe (couvert)."
     },
     {
@@ -1160,6 +1180,7 @@ window.SCENE = {
      ],
      "f": "besen",
      "phrase": "Der Weg muss noch gefegt werden.",
+     "sens": "Le chemin doit encore être balayé.",
      "n": "Passif avec un modal : participe + <b>werden</b> à la fin."
     },
     {
@@ -1172,6 +1193,7 @@ window.SCENE = {
      "f": "kerze",
      "r": "fenster-2",
      "phrase": "Die brennende Kerze steht im Fenster.",
+     "sens": "La bougie allumée est à la fenêtre.",
      "n": "Participe présent (Partizip I) comme adjectif : brennen + <b>d</b> + terminaison → <b>brennende</b>."
     }
    ]
@@ -1189,6 +1211,7 @@ window.SCENE = {
      "f": "schneemann",
      "r": "anna",
      "phrase": "Der Schneemann muss ihr gut gefallen.",
+     "sens": "Le bonhomme de neige doit beaucoup lui plaire.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1200,6 +1223,7 @@ window.SCENE = {
      ],
      "f": "fahrrad",
      "phrase": "Das Fahrrad könnte seit gestern Abend dort stehen.",
+     "sens": "Le vélo est peut-être là depuis hier soir.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1211,6 +1235,7 @@ window.SCENE = {
      ],
      "f": "schnee",
      "phrase": "Der Schnee dürfte bis morgen liegen bleiben.",
+     "sens": "La neige devrait tenir jusqu'à demain.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1222,6 +1247,7 @@ window.SCENE = {
      ],
      "f": "himmel",
      "phrase": "Es soll der kälteste Winter seit zehn Jahren werden.",
+     "sens": "Il paraît que ce sera l'hiver le plus froid depuis dix ans.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1267,6 +1293,34 @@ window.SCENE = {
     "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "<b>könnte</b> = one possibility among others.",
     "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Das Fahrrad steht an der Laterne.": "The bicycle is against the lamppost.",
+    "A2 | Die Kerze ist im Fenster.": "The candle is in the window.",
+    "A2 | Das Auto steht vor dem Haus.": "The car is in front of the house.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "The bird is sitting in the tree.",
+    "A2 | Der Hund steht im Schnee.": "The dog is standing in the snow.",
+    "A2 | Der Rauch ist über dem Dach.": "The smoke is above the roof.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "The bench is next to the bicycle.",
+    "A2 | Der Hut ist auf dem Schneemann.": "The hat is on the snowman.",
+    "B1 | Ihr ist kalt.": "She is cold.",
+    "B1 | Die Mütze steht ihr gut.": "The hat suits her.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "Anna tied a scarf around the snowman.",
+    "B1 | Sie hat die Handschuhe angezogen.": "She put on the gloves.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "The dog is wearing a coat so that he is not cold.",
+    "B1 | Die Stiefel gehören ihr.": "The boots belong to her.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "Anna gives the snowman a carrot for a nose.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "She clears the path with the broom.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "The woman building a snowman is called Anna.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "The dog whose coat is red is sniffing the snow.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "The house the car is in front of is yellow.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "The car is covered with snow.",
+    "B2 | Der Weg muss noch gefegt werden.": "The path still has to be swept.",
+    "B2 | Die brennende Kerze steht im Fenster.": "The burning candle is in the window.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "She must really like the snowman.",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "The bicycle might have been there since last night.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "The snow should stay until tomorrow.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "It is said to be the coldest winter in ten years."
    }
   },
   "tr": {
@@ -1308,6 +1362,34 @@ window.SCENE = {
     "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Das Fahrrad steht an der Laterne.": "Bisiklet sokak lambasına dayalı.",
+    "A2 | Die Kerze ist im Fenster.": "Mum pencerede.",
+    "A2 | Das Auto steht vor dem Haus.": "Araba evin önünde duruyor.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "Kuş ağacın üstünde duruyor.",
+    "A2 | Der Hund steht im Schnee.": "Köpek karda duruyor.",
+    "A2 | Der Rauch ist über dem Dach.": "Duman çatının üstünde.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "Bank bisikletin yanında duruyor.",
+    "A2 | Der Hut ist auf dem Schneemann.": "Şapka kardan adamın üstünde.",
+    "B1 | Ihr ist kalt.": "Üşüyor.",
+    "B1 | Die Mütze steht ihr gut.": "Bere ona yakışıyor.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "Anna kardan adama bir atkı bağladı.",
+    "B1 | Sie hat die Handschuhe angezogen.": "Eldivenleri giydi.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "Köpek üşümesin diye bir palto giyiyor.",
+    "B1 | Die Stiefel gehören ihr.": "Çizmeler onun.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "Anna kardan adama burun olarak bir havuç veriyor.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "Süpürgeyle yolu açıyor.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "Kardan adam yapan kadının adı Anna.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "Paltosu kırmızı olan köpek karı kokluyor.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "Önünde arabanın durduğu ev sarı.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "Araba karla kaplı.",
+    "B2 | Der Weg muss noch gefegt werden.": "Yolun hâlâ süpürülmesi gerekiyor.",
+    "B2 | Die brennende Kerze steht im Fenster.": "Yanan mum pencerede duruyor.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "Kardan adam çok hoşuna gidiyor olmalı.",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "Bisiklet dün akşamdan beri orada duruyor olabilir.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "Kar yarına kadar kalır herhalde.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "On yılın en soğuk kışı olacağı söyleniyor."
    }
   },
   "uk": {
@@ -1349,6 +1431,34 @@ window.SCENE = {
     "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Das Fahrrad steht an der Laterne.": "Велосипед стоїть біля ліхтаря.",
+    "A2 | Die Kerze ist im Fenster.": "Свічка у вікні.",
+    "A2 | Das Auto steht vor dem Haus.": "Машина стоїть перед будинком.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "Птах сидить на дереві.",
+    "A2 | Der Hund steht im Schnee.": "Собака стоїть у снігу.",
+    "A2 | Der Rauch ist über dem Dach.": "Дим над дахом.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "Лавка стоїть біля велосипеда.",
+    "A2 | Der Hut ist auf dem Schneemann.": "Капелюх на сніговику.",
+    "B1 | Ihr ist kalt.": "Їй холодно.",
+    "B1 | Die Mütze steht ihr gut.": "Шапка їй личить.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "Анна пов'язала сніговикові шарф.",
+    "B1 | Sie hat die Handschuhe angezogen.": "Вона надягла рукавиці.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "Собака в пальті, щоб їй не було холодно.",
+    "B1 | Die Stiefel gehören ihr.": "Чоботи належать їй.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "Анна дає сніговикові морквину замість носа.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "Мітлою вона розчищає доріжку.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "Жінку, яка ліпить сніговика, звати Анна.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "Собака в червоному пальті нюхає сніг.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "Будинок, перед яким стоїть машина, жовтий.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "Машина вкрита снігом.",
+    "B2 | Der Weg muss noch gefegt werden.": "Доріжку ще треба підмести.",
+    "B2 | Die brennende Kerze steht im Fenster.": "Запалена свічка стоїть у вікні.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "Сніговик їй, мабуть, дуже подобається.",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "Велосипед, можливо, стоїть там із учорашнього вечора.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "Сніг, напевно, пролежить до завтра.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "Кажуть, це буде найхолодніша зима за десять років."
    }
   },
   "fa": {
@@ -1390,6 +1500,34 @@ window.SCENE = {
     "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Das Fahrrad steht an der Laterne.": "دوچرخه کنار تیر چراغ‌برق است.",
+    "A2 | Die Kerze ist im Fenster.": "شمع در پنجره است.",
+    "A2 | Das Auto steht vor dem Haus.": "ماشین جلوی خانه است.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "پرنده روی درخت نشسته است.",
+    "A2 | Der Hund steht im Schnee.": "سگ در برف ایستاده است.",
+    "A2 | Der Rauch ist über dem Dach.": "دود بالای بام است.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "نیمکت کنار دوچرخه است.",
+    "A2 | Der Hut ist auf dem Schneemann.": "کلاه روی آدم‌برفی است.",
+    "B1 | Ihr ist kalt.": "او سردش است.",
+    "B1 | Die Mütze steht ihr gut.": "کلاه به او می‌آید.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "آنا به آدم‌برفی شال‌گردن بسته است.",
+    "B1 | Sie hat die Handschuhe angezogen.": "او دستکش‌ها را دستش کرده است.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "سگ پالتو پوشیده تا سردش نشود.",
+    "B1 | Die Stiefel gehören ihr.": "چکمه‌ها مال اوست.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "آنا به آدم‌برفی یک هویج به‌جای بینی می‌دهد.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "با جارو راه را باز می‌کند.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "زنی که آدم‌برفی می‌سازد، آنا نام دارد.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "سگی که پالتویش قرمز است، برف را بو می‌کند.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "خانه‌ای که ماشین جلویش است، زرد است.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "ماشین پوشیده از برف است.",
+    "B2 | Der Weg muss noch gefegt werden.": "راه هنوز باید جارو شود.",
+    "B2 | Die brennende Kerze steht im Fenster.": "شمع روشن در پنجره است.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "آدم‌برفی حتماً خیلی به دلش نشسته است.",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "دوچرخه شاید از دیشب آنجا باشد.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "برف احتمالاً تا فردا می‌ماند.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "می‌گویند این سردترین زمستان ده سال اخیر خواهد بود."
    }
   },
   "ar": {
@@ -1431,6 +1569,34 @@ window.SCENE = {
     "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Das Fahrrad steht an der Laterne.": "الدراجة عند عمود الإنارة.",
+    "A2 | Die Kerze ist im Fenster.": "الشمعة في النافذة.",
+    "A2 | Das Auto steht vor dem Haus.": "السيارة أمام البيت.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "العصفور على الشجرة.",
+    "A2 | Der Hund steht im Schnee.": "الكلب واقف في الثلج.",
+    "A2 | Der Rauch ist über dem Dach.": "الدخان فوق السطح.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "المقعد بجانب الدراجة.",
+    "A2 | Der Hut ist auf dem Schneemann.": "القبّعة على رجل الثلج.",
+    "B1 | Ihr ist kalt.": "إنها تشعر بالبرد.",
+    "B1 | Die Mütze steht ihr gut.": "القبّعة تليق بها.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "لفّت آنا وشاحاً حول عنق رجل الثلج.",
+    "B1 | Sie hat die Handschuhe angezogen.": "لبست القفّازات.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "يرتدي الكلب معطفاً كي لا يشعر بالبرد.",
+    "B1 | Die Stiefel gehören ihr.": "الجزمة لها.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "تعطي آنا رجل الثلج جزرة كأنف.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "تفتح الطريق بالمكنسة.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "المرأة التي تصنع رجل ثلج اسمها آنا.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "الكلب ذو المعطف الأحمر يشمّ الثلج.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "البيت الذي أمامه السيارة أصفر.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "السيارة مغطّاة بالثلج.",
+    "B2 | Der Weg muss noch gefegt werden.": "ما زال يجب كنس الطريق.",
+    "B2 | Die brennende Kerze steht im Fenster.": "الشمعة المشتعلة في النافذة.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "لا بدّ أن رجل الثلج يعجبها كثيراً.",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "ربما تكون الدراجة هناك منذ مساء أمس.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "على الأرجح يبقى الثلج حتى الغد.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "يُقال إنه سيكون أبرد شتاء منذ عشر سنوات."
    }
   },
   "pt": {
@@ -1472,6 +1638,34 @@ window.SCENE = {
     "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Das Fahrrad steht an der Laterne.": "A bicicleta está encostada no poste.",
+    "A2 | Die Kerze ist im Fenster.": "A vela está na janela.",
+    "A2 | Das Auto steht vor dem Haus.": "O carro está em frente à casa.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "O pássaro está pousado na árvore.",
+    "A2 | Der Hund steht im Schnee.": "O cachorro está na neve.",
+    "A2 | Der Rauch ist über dem Dach.": "A fumaça está acima do telhado.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "O banco está ao lado da bicicleta.",
+    "A2 | Der Hut ist auf dem Schneemann.": "O chapéu está no boneco de neve.",
+    "B1 | Ihr ist kalt.": "Ela está com frio.",
+    "B1 | Die Mütze steht ihr gut.": "O gorro fica bem nela.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "Anna pôs um cachecol no boneco de neve.",
+    "B1 | Sie hat die Handschuhe angezogen.": "Ela pôs as luvas.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "O cachorro usa um casaco para não sentir frio.",
+    "B1 | Die Stiefel gehören ihr.": "As botas são dela.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "Anna dá uma cenoura de nariz ao boneco de neve.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "Com a vassoura, ela desobstrui o caminho.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "A mulher que faz um boneco de neve se chama Anna.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "O cachorro de casaco vermelho cheira a neve.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "A casa em frente à qual está o carro é amarela.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "O carro está coberto de neve.",
+    "B2 | Der Weg muss noch gefegt werden.": "O caminho ainda tem que ser varrido.",
+    "B2 | Die brennende Kerze steht im Fenster.": "A vela acesa está na janela.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "Ela deve estar gostando muito do boneco de neve.",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "A bicicleta talvez esteja ali desde ontem à noite.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "A neve provavelmente vai ficar até amanhã.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "Dizem que será o inverno mais frio em dez anos."
    }
   },
   "pl": {
@@ -1513,6 +1707,34 @@ window.SCENE = {
     "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Das Fahrrad steht an der Laterne.": "Rower stoi przy latarni.",
+    "A2 | Die Kerze ist im Fenster.": "Świeca jest w oknie.",
+    "A2 | Das Auto steht vor dem Haus.": "Samochód stoi przed domem.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "Ptak siedzi na drzewie.",
+    "A2 | Der Hund steht im Schnee.": "Pies stoi w śniegu.",
+    "A2 | Der Rauch ist über dem Dach.": "Dym jest nad dachem.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "Ławka stoi obok roweru.",
+    "A2 | Der Hut ist auf dem Schneemann.": "Kapelusz jest na bałwanie.",
+    "B1 | Ihr ist kalt.": "Jest jej zimno.",
+    "B1 | Die Mütze steht ihr gut.": "Czapka jej pasuje.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "Anna zawiązała bałwanowi szalik.",
+    "B1 | Sie hat die Handschuhe angezogen.": "Założyła rękawiczki.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "Pies ma na sobie płaszczyk, żeby nie było mu zimno.",
+    "B1 | Die Stiefel gehören ihr.": "Buty należą do niej.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "Anna daje bałwanowi marchewkę jako nos.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "Miotłą odgarnia śnieg ze ścieżki.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "Kobieta, która lepi bałwana, ma na imię Anna.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "Pies w czerwonym płaszczyku obwąchuje śnieg.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "Dom, przed którym stoi samochód, jest żółty.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "Samochód jest pokryty śniegiem.",
+    "B2 | Der Weg muss noch gefegt werden.": "Ścieżkę trzeba jeszcze zamieść.",
+    "B2 | Die brennende Kerze steht im Fenster.": "Płonąca świeca stoi w oknie.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "Bałwan musi jej się bardzo podobać.",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "Rower być może stoi tam od wczorajszego wieczoru.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "Śnieg zapewne poleży do jutra.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "Podobno będzie to najzimniejsza zima od dziesięciu lat."
    }
   },
   "ru": {
@@ -1554,6 +1776,34 @@ window.SCENE = {
     "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Das Fahrrad steht an der Laterne.": "Велосипед стоит у фонаря.",
+    "A2 | Die Kerze ist im Fenster.": "Свеча в окне.",
+    "A2 | Das Auto steht vor dem Haus.": "Машина стоит перед домом.",
+    "A2 | Der Vogel sitzt auf dem Baum.": "Птица сидит на дереве.",
+    "A2 | Der Hund steht im Schnee.": "Собака стоит в снегу.",
+    "A2 | Der Rauch ist über dem Dach.": "Дым над крышей.",
+    "A2 | Die Bank steht neben dem Fahrrad.": "Скамейка стоит рядом с велосипедом.",
+    "A2 | Der Hut ist auf dem Schneemann.": "Шляпа на снеговике.",
+    "B1 | Ihr ist kalt.": "Ей холодно.",
+    "B1 | Die Mütze steht ihr gut.": "Шапка ей идёт.",
+    "B1 | Anna hat dem Schneemann einen Schal umgebunden.": "Анна повязала снеговику шарф.",
+    "B1 | Sie hat die Handschuhe angezogen.": "Она надела перчатки.",
+    "B1 | Der Hund trägt einen Mantel, damit ihm nicht kalt ist.": "Собака в пальто, чтобы ей не было холодно.",
+    "B1 | Die Stiefel gehören ihr.": "Сапоги принадлежат ей.",
+    "B1 | Anna gibt dem Schneemann eine Karotte als Nase.": "Анна даёт снеговику морковку вместо носа.",
+    "B1 | Mit dem Besen macht sie den Weg frei.": "Метлой она расчищает дорожку.",
+    "B2 | Die Frau, die einen Schneemann baut, heißt Anna.": "Женщину, которая лепит снеговика, зовут Анна.",
+    "B2 | Der Hund, dessen Mantel rot ist, schnuppert am Schnee.": "Собака в красном пальто нюхает снег.",
+    "B2 | Das Haus, vor dem das Auto steht, ist gelb.": "Дом, перед которым стоит машина, жёлтый.",
+    "B2 | Das Auto ist mit Schnee bedeckt.": "Машина покрыта снегом.",
+    "B2 | Der Weg muss noch gefegt werden.": "Дорожку ещё нужно подмести.",
+    "B2 | Die brennende Kerze steht im Fenster.": "Горящая свеча стоит в окне.",
+    "C1 | Der Schneemann muss ihr gut gefallen.": "Снеговик ей, должно быть, очень нравится.",
+    "C1 | Das Fahrrad könnte seit gestern Abend dort stehen.": "Велосипед, возможно, стоит там со вчерашнего вечера.",
+    "C1 | Der Schnee dürfte bis morgen liegen bleiben.": "Снег, вероятно, пролежит до завтра.",
+    "C1 | Es soll der kälteste Winter seit zehn Jahren werden.": "Говорят, это будет самая холодная зима за десять лет."
    }
   }
  }

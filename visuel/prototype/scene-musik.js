@@ -807,6 +807,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "klavier",
      "phrase": "Die kleine Lampe steht auf dem Klavier.",
+     "sens": "La petite lampe est sur le piano.",
      "n": "das Klavier → auf <b>dem</b> Klavier."
     },
     {
@@ -819,6 +820,7 @@ window.SCENE = {
      "f": "geige",
      "r": "schrank",
      "phrase": "Die Geige liegt auf dem Schrank.",
+     "sens": "Le violon est sur l'armoire.",
      "n": "der Schrank → auf <b>dem</b> Schrank."
     },
     {
@@ -830,6 +832,7 @@ window.SCENE = {
      ],
      "f": "bild",
      "phrase": "Das Bild hängt an der Wand.",
+     "sens": "Le tableau est accroché au mur.",
      "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -842,6 +845,7 @@ window.SCENE = {
      "f": "buch",
      "r": "regal",
      "phrase": "Die Bücher stehen auf dem Regal.",
+     "sens": "Les livres sont sur l'étagère.",
      "n": "das Regal → auf <b>dem</b> Regal."
     },
     {
@@ -854,6 +858,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "fenster",
      "phrase": "Die Pflanze steht neben dem Fenster.",
+     "sens": "La plante est à côté de la fenêtre.",
      "n": "<b>neben</b> = à côté de. das Fenster → neben <b>dem</b> Fenster."
     },
     {
@@ -866,6 +871,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "boden",
      "phrase": "Die Flasche steht auf dem Boden.",
+     "sens": "La bouteille est par terre.",
      "n": "der Boden → auf <b>dem</b> Boden."
     },
     {
@@ -878,6 +884,7 @@ window.SCENE = {
      "f": "mark",
      "r": "stuhl",
      "phrase": "Mark sitzt auf dem Stuhl.",
+     "sens": "Mark est assis sur la chaise.",
      "n": "der Stuhl → auf <b>dem</b> Stuhl."
     },
     {
@@ -890,6 +897,7 @@ window.SCENE = {
      "f": "lampe-2",
      "r": "fenster",
      "phrase": "Die große Lampe steht neben dem Fenster.",
+     "sens": "La grande lampe est à côté de la fenêtre.",
      "n": "<b>neben</b> = à côté de. das Fenster → neben <b>dem</b> Fenster."
     }
    ]
@@ -906,6 +914,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark kann schon drei Akkorde spielen.",
+     "sens": "Mark sait déjà jouer trois accords.",
      "n": "<b>können</b> = savoir, pouvoir : une capacité.",
      "revise": {
       "mot": "spielen",
@@ -921,6 +930,7 @@ window.SCENE = {
      ],
      "f": "gitarre",
      "phrase": "Er muss jeden Tag üben.",
+     "sens": "Il doit s'exercer tous les jours.",
      "n": "<b>müssen</b> = devoir : une obligation.",
      "revise": {
       "mot": "üben",
@@ -936,6 +946,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Im Unterricht darf man nicht telefonieren.",
+     "sens": "En cours, on n'a pas le droit de téléphoner.",
      "n": "<b>nicht dürfen</b> = ne pas avoir le droit.",
      "revise": {
       "mot": "telefonieren",
@@ -951,6 +962,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark will später in einer Band spielen.",
+     "sens": "Mark veut plus tard jouer dans un groupe.",
      "n": "<b>wollen</b> = vouloir : un projet.",
      "revise": {
       "mot": "spielen",
@@ -967,6 +979,7 @@ window.SCENE = {
      "f": "frau",
      "r": "mark",
      "phrase": "Die Frau möchte, dass Mark langsamer spielt.",
+     "sens": "La femme voudrait que Mark joue plus lentement.",
      "n": "<b>möchte</b> = voudrait : un souhait poli."
     },
     {
@@ -978,6 +991,7 @@ window.SCENE = {
      ],
      "f": "gitarre",
      "phrase": "Du sollst die Gitarre nicht so fest halten.",
+     "sens": "Tu ne dois pas tenir la guitare aussi fort.",
      "n": "<b>sollen</b> = un conseil, une consigne ; du → sollst.",
      "revise": {
       "mot": "halten",
@@ -993,6 +1007,7 @@ window.SCENE = {
      ],
      "f": "note",
      "phrase": "Mark kann die Noten noch nicht gut lesen.",
+     "sens": "Mark ne sait pas encore bien lire les notes.",
      "n": "Modal + infinitif à la fin : <b>lesen</b>.",
      "revise": {
       "mot": "lesen",
@@ -1008,6 +1023,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Darf ich das Fenster öffnen?",
+     "sens": "Puis-je ouvrir la fenêtre ?",
      "n": "<b>Darf ich…?</b> = puis-je… ? (permission)",
      "revise": {
       "mot": "öffnen",
@@ -1029,6 +1045,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "mark",
      "phrase": "Mark spielt auf einer neuen Gitarre.",
+     "sens": "Mark joue sur une nouvelle guitare.",
      "n": "Après <b>einer</b> (datif féminin) → <b>-en</b>."
     },
     {
@@ -1041,6 +1058,7 @@ window.SCENE = {
      "f": "schal",
      "r": "frau",
      "phrase": "Die Frau trägt einen violetten Schal.",
+     "sens": "La femme porte une écharpe violette.",
      "n": "Accusatif masculin après <b>einen</b> → <b>-en</b>."
     },
     {
@@ -1052,6 +1070,7 @@ window.SCENE = {
      ],
      "f": "klavier",
      "phrase": "Das schwarze Klavier steht an der Wand.",
+     "sens": "Le piano noir est contre le mur.",
      "n": "Après <b>das</b> (nominatif) → <b>-e</b>."
     },
     {
@@ -1064,6 +1083,7 @@ window.SCENE = {
      "f": "geige",
      "r": "schrank",
      "phrase": "Auf dem Schrank liegt eine alte Geige.",
+     "sens": "Sur l'armoire, il y a un vieux violon.",
      "n": "Nominatif féminin après <b>eine</b> → <b>-e</b>."
     },
     {
@@ -1076,6 +1096,7 @@ window.SCENE = {
      "f": "lampe-2",
      "r": "fenster",
      "phrase": "Neben dem großen Fenster steht eine Lampe.",
+     "sens": "À côté de la grande fenêtre, il y a une lampe.",
      "n": "Datif après <b>dem</b> → <b>-en</b>."
     },
     {
@@ -1087,6 +1108,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark trägt ein grünes T-Shirt.",
+     "sens": "Mark porte un t-shirt vert.",
      "n": "Accusatif neutre après <b>ein</b> → <b>-es</b>."
     }
    ]
@@ -1103,6 +1125,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Der Akkord muss schwierig sein.",
+     "sens": "L'accord doit être difficile.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1115,6 +1138,7 @@ window.SCENE = {
      "f": "geige",
      "r": "frau",
      "phrase": "Die Geige könnte der Lehrerin gehören.",
+     "sens": "Le violon appartient peut-être à la professeure.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1127,6 +1151,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "mark",
      "phrase": "Mark dürfte in ein paar Monaten gut spielen.",
+     "sens": "Mark devrait bien jouer dans quelques mois.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1138,6 +1163,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Die Lehrerin soll früher in einem Orchester gespielt haben.",
+     "sens": "Il paraît que la professeure jouait autrefois dans un orchestre.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1183,6 +1209,34 @@ window.SCENE = {
     "C1 | Die Geige könnte der Lehrerin gehören.": "<b>könnte</b> = one possibility among others.",
     "C1 | Mark dürfte in ein paar Monaten gut spielen.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "The small lamp is on the piano.",
+    "A2 | Die Geige liegt auf dem Schrank.": "The violin is on the cupboard.",
+    "A2 | Das Bild hängt an der Wand.": "The picture hangs on the wall.",
+    "A2 | Die Bücher stehen auf dem Regal.": "The books are on the shelf.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "The plant is next to the window.",
+    "A2 | Die Flasche steht auf dem Boden.": "The bottle is on the floor.",
+    "A2 | Mark sitzt auf dem Stuhl.": "Mark is sitting on the chair.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "The big lamp is next to the window.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "Mark can already play three chords.",
+    "B1 | Er muss jeden Tag üben.": "He has to practise every day.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "You are not allowed to make phone calls in class.",
+    "B1 | Mark will später in einer Band spielen.": "Mark wants to play in a band one day.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "The woman would like Mark to play more slowly.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "You shouldn't hold the guitar so tightly.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "Mark can't read music well yet.",
+    "B1 | Darf ich das Fenster öffnen?": "May I open the window?",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "Mark is playing a new guitar.",
+    "B2 | Die Frau trägt einen violetten Schal.": "The woman is wearing a purple scarf.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "The black piano is against the wall.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "There is an old violin on the cupboard.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "There is a lamp next to the big window.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "Mark is wearing a green T-shirt.",
+    "C1 | Der Akkord muss schwierig sein.": "The chord must be difficult.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "The violin might belong to the teacher.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "Mark should play well in a few months.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "The teacher is said to have played in an orchestra."
    }
   },
   "tr": {
@@ -1224,6 +1278,34 @@ window.SCENE = {
     "C1 | Die Geige könnte der Lehrerin gehören.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Mark dürfte in ein paar Monaten gut spielen.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "Küçük lamba piyanonun üstünde duruyor.",
+    "A2 | Die Geige liegt auf dem Schrank.": "Keman dolabın üstünde.",
+    "A2 | Das Bild hängt an der Wand.": "Tablo duvarda asılı.",
+    "A2 | Die Bücher stehen auf dem Regal.": "Kitaplar rafın üstünde duruyor.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "Bitki pencerenin yanında duruyor.",
+    "A2 | Die Flasche steht auf dem Boden.": "Şişe yerde duruyor.",
+    "A2 | Mark sitzt auf dem Stuhl.": "Mark sandalyede oturuyor.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "Büyük lamba pencerenin yanında duruyor.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "Mark üç akor çalabiliyor artık.",
+    "B1 | Er muss jeden Tag üben.": "Her gün çalışmak zorunda.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "Derste telefonla konuşmak yasak.",
+    "B1 | Mark will später in einer Band spielen.": "Mark ileride bir grupta çalmak istiyor.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "Kadın Mark'ın daha yavaş çalmasını istiyor.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "Gitarı o kadar sıkı tutmamalısın.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "Mark notaları henüz iyi okuyamıyor.",
+    "B1 | Darf ich das Fenster öffnen?": "Pencereyi açabilir miyim?",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "Mark yeni bir gitar çalıyor.",
+    "B2 | Die Frau trägt einen violetten Schal.": "Kadın mor bir atkı takıyor.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "Siyah piyano duvara dayalı.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "Dolabın üstünde eski bir keman var.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "Büyük pencerenin yanında bir lamba duruyor.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "Mark yeşil bir tişört giyiyor.",
+    "C1 | Der Akkord muss schwierig sein.": "Akor zor olmalı.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "Keman öğretmenin olabilir.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "Mark birkaç aya iyi çalar herhalde.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "Öğretmenin eskiden bir orkestrada çaldığı söyleniyor."
    }
   },
   "uk": {
@@ -1265,6 +1347,34 @@ window.SCENE = {
     "C1 | Die Geige könnte der Lehrerin gehören.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Mark dürfte in ein paar Monaten gut spielen.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "Маленька лампа стоїть на піаніно.",
+    "A2 | Die Geige liegt auf dem Schrank.": "Скрипка лежить на шафі.",
+    "A2 | Das Bild hängt an der Wand.": "Картина висить на стіні.",
+    "A2 | Die Bücher stehen auf dem Regal.": "Книжки стоять на полиці.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "Рослина стоїть біля вікна.",
+    "A2 | Die Flasche steht auf dem Boden.": "Пляшка стоїть на підлозі.",
+    "A2 | Mark sitzt auf dem Stuhl.": "Марк сидить на стільці.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "Велика лампа стоїть біля вікна.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "Марк уже вміє грати три акорди.",
+    "B1 | Er muss jeden Tag üben.": "Він має вправлятися щодня.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "На уроці не можна розмовляти по телефону.",
+    "B1 | Mark will später in einer Band spielen.": "Марк хоче колись грати в гурті.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "Жінка хоче, щоб Марк грав повільніше.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "Не треба так міцно тримати гітару.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "Марк ще не вміє добре читати ноти.",
+    "B1 | Darf ich das Fenster öffnen?": "Можна відчинити вікно?",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "Марк грає на новій гітарі.",
+    "B2 | Die Frau trägt einen violetten Schal.": "Жінка в фіолетовому шарфі.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "Чорне піаніно стоїть біля стіни.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "На шафі лежить стара скрипка.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "Біля великого вікна стоїть лампа.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "Марк у зеленій футболці.",
+    "C1 | Der Akkord muss schwierig sein.": "Акорд, мабуть, складний.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "Скрипка, можливо, належить учительці.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "Марк, напевно, добре гратиме за кілька місяців.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "Кажуть, учителька колись грала в оркестрі."
    }
   },
   "fa": {
@@ -1306,6 +1416,34 @@ window.SCENE = {
     "C1 | Die Geige könnte der Lehrerin gehören.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Mark dürfte in ein paar Monaten gut spielen.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "چراغ کوچک روی پیانو است.",
+    "A2 | Die Geige liegt auf dem Schrank.": "ویولن روی کمد است.",
+    "A2 | Das Bild hängt an der Wand.": "تابلو روی دیوار آویزان است.",
+    "A2 | Die Bücher stehen auf dem Regal.": "کتاب‌ها روی قفسه هستند.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "گیاه کنار پنجره است.",
+    "A2 | Die Flasche steht auf dem Boden.": "بطری روی زمین است.",
+    "A2 | Mark sitzt auf dem Stuhl.": "مارک روی صندلی نشسته است.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "چراغ بزرگ کنار پنجره است.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "مارک حالا می‌تواند سه آکورد بزند.",
+    "B1 | Er muss jeden Tag üben.": "او باید هر روز تمرین کند.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "در کلاس نمی‌شود تلفن صحبت کرد.",
+    "B1 | Mark will später in einer Band spielen.": "مارک می‌خواهد بعداً در یک گروه موسیقی بنوازد.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "زن می‌خواهد که مارک آهسته‌تر بنوازد.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "نباید گیتار را این‌قدر محکم بگیری.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "مارک هنوز نمی‌تواند نت‌ها را خوب بخواند.",
+    "B1 | Darf ich das Fenster öffnen?": "می‌توانم پنجره را باز کنم؟",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "مارک با یک گیتار نو می‌نوازد.",
+    "B2 | Die Frau trägt einen violetten Schal.": "زن یک شال‌گردن بنفش دارد.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "پیانوی سیاه کنار دیوار است.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "روی کمد یک ویولن قدیمی است.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "کنار پنجرهٔ بزرگ یک چراغ است.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "مارک یک تی‌شرت سبز پوشیده است.",
+    "C1 | Der Akkord muss schwierig sein.": "این آکورد حتماً سخت است.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "ویولن شاید مال معلم باشد.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "مارک احتمالاً تا چند ماه دیگر خوب می‌نوازد.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "می‌گویند معلم قبلاً در یک ارکستر می‌نواخته است."
    }
   },
   "ar": {
@@ -1347,6 +1485,34 @@ window.SCENE = {
     "C1 | Die Geige könnte der Lehrerin gehören.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Mark dürfte in ein paar Monaten gut spielen.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "المصباح الصغير على البيانو.",
+    "A2 | Die Geige liegt auf dem Schrank.": "الكمان على الخزانة.",
+    "A2 | Das Bild hängt an der Wand.": "اللوحة معلّقة على الحائط.",
+    "A2 | Die Bücher stehen auf dem Regal.": "الكتب على الرفّ.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "النبتة بجانب النافذة.",
+    "A2 | Die Flasche steht auf dem Boden.": "الزجاجة على الأرض.",
+    "A2 | Mark sitzt auf dem Stuhl.": "مارك جالس على الكرسي.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "المصباح الكبير بجانب النافذة.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "يستطيع مارك عزف ثلاثة أوتار بالفعل.",
+    "B1 | Er muss jeden Tag üben.": "عليه أن يتمرّن كل يوم.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "لا يُسمح باستخدام الهاتف في الدرس.",
+    "B1 | Mark will später in einer Band spielen.": "يريد مارك أن يعزف في فرقة لاحقاً.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "تريد المرأة أن يعزف مارك ببطء أكثر.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "لا تمسك الغيتار بهذه القوّة.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "لا يستطيع مارك قراءة النوتات جيداً بعد.",
+    "B1 | Darf ich das Fenster öffnen?": "هل يمكنني فتح النافذة؟",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "يعزف مارك على غيتار جديد.",
+    "B2 | Die Frau trägt einen violetten Schal.": "ترتدي المرأة وشاحاً بنفسجياً.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "البيانو الأسود عند الحائط.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "على الخزانة كمان قديم.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "بجانب النافذة الكبيرة مصباح.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "يرتدي مارك قميصاً أخضر.",
+    "C1 | Der Akkord muss schwierig sein.": "لا بدّ أن الوتر صعب.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "ربما يكون الكمان للمعلّمة.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "على الأرجح يعزف مارك جيداً بعد بضعة أشهر.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "يُقال إن المعلّمة كانت تعزف في أوركسترا."
    }
   },
   "pt": {
@@ -1388,6 +1554,34 @@ window.SCENE = {
     "C1 | Die Geige könnte der Lehrerin gehören.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Mark dürfte in ein paar Monaten gut spielen.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "O abajur pequeno está em cima do piano.",
+    "A2 | Die Geige liegt auf dem Schrank.": "O violino está em cima do armário.",
+    "A2 | Das Bild hängt an der Wand.": "O quadro está pendurado na parede.",
+    "A2 | Die Bücher stehen auf dem Regal.": "Os livros estão na estante.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "A planta está ao lado da janela.",
+    "A2 | Die Flasche steht auf dem Boden.": "A garrafa está no chão.",
+    "A2 | Mark sitzt auf dem Stuhl.": "Mark está sentado na cadeira.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "O abajur grande está ao lado da janela.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "Mark já sabe tocar três acordes.",
+    "B1 | Er muss jeden Tag üben.": "Ele tem que praticar todos os dias.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "Na aula não se pode falar ao telefone.",
+    "B1 | Mark will später in einer Band spielen.": "Mark quer tocar numa banda um dia.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "A mulher gostaria que Mark tocasse mais devagar.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "Você não deve segurar o violão com tanta força.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "Mark ainda não sabe ler bem as notas.",
+    "B1 | Darf ich das Fenster öffnen?": "Posso abrir a janela?",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "Mark toca num violão novo.",
+    "B2 | Die Frau trägt einen violetten Schal.": "A mulher usa um cachecol roxo.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "O piano preto está junto à parede.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "Em cima do armário há um violino velho.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "Ao lado da janela grande há um abajur.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "Mark usa uma camiseta verde.",
+    "C1 | Der Akkord muss schwierig sein.": "O acorde deve ser difícil.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "O violino talvez seja da professora.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "Mark provavelmente vai tocar bem em alguns meses.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "Dizem que a professora tocava numa orquestra."
    }
   },
   "pl": {
@@ -1429,6 +1623,34 @@ window.SCENE = {
     "C1 | Die Geige könnte der Lehrerin gehören.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Mark dürfte in ein paar Monaten gut spielen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "Mała lampa stoi na pianinie.",
+    "A2 | Die Geige liegt auf dem Schrank.": "Skrzypce leżą na szafie.",
+    "A2 | Das Bild hängt an der Wand.": "Obraz wisi na ścianie.",
+    "A2 | Die Bücher stehen auf dem Regal.": "Książki stoją na półce.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "Roślina stoi obok okna.",
+    "A2 | Die Flasche steht auf dem Boden.": "Butelka stoi na podłodze.",
+    "A2 | Mark sitzt auf dem Stuhl.": "Mark siedzi na krześle.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "Duża lampa stoi obok okna.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "Mark umie już zagrać trzy akordy.",
+    "B1 | Er muss jeden Tag üben.": "Musi ćwiczyć codziennie.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "Na lekcji nie wolno rozmawiać przez telefon.",
+    "B1 | Mark will später in einer Band spielen.": "Mark chce kiedyś grać w zespole.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "Kobieta chciałaby, żeby Mark grał wolniej.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "Nie powinieneś trzymać gitary tak mocno.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "Mark nie umie jeszcze dobrze czytać nut.",
+    "B1 | Darf ich das Fenster öffnen?": "Czy mogę otworzyć okno?",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "Mark gra na nowej gitarze.",
+    "B2 | Die Frau trägt einen violetten Schal.": "Kobieta ma na sobie fioletowy szalik.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "Czarne pianino stoi przy ścianie.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "Na szafie leżą stare skrzypce.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "Obok dużego okna stoi lampa.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "Mark ma na sobie zieloną koszulkę.",
+    "C1 | Der Akkord muss schwierig sein.": "Akord musi być trudny.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "Skrzypce być może należą do nauczycielki.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "Mark zapewne będzie dobrze grał za kilka miesięcy.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "Podobno nauczycielka grała kiedyś w orkiestrze."
    }
   },
   "ru": {
@@ -1470,6 +1692,34 @@ window.SCENE = {
     "C1 | Die Geige könnte der Lehrerin gehören.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Mark dürfte in ein paar Monaten gut spielen.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Die kleine Lampe steht auf dem Klavier.": "Маленькая лампа стоит на пианино.",
+    "A2 | Die Geige liegt auf dem Schrank.": "Скрипка лежит на шкафу.",
+    "A2 | Das Bild hängt an der Wand.": "Картина висит на стене.",
+    "A2 | Die Bücher stehen auf dem Regal.": "Книги стоят на полке.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "Растение стоит рядом с окном.",
+    "A2 | Die Flasche steht auf dem Boden.": "Бутылка стоит на полу.",
+    "A2 | Mark sitzt auf dem Stuhl.": "Марк сидит на стуле.",
+    "A2 | Die große Lampe steht neben dem Fenster.": "Большая лампа стоит рядом с окном.",
+    "B1 | Mark kann schon drei Akkorde spielen.": "Марк уже умеет играть три аккорда.",
+    "B1 | Er muss jeden Tag üben.": "Он должен заниматься каждый день.",
+    "B1 | Im Unterricht darf man nicht telefonieren.": "На уроке нельзя разговаривать по телефону.",
+    "B1 | Mark will später in einer Band spielen.": "Марк хочет потом играть в группе.",
+    "B1 | Die Frau möchte, dass Mark langsamer spielt.": "Женщина хочет, чтобы Марк играл медленнее.",
+    "B1 | Du sollst die Gitarre nicht so fest halten.": "Не надо так крепко держать гитару.",
+    "B1 | Mark kann die Noten noch nicht gut lesen.": "Марк ещё не умеет хорошо читать ноты.",
+    "B1 | Darf ich das Fenster öffnen?": "Можно открыть окно?",
+    "B2 | Mark spielt auf einer neuen Gitarre.": "Марк играет на новой гитаре.",
+    "B2 | Die Frau trägt einen violetten Schal.": "На женщине фиолетовый шарф.",
+    "B2 | Das schwarze Klavier steht an der Wand.": "Чёрное пианино стоит у стены.",
+    "B2 | Auf dem Schrank liegt eine alte Geige.": "На шкафу лежит старая скрипка.",
+    "B2 | Neben dem großen Fenster steht eine Lampe.": "Рядом с большим окном стоит лампа.",
+    "B2 | Mark trägt ein grünes T-Shirt.": "На Марке зелёная футболка.",
+    "C1 | Der Akkord muss schwierig sein.": "Аккорд, должно быть, трудный.",
+    "C1 | Die Geige könnte der Lehrerin gehören.": "Скрипка, возможно, принадлежит учительнице.",
+    "C1 | Mark dürfte in ein paar Monaten gut spielen.": "Марк, вероятно, будет хорошо играть через несколько месяцев.",
+    "C1 | Die Lehrerin soll früher in einem Orchester gespielt haben.": "Говорят, учительница раньше играла в оркестре."
    }
   }
  }

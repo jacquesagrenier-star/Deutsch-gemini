@@ -1584,6 +1584,7 @@ window.SCENE = {
      "f": "apotheke",
      "r": "post",
      "phrase": "Die Apotheke ist zwischen der Bäckerei und der Post.",
+     "sens": "La pharmacie est entre la boulangerie et la poste.",
      "n": "<b>zwischen</b> + datif pour les deux : zwischen <b>der</b> Bäckerei und <b>der</b> Post."
     },
     {
@@ -1595,6 +1596,7 @@ window.SCENE = {
      ],
      "f": "cafe",
      "phrase": "Das Café ist an der Ecke.",
+     "sens": "Le café est au coin.",
      "n": "Au coin de la rue : <b>an der</b> Ecke (die Ecke, datif)."
     },
     {
@@ -1607,6 +1609,7 @@ window.SCENE = {
      "f": "baeckerei",
      "r": "kiosk",
      "phrase": "Die Bäckerei ist gegenüber dem Kiosk.",
+     "sens": "La boulangerie est en face du kiosque.",
      "n": "<b>gegenüber</b> = en face de, toujours au datif : gegenüber <b>dem</b> Kiosk."
     },
     {
@@ -1619,6 +1622,7 @@ window.SCENE = {
      "f": "briefkasten-post",
      "r": "post",
      "phrase": "Der kleine Briefkasten steht vor der Post.",
+     "sens": "La petite boîte aux lettres est devant la poste.",
      "n": "<b>vor</b> + datif : die Post → vor <b>der</b> Post."
     },
     {
@@ -1631,6 +1635,7 @@ window.SCENE = {
      "f": "frau-rot",
      "r": "haltestelle",
      "phrase": "Die Frau im roten Mantel wartet an der Haltestelle.",
+     "sens": "La femme au manteau rouge attend à l'arrêt.",
      "n": "À l'arrêt : <b>an der</b> Haltestelle. Et <b>im</b> roten Mantel = in dem."
     },
     {
@@ -1643,6 +1648,7 @@ window.SCENE = {
      "f": "radfahrer",
      "r": "radweg",
      "phrase": "Der Radfahrer fährt auf dem Radweg.",
+     "sens": "Le cycliste roule sur la piste cyclable.",
      "n": "<b>auf</b> + datif (Wo?) : der Radweg → auf <b>dem</b> Radweg."
     },
     {
@@ -1655,6 +1661,7 @@ window.SCENE = {
      "f": "anna",
      "r": "ampel-vorne",
      "phrase": "Anna steht zwischen der Laterne und der Ampel.",
+     "sens": "Anna est entre le lampadaire et le feu.",
      "n": "<b>zwischen</b> + datif : zwischen <b>der</b> Laterne und <b>der</b> Ampel."
     },
     {
@@ -1666,6 +1673,7 @@ window.SCENE = {
      ],
      "f": "fahrradstaender",
      "phrase": "Die Fahrräder stehen am Fahrradständer.",
+     "sens": "Les vélos sont au porte-vélos.",
      "n": "<b>am</b> = an + dem. Datif : der Fahrradständer → <b>am</b> Fahrradständer."
     },
     {
@@ -1678,6 +1686,7 @@ window.SCENE = {
      "f": "fussgaenger",
      "r": "zebrastreifen",
      "phrase": "Die Fußgänger sind auf dem Zebrastreifen.",
+     "sens": "Les piétons sont sur le passage piéton.",
      "n": "<b>auf</b> + datif : der Zebrastreifen → auf <b>dem</b> Zebrastreifen."
     },
     {
@@ -1690,6 +1699,7 @@ window.SCENE = {
      "f": "kiosk",
      "r": "buergersteig",
      "phrase": "Der Kiosk steht auf dem Bürgersteig.",
+     "sens": "Le kiosque est sur le trottoir.",
      "n": "<b>auf</b> + datif : der Bürgersteig → auf <b>dem</b> Bürgersteig."
     }
    ]
@@ -1707,6 +1717,7 @@ window.SCENE = {
      "f": "anna",
      "r": "apotheke",
      "phrase": "Entschuldigung, wie komme ich zur Apotheke?",
+     "sens": "Excusez-moi, comment aller à la pharmacie ?",
      "n": "Vers un lieu : <b>zu</b> + datif. zu + der = <b>zur</b>. <b>nach</b> ne sert que pour les villes et les pays."
     },
     {
@@ -1718,6 +1729,7 @@ window.SCENE = {
      ],
      "f": "zebrastreifen",
      "phrase": "Gehen Sie über die Straße, dort am Zebrastreifen.",
+     "sens": "Traversez la rue, là, au passage piéton.",
      "n": "Traverser : <b>über</b> + accusatif (un mouvement) — über <b>die</b> Straße."
     },
     {
@@ -1729,6 +1741,7 @@ window.SCENE = {
      ],
      "f": "ampel-vorne",
      "phrase": "Warten Sie, bis die Ampel grün wird.",
+     "sens": "Attendez que le feu passe au vert.",
      "n": "Devenir : <b>werden</b>. La subordonnée envoie le verbe à la fin : bis die Ampel grün <b>wird</b>."
     },
     {
@@ -1741,6 +1754,7 @@ window.SCENE = {
      "f": "apotheke",
      "r": "baeckerei",
      "phrase": "Die Apotheke ist dann direkt vor Ihnen.",
+     "sens": "La pharmacie est alors juste devant vous.",
      "n": "Devant vous : <b>vor</b> + datif → vor <b>Ihnen</b>."
     },
     {
@@ -1753,6 +1767,7 @@ window.SCENE = {
      "f": "post",
      "r": "apotheke",
      "phrase": "Gehen Sie an der Apotheke vorbei, dann sind Sie da.",
+     "sens": "Passez devant la pharmacie, et vous y êtes.",
      "n": "<b>an</b> + datif <b>… vorbei</b> = passer devant : an <b>der</b> Apotheke vorbei."
     },
     {
@@ -1764,6 +1779,7 @@ window.SCENE = {
      ],
      "f": "lieferwagen",
      "phrase": "Der Lieferwagen kommt aus der Seitenstraße.",
+     "sens": "La camionnette sort de la rue latérale.",
      "n": "<b>aus</b> est toujours suivi du datif, même pour un mouvement : aus <b>der</b> Seitenstraße."
     },
     {
@@ -1776,6 +1792,7 @@ window.SCENE = {
      "f": "fussgaenger",
      "r": "zebrastreifen",
      "phrase": "Die Fußgänger gehen über den Zebrastreifen.",
+     "sens": "Les piétons traversent sur le passage piéton.",
      "n": "Ils traversent (Wohin?) → accusatif : über <b>den</b> Zebrastreifen."
     },
     {
@@ -1788,6 +1805,7 @@ window.SCENE = {
      "f": "baeckerei",
      "r": "anna",
      "phrase": "Gleich geht Anna in die Bäckerei.",
+     "sens": "Anna va tout de suite entrer dans la boulangerie.",
      "n": "Wohin? → accusatif : in <b>die</b> Bäckerei. <b>in der</b> Bäckerei répondrait à Wo?"
     },
     {
@@ -1799,6 +1817,7 @@ window.SCENE = {
      ],
      "f": "ampel-vorne",
      "phrase": "Gehen Sie bitte nicht bei Rot über die Straße!",
+     "sens": "Ne traversez pas au rouge, s'il vous plaît !",
      "n": "L'impératif de politesse : le verbe d'abord, puis <b>Sie</b> — <b>Gehen Sie</b>."
     },
     {
@@ -1810,6 +1829,7 @@ window.SCENE = {
      ],
      "f": "cafe",
      "phrase": "Das Café ist an der Ecke, gleich neben der Seitenstraße.",
+     "sens": "Le café est au coin, juste à côté de la rue latérale.",
      "n": "Un état (Wo?) → datif : die Ecke → an <b>der</b> Ecke."
     }
    ]
@@ -1827,6 +1847,7 @@ window.SCENE = {
      "f": "radweg",
      "r": "buergersteig",
      "phrase": "Entlang des Bürgersteigs verläuft ein roter Radweg.",
+     "sens": "Le long du trottoir court une piste cyclable rouge.",
      "n": "<b>entlang</b> placé devant le nom prend le génitif : entlang <b>des</b> Bürgersteigs. Placé après, l'accusatif : den Bürgersteig entlang."
     },
     {
@@ -1839,6 +1860,7 @@ window.SCENE = {
      "f": "briefkasten",
      "r": "kiosk",
      "phrase": "Unweit des Kiosks steht ein gelber Briefkasten.",
+     "sens": "Non loin du kiosque, il y a une boîte aux lettres jaune.",
      "n": "<b>unweit</b> (non loin de) + génitif : unweit <b>des</b> Kiosks."
     },
     {
@@ -1850,6 +1872,7 @@ window.SCENE = {
      ],
      "f": "radfahrer",
      "phrase": "Trotz der nassen Straße fährt der Radfahrer schnell.",
+     "sens": "Malgré la rue mouillée, le cycliste roule vite.",
      "n": "<b>trotz</b> + génitif : die Straße → trotz <b>der</b> nassen Straße (génitif féminin = der)."
     },
     {
@@ -1862,6 +1885,7 @@ window.SCENE = {
      "f": "frau-rot",
      "r": "haltestelle",
      "phrase": "Die Frau, deren Mantel rot ist, wartet auf den Bus.",
+     "sens": "La femme au manteau rouge attend le bus.",
      "n": "Possession, antécédent féminin (die Frau) → <b>deren</b> (dont le manteau)."
     },
     {
@@ -1873,6 +1897,7 @@ window.SCENE = {
      ],
      "f": "fussgaenger",
      "phrase": "Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.",
+     "sens": "L'homme qui porte un sac à dos traverse sur le passage piéton.",
      "n": "Sujet de la relative, masculin → <b>der</b>."
     },
     {
@@ -1885,6 +1910,7 @@ window.SCENE = {
      "f": "cafe",
      "r": "markise",
      "phrase": "Das Café, vor dem Tische stehen, hat eine rote Markise.",
+     "sens": "Le café devant lequel il y a des tables a un store rouge.",
      "n": "<b>vor</b> + relatif, un état (Wo?) → datif : das Café → <b>vor dem</b>."
     }
    ]
@@ -1901,6 +1927,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Sie dürfte sich verlaufen haben.",
+     "sens": "Elle s'est sans doute perdue.",
      "n": "<b>dürfte</b> + infinitif passé = probablement : on le devine à son air."
     },
     {
@@ -1912,6 +1939,7 @@ window.SCENE = {
      ],
      "f": "strasse",
      "phrase": "Es muss vorhin geregnet haben.",
+     "sens": "Il a dû pleuvoir tout à l'heure.",
      "n": "<b>muss</b> + infinitif passé = presque certain, déduit de ce qu'on voit : la rue mouillée."
     },
     {
@@ -1924,6 +1952,7 @@ window.SCENE = {
      "f": "ampel-vorne",
      "r": "anna",
      "phrase": "Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.",
+     "sens": "Si le feu était vert, Anna aurait déjà traversé la rue.",
      "n": "Irréel du passé avec un verbe de mouvement : <b>sein</b> → <b>wäre</b> … gegangen."
     },
     {
@@ -1936,6 +1965,7 @@ window.SCENE = {
      "f": "lieferwagen",
      "r": "cafe",
      "phrase": "Er könnte Waren für das Café bringen.",
+     "sens": "Il apporte peut-être des marchandises pour le café.",
      "n": "<b>könnte</b> = c'est possible, sans preuve. <b>muss</b> serait une certitude."
     }
    ]
@@ -1985,6 +2015,38 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + past infinitive = almost certain, deduced from what you see: the wet street.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Unreal past with a verb of movement: <b>sein</b> → <b>wäre</b> … gegangen.",
     "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = it's possible, with no proof. <b>muss</b> would be a certainty."
+   },
+   "sens": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "The pharmacy is between the bakery and the post office.",
+    "A2 | Das Café ist an der Ecke.": "The café is on the corner.",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "The bakery is opposite the kiosk.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "The small letterbox is in front of the post office.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "The woman in the red coat is waiting at the stop.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "The cyclist is riding on the cycle path.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "Anna is standing between the lamppost and the traffic light.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "The bicycles are at the bike rack.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "The pedestrians are on the zebra crossing.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "The kiosk is on the pavement.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Excuse me, how do I get to the pharmacy?",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Cross the street, there at the zebra crossing.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Wait until the light turns green.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "The pharmacy is then right in front of you.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "Walk past the pharmacy, then you are there.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "The delivery van is coming out of the side street.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "The pedestrians are crossing at the zebra crossing.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Anna is about to go into the bakery.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Please don't cross the street on red!",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "The café is on the corner, right next to the side street.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "A red cycle path runs along the pavement.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "Not far from the kiosk there is a yellow letterbox.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "Despite the wet road, the cyclist is riding fast.",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "The woman whose coat is red is waiting for the bus.",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "The man carrying a backpack is crossing at the zebra crossing.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "The café with tables in front of it has a red awning.",
+    "C1 | Sie dürfte sich verlaufen haben.": "She has probably got lost.",
+    "C1 | Es muss vorhin geregnet haben.": "It must have rained a little while ago.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "If the light were green, Anna would already have crossed the street.",
+    "C1 | Er könnte Waren für das Café bringen.": "He might be bringing goods for the café."
    }
   },
   "tr": {
@@ -2030,6 +2092,38 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + geçmiş mastar = neredeyse kesin, görülenden çıkarılır: ıslak yol.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Hareket fiiliyle gerçek dışı geçmiş: <b>sein</b> → <b>wäre</b> … gegangen.",
     "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = mümkün, kanıt yok. <b>muss</b> kesinlik olurdu."
+   },
+   "sens": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "Eczane fırınla postanenin arasında.",
+    "A2 | Das Café ist an der Ecke.": "Kafe köşede.",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "Fırın büfenin karşısında.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "Küçük posta kutusu postanenin önünde duruyor.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "Kırmızı paltolu kadın durakta bekliyor.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "Bisikletli bisiklet yolunda gidiyor.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "Anna sokak lambasıyla trafik ışığının arasında duruyor.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "Bisikletler bisiklet parkında duruyor.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "Yayalar yaya geçidinde.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "Büfe kaldırımda duruyor.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Affedersiniz, eczaneye nasıl gidebilirim?",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Karşıya geçin, şuradaki yaya geçidinden.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Işık yeşil olana kadar bekleyin.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "Eczane o zaman tam karşınızda.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "Eczanenin önünden geçin, sonra oradasınız.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "Kamyonet yan sokaktan çıkıyor.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Yayalar yaya geçidinden geçiyor.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Anna birazdan fırına girecek.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Lütfen kırmızıda karşıya geçmeyin!",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "Kafe köşede, yan sokağın hemen yanında.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "Kaldırım boyunca kırmızı bir bisiklet yolu uzanıyor.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "Büfenin az ötesinde sarı bir posta kutusu duruyor.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "Islak yola rağmen bisikletli hızlı gidiyor.",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "Paltosu kırmızı olan kadın otobüsü bekliyor.",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "Sırt çantası taşıyan adam yaya geçidinden geçiyor.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "Önünde masalar duran kafenin kırmızı bir tentesi var.",
+    "C1 | Sie dürfte sich verlaufen haben.": "Yolunu kaybetmiş olsa gerek.",
+    "C1 | Es muss vorhin geregnet haben.": "Az önce yağmur yağmış olmalı.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Işık yeşil olsaydı Anna çoktan karşıya geçmişti.",
+    "C1 | Er könnte Waren für das Café bringen.": "Kafe için mal getiriyor olabilir."
    }
   },
   "uk": {
@@ -2075,6 +2169,38 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + інфінітив минулого = майже напевно, висновок з того, що видно: мокра вулиця.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Нереальне минуле з дієсловом руху: <b>sein</b> → <b>wäre</b> … gegangen.",
     "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = можливо, без доказів. <b>muss</b> означало б упевненість."
+   },
+   "sens": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "Аптека між пекарнею та поштою.",
+    "A2 | Das Café ist an der Ecke.": "Кафе на розі.",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "Пекарня навпроти кіоску.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "Маленька поштова скринька стоїть перед поштою.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "Жінка в червоному пальті чекає на зупинці.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "Велосипедист їде велодоріжкою.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "Анна стоїть між ліхтарем і світлофором.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "Велосипеди стоять біля велопарковки.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "Пішоходи на пішохідному переході.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "Кіоск стоїть на тротуарі.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Вибачте, як пройти до аптеки?",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Перейдіть вулицю, он там, на пішохідному переході.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Зачекайте, поки світлофор стане зеленим.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "Аптека буде тоді просто перед вами.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "Пройдіть повз аптеку, і ви на місці.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "Фургон виїжджає з бічної вулиці.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Пішоходи переходять по пішохідному переходу.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Анна зараз зайде до пекарні.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Будь ласка, не переходьте вулицю на червоне!",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "Кафе на розі, одразу біля бічної вулиці.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "Уздовж тротуару тягнеться червона велодоріжка.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "Неподалік від кіоску стоїть жовта поштова скринька.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "Попри мокру дорогу, велосипедист їде швидко.",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "Жінка в червоному пальті чекає на автобус.",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "Чоловік із рюкзаком переходить по пішохідному переходу.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "Кафе, перед яким стоять столики, має червону маркізу.",
+    "C1 | Sie dürfte sich verlaufen haben.": "Вона, напевно, заблукала.",
+    "C1 | Es muss vorhin geregnet haben.": "Щойно, мабуть, ішов дощ.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Якби світлофор був зелений, Анна вже перейшла б вулицю.",
+    "C1 | Er könnte Waren für das Café bringen.": "Він, можливо, привозить товар для кафе."
    }
   },
   "fa": {
@@ -2120,6 +2246,38 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + مصدرِ گذشته = تقریباً قطعی، از آنچه می‌بینیم: خیابانِ خیس.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "گذشتهٔ غیرواقعی با فعلِ حرکتی: <b>sein</b> ← <span lang=\"de\"><b>wäre</b> … gegangen</span>.",
     "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = ممکن است، بی‌مدرک. <b>muss</b> یعنی قطعیت."
+   },
+   "sens": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "داروخانه بین نانوایی و پست است.",
+    "A2 | Das Café ist an der Ecke.": "کافه سر نبش است.",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "نانوایی روبه‌روی کیوسک است.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "صندوق پست کوچک جلوی ادارهٔ پست است.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "زن پالتوقرمز در ایستگاه منتظر است.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "دوچرخه‌سوار در مسیر دوچرخه می‌راند.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "آنا بین تیر چراغ‌برق و چراغ راهنمایی ایستاده است.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "دوچرخه‌ها کنار جادوچرخه‌ای هستند.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "عابران روی خط عابر پیاده هستند.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "کیوسک روی پیاده‌رو است.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "ببخشید، چطور به داروخانه بروم؟",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "از خیابان رد شوید، آنجا از خط عابر پیاده.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "صبر کنید تا چراغ سبز شود.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "آن‌وقت داروخانه درست روبه‌روی شماست.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "از جلوی داروخانه رد شوید، بعد رسیده‌اید.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "وانت از خیابان فرعی بیرون می‌آید.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "عابران از خط عابر پیاده رد می‌شوند.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "آنا همین حالا به نانوایی می‌رود.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "لطفاً با چراغ قرمز از خیابان رد نشوید!",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "کافه سر نبش است، درست کنار خیابان فرعی.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "در امتداد پیاده‌رو یک مسیر دوچرخهٔ قرمز کشیده شده است.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "نزدیک کیوسک یک صندوق پست زرد است.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "با وجود خیابان خیس، دوچرخه‌سوار تند می‌راند.",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "زنی که پالتویش قرمز است، منتظر اتوبوس است.",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "مردی که کوله‌پشتی دارد، از خط عابر پیاده رد می‌شود.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "کافه‌ای که جلویش میز هست، سایبان قرمز دارد.",
+    "C1 | Sie dürfte sich verlaufen haben.": "او احتمالاً گم شده است.",
+    "C1 | Es muss vorhin geregnet haben.": "حتماً کمی پیش باران آمده است.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "اگر چراغ سبز بود، آنا دیگر از خیابان رد شده بود.",
+    "C1 | Er könnte Waren für das Café bringen.": "او شاید برای کافه جنس می‌آورد."
    }
   },
   "ar": {
@@ -2165,6 +2323,38 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + المصدر الماضي = شبه مؤكد، مستنتج مما نراه: الشارع المبلل.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "الماضي غير الواقعي مع فعل حركة: <b>sein</b> ← <span lang=\"de\"><b>wäre</b> … gegangen</span>.",
     "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = ممكن، دون دليل. و<b>muss</b> تعني اليقين."
+   },
+   "sens": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "الصيدلية بين المخبز ومكتب البريد.",
+    "A2 | Das Café ist an der Ecke.": "المقهى عند الزاوية.",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "المخبز مقابل الكشك.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "صندوق البريد الصغير أمام مكتب البريد.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "المرأة ذات المعطف الأحمر تنتظر في المحطّة.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "راكب الدراجة يسير على مسار الدراجات.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "آنا واقفة بين عمود الإنارة وإشارة المرور.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "الدراجات عند موقف الدراجات.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "المشاة على ممرّ المشاة.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "الكشك على الرصيف.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "عفواً، كيف أصل إلى الصيدلية؟",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "اعبر الشارع هناك عند ممرّ المشاة.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "انتظر حتى تصبح الإشارة خضراء.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "عندها تكون الصيدلية أمامك مباشرة.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "امرّ بجانب الصيدلية، وتكون قد وصلت.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "تخرج شاحنة التوصيل من الشارع الجانبي.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "يعبر المشاة على ممرّ المشاة.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "ستدخل آنا المخبز حالاً.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "من فضلك لا تعبر الشارع والإشارة حمراء!",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "المقهى عند الزاوية، بجانب الشارع الجانبي مباشرة.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "على طول الرصيف يمتدّ مسار أحمر للدراجات.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "غير بعيد عن الكشك يوجد صندوق بريد أصفر.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "رغم الشارع المبلّل، يسير راكب الدراجة بسرعة.",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "المرأة ذات المعطف الأحمر تنتظر الحافلة.",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "الرجل الذي يحمل حقيبة ظهر يعبر على ممرّ المشاة.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "المقهى الذي أمامه طاولات له مظلّة حمراء.",
+    "C1 | Sie dürfte sich verlaufen haben.": "على الأرجح أنها ضلّت الطريق.",
+    "C1 | Es muss vorhin geregnet haben.": "لا بدّ أنها أمطرت قبل قليل.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "لو كانت الإشارة خضراء، لكانت آنا قد عبرت الشارع.",
+    "C1 | Er könnte Waren für das Café bringen.": "ربما يُحضر بضائع للمقهى."
    }
   },
   "pt": {
@@ -2210,6 +2400,38 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + infinitivo passado = quase certo, deduzido do que se vê: a rua molhada.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Irreal do passado com um verbo de movimento: <b>sein</b> → <b>wäre</b> … gegangen.",
     "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = é possível, sem prova. <b>muss</b> seria uma certeza."
+   },
+   "sens": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "A farmácia fica entre a padaria e os correios.",
+    "A2 | Das Café ist an der Ecke.": "O café fica na esquina.",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "A padaria fica em frente ao quiosque.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "A caixa de correio pequena fica em frente aos correios.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "A mulher de casaco vermelho espera no ponto.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "O ciclista anda na ciclovia.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "Anna está entre o poste e o semáforo.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "As bicicletas estão no bicicletário.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "Os pedestres estão na faixa de pedestres.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "O quiosque fica na calçada.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Com licença, como chego à farmácia?",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Atravesse a rua, ali na faixa de pedestres.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Espere até o semáforo ficar verde.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "A farmácia fica então bem na sua frente.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "Passe pela farmácia e você chegou.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "A van sai da rua lateral.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Os pedestres atravessam na faixa de pedestres.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Anna vai já entrar na padaria.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Por favor, não atravesse a rua no vermelho!",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "O café fica na esquina, logo ao lado da rua lateral.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "Ao longo da calçada passa uma ciclovia vermelha.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "Perto do quiosque há uma caixa de correio amarela.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "Apesar da rua molhada, o ciclista anda rápido.",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "A mulher de casaco vermelho espera o ônibus.",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "O homem que leva uma mochila atravessa na faixa de pedestres.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "O café em frente ao qual há mesas tem um toldo vermelho.",
+    "C1 | Sie dürfte sich verlaufen haben.": "Ela provavelmente se perdeu.",
+    "C1 | Es muss vorhin geregnet haben.": "Deve ter chovido há pouco.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Se o semáforo estivesse verde, Anna já teria atravessado a rua.",
+    "C1 | Er könnte Waren für das Café bringen.": "Ele talvez esteja trazendo mercadorias para o café."
    }
   },
   "pl": {
@@ -2255,6 +2477,38 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + bezokolicznik przeszły = prawie pewne, wywnioskowane z tego, co widać: mokra ulica.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Warunek nierzeczywisty w przeszłości z czasownikiem ruchu: <b>sein</b> → <b>wäre</b> … gegangen.",
     "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = to możliwe, bez dowodu. <b>muss</b> oznaczałoby pewność."
+   },
+   "sens": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "Apteka jest między piekarnią a pocztą.",
+    "A2 | Das Café ist an der Ecke.": "Kawiarnia jest na rogu.",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "Piekarnia jest naprzeciwko kiosku.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "Mała skrzynka pocztowa stoi przed pocztą.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "Kobieta w czerwonym płaszczu czeka na przystanku.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "Rowerzysta jedzie ścieżką rowerową.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "Anna stoi między latarnią a sygnalizacją.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "Rowery stoją przy stojaku.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "Piesi są na przejściu dla pieszych.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "Kiosk stoi na chodniku.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Przepraszam, jak dojść do apteki?",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Proszę przejść przez ulicę, tam, na przejściu.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Proszę poczekać, aż światło zmieni się na zielone.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "Apteka jest wtedy tuż przed panem.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "Proszę minąć aptekę i jest pan na miejscu.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "Furgonetka wyjeżdża z bocznej ulicy.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Piesi przechodzą przez przejście dla pieszych.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Anna zaraz wejdzie do piekarni.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Proszę nie przechodzić przez ulicę na czerwonym!",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "Kawiarnia jest na rogu, tuż obok bocznej ulicy.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "Wzdłuż chodnika biegnie czerwona ścieżka rowerowa.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "Niedaleko kiosku stoi żółta skrzynka pocztowa.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "Mimo mokrej ulicy rowerzysta jedzie szybko.",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "Kobieta, której płaszcz jest czerwony, czeka na autobus.",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "Mężczyzna, który niesie plecak, przechodzi przez przejście.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "Kawiarnia, przed którą stoją stoliki, ma czerwoną markizę.",
+    "C1 | Sie dürfte sich verlaufen haben.": "Zapewne się zgubiła.",
+    "C1 | Es muss vorhin geregnet haben.": "Musiało przed chwilą padać.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Gdyby światło było zielone, Anna już przeszłaby przez ulicę.",
+    "C1 | Er könnte Waren für das Café bringen.": "Być może przywozi towar dla kawiarni."
    }
   },
   "ru": {
@@ -2300,6 +2554,38 @@ window.SCENE = {
     "C1 | Es muss vorhin geregnet haben.": "<b>muss</b> + инфинитив прошедшего = почти наверняка, вывод из того, что видно: мокрая улица.",
     "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Нереальное прошлое с глаголом движения: <b>sein</b> → <b>wäre</b> … gegangen. По-русски: «была бы… перешла бы».",
     "C1 | Er könnte Waren für das Café bringen.": "<b>könnte</b> = это возможно, но без доказательств. <b>muss</b> было бы уверенностью."
+   },
+   "sens": {
+    "A2 | Die Apotheke ist zwischen der Bäckerei und der Post.": "Аптека между пекарней и почтой.",
+    "A2 | Das Café ist an der Ecke.": "Кафе на углу.",
+    "A2 | Die Bäckerei ist gegenüber dem Kiosk.": "Пекарня напротив киоска.",
+    "A2 | Der kleine Briefkasten steht vor der Post.": "Маленький почтовый ящик стоит перед почтой.",
+    "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "Женщина в красном пальто ждёт на остановке.",
+    "A2 | Der Radfahrer fährt auf dem Radweg.": "Велосипедист едет по велодорожке.",
+    "A2 | Anna steht zwischen der Laterne und der Ampel.": "Анна стоит между фонарём и светофором.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "Велосипеды стоят у велопарковки.",
+    "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "Пешеходы на пешеходном переходе.",
+    "A2 | Der Kiosk steht auf dem Bürgersteig.": "Киоск стоит на тротуаре.",
+    "B1 | Entschuldigung, wie komme ich zur Apotheke?": "Извините, как пройти к аптеке?",
+    "B1 | Gehen Sie über die Straße, dort am Zebrastreifen.": "Перейдите улицу, вон там, по пешеходному переходу.",
+    "B1 | Warten Sie, bis die Ampel grün wird.": "Подождите, пока светофор станет зелёным.",
+    "B1 | Die Apotheke ist dann direkt vor Ihnen.": "Аптека тогда прямо перед вами.",
+    "B1 | Gehen Sie an der Apotheke vorbei, dann sind Sie da.": "Пройдите мимо аптеки, и вы на месте.",
+    "B1 | Der Lieferwagen kommt aus der Seitenstraße.": "Фургон выезжает из переулка.",
+    "B1 | Die Fußgänger gehen über den Zebrastreifen.": "Пешеходы переходят по пешеходному переходу.",
+    "B1 | Gleich geht Anna in die Bäckerei.": "Анна сейчас зайдёт в пекарню.",
+    "B1 | Gehen Sie bitte nicht bei Rot über die Straße!": "Пожалуйста, не переходите улицу на красный!",
+    "B1 | Das Café ist an der Ecke, gleich neben der Seitenstraße.": "Кафе на углу, прямо рядом с переулком.",
+    "B2 | Entlang des Bürgersteigs verläuft ein roter Radweg.": "Вдоль тротуара тянется красная велодорожка.",
+    "B2 | Unweit des Kiosks steht ein gelber Briefkasten.": "Недалеко от киоска стоит жёлтый почтовый ящик.",
+    "B2 | Trotz der nassen Straße fährt der Radfahrer schnell.": "Несмотря на мокрую дорогу, велосипедист едет быстро.",
+    "B2 | Die Frau, deren Mantel rot ist, wartet auf den Bus.": "Женщина в красном пальто ждёт автобус.",
+    "B2 | Der Mann, der einen Rucksack trägt, geht über den Zebrastreifen.": "Мужчина с рюкзаком переходит по пешеходному переходу.",
+    "B2 | Das Café, vor dem Tische stehen, hat eine rote Markise.": "У кафе, перед которым стоят столики, красная маркиза.",
+    "C1 | Sie dürfte sich verlaufen haben.": "Она, вероятно, заблудилась.",
+    "C1 | Es muss vorhin geregnet haben.": "Недавно, должно быть, шёл дождь.",
+    "C1 | Wäre die Ampel grün, wäre Anna schon über die Straße gegangen.": "Если бы светофор был зелёным, Анна уже перешла бы улицу.",
+    "C1 | Er könnte Waren für das Café bringen.": "Он, возможно, привозит товар для кафе."
    }
   }
  }

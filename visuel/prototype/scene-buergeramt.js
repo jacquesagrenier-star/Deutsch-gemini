@@ -1634,6 +1634,7 @@ window.SCENE = {
      "f": "bild",
      "r": "fenster",
      "phrase": "Das Bild hängt neben dem Fenster.",
+     "sens": "Le tableau est accroché à côté de la fenêtre.",
      "n": "<b>neben</b> = à côté de. das Fenster → neben <b>dem</b> Fenster."
     },
     {
@@ -1646,6 +1647,7 @@ window.SCENE = {
      "f": "ordner",
      "r": "regal",
      "phrase": "Die Ordner stehen im Regal.",
+     "sens": "Les classeurs sont sur l'étagère.",
      "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
     },
     {
@@ -1658,6 +1660,7 @@ window.SCENE = {
      "f": "pass",
      "r": "schreibtisch",
      "phrase": "Der Pass liegt auf dem Schreibtisch.",
+     "sens": "Le passeport est sur le bureau.",
      "n": "der Schreibtisch → auf <b>dem</b> Schreibtisch."
     },
     {
@@ -1670,6 +1673,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "boden",
      "phrase": "Der Rucksack steht auf dem Boden.",
+     "sens": "Le sac à dos est par terre.",
      "n": "der Boden → auf <b>dem</b> Boden."
     },
     {
@@ -1682,6 +1686,7 @@ window.SCENE = {
      "f": "frau-2",
      "r": "stuhl",
      "phrase": "Die junge Frau sitzt auf dem Stuhl.",
+     "sens": "La jeune femme est assise sur la chaise.",
      "n": "der Stuhl → auf <b>dem</b> Stuhl."
     },
     {
@@ -1694,6 +1699,7 @@ window.SCENE = {
      "f": "baby",
      "r": "frau-2",
      "phrase": "Das Baby ist bei der Frau.",
+     "sens": "Le bébé est avec la femme.",
      "n": "die Frau → bei <b>der</b> Frau : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1706,6 +1712,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "tuer",
      "phrase": "Der Mülleimer steht neben der Tür.",
+     "sens": "La poubelle est à côté de la porte.",
      "n": "die Tür → neben <b>der</b> Tür : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1718,6 +1725,7 @@ window.SCENE = {
      "f": "drucker",
      "r": "schrank",
      "phrase": "Der Drucker steht auf dem Schrank.",
+     "sens": "L'imprimante est sur l'armoire.",
      "n": "der Schrank → auf <b>dem</b> Schrank."
     }
    ]
@@ -1734,6 +1742,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark kommt aus Kanada.",
+     "sens": "Mark vient du Canada.",
      "n": "<b>aus</b> + datif = l'origine : aus Kanada.",
      "revise": {
       "mot": "kommen",
@@ -1749,6 +1758,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Er ist seit einem Monat in Berlin.",
+     "sens": "Il est à Berlin depuis un mois.",
      "n": "<b>seit</b> + datif : seit einem Monat."
     },
     {
@@ -1761,6 +1771,7 @@ window.SCENE = {
      "f": "kugelschreiber",
      "r": "formular",
      "phrase": "Mark füllt das Formular mit einem Kugelschreiber aus.",
+     "sens": "Mark remplit le formulaire avec un stylo.",
      "n": "<b>mit</b> + datif : mit einem Kugelschreiber.",
      "revise": {
       "mot": "ausfüllen",
@@ -1776,6 +1787,7 @@ window.SCENE = {
      ],
      "f": "formular",
      "phrase": "Das Formular ist für die Anmeldung.",
+     "sens": "Le formulaire est pour la déclaration de domicile.",
      "n": "<b>für</b> + accusatif : für die Anmeldung."
     },
     {
@@ -1787,6 +1799,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "Mark geht zum Bürgeramt.",
+     "sens": "Mark va à la mairie de quartier.",
      "n": "<b>zu</b> + datif, das Bürgeramt → zu dem = <b>zum</b>.",
      "revise": {
       "mot": "gehen",
@@ -1802,6 +1815,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Die Frau arbeitet bei dem Bürgeramt.",
+     "sens": "La femme travaille à la mairie de quartier.",
      "n": "<b>bei</b> + datif = chez, employé de : bei dem (beim) Bürgeramt.",
      "revise": {
       "mot": "arbeiten",
@@ -1818,6 +1832,7 @@ window.SCENE = {
      "f": "pass",
      "r": "mark",
      "phrase": "Mark kommt nicht ohne seinen Pass.",
+     "sens": "Mark ne vient pas sans son passeport.",
      "n": "<b>ohne</b> + accusatif : ohne seinen Pass."
     },
     {
@@ -1830,6 +1845,7 @@ window.SCENE = {
      "f": "frau-2",
      "r": "baby",
      "phrase": "Die junge Frau wartet mit ihrem Baby.",
+     "sens": "La jeune femme attend avec son bébé.",
      "n": "<b>mit</b> + datif : mit ihrem Baby.",
      "revise": {
       "mot": "warten",
@@ -1851,6 +1867,7 @@ window.SCENE = {
      "f": "pass",
      "r": "formular",
      "phrase": "Mark braucht nicht nur seinen Pass, sondern auch das Formular.",
+     "sens": "Mark a besoin non seulement de son passeport, mais aussi du formulaire.",
      "n": "<b>nicht nur … sondern auch</b> = non seulement… mais aussi.",
      "revise": {
       "mot": "brauchen",
@@ -1866,6 +1883,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Die Frau spricht sowohl Deutsch als auch Englisch.",
+     "sens": "La femme parle aussi bien allemand qu'anglais.",
      "n": "<b>sowohl … als auch</b> = aussi bien… que.",
      "revise": {
       "mot": "sprechen",
@@ -1881,6 +1899,7 @@ window.SCENE = {
      ],
      "f": "frau-2",
      "phrase": "Die junge Frau hat weder ein Buch noch eine Zeitung dabei.",
+     "sens": "La jeune femme n'a ni livre ni journal avec elle.",
      "n": "<b>weder … noch</b> = ni… ni."
     },
     {
@@ -1893,6 +1912,7 @@ window.SCENE = {
      "f": "mark",
      "r": "formular",
      "phrase": "Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.",
+     "sens": "Soit Mark signe aujourd'hui, soit il revient la semaine prochaine.",
      "n": "<b>entweder … oder</b> = ou bien… ou bien.",
      "revise": {
       "mot": "unterschreiben",
@@ -1909,6 +1929,7 @@ window.SCENE = {
      "f": "kugelschreiber",
      "r": "mark",
      "phrase": "Je schneller Mark schreibt, desto früher ist er fertig.",
+     "sens": "Plus Mark écrit vite, plus tôt il a fini.",
      "n": "<b>je … desto</b> + comparatifs = plus… plus.",
      "revise": {
       "mot": "schreiben",
@@ -1924,6 +1945,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Das Büro ist zwar klein, aber hell.",
+     "sens": "Le bureau est certes petit, mais lumineux.",
      "n": "<b>zwar … aber</b> = certes… mais."
     }
    ]
@@ -1941,6 +1963,7 @@ window.SCENE = {
      "f": "formular",
      "r": "mark",
      "phrase": "Das Formular muss wichtig sein.",
+     "sens": "Le formulaire doit être important.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1952,6 +1975,7 @@ window.SCENE = {
      ],
      "f": "frau-2",
      "phrase": "Die junge Frau könnte auch neu in Berlin sein.",
+     "sens": "La jeune femme est peut-être aussi nouvelle à Berlin.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1963,6 +1987,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Der Termin dürfte in zehn Minuten vorbei sein.",
+     "sens": "Le rendez-vous devrait être fini dans dix minutes.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1974,6 +1999,7 @@ window.SCENE = {
      ],
      "f": "stuhl",
      "phrase": "Im Bürgeramt soll man lange warten müssen.",
+     "sens": "Il paraît qu'on doit attendre longtemps à la mairie de quartier.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -2019,6 +2045,34 @@ window.SCENE = {
     "C1 | Die junge Frau könnte auch neu in Berlin sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Im Bürgeramt soll man lange warten müssen.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Das Bild hängt neben dem Fenster.": "The picture hangs next to the window.",
+    "A2 | Die Ordner stehen im Regal.": "The folders are on the shelf.",
+    "A2 | Der Pass liegt auf dem Schreibtisch.": "The passport is on the desk.",
+    "A2 | Der Rucksack steht auf dem Boden.": "The backpack is on the floor.",
+    "A2 | Die junge Frau sitzt auf dem Stuhl.": "The young woman is sitting on the chair.",
+    "A2 | Das Baby ist bei der Frau.": "The baby is with the woman.",
+    "A2 | Der Mülleimer steht neben der Tür.": "The bin is next to the door.",
+    "A2 | Der Drucker steht auf dem Schrank.": "The printer is on the cabinet.",
+    "B1 | Mark kommt aus Kanada.": "Mark comes from Canada.",
+    "B1 | Er ist seit einem Monat in Berlin.": "He has been in Berlin for a month.",
+    "B1 | Mark füllt das Formular mit einem Kugelschreiber aus.": "Mark fills in the form with a ballpoint pen.",
+    "B1 | Das Formular ist für die Anmeldung.": "The form is for the residence registration.",
+    "B1 | Mark geht zum Bürgeramt.": "Mark goes to the citizens' office.",
+    "B1 | Die Frau arbeitet bei dem Bürgeramt.": "The woman works at the citizens' office.",
+    "B1 | Mark kommt nicht ohne seinen Pass.": "Mark does not come without his passport.",
+    "B1 | Die junge Frau wartet mit ihrem Baby.": "The young woman is waiting with her baby.",
+    "B2 | Mark braucht nicht nur seinen Pass, sondern auch das Formular.": "Mark needs not only his passport but also the form.",
+    "B2 | Die Frau spricht sowohl Deutsch als auch Englisch.": "The woman speaks both German and English.",
+    "B2 | Die junge Frau hat weder ein Buch noch eine Zeitung dabei.": "The young woman has neither a book nor a newspaper with her.",
+    "B2 | Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.": "Either Mark signs today, or he comes back next week.",
+    "B2 | Je schneller Mark schreibt, desto früher ist er fertig.": "The faster Mark writes, the sooner he is done.",
+    "B2 | Das Büro ist zwar klein, aber hell.": "The office is small, but bright.",
+    "C1 | Das Formular muss wichtig sein.": "The form must be important.",
+    "C1 | Die junge Frau könnte auch neu in Berlin sein.": "The young woman might also be new to Berlin.",
+    "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "The appointment should be over in ten minutes.",
+    "C1 | Im Bürgeramt soll man lange warten müssen.": "People say you have to wait a long time at the citizens' office."
    }
   },
   "tr": {
@@ -2060,6 +2114,34 @@ window.SCENE = {
     "C1 | Die junge Frau könnte auch neu in Berlin sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Im Bürgeramt soll man lange warten müssen.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Das Bild hängt neben dem Fenster.": "Tablo pencerenin yanında asılı.",
+    "A2 | Die Ordner stehen im Regal.": "Klasörler rafta duruyor.",
+    "A2 | Der Pass liegt auf dem Schreibtisch.": "Pasaport masanın üstünde.",
+    "A2 | Der Rucksack steht auf dem Boden.": "Sırt çantası yerde duruyor.",
+    "A2 | Die junge Frau sitzt auf dem Stuhl.": "Genç kadın sandalyede oturuyor.",
+    "A2 | Das Baby ist bei der Frau.": "Bebek kadının yanında.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Çöp kovası kapının yanında duruyor.",
+    "A2 | Der Drucker steht auf dem Schrank.": "Yazıcı dolabın üstünde duruyor.",
+    "B1 | Mark kommt aus Kanada.": "Mark Kanadalı.",
+    "B1 | Er ist seit einem Monat in Berlin.": "Bir aydır Berlin'de.",
+    "B1 | Mark füllt das Formular mit einem Kugelschreiber aus.": "Mark formu tükenmez kalemle dolduruyor.",
+    "B1 | Das Formular ist für die Anmeldung.": "Form ikamet kaydı için.",
+    "B1 | Mark geht zum Bürgeramt.": "Mark nüfus dairesine gidiyor.",
+    "B1 | Die Frau arbeitet bei dem Bürgeramt.": "Kadın nüfus dairesinde çalışıyor.",
+    "B1 | Mark kommt nicht ohne seinen Pass.": "Mark pasaportu olmadan gelmiyor.",
+    "B1 | Die junge Frau wartet mit ihrem Baby.": "Genç kadın bebeğiyle bekliyor.",
+    "B2 | Mark braucht nicht nur seinen Pass, sondern auch das Formular.": "Mark'ın sadece pasaportuna değil, forma da ihtiyacı var.",
+    "B2 | Die Frau spricht sowohl Deutsch als auch Englisch.": "Kadın hem Almanca hem İngilizce konuşuyor.",
+    "B2 | Die junge Frau hat weder ein Buch noch eine Zeitung dabei.": "Genç kadının yanında ne kitap ne de gazete var.",
+    "B2 | Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.": "Mark ya bugün imzalar ya da gelecek hafta yine gelir.",
+    "B2 | Je schneller Mark schreibt, desto früher ist er fertig.": "Mark ne kadar hızlı yazarsa o kadar erken bitirir.",
+    "B2 | Das Büro ist zwar klein, aber hell.": "Ofis küçük ama aydınlık.",
+    "C1 | Das Formular muss wichtig sein.": "Form önemli olmalı.",
+    "C1 | Die junge Frau könnte auch neu in Berlin sein.": "Genç kadın da Berlin'de yeni olabilir.",
+    "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "Randevu on dakikaya biter herhalde.",
+    "C1 | Im Bürgeramt soll man lange warten müssen.": "Nüfus dairesinde uzun süre beklemek gerektiği söyleniyor."
    }
   },
   "uk": {
@@ -2101,6 +2183,34 @@ window.SCENE = {
     "C1 | Die junge Frau könnte auch neu in Berlin sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Im Bürgeramt soll man lange warten müssen.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Das Bild hängt neben dem Fenster.": "Картина висить біля вікна.",
+    "A2 | Die Ordner stehen im Regal.": "Папки стоять на полиці.",
+    "A2 | Der Pass liegt auf dem Schreibtisch.": "Паспорт лежить на столі.",
+    "A2 | Der Rucksack steht auf dem Boden.": "Рюкзак стоїть на підлозі.",
+    "A2 | Die junge Frau sitzt auf dem Stuhl.": "Молода жінка сидить на стільці.",
+    "A2 | Das Baby ist bei der Frau.": "Немовля біля жінки.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Смітник стоїть біля дверей.",
+    "A2 | Der Drucker steht auf dem Schrank.": "Принтер стоїть на шафі.",
+    "B1 | Mark kommt aus Kanada.": "Марк із Канади.",
+    "B1 | Er ist seit einem Monat in Berlin.": "Він у Берліні вже місяць.",
+    "B1 | Mark füllt das Formular mit einem Kugelschreiber aus.": "Марк заповнює бланк кульковою ручкою.",
+    "B1 | Das Formular ist für die Anmeldung.": "Бланк — для реєстрації місця проживання.",
+    "B1 | Mark geht zum Bürgeramt.": "Марк іде до бюро громадян.",
+    "B1 | Die Frau arbeitet bei dem Bürgeramt.": "Жінка працює в бюро громадян.",
+    "B1 | Mark kommt nicht ohne seinen Pass.": "Марк не приходить без паспорта.",
+    "B1 | Die junge Frau wartet mit ihrem Baby.": "Молода жінка чекає зі своїм немовлям.",
+    "B2 | Mark braucht nicht nur seinen Pass, sondern auch das Formular.": "Марку потрібен не лише паспорт, а й бланк.",
+    "B2 | Die Frau spricht sowohl Deutsch als auch Englisch.": "Жінка говорить і німецькою, і англійською.",
+    "B2 | Die junge Frau hat weder ein Buch noch eine Zeitung dabei.": "Молода жінка не має із собою ні книжки, ні газети.",
+    "B2 | Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.": "Або Марк підписує сьогодні, або повертається наступного тижня.",
+    "B2 | Je schneller Mark schreibt, desto früher ist er fertig.": "Чим швидше Марк пише, тим раніше він закінчить.",
+    "B2 | Das Büro ist zwar klein, aber hell.": "Кабінет хоч і малий, зате світлий.",
+    "C1 | Das Formular muss wichtig sein.": "Бланк, мабуть, важливий.",
+    "C1 | Die junge Frau könnte auch neu in Berlin sein.": "Молода жінка, можливо, теж нова в Берліні.",
+    "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "Прийом, напевно, закінчиться за десять хвилин.",
+    "C1 | Im Bürgeramt soll man lange warten müssen.": "Кажуть, у бюро громадян доводиться довго чекати."
    }
   },
   "fa": {
@@ -2142,6 +2252,34 @@ window.SCENE = {
     "C1 | Die junge Frau könnte auch neu in Berlin sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Im Bürgeramt soll man lange warten müssen.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Das Bild hängt neben dem Fenster.": "تابلو کنار پنجره آویزان است.",
+    "A2 | Die Ordner stehen im Regal.": "پوشه‌ها در قفسه هستند.",
+    "A2 | Der Pass liegt auf dem Schreibtisch.": "گذرنامه روی میز تحریر است.",
+    "A2 | Der Rucksack steht auf dem Boden.": "کوله‌پشتی روی زمین است.",
+    "A2 | Die junge Frau sitzt auf dem Stuhl.": "زن جوان روی صندلی نشسته است.",
+    "A2 | Das Baby ist bei der Frau.": "نوزاد پیش زن است.",
+    "A2 | Der Mülleimer steht neben der Tür.": "سطل زباله کنار در است.",
+    "A2 | Der Drucker steht auf dem Schrank.": "چاپگر روی کمد است.",
+    "B1 | Mark kommt aus Kanada.": "مارک اهل کانادا است.",
+    "B1 | Er ist seit einem Monat in Berlin.": "او یک ماه است که در برلین است.",
+    "B1 | Mark füllt das Formular mit einem Kugelschreiber aus.": "مارک فرم را با خودکار پر می‌کند.",
+    "B1 | Das Formular ist für die Anmeldung.": "فرم برای ثبت محل سکونت است.",
+    "B1 | Mark geht zum Bürgeramt.": "مارک به ادارهٔ شهروندان می‌رود.",
+    "B1 | Die Frau arbeitet bei dem Bürgeramt.": "زن در ادارهٔ شهروندان کار می‌کند.",
+    "B1 | Mark kommt nicht ohne seinen Pass.": "مارک بدون گذرنامه‌اش نمی‌آید.",
+    "B1 | Die junge Frau wartet mit ihrem Baby.": "زن جوان با نوزادش منتظر است.",
+    "B2 | Mark braucht nicht nur seinen Pass, sondern auch das Formular.": "مارک نه‌تنها به گذرنامه‌اش، بلکه به فرم هم نیاز دارد.",
+    "B2 | Die Frau spricht sowohl Deutsch als auch Englisch.": "زن هم آلمانی و هم انگلیسی صحبت می‌کند.",
+    "B2 | Die junge Frau hat weder ein Buch noch eine Zeitung dabei.": "زن جوان نه کتابی همراه دارد نه روزنامه‌ای.",
+    "B2 | Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.": "مارک یا امروز امضا می‌کند یا هفتهٔ آینده دوباره می‌آید.",
+    "B2 | Je schneller Mark schreibt, desto früher ist er fertig.": "هرچه مارک تندتر بنویسد، زودتر تمام می‌کند.",
+    "B2 | Das Büro ist zwar klein, aber hell.": "دفتر هرچند کوچک، اما روشن است.",
+    "C1 | Das Formular muss wichtig sein.": "فرم حتماً مهم است.",
+    "C1 | Die junge Frau könnte auch neu in Berlin sein.": "زن جوان شاید او هم تازه به برلین آمده باشد.",
+    "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "قرار ملاقات احتمالاً تا ده دقیقهٔ دیگر تمام می‌شود.",
+    "C1 | Im Bürgeramt soll man lange warten müssen.": "می‌گویند در ادارهٔ شهروندان باید خیلی منتظر ماند."
    }
   },
   "ar": {
@@ -2183,6 +2321,34 @@ window.SCENE = {
     "C1 | Die junge Frau könnte auch neu in Berlin sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Im Bürgeramt soll man lange warten müssen.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Das Bild hängt neben dem Fenster.": "اللوحة معلّقة بجانب النافذة.",
+    "A2 | Die Ordner stehen im Regal.": "الملفّات على الرفّ.",
+    "A2 | Der Pass liegt auf dem Schreibtisch.": "جواز السفر على المكتب.",
+    "A2 | Der Rucksack steht auf dem Boden.": "حقيبة الظهر على الأرض.",
+    "A2 | Die junge Frau sitzt auf dem Stuhl.": "المرأة الشابّة جالسة على الكرسي.",
+    "A2 | Das Baby ist bei der Frau.": "الرضيع مع المرأة.",
+    "A2 | Der Mülleimer steht neben der Tür.": "سلّة المهملات بجانب الباب.",
+    "A2 | Der Drucker steht auf dem Schrank.": "الطابعة على الخزانة.",
+    "B1 | Mark kommt aus Kanada.": "مارك من كندا.",
+    "B1 | Er ist seit einem Monat in Berlin.": "هو في برلين منذ شهر.",
+    "B1 | Mark füllt das Formular mit einem Kugelschreiber aus.": "يملأ مارك الاستمارة بقلم حبر جافّ.",
+    "B1 | Das Formular ist für die Anmeldung.": "الاستمارة لتسجيل محلّ الإقامة.",
+    "B1 | Mark geht zum Bürgeramt.": "يذهب مارك إلى مكتب خدمة المواطنين.",
+    "B1 | Die Frau arbeitet bei dem Bürgeramt.": "تعمل المرأة في مكتب خدمة المواطنين.",
+    "B1 | Mark kommt nicht ohne seinen Pass.": "لا يأتي مارك من دون جواز سفره.",
+    "B1 | Die junge Frau wartet mit ihrem Baby.": "تنتظر المرأة الشابّة مع رضيعها.",
+    "B2 | Mark braucht nicht nur seinen Pass, sondern auch das Formular.": "يحتاج مارك لا إلى جواز سفره فحسب، بل إلى الاستمارة أيضاً.",
+    "B2 | Die Frau spricht sowohl Deutsch als auch Englisch.": "تتكلّم المرأة الألمانية والإنجليزية معاً.",
+    "B2 | Die junge Frau hat weder ein Buch noch eine Zeitung dabei.": "ليس مع المرأة الشابّة كتاب ولا جريدة.",
+    "B2 | Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.": "إمّا أن يوقّع مارك اليوم، وإمّا أن يعود الأسبوع المقبل.",
+    "B2 | Je schneller Mark schreibt, desto früher ist er fertig.": "كلّما كتب مارك أسرع، انتهى أبكر.",
+    "B2 | Das Büro ist zwar klein, aber hell.": "المكتب صغير، لكنه مضيء.",
+    "C1 | Das Formular muss wichtig sein.": "لا بدّ أن الاستمارة مهمّة.",
+    "C1 | Die junge Frau könnte auch neu in Berlin sein.": "ربما تكون المرأة الشابّة جديدة في برلين أيضاً.",
+    "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "على الأرجح ينتهي الموعد خلال عشر دقائق.",
+    "C1 | Im Bürgeramt soll man lange warten müssen.": "يُقال إن على المرء أن ينتظر طويلاً في مكتب خدمة المواطنين."
    }
   },
   "pt": {
@@ -2224,6 +2390,34 @@ window.SCENE = {
     "C1 | Die junge Frau könnte auch neu in Berlin sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Im Bürgeramt soll man lange warten müssen.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Das Bild hängt neben dem Fenster.": "O quadro está pendurado ao lado da janela.",
+    "A2 | Die Ordner stehen im Regal.": "As pastas estão na estante.",
+    "A2 | Der Pass liegt auf dem Schreibtisch.": "O passaporte está na escrivaninha.",
+    "A2 | Der Rucksack steht auf dem Boden.": "A mochila está no chão.",
+    "A2 | Die junge Frau sitzt auf dem Stuhl.": "A jovem está sentada na cadeira.",
+    "A2 | Das Baby ist bei der Frau.": "O bebê está com a mulher.",
+    "A2 | Der Mülleimer steht neben der Tür.": "A lixeira está ao lado da porta.",
+    "A2 | Der Drucker steht auf dem Schrank.": "A impressora está em cima do armário.",
+    "B1 | Mark kommt aus Kanada.": "Mark vem do Canadá.",
+    "B1 | Er ist seit einem Monat in Berlin.": "Ele está em Berlim há um mês.",
+    "B1 | Mark füllt das Formular mit einem Kugelschreiber aus.": "Mark preenche o formulário com uma caneta.",
+    "B1 | Das Formular ist für die Anmeldung.": "O formulário é para o registro de residência.",
+    "B1 | Mark geht zum Bürgeramt.": "Mark vai à repartição pública.",
+    "B1 | Die Frau arbeitet bei dem Bürgeramt.": "A mulher trabalha na repartição pública.",
+    "B1 | Mark kommt nicht ohne seinen Pass.": "Mark não vem sem o passaporte.",
+    "B1 | Die junge Frau wartet mit ihrem Baby.": "A jovem espera com o seu bebê.",
+    "B2 | Mark braucht nicht nur seinen Pass, sondern auch das Formular.": "Mark precisa não só do passaporte, mas também do formulário.",
+    "B2 | Die Frau spricht sowohl Deutsch als auch Englisch.": "A mulher fala tanto alemão quanto inglês.",
+    "B2 | Die junge Frau hat weder ein Buch noch eine Zeitung dabei.": "A jovem não tem nem livro nem jornal consigo.",
+    "B2 | Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.": "Ou Mark assina hoje, ou volta na semana que vem.",
+    "B2 | Je schneller Mark schreibt, desto früher ist er fertig.": "Quanto mais rápido Mark escreve, mais cedo termina.",
+    "B2 | Das Büro ist zwar klein, aber hell.": "O escritório é pequeno, mas claro.",
+    "C1 | Das Formular muss wichtig sein.": "O formulário deve ser importante.",
+    "C1 | Die junge Frau könnte auch neu in Berlin sein.": "A jovem talvez também seja nova em Berlim.",
+    "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "O atendimento provavelmente termina em dez minutos.",
+    "C1 | Im Bürgeramt soll man lange warten müssen.": "Dizem que na repartição pública é preciso esperar muito."
    }
   },
   "pl": {
@@ -2265,6 +2459,34 @@ window.SCENE = {
     "C1 | Die junge Frau könnte auch neu in Berlin sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Im Bürgeramt soll man lange warten müssen.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Das Bild hängt neben dem Fenster.": "Obraz wisi obok okna.",
+    "A2 | Die Ordner stehen im Regal.": "Segregatory stoją na półce.",
+    "A2 | Der Pass liegt auf dem Schreibtisch.": "Paszport leży na biurku.",
+    "A2 | Der Rucksack steht auf dem Boden.": "Plecak stoi na podłodze.",
+    "A2 | Die junge Frau sitzt auf dem Stuhl.": "Młoda kobieta siedzi na krześle.",
+    "A2 | Das Baby ist bei der Frau.": "Dziecko jest przy kobiecie.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Kosz na śmieci stoi obok drzwi.",
+    "A2 | Der Drucker steht auf dem Schrank.": "Drukarka stoi na szafce.",
+    "B1 | Mark kommt aus Kanada.": "Mark pochodzi z Kanady.",
+    "B1 | Er ist seit einem Monat in Berlin.": "Jest w Berlinie od miesiąca.",
+    "B1 | Mark füllt das Formular mit einem Kugelschreiber aus.": "Mark wypełnia formularz długopisem.",
+    "B1 | Das Formular ist für die Anmeldung.": "Formularz jest do meldunku.",
+    "B1 | Mark geht zum Bürgeramt.": "Mark idzie do urzędu.",
+    "B1 | Die Frau arbeitet bei dem Bürgeramt.": "Kobieta pracuje w urzędzie.",
+    "B1 | Mark kommt nicht ohne seinen Pass.": "Mark nie przychodzi bez paszportu.",
+    "B1 | Die junge Frau wartet mit ihrem Baby.": "Młoda kobieta czeka ze swoim dzieckiem.",
+    "B2 | Mark braucht nicht nur seinen Pass, sondern auch das Formular.": "Mark potrzebuje nie tylko paszportu, ale też formularza.",
+    "B2 | Die Frau spricht sowohl Deutsch als auch Englisch.": "Kobieta mówi zarówno po niemiecku, jak i po angielsku.",
+    "B2 | Die junge Frau hat weder ein Buch noch eine Zeitung dabei.": "Młoda kobieta nie ma ze sobą ani książki, ani gazety.",
+    "B2 | Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.": "Albo Mark podpisze dziś, albo wróci w przyszłym tygodniu.",
+    "B2 | Je schneller Mark schreibt, desto früher ist er fertig.": "Im szybciej Mark pisze, tym wcześniej skończy.",
+    "B2 | Das Büro ist zwar klein, aber hell.": "Biuro jest wprawdzie małe, ale jasne.",
+    "C1 | Das Formular muss wichtig sein.": "Formularz musi być ważny.",
+    "C1 | Die junge Frau könnte auch neu in Berlin sein.": "Młoda kobieta być może też jest nowa w Berlinie.",
+    "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "Wizyta zapewne skończy się za dziesięć minut.",
+    "C1 | Im Bürgeramt soll man lange warten müssen.": "Podobno w urzędzie trzeba długo czekać."
    }
   },
   "ru": {
@@ -2306,6 +2528,34 @@ window.SCENE = {
     "C1 | Die junge Frau könnte auch neu in Berlin sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Im Bürgeramt soll man lange warten müssen.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Das Bild hängt neben dem Fenster.": "Картина висит рядом с окном.",
+    "A2 | Die Ordner stehen im Regal.": "Папки стоят на полке.",
+    "A2 | Der Pass liegt auf dem Schreibtisch.": "Паспорт лежит на столе.",
+    "A2 | Der Rucksack steht auf dem Boden.": "Рюкзак стоит на полу.",
+    "A2 | Die junge Frau sitzt auf dem Stuhl.": "Молодая женщина сидит на стуле.",
+    "A2 | Das Baby ist bei der Frau.": "Малыш у женщины.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Мусорное ведро стоит рядом с дверью.",
+    "A2 | Der Drucker steht auf dem Schrank.": "Принтер стоит на шкафу.",
+    "B1 | Mark kommt aus Kanada.": "Марк из Канады.",
+    "B1 | Er ist seit einem Monat in Berlin.": "Он в Берлине уже месяц.",
+    "B1 | Mark füllt das Formular mit einem Kugelschreiber aus.": "Марк заполняет бланк шариковой ручкой.",
+    "B1 | Das Formular ist für die Anmeldung.": "Бланк — для регистрации по месту жительства.",
+    "B1 | Mark geht zum Bürgeramt.": "Марк идёт в бюро обслуживания граждан.",
+    "B1 | Die Frau arbeitet bei dem Bürgeramt.": "Женщина работает в бюро обслуживания граждан.",
+    "B1 | Mark kommt nicht ohne seinen Pass.": "Марк не приходит без паспорта.",
+    "B1 | Die junge Frau wartet mit ihrem Baby.": "Молодая женщина ждёт со своим малышом.",
+    "B2 | Mark braucht nicht nur seinen Pass, sondern auch das Formular.": "Марку нужен не только паспорт, но и бланк.",
+    "B2 | Die Frau spricht sowohl Deutsch als auch Englisch.": "Женщина говорит и по-немецки, и по-английски.",
+    "B2 | Die junge Frau hat weder ein Buch noch eine Zeitung dabei.": "У молодой женщины с собой ни книги, ни газеты.",
+    "B2 | Mark unterschreibt entweder heute, oder er kommt nächste Woche wieder.": "Либо Марк подписывает сегодня, либо приходит снова на следующей неделе.",
+    "B2 | Je schneller Mark schreibt, desto früher ist er fertig.": "Чем быстрее Марк пишет, тем раньше он закончит.",
+    "B2 | Das Büro ist zwar klein, aber hell.": "Кабинет хоть и маленький, зато светлый.",
+    "C1 | Das Formular muss wichtig sein.": "Бланк, должно быть, важный.",
+    "C1 | Die junge Frau könnte auch neu in Berlin sein.": "Молодая женщина, возможно, тоже недавно в Берлине.",
+    "C1 | Der Termin dürfte in zehn Minuten vorbei sein.": "Приём, вероятно, закончится через десять минут.",
+    "C1 | Im Bürgeramt soll man lange warten müssen.": "Говорят, в бюро обслуживания граждан приходится долго ждать."
    }
   }
  }

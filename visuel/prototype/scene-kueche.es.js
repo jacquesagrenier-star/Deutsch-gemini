@@ -1254,6 +1254,7 @@ window.SCENE = {
      "f": "topf",
      "r": "pfanne",
      "phrase": "La olla está al lado de la sartén.",
+     "sens": "La casserole est à côté de la poêle.",
      "n": "<b>al lado de</b> = à côté de. Le lieu → <b>estar</b>.",
      "latam": {
       "c": [
@@ -1273,6 +1274,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "regal",
      "phrase": "El reloj está encima de la estantería.",
+     "sens": "L'horloge est au-dessus de l'étagère.",
      "n": "<b>encima de</b> = au-dessus de, sur."
     },
     {
@@ -1285,6 +1287,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "kuehlschrank",
      "phrase": "La planta está encima de la nevera.",
+     "sens": "La plante est sur le réfrigérateur.",
      "n": "<b>encima de</b> = sur. <b>la</b> nevera est féminin : de la.",
      "latam": {
       "q": "La planta está ___ refrigerador.",
@@ -1307,6 +1310,7 @@ window.SCENE = {
      "f": "katze",
      "r": "stuhl",
      "phrase": "El gato está sentado en la silla.",
+     "sens": "Le chat est assis sur la chaise.",
      "n": "<b>la</b> silla est féminin → <b>en la</b> silla."
     },
     {
@@ -1319,6 +1323,7 @@ window.SCENE = {
      "f": "kartoffel",
      "r": "tisch",
      "phrase": "Las patatas están en la mesa.",
+     "sens": "Les pommes de terre sont sur la table.",
      "n": "Au pluriel : <b>están</b>.",
      "latam": {
       "q": "¿Dónde están las papas?",
@@ -1340,6 +1345,7 @@ window.SCENE = {
      "f": "handtuch",
      "r": "backofen",
      "phrase": "La toalla cuelga del horno.",
+     "sens": "Le torchon est accroché au four.",
      "n": "<b>colgar de</b> = pendre à. de + el = <b>del</b>.",
      "revise": {
       "mot": "colgar",
@@ -1356,6 +1362,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "kuehlschrank",
      "phrase": "Hay una papelera al lado de la nevera.",
+     "sens": "Il y a une poubelle à côté du réfrigérateur.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue.",
      "latam": {
       "q": "___ un bote de basura al lado del refrigerador.",
@@ -1372,6 +1379,7 @@ window.SCENE = {
      "f": "milch",
      "r": "brot",
      "phrase": "La leche está al lado del pan.",
+     "sens": "Le lait est à côté du pain.",
      "n": "<b>de + el = del</b>, toujours."
     }
    ]
@@ -1389,6 +1397,7 @@ window.SCENE = {
      "f": "karotte",
      "r": "mark",
      "phrase": "Mark ha cortado la zanahoria.",
+     "sens": "Mark a coupé la carotte.",
      "n": "Après <b>haber</b>, le participe ne s'accorde jamais : cortad<b>o</b>.",
      "revise": {
       "mot": "cortar",
@@ -1405,6 +1414,7 @@ window.SCENE = {
      "f": "ei",
      "r": "pfanne",
      "phrase": "Ha puesto dos huevos en la sartén.",
+     "sens": "Il a mis deux œufs dans la poêle.",
      "n": "<b>poner</b> est irrégulier → <b>puesto</b>.",
      "revise": {
       "mot": "poner",
@@ -1420,6 +1430,7 @@ window.SCENE = {
      ],
      "f": "topf",
      "phrase": "La sopa ha hervido una hora.",
+     "sens": "La soupe a bouilli une heure.",
      "n": "Verbe en -ir → participe en <b>-ido</b>, invariable.",
      "revise": {
       "mot": "hervir",
@@ -1436,6 +1447,7 @@ window.SCENE = {
      "f": "brot",
      "r": "tisch",
      "phrase": "Mark ha puesto el pan en la mesa.",
+     "sens": "Mark a mis le pain sur la table.",
      "n": "Le passé composé espagnol se fait toujours avec <b>haber</b>.",
      "revise": {
       "mot": "poner",
@@ -1452,6 +1464,7 @@ window.SCENE = {
      "f": "katze",
      "r": "stuhl",
      "phrase": "El gato ha subido a la silla.",
+     "sens": "Le chat est monté sur la chaise.",
      "n": "Même pour un déplacement, <b>haber</b> : ha subido (≠ français « est monté »)."
     },
     {
@@ -1464,6 +1477,7 @@ window.SCENE = {
      "f": "milch",
      "r": "tisch",
      "phrase": "Mark la ha puesto en la mesa.",
+     "sens": "Mark l'a mis sur la table.",
      "n": "Même avec <b>la</b> devant, le participe ne s'accorde pas (≠ français « il l'a mise »).",
      "revise": {
       "mot": "poner",
@@ -1480,6 +1494,7 @@ window.SCENE = {
      "f": "handtuch",
      "r": "backofen",
      "phrase": "Mark ha colgado la toalla del horno.",
+     "sens": "Mark a accroché le torchon au four.",
      "n": "<b>colgar</b> → <b>colgado</b>, invariable après haber.",
      "revise": {
       "mot": "colgar",
@@ -1495,6 +1510,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Hoy Mark ha cocinado para sus compañeros de piso.",
+     "sens": "Aujourd'hui, Mark a cuisiné pour ses colocataires.",
      "n": "<b>hoy</b> + action finie → pretérito perfecto : ha cocinado.",
      "revise": {
       "mot": "cocinar",
@@ -1520,6 +1536,7 @@ window.SCENE = {
      "f": "karotte",
      "r": "messer",
      "phrase": "Aquí se cortan las verduras antes de cocinarlas.",
+     "sens": "Ici, on coupe les légumes avant de les cuire.",
      "n": "Passif avec <b>se</b> : le verbe s'accorde avec la chose, au pluriel ici (las verduras).",
      "revise": {
       "mot": "cortar",
@@ -1536,6 +1553,7 @@ window.SCENE = {
      "f": "tisch",
      "r": "kartoffel",
      "phrase": "La mesa en la que están las verduras es de madera.",
+     "sens": "La table sur laquelle sont les légumes est en bois.",
      "n": "Après une préposition : article + <b>que</b>, accordé avec la mesa → <b>la que</b>."
     },
     {
@@ -1548,6 +1566,7 @@ window.SCENE = {
      "f": "katze",
      "r": "stuhl",
      "phrase": "El gato, que está sentado en la silla, mira la mesa.",
+     "sens": "Le chat, qui est assis sur la chaise, regarde la table.",
      "n": "Un animal, sujet → <b>que</b>. <b>quien</b> est pour les personnes."
     },
     {
@@ -1560,6 +1579,7 @@ window.SCENE = {
      "f": "buch",
      "r": "tisch",
      "phrase": "El libro, cuyas páginas están llenas de fotos, está en la mesa.",
+     "sens": "Le livre, dont les pages sont pleines de photos, est sur la table.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : las páginas → <b>cuyas</b>."
     },
     {
@@ -1572,6 +1592,7 @@ window.SCENE = {
      "f": "ei",
      "r": "pfanne",
      "phrase": "Los huevos de la sartén ya están hechos.",
+     "sens": "Les œufs dans la poêle sont déjà cuits.",
      "n": "<b>estar</b> + participe = le résultat, accordé : los huevos → hech<b>os</b>."
     },
     {
@@ -1583,6 +1604,7 @@ window.SCENE = {
      ],
      "f": "topf",
      "phrase": "La sopa tiene que hervir diez minutos más.",
+     "sens": "La soupe doit bouillir dix minutes de plus.",
      "n": "<b>tener que</b> + infinitif = devoir.",
      "revise": {
       "mot": "hervir",
@@ -1604,6 +1626,7 @@ window.SCENE = {
      "f": "topf",
      "r": "mark",
      "phrase": "La sopa debe de oler bien.",
+     "sens": "La soupe doit sentir bon.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1616,6 +1639,7 @@ window.SCENE = {
      "f": "katze",
      "r": "karotte",
      "phrase": "Puede que el gato espere un trozo de zanahoria.",
+     "sens": "Le chat attend peut-être un morceau de carotte.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1628,6 +1652,7 @@ window.SCENE = {
      "f": "topf",
      "r": "mark",
      "phrase": "Tendrá invitados esta noche.",
+     "sens": "Il doit avoir des invités ce soir.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1639,6 +1664,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Dicen que Mark hace la mejor sopa del piso.",
+     "sens": "On dit que Mark fait la meilleure soupe de la colocation.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>.",
      "latam": {
       "q": "Sus compañeros dicen que Mark ___ la mejor sopa del departamento.",
@@ -1693,6 +1719,39 @@ window.SCENE = {
     "C1 | Tendrá invitados esta noche.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que Mark hace la mejor sopa del departamento.": "<b>dicen que</b> reports a statement → <b>indicative</b>.",
     "C1 | Dicen que Mark hace la mejor sopa del piso.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | La olla está al lado de la sartén.": "The pot is next to the frying pan.",
+    "A2 | El reloj está encima de la estantería.": "The clock is above the shelf.",
+    "A2 | La planta está encima del refrigerador.": "The plant is on top of the fridge.",
+    "A2 | La planta está encima de la nevera.": "The plant is on top of the fridge.",
+    "A2 | El gato está sentado en la silla.": "The cat is sitting on the chair.",
+    "A2 | Las papas están en la mesa.": "The potatoes are on the table.",
+    "A2 | Las patatas están en la mesa.": "The potatoes are on the table.",
+    "A2 | La toalla cuelga del horno.": "The towel hangs from the oven.",
+    "A2 | Hay un bote de basura al lado del refrigerador.": "There is a bin next to the fridge.",
+    "A2 | Hay una papelera al lado de la nevera.": "There is a bin next to the fridge.",
+    "A2 | La leche está al lado del pan.": "The milk is next to the bread.",
+    "B1 | Mark ha cortado la zanahoria.": "Mark has cut the carrot.",
+    "B1 | Ha puesto dos huevos en la sartén.": "He has put two eggs in the frying pan.",
+    "B1 | La sopa ha hervido una hora.": "The soup has boiled for an hour.",
+    "B1 | Mark ha puesto el pan en la mesa.": "Mark has put the bread on the table.",
+    "B1 | El gato ha subido a la silla.": "The cat has climbed onto the chair.",
+    "B1 | Mark la ha puesto en la mesa.": "Mark has put it on the table.",
+    "B1 | Mark ha colgado la toalla del horno.": "Mark has hung the towel on the oven.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de departamento.": "Today Mark has cooked for his flatmates.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de piso.": "Today Mark has cooked for his flatmates.",
+    "B2 | Aquí se cortan las verduras antes de cocinarlas.": "Here the vegetables are cut before cooking.",
+    "B2 | La mesa en la que están las verduras es de madera.": "The table the vegetables are on is made of wood.",
+    "B2 | El gato, que está sentado en la silla, mira la mesa.": "The cat, which is sitting on the chair, is looking at the table.",
+    "B2 | El libro, cuyas páginas están llenas de fotos, está en la mesa.": "The book, whose pages are full of photos, is on the table.",
+    "B2 | Los huevos de la sartén ya están hechos.": "The eggs in the frying pan are already done.",
+    "B2 | La sopa tiene que hervir diez minutos más.": "The soup has to boil for ten more minutes.",
+    "C1 | La sopa debe de oler bien.": "The soup must smell good.",
+    "C1 | Puede que el gato espere un trozo de zanahoria.": "The cat may be waiting for a piece of carrot.",
+    "C1 | Tendrá invitados esta noche.": "He probably has guests tonight.",
+    "C1 | Dicen que Mark hace la mejor sopa del departamento.": "They say Mark makes the best soup in the flat.",
+    "C1 | Dicen que Mark hace la mejor sopa del piso.": "They say Mark makes the best soup in the flat."
    }
   },
   "tr": {
@@ -1703,7 +1762,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1713,7 +1773,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1723,7 +1784,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1769,6 +1831,39 @@ window.SCENE = {
     "C1 | Tendrá invitados esta noche.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que Mark hace la mejor sopa del departamento.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>.",
     "C1 | Dicen que Mark hace la mejor sopa del piso.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La olla está al lado de la sartén.": "القِدر بجانب المقلاة.",
+    "A2 | El reloj está encima de la estantería.": "الساعة فوق الرفّ.",
+    "A2 | La planta está encima del refrigerador.": "النبتة فوق الثلّاجة.",
+    "A2 | La planta está encima de la nevera.": "النبتة فوق الثلّاجة.",
+    "A2 | El gato está sentado en la silla.": "القطة جالسة على الكرسي.",
+    "A2 | Las papas están en la mesa.": "البطاطا على الطاولة.",
+    "A2 | Las patatas están en la mesa.": "البطاطا على الطاولة.",
+    "A2 | La toalla cuelga del horno.": "المنشفة معلّقة على الفرن.",
+    "A2 | Hay un bote de basura al lado del refrigerador.": "هناك سلّة مهملات بجانب الثلّاجة.",
+    "A2 | Hay una papelera al lado de la nevera.": "هناك سلّة مهملات بجانب الثلّاجة.",
+    "A2 | La leche está al lado del pan.": "الحليب بجانب الخبز.",
+    "B1 | Mark ha cortado la zanahoria.": "قطّع مارك الجزرة.",
+    "B1 | Ha puesto dos huevos en la sartén.": "وضع بيضتين في المقلاة.",
+    "B1 | La sopa ha hervido una hora.": "غلى الحساء ساعة.",
+    "B1 | Mark ha puesto el pan en la mesa.": "وضع مارك الخبز على الطاولة.",
+    "B1 | El gato ha subido a la silla.": "صعدت القطة على الكرسي.",
+    "B1 | Mark la ha puesto en la mesa.": "وضعه مارك على الطاولة.",
+    "B1 | Mark ha colgado la toalla del horno.": "علّق مارك المنشفة على الفرن.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de departamento.": "اليوم طبخ مارك لرفاق سكنه.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de piso.": "اليوم طبخ مارك لرفاق سكنه.",
+    "B2 | Aquí se cortan las verduras antes de cocinarlas.": "هنا تُقطَّع الخضار قبل طهيها.",
+    "B2 | La mesa en la que están las verduras es de madera.": "الطاولة التي عليها الخضار من الخشب.",
+    "B2 | El gato, que está sentado en la silla, mira la mesa.": "القطة الجالسة على الكرسي تنظر إلى الطاولة.",
+    "B2 | El libro, cuyas páginas están llenas de fotos, está en la mesa.": "الكتاب الذي صفحاته مليئة بالصور على الطاولة.",
+    "B2 | Los huevos de la sartén ya están hechos.": "البيض في المقلاة ناضج بالفعل.",
+    "B2 | La sopa tiene que hervir diez minutos más.": "يجب أن يغلي الحساء عشر دقائق أخرى.",
+    "C1 | La sopa debe de oler bien.": "لا بدّ أن رائحة الحساء طيّبة.",
+    "C1 | Puede que el gato espere un trozo de zanahoria.": "ربما تنتظر القطة قطعة جزر.",
+    "C1 | Tendrá invitados esta noche.": "على الأرجح لديه ضيوف هذا المساء.",
+    "C1 | Dicen que Mark hace la mejor sopa del departamento.": "يُقال إن مارك يطبخ أفضل حساء في الشقّة.",
+    "C1 | Dicen que Mark hace la mejor sopa del piso.": "يُقال إن مارك يطبخ أفضل حساء في الشقّة."
    }
   },
   "pt": {
@@ -1815,6 +1910,39 @@ window.SCENE = {
     "C1 | Tendrá invitados esta noche.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que Mark hace la mejor sopa del departamento.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>.",
     "C1 | Dicen que Mark hace la mejor sopa del piso.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La olla está al lado de la sartén.": "A panela está ao lado da frigideira.",
+    "A2 | El reloj está encima de la estantería.": "O relógio está acima da prateleira.",
+    "A2 | La planta está encima del refrigerador.": "A planta está em cima da geladeira.",
+    "A2 | La planta está encima de la nevera.": "A planta está em cima da geladeira.",
+    "A2 | El gato está sentado en la silla.": "O gato está sentado na cadeira.",
+    "A2 | Las papas están en la mesa.": "As batatas estão na mesa.",
+    "A2 | Las patatas están en la mesa.": "As batatas estão na mesa.",
+    "A2 | La toalla cuelga del horno.": "O pano está pendurado no forno.",
+    "A2 | Hay un bote de basura al lado del refrigerador.": "Há uma lixeira ao lado da geladeira.",
+    "A2 | Hay una papelera al lado de la nevera.": "Há uma lixeira ao lado da geladeira.",
+    "A2 | La leche está al lado del pan.": "O leite está ao lado do pão.",
+    "B1 | Mark ha cortado la zanahoria.": "Mark cortou a cenoura.",
+    "B1 | Ha puesto dos huevos en la sartén.": "Ele pôs dois ovos na frigideira.",
+    "B1 | La sopa ha hervido una hora.": "A sopa ferveu uma hora.",
+    "B1 | Mark ha puesto el pan en la mesa.": "Mark pôs o pão na mesa.",
+    "B1 | El gato ha subido a la silla.": "O gato subiu na cadeira.",
+    "B1 | Mark la ha puesto en la mesa.": "Mark pôs o leite na mesa.",
+    "B1 | Mark ha colgado la toalla del horno.": "Mark pendurou o pano no forno.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de departamento.": "Hoje Mark cozinhou para os colegas de apartamento.",
+    "B1 | Hoy Mark ha cocinado para sus compañeros de piso.": "Hoje Mark cozinhou para os colegas de apartamento.",
+    "B2 | Aquí se cortan las verduras antes de cocinarlas.": "Aqui se cortam os legumes antes de cozinhá-los.",
+    "B2 | La mesa en la que están las verduras es de madera.": "A mesa em que estão os legumes é de madeira.",
+    "B2 | El gato, que está sentado en la silla, mira la mesa.": "O gato, que está sentado na cadeira, olha para a mesa.",
+    "B2 | El libro, cuyas páginas están llenas de fotos, está en la mesa.": "O livro, cujas páginas estão cheias de fotos, está na mesa.",
+    "B2 | Los huevos de la sartén ya están hechos.": "Os ovos na frigideira já estão prontos.",
+    "B2 | La sopa tiene que hervir diez minutos más.": "A sopa tem que ferver mais dez minutos.",
+    "C1 | La sopa debe de oler bien.": "A sopa deve estar cheirando bem.",
+    "C1 | Puede que el gato espere un trozo de zanahoria.": "Pode ser que o gato espere um pedaço de cenoura.",
+    "C1 | Tendrá invitados esta noche.": "Ele deve ter convidados esta noite.",
+    "C1 | Dicen que Mark hace la mejor sopa del departamento.": "Dizem que Mark faz a melhor sopa do apartamento.",
+    "C1 | Dicen que Mark hace la mejor sopa del piso.": "Dizem que Mark faz a melhor sopa do apartamento."
    }
   },
   "pl": {
@@ -1825,7 +1953,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1835,7 +1964,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

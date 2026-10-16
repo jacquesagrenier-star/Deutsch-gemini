@@ -978,6 +978,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "bank",
      "phrase": "El hombre está sentado en el banco.",
+     "sens": "L'homme est assis sur le banc.",
      "n": "<b>en</b> = sur, dans. Le lieu → <b>estar</b>."
     },
     {
@@ -990,6 +991,7 @@ window.SCENE = {
      "f": "boot",
      "r": "see",
      "phrase": "El barco está en el lago.",
+     "sens": "La barque est sur le lac.",
      "n": "Sur l'eau, l'espagnol dit simplement <b>en</b> : en el lago."
     },
     {
@@ -1002,6 +1004,7 @@ window.SCENE = {
      "f": "vogel",
      "r": "bank",
      "phrase": "El pájaro está en el banco.",
+     "sens": "L'oiseau est sur le banc.",
      "n": "<b>el</b> banco est masculin → <b>en el</b> banco."
     },
     {
@@ -1014,6 +1017,7 @@ window.SCENE = {
      "f": "junge",
      "r": "weg",
      "phrase": "El niño va en bicicleta por el camino.",
+     "sens": "Le garçon fait du vélo sur le chemin.",
      "n": "<b>por</b> = le long de, à travers : por el camino."
     },
     {
@@ -1026,6 +1030,7 @@ window.SCENE = {
      "f": "korb",
      "r": "decke",
      "phrase": "La cesta está encima de la manta.",
+     "sens": "Le panier est sur la couverture.",
      "n": "<b>encima de</b> = sur."
     },
     {
@@ -1038,6 +1043,7 @@ window.SCENE = {
      "f": "handy",
      "r": "rucksack",
      "phrase": "El móvil está al lado de la mochila.",
+     "sens": "Le téléphone est à côté du sac à dos.",
      "n": "<b>la</b> mochila est féminin : <b>de la</b>, sans contraction.",
      "latam": {
       "q": "El celular está al lado ___ mochila.",
@@ -1054,6 +1060,7 @@ window.SCENE = {
      "f": "laterne",
      "r": "muelleimer",
      "phrase": "Hay una farola al lado de la papelera.",
+     "sens": "Il y a un lampadaire à côté de la poubelle.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue.",
      "latam": {
       "q": "___ un farol al lado del bote de basura.",
@@ -1070,6 +1077,7 @@ window.SCENE = {
      "f": "ball",
      "r": "gras",
      "phrase": "La pelota está por encima de la hierba.",
+     "sens": "Le ballon est au-dessus de l'herbe.",
      "n": "<b>por encima de</b> = au-dessus de, sans toucher."
     }
    ]
@@ -1087,6 +1095,7 @@ window.SCENE = {
      "f": "ball",
      "r": "anna",
      "phrase": "Hace un momento, Anna lanzó la pelota.",
+     "sens": "Il y a un instant, Anna a lancé le ballon.",
      "n": "Une action ponctuelle, terminée → <b>indefinido</b> : lanzó.",
      "revise": {
       "mot": "lanzar",
@@ -1103,6 +1112,7 @@ window.SCENE = {
      "f": "anna",
      "r": "decke",
      "phrase": "Mientras Anna estaba en la manta, el perro jugaba.",
+     "sens": "Pendant qu'Anna était sur la couverture, le chien jouait.",
      "n": "Le décor, une situation qui dure → <b>imparfait</b> : estaba.",
      "revise": {
       "mot": "estar",
@@ -1119,6 +1129,7 @@ window.SCENE = {
      "f": "buch",
      "r": "anna",
      "phrase": "Ayer Anna leyó un libro entero.",
+     "sens": "Hier, Anna a lu un livre entier.",
      "n": "<b>leer</b> → <b>leyó</b> : le i entre deux voyelles devient y.",
      "revise": {
       "mot": "leer",
@@ -1134,6 +1145,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "El domingo pasado, Anna fue al parque.",
+     "sens": "Dimanche dernier, Anna est allée au parc.",
      "n": "<b>ir</b> → <b>fue</b> (la même forme que ser).",
      "revise": {
       "mot": "ir",
@@ -1150,6 +1162,7 @@ window.SCENE = {
      "f": "ball",
      "r": "hund",
      "phrase": "Anna se la lanzó al perro.",
+     "sens": "Anna l'a lancé au chien.",
      "n": "<b>le</b> + <b>la</b> → <b>se la</b> : le devient se devant la, lo, las, los.",
      "revise": {
       "mot": "lanzar",
@@ -1166,6 +1179,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "bank",
      "phrase": "Antes, el hombre del banco leía el periódico cada domingo.",
+     "sens": "Avant, l'homme du banc lisait le journal chaque dimanche.",
      "n": "Une habitude du passé → <b>imparfait</b> : leía.",
      "revise": {
       "mot": "leer",
@@ -1182,6 +1196,7 @@ window.SCENE = {
      "f": "boot",
      "r": "bruecke",
      "phrase": "Esta mañana, el hombre de la barca remó hasta el puente.",
+     "sens": "Ce matin, l'homme de la barque a ramé jusqu'au pont.",
      "n": "Il → <b>-ó</b>, avec l'accent. remé = je, remo = je (présent).",
      "revise": {
       "mot": "remar",
@@ -1198,6 +1213,7 @@ window.SCENE = {
      "f": "decke",
      "r": "gras",
      "phrase": "Al llegar, Anna puso la manta en la hierba.",
+     "sens": "En arrivant, Anna a mis la couverture sur l'herbe.",
      "n": "<b>poner</b> est irrégulier → <b>puso</b>.",
      "revise": {
       "mot": "poner",
@@ -1219,6 +1235,7 @@ window.SCENE = {
      "f": "anna",
      "r": "ball",
      "phrase": "La mujer que lanza la pelota se llama Anna.",
+     "sens": "La femme qui lance le ballon s'appelle Anna.",
      "n": "Relative sans virgule, sujet → <b>que</b>. <b>quien</b> ne vient qu'après une virgule ou une préposition."
     },
     {
@@ -1231,6 +1248,7 @@ window.SCENE = {
      "f": "junge",
      "r": "helm",
      "phrase": "El niño cuyo casco es azul va en bicicleta.",
+     "sens": "Le garçon dont le casque est bleu fait du vélo.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : el casco → <b>cuyo</b>."
     },
     {
@@ -1243,6 +1261,7 @@ window.SCENE = {
      "f": "bank",
      "r": "monsieur",
      "phrase": "El banco en el que está sentado el hombre es verde.",
+     "sens": "Le banc sur lequel l'homme est assis est vert.",
      "n": "Préposition + article + <b>que</b> : en el que."
     },
     {
@@ -1255,6 +1274,7 @@ window.SCENE = {
      "f": "hund",
      "r": "ball",
      "phrase": "El perro va corriendo hacia la pelota.",
+     "sens": "Le chien court vers le ballon.",
      "n": "<b>ir</b> + gérondif = une action en train de se faire : va corriendo.",
      "revise": {
       "mot": "correr",
@@ -1271,6 +1291,7 @@ window.SCENE = {
      "f": "buch",
      "r": "decke",
      "phrase": "El libro está abierto.",
+     "sens": "Le livre est ouvert.",
      "n": "<b>abrir</b> → participe irrégulier <b>abierto</b>."
     },
     {
@@ -1283,6 +1304,7 @@ window.SCENE = {
      "f": "decke",
      "r": "gras",
      "phrase": "La manta está extendida sobre la hierba.",
+     "sens": "La couverture est étalée sur l'herbe.",
      "n": "<b>estar</b> + participe, accordé : la manta → extendid<b>a</b>."
     }
    ]
@@ -1300,6 +1322,7 @@ window.SCENE = {
      "f": "anna",
      "r": "hund",
      "phrase": "Debe de conocer al perro.",
+     "sens": "Elle doit connaître le chien.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1312,6 +1335,7 @@ window.SCENE = {
      "f": "hund",
      "r": "ball",
      "phrase": "Puede que el perro atrape la pelota enseguida.",
+     "sens": "Le chien va peut-être attraper le ballon tout de suite.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1324,6 +1348,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "bank",
      "phrase": "Vendrá aquí todos los domingos.",
+     "sens": "Il doit venir ici tous les dimanches.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1335,6 +1360,7 @@ window.SCENE = {
      ],
      "f": "see",
      "phrase": "Dicen en el barrio que en el lago hay peces enormes.",
+     "sens": "Dans le quartier, on dit qu'il y a d'énormes poissons dans le lac.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1382,6 +1408,36 @@ window.SCENE = {
     "C1 | Puede que el perro atrape la pelota enseguida.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Vendrá aquí todos los domingos.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen en el barrio que en el lago hay peces enormes.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El hombre está sentado en el banco.": "The man is sitting on the bench.",
+    "A2 | El barco está en el lago.": "The boat is on the lake.",
+    "A2 | El pájaro está en el banco.": "The bird is on the bench.",
+    "A2 | El niño va en bicicleta por el camino.": "The boy is riding his bike on the path.",
+    "A2 | La cesta está encima de la manta.": "The basket is on top of the blanket.",
+    "A2 | El celular está al lado de la mochila.": "The phone is next to the backpack.",
+    "A2 | El móvil está al lado de la mochila.": "The phone is next to the backpack.",
+    "A2 | Hay un farol al lado del bote de basura.": "There is a lamppost next to the bin.",
+    "A2 | Hay una farola al lado de la papelera.": "There is a lamppost next to the bin.",
+    "A2 | La pelota está por encima de la hierba.": "The ball is above the grass.",
+    "B1 | Hace un momento, Anna lanzó la pelota.": "A moment ago, Anna threw the ball.",
+    "B1 | Mientras Anna estaba en la manta, el perro jugaba.": "While Anna was on the blanket, the dog was playing.",
+    "B1 | Ayer Anna leyó un libro entero.": "Yesterday Anna read a whole book.",
+    "B1 | El domingo pasado, Anna fue al parque.": "Last Sunday, Anna went to the park.",
+    "B1 | Anna se la lanzó al perro.": "Anna threw it to the dog.",
+    "B1 | Antes, el hombre del banco leía el periódico cada domingo.": "Before, the man on the bench used to read the newspaper every Sunday.",
+    "B1 | Esta mañana, el hombre de la barca remó hasta el puente.": "This morning, the man in the boat rowed to the bridge.",
+    "B1 | Al llegar, Anna puso la manta en la hierba.": "On arriving, Anna put the blanket on the grass.",
+    "B2 | La mujer que lanza la pelota se llama Anna.": "The woman throwing the ball is called Anna.",
+    "B2 | El niño cuyo casco es azul va en bicicleta.": "The boy whose helmet is blue is riding a bike.",
+    "B2 | El banco en el que está sentado el hombre es verde.": "The bench the man is sitting on is green.",
+    "B2 | El perro va corriendo hacia la pelota.": "The dog is running towards the ball.",
+    "B2 | El libro está abierto.": "The book is open.",
+    "B2 | La manta está extendida sobre la hierba.": "The blanket is spread out on the grass.",
+    "C1 | Debe de conocer al perro.": "She must know the dog.",
+    "C1 | Puede que el perro atrape la pelota enseguida.": "The dog may catch the ball right away.",
+    "C1 | Vendrá aquí todos los domingos.": "He probably comes here every Sunday.",
+    "C1 | Dicen en el barrio que en el lago hay peces enormes.": "In the neighbourhood they say there are huge fish in the lake."
    }
   },
   "tr": {
@@ -1392,7 +1448,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1402,7 +1459,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1412,7 +1470,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1455,6 +1514,36 @@ window.SCENE = {
     "C1 | Puede que el perro atrape la pelota enseguida.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Vendrá aquí todos los domingos.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen en el barrio que en el lago hay peces enormes.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El hombre está sentado en el banco.": "الرجل جالس على المقعد.",
+    "A2 | El barco está en el lago.": "القارب على البحيرة.",
+    "A2 | El pájaro está en el banco.": "العصفور على المقعد.",
+    "A2 | El niño va en bicicleta por el camino.": "الصبيّ يركب الدراجة على الممرّ.",
+    "A2 | La cesta está encima de la manta.": "السلّة فوق البطّانية.",
+    "A2 | El celular está al lado de la mochila.": "الهاتف بجانب حقيبة الظهر.",
+    "A2 | El móvil está al lado de la mochila.": "الهاتف بجانب حقيبة الظهر.",
+    "A2 | Hay un farol al lado del bote de basura.": "هناك عمود إنارة بجانب سلّة المهملات.",
+    "A2 | Hay una farola al lado de la papelera.": "هناك عمود إنارة بجانب سلّة المهملات.",
+    "A2 | La pelota está por encima de la hierba.": "الكرة فوق العشب.",
+    "B1 | Hace un momento, Anna lanzó la pelota.": "قبل لحظة، رمت آنا الكرة.",
+    "B1 | Mientras Anna estaba en la manta, el perro jugaba.": "بينما كانت آنا على البطّانية، كان الكلب يلعب.",
+    "B1 | Ayer Anna leyó un libro entero.": "أمس قرأت آنا كتاباً كاملاً.",
+    "B1 | El domingo pasado, Anna fue al parque.": "يوم الأحد الماضي، ذهبت آنا إلى الحديقة.",
+    "B1 | Anna se la lanzó al perro.": "رمتها آنا للكلب.",
+    "B1 | Antes, el hombre del banco leía el periódico cada domingo.": "في السابق، كان رجل المقعد يقرأ الجريدة كل يوم أحد.",
+    "B1 | Esta mañana, el hombre de la barca remó hasta el puente.": "هذا الصباح، جدّف رجل القارب حتى الجسر.",
+    "B1 | Al llegar, Anna puso la manta en la hierba.": "عند وصولها، وضعت آنا البطّانية على العشب.",
+    "B2 | La mujer que lanza la pelota se llama Anna.": "المرأة التي ترمي الكرة اسمها آنا.",
+    "B2 | El niño cuyo casco es azul va en bicicleta.": "الصبيّ ذو الخوذة الزرقاء يركب الدراجة.",
+    "B2 | El banco en el que está sentado el hombre es verde.": "المقعد الذي يجلس عليه الرجل أخضر.",
+    "B2 | El perro va corriendo hacia la pelota.": "يركض الكلب نحو الكرة.",
+    "B2 | El libro está abierto.": "الكتاب مفتوح.",
+    "B2 | La manta está extendida sobre la hierba.": "البطّانية مفروشة على العشب.",
+    "C1 | Debe de conocer al perro.": "لا بدّ أنها تعرف الكلب.",
+    "C1 | Puede que el perro atrape la pelota enseguida.": "ربما يمسك الكلب الكرة حالاً.",
+    "C1 | Vendrá aquí todos los domingos.": "على الأرجح يأتي إلى هنا كل يوم أحد.",
+    "C1 | Dicen en el barrio que en el lago hay peces enormes.": "يقولون في الحيّ إن في البحيرة أسماكاً ضخمة."
    }
   },
   "pt": {
@@ -1498,6 +1587,36 @@ window.SCENE = {
     "C1 | Puede que el perro atrape la pelota enseguida.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Vendrá aquí todos los domingos.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen en el barrio que en el lago hay peces enormes.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El hombre está sentado en el banco.": "O homem está sentado no banco.",
+    "A2 | El barco está en el lago.": "O barco está no lago.",
+    "A2 | El pájaro está en el banco.": "O pássaro está no banco.",
+    "A2 | El niño va en bicicleta por el camino.": "O menino anda de bicicleta pelo caminho.",
+    "A2 | La cesta está encima de la manta.": "A cesta está em cima da manta.",
+    "A2 | El celular está al lado de la mochila.": "O celular está ao lado da mochila.",
+    "A2 | El móvil está al lado de la mochila.": "O celular está ao lado da mochila.",
+    "A2 | Hay un farol al lado del bote de basura.": "Há um poste ao lado da lixeira.",
+    "A2 | Hay una farola al lado de la papelera.": "Há um poste ao lado da lixeira.",
+    "A2 | La pelota está por encima de la hierba.": "A bola está acima da grama.",
+    "B1 | Hace un momento, Anna lanzó la pelota.": "Há pouco, Anna lançou a bola.",
+    "B1 | Mientras Anna estaba en la manta, el perro jugaba.": "Enquanto Anna estava na manta, o cachorro brincava.",
+    "B1 | Ayer Anna leyó un libro entero.": "Ontem Anna leu um livro inteiro.",
+    "B1 | El domingo pasado, Anna fue al parque.": "No domingo passado, Anna foi ao parque.",
+    "B1 | Anna se la lanzó al perro.": "Anna lançou-a para o cachorro.",
+    "B1 | Antes, el hombre del banco leía el periódico cada domingo.": "Antes, o homem do banco lia o jornal todo domingo.",
+    "B1 | Esta mañana, el hombre de la barca remó hasta el puente.": "Esta manhã, o homem do barco remou até a ponte.",
+    "B1 | Al llegar, Anna puso la manta en la hierba.": "Ao chegar, Anna pôs a manta na grama.",
+    "B2 | La mujer que lanza la pelota se llama Anna.": "A mulher que lança a bola se chama Anna.",
+    "B2 | El niño cuyo casco es azul va en bicicleta.": "O menino cujo capacete é azul anda de bicicleta.",
+    "B2 | El banco en el que está sentado el hombre es verde.": "O banco em que o homem está sentado é verde.",
+    "B2 | El perro va corriendo hacia la pelota.": "O cachorro vai correndo para a bola.",
+    "B2 | El libro está abierto.": "O livro está aberto.",
+    "B2 | La manta está extendida sobre la hierba.": "A manta está estendida na grama.",
+    "C1 | Debe de conocer al perro.": "Ela deve conhecer o cachorro.",
+    "C1 | Puede que el perro atrape la pelota enseguida.": "Pode ser que o cachorro pegue a bola agora mesmo.",
+    "C1 | Vendrá aquí todos los domingos.": "Ele deve vir aqui todo domingo.",
+    "C1 | Dicen en el barrio que en el lago hay peces enormes.": "No bairro dizem que há peixes enormes no lago."
    }
   },
   "pl": {
@@ -1508,7 +1627,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1518,7 +1638,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

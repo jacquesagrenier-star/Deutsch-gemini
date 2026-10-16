@@ -823,6 +823,7 @@ window.SCENE = {
      "f": "zwiebel",
      "r": "kohl",
      "phrase": "Las cebollas están entre los colinabos y la col.",
+     "sens": "Les oignons sont entre les choux-raves et le chou.",
      "n": "<b>la</b> col : féminin, comme la coliflor."
     },
     {
@@ -840,6 +841,7 @@ window.SCENE = {
       "genre": "el",
       "theme": "frutas_verduras_b1"
      },
+     "sens": "Anna a une botte de radis dans la main.",
      "n": "<b>un manojo</b> = une botte (de radis, de carottes)."
     },
     {
@@ -852,6 +854,7 @@ window.SCENE = {
      "f": "knoblauch",
      "r": "radieschen",
      "phrase": "El ajo está al lado de los rábanos.",
+     "sens": "L'ail est à côté des radis.",
      "n": "<b>al lado de</b> = à côté de."
     },
     {
@@ -864,6 +867,7 @@ window.SCENE = {
      "f": "kartoffel",
      "r": "sellerie",
      "phrase": "Las patatas están al lado del apio.",
+     "sens": "Les pommes de terre sont à côté du céleri.",
      "n": "<b>el</b> apio → de + el = <b>del</b>.",
      "latam": {
       "q": "Las papas están al lado ___ apio.",
@@ -880,6 +884,7 @@ window.SCENE = {
      "f": "lauch",
      "r": "kohl",
      "phrase": "El puerro está a la derecha de la col.",
+     "sens": "Le poireau est à droite du chou.",
      "n": "<b>a la derecha de</b> = à droite de."
     }
    ]
@@ -901,6 +906,7 @@ window.SCENE = {
       "genre": "la",
       "theme": "las_verduras"
      },
+     "sens": "Je voudrais une botte de carottes, s'il vous plaît.",
      "n": "<b>un manojo</b> = une botte."
     },
     {
@@ -917,6 +923,7 @@ window.SCENE = {
       "genre": "la",
       "theme": "la_comida"
      },
+     "sens": "Deux kilos de pommes de terre, s'il vous plaît.",
      "n": "Après une quantité : <b>de</b> + pluriel, sans article.",
      "latam": {
       "q": "Dos kilos de ___, por favor.",
@@ -941,6 +948,7 @@ window.SCENE = {
       "mot": "costar",
       "cat": "verbe"
      },
+     "sens": "Combien coûte le chou-fleur ?",
      "n": "la coliflor, singulier → <b>cuesta</b>."
     },
     {
@@ -957,6 +965,7 @@ window.SCENE = {
       "mot": "grande",
       "cat": "adjectif"
      },
+     "sens": "Le chou est plus gros que les choux de Bruxelles.",
      "n": "<b>más</b> … <b>que</b> = plus … que."
     },
     {
@@ -973,6 +982,7 @@ window.SCENE = {
       "genre": "el",
       "theme": "la_cocina_a2"
      },
+     "sens": "J'ai besoin d'une tête d'ail pour la sauce.",
      "n": "<b>una cabeza de ajos</b> = une tête d'ail."
     }
    ]
@@ -989,6 +999,7 @@ window.SCENE = {
      ],
      "f": "kartoffel",
      "phrase": "Las patatas fueron recogidas la semana pasada.",
+     "sens": "Les pommes de terre ont été récoltées la semaine dernière.",
      "n": "L'action, au passif : <b>ser</b> + participe, au passé → <b>fueron</b> recogidas.",
      "latam": {
       "q": "Las papas ___ recogidas la semana pasada.",
@@ -1005,6 +1016,7 @@ window.SCENE = {
      "f": "lauch",
      "r": "kohl",
      "phrase": "El puerro, cuyas hojas son verde oscuro, está al lado de la col.",
+     "sens": "Le poireau, dont les feuilles sont vert foncé, est à côté du chou.",
      "n": "<b>cuyo</b> s'accorde avec las hojas → <b>cuyas</b>."
     },
     {
@@ -1020,6 +1032,7 @@ window.SCENE = {
       "mot": "fresco",
       "cat": "adjectif"
      },
+     "sens": "Anna achète des radis frais.",
      "n": "el rábano → rábanos <b>frescos</b> : masculin pluriel."
     },
     {
@@ -1031,6 +1044,7 @@ window.SCENE = {
      ],
      "f": "kohl",
      "phrase": "La verdura que se vende aquí es de la región.",
+     "sens": "Les légumes vendus ici sont de la région.",
      "n": "Le passif avec <b>se</b> : que se vende = qu'on vend."
     },
     {
@@ -1042,6 +1056,7 @@ window.SCENE = {
      ],
      "f": "zwiebel",
      "phrase": "Las cebollas deben guardarse en un lugar seco.",
+     "sens": "Les oignons doivent être conservés dans un endroit sec.",
      "n": "Passif avec <b>se</b> collé à l'infinitif : deben <b>guardarse</b> = doivent être conservées."
     }
    ]
@@ -1058,6 +1073,7 @@ window.SCENE = {
      ],
      "f": "kohl",
      "phrase": "Debido a la temporada, en octubre hay mucha col.",
+     "sens": "En raison de la saison, il y a beaucoup de chou en octobre.",
      "n": "<b>debido a</b> = en raison de."
     },
     {
@@ -1069,6 +1085,7 @@ window.SCENE = {
      ],
      "f": "brokkoli",
      "phrase": "Cuanto más fresca está la verdura, más vitaminas tiene.",
+     "sens": "Plus les légumes sont frais, plus ils ont de vitamines.",
      "n": "<b>cuanto más</b> …, <b>más</b> … = plus …, plus …."
     },
     {
@@ -1080,6 +1097,7 @@ window.SCENE = {
      ],
      "f": "knoblauch",
      "phrase": "Si lo hubiera sabido, no habría comprado ajo en el supermercado.",
+     "sens": "Si je l'avais su, je n'aurais pas acheté d'ail au supermarché.",
      "n": "Regret sur le passé : <b>si</b> + plus-que-parfait du subjonctif, puis conditionnel passé."
     },
     {
@@ -1091,6 +1109,7 @@ window.SCENE = {
      ],
      "f": "karotte",
      "phrase": "Las zanahorias parecen haber sido recogidas hoy mismo.",
+     "sens": "Les carottes semblent avoir été récoltées aujourd'hui même.",
      "n": "<b>parecer</b> + infinitif passé du passif : parecen <b>haber sido</b> recogidas."
     },
     {
@@ -1102,6 +1121,7 @@ window.SCENE = {
      ],
      "f": "radieschen-main",
      "phrase": "Anna debe de haber comprado los rábanos para una ensalada.",
+     "sens": "Anna a dû acheter les radis pour une salade.",
      "n": "<b>deber de</b> + infinitif passé = une déduction sur le passé."
     }
    ]
@@ -1157,6 +1177,31 @@ window.SCENE = {
     "C1 | Si lo hubiera sabido, no habría comprado ajo en el supermercado.": "Regret about the past: <b>si</b> + pluperfect subjunctive, then the conditional perfect.",
     "C1 | Las zanahorias parecen haber sido recogidas hoy mismo.": "<b>parecer</b> + perfect passive infinitive: parecen <b>haber sido</b> recogidas.",
     "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "<b>deber de</b> + perfect infinitive = a deduction about the past."
+   },
+   "sens": {
+    "A2 | Las cebollas están entre los colinabos y la col.": "The onions are between the kohlrabi and the cabbage.",
+    "A2 | Anna tiene un manojo de rábanos en la mano.": "Anna has a bunch of radishes in her hand.",
+    "A2 | El ajo está al lado de los rábanos.": "The garlic is next to the radishes.",
+    "A2 | Las papas están al lado del apio.": "The potatoes are next to the celery.",
+    "A2 | Las patatas están al lado del apio.": "The potatoes are next to the celery.",
+    "A2 | El puerro está a la derecha de la col.": "The leek is to the right of the cabbage.",
+    "B1 | Quería un manojo de zanahorias, por favor.": "I would like a bunch of carrots, please.",
+    "B1 | Dos kilos de papas, por favor.": "Two kilos of potatoes, please.",
+    "B1 | Dos kilos de patatas, por favor.": "Two kilos of potatoes, please.",
+    "B1 | ¿Cuánto cuesta la coliflor?": "How much is the cauliflower?",
+    "B1 | La col es más grande que las coles de Bruselas.": "The cabbage is bigger than the Brussels sprouts.",
+    "B1 | Necesito una cabeza de ajos para la salsa.": "I need a bulb of garlic for the sauce.",
+    "B2 | Las papas fueron recogidas la semana pasada.": "The potatoes were harvested last week.",
+    "B2 | Las patatas fueron recogidas la semana pasada.": "The potatoes were harvested last week.",
+    "B2 | El puerro, cuyas hojas son verde oscuro, está al lado de la col.": "The leek, whose leaves are dark green, is next to the cabbage.",
+    "B2 | Anna compra rábanos frescos.": "Anna buys fresh radishes.",
+    "B2 | La verdura que se vende aquí es de la región.": "The vegetables sold here are from the region.",
+    "B2 | Las cebollas deben guardarse en un lugar seco.": "Onions must be kept in a dry place.",
+    "C1 | Debido a la temporada, en octubre hay mucha col.": "Because of the season, there is a lot of cabbage in October.",
+    "C1 | Cuanto más fresca está la verdura, más vitaminas tiene.": "The fresher the vegetables, the more vitamins they have.",
+    "C1 | Si lo hubiera sabido, no habría comprado ajo en el supermercado.": "If I had known, I would not have bought garlic at the supermarket.",
+    "C1 | Las zanahorias parecen haber sido recogidas hoy mismo.": "The carrots seem to have been harvested today.",
+    "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "Anna must have bought the radishes for a salad."
    }
   },
   "tr": {
@@ -1169,7 +1214,8 @@ window.SCENE = {
    "couches": {
     "A1": "Pazarda"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1181,7 +1227,8 @@ window.SCENE = {
    "couches": {
     "A1": "На ринку"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1193,7 +1240,8 @@ window.SCENE = {
    "couches": {
     "A1": "در بازار"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1233,6 +1281,31 @@ window.SCENE = {
     "C1 | Si lo hubiera sabido, no habría comprado ajo en el supermercado.": "ندم على الماضي: <b>si</b> + الماضي التامّ من subjuntivo، ثم condicional الماضي.",
     "C1 | Las zanahorias parecen haber sido recogidas hoy mismo.": "<b>parecer</b> + مصدر ماضٍ بالمبني للمجهول: parecen <b>haber sido</b> recogidas.",
     "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "<b>deber de</b> + مصدر ماضٍ = استنتاج بشأن الماضي."
+   },
+   "sens": {
+    "A2 | Las cebollas están entre los colinabos y la col.": "البصل بين الكرنب الساقي والملفوف.",
+    "A2 | Anna tiene un manojo de rábanos en la mano.": "في يد آنا حزمة فجل.",
+    "A2 | El ajo está al lado de los rábanos.": "الثوم بجانب الفجل.",
+    "A2 | Las papas están al lado del apio.": "البطاطا بجانب الكرفس.",
+    "A2 | Las patatas están al lado del apio.": "البطاطا بجانب الكرفس.",
+    "A2 | El puerro está a la derecha de la col.": "الكرّاث على يمين الملفوف.",
+    "B1 | Quería un manojo de zanahorias, por favor.": "أريد حزمة جزر، من فضلك.",
+    "B1 | Dos kilos de papas, por favor.": "كيلوغرامان من البطاطا، من فضلك.",
+    "B1 | Dos kilos de patatas, por favor.": "كيلوغرامان من البطاطا، من فضلك.",
+    "B1 | ¿Cuánto cuesta la coliflor?": "بكم القرنبيط؟",
+    "B1 | La col es más grande que las coles de Bruselas.": "الملفوف أكبر من كرنب بروكسل.",
+    "B1 | Necesito una cabeza de ajos para la salsa.": "أحتاج إلى رأس ثوم للصلصة.",
+    "B2 | Las papas fueron recogidas la semana pasada.": "حُصدت البطاطا الأسبوع الماضي.",
+    "B2 | Las patatas fueron recogidas la semana pasada.": "حُصدت البطاطا الأسبوع الماضي.",
+    "B2 | El puerro, cuyas hojas son verde oscuro, está al lado de la col.": "الكرّاث ذو الأوراق الخضراء الداكنة بجانب الملفوف.",
+    "B2 | Anna compra rábanos frescos.": "تشتري آنا فجلاً طازجاً.",
+    "B2 | La verdura que se vende aquí es de la región.": "الخضار التي تُباع هنا من المنطقة.",
+    "B2 | Las cebollas deben guardarse en un lugar seco.": "يجب حفظ البصل في مكان جافّ.",
+    "C1 | Debido a la temporada, en octubre hay mucha col.": "بسبب الموسم، يكثر الملفوف في أكتوبر.",
+    "C1 | Cuanto más fresca está la verdura, más vitaminas tiene.": "كلّما كانت الخضار أطزج، احتوت على فيتامينات أكثر.",
+    "C1 | Si lo hubiera sabido, no habría comprado ajo en el supermercado.": "لو كنت أعلم، لما اشتريت الثوم من السوبرماركت.",
+    "C1 | Las zanahorias parecen haber sido recogidas hoy mismo.": "يبدو أن الجزر حُصد اليوم.",
+    "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "لا بدّ أن آنا اشترت الفجل لتحضير سلطة."
    }
   },
   "pt": {
@@ -1273,6 +1346,31 @@ window.SCENE = {
     "C1 | Si lo hubiera sabido, no habría comprado ajo en el supermercado.": "Arrependimento sobre o passado: <b>si</b> + mais-que-perfeito do subjuntivo, depois o condicional composto.",
     "C1 | Las zanahorias parecen haber sido recogidas hoy mismo.": "<b>parecer</b> + infinitivo composto da passiva: parecen <b>haber sido</b> recogidas.",
     "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "<b>deber de</b> + infinitivo composto = uma dedução sobre o passado."
+   },
+   "sens": {
+    "A2 | Las cebollas están entre los colinabos y la col.": "As cebolas estão entre os couves-rábano e o repolho.",
+    "A2 | Anna tiene un manojo de rábanos en la mano.": "Anna tem um maço de rabanetes na mão.",
+    "A2 | El ajo está al lado de los rábanos.": "O alho está ao lado dos rabanetes.",
+    "A2 | Las papas están al lado del apio.": "As batatas estão ao lado do aipo.",
+    "A2 | Las patatas están al lado del apio.": "As batatas estão ao lado do aipo.",
+    "A2 | El puerro está a la derecha de la col.": "O alho-poró está à direita do repolho.",
+    "B1 | Quería un manojo de zanahorias, por favor.": "Eu queria um maço de cenouras, por favor.",
+    "B1 | Dos kilos de papas, por favor.": "Dois quilos de batatas, por favor.",
+    "B1 | Dos kilos de patatas, por favor.": "Dois quilos de batatas, por favor.",
+    "B1 | ¿Cuánto cuesta la coliflor?": "Quanto custa a couve-flor?",
+    "B1 | La col es más grande que las coles de Bruselas.": "O repolho é maior que as couves-de-bruxelas.",
+    "B1 | Necesito una cabeza de ajos para la salsa.": "Preciso de uma cabeça de alho para o molho.",
+    "B2 | Las papas fueron recogidas la semana pasada.": "As batatas foram colhidas na semana passada.",
+    "B2 | Las patatas fueron recogidas la semana pasada.": "As batatas foram colhidas na semana passada.",
+    "B2 | El puerro, cuyas hojas son verde oscuro, está al lado de la col.": "O alho-poró, cujas folhas são verde-escuras, está ao lado do repolho.",
+    "B2 | Anna compra rábanos frescos.": "Anna compra rabanetes frescos.",
+    "B2 | La verdura que se vende aquí es de la región.": "Os legumes vendidos aqui são da região.",
+    "B2 | Las cebollas deben guardarse en un lugar seco.": "As cebolas devem ser guardadas em lugar seco.",
+    "C1 | Debido a la temporada, en octubre hay mucha col.": "Por causa da estação, em outubro há muito repolho.",
+    "C1 | Cuanto más fresca está la verdura, más vitaminas tiene.": "Quanto mais frescos os legumes, mais vitaminas eles têm.",
+    "C1 | Si lo hubiera sabido, no habría comprado ajo en el supermercado.": "Se eu soubesse, não teria comprado alho no supermercado.",
+    "C1 | Las zanahorias parecen haber sido recogidas hoy mismo.": "As cenouras parecem ter sido colhidas hoje mesmo.",
+    "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "Anna deve ter comprado os rabanetes para uma salada."
    }
   },
   "pl": {
@@ -1285,7 +1383,8 @@ window.SCENE = {
    "couches": {
     "A1": "Na targu"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1297,7 +1396,8 @@ window.SCENE = {
    "couches": {
     "A1": "На рынке"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

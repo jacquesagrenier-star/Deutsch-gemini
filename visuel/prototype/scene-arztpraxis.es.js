@@ -1843,6 +1843,7 @@ window.SCENE = {
      "f": "ball",
      "r": "tasche",
      "phrase": "La pelota está encima de la bolsa.",
+     "sens": "Le ballon est sur le sac.",
      "n": "<b>encima de</b> = sur, dessus. Le lieu → <b>estar</b>."
     },
     {
@@ -1855,6 +1856,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "poster",
      "phrase": "El reloj está encima del póster.",
+     "sens": "L'horloge est au-dessus de l'affiche.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -1867,6 +1869,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "fenster",
      "phrase": "La planta está junto a la ventana.",
+     "sens": "La plante est près de la fenêtre.",
      "n": "<b>junto a</b> = près de, contre."
     },
     {
@@ -1879,6 +1882,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "La médica está sentada al lado del paciente.",
+     "sens": "La médecin est assise à côté du patient.",
      "n": "<b>al lado de</b> + el paciente → al lado <b>del</b> paciente."
     },
     {
@@ -1891,6 +1895,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "tuer",
      "phrase": "Hay una chaqueta al lado de la puerta.",
+     "sens": "Il y a une veste à côté de la porte.",
      "n": "Avec <b>una</b> (une chose qu'on découvre) → <b>hay</b>."
     },
     {
@@ -1903,6 +1908,7 @@ window.SCENE = {
      "f": "socke",
      "r": "schuh",
      "phrase": "Los calcetines están encima de los zapatos.",
+     "sens": "Les chaussettes sont sur les chaussures.",
      "n": "Avec <b>los</b> (des choses précises) → <b>estar</b>, pas hay."
     },
     {
@@ -1915,6 +1921,7 @@ window.SCENE = {
      "f": "pflaster",
      "r": "knie",
      "phrase": "La tirita está en la rodilla.",
+     "sens": "Le pansement est sur le genou.",
      "n": "<b>en</b> = sur, à : en la rodilla.",
      "latam": {
       "q": "¿Dónde está la curita?",
@@ -1931,6 +1938,7 @@ window.SCENE = {
      "f": "poster",
      "r": "mark",
      "phrase": "El póster está detrás del paciente.",
+     "sens": "L'affiche est derrière le patient.",
      "n": "<b>detrás de</b> = derrière."
     }
    ]
@@ -1952,6 +1960,7 @@ window.SCENE = {
       "mot": "dejar",
       "cat": "verbe"
      },
+     "sens": "Mark l'a laissé sur le sac.",
      "n": "Complément direct féminin (la pelota) → <b>la</b>."
     },
     {
@@ -1968,6 +1977,7 @@ window.SCENE = {
       "mot": "poner",
       "cat": "verbe"
      },
+     "sens": "Mark les a mis à côté du sac.",
      "n": "Complément direct masculin pluriel (los zapatos) → <b>los</b>."
     },
     {
@@ -1980,6 +1990,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "hocker",
      "phrase": "La médica está sentada en un taburete.",
+     "sens": "La médecin est assise sur un tabouret.",
      "n": "<b>estar sentado</b> : un état, une position."
     },
     {
@@ -1992,6 +2003,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "La médica le sonríe a Mark.",
+     "sens": "La médecin sourit à Mark.",
      "n": "Sourire <b>à</b> quelqu'un : complément indirect → <b>le</b>. L'espagnol le répète volontiers : le sonríe <b>a Mark</b>."
     },
     {
@@ -2004,6 +2016,7 @@ window.SCENE = {
      "f": "glas",
      "r": "schreibtisch",
      "phrase": "El vaso está encima del escritorio.",
+     "sens": "Le verre est sur le bureau.",
      "n": "Où il se trouve → <b>estar</b>."
     },
     {
@@ -2020,6 +2033,7 @@ window.SCENE = {
       "mot": "dejar",
       "cat": "verbe"
      },
+     "sens": "La médecin l'a laissée sur le bureau.",
      "n": "Complément direct féminin (la tarjeta) → <b>la</b>."
     },
     {
@@ -2032,6 +2046,7 @@ window.SCENE = {
      "f": "mark",
      "r": "knie",
      "phrase": "Mark está herido en la rodilla.",
+     "sens": "Mark est blessé au genou.",
      "n": "Une blessure est un état → <b>estar</b> herido."
     },
     {
@@ -2048,6 +2063,7 @@ window.SCENE = {
       "mot": "quitarse",
       "cat": "verbe"
      },
+     "sens": "Mark a enlevé ses chaussures et ses chaussettes.",
      "n": "<b>quitarse</b> = enlever (ses vêtements) ; <b>ponerse</b> = mettre. Il est pieds nus : il les a enlevés."
     }
    ]
@@ -2065,6 +2081,7 @@ window.SCENE = {
      "f": "mark",
      "r": "knie",
      "phrase": "El paciente cuya rodilla está herida se llama Mark.",
+     "sens": "Le patient dont le genou est blessé s'appelle Mark.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : la rodilla → <b>cuya</b>."
     },
     {
@@ -2077,6 +2094,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "verband",
      "phrase": "La médica, que tiene un vendaje en la mano, sonríe.",
+     "sens": "La médecin, qui a un bandage à la main, sourit.",
      "n": "Sujet de la relative → <b>que</b>. <b>cuya</b> demanderait un nom possédé juste après."
     },
     {
@@ -2089,6 +2107,7 @@ window.SCENE = {
      "f": "mark",
      "r": "aerztin",
      "phrase": "El paciente al que sonríe la médica se llama Mark.",
+     "sens": "Le patient à qui la médecin sourit s'appelle Mark.",
      "n": "Sourire <b>a</b> alguien : a + el que → <b>al que</b>. Avec quien, ce serait « <b>a</b> quien », sans article."
     },
     {
@@ -2101,6 +2120,7 @@ window.SCENE = {
      "f": "tasche",
      "r": "ball",
      "phrase": "La bolsa encima de la cual está la pelota es de Mark.",
+     "sens": "Le sac sur lequel est le ballon est à Mark.",
      "n": "Après <b>encima de</b> : <b>la cual</b> (ou la que), jamais que seul."
     },
     {
@@ -2112,6 +2132,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "La ventana está cerrada.",
+     "sens": "La fenêtre est fermée.",
      "n": "Le résultat (quelqu'un l'a fermée) → <b>estar</b> + participe."
     },
     {
@@ -2124,6 +2145,7 @@ window.SCENE = {
      "f": "pflaster",
      "r": "knie",
      "phrase": "La tirita ya está puesta.",
+     "sens": "Le pansement est déjà posé.",
      "n": "Un état résultant → <b>estar</b> puesta. « es puesta » serait l'action, au passif.",
      "latam": {
       "q": "La curita ya ___ puesta.",
@@ -2145,6 +2167,7 @@ window.SCENE = {
      "f": "mark",
      "r": "ball",
      "phrase": "Mark debe de haberse caído jugando al fútbol.",
+     "sens": "Mark a dû tomber en jouant au foot.",
      "n": "<b>deber de</b> + infinitif passé = une déduction sur le passé : il a dû tomber."
     },
     {
@@ -2161,6 +2184,7 @@ window.SCENE = {
       "mot": "poner",
       "cat": "verbe"
      },
+     "sens": "La médecin va peut-être lui mettre un bandage tout de suite.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -2173,6 +2197,7 @@ window.SCENE = {
      "f": "mark",
      "r": "knie",
      "phrase": "Si Mark no hubiera jugado al fútbol, no se habría hecho daño.",
+     "sens": "Si Mark n'avait pas joué au foot, il ne se serait pas fait mal.",
      "n": "Hypothèse sur le passé : <b>si</b> + plus-que-parfait du subjonctif, puis conditionnel passé."
     },
     {
@@ -2184,6 +2209,7 @@ window.SCENE = {
      ],
      "f": "aerztin",
      "phrase": "Dicen que esta médica es muy buena.",
+     "sens": "On dit que cette médecin est très bonne.",
      "n": "Après <b>dicen que</b> (on rapporte un fait) → l'<b>indicatif</b>."
     }
    ]
@@ -2232,6 +2258,36 @@ window.SCENE = {
     "C1 | Puede que la médica le ponga un vendaje enseguida.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "A hypothesis about the past: <b>si</b> + pluperfect subjunctive, then the conditional perfect.",
     "C1 | Dicen que esta médica es muy buena.": "After <b>dicen que</b> (reporting a fact) → the <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | La pelota está encima de la bolsa.": "The ball is on top of the bag.",
+    "A2 | El reloj está encima del póster.": "The clock is above the poster.",
+    "A2 | La planta está junto a la ventana.": "The plant is by the window.",
+    "A2 | La médica está sentada al lado del paciente.": "The doctor is sitting next to the patient.",
+    "A2 | Hay una chaqueta al lado de la puerta.": "There is a jacket next to the door.",
+    "A2 | Los calcetines están encima de los zapatos.": "The socks are on top of the shoes.",
+    "A2 | La curita está en la rodilla.": "The plaster is on the knee.",
+    "A2 | La tirita está en la rodilla.": "The plaster is on the knee.",
+    "A2 | El póster está detrás del paciente.": "The poster is behind the patient.",
+    "B1 | Mark la ha dejado encima de la bolsa.": "Mark left it on top of the bag.",
+    "B1 | Mark los ha puesto al lado de la bolsa.": "Mark put them next to the bag.",
+    "B1 | La médica está sentada en un taburete.": "The doctor is sitting on a stool.",
+    "B1 | La médica le sonríe a Mark.": "The doctor smiles at Mark.",
+    "B1 | El vaso está encima del escritorio.": "The glass is on the desk.",
+    "B1 | La médica la ha dejado en el escritorio.": "The doctor left it on the desk.",
+    "B1 | Mark está herido en la rodilla.": "Mark is hurt on the knee.",
+    "B1 | Mark se ha quitado los zapatos y los calcetines.": "Mark has taken off his shoes and socks.",
+    "B2 | El paciente cuya rodilla está herida se llama Mark.": "The patient whose knee is hurt is called Mark.",
+    "B2 | La médica, que tiene un vendaje en la mano, sonríe.": "The doctor, who has a bandage in her hand, is smiling.",
+    "B2 | El paciente al que sonríe la médica se llama Mark.": "The patient the doctor is smiling at is called Mark.",
+    "B2 | La bolsa encima de la cual está la pelota es de Mark.": "The bag the ball is on belongs to Mark.",
+    "B2 | La ventana está cerrada.": "The window is closed.",
+    "B2 | La curita ya está puesta.": "The plaster is already on.",
+    "B2 | La tirita ya está puesta.": "The plaster is already on.",
+    "C1 | Mark debe de haberse caído jugando al fútbol.": "Mark must have fallen while playing football.",
+    "C1 | Puede que la médica le ponga un vendaje enseguida.": "The doctor may put a bandage on him right away.",
+    "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "If Mark had not played football, he would not have hurt himself.",
+    "C1 | Dicen que esta médica es muy buena.": "They say this doctor is very good."
    }
   },
   "tr": {
@@ -2242,7 +2298,8 @@ window.SCENE = {
    "couches": {
     "A1": "Vücut ve nesneler"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -2252,7 +2309,8 @@ window.SCENE = {
    "couches": {
     "A1": "Тіло й предмети"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -2262,7 +2320,8 @@ window.SCENE = {
    "couches": {
     "A1": "بدن و اشیا"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -2305,6 +2364,36 @@ window.SCENE = {
     "C1 | Puede que la médica le ponga un vendaje enseguida.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "فرضية بشأن الماضي: <b>si</b> + الماضي التامّ من subjuntivo، ثم condicional الماضي.",
     "C1 | Dicen que esta médica es muy buena.": "بعد <b>dicen que</b> (نقل واقعة) ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La pelota está encima de la bolsa.": "الكرة فوق الحقيبة.",
+    "A2 | El reloj está encima del póster.": "الساعة فوق الملصق.",
+    "A2 | La planta está junto a la ventana.": "النبتة عند النافذة.",
+    "A2 | La médica está sentada al lado del paciente.": "الطبيبة جالسة بجانب المريض.",
+    "A2 | Hay una chaqueta al lado de la puerta.": "هناك سترة بجانب الباب.",
+    "A2 | Los calcetines están encima de los zapatos.": "الجوارب فوق الحذاء.",
+    "A2 | La curita está en la rodilla.": "اللاصقة على الركبة.",
+    "A2 | La tirita está en la rodilla.": "اللاصقة على الركبة.",
+    "A2 | El póster está detrás del paciente.": "الملصق خلف المريض.",
+    "B1 | Mark la ha dejado encima de la bolsa.": "تركها مارك فوق الحقيبة.",
+    "B1 | Mark los ha puesto al lado de la bolsa.": "وضعها مارك بجانب الحقيبة.",
+    "B1 | La médica está sentada en un taburete.": "الطبيبة جالسة على كرسيّ صغير.",
+    "B1 | La médica le sonríe a Mark.": "الطبيبة تبتسم لمارك.",
+    "B1 | El vaso está encima del escritorio.": "الكأس على المكتب.",
+    "B1 | La médica la ha dejado en el escritorio.": "تركتها الطبيبة على المكتب.",
+    "B1 | Mark está herido en la rodilla.": "مارك مصاب في ركبته.",
+    "B1 | Mark se ha quitado los zapatos y los calcetines.": "خلع مارك حذاءه وجواربه.",
+    "B2 | El paciente cuya rodilla está herida se llama Mark.": "المريض الذي أُصيبت ركبته اسمه مارك.",
+    "B2 | La médica, que tiene un vendaje en la mano, sonríe.": "الطبيبة التي تحمل ضمادة في يدها تبتسم.",
+    "B2 | El paciente al que sonríe la médica se llama Mark.": "المريض الذي تبتسم له الطبيبة اسمه مارك.",
+    "B2 | La bolsa encima de la cual está la pelota es de Mark.": "الحقيبة التي فوقها الكرة تخصّ مارك.",
+    "B2 | La ventana está cerrada.": "النافذة مغلقة.",
+    "B2 | La curita ya está puesta.": "اللاصقة موضوعة بالفعل.",
+    "B2 | La tirita ya está puesta.": "اللاصقة موضوعة بالفعل.",
+    "C1 | Mark debe de haberse caído jugando al fútbol.": "لا بدّ أن مارك سقط أثناء لعب كرة القدم.",
+    "C1 | Puede que la médica le ponga un vendaje enseguida.": "ربما تضع له الطبيبة ضمادة حالاً.",
+    "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "لو لم يلعب مارك كرة القدم، لما أُصيب.",
+    "C1 | Dicen que esta médica es muy buena.": "يُقال إن هذه الطبيبة ممتازة."
    }
   },
   "pt": {
@@ -2348,6 +2437,36 @@ window.SCENE = {
     "C1 | Puede que la médica le ponga un vendaje enseguida.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "Hipótese sobre o passado: <b>si</b> + mais-que-perfeito do subjuntivo, depois o condicional composto.",
     "C1 | Dicen que esta médica es muy buena.": "Depois de <b>dicen que</b> (relata-se um fato) → o <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La pelota está encima de la bolsa.": "A bola está em cima da bolsa.",
+    "A2 | El reloj está encima del póster.": "O relógio está acima do pôster.",
+    "A2 | La planta está junto a la ventana.": "A planta está junto à janela.",
+    "A2 | La médica está sentada al lado del paciente.": "A médica está sentada ao lado do paciente.",
+    "A2 | Hay una chaqueta al lado de la puerta.": "Há uma jaqueta ao lado da porta.",
+    "A2 | Los calcetines están encima de los zapatos.": "As meias estão em cima dos sapatos.",
+    "A2 | La curita está en la rodilla.": "O curativo está no joelho.",
+    "A2 | La tirita está en la rodilla.": "O curativo está no joelho.",
+    "A2 | El póster está detrás del paciente.": "O pôster está atrás do paciente.",
+    "B1 | Mark la ha dejado encima de la bolsa.": "Mark deixou-a em cima da bolsa.",
+    "B1 | Mark los ha puesto al lado de la bolsa.": "Mark pôs os sapatos ao lado da bolsa.",
+    "B1 | La médica está sentada en un taburete.": "A médica está sentada num banquinho.",
+    "B1 | La médica le sonríe a Mark.": "A médica sorri para Mark.",
+    "B1 | El vaso está encima del escritorio.": "O copo está em cima da escrivaninha.",
+    "B1 | La médica la ha dejado en el escritorio.": "A médica deixou-o na escrivaninha.",
+    "B1 | Mark está herido en la rodilla.": "Mark está machucado no joelho.",
+    "B1 | Mark se ha quitado los zapatos y los calcetines.": "Mark tirou os sapatos e as meias.",
+    "B2 | El paciente cuya rodilla está herida se llama Mark.": "O paciente cujo joelho está machucado se chama Mark.",
+    "B2 | La médica, que tiene un vendaje en la mano, sonríe.": "A médica, que tem uma atadura na mão, sorri.",
+    "B2 | El paciente al que sonríe la médica se llama Mark.": "O paciente para quem a médica sorri se chama Mark.",
+    "B2 | La bolsa encima de la cual está la pelota es de Mark.": "A bolsa em cima da qual está a bola é de Mark.",
+    "B2 | La ventana está cerrada.": "A janela está fechada.",
+    "B2 | La curita ya está puesta.": "O curativo já está colocado.",
+    "B2 | La tirita ya está puesta.": "O curativo já está colocado.",
+    "C1 | Mark debe de haberse caído jugando al fútbol.": "Mark deve ter caído jogando futebol.",
+    "C1 | Puede que la médica le ponga un vendaje enseguida.": "Pode ser que a médica lhe ponha uma atadura agora mesmo.",
+    "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "Se Mark não tivesse jogado futebol, não teria se machucado.",
+    "C1 | Dicen que esta médica es muy buena.": "Dizem que esta médica é muito boa."
    }
   },
   "pl": {
@@ -2358,7 +2477,8 @@ window.SCENE = {
    "couches": {
     "A1": "Ciało i przedmioty"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -2368,7 +2488,8 @@ window.SCENE = {
    "couches": {
     "A1": "Тело и предметы"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

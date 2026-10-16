@@ -1903,6 +1903,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
      "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1915,6 +1916,7 @@ window.SCENE = {
      "f": "medikament",
      "r": "regal",
      "phrase": "Die Medikamente stehen im Regal.",
+     "sens": "Les médicaments sont sur l'étagère.",
      "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
     },
     {
@@ -1927,6 +1929,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "schalter",
      "phrase": "Die Pflanze steht auf dem Schalter.",
+     "sens": "La plante est sur le comptoir.",
      "n": "der Schalter → auf <b>dem</b> Schalter."
     },
     {
@@ -1939,6 +1942,7 @@ window.SCENE = {
      "f": "mann",
      "r": "stuhl",
      "phrase": "Der alte Mann sitzt auf dem Stuhl.",
+     "sens": "Le vieux monsieur est assis sur la chaise.",
      "n": "der Stuhl → auf <b>dem</b> Stuhl."
     },
     {
@@ -1951,6 +1955,7 @@ window.SCENE = {
      "f": "waage",
      "r": "stuhl",
      "phrase": "Die Waage steht neben dem Stuhl.",
+     "sens": "La balance est à côté de la chaise.",
      "n": "<b>neben</b> = à côté de. der Stuhl → neben <b>dem</b> Stuhl."
     },
     {
@@ -1963,6 +1968,7 @@ window.SCENE = {
      "f": "auto",
      "r": "strasse",
      "phrase": "Das Auto steht auf der Straße.",
+     "sens": "La voiture est dans la rue.",
      "n": "die Straße → auf <b>der</b> Straße : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1975,6 +1981,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "tuer",
      "phrase": "Der Mülleimer steht neben der Tür.",
+     "sens": "La poubelle est à côté de la porte.",
      "n": "die Tür → neben <b>der</b> Tür : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1987,6 +1994,7 @@ window.SCENE = {
      "f": "karton",
      "r": "boden",
      "phrase": "Der Karton steht auf dem Boden.",
+     "sens": "Le carton est par terre.",
      "n": "der Boden → auf <b>dem</b> Boden."
     }
    ]
@@ -2003,6 +2011,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark hat kein Fieber, nur Schnupfen.",
+     "sens": "Mark n'a pas de fièvre, juste un rhume.",
      "n": "<b>kein</b> nie un nom sans article : kein Fieber."
     },
     {
@@ -2014,6 +2023,7 @@ window.SCENE = {
      ],
      "f": "medikament-6",
      "phrase": "Die Tabletten sind nicht teuer.",
+     "sens": "Les comprimés ne sont pas chers.",
      "n": "<b>nicht</b> nie un adjectif : nicht teuer."
     },
     {
@@ -2025,6 +2035,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark hat keine Zeit, zum Arzt zu gehen.",
+     "sens": "Mark n'a pas le temps d'aller chez le médecin.",
      "n": "die Zeit (féminin) → <b>keine</b> Zeit."
     },
     {
@@ -2037,6 +2048,7 @@ window.SCENE = {
      "f": "mann",
      "r": "stuhl",
      "phrase": "Der alte Mann wartet nicht lange.",
+     "sens": "Le vieux monsieur n'attend pas longtemps.",
      "n": "<b>nicht</b> nie un adverbe : nicht lange.",
      "revise": {
       "mot": "warten",
@@ -2052,6 +2064,7 @@ window.SCENE = {
      ],
      "f": "medikament-6",
      "phrase": "Mark nimmt die Tabletten nicht mit Kaffee.",
+     "sens": "Mark ne prend pas les comprimés avec du café.",
      "n": "<b>nicht</b> nie le verbe ou un complément avec préposition.",
      "revise": {
       "mot": "nehmen",
@@ -2068,6 +2081,7 @@ window.SCENE = {
      "f": "pflaster",
      "r": "frau",
      "phrase": "Die Apothekerin hat keine Pflaster mehr.",
+     "sens": "La pharmacienne n'a plus de pansements.",
      "n": "Pluriel sans article (Pflaster) → <b>keine</b>."
     },
     {
@@ -2079,6 +2093,7 @@ window.SCENE = {
      ],
      "f": "rezept",
      "phrase": "Das ist nicht mein Rezept!",
+     "sens": "Ce n'est pas mon ordonnance !",
      "n": "Devant un possessif (mein) → <b>nicht</b>."
     },
     {
@@ -2090,6 +2105,7 @@ window.SCENE = {
      ],
      "f": "flasche-5",
      "phrase": "Mark hat keinen Hustensaft gekauft.",
+     "sens": "Mark n'a pas acheté de sirop contre la toux.",
      "n": "der Hustensaft, accusatif masculin → <b>keinen</b>.",
      "revise": {
       "mot": "kaufen",
@@ -2111,6 +2127,7 @@ window.SCENE = {
      "f": "frau",
      "r": "mark",
      "phrase": "Die Apothekerin sagt, Mark habe eine starke Erkältung.",
+     "sens": "La pharmacienne dit que Mark a un gros rhume.",
      "n": "Discours rapporté : Konjunktiv I de haben → <b>habe</b>.",
      "revise": {
       "mot": "sagen",
@@ -2127,6 +2144,7 @@ window.SCENE = {
      "f": "medikament-6",
      "r": "frau",
      "phrase": "Sie sagt, er solle die Tabletten dreimal täglich nehmen.",
+     "sens": "Elle dit qu'il doit prendre les comprimés trois fois par jour.",
      "n": "Konjunktiv I de sollen → <b>solle</b>.",
      "revise": {
       "mot": "nehmen",
@@ -2142,6 +2160,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Der Arzt hat gesagt, Mark sei nicht ansteckend.",
+     "sens": "Le médecin a dit que Mark n'est pas contagieux.",
      "n": "Konjunktiv I de sein → <b>sei</b>."
     },
     {
@@ -2154,6 +2173,7 @@ window.SCENE = {
      "f": "taschentuch",
      "r": "mark",
      "phrase": "Mark sagt, er habe seit drei Tagen Husten.",
+     "sens": "Mark dit qu'il tousse depuis trois jours.",
      "n": "Discours rapporté : Konjunktiv I de haben → <b>habe</b>.",
      "revise": {
       "mot": "sagen",
@@ -2170,6 +2190,7 @@ window.SCENE = {
      "f": "flasche-5",
      "r": "frau",
      "phrase": "Die Apothekerin erklärt, der Saft helfe gegen den Husten.",
+     "sens": "La pharmacienne explique que le sirop aide contre la toux.",
      "n": "Konjunktiv I : radical + <b>-e</b> → helfe.",
      "revise": {
       "mot": "helfen",
@@ -2186,6 +2207,7 @@ window.SCENE = {
      "f": "mann",
      "r": "stuhl",
      "phrase": "Der alte Mann sagt, er warte schon lange hier.",
+     "sens": "Le vieux monsieur dit qu'il attend ici depuis longtemps.",
      "n": "Konjunktiv I : radical + <b>-e</b> → warte.",
      "revise": {
       "mot": "warten",
@@ -2207,6 +2229,7 @@ window.SCENE = {
      "f": "mark",
      "r": "taschentuch",
      "phrase": "Er muss erkältet sein.",
+     "sens": "Il doit être enrhumé.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -2219,6 +2242,7 @@ window.SCENE = {
      "f": "mann",
      "r": "stuhl",
      "phrase": "Der alte Mann könnte auf sein Medikament warten.",
+     "sens": "Le vieux monsieur attend peut-être son médicament.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -2230,6 +2254,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark dürfte in zwei Tagen wieder gesund sein.",
+     "sens": "Mark devrait être rétabli dans deux jours.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -2241,6 +2266,7 @@ window.SCENE = {
      ],
      "f": "schalter",
      "phrase": "Diese Apotheke soll die älteste im Kiez sein.",
+     "sens": "Cette pharmacie serait la plus ancienne du quartier.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -2286,6 +2312,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "<b>könnte</b> = one possibility among others.",
     "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Diese Apotheke soll die älteste im Kiez sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "The clock hangs on the wall.",
+    "A2 | Die Medikamente stehen im Regal.": "The medicines are on the shelf.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "The plant is on the counter.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "The old man is sitting on the chair.",
+    "A2 | Die Waage steht neben dem Stuhl.": "The scale is next to the chair.",
+    "A2 | Das Auto steht auf der Straße.": "The car is in the street.",
+    "A2 | Der Mülleimer steht neben der Tür.": "The bin is next to the door.",
+    "A2 | Der Karton steht auf dem Boden.": "The box is on the floor.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "Mark has no fever, just a cold.",
+    "B1 | Die Tabletten sind nicht teuer.": "The tablets are not expensive.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "Mark has no time to go to the doctor.",
+    "B1 | Der alte Mann wartet nicht lange.": "The old man does not wait long.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "Mark does not take the tablets with coffee.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "The pharmacist has no plasters left.",
+    "B1 | Das ist nicht mein Rezept!": "That is not my prescription!",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "Mark did not buy any cough syrup.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "The pharmacist says Mark has a bad cold.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "She says he should take the tablets three times a day.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "The doctor said Mark is not contagious.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "Mark says he has had a cough for three days.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "The pharmacist explains that the syrup helps against the cough.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "The old man says he has been waiting here for a long time.",
+    "C1 | Er muss erkältet sein.": "He must have a cold.",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "The old man might be waiting for his medicine.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "Mark should be well again in two days.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "This pharmacy is said to be the oldest in the neighbourhood."
    }
   },
   "tr": {
@@ -2327,6 +2381,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Diese Apotheke soll die älteste im Kiez sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Saat duvarda asılı.",
+    "A2 | Die Medikamente stehen im Regal.": "İlaçlar rafta duruyor.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "Bitki tezgâhın üstünde duruyor.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "Yaşlı adam sandalyede oturuyor.",
+    "A2 | Die Waage steht neben dem Stuhl.": "Tartı sandalyenin yanında duruyor.",
+    "A2 | Das Auto steht auf der Straße.": "Araba sokakta duruyor.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Çöp kovası kapının yanında duruyor.",
+    "A2 | Der Karton steht auf dem Boden.": "Karton kutu yerde duruyor.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "Mark'ın ateşi yok, sadece nezlesi var.",
+    "B1 | Die Tabletten sind nicht teuer.": "Haplar pahalı değil.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "Mark'ın doktora gitmeye vakti yok.",
+    "B1 | Der alte Mann wartet nicht lange.": "Yaşlı adam uzun süre beklemiyor.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "Mark hapları kahveyle almıyor.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "Eczacının hiç yara bandı kalmamış.",
+    "B1 | Das ist nicht mein Rezept!": "Bu benim reçetem değil!",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "Mark öksürük şurubu almadı.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "Eczacı, Mark'ın ağır bir soğuk algınlığı olduğunu söylüyor.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "Hapları günde üç kez alması gerektiğini söylüyor.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "Doktor, Mark'ın bulaşıcı olmadığını söyledi.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "Mark üç gündür öksürdüğünü söylüyor.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "Eczacı, şurubun öksürüğe iyi geldiğini açıklıyor.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "Yaşlı adam uzun zamandır burada beklediğini söylüyor.",
+    "C1 | Er muss erkältet sein.": "Üşütmüş olmalı.",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "Yaşlı adam ilacını bekliyor olabilir.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "Mark iki güne kadar iyileşmiş olmalı.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "Bu eczanenin mahallenin en eskisi olduğu söyleniyor."
    }
   },
   "uk": {
@@ -2368,6 +2450,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Diese Apotheke soll die älteste im Kiez sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Годинник висить на стіні.",
+    "A2 | Die Medikamente stehen im Regal.": "Ліки стоять на полиці.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "Рослина стоїть на прилавку.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "Старий чоловік сидить на стільці.",
+    "A2 | Die Waage steht neben dem Stuhl.": "Ваги стоять біля стільця.",
+    "A2 | Das Auto steht auf der Straße.": "Машина стоїть на вулиці.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Смітник стоїть біля дверей.",
+    "A2 | Der Karton steht auf dem Boden.": "Коробка стоїть на підлозі.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "У Марка немає температури, лише нежить.",
+    "B1 | Die Tabletten sind nicht teuer.": "Таблетки недорогі.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "Марк не має часу йти до лікаря.",
+    "B1 | Der alte Mann wartet nicht lange.": "Старий чоловік чекає недовго.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "Марк не запиває таблетки кавою.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "У фармацевтки більше немає пластирів.",
+    "B1 | Das ist nicht mein Rezept!": "Це не мій рецепт!",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "Марк не купив сиропу від кашлю.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "Фармацевтка каже, що Марк сильно застудився.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "Вона каже, що він має приймати таблетки тричі на день.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "Лікар сказав, що Марк не заразний.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "Марк каже, що кашляє вже три дні.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "Фармацевтка пояснює, що сироп допомагає від кашлю.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "Старий чоловік каже, що вже давно тут чекає.",
+    "C1 | Er muss erkältet sein.": "Він, мабуть, застудився.",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "Старий чоловік, можливо, чекає на свої ліки.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "Марк, напевно, одужає за два дні.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "Кажуть, ця аптека — найстаріша в районі."
    }
   },
   "fa": {
@@ -2409,6 +2519,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Diese Apotheke soll die älteste im Kiez sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "ساعت روی دیوار آویزان است.",
+    "A2 | Die Medikamente stehen im Regal.": "داروها در قفسه هستند.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "گیاه روی پیشخوان است.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "پیرمرد روی صندلی نشسته است.",
+    "A2 | Die Waage steht neben dem Stuhl.": "ترازو کنار صندلی است.",
+    "A2 | Das Auto steht auf der Straße.": "ماشین در خیابان است.",
+    "A2 | Der Mülleimer steht neben der Tür.": "سطل زباله کنار در است.",
+    "A2 | Der Karton steht auf dem Boden.": "جعبه روی زمین است.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "مارک تب ندارد، فقط سرماخوردگی دارد.",
+    "B1 | Die Tabletten sind nicht teuer.": "قرص‌ها گران نیستند.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "مارک وقت ندارد پیش دکتر برود.",
+    "B1 | Der alte Mann wartet nicht lange.": "پیرمرد زیاد منتظر نمی‌ماند.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "مارک قرص‌ها را با قهوه نمی‌خورد.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "داروساز دیگر چسب زخم ندارد.",
+    "B1 | Das ist nicht mein Rezept!": "این نسخهٔ من نیست!",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "مارک شربت سرفه نخریده است.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "داروساز می‌گوید مارک سرماخوردگی شدیدی دارد.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "او می‌گوید که مارک باید قرص‌ها را روزی سه بار بخورد.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "دکتر گفته است که مارک واگیردار نیست.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "مارک می‌گوید سه روز است که سرفه می‌کند.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "داروساز توضیح می‌دهد که شربت برای سرفه خوب است.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "پیرمرد می‌گوید خیلی وقت است که اینجا منتظر است.",
+    "C1 | Er muss erkältet sein.": "او حتماً سرما خورده است.",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "پیرمرد شاید منتظر دارویش باشد.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "مارک احتمالاً تا دو روز دیگر خوب می‌شود.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "می‌گویند این داروخانه قدیمی‌ترین داروخانهٔ محله است."
    }
   },
   "ar": {
@@ -2450,6 +2588,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Diese Apotheke soll die älteste im Kiez sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "الساعة معلّقة على الحائط.",
+    "A2 | Die Medikamente stehen im Regal.": "الأدوية على الرفّ.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "النبتة على المنضدة.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "الرجل العجوز جالس على الكرسي.",
+    "A2 | Die Waage steht neben dem Stuhl.": "الميزان بجانب الكرسي.",
+    "A2 | Das Auto steht auf der Straße.": "السيارة في الشارع.",
+    "A2 | Der Mülleimer steht neben der Tür.": "سلّة المهملات بجانب الباب.",
+    "A2 | Der Karton steht auf dem Boden.": "الصندوق على الأرض.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "مارك ليس عنده حمّى، فقط زكام.",
+    "B1 | Die Tabletten sind nicht teuer.": "الأقراص ليست غالية.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "مارك ليس لديه وقت للذهاب إلى الطبيب.",
+    "B1 | Der alte Mann wartet nicht lange.": "الرجل العجوز لا ينتظر طويلاً.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "مارك لا يأخذ الأقراص مع القهوة.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "الصيدلانية لم يبقَ عندها لاصقات جروح.",
+    "B1 | Das ist nicht mein Rezept!": "هذه ليست وصفتي!",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "مارك لم يشترِ شراباً للسعال.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "تقول الصيدلانية إن مارك مصاب بزكام شديد.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "تقول إن عليه أن يأخذ الأقراص ثلاث مرات في اليوم.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "قال الطبيب إن مارك ليس معدياً.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "يقول مارك إنه يسعل منذ ثلاثة أيام.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "تشرح الصيدلانية أن الشراب يساعد على السعال.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "يقول الرجل العجوز إنه ينتظر هنا منذ وقت طويل.",
+    "C1 | Er muss erkältet sein.": "لا بدّ أنه مصاب بالزكام.",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "ربما ينتظر الرجل العجوز دواءه.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "من المرجّح أن يتعافى مارك خلال يومين.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "يُقال إن هذه الصيدلية هي الأقدم في الحيّ."
    }
   },
   "pt": {
@@ -2491,6 +2657,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Diese Apotheke soll die älteste im Kiez sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "O relógio está pendurado na parede.",
+    "A2 | Die Medikamente stehen im Regal.": "Os remédios estão na prateleira.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "A planta está no balcão.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "O senhor idoso está sentado na cadeira.",
+    "A2 | Die Waage steht neben dem Stuhl.": "A balança está ao lado da cadeira.",
+    "A2 | Das Auto steht auf der Straße.": "O carro está na rua.",
+    "A2 | Der Mülleimer steht neben der Tür.": "A lixeira está ao lado da porta.",
+    "A2 | Der Karton steht auf dem Boden.": "A caixa está no chão.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "Mark não tem febre, só um resfriado.",
+    "B1 | Die Tabletten sind nicht teuer.": "Os comprimidos não são caros.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "Mark não tem tempo de ir ao médico.",
+    "B1 | Der alte Mann wartet nicht lange.": "O senhor idoso não espera muito tempo.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "Mark não toma os comprimidos com café.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "A farmacêutica não tem mais curativos.",
+    "B1 | Das ist nicht mein Rezept!": "Essa não é a minha receita!",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "Mark não comprou xarope para a tosse.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "A farmacêutica diz que Mark está com um forte resfriado.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "Ela diz que ele deve tomar os comprimidos três vezes por dia.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "O médico disse que Mark não está contagioso.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "Mark diz que está com tosse há três dias.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "A farmacêutica explica que o xarope ajuda contra a tosse.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "O senhor idoso diz que já espera aqui há muito tempo.",
+    "C1 | Er muss erkältet sein.": "Ele deve estar resfriado.",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "O senhor idoso talvez esteja esperando o seu remédio.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "Mark provavelmente estará bom de novo em dois dias.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "Dizem que esta farmácia é a mais antiga do bairro."
    }
   },
   "pl": {
@@ -2532,6 +2726,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Diese Apotheke soll die älteste im Kiez sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Zegar wisi na ścianie.",
+    "A2 | Die Medikamente stehen im Regal.": "Lekarstwa stoją na półce.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "Roślina stoi na ladzie.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "Starszy pan siedzi na krześle.",
+    "A2 | Die Waage steht neben dem Stuhl.": "Waga stoi obok krzesła.",
+    "A2 | Das Auto steht auf der Straße.": "Samochód stoi na ulicy.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Kosz na śmieci stoi obok drzwi.",
+    "A2 | Der Karton steht auf dem Boden.": "Karton stoi na podłodze.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "Mark nie ma gorączki, tylko katar.",
+    "B1 | Die Tabletten sind nicht teuer.": "Tabletki nie są drogie.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "Mark nie ma czasu iść do lekarza.",
+    "B1 | Der alte Mann wartet nicht lange.": "Starszy pan nie czeka długo.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "Mark nie bierze tabletek z kawą.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "Aptekarka nie ma już plastrów.",
+    "B1 | Das ist nicht mein Rezept!": "To nie moja recepta!",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "Mark nie kupił syropu na kaszel.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "Aptekarka mówi, że Mark jest mocno przeziębiony.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "Mówi, że powinien brać tabletki trzy razy dziennie.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "Lekarz powiedział, że Mark nie zaraża.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "Mark mówi, że kaszle od trzech dni.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "Aptekarka wyjaśnia, że syrop pomaga na kaszel.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "Starszy pan mówi, że czeka tu już długo.",
+    "C1 | Er muss erkältet sein.": "On musi być przeziębiony.",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "Starszy pan być może czeka na swoje lekarstwo.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "Mark zapewne wyzdrowieje za dwa dni.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "Podobno ta apteka jest najstarsza w dzielnicy."
    }
   },
   "ru": {
@@ -2573,6 +2795,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Diese Apotheke soll die älteste im Kiez sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
+    "A2 | Die Medikamente stehen im Regal.": "Лекарства стоят на полке.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "Растение стоит на прилавке.",
+    "A2 | Der alte Mann sitzt auf dem Stuhl.": "Старик сидит на стуле.",
+    "A2 | Die Waage steht neben dem Stuhl.": "Весы стоят рядом со стулом.",
+    "A2 | Das Auto steht auf der Straße.": "Машина стоит на улице.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Мусорное ведро стоит рядом с дверью.",
+    "A2 | Der Karton steht auf dem Boden.": "Коробка стоит на полу.",
+    "B1 | Mark hat kein Fieber, nur Schnupfen.": "У Марка нет температуры, только насморк.",
+    "B1 | Die Tabletten sind nicht teuer.": "Таблетки недорогие.",
+    "B1 | Mark hat keine Zeit, zum Arzt zu gehen.": "У Марка нет времени идти к врачу.",
+    "B1 | Der alte Mann wartet nicht lange.": "Старик ждёт недолго.",
+    "B1 | Mark nimmt die Tabletten nicht mit Kaffee.": "Марк не принимает таблетки с кофе.",
+    "B1 | Die Apothekerin hat keine Pflaster mehr.": "У аптекарши больше нет пластырей.",
+    "B1 | Das ist nicht mein Rezept!": "Это не мой рецепт!",
+    "B1 | Mark hat keinen Hustensaft gekauft.": "Марк не купил сироп от кашля.",
+    "B2 | Die Apothekerin sagt, Mark habe eine starke Erkältung.": "Аптекарша говорит, что у Марка сильная простуда.",
+    "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "Она говорит, что ему нужно принимать таблетки три раза в день.",
+    "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "Врач сказал, что Марк не заразен.",
+    "B2 | Mark sagt, er habe seit drei Tagen Husten.": "Марк говорит, что кашляет уже три дня.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "Аптекарша объясняет, что сироп помогает от кашля.",
+    "B2 | Der alte Mann sagt, er warte schon lange hier.": "Старик говорит, что уже давно здесь ждёт.",
+    "C1 | Er muss erkältet sein.": "Он, должно быть, простужен.",
+    "C1 | Der alte Mann könnte auf sein Medikament warten.": "Старик, возможно, ждёт своё лекарство.",
+    "C1 | Mark dürfte in zwei Tagen wieder gesund sein.": "Марк, вероятно, поправится через два дня.",
+    "C1 | Diese Apotheke soll die älteste im Kiez sein.": "Говорят, эта аптека — самая старая в районе."
    }
   }
  }

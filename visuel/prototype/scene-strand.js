@@ -910,6 +910,7 @@ window.SCENE = {
      "f": "buch",
      "r": "handtuch",
      "phrase": "Das Buch liegt auf dem Handtuch.",
+     "sens": "Le livre est sur la serviette.",
      "n": "<b>Wo?</b> → datif : das Handtuch → auf <b>dem</b> Handtuch."
     },
     {
@@ -922,6 +923,7 @@ window.SCENE = {
      "f": "hund",
      "r": "korb",
      "phrase": "Der Hund liegt hinter dem Korb.",
+     "sens": "Le chien est couché derrière le panier.",
      "n": "<b>hinter</b> = derrière. der Korb → hinter <b>dem</b> Korb."
     },
     {
@@ -934,6 +936,7 @@ window.SCENE = {
      "f": "junge",
      "r": "meer",
      "phrase": "Der Junge spielt am Meer.",
+     "sens": "Le garçon joue au bord de la mer.",
      "n": "<b>am</b> = an + <b>dem</b> : das Meer → am Meer (au bord de la mer)."
     },
     {
@@ -946,6 +949,7 @@ window.SCENE = {
      "f": "leuchtturm",
      "r": "insel",
      "phrase": "Der Leuchtturm steht auf der Insel.",
+     "sens": "Le phare est sur l'île.",
      "n": "die Insel → auf <b>der</b> Insel : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -958,6 +962,7 @@ window.SCENE = {
      "f": "eimer",
      "r": "korb",
      "phrase": "Der Eimer steht neben dem Korb.",
+     "sens": "Le seau est à côté du panier.",
      "n": "<b>neben</b> = à côté de. der Korb → neben <b>dem</b> Korb."
     },
     {
@@ -970,6 +975,7 @@ window.SCENE = {
      "f": "boot",
      "r": "meer",
      "phrase": "Das Boot ist auf dem Meer.",
+     "sens": "Le bateau est sur la mer.",
      "n": "das Meer → auf <b>dem</b> Meer."
     },
     {
@@ -982,6 +988,7 @@ window.SCENE = {
      "f": "vogel",
      "r": "stein",
      "phrase": "Der Vogel sitzt auf dem Stein.",
+     "sens": "L'oiseau est perché sur le rocher.",
      "n": "der Stein → auf <b>dem</b> Stein."
     },
     {
@@ -994,6 +1001,7 @@ window.SCENE = {
      "f": "sonne",
      "r": "himmel",
      "phrase": "Die Sonne ist am Himmel.",
+     "sens": "Le soleil est dans le ciel.",
      "n": "<b>am</b> = an + <b>dem</b> : der Himmel → am Himmel."
     }
    ]
@@ -1010,6 +1018,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna ist nach Spanien geflogen.",
+     "sens": "Anna a pris l'avion pour l'Espagne.",
      "n": "Un déplacement → Perfekt avec <b>sein</b>.",
      "revise": {
       "mot": "fliegen",
@@ -1026,6 +1035,7 @@ window.SCENE = {
      "f": "meer",
      "r": "anna",
      "phrase": "Heute Morgen ist sie im Meer geschwommen.",
+     "sens": "Ce matin, elle a nagé dans la mer.",
      "n": "<b>schwimmen</b> (un mouvement) → <b>sein</b>. Le verbe conjugué reste en 2e position.",
      "revise": {
       "mot": "schwimmen",
@@ -1042,6 +1052,7 @@ window.SCENE = {
      "f": "eis",
      "r": "anna",
      "phrase": "Sie hat ein Eis gekauft.",
+     "sens": "Elle a acheté une glace.",
      "n": "<b>kaufen</b> a un complément (ein Eis) → <b>haben</b>.",
      "revise": {
       "mot": "kaufen",
@@ -1058,6 +1069,7 @@ window.SCENE = {
      "f": "ball",
      "r": "junge",
      "phrase": "Der Junge hat den Ball ins Wasser geworfen.",
+     "sens": "Le garçon a lancé le ballon dans l'eau.",
      "n": "<b>werfen</b> + complément → <b>haben</b> ; werfen → <b>geworfen</b>.",
      "revise": {
       "mot": "werfen",
@@ -1073,6 +1085,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "Der Hund ist im Schatten eingeschlafen.",
+     "sens": "Le chien s'est endormi à l'ombre.",
      "n": "Un changement d'état (s'endormir) → <b>sein</b>."
     },
     {
@@ -1085,6 +1098,7 @@ window.SCENE = {
      "f": "buch",
      "r": "handtuch",
      "phrase": "Anna hat ihr Buch auf das Handtuch gelegt.",
+     "sens": "Anna a posé son livre sur la serviette.",
      "n": "<b>legen</b> (poser) → gelegt. <b>liegen</b> (être posé) → gelegen.",
      "revise": {
       "mot": "legen",
@@ -1101,6 +1115,7 @@ window.SCENE = {
      "f": "boot",
      "r": "meer",
      "phrase": "Das Boot ist heute Morgen aufs Meer gefahren.",
+     "sens": "Le bateau a pris la mer ce matin.",
      "n": "<b>fahren</b> sans complément (se déplacer) → <b>sein</b>.",
      "revise": {
       "mot": "fahren",
@@ -1117,6 +1132,7 @@ window.SCENE = {
      "f": "anna",
      "r": "sonne",
      "phrase": "Anna hat den ganzen Tag in der Sonne gelegen.",
+     "sens": "Anna est restée toute la journée au soleil.",
      "n": "<b>liegen</b> (être allongé) → <b>gelegen</b>.",
      "revise": {
       "mot": "liegen",
@@ -1138,6 +1154,7 @@ window.SCENE = {
      "f": "anna",
      "r": "eis",
      "phrase": "Die Frau, die ein Eis isst, heißt Anna.",
+     "sens": "La femme qui mange une glace s'appelle Anna.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -1150,6 +1167,7 @@ window.SCENE = {
      "f": "junge",
      "r": "ball",
      "phrase": "Der Junge, dessen Ball bunt ist, spielt im Wasser.",
+     "sens": "Le garçon au ballon multicolore joue dans l'eau.",
      "n": "Possession, antécédent masculin → <b>dessen</b> (dont le ballon)."
     },
     {
@@ -1162,6 +1180,7 @@ window.SCENE = {
      "f": "insel",
      "r": "leuchtturm",
      "phrase": "Die Insel, auf der ein Leuchtturm steht, ist klein.",
+     "sens": "L'île sur laquelle se dresse un phare est petite.",
      "n": "<b>auf</b> + Wo? → datif, féminin → <b>der</b>."
     },
     {
@@ -1173,6 +1192,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "Der schlafende Hund liegt im Schatten.",
+     "sens": "Le chien endormi est couché à l'ombre.",
      "n": "Participe présent (Partizip I) comme adjectif : schlafen + <b>d</b> + terminaison → <b>schlafende</b>."
     },
     {
@@ -1184,6 +1204,7 @@ window.SCENE = {
      ],
      "f": "eis",
      "phrase": "Das Eis ist schon halb gegessen.",
+     "sens": "La glace est déjà à moitié mangée.",
      "n": "Passif d'état : <b>sein</b> + participe. <b>essen</b> → gegessen.",
      "revise": {
       "mot": "essen",
@@ -1199,6 +1220,7 @@ window.SCENE = {
      ],
      "f": "meer",
      "phrase": "Hier wird im Sommer viel geschwommen.",
+     "sens": "Ici, on nage beaucoup en été.",
      "n": "Passif impersonnel avec <b>werden</b> : « on nage beaucoup ici »."
     }
    ]
@@ -1215,6 +1237,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Sie muss sich im Urlaub sehr wohlfühlen.",
+     "sens": "Elle doit se sentir très bien en vacances.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1227,6 +1250,7 @@ window.SCENE = {
      "f": "hund",
      "r": "junge",
      "phrase": "Der Hund könnte dem Jungen gehören.",
+     "sens": "Le chien appartient peut-être au garçon.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1239,6 +1263,7 @@ window.SCENE = {
      "f": "meer",
      "r": "junge",
      "phrase": "Das Wasser dürfte schon ziemlich warm sein.",
+     "sens": "L'eau doit déjà être assez chaude.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1250,6 +1275,7 @@ window.SCENE = {
      ],
      "f": "leuchtturm",
      "phrase": "Vom Leuchtturm aus soll man bis nach Afrika sehen können.",
+     "sens": "Il paraît que du phare, on peut voir jusqu'en Afrique.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1295,6 +1321,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Jungen gehören.": "<b>könnte</b> = one possibility among others.",
     "C1 | Das Wasser dürfte schon ziemlich warm sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Das Buch liegt auf dem Handtuch.": "The book is on the towel.",
+    "A2 | Der Hund liegt hinter dem Korb.": "The dog is lying behind the basket.",
+    "A2 | Der Junge spielt am Meer.": "The boy is playing by the sea.",
+    "A2 | Der Leuchtturm steht auf der Insel.": "The lighthouse is on the island.",
+    "A2 | Der Eimer steht neben dem Korb.": "The bucket is next to the basket.",
+    "A2 | Das Boot ist auf dem Meer.": "The boat is on the sea.",
+    "A2 | Der Vogel sitzt auf dem Stein.": "The bird is sitting on the rock.",
+    "A2 | Die Sonne ist am Himmel.": "The sun is in the sky.",
+    "B1 | Anna ist nach Spanien geflogen.": "Anna flew to Spain.",
+    "B1 | Heute Morgen ist sie im Meer geschwommen.": "This morning she swam in the sea.",
+    "B1 | Sie hat ein Eis gekauft.": "She bought an ice cream.",
+    "B1 | Der Junge hat den Ball ins Wasser geworfen.": "The boy threw the ball into the water.",
+    "B1 | Der Hund ist im Schatten eingeschlafen.": "The dog fell asleep in the shade.",
+    "B1 | Anna hat ihr Buch auf das Handtuch gelegt.": "Anna put her book on the towel.",
+    "B1 | Das Boot ist heute Morgen aufs Meer gefahren.": "The boat went out to sea this morning.",
+    "B1 | Anna hat den ganzen Tag in der Sonne gelegen.": "Anna lay in the sun all day.",
+    "B2 | Die Frau, die ein Eis isst, heißt Anna.": "The woman eating an ice cream is called Anna.",
+    "B2 | Der Junge, dessen Ball bunt ist, spielt im Wasser.": "The boy whose ball is colourful is playing in the water.",
+    "B2 | Die Insel, auf der ein Leuchtturm steht, ist klein.": "The island with a lighthouse on it is small.",
+    "B2 | Der schlafende Hund liegt im Schatten.": "The sleeping dog is lying in the shade.",
+    "B2 | Das Eis ist schon halb gegessen.": "The ice cream is already half eaten.",
+    "B2 | Hier wird im Sommer viel geschwommen.": "A lot of swimming goes on here in summer.",
+    "C1 | Sie muss sich im Urlaub sehr wohlfühlen.": "She must be feeling great on holiday.",
+    "C1 | Der Hund könnte dem Jungen gehören.": "The dog might belong to the boy.",
+    "C1 | Das Wasser dürfte schon ziemlich warm sein.": "The water is probably quite warm already.",
+    "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "From the lighthouse you can supposedly see all the way to Africa."
    }
   },
   "tr": {
@@ -1336,6 +1390,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Jungen gehören.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Das Wasser dürfte schon ziemlich warm sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Das Buch liegt auf dem Handtuch.": "Kitap havlunun üstünde.",
+    "A2 | Der Hund liegt hinter dem Korb.": "Köpek sepetin arkasında yatıyor.",
+    "A2 | Der Junge spielt am Meer.": "Çocuk deniz kenarında oynuyor.",
+    "A2 | Der Leuchtturm steht auf der Insel.": "Deniz feneri adada.",
+    "A2 | Der Eimer steht neben dem Korb.": "Kova sepetin yanında duruyor.",
+    "A2 | Das Boot ist auf dem Meer.": "Tekne denizde.",
+    "A2 | Der Vogel sitzt auf dem Stein.": "Kuş taşın üstünde duruyor.",
+    "A2 | Die Sonne ist am Himmel.": "Güneş gökyüzünde.",
+    "B1 | Anna ist nach Spanien geflogen.": "Anna İspanya'ya uçtu.",
+    "B1 | Heute Morgen ist sie im Meer geschwommen.": "Bu sabah denizde yüzdü.",
+    "B1 | Sie hat ein Eis gekauft.": "Bir dondurma aldı.",
+    "B1 | Der Junge hat den Ball ins Wasser geworfen.": "Çocuk topu suya attı.",
+    "B1 | Der Hund ist im Schatten eingeschlafen.": "Köpek gölgede uyuyakaldı.",
+    "B1 | Anna hat ihr Buch auf das Handtuch gelegt.": "Anna kitabını havlunun üstüne koydu.",
+    "B1 | Das Boot ist heute Morgen aufs Meer gefahren.": "Tekne bu sabah denize açıldı.",
+    "B1 | Anna hat den ganzen Tag in der Sonne gelegen.": "Anna bütün gün güneşte yattı.",
+    "B2 | Die Frau, die ein Eis isst, heißt Anna.": "Dondurma yiyen kadının adı Anna.",
+    "B2 | Der Junge, dessen Ball bunt ist, spielt im Wasser.": "Topu rengârenk olan çocuk suda oynuyor.",
+    "B2 | Die Insel, auf der ein Leuchtturm steht, ist klein.": "Üstünde deniz feneri olan ada küçük.",
+    "B2 | Der schlafende Hund liegt im Schatten.": "Uyuyan köpek gölgede yatıyor.",
+    "B2 | Das Eis ist schon halb gegessen.": "Dondurmanın yarısı yenmiş bile.",
+    "B2 | Hier wird im Sommer viel geschwommen.": "Burada yazın çok yüzülür.",
+    "C1 | Sie muss sich im Urlaub sehr wohlfühlen.": "Tatilde kendini çok iyi hissediyor olmalı.",
+    "C1 | Der Hund könnte dem Jungen gehören.": "Köpek çocuğun olabilir.",
+    "C1 | Das Wasser dürfte schon ziemlich warm sein.": "Su epey ılık olsa gerek.",
+    "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "Deniz fenerinden Afrika'nın görülebildiği söyleniyor."
    }
   },
   "uk": {
@@ -1377,6 +1459,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Jungen gehören.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Das Wasser dürfte schon ziemlich warm sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Das Buch liegt auf dem Handtuch.": "Книжка лежить на рушнику.",
+    "A2 | Der Hund liegt hinter dem Korb.": "Собака лежить за кошиком.",
+    "A2 | Der Junge spielt am Meer.": "Хлопчик грається біля моря.",
+    "A2 | Der Leuchtturm steht auf der Insel.": "Маяк стоїть на острові.",
+    "A2 | Der Eimer steht neben dem Korb.": "Відро стоїть біля кошика.",
+    "A2 | Das Boot ist auf dem Meer.": "Човен у морі.",
+    "A2 | Der Vogel sitzt auf dem Stein.": "Птах сидить на камені.",
+    "A2 | Die Sonne ist am Himmel.": "Сонце на небі.",
+    "B1 | Anna ist nach Spanien geflogen.": "Анна полетіла до Іспанії.",
+    "B1 | Heute Morgen ist sie im Meer geschwommen.": "Сьогодні вранці вона плавала в морі.",
+    "B1 | Sie hat ein Eis gekauft.": "Вона купила морозиво.",
+    "B1 | Der Junge hat den Ball ins Wasser geworfen.": "Хлопчик кинув м'яч у воду.",
+    "B1 | Der Hund ist im Schatten eingeschlafen.": "Собака заснула в тіні.",
+    "B1 | Anna hat ihr Buch auf das Handtuch gelegt.": "Анна поклала свою книжку на рушник.",
+    "B1 | Das Boot ist heute Morgen aufs Meer gefahren.": "Човен вийшов у море сьогодні вранці.",
+    "B1 | Anna hat den ganzen Tag in der Sonne gelegen.": "Анна весь день лежала на сонці.",
+    "B2 | Die Frau, die ein Eis isst, heißt Anna.": "Жінку, яка їсть морозиво, звати Анна.",
+    "B2 | Der Junge, dessen Ball bunt ist, spielt im Wasser.": "Хлопчик із різнокольоровим м'ячем грається у воді.",
+    "B2 | Die Insel, auf der ein Leuchtturm steht, ist klein.": "Острів, на якому стоїть маяк, маленький.",
+    "B2 | Der schlafende Hund liegt im Schatten.": "Сплячий собака лежить у тіні.",
+    "B2 | Das Eis ist schon halb gegessen.": "Морозиво вже наполовину з'їдене.",
+    "B2 | Hier wird im Sommer viel geschwommen.": "Тут улітку багато плавають.",
+    "C1 | Sie muss sich im Urlaub sehr wohlfühlen.": "Їй, мабуть, дуже добре у відпустці.",
+    "C1 | Der Hund könnte dem Jungen gehören.": "Собака, можливо, належить хлопчикові.",
+    "C1 | Das Wasser dürfte schon ziemlich warm sein.": "Вода, напевно, вже досить тепла.",
+    "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "Кажуть, з маяка видно аж Африку."
    }
   },
   "fa": {
@@ -1418,6 +1528,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Jungen gehören.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Das Wasser dürfte schon ziemlich warm sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Das Buch liegt auf dem Handtuch.": "کتاب روی حوله است.",
+    "A2 | Der Hund liegt hinter dem Korb.": "سگ پشت سبد دراز کشیده است.",
+    "A2 | Der Junge spielt am Meer.": "پسر کنار دریا بازی می‌کند.",
+    "A2 | Der Leuchtturm steht auf der Insel.": "فانوس دریایی روی جزیره است.",
+    "A2 | Der Eimer steht neben dem Korb.": "سطل کنار سبد است.",
+    "A2 | Das Boot ist auf dem Meer.": "قایق روی دریا است.",
+    "A2 | Der Vogel sitzt auf dem Stein.": "پرنده روی سنگ نشسته است.",
+    "A2 | Die Sonne ist am Himmel.": "خورشید در آسمان است.",
+    "B1 | Anna ist nach Spanien geflogen.": "آنا به اسپانیا پرواز کرده است.",
+    "B1 | Heute Morgen ist sie im Meer geschwommen.": "امروز صبح در دریا شنا کرده است.",
+    "B1 | Sie hat ein Eis gekauft.": "او یک بستنی خریده است.",
+    "B1 | Der Junge hat den Ball ins Wasser geworfen.": "پسر توپ را در آب انداخته است.",
+    "B1 | Der Hund ist im Schatten eingeschlafen.": "سگ در سایه خوابش برده است.",
+    "B1 | Anna hat ihr Buch auf das Handtuch gelegt.": "آنا کتابش را روی حوله گذاشته است.",
+    "B1 | Das Boot ist heute Morgen aufs Meer gefahren.": "قایق امروز صبح به دریا رفته است.",
+    "B1 | Anna hat den ganzen Tag in der Sonne gelegen.": "آنا تمام روز زیر آفتاب دراز کشیده بود.",
+    "B2 | Die Frau, die ein Eis isst, heißt Anna.": "زنی که بستنی می‌خورد، آنا نام دارد.",
+    "B2 | Der Junge, dessen Ball bunt ist, spielt im Wasser.": "پسری که توپش رنگارنگ است، در آب بازی می‌کند.",
+    "B2 | Die Insel, auf der ein Leuchtturm steht, ist klein.": "جزیره‌ای که فانوس دریایی رویش است، کوچک است.",
+    "B2 | Der schlafende Hund liegt im Schatten.": "سگ خوابیده در سایه دراز کشیده است.",
+    "B2 | Das Eis ist schon halb gegessen.": "نصف بستنی خورده شده است.",
+    "B2 | Hier wird im Sommer viel geschwommen.": "اینجا در تابستان زیاد شنا می‌کنند.",
+    "C1 | Sie muss sich im Urlaub sehr wohlfühlen.": "او حتماً در تعطیلات خیلی راحت است.",
+    "C1 | Der Hund könnte dem Jungen gehören.": "سگ شاید مال پسر باشد.",
+    "C1 | Das Wasser dürfte schon ziemlich warm sein.": "آب احتمالاً دیگر نسبتاً گرم است.",
+    "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "می‌گویند از فانوس دریایی می‌شود تا آفریقا را دید."
    }
   },
   "ar": {
@@ -1459,6 +1597,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Jungen gehören.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Das Wasser dürfte schon ziemlich warm sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Das Buch liegt auf dem Handtuch.": "الكتاب على المنشفة.",
+    "A2 | Der Hund liegt hinter dem Korb.": "الكلب مستلقٍ خلف السلّة.",
+    "A2 | Der Junge spielt am Meer.": "الصبيّ يلعب عند البحر.",
+    "A2 | Der Leuchtturm steht auf der Insel.": "المنارة على الجزيرة.",
+    "A2 | Der Eimer steht neben dem Korb.": "الدلو بجانب السلّة.",
+    "A2 | Das Boot ist auf dem Meer.": "القارب في البحر.",
+    "A2 | Der Vogel sitzt auf dem Stein.": "العصفور على الصخرة.",
+    "A2 | Die Sonne ist am Himmel.": "الشمس في السماء.",
+    "B1 | Anna ist nach Spanien geflogen.": "سافرت آنا بالطائرة إلى إسبانيا.",
+    "B1 | Heute Morgen ist sie im Meer geschwommen.": "هذا الصباح سبحت في البحر.",
+    "B1 | Sie hat ein Eis gekauft.": "اشترت مثلّجات.",
+    "B1 | Der Junge hat den Ball ins Wasser geworfen.": "رمى الصبيّ الكرة في الماء.",
+    "B1 | Der Hund ist im Schatten eingeschlafen.": "نام الكلب في الظلّ.",
+    "B1 | Anna hat ihr Buch auf das Handtuch gelegt.": "وضعت آنا كتابها على المنشفة.",
+    "B1 | Das Boot ist heute Morgen aufs Meer gefahren.": "خرج القارب إلى البحر هذا الصباح.",
+    "B1 | Anna hat den ganzen Tag in der Sonne gelegen.": "استلقت آنا في الشمس طوال اليوم.",
+    "B2 | Die Frau, die ein Eis isst, heißt Anna.": "المرأة التي تأكل المثلّجات اسمها آنا.",
+    "B2 | Der Junge, dessen Ball bunt ist, spielt im Wasser.": "الصبيّ ذو الكرة الملوّنة يلعب في الماء.",
+    "B2 | Die Insel, auf der ein Leuchtturm steht, ist klein.": "الجزيرة التي عليها منارة صغيرة.",
+    "B2 | Der schlafende Hund liegt im Schatten.": "الكلب النائم مستلقٍ في الظلّ.",
+    "B2 | Das Eis ist schon halb gegessen.": "المثلّجات مأكولة إلى نصفها بالفعل.",
+    "B2 | Hier wird im Sommer viel geschwommen.": "هنا يُسبح كثيراً في الصيف.",
+    "C1 | Sie muss sich im Urlaub sehr wohlfühlen.": "لا بدّ أنها مرتاحة جداً في العطلة.",
+    "C1 | Der Hund könnte dem Jungen gehören.": "ربما يكون الكلب للصبيّ.",
+    "C1 | Das Wasser dürfte schon ziemlich warm sein.": "على الأرجح الماء دافئ جداً الآن.",
+    "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "يُقال إن المرء يستطيع رؤية أفريقيا من المنارة."
    }
   },
   "pt": {
@@ -1500,6 +1666,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Jungen gehören.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Das Wasser dürfte schon ziemlich warm sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Das Buch liegt auf dem Handtuch.": "O livro está na toalha.",
+    "A2 | Der Hund liegt hinter dem Korb.": "O cachorro está deitado atrás da cesta.",
+    "A2 | Der Junge spielt am Meer.": "O menino brinca à beira-mar.",
+    "A2 | Der Leuchtturm steht auf der Insel.": "O farol fica na ilha.",
+    "A2 | Der Eimer steht neben dem Korb.": "O balde está ao lado da cesta.",
+    "A2 | Das Boot ist auf dem Meer.": "O barco está no mar.",
+    "A2 | Der Vogel sitzt auf dem Stein.": "O pássaro está pousado na pedra.",
+    "A2 | Die Sonne ist am Himmel.": "O sol está no céu.",
+    "B1 | Anna ist nach Spanien geflogen.": "Anna voou para a Espanha.",
+    "B1 | Heute Morgen ist sie im Meer geschwommen.": "Esta manhã ela nadou no mar.",
+    "B1 | Sie hat ein Eis gekauft.": "Ela comprou um sorvete.",
+    "B1 | Der Junge hat den Ball ins Wasser geworfen.": "O menino jogou a bola na água.",
+    "B1 | Der Hund ist im Schatten eingeschlafen.": "O cachorro adormeceu na sombra.",
+    "B1 | Anna hat ihr Buch auf das Handtuch gelegt.": "Anna pôs o livro na toalha.",
+    "B1 | Das Boot ist heute Morgen aufs Meer gefahren.": "O barco saiu para o mar esta manhã.",
+    "B1 | Anna hat den ganzen Tag in der Sonne gelegen.": "Anna ficou deitada ao sol o dia inteiro.",
+    "B2 | Die Frau, die ein Eis isst, heißt Anna.": "A mulher que come um sorvete se chama Anna.",
+    "B2 | Der Junge, dessen Ball bunt ist, spielt im Wasser.": "O menino cuja bola é colorida brinca na água.",
+    "B2 | Die Insel, auf der ein Leuchtturm steht, ist klein.": "A ilha em que há um farol é pequena.",
+    "B2 | Der schlafende Hund liegt im Schatten.": "O cachorro adormecido está deitado na sombra.",
+    "B2 | Das Eis ist schon halb gegessen.": "O sorvete já está comido pela metade.",
+    "B2 | Hier wird im Sommer viel geschwommen.": "Aqui se nada muito no verão.",
+    "C1 | Sie muss sich im Urlaub sehr wohlfühlen.": "Ela deve estar se sentindo muito bem nas férias.",
+    "C1 | Der Hund könnte dem Jungen gehören.": "O cachorro talvez seja do menino.",
+    "C1 | Das Wasser dürfte schon ziemlich warm sein.": "A água provavelmente já está bem quente.",
+    "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "Dizem que do farol dá para ver até a África."
    }
   },
   "pl": {
@@ -1541,6 +1735,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Jungen gehören.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Das Wasser dürfte schon ziemlich warm sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Das Buch liegt auf dem Handtuch.": "Książka leży na ręczniku.",
+    "A2 | Der Hund liegt hinter dem Korb.": "Pies leży za koszem.",
+    "A2 | Der Junge spielt am Meer.": "Chłopiec bawi się nad morzem.",
+    "A2 | Der Leuchtturm steht auf der Insel.": "Latarnia morska stoi na wyspie.",
+    "A2 | Der Eimer steht neben dem Korb.": "Wiaderko stoi obok kosza.",
+    "A2 | Das Boot ist auf dem Meer.": "Łódź jest na morzu.",
+    "A2 | Der Vogel sitzt auf dem Stein.": "Ptak siedzi na kamieniu.",
+    "A2 | Die Sonne ist am Himmel.": "Słońce jest na niebie.",
+    "B1 | Anna ist nach Spanien geflogen.": "Anna poleciała do Hiszpanii.",
+    "B1 | Heute Morgen ist sie im Meer geschwommen.": "Dziś rano pływała w morzu.",
+    "B1 | Sie hat ein Eis gekauft.": "Kupiła loda.",
+    "B1 | Der Junge hat den Ball ins Wasser geworfen.": "Chłopiec wrzucił piłkę do wody.",
+    "B1 | Der Hund ist im Schatten eingeschlafen.": "Pies zasnął w cieniu.",
+    "B1 | Anna hat ihr Buch auf das Handtuch gelegt.": "Anna położyła książkę na ręczniku.",
+    "B1 | Das Boot ist heute Morgen aufs Meer gefahren.": "Łódź wypłynęła dziś rano w morze.",
+    "B1 | Anna hat den ganzen Tag in der Sonne gelegen.": "Anna cały dzień leżała na słońcu.",
+    "B2 | Die Frau, die ein Eis isst, heißt Anna.": "Kobieta, która je loda, ma na imię Anna.",
+    "B2 | Der Junge, dessen Ball bunt ist, spielt im Wasser.": "Chłopiec, którego piłka jest kolorowa, bawi się w wodzie.",
+    "B2 | Die Insel, auf der ein Leuchtturm steht, ist klein.": "Wyspa, na której stoi latarnia morska, jest mała.",
+    "B2 | Der schlafende Hund liegt im Schatten.": "Śpiący pies leży w cieniu.",
+    "B2 | Das Eis ist schon halb gegessen.": "Lód jest już w połowie zjedzony.",
+    "B2 | Hier wird im Sommer viel geschwommen.": "Latem dużo się tu pływa.",
+    "C1 | Sie muss sich im Urlaub sehr wohlfühlen.": "Musi czuć się świetnie na wakacjach.",
+    "C1 | Der Hund könnte dem Jungen gehören.": "Pies być może należy do chłopca.",
+    "C1 | Das Wasser dürfte schon ziemlich warm sein.": "Woda jest zapewne już dość ciepła.",
+    "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "Podobno z latarni morskiej widać aż Afrykę."
    }
   },
   "ru": {
@@ -1582,6 +1804,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Jungen gehören.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Das Wasser dürfte schon ziemlich warm sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Das Buch liegt auf dem Handtuch.": "Книга лежит на полотенце.",
+    "A2 | Der Hund liegt hinter dem Korb.": "Собака лежит за корзиной.",
+    "A2 | Der Junge spielt am Meer.": "Мальчик играет у моря.",
+    "A2 | Der Leuchtturm steht auf der Insel.": "Маяк стоит на острове.",
+    "A2 | Der Eimer steht neben dem Korb.": "Ведро стоит рядом с корзиной.",
+    "A2 | Das Boot ist auf dem Meer.": "Лодка в море.",
+    "A2 | Der Vogel sitzt auf dem Stein.": "Птица сидит на камне.",
+    "A2 | Die Sonne ist am Himmel.": "Солнце на небе.",
+    "B1 | Anna ist nach Spanien geflogen.": "Анна улетела в Испанию.",
+    "B1 | Heute Morgen ist sie im Meer geschwommen.": "Сегодня утром она плавала в море.",
+    "B1 | Sie hat ein Eis gekauft.": "Она купила мороженое.",
+    "B1 | Der Junge hat den Ball ins Wasser geworfen.": "Мальчик бросил мяч в воду.",
+    "B1 | Der Hund ist im Schatten eingeschlafen.": "Собака заснула в тени.",
+    "B1 | Anna hat ihr Buch auf das Handtuch gelegt.": "Анна положила свою книгу на полотенце.",
+    "B1 | Das Boot ist heute Morgen aufs Meer gefahren.": "Лодка вышла в море сегодня утром.",
+    "B1 | Anna hat den ganzen Tag in der Sonne gelegen.": "Анна весь день лежала на солнце.",
+    "B2 | Die Frau, die ein Eis isst, heißt Anna.": "Женщину, которая ест мороженое, зовут Анна.",
+    "B2 | Der Junge, dessen Ball bunt ist, spielt im Wasser.": "Мальчик с разноцветным мячом играет в воде.",
+    "B2 | Die Insel, auf der ein Leuchtturm steht, ist klein.": "Остров, на котором стоит маяк, маленький.",
+    "B2 | Der schlafende Hund liegt im Schatten.": "Спящая собака лежит в тени.",
+    "B2 | Das Eis ist schon halb gegessen.": "Мороженое уже наполовину съедено.",
+    "B2 | Hier wird im Sommer viel geschwommen.": "Здесь летом много плавают.",
+    "C1 | Sie muss sich im Urlaub sehr wohlfühlen.": "Ей, должно быть, очень хорошо в отпуске.",
+    "C1 | Der Hund könnte dem Jungen gehören.": "Собака, возможно, принадлежит мальчику.",
+    "C1 | Das Wasser dürfte schon ziemlich warm sein.": "Вода, вероятно, уже довольно тёплая.",
+    "C1 | Vom Leuchtturm aus soll man bis nach Afrika sehen können.": "Говорят, с маяка видно до самой Африки."
    }
   }
  }

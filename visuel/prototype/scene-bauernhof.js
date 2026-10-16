@@ -1648,6 +1648,7 @@ window.SCENE = {
      "f": "katze",
      "r": "mauer",
      "phrase": "Die Katze sitzt auf der Mauer.",
+     "sens": "Le chat est assis sur le muret.",
      "n": "die Mauer → auf <b>der</b> Mauer : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1660,6 +1661,7 @@ window.SCENE = {
      "f": "hund",
      "r": "boden",
      "phrase": "Der Hund liegt auf dem Boden.",
+     "sens": "Le chien est couché par terre.",
      "n": "der Boden → auf <b>dem</b> Boden."
     },
     {
@@ -1672,6 +1674,7 @@ window.SCENE = {
      "f": "ei",
      "r": "korb",
      "phrase": "Die Eier sind im Korb.",
+     "sens": "Les œufs sont dans le panier.",
      "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
     },
     {
@@ -1684,6 +1687,7 @@ window.SCENE = {
      "f": "leiter",
      "r": "holz",
      "phrase": "Die Leiter steht neben dem Holz.",
+     "sens": "L'échelle est à côté du bois.",
      "n": "<b>neben</b> = à côté de. das Holz → neben <b>dem</b> Holz."
     },
     {
@@ -1695,6 +1699,7 @@ window.SCENE = {
      ],
      "f": "vogel",
      "phrase": "Der Vogel sitzt auf dem Dach.",
+     "sens": "L'oiseau est perché sur le toit.",
      "n": "das Dach → auf <b>dem</b> Dach."
     },
     {
@@ -1707,6 +1712,7 @@ window.SCENE = {
      "f": "apfel-3",
      "r": "kiste",
      "phrase": "Die Äpfel liegen in der Kiste.",
+     "sens": "Les pommes sont dans la caisse.",
      "n": "die Kiste → in <b>der</b> Kiste : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1718,6 +1724,7 @@ window.SCENE = {
      ],
      "f": "kuh",
      "phrase": "Die Kuh steht auf der Wiese.",
+     "sens": "La vache est dans le pré.",
      "n": "die Wiese → auf <b>der</b> Wiese : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1730,6 +1737,7 @@ window.SCENE = {
      "f": "eimer",
      "r": "brunnen",
      "phrase": "Der Eimer hängt am Brunnen.",
+     "sens": "Le seau est accroché au puits.",
      "n": "<b>am</b> = an + <b>dem</b> : der Brunnen → am Brunnen."
     }
    ]
@@ -1747,6 +1755,7 @@ window.SCENE = {
      "f": "anna",
      "r": "pferd",
      "phrase": "Anna freut sich über das Pferd.",
+     "sens": "Anna est contente de voir le cheval.",
      "n": "<b>sich freuen</b> : à la 3e personne, le pronom est <b>sich</b>.",
      "revise": {
       "mot": "sich freuen",
@@ -1763,6 +1772,7 @@ window.SCENE = {
      "f": "hund",
      "r": "boden",
      "phrase": "Der Hund legt sich auf den Boden.",
+     "sens": "Le chien se couche par terre.",
      "n": "<b>sich legen</b> = se coucher ; er → <b>sich</b>.",
      "revise": {
       "mot": "sich legen",
@@ -1779,6 +1789,7 @@ window.SCENE = {
      "f": "katze",
      "r": "mauer",
      "phrase": "Die Katze setzt sich auf die Mauer.",
+     "sens": "Le chat s'assied sur le muret.",
      "n": "<b>sich setzen</b> = s'asseoir ; sie → <b>sich</b>.",
      "revise": {
       "mot": "sich setzen",
@@ -1794,6 +1805,7 @@ window.SCENE = {
      ],
      "f": "onkel",
      "phrase": "Ich wasche mich nach der Arbeit.",
+     "sens": "Je me lave après le travail.",
      "n": "<b>sich waschen</b> : ich → <b>mich</b> (accusatif)."
     },
     {
@@ -1805,6 +1817,7 @@ window.SCENE = {
      ],
      "f": "bank",
      "phrase": "Wir setzen uns auf die Bank.",
+     "sens": "Nous nous asseyons sur le banc.",
      "n": "wir → <b>uns</b>.",
      "revise": {
       "mot": "sich setzen",
@@ -1820,6 +1833,7 @@ window.SCENE = {
      ],
      "f": "haus",
      "phrase": "Erinnerst du dich an den Bauernhof?",
+     "sens": "Tu te souviens de la ferme ?",
      "n": "<b>sich erinnern an</b> : du → <b>dich</b>.",
      "revise": {
       "mot": "sich erinnern",
@@ -1835,6 +1849,7 @@ window.SCENE = {
      ],
      "f": "cousin",
      "phrase": "Annas Cousin wäscht sich die Hände.",
+     "sens": "Le cousin d'Anna se lave les mains.",
      "n": "Avec un complément (die Hände), le pronom est au datif — mais à la 3e personne, c'est toujours <b>sich</b>."
     },
     {
@@ -1846,6 +1861,7 @@ window.SCENE = {
      ],
      "f": "huhn-2",
      "phrase": "Die Hühner bewegen sich schnell.",
+     "sens": "Les poules bougent vite.",
      "n": "<b>sich bewegen</b> : sie (pluriel) → <b>sich</b>."
     }
    ]
@@ -1863,6 +1879,7 @@ window.SCENE = {
      "f": "anna",
      "r": "pferd",
      "phrase": "Bevor Anna das Pferd füttert, wäscht sie die Äpfel.",
+     "sens": "Avant de nourrir le cheval, Anna lave les pommes.",
      "n": "<b>bevor</b> = avant que : l'action de la subordonnée vient après.",
      "revise": {
       "mot": "füttern",
@@ -1879,6 +1896,7 @@ window.SCENE = {
      "f": "onkel",
      "r": "schwein",
      "phrase": "Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.",
+     "sens": "Après avoir été chercher la paille, son oncle nourrit le cochon.",
      "n": "<b>nachdem</b> + Perfekt dans la subordonnée quand la principale est au présent.",
      "revise": {
       "mot": "holen",
@@ -1894,6 +1912,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "Seit einem Jahr lebt der Hund auf dem Bauernhof.",
+     "sens": "Le chien vit à la ferme depuis un an.",
      "n": "<b>seit</b> + datif = depuis, et ça continue (présent).",
      "revise": {
       "mot": "leben",
@@ -1909,6 +1928,7 @@ window.SCENE = {
      ],
      "f": "katze",
      "phrase": "Die Katze schläft, nachdem sie gefressen hat.",
+     "sens": "Le chat dort après avoir mangé.",
      "n": "<b>nachdem</b> : l'action d'avant au Perfekt, verbe conjugué à la fin.",
      "revise": {
       "mot": "fressen",
@@ -1924,6 +1944,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.",
+     "sens": "Depuis qu'Anna travaille à la ferme, elle se lève tôt.",
      "n": "<b>seit</b> + subordonnée : le verbe conjugué va à la fin.",
      "revise": {
       "mot": "arbeiten",
@@ -1940,6 +1961,7 @@ window.SCENE = {
      "f": "hund",
      "r": "anna",
      "phrase": "Der Hund wartet, bis Anna ihn ruft.",
+     "sens": "Le chien attend qu'Anna l'appelle.",
      "n": "<b>bis</b> = jusqu'à ce que, verbe à la fin.",
      "revise": {
       "mot": "warten",
@@ -1961,6 +1983,7 @@ window.SCENE = {
      "f": "pferd",
      "r": "anna",
      "phrase": "Das Pferd muss sehr lieb sein.",
+     "sens": "Le cheval doit être très gentil.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1973,6 +1996,7 @@ window.SCENE = {
      "f": "hund",
      "r": "cousin",
      "phrase": "Der Hund könnte Annas Cousin gehören.",
+     "sens": "Le chien appartient peut-être au cousin d'Anna.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1985,6 +2009,7 @@ window.SCENE = {
      "f": "ei",
      "r": "korb",
      "phrase": "Die Eier dürften von heute Morgen sein.",
+     "sens": "Les œufs datent sans doute de ce matin.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1996,6 +2021,7 @@ window.SCENE = {
      ],
      "f": "haus",
      "phrase": "Der Bauernhof soll über hundert Jahre alt sein.",
+     "sens": "La ferme aurait plus de cent ans.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -2041,6 +2067,34 @@ window.SCENE = {
     "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = one possibility among others.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt auf der Mauer.": "The cat is sitting on the wall.",
+    "A2 | Der Hund liegt auf dem Boden.": "The dog is lying on the ground.",
+    "A2 | Die Eier sind im Korb.": "The eggs are in the basket.",
+    "A2 | Die Leiter steht neben dem Holz.": "The ladder is next to the wood.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "The bird is sitting on the roof.",
+    "A2 | Die Äpfel liegen in der Kiste.": "The apples are in the crate.",
+    "A2 | Die Kuh steht auf der Wiese.": "The cow is standing in the meadow.",
+    "A2 | Der Eimer hängt am Brunnen.": "The bucket hangs on the well.",
+    "B1 | Anna freut sich über das Pferd.": "Anna is happy about the horse.",
+    "B1 | Der Hund legt sich auf den Boden.": "The dog lies down on the ground.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "The cat sits down on the wall.",
+    "B1 | Ich wasche mich nach der Arbeit.": "I wash after work.",
+    "B1 | Wir setzen uns auf die Bank.": "We sit down on the bench.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "Do you remember the farm?",
+    "B1 | Annas Cousin wäscht sich die Hände.": "Anna's cousin is washing his hands.",
+    "B1 | Die Hühner bewegen sich schnell.": "The chickens move fast.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Before Anna feeds the horse, she washes the apples.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "After fetching the straw, her uncle feeds the pig.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "The dog has lived on the farm for a year.",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "The cat sleeps after it has eaten.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Since Anna has been working on the farm, she gets up early.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "The dog waits until Anna calls him.",
+    "C1 | Das Pferd muss sehr lieb sein.": "The horse must be very gentle.",
+    "C1 | Der Hund könnte Annas Cousin gehören.": "The dog might belong to Anna's cousin.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "The eggs are probably from this morning.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "The farm is said to be over a hundred years old."
    }
   },
   "tr": {
@@ -2082,6 +2136,34 @@ window.SCENE = {
     "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt auf der Mauer.": "Kedi duvarın üstünde oturuyor.",
+    "A2 | Der Hund liegt auf dem Boden.": "Köpek yerde yatıyor.",
+    "A2 | Die Eier sind im Korb.": "Yumurtalar sepetin içinde.",
+    "A2 | Die Leiter steht neben dem Holz.": "Merdiven odunların yanında duruyor.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "Kuş çatının üstünde duruyor.",
+    "A2 | Die Äpfel liegen in der Kiste.": "Elmalar kasanın içinde.",
+    "A2 | Die Kuh steht auf der Wiese.": "İnek çayırda duruyor.",
+    "A2 | Der Eimer hängt am Brunnen.": "Kova kuyuda asılı.",
+    "B1 | Anna freut sich über das Pferd.": "Anna ata seviniyor.",
+    "B1 | Der Hund legt sich auf den Boden.": "Köpek yere uzanıyor.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "Kedi duvarın üstüne oturuyor.",
+    "B1 | Ich wasche mich nach der Arbeit.": "İşten sonra yıkanıyorum.",
+    "B1 | Wir setzen uns auf die Bank.": "Banka oturuyoruz.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "Çiftliği hatırlıyor musun?",
+    "B1 | Annas Cousin wäscht sich die Hände.": "Anna'nın kuzeni ellerini yıkıyor.",
+    "B1 | Die Hühner bewegen sich schnell.": "Tavuklar hızlı hareket ediyor.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Anna atı beslemeden önce elmaları yıkıyor.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Amcası samanı getirdikten sonra domuzu besliyor.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "Köpek bir yıldır çiftlikte yaşıyor.",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "Kedi yemek yedikten sonra uyuyor.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Anna çiftlikte çalışmaya başladığından beri erken kalkıyor.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "Köpek Anna onu çağırana kadar bekliyor.",
+    "C1 | Das Pferd muss sehr lieb sein.": "At çok uysal olmalı.",
+    "C1 | Der Hund könnte Annas Cousin gehören.": "Köpek Anna'nın kuzeninin olabilir.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "Yumurtalar bu sabahtan olsa gerek.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Çiftliğin yüz yıldan eski olduğu söyleniyor."
    }
   },
   "uk": {
@@ -2123,6 +2205,34 @@ window.SCENE = {
     "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt auf der Mauer.": "Кіт сидить на мурі.",
+    "A2 | Der Hund liegt auf dem Boden.": "Собака лежить на землі.",
+    "A2 | Die Eier sind im Korb.": "Яйця в кошику.",
+    "A2 | Die Leiter steht neben dem Holz.": "Драбина стоїть біля дров.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "Птах сидить на даху.",
+    "A2 | Die Äpfel liegen in der Kiste.": "Яблука лежать у ящику.",
+    "A2 | Die Kuh steht auf der Wiese.": "Корова стоїть на лузі.",
+    "A2 | Der Eimer hängt am Brunnen.": "Відро висить біля криниці.",
+    "B1 | Anna freut sich über das Pferd.": "Анна радіє коневі.",
+    "B1 | Der Hund legt sich auf den Boden.": "Собака лягає на землю.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "Кіт сідає на мур.",
+    "B1 | Ich wasche mich nach der Arbeit.": "Я миюся після роботи.",
+    "B1 | Wir setzen uns auf die Bank.": "Ми сідаємо на лавку.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "Ти пам'ятаєш ферму?",
+    "B1 | Annas Cousin wäscht sich die Hände.": "Двоюрідний брат Анни миє руки.",
+    "B1 | Die Hühner bewegen sich schnell.": "Кури швидко рухаються.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Перш ніж годувати коня, Анна миє яблука.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Принісши солому, її дядько годує свиню.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "Собака живе на фермі вже рік.",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "Кіт спить після того, як поїв.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Відколи Анна працює на фермі, вона рано встає.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "Собака чекає, поки Анна її покличе.",
+    "C1 | Das Pferd muss sehr lieb sein.": "Кінь, мабуть, дуже лагідний.",
+    "C1 | Der Hund könnte Annas Cousin gehören.": "Собака, можливо, належить двоюрідному братові Анни.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "Яйця, напевно, сьогоднішні.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Кажуть, фермі понад сто років."
    }
   },
   "fa": {
@@ -2164,6 +2274,34 @@ window.SCENE = {
     "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt auf der Mauer.": "گربه روی دیوار نشسته است.",
+    "A2 | Der Hund liegt auf dem Boden.": "سگ روی زمین دراز کشیده است.",
+    "A2 | Die Eier sind im Korb.": "تخم‌مرغ‌ها در سبد هستند.",
+    "A2 | Die Leiter steht neben dem Holz.": "نردبان کنار هیزم‌ها است.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "پرنده روی بام نشسته است.",
+    "A2 | Die Äpfel liegen in der Kiste.": "سیب‌ها در جعبه هستند.",
+    "A2 | Die Kuh steht auf der Wiese.": "گاو در چمنزار ایستاده است.",
+    "A2 | Der Eimer hängt am Brunnen.": "سطل به چاه آویزان است.",
+    "B1 | Anna freut sich über das Pferd.": "آنا از دیدن اسب خوشحال است.",
+    "B1 | Der Hund legt sich auf den Boden.": "سگ روی زمین دراز می‌کشد.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "گربه روی دیوار می‌نشیند.",
+    "B1 | Ich wasche mich nach der Arbeit.": "من بعد از کار خودم را می‌شویم.",
+    "B1 | Wir setzen uns auf die Bank.": "ما روی نیمکت می‌نشینیم.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "مزرعه را به یاد می‌آوری؟",
+    "B1 | Annas Cousin wäscht sich die Hände.": "پسرعموی آنا دست‌هایش را می‌شوید.",
+    "B1 | Die Hühner bewegen sich schnell.": "مرغ‌ها تند حرکت می‌کنند.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "آنا پیش از غذا دادن به اسب، سیب‌ها را می‌شوید.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "عمویش پس از آوردن کاه، به خوک غذا می‌دهد.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "سگ یک سال است که در مزرعه زندگی می‌کند.",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "گربه بعد از غذا خوردن می‌خوابد.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "از وقتی آنا در مزرعه کار می‌کند، زود بیدار می‌شود.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "سگ منتظر می‌ماند تا آنا صدایش کند.",
+    "C1 | Das Pferd muss sehr lieb sein.": "اسب حتماً خیلی مهربان است.",
+    "C1 | Der Hund könnte Annas Cousin gehören.": "سگ شاید مال پسرعموی آنا باشد.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "تخم‌مرغ‌ها احتمالاً مال امروز صبح هستند.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "می‌گویند مزرعه بیش از صد سال قدمت دارد."
    }
   },
   "ar": {
@@ -2205,6 +2343,34 @@ window.SCENE = {
     "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt auf der Mauer.": "القطة جالسة على الجدار.",
+    "A2 | Der Hund liegt auf dem Boden.": "الكلب مستلقٍ على الأرض.",
+    "A2 | Die Eier sind im Korb.": "البيض في السلّة.",
+    "A2 | Die Leiter steht neben dem Holz.": "السلّم بجانب الخشب.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "العصفور على السطح.",
+    "A2 | Die Äpfel liegen in der Kiste.": "التفاح في الصندوق.",
+    "A2 | Die Kuh steht auf der Wiese.": "البقرة في المرج.",
+    "A2 | Der Eimer hängt am Brunnen.": "الدلو معلّق عند البئر.",
+    "B1 | Anna freut sich über das Pferd.": "آنا سعيدة بالحصان.",
+    "B1 | Der Hund legt sich auf den Boden.": "يستلقي الكلب على الأرض.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "تجلس القطة على الجدار.",
+    "B1 | Ich wasche mich nach der Arbeit.": "أغتسل بعد العمل.",
+    "B1 | Wir setzen uns auf die Bank.": "نجلس على المقعد.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "هل تتذكّر المزرعة؟",
+    "B1 | Annas Cousin wäscht sich die Hände.": "ابن عمّ آنا يغسل يديه.",
+    "B1 | Die Hühner bewegen sich schnell.": "الدجاج يتحرّك بسرعة.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "قبل أن تُطعم آنا الحصان، تغسل التفاح.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "بعد أن يُحضر عمّها القشّ، يُطعم الخنزير.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "يعيش الكلب في المزرعة منذ سنة.",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "تنام القطة بعد أن تأكل.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "منذ أن بدأت آنا تعمل في المزرعة، تستيقظ باكراً.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "ينتظر الكلب حتى تناديه آنا.",
+    "C1 | Das Pferd muss sehr lieb sein.": "لا بدّ أن الحصان لطيف جداً.",
+    "C1 | Der Hund könnte Annas Cousin gehören.": "ربما يكون الكلب لابن عمّ آنا.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "على الأرجح البيض من هذا الصباح.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "يُقال إن عمر المزرعة يزيد على مئة سنة."
    }
   },
   "pt": {
@@ -2246,6 +2412,34 @@ window.SCENE = {
     "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt auf der Mauer.": "O gato está sentado no muro.",
+    "A2 | Der Hund liegt auf dem Boden.": "O cachorro está deitado no chão.",
+    "A2 | Die Eier sind im Korb.": "Os ovos estão na cesta.",
+    "A2 | Die Leiter steht neben dem Holz.": "A escada está ao lado da lenha.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "O pássaro está pousado no telhado.",
+    "A2 | Die Äpfel liegen in der Kiste.": "As maçãs estão na caixa.",
+    "A2 | Die Kuh steht auf der Wiese.": "A vaca está no prado.",
+    "A2 | Der Eimer hängt am Brunnen.": "O balde está pendurado no poço.",
+    "B1 | Anna freut sich über das Pferd.": "Anna está feliz com o cavalo.",
+    "B1 | Der Hund legt sich auf den Boden.": "O cachorro se deita no chão.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "O gato se senta no muro.",
+    "B1 | Ich wasche mich nach der Arbeit.": "Eu me lavo depois do trabalho.",
+    "B1 | Wir setzen uns auf die Bank.": "Nós nos sentamos no banco.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "Você se lembra da fazenda?",
+    "B1 | Annas Cousin wäscht sich die Hände.": "O primo de Anna lava as mãos.",
+    "B1 | Die Hühner bewegen sich schnell.": "As galinhas se mexem rápido.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Antes de dar de comer ao cavalo, Anna lava as maçãs.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Depois de buscar a palha, o tio dela dá de comer ao porco.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "O cachorro vive na fazenda há um ano.",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "O gato dorme depois de ter comido.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Desde que Anna trabalha na fazenda, ela acorda cedo.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "O cachorro espera até Anna chamá-lo.",
+    "C1 | Das Pferd muss sehr lieb sein.": "O cavalo deve ser muito manso.",
+    "C1 | Der Hund könnte Annas Cousin gehören.": "O cachorro talvez seja do primo de Anna.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "Os ovos provavelmente são desta manhã.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Dizem que a fazenda tem mais de cem anos."
    }
   },
   "pl": {
@@ -2287,6 +2481,34 @@ window.SCENE = {
     "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt auf der Mauer.": "Kot siedzi na murku.",
+    "A2 | Der Hund liegt auf dem Boden.": "Pies leży na ziemi.",
+    "A2 | Die Eier sind im Korb.": "Jajka są w koszyku.",
+    "A2 | Die Leiter steht neben dem Holz.": "Drabina stoi obok drewna.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "Ptak siedzi na dachu.",
+    "A2 | Die Äpfel liegen in der Kiste.": "Jabłka leżą w skrzynce.",
+    "A2 | Die Kuh steht auf der Wiese.": "Krowa stoi na łące.",
+    "A2 | Der Eimer hängt am Brunnen.": "Wiadro wisi przy studni.",
+    "B1 | Anna freut sich über das Pferd.": "Anna cieszy się z konia.",
+    "B1 | Der Hund legt sich auf den Boden.": "Pies kładzie się na ziemi.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "Kot siada na murku.",
+    "B1 | Ich wasche mich nach der Arbeit.": "Myję się po pracy.",
+    "B1 | Wir setzen uns auf die Bank.": "Siadamy na ławce.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "Pamiętasz to gospodarstwo?",
+    "B1 | Annas Cousin wäscht sich die Hände.": "Kuzyn Anny myje ręce.",
+    "B1 | Die Hühner bewegen sich schnell.": "Kury szybko się ruszają.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Zanim Anna nakarmi konia, myje jabłka.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Po przyniesieniu słomy jej wujek karmi świnię.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "Pies od roku mieszka w gospodarstwie.",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "Kot śpi po tym, jak się najadł.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "Odkąd Anna pracuje w gospodarstwie, wstaje wcześnie.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "Pies czeka, aż Anna go zawoła.",
+    "C1 | Das Pferd muss sehr lieb sein.": "Koń musi być bardzo łagodny.",
+    "C1 | Der Hund könnte Annas Cousin gehören.": "Pies być może należy do kuzyna Anny.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "Jajka są zapewne z dzisiejszego ranka.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Podobno gospodarstwo ma ponad sto lat."
    }
   },
   "ru": {
@@ -2328,6 +2550,34 @@ window.SCENE = {
     "C1 | Der Hund könnte Annas Cousin gehören.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Die Eier dürften von heute Morgen sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt auf der Mauer.": "Кошка сидит на стене.",
+    "A2 | Der Hund liegt auf dem Boden.": "Собака лежит на земле.",
+    "A2 | Die Eier sind im Korb.": "Яйца в корзине.",
+    "A2 | Die Leiter steht neben dem Holz.": "Лестница стоит рядом с дровами.",
+    "A2 | Der Vogel sitzt auf dem Dach.": "Птица сидит на крыше.",
+    "A2 | Die Äpfel liegen in der Kiste.": "Яблоки лежат в ящике.",
+    "A2 | Die Kuh steht auf der Wiese.": "Корова стоит на лугу.",
+    "A2 | Der Eimer hängt am Brunnen.": "Ведро висит у колодца.",
+    "B1 | Anna freut sich über das Pferd.": "Анна радуется лошади.",
+    "B1 | Der Hund legt sich auf den Boden.": "Собака ложится на землю.",
+    "B1 | Die Katze setzt sich auf die Mauer.": "Кошка садится на стену.",
+    "B1 | Ich wasche mich nach der Arbeit.": "Я моюсь после работы.",
+    "B1 | Wir setzen uns auf die Bank.": "Мы садимся на скамейку.",
+    "B1 | Erinnerst du dich an den Bauernhof?": "Ты помнишь ферму?",
+    "B1 | Annas Cousin wäscht sich die Hände.": "Двоюродный брат Анны моет руки.",
+    "B1 | Die Hühner bewegen sich schnell.": "Куры быстро двигаются.",
+    "B2 | Bevor Anna das Pferd füttert, wäscht sie die Äpfel.": "Прежде чем покормить лошадь, Анна моет яблоки.",
+    "B2 | Nachdem ihr Onkel das Stroh geholt hat, füttert er das Schwein.": "Принеся солому, её дядя кормит свинью.",
+    "B2 | Seit einem Jahr lebt der Hund auf dem Bauernhof.": "Собака живёт на ферме уже год.",
+    "B2 | Die Katze schläft, nachdem sie gefressen hat.": "Кошка спит после того, как поела.",
+    "B2 | Seit Anna auf dem Bauernhof arbeitet, steht sie früh auf.": "С тех пор как Анна работает на ферме, она рано встаёт.",
+    "B2 | Der Hund wartet, bis Anna ihn ruft.": "Собака ждёт, пока Анна её позовёт.",
+    "C1 | Das Pferd muss sehr lieb sein.": "Лошадь, должно быть, очень ласковая.",
+    "C1 | Der Hund könnte Annas Cousin gehören.": "Собака, возможно, принадлежит двоюродному брату Анны.",
+    "C1 | Die Eier dürften von heute Morgen sein.": "Яйца, вероятно, сегодняшние.",
+    "C1 | Der Bauernhof soll über hundert Jahre alt sein.": "Говорят, ферме больше ста лет."
    }
   }
  }

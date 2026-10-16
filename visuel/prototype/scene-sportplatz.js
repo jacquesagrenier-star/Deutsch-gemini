@@ -880,6 +880,7 @@ window.SCENE = {
      "f": "ball",
      "r": "netz",
      "phrase": "Der Ball ist im Netz.",
+     "sens": "Le ballon est dans le filet.",
      "n": "<b>im</b> = in + <b>dem</b> : das Netz → im Netz."
     },
     {
@@ -892,6 +893,7 @@ window.SCENE = {
      "f": "torwart",
      "r": "netz",
      "phrase": "Der Spieler im gelben Trikot sitzt vor dem Netz.",
+     "sens": "Le joueur au maillot jaune est assis devant le filet.",
      "n": "<b>vor</b> = devant. das Netz → vor <b>dem</b> Netz."
     },
     {
@@ -904,6 +906,7 @@ window.SCENE = {
      "f": "mann",
      "r": "bank",
      "phrase": "Der alte Mann sitzt auf der Bank.",
+     "sens": "Le vieux monsieur est assis sur le banc.",
      "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -916,6 +919,7 @@ window.SCENE = {
      "f": "handtuch",
      "r": "tasche",
      "phrase": "Das Handtuch ist in der Tasche.",
+     "sens": "La serviette est dans le sac.",
      "n": "die Tasche → in <b>der</b> Tasche : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -928,6 +932,7 @@ window.SCENE = {
      "f": "ball-2",
      "r": "tasche",
      "phrase": "Der Ball liegt neben der Tasche.",
+     "sens": "Le ballon est à côté du sac.",
      "n": "die Tasche → neben <b>der</b> Tasche : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -940,6 +945,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "netz",
      "phrase": "Das Fahrrad steht hinter dem Netz.",
+     "sens": "Le vélo est derrière le filet.",
      "n": "<b>hinter</b> = derrière. das Netz → hinter <b>dem</b> Netz."
     },
     {
@@ -952,6 +958,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "tasche",
      "phrase": "Die Flasche ist in der Tasche.",
+     "sens": "La bouteille est dans le sac.",
      "n": "die Tasche → in <b>der</b> Tasche : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -964,6 +971,7 @@ window.SCENE = {
      "f": "wolke",
      "r": "himmel",
      "phrase": "Die Wolke ist am Himmel.",
+     "sens": "Le nuage est dans le ciel.",
      "n": "<b>am</b> = an + <b>dem</b> : der Himmel → am Himmel."
     }
    ]
@@ -981,6 +989,7 @@ window.SCENE = {
      "f": "mark",
      "r": "ball",
      "phrase": "Mark schoss den Ball ins Tor.",
+     "sens": "Mark a tiré le ballon dans le but.",
      "n": "<b>schießen</b> → Präteritum <b>schoss</b> (irrégulier).",
      "revise": {
       "mot": "schießen",
@@ -996,6 +1005,7 @@ window.SCENE = {
      ],
      "f": "torwart",
      "phrase": "Der Torwart fiel ins Gras.",
+     "sens": "Le gardien est tombé dans l'herbe.",
      "n": "<b>fallen</b> → <b>fiel</b>.",
      "revise": {
       "mot": "fallen",
@@ -1012,6 +1022,7 @@ window.SCENE = {
      "f": "mannschaft",
      "r": "mark",
      "phrase": "Die Spieler liefen zu Mark.",
+     "sens": "Les joueurs ont couru vers Mark.",
      "n": "<b>laufen</b> → <b>lief</b>, au pluriel <b>liefen</b>.",
      "revise": {
       "mot": "laufen",
@@ -1027,6 +1038,7 @@ window.SCENE = {
      ],
      "f": "trainerin",
      "phrase": "Die Trainerin klatschte in die Hände.",
+     "sens": "L'entraîneuse a applaudi.",
      "n": "Verbe régulier : radical + <b>-te</b> → klatschte."
     },
     {
@@ -1038,6 +1050,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark schrie vor Freude.",
+     "sens": "Mark a crié de joie.",
      "n": "<b>schreien</b> → <b>schrie</b>.",
      "revise": {
       "mot": "schreien",
@@ -1053,6 +1066,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Das Spiel begann um zehn Uhr.",
+     "sens": "Le match a commencé à dix heures.",
      "n": "<b>beginnen</b> → <b>begann</b>.",
      "revise": {
       "mot": "beginnen",
@@ -1069,6 +1083,7 @@ window.SCENE = {
      "f": "bank",
      "r": "mann",
      "phrase": "Die Zuschauer saßen auf der Bank.",
+     "sens": "Les spectateurs étaient assis sur le banc.",
      "n": "<b>sitzen</b> → <b>saß</b>, au pluriel <b>saßen</b>.",
      "revise": {
       "mot": "sitzen",
@@ -1084,6 +1099,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Am Ende gewann Marks Mannschaft.",
+     "sens": "À la fin, l'équipe de Mark a gagné.",
      "n": "<b>gewinnen</b> → <b>gewann</b>.",
      "revise": {
       "mot": "gewinnen",
@@ -1104,6 +1120,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark jubelt, weil er ein Tor geschossen hat.",
+     "sens": "Mark exulte parce qu'il a marqué un but.",
      "n": "<b>weil</b> = parce que ; le verbe conjugué va à la fin."
     },
     {
@@ -1115,6 +1132,7 @@ window.SCENE = {
      ],
      "f": "torwart",
      "phrase": "Der Torwart lacht, obwohl er den Ball nicht gehalten hat.",
+     "sens": "Le gardien rit, bien qu'il n'ait pas arrêté le ballon.",
      "n": "<b>obwohl</b> = bien que : une opposition."
     },
     {
@@ -1127,6 +1145,7 @@ window.SCENE = {
      "f": "trainerin",
      "r": "mark",
      "phrase": "Als Mark das Tor schoss, klatschte die Trainerin.",
+     "sens": "Quand Mark a marqué le but, l'entraîneuse a applaudi.",
      "n": "Un fait unique dans le passé → <b>als</b> (pas wenn)."
     },
     {
@@ -1139,6 +1158,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "mark",
      "phrase": "Mark trinkt Wasser, sobald das Spiel vorbei ist.",
+     "sens": "Mark boit de l'eau dès que le match est fini.",
      "n": "<b>sobald</b> = dès que."
     },
     {
@@ -1150,6 +1170,7 @@ window.SCENE = {
      ],
      "f": "bank",
      "phrase": "Die Zuschauer sitzen auf der Bank, während die Spieler laufen.",
+     "sens": "Les spectateurs sont assis sur le banc pendant que les joueurs courent.",
      "n": "<b>während</b> = pendant que."
     },
     {
@@ -1161,6 +1182,7 @@ window.SCENE = {
      ],
      "f": "trainerin",
      "phrase": "Sie trainieren jeden Samstag, damit sie fit bleiben.",
+     "sens": "Ils s'entraînent chaque samedi pour rester en forme.",
      "n": "<b>damit</b> = pour que : un but."
     }
    ]
@@ -1177,6 +1199,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Das muss sein erstes Tor sein.",
+     "sens": "Ce doit être son premier but.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1188,6 +1211,7 @@ window.SCENE = {
      ],
      "f": "mann",
      "phrase": "Der alte Mann könnte Marks Nachbar sein.",
+     "sens": "Le vieux monsieur est peut-être le voisin de Mark.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1199,6 +1223,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Das Spiel dürfte bald vorbei sein.",
+     "sens": "Le match devrait bientôt être fini.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1210,6 +1235,7 @@ window.SCENE = {
      ],
      "f": "trainerin",
      "phrase": "Die Trainerin soll früher Profi gewesen sein.",
+     "sens": "Il paraît que l'entraîneuse était professionnelle autrefois.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1255,6 +1281,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Der Ball ist im Netz.": "The ball is in the net.",
+    "A2 | Der Spieler im gelben Trikot sitzt vor dem Netz.": "The player in the yellow shirt is sitting in front of the net.",
+    "A2 | Der alte Mann sitzt auf der Bank.": "The old man is sitting on the bench.",
+    "A2 | Das Handtuch ist in der Tasche.": "The towel is in the bag.",
+    "A2 | Der Ball liegt neben der Tasche.": "The ball is next to the bag.",
+    "A2 | Das Fahrrad steht hinter dem Netz.": "The bicycle is behind the net.",
+    "A2 | Die Flasche ist in der Tasche.": "The bottle is in the bag.",
+    "A2 | Die Wolke ist am Himmel.": "The cloud is in the sky.",
+    "B1 | Mark schoss den Ball ins Tor.": "Mark shot the ball into the goal.",
+    "B1 | Der Torwart fiel ins Gras.": "The goalkeeper fell into the grass.",
+    "B1 | Die Spieler liefen zu Mark.": "The players ran to Mark.",
+    "B1 | Die Trainerin klatschte in die Hände.": "The coach clapped her hands.",
+    "B1 | Mark schrie vor Freude.": "Mark shouted with joy.",
+    "B1 | Das Spiel begann um zehn Uhr.": "The game began at ten o'clock.",
+    "B1 | Die Zuschauer saßen auf der Bank.": "The spectators sat on the bench.",
+    "B1 | Am Ende gewann Marks Mannschaft.": "In the end, Mark's team won.",
+    "B2 | Mark jubelt, weil er ein Tor geschossen hat.": "Mark is cheering because he scored a goal.",
+    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "The goalkeeper is laughing although he did not save the ball.",
+    "B2 | Als Mark das Tor schoss, klatschte die Trainerin.": "When Mark scored the goal, the coach clapped.",
+    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "Mark drinks water as soon as the game is over.",
+    "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "The spectators sit on the bench while the players run.",
+    "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "They train every Saturday to stay fit.",
+    "C1 | Das muss sein erstes Tor sein.": "That must be his first goal.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "The old man might be Mark's neighbour.",
+    "C1 | Das Spiel dürfte bald vorbei sein.": "The game should be over soon.",
+    "C1 | Die Trainerin soll früher Profi gewesen sein.": "The coach is said to have been a professional."
    }
   },
   "tr": {
@@ -1296,6 +1350,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Der Ball ist im Netz.": "Top ağda.",
+    "A2 | Der Spieler im gelben Trikot sitzt vor dem Netz.": "Sarı formalı oyuncu ağın önünde oturuyor.",
+    "A2 | Der alte Mann sitzt auf der Bank.": "Yaşlı adam bankta oturuyor.",
+    "A2 | Das Handtuch ist in der Tasche.": "Havlu çantanın içinde.",
+    "A2 | Der Ball liegt neben der Tasche.": "Top çantanın yanında.",
+    "A2 | Das Fahrrad steht hinter dem Netz.": "Bisiklet ağın arkasında duruyor.",
+    "A2 | Die Flasche ist in der Tasche.": "Şişe çantanın içinde.",
+    "A2 | Die Wolke ist am Himmel.": "Bulut gökyüzünde.",
+    "B1 | Mark schoss den Ball ins Tor.": "Mark topu kaleye attı.",
+    "B1 | Der Torwart fiel ins Gras.": "Kaleci çimene düştü.",
+    "B1 | Die Spieler liefen zu Mark.": "Oyuncular Mark'a koştu.",
+    "B1 | Die Trainerin klatschte in die Hände.": "Antrenör el çırptı.",
+    "B1 | Mark schrie vor Freude.": "Mark sevinçten bağırdı.",
+    "B1 | Das Spiel begann um zehn Uhr.": "Maç saat onda başladı.",
+    "B1 | Die Zuschauer saßen auf der Bank.": "Seyirciler bankta oturuyordu.",
+    "B1 | Am Ende gewann Marks Mannschaft.": "Sonunda Mark'ın takımı kazandı.",
+    "B2 | Mark jubelt, weil er ein Tor geschossen hat.": "Mark gol attığı için seviniyor.",
+    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "Kaleci topu tutamadığı hâlde gülüyor.",
+    "B2 | Als Mark das Tor schoss, klatschte die Trainerin.": "Mark golü attığında antrenör alkışladı.",
+    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "Maç biter bitmez Mark su içiyor.",
+    "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "Oyuncular koşarken seyirciler bankta oturuyor.",
+    "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "Formda kalmak için her cumartesi antrenman yapıyorlar.",
+    "C1 | Das muss sein erstes Tor sein.": "Bu onun ilk golü olmalı.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "Yaşlı adam Mark'ın komşusu olabilir.",
+    "C1 | Das Spiel dürfte bald vorbei sein.": "Maç yakında biter herhalde.",
+    "C1 | Die Trainerin soll früher Profi gewesen sein.": "Antrenörün eskiden profesyonel olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1337,6 +1419,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Der Ball ist im Netz.": "М'яч у сітці.",
+    "A2 | Der Spieler im gelben Trikot sitzt vor dem Netz.": "Гравець у жовтій футболці сидить перед сіткою.",
+    "A2 | Der alte Mann sitzt auf der Bank.": "Старий чоловік сидить на лавці.",
+    "A2 | Das Handtuch ist in der Tasche.": "Рушник у сумці.",
+    "A2 | Der Ball liegt neben der Tasche.": "М'яч лежить біля сумки.",
+    "A2 | Das Fahrrad steht hinter dem Netz.": "Велосипед стоїть за сіткою.",
+    "A2 | Die Flasche ist in der Tasche.": "Пляшка в сумці.",
+    "A2 | Die Wolke ist am Himmel.": "Хмара на небі.",
+    "B1 | Mark schoss den Ball ins Tor.": "Марк забив м'яч у ворота.",
+    "B1 | Der Torwart fiel ins Gras.": "Воротар упав на траву.",
+    "B1 | Die Spieler liefen zu Mark.": "Гравці побігли до Марка.",
+    "B1 | Die Trainerin klatschte in die Hände.": "Тренерка заплескала в долоні.",
+    "B1 | Mark schrie vor Freude.": "Марк закричав від радості.",
+    "B1 | Das Spiel begann um zehn Uhr.": "Гра почалася о десятій.",
+    "B1 | Die Zuschauer saßen auf der Bank.": "Глядачі сиділи на лавці.",
+    "B1 | Am Ende gewann Marks Mannschaft.": "Зрештою команда Марка перемогла.",
+    "B2 | Mark jubelt, weil er ein Tor geschossen hat.": "Марк радіє, бо забив гол.",
+    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "Воротар сміється, хоча не спіймав м'яч.",
+    "B2 | Als Mark das Tor schoss, klatschte die Trainerin.": "Коли Марк забив гол, тренерка заплескала.",
+    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "Марк п'є воду, щойно гра закінчується.",
+    "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "Глядачі сидять на лавці, поки гравці бігають.",
+    "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "Вони тренуються щосуботи, щоб залишатися у формі.",
+    "C1 | Das muss sein erstes Tor sein.": "Це, мабуть, його перший гол.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "Старий чоловік, можливо, сусід Марка.",
+    "C1 | Das Spiel dürfte bald vorbei sein.": "Гра, напевно, скоро закінчиться.",
+    "C1 | Die Trainerin soll früher Profi gewesen sein.": "Кажуть, тренерка колись була професіоналкою."
    }
   },
   "fa": {
@@ -1378,6 +1488,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Der Ball ist im Netz.": "توپ در تور است.",
+    "A2 | Der Spieler im gelben Trikot sitzt vor dem Netz.": "بازیکن پیراهن‌زرد جلوی تور نشسته است.",
+    "A2 | Der alte Mann sitzt auf der Bank.": "پیرمرد روی نیمکت نشسته است.",
+    "A2 | Das Handtuch ist in der Tasche.": "حوله در کیف است.",
+    "A2 | Der Ball liegt neben der Tasche.": "توپ کنار کیف است.",
+    "A2 | Das Fahrrad steht hinter dem Netz.": "دوچرخه پشت تور است.",
+    "A2 | Die Flasche ist in der Tasche.": "بطری در کیف است.",
+    "A2 | Die Wolke ist am Himmel.": "ابر در آسمان است.",
+    "B1 | Mark schoss den Ball ins Tor.": "مارک توپ را به دروازه زد.",
+    "B1 | Der Torwart fiel ins Gras.": "دروازه‌بان روی چمن افتاد.",
+    "B1 | Die Spieler liefen zu Mark.": "بازیکن‌ها به سمت مارک دویدند.",
+    "B1 | Die Trainerin klatschte in die Hände.": "مربی دست زد.",
+    "B1 | Mark schrie vor Freude.": "مارک از خوشحالی فریاد زد.",
+    "B1 | Das Spiel begann um zehn Uhr.": "بازی ساعت ده شروع شد.",
+    "B1 | Die Zuschauer saßen auf der Bank.": "تماشاگران روی نیمکت نشسته بودند.",
+    "B1 | Am Ende gewann Marks Mannschaft.": "در پایان تیم مارک برنده شد.",
+    "B2 | Mark jubelt, weil er ein Tor geschossen hat.": "مارک خوشحالی می‌کند چون گل زده است.",
+    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "دروازه‌بان می‌خندد، با اینکه توپ را نگرفته است.",
+    "B2 | Als Mark das Tor schoss, klatschte die Trainerin.": "وقتی مارک گل زد، مربی دست زد.",
+    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "به‌محض اینکه بازی تمام شود، مارک آب می‌نوشد.",
+    "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "تماشاگران روی نیمکت نشسته‌اند، در حالی که بازیکن‌ها می‌دوند.",
+    "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "آنها هر شنبه تمرین می‌کنند تا سرحال بمانند.",
+    "C1 | Das muss sein erstes Tor sein.": "این حتماً اولین گل اوست.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "پیرمرد شاید همسایهٔ مارک باشد.",
+    "C1 | Das Spiel dürfte bald vorbei sein.": "بازی احتمالاً به‌زودی تمام می‌شود.",
+    "C1 | Die Trainerin soll früher Profi gewesen sein.": "می‌گویند مربی قبلاً حرفه‌ای بوده است."
    }
   },
   "ar": {
@@ -1419,6 +1557,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Der Ball ist im Netz.": "الكرة في الشبكة.",
+    "A2 | Der Spieler im gelben Trikot sitzt vor dem Netz.": "اللاعب ذو القميص الأصفر جالس أمام الشبكة.",
+    "A2 | Der alte Mann sitzt auf der Bank.": "الرجل العجوز جالس على المقعد.",
+    "A2 | Das Handtuch ist in der Tasche.": "المنشفة في الحقيبة.",
+    "A2 | Der Ball liegt neben der Tasche.": "الكرة بجانب الحقيبة.",
+    "A2 | Das Fahrrad steht hinter dem Netz.": "الدراجة خلف الشبكة.",
+    "A2 | Die Flasche ist in der Tasche.": "الزجاجة في الحقيبة.",
+    "A2 | Die Wolke ist am Himmel.": "الغيمة في السماء.",
+    "B1 | Mark schoss den Ball ins Tor.": "سدّد مارك الكرة في المرمى.",
+    "B1 | Der Torwart fiel ins Gras.": "سقط حارس المرمى على العشب.",
+    "B1 | Die Spieler liefen zu Mark.": "ركض اللاعبون نحو مارك.",
+    "B1 | Die Trainerin klatschte in die Hände.": "صفّقت المدرّبة.",
+    "B1 | Mark schrie vor Freude.": "صرخ مارك من الفرح.",
+    "B1 | Das Spiel begann um zehn Uhr.": "بدأت المباراة في الساعة العاشرة.",
+    "B1 | Die Zuschauer saßen auf der Bank.": "جلس المتفرّجون على المقعد.",
+    "B1 | Am Ende gewann Marks Mannschaft.": "في النهاية فاز فريق مارك.",
+    "B2 | Mark jubelt, weil er ein Tor geschossen hat.": "يهتف مارك فرحاً لأنه سجّل هدفاً.",
+    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "يضحك حارس المرمى رغم أنه لم يصدّ الكرة.",
+    "B2 | Als Mark das Tor schoss, klatschte die Trainerin.": "عندما سجّل مارك الهدف، صفّقت المدرّبة.",
+    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "يشرب مارك الماء حالما تنتهي المباراة.",
+    "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "يجلس المتفرّجون على المقعد بينما يركض اللاعبون.",
+    "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "يتدرّبون كل سبت ليبقوا لائقين.",
+    "C1 | Das muss sein erstes Tor sein.": "لا بدّ أن هذا هدفه الأوّل.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "ربما يكون الرجل العجوز جار مارك.",
+    "C1 | Das Spiel dürfte bald vorbei sein.": "على الأرجح تنتهي المباراة قريباً.",
+    "C1 | Die Trainerin soll früher Profi gewesen sein.": "يُقال إن المدرّبة كانت لاعبة محترفة."
    }
   },
   "pt": {
@@ -1460,6 +1626,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Der Ball ist im Netz.": "A bola está na rede.",
+    "A2 | Der Spieler im gelben Trikot sitzt vor dem Netz.": "O jogador de camisa amarela está sentado em frente à rede.",
+    "A2 | Der alte Mann sitzt auf der Bank.": "O senhor idoso está sentado no banco.",
+    "A2 | Das Handtuch ist in der Tasche.": "A toalha está na bolsa.",
+    "A2 | Der Ball liegt neben der Tasche.": "A bola está ao lado da bolsa.",
+    "A2 | Das Fahrrad steht hinter dem Netz.": "A bicicleta está atrás da rede.",
+    "A2 | Die Flasche ist in der Tasche.": "A garrafa está na bolsa.",
+    "A2 | Die Wolke ist am Himmel.": "A nuvem está no céu.",
+    "B1 | Mark schoss den Ball ins Tor.": "Mark chutou a bola para o gol.",
+    "B1 | Der Torwart fiel ins Gras.": "O goleiro caiu na grama.",
+    "B1 | Die Spieler liefen zu Mark.": "Os jogadores correram para Mark.",
+    "B1 | Die Trainerin klatschte in die Hände.": "A treinadora bateu palmas.",
+    "B1 | Mark schrie vor Freude.": "Mark gritou de alegria.",
+    "B1 | Das Spiel begann um zehn Uhr.": "O jogo começou às dez horas.",
+    "B1 | Die Zuschauer saßen auf der Bank.": "Os espectadores estavam sentados no banco.",
+    "B1 | Am Ende gewann Marks Mannschaft.": "No fim, o time de Mark ganhou.",
+    "B2 | Mark jubelt, weil er ein Tor geschossen hat.": "Mark comemora porque marcou um gol.",
+    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "O goleiro ri, embora não tenha defendido a bola.",
+    "B2 | Als Mark das Tor schoss, klatschte die Trainerin.": "Quando Mark marcou o gol, a treinadora bateu palmas.",
+    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "Mark bebe água assim que o jogo acaba.",
+    "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "Os espectadores ficam sentados no banco enquanto os jogadores correm.",
+    "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "Eles treinam todo sábado para se manterem em forma.",
+    "C1 | Das muss sein erstes Tor sein.": "Esse deve ser o primeiro gol dele.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "O senhor idoso talvez seja vizinho de Mark.",
+    "C1 | Das Spiel dürfte bald vorbei sein.": "O jogo provavelmente acaba logo.",
+    "C1 | Die Trainerin soll früher Profi gewesen sein.": "Dizem que a treinadora foi profissional."
    }
   },
   "pl": {
@@ -1501,6 +1695,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Der Ball ist im Netz.": "Piłka jest w siatce.",
+    "A2 | Der Spieler im gelben Trikot sitzt vor dem Netz.": "Zawodnik w żółtej koszulce siedzi przed siatką.",
+    "A2 | Der alte Mann sitzt auf der Bank.": "Starszy pan siedzi na ławce.",
+    "A2 | Das Handtuch ist in der Tasche.": "Ręcznik jest w torbie.",
+    "A2 | Der Ball liegt neben der Tasche.": "Piłka leży obok torby.",
+    "A2 | Das Fahrrad steht hinter dem Netz.": "Rower stoi za siatką.",
+    "A2 | Die Flasche ist in der Tasche.": "Butelka jest w torbie.",
+    "A2 | Die Wolke ist am Himmel.": "Chmura jest na niebie.",
+    "B1 | Mark schoss den Ball ins Tor.": "Mark strzelił piłkę do bramki.",
+    "B1 | Der Torwart fiel ins Gras.": "Bramkarz upadł na trawę.",
+    "B1 | Die Spieler liefen zu Mark.": "Zawodnicy pobiegli do Marka.",
+    "B1 | Die Trainerin klatschte in die Hände.": "Trenerka klasnęła w dłonie.",
+    "B1 | Mark schrie vor Freude.": "Mark krzyknął z radości.",
+    "B1 | Das Spiel begann um zehn Uhr.": "Mecz zaczął się o dziesiątej.",
+    "B1 | Die Zuschauer saßen auf der Bank.": "Widzowie siedzieli na ławce.",
+    "B1 | Am Ende gewann Marks Mannschaft.": "Na koniec wygrała drużyna Marka.",
+    "B2 | Mark jubelt, weil er ein Tor geschossen hat.": "Mark cieszy się, bo strzelił gola.",
+    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "Bramkarz się śmieje, chociaż nie obronił piłki.",
+    "B2 | Als Mark das Tor schoss, klatschte die Trainerin.": "Kiedy Mark strzelił gola, trenerka klaskała.",
+    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "Mark pije wodę, gdy tylko mecz się kończy.",
+    "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "Widzowie siedzą na ławce, podczas gdy zawodnicy biegają.",
+    "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "Trenują w każdą sobotę, żeby być w formie.",
+    "C1 | Das muss sein erstes Tor sein.": "To musi być jego pierwszy gol.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "Starszy pan być może jest sąsiadem Marka.",
+    "C1 | Das Spiel dürfte bald vorbei sein.": "Mecz zapewne wkrótce się skończy.",
+    "C1 | Die Trainerin soll früher Profi gewesen sein.": "Podobno trenerka była kiedyś zawodowczynią."
    }
   },
   "ru": {
@@ -1542,6 +1764,34 @@ window.SCENE = {
     "C1 | Der alte Mann könnte Marks Nachbar sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Das Spiel dürfte bald vorbei sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Die Trainerin soll früher Profi gewesen sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Der Ball ist im Netz.": "Мяч в сетке.",
+    "A2 | Der Spieler im gelben Trikot sitzt vor dem Netz.": "Игрок в жёлтой футболке сидит перед сеткой.",
+    "A2 | Der alte Mann sitzt auf der Bank.": "Старик сидит на скамейке.",
+    "A2 | Das Handtuch ist in der Tasche.": "Полотенце в сумке.",
+    "A2 | Der Ball liegt neben der Tasche.": "Мяч лежит рядом с сумкой.",
+    "A2 | Das Fahrrad steht hinter dem Netz.": "Велосипед стоит за сеткой.",
+    "A2 | Die Flasche ist in der Tasche.": "Бутылка в сумке.",
+    "A2 | Die Wolke ist am Himmel.": "Облако на небе.",
+    "B1 | Mark schoss den Ball ins Tor.": "Марк забил мяч в ворота.",
+    "B1 | Der Torwart fiel ins Gras.": "Вратарь упал на траву.",
+    "B1 | Die Spieler liefen zu Mark.": "Игроки побежали к Марку.",
+    "B1 | Die Trainerin klatschte in die Hände.": "Тренер захлопала в ладоши.",
+    "B1 | Mark schrie vor Freude.": "Марк закричал от радости.",
+    "B1 | Das Spiel begann um zehn Uhr.": "Игра началась в десять часов.",
+    "B1 | Die Zuschauer saßen auf der Bank.": "Зрители сидели на скамейке.",
+    "B1 | Am Ende gewann Marks Mannschaft.": "В конце концов команда Марка победила.",
+    "B2 | Mark jubelt, weil er ein Tor geschossen hat.": "Марк ликует, потому что забил гол.",
+    "B2 | Der Torwart lacht, obwohl er den Ball nicht gehalten hat.": "Вратарь смеётся, хотя не поймал мяч.",
+    "B2 | Als Mark das Tor schoss, klatschte die Trainerin.": "Когда Марк забил гол, тренер захлопала.",
+    "B2 | Mark trinkt Wasser, sobald das Spiel vorbei ist.": "Марк пьёт воду, как только игра заканчивается.",
+    "B2 | Die Zuschauer sitzen auf der Bank, während die Spieler laufen.": "Зрители сидят на скамейке, пока игроки бегают.",
+    "B2 | Sie trainieren jeden Samstag, damit sie fit bleiben.": "Они тренируются каждую субботу, чтобы оставаться в форме.",
+    "C1 | Das muss sein erstes Tor sein.": "Это, должно быть, его первый гол.",
+    "C1 | Der alte Mann könnte Marks Nachbar sein.": "Старик, возможно, сосед Марка.",
+    "C1 | Das Spiel dürfte bald vorbei sein.": "Игра, вероятно, скоро закончится.",
+    "C1 | Die Trainerin soll früher Profi gewesen sein.": "Говорят, тренер раньше была профессионалкой."
    }
   }
  }

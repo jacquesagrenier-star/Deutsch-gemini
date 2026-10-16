@@ -937,6 +937,7 @@ window.SCENE = {
      "f": "katze",
      "r": "stuhl",
      "phrase": "El gato duerme en la silla.",
+     "sens": "Le chat dort sur la chaise.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -948,6 +949,7 @@ window.SCENE = {
      ],
      "f": "bild",
      "phrase": "Hay un cuadro en la pared.",
+     "sens": "Il y a un tableau au mur.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -960,6 +962,7 @@ window.SCENE = {
      "f": "suppe",
      "r": "tisch",
      "phrase": "La sopa está en la mesa.",
+     "sens": "La soupe est sur la table.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -972,6 +975,7 @@ window.SCENE = {
      "f": "brot",
      "r": "korb",
      "phrase": "El pan está en la cesta.",
+     "sens": "Le pain est dans la corbeille.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -984,6 +988,7 @@ window.SCENE = {
      "f": "gabel",
      "r": "teller-2",
      "phrase": "El tenedor está al lado del plato.",
+     "sens": "La fourchette est à côté de l'assiette.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -996,6 +1001,7 @@ window.SCENE = {
      "f": "saft",
      "r": "glas",
      "phrase": "El zumo está al lado del vaso.",
+     "sens": "Le jus est à côté du verre.",
      "n": "<b>de + el = del</b>, toujours.",
      "latam": {
       "q": "El jugo está al lado ___ vaso.",
@@ -1012,6 +1018,7 @@ window.SCENE = {
      "f": "blume",
      "r": "fenster",
      "phrase": "Las flores están delante de la ventana.",
+     "sens": "Les fleurs sont devant la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1024,6 +1031,7 @@ window.SCENE = {
      "f": "loeffel",
      "r": "serviette",
      "phrase": "La cuchara está encima de la servilleta.",
+     "sens": "La cuillère est sur la serviette.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     }
    ]
@@ -1041,6 +1049,7 @@ window.SCENE = {
      "f": "vater",
      "r": "anna",
      "phrase": "Su padre sirve las patatas.",
+     "sens": "Son père sert les pommes de terre.",
      "n": "Un seul possesseur, un seul objet → <b>su</b>.",
      "latam": {
       "q": "Es la familia de Anna: ___ padre sirve las papas.",
@@ -1057,6 +1066,7 @@ window.SCENE = {
      "f": "bruder",
      "r": "wasser",
      "phrase": "El hermano echa agua en su vaso.",
+     "sens": "Le frère verse de l'eau dans son verre.",
      "n": "Un seul possesseur, un seul objet → <b>su</b>."
     },
     {
@@ -1069,6 +1079,7 @@ window.SCENE = {
      "f": "mutter",
      "r": "baby",
      "phrase": "La madre tiene a su bebé en brazos.",
+     "sens": "La mère tient son bébé dans ses bras.",
      "n": "Un seul possesseur, un seul objet → <b>su</b>."
     },
     {
@@ -1081,6 +1092,7 @@ window.SCENE = {
      "f": "anna",
      "r": "opa",
      "phrase": "Anna quiere mucho a sus abuelos.",
+     "sens": "Anna aime beaucoup ses grands-parents.",
      "n": "Plusieurs objets → <b>sus</b> abuelos.",
      "revise": {
       "mot": "querer",
@@ -1096,6 +1108,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "Comemos los domingos en casa de nuestros abuelos.",
+     "sens": "Le dimanche, nous mangeons chez nos grands-parents.",
      "n": "<b>nuestro</b> s'accorde : los abuelos → nuestr<b>os</b>.",
      "revise": {
       "mot": "comer",
@@ -1111,6 +1124,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "El abuelo habla de su juventud.",
+     "sens": "Le grand-père parle de sa jeunesse.",
      "n": "Un seul possesseur, un seul objet → <b>su</b>."
     },
     {
@@ -1122,6 +1136,7 @@ window.SCENE = {
      ],
      "f": "gabel",
      "phrase": "Este tenedor es mío.",
+     "sens": "Cette fourchette est à moi.",
      "n": "Après <b>ser</b>, la forme longue : <b>mío</b> (el tenedor)."
     }
    ]
@@ -1138,6 +1153,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna está muy contenta.",
+     "sens": "Anna est très contente.",
      "n": "Un état du moment → <b>estar</b>."
     },
     {
@@ -1149,6 +1165,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "El abuelo es muy divertido.",
+     "sens": "Le grand-père est très drôle.",
      "n": "Un trait de caractère → <b>ser</b>."
     },
     {
@@ -1160,6 +1177,7 @@ window.SCENE = {
      ],
      "f": "suppe",
      "phrase": "La sopa está caliente.",
+     "sens": "La soupe est chaude.",
      "n": "Un état passager → <b>estar</b>."
     },
     {
@@ -1171,6 +1189,7 @@ window.SCENE = {
      ],
      "f": "tisch",
      "phrase": "La comida es en casa de los abuelos.",
+     "sens": "Le repas a lieu chez les grands-parents.",
      "n": "Un événement a lieu → <b>ser</b> (« la comida es en… »)."
     },
     {
@@ -1183,6 +1202,7 @@ window.SCENE = {
      "f": "baby",
      "r": "mutter",
      "phrase": "El bebé está en brazos de su madre.",
+     "sens": "Le bébé est dans les bras de sa mère.",
      "n": "Situer quelqu'un → <b>estar</b>."
     },
     {
@@ -1194,6 +1214,7 @@ window.SCENE = {
      ],
      "f": "teller-2",
      "phrase": "Los platos son de porcelana.",
+     "sens": "Les assiettes sont en porcelaine.",
      "n": "La matière → <b>ser de</b>."
     }
    ]
@@ -1210,6 +1231,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "El abuelo debe de contar algo gracioso.",
+     "sens": "Le grand-père doit raconter quelque chose de drôle.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1222,6 +1244,7 @@ window.SCENE = {
      "f": "katze",
      "r": "oma",
      "phrase": "Puede que el gato sea de la abuela.",
+     "sens": "Le chat est peut-être à la grand-mère.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1233,6 +1256,7 @@ window.SCENE = {
      ],
      "f": "suppe",
      "phrase": "Estará muy caliente.",
+     "sens": "Elle doit être très chaude.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1244,6 +1268,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "Dicen que el abuelo fue cocinero.",
+     "sens": "On dit que le grand-père a été cuisinier.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1290,6 +1315,35 @@ window.SCENE = {
     "C1 | Puede que el gato sea de la abuela.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Estará muy caliente.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que el abuelo fue cocinero.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El gato duerme en la silla.": "The cat is sleeping on the chair.",
+    "A2 | Hay un cuadro en la pared.": "There is a picture on the wall.",
+    "A2 | La sopa está en la mesa.": "The soup is on the table.",
+    "A2 | El pan está en la cesta.": "The bread is in the basket.",
+    "A2 | El tenedor está al lado del plato.": "The fork is next to the plate.",
+    "A2 | El jugo está al lado del vaso.": "The juice is next to the glass.",
+    "A2 | El zumo está al lado del vaso.": "The juice is next to the glass.",
+    "A2 | Las flores están delante de la ventana.": "The flowers are in front of the window.",
+    "A2 | La cuchara está encima de la servilleta.": "The spoon is on the napkin.",
+    "B1 | Su padre sirve las papas.": "Her father is serving the potatoes.",
+    "B1 | Su padre sirve las patatas.": "Her father is serving the potatoes.",
+    "B1 | El hermano echa agua en su vaso.": "The brother pours water into his glass.",
+    "B1 | La madre tiene a su bebé en brazos.": "The mother is holding her baby in her arms.",
+    "B1 | Anna quiere mucho a sus abuelos.": "Anna loves her grandparents very much.",
+    "B1 | Comemos los domingos en casa de nuestros abuelos.": "On Sundays we eat at our grandparents' house.",
+    "B1 | El abuelo habla de su juventud.": "Grandpa is talking about his youth.",
+    "B1 | Este tenedor es mío.": "This fork is mine.",
+    "B2 | Anna está muy contenta.": "Anna is very happy.",
+    "B2 | El abuelo es muy divertido.": "Grandpa is very funny.",
+    "B2 | La sopa está caliente.": "The soup is hot.",
+    "B2 | La comida es en casa de los abuelos.": "The meal is at the grandparents' house.",
+    "B2 | El bebé está en brazos de su madre.": "The baby is in its mother's arms.",
+    "B2 | Los platos son de porcelana.": "The plates are made of porcelain.",
+    "C1 | El abuelo debe de contar algo gracioso.": "Grandpa must be telling something funny.",
+    "C1 | Puede que el gato sea de la abuela.": "The cat may belong to grandma.",
+    "C1 | Estará muy caliente.": "It is probably very hot.",
+    "C1 | Dicen que el abuelo fue cocinero.": "They say grandpa was a cook."
    }
   },
   "tr": {
@@ -1300,7 +1354,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1310,7 +1365,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1320,7 +1376,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1362,6 +1419,35 @@ window.SCENE = {
     "C1 | Puede que el gato sea de la abuela.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Estará muy caliente.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que el abuelo fue cocinero.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El gato duerme en la silla.": "القطة نائمة على الكرسي.",
+    "A2 | Hay un cuadro en la pared.": "هناك لوحة على الحائط.",
+    "A2 | La sopa está en la mesa.": "الحساء على الطاولة.",
+    "A2 | El pan está en la cesta.": "الخبز في السلّة.",
+    "A2 | El tenedor está al lado del plato.": "الشوكة بجانب الصحن.",
+    "A2 | El jugo está al lado del vaso.": "العصير بجانب الكأس.",
+    "A2 | El zumo está al lado del vaso.": "العصير بجانب الكأس.",
+    "A2 | Las flores están delante de la ventana.": "الزهور أمام النافذة.",
+    "A2 | La cuchara está encima de la servilleta.": "الملعقة فوق المنديل.",
+    "B1 | Su padre sirve las papas.": "يقدّم أبوها البطاطا.",
+    "B1 | Su padre sirve las patatas.": "يقدّم أبوها البطاطا.",
+    "B1 | El hermano echa agua en su vaso.": "يصبّ الأخ الماء في كأسه.",
+    "B1 | La madre tiene a su bebé en brazos.": "تحمل الأمّ رضيعها بين ذراعيها.",
+    "B1 | Anna quiere mucho a sus abuelos.": "تحبّ آنا جدّيها كثيراً.",
+    "B1 | Comemos los domingos en casa de nuestros abuelos.": "نأكل أيام الأحد في بيت جدّينا.",
+    "B1 | El abuelo habla de su juventud.": "يتحدّث الجدّ عن شبابه.",
+    "B1 | Este tenedor es mío.": "هذه الشوكة لي.",
+    "B2 | Anna está muy contenta.": "آنا سعيدة جداً.",
+    "B2 | El abuelo es muy divertido.": "الجدّ مرح جداً.",
+    "B2 | La sopa está caliente.": "الحساء ساخن.",
+    "B2 | La comida es en casa de los abuelos.": "الغداء في بيت الجدّين.",
+    "B2 | El bebé está en brazos de su madre.": "الرضيع بين ذراعي أمّه.",
+    "B2 | Los platos son de porcelana.": "الصحون من الخزف.",
+    "C1 | El abuelo debe de contar algo gracioso.": "لا بدّ أن الجدّ يحكي شيئاً مضحكاً.",
+    "C1 | Puede que el gato sea de la abuela.": "ربما تكون القطة للجدّة.",
+    "C1 | Estará muy caliente.": "على الأرجح هو ساخن جداً.",
+    "C1 | Dicen que el abuelo fue cocinero.": "يُقال إن الجدّ كان طبّاخاً."
    }
   },
   "pt": {
@@ -1404,6 +1490,35 @@ window.SCENE = {
     "C1 | Puede que el gato sea de la abuela.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Estará muy caliente.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que el abuelo fue cocinero.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El gato duerme en la silla.": "O gato dorme na cadeira.",
+    "A2 | Hay un cuadro en la pared.": "Há um quadro na parede.",
+    "A2 | La sopa está en la mesa.": "A sopa está na mesa.",
+    "A2 | El pan está en la cesta.": "O pão está na cesta.",
+    "A2 | El tenedor está al lado del plato.": "O garfo está ao lado do prato.",
+    "A2 | El jugo está al lado del vaso.": "O suco está ao lado do copo.",
+    "A2 | El zumo está al lado del vaso.": "O suco está ao lado do copo.",
+    "A2 | Las flores están delante de la ventana.": "As flores estão em frente à janela.",
+    "A2 | La cuchara está encima de la servilleta.": "A colher está em cima do guardanapo.",
+    "B1 | Su padre sirve las papas.": "O pai dela serve as batatas.",
+    "B1 | Su padre sirve las patatas.": "O pai dela serve as batatas.",
+    "B1 | El hermano echa agua en su vaso.": "O irmão põe água no copo.",
+    "B1 | La madre tiene a su bebé en brazos.": "A mãe está com o bebê nos braços.",
+    "B1 | Anna quiere mucho a sus abuelos.": "Anna ama muito os avós.",
+    "B1 | Comemos los domingos en casa de nuestros abuelos.": "Aos domingos comemos na casa dos nossos avós.",
+    "B1 | El abuelo habla de su juventud.": "O avô fala da sua juventude.",
+    "B1 | Este tenedor es mío.": "Este garfo é meu.",
+    "B2 | Anna está muy contenta.": "Anna está muito contente.",
+    "B2 | El abuelo es muy divertido.": "O avô é muito divertido.",
+    "B2 | La sopa está caliente.": "A sopa está quente.",
+    "B2 | La comida es en casa de los abuelos.": "O almoço é na casa dos avós.",
+    "B2 | El bebé está en brazos de su madre.": "O bebê está nos braços da mãe.",
+    "B2 | Los platos son de porcelana.": "Os pratos são de porcelana.",
+    "C1 | El abuelo debe de contar algo gracioso.": "O avô deve estar contando algo engraçado.",
+    "C1 | Puede que el gato sea de la abuela.": "Pode ser que o gato seja da avó.",
+    "C1 | Estará muy caliente.": "Deve estar muito quente.",
+    "C1 | Dicen que el abuelo fue cocinero.": "Dizem que o avô foi cozinheiro."
    }
   },
   "pl": {
@@ -1414,7 +1529,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1424,7 +1540,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

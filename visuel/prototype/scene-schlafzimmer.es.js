@@ -798,6 +798,7 @@ window.SCENE = {
      "f": "hut",
      "r": "bett",
      "phrase": "El sombrero está en la cama.",
+     "sens": "Le chapeau est sur le lit.",
      "n": "<b>en</b> = sur, dans. Le lieu → <b>estar</b>.",
      "latam": {
       "c": [
@@ -817,6 +818,7 @@ window.SCENE = {
      "f": "wecker",
      "r": "lampe",
      "phrase": "El despertador está al lado de la lámpara.",
+     "sens": "Le réveil est à côté de la lampe.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -829,6 +831,7 @@ window.SCENE = {
      "f": "bild",
      "r": "bett",
      "phrase": "El cuadro está encima de la cama.",
+     "sens": "Le tableau est au-dessus du lit.",
      "n": "<b>encima de</b> = au-dessus de."
     },
     {
@@ -841,6 +844,7 @@ window.SCENE = {
      "f": "laptop",
      "r": "schreibtisch",
      "phrase": "El portátil está en el escritorio.",
+     "sens": "L'ordinateur portable est sur le bureau.",
      "n": "<b>el</b> escritorio est masculin → <b>en el</b> escritorio.",
      "latam": {
       "q": "La laptop está ___ escritorio.",
@@ -857,6 +861,7 @@ window.SCENE = {
      "f": "anna",
      "r": "teppich",
      "phrase": "Anna está de pie sobre la alfombra.",
+     "sens": "Anna est debout sur le tapis.",
      "n": "<b>sobre</b> = sur. <b>bajo</b> = sous."
     },
     {
@@ -869,6 +874,7 @@ window.SCENE = {
      "f": "pass",
      "r": "portemonnaie",
      "phrase": "El pasaporte está al lado de la cartera.",
+     "sens": "Le passeport est à côté du portefeuille.",
      "n": "<b>al lado de</b> = à côté de."
     },
     {
@@ -881,6 +887,7 @@ window.SCENE = {
      "f": "ladegeraet",
      "r": "landkarte",
      "phrase": "El cargador está al lado del mapa.",
+     "sens": "Le chargeur est à côté de la carte.",
      "n": "<b>el</b> mapa est masculin, malgré son -a : al lado <b>del</b> mapa.",
      "latam": {
       "c": [
@@ -900,6 +907,7 @@ window.SCENE = {
      "f": "schrank",
      "r": "anna",
      "phrase": "Hay un armario blanco detrás de Anna.",
+     "sens": "Il y a une armoire blanche derrière Anna.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue.",
      "latam": {
       "q": "___ un clóset blanco detrás de Anna.",
@@ -921,6 +929,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "anna",
      "phrase": "Anna va a viajar mañana.",
+     "sens": "Anna va voyager demain.",
      "n": "<b>ir a</b> + infinitif = le futur proche. Elle → <b>va</b>.",
      "revise": {
       "mot": "ir",
@@ -937,6 +946,7 @@ window.SCENE = {
      "f": "pullover",
      "r": "koffer",
      "phrase": "Anna lo va a meter en la maleta.",
+     "sens": "Anna va le mettre dans la valise.",
      "n": "Après <b>ir a</b>, toujours l'<b>infinitif</b>.",
      "revise": {
       "mot": "meter",
@@ -955,6 +965,7 @@ window.SCENE = {
      ],
      "f": "kamera",
      "phrase": "Anna la va a llevar.",
+     "sens": "Anna va l'emporter.",
      "n": "Complément direct féminin (la cámara) → <b>la</b>.",
      "revise": {
       "mot": "llevar",
@@ -970,6 +981,7 @@ window.SCENE = {
      ],
      "f": "socke",
      "phrase": "Anna los lleva puestos.",
+     "sens": "Anna les porte sur elle.",
      "n": "Complément direct masculin pluriel (los calcetines) → <b>los</b>.",
      "revise": {
       "mot": "llevar",
@@ -985,6 +997,7 @@ window.SCENE = {
      ],
      "f": "pass",
      "phrase": "Anna no puede viajar sin su pasaporte.",
+     "sens": "Anna ne peut pas voyager sans son passeport.",
      "n": "Un seul passeport → <b>su</b>. <b>sus</b> irait avec un pluriel.",
      "revise": {
       "mot": "viajar",
@@ -1000,6 +1013,7 @@ window.SCENE = {
      ],
      "f": "ladegeraet",
      "phrase": "Casi lo ha olvidado.",
+     "sens": "Elle a failli l'oublier.",
      "n": "Passé composé → toujours <b>haber</b> : ha olvidado.",
      "revise": {
       "mot": "olvidar",
@@ -1015,6 +1029,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Anna tiene que hacer la maleta hoy.",
+     "sens": "Anna doit faire sa valise aujourd'hui.",
      "n": "<b>tener que</b> + infinitif = devoir. <b>hay que</b> serait impersonnel.",
      "revise": {
       "mot": "hacer",
@@ -1030,6 +1045,7 @@ window.SCENE = {
      ],
      "f": "bild",
      "phrase": "Mañana hará calor en el sur.",
+     "sens": "Demain, il fera chaud dans le sud.",
      "n": "Le temps qu'il fera : <b>hacer</b> au futur → <b>hará</b>.",
      "revise": {
       "mot": "hacer",
@@ -1051,6 +1067,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "bett",
      "phrase": "La maleta que está en la cama es azul.",
+     "sens": "La valise qui est sur le lit est bleue.",
      "n": "Une chose, sujet → <b>que</b>."
     },
     {
@@ -1063,6 +1080,7 @@ window.SCENE = {
      "f": "pass",
      "r": "bett",
      "phrase": "El pasaporte, sin el cual Anna no puede viajar, está en la cama.",
+     "sens": "Le passeport, sans lequel Anna ne peut pas voyager, est sur le lit.",
      "n": "Après une préposition : <b>el cual</b>."
     },
     {
@@ -1075,6 +1093,7 @@ window.SCENE = {
      "f": "anna",
      "r": "pullover",
      "phrase": "La mujer, cuyo jersey es verde, piensa.",
+     "sens": "La femme, dont le pull est vert, réfléchit.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : el jersey → <b>cuyo</b>.",
      "latam": {
       "q": "La mujer, ___ suéter es verde, piensa.",
@@ -1091,6 +1110,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "La maleta ya está medio hecha.",
+     "sens": "La valise est déjà à moitié faite.",
      "n": "<b>hacer la maleta</b> = faire sa valise ; participe irrégulier, accordé : hech<b>a</b>."
     },
     {
@@ -1102,6 +1122,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Todo tiene que estar guardado hoy.",
+     "sens": "Tout doit être rangé aujourd'hui.",
      "n": "Le résultat attendu → <b>estar</b> + participe.",
      "revise": {
       "mot": "guardar",
@@ -1118,6 +1139,7 @@ window.SCENE = {
      "f": "kamera",
      "r": "bett",
      "phrase": "La cámara con la que Anna quiere hacer fotos está en la cama.",
+     "sens": "L'appareil photo avec lequel Anna veut faire des photos est sur le lit.",
      "n": "Préposition + article + <b>que</b>, accordé avec la cámara → <b>la que</b>."
     }
    ]
@@ -1135,6 +1157,7 @@ window.SCENE = {
      "f": "anna",
      "r": "koffer",
      "phrase": "Debe de estar contenta con el viaje.",
+     "sens": "Elle doit être contente de ce voyage.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1146,6 +1169,7 @@ window.SCENE = {
      ],
      "f": "pullover",
      "phrase": "Puede que el jersey sea demasiado caliente para el sur.",
+     "sens": "Le pull est peut-être trop chaud pour le sud.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>.",
      "latam": {
       "q": "Puede que el suéter ___ demasiado caliente para el sur.",
@@ -1161,6 +1185,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Saldrá mañana temprano.",
+     "sens": "Elle doit partir demain tôt.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1172,6 +1197,7 @@ window.SCENE = {
      ],
      "f": "bild",
      "phrase": "Dicen que en esa playa hace calor todo el año.",
+     "sens": "On dit qu'à cette plage il fait chaud toute l'année.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1221,6 +1247,38 @@ window.SCENE = {
     "C1 | Puede que el jersey sea demasiado caliente para el sur.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Saldrá mañana temprano.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que en esa playa hace calor todo el año.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El sombrero está en la cama.": "The hat is on the bed.",
+    "A2 | El despertador está al lado de la lámpara.": "The alarm clock is next to the lamp.",
+    "A2 | El cuadro está encima de la cama.": "The picture is above the bed.",
+    "A2 | La laptop está en el escritorio.": "The laptop is on the desk.",
+    "A2 | El portátil está en el escritorio.": "The laptop is on the desk.",
+    "A2 | Anna está de pie sobre la alfombra.": "Anna is standing on the carpet.",
+    "A2 | El pasaporte está al lado de la cartera.": "The passport is next to the wallet.",
+    "A2 | El cargador está al lado del mapa.": "The charger is next to the map.",
+    "A2 | Hay un clóset blanco detrás de Anna.": "There is a white wardrobe behind Anna.",
+    "A2 | Hay un armario blanco detrás de Anna.": "There is a white wardrobe behind Anna.",
+    "B1 | Anna va a viajar mañana.": "Anna is going to travel tomorrow.",
+    "B1 | Anna lo va a meter en la maleta.": "Anna is going to put it in the suitcase.",
+    "B1 | Anna la va a llevar.": "Anna is going to take it.",
+    "B1 | Anna los lleva puestos.": "Anna is wearing them.",
+    "B1 | Anna no puede viajar sin su pasaporte.": "Anna cannot travel without her passport.",
+    "B1 | Casi lo ha olvidado.": "She almost forgot it.",
+    "B1 | Anna tiene que hacer la maleta hoy.": "Anna has to pack her suitcase today.",
+    "B1 | Mañana hará calor en el sur.": "Tomorrow it will be hot in the south.",
+    "B2 | La maleta que está en la cama es azul.": "The suitcase on the bed is blue.",
+    "B2 | El pasaporte, sin el cual Anna no puede viajar, está en la cama.": "The passport, without which Anna cannot travel, is on the bed.",
+    "B2 | La mujer, cuyo suéter es verde, piensa.": "The woman, whose jumper is green, is thinking.",
+    "B2 | La mujer, cuyo jersey es verde, piensa.": "The woman, whose jumper is green, is thinking.",
+    "B2 | La maleta ya está medio hecha.": "The suitcase is already half packed.",
+    "B2 | Todo tiene que estar guardado hoy.": "Everything has to be packed away today.",
+    "B2 | La cámara con la que Anna quiere hacer fotos está en la cama.": "The camera Anna wants to take photos with is on the bed.",
+    "C1 | Debe de estar contenta con el viaje.": "She must be happy about the trip.",
+    "C1 | Puede que el suéter sea demasiado caliente para el sur.": "The jumper may be too warm for the south.",
+    "C1 | Puede que el jersey sea demasiado caliente para el sur.": "The jumper may be too warm for the south.",
+    "C1 | Saldrá mañana temprano.": "She probably leaves early tomorrow.",
+    "C1 | Dicen que en esa playa hace calor todo el año.": "They say it is hot all year round on that beach."
    }
   },
   "tr": {
@@ -1231,7 +1289,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1241,7 +1300,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1251,7 +1311,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1296,6 +1357,38 @@ window.SCENE = {
     "C1 | Puede que el jersey sea demasiado caliente para el sur.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Saldrá mañana temprano.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que en esa playa hace calor todo el año.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El sombrero está en la cama.": "القبّعة على السرير.",
+    "A2 | El despertador está al lado de la lámpara.": "المنبّه بجانب المصباح.",
+    "A2 | El cuadro está encima de la cama.": "اللوحة فوق السرير.",
+    "A2 | La laptop está en el escritorio.": "الحاسوب المحمول على المكتب.",
+    "A2 | El portátil está en el escritorio.": "الحاسوب المحمول على المكتب.",
+    "A2 | Anna está de pie sobre la alfombra.": "آنا واقفة على السجّادة.",
+    "A2 | El pasaporte está al lado de la cartera.": "جواز السفر بجانب المحفظة.",
+    "A2 | El cargador está al lado del mapa.": "الشاحن بجانب الخريطة.",
+    "A2 | Hay un clóset blanco detrás de Anna.": "هناك خزانة بيضاء خلف آنا.",
+    "A2 | Hay un armario blanco detrás de Anna.": "هناك خزانة بيضاء خلف آنا.",
+    "B1 | Anna va a viajar mañana.": "ستسافر آنا غداً.",
+    "B1 | Anna lo va a meter en la maleta.": "ستضعه آنا في الحقيبة.",
+    "B1 | Anna la va a llevar.": "ستأخذها آنا معها.",
+    "B1 | Anna los lleva puestos.": "آنا ترتديها.",
+    "B1 | Anna no puede viajar sin su pasaporte.": "لا تستطيع آنا السفر من دون جواز سفرها.",
+    "B1 | Casi lo ha olvidado.": "كادت تنساه.",
+    "B1 | Anna tiene que hacer la maleta hoy.": "على آنا أن تحزم حقيبتها اليوم.",
+    "B1 | Mañana hará calor en el sur.": "غداً سيكون الجوّ حارّاً في الجنوب.",
+    "B2 | La maleta que está en la cama es azul.": "الحقيبة التي على السرير زرقاء.",
+    "B2 | El pasaporte, sin el cual Anna no puede viajar, está en la cama.": "جواز السفر الذي لا تستطيع آنا السفر من دونه على السرير.",
+    "B2 | La mujer, cuyo suéter es verde, piensa.": "المرأة ذات الكنزة الخضراء تفكّر.",
+    "B2 | La mujer, cuyo jersey es verde, piensa.": "المرأة ذات الكنزة الخضراء تفكّر.",
+    "B2 | La maleta ya está medio hecha.": "الحقيبة محزومة إلى نصفها بالفعل.",
+    "B2 | Todo tiene que estar guardado hoy.": "يجب أن يكون كل شيء محزوماً اليوم.",
+    "B2 | La cámara con la que Anna quiere hacer fotos está en la cama.": "الكاميرا التي تريد آنا التصوير بها على السرير.",
+    "C1 | Debe de estar contenta con el viaje.": "لا بدّ أنها سعيدة بالرحلة.",
+    "C1 | Puede que el suéter sea demasiado caliente para el sur.": "ربما تكون الكنزة دافئة أكثر من اللازم للجنوب.",
+    "C1 | Puede que el jersey sea demasiado caliente para el sur.": "ربما تكون الكنزة دافئة أكثر من اللازم للجنوب.",
+    "C1 | Saldrá mañana temprano.": "على الأرجح تغادر غداً باكراً.",
+    "C1 | Dicen que en esa playa hace calor todo el año.": "يُقال إن الجوّ حارّ طوال السنة على ذلك الشاطئ."
    }
   },
   "pt": {
@@ -1341,6 +1434,38 @@ window.SCENE = {
     "C1 | Puede que el jersey sea demasiado caliente para el sur.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Saldrá mañana temprano.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que en esa playa hace calor todo el año.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El sombrero está en la cama.": "O chapéu está na cama.",
+    "A2 | El despertador está al lado de la lámpara.": "O despertador está ao lado do abajur.",
+    "A2 | El cuadro está encima de la cama.": "O quadro está acima da cama.",
+    "A2 | La laptop está en el escritorio.": "O notebook está na escrivaninha.",
+    "A2 | El portátil está en el escritorio.": "O notebook está na escrivaninha.",
+    "A2 | Anna está de pie sobre la alfombra.": "Anna está em pé no tapete.",
+    "A2 | El pasaporte está al lado de la cartera.": "O passaporte está ao lado da carteira.",
+    "A2 | El cargador está al lado del mapa.": "O carregador está ao lado do mapa.",
+    "A2 | Hay un clóset blanco detrás de Anna.": "Há um armário branco atrás de Anna.",
+    "A2 | Hay un armario blanco detrás de Anna.": "Há um armário branco atrás de Anna.",
+    "B1 | Anna va a viajar mañana.": "Anna vai viajar amanhã.",
+    "B1 | Anna lo va a meter en la maleta.": "Anna vai colocá-lo na mala.",
+    "B1 | Anna la va a llevar.": "Anna vai levá-la.",
+    "B1 | Anna los lleva puestos.": "Anna está usando-os.",
+    "B1 | Anna no puede viajar sin su pasaporte.": "Anna não pode viajar sem o passaporte.",
+    "B1 | Casi lo ha olvidado.": "Ela quase o esqueceu.",
+    "B1 | Anna tiene que hacer la maleta hoy.": "Anna tem que fazer a mala hoje.",
+    "B1 | Mañana hará calor en el sur.": "Amanhã vai fazer calor no sul.",
+    "B2 | La maleta que está en la cama es azul.": "A mala que está na cama é azul.",
+    "B2 | El pasaporte, sin el cual Anna no puede viajar, está en la cama.": "O passaporte, sem o qual Anna não pode viajar, está na cama.",
+    "B2 | La mujer, cuyo suéter es verde, piensa.": "A mulher, cujo suéter é verde, pensa.",
+    "B2 | La mujer, cuyo jersey es verde, piensa.": "A mulher, cujo suéter é verde, pensa.",
+    "B2 | La maleta ya está medio hecha.": "A mala já está feita pela metade.",
+    "B2 | Todo tiene que estar guardado hoy.": "Tudo tem que estar guardado hoje.",
+    "B2 | La cámara con la que Anna quiere hacer fotos está en la cama.": "A câmera com que Anna quer tirar fotos está na cama.",
+    "C1 | Debe de estar contenta con el viaje.": "Ela deve estar contente com a viagem.",
+    "C1 | Puede que el suéter sea demasiado caliente para el sur.": "Pode ser que o suéter seja quente demais para o sul.",
+    "C1 | Puede que el jersey sea demasiado caliente para el sur.": "Pode ser que o suéter seja quente demais para o sul.",
+    "C1 | Saldrá mañana temprano.": "Ela deve sair amanhã cedo.",
+    "C1 | Dicen que en esa playa hace calor todo el año.": "Dizem que naquela praia faz calor o ano inteiro."
    }
   },
   "pl": {
@@ -1351,7 +1476,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1361,7 +1487,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

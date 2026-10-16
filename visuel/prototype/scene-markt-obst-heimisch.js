@@ -1053,6 +1053,7 @@ window.SCENE = {
      ],
      "f": "kirsche",
      "phrase": "Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.",
+     "sens": "Les cerises sont entre les groseilles à maquereau et les mûres.",
      "n": "<b>zwischen</b> + datif pluriel : <b>den</b> Stachelbeere<b>n</b>, <b>den</b> Brombeere<b>n</b>.",
      "r": "brombeere"
     },
@@ -1065,6 +1066,7 @@ window.SCENE = {
      ],
      "f": "apfel-main",
      "phrase": "Anna nimmt einen Apfel in die Hand.",
+     "sens": "Anna prend une pomme dans la main.",
      "n": "der Apfel → accusatif : <b>einen</b> Apfel.",
      "r": "anna",
      "revise": {
@@ -1082,6 +1084,7 @@ window.SCENE = {
      ],
      "f": "birne",
      "phrase": "Die Birnen liegen neben den Nüssen.",
+     "sens": "Les poires sont à côté des noix.",
      "n": "die Nuss → pluriel die Nüsse → datif <b>den Nüssen</b>.",
      "r": "nuss"
     },
@@ -1094,6 +1097,7 @@ window.SCENE = {
      ],
      "f": "heidelbeere",
      "phrase": "Die Heidelbeeren liegen rechts neben den Himbeeren.",
+     "sens": "Les myrtilles sont à droite des framboises.",
      "n": "<b>rechts neben</b> + datif. die Himbeeren → <b>den</b> Himbeeren.",
      "r": "himbeere"
     },
@@ -1106,6 +1110,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna steht vor dem Stand.",
+     "sens": "Anna est devant l'étal.",
      "n": "<b>vor</b> + datif (Wo?) : der Stand → vor <b>dem</b> Stand."
     }
    ]
@@ -1122,6 +1127,7 @@ window.SCENE = {
      ],
      "f": "erdbeere",
      "phrase": "Ich hätte gern eine Schale Erdbeeren.",
+     "sens": "Je voudrais une barquette de fraises.",
      "n": "<b>eine Schale</b> = une barquette. « Ich hätte gern … » = je voudrais, la formule polie."
     },
     {
@@ -1133,6 +1139,7 @@ window.SCENE = {
      ],
      "f": "apfel",
      "phrase": "Ein Kilo Äpfel, bitte.",
+     "sens": "Un kilo de pommes, s'il vous plaît.",
      "n": "Après une quantité, le nom au pluriel, sans article : ein Kilo <b>Äpfel</b>.",
      "revise": {
       "mot": "Apfel",
@@ -1149,6 +1156,7 @@ window.SCENE = {
      ],
      "f": "pfirsich",
      "phrase": "Die Pfirsiche sind größer als die Aprikosen.",
+     "sens": "Les pêches sont plus grosses que les abricots.",
      "n": "Comparatif : groß → <b>größer</b> … <b>als</b>.",
      "r": "aprikose",
      "revise": {
@@ -1165,6 +1173,7 @@ window.SCENE = {
      ],
      "f": "himbeere",
      "phrase": "Was kosten die Himbeeren?",
+     "sens": "Combien coûtent les framboises ?",
      "n": "Le sujet est au pluriel (die Himbeeren) → <b>kosten</b>.",
      "revise": {
       "mot": "kosten",
@@ -1180,6 +1189,7 @@ window.SCENE = {
      ],
      "f": "pflaume",
      "phrase": "Ich nehme ein Pfund Pflaumen.",
+     "sens": "Je prends une livre de prunes.",
      "n": "<b>ein Pfund</b> = 500 grammes, très courant au marché."
     }
    ]
@@ -1196,6 +1206,7 @@ window.SCENE = {
      ],
      "f": "erdbeere",
      "phrase": "Das sind frische Erdbeeren aus der Region.",
+     "sens": "Ce sont des fraises fraîches de la région.",
      "n": "Pluriel sans article, nominatif → <b>-e</b> : frisch<b>e</b> Erdbeeren."
     },
     {
@@ -1207,6 +1218,7 @@ window.SCENE = {
      ],
      "f": "apfel",
      "phrase": "Die Äpfel werden hier in Brandenburg angebaut.",
+     "sens": "Les pommes sont cultivées ici, dans le Brandebourg.",
      "n": "Passif : <b>werden</b> + participe II (angebaut = cultivés)."
     },
     {
@@ -1218,6 +1230,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Die Frau, die einen Apfel aussucht, heißt Anna.",
+     "sens": "La femme qui choisit une pomme s'appelle Anna.",
      "n": "Sujet de la relative, féminin → <b>die</b>.",
      "r": "apfel-main"
     },
@@ -1230,6 +1243,7 @@ window.SCENE = {
      ],
      "f": "brombeere",
      "phrase": "Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.",
+     "sens": "La caisse où sont les mûres est à côté des cerises.",
      "n": "Relative avec préposition : Wo? → datif, die Kiste → <b>in der</b>.",
      "r": "kirsche"
     },
@@ -1242,6 +1256,7 @@ window.SCENE = {
      ],
      "f": "rhabarber",
      "phrase": "Rhabarber wird oft zu Kuchen verarbeitet.",
+     "sens": "La rhubarbe est souvent utilisée pour faire des gâteaux.",
      "n": "Passif : wird + participe II <b>verarbeitet</b> (transformé)."
     }
    ]
@@ -1258,6 +1273,7 @@ window.SCENE = {
      ],
      "f": "erdbeere",
      "phrase": "Je reifer die Erdbeeren sind, desto süßer schmecken sie.",
+     "sens": "Plus les fraises sont mûres, plus elles sont sucrées.",
      "n": "<b>je</b> + comparatif …, <b>desto</b> + comparatif : plus …, plus …"
     },
     {
@@ -1269,6 +1285,7 @@ window.SCENE = {
      ],
      "f": "apfel",
      "phrase": "Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.",
+     "sens": "Vu les longs trajets de transport, je préfère acheter des fruits d'ici.",
      "n": "<b>angesichts</b> + génitif = vu, compte tenu de."
     },
     {
@@ -1280,6 +1297,7 @@ window.SCENE = {
      ],
      "f": "kirsche",
      "phrase": "Wären die Kirschen billiger, würde ich zwei Kilo nehmen.",
+     "sens": "Si les cerises étaient moins chères, j'en prendrais deux kilos.",
      "n": "Condition sans <b>wenn</b> : verbe en tête, puis <b>würde</b> + infinitif."
     },
     {
@@ -1291,6 +1309,7 @@ window.SCENE = {
      ],
      "f": "rhabarber",
      "phrase": "Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.",
+     "sens": "Bien que la rhubarbe soit acide, Anna aime faire des gâteaux avec.",
      "n": "<b>obwohl</b> = bien que (concession), verbe à la fin."
     },
     {
@@ -1302,6 +1321,7 @@ window.SCENE = {
      ],
      "f": "himbeere",
      "phrase": "Die Himbeeren dürften heute Morgen gepflückt worden sein.",
+     "sens": "Les framboises ont sans doute été cueillies ce matin.",
      "n": "Supposition sur le passé, au passif : participe II + <b>worden sein</b>."
     }
    ]
@@ -1354,6 +1374,28 @@ window.SCENE = {
     "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Condition without <b>wenn</b>: verb first, then <b>würde</b> + infinitive.",
     "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "<b>obwohl</b> = although (concession), verb at the end.",
     "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "An assumption about the past, in the passive: past participle + <b>worden sein</b>."
+   },
+   "sens": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "The cherries are between the gooseberries and the blackberries.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "Anna picks up an apple.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "The pears are next to the nuts.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "The blueberries are to the right of the raspberries.",
+    "A2 | Anna steht vor dem Stand.": "Anna is standing in front of the stall.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "I would like a punnet of strawberries.",
+    "B1 | Ein Kilo Äpfel, bitte.": "A kilo of apples, please.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "The peaches are bigger than the apricots.",
+    "B1 | Was kosten die Himbeeren?": "How much are the raspberries?",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "I'll take a pound of plums.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "These are fresh strawberries from the region.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "The apples are grown here in Brandenburg.",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "The woman choosing an apple is called Anna.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "The crate the blackberries are in is next to the cherries.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "Rhubarb is often made into cake.",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "The riper the strawberries, the sweeter they taste.",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "Given the long transport distances, I prefer to buy local fruit.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "If the cherries were cheaper, I would take two kilos.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "Although rhubarb is sour, Anna likes baking cakes with it.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "The raspberries were probably picked this morning."
    }
   },
   "tr": {
@@ -1391,6 +1433,28 @@ window.SCENE = {
     "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "<b>wenn</b> olmadan koşul: fiil başta, sonra <b>würde</b> + mastar.",
     "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "<b>obwohl</b> = -dığı hâlde, -e rağmen; fiil sonda.",
     "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Geçmişe dair tahmin, edilgen: Partizip II + <b>worden sein</b>."
+   },
+   "sens": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "Kirazlar bektaşi üzümüyle böğürtlenlerin arasında.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "Anna eline bir elma alıyor.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "Armutlar cevizlerin yanında.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "Yaban mersinleri ahududuların sağında.",
+    "A2 | Anna steht vor dem Stand.": "Anna tezgâhın önünde duruyor.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "Bir kutu çilek istiyorum.",
+    "B1 | Ein Kilo Äpfel, bitte.": "Bir kilo elma lütfen.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "Şeftaliler kayısılardan daha büyük.",
+    "B1 | Was kosten die Himbeeren?": "Ahududular ne kadar?",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "Yarım kilo erik alıyorum.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "Bunlar bölgeden taze çilekler.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "Elmalar burada, Brandenburg'da yetiştiriliyor.",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "Elma seçen kadının adı Anna.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "Böğürtlenlerin durduğu kasa kirazların yanında.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "Ravent sık sık pasta yapımında kullanılır.",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "Çilekler ne kadar olgunsa o kadar tatlı.",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "Uzun taşıma mesafeleri yüzünden yerli meyve almayı tercih ediyorum.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Kirazlar daha ucuz olsaydı iki kilo alırdım.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "Ravent ekşi olsa da Anna onunla pasta yapmayı seviyor.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Ahududular bu sabah toplanmış olsa gerek."
    }
   },
   "uk": {
@@ -1428,6 +1492,28 @@ window.SCENE = {
     "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Умова без <b>wenn</b>: дієслово на початку, потім <b>würde</b> + інфінітив.",
     "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "<b>obwohl</b> = хоча (поступка), дієслово в кінці.",
     "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Припущення про минуле, у пасиві: Partizip II + <b>worden sein</b>."
+   },
+   "sens": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "Вишні лежать між аґрусом і ожиною.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "Анна бере в руку яблуко.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "Груші лежать біля горіхів.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "Чорниці лежать праворуч від малини.",
+    "A2 | Anna steht vor dem Stand.": "Анна стоїть перед яткою.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "Я хотів би кошичок полуниць.",
+    "B1 | Ein Kilo Äpfel, bitte.": "Кілограм яблук, будь ласка.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "Персики більші за абрикоси.",
+    "B1 | Was kosten die Himbeeren?": "Скільки коштує малина?",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "Я візьму півкіло слив.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "Це свіжі полуниці з регіону.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "Яблука вирощують тут, у Бранденбурзі.",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "Жінку, яка вибирає яблуко, звати Анна.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "Ящик, у якому лежить ожина, стоїть біля вишень.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "З ревеню часто роблять пироги.",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "Чим стигліші полуниці, тим вони солодші.",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "З огляду на довгі перевезення, я волію купувати місцеві фрукти.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Якби вишні були дешевші, я взяв би два кілограми.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "Хоча ревінь кислий, Анна любить пекти з нього пироги.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Малину, напевно, зібрали сьогодні вранці."
    }
   },
   "fa": {
@@ -1465,6 +1551,28 @@ window.SCENE = {
     "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "شرط بدون <b>wenn</b>: فعل در آغاز، سپس <b>würde</b> + مصدر.",
     "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "<b>obwohl</b> = با اینکه (تضاد)، فعل در پایان.",
     "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "گمان دربارهٔ گذشته، به صورت مجهول: Partizip II + <b>worden sein</b>."
+   },
+   "sens": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "گیلاس‌ها بین انگور فرنگی و شاه‌توت‌ها هستند.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "آنا یک سیب در دست می‌گیرد.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "گلابی‌ها کنار گردوها هستند.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "بلوبری‌ها سمت راست تمشک‌ها هستند.",
+    "A2 | Anna steht vor dem Stand.": "آنا جلوی دکه ایستاده است.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "یک جعبه توت‌فرنگی می‌خواهم، لطفاً.",
+    "B1 | Ein Kilo Äpfel, bitte.": "یک کیلو سیب، لطفاً.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "هلوها از زردآلوها بزرگ‌ترند.",
+    "B1 | Was kosten die Himbeeren?": "تمشک‌ها چند است؟",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "نیم کیلو آلو برمی‌دارم.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "این‌ها توت‌فرنگی‌های تازهٔ منطقه هستند.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "سیب‌ها اینجا در براندنبورگ کاشته می‌شوند.",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "زنی که سیب انتخاب می‌کند، آنا نام دارد.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "جعبه‌ای که شاه‌توت‌ها در آن هستند، کنار گیلاس‌ها است.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "ریواس اغلب برای کیک استفاده می‌شود.",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "هرچه توت‌فرنگی‌ها رسیده‌تر باشند، شیرین‌ترند.",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "با توجه به مسیرهای طولانی حمل، ترجیح می‌دهم میوهٔ محلی بخرم.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "اگر گیلاس‌ها ارزان‌تر بودند، دو کیلو برمی‌داشتم.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "با اینکه ریواس ترش است، آنا دوست دارد با آن کیک بپزد.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "تمشک‌ها احتمالاً امروز صبح چیده شده‌اند."
    }
   },
   "ar": {
@@ -1502,6 +1610,28 @@ window.SCENE = {
     "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "شرط دون <b>wenn</b>: الفعل في البداية، ثم <b>würde</b> + المصدر.",
     "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "<b>obwohl</b> = مع أنّ (استدراك)، والفعل في النهاية.",
     "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "افتراض عن الماضي بصيغة المبني للمجهول: Partizip II + <b>worden sein</b>."
+   },
+   "sens": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "الكرز بين عنب الثعلب والتوت الأسود.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "تأخذ آنا تفاحة في يدها.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "الكمّثرى بجانب الجوز.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "التوت الأزرق على يمين توت العلّيق.",
+    "A2 | Anna steht vor dem Stand.": "آنا واقفة أمام البسطة.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "أريد علبة فراولة، من فضلك.",
+    "B1 | Ein Kilo Äpfel, bitte.": "كيلوغرام من التفاح، من فضلك.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "الخوخ أكبر من المشمش.",
+    "B1 | Was kosten die Himbeeren?": "بكم توت العلّيق؟",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "سآخذ نصف كيلو من البرقوق.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "هذه فراولة طازجة من المنطقة.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "يُزرع التفاح هنا في براندنبورغ.",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "المرأة التي تختار تفاحة اسمها آنا.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "الصندوق الذي فيه التوت الأسود بجانب الكرز.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "غالباً ما يُستخدم الراوند في صنع الكعك.",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "كلّما نضجت الفراولة أكثر، كان طعمها أحلى.",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "نظراً لطول مسافات النقل، أفضّل شراء الفاكهة المحلّية.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "لو كان الكرز أرخص، لأخذت كيلوغرامين.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "رغم أن الراوند حامض، تحبّ آنا أن تخبز به الكعك.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "على الأرجح قُطف توت العلّيق هذا الصباح."
    }
   },
   "pt": {
@@ -1539,6 +1669,28 @@ window.SCENE = {
     "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Condição sem <b>wenn</b>: verbo no início, depois <b>würde</b> + infinitivo.",
     "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "<b>obwohl</b> = embora (concessão), verbo no fim.",
     "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Suposição sobre o passado, na passiva: Partizip II + <b>worden sein</b>."
+   },
+   "sens": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "As cerejas estão entre as groselhas-espinhosas e as amoras.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "Anna pega uma maçã na mão.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "As peras estão ao lado das nozes.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "Os mirtilos estão à direita das framboesas.",
+    "A2 | Anna steht vor dem Stand.": "Anna está em frente à banca.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "Eu queria uma bandeja de morangos.",
+    "B1 | Ein Kilo Äpfel, bitte.": "Um quilo de maçãs, por favor.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "Os pêssegos são maiores que os damascos.",
+    "B1 | Was kosten die Himbeeren?": "Quanto custam as framboesas?",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "Vou levar meio quilo de ameixas.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "Estes são morangos frescos da região.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "As maçãs são cultivadas aqui em Brandemburgo.",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "A mulher que escolhe uma maçã se chama Anna.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "A caixa em que estão as amoras fica ao lado das cerejas.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "O ruibarbo é muitas vezes usado para fazer bolos.",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "Quanto mais maduros os morangos, mais doces eles são.",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "Dadas as longas distâncias de transporte, prefiro comprar fruta daqui.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Se as cerejas fossem mais baratas, eu levaria dois quilos.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "Embora o ruibarbo seja azedo, Anna gosta de fazer bolos com ele.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "As framboesas provavelmente foram colhidas esta manhã."
    }
   },
   "pl": {
@@ -1576,6 +1728,28 @@ window.SCENE = {
     "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Warunek bez <b>wenn</b>: czasownik na początku, potem <b>würde</b> + bezokolicznik.",
     "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "<b>obwohl</b> = chociaż (przyzwolenie), czasownik na końcu.",
     "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Przypuszczenie o przeszłości w stronie biernej: imiesłów II + <b>worden sein</b>."
+   },
+   "sens": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "Wiśnie leżą między agrestem a jeżynami.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "Anna bierze jabłko do ręki.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "Gruszki leżą obok orzechów.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "Borówki leżą na prawo od malin.",
+    "A2 | Anna steht vor dem Stand.": "Anna stoi przed straganem.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "Poproszę pojemnik truskawek.",
+    "B1 | Ein Kilo Äpfel, bitte.": "Kilo jabłek, proszę.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "Brzoskwinie są większe niż morele.",
+    "B1 | Was kosten die Himbeeren?": "Ile kosztują maliny?",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "Wezmę pół kilo śliwek.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "To świeże truskawki z regionu.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "Jabłka są uprawiane tutaj, w Brandenburgii.",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "Kobieta, która wybiera jabłko, ma na imię Anna.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "Skrzynka, w której leżą jeżyny, stoi obok wiśni.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "Rabarbar często przerabia się na ciasto.",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "Im dojrzalsze truskawki, tym słodsze.",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "Ze względu na długi transport wolę kupować lokalne owoce.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Gdyby wiśnie były tańsze, wziąłbym dwa kilo.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "Chociaż rabarbar jest kwaśny, Anna lubi piec z niego ciasto.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Maliny zostały zapewne zerwane dziś rano."
    }
   },
   "ru": {
@@ -1613,6 +1787,28 @@ window.SCENE = {
     "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Условие без <b>wenn</b>: глагол впереди, потом <b>würde</b> + инфинитив.",
     "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "<b>obwohl</b> = хотя (уступка), глагол в конце.",
     "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Предположение о прошлом, в пассиве: Partizip II + <b>worden sein</b>."
+   },
+   "sens": {
+    "A2 | Die Kirschen liegen zwischen den Stachelbeeren und den Brombeeren.": "Вишни лежат между крыжовником и ежевикой.",
+    "A2 | Anna nimmt einen Apfel in die Hand.": "Анна берёт в руку яблоко.",
+    "A2 | Die Birnen liegen neben den Nüssen.": "Груши лежат рядом с орехами.",
+    "A2 | Die Heidelbeeren liegen rechts neben den Himbeeren.": "Черника лежит справа от малины.",
+    "A2 | Anna steht vor dem Stand.": "Анна стоит перед прилавком.",
+    "B1 | Ich hätte gern eine Schale Erdbeeren.": "Мне, пожалуйста, лоток клубники.",
+    "B1 | Ein Kilo Äpfel, bitte.": "Килограмм яблок, пожалуйста.",
+    "B1 | Die Pfirsiche sind größer als die Aprikosen.": "Персики больше абрикосов.",
+    "B1 | Was kosten die Himbeeren?": "Сколько стоит малина?",
+    "B1 | Ich nehme ein Pfund Pflaumen.": "Я возьму полкило слив.",
+    "B2 | Das sind frische Erdbeeren aus der Region.": "Это свежая клубника из региона.",
+    "B2 | Die Äpfel werden hier in Brandenburg angebaut.": "Яблоки выращивают здесь, в Бранденбурге.",
+    "B2 | Die Frau, die einen Apfel aussucht, heißt Anna.": "Женщину, которая выбирает яблоко, зовут Анна.",
+    "B2 | Die Kiste, in der die Brombeeren liegen, steht neben den Kirschen.": "Ящик, в котором лежит ежевика, стоит рядом с вишнями.",
+    "B2 | Rhabarber wird oft zu Kuchen verarbeitet.": "Из ревеня часто делают пироги.",
+    "C1 | Je reifer die Erdbeeren sind, desto süßer schmecken sie.": "Чем спелее клубника, тем она слаще.",
+    "C1 | Angesichts der langen Transportwege kaufe ich lieber heimisches Obst.": "Учитывая долгую перевозку, я предпочитаю покупать местные фрукты.",
+    "C1 | Wären die Kirschen billiger, würde ich zwei Kilo nehmen.": "Если бы вишни были дешевле, я взял бы два килограмма.",
+    "C1 | Obwohl Rhabarber sauer ist, backt Anna gern Kuchen damit.": "Хотя ревень кислый, Анна любит печь с ним пироги.",
+    "C1 | Die Himbeeren dürften heute Morgen gepflückt worden sein.": "Малина, вероятно, собрана сегодня утром."
    }
   }
  }

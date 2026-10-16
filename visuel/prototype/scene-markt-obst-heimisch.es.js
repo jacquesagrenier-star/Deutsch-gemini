@@ -846,6 +846,7 @@ window.SCENE = {
      "f": "kirsche",
      "r": "brombeere",
      "phrase": "Las cerezas están entre las grosellas espinosas y las moras.",
+     "sens": "Les cerises sont entre les groseilles à maquereau et les mûres.",
      "n": "<b>entre</b> … <b>y</b> … = entre … et …."
     },
     {
@@ -863,6 +864,7 @@ window.SCENE = {
       "genre": "la",
       "theme": "la_comida"
      },
+     "sens": "Anna prend une pomme.",
      "n": "<b>tomar</b> = prendre. (<b>coger</b> se dit en Espagne, mais pas au Mexique.)"
     },
     {
@@ -875,6 +877,7 @@ window.SCENE = {
      "f": "birne",
      "r": "nuss",
      "phrase": "Las peras están al lado de las nueces.",
+     "sens": "Les poires sont à côté des noix.",
      "n": "<b>la</b> nuez → <b>las</b> nueces : féminin, et le z devient c devant -es."
     },
     {
@@ -887,6 +890,7 @@ window.SCENE = {
      "f": "heidelbeere",
      "r": "himbeere",
      "phrase": "Los arándanos están a la derecha de las frambuesas.",
+     "sens": "Les myrtilles sont à droite des framboises.",
      "n": "<b>a la derecha de</b> = à droite de ; <b>a la izquierda de</b> = à gauche de."
     },
     {
@@ -898,6 +902,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna está delante del puesto.",
+     "sens": "Anna est devant l'étal.",
      "n": "<b>delante de</b> = devant. de + el = <b>del</b> puesto."
     }
    ]
@@ -919,6 +924,7 @@ window.SCENE = {
       "genre": "la",
       "theme": "la_comida"
      },
+     "sens": "Je voudrais une barquette de fraises, s'il vous plaît.",
      "n": "<b>una bandeja</b> = une barquette. Et <b>quería</b> (imparfait) est la façon polie de demander."
     },
     {
@@ -935,6 +941,7 @@ window.SCENE = {
       "genre": "la",
       "theme": "la_comida"
      },
+     "sens": "Un kilo de pommes, s'il vous plaît.",
      "n": "Après une quantité : <b>de</b> + pluriel, sans article."
     },
     {
@@ -951,6 +958,7 @@ window.SCENE = {
       "mot": "grande",
       "cat": "adjectif"
      },
+     "sens": "Les pêches sont plus grosses que les abricots.",
      "n": "<b>más</b> … <b>que</b> = plus … que. (tan … <b>como</b> = aussi … que.)",
      "latam": {
       "q": "Los duraznos son ___ grandes que los chabacanos.",
@@ -970,6 +978,7 @@ window.SCENE = {
       "mot": "costar",
       "cat": "verbe"
      },
+     "sens": "Combien coûtent les framboises ?",
      "n": "Le verbe s'accorde avec ce qui coûte : las frambuesas → <b>cuestan</b>."
     },
     {
@@ -981,6 +990,7 @@ window.SCENE = {
      ],
      "f": "pflaume",
      "phrase": "Me llevo medio kilo de ciruelas.",
+     "sens": "Je prends un demi-kilo de prunes.",
      "n": "<b>medio kilo</b>, sans article : on ne dit pas « un medio ». <b>Me llevo</b> = je prends."
     }
    ]
@@ -1001,6 +1011,7 @@ window.SCENE = {
       "mot": "fresco",
       "cat": "adjectif"
      },
+     "sens": "Ce sont des fraises fraîches de la région.",
      "n": "L'adjectif s'accorde : fresas (féminin pluriel) → <b>frescas</b>."
     },
     {
@@ -1012,6 +1023,7 @@ window.SCENE = {
      ],
      "f": "apfel",
      "phrase": "Estas manzanas se cultivan en la región.",
+     "sens": "Ces pommes sont cultivées dans la région.",
      "n": "Le passif avec <b>se</b> : se cultivan, accordé avec las manzanas."
     },
     {
@@ -1024,6 +1036,7 @@ window.SCENE = {
      "f": "anna",
      "r": "apfel-main",
      "phrase": "La mujer que elige una manzana se llama Anna.",
+     "sens": "La femme qui choisit une pomme s'appelle Anna.",
      "n": "Sujet de la relative, sans virgules → <b>que</b>."
     },
     {
@@ -1036,6 +1049,7 @@ window.SCENE = {
      "f": "brombeere",
      "r": "kirsche",
      "phrase": "La caja en la que están las moras está al lado de las cerezas.",
+     "sens": "La caisse où sont les mûres est à côté des cerises.",
      "n": "Après une préposition : <b>la que</b> (ou la cual)."
     },
     {
@@ -1047,6 +1061,7 @@ window.SCENE = {
      ],
      "f": "rhabarber",
      "phrase": "El ruibarbo se usa a menudo para hacer tartas.",
+     "sens": "La rhubarbe est souvent utilisée pour faire des tartes.",
      "n": "Passif avec <b>se</b> : on l'utilise → <b>se usa</b>."
     }
    ]
@@ -1063,6 +1078,7 @@ window.SCENE = {
      ],
      "f": "erdbeere",
      "phrase": "Cuanto más maduras están las fresas, más dulces son.",
+     "sens": "Plus les fraises sont mûres, plus elles sont sucrées.",
      "n": "<b>cuanto más</b> …, <b>más</b> … = plus …, plus …."
     },
     {
@@ -1074,6 +1090,7 @@ window.SCENE = {
      ],
      "f": "apfel",
      "phrase": "Debido a los largos transportes, prefiero comprar fruta de aquí.",
+     "sens": "À cause des longs transports, je préfère acheter des fruits d'ici.",
      "n": "<b>debido a</b> = en raison de (une cause). <b>a pesar de</b> = malgré."
     },
     {
@@ -1085,6 +1102,7 @@ window.SCENE = {
      ],
      "f": "kirsche",
      "phrase": "Si las cerezas fueran más baratas, compraría dos kilos.",
+     "sens": "Si les cerises étaient moins chères, j'en achèterais deux kilos.",
      "n": "Hypothèse irréelle : <b>si</b> + subjonctif imparfait, puis conditionnel."
     },
     {
@@ -1096,6 +1114,7 @@ window.SCENE = {
      ],
      "f": "rhabarber",
      "phrase": "Aunque el ruibarbo es ácido, a Anna le encanta hacer tartas con él.",
+     "sens": "Bien que la rhubarbe soit acide, Anna adore faire des tartes avec.",
      "n": "<b>aunque</b> = bien que, même si (une concession)."
     },
     {
@@ -1107,6 +1126,7 @@ window.SCENE = {
      ],
      "f": "himbeere",
      "phrase": "Las frambuesas deben de haber sido recogidas esta mañana.",
+     "sens": "Les framboises ont dû être cueillies ce matin.",
      "n": "<b>deber de</b> + infinitif passé = une déduction : elles ont dû être cueillies."
     }
    ]
@@ -1160,6 +1180,29 @@ window.SCENE = {
     "C1 | Si las cerezas fueran más baratas, compraría dos kilos.": "Unreal condition: <b>si</b> + imperfect subjunctive, then the conditional.",
     "C1 | Aunque el ruibarbo es ácido, a Anna le encanta hacer tartas con él.": "<b>aunque</b> = although (a concession).",
     "C1 | Las frambuesas deben de haber sido recogidas esta mañana.": "<b>deber de</b> + perfect infinitive = a deduction: they must have been picked."
+   },
+   "sens": {
+    "A2 | Las cerezas están entre las grosellas espinosas y las moras.": "The cherries are between the gooseberries and the blackberries.",
+    "A2 | Anna toma una manzana.": "Anna takes an apple.",
+    "A2 | Las peras están al lado de las nueces.": "The pears are next to the walnuts.",
+    "A2 | Los arándanos están a la derecha de las frambuesas.": "The blueberries are to the right of the raspberries.",
+    "A2 | Anna está delante del puesto.": "Anna is in front of the stall.",
+    "B1 | Quería una bandeja de fresas, por favor.": "I would like a punnet of strawberries, please.",
+    "B1 | Un kilo de manzanas, por favor.": "A kilo of apples, please.",
+    "B1 | Los duraznos son más grandes que los chabacanos.": "The peaches are bigger than the apricots.",
+    "B1 | Los melocotones son más grandes que los albaricoques.": "The peaches are bigger than the apricots.",
+    "B1 | ¿Cuánto cuestan las frambuesas?": "How much are the raspberries?",
+    "B1 | Me llevo medio kilo de ciruelas.": "I'll take half a kilo of plums.",
+    "B2 | Son fresas frescas de la región.": "They are fresh strawberries from the region.",
+    "B2 | Estas manzanas se cultivan en la región.": "These apples are grown in the region.",
+    "B2 | La mujer que elige una manzana se llama Anna.": "The woman choosing an apple is called Anna.",
+    "B2 | La caja en la que están las moras está al lado de las cerezas.": "The crate the blackberries are in is next to the cherries.",
+    "B2 | El ruibarbo se usa a menudo para hacer tartas.": "Rhubarb is often used to make pies.",
+    "C1 | Cuanto más maduras están las fresas, más dulces son.": "The riper the strawberries, the sweeter they are.",
+    "C1 | Debido a los largos transportes, prefiero comprar fruta de aquí.": "Because of the long transport, I prefer to buy fruit from here.",
+    "C1 | Si las cerezas fueran más baratas, compraría dos kilos.": "If the cherries were cheaper, I would buy two kilos.",
+    "C1 | Aunque el ruibarbo es ácido, a Anna le encanta hacer tartas con él.": "Although rhubarb is sour, Anna loves making pies with it.",
+    "C1 | Las frambuesas deben de haber sido recogidas esta mañana.": "The raspberries must have been picked this morning."
    }
   },
   "tr": {
@@ -1172,7 +1215,8 @@ window.SCENE = {
    "couches": {
     "A1": "Pazarda"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1184,7 +1228,8 @@ window.SCENE = {
    "couches": {
     "A1": "На ринку"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1196,7 +1241,8 @@ window.SCENE = {
    "couches": {
     "A1": "در بازار"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1234,6 +1280,29 @@ window.SCENE = {
     "C1 | Si las cerezas fueran más baratas, compraría dos kilos.": "فرضية غير واقعية: <b>si</b> + subjuntivo الماضي، ثم condicional.",
     "C1 | Aunque el ruibarbo es ácido, a Anna le encanta hacer tartas con él.": "<b>aunque</b> = مع أنّ، حتى لو (استدراك).",
     "C1 | Las frambuesas deben de haber sido recogidas esta mañana.": "<b>deber de</b> + مصدر ماضٍ = استنتاج: لا بدّ أنها قُطفت."
+   },
+   "sens": {
+    "A2 | Las cerezas están entre las grosellas espinosas y las moras.": "الكرز بين عنب الثعلب والتوت الأسود.",
+    "A2 | Anna toma una manzana.": "تأخذ آنا تفاحة.",
+    "A2 | Las peras están al lado de las nueces.": "الكمّثرى بجانب الجوز.",
+    "A2 | Los arándanos están a la derecha de las frambuesas.": "التوت الأزرق على يمين توت العلّيق.",
+    "A2 | Anna está delante del puesto.": "آنا أمام البسطة.",
+    "B1 | Quería una bandeja de fresas, por favor.": "أريد علبة فراولة، من فضلك.",
+    "B1 | Un kilo de manzanas, por favor.": "كيلوغرام من التفاح، من فضلك.",
+    "B1 | Los duraznos son más grandes que los chabacanos.": "الخوخ أكبر من المشمش.",
+    "B1 | Los melocotones son más grandes que los albaricoques.": "الخوخ أكبر من المشمش.",
+    "B1 | ¿Cuánto cuestan las frambuesas?": "بكم توت العلّيق؟",
+    "B1 | Me llevo medio kilo de ciruelas.": "سآخذ نصف كيلو من البرقوق.",
+    "B2 | Son fresas frescas de la región.": "إنها فراولة طازجة من المنطقة.",
+    "B2 | Estas manzanas se cultivan en la región.": "يُزرع هذا التفاح في المنطقة.",
+    "B2 | La mujer que elige una manzana se llama Anna.": "المرأة التي تختار تفاحة اسمها آنا.",
+    "B2 | La caja en la que están las moras está al lado de las cerezas.": "الصندوق الذي فيه التوت الأسود بجانب الكرز.",
+    "B2 | El ruibarbo se usa a menudo para hacer tartas.": "غالباً ما يُستخدم الراوند في صنع الفطائر.",
+    "C1 | Cuanto más maduras están las fresas, más dulces son.": "كلّما نضجت الفراولة أكثر، كانت أحلى.",
+    "C1 | Debido a los largos transportes, prefiero comprar fruta de aquí.": "بسبب طول النقل، أفضّل شراء الفاكهة المحلّية.",
+    "C1 | Si las cerezas fueran más baratas, compraría dos kilos.": "لو كان الكرز أرخص، لاشتريت كيلوغرامين.",
+    "C1 | Aunque el ruibarbo es ácido, a Anna le encanta hacer tartas con él.": "رغم أن الراوند حامض، تعشق آنا أن تصنع به الفطائر.",
+    "C1 | Las frambuesas deben de haber sido recogidas esta mañana.": "لا بدّ أن توت العلّيق قُطف هذا الصباح."
    }
   },
   "pt": {
@@ -1272,6 +1341,29 @@ window.SCENE = {
     "C1 | Si las cerezas fueran más baratas, compraría dos kilos.": "Hipótese irreal: <b>si</b> + subjuntivo imperfeito, depois o condicional.",
     "C1 | Aunque el ruibarbo es ácido, a Anna le encanta hacer tartas con él.": "<b>aunque</b> = embora, mesmo que (uma concessão).",
     "C1 | Las frambuesas deben de haber sido recogidas esta mañana.": "<b>deber de</b> + infinitivo composto = uma dedução: devem ter sido colhidas."
+   },
+   "sens": {
+    "A2 | Las cerezas están entre las grosellas espinosas y las moras.": "As cerejas estão entre as groselhas-espinhosas e as amoras.",
+    "A2 | Anna toma una manzana.": "Anna pega uma maçã.",
+    "A2 | Las peras están al lado de las nueces.": "As peras estão ao lado das nozes.",
+    "A2 | Los arándanos están a la derecha de las frambuesas.": "Os mirtilos estão à direita das framboesas.",
+    "A2 | Anna está delante del puesto.": "Anna está em frente à banca.",
+    "B1 | Quería una bandeja de fresas, por favor.": "Eu queria uma bandeja de morangos, por favor.",
+    "B1 | Un kilo de manzanas, por favor.": "Um quilo de maçãs, por favor.",
+    "B1 | Los duraznos son más grandes que los chabacanos.": "Os pêssegos são maiores que os damascos.",
+    "B1 | Los melocotones son más grandes que los albaricoques.": "Os pêssegos são maiores que os damascos.",
+    "B1 | ¿Cuánto cuestan las frambuesas?": "Quanto custam as framboesas?",
+    "B1 | Me llevo medio kilo de ciruelas.": "Vou levar meio quilo de ameixas.",
+    "B2 | Son fresas frescas de la región.": "São morangos frescos da região.",
+    "B2 | Estas manzanas se cultivan en la región.": "Estas maçãs são cultivadas na região.",
+    "B2 | La mujer que elige una manzana se llama Anna.": "A mulher que escolhe uma maçã se chama Anna.",
+    "B2 | La caja en la que están las moras está al lado de las cerezas.": "A caixa em que estão as amoras fica ao lado das cerejas.",
+    "B2 | El ruibarbo se usa a menudo para hacer tartas.": "O ruibarbo é usado muitas vezes para fazer tortas.",
+    "C1 | Cuanto más maduras están las fresas, más dulces son.": "Quanto mais maduros os morangos, mais doces eles são.",
+    "C1 | Debido a los largos transportes, prefiero comprar fruta de aquí.": "Por causa dos longos transportes, prefiro comprar fruta daqui.",
+    "C1 | Si las cerezas fueran más baratas, compraría dos kilos.": "Se as cerejas fossem mais baratas, eu compraria dois quilos.",
+    "C1 | Aunque el ruibarbo es ácido, a Anna le encanta hacer tartas con él.": "Embora o ruibarbo seja azedo, Anna adora fazer tortas com ele.",
+    "C1 | Las frambuesas deben de haber sido recogidas esta mañana.": "As framboesas devem ter sido colhidas esta manhã."
    }
   },
   "pl": {
@@ -1284,7 +1376,8 @@ window.SCENE = {
    "couches": {
     "A1": "Na targu"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1296,7 +1389,8 @@ window.SCENE = {
    "couches": {
     "A1": "На рынке"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

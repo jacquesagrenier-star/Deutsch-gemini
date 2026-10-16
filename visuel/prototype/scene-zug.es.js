@@ -826,6 +826,7 @@ window.SCENE = {
      "f": "laptop",
      "r": "tisch",
      "phrase": "El portátil está en la mesa.",
+     "sens": "L'ordinateur portable est sur la table.",
      "n": "<b>en</b> = sur, dans. Le lieu → <b>estar</b>.",
      "latam": {
       "q": "¿Dónde está la laptop?",
@@ -842,6 +843,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "fenster",
      "phrase": "La maleta azul está encima de la ventana.",
+     "sens": "La valise bleue est au-dessus de la fenêtre.",
      "n": "<b>encima de</b> = au-dessus de."
     },
     {
@@ -854,6 +856,7 @@ window.SCENE = {
      "f": "schal",
      "r": "sitz-2",
      "phrase": "La bufanda está en el asiento.",
+     "sens": "L'écharpe est sur le siège.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -866,6 +869,7 @@ window.SCENE = {
      "f": "kuh",
      "r": "wiese",
      "phrase": "Las vacas están en el prado.",
+     "sens": "Les vaches sont dans le pré.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -878,6 +882,7 @@ window.SCENE = {
      "f": "kirche",
      "r": "dorf",
      "phrase": "La iglesia está en el pueblo.",
+     "sens": "L'église est dans le village.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -890,6 +895,7 @@ window.SCENE = {
      "f": "handy",
      "r": "broetchen",
      "phrase": "El móvil está al lado del pan.",
+     "sens": "Le téléphone est à côté du pain.",
      "n": "<b>de + el = del</b>, toujours.",
      "latam": {
       "q": "El celular está al lado ___ pan.",
@@ -906,6 +912,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "koffer",
      "phrase": "La mochila está al lado de la maleta.",
+     "sens": "Le sac à dos est à côté de la valise.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -918,6 +925,7 @@ window.SCENE = {
      "f": "fluss",
      "r": "bruecke",
      "phrase": "Hay un río debajo del puente.",
+     "sens": "Il y a une rivière sous le pont.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     }
    ]
@@ -934,6 +942,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark viaja en tren.",
+     "sens": "Mark voyage en train.",
      "n": "Le moyen de transport → <b>en</b> tren (mais <b>a</b> pie).",
      "revise": {
       "mot": "viajar",
@@ -950,6 +959,7 @@ window.SCENE = {
      "f": "berg",
      "r": "mark",
      "phrase": "Va a las montañas.",
+     "sens": "Il va à la montagne.",
      "n": "La direction → <b>a</b>.",
      "revise": {
       "mot": "ir",
@@ -966,6 +976,7 @@ window.SCENE = {
      "f": "fenster",
      "r": "mark",
      "phrase": "Mira por la ventana.",
+     "sens": "Il regarde par la fenêtre.",
      "n": "À travers → <b>por</b>.",
      "revise": {
       "mot": "mirar",
@@ -982,6 +993,7 @@ window.SCENE = {
      "f": "bruecke",
      "r": "fluss",
      "phrase": "El tren pasa por el puente.",
+     "sens": "Le train passe sur le pont.",
      "n": "Le passage, le trajet → <b>por</b>.",
      "revise": {
       "mot": "pasar",
@@ -997,6 +1009,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Ha puesto la maleta en la rejilla.",
+     "sens": "Il a mis la valise sur le porte-bagages.",
      "n": "Poser quelque part → <b>en</b>.",
      "revise": {
       "mot": "poner",
@@ -1013,6 +1026,7 @@ window.SCENE = {
      "f": "kuh",
      "r": "wiese",
      "phrase": "Las vacas comen en el prado.",
+     "sens": "Les vaches mangent dans le pré.",
      "n": "Le lieu où l'on est → <b>en</b>.",
      "revise": {
       "mot": "comer",
@@ -1029,6 +1043,7 @@ window.SCENE = {
      "f": "fahrkarte",
      "r": "tisch",
      "phrase": "Mark lo ha dejado en la mesa.",
+     "sens": "Mark l'a laissé sur la table.",
      "n": "Complément direct masculin (el billete) → <b>lo</b>.",
      "revise": {
       "mot": "dejar",
@@ -1049,6 +1064,7 @@ window.SCENE = {
      "f": "schal",
      "r": "sitz-2",
      "phrase": "Alguien la ha olvidado en el asiento.",
+     "sens": "Quelqu'un l'a oubliée sur le siège.",
      "n": "Complément direct féminin (la bufanda) → <b>la</b>.",
      "revise": {
       "mot": "olvidar",
@@ -1070,6 +1086,7 @@ window.SCENE = {
      "f": "mark",
      "r": "fenster",
      "phrase": "El hombre que mira por la ventana se llama Mark.",
+     "sens": "L'homme qui regarde par la fenêtre s'appelle Mark.",
      "n": "Relative sans virgule, sujet → <b>que</b>."
     },
     {
@@ -1082,6 +1099,7 @@ window.SCENE = {
      "f": "dorf",
      "r": "kirche",
      "phrase": "El pueblo, cuya iglesia tiene una torre puntiaguda, está en el valle.",
+     "sens": "Le village, dont l'église a un clocher pointu, est dans la vallée.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : la iglesia → <b>cuya</b>."
     },
     {
@@ -1094,6 +1112,7 @@ window.SCENE = {
      "f": "tisch",
      "r": "laptop",
      "phrase": "La mesa en la que está el portátil es gris.",
+     "sens": "La table sur laquelle est l'ordinateur portable est grise.",
      "n": "Préposition + article + <b>que</b>, accordé avec la mesa.",
      "latam": {
       "q": "La mesa en ___ está la laptop es gris.",
@@ -1109,6 +1128,7 @@ window.SCENE = {
      ],
      "f": "fahrkarte",
      "phrase": "El billete tiene que ser revisado en el tren.",
+     "sens": "Le billet doit être contrôlé dans le train.",
      "n": "Passif <b>ser</b> + participe accordé : el billete → revisad<b>o</b>.",
      "latam": {
       "q": "El boleto tiene que ser ___ en el tren.",
@@ -1126,6 +1146,7 @@ window.SCENE = {
      "f": "zeitung",
      "r": "tisch",
      "phrase": "El periódico está doblado sobre la mesa.",
+     "sens": "Le journal est plié sur la table.",
      "n": "<b>estar</b> + participe, accordé : el periódico → doblad<b>o</b>.",
      "revise": {
       "mot": "doblar",
@@ -1141,6 +1162,7 @@ window.SCENE = {
      ],
      "f": "sitz",
      "phrase": "En este tren no se puede fumar.",
+     "sens": "Dans ce train, on ne peut pas fumer.",
      "n": "<b>se</b> impersonnel + infinitif → verbe au singulier."
     }
    ]
@@ -1158,6 +1180,7 @@ window.SCENE = {
      "f": "fenster",
      "r": "mark",
      "phrase": "El paisaje debe de gustarle.",
+     "sens": "Le paysage doit lui plaire.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1169,6 +1192,7 @@ window.SCENE = {
      ],
      "f": "schal",
      "phrase": "Puede que la bufanda sea de alguien que vuelve enseguida.",
+     "sens": "L'écharpe est peut-être à quelqu'un qui revient tout de suite.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1180,6 +1204,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "El tren estará ya cerca de Múnich.",
+     "sens": "Le train doit déjà être près de Munich.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1191,6 +1216,7 @@ window.SCENE = {
      ],
      "f": "dorf",
      "phrase": "Dicen que en ese pueblo hacen el mejor queso de la región.",
+     "sens": "On dit que dans ce village, on fait le meilleur fromage de la région.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1240,6 +1266,38 @@ window.SCENE = {
     "C1 | Puede que la bufanda sea de alguien que vuelve enseguida.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | El tren estará ya cerca de Múnich.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que en ese pueblo hacen el mejor queso de la región.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | La laptop está en la mesa.": "The laptop is on the table.",
+    "A2 | El portátil está en la mesa.": "The laptop is on the table.",
+    "A2 | La maleta azul está encima de la ventana.": "The blue suitcase is above the window.",
+    "A2 | La bufanda está en el asiento.": "The scarf is on the seat.",
+    "A2 | Las vacas están en el prado.": "The cows are in the meadow.",
+    "A2 | La iglesia está en el pueblo.": "The church is in the village.",
+    "A2 | El celular está al lado del pan.": "The phone is next to the bread.",
+    "A2 | El móvil está al lado del pan.": "The phone is next to the bread.",
+    "A2 | La mochila está al lado de la maleta.": "The backpack is next to the suitcase.",
+    "A2 | Hay un río debajo del puente.": "There is a river under the bridge.",
+    "B1 | Mark viaja en tren.": "Mark is travelling by train.",
+    "B1 | Va a las montañas.": "He is going to the mountains.",
+    "B1 | Mira por la ventana.": "He is looking out of the window.",
+    "B1 | El tren pasa por el puente.": "The train is going over the bridge.",
+    "B1 | Ha puesto la maleta en la rejilla.": "He has put the suitcase on the luggage rack.",
+    "B1 | Las vacas comen en el prado.": "The cows are eating in the meadow.",
+    "B1 | Mark lo ha dejado en la mesa.": "Mark has left it on the table.",
+    "B1 | Alguien la ha olvidado en el asiento.": "Someone has left it on the seat.",
+    "B2 | El hombre que mira por la ventana se llama Mark.": "The man looking out of the window is called Mark.",
+    "B2 | El pueblo, cuya iglesia tiene una torre puntiaguda, está en el valle.": "The village, whose church has a pointed tower, is in the valley.",
+    "B2 | La mesa en la que está la laptop es gris.": "The table the laptop is on is grey.",
+    "B2 | La mesa en la que está el portátil es gris.": "The table the laptop is on is grey.",
+    "B2 | El boleto tiene que ser revisado en el tren.": "The ticket has to be checked on the train.",
+    "B2 | El billete tiene que ser revisado en el tren.": "The ticket has to be checked on the train.",
+    "B2 | El periódico está doblado sobre la mesa.": "The newspaper is folded on the table.",
+    "B2 | En este tren no se puede fumar.": "Smoking is not allowed on this train.",
+    "C1 | El paisaje debe de gustarle.": "He must like the landscape.",
+    "C1 | Puede que la bufanda sea de alguien que vuelve enseguida.": "The scarf may belong to someone who is coming right back.",
+    "C1 | El tren estará ya cerca de Múnich.": "The train is probably already near Munich.",
+    "C1 | Dicen que en ese pueblo hacen el mejor queso de la región.": "They say the best cheese in the region is made in that village."
    }
   },
   "tr": {
@@ -1250,7 +1308,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1260,7 +1319,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1270,7 +1330,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1315,6 +1376,38 @@ window.SCENE = {
     "C1 | Puede que la bufanda sea de alguien que vuelve enseguida.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | El tren estará ya cerca de Múnich.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que en ese pueblo hacen el mejor queso de la región.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La laptop está en la mesa.": "الحاسوب المحمول على الطاولة.",
+    "A2 | El portátil está en la mesa.": "الحاسوب المحمول على الطاولة.",
+    "A2 | La maleta azul está encima de la ventana.": "الحقيبة الزرقاء فوق النافذة.",
+    "A2 | La bufanda está en el asiento.": "الوشاح على المقعد.",
+    "A2 | Las vacas están en el prado.": "الأبقار في المرج.",
+    "A2 | La iglesia está en el pueblo.": "الكنيسة في القرية.",
+    "A2 | El celular está al lado del pan.": "الهاتف بجانب الخبز.",
+    "A2 | El móvil está al lado del pan.": "الهاتف بجانب الخبز.",
+    "A2 | La mochila está al lado de la maleta.": "حقيبة الظهر بجانب الحقيبة.",
+    "A2 | Hay un río debajo del puente.": "هناك نهر تحت الجسر.",
+    "B1 | Mark viaja en tren.": "يسافر مارك بالقطار.",
+    "B1 | Va a las montañas.": "يذهب إلى الجبال.",
+    "B1 | Mira por la ventana.": "ينظر من النافذة.",
+    "B1 | El tren pasa por el puente.": "يمرّ القطار على الجسر.",
+    "B1 | Ha puesto la maleta en la rejilla.": "وضع الحقيبة على رفّ الأمتعة.",
+    "B1 | Las vacas comen en el prado.": "تأكل الأبقار في المرج.",
+    "B1 | Mark lo ha dejado en la mesa.": "تركه مارك على الطاولة.",
+    "B1 | Alguien la ha olvidado en el asiento.": "نسيها أحدهم على المقعد.",
+    "B2 | El hombre que mira por la ventana se llama Mark.": "الرجل الذي ينظر من النافذة اسمه مارك.",
+    "B2 | El pueblo, cuya iglesia tiene una torre puntiaguda, está en el valle.": "القرية التي لكنيستها برج مدبّب تقع في الوادي.",
+    "B2 | La mesa en la que está la laptop es gris.": "الطاولة التي عليها الحاسوب المحمول رمادية.",
+    "B2 | La mesa en la que está el portátil es gris.": "الطاولة التي عليها الحاسوب المحمول رمادية.",
+    "B2 | El boleto tiene que ser revisado en el tren.": "يجب التحقّق من التذكرة في القطار.",
+    "B2 | El billete tiene que ser revisado en el tren.": "يجب التحقّق من التذكرة في القطار.",
+    "B2 | El periódico está doblado sobre la mesa.": "الجريدة مطويّة على الطاولة.",
+    "B2 | En este tren no se puede fumar.": "لا يُسمح بالتدخين في هذا القطار.",
+    "C1 | El paisaje debe de gustarle.": "لا بدّ أن المنظر الطبيعي يعجبه.",
+    "C1 | Puede que la bufanda sea de alguien que vuelve enseguida.": "ربما يكون الوشاح لشخص سيعود حالاً.",
+    "C1 | El tren estará ya cerca de Múnich.": "على الأرجح القطار قريب من ميونخ الآن.",
+    "C1 | Dicen que en ese pueblo hacen el mejor queso de la región.": "يُقال إنهم يصنعون في تلك القرية أفضل جبن في المنطقة."
    }
   },
   "pt": {
@@ -1360,6 +1453,38 @@ window.SCENE = {
     "C1 | Puede que la bufanda sea de alguien que vuelve enseguida.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | El tren estará ya cerca de Múnich.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que en ese pueblo hacen el mejor queso de la región.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La laptop está en la mesa.": "O notebook está na mesa.",
+    "A2 | El portátil está en la mesa.": "O notebook está na mesa.",
+    "A2 | La maleta azul está encima de la ventana.": "A mala azul está acima da janela.",
+    "A2 | La bufanda está en el asiento.": "O cachecol está no assento.",
+    "A2 | Las vacas están en el prado.": "As vacas estão no prado.",
+    "A2 | La iglesia está en el pueblo.": "A igreja fica na aldeia.",
+    "A2 | El celular está al lado del pan.": "O celular está ao lado do pão.",
+    "A2 | El móvil está al lado del pan.": "O celular está ao lado do pão.",
+    "A2 | La mochila está al lado de la maleta.": "A mochila está ao lado da mala.",
+    "A2 | Hay un río debajo del puente.": "Há um rio debaixo da ponte.",
+    "B1 | Mark viaja en tren.": "Mark viaja de trem.",
+    "B1 | Va a las montañas.": "Ele vai para as montanhas.",
+    "B1 | Mira por la ventana.": "Ele olha pela janela.",
+    "B1 | El tren pasa por el puente.": "O trem passa pela ponte.",
+    "B1 | Ha puesto la maleta en la rejilla.": "Ele pôs a mala no bagageiro.",
+    "B1 | Las vacas comen en el prado.": "As vacas comem no prado.",
+    "B1 | Mark lo ha dejado en la mesa.": "Mark deixou-o na mesa.",
+    "B1 | Alguien la ha olvidado en el asiento.": "Alguém a esqueceu no assento.",
+    "B2 | El hombre que mira por la ventana se llama Mark.": "O homem que olha pela janela se chama Mark.",
+    "B2 | El pueblo, cuya iglesia tiene una torre puntiaguda, está en el valle.": "A aldeia, cuja igreja tem uma torre pontiaguda, fica no vale.",
+    "B2 | La mesa en la que está la laptop es gris.": "A mesa em que está o notebook é cinza.",
+    "B2 | La mesa en la que está el portátil es gris.": "A mesa em que está o notebook é cinza.",
+    "B2 | El boleto tiene que ser revisado en el tren.": "A passagem tem que ser verificada no trem.",
+    "B2 | El billete tiene que ser revisado en el tren.": "A passagem tem que ser verificada no trem.",
+    "B2 | El periódico está doblado sobre la mesa.": "O jornal está dobrado sobre a mesa.",
+    "B2 | En este tren no se puede fumar.": "Neste trem não se pode fumar.",
+    "C1 | El paisaje debe de gustarle.": "Ele deve estar gostando da paisagem.",
+    "C1 | Puede que la bufanda sea de alguien que vuelve enseguida.": "Pode ser que o cachecol seja de alguém que volta já.",
+    "C1 | El tren estará ya cerca de Múnich.": "O trem já deve estar perto de Munique.",
+    "C1 | Dicen que en ese pueblo hacen el mejor queso de la región.": "Dizem que naquela aldeia fazem o melhor queijo da região."
    }
   },
   "pl": {
@@ -1370,7 +1495,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1380,7 +1506,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

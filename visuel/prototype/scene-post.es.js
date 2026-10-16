@@ -806,6 +806,7 @@ window.SCENE = {
      "f": "paket",
      "r": "waage",
      "phrase": "El paquete está en la báscula.",
+     "sens": "Le colis est sur la balance.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -818,6 +819,7 @@ window.SCENE = {
      "f": "briefkasten",
      "r": "fenster",
      "phrase": "Hay un buzón detrás de la ventana.",
+     "sens": "Il y a une boîte aux lettres derrière la fenêtre.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -829,6 +831,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "El reloj está en la pared.",
+     "sens": "L'horloge est au mur.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -841,6 +844,7 @@ window.SCENE = {
      "f": "briefmarke",
      "r": "umschlag",
      "phrase": "Los sellos están al lado de los sobres.",
+     "sens": "Les timbres sont à côté des enveloppes.",
      "n": "Masculin pluriel : <b>de los</b> sobres."
     },
     {
@@ -853,6 +857,7 @@ window.SCENE = {
      "f": "brief-2",
      "r": "korb",
      "phrase": "Las cartas están en la cesta.",
+     "sens": "Les lettres sont dans la corbeille.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -865,6 +870,7 @@ window.SCENE = {
      "f": "regenschirm",
      "r": "bank",
      "phrase": "El paraguas está al lado del banco.",
+     "sens": "Le parapluie est à côté du banc.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -877,6 +883,7 @@ window.SCENE = {
      "f": "paket-4",
      "r": "schalter",
      "phrase": "El paquete grande está delante de la ventanilla.",
+     "sens": "Le grand colis est devant le guichet.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -889,6 +896,7 @@ window.SCENE = {
      "f": "mann",
      "r": "schalter",
      "phrase": "El hombre está detrás de la ventanilla.",
+     "sens": "L'homme est derrière le guichet.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     }
    ]
@@ -906,6 +914,7 @@ window.SCENE = {
      "f": "brief",
      "r": "anna",
      "phrase": "Anna le envía una carta a su madre.",
+     "sens": "Anna envoie une lettre à sa mère.",
      "n": "Complément indirect (à quelqu'un) → <b>le</b>.",
      "revise": {
       "mot": "enviar",
@@ -922,6 +931,7 @@ window.SCENE = {
      "f": "mann",
      "r": "anna",
      "phrase": "El hombre le da el recibo a Anna.",
+     "sens": "L'homme donne le reçu à Anna.",
      "n": "Complément indirect (à quelqu'un) → <b>le</b>.",
      "revise": {
       "mot": "dar",
@@ -938,6 +948,7 @@ window.SCENE = {
      "f": "brief",
      "r": "mann",
      "phrase": "¿La carta? Anna se la da al hombre.",
+     "sens": "La lettre ? Anna la donne à l'homme.",
      "n": "<b>le</b> + <b>la</b> → <b>se la</b> : le devient se devant lo, la.",
      "revise": {
       "mot": "dar",
@@ -954,6 +965,7 @@ window.SCENE = {
      "f": "paket",
      "r": "waage",
      "phrase": "¿El paquete? El hombre lo pesa.",
+     "sens": "Le colis ? L'homme le pèse.",
      "n": "Complément direct masculin → <b>lo</b>."
     },
     {
@@ -966,6 +978,7 @@ window.SCENE = {
      "f": "paket-3",
      "r": "frau",
      "phrase": "La señora quiere enviarle un paquete a su nieto.",
+     "sens": "La dame veut envoyer un colis à son petit-fils.",
      "n": "Avec un infinitif, le pronom se colle à la fin : <b>enviarle</b>.",
      "revise": {
       "mot": "enviar",
@@ -981,6 +994,7 @@ window.SCENE = {
      ],
      "f": "briefmarke",
      "phrase": "¿Me das un sello, por favor?",
+     "sens": "Tu me donnes un timbre, s'il te plaît ?",
      "n": "« À moi » → <b>me</b>, devant le verbe.",
      "revise": {
       "mot": "dar",
@@ -997,6 +1011,7 @@ window.SCENE = {
      "f": "anna",
      "r": "mann",
      "phrase": "Anna le enseña el carné al hombre.",
+     "sens": "Anna montre sa carte d'identité à l'homme.",
      "n": "Complément indirect (à quelqu'un) → <b>le</b>.",
      "revise": {
       "mot": "enseñar",
@@ -1017,6 +1032,7 @@ window.SCENE = {
      ],
      "f": "paket-4",
      "phrase": "Aquí se envían paquetes a todo el mundo.",
+     "sens": "Ici, on envoie des colis dans le monde entier.",
      "n": "Passif avec <b>se</b> : le verbe s'accorde avec le sujet pluriel (paquetes).",
      "revise": {
       "mot": "enviar",
@@ -1032,6 +1048,7 @@ window.SCENE = {
      ],
      "f": "brief",
      "phrase": "La carta fue enviada ayer.",
+     "sens": "La lettre a été envoyée hier.",
      "n": "Passif d'action au passé : <b>ser</b> + participe → fue enviada.",
      "revise": {
       "mot": "enviar",
@@ -1048,6 +1065,7 @@ window.SCENE = {
      "f": "brief-2",
      "r": "korb",
      "phrase": "Las cartas ya están clasificadas.",
+     "sens": "Les lettres sont déjà triées.",
      "n": "<b>estar</b> + participe, accordé : las cartas → clasificad<b>as</b>."
     },
     {
@@ -1059,6 +1077,7 @@ window.SCENE = {
      ],
      "f": "briefmarke",
      "phrase": "En Correos se venden sellos.",
+     "sens": "À la poste, on vend des timbres.",
      "n": "Passif avec <b>se</b>, sujet pluriel → se venden.",
      "revise": {
       "mot": "vender",
@@ -1075,6 +1094,7 @@ window.SCENE = {
      "f": "paket",
      "r": "mann",
      "phrase": "El paquete es pesado por el empleado.",
+     "sens": "Le colis est pesé par l'employé.",
      "n": "Passif d'action : <b>ser</b> + participe + <b>por</b>."
     },
     {
@@ -1086,6 +1106,7 @@ window.SCENE = {
      ],
      "f": "umschlag",
      "phrase": "El sobre está cerrado.",
+     "sens": "L'enveloppe est fermée.",
      "n": "<b>estar</b> + participe, accordé : el sobre → cerrad<b>o</b>.",
      "revise": {
       "mot": "cerrar",
@@ -1107,6 +1128,7 @@ window.SCENE = {
      "f": "brief",
      "r": "anna",
      "phrase": "La carta debe de ser para alguien importante.",
+     "sens": "La lettre doit être pour quelqu'un d'important.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1119,6 +1141,7 @@ window.SCENE = {
      "f": "paket-3",
      "r": "frau",
      "phrase": "Puede que el paquete de la señora sea un regalo.",
+     "sens": "Le colis de la dame est peut-être un cadeau.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1130,6 +1153,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "La oficina estará a punto de cerrar.",
+     "sens": "Le bureau doit être sur le point de fermer.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1141,6 +1165,7 @@ window.SCENE = {
      ],
      "f": "schalter",
      "phrase": "Dicen que esta oficina de correos cierra pronto.",
+     "sens": "On dit que ce bureau de poste ferme bientôt.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1185,6 +1210,33 @@ window.SCENE = {
     "C1 | Puede que el paquete de la señora sea un regalo.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | La oficina estará a punto de cerrar.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que esta oficina de correos cierra pronto.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El paquete está en la báscula.": "The parcel is on the scale.",
+    "A2 | Hay un buzón detrás de la ventana.": "There is a letterbox behind the window.",
+    "A2 | El reloj está en la pared.": "The clock is on the wall.",
+    "A2 | Los sellos están al lado de los sobres.": "The stamps are next to the envelopes.",
+    "A2 | Las cartas están en la cesta.": "The letters are in the basket.",
+    "A2 | El paraguas está al lado del banco.": "The umbrella is next to the bench.",
+    "A2 | El paquete grande está delante de la ventanilla.": "The big parcel is in front of the counter.",
+    "A2 | El hombre está detrás de la ventanilla.": "The man is behind the counter.",
+    "B1 | Anna le envía una carta a su madre.": "Anna sends a letter to her mother.",
+    "B1 | El hombre le da el recibo a Anna.": "The man gives Anna the receipt.",
+    "B1 | ¿La carta? Anna se la da al hombre.": "The letter? Anna gives it to the man.",
+    "B1 | ¿El paquete? El hombre lo pesa.": "The parcel? The man weighs it.",
+    "B1 | La señora quiere enviarle un paquete a su nieto.": "The lady wants to send a parcel to her grandson.",
+    "B1 | ¿Me das un sello, por favor?": "Can you give me a stamp, please?",
+    "B1 | Anna le enseña el carné al hombre.": "Anna shows the man her ID card.",
+    "B2 | Aquí se envían paquetes a todo el mundo.": "Parcels are sent all over the world from here.",
+    "B2 | La carta fue enviada ayer.": "The letter was sent yesterday.",
+    "B2 | Las cartas ya están clasificadas.": "The letters are already sorted.",
+    "B2 | En Correos se venden sellos.": "Stamps are sold at the post office.",
+    "B2 | El paquete es pesado por el empleado.": "The parcel is weighed by the clerk.",
+    "B2 | El sobre está cerrado.": "The envelope is sealed.",
+    "C1 | La carta debe de ser para alguien importante.": "The letter must be for someone important.",
+    "C1 | Puede que el paquete de la señora sea un regalo.": "The lady's parcel may be a present.",
+    "C1 | La oficina estará a punto de cerrar.": "The office is probably about to close.",
+    "C1 | Dicen que esta oficina de correos cierra pronto.": "They say this post office is closing soon."
    }
   },
   "tr": {
@@ -1195,7 +1247,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1205,7 +1258,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1215,7 +1269,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1255,6 +1310,33 @@ window.SCENE = {
     "C1 | Puede que el paquete de la señora sea un regalo.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | La oficina estará a punto de cerrar.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que esta oficina de correos cierra pronto.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El paquete está en la báscula.": "الطرد على الميزان.",
+    "A2 | Hay un buzón detrás de la ventana.": "هناك صندوق بريد خلف النافذة.",
+    "A2 | El reloj está en la pared.": "الساعة على الحائط.",
+    "A2 | Los sellos están al lado de los sobres.": "الطوابع بجانب الظروف.",
+    "A2 | Las cartas están en la cesta.": "الرسائل في السلّة.",
+    "A2 | El paraguas está al lado del banco.": "المظلّة بجانب المقعد.",
+    "A2 | El paquete grande está delante de la ventanilla.": "الطرد الكبير أمام الشبّاك.",
+    "A2 | El hombre está detrás de la ventanilla.": "الرجل خلف الشبّاك.",
+    "B1 | Anna le envía una carta a su madre.": "ترسل آنا رسالة إلى أمّها.",
+    "B1 | El hombre le da el recibo a Anna.": "يعطي الرجل الإيصال لآنا.",
+    "B1 | ¿La carta? Anna se la da al hombre.": "الرسالة؟ تعطيها آنا للرجل.",
+    "B1 | ¿El paquete? El hombre lo pesa.": "الطرد؟ يزنه الرجل.",
+    "B1 | La señora quiere enviarle un paquete a su nieto.": "تريد السيّدة أن ترسل طرداً إلى حفيدها.",
+    "B1 | ¿Me das un sello, por favor?": "هل تعطيني طابعاً، من فضلك؟",
+    "B1 | Anna le enseña el carné al hombre.": "تُري آنا الرجل بطاقة هويّتها.",
+    "B2 | Aquí se envían paquetes a todo el mundo.": "من هنا تُرسَل الطرود إلى كل أنحاء العالم.",
+    "B2 | La carta fue enviada ayer.": "أُرسلت الرسالة أمس.",
+    "B2 | Las cartas ya están clasificadas.": "الرسائل مفروزة بالفعل.",
+    "B2 | En Correos se venden sellos.": "في مكتب البريد تُباع الطوابع.",
+    "B2 | El paquete es pesado por el empleado.": "يُوزَن الطرد من قِبل الموظّف.",
+    "B2 | El sobre está cerrado.": "الظرف مغلق.",
+    "C1 | La carta debe de ser para alguien importante.": "لا بدّ أن الرسالة لشخص مهمّ.",
+    "C1 | Puede que el paquete de la señora sea un regalo.": "ربما يكون طرد السيّدة هدية.",
+    "C1 | La oficina estará a punto de cerrar.": "على الأرجح المكتب على وشك الإغلاق.",
+    "C1 | Dicen que esta oficina de correos cierra pronto.": "يُقال إن مكتب البريد هذا سيُغلق قريباً."
    }
   },
   "pt": {
@@ -1295,6 +1377,33 @@ window.SCENE = {
     "C1 | Puede que el paquete de la señora sea un regalo.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | La oficina estará a punto de cerrar.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que esta oficina de correos cierra pronto.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El paquete está en la báscula.": "O pacote está na balança.",
+    "A2 | Hay un buzón detrás de la ventana.": "Há uma caixa de correio atrás da janela.",
+    "A2 | El reloj está en la pared.": "O relógio está na parede.",
+    "A2 | Los sellos están al lado de los sobres.": "Os selos estão ao lado dos envelopes.",
+    "A2 | Las cartas están en la cesta.": "As cartas estão na cesta.",
+    "A2 | El paraguas está al lado del banco.": "O guarda-chuva está ao lado do banco.",
+    "A2 | El paquete grande está delante de la ventanilla.": "O pacote grande está em frente ao guichê.",
+    "A2 | El hombre está detrás de la ventanilla.": "O homem está atrás do guichê.",
+    "B1 | Anna le envía una carta a su madre.": "Anna manda uma carta para a mãe.",
+    "B1 | El hombre le da el recibo a Anna.": "O homem dá o recibo a Anna.",
+    "B1 | ¿La carta? Anna se la da al hombre.": "A carta? Anna a dá ao homem.",
+    "B1 | ¿El paquete? El hombre lo pesa.": "O pacote? O homem o pesa.",
+    "B1 | La señora quiere enviarle un paquete a su nieto.": "A senhora quer mandar um pacote para o neto.",
+    "B1 | ¿Me das un sello, por favor?": "Você me dá um selo, por favor?",
+    "B1 | Anna le enseña el carné al hombre.": "Anna mostra a identidade ao homem.",
+    "B2 | Aquí se envían paquetes a todo el mundo.": "Aqui se enviam pacotes para o mundo inteiro.",
+    "B2 | La carta fue enviada ayer.": "A carta foi enviada ontem.",
+    "B2 | Las cartas ya están clasificadas.": "As cartas já estão separadas.",
+    "B2 | En Correos se venden sellos.": "Nos Correios se vendem selos.",
+    "B2 | El paquete es pesado por el empleado.": "O pacote é pesado pelo funcionário.",
+    "B2 | El sobre está cerrado.": "O envelope está fechado.",
+    "C1 | La carta debe de ser para alguien importante.": "A carta deve ser para alguém importante.",
+    "C1 | Puede que el paquete de la señora sea un regalo.": "Pode ser que o pacote da senhora seja um presente.",
+    "C1 | La oficina estará a punto de cerrar.": "A agência deve estar prestes a fechar.",
+    "C1 | Dicen que esta oficina de correos cierra pronto.": "Dizem que esta agência dos correios fecha em breve."
    }
   },
   "pl": {
@@ -1305,7 +1414,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1315,7 +1425,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

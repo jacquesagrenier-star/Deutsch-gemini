@@ -1080,6 +1080,7 @@ window.SCENE = {
      "f": "ball",
      "r": "schrank",
      "phrase": "El balón está encima del armario.",
+     "sens": "Le ballon est sur l'armoire.",
      "n": "<b>encima de</b> = sur. de + el = <b>del</b> : encima <b>del</b> armario.",
      "latam": {
       "c": [
@@ -1100,6 +1101,7 @@ window.SCENE = {
      "f": "hund",
      "r": "couchtisch",
      "phrase": "El perro está debajo de la mesa baja.",
+     "sens": "Le chien est sous la table basse.",
      "n": "<b>debajo de</b> = sous. Le lieu se dit avec <b>estar</b>.",
      "latam": {
       "c": [
@@ -1120,6 +1122,7 @@ window.SCENE = {
      "f": "katze",
      "r": "karton",
      "phrase": "El gato está en la caja de cartón.",
+     "sens": "Le chat est dans le carton.",
      "n": "<b>en</b> = dans, le lieu où l'on est. On dit aussi <b>dentro de</b>."
     },
     {
@@ -1132,6 +1135,7 @@ window.SCENE = {
      "f": "regenschirm",
      "r": "lampe",
      "phrase": "El paraguas está colgado de la lámpara.",
+     "sens": "Le parapluie est accroché à la lampe.",
      "n": "<b>colgado de</b> = suspendu à. Il s'accorde : el paraguas → colgad<b>o</b>."
     },
     {
@@ -1144,6 +1148,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "regal",
      "phrase": "La bicicleta está delante de la estantería.",
+     "sens": "Le vélo est devant l'étagère.",
      "n": "<b>delante de</b> = devant ; <b>detrás de</b> = derrière."
     },
     {
@@ -1156,6 +1161,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "sofa",
      "phrase": "La guitarra está entre el armario y el sofá.",
+     "sens": "La guitare est entre l'armoire et le canapé.",
      "n": "<b>entre</b> = entre, sans « de » : entre el armario y el sofá.",
      "latam": {
       "c": [
@@ -1176,6 +1182,7 @@ window.SCENE = {
      "f": "turnschuh",
      "r": "sofa",
      "phrase": "Las zapatillas están debajo del sofá.",
+     "sens": "Les baskets sont sous le canapé.",
      "n": "Pluriel → <b>están</b>. de + el = <b>del</b> : debajo <b>del</b> sofá.",
      "latam": {
       "q": "¿Dónde están los tenis?",
@@ -1192,6 +1199,7 @@ window.SCENE = {
      "f": "heizkoerper",
      "r": "fenster",
      "phrase": "El radiador está debajo de la ventana.",
+     "sens": "Le radiateur est sous la fenêtre.",
      "n": "<b>debajo de</b> = sous."
     },
     {
@@ -1204,6 +1212,7 @@ window.SCENE = {
      "f": "socke",
      "r": "stehlampe",
      "phrase": "El calcetín está colgado de la lámpara de pie.",
+     "sens": "La chaussette est accrochée au lampadaire.",
      "n": "<b>colgado de</b> = suspendu à : el calcetín → colgad<b>o</b>.",
      "latam": {
       "c": [
@@ -1223,6 +1232,7 @@ window.SCENE = {
      "f": "goldfisch",
      "r": "regal",
      "phrase": "La pecera con el pez de colores está encima de la estantería.",
+     "sens": "Le bocal avec le poisson rouge est sur l'étagère.",
      "n": "<b>encima de</b> = sur. La pecera = le bocal.",
      "latam": {
       "q": "¿Dónde está la pecera con el pez dorado?",
@@ -1244,6 +1254,7 @@ window.SCENE = {
      "f": "luftballon",
      "r": "boden",
      "phrase": "En el suelo hay muchos globos.",
+     "sens": "Par terre, il y a beaucoup de ballons.",
      "n": "Pour dire qu'il y a quelque chose, sans le définir → <b>hay</b> (invariable).",
      "latam": {
       "q": "En el piso ___ muchos globos.",
@@ -1260,6 +1271,7 @@ window.SCENE = {
      "f": "luftballon",
      "r": "boden",
      "phrase": "Los globos están en el suelo.",
+     "sens": "Les ballons sont par terre.",
      "n": "Avec l'article défini (<b>los</b> globos) → <b>estar</b>, pas hay.",
      "latam": {
       "q": "Los globos ___ en el piso.",
@@ -1276,6 +1288,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "regal",
      "phrase": "Mark la pone en la estantería.",
+     "sens": "Mark la pose sur l'étagère.",
      "revise": {
       "mot": "poner",
       "cat": "verbe"
@@ -1292,6 +1305,7 @@ window.SCENE = {
      "f": "regenschirm",
      "r": "tuer",
      "phrase": "Mark lo cuelga detrás de la puerta.",
+     "sens": "Mark l'accroche derrière la porte.",
      "n": "Complément direct masculin (el paraguas) → <b>lo</b>."
     },
     {
@@ -1304,6 +1318,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "eimer",
      "phrase": "Mark las tira a la basura.",
+     "sens": "Mark les jette à la poubelle.",
      "n": "Complément direct féminin pluriel (las botellas) → <b>las</b>."
     },
     {
@@ -1315,6 +1330,7 @@ window.SCENE = {
      ],
      "f": "sofa",
      "phrase": "El sofá es gris.",
+     "sens": "Le canapé est gris.",
      "n": "Une caractéristique (la couleur) → <b>ser</b>."
     },
     {
@@ -1327,6 +1343,7 @@ window.SCENE = {
      "f": "hund",
      "r": "couchtisch",
      "phrase": "El perro está dormido debajo de la mesa.",
+     "sens": "Le chien dort sous la table.",
      "n": "Un état (dormido) et un lieu → <b>estar</b>."
     },
     {
@@ -1338,6 +1355,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "La puerta está abierta.",
+     "sens": "La porte est ouverte.",
      "n": "Un résultat, un état → <b>estar</b> + participe accordé : abiert<b>a</b>."
     }
    ]
@@ -1355,6 +1373,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "regenschirm",
      "phrase": "La lámpara de la que cuelga el paraguas es redonda.",
+     "sens": "La lampe à laquelle est accroché le parapluie est ronde.",
      "n": "Préposition + relatif : de <b>la que</b> (la lámpara). Sans l'article, « de que » serait faux."
     },
     {
@@ -1366,6 +1385,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "El perro, que duerme debajo de la mesa, no oyó la fiesta.",
+     "sens": "Le chien, qui dort sous la table, n'a pas entendu la fête.",
      "n": "Sujet de la relative → <b>que</b>. <b>quien</b> ne renvoie qu'à une personne."
     },
     {
@@ -1378,6 +1398,7 @@ window.SCENE = {
      "f": "katze",
      "r": "karton",
      "phrase": "El gato, cuya cabeza sale de la caja, parece tranquilo.",
+     "sens": "Le chat, dont la tête dépasse du carton, a l'air calme.",
      "n": "<b>cuyo</b> = dont le, dont la. Il s'accorde avec ce qui est possédé : la cabeza → <b>cuya</b>."
     },
     {
@@ -1390,6 +1411,7 @@ window.SCENE = {
      "f": "regal",
      "r": "fahrrad",
      "phrase": "La estantería delante de la cual está la bicicleta está llena de libros.",
+     "sens": "L'étagère devant laquelle est le vélo est pleine de livres.",
      "n": "Après une préposition de plusieurs mots (delante de), on emploie <b>la cual</b>."
     },
     {
@@ -1401,6 +1423,7 @@ window.SCENE = {
      ],
      "f": "luftballon",
      "phrase": "Los globos fueron inflados por los invitados.",
+     "sens": "Les ballons ont été gonflés par les invités.",
      "n": "Passif avec <b>ser</b> : ser + participe accordé (los globos → inflad<b>os</b>)."
     },
     {
@@ -1412,6 +1435,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "La puerta está abierta desde anoche.",
+     "sens": "La porte est ouverte depuis hier soir.",
      "n": "Passif d'état : <b>estar</b> + participe accordé. Le résultat dure."
     }
    ]
@@ -1428,6 +1452,7 @@ window.SCENE = {
      ],
      "f": "luftballon",
      "phrase": "La fiesta debió de terminar muy tarde.",
+     "sens": "La fête a dû finir très tard.",
      "n": "<b>deber de</b> + infinitif = une déduction : c'est presque sûr, vu les ballons."
     },
     {
@@ -1439,6 +1464,7 @@ window.SCENE = {
      ],
      "f": "socke",
      "phrase": "Podría ser de uno de los invitados.",
+     "sens": "Il pourrait être à l'un des invités.",
      "n": "<b>podría</b> = c'est possible, sans preuve. <b>debe</b> serait une certitude."
     },
     {
@@ -1450,6 +1476,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.",
+     "sens": "Si Mark n'avait pas voyagé, il serait maintenant aussi fatigué que ses colocataires.",
      "n": "Condition irréelle au passé (hubiera viajado), conséquence au présent → conditionnel : <b>estaría</b>."
     },
     {
@@ -1461,6 +1488,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Cuando Mark vea el salón, seguramente se enfadará un poco.",
+     "sens": "Quand Mark verra le salon, il se fâchera sûrement un peu.",
      "n": "Une prévision → futur : <b>se enfadará</b>. Et <b>cuando</b> + avenir prend le subjonctif : vea.",
      "latam": {
       "q": "Cuando Mark vea la sala, seguramente ___ un poco.",
@@ -1520,6 +1548,44 @@ window.SCENE = {
     "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "Unreal past condition (hubiera viajado), present result → conditional: <b>estaría</b>.",
     "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "A prediction → future: <b>se enfadará</b>. And <b>cuando</b> + future takes the subjunctive: vea.",
     "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "A prediction → future: <b>se enfadará</b>. And <b>cuando</b> + future takes the subjunctive: vea."
+   },
+   "sens": {
+    "A2 | El balón está encima del clóset.": "The ball is on top of the cupboard.",
+    "A2 | El balón está encima del armario.": "The ball is on top of the cupboard.",
+    "A2 | El perro está debajo de la mesa de centro.": "The dog is under the coffee table.",
+    "A2 | El perro está debajo de la mesa baja.": "The dog is under the coffee table.",
+    "A2 | El gato está en la caja de cartón.": "The cat is in the cardboard box.",
+    "A2 | El paraguas está colgado de la lámpara.": "The umbrella is hanging from the lamp.",
+    "A2 | La bicicleta está delante de la estantería.": "The bicycle is in front of the shelf.",
+    "A2 | La guitarra está entre el clóset y el sofá.": "The guitar is between the cupboard and the sofa.",
+    "A2 | La guitarra está entre el armario y el sofá.": "The guitar is between the cupboard and the sofa.",
+    "A2 | Los tenis están debajo del sofá.": "The trainers are under the sofa.",
+    "A2 | Las zapatillas están debajo del sofá.": "The trainers are under the sofa.",
+    "A2 | El radiador está debajo de la ventana.": "The radiator is under the window.",
+    "A2 | El calcetín está colgado de la lámpara de pie.": "The sock is hanging from the floor lamp.",
+    "A2 | La pecera con el pez dorado está encima de la estantería.": "The bowl with the goldfish is on top of the shelf.",
+    "A2 | La pecera con el pez de colores está encima de la estantería.": "The bowl with the goldfish is on top of the shelf.",
+    "B1 | En el piso hay muchos globos.": "There are a lot of balloons on the floor.",
+    "B1 | En el suelo hay muchos globos.": "There are a lot of balloons on the floor.",
+    "B1 | Los globos están en el piso.": "The balloons are on the floor.",
+    "B1 | Los globos están en el suelo.": "The balloons are on the floor.",
+    "B1 | Mark la pone en la estantería.": "Mark puts it on the shelf.",
+    "B1 | Mark lo cuelga detrás de la puerta.": "Mark hangs it behind the door.",
+    "B1 | Mark las tira a la basura.": "Mark throws them in the bin.",
+    "B1 | El sofá es gris.": "The sofa is grey.",
+    "B1 | El perro está dormido debajo de la mesa.": "The dog is asleep under the table.",
+    "B1 | La puerta está abierta.": "The door is open.",
+    "B2 | La lámpara de la que cuelga el paraguas es redonda.": "The lamp the umbrella is hanging from is round.",
+    "B2 | El perro, que duerme debajo de la mesa, no oyó la fiesta.": "The dog, which is sleeping under the table, did not hear the party.",
+    "B2 | El gato, cuya cabeza sale de la caja, parece tranquilo.": "The cat, whose head is sticking out of the box, looks calm.",
+    "B2 | La estantería delante de la cual está la bicicleta está llena de libros.": "The shelf the bicycle is in front of is full of books.",
+    "B2 | Los globos fueron inflados por los invitados.": "The balloons were blown up by the guests.",
+    "B2 | La puerta está abierta desde anoche.": "The door has been open since last night.",
+    "C1 | La fiesta debió de terminar muy tarde.": "The party must have ended very late.",
+    "C1 | Podría ser de uno de los invitados.": "It could belong to one of the guests.",
+    "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "If Mark had not been travelling, he would now be as tired as his flatmates.",
+    "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "When Mark sees the living room, he will surely be a little annoyed.",
+    "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "When Mark sees the living room, he will surely be a little annoyed."
    }
   },
   "tr": {
@@ -1530,7 +1596,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1540,7 +1607,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1550,7 +1618,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1601,6 +1670,44 @@ window.SCENE = {
     "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "شرط غير واقعي في الماضي (hubiera viajado)، ونتيجة في الحاضر ← condicional: <b>estaría</b>.",
     "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "توقّع ← المستقبل: <b>se enfadará</b>. و<b>cuando</b> + مستقبل تأخذ subjuntivo: vea.",
     "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "توقّع ← المستقبل: <b>se enfadará</b>. و<b>cuando</b> + مستقبل تأخذ subjuntivo: vea."
+   },
+   "sens": {
+    "A2 | El balón está encima del clóset.": "الكرة فوق الخزانة.",
+    "A2 | El balón está encima del armario.": "الكرة فوق الخزانة.",
+    "A2 | El perro está debajo de la mesa de centro.": "الكلب تحت الطاولة الصغيرة.",
+    "A2 | El perro está debajo de la mesa baja.": "الكلب تحت الطاولة الصغيرة.",
+    "A2 | El gato está en la caja de cartón.": "القطة في الصندوق الكرتوني.",
+    "A2 | El paraguas está colgado de la lámpara.": "المظلّة معلّقة على المصباح.",
+    "A2 | La bicicleta está delante de la estantería.": "الدراجة أمام الرفّ.",
+    "A2 | La guitarra está entre el clóset y el sofá.": "الغيتار بين الخزانة والأريكة.",
+    "A2 | La guitarra está entre el armario y el sofá.": "الغيتار بين الخزانة والأريكة.",
+    "A2 | Los tenis están debajo del sofá.": "الحذاء الرياضي تحت الأريكة.",
+    "A2 | Las zapatillas están debajo del sofá.": "الحذاء الرياضي تحت الأريكة.",
+    "A2 | El radiador está debajo de la ventana.": "المدفأة تحت النافذة.",
+    "A2 | El calcetín está colgado de la lámpara de pie.": "الجورب معلّق على المصباح الأرضي.",
+    "A2 | La pecera con el pez dorado está encima de la estantería.": "الحوض الذي فيه السمكة الذهبية فوق الرفّ.",
+    "A2 | La pecera con el pez de colores está encima de la estantería.": "الحوض الذي فيه السمكة الذهبية فوق الرفّ.",
+    "B1 | En el piso hay muchos globos.": "على الأرض بالونات كثيرة.",
+    "B1 | En el suelo hay muchos globos.": "على الأرض بالونات كثيرة.",
+    "B1 | Los globos están en el piso.": "البالونات على الأرض.",
+    "B1 | Los globos están en el suelo.": "البالونات على الأرض.",
+    "B1 | Mark la pone en la estantería.": "يضعه مارك على الرفّ.",
+    "B1 | Mark lo cuelga detrás de la puerta.": "يعلّقه مارك خلف الباب.",
+    "B1 | Mark las tira a la basura.": "يرميها مارك في القمامة.",
+    "B1 | El sofá es gris.": "الأريكة رمادية.",
+    "B1 | El perro está dormido debajo de la mesa.": "الكلب نائم تحت الطاولة.",
+    "B1 | La puerta está abierta.": "الباب مفتوح.",
+    "B2 | La lámpara de la que cuelga el paraguas es redonda.": "المصباح الذي تتدلّى منه المظلّة مستدير.",
+    "B2 | El perro, que duerme debajo de la mesa, no oyó la fiesta.": "الكلب النائم تحت الطاولة لم يسمع الحفلة.",
+    "B2 | El gato, cuya cabeza sale de la caja, parece tranquilo.": "القطة التي يطلّ رأسها من الصندوق تبدو هادئة.",
+    "B2 | La estantería delante de la cual está la bicicleta está llena de libros.": "الرفّ الذي أمامه الدراجة مليء بالكتب.",
+    "B2 | Los globos fueron inflados por los invitados.": "نُفخت البالونات من قِبل الضيوف.",
+    "B2 | La puerta está abierta desde anoche.": "الباب مفتوح منذ ليلة أمس.",
+    "C1 | La fiesta debió de terminar muy tarde.": "لا بدّ أن الحفلة انتهت في وقت متأخّر جداً.",
+    "C1 | Podría ser de uno de los invitados.": "قد يكون لأحد الضيوف.",
+    "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "لو لم يسافر مارك، لكان الآن متعباً مثل رفاق سكنه.",
+    "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "عندما يرى مارك غرفة الجلوس، سيغضب قليلاً بالتأكيد.",
+    "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "عندما يرى مارك غرفة الجلوس، سيغضب قليلاً بالتأكيد."
    }
   },
   "pt": {
@@ -1652,6 +1759,44 @@ window.SCENE = {
     "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "Condição irreal no passado (hubiera viajado), consequência no presente → condicional: <b>estaría</b>.",
     "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "Uma previsão → futuro: <b>se enfadará</b>. E <b>cuando</b> + futuro leva o subjuntivo: vea.",
     "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "Uma previsão → futuro: <b>se enfadará</b>. E <b>cuando</b> + futuro leva o subjuntivo: vea."
+   },
+   "sens": {
+    "A2 | El balón está encima del clóset.": "A bola está em cima do armário.",
+    "A2 | El balón está encima del armario.": "A bola está em cima do armário.",
+    "A2 | El perro está debajo de la mesa de centro.": "O cachorro está debaixo da mesa de centro.",
+    "A2 | El perro está debajo de la mesa baja.": "O cachorro está debaixo da mesa de centro.",
+    "A2 | El gato está en la caja de cartón.": "O gato está na caixa de papelão.",
+    "A2 | El paraguas está colgado de la lámpara.": "O guarda-chuva está pendurado na luminária.",
+    "A2 | La bicicleta está delante de la estantería.": "A bicicleta está em frente à estante.",
+    "A2 | La guitarra está entre el clóset y el sofá.": "O violão está entre o armário e o sofá.",
+    "A2 | La guitarra está entre el armario y el sofá.": "O violão está entre o armário e o sofá.",
+    "A2 | Los tenis están debajo del sofá.": "Os tênis estão debaixo do sofá.",
+    "A2 | Las zapatillas están debajo del sofá.": "Os tênis estão debaixo do sofá.",
+    "A2 | El radiador está debajo de la ventana.": "O aquecedor fica debaixo da janela.",
+    "A2 | El calcetín está colgado de la lámpara de pie.": "A meia está pendurada no abajur de pé.",
+    "A2 | La pecera con el pez dorado está encima de la estantería.": "O aquário com o peixinho dourado está em cima da estante.",
+    "A2 | La pecera con el pez de colores está encima de la estantería.": "O aquário com o peixinho dourado está em cima da estante.",
+    "B1 | En el piso hay muchos globos.": "No chão há muitos balões.",
+    "B1 | En el suelo hay muchos globos.": "No chão há muitos balões.",
+    "B1 | Los globos están en el piso.": "Os balões estão no chão.",
+    "B1 | Los globos están en el suelo.": "Os balões estão no chão.",
+    "B1 | Mark la pone en la estantería.": "Mark põe a xícara na estante.",
+    "B1 | Mark lo cuelga detrás de la puerta.": "Mark pendura-o atrás da porta.",
+    "B1 | Mark las tira a la basura.": "Mark joga-as no lixo.",
+    "B1 | El sofá es gris.": "O sofá é cinza.",
+    "B1 | El perro está dormido debajo de la mesa.": "O cachorro está dormindo debaixo da mesa.",
+    "B1 | La puerta está abierta.": "A porta está aberta.",
+    "B2 | La lámpara de la que cuelga el paraguas es redonda.": "A luminária de que pende o guarda-chuva é redonda.",
+    "B2 | El perro, que duerme debajo de la mesa, no oyó la fiesta.": "O cachorro, que dorme debaixo da mesa, não ouviu a festa.",
+    "B2 | El gato, cuya cabeza sale de la caja, parece tranquilo.": "O gato, cuja cabeça sai da caixa, parece tranquilo.",
+    "B2 | La estantería delante de la cual está la bicicleta está llena de libros.": "A estante em frente à qual está a bicicleta está cheia de livros.",
+    "B2 | Los globos fueron inflados por los invitados.": "Os balões foram enchidos pelos convidados.",
+    "B2 | La puerta está abierta desde anoche.": "A porta está aberta desde ontem à noite.",
+    "C1 | La fiesta debió de terminar muy tarde.": "A festa deve ter terminado muito tarde.",
+    "C1 | Podría ser de uno de los invitados.": "Poderia ser de um dos convidados.",
+    "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "Se Mark não tivesse viajado, agora estaria tão cansado quanto os colegas.",
+    "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "Quando Mark vir a sala, com certeza vai ficar um pouco chateado.",
+    "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "Quando Mark vir a sala, com certeza vai ficar um pouco chateado."
    }
   },
   "pl": {
@@ -1662,7 +1807,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1672,7 +1818,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

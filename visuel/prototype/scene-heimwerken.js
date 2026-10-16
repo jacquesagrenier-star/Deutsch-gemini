@@ -878,6 +878,7 @@ window.SCENE = {
      "f": "katze",
      "r": "fenster",
      "phrase": "Die Katze sitzt am Fenster.",
+     "sens": "Le chat est assis à la fenêtre.",
      "n": "<b>am</b> = an + <b>dem</b> : das Fenster → am Fenster."
     },
     {
@@ -890,6 +891,7 @@ window.SCENE = {
      "f": "eimer",
      "r": "boden",
      "phrase": "Der Eimer steht auf dem Boden.",
+     "sens": "Le seau est par terre.",
      "n": "der Boden → auf <b>dem</b> Boden."
     },
     {
@@ -902,6 +904,7 @@ window.SCENE = {
      "f": "pinsel",
      "r": "eimer",
      "phrase": "Der Pinsel liegt auf dem Eimer.",
+     "sens": "Le pinceau est sur le seau.",
      "n": "der Eimer → auf <b>dem</b> Eimer."
     },
     {
@@ -914,6 +917,7 @@ window.SCENE = {
      "f": "leiter",
      "r": "regal",
      "phrase": "Die Leiter steht neben dem Regal.",
+     "sens": "L'échelle est à côté de l'étagère.",
      "n": "<b>neben</b> = à côté de. das Regal → neben <b>dem</b> Regal."
     },
     {
@@ -925,6 +929,7 @@ window.SCENE = {
      ],
      "f": "lampe",
      "phrase": "Die Lampe hängt an der Decke.",
+     "sens": "La lampe est suspendue au plafond.",
      "n": "die Decke → an <b>der</b> Decke : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -937,6 +942,7 @@ window.SCENE = {
      "f": "karton",
      "r": "schrank",
      "phrase": "Die Kartons stehen neben dem Schrank.",
+     "sens": "Les cartons sont à côté de l'armoire.",
      "n": "<b>neben</b> = à côté de. der Schrank → neben <b>dem</b> Schrank."
     },
     {
@@ -949,6 +955,7 @@ window.SCENE = {
      "f": "handschuh",
      "r": "karton-2",
      "phrase": "Die Handschuhe liegen neben dem Karton.",
+     "sens": "Les gants sont à côté du carton.",
      "n": "<b>neben</b> = à côté de. der Karton → neben <b>dem</b> Karton."
     },
     {
@@ -961,6 +968,7 @@ window.SCENE = {
      "f": "holz-2",
      "r": "karton-2",
      "phrase": "Das Holz ist im Karton.",
+     "sens": "Le bois est dans le carton.",
      "n": "<b>im</b> = in + <b>dem</b> : der Karton → im Karton."
     }
    ]
@@ -978,6 +986,7 @@ window.SCENE = {
      "f": "hammer",
      "r": "mark",
      "phrase": "Mark, gib mir bitte den Hammer!",
+     "sens": "Mark, donne-moi le marteau, s'il te plaît !",
      "n": "Impératif (du) : <b>geben</b> → <b>gib</b> (e → i).",
      "revise": {
       "mot": "geben",
@@ -993,6 +1002,7 @@ window.SCENE = {
      ],
      "f": "papier",
      "phrase": "Lies die Anleitung genau!",
+     "sens": "Lis bien la notice !",
      "n": "<b>lesen</b> → <b>lies</b> (e → ie).",
      "revise": {
       "mot": "lesen",
@@ -1009,6 +1019,7 @@ window.SCENE = {
      "f": "pinsel",
      "r": "eimer",
      "phrase": "Leg den Pinsel auf den Eimer!",
+     "sens": "Pose le pinceau sur le seau !",
      "n": "Impératif (du) : le radical seul → <b>leg</b>.",
      "revise": {
       "mot": "legen",
@@ -1024,6 +1035,7 @@ window.SCENE = {
      ],
      "f": "handschuh",
      "phrase": "Zieh die Handschuhe an!",
+     "sens": "Mets les gants !",
      "n": "<b>anziehen</b> : impératif <b>zieh … an</b>, la particule à la fin.",
      "revise": {
       "mot": "anziehen",
@@ -1039,6 +1051,7 @@ window.SCENE = {
      ],
      "f": "leiter",
      "phrase": "Mark, fall nicht von der Leiter!",
+     "sens": "Mark, ne tombe pas de l'échelle !",
      "n": "<b>fallen</b> → <b>fall</b> : pas d'Umlaut à l'impératif.",
      "revise": {
       "mot": "fallen",
@@ -1054,6 +1067,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Lass uns eine Pause machen!",
+     "sens": "Faisons une pause !",
      "n": "<b>Lass uns…</b> = faisons…",
      "revise": {
       "mot": "lassen",
@@ -1070,6 +1084,7 @@ window.SCENE = {
      "f": "katze",
      "r": "fenster",
      "phrase": "Katze, komm vom Fenster herunter!",
+     "sens": "Minou, descends de la fenêtre !",
      "n": "Impératif (du) : <b>komm</b>.",
      "revise": {
       "mot": "kommen",
@@ -1085,6 +1100,7 @@ window.SCENE = {
      ],
      "f": "leiter",
      "phrase": "Herr Nachbar, halten Sie mir bitte die Leiter!",
+     "sens": "Monsieur le voisin, tenez-moi l'échelle, s'il vous plaît !",
      "n": "Impératif poli : <b>verbe + Sie</b> → halten Sie.",
      "revise": {
       "mot": "halten",
@@ -1105,6 +1121,7 @@ window.SCENE = {
      ],
      "f": "farbe",
      "phrase": "Mark hat Farbe gekauft, um die Wand blau zu streichen.",
+     "sens": "Mark a acheté de la peinture pour peindre le mur en bleu.",
      "n": "<b>um … zu</b> + infinitif : un but, même sujet.",
      "revise": {
       "mot": "streichen",
@@ -1121,6 +1138,7 @@ window.SCENE = {
      "f": "regal",
      "r": "papier",
      "phrase": "Er liest die Anleitung, damit das Regal nicht umfällt.",
+     "sens": "Il lit la notice pour que l'étagère ne tombe pas.",
      "n": "<b>damit</b> : sujet différent, le verbe conjugué à la fin."
     },
     {
@@ -1132,6 +1150,7 @@ window.SCENE = {
      ],
      "f": "handschuh",
      "phrase": "Er hat vergessen, die Handschuhe anzuziehen.",
+     "sens": "Il a oublié de mettre les gants.",
      "n": "Verbe séparable : <b>zu</b> entre la particule et le verbe → an<b>zu</b>ziehen.",
      "revise": {
       "mot": "anziehen",
@@ -1148,6 +1167,7 @@ window.SCENE = {
      "f": "regal",
      "r": "mark",
      "phrase": "Es ist nicht leicht, ein Regal allein aufzubauen.",
+     "sens": "Ce n'est pas facile de monter une étagère tout seul.",
      "n": "<b>aufbauen</b> → auf<b>zu</b>bauen.",
      "revise": {
       "mot": "aufbauen",
@@ -1163,6 +1183,7 @@ window.SCENE = {
      ],
      "f": "farbe",
      "phrase": "Die Wand ist schon halb gestrichen.",
+     "sens": "Le mur est déjà à moitié peint.",
      "n": "Passif d'état : <b>sein</b> + participe. <b>streichen</b> → gestrichen.",
      "revise": {
       "mot": "streichen",
@@ -1178,6 +1199,7 @@ window.SCENE = {
      ],
      "f": "papier",
      "phrase": "Ohne die Anleitung zu lesen, baut man kein Regal.",
+     "sens": "Sans lire la notice, on ne monte pas d'étagère.",
      "n": "<b>ohne … zu</b> + infinitif = sans + infinitif."
     }
    ]
@@ -1195,6 +1217,7 @@ window.SCENE = {
      "f": "papier",
      "r": "mark",
      "phrase": "Die Anleitung muss schwer zu verstehen sein.",
+     "sens": "La notice doit être difficile à comprendre.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1206,6 +1229,7 @@ window.SCENE = {
      ],
      "f": "katze",
      "phrase": "Die Katze könnte dem Nachbarn gehören.",
+     "sens": "Le chat appartient peut-être au voisin.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1217,6 +1241,7 @@ window.SCENE = {
      ],
      "f": "regal",
      "phrase": "Das Regal dürfte heute Abend fertig sein.",
+     "sens": "L'étagère devrait être finie ce soir.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1228,6 +1253,7 @@ window.SCENE = {
      ],
      "f": "farbe",
      "phrase": "In der Wohnung soll früher ein Maler gewohnt haben.",
+     "sens": "Il paraît qu'un peintre habitait autrefois dans l'appartement.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1273,6 +1299,34 @@ window.SCENE = {
     "C1 | Die Katze könnte dem Nachbarn gehören.": "<b>könnte</b> = one possibility among others.",
     "C1 | Das Regal dürfte heute Abend fertig sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt am Fenster.": "The cat is sitting at the window.",
+    "A2 | Der Eimer steht auf dem Boden.": "The bucket is on the floor.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "The brush is on the bucket.",
+    "A2 | Die Leiter steht neben dem Regal.": "The ladder is next to the shelf.",
+    "A2 | Die Lampe hängt an der Decke.": "The lamp hangs from the ceiling.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "The boxes are next to the cupboard.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "The gloves are next to the box.",
+    "A2 | Das Holz ist im Karton.": "The wood is in the box.",
+    "B1 | Mark, gib mir bitte den Hammer!": "Mark, give me the hammer, please!",
+    "B1 | Lies die Anleitung genau!": "Read the instructions carefully!",
+    "B1 | Leg den Pinsel auf den Eimer!": "Put the brush on the bucket!",
+    "B1 | Zieh die Handschuhe an!": "Put the gloves on!",
+    "B1 | Mark, fall nicht von der Leiter!": "Mark, don't fall off the ladder!",
+    "B1 | Lass uns eine Pause machen!": "Let's take a break!",
+    "B1 | Katze, komm vom Fenster herunter!": "Cat, get down from the window!",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "Neighbour, please hold the ladder for me!",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "Mark bought paint to paint the wall blue.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "He reads the instructions so that the shelf does not fall over.",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "He forgot to put on the gloves.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "It is not easy to put a shelf together alone.",
+    "B2 | Die Wand ist schon halb gestrichen.": "The wall is already half painted.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "You can't build a shelf without reading the instructions.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "The instructions must be hard to understand.",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "The cat might belong to the neighbour.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "The shelf should be finished tonight.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "A painter is said to have lived in the flat before."
    }
   },
   "tr": {
@@ -1314,6 +1368,34 @@ window.SCENE = {
     "C1 | Die Katze könnte dem Nachbarn gehören.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Das Regal dürfte heute Abend fertig sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt am Fenster.": "Kedi pencerede oturuyor.",
+    "A2 | Der Eimer steht auf dem Boden.": "Kova yerde duruyor.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "Fırça kovanın üstünde.",
+    "A2 | Die Leiter steht neben dem Regal.": "Merdiven rafın yanında duruyor.",
+    "A2 | Die Lampe hängt an der Decke.": "Lamba tavanda asılı.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "Kutular dolabın yanında duruyor.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "Eldivenler kutunun yanında.",
+    "A2 | Das Holz ist im Karton.": "Tahta kutunun içinde.",
+    "B1 | Mark, gib mir bitte den Hammer!": "Mark, bana çekici ver lütfen!",
+    "B1 | Lies die Anleitung genau!": "Talimatı dikkatle oku!",
+    "B1 | Leg den Pinsel auf den Eimer!": "Fırçayı kovanın üstüne koy!",
+    "B1 | Zieh die Handschuhe an!": "Eldivenleri giy!",
+    "B1 | Mark, fall nicht von der Leiter!": "Mark, merdivenden düşme!",
+    "B1 | Lass uns eine Pause machen!": "Hadi bir mola verelim!",
+    "B1 | Katze, komm vom Fenster herunter!": "Kedi, pencereden in!",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "Komşu bey, merdiveni tutar mısınız lütfen!",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "Mark duvarı maviye boyamak için boya aldı.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "Raf devrilmesin diye talimatı okuyor.",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "Eldivenleri giymeyi unuttu.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "Tek başına raf kurmak kolay değil.",
+    "B2 | Die Wand ist schon halb gestrichen.": "Duvarın yarısı boyanmış bile.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "Talimatı okumadan raf kurulmaz.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "Talimat anlaşılması zor olmalı.",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "Kedi komşunun olabilir.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "Raf bu akşam biter herhalde.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "Dairede eskiden bir ressamın yaşadığı söyleniyor."
    }
   },
   "uk": {
@@ -1355,6 +1437,34 @@ window.SCENE = {
     "C1 | Die Katze könnte dem Nachbarn gehören.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Das Regal dürfte heute Abend fertig sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt am Fenster.": "Кіт сидить біля вікна.",
+    "A2 | Der Eimer steht auf dem Boden.": "Відро стоїть на підлозі.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "Пензель лежить на відрі.",
+    "A2 | Die Leiter steht neben dem Regal.": "Драбина стоїть біля полиці.",
+    "A2 | Die Lampe hängt an der Decke.": "Лампа висить на стелі.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "Коробки стоять біля шафи.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "Рукавиці лежать біля коробки.",
+    "A2 | Das Holz ist im Karton.": "Дерево в коробці.",
+    "B1 | Mark, gib mir bitte den Hammer!": "Марку, дай мені молоток, будь ласка!",
+    "B1 | Lies die Anleitung genau!": "Уважно прочитай інструкцію!",
+    "B1 | Leg den Pinsel auf den Eimer!": "Поклади пензель на відро!",
+    "B1 | Zieh die Handschuhe an!": "Надінь рукавиці!",
+    "B1 | Mark, fall nicht von der Leiter!": "Марку, не впади з драбини!",
+    "B1 | Lass uns eine Pause machen!": "Зробімо перерву!",
+    "B1 | Katze, komm vom Fenster herunter!": "Котику, злізь із вікна!",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "Пане сусіде, потримайте мені драбину, будь ласка!",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "Марк купив фарбу, щоб пофарбувати стіну в синій.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "Він читає інструкцію, щоб полиця не впала.",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "Він забув надягти рукавиці.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "Нелегко зібрати полицю самому.",
+    "B2 | Die Wand ist schon halb gestrichen.": "Стіна вже наполовину пофарбована.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "Не прочитавши інструкцію, полицю не зберешь.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "Інструкцію, мабуть, важко зрозуміти.",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "Кіт, можливо, належить сусідові.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "Полиця, напевно, буде готова сьогодні ввечері.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "Кажуть, у цій квартирі колись жив художник."
    }
   },
   "fa": {
@@ -1396,6 +1506,34 @@ window.SCENE = {
     "C1 | Die Katze könnte dem Nachbarn gehören.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Das Regal dürfte heute Abend fertig sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt am Fenster.": "گربه کنار پنجره نشسته است.",
+    "A2 | Der Eimer steht auf dem Boden.": "سطل روی زمین است.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "قلم‌مو روی سطل است.",
+    "A2 | Die Leiter steht neben dem Regal.": "نردبان کنار قفسه است.",
+    "A2 | Die Lampe hängt an der Decke.": "چراغ از سقف آویزان است.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "جعبه‌ها کنار کمد هستند.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "دستکش‌ها کنار جعبه هستند.",
+    "A2 | Das Holz ist im Karton.": "چوب در جعبه است.",
+    "B1 | Mark, gib mir bitte den Hammer!": "مارک، لطفاً چکش را به من بده!",
+    "B1 | Lies die Anleitung genau!": "دستورالعمل را دقیق بخوان!",
+    "B1 | Leg den Pinsel auf den Eimer!": "قلم‌مو را روی سطل بگذار!",
+    "B1 | Zieh die Handschuhe an!": "دستکش‌ها را دستت کن!",
+    "B1 | Mark, fall nicht von der Leiter!": "مارک، از نردبان نیفتی!",
+    "B1 | Lass uns eine Pause machen!": "بیا استراحت کنیم!",
+    "B1 | Katze, komm vom Fenster herunter!": "گربه، از پنجره بیا پایین!",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "آقای همسایه، لطفاً نردبان را برایم نگه دارید!",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "مارک رنگ خریده تا دیوار را آبی کند.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "او دستورالعمل را می‌خواند تا قفسه نیفتد.",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "او فراموش کرده دستکش‌ها را دستش کند.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "تنهایی سر هم کردن قفسه آسان نیست.",
+    "B2 | Die Wand ist schon halb gestrichen.": "نصف دیوار رنگ شده است.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "بدون خواندن دستورالعمل نمی‌شود قفسه سر هم کرد.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "دستورالعمل حتماً سخت‌فهم است.",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "گربه شاید مال همسایه باشد.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "قفسه احتمالاً امشب تمام می‌شود.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "می‌گویند قبلاً یک نقاش در این آپارتمان زندگی می‌کرده است."
    }
   },
   "ar": {
@@ -1437,6 +1575,34 @@ window.SCENE = {
     "C1 | Die Katze könnte dem Nachbarn gehören.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Das Regal dürfte heute Abend fertig sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt am Fenster.": "القطة جالسة عند النافذة.",
+    "A2 | Der Eimer steht auf dem Boden.": "الدلو على الأرض.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "الفرشاة على الدلو.",
+    "A2 | Die Leiter steht neben dem Regal.": "السلّم بجانب الرفّ.",
+    "A2 | Die Lampe hängt an der Decke.": "المصباح معلّق في السقف.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "الصناديق بجانب الخزانة.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "القفّازات بجانب الصندوق.",
+    "A2 | Das Holz ist im Karton.": "الخشب في الصندوق.",
+    "B1 | Mark, gib mir bitte den Hammer!": "مارك، أعطني المطرقة من فضلك!",
+    "B1 | Lies die Anleitung genau!": "اقرأ التعليمات بدقّة!",
+    "B1 | Leg den Pinsel auf den Eimer!": "ضع الفرشاة على الدلو!",
+    "B1 | Zieh die Handschuhe an!": "البس القفّازات!",
+    "B1 | Mark, fall nicht von der Leiter!": "مارك، لا تسقط عن السلّم!",
+    "B1 | Lass uns eine Pause machen!": "لنأخذ استراحة!",
+    "B1 | Katze, komm vom Fenster herunter!": "أيتها القطة، انزلي عن النافذة!",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "يا جار، أمسك لي السلّم من فضلك!",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "اشترى مارك طلاءً ليطلي الحائط باللون الأزرق.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "يقرأ التعليمات كي لا يسقط الرفّ.",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "نسي أن يلبس القفّازات.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "ليس من السهل تركيب رفّ بمفردك.",
+    "B2 | Die Wand ist schon halb gestrichen.": "الحائط مطليّ إلى نصفه بالفعل.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "لا يُركَّب رفّ من دون قراءة التعليمات.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "لا بدّ أن التعليمات صعبة الفهم.",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "ربما تكون القطة للجار.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "على الأرجح يكتمل الرفّ هذا المساء.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "يُقال إن رسّاماً كان يسكن في الشقّة سابقاً."
    }
   },
   "pt": {
@@ -1478,6 +1644,34 @@ window.SCENE = {
     "C1 | Die Katze könnte dem Nachbarn gehören.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Das Regal dürfte heute Abend fertig sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt am Fenster.": "O gato está sentado na janela.",
+    "A2 | Der Eimer steht auf dem Boden.": "O balde está no chão.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "O pincel está em cima do balde.",
+    "A2 | Die Leiter steht neben dem Regal.": "A escada está ao lado da estante.",
+    "A2 | Die Lampe hängt an der Decke.": "A lâmpada está pendurada no teto.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "As caixas estão ao lado do armário.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "As luvas estão ao lado da caixa.",
+    "A2 | Das Holz ist im Karton.": "A madeira está na caixa.",
+    "B1 | Mark, gib mir bitte den Hammer!": "Mark, me dá o martelo, por favor!",
+    "B1 | Lies die Anleitung genau!": "Leia as instruções com atenção!",
+    "B1 | Leg den Pinsel auf den Eimer!": "Põe o pincel em cima do balde!",
+    "B1 | Zieh die Handschuhe an!": "Põe as luvas!",
+    "B1 | Mark, fall nicht von der Leiter!": "Mark, não caia da escada!",
+    "B1 | Lass uns eine Pause machen!": "Vamos fazer uma pausa!",
+    "B1 | Katze, komm vom Fenster herunter!": "Gato, desce da janela!",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "Senhor vizinho, segure a escada para mim, por favor!",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "Mark comprou tinta para pintar a parede de azul.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "Ele lê as instruções para que a estante não caia.",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "Ele se esqueceu de pôr as luvas.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "Não é fácil montar uma estante sozinho.",
+    "B2 | Die Wand ist schon halb gestrichen.": "A parede já está pintada pela metade.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "Sem ler as instruções, não se monta uma estante.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "As instruções devem ser difíceis de entender.",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "O gato talvez seja do vizinho.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "A estante provavelmente fica pronta hoje à noite.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "Dizem que antigamente um pintor morava no apartamento."
    }
   },
   "pl": {
@@ -1519,6 +1713,34 @@ window.SCENE = {
     "C1 | Die Katze könnte dem Nachbarn gehören.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Das Regal dürfte heute Abend fertig sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt am Fenster.": "Kot siedzi przy oknie.",
+    "A2 | Der Eimer steht auf dem Boden.": "Wiadro stoi na podłodze.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "Pędzel leży na wiadrze.",
+    "A2 | Die Leiter steht neben dem Regal.": "Drabina stoi obok regału.",
+    "A2 | Die Lampe hängt an der Decke.": "Lampa wisi na suficie.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "Kartony stoją obok szafy.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "Rękawice leżą obok kartonu.",
+    "A2 | Das Holz ist im Karton.": "Drewno jest w kartonie.",
+    "B1 | Mark, gib mir bitte den Hammer!": "Mark, daj mi młotek, proszę!",
+    "B1 | Lies die Anleitung genau!": "Przeczytaj dokładnie instrukcję!",
+    "B1 | Leg den Pinsel auf den Eimer!": "Połóż pędzel na wiadrze!",
+    "B1 | Zieh die Handschuhe an!": "Załóż rękawice!",
+    "B1 | Mark, fall nicht von der Leiter!": "Mark, nie spadnij z drabiny!",
+    "B1 | Lass uns eine Pause machen!": "Zróbmy przerwę!",
+    "B1 | Katze, komm vom Fenster herunter!": "Kocie, zejdź z okna!",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "Panie sąsiedzie, proszę potrzymać mi drabinę!",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "Mark kupił farbę, żeby pomalować ścianę na niebiesko.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "Czyta instrukcję, żeby regał się nie przewrócił.",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "Zapomniał założyć rękawic.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "Nie jest łatwo złożyć regał samemu.",
+    "B2 | Die Wand ist schon halb gestrichen.": "Ściana jest już w połowie pomalowana.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "Bez przeczytania instrukcji nie złoży się regału.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "Instrukcja musi być trudna do zrozumienia.",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "Kot być może należy do sąsiada.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "Regał zapewne będzie gotowy dziś wieczorem.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "Podobno w tym mieszkaniu mieszkał kiedyś malarz."
    }
   },
   "ru": {
@@ -1560,6 +1782,34 @@ window.SCENE = {
     "C1 | Die Katze könnte dem Nachbarn gehören.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Das Regal dürfte heute Abend fertig sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Die Katze sitzt am Fenster.": "Кошка сидит у окна.",
+    "A2 | Der Eimer steht auf dem Boden.": "Ведро стоит на полу.",
+    "A2 | Der Pinsel liegt auf dem Eimer.": "Кисть лежит на ведре.",
+    "A2 | Die Leiter steht neben dem Regal.": "Лестница стоит рядом с полкой.",
+    "A2 | Die Lampe hängt an der Decke.": "Лампа висит на потолке.",
+    "A2 | Die Kartons stehen neben dem Schrank.": "Коробки стоят рядом со шкафом.",
+    "A2 | Die Handschuhe liegen neben dem Karton.": "Перчатки лежат рядом с коробкой.",
+    "A2 | Das Holz ist im Karton.": "Дерево в коробке.",
+    "B1 | Mark, gib mir bitte den Hammer!": "Марк, дай мне молоток, пожалуйста!",
+    "B1 | Lies die Anleitung genau!": "Внимательно прочитай инструкцию!",
+    "B1 | Leg den Pinsel auf den Eimer!": "Положи кисть на ведро!",
+    "B1 | Zieh die Handschuhe an!": "Надень перчатки!",
+    "B1 | Mark, fall nicht von der Leiter!": "Марк, не упади с лестницы!",
+    "B1 | Lass uns eine Pause machen!": "Давай сделаем перерыв!",
+    "B1 | Katze, komm vom Fenster herunter!": "Кошка, слезай с окна!",
+    "B1 | Herr Nachbar, halten Sie mir bitte die Leiter!": "Господин сосед, подержите мне лестницу, пожалуйста!",
+    "B2 | Mark hat Farbe gekauft, um die Wand blau zu streichen.": "Марк купил краску, чтобы покрасить стену в синий.",
+    "B2 | Er liest die Anleitung, damit das Regal nicht umfällt.": "Он читает инструкцию, чтобы полка не упала.",
+    "B2 | Er hat vergessen, die Handschuhe anzuziehen.": "Он забыл надеть перчатки.",
+    "B2 | Es ist nicht leicht, ein Regal allein aufzubauen.": "Нелегко собрать полку одному.",
+    "B2 | Die Wand ist schon halb gestrichen.": "Стена уже наполовину покрашена.",
+    "B2 | Ohne die Anleitung zu lesen, baut man kein Regal.": "Не прочитав инструкцию, полку не соберёшь.",
+    "C1 | Die Anleitung muss schwer zu verstehen sein.": "Инструкция, должно быть, трудна для понимания.",
+    "C1 | Die Katze könnte dem Nachbarn gehören.": "Кошка, возможно, принадлежит соседу.",
+    "C1 | Das Regal dürfte heute Abend fertig sein.": "Полка, вероятно, будет готова сегодня вечером.",
+    "C1 | In der Wohnung soll früher ein Maler gewohnt haben.": "Говорят, раньше в этой квартире жил художник."
    }
   }
  }

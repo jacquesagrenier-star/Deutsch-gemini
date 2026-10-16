@@ -40,6 +40,19 @@ LES TRADUCTIONS (10 oct. 2026) : traductions/<nom>.<langue>.json
 
     --squelette ajoute aux fichiers de traduction les entrees qui manquent
     (traduction vide) : le point de depart pour traduire une question neuve.
+
+LE SENS DE LA PHRASE (16 oct. 2026) : « sens »
+    Chaque question porte, a cote de sa phrase allemande, son sens en francais
+    (« sens » dans le points.json). La page le montre APRES la reponse, sous
+    l'explication : « Die Uhr hängt an der Wand. → L'horloge est accrochée au
+    mur. » -- jamais avant, comprendre la phrase fait partie de l'exercice.
+    Dans traductions/<nom>.<langue>.json, le sens a son propre groupe,
+    « sens », a cote de « questions », avec les memes cles « A2 | phrase » et
+    la meme paire {fr, trad} : le francais source y reste, donc un sens refait
+    en francais perime sa traduction comme pour l'explication. Meme repli
+    dans la page : la langue de l'usager, sinon l'anglais, sinon le francais.
+    En espagnol (espanol/<nom>.json), c'est un champ de la question comme
+    « n » : sens, sens_en, sens_pt, sens_ar.
 """
 import io
 import json
@@ -91,13 +104,18 @@ def sources(pts):
     champs = {k: pts[k] for k in ("alt", "consigne", "nom_vue") if pts.get(k)}
     if pts.get("autre_vue", {}).get("libelle"):
         champs["autre_vue"] = pts["autre_vue"]["libelle"]
-    couches, questions = {}, {}
+    couches, questions, sens_phrases = {}, {}, {}
     for niv, c in pts.get("couches", {}).items():
         if c.get("titre"):
             couches[niv] = c["titre"]
         for q in c.get("qs", []):
             questions[cle_question(niv, q)] = q["n"]
-    return {"champs": champs, "couches": couches, "questions": questions}
+            # Le sens de la phrase (16 oct. 2026) : meme cle que l'explication,
+            # son propre groupe -- une question sans sens n'en reclame pas.
+            if q.get("sens"):
+                sens_phrases[cle_question(niv, q)] = q["sens"]
+    return {"champs": champs, "couches": couches, "questions": questions,
+            "sens": sens_phrases}
 
 
 def traductions(pts, nom, squelette):
@@ -112,7 +130,7 @@ def traductions(pts, nom, squelette):
             fic = {"langue": lang, "scene": nom}
         else:
             fic = json.load(io.open(chemin, encoding="utf-8"))
-        bon = {"champs": {}, "couches": {}, "questions": {}}
+        bon = {"champs": {}, "couches": {}, "questions": {}, "sens": {}}
         perimes, orphelins, manquants = [], [], 0
         for groupe, textes in src.items():
             entrees = fic.setdefault(groupe, {})
@@ -458,9 +476,13 @@ def construire_espagnol(nom, scene_de):
     # question, seul son titre compte.
     a1 = scene_de.get("couches", {}).get("A1", {"titre": "Noms et articles"})
     couches = {"A1": a1}
-    trad_en = {"couches": {}, "questions": {}}
-    trad_pt = {"couches": {}, "questions": {}}
-    trad_ar = {"couches": {}, "questions": {}}
+    trad_en = {"couches": {}, "questions": {}, "sens": {}}
+    trad_pt = {"couches": {}, "questions": {}, "sens": {}}
+    trad_ar = {"couches": {}, "questions": {}, "sens": {}}
+    # Les traductions d'une question (explication « n », sens de la phrase)
+    # rangees par langue : {suffixe: (table, groupe)}.
+    PAR_LANGUE = {"en": trad_en, "pt": trad_pt, "ar": trad_ar}
+    CHAMPS_TRADUITS = ["n_%s" % l for l in PAR_LANGUE] + ["sens_%s" % l for l in PAR_LANGUE]
     connus = {p["id"] for p in points}
     verbes = {e["infinitif"] for n in json.load(io.open(os.path.join(RACINE, "espanol", "datos", "verbos.json"),
                                                         encoding="utf-8")).values() for e in n}
@@ -477,9 +499,10 @@ def construire_espagnol(nom, scene_de):
             trad_ar["couches"][niv] = c["titre_ar"]
         for q in c.get("qs", []):
             q = dict(q)
-            n_en = q.pop("n_en", None)
-            n_pt = q.pop("n_pt", None)
-            n_ar = q.pop("n_ar", None)
+            # n_en / n_pt / n_ar et sens_en / sens_pt / sens_ar quittent la
+            # question pour les tables de traduction ; « n » et « sens » (le
+            # francais) restent dans la question, comme pour l'allemand.
+            traduits = {cle: q.pop(cle, None) for cle in CHAMPS_TRADUITS}
             if "___" in q["q"] and not q["q"].replace("___", q["c"][0]).lower().endswith(q["phrase"].lower()):
                 # La phrase dite et gardee doit etre la question remplie par la
                 # bonne reponse (une amorce « Seguro: » peut la preceder) :
@@ -514,25 +537,22 @@ def construire_espagnol(nom, scene_de):
                 erreurs.append("%s : %s change en Amerique latine, la question n'a pas de « latam » -- %s"
                                % (niv, ", ".join(cites), q["q"]))
             if lat:
-                lq = dict(q, **{k: v for k, v in lat.items() if k not in ("n_en", "n_pt", "n_ar")})
+                lq = dict(q, **{k: v for k, v in lat.items() if k not in CHAMPS_TRADUITS})
                 if "___" in lq["q"] and not lq["q"].replace("___", lq["c"][0]).lower().endswith(lq["phrase"].lower()):
                     erreurs.append("%s : (latam) la phrase ne remplit pas le trou -- %s" % (niv, lq["q"]))
-                lat_en = lat.get("n_en", n_en)
-                if lat_en:
-                    trad_en["questions"][niv + " | " + lq["phrase"]] = lat_en
-                lat_pt = lat.get("n_pt", n_pt)
-                if lat_pt:
-                    trad_pt["questions"][niv + " | " + lq["phrase"]] = lat_pt
-                lat_ar = lat.get("n_ar", n_ar)
-                if lat_ar:
-                    trad_ar["questions"][niv + " | " + lq["phrase"]] = lat_ar
-                q["latam"] = {k: v for k, v in lat.items() if k not in ("n_en", "n_pt", "n_ar")}
-            if n_en:
-                trad_en["questions"][niv + " | " + q["phrase"]] = n_en
-            if n_pt:
-                trad_pt["questions"][niv + " | " + q["phrase"]] = n_pt
-            if n_ar:
-                trad_ar["questions"][niv + " | " + q["phrase"]] = n_ar
+                # La version d'ici reprend les traductions de la question
+                # (le sens ne change pas avec le mot : la pizarra ou el
+                # pizarron, c'est le tableau), sauf si elle a les siennes.
+                for l, table in PAR_LANGUE.items():
+                    for champ, groupe in (("n_", "questions"), ("sens_", "sens")):
+                        v = lat.get(champ + l, traduits[champ + l])
+                        if v:
+                            table[groupe][niv + " | " + lq["phrase"]] = v
+                q["latam"] = {k: v for k, v in lat.items() if k not in CHAMPS_TRADUITS}
+            for l, table in PAR_LANGUE.items():
+                for champ, groupe in (("n_", "questions"), ("sens_", "sens")):
+                    if traduits[champ + l]:
+                        table[groupe][niv + " | " + q["phrase"]] = traduits[champ + l]
             sortie_c["qs"].append(q)
         couches[niv] = sortie_c
     if erreurs:
@@ -545,21 +565,16 @@ def construire_espagnol(nom, scene_de):
     for l, t in (scene_de.get("traductions") or {}).items():
         traductions[l] = {"champs": t.get("champs", {}),
                           "couches": {k: v for k, v in t.get("couches", {}).items() if k == "A1"},
-                          "questions": {}}
-    # L'espagnol a trois langues d'interface : le francais (le texte des
-    # couches), l'anglais (titre_en, n_en) et le portugais (titre_pt, n_pt).
-    en = traductions.setdefault("en", {"champs": {}, "couches": {}, "questions": {}})
-    en["couches"].update(trad_en["couches"])
-    en["questions"].update(trad_en["questions"])
-    # Le portugais (v782) : titre_pt et n_pt des fichiers espanol/<scene>.json.
-    pt = traductions.setdefault("pt", {"champs": {}, "couches": {}, "questions": {}})
-    pt["couches"].update(trad_pt["couches"])
-    pt["questions"].update(trad_pt["questions"])
-    # L'arabe (15 oct. 2026) : titre_ar et n_ar. Son entree existe deja (la
-    # scene allemande lui donne alt, consigne et le titre A1).
-    ar = traductions.setdefault("ar", {"champs": {}, "couches": {}, "questions": {}})
-    ar["couches"].update(trad_ar["couches"])
-    ar["questions"].update(trad_ar["questions"])
+                          "questions": {}, "sens": {}}
+    # L'espagnol a quatre langues d'interface : le francais (le texte des
+    # couches), l'anglais (titre_en, n_en, sens_en), le portugais (v782 :
+    # titre_pt, n_pt, sens_pt) et l'arabe (15 oct. 2026 : titre_ar, n_ar,
+    # sens_ar -- son entree existe deja, la scene allemande lui donne alt,
+    # consigne et le titre A1).
+    for l, table in PAR_LANGUE.items():
+        t = traductions.setdefault(l, {"champs": {}, "couches": {}, "questions": {}, "sens": {}})
+        for groupe in ("couches", "questions", "sens"):
+            t.setdefault(groupe, {}).update(table[groupe])
     scene["traductions"] = traductions
     js = ("// GENERE par construire.py (espanol/%s.json) -- ne pas modifier a la main.\n" % nom
           + "window.SCENE = " + json.dumps(scene, ensure_ascii=False, indent=1) + ";\n")

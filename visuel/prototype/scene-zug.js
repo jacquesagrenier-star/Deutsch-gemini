@@ -872,6 +872,7 @@ window.SCENE = {
      "f": "laptop",
      "r": "tisch",
      "phrase": "Der Laptop steht auf dem Tisch.",
+     "sens": "L'ordinateur portable est sur la table.",
      "n": "<b>Wo?</b> → datif : der Tisch → auf <b>dem</b> Tisch."
     },
     {
@@ -884,6 +885,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "fenster",
      "phrase": "Der blaue Koffer liegt über dem Fenster.",
+     "sens": "La valise bleue est au-dessus de la fenêtre.",
      "n": "<b>über</b> = au-dessus de. das Fenster → über <b>dem</b> Fenster."
     },
     {
@@ -896,6 +898,7 @@ window.SCENE = {
      "f": "schal",
      "r": "sitz-2",
      "phrase": "Der Schal liegt auf dem Sitz.",
+     "sens": "L'écharpe est sur le siège.",
      "n": "der Sitz → auf <b>dem</b> Sitz."
     },
     {
@@ -908,6 +911,7 @@ window.SCENE = {
      "f": "kuh",
      "r": "wiese",
      "phrase": "Die Kühe sind auf der Wiese.",
+     "sens": "Les vaches sont dans le pré.",
      "n": "die Wiese → auf <b>der</b> Wiese : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -920,6 +924,7 @@ window.SCENE = {
      "f": "kirche",
      "r": "dorf",
      "phrase": "Die Kirche steht im Dorf.",
+     "sens": "L'église est dans le village.",
      "n": "<b>im</b> = in + <b>dem</b> : das Dorf → im Dorf."
     },
     {
@@ -932,6 +937,7 @@ window.SCENE = {
      "f": "handy",
      "r": "broetchen",
      "phrase": "Das Handy liegt neben dem Brötchen.",
+     "sens": "Le téléphone est à côté du petit pain.",
      "n": "das Brötchen est neutre : au datif → neben <b>dem</b> Brötchen."
     },
     {
@@ -944,6 +950,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "koffer",
      "phrase": "Der Rucksack ist neben dem Koffer.",
+     "sens": "Le sac à dos est à côté de la valise.",
      "n": "<b>neben</b> = à côté de. der Koffer → neben <b>dem</b> Koffer."
     },
     {
@@ -956,6 +963,7 @@ window.SCENE = {
      "f": "koffer-2",
      "r": "sitz",
      "phrase": "Der graue Koffer steht neben dem Sitz.",
+     "sens": "La valise grise est à côté du siège.",
      "n": "der Sitz → neben <b>dem</b> Sitz."
     }
    ]
@@ -972,6 +980,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark fährt mit dem Zug.",
+     "sens": "Mark voyage en train.",
      "n": "<b>mit</b> veut toujours le datif : der Zug → mit <b>dem</b> Zug.",
      "revise": {
       "mot": "fahren",
@@ -988,6 +997,7 @@ window.SCENE = {
      "f": "berg",
      "r": "mark",
      "phrase": "Er fährt in die Berge.",
+     "sens": "Il va à la montagne.",
      "n": "<b>Wohin?</b> → accusatif ; au pluriel : in <b>die</b> Berge."
     },
     {
@@ -1000,6 +1010,7 @@ window.SCENE = {
      "f": "fenster",
      "r": "mark",
      "phrase": "Er schaut aus dem Fenster.",
+     "sens": "Il regarde par la fenêtre.",
      "n": "<b>aus</b> veut toujours le datif : das Fenster → aus <b>dem</b> Fenster."
     },
     {
@@ -1012,6 +1023,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "mark",
      "phrase": "Er hat seinen Koffer auf die Gepäckablage gelegt.",
+     "sens": "Il a posé sa valise sur le porte-bagages.",
      "n": "<b>legen</b> = mouvement, <b>Wohin?</b> → accusatif : auf <b>die</b> Gepäckablage.",
      "revise": {
       "mot": "legen",
@@ -1027,6 +1039,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Jetzt liegt der Koffer auf der Gepäckablage.",
+     "sens": "Maintenant, la valise est sur le porte-bagages.",
      "n": "<b>liegen</b> = état, <b>Wo?</b> → datif : auf <b>der</b> Gepäckablage.",
      "revise": {
       "mot": "liegen",
@@ -1043,6 +1056,7 @@ window.SCENE = {
      "f": "kuh",
      "r": "wiese",
      "phrase": "Die Kühe stehen auf der Wiese.",
+     "sens": "Les vaches sont dans le pré.",
      "n": "<b>stehen</b> = état → datif : auf <b>der</b> Wiese.",
      "revise": {
       "mot": "stehen",
@@ -1059,6 +1073,7 @@ window.SCENE = {
      "f": "fluss",
      "r": "bruecke",
      "phrase": "Der Zug fährt über den Fluss.",
+     "sens": "Le train traverse la rivière.",
      "n": "Il le traverse : <b>über</b> + accusatif → <b>den</b> Fluss."
     },
     {
@@ -1071,6 +1086,7 @@ window.SCENE = {
      "f": "fahrkarte",
      "r": "tisch",
      "phrase": "Mark hat die Fahrkarte auf den Tisch gelegt.",
+     "sens": "Mark a posé le billet sur la table.",
      "n": "<b>Wohin?</b> → accusatif : auf <b>den</b> Tisch.",
      "revise": {
       "mot": "legen",
@@ -1092,6 +1108,7 @@ window.SCENE = {
      "f": "mark",
      "r": "fenster",
      "phrase": "Der Mann, der aus dem Fenster schaut, heißt Mark.",
+     "sens": "L'homme qui regarde par la fenêtre s'appelle Mark.",
      "n": "Sujet de la relative, masculin → <b>der</b>."
     },
     {
@@ -1104,6 +1121,7 @@ window.SCENE = {
      "f": "dorf",
      "r": "kirche",
      "phrase": "Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.",
+     "sens": "Le village dont l'église a un clocher pointu est dans la vallée.",
      "n": "Possession, antécédent neutre → <b>dessen</b> (dont l'église)."
     },
     {
@@ -1116,6 +1134,7 @@ window.SCENE = {
      "f": "tisch",
      "r": "laptop",
      "phrase": "Der Tisch, auf dem der Laptop steht, ist grau.",
+     "sens": "La table sur laquelle est l'ordinateur portable est grise.",
      "n": "<b>auf</b> + Wo? → datif, masculin → <b>dem</b>."
     },
     {
@@ -1127,6 +1146,7 @@ window.SCENE = {
      ],
      "f": "fahrkarte",
      "phrase": "Die Fahrkarte muss im Zug kontrolliert werden.",
+     "sens": "Le billet doit être contrôlé dans le train.",
      "n": "Passif avec un modal : participe + <b>werden</b> à la fin."
     },
     {
@@ -1138,6 +1158,7 @@ window.SCENE = {
      ],
      "f": "kaffee",
      "phrase": "Der Kaffee ist noch nicht getrunken.",
+     "sens": "Le café n'est pas encore bu.",
      "n": "Passif d'état. <b>trinken</b> → getrunken.",
      "revise": {
       "mot": "trinken",
@@ -1154,6 +1175,7 @@ window.SCENE = {
      "f": "zeitung",
      "r": "tisch",
      "phrase": "Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.",
+     "sens": "Le journal dont les photos montrent des forêts est sur la table.",
      "n": "Possession, antécédent féminin → <b>deren</b> (dont les photos)."
     }
    ]
@@ -1171,6 +1193,7 @@ window.SCENE = {
      "f": "fenster",
      "r": "mark",
      "phrase": "Die Landschaft muss ihm gefallen.",
+     "sens": "Le paysage doit lui plaire.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1182,6 +1205,7 @@ window.SCENE = {
      ],
      "f": "schal",
      "phrase": "Der rote Schal könnte jemandem gehören, der gleich zurückkommt.",
+     "sens": "L'écharpe rouge appartient peut-être à quelqu'un qui va revenir.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1193,6 +1217,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Der Zug dürfte in einer Stunde in München ankommen.",
+     "sens": "Le train devrait arriver à Munich dans une heure.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1204,6 +1229,7 @@ window.SCENE = {
      ],
      "f": "dorf",
      "phrase": "In diesem Dorf soll es den besten Käse der Gegend geben.",
+     "sens": "Il paraît que dans ce village, on trouve le meilleur fromage de la région.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1249,6 +1275,34 @@ window.SCENE = {
     "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "<b>könnte</b> = one possibility among others.",
     "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Der Laptop steht auf dem Tisch.": "The laptop is on the table.",
+    "A2 | Der blaue Koffer liegt über dem Fenster.": "The blue suitcase is above the window.",
+    "A2 | Der Schal liegt auf dem Sitz.": "The scarf is on the seat.",
+    "A2 | Die Kühe sind auf der Wiese.": "The cows are in the meadow.",
+    "A2 | Die Kirche steht im Dorf.": "The church is in the village.",
+    "A2 | Das Handy liegt neben dem Brötchen.": "The phone is next to the bread roll.",
+    "A2 | Der Rucksack ist neben dem Koffer.": "The backpack is next to the suitcase.",
+    "A2 | Der graue Koffer steht neben dem Sitz.": "The grey suitcase is next to the seat.",
+    "B1 | Mark fährt mit dem Zug.": "Mark is travelling by train.",
+    "B1 | Er fährt in die Berge.": "He is going to the mountains.",
+    "B1 | Er schaut aus dem Fenster.": "He is looking out of the window.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "He put his suitcase on the luggage rack.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "Now the suitcase is on the luggage rack.",
+    "B1 | Die Kühe stehen auf der Wiese.": "The cows are standing in the meadow.",
+    "B1 | Der Zug fährt über den Fluss.": "The train is crossing the river.",
+    "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "Mark put the ticket on the table.",
+    "B2 | Der Mann, der aus dem Fenster schaut, heißt Mark.": "The man looking out of the window is called Mark.",
+    "B2 | Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.": "The village whose church has a pointed tower lies in the valley.",
+    "B2 | Der Tisch, auf dem der Laptop steht, ist grau.": "The table the laptop is on is grey.",
+    "B2 | Die Fahrkarte muss im Zug kontrolliert werden.": "The ticket has to be checked on the train.",
+    "B2 | Der Kaffee ist noch nicht getrunken.": "The coffee has not been drunk yet.",
+    "B2 | Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.": "The newspaper whose photos show forests is on the table.",
+    "C1 | Die Landschaft muss ihm gefallen.": "He must like the landscape.",
+    "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "The red scarf might belong to someone who is coming right back.",
+    "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "The train should arrive in Munich in an hour.",
+    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "This village is said to have the best cheese in the area."
    }
   },
   "tr": {
@@ -1290,6 +1344,34 @@ window.SCENE = {
     "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Der Laptop steht auf dem Tisch.": "Dizüstü bilgisayar masanın üstünde duruyor.",
+    "A2 | Der blaue Koffer liegt über dem Fenster.": "Mavi bavul pencerenin üstünde.",
+    "A2 | Der Schal liegt auf dem Sitz.": "Atkı koltuğun üstünde.",
+    "A2 | Die Kühe sind auf der Wiese.": "İnekler çayırda.",
+    "A2 | Die Kirche steht im Dorf.": "Kilise köyde.",
+    "A2 | Das Handy liegt neben dem Brötchen.": "Telefon ekmeğin yanında.",
+    "A2 | Der Rucksack ist neben dem Koffer.": "Sırt çantası bavulun yanında.",
+    "A2 | Der graue Koffer steht neben dem Sitz.": "Gri bavul koltuğun yanında duruyor.",
+    "B1 | Mark fährt mit dem Zug.": "Mark trenle gidiyor.",
+    "B1 | Er fährt in die Berge.": "Dağlara gidiyor.",
+    "B1 | Er schaut aus dem Fenster.": "Pencereden dışarı bakıyor.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "Bavulunu bagaj rafına koydu.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "Şimdi bavul bagaj rafında.",
+    "B1 | Die Kühe stehen auf der Wiese.": "İnekler çayırda duruyor.",
+    "B1 | Der Zug fährt über den Fluss.": "Tren nehrin üstünden geçiyor.",
+    "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "Mark bileti masanın üstüne koydu.",
+    "B2 | Der Mann, der aus dem Fenster schaut, heißt Mark.": "Pencereden bakan adamın adı Mark.",
+    "B2 | Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.": "Kilisesinin sivri kulesi olan köy vadide.",
+    "B2 | Der Tisch, auf dem der Laptop steht, ist grau.": "Dizüstü bilgisayarın durduğu masa gri.",
+    "B2 | Die Fahrkarte muss im Zug kontrolliert werden.": "Bilet trende kontrol edilmeli.",
+    "B2 | Der Kaffee ist noch nicht getrunken.": "Kahve henüz içilmemiş.",
+    "B2 | Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.": "Fotoğrafları ormanları gösteren gazete masanın üstünde.",
+    "C1 | Die Landschaft muss ihm gefallen.": "Manzara hoşuna gidiyor olmalı.",
+    "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "Kırmızı atkı birazdan dönecek birinin olabilir.",
+    "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "Tren bir saate Münih'e varır herhalde.",
+    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "Bu köyde yörenin en iyi peynirinin olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1331,6 +1413,34 @@ window.SCENE = {
     "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Der Laptop steht auf dem Tisch.": "Ноутбук стоїть на столі.",
+    "A2 | Der blaue Koffer liegt über dem Fenster.": "Синя валіза лежить над вікном.",
+    "A2 | Der Schal liegt auf dem Sitz.": "Шарф лежить на сидінні.",
+    "A2 | Die Kühe sind auf der Wiese.": "Корови на лузі.",
+    "A2 | Die Kirche steht im Dorf.": "Церква стоїть у селі.",
+    "A2 | Das Handy liegt neben dem Brötchen.": "Телефон лежить біля булочки.",
+    "A2 | Der Rucksack ist neben dem Koffer.": "Рюкзак біля валізи.",
+    "A2 | Der graue Koffer steht neben dem Sitz.": "Сіра валіза стоїть біля сидіння.",
+    "B1 | Mark fährt mit dem Zug.": "Марк їде потягом.",
+    "B1 | Er fährt in die Berge.": "Він їде в гори.",
+    "B1 | Er schaut aus dem Fenster.": "Він дивиться у вікно.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "Він поклав валізу на багажну полицю.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "Тепер валіза лежить на багажній полиці.",
+    "B1 | Die Kühe stehen auf der Wiese.": "Корови стоять на лузі.",
+    "B1 | Der Zug fährt über den Fluss.": "Потяг їде через річку.",
+    "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "Марк поклав квиток на стіл.",
+    "B2 | Der Mann, der aus dem Fenster schaut, heißt Mark.": "Чоловіка, який дивиться у вікно, звати Марк.",
+    "B2 | Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.": "Село, церква якого має гостру вежу, лежить у долині.",
+    "B2 | Der Tisch, auf dem der Laptop steht, ist grau.": "Стіл, на якому стоїть ноутбук, сірий.",
+    "B2 | Die Fahrkarte muss im Zug kontrolliert werden.": "Квиток треба перевірити в потязі.",
+    "B2 | Der Kaffee ist noch nicht getrunken.": "Каву ще не випито.",
+    "B2 | Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.": "Газета, на фотографіях якої ліси, лежить на столі.",
+    "C1 | Die Landschaft muss ihm gefallen.": "Краєвид йому, мабуть, подобається.",
+    "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "Червоний шарф, можливо, належить комусь, хто зараз повернеться.",
+    "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "Потяг, напевно, прибуде до Мюнхена за годину.",
+    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "Кажуть, у цьому селі найкращий сир в окрузі."
    }
   },
   "fa": {
@@ -1372,6 +1482,34 @@ window.SCENE = {
     "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Der Laptop steht auf dem Tisch.": "لپ‌تاپ روی میز است.",
+    "A2 | Der blaue Koffer liegt über dem Fenster.": "چمدان آبی بالای پنجره است.",
+    "A2 | Der Schal liegt auf dem Sitz.": "شال‌گردن روی صندلی است.",
+    "A2 | Die Kühe sind auf der Wiese.": "گاوها در چمنزار هستند.",
+    "A2 | Die Kirche steht im Dorf.": "کلیسا در دهکده است.",
+    "A2 | Das Handy liegt neben dem Brötchen.": "گوشی کنار نان است.",
+    "A2 | Der Rucksack ist neben dem Koffer.": "کوله‌پشتی کنار چمدان است.",
+    "A2 | Der graue Koffer steht neben dem Sitz.": "چمدان خاکستری کنار صندلی است.",
+    "B1 | Mark fährt mit dem Zug.": "مارک با قطار سفر می‌کند.",
+    "B1 | Er fährt in die Berge.": "او به کوهستان می‌رود.",
+    "B1 | Er schaut aus dem Fenster.": "او از پنجره بیرون را نگاه می‌کند.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "او چمدانش را روی جابار گذاشته است.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "حالا چمدان روی جابار است.",
+    "B1 | Die Kühe stehen auf der Wiese.": "گاوها در چمنزار ایستاده‌اند.",
+    "B1 | Der Zug fährt über den Fluss.": "قطار از روی رودخانه می‌گذرد.",
+    "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "مارک بلیت را روی میز گذاشته است.",
+    "B2 | Der Mann, der aus dem Fenster schaut, heißt Mark.": "مردی که از پنجره بیرون را نگاه می‌کند، مارک نام دارد.",
+    "B2 | Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.": "دهکده‌ای که کلیسایش برج نوک‌تیز دارد، در دره است.",
+    "B2 | Der Tisch, auf dem der Laptop steht, ist grau.": "میزی که لپ‌تاپ رویش است، خاکستری است.",
+    "B2 | Die Fahrkarte muss im Zug kontrolliert werden.": "بلیت باید در قطار بررسی شود.",
+    "B2 | Der Kaffee ist noch nicht getrunken.": "قهوه هنوز نوشیده نشده است.",
+    "B2 | Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.": "روزنامه‌ای که عکس‌هایش جنگل نشان می‌دهد، روی میز است.",
+    "C1 | Die Landschaft muss ihm gefallen.": "منظره حتماً به دلش نشسته است.",
+    "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "شال‌گردن قرمز شاید مال کسی باشد که همین حالا برمی‌گردد.",
+    "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "قطار احتمالاً تا یک ساعت دیگر به مونیخ می‌رسد.",
+    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "می‌گویند در این دهکده بهترین پنیر منطقه را دارند."
    }
   },
   "ar": {
@@ -1413,6 +1551,34 @@ window.SCENE = {
     "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Der Laptop steht auf dem Tisch.": "الحاسوب المحمول على الطاولة.",
+    "A2 | Der blaue Koffer liegt über dem Fenster.": "الحقيبة الزرقاء فوق النافذة.",
+    "A2 | Der Schal liegt auf dem Sitz.": "الوشاح على المقعد.",
+    "A2 | Die Kühe sind auf der Wiese.": "الأبقار في المرج.",
+    "A2 | Die Kirche steht im Dorf.": "الكنيسة في القرية.",
+    "A2 | Das Handy liegt neben dem Brötchen.": "الهاتف بجانب الخبزة.",
+    "A2 | Der Rucksack ist neben dem Koffer.": "حقيبة الظهر بجانب الحقيبة.",
+    "A2 | Der graue Koffer steht neben dem Sitz.": "الحقيبة الرمادية بجانب المقعد.",
+    "B1 | Mark fährt mit dem Zug.": "يسافر مارك بالقطار.",
+    "B1 | Er fährt in die Berge.": "يذهب إلى الجبال.",
+    "B1 | Er schaut aus dem Fenster.": "ينظر من النافذة.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "وضع حقيبته على رفّ الأمتعة.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "الآن الحقيبة على رفّ الأمتعة.",
+    "B1 | Die Kühe stehen auf der Wiese.": "الأبقار واقفة في المرج.",
+    "B1 | Der Zug fährt über den Fluss.": "يعبر القطار النهر.",
+    "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "وضع مارك التذكرة على الطاولة.",
+    "B2 | Der Mann, der aus dem Fenster schaut, heißt Mark.": "الرجل الذي ينظر من النافذة اسمه مارك.",
+    "B2 | Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.": "القرية التي لكنيستها برج مدبّب تقع في الوادي.",
+    "B2 | Der Tisch, auf dem der Laptop steht, ist grau.": "الطاولة التي عليها الحاسوب المحمول رمادية.",
+    "B2 | Die Fahrkarte muss im Zug kontrolliert werden.": "يجب التحقّق من التذكرة في القطار.",
+    "B2 | Der Kaffee ist noch nicht getrunken.": "القهوة لم تُشرب بعد.",
+    "B2 | Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.": "الجريدة التي تُظهر صورها غابات على الطاولة.",
+    "C1 | Die Landschaft muss ihm gefallen.": "لا بدّ أن المنظر الطبيعي يعجبه.",
+    "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "ربما يكون الوشاح الأحمر لشخص سيعود حالاً.",
+    "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "على الأرجح يصل القطار إلى ميونخ خلال ساعة.",
+    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "يُقال إن في هذه القرية أفضل جبن في المنطقة."
    }
   },
   "pt": {
@@ -1454,6 +1620,34 @@ window.SCENE = {
     "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Der Laptop steht auf dem Tisch.": "O notebook está na mesa.",
+    "A2 | Der blaue Koffer liegt über dem Fenster.": "A mala azul está acima da janela.",
+    "A2 | Der Schal liegt auf dem Sitz.": "O cachecol está no assento.",
+    "A2 | Die Kühe sind auf der Wiese.": "As vacas estão no prado.",
+    "A2 | Die Kirche steht im Dorf.": "A igreja fica na aldeia.",
+    "A2 | Das Handy liegt neben dem Brötchen.": "O celular está ao lado do pãozinho.",
+    "A2 | Der Rucksack ist neben dem Koffer.": "A mochila está ao lado da mala.",
+    "A2 | Der graue Koffer steht neben dem Sitz.": "A mala cinza está ao lado do assento.",
+    "B1 | Mark fährt mit dem Zug.": "Mark viaja de trem.",
+    "B1 | Er fährt in die Berge.": "Ele vai para as montanhas.",
+    "B1 | Er schaut aus dem Fenster.": "Ele olha pela janela.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "Ele pôs a mala no bagageiro.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "Agora a mala está no bagageiro.",
+    "B1 | Die Kühe stehen auf der Wiese.": "As vacas estão no prado.",
+    "B1 | Der Zug fährt über den Fluss.": "O trem atravessa o rio.",
+    "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "Mark pôs a passagem na mesa.",
+    "B2 | Der Mann, der aus dem Fenster schaut, heißt Mark.": "O homem que olha pela janela se chama Mark.",
+    "B2 | Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.": "A aldeia cuja igreja tem uma torre pontiaguda fica no vale.",
+    "B2 | Der Tisch, auf dem der Laptop steht, ist grau.": "A mesa em que está o notebook é cinza.",
+    "B2 | Die Fahrkarte muss im Zug kontrolliert werden.": "A passagem tem que ser verificada no trem.",
+    "B2 | Der Kaffee ist noch nicht getrunken.": "O café ainda não foi bebido.",
+    "B2 | Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.": "O jornal cujas fotos mostram florestas está na mesa.",
+    "C1 | Die Landschaft muss ihm gefallen.": "Ele deve estar gostando da paisagem.",
+    "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "O cachecol vermelho talvez seja de alguém que vai voltar já.",
+    "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "O trem provavelmente chega a Munique em uma hora.",
+    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "Dizem que nesta aldeia há o melhor queijo da região."
    }
   },
   "pl": {
@@ -1495,6 +1689,34 @@ window.SCENE = {
     "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Der Laptop steht auf dem Tisch.": "Laptop stoi na stole.",
+    "A2 | Der blaue Koffer liegt über dem Fenster.": "Niebieska walizka leży nad oknem.",
+    "A2 | Der Schal liegt auf dem Sitz.": "Szalik leży na siedzeniu.",
+    "A2 | Die Kühe sind auf der Wiese.": "Krowy są na łące.",
+    "A2 | Die Kirche steht im Dorf.": "Kościół stoi we wsi.",
+    "A2 | Das Handy liegt neben dem Brötchen.": "Telefon leży obok bułki.",
+    "A2 | Der Rucksack ist neben dem Koffer.": "Plecak jest obok walizki.",
+    "A2 | Der graue Koffer steht neben dem Sitz.": "Szara walizka stoi obok siedzenia.",
+    "B1 | Mark fährt mit dem Zug.": "Mark jedzie pociągiem.",
+    "B1 | Er fährt in die Berge.": "Jedzie w góry.",
+    "B1 | Er schaut aus dem Fenster.": "Patrzy przez okno.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "Położył walizkę na półce bagażowej.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "Teraz walizka leży na półce bagażowej.",
+    "B1 | Die Kühe stehen auf der Wiese.": "Krowy stoją na łące.",
+    "B1 | Der Zug fährt über den Fluss.": "Pociąg jedzie przez rzekę.",
+    "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "Mark położył bilet na stole.",
+    "B2 | Der Mann, der aus dem Fenster schaut, heißt Mark.": "Mężczyzna, który patrzy przez okno, ma na imię Mark.",
+    "B2 | Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.": "Wieś, której kościół ma spiczastą wieżę, leży w dolinie.",
+    "B2 | Der Tisch, auf dem der Laptop steht, ist grau.": "Stół, na którym stoi laptop, jest szary.",
+    "B2 | Die Fahrkarte muss im Zug kontrolliert werden.": "Bilet musi być sprawdzony w pociągu.",
+    "B2 | Der Kaffee ist noch nicht getrunken.": "Kawa nie jest jeszcze wypita.",
+    "B2 | Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.": "Gazeta, której zdjęcia pokazują lasy, leży na stole.",
+    "C1 | Die Landschaft muss ihm gefallen.": "Krajobraz musi mu się podobać.",
+    "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "Czerwony szalik być może należy do kogoś, kto zaraz wróci.",
+    "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "Pociąg zapewne dojedzie do Monachium za godzinę.",
+    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "Podobno w tej wsi jest najlepszy ser w okolicy."
    }
   },
   "ru": {
@@ -1536,6 +1758,34 @@ window.SCENE = {
     "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Der Laptop steht auf dem Tisch.": "Ноутбук стоит на столе.",
+    "A2 | Der blaue Koffer liegt über dem Fenster.": "Синий чемодан лежит над окном.",
+    "A2 | Der Schal liegt auf dem Sitz.": "Шарф лежит на сиденье.",
+    "A2 | Die Kühe sind auf der Wiese.": "Коровы на лугу.",
+    "A2 | Die Kirche steht im Dorf.": "Церковь стоит в деревне.",
+    "A2 | Das Handy liegt neben dem Brötchen.": "Телефон лежит рядом с булочкой.",
+    "A2 | Der Rucksack ist neben dem Koffer.": "Рюкзак рядом с чемоданом.",
+    "A2 | Der graue Koffer steht neben dem Sitz.": "Серый чемодан стоит рядом с сиденьем.",
+    "B1 | Mark fährt mit dem Zug.": "Марк едет на поезде.",
+    "B1 | Er fährt in die Berge.": "Он едет в горы.",
+    "B1 | Er schaut aus dem Fenster.": "Он смотрит в окно.",
+    "B1 | Er hat seinen Koffer auf die Gepäckablage gelegt.": "Он положил чемодан на багажную полку.",
+    "B1 | Jetzt liegt der Koffer auf der Gepäckablage.": "Теперь чемодан лежит на багажной полке.",
+    "B1 | Die Kühe stehen auf der Wiese.": "Коровы стоят на лугу.",
+    "B1 | Der Zug fährt über den Fluss.": "Поезд едет через реку.",
+    "B1 | Mark hat die Fahrkarte auf den Tisch gelegt.": "Марк положил билет на стол.",
+    "B2 | Der Mann, der aus dem Fenster schaut, heißt Mark.": "Мужчину, который смотрит в окно, зовут Марк.",
+    "B2 | Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.": "Деревня, церковь которой с острым шпилем, лежит в долине.",
+    "B2 | Der Tisch, auf dem der Laptop steht, ist grau.": "Стол, на котором стоит ноутбук, серый.",
+    "B2 | Die Fahrkarte muss im Zug kontrolliert werden.": "Билет должен быть проверен в поезде.",
+    "B2 | Der Kaffee ist noch nicht getrunken.": "Кофе ещё не выпит.",
+    "B2 | Die Zeitung, deren Fotos Wälder zeigen, liegt auf dem Tisch.": "Газета, на фотографиях которой леса, лежит на столе.",
+    "C1 | Die Landschaft muss ihm gefallen.": "Пейзаж ему, должно быть, нравится.",
+    "C1 | Der rote Schal könnte jemandem gehören, der gleich zurückkommt.": "Красный шарф, возможно, принадлежит кому-то, кто сейчас вернётся.",
+    "C1 | Der Zug dürfte in einer Stunde in München ankommen.": "Поезд, вероятно, прибудет в Мюнхен через час.",
+    "C1 | In diesem Dorf soll es den besten Käse der Gegend geben.": "Говорят, в этой деревне лучший сыр в округе."
    }
   }
  }

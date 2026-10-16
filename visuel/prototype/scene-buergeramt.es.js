@@ -1527,6 +1527,7 @@ window.SCENE = {
      "f": "bild",
      "r": "fenster",
      "phrase": "El cuadro está al lado de la ventana.",
+     "sens": "Le tableau est à côté de la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1539,6 +1540,7 @@ window.SCENE = {
      "f": "ordner",
      "r": "regal",
      "phrase": "Las carpetas están en la estantería.",
+     "sens": "Les classeurs sont sur l'étagère.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1551,6 +1553,7 @@ window.SCENE = {
      "f": "pass",
      "r": "schreibtisch",
      "phrase": "El pasaporte está en el escritorio.",
+     "sens": "Le passeport est sur le bureau.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -1563,6 +1566,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "boden",
      "phrase": "La mochila está en el suelo.",
+     "sens": "Le sac à dos est par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "La mochila está ___ piso.",
@@ -1579,6 +1583,7 @@ window.SCENE = {
      "f": "frau-2",
      "r": "stuhl",
      "phrase": "La joven está sentada en la silla.",
+     "sens": "La jeune femme est assise sur la chaise.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1591,6 +1596,7 @@ window.SCENE = {
      "f": "baby",
      "r": "frau-2",
      "phrase": "Hay un bebé en brazos de la joven.",
+     "sens": "Il y a un bébé dans les bras de la jeune femme.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -1603,6 +1609,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "tuer",
      "phrase": "La papelera está al lado de la puerta.",
+     "sens": "La poubelle est à côté de la porte.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>.",
      "latam": {
       "q": "El bote de basura está al lado ___ puerta.",
@@ -1619,6 +1626,7 @@ window.SCENE = {
      "f": "drucker",
      "r": "schrank",
      "phrase": "La impresora está encima del armario.",
+     "sens": "L'imprimante est sur l'armoire.",
      "n": "<b>de + el = del</b>, toujours.",
      "latam": {
       "q": "La impresora está encima ___ clóset.",
@@ -1639,6 +1647,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "La oficina de Mark está en la segunda planta.",
+     "sens": "Le bureau de Mark est au deuxième étage.",
      "n": "L'ordinal s'accorde : la segund<b>a</b> planta."
     },
     {
@@ -1651,6 +1660,7 @@ window.SCENE = {
      "f": "formular",
      "r": "mark",
      "phrase": "Es el primer formulario que Mark rellena hoy.",
+     "sens": "C'est le premier formulaire que Mark remplit aujourd'hui.",
      "n": "<b>primero</b> perd le -o devant un nom masculin : el <b>primer</b> formulario.",
      "revise": {
       "mot": "rellenar",
@@ -1666,6 +1676,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark es el tercero de la fila.",
+     "sens": "Mark est le troisième de la file.",
      "n": "Sans nom après, la forme pleine : el <b>tercero</b>."
     },
     {
@@ -1678,6 +1689,7 @@ window.SCENE = {
      "f": "frau-2",
      "r": "baby",
      "phrase": "La señora del bebé es la última en esperar.",
+     "sens": "La dame au bébé est la dernière à attendre.",
      "n": "Féminin : la <b>última</b>."
     },
     {
@@ -1689,6 +1701,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Hoy es el quinto día de Mark en Berlín.",
+     "sens": "Aujourd'hui, c'est le cinquième jour de Mark à Berlin.",
      "n": "<b>quinto</b> = cinquième ; cinco = cinq."
     },
     {
@@ -1701,6 +1714,7 @@ window.SCENE = {
      "f": "mark",
      "r": "tuer",
      "phrase": "Es la segunda vez que Mark viene a esta oficina.",
+     "sens": "C'est la deuxième fois que Mark vient dans ce bureau.",
      "n": "<b>la vez</b> est féminin → segund<b>a</b>.",
      "revise": {
       "mot": "venir",
@@ -1717,6 +1731,7 @@ window.SCENE = {
      "f": "formular",
      "r": "kugelschreiber",
      "phrase": "Firme en la tercera línea, por favor.",
+     "sens": "Signez sur la troisième ligne, s'il vous plaît.",
      "n": "Féminin : la tercer<b>a</b> línea.",
      "revise": {
       "mot": "firmar",
@@ -1738,6 +1753,7 @@ window.SCENE = {
      "f": "frau",
      "r": "bildschirm",
      "phrase": "Cuando llegó Mark, la funcionaria ya había encendido el ordenador.",
+     "sens": "Quand Mark est arrivé, l'employée avait déjà allumé l'ordinateur.",
      "n": "Pluscuamperfecto : <b>había</b> + participe, l'action d'avant une action passée.",
      "revise": {
       "mot": "encender",
@@ -1758,6 +1774,7 @@ window.SCENE = {
      "f": "formular",
      "r": "mark",
      "phrase": "Mark no había rellenado nunca un formulario alemán antes de hoy.",
+     "sens": "Mark n'avait jamais rempli de formulaire allemand avant aujourd'hui.",
      "n": "<b>nunca … antes</b> → pluscuamperfecto.",
      "revise": {
       "mot": "rellenar",
@@ -1774,6 +1791,7 @@ window.SCENE = {
      "f": "frau-2",
      "r": "mark",
      "phrase": "La señora del bebé había llegado antes que Mark.",
+     "sens": "La dame au bébé était arrivée avant Mark.",
      "n": "Antériorité (<b>antes que</b>) → pluscuamperfecto.",
      "revise": {
       "mot": "llegar",
@@ -1790,6 +1808,7 @@ window.SCENE = {
      "f": "pass",
      "r": "frau",
      "phrase": "Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.",
+     "sens": "Mark avait déjà sorti son passeport quand l'employée le lui a demandé.",
      "n": "Pluscuamperfecto : <b>había</b> + participe, l'action d'avant une action passée.",
      "revise": {
       "mot": "sacar",
@@ -1806,6 +1825,7 @@ window.SCENE = {
      "f": "stempel",
      "r": "frau",
      "phrase": "Cuando Mark firmó, la funcionaria ya había preparado el sello.",
+     "sens": "Quand Mark a signé, l'employée avait déjà préparé le tampon.",
      "n": "Pluscuamperfecto : <b>había</b> + participe, l'action d'avant une action passée.",
      "revise": {
       "mot": "preparar",
@@ -1821,6 +1841,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Hasta entonces, Mark nunca había estado en una oficina alemana.",
+     "sens": "Jusque-là, Mark n'avait jamais été dans une administration allemande.",
      "n": "<b>hasta entonces</b> → pluscuamperfecto.",
      "revise": {
       "mot": "estar",
@@ -1842,6 +1863,7 @@ window.SCENE = {
      "f": "formular",
      "r": "mark",
      "phrase": "El formulario debe de ser importante.",
+     "sens": "Le formulaire doit être important.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1853,6 +1875,7 @@ window.SCENE = {
      ],
      "f": "frau-2",
      "phrase": "Puede que la joven también sea nueva en Berlín.",
+     "sens": "La jeune femme est peut-être aussi nouvelle à Berlin.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1864,6 +1887,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "La cita terminará en diez minutos.",
+     "sens": "Le rendez-vous sera sans doute fini dans dix minutes.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1875,6 +1899,7 @@ window.SCENE = {
      ],
      "f": "stuhl",
      "phrase": "Dicen que en esta oficina hay que esperar mucho.",
+     "sens": "On dit que dans ce bureau, il faut attendre longtemps.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1923,6 +1948,37 @@ window.SCENE = {
     "C1 | Puede que la joven también sea nueva en Berlín.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | La cita terminará en diez minutos.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que en esta oficina hay que esperar mucho.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El cuadro está al lado de la ventana.": "The picture is next to the window.",
+    "A2 | Las carpetas están en la estantería.": "The folders are on the shelf.",
+    "A2 | El pasaporte está en el escritorio.": "The passport is on the desk.",
+    "A2 | La mochila está en el piso.": "The backpack is on the floor.",
+    "A2 | La mochila está en el suelo.": "The backpack is on the floor.",
+    "A2 | La joven está sentada en la silla.": "The young woman is sitting on the chair.",
+    "A2 | Hay un bebé en brazos de la joven.": "There is a baby in the young woman's arms.",
+    "A2 | El bote de basura está al lado de la puerta.": "The bin is next to the door.",
+    "A2 | La papelera está al lado de la puerta.": "The bin is next to the door.",
+    "A2 | La impresora está encima del clóset.": "The printer is on top of the cabinet.",
+    "A2 | La impresora está encima del armario.": "The printer is on top of the cabinet.",
+    "B1 | La oficina de Mark está en la segunda planta.": "Mark's office is on the second floor.",
+    "B1 | Es el primer formulario que Mark rellena hoy.": "It is the first form Mark fills in today.",
+    "B1 | Mark es el tercero de la fila.": "Mark is third in the queue.",
+    "B1 | La señora del bebé es la última en esperar.": "The lady with the baby is the last one waiting.",
+    "B1 | Hoy es el quinto día de Mark en Berlín.": "Today is Mark's fifth day in Berlin.",
+    "B1 | Es la segunda vez que Mark viene a esta oficina.": "It is the second time Mark has come to this office.",
+    "B1 | Firme en la tercera línea, por favor.": "Sign on the third line, please.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "When Mark arrived, the clerk had already switched on the computer.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "When Mark arrived, the clerk had already switched on the computer.",
+    "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "Mark had never filled in a German form before today.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "The lady with the baby had arrived before Mark.",
+    "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "Mark had already taken out his passport when the clerk asked for it.",
+    "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "When Mark signed, the clerk had already prepared the stamp.",
+    "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "Until then, Mark had never been in a German office.",
+    "C1 | El formulario debe de ser importante.": "The form must be important.",
+    "C1 | Puede que la joven también sea nueva en Berlín.": "The young woman may also be new to Berlin.",
+    "C1 | La cita terminará en diez minutos.": "The appointment will probably be over in ten minutes.",
+    "C1 | Dicen que en esta oficina hay que esperar mucho.": "They say you have to wait a long time in this office."
    }
   },
   "tr": {
@@ -1933,7 +1989,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1943,7 +2000,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1953,7 +2011,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1997,6 +2056,37 @@ window.SCENE = {
     "C1 | Puede que la joven también sea nueva en Berlín.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | La cita terminará en diez minutos.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que en esta oficina hay que esperar mucho.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El cuadro está al lado de la ventana.": "اللوحة بجانب النافذة.",
+    "A2 | Las carpetas están en la estantería.": "الملفّات على الرفّ.",
+    "A2 | El pasaporte está en el escritorio.": "جواز السفر على المكتب.",
+    "A2 | La mochila está en el piso.": "حقيبة الظهر على الأرض.",
+    "A2 | La mochila está en el suelo.": "حقيبة الظهر على الأرض.",
+    "A2 | La joven está sentada en la silla.": "الشابّة جالسة على الكرسي.",
+    "A2 | Hay un bebé en brazos de la joven.": "هناك رضيع بين ذراعي الشابّة.",
+    "A2 | El bote de basura está al lado de la puerta.": "سلّة المهملات بجانب الباب.",
+    "A2 | La papelera está al lado de la puerta.": "سلّة المهملات بجانب الباب.",
+    "A2 | La impresora está encima del clóset.": "الطابعة فوق الخزانة.",
+    "A2 | La impresora está encima del armario.": "الطابعة فوق الخزانة.",
+    "B1 | La oficina de Mark está en la segunda planta.": "مكتب مارك في الطابق الثاني.",
+    "B1 | Es el primer formulario que Mark rellena hoy.": "إنها أوّل استمارة يملؤها مارك اليوم.",
+    "B1 | Mark es el tercero de la fila.": "مارك هو الثالث في الطابور.",
+    "B1 | La señora del bebé es la última en esperar.": "السيّدة ذات الرضيع هي آخر المنتظرين.",
+    "B1 | Hoy es el quinto día de Mark en Berlín.": "اليوم هو يوم مارك الخامس في برلين.",
+    "B1 | Es la segunda vez que Mark viene a esta oficina.": "إنها المرّة الثانية التي يأتي فيها مارك إلى هذا المكتب.",
+    "B1 | Firme en la tercera línea, por favor.": "وقّع على السطر الثالث، من فضلك.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "عندما وصل مارك، كانت الموظّفة قد شغّلت الحاسوب بالفعل.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "عندما وصل مارك، كانت الموظّفة قد شغّلت الحاسوب بالفعل.",
+    "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "لم يكن مارك قد ملأ استمارة ألمانية قطّ قبل اليوم.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "كانت السيّدة ذات الرضيع قد وصلت قبل مارك.",
+    "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "كان مارك قد أخرج جواز سفره عندما طلبته الموظّفة.",
+    "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "عندما وقّع مارك، كانت الموظّفة قد جهّزت الختم.",
+    "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "حتى ذلك الحين، لم يكن مارك قد دخل مكتباً ألمانياً قطّ.",
+    "C1 | El formulario debe de ser importante.": "لا بدّ أن الاستمارة مهمّة.",
+    "C1 | Puede que la joven también sea nueva en Berlín.": "ربما تكون الشابّة جديدة في برلين أيضاً.",
+    "C1 | La cita terminará en diez minutos.": "على الأرجح ينتهي الموعد خلال عشر دقائق.",
+    "C1 | Dicen que en esta oficina hay que esperar mucho.": "يُقال إن على المرء أن ينتظر طويلاً في هذا المكتب."
    }
   },
   "pt": {
@@ -2041,6 +2131,37 @@ window.SCENE = {
     "C1 | Puede que la joven también sea nueva en Berlín.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | La cita terminará en diez minutos.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que en esta oficina hay que esperar mucho.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El cuadro está al lado de la ventana.": "O quadro está ao lado da janela.",
+    "A2 | Las carpetas están en la estantería.": "As pastas estão na estante.",
+    "A2 | El pasaporte está en el escritorio.": "O passaporte está na escrivaninha.",
+    "A2 | La mochila está en el piso.": "A mochila está no chão.",
+    "A2 | La mochila está en el suelo.": "A mochila está no chão.",
+    "A2 | La joven está sentada en la silla.": "A jovem está sentada na cadeira.",
+    "A2 | Hay un bebé en brazos de la joven.": "Há um bebê nos braços da jovem.",
+    "A2 | El bote de basura está al lado de la puerta.": "A lixeira está ao lado da porta.",
+    "A2 | La papelera está al lado de la puerta.": "A lixeira está ao lado da porta.",
+    "A2 | La impresora está encima del clóset.": "A impressora está em cima do armário.",
+    "A2 | La impresora está encima del armario.": "A impressora está em cima do armário.",
+    "B1 | La oficina de Mark está en la segunda planta.": "O escritório de Mark fica no segundo andar.",
+    "B1 | Es el primer formulario que Mark rellena hoy.": "É o primeiro formulário que Mark preenche hoje.",
+    "B1 | Mark es el tercero de la fila.": "Mark é o terceiro da fila.",
+    "B1 | La señora del bebé es la última en esperar.": "A senhora do bebê é a última a esperar.",
+    "B1 | Hoy es el quinto día de Mark en Berlín.": "Hoje é o quinto dia de Mark em Berlim.",
+    "B1 | Es la segunda vez que Mark viene a esta oficina.": "É a segunda vez que Mark vem a esta repartição.",
+    "B1 | Firme en la tercera línea, por favor.": "Assine na terceira linha, por favor.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "Quando Mark chegou, a funcionária já tinha ligado o computador.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "Quando Mark chegou, a funcionária já tinha ligado o computador.",
+    "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "Mark nunca tinha preenchido um formulário alemão antes de hoje.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "A senhora do bebê tinha chegado antes de Mark.",
+    "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "Mark já tinha tirado o passaporte quando a funcionária o pediu.",
+    "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "Quando Mark assinou, a funcionária já tinha preparado o carimbo.",
+    "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "Até então, Mark nunca tinha estado numa repartição alemã.",
+    "C1 | El formulario debe de ser importante.": "O formulário deve ser importante.",
+    "C1 | Puede que la joven también sea nueva en Berlín.": "Pode ser que a jovem também seja nova em Berlim.",
+    "C1 | La cita terminará en diez minutos.": "O atendimento provavelmente termina em dez minutos.",
+    "C1 | Dicen que en esta oficina hay que esperar mucho.": "Dizem que nesta repartição é preciso esperar muito."
    }
   },
   "pl": {
@@ -2051,7 +2172,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -2061,7 +2183,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

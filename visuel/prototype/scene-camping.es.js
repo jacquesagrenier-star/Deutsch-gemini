@@ -631,6 +631,7 @@ window.SCENE = {
      "f": "mond",
      "r": "himmel",
      "phrase": "La luna está en el cielo.",
+     "sens": "La lune est dans le ciel.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -643,6 +644,7 @@ window.SCENE = {
      "f": "boot",
      "r": "see",
      "phrase": "El barco está a la orilla del lago.",
+     "sens": "La barque est au bord du lac.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -655,6 +657,7 @@ window.SCENE = {
      "f": "topf",
      "r": "feuer",
      "phrase": "La olla está encima del fuego.",
+     "sens": "La marmite est sur le feu.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -667,6 +670,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "zelt",
      "phrase": "La mochila está delante de la tienda.",
+     "sens": "Le sac à dos est devant la tente.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -679,6 +683,7 @@ window.SCENE = {
      "f": "pilz",
      "r": "zelt",
      "phrase": "La seta está al lado de la tienda.",
+     "sens": "Le champignon est à côté de la tente.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -691,6 +696,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "stein",
      "phrase": "La taza está en la piedra.",
+     "sens": "La tasse est sur la pierre.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -703,6 +709,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "holz",
      "phrase": "Hay una lámpara al lado de la madera.",
+     "sens": "Il y a une lampe à côté du bois.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -715,6 +722,7 @@ window.SCENE = {
      "f": "zelt",
      "r": "see",
      "phrase": "La tienda está cerca del lago.",
+     "sens": "La tente est près du lac.",
      "n": "<b>de + el = del</b>, toujours."
     }
    ]
@@ -732,6 +740,7 @@ window.SCENE = {
      "f": "see",
      "r": "anna",
      "phrase": "Mañana Anna va a nadar en el lago.",
+     "sens": "Demain, Anna va nager dans le lac.",
      "n": "Futur proche : <b>ir a</b> + infinitif → va a nadar.",
      "revise": {
       "mot": "nadar",
@@ -747,6 +756,7 @@ window.SCENE = {
      ],
      "f": "zelt",
      "phrase": "Esta noche van a dormir en la tienda.",
+     "sens": "Cette nuit, ils vont dormir dans la tente.",
      "n": "Eux → <b>van a</b> + infinitif.",
      "revise": {
       "mot": "dormir",
@@ -763,6 +773,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "anna",
      "phrase": "Te tocaré una canción.",
+     "sens": "Je te jouerai une chanson.",
      "n": "Futur : infinitif + <b>-é</b> → tocaré.",
      "revise": {
       "mot": "tocar",
@@ -778,6 +789,7 @@ window.SCENE = {
      ],
      "f": "topf",
      "phrase": "La sopa estará lista enseguida.",
+     "sens": "La soupe sera prête tout de suite.",
      "n": "Futur de estar : <b>estará</b>.",
      "revise": {
       "mot": "estar",
@@ -793,6 +805,7 @@ window.SCENE = {
      ],
      "f": "boot",
      "phrase": "Mañana saldremos en barco.",
+     "sens": "Demain, nous sortirons en barque.",
      "n": "<b>salir</b> → futur irrégulier : <b>saldr-</b> → saldremos.",
      "revise": {
       "mot": "salir",
@@ -808,6 +821,7 @@ window.SCENE = {
      ],
      "f": "himmel",
      "phrase": "Esta noche hará frío.",
+     "sens": "Cette nuit, il fera froid.",
      "n": "<b>hacer</b> → futur irrégulier <b>hará</b>.",
      "revise": {
       "mot": "hacer",
@@ -823,6 +837,7 @@ window.SCENE = {
      ],
      "f": "feuer",
      "phrase": "¿Vas a apagar el fuego luego?",
+     "sens": "Tu vas éteindre le feu après ?",
      "n": "Toi → <b>vas a</b> + infinitif.",
      "revise": {
       "mot": "apagar",
@@ -843,6 +858,7 @@ window.SCENE = {
      ],
      "f": "see",
      "phrase": "Si no fuera tan oscuro, irían a nadar.",
+     "sens": "S'il ne faisait pas si sombre, ils iraient nager.",
      "n": "Irréel : <b>si</b> + subjonctif imparfait → fuera."
     },
     {
@@ -854,6 +870,7 @@ window.SCENE = {
      ],
      "f": "zelt",
      "phrase": "Si tuvieran tiempo, se quedarían una semana más.",
+     "sens": "S'ils avaient le temps, ils resteraient une semaine de plus.",
      "n": "<b>tener</b> → subjonctif imparfait <b>tuvieran</b>.",
      "revise": {
       "mot": "tener",
@@ -869,6 +886,7 @@ window.SCENE = {
      ],
      "f": "mann",
      "phrase": "Si el chico tuviera hambre, comería la salchicha.",
+     "sens": "Si le garçon avait faim, il mangerait la saucisse.",
      "n": "Principale : le <b>conditionnel</b> → comería.",
      "revise": {
       "mot": "comer",
@@ -885,6 +903,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "anna",
      "phrase": "Ojalá pudiera tocar la guitarra como Anna.",
+     "sens": "Si seulement je pouvais jouer de la guitare comme Anna.",
      "n": "<b>ojalá</b> + subjonctif imparfait : un souhait irréel.",
      "revise": {
       "mot": "poder",
@@ -900,6 +919,7 @@ window.SCENE = {
      ],
      "f": "boot",
      "phrase": "Si el barco fuera más grande, cabrían todos.",
+     "sens": "Si la barque était plus grande, tout le monde tiendrait dedans.",
      "n": "Irréel : <b>si</b> + subjonctif imparfait → fuera."
     },
     {
@@ -911,6 +931,7 @@ window.SCENE = {
      ],
      "f": "holz",
      "phrase": "Ojalá hubieran traído más madera.",
+     "sens": "Si seulement ils avaient apporté plus de bois.",
      "n": "Regret au passé : <b>ojalá</b> + <b>hubiera</b> + participe.",
      "revise": {
       "mot": "traer",
@@ -931,6 +952,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Debe de estar pasándolo muy bien.",
+     "sens": "Elle doit bien s'amuser.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -943,6 +965,7 @@ window.SCENE = {
      "f": "mann",
      "r": "anna",
      "phrase": "Puede que el chico sea el primo de Anna.",
+     "sens": "Le garçon est peut-être le cousin d'Anna.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -954,6 +977,7 @@ window.SCENE = {
      ],
      "f": "mond",
      "phrase": "Serán las diez.",
+     "sens": "Il doit être dix heures.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -965,6 +989,7 @@ window.SCENE = {
      ],
      "f": "wald",
      "phrase": "Dicen que en el bosque hay lobos.",
+     "sens": "On dit qu'il y a des loups dans la forêt.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1009,6 +1034,33 @@ window.SCENE = {
     "C1 | Puede que el chico sea el primo de Anna.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Serán las diez.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que en el bosque hay lobos.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | La luna está en el cielo.": "The moon is in the sky.",
+    "A2 | El barco está a la orilla del lago.": "The boat is on the shore of the lake.",
+    "A2 | La olla está encima del fuego.": "The pot is over the fire.",
+    "A2 | La mochila está delante de la tienda.": "The backpack is in front of the tent.",
+    "A2 | La seta está al lado de la tienda.": "The mushroom is next to the tent.",
+    "A2 | La taza está en la piedra.": "The cup is on the stone.",
+    "A2 | Hay una lámpara al lado de la madera.": "There is a lamp next to the wood.",
+    "A2 | La tienda está cerca del lago.": "The tent is near the lake.",
+    "B1 | Mañana Anna va a nadar en el lago.": "Tomorrow Anna is going to swim in the lake.",
+    "B1 | Esta noche van a dormir en la tienda.": "Tonight they are going to sleep in the tent.",
+    "B1 | Te tocaré una canción.": "I will play you a song.",
+    "B1 | La sopa estará lista enseguida.": "The soup will be ready right away.",
+    "B1 | Mañana saldremos en barco.": "Tomorrow we will go out in the boat.",
+    "B1 | Esta noche hará frío.": "It will be cold tonight.",
+    "B1 | ¿Vas a apagar el fuego luego?": "Are you going to put out the fire later?",
+    "B2 | Si no fuera tan oscuro, irían a nadar.": "If it were not so dark, they would go swimming.",
+    "B2 | Si tuvieran tiempo, se quedarían una semana más.": "If they had time, they would stay another week.",
+    "B2 | Si el chico tuviera hambre, comería la salchicha.": "If the young man were hungry, he would eat the sausage.",
+    "B2 | Ojalá pudiera tocar la guitarra como Anna.": "I wish I could play the guitar like Anna.",
+    "B2 | Si el barco fuera más grande, cabrían todos.": "If the boat were bigger, everyone would fit.",
+    "B2 | Ojalá hubieran traído más madera.": "If only they had brought more wood.",
+    "C1 | Debe de estar pasándolo muy bien.": "She must be having a great time.",
+    "C1 | Puede que el chico sea el primo de Anna.": "The young man may be Anna's cousin.",
+    "C1 | Serán las diez.": "It is probably ten o'clock.",
+    "C1 | Dicen que en el bosque hay lobos.": "They say there are wolves in the forest."
    }
   },
   "tr": {
@@ -1019,7 +1071,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1029,7 +1082,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1039,7 +1093,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1079,6 +1134,33 @@ window.SCENE = {
     "C1 | Puede que el chico sea el primo de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Serán las diez.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que en el bosque hay lobos.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La luna está en el cielo.": "القمر في السماء.",
+    "A2 | El barco está a la orilla del lago.": "القارب على ضفّة البحيرة.",
+    "A2 | La olla está encima del fuego.": "القِدر فوق النار.",
+    "A2 | La mochila está delante de la tienda.": "حقيبة الظهر أمام الخيمة.",
+    "A2 | La seta está al lado de la tienda.": "الفطر بجانب الخيمة.",
+    "A2 | La taza está en la piedra.": "الفنجان على الحجر.",
+    "A2 | Hay una lámpara al lado de la madera.": "هناك مصباح بجانب الخشب.",
+    "A2 | La tienda está cerca del lago.": "الخيمة قرب البحيرة.",
+    "B1 | Mañana Anna va a nadar en el lago.": "غداً ستسبح آنا في البحيرة.",
+    "B1 | Esta noche van a dormir en la tienda.": "الليلة سينامون في الخيمة.",
+    "B1 | Te tocaré una canción.": "سأعزف لك أغنية.",
+    "B1 | La sopa estará lista enseguida.": "سيجهز الحساء حالاً.",
+    "B1 | Mañana saldremos en barco.": "غداً سنخرج بالقارب.",
+    "B1 | Esta noche hará frío.": "سيكون الجوّ بارداً الليلة.",
+    "B1 | ¿Vas a apagar el fuego luego?": "هل ستطفئ النار لاحقاً؟",
+    "B2 | Si no fuera tan oscuro, irían a nadar.": "لو لم يكن الظلام شديداً، لذهبوا للسباحة.",
+    "B2 | Si tuvieran tiempo, se quedarían una semana más.": "لو كان لديهم وقت، لبقوا أسبوعاً آخر.",
+    "B2 | Si el chico tuviera hambre, comería la salchicha.": "لو كان الشابّ جائعاً، لأكل النقانق.",
+    "B2 | Ojalá pudiera tocar la guitarra como Anna.": "ليتني أستطيع العزف على الغيتار مثل آنا.",
+    "B2 | Si el barco fuera más grande, cabrían todos.": "لو كان القارب أكبر، لاتّسع للجميع.",
+    "B2 | Ojalá hubieran traído más madera.": "ليتهم أحضروا مزيداً من الخشب.",
+    "C1 | Debe de estar pasándolo muy bien.": "لا بدّ أنها تقضي وقتاً ممتعاً.",
+    "C1 | Puede que el chico sea el primo de Anna.": "ربما يكون الشابّ ابن عمّ آنا.",
+    "C1 | Serán las diez.": "على الأرجح الساعة العاشرة.",
+    "C1 | Dicen que en el bosque hay lobos.": "يُقال إن في الغابة ذئاباً."
    }
   },
   "pt": {
@@ -1119,6 +1201,33 @@ window.SCENE = {
     "C1 | Puede que el chico sea el primo de Anna.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Serán las diez.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que en el bosque hay lobos.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La luna está en el cielo.": "A lua está no céu.",
+    "A2 | El barco está a la orilla del lago.": "O barco está à beira do lago.",
+    "A2 | La olla está encima del fuego.": "A panela está sobre o fogo.",
+    "A2 | La mochila está delante de la tienda.": "A mochila está em frente à barraca.",
+    "A2 | La seta está al lado de la tienda.": "O cogumelo está ao lado da barraca.",
+    "A2 | La taza está en la piedra.": "A xícara está na pedra.",
+    "A2 | Hay una lámpara al lado de la madera.": "Há uma lanterna ao lado da lenha.",
+    "A2 | La tienda está cerca del lago.": "A barraca está perto do lago.",
+    "B1 | Mañana Anna va a nadar en el lago.": "Amanhã Anna vai nadar no lago.",
+    "B1 | Esta noche van a dormir en la tienda.": "Esta noite eles vão dormir na barraca.",
+    "B1 | Te tocaré una canción.": "Vou tocar uma música para você.",
+    "B1 | La sopa estará lista enseguida.": "A sopa vai ficar pronta já.",
+    "B1 | Mañana saldremos en barco.": "Amanhã vamos sair de barco.",
+    "B1 | Esta noche hará frío.": "Esta noite vai fazer frio.",
+    "B1 | ¿Vas a apagar el fuego luego?": "Você vai apagar o fogo depois?",
+    "B2 | Si no fuera tan oscuro, irían a nadar.": "Se não estivesse tão escuro, eles iriam nadar.",
+    "B2 | Si tuvieran tiempo, se quedarían una semana más.": "Se tivessem tempo, ficariam mais uma semana.",
+    "B2 | Si el chico tuviera hambre, comería la salchicha.": "Se o rapaz estivesse com fome, comeria a salsicha.",
+    "B2 | Ojalá pudiera tocar la guitarra como Anna.": "Quem me dera tocar violão como Anna.",
+    "B2 | Si el barco fuera más grande, cabrían todos.": "Se o barco fosse maior, caberiam todos.",
+    "B2 | Ojalá hubieran traído más madera.": "Se ao menos tivessem trazido mais lenha.",
+    "C1 | Debe de estar pasándolo muy bien.": "Ela deve estar se divertindo muito.",
+    "C1 | Puede que el chico sea el primo de Anna.": "Pode ser que o rapaz seja o primo de Anna.",
+    "C1 | Serán las diez.": "Devem ser dez horas.",
+    "C1 | Dicen que en el bosque hay lobos.": "Dizem que há lobos na floresta."
    }
   },
   "pl": {
@@ -1129,7 +1238,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1139,7 +1249,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

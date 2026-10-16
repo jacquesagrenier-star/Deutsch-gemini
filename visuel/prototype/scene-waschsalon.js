@@ -1595,6 +1595,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
      "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1607,6 +1608,7 @@ window.SCENE = {
      "f": "pullover-2",
      "r": "tisch",
      "phrase": "Der grüne Pullover liegt auf dem Tisch.",
+     "sens": "Le pull vert est sur la table.",
      "n": "der Tisch → auf <b>dem</b> Tisch."
     },
     {
@@ -1619,6 +1621,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "bank",
      "phrase": "Das Mädchen sitzt auf der Bank.",
+     "sens": "La fille est assise sur le banc.",
      "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1631,6 +1634,7 @@ window.SCENE = {
      "f": "jeans",
      "r": "korb",
      "phrase": "Die Jeans liegt im Korb.",
+     "sens": "Le jean est dans le panier.",
      "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
     },
     {
@@ -1643,6 +1647,7 @@ window.SCENE = {
      "f": "waschmittel",
      "r": "waschmaschine-2",
      "phrase": "Das Waschmittel steht auf der Waschmaschine.",
+     "sens": "La lessive est sur la machine à laver.",
      "n": "die Waschmaschine → auf <b>der</b> Waschmaschine : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1655,6 +1660,7 @@ window.SCENE = {
      "f": "spiegel",
      "r": "heizkoerper",
      "phrase": "Der Spiegel hängt über dem Heizkörper.",
+     "sens": "Le miroir est accroché au-dessus du radiateur.",
      "n": "<b>über</b> = au-dessus de. der Heizkörper → über <b>dem</b> Heizkörper."
     },
     {
@@ -1667,6 +1673,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "strasse",
      "phrase": "Das Fahrrad steht auf der Straße.",
+     "sens": "Le vélo est dans la rue.",
      "n": "die Straße → auf <b>der</b> Straße : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1679,6 +1686,7 @@ window.SCENE = {
      "f": "handtuch",
      "r": "regal",
      "phrase": "Die Handtücher liegen im Regal.",
+     "sens": "Les serviettes sont sur l'étagère.",
      "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
     }
    ]
@@ -1696,6 +1704,7 @@ window.SCENE = {
      "f": "anna",
      "r": "waschmaschine",
      "phrase": "Anna lässt die Waschmaschine laufen.",
+     "sens": "Anna fait tourner la machine à laver.",
      "n": "<b>lassen</b> + infinitif = faire faire ; 3e personne : <b>lässt</b>.",
      "revise": {
       "mot": "lassen",
@@ -1712,6 +1721,7 @@ window.SCENE = {
      "f": "korb",
      "r": "boden",
      "phrase": "Sie lässt den Korb auf dem Boden stehen.",
+     "sens": "Elle laisse le panier par terre.",
      "n": "<b>lassen</b> + infinitif à la fin, sans <b>zu</b>.",
      "revise": {
       "mot": "stehen",
@@ -1728,6 +1738,7 @@ window.SCENE = {
      "f": "frau",
      "r": "maedchen",
      "phrase": "Die Frau lässt das Mädchen mit dem Handy spielen.",
+     "sens": "La femme laisse la fille jouer avec le téléphone.",
      "n": "<b>lassen</b> = laisser faire : lässt … spielen.",
      "revise": {
       "mot": "lassen",
@@ -1743,6 +1754,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Lass mich dir helfen!",
+     "sens": "Laisse-moi t'aider !",
      "n": "Impératif de <b>lassen</b> (du) : <b>Lass</b> mich … !",
      "revise": {
       "mot": "helfen",
@@ -1758,6 +1770,7 @@ window.SCENE = {
      ],
      "f": "jacke",
      "phrase": "Ich lasse meine Jacke zu Hause.",
+     "sens": "Je laisse ma veste à la maison.",
      "n": "<b>lassen</b> = laisser quelque part : ich <b>lasse</b>.",
      "revise": {
       "mot": "lassen",
@@ -1774,6 +1787,7 @@ window.SCENE = {
      "f": "jeans",
      "r": "korb",
      "phrase": "Anna hat die Jeans im Korb gelassen.",
+     "sens": "Anna a laissé le jean dans le panier.",
      "n": "Participe passé : <b>gelassen</b> (sans infinitif après).",
      "revise": {
       "mot": "lassen",
@@ -1789,6 +1803,7 @@ window.SCENE = {
      ],
      "f": "waschmaschine",
      "phrase": "Sie hat die Wäsche waschen lassen.",
+     "sens": "Elle a fait laver le linge.",
      "n": "Avec un infinitif, le participe devient <b>lassen</b> (double infinitif)."
     },
     {
@@ -1800,6 +1815,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "Lasst uns nach Hause gehen!",
+     "sens": "Rentrons à la maison !",
      "n": "<b>Lasst uns</b> + infinitif = allons… !",
      "revise": {
       "mot": "gehen",
@@ -1820,6 +1836,7 @@ window.SCENE = {
      ],
      "f": "waschmaschine-3",
      "phrase": "Die laufende Waschmaschine ist laut.",
+     "sens": "La machine à laver en marche est bruyante.",
      "n": "Participe présent : laufen + <b>-d</b> + terminaison → laufend<b>e</b>."
     },
     {
@@ -1832,6 +1849,7 @@ window.SCENE = {
      "f": "pullover-2",
      "r": "tisch",
      "phrase": "Der gefaltete Pullover liegt auf dem Tisch.",
+     "sens": "Le pull plié est sur la table.",
      "n": "Participe passé = un résultat : gefaltet + <b>-e</b>."
     },
     {
@@ -1844,6 +1862,7 @@ window.SCENE = {
      "f": "frau",
      "r": "bank",
      "phrase": "Die lesende Frau sitzt auf der Bank.",
+     "sens": "La femme qui lit est assise sur le banc.",
      "n": "Participe présent = en train de : lesend<b>e</b>.",
      "revise": {
       "mot": "lesen",
@@ -1860,6 +1879,7 @@ window.SCENE = {
      "f": "handy",
      "r": "maedchen",
      "phrase": "Das Mädchen hält ein ausgeschaltetes Handy.",
+     "sens": "La fille tient un téléphone éteint.",
      "n": "Participe passé : ausgeschaltet + <b>-es</b> (ein … Handy)."
     },
     {
@@ -1871,6 +1891,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "Die geschlossene Tür bleibt zu.",
+     "sens": "La porte fermée reste fermée.",
      "n": "Participe passé : geschlossen + <b>-e</b>.",
      "revise": {
       "mot": "schließen",
@@ -1887,6 +1908,7 @@ window.SCENE = {
      "f": "hemd",
      "r": "anna",
      "phrase": "Anna hält ein noch ungewaschenes Hemd.",
+     "sens": "Anna tient une chemise pas encore lavée.",
      "n": "<b>un-</b> + participe passé + <b>-es</b> (ein … Hemd).",
      "revise": {
       "mot": "waschen",
@@ -1908,6 +1930,7 @@ window.SCENE = {
      "f": "korb",
      "r": "anna",
      "phrase": "Sie muss lange nicht gewaschen haben.",
+     "sens": "Elle n'a pas dû faire de lessive depuis longtemps.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1920,6 +1943,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "frau",
      "phrase": "Das Mädchen könnte die Enkelin der Frau sein.",
+     "sens": "La fille est peut-être la petite-fille de la femme.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1931,6 +1955,7 @@ window.SCENE = {
      ],
      "f": "waschmaschine",
      "phrase": "Die Wäsche dürfte in einer Stunde fertig sein.",
+     "sens": "Le linge devrait être prêt dans une heure.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1942,6 +1967,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "Der Waschsalon soll bald schließen.",
+     "sens": "Il paraît que la laverie va bientôt fermer.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1987,6 +2013,34 @@ window.SCENE = {
     "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Der Waschsalon soll bald schließen.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "The clock hangs on the wall.",
+    "A2 | Der grüne Pullover liegt auf dem Tisch.": "The green jumper is on the table.",
+    "A2 | Das Mädchen sitzt auf der Bank.": "The girl is sitting on the bench.",
+    "A2 | Die Jeans liegt im Korb.": "The jeans are in the basket.",
+    "A2 | Das Waschmittel steht auf der Waschmaschine.": "The detergent is on the washing machine.",
+    "A2 | Der Spiegel hängt über dem Heizkörper.": "The mirror hangs above the radiator.",
+    "A2 | Das Fahrrad steht auf der Straße.": "The bicycle is in the street.",
+    "A2 | Die Handtücher liegen im Regal.": "The towels are on the shelf.",
+    "B1 | Anna lässt die Waschmaschine laufen.": "Anna lets the washing machine run.",
+    "B1 | Sie lässt den Korb auf dem Boden stehen.": "She leaves the basket on the floor.",
+    "B1 | Die Frau lässt das Mädchen mit dem Handy spielen.": "The woman lets the girl play with the phone.",
+    "B1 | Lass mich dir helfen!": "Let me help you!",
+    "B1 | Ich lasse meine Jacke zu Hause.": "I'm leaving my jacket at home.",
+    "B1 | Anna hat die Jeans im Korb gelassen.": "Anna left the jeans in the basket.",
+    "B1 | Sie hat die Wäsche waschen lassen.": "She had the laundry washed.",
+    "B1 | Lasst uns nach Hause gehen!": "Let's go home!",
+    "B2 | Die laufende Waschmaschine ist laut.": "The running washing machine is loud.",
+    "B2 | Der gefaltete Pullover liegt auf dem Tisch.": "The folded jumper is on the table.",
+    "B2 | Die lesende Frau sitzt auf der Bank.": "The woman reading is sitting on the bench.",
+    "B2 | Das Mädchen hält ein ausgeschaltetes Handy.": "The girl is holding a switched-off phone.",
+    "B2 | Die geschlossene Tür bleibt zu.": "The closed door stays shut.",
+    "B2 | Anna hält ein noch ungewaschenes Hemd.": "Anna is holding a shirt that has not been washed yet.",
+    "C1 | Sie muss lange nicht gewaschen haben.": "She must not have done laundry for a long time.",
+    "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "The girl might be the woman's granddaughter.",
+    "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "The laundry should be done in an hour.",
+    "C1 | Der Waschsalon soll bald schließen.": "The launderette is said to be closing soon."
    }
   },
   "tr": {
@@ -2028,6 +2082,34 @@ window.SCENE = {
     "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Der Waschsalon soll bald schließen.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Saat duvarda asılı.",
+    "A2 | Der grüne Pullover liegt auf dem Tisch.": "Yeşil kazak masanın üstünde.",
+    "A2 | Das Mädchen sitzt auf der Bank.": "Kız bankta oturuyor.",
+    "A2 | Die Jeans liegt im Korb.": "Kot pantolon sepetin içinde.",
+    "A2 | Das Waschmittel steht auf der Waschmaschine.": "Deterjan çamaşır makinesinin üstünde duruyor.",
+    "A2 | Der Spiegel hängt über dem Heizkörper.": "Ayna kaloriferin üstünde asılı.",
+    "A2 | Das Fahrrad steht auf der Straße.": "Bisiklet sokakta duruyor.",
+    "A2 | Die Handtücher liegen im Regal.": "Havlular rafta.",
+    "B1 | Anna lässt die Waschmaschine laufen.": "Anna çamaşır makinesini çalıştırıyor.",
+    "B1 | Sie lässt den Korb auf dem Boden stehen.": "Sepeti yerde bırakıyor.",
+    "B1 | Die Frau lässt das Mädchen mit dem Handy spielen.": "Kadın kızın telefonla oynamasına izin veriyor.",
+    "B1 | Lass mich dir helfen!": "Sana yardım edeyim!",
+    "B1 | Ich lasse meine Jacke zu Hause.": "Ceketimi evde bırakıyorum.",
+    "B1 | Anna hat die Jeans im Korb gelassen.": "Anna kot pantolonu sepette bıraktı.",
+    "B1 | Sie hat die Wäsche waschen lassen.": "Çamaşırları yıkattı.",
+    "B1 | Lasst uns nach Hause gehen!": "Hadi eve gidelim!",
+    "B2 | Die laufende Waschmaschine ist laut.": "Çalışan çamaşır makinesi gürültülü.",
+    "B2 | Der gefaltete Pullover liegt auf dem Tisch.": "Katlanmış kazak masanın üstünde.",
+    "B2 | Die lesende Frau sitzt auf der Bank.": "Kitap okuyan kadın bankta oturuyor.",
+    "B2 | Das Mädchen hält ein ausgeschaltetes Handy.": "Kız kapalı bir telefon tutuyor.",
+    "B2 | Die geschlossene Tür bleibt zu.": "Kapalı kapı kapalı kalıyor.",
+    "B2 | Anna hält ein noch ungewaschenes Hemd.": "Anna henüz yıkanmamış bir gömlek tutuyor.",
+    "C1 | Sie muss lange nicht gewaschen haben.": "Uzun zamandır çamaşır yıkamamış olmalı.",
+    "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "Kız kadının torunu olabilir.",
+    "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "Çamaşır bir saate biter herhalde.",
+    "C1 | Der Waschsalon soll bald schließen.": "Çamaşırhanenin yakında kapanacağı söyleniyor."
    }
   },
   "uk": {
@@ -2069,6 +2151,34 @@ window.SCENE = {
     "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Der Waschsalon soll bald schließen.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Годинник висить на стіні.",
+    "A2 | Der grüne Pullover liegt auf dem Tisch.": "Зелений светр лежить на столі.",
+    "A2 | Das Mädchen sitzt auf der Bank.": "Дівчинка сидить на лавці.",
+    "A2 | Die Jeans liegt im Korb.": "Джинси лежать у кошику.",
+    "A2 | Das Waschmittel steht auf der Waschmaschine.": "Пральний порошок стоїть на пральній машині.",
+    "A2 | Der Spiegel hängt über dem Heizkörper.": "Дзеркало висить над батареєю.",
+    "A2 | Das Fahrrad steht auf der Straße.": "Велосипед стоїть на вулиці.",
+    "A2 | Die Handtücher liegen im Regal.": "Рушники лежать на полиці.",
+    "B1 | Anna lässt die Waschmaschine laufen.": "Анна запускає пральну машину.",
+    "B1 | Sie lässt den Korb auf dem Boden stehen.": "Вона залишає кошик на підлозі.",
+    "B1 | Die Frau lässt das Mädchen mit dem Handy spielen.": "Жінка дозволяє дівчинці гратися з телефоном.",
+    "B1 | Lass mich dir helfen!": "Дозволь мені тобі допомогти!",
+    "B1 | Ich lasse meine Jacke zu Hause.": "Я залишаю куртку вдома.",
+    "B1 | Anna hat die Jeans im Korb gelassen.": "Анна залишила джинси в кошику.",
+    "B1 | Sie hat die Wäsche waschen lassen.": "Вона віддала білизну в прання.",
+    "B1 | Lasst uns nach Hause gehen!": "Ходімо додому!",
+    "B2 | Die laufende Waschmaschine ist laut.": "Увімкнена пральна машина шумить.",
+    "B2 | Der gefaltete Pullover liegt auf dem Tisch.": "Складений светр лежить на столі.",
+    "B2 | Die lesende Frau sitzt auf der Bank.": "Жінка, яка читає, сидить на лавці.",
+    "B2 | Das Mädchen hält ein ausgeschaltetes Handy.": "Дівчинка тримає вимкнений телефон.",
+    "B2 | Die geschlossene Tür bleibt zu.": "Зачинені двері залишаються зачиненими.",
+    "B2 | Anna hält ein noch ungewaschenes Hemd.": "Анна тримає ще не випрану сорочку.",
+    "C1 | Sie muss lange nicht gewaschen haben.": "Вона, мабуть, давно не прала.",
+    "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "Дівчинка, можливо, онука цієї жінки.",
+    "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "Прання, напевно, буде готове за годину.",
+    "C1 | Der Waschsalon soll bald schließen.": "Кажуть, пральня скоро закриється."
    }
   },
   "fa": {
@@ -2110,6 +2220,34 @@ window.SCENE = {
     "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Der Waschsalon soll bald schließen.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "ساعت روی دیوار آویزان است.",
+    "A2 | Der grüne Pullover liegt auf dem Tisch.": "پلیور سبز روی میز است.",
+    "A2 | Das Mädchen sitzt auf der Bank.": "دختر روی نیمکت نشسته است.",
+    "A2 | Die Jeans liegt im Korb.": "شلوار جین در سبد است.",
+    "A2 | Das Waschmittel steht auf der Waschmaschine.": "پودر لباسشویی روی ماشین لباسشویی است.",
+    "A2 | Der Spiegel hängt über dem Heizkörper.": "آینه بالای شوفاژ آویزان است.",
+    "A2 | Das Fahrrad steht auf der Straße.": "دوچرخه در خیابان است.",
+    "A2 | Die Handtücher liegen im Regal.": "حوله‌ها در قفسه هستند.",
+    "B1 | Anna lässt die Waschmaschine laufen.": "آنا ماشین لباسشویی را روشن می‌گذارد.",
+    "B1 | Sie lässt den Korb auf dem Boden stehen.": "او سبد را روی زمین می‌گذارد.",
+    "B1 | Die Frau lässt das Mädchen mit dem Handy spielen.": "زن می‌گذارد دختر با گوشی بازی کند.",
+    "B1 | Lass mich dir helfen!": "بگذار کمکت کنم!",
+    "B1 | Ich lasse meine Jacke zu Hause.": "من کاپشنم را خانه می‌گذارم.",
+    "B1 | Anna hat die Jeans im Korb gelassen.": "آنا شلوار جین را در سبد گذاشته است.",
+    "B1 | Sie hat die Wäsche waschen lassen.": "او لباس‌ها را داده شسته‌اند.",
+    "B1 | Lasst uns nach Hause gehen!": "بیایید برویم خانه!",
+    "B2 | Die laufende Waschmaschine ist laut.": "ماشین لباسشویی در حال کار پر سر و صداست.",
+    "B2 | Der gefaltete Pullover liegt auf dem Tisch.": "پلیور تاشده روی میز است.",
+    "B2 | Die lesende Frau sitzt auf der Bank.": "زنی که می‌خواند روی نیمکت نشسته است.",
+    "B2 | Das Mädchen hält ein ausgeschaltetes Handy.": "دختر یک گوشی خاموش در دست دارد.",
+    "B2 | Die geschlossene Tür bleibt zu.": "در بسته بسته می‌ماند.",
+    "B2 | Anna hält ein noch ungewaschenes Hemd.": "آنا یک پیراهن هنوز نشسته در دست دارد.",
+    "C1 | Sie muss lange nicht gewaschen haben.": "او حتماً مدت زیادی لباس نشسته است.",
+    "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "دختر شاید نوهٔ آن زن باشد.",
+    "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "لباس‌ها احتمالاً تا یک ساعت دیگر آماده می‌شوند.",
+    "C1 | Der Waschsalon soll bald schließen.": "می‌گویند این لباسشویی به‌زودی بسته می‌شود."
    }
   },
   "ar": {
@@ -2151,6 +2289,34 @@ window.SCENE = {
     "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Der Waschsalon soll bald schließen.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "الساعة معلّقة على الحائط.",
+    "A2 | Der grüne Pullover liegt auf dem Tisch.": "الكنزة الخضراء على الطاولة.",
+    "A2 | Das Mädchen sitzt auf der Bank.": "الفتاة جالسة على المقعد.",
+    "A2 | Die Jeans liegt im Korb.": "بنطال الجينز في السلّة.",
+    "A2 | Das Waschmittel steht auf der Waschmaschine.": "مسحوق الغسيل على الغسّالة.",
+    "A2 | Der Spiegel hängt über dem Heizkörper.": "المرآة معلّقة فوق المدفأة.",
+    "A2 | Das Fahrrad steht auf der Straße.": "الدراجة في الشارع.",
+    "A2 | Die Handtücher liegen im Regal.": "المناشف على الرفّ.",
+    "B1 | Anna lässt die Waschmaschine laufen.": "تشغّل آنا الغسّالة.",
+    "B1 | Sie lässt den Korb auf dem Boden stehen.": "تترك السلّة على الأرض.",
+    "B1 | Die Frau lässt das Mädchen mit dem Handy spielen.": "تدع المرأة الفتاة تلعب بالهاتف.",
+    "B1 | Lass mich dir helfen!": "دعني أساعدك!",
+    "B1 | Ich lasse meine Jacke zu Hause.": "أترك سترتي في البيت.",
+    "B1 | Anna hat die Jeans im Korb gelassen.": "تركت آنا بنطال الجينز في السلّة.",
+    "B1 | Sie hat die Wäsche waschen lassen.": "جعلت الغسيل يُغسل.",
+    "B1 | Lasst uns nach Hause gehen!": "لنذهب إلى البيت!",
+    "B2 | Die laufende Waschmaschine ist laut.": "الغسّالة العاملة صاخبة.",
+    "B2 | Der gefaltete Pullover liegt auf dem Tisch.": "الكنزة المطويّة على الطاولة.",
+    "B2 | Die lesende Frau sitzt auf der Bank.": "المرأة التي تقرأ جالسة على المقعد.",
+    "B2 | Das Mädchen hält ein ausgeschaltetes Handy.": "تحمل الفتاة هاتفاً مطفأً.",
+    "B2 | Die geschlossene Tür bleibt zu.": "الباب المغلق يبقى مغلقاً.",
+    "B2 | Anna hält ein noch ungewaschenes Hemd.": "تحمل آنا قميصاً لم يُغسل بعد.",
+    "C1 | Sie muss lange nicht gewaschen haben.": "لا بدّ أنها لم تغسل منذ وقت طويل.",
+    "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "ربما تكون الفتاة حفيدة المرأة.",
+    "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "على الأرجح يجهز الغسيل خلال ساعة.",
+    "C1 | Der Waschsalon soll bald schließen.": "يُقال إن المغسلة ستُغلق قريباً."
    }
   },
   "pt": {
@@ -2192,6 +2358,34 @@ window.SCENE = {
     "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Der Waschsalon soll bald schließen.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "O relógio está pendurado na parede.",
+    "A2 | Der grüne Pullover liegt auf dem Tisch.": "O suéter verde está na mesa.",
+    "A2 | Das Mädchen sitzt auf der Bank.": "A menina está sentada no banco.",
+    "A2 | Die Jeans liegt im Korb.": "O jeans está na cesta.",
+    "A2 | Das Waschmittel steht auf der Waschmaschine.": "O sabão está em cima da máquina de lavar.",
+    "A2 | Der Spiegel hängt über dem Heizkörper.": "O espelho está pendurado acima do aquecedor.",
+    "A2 | Das Fahrrad steht auf der Straße.": "A bicicleta está na rua.",
+    "A2 | Die Handtücher liegen im Regal.": "As toalhas estão na prateleira.",
+    "B1 | Anna lässt die Waschmaschine laufen.": "Anna deixa a máquina de lavar funcionando.",
+    "B1 | Sie lässt den Korb auf dem Boden stehen.": "Ela deixa a cesta no chão.",
+    "B1 | Die Frau lässt das Mädchen mit dem Handy spielen.": "A mulher deixa a menina brincar com o celular.",
+    "B1 | Lass mich dir helfen!": "Deixa eu te ajudar!",
+    "B1 | Ich lasse meine Jacke zu Hause.": "Deixo a minha jaqueta em casa.",
+    "B1 | Anna hat die Jeans im Korb gelassen.": "Anna deixou o jeans na cesta.",
+    "B1 | Sie hat die Wäsche waschen lassen.": "Ela mandou lavar a roupa.",
+    "B1 | Lasst uns nach Hause gehen!": "Vamos para casa!",
+    "B2 | Die laufende Waschmaschine ist laut.": "A máquina de lavar funcionando é barulhenta.",
+    "B2 | Der gefaltete Pullover liegt auf dem Tisch.": "O suéter dobrado está na mesa.",
+    "B2 | Die lesende Frau sitzt auf der Bank.": "A mulher que lê está sentada no banco.",
+    "B2 | Das Mädchen hält ein ausgeschaltetes Handy.": "A menina segura um celular desligado.",
+    "B2 | Die geschlossene Tür bleibt zu.": "A porta fechada continua fechada.",
+    "B2 | Anna hält ein noch ungewaschenes Hemd.": "Anna segura uma camisa ainda não lavada.",
+    "C1 | Sie muss lange nicht gewaschen haben.": "Ela deve estar há muito tempo sem lavar roupa.",
+    "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "A menina talvez seja a neta da mulher.",
+    "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "A roupa provavelmente fica pronta em uma hora.",
+    "C1 | Der Waschsalon soll bald schließen.": "Dizem que a lavanderia vai fechar em breve."
    }
   },
   "pl": {
@@ -2233,6 +2427,34 @@ window.SCENE = {
     "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Der Waschsalon soll bald schließen.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Zegar wisi na ścianie.",
+    "A2 | Der grüne Pullover liegt auf dem Tisch.": "Zielony sweter leży na stole.",
+    "A2 | Das Mädchen sitzt auf der Bank.": "Dziewczynka siedzi na ławce.",
+    "A2 | Die Jeans liegt im Korb.": "Dżinsy leżą w koszu.",
+    "A2 | Das Waschmittel steht auf der Waschmaschine.": "Proszek do prania stoi na pralce.",
+    "A2 | Der Spiegel hängt über dem Heizkörper.": "Lustro wisi nad grzejnikiem.",
+    "A2 | Das Fahrrad steht auf der Straße.": "Rower stoi na ulicy.",
+    "A2 | Die Handtücher liegen im Regal.": "Ręczniki leżą na półce.",
+    "B1 | Anna lässt die Waschmaschine laufen.": "Anna uruchamia pralkę.",
+    "B1 | Sie lässt den Korb auf dem Boden stehen.": "Zostawia kosz na podłodze.",
+    "B1 | Die Frau lässt das Mädchen mit dem Handy spielen.": "Kobieta pozwala dziewczynce bawić się telefonem.",
+    "B1 | Lass mich dir helfen!": "Pozwól, że ci pomogę!",
+    "B1 | Ich lasse meine Jacke zu Hause.": "Zostawiam kurtkę w domu.",
+    "B1 | Anna hat die Jeans im Korb gelassen.": "Anna zostawiła dżinsy w koszu.",
+    "B1 | Sie hat die Wäsche waschen lassen.": "Oddała pranie do prania.",
+    "B1 | Lasst uns nach Hause gehen!": "Chodźmy do domu!",
+    "B2 | Die laufende Waschmaschine ist laut.": "Pracująca pralka jest głośna.",
+    "B2 | Der gefaltete Pullover liegt auf dem Tisch.": "Złożony sweter leży na stole.",
+    "B2 | Die lesende Frau sitzt auf der Bank.": "Czytająca kobieta siedzi na ławce.",
+    "B2 | Das Mädchen hält ein ausgeschaltetes Handy.": "Dziewczynka trzyma wyłączony telefon.",
+    "B2 | Die geschlossene Tür bleibt zu.": "Zamknięte drzwi pozostają zamknięte.",
+    "B2 | Anna hält ein noch ungewaschenes Hemd.": "Anna trzyma jeszcze niewypraną koszulę.",
+    "C1 | Sie muss lange nicht gewaschen haben.": "Musiała długo nie robić prania.",
+    "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "Dziewczynka być może jest wnuczką tej kobiety.",
+    "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "Pranie zapewne będzie gotowe za godzinę.",
+    "C1 | Der Waschsalon soll bald schließen.": "Podobno pralnia wkrótce się zamyka."
    }
   },
   "ru": {
@@ -2274,6 +2496,34 @@ window.SCENE = {
     "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Der Waschsalon soll bald schließen.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
+    "A2 | Der grüne Pullover liegt auf dem Tisch.": "Зелёный свитер лежит на столе.",
+    "A2 | Das Mädchen sitzt auf der Bank.": "Девочка сидит на скамейке.",
+    "A2 | Die Jeans liegt im Korb.": "Джинсы лежат в корзине.",
+    "A2 | Das Waschmittel steht auf der Waschmaschine.": "Стиральный порошок стоит на стиральной машине.",
+    "A2 | Der Spiegel hängt über dem Heizkörper.": "Зеркало висит над батареей.",
+    "A2 | Das Fahrrad steht auf der Straße.": "Велосипед стоит на улице.",
+    "A2 | Die Handtücher liegen im Regal.": "Полотенца лежат на полке.",
+    "B1 | Anna lässt die Waschmaschine laufen.": "Анна запускает стиральную машину.",
+    "B1 | Sie lässt den Korb auf dem Boden stehen.": "Она оставляет корзину на полу.",
+    "B1 | Die Frau lässt das Mädchen mit dem Handy spielen.": "Женщина разрешает девочке играть с телефоном.",
+    "B1 | Lass mich dir helfen!": "Дай я тебе помогу!",
+    "B1 | Ich lasse meine Jacke zu Hause.": "Я оставляю куртку дома.",
+    "B1 | Anna hat die Jeans im Korb gelassen.": "Анна оставила джинсы в корзине.",
+    "B1 | Sie hat die Wäsche waschen lassen.": "Она отдала бельё в стирку.",
+    "B1 | Lasst uns nach Hause gehen!": "Пойдёмте домой!",
+    "B2 | Die laufende Waschmaschine ist laut.": "Работающая стиральная машина шумит.",
+    "B2 | Der gefaltete Pullover liegt auf dem Tisch.": "Сложенный свитер лежит на столе.",
+    "B2 | Die lesende Frau sitzt auf der Bank.": "Читающая женщина сидит на скамейке.",
+    "B2 | Das Mädchen hält ein ausgeschaltetes Handy.": "Девочка держит выключенный телефон.",
+    "B2 | Die geschlossene Tür bleibt zu.": "Закрытая дверь остаётся закрытой.",
+    "B2 | Anna hält ein noch ungewaschenes Hemd.": "Анна держит ещё не стиранную рубашку.",
+    "C1 | Sie muss lange nicht gewaschen haben.": "Она, должно быть, давно не стирала.",
+    "C1 | Das Mädchen könnte die Enkelin der Frau sein.": "Девочка, возможно, внучка женщины.",
+    "C1 | Die Wäsche dürfte in einer Stunde fertig sein.": "Бельё, вероятно, будет готово через час.",
+    "C1 | Der Waschsalon soll bald schließen.": "Говорят, прачечная скоро закроется."
    }
   }
  }

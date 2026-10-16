@@ -1674,6 +1674,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
      "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1686,6 +1687,7 @@ window.SCENE = {
      "f": "schluessel",
      "r": "regal",
      "phrase": "Die Schlüssel hängen im Regal.",
+     "sens": "Les clés sont accrochées dans le casier.",
      "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
     },
     {
@@ -1698,6 +1700,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "boden",
      "phrase": "Der Koffer steht auf dem Boden.",
+     "sens": "La valise est par terre.",
      "n": "der Boden → auf <b>dem</b> Boden."
     },
     {
@@ -1710,6 +1713,7 @@ window.SCENE = {
      "f": "frau",
      "r": "sofa",
      "phrase": "Die Frau sitzt auf dem Sofa.",
+     "sens": "La femme est assise sur le canapé.",
      "n": "das Sofa → auf <b>dem</b> Sofa."
     },
     {
@@ -1722,6 +1726,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "couchtisch",
      "phrase": "Die Tasse steht auf dem Couchtisch.",
+     "sens": "La tasse est sur la table basse.",
      "n": "der Couchtisch → auf <b>dem</b> Couchtisch."
     },
     {
@@ -1734,6 +1739,7 @@ window.SCENE = {
      "f": "klingel",
      "r": "rezeption",
      "phrase": "Die Klingel steht auf der Rezeption.",
+     "sens": "La sonnette est sur le comptoir de la réception.",
      "n": "die Rezeption → auf <b>der</b> Rezeption : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1746,6 +1752,7 @@ window.SCENE = {
      "f": "bild",
      "r": "sofa",
      "phrase": "Das Bild hängt über dem Sofa.",
+     "sens": "Le tableau est accroché au-dessus du canapé.",
      "n": "<b>über</b> = au-dessus de. das Sofa → über <b>dem</b> Sofa."
     },
     {
@@ -1758,6 +1765,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "spiegel",
      "phrase": "Die Lampe steht neben dem Spiegel.",
+     "sens": "La lampe est à côté du miroir.",
      "n": "<b>neben</b> = à côté de. der Spiegel → neben <b>dem</b> Spiegel."
     }
    ]
@@ -1774,6 +1782,7 @@ window.SCENE = {
      ],
      "f": "tasse",
      "phrase": "Das Frühstück gibt es ab sieben Uhr.",
+     "sens": "Le petit-déjeuner est servi à partir de sept heures.",
      "n": "<b>ab</b> + heure = à partir de."
     },
     {
@@ -1785,6 +1794,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark kommt am Freitagabend an.",
+     "sens": "Mark arrive vendredi soir.",
      "n": "<b>am</b> + jour ou moment de la journée : am Freitagabend.",
      "revise": {
       "mot": "ankommen",
@@ -1801,6 +1811,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "mark",
      "phrase": "Er bleibt bis Sonntag.",
+     "sens": "Il reste jusqu'à dimanche.",
      "n": "<b>bis</b> + jour = jusqu'à.",
      "revise": {
       "mot": "bleiben",
@@ -1816,6 +1827,7 @@ window.SCENE = {
      ],
      "f": "schluessel-2",
      "phrase": "Das Zimmer ist um drei Uhr fertig.",
+     "sens": "La chambre est prête à trois heures.",
      "n": "<b>um</b> + heure précise."
     },
     {
@@ -1827,6 +1839,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Im Winter ist das Hotel ruhig.",
+     "sens": "En hiver, l'hôtel est calme.",
      "n": "<b>im</b> + saison ou mois : im Winter."
     },
     {
@@ -1838,6 +1851,7 @@ window.SCENE = {
      ],
      "f": "rezeption",
      "phrase": "Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.",
+     "sens": "La réception est ouverte de sept heures à vingt-trois heures.",
      "n": "<b>von … bis</b> = de… à."
     },
     {
@@ -1849,6 +1863,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Nach dem Frühstück geht Mark in die Stadt.",
+     "sens": "Après le petit-déjeuner, Mark va en ville.",
      "n": "<b>nach</b> + datif = après : nach dem Frühstück.",
      "revise": {
       "mot": "gehen",
@@ -1865,6 +1880,7 @@ window.SCENE = {
      "f": "zeitung",
      "r": "frau",
      "phrase": "Die Frau liest am Abend Zeitung.",
+     "sens": "Le soir, la femme lit le journal.",
      "n": "<b>am</b> Abend, am Morgen : les moments de la journée.",
      "revise": {
       "mot": "lesen",
@@ -1886,6 +1902,7 @@ window.SCENE = {
      "f": "mark",
      "r": "frau",
      "phrase": "Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.",
+     "sens": "Pendant que Mark attend la clé, la femme lit le journal.",
      "n": "<b>während</b> = pendant que (deux actions en même temps), verbe à la fin.",
      "revise": {
       "mot": "warten",
@@ -1902,6 +1919,7 @@ window.SCENE = {
      "f": "schluessel-2",
      "r": "mark",
      "phrase": "Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.",
+     "sens": "Dès que Mark a la clé, il monte dans sa chambre.",
      "n": "<b>sobald</b> = dès que.",
      "revise": {
       "mot": "gehen",
@@ -1917,6 +1935,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Die Frau bleibt im Hotel, solange es regnet.",
+     "sens": "La femme reste à l'hôtel tant qu'il pleut.",
      "n": "<b>solange</b> = tant que.",
      "revise": {
       "mot": "regnen",
@@ -1933,6 +1952,7 @@ window.SCENE = {
      "f": "mann",
      "r": "schluessel-2",
      "phrase": "Der Mann lächelt, während er Mark den Schlüssel gibt.",
+     "sens": "L'homme sourit en donnant la clé à Mark.",
      "n": "Après <b>während</b>, le verbe conjugué va à la fin : gibt.",
      "revise": {
       "mot": "geben",
@@ -1948,6 +1968,7 @@ window.SCENE = {
      ],
      "f": "telefon",
      "phrase": "Sobald das Zimmer fertig ist, ruft die Rezeption an.",
+     "sens": "Dès que la chambre est prête, la réception appelle.",
      "n": "<b>sobald</b> + présent, verbe à la fin : ist.",
      "revise": {
       "mot": "anrufen",
@@ -1964,6 +1985,7 @@ window.SCENE = {
      "f": "treppe",
      "r": "aufzug",
      "phrase": "Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.",
+     "sens": "Tant que l'ascenseur est en panne, les clients prennent l'escalier.",
      "n": "Après la subordonnée, la principale commence par le verbe, puis le sujet (die Gäste → nehmen).",
      "revise": {
       "mot": "nehmen",
@@ -1984,6 +2006,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Er muss sich auf das Wochenende freuen.",
+     "sens": "Il doit se réjouir du week-end.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1996,6 +2019,7 @@ window.SCENE = {
      "f": "frau",
      "r": "sofa",
      "phrase": "Die alte Dame könnte Stammgast sein.",
+     "sens": "La vieille dame est peut-être une habituée.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -2007,6 +2031,7 @@ window.SCENE = {
      ],
      "f": "treppe",
      "phrase": "Das Zimmer dürfte im zweiten Stock liegen.",
+     "sens": "La chambre doit être au deuxième étage.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -2018,6 +2043,7 @@ window.SCENE = {
      ],
      "f": "rezeption",
      "phrase": "Dieses Hotel soll das älteste in Hamburg sein.",
+     "sens": "Cet hôtel serait le plus ancien de Hambourg.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -2063,6 +2089,34 @@ window.SCENE = {
     "C1 | Die alte Dame könnte Stammgast sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "The clock hangs on the wall.",
+    "A2 | Die Schlüssel hängen im Regal.": "The keys hang in the rack.",
+    "A2 | Der Koffer steht auf dem Boden.": "The suitcase is on the floor.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "The woman is sitting on the sofa.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "The cup is on the coffee table.",
+    "A2 | Die Klingel steht auf der Rezeption.": "The bell is on the reception desk.",
+    "A2 | Das Bild hängt über dem Sofa.": "The picture hangs above the sofa.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "The lamp is next to the mirror.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "Breakfast is served from seven o'clock.",
+    "B1 | Mark kommt am Freitagabend an.": "Mark arrives on Friday evening.",
+    "B1 | Er bleibt bis Sonntag.": "He is staying until Sunday.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "The room is ready at three o'clock.",
+    "B1 | Im Winter ist das Hotel ruhig.": "In winter the hotel is quiet.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "The reception is staffed from 7 a.m. to 11 p.m.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "After breakfast, Mark goes into town.",
+    "B1 | Die Frau liest am Abend Zeitung.": "In the evening the woman reads the newspaper.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "While Mark waits for the key, the woman reads the newspaper.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "As soon as Mark has the key, he goes to his room.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "The woman stays in the hotel as long as it rains.",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "The man smiles as he gives Mark the key.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "As soon as the room is ready, the reception calls.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "As long as the lift is broken, the guests take the stairs.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "He must be looking forward to the weekend.",
+    "C1 | Die alte Dame könnte Stammgast sein.": "The old lady might be a regular guest.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "The room is probably on the second floor.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "This hotel is said to be the oldest in Hamburg."
    }
   },
   "tr": {
@@ -2104,6 +2158,34 @@ window.SCENE = {
     "C1 | Die alte Dame könnte Stammgast sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Saat duvarda asılı.",
+    "A2 | Die Schlüssel hängen im Regal.": "Anahtarlar rafta asılı.",
+    "A2 | Der Koffer steht auf dem Boden.": "Bavul yerde duruyor.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "Kadın kanepede oturuyor.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "Fincan sehpanın üstünde duruyor.",
+    "A2 | Die Klingel steht auf der Rezeption.": "Zil resepsiyonun üstünde duruyor.",
+    "A2 | Das Bild hängt über dem Sofa.": "Tablo kanepenin üstünde asılı.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "Lamba aynanın yanında duruyor.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "Kahvaltı saat yediden itibaren var.",
+    "B1 | Mark kommt am Freitagabend an.": "Mark cuma akşamı varıyor.",
+    "B1 | Er bleibt bis Sonntag.": "Pazara kadar kalıyor.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "Oda saat üçte hazır.",
+    "B1 | Im Winter ist das Hotel ruhig.": "Kışın otel sakin.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "Resepsiyon yediden yirmi üçe kadar açık.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "Kahvaltıdan sonra Mark şehre iniyor.",
+    "B1 | Die Frau liest am Abend Zeitung.": "Kadın akşamları gazete okuyor.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "Mark anahtarı beklerken kadın gazete okuyor.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "Mark anahtarı alır almaz odasına çıkıyor.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "Yağmur yağdığı sürece kadın otelde kalıyor.",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "Adam Mark'a anahtarı verirken gülümsüyor.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "Oda hazır olur olmaz resepsiyon arıyor.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "Asansör bozuk olduğu sürece misafirler merdiveni kullanıyor.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "Hafta sonunu iple çekiyor olmalı.",
+    "C1 | Die alte Dame könnte Stammgast sein.": "Yaşlı hanım müdavim olabilir.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "Oda ikinci katta olsa gerek.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "Bu otelin Hamburg'un en eskisi olduğu söyleniyor."
    }
   },
   "uk": {
@@ -2145,6 +2227,34 @@ window.SCENE = {
     "C1 | Die alte Dame könnte Stammgast sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Годинник висить на стіні.",
+    "A2 | Die Schlüssel hängen im Regal.": "Ключі висять на полиці.",
+    "A2 | Der Koffer steht auf dem Boden.": "Валіза стоїть на підлозі.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "Жінка сидить на дивані.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "Чашка стоїть на журнальному столику.",
+    "A2 | Die Klingel steht auf der Rezeption.": "Дзвінок стоїть на стійці реєстрації.",
+    "A2 | Das Bild hängt über dem Sofa.": "Картина висить над диваном.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "Лампа стоїть біля дзеркала.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "Сніданок подають із сьомої години.",
+    "B1 | Mark kommt am Freitagabend an.": "Марк приїжджає в п'ятницю ввечері.",
+    "B1 | Er bleibt bis Sonntag.": "Він залишається до неділі.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "Кімната буде готова о третій.",
+    "B1 | Im Winter ist das Hotel ruhig.": "Узимку в готелі тихо.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "Рецепція працює із сьомої до двадцять третьої години.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "Після сніданку Марк іде в місто.",
+    "B1 | Die Frau liest am Abend Zeitung.": "Увечері жінка читає газету.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "Поки Марк чекає на ключ, жінка читає газету.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "Щойно Марк отримає ключ, він піде до свого номера.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "Жінка залишається в готелі, поки йде дощ.",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "Чоловік усміхається, даючи Марку ключ.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "Щойно кімната буде готова, рецепція зателефонує.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "Поки ліфт зламаний, гості ходять сходами.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "Він, мабуть, дуже чекає на вихідні.",
+    "C1 | Die alte Dame könnte Stammgast sein.": "Літня пані, можливо, постійна гостя.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "Кімната, напевно, на другому поверсі.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "Кажуть, цей готель — найстаріший у Гамбурзі."
    }
   },
   "fa": {
@@ -2186,6 +2296,34 @@ window.SCENE = {
     "C1 | Die alte Dame könnte Stammgast sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "ساعت روی دیوار آویزان است.",
+    "A2 | Die Schlüssel hängen im Regal.": "کلیدها در قفسه آویزان هستند.",
+    "A2 | Der Koffer steht auf dem Boden.": "چمدان روی زمین است.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "زن روی کاناپه نشسته است.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "فنجان روی میز جلومبلی است.",
+    "A2 | Die Klingel steht auf der Rezeption.": "زنگ روی میز پذیرش است.",
+    "A2 | Das Bild hängt über dem Sofa.": "تابلو بالای کاناپه آویزان است.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "چراغ کنار آینه است.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "صبحانه از ساعت هفت سرو می‌شود.",
+    "B1 | Mark kommt am Freitagabend an.": "مارک جمعه شب می‌رسد.",
+    "B1 | Er bleibt bis Sonntag.": "او تا یکشنبه می‌ماند.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "اتاق ساعت سه آماده است.",
+    "B1 | Im Winter ist das Hotel ruhig.": "در زمستان هتل آرام است.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "پذیرش از ساعت هفت تا بیست‌وسه باز است.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "مارک بعد از صبحانه به شهر می‌رود.",
+    "B1 | Die Frau liest am Abend Zeitung.": "زن شب‌ها روزنامه می‌خواند.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "در حالی که مارک منتظر کلید است، زن روزنامه می‌خواند.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "به‌محض اینکه مارک کلید را بگیرد، به اتاقش می‌رود.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "تا وقتی باران می‌بارد، زن در هتل می‌ماند.",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "مرد در حالی که کلید را به مارک می‌دهد، لبخند می‌زند.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "به‌محض اینکه اتاق آماده شود، پذیرش زنگ می‌زند.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "تا وقتی آسانسور خراب است، مهمان‌ها از پله می‌روند.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "او حتماً از این آخر هفته خوشحال است.",
+    "C1 | Die alte Dame könnte Stammgast sein.": "خانم مسن شاید مهمان همیشگی باشد.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "اتاق احتمالاً در طبقهٔ دوم است.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "می‌گویند این هتل قدیمی‌ترین هتل هامبورگ است."
    }
   },
   "ar": {
@@ -2227,6 +2365,34 @@ window.SCENE = {
     "C1 | Die alte Dame könnte Stammgast sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "الساعة معلّقة على الحائط.",
+    "A2 | Die Schlüssel hängen im Regal.": "المفاتيح معلّقة في الرفّ.",
+    "A2 | Der Koffer steht auf dem Boden.": "الحقيبة على الأرض.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "المرأة جالسة على الأريكة.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "الفنجان على الطاولة الصغيرة.",
+    "A2 | Die Klingel steht auf der Rezeption.": "الجرس على مكتب الاستقبال.",
+    "A2 | Das Bild hängt über dem Sofa.": "اللوحة معلّقة فوق الأريكة.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "المصباح بجانب المرآة.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "يُقدَّم الفطور ابتداءً من الساعة السابعة.",
+    "B1 | Mark kommt am Freitagabend an.": "يصل مارك مساء الجمعة.",
+    "B1 | Er bleibt bis Sonntag.": "يبقى حتى يوم الأحد.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "الغرفة جاهزة في الساعة الثالثة.",
+    "B1 | Im Winter ist das Hotel ruhig.": "في الشتاء يكون الفندق هادئاً.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "الاستقبال مفتوح من السابعة صباحاً حتى الحادية عشرة ليلاً.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "بعد الفطور يذهب مارك إلى المدينة.",
+    "B1 | Die Frau liest am Abend Zeitung.": "تقرأ المرأة الجريدة في المساء.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "بينما ينتظر مارك المفتاح، تقرأ المرأة الجريدة.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "حالما يحصل مارك على المفتاح، يصعد إلى غرفته.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "تبقى المرأة في الفندق ما دامت تمطر.",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "يبتسم الرجل وهو يعطي مارك المفتاح.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "حالما تجهز الغرفة، يتّصل الاستقبال.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "ما دام المصعد معطّلاً، يستخدم النزلاء الدرج.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "لا بدّ أنه متشوّق إلى عطلة نهاية الأسبوع.",
+    "C1 | Die alte Dame könnte Stammgast sein.": "ربما تكون السيّدة العجوز نزيلة دائمة.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "على الأرجح الغرفة في الطابق الثاني.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "يُقال إن هذا الفندق هو الأقدم في هامبورغ."
    }
   },
   "pt": {
@@ -2268,6 +2434,34 @@ window.SCENE = {
     "C1 | Die alte Dame könnte Stammgast sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "O relógio está pendurado na parede.",
+    "A2 | Die Schlüssel hängen im Regal.": "As chaves estão penduradas na estante.",
+    "A2 | Der Koffer steht auf dem Boden.": "A mala está no chão.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "A mulher está sentada no sofá.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "A xícara está na mesa de centro.",
+    "A2 | Die Klingel steht auf der Rezeption.": "A campainha está no balcão da recepção.",
+    "A2 | Das Bild hängt über dem Sofa.": "O quadro está pendurado acima do sofá.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "O abajur está ao lado do espelho.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "O café da manhã é servido a partir das sete.",
+    "B1 | Mark kommt am Freitagabend an.": "Mark chega na sexta à noite.",
+    "B1 | Er bleibt bis Sonntag.": "Ele fica até domingo.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "O quarto fica pronto às três horas.",
+    "B1 | Im Winter ist das Hotel ruhig.": "No inverno o hotel é tranquilo.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "A recepção funciona das sete às vinte e três horas.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "Depois do café da manhã, Mark vai à cidade.",
+    "B1 | Die Frau liest am Abend Zeitung.": "À noite a mulher lê o jornal.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "Enquanto Mark espera a chave, a mulher lê o jornal.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "Assim que Mark tiver a chave, vai para o quarto.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "A mulher fica no hotel enquanto chove.",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "O homem sorri enquanto dá a chave a Mark.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "Assim que o quarto estiver pronto, a recepção liga.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "Enquanto o elevador está quebrado, os hóspedes usam a escada.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "Ele deve estar ansioso pelo fim de semana.",
+    "C1 | Die alte Dame könnte Stammgast sein.": "A senhora idosa talvez seja hóspede habitual.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "O quarto provavelmente fica no segundo andar.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "Dizem que este hotel é o mais antigo de Hamburgo."
    }
   },
   "pl": {
@@ -2309,6 +2503,34 @@ window.SCENE = {
     "C1 | Die alte Dame könnte Stammgast sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Zegar wisi na ścianie.",
+    "A2 | Die Schlüssel hängen im Regal.": "Klucze wiszą na półce.",
+    "A2 | Der Koffer steht auf dem Boden.": "Walizka stoi na podłodze.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "Kobieta siedzi na kanapie.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "Filiżanka stoi na stoliku.",
+    "A2 | Die Klingel steht auf der Rezeption.": "Dzwonek stoi na recepcji.",
+    "A2 | Das Bild hängt über dem Sofa.": "Obraz wisi nad kanapą.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "Lampa stoi obok lustra.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "Śniadanie jest od siódmej.",
+    "B1 | Mark kommt am Freitagabend an.": "Mark przyjeżdża w piątek wieczorem.",
+    "B1 | Er bleibt bis Sonntag.": "Zostaje do niedzieli.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "Pokój jest gotowy o trzeciej.",
+    "B1 | Im Winter ist das Hotel ruhig.": "Zimą w hotelu jest spokojnie.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "Recepcja jest czynna od siódmej do dwudziestej trzeciej.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "Po śniadaniu Mark idzie do miasta.",
+    "B1 | Die Frau liest am Abend Zeitung.": "Wieczorem kobieta czyta gazetę.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "Podczas gdy Mark czeka na klucz, kobieta czyta gazetę.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "Gdy tylko Mark dostanie klucz, idzie do swojego pokoju.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "Kobieta zostaje w hotelu, dopóki pada.",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "Mężczyzna uśmiecha się, dając Markowi klucz.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "Gdy tylko pokój będzie gotowy, recepcja zadzwoni.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "Dopóki winda jest zepsuta, goście chodzą schodami.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "Musi cieszyć się na weekend.",
+    "C1 | Die alte Dame könnte Stammgast sein.": "Starsza pani być może jest stałym gościem.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "Pokój jest zapewne na drugim piętrze.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "Podobno ten hotel jest najstarszy w Hamburgu."
    }
   },
   "ru": {
@@ -2350,6 +2572,34 @@ window.SCENE = {
     "C1 | Die alte Dame könnte Stammgast sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
+    "A2 | Die Schlüssel hängen im Regal.": "Ключи висят на полке.",
+    "A2 | Der Koffer steht auf dem Boden.": "Чемодан стоит на полу.",
+    "A2 | Die Frau sitzt auf dem Sofa.": "Женщина сидит на диване.",
+    "A2 | Die Tasse steht auf dem Couchtisch.": "Чашка стоит на журнальном столике.",
+    "A2 | Die Klingel steht auf der Rezeption.": "Звонок стоит на стойке регистрации.",
+    "A2 | Das Bild hängt über dem Sofa.": "Картина висит над диваном.",
+    "A2 | Die Lampe steht neben dem Spiegel.": "Лампа стоит рядом с зеркалом.",
+    "B1 | Das Frühstück gibt es ab sieben Uhr.": "Завтрак подают с семи часов.",
+    "B1 | Mark kommt am Freitagabend an.": "Марк приезжает в пятницу вечером.",
+    "B1 | Er bleibt bis Sonntag.": "Он остаётся до воскресенья.",
+    "B1 | Das Zimmer ist um drei Uhr fertig.": "Номер готов в три часа.",
+    "B1 | Im Winter ist das Hotel ruhig.": "Зимой в отеле тихо.",
+    "B1 | Die Rezeption ist von sieben bis dreiundzwanzig Uhr besetzt.": "Ресепшен работает с семи до двадцати трёх часов.",
+    "B1 | Nach dem Frühstück geht Mark in die Stadt.": "После завтрака Марк идёт в город.",
+    "B1 | Die Frau liest am Abend Zeitung.": "Вечером женщина читает газету.",
+    "B2 | Während Mark auf den Schlüssel wartet, liest die Frau Zeitung.": "Пока Марк ждёт ключ, женщина читает газету.",
+    "B2 | Sobald Mark den Schlüssel hat, geht er auf sein Zimmer.": "Как только Марк получит ключ, он пойдёт в свой номер.",
+    "B2 | Die Frau bleibt im Hotel, solange es regnet.": "Женщина остаётся в отеле, пока идёт дождь.",
+    "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "Мужчина улыбается, отдавая Марку ключ.",
+    "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "Как только номер будет готов, ресепшен позвонит.",
+    "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "Пока лифт сломан, гости ходят по лестнице.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "Он, должно быть, с нетерпением ждёт выходных.",
+    "C1 | Die alte Dame könnte Stammgast sein.": "Пожилая дама, возможно, постоянная гостья.",
+    "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "Номер, вероятно, на втором этаже.",
+    "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "Говорят, этот отель — самый старый в Гамбурге."
    }
   }
  }

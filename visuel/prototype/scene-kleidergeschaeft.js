@@ -1455,6 +1455,7 @@ window.SCENE = {
      "f": "hut",
      "r": "regal",
      "phrase": "Der Hut ist auf dem Regal.",
+     "sens": "Le chapeau est sur l'étagère.",
      "n": "<b>Wo?</b> → datif : das Regal → auf <b>dem</b> Regal."
     },
     {
@@ -1467,6 +1468,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "bank",
      "phrase": "Der Mann sitzt auf der Bank.",
+     "sens": "L'homme est assis sur le banc.",
      "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1479,6 +1481,7 @@ window.SCENE = {
      "f": "hocker",
      "r": "spiegel",
      "phrase": "Der Hocker steht vor dem Spiegel.",
+     "sens": "Le tabouret est devant le miroir.",
      "n": "<b>vor</b> = devant. der Spiegel → vor <b>dem</b> Spiegel."
     },
     {
@@ -1491,6 +1494,7 @@ window.SCENE = {
      "f": "guertel",
      "r": "krawatte",
      "phrase": "Der Gürtel hängt neben der Krawatte.",
+     "sens": "La ceinture est accrochée à côté de la cravate.",
      "n": "die Krawatte → neben <b>der</b> Krawatte."
     },
     {
@@ -1503,6 +1507,7 @@ window.SCENE = {
      "f": "socken",
      "r": "korb",
      "phrase": "Die Socken sind im Korb.",
+     "sens": "Les chaussettes sont dans le panier.",
      "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
     },
     {
@@ -1515,6 +1520,7 @@ window.SCENE = {
      "f": "anna",
      "r": "kabine",
      "phrase": "Anna steht vor der Umkleidekabine.",
+     "sens": "Anna est devant la cabine d'essayage.",
      "n": "die Umkleidekabine → vor <b>der</b> Umkleidekabine."
     },
     {
@@ -1527,6 +1533,7 @@ window.SCENE = {
      "f": "schuh-sol",
      "r": "boden",
      "phrase": "Der zweite Schuh steht auf dem Boden.",
+     "sens": "La deuxième chaussure est par terre.",
      "n": "der Boden → auf <b>dem</b> Boden."
     },
     {
@@ -1539,6 +1546,7 @@ window.SCENE = {
      "f": "kleid",
      "r": "rock",
      "phrase": "Das Kleid hängt neben dem Rock.",
+     "sens": "La robe est accrochée à côté de la jupe.",
      "n": "der Rock → neben <b>dem</b> Rock."
     }
    ]
@@ -1556,6 +1564,7 @@ window.SCENE = {
      "f": "pullover",
      "r": "anna",
      "phrase": "Anna hält einen gelben Pullover.",
+     "sens": "Anna tient un pull jaune.",
      "revise": {
       "mot": "halten",
       "cat": "verbe"
@@ -1571,6 +1580,7 @@ window.SCENE = {
      ],
      "f": "kleid",
      "phrase": "Das rote Kleid hängt ganz links.",
+     "sens": "La robe rouge est accrochée tout à gauche.",
      "n": "Après <b>das</b>, au nominatif : <b>-e</b>. L'article montre déjà le genre."
     },
     {
@@ -1583,6 +1593,7 @@ window.SCENE = {
      "f": "schuh-main",
      "r": "monsieur",
      "phrase": "Der Mann probiert einen braunen Schuh an.",
+     "sens": "L'homme essaie une chaussure marron.",
      "n": "<b>einen</b> (accusatif masculin) → <b>-en</b>."
     },
     {
@@ -1595,6 +1606,7 @@ window.SCENE = {
      "f": "schal",
      "r": "verkaeuferin",
      "phrase": "Die Verkäuferin faltet einen gestreiften Schal.",
+     "sens": "La vendeuse plie une écharpe rayée.",
      "n": "Même règle : <b>einen</b> → gestreift<b>en</b> (rayé)."
     },
     {
@@ -1607,6 +1619,7 @@ window.SCENE = {
      "f": "tasche-noire",
      "r": "regal",
      "phrase": "Auf dem Regal steht eine schwarze Tasche.",
+     "sens": "Sur l'étagère, il y a un sac noir.",
      "n": "<b>eine</b> + féminin, au nominatif → <b>-e</b>."
     },
     {
@@ -1619,6 +1632,7 @@ window.SCENE = {
      "f": "hose-anna",
      "r": "anna",
      "phrase": "Anna trägt eine hellblaue Hose.",
+     "sens": "Anna porte un pantalon bleu clair.",
      "revise": {
       "mot": "tragen",
       "cat": "verbe"
@@ -1634,6 +1648,7 @@ window.SCENE = {
      ],
      "f": "monsieur",
      "phrase": "Der Mann mit den grauen Haaren probiert Schuhe an.",
+     "sens": "L'homme aux cheveux gris essaie des chaussures.",
      "n": "<b>mit</b> → datif ; au datif pluriel, l'adjectif prend toujours <b>-en</b>."
     },
     {
@@ -1646,6 +1661,7 @@ window.SCENE = {
      "f": "mantel",
      "r": "anzug",
      "phrase": "Ein brauner Mantel hängt neben dem Anzug.",
+     "sens": "Un manteau marron est accroché à côté du costume.",
      "n": "<b>ein</b> ne dit pas le genre : c'est l'adjectif qui le montre → braun<b>er</b> (masculin)."
     }
    ]
@@ -1663,6 +1679,7 @@ window.SCENE = {
      "f": "anna",
      "r": "pullover",
      "phrase": "Die Frau, die den gelben Pullover hält, heißt Anna.",
+     "sens": "La femme qui tient le pull jaune s'appelle Anna.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -1675,6 +1692,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "schuh-sol",
      "phrase": "Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.",
+     "sens": "L'homme dont la chaussure est encore par terre essaie l'autre.",
      "n": "Possession, antécédent masculin → <b>dessen</b> (dont la chaussure)."
     },
     {
@@ -1687,6 +1705,7 @@ window.SCENE = {
      "f": "spiegel",
      "r": "hocker",
      "phrase": "Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.",
+     "sens": "Le miroir devant lequel est le tabouret a un cadre en bois.",
      "n": "<b>vor</b> + Wo? → datif : der Spiegel → vor <b>dem</b>."
     },
     {
@@ -1699,6 +1718,7 @@ window.SCENE = {
      "f": "socken",
      "r": "korb",
      "phrase": "Die Socken, die im Korb liegen, sind bunt.",
+     "sens": "Les chaussettes qui sont dans le panier sont multicolores.",
      "n": "Sujet de la relative, pluriel → <b>die</b>. <b>denen</b> serait le datif pluriel."
     },
     {
@@ -1711,6 +1731,7 @@ window.SCENE = {
      "f": "pullover-stapel",
      "r": "regal",
      "phrase": "Die Pullover im Regal sind ordentlich gefaltet.",
+     "sens": "Les pulls sur l'étagère sont soigneusement pliés.",
      "n": "<b>sein</b> + participe = passif d'état : le résultat. <b>falten</b> est régulier → gefaltet."
     },
     {
@@ -1723,6 +1744,7 @@ window.SCENE = {
      "f": "schal",
      "r": "verkaeuferin",
      "phrase": "Der Schal wird gerade von der Verkäuferin gefaltet.",
+     "sens": "L'écharpe est en train d'être pliée par la vendeuse.",
      "n": "L'action en cours → passif avec <b>werden</b>. Le résultat serait <b>ist</b> gefaltet."
     }
    ]
@@ -1740,6 +1762,7 @@ window.SCENE = {
      "f": "pullover",
      "r": "anna",
      "phrase": "Der Pullover muss ihr gefallen.",
+     "sens": "Le pull doit lui plaire.",
      "n": "<b>müssen</b> = déduction presque certaine : elle sourit."
     },
     {
@@ -1752,6 +1775,7 @@ window.SCENE = {
      "f": "kabine",
      "r": "anna",
      "phrase": "Sie könnte ihn gleich in der Umkleidekabine anprobieren.",
+     "sens": "Elle va peut-être l'essayer tout de suite dans la cabine.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1764,6 +1788,7 @@ window.SCENE = {
      "f": "schuh-main",
      "r": "monsieur",
      "phrase": "Der Mann dürfte die Schuhe kaufen.",
+     "sens": "L'homme va sans doute acheter les chaussures.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1775,6 +1800,7 @@ window.SCENE = {
      ],
      "f": "verkaeuferin",
      "phrase": "Die Verkäuferin soll seit dreißig Jahren hier arbeiten.",
+     "sens": "Il paraît que la vendeuse travaille ici depuis trente ans.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1820,6 +1846,34 @@ window.SCENE = {
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = one possibility among others.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Der Hut ist auf dem Regal.": "The hat is on the shelf.",
+    "A2 | Der Mann sitzt auf der Bank.": "The man is sitting on the bench.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "The stool is in front of the mirror.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "The belt hangs next to the tie.",
+    "A2 | Die Socken sind im Korb.": "The socks are in the basket.",
+    "A2 | Anna steht vor der Umkleidekabine.": "Anna is standing in front of the fitting room.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "The second shoe is on the floor.",
+    "A2 | Das Kleid hängt neben dem Rock.": "The dress hangs next to the skirt.",
+    "B1 | Anna hält einen gelben Pullover.": "Anna is holding a yellow jumper.",
+    "B1 | Das rote Kleid hängt ganz links.": "The red dress hangs on the far left.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "The man is trying on a brown shoe.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "The shop assistant is folding a striped scarf.",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "There is a black bag on the shelf.",
+    "B1 | Anna trägt eine hellblaue Hose.": "Anna is wearing light blue trousers.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "The man with grey hair is trying on shoes.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "A brown coat hangs next to the suit.",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "The woman holding the yellow jumper is called Anna.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "The man whose shoe is still on the floor is trying on the other one.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "The mirror the stool is in front of has a wooden frame.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "The socks in the basket are colourful.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "The jumpers on the shelf are neatly folded.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "The scarf is being folded by the shop assistant.",
+    "C1 | Der Pullover muss ihr gefallen.": "She must like the jumper.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "She might try it on in the fitting room right away.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "The man will probably buy the shoes.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "The shop assistant is said to have worked here for thirty years."
    }
   },
   "tr": {
@@ -1861,6 +1915,34 @@ window.SCENE = {
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Der Hut ist auf dem Regal.": "Şapka rafın üstünde.",
+    "A2 | Der Mann sitzt auf der Bank.": "Adam bankta oturuyor.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "Tabure aynanın önünde duruyor.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "Kemer kravatın yanında asılı.",
+    "A2 | Die Socken sind im Korb.": "Çoraplar sepetin içinde.",
+    "A2 | Anna steht vor der Umkleidekabine.": "Anna soyunma kabininin önünde duruyor.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "İkinci ayakkabı yerde duruyor.",
+    "A2 | Das Kleid hängt neben dem Rock.": "Elbise eteğin yanında asılı.",
+    "B1 | Anna hält einen gelben Pullover.": "Anna sarı bir kazak tutuyor.",
+    "B1 | Das rote Kleid hängt ganz links.": "Kırmızı elbise en solda asılı.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "Adam kahverengi bir ayakkabı deniyor.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "Satıcı kadın çizgili bir atkı katlıyor.",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "Rafın üstünde siyah bir çanta duruyor.",
+    "B1 | Anna trägt eine hellblaue Hose.": "Anna açık mavi bir pantolon giyiyor.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "Gri saçlı adam ayakkabı deniyor.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "Takım elbisenin yanında kahverengi bir palto asılı.",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "Sarı kazağı tutan kadının adı Anna.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "Ayakkabısı hâlâ yerde duran adam diğerini deniyor.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "Taburenin önünde durduğu aynanın ahşap çerçevesi var.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "Sepetteki çoraplar rengârenk.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "Raftaki kazaklar düzgünce katlanmış.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "Atkı şu anda satıcı kadın tarafından katlanıyor.",
+    "C1 | Der Pullover muss ihr gefallen.": "Kazak hoşuna gidiyor olmalı.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "Onu hemen kabinde deneyebilir.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "Adam ayakkabıları alır herhalde.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "Satıcı kadının otuz yıldır burada çalıştığı söyleniyor."
    }
   },
   "uk": {
@@ -1902,6 +1984,34 @@ window.SCENE = {
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Der Hut ist auf dem Regal.": "Капелюх на полиці.",
+    "A2 | Der Mann sitzt auf der Bank.": "Чоловік сидить на лавці.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "Табурет стоїть перед дзеркалом.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "Ремінь висить біля краватки.",
+    "A2 | Die Socken sind im Korb.": "Шкарпетки в кошику.",
+    "A2 | Anna steht vor der Umkleidekabine.": "Анна стоїть перед примірочною.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "Другий черевик стоїть на підлозі.",
+    "A2 | Das Kleid hängt neben dem Rock.": "Сукня висить біля спідниці.",
+    "B1 | Anna hält einen gelben Pullover.": "Анна тримає жовтий светр.",
+    "B1 | Das rote Kleid hängt ganz links.": "Червона сукня висить ліворуч скраю.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "Чоловік приміряє коричневий черевик.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "Продавчиня складає смугастий шарф.",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "На полиці стоїть чорна сумка.",
+    "B1 | Anna trägt eine hellblaue Hose.": "Анна в світло-блакитних штанах.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "Чоловік із сивим волоссям приміряє взуття.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "Коричневе пальто висить біля костюма.",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "Жінку, яка тримає жовтий светр, звати Анна.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "Чоловік, чий черевик ще стоїть на підлозі, приміряє інший.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "Дзеркало, перед яким стоїть табурет, має дерев'яну раму.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "Шкарпетки, що лежать у кошику, різнокольорові.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "Светри на полиці акуратно складені.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "Шарф зараз складає продавчиня.",
+    "C1 | Der Pullover muss ihr gefallen.": "Светр їй, мабуть, подобається.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "Вона, можливо, зараз приміряє його в примірочній.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "Чоловік, напевно, купить черевики.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "Кажуть, продавчиня працює тут уже тридцять років."
    }
   },
   "fa": {
@@ -1943,6 +2053,34 @@ window.SCENE = {
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Der Hut ist auf dem Regal.": "کلاه روی قفسه است.",
+    "A2 | Der Mann sitzt auf der Bank.": "مرد روی نیمکت نشسته است.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "چهارپایه جلوی آینه است.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "کمربند کنار کراوات آویزان است.",
+    "A2 | Die Socken sind im Korb.": "جوراب‌ها در سبد هستند.",
+    "A2 | Anna steht vor der Umkleidekabine.": "آنا جلوی اتاق پرو ایستاده است.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "لنگهٔ دوم کفش روی زمین است.",
+    "A2 | Das Kleid hängt neben dem Rock.": "پیراهن کنار دامن آویزان است.",
+    "B1 | Anna hält einen gelben Pullover.": "آنا یک پلیور زرد در دست دارد.",
+    "B1 | Das rote Kleid hängt ganz links.": "پیراهن قرمز در منتهی‌الیه چپ آویزان است.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "مرد یک کفش قهوه‌ای را امتحان می‌کند.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "فروشنده یک شال‌گردن راه‌راه را تا می‌کند.",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "روی قفسه یک کیف مشکی است.",
+    "B1 | Anna trägt eine hellblaue Hose.": "آنا شلوار آبی روشن پوشیده است.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "مرد موخاکستری کفش امتحان می‌کند.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "یک پالتوی قهوه‌ای کنار کت‌وشلوار آویزان است.",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "زنی که پلیور زرد را در دست دارد، آنا نام دارد.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "مردی که کفشش هنوز روی زمین است، لنگهٔ دیگر را امتحان می‌کند.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "آینه‌ای که چهارپایه جلویش است، قاب چوبی دارد.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "جوراب‌هایی که در سبد هستند، رنگارنگ‌اند.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "پلیورهای روی قفسه مرتب تا شده‌اند.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "شال‌گردن دارد توسط فروشنده تا می‌شود.",
+    "C1 | Der Pullover muss ihr gefallen.": "پلیور حتماً به دلش نشسته است.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "او شاید همین حالا در اتاق پرو امتحانش کند.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "مرد احتمالاً کفش‌ها را می‌خرد.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "می‌گویند فروشنده سی سال است که اینجا کار می‌کند."
    }
   },
   "ar": {
@@ -1984,6 +2122,34 @@ window.SCENE = {
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Der Hut ist auf dem Regal.": "القبّعة على الرفّ.",
+    "A2 | Der Mann sitzt auf der Bank.": "الرجل جالس على المقعد.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "الكرسيّ الصغير أمام المرآة.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "الحزام معلّق بجانب ربطة العنق.",
+    "A2 | Die Socken sind im Korb.": "الجوارب في السلّة.",
+    "A2 | Anna steht vor der Umkleidekabine.": "آنا واقفة أمام غرفة القياس.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "فردة الحذاء الثانية على الأرض.",
+    "A2 | Das Kleid hängt neben dem Rock.": "الفستان معلّق بجانب التنّورة.",
+    "B1 | Anna hält einen gelben Pullover.": "تحمل آنا كنزة صفراء.",
+    "B1 | Das rote Kleid hängt ganz links.": "الفستان الأحمر معلّق في أقصى اليسار.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "يجرّب الرجل حذاءً بنّياً.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "تطوي البائعة وشاحاً مخطّطاً.",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "على الرفّ حقيبة سوداء.",
+    "B1 | Anna trägt eine hellblaue Hose.": "ترتدي آنا بنطالاً أزرق فاتحاً.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "الرجل ذو الشعر الرمادي يجرّب أحذية.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "معطف بنّي معلّق بجانب البدلة.",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "المرأة التي تحمل الكنزة الصفراء اسمها آنا.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "الرجل الذي ما زالت فردة حذائه على الأرض يجرّب الأخرى.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "المرآة التي أمامها الكرسيّ الصغير لها إطار خشبي.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "الجوارب التي في السلّة ملوّنة.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "الكنزات على الرفّ مطويّة بعناية.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "تطوي البائعة الوشاح الآن.",
+    "C1 | Der Pullover muss ihr gefallen.": "لا بدّ أن الكنزة تعجبها.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "ربما تجرّبها حالاً في غرفة القياس.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "على الأرجح يشتري الرجل الحذاء.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "يُقال إن البائعة تعمل هنا منذ ثلاثين سنة."
    }
   },
   "pt": {
@@ -2025,6 +2191,34 @@ window.SCENE = {
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Der Hut ist auf dem Regal.": "O chapéu está na prateleira.",
+    "A2 | Der Mann sitzt auf der Bank.": "O homem está sentado no banco.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "O banquinho está em frente ao espelho.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "O cinto está pendurado ao lado da gravata.",
+    "A2 | Die Socken sind im Korb.": "As meias estão na cesta.",
+    "A2 | Anna steht vor der Umkleidekabine.": "Anna está em frente ao provador.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "O segundo sapato está no chão.",
+    "A2 | Das Kleid hängt neben dem Rock.": "O vestido está pendurado ao lado da saia.",
+    "B1 | Anna hält einen gelben Pullover.": "Anna segura um suéter amarelo.",
+    "B1 | Das rote Kleid hängt ganz links.": "O vestido vermelho está pendurado bem à esquerda.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "O homem experimenta um sapato marrom.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "A vendedora dobra um cachecol listrado.",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "Na prateleira há uma bolsa preta.",
+    "B1 | Anna trägt eine hellblaue Hose.": "Anna usa uma calça azul-clara.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "O homem de cabelo grisalho experimenta sapatos.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "Um casaco marrom está pendurado ao lado do terno.",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "A mulher que segura o suéter amarelo se chama Anna.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "O homem cujo sapato ainda está no chão experimenta o outro.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "O espelho em frente ao qual está o banquinho tem moldura de madeira.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "As meias que estão na cesta são coloridas.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "Os suéteres na prateleira estão bem dobrados.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "O cachecol está sendo dobrado pela vendedora.",
+    "C1 | Der Pullover muss ihr gefallen.": "Ela deve ter gostado do suéter.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "Ela talvez o experimente agora mesmo no provador.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "O homem provavelmente vai comprar os sapatos.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "Dizem que a vendedora trabalha aqui há trinta anos."
    }
   },
   "pl": {
@@ -2066,6 +2260,34 @@ window.SCENE = {
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Der Hut ist auf dem Regal.": "Kapelusz jest na półce.",
+    "A2 | Der Mann sitzt auf der Bank.": "Mężczyzna siedzi na ławce.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "Stołek stoi przed lustrem.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "Pasek wisi obok krawata.",
+    "A2 | Die Socken sind im Korb.": "Skarpetki są w koszu.",
+    "A2 | Anna steht vor der Umkleidekabine.": "Anna stoi przed przymierzalnią.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "Drugi but stoi na podłodze.",
+    "A2 | Das Kleid hängt neben dem Rock.": "Sukienka wisi obok spódnicy.",
+    "B1 | Anna hält einen gelben Pullover.": "Anna trzyma żółty sweter.",
+    "B1 | Das rote Kleid hängt ganz links.": "Czerwona sukienka wisi na samym lewym końcu.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "Mężczyzna przymierza brązowy but.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "Sprzedawczyni składa szalik w paski.",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "Na półce stoi czarna torebka.",
+    "B1 | Anna trägt eine hellblaue Hose.": "Anna ma na sobie jasnoniebieskie spodnie.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "Mężczyzna o siwych włosach przymierza buty.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "Brązowy płaszcz wisi obok garnituru.",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "Kobieta, która trzyma żółty sweter, ma na imię Anna.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "Mężczyzna, którego but jeszcze stoi na podłodze, przymierza drugi.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "Lustro, przed którym stoi stołek, ma drewnianą ramę.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "Skarpetki, które leżą w koszu, są kolorowe.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "Swetry na półce są starannie złożone.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "Szalik jest właśnie składany przez sprzedawczynię.",
+    "C1 | Der Pullover muss ihr gefallen.": "Sweter musi jej się podobać.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "Być może zaraz przymierzy go w przymierzalni.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "Mężczyzna zapewne kupi te buty.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "Podobno sprzedawczyni pracuje tu od trzydziestu lat."
    }
   },
   "ru": {
@@ -2107,6 +2329,34 @@ window.SCENE = {
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Der Hut ist auf dem Regal.": "Шляпа на полке.",
+    "A2 | Der Mann sitzt auf der Bank.": "Мужчина сидит на скамейке.",
+    "A2 | Der Hocker steht vor dem Spiegel.": "Табурет стоит перед зеркалом.",
+    "A2 | Der Gürtel hängt neben der Krawatte.": "Ремень висит рядом с галстуком.",
+    "A2 | Die Socken sind im Korb.": "Носки в корзине.",
+    "A2 | Anna steht vor der Umkleidekabine.": "Анна стоит перед примерочной.",
+    "A2 | Der zweite Schuh steht auf dem Boden.": "Второй ботинок стоит на полу.",
+    "A2 | Das Kleid hängt neben dem Rock.": "Платье висит рядом с юбкой.",
+    "B1 | Anna hält einen gelben Pullover.": "Анна держит жёлтый свитер.",
+    "B1 | Das rote Kleid hängt ganz links.": "Красное платье висит с самого левого края.",
+    "B1 | Der Mann probiert einen braunen Schuh an.": "Мужчина примеряет коричневый ботинок.",
+    "B1 | Die Verkäuferin faltet einen gestreiften Schal.": "Продавщица складывает полосатый шарф.",
+    "B1 | Auf dem Regal steht eine schwarze Tasche.": "На полке стоит чёрная сумка.",
+    "B1 | Anna trägt eine hellblaue Hose.": "На Анне светло-голубые брюки.",
+    "B1 | Der Mann mit den grauen Haaren probiert Schuhe an.": "Мужчина с седыми волосами примеряет обувь.",
+    "B1 | Ein brauner Mantel hängt neben dem Anzug.": "Коричневое пальто висит рядом с костюмом.",
+    "B2 | Die Frau, die den gelben Pullover hält, heißt Anna.": "Женщину, которая держит жёлтый свитер, зовут Анна.",
+    "B2 | Der Mann, dessen Schuh noch auf dem Boden steht, probiert den anderen an.": "Мужчина, чей ботинок ещё стоит на полу, примеряет другой.",
+    "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "Зеркало, перед которым стоит табурет, в деревянной раме.",
+    "B2 | Die Socken, die im Korb liegen, sind bunt.": "Носки, которые лежат в корзине, разноцветные.",
+    "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "Свитера на полке аккуратно сложены.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "Шарф сейчас складывает продавщица.",
+    "C1 | Der Pullover muss ihr gefallen.": "Свитер ей, должно быть, нравится.",
+    "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "Она, возможно, сейчас примерит его в примерочной.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "Мужчина, вероятно, купит ботинки.",
+    "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "Говорят, продавщица работает здесь уже тридцать лет."
    }
   }
  }

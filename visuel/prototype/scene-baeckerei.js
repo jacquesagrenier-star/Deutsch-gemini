@@ -1900,6 +1900,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
      "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1912,6 +1913,7 @@ window.SCENE = {
      "f": "milch",
      "r": "regal",
      "phrase": "Die Milch steht im Regal.",
+     "sens": "Le lait est sur l'étagère.",
      "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
     },
     {
@@ -1924,6 +1926,7 @@ window.SCENE = {
      "f": "hund",
      "r": "tisch",
      "phrase": "Der Hund liegt unter dem Tisch.",
+     "sens": "Le chien est couché sous la table.",
      "n": "<b>unter</b> = sous. der Tisch → unter <b>dem</b> Tisch."
     },
     {
@@ -1936,6 +1939,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "fenster",
      "phrase": "Das Fahrrad steht vor dem Fenster.",
+     "sens": "Le vélo est devant la fenêtre.",
      "n": "<b>vor</b> = devant. das Fenster → vor <b>dem</b> Fenster."
     },
     {
@@ -1948,6 +1952,7 @@ window.SCENE = {
      "f": "kasse",
      "r": "schalter",
      "phrase": "Die Kasse steht auf dem Schalter.",
+     "sens": "La caisse est sur le comptoir.",
      "n": "der Schalter → auf <b>dem</b> Schalter."
     },
     {
@@ -1960,6 +1965,7 @@ window.SCENE = {
      "f": "blume",
      "r": "glas",
      "phrase": "Die Blumen stehen im Glas.",
+     "sens": "Les fleurs sont dans le verre.",
      "n": "<b>im</b> = in + <b>dem</b> : das Glas → im Glas."
     },
     {
@@ -1972,6 +1978,7 @@ window.SCENE = {
      "f": "nachbar",
      "r": "tisch",
      "phrase": "Der Nachbar sitzt am Tisch.",
+     "sens": "Le voisin est assis à la table.",
      "n": "<b>am</b> = an + <b>dem</b> : der Tisch → am Tisch."
     },
     {
@@ -1984,6 +1991,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "fenster",
      "phrase": "Die Pflanze steht neben dem Fenster.",
+     "sens": "La plante est à côté de la fenêtre.",
      "n": "<b>neben</b> = à côté de. das Fenster → neben <b>dem</b> Fenster."
     }
    ]
@@ -2001,6 +2009,7 @@ window.SCENE = {
      "f": "anna",
      "r": "nachbar",
      "phrase": "Anna grüßt ihren Nachbarn.",
+     "sens": "Anna salue son voisin.",
      "n": "Accusatif de <b>der Nachbar</b> → den/ihren <b>Nachbarn</b>.",
      "revise": {
       "mot": "grüßen",
@@ -2017,6 +2026,7 @@ window.SCENE = {
      "f": "nachbar",
      "r": "zeitung",
      "phrase": "Der Nachbar liest die Zeitung.",
+     "sens": "Le voisin lit le journal.",
      "n": "Au nominatif, pas de terminaison : der <b>Nachbar</b>.",
      "revise": {
       "mot": "lesen",
@@ -2032,6 +2042,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Die Verkäuferin kennt jeden Kunden im Kiez.",
+     "sens": "La vendeuse connaît chaque client du quartier.",
      "n": "n-Deklination : hors du nominatif, <b>-n</b> ou <b>-en</b>.",
      "revise": {
       "mot": "kennen",
@@ -2048,6 +2059,7 @@ window.SCENE = {
      "f": "hund",
      "r": "nachbar",
      "phrase": "Der Hund gehört dem Herrn am Tisch.",
+     "sens": "Le chien appartient au monsieur à la table.",
      "n": "Datif singulier de <b>der Herr</b> → dem <b>Herrn</b>.",
      "revise": {
       "mot": "gehören",
@@ -2064,6 +2076,7 @@ window.SCENE = {
      "f": "broetchen",
      "r": "anna",
      "phrase": "Anna kauft Brötchen für ihren Kollegen.",
+     "sens": "Anna achète des petits pains pour son collègue.",
      "n": "n-Deklination : hors du nominatif, <b>-n</b> ou <b>-en</b>.",
      "revise": {
       "mot": "kaufen",
@@ -2079,6 +2092,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Kennst du den Namen der Verkäuferin?",
+     "sens": "Tu connais le nom de la vendeuse ?",
      "n": "<b>der Name</b> suit la n-Deklination : den <b>Namen</b>.",
      "revise": {
       "mot": "kennen",
@@ -2095,6 +2109,7 @@ window.SCENE = {
      "f": "hund",
      "r": "nachbar",
      "phrase": "Der Hund wartet auf seinen Herrn.",
+     "sens": "Le chien attend son maître.",
      "n": "Accusatif de <b>der Herr</b> → seinen <b>Herrn</b>.",
      "revise": {
       "mot": "warten",
@@ -2110,6 +2125,7 @@ window.SCENE = {
      ],
      "f": "schalter",
      "phrase": "Die Bäckerei ist bei allen Nachbarn beliebt.",
+     "sens": "La boulangerie est appréciée de tous les voisins.",
      "n": "Datif pluriel → <b>Nachbarn</b>."
     }
    ]
@@ -2127,6 +2143,7 @@ window.SCENE = {
      "f": "frau",
      "r": "brot",
      "phrase": "Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.",
+     "sens": "Avant qu'Anna arrive, la vendeuse avait cuit le pain.",
      "n": "Plusquamperfekt : <b>hatte</b> + participe, l'action d'avant une action passée.",
      "revise": {
       "mot": "backen",
@@ -2143,6 +2160,7 @@ window.SCENE = {
      "f": "nachbar",
      "r": "anna",
      "phrase": "Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.",
+     "sens": "Quand Anna est entrée, le voisin s'était déjà assis.",
      "n": "<b>sich setzen</b> → haben : <b>hatte</b> sich gesetzt.",
      "revise": {
       "mot": "sich setzen",
@@ -2159,6 +2177,7 @@ window.SCENE = {
      "f": "tasse-2",
      "r": "zeitung",
      "phrase": "Nachdem er den Kaffee getrunken hatte, las er die Zeitung.",
+     "sens": "Après avoir bu le café, il a lu le journal.",
      "n": "<b>nachdem</b> + Plusquamperfekt quand la principale est au Präteritum.",
      "revise": {
       "mot": "trinken",
@@ -2175,6 +2194,7 @@ window.SCENE = {
      "f": "hund",
      "r": "tasse-2",
      "phrase": "Der Hund war schon eingeschlafen, bevor der Kaffee kam.",
+     "sens": "Le chien s'était déjà endormi avant que le café arrive.",
      "n": "<b>einschlafen</b> (changement d'état) → sein : <b>war</b> eingeschlafen."
     },
     {
@@ -2186,6 +2206,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.",
+     "sens": "Quand le magasin a ouvert, la vendeuse avait déjà travaillé trois heures.",
      "n": "Plusquamperfekt : <b>hatte</b> + participe, l'action d'avant une action passée.",
      "revise": {
       "mot": "arbeiten",
@@ -2202,6 +2223,7 @@ window.SCENE = {
      "f": "muenze",
      "r": "broetchen",
      "phrase": "Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.",
+     "sens": "Anna avait déjà payé les petits pains quand son téléphone a sonné.",
      "n": "Plusquamperfekt : <b>hatte</b> + participe, l'action d'avant une action passée.",
      "revise": {
       "mot": "bezahlen",
@@ -2223,6 +2245,7 @@ window.SCENE = {
      "f": "broetchen",
      "r": "anna",
      "phrase": "Die Brötchen müssen frisch sein.",
+     "sens": "Les petits pains doivent être frais.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -2235,6 +2258,7 @@ window.SCENE = {
      "f": "hund",
      "r": "nachbar",
      "phrase": "Der Hund könnte dem Nachbarn gehören.",
+     "sens": "Le chien appartient peut-être au voisin.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -2246,6 +2270,7 @@ window.SCENE = {
      ],
      "f": "brot",
      "phrase": "Das Brot dürfte von heute Morgen sein.",
+     "sens": "Le pain date sans doute de ce matin.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -2257,6 +2282,7 @@ window.SCENE = {
      ],
      "f": "schalter",
      "phrase": "Diese Bäckerei soll die beste im Kiez sein.",
+     "sens": "Cette boulangerie serait la meilleure du quartier.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -2302,6 +2328,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Nachbarn gehören.": "<b>könnte</b> = one possibility among others.",
     "C1 | Das Brot dürfte von heute Morgen sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Diese Bäckerei soll die beste im Kiez sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "The clock hangs on the wall.",
+    "A2 | Die Milch steht im Regal.": "The milk is on the shelf.",
+    "A2 | Der Hund liegt unter dem Tisch.": "The dog is lying under the table.",
+    "A2 | Das Fahrrad steht vor dem Fenster.": "The bicycle is in front of the window.",
+    "A2 | Die Kasse steht auf dem Schalter.": "The till is on the counter.",
+    "A2 | Die Blumen stehen im Glas.": "The flowers are in the glass.",
+    "A2 | Der Nachbar sitzt am Tisch.": "The neighbour is sitting at the table.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "The plant is next to the window.",
+    "B1 | Anna grüßt ihren Nachbarn.": "Anna greets her neighbour.",
+    "B1 | Der Nachbar liest die Zeitung.": "The neighbour is reading the newspaper.",
+    "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "The shop assistant knows every customer in the neighbourhood.",
+    "B1 | Der Hund gehört dem Herrn am Tisch.": "The dog belongs to the man at the table.",
+    "B1 | Anna kauft Brötchen für ihren Kollegen.": "Anna buys bread rolls for her colleague.",
+    "B1 | Kennst du den Namen der Verkäuferin?": "Do you know the shop assistant's name?",
+    "B1 | Der Hund wartet auf seinen Herrn.": "The dog is waiting for its master.",
+    "B1 | Die Bäckerei ist bei allen Nachbarn beliebt.": "The bakery is popular with all the neighbours.",
+    "B2 | Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.": "Before Anna came, the shop assistant had baked the bread.",
+    "B2 | Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.": "When Anna came in, the neighbour had already sat down.",
+    "B2 | Nachdem er den Kaffee getrunken hatte, las er die Zeitung.": "After he had drunk the coffee, he read the newspaper.",
+    "B2 | Der Hund war schon eingeschlafen, bevor der Kaffee kam.": "The dog had already fallen asleep before the coffee came.",
+    "B2 | Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.": "When the shop opened, the shop assistant had already worked for three hours.",
+    "B2 | Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.": "Anna had already paid for the rolls when her phone rang.",
+    "C1 | Die Brötchen müssen frisch sein.": "The rolls must be fresh.",
+    "C1 | Der Hund könnte dem Nachbarn gehören.": "The dog might belong to the neighbour.",
+    "C1 | Das Brot dürfte von heute Morgen sein.": "The bread is probably from this morning.",
+    "C1 | Diese Bäckerei soll die beste im Kiez sein.": "This bakery is said to be the best in the neighbourhood."
    }
   },
   "tr": {
@@ -2343,6 +2397,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Nachbarn gehören.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Das Brot dürfte von heute Morgen sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Diese Bäckerei soll die beste im Kiez sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Saat duvarda asılı.",
+    "A2 | Die Milch steht im Regal.": "Süt rafta duruyor.",
+    "A2 | Der Hund liegt unter dem Tisch.": "Köpek masanın altında yatıyor.",
+    "A2 | Das Fahrrad steht vor dem Fenster.": "Bisiklet pencerenin önünde duruyor.",
+    "A2 | Die Kasse steht auf dem Schalter.": "Kasa tezgâhın üstünde duruyor.",
+    "A2 | Die Blumen stehen im Glas.": "Çiçekler bardağın içinde.",
+    "A2 | Der Nachbar sitzt am Tisch.": "Komşu masada oturuyor.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "Bitki pencerenin yanında duruyor.",
+    "B1 | Anna grüßt ihren Nachbarn.": "Anna komşusunu selamlıyor.",
+    "B1 | Der Nachbar liest die Zeitung.": "Komşu gazete okuyor.",
+    "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "Satıcı kadın mahalledeki her müşteriyi tanıyor.",
+    "B1 | Der Hund gehört dem Herrn am Tisch.": "Köpek masadaki beyin.",
+    "B1 | Anna kauft Brötchen für ihren Kollegen.": "Anna iş arkadaşı için ekmek alıyor.",
+    "B1 | Kennst du den Namen der Verkäuferin?": "Satıcı kadının adını biliyor musun?",
+    "B1 | Der Hund wartet auf seinen Herrn.": "Köpek sahibini bekliyor.",
+    "B1 | Die Bäckerei ist bei allen Nachbarn beliebt.": "Fırın bütün komşular tarafından seviliyor.",
+    "B2 | Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.": "Anna gelmeden önce satıcı kadın ekmeği pişirmişti.",
+    "B2 | Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.": "Anna içeri girdiğinde komşu çoktan oturmuştu.",
+    "B2 | Nachdem er den Kaffee getrunken hatte, las er die Zeitung.": "Kahveyi içtikten sonra gazeteyi okudu.",
+    "B2 | Der Hund war schon eingeschlafen, bevor der Kaffee kam.": "Kahve gelmeden önce köpek çoktan uyuyakalmıştı.",
+    "B2 | Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.": "Dükkân açıldığında satıcı kadın üç saattir çalışmıştı.",
+    "B2 | Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.": "Telefonu çaldığında Anna ekmeklerin parasını ödemişti.",
+    "C1 | Die Brötchen müssen frisch sein.": "Ekmekler taze olmalı.",
+    "C1 | Der Hund könnte dem Nachbarn gehören.": "Köpek komşunun olabilir.",
+    "C1 | Das Brot dürfte von heute Morgen sein.": "Ekmek bu sabahtan olsa gerek.",
+    "C1 | Diese Bäckerei soll die beste im Kiez sein.": "Bu fırının mahallenin en iyisi olduğu söyleniyor."
    }
   },
   "uk": {
@@ -2384,6 +2466,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Nachbarn gehören.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Das Brot dürfte von heute Morgen sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Diese Bäckerei soll die beste im Kiez sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Годинник висить на стіні.",
+    "A2 | Die Milch steht im Regal.": "Молоко стоїть на полиці.",
+    "A2 | Der Hund liegt unter dem Tisch.": "Собака лежить під столом.",
+    "A2 | Das Fahrrad steht vor dem Fenster.": "Велосипед стоїть перед вікном.",
+    "A2 | Die Kasse steht auf dem Schalter.": "Каса стоїть на прилавку.",
+    "A2 | Die Blumen stehen im Glas.": "Квіти стоять у склянці.",
+    "A2 | Der Nachbar sitzt am Tisch.": "Сусід сидить за столом.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "Рослина стоїть біля вікна.",
+    "B1 | Anna grüßt ihren Nachbarn.": "Анна вітається зі своїм сусідом.",
+    "B1 | Der Nachbar liest die Zeitung.": "Сусід читає газету.",
+    "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "Продавчиня знає кожного клієнта в районі.",
+    "B1 | Der Hund gehört dem Herrn am Tisch.": "Собака належить чоловікові за столом.",
+    "B1 | Anna kauft Brötchen für ihren Kollegen.": "Анна купує булочки для свого колеги.",
+    "B1 | Kennst du den Namen der Verkäuferin?": "Ти знаєш, як звати продавчиню?",
+    "B1 | Der Hund wartet auf seinen Herrn.": "Собака чекає на свого господаря.",
+    "B1 | Die Bäckerei ist bei allen Nachbarn beliebt.": "Пекарню люблять усі сусіди.",
+    "B2 | Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.": "Перш ніж Анна прийшла, продавчиня спекла хліб.",
+    "B2 | Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.": "Коли Анна зайшла, сусід уже сів.",
+    "B2 | Nachdem er den Kaffee getrunken hatte, las er die Zeitung.": "Випивши каву, він прочитав газету.",
+    "B2 | Der Hund war schon eingeschlafen, bevor der Kaffee kam.": "Собака вже заснула, перш ніж принесли каву.",
+    "B2 | Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.": "Коли крамниця відчинилася, продавчиня вже працювала три години.",
+    "B2 | Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.": "Анна вже заплатила за булочки, коли задзвонив її телефон.",
+    "C1 | Die Brötchen müssen frisch sein.": "Булочки, мабуть, свіжі.",
+    "C1 | Der Hund könnte dem Nachbarn gehören.": "Собака, можливо, належить сусідові.",
+    "C1 | Das Brot dürfte von heute Morgen sein.": "Хліб, напевно, сьогоднішній.",
+    "C1 | Diese Bäckerei soll die beste im Kiez sein.": "Кажуть, ця пекарня — найкраща в районі."
    }
   },
   "fa": {
@@ -2425,6 +2535,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Nachbarn gehören.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Das Brot dürfte von heute Morgen sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Diese Bäckerei soll die beste im Kiez sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "ساعت روی دیوار آویزان است.",
+    "A2 | Die Milch steht im Regal.": "شیر در قفسه است.",
+    "A2 | Der Hund liegt unter dem Tisch.": "سگ زیر میز دراز کشیده است.",
+    "A2 | Das Fahrrad steht vor dem Fenster.": "دوچرخه جلوی پنجره است.",
+    "A2 | Die Kasse steht auf dem Schalter.": "صندوق پول روی پیشخوان است.",
+    "A2 | Die Blumen stehen im Glas.": "گل‌ها در لیوان هستند.",
+    "A2 | Der Nachbar sitzt am Tisch.": "همسایه پشت میز نشسته است.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "گیاه کنار پنجره است.",
+    "B1 | Anna grüßt ihren Nachbarn.": "آنا به همسایه‌اش سلام می‌کند.",
+    "B1 | Der Nachbar liest die Zeitung.": "همسایه روزنامه می‌خواند.",
+    "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "فروشنده هر مشتری محله را می‌شناسد.",
+    "B1 | Der Hund gehört dem Herrn am Tisch.": "سگ مال آقایی است که پشت میز نشسته است.",
+    "B1 | Anna kauft Brötchen für ihren Kollegen.": "آنا برای همکارش نان می‌خرد.",
+    "B1 | Kennst du den Namen der Verkäuferin?": "اسم فروشنده را می‌دانی؟",
+    "B1 | Der Hund wartet auf seinen Herrn.": "سگ منتظر صاحبش است.",
+    "B1 | Die Bäckerei ist bei allen Nachbarn beliebt.": "همهٔ همسایه‌ها این نانوایی را دوست دارند.",
+    "B2 | Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.": "پیش از آمدن آنا، فروشنده نان را پخته بود.",
+    "B2 | Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.": "وقتی آنا وارد شد، همسایه دیگر نشسته بود.",
+    "B2 | Nachdem er den Kaffee getrunken hatte, las er die Zeitung.": "پس از اینکه قهوه را نوشید، روزنامه خواند.",
+    "B2 | Der Hund war schon eingeschlafen, bevor der Kaffee kam.": "سگ پیش از آمدن قهوه خوابش برده بود.",
+    "B2 | Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.": "وقتی مغازه باز شد، فروشنده سه ساعت کار کرده بود.",
+    "B2 | Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.": "وقتی تلفن آنا زنگ زد، او پول نان‌ها را داده بود.",
+    "C1 | Die Brötchen müssen frisch sein.": "نان‌ها حتماً تازه هستند.",
+    "C1 | Der Hund könnte dem Nachbarn gehören.": "سگ شاید مال همسایه باشد.",
+    "C1 | Das Brot dürfte von heute Morgen sein.": "نان احتمالاً مال امروز صبح است.",
+    "C1 | Diese Bäckerei soll die beste im Kiez sein.": "می‌گویند این نانوایی بهترین نانوایی محله است."
    }
   },
   "ar": {
@@ -2466,6 +2604,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Nachbarn gehören.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Das Brot dürfte von heute Morgen sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Diese Bäckerei soll die beste im Kiez sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "الساعة معلّقة على الحائط.",
+    "A2 | Die Milch steht im Regal.": "الحليب على الرفّ.",
+    "A2 | Der Hund liegt unter dem Tisch.": "الكلب مستلقٍ تحت الطاولة.",
+    "A2 | Das Fahrrad steht vor dem Fenster.": "الدراجة أمام النافذة.",
+    "A2 | Die Kasse steht auf dem Schalter.": "الصندوق على المنضدة.",
+    "A2 | Die Blumen stehen im Glas.": "الزهور في الكأس.",
+    "A2 | Der Nachbar sitzt am Tisch.": "الجار جالس إلى الطاولة.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "النبتة بجانب النافذة.",
+    "B1 | Anna grüßt ihren Nachbarn.": "تحيّي آنا جارها.",
+    "B1 | Der Nachbar liest die Zeitung.": "الجار يقرأ الجريدة.",
+    "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "البائعة تعرف كل زبون في الحيّ.",
+    "B1 | Der Hund gehört dem Herrn am Tisch.": "الكلب يخصّ الرجل الجالس إلى الطاولة.",
+    "B1 | Anna kauft Brötchen für ihren Kollegen.": "تشتري آنا خبزاً صغيراً لزميلها.",
+    "B1 | Kennst du den Namen der Verkäuferin?": "هل تعرف اسم البائعة؟",
+    "B1 | Der Hund wartet auf seinen Herrn.": "الكلب ينتظر صاحبه.",
+    "B1 | Die Bäckerei ist bei allen Nachbarn beliebt.": "المخبز محبوب عند كل الجيران.",
+    "B2 | Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.": "قبل أن تأتي آنا، كانت البائعة قد خبزت الخبز.",
+    "B2 | Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.": "عندما دخلت آنا، كان الجار قد جلس بالفعل.",
+    "B2 | Nachdem er den Kaffee getrunken hatte, las er die Zeitung.": "بعد أن شرب القهوة، قرأ الجريدة.",
+    "B2 | Der Hund war schon eingeschlafen, bevor der Kaffee kam.": "كان الكلب قد نام قبل أن تصل القهوة.",
+    "B2 | Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.": "عندما فُتح المحل، كانت البائعة قد عملت ثلاث ساعات.",
+    "B2 | Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.": "كانت آنا قد دفعت ثمن الخبز عندما رنّ هاتفها.",
+    "C1 | Die Brötchen müssen frisch sein.": "لا بدّ أن الخبز طازج.",
+    "C1 | Der Hund könnte dem Nachbarn gehören.": "ربما يكون الكلب للجار.",
+    "C1 | Das Brot dürfte von heute Morgen sein.": "على الأرجح الخبز من هذا الصباح.",
+    "C1 | Diese Bäckerei soll die beste im Kiez sein.": "يُقال إن هذا المخبز هو الأفضل في الحيّ."
    }
   },
   "pt": {
@@ -2507,6 +2673,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Nachbarn gehören.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Das Brot dürfte von heute Morgen sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Diese Bäckerei soll die beste im Kiez sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "O relógio está pendurado na parede.",
+    "A2 | Die Milch steht im Regal.": "O leite está na prateleira.",
+    "A2 | Der Hund liegt unter dem Tisch.": "O cachorro está deitado debaixo da mesa.",
+    "A2 | Das Fahrrad steht vor dem Fenster.": "A bicicleta está em frente à janela.",
+    "A2 | Die Kasse steht auf dem Schalter.": "A caixa registradora está no balcão.",
+    "A2 | Die Blumen stehen im Glas.": "As flores estão no copo.",
+    "A2 | Der Nachbar sitzt am Tisch.": "O vizinho está sentado à mesa.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "A planta está ao lado da janela.",
+    "B1 | Anna grüßt ihren Nachbarn.": "Anna cumprimenta o vizinho.",
+    "B1 | Der Nachbar liest die Zeitung.": "O vizinho lê o jornal.",
+    "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "A vendedora conhece todos os clientes do bairro.",
+    "B1 | Der Hund gehört dem Herrn am Tisch.": "O cachorro é do senhor que está à mesa.",
+    "B1 | Anna kauft Brötchen für ihren Kollegen.": "Anna compra pãezinhos para o colega.",
+    "B1 | Kennst du den Namen der Verkäuferin?": "Você sabe o nome da vendedora?",
+    "B1 | Der Hund wartet auf seinen Herrn.": "O cachorro espera pelo dono.",
+    "B1 | Die Bäckerei ist bei allen Nachbarn beliebt.": "A padaria é querida por todos os vizinhos.",
+    "B2 | Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.": "Antes de Anna chegar, a vendedora tinha assado o pão.",
+    "B2 | Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.": "Quando Anna entrou, o vizinho já tinha se sentado.",
+    "B2 | Nachdem er den Kaffee getrunken hatte, las er die Zeitung.": "Depois de ter bebido o café, ele leu o jornal.",
+    "B2 | Der Hund war schon eingeschlafen, bevor der Kaffee kam.": "O cachorro já tinha adormecido antes de o café chegar.",
+    "B2 | Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.": "Quando a loja abriu, a vendedora já tinha trabalhado três horas.",
+    "B2 | Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.": "Anna já tinha pagado os pãezinhos quando o celular tocou.",
+    "C1 | Die Brötchen müssen frisch sein.": "Os pãezinhos devem estar frescos.",
+    "C1 | Der Hund könnte dem Nachbarn gehören.": "O cachorro talvez seja do vizinho.",
+    "C1 | Das Brot dürfte von heute Morgen sein.": "O pão provavelmente é desta manhã.",
+    "C1 | Diese Bäckerei soll die beste im Kiez sein.": "Dizem que esta padaria é a melhor do bairro."
    }
   },
   "pl": {
@@ -2548,6 +2742,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Nachbarn gehören.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Das Brot dürfte von heute Morgen sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Diese Bäckerei soll die beste im Kiez sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Zegar wisi na ścianie.",
+    "A2 | Die Milch steht im Regal.": "Mleko stoi na półce.",
+    "A2 | Der Hund liegt unter dem Tisch.": "Pies leży pod stołem.",
+    "A2 | Das Fahrrad steht vor dem Fenster.": "Rower stoi przed oknem.",
+    "A2 | Die Kasse steht auf dem Schalter.": "Kasa stoi na ladzie.",
+    "A2 | Die Blumen stehen im Glas.": "Kwiaty stoją w szklance.",
+    "A2 | Der Nachbar sitzt am Tisch.": "Sąsiad siedzi przy stole.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "Roślina stoi obok okna.",
+    "B1 | Anna grüßt ihren Nachbarn.": "Anna wita swojego sąsiada.",
+    "B1 | Der Nachbar liest die Zeitung.": "Sąsiad czyta gazetę.",
+    "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "Sprzedawczyni zna każdego klienta w dzielnicy.",
+    "B1 | Der Hund gehört dem Herrn am Tisch.": "Pies należy do pana przy stole.",
+    "B1 | Anna kauft Brötchen für ihren Kollegen.": "Anna kupuje bułki dla swojego kolegi z pracy.",
+    "B1 | Kennst du den Namen der Verkäuferin?": "Znasz imię sprzedawczyni?",
+    "B1 | Der Hund wartet auf seinen Herrn.": "Pies czeka na swojego pana.",
+    "B1 | Die Bäckerei ist bei allen Nachbarn beliebt.": "Piekarnia jest lubiana przez wszystkich sąsiadów.",
+    "B2 | Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.": "Zanim Anna przyszła, sprzedawczyni upiekła chleb.",
+    "B2 | Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.": "Kiedy Anna weszła, sąsiad już usiadł.",
+    "B2 | Nachdem er den Kaffee getrunken hatte, las er die Zeitung.": "Po wypiciu kawy przeczytał gazetę.",
+    "B2 | Der Hund war schon eingeschlafen, bevor der Kaffee kam.": "Pies zasnął, zanim przyniesiono kawę.",
+    "B2 | Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.": "Kiedy sklep się otworzył, sprzedawczyni pracowała już od trzech godzin.",
+    "B2 | Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.": "Anna zapłaciła już za bułki, gdy zadzwonił jej telefon.",
+    "C1 | Die Brötchen müssen frisch sein.": "Bułki muszą być świeże.",
+    "C1 | Der Hund könnte dem Nachbarn gehören.": "Pies być może należy do sąsiada.",
+    "C1 | Das Brot dürfte von heute Morgen sein.": "Chleb jest zapewne z dzisiejszego ranka.",
+    "C1 | Diese Bäckerei soll die beste im Kiez sein.": "Podobno ta piekarnia jest najlepsza w dzielnicy."
    }
   },
   "ru": {
@@ -2589,6 +2811,34 @@ window.SCENE = {
     "C1 | Der Hund könnte dem Nachbarn gehören.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Das Brot dürfte von heute Morgen sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Diese Bäckerei soll die beste im Kiez sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
+    "A2 | Die Milch steht im Regal.": "Молоко стоит на полке.",
+    "A2 | Der Hund liegt unter dem Tisch.": "Собака лежит под столом.",
+    "A2 | Das Fahrrad steht vor dem Fenster.": "Велосипед стоит перед окном.",
+    "A2 | Die Kasse steht auf dem Schalter.": "Касса стоит на прилавке.",
+    "A2 | Die Blumen stehen im Glas.": "Цветы стоят в стакане.",
+    "A2 | Der Nachbar sitzt am Tisch.": "Сосед сидит за столом.",
+    "A2 | Die Pflanze steht neben dem Fenster.": "Растение стоит рядом с окном.",
+    "B1 | Anna grüßt ihren Nachbarn.": "Анна здоровается со своим соседом.",
+    "B1 | Der Nachbar liest die Zeitung.": "Сосед читает газету.",
+    "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "Продавщица знает каждого покупателя в районе.",
+    "B1 | Der Hund gehört dem Herrn am Tisch.": "Собака принадлежит мужчине за столом.",
+    "B1 | Anna kauft Brötchen für ihren Kollegen.": "Анна покупает булочки для своего коллеги.",
+    "B1 | Kennst du den Namen der Verkäuferin?": "Ты знаешь, как зовут продавщицу?",
+    "B1 | Der Hund wartet auf seinen Herrn.": "Собака ждёт своего хозяина.",
+    "B1 | Die Bäckerei ist bei allen Nachbarn beliebt.": "Пекарню любят все соседи.",
+    "B2 | Bevor Anna kam, hatte die Verkäuferin das Brot gebacken.": "До того как Анна пришла, продавщица испекла хлеб.",
+    "B2 | Als Anna hereinkam, hatte der Nachbar sich schon gesetzt.": "Когда Анна вошла, сосед уже сел.",
+    "B2 | Nachdem er den Kaffee getrunken hatte, las er die Zeitung.": "Выпив кофе, он прочитал газету.",
+    "B2 | Der Hund war schon eingeschlafen, bevor der Kaffee kam.": "Собака уже заснула до того, как принесли кофе.",
+    "B2 | Als der Laden öffnete, hatte die Verkäuferin schon drei Stunden gearbeitet.": "Когда магазин открылся, продавщица уже проработала три часа.",
+    "B2 | Anna hatte die Brötchen schon bezahlt, als ihr Handy klingelte.": "Анна уже заплатила за булочки, когда зазвонил её телефон.",
+    "C1 | Die Brötchen müssen frisch sein.": "Булочки, должно быть, свежие.",
+    "C1 | Der Hund könnte dem Nachbarn gehören.": "Собака, возможно, принадлежит соседу.",
+    "C1 | Das Brot dürfte von heute Morgen sein.": "Хлеб, вероятно, сегодняшний.",
+    "C1 | Diese Bäckerei soll die beste im Kiez sein.": "Говорят, эта пекарня — лучшая в районе."
    }
   }
  }

@@ -1842,6 +1842,7 @@ window.SCENE = {
      "f": "waage",
      "r": "wand",
      "phrase": "La báscula está junto a la pared.",
+     "sens": "La balance est contre le mur.",
      "n": "<b>junto a</b> = contre, près de."
     },
     {
@@ -1854,6 +1855,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "La médica está al lado del paciente.",
+     "sens": "La médecin est à côté du patient.",
      "n": "<b>al lado de</b> = à côté de ; de + el = <b>del</b>."
     },
     {
@@ -1866,6 +1868,7 @@ window.SCENE = {
      "f": "mark",
      "r": "waage",
      "phrase": "Mark está delante de la báscula.",
+     "sens": "Mark est devant la balance.",
      "n": "<b>delante de</b> = devant : il n'y est pas encore monté."
     },
     {
@@ -1878,6 +1881,7 @@ window.SCENE = {
      "f": "stethoskop",
      "r": "brust",
      "phrase": "La médica le pone el estetoscopio en el pecho.",
+     "sens": "La médecin lui pose le stéthoscope sur la poitrine.",
      "n": "Pour les parties du corps, l'espagnol met l'<b>article</b>, pas le possessif : le pronom <b>le</b> dit déjà à qui."
     },
     {
@@ -1890,6 +1894,7 @@ window.SCENE = {
      "f": "hand-l",
      "r": "oberschenkel",
      "phrase": "Mark tiene las manos junto a los muslos.",
+     "sens": "Mark a les mains le long des cuisses.",
      "n": "<b>junto a</b> = le long de, contre."
     },
     {
@@ -1902,6 +1907,7 @@ window.SCENE = {
      "f": "fuss-l",
      "r": "boden",
      "phrase": "Mark tiene los pies en el suelo.",
+     "sens": "Mark a les pieds sur le sol.",
      "n": "<b>en</b> el suelo = par terre. « encima » et « dentro » demandent <b>de</b>.",
      "latam": {
       "q": "Mark tiene los pies ___ el piso.",
@@ -1927,6 +1933,7 @@ window.SCENE = {
       "mot": "respirar",
       "cat": "verbe"
      },
+     "sens": "Monsieur, respirez profondément, s'il vous plaît.",
      "n": "On vouvoie (usted) : impératif en <b>-e</b> pour un verbe en -ar → <b>respire</b>."
     },
     {
@@ -1943,6 +1950,7 @@ window.SCENE = {
       "mot": "escuchar",
       "cat": "verbe"
      },
+     "sens": "La médecin ausculte ses poumons.",
      "n": "Présent, 3e personne : la médica <b>escucha</b>."
     },
     {
@@ -1959,6 +1967,7 @@ window.SCENE = {
       "mot": "llevar",
       "cat": "verbe"
      },
+     "sens": "Mark a enlevé ses vêtements : il ne porte que son caleçon.",
      "n": "<b>llevar</b> = porter (un vêtement)."
     },
     {
@@ -1971,6 +1980,7 @@ window.SCENE = {
      "f": "mark",
      "r": "waage",
      "phrase": "Ahora, súbase a la báscula, por favor.",
+     "sens": "Maintenant, montez sur la balance, s'il vous plaît.",
      "n": "Impératif d'usted + pronom collé : <b>súbase</b> (l'accent écrit garde l'accent tonique)."
     },
     {
@@ -1982,6 +1992,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "No se mueva, por favor.",
+     "sens": "Ne bougez pas, s'il vous plaît.",
      "n": "L'impératif <b>négatif</b> prend le subjonctif : no se <b>mueva</b>."
     },
     {
@@ -1994,6 +2005,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "La médica le ha pedido que respire hondo.",
+     "sens": "La médecin lui a demandé de respirer profondément.",
      "n": "Demander <b>à</b> quelqu'un : complément indirect → <b>le</b>. Et pedir que + subjonctif."
     }
    ]
@@ -2011,6 +2023,7 @@ window.SCENE = {
      "f": "brust",
      "r": "hand-aerztin-haut",
      "phrase": "Sus pulmones están siendo examinados.",
+     "sens": "Ses poumons sont en train d'être examinés.",
      "n": "Passif en cours : <b>estar siendo</b> + participe."
     },
     {
@@ -2023,6 +2036,7 @@ window.SCENE = {
      "f": "mark",
      "r": "brust",
      "phrase": "El paciente cuyo pecho examina la médica se llama Mark.",
+     "sens": "Le patient dont la médecin examine la poitrine s'appelle Mark.",
      "n": "<b>cuyo</b> s'accorde avec el pecho → <b>cuyo</b>."
     },
     {
@@ -2035,6 +2049,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "La médica que lo examina es su médica de cabecera.",
+     "sens": "La médecin qui l'examine est sa médecin traitante.",
      "n": "Sujet de la relative → <b>que</b>. <b>médica de cabecera</b> = médecin traitante."
     },
     {
@@ -2047,6 +2062,7 @@ window.SCENE = {
      "f": "waage",
      "r": "mark",
      "phrase": "La báscula a la que se va a subir está junto a la pared.",
+     "sens": "La balance sur laquelle il va monter est contre le mur.",
      "n": "Subirse <b>a</b> algo : a + la que → <b>a la que</b>. <b>quien</b> ne désigne que des personnes."
     },
     {
@@ -2058,6 +2074,7 @@ window.SCENE = {
      ],
      "f": "waage",
      "phrase": "Su altura será medida enseguida.",
+     "sens": "Sa taille sera mesurée tout de suite.",
      "n": "L'action à venir, au passif : <b>ser</b> + participe → <b>será</b> medida."
     },
     {
@@ -2073,6 +2090,7 @@ window.SCENE = {
       "mot": "examinar",
       "cat": "verbe"
      },
+     "sens": "Mark ne bouge pas pendant que la médecin l'examine.",
      "n": "<b>mientras</b> + verbe = pendant que. <b>durante</b> se met devant un nom."
     }
    ]
@@ -2089,6 +2107,7 @@ window.SCENE = {
      ],
      "f": "arm-l",
      "phrase": "Mark debe de hacer mucho deporte: tiene los brazos fuertes.",
+     "sens": "Mark doit faire beaucoup de sport : il a les bras musclés.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -2100,6 +2119,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Es probable que Mark esté sano.",
+     "sens": "Il est probable que Mark soit en bonne santé.",
      "n": "Une probabilité → <b>subjonctif</b> (esté). Après es seguro ou creo, ce serait l'indicatif : está."
     },
     {
@@ -2111,6 +2131,7 @@ window.SCENE = {
      ],
      "f": "aerztin",
      "phrase": "Dicen que esta médica es muy minuciosa.",
+     "sens": "On dit que cette médecin est très minutieuse.",
      "n": "Après <b>dicen que</b> (on rapporte) → l'<b>indicatif</b>."
     },
     {
@@ -2123,6 +2144,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "brust",
      "phrase": "Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.",
+     "sens": "Si son cœur battait de façon irrégulière, elle l'enverrait chez le cardiologue.",
      "n": "Hypothèse irréelle : <b>si</b> + subjonctif imparfait (latiera), puis conditionnel."
     },
     {
@@ -2134,6 +2156,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Si no se hubiera quitado la ropa, no habría podido auscultarlo.",
+     "sens": "S'il n'avait pas enlevé ses vêtements, elle n'aurait pas pu l'ausculter.",
      "n": "Hypothèse sur le passé : <b>si</b> + plus-que-parfait du subjonctif, puis conditionnel passé."
     },
     {
@@ -2145,6 +2168,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Cuanto más deporte hace Mark, más sano está.",
+     "sens": "Plus Mark fait de sport, plus il est en bonne santé.",
      "n": "<b>cuanto más</b> …, <b>más</b> … = plus …, plus …."
     }
    ]
@@ -2201,6 +2225,33 @@ window.SCENE = {
     "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "Unreal condition: <b>si</b> + imperfect subjunctive (latiera), then the conditional.",
     "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "A hypothesis about the past: <b>si</b> + pluperfect subjunctive, then the conditional perfect.",
     "C1 | Cuanto más deporte hace Mark, más sano está.": "<b>cuanto más</b> …, <b>más</b> … = the more …, the more …."
+   },
+   "sens": {
+    "A2 | La báscula está junto a la pared.": "The scale is by the wall.",
+    "A2 | La médica está al lado del paciente.": "The doctor is next to the patient.",
+    "A2 | Mark está delante de la báscula.": "Mark is in front of the scale.",
+    "A2 | La médica le pone el estetoscopio en el pecho.": "The doctor puts the stethoscope on his chest.",
+    "A2 | Mark tiene las manos junto a los muslos.": "Mark has his hands at his thighs.",
+    "A2 | Mark tiene los pies en el piso.": "Mark has his feet on the floor.",
+    "A2 | Mark tiene los pies en el suelo.": "Mark has his feet on the floor.",
+    "B1 | Señor, respire hondo, por favor.": "Sir, breathe deeply, please.",
+    "B1 | La médica le escucha los pulmones.": "The doctor is listening to his lungs.",
+    "B1 | Mark se ha quitado la ropa: lleva solo los calzoncillos.": "Mark has taken off his clothes: he is only wearing his underpants.",
+    "B1 | Ahora, súbase a la báscula, por favor.": "Now, step onto the scale, please.",
+    "B1 | No se mueva, por favor.": "Don't move, please.",
+    "B1 | La médica le ha pedido que respire hondo.": "The doctor has asked him to breathe deeply.",
+    "B2 | Sus pulmones están siendo examinados.": "His lungs are being examined.",
+    "B2 | El paciente cuyo pecho examina la médica se llama Mark.": "The patient whose chest the doctor is examining is called Mark.",
+    "B2 | La médica que lo examina es su médica de cabecera.": "The doctor examining him is his family doctor.",
+    "B2 | La báscula a la que se va a subir está junto a la pared.": "The scale he is going to step on is by the wall.",
+    "B2 | Su altura será medida enseguida.": "His height will be measured right away.",
+    "B2 | Mark no se mueve mientras la médica lo examina.": "Mark does not move while the doctor examines him.",
+    "C1 | Mark debe de hacer mucho deporte: tiene los brazos fuertes.": "Mark must do a lot of sport: he has strong arms.",
+    "C1 | Es probable que Mark esté sano.": "Mark is probably healthy.",
+    "C1 | Dicen que esta médica es muy minuciosa.": "They say this doctor is very thorough.",
+    "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "If his heart were beating irregularly, she would send him to a cardiologist.",
+    "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "If he had not taken off his clothes, she could not have examined him.",
+    "C1 | Cuanto más deporte hace Mark, más sano está.": "The more sport Mark does, the healthier he is."
    }
   },
   "tr": {
@@ -2213,7 +2264,8 @@ window.SCENE = {
    "couches": {
     "A1": "İnsan vücudu"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -2225,7 +2277,8 @@ window.SCENE = {
    "couches": {
     "A1": "Тіло людини"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -2237,7 +2290,8 @@ window.SCENE = {
    "couches": {
     "A1": "بدن انسان"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -2279,6 +2333,33 @@ window.SCENE = {
     "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "فرضية غير واقعية: <b>si</b> + subjuntivo الماضي (latiera)، ثم condicional.",
     "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "فرضية بشأن الماضي: <b>si</b> + الماضي التامّ من subjuntivo، ثم condicional الماضي.",
     "C1 | Cuanto más deporte hace Mark, más sano está.": "<b>cuanto más</b> …, <b>más</b> … = كلّما …، زاد …."
+   },
+   "sens": {
+    "A2 | La báscula está junto a la pared.": "الميزان عند الحائط.",
+    "A2 | La médica está al lado del paciente.": "الطبيبة بجانب المريض.",
+    "A2 | Mark está delante de la báscula.": "مارك أمام الميزان.",
+    "A2 | La médica le pone el estetoscopio en el pecho.": "تضع الطبيبة السمّاعة على صدره.",
+    "A2 | Mark tiene las manos junto a los muslos.": "يدا مارك بجانب فخذيه.",
+    "A2 | Mark tiene los pies en el piso.": "قدما مارك على الأرض.",
+    "A2 | Mark tiene los pies en el suelo.": "قدما مارك على الأرض.",
+    "B1 | Señor, respire hondo, por favor.": "سيّدي، خذ نفساً عميقاً، من فضلك.",
+    "B1 | La médica le escucha los pulmones.": "تفحص الطبيبة رئتيه بالسمّاعة.",
+    "B1 | Mark se ha quitado la ropa: lleva solo los calzoncillos.": "خلع مارك ملابسه: لا يرتدي سوى سرواله الداخلي.",
+    "B1 | Ahora, súbase a la báscula, por favor.": "الآن، قف على الميزان، من فضلك.",
+    "B1 | No se mueva, por favor.": "لا تتحرّك، من فضلك.",
+    "B1 | La médica le ha pedido que respire hondo.": "طلبت منه الطبيبة أن يأخذ نفساً عميقاً.",
+    "B2 | Sus pulmones están siendo examinados.": "تُفحص رئتاه الآن.",
+    "B2 | El paciente cuyo pecho examina la médica se llama Mark.": "المريض الذي تفحص الطبيبة صدره اسمه مارك.",
+    "B2 | La médica que lo examina es su médica de cabecera.": "الطبيبة التي تفحصه هي طبيبة العائلة.",
+    "B2 | La báscula a la que se va a subir está junto a la pared.": "الميزان الذي سيقف عليه عند الحائط.",
+    "B2 | Su altura será medida enseguida.": "سيُقاس طوله حالاً.",
+    "B2 | Mark no se mueve mientras la médica lo examina.": "لا يتحرّك مارك بينما تفحصه الطبيبة.",
+    "C1 | Mark debe de hacer mucho deporte: tiene los brazos fuertes.": "لا بدّ أن مارك يمارس الرياضة كثيراً: ذراعاه قويّتان.",
+    "C1 | Es probable que Mark esté sano.": "من المحتمل أن مارك بصحّة جيدة.",
+    "C1 | Dicen que esta médica es muy minuciosa.": "يُقال إن هذه الطبيبة دقيقة جداً.",
+    "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "لو كان قلبه ينبض بشكل غير منتظم، لأرسلته إلى طبيب القلب.",
+    "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "لو لم يخلع ملابسه، لما استطاعت فحصه بالسمّاعة.",
+    "C1 | Cuanto más deporte hace Mark, más sano está.": "كلّما مارس مارك الرياضة أكثر، كان أكثر صحّة."
    }
   },
   "pt": {
@@ -2321,6 +2402,33 @@ window.SCENE = {
     "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "Hipótese irreal: <b>si</b> + subjuntivo imperfeito (latiera), depois o condicional.",
     "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "Hipótese sobre o passado: <b>si</b> + mais-que-perfeito do subjuntivo, depois o condicional composto.",
     "C1 | Cuanto más deporte hace Mark, más sano está.": "<b>cuanto más</b> …, <b>más</b> … = quanto mais …, mais …."
+   },
+   "sens": {
+    "A2 | La báscula está junto a la pared.": "A balança está junto à parede.",
+    "A2 | La médica está al lado del paciente.": "A médica está ao lado do paciente.",
+    "A2 | Mark está delante de la báscula.": "Mark está em frente à balança.",
+    "A2 | La médica le pone el estetoscopio en el pecho.": "A médica põe o estetoscópio no peito dele.",
+    "A2 | Mark tiene las manos junto a los muslos.": "Mark está com as mãos junto às coxas.",
+    "A2 | Mark tiene los pies en el piso.": "Mark está com os pés no chão.",
+    "A2 | Mark tiene los pies en el suelo.": "Mark está com os pés no chão.",
+    "B1 | Señor, respire hondo, por favor.": "Senhor, respire fundo, por favor.",
+    "B1 | La médica le escucha los pulmones.": "A médica ausculta os pulmões dele.",
+    "B1 | Mark se ha quitado la ropa: lleva solo los calzoncillos.": "Mark tirou a roupa: está só de cueca.",
+    "B1 | Ahora, súbase a la báscula, por favor.": "Agora, suba na balança, por favor.",
+    "B1 | No se mueva, por favor.": "Não se mexa, por favor.",
+    "B1 | La médica le ha pedido que respire hondo.": "A médica pediu que ele respirasse fundo.",
+    "B2 | Sus pulmones están siendo examinados.": "Os pulmões dele estão sendo examinados.",
+    "B2 | El paciente cuyo pecho examina la médica se llama Mark.": "O paciente cujo peito a médica examina se chama Mark.",
+    "B2 | La médica que lo examina es su médica de cabecera.": "A médica que o examina é a sua médica de família.",
+    "B2 | La báscula a la que se va a subir está junto a la pared.": "A balança em que ele vai subir está junto à parede.",
+    "B2 | Su altura será medida enseguida.": "A altura dele será medida em seguida.",
+    "B2 | Mark no se mueve mientras la médica lo examina.": "Mark não se mexe enquanto a médica o examina.",
+    "C1 | Mark debe de hacer mucho deporte: tiene los brazos fuertes.": "Mark deve praticar muito esporte: tem os braços fortes.",
+    "C1 | Es probable que Mark esté sano.": "É provável que Mark esteja saudável.",
+    "C1 | Dicen que esta médica es muy minuciosa.": "Dizem que esta médica é muito minuciosa.",
+    "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "Se o coração dele batesse de forma irregular, ela o mandaria ao cardiologista.",
+    "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "Se ele não tivesse tirado a roupa, ela não teria podido auscultá-lo.",
+    "C1 | Cuanto más deporte hace Mark, más sano está.": "Quanto mais esporte Mark pratica, mais saudável ele fica."
    }
   },
   "pl": {
@@ -2333,7 +2441,8 @@ window.SCENE = {
    "couches": {
     "A1": "Ciało człowieka"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -2345,7 +2454,8 @@ window.SCENE = {
    "couches": {
     "A1": "Тело человека"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

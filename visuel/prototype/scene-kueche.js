@@ -1336,6 +1336,7 @@ window.SCENE = {
      "f": "topf",
      "r": "pfanne",
      "phrase": "Der Topf steht neben der Pfanne.",
+     "sens": "La casserole est à côté de la poêle.",
      "n": "die Pfanne → neben <b>der</b> Pfanne : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1348,6 +1349,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "regal",
      "phrase": "Die Uhr hängt über dem Regal.",
+     "sens": "L'horloge est accrochée au-dessus de l'étagère.",
      "n": "<b>über</b> = au-dessus de. das Regal → über <b>dem</b> Regal."
     },
     {
@@ -1360,6 +1362,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "kuehlschrank",
      "phrase": "Die Pflanze steht auf dem Kühlschrank.",
+     "sens": "La plante est sur le réfrigérateur.",
      "n": "der Kühlschrank → auf <b>dem</b> Kühlschrank."
     },
     {
@@ -1372,6 +1375,7 @@ window.SCENE = {
      "f": "katze",
      "r": "stuhl",
      "phrase": "Die Katze sitzt auf dem Stuhl.",
+     "sens": "Le chat est assis sur la chaise.",
      "n": "<b>Wo?</b> → datif : der Stuhl → auf <b>dem</b> Stuhl."
     },
     {
@@ -1384,6 +1388,7 @@ window.SCENE = {
      "f": "kartoffel",
      "r": "tisch",
      "phrase": "Die Kartoffeln liegen auf dem Tisch.",
+     "sens": "Les pommes de terre sont sur la table.",
      "n": "der Tisch → auf <b>dem</b> Tisch. Au pluriel, le verbe aussi : <b>liegen</b>."
     },
     {
@@ -1396,6 +1401,7 @@ window.SCENE = {
      "f": "handtuch",
      "r": "backofen",
      "phrase": "Das Handtuch hängt am Backofen.",
+     "sens": "Le torchon est accroché au four.",
      "n": "<b>am</b> = an + <b>dem</b> : der Backofen → am Backofen."
     },
     {
@@ -1408,6 +1414,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "kuehlschrank",
      "phrase": "Der Mülleimer steht neben dem Kühlschrank.",
+     "sens": "La poubelle est à côté du réfrigérateur.",
      "n": "<b>neben</b> = à côté de. der Kühlschrank → neben <b>dem</b> Kühlschrank."
     },
     {
@@ -1420,6 +1427,7 @@ window.SCENE = {
      "f": "milch",
      "r": "brot",
      "phrase": "Die Milch steht neben dem Brot.",
+     "sens": "Le lait est à côté du pain.",
      "n": "das Brot est neutre : au datif, comme le masculin → neben <b>dem</b> Brot."
     }
    ]
@@ -1437,6 +1445,7 @@ window.SCENE = {
      "f": "karotte",
      "r": "mark",
      "phrase": "Mark hat die Karotte geschnitten.",
+     "sens": "Mark a coupé la carotte.",
      "n": "<b>schneiden</b> est irrégulier → <b>geschnitten</b>.",
      "revise": {
       "mot": "schneiden",
@@ -1453,6 +1462,7 @@ window.SCENE = {
      "f": "ei",
      "r": "pfanne",
      "phrase": "Er hat zwei Eier gebraten.",
+     "sens": "Il a fait frire deux œufs.",
      "n": "<b>braten</b> → <b>gebraten</b>, avec <b>-en</b>, comme un verbe fort.",
      "revise": {
       "mot": "braten",
@@ -1468,6 +1478,7 @@ window.SCENE = {
      ],
      "f": "topf",
      "phrase": "Die Suppe hat schon eine Stunde gekocht.",
+     "sens": "La soupe a déjà cuit une heure.",
      "n": "<b>kochen</b> est régulier → <b>ge</b>koch<b>t</b>.",
      "revise": {
       "mot": "kochen",
@@ -1484,6 +1495,7 @@ window.SCENE = {
      "f": "brot",
      "r": "tisch",
      "phrase": "Mark hat das Brot auf den Tisch gelegt.",
+     "sens": "Mark a posé le pain sur la table.",
      "n": "<b>legen</b> a un complément (das Brot) → Perfekt avec <b>haben</b>.",
      "revise": {
       "mot": "legen",
@@ -1500,6 +1512,7 @@ window.SCENE = {
      "f": "katze",
      "r": "stuhl",
      "phrase": "Die Katze ist auf den Stuhl gesprungen.",
+     "sens": "Le chat a sauté sur la chaise.",
      "n": "Un déplacement d'un lieu à un autre → Perfekt avec <b>sein</b>."
     },
     {
@@ -1512,6 +1525,7 @@ window.SCENE = {
      "f": "milch",
      "r": "tisch",
      "phrase": "Mark hat die Milch auf den Tisch gestellt.",
+     "sens": "Mark a mis le lait sur la table.",
      "n": "<b>stellen</b> (poser debout) → gestellt. <b>stehen</b> (être debout) → gestanden.",
      "revise": {
       "mot": "stellen",
@@ -1528,6 +1542,7 @@ window.SCENE = {
      "f": "handtuch",
      "r": "backofen",
      "phrase": "Mark hat das Handtuch an den Backofen gehängt.",
+     "sens": "Mark a accroché le torchon au four.",
      "n": "<b>hängen</b> + complément (accrocher) → <b>gehängt</b>. Sans complément (être accroché) → gehangen.",
      "revise": {
       "mot": "hängen",
@@ -1543,6 +1558,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Heute Abend hat Mark für seine Mitbewohner gekocht.",
+     "sens": "Ce soir, Mark a cuisiné pour ses colocataires.",
      "n": "<b>kochen</b> → Perfekt avec <b>haben</b>. Le verbe conjugué reste en 2e position.",
      "revise": {
       "mot": "kochen",
@@ -1564,6 +1580,7 @@ window.SCENE = {
      "f": "karotte",
      "r": "messer",
      "phrase": "Die Karotte wird gerade geschnitten.",
+     "sens": "La carotte est en train d'être coupée.",
      "n": "L'action en cours → passif avec <b>werden</b>."
     },
     {
@@ -1576,6 +1593,7 @@ window.SCENE = {
      "f": "tisch",
      "r": "kartoffel",
      "phrase": "Der Tisch, auf dem das Gemüse liegt, ist aus Holz.",
+     "sens": "La table sur laquelle sont les légumes est en bois.",
      "n": "<b>auf</b> + Wo? → datif, masculin → <b>dem</b>."
     },
     {
@@ -1588,6 +1606,7 @@ window.SCENE = {
      "f": "katze",
      "r": "stuhl",
      "phrase": "Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.",
+     "sens": "Le chat qui est assis sur la chaise regarde la table.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -1600,6 +1619,7 @@ window.SCENE = {
      "f": "buch",
      "r": "tisch",
      "phrase": "Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.",
+     "sens": "Le livre dont les pages sont pleines d'images est sur la table.",
      "n": "Possession, antécédent neutre → <b>dessen</b> (dont les pages)."
     },
     {
@@ -1612,6 +1632,7 @@ window.SCENE = {
      "f": "ei",
      "r": "pfanne",
      "phrase": "Die Eier in der Pfanne sind schon gebraten.",
+     "sens": "Les œufs dans la poêle sont déjà cuits.",
      "n": "<b>sein</b> + participe = passif d'état : le résultat.",
      "revise": {
       "mot": "braten",
@@ -1627,6 +1648,7 @@ window.SCENE = {
      ],
      "f": "topf",
      "phrase": "Die Suppe muss noch zehn Minuten gekocht werden.",
+     "sens": "La soupe doit encore cuire dix minutes.",
      "n": "Passif avec un modal : participe + <b>werden</b> à la fin."
     }
    ]
@@ -1644,6 +1666,7 @@ window.SCENE = {
      "f": "topf",
      "r": "mark",
      "phrase": "Die Suppe muss gut riechen.",
+     "sens": "La soupe doit sentir bon.",
      "n": "<b>müssen</b> = déduction presque certaine : il sourit."
     },
     {
@@ -1656,6 +1679,7 @@ window.SCENE = {
      "f": "katze",
      "r": "karotte",
      "phrase": "Die Katze könnte auf ein Stück Karotte hoffen.",
+     "sens": "Le chat espère peut-être un morceau de carotte.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1668,6 +1692,7 @@ window.SCENE = {
      "f": "topf",
      "r": "mark",
      "phrase": "Mark dürfte Gäste erwarten.",
+     "sens": "Mark attend sans doute des invités.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1679,6 +1704,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark soll die beste Suppe der WG kochen.",
+     "sens": "Il paraît que Mark fait la meilleure soupe de la colocation.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1724,6 +1750,34 @@ window.SCENE = {
     "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "<b>könnte</b> = one possibility among others.",
     "C1 | Mark dürfte Gäste erwarten.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Mark soll die beste Suppe der WG kochen.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Der Topf steht neben der Pfanne.": "The pot is next to the pan.",
+    "A2 | Die Uhr hängt über dem Regal.": "The clock hangs above the shelf.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "The plant is on the fridge.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "The cat is sitting on the chair.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "The potatoes are on the table.",
+    "A2 | Das Handtuch hängt am Backofen.": "The towel hangs on the oven.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "The bin is next to the fridge.",
+    "A2 | Die Milch steht neben dem Brot.": "The milk is next to the bread.",
+    "B1 | Mark hat die Karotte geschnitten.": "Mark cut the carrot.",
+    "B1 | Er hat zwei Eier gebraten.": "He fried two eggs.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "The soup has already been cooking for an hour.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "Mark put the bread on the table.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "The cat jumped onto the chair.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "Mark put the milk on the table.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "Mark hung the towel on the oven.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "Tonight Mark cooked for his flatmates.",
+    "B2 | Die Karotte wird gerade geschnitten.": "The carrot is being cut.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "The table the vegetables are on is made of wood.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "The cat sitting on the chair is looking at the table.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "The book whose pages are full of pictures is on the table.",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "The eggs in the pan are already fried.",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "The soup has to be cooked for another ten minutes.",
+    "C1 | Die Suppe muss gut riechen.": "The soup must smell good.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "The cat might be hoping for a piece of carrot.",
+    "C1 | Mark dürfte Gäste erwarten.": "Mark is probably expecting guests.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "Mark is said to make the best soup in the flat-share."
    }
   },
   "tr": {
@@ -1765,6 +1819,34 @@ window.SCENE = {
     "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Mark dürfte Gäste erwarten.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Mark soll die beste Suppe der WG kochen.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Der Topf steht neben der Pfanne.": "Tencere tavanın yanında duruyor.",
+    "A2 | Die Uhr hängt über dem Regal.": "Saat rafın üstünde asılı.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "Bitki buzdolabının üstünde duruyor.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "Kedi sandalyede oturuyor.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "Patatesler masanın üstünde.",
+    "A2 | Das Handtuch hängt am Backofen.": "Havlu fırında asılı.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "Çöp kovası buzdolabının yanında duruyor.",
+    "A2 | Die Milch steht neben dem Brot.": "Süt ekmeğin yanında duruyor.",
+    "B1 | Mark hat die Karotte geschnitten.": "Mark havucu kesti.",
+    "B1 | Er hat zwei Eier gebraten.": "İki yumurta kızarttı.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "Çorba bir saattir kaynıyor.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "Mark ekmeği masanın üstüne koydu.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "Kedi sandalyeye atladı.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "Mark sütü masanın üstüne koydu.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "Mark havluyu fırına astı.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "Bu akşam Mark ev arkadaşları için yemek yaptı.",
+    "B2 | Die Karotte wird gerade geschnitten.": "Havuç şu anda kesiliyor.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "Sebzelerin durduğu masa ahşap.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "Sandalyede oturan kedi masaya bakıyor.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "Sayfaları resim dolu olan kitap masanın üstünde.",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "Tavadaki yumurtalar kızarmış bile.",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "Çorbanın on dakika daha kaynaması gerekiyor.",
+    "C1 | Die Suppe muss gut riechen.": "Çorba güzel kokuyor olmalı.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "Kedi bir parça havuç umuyor olabilir.",
+    "C1 | Mark dürfte Gäste erwarten.": "Mark misafir bekliyor olsa gerek.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "Mark'ın evin en iyi çorbasını yaptığı söyleniyor."
    }
   },
   "uk": {
@@ -1806,6 +1888,34 @@ window.SCENE = {
     "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Mark dürfte Gäste erwarten.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Mark soll die beste Suppe der WG kochen.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Der Topf steht neben der Pfanne.": "Каструля стоїть біля сковорідки.",
+    "A2 | Die Uhr hängt über dem Regal.": "Годинник висить над полицею.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "Рослина стоїть на холодильнику.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "Кіт сидить на стільці.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "Картопля лежить на столі.",
+    "A2 | Das Handtuch hängt am Backofen.": "Рушник висить на духовці.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "Смітник стоїть біля холодильника.",
+    "A2 | Die Milch steht neben dem Brot.": "Молоко стоїть біля хліба.",
+    "B1 | Mark hat die Karotte geschnitten.": "Марк нарізав моркву.",
+    "B1 | Er hat zwei Eier gebraten.": "Він підсмажив два яйця.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "Суп варився вже годину.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "Марк поклав хліб на стіл.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "Кіт стрибнув на стілець.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "Марк поставив молоко на стіл.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "Марк повісив рушник на духовку.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "Сьогодні ввечері Марк приготував вечерю для сусідів по квартирі.",
+    "B2 | Die Karotte wird gerade geschnitten.": "Моркву зараз нарізають.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "Стіл, на якому лежать овочі, дерев'яний.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "Кіт, який сидить на стільці, дивиться на стіл.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "Книжка, сторінки якої повні картинок, лежить на столі.",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "Яйця на сковорідці вже підсмажені.",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "Суп треба варити ще десять хвилин.",
+    "C1 | Die Suppe muss gut riechen.": "Суп, мабуть, смачно пахне.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "Кіт, можливо, сподівається на шматочок моркви.",
+    "C1 | Mark dürfte Gäste erwarten.": "Марк, напевно, чекає гостей.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "Кажуть, Марк варить найкращий суп у квартирі."
    }
   },
   "fa": {
@@ -1847,6 +1957,34 @@ window.SCENE = {
     "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Mark dürfte Gäste erwarten.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Mark soll die beste Suppe der WG kochen.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Der Topf steht neben der Pfanne.": "قابلمه کنار ماهیتابه است.",
+    "A2 | Die Uhr hängt über dem Regal.": "ساعت بالای قفسه آویزان است.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "گیاه روی یخچال است.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "گربه روی صندلی نشسته است.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "سیب‌زمینی‌ها روی میز هستند.",
+    "A2 | Das Handtuch hängt am Backofen.": "حوله به فر آویزان است.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "سطل زباله کنار یخچال است.",
+    "A2 | Die Milch steht neben dem Brot.": "شیر کنار نان است.",
+    "B1 | Mark hat die Karotte geschnitten.": "مارک هویج را خرد کرده است.",
+    "B1 | Er hat zwei Eier gebraten.": "او دو تخم‌مرغ سرخ کرده است.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "سوپ یک ساعت است که می‌جوشد.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "مارک نان را روی میز گذاشته است.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "گربه روی صندلی پریده است.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "مارک شیر را روی میز گذاشته است.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "مارک حوله را به فر آویزان کرده است.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "امشب مارک برای هم‌خانه‌ای‌هایش غذا پخته است.",
+    "B2 | Die Karotte wird gerade geschnitten.": "هویج در حال خرد شدن است.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "میزی که سبزیجات رویش است، چوبی است.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "گربه‌ای که روی صندلی نشسته، به میز نگاه می‌کند.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "کتابی که صفحه‌هایش پر از عکس است، روی میز است.",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "تخم‌مرغ‌های داخل ماهیتابه سرخ شده‌اند.",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "سوپ باید ده دقیقهٔ دیگر بپزد.",
+    "C1 | Die Suppe muss gut riechen.": "سوپ حتماً بوی خوبی می‌دهد.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "گربه شاید امید یک تکه هویج دارد.",
+    "C1 | Mark dürfte Gäste erwarten.": "مارک احتمالاً منتظر مهمان است.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "می‌گویند مارک بهترین سوپ خانه را می‌پزد."
    }
   },
   "ar": {
@@ -1888,6 +2026,34 @@ window.SCENE = {
     "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Mark dürfte Gäste erwarten.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Mark soll die beste Suppe der WG kochen.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Der Topf steht neben der Pfanne.": "القِدر بجانب المقلاة.",
+    "A2 | Die Uhr hängt über dem Regal.": "الساعة معلّقة فوق الرفّ.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "النبتة على الثلّاجة.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "القطة جالسة على الكرسي.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "البطاطا على الطاولة.",
+    "A2 | Das Handtuch hängt am Backofen.": "المنشفة معلّقة على الفرن.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "سلّة المهملات بجانب الثلّاجة.",
+    "A2 | Die Milch steht neben dem Brot.": "الحليب بجانب الخبز.",
+    "B1 | Mark hat die Karotte geschnitten.": "قطّع مارك الجزرة.",
+    "B1 | Er hat zwei Eier gebraten.": "قلى بيضتين.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "الحساء يغلي منذ ساعة بالفعل.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "وضع مارك الخبز على الطاولة.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "قفزت القطة على الكرسي.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "وضع مارك الحليب على الطاولة.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "علّق مارك المنشفة على الفرن.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "هذا المساء طبخ مارك لرفاق سكنه.",
+    "B2 | Die Karotte wird gerade geschnitten.": "الجزرة تُقطَّع الآن.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "الطاولة التي عليها الخضار من الخشب.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "القطة الجالسة على الكرسي تنظر إلى الطاولة.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "الكتاب الذي صفحاته مليئة بالصور على الطاولة.",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "البيض في المقلاة مقليّ بالفعل.",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "يجب أن يُطهى الحساء عشر دقائق أخرى.",
+    "C1 | Die Suppe muss gut riechen.": "لا بدّ أن رائحة الحساء طيّبة.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "ربما تأمل القطة في قطعة جزر.",
+    "C1 | Mark dürfte Gäste erwarten.": "على الأرجح ينتظر مارك ضيوفاً.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "يُقال إن مارك يطبخ أفضل حساء في السكن المشترك."
    }
   },
   "pt": {
@@ -1929,6 +2095,34 @@ window.SCENE = {
     "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Mark dürfte Gäste erwarten.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Mark soll die beste Suppe der WG kochen.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Der Topf steht neben der Pfanne.": "A panela está ao lado da frigideira.",
+    "A2 | Die Uhr hängt über dem Regal.": "O relógio está pendurado acima da prateleira.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "A planta está em cima da geladeira.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "O gato está sentado na cadeira.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "As batatas estão na mesa.",
+    "A2 | Das Handtuch hängt am Backofen.": "O pano está pendurado no forno.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "A lixeira está ao lado da geladeira.",
+    "A2 | Die Milch steht neben dem Brot.": "O leite está ao lado do pão.",
+    "B1 | Mark hat die Karotte geschnitten.": "Mark cortou a cenoura.",
+    "B1 | Er hat zwei Eier gebraten.": "Ele fritou dois ovos.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "A sopa já cozinhou uma hora.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "Mark pôs o pão na mesa.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "O gato pulou na cadeira.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "Mark pôs o leite na mesa.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "Mark pendurou o pano no forno.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "Hoje à noite Mark cozinhou para os colegas de apartamento.",
+    "B2 | Die Karotte wird gerade geschnitten.": "A cenoura está sendo cortada.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "A mesa em que estão os legumes é de madeira.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "O gato que está sentado na cadeira olha para a mesa.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "O livro cujas páginas estão cheias de imagens está na mesa.",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "Os ovos na frigideira já estão fritos.",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "A sopa tem que cozinhar mais dez minutos.",
+    "C1 | Die Suppe muss gut riechen.": "A sopa deve estar cheirando bem.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "O gato talvez esteja esperando um pedaço de cenoura.",
+    "C1 | Mark dürfte Gäste erwarten.": "Mark provavelmente está esperando convidados.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "Dizem que Mark faz a melhor sopa do apartamento."
    }
   },
   "pl": {
@@ -1970,6 +2164,34 @@ window.SCENE = {
     "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Mark dürfte Gäste erwarten.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Mark soll die beste Suppe der WG kochen.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Der Topf steht neben der Pfanne.": "Garnek stoi obok patelni.",
+    "A2 | Die Uhr hängt über dem Regal.": "Zegar wisi nad półką.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "Roślina stoi na lodówce.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "Kot siedzi na krześle.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "Ziemniaki leżą na stole.",
+    "A2 | Das Handtuch hängt am Backofen.": "Ręcznik wisi na piekarniku.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "Kosz na śmieci stoi obok lodówki.",
+    "A2 | Die Milch steht neben dem Brot.": "Mleko stoi obok chleba.",
+    "B1 | Mark hat die Karotte geschnitten.": "Mark pokroił marchewkę.",
+    "B1 | Er hat zwei Eier gebraten.": "Usmażył dwa jajka.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "Zupa gotowała się już godzinę.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "Mark położył chleb na stole.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "Kot wskoczył na krzesło.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "Mark postawił mleko na stole.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "Mark powiesił ręcznik na piekarniku.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "Dziś wieczorem Mark ugotował dla współlokatorów.",
+    "B2 | Die Karotte wird gerade geschnitten.": "Marchewka jest właśnie krojona.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "Stół, na którym leżą warzywa, jest z drewna.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "Kot, który siedzi na krześle, patrzy na stół.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "Książka, której strony są pełne obrazków, leży na stole.",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "Jajka na patelni są już usmażone.",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "Zupa musi się gotować jeszcze dziesięć minut.",
+    "C1 | Die Suppe muss gut riechen.": "Zupa musi ładnie pachnieć.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "Kot być może liczy na kawałek marchewki.",
+    "C1 | Mark dürfte Gäste erwarten.": "Mark zapewne spodziewa się gości.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "Podobno Mark gotuje najlepszą zupę w mieszkaniu."
    }
   },
   "ru": {
@@ -2011,6 +2233,34 @@ window.SCENE = {
     "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Mark dürfte Gäste erwarten.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Mark soll die beste Suppe der WG kochen.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Der Topf steht neben der Pfanne.": "Кастрюля стоит рядом со сковородой.",
+    "A2 | Die Uhr hängt über dem Regal.": "Часы висят над полкой.",
+    "A2 | Die Pflanze steht auf dem Kühlschrank.": "Растение стоит на холодильнике.",
+    "A2 | Die Katze sitzt auf dem Stuhl.": "Кошка сидит на стуле.",
+    "A2 | Die Kartoffeln liegen auf dem Tisch.": "Картошка лежит на столе.",
+    "A2 | Das Handtuch hängt am Backofen.": "Полотенце висит на духовке.",
+    "A2 | Der Mülleimer steht neben dem Kühlschrank.": "Мусорное ведро стоит рядом с холодильником.",
+    "A2 | Die Milch steht neben dem Brot.": "Молоко стоит рядом с хлебом.",
+    "B1 | Mark hat die Karotte geschnitten.": "Марк нарезал морковь.",
+    "B1 | Er hat zwei Eier gebraten.": "Он пожарил два яйца.",
+    "B1 | Die Suppe hat schon eine Stunde gekocht.": "Суп варился уже час.",
+    "B1 | Mark hat das Brot auf den Tisch gelegt.": "Марк положил хлеб на стол.",
+    "B1 | Die Katze ist auf den Stuhl gesprungen.": "Кошка прыгнула на стул.",
+    "B1 | Mark hat die Milch auf den Tisch gestellt.": "Марк поставил молоко на стол.",
+    "B1 | Mark hat das Handtuch an den Backofen gehängt.": "Марк повесил полотенце на духовку.",
+    "B1 | Heute Abend hat Mark für seine Mitbewohner gekocht.": "Сегодня вечером Марк приготовил ужин для соседей по квартире.",
+    "B2 | Die Karotte wird gerade geschnitten.": "Морковь сейчас режут.",
+    "B2 | Der Tisch, auf dem das Gemüse liegt, ist aus Holz.": "Стол, на котором лежат овощи, деревянный.",
+    "B2 | Die Katze, die auf dem Stuhl sitzt, schaut auf den Tisch.": "Кошка, которая сидит на стуле, смотрит на стол.",
+    "B2 | Das Buch, dessen Seiten voller Bilder sind, liegt auf dem Tisch.": "Книга, страницы которой полны картинок, лежит на столе.",
+    "B2 | Die Eier in der Pfanne sind schon gebraten.": "Яйца на сковороде уже пожарены.",
+    "B2 | Die Suppe muss noch zehn Minuten gekocht werden.": "Суп нужно варить ещё десять минут.",
+    "C1 | Die Suppe muss gut riechen.": "Суп, должно быть, вкусно пахнет.",
+    "C1 | Die Katze könnte auf ein Stück Karotte hoffen.": "Кошка, возможно, надеется на кусочек моркови.",
+    "C1 | Mark dürfte Gäste erwarten.": "Марк, вероятно, ждёт гостей.",
+    "C1 | Mark soll die beste Suppe der WG kochen.": "Говорят, Марк варит лучший суп в квартире."
    }
   }
  }

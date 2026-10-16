@@ -1522,6 +1522,7 @@ window.SCENE = {
      "f": "katze",
      "r": "mauer",
      "phrase": "El gato está en el muro.",
+     "sens": "Le chat est sur le muret.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -1534,6 +1535,7 @@ window.SCENE = {
      "f": "hund",
      "r": "boden",
      "phrase": "El perro está en el suelo.",
+     "sens": "Le chien est par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "El perro está ___ piso.",
@@ -1550,6 +1552,7 @@ window.SCENE = {
      "f": "ei",
      "r": "korb",
      "phrase": "Los huevos están en la cesta.",
+     "sens": "Les œufs sont dans le panier.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1562,6 +1565,7 @@ window.SCENE = {
      "f": "leiter",
      "r": "holz",
      "phrase": "La escalera está al lado de la madera.",
+     "sens": "L'échelle est à côté du bois.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1573,6 +1577,7 @@ window.SCENE = {
      ],
      "f": "vogel",
      "phrase": "Hay un pájaro en el tejado.",
+     "sens": "Il y a un oiseau sur le toit.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -1585,6 +1590,7 @@ window.SCENE = {
      "f": "apfel-3",
      "r": "kiste",
      "phrase": "Las manzanas están en la caja.",
+     "sens": "Les pommes sont dans la caisse.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1596,6 +1602,7 @@ window.SCENE = {
      ],
      "f": "kuh",
      "phrase": "La vaca está en el prado.",
+     "sens": "La vache est dans le pré.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -1608,6 +1615,7 @@ window.SCENE = {
      "f": "eimer",
      "r": "brunnen",
      "phrase": "El cubo está al lado del pozo.",
+     "sens": "Le seau est à côté du puits.",
      "n": "<b>de + el = del</b>, toujours.",
      "latam": {
       "q": "La cubeta está al lado ___ pozo.",
@@ -1629,6 +1637,7 @@ window.SCENE = {
      "f": "anna",
      "r": "pferd",
      "phrase": "Anna se ríe con el caballo.",
+     "sens": "Anna rit avec le cheval.",
      "n": "<b>reírse</b> : à la 3e personne → <b>se</b>."
     },
     {
@@ -1641,6 +1650,7 @@ window.SCENE = {
      "f": "hund",
      "r": "boden",
      "phrase": "El perro se tumba en el suelo.",
+     "sens": "Le chien se couche par terre.",
      "n": "<b>tumbarse</b> = se coucher ; él → <b>se</b>.",
      "latam": {
       "q": "El perro ___ tumba en el piso.",
@@ -1657,6 +1667,7 @@ window.SCENE = {
      "f": "katze",
      "r": "mauer",
      "phrase": "El gato se sienta en el muro.",
+     "sens": "Le chat s'assied sur le muret.",
      "n": "<b>sentarse</b> = s'asseoir ; él → <b>se</b>.",
      "revise": {
       "mot": "sentarse",
@@ -1673,6 +1684,7 @@ window.SCENE = {
      "f": "cousin",
      "r": "huhn",
      "phrase": "El primo de Anna se agacha para dar de comer a la gallina.",
+     "sens": "Le cousin d'Anna se baisse pour nourrir la poule.",
      "n": "<b>agacharse</b> = s'accroupir ; él → <b>se</b>.",
      "revise": {
       "mot": "agacharse",
@@ -1688,6 +1700,7 @@ window.SCENE = {
      ],
      "f": "haus",
      "phrase": "Nosotros nos levantamos temprano en la granja.",
+     "sens": "Nous nous levons tôt à la ferme.",
      "n": "nosotros → <b>nos</b>.",
      "revise": {
       "mot": "levantarse",
@@ -1703,6 +1716,7 @@ window.SCENE = {
      ],
      "f": "cousin",
      "phrase": "¿Tú te lavas las manos después?",
+     "sens": "Tu te laves les mains après ?",
      "n": "tú → <b>te</b>, devant le verbe.",
      "revise": {
       "mot": "lavarse",
@@ -1718,6 +1732,7 @@ window.SCENE = {
      ],
      "f": "stiefel",
      "phrase": "Yo me pongo las botas.",
+     "sens": "Je mets mes bottes.",
      "n": "<b>ponerse</b> + vêtement : yo → <b>me</b>.",
      "revise": {
       "mot": "ponerse",
@@ -1734,6 +1749,7 @@ window.SCENE = {
      "f": "huhn-2",
      "r": "korb",
      "phrase": "Las gallinas se acercan a la cesta.",
+     "sens": "Les poules s'approchent du panier.",
      "n": "<b>acercarse</b> = s'approcher ; ellas → <b>se</b>.",
      "revise": {
       "mot": "acercarse",
@@ -1755,6 +1771,7 @@ window.SCENE = {
      "f": "anna",
      "r": "pferd",
      "phrase": "A Anna le gustan los caballos.",
+     "sens": "Anna aime les chevaux.",
      "n": "Celui qui aime est un complément : <b>le</b> (à lui, à elle).",
      "revise": {
       "mot": "gustar",
@@ -1771,6 +1788,7 @@ window.SCENE = {
      "f": "pferd",
      "r": "apfel",
      "phrase": "Al caballo le encanta la manzana.",
+     "sens": "Le cheval adore la pomme.",
      "n": "<b>encantar</b> fonctionne comme gustar → <b>le</b>."
     },
     {
@@ -1783,6 +1801,7 @@ window.SCENE = {
      "f": "cousin",
      "r": "huhn",
      "phrase": "A los niños les gustan las gallinas.",
+     "sens": "Les enfants aiment les poules.",
      "n": "Pluriel (a los niños) → <b>les</b>.",
      "revise": {
       "mot": "gustar",
@@ -1798,6 +1817,7 @@ window.SCENE = {
      ],
      "f": "feld",
      "phrase": "A mí me gusta la vida en el campo.",
+     "sens": "Moi, j'aime la vie à la campagne.",
      "n": "a mí → <b>me</b> ; le sujet du verbe, c'est la chose aimée.",
      "revise": {
       "mot": "gustar",
@@ -1813,6 +1833,7 @@ window.SCENE = {
      ],
      "f": "schwein",
      "phrase": "¿A ti te gustan los cerdos?",
+     "sens": "Toi, tu aimes les cochons ?",
      "n": "a ti → <b>te</b>.",
      "revise": {
       "mot": "gustar",
@@ -1828,6 +1849,7 @@ window.SCENE = {
      ],
      "f": "onkel",
      "phrase": "Al tío de Anna le duele la espalda.",
+     "sens": "L'oncle d'Anna a mal au dos.",
      "n": "<b>doler</b> fonctionne comme gustar → <b>le</b> duele.",
      "revise": {
       "mot": "doler",
@@ -1849,6 +1871,7 @@ window.SCENE = {
      "f": "pferd",
      "r": "anna",
      "phrase": "El caballo debe de ser muy cariñoso.",
+     "sens": "Le cheval doit être très affectueux.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1861,6 +1884,7 @@ window.SCENE = {
      "f": "hund",
      "r": "cousin",
      "phrase": "Puede que el perro sea del primo de Anna.",
+     "sens": "Le chien est peut-être au cousin d'Anna.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1873,6 +1897,7 @@ window.SCENE = {
      "f": "ei",
      "r": "korb",
      "phrase": "Serán de esta mañana.",
+     "sens": "Ils doivent dater de ce matin.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1884,6 +1909,7 @@ window.SCENE = {
      ],
      "f": "haus",
      "phrase": "Dicen que la granja tiene más de cien años.",
+     "sens": "On dit que la ferme a plus de cent ans.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1932,6 +1958,37 @@ window.SCENE = {
     "C1 | Puede que el perro sea del primo de Anna.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Serán de esta mañana.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que la granja tiene más de cien años.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El gato está en el muro.": "The cat is on the wall.",
+    "A2 | El perro está en el piso.": "The dog is on the ground.",
+    "A2 | El perro está en el suelo.": "The dog is on the ground.",
+    "A2 | Los huevos están en la cesta.": "The eggs are in the basket.",
+    "A2 | La escalera está al lado de la madera.": "The ladder is next to the wood.",
+    "A2 | Hay un pájaro en el tejado.": "There is a bird on the roof.",
+    "A2 | Las manzanas están en la caja.": "The apples are in the crate.",
+    "A2 | La vaca está en el prado.": "The cow is in the meadow.",
+    "A2 | La cubeta está al lado del pozo.": "The bucket is next to the well.",
+    "A2 | El cubo está al lado del pozo.": "The bucket is next to the well.",
+    "B1 | Anna se ríe con el caballo.": "Anna laughs with the horse.",
+    "B1 | El perro se tumba en el piso.": "The dog lies down on the ground.",
+    "B1 | El perro se tumba en el suelo.": "The dog lies down on the ground.",
+    "B1 | El gato se sienta en el muro.": "The cat sits down on the wall.",
+    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "Anna's cousin bends down to feed the hen.",
+    "B1 | Nosotros nos levantamos temprano en la granja.": "We get up early on the farm.",
+    "B1 | ¿Tú te lavas las manos después?": "Do you wash your hands afterwards?",
+    "B1 | Yo me pongo las botas.": "I put on my boots.",
+    "B1 | Las gallinas se acercan a la cesta.": "The hens come closer to the basket.",
+    "B2 | A Anna le gustan los caballos.": "Anna likes horses.",
+    "B2 | Al caballo le encanta la manzana.": "The horse loves the apple.",
+    "B2 | A los niños les gustan las gallinas.": "The children like the hens.",
+    "B2 | A mí me gusta la vida en el campo.": "I like life in the countryside.",
+    "B2 | ¿A ti te gustan los cerdos?": "Do you like pigs?",
+    "B2 | Al tío de Anna le duele la espalda.": "Anna's uncle has a sore back.",
+    "C1 | El caballo debe de ser muy cariñoso.": "The horse must be very affectionate.",
+    "C1 | Puede que el perro sea del primo de Anna.": "The dog may belong to Anna's cousin.",
+    "C1 | Serán de esta mañana.": "They are probably from this morning.",
+    "C1 | Dicen que la granja tiene más de cien años.": "They say the farm is more than a hundred years old."
    }
   },
   "tr": {
@@ -1942,7 +1999,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1952,7 +2010,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1962,7 +2021,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -2006,6 +2066,37 @@ window.SCENE = {
     "C1 | Puede que el perro sea del primo de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Serán de esta mañana.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que la granja tiene más de cien años.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El gato está en el muro.": "القطة على الجدار.",
+    "A2 | El perro está en el piso.": "الكلب على الأرض.",
+    "A2 | El perro está en el suelo.": "الكلب على الأرض.",
+    "A2 | Los huevos están en la cesta.": "البيض في السلّة.",
+    "A2 | La escalera está al lado de la madera.": "السلّم بجانب الخشب.",
+    "A2 | Hay un pájaro en el tejado.": "هناك عصفور على السطح.",
+    "A2 | Las manzanas están en la caja.": "التفاح في الصندوق.",
+    "A2 | La vaca está en el prado.": "البقرة في المرج.",
+    "A2 | La cubeta está al lado del pozo.": "الدلو بجانب البئر.",
+    "A2 | El cubo está al lado del pozo.": "الدلو بجانب البئر.",
+    "B1 | Anna se ríe con el caballo.": "تضحك آنا مع الحصان.",
+    "B1 | El perro se tumba en el piso.": "يستلقي الكلب على الأرض.",
+    "B1 | El perro se tumba en el suelo.": "يستلقي الكلب على الأرض.",
+    "B1 | El gato se sienta en el muro.": "تجلس القطة على الجدار.",
+    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "ينحني ابن عمّ آنا ليُطعم الدجاجة.",
+    "B1 | Nosotros nos levantamos temprano en la granja.": "نحن نستيقظ باكراً في المزرعة.",
+    "B1 | ¿Tú te lavas las manos después?": "هل تغسل يديك بعد ذلك؟",
+    "B1 | Yo me pongo las botas.": "أنا أنتعل الجزمة.",
+    "B1 | Las gallinas se acercan a la cesta.": "تقترب الدجاجات من السلّة.",
+    "B2 | A Anna le gustan los caballos.": "تحبّ آنا الخيول.",
+    "B2 | Al caballo le encanta la manzana.": "يعشق الحصان التفاحة.",
+    "B2 | A los niños les gustan las gallinas.": "يحبّ الأطفال الدجاج.",
+    "B2 | A mí me gusta la vida en el campo.": "أنا تعجبني الحياة في الريف.",
+    "B2 | ¿A ti te gustan los cerdos?": "هل تحبّ الخنازير؟",
+    "B2 | Al tío de Anna le duele la espalda.": "عمّ آنا يؤلمه ظهره.",
+    "C1 | El caballo debe de ser muy cariñoso.": "لا بدّ أن الحصان حنون جداً.",
+    "C1 | Puede que el perro sea del primo de Anna.": "ربما يكون الكلب لابن عمّ آنا.",
+    "C1 | Serán de esta mañana.": "على الأرجح هي من هذا الصباح.",
+    "C1 | Dicen que la granja tiene más de cien años.": "يُقال إن عمر المزرعة يزيد على مئة سنة."
    }
   },
   "pt": {
@@ -2050,6 +2141,37 @@ window.SCENE = {
     "C1 | Puede que el perro sea del primo de Anna.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Serán de esta mañana.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que la granja tiene más de cien años.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El gato está en el muro.": "O gato está no muro.",
+    "A2 | El perro está en el piso.": "O cachorro está no chão.",
+    "A2 | El perro está en el suelo.": "O cachorro está no chão.",
+    "A2 | Los huevos están en la cesta.": "Os ovos estão na cesta.",
+    "A2 | La escalera está al lado de la madera.": "A escada está ao lado da lenha.",
+    "A2 | Hay un pájaro en el tejado.": "Há um pássaro no telhado.",
+    "A2 | Las manzanas están en la caja.": "As maçãs estão na caixa.",
+    "A2 | La vaca está en el prado.": "A vaca está no prado.",
+    "A2 | La cubeta está al lado del pozo.": "O balde está ao lado do poço.",
+    "A2 | El cubo está al lado del pozo.": "O balde está ao lado do poço.",
+    "B1 | Anna se ríe con el caballo.": "Anna ri com o cavalo.",
+    "B1 | El perro se tumba en el piso.": "O cachorro se deita no chão.",
+    "B1 | El perro se tumba en el suelo.": "O cachorro se deita no chão.",
+    "B1 | El gato se sienta en el muro.": "O gato se senta no muro.",
+    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "O primo de Anna se abaixa para dar de comer à galinha.",
+    "B1 | Nosotros nos levantamos temprano en la granja.": "Nós nos levantamos cedo na fazenda.",
+    "B1 | ¿Tú te lavas las manos después?": "Você lava as mãos depois?",
+    "B1 | Yo me pongo las botas.": "Eu calço as botas.",
+    "B1 | Las gallinas se acercan a la cesta.": "As galinhas se aproximam da cesta.",
+    "B2 | A Anna le gustan los caballos.": "Anna gosta de cavalos.",
+    "B2 | Al caballo le encanta la manzana.": "O cavalo adora a maçã.",
+    "B2 | A los niños les gustan las gallinas.": "As crianças gostam das galinhas.",
+    "B2 | A mí me gusta la vida en el campo.": "Eu gosto da vida no campo.",
+    "B2 | ¿A ti te gustan los cerdos?": "Você gosta de porcos?",
+    "B2 | Al tío de Anna le duele la espalda.": "O tio de Anna está com dor nas costas.",
+    "C1 | El caballo debe de ser muy cariñoso.": "O cavalo deve ser muito carinhoso.",
+    "C1 | Puede que el perro sea del primo de Anna.": "Pode ser que o cachorro seja do primo de Anna.",
+    "C1 | Serán de esta mañana.": "Devem ser desta manhã.",
+    "C1 | Dicen que la granja tiene más de cien años.": "Dizem que a fazenda tem mais de cem anos."
    }
   },
   "pl": {
@@ -2060,7 +2182,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -2070,7 +2193,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

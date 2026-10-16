@@ -861,6 +861,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "tastatur",
      "phrase": "La taza está al lado del teclado.",
+     "sens": "La tasse est à côté du clavier.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -873,6 +874,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "tafel",
      "phrase": "El reloj está encima de la pizarra.",
+     "sens": "L'horloge est au-dessus du tableau.",
      "n": "<b>encima de</b> = au-dessus de.",
      "latam": {
       "q": "El reloj está ___ pizarrón.",
@@ -895,6 +897,7 @@ window.SCENE = {
      "f": "drucker",
      "r": "regal",
      "phrase": "La impresora está al lado de la estantería.",
+     "sens": "L'imprimante est à côté de l'étagère.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -907,6 +910,7 @@ window.SCENE = {
      "f": "kugelschreiber",
      "r": "papier",
      "phrase": "El bolígrafo está encima del papel.",
+     "sens": "Le stylo est sur le papier.",
      "n": "<b>encima de</b> = sur. de + el = <b>del</b>.",
      "latam": {
       "q": "La pluma está ___ papel.",
@@ -923,6 +927,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "fenster",
      "phrase": "La planta grande está al lado de la ventana.",
+     "sens": "La grande plante est à côté de la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -935,6 +940,7 @@ window.SCENE = {
      "f": "ordner",
      "r": "regal",
      "phrase": "Las carpetas están en la estantería.",
+     "sens": "Les classeurs sont sur l'étagère.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -947,6 +953,7 @@ window.SCENE = {
      "f": "heft",
      "r": "schreibtisch",
      "phrase": "Hay un cuaderno en el escritorio.",
+     "sens": "Il y a un cahier sur le bureau.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -959,6 +966,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "schreibtisch",
      "phrase": "La papelera está detrás del escritorio.",
+     "sens": "La poubelle est derrière le bureau.",
      "n": "<b>de + el = del</b>, toujours.",
      "latam": {
       "q": "El bote de basura está detrás ___ escritorio.",
@@ -980,6 +988,7 @@ window.SCENE = {
      "f": "telefon",
      "r": "mark",
      "phrase": "Mark está hablando por teléfono.",
+     "sens": "Mark est en train de téléphoner.",
      "n": "Être en train de → <b>estar</b> + gérondif.",
      "revise": {
       "mot": "hablar",
@@ -996,6 +1005,7 @@ window.SCENE = {
      "f": "heft",
      "r": "mark",
      "phrase": "Está apuntando el número en el cuaderno.",
+     "sens": "Il est en train de noter le numéro dans le cahier.",
      "n": "Gérondif des verbes en -ar → <b>-ando</b>."
     },
     {
@@ -1007,6 +1017,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "La compañera está leyendo un papel.",
+     "sens": "La collègue est en train de lire un papier.",
      "n": "<b>leer</b> → <b>leyendo</b> : le i entre deux voyelles devient y.",
      "revise": {
       "mot": "leer",
@@ -1023,6 +1034,7 @@ window.SCENE = {
      "f": "heft",
      "r": "mark",
      "phrase": "Mark lo apunta en el cuaderno.",
+     "sens": "Mark le note dans le cahier.",
      "n": "Complément direct masculin (el número) → <b>lo</b>."
     },
     {
@@ -1034,6 +1046,7 @@ window.SCENE = {
      ],
      "f": "drucker",
      "phrase": "La impresora está imprimiendo una carta.",
+     "sens": "L'imprimante est en train d'imprimer une lettre.",
      "n": "Verbes en -ir → <b>-iendo</b>."
     },
     {
@@ -1045,6 +1058,7 @@ window.SCENE = {
      ],
      "f": "telefon",
      "phrase": "¿Me llamas mañana, por favor?",
+     "sens": "Tu m'appelles demain, s'il te plaît ?",
      "n": "Entre collègues qui se tutoient : <b>tú</b> → llamas.",
      "revise": {
       "mot": "llamar",
@@ -1061,6 +1075,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "mark",
      "phrase": "Mark termina de trabajar a las cinco.",
+     "sens": "Mark finit de travailler à cinq heures.",
      "n": "Il → <b>termina</b>.",
      "revise": {
       "mot": "terminar",
@@ -1076,6 +1091,7 @@ window.SCENE = {
      ],
      "f": "telefon",
      "phrase": "Mark cuelga el teléfono enseguida.",
+     "sens": "Mark raccroche tout de suite.",
      "n": "<b>colgar</b> : le o devient <b>ue</b> → cuelga.",
      "revise": {
       "mot": "colgar",
@@ -1097,6 +1113,7 @@ window.SCENE = {
      "f": "mark",
      "r": "telefon",
      "phrase": "El hombre que habla por teléfono se llama Mark.",
+     "sens": "L'homme qui parle au téléphone s'appelle Mark.",
      "n": "Relative sans virgule, sujet → <b>que</b>."
     },
     {
@@ -1108,6 +1125,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "La compañera, cuyo pelo es gris, lee una carta.",
+     "sens": "La collègue, dont les cheveux sont gris, lit une lettre.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : el pelo → <b>cuyo</b>."
     },
     {
@@ -1120,6 +1138,7 @@ window.SCENE = {
      "f": "regal",
      "r": "ordner",
      "phrase": "La estantería en la que están las carpetas es de metal.",
+     "sens": "L'étagère où sont les classeurs est en métal.",
      "n": "Préposition + article + <b>que</b>, accordé avec la estantería."
     },
     {
@@ -1132,6 +1151,7 @@ window.SCENE = {
      "f": "ordner",
      "r": "regal",
      "phrase": "Las carpetas están ordenadas por colores.",
+     "sens": "Les classeurs sont rangés par couleurs.",
      "n": "<b>estar</b> + participe, accordé : las carpetas → ordenad<b>as</b>."
     },
     {
@@ -1143,6 +1163,7 @@ window.SCENE = {
      ],
      "f": "telefon",
      "phrase": "Aquí se trabaja mucho por teléfono.",
+     "sens": "Ici, on travaille beaucoup par téléphone.",
      "n": "<b>se</b> impersonnel : « on travaille », verbe au singulier.",
      "revise": {
       "mot": "trabajar",
@@ -1158,6 +1179,7 @@ window.SCENE = {
      ],
      "f": "heft",
      "phrase": "El cuaderno ya está medio escrito.",
+     "sens": "Le cahier est déjà à moitié rempli.",
      "n": "<b>escribir</b> → participe irrégulier <b>escrito</b>.",
      "revise": {
       "mot": "escribir",
@@ -1179,6 +1201,7 @@ window.SCENE = {
      "f": "heft",
      "r": "mark",
      "phrase": "La llamada debe de ser importante.",
+     "sens": "L'appel doit être important.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1190,6 +1213,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Puede que la compañera sea su jefa.",
+     "sens": "La collègue est peut-être sa cheffe.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1201,6 +1225,7 @@ window.SCENE = {
      ],
      "f": "telefon",
      "phrase": "Mark ya habrá hecho unas veinte llamadas hoy.",
+     "sens": "Mark a sans doute déjà passé une vingtaine d'appels aujourd'hui.",
      "n": "Le <b>futur antérieur</b> exprime une supposition sur le passé : il doit en avoir fait vingt."
     },
     {
@@ -1212,6 +1237,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Dicen en la oficina que la empresa se muda pronto.",
+     "sens": "Au bureau, on dit que l'entreprise déménage bientôt.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1260,6 +1286,37 @@ window.SCENE = {
     "C1 | Puede que la compañera sea su jefa.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Mark ya habrá hecho unas veinte llamadas hoy.": "The <b>future perfect</b> expresses a guess about the past: he must have made twenty.",
     "C1 | Dicen en la oficina que la empresa se muda pronto.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | La taza está al lado del teclado.": "The cup is next to the keyboard.",
+    "A2 | El reloj está encima del pizarrón.": "The clock is above the board.",
+    "A2 | El reloj está encima de la pizarra.": "The clock is above the board.",
+    "A2 | La impresora está al lado de la estantería.": "The printer is next to the shelf.",
+    "A2 | La pluma está encima del papel.": "The pen is on top of the paper.",
+    "A2 | El bolígrafo está encima del papel.": "The pen is on top of the paper.",
+    "A2 | La planta grande está al lado de la ventana.": "The big plant is next to the window.",
+    "A2 | Las carpetas están en la estantería.": "The folders are on the shelf.",
+    "A2 | Hay un cuaderno en el escritorio.": "There is a notebook on the desk.",
+    "A2 | El bote de basura está detrás del escritorio.": "The bin is behind the desk.",
+    "A2 | La papelera está detrás del escritorio.": "The bin is behind the desk.",
+    "B1 | Mark está hablando por teléfono.": "Mark is talking on the phone.",
+    "B1 | Está apuntando el número en el cuaderno.": "He is writing down the number in the notebook.",
+    "B1 | La compañera está leyendo un papel.": "The colleague is reading a paper.",
+    "B1 | Mark lo apunta en el cuaderno.": "Mark writes it down in the notebook.",
+    "B1 | La impresora está imprimiendo una carta.": "The printer is printing a letter.",
+    "B1 | ¿Me llamas mañana, por favor?": "Will you call me tomorrow, please?",
+    "B1 | Mark termina de trabajar a las cinco.": "Mark finishes work at five.",
+    "B1 | Mark cuelga el teléfono enseguida.": "Mark hangs up right away.",
+    "B2 | El hombre que habla por teléfono se llama Mark.": "The man who is talking on the phone is called Mark.",
+    "B2 | La compañera, cuyo pelo es gris, lee una carta.": "The colleague, whose hair is grey, is reading a letter.",
+    "B2 | La estantería en la que están las carpetas es de metal.": "The shelf the folders are on is made of metal.",
+    "B2 | Las carpetas están ordenadas por colores.": "The folders are sorted by colour.",
+    "B2 | Aquí se trabaja mucho por teléfono.": "Here, a lot of work is done by phone.",
+    "B2 | El cuaderno ya está medio escrito.": "The notebook is already half written.",
+    "C1 | La llamada debe de ser importante.": "The call must be important.",
+    "C1 | Puede que la compañera sea su jefa.": "The colleague may be his boss.",
+    "C1 | Mark ya habrá hecho unas veinte llamadas hoy.": "Mark has probably already made about twenty calls today.",
+    "C1 | Dicen en la oficina que la empresa se muda pronto.": "In the office they say the company is moving soon."
    }
   },
   "tr": {
@@ -1270,7 +1327,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1280,7 +1338,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1290,7 +1349,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1334,6 +1394,37 @@ window.SCENE = {
     "C1 | Puede que la compañera sea su jefa.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Mark ya habrá hecho unas veinte llamadas hoy.": "<b>المستقبل التامّ</b> يعبّر عن افتراض بشأن الماضي: لا بدّ أنه أجرى عشرين مكالمة.",
     "C1 | Dicen en la oficina que la empresa se muda pronto.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La taza está al lado del teclado.": "الفنجان بجانب لوحة المفاتيح.",
+    "A2 | El reloj está encima del pizarrón.": "الساعة فوق اللوح.",
+    "A2 | El reloj está encima de la pizarra.": "الساعة فوق اللوح.",
+    "A2 | La impresora está al lado de la estantería.": "الطابعة بجانب الرفّ.",
+    "A2 | La pluma está encima del papel.": "القلم فوق الورقة.",
+    "A2 | El bolígrafo está encima del papel.": "القلم فوق الورقة.",
+    "A2 | La planta grande está al lado de la ventana.": "النبتة الكبيرة بجانب النافذة.",
+    "A2 | Las carpetas están en la estantería.": "الملفّات على الرفّ.",
+    "A2 | Hay un cuaderno en el escritorio.": "هناك دفتر على المكتب.",
+    "A2 | El bote de basura está detrás del escritorio.": "سلّة المهملات خلف المكتب.",
+    "A2 | La papelera está detrás del escritorio.": "سلّة المهملات خلف المكتب.",
+    "B1 | Mark está hablando por teléfono.": "مارك يتكلّم في الهاتف.",
+    "B1 | Está apuntando el número en el cuaderno.": "إنه يدوّن الرقم في الدفتر.",
+    "B1 | La compañera está leyendo un papel.": "الزميلة تقرأ ورقة.",
+    "B1 | Mark lo apunta en el cuaderno.": "يدوّنه مارك في الدفتر.",
+    "B1 | La impresora está imprimiendo una carta.": "الطابعة تطبع رسالة.",
+    "B1 | ¿Me llamas mañana, por favor?": "هل تتّصل بي غداً، من فضلك؟",
+    "B1 | Mark termina de trabajar a las cinco.": "ينهي مارك العمل في الساعة الخامسة.",
+    "B1 | Mark cuelga el teléfono enseguida.": "يغلق مارك الهاتف حالاً.",
+    "B2 | El hombre que habla por teléfono se llama Mark.": "الرجل الذي يتكلّم في الهاتف اسمه مارك.",
+    "B2 | La compañera, cuyo pelo es gris, lee una carta.": "الزميلة ذات الشعر الرمادي تقرأ رسالة.",
+    "B2 | La estantería en la que están las carpetas es de metal.": "الرفّ الذي عليه الملفّات من المعدن.",
+    "B2 | Las carpetas están ordenadas por colores.": "الملفّات مرتّبة حسب الألوان.",
+    "B2 | Aquí se trabaja mucho por teléfono.": "هنا يُعمل كثيراً عبر الهاتف.",
+    "B2 | El cuaderno ya está medio escrito.": "الدفتر مكتوب إلى نصفه بالفعل.",
+    "C1 | La llamada debe de ser importante.": "لا بدّ أن المكالمة مهمّة.",
+    "C1 | Puede que la compañera sea su jefa.": "ربما تكون الزميلة مديرته.",
+    "C1 | Mark ya habrá hecho unas veinte llamadas hoy.": "على الأرجح أجرى مارك نحو عشرين مكالمة اليوم.",
+    "C1 | Dicen en la oficina que la empresa se muda pronto.": "يقولون في المكتب إن الشركة ستنتقل قريباً."
    }
   },
   "pt": {
@@ -1378,6 +1469,37 @@ window.SCENE = {
     "C1 | Puede que la compañera sea su jefa.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Mark ya habrá hecho unas veinte llamadas hoy.": "O <b>futuro composto</b> expressa uma suposição sobre o passado: deve ter feito vinte.",
     "C1 | Dicen en la oficina que la empresa se muda pronto.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La taza está al lado del teclado.": "A xícara está ao lado do teclado.",
+    "A2 | El reloj está encima del pizarrón.": "O relógio está acima do quadro.",
+    "A2 | El reloj está encima de la pizarra.": "O relógio está acima do quadro.",
+    "A2 | La impresora está al lado de la estantería.": "A impressora está ao lado da estante.",
+    "A2 | La pluma está encima del papel.": "A caneta está em cima do papel.",
+    "A2 | El bolígrafo está encima del papel.": "A caneta está em cima do papel.",
+    "A2 | La planta grande está al lado de la ventana.": "A planta grande está ao lado da janela.",
+    "A2 | Las carpetas están en la estantería.": "As pastas estão na estante.",
+    "A2 | Hay un cuaderno en el escritorio.": "Há um caderno na escrivaninha.",
+    "A2 | El bote de basura está detrás del escritorio.": "A lixeira está atrás da escrivaninha.",
+    "A2 | La papelera está detrás del escritorio.": "A lixeira está atrás da escrivaninha.",
+    "B1 | Mark está hablando por teléfono.": "Mark está falando ao telefone.",
+    "B1 | Está apuntando el número en el cuaderno.": "Ele está anotando o número no caderno.",
+    "B1 | La compañera está leyendo un papel.": "A colega está lendo um papel.",
+    "B1 | Mark lo apunta en el cuaderno.": "Mark anota no caderno.",
+    "B1 | La impresora está imprimiendo una carta.": "A impressora está imprimindo uma carta.",
+    "B1 | ¿Me llamas mañana, por favor?": "Você me liga amanhã, por favor?",
+    "B1 | Mark termina de trabajar a las cinco.": "Mark termina de trabalhar às cinco.",
+    "B1 | Mark cuelga el teléfono enseguida.": "Mark desliga o telefone em seguida.",
+    "B2 | El hombre que habla por teléfono se llama Mark.": "O homem que fala ao telefone se chama Mark.",
+    "B2 | La compañera, cuyo pelo es gris, lee una carta.": "A colega, cujo cabelo é grisalho, lê uma carta.",
+    "B2 | La estantería en la que están las carpetas es de metal.": "A estante em que estão as pastas é de metal.",
+    "B2 | Las carpetas están ordenadas por colores.": "As pastas estão organizadas por cores.",
+    "B2 | Aquí se trabaja mucho por teléfono.": "Aqui se trabalha muito por telefone.",
+    "B2 | El cuaderno ya está medio escrito.": "O caderno já está escrito pela metade.",
+    "C1 | La llamada debe de ser importante.": "A ligação deve ser importante.",
+    "C1 | Puede que la compañera sea su jefa.": "Pode ser que a colega seja a chefe dele.",
+    "C1 | Mark ya habrá hecho unas veinte llamadas hoy.": "Mark provavelmente já fez umas vinte ligações hoje.",
+    "C1 | Dicen en la oficina que la empresa se muda pronto.": "No escritório dizem que a empresa vai se mudar em breve."
    }
   },
   "pl": {
@@ -1388,7 +1510,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1398,7 +1521,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

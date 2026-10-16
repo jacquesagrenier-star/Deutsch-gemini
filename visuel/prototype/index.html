@@ -86,6 +86,11 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .explication{background:rgba(28,36,48,.94);color:#fff;border-radius:12px;padding:10px 12px;
   font-size:14px;line-height:1.4}
 .explication b{color:var(--ambre)}
+/* La phrase et son sens, sous l'explication (16 oct. 2026) : « Die Uhr hängt
+   an der Wand. → L'horloge est accrochée au mur. » Apres la reponse seulement. */
+.explication .sens{margin-top:7px;padding-top:7px;border-top:1px solid rgba(255,255,255,.2)}
+.explication .sens [lang]{font-style:italic}
+.explication .sens .fleche{opacity:.7;margin:0 .3em}
 .suite{border:0;border-radius:12px;padding:12px;font:700 16px inherit;background:var(--ambre);
   color:var(--encre);cursor:pointer}
 .score{font-size:13px;color:#fff;text-align:end;text-shadow:0 1px 3px #000}
@@ -332,9 +337,13 @@ const sensDe = m => { for (const l of REPLI) if (m && m[l]) return m[l]; return 
    que la page ne s'en serve. Les questions se reconnaissent a leur couche et
    a leur phrase (construire.py, cle_question). */
 function traduireVue(s){
-  const tr = LANGUE !== "fr" && s.traductions && s.traductions[LANGUE];
-  if (!tr || s._traduite) return;
+  if (LANGUE === "fr" || !s.traductions || s._traduite) return;
   s._traduite = true;
+  const tr = s.traductions[LANGUE] || {};
+  // Le sens d'une phrase (16 oct. 2026) a un cran de plus que l'explication :
+  // la langue de l'usager, sinon l'ANGLAIS, sinon le francais deja dans q.sens.
+  // Une traduction perimee n'est pas dans S.traductions (construire.py).
+  const en = s.traductions.en || {};
   const c = tr.champs || {};
   if (c.alt) s.alt = c.alt;
   if (c.consigne) s.consigne = c.consigne;
@@ -343,8 +352,11 @@ function traduireVue(s){
   for (const [niv, couche] of Object.entries(s.couches || {})){
     if (tr.couches && tr.couches[niv]) couche.titre = tr.couches[niv];
     for (const q of couche.qs || []){
-      const n = tr.questions && tr.questions[niv + " | " + q.phrase];
+      const cle = niv + " | " + q.phrase;
+      const n = tr.questions && tr.questions[cle];
       if (n) q.n = n;
+      const sens = (tr.sens && tr.sens[cle]) || (en.sens && en.sens[cle]);
+      if (sens) q.sens = sens;
     }
   }
 }
@@ -1306,6 +1318,16 @@ function repondre(q, opts, k){
   const ex = document.createElement("div");
   ex.className = "explication";
   ex.innerHTML = (juste ? `<span lang="${LANG_CIBLE}">${MOTS_CIBLE.juste}</span> ` : "") + q.n;
+  // LA PHRASE ET SON SENS (Jacques, 16 oct. 2026) : apres la reponse, juste
+  // ou fausse, la phrase complete puis sa traduction dans la langue de
+  // l'interface. Rien avant -- comprendre la phrase fait partie de
+  // l'exercice. Sans traduction (q.sens absent) : rien, pas de ligne vide.
+  // En RTL la fleche pointe vers la traduction, donc vers la gauche.
+  if (q.sens){
+    const fleche = document.documentElement.dir === "rtl" ? "←" : "→";
+    ex.insertAdjacentHTML("beforeend",
+      `<div class="sens"><span lang="${LANG_CIBLE}">${q.phrase}</span><span class="fleche">${fleche}</span>${q.sens}</div>`);
+  }
   const suite = document.createElement("button");
   suite.className = "suite"; suite.removeAttribute("lang"); suite.textContent = T("suite");
   suite.addEventListener("click", () => { i++; verrou = false; poser(); });

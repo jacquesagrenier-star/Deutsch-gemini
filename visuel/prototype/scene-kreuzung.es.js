@@ -1376,6 +1376,7 @@ window.SCENE = {
      "f": "apotheke",
      "r": "post",
      "phrase": "La farmacia está entre la panadería y la oficina de correos.",
+     "sens": "La pharmacie est entre la boulangerie et la poste.",
      "n": "<b>entre</b> = entre, sans « de » : entre la panadería y la oficina de correos."
     },
     {
@@ -1387,6 +1388,7 @@ window.SCENE = {
      ],
      "f": "cafe",
      "phrase": "La cafetería está en la esquina.",
+     "sens": "Le café est au coin.",
      "n": "Au coin : <b>en la esquina</b>. Le lieu se dit avec <b>estar</b>."
     },
     {
@@ -1399,6 +1401,7 @@ window.SCENE = {
      "f": "baeckerei",
      "r": "kiosk",
      "phrase": "La panadería está enfrente del quiosco.",
+     "sens": "La boulangerie est en face du kiosque.",
      "n": "<b>enfrente de</b> = en face de. de + el = <b>del</b> : enfrente <b>del</b> quiosco."
     },
     {
@@ -1411,6 +1414,7 @@ window.SCENE = {
      "f": "briefkasten-post",
      "r": "post",
      "phrase": "Delante de la oficina de correos hay un buzón.",
+     "sens": "Devant la poste, il y a une boîte aux lettres.",
      "n": "Pour dire ce qu'il y a, sans article défini → <b>hay</b> + un / una."
     },
     {
@@ -1423,6 +1427,7 @@ window.SCENE = {
      "f": "frau-rot",
      "r": "haltestelle",
      "phrase": "La mujer del abrigo rojo espera en la parada.",
+     "sens": "La femme au manteau rouge attend à l'arrêt.",
      "n": "<b>en</b> = à, dans : le lieu où l'on est (en la parada).",
      "latam": {
       "c": [
@@ -1442,6 +1447,7 @@ window.SCENE = {
      "f": "radfahrer",
      "r": "radweg",
      "phrase": "El ciclista va por el carril bici.",
+     "sens": "Le cycliste roule sur la piste cyclable.",
      "n": "<b>por</b> = le long de, par où l'on passe : va <b>por</b> el carril bici.",
      "latam": {
       "c": [
@@ -1462,6 +1468,7 @@ window.SCENE = {
      "f": "anna",
      "r": "ampel-vorne",
      "phrase": "Anna está entre la farola y el semáforo.",
+     "sens": "Anna est entre le lampadaire et le feu.",
      "n": "<b>entre</b> … <b>y</b> … : entre la farola y el semáforo.",
      "latam": {
       "c": [
@@ -1481,6 +1488,7 @@ window.SCENE = {
      ],
      "f": "fahrradstaender",
      "phrase": "Las bicicletas están en el aparcabicis.",
+     "sens": "Les vélos sont au porte-vélos.",
      "n": "Pluriel → <b>están</b>.",
      "latam": {
       "c": [
@@ -1501,6 +1509,7 @@ window.SCENE = {
      "f": "fussgaenger",
      "r": "zebrastreifen",
      "phrase": "Los peatones están en el paso de cebra.",
+     "sens": "Les piétons sont sur le passage piéton.",
      "n": "Pluriel → <b>están</b>. El paso de cebra = le passage piéton.",
      "latam": {
       "c": [
@@ -1521,6 +1530,7 @@ window.SCENE = {
      "f": "kiosk",
      "r": "buergersteig",
      "phrase": "El quiosco está en la acera.",
+     "sens": "Le kiosque est sur le trottoir.",
      "n": "La acera = le trottoir ; la calle = la chaussée, la rue.",
      "latam": {
       "c": [
@@ -1546,6 +1556,7 @@ window.SCENE = {
      "f": "anna",
      "r": "apotheke",
      "phrase": "Perdone, ¿cómo llego a la farmacia?",
+     "sens": "Excusez-moi, comment aller à la pharmacie ?",
      "n": "Pour demander son chemin : <b>¿Cómo llego a…?</b> (llegar, je)."
     },
     {
@@ -1557,6 +1568,7 @@ window.SCENE = {
      ],
      "f": "zebrastreifen",
      "phrase": "Cruce la calle por el paso de cebra.",
+     "sens": "Traversez la rue au passage piéton.",
      "n": "Impératif de <b>usted</b> = subjonctif présent : cruzar → <b>cruce</b> (z → c devant e).",
      "latam": {
       "q": "___ la calle por el paso peatonal.",
@@ -1572,6 +1584,7 @@ window.SCENE = {
      ],
      "f": "ampel-vorne",
      "phrase": "Espere hasta que el semáforo se ponga verde.",
+     "sens": "Attendez que le feu passe au vert.",
      "n": "Usted → <b>espere</b>. Et <b>hasta que</b> + avenir prend le subjonctif : se ponga."
     },
     {
@@ -1583,6 +1596,7 @@ window.SCENE = {
      ],
      "f": "cafe",
      "phrase": "Siga todo recto hasta la esquina.",
+     "sens": "Continuez tout droit jusqu'au coin.",
      "n": "<b>hasta</b> = jusqu'à. <b>Siga todo recto</b> = continuez tout droit."
     },
     {
@@ -1595,6 +1609,7 @@ window.SCENE = {
      "f": "apotheke",
      "r": "baeckerei",
      "phrase": "La farmacia está justo delante de usted, entre la panadería y correos.",
+     "sens": "La pharmacie est juste devant vous, entre la boulangerie et la poste.",
      "n": "<b>delante de</b> = devant."
     },
     {
@@ -1607,6 +1622,7 @@ window.SCENE = {
      "f": "post",
      "r": "apotheke",
      "phrase": "Para ir a correos, pase por delante de la farmacia.",
+     "sens": "Pour aller à la poste, passez devant la pharmacie.",
      "n": "Usted → <b>pase</b>. <b>pasar por delante de</b> = passer devant."
     },
     {
@@ -1618,6 +1634,7 @@ window.SCENE = {
      ],
      "f": "lieferwagen",
      "phrase": "La furgoneta sale de la calle lateral.",
+     "sens": "La camionnette sort de la rue latérale.",
      "n": "On DÉCRIT ce qu'elle fait → indicatif : <b>sale</b>. <b>salga</b> serait un ordre (usted).",
      "latam": {
       "q": "La camioneta ___ de la calle lateral.",
@@ -1633,6 +1650,7 @@ window.SCENE = {
      ],
      "f": "ampel-vorne",
      "phrase": "No cruce la calle con el semáforo en rojo.",
+     "sens": "Ne traversez pas la rue quand le feu est rouge.",
      "n": "À la forme négative, usted reste au subjonctif : <b>no cruce</b>."
     }
    ]
@@ -1650,6 +1668,7 @@ window.SCENE = {
      "f": "cafe",
      "r": "markise",
      "phrase": "La cafetería, cuyo toldo es rojo, tiene mesas fuera.",
+     "sens": "Le café, dont le store est rouge, a des tables dehors.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : el toldo → <b>cuyo</b>."
     },
     {
@@ -1662,6 +1681,7 @@ window.SCENE = {
      "f": "frau-rot",
      "r": "haltestelle",
      "phrase": "La mujer que espera en la parada lleva un abrigo rojo.",
+     "sens": "La femme qui attend à l'arrêt porte un manteau rouge.",
      "n": "Sujet d'une relative qui précise de quelle femme il s'agit → <b>que</b>."
     },
     {
@@ -1674,6 +1694,7 @@ window.SCENE = {
      "f": "apotheke",
      "r": "anna",
      "phrase": "La farmacia a la que quiere ir Anna está enfrente.",
+     "sens": "La pharmacie où Anna veut aller est en face.",
      "n": "Préposition + relatif : a <b>la que</b> (la farmacia)."
     },
     {
@@ -1686,6 +1707,7 @@ window.SCENE = {
      "f": "radweg",
      "r": "buergersteig",
      "phrase": "A lo largo de la acera hay un carril bici rojo.",
+     "sens": "Le long du trottoir, il y a une piste cyclable rouge.",
      "n": "Une chose qu'on présente (un carril) → <b>hay</b>.",
      "latam": {
       "q": "A lo largo de la banqueta ___ una ciclovía roja.",
@@ -1707,6 +1729,7 @@ window.SCENE = {
      "f": "brot",
      "r": "baeckerei",
      "phrase": "En la panadería se vende pan.",
+     "sens": "À la boulangerie, on vend du pain.",
      "n": "Passif avec <b>se</b> : le verbe s'accorde avec ce qui est vendu (el pan, singulier) → <b>se vende</b>."
     },
     {
@@ -1719,6 +1742,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "kiosk",
      "phrase": "En el quiosco se venden bebidas.",
+     "sens": "Au kiosque, on vend des boissons.",
      "n": "Pluriel (bebidas) → <b>se venden</b>."
     }
    ]
@@ -1735,6 +1759,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Debe de haberse perdido.",
+     "sens": "Elle a dû se perdre.",
      "n": "<b>deber de</b> + infinitif = une déduction : c'est probable.",
      "latam": {
       "q": "Anna mira el celular sin saber adónde ir: ___ haberse perdido."
@@ -1749,6 +1774,7 @@ window.SCENE = {
      ],
      "f": "strasse",
      "phrase": "Habrá llovido hace poco.",
+     "sens": "Il a dû pleuvoir il y a peu.",
      "n": "Futur antérieur de probabilité : <b>habrá</b> llovido = il a dû pleuvoir."
     },
     {
@@ -1761,6 +1787,7 @@ window.SCENE = {
      "f": "ampel-vorne",
      "r": "anna",
      "phrase": "Si el semáforo estuviera en verde, Anna ya habría cruzado la calle.",
+     "sens": "Si le feu était au vert, Anna aurait déjà traversé la rue.",
      "n": "Condition irréelle (estuviera), action déjà faite → conditionnel passé : <b>habría cruzado</b>."
     },
     {
@@ -1773,6 +1800,7 @@ window.SCENE = {
      "f": "lieferwagen",
      "r": "cafe",
      "phrase": "Puede que la furgoneta lleve pedidos a la cafetería.",
+     "sens": "La camionnette apporte peut-être des commandes au café.",
      "n": "<b>puede que</b> + subjonctif : une possibilité → <b>lleve</b>.",
      "latam": {
       "q": "Puede que la camioneta ___ pedidos a la cafetería.",
@@ -1833,6 +1861,45 @@ window.SCENE = {
     "C1 | Si el semáforo estuviera en verde, Anna ya habría cruzado la calle.": "Unreal condition (estuviera), action already done → conditional perfect: <b>habría cruzado</b>.",
     "C1 | Puede que la camioneta lleve pedidos a la cafetería.": "<b>puede que</b> + subjunctive: a possibility → <b>lleve</b>.",
     "C1 | Puede que la furgoneta lleve pedidos a la cafetería.": "<b>puede que</b> + subjunctive: a possibility → <b>lleve</b>."
+   },
+   "sens": {
+    "A2 | La farmacia está entre la panadería y la oficina de correos.": "The pharmacy is between the bakery and the post office.",
+    "A2 | La cafetería está en la esquina.": "The café is on the corner.",
+    "A2 | La panadería está enfrente del quiosco.": "The bakery is opposite the kiosk.",
+    "A2 | Delante de la oficina de correos hay un buzón.": "In front of the post office there is a letterbox.",
+    "A2 | La mujer del abrigo rojo espera en la parada.": "The woman in the red coat is waiting at the stop.",
+    "A2 | El ciclista va por la ciclovía.": "The cyclist is riding on the cycle lane.",
+    "A2 | El ciclista va por el carril bici.": "The cyclist is riding on the cycle lane.",
+    "A2 | Anna está entre el farol y el semáforo.": "Anna is between the lamppost and the traffic light.",
+    "A2 | Anna está entre la farola y el semáforo.": "Anna is between the lamppost and the traffic light.",
+    "A2 | Las bicicletas están en el bicicletero.": "The bicycles are at the bike rack.",
+    "A2 | Las bicicletas están en el aparcabicis.": "The bicycles are at the bike rack.",
+    "A2 | Los peatones están en el paso peatonal.": "The pedestrians are on the zebra crossing.",
+    "A2 | Los peatones están en el paso de cebra.": "The pedestrians are on the zebra crossing.",
+    "A2 | El quiosco está en la banqueta.": "The kiosk is on the pavement.",
+    "A2 | El quiosco está en la acera.": "The kiosk is on the pavement.",
+    "B1 | Perdone, ¿cómo llego a la farmacia?": "Excuse me, how do I get to the pharmacy?",
+    "B1 | Cruce la calle por el paso peatonal.": "Cross the street at the zebra crossing.",
+    "B1 | Cruce la calle por el paso de cebra.": "Cross the street at the zebra crossing.",
+    "B1 | Espere hasta que el semáforo se ponga verde.": "Wait until the light turns green.",
+    "B1 | Siga todo recto hasta la esquina.": "Go straight ahead to the corner.",
+    "B1 | La farmacia está justo delante de usted, entre la panadería y correos.": "The pharmacy is right in front of you, between the bakery and the post office.",
+    "B1 | Para ir a correos, pase por delante de la farmacia.": "To get to the post office, walk past the pharmacy.",
+    "B1 | La camioneta sale de la calle lateral.": "The van is coming out of the side street.",
+    "B1 | La furgoneta sale de la calle lateral.": "The van is coming out of the side street.",
+    "B1 | No cruce la calle con el semáforo en rojo.": "Don't cross the street when the light is red.",
+    "B2 | La cafetería, cuyo toldo es rojo, tiene mesas fuera.": "The café, whose awning is red, has tables outside.",
+    "B2 | La mujer que espera en la parada lleva un abrigo rojo.": "The woman waiting at the stop is wearing a red coat.",
+    "B2 | La farmacia a la que quiere ir Anna está enfrente.": "The pharmacy Anna wants to go to is across the street.",
+    "B2 | A lo largo de la banqueta hay una ciclovía roja.": "Along the pavement there is a red cycle lane.",
+    "B2 | A lo largo de la acera hay un carril bici rojo.": "Along the pavement there is a red cycle lane.",
+    "B2 | En la panadería se vende pan.": "Bread is sold at the bakery.",
+    "B2 | En el quiosco se venden bebidas.": "Drinks are sold at the kiosk.",
+    "C1 | Debe de haberse perdido.": "She must have got lost.",
+    "C1 | Habrá llovido hace poco.": "It probably rained a little while ago.",
+    "C1 | Si el semáforo estuviera en verde, Anna ya habría cruzado la calle.": "If the light were green, Anna would already have crossed the street.",
+    "C1 | Puede que la camioneta lleve pedidos a la cafetería.": "The van may be bringing orders to the café.",
+    "C1 | Puede que la furgoneta lleve pedidos a la cafetería.": "The van may be bringing orders to the café."
    }
   },
   "tr": {
@@ -1843,7 +1910,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1853,7 +1921,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1863,7 +1932,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1915,6 +1985,45 @@ window.SCENE = {
     "C1 | Si el semáforo estuviera en verde, Anna ya habría cruzado la calle.": "شرط غير واقعي (estuviera)، وفعل تمّ بالفعل ← condicional الماضي: <b>habría cruzado</b>.",
     "C1 | Puede que la camioneta lleve pedidos a la cafetería.": "<b>puede que</b> + subjuntivo: احتمال ← <b>lleve</b>.",
     "C1 | Puede que la furgoneta lleve pedidos a la cafetería.": "<b>puede que</b> + subjuntivo: احتمال ← <b>lleve</b>."
+   },
+   "sens": {
+    "A2 | La farmacia está entre la panadería y la oficina de correos.": "الصيدلية بين المخبز ومكتب البريد.",
+    "A2 | La cafetería está en la esquina.": "المقهى عند الزاوية.",
+    "A2 | La panadería está enfrente del quiosco.": "المخبز مقابل الكشك.",
+    "A2 | Delante de la oficina de correos hay un buzón.": "أمام مكتب البريد صندوق بريد.",
+    "A2 | La mujer del abrigo rojo espera en la parada.": "المرأة ذات المعطف الأحمر تنتظر في المحطّة.",
+    "A2 | El ciclista va por la ciclovía.": "راكب الدراجة يسير على مسار الدراجات.",
+    "A2 | El ciclista va por el carril bici.": "راكب الدراجة يسير على مسار الدراجات.",
+    "A2 | Anna está entre el farol y el semáforo.": "آنا بين عمود الإنارة وإشارة المرور.",
+    "A2 | Anna está entre la farola y el semáforo.": "آنا بين عمود الإنارة وإشارة المرور.",
+    "A2 | Las bicicletas están en el bicicletero.": "الدراجات في موقف الدراجات.",
+    "A2 | Las bicicletas están en el aparcabicis.": "الدراجات في موقف الدراجات.",
+    "A2 | Los peatones están en el paso peatonal.": "المشاة على ممرّ المشاة.",
+    "A2 | Los peatones están en el paso de cebra.": "المشاة على ممرّ المشاة.",
+    "A2 | El quiosco está en la banqueta.": "الكشك على الرصيف.",
+    "A2 | El quiosco está en la acera.": "الكشك على الرصيف.",
+    "B1 | Perdone, ¿cómo llego a la farmacia?": "عفواً، كيف أصل إلى الصيدلية؟",
+    "B1 | Cruce la calle por el paso peatonal.": "اعبر الشارع عند ممرّ المشاة.",
+    "B1 | Cruce la calle por el paso de cebra.": "اعبر الشارع عند ممرّ المشاة.",
+    "B1 | Espere hasta que el semáforo se ponga verde.": "انتظر حتى تصبح الإشارة خضراء.",
+    "B1 | Siga todo recto hasta la esquina.": "تابع مستقيماً حتى الزاوية.",
+    "B1 | La farmacia está justo delante de usted, entre la panadería y correos.": "الصيدلية أمامك مباشرة، بين المخبز ومكتب البريد.",
+    "B1 | Para ir a correos, pase por delante de la farmacia.": "للوصول إلى مكتب البريد، امرّ أمام الصيدلية.",
+    "B1 | La camioneta sale de la calle lateral.": "تخرج الشاحنة الصغيرة من الشارع الجانبي.",
+    "B1 | La furgoneta sale de la calle lateral.": "تخرج الشاحنة الصغيرة من الشارع الجانبي.",
+    "B1 | No cruce la calle con el semáforo en rojo.": "لا تعبر الشارع والإشارة حمراء.",
+    "B2 | La cafetería, cuyo toldo es rojo, tiene mesas fuera.": "المقهى ذو المظلّة الحمراء له طاولات في الخارج.",
+    "B2 | La mujer que espera en la parada lleva un abrigo rojo.": "المرأة التي تنتظر في المحطّة ترتدي معطفاً أحمر.",
+    "B2 | La farmacia a la que quiere ir Anna está enfrente.": "الصيدلية التي تريد آنا الذهاب إليها في الجهة المقابلة.",
+    "B2 | A lo largo de la banqueta hay una ciclovía roja.": "على طول الرصيف يوجد مسار أحمر للدراجات.",
+    "B2 | A lo largo de la acera hay un carril bici rojo.": "على طول الرصيف يوجد مسار أحمر للدراجات.",
+    "B2 | En la panadería se vende pan.": "في المخبز يُباع الخبز.",
+    "B2 | En el quiosco se venden bebidas.": "في الكشك تُباع المشروبات.",
+    "C1 | Debe de haberse perdido.": "لا بدّ أنها ضلّت الطريق.",
+    "C1 | Habrá llovido hace poco.": "على الأرجح أمطرت قبل قليل.",
+    "C1 | Si el semáforo estuviera en verde, Anna ya habría cruzado la calle.": "لو كانت الإشارة خضراء، لكانت آنا قد عبرت الشارع.",
+    "C1 | Puede que la camioneta lleve pedidos a la cafetería.": "ربما تنقل الشاحنة الصغيرة طلبيات إلى المقهى.",
+    "C1 | Puede que la furgoneta lleve pedidos a la cafetería.": "ربما تنقل الشاحنة الصغيرة طلبيات إلى المقهى."
    }
   },
   "pt": {
@@ -1967,6 +2076,45 @@ window.SCENE = {
     "C1 | Si el semáforo estuviera en verde, Anna ya habría cruzado la calle.": "Condição irreal (estuviera), ação já feita → condicional composto: <b>habría cruzado</b>.",
     "C1 | Puede que la camioneta lleve pedidos a la cafetería.": "<b>puede que</b> + subjuntivo: uma possibilidade → <b>lleve</b>.",
     "C1 | Puede que la furgoneta lleve pedidos a la cafetería.": "<b>puede que</b> + subjuntivo: uma possibilidade → <b>lleve</b>."
+   },
+   "sens": {
+    "A2 | La farmacia está entre la panadería y la oficina de correos.": "A farmácia fica entre a padaria e os correios.",
+    "A2 | La cafetería está en la esquina.": "O café fica na esquina.",
+    "A2 | La panadería está enfrente del quiosco.": "A padaria fica em frente ao quiosque.",
+    "A2 | Delante de la oficina de correos hay un buzón.": "Em frente aos correios há uma caixa de correio.",
+    "A2 | La mujer del abrigo rojo espera en la parada.": "A mulher de casaco vermelho espera no ponto.",
+    "A2 | El ciclista va por la ciclovía.": "O ciclista anda na ciclovia.",
+    "A2 | El ciclista va por el carril bici.": "O ciclista anda na ciclovia.",
+    "A2 | Anna está entre el farol y el semáforo.": "Anna está entre o poste e o semáforo.",
+    "A2 | Anna está entre la farola y el semáforo.": "Anna está entre o poste e o semáforo.",
+    "A2 | Las bicicletas están en el bicicletero.": "As bicicletas estão no bicicletário.",
+    "A2 | Las bicicletas están en el aparcabicis.": "As bicicletas estão no bicicletário.",
+    "A2 | Los peatones están en el paso peatonal.": "Os pedestres estão na faixa de pedestres.",
+    "A2 | Los peatones están en el paso de cebra.": "Os pedestres estão na faixa de pedestres.",
+    "A2 | El quiosco está en la banqueta.": "O quiosque fica na calçada.",
+    "A2 | El quiosco está en la acera.": "O quiosque fica na calçada.",
+    "B1 | Perdone, ¿cómo llego a la farmacia?": "Com licença, como chego à farmácia?",
+    "B1 | Cruce la calle por el paso peatonal.": "Atravesse a rua na faixa de pedestres.",
+    "B1 | Cruce la calle por el paso de cebra.": "Atravesse a rua na faixa de pedestres.",
+    "B1 | Espere hasta que el semáforo se ponga verde.": "Espere até o semáforo ficar verde.",
+    "B1 | Siga todo recto hasta la esquina.": "Siga em frente até a esquina.",
+    "B1 | La farmacia está justo delante de usted, entre la panadería y correos.": "A farmácia fica bem na sua frente, entre a padaria e os correios.",
+    "B1 | Para ir a correos, pase por delante de la farmacia.": "Para ir aos correios, passe em frente à farmácia.",
+    "B1 | La camioneta sale de la calle lateral.": "A van sai da rua lateral.",
+    "B1 | La furgoneta sale de la calle lateral.": "A van sai da rua lateral.",
+    "B1 | No cruce la calle con el semáforo en rojo.": "Não atravesse a rua com o semáforo vermelho.",
+    "B2 | La cafetería, cuyo toldo es rojo, tiene mesas fuera.": "O café, cujo toldo é vermelho, tem mesas do lado de fora.",
+    "B2 | La mujer que espera en la parada lleva un abrigo rojo.": "A mulher que espera no ponto usa um casaco vermelho.",
+    "B2 | La farmacia a la que quiere ir Anna está enfrente.": "A farmácia aonde Anna quer ir fica em frente.",
+    "B2 | A lo largo de la banqueta hay una ciclovía roja.": "Ao longo da calçada há uma ciclovia vermelha.",
+    "B2 | A lo largo de la acera hay un carril bici rojo.": "Ao longo da calçada há uma ciclovia vermelha.",
+    "B2 | En la panadería se vende pan.": "Na padaria se vende pão.",
+    "B2 | En el quiosco se venden bebidas.": "No quiosque se vendem bebidas.",
+    "C1 | Debe de haberse perdido.": "Ela deve ter se perdido.",
+    "C1 | Habrá llovido hace poco.": "Deve ter chovido há pouco.",
+    "C1 | Si el semáforo estuviera en verde, Anna ya habría cruzado la calle.": "Se o semáforo estivesse verde, Anna já teria atravessado a rua.",
+    "C1 | Puede que la camioneta lleve pedidos a la cafetería.": "Pode ser que a van leve encomendas para o café.",
+    "C1 | Puede que la furgoneta lleve pedidos a la cafetería.": "Pode ser que a van leve encomendas para o café."
    }
   },
   "pl": {
@@ -1977,7 +2125,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1987,7 +2136,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };
