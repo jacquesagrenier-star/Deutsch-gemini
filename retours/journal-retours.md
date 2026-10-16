@@ -9080,3 +9080,5 @@ on voit ton niveau ? A1, A2, B1, B2, C1. Si je n'ai pas pris de cours, ca ne me 
 - Les sigles restent (ce sont ceux des examens) ; une ligne en clair les explique sous les boutons
   et suit le niveau choisi : « Debutant : les premiers mots et les phrases du quotidien »,
   « Elementaire », « Intermediaire », « Avance », « Experimente ». 9 langues, allemand et espagnol.
+- v817 : Jacques choisit « Mots et grammaire » comme titre de la porte de la seance. Il s'affiche
+  avec la seance melangee (l'essai, chez lui seul) ; sans l'essai, la porte garde « Les mots ».

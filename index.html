@@ -7045,7 +7045,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
             <div class="seance-niveau-clair" id="seanceNiveauClair"></div>
             <div class="seance-portes">
                 <div class="seance-porte">
-                    <span class="seance-porte-titre" data-i18n="seance_porte_mots">Les mots</span>
+                    <span class="seance-porte-titre" id="seancePorteMotsTitre" data-i18n="seance_porte_mots">Les mots</span>
                     <b class="seance-porte-val"><span id="seanceCompte" class="seance-compte"></span> <span data-i18n="seance_porte_cartes">cartes</span></b>
                     <button type="button" class="seance-go" onclick="ouvrirSeanceDuJour(true);">
                         <span data-i18n="seance_commencer">Commencer</span>
@@ -7479,7 +7479,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v816</span>
+    <span class="subtitle-version">v817</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10818,6 +10818,7 @@ const I18N = {
         niveau_clair_B2: "Avancé : suivre une discussion, donner son avis",
         niveau_clair_C1: "Expérimenté : s'exprimer avec aisance et nuance",
         seance_porte_mots: "Les mots",
+        seance_porte_mots_grammaire: "Mots et grammaire",
         seance_porte_scene: "La scène du jour",
         seance_porte_cartes: "cartes",
         seance_n_questions: "{n} questions",
@@ -12007,6 +12008,7 @@ const I18N = {
         niveau_clair_B2: "Upper intermediate: following a discussion, giving your opinion",
         niveau_clair_C1: "Advanced: expressing yourself fluently and with nuance",
         seance_porte_mots: "Words",
+        seance_porte_mots_grammaire: "Words & grammar",
         seance_porte_scene: "Today's scene",
         seance_porte_cartes: "cards",
         seance_n_questions: "{n} questions",
@@ -13198,6 +13200,7 @@ const I18N = {
         niveau_clair_B2: "İleri orta: bir tartışmayı izlemek, fikrini söylemek",
         niveau_clair_C1: "Uzman: akıcı ve incelikli ifade etmek",
         seance_porte_mots: "Kelimeler",
+        seance_porte_mots_grammaire: "Kelimeler ve dilbilgisi",
         seance_porte_scene: "Günün sahnesi",
         seance_porte_cartes: "kart",
         seance_n_questions: "{n} soru",
@@ -14726,6 +14729,7 @@ const I18N = {
         niveau_clair_B2: "Вище середнього: стежити за дискусією, висловлювати думку",
         niveau_clair_C1: "Досвідчений: висловлюватися вільно й з нюансами",
         seance_porte_mots: "Слова",
+        seance_porte_mots_grammaire: "Слова й граматика",
         seance_porte_scene: "Сцена дня",
         seance_porte_cartes: "карток",
         seance_n_questions: "{n} запитань",
@@ -16617,6 +16621,7 @@ const I18N = {
         niveau_clair_B2: "پیشرفته: دنبال کردن یک گفت‌وگو و نظر دادن",
         niveau_clair_C1: "کارآزموده: روان و دقیق سخن گفتن",
         seance_porte_mots: "کلمه‌ها",
+        seance_porte_mots_grammaire: "واژه‌ها و دستور زبان",
         seance_porte_scene: "صحنهٔ امروز",
         seance_porte_cartes: "کارت",
         seance_n_questions: "{n} پرسش",
@@ -17939,6 +17944,7 @@ const I18N = {
         niveau_clair_B2: "فوق المتوسط: متابعة نقاش وإبداء الرأي",
         niveau_clair_C1: "متقدّم: التعبير بطلاقة ودقّة",
         seance_porte_mots: "الكلمات",
+        seance_porte_mots_grammaire: "الكلمات والقواعد",
         seance_porte_scene: "مشهد اليوم",
         seance_porte_cartes: "بطاقات",
         seance_n_questions: "{n} أسئلة",
@@ -18134,6 +18140,7 @@ const I18N = {
         niveau_clair_B2: "Avançado: acompanhar uma discussão, dar sua opinião",
         niveau_clair_C1: "Experiente: se expressar com fluência e nuance",
         seance_porte_mots: "As palavras",
+        seance_porte_mots_grammaire: "Palavras e gramática",
         seance_porte_scene: "A cena do dia",
         seance_porte_cartes: "cartões",
         seance_n_questions: "{n} perguntas",
@@ -19388,6 +19395,7 @@ const I18N = {
         niveau_clair_B2: "Zaawansowany: śledzić dyskusję, wyrażać opinię",
         niveau_clair_C1: "Biegły: wypowiadać się swobodnie i z niuansami",
         seance_porte_mots: "Słowa",
+        seance_porte_mots_grammaire: "Słowa i gramatyka",
         seance_porte_scene: "Scena dnia",
         seance_porte_cartes: "kart",
         seance_n_questions: "{n} pytań",
@@ -20640,6 +20648,7 @@ const I18N = {
         niveau_clair_B2: "Выше среднего: следить за дискуссией, высказывать мнение",
         niveau_clair_C1: "Продвинутый: выражаться свободно и с нюансами",
         seance_porte_mots: "Слова",
+        seance_porte_mots_grammaire: "Слова и грамматика",
         seance_porte_scene: "Сцена дня",
         seance_porte_cartes: "карточек",
         seance_n_questions: "{n} вопросов",
@@ -33575,6 +33584,7 @@ function showScreen(id){
     // qui balaie le corpus entier.
     if(id === "home"){
         try{ majCompteDuJour(); }catch(e){}
+        try{ majTitrePorteMots(); }catch(e){}
         // Les carreaux poses pendant la seance se posent VRAIMENT maintenant :
         // l'etat etait deja ecrit a chaque carte, seul le dessin attendait.
         if(mosaiqueEnRetard){ try{ majMosaiqueAccueil(); }catch(e){} }
@@ -39035,7 +39045,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 816;
+const APP_VERSION = 817;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42498,7 +42508,21 @@ function titreCourtScene(s){
 }
 function vignetteScene(nom){ return baseScenes() + "vignettes/" + nom + ".webp"; }
 
+// v817 : avec la seance melangee (essai « phrases »), la porte ne mene plus
+// seulement a des mots. Jacques : « Mots et grammaire ». Le data-i18n suit,
+// pour qu'un changement de langue ne remette pas « Les mots ». Appelee a chaque
+// arrivee sur l'accueil (showScreen) : l'etat de l'essai depend du compte admin,
+// connu parfois apres le premier dessin de la tuile.
+function majTitrePorteMots(){
+    const titreMots = document.getElementById("seancePorteMotsTitre");
+    if(!titreMots) return;
+    const cle = essaiActif("phrases") ? "seance_porte_mots_grammaire" : "seance_porte_mots";
+    titreMots.setAttribute("data-i18n", cle);
+    titreMots.textContent = t(cle);
+}
+
 function majPortesSeance(){
+    try{ majTitrePorteMots(); }catch(e){}
     const porte = document.getElementById("seancePorteScene");
     if(!porte) return;
     const actif = essaiActif("scenes");
