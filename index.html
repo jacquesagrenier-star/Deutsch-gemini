@@ -7473,7 +7473,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v812</span>
+    <span class="subtitle-version">v813</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -38977,7 +38977,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 812;
+const APP_VERSION = 813;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42737,28 +42737,83 @@ function revisionDeScene(d){
 // ⚠️ LA PHRASE NE DOIT PAS ETRE UN MUR. Phrases d'exemple du corpus (deja
 // traduites dans les 9 langues, lues par la voix) dont les AUTRES mots sont de
 // base (MOTS_DE_BASE_PHRASES) ou deja rencontres : un inconnu au plus, en plus
-// du mot vise. A egalite, le socle (ich, du ; sein, haben, gehen) passe devant.
-// Le mot vise est un nom deja vu -- d'abord passe plus tot dans la seance.
+// du mot vise (deux au palier 3). A egalite, le socle (ich, du ; sein, haben,
+// gehen) passe devant. Le mot vise -- nom, verbe ou adjectif (v813) -- est un mot
+// deja vu, d'abord passe plus tot dans la seance.
 //
-// ⚠️ LA GRAMMAIRE SUIT UN ORDRE DE COURS (COURS_GRAMMAIRE), une serie a la fois :
+// ⚠️ LA GRAMMAIRE SUIT UN ORDRE DE COURS (COURS_GRAMMAIRE_PAR_LANGUE), une serie a la fois :
 // la premiere qui n'a pas encore ete reussie deux seances sans faute
-// (GRAMMAIRE_SANS_FAUTE_REQUIS, le critere du compteur de grammaire). Allemand
-// seulement pour l'instant : les series espagnoles n'ont pas encore d'ordre.
+// (GRAMMAIRE_SANS_FAUTE_REQUIS), ou dont les 10 dernieres reponses dans la
+// seance en comptent 8 justes (v813). L'espagnol a son propre ordre.
 //
 // Une reponse compte comme une revision du mot vise (repondrePhrase, regles de
 // la scene) ; la grammaire et l'oral comptent dans l'objectif du jour.
-const PHRASE_MOTS_MAX = 8;
+// mots_max / inconnus_max (v813) : au palier 3, des phrases un peu plus longues
+// et un inconnu de plus -- les exemples B2-C1 depassent souvent huit mots.
 const PALIERS_SEANCE = [
-    { vus: 0,   tous_les: 5, formes: ["ecoute", "ecoute", "trou"] },
-    { vus: 60,  tous_les: 3, formes: ["ecoute", "gram", "trou", "ordre", "gram", "dictee_mot"] },
-    { vus: 400, tous_les: 2, formes: ["gram", "ecoute", "ordre", "trou", "gram", "dictee", "parler"] }
+    { vus: 0,   tous_les: 5, mots_max: 8,  inconnus_max: 1, formes: ["ecoute", "ecoute", "trou"] },
+    { vus: 60,  tous_les: 3, mots_max: 8,  inconnus_max: 1, formes: ["ecoute", "gram", "trou", "ordre", "gram", "dictee_mot"] },
+    { vus: 400, tous_les: 2, mots_max: 11, inconnus_max: 2, formes: ["gram", "ecoute", "ordre", "trou", "gram", "dictee", "parler"] }
 ];
-const COURS_GRAMMAIRE = [
-    "derEinExercises", "possessivExercises", "wortstellungV2Exercises", "wortstellungFrageExercises",
-    "wortstellungNichtExercises", "praepWoWohinExercises", "perfektExercises", "praeteritumExercises",
-    "kasusReconnaissanceExercises", "positionsverbenExercises", "weilObwohlExercises",
-    "deshalbTrotzdemExercises", "aberSondernExercises", "wennWannExercises", "wortstellungSubExercises"
-];
+// L'ORDRE DU COURS, A1 -> B2 (v813). Les series « a blocs » (chunks) n'y sont
+// pas : elles ont leur ecran. Une serie sans question utilisable est sautee.
+// L'espagnol (memes noms de jeux, contenu espagnol : exercises = Presente,
+// perfektExercises = Imperfecto, konjunktiv2Exercises = Subjuntivo...) a le sien.
+const COURS_GRAMMAIRE_PAR_LANGUE = {
+    de: [
+        // A1
+        "derEinExercises", "possessivExercises", "wortstellungV2Exercises", "wortstellungFrageExercises",
+        "wortstellungNichtExercises", "praepWoWohinExercises",
+        // A2
+        "perfektExercises", "praeteritumExercises", "kasusReconnaissanceExercises", "positionsverbenExercises",
+        "weilObwohlExercises", "deshalbTrotzdemExercises", "aberSondernExercises", "wennWannExercises",
+        "wortstellungSubExercises",
+        // B1
+        "konjunktiv2Exercises", "zuInfinitivExercises", "infinitivExercises", "wissenKennenExercises",
+        "praepReconnaissanceExercises", "relativReconNomAkk", "relativReconDativ", "relativReconMixed",
+        "alsWennExercises", "wennObExercises", "adjektiveDeklinationExercises", "obwohlTrotzdemExercises",
+        "konnektorenExercises", "wortstellungTekamoloExercises",
+        // B2
+        "relativGenitivReconnaissanceExercises", "relativGenitivOrderExercises", "premierePlaceExercises",
+        "partikelnNuanceExercises", "konjunktionenNuanceExercises", "adverbienNuanceExercises",
+        "transformationConnecteursExercises"
+    ],
+    es: [
+        // A1
+        "exercises", "serEstarExercises", "numerosExercises", "demostrativosExercises", "gustarExercises",
+        "preposicionesExercises",
+        // A2
+        "praeteritumExercises", "perfektExercises", "porParaExercises", "futuroExercises", "imperativoExercises",
+        "perifrasisExercises",
+        // B1-B2
+        "condicionalExercises", "konjunktiv2Exercises", "infinitivExercises", "acentosExercises",
+        "falsosAmigosExercises", "adverbienNuanceExercises"
+    ]
+};
+// ⚠️ LE COURS AVANCE AUSSI PAR LA SEANCE (v813). Le critere du compteur de
+// grammaire (deux series sans faute) ne se gagne que dans l'ecran d'exercices :
+// quelqu'un qui ne fait que sa seance serait reste sur der / ein pour toujours.
+// Une serie est donc aussi acquise quand ses 10 dernieres reponses DANS LA
+// SEANCE en comptent 8 justes. Garde sur l'appareil, comme les essais.
+const GRAMMAIRE_SEANCE_KEY = PREFIXE_STOCKAGE + "grammaireSeance";
+const GRAMMAIRE_SEANCE_FENETRE = 10;
+const GRAMMAIRE_SEANCE_JUSTES = 8;
+function lireGrammaireSeance(){
+    try{ const v = JSON.parse(localStorage.getItem(GRAMMAIRE_SEANCE_KEY) || "{}"); return (v && typeof v === "object") ? v : {}; }
+    catch(e){ return {}; }
+}
+function noterGrammaireSeance(nom, juste){
+    if(!nom) return;
+    const v = lireGrammaireSeance();
+    const l = (Array.isArray(v[nom]) ? v[nom] : []).concat([juste ? 1 : 0]).slice(-GRAMMAIRE_SEANCE_FENETRE);
+    v[nom] = l;
+    try{ localStorage.setItem(GRAMMAIRE_SEANCE_KEY, JSON.stringify(v)); }catch(e){}
+}
+function serieAcquise(nom, g, s){
+    if(((g[nom] || {}).sansFaute || 0) >= GRAMMAIRE_SANS_FAUTE_REQUIS) return true;
+    const l = s[nom] || [];
+    return l.length >= GRAMMAIRE_SEANCE_FENETRE && l.reduce((a, b) => a + b, 0) >= GRAMMAIRE_SEANCE_JUSTES;
+}
 const MOTS_DE_BASE_PHRASES = {
     de: ("ich du er sie es wir ihr man mein meine meinen meinem meiner dein deine deinen sein seine seinen ihre ihren unser unsere " +
          "der die das den dem des ein eine einen einem einer kein keine keinen nicht und oder aber auch sehr gern gerne noch schon " +
@@ -42785,19 +42840,47 @@ function motsPhrase(p){
 function nuPhrase(m){
     return String(m || "").toLowerCase().replace(/[.,!?;:¿¡«»"„“”()]/g, "");
 }
-function phraseDeCarte(it){
-    if(!it || it.mode !== "nomen" || !Array.isArray(it.word)) return null;
-    const de = it.word[5] || "";
-    const sens = texteCarte(it.word, "nomen", "exemple");
+// LES TROIS SORTES DE MOT VISE (v813) : noms, verbes, adjectifs. Chacun range
+// sa phrase ailleurs -- le nom au rang 5, l'adjectif au rang 2, le verbe dans
+// `exemple` -- et sa traduction aussi (texteCarte / texteTraduit).
+const MODES_PHRASES = ["nomen", "verben", "adjektive"];
+function phraseDeCarte(it, motsMax){
+    if(!it || !it.word || MODES_PHRASES.indexOf(it.mode) < 0) return null;
+    let de = "", sens = "";
+    if(it.mode === "nomen" && Array.isArray(it.word)){ de = it.word[5] || ""; sens = texteCarte(it.word, "nomen", "exemple"); }
+    else if(it.mode === "adjektive" && Array.isArray(it.word)){ de = it.word[2] || ""; sens = texteCarte(it.word, "adjektive", "exemple"); }
+    else if(it.mode === "verben" && !Array.isArray(it.word)){ de = it.word.exemple || ""; sens = texteTraduit(it.word, "exemple"); }
     if(!de || !sens) return null;
     const mots = motsPhrase(de);
-    if(mots.length < 3 || mots.length > PHRASE_MOTS_MAX) return null;
+    if(mots.length < 3 || mots.length > (motsMax || 8)) return null;
     return { de: de, sens: sens, mots: mots };
 }
+// Les formes du verbe au present : « geht », « hast » comptent comme connus des
+// que le verbe a ete vu, et le trou d'un verbe porte sur sa forme conjuguee.
+function formesPresent(w){
+    let p = w && w.praesens;
+    if(typeof p === "string"){ try{ p = JSON.parse(p.replace(/'/g, '"')); }catch(e){ p = null; } }
+    if(!p || typeof p !== "object") return [];
+    const out = [];
+    Object.values(p).forEach(v => String(v || "").split(/\s+/).forEach(f => { if(f) out.push(f); }));
+    return out;
+}
+function formesDuMot(it){
+    if(it.mode === "nomen") return [it.word[0], it.word[2]].filter(f => f && f !== "—");
+    if(it.mode === "adjektive") return [it.word[0]];
+    if(it.mode === "verben") return [it.word.infinitif].concat(formesPresent(it.word));
+    return [];
+}
 function placeDuMot(it, mots){
-    const formes = [it.word[0], it.word[2]].filter(f => f && f !== "—").map(nuPhrase);
+    const formes = formesDuMot(it).map(nuPhrase);
     for(let i = 0; i < mots.length; i++) if(formes.indexOf(nuPhrase(mots[i])) >= 0) return i;
     return -1;
+}
+// Ce que dit et attend la dictee d'un mot : « das Haus », « groß », « gehen ».
+function motDictee(it){
+    if(it.mode === "nomen") return ((it.word[1] || "") + " " + it.word[0]).trim();
+    if(it.mode === "verben") return it.word.infinitif || "";
+    return it.word[0] || "";
 }
 function palierSeance(nVus){
     let p = PALIERS_SEANCE[0];
@@ -42806,23 +42889,22 @@ function palierSeance(nVus){
 }
 
 // La premiere serie du cours pas encore reussie deux seances sans faute.
-function serieGrammaireEnCours(){
-    if(LANGUE_APPRISE === "es") return null;
-    const g = lireGrammaire();
-    for(const nom of COURS_GRAMMAIRE){
-        if(((g[nom] || {}).sansFaute || 0) < GRAMMAIRE_SANS_FAUTE_REQUIS) return nom;
-    }
-    return null;
-}
+// La premiere serie du cours pas encore acquise, et qui a des questions
+// utilisables (reponse tapee ou tuiles ; les blocs ont leur propre ecran). Les
+// premieres du fichier d'abord : il est range par difficulte.
 async function prechargerGrammaireSeance(){
-    const nom = serieGrammaireEnCours();
-    if(!nom){ grammaireSeance = null; return; }
-    if(grammaireSeance && grammaireSeance.nom === nom) return;
-    const liste = await jeu(nom);
-    // Les questions a reponse tapee ou a tuiles ; les blocs (chunks) ont leur
-    // propre ecran. Les premieres du fichier d'abord : il est range par difficulte.
-    const utiles = (liste || []).filter(ex => ex && ex.question && !(ex.chunks && ex.chunks.length) && (ex.answers || []).length);
-    grammaireSeance = utiles.length ? { nom: nom, liste: utiles.slice(0, 30), pris: 0 } : null;
+    const cours = COURS_GRAMMAIRE_PAR_LANGUE[LANGUE_APPRISE === "es" ? "es" : "de"] || [];
+    const g = lireGrammaire(), s = lireGrammaireSeance();
+    for(const nom of cours){
+        if(serieAcquise(nom, g, s)) continue;
+        if(grammaireSeance && grammaireSeance.nom === nom && grammaireSeance.langue === LANGUE_APPRISE) return;
+        const liste = await jeu(nom);
+        const utiles = (liste || []).filter(ex => ex && ex.question && !(ex.chunks && ex.chunks.length) && (ex.answers || []).length);
+        if(!utiles.length) continue;
+        grammaireSeance = { nom: nom, langue: LANGUE_APPRISE, liste: utiles.slice(0, 30) };
+        return;
+    }
+    grammaireSeance = null;
 }
 function questionGrammaire(){
     if(!grammaireSeance || !grammaireSeance.liste.length) return null;
@@ -42839,15 +42921,16 @@ function insererCartesPhrases(seance, tout){
     const connaitre = it => {
         const m = motDeLaCarte(it);
         if(m) connus.add(nuPhrase(m));
-        if(Array.isArray(it.word) && it.word[2] && it.word[2] !== "—") connus.add(nuPhrase(it.word[2]));
+        formesDuMot(it).forEach(f => connus.add(nuPhrase(f)));
     };
     const vus = (tout || []).filter(it => !estNeuf(getWordState(it.themeId, it.index)));
     vus.forEach(connaitre);
     const palier = palierSeance(vus.length);
+    const avecPhrase = it => MODES_PHRASES.indexOf(it.mode) >= 0;
     const pris = new Set();
     const cle = it => it.themeId + "#" + it.index;
     const evaluer = it => {
-        const p = phraseDeCarte(it);
+        const p = phraseDeCarte(it, palier.mots_max);
         if(!p) return null;
         const vise = placeDuMot(it, p.mots);
         let inconnus = 0, appui = 0;
@@ -42857,7 +42940,7 @@ function insererCartesPhrases(seance, tout){
             if(socle.indexOf(n) >= 0) appui++;
             if(!base.has(n) && !connus.has(n)) inconnus++;
         });
-        if(inconnus > 1) return null;
+        if(inconnus > palier.inconnus_max) return null;
         return { it: it, p: p, vise: vise, cout: inconnus * 10 - appui + p.mots.length * 0.1 };
     };
     const meilleur = liste => {
@@ -42885,7 +42968,7 @@ function insererCartesPhrases(seance, tout){
                                 themeId: remplacee.themeId, index: remplacee.index, word: remplacee.word };
                 continue;
             }
-            const e = meilleur(sortie.slice(0, k).filter(it => it.mode === "nomen")) || meilleur(vus.filter(it => it.mode === "nomen"));
+            const e = meilleur(sortie.slice(0, k).filter(avecPhrase)) || meilleur(vus.filter(avecPhrase));
             if(!e) continue;
             if(f === "trou" && e.vise < 0) continue;
             pris.add(cle(e.it));
@@ -42904,22 +42987,38 @@ function melangerPhrase(t){
     return a;
 }
 
-function leurresPhrase(item, n){
-    const tous = (currentCardsFull || []).filter(it => it.mode === "nomen" && Array.isArray(it.word) && !(it.themeId === item.themeId && it.index === item.index));
-    if(item.forme === "trou"){
-        const vus = new Set([nuPhrase(item.word[0])]);
-        const out = [];
-        melangerPhrase(tous).forEach(it => {
-            if(out.length >= n || vus.has(nuPhrase(it.word[0]))) return;
-            vus.add(nuPhrase(it.word[0]));
-            out.push(it);
-        });
-        return out;
+// Les choix du trou : des TEXTES. La forme de la phrase, plus deux leurres :
+// pour un verbe, deux autres formes du meme verbe (« hast » / habe, hat) -- la
+// conjugaison est l'exercice ; pour un nom, deux autres noms avec leur article ;
+// pour un adjectif, deux autres adjectifs.
+function choixDuTrou(item){
+    const juste = String(item.phrase.mots[item.vise] || "").replace(/[.,!?;:]+$/, "");
+    const c = item.cible;
+    const vus = new Set([nuPhrase(juste)]);
+    const out = [];
+    const ajouter = (texte, genre) => {
+        if(out.length >= 2 || !texte || vus.has(nuPhrase(texte))) return;
+        vus.add(nuPhrase(texte));
+        out.push({ texte: texte, genre: genre || "" });
+    };
+    if(c.mode === "verben"){
+        melangerPhrase(formesPresent(c.word)).forEach(f => ajouter(f));
     }
+    const memes = (currentCardsFull || []).filter(it => it.mode === c.mode && !(it.themeId === c.themeId && it.index === c.index));
+    melangerPhrase(memes).forEach(it => {
+        if(c.mode === "nomen") ajouter(it.word[0], it.word[1]);
+        else if(c.mode === "adjektive") ajouter(it.word[0]);
+    });
+    const bonne = { texte: juste, genre: c.mode === "nomen" ? (c.word[1] || "") : "", juste: true };
+    return melangerPhrase([bonne].concat(out));
+}
+
+function leurresPhrase(item, n){
+    const tous = (currentCardsFull || []).filter(it => MODES_PHRASES.indexOf(it.mode) >= 0 && !(it.themeId === item.themeId && it.index === item.index));
     const mien = new Set(item.phrase.mots.map(nuPhrase));
     const cand = [];
     tous.forEach(it => {
-        const p = phraseDeCarte(it);
+        const p = phraseDeCarte(it, 12);
         if(!p || p.sens === item.phrase.sens) return;
         const commun = p.mots.filter(m => mien.has(nuPhrase(m))).length;
         cand.push({ sens: p.sens, score: commun + Math.random() });
@@ -42941,8 +43040,7 @@ function direPhrase(item){
     try{ direAllemand(item.phrase.de, { rate: 0.9 }); }catch(e){}
 }
 function direMotPhrase(item){
-    const w = item.cible.word;
-    try{ direAllemand(((w[1] || "") + " " + w[0]).trim(), { rate: 0.9 }); }catch(e){}
+    try{ direAllemand(motDictee(item.cible), { rate: 0.9 }); }catch(e){}
 }
 
 // L'enregistrement de l'oral : rien ne sort de l'appareil (comme le mode
@@ -43065,20 +43163,20 @@ function montrerCartePhrase(item){
         el.appendChild(phrase);
         el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const choix = creer("div", "cp-choix");
-        const bonne = item.cible;
+        const options = choixDuTrou(item);
         const forme = String(item.phrase.mots[item.vise] || "").replace(/[.,!?;:]+$/, "");
-        const options = melangerPhrase([bonne].concat(leurresPhrase(item, 2)));
         options.forEach(o => {
             const b = creer("button", "");
             b.type = "button";
-            b.appendChild(creer("span", classeGenrePhrase(o.word[1]), (o.word[1] || "") + " "));
-            b.appendChild(document.createTextNode(o.word[0]));
-            const juste = o === bonne;
+            b.setAttribute("lang", langueDe);
+            if(o.genre) b.appendChild(creer("span", classeGenrePhrase(o.genre), o.genre + " "));
+            b.appendChild(document.createTextNode(o.texte));
+            const juste = !!o.juste;
             b.addEventListener("click", () => {
                 if(fait.repondu) return;
                 Array.from(choix.children).forEach(x => { x.disabled = true; });
                 b.classList.add(juste ? "bon" : "faux");
-                if(!juste) Array.from(choix.children).forEach((x, i) => { if(options[i] === bonne) x.classList.add("bon"); });
+                if(!juste) Array.from(choix.children).forEach((x, i) => { if(options[i].juste) x.classList.add("bon"); });
                 trou.textContent = forme;
                 conclure(juste);
             });
@@ -43127,7 +43225,7 @@ function montrerCartePhrase(item){
         // les memes reponses acceptees, la meme explication.
         const ex = item.ex;
         const q = creer("p", "cp-phrase", ex.question);
-        q.setAttribute("lang", "de");
+        q.setAttribute("lang", langueDe);
         el.appendChild(q);
         const sens = texteTraduit(ex, "translation");
         if(sens) el.appendChild(creer("p", "cp-sens", sens));
@@ -43176,7 +43274,7 @@ function montrerCartePhrase(item){
         // (normaliserSaisie) : on juge l'oreille, pas le clavier.
         const motSeul = item.forme === "dictee_mot";
         const w = item.cible.word;
-        const attendu = motSeul ? w[0] : item.phrase.de;
+        const attendu = motSeul ? motDictee(item.cible) : item.phrase.de;
         el.appendChild(ecouter);
         if(!motSeul) el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const champ = saisie();
@@ -43186,12 +43284,12 @@ function montrerCartePhrase(item){
             const v = champ.value.trim();
             if(!v){ champ.focus(); return; }
             const n = normaliserSaisie(v);
-            const juste = motSeul
-                ? (n === normaliserSaisie(w[0]) || n === normaliserSaisie((w[1] || "") + " " + w[0]))
-                : n === normaliserSaisie(attendu);
+            // Un nom s'accepte avec ou sans son article.
+            const juste = n === normaliserSaisie(attendu)
+                || (motSeul && item.cible.mode === "nomen" && n === normaliserSaisie(w[0]));
             champ.disabled = true;
             verif.classList.add("hidden");
-            conclure(juste, motSeul ? ((w[1] || "") + " " + w[0]).trim() : attendu);
+            conclure(juste, attendu);
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
@@ -43268,6 +43366,7 @@ function montrerCartePhrase(item){
 function repondrePhrase(item, juste){
     try{
         const it = item.cible;
+        if(item.forme === "gram" && juste !== null) noterGrammaireSeance(item.jeu, juste);
         if(!it || juste === null){ recordDailyActivity(); return; }
         const st = getWordState(it.themeId, it.index);
         const neuf = estNeuf(st);

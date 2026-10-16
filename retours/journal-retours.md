@@ -9055,3 +9055,9 @@ sur l'etude ». Maquette validee (« cable la seance melangee en essai pour moi 
   seulement pour l'instant.
 - L'oral : modele, s'enregistrer, se reecouter, sans note ; rien ne quitte le telephone. Le juge
   automatique « bienveillant » viendra a part, apres un test de reconnaissance sur le telephone.
+- v813 : Jacques : « oui, enchaine : series B1-B2 dans l'ordre du cours, ordre de cours pour la
+  grammaire espagnole, phrases des verbes et adjectifs ». Le cours de grammaire va de l'A1 au B2
+  (36 series allemandes, 18 espagnoles) ; il avance aussi par la seance (8 justes sur les 10
+  dernieres reponses d'une serie), sans quoi quelqu'un qui ne fait que sa seance serait reste sur
+  der/ein. Les phrases portent aussi sur les verbes (le trou devient de la conjugaison : habe /
+  hast / hat) et les adjectifs ; au palier 3, phrases jusqu'a 11 mots et deux inconnus.
