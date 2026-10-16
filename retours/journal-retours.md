@@ -9147,3 +9147,14 @@ type d'exercice » ; « je pensais que c'etait regle »).
   veut ; quand tu fais verifier, si c'est pas bon, elle te met la bonne phrase puis continuer ».
   Plus de bouton Effacer ni de message « il manque » : un seul bouton VERIFIER, et rien n'est juge
   avant qu'on le touche.
+
+## 16 octobre 2026 -- les phrases ratees reviennent (v827)
+
+Jacques : « une phrase ratee, est-ce qu'elle devrait revenir ? un bouton en fin de seance pour revoir
+nos erreurs, ou automatique comme Duolingo ? » ; puis, choisi : « une fois en fin de seance, puis le
+lendemain dans la seance du jour, avec la ligne a revoir demain ».
+- Automatique, sans bouton. Une phrase ratee revient une fois tout a la fin de la meme seance, puis
+  les jours suivants a la place d'une phrase neuve, jusqu'a ce qu'elle soit reussie un autre jour.
+- L'ecran de fin dit « N phrases a revoir demain » (9 langues).
+- Gardees sur le telephone et dans la sauvegarde cloud (champ phrasesRateesJson) ; un appareil neuf
+  les reprend.

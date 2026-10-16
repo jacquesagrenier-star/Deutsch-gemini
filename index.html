@@ -7488,7 +7488,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v826</span>
+    <span class="subtitle-version">v827</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9403,6 +9403,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
         <div class="flash-end-title" data-i18n="flash_end_title">Paquet terminé</div>
         <div class="flash-end-summary" id="flashEndSummary"></div>
         <div id="flashEndObjectif" class="flash-end-objectif hidden"></div>
+        <div id="flashEndARevoir" class="flash-end-objectif hidden"></div>
         <!-- La fin de l'apercu gratuit (v698) : remplie par afficherFinGratuite(). -->
         <div id="finGratuiteFlash" class="fin-gratuite hidden"></div>
         <button id="encoreNeufsBtn" class="secondary hidden" onclick="encoreDesMotsNeufs()" data-i18n="encore_neufs">Encore 15 mots nouveaux</button>
@@ -10814,6 +10815,8 @@ const I18N = {
         cp_reponse: "La bonne réponse :",
         cp_tu_as_ecrit: "Tu as écrit :",
         cp_presque: "Une petite faute de frappe : on la compte juste.",
+        flash_end_a_revoir_un: "1 phrase à revoir demain",
+        flash_end_a_revoir_n: "{n} phrases à revoir demain",
         cp_q_gram: "Complète la phrase",
         cp_q_dictee: "Écris ce que tu entends",
         cp_q_parler: "Répète à voix haute",
@@ -12009,6 +12012,8 @@ const I18N = {
         cp_reponse: "The right answer:",
         cp_tu_as_ecrit: "You wrote:",
         cp_presque: "Just a small typo: we count it as right.",
+        flash_end_a_revoir_un: "1 sentence to review tomorrow",
+        flash_end_a_revoir_n: "{n} sentences to review tomorrow",
         cp_q_gram: "Complete the sentence",
         cp_q_dictee: "Write what you hear",
         cp_q_parler: "Say it out loud",
@@ -13206,6 +13211,8 @@ const I18N = {
         cp_reponse: "Doğru cevap:",
         cp_tu_as_ecrit: "Senin yazdığın:",
         cp_presque: "Küçük bir yazım hatası: doğru sayıyoruz.",
+        flash_end_a_revoir_un: "Yarın tekrar edilecek 1 cümle",
+        flash_end_a_revoir_n: "Yarın tekrar edilecek {n} cümle",
         cp_q_gram: "Cümleyi tamamla",
         cp_q_dictee: "Duyduğunu yaz",
         cp_q_parler: "Yüksek sesle tekrarla",
@@ -14740,6 +14747,8 @@ const I18N = {
         cp_reponse: "Правильна відповідь:",
         cp_tu_as_ecrit: "Ти написав(-ла):",
         cp_presque: "Невелика описка: зараховуємо як правильно.",
+        flash_end_a_revoir_un: "1 речення на повторення завтра",
+        flash_end_a_revoir_n: "Речень на повторення завтра: {n}",
         cp_q_gram: "Доповни речення",
         cp_q_dictee: "Напиши, що чуєш",
         cp_q_parler: "Повтори вголос",
@@ -16637,6 +16646,8 @@ const I18N = {
         cp_reponse: "پاسخ درست:",
         cp_tu_as_ecrit: "نوشتهٔ تو:",
         cp_presque: "یک غلط تایپی کوچک: درست حساب می‌کنیم.",
+        flash_end_a_revoir_un: "۱ جمله برای مرور فردا",
+        flash_end_a_revoir_n: "{n} جمله برای مرور فردا",
         cp_q_gram: "جمله را کامل کن",
         cp_q_dictee: "آنچه می‌شنوی را بنویس",
         cp_q_parler: "بلند تکرار کن",
@@ -17965,6 +17976,8 @@ const I18N = {
         cp_reponse: "الإجابة الصحيحة:",
         cp_tu_as_ecrit: "ما كتبته:",
         cp_presque: "خطأ مطبعي صغير: نحسبه صحيحًا.",
+        flash_end_a_revoir_un: "جملة واحدة للمراجعة غدًا",
+        flash_end_a_revoir_n: "جمل للمراجعة غدًا: {n}",
         cp_q_gram: "أكمل الجملة",
         cp_q_dictee: "اكتب ما تسمعه",
         cp_q_parler: "كرّرها بصوت عالٍ",
@@ -18166,6 +18179,8 @@ const I18N = {
         cp_reponse: "A resposta certa:",
         cp_tu_as_ecrit: "Você escreveu:",
         cp_presque: "Só um pequeno erro de digitação: conta como certo.",
+        flash_end_a_revoir_un: "1 frase para revisar amanhã",
+        flash_end_a_revoir_n: "{n} frases para revisar amanhã",
         cp_q_gram: "Complete a frase",
         cp_q_dictee: "Escreva o que você ouve",
         cp_q_parler: "Repita em voz alta",
@@ -19426,6 +19441,8 @@ const I18N = {
         cp_reponse: "Prawidłowa odpowiedź:",
         cp_tu_as_ecrit: "Napisałeś(-aś):",
         cp_presque: "Mała literówka: liczymy jako dobrze.",
+        flash_end_a_revoir_un: "1 zdanie do powtórki jutro",
+        flash_end_a_revoir_n: "Zdania do powtórki jutro: {n}",
         cp_q_gram: "Uzupełnij zdanie",
         cp_q_dictee: "Napisz, co słyszysz",
         cp_q_parler: "Powtórz na głos",
@@ -20684,6 +20701,8 @@ const I18N = {
         cp_reponse: "Правильный ответ:",
         cp_tu_as_ecrit: "Ты написал(а):",
         cp_presque: "Небольшая опечатка: засчитываем как верно.",
+        flash_end_a_revoir_un: "1 предложение на повторение завтра",
+        flash_end_a_revoir_n: "Предложений на повторение завтра: {n}",
         cp_q_gram: "Дополни предложение",
         cp_q_dictee: "Напиши, что слышишь",
         cp_q_parler: "Повтори вслух",
@@ -28365,6 +28384,11 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(SEANCES_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
+            // Les phrases ratees a revoir (v827).
+            phrasesRateesJson: (function(){
+                try{ return localStorage.getItem(PHRASES_RATEES_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             // La decouverte guidee (v700) : commencee, finie ou passee, et
             // l'offre d'abonnement deja montree. Sans elle, un deuxieme
             // appareil rouvrirait l'offre une seconde fois.
@@ -28800,6 +28824,16 @@ async function restoreProgressFromCloud(){
                     });
                     if(change) localStorage.setItem(PARCOURS_KEY, JSON.stringify(l));
                 }
+            }
+        }catch(e){}
+        try{
+            // Phrases ratees (v827) : un appareil qui n'en a pas reprend celles
+            // du cloud. Pas de reunion : une phrase reussie sur ce telephone
+            // reviendrait du cloud.
+            if(typeof data.phrasesRateesJson === "string" && data.phrasesRateesJson
+               && !lirePhrasesRatees().length){
+                const d = JSON.parse(data.phrasesRateesJson);
+                if(Array.isArray(d) && d.length) ecrirePhrasesRatees(d);
             }
         }catch(e){}
         try{
@@ -39102,7 +39136,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 826;
+const APP_VERSION = 827;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43108,6 +43142,67 @@ function melangerLaSuite(cartes){
 // un autre jour.
 const PHRASES_POSEES = new Set();
 
+// v827 : LES PHRASES RATEES REVIENNENT, SANS BOUTON. Jacques : « une fois en fin
+// de seance, puis le lendemain dans la seance du jour, avec la ligne a revoir
+// demain ». Un bouton « Revoir mes erreurs » ne se toucherait pas : on est
+// content d'avoir fini. Une phrase ratee (j = le jour du dernier echec) :
+//  - revient UNE fois a la fin de la meme seance (RETOURS_FIN_SEANCE) ;
+//  - revient les jours suivants a la place d'une phrase neuve, jusqu'a ce
+//    qu'elle soit reussie un AUTRE jour que celui de l'echec.
+// Pas la grammaire (sa propre fenetre, v813) ni l'oral (aucun jugement).
+const PHRASES_RATEES_KEY = PREFIXE_STOCKAGE + "phrasesRatees";
+const PHRASES_RATEES_MAX = 40;
+const RETOURS_FIN_SEANCE = [];
+function lirePhrasesRatees(){
+    try{ const v = JSON.parse(localStorage.getItem(PHRASES_RATEES_KEY) || "[]"); return Array.isArray(v) ? v : []; }
+    catch(e){ return []; }
+}
+function ecrirePhrasesRatees(l){
+    try{ localStorage.setItem(PHRASES_RATEES_KEY, JSON.stringify(l.slice(-PHRASES_RATEES_MAX))); }catch(e){}
+}
+function noterPhraseRatee(item, juste){
+    if(!item || !item.phrase || !item.cible || juste === null || item.forme === "gram") return;
+    const jour = getTodayStr();
+    const l = lirePhrasesRatees();
+    const avant = l.find(x => x.de === item.phrase.de);
+    if(juste){
+        // Reussie le jour meme de l'echec (le retour de fin de seance) : elle
+        // revient quand meme demain. Un autre jour : elle est sue.
+        if(avant && avant.j !== jour) ecrirePhrasesRatees(l.filter(x => x !== avant));
+        return;
+    }
+    const reste = l.filter(x => x !== avant);
+    reste.push({ de: item.phrase.de, c: item.themeId + "#" + item.index, f: item.forme, j: jour });
+    ecrirePhrasesRatees(reste);
+    if(!item.retour){
+        const copie = Object.assign({}, item, { retour: true, intrus: null });
+        RETOURS_FIN_SEANCE.push(copie);
+    }
+}
+function phrasesARevoirDemain(){
+    const jour = getTodayStr();
+    return lirePhrasesRatees().filter(x => x.j === jour).length;
+}
+// Les phrases ratees un jour precedent, refaites en cartes (le mot doit etre
+// dans le paquet, et sa phrase n'avoir pas change depuis).
+function phrasesRateesDues(tout){
+    const jour = getTodayStr();
+    const parCle = {};
+    (tout || []).forEach(it => { parCle[it.themeId + "#" + it.index] = it; });
+    const dues = [];
+    lirePhrasesRatees().forEach(x => {
+        if(x.j === jour || PHRASES_POSEES.has(x.de)) return;
+        const it = parCle[x.c];
+        const p = it ? phraseDeCarte(it, 99) : null;
+        if(!p || p.de !== x.de) return;
+        const vise = placeDuMot(it, p.mots);
+        const forme = (x.f === "trou" && vise < 0) ? "ordre" : (x.f || "ordre");
+        dues.push({ mode: "phrase", forme: forme, cible: it, phrase: p, vise: vise, revue: true,
+                    themeId: it.themeId, index: it.index, word: it.word });
+    });
+    return dues;
+}
+
 function insererCartesPhrases(seance, tout){
     const langue = LANGUE_APPRISE === "es" ? "es" : "de";
     const base = new Set(MOTS_DE_BASE_PHRASES[langue]);
@@ -43150,6 +43245,7 @@ function insererCartesPhrases(seance, tout){
     };
     const sortie = seance.slice();
     let n = 0;
+    const dues = phrasesRateesDues(tout);
     // v822 : LES PHRASES ARRIVENT VITE. Jacques : « s'assurer que les phrases
     // viennent assez vite, pour pas que la personne decroche parce qu'elle
     // s'ennuie ». La premiere a la 3e carte (debut), puis tous_les ; et une case
@@ -43161,6 +43257,13 @@ function insererCartesPhrases(seance, tout){
         // La forme prevue ; si elle n'a pas de matiere (pas de serie de
         // grammaire, pas de mot dans la phrase pour le trou), la suivante.
         let item = null;
+        // v827 : une phrase ratee un jour precedent passe avant une neuve.
+        while(dues.length && !item){
+            const d = dues.shift();
+            if(pris.has(cle(d.cible))) continue;
+            pris.add(cle(d.cible));
+            item = d;
+        }
         for(let essai = 0; essai < palier.formes.length && !item; essai++){
             const f = palier.formes[(n + essai) % palier.formes.length];
             if(f === "gram"){
@@ -43375,6 +43478,7 @@ function montrerCartePhrase(item){
         if(fait.repondu) return;
         fait.repondu = true;
         const palierPhrase = repondrePhrase(item, juste);
+        try{ noterPhraseRatee(item, juste); }catch(e){}
         // v819 : LA MEME FETE QU'AILLEURS. Jacques : « les petits confettis avec
         // le son, pour tous les exercices qui sont reussis ». celebrateMastery()
         // choisit entre les confettis et la grande fete de l'objectif du jour.
@@ -43804,6 +43908,7 @@ function repondrePhrase(item, juste){
 
 async function ouvrirSeanceDuJour(sansScene){
     PHRASES_POSEES.clear();
+    RETOURS_FIN_SEANCE.length = 0;
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
     // Depuis le 10 oct. 2026, en espagnol aussi (langueDeScene).
     // v799 : plus d'ecran de choix ici -- les deux portes sont sur l'accueil.
@@ -44581,6 +44686,13 @@ function showFlashcardEnd(){
         mot.classList.toggle("atteint", atteint);
         mot.classList.remove("hidden");
     }
+    const aRevoir = document.getElementById("flashEndARevoir");
+    if(aRevoir){
+        let n = 0;
+        try{ if(currentTheme && String(currentTheme.id).indexOf("seance_") === 0) n = phrasesARevoirDemain(); }catch(e){}
+        aRevoir.textContent = n ? (n === 1 ? t("flash_end_a_revoir_un") : tf("flash_end_a_revoir_n", { n: n })) : "";
+        aRevoir.classList.toggle("hidden", !n);
+    }
     const encore = document.getElementById("encoreNeufsBtn");
     if(encore){
         const t2 = trancheSupplementaire();
@@ -45277,6 +45389,13 @@ function nextFlashcard(){
         const encore = cartesEncoreEnAttente(currentCardsFull || []);
         if(encore.length){
             currentCards = melangerLaSuite(encore);
+            currentFlashcard = 0;
+            loadFlashcard();
+            return;
+        }
+        // v827 : les phrases ratees de la seance, une fois, tout a la fin.
+        if(RETOURS_FIN_SEANCE.length && currentTheme && String(currentTheme.id).indexOf("seance_") === 0){
+            currentCards = RETOURS_FIN_SEANCE.splice(0);
             currentFlashcard = 0;
             loadFlashcard();
             return;
