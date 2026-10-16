@@ -7479,7 +7479,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v821</span>
+    <span class="subtitle-version">v822</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39045,7 +39045,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 821;
+const APP_VERSION = 822;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42833,9 +42833,9 @@ function revisionDeScene(d){
 // mots_max / inconnus_max (v813) : au palier 3, des phrases un peu plus longues
 // et un inconnu de plus -- les exemples B2-C1 depassent souvent huit mots.
 const PALIERS_SEANCE = [
-    { vus: 0,   tous_les: 5, mots_max: 8,  inconnus_max: 1, formes: ["ecoute", "ecoute", "trou"] },
-    { vus: 60,  tous_les: 3, mots_max: 8,  inconnus_max: 1, formes: ["ecoute", "gram", "trou", "ordre", "gram", "dictee_mot"] },
-    { vus: 400, tous_les: 2, mots_max: 11, inconnus_max: 2, formes: ["gram", "ecoute", "ordre", "trou", "gram", "dictee", "parler"] }
+    { vus: 0,   debut: 2, tous_les: 4, mots_max: 8,  inconnus_max: 1, formes: ["ecoute", "ecoute", "trou"] },
+    { vus: 60,  debut: 2, tous_les: 3, mots_max: 8,  inconnus_max: 1, formes: ["ecoute", "gram", "trou", "ordre", "gram", "dictee_mot"] },
+    { vus: 400, debut: 1, tous_les: 2, mots_max: 11, inconnus_max: 2, formes: ["gram", "ecoute", "ordre", "trou", "gram", "dictee", "parler"] }
 ];
 // L'ORDRE DU COURS, A1 -> B2 (v813). Les series « a blocs » (chunks) n'y sont
 // pas : elles ont leur ecran. Une serie sans question utilisable est sautee.
@@ -43085,7 +43085,12 @@ function insererCartesPhrases(seance, tout){
     };
     const sortie = seance.slice();
     let n = 0;
-    for(let k = palier.tous_les - 1; k < sortie.length; k += palier.tous_les){
+    // v822 : LES PHRASES ARRIVENT VITE. Jacques : « s'assurer que les phrases
+    // viennent assez vite, pour pas que la personne decroche parce qu'elle
+    // s'ennuie ». La premiere a la 3e carte (debut), puis tous_les ; et une case
+    // qui ne trouve pas de phrase assez simple reessaie a la carte suivante au
+    // lieu d'attendre tout un intervalle.
+    for(let k = palier.debut; k < sortie.length; k += palier.tous_les){
         sortie.slice(0, k).forEach(connaitre);
         const remplacee = sortie[k];
         // La forme prevue ; si elle n'a pas de matiere (pas de serie de
@@ -43108,6 +43113,7 @@ function insererCartesPhrases(seance, tout){
         }
         n++;
         if(item) sortie[k] = item;
+        else k -= palier.tous_les - 1;   // la carte suivante
     }
     return sortie;
 }

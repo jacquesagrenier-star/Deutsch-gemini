@@ -9100,3 +9100,7 @@ on voit ton niveau ? A1, A2, B1, B2, C1. Si je n'ai pas pris de cours, ca ne me 
   repondu « je pars de zero » voit la grammaire, la dictee et l'ordre apres 100 mots vus (60 pour
   les autres) ; et pendant les 200 premiers mots, les questions de grammaire viennent des 10 plus
   faciles de chaque serie.
+- v822 : Jacques : « s'assurer que les phrases viennent assez vite, pour pas que la personne
+  decroche parce qu'elle s'ennuie ». Pour le debutant, la premiere phrase arrive a la 3e carte,
+  puis une toutes les 4 (au lieu de la 5e, puis toutes les 5) ; une case sans phrase assez simple
+  reessaie a la carte suivante. Mesure sur un compte neuf : phrases aux cartes 3, 7, 11 et 15.
