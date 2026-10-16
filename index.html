@@ -6352,6 +6352,10 @@ body[data-theme="dark"] .cp-type{color:#aab3c2;} body[data-theme="dark"] .cp-typ
 .cp-trou{display:inline-block; min-width:78px; border-bottom:3px solid #E8A23A; text-align:center;}
 .cp-sens{color:#576177; font-size:15px; margin:6px 0 0;}
 body[data-theme="dark"] .cp-sens{color:#aab3c2;}
+.cp-rangee-ecoute{display:flex; justify-content:center; flex-wrap:wrap; gap:8px; margin:12px 0 6px;}
+.cp-rangee-ecoute .cp-ecouter{margin:0;}
+.cp-ecouter.cp-lent{background:#fff; color:#1C2430; border:1.5px solid #1C2430;}
+.cp-rangee-ecoute .cp-ecouter{padding:10px 16px; font-size:15px;}
 .cp-ecouter{display:flex; align-items:center; justify-content:center; gap:8px; margin:12px auto 6px; padding:12px 20px; border-radius:999px; border:0; background:#1C2430; color:#fff; font-size:16px; font-weight:700; cursor:pointer;}
 .cp-choix{display:flex; flex-direction:column; gap:8px; margin-top:14px;}
 .cp-choix button{background:#fff; color:#1C2430; border:1.5px solid #e2d6c0; border-radius:12px; padding:12px; font-size:16px; text-align:start; cursor:pointer;}
@@ -7483,7 +7487,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v824</span>
+    <span class="subtitle-version">v825</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10804,6 +10808,7 @@ const I18N = {
         cp_q_trou: "Quel mot manque ?",
         cp_q_ordre: "Construis la phrase",
         cp_ecouter: "Écouter",
+        cp_lent: "Plus lentement",
         cp_bravo: "Bravo !",
         cp_reponse: "La bonne réponse :",
         cp_effacer: "Recommencer",
@@ -11997,6 +12002,7 @@ const I18N = {
         cp_q_trou: "Which word is missing?",
         cp_q_ordre: "Build the sentence",
         cp_ecouter: "Listen",
+        cp_lent: "Slower",
         cp_bravo: "Well done!",
         cp_reponse: "The right answer:",
         cp_effacer: "Start over",
@@ -13192,6 +13198,7 @@ const I18N = {
         cp_q_trou: "Hangi kelime eksik?",
         cp_q_ordre: "Cümleyi kur",
         cp_ecouter: "Dinle",
+        cp_lent: "Daha yavaş",
         cp_bravo: "Aferin!",
         cp_reponse: "Doğru cevap:",
         cp_effacer: "Baştan başla",
@@ -14724,6 +14731,7 @@ const I18N = {
         cp_q_trou: "Якого слова бракує?",
         cp_q_ordre: "Склади речення",
         cp_ecouter: "Слухати",
+        cp_lent: "Повільніше",
         cp_bravo: "Браво!",
         cp_reponse: "Правильна відповідь:",
         cp_effacer: "Почати знову",
@@ -16619,6 +16627,7 @@ const I18N = {
         cp_q_trou: "کدام واژه جا افتاده؟",
         cp_q_ordre: "جمله را بساز",
         cp_ecouter: "گوش بده",
+        cp_lent: "آهسته‌تر",
         cp_bravo: "آفرین!",
         cp_reponse: "پاسخ درست:",
         cp_effacer: "از نو",
@@ -17945,6 +17954,7 @@ const I18N = {
         cp_q_trou: "ما الكلمة الناقصة؟",
         cp_q_ordre: "كوِّن الجملة",
         cp_ecouter: "استمع",
+        cp_lent: "أبطأ",
         cp_bravo: "أحسنت!",
         cp_reponse: "الإجابة الصحيحة:",
         cp_effacer: "من جديد",
@@ -18144,6 +18154,7 @@ const I18N = {
         cp_q_trou: "Que palavra está faltando?",
         cp_q_ordre: "Monte a frase",
         cp_ecouter: "Ouvir",
+        cp_lent: "Mais devagar",
         cp_bravo: "Muito bem!",
         cp_reponse: "A resposta certa:",
         cp_effacer: "Recomeçar",
@@ -19402,6 +19413,7 @@ const I18N = {
         cp_q_trou: "Którego słowa brakuje?",
         cp_q_ordre: "Ułóż zdanie",
         cp_ecouter: "Posłuchaj",
+        cp_lent: "Wolniej",
         cp_bravo: "Brawo!",
         cp_reponse: "Prawidłowa odpowiedź:",
         cp_effacer: "Od nowa",
@@ -20658,6 +20670,7 @@ const I18N = {
         cp_q_trou: "Какого слова не хватает?",
         cp_q_ordre: "Составь предложение",
         cp_ecouter: "Слушать",
+        cp_lent: "Медленнее",
         cp_bravo: "Молодец!",
         cp_reponse: "Правильный ответ:",
         cp_effacer: "Заново",
@@ -39079,7 +39092,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 824;
+const APP_VERSION = 825;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43332,6 +43345,18 @@ function montrerCartePhrase(item){
     const ecouter = creer("button", "cp-ecouter", "🔊 " + t("cp_ecouter"));
     ecouter.type = "button";
     ecouter.addEventListener("click", () => item.forme === "dictee_mot" ? direMotPhrase(item) : direPhrase(item));
+    // v825 : LE RALENTI. Jacques : « mettre au ralenti lorsqu'on entend qu'on doit
+    // reecrire ». La meme voix, plus lente (le fichier d'Aurora ralentit sans
+    // changer de hauteur), a cote du bouton Ecouter -- dans l'ecoute et la dictee.
+    const lent = creer("button", "cp-ecouter cp-lent", "🐢 " + t("cp_lent"));
+    lent.type = "button";
+    lent.addEventListener("click", () => {
+        const texte = item.forme === "dictee_mot" ? motDictee(item.cible) : item.phrase.de;
+        try{ direAllemand(texte, { rate: 0.6 }); }catch(e){}
+    });
+    const rangeeEcoute = creer("div", "cp-rangee-ecoute");
+    rangeeEcoute.appendChild(ecouter);
+    rangeeEcoute.appendChild(lent);
     const saisie = () => {
         const champ = creer("input", "cp-saisie");
         champ.type = "text";
@@ -43350,7 +43375,7 @@ function montrerCartePhrase(item){
     };
 
     if(item.forme === "ecoute"){
-        el.appendChild(ecouter);
+        el.appendChild(rangeeEcoute);
         const choix = creer("div", "cp-choix");
         const options = melangerPhrase([item.phrase.sens].concat(leurresPhrase(item, 2)));
         options.forEach(o => {
@@ -43501,7 +43526,7 @@ function montrerCartePhrase(item){
         const motSeul = item.forme === "dictee_mot";
         const w = item.cible.word;
         const attendu = motSeul ? motDictee(item.cible) : item.phrase.de;
-        el.appendChild(ecouter);
+        el.appendChild(rangeeEcoute);
         if(!motSeul) el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const champ = saisie();
         el.appendChild(champ);

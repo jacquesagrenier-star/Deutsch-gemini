@@ -9120,3 +9120,8 @@ mesure si la prononciation est assez bonne ».
   repond jamais, un message si la relecture echoue.
 - Un rond rouge qui grossit avec le volume de la voix pendant l'enregistrement.
 - La mesure de la prononciation (le juge « bienveillant ») reste a faire, apres ce diagnostic.
+- v825 : Jacques : « mettre au ralenti lorsqu'on entend qu'on doit reecrire ». Un bouton « Plus
+  lentement » a cote de « Ecouter », dans l'ecoute et la dictee de la seance.
+- Le micro dans les apps : « Cet appareil ne permet pas l'enregistrement ici ». Les apps iPhone et
+  Android ne declaraient pas le micro (NSMicrophoneUsageDescription, RECORD_AUDIO) : ajoutes dans
+  wortando-ios (commit 6e35571, pousse) ; il faut une nouvelle compilation des deux apps.
