@@ -3349,6 +3349,8 @@ html[data-apprendre="es"] .orb-opt[onclick*="startPartikelnNuance"],
 html[data-apprendre="es"] .orb-opt[onclick*="startPositionsverbenUebung"],
 html[data-apprendre="es"] .orb-opt[onclick*="startPraepReconnaissance"],
 html[data-apprendre="es"] .orb-opt[onclick*="startPraepWoWohin"],
+html[data-apprendre="es"] .orb-opt[onclick*="startPraepWahl"],
+html[data-apprendre="es"] .orb-opt[onclick*="startVerbenMitPraep"],
 html[data-apprendre="es"] .orb-opt[onclick*="startPremierePlaceUebung"],
 html[data-apprendre="es"] .orb-opt[onclick*="startTransformationConnecteursUebung"],
 html[data-apprendre="es"] .orb-opt[onclick*="startWeilObwohlUebung"],
@@ -8252,6 +8254,10 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
     <div class="spacer"></div>
     <button class="secondary" onclick="startPraepWoWohin()" data-i18n="praep_btn_wowohin">M'ENTRAÎNER : WO OU WOHIN ? →</button>
     <div class="spacer"></div>
+    <button class="secondary" onclick="startPraepWahl()" data-i18n="praep_btn_wahl">M'ENTRAÎNER : LAQUELLE ? →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="startVerbenMitPraep()" data-i18n="praep_btn_verben">M'ENTRAÎNER : VERBES À PRÉPOSITION →</button>
+    <div class="spacer"></div>
     <button class="secondary vocab-tuile" onclick="startPraepVokabular()" data-i18n="praep_btn_vocab">VOCABULAIRE : PRÉPOSITIONS →</button>
     <div id="praepNiveauBar" class="filters-bar"></div>
     <div class="spacer"></div>
@@ -11691,6 +11697,14 @@ const I18N = {
         kicker_adjektive_deklination: "Adjectifs · Déclinaison",
         kicker_praep_reconnaissance: "Prépositions · Quel cas ?",
         kicker_praep_wowohin: "Prépositions · Wo oder Wohin?",
+        kicker_praep_wahl: "Prépositions · Laquelle ?",
+        kicker_verben_praep: "Verbes à préposition",
+        op_praep_o7_t: "Laquelle ?",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "Verbes à préposition",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "M'ENTRAÎNER : LAQUELLE ? →",
+        praep_btn_verben: "M'ENTRAÎNER : VERBES À PRÉPOSITION →",
         kicker_partikeln_nuance: "Particules · Nuance",
 
         label_level_singular: "niveau",
@@ -12921,6 +12935,14 @@ const I18N = {
         kicker_adjektive_deklination: "Adjectives · Declension",
         kicker_praep_reconnaissance: "Prepositions · Which case?",
         kicker_praep_wowohin: "Prepositions · Wo or Wohin?",
+        kicker_praep_wahl: "Prepositions · Which one?",
+        kicker_verben_praep: "Verbs with prepositions",
+        op_praep_o7_t: "Which one?",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "Verbs with prepositions",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "PRACTICE: WHICH ONE? →",
+        praep_btn_verben: "PRACTICE: VERBS WITH PREPOSITIONS →",
         kicker_partikeln_nuance: "Particles · Nuance",
 
         label_level_singular: "level",
@@ -14155,6 +14177,14 @@ const I18N = {
         kicker_adjektive_deklination: "Sıfatlar · Çekim",
         kicker_praep_reconnaissance: "Edatlar · Hangi hal?",
         kicker_praep_wowohin: "Edatlar · Wo mu Wohin mi?",
+        kicker_praep_wahl: "Edatlar · Hangisi?",
+        kicker_verben_praep: "Edatlı fiiller",
+        op_praep_o7_t: "Hangisi?",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "Edatlı fiiller",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "ALIŞTIRMA: HANGİSİ? →",
+        praep_btn_verben: "ALIŞTIRMA: EDATLI FİİLLER →",
         kicker_partikeln_nuance: "Partikeller · Nüans",
 
         label_level_singular: "seviye",
@@ -15288,6 +15318,14 @@ const I18N = {
         kicker_adjektive_deklination: "Прикметники · Відмінювання",
         kicker_praep_reconnaissance: "Прийменники · Який відмінок?",
         kicker_praep_wowohin: "Прийменники · Wo oder Wohin?",
+        kicker_praep_wahl: "Прийменники · Який саме?",
+        kicker_verben_praep: "Дієслова з прийменниками",
+        op_praep_o7_t: "Який саме?",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "Дієслова з прийменниками",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "ТРЕНУВАТИСЯ: ЯКИЙ САМЕ? →",
+        praep_btn_verben: "ТРЕНУВАТИСЯ: ДІЄСЛОВА З ПРИЙМЕННИКАМИ →",
         kicker_partikeln_nuance: "Частки · Відтінок",
         kicker_verben_revision: "Дієслова · Повторення",
         kicker_verben_flashcards: "Дієслова · Картки",
@@ -16083,6 +16121,14 @@ const I18N = {
         kicker_adjektive_deklination: "صفت‌ها · صرف",
         kicker_praep_reconnaissance: "حرف‌های اضافه · کدام حالت؟",
         kicker_praep_wowohin: "حرف‌های اضافه · Wo oder Wohin?",
+        kicker_praep_wahl: "حرف‌های اضافه · کدام‌یک؟",
+        kicker_verben_praep: "فعل‌های حرف‌اضافه‌دار",
+        op_praep_o7_t: "کدام‌یک؟",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "فعل‌های حرف‌اضافه‌دار",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "تمرین: کدام‌یک؟ ←",
+        praep_btn_verben: "تمرین: فعل‌های حرف‌اضافه‌دار ←",
         kicker_partikeln_nuance: "ادات · ظرافت",
         label_level_singular: "سطح",
         label_level_plural: "سطح",
@@ -17382,6 +17428,14 @@ const I18N = {
         kicker_adjektive_deklination: "الصفات · التصريف",
         kicker_praep_reconnaissance: "حروف الجرّ · أي حالة؟",
         kicker_praep_wowohin: "حروف الجرّ · Wo oder Wohin?",
+        kicker_praep_wahl: "حروف الجرّ · أيّها؟",
+        kicker_verben_praep: "أفعال بحروف جرّ",
+        op_praep_o7_t: "أيّها؟",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "أفعال بحروف جرّ",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "تدرّب: أيّها؟ ←",
+        praep_btn_verben: "تدرّب: أفعال بحروف جرّ ←",
         kicker_partikeln_nuance: "الأدوات · الفرق",
         label_level_singular: "مستوى",
         label_level_plural: "مستويات",
@@ -19276,6 +19330,14 @@ const I18N = {
         kicker_adjektive_deklination: "Adjetivos · Declinação",
         kicker_praep_reconnaissance: "Preposições · Qual caso?",
         kicker_praep_wowohin: "Preposições · Wo oder Wohin?",
+        kicker_praep_wahl: "Preposições · Qual delas?",
+        kicker_verben_praep: "Verbos com preposição",
+        op_praep_o7_t: "Qual delas?",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "Verbos com preposição",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "PRATICAR: QUAL DELAS? →",
+        praep_btn_verben: "PRATICAR: VERBOS COM PREPOSIÇÃO →",
         kicker_partikeln_nuance: "Partículas · Nuance",
         label_level_singular: "nível",
         label_level_plural: "níveis",
@@ -20571,6 +20633,14 @@ const I18N = {
         kicker_adjektive_deklination: "Przymiotniki · Odmiana",
         kicker_praep_reconnaissance: "Przyimki · Jaki przypadek?",
         kicker_praep_wowohin: "Przyimki · Wo oder Wohin?",
+        kicker_praep_wahl: "Przyimki · Który?",
+        kicker_verben_praep: "Czasowniki z przyimkami",
+        op_praep_o7_t: "Który?",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "Czasowniki z przyimkami",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "ĆWICZĘ: KTÓRY? →",
+        praep_btn_verben: "ĆWICZĘ: CZASOWNIKI Z PRZYIMKAMI →",
         kicker_partikeln_nuance: "Partykuły · Niuans",
         label_level_singular: "poziom",
         label_level_plural: "poziomy",
@@ -21871,6 +21941,14 @@ const I18N = {
         kicker_adjektive_deklination: "Прилагательные · Склонение",
         kicker_praep_reconnaissance: "Предлоги · Какой падеж?",
         kicker_praep_wowohin: "Предлоги · Wo oder Wohin?",
+        kicker_praep_wahl: "Предлоги · Какой?",
+        kicker_verben_praep: "Глаголы с предлогами",
+        op_praep_o7_t: "Какой?",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "Глаголы с предлогами",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "ТРЕНИРОВАТЬСЯ: КАКОЙ? →",
+        praep_btn_verben: "ТРЕНИРОВАТЬСЯ: ГЛАГОЛЫ С ПРЕДЛОГАМИ →",
         kicker_partikeln_nuance: "Частицы · Оттенок",
         label_level_singular: "уровень",
         label_level_plural: "уровни",
@@ -22373,6 +22451,9 @@ const I18N_ESPAGNOL = {
         "kicker_numeros": "Nombres et heure",
         "kicker_demostrativos": "Démonstratifs et possessifs",
         "kicker_preposiciones": "a, en, de et le a personnel",
+        "kicker_preposiciones_viaje": "Prépositions · De viaje",
+        "kicker_verbos_preposicion": "Verbes à préposition",
+        "fiche_entrainer_x": "M'ENTRAÎNER : {x} →",
         "pron_kicker": "Lire l'espagnol",
         "pron_intro": "L'espagnol se lit presque toujours comme il s'écrit : ces règles suffisent pour lire n'importe quel mot. Touche un mot pour l'entendre.",
         "pron_accent": "L'accent tonique",
@@ -22506,6 +22587,9 @@ const I18N_ESPAGNOL = {
         "kicker_numeros": "Numbers and time",
         "kicker_demostrativos": "Demonstratives and possessives",
         "kicker_preposiciones": "a, en, de and the personal a",
+        "kicker_preposiciones_viaje": "Prepositions · De viaje",
+        "kicker_verbos_preposicion": "Verbs with prepositions",
+        "fiche_entrainer_x": "PRACTICE: {x} →",
         "pron_kicker": "Reading Spanish",
         "pron_intro": "Spanish is almost always read the way it is written: these rules are enough to read any word. Tap a word to hear it.",
         "pron_accent": "Stress",
@@ -22639,6 +22723,9 @@ const I18N_ESPAGNOL = {
         "kicker_numeros": "Números e horas",
         "kicker_demostrativos": "Demonstrativos e possessivos",
         "kicker_preposiciones": "a, en, de e o a pessoal",
+        "kicker_preposiciones_viaje": "Preposições · De viaje",
+        "kicker_verbos_preposicion": "Verbos com preposição",
+        "fiche_entrainer_x": "PRATICAR: {x} →",
         "pron_kicker": "Ler o espanhol",
         "pron_intro": "O espanhol se lê quase sempre como se escreve: estas regras bastam para ler qualquer palavra. Toque em uma palavra para ouvi-la.",
         "pron_accent": "O acento tônico",
@@ -22772,6 +22859,9 @@ const I18N_ESPAGNOL = {
         "kicker_numeros": "الأعداد والساعة",
         "kicker_demostrativos": "أسماء الإشارة والملكية",
         "kicker_preposiciones": "a وen وde، والـ a أمام الأشخاص",
+        "kicker_preposiciones_viaje": "حروف الجرّ · De viaje",
+        "kicker_verbos_preposicion": "أفعال بحروف جرّ",
+        "fiche_entrainer_x": "تدرّب: {x} ←",
         "pron_kicker": "قراءة الإسبانية",
         "pron_intro": "تُقرأ الإسبانية دائماً تقريباً كما تُكتب: هذه القواعد تكفي لقراءة أي كلمة. المس الكلمة لتسمعها.",
         "pron_accent": "النبر",
@@ -27213,6 +27303,17 @@ function startPreposicionesUebung(){
     startExerciseSetMelange("preposicionesExercises", "kicker_preposiciones",
                      () => abrirGramatica("preposiciones"), startPreposicionesUebung);
 }
+// 16 oct. 2026 : les deux series de prepositions de plus (fiche « preposiciones »,
+// champ `exercices`) : la vie courante et le voyage (desde, hasta, con, sin,
+// al, del, locutions de lieu), puis les verbes a preposition (B1).
+function startPreposicionesViajeUebung(){
+    startExerciseSetMelange("preposicionesViajeExercises", "kicker_preposiciones_viaje",
+                     () => abrirGramatica("preposiciones"), startPreposicionesViajeUebung);
+}
+function startVerbosConPreposicionUebung(){
+    startExerciseSetMelange("verbosConPreposicionExercises", "kicker_verbos_preposicion",
+                     () => abrirGramatica("preposiciones"), startVerbosConPreposicionUebung);
+}
 function startGustarUebung(){
     startExerciseSetMelange("gustarExercises", "kicker_gustar",
                      () => openOrbPanel("verben"), startGustarUebung);
@@ -31503,6 +31604,10 @@ function orbPanelData(id){
                 { icon:"dossier", title:t("op_praep_o1_t"), desc:t("op_praep_o1_d"), primary:true, action:"openPraepInfo", section:"comprendre" },
                 { icon:"exercice", title:t("op_praep_o2_t"), desc:t("op_praep_o2_d"), action:"startPraepReconnaissance", section:"pratique" },
                 { icon:"exercice", title:t("op_praep_o3_t"), desc:t("op_praep_o3_d"), action:"startPraepWoWohin", section:"pratique" },
+                // 16 oct. 2026 : la preposition elle-meme (A1-A2), puis les verbes
+                // a preposition (B1) -- les deux series qui manquaient au cours.
+                { icon:"exercice", title:t("op_praep_o7_t"), desc:t("op_praep_o7_d"), action:"startPraepWahl", section:"pratique" },
+                { icon:"exercice", title:t("op_praep_o8_t"), desc:t("op_praep_o8_d"), action:"startVerbenMitPraep", section:"pratique" },
                 { icon:"carte", title:t("op_vocab"), desc:"für, mit, wegen, auf…", action:"startPraepVokabular", section:"mots" },
                 { icon:"carte", title:t("op_praep_o5_t"), desc:"stehen/stellen, liegen/legen, sitzen/setzen, hängen…", action:"startPositionsverbenVokabular", section:"mots" },
                 // Le cours avait le vocabulaire de ces verbes et l'exercice
@@ -31705,6 +31810,14 @@ async function abrirGramatica(id, depuis){
     if(g.exercice && typeof window[g.exercice] === "function"){
         html += '<button class="secondary" onclick="' + g.exercice + '()">' + t("fiche_entrainer") + '</button>';
     }
+    // 16 oct. 2026 : d'autres series pour la meme fiche (`exercices` : fonction
+    // + cle du kicker), chacune nommee -- deux boutons « M'ENTRAINER »
+    // identiques ne diraient pas ce qui les distingue.
+    (g.exercices || []).forEach(e => {
+        if(!e || typeof window[e.fonction] !== "function") return;
+        html += '<div class="spacer"></div><button class="secondary" onclick="' + e.fonction + '()">'
+            + echapperFiche(tf("fiche_entrainer_x", { x: t(e.kicker) })) + '</button>';
+    });
     document.getElementById("gramCuerpo").innerHTML = html;
     showScreen("gramaticaES");
 }
@@ -35463,6 +35576,21 @@ function startPraepReconnaissance(){
 
 function startPraepWoWohin(){
     startExerciseSet("praepWoWohinExercises", "kicker_praep_wowohin", openPraepInfo, startPraepWoWohin);
+}
+
+// 16 oct. 2026 : LA PREPOSITION ELLE-MEME. « Quel cas ? » et « Wo ou Wohin ? »
+// supposent la preposition connue ; ici on la choisit (« Ich fahre ___
+// Berlin » -> nach), du plus courant au moins courant. Le melange n'est pas
+// voulu : le fichier est range par frequence, le bloc 1 est le plus utile.
+function startPraepWahl(){
+    startExerciseSet("praepWahlExercises", "kicker_praep_wahl", openPraepInfo, startPraepWahl);
+}
+
+// 16 oct. 2026 : LES VERBES A PREPOSITION (B1) : warten auf, denken an, sich
+// freuen auf / uber... La preposition ne se devine pas, elle se retient avec
+// le verbe.
+function startVerbenMitPraep(){
+    startExerciseSet("verbenMitPraepExercises", "kicker_verben_praep", openPraepInfo, startVerbenMitPraep);
 }
 
 function startPraepVokabular(niveau){
@@ -43398,13 +43526,19 @@ const COURS_GRAMMAIRE_PAR_LANGUE = {
         // existait dans l'etude, jamais dans la seance.
         "exercises", "derEinExercises", "possessivExercises", "wortstellungV2Exercises", "wortstellungFrageExercises",
         "wortstellungNichtExercises", "praepWoWohinExercises",
+        // 16 oct. 2026 : « Ich fahre ___ Berlin » -- la preposition elle-meme, du
+        // plus courant au moins courant (nach, zu, in, aus, bei, mit, seit, fur...).
+        "praepWahlExercises",
         // A2
         "perfektExercises", "praeteritumExercises", "kasusReconnaissanceExercises", "positionsverbenExercises",
         "weilObwohlExercises", "deshalbTrotzdemExercises", "aberSondernExercises", "wennWannExercises",
         "wortstellungSubExercises",
         // B1
         "konjunktiv2Exercises", "zuInfinitivExercises", "infinitivExercises", "wissenKennenExercises",
-        "praepReconnaissanceExercises", "relativReconNomAkk", "relativReconDativ", "relativReconMixed",
+        "praepReconnaissanceExercises",
+        // 16 oct. 2026 : les verbes a preposition (warten auf, denken an, sich freuen auf...).
+        "verbenMitPraepExercises",
+        "relativReconNomAkk", "relativReconDativ", "relativReconMixed",
         "alsWennExercises", "wennObExercises", "adjektiveDeklinationExercises", "obwohlTrotzdemExercises",
         "konnektorenExercises", "wortstellungTekamoloExercises",
         // B2
@@ -43416,11 +43550,17 @@ const COURS_GRAMMAIRE_PAR_LANGUE = {
         // A1
         "exercises", "serEstarExercises", "numerosExercises", "demostrativosExercises", "gustarExercises",
         "preposicionesExercises",
+        // 16 oct. 2026 : « Viajamos ___ Barcelona » -- desde, hasta, con, sin, al,
+        // del, les locutions de lieu (delante de...).
+        "preposicionesViajeExercises",
         // A2
         "praeteritumExercises", "perfektExercises", "porParaExercises", "futuroExercises", "imperativoExercises",
         "perifrasisExercises",
         // B1-B2
-        "condicionalExercises", "konjunktiv2Exercises", "infinitivExercises", "acentosExercises",
+        "condicionalExercises",
+        // 16 oct. 2026 : les verbes a preposition (pensar en, soñar con, depender de...).
+        "verbosConPreposicionExercises",
+        "konjunktiv2Exercises", "infinitivExercises", "acentosExercises",
         "falsosAmigosExercises", "adverbienNuanceExercises"
     ]
 };
@@ -43568,9 +43708,19 @@ const CONJUGAISON_PAR_NIVEAU = {
     es: { A1: ["exercises"], A2: ["praeteritumExercises", "perfektExercises", "futuroExercises", "imperativoExercises"],
           B1: ["condicionalExercises", "konjunktiv2Exercises"], B2: ["konjunktiv2Exercises", "condicionalExercises"] }
 };
+// 16 oct. 2026 : une LISTE par niveau, comme la conjugaison -- la premiere
+// serie non acquise entre dans le tirage. Le choix de la preposition (« Ich
+// fahre ___ Berlin ») passe devant Wo/Wohin : c'est la question qu'un
+// debutant se pose.
 const PREPOSITIONS_PAR_NIVEAU = {
-    de: { A1: "praepWoWohinExercises", A2: "positionsverbenExercises", B1: "praepReconnaissanceExercises" },
-    es: { A1: "preposicionesExercises", A2: "porParaExercises" }
+    de: { A1: ["praepWahlExercises", "praepWoWohinExercises"],
+          A2: ["praepWahlExercises", "positionsverbenExercises"],
+          B1: ["verbenMitPraepExercises", "praepReconnaissanceExercises"],
+          B2: ["verbenMitPraepExercises", "praepReconnaissanceExercises"] },
+    es: { A1: ["preposicionesExercises", "preposicionesViajeExercises"],
+          A2: ["preposicionesViajeExercises", "porParaExercises"],
+          B1: ["verbosConPreposicionExercises", "porParaExercises"],
+          B2: ["verbosConPreposicionExercises"] }
 };
 async function prechargerGrammaireSeance(){
     const langue = LANGUE_APPRISE === "es" ? "es" : "de";
@@ -43584,8 +43734,8 @@ async function prechargerGrammaireSeance(){
             if(noms.length >= 3) break;
             if(!serieAcquise(nom, g, s)) noms.push(nom);
         }
-        const prep = (PREPOSITIONS_PAR_NIVEAU[langue] || {})[niveau];
-        if(prep && noms.indexOf(prep) < 0 && !serieAcquise(prep, g, s)) noms.push(prep);
+        const prep = ((PREPOSITIONS_PAR_NIVEAU[langue] || {})[niveau] || []).filter(x => !serieAcquise(x, g, s))[0];
+        if(prep && noms.indexOf(prep) < 0) noms.push(prep);
         const conj = ((CONJUGAISON_PAR_NIVEAU[langue] || {})[niveau] || []).filter(x => !serieAcquise(x, g, s))[0];
         if(conj && noms.indexOf(conj) < 0) noms.push(conj);
         if(noms.length){
