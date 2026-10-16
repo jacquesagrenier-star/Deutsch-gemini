@@ -1,0 +1,5436 @@
+{
+ "_lisez_moi": [
+  "« Premiers pas » : le parcours des vrais débutants, par situations de voyage, en étapes (chacun va à son rythme).",
+  "Chaque étape : s (titre), scene (visuel/prototype/scene-<nom>.js et .es.js), tableau {t, l: [[forme, sens]], a: astuce}, cartes [[expression, sens, exemple?, sens de l'exemple?]], phrases [{p, s, l: [leurre, leurre]}].",
+  "Les phrases n'emploient que des mots vus dans les cartes et tableaux de leur étape ou des étapes précédentes ; à partir de l'étape 2, les deux dernières phrases reprennent des étapes précédentes (révision).",
+  "Les tableaux de grammaire progressent : être → vouloir → où est / articles → aller, prendre → avoir → nombres et prix → pouvoir → les questions.",
+  "Contrôle : python tests/premiers_pas.py (comptes, langues, leurres, scènes, mots déjà vus).",
+  "Sens en fr, en, pt, ar (les langues d'interface qui offrent l'espagnol).",
+  "Variante d'Espagne d'abord. Quand l'Amérique latine dit autrement, l'entrée porte un champ la : sur une phrase, {\"la\": {\"p\": \"...\"}} ; sur une carte ou une ligne de tableau (des tableaux), un dernier élément {\"la\": [...]} de même forme que l'entrée, null là où rien ne change (ex. [\"un boleto\", null, \"Un boleto a Sevilla, por favor.\", null]). Les sens ne changent pas."
+ ],
+ "etapes": [
+  {
+   "s": {
+    "fr": "L'arrivée : saluer et se présenter",
+    "en": "Arriving: greetings and introductions",
+    "ar": "الوصول: التحية والتعريف بالنفس",
+    "pt": "A chegada: cumprimentar e se apresentar"
+   },
+   "scene": "flughafen",
+   "tableau": {
+    "t": {
+     "fr": "Être : ser",
+     "en": "To be: ser",
+     "ar": "الفعل «يكون»: ser",
+     "pt": "Ser: ser"
+    },
+    "l": [
+     [
+      "yo soy",
+      {
+       "fr": "je suis",
+       "en": "I am",
+       "ar": "أنا",
+       "pt": "eu sou"
+      }
+     ],
+     [
+      "tú eres",
+      {
+       "fr": "tu es",
+       "en": "you are",
+       "ar": "أنتَ / أنتِ",
+       "pt": "você é"
+      }
+     ],
+     [
+      "usted es",
+      {
+       "fr": "vous êtes (poli)",
+       "en": "you are (polite)",
+       "ar": "أنتم / حضرتك (للمجاملة)",
+       "pt": "o senhor / a senhora é (polido)"
+      }
+     ],
+     [
+      "él · ella es",
+      {
+       "fr": "il · elle est",
+       "en": "he · she is",
+       "ar": "هو · هي",
+       "pt": "ele · ela é"
+      }
+     ],
+     [
+      "nosotros somos",
+      {
+       "fr": "nous sommes",
+       "en": "we are",
+       "ar": "نحن",
+       "pt": "nós somos"
+      }
+     ],
+     [
+      "ustedes son",
+      {
+       "fr": "vous êtes (à plusieurs)",
+       "en": "you are (plural)",
+       "ar": "أنتم (جمع)",
+       "pt": "vocês são"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "On dit souvent soy sans yo : « Soy de Canadá ». Usted est le « vous » poli : avec un inconnu, un douanier, un serveur.",
+     "en": "People often say soy without yo: “Soy de Canadá”. Usted is the polite “you”: with a stranger, a customs officer, a waiter.",
+     "ar": "غالباً نقول soy دون yo: «Soy de Canadá». Usted هي «أنتم» للمجاملة: مع غريب أو موظف جمارك أو نادل.",
+     "pt": "Diz-se muitas vezes soy sem yo: “Soy de Canadá”. Usted é o “você” de cortesia: com um desconhecido, um aduaneiro, um garçom."
+    }
+   },
+   "cartes": [
+    [
+     "hola",
+     {
+      "fr": "bonjour, salut",
+      "en": "hello, hi",
+      "ar": "مرحبا، أهلاً",
+      "pt": "olá, oi"
+     },
+     "¡Hola! ¿Qué tal?",
+     {
+      "fr": "Salut ! Ça va ?",
+      "en": "Hi! How are you?",
+      "ar": "أهلاً! كيف الحال؟",
+      "pt": "Oi! Tudo bem?"
+     }
+    ],
+    [
+     "buenos días",
+     {
+      "fr": "bonjour (le matin)",
+      "en": "good morning",
+      "ar": "صباح الخير",
+      "pt": "bom dia"
+     },
+     "Buenos días, señora.",
+     {
+      "fr": "Bonjour, madame.",
+      "en": "Good morning, madam.",
+      "ar": "صباح الخير يا سيدتي.",
+      "pt": "Bom dia, senhora."
+     }
+    ],
+    [
+     "buenas tardes",
+     {
+      "fr": "bonjour (l'après-midi), bonsoir",
+      "en": "good afternoon, good evening",
+      "ar": "مساء الخير",
+      "pt": "boa tarde"
+     },
+     "Buenas tardes, señor.",
+     {
+      "fr": "Bonsoir, monsieur.",
+      "en": "Good evening, sir.",
+      "ar": "مساء الخير يا سيدي.",
+      "pt": "Boa tarde, senhor."
+     }
+    ],
+    [
+     "buenas noches",
+     {
+      "fr": "bonsoir, bonne nuit",
+      "en": "good evening, good night",
+      "ar": "مساء الخير، تصبح على خير",
+      "pt": "boa noite"
+     },
+     "¡Buenas noches!",
+     {
+      "fr": "Bonne nuit !",
+      "en": "Good night!",
+      "ar": "تصبح على خير!",
+      "pt": "Boa noite!"
+     }
+    ],
+    [
+     "¿Qué tal?",
+     {
+      "fr": "Ça va ?",
+      "en": "How are you?",
+      "ar": "كيف الحال؟",
+      "pt": "Tudo bem?"
+     },
+     "Hola, ¿qué tal?",
+     {
+      "fr": "Salut, ça va ?",
+      "en": "Hi, how are you?",
+      "ar": "أهلاً، كيف الحال؟",
+      "pt": "Oi, tudo bem?"
+     }
+    ],
+    [
+     "bien, gracias",
+     {
+      "fr": "bien, merci",
+      "en": "fine, thanks",
+      "ar": "بخير، شكراً",
+      "pt": "bem, obrigado"
+     },
+     "Bien, gracias. ¿Y usted?",
+     {
+      "fr": "Bien, merci. Et vous ?",
+      "en": "Fine, thanks. And you?",
+      "ar": "بخير، شكراً. وأنت؟",
+      "pt": "Bem, obrigado. E o senhor?"
+     }
+    ],
+    [
+     "me llamo…",
+     {
+      "fr": "je m'appelle…",
+      "en": "my name is…",
+      "ar": "اسمي…",
+      "pt": "meu nome é…"
+     },
+     "Me llamo Ana.",
+     {
+      "fr": "Je m'appelle Ana.",
+      "en": "My name is Ana.",
+      "ar": "اسمي آنا.",
+      "pt": "Meu nome é Ana."
+     }
+    ],
+    [
+     "¿Cómo se llama?",
+     {
+      "fr": "Comment vous appelez-vous ?",
+      "en": "What is your name?",
+      "ar": "ما اسمك؟",
+      "pt": "Como o senhor se chama?"
+     },
+     "¿Cómo se llama usted?",
+     {
+      "fr": "Comment vous appelez-vous ?",
+      "en": "What is your name?",
+      "ar": "ما اسمك؟",
+      "pt": "Como o senhor se chama?"
+     }
+    ],
+    [
+     "soy de…",
+     {
+      "fr": "je suis de…",
+      "en": "I'm from…",
+      "ar": "أنا من…",
+      "pt": "eu sou de…"
+     },
+     "Soy de Canadá.",
+     {
+      "fr": "Je suis du Canada.",
+      "en": "I'm from Canada.",
+      "ar": "أنا من كندا.",
+      "pt": "Eu sou do Canadá."
+     }
+    ],
+    [
+     "¿De dónde es?",
+     {
+      "fr": "D'où êtes-vous ?",
+      "en": "Where are you from?",
+      "ar": "من أين أنت؟",
+      "pt": "De onde o senhor é?"
+     },
+     "¿De dónde es usted?",
+     {
+      "fr": "D'où êtes-vous ?",
+      "en": "Where are you from?",
+      "ar": "من أين أنت؟",
+      "pt": "De onde o senhor é?"
+     }
+    ],
+    [
+     "¿y tú? · ¿y usted?",
+     {
+      "fr": "et toi ? · et vous ?",
+      "en": "and you? (informal · polite)",
+      "ar": "وأنتَ؟ · وحضرتك؟",
+      "pt": "e você? · e o senhor?"
+     },
+     "Me llamo Ana, ¿y usted?",
+     {
+      "fr": "Je m'appelle Ana, et vous ?",
+      "en": "My name is Ana, and you?",
+      "ar": "اسمي آنا، وأنت؟",
+      "pt": "Meu nome é Ana, e o senhor?"
+     }
+    ],
+    [
+     "encantado · encantada",
+     {
+      "fr": "enchanté · enchantée",
+      "en": "nice to meet you",
+      "ar": "تشرفت بمعرفتك",
+      "pt": "prazer (em conhecê-lo)"
+     },
+     "Encantada, Pablo.",
+     {
+      "fr": "Enchantée, Pablo.",
+      "en": "Nice to meet you, Pablo.",
+      "ar": "تشرفت بمعرفتك يا بابلو.",
+      "pt": "Prazer, Pablo."
+     }
+    ],
+    [
+     "mucho gusto",
+     {
+      "fr": "enchanté (ravi de vous connaître)",
+      "en": "pleased to meet you",
+      "ar": "سعيد بلقائك",
+      "pt": "muito prazer"
+     },
+     "Mucho gusto, señora.",
+     {
+      "fr": "Enchanté, madame.",
+      "en": "Pleased to meet you, madam.",
+      "ar": "سعيد بلقائك يا سيدتي.",
+      "pt": "Muito prazer, senhora."
+     }
+    ],
+    [
+     "sí · no",
+     {
+      "fr": "oui · non",
+      "en": "yes · no",
+      "ar": "نعم · لا",
+      "pt": "sim · não"
+     },
+     "Sí, soy de Canadá.",
+     {
+      "fr": "Oui, je suis du Canada.",
+      "en": "Yes, I'm from Canada.",
+      "ar": "نعم، أنا من كندا.",
+      "pt": "Sim, eu sou do Canadá."
+     }
+    ],
+    [
+     "gracias",
+     {
+      "fr": "merci",
+      "en": "thank you",
+      "ar": "شكراً",
+      "pt": "obrigado"
+     },
+     "Muchas gracias.",
+     {
+      "fr": "Merci beaucoup.",
+      "en": "Thank you very much.",
+      "ar": "شكراً جزيلاً.",
+      "pt": "Muito obrigado."
+     }
+    ],
+    [
+     "de nada",
+     {
+      "fr": "de rien",
+      "en": "you're welcome",
+      "ar": "عفواً",
+      "pt": "de nada"
+     },
+     "De nada, señor.",
+     {
+      "fr": "De rien, monsieur.",
+      "en": "You're welcome, sir.",
+      "ar": "عفواً يا سيدي.",
+      "pt": "De nada, senhor."
+     }
+    ],
+    [
+     "por favor",
+     {
+      "fr": "s'il vous plaît",
+      "en": "please",
+      "ar": "من فضلك",
+      "pt": "por favor"
+     },
+     "Un momento, por favor.",
+     {
+      "fr": "Un moment, s'il vous plaît.",
+      "en": "One moment, please.",
+      "ar": "لحظة من فضلك.",
+      "pt": "Um momento, por favor."
+     }
+    ],
+    [
+     "un momento",
+     {
+      "fr": "un moment",
+      "en": "one moment",
+      "ar": "لحظة",
+      "pt": "um momento"
+     },
+     "Un momento, señora.",
+     {
+      "fr": "Un moment, madame.",
+      "en": "One moment, madam.",
+      "ar": "لحظة يا سيدتي.",
+      "pt": "Um momento, senhora."
+     }
+    ],
+    [
+     "perdón · disculpe",
+     {
+      "fr": "pardon · excusez-moi",
+      "en": "sorry · excuse me",
+      "ar": "عفواً · المعذرة",
+      "pt": "desculpe · com licença"
+     },
+     "Disculpe, señor.",
+     {
+      "fr": "Excusez-moi, monsieur.",
+      "en": "Excuse me, sir.",
+      "ar": "المعذرة يا سيدي.",
+      "pt": "Com licença, senhor."
+     }
+    ],
+    [
+     "el pasaporte",
+     {
+      "fr": "le passeport",
+      "en": "the passport",
+      "ar": "جواز السفر",
+      "pt": "o passaporte"
+     },
+     "El pasaporte, por favor.",
+     {
+      "fr": "Le passeport, s'il vous plaît.",
+      "en": "The passport, please.",
+      "ar": "جواز السفر من فضلك.",
+      "pt": "O passaporte, por favor."
+     }
+    ],
+    [
+     "soy turista",
+     {
+      "fr": "je suis touriste",
+      "en": "I'm a tourist",
+      "ar": "أنا سائح · سائحة",
+      "pt": "eu sou turista"
+     },
+     "Soy turista.",
+     {
+      "fr": "Je suis touriste.",
+      "en": "I'm a tourist.",
+      "ar": "أنا سائحة.",
+      "pt": "Eu sou turista."
+     }
+    ],
+    [
+     "señor · señora",
+     {
+      "fr": "monsieur · madame",
+      "en": "Mr · Ms",
+      "ar": "سيد · سيدة",
+      "pt": "senhor · senhora"
+     },
+     "Buenos días, señor.",
+     {
+      "fr": "Bonjour, monsieur.",
+      "en": "Good morning, sir.",
+      "ar": "صباح الخير يا سيدي.",
+      "pt": "Bom dia, senhor."
+     }
+    ],
+    [
+     "bienvenido · bienvenida",
+     {
+      "fr": "bienvenue",
+      "en": "welcome",
+      "ar": "أهلاً وسهلاً",
+      "pt": "bem-vindo"
+     },
+     "¡Bienvenida a Madrid!",
+     {
+      "fr": "Bienvenue à Madrid !",
+      "en": "Welcome to Madrid!",
+      "ar": "أهلاً بكم في مدريد!",
+      "pt": "Bem-vinda a Madri!"
+     }
+    ],
+    [
+     "adiós · hasta luego",
+     {
+      "fr": "au revoir · à plus tard",
+      "en": "goodbye · see you later",
+      "ar": "مع السلامة · أراك لاحقاً",
+      "pt": "adeus · até logo"
+     },
+     "Adiós, ¡hasta mañana!",
+     {
+      "fr": "Au revoir, à demain !",
+      "en": "Goodbye, see you tomorrow!",
+      "ar": "إلى اللقاء، أراك غداً!",
+      "pt": "Até logo, até amanhã!"
+     }
+    ]
+   ],
+   "phrases": [
+    {
+     "p": "Hola, me llamo Ana.",
+     "s": {
+      "fr": "Bonjour, je m'appelle Ana.",
+      "en": "Hello, my name is Ana.",
+      "ar": "مرحبا، اسمي آنا.",
+      "pt": "Olá, meu nome é Ana."
+     },
+     "l": [
+      {
+       "fr": "Bonjour, vous vous appelez Ana.",
+       "en": "Hello, your name is Ana.",
+       "ar": "مرحبا، اسمك آنا.",
+       "pt": "Olá, seu nome é Ana."
+      },
+      {
+       "fr": "Merci, je m'appelle Ana.",
+       "en": "Thanks, my name is Ana.",
+       "ar": "شكراً، اسمي آنا.",
+       "pt": "Obrigada, meu nome é Ana."
+      }
+     ]
+    },
+    {
+     "p": "Buenos días, señora.",
+     "s": {
+      "fr": "Bonjour, madame.",
+      "en": "Good morning, madam.",
+      "ar": "صباح الخير يا سيدتي.",
+      "pt": "Bom dia, senhora."
+     },
+     "l": [
+      {
+       "fr": "Bonsoir, madame.",
+       "en": "Good evening, madam.",
+       "ar": "مساء الخير يا سيدتي.",
+       "pt": "Boa noite, senhora."
+      },
+      {
+       "fr": "Bonjour, monsieur.",
+       "en": "Good morning, sir.",
+       "ar": "صباح الخير يا سيدي.",
+       "pt": "Bom dia, senhor."
+      }
+     ]
+    },
+    {
+     "p": "Soy de Canadá, ¿y usted?",
+     "s": {
+      "fr": "Je suis du Canada, et vous ?",
+      "en": "I'm from Canada, and you?",
+      "ar": "أنا من كندا، وأنت؟",
+      "pt": "Eu sou do Canadá, e o senhor?"
+     },
+     "l": [
+      {
+       "fr": "Vous êtes du Canada, et vous ?",
+       "en": "You're from Canada, and you?",
+       "ar": "أنت من كندا، وأنت؟",
+       "pt": "O senhor é do Canadá, e o senhor?"
+      },
+      {
+       "fr": "Il est du Canada, et vous ?",
+       "en": "He's from Canada, and you?",
+       "ar": "هو من كندا، وأنت؟",
+       "pt": "Ele é do Canadá, e o senhor?"
+      }
+     ]
+    },
+    {
+     "p": "¿De dónde es usted?",
+     "s": {
+      "fr": "D'où êtes-vous ?",
+      "en": "Where are you from?",
+      "ar": "من أين أنت؟",
+      "pt": "De onde o senhor é?"
+     },
+     "l": [
+      {
+       "fr": "D'où est-il ?",
+       "en": "Where is he from?",
+       "ar": "من أين هو؟",
+       "pt": "De onde ele é?"
+      },
+      {
+       "fr": "Comment vous appelez-vous ?",
+       "en": "What is your name?",
+       "ar": "ما اسمك؟",
+       "pt": "Como o senhor se chama?"
+      }
+     ]
+    },
+    {
+     "p": "¿Es usted de Madrid?",
+     "s": {
+      "fr": "Vous êtes de Madrid ?",
+      "en": "Are you from Madrid?",
+      "ar": "هل أنت من مدريد؟",
+      "pt": "O senhor é de Madri?"
+     },
+     "l": [
+      {
+       "fr": "Je suis de Madrid.",
+       "en": "I'm from Madrid.",
+       "ar": "أنا من مدريد.",
+       "pt": "Eu sou de Madri."
+      },
+      {
+       "fr": "Il est de Madrid ?",
+       "en": "Is he from Madrid?",
+       "ar": "هل هو من مدريد؟",
+       "pt": "Ele é de Madri?"
+      }
+     ]
+    },
+    {
+     "p": "Mucho gusto, señor.",
+     "s": {
+      "fr": "Enchanté, monsieur.",
+      "en": "Pleased to meet you, sir.",
+      "ar": "سعيد بلقائك يا سيدي.",
+      "pt": "Muito prazer, senhor."
+     },
+     "l": [
+      {
+       "fr": "Merci, monsieur.",
+       "en": "Thank you, sir.",
+       "ar": "شكراً يا سيدي.",
+       "pt": "Obrigado, senhor."
+      },
+      {
+       "fr": "Au revoir, monsieur.",
+       "en": "Goodbye, sir.",
+       "ar": "مع السلامة يا سيدي.",
+       "pt": "Adeus, senhor."
+      }
+     ]
+    },
+    {
+     "p": "El pasaporte, por favor.",
+     "s": {
+      "fr": "Le passeport, s'il vous plaît.",
+      "en": "The passport, please.",
+      "ar": "جواز السفر من فضلك.",
+      "pt": "O passaporte, por favor."
+     },
+     "l": [
+      {
+       "fr": "La valise, s'il vous plaît.",
+       "en": "The suitcase, please.",
+       "ar": "الحقيبة من فضلك.",
+       "pt": "A mala, por favor."
+      },
+      {
+       "fr": "Un moment, s'il vous plaît.",
+       "en": "One moment, please.",
+       "ar": "لحظة من فضلك.",
+       "pt": "Um momento, por favor."
+      }
+     ]
+    },
+    {
+     "p": "Sí, soy turista.",
+     "s": {
+      "fr": "Oui, je suis touriste.",
+      "en": "Yes, I'm a tourist.",
+      "ar": "نعم، أنا سائح.",
+      "pt": "Sim, eu sou turista."
+     },
+     "l": [
+      {
+       "fr": "Non, je suis touriste.",
+       "en": "No, I'm a tourist.",
+       "ar": "لا، أنا سائح.",
+       "pt": "Não, eu sou turista."
+      },
+      {
+       "fr": "Oui, vous êtes touriste.",
+       "en": "Yes, you're a tourist.",
+       "ar": "نعم، أنت سائح.",
+       "pt": "Sim, o senhor é turista."
+      }
+     ]
+    },
+    {
+     "p": "Adiós, ¡hasta mañana!",
+     "s": {
+      "fr": "Au revoir, à demain !",
+      "en": "Goodbye, see you tomorrow!",
+      "ar": "إلى اللقاء، أراك غداً!",
+      "pt": "Até logo, até amanhã!"
+     },
+     "l": [
+      {
+       "fr": "Bonne nuit, à demain !",
+       "en": "Good night, see you tomorrow!",
+       "ar": "تصبح على خير، أراك غداً!",
+       "pt": "Boa noite, até amanhã!"
+      },
+      {
+       "fr": "Au revoir, à plus tard !",
+       "en": "Goodbye, see you later!",
+       "ar": "إلى اللقاء، أراك لاحقاً!",
+       "pt": "Até logo, até mais tarde!"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "s": {
+    "fr": "Au café, au resto : commander et payer",
+    "en": "At the café, at the restaurant: ordering and paying",
+    "ar": "في المقهى والمطعم: الطلب والدفع",
+    "pt": "No café, no restaurante: pedir e pagar"
+   },
+   "scene": "fruehstueck",
+   "tableau": {
+    "t": {
+     "fr": "Vouloir : querer",
+     "en": "To want: querer",
+     "ar": "الرغبة: querer",
+     "pt": "Querer: querer"
+    },
+    "l": [
+     [
+      "quiero",
+      {
+       "fr": "je veux",
+       "en": "I want",
+       "ar": "أريد",
+       "pt": "eu quero"
+      }
+     ],
+     [
+      "quieres",
+      {
+       "fr": "tu veux",
+       "en": "you want",
+       "ar": "تريد",
+       "pt": "você quer"
+      }
+     ],
+     [
+      "quiere",
+      {
+       "fr": "il · elle veut · vous voulez (poli)",
+       "en": "he · she wants · you want (polite)",
+       "ar": "هو · هي يريد · تريد · حضرتك تريد",
+       "pt": "ele · ela quer · o senhor quer"
+      }
+     ],
+     [
+      "queremos",
+      {
+       "fr": "nous voulons",
+       "en": "we want",
+       "ar": "نريد",
+       "pt": "nós queremos"
+      }
+     ],
+     [
+      "quieren",
+      {
+       "fr": "ils · elles veulent",
+       "en": "they want",
+       "ar": "هم · هنّ يريدون",
+       "pt": "eles · elas querem"
+      }
+     ],
+     [
+      "un · una",
+      {
+       "fr": "un · une",
+       "en": "a · an",
+       "ar": "أداة التنكير",
+       "pt": "um · uma"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "On dit rarement yo : quiero suffit pour « je veux ». Au serveur, on peut aussi dire simplement : « Un café, por favor ».",
+     "en": "People rarely say yo: quiero is enough for “I want”. To the waiter, you can also simply say: “Un café, por favor”.",
+     "ar": "نادراً ما نقول yo: تكفي quiero لتعني «أريد». ويمكن أن نقول للنادل ببساطة: «Un café, por favor».",
+     "pt": "Raramente se diz yo: quiero basta para “eu quero”. Ao garçom, também se pode dizer simplesmente: “Un café, por favor”."
+    }
+   },
+   "cartes": [
+    [
+     "un café",
+     {
+      "fr": "un café",
+      "en": "a coffee",
+      "ar": "قهوة",
+      "pt": "um café"
+     },
+     "Un café con leche, por favor.",
+     {
+      "fr": "Un café au lait, s'il vous plaît.",
+      "en": "A coffee with milk, please.",
+      "ar": "قهوة بالحليب من فضلك.",
+      "pt": "Um café com leite, por favor."
+     }
+    ],
+    [
+     "un té",
+     {
+      "fr": "un thé",
+      "en": "a tea",
+      "ar": "شاي",
+      "pt": "um chá"
+     },
+     "Quiero un té.",
+     {
+      "fr": "Je veux un thé.",
+      "en": "I want a tea.",
+      "ar": "أريد شاياً.",
+      "pt": "Eu quero um chá."
+     }
+    ],
+    [
+     "agua",
+     {
+      "fr": "de l'eau",
+      "en": "water",
+      "ar": "ماء",
+      "pt": "água"
+     },
+     "Agua sin gas, por favor.",
+     {
+      "fr": "De l'eau plate, s'il vous plaît.",
+      "en": "Still water, please.",
+      "ar": "ماء بدون غاز من فضلك.",
+      "pt": "Água sem gás, por favor."
+     }
+    ],
+    [
+     "un zumo de naranja",
+     {
+      "fr": "un jus d'orange",
+      "en": "an orange juice",
+      "ar": "عصير برتقال",
+      "pt": "um suco de laranja"
+     },
+     "Un zumo de naranja, por favor.",
+     {
+      "fr": "Un jus d'orange, s'il vous plaît.",
+      "en": "An orange juice, please.",
+      "ar": "عصير برتقال من فضلك.",
+      "pt": "Um suco de laranja, por favor."
+     },
+     {
+      "la": [
+       "un jugo de naranja",
+       null,
+       "Un jugo de naranja, por favor.",
+       null
+      ]
+     }
+    ],
+    [
+     "una cerveza",
+     {
+      "fr": "une bière",
+      "en": "a beer",
+      "ar": "بيرة",
+      "pt": "uma cerveja"
+     },
+     "Una cerveza, por favor.",
+     {
+      "fr": "Une bière, s'il vous plaît.",
+      "en": "A beer, please.",
+      "ar": "بيرة من فضلك.",
+      "pt": "Uma cerveja, por favor."
+     }
+    ],
+    [
+     "un vino tinto · blanco",
+     {
+      "fr": "un vin rouge · blanc",
+      "en": "a red · white wine",
+      "ar": "نبيذ أحمر · أبيض",
+      "pt": "um vinho tinto · branco"
+     },
+     "Un vino tinto, por favor.",
+     {
+      "fr": "Un vin rouge, s'il vous plaît.",
+      "en": "A red wine, please.",
+      "ar": "نبيذ أحمر من فضلك.",
+      "pt": "Um vinho tinto, por favor."
+     }
+    ],
+    [
+     "un bocadillo",
+     {
+      "fr": "un sandwich",
+      "en": "a sandwich",
+      "ar": "شطيرة",
+      "pt": "um sanduíche"
+     },
+     "Quiero un bocadillo de jamón.",
+     {
+      "fr": "Je veux un sandwich au jambon.",
+      "en": "I want a ham sandwich.",
+      "ar": "أريد شطيرة جامبون.",
+      "pt": "Eu quero um sanduíche de presunto."
+     },
+     {
+      "la": [
+       "un sándwich",
+       null,
+       "Quiero un sándwich de jamón.",
+       null
+      ]
+     }
+    ],
+    [
+     "el pan",
+     {
+      "fr": "le pain",
+      "en": "the bread",
+      "ar": "الخبز",
+      "pt": "o pão"
+     },
+     "Pan, por favor.",
+     {
+      "fr": "Du pain, s'il vous plaît.",
+      "en": "Some bread, please.",
+      "ar": "خبز من فضلك.",
+      "pt": "Pão, por favor."
+     }
+    ],
+    [
+     "la carta",
+     {
+      "fr": "la carte (du restaurant)",
+      "en": "the menu",
+      "ar": "قائمة الطعام",
+      "pt": "o cardápio"
+     },
+     "La carta, por favor.",
+     {
+      "fr": "La carte, s'il vous plaît.",
+      "en": "The menu, please.",
+      "ar": "القائمة من فضلك.",
+      "pt": "O cardápio, por favor."
+     },
+     {
+      "la": [
+       "el menú",
+       null,
+       "El menú, por favor.",
+       null
+      ]
+     }
+    ],
+    [
+     "el menú del día",
+     {
+      "fr": "le menu du jour",
+      "en": "the set menu of the day",
+      "ar": "قائمة اليوم",
+      "pt": "o menu do dia"
+     },
+     "Quiero el menú del día.",
+     {
+      "fr": "Je veux le menu du jour.",
+      "en": "I want the set menu of the day.",
+      "ar": "أريد قائمة اليوم.",
+      "pt": "Eu quero o menu do dia."
+     }
+    ],
+    [
+     "¿Tienen…?",
+     {
+      "fr": "Vous avez… ?",
+      "en": "Do you have…?",
+      "ar": "هل عندكم…؟",
+      "pt": "O senhor tem…?"
+     },
+     "¿Tienen té?",
+     {
+      "fr": "Vous avez du thé ?",
+      "en": "Do you have tea?",
+      "ar": "هل عندكم شاي؟",
+      "pt": "O senhor tem chá?"
+     }
+    ],
+    [
+     "¿Qué me recomienda?",
+     {
+      "fr": "Qu'est-ce que vous me recommandez ?",
+      "en": "What do you recommend?",
+      "ar": "بماذا تنصحني؟",
+      "pt": "O que o senhor me recomenda?"
+     }
+    ],
+    [
+     "para mí",
+     {
+      "fr": "pour moi",
+      "en": "for me",
+      "ar": "لي",
+      "pt": "para mim"
+     },
+     "Para mí, un café.",
+     {
+      "fr": "Pour moi, un café.",
+      "en": "For me, a coffee.",
+      "ar": "لي قهوة.",
+      "pt": "Para mim, um café."
+     }
+    ],
+    [
+     "la cuenta",
+     {
+      "fr": "l'addition",
+      "en": "the bill",
+      "ar": "الحساب",
+      "pt": "a conta"
+     },
+     "La cuenta, por favor.",
+     {
+      "fr": "L'addition, s'il vous plaît.",
+      "en": "The bill, please.",
+      "ar": "الحساب من فضلك.",
+      "pt": "A conta, por favor."
+     }
+    ],
+    [
+     "con tarjeta · en efectivo",
+     {
+      "fr": "par carte · en espèces",
+      "en": "by card · in cash",
+      "ar": "بالبطاقة · نقداً",
+      "pt": "no cartão · em dinheiro"
+     },
+     "Con tarjeta, por favor.",
+     {
+      "fr": "Par carte, s'il vous plaît.",
+      "en": "By card, please.",
+      "ar": "بالبطاقة من فضلك.",
+      "pt": "No cartão, por favor."
+     }
+    ],
+    [
+     "¿Cuánto es?",
+     {
+      "fr": "Combien ça fait ?",
+      "en": "How much is that?",
+      "ar": "كم المجموع؟",
+      "pt": "Quanto deu?"
+     },
+     "¿Cuánto es todo?",
+     {
+      "fr": "Combien ça fait, le tout ?",
+      "en": "How much is that altogether?",
+      "ar": "كم المجموع كله؟",
+      "pt": "Quanto deu tudo?"
+     }
+    ],
+    [
+     "está muy bueno",
+     {
+      "fr": "c'est très bon",
+      "en": "it's very good",
+      "ar": "لذيذ جداً",
+      "pt": "está muito bom"
+     },
+     "¡Está muy bueno!",
+     {
+      "fr": "C'est très bon !",
+      "en": "It's very good!",
+      "ar": "لذيذ جداً!",
+      "pt": "Está muito bom!"
+     }
+    ],
+    [
+     "el desayuno",
+     {
+      "fr": "le petit-déjeuner",
+      "en": "breakfast",
+      "ar": "الفطور",
+      "pt": "o café da manhã"
+     },
+     "¿Tienen desayuno?",
+     {
+      "fr": "Vous avez le petit-déjeuner ?",
+      "en": "Do you serve breakfast?",
+      "ar": "هل عندكم فطور؟",
+      "pt": "Vocês têm café da manhã?"
+     }
+    ],
+    [
+     "la mesa",
+     {
+      "fr": "la table",
+      "en": "the table",
+      "ar": "الطاولة",
+      "pt": "a mesa"
+     },
+     "Una mesa para dos, por favor.",
+     {
+      "fr": "Une table pour deux, s'il vous plaît.",
+      "en": "A table for two, please.",
+      "ar": "طاولة لشخصين من فضلك.",
+      "pt": "Uma mesa para dois, por favor."
+     }
+    ],
+    [
+     "soy vegetariano · vegetariana",
+     {
+      "fr": "je suis végétarien · végétarienne",
+      "en": "I'm a vegetarian",
+      "ar": "أنا نباتي · نباتية",
+      "pt": "eu sou vegetariano · vegetariana"
+     },
+     "Soy vegetariana.",
+     {
+      "fr": "Je suis végétarienne.",
+      "en": "I'm a vegetarian.",
+      "ar": "أنا نباتية.",
+      "pt": "Eu sou vegetariana."
+     }
+    ],
+    [
+     "sin",
+     {
+      "fr": "sans",
+      "en": "without",
+      "ar": "بدون",
+      "pt": "sem"
+     },
+     "Un café sin azúcar.",
+     {
+      "fr": "Un café sans sucre.",
+      "en": "A coffee without sugar.",
+      "ar": "قهوة بدون سكر.",
+      "pt": "Um café sem açúcar."
+     }
+    ],
+    [
+     "¡Buen provecho!",
+     {
+      "fr": "Bon appétit !",
+      "en": "Enjoy your meal!",
+      "ar": "بالهناء والشفاء!",
+      "pt": "Bom apetite!"
+     }
+    ],
+    [
+     "más",
+     {
+      "fr": "encore, plus",
+      "en": "more",
+      "ar": "المزيد",
+      "pt": "mais"
+     },
+     "Más pan, por favor.",
+     {
+      "fr": "Encore du pain, s'il vous plaît.",
+      "en": "More bread, please.",
+      "ar": "مزيداً من الخبز من فضلك.",
+      "pt": "Mais pão, por favor."
+     }
+    ],
+    [
+     "¡Salud!",
+     {
+      "fr": "Santé !",
+      "en": "Cheers!",
+      "ar": "في صحتك!",
+      "pt": "Saúde!"
+     }
+    ]
+   ],
+   "phrases": [
+    {
+     "p": "Quiero un café con leche, por favor.",
+     "s": {
+      "fr": "Je veux un café au lait, s'il vous plaît.",
+      "en": "I want a coffee with milk, please.",
+      "ar": "أريد قهوة بالحليب من فضلك.",
+      "pt": "Eu quero um café com leite, por favor."
+     },
+     "l": [
+      {
+       "fr": "Je veux un thé au lait, s'il vous plaît.",
+       "en": "I want a tea with milk, please.",
+       "ar": "أريد شاياً بالحليب من فضلك.",
+       "pt": "Eu quero um chá com leite, por favor."
+      },
+      {
+       "fr": "Tu veux un café au lait ?",
+       "en": "Do you want a coffee with milk?",
+       "ar": "هل تريد قهوة بالحليب؟",
+       "pt": "Você quer um café com leite?"
+      }
+     ]
+    },
+    {
+     "p": "¿Tienen agua sin gas?",
+     "s": {
+      "fr": "Vous avez de l'eau plate ?",
+      "en": "Do you have still water?",
+      "ar": "هل عندكم ماء بدون غاز؟",
+      "pt": "O senhor tem água sem gás?"
+     },
+     "l": [
+      {
+       "fr": "Vous avez de l'eau gazeuse ?",
+       "en": "Do you have sparkling water?",
+       "ar": "هل عندكم ماء غازي؟",
+       "pt": "O senhor tem água com gás?"
+      },
+      {
+       "fr": "Je veux de l'eau plate.",
+       "en": "I want still water.",
+       "ar": "أريد ماءً بدون غاز.",
+       "pt": "Eu quero água sem gás."
+      }
+     ]
+    },
+    {
+     "p": "Una mesa para dos, por favor.",
+     "s": {
+      "fr": "Une table pour deux, s'il vous plaît.",
+      "en": "A table for two, please.",
+      "ar": "طاولة لشخصين من فضلك.",
+      "pt": "Uma mesa para dois, por favor."
+     },
+     "l": [
+      {
+       "fr": "Une table pour trois, s'il vous plaît.",
+       "en": "A table for three, please.",
+       "ar": "طاولة لثلاثة أشخاص من فضلك.",
+       "pt": "Uma mesa para três, por favor."
+      },
+      {
+       "fr": "Un café pour deux, s'il vous plaît.",
+       "en": "A coffee for two, please.",
+       "ar": "قهوة لشخصين من فضلك.",
+       "pt": "Um café para dois, por favor."
+      }
+     ]
+    },
+    {
+     "p": "Para mí, un zumo de naranja.",
+     "s": {
+      "fr": "Pour moi, un jus d'orange.",
+      "en": "For me, an orange juice.",
+      "ar": "لي عصير برتقال.",
+      "pt": "Para mim, um suco de laranja."
+     },
+     "l": [
+      {
+       "fr": "Pour moi, un café.",
+       "en": "For me, a coffee.",
+       "ar": "لي قهوة.",
+       "pt": "Para mim, um café."
+      },
+      {
+       "fr": "Pour vous, un jus d'orange ?",
+       "en": "For you, an orange juice?",
+       "ar": "لك عصير برتقال؟",
+       "pt": "Para o senhor, um suco de laranja?"
+      }
+     ],
+     "la": {
+      "p": "Para mí, un jugo de naranja."
+     }
+    },
+    {
+     "p": "La cuenta, por favor.",
+     "s": {
+      "fr": "L'addition, s'il vous plaît.",
+      "en": "The bill, please.",
+      "ar": "الحساب من فضلك.",
+      "pt": "A conta, por favor."
+     },
+     "l": [
+      {
+       "fr": "La carte, s'il vous plaît.",
+       "en": "The menu, please.",
+       "ar": "القائمة من فضلك.",
+       "pt": "O cardápio, por favor."
+      },
+      {
+       "fr": "Le pain, s'il vous plaît.",
+       "en": "The bread, please.",
+       "ar": "الخبز من فضلك.",
+       "pt": "O pão, por favor."
+      }
+     ]
+    },
+    {
+     "p": "¿Cuánto es? Con tarjeta, por favor.",
+     "s": {
+      "fr": "Combien ça fait ? Par carte, s'il vous plaît.",
+      "en": "How much is that? By card, please.",
+      "ar": "كم المجموع؟ بالبطاقة من فضلك.",
+      "pt": "Quanto deu? No cartão, por favor."
+     },
+     "l": [
+      {
+       "fr": "Combien ça fait ? En espèces, s'il vous plaît.",
+       "en": "How much is that? In cash, please.",
+       "ar": "كم المجموع؟ نقداً من فضلك.",
+       "pt": "Quanto deu? Em dinheiro, por favor."
+      },
+      {
+       "fr": "Combien ça coûte ? La carte, s'il vous plaît.",
+       "en": "How much does it cost? The menu, please.",
+       "ar": "كم سعره؟ القائمة من فضلك.",
+       "pt": "Quanto custa? O cardápio, por favor."
+      }
+     ]
+    },
+    {
+     "p": "Soy vegetariana. ¿Qué me recomienda?",
+     "s": {
+      "fr": "Je suis végétarienne. Qu'est-ce que vous me recommandez ?",
+      "en": "I'm a vegetarian. What do you recommend?",
+      "ar": "أنا نباتية. بماذا تنصحني؟",
+      "pt": "Eu sou vegetariana. O que o senhor me recomenda?"
+     },
+     "l": [
+      {
+       "fr": "Je suis touriste. Qu'est-ce que vous me recommandez ?",
+       "en": "I'm a tourist. What do you recommend?",
+       "ar": "أنا سائحة. بماذا تنصحني؟",
+       "pt": "Eu sou turista. O que o senhor me recomenda?"
+      },
+      {
+       "fr": "Je suis végétarienne. Vous avez du pain ?",
+       "en": "I'm a vegetarian. Do you have bread?",
+       "ar": "أنا نباتية. هل عندكم خبز؟",
+       "pt": "Eu sou vegetariana. O senhor tem pão?"
+      }
+     ]
+    },
+    {
+     "p": "Buenos días, ¿qué tal?",
+     "s": {
+      "fr": "Bonjour, ça va ?",
+      "en": "Good morning, how are you?",
+      "ar": "صباح الخير، كيف الحال؟",
+      "pt": "Bom dia, tudo bem?"
+     },
+     "l": [
+      {
+       "fr": "Bonsoir, ça va ?",
+       "en": "Good evening, how are you?",
+       "ar": "مساء الخير، كيف الحال؟",
+       "pt": "Boa noite, tudo bem?"
+      },
+      {
+       "fr": "Bonjour, et vous ?",
+       "en": "Good morning, and you?",
+       "ar": "صباح الخير، وأنت؟",
+       "pt": "Bom dia, e o senhor?"
+      }
+     ]
+    },
+    {
+     "p": "Gracias, adiós.",
+     "s": {
+      "fr": "Merci, au revoir.",
+      "en": "Thank you, goodbye.",
+      "ar": "شكراً، إلى اللقاء.",
+      "pt": "Obrigado, até logo."
+     },
+     "l": [
+      {
+       "fr": "Merci, à demain.",
+       "en": "Thank you, see you tomorrow.",
+       "ar": "شكراً، أراك غداً.",
+       "pt": "Obrigado, até amanhã."
+      },
+      {
+       "fr": "De rien, au revoir.",
+       "en": "You're welcome, goodbye.",
+       "ar": "عفواً، إلى اللقاء.",
+       "pt": "De nada, até logo."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "s": {
+    "fr": "En ville : trouver son chemin",
+    "en": "In town: finding your way",
+    "ar": "في المدينة: إيجاد الطريق",
+    "pt": "Na cidade: encontrar o caminho"
+   },
+   "scene": "kreuzung",
+   "tableau": {
+    "t": {
+     "fr": "Où est… ? : estar et les articles",
+     "en": "Where is…?: estar and the articles",
+     "ar": "أين…؟: estar وأدوات التعريف",
+     "pt": "Onde está…?: estar e os artigos"
+    },
+    "l": [
+     [
+      "¿Dónde está…?",
+      {
+       "fr": "Où est… ?",
+       "en": "Where is…?",
+       "ar": "أين…؟",
+       "pt": "Onde está…?"
+      }
+     ],
+     [
+      "está",
+      {
+       "fr": "il · elle est (à un endroit)",
+       "en": "he · she · it is (somewhere)",
+       "ar": "هو · هي (في مكان)",
+       "pt": "ele · ela está (em um lugar)"
+      }
+     ],
+     [
+      "están",
+      {
+       "fr": "ils · elles sont (à un endroit)",
+       "en": "they are (somewhere)",
+       "ar": "هم · هنّ (في مكان)",
+       "pt": "eles · elas estão (em um lugar)"
+      }
+     ],
+     [
+      "el · la",
+      {
+       "fr": "le · la",
+       "en": "the (masculine · feminine)",
+       "ar": "أداة التعريف (مذكر · مؤنث)",
+       "pt": "o · a"
+      }
+     ],
+     [
+      "los · las",
+      {
+       "fr": "les",
+       "en": "the (plural)",
+       "ar": "أداة التعريف (جمع)",
+       "pt": "os · as"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Pour dire où se trouve une chose, on emploie estar, pas ser : « El metro está aquí » = le métro est ici.",
+     "en": "To say where something is, use estar, not ser: “El metro está aquí” = the subway is here.",
+     "ar": "لتقول أين يوجد شيء، استعمل estar لا ser: «El metro está aquí» = المترو هنا.",
+     "pt": "Para dizer onde algo está, usa-se estar, não ser: “El metro está aquí” = o metrô está aqui."
+    }
+   },
+   "cartes": [
+    [
+     "¿Dónde está…?",
+     {
+      "fr": "Où est… ?",
+      "en": "Where is…?",
+      "ar": "أين…؟",
+      "pt": "Onde está…?"
+     },
+     "¿Dónde está el metro?",
+     {
+      "fr": "Où est le métro ?",
+      "en": "Where is the subway?",
+      "ar": "أين المترو؟",
+      "pt": "Onde está o metrô?"
+     }
+    ],
+    [
+     "el metro",
+     {
+      "fr": "le métro",
+      "en": "the subway",
+      "ar": "المترو",
+      "pt": "o metrô"
+     },
+     "El metro está aquí.",
+     {
+      "fr": "Le métro est ici.",
+      "en": "The subway is here.",
+      "ar": "المترو هنا.",
+      "pt": "O metrô está aqui."
+     }
+    ],
+    [
+     "la estación",
+     {
+      "fr": "la gare",
+      "en": "the station",
+      "ar": "محطة القطار",
+      "pt": "a estação"
+     },
+     "¿Dónde está la estación?",
+     {
+      "fr": "Où est la gare ?",
+      "en": "Where is the station?",
+      "ar": "أين محطة القطار؟",
+      "pt": "Onde está a estação?"
+     }
+    ],
+    [
+     "la parada de autobús",
+     {
+      "fr": "l'arrêt de bus",
+      "en": "the bus stop",
+      "ar": "موقف الحافلة",
+      "pt": "o ponto de ônibus"
+     },
+     "¿Dónde está la parada de autobús?",
+     {
+      "fr": "Où est l'arrêt de bus ?",
+      "en": "Where is the bus stop?",
+      "ar": "أين موقف الحافلة؟",
+      "pt": "Onde está o ponto de ônibus?"
+     }
+    ],
+    [
+     "el baño",
+     {
+      "fr": "les toilettes",
+      "en": "the restroom",
+      "ar": "المرحاض",
+      "pt": "o banheiro"
+     },
+     "¿Dónde está el baño?",
+     {
+      "fr": "Où sont les toilettes ?",
+      "en": "Where is the restroom?",
+      "ar": "أين المرحاض؟",
+      "pt": "Onde está o banheiro?"
+     }
+    ],
+    [
+     "la calle",
+     {
+      "fr": "la rue",
+      "en": "the street",
+      "ar": "الشارع",
+      "pt": "a rua"
+     },
+     "La calle Mayor está aquí.",
+     {
+      "fr": "La rue Mayor est ici.",
+      "en": "Calle Mayor is here.",
+      "ar": "شارع مايور هنا.",
+      "pt": "A rua Mayor fica aqui."
+     }
+    ],
+    [
+     "la plaza",
+     {
+      "fr": "la place",
+      "en": "the square",
+      "ar": "الساحة",
+      "pt": "a praça"
+     },
+     "La plaza está cerca.",
+     {
+      "fr": "La place est près d'ici.",
+      "en": "The square is nearby.",
+      "ar": "الساحة قريبة من هنا.",
+      "pt": "A praça é perto daqui."
+     }
+    ],
+    [
+     "el centro",
+     {
+      "fr": "le centre-ville",
+      "en": "the city centre",
+      "ar": "وسط المدينة",
+      "pt": "o centro da cidade"
+     },
+     "¿Dónde está el centro?",
+     {
+      "fr": "Où est le centre-ville ?",
+      "en": "Where is the city centre?",
+      "ar": "أين وسط المدينة؟",
+      "pt": "Onde está o centro da cidade?"
+     }
+    ],
+    [
+     "a la derecha",
+     {
+      "fr": "à droite",
+      "en": "on the right",
+      "ar": "على اليمين",
+      "pt": "à direita"
+     },
+     "Está a la derecha.",
+     {
+      "fr": "C'est à droite.",
+      "en": "It's on the right.",
+      "ar": "إنه على اليمين.",
+      "pt": "É à direita."
+     }
+    ],
+    [
+     "a la izquierda",
+     {
+      "fr": "à gauche",
+      "en": "on the left",
+      "ar": "على اليسار",
+      "pt": "à esquerda"
+     },
+     "Está a la izquierda.",
+     {
+      "fr": "C'est à gauche.",
+      "en": "It's on the left.",
+      "ar": "إنه على اليسار.",
+      "pt": "É à esquerda."
+     }
+    ],
+    [
+     "todo recto",
+     {
+      "fr": "tout droit",
+      "en": "straight ahead",
+      "ar": "إلى الأمام مباشرة",
+      "pt": "em frente"
+     },
+     "Siga todo recto.",
+     {
+      "fr": "Continuez tout droit.",
+      "en": "Keep going straight ahead.",
+      "ar": "تابع إلى الأمام مباشرة.",
+      "pt": "Siga em frente."
+     }
+    ],
+    [
+     "cerca · lejos",
+     {
+      "fr": "près · loin",
+      "en": "near · far",
+      "ar": "قريب · بعيد",
+      "pt": "perto · longe"
+     },
+     "¿Está lejos?",
+     {
+      "fr": "C'est loin ?",
+      "en": "Is it far?",
+      "ar": "هل هو بعيد؟",
+      "pt": "É longe?"
+     }
+    ],
+    [
+     "aquí · allí",
+     {
+      "fr": "ici · là-bas",
+      "en": "here · over there",
+      "ar": "هنا · هناك",
+      "pt": "aqui · ali"
+     },
+     "Está allí.",
+     {
+      "fr": "C'est là-bas.",
+      "en": "It's over there.",
+      "ar": "إنه هناك.",
+      "pt": "É ali."
+     }
+    ],
+    [
+     "la primera calle",
+     {
+      "fr": "la première rue",
+      "en": "the first street",
+      "ar": "الشارع الأول",
+      "pt": "a primeira rua"
+     },
+     "La primera calle a la derecha.",
+     {
+      "fr": "La première rue à droite.",
+      "en": "The first street on the right.",
+      "ar": "الشارع الأول على اليمين.",
+      "pt": "A primeira rua à direita."
+     }
+    ],
+    [
+     "la segunda",
+     {
+      "fr": "la deuxième",
+      "en": "the second",
+      "ar": "الثاني · الثانية",
+      "pt": "a segunda"
+     },
+     "La segunda a la izquierda.",
+     {
+      "fr": "La deuxième à gauche.",
+      "en": "The second on the left.",
+      "ar": "الثانية على اليسار.",
+      "pt": "A segunda à esquerda."
+     }
+    ],
+    [
+     "el mapa",
+     {
+      "fr": "le plan (de la ville)",
+      "en": "the city map",
+      "ar": "خريطة المدينة",
+      "pt": "o mapa da cidade"
+     },
+     "¿Tiene un mapa?",
+     {
+      "fr": "Vous avez un plan ?",
+      "en": "Do you have a map?",
+      "ar": "هل عندك خريطة؟",
+      "pt": "O senhor tem um mapa?"
+     }
+    ],
+    [
+     "el museo",
+     {
+      "fr": "le musée",
+      "en": "the museum",
+      "ar": "المتحف",
+      "pt": "o museu"
+     },
+     "¿Dónde está el museo?",
+     {
+      "fr": "Où est le musée ?",
+      "en": "Where is the museum?",
+      "ar": "أين المتحف؟",
+      "pt": "Onde está o museu?"
+     }
+    ],
+    [
+     "la iglesia",
+     {
+      "fr": "l'église",
+      "en": "the church",
+      "ar": "الكنيسة",
+      "pt": "a igreja"
+     },
+     "La iglesia está en la plaza.",
+     {
+      "fr": "L'église est sur la place.",
+      "en": "The church is on the square.",
+      "ar": "الكنيسة في الساحة.",
+      "pt": "A igreja fica na praça."
+     }
+    ],
+    [
+     "el banco",
+     {
+      "fr": "la banque",
+      "en": "the bank",
+      "ar": "البنك",
+      "pt": "o banco"
+     },
+     "El banco está a la derecha.",
+     {
+      "fr": "La banque est à droite.",
+      "en": "The bank is on the right.",
+      "ar": "البنك على اليمين.",
+      "pt": "O banco está à direita."
+     }
+    ],
+    [
+     "¿Hay…?",
+     {
+      "fr": "Il y a… ?",
+      "en": "Is there…?",
+      "ar": "هل يوجد…؟",
+      "pt": "Tem…?"
+     },
+     "¿Hay una farmacia cerca?",
+     {
+      "fr": "Il y a une pharmacie près d'ici ?",
+      "en": "Is there a pharmacy nearby?",
+      "ar": "هل توجد صيدلية قريبة من هنا؟",
+      "pt": "Tem uma farmácia perto daqui?"
+     }
+    ],
+    [
+     "el semáforo",
+     {
+      "fr": "le feu (de circulation)",
+      "en": "the traffic light",
+      "ar": "إشارة المرور",
+      "pt": "o semáforo"
+     },
+     "En el semáforo, a la izquierda.",
+     {
+      "fr": "Au feu, à gauche.",
+      "en": "At the traffic light, turn left.",
+      "ar": "عند الإشارة، إلى اليسار.",
+      "pt": "No semáforo, à esquerda."
+     }
+    ],
+    [
+     "a pie",
+     {
+      "fr": "à pied",
+      "en": "on foot",
+      "ar": "سيراً على الأقدام",
+      "pt": "a pé"
+     },
+     "Diez minutos a pie.",
+     {
+      "fr": "Dix minutes à pied.",
+      "en": "Ten minutes on foot.",
+      "ar": "عشر دقائق سيراً على الأقدام.",
+      "pt": "Dez minutos a pé."
+     }
+    ],
+    [
+     "el puente",
+     {
+      "fr": "le pont",
+      "en": "the bridge",
+      "ar": "الجسر",
+      "pt": "a ponte"
+     },
+     "Después del puente, a la derecha.",
+     {
+      "fr": "Après le pont, à droite.",
+      "en": "After the bridge, turn right.",
+      "ar": "بعد الجسر، إلى اليمين.",
+      "pt": "Depois da ponte, à direita."
+     }
+    ],
+    [
+     "gire",
+     {
+      "fr": "tournez",
+      "en": "turn",
+      "ar": "انعطف",
+      "pt": "vire"
+     },
+     "Gire a la derecha.",
+     {
+      "fr": "Tournez à droite.",
+      "en": "Turn right.",
+      "ar": "انعطف يميناً.",
+      "pt": "Vire à direita."
+     },
+     {
+      "la": [
+       "doble",
+       null,
+       "Doble a la derecha.",
+       null
+      ]
+     }
+    ]
+   ],
+   "phrases": [
+    {
+     "p": "¿Dónde está el metro?",
+     "s": {
+      "fr": "Où est le métro ?",
+      "en": "Where is the subway?",
+      "ar": "أين المترو؟",
+      "pt": "Onde está o metrô?"
+     },
+     "l": [
+      {
+       "fr": "Où est la gare ?",
+       "en": "Where is the station?",
+       "ar": "أين محطة القطار؟",
+       "pt": "Onde está a estação?"
+      },
+      {
+       "fr": "Le métro est ici.",
+       "en": "The subway is here.",
+       "ar": "المترو هنا.",
+       "pt": "O metrô está aqui."
+      }
+     ]
+    },
+    {
+     "p": "Está a la izquierda.",
+     "s": {
+      "fr": "C'est à gauche.",
+      "en": "It's on the left.",
+      "ar": "إنه على اليسار.",
+      "pt": "É à esquerda."
+     },
+     "l": [
+      {
+       "fr": "C'est à droite.",
+       "en": "It's on the right.",
+       "ar": "إنه على اليمين.",
+       "pt": "É à direita."
+      },
+      {
+       "fr": "C'est tout droit.",
+       "en": "It's straight ahead.",
+       "ar": "إنه إلى الأمام مباشرة.",
+       "pt": "É em frente."
+      }
+     ]
+    },
+    {
+     "p": "Siga todo recto, está cerca.",
+     "s": {
+      "fr": "Continuez tout droit, c'est près d'ici.",
+      "en": "Keep going straight ahead, it's nearby.",
+      "ar": "تابع إلى الأمام مباشرة، إنه قريب من هنا.",
+      "pt": "Siga em frente, é perto daqui."
+     },
+     "l": [
+      {
+       "fr": "Continuez tout droit, c'est loin.",
+       "en": "Keep going straight ahead, it's far.",
+       "ar": "تابع إلى الأمام مباشرة، إنه بعيد.",
+       "pt": "Siga em frente, é longe."
+      },
+      {
+       "fr": "Tournez à droite, c'est près d'ici.",
+       "en": "Turn right, it's nearby.",
+       "ar": "انعطف يميناً، إنه قريب من هنا.",
+       "pt": "Vire à direita, é perto daqui."
+      }
+     ]
+    },
+    {
+     "p": "¿Hay un banco cerca?",
+     "s": {
+      "fr": "Il y a une banque près d'ici ?",
+      "en": "Is there a bank nearby?",
+      "ar": "هل يوجد بنك قريب من هنا؟",
+      "pt": "Tem um banco perto daqui?"
+     },
+     "l": [
+      {
+       "fr": "Il y a une pharmacie près d'ici ?",
+       "en": "Is there a pharmacy nearby?",
+       "ar": "هل توجد صيدلية قريبة من هنا؟",
+       "pt": "Tem uma farmácia perto daqui?"
+      },
+      {
+       "fr": "La banque est loin ?",
+       "en": "Is the bank far?",
+       "ar": "هل البنك بعيد؟",
+       "pt": "O banco é longe?"
+      }
+     ]
+    },
+    {
+     "p": "La primera calle a la derecha.",
+     "s": {
+      "fr": "La première rue à droite.",
+      "en": "The first street on the right.",
+      "ar": "الشارع الأول على اليمين.",
+      "pt": "A primeira rua à direita."
+     },
+     "l": [
+      {
+       "fr": "La deuxième rue à droite.",
+       "en": "The second street on the right.",
+       "ar": "الشارع الثاني على اليمين.",
+       "pt": "A segunda rua à direita."
+      },
+      {
+       "fr": "La première rue à gauche.",
+       "en": "The first street on the left.",
+       "ar": "الشارع الأول على اليسار.",
+       "pt": "A primeira rua à esquerda."
+      }
+     ]
+    },
+    {
+     "p": "¿Está lejos el museo?",
+     "s": {
+      "fr": "Le musée est loin ?",
+      "en": "Is the museum far?",
+      "ar": "هل المتحف بعيد؟",
+      "pt": "O museu é longe?"
+     },
+     "l": [
+      {
+       "fr": "Le musée est près d'ici ?",
+       "en": "Is the museum nearby?",
+       "ar": "هل المتحف قريب من هنا؟",
+       "pt": "O museu é perto daqui?"
+      },
+      {
+       "fr": "Où est le musée ?",
+       "en": "Where is the museum?",
+       "ar": "أين المتحف؟",
+       "pt": "Onde está o museu?"
+      }
+     ]
+    },
+    {
+     "p": "Gire a la izquierda en el semáforo.",
+     "s": {
+      "fr": "Tournez à gauche au feu.",
+      "en": "Turn left at the traffic light.",
+      "ar": "انعطف يساراً عند الإشارة.",
+      "pt": "Vire à esquerda no semáforo."
+     },
+     "l": [
+      {
+       "fr": "Tournez à droite au feu.",
+       "en": "Turn right at the traffic light.",
+       "ar": "انعطف يميناً عند الإشارة.",
+       "pt": "Vire à direita no semáforo."
+      },
+      {
+       "fr": "Continuez tout droit au feu.",
+       "en": "Go straight ahead at the traffic light.",
+       "ar": "تابع إلى الأمام عند الإشارة.",
+       "pt": "Siga em frente no semáforo."
+      }
+     ],
+     "la": {
+      "p": "Doble a la izquierda en el semáforo."
+     }
+    },
+    {
+     "p": "Perdón, ¿dónde está el baño?",
+     "s": {
+      "fr": "Pardon, où sont les toilettes ?",
+      "en": "Excuse me, where is the restroom?",
+      "ar": "المعذرة، أين المرحاض؟",
+      "pt": "Com licença, onde está o banheiro?"
+     },
+     "l": [
+      {
+       "fr": "Pardon, où est la gare ?",
+       "en": "Excuse me, where is the station?",
+       "ar": "المعذرة، أين محطة القطار؟",
+       "pt": "Com licença, onde está a estação?"
+      },
+      {
+       "fr": "Merci, les toilettes sont ici.",
+       "en": "Thanks, the restroom is here.",
+       "ar": "شكراً، المرحاض هنا.",
+       "pt": "Obrigado, o banheiro está aqui."
+      }
+     ]
+    },
+    {
+     "p": "¿Tiene un mapa, por favor?",
+     "s": {
+      "fr": "Vous avez un plan, s'il vous plaît ?",
+      "en": "Do you have a map, please?",
+      "ar": "هل عندك خريطة من فضلك؟",
+      "pt": "O senhor tem um mapa, por favor?"
+     },
+     "l": [
+      {
+       "fr": "Vous avez la carte, s'il vous plaît ?",
+       "en": "Do you have the menu, please?",
+       "ar": "هل عندك القائمة من فضلك؟",
+       "pt": "O senhor tem o cardápio, por favor?"
+      },
+      {
+       "fr": "Je veux un plan, s'il vous plaît.",
+       "en": "I want a map, please.",
+       "ar": "أريد خريطة من فضلك.",
+       "pt": "Eu quero um mapa, por favor."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "s": {
+    "fr": "Les transports : train, billets, horaires",
+    "en": "Transport: train, tickets, timetables",
+    "ar": "المواصلات: القطار والتذاكر والمواعيد",
+    "pt": "Os transportes: trem, bilhetes, horários"
+   },
+   "scene": "zug",
+   "tableau": {
+    "t": {
+     "fr": "Aller et prendre : ir, coger / tomar",
+     "en": "Going and taking: ir, coger / tomar",
+     "ar": "الذهاب والأخذ: ir، coger / tomar",
+     "pt": "Ir e pegar: ir, coger / tomar"
+    },
+    "l": [
+     [
+      "voy",
+      {
+       "fr": "je vais",
+       "en": "I go",
+       "ar": "أذهب",
+       "pt": "eu vou"
+      }
+     ],
+     [
+      "va",
+      {
+       "fr": "il · elle va · vous allez (poli)",
+       "en": "he · she goes · you go (polite)",
+       "ar": "هو · هي يذهب · تذهب · حضرتك تذهب",
+       "pt": "ele · ela vai · o senhor vai"
+      }
+     ],
+     [
+      "vamos",
+      {
+       "fr": "nous allons",
+       "en": "we go",
+       "ar": "نذهب",
+       "pt": "nós vamos"
+      }
+     ],
+     [
+      "cojo · tomo",
+      {
+       "fr": "je prends",
+       "en": "I take",
+       "ar": "آخذ",
+       "pt": "eu pego"
+      },
+      {
+       "la": [
+        "tomo"
+       ]
+      }
+     ],
+     [
+      "¿A qué hora…?",
+      {
+       "fr": "À quelle heure… ?",
+       "en": "What time…?",
+       "ar": "في أي ساعة…؟",
+       "pt": "A que horas…?"
+      }
+     ],
+     [
+      "a las ocho",
+      {
+       "fr": "à huit heures",
+       "en": "at eight o'clock",
+       "ar": "في الساعة الثامنة",
+       "pt": "às oito horas"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "En Espagne on dit coger el tren ; en Amérique latine, tomar el tren — coger y est grossier. Pour la ville : voy a Madrid.",
+     "en": "In Spain you say coger el tren; in Latin America, tomar el tren — there, coger is vulgar. For a city: voy a Madrid.",
+     "ar": "في إسبانيا نقول coger el tren؛ وفي أمريكا اللاتينية tomar el tren — فهناك coger كلمة بذيئة. للمدينة: voy a Madrid.",
+     "pt": "Na Espanha diz-se coger el tren; na América Latina, tomar el tren — lá, coger é grosseiro. Para a cidade: voy a Madrid."
+    }
+   },
+   "cartes": [
+    [
+     "el tren",
+     {
+      "fr": "le train",
+      "en": "the train",
+      "ar": "القطار",
+      "pt": "o trem"
+     },
+     "¿Dónde está el tren a Madrid?",
+     {
+      "fr": "Où est le train pour Madrid ?",
+      "en": "Where is the train to Madrid?",
+      "ar": "أين القطار إلى مدريد؟",
+      "pt": "Onde está o trem para Madri?"
+     }
+    ],
+    [
+     "el autobús",
+     {
+      "fr": "le bus",
+      "en": "the bus",
+      "ar": "الحافلة",
+      "pt": "o ônibus"
+     },
+     "El autobús va al centro.",
+     {
+      "fr": "Le bus va au centre-ville.",
+      "en": "The bus goes to the city centre.",
+      "ar": "الحافلة تذهب إلى وسط المدينة.",
+      "pt": "O ônibus vai para o centro da cidade."
+     }
+    ],
+    [
+     "el avión",
+     {
+      "fr": "l'avion",
+      "en": "the plane",
+      "ar": "الطائرة",
+      "pt": "o avião"
+     },
+     "El avión a Barcelona.",
+     {
+      "fr": "L'avion pour Barcelone.",
+      "en": "The plane to Barcelona.",
+      "ar": "الطائرة إلى برشلونة.",
+      "pt": "O avião para Barcelona."
+     }
+    ],
+    [
+     "el taxi",
+     {
+      "fr": "le taxi",
+      "en": "the taxi",
+      "ar": "سيارة الأجرة",
+      "pt": "o táxi"
+     },
+     "Un taxi, por favor.",
+     {
+      "fr": "Un taxi, s'il vous plaît.",
+      "en": "A taxi, please.",
+      "ar": "سيارة أجرة من فضلك.",
+      "pt": "Um táxi, por favor."
+     }
+    ],
+    [
+     "un billete",
+     {
+      "fr": "un billet",
+      "en": "a ticket",
+      "ar": "تذكرة",
+      "pt": "um bilhete"
+     },
+     "Un billete a Sevilla, por favor.",
+     {
+      "fr": "Un billet pour Séville, s'il vous plaît.",
+      "en": "A ticket to Seville, please.",
+      "ar": "تذكرة إلى إشبيلية من فضلك.",
+      "pt": "Um bilhete para Sevilha, por favor."
+     },
+     {
+      "la": [
+       "un boleto",
+       null,
+       "Un boleto a Sevilla, por favor.",
+       null
+      ]
+     }
+    ],
+    [
+     "ida · ida y vuelta",
+     {
+      "fr": "aller simple · aller-retour",
+      "en": "one-way · return",
+      "ar": "ذهاب فقط · ذهاب وإياب",
+      "pt": "só ida · ida e volta"
+     },
+     "Ida y vuelta, por favor.",
+     {
+      "fr": "Aller-retour, s'il vous plaît.",
+      "en": "Return, please.",
+      "ar": "ذهاب وإياب من فضلك.",
+      "pt": "Ida e volta, por favor."
+     }
+    ],
+    [
+     "¿A qué hora sale…?",
+     {
+      "fr": "À quelle heure part… ?",
+      "en": "What time does … leave?",
+      "ar": "في أي ساعة ينطلق…؟",
+      "pt": "A que horas parte…?"
+     },
+     "¿A qué hora sale el tren?",
+     {
+      "fr": "À quelle heure part le train ?",
+      "en": "What time does the train leave?",
+      "ar": "في أي ساعة ينطلق القطار؟",
+      "pt": "A que horas parte o trem?"
+     }
+    ],
+    [
+     "¿A qué hora llega?",
+     {
+      "fr": "À quelle heure arrive-t-il ?",
+      "en": "What time does it arrive?",
+      "ar": "في أي ساعة يصل؟",
+      "pt": "A que horas ele chega?"
+     },
+     "¿A qué hora llega a Madrid?",
+     {
+      "fr": "À quelle heure arrive-t-il à Madrid ?",
+      "en": "What time does it arrive in Madrid?",
+      "ar": "في أي ساعة يصل إلى مدريد؟",
+      "pt": "A que horas ele chega a Madri?"
+     }
+    ],
+    [
+     "el andén",
+     {
+      "fr": "le quai",
+      "en": "the platform",
+      "ar": "الرصيف",
+      "pt": "a plataforma"
+     },
+     "¿Qué andén?",
+     {
+      "fr": "Quel quai ?",
+      "en": "Which platform?",
+      "ar": "أي رصيف؟",
+      "pt": "Qual plataforma?"
+     }
+    ],
+    [
+     "la vía",
+     {
+      "fr": "la voie",
+      "en": "the track",
+      "ar": "السكة",
+      "pt": "a via"
+     },
+     "Vía dos.",
+     {
+      "fr": "Voie deux.",
+      "en": "Track two.",
+      "ar": "السكة رقم اثنين.",
+      "pt": "Via dois."
+     }
+    ],
+    [
+     "el horario",
+     {
+      "fr": "les horaires",
+      "en": "the timetable",
+      "ar": "جدول المواعيد",
+      "pt": "os horários"
+     },
+     "¿Tiene el horario?",
+     {
+      "fr": "Vous avez les horaires ?",
+      "en": "Do you have the timetable?",
+      "ar": "هل عندك جدول المواعيد؟",
+      "pt": "O senhor tem os horários?"
+     }
+    ],
+    [
+     "la taquilla",
+     {
+      "fr": "le guichet",
+      "en": "the ticket counter",
+      "ar": "شباك التذاكر",
+      "pt": "o guichê"
+     },
+     "La taquilla está allí.",
+     {
+      "fr": "Le guichet est là-bas.",
+      "en": "The ticket counter is over there.",
+      "ar": "شباك التذاكر هناك.",
+      "pt": "O guichê é ali."
+     },
+     {
+      "la": [
+       "la boletería",
+       null,
+       "La boletería está allí.",
+       null
+      ]
+     }
+    ],
+    [
+     "la próxima parada",
+     {
+      "fr": "le prochain arrêt",
+      "en": "the next stop",
+      "ar": "المحطة التالية",
+      "pt": "a próxima parada"
+     },
+     "La próxima parada es Sol.",
+     {
+      "fr": "Le prochain arrêt est Sol.",
+      "en": "The next stop is Sol.",
+      "ar": "المحطة التالية هي سول.",
+      "pt": "A próxima parada é Sol."
+     }
+    ],
+    [
+     "¿Este tren va a…?",
+     {
+      "fr": "Ce train va à… ?",
+      "en": "Does this train go to…?",
+      "ar": "هل يذهب هذا القطار إلى…؟",
+      "pt": "Este trem vai para…?"
+     },
+     "¿Este tren va a Toledo?",
+     {
+      "fr": "Ce train va à Tolède ?",
+      "en": "Does this train go to Toledo?",
+      "ar": "هل يذهب هذا القطار إلى طليطلة؟",
+      "pt": "Este trem vai para Toledo?"
+     }
+    ],
+    [
+     "voy a…",
+     {
+      "fr": "je vais à…",
+      "en": "I'm going to…",
+      "ar": "أذهب إلى…",
+      "pt": "eu vou para…"
+     },
+     "Voy a Madrid.",
+     {
+      "fr": "Je vais à Madrid.",
+      "en": "I'm going to Madrid.",
+      "ar": "أذهب إلى مدريد.",
+      "pt": "Eu vou para Madri."
+     }
+    ],
+    [
+     "uno · dos · tres · cuatro · cinco",
+     {
+      "fr": "un · deux · trois · quatre · cinq",
+      "en": "one · two · three · four · five",
+      "ar": "واحد · اثنان · ثلاثة · أربعة · خمسة",
+      "pt": "um · dois · três · quatro · cinco"
+     }
+    ],
+    [
+     "seis · siete · ocho · nueve · diez",
+     {
+      "fr": "six · sept · huit · neuf · dix",
+      "en": "six · seven · eight · nine · ten",
+      "ar": "ستة · سبعة · ثمانية · تسعة · عشرة",
+      "pt": "seis · sete · oito · nove · dez"
+     }
+    ],
+    [
+     "once · doce",
+     {
+      "fr": "onze · douze",
+      "en": "eleven · twelve",
+      "ar": "أحد عشر · اثنا عشر",
+      "pt": "onze · doze"
+     }
+    ],
+    [
+     "a las ocho",
+     {
+      "fr": "à huit heures",
+      "en": "at eight o'clock",
+      "ar": "في الساعة الثامنة",
+      "pt": "às oito horas"
+     },
+     "El tren sale a las ocho.",
+     {
+      "fr": "Le train part à huit heures.",
+      "en": "The train leaves at eight o'clock.",
+      "ar": "القطار ينطلق في الساعة الثامنة.",
+      "pt": "O trem parte às oito horas."
+     }
+    ],
+    [
+     "y media · y cuarto",
+     {
+      "fr": "et demie · et quart",
+      "en": "half past · quarter past",
+      "ar": "والنصف · والربع",
+      "pt": "e meia · e quinze"
+     },
+     "A las nueve y media.",
+     {
+      "fr": "À neuf heures et demie.",
+      "en": "At half past nine.",
+      "ar": "في التاسعة والنصف.",
+      "pt": "Às nove e meia."
+     }
+    ],
+    [
+     "el retraso",
+     {
+      "fr": "le retard",
+      "en": "the delay",
+      "ar": "التأخير",
+      "pt": "o atraso"
+     },
+     "El tren tiene retraso.",
+     {
+      "fr": "Le train a du retard.",
+      "en": "The train is delayed.",
+      "ar": "القطار متأخر.",
+      "pt": "O trem está atrasado."
+     }
+    ],
+    [
+     "la salida · la llegada",
+     {
+      "fr": "le départ · l'arrivée",
+      "en": "departure · arrival",
+      "ar": "المغادرة · الوصول",
+      "pt": "a partida · a chegada"
+     },
+     "La salida es a las diez.",
+     {
+      "fr": "Le départ est à dix heures.",
+      "en": "Departure is at ten o'clock.",
+      "ar": "المغادرة في الساعة العاشرة.",
+      "pt": "A partida é às dez horas."
+     }
+    ],
+    [
+     "el aeropuerto",
+     {
+      "fr": "l'aéroport",
+      "en": "the airport",
+      "ar": "المطار",
+      "pt": "o aeroporto"
+     },
+     "¿Este autobús va al aeropuerto?",
+     {
+      "fr": "Ce bus va à l'aéroport ?",
+      "en": "Does this bus go to the airport?",
+      "ar": "هل تذهب هذه الحافلة إلى المطار؟",
+      "pt": "Este ônibus vai para o aeroporto?"
+     }
+    ],
+    [
+     "la maleta",
+     {
+      "fr": "la valise",
+      "en": "the suitcase",
+      "ar": "الحقيبة",
+      "pt": "a mala"
+     },
+     "¿Dónde está mi maleta?",
+     {
+      "fr": "Où est ma valise ?",
+      "en": "Where is my suitcase?",
+      "ar": "أين حقيبتي؟",
+      "pt": "Onde está minha mala?"
+     }
+    ]
+   ],
+   "phrases": [
+    {
+     "p": "Un billete a Sevilla, por favor.",
+     "s": {
+      "fr": "Un billet pour Séville, s'il vous plaît.",
+      "en": "A ticket to Seville, please.",
+      "ar": "تذكرة إلى إشبيلية من فضلك.",
+      "pt": "Um bilhete para Sevilha, por favor."
+     },
+     "l": [
+      {
+       "fr": "Deux billets pour Séville, s'il vous plaît.",
+       "en": "Two tickets to Seville, please.",
+       "ar": "تذكرتان إلى إشبيلية من فضلك.",
+       "pt": "Dois bilhetes para Sevilha, por favor."
+      },
+      {
+       "fr": "Un café pour Séville, s'il vous plaît.",
+       "en": "A coffee to Seville, please.",
+       "ar": "قهوة إلى إشبيلية من فضلك.",
+       "pt": "Um café para Sevilha, por favor."
+      }
+     ],
+     "la": {
+      "p": "Un boleto a Sevilla, por favor."
+     }
+    },
+    {
+     "p": "¿A qué hora sale el tren?",
+     "s": {
+      "fr": "À quelle heure part le train ?",
+      "en": "What time does the train leave?",
+      "ar": "في أي ساعة ينطلق القطار؟",
+      "pt": "A que horas parte o trem?"
+     },
+     "l": [
+      {
+       "fr": "À quelle heure arrive le train ?",
+       "en": "What time does the train arrive?",
+       "ar": "في أي ساعة يصل القطار؟",
+       "pt": "A que horas chega o trem?"
+      },
+      {
+       "fr": "Où est le train ?",
+       "en": "Where is the train?",
+       "ar": "أين القطار؟",
+       "pt": "Onde está o trem?"
+      }
+     ]
+    },
+    {
+     "p": "El tren sale a las nueve y media.",
+     "s": {
+      "fr": "Le train part à neuf heures et demie.",
+      "en": "The train leaves at half past nine.",
+      "ar": "القطار ينطلق في التاسعة والنصف.",
+      "pt": "O trem parte às nove e meia."
+     },
+     "l": [
+      {
+       "fr": "Le train part à neuf heures et quart.",
+       "en": "The train leaves at quarter past nine.",
+       "ar": "القطار ينطلق في التاسعة والربع.",
+       "pt": "O trem parte às nove e quinze."
+      },
+      {
+       "fr": "Le train part à huit heures et demie.",
+       "en": "The train leaves at half past eight.",
+       "ar": "القطار ينطلق في الثامنة والنصف.",
+       "pt": "O trem parte às oito e meia."
+      }
+     ]
+    },
+    {
+     "p": "¿Qué andén, por favor?",
+     "s": {
+      "fr": "Quel quai, s'il vous plaît ?",
+      "en": "Which platform, please?",
+      "ar": "أي رصيف من فضلك؟",
+      "pt": "Qual plataforma, por favor?"
+     },
+     "l": [
+      {
+       "fr": "Quel train, s'il vous plaît ?",
+       "en": "Which train, please?",
+       "ar": "أي قطار من فضلك؟",
+       "pt": "Qual trem, por favor?"
+      },
+      {
+       "fr": "Quel bus, s'il vous plaît ?",
+       "en": "Which bus, please?",
+       "ar": "أي حافلة من فضلك؟",
+       "pt": "Qual ônibus, por favor?"
+      }
+     ]
+    },
+    {
+     "p": "¿Este tren va a Toledo?",
+     "s": {
+      "fr": "Ce train va à Tolède ?",
+      "en": "Does this train go to Toledo?",
+      "ar": "هل يذهب هذا القطار إلى طليطلة؟",
+      "pt": "Este trem vai para Toledo?"
+     },
+     "l": [
+      {
+       "fr": "Ce bus va à Tolède ?",
+       "en": "Does this bus go to Toledo?",
+       "ar": "هل تذهب هذه الحافلة إلى طليطلة؟",
+       "pt": "Este ônibus vai para Toledo?"
+      },
+      {
+       "fr": "Ce train vient de Tolède ?",
+       "en": "Does this train come from Toledo?",
+       "ar": "هل يأتي هذا القطار من طليطلة؟",
+       "pt": "Este trem vem de Toledo?"
+      }
+     ]
+    },
+    {
+     "p": "Ida y vuelta, por favor.",
+     "s": {
+      "fr": "Aller-retour, s'il vous plaît.",
+      "en": "Return, please.",
+      "ar": "ذهاب وإياب من فضلك.",
+      "pt": "Ida e volta, por favor."
+     },
+     "l": [
+      {
+       "fr": "Aller simple, s'il vous plaît.",
+       "en": "One-way, please.",
+       "ar": "ذهاب فقط من فضلك.",
+       "pt": "Só ida, por favor."
+      },
+      {
+       "fr": "L'addition, s'il vous plaît.",
+       "en": "The bill, please.",
+       "ar": "الحساب من فضلك.",
+       "pt": "A conta, por favor."
+      }
+     ]
+    },
+    {
+     "p": "El tren tiene retraso.",
+     "s": {
+      "fr": "Le train a du retard.",
+      "en": "The train is delayed.",
+      "ar": "القطار متأخر.",
+      "pt": "O trem está atrasado."
+     },
+     "l": [
+      {
+       "fr": "Le bus a du retard.",
+       "en": "The bus is delayed.",
+       "ar": "الحافلة متأخرة.",
+       "pt": "O ônibus está atrasado."
+      },
+      {
+       "fr": "Le train est à l'heure.",
+       "en": "The train is on time.",
+       "ar": "القطار في موعده.",
+       "pt": "O trem está no horário."
+      }
+     ]
+    },
+    {
+     "p": "Perdón, ¿dónde está la taquilla?",
+     "s": {
+      "fr": "Pardon, où est le guichet ?",
+      "en": "Excuse me, where is the ticket counter?",
+      "ar": "المعذرة، أين شباك التذاكر؟",
+      "pt": "Com licença, onde está o guichê?"
+     },
+     "l": [
+      {
+       "fr": "Pardon, où est le quai ?",
+       "en": "Excuse me, where is the platform?",
+       "ar": "المعذرة، أين الرصيف؟",
+       "pt": "Com licença, onde está a plataforma?"
+      },
+      {
+       "fr": "Pardon, où est la gare ?",
+       "en": "Excuse me, where is the station?",
+       "ar": "المعذرة، أين محطة القطار؟",
+       "pt": "Com licença, onde está a estação?"
+      }
+     ],
+     "la": {
+      "p": "Perdón, ¿dónde está la boletería?"
+     }
+    },
+    {
+     "p": "Voy al aeropuerto, ¿está lejos?",
+     "s": {
+      "fr": "Je vais à l'aéroport, c'est loin ?",
+      "en": "I'm going to the airport, is it far?",
+      "ar": "أذهب إلى المطار، هل هو بعيد؟",
+      "pt": "Eu vou para o aeroporto, é longe?"
+     },
+     "l": [
+      {
+       "fr": "Je vais à la gare, c'est loin ?",
+       "en": "I'm going to the station, is it far?",
+       "ar": "أذهب إلى محطة القطار، هل هي بعيدة؟",
+       "pt": "Eu vou para a estação, é longe?"
+      },
+      {
+       "fr": "Vous allez à l'aéroport, c'est près d'ici ?",
+       "en": "You're going to the airport, is it nearby?",
+       "ar": "أنت ذاهب إلى المطار، هل هو قريب من هنا؟",
+       "pt": "O senhor vai para o aeroporto, é perto daqui?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "s": {
+    "fr": "L'hôtel : réserver, la chambre, les problèmes",
+    "en": "The hotel: booking, the room, problems",
+    "ar": "الفندق: الحجز والغرفة والمشاكل",
+    "pt": "O hotel: reservar, o quarto, os problemas"
+   },
+   "scene": "hotel",
+   "tableau": {
+    "t": {
+     "fr": "Avoir : tener",
+     "en": "To have: tener",
+     "ar": "الفعل «يملك»: tener",
+     "pt": "Ter: tener"
+    },
+    "l": [
+     [
+      "tengo",
+      {
+       "fr": "j'ai",
+       "en": "I have",
+       "ar": "عندي",
+       "pt": "eu tenho"
+      }
+     ],
+     [
+      "tienes",
+      {
+       "fr": "tu as",
+       "en": "you have",
+       "ar": "عندك",
+       "pt": "você tem"
+      }
+     ],
+     [
+      "tiene",
+      {
+       "fr": "il · elle a · vous avez (poli)",
+       "en": "he · she has · you have (polite)",
+       "ar": "عنده · عندها · عند حضرتك",
+       "pt": "ele · ela tem · o senhor tem"
+      }
+     ],
+     [
+      "tenemos",
+      {
+       "fr": "nous avons",
+       "en": "we have",
+       "ar": "عندنا",
+       "pt": "nós temos"
+      }
+     ],
+     [
+      "tienen",
+      {
+       "fr": "ils · elles ont · vous avez (à plusieurs)",
+       "en": "they have · you have (plural)",
+       "ar": "عندهم · عندكم (جمع)",
+       "pt": "eles · elas têm · vocês têm"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "À la réception, on vouvoie : « ¿Tiene una habitación? » = Vous avez une chambre ? Et « Tengo una reserva » ouvre toute arrivée.",
+     "en": "At the front desk, use the polite form: “¿Tiene una habitación?” = Do you have a room? And “Tengo una reserva” opens every arrival.",
+     "ar": "في الاستقبال نستعمل صيغة المجاملة: «¿Tiene una habitación?» = هل عندكم غرفة؟ و«Tengo una reserva» تفتح كل وصول.",
+     "pt": "Na recepção, usa-se a forma de cortesia: “¿Tiene una habitación?” = O senhor tem um quarto? E “Tengo una reserva” abre toda chegada."
+    }
+   },
+   "cartes": [
+    [
+     "una reserva",
+     {
+      "fr": "une réservation",
+      "en": "a reservation",
+      "ar": "حجز",
+      "pt": "uma reserva"
+     },
+     "Tengo una reserva.",
+     {
+      "fr": "J'ai une réservation.",
+      "en": "I have a reservation.",
+      "ar": "عندي حجز.",
+      "pt": "Eu tenho uma reserva."
+     },
+     {
+      "la": [
+       "una reservación",
+       null,
+       "Tengo una reservación.",
+       null
+      ]
+     }
+    ],
+    [
+     "una habitación",
+     {
+      "fr": "une chambre",
+      "en": "a room",
+      "ar": "غرفة",
+      "pt": "um quarto"
+     },
+     "¿Tiene una habitación libre?",
+     {
+      "fr": "Vous avez une chambre libre ?",
+      "en": "Do you have a room available?",
+      "ar": "هل عندكم غرفة شاغرة؟",
+      "pt": "O senhor tem um quarto livre?"
+     }
+    ],
+    [
+     "para una noche · dos noches",
+     {
+      "fr": "pour une nuit · deux nuits",
+      "en": "for one night · two nights",
+      "ar": "لليلة واحدة · ليلتين",
+      "pt": "para uma noite · duas noites"
+     },
+     "Para dos noches, por favor.",
+     {
+      "fr": "Pour deux nuits, s'il vous plaît.",
+      "en": "For two nights, please.",
+      "ar": "لليلتين من فضلك.",
+      "pt": "Para duas noites, por favor."
+     }
+    ],
+    [
+     "individual · doble",
+     {
+      "fr": "simple · double",
+      "en": "single · double",
+      "ar": "مفردة · مزدوجة",
+      "pt": "de solteiro · de casal"
+     },
+     "Una habitación doble.",
+     {
+      "fr": "Une chambre double.",
+      "en": "A double room.",
+      "ar": "غرفة مزدوجة.",
+      "pt": "Um quarto de casal."
+     }
+    ],
+    [
+     "la llave",
+     {
+      "fr": "la clé",
+      "en": "the key",
+      "ar": "المفتاح",
+      "pt": "a chave"
+     },
+     "La llave, por favor.",
+     {
+      "fr": "La clé, s'il vous plaît.",
+      "en": "The key, please.",
+      "ar": "المفتاح من فضلك.",
+      "pt": "A chave, por favor."
+     }
+    ],
+    [
+     "el ascensor",
+     {
+      "fr": "l'ascenseur",
+      "en": "the lift",
+      "ar": "المصعد",
+      "pt": "o elevador"
+     },
+     "¿Dónde está el ascensor?",
+     {
+      "fr": "Où est l'ascenseur ?",
+      "en": "Where is the lift?",
+      "ar": "أين المصعد؟",
+      "pt": "Onde está o elevador?"
+     },
+     {
+      "la": [
+       "el elevador",
+       null,
+       "¿Dónde está el elevador?",
+       null
+      ]
+     }
+    ],
+    [
+     "la recepción",
+     {
+      "fr": "la réception",
+      "en": "the front desk",
+      "ar": "الاستقبال",
+      "pt": "a recepção"
+     },
+     "La recepción está a la derecha.",
+     {
+      "fr": "La réception est à droite.",
+      "en": "The front desk is on the right.",
+      "ar": "الاستقبال على اليمين.",
+      "pt": "A recepção está à direita."
+     }
+    ],
+    [
+     "el desayuno incluido",
+     {
+      "fr": "le petit-déjeuner compris",
+      "en": "breakfast included",
+      "ar": "الفطور مشمول",
+      "pt": "o café da manhã incluído"
+     },
+     "¿El desayuno está incluido?",
+     {
+      "fr": "Le petit-déjeuner est compris ?",
+      "en": "Is breakfast included?",
+      "ar": "هل الفطور مشمول؟",
+      "pt": "O café da manhã está incluído?"
+     }
+    ],
+    [
+     "¿A qué hora es el desayuno?",
+     {
+      "fr": "À quelle heure est le petit-déjeuner ?",
+      "en": "What time is breakfast?",
+      "ar": "في أي ساعة الفطور؟",
+      "pt": "A que horas é o café da manhã?"
+     },
+     "El desayuno es de siete a diez.",
+     {
+      "fr": "Le petit-déjeuner est de sept à dix heures.",
+      "en": "Breakfast is from seven to ten.",
+      "ar": "الفطور من السابعة إلى العاشرة.",
+      "pt": "O café da manhã é das sete às dez."
+     }
+    ],
+    [
+     "el wifi",
+     {
+      "fr": "le wifi",
+      "en": "the wifi",
+      "ar": "الواي فاي",
+      "pt": "o wi-fi"
+     },
+     "¿Cuál es la contraseña del wifi?",
+     {
+      "fr": "Quel est le mot de passe du wifi ?",
+      "en": "What is the wifi password?",
+      "ar": "ما كلمة سر الواي فاي؟",
+      "pt": "Qual é a senha do wi-fi?"
+     }
+    ],
+    [
+     "la contraseña",
+     {
+      "fr": "le mot de passe",
+      "en": "the password",
+      "ar": "كلمة السر",
+      "pt": "a senha"
+     },
+     "La contraseña, por favor.",
+     {
+      "fr": "Le mot de passe, s'il vous plaît.",
+      "en": "The password, please.",
+      "ar": "كلمة السر من فضلك.",
+      "pt": "A senha, por favor."
+     }
+    ],
+    [
+     "la planta",
+     {
+      "fr": "l'étage",
+      "en": "the floor",
+      "ar": "الطابق",
+      "pt": "o andar"
+     },
+     "¿En qué planta está la habitación?",
+     {
+      "fr": "À quel étage est la chambre ?",
+      "en": "What floor is the room on?",
+      "ar": "في أي طابق الغرفة؟",
+      "pt": "Em que andar fica o quarto?"
+     },
+     {
+      "la": [
+       "el piso",
+       null,
+       "¿En qué piso está la habitación?",
+       null
+      ]
+     }
+    ],
+    [
+     "la ducha",
+     {
+      "fr": "la douche",
+      "en": "the shower",
+      "ar": "الدش",
+      "pt": "o chuveiro"
+     },
+     "La ducha no funciona.",
+     {
+      "fr": "La douche ne marche pas.",
+      "en": "The shower doesn't work.",
+      "ar": "الدش لا يعمل.",
+      "pt": "O chuveiro não funciona."
+     }
+    ],
+    [
+     "no funciona",
+     {
+      "fr": "ça ne marche pas",
+      "en": "it doesn't work",
+      "ar": "لا يعمل",
+      "pt": "não funciona"
+     },
+     "El aire acondicionado no funciona.",
+     {
+      "fr": "La climatisation ne marche pas.",
+      "en": "The air conditioning doesn't work.",
+      "ar": "المكيّف لا يعمل.",
+      "pt": "O ar-condicionado não funciona."
+     }
+    ],
+    [
+     "la toalla",
+     {
+      "fr": "la serviette",
+      "en": "the towel",
+      "ar": "المنشفة",
+      "pt": "a toalha"
+     },
+     "Otra toalla, por favor.",
+     {
+      "fr": "Une autre serviette, s'il vous plaît.",
+      "en": "Another towel, please.",
+      "ar": "منشفة أخرى من فضلك.",
+      "pt": "Outra toalha, por favor."
+     }
+    ],
+    [
+     "la calefacción",
+     {
+      "fr": "le chauffage",
+      "en": "the heating",
+      "ar": "التدفئة",
+      "pt": "o aquecimento"
+     },
+     "La calefacción no funciona.",
+     {
+      "fr": "Le chauffage ne marche pas.",
+      "en": "The heating doesn't work.",
+      "ar": "التدفئة لا تعمل.",
+      "pt": "O aquecimento não funciona."
+     }
+    ],
+    [
+     "el aire acondicionado",
+     {
+      "fr": "la climatisation",
+      "en": "the air conditioning",
+      "ar": "المكيّف",
+      "pt": "o ar-condicionado"
+     },
+     "¿Tiene aire acondicionado?",
+     {
+      "fr": "Vous avez la climatisation ?",
+      "en": "Do you have air conditioning?",
+      "ar": "هل عندكم مكيّف؟",
+      "pt": "Vocês têm ar-condicionado?"
+     }
+    ],
+    [
+     "hay mucho ruido",
+     {
+      "fr": "il y a beaucoup de bruit",
+      "en": "there's a lot of noise",
+      "ar": "هناك ضجيج كثير",
+      "pt": "tem muito barulho"
+     },
+     "Hay mucho ruido aquí.",
+     {
+      "fr": "Il y a beaucoup de bruit ici.",
+      "en": "There's a lot of noise here.",
+      "ar": "هناك ضجيج كثير هنا.",
+      "pt": "Tem muito barulho aqui."
+     }
+    ],
+    [
+     "¿A qué hora es la salida?",
+     {
+      "fr": "À quelle heure faut-il libérer la chambre ?",
+      "en": "What time is check-out?",
+      "ar": "في أي ساعة يجب إخلاء الغرفة؟",
+      "pt": "A que horas é preciso deixar o quarto?"
+     }
+    ],
+    [
+     "¿Cuánto cuesta…?",
+     {
+      "fr": "Combien coûte… ?",
+      "en": "How much is…?",
+      "ar": "كم سعر…؟",
+      "pt": "Quanto custa…?"
+     },
+     "¿Cuánto cuesta la habitación?",
+     {
+      "fr": "Combien coûte la chambre ?",
+      "en": "How much is the room?",
+      "ar": "كم سعر الغرفة؟",
+      "pt": "Quanto custa o quarto?"
+     }
+    ],
+    [
+     "por noche",
+     {
+      "fr": "par nuit",
+      "en": "per night",
+      "ar": "لليلة الواحدة",
+      "pt": "por noite"
+     },
+     "Sesenta euros por noche.",
+     {
+      "fr": "Soixante euros par nuit.",
+      "en": "Sixty euros per night.",
+      "ar": "ستون يورو لليلة الواحدة.",
+      "pt": "Sessenta euros por noite."
+     }
+    ],
+    [
+     "el equipaje",
+     {
+      "fr": "les bagages",
+      "en": "the luggage",
+      "ar": "الأمتعة",
+      "pt": "a bagagem"
+     },
+     "¿Dónde está mi equipaje?",
+     {
+      "fr": "Où sont mes bagages ?",
+      "en": "Where is my luggage?",
+      "ar": "أين أمتعتي؟",
+      "pt": "Onde está minha bagagem?"
+     }
+    ],
+    [
+     "la cama",
+     {
+      "fr": "le lit",
+      "en": "the bed",
+      "ar": "السرير",
+      "pt": "a cama"
+     },
+     "La cama es muy pequeña.",
+     {
+      "fr": "Le lit est très petit.",
+      "en": "The bed is very small.",
+      "ar": "السرير صغير جداً.",
+      "pt": "A cama é muito pequena."
+     }
+    ]
+   ],
+   "phrases": [
+    {
+     "p": "Tengo una reserva para dos noches.",
+     "s": {
+      "fr": "J'ai une réservation pour deux nuits.",
+      "en": "I have a reservation for two nights.",
+      "ar": "عندي حجز لليلتين.",
+      "pt": "Eu tenho uma reserva para duas noites."
+     },
+     "l": [
+      {
+       "fr": "J'ai une réservation pour une nuit.",
+       "en": "I have a reservation for one night.",
+       "ar": "عندي حجز لليلة واحدة.",
+       "pt": "Eu tenho uma reserva para uma noite."
+      },
+      {
+       "fr": "Vous avez une réservation pour deux nuits ?",
+       "en": "Do you have a reservation for two nights?",
+       "ar": "هل عندك حجز لليلتين؟",
+       "pt": "O senhor tem uma reserva para duas noites?"
+      }
+     ],
+     "la": {
+      "p": "Tengo una reservación para dos noches."
+     }
+    },
+    {
+     "p": "¿Tiene una habitación doble?",
+     "s": {
+      "fr": "Vous avez une chambre double ?",
+      "en": "Do you have a double room?",
+      "ar": "هل عندكم غرفة مزدوجة؟",
+      "pt": "O senhor tem um quarto de casal?"
+     },
+     "l": [
+      {
+       "fr": "Vous avez une chambre simple ?",
+       "en": "Do you have a single room?",
+       "ar": "هل عندكم غرفة مفردة؟",
+       "pt": "O senhor tem um quarto de solteiro?"
+      },
+      {
+       "fr": "J'ai une chambre double.",
+       "en": "I have a double room.",
+       "ar": "عندي غرفة مزدوجة.",
+       "pt": "Eu tenho um quarto de casal."
+      }
+     ]
+    },
+    {
+     "p": "¿Cuánto cuesta por noche?",
+     "s": {
+      "fr": "Combien ça coûte par nuit ?",
+      "en": "How much is it per night?",
+      "ar": "كم السعر لليلة الواحدة؟",
+      "pt": "Quanto custa por noite?"
+     },
+     "l": [
+      {
+       "fr": "Combien ça coûte pour deux nuits ?",
+       "en": "How much is it for two nights?",
+       "ar": "كم السعر لليلتين؟",
+       "pt": "Quanto custa por duas noites?"
+      },
+      {
+       "fr": "Combien coûte le petit-déjeuner ?",
+       "en": "How much is breakfast?",
+       "ar": "كم سعر الفطور؟",
+       "pt": "Quanto custa o café da manhã?"
+      }
+     ]
+    },
+    {
+     "p": "¿El desayuno está incluido?",
+     "s": {
+      "fr": "Le petit-déjeuner est compris ?",
+      "en": "Is breakfast included?",
+      "ar": "هل الفطور مشمول؟",
+      "pt": "O café da manhã está incluído?"
+     },
+     "l": [
+      {
+       "fr": "Le wifi est compris ?",
+       "en": "Is the wifi included?",
+       "ar": "هل الواي فاي مشمول؟",
+       "pt": "O wi-fi está incluído?"
+      },
+      {
+       "fr": "À quelle heure est le petit-déjeuner ?",
+       "en": "What time is breakfast?",
+       "ar": "في أي ساعة الفطور؟",
+       "pt": "A que horas é o café da manhã?"
+      }
+     ]
+    },
+    {
+     "p": "La ducha no funciona.",
+     "s": {
+      "fr": "La douche ne marche pas.",
+      "en": "The shower doesn't work.",
+      "ar": "الدش لا يعمل.",
+      "pt": "O chuveiro não funciona."
+     },
+     "l": [
+      {
+       "fr": "Le chauffage ne marche pas.",
+       "en": "The heating doesn't work.",
+       "ar": "التدفئة لا تعمل.",
+       "pt": "O aquecimento não funciona."
+      },
+      {
+       "fr": "La douche marche.",
+       "en": "The shower works.",
+       "ar": "الدش يعمل.",
+       "pt": "O chuveiro funciona."
+      }
+     ]
+    },
+    {
+     "p": "¿En qué planta está la habitación?",
+     "s": {
+      "fr": "À quel étage est la chambre ?",
+      "en": "What floor is the room on?",
+      "ar": "في أي طابق الغرفة؟",
+      "pt": "Em que andar fica o quarto?"
+     },
+     "l": [
+      {
+       "fr": "Où est la chambre ?",
+       "en": "Where is the room?",
+       "ar": "أين الغرفة؟",
+       "pt": "Onde está o quarto?"
+      },
+      {
+       "fr": "À quel étage est l'ascenseur ?",
+       "en": "What floor is the lift on?",
+       "ar": "في أي طابق المصعد؟",
+       "pt": "Em que andar fica o elevador?"
+      }
+     ],
+     "la": {
+      "p": "¿En qué piso está la habitación?"
+     }
+    },
+    {
+     "p": "Hay mucho ruido en la habitación.",
+     "s": {
+      "fr": "Il y a beaucoup de bruit dans la chambre.",
+      "en": "There's a lot of noise in the room.",
+      "ar": "هناك ضجيج كثير في الغرفة.",
+      "pt": "Tem muito barulho no quarto."
+     },
+     "l": [
+      {
+       "fr": "Il fait chaud dans la chambre.",
+       "en": "It's hot in the room.",
+       "ar": "الجو حار في الغرفة.",
+       "pt": "Está quente no quarto."
+      },
+      {
+       "fr": "Il y a beaucoup de bruit dans la rue.",
+       "en": "There's a lot of noise in the street.",
+       "ar": "هناك ضجيج كثير في الشارع.",
+       "pt": "Tem muito barulho na rua."
+      }
+     ]
+    },
+    {
+     "p": "Perdón, ¿dónde está el ascensor?",
+     "s": {
+      "fr": "Pardon, où est l'ascenseur ?",
+      "en": "Excuse me, where is the lift?",
+      "ar": "المعذرة، أين المصعد؟",
+      "pt": "Com licença, onde está o elevador?"
+     },
+     "l": [
+      {
+       "fr": "Pardon, où sont les toilettes ?",
+       "en": "Excuse me, where is the restroom?",
+       "ar": "المعذرة، أين المرحاض؟",
+       "pt": "Com licença, onde está o banheiro?"
+      },
+      {
+       "fr": "Pardon, où est la réception ?",
+       "en": "Excuse me, where is the front desk?",
+       "ar": "المعذرة، أين الاستقبال؟",
+       "pt": "Com licença, onde está a recepção?"
+      }
+     ],
+     "la": {
+      "p": "Perdón, ¿dónde está el elevador?"
+     }
+    },
+    {
+     "p": "¿A qué hora es el desayuno?",
+     "s": {
+      "fr": "À quelle heure est le petit-déjeuner ?",
+      "en": "What time is breakfast?",
+      "ar": "في أي ساعة الفطور؟",
+      "pt": "A que horas é o café da manhã?"
+     },
+     "l": [
+      {
+       "fr": "À quelle heure part le train ?",
+       "en": "What time does the train leave?",
+       "ar": "في أي ساعة ينطلق القطار؟",
+       "pt": "A que horas parte o trem?"
+      },
+      {
+       "fr": "Où est le petit-déjeuner ?",
+       "en": "Where is breakfast?",
+       "ar": "أين الفطور؟",
+       "pt": "Onde é o café da manhã?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "s": {
+    "fr": "Les courses et les achats : marché, magasins, prix, tailles",
+    "en": "Shopping: market, shops, prices, sizes",
+    "ar": "التسوق: السوق والمتاجر والأسعار والمقاسات",
+    "pt": "As compras: mercado, lojas, preços, tamanhos"
+   },
+   "scene": "supermarkt",
+   "tableau": {
+    "t": {
+     "fr": "Les nombres et les prix",
+     "en": "Numbers and prices",
+     "ar": "الأعداد والأسعار",
+     "pt": "Os números e os preços"
+    },
+    "l": [
+     [
+      "veinte · treinta · cuarenta",
+      {
+       "fr": "vingt · trente · quarante",
+       "en": "twenty · thirty · forty",
+       "ar": "عشرون · ثلاثون · أربعون",
+       "pt": "vinte · trinta · quarenta"
+      }
+     ],
+     [
+      "cincuenta · sesenta",
+      {
+       "fr": "cinquante · soixante",
+       "en": "fifty · sixty",
+       "ar": "خمسون · ستون",
+       "pt": "cinquenta · sessenta"
+      }
+     ],
+     [
+      "setenta · ochenta · noventa",
+      {
+       "fr": "soixante-dix · quatre-vingts · quatre-vingt-dix",
+       "en": "seventy · eighty · ninety",
+       "ar": "سبعون · ثمانون · تسعون",
+       "pt": "setenta · oitenta · noventa"
+      }
+     ],
+     [
+      "cien",
+      {
+       "fr": "cent",
+       "en": "one hundred",
+       "ar": "مئة",
+       "pt": "cem"
+      }
+     ],
+     [
+      "tres euros con cincuenta",
+      {
+       "fr": "trois euros cinquante",
+       "en": "three euros fifty",
+       "ar": "ثلاثة يورو وخمسون سنتاً",
+       "pt": "três euros e cinquenta"
+      }
+     ],
+     [
+      "¿Cuánto cuesta? · ¿Cuánto es?",
+      {
+       "fr": "Combien ça coûte ? · Combien ça fait ?",
+       "en": "How much is it? · How much is that?",
+       "ar": "كم سعره؟ · كم المجموع؟",
+       "pt": "Quanto custa? · Quanto deu?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Les centimes se disent avec con : « tres con cincuenta » = 3,50 €. Au-delà de vingt, les dizaines s'enchaînent avec y : treinta y dos = 32.",
+     "en": "Cents are said with con: “tres con cincuenta” = €3.50. Above twenty, tens and units are joined with y: treinta y dos = 32.",
+     "ar": "تُقال السنتات بـ con: «tres con cincuenta» = 3,50 €. بعد العشرين تُربط العشرات بالآحاد بـ y: treinta y dos = 32.",
+     "pt": "Os centavos dizem-se com con: “tres con cincuenta” = 3,50 €. Acima de vinte, as dezenas ligam-se com y: treinta y dos = 32."
+    }
+   },
+   "cartes": [
+    [
+     "el mercado",
+     {
+      "fr": "le marché",
+      "en": "the market",
+      "ar": "السوق",
+      "pt": "o mercado"
+     },
+     "El mercado está en la plaza.",
+     {
+      "fr": "Le marché est sur la place.",
+      "en": "The market is on the square.",
+      "ar": "السوق في الساحة.",
+      "pt": "O mercado fica na praça."
+     }
+    ],
+    [
+     "el supermercado",
+     {
+      "fr": "le supermarché",
+      "en": "the supermarket",
+      "ar": "السوبرماركت",
+      "pt": "o supermercado"
+     },
+     "¿Hay un supermercado cerca?",
+     {
+      "fr": "Il y a un supermarché près d'ici ?",
+      "en": "Is there a supermarket nearby?",
+      "ar": "هل يوجد سوبرماركت قريب من هنا؟",
+      "pt": "Tem um supermercado perto daqui?"
+     }
+    ],
+    [
+     "la panadería",
+     {
+      "fr": "la boulangerie",
+      "en": "the bakery",
+      "ar": "المخبز",
+      "pt": "a padaria"
+     },
+     "La panadería está cerca.",
+     {
+      "fr": "La boulangerie est près d'ici.",
+      "en": "The bakery is nearby.",
+      "ar": "المخبز قريب من هنا.",
+      "pt": "A padaria é perto daqui."
+     }
+    ],
+    [
+     "¿Cuánto cuesta?",
+     {
+      "fr": "Combien ça coûte ?",
+      "en": "How much is it?",
+      "ar": "كم سعره؟",
+      "pt": "Quanto custa?"
+     },
+     "¿Cuánto cuesta esto?",
+     {
+      "fr": "Combien ça coûte, ça ?",
+      "en": "How much is this?",
+      "ar": "كم سعر هذا؟",
+      "pt": "Quanto custa isto?"
+     }
+    ],
+    [
+     "un kilo de…",
+     {
+      "fr": "un kilo de…",
+      "en": "a kilo of…",
+      "ar": "كيلو من…",
+      "pt": "um quilo de…"
+     },
+     "Un kilo de manzanas, por favor.",
+     {
+      "fr": "Un kilo de pommes, s'il vous plaît.",
+      "en": "A kilo of apples, please.",
+      "ar": "كيلو تفاح من فضلك.",
+      "pt": "Um quilo de maçãs, por favor."
+     }
+    ],
+    [
+     "medio kilo",
+     {
+      "fr": "un demi-kilo",
+      "en": "half a kilo",
+      "ar": "نصف كيلو",
+      "pt": "meio quilo"
+     },
+     "Medio kilo de tomates.",
+     {
+      "fr": "Un demi-kilo de tomates.",
+      "en": "Half a kilo of tomatoes.",
+      "ar": "نصف كيلو طماطم.",
+      "pt": "Meio quilo de tomates."
+     }
+    ],
+    [
+     "las manzanas",
+     {
+      "fr": "les pommes",
+      "en": "the apples",
+      "ar": "التفاح",
+      "pt": "as maçãs"
+     },
+     "Las manzanas están muy buenas.",
+     {
+      "fr": "Les pommes sont très bonnes.",
+      "en": "The apples are very good.",
+      "ar": "التفاح لذيذ جداً.",
+      "pt": "As maçãs estão muito boas."
+     }
+    ],
+    [
+     "los tomates",
+     {
+      "fr": "les tomates",
+      "en": "the tomatoes",
+      "ar": "الطماطم",
+      "pt": "os tomates"
+     },
+     "Los tomates están allí.",
+     {
+      "fr": "Les tomates sont là-bas.",
+      "en": "The tomatoes are over there.",
+      "ar": "الطماطم هناك.",
+      "pt": "Os tomates estão ali."
+     }
+    ],
+    [
+     "el queso",
+     {
+      "fr": "le fromage",
+      "en": "the cheese",
+      "ar": "الجبن",
+      "pt": "o queijo"
+     },
+     "Cien gramos de queso.",
+     {
+      "fr": "Cent grammes de fromage.",
+      "en": "A hundred grams of cheese.",
+      "ar": "مئة غرام من الجبن.",
+      "pt": "Cem gramas de queijo."
+     }
+    ],
+    [
+     "el jamón",
+     {
+      "fr": "le jambon",
+      "en": "the ham",
+      "ar": "لحم الخنزير المقدد (الجامبون)",
+      "pt": "o presunto"
+     },
+     "Un poco de jamón, por favor.",
+     {
+      "fr": "Un peu de jambon, s'il vous plaît.",
+      "en": "A little ham, please.",
+      "ar": "قليل من الجامبون من فضلك.",
+      "pt": "Um pouco de presunto, por favor."
+     }
+    ],
+    [
+     "¿Algo más? · nada más",
+     {
+      "fr": "Autre chose ? · rien d'autre",
+      "en": "Anything else? · nothing else",
+      "ar": "شيء آخر؟ · لا شيء آخر",
+      "pt": "Mais alguma coisa? · nada mais"
+     },
+     "No, nada más, gracias.",
+     {
+      "fr": "Non, rien d'autre, merci.",
+      "en": "No, nothing else, thanks.",
+      "ar": "لا، لا شيء آخر، شكراً.",
+      "pt": "Não, nada mais, obrigado."
+     }
+    ],
+    [
+     "una bolsa",
+     {
+      "fr": "un sac",
+      "en": "a bag",
+      "ar": "كيس",
+      "pt": "uma sacola"
+     },
+     "Una bolsa, por favor.",
+     {
+      "fr": "Un sac, s'il vous plaît.",
+      "en": "A bag, please.",
+      "ar": "كيس من فضلك.",
+      "pt": "Uma sacola, por favor."
+     }
+    ],
+    [
+     "la caja",
+     {
+      "fr": "la caisse",
+      "en": "the checkout",
+      "ar": "صندوق الدفع",
+      "pt": "o caixa"
+     },
+     "La caja está allí.",
+     {
+      "fr": "La caisse est là-bas.",
+      "en": "The checkout is over there.",
+      "ar": "صندوق الدفع هناك.",
+      "pt": "O caixa é ali."
+     }
+    ],
+    [
+     "caro · barato",
+     {
+      "fr": "cher · bon marché",
+      "en": "expensive · cheap",
+      "ar": "غالٍ · رخيص",
+      "pt": "caro · barato"
+     },
+     "Es muy caro.",
+     {
+      "fr": "C'est très cher.",
+      "en": "It's very expensive.",
+      "ar": "إنه غالٍ جداً.",
+      "pt": "É muito caro."
+     }
+    ],
+    [
+     "la talla",
+     {
+      "fr": "la taille (vêtement)",
+      "en": "the size (clothing)",
+      "ar": "المقاس (ملابس)",
+      "pt": "o tamanho (roupa)"
+     },
+     "¿Tiene otra talla?",
+     {
+      "fr": "Vous avez une autre taille ?",
+      "en": "Do you have another size?",
+      "ar": "هل عندكم مقاس آخر؟",
+      "pt": "O senhor tem outro tamanho?"
+     }
+    ],
+    [
+     "más grande · más pequeño",
+     {
+      "fr": "plus grand · plus petit",
+      "en": "bigger · smaller",
+      "ar": "أكبر · أصغر",
+      "pt": "maior · menor"
+     },
+     "Más grande, por favor.",
+     {
+      "fr": "Plus grand, s'il vous plaît.",
+      "en": "Bigger, please.",
+      "ar": "أكبر من فضلك.",
+      "pt": "Maior, por favor."
+     }
+    ],
+    [
+     "el probador",
+     {
+      "fr": "la cabine d'essayage",
+      "en": "the fitting room",
+      "ar": "غرفة القياس",
+      "pt": "o provador"
+     },
+     "¿Dónde está el probador?",
+     {
+      "fr": "Où est la cabine d'essayage ?",
+      "en": "Where is the fitting room?",
+      "ar": "أين غرفة القياس؟",
+      "pt": "Onde está o provador?"
+     }
+    ],
+    [
+     "una camiseta",
+     {
+      "fr": "un t-shirt",
+      "en": "a T-shirt",
+      "ar": "قميص (تي شيرت)",
+      "pt": "uma camiseta"
+     },
+     "Una camiseta azul.",
+     {
+      "fr": "Un t-shirt bleu.",
+      "en": "A blue T-shirt.",
+      "ar": "تي شيرت أزرق.",
+      "pt": "Uma camiseta azul."
+     }
+    ],
+    [
+     "los zapatos",
+     {
+      "fr": "les chaussures",
+      "en": "the shoes",
+      "ar": "الأحذية",
+      "pt": "os sapatos"
+     },
+     "Los zapatos son caros.",
+     {
+      "fr": "Les chaussures sont chères.",
+      "en": "The shoes are expensive.",
+      "ar": "الأحذية غالية.",
+      "pt": "Os sapatos são caros."
+     }
+    ],
+    [
+     "el recibo",
+     {
+      "fr": "le reçu, le ticket de caisse",
+      "en": "the receipt",
+      "ar": "الإيصال",
+      "pt": "o recibo, o cupom fiscal"
+     },
+     "El recibo, por favor.",
+     {
+      "fr": "Le ticket de caisse, s'il vous plaît.",
+      "en": "The receipt, please.",
+      "ar": "الإيصال من فضلك.",
+      "pt": "O cupom fiscal, por favor."
+     }
+    ],
+    [
+     "solo estoy mirando",
+     {
+      "fr": "je regarde seulement",
+      "en": "I'm just looking",
+      "ar": "أنا أتفرج فقط",
+      "pt": "estou só olhando"
+     },
+     "Gracias, solo estoy mirando.",
+     {
+      "fr": "Merci, je regarde seulement.",
+      "en": "Thanks, I'm just looking.",
+      "ar": "شكراً، أنا أتفرج فقط.",
+      "pt": "Obrigado, estou só olhando."
+     }
+    ],
+    [
+     "me lo llevo",
+     {
+      "fr": "je le prends",
+      "en": "I'll take it",
+      "ar": "سآخذه",
+      "pt": "eu levo"
+     },
+     "Vale, me lo llevo.",
+     {
+      "fr": "D'accord, je le prends.",
+      "en": "Okay, I'll take it.",
+      "ar": "حسناً، سآخذه.",
+      "pt": "Está bem, eu levo."
+     }
+    ],
+    [
+     "abierto · cerrado",
+     {
+      "fr": "ouvert · fermé",
+      "en": "open · closed",
+      "ar": "مفتوح · مغلق",
+      "pt": "aberto · fechado"
+     },
+     "Está cerrado.",
+     {
+      "fr": "C'est fermé.",
+      "en": "It's closed.",
+      "ar": "إنه مغلق.",
+      "pt": "Está fechado."
+     }
+    ],
+    [
+     "una botella de agua",
+     {
+      "fr": "une bouteille d'eau",
+      "en": "a bottle of water",
+      "ar": "زجاجة ماء",
+      "pt": "uma garrafa de água"
+     },
+     "Una botella de agua, por favor.",
+     {
+      "fr": "Une bouteille d'eau, s'il vous plaît.",
+      "en": "A bottle of water, please.",
+      "ar": "زجاجة ماء من فضلك.",
+      "pt": "Uma garrafa de água, por favor."
+     }
+    ]
+   ],
+   "phrases": [
+    {
+     "p": "Un kilo de manzanas, por favor.",
+     "s": {
+      "fr": "Un kilo de pommes, s'il vous plaît.",
+      "en": "A kilo of apples, please.",
+      "ar": "كيلو تفاح من فضلك.",
+      "pt": "Um quilo de maçãs, por favor."
+     },
+     "l": [
+      {
+       "fr": "Un demi-kilo de pommes, s'il vous plaît.",
+       "en": "Half a kilo of apples, please.",
+       "ar": "نصف كيلو تفاح من فضلك.",
+       "pt": "Meio quilo de maçãs, por favor."
+      },
+      {
+       "fr": "Un kilo de tomates, s'il vous plaît.",
+       "en": "A kilo of tomatoes, please.",
+       "ar": "كيلو طماطم من فضلك.",
+       "pt": "Um quilo de tomates, por favor."
+      }
+     ]
+    },
+    {
+     "p": "¿Cuánto cuesta esto?",
+     "s": {
+      "fr": "Combien ça coûte, ça ?",
+      "en": "How much is this?",
+      "ar": "كم سعر هذا؟",
+      "pt": "Quanto custa isto?"
+     },
+     "l": [
+      {
+       "fr": "Combien ça fait, le tout ?",
+       "en": "How much is that altogether?",
+       "ar": "كم المجموع كله؟",
+       "pt": "Quanto deu tudo?"
+      },
+      {
+       "fr": "Qu'est-ce que c'est ?",
+       "en": "What is this?",
+       "ar": "ما هذا؟",
+       "pt": "O que é isto?"
+      }
+     ]
+    },
+    {
+     "p": "Son tres euros con cincuenta.",
+     "s": {
+      "fr": "Ça fait trois euros cinquante.",
+      "en": "That's three euros fifty.",
+      "ar": "المجموع ثلاثة يورو وخمسون سنتاً.",
+      "pt": "Deu três euros e cinquenta."
+     },
+     "l": [
+      {
+       "fr": "Ça fait trois euros quinze.",
+       "en": "That's three euros fifteen.",
+       "ar": "المجموع ثلاثة يورو وخمسة عشر سنتاً.",
+       "pt": "Deu três euros e quinze."
+      },
+      {
+       "fr": "Ça fait cinq euros cinquante.",
+       "en": "That's five euros fifty.",
+       "ar": "المجموع خمسة يورو وخمسون سنتاً.",
+       "pt": "Deu cinco euros e cinquenta."
+      }
+     ]
+    },
+    {
+     "p": "No, nada más, gracias.",
+     "s": {
+      "fr": "Non, rien d'autre, merci.",
+      "en": "No, nothing else, thanks.",
+      "ar": "لا، لا شيء آخر، شكراً.",
+      "pt": "Não, nada mais, obrigado."
+     },
+     "l": [
+      {
+       "fr": "Oui, autre chose, merci.",
+       "en": "Yes, something else, thanks.",
+       "ar": "نعم، شيء آخر، شكراً.",
+       "pt": "Sim, mais alguma coisa, obrigado."
+      },
+      {
+       "fr": "Non, un sac, merci.",
+       "en": "No, a bag, thanks.",
+       "ar": "لا، كيس، شكراً.",
+       "pt": "Não, uma sacola, obrigado."
+      }
+     ]
+    },
+    {
+     "p": "¿Tiene una talla más grande?",
+     "s": {
+      "fr": "Vous avez une taille plus grande ?",
+      "en": "Do you have a bigger size?",
+      "ar": "هل عندكم مقاس أكبر؟",
+      "pt": "O senhor tem um tamanho maior?"
+     },
+     "l": [
+      {
+       "fr": "Vous avez une taille plus petite ?",
+       "en": "Do you have a smaller size?",
+       "ar": "هل عندكم مقاس أصغر؟",
+       "pt": "O senhor tem um tamanho menor?"
+      },
+      {
+       "fr": "Vous avez une autre couleur ?",
+       "en": "Do you have another colour?",
+       "ar": "هل عندكم لون آخر؟",
+       "pt": "O senhor tem outra cor?"
+      }
+     ]
+    },
+    {
+     "p": "Es muy caro.",
+     "s": {
+      "fr": "C'est très cher.",
+      "en": "It's very expensive.",
+      "ar": "إنه غالٍ جداً.",
+      "pt": "É muito caro."
+     },
+     "l": [
+      {
+       "fr": "C'est très bon marché.",
+       "en": "It's very cheap.",
+       "ar": "إنه رخيص جداً.",
+       "pt": "É muito barato."
+      },
+      {
+       "fr": "C'est très grand.",
+       "en": "It's very big.",
+       "ar": "إنه كبير جداً.",
+       "pt": "É muito grande."
+      }
+     ]
+    },
+    {
+     "p": "Gracias, solo estoy mirando.",
+     "s": {
+      "fr": "Merci, je regarde seulement.",
+      "en": "Thanks, I'm just looking.",
+      "ar": "شكراً، أنا أتفرج فقط.",
+      "pt": "Obrigado, estou só olhando."
+     },
+     "l": [
+      {
+       "fr": "Merci, je le prends.",
+       "en": "Thanks, I'll take it.",
+       "ar": "شكراً، سآخذه.",
+       "pt": "Obrigado, eu levo."
+      },
+      {
+       "fr": "Merci, c'est fermé.",
+       "en": "Thanks, it's closed.",
+       "ar": "شكراً، إنه مغلق.",
+       "pt": "Obrigado, está fechado."
+      }
+     ]
+    },
+    {
+     "p": "Perdón, ¿dónde está la caja?",
+     "s": {
+      "fr": "Pardon, où est la caisse ?",
+      "en": "Excuse me, where is the checkout?",
+      "ar": "المعذرة، أين صندوق الدفع؟",
+      "pt": "Com licença, onde está o caixa?"
+     },
+     "l": [
+      {
+       "fr": "Pardon, où est la boulangerie ?",
+       "en": "Excuse me, where is the bakery?",
+       "ar": "المعذرة، أين المخبز؟",
+       "pt": "Com licença, onde está a padaria?"
+      },
+      {
+       "fr": "Pardon, où sont les toilettes ?",
+       "en": "Excuse me, where is the restroom?",
+       "ar": "المعذرة، أين المرحاض؟",
+       "pt": "Com licença, onde está o banheiro?"
+      }
+     ]
+    },
+    {
+     "p": "Quiero una botella de agua y pan.",
+     "s": {
+      "fr": "Je veux une bouteille d'eau et du pain.",
+      "en": "I want a bottle of water and some bread.",
+      "ar": "أريد زجاجة ماء وخبزاً.",
+      "pt": "Eu quero uma garrafa de água e pão."
+     },
+     "l": [
+      {
+       "fr": "Je veux une bouteille d'eau et du fromage.",
+       "en": "I want a bottle of water and some cheese.",
+       "ar": "أريد زجاجة ماء وجبناً.",
+       "pt": "Eu quero uma garrafa de água e queijo."
+      },
+      {
+       "fr": "Je veux de l'eau et du jambon.",
+       "en": "I want water and some ham.",
+       "ar": "أريد ماءً وجامبون.",
+       "pt": "Eu quero água e presunto."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "s": {
+    "fr": "La santé et les urgences : pharmacie, médecin, appeler à l'aide",
+    "en": "Health and emergencies: pharmacy, doctor, calling for help",
+    "ar": "الصحة والطوارئ: الصيدلية والطبيب وطلب النجدة",
+    "pt": "A saúde e as emergências: farmácia, médico, pedir ajuda"
+   },
+   "scene": "apotheke",
+   "tableau": {
+    "t": {
+     "fr": "Pouvoir : poder",
+     "en": "Can: poder",
+     "ar": "الاستطاعة: poder",
+     "pt": "Poder: poder"
+    },
+    "l": [
+     [
+      "puedo",
+      {
+       "fr": "je peux",
+       "en": "I can",
+       "ar": "أستطيع",
+       "pt": "eu posso"
+      }
+     ],
+     [
+      "¿Puedo…?",
+      {
+       "fr": "Je peux… ?",
+       "en": "Can I…?",
+       "ar": "هل أستطيع…؟",
+       "pt": "Posso…?"
+      }
+     ],
+     [
+      "puede",
+      {
+       "fr": "il · elle peut · vous pouvez (poli)",
+       "en": "he · she can · you can (polite)",
+       "ar": "هو · هي يستطيع · تستطيع · حضرتك تستطيع",
+       "pt": "ele · ela pode · o senhor pode"
+      }
+     ],
+     [
+      "¿Puede ayudarme?",
+      {
+       "fr": "Pouvez-vous m'aider ?",
+       "en": "Can you help me?",
+       "ar": "هل يمكنك مساعدتي؟",
+       "pt": "O senhor pode me ajudar?"
+      }
+     ],
+     [
+      "no puedo",
+      {
+       "fr": "je ne peux pas",
+       "en": "I can't",
+       "ar": "لا أستطيع",
+       "pt": "eu não posso"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "¿Puede…? suivi de l'infinitif, c'est la demande polie : « ¿Puede llamar a un médico? » = Pouvez-vous appeler un médecin ?",
+     "en": "¿Puede…? followed by the infinitive is the polite request: “¿Puede llamar a un médico?” = Can you call a doctor?",
+     "ar": "¿Puede…? متبوعة بالمصدر هي الطلب المهذب: «¿Puede llamar a un médico?» = هل يمكنك استدعاء طبيب؟",
+     "pt": "¿Puede…? seguido do infinitivo é o pedido cortês: “¿Puede llamar a un médico?” = O senhor pode chamar um médico?"
+    }
+   },
+   "cartes": [
+    [
+     "la farmacia",
+     {
+      "fr": "la pharmacie",
+      "en": "the pharmacy",
+      "ar": "الصيدلية",
+      "pt": "a farmácia"
+     },
+     "¿Hay una farmacia cerca?",
+     {
+      "fr": "Il y a une pharmacie près d'ici ?",
+      "en": "Is there a pharmacy nearby?",
+      "ar": "هل توجد صيدلية قريبة من هنا؟",
+      "pt": "Tem uma farmácia perto daqui?"
+     }
+    ],
+    [
+     "necesito…",
+     {
+      "fr": "j'ai besoin de…",
+      "en": "I need…",
+      "ar": "أحتاج إلى…",
+      "pt": "eu preciso de…"
+     },
+     "Necesito un médico.",
+     {
+      "fr": "J'ai besoin d'un médecin.",
+      "en": "I need a doctor.",
+      "ar": "أحتاج إلى طبيب.",
+      "pt": "Eu preciso de um médico."
+     }
+    ],
+    [
+     "el médico",
+     {
+      "fr": "le médecin",
+      "en": "the doctor",
+      "ar": "الطبيب",
+      "pt": "o médico"
+     },
+     "¿Puede llamar a un médico?",
+     {
+      "fr": "Pouvez-vous appeler un médecin ?",
+      "en": "Can you call a doctor?",
+      "ar": "هل يمكنك استدعاء طبيب؟",
+      "pt": "O senhor pode chamar um médico?"
+     }
+    ],
+    [
+     "el hospital",
+     {
+      "fr": "l'hôpital",
+      "en": "the hospital",
+      "ar": "المستشفى",
+      "pt": "o hospital"
+     },
+     "¿Dónde está el hospital?",
+     {
+      "fr": "Où est l'hôpital ?",
+      "en": "Where is the hospital?",
+      "ar": "أين المستشفى؟",
+      "pt": "Onde está o hospital?"
+     }
+    ],
+    [
+     "me duele…",
+     {
+      "fr": "j'ai mal à…",
+      "en": "my … hurts",
+      "ar": "يؤلمني…",
+      "pt": "está me doendo…"
+     },
+     "Me duele aquí.",
+     {
+      "fr": "J'ai mal ici.",
+      "en": "It hurts here.",
+      "ar": "يؤلمني هنا.",
+      "pt": "Está me doendo aqui."
+     }
+    ],
+    [
+     "la cabeza",
+     {
+      "fr": "la tête",
+      "en": "the head",
+      "ar": "الرأس",
+      "pt": "a cabeça"
+     },
+     "Me duele la cabeza.",
+     {
+      "fr": "J'ai mal à la tête.",
+      "en": "I have a headache.",
+      "ar": "رأسي يؤلمني.",
+      "pt": "Estou com dor de cabeça."
+     }
+    ],
+    [
+     "el estómago",
+     {
+      "fr": "le ventre",
+      "en": "the stomach",
+      "ar": "البطن",
+      "pt": "a barriga"
+     },
+     "Me duele el estómago.",
+     {
+      "fr": "J'ai mal au ventre.",
+      "en": "I have a stomach ache.",
+      "ar": "بطني يؤلمني.",
+      "pt": "Estou com dor de barriga."
+     }
+    ],
+    [
+     "la garganta",
+     {
+      "fr": "la gorge",
+      "en": "the throat",
+      "ar": "الحلق",
+      "pt": "a garganta"
+     },
+     "Me duele la garganta.",
+     {
+      "fr": "J'ai mal à la gorge.",
+      "en": "I have a sore throat.",
+      "ar": "حلقي يؤلمني.",
+      "pt": "Estou com dor de garganta."
+     }
+    ],
+    [
+     "tengo fiebre",
+     {
+      "fr": "j'ai de la fièvre",
+      "en": "I have a fever",
+      "ar": "عندي حمّى",
+      "pt": "estou com febre"
+     },
+     "Tengo fiebre.",
+     {
+      "fr": "J'ai de la fièvre.",
+      "en": "I have a fever.",
+      "ar": "عندي حمّى.",
+      "pt": "Estou com febre."
+     }
+    ],
+    [
+     "estoy enfermo · enferma",
+     {
+      "fr": "je suis malade",
+      "en": "I'm sick",
+      "ar": "أنا مريض · مريضة",
+      "pt": "estou doente"
+     },
+     "Estoy enferma.",
+     {
+      "fr": "Je suis malade.",
+      "en": "I'm sick.",
+      "ar": "أنا مريض.",
+      "pt": "Estou doente."
+     }
+    ],
+    [
+     "estoy resfriado · resfriada",
+     {
+      "fr": "je suis enrhumé · enrhumée",
+      "en": "I have a cold",
+      "ar": "أنا مصاب · مصابة بالزكام",
+      "pt": "estou resfriado · resfriada"
+     },
+     "Estoy resfriado.",
+     {
+      "fr": "Je suis enrhumé.",
+      "en": "I have a cold.",
+      "ar": "أنا مصاب بالزكام.",
+      "pt": "Estou resfriado."
+     }
+    ],
+    [
+     "una pastilla",
+     {
+      "fr": "un comprimé",
+      "en": "a tablet",
+      "ar": "قرص دواء",
+      "pt": "um comprimido"
+     },
+     "¿Tiene pastillas para el dolor de cabeza?",
+     {
+      "fr": "Vous avez des comprimés pour le mal de tête ?",
+      "en": "Do you have tablets for a headache?",
+      "ar": "هل عندكم أقراص للصداع؟",
+      "pt": "O senhor tem comprimidos para dor de cabeça?"
+     }
+    ],
+    [
+     "una tirita",
+     {
+      "fr": "un pansement",
+      "en": "a plaster",
+      "ar": "ضمادة",
+      "pt": "um curativo"
+     },
+     "Necesito una tirita.",
+     {
+      "fr": "J'ai besoin d'un pansement.",
+      "en": "I need a plaster.",
+      "ar": "أحتاج إلى ضمادة.",
+      "pt": "Eu preciso de um curativo."
+     },
+     {
+      "la": [
+       "una curita",
+       null,
+       "Necesito una curita.",
+       null
+      ]
+     }
+    ],
+    [
+     "soy alérgico · alérgica a…",
+     {
+      "fr": "je suis allergique à…",
+      "en": "I'm allergic to…",
+      "ar": "عندي حساسية من…",
+      "pt": "sou alérgico · alérgica a…"
+     },
+     "Soy alérgica a la penicilina.",
+     {
+      "fr": "Je suis allergique à la pénicilline.",
+      "en": "I'm allergic to penicillin.",
+      "ar": "عندي حساسية من البنسلين.",
+      "pt": "Sou alérgica a penicilina."
+     }
+    ],
+    [
+     "¡Ayuda! · ¡Socorro!",
+     {
+      "fr": "À l'aide ! · Au secours !",
+      "en": "Help!",
+      "ar": "النجدة! · ساعدوني!",
+      "pt": "Socorro! · Ajuda!"
+     },
+     "¡Ayuda, por favor!",
+     {
+      "fr": "À l'aide, s'il vous plaît !",
+      "en": "Help, please!",
+      "ar": "النجدة من فضلكم!",
+      "pt": "Ajuda, por favor!"
+     }
+    ],
+    [
+     "¡Llame a una ambulancia!",
+     {
+      "fr": "Appelez une ambulance !",
+      "en": "Call an ambulance!",
+      "ar": "اتصلوا بالإسعاف!",
+      "pt": "Chame uma ambulância!"
+     }
+    ],
+    [
+     "la policía",
+     {
+      "fr": "la police",
+      "en": "the police",
+      "ar": "الشرطة",
+      "pt": "a polícia"
+     },
+     "¡Llame a la policía!",
+     {
+      "fr": "Appelez la police !",
+      "en": "Call the police!",
+      "ar": "اتصلوا بالشرطة!",
+      "pt": "Chame a polícia!"
+     }
+    ],
+    [
+     "es urgente",
+     {
+      "fr": "c'est urgent",
+      "en": "it's urgent",
+      "ar": "الأمر عاجل",
+      "pt": "é urgente"
+     },
+     "Es urgente, por favor.",
+     {
+      "fr": "C'est urgent, s'il vous plaît.",
+      "en": "It's urgent, please.",
+      "ar": "الأمر عاجل، من فضلك.",
+      "pt": "É urgente, por favor."
+     }
+    ],
+    [
+     "he perdido…",
+     {
+      "fr": "j'ai perdu…",
+      "en": "I've lost…",
+      "ar": "فقدتُ…",
+      "pt": "eu perdi…"
+     },
+     "He perdido mi pasaporte.",
+     {
+      "fr": "J'ai perdu mon passeport.",
+      "en": "I've lost my passport.",
+      "ar": "فقدتُ جواز سفري.",
+      "pt": "Eu perdi meu passaporte."
+     }
+    ],
+    [
+     "me han robado…",
+     {
+      "fr": "on m'a volé…",
+      "en": "my … was stolen",
+      "ar": "سُرق مني…",
+      "pt": "roubaram meu · minha…"
+     },
+     "Me han robado el móvil.",
+     {
+      "fr": "On m'a volé mon téléphone.",
+      "en": "My phone was stolen.",
+      "ar": "سُرق مني هاتفي.",
+      "pt": "Roubaram meu celular."
+     },
+     {
+      "la": [
+       null,
+       null,
+       "Me han robado el celular.",
+       null
+      ]
+     }
+    ],
+    [
+     "el seguro",
+     {
+      "fr": "l'assurance",
+      "en": "the insurance",
+      "ar": "التأمين",
+      "pt": "o seguro"
+     },
+     "Tengo seguro de viaje.",
+     {
+      "fr": "J'ai une assurance voyage.",
+      "en": "I have travel insurance.",
+      "ar": "عندي تأمين سفر.",
+      "pt": "Eu tenho seguro de viagem."
+     }
+    ],
+    [
+     "la receta",
+     {
+      "fr": "l'ordonnance",
+      "en": "the prescription",
+      "ar": "الوصفة الطبية",
+      "pt": "a receita"
+     },
+     "¿Necesito receta?",
+     {
+      "fr": "Il me faut une ordonnance ?",
+      "en": "Do I need a prescription?",
+      "ar": "هل أحتاج إلى وصفة طبية؟",
+      "pt": "Eu preciso de receita?"
+     }
+    ],
+    [
+     "¿Puede ayudarme?",
+     {
+      "fr": "Pouvez-vous m'aider ?",
+      "en": "Can you help me?",
+      "ar": "هل يمكنك مساعدتي؟",
+      "pt": "O senhor pode me ajudar?"
+     },
+     "Perdón, ¿puede ayudarme?",
+     {
+      "fr": "Pardon, pouvez-vous m'aider ?",
+      "en": "Excuse me, can you help me?",
+      "ar": "المعذرة، هل يمكنك مساعدتي؟",
+      "pt": "Com licença, o senhor pode me ajudar?"
+     }
+    ],
+    [
+     "el móvil",
+     {
+      "fr": "le téléphone portable",
+      "en": "the mobile phone",
+      "ar": "الهاتف المحمول",
+      "pt": "o celular"
+     },
+     "Mi móvil no funciona.",
+     {
+      "fr": "Mon téléphone ne marche pas.",
+      "en": "My phone doesn't work.",
+      "ar": "هاتفي لا يعمل.",
+      "pt": "Meu celular não funciona."
+     },
+     {
+      "la": [
+       "el celular",
+       null,
+       "Mi celular no funciona.",
+       null
+      ]
+     }
+    ]
+   ],
+   "phrases": [
+    {
+     "p": "Me duele la cabeza.",
+     "s": {
+      "fr": "J'ai mal à la tête.",
+      "en": "I have a headache.",
+      "ar": "رأسي يؤلمني.",
+      "pt": "Estou com dor de cabeça."
+     },
+     "l": [
+      {
+       "fr": "J'ai mal au ventre.",
+       "en": "I have a stomach ache.",
+       "ar": "بطني يؤلمني.",
+       "pt": "Estou com dor de barriga."
+      },
+      {
+       "fr": "Il a mal à la tête.",
+       "en": "He has a headache.",
+       "ar": "رأسه يؤلمه.",
+       "pt": "Ele está com dor de cabeça."
+      }
+     ]
+    },
+    {
+     "p": "Necesito un médico, es urgente.",
+     "s": {
+      "fr": "J'ai besoin d'un médecin, c'est urgent.",
+      "en": "I need a doctor, it's urgent.",
+      "ar": "أحتاج إلى طبيب، الأمر عاجل.",
+      "pt": "Eu preciso de um médico, é urgente."
+     },
+     "l": [
+      {
+       "fr": "J'ai besoin d'une pharmacie, c'est urgent.",
+       "en": "I need a pharmacy, it's urgent.",
+       "ar": "أحتاج إلى صيدلية، الأمر عاجل.",
+       "pt": "Eu preciso de uma farmácia, é urgente."
+      },
+      {
+       "fr": "J'ai besoin d'un médecin, ce n'est pas urgent.",
+       "en": "I need a doctor, it's not urgent.",
+       "ar": "أحتاج إلى طبيب، الأمر ليس عاجلاً.",
+       "pt": "Eu preciso de um médico, não é urgente."
+      }
+     ]
+    },
+    {
+     "p": "¿Tiene pastillas para el dolor de cabeza?",
+     "s": {
+      "fr": "Vous avez des comprimés pour le mal de tête ?",
+      "en": "Do you have tablets for a headache?",
+      "ar": "هل عندكم أقراص للصداع؟",
+      "pt": "O senhor tem comprimidos para dor de cabeça?"
+     },
+     "l": [
+      {
+       "fr": "Vous avez des comprimés pour le mal de ventre ?",
+       "en": "Do you have tablets for a stomach ache?",
+       "ar": "هل عندكم أقراص لألم البطن؟",
+       "pt": "O senhor tem comprimidos para dor de barriga?"
+      },
+      {
+       "fr": "Vous avez une ordonnance pour le mal de tête ?",
+       "en": "Do you have a prescription for the headache?",
+       "ar": "هل عندك وصفة طبية للصداع؟",
+       "pt": "O senhor tem uma receita para dor de cabeça?"
+      }
+     ]
+    },
+    {
+     "p": "Soy alérgica a la penicilina.",
+     "s": {
+      "fr": "Je suis allergique à la pénicilline.",
+      "en": "I'm allergic to penicillin.",
+      "ar": "عندي حساسية من البنسلين.",
+      "pt": "Sou alérgica a penicilina."
+     },
+     "l": [
+      {
+       "fr": "Je suis malade à cause de la pénicilline.",
+       "en": "I'm sick because of the penicillin.",
+       "ar": "أنا مريضة بسبب البنسلين.",
+       "pt": "Estou doente por causa da penicilina."
+      },
+      {
+       "fr": "Il est allergique à la pénicilline.",
+       "en": "He's allergic to penicillin.",
+       "ar": "عنده حساسية من البنسلين.",
+       "pt": "Ele é alérgico a penicilina."
+      }
+     ]
+    },
+    {
+     "p": "¡Llame a una ambulancia, por favor!",
+     "s": {
+      "fr": "Appelez une ambulance, s'il vous plaît !",
+      "en": "Call an ambulance, please!",
+      "ar": "اتصلوا بالإسعاف من فضلكم!",
+      "pt": "Chame uma ambulância, por favor!"
+     },
+     "l": [
+      {
+       "fr": "Appelez la police, s'il vous plaît !",
+       "en": "Call the police, please!",
+       "ar": "اتصلوا بالشرطة من فضلكم!",
+       "pt": "Chame a polícia, por favor!"
+      },
+      {
+       "fr": "Appelez un médecin, s'il vous plaît !",
+       "en": "Call a doctor, please!",
+       "ar": "اتصلوا بطبيب من فضلكم!",
+       "pt": "Chame um médico, por favor!"
+      }
+     ]
+    },
+    {
+     "p": "He perdido mi pasaporte.",
+     "s": {
+      "fr": "J'ai perdu mon passeport.",
+      "en": "I've lost my passport.",
+      "ar": "فقدتُ جواز سفري.",
+      "pt": "Eu perdi meu passaporte."
+     },
+     "l": [
+      {
+       "fr": "J'ai perdu mon téléphone.",
+       "en": "I've lost my phone.",
+       "ar": "فقدتُ هاتفي.",
+       "pt": "Eu perdi meu celular."
+      },
+      {
+       "fr": "On m'a volé mon passeport.",
+       "en": "My passport was stolen.",
+       "ar": "سُرق مني جواز سفري.",
+       "pt": "Roubaram meu passaporte."
+      }
+     ]
+    },
+    {
+     "p": "Me han robado el móvil.",
+     "s": {
+      "fr": "On m'a volé mon téléphone.",
+      "en": "My phone was stolen.",
+      "ar": "سُرق مني هاتفي.",
+      "pt": "Roubaram meu celular."
+     },
+     "l": [
+      {
+       "fr": "J'ai perdu mon téléphone.",
+       "en": "I've lost my phone.",
+       "ar": "فقدتُ هاتفي.",
+       "pt": "Eu perdi meu celular."
+      },
+      {
+       "fr": "On m'a volé mon passeport.",
+       "en": "My passport was stolen.",
+       "ar": "سُرق مني جواز سفري.",
+       "pt": "Roubaram meu passaporte."
+      }
+     ],
+     "la": {
+      "p": "Me han robado el celular."
+     }
+    },
+    {
+     "p": "¿Puede ayudarme? ¿Dónde está la farmacia?",
+     "s": {
+      "fr": "Pouvez-vous m'aider ? Où est la pharmacie ?",
+      "en": "Can you help me? Where is the pharmacy?",
+      "ar": "هل يمكنك مساعدتي؟ أين الصيدلية؟",
+      "pt": "O senhor pode me ajudar? Onde está a farmácia?"
+     },
+     "l": [
+      {
+       "fr": "Pouvez-vous m'aider ? Où est l'hôpital ?",
+       "en": "Can you help me? Where is the hospital?",
+       "ar": "هل يمكنك مساعدتي؟ أين المستشفى؟",
+       "pt": "O senhor pode me ajudar? Onde está o hospital?"
+      },
+      {
+       "fr": "Pouvez-vous m'aider ? J'ai besoin d'une pharmacie.",
+       "en": "Can you help me? I need a pharmacy.",
+       "ar": "هل يمكنك مساعدتي؟ أحتاج إلى صيدلية.",
+       "pt": "O senhor pode me ajudar? Eu preciso de uma farmácia."
+      }
+     ]
+    },
+    {
+     "p": "Estoy enfermo. ¿Hay un hospital cerca?",
+     "s": {
+      "fr": "Je suis malade. Il y a un hôpital près d'ici ?",
+      "en": "I'm sick. Is there a hospital nearby?",
+      "ar": "أنا مريض. هل يوجد مستشفى قريب من هنا؟",
+      "pt": "Estou doente. Tem um hospital perto daqui?"
+     },
+     "l": [
+      {
+       "fr": "Je suis malade. Il y a une pharmacie près d'ici ?",
+       "en": "I'm sick. Is there a pharmacy nearby?",
+       "ar": "أنا مريض. هل توجد صيدلية قريبة من هنا؟",
+       "pt": "Estou doente. Tem uma farmácia perto daqui?"
+      },
+      {
+       "fr": "Je suis enrhumé. L'hôpital est loin ?",
+       "en": "I have a cold. Is the hospital far?",
+       "ar": "أنا مصاب بالزكام. هل المستشفى بعيد؟",
+       "pt": "Estou resfriado. O hospital é longe?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "s": {
+    "fr": "Se débrouiller et bavarder : faire répéter, l'heure, le temps qu'il fait",
+    "en": "Getting by and chatting: asking to repeat, the time, the weather",
+    "ar": "تدبير الأمور والدردشة: طلب الإعادة والساعة والطقس",
+    "pt": "Se virar e bater papo: pedir para repetir, as horas, o tempo"
+   },
+   "scene": "park",
+   "tableau": {
+    "t": {
+     "fr": "Les questions",
+     "en": "Questions",
+     "ar": "الأسئلة",
+     "pt": "As perguntas"
+    },
+    "l": [
+     [
+      "¿Qué?",
+      {
+       "fr": "Quoi ?",
+       "en": "What?",
+       "ar": "ماذا؟",
+       "pt": "O quê?"
+      }
+     ],
+     [
+      "¿Dónde?",
+      {
+       "fr": "Où ?",
+       "en": "Where?",
+       "ar": "أين؟",
+       "pt": "Onde?"
+      }
+     ],
+     [
+      "¿Cuándo?",
+      {
+       "fr": "Quand ?",
+       "en": "When?",
+       "ar": "متى؟",
+       "pt": "Quando?"
+      }
+     ],
+     [
+      "¿Cuánto?",
+      {
+       "fr": "Combien ?",
+       "en": "How much?",
+       "ar": "كم؟",
+       "pt": "Quanto?"
+      }
+     ],
+     [
+      "¿Cómo?",
+      {
+       "fr": "Comment ?",
+       "en": "How?",
+       "ar": "كيف؟",
+       "pt": "Como?"
+      }
+     ],
+     [
+      "¿Por qué?",
+      {
+       "fr": "Pourquoi ?",
+       "en": "Why?",
+       "ar": "لماذا؟",
+       "pt": "Por quê?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "À l'écrit, la question s'ouvre avec ¿ et se ferme avec ?. Avec ces six mots et ce que vous savez déjà, vous vous débrouillez partout.",
+     "en": "In writing, a question opens with ¿ and closes with ?. With these six words and what you already know, you can get by anywhere.",
+     "ar": "في الكتابة يُفتح السؤال بـ ¿ ويُغلق بـ ?. بهذه الكلمات الست وما تعرفه أصلاً تدبّر أمورك في كل مكان.",
+     "pt": "Na escrita, a pergunta abre com ¿ e fecha com ?. Com essas seis palavras e o que você já sabe, você se vira em qualquer lugar."
+    }
+   },
+   "cartes": [
+    [
+     "no entiendo",
+     {
+      "fr": "je ne comprends pas",
+      "en": "I don't understand",
+      "ar": "لا أفهم",
+      "pt": "eu não entendo"
+     },
+     "Perdón, no entiendo.",
+     {
+      "fr": "Pardon, je ne comprends pas.",
+      "en": "Sorry, I don't understand.",
+      "ar": "عفواً، لا أفهم.",
+      "pt": "Desculpe, eu não entendo."
+     }
+    ],
+    [
+     "¿Puede repetir, por favor?",
+     {
+      "fr": "Pouvez-vous répéter, s'il vous plaît ?",
+      "en": "Can you repeat that, please?",
+      "ar": "هل يمكنك الإعادة من فضلك؟",
+      "pt": "O senhor pode repetir, por favor?"
+     }
+    ],
+    [
+     "más despacio",
+     {
+      "fr": "plus lentement",
+      "en": "more slowly",
+      "ar": "ببطء أكثر",
+      "pt": "mais devagar"
+     },
+     "Más despacio, por favor.",
+     {
+      "fr": "Plus lentement, s'il vous plaît.",
+      "en": "More slowly, please.",
+      "ar": "ببطء أكثر من فضلك.",
+      "pt": "Mais devagar, por favor."
+     }
+    ],
+    [
+     "¿Habla inglés · francés?",
+     {
+      "fr": "Vous parlez anglais · français ?",
+      "en": "Do you speak English · French?",
+      "ar": "هل تتكلم الإنجليزية · الفرنسية؟",
+      "pt": "O senhor fala inglês · francês?"
+     },
+     "¿Habla francés?",
+     {
+      "fr": "Vous parlez français ?",
+      "en": "Do you speak French?",
+      "ar": "هل تتكلم الفرنسية؟",
+      "pt": "O senhor fala francês?"
+     }
+    ],
+    [
+     "hablo un poco de español",
+     {
+      "fr": "je parle un peu espagnol",
+      "en": "I speak a little Spanish",
+      "ar": "أتكلم قليلاً من الإسبانية",
+      "pt": "eu falo um pouco de espanhol"
+     },
+     "Hablo un poco de español.",
+     {
+      "fr": "Je parle un peu espagnol.",
+      "en": "I speak a little Spanish.",
+      "ar": "أتكلم قليلاً من الإسبانية.",
+      "pt": "Eu falo um pouco de espanhol."
+     }
+    ],
+    [
+     "no hablo español",
+     {
+      "fr": "je ne parle pas espagnol",
+      "en": "I don't speak Spanish",
+      "ar": "لا أتكلم الإسبانية",
+      "pt": "eu não falo espanhol"
+     },
+     "Lo siento, no hablo español.",
+     {
+      "fr": "Je suis désolé, je ne parle pas espagnol.",
+      "en": "I'm sorry, I don't speak Spanish.",
+      "ar": "آسف، لا أتكلم الإسبانية.",
+      "pt": "Desculpe, eu não falo espanhol."
+     }
+    ],
+    [
+     "¿Cómo se dice…?",
+     {
+      "fr": "Comment dit-on… ?",
+      "en": "How do you say…?",
+      "ar": "كيف تقول…؟",
+      "pt": "Como se diz…?"
+     },
+     "¿Cómo se dice « merci » en español?",
+     {
+      "fr": "Comment dit-on « merci » en espagnol ?",
+      "en": "How do you say “merci” in Spanish?",
+      "ar": "كيف تقول «merci» بالإسبانية؟",
+      "pt": "Como se diz “merci” em espanhol?"
+     }
+    ],
+    [
+     "¿Qué significa…?",
+     {
+      "fr": "Que veut dire… ?",
+      "en": "What does … mean?",
+      "ar": "ماذا تعني…؟",
+      "pt": "O que quer dizer…?"
+     },
+     "¿Qué significa « vale »?",
+     {
+      "fr": "Que veut dire « vale » ?",
+      "en": "What does “vale” mean?",
+      "ar": "ماذا تعني «vale»؟",
+      "pt": "O que quer dizer “vale”?"
+     }
+    ],
+    [
+     "¿Qué hora es?",
+     {
+      "fr": "Quelle heure est-il ?",
+      "en": "What time is it?",
+      "ar": "كم الساعة؟",
+      "pt": "Que horas são?"
+     },
+     "Perdón, ¿qué hora es?",
+     {
+      "fr": "Pardon, quelle heure est-il ?",
+      "en": "Excuse me, what time is it?",
+      "ar": "المعذرة، كم الساعة؟",
+      "pt": "Com licença, que horas são?"
+     }
+    ],
+    [
+     "son las tres",
+     {
+      "fr": "il est trois heures",
+      "en": "it's three o'clock",
+      "ar": "الساعة الثالثة",
+      "pt": "são três horas"
+     },
+     "Son las tres y media.",
+     {
+      "fr": "Il est trois heures et demie.",
+      "en": "It's half past three.",
+      "ar": "الساعة الثالثة والنصف.",
+      "pt": "São três e meia."
+     }
+    ],
+    [
+     "es la una",
+     {
+      "fr": "il est une heure",
+      "en": "it's one o'clock",
+      "ar": "الساعة الواحدة",
+      "pt": "é uma hora"
+     },
+     "Es la una y cuarto.",
+     {
+      "fr": "Il est une heure et quart.",
+      "en": "It's quarter past one.",
+      "ar": "الساعة الواحدة والربع.",
+      "pt": "É uma e quinze."
+     }
+    ],
+    [
+     "hoy · mañana · ayer",
+     {
+      "fr": "aujourd'hui · demain · hier",
+      "en": "today · tomorrow · yesterday",
+      "ar": "اليوم · غداً · أمس",
+      "pt": "hoje · amanhã · ontem"
+     },
+     "Mañana voy a Madrid.",
+     {
+      "fr": "Demain, je vais à Madrid.",
+      "en": "Tomorrow I'm going to Madrid.",
+      "ar": "غداً أذهب إلى مدريد.",
+      "pt": "Amanhã eu vou para Madri."
+     }
+    ],
+    [
+     "hace buen tiempo · hace mal tiempo",
+     {
+      "fr": "il fait beau · il fait mauvais",
+      "en": "the weather is nice · the weather is bad",
+      "ar": "الطقس جميل · الطقس سيّئ",
+      "pt": "está fazendo tempo bom · tempo ruim"
+     },
+     "Hoy hace buen tiempo.",
+     {
+      "fr": "Aujourd'hui, il fait beau.",
+      "en": "Today the weather is nice.",
+      "ar": "الطقس جميل اليوم.",
+      "pt": "Hoje está fazendo tempo bom."
+     }
+    ],
+    [
+     "hace calor · hace frío",
+     {
+      "fr": "il fait chaud · il fait froid",
+      "en": "it's hot · it's cold",
+      "ar": "الجو حار · الجو بارد",
+      "pt": "está quente · está frio"
+     },
+     "Hace mucho calor.",
+     {
+      "fr": "Il fait très chaud.",
+      "en": "It's very hot.",
+      "ar": "الجو حار جداً.",
+      "pt": "Está muito quente."
+     }
+    ],
+    [
+     "llueve",
+     {
+      "fr": "il pleut",
+      "en": "it's raining",
+      "ar": "إنها تمطر",
+      "pt": "está chovendo"
+     },
+     "Hoy llueve.",
+     {
+      "fr": "Aujourd'hui, il pleut.",
+      "en": "Today it's raining.",
+      "ar": "إنها تمطر اليوم.",
+      "pt": "Hoje está chovendo."
+     }
+    ],
+    [
+     "el sol",
+     {
+      "fr": "le soleil",
+      "en": "the sun",
+      "ar": "الشمس",
+      "pt": "o sol"
+     },
+     "Hace sol.",
+     {
+      "fr": "Il y a du soleil.",
+      "en": "It's sunny.",
+      "ar": "الجو مشمس.",
+      "pt": "Está fazendo sol."
+     }
+    ],
+    [
+     "me gusta…",
+     {
+      "fr": "j'aime…",
+      "en": "I like…",
+      "ar": "أحبّ…",
+      "pt": "eu gosto de…"
+     },
+     "Me gusta España.",
+     {
+      "fr": "J'aime l'Espagne.",
+      "en": "I like Spain.",
+      "ar": "أحبّ إسبانيا.",
+      "pt": "Eu gosto da Espanha."
+     }
+    ],
+    [
+     "muy bonito · bonita",
+     {
+      "fr": "très beau · très belle",
+      "en": "very beautiful",
+      "ar": "جميل جداً · جميلة جداً",
+      "pt": "muito bonito · bonita"
+     },
+     "Madrid es muy bonita.",
+     {
+      "fr": "Madrid est très belle.",
+      "en": "Madrid is very beautiful.",
+      "ar": "مدريد جميلة جداً.",
+      "pt": "Madri é muito bonita."
+     },
+     {
+      "la": [
+       "muy lindo · linda",
+       null,
+       "Madrid es muy linda.",
+       null
+      ]
+     }
+    ],
+    [
+     "vale",
+     {
+      "fr": "d'accord",
+      "en": "okay",
+      "ar": "حسناً",
+      "pt": "está bem"
+     },
+     "Vale, gracias.",
+     {
+      "fr": "D'accord, merci.",
+      "en": "Okay, thanks.",
+      "ar": "حسناً، شكراً.",
+      "pt": "Está bem, obrigado."
+     },
+     {
+      "la": [
+       "está bien",
+       null,
+       "Está bien, gracias.",
+       null
+      ]
+     }
+    ],
+    [
+     "lo siento",
+     {
+      "fr": "je suis désolé · désolée",
+      "en": "I'm sorry",
+      "ar": "أنا آسف · آسفة",
+      "pt": "desculpe, sinto muito"
+     },
+     "Lo siento, no entiendo.",
+     {
+      "fr": "Je suis désolé, je ne comprends pas.",
+      "en": "I'm sorry, I don't understand.",
+      "ar": "آسف، لا أفهم.",
+      "pt": "Desculpe, eu não entendo."
+     }
+    ],
+    [
+     "no pasa nada",
+     {
+      "fr": "ce n'est pas grave",
+      "en": "no problem, it doesn't matter",
+      "ar": "لا بأس",
+      "pt": "não tem problema"
+     },
+     "No pasa nada.",
+     {
+      "fr": "Ce n'est pas grave.",
+      "en": "No problem, it doesn't matter.",
+      "ar": "لا بأس.",
+      "pt": "Não tem problema."
+     }
+    ],
+    [
+     "muchas gracias por todo",
+     {
+      "fr": "merci beaucoup pour tout",
+      "en": "thank you very much for everything",
+      "ar": "شكراً جزيلاً على كل شيء",
+      "pt": "muito obrigado por tudo"
+     },
+     "Muchas gracias por todo.",
+     {
+      "fr": "Merci beaucoup pour tout.",
+      "en": "Thank you very much for everything.",
+      "ar": "شكراً جزيلاً على كل شيء.",
+      "pt": "Muito obrigado por tudo."
+     }
+    ],
+    [
+     "¡Buen viaje!",
+     {
+      "fr": "Bon voyage !",
+      "en": "Have a good trip!",
+      "ar": "رحلة سعيدة!",
+      "pt": "Boa viagem!"
+     }
+    ],
+    [
+     "hasta pronto · nos vemos",
+     {
+      "fr": "à bientôt · on se voit",
+      "en": "see you soon · see you",
+      "ar": "إلى اللقاء قريباً · نلتقي",
+      "pt": "até breve · a gente se vê"
+     },
+     "¡Nos vemos!",
+     {
+      "fr": "On se voit !",
+      "en": "See you!",
+      "ar": "نلتقي!",
+      "pt": "A gente se vê!"
+     }
+    ]
+   ],
+   "phrases": [
+    {
+     "p": "Perdón, no entiendo. ¿Puede repetir?",
+     "s": {
+      "fr": "Pardon, je ne comprends pas. Pouvez-vous répéter ?",
+      "en": "Sorry, I don't understand. Can you repeat that?",
+      "ar": "عفواً، لا أفهم. هل يمكنك الإعادة؟",
+      "pt": "Desculpe, eu não entendo. O senhor pode repetir?"
+     },
+     "l": [
+      {
+       "fr": "Pardon, je ne sais pas. Pouvez-vous répéter ?",
+       "en": "Sorry, I don't know. Can you repeat that?",
+       "ar": "عفواً، لا أعرف. هل يمكنك الإعادة؟",
+       "pt": "Desculpe, eu não sei. O senhor pode repetir?"
+      },
+      {
+       "fr": "Merci, je comprends. Pouvez-vous répéter ?",
+       "en": "Thanks, I understand. Can you repeat that?",
+       "ar": "شكراً، أفهم. هل يمكنك الإعادة؟",
+       "pt": "Obrigado, eu entendo. O senhor pode repetir?"
+      }
+     ]
+    },
+    {
+     "p": "Más despacio, por favor.",
+     "s": {
+      "fr": "Plus lentement, s'il vous plaît.",
+      "en": "More slowly, please.",
+      "ar": "ببطء أكثر من فضلك.",
+      "pt": "Mais devagar, por favor."
+     },
+     "l": [
+      {
+       "fr": "Plus fort, s'il vous plaît.",
+       "en": "Louder, please.",
+       "ar": "بصوت أعلى من فضلك.",
+       "pt": "Mais alto, por favor."
+      },
+      {
+       "fr": "Encore une fois, s'il vous plaît.",
+       "en": "Once more, please.",
+       "ar": "مرة أخرى من فضلك.",
+       "pt": "Mais uma vez, por favor."
+      }
+     ]
+    },
+    {
+     "p": "Hablo un poco de español. ¿Habla francés?",
+     "s": {
+      "fr": "Je parle un peu espagnol. Vous parlez français ?",
+      "en": "I speak a little Spanish. Do you speak French?",
+      "ar": "أتكلم قليلاً من الإسبانية. هل تتكلم الفرنسية؟",
+      "pt": "Eu falo um pouco de espanhol. O senhor fala francês?"
+     },
+     "l": [
+      {
+       "fr": "Je ne parle pas espagnol. Vous parlez français ?",
+       "en": "I don't speak Spanish. Do you speak French?",
+       "ar": "لا أتكلم الإسبانية. هل تتكلم الفرنسية؟",
+       "pt": "Eu não falo espanhol. O senhor fala francês?"
+      },
+      {
+       "fr": "Je parle un peu espagnol. Vous parlez anglais ?",
+       "en": "I speak a little Spanish. Do you speak English?",
+       "ar": "أتكلم قليلاً من الإسبانية. هل تتكلم الإنجليزية؟",
+       "pt": "Eu falo um pouco de espanhol. O senhor fala inglês?"
+      }
+     ]
+    },
+    {
+     "p": "Son las tres y media.",
+     "s": {
+      "fr": "Il est trois heures et demie.",
+      "en": "It's half past three.",
+      "ar": "الساعة الثالثة والنصف.",
+      "pt": "São três e meia."
+     },
+     "l": [
+      {
+       "fr": "Il est trois heures et quart.",
+       "en": "It's quarter past three.",
+       "ar": "الساعة الثالثة والربع.",
+       "pt": "São três e quinze."
+      },
+      {
+       "fr": "Il est deux heures et demie.",
+       "en": "It's half past two.",
+       "ar": "الساعة الثانية والنصف.",
+       "pt": "São duas e meia."
+      }
+     ]
+    },
+    {
+     "p": "Hoy hace buen tiempo.",
+     "s": {
+      "fr": "Aujourd'hui, il fait beau.",
+      "en": "Today the weather is nice.",
+      "ar": "الطقس جميل اليوم.",
+      "pt": "Hoje está fazendo tempo bom."
+     },
+     "l": [
+      {
+       "fr": "Demain, il fait beau.",
+       "en": "Tomorrow the weather will be nice.",
+       "ar": "الطقس جميل غداً.",
+       "pt": "Amanhã vai fazer tempo bom."
+      },
+      {
+       "fr": "Aujourd'hui, il fait mauvais.",
+       "en": "Today the weather is bad.",
+       "ar": "الطقس سيّئ اليوم.",
+       "pt": "Hoje está fazendo tempo ruim."
+      }
+     ]
+    },
+    {
+     "p": "Hace mucho calor hoy.",
+     "s": {
+      "fr": "Il fait très chaud aujourd'hui.",
+      "en": "It's very hot today.",
+      "ar": "الجو حار جداً اليوم.",
+      "pt": "Está muito quente hoje."
+     },
+     "l": [
+      {
+       "fr": "Il fait très froid aujourd'hui.",
+       "en": "It's very cold today.",
+       "ar": "الجو بارد جداً اليوم.",
+       "pt": "Está muito frio hoje."
+      },
+      {
+       "fr": "Il pleut aujourd'hui.",
+       "en": "It's raining today.",
+       "ar": "إنها تمطر اليوم.",
+       "pt": "Está chovendo hoje."
+      }
+     ]
+    },
+    {
+     "p": "Me gusta mucho España, es muy bonita.",
+     "s": {
+      "fr": "J'aime beaucoup l'Espagne, elle est très belle.",
+      "en": "I really like Spain, it's very beautiful.",
+      "ar": "أحبّ إسبانيا كثيراً، إنها جميلة جداً.",
+      "pt": "Eu gosto muito da Espanha, ela é muito bonita."
+     },
+     "l": [
+      {
+       "fr": "Je n'aime pas l'Espagne, elle est très belle.",
+       "en": "I don't like Spain, it's very beautiful.",
+       "ar": "لا أحبّ إسبانيا، إنها جميلة جداً.",
+       "pt": "Eu não gosto da Espanha, ela é muito bonita."
+      },
+      {
+       "fr": "J'aime beaucoup Madrid, elle est très belle.",
+       "en": "I really like Madrid, it's very beautiful.",
+       "ar": "أحبّ مدريد كثيراً، إنها جميلة جداً.",
+       "pt": "Eu gosto muito de Madri, ela é muito bonita."
+      }
+     ],
+     "la": {
+      "p": "Me gusta mucho España, es muy linda."
+     }
+    },
+    {
+     "p": "Mañana voy a Madrid en tren.",
+     "s": {
+      "fr": "Demain, je vais à Madrid en train.",
+      "en": "Tomorrow I'm going to Madrid by train.",
+      "ar": "غداً أذهب إلى مدريد بالقطار.",
+      "pt": "Amanhã eu vou para Madri de trem."
+     },
+     "l": [
+      {
+       "fr": "Demain, je vais à Madrid en bus.",
+       "en": "Tomorrow I'm going to Madrid by bus.",
+       "ar": "غداً أذهب إلى مدريد بالحافلة.",
+       "pt": "Amanhã eu vou para Madri de ônibus."
+      },
+      {
+       "fr": "Aujourd'hui, je vais à Madrid en train.",
+       "en": "Today I'm going to Madrid by train.",
+       "ar": "اليوم أذهب إلى مدريد بالقطار.",
+       "pt": "Hoje eu vou para Madri de trem."
+      }
+     ]
+    },
+    {
+     "p": "Muchas gracias por todo. ¡Hasta pronto!",
+     "s": {
+      "fr": "Merci beaucoup pour tout. À bientôt !",
+      "en": "Thank you very much for everything. See you soon!",
+      "ar": "شكراً جزيلاً على كل شيء. إلى اللقاء قريباً!",
+      "pt": "Muito obrigado por tudo. Até breve!"
+     },
+     "l": [
+      {
+       "fr": "Merci beaucoup pour tout. Bon voyage !",
+       "en": "Thank you very much for everything. Have a good trip!",
+       "ar": "شكراً جزيلاً على كل شيء. رحلة سعيدة!",
+       "pt": "Muito obrigado por tudo. Boa viagem!"
+      },
+      {
+       "fr": "Merci beaucoup pour tout. Bonne nuit !",
+       "en": "Thank you very much for everything. Good night!",
+       "ar": "شكراً جزيلاً على كل شيء. تصبح على خير!",
+       "pt": "Muito obrigado por tudo. Boa noite!"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
