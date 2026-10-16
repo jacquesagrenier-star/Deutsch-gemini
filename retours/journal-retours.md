@@ -9095,3 +9095,8 @@ on voit ton niveau ? A1, A2, B1, B2, C1. Si je n'ai pas pris de cours, ca ne me 
   en MP4, etiquete « webm » il n'etait pas relu), et un signe de reussite (confettis).
   Et : « mettre quelques mots qui ne fitent pas dans la phrase », comme Duolingo -- l'exercice
   d'ordre a un ou deux intrus (un article voisin, une autre forme du verbe, ou un mot connu).
+- v821 : Jacques : « est-ce que tu as tenu compte du fait que si quelqu'un dit qu'il part de zero,
+  la progression soit adaptee, afin de ne pas le decourager ? », puis « va de l'avant ». Qui a
+  repondu « je pars de zero » voit la grammaire, la dictee et l'ordre apres 100 mots vus (60 pour
+  les autres) ; et pendant les 200 premiers mots, les questions de grammaire viennent des 10 plus
+  faciles de chaque serie.

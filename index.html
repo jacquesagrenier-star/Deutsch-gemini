@@ -7479,7 +7479,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v820</span>
+    <span class="subtitle-version">v821</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39045,7 +39045,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 820;
+const APP_VERSION = 821;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42964,9 +42964,26 @@ function motDictee(it){
     if(it.mode === "verben") return it.word.infinitif || "";
     return it.word[0] || "";
 }
+// LES DEUX REGLAGES POUR DEBUTANTS (v821), valides par Jacques (« ne pas le
+// decourager ») :
+// 1. Qui a repondu « je pars de zero » a l'inscription voit la grammaire, la
+//    dictee et l'ordre apres 100 mots vus, au lieu de 60. La reponse est lue
+//    telle quelle : un compte sans reponse n'est pas suppose debutant.
+// 2. Pendant les 200 premiers mots vus, les questions de grammaire viennent des
+//    10 premieres de chaque serie -- les series sont rangees par difficulte.
+const SEUIL_PALIER2_ZERO = 100;
+const VUS_QUESTIONS_FACILES = 200;
+const QUESTIONS_FACILES = 10;
+function declareZero(){
+    try{ return localStorage.getItem(NIVEAU_DECLARE_KEY) === "zero"; }catch(e){ return false; }
+}
 function palierSeance(nVus){
     let p = PALIERS_SEANCE[0];
-    PALIERS_SEANCE.forEach(x => { if(nVus >= x.vus) p = x; });
+    const zero = declareZero();
+    PALIERS_SEANCE.forEach((x, i) => {
+        const seuil = (i === 1 && zero) ? Math.max(x.vus, SEUIL_PALIER2_ZERO) : x.vus;
+        if(nVus >= seuil) p = x;
+    });
     return p;
 }
 
@@ -43008,9 +43025,12 @@ async function grammaireMelangee(cours){
     }
     grammaireSeance = liste.length ? { nom: null, melange: true, langue: LANGUE_APPRISE, liste: liste } : null;
 }
-function questionGrammaire(){
+function questionGrammaire(nVus){
     if(!grammaireSeance || !grammaireSeance.liste.length) return null;
-    const l = grammaireSeance.liste;
+    let l = grammaireSeance.liste;
+    // Les questions faciles d'abord (reglage 2) -- sauf dans le melange de
+    // tout le cours (C1, cours fini), qui s'adresse a des apprenants avances.
+    if(!grammaireSeance.melange && (nVus || 0) < VUS_QUESTIONS_FACILES) l = l.slice(0, QUESTIONS_FACILES);
     return l[Math.floor(Math.random() * l.length)];
 }
 
@@ -43074,7 +43094,7 @@ function insererCartesPhrases(seance, tout){
         for(let essai = 0; essai < palier.formes.length && !item; essai++){
             const f = palier.formes[(n + essai) % palier.formes.length];
             if(f === "gram"){
-                const q = questionGrammaire();
+                const q = questionGrammaire(vus.length);
                 if(q) item = { mode: "phrase", forme: "gram", ex: q.ex, jeu: q.nom, cible: null,
                                themeId: remplacee.themeId, index: remplacee.index, word: remplacee.word };
                 continue;
