@@ -6378,8 +6378,6 @@ body[data-theme="dark"] .cp-retour.bon{color:#7fd3a5;} body[data-theme="dark"] .
 .cp-saisie{width:100%; font-size:18px; padding:12px; border-radius:12px; border:1.5px solid #e2d6c0; margin-top:12px; background:#fff; color:#1C2430;}
 body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-color:#3a4558;}
 .cp-indice{color:#8a5a0e; font-size:14px; margin-top:4px;}
-.cp-manque{margin:8px 0 0; text-align:center; font-weight:700; color:#9b5a12;}
-body[data-theme="dark"] .cp-manque{color:#f0c27a;}
 .cp-faute{text-decoration:underline wavy; text-decoration-thickness:1.5px; text-underline-offset:3px; font-weight:700;}
 .cp-explication{margin-top:8px; font-weight:400; font-size:14.5px;}
 .cp-oral{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px;}
@@ -10814,7 +10812,6 @@ const I18N = {
         cp_lent: "Plus lentement",
         cp_bravo: "Bravo !",
         cp_reponse: "La bonne réponse :",
-        cp_effacer: "Effacer",
         cp_tu_as_ecrit: "Tu as écrit :",
         cp_presque: "Une petite faute de frappe : on la compte juste.",
         cp_q_gram: "Complète la phrase",
@@ -12010,7 +12007,6 @@ const I18N = {
         cp_lent: "Slower",
         cp_bravo: "Well done!",
         cp_reponse: "The right answer:",
-        cp_effacer: "Clear",
         cp_tu_as_ecrit: "You wrote:",
         cp_presque: "Just a small typo: we count it as right.",
         cp_q_gram: "Complete the sentence",
@@ -13208,7 +13204,6 @@ const I18N = {
         cp_lent: "Daha yavaş",
         cp_bravo: "Aferin!",
         cp_reponse: "Doğru cevap:",
-        cp_effacer: "Temizle",
         cp_tu_as_ecrit: "Senin yazdığın:",
         cp_presque: "Küçük bir yazım hatası: doğru sayıyoruz.",
         cp_q_gram: "Cümleyi tamamla",
@@ -14743,7 +14738,6 @@ const I18N = {
         cp_lent: "Повільніше",
         cp_bravo: "Браво!",
         cp_reponse: "Правильна відповідь:",
-        cp_effacer: "Стерти",
         cp_tu_as_ecrit: "Ти написав(-ла):",
         cp_presque: "Невелика описка: зараховуємо як правильно.",
         cp_q_gram: "Доповни речення",
@@ -16641,7 +16635,6 @@ const I18N = {
         cp_lent: "آهسته‌تر",
         cp_bravo: "آفرین!",
         cp_reponse: "پاسخ درست:",
-        cp_effacer: "پاک کردن",
         cp_tu_as_ecrit: "نوشتهٔ تو:",
         cp_presque: "یک غلط تایپی کوچک: درست حساب می‌کنیم.",
         cp_q_gram: "جمله را کامل کن",
@@ -17970,7 +17963,6 @@ const I18N = {
         cp_lent: "أبطأ",
         cp_bravo: "أحسنت!",
         cp_reponse: "الإجابة الصحيحة:",
-        cp_effacer: "مسح",
         cp_tu_as_ecrit: "ما كتبته:",
         cp_presque: "خطأ مطبعي صغير: نحسبه صحيحًا.",
         cp_q_gram: "أكمل الجملة",
@@ -18172,7 +18164,6 @@ const I18N = {
         cp_lent: "Mais devagar",
         cp_bravo: "Muito bem!",
         cp_reponse: "A resposta certa:",
-        cp_effacer: "Apagar",
         cp_tu_as_ecrit: "Você escreveu:",
         cp_presque: "Só um pequeno erro de digitação: conta como certo.",
         cp_q_gram: "Complete a frase",
@@ -19433,7 +19424,6 @@ const I18N = {
         cp_lent: "Wolniej",
         cp_bravo: "Brawo!",
         cp_reponse: "Prawidłowa odpowiedź:",
-        cp_effacer: "Wyczyść",
         cp_tu_as_ecrit: "Napisałeś(-aś):",
         cp_presque: "Mała literówka: liczymy jako dobrze.",
         cp_q_gram: "Uzupełnij zdanie",
@@ -20692,7 +20682,6 @@ const I18N = {
         cp_lent: "Медленнее",
         cp_bravo: "Молодец!",
         cp_reponse: "Правильный ответ:",
-        cp_effacer: "Стереть",
         cp_tu_as_ecrit: "Ты написал(а):",
         cp_presque: "Небольшая опечатка: засчитываем как верно.",
         cp_q_gram: "Дополни предложение",
@@ -43497,38 +43486,26 @@ function montrerCartePhrase(item){
         ligne.setAttribute("lang", langueDe);
         const banque = creer("div", "cp-banque");
         banque.setAttribute("lang", langueDe);
-        const effacer = creer("button", "secondary", t("cp_effacer"));
-        effacer.type = "button";
         let ordre = melangerPhrase(item.phrase.mots.map((m, i) => ({ m: m, i: i })));
         if(ordre.every((x, i) => x.i === i) && ordre.length > 1) ordre = ordre.slice(1).concat(ordre.slice(0, 1));
-        // Les intrus se melangent aux vrais mots (v820) ; on juge quand la ligne
-        // a autant de mots que la phrase, la banque peut garder les intrus.
+        // Les intrus se melangent aux vrais mots (v820) ; la banque peut les garder.
         if(!item.intrus) item.intrus = intrusOrdre(item);
         ordre = melangerPhrase(ordre.concat(item.intrus.map(m => ({ m: m, i: -1 }))));
-        // v826 : UNE SORTIE. On ne jugeait qu'une ligne complete, sans bouton
-        // Verifier : un mot oublie, et rien ne se passait ; le seul bouton
-        // (« Recommencer ») vidait tout. Jacques : « il me laisse pas sortir ».
-        // Verifier dit d'abord ce qui manque ; au second toucher, la reponse.
-        const manque = creer("p", "cp-manque hidden");
-        let relances = 0;
-        const verifier = (force) => {
-            const reste = item.phrase.mots.length - ligne.children.length;
-            if(reste > 0 && !force) return;
-            if(reste > 0 && relances === 0){
-                relances++;
-                manque.textContent = reste === 1 ? t("chunks_manque_un") : tf("chunks_manque_n", { n: reste });
-                manque.classList.remove("hidden");
-                return;
-            }
-            manque.classList.add("hidden");
+        // v826 : ON JUGE QUAND LA PERSONNE LE DEMANDE. Avant, la carte jugeait
+        // seule une ligne complete et n'avait pas de bouton Verifier : un mot
+        // oublie, rien ne se passait, et le seul bouton (« Recommencer ») vidait
+        // tout. Jacques : « il me laisse pas sortir ». Maintenant : toucher un mot
+        // l'envoie dans la ligne ou l'en retire, autant qu'on veut ; VERIFIER
+        // juge, et une phrase fausse ou incomplete donne la bonne et CONTINUER.
+        const verif = boutonVerifier(() => {
+            if(fait.repondu || !ligne.children.length) return;
             verif.classList.add("hidden");
             const dit = Array.from(ligne.children).map(x => x.textContent).join(" ");
             const juste = dit === item.phrase.de;
             ligne.classList.add(juste ? "bon" : "faux");
             Array.from(ligne.children).forEach(x => { x.disabled = true; });
-            effacer.classList.add("hidden");
             conclure(juste);
-        };
+        });
         ordre.forEach(x => {
             const tuile = creer("button", "cp-tuile", x.m);
             tuile.type = "button";
@@ -43536,21 +43513,11 @@ function montrerCartePhrase(item){
                 if(fait.repondu) return;
                 if(tuile.parentNode === banque) ligne.appendChild(tuile);
                 else banque.appendChild(tuile);
-                manque.classList.add("hidden");
-                verifier(false);
             });
             banque.appendChild(tuile);
         });
         el.appendChild(ligne);
-        el.appendChild(manque);
         el.appendChild(banque);
-        effacer.addEventListener("click", () => {
-            if(fait.repondu) return;
-            Array.from(ligne.children).forEach(x => banque.appendChild(x));
-            manque.classList.add("hidden");
-        });
-        const verif = boutonVerifier(() => { if(!fait.repondu) verifier(true); });
-        actions.appendChild(effacer);
         actions.appendChild(verif);
     } else if(item.forme === "gram"){
         // Une question d'une serie du cours, comme dans l'ecran d'exercices :

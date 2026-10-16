@@ -9143,3 +9143,7 @@ type d'exercice » ; « je pensais que c'etait regle »).
   d'abord « Il manque encore un mot », puis au second toucher donne la bonne reponse et CONTINUER.
   (Le meme defaut, un `return` muet, avait deja ete corrige le 26 aout dans l'exercice « Construire
   la phrase » -- v217 ; la carte de seance l'a reintroduit.)
+- Puis, simplifie a sa demande : « la personne peut enlever les mots et les remettre tant qu'elle
+  veut ; quand tu fais verifier, si c'est pas bon, elle te met la bonne phrase puis continuer ».
+  Plus de bouton Effacer ni de message « il manque » : un seul bouton VERIFIER, et rien n'est juge
+  avant qu'on le touche.
