@@ -9037,3 +9037,7 @@ des mots mais des phrases, parce que sinon, ca devient un peu ennuyant ».
 - La reponse compte comme une revision du mot vise. Allemand et espagnol, 9 langues d'interface.
 - Premiere version : les noms seulement. En ESSAI pour l'admin (Essais du tableau admin) ; pas
   encore pour les testeurs.
+- v811 : Jacques, apres l'essai : « je fais plusieurs cartes, puis j'en ai eu seulement une ».
+  La seance est raccourcie a ce qui reste de l'objectif du jour (une seule case de phrase quand
+  il en reste 5 a 9), et « en faire 20 de plus » repartait sans phrases. Les phrases suivent
+  maintenant dans la suite : 3 phrases sur 15 cartes, puis 4 sur les 20 suivantes.

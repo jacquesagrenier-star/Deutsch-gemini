@@ -7465,7 +7465,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v810</span>
+    <span class="subtitle-version">v811</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -38897,7 +38897,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 810;
+const APP_VERSION = 811;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -40747,7 +40747,14 @@ function encoreDesMotsNeufs(){
     hideFlashcardEnd();
     const actions = document.getElementById("flashcardActions");
     if(actions) actions.classList.remove("hidden");
-    currentCards = suite;
+    // Les cartes-phrases (essai v810) suivent dans « en faire 20 de plus » :
+    // sans ce geste, elles n'existaient qu'a l'ouverture, et une seance
+    // raccourcie par l'objectif du jour n'en montrait qu'une (Jacques, v811).
+    let paquet = suite;
+    if(essaiActif("phrases") && currentTheme && String(currentTheme.id).indexOf("seance_") === 0){
+        try{ paquet = insererCartesPhrases(suite, currentCardsFull); }catch(e){}
+    }
+    currentCards = paquet;
     currentFlashcard = 0;
     loadFlashcard();
 }
