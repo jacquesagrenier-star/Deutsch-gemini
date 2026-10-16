@@ -9024,3 +9024,16 @@ clique dans la scene, il n'y a rien qui se passe », et « Retour » menait a l'
 - Corrige : masques refaits (detourer.py, local et gratuit) ; les zones qui marchaient sont
   identiques au pixel pres. La page des scenes ne plante plus pour une zone sans masque, et le
   verificateur refuse desormais une zone sans masque avant la publication.
+
+## 15 octobre 2026 -- des phrases dans la seance du jour (v810, essai admin)
+
+Jacques : « dans ma seance du jour, on voit seulement des mots [...] qu'on commence a introduire
+des mots mais des phrases, parce que sinon, ca devient un peu ennuyant ».
+- Maquette validee (« cable l'essai tel que dans la maquette, pour moi seul d'abord »).
+- Une carte sur cinq devient une phrase, a la place d'une carte de mot : ecouter et choisir le
+  sens, completer le trou, remettre les mots dans l'ordre. Les phrases sont celles du corpus (deja
+  traduites, lues par la voix) ; on choisit celle dont les autres mots sont des mots de base ou
+  deja rencontres, et le socle (ich, du ; sein, haben, gehen) passe devant pour un debutant.
+- La reponse compte comme une revision du mot vise. Allemand et espagnol, 9 langues d'interface.
+- Premiere version : les noms seulement. En ESSAI pour l'admin (Essais du tableau admin) ; pas
+  encore pour les testeurs.
