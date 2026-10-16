@@ -40,6 +40,13 @@ import socketserver
 import sys
 import threading
 
+# Les releves contiennent des emojis (le bouton de Premiers pas) : sur une
+# console Windows en cp1252, print() plantait en ecrivant la difference.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = 8791
 HEURE_FIGEE = "2026-10-10T09:00:00"
