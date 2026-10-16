@@ -1388,33 +1388,6 @@ window.SCENE = {
    "latam": null
   },
   {
-   "id": "huhn-5",
-   "mot": "gallina",
-   "genre": "la",
-   "pluriel": "las gallinas",
-   "niveau": "A1",
-   "theme": "los_animales",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     33,
-     87,
-     14.5,
-     7
-    ]
-   ],
-   "fr": "la poule",
-   "en": "the hen",
-   "pt": "a galinha",
-   "ar": "دجاجة",
-   "pl": "kura",
-   "ru": "курица",
-   "latam": null
-  },
-  {
    "id": "hund",
    "mot": "perro",
    "genre": "el",

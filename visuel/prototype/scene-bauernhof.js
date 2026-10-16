@@ -1510,35 +1510,6 @@ window.SCENE = {
    "ru": "курица"
   },
   {
-   "id": "huhn-5",
-   "mot": "Huhn",
-   "genre": "das",
-   "pluriel": "Hühner",
-   "niveau": "A1",
-   "theme": "tiere_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     33,
-     87,
-     14.5,
-     7
-    ]
-   ],
-   "fr": "poule",
-   "en": "chicken",
-   "tr": "tavuk",
-   "uk": "курка",
-   "fa": "مرغ",
-   "pt": "galinha",
-   "ar": "دجاجة",
-   "pl": "kura",
-   "ru": "курица"
-  },
-  {
    "id": "hund",
    "mot": "Hund",
    "genre": "der",
