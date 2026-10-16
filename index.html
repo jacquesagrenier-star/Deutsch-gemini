@@ -7473,7 +7473,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v814</span>
+    <span class="subtitle-version">v815</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -33486,7 +33486,14 @@ function showScreen(id){
     // 1) : WebKit ne repeignait pas, et l'ecran restait a 0 jusqu'au toucher.
     // On vide donc le cadre une fois le nouvel ecran affiche, et l'ecran qui
     // succede a une scene arrive sans fondu.
-    const depuisScene = (document.querySelector(".screen.active") || {}).id === "sceneSeance";
+    const ecranQuitte = (document.querySelector(".screen.active") || {}).id;
+    const depuisScene = ecranQuitte === "sceneSeance";
+    // v815 (15 oct. 2026) : LE MEME DEFAUT AU RETOUR DES CARTES. Jacques, sur
+    // iPhone : « Mis de cote », puis Retour -- le dessin du tableau et la roue de
+    // reglage manquent sur l'accueil, et reapparaissent quand on glisse le doigt.
+    // Meme cause (WebKit ne repeint pas pendant le fondu d'entree), meme parade :
+    // l'accueil qui succede aux cartes arrive sans fondu.
+    const sansFondu = depuisScene || (ecranQuitte === "flashcards" && id === "home");
     if(id !== 'sceneSeance'){
         const cadre = document.getElementById("sceneCadre");
         if(cadre && cadre.getAttribute("src") && cadre.getAttribute("src") !== "about:blank"){
@@ -33502,7 +33509,7 @@ function showScreen(id){
     document.querySelectorAll(".screen").forEach(s => s.classList.remove("active", "sans-fondu"));
     const target = document.getElementById(id);
     if(target){
-        if(depuisScene) target.classList.add("sans-fondu");
+        if(sansFondu) target.classList.add("sans-fondu");
         target.classList.add("active");
     }
     window.scrollTo(0,0);
@@ -38977,7 +38984,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 814;
+const APP_VERSION = 815;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

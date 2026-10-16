@@ -9064,3 +9064,11 @@ sur l'etude ». Maquette validee (« cable la seance melangee en essai pour moi 
 - v814 : Jacques : « pour le C1, on devrait melanger la grammaire des differents niveaux, pour
   pas que ce soit juste des mots ». Au niveau C1 -- et a tout niveau une fois le cours fini --
   chaque question de grammaire de la seance vient d'une serie au hasard parmi tout le cours.
+
+## 15 octobre 2026 -- retour de « Mis de cote » sur iPhone (v815)
+
+Jacques : « quand je clique sur Mis de cote, puis je fais un retour, il y a des choses qui manquent,
+dont le dessin du tableau ; puis la roue de reglage [...] quand je glisse mon doigt, ca reapparait ».
+- Meme famille que la page blanche apres une scene (v804) : WebKit ne repeint pas l'accueil
+  pendant son fondu d'entree. L'accueil qui succede aux cartes arrive maintenant sans fondu (pour
+  Mis de cote comme pour la seance). Non reproductible hors iPhone : a confirmer sur le telephone.
