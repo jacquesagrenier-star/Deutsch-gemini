@@ -9191,3 +9191,8 @@ premiere phrase a la 4e carte puis toutes les 3, faite seulement de mots deja vu
 - Jacques, en meme temps : le A1 doit continuer dans le meme esprit (phrases de voyage, resto,
   directions) -- « la clientele qui se prepare a voyager en Allemagne ou en Espagne, tout en ayant
   la clientele qui veut progresser jusqu'au C1 ». A proposer apres l'essai.
+- v830 : dans la scene de l'aeroport (depuis Premiers pas), « le bouton dit Seguir alors que je suis
+  en francais » et « Trouver continue indefiniment ». Le bouton « Continuer » des scenes est
+  maintenant dans la langue de l'interface (toutes les scenes, allemand et espagnol ; « ¡Correcto! »
+  et « Richtig! » restent). Depuis Premiers pas, Trouver s'arrete apres 5 objets du A1, puis
+  propose « Jour suivant → » ou « Retour a l'accueil » (« la personne a pu vouloir continuer »).

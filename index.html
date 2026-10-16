@@ -7513,7 +7513,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v829</span>
+    <span class="subtitle-version">v830</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39294,7 +39294,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 829;
+const APP_VERSION = 830;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42871,6 +42871,17 @@ function ouvrirSceneAdmin(nom){
 // le tableau de bord l'ouvre pour l'admin -- mais ici les reponses comptent
 // comme des revisions (Jacques : « comme si on fait les verbes a part »).
 // Version gratuite : la classe seule (GRATUIT.portesOuvertes).
+// v830 : la scene de Premiers pas (?pp=1) -- 5 objets a trouver, puis l'accueil.
+function ouvrirScenePremiersPas(nom, dernier){
+    sceneOuverteDepuis = "premiers_pas";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = t("seance_scene_cadre");
+        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(nom) + "&pp=1" + (dernier ? "&dernier=1" : "")
+                  + "&lang=" + encodeURIComponent(getUiLang()) + langueDeScene() + "&vitesse=" + facteurVitesse + "&t=" + Date.now();
+    }
+    showScreen("sceneSeance");
+}
 function ouvrirSceneLibre(nom){
     sceneOuverteDepuis = "libre";
     const cadre = document.getElementById("sceneCadre");
@@ -42958,6 +42969,12 @@ window.addEventListener("message", (e) => {
         // bord est exclu : il ouvre une scene pour la TESTER, et ses reponses
         // ne disent rien de ce que l'admin sait.
         if(sceneOuverteDepuis !== "admin") revisionDeScene(d);
+    } else if(d.type === "fini" && sceneOuverteDepuis === "premiers_pas"){
+        // La scene de Premiers pas n'est pas la scene du jour : sa porte reste.
+        // « Jour suivant » enchaine ; sinon l'accueil, ou la porte montre le jour.
+        if(d.suite && premiersPasEnCours()){ ouvrirPremiersPas(); return; }
+        goHome();
+        try{ majTuileSeance(); }catch(err){}
     } else if(d.type === "fini"){
         try{ localStorage.setItem(SCENE_FAITE_KEY, new Date().toDateString()); }catch(err){}
         // v799 : retour a l'accueil, la porte de la scene cochee ; les mots attendent.
@@ -42966,6 +42983,7 @@ window.addEventListener("message", (e) => {
     } else if(d.type === "fermer"){
         if(sceneOuverteDepuis === "admin") openAdminDashboard();
         else if(sceneOuverteDepuis === "libre") openOrbPanel("scenes");
+        else if(sceneOuverteDepuis === "premiers_pas"){ goHome(); try{ majTuileSeance(); }catch(err){} }
         else { goHome(); try{ majTuileSeance(); }catch(err){} }
     }
 });
@@ -43762,7 +43780,7 @@ function montrerCartePhrase(item){
             try{ recordDailyActivity(); }catch(e){}
             try{ finSeanceSuivie(true); }catch(e){}
             cacherCartePhrase();
-            ouvrirSceneLibre(nom);
+            ouvrirScenePremiersPas(nom, (item.jourPP || 0) >= joursPremiersPas().length - 1);
         });
         actions.appendChild(entrer);
         suite.textContent = t("pp_plus_tard");

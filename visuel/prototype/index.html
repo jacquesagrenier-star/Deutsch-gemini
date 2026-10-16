@@ -190,6 +190,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .en-cadre .choix{padding:8px 10px;font-size:14px}
 .en-cadre .explication{padding:8px 10px;font-size:13.5px}
 .en-cadre .suite{padding:9px}
+.suite.pp-accueil{background:transparent;border:1.5px solid currentColor;margin-top:8px}
 .pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
 
 /* DE DROITE A GAUCHE (fa, ar ; 10 oct. 2026). Comme l'app : dir="rtl" sur
@@ -271,8 +272,10 @@ for (const v of (window.SCENES[NOM_SCENE].vues || []))
 const EST_ES = APPRENDRE === "es";
 const LATAM = EST_ES && new URLSearchParams(location.search).get("variante") === "latam";
 const LANG_CIBLE = EST_ES ? "es" : "de";
-/* Les deux mots de la langue apprise que la page dit elle-meme. */
-const MOTS_CIBLE = EST_ES ? {juste: "¡Correcto!", suite: "Seguir"} : {juste: "Richtig!", suite: "Weiter"};
+/* Le mot de la langue apprise que la page dit elle-meme. v830 : le bouton
+   « Continuer », lui, est dans la langue de l'interface -- « Seguir » ne disait
+   rien a une debutante (Jacques, 16 oct. 2026). */
+const MOTS_CIBLE = EST_ES ? {juste: "¡Correcto!"} : {juste: "Richtig!"};
 /* Le pluriel : l'allemand dit toujours « die », l'espagnol porte son article
    (los / las) dans le fichier de la scene. */
 const plurielDe = n => EST_ES ? n.pluriel : "die " + n.pluriel;
@@ -367,6 +370,9 @@ const TEXTES = {
   sceneFinie:  {fr: "Scène terminée", en: "Scene finished", tr: "Sahne bitti", uk: "Сцену завершено", fa: "صحنه تمام شد", ar: "انتهى المشهد", pt: "Cena concluída", pl: "Scena zakończona", ru: "Сцена пройдена"},
   termine:     {fr: "terminé", en: "finished", tr: "bitti", uk: "завершено", fa: "تمام شد", ar: "انتهى", pt: "concluído", pl: "zakończone", ru: "пройдено"},
   versCartes:  {fr: "Continuer avec mes cartes →", en: "Continue with my cards →", tr: "Kartlarımla devam et →", uk: "Продовжити з картками →", fa: "ادامه با کارت‌هایم ←", ar: "تابع مع بطاقاتي ←", pt: "Continuar com os meus cartões →", pl: "Dalej z moimi kartami →", ru: "Продолжить с моими карточками →"},
+  suite:       {fr: "Continuer", en: "Continue", tr: "Devam", uk: "Далі", fa: "ادامه", ar: "متابعة", pt: "Continuar", pl: "Dalej", ru: "Дальше"},
+  jourSuivant: {fr: "Jour suivant →", en: "Next day →", tr: "Sonraki gün →", uk: "Наступний день →", fa: "روز بعد ←", ar: "اليوم التالي ←", pt: "Próximo dia →", pl: "Następny dzień →", ru: "Следующий день →"},
+  accueil:     {fr: "Retour à l'accueil", en: "Back to home", tr: "Ana sayfaya dön", uk: "На головну", fa: "بازگشت به صفحهٔ اصلی", ar: "العودة إلى الرئيسية", pt: "Voltar ao início", pl: "Wróć do strony głównej", ru: "На главную"},
   encore:      {fr: "Encore une fois", en: "Once more", tr: "Bir kez daha", uk: "Ще раз", fa: "یک بار دیگر", ar: "مرة أخرى", pt: "Mais uma vez", pl: "Jeszcze raz", ru: "Ещё раз"},
   revenir:     {fr: "✕ Revenir à la scène", en: "✕ Back to the scene", tr: "✕ Sahneye dön", uk: "✕ Повернутися до сцени", fa: "✕ بازگشت به صحنه", ar: "✕ العودة إلى المشهد", pt: "✕ Voltar à cena", pl: "✕ Wróć do sceny", ru: "✕ Вернуться к сцене"},
   retourAria:  {fr: "Retour au choix de la séance", en: "Back to the session choice", tr: "Çalışma seçimine dön", uk: "Повернутися до вибору сеансу", fa: "بازگشت به انتخاب جلسه", ar: "العودة إلى اختيار الجلسة", pt: "Voltar à escolha da sessão", pl: "Wróć do wyboru sesji", ru: "Вернуться к выбору занятия"},
@@ -991,6 +997,13 @@ const EN_SEANCE = PARAMS.get("seance") === "1";
 /* v799 : l'app envoie le nombre de questions (reglage « Questions de la scene du
    jour », 8 par defaut). Sans parametre, l'ancien nombre : 3. */
 const NB_SEANCE = Math.max(1, Math.min(30, parseInt(PARAMS.get("nb"), 10) || 3));
+/* v830 : ouverte depuis « Premiers pas » (?pp=1). Decouvrir et Trouver restent
+   au choix, mais Trouver s'arrete apres 5 objets du niveau A1, et la fin rend la
+   main a l'app au lieu de proposer « Encore » a l'infini : le jour suivant tout
+   de suite, ou l'accueil (Jacques : « la personne a pu vouloir continuer »). */
+const PP = PARAMS.get("pp") === "1";
+const PP_DERNIER = PARAMS.get("dernier") === "1";
+const NB_PP = 5;
 function envoyer(type, donnees){
   if (window.parent !== window)
     window.parent.postMessage(Object.assign({source: "wortando-scene", type, scene: NOM_SCENE}, donnees || {}), "*");
@@ -1124,7 +1137,7 @@ const A_TROUVER = (() => {
    au-dessus du niveau de la seance ne se DEMANDE pas ; il se touche toujours
    en Decouvrir. Hors seance, rien n'est filtre. */
 const RANG = {A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6};
-const aSonNiveau = (m, niv) => !EN_SEANCE || !m.niveau || (RANG[m.niveau] || 9) <= (RANG[niv] || 9);
+const aSonNiveau = (m, niv) => (!EN_SEANCE && !PP) || !m.niveau || (RANG[m.niveau] || 9) <= (RANG[niv] || 9);
 const zonesDe = mot => S.points.filter(p => porte(p, mot)).map(p => p.id);
 let fileTrouver = [];
 /* A QUI appartient ce qu'on demande. Jacques, 6 oct. : on demande l'oreille
@@ -1152,7 +1165,7 @@ function proprietaire(mot){
 }
 function trouver(){
   if (!fileTrouver.length || i === 0)
-    fileTrouver = melanger(A_TROUVER.filter(m => aSonNiveau(m, niveau))).slice(0, EN_SEANCE ? NB_SEANCE : 10);
+    fileTrouver = melanger(A_TROUVER.filter(m => aSonNiveau(m, niveau))).slice(0, EN_SEANCE ? NB_SEANCE : PP ? NB_PP : 10);
   if (i >= fileTrouver.length) return fin();
   const p = fileTrouver[i]; attenteToucher = p.mot;
   // Le mot n'est pas dans cette vue (die Wade sur Mark de face) : l'app
@@ -1234,7 +1247,7 @@ function toucher(id, pt){
     $("bas").innerHTML = `<div class="explication">${juste ? `<span lang="${LANG_CIBLE}">${MOTS_CIBLE.juste}</span> ` + traduit(demande) + "." + autres
         : traduit(demande) + " : " + T("cetait") + " " + (bonnes.length > 1 ? T("unDeCes") : T("ici"))
           + ". " + T("avaisTouche") + " " + traduit(p) + "."}</div>
-                          <button class="suite" id="suite" lang="${LANG_CIBLE}">${MOTS_CIBLE.suite}</button>`;
+                          <button class="suite" id="suite">${T("suite")}</button>`;
     $("suite").addEventListener("click", () => {
       i++; verrou = false; fermerGrosPlan(); effacer();
       if (etapeTrouve){ etapeTrouve = false; attenteToucher = null; poser(); } else trouver();
@@ -1294,7 +1307,7 @@ function repondre(q, opts, k){
   ex.className = "explication";
   ex.innerHTML = (juste ? `<span lang="${LANG_CIBLE}">${MOTS_CIBLE.juste}</span> ` : "") + q.n;
   const suite = document.createElement("button");
-  suite.className = "suite"; suite.lang = LANG_CIBLE; suite.textContent = MOTS_CIBLE.suite;
+  suite.className = "suite"; suite.removeAttribute("lang"); suite.textContent = T("suite");
   suite.addEventListener("click", () => { i++; verrou = false; poser(); });
   const sc = $("bas").querySelector(".score"); sc.innerHTML = compte(bons, faits);
   $("bas").insertBefore(ex, sc); $("bas").insertBefore(suite, sc);
@@ -1316,6 +1329,14 @@ function fin(){
     entete(T("sceneFinie"), bilan(), false);
     $("bas").innerHTML = `<button class="suite" id="encore">${T("versCartes")}</button>`;
     $("encore").addEventListener("click", () => envoyer("fini", {bons, faits}));
+    return;
+  }
+  if (PP){
+    entete(T("sceneFinie"), bilan(), false);
+    $("bas").innerHTML = (PP_DERNIER ? "" : `<button class="suite" id="jourSuivant">${T("jourSuivant")}</button>`)
+                       + `<button class="suite pp-accueil" id="versAccueil">${T("accueil")}</button>`;
+    if (!PP_DERNIER) $("jourSuivant").addEventListener("click", () => envoyer("fini", {bons, faits, suite: true}));
+    $("versAccueil").addEventListener("click", () => envoyer("fini", {bons, faits}));
     return;
   }
   entete(niveau + " · " + T("termine"), bilan(), niveau === "A1");
