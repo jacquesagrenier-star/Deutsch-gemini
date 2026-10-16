@@ -9104,3 +9104,6 @@ on voit ton niveau ? A1, A2, B1, B2, C1. Si je n'ai pas pris de cours, ca ne me 
   decroche parce qu'elle s'ennuie ». Pour le debutant, la premiere phrase arrive a la 3e carte,
   puis une toutes les 4 (au lieu de la 5e, puis toutes les 5) ; une case sans phrase assez simple
   reessaie a la carte suivante. Mesure sur un compte neuf : phrases aux cartes 3, 7, 11 et 15.
+- v823 : EN PRODUCTION POUR TOUS. Jacques : « publie tout, une fois pour l'ensemble des testeurs ;
+  je vais la reverifier demain, on fera des petites modifications si necessaire ». La seance
+  melangee (v810-v822) n'est plus un essai : tous les comptes, allemand et espagnol, 9 langues.

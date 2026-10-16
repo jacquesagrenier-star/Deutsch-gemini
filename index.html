@@ -7479,7 +7479,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v822</span>
+    <span class="subtitle-version">v823</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -34125,8 +34125,11 @@ const ESSAIS = {
     // EN ESSAI le 15 oct. 2026 (v810), admin seul. Jacques : « on voit seulement
     // des mots [...] qu'on commence a introduire des phrases, parce que sinon,
     // ca devient un peu ennuyant ». Voir insererCartesPhrases().
+    // EN PRODUCTION le 15 oct. 2026 au soir (v823) -- Jacques : « tu publieras
+    // l'ensemble pour tout le monde, pour tous les testeurs ; je vais la
+    // reverifier demain, on fera des petites modifications si necessaire ».
     phrases: {
-        etat: "admin",
+        etat: "tous",
         titre: "Des phrases dans la séance du jour",
         desc: "La séance mélangée et progressive : phrases (écouter, trou, ordre), grammaire dans l'ordre du cours, dictée, répéter à voix haute -- de plus en plus à mesure que les mots s'accumulent. Chaque exercice remplace une carte."
     }
@@ -39045,7 +39048,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 822;
+const APP_VERSION = 823;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
