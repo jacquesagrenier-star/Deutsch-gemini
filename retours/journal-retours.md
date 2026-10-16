@@ -9279,3 +9279,16 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   repris par Fable (detourer.py apprend des points sur/hors de l'objet et --zones ; un passage
   complet en 34 s au lieu de 15 min), fusionne avec le retrait de « plein » ; costume entier sans
   mur, manteau sans pantalon, pull entre les revers, pantalon, dame ; les lunettes en deux ellipses.
+
+## 16 octobre 2026 (soir) -- v839
+
+- Jacques : « pourquoi Etape 1 sur 8, partie 1 sur 2 ? ... pourquoi on changerait l'approche ? parce
+  que c'est un debutant ? je pense qu'on ne devrait pas ». Premiers pas n'est plus coupe en parties :
+  c'est le contenu de la seance du jour, a la taille de l'objectif (« 11 / 30 cartes »), du point ou
+  l'on s'est arrete ; le tableau ouvre chaque etape, la scene la ferme ; « Encore » continue.
+- Jacques : « c'etait toujours le meme genre d'exercice ; pas de repeter, pas de preposition ;
+  s'assurer que c'est varie ». Mesure : le cycle des types repartait de zero a chaque tour (les
+  tours courts n'avaient que grammaire / ecoute / ordre ; « repeter », 7e, presque jamais) et la
+  grammaire restait sur une seule serie. Le cycle continue maintenant d'un tour a l'autre ; la
+  grammaire tire dans 3 series + celle des prepositions du niveau (Wo/wohin en A1...). Remesure :
+  8 tours courts -> gram 5, ecoute 3, ordre 2, trou 2, dictee 2, parler 2.
