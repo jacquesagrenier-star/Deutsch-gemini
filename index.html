@@ -7545,7 +7545,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v840</span>
+    <span class="subtitle-version">v841</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39538,7 +39538,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 840;
+const APP_VERSION = 841;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -44006,7 +44006,9 @@ function montrerCartePhrase(item){
                         dictee: "cp_q_dictee", dictee_mot: "cp_q_dictee", parler: "cp_q_parler" };
     const type = creer("div", "cp-type");
     type.appendChild(creer("b", item.pp ? "cp-pp" : "", item.pp ? "🌱 " + t("pp_badge") : t("cp_type")));
-    const question = item.pp ? (item.forme === "pp_tableau" ? "pp_q_tableau" : "pp_q_choix") : (QUESTIONS[item.forme] || "cp_q_ecoute");
+    const question = (item.pp && item.forme === "pp_tableau") ? "pp_q_tableau"
+                   : (item.pp && item.forme === "ecoute") ? "pp_q_choix"
+                   : (QUESTIONS[item.forme] || "cp_q_ecoute");
     if(["pp_fin", "pp_scene", "scene_arret"].indexOf(item.forme) < 0) type.appendChild(document.createTextNode(t(question)));
     if(item.forme !== "scene_arret") el.appendChild(type);
     const retour = creer("div", "cp-retour hidden");
@@ -44902,8 +44904,10 @@ function sequencePremiersPas(){
     jours.forEach((jour, d) => {
         seq.push({ mode: "phrase", forme: "pp_tableau", pp: true, cible: null, themeId: theme + "_tableau", index: d,
                    tableau: jour.tableau, jourPP: d, phrase: null, word: "" });
+        // v841 : les phrases tournent -- ecouter, construire, repeter (Jacques :
+        // « j'ai juste les cartes et ecouter avec trois choix, pas de repeter »).
         const phrases = (jour.phrases || []).map((e, i) => ({
-            mode: "phrase", forme: "ecoute", pp: true, cible: null, themeId: theme + "_phrases", index: d * 20 + i, jourPP: d,
+            mode: "phrase", forme: ["ecoute", "ordre", "parler"][i % 3], pp: true, cible: null, themeId: theme + "_phrases", index: d * 20 + i, jourPP: d,
             phrase: { de: e.p, sens: sensPremiersPas(e.s), mots: e.p.split(" ") },
             leurres: (e.l || []).map(sensPremiersPas), word: e.p }));
         toutes.filter(c => c.ppJour === d).forEach((c, i) => {

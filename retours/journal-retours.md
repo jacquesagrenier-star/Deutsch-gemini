@@ -9298,3 +9298,6 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   allemand (50 questions de l'etude) n'etait jamais dans la seance. Maintenant la serie de
   conjugaison du niveau est toujours dans le tirage : de A1 present, A2 parfait/preterit, B1-B2
   Konjunktiv II ; es A1 present, A2 preterito/perfecto/futuro/imperativo, B1-B2 condicional/subjuntivo.
+- v841 : en Premiers pas, « j'ai juste les cartes et ecouter avec trois choix ; pas de repeter ».
+  Les phrases de chaque etape tournent maintenant entre ecouter (3 sens), construire la phrase et
+  repeter a voix haute (rond-micro et verdict) ; la consigne suit l'exercice.
