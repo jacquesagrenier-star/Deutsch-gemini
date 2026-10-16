@@ -9085,3 +9085,7 @@ on voit ton niveau ? A1, A2, B1, B2, C1. Si je n'ai pas pris de cours, ca ne me 
 - v818 : Jacques, en A1 : « ca a fonctionne avec la variete au debut, mais apres, c'est juste des
   mots avec des flashcards ». Les tours de retour de la seance (mots revenus apres une premiere
   reussite ou un « Encore ») repartaient en cartes seules ; ils sont maintenant melanges aussi.
+- v819 : Jacques : « n'oublie pas de mettre les petits confettis avec le son, pour tous les
+  exercices qui sont reussis ». Chaque bonne reponse de la seance melangee (phrases, grammaire,
+  dictee) fait la meme fete qu'ailleurs (celebrateMastery : confettis et son, ou la grande fete de
+  l'objectif du jour) ; la phrase allemande est lue juste apres le son.

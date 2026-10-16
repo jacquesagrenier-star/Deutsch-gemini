@@ -7479,7 +7479,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v818</span>
+    <span class="subtitle-version">v819</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39045,7 +39045,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 818;
+const APP_VERSION = 819;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43205,7 +43205,11 @@ function montrerCartePhrase(item){
     const conclure = (juste, texteJuste, explication) => {
         if(fait.repondu) return;
         fait.repondu = true;
-        repondrePhrase(item, juste);
+        const palierPhrase = repondrePhrase(item, juste);
+        // v819 : LA MEME FETE QU'AILLEURS. Jacques : « les petits confettis avec
+        // le son, pour tous les exercices qui sont reussis ». celebrateMastery()
+        // choisit entre les confettis et la grande fete de l'objectif du jour.
+        if(juste){ try{ celebrateMastery(palierPhrase || 0, false); }catch(e){} }
         retour.classList.remove("hidden");
         retour.classList.add(juste ? "bon" : "faux");
         const ref = texteJuste || (item.phrase ? item.phrase.de : "");
@@ -43216,7 +43220,8 @@ function montrerCartePhrase(item){
             retour.appendChild(ex);
         }
         suite.classList.remove("hidden");
-        if(item.phrase) direPhrase(item);
+        // La phrase allemande apres le son de reussite, pas par-dessus.
+        if(item.phrase) setTimeout(() => { if(retour.isConnected) direPhrase(item); }, juste ? 700 : 0);
     };
     const ecouter = creer("button", "cp-ecouter", "🔊 " + t("cp_ecouter"));
     ecouter.type = "button";
@@ -43474,14 +43479,16 @@ function montrerCartePhrase(item){
 // une erreur le fait revenir dans deux minutes, une reussite ne l'avance que
 // s'il etait du (ou neuf). `juste === null` (l'oral, sans note) et la grammaire
 // (pas de mot vise) ne comptent que dans l'objectif du jour.
+// Renvoie ce que renvoie recordDailyActivity() : le palier de l'objectif du jour
+// tout juste franchi (0 sinon), pour que la fete soit la meme qu'ailleurs.
 function repondrePhrase(item, juste){
     try{
         const it = item.cible;
         if(item.forme === "gram" && juste !== null) noterGrammaireSeance(item.jeu, juste);
-        if(!it || juste === null){ recordDailyActivity(); return; }
+        if(!it || juste === null) return recordDailyActivity();
         const st = getWordState(it.themeId, it.index);
         const neuf = estNeuf(st);
-        if(juste && !neuf && (st.due || 0) > Date.now()){ recordDailyActivity(); return; }
+        if(juste && !neuf && (st.due || 0) > Date.now()) return recordDailyActivity();
         if(neuf) noterMotNeuf();
         let maitrise = false;
         if(!juste){
@@ -43495,9 +43502,10 @@ function repondrePhrase(item, juste){
             else programmerEcheance(st, 1440);
         }
         setWordState(it.themeId, it.index, st);
-        recordDailyActivity();
+        const palier = recordDailyActivity();
         if(maitrise) logMasteryEvent();
-    }catch(e){}
+        return palier;
+    }catch(e){ return 0; }
 }
 
 async function ouvrirSeanceDuJour(sansScene){
