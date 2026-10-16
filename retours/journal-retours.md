@@ -9089,3 +9089,9 @@ on voit ton niveau ? A1, A2, B1, B2, C1. Si je n'ai pas pris de cours, ca ne me 
   exercices qui sont reussis ». Chaque bonne reponse de la seance melangee (phrases, grammaire,
   dictee) fait la meme fete qu'ailleurs (celebrateMastery : confettis et son, ou la grande fete de
   l'objectif du jour) ; la phrase allemande est lue juste apres le son.
+- v820 : Jacques : « on dit d'enregistrer, mais on ne peut pas le reecouter, il n'y a rien qui se
+  passe ». L'oral de la seance fait maintenant comme le mode Parler, qui marche sur iPhone : un etat
+  a chaque etape (« J'ecoute... », « C'est enregistre »), le vrai type du fichier (l'iPhone enregistre
+  en MP4, etiquete « webm » il n'etait pas relu), et un signe de reussite (confettis).
+  Et : « mettre quelques mots qui ne fitent pas dans la phrase », comme Duolingo -- l'exercice
+  d'ordre a un ou deux intrus (un article voisin, une autre forme du verbe, ou un mot connu).

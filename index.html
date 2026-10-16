@@ -7479,7 +7479,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v819</span>
+    <span class="subtitle-version">v820</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39045,7 +39045,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 819;
+const APP_VERSION = 820;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43140,6 +43140,51 @@ function leurresPhrase(item, n){
     return out;
 }
 
+// LES INTRUS DE L'ORDRE (v820). Jacques : « on a seulement les mots qui sont
+// dans la phrase ; faire comme Duolingo et mettre quelques mots qui ne fitent
+// pas ». Sans eux, l'exercice se reussit en tatonnant sur l'ordre. Un ou deux
+// intrus choisis pour qu'il faille SAVOIR : un article voisin (den / dem,
+// ein / eine), une autre forme du verbe vise (hast / habe), sinon un mot connu
+// d'une autre phrase. Jamais un mot deja dans la phrase.
+const FAMILLES_ARTICLES = {
+    de: [["der", "die", "das", "den", "dem", "des"], ["ein", "eine", "einen", "einem", "einer"],
+         ["mein", "meine", "meinen", "meinem", "meiner"], ["kein", "keine", "keinen", "keinem", "keiner"]],
+    es: [["el", "la", "los", "las"], ["un", "una", "unos", "unas"], ["mi", "mis"], ["este", "esta", "estos", "estas"]]
+};
+function intrusOrdre(item){
+    const mots = item.phrase.mots;
+    const dans = new Set(mots.map(nuPhrase));
+    const voulu = mots.length <= 4 ? 1 : 2;
+    const out = [];
+    const ajouter = (m, modele) => {
+        if(out.length >= voulu || !m) return;
+        let x = m;
+        // La majuscule suit le mot qu'il imite (« Der » en tete de phrase).
+        if(modele && /^[A-ZÄÖÜÁÉÍÓÚÑ]/.test(modele)) x = x.charAt(0).toUpperCase() + x.slice(1);
+        if(dans.has(nuPhrase(x)) || out.some(o => nuPhrase(o) === nuPhrase(x))) return;
+        out.push(x);
+    };
+    const familles = FAMILLES_ARTICLES[LANGUE_APPRISE === "es" ? "es" : "de"];
+    melangerPhrase(mots).forEach(m => {
+        const n = nuPhrase(m);
+        const f = familles.find(fa => fa.indexOf(n) >= 0);
+        if(f) ajouter(melangerPhrase(f.filter(a => a !== n))[0], m.replace(/[.,!?;:]+$/, ""));
+    });
+    const c = item.cible;
+    if(c && c.mode === "verben") melangerPhrase(formesPresent(c.word)).forEach(f => ajouter(f));
+    if(out.length < voulu){
+        const autres = (currentCardsFull || []).filter(it => MODES_PHRASES.indexOf(it.mode) >= 0);
+        melangerPhrase(autres).slice(0, 40).forEach(it => {
+            const p = phraseDeCarte(it, 12);
+            if(p) melangerPhrase(p.mots).slice(0, 2).forEach(m => {
+                const propre = m.replace(/[.,!?;:¿¡]+/g, "");
+                if(propre.length > 2) ajouter(propre);
+            });
+        });
+    }
+    return out.slice(0, voulu);
+}
+
 function classeGenrePhrase(g){
     const n = String(g || "").toLowerCase();
     if(n === "die" || n === "la") return "rg-die";
@@ -43309,8 +43354,12 @@ function montrerCartePhrase(item){
         effacer.type = "button";
         let ordre = melangerPhrase(item.phrase.mots.map((m, i) => ({ m: m, i: i })));
         if(ordre.every((x, i) => x.i === i) && ordre.length > 1) ordre = ordre.slice(1).concat(ordre.slice(0, 1));
+        // Les intrus se melangent aux vrais mots (v820) ; on juge quand la ligne
+        // a autant de mots que la phrase, la banque peut garder les intrus.
+        if(!item.intrus) item.intrus = intrusOrdre(item);
+        ordre = melangerPhrase(ordre.concat(item.intrus.map(m => ({ m: m, i: -1 }))));
         const verifier = () => {
-            if(banque.children.length) return;
+            if(ligne.children.length < item.phrase.mots.length) return;
             const dit = Array.from(ligne.children).map(x => x.textContent).join(" ");
             const juste = dit === item.phrase.de;
             ligne.classList.add(juste ? "bon" : "faux");
@@ -43425,46 +43474,67 @@ function montrerCartePhrase(item){
         enreg.type = "button";
         const relire = creer("button", "hidden", "▶ " + t("cp_reecouter"));
         relire.type = "button";
-        const note = creer("p", "cp-oral-note hidden", t("cp_micro_refuse"));
+        // ⚠️ COMME LE MODE PARLER, QUI MARCHE SUR IPHONE (v820). Jacques : « on
+        // dit d'enregistrer, mais on ne peut pas le reecouter, il n'y a rien qui
+        // se passe ». Deux ecarts avec parlerBasculerEnregistrement() : aucun etat
+        // n'etait affiche, et le fichier etait etiquete « audio/webm » quand
+        // l'iPhone enregistre en MP4 -- Safari refusait alors de le relire, sans
+        // un mot. On reprend son etiquette (celle du premier morceau), ses
+        // messages, et une fois l'essai enregistre : le signe de reussite.
+        const etatOral = creer("p", "cp-oral-note");
+        const dire = cle => { etatOral.textContent = t(cle); etatOral.classList.remove("hidden"); };
         enreg.addEventListener("click", async () => {
             if(oralPhrase && oralPhrase.rec && oralPhrase.rec.state === "recording"){
-                oralPhrase.rec.stop();
+                try{ oralPhrase.rec.stop(); }catch(e){}
                 return;
             }
-            try{
-                if(!navigator.mediaDevices || !window.MediaRecorder) throw new Error("micro");
-                const flux = await navigator.mediaDevices.getUserMedia({ audio: true });
-                const morceaux = [];
-                const rec = new MediaRecorder(flux);
-                arreterOralPhrase();
-                oralPhrase = { rec: rec, flux: flux, url: null };
-                rec.ondataavailable = e => { if(e.data && e.data.size) morceaux.push(e.data); };
-                rec.onstop = () => {
-                    try{ flux.getTracks().forEach(x => x.stop()); }catch(e){}
-                    if(!oralPhrase || oralPhrase.rec !== rec) return;
-                    oralPhrase.url = URL.createObjectURL(new Blob(morceaux, { type: rec.mimeType || "audio/webm" }));
-                    enreg.classList.remove("en-cours");
-                    enreg.textContent = "🎙 " + t("cp_enregistrer");
-                    relire.classList.remove("hidden");
-                    suite.classList.remove("hidden");
-                };
-                rec.start();
-                enreg.classList.add("en-cours");
-                enreg.textContent = "⏹ " + t("cp_arreter");
-            }catch(e){
-                note.classList.remove("hidden");
-                suite.classList.remove("hidden");
+            if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined"){
+                dire("parler_sans_micro");
+                return;
             }
+            let flux = null;
+            try{ flux = await navigator.mediaDevices.getUserMedia({ audio: true }); }
+            catch(e){ dire("parler_micro_refuse"); return; }
+            let rec = null;
+            try{ rec = new MediaRecorder(flux); }
+            catch(e){ try{ flux.getTracks().forEach(x => x.stop()); }catch(e2){} dire("parler_sans_micro"); return; }
+            arreterOralPhrase();
+            const morceaux = [];
+            oralPhrase = { rec: rec, flux: flux, url: null };
+            relire.classList.add("hidden");
+            rec.ondataavailable = e => { if(e.data && e.data.size) morceaux.push(e.data); };
+            rec.onstop = () => {
+                try{ flux.getTracks().forEach(x => x.stop()); }catch(e){}
+                enreg.classList.remove("en-cours");
+                enreg.textContent = "🎙 " + t("cp_enregistrer");
+                if(!oralPhrase || oralPhrase.rec !== rec) return;
+                if(!morceaux.length){ dire("parler_rien_entendu"); return; }
+                oralPhrase.url = URL.createObjectURL(new Blob(morceaux, { type: morceaux[0].type || rec.mimeType || "audio/mp4" }));
+                relire.classList.remove("hidden");
+                etatOral.textContent = "✓ " + t("cp_bravo") + " " + t("parler_pret");
+                etatOral.classList.remove("hidden");
+                try{ launchConfetti(); }catch(e){}
+            };
+            rec.start();
+            enreg.classList.add("en-cours");
+            enreg.textContent = "⏹ " + t("cp_arreter");
+            dire("parler_en_cours");
         });
+        let lecteurOral = null;
         relire.addEventListener("click", () => {
             if(!oralPhrase || !oralPhrase.url) return;
-            try{ new Audio(oralPhrase.url).play(); }catch(e){}
+            try{ arreterAudioPregenere(); }catch(e){}
+            if(!lecteurOral){ lecteurOral = new Audio(); lecteurOral.preload = "none"; }
+            lecteurOral.src = oralPhrase.url;
+            const p = lecteurOral.play();
+            if(p && p.catch) p.catch(() => {});
         });
         oral.appendChild(modele);
         oral.appendChild(enreg);
         oral.appendChild(relire);
         el.appendChild(oral);
-        el.appendChild(note);
+        etatOral.classList.add("hidden");
+        el.appendChild(etatOral);
         suite.classList.remove("hidden");
         suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
         direPhrase(item);
