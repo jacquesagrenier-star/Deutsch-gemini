@@ -9125,3 +9125,21 @@ mesure si la prononciation est assez bonne ».
 - Le micro dans les apps : « Cet appareil ne permet pas l'enregistrement ici ». Les apps iPhone et
   Android ne declaraient pas le micro (NSMicrophoneUsageDescription, RECORD_AUDIO) : ajoutes dans
   wortando-ios (commit 6e35571, pousse) ; il faut une nouvelle compilation des deux apps.
+
+## 16 octobre 2026 -- « Construis la phrase » tourne en rond (v826)
+
+Jacques : « a chaque fois il me dit de recommencer ... c'est tres frustrant, j'y arrive pas, puis je
+tourne en rond » (seance du jour, carte « Construis la phrase », tuiles ; « ca le fait sur tout ce
+type d'exercice » ; « je pensais que c'etait regle »).
+- La cause : un mot rate revient deux minutes plus tard dans les tours de retour, et la seance lui
+  refabriquait LA MEME phrase. Ratee de nouveau, revenue de nouveau. Reproduit au palier avance :
+  1 phrase identique refaite sans garde, 0 avec.
+- Une phrase posee ne revient plus dans la meme seance (le mot revient en carte simple).
+- Le bouton « Recommencer » (vider la ligne) se lisait comme un ordre : il s'appelle « Effacer ».
+- La dictee souligne les mots faux sous « Tu as ecrit : » et pardonne une seule faute de frappe.
+- Puis : « je ne suis meme pas capable de sortir de cette phrase-la ». La VRAIE impasse : la carte
+  n'avait pas de bouton Verifier, elle ne jugeait qu'une ligne complete. Un mot oublie (pris pour un
+  intrus), et rien ne se passait ; le seul bouton vidait la ligne. Ajout d'un bouton VERIFIER : il dit
+  d'abord « Il manque encore un mot », puis au second toucher donne la bonne reponse et CONTINUER.
+  (Le meme defaut, un `return` muet, avait deja ete corrige le 26 aout dans l'exercice « Construire
+  la phrase » -- v217 ; la carte de seance l'a reintroduit.)

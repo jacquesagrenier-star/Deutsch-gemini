@@ -6378,6 +6378,8 @@ body[data-theme="dark"] .cp-retour.bon{color:#7fd3a5;} body[data-theme="dark"] .
 .cp-saisie{width:100%; font-size:18px; padding:12px; border-radius:12px; border:1.5px solid #e2d6c0; margin-top:12px; background:#fff; color:#1C2430;}
 body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-color:#3a4558;}
 .cp-indice{color:#8a5a0e; font-size:14px; margin-top:4px;}
+.cp-manque{margin:8px 0 0; text-align:center; font-weight:700; color:#9b5a12;}
+body[data-theme="dark"] .cp-manque{color:#f0c27a;}
 .cp-faute{text-decoration:underline wavy; text-decoration-thickness:1.5px; text-underline-offset:3px; font-weight:700;}
 .cp-explication{margin-top:8px; font-weight:400; font-size:14.5px;}
 .cp-oral{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px;}
@@ -43503,8 +43505,23 @@ function montrerCartePhrase(item){
         // a autant de mots que la phrase, la banque peut garder les intrus.
         if(!item.intrus) item.intrus = intrusOrdre(item);
         ordre = melangerPhrase(ordre.concat(item.intrus.map(m => ({ m: m, i: -1 }))));
-        const verifier = () => {
-            if(ligne.children.length < item.phrase.mots.length) return;
+        // v826 : UNE SORTIE. On ne jugeait qu'une ligne complete, sans bouton
+        // Verifier : un mot oublie, et rien ne se passait ; le seul bouton
+        // (« Recommencer ») vidait tout. Jacques : « il me laisse pas sortir ».
+        // Verifier dit d'abord ce qui manque ; au second toucher, la reponse.
+        const manque = creer("p", "cp-manque hidden");
+        let relances = 0;
+        const verifier = (force) => {
+            const reste = item.phrase.mots.length - ligne.children.length;
+            if(reste > 0 && !force) return;
+            if(reste > 0 && relances === 0){
+                relances++;
+                manque.textContent = reste === 1 ? t("chunks_manque_un") : tf("chunks_manque_n", { n: reste });
+                manque.classList.remove("hidden");
+                return;
+            }
+            manque.classList.add("hidden");
+            verif.classList.add("hidden");
             const dit = Array.from(ligne.children).map(x => x.textContent).join(" ");
             const juste = dit === item.phrase.de;
             ligne.classList.add(juste ? "bon" : "faux");
@@ -43519,17 +43536,22 @@ function montrerCartePhrase(item){
                 if(fait.repondu) return;
                 if(tuile.parentNode === banque) ligne.appendChild(tuile);
                 else banque.appendChild(tuile);
-                verifier();
+                manque.classList.add("hidden");
+                verifier(false);
             });
             banque.appendChild(tuile);
         });
         el.appendChild(ligne);
+        el.appendChild(manque);
         el.appendChild(banque);
         effacer.addEventListener("click", () => {
             if(fait.repondu) return;
             Array.from(ligne.children).forEach(x => banque.appendChild(x));
+            manque.classList.add("hidden");
         });
+        const verif = boutonVerifier(() => { if(!fait.repondu) verifier(true); });
         actions.appendChild(effacer);
+        actions.appendChild(verif);
     } else if(item.forme === "gram"){
         // Une question d'une serie du cours, comme dans l'ecran d'exercices :
         // les memes reponses acceptees, la meme explication.
