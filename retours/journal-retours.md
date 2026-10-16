@@ -9181,3 +9181,13 @@ premiere phrase a la 4e carte puis toutes les 3, faite seulement de mots deja vu
   (.claude/maquette-premiers-pas-voyage.html) : un jour par situation (aeroport, cafe, chemin,
   hotel, pharmacie), chaque jour le petit tableau, les vraies flashcards, des phrases, puis la scene
   qui correspond. Le reordonnancement du A1 par themes de voyage : a decider apres l'essai.
+- v829 : CABLE apres « oui, cable Premiers pas par situations de voyage » (essai, admin seul), a la
+  place de la v828. Cinq jours (arrivee, cafe, chemin, hotel, pharmacie), allemand et espagnol ;
+  chaque jour : le tableau (ser / querer / estar / tener / questions ; sein / moechten / wo ist /
+  haben / W-Fragen), 8 vraies flashcards (Je savais / Encore, repetition espacee, revision ensuite
+  dans la seance du jour), 3 phrases a choix, puis la scene correspondante ; le jour 5, la fete et le
+  A1. La porte de l'accueil montre « Jour 2 sur 5 » et la situation sur l'image de la scene. Voix du
+  telephone pour ces textes (pas encore de fichiers), sens en francais et en anglais.
+- Jacques, en meme temps : le A1 doit continuer dans le meme esprit (phrases de voyage, resto,
+  directions) -- « la clientele qui se prepare a voyager en Allemagne ou en Espagne, tout en ayant
+  la clientele qui veut progresser jusqu'au C1 ». A proposer apres l'essai.

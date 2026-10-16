@@ -6388,6 +6388,21 @@ body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-col
 .cp-fete-pp p{color:#576177; line-height:1.5; margin:0 0 6px;}
 body[data-theme="dark"] .cp-type b.cp-pp{background:rgba(127,211,165,.16); color:#7fd3a5;}
 body[data-theme="dark"] .cp-fete-pp p{color:#c6cdd8;}
+.cp-tableau-titre{font-size:20px; font-weight:900; margin:10px 0 6px;}
+.cp-tableau{display:flex; flex-direction:column; gap:6px;}
+.cp-tableau-ligne{display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:#fff; border:1.5px solid #e6dfd3; border-radius:12px; padding:10px 12px; font:inherit; color:inherit; cursor:pointer;}
+.cp-tl-sens{flex:1 1 45%; color:#576177; font-size:14.5px;}
+.cp-tl-forme{flex:1 1 45%; font-size:17px;}
+.cp-tl-son{flex:0 0 auto;}
+.cp-astuce{margin-top:10px; background:#fff6e6; border-radius:10px; padding:9px 11px; font-size:14px; line-height:1.45; color:#5b4a2c;}
+.cp-scene-pp{height:190px; border-radius:14px; background-size:cover; background-position:center; margin:6px 0 10px;}
+.cp-jour-reussi{display:inline-block; background:#d9f0e6; color:#0F6E56; font-weight:800; font-size:13px; border-radius:20px; padding:3px 10px;}
+.cp-scene-titre{font-size:19px; margin:8px 0 4px;}
+.seance-porte.porte-pp{background-size:cover; background-position:center;}
+.seance-porte.porte-pp .seance-porte-val{color:#fff;}
+body[data-theme="dark"] .cp-tableau-ligne{background:#232a34; border-color:#2c333d;}
+body[data-theme="dark"] .cp-tl-sens{color:#b9c1cd;}
+body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
 .cp-faute{text-decoration:underline wavy; text-decoration-thickness:1.5px; text-underline-offset:3px; font-weight:700;}
 .cp-explication{margin-top:8px; font-weight:400; font-size:14.5px;}
 .cp-oral{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px;}
@@ -7498,7 +7513,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v828</span>
+    <span class="subtitle-version">v829</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10828,14 +10843,19 @@ const I18N = {
         flash_end_a_revoir_un: "1 phrase à revoir demain",
         flash_end_a_revoir_n: "{n} phrases à revoir demain",
         pp_badge: "Premiers pas",
-        pp_q_mot: "Écoute et retiens",
         pp_q_choix: "Écoute, puis touche ce que ça veut dire",
-        pp_niveau_clair: "Premiers pas : tu ne connais presque aucun mot ? On commence par je, tu, il… et les premières phrases.",
+        pp_niveau_clair: "Premiers pas : cinq jours pour te débrouiller en voyage, même en partant de zéro.",
         pp_porte_titre: "Premiers mots",
-        pp_porte_unite: "mots",
-        pp_fin_titre: "Tes {n} premiers mots !",
-        pp_fin_texte: "Tu sais dire je, tu, il, nous, vous, ils, avec avoir et être, saluer et dire merci. Tu passes au niveau A1.",
-        pp_fin_bouton: "Continuer en A1",
+        pp_fin_titre: "Tes cinq jours de voyage !",
+        pp_fin_texte: "Tu sais te présenter, commander, demander ton chemin, réserver et te débrouiller quand tu ne comprends pas. Tu passes au niveau A1.",
+        pp_fin_bouton: "Continuer",
+        pp_q_tableau: "Écoute chaque ligne. Les cartes viennent après.",
+        pp_porte_jour: "Jour {n} sur {t}",
+        pp_jour_reussi: "Jour {n} réussi",
+        pp_scene_titre: "Entre dans la scène",
+        pp_scene_texte: "Touche les objets pour entendre leur nom. Tu en connais déjà quelques-uns.",
+        pp_scene_bouton: "Entrer dans la scène",
+        pp_plus_tard: "Plus tard",
         cp_q_gram: "Complète la phrase",
         cp_q_dictee: "Écris ce que tu entends",
         cp_q_parler: "Répète à voix haute",
@@ -12034,14 +12054,19 @@ const I18N = {
         flash_end_a_revoir_un: "1 sentence to review tomorrow",
         flash_end_a_revoir_n: "{n} sentences to review tomorrow",
         pp_badge: "First steps",
-        pp_q_mot: "Listen and remember",
         pp_q_choix: "Listen, then tap what it means",
-        pp_niveau_clair: "First steps: hardly know a word yet? We start with I, you, he… and your first sentences.",
+        pp_niveau_clair: "First steps: five days to get by on a trip, even starting from zero.",
         pp_porte_titre: "First words",
-        pp_porte_unite: "words",
-        pp_fin_titre: "Your first {n} words!",
-        pp_fin_texte: "You can say I, you, he, we, you, they, with “to have” and “to be”, say hello and thank you. You're moving up to level A1.",
-        pp_fin_bouton: "Continue in A1",
+        pp_fin_titre: "Your five travel days!",
+        pp_fin_texte: "You can introduce yourself, order, ask the way, book a room and cope when you don't understand. You're moving up to level A1.",
+        pp_fin_bouton: "Continue",
+        pp_q_tableau: "Listen to each line. The cards come next.",
+        pp_porte_jour: "Day {n} of {t}",
+        pp_jour_reussi: "Day {n} done",
+        pp_scene_titre: "Step into the scene",
+        pp_scene_texte: "Tap the objects to hear their names. You already know a few.",
+        pp_scene_bouton: "Enter the scene",
+        pp_plus_tard: "Later",
         cp_q_gram: "Complete the sentence",
         cp_q_dictee: "Write what you hear",
         cp_q_parler: "Say it out loud",
@@ -13242,14 +13267,19 @@ const I18N = {
         flash_end_a_revoir_un: "Yarın tekrar edilecek 1 cümle",
         flash_end_a_revoir_n: "Yarın tekrar edilecek {n} cümle",
         pp_badge: "İlk adımlar",
-        pp_q_mot: "Dinle ve aklında tut",
         pp_q_choix: "Dinle, sonra ne anlama geldiğine dokun",
-        pp_niveau_clair: "İlk adımlar: Neredeyse hiç kelime bilmiyor musun? Ben, sen, o… ve ilk cümlelerle başlıyoruz.",
+        pp_niveau_clair: "İlk adımlar: Sıfırdan başlasan bile seyahatte idare etmek için beş gün.",
         pp_porte_titre: "İlk kelimeler",
-        pp_porte_unite: "kelime",
-        pp_fin_titre: "İlk {n} kelimen!",
-        pp_fin_texte: "Ben, sen, o, biz, siz, onlar demeyi; sahip olmak ve olmak fiillerini; selam vermeyi ve teşekkür etmeyi biliyorsun. A1 seviyesine geçiyorsun.",
-        pp_fin_bouton: "A1 ile devam et",
+        pp_fin_titre: "Beş günlük seyahatin tamam!",
+        pp_fin_texte: "Kendini tanıtmayı, sipariş vermeyi, yol sormayı, rezervasyon yapmayı ve anlamadığında idare etmeyi biliyorsun. A1 seviyesine geçiyorsun.",
+        pp_fin_bouton: "Devam et",
+        pp_q_tableau: "Her satırı dinle. Kartlar sonra geliyor.",
+        pp_porte_jour: "Gün {n} / {t}",
+        pp_jour_reussi: "Gün {n} tamam",
+        pp_scene_titre: "Sahneye gir",
+        pp_scene_texte: "Adlarını duymak için nesnelere dokun. Bazılarını zaten biliyorsun.",
+        pp_scene_bouton: "Sahneye gir",
+        pp_plus_tard: "Sonra",
         cp_q_gram: "Cümleyi tamamla",
         cp_q_dictee: "Duyduğunu yaz",
         cp_q_parler: "Yüksek sesle tekrarla",
@@ -14787,14 +14817,19 @@ const I18N = {
         flash_end_a_revoir_un: "1 речення на повторення завтра",
         flash_end_a_revoir_n: "Речень на повторення завтра: {n}",
         pp_badge: "Перші кроки",
-        pp_q_mot: "Послухай і запам'ятай",
         pp_q_choix: "Послухай, а потім торкнися значення",
-        pp_niveau_clair: "Перші кроки: майже не знаєш слів? Почнемо з «я», «ти», «він»… і перших речень.",
+        pp_niveau_clair: "Перші кроки: п'ять днів, щоб дати собі раду в подорожі, навіть з нуля.",
         pp_porte_titre: "Перші слова",
-        pp_porte_unite: "слів",
-        pp_fin_titre: "Твої перші {n} слів!",
-        pp_fin_texte: "Ти вже вмієш сказати я, ти, він, ми, ви, вони, з дієсловами «мати» і «бути», привітатися й подякувати. Переходиш на рівень A1.",
-        pp_fin_bouton: "Продовжити з A1",
+        pp_fin_titre: "Твої п'ять днів подорожі!",
+        pp_fin_texte: "Ти вмієш представитися, замовити, спитати дорогу, забронювати й дати собі раду, коли не розумієш. Переходиш на рівень A1.",
+        pp_fin_bouton: "Продовжити",
+        pp_q_tableau: "Послухай кожен рядок. Картки будуть далі.",
+        pp_porte_jour: "День {n} з {t}",
+        pp_jour_reussi: "День {n} пройдено",
+        pp_scene_titre: "Зайди в сцену",
+        pp_scene_texte: "Торкайся предметів, щоб почути їхні назви. Деякі ти вже знаєш.",
+        pp_scene_bouton: "Увійти в сцену",
+        pp_plus_tard: "Пізніше",
         cp_q_gram: "Доповни речення",
         cp_q_dictee: "Напиши, що чуєш",
         cp_q_parler: "Повтори вголос",
@@ -16695,14 +16730,19 @@ const I18N = {
         flash_end_a_revoir_un: "۱ جمله برای مرور فردا",
         flash_end_a_revoir_n: "{n} جمله برای مرور فردا",
         pp_badge: "گام‌های نخست",
-        pp_q_mot: "گوش کن و به خاطر بسپار",
         pp_q_choix: "گوش کن، بعد معنی‌اش را لمس کن",
-        pp_niveau_clair: "گام‌های نخست: تقریباً هیچ واژه‌ای نمی‌دانی؟ با من، تو، او… و نخستین جمله‌ها شروع می‌کنیم.",
+        pp_niveau_clair: "گام‌های نخست: پنج روز برای از پسِ سفر برآمدن، حتی از صفر.",
         pp_porte_titre: "نخستین واژه‌ها",
-        pp_porte_unite: "واژه",
-        pp_fin_titre: "{n} واژهٔ نخستِ تو!",
-        pp_fin_texte: "می‌توانی بگویی من، تو، او، ما، شما، آن‌ها، با «داشتن» و «بودن»، سلام کنی و تشکر کنی. به سطح A1 می‌روی.",
-        pp_fin_bouton: "ادامه در A1",
+        pp_fin_titre: "پنج روزِ سفرت تمام شد!",
+        pp_fin_texte: "می‌توانی خودت را معرفی کنی، سفارش بدهی، راه را بپرسی، رزرو کنی و وقتی نمی‌فهمی از پسش بربیایی. به سطح A1 می‌روی.",
+        pp_fin_bouton: "ادامه",
+        pp_q_tableau: "هر سطر را گوش کن. کارت‌ها بعد می‌آیند.",
+        pp_porte_jour: "روز {n} از {t}",
+        pp_jour_reussi: "روز {n} انجام شد",
+        pp_scene_titre: "وارد صحنه شو",
+        pp_scene_texte: "اشیا را لمس کن تا نامشان را بشنوی. چندتایشان را از قبل می‌دانی.",
+        pp_scene_bouton: "ورود به صحنه",
+        pp_plus_tard: "بعداً",
         cp_q_gram: "جمله را کامل کن",
         cp_q_dictee: "آنچه می‌شنوی را بنویس",
         cp_q_parler: "بلند تکرار کن",
@@ -18034,14 +18074,19 @@ const I18N = {
         flash_end_a_revoir_un: "جملة واحدة للمراجعة غدًا",
         flash_end_a_revoir_n: "جمل للمراجعة غدًا: {n}",
         pp_badge: "الخطوات الأولى",
-        pp_q_mot: "استمع واحفظ",
         pp_q_choix: "استمع، ثم المس ما يعنيه",
-        pp_niveau_clair: "الخطوات الأولى: لا تعرف أي كلمة تقريبًا؟ نبدأ بـ«أنا» و«أنت» و«هو»… وبأولى الجمل.",
+        pp_niveau_clair: "الخطوات الأولى: خمسة أيام لتتدبّر أمرك في السفر، حتى لو بدأت من الصفر.",
         pp_porte_titre: "الكلمات الأولى",
-        pp_porte_unite: "كلمة",
-        pp_fin_titre: "كلماتك الـ{n} الأولى!",
-        pp_fin_texte: "صرت تعرف أن تقول أنا، أنت، هو، نحن، أنتم، هم، مع فعلَي «يملك» و«يكون»، وأن تحيّي وتشكر. أنت تنتقل إلى المستوى A1.",
-        pp_fin_bouton: "المتابعة في A1",
+        pp_fin_titre: "أيام سفرك الخمسة!",
+        pp_fin_texte: "صرت تعرف أن تقدّم نفسك، وتطلب، وتسأل عن الطريق، وتحجز، وتتدبّر أمرك حين لا تفهم. أنت تنتقل إلى المستوى A1.",
+        pp_fin_bouton: "متابعة",
+        pp_q_tableau: "استمع إلى كل سطر. البطاقات تأتي بعد ذلك.",
+        pp_porte_jour: "اليوم {n} من {t}",
+        pp_jour_reussi: "اكتمل اليوم {n}",
+        pp_scene_titre: "ادخل إلى المشهد",
+        pp_scene_texte: "المس الأشياء لتسمع أسماءها. أنت تعرف بعضها من قبل.",
+        pp_scene_bouton: "الدخول إلى المشهد",
+        pp_plus_tard: "لاحقًا",
         cp_q_gram: "أكمل الجملة",
         cp_q_dictee: "اكتب ما تسمعه",
         cp_q_parler: "كرّرها بصوت عالٍ",
@@ -18246,14 +18291,19 @@ const I18N = {
         flash_end_a_revoir_un: "1 frase para revisar amanhã",
         flash_end_a_revoir_n: "{n} frases para revisar amanhã",
         pp_badge: "Primeiros passos",
-        pp_q_mot: "Ouça e memorize",
         pp_q_choix: "Ouça e toque no que significa",
-        pp_niveau_clair: "Primeiros passos: quase não conhece nenhuma palavra? Começamos com eu, você, ele… e as primeiras frases.",
+        pp_niveau_clair: "Primeiros passos: cinco dias para se virar numa viagem, mesmo começando do zero.",
         pp_porte_titre: "Primeiras palavras",
-        pp_porte_unite: "palavras",
-        pp_fin_titre: "Suas primeiras {n} palavras!",
-        pp_fin_texte: "Você já sabe dizer eu, você, ele, nós, vocês, eles, com ter e ser, cumprimentar e agradecer. Você passa para o nível A1.",
-        pp_fin_bouton: "Continuar no A1",
+        pp_fin_titre: "Seus cinco dias de viagem!",
+        pp_fin_texte: "Você sabe se apresentar, pedir, perguntar o caminho, reservar e se virar quando não entende. Você passa para o nível A1.",
+        pp_fin_bouton: "Continuar",
+        pp_q_tableau: "Ouça cada linha. Os cartões vêm depois.",
+        pp_porte_jour: "Dia {n} de {t}",
+        pp_jour_reussi: "Dia {n} concluído",
+        pp_scene_titre: "Entre na cena",
+        pp_scene_texte: "Toque nos objetos para ouvir o nome deles. Você já conhece alguns.",
+        pp_scene_bouton: "Entrar na cena",
+        pp_plus_tard: "Mais tarde",
         cp_q_gram: "Complete a frase",
         cp_q_dictee: "Escreva o que você ouve",
         cp_q_parler: "Repita em voz alta",
@@ -19517,14 +19567,19 @@ const I18N = {
         flash_end_a_revoir_un: "1 zdanie do powtórki jutro",
         flash_end_a_revoir_n: "Zdania do powtórki jutro: {n}",
         pp_badge: "Pierwsze kroki",
-        pp_q_mot: "Posłuchaj i zapamiętaj",
         pp_q_choix: "Posłuchaj, a potem dotknij znaczenia",
-        pp_niveau_clair: "Pierwsze kroki: prawie nie znasz słów? Zaczynamy od „ja”, „ty”, „on”… i pierwszych zdań.",
+        pp_niveau_clair: "Pierwsze kroki: pięć dni, by poradzić sobie w podróży, nawet od zera.",
         pp_porte_titre: "Pierwsze słowa",
-        pp_porte_unite: "słów",
-        pp_fin_titre: "Twoje pierwsze {n} słów!",
-        pp_fin_texte: "Umiesz już powiedzieć ja, ty, on, my, wy, oni, z czasownikami „mieć” i „być”, przywitać się i podziękować. Przechodzisz na poziom A1.",
-        pp_fin_bouton: "Kontynuuj na A1",
+        pp_fin_titre: "Twoje pięć dni podróży!",
+        pp_fin_texte: "Umiesz się przedstawić, zamówić, zapytać o drogę, zarezerwować pokój i poradzić sobie, gdy nie rozumiesz. Przechodzisz na poziom A1.",
+        pp_fin_bouton: "Dalej",
+        pp_q_tableau: "Posłuchaj każdej linijki. Fiszki będą potem.",
+        pp_porte_jour: "Dzień {n} z {t}",
+        pp_jour_reussi: "Dzień {n} zaliczony",
+        pp_scene_titre: "Wejdź do sceny",
+        pp_scene_texte: "Dotykaj przedmiotów, by usłyszeć ich nazwy. Kilka już znasz.",
+        pp_scene_bouton: "Wejdź do sceny",
+        pp_plus_tard: "Później",
         cp_q_gram: "Uzupełnij zdanie",
         cp_q_dictee: "Napisz, co słyszysz",
         cp_q_parler: "Powtórz na głos",
@@ -20786,14 +20841,19 @@ const I18N = {
         flash_end_a_revoir_un: "1 предложение на повторение завтра",
         flash_end_a_revoir_n: "Предложений на повторение завтра: {n}",
         pp_badge: "Первые шаги",
-        pp_q_mot: "Послушай и запомни",
         pp_q_choix: "Послушай, затем нажми на значение",
-        pp_niveau_clair: "Первые шаги: почти не знаешь слов? Начнём с «я», «ты», «он»… и первых фраз.",
+        pp_niveau_clair: "Первые шаги: пять дней, чтобы освоиться в поездке, даже с нуля.",
         pp_porte_titre: "Первые слова",
-        pp_porte_unite: "слов",
-        pp_fin_titre: "Твои первые {n} слов!",
-        pp_fin_texte: "Ты уже умеешь сказать я, ты, он, мы, вы, они, с глаголами «иметь» и «быть», поздороваться и поблагодарить. Ты переходишь на уровень A1.",
-        pp_fin_bouton: "Продолжить на A1",
+        pp_fin_titre: "Твои пять дней путешествия!",
+        pp_fin_texte: "Ты умеешь представиться, заказать, спросить дорогу, забронировать номер и выкрутиться, когда не понимаешь. Ты переходишь на уровень A1.",
+        pp_fin_bouton: "Продолжить",
+        pp_q_tableau: "Послушай каждую строку. Карточки будут дальше.",
+        pp_porte_jour: "День {n} из {t}",
+        pp_jour_reussi: "День {n} пройден",
+        pp_scene_titre: "Зайди в сцену",
+        pp_scene_texte: "Нажимай на предметы, чтобы услышать их названия. Некоторые ты уже знаешь.",
+        pp_scene_bouton: "Войти в сцену",
+        pp_plus_tard: "Позже",
         cp_q_gram: "Дополни предложение",
         cp_q_dictee: "Напиши, что слышишь",
         cp_q_parler: "Повтори вслух",
@@ -39234,7 +39294,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 828;
+const APP_VERSION = 829;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42705,8 +42765,24 @@ function vignetteScene(nom){ return baseScenes() + "vignettes/" + nom + ".webp";
 function majTitrePorteMots(){
     const titreMots = document.getElementById("seancePorteMotsTitre");
     if(!titreMots) return;
-    const cle = premiersPasEnCours() ? "pp_porte_titre"
-              : essaiActif("phrases") ? "seance_porte_mots_grammaire" : "seance_porte_mots";
+    const porte = titreMots.closest(".seance-porte");
+    if(premiersPasEnCours()){
+        try{
+            const d = jourPremiersPas();
+            titreMots.removeAttribute("data-i18n");
+            titreMots.textContent = tf("pp_porte_jour", { n: d + 1, t: joursPremiersPas().length });
+            if(porte){
+                porte.classList.add("porte-pp");
+                porte.style.backgroundImage = "linear-gradient(90deg, rgba(28,36,48,.96) 0%, rgba(28,36,48,.82) 55%, rgba(28,36,48,.45) 100%), url(\"" + vignetteScene(joursPremiersPas()[d].scene) + "\")";
+            }
+        }catch(e){}
+        return;
+    }
+    if(porte && porte.classList.contains("porte-pp")){
+        porte.classList.remove("porte-pp");
+        porte.style.backgroundImage = "";
+    }
+    const cle = essaiActif("phrases") ? "seance_porte_mots_grammaire" : "seance_porte_mots";
     titreMots.setAttribute("data-i18n", cle);
     titreMots.textContent = t(cle);
 }
@@ -43566,8 +43642,8 @@ function montrerCartePhrase(item){
                         dictee: "cp_q_dictee", dictee_mot: "cp_q_dictee", parler: "cp_q_parler" };
     const type = creer("div", "cp-type");
     type.appendChild(creer("b", item.pp ? "cp-pp" : "", item.pp ? "🌱 " + t("pp_badge") : t("cp_type")));
-    const question = item.pp ? (item.forme === "pp_mot" ? "pp_q_mot" : "pp_q_choix") : (QUESTIONS[item.forme] || "cp_q_ecoute");
-    if(item.forme !== "pp_fin") type.appendChild(document.createTextNode(t(question)));
+    const question = item.pp ? (item.forme === "pp_tableau" ? "pp_q_tableau" : "pp_q_choix") : (QUESTIONS[item.forme] || "cp_q_ecoute");
+    if(item.forme !== "pp_fin" && item.forme !== "pp_scene") type.appendChild(document.createTextNode(t(question)));
     el.appendChild(type);
     const retour = creer("div", "cp-retour hidden");
     const actions = creer("div", "cp-actions");
@@ -43580,7 +43656,6 @@ function montrerCartePhrase(item){
         fait.repondu = true;
         const palierPhrase = repondrePhrase(item, juste);
         try{ noterPhraseRatee(item, juste); }catch(e){}
-        if(item.pp){ try{ avancerPremiersPas(item); }catch(e){} }
         // v819 : LA MEME FETE QU'AILLEURS. Jacques : « les petits confettis avec
         // le son, pour tous les exercices qui sont reussis ». celebrateMastery()
         // choisit entre les confettis et la grande fete de l'objectif du jour.
@@ -43630,27 +43705,33 @@ function montrerCartePhrase(item){
         return b;
     };
 
-    if(item.forme === "pp_mot"){
-        // Premiers pas : le mot, sa voix, son sens. Rien a juger ; la carte
-        // compte dans l'objectif du jour au passage.
-        const mot = creer("p", "cp-mot-pp", item.phrase.de);
-        mot.setAttribute("lang", langueDe);
-        el.appendChild(mot);
-        el.appendChild(creer("p", "cp-sens cp-sens-pp", item.phrase.sens));
-        el.appendChild(rangeeEcoute);
+    if(item.forme === "pp_tableau"){
+        // Le tableau du jour : chaque ligne se touche et se prononce. Rien a
+        // juger : il familiarise, les flashcards font retenir.
+        const tab = item.tableau || {};
+        el.appendChild(creer("p", "cp-tableau-titre", sensPremiersPas(tab.t)));
+        const table = creer("div", "cp-tableau");
+        (tab.l || []).forEach(l => {
+            const ligne = creer("button", "cp-tableau-ligne");
+            ligne.type = "button";
+            ligne.appendChild(creer("span", "cp-tl-sens", sensPremiersPas(l[1])));
+            const forme = creer("b", "cp-tl-forme", l[0]);
+            forme.setAttribute("lang", langueDe);
+            ligne.appendChild(forme);
+            ligne.appendChild(creer("span", "cp-tl-son", "🔊"));
+            ligne.addEventListener("click", () => { try{ direAllemand(l[0], { rate: 0.85 }); }catch(e){} });
+            table.appendChild(ligne);
+        });
+        el.appendChild(table);
+        if(tab.a) el.appendChild(creer("div", "cp-astuce", sensPremiersPas(tab.a)));
         fait.repondu = true;
         suite.classList.remove("hidden");
-        suite.addEventListener("click", () => {
-            try{ avancerPremiersPas(item); }catch(e){}
-            repondrePhrase(item, null);
-        }, { once: true, capture: true });
-        direPhrase(item);
+        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
     } else if(item.forme === "pp_fin"){
-        // Les 50 mots sont vus : la fete, puis le A1.
-        const n = motsPremiersPas().total;
+        // Le dernier jour : la fete et le A1, avant la scene.
         const fete = creer("div", "cp-fete-pp");
         fete.appendChild(creer("div", "cp-fete-emoji", "🎉"));
-        fete.appendChild(creer("h2", "", tf("pp_fin_titre", { n: n })));
+        fete.appendChild(creer("h2", "", t("pp_fin_titre")));
         fete.appendChild(creer("p", "", t("pp_fin_texte")));
         el.appendChild(fete);
         fait.repondu = true;
@@ -43659,10 +43740,34 @@ function montrerCartePhrase(item){
         suite.addEventListener("click", () => {
             const s = lirePremiersPas();
             s.fini = true; s.a = false;
-            s.f = Math.max(s.f || 0, item.ppIndex);
             ecrirePremiersPas(s);
             try{ fixerNiveauSeance("A1"); }catch(e){}
         }, { once: true, capture: true });
+        try{ celebrateMastery(0, false); }catch(e){}
+    } else if(item.forme === "pp_scene"){
+        // La scene qui correspond a la situation du jour. Le jour est fait,
+        // qu'on y entre ou non.
+        const nom = item.scene;
+        const image = creer("div", "cp-scene-pp");
+        image.style.backgroundImage = "url(\"" + vignetteScene(nom) + "\")";
+        el.appendChild(image);
+        el.appendChild(creer("span", "cp-jour-reussi", "🎉 " + tf("pp_jour_reussi", { n: (item.jourPP || 0) + 1 })));
+        el.appendChild(creer("h2", "cp-scene-titre", t("pp_scene_titre") + " : " + t("seance_scene_" + nom)));
+        el.appendChild(creer("p", "cp-sens", t("pp_scene_texte")));
+        fait.repondu = true;
+        const entrer = creer("button", "primary", t("pp_scene_bouton") + " ›");
+        entrer.type = "button";
+        entrer.addEventListener("click", () => {
+            marquerJourPremiersPas(item.jourPP || 0);
+            try{ recordDailyActivity(); }catch(e){}
+            try{ finSeanceSuivie(true); }catch(e){}
+            cacherCartePhrase();
+            ouvrirSceneLibre(nom);
+        });
+        actions.appendChild(entrer);
+        suite.textContent = t("pp_plus_tard");
+        suite.className = "secondary";
+        suite.addEventListener("click", () => marquerJourPremiersPas(item.jourPP || 0), { once: true, capture: true });
         try{ celebrateMastery(0, false); }catch(e){}
     } else if(item.forme === "ecoute"){
         el.appendChild(rangeeEcoute);
@@ -44042,187 +44147,43 @@ function repondrePhrase(item, juste){
     }catch(e){ return 0; }
 }
 
-// ============ PREMIERS PAS (essai « premiers_pas », v828) ============
-// Maquette .claude/maquette-premiers-pas.html, validee le 16 oct. 2026. Jacques :
-// « il faudrait qu'ils voient les pronoms je, tu, il, nous, vous, ils rapidement,
-// le verbe avoir, quelques mots de base, et qu'une petite phrase arrive assez
-// rapidement ; sinon on risque de les perdre au debut ». 50 mots par langue, en
-// cinq jours ; une phrase a la 4e carte puis toutes les 3, faite SEULEMENT de
-// mots deja vus ; ses deux leurres ne different souvent que par le pronom.
+// ============ PREMIERS PAS (essai « premiers_pas », v828, refait en v829) ============
+// v829 : PAR SITUATIONS DE VOYAGE. Jacques (16 oct. 2026) : « prendre l'approche
+// de quelqu'un qui part en voyage : au resto, dans les transports, vraiment la
+// pratique » ; et des flashcards « pour le familiariser » plutot que la v828.
+// Maquette validee : .claude/maquette-premiers-pas-voyage.html. Un jour par
+// situation, dans l'ordre d'un voyage ; chaque jour :
+//   1. le TABLEAU (pp_tableau) : la grammaire dont la situation a besoin ;
+//   2. les VRAIES flashcards (mode « redewendungen ») : retourner, ecouter,
+//      « Je savais » / « Encore » -- elles entrent dans la repetition espacee
+//      (theme premiers_pas_de / premiers_pas_es) et reviennent ensuite en
+//      revision dans la seance du jour (cartesPremiersPasVues) ;
+//   3. une PHRASE toutes les trois cartes (ecoute + trois sens) ;
+//   4. la SCENE qui correspond (pp_scene) ; le jour 5, la fete et le A1 avant.
 // Les sens sont en francais et en anglais (repli des autres langues) : l'essai
 // d'abord, les traductions a la mise en production.
-// m = un mot (carte « Ecoute et retiens ») ; p = une phrase (ecoute + 3 sens) ;
-// la = ce qui change pour l'Amerique latine (ustedes au lieu de vosotros).
+// ⚠️ LA VOIX DU TELEPHONE, EXPRES. Ces textes n'ont pas encore de fichier : tente
+// d'abord, le fichier manquant faisait parler la synthese HORS du geste, et iOS
+// la tait (voir texteCarteAPrononcer). On les inscrit donc d'avance dans
+// audioAbsents : la synthese part dans le geste, des le premier toucher.
 const PREMIERS_PAS = {
     es: [
-        [ // jour 1
-            {"m": "yo", "s": {"fr": "je", "en": "I"}},
-            {"m": "tengo", "s": {"fr": "j'ai", "en": "I have"}},
-            {"m": "agua", "s": {"fr": "de l'eau", "en": "water"}},
-            {"p": "Yo tengo agua.", "s": {"fr": "J'ai de l'eau.", "en": "I have water."}, "l": [{"fr": "Tu as de l'eau.", "en": "You have water."}, {"fr": "J'ai du pain.", "en": "I have bread."}]},
-            {"m": "tú", "s": {"fr": "tu", "en": "you"}},
-            {"m": "tienes", "s": {"fr": "tu as", "en": "you have"}},
-            {"p": "Tú tienes agua.", "s": {"fr": "Tu as de l'eau.", "en": "You have water."}, "l": [{"fr": "J'ai de l'eau.", "en": "I have water."}, {"fr": "Il a de l'eau.", "en": "He has water."}]},
-            {"m": "él", "s": {"fr": "il", "en": "he"}},
-            {"m": "ella", "s": {"fr": "elle", "en": "she"}},
-            {"m": "tiene", "s": {"fr": "il a, elle a", "en": "he has, she has"}},
-            {"p": "Ella tiene agua.", "s": {"fr": "Elle a de l'eau.", "en": "She has water."}, "l": [{"fr": "Il a de l'eau.", "en": "He has water."}, {"fr": "Tu as de l'eau.", "en": "You have water."}]},
-            {"m": "hola", "s": {"fr": "bonjour, salut", "en": "hello"}},
-            {"m": "gracias", "s": {"fr": "merci", "en": "thank you"}},
-            {"p": "Hola, ¿tienes agua?", "s": {"fr": "Bonjour, tu as de l'eau ?", "en": "Hello, do you have water?"}, "l": [{"fr": "Bonjour, j'ai de l'eau.", "en": "Hello, I have water."}, {"fr": "Bonjour, elle a de l'eau.", "en": "Hello, she has water."}]},
-        ],
-        [ // jour 2
-            {"m": "nosotros", "s": {"fr": "nous", "en": "we"}},
-            {"m": "tenemos", "s": {"fr": "nous avons", "en": "we have"}},
-            {"m": "pan", "s": {"fr": "du pain, le pain", "en": "bread"}},
-            {"p": "Nosotros tenemos pan.", "s": {"fr": "Nous avons du pain.", "en": "We have bread."}, "l": [{"fr": "Vous avez du pain.", "en": "You (plural) have bread."}, {"fr": "Nous avons de l'eau.", "en": "We have water."}]},
-            {"m": "vosotros", "s": {"fr": "vous (plusieurs personnes)", "en": "you (plural)"}, "la": {"m": "ustedes"}},
-            {"m": "tenéis", "s": {"fr": "vous avez", "en": "you (plural) have"}, "la": {"m": "ustedes tienen"}},
-            {"p": "Vosotros tenéis pan.", "s": {"fr": "Vous avez du pain.", "en": "You (plural) have bread."}, "l": [{"fr": "Nous avons du pain.", "en": "We have bread."}, {"fr": "Ils ont du pain.", "en": "They have bread."}], "la": {"p": "Ustedes tienen pan."}},
-            {"m": "y", "s": {"fr": "et", "en": "and"}},
-            {"m": "ellos", "s": {"fr": "ils", "en": "they (masculine)"}},
-            {"m": "ellas", "s": {"fr": "elles", "en": "they (feminine)"}},
-            {"m": "tienen", "s": {"fr": "ils ont, elles ont", "en": "they have"}},
-            {"p": "Ellos tienen agua y pan.", "s": {"fr": "Ils ont de l'eau et du pain.", "en": "They have water and bread."}, "l": [{"fr": "Nous avons de l'eau et du pain.", "en": "We have water and bread."}, {"fr": "Elle a de l'eau et du pain.", "en": "She has water and bread."}]},
-            {"m": "sí", "s": {"fr": "oui", "en": "yes"}},
-            {"m": "no", "s": {"fr": "non", "en": "no"}},
-            {"p": "¿Tienes pan? —Sí, gracias.", "s": {"fr": "Tu as du pain ? — Oui, merci.", "en": "Do you have bread? — Yes, thanks."}, "l": [{"fr": "Tu as de l'eau ? — Non, merci.", "en": "Do you have water? — No, thanks."}, {"fr": "J'ai du pain. — Oui, merci.", "en": "I have bread. — Yes, thanks."}]},
-        ],
-        [ // jour 3
-            {"m": "soy", "s": {"fr": "je suis", "en": "I am"}},
-            {"m": "eres", "s": {"fr": "tu es", "en": "you are"}},
-            {"m": "es", "s": {"fr": "il est, elle est", "en": "he is, she is"}},
-            {"p": "Yo soy Ana.", "s": {"fr": "Je suis Ana.", "en": "I am Ana."}, "l": [{"fr": "Tu es Ana.", "en": "You are Ana."}, {"fr": "Elle est Ana.", "en": "She is Ana."}]},
-            {"m": "somos", "s": {"fr": "nous sommes", "en": "we are"}},
-            {"m": "sois", "s": {"fr": "vous êtes", "en": "you (plural) are"}, "la": {"m": "ustedes son"}},
-            {"m": "son", "s": {"fr": "ils sont, elles sont", "en": "they are"}},
-            {"m": "amigo · amigos", "s": {"fr": "ami · amis", "en": "friend · friends"}},
-            {"p": "Nosotros somos amigos.", "s": {"fr": "Nous sommes amis.", "en": "We are friends."}, "l": [{"fr": "Ils sont amis.", "en": "They are friends."}, {"fr": "Vous êtes amis.", "en": "You are friends."}]},
-            {"m": "me llamo", "s": {"fr": "je m'appelle", "en": "my name is"}},
-            {"p": "Hola, me llamo Ana.", "s": {"fr": "Bonjour, je m'appelle Ana.", "en": "Hello, my name is Ana."}, "l": [{"fr": "Merci, je m'appelle Ana.", "en": "Thanks, my name is Ana."}, {"fr": "Bonjour, tu t'appelles Ana.", "en": "Hello, your name is Ana."}]},
-            {"m": "por favor", "s": {"fr": "s'il te plaît, s'il vous plaît", "en": "please"}},
-            {"p": "Agua, por favor.", "s": {"fr": "De l'eau, s'il vous plaît.", "en": "Water, please."}, "l": [{"fr": "Du pain, s'il vous plaît.", "en": "Bread, please."}, {"fr": "De l'eau, merci.", "en": "Water, thank you."}]},
-        ],
-        [ // jour 4
-            {"m": "buenos días", "s": {"fr": "bonjour (le matin)", "en": "good morning"}},
-            {"m": "quiero", "s": {"fr": "je veux", "en": "I want"}},
-            {"m": "quieres", "s": {"fr": "tu veux", "en": "you want"}},
-            {"m": "café", "s": {"fr": "café", "en": "coffee"}},
-            {"p": "Quiero café.", "s": {"fr": "Je veux du café.", "en": "I want coffee."}, "l": [{"fr": "Tu veux du café ?", "en": "Do you want coffee?"}, {"fr": "J'ai du café.", "en": "I have coffee."}]},
-            {"m": "leche", "s": {"fr": "lait", "en": "milk"}},
-            {"m": "con", "s": {"fr": "avec", "en": "with"}},
-            {"p": "Café con leche, por favor.", "s": {"fr": "Un café au lait, s'il vous plaît.", "en": "A coffee with milk, please."}, "l": [{"fr": "Du lait, s'il vous plaît.", "en": "Milk, please."}, {"fr": "Un café sans lait, s'il vous plaît.", "en": "A coffee without milk, please."}]},
-            {"m": "un · una", "s": {"fr": "un · une", "en": "a, an"}},
-            {"m": "casa", "s": {"fr": "maison", "en": "house"}},
-            {"p": "Tengo una casa.", "s": {"fr": "J'ai une maison.", "en": "I have a house."}, "l": [{"fr": "Je veux une maison.", "en": "I want a house."}, {"fr": "Tu as une maison.", "en": "You have a house."}]},
-            {"m": "el · la", "s": {"fr": "le · la", "en": "the"}},
-            {"m": "grande", "s": {"fr": "grand, grande", "en": "big"}},
-            {"m": "pequeño · pequeña", "s": {"fr": "petit · petite", "en": "small"}},
-            {"p": "La casa es grande.", "s": {"fr": "La maison est grande.", "en": "The house is big."}, "l": [{"fr": "La maison est petite.", "en": "The house is small."}, {"fr": "J'ai une grande maison.", "en": "I have a big house."}]},
-            {"p": "¿Quieres agua? —No, gracias.", "s": {"fr": "Tu veux de l'eau ? — Non, merci.", "en": "Do you want water? — No, thanks."}, "l": [{"fr": "Tu as de l'eau ? — Oui, merci.", "en": "Do you have water? — Yes, thanks."}, {"fr": "Je veux de l'eau. — Non, merci.", "en": "I want water. — No, thanks."}]},
-        ],
-        [ // jour 5
-            {"m": "uno · dos · tres", "s": {"fr": "un · deux · trois", "en": "one · two · three"}},
-            {"m": "cuatro · cinco", "s": {"fr": "quatre · cinq", "en": "four · five"}},
-            {"p": "Tengo dos amigos.", "s": {"fr": "J'ai deux amis.", "en": "I have two friends."}, "l": [{"fr": "J'ai trois amis.", "en": "I have three friends."}, {"fr": "Nous sommes deux amis.", "en": "We are two friends."}]},
-            {"m": "seis · siete", "s": {"fr": "six · sept", "en": "six · seven"}},
-            {"m": "ocho · nueve · diez", "s": {"fr": "huit · neuf · dix", "en": "eight · nine · ten"}},
-            {"p": "Quiero tres cafés, por favor.", "s": {"fr": "Je veux trois cafés, s'il vous plaît.", "en": "I want three coffees, please."}, "l": [{"fr": "Je veux deux cafés, s'il vous plaît.", "en": "I want two coffees, please."}, {"fr": "J'ai trois cafés, merci.", "en": "I have three coffees, thanks."}]},
-            {"m": "bueno · buena", "s": {"fr": "bon · bonne", "en": "good"}},
-            {"p": "El café es bueno.", "s": {"fr": "Le café est bon.", "en": "The coffee is good."}, "l": [{"fr": "Le café est petit.", "en": "The coffee is small."}, {"fr": "Le lait est bon.", "en": "The milk is good."}]},
-            {"m": "muchas gracias", "s": {"fr": "merci beaucoup", "en": "thank you very much"}},
-            {"m": "perdón", "s": {"fr": "pardon", "en": "sorry"}},
-            {"m": "adiós", "s": {"fr": "au revoir", "en": "goodbye"}},
-            {"m": "hasta mañana", "s": {"fr": "à demain", "en": "see you tomorrow"}},
-            {"p": "Gracias, ¡hasta mañana!", "s": {"fr": "Merci, à demain !", "en": "Thanks, see you tomorrow!"}, "l": [{"fr": "Bonjour, à demain !", "en": "Hello, see you tomorrow!"}, {"fr": "Merci, au revoir !", "en": "Thanks, goodbye!"}]},
-        ],
+        {"s": {"fr": "L'arrivée : saluer et se présenter", "en": "Arriving: greetings and introductions"}, "scene": "flughafen", "tableau": {"t": {"fr": "Être : ser", "en": "To be: ser"}, "l": [["yo soy", {"fr": "je suis", "en": "I am"}], ["tú eres", {"fr": "tu es", "en": "you are"}], ["él / ella es", {"fr": "il / elle est", "en": "he / she is"}]], "a": {"fr": "On dit souvent soy sans yo : « Soy de Canadá » = je suis du Canada.", "en": "People often say soy without yo: “Soy de Canadá” = I'm from Canada."}}, "cartes": [["hola", {"fr": "bonjour, salut", "en": "hello, hi"}, "¡Hola! ¿Qué tal?", {"fr": "Salut ! Ça va ?", "en": "Hi! How are you?"}], ["buenos días", {"fr": "bonjour (le matin)", "en": "good morning"}, "Buenos días, señora.", {"fr": "Bonjour, madame.", "en": "Good morning, madam."}], ["me llamo…", {"fr": "je m'appelle…", "en": "my name is…"}, "Me llamo Ana.", {"fr": "Je m'appelle Ana.", "en": "My name is Ana."}], ["soy de…", {"fr": "je suis de…", "en": "I'm from…"}, "Soy de Canadá.", {"fr": "Je suis du Canada.", "en": "I'm from Canada."}], ["¿y tú?", {"fr": "et toi ?", "en": "and you?"}, "Me llamo Ana, ¿y tú?", {"fr": "Je m'appelle Ana, et toi ?", "en": "My name is Ana, and you?"}], ["encantado · encantada", {"fr": "enchanté · enchantée", "en": "nice to meet you"}, "Encantada, Pablo.", {"fr": "Enchantée, Pablo.", "en": "Nice to meet you, Pablo."}], ["gracias", {"fr": "merci", "en": "thank you"}, "Muchas gracias.", {"fr": "Merci beaucoup.", "en": "Thank you very much."}], ["adiós", {"fr": "au revoir", "en": "goodbye"}, "Adiós, ¡hasta mañana!", {"fr": "Au revoir, à demain !", "en": "Goodbye, see you tomorrow!"}]], "phrases": [{"p": "Hola, me llamo Ana.", "s": {"fr": "Bonjour, je m'appelle Ana.", "en": "Hello, my name is Ana."}, "l": [{"fr": "Bonjour, tu t'appelles Ana.", "en": "Hello, your name is Ana."}, {"fr": "Merci, je m'appelle Ana.", "en": "Thanks, my name is Ana."}]}, {"p": "Soy de Canadá, ¿y tú?", "s": {"fr": "Je suis du Canada, et toi ?", "en": "I'm from Canada, and you?"}, "l": [{"fr": "Tu es du Canada, et toi ?", "en": "You're from Canada, and you?"}, {"fr": "Je vais au Canada, merci.", "en": "I'm going to Canada, thanks."}]}, {"p": "¿Eres de Madrid?", "s": {"fr": "Tu es de Madrid ?", "en": "Are you from Madrid?"}, "l": [{"fr": "Je suis de Madrid.", "en": "I'm from Madrid."}, {"fr": "Il est de Madrid ?", "en": "Is he from Madrid?"}]}]},
+        {"s": {"fr": "Au café, au resto", "en": "At the café, at the restaurant"}, "scene": "fruehstueck", "tableau": {"t": {"fr": "Vouloir : querer", "en": "To want: querer"}, "l": [["quiero", {"fr": "je veux", "en": "I want"}], ["quieres", {"fr": "tu veux", "en": "you want"}], ["quiere", {"fr": "il / elle veut", "en": "he / she wants"}], ["un · una", {"fr": "un · une", "en": "a, an"}]], "a": {"fr": "En espagnol, on dit rarement « yo » : quiero suffit pour dire « je veux ».", "en": "In Spanish, people rarely say “yo”: quiero is enough for “I want”."}}, "cartes": [["un café", {"fr": "un café", "en": "a coffee"}, "Un café, por favor.", {"fr": "Un café, s'il vous plaît.", "en": "A coffee, please."}], ["un té", {"fr": "un thé", "en": "a tea"}, "Quiero un té.", {"fr": "Je veux un thé.", "en": "I want a tea."}], ["agua", {"fr": "de l'eau", "en": "water"}, "Agua sin gas, por favor.", {"fr": "De l'eau plate, s'il vous plaît.", "en": "Still water, please."}], ["una cerveza", {"fr": "une bière", "en": "a beer"}, "Una cerveza, por favor.", {"fr": "Une bière, s'il vous plaît.", "en": "A beer, please."}], ["un bocadillo", {"fr": "un sandwich", "en": "a sandwich"}, "Quiero un bocadillo.", {"fr": "Je veux un sandwich.", "en": "I want a sandwich."}], ["por favor", {"fr": "s'il vous plaît, s'il te plaît", "en": "please"}, "Agua, por favor.", {"fr": "De l'eau, s'il vous plaît.", "en": "Water, please."}], ["¿tienen…?", {"fr": "vous avez… ?", "en": "do you have…?"}, "¿Tienen té?", {"fr": "Vous avez du thé ?", "en": "Do you have tea?"}], ["la cuenta", {"fr": "l'addition", "en": "the bill"}, "La cuenta, por favor.", {"fr": "L'addition, s'il vous plaît.", "en": "The bill, please."}]], "phrases": [{"p": "Quiero un café, por favor.", "s": {"fr": "Je veux un café, s'il vous plaît.", "en": "I want a coffee, please."}, "l": [{"fr": "Tu veux un café ?", "en": "Do you want a coffee?"}, {"fr": "Je veux un thé, s'il vous plaît.", "en": "I want a tea, please."}]}, {"p": "¿Tienen agua?", "s": {"fr": "Vous avez de l'eau ?", "en": "Do you have water?"}, "l": [{"fr": "Je veux de l'eau.", "en": "I want water."}, {"fr": "L'addition, s'il vous plaît.", "en": "The bill, please."}]}, {"p": "¿Quieres una cerveza?", "s": {"fr": "Tu veux une bière ?", "en": "Do you want a beer?"}, "l": [{"fr": "Il veut une bière.", "en": "He wants a beer."}, {"fr": "Je veux une bière.", "en": "I want a beer."}]}]},
+        {"s": {"fr": "Se déplacer : trouver son chemin", "en": "Getting around: finding your way"}, "scene": "kreuzung", "tableau": {"t": {"fr": "Où est… ? : estar", "en": "Where is…?: estar"}, "l": [["¿Dónde está…?", {"fr": "Où est… ?", "en": "Where is…?"}], ["está", {"fr": "il / elle est (à un endroit)", "en": "it is (somewhere)"}], ["el · la", {"fr": "le · la", "en": "the"}]], "a": {"fr": "Pour dire où se trouve une chose, on emploie estar, pas ser : « El metro está aquí ».", "en": "To say where something is, use estar, not ser: “El metro está aquí”."}}, "cartes": [["el metro", {"fr": "le métro", "en": "the subway"}, "¿Dónde está el metro?", {"fr": "Où est le métro ?", "en": "Where is the subway?"}], ["la estación", {"fr": "la gare", "en": "the station"}, "¿Dónde está la estación?", {"fr": "Où est la gare ?", "en": "Where is the station?"}], ["el baño", {"fr": "les toilettes", "en": "the restroom"}, "¿Dónde está el baño?", {"fr": "Où sont les toilettes ?", "en": "Where is the restroom?"}], ["un billete", {"fr": "un billet", "en": "a ticket"}, "Un billete para Madrid.", {"fr": "Un billet pour Madrid.", "en": "A ticket to Madrid."}], ["a la derecha", {"fr": "à droite", "en": "on the right"}, "Está a la derecha.", {"fr": "C'est à droite.", "en": "It's on the right."}], ["a la izquierda", {"fr": "à gauche", "en": "on the left"}, "Está a la izquierda.", {"fr": "C'est à gauche.", "en": "It's on the left."}], ["todo recto", {"fr": "tout droit", "en": "straight ahead"}, "Siga todo recto.", {"fr": "Continuez tout droit.", "en": "Keep going straight ahead."}], ["cerca · lejos", {"fr": "près · loin", "en": "near · far"}, "¿Está lejos?", {"fr": "C'est loin ?", "en": "Is it far?"}]], "phrases": [{"p": "¿Dónde está el metro?", "s": {"fr": "Où est le métro ?", "en": "Where is the subway?"}, "l": [{"fr": "Où est la gare ?", "en": "Where is the station?"}, {"fr": "Le métro est ici.", "en": "The subway is here."}]}, {"p": "Está a la izquierda.", "s": {"fr": "C'est à gauche.", "en": "It's on the left."}, "l": [{"fr": "C'est à droite.", "en": "It's on the right."}, {"fr": "C'est tout droit.", "en": "It's straight ahead."}]}, {"p": "Un billete para Madrid, por favor.", "s": {"fr": "Un billet pour Madrid, s'il vous plaît.", "en": "A ticket to Madrid, please."}, "l": [{"fr": "Un café pour Madrid, s'il vous plaît.", "en": "A coffee to Madrid, please."}, {"fr": "Où est la gare de Madrid ?", "en": "Where is Madrid station?"}]}]},
+        {"s": {"fr": "L'hôtel et les achats", "en": "The hotel and shopping"}, "scene": "hotel", "tableau": {"t": {"fr": "Avoir : tener", "en": "To have: tener"}, "l": [["tengo", {"fr": "j'ai", "en": "I have"}], ["tienes", {"fr": "tu as", "en": "you have"}], ["tiene", {"fr": "il / elle a · vous avez (poli)", "en": "he / she has · you have (polite)"}], ["tenemos", {"fr": "nous avons", "en": "we have"}], ["tienen", {"fr": "ils / elles ont", "en": "they have"}]], "a": {"fr": "À la réception, on vouvoie : « ¿Tiene una habitación? » = Vous avez une chambre ?", "en": "At the front desk, use the polite form: “¿Tiene una habitación?” = Do you have a room?"}}, "cartes": [["una reserva", {"fr": "une réservation", "en": "a reservation"}, "Tengo una reserva.", {"fr": "J'ai une réservation.", "en": "I have a reservation."}], ["una habitación", {"fr": "une chambre", "en": "a room"}, "¿Tiene una habitación?", {"fr": "Vous avez une chambre ?", "en": "Do you have a room?"}], ["la llave", {"fr": "la clé", "en": "the key"}, "La llave, por favor.", {"fr": "La clé, s'il vous plaît.", "en": "The key, please."}], ["¿Cuánto cuesta?", {"fr": "Combien ça coûte ?", "en": "How much is it?"}, "¿Cuánto cuesta la habitación?", {"fr": "Combien coûte la chambre ?", "en": "How much is the room?"}], ["uno · dos · tres", {"fr": "un · deux · trois", "en": "one · two · three"}], ["cuatro · cinco", {"fr": "quatre · cinq", "en": "four · five"}], ["diez · veinte", {"fr": "dix · vingt", "en": "ten · twenty"}], ["euros", {"fr": "euros", "en": "euros"}, "Son veinte euros.", {"fr": "Ça fait vingt euros.", "en": "That's twenty euros."}]], "phrases": [{"p": "Tengo una reserva.", "s": {"fr": "J'ai une réservation.", "en": "I have a reservation."}, "l": [{"fr": "Vous avez une réservation ?", "en": "Do you have a reservation?"}, {"fr": "Je veux une chambre.", "en": "I want a room."}]}, {"p": "¿Cuánto cuesta la habitación?", "s": {"fr": "Combien coûte la chambre ?", "en": "How much is the room?"}, "l": [{"fr": "Où est la chambre ?", "en": "Where is the room?"}, {"fr": "La chambre coûte vingt euros.", "en": "The room costs twenty euros."}]}, {"p": "Son veinte euros.", "s": {"fr": "Ça fait vingt euros.", "en": "That's twenty euros."}, "l": [{"fr": "Ça fait dix euros.", "en": "That's ten euros."}, {"fr": "Ça fait deux euros.", "en": "That's two euros."}]}]},
+        {"s": {"fr": "Se débrouiller quand on ne comprend pas", "en": "Coping when you don't understand"}, "scene": "apotheke", "tableau": {"t": {"fr": "Les questions", "en": "Questions"}, "l": [["¿Qué?", {"fr": "Quoi ?", "en": "What?"}], ["¿Dónde?", {"fr": "Où ?", "en": "Where?"}], ["¿Cuánto?", {"fr": "Combien ?", "en": "How much?"}], ["¿Cuándo?", {"fr": "Quand ?", "en": "When?"}]], "a": {"fr": "À l'écrit, la question s'ouvre avec ¿ et se ferme avec ?.", "en": "In writing, a question opens with ¿ and closes with ?."}}, "cartes": [["perdón", {"fr": "pardon", "en": "sorry, excuse me"}, "Perdón, ¿habla inglés?", {"fr": "Pardon, vous parlez anglais ?", "en": "Excuse me, do you speak English?"}], ["no entiendo", {"fr": "je ne comprends pas", "en": "I don't understand"}, "Perdón, no entiendo.", {"fr": "Pardon, je ne comprends pas.", "en": "Sorry, I don't understand."}], ["más despacio", {"fr": "plus lentement", "en": "more slowly"}, "Más despacio, por favor.", {"fr": "Plus lentement, s'il vous plaît.", "en": "More slowly, please."}], ["¿Habla inglés?", {"fr": "Vous parlez anglais ?", "en": "Do you speak English?"}], ["necesito…", {"fr": "j'ai besoin de…", "en": "I need…"}, "Necesito una farmacia.", {"fr": "J'ai besoin d'une pharmacie.", "en": "I need a pharmacy."}], ["me duele…", {"fr": "j'ai mal à…", "en": "my … hurts"}, "Me duele la cabeza.", {"fr": "J'ai mal à la tête.", "en": "My head hurts."}], ["ayuda", {"fr": "de l'aide", "en": "help"}, "¡Ayuda, por favor!", {"fr": "À l'aide, s'il vous plaît !", "en": "Help, please!"}], ["¿Qué es esto?", {"fr": "Qu'est-ce que c'est ?", "en": "What is this?"}]], "phrases": [{"p": "Perdón, no entiendo.", "s": {"fr": "Pardon, je ne comprends pas.", "en": "Sorry, I don't understand."}, "l": [{"fr": "Pardon, je ne sais pas.", "en": "Sorry, I don't know."}, {"fr": "Merci, je comprends.", "en": "Thanks, I understand."}]}, {"p": "Más despacio, por favor.", "s": {"fr": "Plus lentement, s'il vous plaît.", "en": "More slowly, please."}, "l": [{"fr": "Plus fort, s'il vous plaît.", "en": "Louder, please."}, {"fr": "Encore une fois, s'il vous plaît.", "en": "Once more, please."}]}, {"p": "Necesito una farmacia.", "s": {"fr": "J'ai besoin d'une pharmacie.", "en": "I need a pharmacy."}, "l": [{"fr": "Où est la pharmacie ?", "en": "Where is the pharmacy?"}, {"fr": "Je cherche un hôtel.", "en": "I'm looking for a hotel."}]}]},
     ],
     de: [
-        [ // jour 1
-            {"m": "ich", "s": {"fr": "je", "en": "I"}},
-            {"m": "ich habe", "s": {"fr": "j'ai", "en": "I have"}},
-            {"m": "Wasser", "s": {"fr": "de l'eau", "en": "water"}},
-            {"p": "Ich habe Wasser.", "s": {"fr": "J'ai de l'eau.", "en": "I have water."}, "l": [{"fr": "Tu as de l'eau.", "en": "You have water."}, {"fr": "J'ai du pain.", "en": "I have bread."}]},
-            {"m": "du", "s": {"fr": "tu", "en": "you"}},
-            {"m": "du hast", "s": {"fr": "tu as", "en": "you have"}},
-            {"p": "Du hast Wasser.", "s": {"fr": "Tu as de l'eau.", "en": "You have water."}, "l": [{"fr": "J'ai de l'eau.", "en": "I have water."}, {"fr": "Il a de l'eau.", "en": "He has water."}]},
-            {"m": "er", "s": {"fr": "il", "en": "he"}},
-            {"m": "sie", "s": {"fr": "elle", "en": "she"}},
-            {"m": "er hat · sie hat", "s": {"fr": "il a · elle a", "en": "he has · she has"}},
-            {"p": "Sie hat Wasser.", "s": {"fr": "Elle a de l'eau.", "en": "She has water."}, "l": [{"fr": "Il a de l'eau.", "en": "He has water."}, {"fr": "Tu as de l'eau.", "en": "You have water."}]},
-            {"m": "Hallo", "s": {"fr": "bonjour, salut", "en": "hello"}},
-            {"m": "danke", "s": {"fr": "merci", "en": "thank you"}},
-            {"p": "Hallo, hast du Wasser?", "s": {"fr": "Bonjour, tu as de l'eau ?", "en": "Hello, do you have water?"}, "l": [{"fr": "Bonjour, j'ai de l'eau.", "en": "Hello, I have water."}, {"fr": "Bonjour, elle a de l'eau.", "en": "Hello, she has water."}]},
-        ],
-        [ // jour 2
-            {"m": "wir", "s": {"fr": "nous", "en": "we"}},
-            {"m": "wir haben", "s": {"fr": "nous avons", "en": "we have"}},
-            {"m": "Brot", "s": {"fr": "du pain, le pain", "en": "bread"}},
-            {"p": "Wir haben Brot.", "s": {"fr": "Nous avons du pain.", "en": "We have bread."}, "l": [{"fr": "Vous avez du pain.", "en": "You (plural) have bread."}, {"fr": "Nous avons de l'eau.", "en": "We have water."}]},
-            {"m": "ihr", "s": {"fr": "vous (plusieurs personnes)", "en": "you (plural)"}},
-            {"m": "ihr habt", "s": {"fr": "vous avez", "en": "you (plural) have"}},
-            {"p": "Ihr habt Brot.", "s": {"fr": "Vous avez du pain.", "en": "You (plural) have bread."}, "l": [{"fr": "Nous avons du pain.", "en": "We have bread."}, {"fr": "Ils ont du pain.", "en": "They have bread."}]},
-            {"m": "und", "s": {"fr": "et", "en": "and"}},
-            {"m": "sie (pluriel)", "s": {"fr": "ils, elles", "en": "they"}},
-            {"m": "sie haben", "s": {"fr": "ils ont, elles ont", "en": "they have"}},
-            {"p": "Sie haben Wasser und Brot.", "s": {"fr": "Ils ont de l'eau et du pain.", "en": "They have water and bread."}, "l": [{"fr": "Nous avons de l'eau et du pain.", "en": "We have water and bread."}, {"fr": "Elle a de l'eau et du pain.", "en": "She has water and bread."}]},
-            {"m": "ja", "s": {"fr": "oui", "en": "yes"}},
-            {"m": "nein", "s": {"fr": "non", "en": "no"}},
-            {"p": "Hast du Brot? – Ja, danke.", "s": {"fr": "Tu as du pain ? – Oui, merci.", "en": "Do you have bread? – Yes, thanks."}, "l": [{"fr": "Tu as de l'eau ? – Non, merci.", "en": "Do you have water? – No, thanks."}, {"fr": "J'ai du pain. – Oui, merci.", "en": "I have bread. – Yes, thanks."}]},
-        ],
-        [ // jour 3
-            {"m": "ich bin", "s": {"fr": "je suis", "en": "I am"}},
-            {"m": "du bist", "s": {"fr": "tu es", "en": "you are"}},
-            {"m": "er ist · sie ist", "s": {"fr": "il est · elle est", "en": "he is · she is"}},
-            {"p": "Ich bin Anna.", "s": {"fr": "Je suis Anna.", "en": "I am Anna."}, "l": [{"fr": "Tu es Anna.", "en": "You are Anna."}, {"fr": "Elle est Anna.", "en": "She is Anna."}]},
-            {"m": "wir sind", "s": {"fr": "nous sommes", "en": "we are"}},
-            {"m": "ihr seid", "s": {"fr": "vous êtes", "en": "you (plural) are"}},
-            {"m": "sie sind", "s": {"fr": "ils sont, elles sont", "en": "they are"}},
-            {"m": "Freund · Freunde", "s": {"fr": "ami · amis", "en": "friend · friends"}},
-            {"p": "Wir sind Freunde.", "s": {"fr": "Nous sommes amis.", "en": "We are friends."}, "l": [{"fr": "Ils sont amis.", "en": "They are friends."}, {"fr": "Vous êtes amis.", "en": "You are friends."}]},
-            {"m": "ich heiße", "s": {"fr": "je m'appelle", "en": "my name is"}},
-            {"p": "Hallo, ich heiße Anna.", "s": {"fr": "Bonjour, je m'appelle Anna.", "en": "Hello, my name is Anna."}, "l": [{"fr": "Merci, je m'appelle Anna.", "en": "Thanks, my name is Anna."}, {"fr": "Bonjour, tu t'appelles Anna.", "en": "Hello, your name is Anna."}]},
-            {"m": "bitte", "s": {"fr": "s'il te plaît, s'il vous plaît", "en": "please"}},
-            {"p": "Wasser, bitte.", "s": {"fr": "De l'eau, s'il vous plaît.", "en": "Water, please."}, "l": [{"fr": "Du pain, s'il vous plaît.", "en": "Bread, please."}, {"fr": "De l'eau, merci.", "en": "Water, thank you."}]},
-        ],
-        [ // jour 4
-            {"m": "guten Morgen", "s": {"fr": "bonjour (le matin)", "en": "good morning"}},
-            {"m": "ich möchte", "s": {"fr": "je voudrais", "en": "I would like"}},
-            {"m": "möchtest du …?", "s": {"fr": "tu voudrais… ?", "en": "would you like…?"}},
-            {"m": "Kaffee", "s": {"fr": "café", "en": "coffee"}},
-            {"p": "Ich möchte Kaffee.", "s": {"fr": "Je voudrais du café.", "en": "I would like coffee."}, "l": [{"fr": "Tu voudrais du café ?", "en": "Would you like coffee?"}, {"fr": "J'ai du café.", "en": "I have coffee."}]},
-            {"m": "Milch", "s": {"fr": "lait", "en": "milk"}},
-            {"m": "mit", "s": {"fr": "avec", "en": "with"}},
-            {"p": "Kaffee mit Milch, bitte.", "s": {"fr": "Un café au lait, s'il vous plaît.", "en": "A coffee with milk, please."}, "l": [{"fr": "Du lait, s'il vous plaît.", "en": "Milk, please."}, {"fr": "Un café sans lait, s'il vous plaît.", "en": "A coffee without milk, please."}]},
-            {"m": "ein · eine", "s": {"fr": "un · une", "en": "a, an"}},
-            {"m": "Haus", "s": {"fr": "maison", "en": "house"}},
-            {"p": "Ich habe ein Haus.", "s": {"fr": "J'ai une maison.", "en": "I have a house."}, "l": [{"fr": "Je voudrais une maison.", "en": "I would like a house."}, {"fr": "Tu as une maison.", "en": "You have a house."}]},
-            {"m": "der · die · das", "s": {"fr": "le · la (trois genres)", "en": "the (three genders)"}},
-            {"m": "groß", "s": {"fr": "grand", "en": "big"}},
-            {"m": "klein", "s": {"fr": "petit", "en": "small"}},
-            {"p": "Das Haus ist groß.", "s": {"fr": "La maison est grande.", "en": "The house is big."}, "l": [{"fr": "La maison est petite.", "en": "The house is small."}, {"fr": "J'ai une grande maison.", "en": "I have a big house."}]},
-            {"p": "Möchtest du Wasser? – Nein, danke.", "s": {"fr": "Tu voudrais de l'eau ? – Non, merci.", "en": "Would you like water? – No, thanks."}, "l": [{"fr": "Tu as de l'eau ? – Oui, merci.", "en": "Do you have water? – Yes, thanks."}, {"fr": "Je voudrais de l'eau. – Non, merci.", "en": "I would like water. – No, thanks."}]},
-        ],
-        [ // jour 5
-            {"m": "eins · zwei · drei", "s": {"fr": "un · deux · trois", "en": "one · two · three"}},
-            {"m": "vier · fünf", "s": {"fr": "quatre · cinq", "en": "four · five"}},
-            {"p": "Ich habe zwei Freunde.", "s": {"fr": "J'ai deux amis.", "en": "I have two friends."}, "l": [{"fr": "J'ai trois amis.", "en": "I have three friends."}, {"fr": "Nous sommes deux amis.", "en": "We are two friends."}]},
-            {"m": "sechs · sieben", "s": {"fr": "six · sept", "en": "six · seven"}},
-            {"m": "acht · neun · zehn", "s": {"fr": "huit · neuf · dix", "en": "eight · nine · ten"}},
-            {"m": "Tee", "s": {"fr": "thé", "en": "tea"}},
-            {"p": "Drei Kaffee, bitte.", "s": {"fr": "Trois cafés, s'il vous plaît.", "en": "Three coffees, please."}, "l": [{"fr": "Deux cafés, s'il vous plaît.", "en": "Two coffees, please."}, {"fr": "Trois cafés, merci.", "en": "Three coffees, thanks."}]},
-            {"m": "gut", "s": {"fr": "bon, bien", "en": "good"}},
-            {"p": "Der Kaffee ist gut.", "s": {"fr": "Le café est bon.", "en": "The coffee is good."}, "l": [{"fr": "Le café est petit.", "en": "The coffee is small."}, {"fr": "Le lait est bon.", "en": "The milk is good."}]},
-            {"m": "vielen Dank", "s": {"fr": "merci beaucoup", "en": "thank you very much"}},
-            {"m": "Entschuldigung", "s": {"fr": "pardon, excusez-moi", "en": "sorry, excuse me"}},
-            {"m": "tschüss", "s": {"fr": "salut (au revoir)", "en": "bye"}},
-            {"m": "bis morgen", "s": {"fr": "à demain", "en": "see you tomorrow"}},
-            {"p": "Danke, bis morgen!", "s": {"fr": "Merci, à demain !", "en": "Thanks, see you tomorrow!"}, "l": [{"fr": "Bonjour, à demain !", "en": "Hello, see you tomorrow!"}, {"fr": "Merci, au revoir !", "en": "Thanks, goodbye!"}]},
-        ],
+        {"s": {"fr": "L'arrivée : saluer et se présenter", "en": "Arriving: greetings and introductions"}, "scene": "flughafen", "tableau": {"t": {"fr": "Être : sein", "en": "To be: sein"}, "l": [["ich bin", {"fr": "je suis", "en": "I am"}], ["du bist", {"fr": "tu es", "en": "you are"}], ["er / sie ist", {"fr": "il / elle est", "en": "he / she is"}]], "a": {"fr": "Pour dire d'où l'on vient : « Ich komme aus Kanada » = je viens du Canada.", "en": "To say where you're from: “Ich komme aus Kanada” = I'm from Canada."}}, "cartes": [["Hallo", {"fr": "bonjour, salut", "en": "hello, hi"}, "Hallo! Wie geht's?", {"fr": "Salut ! Ça va ?", "en": "Hi! How are you?"}], ["Guten Tag", {"fr": "bonjour", "en": "good day, hello"}, "Guten Tag, Frau Schmidt.", {"fr": "Bonjour, madame Schmidt.", "en": "Hello, Ms Schmidt."}], ["ich heiße…", {"fr": "je m'appelle…", "en": "my name is…"}, "Ich heiße Anna.", {"fr": "Je m'appelle Anna.", "en": "My name is Anna."}], ["ich komme aus…", {"fr": "je viens de…", "en": "I'm from…"}, "Ich komme aus Kanada.", {"fr": "Je viens du Canada.", "en": "I'm from Canada."}], ["und du?", {"fr": "et toi ?", "en": "and you?"}, "Ich heiße Anna, und du?", {"fr": "Je m'appelle Anna, et toi ?", "en": "My name is Anna, and you?"}], ["freut mich", {"fr": "enchanté, enchantée", "en": "nice to meet you"}, "Freut mich, Paul.", {"fr": "Enchantée, Paul.", "en": "Nice to meet you, Paul."}], ["danke", {"fr": "merci", "en": "thank you"}, "Vielen Dank!", {"fr": "Merci beaucoup !", "en": "Thank you very much!"}], ["tschüss", {"fr": "salut (au revoir)", "en": "bye"}, "Tschüss, bis morgen!", {"fr": "Salut, à demain !", "en": "Bye, see you tomorrow!"}]], "phrases": [{"p": "Hallo, ich heiße Anna.", "s": {"fr": "Bonjour, je m'appelle Anna.", "en": "Hello, my name is Anna."}, "l": [{"fr": "Bonjour, tu t'appelles Anna.", "en": "Hello, your name is Anna."}, {"fr": "Merci, je m'appelle Anna.", "en": "Thanks, my name is Anna."}]}, {"p": "Ich komme aus Kanada, und du?", "s": {"fr": "Je viens du Canada, et toi ?", "en": "I'm from Canada, and you?"}, "l": [{"fr": "Tu viens du Canada, et toi ?", "en": "You're from Canada, and you?"}, {"fr": "Je vais au Canada, merci.", "en": "I'm going to Canada, thanks."}]}, {"p": "Bist du aus Berlin?", "s": {"fr": "Tu es de Berlin ?", "en": "Are you from Berlin?"}, "l": [{"fr": "Je suis de Berlin.", "en": "I'm from Berlin."}, {"fr": "Il est de Berlin ?", "en": "Is he from Berlin?"}]}]},
+        {"s": {"fr": "Au café, au resto", "en": "At the café, at the restaurant"}, "scene": "fruehstueck", "tableau": {"t": {"fr": "Vouloir poliment : möchten", "en": "Would like: möchten"}, "l": [["ich möchte", {"fr": "je voudrais", "en": "I would like"}], ["du möchtest", {"fr": "tu voudrais", "en": "you would like"}], ["er / sie möchte", {"fr": "il / elle voudrait", "en": "he / she would like"}], ["ein · eine", {"fr": "un · une", "en": "a, an"}]], "a": {"fr": "Ich möchte est la façon polie de commander, plus douce que ich will.", "en": "Ich möchte is the polite way to order, softer than ich will."}}, "cartes": [["einen Kaffee", {"fr": "un café", "en": "a coffee"}, "Einen Kaffee, bitte.", {"fr": "Un café, s'il vous plaît.", "en": "A coffee, please."}], ["einen Tee", {"fr": "un thé", "en": "a tea"}, "Ich möchte einen Tee.", {"fr": "Je voudrais un thé.", "en": "I'd like a tea."}], ["Wasser", {"fr": "de l'eau", "en": "water"}, "Ein Wasser ohne Kohlensäure, bitte.", {"fr": "Une eau plate, s'il vous plaît.", "en": "A still water, please."}], ["ein Bier", {"fr": "une bière", "en": "a beer"}, "Ein Bier, bitte.", {"fr": "Une bière, s'il vous plaît.", "en": "A beer, please."}], ["ein Brötchen", {"fr": "un petit pain", "en": "a bread roll"}, "Ich möchte ein Brötchen.", {"fr": "Je voudrais un petit pain.", "en": "I'd like a bread roll."}], ["bitte", {"fr": "s'il vous plaît, s'il te plaît", "en": "please"}, "Wasser, bitte.", {"fr": "De l'eau, s'il vous plaît.", "en": "Water, please."}], ["Haben Sie…?", {"fr": "Vous avez… ?", "en": "Do you have…?"}, "Haben Sie Tee?", {"fr": "Vous avez du thé ?", "en": "Do you have tea?"}], ["die Rechnung", {"fr": "l'addition", "en": "the bill"}, "Die Rechnung, bitte.", {"fr": "L'addition, s'il vous plaît.", "en": "The bill, please."}]], "phrases": [{"p": "Ich möchte einen Kaffee, bitte.", "s": {"fr": "Je voudrais un café, s'il vous plaît.", "en": "I'd like a coffee, please."}, "l": [{"fr": "Tu voudrais un café ?", "en": "Would you like a coffee?"}, {"fr": "Je voudrais un thé, s'il vous plaît.", "en": "I'd like a tea, please."}]}, {"p": "Haben Sie Wasser?", "s": {"fr": "Vous avez de l'eau ?", "en": "Do you have water?"}, "l": [{"fr": "Je voudrais de l'eau.", "en": "I'd like water."}, {"fr": "L'addition, s'il vous plaît.", "en": "The bill, please."}]}, {"p": "Möchtest du ein Bier?", "s": {"fr": "Tu voudrais une bière ?", "en": "Would you like a beer?"}, "l": [{"fr": "Il voudrait une bière.", "en": "He'd like a beer."}, {"fr": "Je voudrais une bière.", "en": "I'd like a beer."}]}]},
+        {"s": {"fr": "Se déplacer : trouver son chemin", "en": "Getting around: finding your way"}, "scene": "kreuzung", "tableau": {"t": {"fr": "Où est… ? : wo ist…?", "en": "Where is…?: wo ist…?"}, "l": [["Wo ist…?", {"fr": "Où est… ?", "en": "Where is…?"}], ["der · die · das", {"fr": "le · la (trois genres)", "en": "the (three genders)"}], ["links · rechts", {"fr": "à gauche · à droite", "en": "left · right"}]], "a": {"fr": "Chaque nom a son article : der Bahnhof, die U-Bahn, das Hotel. On l'apprend avec le mot.", "en": "Every noun has its article: der Bahnhof, die U-Bahn, das Hotel. Learn it with the word."}}, "cartes": [["die U-Bahn", {"fr": "le métro", "en": "the subway"}, "Wo ist die U-Bahn?", {"fr": "Où est le métro ?", "en": "Where is the subway?"}], ["der Bahnhof", {"fr": "la gare", "en": "the station"}, "Wo ist der Bahnhof?", {"fr": "Où est la gare ?", "en": "Where is the station?"}], ["die Toilette", {"fr": "les toilettes", "en": "the restroom"}, "Wo ist die Toilette?", {"fr": "Où sont les toilettes ?", "en": "Where is the restroom?"}], ["eine Fahrkarte", {"fr": "un billet", "en": "a ticket"}, "Eine Fahrkarte nach Berlin.", {"fr": "Un billet pour Berlin.", "en": "A ticket to Berlin."}], ["rechts", {"fr": "à droite", "en": "on the right"}, "Das ist rechts.", {"fr": "C'est à droite.", "en": "It's on the right."}], ["links", {"fr": "à gauche", "en": "on the left"}, "Das ist links.", {"fr": "C'est à gauche.", "en": "It's on the left."}], ["geradeaus", {"fr": "tout droit", "en": "straight ahead"}, "Immer geradeaus.", {"fr": "Toujours tout droit.", "en": "Keep going straight ahead."}], ["nah · weit", {"fr": "près · loin", "en": "near · far"}, "Ist das weit?", {"fr": "C'est loin ?", "en": "Is it far?"}]], "phrases": [{"p": "Wo ist die U-Bahn?", "s": {"fr": "Où est le métro ?", "en": "Where is the subway?"}, "l": [{"fr": "Où est la gare ?", "en": "Where is the station?"}, {"fr": "Le métro est ici.", "en": "The subway is here."}]}, {"p": "Das ist links.", "s": {"fr": "C'est à gauche.", "en": "It's on the left."}, "l": [{"fr": "C'est à droite.", "en": "It's on the right."}, {"fr": "C'est tout droit.", "en": "It's straight ahead."}]}, {"p": "Eine Fahrkarte nach Berlin, bitte.", "s": {"fr": "Un billet pour Berlin, s'il vous plaît.", "en": "A ticket to Berlin, please."}, "l": [{"fr": "Un café pour Berlin, s'il vous plaît.", "en": "A coffee to Berlin, please."}, {"fr": "Où est la gare de Berlin ?", "en": "Where is Berlin station?"}]}]},
+        {"s": {"fr": "L'hôtel et les achats", "en": "The hotel and shopping"}, "scene": "hotel", "tableau": {"t": {"fr": "Avoir : haben", "en": "To have: haben"}, "l": [["ich habe", {"fr": "j'ai", "en": "I have"}], ["du hast", {"fr": "tu as", "en": "you have"}], ["er / sie hat", {"fr": "il / elle a", "en": "he / she has"}], ["wir haben", {"fr": "nous avons", "en": "we have"}], ["Sie haben", {"fr": "vous avez (poli)", "en": "you have (polite)"}]], "a": {"fr": "Sie avec une majuscule, c'est le « vous » de politesse : à l'hôtel comme au guichet.", "en": "Sie with a capital S is the polite “you”: at the hotel as at the ticket desk."}}, "cartes": [["eine Reservierung", {"fr": "une réservation", "en": "a reservation"}, "Ich habe eine Reservierung.", {"fr": "J'ai une réservation.", "en": "I have a reservation."}], ["ein Zimmer", {"fr": "une chambre", "en": "a room"}, "Haben Sie ein Zimmer?", {"fr": "Vous avez une chambre ?", "en": "Do you have a room?"}], ["der Schlüssel", {"fr": "la clé", "en": "the key"}, "Der Schlüssel, bitte.", {"fr": "La clé, s'il vous plaît.", "en": "The key, please."}], ["Wie viel kostet das?", {"fr": "Combien ça coûte ?", "en": "How much is it?"}, "Wie viel kostet das Zimmer?", {"fr": "Combien coûte la chambre ?", "en": "How much is the room?"}], ["eins · zwei · drei", {"fr": "un · deux · trois", "en": "one · two · three"}], ["vier · fünf", {"fr": "quatre · cinq", "en": "four · five"}], ["zehn · zwanzig", {"fr": "dix · vingt", "en": "ten · twenty"}], ["Euro", {"fr": "euros", "en": "euros"}, "Das macht zwanzig Euro.", {"fr": "Ça fait vingt euros.", "en": "That's twenty euros."}]], "phrases": [{"p": "Ich habe eine Reservierung.", "s": {"fr": "J'ai une réservation.", "en": "I have a reservation."}, "l": [{"fr": "Vous avez une réservation ?", "en": "Do you have a reservation?"}, {"fr": "Je voudrais une chambre.", "en": "I'd like a room."}]}, {"p": "Wie viel kostet das Zimmer?", "s": {"fr": "Combien coûte la chambre ?", "en": "How much is the room?"}, "l": [{"fr": "Où est la chambre ?", "en": "Where is the room?"}, {"fr": "La chambre coûte vingt euros.", "en": "The room costs twenty euros."}]}, {"p": "Das macht zwanzig Euro.", "s": {"fr": "Ça fait vingt euros.", "en": "That's twenty euros."}, "l": [{"fr": "Ça fait dix euros.", "en": "That's ten euros."}, {"fr": "Ça fait deux euros.", "en": "That's two euros."}]}]},
+        {"s": {"fr": "Se débrouiller quand on ne comprend pas", "en": "Coping when you don't understand"}, "scene": "apotheke", "tableau": {"t": {"fr": "Les questions en W", "en": "W-questions"}, "l": [["Was?", {"fr": "Quoi ?", "en": "What?"}], ["Wo?", {"fr": "Où ?", "en": "Where?"}], ["Wie viel?", {"fr": "Combien ?", "en": "How much?"}], ["Wann?", {"fr": "Quand ?", "en": "When?"}]], "a": {"fr": "En allemand, presque toutes les questions commencent par un W.", "en": "In German, almost every question starts with a W."}}, "cartes": [["Entschuldigung", {"fr": "pardon, excusez-moi", "en": "sorry, excuse me"}, "Entschuldigung, sprechen Sie Englisch?", {"fr": "Pardon, vous parlez anglais ?", "en": "Excuse me, do you speak English?"}], ["ich verstehe nicht", {"fr": "je ne comprends pas", "en": "I don't understand"}, "Entschuldigung, ich verstehe nicht.", {"fr": "Pardon, je ne comprends pas.", "en": "Sorry, I don't understand."}], ["langsamer", {"fr": "plus lentement", "en": "more slowly"}, "Langsamer, bitte.", {"fr": "Plus lentement, s'il vous plaît.", "en": "More slowly, please."}], ["Sprechen Sie Englisch?", {"fr": "Vous parlez anglais ?", "en": "Do you speak English?"}], ["ich brauche…", {"fr": "j'ai besoin de…", "en": "I need…"}, "Ich brauche eine Apotheke.", {"fr": "J'ai besoin d'une pharmacie.", "en": "I need a pharmacy."}], ["mir tut … weh", {"fr": "j'ai mal à…", "en": "my … hurts"}, "Mir tut der Kopf weh.", {"fr": "J'ai mal à la tête.", "en": "My head hurts."}], ["Hilfe", {"fr": "de l'aide, à l'aide", "en": "help"}, "Hilfe, bitte!", {"fr": "À l'aide, s'il vous plaît !", "en": "Help, please!"}], ["Was ist das?", {"fr": "Qu'est-ce que c'est ?", "en": "What is this?"}]], "phrases": [{"p": "Entschuldigung, ich verstehe nicht.", "s": {"fr": "Pardon, je ne comprends pas.", "en": "Sorry, I don't understand."}, "l": [{"fr": "Pardon, je ne sais pas.", "en": "Sorry, I don't know."}, {"fr": "Merci, je comprends.", "en": "Thanks, I understand."}]}, {"p": "Langsamer, bitte.", "s": {"fr": "Plus lentement, s'il vous plaît.", "en": "More slowly, please."}, "l": [{"fr": "Plus fort, s'il vous plaît.", "en": "Louder, please."}, {"fr": "Encore une fois, s'il vous plaît.", "en": "Once more, please."}]}, {"p": "Ich brauche eine Apotheke.", "s": {"fr": "J'ai besoin d'une pharmacie.", "en": "I need a pharmacy."}, "l": [{"fr": "Où est la pharmacie ?", "en": "Where is the pharmacy?"}, {"fr": "Je cherche un hôtel.", "en": "I'm looking for a hotel."}]}]},
     ]
 };
 const PREMIERS_PAS_KEY = PREFIXE_STOCKAGE + "premiersPas";
-// { a: choisi (true/false ; absent = selon « Je pars de zero »), f: etapes faites, fini }
+// { a: choisi (true/false ; absent = selon « Je pars de zero »), j: jours faits, fini }
 function lirePremiersPas(){
     try{ const v = JSON.parse(localStorage.getItem(PREMIERS_PAS_KEY) || "{}"); return (v && typeof v === "object") ? v : {}; }
     catch(e){ return {}; }
@@ -44243,79 +44204,77 @@ function sensPremiersPas(o){
     if(!o) return "";
     return o[getUiLang()] || o.en || o.fr || "";
 }
-function etapesPremiersPas(){
-    const src = PREMIERS_PAS[LANGUE_APPRISE === "es" ? "es" : "de"] || [];
-    const latam = LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL === "latam";
+function joursPremiersPas(){
+    return PREMIERS_PAS[LANGUE_APPRISE === "es" ? "es" : "de"] || [];
+}
+function jourPremiersPas(){
+    return Math.max(0, Math.min(lirePremiersPas().j || 0, joursPremiersPas().length - 1));
+}
+function marquerJourPremiersPas(d){
+    const s = lirePremiersPas();
+    s.j = Math.max(s.j || 0, d + 1);
+    ecrirePremiersPas(s);
+}
+function themePremiersPas(){ return "premiers_pas_" + (LANGUE_APPRISE === "es" ? "es" : "de"); }
+// Toutes les flashcards du parcours, au format d'une carte d'expression :
+// [mot, fr, categorie, exemple, exemple fr, en, exemple en, categorie en, niveau].
+function toutesCartesPremiersPas(){
     const out = [];
-    src.forEach((jour, j) => jour.forEach(e => {
-        out.push(Object.assign({ jour: j }, e, (latam && e.la) ? e.la : {}));
+    let k = 0;
+    joursPremiersPas().forEach((jour, d) => (jour.cartes || []).forEach(c => {
+        const ex = c[2] || "", exs = c[3] || {};
+        out.push({ mode: "redewendungen", themeId: themePremiersPas(), index: k++, ppJour: d,
+                   word: [c[0], c[1].fr, jour.s.fr, ex, exs.fr || "", c[1].en, exs.en || "", jour.s.en, "A1"] });
     }));
     return out;
 }
-function motsPremiersPas(){
-    const etapes = etapesPremiersPas();
-    const f = Math.min(lirePremiersPas().f || 0, etapes.length);
-    return { vus: etapes.slice(0, f).filter(e => e.m).length, total: etapes.filter(e => e.m).length };
+// Les cartes deja vues reviennent en revision dans la seance du jour.
+function cartesPremiersPasVues(){
+    return toutesCartesPremiersPas().filter(it => !estNeuf(getWordState(it.themeId, it.index)));
 }
-// Le mot du parcours qui existe aussi dans le A1 : vu ici, il ne revient pas
-// comme neuf dans le A1, mais en revision le lendemain.
-function lienPremiersPas(texte){
-    const cible = nuPhrase(texte);
-    const sansArticle = m => nuPhrase(m).replace(/^(der|die|das|el|la|los|las) /, "");
-    try{
-        return paquetDuNiveau("A1").find(it => { const m = motDeLaCarte(it); return m && sansArticle(m) === cible; }) || null;
-    }catch(e){ return null; }
-}
-function avancerPremiersPas(item){
-    if(!item || !item.pp || typeof item.ppIndex !== "number") return;
-    const s = lirePremiersPas();
-    s.f = Math.max(s.f || 0, item.ppIndex + 1);
-    ecrirePremiersPas(s);
-    if(item.forme !== "pp_mot") return;
-    const it = lienPremiersPas(item.phrase.de);
-    if(!it) return;
-    try{
-        const st = getWordState(it.themeId, it.index);
-        if(!estNeuf(st)) return;
-        st.vu = Date.now();
-        programmerEcheance(st, 1440);
-        setWordState(it.themeId, it.index, st);
-        noterMotNeuf();
-    }catch(e){}
-}
-function itemPremiersPas(e, i){
-    const de = e.m || e.p;
-    const item = { mode: "phrase", pp: true, ppIndex: i, cible: null, themeId: "premiers_pas", index: i,
-                   phrase: { de: de, sens: sensPremiersPas(e.s), mots: de.split(" ") } };
-    if(e.m){ item.forme = "pp_mot"; item.word = de; }
-    else { item.forme = "ecoute"; item.leurres = (e.l || []).map(sensPremiersPas); item.word = de; }
-    return item;
+function taireFichiersPremiersPas(textes){
+    textes.forEach(x => {
+        if(!x) return;
+        try{ const e = empreinteAudio(x); if(e) audioAbsents.add(e); }catch(e){}
+    });
 }
 async function ouvrirPremiersPas(){
-    const etapes = etapesPremiersPas();
-    if(!etapes.length) return false;
-    const s = lirePremiersPas();
-    const f = Math.min(s.f || 0, etapes.length);
-    let cartes = [];
-    if(f < etapes.length){
-        // Le jour en cours, du point ou l'on s'est arrete.
-        const jour = etapes[f].jour;
-        etapes.forEach((e, i) => { if(i >= f && e.jour === jour) cartes.push(itemPremiersPas(e, i)); });
+    const jours = joursPremiersPas();
+    if(!jours.length) return false;
+    const d = jourPremiersPas();
+    const jour = jours[d];
+    const theme = themePremiersPas();
+    const cartes = toutesCartesPremiersPas().filter(c => c.ppJour === d);
+    const phrases = (jour.phrases || []).map((e, i) => ({
+        mode: "phrase", forme: "ecoute", pp: true, cible: null, themeId: theme + "_phrases", index: d * 10 + i,
+        phrase: { de: e.p, sens: sensPremiersPas(e.s), mots: e.p.split(" ") },
+        leurres: (e.l || []).map(sensPremiersPas), word: e.p }));
+    const items = [{ mode: "phrase", forme: "pp_tableau", pp: true, cible: null, themeId: theme + "_tableau", index: d,
+                     tableau: jour.tableau, jourPP: d, phrase: null, word: "" }];
+    cartes.forEach((c, i) => {
+        items.push(c);
+        if(i % 3 === 2 && phrases.length) items.push(phrases.shift());
+    });
+    phrases.forEach(p => items.push(p));
+    if(d === jours.length - 1){
+        items.push({ mode: "phrase", forme: "pp_fin", pp: true, cible: null, themeId: theme + "_fin", index: 0, phrase: null, word: "" });
     }
-    const dernier = etapes[etapes.length - 1].jour;
-    if(f >= etapes.length || (cartes.length && cartes[cartes.length - 1].ppIndex === etapes.length - 1)){
-        cartes.push({ mode: "phrase", forme: "pp_fin", pp: true, ppIndex: etapes.length, cible: null,
-                      themeId: "premiers_pas", index: etapes.length, phrase: null, word: "" });
-    }
+    items.push({ mode: "phrase", forme: "pp_scene", pp: true, cible: null, themeId: theme + "_scene", index: d,
+                 scene: jour.scene, jourPP: d, phrase: null, word: "" });
+    const textes = [];
+    (jour.tableau.l || []).forEach(l => textes.push(l[0]));
+    cartes.forEach(c => { textes.push(c.word[0]); textes.push(c.word[3]); });
+    (jour.phrases || []).forEach(e => textes.push(e.p));
+    taireFichiersPremiersPas(textes);
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
     currentCardsFull = [];
-    currentCards = cartes;
-    debutSeanceSuivie(cartes);
+    currentCards = items;
+    debutSeanceSuivie(items);
     retourSeanceAccueil = true;
     panneauAvantFlashcards = null;
     flashcardFromSearch = false;
-    currentTheme = { id: "seance_premiers_pas", name: t("pp_porte_titre") };
+    currentTheme = { id: "seance_premiers_pas", name: sensPremiersPas(jour.s) };
     currentFlashcard = 0;
     flashcardMode = "phrase";
     setFlashHeader("seance_titre", null);
@@ -44355,6 +44314,8 @@ async function ouvrirSeanceDuJour(sansScene){
     NIVEAUX_CECR.forEach(n => {
         tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)));
     });
+    // v829 : les flashcards de Premiers pas deja vues reviennent en revision.
+    try{ if(essaiActif("premiers_pas")) tout.push.apply(tout, cartesPremiersPasVues()); }catch(e){}
     let seance = cartesDeSeance(tout, pool);
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
     if(essaiActif("phrases")){
@@ -44438,16 +44399,10 @@ function majCompteDuJour(){
     let pp = false;
     try{ pp = premiersPasEnCours(); }catch(e){}
     if(pp){
-        try{ const m = motsPremiersPas(); cpt.textContent = m.vus + " / " + m.total; }catch(e){}
+        try{ cpt.textContent = sensPremiersPas(joursPremiersPas()[jourPremiersPas()].s); }catch(e){}
         cpt.classList.remove("atteint");
     }
-    if(unite){
-        const cleUnite = pp ? "pp_porte_unite" : "seance_porte_cartes";
-        if(unite.getAttribute("data-i18n") !== cleUnite){
-            unite.setAttribute("data-i18n", cleUnite);
-            unite.textContent = t(cleUnite);
-        }
-    }
+    if(unite) unite.classList.toggle("hidden", pp);
     // Accroche au moins couteux des deux : majCompteDuJour() repasse a chaque
     // changement d'ecran, majTuileSeance() presque jamais. Le coffre doit
     // apparaitre des le retour d'une seance ou l'on vient d'y mettre un mot.
