@@ -9225,3 +9225,15 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   ETAPES au lieu de jours (« Etape 2 sur 5 ») ; textes qui promettent moins (« les phrases
   essentielles pour voyager » ; a la fin, « Tu as les phrases de base pour... ») dans les 9 langues.
   Le bouton 🌱 reste une fois le parcours fini, et le toucher recommence a l'etape 1.
+
+## 16 octobre 2026 -- l'oral, encore (v834)
+
+- Retour du 16 oct. 08:44 (v823), carte « Lieferung » : « si je mets juste la livraison arrive
+  demain, C efface tout, mais ca ne me dit pas qu'il manque des mots ». Deja regle en v826 (un seul
+  bouton VERIFIER, qui dit la bonne phrase ; plus de bouton qui efface).
+- Jacques : « j'ai reussi a enregistrer ma voix, mais ce n'etait pas intuitif ; dans la bulle, il
+  n'y avait pas de mouvement ; j'aimerais comme Duolingo que ca dise si c'est OK ou pas ». Cause
+  probable du rond immobile : le moteur audio etait cree apres l'attente du micro, hors du toucher,
+  et l'iPhone le laisse en pause. v834 : il est cree dans le toucher ; le journal note son etat, le
+  volume vu et si le telephone sait reconnaitre la parole. A confirmer par un « Signaler un
+  probleme » envoye juste apres un essai.

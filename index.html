@@ -7523,7 +7523,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v833</span>
+    <span class="subtitle-version">v834</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39395,7 +39395,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 833;
+const APP_VERSION = 834;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -44108,12 +44108,19 @@ function montrerCartePhrase(item){
             rond.style.transform = "scale(1)";
             onde.classList.add("hidden");
         };
-        const suivreVoix = flux => {
+        // ⚠️ v834 : LE ROND RESTAIT IMMOBILE SUR L'IPHONE (Jacques, 16 oct.). Le
+        // moteur audio etait cree APRES l'attente de getUserMedia, donc hors du
+        // toucher : WebKit le laisse alors « suspended », et l'analyseur ne lit
+        // qu'un silence plat. Meme regle que la synthese vocale (voir
+        // texteCarteAPrononcer). Il est maintenant cree dans le toucher et
+        // passe ici ; son etat part au journal.
+        const suivreVoix = (flux, ctxGeste) => {
             try{
                 const Ctx = window.AudioContext || window.webkitAudioContext;
-                if(!Ctx) return;
-                const ctx = new Ctx();
+                if(!Ctx && !ctxGeste) return;
+                const ctx = ctxGeste || new Ctx();
                 if(ctx.resume) ctx.resume().catch(() => {});
+                setTimeout(() => { try{ journal("onde", "moteur " + ctx.state + ", volume vu " + (anime ? anime.pic().toFixed(3) : "?")); }catch(e){} }, 1200);
                 const analyse = ctx.createAnalyser();
                 analyse.fftSize = 512;
                 ctx.createMediaStreamSource(flux).connect(analyse);
@@ -44145,8 +44152,17 @@ function montrerCartePhrase(item){
             const formats = ["audio/mp4", "audio/webm", "audio/aac"].filter(f => { try{ return typeof MediaRecorder !== "undefined" && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(f); }catch(e){ return false; } });
             journal("toucher", "v" + APP_VERSION + (natif ? " app native" : installee ? " app ecran d'accueil" : " navigateur")
                 + ", getUserMedia " + !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
-                + ", MediaRecorder " + (typeof MediaRecorder !== "undefined") + ", formats " + (formats.join(" ") || "aucun"));
+                + ", MediaRecorder " + (typeof MediaRecorder !== "undefined") + ", formats " + (formats.join(" ") || "aucun")
+                + ", reconnaissance vocale " + !!(window.SpeechRecognition || window.webkitSpeechRecognition));
+            // Le moteur du rond, cree ICI, dans le geste (v834).
+            let ctxGeste = null;
+            try{
+                const Ctx = window.AudioContext || window.webkitAudioContext;
+                if(Ctx){ ctxGeste = new Ctx(); if(ctxGeste.resume) ctxGeste.resume().catch(() => {}); }
+            }catch(e){ ctxGeste = null; }
+            const fermerCtx = () => { try{ if(ctxGeste) ctxGeste.close(); }catch(e){} ctxGeste = null; };
             if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === "undefined"){
+                fermerCtx();
                 dire("parler_sans_micro");
                 return;
             }
@@ -44166,6 +44182,7 @@ function montrerCartePhrase(item){
                 if(fini) return;
                 fini = true;
                 journal("micro", "refuse : " + (e && e.name) + " " + String(e && e.message || "").slice(0, 60));
+                fermerCtx();
                 dire("parler_micro_refuse");
                 return;
             }
@@ -44207,7 +44224,7 @@ function montrerCartePhrase(item){
             try{ rec.start(); }
             catch(e){ journal("enregistreur", "start refuse : " + (e && e.name)); dire("parler_sans_micro"); return; }
             journal("debut", "etat " + rec.state + ", type " + (rec.mimeType || "?"));
-            suivreVoix(flux);
+            suivreVoix(flux, ctxGeste);
             enreg.classList.add("en-cours");
             enreg.textContent = "⏹ " + t("cp_arreter");
             dire("parler_en_cours");
