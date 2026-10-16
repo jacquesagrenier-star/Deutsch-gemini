@@ -9010,3 +9010,17 @@ dans l'app, en confiant le maximum a Fable.
   perdaient leur ponctuation de droite a gauche : isolees (dir="auto").
 - L'espagnol est desormais propose en fr, en, pt et ar. Reste : la relecture par un natif,
   et la voix de la visite guidee en arabe pour l'espagnol. Detail : espanol/AVANCEMENT-AR.md.
+
+## 15 octobre 2026 -- dix scenes qui ne repondaient plus (v809)
+
+Jacques : « Explorer les scenes ne fonctionne pas [...] les courses, je vais juste retour. Si je
+clique dans la scene, il n'y a rien qui se passe », et « Retour » menait a l'ancienne fenetre
+« Ma seance du jour, par quoi commences-tu ».
+- Cause : la revue du 15 oct. (v805) avait ajoute des zones a toucher dans dix scenes (le bureau,
+  les courses, la bibliotheque, le lac, le repas de famille, l'etagere, la guitare, la poste, la
+  plage, le train) sans fabriquer leurs masques. La page de la scene plantait au chargement :
+  ni niveaux, ni toucher, et « Retour » suivait son ancien lien vers la maquette. Le chemin
+  (accueil ou liste des 31) n'y etait pour rien : ce sont les memes scenes des deux cotes.
+- Corrige : masques refaits (detourer.py, local et gratuit) ; les zones qui marchaient sont
+  identiques au pixel pres. La page des scenes ne plante plus pour une zone sans masque, et le
+  verificateur refuse desormais une zone sans masque avant la publication.

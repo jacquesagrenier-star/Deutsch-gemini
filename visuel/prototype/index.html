@@ -628,7 +628,14 @@ let MW = MASQUES.w, MH = MASQUES.h;
    Une seule fois par vue : les masques decodes restent sur les zones. */
 let ZONES = [];
 function preparerZones(){
-  ZONES = S.points.filter(p => !p.detail);
+  /* Une zone SANS MASQUE est laissee de cote, intouchable, au lieu de tout
+     arreter : le 15 oct. 2026, dix scenes avaient recu des zones sans que
+     detourer.py ait tourne, et la page plantait ici -- ni niveaux, ni toucher,
+     et « Retour » suivait son lien vers la maquette au lieu de rendre la main
+     a l'app. Le verificateur signale ces zones (tests/verifier.py, scenes). */
+  ZONES = S.points.filter(p => !p.detail && MASQUES.zones[p.id]);
+  S.points.filter(p => !p.detail && !MASQUES.zones[p.id])
+    .forEach(p => console.warn("zone sans masque : " + p.id + " -- relancer detourer.py"));
   if (S._prete) return;
   for (const p of ZONES){
     const m = new Uint8Array(MW * MH);

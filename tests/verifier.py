@@ -760,6 +760,18 @@ def verifier_scenes_espagnol(r):
         elif de_js and {p["id"] for p in de_js["points"]} != {p["id"] for p in es_js["points"]}:
             r.echec("scenes", "%s : scene-%s.es.js n'a pas les zones de l'allemand -- refaire : "
                     "python visuel/prototype/construire.py %s" % (nom, nom, nom))
+        # Chaque zone a toucher a son masque (15 oct. 2026) : dix scenes avaient
+        # recu des zones sans que detourer.py tourne, et la page des scenes
+        # plantait au chargement -- ni niveaux, ni toucher, « Retour » perdu.
+        masques = scene_js("masques-%s.js" % nom)
+        if de_js and masques is None:
+            r.echec("scenes", "%s : masques-%s.js absent -- python visuel/prototype/detourer.py %s" % (nom, nom, nom))
+        elif de_js:
+            sans = [p["id"] for p in de_js["points"] if not p.get("detail") and p["id"] not in masques["zones"]]
+            r.controle()
+            if sans:
+                r.echec("scenes", "%s : zone(s) sans masque (%s) -- python visuel/prototype/detourer.py %s"
+                        % (nom, ", ".join(sans), nom))
         n += 1
     print("   scenes espagnol : %d vues suivies" % n)
 
