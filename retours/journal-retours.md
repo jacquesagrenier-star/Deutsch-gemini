@@ -9237,3 +9237,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   et l'iPhone le laisse en pause. v834 : il est cree dans le toucher ; le journal note son etat, le
   volume vu et si le telephone sait reconnaitre la parole. A confirmer par un « Signaler un
   probleme » envoye juste apres un essai.
+- Maquette de la nouvelle carte d'oral (.claude/maquette-carte-oral.html) : un seul gros rond-micro
+  qui bouge avec la voix ; verdict indulgent par la reconnaissance vocale du telephone (C'est bon /
+  Presque / Je n'ai pas bien entendu), Reecouter et Modele, CONTINUER toujours possible. Jacques :
+  « on va integrer aussi l'evaluation de ce qui a ete dit a l'oral ».
