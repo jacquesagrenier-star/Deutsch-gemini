@@ -5047,6 +5047,8 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
 .seance-bas{display:flex; align-items:center; gap:5px; flex-wrap:wrap; width:0; min-width:calc(100% - 10px);}
 .seance-etiq{font-size:11px; color:rgba(255,255,255,.78); flex:0 1 auto; line-height:1.3;}
 .seance-niveaux{display:flex; gap:3px; flex:0 0 auto;}
+/* v816 : le niveau choisi, en clair, sur sa propre ligne sous les boutons. */
+.seance-niveau-clair{font-size:12px; line-height:1.35; color:rgba(255,255,255,.88); margin:4px 0 2px;}
 .seance-niveau{
     border:1px solid rgba(255,255,255,.45); background:transparent; color:#fff;
     font-size:11px; font-weight:600; line-height:1;
@@ -7037,6 +7039,10 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
                 <span class="seance-niveaux" id="seanceNiveaux" role="group"
                       aria-label="Ton niveau"></span>
             </div>
+            <!-- v816 : le niveau en clair -- « B1 » ne dit rien a qui n'a pas
+                 suivi de cours (Jacques). Rempli par majTuileSeance(). Sur sa
+                 ligne a lui : dans la rangee des boutons, il se tassait. -->
+            <div class="seance-niveau-clair" id="seanceNiveauClair"></div>
             <div class="seance-portes">
                 <div class="seance-porte">
                     <span class="seance-porte-titre" data-i18n="seance_porte_mots">Les mots</span>
@@ -7473,7 +7479,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v815</span>
+    <span class="subtitle-version">v816</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10806,6 +10812,11 @@ const I18N = {
         cp_reecouter: "Me réécouter",
         cp_micro_refuse: "Le micro n'est pas disponible : écoute le modèle et répète-le pour toi.",
         seance_ton_niveau: "Ton niveau",
+        niveau_clair_A1: "Débutant : les premiers mots et les phrases du quotidien",
+        niveau_clair_A2: "Élémentaire : se débrouiller dans les situations simples",
+        niveau_clair_B1: "Intermédiaire : parler de sa vie, de son travail, de ses projets",
+        niveau_clair_B2: "Avancé : suivre une discussion, donner son avis",
+        niveau_clair_C1: "Expérimenté : s'exprimer avec aisance et nuance",
         seance_porte_mots: "Les mots",
         seance_porte_scene: "La scène du jour",
         seance_porte_cartes: "cartes",
@@ -11990,6 +12001,11 @@ const I18N = {
         cp_reecouter: "Play me back",
         cp_micro_refuse: "The microphone isn't available: listen to the model and repeat it to yourself.",
         seance_ton_niveau: "Your level",
+        niveau_clair_A1: "Beginner: first words and everyday phrases",
+        niveau_clair_A2: "Elementary: getting by in simple situations",
+        niveau_clair_B1: "Intermediate: talking about your life, work and plans",
+        niveau_clair_B2: "Upper intermediate: following a discussion, giving your opinion",
+        niveau_clair_C1: "Advanced: expressing yourself fluently and with nuance",
         seance_porte_mots: "Words",
         seance_porte_scene: "Today's scene",
         seance_porte_cartes: "cards",
@@ -13176,6 +13192,11 @@ const I18N = {
         cp_reecouter: "Kendimi dinle",
         cp_micro_refuse: "Mikrofon kullanılamıyor: örneği dinle ve kendi kendine tekrarla.",
         seance_ton_niveau: "Seviyen",
+        niveau_clair_A1: "Başlangıç: ilk kelimeler ve günlük ifadeler",
+        niveau_clair_A2: "Temel: basit durumlarda idare etmek",
+        niveau_clair_B1: "Orta: hayatın, işin ve planların hakkında konuşmak",
+        niveau_clair_B2: "İleri orta: bir tartışmayı izlemek, fikrini söylemek",
+        niveau_clair_C1: "Uzman: akıcı ve incelikli ifade etmek",
         seance_porte_mots: "Kelimeler",
         seance_porte_scene: "Günün sahnesi",
         seance_porte_cartes: "kart",
@@ -14699,6 +14720,11 @@ const I18N = {
         cp_reecouter: "Прослухати себе",
         cp_micro_refuse: "Мікрофон недоступний: послухай зразок і повтори його для себе.",
         seance_ton_niveau: "Твій рівень",
+        niveau_clair_A1: "Початковий: перші слова й повсякденні фрази",
+        niveau_clair_A2: "Елементарний: давати раду в простих ситуаціях",
+        niveau_clair_B1: "Середній: розповідати про своє життя, роботу й плани",
+        niveau_clair_B2: "Вище середнього: стежити за дискусією, висловлювати думку",
+        niveau_clair_C1: "Досвідчений: висловлюватися вільно й з нюансами",
         seance_porte_mots: "Слова",
         seance_porte_scene: "Сцена дня",
         seance_porte_cartes: "карток",
@@ -16585,6 +16611,11 @@ const I18N = {
         cp_reecouter: "دوباره گوش دادن به خودم",
         cp_micro_refuse: "میکروفون در دسترس نیست: نمونه را گوش کن و برای خودت تکرارش کن.",
         seance_ton_niveau: "سطح تو",
+        niveau_clair_A1: "مبتدی: نخستین واژه‌ها و جمله‌های روزمره",
+        niveau_clair_A2: "پایه: از پسِ موقعیت‌های ساده برآمدن",
+        niveau_clair_B1: "متوسط: از زندگی، کار و برنامه‌هایت حرف زدن",
+        niveau_clair_B2: "پیشرفته: دنبال کردن یک گفت‌وگو و نظر دادن",
+        niveau_clair_C1: "کارآزموده: روان و دقیق سخن گفتن",
         seance_porte_mots: "کلمه‌ها",
         seance_porte_scene: "صحنهٔ امروز",
         seance_porte_cartes: "کارت",
@@ -17902,6 +17933,11 @@ const I18N = {
         cp_reecouter: "أستمع إلى نفسي",
         cp_micro_refuse: "الميكروفون غير متاح: استمع إلى النموذج وكرّره لنفسك.",
         seance_ton_niveau: "مستواك",
+        niveau_clair_A1: "مبتدئ: الكلمات الأولى وعبارات الحياة اليومية",
+        niveau_clair_A2: "أساسي: التدبّر في المواقف البسيطة",
+        niveau_clair_B1: "متوسط: التحدّث عن حياتك وعملك وخططك",
+        niveau_clair_B2: "فوق المتوسط: متابعة نقاش وإبداء الرأي",
+        niveau_clair_C1: "متقدّم: التعبير بطلاقة ودقّة",
         seance_porte_mots: "الكلمات",
         seance_porte_scene: "مشهد اليوم",
         seance_porte_cartes: "بطاقات",
@@ -18092,6 +18128,11 @@ const I18N = {
         cp_reecouter: "Ouvir minha voz",
         cp_micro_refuse: "O microfone não está disponível: ouça o modelo e repita para você.",
         seance_ton_niveau: "Seu nível",
+        niveau_clair_A1: "Iniciante: as primeiras palavras e as frases do dia a dia",
+        niveau_clair_A2: "Básico: se virar em situações simples",
+        niveau_clair_B1: "Intermediário: falar da sua vida, do trabalho e dos planos",
+        niveau_clair_B2: "Avançado: acompanhar uma discussão, dar sua opinião",
+        niveau_clair_C1: "Experiente: se expressar com fluência e nuance",
         seance_porte_mots: "As palavras",
         seance_porte_scene: "A cena do dia",
         seance_porte_cartes: "cartões",
@@ -19341,6 +19382,11 @@ const I18N = {
         cp_reecouter: "Odsłuchaj mnie",
         cp_micro_refuse: "Mikrofon jest niedostępny: posłuchaj wzoru i powtórz go sobie.",
         seance_ton_niveau: "Twój poziom",
+        niveau_clair_A1: "Początkujący: pierwsze słowa i codzienne zwroty",
+        niveau_clair_A2: "Podstawowy: radzić sobie w prostych sytuacjach",
+        niveau_clair_B1: "Średniozaawansowany: mówić o swoim życiu, pracy i planach",
+        niveau_clair_B2: "Zaawansowany: śledzić dyskusję, wyrażać opinię",
+        niveau_clair_C1: "Biegły: wypowiadać się swobodnie i z niuansami",
         seance_porte_mots: "Słowa",
         seance_porte_scene: "Scena dnia",
         seance_porte_cartes: "kart",
@@ -20588,6 +20634,11 @@ const I18N = {
         cp_reecouter: "Прослушать себя",
         cp_micro_refuse: "Микрофон недоступен: послушай образец и повтори его про себя.",
         seance_ton_niveau: "Твой уровень",
+        niveau_clair_A1: "Начальный: первые слова и повседневные фразы",
+        niveau_clair_A2: "Элементарный: справляться в простых ситуациях",
+        niveau_clair_B1: "Средний: рассказывать о своей жизни, работе и планах",
+        niveau_clair_B2: "Выше среднего: следить за дискуссией, высказывать мнение",
+        niveau_clair_C1: "Продвинутый: выражаться свободно и с нюансами",
         seance_porte_mots: "Слова",
         seance_porte_scene: "Сцена дня",
         seance_porte_cartes: "карточек",
@@ -38984,7 +39035,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 815;
+const APP_VERSION = 816;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43583,6 +43634,9 @@ function majTuileSeance(){
         });
         box.appendChild(b);
     });
+    // v816 : le niveau en clair (« Débutant : les premiers mots... »).
+    const clair = document.getElementById("seanceNiveauClair");
+    if(clair) clair.textContent = t("niveau_clair_" + niveau);
 }
 
 // L'entree par THEME, depuis la tuile Flashcards. Elle ouvre la liste des

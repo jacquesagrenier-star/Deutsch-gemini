@@ -9072,3 +9072,11 @@ dont le dessin du tableau ; puis la roue de reglage [...] quand je glisse mon do
 - Meme famille que la page blanche apres une scene (v804) : WebKit ne repeint pas l'accueil
   pendant son fondu d'entree. L'accueil qui succede aux cartes arrive maintenant sans fondu (pour
   Mis de cote comme pour la seance). Non reproductible hors iPhone : a confirmer sur le telephone.
+
+## 15 octobre 2026 -- les niveaux en clair (v816)
+
+Jacques : « est-ce que ca va etre evident pour tout le monde, surtout un debutant en espagnol, quand
+on voit ton niveau ? A1, A2, B1, B2, C1. Si je n'ai pas pris de cours, ca ne me dira pas grand-chose ».
+- Les sigles restent (ce sont ceux des examens) ; une ligne en clair les explique sous les boutons
+  et suit le niveau choisi : « Debutant : les premiers mots et les phrases du quotidien »,
+  « Elementaire », « Intermediaire », « Avance », « Experimente ». 9 langues, allemand et espagnol.
