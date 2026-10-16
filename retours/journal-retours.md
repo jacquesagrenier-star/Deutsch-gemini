@@ -9174,3 +9174,10 @@ premiere phrase a la 4e carte puis toutes les 3, faite seulement de mots deja vu
   fin, la fete « Tes 50 premiers mots ! » et le passage au A1. Les mots qui existent aussi dans le
   A1 (agua, Wasser...) ne reviennent pas comme neufs. Sens en francais et en anglais seulement
   (traductions a la mise en production) ; les phrases neuves parlent par la synthese du telephone.
+- Puis, sur la v828 : « je voyais ca differemment : des flashcards pour le verbe avoir, les pronoms
+  personnels, les articles, juste pour le familiariser » ; et « prendre l'approche de quelqu'un qui
+  part en voyage : au resto, dans les transports, vraiment la pratique ; meme en A1 on devrait
+  commencer par ca, puis grossir de cette facon-la ». Nouvelle maquette
+  (.claude/maquette-premiers-pas-voyage.html) : un jour par situation (aeroport, cafe, chemin,
+  hotel, pharmacie), chaque jour le petit tableau, les vraies flashcards, des phrases, puis la scene
+  qui correspond. Le reordonnancement du A1 par themes de voyage : a decider apres l'essai.
