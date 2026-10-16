@@ -9301,3 +9301,16 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
 - v841 : en Premiers pas, « j'ai juste les cartes et ecouter avec trois choix ; pas de repeter ».
   Les phrases de chaque etape tournent maintenant entre ecouter (3 sens), construire la phrase et
   repeter a voix haute (rond-micro et verdict) ; la consigne suit l'exercice.
+
+## 16 octobre 2026 (nuit) -- v842
+
+- Prepositions (Jacques : « fais-le faire par Fable ») : deux series de plus par langue apprise, par
+  Fable. de : « Laquelle ? » (praepWahlExercises, A1-A2, 50 questions) et les verbes a preposition
+  (verbenMitPraepExercises, B1, 50), 9 langues ; es : « De viaje » (preposicionesViajeExercises) et
+  « Verbos con preposicion » (verbosConPreposicionExercises), 4 langues. Dans le cours, la seance
+  (PREPOSITIONS_PAR_NIVEAU en liste) et l'etude.
+- Contours (Jacques : « fais-le faire par Fable ») : 18 scenes reprises (personnes et vetements) ;
+  Anna n'est plus un rectangle. A trancher : bauernhof huhn-5 pointe la meme poule que huhn-4.
+- Voix manquantes (621 phrases de scenes de + 618 x 2 es, mots nouveaux) generees, deposees ; MAIS en
+  Flash, contre la regle « v2 toujours » du 12 oct. -- erreur de ma consigne ; refaire en v2 attend
+  l'accord de Jacques (~93 600 credits).
