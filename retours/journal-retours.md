@@ -9158,3 +9158,19 @@ lendemain dans la seance du jour, avec la ligne a revoir demain ».
 - L'ecran de fin dit « N phrases a revoir demain » (9 langues).
 - Gardees sur le telephone et dans la sauvegarde cloud (champ phrasesRateesJson) ; un appareil neuf
   les reprend.
+
+## 16 octobre 2026 -- « Premiers pas » pour les vrais debutants (maquette)
+
+Jacques, pour sa soeur et son beau-frere, debutants complets en espagnol : « on ne devrait pas avoir
+un autre bouton qui precede A1, pour les total debutants ? ». Maquette d'un bouton 🌱 avant A1
+(.claude/maquette-premiers-pas.html). Sur la premiere version (150 mots) : « c'est peut-etre long ;
+il faudrait qu'ils voient les pronoms je, tu, il, nous, vous, ils rapidement, le verbe avoir, quelques
+mots de base, et qu'une petite phrase arrive assez rapidement, sinon on risque de les perdre au
+debut ». Maquette refaite : 50 mots dans un ordre fixe (pronoms + avoir, puis etre, puis la base),
+premiere phrase a la 4e carte puis toutes les 3, faite seulement de mots deja vus. Pas encore cable.
+- v828 : CABLE en essai (admin seul) apres « la maquette me va ». Bouton 🌱 avant A1 ; 50 mots en
+  cinq jours, allemand et espagnol (ustedes pour l'Amerique latine) ; carte « Ecoute et retiens »
+  pour chaque mot, petite phrase a choix des la 4e carte ; la porte compte « 12 / 50 mots » ; a la
+  fin, la fete « Tes 50 premiers mots ! » et le passage au A1. Les mots qui existent aussi dans le
+  A1 (agua, Wasser...) ne reviennent pas comme neufs. Sens en francais et en anglais seulement
+  (traductions a la mise en production) ; les phrases neuves parlent par la synthese du telephone.

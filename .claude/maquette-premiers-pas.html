@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maquette Premiers pas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+:root{
+  --papier:#F6F1EA; --encre:#1C2430; --ambre:#E8A23A; --carte:#FBF8F3;
+  --tuile:#454B55; --gris:#7b8798; --vert:#0F6E56;
+}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--papier); color:var(--encre); font-family:Nunito, system-ui, sans-serif;}
+.page{max-width:1180px; margin:0 auto; padding:24px 16px 48px;}
+h1{font-size:24px; margin:0 0 4px;}
+.chapeau{color:#576177; margin:0 0 22px; font-size:15px; max-width:760px; line-height:1.5;}
+.ecrans{display:flex; flex-wrap:wrap; gap:22px; justify-content:center;}
+.ecran{width:340px; flex:0 0 auto;}
+.legende{font-weight:800; font-size:13px; letter-spacing:.06em; text-transform:uppercase; color:#b07a22; margin:0 0 8px 4px;}
+.tel{background:var(--papier); border:1px solid #e3dccf; border-radius:30px; padding:18px 14px 22px; box-shadow:0 10px 30px rgba(28,36,48,.10);}
+.entete{display:flex; align-items:center; gap:6px; font-weight:900; font-size:16px; margin-bottom:14px;}
+.entete i{font-style:normal; color:var(--ambre); font-size:11px; position:relative; top:-7px; margin-right:-4px;}
+
+/* La tuile de la seance */
+.seance{background:var(--tuile); color:#fff; border-radius:20px; padding:16px 14px 14px; box-shadow:0 8px 20px rgba(28,36,48,.30);}
+.seance strong{font-size:16px;}
+.bas{display:flex; align-items:center; gap:5px; margin-top:12px; flex-wrap:wrap;}
+.etiq{font-size:11.5px; color:rgba(255,255,255,.8);}
+.niv{display:inline-flex; align-items:center; justify-content:center; min-width:31px; height:26px; padding:0 6px; border:1.5px solid rgba(255,255,255,.6); border-radius:8px; font-weight:800; font-size:12px;}
+.niv.on{background:var(--ambre); border-color:var(--ambre); color:var(--encre);}
+.niv.pousse{font-size:14px;}
+.clair{font-size:12.5px; line-height:1.4; color:rgba(255,255,255,.92); margin:8px 0 10px;}
+.clair b{color:#ffd28a;}
+.portes{display:flex; gap:8px;}
+.porte{flex:1; background:rgba(255,255,255,.08); border-radius:14px; padding:10px; display:flex; flex-direction:column; gap:6px; min-height:150px;}
+.porte-titre{color:var(--ambre); font-weight:900; font-size:11.5px; letter-spacing:.04em; text-transform:uppercase;}
+.porte-val{font-weight:800; font-size:17px;}
+.barre{height:6px; background:rgba(255,255,255,.18); border-radius:9px; overflow:hidden;}
+.barre span{display:block; height:100%; width:24%; background:var(--ambre);}
+.petit{font-size:11.5px; color:rgba(255,255,255,.75); line-height:1.35;}
+.go{margin-top:auto; background:var(--ambre); color:var(--encre); border-radius:10px; font-weight:900; text-align:center; padding:9px 6px; font-size:13.5px;}
+.porte.scene{background:linear-gradient(90deg, rgba(28,36,48,.94), rgba(28,36,48,.55)), linear-gradient(135deg,#8a7a63,#c9b79a);}
+
+/* Une carte de la seance */
+.titre-ecran{font-size:12px; font-weight:800; letter-spacing:.1em; color:#b07a22; text-transform:uppercase;}
+.grand{font-size:28px; font-weight:900; color:#7b8798; margin:2px 0 12px; display:flex; justify-content:space-between; align-items:center;}
+.compteur{font-size:13px; font-weight:700; border:1.5px solid #ddd5c8; border-radius:20px; padding:4px 12px; color:var(--gris);}
+.carte{background:var(--carte); border:1px solid #ece5da; border-radius:20px; padding:16px;}
+.badge{display:inline-block; background:#d9f0e6; color:var(--vert); font-weight:800; font-size:12.5px; border-radius:20px; padding:3px 10px;}
+.question{font-weight:700; color:#576177; font-size:14px; margin:12px 0 10px;}
+.ecouter{display:flex; gap:8px; justify-content:center; margin:6px 0 16px;}
+.ecouter span{background:var(--encre); color:#fff; font-weight:800; border-radius:12px; padding:10px 16px; font-size:14px;}
+.ecouter span.lent{background:#fff; color:var(--encre); border:1.5px solid var(--encre);}
+.choix{display:flex; flex-direction:column; gap:8px;}
+.choix span{border:1.5px solid #ddd5c8; border-radius:12px; padding:11px 14px; font-weight:700; font-size:15px; background:#fff;}
+.choix span.bon{border-color:#2e8b57; background:rgba(46,139,87,.12); color:#1f6b42;}
+.retour{margin-top:12px; background:rgba(46,139,87,.12); color:#1f6b42; border-radius:12px; padding:10px 12px; font-weight:700; font-size:14px; line-height:1.45;}
+.retour small{display:block; font-weight:400; color:#2f5d45; margin-top:3px;}
+.continuer{margin-top:14px; background:#7b8798; color:#fff; text-align:center; border-radius:14px; padding:13px; font-weight:900; letter-spacing:.04em;}
+
+/* Le passage au A1 */
+.fete{text-align:center; padding:26px 16px 18px;}
+.fete .grosse{font-size:48px;}
+.fete h2{font-size:21px; margin:8px 0 6px;}
+.fete p{color:#576177; font-size:14.5px; line-height:1.5; margin:0 0 14px;}
+.mots{display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin:10px 0 16px;}
+.mots span{background:#fff; border:1px solid #e3dccf; border-radius:8px; padding:3px 8px; font-size:12.5px; font-weight:700;}
+.niveaux-fete{display:flex; gap:6px; justify-content:center; align-items:center; margin:6px 0 16px; font-weight:900;}
+.niveaux-fete span{border:1.5px solid #cfc6b6; border-radius:8px; padding:4px 8px; font-size:13px; color:#9aa3b2;}
+.niveaux-fete span.fait{border-color:#2e8b57; color:#2e8b57;}
+.niveaux-fete span.on{background:var(--ambre); border-color:var(--ambre); color:var(--encre);}
+.btn-ambre{background:var(--ambre); color:var(--encre); border-radius:14px; padding:13px; font-weight:900; text-align:center;}
+.confettis{height:8px; background:repeating-linear-gradient(90deg,#E8A23A 0 8px,transparent 8px 14px,#5BB6E8 14px 20px,transparent 20px 28px,#9B7BEA 28px 34px,transparent 34px 42px); border-radius:4px; opacity:.8; margin-bottom:10px;}
+
+.jour{margin:8px 0 0; padding-left:22px; font-size:14px; line-height:1.55;}
+.jour li{margin-bottom:3px;}
+.jour li.ph{color:#b07a22; font-weight:700; list-style:none; margin-left:-22px; background:#fff6e6; border-radius:8px; padding:3px 8px;}
+.jour-suite{font-size:13.5px; line-height:1.5; color:#576177; margin:4px 0 10px;}
+/* Les regles */
+.regles{margin:30px auto 0; max-width:900px; background:#fff; border:1px solid #e3dccf; border-radius:18px; padding:20px 22px;}
+.regles h2{font-size:18px; margin:0 0 10px;}
+.regles ol{margin:0; padding-left:20px; line-height:1.6; font-size:15px;}
+.regles li{margin-bottom:6px;}
+.regles .q{background:#fff6e6; border-left:4px solid var(--ambre); padding:10px 12px; border-radius:8px; margin-top:14px; font-size:14.5px; line-height:1.5;}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --papier:#14181f; --carte:#1d232c; --encre:#eef1f5; }
+  :root:not([data-theme="light"]) .regles, :root:not([data-theme="light"]) .choix span, :root:not([data-theme="light"]) .mots span{background:#1d232c; color:#eef1f5;}
+  :root:not([data-theme="light"]) .regles .q{background:#2a2418;}
+  :root:not([data-theme="light"]) .tel{border-color:#2c333d;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Premiers pas : un niveau avant A1</h1>
+  <p class="chapeau">Pour ta sœur et ton beau-frère, qui ne connaissent pas un mot d'espagnol ou presque. Un bouton 🌱 avant A1, choisi d'office pour qui a dit « Je pars de zéro ». Version courte : <b>50 mots</b>, en commençant par <b>les pronoms et avoir</b>, avec <b>une petite phrase dès la 4e carte</b>, pour ne pas les perdre au début. Passage au A1 vers le 5e jour.</p>
+
+  <div class="ecrans">
+    <!-- 1. L'accueil -->
+    <div class="ecran">
+      <p class="legende">1 · L'accueil</p>
+      <div class="tel">
+        <div class="entete"><span>W</span><i>••</i> Wortando</div>
+        <div class="seance">
+          <strong>Ma séance du jour</strong>
+          <div class="bas">
+            <span class="etiq">Ton niveau</span>
+            <span class="niv pousse on">🌱</span>
+            <span class="niv">A1</span><span class="niv">A2</span><span class="niv">B1</span><span class="niv">B2</span><span class="niv">C1</span>
+          </div>
+          <div class="clair"><b>Premiers pas</b> : tu ne connais presque aucun mot ? On commence par je, tu, il… et les premières phrases.</div>
+          <div class="portes">
+            <div class="porte">
+              <span class="porte-titre">Premiers mots</span>
+              <span class="porte-val">12 / 50</span>
+              <div class="barre"><span></span></div>
+              <span class="petit">Jour 2 : nous, vous, ils</span>
+              <span class="go">Commencer ›</span>
+            </div>
+            <div class="porte scene">
+              <span class="porte-titre">La scène du jour</span>
+              <span class="porte-val">El café</span>
+              <span class="petit">Touche les objets, écoute leur nom.</span>
+              <span class="go">Commencer ›</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Le premier jour -->
+    <div class="ecran">
+      <p class="legende">2 · Le premier jour, carte par carte</p>
+      <div class="tel">
+        <div class="titre-ecran">Jour 1 · 10 cartes</div>
+        <ol class="jour">
+          <li><b>yo</b> = je</li>
+          <li><b>tú</b> = tu</li>
+          <li><b>tengo · tienes</b> = j'ai · tu as</li>
+          <li class="ph">★ Phrase : <b>Yo tengo.</b> / <b>¿Tú tienes?</b></li>
+          <li><b>agua</b> = de l'eau</li>
+          <li><b>él · ella</b> = il · elle</li>
+          <li><b>tiene</b> = il / elle a</li>
+          <li class="ph">★ Phrase : <b>Ella tiene agua.</b></li>
+          <li><b>hola · gracias</b> = bonjour · merci</li>
+          <li class="ph">★ Phrase : <b>Hola, yo tengo agua.</b></li>
+        </ol>
+        <div class="titre-ecran" style="margin-top:14px">Jour 2</div>
+        <p class="jour-suite"><b>nosotros · vosotros · ellos</b> (nous, vous, ils), puis <b>tenemos · tenéis · tienen</b>, puis <b>soy · eres · es</b> (être) ; une phrase toutes les 3 cartes : <i>Nosotros tenemos pan.</i></p>
+        <div class="titre-ecran">Jours 3 à 5</div>
+        <p class="jour-suite">sí, no, por favor, me llamo…, quiero, la casa, el pan, el café, uno à diez… toujours avec une petite phrase faite <b>seulement de mots déjà vus</b>.</p>
+      </div>
+    </div>
+
+    <!-- 3. Une carte-phrase -->
+    <div class="ecran">
+      <p class="legende">3 · Une petite phrase (8e carte du jour 1)</p>
+      <div class="tel">
+        <div class="titre-ecran">Ma séance</div>
+        <div class="grand"><span>Premiers mots</span><span class="compteur">8 / 10</span></div>
+        <div class="carte">
+          <span class="badge">🌱 Phrase</span>
+          <p class="question">Écoute la phrase, puis touche ce qu'elle veut dire.</p>
+          <div class="ecouter"><span>🔊 Écouter</span><span class="lent">🐢 Plus lentement</span></div>
+          <div class="choix">
+            <span class="bon">Elle a de l'eau. ✓</span>
+            <span>Tu as de l'eau.</span>
+            <span>J'ai de l'eau.</span>
+          </div>
+          <div class="retour">Bravo ! <i>Ella tiene agua.</i><small>Les trois choix ne diffèrent que par le pronom : c'est lui qu'on apprend.</small></div>
+          <div class="continuer">CONTINUER</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Le passage au A1 -->
+    <div class="ecran">
+      <p class="legende">4 · Les 50 mots sont vus (vers le jour 5)</p>
+      <div class="tel">
+        <div class="carte fete">
+          <div class="confettis"></div>
+          <div class="grosse">🎉</div>
+          <h2>Tes 50 premiers mots !</h2>
+          <p>Tu sais dire je, tu, il, nous, vous, ils, avec avoir et être, saluer et dire merci. Tu passes au niveau A1.</p>
+          <div class="niveaux-fete"><span class="fait">🌱 ✓</span>›<span class="on">A1</span><span>A2</span><span>B1</span></div>
+          <div class="mots"><span>yo</span><span>tú</span><span>él · ella</span><span>nosotros</span><span>tengo</span><span>soy</span><span>hola</span><span>gracias</span><span>agua</span><span>…</span></div>
+          <div class="btn-ambre">Continuer en A1 ›</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="regles">
+    <h2>Comment ça marche</h2>
+    <ol>
+      <li><b>Le bouton 🌱</b> passe avant A1 dans la rangée, avec sa ligne en clair. Il est choisi d'office pour ceux qui ont dit « Je pars de zéro » à l'inscription. Les autres peuvent le toucher aussi.</li>
+      <li><b>50 mots, dans un ordre fixé</b> (pas au hasard) : d'abord <b>les pronoms</b> (je, tu, il / elle, nous, vous, ils) avec <b>avoir</b>, puis <b>être</b>, puis les mots de base (bonjour, merci, oui, non, de l'eau, le pain, la maison, les chiffres 1 à 10).</li>
+      <li><b>La première phrase arrive à la 4e carte</b>, puis une toutes les 3 cartes. Elle n'utilise <b>que des mots déjà vus</b> : « Yo tengo. », « Ella tiene agua. ». On écoute, puis on touche le bon sens parmi trois, qui ne diffèrent que par le pronom.</li>
+      <li><b>Pas de grammaire, de dictée ni de phrase à construire</b> : la carte classique avec le son, et ces petites phrases.</li>
+      <li><b>Le passage au A1 se fait tout seul</b> quand les 50 mots sont vus (vers le 5e jour), avec la petite fête. Ces mots comptent déjà pour le A1 : on ne les revoit pas deux fois.</li>
+      <li><b>Les pronoms suivent la variante choisie</b> : <i>vosotros</i> pour l'Espagne, <i>ustedes</i> pour l'Amérique latine.</li>
+      <li><b>À produire</b> : l'espagnol a déjà ses pronoms en cartes (yo, tú…). L'allemand non : il faudra ajouter ich, du, er / sie / es, wir, ihr, sie / Sie, avec leurs traductions et leur son. Les petites phrases (environ 20 par langue) sont à écrire, puis à enregistrer avec la voix de l'app.</li>
+      <li><b>Dans les deux langues</b>, allemand et espagnol, et dans les 9 langues de l'interface.</li>
+    </ol>
+    <div class="q"><b>À trancher par toi :</b> le symbole du bouton (🌱, « 0 » ou « Départ ») ; et 50 mots te semble-t-il le bon nombre ?</div>
+  </div>
+</div>
+</body>
+</html>

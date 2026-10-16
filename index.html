@@ -6378,6 +6378,16 @@ body[data-theme="dark"] .cp-retour.bon{color:#7fd3a5;} body[data-theme="dark"] .
 .cp-saisie{width:100%; font-size:18px; padding:12px; border-radius:12px; border:1.5px solid #e2d6c0; margin-top:12px; background:#fff; color:#1C2430;}
 body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-color:#3a4558;}
 .cp-indice{color:#8a5a0e; font-size:14px; margin-top:4px;}
+.seance-niveau.seance-pp{font-size:14px; padding:0 5px;}
+.cp-type b.cp-pp{background:#d9f0e6; color:#0F6E56;}
+.cp-mot-pp{font-size:30px; font-weight:900; text-align:center; margin:14px 0 4px; line-height:1.2;}
+.cp-sens-pp{text-align:center; font-size:17px;}
+.cp-fete-pp{text-align:center; padding:8px 4px 4px;}
+.cp-fete-pp .cp-fete-emoji{font-size:52px;}
+.cp-fete-pp h2{font-size:22px; margin:8px 0 6px;}
+.cp-fete-pp p{color:#576177; line-height:1.5; margin:0 0 6px;}
+body[data-theme="dark"] .cp-type b.cp-pp{background:rgba(127,211,165,.16); color:#7fd3a5;}
+body[data-theme="dark"] .cp-fete-pp p{color:#c6cdd8;}
 .cp-faute{text-decoration:underline wavy; text-decoration-thickness:1.5px; text-underline-offset:3px; font-weight:700;}
 .cp-explication{margin-top:8px; font-weight:400; font-size:14.5px;}
 .cp-oral{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px;}
@@ -7488,7 +7498,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v827</span>
+    <span class="subtitle-version">v828</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10817,6 +10827,15 @@ const I18N = {
         cp_presque: "Une petite faute de frappe : on la compte juste.",
         flash_end_a_revoir_un: "1 phrase à revoir demain",
         flash_end_a_revoir_n: "{n} phrases à revoir demain",
+        pp_badge: "Premiers pas",
+        pp_q_mot: "Écoute et retiens",
+        pp_q_choix: "Écoute, puis touche ce que ça veut dire",
+        pp_niveau_clair: "Premiers pas : tu ne connais presque aucun mot ? On commence par je, tu, il… et les premières phrases.",
+        pp_porte_titre: "Premiers mots",
+        pp_porte_unite: "mots",
+        pp_fin_titre: "Tes {n} premiers mots !",
+        pp_fin_texte: "Tu sais dire je, tu, il, nous, vous, ils, avec avoir et être, saluer et dire merci. Tu passes au niveau A1.",
+        pp_fin_bouton: "Continuer en A1",
         cp_q_gram: "Complète la phrase",
         cp_q_dictee: "Écris ce que tu entends",
         cp_q_parler: "Répète à voix haute",
@@ -12014,6 +12033,15 @@ const I18N = {
         cp_presque: "Just a small typo: we count it as right.",
         flash_end_a_revoir_un: "1 sentence to review tomorrow",
         flash_end_a_revoir_n: "{n} sentences to review tomorrow",
+        pp_badge: "First steps",
+        pp_q_mot: "Listen and remember",
+        pp_q_choix: "Listen, then tap what it means",
+        pp_niveau_clair: "First steps: hardly know a word yet? We start with I, you, he… and your first sentences.",
+        pp_porte_titre: "First words",
+        pp_porte_unite: "words",
+        pp_fin_titre: "Your first {n} words!",
+        pp_fin_texte: "You can say I, you, he, we, you, they, with “to have” and “to be”, say hello and thank you. You're moving up to level A1.",
+        pp_fin_bouton: "Continue in A1",
         cp_q_gram: "Complete the sentence",
         cp_q_dictee: "Write what you hear",
         cp_q_parler: "Say it out loud",
@@ -13213,6 +13241,15 @@ const I18N = {
         cp_presque: "Küçük bir yazım hatası: doğru sayıyoruz.",
         flash_end_a_revoir_un: "Yarın tekrar edilecek 1 cümle",
         flash_end_a_revoir_n: "Yarın tekrar edilecek {n} cümle",
+        pp_badge: "İlk adımlar",
+        pp_q_mot: "Dinle ve aklında tut",
+        pp_q_choix: "Dinle, sonra ne anlama geldiğine dokun",
+        pp_niveau_clair: "İlk adımlar: Neredeyse hiç kelime bilmiyor musun? Ben, sen, o… ve ilk cümlelerle başlıyoruz.",
+        pp_porte_titre: "İlk kelimeler",
+        pp_porte_unite: "kelime",
+        pp_fin_titre: "İlk {n} kelimen!",
+        pp_fin_texte: "Ben, sen, o, biz, siz, onlar demeyi; sahip olmak ve olmak fiillerini; selam vermeyi ve teşekkür etmeyi biliyorsun. A1 seviyesine geçiyorsun.",
+        pp_fin_bouton: "A1 ile devam et",
         cp_q_gram: "Cümleyi tamamla",
         cp_q_dictee: "Duyduğunu yaz",
         cp_q_parler: "Yüksek sesle tekrarla",
@@ -14749,6 +14786,15 @@ const I18N = {
         cp_presque: "Невелика описка: зараховуємо як правильно.",
         flash_end_a_revoir_un: "1 речення на повторення завтра",
         flash_end_a_revoir_n: "Речень на повторення завтра: {n}",
+        pp_badge: "Перші кроки",
+        pp_q_mot: "Послухай і запам'ятай",
+        pp_q_choix: "Послухай, а потім торкнися значення",
+        pp_niveau_clair: "Перші кроки: майже не знаєш слів? Почнемо з «я», «ти», «він»… і перших речень.",
+        pp_porte_titre: "Перші слова",
+        pp_porte_unite: "слів",
+        pp_fin_titre: "Твої перші {n} слів!",
+        pp_fin_texte: "Ти вже вмієш сказати я, ти, він, ми, ви, вони, з дієсловами «мати» і «бути», привітатися й подякувати. Переходиш на рівень A1.",
+        pp_fin_bouton: "Продовжити з A1",
         cp_q_gram: "Доповни речення",
         cp_q_dictee: "Напиши, що чуєш",
         cp_q_parler: "Повтори вголос",
@@ -16648,6 +16694,15 @@ const I18N = {
         cp_presque: "یک غلط تایپی کوچک: درست حساب می‌کنیم.",
         flash_end_a_revoir_un: "۱ جمله برای مرور فردا",
         flash_end_a_revoir_n: "{n} جمله برای مرور فردا",
+        pp_badge: "گام‌های نخست",
+        pp_q_mot: "گوش کن و به خاطر بسپار",
+        pp_q_choix: "گوش کن، بعد معنی‌اش را لمس کن",
+        pp_niveau_clair: "گام‌های نخست: تقریباً هیچ واژه‌ای نمی‌دانی؟ با من، تو، او… و نخستین جمله‌ها شروع می‌کنیم.",
+        pp_porte_titre: "نخستین واژه‌ها",
+        pp_porte_unite: "واژه",
+        pp_fin_titre: "{n} واژهٔ نخستِ تو!",
+        pp_fin_texte: "می‌توانی بگویی من، تو، او، ما، شما، آن‌ها، با «داشتن» و «بودن»، سلام کنی و تشکر کنی. به سطح A1 می‌روی.",
+        pp_fin_bouton: "ادامه در A1",
         cp_q_gram: "جمله را کامل کن",
         cp_q_dictee: "آنچه می‌شنوی را بنویس",
         cp_q_parler: "بلند تکرار کن",
@@ -17978,6 +18033,15 @@ const I18N = {
         cp_presque: "خطأ مطبعي صغير: نحسبه صحيحًا.",
         flash_end_a_revoir_un: "جملة واحدة للمراجعة غدًا",
         flash_end_a_revoir_n: "جمل للمراجعة غدًا: {n}",
+        pp_badge: "الخطوات الأولى",
+        pp_q_mot: "استمع واحفظ",
+        pp_q_choix: "استمع، ثم المس ما يعنيه",
+        pp_niveau_clair: "الخطوات الأولى: لا تعرف أي كلمة تقريبًا؟ نبدأ بـ«أنا» و«أنت» و«هو»… وبأولى الجمل.",
+        pp_porte_titre: "الكلمات الأولى",
+        pp_porte_unite: "كلمة",
+        pp_fin_titre: "كلماتك الـ{n} الأولى!",
+        pp_fin_texte: "صرت تعرف أن تقول أنا، أنت، هو، نحن، أنتم، هم، مع فعلَي «يملك» و«يكون»، وأن تحيّي وتشكر. أنت تنتقل إلى المستوى A1.",
+        pp_fin_bouton: "المتابعة في A1",
         cp_q_gram: "أكمل الجملة",
         cp_q_dictee: "اكتب ما تسمعه",
         cp_q_parler: "كرّرها بصوت عالٍ",
@@ -18181,6 +18245,15 @@ const I18N = {
         cp_presque: "Só um pequeno erro de digitação: conta como certo.",
         flash_end_a_revoir_un: "1 frase para revisar amanhã",
         flash_end_a_revoir_n: "{n} frases para revisar amanhã",
+        pp_badge: "Primeiros passos",
+        pp_q_mot: "Ouça e memorize",
+        pp_q_choix: "Ouça e toque no que significa",
+        pp_niveau_clair: "Primeiros passos: quase não conhece nenhuma palavra? Começamos com eu, você, ele… e as primeiras frases.",
+        pp_porte_titre: "Primeiras palavras",
+        pp_porte_unite: "palavras",
+        pp_fin_titre: "Suas primeiras {n} palavras!",
+        pp_fin_texte: "Você já sabe dizer eu, você, ele, nós, vocês, eles, com ter e ser, cumprimentar e agradecer. Você passa para o nível A1.",
+        pp_fin_bouton: "Continuar no A1",
         cp_q_gram: "Complete a frase",
         cp_q_dictee: "Escreva o que você ouve",
         cp_q_parler: "Repita em voz alta",
@@ -19443,6 +19516,15 @@ const I18N = {
         cp_presque: "Mała literówka: liczymy jako dobrze.",
         flash_end_a_revoir_un: "1 zdanie do powtórki jutro",
         flash_end_a_revoir_n: "Zdania do powtórki jutro: {n}",
+        pp_badge: "Pierwsze kroki",
+        pp_q_mot: "Posłuchaj i zapamiętaj",
+        pp_q_choix: "Posłuchaj, a potem dotknij znaczenia",
+        pp_niveau_clair: "Pierwsze kroki: prawie nie znasz słów? Zaczynamy od „ja”, „ty”, „on”… i pierwszych zdań.",
+        pp_porte_titre: "Pierwsze słowa",
+        pp_porte_unite: "słów",
+        pp_fin_titre: "Twoje pierwsze {n} słów!",
+        pp_fin_texte: "Umiesz już powiedzieć ja, ty, on, my, wy, oni, z czasownikami „mieć” i „być”, przywitać się i podziękować. Przechodzisz na poziom A1.",
+        pp_fin_bouton: "Kontynuuj na A1",
         cp_q_gram: "Uzupełnij zdanie",
         cp_q_dictee: "Napisz, co słyszysz",
         cp_q_parler: "Powtórz na głos",
@@ -20703,6 +20785,15 @@ const I18N = {
         cp_presque: "Небольшая опечатка: засчитываем как верно.",
         flash_end_a_revoir_un: "1 предложение на повторение завтра",
         flash_end_a_revoir_n: "Предложений на повторение завтра: {n}",
+        pp_badge: "Первые шаги",
+        pp_q_mot: "Послушай и запомни",
+        pp_q_choix: "Послушай, затем нажми на значение",
+        pp_niveau_clair: "Первые шаги: почти не знаешь слов? Начнём с «я», «ты», «он»… и первых фраз.",
+        pp_porte_titre: "Первые слова",
+        pp_porte_unite: "слов",
+        pp_fin_titre: "Твои первые {n} слов!",
+        pp_fin_texte: "Ты уже умеешь сказать я, ты, он, мы, вы, они, с глаголами «иметь» и «быть», поздороваться и поблагодарить. Ты переходишь на уровень A1.",
+        pp_fin_bouton: "Продолжить на A1",
         cp_q_gram: "Дополни предложение",
         cp_q_dictee: "Напиши, что слышишь",
         cp_q_parler: "Повтори вслух",
@@ -34220,6 +34311,13 @@ const ESSAIS = {
         etat: "tous",
         titre: "Des phrases dans la séance du jour",
         desc: "La séance mélangée et progressive : phrases (écouter, trou, ordre), grammaire dans l'ordre du cours, dictée, répéter à voix haute -- de plus en plus à mesure que les mots s'accumulent. Chaque exercice remplace une carte."
+    },
+    // EN ESSAI le 16 oct. 2026 (v828), admin seul. Jacques, pour sa soeur et son
+    // beau-frere, debutants complets en espagnol. Voir ouvrirPremiersPas().
+    premiers_pas: {
+        etat: "admin",
+        titre: "Premiers pas (un niveau avant A1)",
+        desc: "Un bouton 🌱 avant A1 : 50 mots dans un ordre fixe (je, tu, il… avec avoir, puis être, puis la base), une petite phrase dès la 4e carte, puis le passage au A1."
     }
 };
 const ESSAIS_COUPES_KEY = PREFIXE_STOCKAGE + "essaisCoupes";
@@ -39136,7 +39234,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 827;
+const APP_VERSION = 828;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42607,7 +42705,8 @@ function vignetteScene(nom){ return baseScenes() + "vignettes/" + nom + ".webp";
 function majTitrePorteMots(){
     const titreMots = document.getElementById("seancePorteMotsTitre");
     if(!titreMots) return;
-    const cle = essaiActif("phrases") ? "seance_porte_mots_grammaire" : "seance_porte_mots";
+    const cle = premiersPasEnCours() ? "pp_porte_titre"
+              : essaiActif("phrases") ? "seance_porte_mots_grammaire" : "seance_porte_mots";
     titreMots.setAttribute("data-i18n", cle);
     titreMots.textContent = t(cle);
 }
@@ -43350,6 +43449,7 @@ function choixDuTrou(item){
 }
 
 function leurresPhrase(item, n){
+    if(item.leurres) return item.leurres.slice(0, n);
     const tous = (currentCardsFull || []).filter(it => MODES_PHRASES.indexOf(it.mode) >= 0 && !(it.themeId === item.themeId && it.index === item.index));
     const mien = new Set(item.phrase.mots.map(nuPhrase));
     const cand = [];
@@ -43465,8 +43565,9 @@ function montrerCartePhrase(item){
     const QUESTIONS = { ecoute: "cp_q_ecoute", trou: "cp_q_trou", ordre: "cp_q_ordre", gram: "cp_q_gram",
                         dictee: "cp_q_dictee", dictee_mot: "cp_q_dictee", parler: "cp_q_parler" };
     const type = creer("div", "cp-type");
-    type.appendChild(creer("b", "", t("cp_type")));
-    type.appendChild(document.createTextNode(t(QUESTIONS[item.forme] || "cp_q_ecoute")));
+    type.appendChild(creer("b", item.pp ? "cp-pp" : "", item.pp ? "🌱 " + t("pp_badge") : t("cp_type")));
+    const question = item.pp ? (item.forme === "pp_mot" ? "pp_q_mot" : "pp_q_choix") : (QUESTIONS[item.forme] || "cp_q_ecoute");
+    if(item.forme !== "pp_fin") type.appendChild(document.createTextNode(t(question)));
     el.appendChild(type);
     const retour = creer("div", "cp-retour hidden");
     const actions = creer("div", "cp-actions");
@@ -43479,6 +43580,7 @@ function montrerCartePhrase(item){
         fait.repondu = true;
         const palierPhrase = repondrePhrase(item, juste);
         try{ noterPhraseRatee(item, juste); }catch(e){}
+        if(item.pp){ try{ avancerPremiersPas(item); }catch(e){} }
         // v819 : LA MEME FETE QU'AILLEURS. Jacques : « les petits confettis avec
         // le son, pour tous les exercices qui sont reussis ». celebrateMastery()
         // choisit entre les confettis et la grande fete de l'objectif du jour.
@@ -43528,7 +43630,41 @@ function montrerCartePhrase(item){
         return b;
     };
 
-    if(item.forme === "ecoute"){
+    if(item.forme === "pp_mot"){
+        // Premiers pas : le mot, sa voix, son sens. Rien a juger ; la carte
+        // compte dans l'objectif du jour au passage.
+        const mot = creer("p", "cp-mot-pp", item.phrase.de);
+        mot.setAttribute("lang", langueDe);
+        el.appendChild(mot);
+        el.appendChild(creer("p", "cp-sens cp-sens-pp", item.phrase.sens));
+        el.appendChild(rangeeEcoute);
+        fait.repondu = true;
+        suite.classList.remove("hidden");
+        suite.addEventListener("click", () => {
+            try{ avancerPremiersPas(item); }catch(e){}
+            repondrePhrase(item, null);
+        }, { once: true, capture: true });
+        direPhrase(item);
+    } else if(item.forme === "pp_fin"){
+        // Les 50 mots sont vus : la fete, puis le A1.
+        const n = motsPremiersPas().total;
+        const fete = creer("div", "cp-fete-pp");
+        fete.appendChild(creer("div", "cp-fete-emoji", "🎉"));
+        fete.appendChild(creer("h2", "", tf("pp_fin_titre", { n: n })));
+        fete.appendChild(creer("p", "", t("pp_fin_texte")));
+        el.appendChild(fete);
+        fait.repondu = true;
+        suite.textContent = t("pp_fin_bouton") + " ›";
+        suite.classList.remove("hidden");
+        suite.addEventListener("click", () => {
+            const s = lirePremiersPas();
+            s.fini = true; s.a = false;
+            s.f = Math.max(s.f || 0, item.ppIndex);
+            ecrirePremiersPas(s);
+            try{ fixerNiveauSeance("A1"); }catch(e){}
+        }, { once: true, capture: true });
+        try{ celebrateMastery(0, false); }catch(e){}
+    } else if(item.forme === "ecoute"){
         el.appendChild(rangeeEcoute);
         const choix = creer("div", "cp-choix");
         const options = melangerPhrase([item.phrase.sens].concat(leurresPhrase(item, 2)));
@@ -43906,7 +44042,291 @@ function repondrePhrase(item, juste){
     }catch(e){ return 0; }
 }
 
+// ============ PREMIERS PAS (essai « premiers_pas », v828) ============
+// Maquette .claude/maquette-premiers-pas.html, validee le 16 oct. 2026. Jacques :
+// « il faudrait qu'ils voient les pronoms je, tu, il, nous, vous, ils rapidement,
+// le verbe avoir, quelques mots de base, et qu'une petite phrase arrive assez
+// rapidement ; sinon on risque de les perdre au debut ». 50 mots par langue, en
+// cinq jours ; une phrase a la 4e carte puis toutes les 3, faite SEULEMENT de
+// mots deja vus ; ses deux leurres ne different souvent que par le pronom.
+// Les sens sont en francais et en anglais (repli des autres langues) : l'essai
+// d'abord, les traductions a la mise en production.
+// m = un mot (carte « Ecoute et retiens ») ; p = une phrase (ecoute + 3 sens) ;
+// la = ce qui change pour l'Amerique latine (ustedes au lieu de vosotros).
+const PREMIERS_PAS = {
+    es: [
+        [ // jour 1
+            {"m": "yo", "s": {"fr": "je", "en": "I"}},
+            {"m": "tengo", "s": {"fr": "j'ai", "en": "I have"}},
+            {"m": "agua", "s": {"fr": "de l'eau", "en": "water"}},
+            {"p": "Yo tengo agua.", "s": {"fr": "J'ai de l'eau.", "en": "I have water."}, "l": [{"fr": "Tu as de l'eau.", "en": "You have water."}, {"fr": "J'ai du pain.", "en": "I have bread."}]},
+            {"m": "tú", "s": {"fr": "tu", "en": "you"}},
+            {"m": "tienes", "s": {"fr": "tu as", "en": "you have"}},
+            {"p": "Tú tienes agua.", "s": {"fr": "Tu as de l'eau.", "en": "You have water."}, "l": [{"fr": "J'ai de l'eau.", "en": "I have water."}, {"fr": "Il a de l'eau.", "en": "He has water."}]},
+            {"m": "él", "s": {"fr": "il", "en": "he"}},
+            {"m": "ella", "s": {"fr": "elle", "en": "she"}},
+            {"m": "tiene", "s": {"fr": "il a, elle a", "en": "he has, she has"}},
+            {"p": "Ella tiene agua.", "s": {"fr": "Elle a de l'eau.", "en": "She has water."}, "l": [{"fr": "Il a de l'eau.", "en": "He has water."}, {"fr": "Tu as de l'eau.", "en": "You have water."}]},
+            {"m": "hola", "s": {"fr": "bonjour, salut", "en": "hello"}},
+            {"m": "gracias", "s": {"fr": "merci", "en": "thank you"}},
+            {"p": "Hola, ¿tienes agua?", "s": {"fr": "Bonjour, tu as de l'eau ?", "en": "Hello, do you have water?"}, "l": [{"fr": "Bonjour, j'ai de l'eau.", "en": "Hello, I have water."}, {"fr": "Bonjour, elle a de l'eau.", "en": "Hello, she has water."}]},
+        ],
+        [ // jour 2
+            {"m": "nosotros", "s": {"fr": "nous", "en": "we"}},
+            {"m": "tenemos", "s": {"fr": "nous avons", "en": "we have"}},
+            {"m": "pan", "s": {"fr": "du pain, le pain", "en": "bread"}},
+            {"p": "Nosotros tenemos pan.", "s": {"fr": "Nous avons du pain.", "en": "We have bread."}, "l": [{"fr": "Vous avez du pain.", "en": "You (plural) have bread."}, {"fr": "Nous avons de l'eau.", "en": "We have water."}]},
+            {"m": "vosotros", "s": {"fr": "vous (plusieurs personnes)", "en": "you (plural)"}, "la": {"m": "ustedes"}},
+            {"m": "tenéis", "s": {"fr": "vous avez", "en": "you (plural) have"}, "la": {"m": "ustedes tienen"}},
+            {"p": "Vosotros tenéis pan.", "s": {"fr": "Vous avez du pain.", "en": "You (plural) have bread."}, "l": [{"fr": "Nous avons du pain.", "en": "We have bread."}, {"fr": "Ils ont du pain.", "en": "They have bread."}], "la": {"p": "Ustedes tienen pan."}},
+            {"m": "y", "s": {"fr": "et", "en": "and"}},
+            {"m": "ellos", "s": {"fr": "ils", "en": "they (masculine)"}},
+            {"m": "ellas", "s": {"fr": "elles", "en": "they (feminine)"}},
+            {"m": "tienen", "s": {"fr": "ils ont, elles ont", "en": "they have"}},
+            {"p": "Ellos tienen agua y pan.", "s": {"fr": "Ils ont de l'eau et du pain.", "en": "They have water and bread."}, "l": [{"fr": "Nous avons de l'eau et du pain.", "en": "We have water and bread."}, {"fr": "Elle a de l'eau et du pain.", "en": "She has water and bread."}]},
+            {"m": "sí", "s": {"fr": "oui", "en": "yes"}},
+            {"m": "no", "s": {"fr": "non", "en": "no"}},
+            {"p": "¿Tienes pan? —Sí, gracias.", "s": {"fr": "Tu as du pain ? — Oui, merci.", "en": "Do you have bread? — Yes, thanks."}, "l": [{"fr": "Tu as de l'eau ? — Non, merci.", "en": "Do you have water? — No, thanks."}, {"fr": "J'ai du pain. — Oui, merci.", "en": "I have bread. — Yes, thanks."}]},
+        ],
+        [ // jour 3
+            {"m": "soy", "s": {"fr": "je suis", "en": "I am"}},
+            {"m": "eres", "s": {"fr": "tu es", "en": "you are"}},
+            {"m": "es", "s": {"fr": "il est, elle est", "en": "he is, she is"}},
+            {"p": "Yo soy Ana.", "s": {"fr": "Je suis Ana.", "en": "I am Ana."}, "l": [{"fr": "Tu es Ana.", "en": "You are Ana."}, {"fr": "Elle est Ana.", "en": "She is Ana."}]},
+            {"m": "somos", "s": {"fr": "nous sommes", "en": "we are"}},
+            {"m": "sois", "s": {"fr": "vous êtes", "en": "you (plural) are"}, "la": {"m": "ustedes son"}},
+            {"m": "son", "s": {"fr": "ils sont, elles sont", "en": "they are"}},
+            {"m": "amigo · amigos", "s": {"fr": "ami · amis", "en": "friend · friends"}},
+            {"p": "Nosotros somos amigos.", "s": {"fr": "Nous sommes amis.", "en": "We are friends."}, "l": [{"fr": "Ils sont amis.", "en": "They are friends."}, {"fr": "Vous êtes amis.", "en": "You are friends."}]},
+            {"m": "me llamo", "s": {"fr": "je m'appelle", "en": "my name is"}},
+            {"p": "Hola, me llamo Ana.", "s": {"fr": "Bonjour, je m'appelle Ana.", "en": "Hello, my name is Ana."}, "l": [{"fr": "Merci, je m'appelle Ana.", "en": "Thanks, my name is Ana."}, {"fr": "Bonjour, tu t'appelles Ana.", "en": "Hello, your name is Ana."}]},
+            {"m": "por favor", "s": {"fr": "s'il te plaît, s'il vous plaît", "en": "please"}},
+            {"p": "Agua, por favor.", "s": {"fr": "De l'eau, s'il vous plaît.", "en": "Water, please."}, "l": [{"fr": "Du pain, s'il vous plaît.", "en": "Bread, please."}, {"fr": "De l'eau, merci.", "en": "Water, thank you."}]},
+        ],
+        [ // jour 4
+            {"m": "buenos días", "s": {"fr": "bonjour (le matin)", "en": "good morning"}},
+            {"m": "quiero", "s": {"fr": "je veux", "en": "I want"}},
+            {"m": "quieres", "s": {"fr": "tu veux", "en": "you want"}},
+            {"m": "café", "s": {"fr": "café", "en": "coffee"}},
+            {"p": "Quiero café.", "s": {"fr": "Je veux du café.", "en": "I want coffee."}, "l": [{"fr": "Tu veux du café ?", "en": "Do you want coffee?"}, {"fr": "J'ai du café.", "en": "I have coffee."}]},
+            {"m": "leche", "s": {"fr": "lait", "en": "milk"}},
+            {"m": "con", "s": {"fr": "avec", "en": "with"}},
+            {"p": "Café con leche, por favor.", "s": {"fr": "Un café au lait, s'il vous plaît.", "en": "A coffee with milk, please."}, "l": [{"fr": "Du lait, s'il vous plaît.", "en": "Milk, please."}, {"fr": "Un café sans lait, s'il vous plaît.", "en": "A coffee without milk, please."}]},
+            {"m": "un · una", "s": {"fr": "un · une", "en": "a, an"}},
+            {"m": "casa", "s": {"fr": "maison", "en": "house"}},
+            {"p": "Tengo una casa.", "s": {"fr": "J'ai une maison.", "en": "I have a house."}, "l": [{"fr": "Je veux une maison.", "en": "I want a house."}, {"fr": "Tu as une maison.", "en": "You have a house."}]},
+            {"m": "el · la", "s": {"fr": "le · la", "en": "the"}},
+            {"m": "grande", "s": {"fr": "grand, grande", "en": "big"}},
+            {"m": "pequeño · pequeña", "s": {"fr": "petit · petite", "en": "small"}},
+            {"p": "La casa es grande.", "s": {"fr": "La maison est grande.", "en": "The house is big."}, "l": [{"fr": "La maison est petite.", "en": "The house is small."}, {"fr": "J'ai une grande maison.", "en": "I have a big house."}]},
+            {"p": "¿Quieres agua? —No, gracias.", "s": {"fr": "Tu veux de l'eau ? — Non, merci.", "en": "Do you want water? — No, thanks."}, "l": [{"fr": "Tu as de l'eau ? — Oui, merci.", "en": "Do you have water? — Yes, thanks."}, {"fr": "Je veux de l'eau. — Non, merci.", "en": "I want water. — No, thanks."}]},
+        ],
+        [ // jour 5
+            {"m": "uno · dos · tres", "s": {"fr": "un · deux · trois", "en": "one · two · three"}},
+            {"m": "cuatro · cinco", "s": {"fr": "quatre · cinq", "en": "four · five"}},
+            {"p": "Tengo dos amigos.", "s": {"fr": "J'ai deux amis.", "en": "I have two friends."}, "l": [{"fr": "J'ai trois amis.", "en": "I have three friends."}, {"fr": "Nous sommes deux amis.", "en": "We are two friends."}]},
+            {"m": "seis · siete", "s": {"fr": "six · sept", "en": "six · seven"}},
+            {"m": "ocho · nueve · diez", "s": {"fr": "huit · neuf · dix", "en": "eight · nine · ten"}},
+            {"p": "Quiero tres cafés, por favor.", "s": {"fr": "Je veux trois cafés, s'il vous plaît.", "en": "I want three coffees, please."}, "l": [{"fr": "Je veux deux cafés, s'il vous plaît.", "en": "I want two coffees, please."}, {"fr": "J'ai trois cafés, merci.", "en": "I have three coffees, thanks."}]},
+            {"m": "bueno · buena", "s": {"fr": "bon · bonne", "en": "good"}},
+            {"p": "El café es bueno.", "s": {"fr": "Le café est bon.", "en": "The coffee is good."}, "l": [{"fr": "Le café est petit.", "en": "The coffee is small."}, {"fr": "Le lait est bon.", "en": "The milk is good."}]},
+            {"m": "muchas gracias", "s": {"fr": "merci beaucoup", "en": "thank you very much"}},
+            {"m": "perdón", "s": {"fr": "pardon", "en": "sorry"}},
+            {"m": "adiós", "s": {"fr": "au revoir", "en": "goodbye"}},
+            {"m": "hasta mañana", "s": {"fr": "à demain", "en": "see you tomorrow"}},
+            {"p": "Gracias, ¡hasta mañana!", "s": {"fr": "Merci, à demain !", "en": "Thanks, see you tomorrow!"}, "l": [{"fr": "Bonjour, à demain !", "en": "Hello, see you tomorrow!"}, {"fr": "Merci, au revoir !", "en": "Thanks, goodbye!"}]},
+        ],
+    ],
+    de: [
+        [ // jour 1
+            {"m": "ich", "s": {"fr": "je", "en": "I"}},
+            {"m": "ich habe", "s": {"fr": "j'ai", "en": "I have"}},
+            {"m": "Wasser", "s": {"fr": "de l'eau", "en": "water"}},
+            {"p": "Ich habe Wasser.", "s": {"fr": "J'ai de l'eau.", "en": "I have water."}, "l": [{"fr": "Tu as de l'eau.", "en": "You have water."}, {"fr": "J'ai du pain.", "en": "I have bread."}]},
+            {"m": "du", "s": {"fr": "tu", "en": "you"}},
+            {"m": "du hast", "s": {"fr": "tu as", "en": "you have"}},
+            {"p": "Du hast Wasser.", "s": {"fr": "Tu as de l'eau.", "en": "You have water."}, "l": [{"fr": "J'ai de l'eau.", "en": "I have water."}, {"fr": "Il a de l'eau.", "en": "He has water."}]},
+            {"m": "er", "s": {"fr": "il", "en": "he"}},
+            {"m": "sie", "s": {"fr": "elle", "en": "she"}},
+            {"m": "er hat · sie hat", "s": {"fr": "il a · elle a", "en": "he has · she has"}},
+            {"p": "Sie hat Wasser.", "s": {"fr": "Elle a de l'eau.", "en": "She has water."}, "l": [{"fr": "Il a de l'eau.", "en": "He has water."}, {"fr": "Tu as de l'eau.", "en": "You have water."}]},
+            {"m": "Hallo", "s": {"fr": "bonjour, salut", "en": "hello"}},
+            {"m": "danke", "s": {"fr": "merci", "en": "thank you"}},
+            {"p": "Hallo, hast du Wasser?", "s": {"fr": "Bonjour, tu as de l'eau ?", "en": "Hello, do you have water?"}, "l": [{"fr": "Bonjour, j'ai de l'eau.", "en": "Hello, I have water."}, {"fr": "Bonjour, elle a de l'eau.", "en": "Hello, she has water."}]},
+        ],
+        [ // jour 2
+            {"m": "wir", "s": {"fr": "nous", "en": "we"}},
+            {"m": "wir haben", "s": {"fr": "nous avons", "en": "we have"}},
+            {"m": "Brot", "s": {"fr": "du pain, le pain", "en": "bread"}},
+            {"p": "Wir haben Brot.", "s": {"fr": "Nous avons du pain.", "en": "We have bread."}, "l": [{"fr": "Vous avez du pain.", "en": "You (plural) have bread."}, {"fr": "Nous avons de l'eau.", "en": "We have water."}]},
+            {"m": "ihr", "s": {"fr": "vous (plusieurs personnes)", "en": "you (plural)"}},
+            {"m": "ihr habt", "s": {"fr": "vous avez", "en": "you (plural) have"}},
+            {"p": "Ihr habt Brot.", "s": {"fr": "Vous avez du pain.", "en": "You (plural) have bread."}, "l": [{"fr": "Nous avons du pain.", "en": "We have bread."}, {"fr": "Ils ont du pain.", "en": "They have bread."}]},
+            {"m": "und", "s": {"fr": "et", "en": "and"}},
+            {"m": "sie (pluriel)", "s": {"fr": "ils, elles", "en": "they"}},
+            {"m": "sie haben", "s": {"fr": "ils ont, elles ont", "en": "they have"}},
+            {"p": "Sie haben Wasser und Brot.", "s": {"fr": "Ils ont de l'eau et du pain.", "en": "They have water and bread."}, "l": [{"fr": "Nous avons de l'eau et du pain.", "en": "We have water and bread."}, {"fr": "Elle a de l'eau et du pain.", "en": "She has water and bread."}]},
+            {"m": "ja", "s": {"fr": "oui", "en": "yes"}},
+            {"m": "nein", "s": {"fr": "non", "en": "no"}},
+            {"p": "Hast du Brot? – Ja, danke.", "s": {"fr": "Tu as du pain ? – Oui, merci.", "en": "Do you have bread? – Yes, thanks."}, "l": [{"fr": "Tu as de l'eau ? – Non, merci.", "en": "Do you have water? – No, thanks."}, {"fr": "J'ai du pain. – Oui, merci.", "en": "I have bread. – Yes, thanks."}]},
+        ],
+        [ // jour 3
+            {"m": "ich bin", "s": {"fr": "je suis", "en": "I am"}},
+            {"m": "du bist", "s": {"fr": "tu es", "en": "you are"}},
+            {"m": "er ist · sie ist", "s": {"fr": "il est · elle est", "en": "he is · she is"}},
+            {"p": "Ich bin Anna.", "s": {"fr": "Je suis Anna.", "en": "I am Anna."}, "l": [{"fr": "Tu es Anna.", "en": "You are Anna."}, {"fr": "Elle est Anna.", "en": "She is Anna."}]},
+            {"m": "wir sind", "s": {"fr": "nous sommes", "en": "we are"}},
+            {"m": "ihr seid", "s": {"fr": "vous êtes", "en": "you (plural) are"}},
+            {"m": "sie sind", "s": {"fr": "ils sont, elles sont", "en": "they are"}},
+            {"m": "Freund · Freunde", "s": {"fr": "ami · amis", "en": "friend · friends"}},
+            {"p": "Wir sind Freunde.", "s": {"fr": "Nous sommes amis.", "en": "We are friends."}, "l": [{"fr": "Ils sont amis.", "en": "They are friends."}, {"fr": "Vous êtes amis.", "en": "You are friends."}]},
+            {"m": "ich heiße", "s": {"fr": "je m'appelle", "en": "my name is"}},
+            {"p": "Hallo, ich heiße Anna.", "s": {"fr": "Bonjour, je m'appelle Anna.", "en": "Hello, my name is Anna."}, "l": [{"fr": "Merci, je m'appelle Anna.", "en": "Thanks, my name is Anna."}, {"fr": "Bonjour, tu t'appelles Anna.", "en": "Hello, your name is Anna."}]},
+            {"m": "bitte", "s": {"fr": "s'il te plaît, s'il vous plaît", "en": "please"}},
+            {"p": "Wasser, bitte.", "s": {"fr": "De l'eau, s'il vous plaît.", "en": "Water, please."}, "l": [{"fr": "Du pain, s'il vous plaît.", "en": "Bread, please."}, {"fr": "De l'eau, merci.", "en": "Water, thank you."}]},
+        ],
+        [ // jour 4
+            {"m": "guten Morgen", "s": {"fr": "bonjour (le matin)", "en": "good morning"}},
+            {"m": "ich möchte", "s": {"fr": "je voudrais", "en": "I would like"}},
+            {"m": "möchtest du …?", "s": {"fr": "tu voudrais… ?", "en": "would you like…?"}},
+            {"m": "Kaffee", "s": {"fr": "café", "en": "coffee"}},
+            {"p": "Ich möchte Kaffee.", "s": {"fr": "Je voudrais du café.", "en": "I would like coffee."}, "l": [{"fr": "Tu voudrais du café ?", "en": "Would you like coffee?"}, {"fr": "J'ai du café.", "en": "I have coffee."}]},
+            {"m": "Milch", "s": {"fr": "lait", "en": "milk"}},
+            {"m": "mit", "s": {"fr": "avec", "en": "with"}},
+            {"p": "Kaffee mit Milch, bitte.", "s": {"fr": "Un café au lait, s'il vous plaît.", "en": "A coffee with milk, please."}, "l": [{"fr": "Du lait, s'il vous plaît.", "en": "Milk, please."}, {"fr": "Un café sans lait, s'il vous plaît.", "en": "A coffee without milk, please."}]},
+            {"m": "ein · eine", "s": {"fr": "un · une", "en": "a, an"}},
+            {"m": "Haus", "s": {"fr": "maison", "en": "house"}},
+            {"p": "Ich habe ein Haus.", "s": {"fr": "J'ai une maison.", "en": "I have a house."}, "l": [{"fr": "Je voudrais une maison.", "en": "I would like a house."}, {"fr": "Tu as une maison.", "en": "You have a house."}]},
+            {"m": "der · die · das", "s": {"fr": "le · la (trois genres)", "en": "the (three genders)"}},
+            {"m": "groß", "s": {"fr": "grand", "en": "big"}},
+            {"m": "klein", "s": {"fr": "petit", "en": "small"}},
+            {"p": "Das Haus ist groß.", "s": {"fr": "La maison est grande.", "en": "The house is big."}, "l": [{"fr": "La maison est petite.", "en": "The house is small."}, {"fr": "J'ai une grande maison.", "en": "I have a big house."}]},
+            {"p": "Möchtest du Wasser? – Nein, danke.", "s": {"fr": "Tu voudrais de l'eau ? – Non, merci.", "en": "Would you like water? – No, thanks."}, "l": [{"fr": "Tu as de l'eau ? – Oui, merci.", "en": "Do you have water? – Yes, thanks."}, {"fr": "Je voudrais de l'eau. – Non, merci.", "en": "I would like water. – No, thanks."}]},
+        ],
+        [ // jour 5
+            {"m": "eins · zwei · drei", "s": {"fr": "un · deux · trois", "en": "one · two · three"}},
+            {"m": "vier · fünf", "s": {"fr": "quatre · cinq", "en": "four · five"}},
+            {"p": "Ich habe zwei Freunde.", "s": {"fr": "J'ai deux amis.", "en": "I have two friends."}, "l": [{"fr": "J'ai trois amis.", "en": "I have three friends."}, {"fr": "Nous sommes deux amis.", "en": "We are two friends."}]},
+            {"m": "sechs · sieben", "s": {"fr": "six · sept", "en": "six · seven"}},
+            {"m": "acht · neun · zehn", "s": {"fr": "huit · neuf · dix", "en": "eight · nine · ten"}},
+            {"m": "Tee", "s": {"fr": "thé", "en": "tea"}},
+            {"p": "Drei Kaffee, bitte.", "s": {"fr": "Trois cafés, s'il vous plaît.", "en": "Three coffees, please."}, "l": [{"fr": "Deux cafés, s'il vous plaît.", "en": "Two coffees, please."}, {"fr": "Trois cafés, merci.", "en": "Three coffees, thanks."}]},
+            {"m": "gut", "s": {"fr": "bon, bien", "en": "good"}},
+            {"p": "Der Kaffee ist gut.", "s": {"fr": "Le café est bon.", "en": "The coffee is good."}, "l": [{"fr": "Le café est petit.", "en": "The coffee is small."}, {"fr": "Le lait est bon.", "en": "The milk is good."}]},
+            {"m": "vielen Dank", "s": {"fr": "merci beaucoup", "en": "thank you very much"}},
+            {"m": "Entschuldigung", "s": {"fr": "pardon, excusez-moi", "en": "sorry, excuse me"}},
+            {"m": "tschüss", "s": {"fr": "salut (au revoir)", "en": "bye"}},
+            {"m": "bis morgen", "s": {"fr": "à demain", "en": "see you tomorrow"}},
+            {"p": "Danke, bis morgen!", "s": {"fr": "Merci, à demain !", "en": "Thanks, see you tomorrow!"}, "l": [{"fr": "Bonjour, à demain !", "en": "Hello, see you tomorrow!"}, {"fr": "Merci, au revoir !", "en": "Thanks, goodbye!"}]},
+        ],
+    ]
+};
+const PREMIERS_PAS_KEY = PREFIXE_STOCKAGE + "premiersPas";
+// { a: choisi (true/false ; absent = selon « Je pars de zero »), f: etapes faites, fini }
+function lirePremiersPas(){
+    try{ const v = JSON.parse(localStorage.getItem(PREMIERS_PAS_KEY) || "{}"); return (v && typeof v === "object") ? v : {}; }
+    catch(e){ return {}; }
+}
+function ecrirePremiersPas(v){
+    try{ localStorage.setItem(PREMIERS_PAS_KEY, JSON.stringify(v)); }catch(e){}
+}
+function premiersPasEnCours(){
+    try{
+        if(!essaiActif("premiers_pas")) return false;
+        const s = lirePremiersPas();
+        if(s.fini) return false;
+        if(s.a === undefined) return declareZero();
+        return !!s.a;
+    }catch(e){ return false; }
+}
+function sensPremiersPas(o){
+    if(!o) return "";
+    return o[getUiLang()] || o.en || o.fr || "";
+}
+function etapesPremiersPas(){
+    const src = PREMIERS_PAS[LANGUE_APPRISE === "es" ? "es" : "de"] || [];
+    const latam = LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL === "latam";
+    const out = [];
+    src.forEach((jour, j) => jour.forEach(e => {
+        out.push(Object.assign({ jour: j }, e, (latam && e.la) ? e.la : {}));
+    }));
+    return out;
+}
+function motsPremiersPas(){
+    const etapes = etapesPremiersPas();
+    const f = Math.min(lirePremiersPas().f || 0, etapes.length);
+    return { vus: etapes.slice(0, f).filter(e => e.m).length, total: etapes.filter(e => e.m).length };
+}
+// Le mot du parcours qui existe aussi dans le A1 : vu ici, il ne revient pas
+// comme neuf dans le A1, mais en revision le lendemain.
+function lienPremiersPas(texte){
+    const cible = nuPhrase(texte);
+    const sansArticle = m => nuPhrase(m).replace(/^(der|die|das|el|la|los|las) /, "");
+    try{
+        return paquetDuNiveau("A1").find(it => { const m = motDeLaCarte(it); return m && sansArticle(m) === cible; }) || null;
+    }catch(e){ return null; }
+}
+function avancerPremiersPas(item){
+    if(!item || !item.pp || typeof item.ppIndex !== "number") return;
+    const s = lirePremiersPas();
+    s.f = Math.max(s.f || 0, item.ppIndex + 1);
+    ecrirePremiersPas(s);
+    if(item.forme !== "pp_mot") return;
+    const it = lienPremiersPas(item.phrase.de);
+    if(!it) return;
+    try{
+        const st = getWordState(it.themeId, it.index);
+        if(!estNeuf(st)) return;
+        st.vu = Date.now();
+        programmerEcheance(st, 1440);
+        setWordState(it.themeId, it.index, st);
+        noterMotNeuf();
+    }catch(e){}
+}
+function itemPremiersPas(e, i){
+    const de = e.m || e.p;
+    const item = { mode: "phrase", pp: true, ppIndex: i, cible: null, themeId: "premiers_pas", index: i,
+                   phrase: { de: de, sens: sensPremiersPas(e.s), mots: de.split(" ") } };
+    if(e.m){ item.forme = "pp_mot"; item.word = de; }
+    else { item.forme = "ecoute"; item.leurres = (e.l || []).map(sensPremiersPas); item.word = de; }
+    return item;
+}
+async function ouvrirPremiersPas(){
+    const etapes = etapesPremiersPas();
+    if(!etapes.length) return false;
+    const s = lirePremiersPas();
+    const f = Math.min(s.f || 0, etapes.length);
+    let cartes = [];
+    if(f < etapes.length){
+        // Le jour en cours, du point ou l'on s'est arrete.
+        const jour = etapes[f].jour;
+        etapes.forEach((e, i) => { if(i >= f && e.jour === jour) cartes.push(itemPremiersPas(e, i)); });
+    }
+    const dernier = etapes[etapes.length - 1].jour;
+    if(f >= etapes.length || (cartes.length && cartes[cartes.length - 1].ppIndex === etapes.length - 1)){
+        cartes.push({ mode: "phrase", forme: "pp_fin", pp: true, ppIndex: etapes.length, cible: null,
+                      themeId: "premiers_pas", index: etapes.length, phrase: null, word: "" });
+    }
+    PHRASES_POSEES.clear();
+    RETOURS_FIN_SEANCE.length = 0;
+    currentCardsFull = [];
+    currentCards = cartes;
+    debutSeanceSuivie(cartes);
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    currentTheme = { id: "seance_premiers_pas", name: t("pp_porte_titre") };
+    currentFlashcard = 0;
+    flashcardMode = "phrase";
+    setFlashHeader("seance_titre", null);
+    showScreen("flashcards");
+    loadFlashcard();
+    return true;
+}
+
 async function ouvrirSeanceDuJour(sansScene){
+    // v828 : en Premiers pas, la porte des mots mene au parcours des 50 mots.
+    if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
@@ -44013,6 +44433,21 @@ function majCompteDuJour(){
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
     cpt.textContent = fait + " / " + cible + (fait >= cible ? " \u2713" : "");
     cpt.classList.toggle("atteint", fait >= cible);
+    // v828 : en Premiers pas, la porte compte les mots du parcours.
+    const unite = cpt.nextElementSibling;
+    let pp = false;
+    try{ pp = premiersPasEnCours(); }catch(e){}
+    if(pp){
+        try{ const m = motsPremiersPas(); cpt.textContent = m.vus + " / " + m.total; }catch(e){}
+        cpt.classList.remove("atteint");
+    }
+    if(unite){
+        const cleUnite = pp ? "pp_porte_unite" : "seance_porte_cartes";
+        if(unite.getAttribute("data-i18n") !== cleUnite){
+            unite.setAttribute("data-i18n", cleUnite);
+            unite.textContent = t(cleUnite);
+        }
+    }
     // Accroche au moins couteux des deux : majCompteDuJour() repasse a chaque
     // changement d'ecran, majTuileSeance() presque jamais. Le coffre doit
     // apparaitre des le retour d'une seance ou l'on vient d'y mettre un mot.
@@ -44062,23 +44497,48 @@ function majTuileSeance(){
     const box = document.getElementById("seanceNiveaux");
     if(!box) return;
     box.innerHTML = "";
+    // v828 : Premiers pas, avant A1 (essai). Le bouton disparait une fois le
+    // parcours fini ; choisir un niveau CECR le quitte.
+    const pp = premiersPasEnCours();
+    if(essaiActif("premiers_pas") && !lirePremiersPas().fini){
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "seance-niveau seance-pp" + (pp ? " on" : "");
+        b.textContent = "🌱";
+        b.title = t("pp_badge");
+        b.setAttribute("aria-label", t("pp_badge"));
+        b.setAttribute("aria-pressed", pp ? "true" : "false");
+        b.addEventListener("click", ev => {
+            ev.stopPropagation();
+            const s = lirePremiersPas();
+            s.a = true;
+            ecrirePremiersPas(s);
+            majTuileSeance();
+        });
+        box.appendChild(b);
+    }
     NIVEAUX_CECR.forEach(niv => {
         const b = document.createElement("button");
         b.type = "button";
-        b.className = "seance-niveau" + (niv === niveau ? " on" : "");
+        const on = niv === niveau && !pp;
+        b.className = "seance-niveau" + (on ? " on" : "");
         b.textContent = niv;
-        b.setAttribute("aria-pressed", niv === niveau ? "true" : "false");
+        b.setAttribute("aria-pressed", on ? "true" : "false");
         b.addEventListener("click", ev => {
             // ⚠️ Sans ceci, choisir un niveau lancerait la seance de l'ancien :
             // le clic remonterait jusqu'au bandeau avant que le choix soit pris.
             ev.stopPropagation();
+            if(essaiActif("premiers_pas")){
+                const s = lirePremiersPas();
+                if(s.a !== false){ s.a = false; ecrirePremiersPas(s); }
+            }
             fixerNiveauSeance(niv);
         });
         box.appendChild(b);
     });
     // v816 : le niveau en clair (« Débutant : les premiers mots... »).
     const clair = document.getElementById("seanceNiveauClair");
-    if(clair) clair.textContent = t("niveau_clair_" + niveau);
+    if(clair) clair.textContent = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
 }
 
 // L'entree par THEME, depuis la tuile Flashcards. Elle ouvre la liste des
@@ -44693,8 +45153,11 @@ function showFlashcardEnd(){
         aRevoir.textContent = n ? (n === 1 ? t("flash_end_a_revoir_un") : tf("flash_end_a_revoir_n", { n: n })) : "";
         aRevoir.classList.toggle("hidden", !n);
     }
+    const enPP = !!(currentTheme && currentTheme.id === "seance_premiers_pas");
+    if(enPP && dictee) dictee.classList.add("hidden");
     const encore = document.getElementById("encoreNeufsBtn");
-    if(encore){
+    if(encore && enPP) encore.classList.add("hidden");
+    else if(encore){
         const t2 = trancheSupplementaire();
         encore.classList.toggle("hidden", t2.cartes.length === 0);
         if(t2.cartes.length) encore.textContent = tf("encore_neufs",
