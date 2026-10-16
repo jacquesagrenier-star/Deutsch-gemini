@@ -284,6 +284,21 @@ def recolter():
                 prendre(p["personne"] + ". " + p["genre"] + " " + p["mot"],
                         "A1", "phrase", "scene.personne")
 
+    # PREMIERS PAS (v837, 16 oct. 2026) : premiers-pas.json. Jacques : « toutes
+    # les lectures avec la voix d'Aurora, pas la voix du telephone ». Ce que
+    # l'app dit, au caractere pres : la forme de chaque ligne du tableau
+    # (pp_tableau), l'expression et l'exemple de chaque flashcard (la carte
+    # d'expression lit card[0] et card[3]), chaque phrase (direPhrase).
+    for etape in charger("premiers-pas.json")["etapes"]:
+        for l in etape["tableau"]["l"]:
+            prendre(l[0], "A1", "phrase" if " " in l[0].strip() else "mot", "premiers_pas")
+        for c in etape["cartes"]:
+            prendre(c[0], "A1", "phrase" if " " in c[0].strip() else "mot", "premiers_pas")
+            if len(c) > 2 and isinstance(c[2], str):
+                prendre(c[2], "A1", "phrase", "premiers_pas")
+        for p in etape["phrases"]:
+            prendre(p["p"], "A1", "phrase", "premiers_pas")
+
     return out
 
 

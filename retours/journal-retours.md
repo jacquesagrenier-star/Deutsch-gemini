@@ -9269,3 +9269,9 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   masque etait leur boite. Reglage retire, contours refaits par SAM. Hotel publie en v837 ; les 7
   autres scenes suivent. « Le dernier mot apparait seul » : pas reproduit (les 5 questions
   s'enchainent), a preciser.
+- v838 : EN PRODUCTION pour tous (Jacques : « en pose tout ») : Premiers pas (8 etapes), la scene
+  dans la seance (une seule porte, l'arret Trouve !) et la carte d'oral a verdict. Premiers pas
+  parle avec Aurora, Lolita et Monica (Jacques : « toutes les lectures avec les voix d'Aurora et les
+  voix espagnoles, pas les voix de telephone ») : 366 + 393 + 395 fichiers, ~11 430 credits Flash
+  (plafond 30 000 approuve), normalises, deposes, verifies en ligne. Et la traduction des phrases
+  des scenes apres la reponse (Fable), fusionnee.

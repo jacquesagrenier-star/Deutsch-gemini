@@ -7545,7 +7545,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v837</span>
+    <span class="subtitle-version">v838</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -34630,18 +34630,21 @@ const ESSAIS = {
     // EN ESSAI le 16 oct. 2026 (v835), admin seul. Jacques : « comme Duolingo, que
     // ca soit en mesure de dire oui c'est OK ou pas », « en etant indulgent ».
     // Maquette : .claude/maquette-carte-oral.html. Voir scoreOral().
+    // EN PRODUCTION le 16 oct. 2026 (v838) -- Jacques : « en pose tout ».
     oral_verdict: {
-        etat: "admin",
+        etat: "tous",
         titre: "L'oral avec un verdict",
         desc: "Un seul rond-micro qui bouge avec la voix ; la reconnaissance vocale du téléphone transcrit, l'app compare avec indulgence : C'est bon / Presque / Je n'ai pas bien entendu. Sans reconnaissance (apps installées pour l'instant) : enregistrer et réécouter, sans verdict."
     },
+    // EN PRODUCTION le 16 oct. 2026 (v838) -- Jacques : « en pose tout ».
     scene_arret: {
-        etat: "admin",
+        etat: "tous",
         titre: "La scène dans la séance",
         desc: "Une seule porte sur l'accueil ; au milieu de la séance, un arrêt de 3 questions dans la scène du jour (« Trouve ! » sur des mots déjà vus en A1, les questions du niveau ensuite), puis retour aux cartes."
     },
+    // EN PRODUCTION le 16 oct. 2026 (v838) -- Jacques : « en pose tout ».
     premiers_pas: {
-        etat: "admin",
+        etat: "tous",
         titre: "Premiers pas (un niveau avant A1)",
         desc: "Un bouton 🌱 avant A1 : 50 mots dans un ordre fixe (je, tu, il… avec avoir, puis être, puis la base), une petite phrase dès la 4e carte, puis le passage au A1."
     }
@@ -39560,7 +39563,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 837;
+const APP_VERSION = 838;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -44781,9 +44784,13 @@ function repondrePhrase(item, juste){
 // v829 : par situations de voyage -- le TABLEAU (pp_tableau), les VRAIES
 // flashcards (mode « redewendungen », repetition espacee, revision ensuite dans
 // la seance du jour), une PHRASE toutes les trois cartes, la SCENE (pp_scene).
-// ⚠️ LA VOIX DU TELEPHONE, EXPRES : ces textes n'ont pas encore de fichier ; on
-// les inscrit d'avance dans audioAbsents pour que la synthese parte dans le
-// geste, des le premier toucher (voir texteCarteAPrononcer).
+// v838 : LES VOIX DE L'APP. Jacques : « toutes les lectures avec les voix
+// d'Aurora et les voix espagnoles, pas les voix de telephone ». Les textes de
+// Premiers pas sont dans audio/manifest.py et audio/manifest_es.py (formes des
+// tableaux, expression et exemple des cartes, phrases, variante d'Amerique
+// latine comprise), generes et deposes le 16 oct. 2026. ⚠️ Un texte modifie
+// dans premiers-pas.json n'a plus de fichier tant qu'on n'a pas regenere :
+// relancer les deux inventaires et les generateurs.
 let PREMIERS_PAS_DONNEES = null, chargementPremiersPas = null;
 function chargerPremiersPas(){
     if(PREMIERS_PAS_DONNEES) return Promise.resolve(PREMIERS_PAS_DONNEES);
@@ -44887,12 +44894,6 @@ function toutesCartesPremiersPas(){
 function cartesPremiersPasVues(){
     return toutesCartesPremiersPas().filter(it => !estNeuf(getWordState(it.themeId, it.index)));
 }
-function taireFichiersPremiersPas(textes){
-    textes.forEach(x => {
-        if(!x) return;
-        try{ const e = empreinteAudio(x); if(e) audioAbsents.add(e); }catch(e){}
-    });
-}
 async function ouvrirPremiersPas(){
     await chargerPremiersPas();
     const jours = joursPremiersPas();
@@ -44932,11 +44933,6 @@ async function ouvrirPremiersPas(){
         items.push({ mode: "phrase", forme: "pp_scene", pp: true, cible: null, themeId: theme + "_scene", index: d,
                      scene: jour.scene, jourPP: d, phrase: null, word: "" });
     }
-    const textes = [];
-    (jour.tableau.l || []).forEach(l => textes.push(l[0]));
-    cartes.forEach(c => { textes.push(c.word[0]); textes.push(c.word[3]); });
-    (jour.phrases || []).forEach(e => textes.push(e.p));
-    taireFichiersPremiersPas(textes);
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
     currentCardsFull = [];

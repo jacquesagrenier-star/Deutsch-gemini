@@ -131,6 +131,31 @@ def recolter(variante):
             for q in c.get("qs", []):
                 q = dict(q, **q["latam"]) if variante == "latam" and q.get("latam") else q
                 prendre(q["phrase"], "scenes", "SC")
+    # PREMIERS PAS (v837, 16 oct. 2026) : espanol/datos/premiers-pas.json, avec
+    # la variante d'Amerique latine comme joursPremiersPas() la montre : une
+    # entree en tableau peut finir par {"la": [...]} (position par position,
+    # null = inchange) ; une phrase porte {"la": {"p": ...}}. Ce que l'app dit :
+    # la forme des tableaux, l'expression et l'exemple des cartes, les phrases.
+    def varier(e):
+        if isinstance(e, list) and e and isinstance(e[-1], dict) and isinstance(e[-1].get("la"), list):
+            base = list(e[:-1])
+            if variante == "latam":
+                for i, v in enumerate(e[-1]["la"]):
+                    if v is not None and i < len(base):
+                        base[i] = v
+            return base
+        return e
+    for etape in charger("premiers-pas.json")["etapes"]:
+        for l in etape["tableau"]["l"]:
+            prendre(varier(l)[0], "premiers_pas", "A1")
+        for c in etape["cartes"]:
+            c = varier(c)
+            prendre(c[0], "premiers_pas", "A1")
+            if len(c) > 2 and isinstance(c[2], str):
+                prendre(c[2], "premiers_pas", "A1")
+        for p in etape["phrases"]:
+            p = dict(p, **p["la"]) if variante == "latam" and isinstance(p.get("la"), dict) else p
+            prendre(p["p"], "premiers_pas", "A1")
     return out
 
 
