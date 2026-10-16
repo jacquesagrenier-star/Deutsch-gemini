@@ -7545,7 +7545,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v839</span>
+    <span class="subtitle-version">v840</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39538,7 +39538,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 839;
+const APP_VERSION = 840;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43394,8 +43394,9 @@ const PALIERS_SEANCE = [
 // perfektExercises = Imperfecto, konjunktiv2Exercises = Subjuntivo...) a le sien.
 const COURS_GRAMMAIRE_PAR_LANGUE = {
     de: [
-        // A1
-        "derEinExercises", "possessivExercises", "wortstellungV2Exercises", "wortstellungFrageExercises",
+        // A1 -- v840 : le present (« Ich ___ jeden Tag Deutsch ») en tete ; il
+        // existait dans l'etude, jamais dans la seance.
+        "exercises", "derEinExercises", "possessivExercises", "wortstellungV2Exercises", "wortstellungFrageExercises",
         "wortstellungNichtExercises", "praepWoWohinExercises",
         // A2
         "perfektExercises", "praeteritumExercises", "kasusReconnaissanceExercises", "positionsverbenExercises",
@@ -43557,6 +43558,16 @@ function grammaireUtile(liste){
 // prepositions venaient en 6e. Maintenant : la serie en cours, les deux
 // suivantes du cours, et la serie de prepositions du niveau si elle n'est pas
 // acquise ; questionGrammaire() tire d'abord une serie, puis une question.
+// v840 : LA CONJUGAISON DU NIVEAU, AUSSI TOUJOURS LA. Jacques : « il faudrait
+// qu'on voie la conjugaison des verbes, comme dans notre serie sur les verbes ».
+// Les series de l'etude, par niveau ; la premiere non acquise entre dans le
+// tirage, a cote des prepositions.
+const CONJUGAISON_PAR_NIVEAU = {
+    de: { A1: ["exercises"], A2: ["perfektExercises", "praeteritumExercises"], B1: ["konjunktiv2Exercises"],
+          B2: ["konjunktiv2Exercises", "praeteritumExercises"] },
+    es: { A1: ["exercises"], A2: ["praeteritumExercises", "perfektExercises", "futuroExercises", "imperativoExercises"],
+          B1: ["condicionalExercises", "konjunktiv2Exercises"], B2: ["konjunktiv2Exercises", "condicionalExercises"] }
+};
 const PREPOSITIONS_PAR_NIVEAU = {
     de: { A1: "praepWoWohinExercises", A2: "positionsverbenExercises", B1: "praepReconnaissanceExercises" },
     es: { A1: "preposicionesExercises", A2: "porParaExercises" }
@@ -43575,6 +43586,8 @@ async function prechargerGrammaireSeance(){
         }
         const prep = (PREPOSITIONS_PAR_NIVEAU[langue] || {})[niveau];
         if(prep && noms.indexOf(prep) < 0 && !serieAcquise(prep, g, s)) noms.push(prep);
+        const conj = ((CONJUGAISON_PAR_NIVEAU[langue] || {})[niveau] || []).filter(x => !serieAcquise(x, g, s))[0];
+        if(conj && noms.indexOf(conj) < 0) noms.push(conj);
         if(noms.length){
             const cle = noms.join("|");
             if(grammaireSeance && !grammaireSeance.melange && grammaireSeance.nom === cle && grammaireSeance.langue === LANGUE_APPRISE) return;

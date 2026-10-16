@@ -9292,3 +9292,9 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   grammaire restait sur une seule serie. Le cycle continue maintenant d'un tour a l'autre ; la
   grammaire tire dans 3 series + celle des prepositions du niveau (Wo/wohin en A1...). Remesure :
   8 tours courts -> gram 5, ecoute 3, ordre 2, trou 2, dictee 2, parler 2.
+- v840 : « est-ce que tu as inclus les prepositions et les conjugaisons des verbes selon le niveau ?
+  ... il faudrait qu'on voie la conjugaison des verbes, des exercices, comme dans notre serie sur les
+  verbes ». Les prepositions l'etaient (v839) ; la conjugaison seulement en partie, et le present
+  allemand (50 questions de l'etude) n'etait jamais dans la seance. Maintenant la serie de
+  conjugaison du niveau est toujours dans le tirage : de A1 present, A2 parfait/preterit, B1-B2
+  Konjunktiv II ; es A1 present, A2 preterito/perfecto/futuro/imperativo, B1-B2 condicional/subjuntivo.
