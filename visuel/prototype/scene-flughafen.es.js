@@ -1220,6 +1220,7 @@ window.SCENE = {
      "f": "koffer-3",
      "r": "waage",
      "phrase": "La maleta grande está en la báscula.",
+     "sens": "La grande valise est sur la balance.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1232,6 +1233,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "El reloj está en la pared.",
+     "sens": "L'horloge est au mur.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1244,6 +1246,7 @@ window.SCENE = {
      "f": "flugzeug",
      "r": "fenster",
      "phrase": "El avión está detrás de la ventana.",
+     "sens": "L'avion est derrière la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1256,6 +1259,7 @@ window.SCENE = {
      "f": "zeitung",
      "r": "stuhl-2",
      "phrase": "El periódico está en la silla.",
+     "sens": "Le journal est sur la chaise.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1268,6 +1272,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "boden",
      "phrase": "La botella está en el suelo.",
+     "sens": "La bouteille est par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "La botella está ___ piso.",
@@ -1284,6 +1289,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "tuer",
      "phrase": "La papelera está al lado de la puerta.",
+     "sens": "La poubelle est à côté de la porte.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>.",
      "latam": {
       "q": "El bote de basura está al lado ___ puerta.",
@@ -1300,6 +1306,7 @@ window.SCENE = {
      "f": "ticket",
      "r": "schalter",
      "phrase": "Hay un billete en el mostrador.",
+     "sens": "Il y a un billet sur le comptoir.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue.",
      "latam": {
       "q": "___ un boleto en el mostrador.",
@@ -1316,6 +1323,7 @@ window.SCENE = {
      "f": "pilot",
      "r": "fenster",
      "phrase": "El piloto está delante de la ventana.",
+     "sens": "Le pilote est devant la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     }
    ]
@@ -1332,6 +1340,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna viaja a España por una semana.",
+     "sens": "Anna part en Espagne pour une semaine.",
      "n": "Une durée → <b>por</b>.",
      "revise": {
       "mot": "viajar",
@@ -1347,6 +1356,7 @@ window.SCENE = {
      ],
      "f": "flugzeug",
      "phrase": "El avión sale para Madrid.",
+     "sens": "L'avion part pour Madrid.",
      "n": "La destination → <b>para</b>.",
      "revise": {
       "mot": "salir",
@@ -1362,6 +1372,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna va a España para ver a su amiga.",
+     "sens": "Anna va en Espagne pour voir son amie.",
      "n": "Le but (afin de) → <b>para</b> + infinitif.",
      "revise": {
       "mot": "ver",
@@ -1378,6 +1389,7 @@ window.SCENE = {
      "f": "frau",
      "r": "anna",
      "phrase": "«Gracias por su ayuda», le dice Anna a la empleada.",
+     "sens": "« Merci pour votre aide », dit Anna à l'employée.",
      "n": "<b>gracias por</b> : la cause, le remerciement.",
      "revise": {
       "mot": "decir",
@@ -1394,6 +1406,7 @@ window.SCENE = {
      "f": "ticket",
      "r": "anna",
      "phrase": "Este billete es para Anna.",
+     "sens": "Ce billet est pour Anna.",
      "n": "Le destinataire → <b>para</b>.",
      "latam": {
       "q": "Este boleto es ___ Anna.",
@@ -1409,6 +1422,7 @@ window.SCENE = {
      ],
      "f": "pass",
      "phrase": "Anna pasa por el control de pasaportes.",
+     "sens": "Anna passe par le contrôle des passeports.",
      "n": "Un passage à travers un lieu → <b>por</b>.",
      "revise": {
       "mot": "pasar",
@@ -1424,6 +1438,7 @@ window.SCENE = {
      ],
      "f": "ticket",
      "phrase": "Ha pagado cien euros por el billete.",
+     "sens": "Elle a payé cent euros pour le billet.",
      "n": "Un prix, un échange → <b>por</b>.",
      "revise": {
       "mot": "pagar",
@@ -1443,6 +1458,7 @@ window.SCENE = {
      ],
      "f": "koffer-3",
      "phrase": "La maleta tiene que estar lista para las ocho.",
+     "sens": "La valise doit être prête pour huit heures.",
      "n": "Une échéance (pour telle heure) → <b>para</b>."
     }
    ]
@@ -1460,6 +1476,7 @@ window.SCENE = {
      "f": "koffer-3",
      "r": "waage",
      "phrase": "Esta mañana Anna ha facturado la maleta.",
+     "sens": "Ce matin, Anna a enregistré sa valise.",
      "n": "<b>esta mañana</b> : un moment encore en cours → pretérito perfecto.",
      "revise": {
       "mot": "facturar",
@@ -1475,6 +1492,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Ayer hizo la maleta en casa.",
+     "sens": "Hier, elle a fait sa valise à la maison.",
      "n": "<b>ayer</b> : un moment terminé → indefinido.",
      "revise": {
       "mot": "hacer",
@@ -1490,6 +1508,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "El año pasado Anna viajó a Italia.",
+     "sens": "L'année dernière, Anna a voyagé en Italie.",
      "n": "<b>el año pasado</b> : un moment terminé → indefinido.",
      "revise": {
       "mot": "viajar",
@@ -1505,6 +1524,7 @@ window.SCENE = {
      ],
      "f": "flugzeug",
      "phrase": "Hoy el avión ha llegado con retraso.",
+     "sens": "Aujourd'hui, l'avion est arrivé en retard.",
      "n": "<b>hoy</b> → pretérito perfecto.",
      "revise": {
       "mot": "llegar",
@@ -1520,6 +1540,7 @@ window.SCENE = {
      ],
      "f": "ticket",
      "phrase": "¿Ya has comprado el billete?",
+     "sens": "Tu as déjà acheté le billet ?",
      "n": "<b>ya</b> (déjà) : un lien avec le présent → pretérito perfecto.",
      "revise": {
       "mot": "comprar",
@@ -1540,6 +1561,7 @@ window.SCENE = {
      "f": "pilot",
      "r": "flugzeug",
      "phrase": "El piloto ha pilotado ese avión muchas veces.",
+     "sens": "Le pilote a piloté cet avion de nombreuses fois.",
      "n": "Une expérience jusqu'à aujourd'hui (<b>muchas veces</b>) → pretérito perfecto."
     }
    ]
@@ -1556,6 +1578,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Debe de estar contenta de viajar.",
+     "sens": "Elle doit être contente de voyager.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1568,6 +1591,7 @@ window.SCENE = {
      "f": "pilot",
      "r": "flugzeug",
      "phrase": "Puede que el piloto pilote el avión de Anna.",
+     "sens": "Le pilote pilote peut-être l'avion d'Anna.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1580,6 +1604,7 @@ window.SCENE = {
      "f": "koffer-3",
      "r": "waage",
      "phrase": "Pesará más de veinte kilos.",
+     "sens": "Elle doit peser plus de vingt kilos.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1591,6 +1616,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Dicen que este aeropuerto es el más moderno de Alemania.",
+     "sens": "On dit que cet aéroport est le plus moderne d'Allemagne.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1642,6 +1668,40 @@ window.SCENE = {
     "C1 | Puede que el piloto pilote el avión de Anna.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Pesará más de veinte kilos.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que este aeropuerto es el más moderno de Alemania.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | La maleta grande está en la báscula.": "The big suitcase is on the scale.",
+    "A2 | El reloj está en la pared.": "The clock is on the wall.",
+    "A2 | El avión está detrás de la ventana.": "The plane is behind the window.",
+    "A2 | El periódico está en la silla.": "The newspaper is on the chair.",
+    "A2 | La botella está en el piso.": "The bottle is on the floor.",
+    "A2 | La botella está en el suelo.": "The bottle is on the floor.",
+    "A2 | El bote de basura está al lado de la puerta.": "The bin is next to the door.",
+    "A2 | La papelera está al lado de la puerta.": "The bin is next to the door.",
+    "A2 | Hay un boleto en el mostrador.": "There is a ticket on the counter.",
+    "A2 | Hay un billete en el mostrador.": "There is a ticket on the counter.",
+    "A2 | El piloto está delante de la ventana.": "The pilot is in front of the window.",
+    "B1 | Anna viaja a España por una semana.": "Anna is travelling to Spain for a week.",
+    "B1 | El avión sale para Madrid.": "The plane is leaving for Madrid.",
+    "B1 | Anna va a España para ver a su amiga.": "Anna is going to Spain to see her friend.",
+    "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "\"Thank you for your help,\" Anna says to the employee.",
+    "B1 | Este boleto es para Anna.": "This ticket is for Anna.",
+    "B1 | Este billete es para Anna.": "This ticket is for Anna.",
+    "B1 | Anna pasa por el control de pasaportes.": "Anna goes through passport control.",
+    "B1 | Ha pagado cien euros por el boleto.": "She paid a hundred euros for the ticket.",
+    "B1 | Ha pagado cien euros por el billete.": "She paid a hundred euros for the ticket.",
+    "B1 | La maleta tiene que estar lista para las ocho.": "The suitcase has to be ready by eight.",
+    "B2 | Esta mañana Anna ha facturado la maleta.": "This morning Anna checked in her suitcase.",
+    "B2 | Ayer hizo la maleta en casa.": "Yesterday she packed her suitcase at home.",
+    "B2 | El año pasado Anna viajó a Italia.": "Last year Anna travelled to Italy.",
+    "B2 | Hoy el avión ha llegado con retraso.": "Today the plane arrived late.",
+    "B2 | ¿Ya has comprado el boleto?": "Have you already bought the ticket?",
+    "B2 | ¿Ya has comprado el billete?": "Have you already bought the ticket?",
+    "B2 | El piloto ha pilotado ese avión muchas veces.": "The pilot has flown that plane many times.",
+    "C1 | Debe de estar contenta de viajar.": "She must be happy to be travelling.",
+    "C1 | Puede que el piloto pilote el avión de Anna.": "The pilot may be flying Anna's plane.",
+    "C1 | Pesará más de veinte kilos.": "It probably weighs more than twenty kilos.",
+    "C1 | Dicen que este aeropuerto es el más moderno de Alemania.": "They say this airport is the most modern in Germany."
    }
   },
   "tr": {
@@ -1652,7 +1712,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1662,7 +1723,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1672,7 +1734,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1719,6 +1782,40 @@ window.SCENE = {
     "C1 | Puede que el piloto pilote el avión de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Pesará más de veinte kilos.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que este aeropuerto es el más moderno de Alemania.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La maleta grande está en la báscula.": "الحقيبة الكبيرة على الميزان.",
+    "A2 | El reloj está en la pared.": "الساعة على الحائط.",
+    "A2 | El avión está detrás de la ventana.": "الطائرة خلف النافذة.",
+    "A2 | El periódico está en la silla.": "الجريدة على الكرسي.",
+    "A2 | La botella está en el piso.": "الزجاجة على الأرض.",
+    "A2 | La botella está en el suelo.": "الزجاجة على الأرض.",
+    "A2 | El bote de basura está al lado de la puerta.": "سلّة المهملات بجانب الباب.",
+    "A2 | La papelera está al lado de la puerta.": "سلّة المهملات بجانب الباب.",
+    "A2 | Hay un boleto en el mostrador.": "هناك تذكرة على المنضدة.",
+    "A2 | Hay un billete en el mostrador.": "هناك تذكرة على المنضدة.",
+    "A2 | El piloto está delante de la ventana.": "الطيّار أمام النافذة.",
+    "B1 | Anna viaja a España por una semana.": "تسافر آنا إلى إسبانيا لمدّة أسبوع.",
+    "B1 | El avión sale para Madrid.": "تقلع الطائرة إلى مدريد.",
+    "B1 | Anna va a España para ver a su amiga.": "تذهب آنا إلى إسبانيا لرؤية صديقتها.",
+    "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "«شكراً على مساعدتك»، تقول آنا للموظّفة.",
+    "B1 | Este boleto es para Anna.": "هذه التذكرة لآنا.",
+    "B1 | Este billete es para Anna.": "هذه التذكرة لآنا.",
+    "B1 | Anna pasa por el control de pasaportes.": "تمرّ آنا بمراقبة الجوازات.",
+    "B1 | Ha pagado cien euros por el boleto.": "دفعت مئة يورو ثمناً للتذكرة.",
+    "B1 | Ha pagado cien euros por el billete.": "دفعت مئة يورو ثمناً للتذكرة.",
+    "B1 | La maleta tiene que estar lista para las ocho.": "يجب أن تكون الحقيبة جاهزة قبل الثامنة.",
+    "B2 | Esta mañana Anna ha facturado la maleta.": "هذا الصباح سجّلت آنا حقيبتها.",
+    "B2 | Ayer hizo la maleta en casa.": "أمس حزمت حقيبتها في البيت.",
+    "B2 | El año pasado Anna viajó a Italia.": "في السنة الماضية سافرت آنا إلى إيطاليا.",
+    "B2 | Hoy el avión ha llegado con retraso.": "اليوم وصلت الطائرة متأخّرة.",
+    "B2 | ¿Ya has comprado el boleto?": "هل اشتريت التذكرة بالفعل؟",
+    "B2 | ¿Ya has comprado el billete?": "هل اشتريت التذكرة بالفعل؟",
+    "B2 | El piloto ha pilotado ese avión muchas veces.": "قاد الطيّار تلك الطائرة مرّات كثيرة.",
+    "C1 | Debe de estar contenta de viajar.": "لا بدّ أنها سعيدة بالسفر.",
+    "C1 | Puede que el piloto pilote el avión de Anna.": "ربما يقود الطيّار طائرة آنا.",
+    "C1 | Pesará más de veinte kilos.": "على الأرجح تزن أكثر من عشرين كيلوغراماً.",
+    "C1 | Dicen que este aeropuerto es el más moderno de Alemania.": "يُقال إن هذا المطار هو الأحدث في ألمانيا."
    }
   },
   "pt": {
@@ -1766,6 +1863,40 @@ window.SCENE = {
     "C1 | Puede que el piloto pilote el avión de Anna.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Pesará más de veinte kilos.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que este aeropuerto es el más moderno de Alemania.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La maleta grande está en la báscula.": "A mala grande está na balança.",
+    "A2 | El reloj está en la pared.": "O relógio está na parede.",
+    "A2 | El avión está detrás de la ventana.": "O avião está atrás da janela.",
+    "A2 | El periódico está en la silla.": "O jornal está na cadeira.",
+    "A2 | La botella está en el piso.": "A garrafa está no chão.",
+    "A2 | La botella está en el suelo.": "A garrafa está no chão.",
+    "A2 | El bote de basura está al lado de la puerta.": "A lixeira está ao lado da porta.",
+    "A2 | La papelera está al lado de la puerta.": "A lixeira está ao lado da porta.",
+    "A2 | Hay un boleto en el mostrador.": "Há uma passagem no balcão.",
+    "A2 | Hay un billete en el mostrador.": "Há uma passagem no balcão.",
+    "A2 | El piloto está delante de la ventana.": "O piloto está em frente à janela.",
+    "B1 | Anna viaja a España por una semana.": "Anna viaja para a Espanha por uma semana.",
+    "B1 | El avión sale para Madrid.": "O avião sai para Madri.",
+    "B1 | Anna va a España para ver a su amiga.": "Anna vai à Espanha para ver a amiga.",
+    "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "«Obrigada pela ajuda», diz Anna à funcionária.",
+    "B1 | Este boleto es para Anna.": "Esta passagem é para Anna.",
+    "B1 | Este billete es para Anna.": "Esta passagem é para Anna.",
+    "B1 | Anna pasa por el control de pasaportes.": "Anna passa pelo controle de passaportes.",
+    "B1 | Ha pagado cien euros por el boleto.": "Ela pagou cem euros pela passagem.",
+    "B1 | Ha pagado cien euros por el billete.": "Ela pagou cem euros pela passagem.",
+    "B1 | La maleta tiene que estar lista para las ocho.": "A mala tem que estar pronta até as oito.",
+    "B2 | Esta mañana Anna ha facturado la maleta.": "Esta manhã Anna despachou a mala.",
+    "B2 | Ayer hizo la maleta en casa.": "Ontem ela fez a mala em casa.",
+    "B2 | El año pasado Anna viajó a Italia.": "No ano passado Anna viajou para a Itália.",
+    "B2 | Hoy el avión ha llegado con retraso.": "Hoje o avião chegou atrasado.",
+    "B2 | ¿Ya has comprado el boleto?": "Você já comprou a passagem?",
+    "B2 | ¿Ya has comprado el billete?": "Você já comprou a passagem?",
+    "B2 | El piloto ha pilotado ese avión muchas veces.": "O piloto já pilotou esse avião muitas vezes.",
+    "C1 | Debe de estar contenta de viajar.": "Ela deve estar contente de viajar.",
+    "C1 | Puede que el piloto pilote el avión de Anna.": "Pode ser que o piloto pilote o avião de Anna.",
+    "C1 | Pesará más de veinte kilos.": "Deve pesar mais de vinte quilos.",
+    "C1 | Dicen que este aeropuerto es el más moderno de Alemania.": "Dizem que este aeroporto é o mais moderno da Alemanha."
    }
   },
   "pl": {
@@ -1776,7 +1907,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1786,7 +1918,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

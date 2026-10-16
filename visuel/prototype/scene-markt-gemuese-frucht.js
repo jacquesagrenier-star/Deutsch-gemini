@@ -1009,6 +1009,7 @@ window.SCENE = {
      ],
      "f": "pilz",
      "phrase": "Die Pilze liegen zwischen dem Mais und den Bohnen.",
+     "sens": "Les champignons sont entre le maïs et les haricots.",
      "n": "<b>zwischen</b> + datif : <b>dem</b> Mais, <b>den</b> Bohne<b>n</b>.",
      "r": "bohne"
     },
@@ -1021,6 +1022,7 @@ window.SCENE = {
      ],
      "f": "tomate-main",
      "phrase": "Anna nimmt ein paar Tomaten.",
+     "sens": "Anna prend quelques tomates.",
      "n": "<b>ein paar</b> = quelques, accusatif pluriel sans article.",
      "r": "anna",
      "revise": {
@@ -1038,6 +1040,7 @@ window.SCENE = {
      ],
      "f": "aubergine",
      "phrase": "Die Auberginen liegen neben den Gurken.",
+     "sens": "Les aubergines sont à côté des concombres.",
      "n": "die Gurke → datif pluriel <b>den Gurken</b>.",
      "r": "gurke"
     },
@@ -1050,6 +1053,7 @@ window.SCENE = {
      ],
      "f": "spargel",
      "phrase": "Der Spargel liegt zwischen dem Salat und den Kürbissen.",
+     "sens": "Les asperges sont entre la salade et les citrouilles.",
      "n": "der Kürbis → pluriel die Kürbisse → datif <b>den Kürbissen</b>.",
      "r": "salat"
     },
@@ -1062,6 +1066,7 @@ window.SCENE = {
      ],
      "f": "zucchini",
      "phrase": "Die Zucchini liegen neben den Tomaten.",
+     "sens": "Les courgettes sont à côté des tomates.",
      "n": "die Tomate → datif pluriel <b>den Tomaten</b>.",
      "r": "tomate"
     }
@@ -1079,6 +1084,7 @@ window.SCENE = {
      ],
      "f": "tomate",
      "phrase": "Ich hätte gern ein Pfund Tomaten.",
+     "sens": "Je voudrais une livre de tomates.",
      "n": "<b>ein Pfund</b> = 500 grammes."
     },
     {
@@ -1090,6 +1096,7 @@ window.SCENE = {
      ],
      "f": "pilz",
      "phrase": "Was kosten die Pilze?",
+     "sens": "Combien coûtent les champignons ?",
      "n": "Au pluriel, l'article est toujours <b>die</b>."
     },
     {
@@ -1101,6 +1108,7 @@ window.SCENE = {
      ],
      "f": "gurke",
      "phrase": "Die Gurke ist länger als die Zucchini.",
+     "sens": "Le concombre est plus long que la courgette.",
      "n": "Comparatif : lang → <b>länger</b> … <b>als</b>.",
      "r": "zucchini",
      "revise": {
@@ -1117,6 +1125,7 @@ window.SCENE = {
      ],
      "f": "salat",
      "phrase": "Ich nehme einen Kopf Salat.",
+     "sens": "Je prends une salade.",
      "n": "<b>ein Kopf Salat</b> = une laitue (une « tête »)."
     },
     {
@@ -1128,6 +1137,7 @@ window.SCENE = {
      ],
      "f": "spargel",
      "phrase": "Kommt der Spargel aus der Region?",
+     "sens": "Les asperges viennent-elles de la région ?",
      "n": "<b>aus</b> + datif pour l'origine : aus der Region."
     }
    ]
@@ -1144,6 +1154,7 @@ window.SCENE = {
      ],
      "f": "spargel",
      "phrase": "Der Spargel wird jeden Morgen frisch gestochen.",
+     "sens": "Les asperges sont récoltées fraîches chaque matin.",
      "n": "Passif : <b>wird</b> + participe II. Spargel <b>stechen</b> = récolter l'asperge."
     },
     {
@@ -1155,6 +1166,7 @@ window.SCENE = {
      ],
      "f": "tomate-main",
      "phrase": "Die Tomaten, die Anna in der Hand hält, sind sehr reif.",
+     "sens": "Les tomates qu'Anna tient à la main sont très mûres.",
      "n": "Complément d'objet de halten → accusatif pluriel <b>die</b>.",
      "r": "anna"
     },
@@ -1167,6 +1179,7 @@ window.SCENE = {
      ],
      "f": "paprika",
      "phrase": "Neben den roten und gelben Paprika liegt der Mais.",
+     "sens": "À côté des poivrons rouges et jaunes, il y a le maïs.",
      "n": "Après <b>den</b> (datif pluriel), les adjectifs prennent <b>-en</b>.",
      "r": "mais"
     },
@@ -1179,6 +1192,7 @@ window.SCENE = {
      ],
      "f": "kuerbis",
      "phrase": "Die Kürbisse sind schon geerntet.",
+     "sens": "Les citrouilles sont déjà récoltées.",
      "n": "Passif d'état : <b>sein</b> + participe II, invariable."
     },
     {
@@ -1190,6 +1204,7 @@ window.SCENE = {
      ],
      "f": "mangold",
      "phrase": "Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.",
+     "sens": "Les blettes aux tiges rouges et jaunes sont très saines.",
      "n": "Possession, antécédent masculin → <b>dessen</b>."
     }
    ]
@@ -1206,6 +1221,7 @@ window.SCENE = {
      ],
      "f": "tomate-main",
      "phrase": "Trotz des hohen Preises nimmt Anna die Strauchtomaten.",
+     "sens": "Malgré le prix élevé, Anna prend les tomates en grappe.",
      "n": "<b>trotz</b> + génitif = malgré. Strauchtomaten = tomates en grappe."
     },
     {
@@ -1217,6 +1233,7 @@ window.SCENE = {
      ],
      "f": "tomate",
      "phrase": "Je reifer die Tomaten sind, desto intensiver schmecken sie.",
+     "sens": "Plus les tomates sont mûres, plus leur goût est intense.",
      "n": "<b>je</b> …, <b>desto</b> … : plus …, plus …"
     },
     {
@@ -1228,6 +1245,7 @@ window.SCENE = {
      ],
      "f": "kuerbis",
      "phrase": "Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.",
+     "sens": "Si la citrouille n'était pas si lourde, Anna l'emporterait.",
      "n": "Condition sans <b>wenn</b>, verbe en tête ; puis <b>würde</b> + infinitif."
     },
     {
@@ -1239,6 +1257,7 @@ window.SCENE = {
      ],
      "f": "pilz",
      "phrase": "Die Pilze dürften im Wald gesammelt worden sein.",
+     "sens": "Les champignons ont sans doute été cueillis en forêt.",
      "n": "Supposition sur le passé, au passif : participe II + <b>worden sein</b>."
     },
     {
@@ -1250,6 +1269,7 @@ window.SCENE = {
      ],
      "f": "artischocke",
      "phrase": "Artischocken sollte man vor dem Kochen gut waschen.",
+     "sens": "Il faut bien laver les artichauts avant de les cuire.",
      "n": "<b>sollte</b> = conseil (on devrait)."
     }
    ]
@@ -1302,6 +1322,28 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Condition without <b>wenn</b>, verb first; then <b>würde</b> + infinitive.",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "An assumption about the past, in the passive: past participle + <b>worden sein</b>.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = advice (you should)."
+   },
+   "sens": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "The mushrooms are between the corn and the beans.",
+    "A2 | Anna nimmt ein paar Tomaten.": "Anna takes a few tomatoes.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "The aubergines are next to the cucumbers.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "The asparagus is between the lettuce and the pumpkins.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "The courgettes are next to the tomatoes.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "I would like a pound of tomatoes.",
+    "B1 | Was kosten die Pilze?": "How much are the mushrooms?",
+    "B1 | Die Gurke ist länger als die Zucchini.": "The cucumber is longer than the courgette.",
+    "B1 | Ich nehme einen Kopf Salat.": "I'll take a head of lettuce.",
+    "B1 | Kommt der Spargel aus der Region?": "Is the asparagus from the region?",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "The asparagus is freshly cut every morning.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "The tomatoes Anna is holding are very ripe.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "Next to the red and yellow peppers is the corn.",
+    "B2 | Die Kürbisse sind schon geerntet.": "The pumpkins have already been harvested.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "The chard, whose stalks are red and yellow, is very healthy.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "Despite the high price, Anna takes the vine tomatoes.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "The riper the tomatoes, the more intense their taste.",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "If the pumpkin were not so heavy, Anna would take it with her.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "The mushrooms were probably picked in the forest.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "Artichokes should be washed well before cooking."
    }
   },
   "tr": {
@@ -1339,6 +1381,28 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "<b>wenn</b> olmadan koşul, fiil başta; sonra <b>würde</b> + mastar.",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Geçmişe dair tahmin, edilgen: Partizip II + <b>worden sein</b>.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = tavsiye (-meli, -malı)."
+   },
+   "sens": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "Mantarlar mısırla fasulyenin arasında.",
+    "A2 | Anna nimmt ein paar Tomaten.": "Anna birkaç domates alıyor.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "Patlıcanlar salatalıkların yanında.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "Kuşkonmaz salatayla balkabaklarının arasında.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "Kabaklar domateslerin yanında.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "Yarım kilo domates istiyorum.",
+    "B1 | Was kosten die Pilze?": "Mantarlar ne kadar?",
+    "B1 | Die Gurke ist länger als die Zucchini.": "Salatalık kabaktan daha uzun.",
+    "B1 | Ich nehme einen Kopf Salat.": "Bir baş salata alıyorum.",
+    "B1 | Kommt der Spargel aus der Region?": "Kuşkonmaz buralardan mı?",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "Kuşkonmaz her sabah taze kesiliyor.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "Anna'nın elinde tuttuğu domatesler çok olgun.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "Kırmızı ve sarı biberlerin yanında mısır var.",
+    "B2 | Die Kürbisse sind schon geerntet.": "Balkabakları hasat edilmiş bile.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "Sapları kırmızı ve sarı olan pazı çok sağlıklı.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "Yüksek fiyata rağmen Anna salkım domatesleri alıyor.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "Domatesler ne kadar olgunsa tatları o kadar yoğun.",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Balkabağı bu kadar ağır olmasaydı Anna onu alırdı.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Mantarlar ormanda toplanmış olsa gerek.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "Enginarları pişirmeden önce iyice yıkamak gerekir."
    }
   },
   "uk": {
@@ -1376,6 +1440,28 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Умова без <b>wenn</b>, дієслово на початку; потім <b>würde</b> + інфінітив.",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Припущення про минуле, у пасиві: Partizip II + <b>worden sein</b>.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = порада (варто, слід)."
+   },
+   "sens": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "Гриби лежать між кукурудзою та квасолею.",
+    "A2 | Anna nimmt ein paar Tomaten.": "Анна бере кілька помідорів.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "Баклажани лежать біля огірків.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "Спаржа лежить між салатом і гарбузами.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "Кабачки лежать біля помідорів.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "Я хотів би півкіло помідорів.",
+    "B1 | Was kosten die Pilze?": "Скільки коштують гриби?",
+    "B1 | Die Gurke ist länger als die Zucchini.": "Огірок довший за кабачок.",
+    "B1 | Ich nehme einen Kopf Salat.": "Я візьму головку салату.",
+    "B1 | Kommt der Spargel aus der Region?": "Спаржа з цього регіону?",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "Спаржу зрізають свіжою щоранку.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "Помідори, які Анна тримає в руці, дуже стиглі.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "Біля червоних і жовтих перців лежить кукурудза.",
+    "B2 | Die Kürbisse sind schon geerntet.": "Гарбузи вже зібрані.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "Мангольд із червоними та жовтими стеблами дуже корисний.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "Попри високу ціну, Анна бере помідори на гілці.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "Чим стигліші помідори, тим насиченіший їхній смак.",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Якби гарбуз не був такий важкий, Анна взяла б його.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Гриби, напевно, зібрані в лісі.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "Артишоки слід добре помити перед приготуванням."
    }
   },
   "fa": {
@@ -1413,6 +1499,28 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "شرط بدون <b>wenn</b>، فعل در آغاز؛ سپس <b>würde</b> + مصدر.",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "گمان دربارهٔ گذشته، به صورت مجهول: Partizip II + <b>worden sein</b>.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = توصیه (بهتر است، باید)."
+   },
+   "sens": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "قارچ‌ها بین ذرت و لوبیا هستند.",
+    "A2 | Anna nimmt ein paar Tomaten.": "آنا چند تا گوجه برمی‌دارد.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "بادمجان‌ها کنار خیارها هستند.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "مارچوبه بین کاهو و کدوتنبل‌ها است.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "کدوها کنار گوجه‌ها هستند.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "نیم کیلو گوجه می‌خواهم، لطفاً.",
+    "B1 | Was kosten die Pilze?": "قارچ‌ها چند است؟",
+    "B1 | Die Gurke ist länger als die Zucchini.": "خیار از کدو بلندتر است.",
+    "B1 | Ich nehme einen Kopf Salat.": "یک کاهو برمی‌دارم.",
+    "B1 | Kommt der Spargel aus der Region?": "مارچوبه مال همین منطقه است؟",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "مارچوبه هر صبح تازه چیده می‌شود.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "گوجه‌هایی که آنا در دست دارد، خیلی رسیده‌اند.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "کنار فلفل‌های قرمز و زرد، ذرت است.",
+    "B2 | Die Kürbisse sind schon geerntet.": "کدوتنبل‌ها برداشت شده‌اند.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "چغندر برگی که ساقه‌هایش قرمز و زرد است، خیلی سالم است.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "با وجود قیمت بالا، آنا گوجه‌های خوشه‌ای را برمی‌دارد.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "هرچه گوجه‌ها رسیده‌تر باشند، طعمشان قوی‌تر است.",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "اگر کدوتنبل این‌قدر سنگین نبود، آنا آن را می‌برد.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "قارچ‌ها احتمالاً در جنگل چیده شده‌اند.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "آرتیشو را باید پیش از پختن خوب شست."
    }
   },
   "ar": {
@@ -1450,6 +1558,28 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "شرط دون <b>wenn</b>، والفعل في البداية؛ ثم <b>würde</b> + المصدر.",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "افتراض عن الماضي بصيغة المبني للمجهول: Partizip II + <b>worden sein</b>.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = نصيحة (ينبغي)."
+   },
+   "sens": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "الفطر بين الذرة والفاصولياء.",
+    "A2 | Anna nimmt ein paar Tomaten.": "تأخذ آنا بعض الطماطم.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "الباذنجان بجانب الخيار.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "الهليون بين الخسّ واليقطين.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "الكوسا بجانب الطماطم.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "أريد نصف كيلو من الطماطم، من فضلك.",
+    "B1 | Was kosten die Pilze?": "بكم الفطر؟",
+    "B1 | Die Gurke ist länger als die Zucchini.": "الخيار أطول من الكوسا.",
+    "B1 | Ich nehme einen Kopf Salat.": "سآخذ رأس خسّ.",
+    "B1 | Kommt der Spargel aus der Region?": "هل الهليون من المنطقة؟",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "يُقطف الهليون طازجاً كل صباح.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "الطماطم التي تحملها آنا في يدها ناضجة جداً.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "بجانب الفلفل الأحمر والأصفر توجد الذرة.",
+    "B2 | Die Kürbisse sind schon geerntet.": "اليقطين محصود بالفعل.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "السلق ذو السيقان الحمراء والصفراء صحّي جداً.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "رغم السعر المرتفع، تأخذ آنا الطماطم العنقودية.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "كلّما نضجت الطماطم أكثر، كان طعمها أقوى.",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "لو لم يكن اليقطين ثقيلاً هكذا، لأخذته آنا معها.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "على الأرجح جُمع الفطر من الغابة.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "ينبغي غسل الخرشوف جيداً قبل الطهي."
    }
   },
   "pt": {
@@ -1487,6 +1617,28 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Condição sem <b>wenn</b>, verbo no início; depois <b>würde</b> + infinitivo.",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Suposição sobre o passado, na passiva: Partizip II + <b>worden sein</b>.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = conselho (deveria-se)."
+   },
+   "sens": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "Os cogumelos estão entre o milho e os feijões.",
+    "A2 | Anna nimmt ein paar Tomaten.": "Anna pega alguns tomates.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "As berinjelas estão ao lado dos pepinos.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "Os aspargos estão entre a alface e as abóboras.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "As abobrinhas estão ao lado dos tomates.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "Eu queria meio quilo de tomates.",
+    "B1 | Was kosten die Pilze?": "Quanto custam os cogumelos?",
+    "B1 | Die Gurke ist länger als die Zucchini.": "O pepino é mais comprido que a abobrinha.",
+    "B1 | Ich nehme einen Kopf Salat.": "Vou levar um pé de alface.",
+    "B1 | Kommt der Spargel aus der Region?": "Os aspargos são da região?",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "Os aspargos são colhidos frescos toda manhã.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "Os tomates que Anna tem na mão estão bem maduros.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "Ao lado dos pimentões vermelhos e amarelos está o milho.",
+    "B2 | Die Kürbisse sind schon geerntet.": "As abóboras já foram colhidas.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "A acelga, cujos talos são vermelhos e amarelos, é muito saudável.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "Apesar do preço alto, Anna leva os tomates de cacho.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "Quanto mais maduros os tomates, mais intenso é o sabor.",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Se a abóbora não fosse tão pesada, Anna a levaria.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Os cogumelos provavelmente foram colhidos na floresta.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "As alcachofras devem ser bem lavadas antes de cozinhar."
    }
   },
   "pl": {
@@ -1524,6 +1676,28 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Warunek bez <b>wenn</b>, czasownik na początku; potem <b>würde</b> + bezokolicznik.",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Przypuszczenie o przeszłości w stronie biernej: imiesłów II + <b>worden sein</b>.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = rada (powinno się)."
+   },
+   "sens": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "Grzyby leżą między kukurydzą a fasolą.",
+    "A2 | Anna nimmt ein paar Tomaten.": "Anna bierze kilka pomidorów.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "Bakłażany leżą obok ogórków.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "Szparagi leżą między sałatą a dyniami.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "Cukinie leżą obok pomidorów.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "Poproszę pół kilo pomidorów.",
+    "B1 | Was kosten die Pilze?": "Ile kosztują grzyby?",
+    "B1 | Die Gurke ist länger als die Zucchini.": "Ogórek jest dłuższy niż cukinia.",
+    "B1 | Ich nehme einen Kopf Salat.": "Wezmę główkę sałaty.",
+    "B1 | Kommt der Spargel aus der Region?": "Czy szparagi są z regionu?",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "Szparagi są ścinane świeże każdego ranka.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "Pomidory, które Anna trzyma w ręku, są bardzo dojrzałe.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "Obok czerwonej i żółtej papryki leży kukurydza.",
+    "B2 | Die Kürbisse sind schon geerntet.": "Dynie są już zebrane.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "Boćwina, której łodygi są czerwone i żółte, jest bardzo zdrowa.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "Mimo wysokiej ceny Anna bierze pomidory na gałązce.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "Im dojrzalsze pomidory, tym intensywniejszy smak.",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Gdyby dynia nie była taka ciężka, Anna by ją wzięła.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Grzyby zostały zapewne zebrane w lesie.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "Karczochy należy dobrze umyć przed gotowaniem."
    }
   },
   "ru": {
@@ -1561,6 +1735,28 @@ window.SCENE = {
     "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Условие без <b>wenn</b>, глагол впереди; потом <b>würde</b> + инфинитив. По-русски: «Не будь тыква такой тяжёлой…»",
     "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Предположение о прошлом, в пассиве: Partizip II + <b>worden sein</b>.",
     "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "<b>sollte</b> = совет (следовало бы)."
+   },
+   "sens": {
+    "A2 | Die Pilze liegen zwischen dem Mais und den Bohnen.": "Грибы лежат между кукурузой и фасолью.",
+    "A2 | Anna nimmt ein paar Tomaten.": "Анна берёт несколько помидоров.",
+    "A2 | Die Auberginen liegen neben den Gurken.": "Баклажаны лежат рядом с огурцами.",
+    "A2 | Der Spargel liegt zwischen dem Salat und den Kürbissen.": "Спаржа лежит между салатом и тыквами.",
+    "A2 | Die Zucchini liegen neben den Tomaten.": "Кабачки лежат рядом с помидорами.",
+    "B1 | Ich hätte gern ein Pfund Tomaten.": "Мне, пожалуйста, полкило помидоров.",
+    "B1 | Was kosten die Pilze?": "Сколько стоят грибы?",
+    "B1 | Die Gurke ist länger als die Zucchini.": "Огурец длиннее кабачка.",
+    "B1 | Ich nehme einen Kopf Salat.": "Я возьму кочан салата.",
+    "B1 | Kommt der Spargel aus der Region?": "Спаржа из этого региона?",
+    "B2 | Der Spargel wird jeden Morgen frisch gestochen.": "Спаржу срезают свежей каждое утро.",
+    "B2 | Die Tomaten, die Anna in der Hand hält, sind sehr reif.": "Помидоры, которые Анна держит в руке, очень спелые.",
+    "B2 | Neben den roten und gelben Paprika liegt der Mais.": "Рядом с красным и жёлтым перцем лежит кукуруза.",
+    "B2 | Die Kürbisse sind schon geerntet.": "Тыквы уже собраны.",
+    "B2 | Der Mangold, dessen Stiele rot und gelb sind, ist sehr gesund.": "Мангольд с красными и жёлтыми стеблями очень полезен.",
+    "C1 | Trotz des hohen Preises nimmt Anna die Strauchtomaten.": "Несмотря на высокую цену, Анна берёт помидоры на ветке.",
+    "C1 | Je reifer die Tomaten sind, desto intensiver schmecken sie.": "Чем спелее помидоры, тем насыщеннее их вкус.",
+    "C1 | Wäre der Kürbis nicht so schwer, würde Anna ihn mitnehmen.": "Если бы тыква не была такой тяжёлой, Анна взяла бы её.",
+    "C1 | Die Pilze dürften im Wald gesammelt worden sein.": "Грибы, вероятно, собраны в лесу.",
+    "C1 | Artischocken sollte man vor dem Kochen gut waschen.": "Артишоки следует хорошо промыть перед приготовлением."
    }
   }
  }

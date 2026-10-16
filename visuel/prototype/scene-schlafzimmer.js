@@ -833,6 +833,7 @@ window.SCENE = {
      "f": "hut",
      "r": "bett",
      "phrase": "Der Hut liegt auf dem Bett.",
+     "sens": "Le chapeau est sur le lit.",
      "n": "<b>Wo?</b> → datif : das Bett → auf <b>dem</b> Bett."
     },
     {
@@ -845,6 +846,7 @@ window.SCENE = {
      "f": "wecker",
      "r": "lampe",
      "phrase": "Der Wecker steht neben der Lampe.",
+     "sens": "Le réveil est à côté de la lampe.",
      "n": "die Lampe → neben <b>der</b> Lampe : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -857,6 +859,7 @@ window.SCENE = {
      "f": "bild",
      "r": "bett",
      "phrase": "Das Bild hängt über dem Bett.",
+     "sens": "Le tableau est accroché au-dessus du lit.",
      "n": "<b>über</b> = au-dessus de. das Bett → über <b>dem</b> Bett."
     },
     {
@@ -869,6 +872,7 @@ window.SCENE = {
      "f": "laptop",
      "r": "schreibtisch",
      "phrase": "Der Laptop steht auf dem Schreibtisch.",
+     "sens": "L'ordinateur portable est sur le bureau.",
      "n": "der Schreibtisch → auf <b>dem</b> Schreibtisch."
     },
     {
@@ -881,6 +885,7 @@ window.SCENE = {
      "f": "anna",
      "r": "teppich",
      "phrase": "Anna steht auf dem Teppich.",
+     "sens": "Anna est debout sur le tapis.",
      "n": "der Teppich → auf <b>dem</b> Teppich."
     },
     {
@@ -893,6 +898,7 @@ window.SCENE = {
      "f": "pass",
      "r": "portemonnaie",
      "phrase": "Der Pass liegt neben dem Portemonnaie.",
+     "sens": "Le passeport est à côté du porte-monnaie.",
      "n": "das Portemonnaie est neutre : au datif → neben <b>dem</b> Portemonnaie."
     },
     {
@@ -905,6 +911,7 @@ window.SCENE = {
      "f": "ladegeraet",
      "r": "landkarte",
      "phrase": "Das Ladegerät liegt neben der Landkarte.",
+     "sens": "Le chargeur est à côté de la carte.",
      "n": "die Landkarte → neben <b>der</b> Landkarte."
     },
     {
@@ -917,6 +924,7 @@ window.SCENE = {
      "f": "vorhang",
      "r": "fenster",
      "phrase": "Der Vorhang hängt am Fenster.",
+     "sens": "Le rideau est accroché à la fenêtre.",
      "n": "<b>am</b> = an + <b>dem</b> : das Fenster → am Fenster."
     }
    ]
@@ -934,6 +942,7 @@ window.SCENE = {
      "f": "pullover",
      "r": "koffer",
      "phrase": "Anna legt den Pullover in den Koffer.",
+     "sens": "Anna met le pull dans la valise.",
      "n": "<b>legen</b> = mouvement, <b>Wohin?</b> → accusatif : in <b>den</b> Koffer.",
      "revise": {
       "mot": "legen",
@@ -950,6 +959,7 @@ window.SCENE = {
      "f": "pullover",
      "r": "koffer",
      "phrase": "Gleich liegt der Pullover in dem Koffer.",
+     "sens": "Dans un instant, le pull sera dans la valise.",
      "n": "<b>liegen</b> = état, <b>Wo?</b> → datif : in <b>dem</b> (= im) Koffer.",
      "revise": {
       "mot": "liegen",
@@ -966,6 +976,7 @@ window.SCENE = {
      "f": "hut",
      "r": "bett",
      "phrase": "Anna hat den Hut auf das Bett gelegt.",
+     "sens": "Anna a posé le chapeau sur le lit.",
      "n": "<b>Wohin?</b> → accusatif, neutre : auf <b>das</b> (= aufs) Bett.",
      "revise": {
       "mot": "legen",
@@ -982,6 +993,7 @@ window.SCENE = {
      "f": "kamera",
      "r": "bett",
      "phrase": "Die Kamera liegt auf dem Bett.",
+     "sens": "L'appareil photo est sur le lit.",
      "n": "<b>Wo?</b> → datif : auf <b>dem</b> Bett.",
      "revise": {
       "mot": "liegen",
@@ -997,6 +1009,7 @@ window.SCENE = {
      ],
      "f": "ladegeraet",
      "phrase": "Anna hat das Ladegerät fast vergessen.",
+     "sens": "Anna a failli oublier le chargeur.",
      "n": "Verbe en <b>ver-</b> : pas de <b>ge-</b> au participe → vergessen.",
      "revise": {
       "mot": "vergessen",
@@ -1012,6 +1025,7 @@ window.SCENE = {
      ],
      "f": "wecker",
      "phrase": "Der Wecker steht auf dem Nachttisch.",
+     "sens": "Le réveil est sur la table de nuit.",
      "n": "<b>stehen</b> = état → datif : der Nachttisch → auf <b>dem</b> Nachttisch.",
      "revise": {
       "mot": "stehen",
@@ -1028,6 +1042,7 @@ window.SCENE = {
      "f": "anna",
      "r": "bett",
      "phrase": "Anna steht neben dem Bett.",
+     "sens": "Anna est debout à côté du lit.",
      "n": "<b>Wo?</b> → datif, neutre : neben <b>dem</b> Bett.",
      "revise": {
       "mot": "stehen",
@@ -1044,6 +1059,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "anna",
      "phrase": "Morgen fliegt Anna in den Süden.",
+     "sens": "Demain, Anna part en avion vers le sud.",
      "n": "<b>Wohin?</b> → accusatif : der Süden → in <b>den</b> Süden.",
      "revise": {
       "mot": "fliegen",
@@ -1065,6 +1081,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "bett",
      "phrase": "Der Koffer, der auf dem Bett liegt, ist blau.",
+     "sens": "La valise qui est sur le lit est bleue.",
      "n": "Sujet de la relative, masculin → <b>der</b>."
     },
     {
@@ -1077,6 +1094,7 @@ window.SCENE = {
      "f": "pass",
      "r": "bett",
      "phrase": "Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.",
+     "sens": "Le passeport, sans lequel Anna ne peut pas voyager, est sur le lit.",
      "n": "<b>ohne</b> veut toujours l'accusatif → <b>den</b>.",
      "revise": {
       "mot": "reisen",
@@ -1093,6 +1111,7 @@ window.SCENE = {
      "f": "anna",
      "r": "pullover",
      "phrase": "Die Frau, deren Pullover grün ist, denkt nach.",
+     "sens": "La femme au pull vert réfléchit.",
      "n": "Possession, antécédent féminin → <b>deren</b> (dont le pull)."
     },
     {
@@ -1104,6 +1123,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Der Koffer ist schon halb gepackt.",
+     "sens": "La valise est déjà à moitié faite.",
      "n": "Passif d'état : <b>sein</b> + participe → gepackt.",
      "revise": {
       "mot": "packen",
@@ -1119,6 +1139,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Alles muss heute noch eingepackt werden.",
+     "sens": "Tout doit encore être emballé aujourd'hui.",
      "n": "Passif avec un modal : participe + <b>werden</b> à la fin.",
      "revise": {
       "mot": "einpacken",
@@ -1135,6 +1156,7 @@ window.SCENE = {
      "f": "kamera",
      "r": "bett",
      "phrase": "Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.",
+     "sens": "L'appareil photo avec lequel Anna veut faire des photos est sur le lit.",
      "n": "<b>mit</b> + datif, féminin → <b>der</b>."
     }
    ]
@@ -1152,6 +1174,7 @@ window.SCENE = {
      "f": "anna",
      "r": "koffer",
      "phrase": "Sie muss sich auf die Reise freuen.",
+     "sens": "Elle doit se réjouir du voyage.",
      "n": "<b>müssen</b> = déduction presque certaine. Elle sourit en faisant sa valise."
     },
     {
@@ -1163,6 +1186,7 @@ window.SCENE = {
      ],
      "f": "pullover",
      "phrase": "Der Pullover könnte zu warm für den Süden sein.",
+     "sens": "Le pull est peut-être trop chaud pour le sud.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1174,6 +1198,7 @@ window.SCENE = {
      ],
      "f": "koffer",
      "phrase": "Sie dürfte morgen früh abfliegen.",
+     "sens": "Elle décolle sans doute demain matin.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1185,6 +1210,7 @@ window.SCENE = {
      ],
      "f": "bild",
      "phrase": "Am Strand dort soll es das ganze Jahr warm sein.",
+     "sens": "Il paraît qu'à cette plage il fait chaud toute l'année.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1230,6 +1256,34 @@ window.SCENE = {
     "C1 | Der Pullover könnte zu warm für den Süden sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Sie dürfte morgen früh abfliegen.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Der Hut liegt auf dem Bett.": "The hat is on the bed.",
+    "A2 | Der Wecker steht neben der Lampe.": "The alarm clock is next to the lamp.",
+    "A2 | Das Bild hängt über dem Bett.": "The picture hangs above the bed.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "The laptop is on the desk.",
+    "A2 | Anna steht auf dem Teppich.": "Anna is standing on the carpet.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "The passport is next to the wallet.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "The charger is next to the map.",
+    "A2 | Der Vorhang hängt am Fenster.": "The curtain hangs at the window.",
+    "B1 | Anna legt den Pullover in den Koffer.": "Anna puts the jumper in the suitcase.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "In a moment the jumper will be in the suitcase.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "Anna put the hat on the bed.",
+    "B1 | Die Kamera liegt auf dem Bett.": "The camera is on the bed.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "Anna almost forgot the charger.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "The alarm clock is on the bedside table.",
+    "B1 | Anna steht neben dem Bett.": "Anna is standing next to the bed.",
+    "B1 | Morgen fliegt Anna in den Süden.": "Tomorrow Anna is flying south.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "The suitcase on the bed is blue.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "The passport, without which Anna cannot travel, is on the bed.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "The woman whose jumper is green is thinking.",
+    "B2 | Der Koffer ist schon halb gepackt.": "The suitcase is already half packed.",
+    "B2 | Alles muss heute noch eingepackt werden.": "Everything still has to be packed today.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "The camera Anna wants to take photos with is on the bed.",
+    "C1 | Sie muss sich auf die Reise freuen.": "She must be looking forward to the trip.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "The jumper might be too warm for the south.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "She probably leaves tomorrow morning.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "It is said to be warm all year round on that beach."
    }
   },
   "tr": {
@@ -1271,6 +1325,34 @@ window.SCENE = {
     "C1 | Der Pullover könnte zu warm für den Süden sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Sie dürfte morgen früh abfliegen.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Der Hut liegt auf dem Bett.": "Şapka yatağın üstünde.",
+    "A2 | Der Wecker steht neben der Lampe.": "Çalar saat lambanın yanında duruyor.",
+    "A2 | Das Bild hängt über dem Bett.": "Tablo yatağın üstünde asılı.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "Dizüstü bilgisayar masanın üstünde duruyor.",
+    "A2 | Anna steht auf dem Teppich.": "Anna halının üstünde duruyor.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "Pasaport cüzdanın yanında.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "Şarj aleti haritanın yanında.",
+    "A2 | Der Vorhang hängt am Fenster.": "Perde pencerede asılı.",
+    "B1 | Anna legt den Pullover in den Koffer.": "Anna kazağı bavula koyuyor.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "Birazdan kazak bavulun içinde olacak.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "Anna şapkayı yatağın üstüne koydu.",
+    "B1 | Die Kamera liegt auf dem Bett.": "Fotoğraf makinesi yatağın üstünde.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "Anna şarj aletini az kalsın unutuyordu.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "Çalar saat komodinin üstünde duruyor.",
+    "B1 | Anna steht neben dem Bett.": "Anna yatağın yanında duruyor.",
+    "B1 | Morgen fliegt Anna in den Süden.": "Yarın Anna güneye uçuyor.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "Yatağın üstündeki bavul mavi.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "Anna'nın onsuz seyahat edemeyeceği pasaport yatağın üstünde.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "Kazağı yeşil olan kadın düşünüyor.",
+    "B2 | Der Koffer ist schon halb gepackt.": "Bavulun yarısı hazırlanmış bile.",
+    "B2 | Alles muss heute noch eingepackt werden.": "Her şey bugün toplanmalı.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "Anna'nın fotoğraf çekmek istediği makine yatağın üstünde.",
+    "C1 | Sie muss sich auf die Reise freuen.": "Yolculuğu iple çekiyor olmalı.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "Kazak güney için fazla kalın olabilir.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "Yarın sabah uçuyor olsa gerek.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "Oradaki plajda bütün yıl sıcak olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1312,6 +1394,34 @@ window.SCENE = {
     "C1 | Der Pullover könnte zu warm für den Süden sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Sie dürfte morgen früh abfliegen.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Der Hut liegt auf dem Bett.": "Капелюх лежить на ліжку.",
+    "A2 | Der Wecker steht neben der Lampe.": "Будильник стоїть біля лампи.",
+    "A2 | Das Bild hängt über dem Bett.": "Картина висить над ліжком.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "Ноутбук стоїть на столі.",
+    "A2 | Anna steht auf dem Teppich.": "Анна стоїть на килимі.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "Паспорт лежить біля гаманця.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "Зарядний пристрій лежить біля мапи.",
+    "A2 | Der Vorhang hängt am Fenster.": "Штора висить на вікні.",
+    "B1 | Anna legt den Pullover in den Koffer.": "Анна кладе светр у валізу.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "За мить светр буде у валізі.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "Анна поклала капелюх на ліжко.",
+    "B1 | Die Kamera liegt auf dem Bett.": "Фотоапарат лежить на ліжку.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "Анна мало не забула зарядний пристрій.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "Будильник стоїть на тумбочці.",
+    "B1 | Anna steht neben dem Bett.": "Анна стоїть біля ліжка.",
+    "B1 | Morgen fliegt Anna in den Süden.": "Завтра Анна летить на південь.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "Валіза, що лежить на ліжку, синя.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "Паспорт, без якого Анна не може подорожувати, лежить на ліжку.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "Жінка в зеленому светрі замислилася.",
+    "B2 | Der Koffer ist schon halb gepackt.": "Валіза вже наполовину спакована.",
+    "B2 | Alles muss heute noch eingepackt werden.": "Усе треба спакувати ще сьогодні.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "Фотоапарат, яким Анна хоче фотографувати, лежить на ліжку.",
+    "C1 | Sie muss sich auf die Reise freuen.": "Вона, мабуть, дуже чекає на подорож.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "Светр, можливо, затеплий для півдня.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "Вона, напевно, вилітає завтра вранці.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "Кажуть, на тому пляжі тепло цілий рік."
    }
   },
   "fa": {
@@ -1353,6 +1463,34 @@ window.SCENE = {
     "C1 | Der Pullover könnte zu warm für den Süden sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Sie dürfte morgen früh abfliegen.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Der Hut liegt auf dem Bett.": "کلاه روی تخت است.",
+    "A2 | Der Wecker steht neben der Lampe.": "ساعت زنگ‌دار کنار چراغ است.",
+    "A2 | Das Bild hängt über dem Bett.": "تابلو بالای تخت آویزان است.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "لپ‌تاپ روی میز تحریر است.",
+    "A2 | Anna steht auf dem Teppich.": "آنا روی فرش ایستاده است.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "گذرنامه کنار کیف پول است.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "شارژر کنار نقشه است.",
+    "A2 | Der Vorhang hängt am Fenster.": "پرده به پنجره آویزان است.",
+    "B1 | Anna legt den Pullover in den Koffer.": "آنا پلیور را در چمدان می‌گذارد.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "الان پلیور در چمدان است.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "آنا کلاه را روی تخت گذاشته است.",
+    "B1 | Die Kamera liegt auf dem Bett.": "دوربین روی تخت است.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "آنا نزدیک بود شارژر را فراموش کند.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "ساعت زنگ‌دار روی پاتختی است.",
+    "B1 | Anna steht neben dem Bett.": "آنا کنار تخت ایستاده است.",
+    "B1 | Morgen fliegt Anna in den Süden.": "فردا آنا به جنوب پرواز می‌کند.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "چمدانی که روی تخت است، آبی است.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "گذرنامه‌ای که آنا بدون آن نمی‌تواند سفر کند، روی تخت است.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "زنی که پلیورش سبز است، فکر می‌کند.",
+    "B2 | Der Koffer ist schon halb gepackt.": "نصف چمدان بسته شده است.",
+    "B2 | Alles muss heute noch eingepackt werden.": "همه‌چیز باید همین امروز بسته‌بندی شود.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "دوربینی که آنا می‌خواهد با آن عکس بگیرد، روی تخت است.",
+    "C1 | Sie muss sich auf die Reise freuen.": "او حتماً از این سفر خوشحال است.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "پلیور شاید برای جنوب خیلی گرم باشد.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "او احتمالاً فردا صبح پرواز می‌کند.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "می‌گویند در آن ساحل تمام سال هوا گرم است."
    }
   },
   "ar": {
@@ -1394,6 +1532,34 @@ window.SCENE = {
     "C1 | Der Pullover könnte zu warm für den Süden sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Sie dürfte morgen früh abfliegen.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Der Hut liegt auf dem Bett.": "القبّعة على السرير.",
+    "A2 | Der Wecker steht neben der Lampe.": "المنبّه بجانب المصباح.",
+    "A2 | Das Bild hängt über dem Bett.": "اللوحة معلّقة فوق السرير.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "الحاسوب المحمول على المكتب.",
+    "A2 | Anna steht auf dem Teppich.": "آنا واقفة على السجّادة.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "جواز السفر بجانب المحفظة.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "الشاحن بجانب الخريطة.",
+    "A2 | Der Vorhang hängt am Fenster.": "الستارة معلّقة على النافذة.",
+    "B1 | Anna legt den Pullover in den Koffer.": "تضع آنا الكنزة في الحقيبة.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "بعد لحظة تكون الكنزة في الحقيبة.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "وضعت آنا القبّعة على السرير.",
+    "B1 | Die Kamera liegt auf dem Bett.": "الكاميرا على السرير.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "كادت آنا تنسى الشاحن.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "المنبّه على المنضدة بجانب السرير.",
+    "B1 | Anna steht neben dem Bett.": "آنا واقفة بجانب السرير.",
+    "B1 | Morgen fliegt Anna in den Süden.": "غداً تسافر آنا بالطائرة إلى الجنوب.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "الحقيبة التي على السرير زرقاء.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "جواز السفر الذي لا تستطيع آنا السفر من دونه على السرير.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "المرأة ذات الكنزة الخضراء تفكّر.",
+    "B2 | Der Koffer ist schon halb gepackt.": "الحقيبة محزومة إلى نصفها بالفعل.",
+    "B2 | Alles muss heute noch eingepackt werden.": "يجب حزم كل شيء اليوم.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "الكاميرا التي تريد آنا التصوير بها على السرير.",
+    "C1 | Sie muss sich auf die Reise freuen.": "لا بدّ أنها متشوّقة إلى الرحلة.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "ربما تكون الكنزة دافئة أكثر من اللازم للجنوب.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "على الأرجح تسافر غداً صباحاً.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "يُقال إن الجوّ دافئ طوال السنة على ذلك الشاطئ."
    }
   },
   "pt": {
@@ -1435,6 +1601,34 @@ window.SCENE = {
     "C1 | Der Pullover könnte zu warm für den Süden sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Sie dürfte morgen früh abfliegen.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Der Hut liegt auf dem Bett.": "O chapéu está na cama.",
+    "A2 | Der Wecker steht neben der Lampe.": "O despertador está ao lado do abajur.",
+    "A2 | Das Bild hängt über dem Bett.": "O quadro está pendurado acima da cama.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "O notebook está na escrivaninha.",
+    "A2 | Anna steht auf dem Teppich.": "Anna está em pé no tapete.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "O passaporte está ao lado da carteira.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "O carregador está ao lado do mapa.",
+    "A2 | Der Vorhang hängt am Fenster.": "A cortina está pendurada na janela.",
+    "B1 | Anna legt den Pullover in den Koffer.": "Anna põe o suéter na mala.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "Daqui a pouco o suéter estará na mala.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "Anna pôs o chapéu na cama.",
+    "B1 | Die Kamera liegt auf dem Bett.": "A câmera está na cama.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "Anna quase esqueceu o carregador.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "O despertador está na mesinha de cabeceira.",
+    "B1 | Anna steht neben dem Bett.": "Anna está em pé ao lado da cama.",
+    "B1 | Morgen fliegt Anna in den Süden.": "Amanhã Anna voa para o sul.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "A mala que está na cama é azul.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "O passaporte, sem o qual Anna não pode viajar, está na cama.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "A mulher de suéter verde está pensando.",
+    "B2 | Der Koffer ist schon halb gepackt.": "A mala já está feita pela metade.",
+    "B2 | Alles muss heute noch eingepackt werden.": "Tudo ainda tem que ser arrumado hoje.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "A câmera com que Anna quer tirar fotos está na cama.",
+    "C1 | Sie muss sich auf die Reise freuen.": "Ela deve estar ansiosa pela viagem.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "O suéter talvez seja quente demais para o sul.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "Ela provavelmente embarca amanhã de manhã.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "Dizem que naquela praia faz calor o ano inteiro."
    }
   },
   "pl": {
@@ -1476,6 +1670,34 @@ window.SCENE = {
     "C1 | Der Pullover könnte zu warm für den Süden sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Sie dürfte morgen früh abfliegen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Der Hut liegt auf dem Bett.": "Kapelusz leży na łóżku.",
+    "A2 | Der Wecker steht neben der Lampe.": "Budzik stoi obok lampy.",
+    "A2 | Das Bild hängt über dem Bett.": "Obraz wisi nad łóżkiem.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "Laptop stoi na biurku.",
+    "A2 | Anna steht auf dem Teppich.": "Anna stoi na dywanie.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "Paszport leży obok portfela.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "Ładowarka leży obok mapy.",
+    "A2 | Der Vorhang hängt am Fenster.": "Zasłona wisi w oknie.",
+    "B1 | Anna legt den Pullover in den Koffer.": "Anna wkłada sweter do walizki.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "Zaraz sweter będzie w walizce.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "Anna położyła kapelusz na łóżku.",
+    "B1 | Die Kamera liegt auf dem Bett.": "Aparat leży na łóżku.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "Anna prawie zapomniała ładowarki.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "Budzik stoi na szafce nocnej.",
+    "B1 | Anna steht neben dem Bett.": "Anna stoi obok łóżka.",
+    "B1 | Morgen fliegt Anna in den Süden.": "Jutro Anna leci na południe.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "Walizka, która leży na łóżku, jest niebieska.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "Paszport, bez którego Anna nie może podróżować, leży na łóżku.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "Kobieta w zielonym swetrze zastanawia się.",
+    "B2 | Der Koffer ist schon halb gepackt.": "Walizka jest już w połowie spakowana.",
+    "B2 | Alles muss heute noch eingepackt werden.": "Wszystko musi być jeszcze dziś spakowane.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "Aparat, którym Anna chce robić zdjęcia, leży na łóżku.",
+    "C1 | Sie muss sich auf die Reise freuen.": "Musi cieszyć się na podróż.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "Sweter być może jest za ciepły na południe.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "Zapewne wylatuje jutro rano.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "Podobno na tamtej plaży jest ciepło przez cały rok."
    }
   },
   "ru": {
@@ -1517,6 +1739,34 @@ window.SCENE = {
     "C1 | Der Pullover könnte zu warm für den Süden sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Sie dürfte morgen früh abfliegen.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Der Hut liegt auf dem Bett.": "Шляпа лежит на кровати.",
+    "A2 | Der Wecker steht neben der Lampe.": "Будильник стоит рядом с лампой.",
+    "A2 | Das Bild hängt über dem Bett.": "Картина висит над кроватью.",
+    "A2 | Der Laptop steht auf dem Schreibtisch.": "Ноутбук стоит на письменном столе.",
+    "A2 | Anna steht auf dem Teppich.": "Анна стоит на ковре.",
+    "A2 | Der Pass liegt neben dem Portemonnaie.": "Паспорт лежит рядом с кошельком.",
+    "A2 | Das Ladegerät liegt neben der Landkarte.": "Зарядное устройство лежит рядом с картой.",
+    "A2 | Der Vorhang hängt am Fenster.": "Штора висит на окне.",
+    "B1 | Anna legt den Pullover in den Koffer.": "Анна кладёт свитер в чемодан.",
+    "B1 | Gleich liegt der Pullover in dem Koffer.": "Сейчас свитер будет в чемодане.",
+    "B1 | Anna hat den Hut auf das Bett gelegt.": "Анна положила шляпу на кровать.",
+    "B1 | Die Kamera liegt auf dem Bett.": "Фотоаппарат лежит на кровати.",
+    "B1 | Anna hat das Ladegerät fast vergessen.": "Анна чуть не забыла зарядное устройство.",
+    "B1 | Der Wecker steht auf dem Nachttisch.": "Будильник стоит на тумбочке.",
+    "B1 | Anna steht neben dem Bett.": "Анна стоит рядом с кроватью.",
+    "B1 | Morgen fliegt Anna in den Süden.": "Завтра Анна летит на юг.",
+    "B2 | Der Koffer, der auf dem Bett liegt, ist blau.": "Чемодан, который лежит на кровати, синий.",
+    "B2 | Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.": "Паспорт, без которого Анна не может путешествовать, лежит на кровати.",
+    "B2 | Die Frau, deren Pullover grün ist, denkt nach.": "Женщина в зелёном свитере задумалась.",
+    "B2 | Der Koffer ist schon halb gepackt.": "Чемодан уже наполовину собран.",
+    "B2 | Alles muss heute noch eingepackt werden.": "Всё нужно упаковать ещё сегодня.",
+    "B2 | Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.": "Фотоаппарат, которым Анна хочет фотографировать, лежит на кровати.",
+    "C1 | Sie muss sich auf die Reise freuen.": "Она, должно быть, с нетерпением ждёт поездки.",
+    "C1 | Der Pullover könnte zu warm für den Süden sein.": "Свитер, возможно, слишком тёплый для юга.",
+    "C1 | Sie dürfte morgen früh abfliegen.": "Она, вероятно, вылетает завтра утром.",
+    "C1 | Am Strand dort soll es das ganze Jahr warm sein.": "Говорят, на том пляже тепло круглый год."
    }
   }
  }

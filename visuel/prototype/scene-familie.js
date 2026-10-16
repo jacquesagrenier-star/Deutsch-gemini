@@ -1034,6 +1034,7 @@ window.SCENE = {
      "f": "katze",
      "r": "stuhl",
      "phrase": "Die Katze schläft auf dem Stuhl.",
+     "sens": "Le chat dort sur la chaise.",
      "n": "der Stuhl → auf <b>dem</b> Stuhl."
     },
     {
@@ -1046,6 +1047,7 @@ window.SCENE = {
      "f": "bild",
      "r": "schrank",
      "phrase": "Das Bild hängt über dem Schrank.",
+     "sens": "Le tableau est accroché au-dessus de l'armoire.",
      "n": "<b>über</b> = au-dessus de. der Schrank → über <b>dem</b> Schrank."
     },
     {
@@ -1057,6 +1059,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
      "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1069,6 +1072,7 @@ window.SCENE = {
      "f": "baby",
      "r": "mutter",
      "phrase": "Das Baby ist bei der Mutter.",
+     "sens": "Le bébé est avec la mère.",
      "n": "die Mutter → bei <b>der</b> Mutter : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1081,6 +1085,7 @@ window.SCENE = {
      "f": "suppe",
      "r": "tisch",
      "phrase": "Die Suppe steht auf dem Tisch.",
+     "sens": "La soupe est sur la table.",
      "n": "der Tisch → auf <b>dem</b> Tisch."
     },
     {
@@ -1093,6 +1098,7 @@ window.SCENE = {
      "f": "brot",
      "r": "korb",
      "phrase": "Das Brot liegt im Korb.",
+     "sens": "Le pain est dans la corbeille.",
      "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
     },
     {
@@ -1105,6 +1111,7 @@ window.SCENE = {
      "f": "gabel",
      "r": "teller-2",
      "phrase": "Die Gabel liegt neben dem Teller.",
+     "sens": "La fourchette est à côté de l'assiette.",
      "n": "<b>neben</b> = à côté de. der Teller → neben <b>dem</b> Teller."
     },
     {
@@ -1117,6 +1124,7 @@ window.SCENE = {
      "f": "saft",
      "r": "glas",
      "phrase": "Der Saft steht neben dem Glas.",
+     "sens": "Le jus est à côté du verre.",
      "n": "<b>neben</b> = à côté de. das Glas → neben <b>dem</b> Glas."
     }
    ]
@@ -1134,6 +1142,7 @@ window.SCENE = {
      "f": "vater",
      "r": "anna",
      "phrase": "Ihr Vater serviert Kartoffeln.",
+     "sens": "Son père sert des pommes de terre.",
      "n": "Le père d'Anna (elle) → <b>ihr</b> Vater."
     },
     {
@@ -1146,6 +1155,7 @@ window.SCENE = {
      "f": "bruder",
      "r": "wasser",
      "phrase": "Der Bruder gießt Wasser in sein Glas.",
+     "sens": "Le frère verse de l'eau dans son verre.",
      "n": "Son verre à lui, das Glas → <b>sein</b> Glas.",
      "revise": {
       "mot": "gießen",
@@ -1162,6 +1172,7 @@ window.SCENE = {
      "f": "mutter",
      "r": "baby",
      "phrase": "Die Mutter hält ihr Baby.",
+     "sens": "La mère tient son bébé.",
      "n": "das Baby, neutre, à elle → <b>ihr</b> Baby.",
      "revise": {
       "mot": "halten",
@@ -1177,6 +1188,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "Der Opa erzählt von seiner Jugend.",
+     "sens": "Le grand-père raconte sa jeunesse.",
      "n": "<b>von</b> + datif, die Jugend → <b>seiner</b> Jugend.",
      "revise": {
       "mot": "erzählen",
@@ -1193,6 +1205,7 @@ window.SCENE = {
      "f": "oma",
      "r": "opa",
      "phrase": "Die Oma hört ihrem Mann zu.",
+     "sens": "La grand-mère écoute son mari.",
      "n": "<b>zuhören</b> + datif, der Mann → <b>ihrem</b> Mann.",
      "revise": {
       "mot": "zuhören",
@@ -1209,6 +1222,7 @@ window.SCENE = {
      "f": "anna",
      "r": "bruder",
      "phrase": "Anna und ihr Bruder lieben ihre Großeltern.",
+     "sens": "Anna et son frère aiment leurs grands-parents.",
      "n": "À eux (pluriel) → <b>ihre</b> Großeltern.",
      "revise": {
       "mot": "lieben",
@@ -1224,6 +1238,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "Wir essen jeden Sonntag bei unseren Großeltern.",
+     "sens": "Nous mangeons chaque dimanche chez nos grands-parents.",
      "n": "<b>bei</b> + datif pluriel → <b>unseren</b> Großeltern.",
      "revise": {
       "mot": "essen",
@@ -1240,6 +1255,7 @@ window.SCENE = {
      "f": "katze",
      "r": "stuhl",
      "phrase": "Die Katze schläft auf ihrem Stuhl.",
+     "sens": "Le chat dort sur sa chaise.",
      "n": "<b>auf</b> + Wo? → datif, der Stuhl → <b>ihrem</b> Stuhl.",
      "revise": {
       "mot": "schlafen",
@@ -1260,6 +1276,7 @@ window.SCENE = {
      ],
      "f": "vater",
      "phrase": "Das ist der Teller des Vaters.",
+     "sens": "C'est l'assiette du père.",
      "n": "Génitif masculin → <b>des</b> Vaters (avec -s)."
     },
     {
@@ -1272,6 +1289,7 @@ window.SCENE = {
      "f": "baby",
      "r": "mutter",
      "phrase": "Das Baby sitzt auf dem Schoß der Mutter.",
+     "sens": "Le bébé est assis sur les genoux de la mère.",
      "n": "Génitif féminin → <b>der</b> Mutter."
     },
     {
@@ -1283,6 +1301,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "Die Geschichte des Großvaters ist lustig.",
+     "sens": "L'histoire du grand-père est drôle.",
      "n": "Génitif masculin → <b>des</b> + nom en <b>-s</b>."
     },
     {
@@ -1294,6 +1313,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Trotz der Sonne essen sie drinnen.",
+     "sens": "Malgré le soleil, ils mangent à l'intérieur.",
      "n": "<b>trotz</b> + génitif, féminin → <b>der</b>."
     },
     {
@@ -1305,6 +1325,7 @@ window.SCENE = {
      ],
      "f": "blume",
      "phrase": "Die Farbe der Tulpen ist gelb.",
+     "sens": "La couleur des tulipes est jaune.",
      "n": "Génitif pluriel → <b>der</b>."
     },
     {
@@ -1316,6 +1337,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Das Fenster des Esszimmers ist groß.",
+     "sens": "La fenêtre de la salle à manger est grande.",
      "n": "Génitif neutre → <b>des</b> Esszimmers."
     }
    ]
@@ -1332,6 +1354,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "Der Opa muss eine lustige Geschichte erzählen.",
+     "sens": "Le grand-père doit raconter une histoire drôle.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1344,6 +1367,7 @@ window.SCENE = {
      "f": "katze",
      "r": "oma",
      "phrase": "Die Katze könnte der Oma gehören.",
+     "sens": "Le chat appartient peut-être à la grand-mère.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1355,6 +1379,7 @@ window.SCENE = {
      ],
      "f": "tisch",
      "phrase": "Nach dem Essen dürfte es noch Kuchen geben.",
+     "sens": "Après le repas, il devrait encore y avoir du gâteau.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1366,6 +1391,7 @@ window.SCENE = {
      ],
      "f": "opa",
      "phrase": "Der Opa soll früher Koch gewesen sein.",
+     "sens": "Il paraît que le grand-père était cuisinier autrefois.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1411,6 +1437,34 @@ window.SCENE = {
     "C1 | Die Katze könnte der Oma gehören.": "<b>könnte</b> = one possibility among others.",
     "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Der Opa soll früher Koch gewesen sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Die Katze schläft auf dem Stuhl.": "The cat is sleeping on the chair.",
+    "A2 | Das Bild hängt über dem Schrank.": "The picture hangs above the cupboard.",
+    "A2 | Die Uhr hängt an der Wand.": "The clock hangs on the wall.",
+    "A2 | Das Baby ist bei der Mutter.": "The baby is with the mother.",
+    "A2 | Die Suppe steht auf dem Tisch.": "The soup is on the table.",
+    "A2 | Das Brot liegt im Korb.": "The bread is in the basket.",
+    "A2 | Die Gabel liegt neben dem Teller.": "The fork is next to the plate.",
+    "A2 | Der Saft steht neben dem Glas.": "The juice is next to the glass.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Her father is serving potatoes.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "The brother pours water into his glass.",
+    "B1 | Die Mutter hält ihr Baby.": "The mother is holding her baby.",
+    "B1 | Der Opa erzählt von seiner Jugend.": "Grandpa is talking about his youth.",
+    "B1 | Die Oma hört ihrem Mann zu.": "Grandma is listening to her husband.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Anna and her brother love their grandparents.",
+    "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "We eat at our grandparents' every Sunday.",
+    "B1 | Die Katze schläft auf ihrem Stuhl.": "The cat is sleeping on its chair.",
+    "B2 | Das ist der Teller des Vaters.": "That is the father's plate.",
+    "B2 | Das Baby sitzt auf dem Schoß der Mutter.": "The baby is sitting on the mother's lap.",
+    "B2 | Die Geschichte des Großvaters ist lustig.": "The grandfather's story is funny.",
+    "B2 | Trotz der Sonne essen sie drinnen.": "Despite the sunshine, they are eating indoors.",
+    "B2 | Die Farbe der Tulpen ist gelb.": "The colour of the tulips is yellow.",
+    "B2 | Das Fenster des Esszimmers ist groß.": "The dining room window is big.",
+    "C1 | Der Opa muss eine lustige Geschichte erzählen.": "Grandpa must be telling a funny story.",
+    "C1 | Die Katze könnte der Oma gehören.": "The cat might belong to grandma.",
+    "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "After the meal there should be cake as well.",
+    "C1 | Der Opa soll früher Koch gewesen sein.": "Grandpa is said to have been a cook."
    }
   },
   "tr": {
@@ -1452,6 +1506,34 @@ window.SCENE = {
     "C1 | Die Katze könnte der Oma gehören.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Der Opa soll früher Koch gewesen sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Die Katze schläft auf dem Stuhl.": "Kedi sandalyede uyuyor.",
+    "A2 | Das Bild hängt über dem Schrank.": "Tablo dolabın üstünde asılı.",
+    "A2 | Die Uhr hängt an der Wand.": "Saat duvarda asılı.",
+    "A2 | Das Baby ist bei der Mutter.": "Bebek annesinin yanında.",
+    "A2 | Die Suppe steht auf dem Tisch.": "Çorba masanın üstünde.",
+    "A2 | Das Brot liegt im Korb.": "Ekmek sepetin içinde.",
+    "A2 | Die Gabel liegt neben dem Teller.": "Çatal tabağın yanında.",
+    "A2 | Der Saft steht neben dem Glas.": "Meyve suyu bardağın yanında.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Babası patates servis ediyor.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "Erkek kardeş bardağına su dolduruyor.",
+    "B1 | Die Mutter hält ihr Baby.": "Anne bebeğini tutuyor.",
+    "B1 | Der Opa erzählt von seiner Jugend.": "Dede gençliğini anlatıyor.",
+    "B1 | Die Oma hört ihrem Mann zu.": "Babaanne kocasını dinliyor.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Anna ve erkek kardeşi büyükanne ve büyükbabalarını seviyor.",
+    "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "Her pazar büyükanne ve büyükbabamızda yemek yiyoruz.",
+    "B1 | Die Katze schläft auf ihrem Stuhl.": "Kedi kendi sandalyesinde uyuyor.",
+    "B2 | Das ist der Teller des Vaters.": "Bu babanın tabağı.",
+    "B2 | Das Baby sitzt auf dem Schoß der Mutter.": "Bebek annesinin kucağında oturuyor.",
+    "B2 | Die Geschichte des Großvaters ist lustig.": "Dedenin hikâyesi komik.",
+    "B2 | Trotz der Sonne essen sie drinnen.": "Güneşe rağmen içeride yiyorlar.",
+    "B2 | Die Farbe der Tulpen ist gelb.": "Lalelerin rengi sarı.",
+    "B2 | Das Fenster des Esszimmers ist groß.": "Yemek odasının penceresi büyük.",
+    "C1 | Der Opa muss eine lustige Geschichte erzählen.": "Dede komik bir hikâye anlatıyor olmalı.",
+    "C1 | Die Katze könnte der Oma gehören.": "Kedi babaannenin olabilir.",
+    "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "Yemekten sonra pasta da olsa gerek.",
+    "C1 | Der Opa soll früher Koch gewesen sein.": "Dedenin eskiden aşçı olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1493,6 +1575,34 @@ window.SCENE = {
     "C1 | Die Katze könnte der Oma gehören.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Der Opa soll früher Koch gewesen sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Die Katze schläft auf dem Stuhl.": "Кіт спить на стільці.",
+    "A2 | Das Bild hängt über dem Schrank.": "Картина висить над шафою.",
+    "A2 | Die Uhr hängt an der Wand.": "Годинник висить на стіні.",
+    "A2 | Das Baby ist bei der Mutter.": "Немовля біля матері.",
+    "A2 | Die Suppe steht auf dem Tisch.": "Суп стоїть на столі.",
+    "A2 | Das Brot liegt im Korb.": "Хліб лежить у кошику.",
+    "A2 | Die Gabel liegt neben dem Teller.": "Виделка лежить біля тарілки.",
+    "A2 | Der Saft steht neben dem Glas.": "Сік стоїть біля склянки.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Її батько подає картоплю.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "Брат наливає воду у свою склянку.",
+    "B1 | Die Mutter hält ihr Baby.": "Мати тримає своє немовля.",
+    "B1 | Der Opa erzählt von seiner Jugend.": "Дідусь розповідає про свою молодість.",
+    "B1 | Die Oma hört ihrem Mann zu.": "Бабуся слухає свого чоловіка.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Анна та її брат люблять своїх дідуся й бабусю.",
+    "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "Щонеділі ми обідаємо в дідуся й бабусі.",
+    "B1 | Die Katze schläft auf ihrem Stuhl.": "Кіт спить на своєму стільці.",
+    "B2 | Das ist der Teller des Vaters.": "Це тарілка батька.",
+    "B2 | Das Baby sitzt auf dem Schoß der Mutter.": "Немовля сидить на колінах у матері.",
+    "B2 | Die Geschichte des Großvaters ist lustig.": "Історія дідуся смішна.",
+    "B2 | Trotz der Sonne essen sie drinnen.": "Попри сонце, вони їдять у приміщенні.",
+    "B2 | Die Farbe der Tulpen ist gelb.": "Колір тюльпанів — жовтий.",
+    "B2 | Das Fenster des Esszimmers ist groß.": "Вікно їдальні велике.",
+    "C1 | Der Opa muss eine lustige Geschichte erzählen.": "Дідусь, мабуть, розповідає смішну історію.",
+    "C1 | Die Katze könnte der Oma gehören.": "Кіт, можливо, належить бабусі.",
+    "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "Після обіду, напевно, буде ще й пиріг.",
+    "C1 | Der Opa soll früher Koch gewesen sein.": "Кажуть, дідусь колись був кухарем."
    }
   },
   "fa": {
@@ -1534,6 +1644,34 @@ window.SCENE = {
     "C1 | Die Katze könnte der Oma gehören.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Der Opa soll früher Koch gewesen sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Die Katze schläft auf dem Stuhl.": "گربه روی صندلی خوابیده است.",
+    "A2 | Das Bild hängt über dem Schrank.": "تابلو بالای کمد آویزان است.",
+    "A2 | Die Uhr hängt an der Wand.": "ساعت روی دیوار آویزان است.",
+    "A2 | Das Baby ist bei der Mutter.": "نوزاد پیش مادر است.",
+    "A2 | Die Suppe steht auf dem Tisch.": "سوپ روی میز است.",
+    "A2 | Das Brot liegt im Korb.": "نان در سبد است.",
+    "A2 | Die Gabel liegt neben dem Teller.": "چنگال کنار بشقاب است.",
+    "A2 | Der Saft steht neben dem Glas.": "آبمیوه کنار لیوان است.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "پدرش سیب‌زمینی سرو می‌کند.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "برادر در لیوانش آب می‌ریزد.",
+    "B1 | Die Mutter hält ihr Baby.": "مادر نوزادش را در آغوش دارد.",
+    "B1 | Der Opa erzählt von seiner Jugend.": "پدربزرگ از جوانی‌اش تعریف می‌کند.",
+    "B1 | Die Oma hört ihrem Mann zu.": "مادربزرگ به شوهرش گوش می‌دهد.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "آنا و برادرش پدربزرگ و مادربزرگشان را دوست دارند.",
+    "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "ما هر یکشنبه خانهٔ پدربزرگ و مادربزرگمان غذا می‌خوریم.",
+    "B1 | Die Katze schläft auf ihrem Stuhl.": "گربه روی صندلی خودش خوابیده است.",
+    "B2 | Das ist der Teller des Vaters.": "این بشقاب پدر است.",
+    "B2 | Das Baby sitzt auf dem Schoß der Mutter.": "نوزاد روی زانوی مادر نشسته است.",
+    "B2 | Die Geschichte des Großvaters ist lustig.": "داستان پدربزرگ خنده‌دار است.",
+    "B2 | Trotz der Sonne essen sie drinnen.": "با وجود آفتاب، آنها داخل غذا می‌خورند.",
+    "B2 | Die Farbe der Tulpen ist gelb.": "رنگ لاله‌ها زرد است.",
+    "B2 | Das Fenster des Esszimmers ist groß.": "پنجرهٔ اتاق غذاخوری بزرگ است.",
+    "C1 | Der Opa muss eine lustige Geschichte erzählen.": "پدربزرگ حتماً داستان خنده‌داری تعریف می‌کند.",
+    "C1 | Die Katze könnte der Oma gehören.": "گربه شاید مال مادربزرگ باشد.",
+    "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "بعد از غذا احتمالاً کیک هم هست.",
+    "C1 | Der Opa soll früher Koch gewesen sein.": "می‌گویند پدربزرگ قبلاً آشپز بوده است."
    }
   },
   "ar": {
@@ -1575,6 +1713,34 @@ window.SCENE = {
     "C1 | Die Katze könnte der Oma gehören.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Der Opa soll früher Koch gewesen sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Die Katze schläft auf dem Stuhl.": "القطة نائمة على الكرسي.",
+    "A2 | Das Bild hängt über dem Schrank.": "اللوحة معلّقة فوق الخزانة.",
+    "A2 | Die Uhr hängt an der Wand.": "الساعة معلّقة على الحائط.",
+    "A2 | Das Baby ist bei der Mutter.": "الرضيع مع الأمّ.",
+    "A2 | Die Suppe steht auf dem Tisch.": "الحساء على الطاولة.",
+    "A2 | Das Brot liegt im Korb.": "الخبز في السلّة.",
+    "A2 | Die Gabel liegt neben dem Teller.": "الشوكة بجانب الصحن.",
+    "A2 | Der Saft steht neben dem Glas.": "العصير بجانب الكأس.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "يقدّم أبوها البطاطا.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "يصبّ الأخ الماء في كأسه.",
+    "B1 | Die Mutter hält ihr Baby.": "تحمل الأمّ رضيعها.",
+    "B1 | Der Opa erzählt von seiner Jugend.": "يحكي الجدّ عن شبابه.",
+    "B1 | Die Oma hört ihrem Mann zu.": "تستمع الجدّة إلى زوجها.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "تحبّ آنا وأخوها جدّيهما.",
+    "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "نأكل كل يوم أحد عند جدّينا.",
+    "B1 | Die Katze schläft auf ihrem Stuhl.": "القطة نائمة على كرسيّها.",
+    "B2 | Das ist der Teller des Vaters.": "هذا صحن الأب.",
+    "B2 | Das Baby sitzt auf dem Schoß der Mutter.": "الرضيع جالس في حضن الأمّ.",
+    "B2 | Die Geschichte des Großvaters ist lustig.": "حكاية الجدّ مضحكة.",
+    "B2 | Trotz der Sonne essen sie drinnen.": "رغم الشمس، يأكلون في الداخل.",
+    "B2 | Die Farbe der Tulpen ist gelb.": "لون الزنبق أصفر.",
+    "B2 | Das Fenster des Esszimmers ist groß.": "نافذة غرفة الطعام كبيرة.",
+    "C1 | Der Opa muss eine lustige Geschichte erzählen.": "لا بدّ أن الجدّ يحكي حكاية مضحكة.",
+    "C1 | Die Katze könnte der Oma gehören.": "ربما تكون القطة للجدّة.",
+    "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "على الأرجح هناك كعكة بعد الطعام.",
+    "C1 | Der Opa soll früher Koch gewesen sein.": "يُقال إن الجدّ كان طبّاخاً في الماضي."
    }
   },
   "pt": {
@@ -1616,6 +1782,34 @@ window.SCENE = {
     "C1 | Die Katze könnte der Oma gehören.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Der Opa soll früher Koch gewesen sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Die Katze schläft auf dem Stuhl.": "O gato dorme na cadeira.",
+    "A2 | Das Bild hängt über dem Schrank.": "O quadro está pendurado acima do armário.",
+    "A2 | Die Uhr hängt an der Wand.": "O relógio está pendurado na parede.",
+    "A2 | Das Baby ist bei der Mutter.": "O bebê está com a mãe.",
+    "A2 | Die Suppe steht auf dem Tisch.": "A sopa está na mesa.",
+    "A2 | Das Brot liegt im Korb.": "O pão está na cesta.",
+    "A2 | Die Gabel liegt neben dem Teller.": "O garfo está ao lado do prato.",
+    "A2 | Der Saft steht neben dem Glas.": "O suco está ao lado do copo.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "O pai dela serve batatas.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "O irmão põe água no copo.",
+    "B1 | Die Mutter hält ihr Baby.": "A mãe segura o bebê.",
+    "B1 | Der Opa erzählt von seiner Jugend.": "O avô fala da sua juventude.",
+    "B1 | Die Oma hört ihrem Mann zu.": "A avó escuta o marido.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Anna e o irmão amam os avós.",
+    "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "Comemos todo domingo na casa dos nossos avós.",
+    "B1 | Die Katze schläft auf ihrem Stuhl.": "O gato dorme na sua cadeira.",
+    "B2 | Das ist der Teller des Vaters.": "Esse é o prato do pai.",
+    "B2 | Das Baby sitzt auf dem Schoß der Mutter.": "O bebê está sentado no colo da mãe.",
+    "B2 | Die Geschichte des Großvaters ist lustig.": "A história do avô é engraçada.",
+    "B2 | Trotz der Sonne essen sie drinnen.": "Apesar do sol, eles comem dentro de casa.",
+    "B2 | Die Farbe der Tulpen ist gelb.": "A cor das tulipas é amarela.",
+    "B2 | Das Fenster des Esszimmers ist groß.": "A janela da sala de jantar é grande.",
+    "C1 | Der Opa muss eine lustige Geschichte erzählen.": "O avô deve estar contando uma história engraçada.",
+    "C1 | Die Katze könnte der Oma gehören.": "O gato talvez seja da avó.",
+    "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "Depois da refeição provavelmente ainda vai ter bolo.",
+    "C1 | Der Opa soll früher Koch gewesen sein.": "Dizem que o avô era cozinheiro antigamente."
    }
   },
   "pl": {
@@ -1657,6 +1851,34 @@ window.SCENE = {
     "C1 | Die Katze könnte der Oma gehören.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Der Opa soll früher Koch gewesen sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Die Katze schläft auf dem Stuhl.": "Kot śpi na krześle.",
+    "A2 | Das Bild hängt über dem Schrank.": "Obraz wisi nad szafą.",
+    "A2 | Die Uhr hängt an der Wand.": "Zegar wisi na ścianie.",
+    "A2 | Das Baby ist bei der Mutter.": "Dziecko jest przy matce.",
+    "A2 | Die Suppe steht auf dem Tisch.": "Zupa stoi na stole.",
+    "A2 | Das Brot liegt im Korb.": "Chleb leży w koszyku.",
+    "A2 | Die Gabel liegt neben dem Teller.": "Widelec leży obok talerza.",
+    "A2 | Der Saft steht neben dem Glas.": "Sok stoi obok szklanki.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Jej ojciec podaje ziemniaki.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "Brat nalewa wodę do swojej szklanki.",
+    "B1 | Die Mutter hält ihr Baby.": "Matka trzyma swoje dziecko.",
+    "B1 | Der Opa erzählt von seiner Jugend.": "Dziadek opowiada o swojej młodości.",
+    "B1 | Die Oma hört ihrem Mann zu.": "Babcia słucha swojego męża.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Anna i jej brat kochają swoich dziadków.",
+    "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "W każdą niedzielę jemy u naszych dziadków.",
+    "B1 | Die Katze schläft auf ihrem Stuhl.": "Kot śpi na swoim krześle.",
+    "B2 | Das ist der Teller des Vaters.": "To jest talerz ojca.",
+    "B2 | Das Baby sitzt auf dem Schoß der Mutter.": "Dziecko siedzi na kolanach matki.",
+    "B2 | Die Geschichte des Großvaters ist lustig.": "Historia dziadka jest zabawna.",
+    "B2 | Trotz der Sonne essen sie drinnen.": "Mimo słońca jedzą w środku.",
+    "B2 | Die Farbe der Tulpen ist gelb.": "Kolor tulipanów jest żółty.",
+    "B2 | Das Fenster des Esszimmers ist groß.": "Okno jadalni jest duże.",
+    "C1 | Der Opa muss eine lustige Geschichte erzählen.": "Dziadek musi opowiadać zabawną historię.",
+    "C1 | Die Katze könnte der Oma gehören.": "Kot być może należy do babci.",
+    "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "Po jedzeniu zapewne będzie jeszcze ciasto.",
+    "C1 | Der Opa soll früher Koch gewesen sein.": "Podobno dziadek był kiedyś kucharzem."
    }
   },
   "ru": {
@@ -1698,6 +1920,34 @@ window.SCENE = {
     "C1 | Die Katze könnte der Oma gehören.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Der Opa soll früher Koch gewesen sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Die Katze schläft auf dem Stuhl.": "Кошка спит на стуле.",
+    "A2 | Das Bild hängt über dem Schrank.": "Картина висит над шкафом.",
+    "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
+    "A2 | Das Baby ist bei der Mutter.": "Малыш у мамы.",
+    "A2 | Die Suppe steht auf dem Tisch.": "Суп стоит на столе.",
+    "A2 | Das Brot liegt im Korb.": "Хлеб лежит в корзинке.",
+    "A2 | Die Gabel liegt neben dem Teller.": "Вилка лежит рядом с тарелкой.",
+    "A2 | Der Saft steht neben dem Glas.": "Сок стоит рядом со стаканом.",
+    "B1 | Ihr Vater serviert Kartoffeln.": "Её отец подаёт картошку.",
+    "B1 | Der Bruder gießt Wasser in sein Glas.": "Брат наливает воду в свой стакан.",
+    "B1 | Die Mutter hält ihr Baby.": "Мать держит своего малыша.",
+    "B1 | Der Opa erzählt von seiner Jugend.": "Дедушка рассказывает о своей молодости.",
+    "B1 | Die Oma hört ihrem Mann zu.": "Бабушка слушает своего мужа.",
+    "B1 | Anna und ihr Bruder lieben ihre Großeltern.": "Анна и её брат любят своих бабушку и дедушку.",
+    "B1 | Wir essen jeden Sonntag bei unseren Großeltern.": "Каждое воскресенье мы едим у бабушки с дедушкой.",
+    "B1 | Die Katze schläft auf ihrem Stuhl.": "Кошка спит на своём стуле.",
+    "B2 | Das ist der Teller des Vaters.": "Это тарелка отца.",
+    "B2 | Das Baby sitzt auf dem Schoß der Mutter.": "Малыш сидит на коленях у матери.",
+    "B2 | Die Geschichte des Großvaters ist lustig.": "История дедушки смешная.",
+    "B2 | Trotz der Sonne essen sie drinnen.": "Несмотря на солнце, они едят в доме.",
+    "B2 | Die Farbe der Tulpen ist gelb.": "Цвет тюльпанов — жёлтый.",
+    "B2 | Das Fenster des Esszimmers ist groß.": "Окно столовой большое.",
+    "C1 | Der Opa muss eine lustige Geschichte erzählen.": "Дедушка, должно быть, рассказывает смешную историю.",
+    "C1 | Die Katze könnte der Oma gehören.": "Кошка, возможно, принадлежит бабушке.",
+    "C1 | Nach dem Essen dürfte es noch Kuchen geben.": "После обеда, вероятно, будет ещё и пирог.",
+    "C1 | Der Opa soll früher Koch gewesen sein.": "Говорят, дедушка раньше был поваром."
    }
   }
  }

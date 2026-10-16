@@ -1039,6 +1039,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "bank",
      "phrase": "Der Mann sitzt auf der Bank.",
+     "sens": "L'homme est assis sur le banc.",
      "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1051,6 +1052,7 @@ window.SCENE = {
      "f": "boot",
      "r": "see",
      "phrase": "Das Boot ist auf dem See.",
+     "sens": "La barque est sur le lac.",
      "n": "der See → auf <b>dem</b> See. (die See, au féminin, c'est la mer !)"
     },
     {
@@ -1063,6 +1065,7 @@ window.SCENE = {
      "f": "junge",
      "r": "weg",
      "phrase": "Der Junge fährt auf dem Weg.",
+     "sens": "Le garçon roule sur le chemin.",
      "n": "der Weg → auf <b>dem</b> Weg."
     },
     {
@@ -1075,6 +1078,7 @@ window.SCENE = {
      "f": "korb",
      "r": "decke",
      "phrase": "Der Korb steht auf der Decke.",
+     "sens": "Le panier est sur la couverture.",
      "n": "die Decke → auf <b>der</b> Decke."
     },
     {
@@ -1087,6 +1091,7 @@ window.SCENE = {
      "f": "handy",
      "r": "rucksack",
      "phrase": "Das Handy liegt neben dem Rucksack.",
+     "sens": "Le téléphone est à côté du sac à dos.",
      "n": "<b>neben</b> = à côté de. der Rucksack → neben <b>dem</b> Rucksack."
     },
     {
@@ -1099,6 +1104,7 @@ window.SCENE = {
      "f": "ball",
      "r": "gras",
      "phrase": "Der Ball ist über dem Gras.",
+     "sens": "Le ballon est au-dessus de l'herbe.",
      "n": "<b>über</b> = au-dessus de, sans toucher. das Gras → über <b>dem</b> Gras."
     },
     {
@@ -1111,6 +1117,7 @@ window.SCENE = {
      "f": "laterne",
      "r": "muelleimer",
      "phrase": "Die Laterne steht neben dem Mülleimer.",
+     "sens": "Le lampadaire est à côté de la poubelle.",
      "n": "der Mülleimer → neben <b>dem</b> Mülleimer."
     },
     {
@@ -1123,6 +1130,7 @@ window.SCENE = {
      "f": "vogel",
      "r": "bank",
      "phrase": "Der Vogel sitzt auf der Bank.",
+     "sens": "L'oiseau est perché sur le banc.",
      "n": "<b>Wo?</b> → datif : auf <b>der</b> Bank."
     }
    ]
@@ -1140,6 +1148,7 @@ window.SCENE = {
      "f": "ball",
      "r": "hund",
      "phrase": "Anna wirft dem Hund den Ball.",
+     "sens": "Anna lance le ballon au chien.",
      "n": "À qui ? → datif (<b>dem</b> Hund). Quoi ? → accusatif (<b>den</b> Ball).",
      "revise": {
       "mot": "werfen",
@@ -1156,6 +1165,7 @@ window.SCENE = {
      "f": "hund",
      "r": "gras",
      "phrase": "Der Hund läuft über das Gras.",
+     "sens": "Le chien court sur l'herbe.",
      "n": "<b>Wohin?</b> Il traverse : <b>über</b> + accusatif → <b>das</b> Gras.",
      "revise": {
       "mot": "laufen",
@@ -1172,6 +1182,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "junge",
      "phrase": "Der Junge fährt mit dem Fahrrad.",
+     "sens": "Le garçon fait du vélo.",
      "n": "<b>mit</b> veut toujours le datif : das Fahrrad → mit <b>dem</b> Fahrrad.",
      "revise": {
       "mot": "fahren",
@@ -1188,6 +1199,7 @@ window.SCENE = {
      "f": "buch",
      "r": "decke",
      "phrase": "Anna hat ihr Buch auf die Decke gelegt.",
+     "sens": "Anna a posé son livre sur la couverture.",
      "n": "<b>legen</b> = mouvement, <b>Wohin?</b> → accusatif : auf <b>die</b> Decke.",
      "revise": {
       "mot": "legen",
@@ -1204,6 +1216,7 @@ window.SCENE = {
      "f": "buch",
      "r": "decke",
      "phrase": "Jetzt liegt das Buch auf der Decke.",
+     "sens": "Maintenant, le livre est sur la couverture.",
      "n": "<b>liegen</b> = état, <b>Wo?</b> → datif : auf <b>der</b> Decke.",
      "revise": {
       "mot": "liegen",
@@ -1220,6 +1233,7 @@ window.SCENE = {
      "f": "vogel",
      "r": "bank",
      "phrase": "Der Vogel hat sich auf die Bank gesetzt.",
+     "sens": "L'oiseau s'est posé sur le banc.",
      "n": "<b>sich setzen</b> = mouvement → accusatif : auf <b>die</b> Bank.",
      "revise": {
       "mot": "setzen",
@@ -1236,6 +1250,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "bank",
      "phrase": "Der Mann sitzt auf der Bank und liest.",
+     "sens": "L'homme est assis sur le banc et lit.",
      "n": "<b>sitzen</b> = état → datif : auf <b>der</b> Bank.",
      "revise": {
       "mot": "sitzen",
@@ -1252,6 +1267,7 @@ window.SCENE = {
      "f": "boot",
      "r": "see",
      "phrase": "Zwei Leute rudern auf dem See.",
+     "sens": "Deux personnes rament sur le lac.",
      "n": "Ils restent sur le lac (<b>Wo?</b>) → datif : auf <b>dem</b> See."
     }
    ]
@@ -1269,6 +1285,7 @@ window.SCENE = {
      "f": "anna",
      "r": "ball",
      "phrase": "Die Frau, die dem Hund den Ball wirft, heißt Anna.",
+     "sens": "La femme qui lance le ballon au chien s'appelle Anna.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -1281,6 +1298,7 @@ window.SCENE = {
      "f": "junge",
      "r": "helm",
      "phrase": "Der Junge, dessen Helm blau ist, fährt Fahrrad.",
+     "sens": "Le garçon au casque bleu fait du vélo.",
      "n": "Possession, antécédent masculin → <b>dessen</b> (dont le casque)."
     },
     {
@@ -1293,6 +1311,7 @@ window.SCENE = {
      "f": "bank",
      "r": "monsieur",
      "phrase": "Die Bank, auf der der Mann sitzt, ist grün.",
+     "sens": "Le banc sur lequel l'homme est assis est vert.",
      "n": "<b>auf</b> + Wo? → datif, féminin → <b>der</b>."
     },
     {
@@ -1305,6 +1324,7 @@ window.SCENE = {
      "f": "hund",
      "r": "ball",
      "phrase": "Der laufende Hund will den Ball fangen.",
+     "sens": "Le chien qui court veut attraper le ballon.",
      "n": "Participe présent (Partizip I) comme adjectif : laufen + <b>d</b> + terminaison → <b>laufende</b> (qui court)."
     },
     {
@@ -1317,6 +1337,7 @@ window.SCENE = {
      "f": "buch",
      "r": "decke",
      "phrase": "Auf der Decke liegt ein aufgeschlagenes Buch.",
+     "sens": "Sur la couverture, il y a un livre ouvert.",
      "n": "Partizip II comme adjectif = le résultat (ouvert). Après <b>ein</b>, neutre → <b>-es</b>."
     },
     {
@@ -1329,6 +1350,7 @@ window.SCENE = {
      "f": "decke",
      "r": "gras",
      "phrase": "Die Decke ist auf dem Gras ausgebreitet.",
+     "sens": "La couverture est étalée sur l'herbe.",
      "n": "Passif d'état : <b>sein</b> + participe. Verbe séparable : aus<b>ge</b>breitet."
     }
    ]
@@ -1346,6 +1368,7 @@ window.SCENE = {
      "f": "anna",
      "r": "hund",
      "phrase": "Sie muss den Hund kennen.",
+     "sens": "Elle doit connaître le chien.",
      "n": "<b>müssen</b> = déduction presque certaine : elle joue avec lui."
     },
     {
@@ -1358,6 +1381,7 @@ window.SCENE = {
      "f": "hund",
      "r": "ball",
      "phrase": "Der Hund könnte den Ball gleich fangen.",
+     "sens": "Le chien va peut-être attraper le ballon tout de suite.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1370,6 +1394,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "bank",
      "phrase": "Der Mann dürfte jeden Sonntag hierherkommen.",
+     "sens": "L'homme vient sans doute ici chaque dimanche.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1381,6 +1406,7 @@ window.SCENE = {
      ],
      "f": "see",
      "phrase": "Im See soll es riesige Fische geben.",
+     "sens": "Il paraît qu'il y a d'énormes poissons dans le lac.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1426,6 +1452,34 @@ window.SCENE = {
     "C1 | Der Hund könnte den Ball gleich fangen.": "<b>könnte</b> = one possibility among others.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Im See soll es riesige Fische geben.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Der Mann sitzt auf der Bank.": "The man is sitting on the bench.",
+    "A2 | Das Boot ist auf dem See.": "The boat is on the lake.",
+    "A2 | Der Junge fährt auf dem Weg.": "The boy is riding on the path.",
+    "A2 | Der Korb steht auf der Decke.": "The basket is on the blanket.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "The phone is next to the backpack.",
+    "A2 | Der Ball ist über dem Gras.": "The ball is above the grass.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "The lamppost is next to the bin.",
+    "A2 | Der Vogel sitzt auf der Bank.": "The bird is sitting on the bench.",
+    "B1 | Anna wirft dem Hund den Ball.": "Anna throws the ball to the dog.",
+    "B1 | Der Hund läuft über das Gras.": "The dog is running across the grass.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "The boy is riding a bicycle.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "Anna put her book on the blanket.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "Now the book is on the blanket.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "The bird has landed on the bench.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "The man is sitting on the bench reading.",
+    "B1 | Zwei Leute rudern auf dem See.": "Two people are rowing on the lake.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "The woman throwing the ball to the dog is called Anna.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "The boy whose helmet is blue is riding a bicycle.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "The bench the man is sitting on is green.",
+    "B2 | Der laufende Hund will den Ball fangen.": "The running dog wants to catch the ball.",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "There is an open book on the blanket.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "The blanket is spread out on the grass.",
+    "C1 | Sie muss den Hund kennen.": "She must know the dog.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "The dog might catch the ball right away.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "The man probably comes here every Sunday.",
+    "C1 | Im See soll es riesige Fische geben.": "There are said to be huge fish in the lake."
    }
   },
   "tr": {
@@ -1467,6 +1521,34 @@ window.SCENE = {
     "C1 | Der Hund könnte den Ball gleich fangen.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Im See soll es riesige Fische geben.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Der Mann sitzt auf der Bank.": "Adam bankta oturuyor.",
+    "A2 | Das Boot ist auf dem See.": "Kayık gölde.",
+    "A2 | Der Junge fährt auf dem Weg.": "Çocuk yolda bisiklet sürüyor.",
+    "A2 | Der Korb steht auf der Decke.": "Sepet örtünün üstünde duruyor.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "Telefon sırt çantasının yanında.",
+    "A2 | Der Ball ist über dem Gras.": "Top çimenin üstünde havada.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "Sokak lambası çöp kovasının yanında duruyor.",
+    "A2 | Der Vogel sitzt auf der Bank.": "Kuş bankın üstünde duruyor.",
+    "B1 | Anna wirft dem Hund den Ball.": "Anna topu köpeğe atıyor.",
+    "B1 | Der Hund läuft über das Gras.": "Köpek çimenin üstünde koşuyor.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "Çocuk bisiklete biniyor.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "Anna kitabını örtünün üstüne koydu.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "Şimdi kitap örtünün üstünde.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "Kuş bankın üstüne kondu.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "Adam bankta oturuyor ve okuyor.",
+    "B1 | Zwei Leute rudern auf dem See.": "İki kişi gölde kürek çekiyor.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "Köpeğe top atan kadının adı Anna.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "Kaskı mavi olan çocuk bisiklet sürüyor.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "Adamın oturduğu bank yeşil.",
+    "B2 | Der laufende Hund will den Ball fangen.": "Koşan köpek topu yakalamak istiyor.",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "Örtünün üstünde açık bir kitap var.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "Örtü çimenin üstüne serilmiş.",
+    "C1 | Sie muss den Hund kennen.": "Köpeği tanıyor olmalı.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "Köpek topu hemen yakalayabilir.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "Adam her pazar buraya geliyor olsa gerek.",
+    "C1 | Im See soll es riesige Fische geben.": "Gölde kocaman balıklar olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1508,6 +1590,34 @@ window.SCENE = {
     "C1 | Der Hund könnte den Ball gleich fangen.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Im See soll es riesige Fische geben.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Der Mann sitzt auf der Bank.": "Чоловік сидить на лавці.",
+    "A2 | Das Boot ist auf dem See.": "Човен на озері.",
+    "A2 | Der Junge fährt auf dem Weg.": "Хлопчик їде доріжкою.",
+    "A2 | Der Korb steht auf der Decke.": "Кошик стоїть на ковдрі.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "Телефон лежить біля рюкзака.",
+    "A2 | Der Ball ist über dem Gras.": "М'яч над травою.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "Ліхтар стоїть біля смітника.",
+    "A2 | Der Vogel sitzt auf der Bank.": "Птах сидить на лавці.",
+    "B1 | Anna wirft dem Hund den Ball.": "Анна кидає собаці м'яч.",
+    "B1 | Der Hund läuft über das Gras.": "Собака біжить по траві.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "Хлопчик їде на велосипеді.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "Анна поклала свою книжку на ковдру.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "Тепер книжка лежить на ковдрі.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "Птах сів на лавку.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "Чоловік сидить на лавці й читає.",
+    "B1 | Zwei Leute rudern auf dem See.": "Двоє людей веслують на озері.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "Жінку, яка кидає собаці м'яч, звати Анна.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "Хлопчик у синьому шоломі їде на велосипеді.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "Лавка, на якій сидить чоловік, зелена.",
+    "B2 | Der laufende Hund will den Ball fangen.": "Собака, що біжить, хоче впіймати м'яч.",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "На ковдрі лежить розгорнута книжка.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "Ковдра розстелена на траві.",
+    "C1 | Sie muss den Hund kennen.": "Вона, мабуть, знає цього собаку.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "Собака, можливо, зараз упіймає м'яч.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "Чоловік, напевно, приходить сюди щонеділі.",
+    "C1 | Im See soll es riesige Fische geben.": "Кажуть, в озері водяться величезні риби."
    }
   },
   "fa": {
@@ -1549,6 +1659,34 @@ window.SCENE = {
     "C1 | Der Hund könnte den Ball gleich fangen.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Im See soll es riesige Fische geben.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Der Mann sitzt auf der Bank.": "مرد روی نیمکت نشسته است.",
+    "A2 | Das Boot ist auf dem See.": "قایق روی دریاچه است.",
+    "A2 | Der Junge fährt auf dem Weg.": "پسر در مسیر دوچرخه می‌راند.",
+    "A2 | Der Korb steht auf der Decke.": "سبد روی پتو است.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "گوشی کنار کوله‌پشتی است.",
+    "A2 | Der Ball ist über dem Gras.": "توپ بالای چمن است.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "تیر چراغ‌برق کنار سطل زباله است.",
+    "A2 | Der Vogel sitzt auf der Bank.": "پرنده روی نیمکت نشسته است.",
+    "B1 | Anna wirft dem Hund den Ball.": "آنا توپ را برای سگ پرت می‌کند.",
+    "B1 | Der Hund läuft über das Gras.": "سگ روی چمن می‌دود.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "پسر دوچرخه‌سواری می‌کند.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "آنا کتابش را روی پتو گذاشته است.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "حالا کتاب روی پتو است.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "پرنده روی نیمکت نشسته است.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "مرد روی نیمکت نشسته و می‌خواند.",
+    "B1 | Zwei Leute rudern auf dem See.": "دو نفر روی دریاچه پارو می‌زنند.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "زنی که توپ را برای سگ پرت می‌کند، آنا نام دارد.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "پسری که کلاه‌ایمنی‌اش آبی است، دوچرخه‌سواری می‌کند.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "نیمکتی که مرد رویش نشسته، سبز است.",
+    "B2 | Der laufende Hund will den Ball fangen.": "سگی که می‌دود می‌خواهد توپ را بگیرد.",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "روی پتو یک کتاب باز است.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "پتو روی چمن پهن شده است.",
+    "C1 | Sie muss den Hund kennen.": "او حتماً این سگ را می‌شناسد.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "سگ شاید همین حالا توپ را بگیرد.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "مرد احتمالاً هر یکشنبه اینجا می‌آید.",
+    "C1 | Im See soll es riesige Fische geben.": "می‌گویند در دریاچه ماهی‌های غول‌پیکر هست."
    }
   },
   "ar": {
@@ -1590,6 +1728,34 @@ window.SCENE = {
     "C1 | Der Hund könnte den Ball gleich fangen.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Im See soll es riesige Fische geben.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Der Mann sitzt auf der Bank.": "الرجل جالس على المقعد.",
+    "A2 | Das Boot ist auf dem See.": "القارب على البحيرة.",
+    "A2 | Der Junge fährt auf dem Weg.": "الصبيّ يسير على الممرّ.",
+    "A2 | Der Korb steht auf der Decke.": "السلّة على البطّانية.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "الهاتف بجانب حقيبة الظهر.",
+    "A2 | Der Ball ist über dem Gras.": "الكرة فوق العشب.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "عمود الإنارة بجانب سلّة المهملات.",
+    "A2 | Der Vogel sitzt auf der Bank.": "العصفور على المقعد.",
+    "B1 | Anna wirft dem Hund den Ball.": "ترمي آنا الكرة للكلب.",
+    "B1 | Der Hund läuft über das Gras.": "يركض الكلب على العشب.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "يركب الصبيّ الدراجة.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "وضعت آنا كتابها على البطّانية.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "الآن الكتاب على البطّانية.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "حطّ العصفور على المقعد.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "الرجل جالس على المقعد ويقرأ.",
+    "B1 | Zwei Leute rudern auf dem See.": "شخصان يجدّفان على البحيرة.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "المرأة التي ترمي الكرة للكلب اسمها آنا.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "الصبيّ ذو الخوذة الزرقاء يركب الدراجة.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "المقعد الذي يجلس عليه الرجل أخضر.",
+    "B2 | Der laufende Hund will den Ball fangen.": "الكلب الراكض يريد أن يمسك الكرة.",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "على البطّانية كتاب مفتوح.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "البطّانية مفروشة على العشب.",
+    "C1 | Sie muss den Hund kennen.": "لا بدّ أنها تعرف الكلب.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "ربما يمسك الكلب الكرة حالاً.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "على الأرجح يأتي الرجل إلى هنا كل يوم أحد.",
+    "C1 | Im See soll es riesige Fische geben.": "يُقال إن في البحيرة أسماكاً ضخمة."
    }
   },
   "pt": {
@@ -1631,6 +1797,34 @@ window.SCENE = {
     "C1 | Der Hund könnte den Ball gleich fangen.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Im See soll es riesige Fische geben.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Der Mann sitzt auf der Bank.": "O homem está sentado no banco.",
+    "A2 | Das Boot ist auf dem See.": "O barco está no lago.",
+    "A2 | Der Junge fährt auf dem Weg.": "O menino anda pelo caminho.",
+    "A2 | Der Korb steht auf der Decke.": "A cesta está em cima da manta.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "O celular está ao lado da mochila.",
+    "A2 | Der Ball ist über dem Gras.": "A bola está acima da grama.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "O poste está ao lado da lixeira.",
+    "A2 | Der Vogel sitzt auf der Bank.": "O pássaro está pousado no banco.",
+    "B1 | Anna wirft dem Hund den Ball.": "Anna joga a bola para o cachorro.",
+    "B1 | Der Hund läuft über das Gras.": "O cachorro corre pela grama.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "O menino anda de bicicleta.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "Anna pôs o livro em cima da manta.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "Agora o livro está em cima da manta.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "O pássaro pousou no banco.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "O homem está sentado no banco lendo.",
+    "B1 | Zwei Leute rudern auf dem See.": "Duas pessoas remam no lago.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "A mulher que joga a bola para o cachorro se chama Anna.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "O menino de capacete azul anda de bicicleta.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "O banco em que o homem está sentado é verde.",
+    "B2 | Der laufende Hund will den Ball fangen.": "O cachorro que corre quer pegar a bola.",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "Em cima da manta há um livro aberto.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "A manta está estendida na grama.",
+    "C1 | Sie muss den Hund kennen.": "Ela deve conhecer o cachorro.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "O cachorro talvez pegue a bola agora mesmo.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "O homem provavelmente vem aqui todo domingo.",
+    "C1 | Im See soll es riesige Fische geben.": "Dizem que há peixes enormes no lago."
    }
   },
   "pl": {
@@ -1672,6 +1866,34 @@ window.SCENE = {
     "C1 | Der Hund könnte den Ball gleich fangen.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Im See soll es riesige Fische geben.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Der Mann sitzt auf der Bank.": "Mężczyzna siedzi na ławce.",
+    "A2 | Das Boot ist auf dem See.": "Łódka jest na jeziorze.",
+    "A2 | Der Junge fährt auf dem Weg.": "Chłopiec jedzie ścieżką.",
+    "A2 | Der Korb steht auf der Decke.": "Kosz stoi na kocu.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "Telefon leży obok plecaka.",
+    "A2 | Der Ball ist über dem Gras.": "Piłka jest nad trawą.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "Latarnia stoi obok kosza na śmieci.",
+    "A2 | Der Vogel sitzt auf der Bank.": "Ptak siedzi na ławce.",
+    "B1 | Anna wirft dem Hund den Ball.": "Anna rzuca psu piłkę.",
+    "B1 | Der Hund läuft über das Gras.": "Pies biegnie po trawie.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "Chłopiec jedzie na rowerze.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "Anna położyła książkę na kocu.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "Teraz książka leży na kocu.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "Ptak usiadł na ławce.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "Mężczyzna siedzi na ławce i czyta.",
+    "B1 | Zwei Leute rudern auf dem See.": "Dwie osoby wiosłują po jeziorze.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "Kobieta, która rzuca psu piłkę, ma na imię Anna.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "Chłopiec w niebieskim kasku jedzie na rowerze.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "Ławka, na której siedzi mężczyzna, jest zielona.",
+    "B2 | Der laufende Hund will den Ball fangen.": "Biegnący pies chce złapać piłkę.",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "Na kocu leży otwarta książka.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "Koc jest rozłożony na trawie.",
+    "C1 | Sie muss den Hund kennen.": "Musi znać tego psa.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "Pies być może zaraz złapie piłkę.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "Mężczyzna zapewne przychodzi tu w każdą niedzielę.",
+    "C1 | Im See soll es riesige Fische geben.": "Podobno w jeziorze są ogromne ryby."
    }
   },
   "ru": {
@@ -1713,6 +1935,34 @@ window.SCENE = {
     "C1 | Der Hund könnte den Ball gleich fangen.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Im See soll es riesige Fische geben.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Der Mann sitzt auf der Bank.": "Мужчина сидит на скамейке.",
+    "A2 | Das Boot ist auf dem See.": "Лодка на озере.",
+    "A2 | Der Junge fährt auf dem Weg.": "Мальчик едет по дорожке.",
+    "A2 | Der Korb steht auf der Decke.": "Корзина стоит на покрывале.",
+    "A2 | Das Handy liegt neben dem Rucksack.": "Телефон лежит рядом с рюкзаком.",
+    "A2 | Der Ball ist über dem Gras.": "Мяч над травой.",
+    "A2 | Die Laterne steht neben dem Mülleimer.": "Фонарь стоит рядом с мусорным ведром.",
+    "A2 | Der Vogel sitzt auf der Bank.": "Птица сидит на скамейке.",
+    "B1 | Anna wirft dem Hund den Ball.": "Анна бросает собаке мяч.",
+    "B1 | Der Hund läuft über das Gras.": "Собака бежит по траве.",
+    "B1 | Der Junge fährt mit dem Fahrrad.": "Мальчик едет на велосипеде.",
+    "B1 | Anna hat ihr Buch auf die Decke gelegt.": "Анна положила свою книгу на покрывало.",
+    "B1 | Jetzt liegt das Buch auf der Decke.": "Теперь книга лежит на покрывале.",
+    "B1 | Der Vogel hat sich auf die Bank gesetzt.": "Птица села на скамейку.",
+    "B1 | Der Mann sitzt auf der Bank und liest.": "Мужчина сидит на скамейке и читает.",
+    "B1 | Zwei Leute rudern auf dem See.": "Два человека гребут на озере.",
+    "B2 | Die Frau, die dem Hund den Ball wirft, heißt Anna.": "Женщину, которая бросает собаке мяч, зовут Анна.",
+    "B2 | Der Junge, dessen Helm blau ist, fährt Fahrrad.": "Мальчик в синем шлеме едет на велосипеде.",
+    "B2 | Die Bank, auf der der Mann sitzt, ist grün.": "Скамейка, на которой сидит мужчина, зелёная.",
+    "B2 | Der laufende Hund will den Ball fangen.": "Бегущая собака хочет поймать мяч.",
+    "B2 | Auf der Decke liegt ein aufgeschlagenes Buch.": "На покрывале лежит раскрытая книга.",
+    "B2 | Die Decke ist auf dem Gras ausgebreitet.": "Покрывало расстелено на траве.",
+    "C1 | Sie muss den Hund kennen.": "Она, должно быть, знает собаку.",
+    "C1 | Der Hund könnte den Ball gleich fangen.": "Собака, возможно, сейчас поймает мяч.",
+    "C1 | Der Mann dürfte jeden Sonntag hierherkommen.": "Мужчина, вероятно, приходит сюда каждое воскресенье.",
+    "C1 | Im See soll es riesige Fische geben.": "Говорят, в озере водятся огромные рыбы."
    }
   }
  }

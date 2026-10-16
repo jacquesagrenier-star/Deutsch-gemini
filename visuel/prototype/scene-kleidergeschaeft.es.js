@@ -1369,6 +1369,7 @@ window.SCENE = {
      "f": "hut",
      "r": "regal",
      "phrase": "El sombrero está en la estantería.",
+     "sens": "Le chapeau est sur l'étagère.",
      "n": "<b>en</b> = sur ou dans. Le lieu → <b>estar</b>."
     },
     {
@@ -1381,6 +1382,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "bank",
      "phrase": "El hombre está sentado en el banco.",
+     "sens": "L'homme est assis sur le banc.",
      "n": "<b>el</b> banco est masculin, et <b>en el</b> ne se contracte jamais."
     },
     {
@@ -1393,6 +1395,7 @@ window.SCENE = {
      "f": "hocker",
      "r": "spiegel",
      "phrase": "El taburete está delante del espejo.",
+     "sens": "Le tabouret est devant le miroir.",
      "n": "<b>delante de</b> = devant. de + el = <b>del</b>."
     },
     {
@@ -1405,6 +1408,7 @@ window.SCENE = {
      "f": "guertel",
      "r": "krawatte",
      "phrase": "El cinturón está al lado de la corbata.",
+     "sens": "La ceinture est à côté de la cravate.",
      "n": "<b>la</b> corbata est féminin : <b>de la</b>, sans contraction."
     },
     {
@@ -1417,6 +1421,7 @@ window.SCENE = {
      "f": "socken",
      "r": "korb",
      "phrase": "Los calcetines están en la cesta.",
+     "sens": "Les chaussettes sont dans le panier.",
      "n": "Le lieu → <b>estar</b>, au pluriel : <b>están</b>."
     },
     {
@@ -1429,6 +1434,7 @@ window.SCENE = {
      "f": "anna",
      "r": "kabine",
      "phrase": "Anna está delante del probador.",
+     "sens": "Anna est devant la cabine d'essayage.",
      "n": "<b>delante de</b> = devant. de + el = <b>del</b>."
     },
     {
@@ -1441,6 +1447,7 @@ window.SCENE = {
      "f": "schuh-sol",
      "r": "boden",
      "phrase": "El otro zapato está en el suelo.",
+     "sens": "L'autre chaussure est par terre.",
      "n": "<b>el</b> suelo est masculin → <b>en el</b> suelo.",
      "latam": {
       "q": "El otro zapato está ___ piso.",
@@ -1458,6 +1465,7 @@ window.SCENE = {
      "f": "kleid",
      "r": "rock",
      "phrase": "Hay un vestido rojo al lado de la falda.",
+     "sens": "Il y a une robe rouge à côté de la jupe.",
      "n": "<b>hay</b> présente une chose nouvelle (« il y a une robe ») ; <b>está</b> situe une chose déjà connue."
     }
    ]
@@ -1475,6 +1483,7 @@ window.SCENE = {
      "f": "pullover",
      "r": "anna",
      "phrase": "Anna tiene un jersey amarillo.",
+     "sens": "Anna a un pull jaune.",
      "n": "<b>el</b> jersey est masculin singulier → amarill<b>o</b>.",
      "latam": {
       "q": "Anna tiene un suéter ___.",
@@ -1491,6 +1500,7 @@ window.SCENE = {
      ],
      "f": "kleid",
      "phrase": "El vestido rojo está a la izquierda.",
+     "sens": "La robe rouge est à gauche.",
      "n": "L'adjectif suit le nom et s'accorde : <b>el</b> vestido → roj<b>o</b>."
     },
     {
@@ -1503,6 +1513,7 @@ window.SCENE = {
      "f": "schuh-main",
      "r": "monsieur",
      "phrase": "El hombre se prueba un zapato marrón.",
+     "sens": "L'homme essaie une chaussure marron.",
      "n": "<b>marrón</b> a la même forme au masculin et au féminin ; seul le pluriel change (marrones).",
      "revise": {
       "mot": "probar",
@@ -1519,6 +1530,7 @@ window.SCENE = {
      "f": "socken",
      "r": "korb",
      "phrase": "Los calcetines de la cesta son muy coloridos.",
+     "sens": "Les chaussettes du panier sont très colorées.",
      "n": "<b>los</b> calcetines : masculin pluriel → colorid<b>os</b>."
     },
     {
@@ -1531,6 +1543,7 @@ window.SCENE = {
      "f": "tasche-noire",
      "r": "regal",
      "phrase": "En la estantería hay un bolso negro.",
+     "sens": "Sur l'étagère, il y a un sac noir.",
      "n": "<b>el</b> bolso est masculin → negr<b>o</b>. (La bolsa, féminine, serait negra.)"
     },
     {
@@ -1543,6 +1556,7 @@ window.SCENE = {
      "f": "hose-anna",
      "r": "anna",
      "phrase": "Anna lleva un pantalón azul claro.",
+     "sens": "Anna porte un pantalon bleu clair.",
      "n": "Une couleur nuancée (<b>azul claro</b>) reste invariable.",
      "revise": {
       "mot": "llevar",
@@ -1558,6 +1572,7 @@ window.SCENE = {
      ],
      "f": "monsieur",
      "phrase": "El hombre de pelo gris se prueba zapatos.",
+     "sens": "L'homme aux cheveux gris essaie des chaussures.",
      "n": "<b>gris</b> a la même forme au masculin et au féminin."
     },
     {
@@ -1570,6 +1585,7 @@ window.SCENE = {
      "f": "mantel",
      "r": "anzug",
      "phrase": "Un abrigo largo cuelga al lado del traje.",
+     "sens": "Un long manteau est accroché à côté du costume.",
      "n": "<b>el</b> abrigo est masculin → larg<b>o</b>. Attention : <b>largo</b> veut dire long, pas large.",
      "revise": {
       "mot": "colgar",
@@ -1591,6 +1607,7 @@ window.SCENE = {
      "f": "anna",
      "r": "pullover",
      "phrase": "La mujer que tiene el jersey amarillo se llama Anna.",
+     "sens": "La femme qui a le pull jaune s'appelle Anna.",
      "n": "Relative sans virgule, sujet → <b>que</b>. <b>quien</b> ne vient qu'après une virgule ou une préposition.",
      "latam": {
       "q": "La mujer ___ tiene el suéter amarillo se llama Anna.",
@@ -1607,6 +1624,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "schuh-sol",
      "phrase": "El hombre cuyo zapato está en el suelo se prueba el otro.",
+     "sens": "L'homme dont la chaussure est par terre essaie l'autre.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : el zapato → <b>cuyo</b>.",
      "latam": {
       "q": "El hombre ___ zapato está en el piso se prueba el otro.",
@@ -1623,6 +1641,7 @@ window.SCENE = {
      "f": "spiegel",
      "r": "hocker",
      "phrase": "El espejo delante del cual está el taburete tiene marco de madera.",
+     "sens": "Le miroir devant lequel est le tabouret a un cadre en bois.",
      "n": "Après une préposition, <b>el cual</b> ; delante de + el cual → <b>del cual</b>."
     },
     {
@@ -1635,6 +1654,7 @@ window.SCENE = {
      "f": "socken",
      "r": "korb",
      "phrase": "Los calcetines, que están en la cesta, son de colores.",
+     "sens": "Les chaussettes, qui sont dans le panier, sont de couleurs.",
      "n": "Des choses, sujet → <b>que</b>. <b>quienes</b> ne se dit que de personnes."
     },
     {
@@ -1647,6 +1667,7 @@ window.SCENE = {
      "f": "pullover-stapel",
      "r": "regal",
      "phrase": "Los jerséis de la estantería están doblados.",
+     "sens": "Les pulls de l'étagère sont pliés.",
      "n": "<b>estar</b> + participe = le résultat, accordé : los jerséis → doblad<b>os</b>.",
      "revise": {
       "mot": "doblar",
@@ -1667,6 +1688,7 @@ window.SCENE = {
      ],
      "f": "kleid",
      "phrase": "En esta tienda se vende ropa de calidad.",
+     "sens": "Dans ce magasin, on vend des vêtements de qualité.",
      "n": "Passif avec <b>se</b> : le verbe s'accorde avec la chose. <b>la ropa</b> est singulier → se vende.",
      "revise": {
       "mot": "vender",
@@ -1688,6 +1710,7 @@ window.SCENE = {
      "f": "pullover",
      "r": "anna",
      "phrase": "El jersey debe de gustarle.",
+     "sens": "Le pull doit lui plaire.",
      "n": "<b>deber de</b> + infinitif = une déduction : il doit lui plaire.",
      "latam": {
       "q": "Anna sonríe: el suéter ___ gustarle.",
@@ -1704,6 +1727,7 @@ window.SCENE = {
      "f": "kabine",
      "r": "anna",
      "phrase": "Puede que se lo pruebe enseguida en el probador.",
+     "sens": "Elle va peut-être l'essayer tout de suite dans la cabine.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>.",
      "revise": {
       "mot": "probar",
@@ -1720,6 +1744,7 @@ window.SCENE = {
      "f": "monsieur",
      "r": "schuh-main",
      "phrase": "Tendrá una boda pronto.",
+     "sens": "Il doit avoir un mariage bientôt.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent : <b>tendrá</b> = il doit avoir."
     },
     {
@@ -1731,6 +1756,7 @@ window.SCENE = {
      ],
      "f": "verkaeuferin",
      "phrase": "Dicen que la mujer del mostrador trabaja aquí desde hace treinta años.",
+     "sens": "On dit que la femme du comptoir travaille ici depuis trente ans.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>.",
      "revise": {
       "mot": "trabajar",
@@ -1786,6 +1812,40 @@ window.SCENE = {
     "C1 | Puede que se lo pruebe enseguida en el probador.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Tendrá una boda pronto.": "The <b>future</b> expresses a guess about the present: <b>tendrá</b> = he probably has.",
     "C1 | Dicen que la mujer del mostrador trabaja aquí desde hace treinta años.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El sombrero está en la estantería.": "The hat is on the shelf.",
+    "A2 | El hombre está sentado en el banco.": "The man is sitting on the bench.",
+    "A2 | El taburete está delante del espejo.": "The stool is in front of the mirror.",
+    "A2 | El cinturón está al lado de la corbata.": "The belt is next to the tie.",
+    "A2 | Los calcetines están en la cesta.": "The socks are in the basket.",
+    "A2 | Anna está delante del probador.": "Anna is in front of the fitting room.",
+    "A2 | El otro zapato está en el piso.": "The other shoe is on the floor.",
+    "A2 | El otro zapato está en el suelo.": "The other shoe is on the floor.",
+    "A2 | Hay un vestido rojo al lado de la falda.": "There is a red dress next to the skirt.",
+    "B1 | Anna tiene un suéter amarillo.": "Anna has a yellow jumper.",
+    "B1 | Anna tiene un jersey amarillo.": "Anna has a yellow jumper.",
+    "B1 | El vestido rojo está a la izquierda.": "The red dress is on the left.",
+    "B1 | El hombre se prueba un zapato marrón.": "The man is trying on a brown shoe.",
+    "B1 | Los calcetines de la cesta son muy coloridos.": "The socks in the basket are very colourful.",
+    "B1 | En la estantería hay un bolso negro.": "There is a black bag on the shelf.",
+    "B1 | Anna lleva un pantalón azul claro.": "Anna is wearing light blue trousers.",
+    "B1 | El hombre de pelo gris se prueba zapatos.": "The grey-haired man is trying on shoes.",
+    "B1 | Un abrigo largo cuelga al lado del traje.": "A long coat hangs next to the suit.",
+    "B2 | La mujer que tiene el suéter amarillo se llama Anna.": "The woman with the yellow jumper is called Anna.",
+    "B2 | La mujer que tiene el jersey amarillo se llama Anna.": "The woman with the yellow jumper is called Anna.",
+    "B2 | El hombre cuyo zapato está en el piso se prueba el otro.": "The man whose shoe is on the floor is trying on the other one.",
+    "B2 | El hombre cuyo zapato está en el suelo se prueba el otro.": "The man whose shoe is on the floor is trying on the other one.",
+    "B2 | El espejo delante del cual está el taburete tiene marco de madera.": "The mirror the stool is in front of has a wooden frame.",
+    "B2 | Los calcetines, que están en la cesta, son de colores.": "The socks, which are in the basket, are colourful.",
+    "B2 | Los suéteres de la estantería están doblados.": "The jumpers on the shelf are folded.",
+    "B2 | Los jerséis de la estantería están doblados.": "The jumpers on the shelf are folded.",
+    "B2 | En esta tienda se vende ropa de calidad.": "Quality clothes are sold in this shop.",
+    "C1 | El suéter debe de gustarle.": "She must like the jumper.",
+    "C1 | El jersey debe de gustarle.": "She must like the jumper.",
+    "C1 | Puede que se lo pruebe enseguida en el probador.": "She may try it on right away in the fitting room.",
+    "C1 | Tendrá una boda pronto.": "He probably has a wedding soon.",
+    "C1 | Dicen que la mujer del mostrador trabaja aquí desde hace treinta años.": "They say the woman at the counter has worked here for thirty years."
    }
   },
   "tr": {
@@ -1796,7 +1856,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1806,7 +1867,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1816,7 +1878,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1863,6 +1926,40 @@ window.SCENE = {
     "C1 | Puede que se lo pruebe enseguida en el probador.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Tendrá una boda pronto.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر: <b>tendrá</b> = لا بدّ أن عنده.",
     "C1 | Dicen que la mujer del mostrador trabaja aquí desde hace treinta años.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El sombrero está en la estantería.": "القبّعة على الرفّ.",
+    "A2 | El hombre está sentado en el banco.": "الرجل جالس على المقعد.",
+    "A2 | El taburete está delante del espejo.": "الكرسيّ الصغير أمام المرآة.",
+    "A2 | El cinturón está al lado de la corbata.": "الحزام بجانب ربطة العنق.",
+    "A2 | Los calcetines están en la cesta.": "الجوارب في السلّة.",
+    "A2 | Anna está delante del probador.": "آنا أمام غرفة القياس.",
+    "A2 | El otro zapato está en el piso.": "فردة الحذاء الأخرى على الأرض.",
+    "A2 | El otro zapato está en el suelo.": "فردة الحذاء الأخرى على الأرض.",
+    "A2 | Hay un vestido rojo al lado de la falda.": "هناك فستان أحمر بجانب التنّورة.",
+    "B1 | Anna tiene un suéter amarillo.": "لدى آنا كنزة صفراء.",
+    "B1 | Anna tiene un jersey amarillo.": "لدى آنا كنزة صفراء.",
+    "B1 | El vestido rojo está a la izquierda.": "الفستان الأحمر على اليسار.",
+    "B1 | El hombre se prueba un zapato marrón.": "يجرّب الرجل حذاءً بنّياً.",
+    "B1 | Los calcetines de la cesta son muy coloridos.": "الجوارب التي في السلّة ملوّنة جداً.",
+    "B1 | En la estantería hay un bolso negro.": "على الرفّ حقيبة سوداء.",
+    "B1 | Anna lleva un pantalón azul claro.": "ترتدي آنا بنطالاً أزرق فاتحاً.",
+    "B1 | El hombre de pelo gris se prueba zapatos.": "الرجل ذو الشعر الرمادي يجرّب أحذية.",
+    "B1 | Un abrigo largo cuelga al lado del traje.": "معطف طويل معلّق بجانب البدلة.",
+    "B2 | La mujer que tiene el suéter amarillo se llama Anna.": "المرأة التي تحمل الكنزة الصفراء اسمها آنا.",
+    "B2 | La mujer que tiene el jersey amarillo se llama Anna.": "المرأة التي تحمل الكنزة الصفراء اسمها آنا.",
+    "B2 | El hombre cuyo zapato está en el piso se prueba el otro.": "الرجل الذي فردة حذائه على الأرض يجرّب الأخرى.",
+    "B2 | El hombre cuyo zapato está en el suelo se prueba el otro.": "الرجل الذي فردة حذائه على الأرض يجرّب الأخرى.",
+    "B2 | El espejo delante del cual está el taburete tiene marco de madera.": "المرآة التي أمامها الكرسيّ الصغير لها إطار خشبي.",
+    "B2 | Los calcetines, que están en la cesta, son de colores.": "الجوارب التي في السلّة ملوّنة.",
+    "B2 | Los suéteres de la estantería están doblados.": "الكنزات على الرفّ مطويّة.",
+    "B2 | Los jerséis de la estantería están doblados.": "الكنزات على الرفّ مطويّة.",
+    "B2 | En esta tienda se vende ropa de calidad.": "في هذا المحل تُباع ملابس ذات جودة.",
+    "C1 | El suéter debe de gustarle.": "لا بدّ أن الكنزة تعجبها.",
+    "C1 | El jersey debe de gustarle.": "لا بدّ أن الكنزة تعجبها.",
+    "C1 | Puede que se lo pruebe enseguida en el probador.": "ربما تجرّبها حالاً في غرفة القياس.",
+    "C1 | Tendrá una boda pronto.": "على الأرجح لديه حفل زفاف قريباً.",
+    "C1 | Dicen que la mujer del mostrador trabaja aquí desde hace treinta años.": "يُقال إن المرأة التي عند المنضدة تعمل هنا منذ ثلاثين سنة."
    }
   },
   "pt": {
@@ -1910,6 +2007,40 @@ window.SCENE = {
     "C1 | Puede que se lo pruebe enseguida en el probador.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Tendrá una boda pronto.": "O <b>futuro</b> expressa uma suposição sobre o presente: <b>tendrá</b> = deve ter.",
     "C1 | Dicen que la mujer del mostrador trabaja aquí desde hace treinta años.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El sombrero está en la estantería.": "O chapéu está na prateleira.",
+    "A2 | El hombre está sentado en el banco.": "O homem está sentado no banco.",
+    "A2 | El taburete está delante del espejo.": "O banquinho está em frente ao espelho.",
+    "A2 | El cinturón está al lado de la corbata.": "O cinto está ao lado da gravata.",
+    "A2 | Los calcetines están en la cesta.": "As meias estão na cesta.",
+    "A2 | Anna está delante del probador.": "Anna está em frente ao provador.",
+    "A2 | El otro zapato está en el piso.": "O outro sapato está no chão.",
+    "A2 | El otro zapato está en el suelo.": "O outro sapato está no chão.",
+    "A2 | Hay un vestido rojo al lado de la falda.": "Há um vestido vermelho ao lado da saia.",
+    "B1 | Anna tiene un suéter amarillo.": "Anna tem um suéter amarelo.",
+    "B1 | Anna tiene un jersey amarillo.": "Anna tem um suéter amarelo.",
+    "B1 | El vestido rojo está a la izquierda.": "O vestido vermelho está à esquerda.",
+    "B1 | El hombre se prueba un zapato marrón.": "O homem experimenta um sapato marrom.",
+    "B1 | Los calcetines de la cesta son muy coloridos.": "As meias da cesta são muito coloridas.",
+    "B1 | En la estantería hay un bolso negro.": "Na prateleira há uma bolsa preta.",
+    "B1 | Anna lleva un pantalón azul claro.": "Anna usa uma calça azul-clara.",
+    "B1 | El hombre de pelo gris se prueba zapatos.": "O homem de cabelo grisalho experimenta sapatos.",
+    "B1 | Un abrigo largo cuelga al lado del traje.": "Um casaco comprido está pendurado ao lado do terno.",
+    "B2 | La mujer que tiene el suéter amarillo se llama Anna.": "A mulher que tem o suéter amarelo se chama Anna.",
+    "B2 | La mujer que tiene el jersey amarillo se llama Anna.": "A mulher que tem o suéter amarelo se chama Anna.",
+    "B2 | El hombre cuyo zapato está en el piso se prueba el otro.": "O homem cujo sapato está no chão experimenta o outro.",
+    "B2 | El hombre cuyo zapato está en el suelo se prueba el otro.": "O homem cujo sapato está no chão experimenta o outro.",
+    "B2 | El espejo delante del cual está el taburete tiene marco de madera.": "O espelho em frente ao qual está o banquinho tem moldura de madeira.",
+    "B2 | Los calcetines, que están en la cesta, son de colores.": "As meias, que estão na cesta, são coloridas.",
+    "B2 | Los suéteres de la estantería están doblados.": "Os suéteres da prateleira estão dobrados.",
+    "B2 | Los jerséis de la estantería están doblados.": "Os suéteres da prateleira estão dobrados.",
+    "B2 | En esta tienda se vende ropa de calidad.": "Nesta loja se vende roupa de qualidade.",
+    "C1 | El suéter debe de gustarle.": "Ela deve ter gostado do suéter.",
+    "C1 | El jersey debe de gustarle.": "Ela deve ter gostado do suéter.",
+    "C1 | Puede que se lo pruebe enseguida en el probador.": "Pode ser que ela o experimente agora mesmo no provador.",
+    "C1 | Tendrá una boda pronto.": "Ele deve ter um casamento em breve.",
+    "C1 | Dicen que la mujer del mostrador trabaja aquí desde hace treinta años.": "Dizem que a mulher do balcão trabalha aqui há trinta anos."
    }
   },
   "pl": {
@@ -1920,7 +2051,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1930,7 +2062,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

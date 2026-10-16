@@ -1669,6 +1669,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "tisch",
      "phrase": "La mochila está debajo de la mesa.",
+     "sens": "Le sac à dos est sous la table.",
      "n": "<b>¿Dónde?</b> → <b>estar</b> + le lieu : la mochila <b>está</b> debajo de la mesa."
     },
     {
@@ -1681,6 +1682,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "tafel",
      "phrase": "El reloj está encima de la pizarra.",
+     "sens": "L'horloge est au-dessus du tableau.",
      "n": "<b>encima de</b> = au-dessus de. Le lieu se dit toujours avec <b>estar</b>.",
      "latam": {
       "c": [
@@ -1702,6 +1704,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "regal",
      "phrase": "Hay una planta en la estantería.",
+     "sens": "Il y a une plante sur l'étagère.",
      "n": "Une chose nouvelle, avec <b>un / una</b> → <b>hay</b>. Avec <b>la</b>, on dirait : la planta <b>está</b> en la estantería."
     },
     {
@@ -1714,6 +1717,7 @@ window.SCENE = {
      "f": "mantel",
      "r": "tuer",
      "phrase": "El abrigo está en la puerta.",
+     "sens": "Le manteau est sur la porte.",
      "n": "<b>en</b> = sur, dans, à : le manteau est accroché <b>à</b> la porte."
     },
     {
@@ -1726,6 +1730,7 @@ window.SCENE = {
      "f": "lehrer",
      "r": "tafel",
      "phrase": "El profesor está delante de la pizarra.",
+     "sens": "Le professeur est devant le tableau.",
      "n": "<b>delante de</b> = devant. <b>detrás de</b> = derrière.",
      "latam": {
       "q": "El profesor está ___ pizarrón.",
@@ -1748,6 +1753,7 @@ window.SCENE = {
      "f": "handy",
      "r": "laptop",
      "phrase": "El móvil está al lado del portátil.",
+     "sens": "Le téléphone est à côté de l'ordinateur portable.",
      "n": "<b>de + el = del</b> : la contraction est obligatoire. (<b>de la</b> ne se contracte pas.)",
      "latam": {
       "q": "El celular está al lado ___ laptop.",
@@ -1770,6 +1776,7 @@ window.SCENE = {
      "f": "anna",
      "r": "mark",
      "phrase": "Anna está al lado de Mark.",
+     "sens": "Anna est à côté de Mark.",
      "n": "<b>al lado de</b> = à côté de. Devant un prénom, pas d'article : al lado <b>de</b> Mark."
     },
     {
@@ -1782,6 +1789,7 @@ window.SCENE = {
      "f": "bild",
      "r": "tuer",
      "phrase": "El cuadro está entre la puerta y la ventana.",
+     "sens": "Le tableau est entre la porte et la fenêtre.",
      "n": "<b>entre</b> … <b>y</b> … = entre … et …."
     }
    ]
@@ -1803,6 +1811,7 @@ window.SCENE = {
       "mot": "poner",
       "cat": "verbe"
      },
+     "sens": "Anna l'a mis sous la table.",
      "n": "Complément direct féminin (la mochila) → <b>la</b>. <b>le</b> est le complément indirect (à lui, à elle)."
     },
     {
@@ -1819,6 +1828,7 @@ window.SCENE = {
       "mot": "colgar",
       "cat": "verbe"
      },
+     "sens": "Quelqu'un l'a accroché à la porte.",
      "n": "Complément direct masculin (el abrigo) → <b>lo</b>."
     },
     {
@@ -1831,6 +1841,7 @@ window.SCENE = {
      "f": "lehrer",
      "r": "tafel",
      "phrase": "El profesor está delante de la pizarra.",
+     "sens": "Le professeur est devant le tableau.",
      "n": "Où il se trouve → <b>estar</b>.",
      "latam": {
       "q": "El profesor ___ delante del pizarrón.",
@@ -1846,6 +1857,7 @@ window.SCENE = {
      ],
      "f": "lehrer",
      "phrase": "El profesor es de Sevilla.",
+     "sens": "Le professeur est de Séville.",
      "n": "L'origine → <b>ser</b> : es de Sevilla."
     },
     {
@@ -1857,6 +1869,7 @@ window.SCENE = {
      ],
      "f": "tisch",
      "phrase": "La mesa es de madera.",
+     "sens": "La table est en bois.",
      "n": "La matière → <b>ser</b> : es de madera."
     },
     {
@@ -1873,6 +1886,7 @@ window.SCENE = {
       "mot": "abierto",
       "cat": "adjectif"
      },
+     "sens": "Le cahier d'Anna est ouvert.",
      "n": "Un état qui résulte d'une action (on l'a ouvert) → <b>estar</b>."
     },
     {
@@ -1889,6 +1903,7 @@ window.SCENE = {
       "mot": "sentarse",
       "cat": "verbe"
      },
+     "sens": "Anna est assise à côté de Mark.",
      "n": "<b>estar sentado</b> = être assis, un état. Le participe s'accorde : Anna → sentad<b>a</b>."
     },
     {
@@ -1901,6 +1916,7 @@ window.SCENE = {
      "f": "anna",
      "r": "mark",
      "phrase": "Anna y Mark están sonriendo.",
+     "sens": "Anna et Mark sont en train de sourire.",
      "n": "Une action en cours : <b>estar</b> + gérondif (sonriendo)."
     }
    ]
@@ -1917,6 +1933,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "La mujer que lleva un libro bajo el brazo todavía está de pie.",
+     "sens": "La femme qui porte un livre sous le bras est encore debout.",
      "n": "Sujet d'une relative qui précise de quelle femme on parle → <b>que</b>. <b>quien</b> ne s'emploie ici qu'entre virgules."
     },
     {
@@ -1929,6 +1946,7 @@ window.SCENE = {
      "f": "lehrer",
      "r": "brille",
      "phrase": "El hombre cuyas gafas están sobre la nariz es el profesor.",
+     "sens": "L'homme dont les lunettes sont sur le nez est le professeur.",
      "n": "<b>cuyo</b> = dont le, dont la. Il s'accorde avec ce qui est possédé : las gafas → <b>cuyas</b>.",
      "latam": {
       "q": "El hombre ___ lentes están sobre la nariz es el profesor.",
@@ -1951,6 +1969,7 @@ window.SCENE = {
      "f": "anna",
      "r": "heft",
      "phrase": "La participante cuyo cuaderno está abierto sobre la mesa se llama Anna.",
+     "sens": "La participante dont le cahier est ouvert sur la table s'appelle Anna.",
      "n": "<b>cuyo</b> s'accorde avec el cuaderno (masculin), pas avec Anna → <b>cuyo</b>."
     },
     {
@@ -1963,6 +1982,7 @@ window.SCENE = {
      "f": "tisch",
      "r": "rucksack",
      "phrase": "La mesa debajo de la cual está la mochila es de madera.",
+     "sens": "La table sous laquelle est le sac à dos est en bois.",
      "n": "Après une préposition comme <b>debajo de</b> : <b>la cual</b> (ou la que). <b>que</b> seul ne suffit pas."
     },
     {
@@ -1974,6 +1994,7 @@ window.SCENE = {
      ],
      "f": "tafel",
      "phrase": "La pizarra ya está limpia.",
+     "sens": "Le tableau est déjà propre.",
      "n": "Le résultat d'une action (quelqu'un l'a effacé) → <b>estar</b>.",
      "latam": {
       "q": "El pizarrón ya ___ limpio.",
@@ -1989,6 +2010,7 @@ window.SCENE = {
      ],
      "f": "lehrer",
      "phrase": "En esta clase se enseña español.",
+     "sens": "Dans ce cours, on enseigne l'espagnol.",
      "n": "Le passif avec <b>se</b> : le verbe s'accorde avec ce qu'on enseigne (español, singulier) → <b>se enseña</b>."
     }
    ]
@@ -2006,6 +2028,7 @@ window.SCENE = {
      "f": "anna",
      "r": "mark",
      "phrase": "Mark y Anna deben de conocerse: se sonríen.",
+     "sens": "Mark et Anna doivent se connaître : ils se sourient.",
      "n": "<b>deber de</b> + infinitif = une déduction : c'est presque sûr."
     },
     {
@@ -2017,6 +2040,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "La mujer del vestido habrá llegado tarde.",
+     "sens": "La femme en robe a dû arriver en retard.",
      "n": "Le <b>futur antérieur</b> exprime une supposition sur le passé : habrá llegado = elle est sans doute arrivée."
     },
     {
@@ -2028,6 +2052,7 @@ window.SCENE = {
      ],
      "f": "lehrer",
      "phrase": "El profesor tendrá unos cincuenta años.",
+     "sens": "Le professeur doit avoir une cinquantaine d'années.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent : tendrá = il a sans doute."
     },
     {
@@ -2044,6 +2069,7 @@ window.SCENE = {
       "mot": "conocer",
       "cat": "verbe"
      },
+     "sens": "Si Mark ne connaissait pas Anna, il ne s'assiérait pas à côté d'elle.",
      "n": "Hypothèse contraire à la réalité : <b>si</b> + subjonctif imparfait, puis le conditionnel."
     }
    ]
@@ -2095,6 +2121,40 @@ window.SCENE = {
     "C1 | La mujer del vestido habrá llegado tarde.": "The <b>future perfect</b> makes a guess about the past: habrá llegado = she has probably arrived.",
     "C1 | El profesor tendrá unos cincuenta años.": "The <b>future</b> makes a guess about the present: tendrá = he's probably.",
     "C1 | Si Mark no conociera a Anna, no se sentaría a su lado.": "A hypothesis contrary to fact: <b>si</b> + imperfect subjunctive, then the conditional."
+   },
+   "sens": {
+    "A2 | La mochila está debajo de la mesa.": "The backpack is under the table.",
+    "A2 | El reloj está encima del pizarrón.": "The clock is above the board.",
+    "A2 | El reloj está encima de la pizarra.": "The clock is above the board.",
+    "A2 | Hay una planta en la estantería.": "There is a plant on the shelf.",
+    "A2 | El abrigo está en la puerta.": "The coat is on the door.",
+    "A2 | El profesor está delante del pizarrón.": "The teacher is in front of the board.",
+    "A2 | El profesor está delante de la pizarra.": "The teacher is in front of the board.",
+    "A2 | El celular está al lado de la laptop.": "The phone is next to the laptop.",
+    "A2 | El móvil está al lado del portátil.": "The phone is next to the laptop.",
+    "A2 | Anna está al lado de Mark.": "Anna is next to Mark.",
+    "A2 | El cuadro está entre la puerta y la ventana.": "The picture is between the door and the window.",
+    "B1 | Anna la ha puesto debajo de la mesa.": "Anna put it under the table.",
+    "B1 | Alguien lo ha colgado en la puerta.": "Someone hung it on the door.",
+    "B1 | El profesor está delante del pizarrón.": "The teacher is in front of the board.",
+    "B1 | El profesor está delante de la pizarra.": "The teacher is in front of the board.",
+    "B1 | El profesor es de Sevilla.": "The teacher is from Seville.",
+    "B1 | La mesa es de madera.": "The table is made of wood.",
+    "B1 | El cuaderno de Anna está abierto.": "Anna's notebook is open.",
+    "B1 | Anna está sentada al lado de Mark.": "Anna is sitting next to Mark.",
+    "B1 | Anna y Mark están sonriendo.": "Anna and Mark are smiling.",
+    "B2 | La mujer que lleva un libro bajo el brazo todavía está de pie.": "The woman carrying a book under her arm is still standing.",
+    "B2 | El hombre cuyos lentes están sobre la nariz es el profesor.": "The man whose glasses are on his nose is the teacher.",
+    "B2 | El hombre cuyas gafas están sobre la nariz es el profesor.": "The man whose glasses are on his nose is the teacher.",
+    "B2 | La participante cuyo cuaderno está abierto sobre la mesa se llama Anna.": "The participant whose notebook is open on the table is called Anna.",
+    "B2 | La mesa debajo de la cual está la mochila es de madera.": "The table the backpack is under is made of wood.",
+    "B2 | El pizarrón ya está limpio.": "The board is already clean.",
+    "B2 | La pizarra ya está limpia.": "The board is already clean.",
+    "B2 | En esta clase se enseña español.": "Spanish is taught in this class.",
+    "C1 | Mark y Anna deben de conocerse: se sonríen.": "Mark and Anna must know each other: they smile at each other.",
+    "C1 | La mujer del vestido habrá llegado tarde.": "The woman in the dress probably arrived late.",
+    "C1 | El profesor tendrá unos cincuenta años.": "The teacher is probably about fifty years old.",
+    "C1 | Si Mark no conociera a Anna, no se sentaría a su lado.": "If Mark did not know Anna, he would not sit next to her."
    }
   },
   "tr": {
@@ -2105,7 +2165,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -2115,7 +2176,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -2125,7 +2187,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -2172,6 +2235,40 @@ window.SCENE = {
     "C1 | La mujer del vestido habrá llegado tarde.": "<b>المستقبل التامّ</b> يعبّر عن افتراض بشأن الماضي: habrá llegado = لا بدّ أنها وصلت.",
     "C1 | El profesor tendrá unos cincuenta años.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر: tendrá = لا بدّ أن عمره.",
     "C1 | Si Mark no conociera a Anna, no se sentaría a su lado.": "فرضية مخالفة للواقع: <b>si</b> + subjuntivo الماضي، ثم condicional."
+   },
+   "sens": {
+    "A2 | La mochila está debajo de la mesa.": "حقيبة الظهر تحت الطاولة.",
+    "A2 | El reloj está encima del pizarrón.": "الساعة فوق اللوح.",
+    "A2 | El reloj está encima de la pizarra.": "الساعة فوق اللوح.",
+    "A2 | Hay una planta en la estantería.": "هناك نبتة على الرفّ.",
+    "A2 | El abrigo está en la puerta.": "المعطف على الباب.",
+    "A2 | El profesor está delante del pizarrón.": "المعلّم أمام اللوح.",
+    "A2 | El profesor está delante de la pizarra.": "المعلّم أمام اللوح.",
+    "A2 | El celular está al lado de la laptop.": "الهاتف بجانب الحاسوب المحمول.",
+    "A2 | El móvil está al lado del portátil.": "الهاتف بجانب الحاسوب المحمول.",
+    "A2 | Anna está al lado de Mark.": "آنا بجانب مارك.",
+    "A2 | El cuadro está entre la puerta y la ventana.": "اللوحة بين الباب والنافذة.",
+    "B1 | Anna la ha puesto debajo de la mesa.": "وضعتها آنا تحت الطاولة.",
+    "B1 | Alguien lo ha colgado en la puerta.": "علّقه أحدهم على الباب.",
+    "B1 | El profesor está delante del pizarrón.": "المعلّم أمام اللوح.",
+    "B1 | El profesor está delante de la pizarra.": "المعلّم أمام اللوح.",
+    "B1 | El profesor es de Sevilla.": "المعلّم من إشبيلية.",
+    "B1 | La mesa es de madera.": "الطاولة من الخشب.",
+    "B1 | El cuaderno de Anna está abierto.": "دفتر آنا مفتوح.",
+    "B1 | Anna está sentada al lado de Mark.": "آنا جالسة بجانب مارك.",
+    "B1 | Anna y Mark están sonriendo.": "آنا ومارك يبتسمان.",
+    "B2 | La mujer que lleva un libro bajo el brazo todavía está de pie.": "المرأة التي تحمل كتاباً تحت ذراعها ما زالت واقفة.",
+    "B2 | El hombre cuyos lentes están sobre la nariz es el profesor.": "الرجل الذي نظّارته على أنفه هو المعلّم.",
+    "B2 | El hombre cuyas gafas están sobre la nariz es el profesor.": "الرجل الذي نظّارته على أنفه هو المعلّم.",
+    "B2 | La participante cuyo cuaderno está abierto sobre la mesa se llama Anna.": "المشاركة التي دفترها مفتوح على الطاولة اسمها آنا.",
+    "B2 | La mesa debajo de la cual está la mochila es de madera.": "الطاولة التي تحتها حقيبة الظهر من الخشب.",
+    "B2 | El pizarrón ya está limpio.": "اللوح نظيف بالفعل.",
+    "B2 | La pizarra ya está limpia.": "اللوح نظيف بالفعل.",
+    "B2 | En esta clase se enseña español.": "في هذا الصفّ تُدرَّس الإسبانية.",
+    "C1 | Mark y Anna deben de conocerse: se sonríen.": "لا بدّ أن مارك وآنا يعرفان بعضهما: إنهما يتبادلان الابتسام.",
+    "C1 | La mujer del vestido habrá llegado tarde.": "على الأرجح تأخّرت المرأة ذات الفستان.",
+    "C1 | El profesor tendrá unos cincuenta años.": "على الأرجح عمر المعلّم نحو خمسين سنة.",
+    "C1 | Si Mark no conociera a Anna, no se sentaría a su lado.": "لو لم يكن مارك يعرف آنا، لما جلس بجانبها."
    }
   },
   "pt": {
@@ -2219,6 +2316,40 @@ window.SCENE = {
     "C1 | La mujer del vestido habrá llegado tarde.": "O <b>futuro composto</b> expressa uma suposição sobre o passado: habrá llegado = ela deve ter chegado.",
     "C1 | El profesor tendrá unos cincuenta años.": "O <b>futuro</b> expressa uma suposição sobre o presente: tendrá = ele deve ter.",
     "C1 | Si Mark no conociera a Anna, no se sentaría a su lado.": "Hipótese contrária à realidade: <b>si</b> + subjuntivo imperfeito, depois o condicional."
+   },
+   "sens": {
+    "A2 | La mochila está debajo de la mesa.": "A mochila está debaixo da mesa.",
+    "A2 | El reloj está encima del pizarrón.": "O relógio está acima do quadro.",
+    "A2 | El reloj está encima de la pizarra.": "O relógio está acima do quadro.",
+    "A2 | Hay una planta en la estantería.": "Há uma planta na estante.",
+    "A2 | El abrigo está en la puerta.": "O casaco está na porta.",
+    "A2 | El profesor está delante del pizarrón.": "O professor está em frente ao quadro.",
+    "A2 | El profesor está delante de la pizarra.": "O professor está em frente ao quadro.",
+    "A2 | El celular está al lado de la laptop.": "O celular está ao lado do notebook.",
+    "A2 | El móvil está al lado del portátil.": "O celular está ao lado do notebook.",
+    "A2 | Anna está al lado de Mark.": "Anna está ao lado de Mark.",
+    "A2 | El cuadro está entre la puerta y la ventana.": "O quadro está entre a porta e a janela.",
+    "B1 | Anna la ha puesto debajo de la mesa.": "Anna pôs a mochila debaixo da mesa.",
+    "B1 | Alguien lo ha colgado en la puerta.": "Alguém o pendurou na porta.",
+    "B1 | El profesor está delante del pizarrón.": "O professor está em frente ao quadro.",
+    "B1 | El profesor está delante de la pizarra.": "O professor está em frente ao quadro.",
+    "B1 | El profesor es de Sevilla.": "O professor é de Sevilha.",
+    "B1 | La mesa es de madera.": "A mesa é de madeira.",
+    "B1 | El cuaderno de Anna está abierto.": "O caderno de Anna está aberto.",
+    "B1 | Anna está sentada al lado de Mark.": "Anna está sentada ao lado de Mark.",
+    "B1 | Anna y Mark están sonriendo.": "Anna e Mark estão sorrindo.",
+    "B2 | La mujer que lleva un libro bajo el brazo todavía está de pie.": "A mulher que leva um livro debaixo do braço ainda está de pé.",
+    "B2 | El hombre cuyos lentes están sobre la nariz es el profesor.": "O homem cujos óculos estão no nariz é o professor.",
+    "B2 | El hombre cuyas gafas están sobre la nariz es el profesor.": "O homem cujos óculos estão no nariz é o professor.",
+    "B2 | La participante cuyo cuaderno está abierto sobre la mesa se llama Anna.": "A participante cujo caderno está aberto na mesa se chama Anna.",
+    "B2 | La mesa debajo de la cual está la mochila es de madera.": "A mesa debaixo da qual está a mochila é de madeira.",
+    "B2 | El pizarrón ya está limpio.": "O quadro já está limpo.",
+    "B2 | La pizarra ya está limpia.": "O quadro já está limpo.",
+    "B2 | En esta clase se enseña español.": "Nesta aula se ensina espanhol.",
+    "C1 | Mark y Anna deben de conocerse: se sonríen.": "Mark e Anna devem se conhecer: sorriem um para o outro.",
+    "C1 | La mujer del vestido habrá llegado tarde.": "A mulher de vestido deve ter chegado atrasada.",
+    "C1 | El profesor tendrá unos cincuenta años.": "O professor deve ter uns cinquenta anos.",
+    "C1 | Si Mark no conociera a Anna, no se sentaría a su lado.": "Se Mark não conhecesse Anna, não se sentaria ao lado dela."
    }
   },
   "pl": {
@@ -2229,7 +2360,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -2239,7 +2371,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

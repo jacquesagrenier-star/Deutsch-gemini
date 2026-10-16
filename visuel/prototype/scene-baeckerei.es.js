@@ -1739,6 +1739,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "El reloj está en la pared.",
+     "sens": "L'horloge est au mur.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1751,6 +1752,7 @@ window.SCENE = {
      "f": "milch",
      "r": "regal",
      "phrase": "La leche está en la estantería.",
+     "sens": "Le lait est sur l'étagère.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1763,6 +1765,7 @@ window.SCENE = {
      "f": "hund",
      "r": "tisch",
      "phrase": "El perro está debajo de la mesa.",
+     "sens": "Le chien est sous la table.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1775,6 +1778,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "fenster",
      "phrase": "La bicicleta está delante de la ventana.",
+     "sens": "Le vélo est devant la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1787,6 +1791,7 @@ window.SCENE = {
      "f": "kasse",
      "r": "schalter",
      "phrase": "Hay una caja en el mostrador.",
+     "sens": "Il y a une caisse sur le comptoir.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -1799,6 +1804,7 @@ window.SCENE = {
      "f": "blume",
      "r": "glas",
      "phrase": "Las flores están en el vaso.",
+     "sens": "Les fleurs sont dans le verre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -1811,6 +1817,7 @@ window.SCENE = {
      "f": "nachbar",
      "r": "fenster",
      "phrase": "El vecino está al lado de la ventana.",
+     "sens": "Le voisin est à côté de la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1823,6 +1830,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "boden",
      "phrase": "La planta está en el suelo.",
+     "sens": "La plante est par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "La planta está ___ piso.",
@@ -1844,6 +1852,7 @@ window.SCENE = {
      "f": "frau",
      "r": "backofen",
      "phrase": "La panadera acaba de sacar el pan del horno.",
+     "sens": "La boulangère vient de sortir le pain du four.",
      "n": "<b>acabar de</b> + infinitif = venir de faire.",
      "revise": {
       "mot": "acabar",
@@ -1860,6 +1869,7 @@ window.SCENE = {
      "f": "nachbar",
      "r": "zeitung",
      "phrase": "El vecino sigue leyendo el periódico.",
+     "sens": "Le voisin continue de lire le journal.",
      "n": "<b>seguir</b> + gérondif = continuer à.",
      "revise": {
       "mot": "seguir",
@@ -1876,6 +1886,7 @@ window.SCENE = {
      "f": "muenze",
      "r": "anna",
      "phrase": "Anna está pagando los panecillos.",
+     "sens": "Anna est en train de payer les petits pains.",
      "n": "<b>estar</b> + gérondif = être en train de.",
      "revise": {
       "mot": "pagar",
@@ -1892,6 +1903,7 @@ window.SCENE = {
      "f": "broetchen",
      "r": "anna",
      "phrase": "Anna va a comer un panecillo en casa.",
+     "sens": "Anna va manger un petit pain à la maison.",
      "n": "<b>ir a</b> + infinitif = le futur proche.",
      "revise": {
       "mot": "comer",
@@ -1908,6 +1920,7 @@ window.SCENE = {
      "f": "tasse-2",
      "r": "nachbar",
      "phrase": "El vecino vuelve a pedir un café.",
+     "sens": "Le voisin recommande un café.",
      "n": "<b>volver a</b> + infinitif = refaire.",
      "revise": {
       "mot": "volver",
@@ -1923,6 +1936,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "El perro acaba de dormirse.",
+     "sens": "Le chien vient de s'endormir.",
      "n": "<b>acabar de</b> + infinitif = venir de faire.",
      "revise": {
       "mot": "dormirse",
@@ -1939,6 +1953,7 @@ window.SCENE = {
      "f": "frau",
      "r": "brot",
      "phrase": "La panadera lleva diez años haciendo pan.",
+     "sens": "La boulangère fait du pain depuis dix ans.",
      "n": "<b>llevar</b> + durée + gérondif = faire depuis.",
      "revise": {
       "mot": "hacer",
@@ -1954,6 +1969,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna tiene que volver a casa antes de las ocho.",
+     "sens": "Anna doit rentrer à la maison avant huit heures.",
      "n": "<b>tener que</b> + infinitif = devoir.",
      "revise": {
       "mot": "tener",
@@ -1975,6 +1991,7 @@ window.SCENE = {
      "f": "frau",
      "r": "brot",
      "phrase": "La panadera dice que el pan está recién hecho.",
+     "sens": "La boulangère dit que le pain vient d'être fait.",
      "n": "<b>decir que</b> au présent rapporte un fait → indicatif.",
      "revise": {
       "mot": "decir",
@@ -1991,6 +2008,7 @@ window.SCENE = {
      "f": "anna",
      "r": "broetchen",
      "phrase": "Anna pregunta cuánto cuestan los panecillos.",
+     "sens": "Anna demande combien coûtent les petits pains.",
      "n": "Question indirecte au présent → indicatif.",
      "revise": {
       "mot": "costar",
@@ -2007,6 +2025,7 @@ window.SCENE = {
      "f": "nachbar",
      "r": "tasse-2",
      "phrase": "El vecino dijo que el café estaba muy bueno.",
+     "sens": "Le voisin a dit que le café était très bon.",
      "n": "Verbe introducteur au passé (<b>dijo</b>) → imparfait.",
      "revise": {
       "mot": "decir",
@@ -2023,6 +2042,7 @@ window.SCENE = {
      "f": "frau",
      "r": "anna",
      "phrase": "La panadera le pide a Anna que vuelva mañana.",
+     "sens": "La boulangère demande à Anna de revenir demain.",
      "n": "Un ordre rapporté (<b>pedir que</b>) → subjonctif.",
      "revise": {
       "mot": "volver",
@@ -2038,6 +2058,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna dijo que volvería al día siguiente.",
+     "sens": "Anna a dit qu'elle reviendrait le lendemain.",
      "n": "Futur rapporté au passé → <b>conditionnel</b>.",
      "revise": {
       "mot": "volver",
@@ -2054,6 +2075,7 @@ window.SCENE = {
      "f": "nachbar",
      "r": "torte",
      "phrase": "El vecino pregunta si hay tarta de fresa.",
+     "sens": "Le voisin demande s'il y a de la tarte aux fraises.",
      "n": "<b>preguntar si</b> → indicatif.",
      "revise": {
       "mot": "preguntar",
@@ -2075,6 +2097,7 @@ window.SCENE = {
      "f": "broetchen",
      "r": "anna",
      "phrase": "Los panecillos deben de estar recién hechos.",
+     "sens": "Les petits pains doivent être tout frais.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -2087,6 +2110,7 @@ window.SCENE = {
      "f": "hund",
      "r": "nachbar",
      "phrase": "Puede que el perro sea del vecino.",
+     "sens": "Le chien est peut-être au voisin.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -2098,6 +2122,7 @@ window.SCENE = {
      ],
      "f": "brot",
      "phrase": "Será de esta mañana.",
+     "sens": "Il doit dater de ce matin.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -2109,6 +2134,7 @@ window.SCENE = {
      ],
      "f": "schalter",
      "phrase": "Dicen que esta panadería es la mejor del barrio.",
+     "sens": "On dit que cette boulangerie est la meilleure du quartier.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -2155,6 +2181,35 @@ window.SCENE = {
     "C1 | Puede que el perro sea del vecino.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Será de esta mañana.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que esta panadería es la mejor del barrio.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "The clock is on the wall.",
+    "A2 | La leche está en la estantería.": "The milk is on the shelf.",
+    "A2 | El perro está debajo de la mesa.": "The dog is under the table.",
+    "A2 | La bicicleta está delante de la ventana.": "The bicycle is in front of the window.",
+    "A2 | Hay una caja en el mostrador.": "There is a till on the counter.",
+    "A2 | Las flores están en el vaso.": "The flowers are in the glass.",
+    "A2 | El vecino está al lado de la ventana.": "The neighbour is next to the window.",
+    "A2 | La planta está en el piso.": "The plant is on the floor.",
+    "A2 | La planta está en el suelo.": "The plant is on the floor.",
+    "B1 | La panadera acaba de sacar el pan del horno.": "The baker has just taken the bread out of the oven.",
+    "B1 | El vecino sigue leyendo el periódico.": "The neighbour keeps reading the newspaper.",
+    "B1 | Anna está pagando los panecillos.": "Anna is paying for the bread rolls.",
+    "B1 | Anna va a comer un panecillo en casa.": "Anna is going to eat a bread roll at home.",
+    "B1 | El vecino vuelve a pedir un café.": "The neighbour orders another coffee.",
+    "B1 | El perro acaba de dormirse.": "The dog has just fallen asleep.",
+    "B1 | La panadera lleva diez años haciendo pan.": "The baker has been making bread for ten years.",
+    "B1 | Anna tiene que volver a casa antes de las ocho.": "Anna has to get back home before eight.",
+    "B2 | La panadera dice que el pan está recién hecho.": "The baker says the bread is freshly made.",
+    "B2 | Anna pregunta cuánto cuestan los panecillos.": "Anna asks how much the bread rolls cost.",
+    "B2 | El vecino dijo que el café estaba muy bueno.": "The neighbour said the coffee was very good.",
+    "B2 | La panadera le pide a Anna que vuelva mañana.": "The baker asks Anna to come back tomorrow.",
+    "B2 | Anna dijo que volvería al día siguiente.": "Anna said she would come back the next day.",
+    "B2 | El vecino pregunta si hay tarta de fresa.": "The neighbour asks if there is strawberry cake.",
+    "C1 | Los panecillos deben de estar recién hechos.": "The bread rolls must be freshly made.",
+    "C1 | Puede que el perro sea del vecino.": "The dog may belong to the neighbour.",
+    "C1 | Será de esta mañana.": "It is probably from this morning.",
+    "C1 | Dicen que esta panadería es la mejor del barrio.": "They say this bakery is the best in the neighbourhood."
    }
   },
   "tr": {
@@ -2165,7 +2220,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -2175,7 +2231,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -2185,7 +2242,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -2227,6 +2285,35 @@ window.SCENE = {
     "C1 | Puede que el perro sea del vecino.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Será de esta mañana.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que esta panadería es la mejor del barrio.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "الساعة على الحائط.",
+    "A2 | La leche está en la estantería.": "الحليب على الرفّ.",
+    "A2 | El perro está debajo de la mesa.": "الكلب تحت الطاولة.",
+    "A2 | La bicicleta está delante de la ventana.": "الدراجة أمام النافذة.",
+    "A2 | Hay una caja en el mostrador.": "هناك صندوق على المنضدة.",
+    "A2 | Las flores están en el vaso.": "الزهور في الكأس.",
+    "A2 | El vecino está al lado de la ventana.": "الجار بجانب النافذة.",
+    "A2 | La planta está en el piso.": "النبتة على الأرض.",
+    "A2 | La planta está en el suelo.": "النبتة على الأرض.",
+    "B1 | La panadera acaba de sacar el pan del horno.": "أخرجت الخبّازة الخبز من الفرن للتوّ.",
+    "B1 | El vecino sigue leyendo el periódico.": "ما زال الجار يقرأ الجريدة.",
+    "B1 | Anna está pagando los panecillos.": "آنا تدفع ثمن الخبز الصغير.",
+    "B1 | Anna va a comer un panecillo en casa.": "ستأكل آنا خبزة صغيرة في البيت.",
+    "B1 | El vecino vuelve a pedir un café.": "يطلب الجار قهوة مرة أخرى.",
+    "B1 | El perro acaba de dormirse.": "نام الكلب للتوّ.",
+    "B1 | La panadera lleva diez años haciendo pan.": "تصنع الخبّازة الخبز منذ عشر سنوات.",
+    "B1 | Anna tiene que volver a casa antes de las ocho.": "على آنا أن تعود إلى البيت قبل الثامنة.",
+    "B2 | La panadera dice que el pan está recién hecho.": "تقول الخبّازة إن الخبز طازج.",
+    "B2 | Anna pregunta cuánto cuestan los panecillos.": "تسأل آنا كم ثمن الخبز الصغير.",
+    "B2 | El vecino dijo que el café estaba muy bueno.": "قال الجار إن القهوة كانت لذيذة جداً.",
+    "B2 | La panadera le pide a Anna que vuelva mañana.": "تطلب الخبّازة من آنا أن تعود غداً.",
+    "B2 | Anna dijo que volvería al día siguiente.": "قالت آنا إنها ستعود في اليوم التالي.",
+    "B2 | El vecino pregunta si hay tarta de fresa.": "يسأل الجار إن كان هناك كعكة فراولة.",
+    "C1 | Los panecillos deben de estar recién hechos.": "لا بدّ أن الخبز الصغير طازج.",
+    "C1 | Puede que el perro sea del vecino.": "ربما يكون الكلب للجار.",
+    "C1 | Será de esta mañana.": "على الأرجح هو من هذا الصباح.",
+    "C1 | Dicen que esta panadería es la mejor del barrio.": "يُقال إن هذا المخبز هو الأفضل في الحيّ."
    }
   },
   "pt": {
@@ -2269,6 +2356,35 @@ window.SCENE = {
     "C1 | Puede que el perro sea del vecino.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Será de esta mañana.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que esta panadería es la mejor del barrio.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "O relógio está na parede.",
+    "A2 | La leche está en la estantería.": "O leite está na prateleira.",
+    "A2 | El perro está debajo de la mesa.": "O cachorro está debaixo da mesa.",
+    "A2 | La bicicleta está delante de la ventana.": "A bicicleta está em frente à janela.",
+    "A2 | Hay una caja en el mostrador.": "Há uma caixa registradora no balcão.",
+    "A2 | Las flores están en el vaso.": "As flores estão no copo.",
+    "A2 | El vecino está al lado de la ventana.": "O vizinho está ao lado da janela.",
+    "A2 | La planta está en el piso.": "A planta está no chão.",
+    "A2 | La planta está en el suelo.": "A planta está no chão.",
+    "B1 | La panadera acaba de sacar el pan del horno.": "A padeira acabou de tirar o pão do forno.",
+    "B1 | El vecino sigue leyendo el periódico.": "O vizinho continua lendo o jornal.",
+    "B1 | Anna está pagando los panecillos.": "Anna está pagando os pãezinhos.",
+    "B1 | Anna va a comer un panecillo en casa.": "Anna vai comer um pãozinho em casa.",
+    "B1 | El vecino vuelve a pedir un café.": "O vizinho pede outro café.",
+    "B1 | El perro acaba de dormirse.": "O cachorro acabou de adormecer.",
+    "B1 | La panadera lleva diez años haciendo pan.": "A padeira faz pão há dez anos.",
+    "B1 | Anna tiene que volver a casa antes de las ocho.": "Anna tem que voltar para casa antes das oito.",
+    "B2 | La panadera dice que el pan está recién hecho.": "A padeira diz que o pão acabou de ser feito.",
+    "B2 | Anna pregunta cuánto cuestan los panecillos.": "Anna pergunta quanto custam os pãezinhos.",
+    "B2 | El vecino dijo que el café estaba muy bueno.": "O vizinho disse que o café estava muito bom.",
+    "B2 | La panadera le pide a Anna que vuelva mañana.": "A padeira pede a Anna que volte amanhã.",
+    "B2 | Anna dijo que volvería al día siguiente.": "Anna disse que voltaria no dia seguinte.",
+    "B2 | El vecino pregunta si hay tarta de fresa.": "O vizinho pergunta se há torta de morango.",
+    "C1 | Los panecillos deben de estar recién hechos.": "Os pãezinhos devem ter acabado de ser feitos.",
+    "C1 | Puede que el perro sea del vecino.": "Pode ser que o cachorro seja do vizinho.",
+    "C1 | Será de esta mañana.": "Deve ser desta manhã.",
+    "C1 | Dicen que esta panadería es la mejor del barrio.": "Dizem que esta padaria é a melhor do bairro."
    }
   },
   "pl": {
@@ -2279,7 +2395,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -2289,7 +2406,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

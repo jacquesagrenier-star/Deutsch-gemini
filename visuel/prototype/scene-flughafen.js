@@ -1299,6 +1299,7 @@ window.SCENE = {
      "f": "koffer-3",
      "r": "waage",
      "phrase": "Der große Koffer liegt auf der Waage.",
+     "sens": "La grande valise est sur la balance.",
      "n": "die Waage → auf <b>der</b> Waage : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1311,6 +1312,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
      "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1323,6 +1325,7 @@ window.SCENE = {
      "f": "flugzeug",
      "r": "fenster",
      "phrase": "Das Flugzeug steht hinter dem Fenster.",
+     "sens": "L'avion est derrière la fenêtre.",
      "n": "<b>hinter</b> = derrière. das Fenster → hinter <b>dem</b> Fenster."
     },
     {
@@ -1335,6 +1338,7 @@ window.SCENE = {
      "f": "zeitung",
      "r": "stuhl-2",
      "phrase": "Die Zeitung liegt auf dem Stuhl.",
+     "sens": "Le journal est sur la chaise.",
      "n": "der Stuhl → auf <b>dem</b> Stuhl."
     },
     {
@@ -1347,6 +1351,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "boden",
      "phrase": "Die Flasche steht auf dem Boden.",
+     "sens": "La bouteille est par terre.",
      "n": "der Boden → auf <b>dem</b> Boden."
     },
     {
@@ -1359,6 +1364,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "tuer",
      "phrase": "Der Mülleimer steht neben der Tür.",
+     "sens": "La poubelle est à côté de la porte.",
      "n": "die Tür → neben <b>der</b> Tür : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -1371,6 +1377,7 @@ window.SCENE = {
      "f": "ticket",
      "r": "schalter",
      "phrase": "Das Ticket liegt auf dem Schalter.",
+     "sens": "Le billet est sur le comptoir.",
      "n": "der Schalter → auf <b>dem</b> Schalter."
     },
     {
@@ -1383,6 +1390,7 @@ window.SCENE = {
      "f": "schild",
      "r": "decke",
      "phrase": "Das Schild hängt an der Decke.",
+     "sens": "Le panneau est suspendu au plafond.",
      "n": "die Decke → an <b>der</b> Decke : au datif, le féminin <b>die</b> devient <b>der</b>."
     }
    ]
@@ -1400,6 +1408,7 @@ window.SCENE = {
      "f": "anna",
      "r": "flugzeug",
      "phrase": "Anna hat vor, nach Spanien zu fliegen.",
+     "sens": "Anna a l'intention de prendre l'avion pour l'Espagne.",
      "n": "<b>vorhaben</b> + <b>zu</b> + infinitif à la fin.",
      "revise": {
       "mot": "fliegen",
@@ -1416,6 +1425,7 @@ window.SCENE = {
      "f": "pass",
      "r": "frau",
      "phrase": "Sie vergisst nicht, der Frau den Pass zu zeigen.",
+     "sens": "Elle n'oublie pas de montrer son passeport à la femme.",
      "n": "<b>vergessen</b> + <b>zu</b> + infinitif.",
      "revise": {
       "mot": "zeigen",
@@ -1431,6 +1441,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Es ist wichtig, pünktlich am Flughafen zu sein.",
+     "sens": "Il est important d'être à l'heure à l'aéroport.",
      "n": "<b>Es ist wichtig,</b> … <b>zu</b> + infinitif."
     },
     {
@@ -1443,6 +1454,7 @@ window.SCENE = {
      "f": "koffer-3",
      "r": "waage",
      "phrase": "Die Frau bittet Anna, den Koffer auf die Waage zu stellen.",
+     "sens": "La femme demande à Anna de mettre la valise sur la balance.",
      "n": "<b>bitten</b> + <b>zu</b> + infinitif.",
      "revise": {
       "mot": "stellen",
@@ -1459,6 +1471,7 @@ window.SCENE = {
      "f": "pilot",
      "r": "zeitung",
      "phrase": "Der Pilot hat keine Zeit, die Zeitung zu lesen.",
+     "sens": "Le pilote n'a pas le temps de lire le journal.",
      "n": "<b>keine Zeit haben</b> + <b>zu</b> + infinitif.",
      "revise": {
       "mot": "lesen",
@@ -1475,6 +1488,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "anna",
      "phrase": "Anna versucht, den Rucksack nicht zu vergessen.",
+     "sens": "Anna essaie de ne pas oublier le sac à dos.",
      "n": "<b>versuchen</b> + <b>zu</b> + infinitif ; <b>nicht</b> juste avant <b>zu</b>.",
      "revise": {
       "mot": "vergessen",
@@ -1491,6 +1505,7 @@ window.SCENE = {
      "f": "flugzeug",
      "r": "anna",
      "phrase": "Anna hofft, pünktlich anzukommen.",
+     "sens": "Anna espère arriver à l'heure.",
      "n": "Verbe séparable : <b>zu</b> se glisse au milieu → an<b>zu</b>kommen.",
      "revise": {
       "mot": "ankommen",
@@ -1507,6 +1522,7 @@ window.SCENE = {
      "f": "pass",
      "r": "frau",
      "phrase": "Anna muss der Frau den Pass zeigen.",
+     "sens": "Anna doit montrer son passeport à la femme.",
      "n": "Après un verbe de modalité (<b>müssen</b>), pas de <b>zu</b>.",
      "revise": {
       "mot": "zeigen",
@@ -1528,6 +1544,7 @@ window.SCENE = {
      "f": "anna",
      "r": "flugzeug",
      "phrase": "Anna fragt die Frau, ob das Flugzeug pünktlich ist.",
+     "sens": "Anna demande à la femme si l'avion est à l'heure.",
      "n": "Question fermée (oui/non) → <b>ob</b>, verbe à la fin.",
      "revise": {
       "mot": "fragen",
@@ -1544,6 +1561,7 @@ window.SCENE = {
      "f": "koffer-3",
      "r": "waage",
      "phrase": "Sie weiß nicht, wie viel der Koffer wiegt.",
+     "sens": "Elle ne sait pas combien pèse la valise.",
      "n": "Le mot interrogatif reste : <b>wie viel</b> … + verbe à la fin.",
      "revise": {
       "mot": "wiegen",
@@ -1560,6 +1578,7 @@ window.SCENE = {
      "f": "pilot",
      "r": "flugzeug",
      "phrase": "Der Pilot weiß, wo das Flugzeug steht.",
+     "sens": "Le pilote sait où est l'avion.",
      "n": "Dans la question indirecte, le verbe va à la <b>fin</b>.",
      "revise": {
       "mot": "stehen",
@@ -1576,6 +1595,7 @@ window.SCENE = {
      "f": "frau",
      "r": "koffer",
      "phrase": "Die Frau fragt, ob Anna Handgepäck hat.",
+     "sens": "La femme demande si Anna a un bagage à main.",
      "n": "Question fermée (oui/non) → <b>ob</b>, verbe à la fin.",
      "revise": {
       "mot": "fragen",
@@ -1592,6 +1612,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "flugzeug",
      "phrase": "Anna möchte wissen, wann das Flugzeug abfliegt.",
+     "sens": "Anna veut savoir quand l'avion décolle.",
      "n": "Question sur l'heure → <b>wann</b> ; le verbe séparable se recolle à la fin : <b>abfliegt</b>."
     },
     {
@@ -1603,6 +1624,7 @@ window.SCENE = {
      ],
      "f": "zeitung",
      "phrase": "Weißt du, wem die Zeitung gehört?",
+     "sens": "Tu sais à qui est le journal ?",
      "n": "<b>gehören</b> + datif → <b>wem</b>.",
      "revise": {
       "mot": "gehören",
@@ -1623,6 +1645,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Sie muss sich auf die Reise freuen.",
+     "sens": "Elle doit se réjouir du voyage.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1635,6 +1658,7 @@ window.SCENE = {
      "f": "pilot",
      "r": "flugzeug",
      "phrase": "Der Pilot könnte ihr Flugzeug fliegen.",
+     "sens": "Le pilote pilote peut-être son avion.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1647,6 +1671,7 @@ window.SCENE = {
      "f": "koffer-3",
      "r": "waage",
      "phrase": "Der große Koffer dürfte zu schwer sein.",
+     "sens": "La grande valise est sans doute trop lourde.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1658,6 +1683,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Dieser Flughafen soll der modernste in Deutschland sein.",
+     "sens": "Cet aéroport serait le plus moderne d'Allemagne.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1703,6 +1729,34 @@ window.SCENE = {
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "<b>könnte</b> = one possibility among others.",
     "C1 | Der große Koffer dürfte zu schwer sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Der große Koffer liegt auf der Waage.": "The big suitcase is on the scale.",
+    "A2 | Die Uhr hängt an der Wand.": "The clock hangs on the wall.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "The plane is behind the window.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "The newspaper is on the chair.",
+    "A2 | Die Flasche steht auf dem Boden.": "The bottle is on the floor.",
+    "A2 | Der Mülleimer steht neben der Tür.": "The bin is next to the door.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "The ticket is on the counter.",
+    "A2 | Das Schild hängt an der Decke.": "The sign hangs from the ceiling.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "Anna plans to fly to Spain.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "She does not forget to show the woman her passport.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "It is important to be at the airport on time.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "The woman asks Anna to put the suitcase on the scale.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "The pilot has no time to read the newspaper.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "Anna tries not to forget the backpack.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "Anna hopes to arrive on time.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "Anna has to show the woman her passport.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Anna asks the woman whether the plane is on time.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "She does not know how much the suitcase weighs.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "The pilot knows where the plane is.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "The woman asks whether Anna has hand luggage.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "Anna wants to know when the plane takes off.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "Do you know whose newspaper that is?",
+    "C1 | Sie muss sich auf die Reise freuen.": "She must be looking forward to the trip.",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "The pilot might be flying her plane.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "The big suitcase is probably too heavy.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "This airport is said to be the most modern in Germany."
    }
   },
   "tr": {
@@ -1744,6 +1798,34 @@ window.SCENE = {
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Der große Koffer dürfte zu schwer sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Der große Koffer liegt auf der Waage.": "Büyük bavul tartının üstünde.",
+    "A2 | Die Uhr hängt an der Wand.": "Saat duvarda asılı.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "Uçak pencerenin arkasında duruyor.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "Gazete sandalyenin üstünde.",
+    "A2 | Die Flasche steht auf dem Boden.": "Şişe yerde duruyor.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Çöp kovası kapının yanında duruyor.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "Bilet bankonun üstünde.",
+    "A2 | Das Schild hängt an der Decke.": "Tabela tavanda asılı.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "Anna İspanya'ya uçmayı planlıyor.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "Kadına pasaportu göstermeyi unutmuyor.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "Havalimanında zamanında olmak önemli.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "Kadın Anna'dan bavulu tartıya koymasını istiyor.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "Pilotun gazete okumaya vakti yok.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "Anna sırt çantasını unutmamaya çalışıyor.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "Anna zamanında varmayı umuyor.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "Anna kadına pasaportunu göstermek zorunda.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Anna kadına uçağın zamanında olup olmadığını soruyor.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "Bavulun ne kadar ağır olduğunu bilmiyor.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "Pilot uçağın nerede olduğunu biliyor.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "Kadın Anna'nın el bagajı olup olmadığını soruyor.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "Anna uçağın ne zaman kalkacağını öğrenmek istiyor.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "Gazetenin kimin olduğunu biliyor musun?",
+    "C1 | Sie muss sich auf die Reise freuen.": "Yolculuğu iple çekiyor olmalı.",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "Pilot onun uçağını uçuruyor olabilir.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "Büyük bavul fazla ağır olsa gerek.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "Bu havalimanının Almanya'nın en modern havalimanı olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1785,6 +1867,34 @@ window.SCENE = {
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Der große Koffer dürfte zu schwer sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Der große Koffer liegt auf der Waage.": "Велика валіза лежить на вагах.",
+    "A2 | Die Uhr hängt an der Wand.": "Годинник висить на стіні.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "Літак стоїть за вікном.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "Газета лежить на стільці.",
+    "A2 | Die Flasche steht auf dem Boden.": "Пляшка стоїть на підлозі.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Смітник стоїть біля дверей.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "Квиток лежить на стійці.",
+    "A2 | Das Schild hängt an der Decke.": "Табличка висить на стелі.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "Анна планує полетіти до Іспанії.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "Вона не забуває показати жінці паспорт.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "Важливо бути в аеропорту вчасно.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "Жінка просить Анну поставити валізу на ваги.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "Пілот не має часу читати газету.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "Анна намагається не забути рюкзак.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "Анна сподівається прибути вчасно.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "Анна має показати жінці паспорт.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Анна запитує жінку, чи літак прибуде вчасно.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "Вона не знає, скільки важить валіза.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "Пілот знає, де стоїть літак.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "Жінка запитує, чи має Анна ручну поклажу.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "Анна хоче знати, коли вилітає літак.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "Ти знаєш, чия це газета?",
+    "C1 | Sie muss sich auf die Reise freuen.": "Вона, мабуть, дуже чекає на подорож.",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "Пілот, можливо, керуватиме її літаком.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "Велика валіза, напевно, заважка.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "Кажуть, цей аеропорт — найсучасніший у Німеччині."
    }
   },
   "fa": {
@@ -1826,6 +1936,34 @@ window.SCENE = {
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Der große Koffer dürfte zu schwer sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Der große Koffer liegt auf der Waage.": "چمدان بزرگ روی ترازو است.",
+    "A2 | Die Uhr hängt an der Wand.": "ساعت روی دیوار آویزان است.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "هواپیما پشت پنجره است.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "روزنامه روی صندلی است.",
+    "A2 | Die Flasche steht auf dem Boden.": "بطری روی زمین است.",
+    "A2 | Der Mülleimer steht neben der Tür.": "سطل زباله کنار در است.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "بلیت روی پیشخوان است.",
+    "A2 | Das Schild hängt an der Decke.": "تابلو از سقف آویزان است.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "آنا قصد دارد به اسپانیا پرواز کند.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "او فراموش نمی‌کند گذرنامه را به زن نشان دهد.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "مهم است که سر وقت در فرودگاه باشیم.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "زن از آنا می‌خواهد چمدان را روی ترازو بگذارد.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "خلبان وقت ندارد روزنامه بخواند.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "آنا سعی می‌کند کوله‌پشتی را فراموش نکند.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "آنا امیدوار است سر وقت برسد.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "آنا باید گذرنامه را به زن نشان دهد.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "آنا از زن می‌پرسد که آیا هواپیما سر وقت است.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "او نمی‌داند چمدان چقدر وزن دارد.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "خلبان می‌داند هواپیما کجاست.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "زن می‌پرسد که آیا آنا بار دستی دارد.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "آنا می‌خواهد بداند هواپیما کی پرواز می‌کند.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "می‌دانی روزنامه مال کیست؟",
+    "C1 | Sie muss sich auf die Reise freuen.": "او حتماً از این سفر خوشحال است.",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "خلبان شاید هواپیمای او را براند.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "چمدان بزرگ احتمالاً خیلی سنگین است.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "می‌گویند این فرودگاه مدرن‌ترین فرودگاه آلمان است."
    }
   },
   "ar": {
@@ -1867,6 +2005,34 @@ window.SCENE = {
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Der große Koffer dürfte zu schwer sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Der große Koffer liegt auf der Waage.": "الحقيبة الكبيرة على الميزان.",
+    "A2 | Die Uhr hängt an der Wand.": "الساعة معلّقة على الحائط.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "الطائرة خلف النافذة.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "الجريدة على الكرسي.",
+    "A2 | Die Flasche steht auf dem Boden.": "الزجاجة على الأرض.",
+    "A2 | Der Mülleimer steht neben der Tür.": "سلّة المهملات بجانب الباب.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "التذكرة على المنضدة.",
+    "A2 | Das Schild hängt an der Decke.": "اللافتة معلّقة في السقف.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "تنوي آنا السفر بالطائرة إلى إسبانيا.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "لا تنسى أن تُري المرأة جواز سفرها.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "من المهمّ الوصول إلى المطار في الوقت المحدّد.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "تطلب المرأة من آنا أن تضع الحقيبة على الميزان.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "ليس لدى الطيّار وقت لقراءة الجريدة.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "تحاول آنا ألّا تنسى حقيبة الظهر.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "تأمل آنا أن تصل في الوقت المحدّد.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "على آنا أن تُري المرأة جواز سفرها.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "تسأل آنا المرأة إن كانت الطائرة في موعدها.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "لا تعرف كم تزن الحقيبة.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "يعرف الطيّار أين تقف الطائرة.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "تسأل المرأة إن كانت لدى آنا أمتعة يدوية.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "تريد آنا أن تعرف متى تقلع الطائرة.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "هل تعرف لمن هذه الجريدة؟",
+    "C1 | Sie muss sich auf die Reise freuen.": "لا بدّ أنها متشوّقة إلى الرحلة.",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "ربما يقود الطيّار طائرتها.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "على الأرجح الحقيبة الكبيرة ثقيلة جداً.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "يُقال إن هذا المطار هو الأحدث في ألمانيا."
    }
   },
   "pt": {
@@ -1908,6 +2074,34 @@ window.SCENE = {
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Der große Koffer dürfte zu schwer sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Der große Koffer liegt auf der Waage.": "A mala grande está na balança.",
+    "A2 | Die Uhr hängt an der Wand.": "O relógio está pendurado na parede.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "O avião está atrás da janela.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "O jornal está na cadeira.",
+    "A2 | Die Flasche steht auf dem Boden.": "A garrafa está no chão.",
+    "A2 | Der Mülleimer steht neben der Tür.": "A lixeira está ao lado da porta.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "A passagem está no balcão.",
+    "A2 | Das Schild hängt an der Decke.": "A placa está pendurada no teto.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "Anna pretende voar para a Espanha.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "Ela não se esquece de mostrar o passaporte à mulher.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "É importante estar no aeroporto na hora.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "A mulher pede a Anna que ponha a mala na balança.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "O piloto não tem tempo de ler o jornal.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "Anna tenta não esquecer a mochila.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "Anna espera chegar na hora.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "Anna tem que mostrar o passaporte à mulher.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Anna pergunta à mulher se o avião está no horário.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "Ela não sabe quanto pesa a mala.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "O piloto sabe onde está o avião.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "A mulher pergunta se Anna tem bagagem de mão.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "Anna quer saber quando o avião decola.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "Você sabe de quem é o jornal?",
+    "C1 | Sie muss sich auf die Reise freuen.": "Ela deve estar ansiosa pela viagem.",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "O piloto talvez pilote o avião dela.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "A mala grande provavelmente é pesada demais.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "Dizem que este aeroporto é o mais moderno da Alemanha."
    }
   },
   "pl": {
@@ -1949,6 +2143,34 @@ window.SCENE = {
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Der große Koffer dürfte zu schwer sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Der große Koffer liegt auf der Waage.": "Duża walizka leży na wadze.",
+    "A2 | Die Uhr hängt an der Wand.": "Zegar wisi na ścianie.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "Samolot stoi za oknem.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "Gazeta leży na krześle.",
+    "A2 | Die Flasche steht auf dem Boden.": "Butelka stoi na podłodze.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Kosz na śmieci stoi obok drzwi.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "Bilet leży na ladzie.",
+    "A2 | Das Schild hängt an der Decke.": "Tablica wisi na suficie.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "Anna zamierza polecieć do Hiszpanii.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "Nie zapomina pokazać kobiecie paszportu.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "Ważne jest, żeby być na lotnisku punktualnie.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "Kobieta prosi Annę, żeby postawiła walizkę na wadze.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "Pilot nie ma czasu czytać gazety.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "Anna stara się nie zapomnieć plecaka.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "Anna ma nadzieję dotrzeć punktualnie.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "Anna musi pokazać kobiecie paszport.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Anna pyta kobietę, czy samolot jest punktualny.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "Nie wie, ile waży walizka.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "Pilot wie, gdzie stoi samolot.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "Kobieta pyta, czy Anna ma bagaż podręczny.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "Anna chce wiedzieć, kiedy odlatuje samolot.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "Wiesz, czyja to gazeta?",
+    "C1 | Sie muss sich auf die Reise freuen.": "Musi cieszyć się na podróż.",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "Pilot być może leci jej samolotem.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "Duża walizka jest zapewne za ciężka.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "Podobno to lotnisko jest najnowocześniejsze w Niemczech."
    }
   },
   "ru": {
@@ -1990,6 +2212,34 @@ window.SCENE = {
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Der große Koffer dürfte zu schwer sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Der große Koffer liegt auf der Waage.": "Большой чемодан лежит на весах.",
+    "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
+    "A2 | Das Flugzeug steht hinter dem Fenster.": "Самолёт стоит за окном.",
+    "A2 | Die Zeitung liegt auf dem Stuhl.": "Газета лежит на стуле.",
+    "A2 | Die Flasche steht auf dem Boden.": "Бутылка стоит на полу.",
+    "A2 | Der Mülleimer steht neben der Tür.": "Мусорное ведро стоит рядом с дверью.",
+    "A2 | Das Ticket liegt auf dem Schalter.": "Билет лежит на стойке.",
+    "A2 | Das Schild hängt an der Decke.": "Табличка висит на потолке.",
+    "B1 | Anna hat vor, nach Spanien zu fliegen.": "Анна собирается лететь в Испанию.",
+    "B1 | Sie vergisst nicht, der Frau den Pass zu zeigen.": "Она не забывает показать женщине паспорт.",
+    "B1 | Es ist wichtig, pünktlich am Flughafen zu sein.": "Важно быть в аэропорту вовремя.",
+    "B1 | Die Frau bittet Anna, den Koffer auf die Waage zu stellen.": "Женщина просит Анну поставить чемодан на весы.",
+    "B1 | Der Pilot hat keine Zeit, die Zeitung zu lesen.": "У пилота нет времени читать газету.",
+    "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "Анна старается не забыть рюкзак.",
+    "B1 | Anna hofft, pünktlich anzukommen.": "Анна надеется прибыть вовремя.",
+    "B1 | Anna muss der Frau den Pass zeigen.": "Анна должна показать женщине паспорт.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Анна спрашивает женщину, вовремя ли самолёт.",
+    "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "Она не знает, сколько весит чемодан.",
+    "B2 | Der Pilot weiß, wo das Flugzeug steht.": "Пилот знает, где стоит самолёт.",
+    "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "Женщина спрашивает, есть ли у Анны ручная кладь.",
+    "B2 | Anna möchte wissen, wann das Flugzeug abfliegt.": "Анна хочет знать, когда вылетает самолёт.",
+    "B2 | Weißt du, wem die Zeitung gehört?": "Ты знаешь, чья это газета?",
+    "C1 | Sie muss sich auf die Reise freuen.": "Она, должно быть, с нетерпением ждёт поездки.",
+    "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "Пилот, возможно, поведёт её самолёт.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "Большой чемодан, вероятно, слишком тяжёлый.",
+    "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "Говорят, этот аэропорт — самый современный в Германии."
    }
   }
  }

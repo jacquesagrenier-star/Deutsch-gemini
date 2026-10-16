@@ -862,6 +862,7 @@ window.SCENE = {
      "f": "brot",
      "r": "korb",
      "phrase": "Das Brot liegt im Korb.",
+     "sens": "Le pain est dans le panier.",
      "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
     },
     {
@@ -874,6 +875,7 @@ window.SCENE = {
      "f": "korb",
      "r": "boden",
      "phrase": "Der Korb steht auf dem Boden.",
+     "sens": "Le panier est par terre.",
      "n": "der Boden → auf <b>dem</b> Boden."
     },
     {
@@ -886,6 +888,7 @@ window.SCENE = {
      "f": "butter",
      "r": "kuehlschrank",
      "phrase": "Die Butter ist im Kühlschrank.",
+     "sens": "Le beurre est dans le réfrigérateur.",
      "n": "<b>im</b> = in + <b>dem</b> : der Kühlschrank → im Kühlschrank."
     },
     {
@@ -898,6 +901,7 @@ window.SCENE = {
      "f": "mann",
      "r": "kasse",
      "phrase": "Der Mann sitzt an der Kasse.",
+     "sens": "L'homme est assis à la caisse.",
      "n": "die Kasse → an <b>der</b> Kasse : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -910,6 +914,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "fenster",
      "phrase": "Das Fahrrad steht hinter dem Fenster.",
+     "sens": "Le vélo est derrière la fenêtre.",
      "n": "<b>hinter</b> = derrière. das Fenster → hinter <b>dem</b> Fenster."
     },
     {
@@ -922,6 +927,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "tuete",
      "phrase": "Die Flasche Wasser ist neben der Tüte.",
+     "sens": "La bouteille d'eau est à côté du sac.",
      "n": "die Tüte → neben <b>der</b> Tüte : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -934,6 +940,7 @@ window.SCENE = {
      "f": "ei",
      "r": "korb",
      "phrase": "Die Eier sind im Korb.",
+     "sens": "Les œufs sont dans le panier.",
      "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
     },
     {
@@ -946,6 +953,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "regal",
      "phrase": "Das Mädchen steht neben dem Regal.",
+     "sens": "La fille est debout à côté du rayon.",
      "n": "<b>neben</b> = à côté de. das Regal → neben <b>dem</b> Regal."
     }
    ]
@@ -963,6 +971,7 @@ window.SCENE = {
      "f": "tuete",
      "r": "tasche",
      "phrase": "Die Tüte ist größer als die Tasche.",
+     "sens": "Le sac en papier est plus grand que le sac à main.",
      "n": "<b>groß</b> → <b>größer</b> : les adjectifs courts prennent souvent l'Umlaut."
     },
     {
@@ -975,6 +984,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "anna",
      "phrase": "Das Mädchen ist kleiner als Anna.",
+     "sens": "La fille est plus petite qu'Anna.",
      "n": "Comparatif : adjectif + <b>-er</b> + <b>als</b> → klein<b>er</b> als."
     },
     {
@@ -987,6 +997,7 @@ window.SCENE = {
      "f": "mann",
      "r": "anna",
      "phrase": "Der Mann an der Kasse ist älter als Anna.",
+     "sens": "L'homme à la caisse est plus âgé qu'Anna.",
      "n": "<b>alt</b> → <b>älter</b>, avec l'Umlaut."
     },
     {
@@ -999,6 +1010,7 @@ window.SCENE = {
      "f": "banane",
      "r": "maedchen",
      "phrase": "Die Bananen sind so gelb wie die Jacke des Mädchens.",
+     "sens": "Les bananes sont aussi jaunes que la veste de la fille.",
      "n": "Égalité : <b>so</b> + adjectif + <b>wie</b>."
     },
     {
@@ -1011,6 +1023,7 @@ window.SCENE = {
      "f": "saft",
      "r": "dose",
      "phrase": "Der Saft steht höher als die Dosen.",
+     "sens": "Le jus est placé plus haut que les boîtes de conserve.",
      "n": "<b>hoch</b> → <b>höher</b> : le c tombe, l'Umlaut arrive."
     },
     {
@@ -1023,6 +1036,7 @@ window.SCENE = {
      "f": "kaese",
      "r": "anna",
      "phrase": "Anna findet Milch gut, aber Käse findet sie besser.",
+     "sens": "Anna aime bien le lait, mais elle préfère le fromage.",
      "n": "<b>gut</b> est irrégulier → <b>besser</b>, am <b>besten</b>."
     },
     {
@@ -1034,6 +1048,7 @@ window.SCENE = {
      ],
      "f": "maedchen",
      "phrase": "Am liebsten mag das Mädchen Schokolade.",
+     "sens": "Ce que la fille préfère, c'est le chocolat.",
      "n": "<b>gern</b> → lieber → am <b>liebsten</b> : irrégulier."
     },
     {
@@ -1045,6 +1060,7 @@ window.SCENE = {
      ],
      "f": "brot",
      "phrase": "Das ist das frischeste Brot im Laden.",
+     "sens": "C'est le pain le plus frais du magasin.",
      "n": "Superlatif devant un nom : das + adjectif + <b>-(e)ste</b> → frisch<b>este</b>."
     }
    ]
@@ -1062,6 +1078,7 @@ window.SCENE = {
      "f": "tuete",
      "r": "mann",
      "phrase": "Könnten Sie mir bitte eine Tüte geben?",
+     "sens": "Pourriez-vous me donner un sac, s'il vous plaît ?",
      "n": "Politesse : <b>Konjunktiv II</b> de können → <b>könnten</b>.",
      "revise": {
       "mot": "geben",
@@ -1078,6 +1095,7 @@ window.SCENE = {
      "f": "kaese",
      "r": "anna",
      "phrase": "Ich hätte gern ein Stück Käse.",
+     "sens": "Je voudrais un morceau de fromage.",
      "n": "<b>Ich hätte gern…</b> = je voudrais… (Konjunktiv II de haben)."
     },
     {
@@ -1089,6 +1107,7 @@ window.SCENE = {
      ],
      "f": "korb",
      "phrase": "Wären Sie so nett und helfen mir mit dem Korb?",
+     "sens": "Auriez-vous la gentillesse de m'aider avec le panier ?",
      "n": "<b>Wären Sie so nett…?</b> : Konjunktiv II de sein.",
      "revise": {
       "mot": "helfen",
@@ -1105,6 +1124,7 @@ window.SCENE = {
      "f": "kasse",
      "r": "anna",
      "phrase": "Ich würde gern mit Karte bezahlen.",
+     "sens": "Je voudrais payer par carte.",
      "n": "<b>würde</b> + infinitif : le Konjunktiv II de la plupart des verbes.",
      "revise": {
       "mot": "bezahlen",
@@ -1120,6 +1140,7 @@ window.SCENE = {
      ],
      "f": "mann",
      "phrase": "Dürfte ich Sie etwas fragen?",
+     "sens": "Puis-je vous poser une question ?",
      "n": "Après un modal, l'infinitif à la fin : <b>fragen</b>.",
      "revise": {
       "mot": "fragen",
@@ -1135,6 +1156,7 @@ window.SCENE = {
      ],
      "f": "milch",
      "phrase": "An Ihrer Stelle würde ich die frische Milch nehmen.",
+     "sens": "À votre place, je prendrais le lait frais.",
      "n": "Un conseil : <b>An Ihrer Stelle würde ich…</b>",
      "revise": {
       "mot": "nehmen",
@@ -1156,6 +1178,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "regal",
      "phrase": "Es muss Schokolade haben wollen.",
+     "sens": "Elle a dû vouloir du chocolat.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1168,6 +1191,7 @@ window.SCENE = {
      "f": "mann",
      "r": "kasse",
      "phrase": "Der Mann an der Kasse könnte der Chef sein.",
+     "sens": "L'homme à la caisse est peut-être le patron.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1179,6 +1203,7 @@ window.SCENE = {
      ],
      "f": "kasse",
      "phrase": "Der Laden dürfte gleich schließen.",
+     "sens": "Le magasin devrait bientôt fermer.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1190,6 +1215,7 @@ window.SCENE = {
      ],
      "f": "brot",
      "phrase": "Das Brot hier soll das beste im Viertel sein.",
+     "sens": "Il paraît que le pain d'ici est le meilleur du quartier.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1235,6 +1261,34 @@ window.SCENE = {
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Der Laden dürfte gleich schließen.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Das Brot liegt im Korb.": "The bread is in the basket.",
+    "A2 | Der Korb steht auf dem Boden.": "The basket is on the floor.",
+    "A2 | Die Butter ist im Kühlschrank.": "The butter is in the fridge.",
+    "A2 | Der Mann sitzt an der Kasse.": "The man is sitting at the till.",
+    "A2 | Das Fahrrad steht hinter dem Fenster.": "The bicycle is behind the window.",
+    "A2 | Die Flasche Wasser ist neben der Tüte.": "The bottle of water is next to the bag.",
+    "A2 | Die Eier sind im Korb.": "The eggs are in the basket.",
+    "A2 | Das Mädchen steht neben dem Regal.": "The girl is standing next to the shelf.",
+    "B1 | Die Tüte ist größer als die Tasche.": "The paper bag is bigger than the handbag.",
+    "B1 | Das Mädchen ist kleiner als Anna.": "The girl is smaller than Anna.",
+    "B1 | Der Mann an der Kasse ist älter als Anna.": "The man at the till is older than Anna.",
+    "B1 | Die Bananen sind so gelb wie die Jacke des Mädchens.": "The bananas are as yellow as the girl's jacket.",
+    "B1 | Der Saft steht höher als die Dosen.": "The juice is higher up than the cans.",
+    "B1 | Anna findet Milch gut, aber Käse findet sie besser.": "Anna likes milk, but she likes cheese better.",
+    "B1 | Am liebsten mag das Mädchen Schokolade.": "The girl likes chocolate best of all.",
+    "B1 | Das ist das frischeste Brot im Laden.": "That is the freshest bread in the shop.",
+    "B2 | Könnten Sie mir bitte eine Tüte geben?": "Could you give me a bag, please?",
+    "B2 | Ich hätte gern ein Stück Käse.": "I would like a piece of cheese.",
+    "B2 | Wären Sie so nett und helfen mir mit dem Korb?": "Would you be so kind as to help me with the basket?",
+    "B2 | Ich würde gern mit Karte bezahlen.": "I would like to pay by card.",
+    "B2 | Dürfte ich Sie etwas fragen?": "May I ask you something?",
+    "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "If I were you, I would take the fresh milk.",
+    "C1 | Es muss Schokolade haben wollen.": "She must have wanted chocolate.",
+    "C1 | Der Mann an der Kasse könnte der Chef sein.": "The man at the till might be the boss.",
+    "C1 | Der Laden dürfte gleich schließen.": "The shop is probably about to close.",
+    "C1 | Das Brot hier soll das beste im Viertel sein.": "The bread here is said to be the best in the neighbourhood."
    }
   },
   "tr": {
@@ -1276,6 +1330,34 @@ window.SCENE = {
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Der Laden dürfte gleich schließen.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Das Brot liegt im Korb.": "Ekmek sepetin içinde.",
+    "A2 | Der Korb steht auf dem Boden.": "Sepet yerde duruyor.",
+    "A2 | Die Butter ist im Kühlschrank.": "Tereyağı buzdolabında.",
+    "A2 | Der Mann sitzt an der Kasse.": "Adam kasada oturuyor.",
+    "A2 | Das Fahrrad steht hinter dem Fenster.": "Bisiklet pencerenin arkasında duruyor.",
+    "A2 | Die Flasche Wasser ist neben der Tüte.": "Su şişesi poşetin yanında.",
+    "A2 | Die Eier sind im Korb.": "Yumurtalar sepetin içinde.",
+    "A2 | Das Mädchen steht neben dem Regal.": "Kız rafın yanında duruyor.",
+    "B1 | Die Tüte ist größer als die Tasche.": "Poşet çantadan daha büyük.",
+    "B1 | Das Mädchen ist kleiner als Anna.": "Kız Anna'dan daha küçük.",
+    "B1 | Der Mann an der Kasse ist älter als Anna.": "Kasadaki adam Anna'dan daha yaşlı.",
+    "B1 | Die Bananen sind so gelb wie die Jacke des Mädchens.": "Muzlar kızın ceketi kadar sarı.",
+    "B1 | Der Saft steht höher als die Dosen.": "Meyve suyu konservelerden daha yukarıda duruyor.",
+    "B1 | Anna findet Milch gut, aber Käse findet sie besser.": "Anna sütü seviyor ama peyniri daha çok seviyor.",
+    "B1 | Am liebsten mag das Mädchen Schokolade.": "Kız en çok çikolatayı seviyor.",
+    "B1 | Das ist das frischeste Brot im Laden.": "Bu dükkândaki en taze ekmek.",
+    "B2 | Könnten Sie mir bitte eine Tüte geben?": "Bana bir poşet verebilir misiniz lütfen?",
+    "B2 | Ich hätte gern ein Stück Käse.": "Bir parça peynir istiyorum.",
+    "B2 | Wären Sie so nett und helfen mir mit dem Korb?": "Sepet konusunda bana yardım eder misiniz lütfen?",
+    "B2 | Ich würde gern mit Karte bezahlen.": "Kartla ödemek istiyorum.",
+    "B2 | Dürfte ich Sie etwas fragen?": "Size bir şey sorabilir miyim?",
+    "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "Yerinizde olsam taze sütü alırdım.",
+    "C1 | Es muss Schokolade haben wollen.": "Çikolata istemiş olmalı.",
+    "C1 | Der Mann an der Kasse könnte der Chef sein.": "Kasadaki adam patron olabilir.",
+    "C1 | Der Laden dürfte gleich schließen.": "Dükkân birazdan kapanır herhalde.",
+    "C1 | Das Brot hier soll das beste im Viertel sein.": "Buranın ekmeğinin mahallenin en iyisi olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1317,6 +1399,34 @@ window.SCENE = {
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Der Laden dürfte gleich schließen.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Das Brot liegt im Korb.": "Хліб лежить у кошику.",
+    "A2 | Der Korb steht auf dem Boden.": "Кошик стоїть на підлозі.",
+    "A2 | Die Butter ist im Kühlschrank.": "Масло в холодильнику.",
+    "A2 | Der Mann sitzt an der Kasse.": "Чоловік сидить за касою.",
+    "A2 | Das Fahrrad steht hinter dem Fenster.": "Велосипед стоїть за вікном.",
+    "A2 | Die Flasche Wasser ist neben der Tüte.": "Пляшка води біля пакета.",
+    "A2 | Die Eier sind im Korb.": "Яйця в кошику.",
+    "A2 | Das Mädchen steht neben dem Regal.": "Дівчинка стоїть біля полиці.",
+    "B1 | Die Tüte ist größer als die Tasche.": "Пакет більший за сумку.",
+    "B1 | Das Mädchen ist kleiner als Anna.": "Дівчинка менша за Анну.",
+    "B1 | Der Mann an der Kasse ist älter als Anna.": "Чоловік за касою старший за Анну.",
+    "B1 | Die Bananen sind so gelb wie die Jacke des Mädchens.": "Банани такі ж жовті, як куртка дівчинки.",
+    "B1 | Der Saft steht höher als die Dosen.": "Сік стоїть вище за консерви.",
+    "B1 | Anna findet Milch gut, aber Käse findet sie besser.": "Анна любить молоко, але сир їй подобається більше.",
+    "B1 | Am liebsten mag das Mädchen Schokolade.": "Найбільше дівчинка любить шоколад.",
+    "B1 | Das ist das frischeste Brot im Laden.": "Це найсвіжіший хліб у магазині.",
+    "B2 | Könnten Sie mir bitte eine Tüte geben?": "Чи не могли б ви дати мені пакет, будь ласка?",
+    "B2 | Ich hätte gern ein Stück Käse.": "Я хотів би шматок сиру.",
+    "B2 | Wären Sie so nett und helfen mir mit dem Korb?": "Чи не були б ви такі люб'язні допомогти мені з кошиком?",
+    "B2 | Ich würde gern mit Karte bezahlen.": "Я хотів би заплатити карткою.",
+    "B2 | Dürfte ich Sie etwas fragen?": "Можна вас дещо запитати?",
+    "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "На вашому місці я взяв би свіже молоко.",
+    "C1 | Es muss Schokolade haben wollen.": "Вона, мабуть, хотіла шоколаду.",
+    "C1 | Der Mann an der Kasse könnte der Chef sein.": "Чоловік за касою, можливо, господар.",
+    "C1 | Der Laden dürfte gleich schließen.": "Магазин, напевно, зараз зачиниться.",
+    "C1 | Das Brot hier soll das beste im Viertel sein.": "Кажуть, хліб тут — найкращий у районі."
    }
   },
   "fa": {
@@ -1358,6 +1468,34 @@ window.SCENE = {
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Der Laden dürfte gleich schließen.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Das Brot liegt im Korb.": "نان در سبد است.",
+    "A2 | Der Korb steht auf dem Boden.": "سبد روی زمین است.",
+    "A2 | Die Butter ist im Kühlschrank.": "کره در یخچال است.",
+    "A2 | Der Mann sitzt an der Kasse.": "مرد پشت صندوق نشسته است.",
+    "A2 | Das Fahrrad steht hinter dem Fenster.": "دوچرخه پشت پنجره است.",
+    "A2 | Die Flasche Wasser ist neben der Tüte.": "بطری آب کنار کیسه است.",
+    "A2 | Die Eier sind im Korb.": "تخم‌مرغ‌ها در سبد هستند.",
+    "A2 | Das Mädchen steht neben dem Regal.": "دختر کنار قفسه ایستاده است.",
+    "B1 | Die Tüte ist größer als die Tasche.": "کیسه از کیف بزرگ‌تر است.",
+    "B1 | Das Mädchen ist kleiner als Anna.": "دختر از آنا کوچک‌تر است.",
+    "B1 | Der Mann an der Kasse ist älter als Anna.": "مرد پشت صندوق از آنا مسن‌تر است.",
+    "B1 | Die Bananen sind so gelb wie die Jacke des Mädchens.": "موزها به زردی کاپشن دختر هستند.",
+    "B1 | Der Saft steht höher als die Dosen.": "آبمیوه بالاتر از قوطی‌ها است.",
+    "B1 | Anna findet Milch gut, aber Käse findet sie besser.": "آنا شیر را دوست دارد، اما پنیر را بیشتر.",
+    "B1 | Am liebsten mag das Mädchen Schokolade.": "دختر از همه بیشتر شکلات دوست دارد.",
+    "B1 | Das ist das frischeste Brot im Laden.": "این تازه‌ترین نان مغازه است.",
+    "B2 | Könnten Sie mir bitte eine Tüte geben?": "ممکن است لطفاً یک کیسه به من بدهید؟",
+    "B2 | Ich hätte gern ein Stück Käse.": "یک تکه پنیر می‌خواهم، لطفاً.",
+    "B2 | Wären Sie so nett und helfen mir mit dem Korb?": "لطف می‌کنید با سبد کمکم کنید؟",
+    "B2 | Ich würde gern mit Karte bezahlen.": "می‌خواهم با کارت پرداخت کنم.",
+    "B2 | Dürfte ich Sie etwas fragen?": "می‌توانم چیزی از شما بپرسم؟",
+    "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "اگر جای شما بودم، شیر تازه را برمی‌داشتم.",
+    "C1 | Es muss Schokolade haben wollen.": "او حتماً شکلات می‌خواسته است.",
+    "C1 | Der Mann an der Kasse könnte der Chef sein.": "مرد پشت صندوق شاید رئیس باشد.",
+    "C1 | Der Laden dürfte gleich schließen.": "مغازه احتمالاً به‌زودی بسته می‌شود.",
+    "C1 | Das Brot hier soll das beste im Viertel sein.": "می‌گویند نان اینجا بهترین نان محله است."
    }
   },
   "ar": {
@@ -1399,6 +1537,34 @@ window.SCENE = {
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Der Laden dürfte gleich schließen.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Das Brot liegt im Korb.": "الخبز في السلّة.",
+    "A2 | Der Korb steht auf dem Boden.": "السلّة على الأرض.",
+    "A2 | Die Butter ist im Kühlschrank.": "الزبدة في الثلّاجة.",
+    "A2 | Der Mann sitzt an der Kasse.": "الرجل جالس عند الصندوق.",
+    "A2 | Das Fahrrad steht hinter dem Fenster.": "الدراجة خلف النافذة.",
+    "A2 | Die Flasche Wasser ist neben der Tüte.": "زجاجة الماء بجانب الكيس.",
+    "A2 | Die Eier sind im Korb.": "البيض في السلّة.",
+    "A2 | Das Mädchen steht neben dem Regal.": "الفتاة واقفة بجانب الرفّ.",
+    "B1 | Die Tüte ist größer als die Tasche.": "الكيس أكبر من الحقيبة.",
+    "B1 | Das Mädchen ist kleiner als Anna.": "الفتاة أصغر من آنا.",
+    "B1 | Der Mann an der Kasse ist älter als Anna.": "الرجل عند الصندوق أكبر سنّاً من آنا.",
+    "B1 | Die Bananen sind so gelb wie die Jacke des Mädchens.": "الموز أصفر مثل سترة الفتاة.",
+    "B1 | Der Saft steht höher als die Dosen.": "العصير موضوع أعلى من العلب.",
+    "B1 | Anna findet Milch gut, aber Käse findet sie besser.": "تحبّ آنا الحليب، لكنها تفضّل الجبن.",
+    "B1 | Am liebsten mag das Mädchen Schokolade.": "أكثر ما تحبّه الفتاة هو الشوكولاتة.",
+    "B1 | Das ist das frischeste Brot im Laden.": "هذا أطزج خبز في المحل.",
+    "B2 | Könnten Sie mir bitte eine Tüte geben?": "هل يمكنك أن تعطيني كيساً، من فضلك؟",
+    "B2 | Ich hätte gern ein Stück Käse.": "أريد قطعة جبن، من فضلك.",
+    "B2 | Wären Sie so nett und helfen mir mit dem Korb?": "هل تتكرّم بمساعدتي في حمل السلّة؟",
+    "B2 | Ich würde gern mit Karte bezahlen.": "أودّ أن أدفع بالبطاقة.",
+    "B2 | Dürfte ich Sie etwas fragen?": "هل لي أن أسألك شيئاً؟",
+    "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "لو كنت مكانك، لأخذت الحليب الطازج.",
+    "C1 | Es muss Schokolade haben wollen.": "لا بدّ أنها أرادت شوكولاتة.",
+    "C1 | Der Mann an der Kasse könnte der Chef sein.": "ربما يكون الرجل عند الصندوق هو صاحب المحل.",
+    "C1 | Der Laden dürfte gleich schließen.": "على الأرجح يُغلق المحل حالاً.",
+    "C1 | Das Brot hier soll das beste im Viertel sein.": "يُقال إن الخبز هنا هو الأفضل في الحيّ."
    }
   },
   "pt": {
@@ -1440,6 +1606,34 @@ window.SCENE = {
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Der Laden dürfte gleich schließen.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Das Brot liegt im Korb.": "O pão está na cesta.",
+    "A2 | Der Korb steht auf dem Boden.": "A cesta está no chão.",
+    "A2 | Die Butter ist im Kühlschrank.": "A manteiga está na geladeira.",
+    "A2 | Der Mann sitzt an der Kasse.": "O homem está sentado no caixa.",
+    "A2 | Das Fahrrad steht hinter dem Fenster.": "A bicicleta está atrás da janela.",
+    "A2 | Die Flasche Wasser ist neben der Tüte.": "A garrafa de água está ao lado da sacola.",
+    "A2 | Die Eier sind im Korb.": "Os ovos estão na cesta.",
+    "A2 | Das Mädchen steht neben dem Regal.": "A menina está ao lado da prateleira.",
+    "B1 | Die Tüte ist größer als die Tasche.": "A sacola é maior que a bolsa.",
+    "B1 | Das Mädchen ist kleiner als Anna.": "A menina é menor que Anna.",
+    "B1 | Der Mann an der Kasse ist älter als Anna.": "O homem do caixa é mais velho que Anna.",
+    "B1 | Die Bananen sind so gelb wie die Jacke des Mädchens.": "As bananas são tão amarelas quanto a jaqueta da menina.",
+    "B1 | Der Saft steht höher als die Dosen.": "O suco está mais alto que as latas.",
+    "B1 | Anna findet Milch gut, aber Käse findet sie besser.": "Anna gosta de leite, mas gosta mais de queijo.",
+    "B1 | Am liebsten mag das Mädchen Schokolade.": "O que a menina mais gosta é de chocolate.",
+    "B1 | Das ist das frischeste Brot im Laden.": "Esse é o pão mais fresco da loja.",
+    "B2 | Könnten Sie mir bitte eine Tüte geben?": "Poderia me dar uma sacola, por favor?",
+    "B2 | Ich hätte gern ein Stück Käse.": "Eu queria um pedaço de queijo.",
+    "B2 | Wären Sie so nett und helfen mir mit dem Korb?": "Faria a gentileza de me ajudar com a cesta?",
+    "B2 | Ich würde gern mit Karte bezahlen.": "Eu gostaria de pagar com cartão.",
+    "B2 | Dürfte ich Sie etwas fragen?": "Posso lhe perguntar uma coisa?",
+    "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "No seu lugar, eu levaria o leite fresco.",
+    "C1 | Es muss Schokolade haben wollen.": "Ela deve ter querido chocolate.",
+    "C1 | Der Mann an der Kasse könnte der Chef sein.": "O homem do caixa talvez seja o dono.",
+    "C1 | Der Laden dürfte gleich schließen.": "A loja provavelmente vai fechar logo.",
+    "C1 | Das Brot hier soll das beste im Viertel sein.": "Dizem que o pão daqui é o melhor do bairro."
    }
   },
   "pl": {
@@ -1481,6 +1675,34 @@ window.SCENE = {
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Der Laden dürfte gleich schließen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Das Brot liegt im Korb.": "Chleb leży w koszyku.",
+    "A2 | Der Korb steht auf dem Boden.": "Koszyk stoi na podłodze.",
+    "A2 | Die Butter ist im Kühlschrank.": "Masło jest w lodówce.",
+    "A2 | Der Mann sitzt an der Kasse.": "Mężczyzna siedzi przy kasie.",
+    "A2 | Das Fahrrad steht hinter dem Fenster.": "Rower stoi za oknem.",
+    "A2 | Die Flasche Wasser ist neben der Tüte.": "Butelka wody jest obok torby.",
+    "A2 | Die Eier sind im Korb.": "Jajka są w koszyku.",
+    "A2 | Das Mädchen steht neben dem Regal.": "Dziewczynka stoi obok regału.",
+    "B1 | Die Tüte ist größer als die Tasche.": "Torba papierowa jest większa niż torebka.",
+    "B1 | Das Mädchen ist kleiner als Anna.": "Dziewczynka jest mniejsza niż Anna.",
+    "B1 | Der Mann an der Kasse ist älter als Anna.": "Mężczyzna przy kasie jest starszy niż Anna.",
+    "B1 | Die Bananen sind so gelb wie die Jacke des Mädchens.": "Banany są tak żółte jak kurtka dziewczynki.",
+    "B1 | Der Saft steht höher als die Dosen.": "Sok stoi wyżej niż puszki.",
+    "B1 | Anna findet Milch gut, aber Käse findet sie besser.": "Anna lubi mleko, ale ser lubi bardziej.",
+    "B1 | Am liebsten mag das Mädchen Schokolade.": "Dziewczynka najbardziej lubi czekoladę.",
+    "B1 | Das ist das frischeste Brot im Laden.": "To najświeższy chleb w sklepie.",
+    "B2 | Könnten Sie mir bitte eine Tüte geben?": "Czy mógłby mi pan dać torbę, proszę?",
+    "B2 | Ich hätte gern ein Stück Käse.": "Poproszę kawałek sera.",
+    "B2 | Wären Sie so nett und helfen mir mit dem Korb?": "Czy byłby pan tak miły i pomógł mi z koszykiem?",
+    "B2 | Ich würde gern mit Karte bezahlen.": "Chciałbym zapłacić kartą.",
+    "B2 | Dürfte ich Sie etwas fragen?": "Czy mógłbym pana o coś zapytać?",
+    "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "Na pana miejscu wziąłbym świeże mleko.",
+    "C1 | Es muss Schokolade haben wollen.": "Musiała chcieć czekolady.",
+    "C1 | Der Mann an der Kasse könnte der Chef sein.": "Mężczyzna przy kasie być może jest szefem.",
+    "C1 | Der Laden dürfte gleich schließen.": "Sklep zapewne zaraz się zamyka.",
+    "C1 | Das Brot hier soll das beste im Viertel sein.": "Podobno tutejszy chleb jest najlepszy w dzielnicy."
    }
   },
   "ru": {
@@ -1522,6 +1744,34 @@ window.SCENE = {
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Der Laden dürfte gleich schließen.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Das Brot liegt im Korb.": "Хлеб лежит в корзине.",
+    "A2 | Der Korb steht auf dem Boden.": "Корзина стоит на полу.",
+    "A2 | Die Butter ist im Kühlschrank.": "Масло в холодильнике.",
+    "A2 | Der Mann sitzt an der Kasse.": "Мужчина сидит на кассе.",
+    "A2 | Das Fahrrad steht hinter dem Fenster.": "Велосипед стоит за окном.",
+    "A2 | Die Flasche Wasser ist neben der Tüte.": "Бутылка воды рядом с пакетом.",
+    "A2 | Die Eier sind im Korb.": "Яйца в корзине.",
+    "A2 | Das Mädchen steht neben dem Regal.": "Девочка стоит рядом с полкой.",
+    "B1 | Die Tüte ist größer als die Tasche.": "Пакет больше сумки.",
+    "B1 | Das Mädchen ist kleiner als Anna.": "Девочка меньше Анны.",
+    "B1 | Der Mann an der Kasse ist älter als Anna.": "Мужчина на кассе старше Анны.",
+    "B1 | Die Bananen sind so gelb wie die Jacke des Mädchens.": "Бананы такие же жёлтые, как куртка девочки.",
+    "B1 | Der Saft steht höher als die Dosen.": "Сок стоит выше, чем банки.",
+    "B1 | Anna findet Milch gut, aber Käse findet sie besser.": "Анна любит молоко, но сыр ей нравится больше.",
+    "B1 | Am liebsten mag das Mädchen Schokolade.": "Больше всего девочка любит шоколад.",
+    "B1 | Das ist das frischeste Brot im Laden.": "Это самый свежий хлеб в магазине.",
+    "B2 | Könnten Sie mir bitte eine Tüte geben?": "Не могли бы вы дать мне пакет, пожалуйста?",
+    "B2 | Ich hätte gern ein Stück Käse.": "Мне, пожалуйста, кусок сыра.",
+    "B2 | Wären Sie so nett und helfen mir mit dem Korb?": "Не будете ли вы так любезны помочь мне с корзиной?",
+    "B2 | Ich würde gern mit Karte bezahlen.": "Я хотел бы заплатить картой.",
+    "B2 | Dürfte ich Sie etwas fragen?": "Можно вас кое о чём спросить?",
+    "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "На вашем месте я взял бы свежее молоко.",
+    "C1 | Es muss Schokolade haben wollen.": "Она, должно быть, хотела шоколада.",
+    "C1 | Der Mann an der Kasse könnte der Chef sein.": "Мужчина на кассе, возможно, хозяин.",
+    "C1 | Der Laden dürfte gleich schließen.": "Магазин, вероятно, сейчас закроется.",
+    "C1 | Das Brot hier soll das beste im Viertel sein.": "Говорят, хлеб здесь — лучший в районе."
    }
   }
  }

@@ -1795,6 +1795,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "tisch",
      "phrase": "Der Rucksack ist unter dem Tisch.",
+     "sens": "Le sac à dos est sous la table.",
      "n": "<b>Wo?</b> → datif : der Tisch → unter <b>dem</b> Tisch."
     },
     {
@@ -1807,6 +1808,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "tafel",
      "phrase": "Die Uhr hängt über der Tafel.",
+     "sens": "L'horloge est accrochée au-dessus du tableau.",
      "n": "<b>Wo?</b> → datif : die Tafel → über <b>der</b> Tafel."
     },
     {
@@ -1819,6 +1821,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "regal",
      "phrase": "Die Pflanze steht auf dem Regal.",
+     "sens": "La plante est sur l'étagère.",
      "n": "<b>Wo?</b> → datif : das Regal → auf <b>dem</b> Regal."
     },
     {
@@ -1831,6 +1834,7 @@ window.SCENE = {
      "f": "mantel",
      "r": "tuer",
      "phrase": "Der Mantel hängt an der Tür.",
+     "sens": "Le manteau est accroché à la porte.",
      "n": "<b>Wo?</b> → datif : die Tür → an <b>der</b> Tür."
     },
     {
@@ -1843,6 +1847,7 @@ window.SCENE = {
      "f": "lehrer",
      "r": "tafel",
      "phrase": "Der Lehrer steht vor der Tafel.",
+     "sens": "Le professeur est debout devant le tableau.",
      "n": "<b>vor</b> = devant. Datif : vor <b>der</b> Tafel."
     },
     {
@@ -1855,6 +1860,7 @@ window.SCENE = {
      "f": "handy",
      "r": "laptop",
      "phrase": "Das Handy liegt neben dem Laptop.",
+     "sens": "Le téléphone est à côté de l'ordinateur portable.",
      "n": "<b>neben</b> = à côté de. der Laptop → neben <b>dem</b> Laptop."
     },
     {
@@ -1867,6 +1873,7 @@ window.SCENE = {
      "f": "anna",
      "r": "mark",
      "phrase": "Anna sitzt neben Mark.",
+     "sens": "Anna est assise à côté de Mark.",
      "n": "Avec un prénom, pas d'article : neben Mark."
     },
     {
@@ -1879,6 +1886,7 @@ window.SCENE = {
      "f": "bild",
      "r": "tuer",
      "phrase": "Das Bild hängt zwischen der Tür und dem Fenster.",
+     "sens": "Le tableau est accroché entre la porte et la fenêtre.",
      "n": "<b>zwischen</b> = entre, et les deux noms au datif : <b>der</b> Tür, <b>dem</b> Fenster."
     }
    ]
@@ -1896,6 +1904,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "tisch",
      "phrase": "Der Rucksack steht unter dem Tisch.",
+     "sens": "Le sac à dos est sous la table.",
      "n": "<b>stehen</b> = être debout, un état (Wo?). <b>stellen</b> = poser debout, un mouvement (Wohin?).",
      "revise": {
       "mot": "stehen",
@@ -1912,6 +1921,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "anna",
      "phrase": "Anna hat ihren Rucksack unter den Tisch gestellt.",
+     "sens": "Anna a mis son sac à dos sous la table.",
      "n": "Un mouvement (Wohin?) : <b>stellen</b> + accusatif — unter <b>den</b> Tisch.",
      "revise": {
       "mot": "stellen",
@@ -1928,6 +1938,7 @@ window.SCENE = {
      "f": "handy",
      "r": "schreibtisch",
      "phrase": "Das Handy liegt auf dem Schreibtisch.",
+     "sens": "Le téléphone est sur le bureau.",
      "n": "<b>liegen</b> = être couché à plat (état). <b>legen</b> = poser à plat (mouvement).",
      "revise": {
       "mot": "liegen",
@@ -1944,6 +1955,7 @@ window.SCENE = {
      "f": "handy",
      "r": "lehrer",
      "phrase": "Der Lehrer hat sein Handy auf den Schreibtisch gelegt.",
+     "sens": "Le professeur a posé son téléphone sur le bureau.",
      "n": "Mouvement : <b>legen</b> → gelegt, et l'accusatif : auf <b>den</b> Schreibtisch.",
      "revise": {
       "mot": "legen",
@@ -1960,6 +1972,7 @@ window.SCENE = {
      "f": "anna",
      "r": "mark",
      "phrase": "Anna sitzt neben Mark.",
+     "sens": "Anna est assise à côté de Mark.",
      "n": "<b>sitzen</b> = être assis. <b>sich setzen</b> = s'asseoir.",
      "revise": {
       "mot": "sitzen",
@@ -1976,6 +1989,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "tuer",
      "phrase": "Mark hat seine Jacke an die Tür gehängt.",
+     "sens": "Mark a accroché sa veste à la porte.",
      "n": "<b>hängen</b> a deux participes : on <b>a accroché</b> → gehängt ; elle <b>était accrochée</b> → gehangen.",
      "revise": {
       "mot": "hängen",
@@ -1992,6 +2006,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "tuer",
      "phrase": "Mark hängt seine Jacke an die Tür.",
+     "sens": "Mark accroche sa veste à la porte.",
      "n": "<b>Wohin?</b> → accusatif : an <b>die</b> Tür. (Wo? → an der Tür.)"
     },
     {
@@ -2004,6 +2019,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "tuer",
      "phrase": "Die Jacke hängt jetzt an der Tür.",
+     "sens": "La veste est maintenant accrochée à la porte.",
      "n": "L'état : <b>hängen</b> + datif — an <b>der</b> Tür.",
      "revise": {
       "mot": "hängen",
@@ -2024,6 +2040,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Die Frau, die ein Buch unter dem Arm trägt, steht noch.",
+     "sens": "La femme qui porte un livre sous le bras est encore debout.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -2035,6 +2052,7 @@ window.SCENE = {
      ],
      "f": "lehrer",
      "phrase": "Der Mann, der vor der Tafel steht, ist der Lehrer.",
+     "sens": "L'homme qui est devant le tableau est le professeur.",
      "n": "Sujet, masculin → <b>der</b>."
     },
     {
@@ -2047,6 +2065,7 @@ window.SCENE = {
      "f": "lehrer",
      "r": "brille",
      "phrase": "Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.",
+     "sens": "L'homme dont les lunettes sont sur le nez est le professeur.",
      "n": "Possession, antécédent masculin → <b>dessen</b> (dont les lunettes)."
     },
     {
@@ -2059,6 +2078,7 @@ window.SCENE = {
      "f": "anna",
      "r": "heft",
      "phrase": "Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.",
+     "sens": "La participante dont le cahier est ouvert sur la table s'appelle Anna.",
      "n": "Possession, antécédent féminin → <b>deren</b>."
     },
     {
@@ -2071,6 +2091,7 @@ window.SCENE = {
      "f": "tisch",
      "r": "rucksack",
      "phrase": "Der Tisch, unter dem der Rucksack steht, ist aus Holz.",
+     "sens": "La table sous laquelle est le sac à dos est en bois.",
      "n": "Préposition + datif (Wo?), masculin → unter <b>dem</b>."
     },
     {
@@ -2082,6 +2103,7 @@ window.SCENE = {
      ],
      "f": "tafel",
      "phrase": "Die Tafel ist schon gewischt.",
+     "sens": "Le tableau est déjà effacé.",
      "n": "Passif d'<b>état</b> : sein + participe. Le résultat se voit — elle est propre."
     }
    ]
@@ -2099,6 +2121,7 @@ window.SCENE = {
      "f": "anna",
      "r": "mark",
      "phrase": "Mark und Anna müssen sich kennen.",
+     "sens": "Mark et Anna doivent se connaître.",
      "n": "<b>müssen</b> + infinitif = presque certain. Ils sourient tous les deux, surpris."
     },
     {
@@ -2110,6 +2133,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Die Frau im Kleid könnte zu spät gekommen sein.",
+     "sens": "La femme en robe est peut-être arrivée en retard.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres. Elle est encore debout…"
     },
     {
@@ -2121,6 +2145,7 @@ window.SCENE = {
      ],
      "f": "lehrer",
      "phrase": "Der Lehrer dürfte schon lange Spanisch unterrichten.",
+     "sens": "Le professeur enseigne sans doute l'espagnol depuis longtemps.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -2132,6 +2157,7 @@ window.SCENE = {
      ],
      "f": "lehrer",
      "phrase": "Der Lehrer soll aus Sevilla kommen.",
+     "sens": "Il paraît que le professeur vient de Séville.",
      "n": "<b>sollen</b> = on le dit, je le rapporte sans le garantir."
     }
    ]
@@ -2177,6 +2203,34 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = one possibility among others. She is still standing…",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = people say so; I'm passing it on without vouching for it."
+   },
+   "sens": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "The backpack is under the table.",
+    "A2 | Die Uhr hängt über der Tafel.": "The clock hangs above the board.",
+    "A2 | Die Pflanze steht auf dem Regal.": "The plant is on the shelf.",
+    "A2 | Der Mantel hängt an der Tür.": "The coat hangs on the door.",
+    "A2 | Der Lehrer steht vor der Tafel.": "The teacher is standing in front of the board.",
+    "A2 | Das Handy liegt neben dem Laptop.": "The phone is next to the laptop.",
+    "A2 | Anna sitzt neben Mark.": "Anna is sitting next to Mark.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "The picture hangs between the door and the window.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "The backpack is under the table.",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Anna put her backpack under the table.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "The phone is on the desk.",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "The teacher put his phone on the desk.",
+    "B1 | Anna sitzt neben Mark.": "Anna is sitting next to Mark.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "Mark hung his jacket on the door.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "Mark hangs his jacket on the door.",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "The jacket is now hanging on the door.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "The woman carrying a book under her arm is still standing.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "The man standing in front of the board is the teacher.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "The man whose glasses sit on his nose is the teacher.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "The participant whose notebook lies open on the table is called Anna.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "The table the backpack is under is made of wood.",
+    "B2 | Die Tafel ist schon gewischt.": "The board is already wiped.",
+    "C1 | Mark und Anna müssen sich kennen.": "Mark and Anna must know each other.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "The woman in the dress might have arrived late.",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "The teacher has probably been teaching Spanish for a long time.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "The teacher is said to come from Seville."
    }
   },
   "tr": {
@@ -2218,6 +2272,34 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = birçok olasılıktan biri. Kadın hâlâ ayakta…",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = öyle söyleniyor; aktarıyorum ama garanti etmiyorum."
+   },
+   "sens": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "Sırt çantası masanın altında.",
+    "A2 | Die Uhr hängt über der Tafel.": "Saat tahtanın üstünde asılı.",
+    "A2 | Die Pflanze steht auf dem Regal.": "Bitki rafın üstünde duruyor.",
+    "A2 | Der Mantel hängt an der Tür.": "Palto kapıda asılı.",
+    "A2 | Der Lehrer steht vor der Tafel.": "Öğretmen tahtanın önünde duruyor.",
+    "A2 | Das Handy liegt neben dem Laptop.": "Telefon dizüstü bilgisayarın yanında.",
+    "A2 | Anna sitzt neben Mark.": "Anna Mark'ın yanında oturuyor.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "Tablo kapıyla pencerenin arasında asılı.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "Sırt çantası masanın altında duruyor.",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Anna sırt çantasını masanın altına koydu.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "Telefon masanın üstünde.",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Öğretmen telefonunu masanın üstüne koydu.",
+    "B1 | Anna sitzt neben Mark.": "Anna Mark'ın yanında oturuyor.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "Mark ceketini kapıya astı.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "Mark ceketini kapıya asıyor.",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "Ceket şimdi kapıda asılı.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "Kolunun altında kitap taşıyan kadın hâlâ ayakta.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "Tahtanın önünde duran adam öğretmen.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "Gözlüğü burnunda duran adam öğretmen.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "Defteri masada açık duran katılımcının adı Anna.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "Sırt çantasının altında durduğu masa ahşap.",
+    "B2 | Die Tafel ist schon gewischt.": "Tahta silinmiş bile.",
+    "C1 | Mark und Anna müssen sich kennen.": "Mark ve Anna birbirlerini tanıyor olmalı.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "Elbiseli kadın geç kalmış olabilir.",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "Öğretmen uzun zamandır İspanyolca öğretiyor olsa gerek.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "Öğretmenin Sevilla'dan olduğu söyleniyor."
    }
   },
   "uk": {
@@ -2259,6 +2341,34 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = одна можливість серед інших. Вона ще стоїть…",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = так кажуть; я переказую, але не ручаюся."
+   },
+   "sens": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "Рюкзак під столом.",
+    "A2 | Die Uhr hängt über der Tafel.": "Годинник висить над дошкою.",
+    "A2 | Die Pflanze steht auf dem Regal.": "Рослина стоїть на полиці.",
+    "A2 | Der Mantel hängt an der Tür.": "Пальто висить на дверях.",
+    "A2 | Der Lehrer steht vor der Tafel.": "Учитель стоїть перед дошкою.",
+    "A2 | Das Handy liegt neben dem Laptop.": "Телефон лежить біля ноутбука.",
+    "A2 | Anna sitzt neben Mark.": "Анна сидить біля Марка.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "Картина висить між дверима та вікном.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "Рюкзак стоїть під столом.",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Анна поставила свій рюкзак під стіл.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "Телефон лежить на столі.",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Учитель поклав свій телефон на стіл.",
+    "B1 | Anna sitzt neben Mark.": "Анна сидить біля Марка.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "Марк повісив куртку на двері.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "Марк вішає куртку на двері.",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "Куртка тепер висить на дверях.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "Жінка з книжкою під пахвою ще стоїть.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "Чоловік, який стоїть перед дошкою, — учитель.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "Чоловік, у якого окуляри на носі, — учитель.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "Учасницю, чий зошит лежить розгорнутим на столі, звати Анна.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "Стіл, під яким стоїть рюкзак, дерев'яний.",
+    "B2 | Die Tafel ist schon gewischt.": "Дошка вже витерта.",
+    "C1 | Mark und Anna müssen sich kennen.": "Марк і Анна, мабуть, знайомі.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "Жінка в сукні, можливо, запізнилася.",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "Учитель, напевно, давно викладає іспанську.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "Кажуть, учитель із Севільї."
    }
   },
   "fa": {
@@ -2300,6 +2410,34 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر. او هنوز ایستاده است…",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = این‌طور می‌گویند؛ نقلش می‌کنم بی‌آنکه ضمانتش کنم."
+   },
+   "sens": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "کوله‌پشتی زیر میز است.",
+    "A2 | Die Uhr hängt über der Tafel.": "ساعت بالای تخته آویزان است.",
+    "A2 | Die Pflanze steht auf dem Regal.": "گیاه روی قفسه است.",
+    "A2 | Der Mantel hängt an der Tür.": "پالتو به در آویزان است.",
+    "A2 | Der Lehrer steht vor der Tafel.": "معلم جلوی تخته ایستاده است.",
+    "A2 | Das Handy liegt neben dem Laptop.": "گوشی کنار لپ‌تاپ است.",
+    "A2 | Anna sitzt neben Mark.": "آنا کنار مارک نشسته است.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "تابلو بین در و پنجره آویزان است.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "کوله‌پشتی زیر میز است.",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "آنا کوله‌پشتی‌اش را زیر میز گذاشته است.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "گوشی روی میز تحریر است.",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "معلم گوشی‌اش را روی میز گذاشته است.",
+    "B1 | Anna sitzt neben Mark.": "آنا کنار مارک نشسته است.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "مارک کاپشنش را به در آویزان کرده است.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "مارک کاپشنش را به در آویزان می‌کند.",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "کاپشن حالا به در آویزان است.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "زنی که کتابی زیر بغل دارد، هنوز ایستاده است.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "مردی که جلوی تخته ایستاده، معلم است.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "مردی که عینکش روی بینی‌اش است، معلم است.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "شرکت‌کننده‌ای که دفترش باز روی میز است، آنا نام دارد.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "میزی که کوله‌پشتی زیرش است، چوبی است.",
+    "B2 | Die Tafel ist schon gewischt.": "تخته پاک شده است.",
+    "C1 | Mark und Anna müssen sich kennen.": "مارک و آنا حتماً همدیگر را می‌شناسند.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "زنی که پیراهن پوشیده شاید دیر آمده باشد.",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "معلم احتمالاً مدت‌هاست اسپانیایی درس می‌دهد.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "می‌گویند معلم اهل سویل است."
    }
   },
   "ar": {
@@ -2341,6 +2479,34 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى. ما زالت واقفة…",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = هكذا يُقال؛ أنقله دون أن أضمنه."
+   },
+   "sens": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "حقيبة الظهر تحت الطاولة.",
+    "A2 | Die Uhr hängt über der Tafel.": "الساعة معلّقة فوق اللوح.",
+    "A2 | Die Pflanze steht auf dem Regal.": "النبتة على الرفّ.",
+    "A2 | Der Mantel hängt an der Tür.": "المعطف معلّق على الباب.",
+    "A2 | Der Lehrer steht vor der Tafel.": "المعلّم واقف أمام اللوح.",
+    "A2 | Das Handy liegt neben dem Laptop.": "الهاتف بجانب الحاسوب المحمول.",
+    "A2 | Anna sitzt neben Mark.": "آنا جالسة بجانب مارك.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "اللوحة معلّقة بين الباب والنافذة.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "حقيبة الظهر تحت الطاولة.",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "وضعت آنا حقيبة ظهرها تحت الطاولة.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "الهاتف على المكتب.",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "وضع المعلّم هاتفه على المكتب.",
+    "B1 | Anna sitzt neben Mark.": "آنا جالسة بجانب مارك.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "علّق مارك سترته على الباب.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "يعلّق مارك سترته على الباب.",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "السترة معلّقة الآن على الباب.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "المرأة التي تحمل كتاباً تحت ذراعها ما زالت واقفة.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "الرجل الواقف أمام اللوح هو المعلّم.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "الرجل الذي نظّارته على أنفه هو المعلّم.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "المشاركة التي دفترها مفتوح على الطاولة اسمها آنا.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "الطاولة التي تحتها حقيبة الظهر من الخشب.",
+    "B2 | Die Tafel ist schon gewischt.": "اللوح ممسوح بالفعل.",
+    "C1 | Mark und Anna müssen sich kennen.": "لا بدّ أن مارك وآنا يعرفان بعضهما.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "ربما تأخّرت المرأة ذات الفستان.",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "على الأرجح يدرّس المعلّم الإسبانية منذ زمن طويل.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "يُقال إن المعلّم من إشبيلية."
    }
   },
   "pt": {
@@ -2382,6 +2548,34 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = uma possibilidade entre outras. Ela ainda está em pé…",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = é o que dizem, eu repasso sem garantir."
+   },
+   "sens": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "A mochila está debaixo da mesa.",
+    "A2 | Die Uhr hängt über der Tafel.": "O relógio está pendurado acima do quadro.",
+    "A2 | Die Pflanze steht auf dem Regal.": "A planta está na estante.",
+    "A2 | Der Mantel hängt an der Tür.": "O casaco está pendurado na porta.",
+    "A2 | Der Lehrer steht vor der Tafel.": "O professor está em frente ao quadro.",
+    "A2 | Das Handy liegt neben dem Laptop.": "O celular está ao lado do notebook.",
+    "A2 | Anna sitzt neben Mark.": "Anna está sentada ao lado de Mark.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "O quadro está pendurado entre a porta e a janela.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "A mochila está debaixo da mesa.",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Anna pôs a mochila debaixo da mesa.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "O celular está na escrivaninha.",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "O professor pôs o celular na escrivaninha.",
+    "B1 | Anna sitzt neben Mark.": "Anna está sentada ao lado de Mark.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "Mark pendurou a jaqueta na porta.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "Mark pendura a jaqueta na porta.",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "A jaqueta agora está pendurada na porta.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "A mulher que leva um livro debaixo do braço ainda está de pé.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "O homem que está em frente ao quadro é o professor.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "O homem cujos óculos estão no nariz é o professor.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "A participante cujo caderno está aberto na mesa se chama Anna.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "A mesa debaixo da qual está a mochila é de madeira.",
+    "B2 | Die Tafel ist schon gewischt.": "O quadro já está apagado.",
+    "C1 | Mark und Anna müssen sich kennen.": "Mark e Anna devem se conhecer.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "A mulher de vestido talvez tenha chegado atrasada.",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "O professor provavelmente ensina espanhol há muito tempo.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "Dizem que o professor é de Sevilha."
    }
   },
   "pl": {
@@ -2423,6 +2617,34 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = jedna z możliwości. Ona jeszcze stoi…",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = podobno; powtarzam, nie ręcząc za to."
+   },
+   "sens": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "Plecak jest pod stołem.",
+    "A2 | Die Uhr hängt über der Tafel.": "Zegar wisi nad tablicą.",
+    "A2 | Die Pflanze steht auf dem Regal.": "Roślina stoi na regale.",
+    "A2 | Der Mantel hängt an der Tür.": "Płaszcz wisi na drzwiach.",
+    "A2 | Der Lehrer steht vor der Tafel.": "Nauczyciel stoi przed tablicą.",
+    "A2 | Das Handy liegt neben dem Laptop.": "Telefon leży obok laptopa.",
+    "A2 | Anna sitzt neben Mark.": "Anna siedzi obok Marka.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "Obraz wisi między drzwiami a oknem.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "Plecak stoi pod stołem.",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Anna postawiła plecak pod stołem.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "Telefon leży na biurku.",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Nauczyciel położył telefon na biurku.",
+    "B1 | Anna sitzt neben Mark.": "Anna siedzi obok Marka.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "Mark powiesił kurtkę na drzwiach.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "Mark wiesza kurtkę na drzwiach.",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "Kurtka wisi teraz na drzwiach.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "Kobieta, która niesie książkę pod pachą, jeszcze stoi.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "Mężczyzna, który stoi przed tablicą, to nauczyciel.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "Mężczyzna, którego okulary siedzą na nosie, to nauczyciel.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "Uczestniczka, której zeszyt leży otwarty na stole, ma na imię Anna.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "Stół, pod którym stoi plecak, jest z drewna.",
+    "B2 | Die Tafel ist schon gewischt.": "Tablica jest już starta.",
+    "C1 | Mark und Anna müssen sich kennen.": "Mark i Anna muszą się znać.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "Kobieta w sukience być może się spóźniła.",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "Nauczyciel zapewne od dawna uczy hiszpańskiego.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "Podobno nauczyciel pochodzi z Sewilli."
    }
   },
   "ru": {
@@ -2464,6 +2686,34 @@ window.SCENE = {
     "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "<b>könnte</b> = одна возможность из нескольких. Она ещё стоит…",
     "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Der Lehrer soll aus Sevilla kommen.": "<b>sollen</b> = говорят; я передаю это, не ручаясь."
+   },
+   "sens": {
+    "A2 | Der Rucksack ist unter dem Tisch.": "Рюкзак под столом.",
+    "A2 | Die Uhr hängt über der Tafel.": "Часы висят над доской.",
+    "A2 | Die Pflanze steht auf dem Regal.": "Растение стоит на полке.",
+    "A2 | Der Mantel hängt an der Tür.": "Пальто висит на двери.",
+    "A2 | Der Lehrer steht vor der Tafel.": "Учитель стоит перед доской.",
+    "A2 | Das Handy liegt neben dem Laptop.": "Телефон лежит рядом с ноутбуком.",
+    "A2 | Anna sitzt neben Mark.": "Анна сидит рядом с Марком.",
+    "A2 | Das Bild hängt zwischen der Tür und dem Fenster.": "Картина висит между дверью и окном.",
+    "B1 | Der Rucksack steht unter dem Tisch.": "Рюкзак стоит под столом.",
+    "B1 | Anna hat ihren Rucksack unter den Tisch gestellt.": "Анна поставила свой рюкзак под стол.",
+    "B1 | Das Handy liegt auf dem Schreibtisch.": "Телефон лежит на письменном столе.",
+    "B1 | Der Lehrer hat sein Handy auf den Schreibtisch gelegt.": "Учитель положил свой телефон на стол.",
+    "B1 | Anna sitzt neben Mark.": "Анна сидит рядом с Марком.",
+    "B1 | Mark hat seine Jacke an die Tür gehängt.": "Марк повесил куртку на дверь.",
+    "B1 | Mark hängt seine Jacke an die Tür.": "Марк вешает куртку на дверь.",
+    "B1 | Die Jacke hängt jetzt an der Tür.": "Куртка теперь висит на двери.",
+    "B2 | Die Frau, die ein Buch unter dem Arm trägt, steht noch.": "Женщина с книгой под мышкой ещё стоит.",
+    "B2 | Der Mann, der vor der Tafel steht, ist der Lehrer.": "Мужчина, который стоит перед доской, — учитель.",
+    "B2 | Der Mann, dessen Brille auf der Nase sitzt, ist der Lehrer.": "Мужчина, у которого очки на носу, — учитель.",
+    "B2 | Die Teilnehmerin, deren Heft offen auf dem Tisch liegt, heißt Anna.": "Участницу, чья тетрадь лежит раскрытой на столе, зовут Анна.",
+    "B2 | Der Tisch, unter dem der Rucksack steht, ist aus Holz.": "Стол, под которым стоит рюкзак, деревянный.",
+    "B2 | Die Tafel ist schon gewischt.": "Доска уже вытерта.",
+    "C1 | Mark und Anna müssen sich kennen.": "Марк и Анна, должно быть, знакомы.",
+    "C1 | Die Frau im Kleid könnte zu spät gekommen sein.": "Женщина в платье, возможно, опоздала.",
+    "C1 | Der Lehrer dürfte schon lange Spanisch unterrichten.": "Учитель, вероятно, давно преподаёт испанский.",
+    "C1 | Der Lehrer soll aus Sevilla kommen.": "Говорят, учитель из Севильи."
    }
   }
  }

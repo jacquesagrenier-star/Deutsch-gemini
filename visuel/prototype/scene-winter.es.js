@@ -849,6 +849,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "laterne",
      "phrase": "La bicicleta está al lado de la farola.",
+     "sens": "Le vélo est à côté du lampadaire.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>.",
      "latam": {
       "q": "La bicicleta está al lado ___ farol.",
@@ -871,6 +872,7 @@ window.SCENE = {
      "f": "kerze",
      "r": "fenster-2",
      "phrase": "La vela está en la ventana.",
+     "sens": "La bougie est à la fenêtre.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -883,6 +885,7 @@ window.SCENE = {
      "f": "auto",
      "r": "haus",
      "phrase": "El coche está delante de la casa.",
+     "sens": "La voiture est devant la maison.",
      "n": "<b>delante de</b> = devant.",
      "latam": {
       "q": "El carro está ___ casa.",
@@ -899,6 +902,7 @@ window.SCENE = {
      "f": "vogel",
      "r": "baum",
      "phrase": "El pájaro está en el árbol.",
+     "sens": "L'oiseau est sur l'arbre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -911,6 +915,7 @@ window.SCENE = {
      "f": "hund",
      "r": "schnee",
      "phrase": "El perro está en la nieve.",
+     "sens": "Le chien est dans la neige.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -923,6 +928,7 @@ window.SCENE = {
      "f": "rauch",
      "r": "dach",
      "phrase": "El humo sale del tejado.",
+     "sens": "La fumée sort du toit.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -935,6 +941,7 @@ window.SCENE = {
      "f": "bank",
      "r": "fahrrad",
      "phrase": "El banco está al lado de la bicicleta.",
+     "sens": "Le banc est à côté du vélo.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -947,6 +954,7 @@ window.SCENE = {
      "f": "hut",
      "r": "schneemann",
      "phrase": "Hay un sombrero en la cabeza del muñeco.",
+     "sens": "Il y a un chapeau sur la tête du bonhomme de neige.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     }
    ]
@@ -963,6 +971,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna tiene frío.",
+     "sens": "Anna a froid.",
      "n": "Avoir froid → <b>tener</b> frío.",
      "revise": {
       "mot": "tener",
@@ -979,6 +988,7 @@ window.SCENE = {
      "f": "muetze",
      "r": "anna",
      "phrase": "El gorro le queda bien.",
+     "sens": "Le bonnet lui va bien.",
      "n": "<b>quedar bien</b> à quelqu'un → <b>le</b>.",
      "revise": {
       "mot": "quedar",
@@ -995,6 +1005,7 @@ window.SCENE = {
      "f": "schal",
      "r": "schneemann",
      "phrase": "Anna le ha puesto una bufanda al muñeco.",
+     "sens": "Anna a mis une écharpe au bonhomme de neige.",
      "n": "À qui ? → <b>le</b>, même avec « al muñeco » après.",
      "revise": {
       "mot": "poner",
@@ -1010,6 +1021,7 @@ window.SCENE = {
      ],
      "f": "handschuh",
      "phrase": "Anna los lleva puestos.",
+     "sens": "Anna les porte.",
      "n": "Complément direct masculin pluriel → <b>los</b>.",
      "revise": {
       "mot": "llevar",
@@ -1025,6 +1037,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "Al perro le han puesto un abrigo rojo.",
+     "sens": "On a mis un manteau rouge au chien.",
      "n": "À qui ? → <b>le</b>.",
      "revise": {
       "mot": "poner",
@@ -1041,6 +1054,7 @@ window.SCENE = {
      "f": "stiefel",
      "r": "anna",
      "phrase": "Son suyas.",
+     "sens": "Elles sont à elle.",
      "n": "Le possessif seul s'accorde avec la chose : las botas → <b>suyas</b>."
     },
     {
@@ -1053,6 +1067,7 @@ window.SCENE = {
      "f": "karotte",
      "r": "schneemann",
      "phrase": "Anna le da una zanahoria al muñeco.",
+     "sens": "Anna donne une carotte au bonhomme de neige.",
      "n": "À qui ? → <b>le</b>.",
      "revise": {
       "mot": "dar",
@@ -1068,6 +1083,7 @@ window.SCENE = {
      ],
      "f": "besen",
      "phrase": "Anna la ha dejado junto al muro.",
+     "sens": "Anna l'a laissé près du mur.",
      "n": "Complément direct féminin (la escoba) → <b>la</b>.",
      "revise": {
       "mot": "dejar",
@@ -1089,6 +1105,7 @@ window.SCENE = {
      "f": "anna",
      "r": "schneemann",
      "phrase": "La mujer que hace un muñeco de nieve se llama Anna.",
+     "sens": "La femme qui fait un bonhomme de neige s'appelle Anna.",
      "n": "Relative sans virgule, sujet → <b>que</b>."
     },
     {
@@ -1100,6 +1117,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "El perro, cuyo abrigo es rojo, olfatea la nieve.",
+     "sens": "Le chien, dont le manteau est rouge, renifle la neige.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : el abrigo → <b>cuyo</b>."
     },
     {
@@ -1112,6 +1130,7 @@ window.SCENE = {
      "f": "haus",
      "r": "auto",
      "phrase": "La casa delante de la cual está el coche es amarilla.",
+     "sens": "La maison devant laquelle est la voiture est jaune.",
      "n": "Après une préposition composée : <b>la cual</b>, accordé avec la casa.",
      "latam": {
       "q": "La casa delante de ___ está el carro es amarilla.",
@@ -1127,6 +1146,7 @@ window.SCENE = {
      ],
      "f": "auto",
      "phrase": "El coche está cubierto de nieve.",
+     "sens": "La voiture est couverte de neige.",
      "n": "<b>cubrir</b> → participe irrégulier <b>cubierto</b>.",
      "latam": {
       "q": "El carro está ___ de nieve.",
@@ -1142,6 +1162,7 @@ window.SCENE = {
      ],
      "f": "besen",
      "phrase": "El camino tiene que ser barrido.",
+     "sens": "Le chemin doit être balayé.",
      "n": "Passif <b>ser</b> + participe accordé : el camino → barrid<b>o</b>."
     },
     {
@@ -1154,6 +1175,7 @@ window.SCENE = {
      "f": "kerze",
      "r": "fenster-2",
      "phrase": "La vela está encendida en la ventana.",
+     "sens": "La bougie est allumée à la fenêtre.",
      "n": "<b>estar</b> + participe, accordé : la vela → encendid<b>a</b>."
     }
    ]
@@ -1171,6 +1193,7 @@ window.SCENE = {
      "f": "schneemann",
      "r": "anna",
      "phrase": "El muñeco debe de gustarle mucho.",
+     "sens": "Le bonhomme de neige doit beaucoup lui plaire.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1182,6 +1205,7 @@ window.SCENE = {
      ],
      "f": "fahrrad",
      "phrase": "Puede que la bicicleta esté ahí desde anoche.",
+     "sens": "Le vélo est peut-être là depuis hier soir.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1193,6 +1217,7 @@ window.SCENE = {
      ],
      "f": "schnee",
      "phrase": "La nieve durará hasta mañana.",
+     "sens": "La neige tiendra sans doute jusqu'à demain.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1204,6 +1229,7 @@ window.SCENE = {
      ],
      "f": "himmel",
      "phrase": "Dicen en la radio que será el invierno más frío en diez años.",
+     "sens": "À la radio, on dit que ce sera l'hiver le plus froid depuis dix ans.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1253,6 +1279,38 @@ window.SCENE = {
     "C1 | Puede que la bicicleta esté ahí desde anoche.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | La nieve durará hasta mañana.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen en la radio que será el invierno más frío en diez años.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | La bicicleta está al lado del farol.": "The bicycle is next to the lamppost.",
+    "A2 | La bicicleta está al lado de la farola.": "The bicycle is next to the lamppost.",
+    "A2 | La vela está en la ventana.": "The candle is in the window.",
+    "A2 | El carro está delante de la casa.": "The car is in front of the house.",
+    "A2 | El coche está delante de la casa.": "The car is in front of the house.",
+    "A2 | El pájaro está en el árbol.": "The bird is in the tree.",
+    "A2 | El perro está en la nieve.": "The dog is in the snow.",
+    "A2 | El humo sale del tejado.": "Smoke is coming out of the roof.",
+    "A2 | El banco está al lado de la bicicleta.": "The bench is next to the bicycle.",
+    "A2 | Hay un sombrero en la cabeza del muñeco.": "There is a hat on the snowman's head.",
+    "B1 | Anna tiene frío.": "Anna is cold.",
+    "B1 | El gorro le queda bien.": "The hat suits her.",
+    "B1 | Anna le ha puesto una bufanda al muñeco.": "Anna has put a scarf on the snowman.",
+    "B1 | Anna los lleva puestos.": "Anna is wearing them.",
+    "B1 | Al perro le han puesto un abrigo rojo.": "The dog has been given a red coat.",
+    "B1 | Son suyas.": "They are hers.",
+    "B1 | Anna le da una zanahoria al muñeco.": "Anna gives the snowman a carrot.",
+    "B1 | Anna la ha dejado junto al muro.": "Anna has left it by the wall.",
+    "B2 | La mujer que hace un muñeco de nieve se llama Anna.": "The woman making a snowman is called Anna.",
+    "B2 | El perro, cuyo abrigo es rojo, olfatea la nieve.": "The dog, whose coat is red, is sniffing the snow.",
+    "B2 | La casa delante de la cual está el carro es amarilla.": "The house the car is in front of is yellow.",
+    "B2 | La casa delante de la cual está el coche es amarilla.": "The house the car is in front of is yellow.",
+    "B2 | El carro está cubierto de nieve.": "The car is covered with snow.",
+    "B2 | El coche está cubierto de nieve.": "The car is covered with snow.",
+    "B2 | El camino tiene que ser barrido.": "The path has to be swept.",
+    "B2 | La vela está encendida en la ventana.": "The candle is lit in the window.",
+    "C1 | El muñeco debe de gustarle mucho.": "She must really like the snowman.",
+    "C1 | Puede que la bicicleta esté ahí desde anoche.": "The bicycle may have been there since last night.",
+    "C1 | La nieve durará hasta mañana.": "The snow will probably last until tomorrow.",
+    "C1 | Dicen en la radio que será el invierno más frío en diez años.": "On the radio they say it will be the coldest winter in ten years."
    }
   },
   "tr": {
@@ -1263,7 +1321,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1273,7 +1332,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1283,7 +1343,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1328,6 +1389,38 @@ window.SCENE = {
     "C1 | Puede que la bicicleta esté ahí desde anoche.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | La nieve durará hasta mañana.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen en la radio que será el invierno más frío en diez años.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La bicicleta está al lado del farol.": "الدراجة بجانب عمود الإنارة.",
+    "A2 | La bicicleta está al lado de la farola.": "الدراجة بجانب عمود الإنارة.",
+    "A2 | La vela está en la ventana.": "الشمعة في النافذة.",
+    "A2 | El carro está delante de la casa.": "السيارة أمام البيت.",
+    "A2 | El coche está delante de la casa.": "السيارة أمام البيت.",
+    "A2 | El pájaro está en el árbol.": "العصفور على الشجرة.",
+    "A2 | El perro está en la nieve.": "الكلب في الثلج.",
+    "A2 | El humo sale del tejado.": "يخرج الدخان من السطح.",
+    "A2 | El banco está al lado de la bicicleta.": "المقعد بجانب الدراجة.",
+    "A2 | Hay un sombrero en la cabeza del muñeco.": "هناك قبّعة على رأس رجل الثلج.",
+    "B1 | Anna tiene frío.": "آنا تشعر بالبرد.",
+    "B1 | El gorro le queda bien.": "القبّعة تليق بها.",
+    "B1 | Anna le ha puesto una bufanda al muñeco.": "وضعت آنا وشاحاً على رجل الثلج.",
+    "B1 | Anna los lleva puestos.": "آنا ترتديها.",
+    "B1 | Al perro le han puesto un abrigo rojo.": "ألبسوا الكلب معطفاً أحمر.",
+    "B1 | Son suyas.": "إنها لها.",
+    "B1 | Anna le da una zanahoria al muñeco.": "تعطي آنا جزرة لرجل الثلج.",
+    "B1 | Anna la ha dejado junto al muro.": "تركتها آنا عند الجدار.",
+    "B2 | La mujer que hace un muñeco de nieve se llama Anna.": "المرأة التي تصنع رجل ثلج اسمها آنا.",
+    "B2 | El perro, cuyo abrigo es rojo, olfatea la nieve.": "الكلب ذو المعطف الأحمر يشمّ الثلج.",
+    "B2 | La casa delante de la cual está el carro es amarilla.": "البيت الذي أمامه السيارة أصفر.",
+    "B2 | La casa delante de la cual está el coche es amarilla.": "البيت الذي أمامه السيارة أصفر.",
+    "B2 | El carro está cubierto de nieve.": "السيارة مغطّاة بالثلج.",
+    "B2 | El coche está cubierto de nieve.": "السيارة مغطّاة بالثلج.",
+    "B2 | El camino tiene que ser barrido.": "يجب كنس الطريق.",
+    "B2 | La vela está encendida en la ventana.": "الشمعة مشتعلة في النافذة.",
+    "C1 | El muñeco debe de gustarle mucho.": "لا بدّ أن رجل الثلج يعجبها كثيراً.",
+    "C1 | Puede que la bicicleta esté ahí desde anoche.": "ربما تكون الدراجة هناك منذ ليلة أمس.",
+    "C1 | La nieve durará hasta mañana.": "على الأرجح يدوم الثلج حتى الغد.",
+    "C1 | Dicen en la radio que será el invierno más frío en diez años.": "يقولون في الراديو إنه سيكون أبرد شتاء منذ عشر سنوات."
    }
   },
   "pt": {
@@ -1373,6 +1466,38 @@ window.SCENE = {
     "C1 | Puede que la bicicleta esté ahí desde anoche.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | La nieve durará hasta mañana.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen en la radio que será el invierno más frío en diez años.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La bicicleta está al lado del farol.": "A bicicleta está ao lado do poste.",
+    "A2 | La bicicleta está al lado de la farola.": "A bicicleta está ao lado do poste.",
+    "A2 | La vela está en la ventana.": "A vela está na janela.",
+    "A2 | El carro está delante de la casa.": "O carro está em frente à casa.",
+    "A2 | El coche está delante de la casa.": "O carro está em frente à casa.",
+    "A2 | El pájaro está en el árbol.": "O pássaro está na árvore.",
+    "A2 | El perro está en la nieve.": "O cachorro está na neve.",
+    "A2 | El humo sale del tejado.": "A fumaça sai do telhado.",
+    "A2 | El banco está al lado de la bicicleta.": "O banco está ao lado da bicicleta.",
+    "A2 | Hay un sombrero en la cabeza del muñeco.": "Há um chapéu na cabeça do boneco de neve.",
+    "B1 | Anna tiene frío.": "Anna está com frio.",
+    "B1 | El gorro le queda bien.": "O gorro fica bem nela.",
+    "B1 | Anna le ha puesto una bufanda al muñeco.": "Anna pôs um cachecol no boneco de neve.",
+    "B1 | Anna los lleva puestos.": "Anna está usando-as.",
+    "B1 | Al perro le han puesto un abrigo rojo.": "Puseram um casaco vermelho no cachorro.",
+    "B1 | Son suyas.": "São dela.",
+    "B1 | Anna le da una zanahoria al muñeco.": "Anna dá uma cenoura ao boneco de neve.",
+    "B1 | Anna la ha dejado junto al muro.": "Anna deixou-a junto ao muro.",
+    "B2 | La mujer que hace un muñeco de nieve se llama Anna.": "A mulher que faz um boneco de neve se chama Anna.",
+    "B2 | El perro, cuyo abrigo es rojo, olfatea la nieve.": "O cachorro, cujo casaco é vermelho, cheira a neve.",
+    "B2 | La casa delante de la cual está el carro es amarilla.": "A casa em frente à qual está o carro é amarela.",
+    "B2 | La casa delante de la cual está el coche es amarilla.": "A casa em frente à qual está o carro é amarela.",
+    "B2 | El carro está cubierto de nieve.": "O carro está coberto de neve.",
+    "B2 | El coche está cubierto de nieve.": "O carro está coberto de neve.",
+    "B2 | El camino tiene que ser barrido.": "O caminho tem que ser varrido.",
+    "B2 | La vela está encendida en la ventana.": "A vela está acesa na janela.",
+    "C1 | El muñeco debe de gustarle mucho.": "Ela deve estar gostando muito do boneco de neve.",
+    "C1 | Puede que la bicicleta esté ahí desde anoche.": "Pode ser que a bicicleta esteja ali desde ontem à noite.",
+    "C1 | La nieve durará hasta mañana.": "A neve provavelmente vai durar até amanhã.",
+    "C1 | Dicen en la radio que será el invierno más frío en diez años.": "No rádio dizem que será o inverno mais frio em dez anos."
    }
   },
   "pl": {
@@ -1383,7 +1508,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1393,7 +1519,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

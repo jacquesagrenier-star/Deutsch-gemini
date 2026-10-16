@@ -1768,6 +1768,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "El reloj está en la pared.",
+     "sens": "L'horloge est au mur.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1780,6 +1781,7 @@ window.SCENE = {
      "f": "medikament",
      "r": "regal",
      "phrase": "Los medicamentos están en la estantería.",
+     "sens": "Les médicaments sont sur l'étagère.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1792,6 +1794,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "schalter",
      "phrase": "La planta está en el mostrador.",
+     "sens": "La plante est sur le comptoir.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -1804,6 +1807,7 @@ window.SCENE = {
      "f": "mann",
      "r": "stuhl",
      "phrase": "El señor está sentado en la silla.",
+     "sens": "Le monsieur est assis sur la chaise.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1816,6 +1820,7 @@ window.SCENE = {
      "f": "waage",
      "r": "stuhl",
      "phrase": "La báscula está al lado de la silla.",
+     "sens": "La balance est à côté de la chaise.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1828,6 +1833,7 @@ window.SCENE = {
      "f": "auto",
      "r": "strasse",
      "phrase": "Hay un coche rojo en la calle.",
+     "sens": "Il y a une voiture rouge dans la rue.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue.",
      "latam": {
       "q": "___ un carro rojo en la calle.",
@@ -1844,6 +1850,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "tuer",
      "phrase": "La papelera está al lado de la puerta.",
+     "sens": "La poubelle est à côté de la porte.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>.",
      "latam": {
       "q": "El bote de basura está al lado ___ puerta.",
@@ -1860,6 +1867,7 @@ window.SCENE = {
      "f": "karton",
      "r": "boden",
      "phrase": "La caja de cartón está en el suelo.",
+     "sens": "Le carton est par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "La caja de cartón está ___ piso.",
@@ -1881,6 +1889,7 @@ window.SCENE = {
      "f": "medikament-6",
      "r": "mark",
      "phrase": "Mark toma una pastilla cada ocho horas.",
+     "sens": "Mark prend un comprimé toutes les huit heures.",
      "n": "<b>cada</b> + singulier : cada ocho horas.",
      "revise": {
       "mot": "tomar",
@@ -1896,6 +1905,7 @@ window.SCENE = {
      ],
      "f": "flasche-5",
      "phrase": "Toma el jarabe dos veces al día.",
+     "sens": "Il prend le sirop deux fois par jour.",
      "n": "<b>vez</b> au pluriel → dos <b>veces</b>.",
      "revise": {
       "mot": "tomar",
@@ -1911,6 +1921,7 @@ window.SCENE = {
      ],
      "f": "medikament-6",
      "phrase": "Nunca tome las pastillas con alcohol.",
+     "sens": "Ne prenez jamais les comprimés avec de l'alcool.",
      "n": "<b>nunca</b> devant le verbe : sans « no »."
     },
     {
@@ -1922,6 +1933,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "La farmacéutica trabaja todos los días.",
+     "sens": "La pharmacienne travaille tous les jours.",
      "n": "<b>todos los días</b> = tous les jours.",
      "revise": {
       "mot": "trabajar",
@@ -1937,6 +1949,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark nunca ha tenido fiebre.",
+     "sens": "Mark n'a jamais eu de fièvre.",
      "n": "<b>nunca</b> = jamais ; <b>nada</b> = rien ; <b>nadie</b> = personne.",
      "revise": {
       "mot": "tener",
@@ -1952,6 +1965,7 @@ window.SCENE = {
      ],
      "f": "flasche-5",
      "phrase": "¿Con qué frecuencia toma el jarabe?",
+     "sens": "À quelle fréquence prend-il le sirop ?",
      "n": "<b>¿con qué frecuencia?</b> = à quelle fréquence ?"
     },
     {
@@ -1963,6 +1977,7 @@ window.SCENE = {
      ],
      "f": "mann",
      "phrase": "El señor viene a la farmacia una vez a la semana.",
+     "sens": "Le monsieur vient à la pharmacie une fois par semaine.",
      "n": "una vez <b>a la</b> semana = une fois par semaine.",
      "revise": {
       "mot": "venir",
@@ -1984,6 +1999,7 @@ window.SCENE = {
      "f": "mark",
      "r": "medikament-6",
      "phrase": "Si Mark tiene fiebre, tomará una pastilla.",
+     "sens": "Si Mark a de la fièvre, il prendra un comprimé.",
      "n": "Condition réelle : <b>si</b> + présent de l'indicatif.",
      "revise": {
       "mot": "tener",
@@ -1999,6 +2015,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Si no mejora, vaya al médico.",
+     "sens": "Si ça ne s'améliore pas, allez chez le médecin.",
      "n": "Principale à l'impératif (usted) : <b>vaya</b>.",
      "revise": {
       "mot": "ir",
@@ -2014,6 +2031,7 @@ window.SCENE = {
      ],
      "f": "flasche-5",
      "phrase": "Si el jarabe no funciona, vuelva a la farmacia.",
+     "sens": "Si le sirop ne fait pas effet, revenez à la pharmacie.",
      "n": "Après <b>si</b> réel, jamais le subjonctif présent : funciona.",
      "revise": {
       "mot": "funcionar",
@@ -2029,6 +2047,7 @@ window.SCENE = {
      ],
      "f": "medikament-6",
      "phrase": "Si toma las pastillas, estará mejor mañana.",
+     "sens": "S'il prend les comprimés, il ira mieux demain.",
      "n": "Principale au futur : <b>estará</b>.",
      "revise": {
       "mot": "estar",
@@ -2045,6 +2064,7 @@ window.SCENE = {
      "f": "mann",
      "r": "stuhl",
      "phrase": "Si el señor espera mucho tiempo, se sentará.",
+     "sens": "Si le monsieur attend longtemps, il s'assiéra.",
      "n": "Condition réelle : <b>si</b> + présent de l'indicatif.",
      "revise": {
       "mot": "esperar",
@@ -2060,6 +2080,7 @@ window.SCENE = {
      ],
      "f": "flasche-5",
      "phrase": "Si tienes tos, toma este jarabe.",
+     "sens": "Si tu tousses, prends ce sirop.",
      "n": "Principale à l'impératif (tú) : <b>toma</b>.",
      "revise": {
       "mot": "tomar",
@@ -2081,6 +2102,7 @@ window.SCENE = {
      "f": "mark",
      "r": "taschentuch",
      "phrase": "Debe de estar resfriado.",
+     "sens": "Il doit être enrhumé.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -2093,6 +2115,7 @@ window.SCENE = {
      "f": "mann",
      "r": "stuhl",
      "phrase": "Puede que el señor esté esperando sus medicamentos.",
+     "sens": "Le monsieur attend peut-être ses médicaments.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -2105,6 +2128,7 @@ window.SCENE = {
      "f": "mark",
      "r": "flasche-5",
      "phrase": "Mark estará mejor en dos días.",
+     "sens": "Mark ira sans doute mieux dans deux jours.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -2116,6 +2140,7 @@ window.SCENE = {
      ],
      "f": "schalter",
      "phrase": "Dicen que esta farmacia es la más antigua del barrio.",
+     "sens": "On dit que cette pharmacie est la plus ancienne du quartier.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -2163,6 +2188,36 @@ window.SCENE = {
     "C1 | Puede que el señor esté esperando sus medicamentos.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Mark estará mejor en dos días.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que esta farmacia es la más antigua del barrio.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "The clock is on the wall.",
+    "A2 | Los medicamentos están en la estantería.": "The medicines are on the shelf.",
+    "A2 | La planta está en el mostrador.": "The plant is on the counter.",
+    "A2 | El señor está sentado en la silla.": "The man is sitting on the chair.",
+    "A2 | La báscula está al lado de la silla.": "The scale is next to the chair.",
+    "A2 | Hay un carro rojo en la calle.": "There is a red car in the street.",
+    "A2 | Hay un coche rojo en la calle.": "There is a red car in the street.",
+    "A2 | El bote de basura está al lado de la puerta.": "The bin is next to the door.",
+    "A2 | La papelera está al lado de la puerta.": "The bin is next to the door.",
+    "A2 | La caja de cartón está en el piso.": "The cardboard box is on the floor.",
+    "A2 | La caja de cartón está en el suelo.": "The cardboard box is on the floor.",
+    "B1 | Mark toma una pastilla cada ocho horas.": "Mark takes a tablet every eight hours.",
+    "B1 | Toma el jarabe dos veces al día.": "He takes the syrup twice a day.",
+    "B1 | Nunca tome las pastillas con alcohol.": "Never take the tablets with alcohol.",
+    "B1 | La farmacéutica trabaja todos los días.": "The pharmacist works every day.",
+    "B1 | Mark nunca ha tenido fiebre.": "Mark has never had a fever.",
+    "B1 | ¿Con qué frecuencia toma el jarabe?": "How often does he take the syrup?",
+    "B1 | El señor viene a la farmacia una vez a la semana.": "The man comes to the pharmacy once a week.",
+    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "If Mark has a fever, he will take a tablet.",
+    "B2 | Si no mejora, vaya al médico.": "If it does not get better, go to the doctor.",
+    "B2 | Si el jarabe no funciona, vuelva a la farmacia.": "If the syrup does not work, come back to the pharmacy.",
+    "B2 | Si toma las pastillas, estará mejor mañana.": "If he takes the tablets, he will feel better tomorrow.",
+    "B2 | Si el señor espera mucho tiempo, se sentará.": "If the man waits a long time, he will sit down.",
+    "B2 | Si tienes tos, toma este jarabe.": "If you have a cough, take this syrup.",
+    "C1 | Debe de estar resfriado.": "He must have a cold.",
+    "C1 | Puede que el señor esté esperando sus medicamentos.": "The man may be waiting for his medicines.",
+    "C1 | Mark estará mejor en dos días.": "Mark will probably be better in two days.",
+    "C1 | Dicen que esta farmacia es la más antigua del barrio.": "They say this pharmacy is the oldest in the neighbourhood."
    }
   },
   "tr": {
@@ -2173,7 +2228,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -2183,7 +2239,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -2193,7 +2250,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -2236,6 +2294,36 @@ window.SCENE = {
     "C1 | Puede que el señor esté esperando sus medicamentos.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Mark estará mejor en dos días.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que esta farmacia es la más antigua del barrio.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "الساعة على الحائط.",
+    "A2 | Los medicamentos están en la estantería.": "الأدوية على الرفّ.",
+    "A2 | La planta está en el mostrador.": "النبتة على المنضدة.",
+    "A2 | El señor está sentado en la silla.": "الرجل جالس على الكرسي.",
+    "A2 | La báscula está al lado de la silla.": "الميزان بجانب الكرسي.",
+    "A2 | Hay un carro rojo en la calle.": "هناك سيارة حمراء في الشارع.",
+    "A2 | Hay un coche rojo en la calle.": "هناك سيارة حمراء في الشارع.",
+    "A2 | El bote de basura está al lado de la puerta.": "سلّة المهملات بجانب الباب.",
+    "A2 | La papelera está al lado de la puerta.": "سلّة المهملات بجانب الباب.",
+    "A2 | La caja de cartón está en el piso.": "الصندوق الكرتوني على الأرض.",
+    "A2 | La caja de cartón está en el suelo.": "الصندوق الكرتوني على الأرض.",
+    "B1 | Mark toma una pastilla cada ocho horas.": "يأخذ مارك قرصاً كل ثماني ساعات.",
+    "B1 | Toma el jarabe dos veces al día.": "يأخذ الشراب مرتين في اليوم.",
+    "B1 | Nunca tome las pastillas con alcohol.": "لا تأخذ الأقراص مع الكحول أبداً.",
+    "B1 | La farmacéutica trabaja todos los días.": "تعمل الصيدلانية كل يوم.",
+    "B1 | Mark nunca ha tenido fiebre.": "لم يُصب مارك بالحمّى قطّ.",
+    "B1 | ¿Con qué frecuencia toma el jarabe?": "كم مرة يأخذ الشراب؟",
+    "B1 | El señor viene a la farmacia una vez a la semana.": "يأتي الرجل إلى الصيدلية مرة في الأسبوع.",
+    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "إذا أصاب مارك الحمّى، فسيأخذ قرصاً.",
+    "B2 | Si no mejora, vaya al médico.": "إذا لم تتحسّن، فاذهب إلى الطبيب.",
+    "B2 | Si el jarabe no funciona, vuelva a la farmacia.": "إذا لم ينفع الشراب، فعُد إلى الصيدلية.",
+    "B2 | Si toma las pastillas, estará mejor mañana.": "إذا أخذ الأقراص، فسيكون أفضل غداً.",
+    "B2 | Si el señor espera mucho tiempo, se sentará.": "إذا انتظر الرجل طويلاً، فسيجلس.",
+    "B2 | Si tienes tos, toma este jarabe.": "إذا كان عندك سعال، فخذ هذا الشراب.",
+    "C1 | Debe de estar resfriado.": "لا بدّ أنه مصاب بالزكام.",
+    "C1 | Puede que el señor esté esperando sus medicamentos.": "ربما ينتظر الرجل أدويته.",
+    "C1 | Mark estará mejor en dos días.": "سيكون مارك أفضل على الأرجح خلال يومين.",
+    "C1 | Dicen que esta farmacia es la más antigua del barrio.": "يُقال إن هذه الصيدلية هي الأقدم في الحيّ."
    }
   },
   "pt": {
@@ -2279,6 +2367,36 @@ window.SCENE = {
     "C1 | Puede que el señor esté esperando sus medicamentos.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Mark estará mejor en dos días.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que esta farmacia es la más antigua del barrio.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "O relógio está na parede.",
+    "A2 | Los medicamentos están en la estantería.": "Os remédios estão na prateleira.",
+    "A2 | La planta está en el mostrador.": "A planta está no balcão.",
+    "A2 | El señor está sentado en la silla.": "O senhor está sentado na cadeira.",
+    "A2 | La báscula está al lado de la silla.": "A balança está ao lado da cadeira.",
+    "A2 | Hay un carro rojo en la calle.": "Há um carro vermelho na rua.",
+    "A2 | Hay un coche rojo en la calle.": "Há um carro vermelho na rua.",
+    "A2 | El bote de basura está al lado de la puerta.": "A lixeira está ao lado da porta.",
+    "A2 | La papelera está al lado de la puerta.": "A lixeira está ao lado da porta.",
+    "A2 | La caja de cartón está en el piso.": "A caixa de papelão está no chão.",
+    "A2 | La caja de cartón está en el suelo.": "A caixa de papelão está no chão.",
+    "B1 | Mark toma una pastilla cada ocho horas.": "Mark toma um comprimido a cada oito horas.",
+    "B1 | Toma el jarabe dos veces al día.": "Ele toma o xarope duas vezes por dia.",
+    "B1 | Nunca tome las pastillas con alcohol.": "Nunca tome os comprimidos com álcool.",
+    "B1 | La farmacéutica trabaja todos los días.": "A farmacêutica trabalha todos os dias.",
+    "B1 | Mark nunca ha tenido fiebre.": "Mark nunca teve febre.",
+    "B1 | ¿Con qué frecuencia toma el jarabe?": "Com que frequência ele toma o xarope?",
+    "B1 | El señor viene a la farmacia una vez a la semana.": "O senhor vem à farmácia uma vez por semana.",
+    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "Se Mark tiver febre, vai tomar um comprimido.",
+    "B2 | Si no mejora, vaya al médico.": "Se não melhorar, vá ao médico.",
+    "B2 | Si el jarabe no funciona, vuelva a la farmacia.": "Se o xarope não funcionar, volte à farmácia.",
+    "B2 | Si toma las pastillas, estará mejor mañana.": "Se ele tomar os comprimidos, estará melhor amanhã.",
+    "B2 | Si el señor espera mucho tiempo, se sentará.": "Se o senhor esperar muito tempo, vai se sentar.",
+    "B2 | Si tienes tos, toma este jarabe.": "Se você estiver com tosse, tome este xarope.",
+    "C1 | Debe de estar resfriado.": "Ele deve estar resfriado.",
+    "C1 | Puede que el señor esté esperando sus medicamentos.": "Pode ser que o senhor esteja esperando os seus remédios.",
+    "C1 | Mark estará mejor en dos días.": "Mark provavelmente estará melhor em dois dias.",
+    "C1 | Dicen que esta farmacia es la más antigua del barrio.": "Dizem que esta farmácia é a mais antiga do bairro."
    }
   },
   "pl": {
@@ -2289,7 +2407,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -2299,7 +2418,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

@@ -1128,6 +1128,7 @@ window.SCENE = {
      "f": "stethoskop",
      "r": "ruecken",
      "phrase": "La médica le pone el estetoscopio en la espalda.",
+     "sens": "La médecin lui pose le stéthoscope sur le dos.",
      "n": "Partie du corps → l'<b>article</b> (la espalda), pas le possessif."
     },
     {
@@ -1140,6 +1141,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "La médica está al lado del paciente.",
+     "sens": "La médecin est à côté du patient.",
      "n": "<b>al lado de</b> = à côté de."
     },
     {
@@ -1152,6 +1154,7 @@ window.SCENE = {
      "f": "hand-l",
      "r": "po",
      "phrase": "Mark tiene las manos al lado del trasero.",
+     "sens": "Mark a les mains à côté des fesses.",
      "n": "<b>al lado de</b> + el trasero → al lado <b>del</b> trasero."
     },
     {
@@ -1164,6 +1167,7 @@ window.SCENE = {
      "f": "wirbelsaeule",
      "r": "schulterblatt",
      "phrase": "La columna vertebral está entre los omóplatos.",
+     "sens": "La colonne vertébrale est entre les omoplates.",
      "n": "<b>entre</b> = entre."
     },
     {
@@ -1176,6 +1180,7 @@ window.SCENE = {
      "f": "wade",
      "r": "kniekehle",
      "phrase": "Las pantorrillas están debajo de las corvas.",
+     "sens": "Les mollets sont sous les creux des genoux.",
      "n": "<b>debajo de</b> = sous, en dessous de."
     },
     {
@@ -1188,6 +1193,7 @@ window.SCENE = {
      "f": "waage",
      "r": "wand",
      "phrase": "La báscula está junto a la pared.",
+     "sens": "La balance est contre le mur.",
      "n": "Avec <b>la</b> (une chose précise) → <b>estar</b>."
     }
    ]
@@ -1204,6 +1210,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Señor, dese la vuelta, por favor.",
+     "sens": "Monsieur, retournez-vous, s'il vous plaît.",
      "n": "<b>darse la vuelta</b> = se retourner. Impératif d'usted : dé + se → <b>dese</b>."
     },
     {
@@ -1220,6 +1227,7 @@ window.SCENE = {
       "mot": "escuchar",
       "cat": "verbe"
      },
+     "sens": "Mark s'est retourné pour que la médecin ausculte son dos.",
      "n": "<b>para que</b> (un but) → toujours le <b>subjonctif</b>."
     },
     {
@@ -1236,6 +1244,7 @@ window.SCENE = {
       "mot": "poner",
       "cat": "verbe"
      },
+     "sens": "La médecin pose le stéthoscope sur le dos.",
      "n": "<b>poner</b> = poser, mettre (un objet). <b>ponerse</b> = mettre sur soi."
     },
     {
@@ -1251,6 +1260,7 @@ window.SCENE = {
       "mot": "dejar",
       "cat": "verbe"
      },
+     "sens": "Laissez les bras détendus, s'il vous plaît.",
      "n": "L'adjectif s'accorde : los brazos → <b>sueltos</b>."
     },
     {
@@ -1262,6 +1272,7 @@ window.SCENE = {
      ],
      "f": "handflaeche-r",
      "phrase": "Se le ven las palmas de las manos.",
+     "sens": "On voit les paumes de ses mains.",
      "n": "<b>se</b> + verbe accordé avec ce qu'on voit : las palmas → <b>ven</b>."
     },
     {
@@ -1273,6 +1284,7 @@ window.SCENE = {
      ],
      "f": "ruecken",
      "phrase": "Señor, ahora suelte el aire despacio.",
+     "sens": "Monsieur, maintenant expirez lentement.",
      "n": "Impératif d'usted : soltar → <b>suelte</b> (o devient ue)."
     }
    ]
@@ -1290,6 +1302,7 @@ window.SCENE = {
      "f": "ruecken",
      "r": "hand-aerztin-haut",
      "phrase": "Su espalda está siendo examinada.",
+     "sens": "Son dos est en train d'être examiné.",
      "n": "Passif en cours : <b>estar siendo</b> + participe."
     },
     {
@@ -1302,6 +1315,7 @@ window.SCENE = {
      "f": "mark",
      "r": "ruecken",
      "phrase": "Este es el paciente cuya espalda examina la médica.",
+     "sens": "C'est le patient dont la médecin examine le dos.",
      "n": "<b>cuyo</b> s'accorde avec la espalda → <b>cuya</b>."
     },
     {
@@ -1314,6 +1328,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "ruecken",
      "phrase": "La médica, cuyo estetoscopio está en la espalda de Mark, escucha con atención.",
+     "sens": "La médecin, dont le stéthoscope est sur le dos de Mark, écoute attentivement.",
      "n": "<b>cuyo</b> s'accorde avec el estetoscopio → <b>cuyo</b>, même si la médica est féminin."
     },
     {
@@ -1329,6 +1344,7 @@ window.SCENE = {
       "mot": "examinar",
       "cat": "verbe"
      },
+     "sens": "Avant que la médecin examine son dos, Mark doit respirer profondément.",
      "n": "<b>antes de que</b> → toujours le <b>subjonctif</b>."
     },
     {
@@ -1341,6 +1357,7 @@ window.SCENE = {
      "f": "schulterblatt",
      "r": "wirbelsaeule",
      "phrase": "Los omóplatos, entre los cuales está la columna, se ven bien.",
+     "sens": "Les omoplates, entre lesquelles se trouve la colonne, sont bien visibles.",
      "n": "Après <b>entre</b> : <b>los cuales</b> (ou los que)."
     },
     {
@@ -1352,6 +1369,7 @@ window.SCENE = {
      ],
      "f": "fuss-l",
      "phrase": "Los pies de Mark están descalzos.",
+     "sens": "Les pieds de Mark sont nus.",
      "n": "Un état du moment → <b>estar</b> descalzo (pieds nus)."
     }
    ]
@@ -1369,6 +1387,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "Ya debe de haberlo examinado muchas veces.",
+     "sens": "Elle a dû déjà l'examiner de nombreuses fois.",
      "n": "<b>deber de</b> + infinitif passé = une déduction sur le passé."
     },
     {
@@ -1380,6 +1399,7 @@ window.SCENE = {
      ],
      "f": "ruecken",
      "phrase": "Si a Mark le doliera la espalda, se lo habría dicho a la médica.",
+     "sens": "Si Mark avait mal au dos, il l'aurait dit à la médecin.",
      "n": "<b>si</b> + subjonctif imparfait (doliera) : une hypothèse contraire à la réalité."
     },
     {
@@ -1392,6 +1412,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "ruecken",
      "phrase": "Si la médica oyera un ruido raro, le haría una radiografía.",
+     "sens": "Si la médecin entendait un bruit étrange, elle lui ferait passer une radio.",
      "n": "Hypothèse irréelle : <b>si</b> + subjonctif imparfait, puis conditionnel."
     },
     {
@@ -1403,6 +1424,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Dicen que Mark nunca ha estado enfermo de verdad.",
+     "sens": "On dit que Mark n'a jamais été vraiment malade.",
      "n": "Après <b>dicen que</b> → l'<b>indicatif</b> (ha estado)."
     },
     {
@@ -1414,6 +1436,7 @@ window.SCENE = {
      ],
      "f": "wirbelsaeule",
      "phrase": "Que tenga la espalda tan recta se debe al deporte.",
+     "sens": "Qu'il ait le dos si droit, c'est grâce au sport.",
      "n": "<b>deberse a</b> = être dû à. (<b>deber de</b> exprime une supposition.)"
     },
     {
@@ -1425,6 +1448,7 @@ window.SCENE = {
      ],
      "f": "aerztin",
      "phrase": "Si no hubiera oído nada, ya habría terminado.",
+     "sens": "Si elle n'avait rien entendu, elle aurait déjà fini.",
      "n": "Hypothèse sur le passé : <b>si</b> + plus-que-parfait du subjonctif."
     }
    ]
@@ -1480,6 +1504,32 @@ window.SCENE = {
     "C1 | Dicen que Mark nunca ha estado enfermo de verdad.": "After <b>dicen que</b> → the <b>indicative</b> (ha estado).",
     "C1 | Que tenga la espalda tan recta se debe al deporte.": "<b>deberse a</b> = to be due to. (<b>deber de</b> expresses an assumption.)",
     "C1 | Si no hubiera oído nada, ya habría terminado.": "A hypothesis about the past: <b>si</b> + pluperfect subjunctive."
+   },
+   "sens": {
+    "A2 | La médica le pone el estetoscopio en la espalda.": "The doctor puts the stethoscope on his back.",
+    "A2 | La médica está al lado del paciente.": "The doctor is next to the patient.",
+    "A2 | Mark tiene las manos al lado del trasero.": "Mark has his hands next to his bottom.",
+    "A2 | La columna vertebral está entre los omóplatos.": "The spine is between the shoulder blades.",
+    "A2 | Las pantorrillas están debajo de las corvas.": "The calves are below the backs of the knees.",
+    "A2 | La báscula está junto a la pared.": "The scale is by the wall.",
+    "B1 | Señor, dese la vuelta, por favor.": "Sir, turn around, please.",
+    "B1 | Mark se ha dado la vuelta para que la médica le escuche la espalda.": "Mark has turned around so that the doctor can listen to his back.",
+    "B1 | La médica pone el estetoscopio en la espalda.": "The doctor places the stethoscope on his back.",
+    "B1 | Deje los brazos sueltos, por favor.": "Let your arms hang loose, please.",
+    "B1 | Se le ven las palmas de las manos.": "You can see the palms of his hands.",
+    "B1 | Señor, ahora suelte el aire despacio.": "Sir, now breathe out slowly.",
+    "B2 | Su espalda está siendo examinada.": "His back is being examined.",
+    "B2 | Este es el paciente cuya espalda examina la médica.": "This is the patient whose back the doctor is examining.",
+    "B2 | La médica, cuyo estetoscopio está en la espalda de Mark, escucha con atención.": "The doctor, whose stethoscope is on Mark's back, is listening closely.",
+    "B2 | Antes de que la médica examine la espalda, Mark tiene que respirar hondo.": "Before the doctor examines his back, Mark has to breathe deeply.",
+    "B2 | Los omóplatos, entre los cuales está la columna, se ven bien.": "The shoulder blades, between which the spine lies, are clearly visible.",
+    "B2 | Los pies de Mark están descalzos.": "Mark's feet are bare.",
+    "C1 | Ya debe de haberlo examinado muchas veces.": "She must have examined him many times already.",
+    "C1 | Si a Mark le doliera la espalda, se lo habría dicho a la médica.": "If Mark had back pain, he would have told the doctor.",
+    "C1 | Si la médica oyera un ruido raro, le haría una radiografía.": "If the doctor heard a strange noise, she would give him an X-ray.",
+    "C1 | Dicen que Mark nunca ha estado enfermo de verdad.": "They say Mark has never been really ill.",
+    "C1 | Que tenga la espalda tan recta se debe al deporte.": "His having such a straight back is due to sport.",
+    "C1 | Si no hubiera oído nada, ya habría terminado.": "If she had heard nothing, she would already have finished."
    }
   },
   "tr": {
@@ -1492,7 +1542,8 @@ window.SCENE = {
    "couches": {
     "A1": "İnsan vücudu, arkadan"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1504,7 +1555,8 @@ window.SCENE = {
    "couches": {
     "A1": "Тіло людини, зі спини"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1516,7 +1568,8 @@ window.SCENE = {
    "couches": {
     "A1": "بدن انسان، از پشت"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1557,6 +1610,32 @@ window.SCENE = {
     "C1 | Dicen que Mark nunca ha estado enfermo de verdad.": "بعد <b>dicen que</b> → <b>indicativo</b> (ha estado).",
     "C1 | Que tenga la espalda tan recta se debe al deporte.": "<b>deberse a</b> = يعود إلى، يرجع سببه إلى. (<b>deber de</b> تعبّر عن افتراض.)",
     "C1 | Si no hubiera oído nada, ya habría terminado.": "فرضية بشأن الماضي: <b>si</b> + الماضي التامّ من subjuntivo."
+   },
+   "sens": {
+    "A2 | La médica le pone el estetoscopio en la espalda.": "تضع الطبيبة السمّاعة على ظهره.",
+    "A2 | La médica está al lado del paciente.": "الطبيبة بجانب المريض.",
+    "A2 | Mark tiene las manos al lado del trasero.": "يدا مارك بجانب مؤخّرته.",
+    "A2 | La columna vertebral está entre los omóplatos.": "العمود الفقري بين لوحي الكتف.",
+    "A2 | Las pantorrillas están debajo de las corvas.": "ربلتا الساق تحت مأبضي الركبتين.",
+    "A2 | La báscula está junto a la pared.": "الميزان عند الحائط.",
+    "B1 | Señor, dese la vuelta, por favor.": "سيّدي، استدر من فضلك.",
+    "B1 | Mark se ha dado la vuelta para que la médica le escuche la espalda.": "استدار مارك لكي تفحص الطبيبة ظهره.",
+    "B1 | La médica pone el estetoscopio en la espalda.": "تضع الطبيبة السمّاعة على الظهر.",
+    "B1 | Deje los brazos sueltos, por favor.": "اترك ذراعيك مسترخيتين، من فضلك.",
+    "B1 | Se le ven las palmas de las manos.": "تُرى راحتا يديه.",
+    "B1 | Señor, ahora suelte el aire despacio.": "سيّدي، الآن ازفر ببطء.",
+    "B2 | Su espalda está siendo examinada.": "يُفحص ظهره الآن.",
+    "B2 | Este es el paciente cuya espalda examina la médica.": "هذا هو المريض الذي تفحص الطبيبة ظهره.",
+    "B2 | La médica, cuyo estetoscopio está en la espalda de Mark, escucha con atención.": "الطبيبة التي سمّاعتها على ظهر مارك تصغي بانتباه.",
+    "B2 | Antes de que la médica examine la espalda, Mark tiene que respirar hondo.": "قبل أن تفحص الطبيبة ظهره، على مارك أن يأخذ نفساً عميقاً.",
+    "B2 | Los omóplatos, entre los cuales está la columna, se ven bien.": "لوحا الكتف اللذان يقع بينهما العمود الفقري واضحان للعيان.",
+    "B2 | Los pies de Mark están descalzos.": "قدما مارك حافيتان.",
+    "C1 | Ya debe de haberlo examinado muchas veces.": "لا بدّ أنها فحصته مرّات كثيرة من قبل.",
+    "C1 | Si a Mark le doliera la espalda, se lo habría dicho a la médica.": "لو كان ظهر مارك يؤلمه، لأخبر الطبيبة.",
+    "C1 | Si la médica oyera un ruido raro, le haría una radiografía.": "لو سمعت الطبيبة صوتاً غريباً، لأجرت له أشعّة.",
+    "C1 | Dicen que Mark nunca ha estado enfermo de verdad.": "يُقال إن مارك لم يمرض حقاً قطّ.",
+    "C1 | Que tenga la espalda tan recta se debe al deporte.": "استقامة ظهره هكذا تعود إلى الرياضة.",
+    "C1 | Si no hubiera oído nada, ya habría terminado.": "لو لم تسمع شيئاً، لكانت قد انتهت بالفعل."
    }
   },
   "pt": {
@@ -1598,6 +1677,32 @@ window.SCENE = {
     "C1 | Dicen que Mark nunca ha estado enfermo de verdad.": "Depois de <b>dicen que</b> → o <b>indicativo</b> (ha estado).",
     "C1 | Que tenga la espalda tan recta se debe al deporte.": "<b>deberse a</b> = dever-se a. (<b>deber de</b> expressa uma suposição.)",
     "C1 | Si no hubiera oído nada, ya habría terminado.": "Hipótese sobre o passado: <b>si</b> + mais-que-perfeito do subjuntivo."
+   },
+   "sens": {
+    "A2 | La médica le pone el estetoscopio en la espalda.": "A médica põe o estetoscópio nas costas dele.",
+    "A2 | La médica está al lado del paciente.": "A médica está ao lado do paciente.",
+    "A2 | Mark tiene las manos al lado del trasero.": "Mark está com as mãos ao lado do bumbum.",
+    "A2 | La columna vertebral está entre los omóplatos.": "A coluna vertebral fica entre as omoplatas.",
+    "A2 | Las pantorrillas están debajo de las corvas.": "As panturrilhas ficam abaixo da parte de trás dos joelhos.",
+    "A2 | La báscula está junto a la pared.": "A balança está junto à parede.",
+    "B1 | Señor, dese la vuelta, por favor.": "Senhor, vire-se, por favor.",
+    "B1 | Mark se ha dado la vuelta para que la médica le escuche la espalda.": "Mark se virou para que a médica ausculte as costas dele.",
+    "B1 | La médica pone el estetoscopio en la espalda.": "A médica põe o estetoscópio nas costas.",
+    "B1 | Deje los brazos sueltos, por favor.": "Deixe os braços soltos, por favor.",
+    "B1 | Se le ven las palmas de las manos.": "Veem-se as palmas das mãos dele.",
+    "B1 | Señor, ahora suelte el aire despacio.": "Senhor, agora solte o ar devagar.",
+    "B2 | Su espalda está siendo examinada.": "As costas dele estão sendo examinadas.",
+    "B2 | Este es el paciente cuya espalda examina la médica.": "Este é o paciente cujas costas a médica examina.",
+    "B2 | La médica, cuyo estetoscopio está en la espalda de Mark, escucha con atención.": "A médica, cujo estetoscópio está nas costas de Mark, escuta com atenção.",
+    "B2 | Antes de que la médica examine la espalda, Mark tiene que respirar hondo.": "Antes de a médica examinar as costas, Mark tem que respirar fundo.",
+    "B2 | Los omóplatos, entre los cuales está la columna, se ven bien.": "As omoplatas, entre as quais fica a coluna, são bem visíveis.",
+    "B2 | Los pies de Mark están descalzos.": "Os pés de Mark estão descalços.",
+    "C1 | Ya debe de haberlo examinado muchas veces.": "Ela já deve tê-lo examinado muitas vezes.",
+    "C1 | Si a Mark le doliera la espalda, se lo habría dicho a la médica.": "Se Mark tivesse dor nas costas, teria dito à médica.",
+    "C1 | Si la médica oyera un ruido raro, le haría una radiografía.": "Se a médica ouvisse um ruído estranho, faria uma radiografia.",
+    "C1 | Dicen que Mark nunca ha estado enfermo de verdad.": "Dizem que Mark nunca esteve doente de verdade.",
+    "C1 | Que tenga la espalda tan recta se debe al deporte.": "Ele ter as costas tão retas se deve ao esporte.",
+    "C1 | Si no hubiera oído nada, ya habría terminado.": "Se ela não tivesse ouvido nada, já teria terminado."
    }
   },
   "pl": {
@@ -1610,7 +1715,8 @@ window.SCENE = {
    "couches": {
     "A1": "Ciało człowieka, od tyłu"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1622,7 +1728,8 @@ window.SCENE = {
    "couches": {
     "A1": "Тело человека, вид сзади"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

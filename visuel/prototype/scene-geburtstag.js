@@ -906,6 +906,7 @@ window.SCENE = {
      "f": "torte",
      "r": "tisch",
      "phrase": "Die Torte steht auf dem Tisch.",
+     "sens": "Le gâteau est sur la table.",
      "n": "<b>Wo?</b> → datif : der Tisch → auf <b>dem</b> Tisch."
     },
     {
@@ -918,6 +919,7 @@ window.SCENE = {
      "f": "luftballon",
      "r": "fenster",
      "phrase": "Die Luftballons sind vor dem Fenster.",
+     "sens": "Les ballons sont devant la fenêtre.",
      "n": "<b>vor</b> = devant. das Fenster → vor <b>dem</b> Fenster."
     },
     {
@@ -930,6 +932,7 @@ window.SCENE = {
      "f": "mark",
      "r": "sofa",
      "phrase": "Mark sitzt auf dem Sofa.",
+     "sens": "Mark est assis sur le canapé.",
      "n": "das Sofa est neutre : au datif → auf <b>dem</b> Sofa."
     },
     {
@@ -942,6 +945,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "sofa",
      "phrase": "Die Gitarre steht neben dem Sofa.",
+     "sens": "La guitare est à côté du canapé.",
      "n": "<b>neben</b> = à côté de. das Sofa → neben <b>dem</b> Sofa."
     },
     {
@@ -954,6 +958,7 @@ window.SCENE = {
      "f": "bild",
      "r": "wand",
      "phrase": "Das Bild hängt an der Wand.",
+     "sens": "Le tableau est accroché au mur.",
      "n": "<b>an</b> = contre une surface verticale. die Wand → an <b>der</b> Wand."
     },
     {
@@ -966,6 +971,7 @@ window.SCENE = {
      "f": "karte",
      "r": "geschenk-2",
      "phrase": "Die Karte liegt vor dem Geschenk.",
+     "sens": "La carte est devant le cadeau.",
      "n": "das Geschenk → vor <b>dem</b> Geschenk."
     },
     {
@@ -978,6 +984,7 @@ window.SCENE = {
      "f": "buch",
      "r": "regal",
      "phrase": "Die Bücher stehen im Regal.",
+     "sens": "Les livres sont sur l'étagère.",
      "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
     },
     {
@@ -990,6 +997,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "regal",
      "phrase": "Die Lampe steht neben dem Regal.",
+     "sens": "La lampe est à côté de l'étagère.",
      "n": "das Regal → neben <b>dem</b> Regal."
     }
    ]
@@ -1007,6 +1015,7 @@ window.SCENE = {
      "f": "geschenk",
      "r": "mark",
      "phrase": "Anna gibt ihm ein Geschenk.",
+     "sens": "Anna lui donne un cadeau.",
      "n": "On donne <b>à</b> quelqu'un → datif : er → <b>ihm</b>.",
      "revise": {
       "mot": "geben",
@@ -1022,6 +1031,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Alle gratulieren ihm zum Geburtstag.",
+     "sens": "Tout le monde lui souhaite un bon anniversaire.",
      "n": "<b>gratulieren</b> + datif : on félicite <b>à</b> quelqu'un, en allemand → ihm.",
      "revise": {
       "mot": "gratulieren",
@@ -1038,6 +1048,7 @@ window.SCENE = {
      "f": "geschenk",
      "r": "mark",
      "phrase": "Das Geschenk gefällt ihm.",
+     "sens": "Le cadeau lui plaît.",
      "n": "<b>gefallen</b> + datif : le cadeau plaît <b>à lui</b> → ihm.",
      "revise": {
       "mot": "gefallen",
@@ -1054,6 +1065,7 @@ window.SCENE = {
      "f": "geschenk",
      "r": "mark",
      "phrase": "Anna schenkt ihrem Freund eine Kleinigkeit.",
+     "sens": "Anna offre un petit quelque chose à son ami.",
      "n": "<b>schenken</b> : la personne au datif. Possessif masculin au datif → ihr<b>em</b>.",
      "revise": {
       "mot": "schenken",
@@ -1070,6 +1082,7 @@ window.SCENE = {
      "f": "handy",
      "r": "mark",
      "phrase": "Der Freund macht ein Foto von Mark.",
+     "sens": "L'ami prend une photo de Mark.",
      "n": "Une photo <b>de</b> quelqu'un → <b>von</b> + datif."
     },
     {
@@ -1081,6 +1094,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark dankt seinen Freunden für die Party.",
+     "sens": "Mark remercie ses amis pour la fête.",
      "n": "<b>danken</b> + datif ; au datif pluriel : possessif en <b>-en</b>, et le nom prend un <b>-n</b> (Freunde<b>n</b>).",
      "revise": {
       "mot": "danken",
@@ -1097,6 +1111,7 @@ window.SCENE = {
      "f": "kerze",
      "r": "torte",
      "phrase": "Die Kerzen stehen auf der Torte.",
+     "sens": "Les bougies sont sur le gâteau.",
      "n": "<b>Wo?</b> → datif : die Torte → auf <b>der</b> Torte.",
      "revise": {
       "mot": "stehen",
@@ -1112,6 +1127,7 @@ window.SCENE = {
      ],
      "f": "saft",
      "phrase": "Gleich bringt Anna den Gästen Saft.",
+     "sens": "Anna va tout de suite apporter du jus aux invités.",
      "n": "À qui ? → datif pluriel : die Gäste → <b>den</b> Gäste<b>n</b>.",
      "revise": {
       "mot": "bringen",
@@ -1133,6 +1149,7 @@ window.SCENE = {
      "f": "geschenk",
      "r": "anna",
      "phrase": "Das Geschenk, das Anna in der Hand hält, ist grün.",
+     "sens": "Le cadeau qu'Anna tient à la main est vert.",
      "n": "Complément d'objet (accusatif), neutre → <b>das</b>.",
      "revise": {
       "mot": "halten",
@@ -1149,6 +1166,7 @@ window.SCENE = {
      "f": "freund",
      "r": "mark",
      "phrase": "Der Freund, der Mark fotografiert, sitzt auf dem Sofa.",
+     "sens": "L'ami qui photographie Mark est assis sur le canapé.",
      "n": "C'est lui qui photographie : sujet → <b>der</b>.",
      "revise": {
       "mot": "fotografieren",
@@ -1165,6 +1183,7 @@ window.SCENE = {
      "f": "torte",
      "r": "kerze",
      "phrase": "Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.",
+     "sens": "Le gâteau sur lequel brûlent cinq bougies est au chocolat.",
      "n": "<b>auf</b> + Wo? → datif, féminin → <b>der</b>."
     },
     {
@@ -1177,6 +1196,7 @@ window.SCENE = {
      "f": "kerze",
      "r": "torte",
      "phrase": "Die Kerzen werden gleich ausgeblasen.",
+     "sens": "Les bougies vont être soufflées tout de suite.",
      "n": "Une action (bientôt) → passif avec <b>werden</b>."
     },
     {
@@ -1188,6 +1208,7 @@ window.SCENE = {
      ],
      "f": "geschenk-2",
      "phrase": "Das rote Geschenk ist schön eingepackt.",
+     "sens": "Le cadeau rouge est joliment emballé.",
      "n": "Passif d'état : <b>sein</b> + participe. Verbe séparable : ein<b>ge</b>packt.",
      "revise": {
       "mot": "einpacken",
@@ -1203,6 +1224,7 @@ window.SCENE = {
      ],
      "f": "freundin",
      "phrase": "Die Freundin, deren Haare rot sind, klatscht.",
+     "sens": "L'amie aux cheveux roux applaudit.",
      "n": "Possession, antécédent féminin → <b>deren</b> (dont les cheveux)."
     }
    ]
@@ -1220,6 +1242,7 @@ window.SCENE = {
      "f": "geschenk",
      "r": "mark",
      "phrase": "Das Geschenk muss eine Überraschung sein.",
+     "sens": "Le cadeau doit être une surprise.",
      "n": "<b>müssen</b> = déduction presque certaine. Il rit, il ne s'y attendait pas."
     },
     {
@@ -1231,6 +1254,7 @@ window.SCENE = {
      ],
      "f": "geschenk-2",
      "phrase": "Das rote Geschenk könnte von seinen Eltern sein.",
+     "sens": "Le cadeau rouge vient peut-être de ses parents.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1242,6 +1266,7 @@ window.SCENE = {
      ],
      "f": "pizza",
      "phrase": "Die Pizza dürfte gleich alle sein.",
+     "sens": "La pizza devrait être bientôt finie.",
      "n": "<b>dürfte</b> = probable, sans en être sûr. <b>alle sein</b> (familier) = être fini."
     },
     {
@@ -1254,6 +1279,7 @@ window.SCENE = {
      "f": "torte",
      "r": "anna",
      "phrase": "Anna soll die Torte selbst gebacken haben.",
+     "sens": "Il paraît qu'Anna a fait le gâteau elle-même.",
      "n": "<b>sollen</b> + infinitif passé = d'après ce qu'on dit, elle l'a fait."
     }
    ]
@@ -1299,6 +1325,34 @@ window.SCENE = {
     "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Die Pizza dürfte gleich alle sein.": "<b>dürfte</b> = probable, without being sure. <b>alle sein</b> (colloquial) = to be all gone.",
     "C1 | Anna soll die Torte selbst gebacken haben.": "<b>sollen</b> + perfect infinitive = according to what people say, she did it."
+   },
+   "sens": {
+    "A2 | Die Torte steht auf dem Tisch.": "The cake is on the table.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "The balloons are in front of the window.",
+    "A2 | Mark sitzt auf dem Sofa.": "Mark is sitting on the sofa.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "The guitar is next to the sofa.",
+    "A2 | Das Bild hängt an der Wand.": "The picture hangs on the wall.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "The card is in front of the present.",
+    "A2 | Die Bücher stehen im Regal.": "The books are on the shelf.",
+    "A2 | Die Lampe steht neben dem Regal.": "The lamp is next to the shelf.",
+    "B1 | Anna gibt ihm ein Geschenk.": "Anna gives him a present.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "Everyone wishes him a happy birthday.",
+    "B1 | Das Geschenk gefällt ihm.": "He likes the present.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "Anna gives her friend a little something.",
+    "B1 | Der Freund macht ein Foto von Mark.": "The friend takes a photo of Mark.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "Mark thanks his friends for the party.",
+    "B1 | Die Kerzen stehen auf der Torte.": "The candles are on the cake.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "Anna is about to bring the guests juice.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "The present Anna is holding is green.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "The friend who is photographing Mark is sitting on the sofa.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "The cake with five candles burning on it is chocolate.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "The candles are about to be blown out.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "The red present is nicely wrapped.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "The friend whose hair is red is clapping.",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "The present must be a surprise.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "The red present might be from his parents.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "The pizza will probably be gone soon.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "Anna is said to have baked the cake herself."
    }
   },
   "tr": {
@@ -1340,6 +1394,34 @@ window.SCENE = {
     "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Die Pizza dürfte gleich alle sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan. <b>alle sein</b> (günlük dil) = bitmek.",
     "C1 | Anna soll die Torte selbst gebacken haben.": "<b>sollen</b> + geçmiş mastar = söylenenlere göre, o yapmış."
+   },
+   "sens": {
+    "A2 | Die Torte steht auf dem Tisch.": "Pasta masanın üstünde.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "Balonlar pencerenin önünde.",
+    "A2 | Mark sitzt auf dem Sofa.": "Mark kanepede oturuyor.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "Gitar kanepenin yanında duruyor.",
+    "A2 | Das Bild hängt an der Wand.": "Tablo duvarda asılı.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "Kart hediyenin önünde.",
+    "A2 | Die Bücher stehen im Regal.": "Kitaplar rafta duruyor.",
+    "A2 | Die Lampe steht neben dem Regal.": "Lamba rafın yanında duruyor.",
+    "B1 | Anna gibt ihm ein Geschenk.": "Anna ona bir hediye veriyor.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "Herkes doğum gününü kutluyor.",
+    "B1 | Das Geschenk gefällt ihm.": "Hediye hoşuna gidiyor.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "Anna arkadaşına küçük bir şey hediye ediyor.",
+    "B1 | Der Freund macht ein Foto von Mark.": "Arkadaşı Mark'ın fotoğrafını çekiyor.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "Mark arkadaşlarına parti için teşekkür ediyor.",
+    "B1 | Die Kerzen stehen auf der Torte.": "Mumlar pastanın üstünde.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "Anna birazdan misafirlere meyve suyu getirecek.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "Anna'nın elinde tuttuğu hediye yeşil.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "Mark'ın fotoğrafını çeken arkadaş kanepede oturuyor.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "Üstünde beş mum yanan pasta çikolatalı.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "Mumlar birazdan üflenecek.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "Kırmızı hediye güzelce paketlenmiş.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "Saçları kızıl olan arkadaş alkışlıyor.",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "Hediye bir sürpriz olmalı.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "Kırmızı hediye ailesinden olabilir.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "Pizza birazdan biter herhalde.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "Anna'nın pastayı kendisinin yaptığı söyleniyor."
    }
   },
   "uk": {
@@ -1381,6 +1463,34 @@ window.SCENE = {
     "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Die Pizza dürfte gleich alle sein.": "<b>dürfte</b> = імовірно, але без певності. <b>alle sein</b> (розм.) = закінчитися.",
     "C1 | Anna soll die Torte selbst gebacken haben.": "<b>sollen</b> + інфінітив минулого = кажуть, що вона це зробила."
+   },
+   "sens": {
+    "A2 | Die Torte steht auf dem Tisch.": "Торт стоїть на столі.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "Повітряні кульки перед вікном.",
+    "A2 | Mark sitzt auf dem Sofa.": "Марк сидить на дивані.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "Гітара стоїть біля дивана.",
+    "A2 | Das Bild hängt an der Wand.": "Картина висить на стіні.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "Листівка лежить перед подарунком.",
+    "A2 | Die Bücher stehen im Regal.": "Книжки стоять на полиці.",
+    "A2 | Die Lampe steht neben dem Regal.": "Лампа стоїть біля полиці.",
+    "B1 | Anna gibt ihm ein Geschenk.": "Анна дає йому подарунок.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "Усі вітають його з днем народження.",
+    "B1 | Das Geschenk gefällt ihm.": "Подарунок йому подобається.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "Анна дарує своєму другові дрібничку.",
+    "B1 | Der Freund macht ein Foto von Mark.": "Друг фотографує Марка.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "Марк дякує друзям за вечірку.",
+    "B1 | Die Kerzen stehen auf der Torte.": "Свічки стоять на торті.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "Анна зараз принесе гостям сік.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "Подарунок, який Анна тримає в руці, зелений.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "Друг, який фотографує Марка, сидить на дивані.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "Торт, на якому горять п'ять свічок, шоколадний.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "Свічки зараз задмуть.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "Червоний подарунок гарно запакований.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "Подруга з рудим волоссям плескає в долоні.",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "Подарунок, мабуть, сюрприз.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "Червоний подарунок, можливо, від його батьків.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "Піца, напевно, скоро закінчиться.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "Кажуть, Анна сама спекла торт."
    }
   },
   "fa": {
@@ -1422,6 +1532,34 @@ window.SCENE = {
     "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Die Pizza dürfte gleich alle sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم. <b>alle sein</b> (محاوره‌ای) = تمام شدن.",
     "C1 | Anna soll die Torte selbst gebacken haben.": "<b>sollen</b> + مصدر گذشته = می‌گویند که او این کار را کرده."
+   },
+   "sens": {
+    "A2 | Die Torte steht auf dem Tisch.": "کیک روی میز است.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "بادکنک‌ها جلوی پنجره هستند.",
+    "A2 | Mark sitzt auf dem Sofa.": "مارک روی کاناپه نشسته است.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "گیتار کنار کاناپه است.",
+    "A2 | Das Bild hängt an der Wand.": "تابلو روی دیوار آویزان است.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "کارت جلوی هدیه است.",
+    "A2 | Die Bücher stehen im Regal.": "کتاب‌ها در قفسه هستند.",
+    "A2 | Die Lampe steht neben dem Regal.": "چراغ کنار قفسه است.",
+    "B1 | Anna gibt ihm ein Geschenk.": "آنا به او هدیه‌ای می‌دهد.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "همه تولدش را به او تبریک می‌گویند.",
+    "B1 | Das Geschenk gefällt ihm.": "هدیه را دوست دارد.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "آنا به دوستش چیز کوچکی هدیه می‌دهد.",
+    "B1 | Der Freund macht ein Foto von Mark.": "دوست از مارک عکس می‌گیرد.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "مارک به‌خاطر مهمانی از دوستانش تشکر می‌کند.",
+    "B1 | Die Kerzen stehen auf der Torte.": "شمع‌ها روی کیک هستند.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "آنا همین حالا برای مهمان‌ها آبمیوه می‌آورد.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "هدیه‌ای که آنا در دست دارد، سبز است.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "دوستی که از مارک عکس می‌گیرد، روی کاناپه نشسته است.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "کیکی که رویش پنج شمع می‌سوزد، شکلاتی است.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "شمع‌ها همین حالا فوت می‌شوند.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "هدیهٔ قرمز قشنگ بسته‌بندی شده است.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "دوستی که موهای قرمز دارد، دست می‌زند.",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "هدیه حتماً یک غافلگیری است.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "هدیهٔ قرمز شاید از طرف پدر و مادرش باشد.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "پیتزا احتمالاً به‌زودی تمام می‌شود.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "می‌گویند آنا کیک را خودش پخته است."
    }
   },
   "ar": {
@@ -1463,6 +1601,34 @@ window.SCENE = {
     "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Die Pizza dürfte gleich alle sein.": "<b>dürfte</b> = مرجَّح، دون يقين. <b>alle sein</b> (عامية) = نفد.",
     "C1 | Anna soll die Torte selbst gebacken haben.": "<b>sollen</b> + المصدر الماضي = يقال إنها فعلت ذلك."
+   },
+   "sens": {
+    "A2 | Die Torte steht auf dem Tisch.": "الكعكة على الطاولة.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "البالونات أمام النافذة.",
+    "A2 | Mark sitzt auf dem Sofa.": "مارك جالس على الأريكة.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "الغيتار بجانب الأريكة.",
+    "A2 | Das Bild hängt an der Wand.": "اللوحة معلّقة على الحائط.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "البطاقة أمام الهدية.",
+    "A2 | Die Bücher stehen im Regal.": "الكتب على الرفّ.",
+    "A2 | Die Lampe steht neben dem Regal.": "المصباح بجانب الرفّ.",
+    "B1 | Anna gibt ihm ein Geschenk.": "تعطيه آنا هدية.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "يهنّئه الجميع بعيد ميلاده.",
+    "B1 | Das Geschenk gefällt ihm.": "الهدية تعجبه.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "تهدي آنا صديقها شيئاً بسيطاً.",
+    "B1 | Der Freund macht ein Foto von Mark.": "يلتقط الصديق صورة لمارك.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "يشكر مارك أصدقاءه على الحفلة.",
+    "B1 | Die Kerzen stehen auf der Torte.": "الشموع على الكعكة.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "ستُحضر آنا العصير للضيوف حالاً.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "الهدية التي تحملها آنا في يدها خضراء.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "الصديق الذي يصوّر مارك جالس على الأريكة.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "الكعكة التي تشتعل عليها خمس شموع من الشوكولاتة.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "ستُطفأ الشموع حالاً.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "الهدية الحمراء مغلّفة بشكل جميل.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "الصديقة ذات الشعر الأحمر تصفّق.",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "لا بدّ أن الهدية مفاجأة.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "ربما تكون الهدية الحمراء من والديه.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "على الأرجح ستنفد البيتزا حالاً.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "يُقال إن آنا خبزت الكعكة بنفسها."
    }
   },
   "pt": {
@@ -1504,6 +1670,34 @@ window.SCENE = {
     "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Die Pizza dürfte gleich alle sein.": "<b>dürfte</b> = provável, sem ter certeza. <b>alle sein</b> (coloquial) = ter acabado.",
     "C1 | Anna soll die Torte selbst gebacken haben.": "<b>sollen</b> + infinitivo composto = pelo que dizem, ela fez."
+   },
+   "sens": {
+    "A2 | Die Torte steht auf dem Tisch.": "O bolo está na mesa.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "Os balões estão em frente à janela.",
+    "A2 | Mark sitzt auf dem Sofa.": "Mark está sentado no sofá.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "O violão está ao lado do sofá.",
+    "A2 | Das Bild hängt an der Wand.": "O quadro está pendurado na parede.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "O cartão está em frente ao presente.",
+    "A2 | Die Bücher stehen im Regal.": "Os livros estão na estante.",
+    "A2 | Die Lampe steht neben dem Regal.": "O abajur está ao lado da estante.",
+    "B1 | Anna gibt ihm ein Geschenk.": "Anna dá um presente a ele.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "Todos lhe dão os parabéns pelo aniversário.",
+    "B1 | Das Geschenk gefällt ihm.": "Ele gosta do presente.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "Anna dá uma lembrancinha ao amigo.",
+    "B1 | Der Freund macht ein Foto von Mark.": "O amigo tira uma foto de Mark.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "Mark agradece aos amigos pela festa.",
+    "B1 | Die Kerzen stehen auf der Torte.": "As velas estão no bolo.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "Anna vai já trazer suco para os convidados.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "O presente que Anna tem na mão é verde.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "O amigo que fotografa Mark está sentado no sofá.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "O bolo em que ardem cinco velas é de chocolate.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "As velas vão ser apagadas agora mesmo.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "O presente vermelho está bem embrulhado.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "A amiga de cabelo ruivo bate palmas.",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "O presente deve ser uma surpresa.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "O presente vermelho talvez seja dos pais dele.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "A pizza provavelmente vai acabar logo.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "Dizem que Anna fez o bolo ela mesma."
    }
   },
   "pl": {
@@ -1545,6 +1739,34 @@ window.SCENE = {
     "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Die Pizza dürfte gleich alle sein.": "<b>dürfte</b> = prawdopodobne, ale bez pewności. <b>alle sein</b> (potocznie) = skończyć się.",
     "C1 | Anna soll die Torte selbst gebacken haben.": "<b>sollen</b> + bezokolicznik przeszły = podobno ona to zrobiła."
+   },
+   "sens": {
+    "A2 | Die Torte steht auf dem Tisch.": "Tort stoi na stole.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "Balony są przed oknem.",
+    "A2 | Mark sitzt auf dem Sofa.": "Mark siedzi na kanapie.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "Gitara stoi obok kanapy.",
+    "A2 | Das Bild hängt an der Wand.": "Obraz wisi na ścianie.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "Kartka leży przed prezentem.",
+    "A2 | Die Bücher stehen im Regal.": "Książki stoją na półce.",
+    "A2 | Die Lampe steht neben dem Regal.": "Lampa stoi obok regału.",
+    "B1 | Anna gibt ihm ein Geschenk.": "Anna daje mu prezent.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "Wszyscy składają mu życzenia urodzinowe.",
+    "B1 | Das Geschenk gefällt ihm.": "Prezent mu się podoba.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "Anna daje swojemu przyjacielowi drobiazg.",
+    "B1 | Der Freund macht ein Foto von Mark.": "Przyjaciel robi zdjęcie Markowi.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "Mark dziękuje przyjaciołom za imprezę.",
+    "B1 | Die Kerzen stehen auf der Torte.": "Świeczki stoją na torcie.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "Anna zaraz przyniesie gościom sok.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "Prezent, który Anna trzyma w ręku, jest zielony.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "Przyjaciel, który fotografuje Marka, siedzi na kanapie.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "Tort, na którym pali się pięć świeczek, jest czekoladowy.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "Świeczki zaraz zostaną zdmuchnięte.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "Czerwony prezent jest ładnie zapakowany.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "Przyjaciółka o rudych włosach klaszcze.",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "Prezent musi być niespodzianką.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "Czerwony prezent być może jest od jego rodziców.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "Pizza zapewne zaraz się skończy.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "Podobno Anna sama upiekła tort."
    }
   },
   "ru": {
@@ -1586,6 +1808,34 @@ window.SCENE = {
     "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Die Pizza dürfte gleich alle sein.": "<b>dürfte</b> = вероятно, но без уверенности. <b>alle sein</b> (разг.) = закончиться.",
     "C1 | Anna soll die Torte selbst gebacken haben.": "<b>sollen</b> + инфинитив прошедшего = говорят, что она это сделала."
+   },
+   "sens": {
+    "A2 | Die Torte steht auf dem Tisch.": "Торт стоит на столе.",
+    "A2 | Die Luftballons sind vor dem Fenster.": "Воздушные шары перед окном.",
+    "A2 | Mark sitzt auf dem Sofa.": "Марк сидит на диване.",
+    "A2 | Die Gitarre steht neben dem Sofa.": "Гитара стоит рядом с диваном.",
+    "A2 | Das Bild hängt an der Wand.": "Картина висит на стене.",
+    "A2 | Die Karte liegt vor dem Geschenk.": "Открытка лежит перед подарком.",
+    "A2 | Die Bücher stehen im Regal.": "Книги стоят на полке.",
+    "A2 | Die Lampe steht neben dem Regal.": "Лампа стоит рядом с полкой.",
+    "B1 | Anna gibt ihm ein Geschenk.": "Анна даёт ему подарок.",
+    "B1 | Alle gratulieren ihm zum Geburtstag.": "Все поздравляют его с днём рождения.",
+    "B1 | Das Geschenk gefällt ihm.": "Подарок ему нравится.",
+    "B1 | Anna schenkt ihrem Freund eine Kleinigkeit.": "Анна дарит своему другу мелочь.",
+    "B1 | Der Freund macht ein Foto von Mark.": "Друг фотографирует Марка.",
+    "B1 | Mark dankt seinen Freunden für die Party.": "Марк благодарит друзей за вечеринку.",
+    "B1 | Die Kerzen stehen auf der Torte.": "Свечи стоят на торте.",
+    "B1 | Gleich bringt Anna den Gästen Saft.": "Анна сейчас принесёт гостям сок.",
+    "B2 | Das Geschenk, das Anna in der Hand hält, ist grün.": "Подарок, который Анна держит в руке, зелёный.",
+    "B2 | Der Freund, der Mark fotografiert, sitzt auf dem Sofa.": "Друг, который фотографирует Марка, сидит на диване.",
+    "B2 | Die Torte, auf der fünf Kerzen brennen, ist aus Schokolade.": "Торт, на котором горят пять свечей, шоколадный.",
+    "B2 | Die Kerzen werden gleich ausgeblasen.": "Свечи сейчас задуют.",
+    "B2 | Das rote Geschenk ist schön eingepackt.": "Красный подарок красиво упакован.",
+    "B2 | Die Freundin, deren Haare rot sind, klatscht.": "Подруга с рыжими волосами хлопает в ладоши.",
+    "C1 | Das Geschenk muss eine Überraschung sein.": "Подарок, должно быть, сюрприз.",
+    "C1 | Das rote Geschenk könnte von seinen Eltern sein.": "Красный подарок, возможно, от его родителей.",
+    "C1 | Die Pizza dürfte gleich alle sein.": "Пицца, вероятно, скоро закончится.",
+    "C1 | Anna soll die Torte selbst gebacken haben.": "Говорят, Анна сама испекла торт."
    }
   }
  }

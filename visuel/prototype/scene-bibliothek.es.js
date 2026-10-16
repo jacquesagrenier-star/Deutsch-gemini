@@ -801,6 +801,7 @@ window.SCENE = {
      "f": "bleistift",
      "r": "heft",
      "phrase": "El lápiz está encima del cuaderno.",
+     "sens": "Le crayon est sur le cahier.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -813,6 +814,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "buch-3",
      "phrase": "La botella está al lado del libro.",
+     "sens": "La bouteille est à côté du livre.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -825,6 +827,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "stuhl",
      "phrase": "La mochila está en la silla.",
+     "sens": "Le sac à dos est sur la chaise.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -837,6 +840,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "buch-2",
      "phrase": "La lámpara está al lado de los libros.",
+     "sens": "La lampe est à côté des livres.",
      "n": "Masculin pluriel : <b>de los</b> libros."
     },
     {
@@ -849,6 +853,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "regal",
      "phrase": "La planta está delante de la estantería.",
+     "sens": "La plante est devant l'étagère.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -860,6 +865,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "El reloj está en la pared.",
+     "sens": "L'horloge est au mur.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -872,6 +878,7 @@ window.SCENE = {
      "f": "leiter",
      "r": "regal",
      "phrase": "Hay una escalera junto a la estantería.",
+     "sens": "Il y a une échelle contre l'étagère.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -884,6 +891,7 @@ window.SCENE = {
      "f": "laptop",
      "r": "tisch",
      "phrase": "El portátil está en la mesa.",
+     "sens": "L'ordinateur portable est sur la table.",
      "n": "<b>la</b> est féminin → <b>en la</b>.",
      "latam": {
       "q": "La laptop está ___ mesa.",
@@ -904,6 +912,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna piensa en su examen.",
+     "sens": "Anna pense à son examen.",
      "n": "<b>pensar en</b> = penser à.",
      "revise": {
       "mot": "pensar",
@@ -919,6 +928,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "El estudiante sueña con las vacaciones.",
+     "sens": "L'étudiant rêve des vacances.",
      "n": "<b>soñar con</b> = rêver de.",
      "revise": {
       "mot": "soñar",
@@ -935,6 +945,7 @@ window.SCENE = {
      "f": "anna",
      "r": "buch",
      "phrase": "Anna se interesa por la historia.",
+     "sens": "Anna s'intéresse à l'histoire.",
      "n": "<b>interesarse por</b> = s'intéresser à.",
      "revise": {
       "mot": "interesar",
@@ -950,6 +961,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Anna espera a su amiga.",
+     "sens": "Anna attend son amie.",
      "n": "<b>esperar a</b> + personne : le <b>a</b> personnel.",
      "revise": {
       "mot": "esperar",
@@ -966,6 +978,7 @@ window.SCENE = {
      "f": "heft",
      "r": "anna",
      "phrase": "Anna se acuerda de la clase de ayer.",
+     "sens": "Anna se souvient du cours d'hier.",
      "n": "<b>acordarse de</b> = se souvenir de.",
      "revise": {
       "mot": "acordar",
@@ -981,6 +994,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "El estudiante se concentra en su libro.",
+     "sens": "L'étudiant se concentre sur son livre.",
      "n": "<b>concentrarse en</b> = se concentrer sur.",
      "revise": {
       "mot": "concentrar",
@@ -997,6 +1011,7 @@ window.SCENE = {
      "f": "buch",
      "r": "anna",
      "phrase": "Anna tarda mucho en terminar el capítulo.",
+     "sens": "Anna met longtemps à finir le chapitre.",
      "n": "<b>tardar en</b> + infinitif = mettre du temps à.",
      "revise": {
       "mot": "tardar",
@@ -1018,6 +1033,7 @@ window.SCENE = {
      "f": "anna",
      "r": "buch",
      "phrase": "La estudiante que lee el libro se llama Anna.",
+     "sens": "L'étudiante qui lit le livre s'appelle Anna.",
      "n": "Relative sans virgule, sujet → <b>que</b>."
     },
     {
@@ -1029,6 +1045,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "El estudiante, cuyo pelo es rizado, lee en la otra mesa.",
+     "sens": "L'étudiant, dont les cheveux sont bouclés, lit à l'autre table.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : el pelo → <b>cuyo</b>."
     },
     {
@@ -1041,6 +1058,7 @@ window.SCENE = {
      "f": "regal",
      "r": "leiter",
      "phrase": "La estantería en la que se apoya la escalera es muy alta.",
+     "sens": "L'étagère contre laquelle l'échelle est appuyée est très haute.",
      "n": "Préposition + article + <b>que</b>, accordé avec la estantería."
     },
     {
@@ -1052,6 +1070,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "Aquí no se habla en voz alta.",
+     "sens": "Ici, on ne parle pas à voix haute.",
      "n": "<b>se</b> impersonnel : « on ne parle pas », verbe au singulier.",
      "revise": {
       "mot": "hablar",
@@ -1067,6 +1086,7 @@ window.SCENE = {
      ],
      "f": "buch",
      "phrase": "El libro ya está medio leído.",
+     "sens": "Le livre est déjà à moitié lu.",
      "n": "<b>estar</b> + participe : leer → <b>leído</b>, avec l'accent.",
      "revise": {
       "mot": "leer",
@@ -1082,6 +1102,7 @@ window.SCENE = {
      ],
      "f": "lampe",
      "phrase": "La lámpara está encendida.",
+     "sens": "La lampe est allumée.",
      "n": "<b>estar</b> + participe, accordé : la lámpara → encendid<b>a</b>.",
      "revise": {
       "mot": "encender",
@@ -1102,6 +1123,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Debe de tener un examen pronto.",
+     "sens": "Elle doit avoir un examen bientôt.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1113,6 +1135,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "Puede que el estudiante sea compañero de Anna.",
+     "sens": "L'étudiant est peut-être un camarade d'Anna.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1124,6 +1147,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Fuera hará mucho frío.",
+     "sens": "Dehors, il doit faire très froid.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1135,6 +1159,7 @@ window.SCENE = {
      ],
      "f": "regal",
      "phrase": "Dicen que esta biblioteca tiene más de un millón de libros.",
+     "sens": "On dit que cette bibliothèque a plus d'un million de livres.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1180,6 +1205,34 @@ window.SCENE = {
     "C1 | Puede que el estudiante sea compañero de Anna.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Fuera hará mucho frío.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que esta biblioteca tiene más de un millón de libros.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El lápiz está encima del cuaderno.": "The pencil is on top of the notebook.",
+    "A2 | La botella está al lado del libro.": "The bottle is next to the book.",
+    "A2 | La mochila está en la silla.": "The backpack is on the chair.",
+    "A2 | La lámpara está al lado de los libros.": "The lamp is next to the books.",
+    "A2 | La planta está delante de la estantería.": "The plant is in front of the shelf.",
+    "A2 | El reloj está en la pared.": "The clock is on the wall.",
+    "A2 | Hay una escalera junto a la estantería.": "There is a ladder by the shelf.",
+    "A2 | La laptop está en la mesa.": "The laptop is on the table.",
+    "A2 | El portátil está en la mesa.": "The laptop is on the table.",
+    "B1 | Anna piensa en su examen.": "Anna is thinking about her exam.",
+    "B1 | El estudiante sueña con las vacaciones.": "The student dreams of the holidays.",
+    "B1 | Anna se interesa por la historia.": "Anna is interested in history.",
+    "B1 | Anna espera a su amiga.": "Anna is waiting for her friend.",
+    "B1 | Anna se acuerda de la clase de ayer.": "Anna remembers yesterday's class.",
+    "B1 | El estudiante se concentra en su libro.": "The student is concentrating on his book.",
+    "B1 | Anna tarda mucho en terminar el capítulo.": "Anna takes a long time to finish the chapter.",
+    "B2 | La estudiante que lee el libro se llama Anna.": "The student who is reading the book is called Anna.",
+    "B2 | El estudiante, cuyo pelo es rizado, lee en la otra mesa.": "The student, whose hair is curly, is reading at the other table.",
+    "B2 | La estantería en la que se apoya la escalera es muy alta.": "The shelf the ladder is leaning against is very tall.",
+    "B2 | Aquí no se habla en voz alta.": "No talking out loud here.",
+    "B2 | El libro ya está medio leído.": "The book is already half read.",
+    "B2 | La lámpara está encendida.": "The lamp is on.",
+    "C1 | Debe de tener un examen pronto.": "She must have an exam soon.",
+    "C1 | Puede que el estudiante sea compañero de Anna.": "The student may be a classmate of Anna's.",
+    "C1 | Fuera hará mucho frío.": "It is probably very cold outside.",
+    "C1 | Dicen que esta biblioteca tiene más de un millón de libros.": "They say this library has more than a million books."
    }
   },
   "tr": {
@@ -1190,7 +1243,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1200,7 +1254,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1210,7 +1265,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1251,6 +1307,34 @@ window.SCENE = {
     "C1 | Puede que el estudiante sea compañero de Anna.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Fuera hará mucho frío.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que esta biblioteca tiene más de un millón de libros.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El lápiz está encima del cuaderno.": "قلم الرصاص فوق الدفتر.",
+    "A2 | La botella está al lado del libro.": "الزجاجة بجانب الكتاب.",
+    "A2 | La mochila está en la silla.": "حقيبة الظهر على الكرسي.",
+    "A2 | La lámpara está al lado de los libros.": "المصباح بجانب الكتب.",
+    "A2 | La planta está delante de la estantería.": "النبتة أمام الرفّ.",
+    "A2 | El reloj está en la pared.": "الساعة على الحائط.",
+    "A2 | Hay una escalera junto a la estantería.": "هناك سلّم عند الرفّ.",
+    "A2 | La laptop está en la mesa.": "الحاسوب المحمول على الطاولة.",
+    "A2 | El portátil está en la mesa.": "الحاسوب المحمول على الطاولة.",
+    "B1 | Anna piensa en su examen.": "تفكّر آنا في امتحانها.",
+    "B1 | El estudiante sueña con las vacaciones.": "يحلم الطالب بالعطلة.",
+    "B1 | Anna se interesa por la historia.": "تهتمّ آنا بالتاريخ.",
+    "B1 | Anna espera a su amiga.": "تنتظر آنا صديقتها.",
+    "B1 | Anna se acuerda de la clase de ayer.": "تتذكّر آنا درس الأمس.",
+    "B1 | El estudiante se concentra en su libro.": "يركّز الطالب على كتابه.",
+    "B1 | Anna tarda mucho en terminar el capítulo.": "تستغرق آنا وقتاً طويلاً لإنهاء الفصل.",
+    "B2 | La estudiante que lee el libro se llama Anna.": "الطالبة التي تقرأ الكتاب اسمها آنا.",
+    "B2 | El estudiante, cuyo pelo es rizado, lee en la otra mesa.": "الطالب ذو الشعر المجعّد يقرأ على الطاولة الأخرى.",
+    "B2 | La estantería en la que se apoya la escalera es muy alta.": "الرفّ الذي يستند إليه السلّم عالٍ جداً.",
+    "B2 | Aquí no se habla en voz alta.": "هنا لا يُتكلَّم بصوت عالٍ.",
+    "B2 | El libro ya está medio leído.": "الكتاب مقروء إلى نصفه بالفعل.",
+    "B2 | La lámpara está encendida.": "المصباح مضاء.",
+    "C1 | Debe de tener un examen pronto.": "لا بدّ أن لديها امتحاناً قريباً.",
+    "C1 | Puede que el estudiante sea compañero de Anna.": "ربما يكون الطالب زميلاً لآنا.",
+    "C1 | Fuera hará mucho frío.": "على الأرجح الجوّ بارد جداً في الخارج.",
+    "C1 | Dicen que esta biblioteca tiene más de un millón de libros.": "يُقال إن في هذه المكتبة أكثر من مليون كتاب."
    }
   },
   "pt": {
@@ -1292,6 +1376,34 @@ window.SCENE = {
     "C1 | Puede que el estudiante sea compañero de Anna.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Fuera hará mucho frío.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que esta biblioteca tiene más de un millón de libros.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El lápiz está encima del cuaderno.": "O lápis está em cima do caderno.",
+    "A2 | La botella está al lado del libro.": "A garrafa está ao lado do livro.",
+    "A2 | La mochila está en la silla.": "A mochila está na cadeira.",
+    "A2 | La lámpara está al lado de los libros.": "O abajur está ao lado dos livros.",
+    "A2 | La planta está delante de la estantería.": "A planta está em frente à estante.",
+    "A2 | El reloj está en la pared.": "O relógio está na parede.",
+    "A2 | Hay una escalera junto a la estantería.": "Há uma escada junto à estante.",
+    "A2 | La laptop está en la mesa.": "O notebook está na mesa.",
+    "A2 | El portátil está en la mesa.": "O notebook está na mesa.",
+    "B1 | Anna piensa en su examen.": "Anna pensa na sua prova.",
+    "B1 | El estudiante sueña con las vacaciones.": "O estudante sonha com as férias.",
+    "B1 | Anna se interesa por la historia.": "Anna se interessa por história.",
+    "B1 | Anna espera a su amiga.": "Anna espera a amiga.",
+    "B1 | Anna se acuerda de la clase de ayer.": "Anna se lembra da aula de ontem.",
+    "B1 | El estudiante se concentra en su libro.": "O estudante se concentra no seu livro.",
+    "B1 | Anna tarda mucho en terminar el capítulo.": "Anna demora muito para terminar o capítulo.",
+    "B2 | La estudiante que lee el libro se llama Anna.": "A estudante que lê o livro se chama Anna.",
+    "B2 | El estudiante, cuyo pelo es rizado, lee en la otra mesa.": "O estudante, cujo cabelo é cacheado, lê na outra mesa.",
+    "B2 | La estantería en la que se apoya la escalera es muy alta.": "A estante em que a escada está apoiada é muito alta.",
+    "B2 | Aquí no se habla en voz alta.": "Aqui não se fala em voz alta.",
+    "B2 | El libro ya está medio leído.": "O livro já está lido pela metade.",
+    "B2 | La lámpara está encendida.": "O abajur está aceso.",
+    "C1 | Debe de tener un examen pronto.": "Ela deve ter uma prova em breve.",
+    "C1 | Puede que el estudiante sea compañero de Anna.": "Pode ser que o estudante seja colega de Anna.",
+    "C1 | Fuera hará mucho frío.": "Lá fora deve estar muito frio.",
+    "C1 | Dicen que esta biblioteca tiene más de un millón de libros.": "Dizem que esta biblioteca tem mais de um milhão de livros."
    }
   },
   "pl": {
@@ -1302,7 +1414,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1312,7 +1425,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

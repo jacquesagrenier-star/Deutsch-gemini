@@ -1220,6 +1220,7 @@ window.SCENE = {
      "f": "stethoskop",
      "r": "ruecken",
      "phrase": "Die Ärztin hält das Stethoskop auf seinem Rücken.",
+     "sens": "La médecin tient le stéthoscope sur son dos.",
      "n": "der Rücken → auf <b>seinem</b> Rücken (datif masculin)."
     },
     {
@@ -1232,6 +1233,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "Die Ärztin steht neben dem Patienten.",
+     "sens": "La médecin est debout à côté du patient.",
      "n": "<b>neben</b> + datif : dem Patient<b>en</b>."
     },
     {
@@ -1244,6 +1246,7 @@ window.SCENE = {
      "f": "hand-l",
      "r": "po",
      "phrase": "Seine Hände sind neben seinem Po.",
+     "sens": "Ses mains sont à côté de ses fesses.",
      "n": "der Po → neben <b>seinem</b> Po (datif)."
     },
     {
@@ -1256,6 +1259,7 @@ window.SCENE = {
      "f": "wirbelsaeule",
      "r": "schulterblatt",
      "phrase": "Die Wirbelsäule ist zwischen den Schulterblättern.",
+     "sens": "La colonne vertébrale est entre les omoplates.",
      "n": "<b>zwischen</b> + datif pluriel : <b>den</b> Schulterblätter<b>n</b>."
     },
     {
@@ -1268,6 +1272,7 @@ window.SCENE = {
      "f": "wade",
      "r": "kniekehle",
      "phrase": "Die Waden sind unter den Kniekehlen.",
+     "sens": "Les mollets sont sous les creux des genoux.",
      "n": "<b>unter</b> + datif pluriel : <b>den</b> Kniekehle<b>n</b>."
     },
     {
@@ -1280,6 +1285,7 @@ window.SCENE = {
      "f": "waage",
      "r": "wand",
      "phrase": "Die Waage steht an der Wand.",
+     "sens": "La balance est contre le mur.",
      "n": "<b>an</b> + datif : an <b>der</b> Wand."
     }
    ]
@@ -1296,6 +1302,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Bitte drehen Sie sich um!",
+     "sens": "Retournez-vous, s'il vous plaît !",
      "n": "<b>sich umdrehen</b> = se retourner. Particule séparable à la fin de l'impératif."
     },
     {
@@ -1308,6 +1315,7 @@ window.SCENE = {
      "f": "mark",
      "r": "ruecken",
      "phrase": "Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.",
+     "sens": "Mark s'est retourné pour qu'elle puisse ausculter son dos.",
      "n": "Participe II d'un verbe séparable : <b>um-ge-dreht</b>. <b>damit</b> = pour que.",
      "revise": {
       "mot": "umdrehen",
@@ -1324,6 +1332,7 @@ window.SCENE = {
      "f": "stethoskop",
      "r": "ruecken",
      "phrase": "Die Ärztin setzt das Stethoskop auf seinen Rücken.",
+     "sens": "La médecin pose le stéthoscope sur son dos.",
      "n": "Mouvement → <b>setzen</b> + accusatif : auf <b>seinen</b> Rücken."
     },
     {
@@ -1335,6 +1344,7 @@ window.SCENE = {
      ],
      "f": "arm-l",
      "phrase": "Er lässt seine Arme locker hängen.",
+     "sens": "Il laisse pendre ses bras, détendus.",
      "n": "<b>lassen</b> + infinitif : laisser (pendre).",
      "revise": {
       "mot": "lassen",
@@ -1350,6 +1360,7 @@ window.SCENE = {
      ],
      "f": "handflaeche-r",
      "phrase": "Er hält die Hände so, dass man die Handflächen sieht.",
+     "sens": "Il tient les mains de façon à ce qu'on voie les paumes.",
      "n": "<b>man</b> se conjugue à la 3e personne du singulier : man <b>sieht</b>.",
      "revise": {
       "mot": "sehen",
@@ -1365,6 +1376,7 @@ window.SCENE = {
      ],
      "f": "ruecken",
      "phrase": "Atmen Sie bitte ruhig aus und ein!",
+     "sens": "Expirez et inspirez calmement, s'il vous plaît !",
      "n": "<b>ausatmen</b> = expirer, <b>einatmen</b> = inspirer."
     }
    ]
@@ -1382,6 +1394,7 @@ window.SCENE = {
      "f": "ruecken",
      "r": "hand-aerztin-haut",
      "phrase": "Sein Rücken wird gerade abgehört.",
+     "sens": "Son dos est en train d'être ausculté.",
      "n": "Passif de l'action : <b>werden</b> + participe II."
     },
     {
@@ -1394,6 +1407,7 @@ window.SCENE = {
      "f": "mark",
      "r": "ruecken",
      "phrase": "Das ist der Patient, dessen Rücken die Ärztin abhört.",
+     "sens": "C'est le patient dont la médecin ausculte le dos.",
      "n": "Possession, antécédent masculin → <b>dessen</b>."
     },
     {
@@ -1406,6 +1420,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "ruecken",
      "phrase": "Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.",
+     "sens": "La médecin, dont le stéthoscope est posé sur son dos, écoute attentivement.",
      "n": "Possession, antécédent féminin → <b>deren</b>."
     },
     {
@@ -1417,6 +1432,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.",
+     "sens": "Après qu'il s'est retourné, elle a ausculté son dos.",
      "n": "<b>nachdem</b> + plus-que-parfait. Un verbe pronominal prend <b>haben</b>."
     },
     {
@@ -1428,6 +1444,7 @@ window.SCENE = {
      ],
      "f": "ruecken",
      "phrase": "Bevor der Rücken abgehört werden kann, muss er tief einatmen.",
+     "sens": "Avant que le dos puisse être ausculté, il doit inspirer profondément.",
      "n": "Passif avec modal : participe II + <b>werden</b> + modal (kann)."
     },
     {
@@ -1440,6 +1457,7 @@ window.SCENE = {
      "f": "schulterblatt",
      "r": "wirbelsaeule",
      "phrase": "Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.",
+     "sens": "Les omoplates, entre lesquelles se trouve la colonne vertébrale, sont bien visibles.",
      "n": "Pronom relatif au datif pluriel : <b>denen</b>, pas « den »."
     }
    ]
@@ -1456,6 +1474,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Er dürfte schon oft abgehört worden sein.",
+     "sens": "Il a sans doute déjà été ausculté souvent.",
      "n": "<b>dürfte</b> + infinitif passé du passif : supposition probable sur le passé."
     },
     {
@@ -1467,6 +1486,7 @@ window.SCENE = {
      ],
      "f": "ruecken",
      "phrase": "Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.",
+     "sens": "S'il avait mal au dos, il l'aurait dit à la médecin.",
      "n": "Irréel du passé : <b>hätte</b> + participe II (gesagt)."
     },
     {
@@ -1479,6 +1499,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "ruecken",
      "phrase": "Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.",
+     "sens": "À supposer qu'elle entende un bruit, elle lui ferait passer une radio.",
      "n": "Konjunktiv II de <b>hören</b> = <b>hörte</b> (même forme que le prétérit)."
     },
     {
@@ -1490,6 +1511,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark soll nie ernsthaft krank gewesen sein.",
+     "sens": "Il paraît que Mark n'a jamais été gravement malade.",
      "n": "<b>sollen</b> + infinitif passé : on le rapporte, sans le garantir."
     },
     {
@@ -1501,6 +1523,7 @@ window.SCENE = {
      ],
      "f": "wirbelsaeule",
      "phrase": "Seine gerade Haltung dürfte vom vielen Sport kommen.",
+     "sens": "Sa posture droite vient sans doute de tout le sport qu'il fait.",
      "n": "<b>dürfte</b> = hypothèse probable de celui qui parle."
     },
     {
@@ -1512,6 +1535,7 @@ window.SCENE = {
      ],
      "f": "aerztin",
      "phrase": "Hätte sie nichts gehört, hätte sie längst aufgehört.",
+     "sens": "Si elle n'avait rien entendu, elle aurait arrêté depuis longtemps.",
      "n": "Condition sans <b>wenn</b>, verbe en tête ; irréel du passé avec <b>hätte</b>."
     }
    ]
@@ -1567,6 +1591,32 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + perfect infinitive: it's reported, without any guarantee.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = the speaker's probable assumption.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Condition without <b>wenn</b>, verb first; unreal past with <b>hätte</b>."
+   },
+   "sens": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "The doctor is holding the stethoscope on his back.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "The doctor is standing next to the patient.",
+    "A2 | Seine Hände sind neben seinem Po.": "His hands are next to his bottom.",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "The spine is between the shoulder blades.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "The calves are below the backs of the knees.",
+    "A2 | Die Waage steht an der Wand.": "The scale is against the wall.",
+    "B1 | Bitte drehen Sie sich um!": "Please turn around!",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "Mark turned around so that she can listen to his back.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "The doctor places the stethoscope on his back.",
+    "B1 | Er lässt seine Arme locker hängen.": "He lets his arms hang loosely.",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "He holds his hands so that the palms can be seen.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "Please breathe out and in calmly!",
+    "B2 | Sein Rücken wird gerade abgehört.": "His back is being listened to.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "This is the patient whose back the doctor is listening to.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "The doctor, whose stethoscope is on his back, is listening closely.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "After he had turned around, she listened to his back.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Before his back can be listened to, he has to breathe in deeply.",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "The shoulder blades, between which the spine lies, are clearly visible.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "He has probably been examined many times before.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "If he had back pain, he would have told the doctor.",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Supposing she heard a noise, she would have him X-rayed.",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "Mark is said never to have been seriously ill.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "His straight posture is probably due to all the sport he does.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "If she had heard nothing, she would have stopped long ago."
    }
   },
   "tr": {
@@ -1608,6 +1658,32 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + geçmiş mastar: aktarılıyor, garanti edilmiyor.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = konuşanın muhtemel gördüğü bir tahmin.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "<b>wenn</b> olmadan koşul, fiil başta; <b>hätte</b> ile geçmişte gerçek dışı durum."
+   },
+   "sens": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "Doktor stetoskopu sırtına tutuyor.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "Doktor hastanın yanında duruyor.",
+    "A2 | Seine Hände sind neben seinem Po.": "Elleri kalçasının yanında.",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "Omurga kürek kemiklerinin arasında.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "Baldırlar diz arkalarının altında.",
+    "A2 | Die Waage steht an der Wand.": "Tartı duvarın dibinde duruyor.",
+    "B1 | Bitte drehen Sie sich um!": "Lütfen arkanızı dönün!",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "Mark sırtını dinleyebilsin diye arkasını döndü.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "Doktor stetoskopu sırtına koyuyor.",
+    "B1 | Er lässt seine Arme locker hängen.": "Kollarını gevşek bırakıyor.",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "Ellerini avuç içleri görünecek şekilde tutuyor.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "Lütfen sakince nefes verin ve alın!",
+    "B2 | Sein Rücken wird gerade abgehört.": "Sırtı şu anda dinleniyor.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "Bu, doktorun sırtını dinlediği hasta.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "Stetoskopu sırtında olan doktor dikkatle dinliyor.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "Arkasını döndükten sonra sırtını dinledi.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Sırtı dinlenmeden önce derin nefes alması gerekiyor.",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "Aralarında omurganın bulunduğu kürek kemikleri iyi görünüyor.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "Daha önce birçok kez dinlenmiş olsa gerek.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "Sırt ağrısı olsaydı doktora söylerdi.",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Diyelim ki bir ses duydu, onu röntgene gönderirdi.",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "Mark'ın hiç ciddi şekilde hasta olmadığı söyleniyor.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "Dik duruşu çok spor yapmasından olsa gerek.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Bir şey duymasaydı çoktan bırakmıştı."
    }
   },
   "uk": {
@@ -1649,6 +1725,32 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + інфінітив минулого: так переказують, без гарантії.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = імовірне припущення мовця.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Умова без <b>wenn</b>, дієслово на початку; нереальне минуле з <b>hätte</b>."
+   },
+   "sens": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "Лікарка тримає стетоскоп на його спині.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "Лікарка стоїть біля пацієнта.",
+    "A2 | Seine Hände sind neben seinem Po.": "Його руки біля сідниць.",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "Хребет між лопатками.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "Литки нижче підколінних ямок.",
+    "A2 | Die Waage steht an der Wand.": "Ваги стоять біля стіни.",
+    "B1 | Bitte drehen Sie sich um!": "Поверніться, будь ласка!",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "Марк повернувся, щоб вона могла прослухати його спину.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "Лікарка прикладає стетоскоп до його спини.",
+    "B1 | Er lässt seine Arme locker hängen.": "Він вільно опускає руки.",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "Він тримає руки так, що видно долоні.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "Спокійно видихніть і вдихніть, будь ласка!",
+    "B2 | Sein Rücken wird gerade abgehört.": "Його спину зараз прослуховують.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "Це пацієнт, якому лікарка прослуховує спину.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "Лікарка, чий стетоскоп на його спині, уважно слухає.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "Після того як він повернувся, вона прослухала спину.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Перш ніж прослухати спину, він має глибоко вдихнути.",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "Лопатки, між якими розташований хребет, добре видно.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "Його, напевно, вже багато разів прослуховували.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "Якби в нього боліла спина, він сказав би про це лікарці.",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Припустімо, вона почула б шум, тоді направила б його на рентген.",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "Кажуть, Марк ніколи серйозно не хворів.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "Його рівна постава, напевно, від занять спортом.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Якби вона нічого не почула, вона давно б уже закінчила."
    }
   },
   "fa": {
@@ -1690,6 +1792,32 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + مصدرِ گذشته: نقل می‌شود، بی‌ضمانت.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = گمانِ محتملِ گوینده.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "شرط بدون <b>wenn</b>، فعل در آغاز؛ غیرواقعی در گذشته با <b>hätte</b>."
+   },
+   "sens": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "پزشک گوشی پزشکی را روی پشتش نگه داشته است.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "پزشک کنار بیمار ایستاده است.",
+    "A2 | Seine Hände sind neben seinem Po.": "دست‌هایش کنار باسنش است.",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "ستون فقرات بین کتف‌ها است.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "ساق‌ها زیر پشت زانوها هستند.",
+    "A2 | Die Waage steht an der Wand.": "ترازو کنار دیوار است.",
+    "B1 | Bitte drehen Sie sich um!": "لطفاً برگردید!",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "مارک برگشته تا پزشک بتواند پشتش را معاینه کند.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "پزشک گوشی پزشکی را روی پشتش می‌گذارد.",
+    "B1 | Er lässt seine Arme locker hängen.": "او بازوهایش را شل رها می‌کند.",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "دست‌هایش را طوری نگه داشته که کف دست‌ها دیده می‌شود.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "لطفاً آرام نفس بدهید و بگیرید!",
+    "B2 | Sein Rücken wird gerade abgehört.": "پشتش در حال معاینه است.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "این بیماری است که پزشک پشتش را معاینه می‌کند.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "پزشکی که گوشی‌اش روی پشت اوست، با دقت گوش می‌دهد.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "پس از اینکه برگشت، پزشک پشتش را معاینه کرد.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "پیش از معاینهٔ پشت، باید نفس عمیق بکشد.",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "کتف‌ها، که ستون فقرات بینشان است، به‌خوبی دیده می‌شوند.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "او احتمالاً پیش از این بارها معاینه شده است.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "اگر کمردرد داشت، به پزشک گفته بود.",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "فرض کنیم صدایی بشنود، او را برای رادیولوژی می‌فرستاد.",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "می‌گویند مارک هیچ‌وقت به‌طور جدی بیمار نبوده است.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "ایستادن صافش احتمالاً از ورزش زیاد است.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "اگر چیزی نشنیده بود، خیلی وقت پیش تمام کرده بود."
    }
   },
   "ar": {
@@ -1731,6 +1859,32 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + مصدر الماضي: يُنقل الخبر دون ضمان.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = افتراض مرجَّح من المتكلّم.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "شرط دون <b>wenn</b>، والفعل في البداية؛ غير الواقع في الماضي مع <b>hätte</b>."
+   },
+   "sens": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "تضع الطبيبة السمّاعة على ظهره.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "الطبيبة واقفة بجانب المريض.",
+    "A2 | Seine Hände sind neben seinem Po.": "يداه بجانب مؤخّرته.",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "العمود الفقري بين لوحي الكتف.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "ربلتا الساق تحت مأبضي الركبتين.",
+    "A2 | Die Waage steht an der Wand.": "الميزان عند الحائط.",
+    "B1 | Bitte drehen Sie sich um!": "من فضلك استدر!",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "استدار مارك لكي تستطيع فحص ظهره.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "تضع الطبيبة السمّاعة على ظهره.",
+    "B1 | Er lässt seine Arme locker hängen.": "يترك ذراعيه مسترخيتين.",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "يمسك يديه بحيث تُرى راحتاهما.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "من فضلك ازفر واستنشق بهدوء!",
+    "B2 | Sein Rücken wird gerade abgehört.": "يُفحص ظهره الآن بالسمّاعة.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "هذا هو المريض الذي تفحص الطبيبة ظهره.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "الطبيبة التي سمّاعتها على ظهره تصغي بانتباه.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "بعد أن استدار، فحصت ظهره بالسمّاعة.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "قبل أن يُفحص ظهره، عليه أن يأخذ نفساً عميقاً.",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "لوحا الكتف اللذان يقع بينهما العمود الفقري واضحان للعيان.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "على الأرجح فُحص بالسمّاعة مرّات كثيرة من قبل.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "لو كان يشعر بألم في ظهره، لأخبر الطبيبة.",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "لنفترض أنها سمعت صوتاً، عندها كانت ستُجري له أشعّة.",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "يُقال إن مارك لم يمرض مرضاً خطيراً قطّ.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "على الأرجح أن قامته المستقيمة ناتجة عن كثرة الرياضة.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "لو لم تسمع شيئاً، لتوقّفت منذ وقت طويل."
    }
   },
   "pt": {
@@ -1772,6 +1926,32 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + infinitivo passado: é o que dizem, sem garantia.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = hipótese provável de quem fala.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Condição sem <b>wenn</b>, verbo no início; irreal do passado com <b>hätte</b>."
+   },
+   "sens": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "A médica segura o estetoscópio nas costas dele.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "A médica está ao lado do paciente.",
+    "A2 | Seine Hände sind neben seinem Po.": "As mãos dele estão ao lado do bumbum.",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "A coluna fica entre as omoplatas.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "As panturrilhas ficam abaixo da parte de trás dos joelhos.",
+    "A2 | Die Waage steht an der Wand.": "A balança está junto à parede.",
+    "B1 | Bitte drehen Sie sich um!": "Vire-se, por favor!",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "Mark se virou para que ela possa auscultar as costas dele.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "A médica põe o estetoscópio nas costas dele.",
+    "B1 | Er lässt seine Arme locker hängen.": "Ele deixa os braços soltos.",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "Ele segura as mãos de modo que se veem as palmas.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "Expire e inspire com calma, por favor!",
+    "B2 | Sein Rücken wird gerade abgehört.": "As costas dele estão sendo auscultadas.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "Este é o paciente cujas costas a médica ausculta.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "A médica, cujo estetoscópio está nas costas dele, escuta com atenção.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "Depois que ele se virou, ela auscultou as costas.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Antes que as costas possam ser auscultadas, ele tem que respirar fundo.",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "As omoplatas, entre as quais fica a coluna, são bem visíveis.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "Ele provavelmente já foi auscultado muitas vezes.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "Se ele tivesse dor nas costas, teria dito à médica.",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Supondo que ela ouvisse um ruído, mandaria fazer uma radiografia.",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "Dizem que Mark nunca esteve gravemente doente.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "A postura ereta dele provavelmente vem do muito esporte.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Se ela não tivesse ouvido nada, já teria parado há muito tempo."
    }
   },
   "pl": {
@@ -1813,6 +1993,32 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + bezokolicznik przeszły: tak się mówi, bez gwarancji.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = prawdopodobne przypuszczenie mówiącego.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Warunek bez <b>wenn</b>, czasownik na początku; warunek nierzeczywisty w przeszłości z <b>hätte</b>."
+   },
+   "sens": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "Lekarka trzyma stetoskop na jego plecach.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "Lekarka stoi obok pacjenta.",
+    "A2 | Seine Hände sind neben seinem Po.": "Jego ręce są obok pośladków.",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "Kręgosłup jest między łopatkami.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "Łydki są poniżej dołów podkolanowych.",
+    "A2 | Die Waage steht an der Wand.": "Waga stoi przy ścianie.",
+    "B1 | Bitte drehen Sie sich um!": "Proszę się odwrócić!",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "Mark odwrócił się, żeby mogła osłuchać jego plecy.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "Lekarka przykłada stetoskop do jego pleców.",
+    "B1 | Er lässt seine Arme locker hängen.": "Luźno opuszcza ręce.",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "Trzyma ręce tak, że widać dłonie.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "Proszę spokojnie wydychać i wdychać!",
+    "B2 | Sein Rücken wird gerade abgehört.": "Jego plecy są właśnie osłuchiwane.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "To pacjent, którego plecy osłuchuje lekarka.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "Lekarka, której stetoskop leży na jego plecach, uważnie słucha.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "Po tym, jak się odwrócił, osłuchała plecy.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Zanim plecy będą mogły być osłuchane, musi głęboko wdychać.",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "Łopatki, między którymi znajduje się kręgosłup, są dobrze widoczne.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "Zapewne był już wiele razy osłuchiwany.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "Gdyby bolały go plecy, powiedziałby o tym lekarce.",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Załóżmy, że usłyszałaby szmer, wysłałaby go na prześwietlenie.",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "Podobno Mark nigdy nie był poważnie chory.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "Jego prosta postawa wynika zapewne z uprawiania sportu.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Gdyby nic nie usłyszała, dawno by przestała."
    }
   },
   "ru": {
@@ -1854,6 +2060,32 @@ window.SCENE = {
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "<b>sollen</b> + инфинитив прошедшего: так говорят, без гарантии.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "<b>dürfte</b> = вероятная гипотеза говорящего.",
     "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Условие без <b>wenn</b>, глагол впереди; нереальное прошлое с <b>hätte</b>."
+   },
+   "sens": {
+    "A2 | Die Ärztin hält das Stethoskop auf seinem Rücken.": "Врач держит стетоскоп на его спине.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "Врач стоит рядом с пациентом.",
+    "A2 | Seine Hände sind neben seinem Po.": "Его руки рядом с ягодицами.",
+    "A2 | Die Wirbelsäule ist zwischen den Schulterblättern.": "Позвоночник между лопатками.",
+    "A2 | Die Waden sind unter den Kniekehlen.": "Икры ниже подколенных ямок.",
+    "A2 | Die Waage steht an der Wand.": "Весы стоят у стены.",
+    "B1 | Bitte drehen Sie sich um!": "Повернитесь, пожалуйста!",
+    "B1 | Mark hat sich umgedreht, damit sie seinen Rücken abhören kann.": "Марк повернулся, чтобы она могла прослушать его спину.",
+    "B1 | Die Ärztin setzt das Stethoskop auf seinen Rücken.": "Врач ставит стетоскоп ему на спину.",
+    "B1 | Er lässt seine Arme locker hängen.": "Он свободно опускает руки.",
+    "B1 | Er hält die Hände so, dass man die Handflächen sieht.": "Он держит руки так, что видны ладони.",
+    "B1 | Atmen Sie bitte ruhig aus und ein!": "Пожалуйста, спокойно выдохните и вдохните!",
+    "B2 | Sein Rücken wird gerade abgehört.": "Его спину сейчас прослушивают.",
+    "B2 | Das ist der Patient, dessen Rücken die Ärztin abhört.": "Это пациент, которому врач прослушивает спину.",
+    "B2 | Die Ärztin, deren Stethoskop auf seinem Rücken liegt, hört genau zu.": "Врач, чей стетоскоп на его спине, внимательно слушает.",
+    "B2 | Nachdem er sich umgedreht hatte, hörte sie den Rücken ab.": "После того как он повернулся, она прослушала спину.",
+    "B2 | Bevor der Rücken abgehört werden kann, muss er tief einatmen.": "Прежде чем прослушать спину, он должен глубоко вдохнуть.",
+    "B2 | Die Schulterblätter, zwischen denen sich die Wirbelsäule befindet, sind gut zu sehen.": "Лопатки, между которыми находится позвоночник, хорошо видны.",
+    "C1 | Er dürfte schon oft abgehört worden sein.": "Его, вероятно, уже много раз прослушивали.",
+    "C1 | Wenn er Rückenschmerzen hätte, hätte er es der Ärztin gesagt.": "Если бы у него болела спина, он сказал бы об этом врачу.",
+    "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Предположим, она услышала бы шум, тогда она отправила бы его на рентген.",
+    "C1 | Mark soll nie ernsthaft krank gewesen sein.": "Говорят, Марк никогда серьёзно не болел.",
+    "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "Его прямая осанка, вероятно, от занятий спортом.",
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Если бы она ничего не услышала, она давно бы закончила."
    }
   }
  }

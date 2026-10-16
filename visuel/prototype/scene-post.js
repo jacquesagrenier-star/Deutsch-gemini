@@ -859,6 +859,7 @@ window.SCENE = {
      "f": "paket",
      "r": "waage",
      "phrase": "Das Paket liegt auf der Waage.",
+     "sens": "Le colis est sur la balance.",
      "n": "die Waage → auf <b>der</b> Waage : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -871,6 +872,7 @@ window.SCENE = {
      "f": "briefkasten",
      "r": "fenster",
      "phrase": "Der Briefkasten steht hinter dem Fenster.",
+     "sens": "La boîte aux lettres est derrière la fenêtre.",
      "n": "<b>hinter</b> = derrière. das Fenster → hinter <b>dem</b> Fenster."
     },
     {
@@ -882,6 +884,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
      "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -894,6 +897,7 @@ window.SCENE = {
      "f": "briefmarke",
      "r": "schalter",
      "phrase": "Die Briefmarken liegen auf dem Schalter.",
+     "sens": "Les timbres sont sur le comptoir.",
      "n": "der Schalter → auf <b>dem</b> Schalter."
     },
     {
@@ -906,6 +910,7 @@ window.SCENE = {
      "f": "brief-2",
      "r": "korb",
      "phrase": "Die Briefe sind im Korb.",
+     "sens": "Les lettres sont dans la corbeille.",
      "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
     },
     {
@@ -918,6 +923,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "schalter",
      "phrase": "Die Pflanze steht auf dem Schalter.",
+     "sens": "La plante est sur le comptoir.",
      "n": "der Schalter → auf <b>dem</b> Schalter."
     },
     {
@@ -930,6 +936,7 @@ window.SCENE = {
      "f": "regenschirm",
      "r": "bank",
      "phrase": "Der Regenschirm steht neben der Bank.",
+     "sens": "Le parapluie est à côté du banc.",
      "n": "die Bank → neben <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -942,6 +949,7 @@ window.SCENE = {
      "f": "paket-4",
      "r": "schalter",
      "phrase": "Das große Paket steht vor dem Schalter.",
+     "sens": "Le grand colis est devant le guichet.",
      "n": "<b>vor</b> = devant. der Schalter → vor <b>dem</b> Schalter."
     }
    ]
@@ -959,6 +967,7 @@ window.SCENE = {
      "f": "brief",
      "r": "anna",
      "phrase": "Anna schickt ihrer Mutter einen Brief.",
+     "sens": "Anna envoie une lettre à sa mère.",
      "n": "Celui qui reçoit → datif : ihre Mutter → <b>ihrer</b> Mutter.",
      "revise": {
       "mot": "schicken",
@@ -975,6 +984,7 @@ window.SCENE = {
      "f": "mann",
      "r": "anna",
      "phrase": "Der Mann gibt ihr eine Quittung.",
+     "sens": "L'homme lui donne un reçu.",
      "n": "<b>geben</b> + datif : sie → <b>ihr</b>.",
      "revise": {
       "mot": "geben",
@@ -991,6 +1001,7 @@ window.SCENE = {
      "f": "brief",
      "r": "mann",
      "phrase": "Anna gibt ihm den Brief.",
+     "sens": "Anna lui donne la lettre.",
      "n": "<b>geben</b> + datif : er → <b>ihm</b>.",
      "revise": {
       "mot": "geben",
@@ -1007,6 +1018,7 @@ window.SCENE = {
      "f": "brief",
      "r": "mann",
      "phrase": "Den Brief? Sie gibt ihn ihm.",
+     "sens": "La lettre ? Elle la lui donne.",
      "n": "Deux pronoms : l'accusatif d'abord → <b>ihn</b> ihm."
     },
     {
@@ -1019,6 +1031,7 @@ window.SCENE = {
      "f": "paket-3",
      "r": "frau",
      "phrase": "Die Frau will ihrem Enkel ein Paket schicken.",
+     "sens": "La femme veut envoyer un colis à son petit-fils.",
      "n": "der Enkel reçoit → datif → <b>ihrem</b> Enkel.",
      "revise": {
       "mot": "schicken",
@@ -1034,6 +1047,7 @@ window.SCENE = {
      ],
      "f": "briefmarke",
      "phrase": "Kannst du mir eine Briefmarke kaufen?",
+     "sens": "Tu peux m'acheter un timbre ?",
      "n": "Pour moi → datif : <b>mir</b>.",
      "revise": {
       "mot": "kaufen",
@@ -1050,6 +1064,7 @@ window.SCENE = {
      "f": "anna",
      "r": "mann",
      "phrase": "Anna zeigt dem Mann ihren Ausweis.",
+     "sens": "Anna montre sa carte d'identité à l'homme.",
      "n": "der Ausweis, accusatif masculin → <b>ihren</b>.",
      "revise": {
       "mot": "zeigen",
@@ -1066,6 +1081,7 @@ window.SCENE = {
      "f": "mann",
      "r": "frau",
      "phrase": "Der Mann erklärt der Frau den Preis.",
+     "sens": "L'homme explique le prix à la femme.",
      "n": "Datif féminin → <b>der</b> Frau.",
      "revise": {
       "mot": "erklären",
@@ -1087,6 +1103,7 @@ window.SCENE = {
      "f": "paket",
      "r": "waage",
      "phrase": "Das Paket wird gerade gewogen.",
+     "sens": "Le colis est en train d'être pesé.",
      "n": "Passif d'action : <b>werden</b> + participe → wird gewogen."
     },
     {
@@ -1098,6 +1115,7 @@ window.SCENE = {
      ],
      "f": "brief",
      "phrase": "Der Brief wird morgen zugestellt.",
+     "sens": "La lettre sera distribuée demain.",
      "n": "Participe d'un verbe séparable : zu<b>ge</b>stellt.",
      "revise": {
       "mot": "zustellen",
@@ -1113,6 +1131,7 @@ window.SCENE = {
      ],
      "f": "paket-2",
      "phrase": "Das Paket wurde gestern abgeschickt.",
+     "sens": "Le colis a été envoyé hier.",
      "n": "Passif au passé : <b>wurde</b> + participe."
     },
     {
@@ -1125,6 +1144,7 @@ window.SCENE = {
      "f": "brief-2",
      "r": "korb",
      "phrase": "Die Briefe sind schon sortiert.",
+     "sens": "Les lettres sont déjà triées.",
      "n": "Passif d'état : <b>sein</b> + participe (déjà triées)."
     },
     {
@@ -1136,6 +1156,7 @@ window.SCENE = {
      ],
      "f": "paket-4",
      "phrase": "Hier werden auch Pakete verschickt.",
+     "sens": "Ici, on envoie aussi des colis.",
      "n": "Sujet pluriel (Pakete) → <b>werden</b>."
     },
     {
@@ -1148,6 +1169,7 @@ window.SCENE = {
      "f": "briefmarke",
      "r": "umschlag",
      "phrase": "Die Briefmarke muss auf den Umschlag geklebt werden.",
+     "sens": "Le timbre doit être collé sur l'enveloppe.",
      "n": "Passif avec un modal : participe + <b>werden</b> à la fin."
     }
    ]
@@ -1165,6 +1187,7 @@ window.SCENE = {
      "f": "brief",
      "r": "anna",
      "phrase": "Der Brief muss für jemand Wichtiges sein.",
+     "sens": "La lettre doit être pour quelqu'un d'important.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1177,6 +1200,7 @@ window.SCENE = {
      "f": "paket-3",
      "r": "frau",
      "phrase": "Das Paket der alten Dame könnte ein Geschenk sein.",
+     "sens": "Le colis de la vieille dame est peut-être un cadeau.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1188,6 +1212,7 @@ window.SCENE = {
      ],
      "f": "brief",
      "phrase": "Der Brief dürfte in zwei Tagen ankommen.",
+     "sens": "La lettre devrait arriver dans deux jours.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1199,6 +1224,7 @@ window.SCENE = {
      ],
      "f": "schalter",
      "phrase": "Diese Post soll bald schließen.",
+     "sens": "Il paraît que cette poste va bientôt fermer.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1244,6 +1270,34 @@ window.SCENE = {
     "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Der Brief dürfte in zwei Tagen ankommen.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Diese Post soll bald schließen.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Das Paket liegt auf der Waage.": "The parcel is on the scale.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "The letterbox is behind the window.",
+    "A2 | Die Uhr hängt an der Wand.": "The clock hangs on the wall.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "The stamps are on the counter.",
+    "A2 | Die Briefe sind im Korb.": "The letters are in the basket.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "The plant is on the counter.",
+    "A2 | Der Regenschirm steht neben der Bank.": "The umbrella is next to the bench.",
+    "A2 | Das große Paket steht vor dem Schalter.": "The big parcel is in front of the counter.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "Anna sends her mother a letter.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "The man gives her a receipt.",
+    "B1 | Anna gibt ihm den Brief.": "Anna gives him the letter.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "The letter? She gives it to him.",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "The woman wants to send her grandson a parcel.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "Can you buy me a stamp?",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "Anna shows the man her ID card.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "The man explains the price to the woman.",
+    "B2 | Das Paket wird gerade gewogen.": "The parcel is being weighed.",
+    "B2 | Der Brief wird morgen zugestellt.": "The letter will be delivered tomorrow.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "The parcel was sent yesterday.",
+    "B2 | Die Briefe sind schon sortiert.": "The letters are already sorted.",
+    "B2 | Hier werden auch Pakete verschickt.": "Parcels are sent from here too.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "The stamp has to be stuck on the envelope.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "The letter must be for someone important.",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "The old lady's parcel might be a present.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "The letter should arrive in two days.",
+    "C1 | Diese Post soll bald schließen.": "This post office is said to be closing soon."
    }
   },
   "tr": {
@@ -1285,6 +1339,34 @@ window.SCENE = {
     "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Der Brief dürfte in zwei Tagen ankommen.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Diese Post soll bald schließen.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Das Paket liegt auf der Waage.": "Paket tartının üstünde.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "Posta kutusu pencerenin arkasında duruyor.",
+    "A2 | Die Uhr hängt an der Wand.": "Saat duvarda asılı.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "Pullar bankonun üstünde.",
+    "A2 | Die Briefe sind im Korb.": "Mektuplar sepetin içinde.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "Bitki bankonun üstünde duruyor.",
+    "A2 | Der Regenschirm steht neben der Bank.": "Şemsiye bankın yanında duruyor.",
+    "A2 | Das große Paket steht vor dem Schalter.": "Büyük paket bankonun önünde duruyor.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "Anna annesine bir mektup gönderiyor.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "Adam ona bir makbuz veriyor.",
+    "B1 | Anna gibt ihm den Brief.": "Anna ona mektubu veriyor.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "Mektubu mu? Onu ona veriyor.",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "Kadın torununa bir paket göndermek istiyor.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "Bana bir pul alabilir misin?",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "Anna adama kimliğini gösteriyor.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "Adam kadına fiyatı açıklıyor.",
+    "B2 | Das Paket wird gerade gewogen.": "Paket şu anda tartılıyor.",
+    "B2 | Der Brief wird morgen zugestellt.": "Mektup yarın teslim edilecek.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "Paket dün gönderildi.",
+    "B2 | Die Briefe sind schon sortiert.": "Mektuplar ayrılmış bile.",
+    "B2 | Hier werden auch Pakete verschickt.": "Burada paket de gönderiliyor.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "Pul zarfın üstüne yapıştırılmalı.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "Mektup önemli biri için olmalı.",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "Yaşlı hanımın paketi bir hediye olabilir.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "Mektup iki güne varır herhalde.",
+    "C1 | Diese Post soll bald schließen.": "Bu postanenin yakında kapanacağı söyleniyor."
    }
   },
   "uk": {
@@ -1326,6 +1408,34 @@ window.SCENE = {
     "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Der Brief dürfte in zwei Tagen ankommen.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Diese Post soll bald schließen.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Das Paket liegt auf der Waage.": "Посилка лежить на вагах.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "Поштова скринька стоїть за вікном.",
+    "A2 | Die Uhr hängt an der Wand.": "Годинник висить на стіні.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "Марки лежать на стійці.",
+    "A2 | Die Briefe sind im Korb.": "Листи в кошику.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "Рослина стоїть на стійці.",
+    "A2 | Der Regenschirm steht neben der Bank.": "Парасолька стоїть біля лавки.",
+    "A2 | Das große Paket steht vor dem Schalter.": "Велика посилка стоїть перед стійкою.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "Анна надсилає матері листа.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "Чоловік дає їй квитанцію.",
+    "B1 | Anna gibt ihm den Brief.": "Анна дає йому листа.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "Листа? Вона дає його йому.",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "Жінка хоче надіслати онукові посилку.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "Можеш купити мені марку?",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "Анна показує чоловікові своє посвідчення.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "Чоловік пояснює жінці ціну.",
+    "B2 | Das Paket wird gerade gewogen.": "Посилку зараз зважують.",
+    "B2 | Der Brief wird morgen zugestellt.": "Лист доставлять завтра.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "Посилку відправили вчора.",
+    "B2 | Die Briefe sind schon sortiert.": "Листи вже посортовані.",
+    "B2 | Hier werden auch Pakete verschickt.": "Тут також відправляють посилки.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "Марку треба наклеїти на конверт.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "Лист, мабуть, для когось важливого.",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "Посилка літньої пані, можливо, подарунок.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "Лист, напевно, прийде за два дні.",
+    "C1 | Diese Post soll bald schließen.": "Кажуть, ця пошта скоро закриється."
    }
   },
   "fa": {
@@ -1367,6 +1477,34 @@ window.SCENE = {
     "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Der Brief dürfte in zwei Tagen ankommen.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Diese Post soll bald schließen.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Das Paket liegt auf der Waage.": "بسته روی ترازو است.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "صندوق پست پشت پنجره است.",
+    "A2 | Die Uhr hängt an der Wand.": "ساعت روی دیوار آویزان است.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "تمبرها روی پیشخوان هستند.",
+    "A2 | Die Briefe sind im Korb.": "نامه‌ها در سبد هستند.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "گیاه روی پیشخوان است.",
+    "A2 | Der Regenschirm steht neben der Bank.": "چتر کنار نیمکت است.",
+    "A2 | Das große Paket steht vor dem Schalter.": "بستهٔ بزرگ جلوی پیشخوان است.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "آنا برای مادرش نامه می‌فرستد.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "مرد به او رسید می‌دهد.",
+    "B1 | Anna gibt ihm den Brief.": "آنا نامه را به او می‌دهد.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "نامه؟ آن را به او می‌دهد.",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "زن می‌خواهد برای نوه‌اش بسته‌ای بفرستد.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "می‌توانی برایم یک تمبر بخری؟",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "آنا کارت شناسایی‌اش را به مرد نشان می‌دهد.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "مرد قیمت را برای زن توضیح می‌دهد.",
+    "B2 | Das Paket wird gerade gewogen.": "بسته در حال وزن شدن است.",
+    "B2 | Der Brief wird morgen zugestellt.": "نامه فردا تحویل داده می‌شود.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "بسته دیروز فرستاده شد.",
+    "B2 | Die Briefe sind schon sortiert.": "نامه‌ها مرتب شده‌اند.",
+    "B2 | Hier werden auch Pakete verschickt.": "اینجا بسته هم فرستاده می‌شود.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "تمبر باید روی پاکت چسبانده شود.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "نامه حتماً برای آدم مهمی است.",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "بستهٔ خانم مسن شاید هدیه باشد.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "نامه احتمالاً تا دو روز دیگر می‌رسد.",
+    "C1 | Diese Post soll bald schließen.": "می‌گویند این ادارهٔ پست به‌زودی بسته می‌شود."
    }
   },
   "ar": {
@@ -1408,6 +1546,34 @@ window.SCENE = {
     "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Der Brief dürfte in zwei Tagen ankommen.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Diese Post soll bald schließen.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Das Paket liegt auf der Waage.": "الطرد على الميزان.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "صندوق البريد خلف النافذة.",
+    "A2 | Die Uhr hängt an der Wand.": "الساعة معلّقة على الحائط.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "الطوابع على المنضدة.",
+    "A2 | Die Briefe sind im Korb.": "الرسائل في السلّة.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "النبتة على المنضدة.",
+    "A2 | Der Regenschirm steht neben der Bank.": "المظلّة بجانب المقعد.",
+    "A2 | Das große Paket steht vor dem Schalter.": "الطرد الكبير أمام المنضدة.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "ترسل آنا رسالة إلى أمّها.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "يعطيها الرجل إيصالاً.",
+    "B1 | Anna gibt ihm den Brief.": "تعطيه آنا الرسالة.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "الرسالة؟ تعطيها إيّاه.",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "تريد المرأة أن ترسل طرداً إلى حفيدها.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "هل يمكنك أن تشتري لي طابعاً؟",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "تُري آنا الرجل بطاقة هويّتها.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "يشرح الرجل السعر للمرأة.",
+    "B2 | Das Paket wird gerade gewogen.": "الطرد يُوزَن الآن.",
+    "B2 | Der Brief wird morgen zugestellt.": "ستُسلَّم الرسالة غداً.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "أُرسل الطرد أمس.",
+    "B2 | Die Briefe sind schon sortiert.": "الرسائل مفروزة بالفعل.",
+    "B2 | Hier werden auch Pakete verschickt.": "هنا تُرسَل الطرود أيضاً.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "يجب لصق الطابع على الظرف.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "لا بدّ أن الرسالة لشخص مهمّ.",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "ربما يكون طرد السيّدة العجوز هدية.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "على الأرجح تصل الرسالة خلال يومين.",
+    "C1 | Diese Post soll bald schließen.": "يُقال إن مكتب البريد هذا سيُغلق قريباً."
    }
   },
   "pt": {
@@ -1449,6 +1615,34 @@ window.SCENE = {
     "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Der Brief dürfte in zwei Tagen ankommen.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Diese Post soll bald schließen.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Das Paket liegt auf der Waage.": "O pacote está na balança.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "A caixa de correio está atrás da janela.",
+    "A2 | Die Uhr hängt an der Wand.": "O relógio está pendurado na parede.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "Os selos estão no balcão.",
+    "A2 | Die Briefe sind im Korb.": "As cartas estão na cesta.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "A planta está no balcão.",
+    "A2 | Der Regenschirm steht neben der Bank.": "O guarda-chuva está ao lado do banco.",
+    "A2 | Das große Paket steht vor dem Schalter.": "O pacote grande está em frente ao balcão.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "Anna manda uma carta para a mãe.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "O homem dá um recibo a ela.",
+    "B1 | Anna gibt ihm den Brief.": "Anna dá a carta a ele.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "A carta? Ela a dá a ele.",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "A mulher quer mandar um pacote para o neto.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "Você pode me comprar um selo?",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "Anna mostra a identidade ao homem.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "O homem explica o preço à mulher.",
+    "B2 | Das Paket wird gerade gewogen.": "O pacote está sendo pesado.",
+    "B2 | Der Brief wird morgen zugestellt.": "A carta será entregue amanhã.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "O pacote foi enviado ontem.",
+    "B2 | Die Briefe sind schon sortiert.": "As cartas já estão separadas.",
+    "B2 | Hier werden auch Pakete verschickt.": "Aqui também se enviam pacotes.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "O selo tem que ser colado no envelope.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "A carta deve ser para alguém importante.",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "O pacote da senhora idosa talvez seja um presente.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "A carta provavelmente chega em dois dias.",
+    "C1 | Diese Post soll bald schließen.": "Dizem que esta agência dos correios vai fechar em breve."
    }
   },
   "pl": {
@@ -1490,6 +1684,34 @@ window.SCENE = {
     "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Der Brief dürfte in zwei Tagen ankommen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Diese Post soll bald schließen.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Das Paket liegt auf der Waage.": "Paczka leży na wadze.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "Skrzynka pocztowa stoi za oknem.",
+    "A2 | Die Uhr hängt an der Wand.": "Zegar wisi na ścianie.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "Znaczki leżą na ladzie.",
+    "A2 | Die Briefe sind im Korb.": "Listy są w koszu.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "Roślina stoi na ladzie.",
+    "A2 | Der Regenschirm steht neben der Bank.": "Parasol stoi obok ławki.",
+    "A2 | Das große Paket steht vor dem Schalter.": "Duża paczka stoi przed ladą.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "Anna wysyła matce list.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "Mężczyzna daje jej pokwitowanie.",
+    "B1 | Anna gibt ihm den Brief.": "Anna daje mu list.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "List? Daje mu go.",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "Kobieta chce wysłać wnukowi paczkę.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "Możesz mi kupić znaczek?",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "Anna pokazuje mężczyźnie swój dowód.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "Mężczyzna wyjaśnia kobiecie cenę.",
+    "B2 | Das Paket wird gerade gewogen.": "Paczka jest właśnie ważona.",
+    "B2 | Der Brief wird morgen zugestellt.": "List zostanie doręczony jutro.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "Paczka została wysłana wczoraj.",
+    "B2 | Die Briefe sind schon sortiert.": "Listy są już posortowane.",
+    "B2 | Hier werden auch Pakete verschickt.": "Tutaj wysyła się też paczki.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "Znaczek trzeba nakleić na kopertę.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "List musi być do kogoś ważnego.",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "Paczka starszej pani być może jest prezentem.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "List zapewne dojdzie za dwa dni.",
+    "C1 | Diese Post soll bald schließen.": "Podobno ta poczta wkrótce się zamyka."
    }
   },
   "ru": {
@@ -1531,6 +1753,34 @@ window.SCENE = {
     "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Der Brief dürfte in zwei Tagen ankommen.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Diese Post soll bald schließen.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Das Paket liegt auf der Waage.": "Посылка лежит на весах.",
+    "A2 | Der Briefkasten steht hinter dem Fenster.": "Почтовый ящик стоит за окном.",
+    "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
+    "A2 | Die Briefmarken liegen auf dem Schalter.": "Марки лежат на стойке.",
+    "A2 | Die Briefe sind im Korb.": "Письма в корзине.",
+    "A2 | Die Pflanze steht auf dem Schalter.": "Растение стоит на стойке.",
+    "A2 | Der Regenschirm steht neben der Bank.": "Зонт стоит рядом со скамейкой.",
+    "A2 | Das große Paket steht vor dem Schalter.": "Большая посылка стоит перед стойкой.",
+    "B1 | Anna schickt ihrer Mutter einen Brief.": "Анна отправляет матери письмо.",
+    "B1 | Der Mann gibt ihr eine Quittung.": "Мужчина даёт ей квитанцию.",
+    "B1 | Anna gibt ihm den Brief.": "Анна даёт ему письмо.",
+    "B1 | Den Brief? Sie gibt ihn ihm.": "Письмо? Она даёт его ему.",
+    "B1 | Die Frau will ihrem Enkel ein Paket schicken.": "Женщина хочет отправить внуку посылку.",
+    "B1 | Kannst du mir eine Briefmarke kaufen?": "Ты можешь купить мне марку?",
+    "B1 | Anna zeigt dem Mann ihren Ausweis.": "Анна показывает мужчине своё удостоверение.",
+    "B1 | Der Mann erklärt der Frau den Preis.": "Мужчина объясняет женщине цену.",
+    "B2 | Das Paket wird gerade gewogen.": "Посылку сейчас взвешивают.",
+    "B2 | Der Brief wird morgen zugestellt.": "Письмо доставят завтра.",
+    "B2 | Das Paket wurde gestern abgeschickt.": "Посылку отправили вчера.",
+    "B2 | Die Briefe sind schon sortiert.": "Письма уже рассортированы.",
+    "B2 | Hier werden auch Pakete verschickt.": "Здесь отправляют и посылки.",
+    "B2 | Die Briefmarke muss auf den Umschlag geklebt werden.": "Марку нужно наклеить на конверт.",
+    "C1 | Der Brief muss für jemand Wichtiges sein.": "Письмо, должно быть, для кого-то важного.",
+    "C1 | Das Paket der alten Dame könnte ein Geschenk sein.": "Посылка пожилой дамы, возможно, подарок.",
+    "C1 | Der Brief dürfte in zwei Tagen ankommen.": "Письмо, вероятно, придёт через два дня.",
+    "C1 | Diese Post soll bald schließen.": "Говорят, эта почта скоро закроется."
    }
   }
  }

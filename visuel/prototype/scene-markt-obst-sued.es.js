@@ -830,6 +830,7 @@ window.SCENE = {
      "f": "avocado",
      "r": "papaya",
      "phrase": "Los aguacates están entre las naranjas y las papayas.",
+     "sens": "Les avocats sont entre les oranges et les papayes.",
      "n": "<b>entre</b> … <b>y</b> … = entre … et …."
     },
     {
@@ -847,6 +848,7 @@ window.SCENE = {
       "genre": "el",
       "theme": "la_comida"
      },
+     "sens": "Anna prend quelques bananes.",
      "n": "<b>unos</b> = quelques (des). el plátano → unos plátanos."
     },
     {
@@ -859,6 +861,7 @@ window.SCENE = {
      "f": "limette",
      "r": "feige",
      "phrase": "Las limas están al lado de los higos.",
+     "sens": "Les citrons verts sont à côté des figues.",
      "n": "<b>al lado de</b> = à côté de."
     },
     {
@@ -871,6 +874,7 @@ window.SCENE = {
      "f": "mango",
      "r": "banane",
      "phrase": "Los mangos están entre los pomelos y los plátanos.",
+     "sens": "Les mangues sont entre les pamplemousses et les bananes.",
      "n": "<b>entre</b> … <b>y</b> … = entre … et ….",
      "latam": {
       "q": "Los mangos están entre las toronjas y los ___.",
@@ -886,6 +890,7 @@ window.SCENE = {
      ],
      "f": "wassermelone",
      "phrase": "La media sandía está encima de las otras sandías.",
+     "sens": "La demi-pastèque est sur les autres pastèques.",
      "n": "<b>encima de</b> = sur, par-dessus."
     }
    ]
@@ -902,6 +907,7 @@ window.SCENE = {
      ],
      "f": "ananas",
      "phrase": "¿Cuánto cuesta una piña?",
+     "sens": "Combien coûte un ananas ?",
      "n": "<b>la</b> piña est féminin → <b>una</b>."
     },
     {
@@ -913,6 +919,7 @@ window.SCENE = {
      ],
      "f": "wassermelone",
      "phrase": "Quería un trozo de sandía, por favor.",
+     "sens": "Je voudrais un morceau de pastèque, s'il vous plaît.",
      "n": "<b>un trozo</b> = un morceau."
     },
     {
@@ -929,6 +936,7 @@ window.SCENE = {
       "mot": "grande",
       "cat": "adjectif"
      },
+     "sens": "La pastèque est plus grosse que le melon.",
      "n": "<b>más</b> … <b>que</b> = plus … que."
     },
     {
@@ -944,6 +952,7 @@ window.SCENE = {
       "mot": "maduro",
       "cat": "adjectif"
      },
+     "sens": "Les mangues sont-elles déjà mûres ?",
      "n": "<b>estar maduro</b> = être mûr (un état). <b>ser maduro</b> = être mature (une personne)."
     },
     {
@@ -960,6 +969,7 @@ window.SCENE = {
       "genre": "el",
       "theme": "el_restaurante"
      },
+     "sens": "Je voudrais trois citrons, s'il vous plaît.",
      "n": "el limón → los <b>limones</b> : au pluriel, l'accent écrit disparaît."
     }
    ]
@@ -976,6 +986,7 @@ window.SCENE = {
      ],
      "f": "banane",
      "phrase": "La fruta tropical se transporta casi siempre en barco.",
+     "sens": "Les fruits tropicaux sont presque toujours transportés par bateau.",
      "n": "Le passif avec <b>se</b> : se transporta."
     },
     {
@@ -987,6 +998,7 @@ window.SCENE = {
      ],
      "f": "mango",
      "phrase": "El mango, cuya piel es roja y verde, ya está maduro.",
+     "sens": "La mangue, dont la peau est rouge et verte, est déjà mûre.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : la piel → <b>cuya</b>."
     },
     {
@@ -1002,6 +1014,7 @@ window.SCENE = {
       "mot": "abierto",
       "cat": "adjectif"
      },
+     "sens": "Sur les autres, il y a une papaye ouverte.",
      "n": "Le participe-adjectif s'accorde : una papaya → <b>abierta</b>."
     },
     {
@@ -1014,6 +1027,7 @@ window.SCENE = {
      "f": "banane",
      "r": "anna",
      "phrase": "Los plátanos que Anna se lleva vienen de Ecuador.",
+     "sens": "Les bananes qu'Anna emporte viennent d'Équateur.",
      "n": "Complément direct de la relative → <b>que</b>. <b>quienes</b> ne désigne que des personnes."
     },
     {
@@ -1025,6 +1039,7 @@ window.SCENE = {
      ],
      "f": "kokosnuss",
      "phrase": "El coco ya está abierto.",
+     "sens": "La noix de coco est déjà ouverte.",
      "n": "Le résultat d'une action → <b>estar</b> + participe."
     }
    ]
@@ -1041,6 +1056,7 @@ window.SCENE = {
      ],
      "f": "mango",
      "phrase": "A pesar del largo viaje, los mangos son bastante baratos aquí.",
+     "sens": "Malgré le long voyage, les mangues sont assez bon marché ici.",
      "n": "<b>a pesar de</b> = malgré. Devant el : a pesar <b>del</b>."
     },
     {
@@ -1052,6 +1068,7 @@ window.SCENE = {
      ],
      "f": "feige",
      "phrase": "Cuanto más oscuros son los higos, más dulces son.",
+     "sens": "Plus les figues sont foncées, plus elles sont sucrées.",
      "n": "<b>cuanto más</b> …, <b>más</b> … = plus …, plus …."
     },
     {
@@ -1063,6 +1080,7 @@ window.SCENE = {
      ],
      "f": "ananas",
      "phrase": "Si Anna tuviera más tiempo, compraría una piña y la pelaría.",
+     "sens": "Si Anna avait plus de temps, elle achèterait un ananas et l'éplucherait.",
      "n": "Hypothèse irréelle : <b>si</b> + subjonctif imparfait (tuviera), puis conditionnel."
     },
     {
@@ -1074,6 +1092,7 @@ window.SCENE = {
      ],
      "f": "avocado",
      "phrase": "Es mejor que los aguacates no estén en el frío.",
+     "sens": "Il vaut mieux que les avocats ne soient pas au froid.",
      "n": "<b>es mejor que</b> (un conseil) → <b>subjonctif</b>."
     },
     {
@@ -1085,6 +1104,7 @@ window.SCENE = {
      ],
      "f": "kokosnuss",
      "phrase": "El coco debe de haber sido abierto con un martillo.",
+     "sens": "La noix de coco a dû être ouverte avec un marteau.",
      "n": "<b>deber de</b> + infinitif passé = une déduction sur le passé."
     }
    ]
@@ -1138,6 +1158,29 @@ window.SCENE = {
     "C1 | Si Anna tuviera más tiempo, compraría una piña y la pelaría.": "Unreal condition: <b>si</b> + imperfect subjunctive (tuviera), then the conditional.",
     "C1 | Es mejor que los aguacates no estén en el frío.": "<b>es mejor que</b> (advice) → <b>subjunctive</b>.",
     "C1 | El coco debe de haber sido abierto con un martillo.": "<b>deber de</b> + perfect infinitive = a deduction about the past."
+   },
+   "sens": {
+    "A2 | Los aguacates están entre las naranjas y las papayas.": "The avocados are between the oranges and the papayas.",
+    "A2 | Anna toma unos plátanos.": "Anna takes a few bananas.",
+    "A2 | Las limas están al lado de los higos.": "The limes are next to the figs.",
+    "A2 | Los mangos están entre las toronjas y los plátanos.": "The mangoes are between the grapefruits and the bananas.",
+    "A2 | Los mangos están entre los pomelos y los plátanos.": "The mangoes are between the grapefruits and the bananas.",
+    "A2 | La media sandía está encima de las otras sandías.": "The half watermelon is on top of the other watermelons.",
+    "B1 | ¿Cuánto cuesta una piña?": "How much is a pineapple?",
+    "B1 | Quería un trozo de sandía, por favor.": "I would like a piece of watermelon, please.",
+    "B1 | La sandía es más grande que el melón.": "The watermelon is bigger than the melon.",
+    "B1 | ¿Ya están maduros los mangos?": "Are the mangoes ripe yet?",
+    "B1 | Quería tres limones, por favor.": "I would like three lemons, please.",
+    "B2 | La fruta tropical se transporta casi siempre en barco.": "Tropical fruit is almost always transported by ship.",
+    "B2 | El mango, cuya piel es roja y verde, ya está maduro.": "The mango, whose skin is red and green, is already ripe.",
+    "B2 | Encima de las otras hay una papaya abierta.": "On top of the others there is an open papaya.",
+    "B2 | Los plátanos que Anna se lleva vienen de Ecuador.": "The bananas Anna is taking come from Ecuador.",
+    "B2 | El coco ya está abierto.": "The coconut is already open.",
+    "C1 | A pesar del largo viaje, los mangos son bastante baratos aquí.": "Despite the long journey, mangoes are quite cheap here.",
+    "C1 | Cuanto más oscuros son los higos, más dulces son.": "The darker the figs, the sweeter they are.",
+    "C1 | Si Anna tuviera más tiempo, compraría una piña y la pelaría.": "If Anna had more time, she would buy a pineapple and peel it.",
+    "C1 | Es mejor que los aguacates no estén en el frío.": "It is better if the avocados are not kept in the cold.",
+    "C1 | El coco debe de haber sido abierto con un martillo.": "The coconut must have been opened with a hammer."
    }
   },
   "tr": {
@@ -1150,7 +1193,8 @@ window.SCENE = {
    "couches": {
     "A1": "Pazarda"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1162,7 +1206,8 @@ window.SCENE = {
    "couches": {
     "A1": "На ринку"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1174,7 +1219,8 @@ window.SCENE = {
    "couches": {
     "A1": "در بازار"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1212,6 +1258,29 @@ window.SCENE = {
     "C1 | Si Anna tuviera más tiempo, compraría una piña y la pelaría.": "فرضية غير واقعية: <b>si</b> + subjuntivo الماضي (tuviera)، ثم condicional.",
     "C1 | Es mejor que los aguacates no estén en el frío.": "<b>es mejor que</b> (نصيحة) ← <b>subjuntivo</b>.",
     "C1 | El coco debe de haber sido abierto con un martillo.": "<b>deber de</b> + مصدر ماضٍ = استنتاج بشأن الماضي."
+   },
+   "sens": {
+    "A2 | Los aguacates están entre las naranjas y las papayas.": "الأفوكادو بين البرتقال والبابايا.",
+    "A2 | Anna toma unos plátanos.": "تأخذ آنا بعض الموز.",
+    "A2 | Las limas están al lado de los higos.": "الليمون الأخضر بجانب التين.",
+    "A2 | Los mangos están entre las toronjas y los plátanos.": "المانجو بين الغريب فروت والموز.",
+    "A2 | Los mangos están entre los pomelos y los plátanos.": "المانجو بين الغريب فروت والموز.",
+    "A2 | La media sandía está encima de las otras sandías.": "نصف البطّيخة فوق البطّيخ الآخر.",
+    "B1 | ¿Cuánto cuesta una piña?": "بكم الأناناس؟",
+    "B1 | Quería un trozo de sandía, por favor.": "أريد قطعة بطّيخ، من فضلك.",
+    "B1 | La sandía es más grande que el melón.": "البطّيخ أكبر من الشمّام.",
+    "B1 | ¿Ya están maduros los mangos?": "هل نضجت المانجو؟",
+    "B1 | Quería tres limones, por favor.": "أريد ثلاث ليمونات، من فضلك.",
+    "B2 | La fruta tropical se transporta casi siempre en barco.": "تُنقل الفاكهة الاستوائية بالسفن في أغلب الأحيان.",
+    "B2 | El mango, cuya piel es roja y verde, ya está maduro.": "المانجو ذات القشرة الحمراء والخضراء ناضجة بالفعل.",
+    "B2 | Encima de las otras hay una papaya abierta.": "فوق الأخريات بابايا مفتوحة.",
+    "B2 | Los plátanos que Anna se lleva vienen de Ecuador.": "الموز الذي تأخذه آنا من الإكوادور.",
+    "B2 | El coco ya está abierto.": "جوزة الهند مفتوحة بالفعل.",
+    "C1 | A pesar del largo viaje, los mangos son bastante baratos aquí.": "رغم الرحلة الطويلة، المانجو رخيصة نسبياً هنا.",
+    "C1 | Cuanto más oscuros son los higos, más dulces son.": "كلّما كان التين أغمق، كان أحلى.",
+    "C1 | Si Anna tuviera más tiempo, compraría una piña y la pelaría.": "لو كان لدى آنا وقت أكثر، لاشترت أناناسة وقشّرتها.",
+    "C1 | Es mejor que los aguacates no estén en el frío.": "من الأفضل ألّا يكون الأفوكادو في البرد.",
+    "C1 | El coco debe de haber sido abierto con un martillo.": "لا بدّ أن جوزة الهند فُتحت بمطرقة."
    }
   },
   "pt": {
@@ -1250,6 +1319,29 @@ window.SCENE = {
     "C1 | Si Anna tuviera más tiempo, compraría una piña y la pelaría.": "Hipótese irreal: <b>si</b> + subjuntivo imperfeito (tuviera), depois o condicional.",
     "C1 | Es mejor que los aguacates no estén en el frío.": "<b>es mejor que</b> (um conselho) → <b>subjuntivo</b>.",
     "C1 | El coco debe de haber sido abierto con un martillo.": "<b>deber de</b> + infinitivo composto = uma dedução sobre o passado."
+   },
+   "sens": {
+    "A2 | Los aguacates están entre las naranjas y las papayas.": "Os abacates estão entre as laranjas e os mamões.",
+    "A2 | Anna toma unos plátanos.": "Anna pega algumas bananas.",
+    "A2 | Las limas están al lado de los higos.": "As limas estão ao lado dos figos.",
+    "A2 | Los mangos están entre las toronjas y los plátanos.": "As mangas estão entre as toranjas e as bananas.",
+    "A2 | Los mangos están entre los pomelos y los plátanos.": "As mangas estão entre as toranjas e as bananas.",
+    "A2 | La media sandía está encima de las otras sandías.": "A meia melancia está em cima das outras melancias.",
+    "B1 | ¿Cuánto cuesta una piña?": "Quanto custa um abacaxi?",
+    "B1 | Quería un trozo de sandía, por favor.": "Eu queria um pedaço de melancia, por favor.",
+    "B1 | La sandía es más grande que el melón.": "A melancia é maior que o melão.",
+    "B1 | ¿Ya están maduros los mangos?": "As mangas já estão maduras?",
+    "B1 | Quería tres limones, por favor.": "Eu queria três limões, por favor.",
+    "B2 | La fruta tropical se transporta casi siempre en barco.": "A fruta tropical é quase sempre transportada de navio.",
+    "B2 | El mango, cuya piel es roja y verde, ya está maduro.": "A manga, cuja casca é vermelha e verde, já está madura.",
+    "B2 | Encima de las otras hay una papaya abierta.": "Em cima das outras há um mamão aberto.",
+    "B2 | Los plátanos que Anna se lleva vienen de Ecuador.": "As bananas que Anna leva vêm do Equador.",
+    "B2 | El coco ya está abierto.": "O coco já está aberto.",
+    "C1 | A pesar del largo viaje, los mangos son bastante baratos aquí.": "Apesar da longa viagem, as mangas são bem baratas aqui.",
+    "C1 | Cuanto más oscuros son los higos, más dulces son.": "Quanto mais escuros os figos, mais doces eles são.",
+    "C1 | Si Anna tuviera más tiempo, compraría una piña y la pelaría.": "Se Anna tivesse mais tempo, compraria um abacaxi e o descascaria.",
+    "C1 | Es mejor que los aguacates no estén en el frío.": "É melhor que os abacates não fiquem no frio.",
+    "C1 | El coco debe de haber sido abierto con un martillo.": "O coco deve ter sido aberto com um martelo."
    }
   },
   "pl": {
@@ -1262,7 +1354,8 @@ window.SCENE = {
    "couches": {
     "A1": "Na targu"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1274,7 +1367,8 @@ window.SCENE = {
    "couches": {
     "A1": "На рынке"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

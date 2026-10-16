@@ -850,6 +850,7 @@ window.SCENE = {
      "f": "buch",
      "r": "handtuch",
      "phrase": "El libro está encima de la toalla.",
+     "sens": "Le livre est sur la serviette.",
      "n": "<b>encima de</b> = sur."
     },
     {
@@ -862,6 +863,7 @@ window.SCENE = {
      "f": "hund",
      "r": "korb",
      "phrase": "El perro está detrás de la cesta.",
+     "sens": "Le chien est derrière le panier.",
      "n": "<b>detrás de</b> = derrière."
     },
     {
@@ -874,6 +876,7 @@ window.SCENE = {
      "f": "junge",
      "r": "meer",
      "phrase": "El niño juega en el mar.",
+     "sens": "Le garçon joue dans la mer.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -886,6 +889,7 @@ window.SCENE = {
      "f": "leuchtturm",
      "r": "insel",
      "phrase": "El faro está en la isla.",
+     "sens": "Le phare est sur l'île.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -898,6 +902,7 @@ window.SCENE = {
      "f": "eimer",
      "r": "korb",
      "phrase": "El cubo está al lado de la cesta.",
+     "sens": "Le seau est à côté du panier.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>.",
      "latam": {
       "q": "La cubeta está al lado ___ cesta.",
@@ -914,6 +919,7 @@ window.SCENE = {
      "f": "boot",
      "r": "meer",
      "phrase": "El barco está en el mar.",
+     "sens": "Le bateau est sur la mer.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -926,6 +932,7 @@ window.SCENE = {
      "f": "vogel",
      "r": "stein",
      "phrase": "Hay un pájaro en la piedra.",
+     "sens": "Il y a un oiseau sur le rocher.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -938,6 +945,7 @@ window.SCENE = {
      "f": "sonne",
      "r": "himmel",
      "phrase": "El sol está en el cielo.",
+     "sens": "Le soleil est dans le ciel.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     }
    ]
@@ -954,6 +962,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Ayer Anna voló a España.",
+     "sens": "Hier, Anna a pris l'avion pour l'Espagne.",
      "n": "Une action terminée, à un moment précis (ayer) → <b>indefinido</b>.",
      "revise": {
       "mot": "volar",
@@ -970,6 +979,7 @@ window.SCENE = {
      "f": "meer",
      "r": "anna",
      "phrase": "Esta mañana nadó en el mar.",
+     "sens": "Ce matin, elle a nagé dans la mer.",
      "n": "Elle → <b>-ó</b>, avec l'accent.",
      "revise": {
       "mot": "nadar",
@@ -986,6 +996,7 @@ window.SCENE = {
      "f": "eis",
      "r": "anna",
      "phrase": "Compró un helado en la playa.",
+     "sens": "Elle a acheté une glace à la plage.",
      "n": "Un achat ponctuel → <b>indefinido</b> : compró.",
      "revise": {
       "mot": "comprar",
@@ -1002,6 +1013,7 @@ window.SCENE = {
      "f": "ball",
      "r": "junge",
      "phrase": "El niño tiró la pelota al agua.",
+     "sens": "Le garçon a lancé le ballon dans l'eau.",
      "n": "<b>tirar</b> → tiró.",
      "revise": {
       "mot": "tirar",
@@ -1017,6 +1029,7 @@ window.SCENE = {
      ],
      "f": "hund",
      "phrase": "El perro se durmió a la sombra.",
+     "sens": "Le chien s'est endormi à l'ombre.",
      "n": "<b>dormir</b> → <b>durmió</b> : le o devient u.",
      "revise": {
       "mot": "dormir",
@@ -1033,6 +1046,7 @@ window.SCENE = {
      "f": "buch",
      "r": "handtuch",
      "phrase": "Anna puso el libro en la toalla.",
+     "sens": "Anna a posé le livre sur la serviette.",
      "n": "<b>poner</b> est irrégulier → <b>puso</b>.",
      "revise": {
       "mot": "poner",
@@ -1048,6 +1062,7 @@ window.SCENE = {
      ],
      "f": "boot",
      "phrase": "El barco salió del puerto esta mañana.",
+     "sens": "Le bateau a quitté le port ce matin.",
      "n": "<b>salir</b> → salió.",
      "revise": {
       "mot": "salir",
@@ -1064,6 +1079,7 @@ window.SCENE = {
      "f": "anna",
      "r": "sonne",
      "phrase": "Anna estuvo todo el día al sol.",
+     "sens": "Anna est restée toute la journée au soleil.",
      "n": "Une durée délimitée (todo el día) → <b>indefinido</b> : estuvo.",
      "revise": {
       "mot": "estar",
@@ -1085,6 +1101,7 @@ window.SCENE = {
      "f": "anna",
      "r": "eis",
      "phrase": "La mujer que come un helado se llama Anna.",
+     "sens": "La femme qui mange une glace s'appelle Anna.",
      "n": "Relative sans virgule, sujet → <b>que</b>."
     },
     {
@@ -1097,6 +1114,7 @@ window.SCENE = {
      "f": "junge",
      "r": "ball",
      "phrase": "El niño cuya pelota es de colores juega en el agua.",
+     "sens": "Le garçon dont le ballon est multicolore joue dans l'eau.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : la pelota → <b>cuya</b>."
     },
     {
@@ -1109,6 +1127,7 @@ window.SCENE = {
      "f": "insel",
      "r": "leuchtturm",
      "phrase": "La isla en la que hay un faro es pequeña.",
+     "sens": "L'île sur laquelle il y a un phare est petite.",
      "n": "Préposition + article + <b>que</b>, accordé avec la isla."
     },
     {
@@ -1120,6 +1139,7 @@ window.SCENE = {
      ],
      "f": "eis",
      "phrase": "El helado ya está medio comido.",
+     "sens": "La glace est déjà à moitié mangée.",
      "n": "<b>estar</b> + participe, accordé : el helado → comid<b>o</b>.",
      "revise": {
       "mot": "comer",
@@ -1135,6 +1155,7 @@ window.SCENE = {
      ],
      "f": "meer",
      "phrase": "Aquí se nada mucho en verano.",
+     "sens": "Ici, on nage beaucoup en été.",
      "n": "<b>se</b> impersonnel : « on nage », verbe au singulier.",
      "revise": {
       "mot": "nadar",
@@ -1150,6 +1171,7 @@ window.SCENE = {
      ],
      "f": "handtuch",
      "phrase": "La toalla, cuyas rayas son azules y blancas, es de Anna.",
+     "sens": "La serviette, dont les rayures sont bleues et blanches, est à Anna.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : las rayas → <b>cuyas</b>."
     }
    ]
@@ -1166,6 +1188,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Debe de estar muy a gusto de vacaciones.",
+     "sens": "Elle doit être très bien en vacances.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1178,6 +1201,7 @@ window.SCENE = {
      "f": "hund",
      "r": "junge",
      "phrase": "Puede que el perro sea del niño.",
+     "sens": "Le chien est peut-être au garçon.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1190,6 +1214,7 @@ window.SCENE = {
      "f": "meer",
      "r": "junge",
      "phrase": "Estará bastante caliente.",
+     "sens": "Elle doit être assez chaude.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1201,6 +1226,7 @@ window.SCENE = {
      ],
      "f": "leuchtturm",
      "phrase": "Dicen que desde el faro se puede ver África.",
+     "sens": "On dit que du phare, on peut voir l'Afrique.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1247,6 +1273,35 @@ window.SCENE = {
     "C1 | Puede que el perro sea del niño.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Estará bastante caliente.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que desde el faro se puede ver África.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El libro está encima de la toalla.": "The book is on top of the towel.",
+    "A2 | El perro está detrás de la cesta.": "The dog is behind the basket.",
+    "A2 | El niño juega en el mar.": "The boy is playing in the sea.",
+    "A2 | El faro está en la isla.": "The lighthouse is on the island.",
+    "A2 | La cubeta está al lado de la cesta.": "The bucket is next to the basket.",
+    "A2 | El cubo está al lado de la cesta.": "The bucket is next to the basket.",
+    "A2 | El barco está en el mar.": "The boat is on the sea.",
+    "A2 | Hay un pájaro en la piedra.": "There is a bird on the rock.",
+    "A2 | El sol está en el cielo.": "The sun is in the sky.",
+    "B1 | Ayer Anna voló a España.": "Yesterday Anna flew to Spain.",
+    "B1 | Esta mañana nadó en el mar.": "This morning she swam in the sea.",
+    "B1 | Compró un helado en la playa.": "She bought an ice cream on the beach.",
+    "B1 | El niño tiró la pelota al agua.": "The boy threw the ball into the water.",
+    "B1 | El perro se durmió a la sombra.": "The dog fell asleep in the shade.",
+    "B1 | Anna puso el libro en la toalla.": "Anna put the book on the towel.",
+    "B1 | El barco salió del puerto esta mañana.": "The boat left the harbour this morning.",
+    "B1 | Anna estuvo todo el día al sol.": "Anna was in the sun all day.",
+    "B2 | La mujer que come un helado se llama Anna.": "The woman eating an ice cream is called Anna.",
+    "B2 | El niño cuya pelota es de colores juega en el agua.": "The boy whose ball is colourful is playing in the water.",
+    "B2 | La isla en la que hay un faro es pequeña.": "The island with a lighthouse on it is small.",
+    "B2 | El helado ya está medio comido.": "The ice cream is already half eaten.",
+    "B2 | Aquí se nada mucho en verano.": "People swim a lot here in summer.",
+    "B2 | La toalla, cuyas rayas son azules y blancas, es de Anna.": "The towel, whose stripes are blue and white, is Anna's.",
+    "C1 | Debe de estar muy a gusto de vacaciones.": "She must be really enjoying her holiday.",
+    "C1 | Puede que el perro sea del niño.": "The dog may belong to the boy.",
+    "C1 | Estará bastante caliente.": "It is probably quite warm.",
+    "C1 | Dicen que desde el faro se puede ver África.": "They say you can see Africa from the lighthouse."
    }
   },
   "tr": {
@@ -1257,7 +1312,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1267,7 +1323,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1277,7 +1334,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1319,6 +1377,35 @@ window.SCENE = {
     "C1 | Puede que el perro sea del niño.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Estará bastante caliente.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que desde el faro se puede ver África.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El libro está encima de la toalla.": "الكتاب فوق المنشفة.",
+    "A2 | El perro está detrás de la cesta.": "الكلب خلف السلّة.",
+    "A2 | El niño juega en el mar.": "الصبيّ يلعب في البحر.",
+    "A2 | El faro está en la isla.": "المنارة على الجزيرة.",
+    "A2 | La cubeta está al lado de la cesta.": "الدلو بجانب السلّة.",
+    "A2 | El cubo está al lado de la cesta.": "الدلو بجانب السلّة.",
+    "A2 | El barco está en el mar.": "القارب في البحر.",
+    "A2 | Hay un pájaro en la piedra.": "هناك عصفور على الصخرة.",
+    "A2 | El sol está en el cielo.": "الشمس في السماء.",
+    "B1 | Ayer Anna voló a España.": "أمس سافرت آنا بالطائرة إلى إسبانيا.",
+    "B1 | Esta mañana nadó en el mar.": "هذا الصباح سبحت في البحر.",
+    "B1 | Compró un helado en la playa.": "اشترت مثلّجات على الشاطئ.",
+    "B1 | El niño tiró la pelota al agua.": "رمى الصبيّ الكرة في الماء.",
+    "B1 | El perro se durmió a la sombra.": "نام الكلب في الظلّ.",
+    "B1 | Anna puso el libro en la toalla.": "وضعت آنا الكتاب على المنشفة.",
+    "B1 | El barco salió del puerto esta mañana.": "غادر القارب الميناء هذا الصباح.",
+    "B1 | Anna estuvo todo el día al sol.": "بقيت آنا في الشمس طوال اليوم.",
+    "B2 | La mujer que come un helado se llama Anna.": "المرأة التي تأكل المثلّجات اسمها آنا.",
+    "B2 | El niño cuya pelota es de colores juega en el agua.": "الصبيّ ذو الكرة الملوّنة يلعب في الماء.",
+    "B2 | La isla en la que hay un faro es pequeña.": "الجزيرة التي عليها منارة صغيرة.",
+    "B2 | El helado ya está medio comido.": "المثلّجات مأكولة إلى نصفها بالفعل.",
+    "B2 | Aquí se nada mucho en verano.": "هنا يُسبح كثيراً في الصيف.",
+    "B2 | La toalla, cuyas rayas son azules y blancas, es de Anna.": "المنشفة ذات الخطوط الزرقاء والبيضاء لآنا.",
+    "C1 | Debe de estar muy a gusto de vacaciones.": "لا بدّ أنها مرتاحة جداً في العطلة.",
+    "C1 | Puede que el perro sea del niño.": "ربما يكون الكلب للصبيّ.",
+    "C1 | Estará bastante caliente.": "على الأرجح هو دافئ جداً.",
+    "C1 | Dicen que desde el faro se puede ver África.": "يُقال إن المرء يستطيع رؤية أفريقيا من المنارة."
    }
   },
   "pt": {
@@ -1361,6 +1448,35 @@ window.SCENE = {
     "C1 | Puede que el perro sea del niño.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Estará bastante caliente.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que desde el faro se puede ver África.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El libro está encima de la toalla.": "O livro está em cima da toalha.",
+    "A2 | El perro está detrás de la cesta.": "O cachorro está atrás da cesta.",
+    "A2 | El niño juega en el mar.": "O menino brinca no mar.",
+    "A2 | El faro está en la isla.": "O farol fica na ilha.",
+    "A2 | La cubeta está al lado de la cesta.": "O balde está ao lado da cesta.",
+    "A2 | El cubo está al lado de la cesta.": "O balde está ao lado da cesta.",
+    "A2 | El barco está en el mar.": "O barco está no mar.",
+    "A2 | Hay un pájaro en la piedra.": "Há um pássaro na pedra.",
+    "A2 | El sol está en el cielo.": "O sol está no céu.",
+    "B1 | Ayer Anna voló a España.": "Ontem Anna voou para a Espanha.",
+    "B1 | Esta mañana nadó en el mar.": "Esta manhã ela nadou no mar.",
+    "B1 | Compró un helado en la playa.": "Ela comprou um sorvete na praia.",
+    "B1 | El niño tiró la pelota al agua.": "O menino jogou a bola na água.",
+    "B1 | El perro se durmió a la sombra.": "O cachorro adormeceu na sombra.",
+    "B1 | Anna puso el libro en la toalla.": "Anna pôs o livro na toalha.",
+    "B1 | El barco salió del puerto esta mañana.": "O barco saiu do porto esta manhã.",
+    "B1 | Anna estuvo todo el día al sol.": "Anna ficou o dia inteiro ao sol.",
+    "B2 | La mujer que come un helado se llama Anna.": "A mulher que come um sorvete se chama Anna.",
+    "B2 | El niño cuya pelota es de colores juega en el agua.": "O menino cuja bola é colorida brinca na água.",
+    "B2 | La isla en la que hay un faro es pequeña.": "A ilha em que há um farol é pequena.",
+    "B2 | El helado ya está medio comido.": "O sorvete já está comido pela metade.",
+    "B2 | Aquí se nada mucho en verano.": "Aqui se nada muito no verão.",
+    "B2 | La toalla, cuyas rayas son azules y blancas, es de Anna.": "A toalha, cujas listras são azuis e brancas, é de Anna.",
+    "C1 | Debe de estar muy a gusto de vacaciones.": "Ela deve estar muito à vontade nas férias.",
+    "C1 | Puede que el perro sea del niño.": "Pode ser que o cachorro seja do menino.",
+    "C1 | Estará bastante caliente.": "Deve estar bem quente.",
+    "C1 | Dicen que desde el faro se puede ver África.": "Dizem que do farol dá para ver a África."
    }
   },
   "pl": {
@@ -1371,7 +1487,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1381,7 +1498,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

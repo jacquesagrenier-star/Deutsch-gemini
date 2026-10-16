@@ -836,6 +836,7 @@ window.SCENE = {
      "f": "steckdose",
      "r": "wand",
      "phrase": "El enchufe está en la pared.",
+     "sens": "La prise est sur le mur.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -848,6 +849,7 @@ window.SCENE = {
      "f": "eimer",
      "r": "boden",
      "phrase": "El cubo está en el suelo.",
+     "sens": "Le seau est par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "La cubeta está ___ piso.",
@@ -864,6 +866,7 @@ window.SCENE = {
      "f": "leiter",
      "r": "regal",
      "phrase": "La escalera está al lado de la estantería.",
+     "sens": "L'échelle est à côté de l'étagère.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -875,6 +878,7 @@ window.SCENE = {
      ],
      "f": "lampe",
      "phrase": "La lámpara cuelga del techo.",
+     "sens": "La lampe est suspendue au plafond.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -887,6 +891,7 @@ window.SCENE = {
      "f": "karton",
      "r": "fenster",
      "phrase": "Las cajas están al lado de la ventana.",
+     "sens": "Les cartons sont à côté de la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -899,6 +904,7 @@ window.SCENE = {
      "f": "handschuh",
      "r": "boden",
      "phrase": "Los guantes están en el suelo.",
+     "sens": "Les gants sont par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "Los guantes están ___ piso.",
@@ -915,6 +921,7 @@ window.SCENE = {
      "f": "katze",
      "r": "fenster",
      "phrase": "Hay un gato en la ventana.",
+     "sens": "Il y a un chat à la fenêtre.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -927,6 +934,7 @@ window.SCENE = {
      "f": "holz-2",
      "r": "karton-2",
      "phrase": "La madera está en la caja.",
+     "sens": "Le bois est dans le carton.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     }
    ]
@@ -944,6 +952,7 @@ window.SCENE = {
      "f": "hammer",
      "r": "mark",
      "phrase": "Mark, pásame el martillo, por favor.",
+     "sens": "Mark, passe-moi le marteau, s'il te plaît.",
      "n": "Impératif (tú) + pronom collé : <b>pásame</b>, avec l'accent.",
      "revise": {
       "mot": "pasar",
@@ -959,6 +968,7 @@ window.SCENE = {
      ],
      "f": "papier",
      "phrase": "Lee bien las instrucciones.",
+     "sens": "Lis bien la notice.",
      "n": "Impératif (tú) = 3e personne du présent : <b>lee</b>.",
      "revise": {
       "mot": "leer",
@@ -975,6 +985,7 @@ window.SCENE = {
      "f": "pinsel",
      "r": "eimer",
      "phrase": "Pon el pincel en el cubo.",
+     "sens": "Mets le pinceau dans le seau.",
      "n": "<b>poner</b> → impératif irrégulier <b>pon</b>.",
      "revise": {
       "mot": "poner",
@@ -994,6 +1005,7 @@ window.SCENE = {
      ],
      "f": "handschuh",
      "phrase": "Ponte los guantes.",
+     "sens": "Mets tes gants.",
      "n": "Verbe pronominal : <b>ponte</b> (pon + te).",
      "revise": {
       "mot": "poner",
@@ -1009,6 +1021,7 @@ window.SCENE = {
      ],
      "f": "leiter",
      "phrase": "¡No te caigas de la escalera!",
+     "sens": "Ne tombe pas de l'échelle !",
      "n": "Impératif négatif → <b>subjonctif</b> : no te caigas."
     },
     {
@@ -1020,6 +1033,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Ten cuidado, Mark.",
+     "sens": "Fais attention, Mark.",
      "n": "<b>tener</b> → impératif irrégulier <b>ten</b>.",
      "revise": {
       "mot": "tener",
@@ -1036,6 +1050,7 @@ window.SCENE = {
      "f": "katze",
      "r": "fenster",
      "phrase": "Gato, baja de la ventana.",
+     "sens": "Minou, descends de la fenêtre.",
      "n": "Impératif (tú) régulier : <b>baja</b>.",
      "revise": {
       "mot": "bajar",
@@ -1051,6 +1066,7 @@ window.SCENE = {
      ],
      "f": "leiter",
      "phrase": "Señor vecino, sujete la escalera, por favor.",
+     "sens": "Monsieur le voisin, tenez l'échelle, s'il vous plaît.",
      "n": "Impératif poli (usted) → <b>sujete</b>.",
      "revise": {
       "mot": "sujetar",
@@ -1071,6 +1087,7 @@ window.SCENE = {
      ],
      "f": "farbe",
      "phrase": "Mark compró pintura para pintar la pared de azul.",
+     "sens": "Mark a acheté de la peinture pour peindre le mur en bleu.",
      "n": "<b>para</b> + infinitif : un but, même sujet.",
      "revise": {
       "mot": "pintar",
@@ -1087,6 +1104,7 @@ window.SCENE = {
      "f": "regal",
      "r": "papier",
      "phrase": "Lee las instrucciones para que la estantería no se caiga.",
+     "sens": "Il lit la notice pour que l'étagère ne tombe pas.",
      "n": "<b>para que</b> → toujours le <b>subjonctif</b>."
     },
     {
@@ -1098,6 +1116,7 @@ window.SCENE = {
      ],
      "f": "handschuh",
      "phrase": "Se le olvidó ponerse los guantes.",
+     "sens": "Il a oublié de mettre ses gants.",
      "n": "Après <b>olvidar</b>, l'infinitif ; pronominal → <b>ponerse</b>.",
      "revise": {
       "mot": "poner",
@@ -1114,6 +1133,7 @@ window.SCENE = {
      "f": "regal",
      "r": "mark",
      "phrase": "No es fácil montar una estantería sin que nadie te ayude.",
+     "sens": "Ce n'est pas facile de monter une étagère sans que personne t'aide.",
      "n": "<b>sin que</b> → toujours le subjonctif.",
      "revise": {
       "mot": "ayudar",
@@ -1129,6 +1149,7 @@ window.SCENE = {
      ],
      "f": "farbe",
      "phrase": "La pared ya está medio pintada.",
+     "sens": "Le mur est déjà à moitié peint.",
      "n": "<b>estar</b> + participe, accordé : la pared → pintad<b>a</b>.",
      "revise": {
       "mot": "pintar",
@@ -1144,6 +1165,7 @@ window.SCENE = {
      ],
      "f": "papier",
      "phrase": "Sin leer las instrucciones, no se puede montar.",
+     "sens": "Sans lire la notice, on ne peut pas la monter.",
      "n": "<b>sin</b> + infinitif = sans + infinitif.",
      "revise": {
       "mot": "leer",
@@ -1165,6 +1187,7 @@ window.SCENE = {
      "f": "papier",
      "r": "mark",
      "phrase": "Las instrucciones deben de ser difíciles.",
+     "sens": "La notice doit être difficile.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1176,6 +1199,7 @@ window.SCENE = {
      ],
      "f": "katze",
      "phrase": "Puede que el gato sea del vecino.",
+     "sens": "Le chat est peut-être au voisin.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1187,6 +1211,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Estará cansado.",
+     "sens": "Il doit être fatigué.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1198,6 +1223,7 @@ window.SCENE = {
      ],
      "f": "farbe",
      "phrase": "Dicen que en este piso vivía un pintor.",
+     "sens": "On dit qu'un peintre habitait dans cet appartement.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>.",
      "latam": {
       "q": "Dicen que en este departamento ___ un pintor.",
@@ -1251,6 +1277,38 @@ window.SCENE = {
     "C1 | Estará cansado.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que en este departamento vivía un pintor.": "<b>dicen que</b> reports a statement → <b>indicative</b>.",
     "C1 | Dicen que en este piso vivía un pintor.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El enchufe está en la pared.": "The socket is on the wall.",
+    "A2 | La cubeta está en el piso.": "The bucket is on the floor.",
+    "A2 | El cubo está en el suelo.": "The bucket is on the floor.",
+    "A2 | La escalera está al lado de la estantería.": "The ladder is next to the shelf.",
+    "A2 | La lámpara cuelga del techo.": "The lamp hangs from the ceiling.",
+    "A2 | Las cajas están al lado de la ventana.": "The boxes are next to the window.",
+    "A2 | Los guantes están en el piso.": "The gloves are on the floor.",
+    "A2 | Los guantes están en el suelo.": "The gloves are on the floor.",
+    "A2 | Hay un gato en la ventana.": "There is a cat at the window.",
+    "A2 | La madera está en la caja.": "The wood is in the box.",
+    "B1 | Mark, pásame el martillo, por favor.": "Mark, pass me the hammer, please.",
+    "B1 | Lee bien las instrucciones.": "Read the instructions carefully.",
+    "B1 | Pon el pincel en la cubeta.": "Put the brush in the bucket.",
+    "B1 | Pon el pincel en el cubo.": "Put the brush in the bucket.",
+    "B1 | Ponte los guantes.": "Put your gloves on.",
+    "B1 | ¡No te caigas de la escalera!": "Don't fall off the ladder!",
+    "B1 | Ten cuidado, Mark.": "Be careful, Mark.",
+    "B1 | Gato, baja de la ventana.": "Cat, get down from the window.",
+    "B1 | Señor vecino, sujete la escalera, por favor.": "Neighbour, hold the ladder, please.",
+    "B2 | Mark compró pintura para pintar la pared de azul.": "Mark bought paint to paint the wall blue.",
+    "B2 | Lee las instrucciones para que la estantería no se caiga.": "He reads the instructions so that the shelf does not fall.",
+    "B2 | Se le olvidó ponerse los guantes.": "He forgot to put on his gloves.",
+    "B2 | No es fácil montar una estantería sin que nadie te ayude.": "It is not easy to put a shelf together without anyone helping you.",
+    "B2 | La pared ya está medio pintada.": "The wall is already half painted.",
+    "B2 | Sin leer las instrucciones, no se puede montar.": "Without reading the instructions, it cannot be put together.",
+    "C1 | Las instrucciones deben de ser difíciles.": "The instructions must be difficult.",
+    "C1 | Puede que el gato sea del vecino.": "The cat may belong to the neighbour.",
+    "C1 | Estará cansado.": "He is probably tired.",
+    "C1 | Dicen que en este departamento vivía un pintor.": "They say a painter used to live in this flat.",
+    "C1 | Dicen que en este piso vivía un pintor.": "They say a painter used to live in this flat."
    }
   },
   "tr": {
@@ -1261,7 +1319,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1271,7 +1330,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1281,7 +1341,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1326,6 +1387,38 @@ window.SCENE = {
     "C1 | Estará cansado.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que en este departamento vivía un pintor.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>.",
     "C1 | Dicen que en este piso vivía un pintor.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El enchufe está en la pared.": "المقبس على الحائط.",
+    "A2 | La cubeta está en el piso.": "الدلو على الأرض.",
+    "A2 | El cubo está en el suelo.": "الدلو على الأرض.",
+    "A2 | La escalera está al lado de la estantería.": "السلّم بجانب الرفّ.",
+    "A2 | La lámpara cuelga del techo.": "المصباح معلّق في السقف.",
+    "A2 | Las cajas están al lado de la ventana.": "الصناديق بجانب النافذة.",
+    "A2 | Los guantes están en el piso.": "القفّازات على الأرض.",
+    "A2 | Los guantes están en el suelo.": "القفّازات على الأرض.",
+    "A2 | Hay un gato en la ventana.": "هناك قطة عند النافذة.",
+    "A2 | La madera está en la caja.": "الخشب في الصندوق.",
+    "B1 | Mark, pásame el martillo, por favor.": "مارك، ناولني المطرقة من فضلك.",
+    "B1 | Lee bien las instrucciones.": "اقرأ التعليمات جيداً.",
+    "B1 | Pon el pincel en la cubeta.": "ضع الفرشاة في الدلو.",
+    "B1 | Pon el pincel en el cubo.": "ضع الفرشاة في الدلو.",
+    "B1 | Ponte los guantes.": "البس قفّازيك.",
+    "B1 | ¡No te caigas de la escalera!": "لا تسقط عن السلّم!",
+    "B1 | Ten cuidado, Mark.": "انتبه يا مارك.",
+    "B1 | Gato, baja de la ventana.": "أيتها القطة، انزلي عن النافذة.",
+    "B1 | Señor vecino, sujete la escalera, por favor.": "يا جار، أمسك السلّم من فضلك.",
+    "B2 | Mark compró pintura para pintar la pared de azul.": "اشترى مارك طلاءً ليطلي الحائط باللون الأزرق.",
+    "B2 | Lee las instrucciones para que la estantería no se caiga.": "يقرأ التعليمات كي لا يسقط الرفّ.",
+    "B2 | Se le olvidó ponerse los guantes.": "نسي أن يلبس قفّازيه.",
+    "B2 | No es fácil montar una estantería sin que nadie te ayude.": "ليس من السهل تركيب رفّ من دون أن يساعدك أحد.",
+    "B2 | La pared ya está medio pintada.": "الحائط مطليّ إلى نصفه بالفعل.",
+    "B2 | Sin leer las instrucciones, no se puede montar.": "من دون قراءة التعليمات، لا يمكن تركيبه.",
+    "C1 | Las instrucciones deben de ser difíciles.": "لا بدّ أن التعليمات صعبة.",
+    "C1 | Puede que el gato sea del vecino.": "ربما تكون القطة للجار.",
+    "C1 | Estará cansado.": "على الأرجح هو متعب.",
+    "C1 | Dicen que en este departamento vivía un pintor.": "يُقال إن رسّاماً كان يسكن في هذه الشقّة.",
+    "C1 | Dicen que en este piso vivía un pintor.": "يُقال إن رسّاماً كان يسكن في هذه الشقّة."
    }
   },
   "pt": {
@@ -1371,6 +1464,38 @@ window.SCENE = {
     "C1 | Estará cansado.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que en este departamento vivía un pintor.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>.",
     "C1 | Dicen que en este piso vivía un pintor.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El enchufe está en la pared.": "A tomada está na parede.",
+    "A2 | La cubeta está en el piso.": "O balde está no chão.",
+    "A2 | El cubo está en el suelo.": "O balde está no chão.",
+    "A2 | La escalera está al lado de la estantería.": "A escada está ao lado da estante.",
+    "A2 | La lámpara cuelga del techo.": "A lâmpada está pendurada no teto.",
+    "A2 | Las cajas están al lado de la ventana.": "As caixas estão ao lado da janela.",
+    "A2 | Los guantes están en el piso.": "As luvas estão no chão.",
+    "A2 | Los guantes están en el suelo.": "As luvas estão no chão.",
+    "A2 | Hay un gato en la ventana.": "Há um gato na janela.",
+    "A2 | La madera está en la caja.": "A madeira está na caixa.",
+    "B1 | Mark, pásame el martillo, por favor.": "Mark, me passa o martelo, por favor.",
+    "B1 | Lee bien las instrucciones.": "Leia bem as instruções.",
+    "B1 | Pon el pincel en la cubeta.": "Põe o pincel no balde.",
+    "B1 | Pon el pincel en el cubo.": "Põe o pincel no balde.",
+    "B1 | Ponte los guantes.": "Põe as luvas.",
+    "B1 | ¡No te caigas de la escalera!": "Não caia da escada!",
+    "B1 | Ten cuidado, Mark.": "Tome cuidado, Mark.",
+    "B1 | Gato, baja de la ventana.": "Gato, desce da janela.",
+    "B1 | Señor vecino, sujete la escalera, por favor.": "Senhor vizinho, segure a escada, por favor.",
+    "B2 | Mark compró pintura para pintar la pared de azul.": "Mark comprou tinta para pintar a parede de azul.",
+    "B2 | Lee las instrucciones para que la estantería no se caiga.": "Ele lê as instruções para que a estante não caia.",
+    "B2 | Se le olvidó ponerse los guantes.": "Ele se esqueceu de pôr as luvas.",
+    "B2 | No es fácil montar una estantería sin que nadie te ayude.": "Não é fácil montar uma estante sem que ninguém te ajude.",
+    "B2 | La pared ya está medio pintada.": "A parede já está pintada pela metade.",
+    "B2 | Sin leer las instrucciones, no se puede montar.": "Sem ler as instruções, não dá para montar.",
+    "C1 | Las instrucciones deben de ser difíciles.": "As instruções devem ser difíceis.",
+    "C1 | Puede que el gato sea del vecino.": "Pode ser que o gato seja do vizinho.",
+    "C1 | Estará cansado.": "Ele deve estar cansado.",
+    "C1 | Dicen que en este departamento vivía un pintor.": "Dizem que neste apartamento morava um pintor.",
+    "C1 | Dicen que en este piso vivía un pintor.": "Dizem que neste apartamento morava um pintor."
    }
   },
   "pl": {
@@ -1381,7 +1506,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1391,7 +1517,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

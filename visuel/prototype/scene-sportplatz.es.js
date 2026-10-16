@@ -815,6 +815,7 @@ window.SCENE = {
      "f": "ball",
      "r": "netz",
      "phrase": "El balón está en la red.",
+     "sens": "Le ballon est dans le filet.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -827,6 +828,7 @@ window.SCENE = {
      "f": "torwart",
      "r": "netz",
      "phrase": "El jugador de amarillo está delante de la red.",
+     "sens": "Le joueur en jaune est devant le filet.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -839,6 +841,7 @@ window.SCENE = {
      "f": "mann",
      "r": "bank",
      "phrase": "El hombre mayor está sentado en el banco.",
+     "sens": "Le vieux monsieur est assis sur le banc.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -851,6 +854,7 @@ window.SCENE = {
      "f": "handtuch",
      "r": "tasche",
      "phrase": "La toalla está en la bolsa.",
+     "sens": "La serviette est dans le sac.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -863,6 +867,7 @@ window.SCENE = {
      "f": "ball-2",
      "r": "tasche",
      "phrase": "El balón está al lado de la bolsa.",
+     "sens": "Le ballon est à côté du sac.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -875,6 +880,7 @@ window.SCENE = {
      "f": "fahrrad",
      "r": "netz",
      "phrase": "Hay una bicicleta detrás de la red.",
+     "sens": "Il y a un vélo derrière le filet.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -887,6 +893,7 @@ window.SCENE = {
      "f": "wolke",
      "r": "himmel",
      "phrase": "La nube está en el cielo.",
+     "sens": "Le nuage est dans le ciel.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -899,6 +906,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "tasche",
      "phrase": "La botella está en la bolsa.",
+     "sens": "La bouteille est dans le sac.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     }
    ]
@@ -916,6 +924,7 @@ window.SCENE = {
      "f": "mark",
      "r": "ball",
      "phrase": "Mark marcó un gol.",
+     "sens": "Mark a marqué un but.",
      "n": "Une action ponctuelle → <b>indefinido</b> : marcó.",
      "revise": {
       "mot": "marcar",
@@ -931,6 +940,7 @@ window.SCENE = {
      ],
      "f": "torwart",
      "phrase": "El jugador de amarillo se cayó al suelo.",
+     "sens": "Le joueur en jaune est tombé par terre.",
      "n": "<b>caer</b> → <b>cayó</b> : le i devient y.",
      "latam": {
       "q": "El jugador de amarillo se ___ al piso.",
@@ -947,6 +957,7 @@ window.SCENE = {
      "f": "mannschaft",
      "r": "mark",
      "phrase": "Los compañeros corrieron hacia Mark.",
+     "sens": "Les coéquipiers ont couru vers Mark.",
      "n": "Eux → <b>-ieron</b> : corrieron.",
      "revise": {
       "mot": "correr",
@@ -963,6 +974,7 @@ window.SCENE = {
      "f": "trainerin",
      "r": "mark",
      "phrase": "La entrenadora aplaudió cuando Mark marcó.",
+     "sens": "L'entraîneuse a applaudi quand Mark a marqué.",
      "n": "Deux actions ponctuelles qui se suivent → <b>indefinido</b>.",
      "revise": {
       "mot": "aplaudir",
@@ -978,6 +990,7 @@ window.SCENE = {
      ],
      "f": "himmel",
      "phrase": "Esa mañana hacía mucho sol.",
+     "sens": "Ce matin-là, il faisait très beau.",
      "n": "Le décor, la description → <b>imperfecto</b> : hacía.",
      "revise": {
       "mot": "hacer",
@@ -994,6 +1007,7 @@ window.SCENE = {
      "f": "bank",
      "r": "mann",
      "phrase": "Los espectadores estaban sentados en el banco.",
+     "sens": "Les spectateurs étaient assis sur le banc.",
      "n": "Un état qui dure dans le récit → <b>imperfecto</b> : estaban.",
      "revise": {
       "mot": "estar",
@@ -1009,6 +1023,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "El partido empezó a las diez.",
+     "sens": "Le match a commencé à dix heures.",
      "n": "<b>empezar</b> → empezó, à un moment précis.",
      "revise": {
       "mot": "empezar",
@@ -1024,6 +1039,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Al final, el equipo de Mark ganó.",
+     "sens": "À la fin, l'équipe de Mark a gagné.",
      "n": "Le résultat final → <b>indefinido</b> : ganó.",
      "revise": {
       "mot": "ganar",
@@ -1044,6 +1060,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark grita de alegría porque ha marcado un gol.",
+     "sens": "Mark crie de joie parce qu'il a marqué un but.",
      "n": "<b>porque</b> + indicatif : la cause est un fait."
     },
     {
@@ -1055,6 +1072,7 @@ window.SCENE = {
      ],
      "f": "torwart",
      "phrase": "El jugador de amarillo se ríe aunque no ha parado el balón.",
+     "sens": "Le joueur en jaune rit bien qu'il n'ait pas arrêté le ballon.",
      "n": "<b>aunque</b> + indicatif : un fait réel qu'on concède."
     },
     {
@@ -1066,6 +1084,7 @@ window.SCENE = {
      ],
      "f": "trainerin",
      "phrase": "Entrenan cada sábado para que el equipo esté en forma.",
+     "sens": "Ils s'entraînent chaque samedi pour que l'équipe soit en forme.",
      "n": "<b>para que</b> → toujours le <b>subjonctif</b>."
     },
     {
@@ -1078,6 +1097,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "mark",
      "phrase": "Mark beberá agua cuando termine el partido.",
+     "sens": "Mark boira de l'eau quand le match sera fini.",
      "n": "<b>cuando</b> + futur → <b>subjonctif</b> : cuando termine.",
      "revise": {
       "mot": "terminar",
@@ -1093,6 +1113,7 @@ window.SCENE = {
      ],
      "f": "bank",
      "phrase": "Los espectadores miran mientras los jugadores corren.",
+     "sens": "Les spectateurs regardent pendant que les joueurs courent.",
      "n": "<b>mientras</b> + un fait simultané → indicatif.",
      "revise": {
       "mot": "correr",
@@ -1108,6 +1129,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Antes de que empezara el partido, todos calentaron.",
+     "sens": "Avant que le match commence, tous se sont échauffés.",
      "n": "<b>antes de que</b> → toujours le subjonctif ; au passé : empezara.",
      "revise": {
       "mot": "empezar",
@@ -1128,6 +1150,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Debe de ser su primer gol.",
+     "sens": "Ce doit être son premier but.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1139,6 +1162,7 @@ window.SCENE = {
      ],
      "f": "mann",
      "phrase": "Puede que el hombre mayor sea el vecino de Mark.",
+     "sens": "Le vieux monsieur est peut-être le voisin de Mark.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1150,6 +1174,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "El partido estará a punto de terminar.",
+     "sens": "Le match doit être sur le point de finir.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1161,6 +1186,7 @@ window.SCENE = {
      ],
      "f": "trainerin",
      "phrase": "Dicen que la entrenadora fue profesional.",
+     "sens": "On dit que l'entraîneuse a été professionnelle.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1207,6 +1233,35 @@ window.SCENE = {
     "C1 | Puede que el hombre mayor sea el vecino de Mark.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | El partido estará a punto de terminar.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que la entrenadora fue profesional.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El balón está en la red.": "The ball is in the net.",
+    "A2 | El jugador de amarillo está delante de la red.": "The player in yellow is in front of the net.",
+    "A2 | El hombre mayor está sentado en el banco.": "The old man is sitting on the bench.",
+    "A2 | La toalla está en la bolsa.": "The towel is in the bag.",
+    "A2 | El balón está al lado de la bolsa.": "The ball is next to the bag.",
+    "A2 | Hay una bicicleta detrás de la red.": "There is a bicycle behind the net.",
+    "A2 | La nube está en el cielo.": "The cloud is in the sky.",
+    "A2 | La botella está en la bolsa.": "The bottle is in the bag.",
+    "B1 | Mark marcó un gol.": "Mark scored a goal.",
+    "B1 | El jugador de amarillo se cayó al piso.": "The player in yellow fell to the ground.",
+    "B1 | El jugador de amarillo se cayó al suelo.": "The player in yellow fell to the ground.",
+    "B1 | Los compañeros corrieron hacia Mark.": "The teammates ran towards Mark.",
+    "B1 | La entrenadora aplaudió cuando Mark marcó.": "The coach applauded when Mark scored.",
+    "B1 | Esa mañana hacía mucho sol.": "That morning it was very sunny.",
+    "B1 | Los espectadores estaban sentados en el banco.": "The spectators were sitting on the bench.",
+    "B1 | El partido empezó a las diez.": "The game started at ten.",
+    "B1 | Al final, el equipo de Mark ganó.": "In the end, Mark's team won.",
+    "B2 | Mark grita de alegría porque ha marcado un gol.": "Mark shouts with joy because he has scored a goal.",
+    "B2 | El jugador de amarillo se ríe aunque no ha parado el balón.": "The player in yellow laughs although he did not stop the ball.",
+    "B2 | Entrenan cada sábado para que el equipo esté en forma.": "They train every Saturday so that the team stays fit.",
+    "B2 | Mark beberá agua cuando termine el partido.": "Mark will drink water when the game is over.",
+    "B2 | Los espectadores miran mientras los jugadores corren.": "The spectators watch while the players run.",
+    "B2 | Antes de que empezara el partido, todos calentaron.": "Before the game started, everyone warmed up.",
+    "C1 | Debe de ser su primer gol.": "It must be his first goal.",
+    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "The old man may be Mark's neighbour.",
+    "C1 | El partido estará a punto de terminar.": "The game is probably about to end.",
+    "C1 | Dicen que la entrenadora fue profesional.": "They say the coach was a professional."
    }
   },
   "tr": {
@@ -1217,7 +1272,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1227,7 +1283,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1237,7 +1294,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1279,6 +1337,35 @@ window.SCENE = {
     "C1 | Puede que el hombre mayor sea el vecino de Mark.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | El partido estará a punto de terminar.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que la entrenadora fue profesional.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El balón está en la red.": "الكرة في الشبكة.",
+    "A2 | El jugador de amarillo está delante de la red.": "اللاعب ذو القميص الأصفر أمام الشبكة.",
+    "A2 | El hombre mayor está sentado en el banco.": "الرجل العجوز جالس على المقعد.",
+    "A2 | La toalla está en la bolsa.": "المنشفة في الحقيبة.",
+    "A2 | El balón está al lado de la bolsa.": "الكرة بجانب الحقيبة.",
+    "A2 | Hay una bicicleta detrás de la red.": "هناك دراجة خلف الشبكة.",
+    "A2 | La nube está en el cielo.": "الغيمة في السماء.",
+    "A2 | La botella está en la bolsa.": "الزجاجة في الحقيبة.",
+    "B1 | Mark marcó un gol.": "سجّل مارك هدفاً.",
+    "B1 | El jugador de amarillo se cayó al piso.": "سقط اللاعب ذو القميص الأصفر على الأرض.",
+    "B1 | El jugador de amarillo se cayó al suelo.": "سقط اللاعب ذو القميص الأصفر على الأرض.",
+    "B1 | Los compañeros corrieron hacia Mark.": "ركض زملاؤه نحو مارك.",
+    "B1 | La entrenadora aplaudió cuando Mark marcó.": "صفّقت المدرّبة عندما سجّل مارك.",
+    "B1 | Esa mañana hacía mucho sol.": "في ذلك الصباح كانت الشمس ساطعة.",
+    "B1 | Los espectadores estaban sentados en el banco.": "كان المتفرّجون جالسين على المقعد.",
+    "B1 | El partido empezó a las diez.": "بدأت المباراة في الساعة العاشرة.",
+    "B1 | Al final, el equipo de Mark ganó.": "في النهاية فاز فريق مارك.",
+    "B2 | Mark grita de alegría porque ha marcado un gol.": "يصرخ مارك فرحاً لأنه سجّل هدفاً.",
+    "B2 | El jugador de amarillo se ríe aunque no ha parado el balón.": "يضحك اللاعب ذو القميص الأصفر رغم أنه لم يصدّ الكرة.",
+    "B2 | Entrenan cada sábado para que el equipo esté en forma.": "يتدرّبون كل سبت ليبقى الفريق لائقاً.",
+    "B2 | Mark beberá agua cuando termine el partido.": "سيشرب مارك الماء عندما تنتهي المباراة.",
+    "B2 | Los espectadores miran mientras los jugadores corren.": "يشاهد المتفرّجون بينما يركض اللاعبون.",
+    "B2 | Antes de que empezara el partido, todos calentaron.": "قبل أن تبدأ المباراة، قام الجميع بالإحماء.",
+    "C1 | Debe de ser su primer gol.": "لا بدّ أنه هدفه الأوّل.",
+    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "ربما يكون الرجل العجوز جار مارك.",
+    "C1 | El partido estará a punto de terminar.": "على الأرجح المباراة على وشك الانتهاء.",
+    "C1 | Dicen que la entrenadora fue profesional.": "يُقال إن المدرّبة كانت لاعبة محترفة."
    }
   },
   "pt": {
@@ -1321,6 +1408,35 @@ window.SCENE = {
     "C1 | Puede que el hombre mayor sea el vecino de Mark.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | El partido estará a punto de terminar.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que la entrenadora fue profesional.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El balón está en la red.": "A bola está na rede.",
+    "A2 | El jugador de amarillo está delante de la red.": "O jogador de amarelo está em frente à rede.",
+    "A2 | El hombre mayor está sentado en el banco.": "O senhor idoso está sentado no banco.",
+    "A2 | La toalla está en la bolsa.": "A toalha está na bolsa.",
+    "A2 | El balón está al lado de la bolsa.": "A bola está ao lado da bolsa.",
+    "A2 | Hay una bicicleta detrás de la red.": "Há uma bicicleta atrás da rede.",
+    "A2 | La nube está en el cielo.": "A nuvem está no céu.",
+    "A2 | La botella está en la bolsa.": "A garrafa está na bolsa.",
+    "B1 | Mark marcó un gol.": "Mark marcou um gol.",
+    "B1 | El jugador de amarillo se cayó al piso.": "O jogador de amarelo caiu no chão.",
+    "B1 | El jugador de amarillo se cayó al suelo.": "O jogador de amarelo caiu no chão.",
+    "B1 | Los compañeros corrieron hacia Mark.": "Os colegas correram para Mark.",
+    "B1 | La entrenadora aplaudió cuando Mark marcó.": "A treinadora aplaudiu quando Mark marcou.",
+    "B1 | Esa mañana hacía mucho sol.": "Naquela manhã fazia muito sol.",
+    "B1 | Los espectadores estaban sentados en el banco.": "Os espectadores estavam sentados no banco.",
+    "B1 | El partido empezó a las diez.": "O jogo começou às dez.",
+    "B1 | Al final, el equipo de Mark ganó.": "No fim, o time de Mark ganhou.",
+    "B2 | Mark grita de alegría porque ha marcado un gol.": "Mark grita de alegria porque marcou um gol.",
+    "B2 | El jugador de amarillo se ríe aunque no ha parado el balón.": "O jogador de amarelo ri embora não tenha defendido a bola.",
+    "B2 | Entrenan cada sábado para que el equipo esté en forma.": "Treinam todo sábado para que o time esteja em forma.",
+    "B2 | Mark beberá agua cuando termine el partido.": "Mark vai beber água quando o jogo acabar.",
+    "B2 | Los espectadores miran mientras los jugadores corren.": "Os espectadores assistem enquanto os jogadores correm.",
+    "B2 | Antes de que empezara el partido, todos calentaron.": "Antes de o jogo começar, todos aqueceram.",
+    "C1 | Debe de ser su primer gol.": "Deve ser o primeiro gol dele.",
+    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "Pode ser que o senhor idoso seja o vizinho de Mark.",
+    "C1 | El partido estará a punto de terminar.": "O jogo deve estar prestes a terminar.",
+    "C1 | Dicen que la entrenadora fue profesional.": "Dizem que a treinadora foi profissional."
    }
   },
   "pl": {
@@ -1331,7 +1447,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1341,7 +1458,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

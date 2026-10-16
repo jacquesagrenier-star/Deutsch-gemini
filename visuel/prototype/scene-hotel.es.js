@@ -1551,6 +1551,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "wand",
      "phrase": "El reloj está en la pared.",
+     "sens": "L'horloge est au mur.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1563,6 +1564,7 @@ window.SCENE = {
      "f": "schluessel",
      "r": "regal",
      "phrase": "Las llaves están en la estantería.",
+     "sens": "Les clés sont dans le casier.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -1575,6 +1577,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "boden",
      "phrase": "La maleta está en el suelo.",
+     "sens": "La valise est par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "La maleta está ___ piso.",
@@ -1591,6 +1594,7 @@ window.SCENE = {
      "f": "frau",
      "r": "sofa",
      "phrase": "La señora está sentada en el sofá.",
+     "sens": "La dame est assise sur le canapé.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
@@ -1603,6 +1607,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "couchtisch",
      "phrase": "La taza está en la mesa baja.",
+     "sens": "La tasse est sur la table basse.",
      "n": "<b>la</b> est féminin → <b>en la</b>.",
      "latam": {
       "q": "La taza está ___ mesa de centro.",
@@ -1619,6 +1624,7 @@ window.SCENE = {
      "f": "klingel",
      "r": "rezeption",
      "phrase": "Hay un timbre en la recepción.",
+     "sens": "Il y a une sonnette à la réception.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -1631,6 +1637,7 @@ window.SCENE = {
      "f": "bild",
      "r": "sofa",
      "phrase": "El cuadro está encima del sofá.",
+     "sens": "Le tableau est au-dessus du canapé.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -1643,6 +1650,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "spiegel",
      "phrase": "La lámpara está al lado del espejo.",
+     "sens": "La lampe est à côté du miroir.",
      "n": "<b>de + el = del</b>, toujours."
     }
    ]
@@ -1659,6 +1667,7 @@ window.SCENE = {
      ],
      "f": "rezeption",
      "phrase": "¿A qué hora cierra la recepción?",
+     "sens": "À quelle heure ferme la réception ?",
      "n": "<b>¿a qué hora?</b> = à quelle heure ?",
      "revise": {
       "mot": "cerrar",
@@ -1674,6 +1683,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "La recepción cierra a las once de la noche.",
+     "sens": "La réception ferme à onze heures du soir.",
      "n": "L'heure d'une action → <b>a las</b> + heure.",
      "revise": {
       "mot": "cerrar",
@@ -1689,6 +1699,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Son las ocho y media.",
+     "sens": "Il est huit heures et demie.",
      "n": "Les heures sont au pluriel : <b>las</b> ocho (sauf la una)."
     },
     {
@@ -1700,6 +1711,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Es la una y cuarto.",
+     "sens": "Il est une heure et quart.",
      "n": "<b>la una</b> : la seule heure au singulier."
     },
     {
@@ -1711,6 +1723,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark llega el viernes por la noche.",
+     "sens": "Mark arrive vendredi soir.",
      "n": "Le jour → <b>el</b> viernes, sans préposition.",
      "revise": {
       "mot": "llegar",
@@ -1726,6 +1739,7 @@ window.SCENE = {
      ],
      "f": "tasse",
      "phrase": "El desayuno se sirve por la mañana.",
+     "sens": "Le petit-déjeuner est servi le matin.",
      "n": "<b>por la mañana</b> = le matin (moment vague).",
      "revise": {
       "mot": "servir",
@@ -1742,6 +1756,7 @@ window.SCENE = {
      "f": "koffer",
      "r": "mark",
      "phrase": "Mark se queda hasta el domingo.",
+     "sens": "Mark reste jusqu'à dimanche.",
      "n": "<b>hasta</b> = jusqu'à.",
      "revise": {
       "mot": "quedarse",
@@ -1763,6 +1778,7 @@ window.SCENE = {
      "f": "schluessel-2",
      "r": "mark",
      "phrase": "Mark busca una habitación que sea tranquila.",
+     "sens": "Mark cherche une chambre qui soit calme.",
      "n": "Antécédent indéfini (on ne sait pas s'il existe) → subjonctif.",
      "revise": {
       "mot": "buscar",
@@ -1778,6 +1794,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "La señora quiere un hotel que esté cerca del puerto.",
+     "sens": "La dame veut un hôtel qui soit près du port.",
      "n": "Antécédent indéfini (on ne sait pas s'il existe) → subjonctif.",
      "revise": {
       "mot": "querer",
@@ -1793,6 +1810,7 @@ window.SCENE = {
      ],
      "f": "rezeption",
      "phrase": "Este es el hotel que está más cerca de la estación.",
+     "sens": "C'est l'hôtel qui est le plus près de la gare.",
      "n": "Antécédent connu, réel → indicatif.",
      "revise": {
       "mot": "estar",
@@ -1809,6 +1827,7 @@ window.SCENE = {
      "f": "mann",
      "r": "rezeption",
      "phrase": "¿Hay alguien que hable inglés en la recepción?",
+     "sens": "Y a-t-il quelqu'un qui parle anglais à la réception ?",
      "n": "<b>¿hay alguien que…?</b> → subjonctif.",
      "revise": {
       "mot": "hablar",
@@ -1824,6 +1843,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "No hay ninguna habitación que tenga vistas al mar.",
+     "sens": "Il n'y a aucune chambre qui ait vue sur la mer.",
      "n": "Antécédent négatif (<b>ninguna</b>) → subjonctif.",
      "revise": {
       "mot": "tener",
@@ -1840,6 +1860,7 @@ window.SCENE = {
      "f": "schluessel-2",
      "r": "mark",
      "phrase": "Mark tiene una llave que abre la puerta de su habitación.",
+     "sens": "Mark a une clé qui ouvre la porte de sa chambre.",
      "n": "Antécédent connu, réel → indicatif.",
      "revise": {
       "mot": "abrir",
@@ -1860,6 +1881,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Debe de estar contento de llegar.",
+     "sens": "Il doit être content d'arriver.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1872,6 +1894,7 @@ window.SCENE = {
      "f": "frau",
      "r": "sofa",
      "phrase": "Puede que la señora sea clienta habitual.",
+     "sens": "La dame est peut-être une habituée.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1883,6 +1906,7 @@ window.SCENE = {
      ],
      "f": "treppe",
      "phrase": "Su habitación estará en la segunda planta.",
+     "sens": "Sa chambre doit être au deuxième étage.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1894,6 +1918,7 @@ window.SCENE = {
      ],
      "f": "rezeption",
      "phrase": "Dicen que este hotel es el más antiguo de Hamburgo.",
+     "sens": "On dit que cet hôtel est le plus ancien de Hambourg.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1940,6 +1965,35 @@ window.SCENE = {
     "C1 | Puede que la señora sea clienta habitual.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Su habitación estará en la segunda planta.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que este hotel es el más antiguo de Hamburgo.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "The clock is on the wall.",
+    "A2 | Las llaves están en la estantería.": "The keys are in the rack.",
+    "A2 | La maleta está en el piso.": "The suitcase is on the floor.",
+    "A2 | La maleta está en el suelo.": "The suitcase is on the floor.",
+    "A2 | La señora está sentada en el sofá.": "The lady is sitting on the sofa.",
+    "A2 | La taza está en la mesa de centro.": "The cup is on the coffee table.",
+    "A2 | La taza está en la mesa baja.": "The cup is on the coffee table.",
+    "A2 | Hay un timbre en la recepción.": "There is a bell at the reception.",
+    "A2 | El cuadro está encima del sofá.": "The picture is above the sofa.",
+    "A2 | La lámpara está al lado del espejo.": "The lamp is next to the mirror.",
+    "B1 | ¿A qué hora cierra la recepción?": "What time does the reception close?",
+    "B1 | La recepción cierra a las once de la noche.": "The reception closes at eleven at night.",
+    "B1 | Son las ocho y media.": "It is half past eight.",
+    "B1 | Es la una y cuarto.": "It is a quarter past one.",
+    "B1 | Mark llega el viernes por la noche.": "Mark arrives on Friday night.",
+    "B1 | El desayuno se sirve por la mañana.": "Breakfast is served in the morning.",
+    "B1 | Mark se queda hasta el domingo.": "Mark is staying until Sunday.",
+    "B2 | Mark busca una habitación que sea tranquila.": "Mark is looking for a room that is quiet.",
+    "B2 | La señora quiere un hotel que esté cerca del puerto.": "The lady wants a hotel that is near the harbour.",
+    "B2 | Este es el hotel que está más cerca de la estación.": "This is the hotel that is closest to the station.",
+    "B2 | ¿Hay alguien que hable inglés en la recepción?": "Is there anyone who speaks English at the reception?",
+    "B2 | No hay ninguna habitación que tenga vistas al mar.": "There is no room with a sea view.",
+    "B2 | Mark tiene una llave que abre la puerta de su habitación.": "Mark has a key that opens the door to his room.",
+    "C1 | Debe de estar contento de llegar.": "He must be happy to arrive.",
+    "C1 | Puede que la señora sea clienta habitual.": "The lady may be a regular guest.",
+    "C1 | Su habitación estará en la segunda planta.": "His room is probably on the second floor.",
+    "C1 | Dicen que este hotel es el más antiguo de Hamburgo.": "They say this hotel is the oldest in Hamburg."
    }
   },
   "tr": {
@@ -1950,7 +2004,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1960,7 +2015,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1970,7 +2026,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -2012,6 +2069,35 @@ window.SCENE = {
     "C1 | Puede que la señora sea clienta habitual.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Su habitación estará en la segunda planta.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que este hotel es el más antiguo de Hamburgo.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "الساعة على الحائط.",
+    "A2 | Las llaves están en la estantería.": "المفاتيح في الرفّ.",
+    "A2 | La maleta está en el piso.": "الحقيبة على الأرض.",
+    "A2 | La maleta está en el suelo.": "الحقيبة على الأرض.",
+    "A2 | La señora está sentada en el sofá.": "السيّدة جالسة على الأريكة.",
+    "A2 | La taza está en la mesa de centro.": "الفنجان على الطاولة الصغيرة.",
+    "A2 | La taza está en la mesa baja.": "الفنجان على الطاولة الصغيرة.",
+    "A2 | Hay un timbre en la recepción.": "هناك جرس في الاستقبال.",
+    "A2 | El cuadro está encima del sofá.": "اللوحة فوق الأريكة.",
+    "A2 | La lámpara está al lado del espejo.": "المصباح بجانب المرآة.",
+    "B1 | ¿A qué hora cierra la recepción?": "في أيّ ساعة يُغلق الاستقبال؟",
+    "B1 | La recepción cierra a las once de la noche.": "يُغلق الاستقبال في الحادية عشرة ليلاً.",
+    "B1 | Son las ocho y media.": "الساعة الثامنة والنصف.",
+    "B1 | Es la una y cuarto.": "الساعة الواحدة والربع.",
+    "B1 | Mark llega el viernes por la noche.": "يصل مارك ليلة الجمعة.",
+    "B1 | El desayuno se sirve por la mañana.": "يُقدَّم الفطور في الصباح.",
+    "B1 | Mark se queda hasta el domingo.": "يبقى مارك حتى يوم الأحد.",
+    "B2 | Mark busca una habitación que sea tranquila.": "يبحث مارك عن غرفة هادئة.",
+    "B2 | La señora quiere un hotel que esté cerca del puerto.": "تريد السيّدة فندقاً قريباً من الميناء.",
+    "B2 | Este es el hotel que está más cerca de la estación.": "هذا هو الفندق الأقرب إلى المحطّة.",
+    "B2 | ¿Hay alguien que hable inglés en la recepción?": "هل هناك من يتكلّم الإنجليزية في الاستقبال؟",
+    "B2 | No hay ninguna habitación que tenga vistas al mar.": "لا توجد أيّ غرفة تطلّ على البحر.",
+    "B2 | Mark tiene una llave que abre la puerta de su habitación.": "لدى مارك مفتاح يفتح باب غرفته.",
+    "C1 | Debe de estar contento de llegar.": "لا بدّ أنه سعيد بالوصول.",
+    "C1 | Puede que la señora sea clienta habitual.": "ربما تكون السيّدة نزيلة دائمة.",
+    "C1 | Su habitación estará en la segunda planta.": "على الأرجح غرفته في الطابق الثاني.",
+    "C1 | Dicen que este hotel es el más antiguo de Hamburgo.": "يُقال إن هذا الفندق هو الأقدم في هامبورغ."
    }
   },
   "pt": {
@@ -2054,6 +2140,35 @@ window.SCENE = {
     "C1 | Puede que la señora sea clienta habitual.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Su habitación estará en la segunda planta.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que este hotel es el más antiguo de Hamburgo.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "O relógio está na parede.",
+    "A2 | Las llaves están en la estantería.": "As chaves estão na estante.",
+    "A2 | La maleta está en el piso.": "A mala está no chão.",
+    "A2 | La maleta está en el suelo.": "A mala está no chão.",
+    "A2 | La señora está sentada en el sofá.": "A senhora está sentada no sofá.",
+    "A2 | La taza está en la mesa de centro.": "A xícara está na mesa de centro.",
+    "A2 | La taza está en la mesa baja.": "A xícara está na mesa de centro.",
+    "A2 | Hay un timbre en la recepción.": "Há uma campainha na recepção.",
+    "A2 | El cuadro está encima del sofá.": "O quadro está acima do sofá.",
+    "A2 | La lámpara está al lado del espejo.": "O abajur está ao lado do espelho.",
+    "B1 | ¿A qué hora cierra la recepción?": "A que horas fecha a recepção?",
+    "B1 | La recepción cierra a las once de la noche.": "A recepção fecha às onze da noite.",
+    "B1 | Son las ocho y media.": "São oito e meia.",
+    "B1 | Es la una y cuarto.": "É uma e quinze.",
+    "B1 | Mark llega el viernes por la noche.": "Mark chega na sexta à noite.",
+    "B1 | El desayuno se sirve por la mañana.": "O café da manhã é servido de manhã.",
+    "B1 | Mark se queda hasta el domingo.": "Mark fica até domingo.",
+    "B2 | Mark busca una habitación que sea tranquila.": "Mark procura um quarto que seja tranquilo.",
+    "B2 | La señora quiere un hotel que esté cerca del puerto.": "A senhora quer um hotel que fique perto do porto.",
+    "B2 | Este es el hotel que está más cerca de la estación.": "Este é o hotel que fica mais perto da estação.",
+    "B2 | ¿Hay alguien que hable inglés en la recepción?": "Há alguém que fale inglês na recepção?",
+    "B2 | No hay ninguna habitación que tenga vistas al mar.": "Não há nenhum quarto que tenha vista para o mar.",
+    "B2 | Mark tiene una llave que abre la puerta de su habitación.": "Mark tem uma chave que abre a porta do seu quarto.",
+    "C1 | Debe de estar contento de llegar.": "Ele deve estar contente de chegar.",
+    "C1 | Puede que la señora sea clienta habitual.": "Pode ser que a senhora seja cliente habitual.",
+    "C1 | Su habitación estará en la segunda planta.": "O quarto dele deve ficar no segundo andar.",
+    "C1 | Dicen que este hotel es el más antiguo de Hamburgo.": "Dizem que este hotel é o mais antigo de Hamburgo."
    }
   },
   "pl": {
@@ -2064,7 +2179,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -2074,7 +2190,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

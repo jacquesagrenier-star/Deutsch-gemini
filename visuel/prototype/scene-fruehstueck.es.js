@@ -1388,6 +1388,7 @@ window.SCENE = {
      "f": "handy",
      "r": "tisch",
      "phrase": "El móvil está encima de la mesa.",
+     "sens": "Le téléphone est sur la table.",
      "n": "<b>encima de</b> = sur. Le lieu → <b>estar</b>.",
      "latam": {
       "q": "¿Dónde está el celular?",
@@ -1404,6 +1405,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "stuhl",
      "phrase": "La chaqueta está sobre la silla.",
+     "sens": "La veste est sur la chaise.",
      "n": "<b>sobre</b> = sur, posé dessus (ici, sur le dossier)."
     },
     {
@@ -1416,6 +1418,7 @@ window.SCENE = {
      "f": "schal",
      "r": "tuer",
      "phrase": "La bufanda está al lado de la puerta.",
+     "sens": "L'écharpe est à côté de la porte.",
      "n": "<b>al lado de</b> = à côté de."
     },
     {
@@ -1428,6 +1431,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "tisch",
      "phrase": "La mochila está al lado de la mesa.",
+     "sens": "Le sac à dos est à côté de la table.",
      "n": "<b>la</b> mesa est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -1440,6 +1444,7 @@ window.SCENE = {
      "f": "broetchen",
      "r": "teller",
      "phrase": "El pan está en el plato.",
+     "sens": "Le pain est sur l'assiette.",
      "n": "<b>en</b> = dans ou sur. <b>el</b> plato est masculin, et <b>en el</b> ne se contracte jamais."
     },
     {
@@ -1452,6 +1457,7 @@ window.SCENE = {
      "f": "gabel",
      "r": "teller",
      "phrase": "El tenedor está delante del plato.",
+     "sens": "La fourchette est devant l'assiette.",
      "n": "<b>delante de</b> = devant. de + el = <b>del</b>."
     },
     {
@@ -1464,6 +1470,7 @@ window.SCENE = {
      "f": "saft",
      "r": "ei",
      "phrase": "El zumo está al lado del huevo.",
+     "sens": "Le jus est à côté de l'œuf.",
      "n": "<b>de + el = del</b>, toujours.",
      "latam": {
       "q": "El jugo está al lado ___ huevo.",
@@ -1480,6 +1487,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "fenster",
      "phrase": "Hay una planta al lado de la ventana.",
+     "sens": "Il y a une plante à côté de la fenêtre.",
      "n": "<b>hay</b> présente une chose nouvelle (« il y a une plante ») ; <b>está</b> situe une chose déjà connue (« la plante est… »)."
     }
    ]
@@ -1497,6 +1505,7 @@ window.SCENE = {
      "f": "kuchen-mark",
      "r": "mark",
      "phrase": "La camarera le trae una tarta a Mark.",
+     "sens": "La serveuse apporte un gâteau à Mark.",
      "revise": {
       "mot": "traer",
       "cat": "verbe"
@@ -1517,6 +1526,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "mark",
      "phrase": "A Mark le gusta el café.",
+     "sens": "Mark aime le café.",
      "revise": {
       "mot": "gustar",
       "cat": "verbe"
@@ -1533,6 +1543,7 @@ window.SCENE = {
      "f": "kuchen-mark",
      "r": "serveuse",
      "phrase": "Mark la ha pedido a la camarera.",
+     "sens": "Mark l'a commandé à la serveuse.",
      "revise": {
       "mot": "pedir",
       "cat": "verbe"
@@ -1558,6 +1569,7 @@ window.SCENE = {
      ],
      "f": "salz",
      "phrase": "¿Me pasas la sal, por favor?",
+     "sens": "Tu me passes le sel, s'il te plaît ?",
      "revise": {
       "mot": "pasar",
       "cat": "verbe"
@@ -1574,6 +1586,7 @@ window.SCENE = {
      "f": "messer",
      "r": "broetchen",
      "phrase": "Mark lo corta con el cuchillo.",
+     "sens": "Mark le coupe avec le couteau.",
      "revise": {
       "mot": "cortar",
       "cat": "verbe"
@@ -1590,6 +1603,7 @@ window.SCENE = {
      "f": "serveuse",
      "r": "mark",
      "phrase": "La camarera le sonríe a Mark.",
+     "sens": "La serveuse sourit à Mark.",
      "revise": {
       "mot": "sonreír",
       "cat": "verbe"
@@ -1610,6 +1624,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "stuhl",
      "phrase": "Alguien la ha dejado sobre la silla.",
+     "sens": "Quelqu'un l'a laissée sur la chaise.",
      "revise": {
       "mot": "dejar",
       "cat": "verbe"
@@ -1626,6 +1641,7 @@ window.SCENE = {
      "f": "teller",
      "r": "mark",
      "phrase": "La camarera le da el plato a Mark.",
+     "sens": "La serveuse donne l'assiette à Mark.",
      "revise": {
       "mot": "dar",
       "cat": "verbe"
@@ -1651,6 +1667,7 @@ window.SCENE = {
      "f": "mark",
      "r": "kuchen-mark",
      "phrase": "El cliente al que la camarera trae la tarta se llama Mark.",
+     "sens": "Le client à qui la serveuse apporte le gâteau s'appelle Mark.",
      "n": "On apporte la tarte <b>à</b> lui : la préposition <b>a</b> passe devant le relatif → <b>al que</b>.",
      "latam": {
       "q": "El cliente ___ la mesera trae el pastel se llama Mark.",
@@ -1667,6 +1684,7 @@ window.SCENE = {
      "f": "serveuse",
      "r": "kuchen-mark",
      "phrase": "La camarera, que lleva gafas, trae la tarta.",
+     "sens": "La serveuse, qui porte des lunettes, apporte le gâteau.",
      "n": "Sujet de la relative → <b>que</b>.",
      "latam": {
       "q": "La mesera, ___ lleva lentes, trae el pastel.",
@@ -1683,6 +1701,7 @@ window.SCENE = {
      "f": "tisch",
      "r": "mark",
      "phrase": "La mesa en la que está sentado Mark está junto a la ventana.",
+     "sens": "La table à laquelle Mark est assis est près de la fenêtre.",
      "n": "<b>estar sentado en</b> une chaise, une table : la préposition passe devant → <b>en la que</b>."
     },
     {
@@ -1694,6 +1713,7 @@ window.SCENE = {
      ],
      "f": "tisch",
      "phrase": "La mesa ya está puesta.",
+     "sens": "La table est déjà mise.",
      "revise": {
       "mot": "poner",
       "cat": "verbe"
@@ -1710,6 +1730,7 @@ window.SCENE = {
      "f": "broetchen",
      "r": "teller",
      "phrase": "El pan ya está cortado.",
+     "sens": "Le pain est déjà coupé.",
      "revise": {
       "mot": "cortar",
       "cat": "verbe"
@@ -1725,6 +1746,7 @@ window.SCENE = {
      ],
      "f": "tuer",
      "phrase": "La puerta está abierta.",
+     "sens": "La porte est ouverte.",
      "revise": {
       "mot": "abrir",
       "cat": "verbe"
@@ -1746,6 +1768,7 @@ window.SCENE = {
      "f": "kuchen-mark",
      "r": "mark",
      "phrase": "Mark debe de tener mucha hambre.",
+     "sens": "Mark doit avoir très faim.",
      "n": "<b>deber de</b> + infinitif = une déduction : il doit avoir faim.",
      "latam": {
       "q": "Pan, huevo y ahora pastel: Mark ___ tener mucha hambre."
@@ -1761,6 +1784,7 @@ window.SCENE = {
      "f": "jacke",
      "r": "monsieur",
      "phrase": "Puede que la chaqueta sea del señor del fondo.",
+     "sens": "La veste est peut-être au monsieur du fond.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1773,6 +1797,7 @@ window.SCENE = {
      "f": "mark",
      "r": "serveuse",
      "phrase": "Será un cliente habitual.",
+     "sens": "Ce doit être un habitué.",
      "n": "Le <b>futur</b> peut exprimer une supposition sur le présent : <b>será</b> = ce doit être.",
      "latam": {
       "q": "La mesera parece conocerlo: ___ un cliente habitual."
@@ -1787,6 +1812,7 @@ window.SCENE = {
      ],
      "f": "kuchen",
      "phrase": "Dicen que esta tarta de manzana es la mejor de Berlín.",
+     "sens": "On dit que cette tarte aux pommes est la meilleure de Berlin.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>. Le subjonctif viendrait avec « no dicen que ».",
      "latam": {
       "q": "Dicen que este pastel de manzana ___ el mejor de Berlín.",
@@ -1845,6 +1871,43 @@ window.SCENE = {
     "C1 | Será un cliente habitual.": "The <b>future</b> can express a guess about the present: <b>será</b> = he must be.",
     "C1 | Dicen que este pastel de manzana es el mejor de Berlín.": "<b>dicen que</b> reports a statement → <b>indicative</b>. The subjunctive would come with “no dicen que”.",
     "C1 | Dicen que esta tarta de manzana es la mejor de Berlín.": "<b>dicen que</b> reports a statement → <b>indicative</b>. The subjunctive would come with “no dicen que”."
+   },
+   "sens": {
+    "A2 | El celular está encima de la mesa.": "The phone is on the table.",
+    "A2 | El móvil está encima de la mesa.": "The phone is on the table.",
+    "A2 | La chaqueta está sobre la silla.": "The jacket is on the chair.",
+    "A2 | La bufanda está al lado de la puerta.": "The scarf is next to the door.",
+    "A2 | La mochila está al lado de la mesa.": "The backpack is next to the table.",
+    "A2 | El pan está en el plato.": "The bread is on the plate.",
+    "A2 | El tenedor está delante del plato.": "The fork is in front of the plate.",
+    "A2 | El jugo está al lado del huevo.": "The juice is next to the egg.",
+    "A2 | El zumo está al lado del huevo.": "The juice is next to the egg.",
+    "A2 | Hay una planta al lado de la ventana.": "There is a plant next to the window.",
+    "B1 | La mesera le trae un pastel a Mark.": "The waitress brings Mark a cake.",
+    "B1 | La camarera le trae una tarta a Mark.": "The waitress brings Mark a cake.",
+    "B1 | A Mark le gusta el café.": "Mark likes coffee.",
+    "B1 | Mark lo ha pedido a la mesera.": "Mark ordered it from the waitress.",
+    "B1 | Mark la ha pedido a la camarera.": "Mark ordered it from the waitress.",
+    "B1 | ¿Me pasas la sal, por favor?": "Can you pass me the salt, please?",
+    "B1 | Mark lo corta con el cuchillo.": "Mark cuts it with the knife.",
+    "B1 | La mesera le sonríe a Mark.": "The waitress smiles at Mark.",
+    "B1 | La camarera le sonríe a Mark.": "The waitress smiles at Mark.",
+    "B1 | Alguien la ha dejado sobre la silla.": "Someone left it on the chair.",
+    "B1 | La mesera le da el plato a Mark.": "The waitress gives Mark the plate.",
+    "B1 | La camarera le da el plato a Mark.": "The waitress gives Mark the plate.",
+    "B2 | El cliente al que la mesera trae el pastel se llama Mark.": "The customer the waitress brings the cake to is called Mark.",
+    "B2 | El cliente al que la camarera trae la tarta se llama Mark.": "The customer the waitress brings the cake to is called Mark.",
+    "B2 | La mesera, que lleva lentes, trae el pastel.": "The waitress, who wears glasses, brings the cake.",
+    "B2 | La camarera, que lleva gafas, trae la tarta.": "The waitress, who wears glasses, brings the cake.",
+    "B2 | La mesa en la que está sentado Mark está junto a la ventana.": "The table Mark is sitting at is by the window.",
+    "B2 | La mesa ya está puesta.": "The table is already laid.",
+    "B2 | El pan ya está cortado.": "The bread is already cut.",
+    "B2 | La puerta está abierta.": "The door is open.",
+    "C1 | Mark debe de tener mucha hambre.": "Mark must be very hungry.",
+    "C1 | Puede que la chaqueta sea del señor del fondo.": "The jacket may belong to the man at the back.",
+    "C1 | Será un cliente habitual.": "He is probably a regular.",
+    "C1 | Dicen que este pastel de manzana es el mejor de Berlín.": "They say this apple cake is the best in Berlin.",
+    "C1 | Dicen que esta tarta de manzana es la mejor de Berlín.": "They say this apple cake is the best in Berlin."
    }
   },
   "tr": {
@@ -1855,7 +1918,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1865,7 +1929,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1875,7 +1940,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1925,6 +1991,43 @@ window.SCENE = {
     "C1 | Será un cliente habitual.": "<b>المستقبل</b> قد يعبّر عن افتراض بشأن الحاضر: <b>será</b> = لا بدّ أنه.",
     "C1 | Dicen que este pastel de manzana es el mejor de Berlín.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>. أما subjuntivo فيأتي مع «no dicen que».",
     "C1 | Dicen que esta tarta de manzana es la mejor de Berlín.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>. أما subjuntivo فيأتي مع «no dicen que»."
+   },
+   "sens": {
+    "A2 | El celular está encima de la mesa.": "الهاتف على الطاولة.",
+    "A2 | El móvil está encima de la mesa.": "الهاتف على الطاولة.",
+    "A2 | La chaqueta está sobre la silla.": "السترة على الكرسي.",
+    "A2 | La bufanda está al lado de la puerta.": "الوشاح بجانب الباب.",
+    "A2 | La mochila está al lado de la mesa.": "حقيبة الظهر بجانب الطاولة.",
+    "A2 | El pan está en el plato.": "الخبز على الصحن.",
+    "A2 | El tenedor está delante del plato.": "الشوكة أمام الصحن.",
+    "A2 | El jugo está al lado del huevo.": "العصير بجانب البيضة.",
+    "A2 | El zumo está al lado del huevo.": "العصير بجانب البيضة.",
+    "A2 | Hay una planta al lado de la ventana.": "هناك نبتة بجانب النافذة.",
+    "B1 | La mesera le trae un pastel a Mark.": "تُحضر النادلة كعكة لمارك.",
+    "B1 | La camarera le trae una tarta a Mark.": "تُحضر النادلة كعكة لمارك.",
+    "B1 | A Mark le gusta el café.": "مارك يحبّ القهوة.",
+    "B1 | Mark lo ha pedido a la mesera.": "طلبها مارك من النادلة.",
+    "B1 | Mark la ha pedido a la camarera.": "طلبها مارك من النادلة.",
+    "B1 | ¿Me pasas la sal, por favor?": "هل تناولني الملح، من فضلك؟",
+    "B1 | Mark lo corta con el cuchillo.": "يقطعه مارك بالسكّين.",
+    "B1 | La mesera le sonríe a Mark.": "تبتسم النادلة لمارك.",
+    "B1 | La camarera le sonríe a Mark.": "تبتسم النادلة لمارك.",
+    "B1 | Alguien la ha dejado sobre la silla.": "تركها أحدهم على الكرسي.",
+    "B1 | La mesera le da el plato a Mark.": "تعطي النادلة الصحن لمارك.",
+    "B1 | La camarera le da el plato a Mark.": "تعطي النادلة الصحن لمارك.",
+    "B2 | El cliente al que la mesera trae el pastel se llama Mark.": "الزبون الذي تُحضر له النادلة الكعكة اسمه مارك.",
+    "B2 | El cliente al que la camarera trae la tarta se llama Mark.": "الزبون الذي تُحضر له النادلة الكعكة اسمه مارك.",
+    "B2 | La mesera, que lleva lentes, trae el pastel.": "النادلة التي ترتدي نظّارة تُحضر الكعكة.",
+    "B2 | La camarera, que lleva gafas, trae la tarta.": "النادلة التي ترتدي نظّارة تُحضر الكعكة.",
+    "B2 | La mesa en la que está sentado Mark está junto a la ventana.": "الطاولة التي يجلس إليها مارك عند النافذة.",
+    "B2 | La mesa ya está puesta.": "الطاولة مجهّزة بالفعل.",
+    "B2 | El pan ya está cortado.": "الخبز مقطوع بالفعل.",
+    "B2 | La puerta está abierta.": "الباب مفتوح.",
+    "C1 | Mark debe de tener mucha hambre.": "لا بدّ أن مارك جائع جداً.",
+    "C1 | Puede que la chaqueta sea del señor del fondo.": "ربما تكون السترة للرجل الجالس في الخلف.",
+    "C1 | Será un cliente habitual.": "على الأرجح هو زبون دائم.",
+    "C1 | Dicen que este pastel de manzana es el mejor de Berlín.": "يُقال إن كعكة التفاح هذه هي الأفضل في برلين.",
+    "C1 | Dicen que esta tarta de manzana es la mejor de Berlín.": "يُقال إن كعكة التفاح هذه هي الأفضل في برلين."
    }
   },
   "pt": {
@@ -1975,6 +2078,43 @@ window.SCENE = {
     "C1 | Será un cliente habitual.": "O <b>futuro</b> pode expressar uma suposição sobre o presente: <b>será</b> = deve ser.",
     "C1 | Dicen que este pastel de manzana es el mejor de Berlín.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>. O subjuntivo viria com “no dicen que”.",
     "C1 | Dicen que esta tarta de manzana es la mejor de Berlín.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>. O subjuntivo viria com “no dicen que”."
+   },
+   "sens": {
+    "A2 | El celular está encima de la mesa.": "O celular está em cima da mesa.",
+    "A2 | El móvil está encima de la mesa.": "O celular está em cima da mesa.",
+    "A2 | La chaqueta está sobre la silla.": "A jaqueta está sobre a cadeira.",
+    "A2 | La bufanda está al lado de la puerta.": "O cachecol está ao lado da porta.",
+    "A2 | La mochila está al lado de la mesa.": "A mochila está ao lado da mesa.",
+    "A2 | El pan está en el plato.": "O pão está no prato.",
+    "A2 | El tenedor está delante del plato.": "O garfo está em frente ao prato.",
+    "A2 | El jugo está al lado del huevo.": "O suco está ao lado do ovo.",
+    "A2 | El zumo está al lado del huevo.": "O suco está ao lado do ovo.",
+    "A2 | Hay una planta al lado de la ventana.": "Há uma planta ao lado da janela.",
+    "B1 | La mesera le trae un pastel a Mark.": "A garçonete traz um bolo para Mark.",
+    "B1 | La camarera le trae una tarta a Mark.": "A garçonete traz um bolo para Mark.",
+    "B1 | A Mark le gusta el café.": "Mark gosta de café.",
+    "B1 | Mark lo ha pedido a la mesera.": "Mark pediu-o à garçonete.",
+    "B1 | Mark la ha pedido a la camarera.": "Mark pediu-o à garçonete.",
+    "B1 | ¿Me pasas la sal, por favor?": "Você me passa o sal, por favor?",
+    "B1 | Mark lo corta con el cuchillo.": "Mark corta-o com a faca.",
+    "B1 | La mesera le sonríe a Mark.": "A garçonete sorri para Mark.",
+    "B1 | La camarera le sonríe a Mark.": "A garçonete sorri para Mark.",
+    "B1 | Alguien la ha dejado sobre la silla.": "Alguém a deixou sobre a cadeira.",
+    "B1 | La mesera le da el plato a Mark.": "A garçonete dá o prato a Mark.",
+    "B1 | La camarera le da el plato a Mark.": "A garçonete dá o prato a Mark.",
+    "B2 | El cliente al que la mesera trae el pastel se llama Mark.": "O cliente a quem a garçonete traz o bolo se chama Mark.",
+    "B2 | El cliente al que la camarera trae la tarta se llama Mark.": "O cliente a quem a garçonete traz o bolo se chama Mark.",
+    "B2 | La mesera, que lleva lentes, trae el pastel.": "A garçonete, que usa óculos, traz o bolo.",
+    "B2 | La camarera, que lleva gafas, trae la tarta.": "A garçonete, que usa óculos, traz o bolo.",
+    "B2 | La mesa en la que está sentado Mark está junto a la ventana.": "A mesa em que Mark está sentado fica junto à janela.",
+    "B2 | La mesa ya está puesta.": "A mesa já está posta.",
+    "B2 | El pan ya está cortado.": "O pão já está cortado.",
+    "B2 | La puerta está abierta.": "A porta está aberta.",
+    "C1 | Mark debe de tener mucha hambre.": "Mark deve estar com muita fome.",
+    "C1 | Puede que la chaqueta sea del señor del fondo.": "Pode ser que a jaqueta seja do senhor do fundo.",
+    "C1 | Será un cliente habitual.": "Deve ser um cliente habitual.",
+    "C1 | Dicen que este pastel de manzana es el mejor de Berlín.": "Dizem que esta torta de maçã é a melhor de Berlim.",
+    "C1 | Dicen que esta tarta de manzana es la mejor de Berlín.": "Dizem que esta torta de maçã é a melhor de Berlim."
    }
   },
   "pl": {
@@ -1985,7 +2125,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1995,7 +2136,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

@@ -1957,6 +1957,7 @@ window.SCENE = {
      "f": "waage",
      "r": "wand",
      "phrase": "Die Waage steht an der Wand.",
+     "sens": "La balance est contre le mur.",
      "n": "<b>an</b> = contre une surface verticale. die Wand → an <b>der</b> Wand (datif)."
     },
     {
@@ -1969,6 +1970,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "Die Ärztin steht neben dem Patienten.",
+     "sens": "La médecin est debout à côté du patient.",
      "n": "<b>neben</b> + datif. der Patient prend un <b>-en</b> : dem Patient<b>en</b>."
     },
     {
@@ -1981,6 +1983,7 @@ window.SCENE = {
      "f": "mark",
      "r": "waage",
      "phrase": "Mark steht vor der Waage.",
+     "sens": "Mark est debout devant la balance.",
      "n": "<b>vor</b> = devant. die Waage → vor <b>der</b> Waage. Il n'est pas encore monté dessus."
     },
     {
@@ -1993,6 +1996,7 @@ window.SCENE = {
      "f": "stethoskop",
      "r": "brust",
      "phrase": "Die Ärztin hält das Stethoskop auf seiner Brust.",
+     "sens": "La médecin tient le stéthoscope sur sa poitrine.",
      "n": "Datif avec le possessif : die Brust → auf <b>seiner</b> Brust."
     },
     {
@@ -2005,6 +2009,7 @@ window.SCENE = {
      "f": "hand-l",
      "r": "oberschenkel",
      "phrase": "Seine Hände sind an seinen Oberschenkeln.",
+     "sens": "Ses mains sont le long de ses cuisses.",
      "n": "Datif pluriel : <b>an seinen</b> Oberschenkel<b>n</b> — le nom prend un -n."
     },
     {
@@ -2017,6 +2022,7 @@ window.SCENE = {
      "f": "fuss-l",
      "r": "boden",
      "phrase": "Seine Füße sind auf dem Boden.",
+     "sens": "Ses pieds sont sur le sol.",
      "n": "der Boden → auf <b>dem</b> Boden. Pieds nus, sur le sol gris."
     }
    ]
@@ -2034,6 +2040,7 @@ window.SCENE = {
      "f": "brust",
      "r": "hand-aerztin-haut",
      "phrase": "Die Ärztin hört seine Lunge ab.",
+     "sens": "La médecin ausculte ses poumons.",
      "n": "<b>abhören</b> = ausculter. Verbe séparable : la particule <b>ab</b> part à la fin."
     },
     {
@@ -2045,6 +2052,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Bitte atmen Sie tief ein!",
+     "sens": "Inspirez profondément, s'il vous plaît !",
      "n": "<b>einatmen</b> = inspirer, <b>ausatmen</b> = expirer. Impératif de politesse : verbe en tête, particule à la fin."
     },
     {
@@ -2056,6 +2064,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark hat sich bis auf die Unterhose ausgezogen.",
+     "sens": "Mark s'est déshabillé jusqu'au caleçon.",
      "n": "<b>sich ausziehen</b> = se déshabiller ; <b>sich anziehen</b> = s'habiller ; <b>sich umziehen</b> = se changer.",
      "r": "unterhose",
      "revise": {
@@ -2073,6 +2082,7 @@ window.SCENE = {
      "f": "stethoskop",
      "r": "brust",
      "phrase": "Die Ärztin setzt ihm das Stethoskop auf die Brust.",
+     "sens": "La médecin pose le stéthoscope sur sa poitrine.",
      "n": "<b>setzen</b> = poser (mouvement) → auf <b>die</b> Brust (accusatif). <b>sitzen</b> = être assis."
     },
     {
@@ -2085,6 +2095,7 @@ window.SCENE = {
      "f": "mark",
      "r": "waage",
      "phrase": "Gleich stellt sich Mark auf die Waage.",
+     "sens": "Mark va tout de suite monter sur la balance.",
      "n": "Mouvement, Wohin? → <b>sich stellen</b> + accusatif : auf <b>die</b> Waage.",
      "revise": {
       "mot": "stellen",
@@ -2101,6 +2112,7 @@ window.SCENE = {
      "f": "waage",
      "r": "mark",
      "phrase": "Danach steht er still auf der Waage.",
+     "sens": "Ensuite, il reste immobile sur la balance.",
      "n": "État, Wo? → <b>stehen</b> + datif : auf <b>der</b> Waage.",
      "revise": {
       "mot": "stehen",
@@ -2122,6 +2134,7 @@ window.SCENE = {
      "f": "brust",
      "r": "hand-aerztin-haut",
      "phrase": "Seine Lunge wird gerade abgehört.",
+     "sens": "Ses poumons sont en train d'être auscultés.",
      "n": "Passif de l'action en cours : <b>werden</b> + participe II."
     },
     {
@@ -2134,6 +2147,7 @@ window.SCENE = {
      "f": "mark",
      "r": "brust",
      "phrase": "Der Patient, dessen Brust abgehört wird, heißt Mark.",
+     "sens": "Le patient dont on ausculte la poitrine s'appelle Mark.",
      "n": "Possession, antécédent masculin → <b>dessen</b> (dont la poitrine)."
     },
     {
@@ -2146,6 +2160,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "Die Ärztin, die ihn untersucht, ist seine Hausärztin.",
+     "sens": "La médecin qui l'examine est sa médecin de famille.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -2158,6 +2173,7 @@ window.SCENE = {
      "f": "waage",
      "r": "mark",
      "phrase": "Die Waage, auf die er sich gleich stellt, steht an der Wand.",
+     "sens": "La balance sur laquelle il va monter est contre le mur.",
      "n": "<b>sich stellen auf</b> + accusatif (mouvement) → auf <b>die</b>."
     },
     {
@@ -2169,6 +2185,7 @@ window.SCENE = {
      ],
      "f": "waage",
      "phrase": "Gleich wird auch seine Größe gemessen.",
+     "sens": "Dans un instant, on mesurera aussi sa taille.",
      "n": "Passif : <b>wird</b> … gemessen. La toise de la balance mesure la taille."
     },
     {
@@ -2180,6 +2197,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark bleibt ruhig stehen, während er untersucht wird.",
+     "sens": "Mark reste tranquille pendant qu'on l'examine.",
      "n": "Passif dans la subordonnée : participe II + <b>wird</b> à la fin.",
      "revise": {
       "mot": "untersuchen",
@@ -2200,6 +2218,7 @@ window.SCENE = {
      ],
      "f": "arm-l",
      "phrase": "Er muss viel Sport treiben.",
+     "sens": "Il doit faire beaucoup de sport.",
      "n": "<b>müssen</b> = déduction presque certaine, tirée de ce qu'on voit."
     },
     {
@@ -2211,6 +2230,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Er dürfte gesund sein.",
+     "sens": "Il est sans doute en bonne santé.",
      "n": "<b>dürfte</b> = probable, sans certitude."
     },
     {
@@ -2222,6 +2242,7 @@ window.SCENE = {
      ],
      "f": "aerztin",
      "phrase": "Diese Ärztin soll sehr gründlich sein.",
+     "sens": "Il paraît que cette médecin est très minutieuse.",
      "n": "<b>sollen</b> = on le dit, je le rapporte sans le garantir."
     },
     {
@@ -2234,6 +2255,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "brust",
      "phrase": "Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.",
+     "sens": "Si son rythme cardiaque était irrégulier, elle l'enverrait chez le cardiologue.",
      "n": "Hypothèse sans <b>wenn</b> : le verbe en tête (<b>Wäre</b>…), puis <b>würde</b> + infinitif."
     },
     {
@@ -2245,6 +2267,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.",
+     "sens": "S'il ne s'était pas déshabillé, elle n'aurait pas pu l'ausculter.",
      "n": "Irréel du passé avec un modal : <b>hätte</b> + double infinitif (abhören können)."
     },
     {
@@ -2257,6 +2280,7 @@ window.SCENE = {
      "f": "aerztin",
      "r": "mark",
      "phrase": "Ohne Untersuchung könnte man es nicht genau wissen.",
+     "sens": "Sans examen, on ne pourrait pas le savoir exactement.",
      "n": "<b>ohne</b> + nom remplace une condition : Konjunktiv II <b>könnte</b>."
     }
    ]
@@ -2312,6 +2336,32 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Hypothesis without <b>wenn</b>: the verb comes first (<b>Wäre</b>…), then <b>würde</b> + infinitive.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Unreal past with a modal: <b>hätte</b> + double infinitive (abhören können).",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + noun replaces a condition: Konjunktiv II <b>könnte</b>."
+   },
+   "sens": {
+    "A2 | Die Waage steht an der Wand.": "The scale is against the wall.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "The doctor is standing next to the patient.",
+    "A2 | Mark steht vor der Waage.": "Mark is standing in front of the scale.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "The doctor is holding the stethoscope on his chest.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "His hands are at his thighs.",
+    "A2 | Seine Füße sind auf dem Boden.": "His feet are on the floor.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "The doctor is listening to his lungs.",
+    "B1 | Bitte atmen Sie tief ein!": "Please breathe in deeply!",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "Mark has undressed down to his underpants.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "The doctor places the stethoscope on his chest.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Mark is about to step onto the scale.",
+    "B1 | Danach steht er still auf der Waage.": "Then he stands still on the scale.",
+    "B2 | Seine Lunge wird gerade abgehört.": "His lungs are being listened to.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "The patient whose chest is being listened to is called Mark.",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "The doctor examining him is his family doctor.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "The scale he is about to step on is against the wall.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "In a moment his height will be measured too.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Mark stands still while he is being examined.",
+    "C1 | Er muss viel Sport treiben.": "He must do a lot of sport.",
+    "C1 | Er dürfte gesund sein.": "He is probably healthy.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "This doctor is said to be very thorough.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "If his heartbeat were irregular, she would send him to a cardiologist.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "If he had not undressed, she could not have listened to his chest.",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "Without an examination, one could not know for sure."
    }
   },
   "tr": {
@@ -2353,6 +2403,32 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "<b>wenn</b> olmadan varsayım: fiil başta (<b>Wäre</b>…), sonra <b>würde</b> + mastar.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Modal fiille geçmişte gerçek dışı durum: <b>hätte</b> + çift mastar (abhören können).",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + isim bir koşulun yerini tutar: Konjunktiv II <b>könnte</b>."
+   },
+   "sens": {
+    "A2 | Die Waage steht an der Wand.": "Tartı duvarın dibinde duruyor.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "Doktor hastanın yanında duruyor.",
+    "A2 | Mark steht vor der Waage.": "Mark tartının önünde duruyor.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Doktor stetoskopu göğsüne tutuyor.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Elleri uyluklarının yanında.",
+    "A2 | Seine Füße sind auf dem Boden.": "Ayakları yerde.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "Doktor ciğerlerini dinliyor.",
+    "B1 | Bitte atmen Sie tief ein!": "Lütfen derin nefes alın!",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "Mark külodu hariç soyundu.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "Doktor stetoskopu göğsüne koyuyor.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Mark birazdan tartıya çıkacak.",
+    "B1 | Danach steht er still auf der Waage.": "Sonra tartının üstünde hareketsiz duruyor.",
+    "B2 | Seine Lunge wird gerade abgehört.": "Ciğerleri şu anda dinleniyor.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "Göğsü dinlenen hastanın adı Mark.",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "Onu muayene eden doktor aile hekimi.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "Birazdan çıkacağı tartı duvarın dibinde.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Birazdan boyu da ölçülecek.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Mark muayene edilirken sakin duruyor.",
+    "C1 | Er muss viel Sport treiben.": "Çok spor yapıyor olmalı.",
+    "C1 | Er dürfte gesund sein.": "Sağlıklı olsa gerek.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "Bu doktorun çok titiz olduğu söyleniyor.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Kalp atışı düzensiz olsaydı onu kardiyoloğa gönderirdi.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Soyunmasaydı onu dinleyemezdi.",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "Muayene olmadan kesin olarak bilinemezdi."
    }
   },
   "uk": {
@@ -2394,6 +2470,32 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Припущення без <b>wenn</b>: дієслово на початку (<b>Wäre</b>…), потім <b>würde</b> + інфінітив.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Нереальне минуле з модальним дієсловом: <b>hätte</b> + подвійний інфінітив (abhören können).",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + іменник замінює умову: Konjunktiv II <b>könnte</b>."
+   },
+   "sens": {
+    "A2 | Die Waage steht an der Wand.": "Ваги стоять біля стіни.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "Лікарка стоїть біля пацієнта.",
+    "A2 | Mark steht vor der Waage.": "Марк стоїть перед вагами.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Лікарка тримає стетоскоп на його грудях.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Його руки біля стегон.",
+    "A2 | Seine Füße sind auf dem Boden.": "Його ноги на підлозі.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "Лікарка прослуховує його легені.",
+    "B1 | Bitte atmen Sie tief ein!": "Глибоко вдихніть, будь ласка!",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "Марк роздягнувся до трусів.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "Лікарка прикладає стетоскоп до його грудей.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Марк зараз стане на ваги.",
+    "B1 | Danach steht er still auf der Waage.": "Потім він нерухомо стоїть на вагах.",
+    "B2 | Seine Lunge wird gerade abgehört.": "Його легені зараз прослуховують.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "Пацієнта, якому прослуховують груди, звати Марк.",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "Лікарка, яка його оглядає, — його сімейна лікарка.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "Ваги, на які він зараз стане, стоять біля стіни.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Зараз виміряють і його зріст.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Марк стоїть спокійно, поки його оглядають.",
+    "C1 | Er muss viel Sport treiben.": "Він, мабуть, багато займається спортом.",
+    "C1 | Er dürfte gesund sein.": "Він, напевно, здоровий.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "Кажуть, ця лікарка дуже ретельна.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Якби його серцебиття було нерегулярним, вона направила б його до кардіолога.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Якби він не роздягнувся, вона не змогла б його прослухати.",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "Без обстеження цього не можна було б знати напевно."
    }
   },
   "fa": {
@@ -2435,6 +2537,32 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "فرض بدون <b>wenn</b>: فعل در آغاز (<span lang=\"de\"><b>Wäre</b>…</span>)، سپس <b>würde</b> + مصدر.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "غیرواقعی در گذشته با فعل وجهی: <b>hätte</b> + دو مصدر (<span lang=\"de\">abhören können</span>).",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + اسم جای یک شرط را می‌گیرد: Konjunktiv II <b>könnte</b>."
+   },
+   "sens": {
+    "A2 | Die Waage steht an der Wand.": "ترازو کنار دیوار است.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "پزشک کنار بیمار ایستاده است.",
+    "A2 | Mark steht vor der Waage.": "مارک جلوی ترازو ایستاده است.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "پزشک گوشی پزشکی را روی سینه‌اش نگه داشته است.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "دست‌هایش کنار ران‌هایش است.",
+    "A2 | Seine Füße sind auf dem Boden.": "پاهایش روی زمین است.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "پزشک ریه‌هایش را معاینه می‌کند.",
+    "B1 | Bitte atmen Sie tief ein!": "لطفاً نفس عمیق بکشید!",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "مارک تا زیرپوش لباسش را درآورده است.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "پزشک گوشی پزشکی را روی سینه‌اش می‌گذارد.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "مارک همین حالا روی ترازو می‌رود.",
+    "B1 | Danach steht er still auf der Waage.": "بعد از آن بی‌حرکت روی ترازو می‌ایستد.",
+    "B2 | Seine Lunge wird gerade abgehört.": "ریه‌هایش در حال معاینه هستند.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "بیماری که سینه‌اش معاینه می‌شود، مارک نام دارد.",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "پزشکی که او را معاینه می‌کند، پزشک خانوادگی‌اش است.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "ترازویی که همین حالا رویش می‌رود، کنار دیوار است.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "همین حالا قدش هم اندازه گرفته می‌شود.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "مارک در حین معاینه آرام می‌ایستد.",
+    "C1 | Er muss viel Sport treiben.": "او حتماً خیلی ورزش می‌کند.",
+    "C1 | Er dürfte gesund sein.": "او احتمالاً سالم است.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "می‌گویند این پزشک خیلی دقیق است.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "اگر ضربان قلبش نامنظم بود، او را پیش متخصص قلب می‌فرستاد.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "اگر لباسش را درنیاورده بود، نمی‌توانست معاینه‌اش کند.",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "بدون معاینه نمی‌شد دقیق دانست."
    }
   },
   "ar": {
@@ -2476,6 +2604,32 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "افتراض دون <b>wenn</b>: الفعل في البداية (<span lang=\"de\"><b>Wäre</b>…</span>)، ثم <b>würde</b> + المصدر.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "غير الواقع في الماضي مع فعل مساعد: <b>hätte</b> + مصدران (<span lang=\"de\">abhören können</span>).",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + اسم يحلّ محلّ الشرط: Konjunktiv II <b>könnte</b>."
+   },
+   "sens": {
+    "A2 | Die Waage steht an der Wand.": "الميزان عند الحائط.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "الطبيبة واقفة بجانب المريض.",
+    "A2 | Mark steht vor der Waage.": "مارك واقف أمام الميزان.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "تضع الطبيبة السمّاعة على صدره.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "يداه بجانب فخذيه.",
+    "A2 | Seine Füße sind auf dem Boden.": "قدماه على الأرض.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "تفحص الطبيبة رئتيه بالسمّاعة.",
+    "B1 | Bitte atmen Sie tief ein!": "من فضلك خذ نفساً عميقاً!",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "خلع مارك ملابسه ما عدا سرواله الداخلي.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "تضع الطبيبة السمّاعة على صدره.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "سيقف مارك على الميزان حالاً.",
+    "B1 | Danach steht er still auf der Waage.": "ثم يقف ساكناً على الميزان.",
+    "B2 | Seine Lunge wird gerade abgehört.": "تُفحص رئتاه الآن بالسمّاعة.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "المريض الذي يُفحص صدره اسمه مارك.",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "الطبيبة التي تفحصه هي طبيبة العائلة.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "الميزان الذي سيقف عليه حالاً عند الحائط.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "سيُقاس طوله أيضاً حالاً.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "يقف مارك هادئاً بينما يُفحص.",
+    "C1 | Er muss viel Sport treiben.": "لا بدّ أنه يمارس الرياضة كثيراً.",
+    "C1 | Er dürfte gesund sein.": "على الأرجح هو بصحّة جيدة.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "يُقال إن هذه الطبيبة دقيقة جداً.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "لو كانت ضربات قلبه غير منتظمة، لأرسلته إلى طبيب القلب.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "لو لم يخلع ملابسه، لما استطاعت فحصه بالسمّاعة.",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "من دون فحص، لا يمكن معرفة ذلك بدقّة."
    }
   },
   "pt": {
@@ -2517,6 +2671,32 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Hipótese sem <b>wenn</b>: o verbo no início (<b>Wäre</b>…), depois <b>würde</b> + infinitivo.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Irreal do passado com um modal: <b>hätte</b> + duplo infinitivo (abhören können).",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + substantivo substitui uma condição: Konjunktiv II <b>könnte</b>."
+   },
+   "sens": {
+    "A2 | Die Waage steht an der Wand.": "A balança está junto à parede.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "A médica está ao lado do paciente.",
+    "A2 | Mark steht vor der Waage.": "Mark está em frente à balança.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "A médica segura o estetoscópio no peito dele.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "As mãos dele estão junto às coxas.",
+    "A2 | Seine Füße sind auf dem Boden.": "Os pés dele estão no chão.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "A médica ausculta os pulmões dele.",
+    "B1 | Bitte atmen Sie tief ein!": "Respire fundo, por favor!",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "Mark tirou a roupa, ficando só de cueca.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "A médica põe o estetoscópio no peito dele.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Mark vai já subir na balança.",
+    "B1 | Danach steht er still auf der Waage.": "Depois ele fica parado na balança.",
+    "B2 | Seine Lunge wird gerade abgehört.": "Os pulmões dele estão sendo auscultados.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "O paciente cujo peito está sendo auscultado se chama Mark.",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "A médica que o examina é a sua médica de família.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "A balança em que ele vai subir está junto à parede.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Daqui a pouco a altura dele também será medida.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Mark fica parado enquanto é examinado.",
+    "C1 | Er muss viel Sport treiben.": "Ele deve praticar muito esporte.",
+    "C1 | Er dürfte gesund sein.": "Ele provavelmente está saudável.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "Dizem que esta médica é muito minuciosa.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Se o batimento cardíaco dele fosse irregular, ela o mandaria ao cardiologista.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Se ele não tivesse tirado a roupa, ela não teria podido auscultá-lo.",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "Sem exame, não se poderia saber ao certo."
    }
   },
   "pl": {
@@ -2558,6 +2738,32 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Warunek bez <b>wenn</b>: czasownik na początku (<b>Wäre</b>…), potem <b>würde</b> + bezokolicznik.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Warunek nierzeczywisty w przeszłości z czasownikiem modalnym: <b>hätte</b> + podwójny bezokolicznik (abhören können).",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + rzeczownik zastępuje warunek: Konjunktiv II <b>könnte</b>."
+   },
+   "sens": {
+    "A2 | Die Waage steht an der Wand.": "Waga stoi przy ścianie.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "Lekarka stoi obok pacjenta.",
+    "A2 | Mark steht vor der Waage.": "Mark stoi przed wagą.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Lekarka trzyma stetoskop na jego piersi.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Jego ręce są przy udach.",
+    "A2 | Seine Füße sind auf dem Boden.": "Jego stopy są na podłodze.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "Lekarka osłuchuje jego płuca.",
+    "B1 | Bitte atmen Sie tief ein!": "Proszę głęboko wdychać!",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "Mark rozebrał się do slipów.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "Lekarka przykłada mu stetoskop do piersi.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Mark zaraz stanie na wadze.",
+    "B1 | Danach steht er still auf der Waage.": "Potem stoi nieruchomo na wadze.",
+    "B2 | Seine Lunge wird gerade abgehört.": "Jego płuca są właśnie osłuchiwane.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "Pacjent, którego pierś jest osłuchiwana, ma na imię Mark.",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "Lekarka, która go bada, jest jego lekarką rodzinną.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "Waga, na której zaraz stanie, stoi przy ścianie.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Zaraz zostanie zmierzony też jego wzrost.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Mark stoi spokojnie, podczas gdy jest badany.",
+    "C1 | Er muss viel Sport treiben.": "Musi dużo uprawiać sportu.",
+    "C1 | Er dürfte gesund sein.": "Jest zapewne zdrowy.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "Podobno ta lekarka jest bardzo dokładna.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Gdyby jego tętno było nieregularne, wysłałaby go do kardiologa.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Gdyby się nie rozebrał, nie mogłaby go osłuchać.",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "Bez badania nie można by tego wiedzieć na pewno."
    }
   },
   "ru": {
@@ -2599,6 +2805,32 @@ window.SCENE = {
     "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Предположение без <b>wenn</b>: глагол впереди (<b>Wäre</b>…), потом <b>würde</b> + инфинитив.",
     "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Нереальное прошлое с модальным глаголом: <b>hätte</b> + двойной инфинитив (abhören können).",
     "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "<b>ohne</b> + существительное заменяет условие: Konjunktiv II <b>könnte</b>."
+   },
+   "sens": {
+    "A2 | Die Waage steht an der Wand.": "Весы стоят у стены.",
+    "A2 | Die Ärztin steht neben dem Patienten.": "Врач стоит рядом с пациентом.",
+    "A2 | Mark steht vor der Waage.": "Марк стоит перед весами.",
+    "A2 | Die Ärztin hält das Stethoskop auf seiner Brust.": "Врач держит стетоскоп на его груди.",
+    "A2 | Seine Hände sind an seinen Oberschenkeln.": "Его руки вдоль бёдер.",
+    "A2 | Seine Füße sind auf dem Boden.": "Его ноги на полу.",
+    "B1 | Die Ärztin hört seine Lunge ab.": "Врач прослушивает его лёгкие.",
+    "B1 | Bitte atmen Sie tief ein!": "Пожалуйста, глубоко вдохните!",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "Марк разделся до трусов.",
+    "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "Врач ставит стетоскоп ему на грудь.",
+    "B1 | Gleich stellt sich Mark auf die Waage.": "Марк сейчас встанет на весы.",
+    "B1 | Danach steht er still auf der Waage.": "Потом он неподвижно стоит на весах.",
+    "B2 | Seine Lunge wird gerade abgehört.": "Его лёгкие сейчас прослушивают.",
+    "B2 | Der Patient, dessen Brust abgehört wird, heißt Mark.": "Пациента, которому прослушивают грудь, зовут Марк.",
+    "B2 | Die Ärztin, die ihn untersucht, ist seine Hausärztin.": "Врач, которая его осматривает, — его семейный врач.",
+    "B2 | Die Waage, auf die er sich gleich stellt, steht an der Wand.": "Весы, на которые он сейчас встанет, стоят у стены.",
+    "B2 | Gleich wird auch seine Größe gemessen.": "Сейчас измерят и его рост.",
+    "B2 | Mark bleibt ruhig stehen, während er untersucht wird.": "Марк стоит спокойно, пока его осматривают.",
+    "C1 | Er muss viel Sport treiben.": "Он, должно быть, много занимается спортом.",
+    "C1 | Er dürfte gesund sein.": "Он, вероятно, здоров.",
+    "C1 | Diese Ärztin soll sehr gründlich sein.": "Говорят, эта врач очень тщательная.",
+    "C1 | Wäre sein Herzschlag unregelmäßig, würde sie ihn zum Kardiologen schicken.": "Если бы его сердцебиение было нерегулярным, она направила бы его к кардиологу.",
+    "C1 | Hätte er sich nicht ausgezogen, hätte sie ihn nicht abhören können.": "Если бы он не разделся, она не смогла бы его прослушать.",
+    "C1 | Ohne Untersuchung könnte man es nicht genau wissen.": "Без обследования этого нельзя было бы знать точно."
    }
   }
  }

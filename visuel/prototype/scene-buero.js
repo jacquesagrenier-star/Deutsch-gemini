@@ -901,6 +901,7 @@ window.SCENE = {
      "f": "tasse",
      "r": "tastatur",
      "phrase": "Die Tasse steht neben der Tastatur.",
+     "sens": "La tasse est à côté du clavier.",
      "n": "die Tastatur → neben <b>der</b> Tastatur : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -913,6 +914,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "tafel",
      "phrase": "Die Uhr hängt über der Tafel.",
+     "sens": "L'horloge est accrochée au-dessus du tableau.",
      "n": "<b>über</b> = au-dessus de. die Tafel → über <b>der</b> Tafel."
     },
     {
@@ -925,6 +927,7 @@ window.SCENE = {
      "f": "drucker",
      "r": "regal",
      "phrase": "Der Drucker steht neben dem Regal.",
+     "sens": "L'imprimante est à côté de l'étagère.",
      "n": "das Regal → neben <b>dem</b> Regal."
     },
     {
@@ -937,6 +940,7 @@ window.SCENE = {
      "f": "kugelschreiber",
      "r": "papier",
      "phrase": "Der Kugelschreiber liegt auf dem Papier.",
+     "sens": "Le stylo est sur le papier.",
      "n": "das Papier → auf <b>dem</b> Papier."
     },
     {
@@ -949,6 +953,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "fenster",
      "phrase": "Die große Pflanze steht am Fenster.",
+     "sens": "La grande plante est près de la fenêtre.",
      "n": "<b>am</b> = an + <b>dem</b> : das Fenster → am Fenster."
     },
     {
@@ -961,6 +966,7 @@ window.SCENE = {
      "f": "ordner",
      "r": "regal",
      "phrase": "Die Ordner stehen im Regal.",
+     "sens": "Les classeurs sont sur l'étagère.",
      "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
     },
     {
@@ -973,6 +979,7 @@ window.SCENE = {
      "f": "heft",
      "r": "schreibtisch",
      "phrase": "Das Heft liegt auf dem Schreibtisch.",
+     "sens": "Le cahier est sur le bureau.",
      "n": "der Schreibtisch → auf <b>dem</b> Schreibtisch."
     },
     {
@@ -985,6 +992,7 @@ window.SCENE = {
      "f": "muelleimer",
      "r": "schreibtisch",
      "phrase": "Der Mülleimer steht hinter dem Schreibtisch.",
+     "sens": "La poubelle est derrière le bureau.",
      "n": "<b>hinter</b> = derrière. der Schreibtisch → hinter <b>dem</b> Schreibtisch."
     }
    ]
@@ -1002,6 +1010,7 @@ window.SCENE = {
      "f": "telefon",
      "r": "mark",
      "phrase": "Mark ruft einen Kunden an.",
+     "sens": "Mark appelle un client.",
      "n": "<b>anrufen</b> est séparable : la particule <b>an</b> va à la fin.",
      "revise": {
       "mot": "anrufen",
@@ -1018,6 +1027,7 @@ window.SCENE = {
      "f": "heft",
      "r": "mark",
      "phrase": "Er schreibt die Nummer auf.",
+     "sens": "Il note le numéro.",
      "n": "<b>aufschreiben</b> = noter : la particule <b>auf</b> va à la fin."
     },
     {
@@ -1029,6 +1039,7 @@ window.SCENE = {
      ],
      "f": "telefon",
      "phrase": "Mark hat den Kunden angerufen.",
+     "sens": "Mark a appelé le client.",
      "n": "Participe d'un verbe séparable : <b>ge</b> entre la particule et le verbe → an<b>ge</b>rufen.",
      "revise": {
       "mot": "anrufen",
@@ -1045,6 +1056,7 @@ window.SCENE = {
      "f": "drucker",
      "r": "frau",
      "phrase": "Die Kollegin druckt einen Brief aus.",
+     "sens": "La collègue imprime une lettre.",
      "n": "<b>ausdrucken</b> = imprimer : la particule <b>aus</b> va à la fin."
     },
     {
@@ -1056,6 +1068,7 @@ window.SCENE = {
      ],
      "f": "telefon",
      "phrase": "Kannst du mich bitte morgen zurückrufen?",
+     "sens": "Tu peux me rappeler demain, s'il te plaît ?",
      "n": "Avec un modal, le verbe séparable reste entier, à la fin : <b>zurückrufen</b>."
     },
     {
@@ -1068,6 +1081,7 @@ window.SCENE = {
      "f": "uhr",
      "r": "mark",
      "phrase": "Um fünf Uhr hört Mark mit der Arbeit auf.",
+     "sens": "À cinq heures, Mark arrête de travailler.",
      "n": "<b>aufhören</b> = arrêter : la particule <b>auf</b> va à la fin.",
      "revise": {
       "mot": "aufhören",
@@ -1084,6 +1098,7 @@ window.SCENE = {
      "f": "frau",
      "r": "tafel",
      "phrase": "Die Kollegin bereitet eine Besprechung vor.",
+     "sens": "La collègue prépare une réunion.",
      "n": "<b>vorbereiten</b> = préparer : la particule <b>vor</b> va à la fin.",
      "revise": {
       "mot": "vorbereiten",
@@ -1099,6 +1114,7 @@ window.SCENE = {
      ],
      "f": "telefon",
      "phrase": "Mark legt den Hörer gleich auf.",
+     "sens": "Mark va raccrocher tout de suite.",
      "n": "<b>auflegen</b> = raccrocher : la particule <b>auf</b> va à la fin."
     }
    ]
@@ -1116,6 +1132,7 @@ window.SCENE = {
      "f": "mark",
      "r": "telefon",
      "phrase": "Der Mann, der gerade telefoniert, heißt Mark.",
+     "sens": "L'homme qui est au téléphone s'appelle Mark.",
      "n": "Sujet de la relative, masculin → <b>der</b>."
     },
     {
@@ -1127,6 +1144,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Die Kollegin, deren Haare grau sind, liest einen Brief.",
+     "sens": "La collègue aux cheveux gris lit une lettre.",
      "n": "Possession, antécédent féminin → <b>deren</b> (dont les cheveux)."
     },
     {
@@ -1139,6 +1157,7 @@ window.SCENE = {
      "f": "regal",
      "r": "ordner",
      "phrase": "Das Regal, in dem die Ordner stehen, ist aus Metall.",
+     "sens": "L'étagère où sont les classeurs est en métal.",
      "n": "<b>in</b> + Wo? → datif, neutre → <b>dem</b>."
     },
     {
@@ -1150,6 +1169,7 @@ window.SCENE = {
      ],
      "f": "drucker",
      "phrase": "Der Brief wird gerade ausgedruckt.",
+     "sens": "La lettre est en train d'être imprimée.",
      "n": "Passif d'action : <b>werden</b> + participe ; séparable : aus<b>ge</b>druckt."
     },
     {
@@ -1161,6 +1181,7 @@ window.SCENE = {
      ],
      "f": "heft",
      "phrase": "Das Heft ist schon halb vollgeschrieben.",
+     "sens": "Le cahier est déjà à moitié rempli.",
      "n": "Passif d'état : <b>sein</b> + participe. schreiben → geschrieben."
     },
     {
@@ -1172,6 +1193,7 @@ window.SCENE = {
      ],
      "f": "tafel",
      "phrase": "Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.",
+     "sens": "Le tableau sur lequel sont dessinées des flèches est accroché au mur.",
      "n": "<b>auf</b> + Wo? → datif, féminin → <b>der</b>."
     }
    ]
@@ -1189,6 +1211,7 @@ window.SCENE = {
      "f": "heft",
      "r": "mark",
      "phrase": "Das Gespräch muss wichtig sein.",
+     "sens": "La conversation doit être importante.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1200,6 +1223,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Die Kollegin könnte seine Chefin sein.",
+     "sens": "La collègue est peut-être sa cheffe.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1211,6 +1235,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark dürfte nach dem Praktikum eine Stelle bekommen.",
+     "sens": "Mark devrait obtenir un poste après le stage.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1222,6 +1247,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Die Firma soll bald umziehen.",
+     "sens": "Il paraît que l'entreprise va bientôt déménager.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1267,6 +1293,34 @@ window.SCENE = {
     "C1 | Die Kollegin könnte seine Chefin sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Die Firma soll bald umziehen.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Die Tasse steht neben der Tastatur.": "The cup is next to the keyboard.",
+    "A2 | Die Uhr hängt über der Tafel.": "The clock hangs above the board.",
+    "A2 | Der Drucker steht neben dem Regal.": "The printer is next to the shelf.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "The ballpoint pen is on the paper.",
+    "A2 | Die große Pflanze steht am Fenster.": "The big plant is by the window.",
+    "A2 | Die Ordner stehen im Regal.": "The folders are on the shelf.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "The notebook is on the desk.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "The bin is behind the desk.",
+    "B1 | Mark ruft einen Kunden an.": "Mark is calling a customer.",
+    "B1 | Er schreibt die Nummer auf.": "He writes down the number.",
+    "B1 | Mark hat den Kunden angerufen.": "Mark called the customer.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "The colleague is printing a letter.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "Can you call me back tomorrow, please?",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "At five o'clock Mark stops working.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "The colleague is preparing a meeting.",
+    "B1 | Mark legt den Hörer gleich auf.": "Mark is about to hang up.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "The man who is on the phone is called Mark.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "The colleague whose hair is grey is reading a letter.",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "The shelf the folders are on is made of metal.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "The letter is being printed.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "The notebook is already half full.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "The board with arrows drawn on it hangs on the wall.",
+    "C1 | Das Gespräch muss wichtig sein.": "The call must be important.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "The colleague might be his boss.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "Mark should get a job after the internship.",
+    "C1 | Die Firma soll bald umziehen.": "The company is said to be moving soon."
    }
   },
   "tr": {
@@ -1308,6 +1362,34 @@ window.SCENE = {
     "C1 | Die Kollegin könnte seine Chefin sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Die Firma soll bald umziehen.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Die Tasse steht neben der Tastatur.": "Fincan klavyenin yanında duruyor.",
+    "A2 | Die Uhr hängt über der Tafel.": "Saat tahtanın üstünde asılı.",
+    "A2 | Der Drucker steht neben dem Regal.": "Yazıcı rafın yanında duruyor.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "Tükenmez kalem kâğıdın üstünde.",
+    "A2 | Die große Pflanze steht am Fenster.": "Büyük bitki pencerenin yanında duruyor.",
+    "A2 | Die Ordner stehen im Regal.": "Klasörler rafta duruyor.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "Defter masanın üstünde.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "Çöp kovası masanın arkasında duruyor.",
+    "B1 | Mark ruft einen Kunden an.": "Mark bir müşteriyi arıyor.",
+    "B1 | Er schreibt die Nummer auf.": "Numarayı not ediyor.",
+    "B1 | Mark hat den Kunden angerufen.": "Mark müşteriyi aradı.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "İş arkadaşı bir mektup yazdırıyor.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "Beni yarın geri arayabilir misin lütfen?",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "Mark saat beşte işi bırakıyor.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "İş arkadaşı bir toplantı hazırlıyor.",
+    "B1 | Mark legt den Hörer gleich auf.": "Mark birazdan telefonu kapatacak.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "Telefonla konuşan adamın adı Mark.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "Saçları gri olan iş arkadaşı bir mektup okuyor.",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "Klasörlerin durduğu raf metalden.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "Mektup şu anda yazdırılıyor.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "Defterin yarısı dolmuş bile.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "Üzerine oklar çizilmiş tahta duvarda asılı.",
+    "C1 | Das Gespräch muss wichtig sein.": "Görüşme önemli olmalı.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "İş arkadaşı onun patronu olabilir.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "Mark stajdan sonra bir iş bulsa gerek.",
+    "C1 | Die Firma soll bald umziehen.": "Şirketin yakında taşınacağı söyleniyor."
    }
   },
   "uk": {
@@ -1349,6 +1431,34 @@ window.SCENE = {
     "C1 | Die Kollegin könnte seine Chefin sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Die Firma soll bald umziehen.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Die Tasse steht neben der Tastatur.": "Чашка стоїть біля клавіатури.",
+    "A2 | Die Uhr hängt über der Tafel.": "Годинник висить над дошкою.",
+    "A2 | Der Drucker steht neben dem Regal.": "Принтер стоїть біля полиці.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "Кулькова ручка лежить на папері.",
+    "A2 | Die große Pflanze steht am Fenster.": "Велика рослина стоїть біля вікна.",
+    "A2 | Die Ordner stehen im Regal.": "Папки стоять на полиці.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "Зошит лежить на столі.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "Смітник стоїть за столом.",
+    "B1 | Mark ruft einen Kunden an.": "Марк телефонує клієнтові.",
+    "B1 | Er schreibt die Nummer auf.": "Він записує номер.",
+    "B1 | Mark hat den Kunden angerufen.": "Марк зателефонував клієнтові.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "Колега роздруковує лист.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "Можеш передзвонити мені завтра, будь ласка?",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "О п'ятій Марк закінчує працювати.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "Колега готує нараду.",
+    "B1 | Mark legt den Hörer gleich auf.": "Марк зараз покладе слухавку.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "Чоловіка, який зараз розмовляє по телефону, звати Марк.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "Колега із сивим волоссям читає лист.",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "Полиця, на якій стоять папки, металева.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "Лист зараз друкується.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "Зошит уже наполовину списаний.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "Дошка, на якій намальовано стрілки, висить на стіні.",
+    "C1 | Das Gespräch muss wichtig sein.": "Розмова, мабуть, важлива.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "Колега, можливо, його начальниця.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "Марк, напевно, отримає посаду після стажування.",
+    "C1 | Die Firma soll bald umziehen.": "Кажуть, фірма скоро переїде."
    }
   },
   "fa": {
@@ -1390,6 +1500,34 @@ window.SCENE = {
     "C1 | Die Kollegin könnte seine Chefin sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Die Firma soll bald umziehen.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Die Tasse steht neben der Tastatur.": "فنجان کنار صفحه‌کلید است.",
+    "A2 | Die Uhr hängt über der Tafel.": "ساعت بالای تخته آویزان است.",
+    "A2 | Der Drucker steht neben dem Regal.": "چاپگر کنار قفسه است.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "خودکار روی کاغذ است.",
+    "A2 | Die große Pflanze steht am Fenster.": "گیاه بزرگ کنار پنجره است.",
+    "A2 | Die Ordner stehen im Regal.": "پوشه‌ها در قفسه هستند.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "دفتر روی میز تحریر است.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "سطل زباله پشت میز تحریر است.",
+    "B1 | Mark ruft einen Kunden an.": "مارک به یک مشتری زنگ می‌زند.",
+    "B1 | Er schreibt die Nummer auf.": "او شماره را یادداشت می‌کند.",
+    "B1 | Mark hat den Kunden angerufen.": "مارک به مشتری زنگ زده است.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "همکار نامه‌ای چاپ می‌کند.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "می‌توانی لطفاً فردا به من زنگ بزنی؟",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "مارک ساعت پنج کار را تمام می‌کند.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "همکار جلسه‌ای را آماده می‌کند.",
+    "B1 | Mark legt den Hörer gleich auf.": "مارک همین حالا گوشی را می‌گذارد.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "مردی که دارد تلفن می‌کند، مارک نام دارد.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "همکاری که موهای خاکستری دارد، نامه‌ای می‌خواند.",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "قفسه‌ای که پوشه‌ها در آن هستند، فلزی است.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "نامه در حال چاپ شدن است.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "نصف دفتر پر شده است.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "تخته‌ای که رویش فلش کشیده‌اند، به دیوار آویزان است.",
+    "C1 | Das Gespräch muss wichtig sein.": "مکالمه حتماً مهم است.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "همکار شاید رئیس او باشد.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "مارک احتمالاً بعد از کارآموزی شغلی می‌گیرد.",
+    "C1 | Die Firma soll bald umziehen.": "می‌گویند شرکت به‌زودی جابه‌جا می‌شود."
    }
   },
   "ar": {
@@ -1431,6 +1569,34 @@ window.SCENE = {
     "C1 | Die Kollegin könnte seine Chefin sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Die Firma soll bald umziehen.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Die Tasse steht neben der Tastatur.": "الفنجان بجانب لوحة المفاتيح.",
+    "A2 | Die Uhr hängt über der Tafel.": "الساعة معلّقة فوق اللوح.",
+    "A2 | Der Drucker steht neben dem Regal.": "الطابعة بجانب الرفّ.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "القلم على الورقة.",
+    "A2 | Die große Pflanze steht am Fenster.": "النبتة الكبيرة عند النافذة.",
+    "A2 | Die Ordner stehen im Regal.": "الملفّات على الرفّ.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "الدفتر على المكتب.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "سلّة المهملات خلف المكتب.",
+    "B1 | Mark ruft einen Kunden an.": "يتّصل مارك بزبون.",
+    "B1 | Er schreibt die Nummer auf.": "يدوّن الرقم.",
+    "B1 | Mark hat den Kunden angerufen.": "اتّصل مارك بالزبون.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "تطبع الزميلة رسالة.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "هل يمكنك أن تعاود الاتّصال بي غداً، من فضلك؟",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "في الساعة الخامسة يتوقّف مارك عن العمل.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "تحضّر الزميلة اجتماعاً.",
+    "B1 | Mark legt den Hörer gleich auf.": "سيغلق مارك السمّاعة حالاً.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "الرجل الذي يتكلّم في الهاتف اسمه مارك.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "الزميلة ذات الشعر الرمادي تقرأ رسالة.",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "الرفّ الذي عليه الملفّات من المعدن.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "الرسالة تُطبع الآن.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "الدفتر ممتلئ إلى نصفه بالفعل.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "اللوح الذي رُسمت عليه أسهم معلّق على الحائط.",
+    "C1 | Das Gespräch muss wichtig sein.": "لا بدّ أن المكالمة مهمّة.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "ربما تكون الزميلة مديرته.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "على الأرجح يحصل مارك على وظيفة بعد التدريب.",
+    "C1 | Die Firma soll bald umziehen.": "يُقال إن الشركة ستنتقل قريباً."
    }
   },
   "pt": {
@@ -1472,6 +1638,34 @@ window.SCENE = {
     "C1 | Die Kollegin könnte seine Chefin sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Die Firma soll bald umziehen.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Die Tasse steht neben der Tastatur.": "A xícara está ao lado do teclado.",
+    "A2 | Die Uhr hängt über der Tafel.": "O relógio está pendurado acima do quadro.",
+    "A2 | Der Drucker steht neben dem Regal.": "A impressora está ao lado da estante.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "A caneta está em cima do papel.",
+    "A2 | Die große Pflanze steht am Fenster.": "A planta grande está junto à janela.",
+    "A2 | Die Ordner stehen im Regal.": "As pastas estão na estante.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "O caderno está na escrivaninha.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "A lixeira está atrás da escrivaninha.",
+    "B1 | Mark ruft einen Kunden an.": "Mark liga para um cliente.",
+    "B1 | Er schreibt die Nummer auf.": "Ele anota o número.",
+    "B1 | Mark hat den Kunden angerufen.": "Mark ligou para o cliente.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "A colega imprime uma carta.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "Você pode me ligar de volta amanhã, por favor?",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "Às cinco horas, Mark para de trabalhar.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "A colega prepara uma reunião.",
+    "B1 | Mark legt den Hörer gleich auf.": "Mark vai desligar agora mesmo.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "O homem que está ao telefone se chama Mark.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "A colega de cabelo grisalho lê uma carta.",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "A estante onde estão as pastas é de metal.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "A carta está sendo impressa.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "O caderno já está escrito pela metade.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "O quadro em que há setas desenhadas está pendurado na parede.",
+    "C1 | Das Gespräch muss wichtig sein.": "A conversa deve ser importante.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "A colega talvez seja a chefe dele.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "Mark provavelmente vai conseguir um emprego depois do estágio.",
+    "C1 | Die Firma soll bald umziehen.": "Dizem que a empresa vai se mudar em breve."
    }
   },
   "pl": {
@@ -1513,6 +1707,34 @@ window.SCENE = {
     "C1 | Die Kollegin könnte seine Chefin sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Die Firma soll bald umziehen.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Die Tasse steht neben der Tastatur.": "Filiżanka stoi obok klawiatury.",
+    "A2 | Die Uhr hängt über der Tafel.": "Zegar wisi nad tablicą.",
+    "A2 | Der Drucker steht neben dem Regal.": "Drukarka stoi obok regału.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "Długopis leży na papierze.",
+    "A2 | Die große Pflanze steht am Fenster.": "Duża roślina stoi przy oknie.",
+    "A2 | Die Ordner stehen im Regal.": "Segregatory stoją na półce.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "Zeszyt leży na biurku.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "Kosz na śmieci stoi za biurkiem.",
+    "B1 | Mark ruft einen Kunden an.": "Mark dzwoni do klienta.",
+    "B1 | Er schreibt die Nummer auf.": "Zapisuje numer.",
+    "B1 | Mark hat den Kunden angerufen.": "Mark zadzwonił do klienta.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "Koleżanka drukuje list.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "Możesz oddzwonić do mnie jutro, proszę?",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "O piątej Mark kończy pracę.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "Koleżanka przygotowuje zebranie.",
+    "B1 | Mark legt den Hörer gleich auf.": "Mark zaraz odłoży słuchawkę.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "Mężczyzna, który właśnie rozmawia przez telefon, ma na imię Mark.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "Koleżanka o siwych włosach czyta list.",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "Regał, w którym stoją segregatory, jest z metalu.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "List jest właśnie drukowany.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "Zeszyt jest już w połowie zapisany.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "Tablica, na której narysowano strzałki, wisi na ścianie.",
+    "C1 | Das Gespräch muss wichtig sein.": "Rozmowa musi być ważna.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "Koleżanka być może jest jego szefową.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "Mark zapewne dostanie posadę po stażu.",
+    "C1 | Die Firma soll bald umziehen.": "Podobno firma wkrótce się przeprowadza."
    }
   },
   "ru": {
@@ -1554,6 +1776,34 @@ window.SCENE = {
     "C1 | Die Kollegin könnte seine Chefin sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Die Firma soll bald umziehen.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Die Tasse steht neben der Tastatur.": "Чашка стоит рядом с клавиатурой.",
+    "A2 | Die Uhr hängt über der Tafel.": "Часы висят над доской.",
+    "A2 | Der Drucker steht neben dem Regal.": "Принтер стоит рядом с полкой.",
+    "A2 | Der Kugelschreiber liegt auf dem Papier.": "Ручка лежит на бумаге.",
+    "A2 | Die große Pflanze steht am Fenster.": "Большое растение стоит у окна.",
+    "A2 | Die Ordner stehen im Regal.": "Папки стоят на полке.",
+    "A2 | Das Heft liegt auf dem Schreibtisch.": "Тетрадь лежит на столе.",
+    "A2 | Der Mülleimer steht hinter dem Schreibtisch.": "Мусорное ведро стоит за столом.",
+    "B1 | Mark ruft einen Kunden an.": "Марк звонит клиенту.",
+    "B1 | Er schreibt die Nummer auf.": "Он записывает номер.",
+    "B1 | Mark hat den Kunden angerufen.": "Марк позвонил клиенту.",
+    "B1 | Die Kollegin druckt einen Brief aus.": "Коллега распечатывает письмо.",
+    "B1 | Kannst du mich bitte morgen zurückrufen?": "Ты можешь перезвонить мне завтра, пожалуйста?",
+    "B1 | Um fünf Uhr hört Mark mit der Arbeit auf.": "В пять часов Марк заканчивает работу.",
+    "B1 | Die Kollegin bereitet eine Besprechung vor.": "Коллега готовит совещание.",
+    "B1 | Mark legt den Hörer gleich auf.": "Марк сейчас положит трубку.",
+    "B2 | Der Mann, der gerade telefoniert, heißt Mark.": "Мужчину, который говорит по телефону, зовут Марк.",
+    "B2 | Die Kollegin, deren Haare grau sind, liest einen Brief.": "Коллега с седыми волосами читает письмо.",
+    "B2 | Das Regal, in dem die Ordner stehen, ist aus Metall.": "Полка, на которой стоят папки, металлическая.",
+    "B2 | Der Brief wird gerade ausgedruckt.": "Письмо сейчас печатается.",
+    "B2 | Das Heft ist schon halb vollgeschrieben.": "Тетрадь уже наполовину исписана.",
+    "B2 | Die Tafel, auf der Pfeile gezeichnet sind, hängt an der Wand.": "Доска, на которой нарисованы стрелки, висит на стене.",
+    "C1 | Das Gespräch muss wichtig sein.": "Разговор, должно быть, важный.",
+    "C1 | Die Kollegin könnte seine Chefin sein.": "Коллега, возможно, его начальница.",
+    "C1 | Mark dürfte nach dem Praktikum eine Stelle bekommen.": "Марк, вероятно, получит место после стажировки.",
+    "C1 | Die Firma soll bald umziehen.": "Говорят, фирма скоро переедет."
    }
   }
  }

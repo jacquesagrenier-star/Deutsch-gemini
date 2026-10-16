@@ -846,6 +846,7 @@ window.SCENE = {
      "f": "torte",
      "r": "tisch",
      "phrase": "La tarta está en la mesa.",
+     "sens": "Le gâteau est sur la table.",
      "n": "<b>en</b> = sur, dans. Le lieu → <b>estar</b>."
     },
     {
@@ -858,6 +859,7 @@ window.SCENE = {
      "f": "luftballon",
      "r": "fenster",
      "phrase": "Los globos están delante de la ventana.",
+     "sens": "Les ballons sont devant la fenêtre.",
      "n": "<b>delante de</b> = devant."
     },
     {
@@ -870,6 +872,7 @@ window.SCENE = {
      "f": "mark",
      "r": "sofa",
      "phrase": "Mark está sentado en el sofá.",
+     "sens": "Mark est assis sur le canapé.",
      "n": "<b>el</b> sofá est masculin → <b>en el</b> sofá."
     },
     {
@@ -882,6 +885,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "sofa",
      "phrase": "La guitarra está al lado del sofá.",
+     "sens": "La guitare est à côté du canapé.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -894,6 +898,7 @@ window.SCENE = {
      "f": "bild",
      "r": "wand",
      "phrase": "El cuadro está en la pared.",
+     "sens": "Le tableau est au mur.",
      "n": "Accroché au mur : l'espagnol dit simplement <b>en</b> la pared."
     },
     {
@@ -906,6 +911,7 @@ window.SCENE = {
      "f": "karte",
      "r": "geschenk-2",
      "phrase": "La tarjeta está delante del regalo rojo.",
+     "sens": "La carte est devant le cadeau rouge.",
      "n": "<b>delante de</b> = devant. de + el = <b>del</b>."
     },
     {
@@ -918,6 +924,7 @@ window.SCENE = {
      "f": "buch",
      "r": "regal",
      "phrase": "Los libros están en la estantería.",
+     "sens": "Les livres sont sur l'étagère.",
      "n": "Au pluriel : <b>están</b> ; sur une étagère → <b>en</b>."
     },
     {
@@ -930,6 +937,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "regal",
      "phrase": "Hay una lámpara al lado de la estantería.",
+     "sens": "Il y a une lampe à côté de l'étagère.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     }
    ]
@@ -947,6 +955,7 @@ window.SCENE = {
      "f": "geschenk",
      "r": "mark",
      "phrase": "Anna le da un regalo a Mark.",
+     "sens": "Anna donne un cadeau à Mark.",
      "n": "À qui ? → complément indirect : <b>le</b>, même quand « a Mark » suit.",
      "revise": {
       "mot": "dar",
@@ -963,6 +972,7 @@ window.SCENE = {
      "f": "geschenk",
      "r": "mark",
      "phrase": "Anna se lo da ahora.",
+     "sens": "Anna le lui donne maintenant.",
      "n": "<b>le</b> + <b>lo</b> → <b>se lo</b> : le devient se devant lo, la, los, las.",
      "revise": {
       "mot": "dar",
@@ -978,6 +988,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "A Mark le gusta mucho la fiesta.",
+     "sens": "Mark aime beaucoup la fête.",
      "n": "<b>gustar</b> : la chose plaît <b>à</b> quelqu'un → <b>le</b>.",
      "revise": {
       "mot": "gustar",
@@ -994,6 +1005,7 @@ window.SCENE = {
      "f": "handy",
      "r": "mark",
      "phrase": "Su amigo le hace una foto.",
+     "sens": "Son ami le prend en photo.",
      "n": "Faire une photo <b>à</b> quelqu'un → <b>le</b>.",
      "revise": {
       "mot": "hacer",
@@ -1015,6 +1027,7 @@ window.SCENE = {
      "f": "kerze",
      "r": "torte",
      "phrase": "Mark las va a apagar enseguida.",
+     "sens": "Mark va les souffler tout de suite.",
      "n": "Complément direct féminin pluriel (las velas) → <b>las</b>."
     },
     {
@@ -1026,6 +1039,7 @@ window.SCENE = {
      ],
      "f": "pizza",
      "phrase": "Los amigos la han pedido para la fiesta.",
+     "sens": "Les amis l'ont commandée pour la fête.",
      "n": "Complément direct féminin (la pizza) → <b>la</b>.",
      "revise": {
       "mot": "pedir",
@@ -1042,6 +1056,7 @@ window.SCENE = {
      "f": "saft",
      "r": "freundin",
      "phrase": "La amiga les sirve zumo a todos.",
+     "sens": "L'amie sert du jus à tout le monde.",
      "n": "À qui ? Plusieurs personnes → <b>les</b>.",
      "revise": {
       "mot": "servir",
@@ -1061,6 +1076,7 @@ window.SCENE = {
      ],
      "f": "erdbeere",
      "phrase": "Las he comprado yo.",
+     "sens": "C'est moi qui les ai achetées.",
      "n": "Complément direct féminin pluriel (las fresas) → <b>las</b>."
     }
    ]
@@ -1078,6 +1094,7 @@ window.SCENE = {
      "f": "geschenk",
      "r": "anna",
      "phrase": "El regalo que Anna tiene en las manos es verde.",
+     "sens": "Le cadeau qu'Anna a dans les mains est vert.",
      "n": "Une chose, complément → <b>que</b>."
     },
     {
@@ -1089,6 +1106,7 @@ window.SCENE = {
      ],
      "f": "freund",
      "phrase": "El amigo que hace la foto está sentado en el sofá.",
+     "sens": "L'ami qui prend la photo est assis sur le canapé.",
      "n": "Une position (assis) → <b>estar</b>.",
      "latam": {
       "q": "El amigo que toma la foto ___ sentado en el sofá.",
@@ -1105,6 +1123,7 @@ window.SCENE = {
      "f": "torte",
      "r": "kerze",
      "phrase": "La tarta, encima de la cual arden cinco velas, es de chocolate.",
+     "sens": "Le gâteau, sur lequel brûlent cinq bougies, est au chocolat.",
      "n": "Après une préposition composée : <b>la cual</b>, accordé avec la tarta."
     },
     {
@@ -1117,6 +1136,7 @@ window.SCENE = {
      "f": "kerze",
      "r": "torte",
      "phrase": "Las velas van a ser apagadas enseguida.",
+     "sens": "Les bougies vont être soufflées tout de suite.",
      "n": "Passif d'action : <b>ser</b> + participe accordé (apagad<b>as</b>)."
     },
     {
@@ -1128,6 +1148,7 @@ window.SCENE = {
      ],
      "f": "geschenk-2",
      "phrase": "El regalo rojo está bien envuelto.",
+     "sens": "Le cadeau rouge est bien emballé.",
      "n": "<b>envolver</b> → participe irrégulier <b>envuelto</b>."
     },
     {
@@ -1139,6 +1160,7 @@ window.SCENE = {
      ],
      "f": "freundin",
      "phrase": "La amiga cuyo pelo es rojo aplaude.",
+     "sens": "L'amie aux cheveux roux applaudit.",
      "n": "<b>cuyo</b> s'accorde avec ce qui est possédé : el pelo → <b>cuyo</b>, même si l'amie est féminine."
     }
    ]
@@ -1156,6 +1178,7 @@ window.SCENE = {
      "f": "geschenk",
      "r": "mark",
      "phrase": "El regalo debe de ser una sorpresa.",
+     "sens": "Le cadeau doit être une surprise.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1167,6 +1190,7 @@ window.SCENE = {
      ],
      "f": "geschenk-2",
      "phrase": "Puede que el regalo rojo sea de sus padres.",
+     "sens": "Le cadeau rouge vient peut-être de ses parents.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1178,6 +1202,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "La fiesta durará hasta medianoche.",
+     "sens": "La fête durera sans doute jusqu'à minuit.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1190,6 +1215,7 @@ window.SCENE = {
      "f": "torte",
      "r": "anna",
      "phrase": "Dicen que Anna hizo la tarta ella misma.",
+     "sens": "On dit qu'Anna a fait le gâteau elle-même.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>.",
      "revise": {
       "mot": "hacer",
@@ -1242,6 +1268,37 @@ window.SCENE = {
     "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | La fiesta durará hasta medianoche.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que Anna hizo la tarta ella misma.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | La tarta está en la mesa.": "The cake is on the table.",
+    "A2 | Los globos están delante de la ventana.": "The balloons are in front of the window.",
+    "A2 | Mark está sentado en el sofá.": "Mark is sitting on the sofa.",
+    "A2 | La guitarra está al lado del sofá.": "The guitar is next to the sofa.",
+    "A2 | El cuadro está en la pared.": "The picture is on the wall.",
+    "A2 | La tarjeta está delante del regalo rojo.": "The card is in front of the red present.",
+    "A2 | Los libros están en la estantería.": "The books are on the shelf.",
+    "A2 | Hay una lámpara al lado de la estantería.": "There is a lamp next to the shelf.",
+    "B1 | Anna le da un regalo a Mark.": "Anna gives Mark a present.",
+    "B1 | Anna se lo da ahora.": "Anna gives it to him now.",
+    "B1 | A Mark le gusta mucho la fiesta.": "Mark likes the party a lot.",
+    "B1 | Su amigo le toma una foto.": "His friend takes a photo of him.",
+    "B1 | Su amigo le hace una foto.": "His friend takes a photo of him.",
+    "B1 | Mark las va a apagar enseguida.": "Mark is going to blow them out right away.",
+    "B1 | Los amigos la han pedido para la fiesta.": "The friends ordered it for the party.",
+    "B1 | La amiga les sirve jugo a todos.": "The friend serves everyone juice.",
+    "B1 | La amiga les sirve zumo a todos.": "The friend serves everyone juice.",
+    "B1 | Las he comprado yo.": "I bought them.",
+    "B2 | El regalo que Anna tiene en las manos es verde.": "The present Anna has in her hands is green.",
+    "B2 | El amigo que toma la foto está sentado en el sofá.": "The friend who is taking the photo is sitting on the sofa.",
+    "B2 | El amigo que hace la foto está sentado en el sofá.": "The friend who is taking the photo is sitting on the sofa.",
+    "B2 | La tarta, encima de la cual arden cinco velas, es de chocolate.": "The cake, on which five candles are burning, is chocolate.",
+    "B2 | Las velas van a ser apagadas enseguida.": "The candles are going to be blown out right away.",
+    "B2 | El regalo rojo está bien envuelto.": "The red present is nicely wrapped.",
+    "B2 | La amiga cuyo pelo es rojo aplaude.": "The friend whose hair is red is clapping.",
+    "C1 | El regalo debe de ser una sorpresa.": "The present must be a surprise.",
+    "C1 | Puede que el regalo rojo sea de sus padres.": "The red present may be from his parents.",
+    "C1 | La fiesta durará hasta medianoche.": "The party will probably last until midnight.",
+    "C1 | Dicen que Anna hizo la tarta ella misma.": "They say Anna made the cake herself."
    }
   },
   "tr": {
@@ -1252,7 +1309,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1262,7 +1320,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1272,7 +1331,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1316,6 +1376,37 @@ window.SCENE = {
     "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | La fiesta durará hasta medianoche.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que Anna hizo la tarta ella misma.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La tarta está en la mesa.": "الكعكة على الطاولة.",
+    "A2 | Los globos están delante de la ventana.": "البالونات أمام النافذة.",
+    "A2 | Mark está sentado en el sofá.": "مارك جالس على الأريكة.",
+    "A2 | La guitarra está al lado del sofá.": "الغيتار بجانب الأريكة.",
+    "A2 | El cuadro está en la pared.": "اللوحة على الحائط.",
+    "A2 | La tarjeta está delante del regalo rojo.": "البطاقة أمام الهدية الحمراء.",
+    "A2 | Los libros están en la estantería.": "الكتب على الرفّ.",
+    "A2 | Hay una lámpara al lado de la estantería.": "هناك مصباح بجانب الرفّ.",
+    "B1 | Anna le da un regalo a Mark.": "تعطي آنا هدية لمارك.",
+    "B1 | Anna se lo da ahora.": "تعطيه آنا إيّاها الآن.",
+    "B1 | A Mark le gusta mucho la fiesta.": "تعجب مارك الحفلة كثيراً.",
+    "B1 | Su amigo le toma una foto.": "يلتقط صديقه صورة له.",
+    "B1 | Su amigo le hace una foto.": "يلتقط صديقه صورة له.",
+    "B1 | Mark las va a apagar enseguida.": "سيطفئها مارك حالاً.",
+    "B1 | Los amigos la han pedido para la fiesta.": "طلبها الأصدقاء للحفلة.",
+    "B1 | La amiga les sirve jugo a todos.": "تقدّم الصديقة العصير للجميع.",
+    "B1 | La amiga les sirve zumo a todos.": "تقدّم الصديقة العصير للجميع.",
+    "B1 | Las he comprado yo.": "أنا من اشتراها.",
+    "B2 | El regalo que Anna tiene en las manos es verde.": "الهدية التي في يدي آنا خضراء.",
+    "B2 | El amigo que toma la foto está sentado en el sofá.": "الصديق الذي يلتقط الصورة جالس على الأريكة.",
+    "B2 | El amigo que hace la foto está sentado en el sofá.": "الصديق الذي يلتقط الصورة جالس على الأريكة.",
+    "B2 | La tarta, encima de la cual arden cinco velas, es de chocolate.": "الكعكة التي تشتعل فوقها خمس شموع من الشوكولاتة.",
+    "B2 | Las velas van a ser apagadas enseguida.": "ستُطفأ الشموع حالاً.",
+    "B2 | El regalo rojo está bien envuelto.": "الهدية الحمراء مغلّفة جيداً.",
+    "B2 | La amiga cuyo pelo es rojo aplaude.": "الصديقة ذات الشعر الأحمر تصفّق.",
+    "C1 | El regalo debe de ser una sorpresa.": "لا بدّ أن الهدية مفاجأة.",
+    "C1 | Puede que el regalo rojo sea de sus padres.": "ربما تكون الهدية الحمراء من والديه.",
+    "C1 | La fiesta durará hasta medianoche.": "على الأرجح تستمرّ الحفلة حتى منتصف الليل.",
+    "C1 | Dicen que Anna hizo la tarta ella misma.": "يُقال إن آنا صنعت الكعكة بنفسها."
    }
   },
   "pt": {
@@ -1360,6 +1451,37 @@ window.SCENE = {
     "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | La fiesta durará hasta medianoche.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que Anna hizo la tarta ella misma.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La tarta está en la mesa.": "O bolo está na mesa.",
+    "A2 | Los globos están delante de la ventana.": "Os balões estão em frente à janela.",
+    "A2 | Mark está sentado en el sofá.": "Mark está sentado no sofá.",
+    "A2 | La guitarra está al lado del sofá.": "O violão está ao lado do sofá.",
+    "A2 | El cuadro está en la pared.": "O quadro está na parede.",
+    "A2 | La tarjeta está delante del regalo rojo.": "O cartão está em frente ao presente vermelho.",
+    "A2 | Los libros están en la estantería.": "Os livros estão na estante.",
+    "A2 | Hay una lámpara al lado de la estantería.": "Há um abajur ao lado da estante.",
+    "B1 | Anna le da un regalo a Mark.": "Anna dá um presente a Mark.",
+    "B1 | Anna se lo da ahora.": "Anna dá-lho agora.",
+    "B1 | A Mark le gusta mucho la fiesta.": "Mark gosta muito da festa.",
+    "B1 | Su amigo le toma una foto.": "O amigo dele tira uma foto dele.",
+    "B1 | Su amigo le hace una foto.": "O amigo dele tira uma foto dele.",
+    "B1 | Mark las va a apagar enseguida.": "Mark vai apagá-las agora mesmo.",
+    "B1 | Los amigos la han pedido para la fiesta.": "Os amigos pediram-na para a festa.",
+    "B1 | La amiga les sirve jugo a todos.": "A amiga serve suco a todos.",
+    "B1 | La amiga les sirve zumo a todos.": "A amiga serve suco a todos.",
+    "B1 | Las he comprado yo.": "Fui eu que as comprei.",
+    "B2 | El regalo que Anna tiene en las manos es verde.": "O presente que Anna tem nas mãos é verde.",
+    "B2 | El amigo que toma la foto está sentado en el sofá.": "O amigo que tira a foto está sentado no sofá.",
+    "B2 | El amigo que hace la foto está sentado en el sofá.": "O amigo que tira a foto está sentado no sofá.",
+    "B2 | La tarta, encima de la cual arden cinco velas, es de chocolate.": "O bolo, sobre o qual ardem cinco velas, é de chocolate.",
+    "B2 | Las velas van a ser apagadas enseguida.": "As velas vão ser apagadas agora mesmo.",
+    "B2 | El regalo rojo está bien envuelto.": "O presente vermelho está bem embrulhado.",
+    "B2 | La amiga cuyo pelo es rojo aplaude.": "A amiga de cabelo ruivo bate palmas.",
+    "C1 | El regalo debe de ser una sorpresa.": "O presente deve ser uma surpresa.",
+    "C1 | Puede que el regalo rojo sea de sus padres.": "Pode ser que o presente vermelho seja dos pais dele.",
+    "C1 | La fiesta durará hasta medianoche.": "A festa provavelmente vai durar até a meia-noite.",
+    "C1 | Dicen que Anna hizo la tarta ella misma.": "Dizem que Anna fez o bolo ela mesma."
    }
   },
   "pl": {
@@ -1370,7 +1492,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1380,7 +1503,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

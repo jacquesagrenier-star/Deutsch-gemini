@@ -762,6 +762,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "klavier",
      "phrase": "La lámpara está encima del piano.",
+     "sens": "La lampe est sur le piano.",
      "n": "<b>de + el = del</b>, toujours."
     },
     {
@@ -774,6 +775,7 @@ window.SCENE = {
      "f": "geige",
      "r": "klavier",
      "phrase": "Hay un violín al lado del piano.",
+     "sens": "Il y a un violon à côté du piano.",
      "n": "<b>hay</b> présente une chose nouvelle ; <b>está</b> situe une chose déjà connue."
     },
     {
@@ -785,6 +787,7 @@ window.SCENE = {
      ],
      "f": "bild",
      "phrase": "El cuadro está en la pared.",
+     "sens": "Le tableau est au mur.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -797,6 +800,7 @@ window.SCENE = {
      "f": "buch",
      "r": "regal",
      "phrase": "Los libros están en la estantería.",
+     "sens": "Les livres sont sur l'étagère.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -809,6 +813,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "fenster",
      "phrase": "La planta está al lado de la ventana.",
+     "sens": "La plante est à côté de la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     },
     {
@@ -821,6 +826,7 @@ window.SCENE = {
      "f": "flasche",
      "r": "boden",
      "phrase": "La botella está en el suelo.",
+     "sens": "La bouteille est par terre.",
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais.",
      "latam": {
       "q": "La botella está ___ piso.",
@@ -837,6 +843,7 @@ window.SCENE = {
      "f": "mark",
      "r": "stuhl",
      "phrase": "Mark está sentado en la silla.",
+     "sens": "Mark est assis sur la chaise.",
      "n": "<b>la</b> est féminin → <b>en la</b>."
     },
     {
@@ -849,6 +856,7 @@ window.SCENE = {
      "f": "lampe-2",
      "r": "fenster",
      "phrase": "La lámpara grande está al lado de la ventana.",
+     "sens": "La grande lampe est à côté de la fenêtre.",
      "n": "<b>la</b> est féminin : <b>de la</b>, sans contraction. Seul <b>de + el</b> devient <b>del</b>."
     }
    ]
@@ -865,6 +873,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark ya sabe tocar tres acordes.",
+     "sens": "Mark sait déjà jouer trois accords.",
      "n": "<b>saber</b> + infinitif = savoir faire.",
      "revise": {
       "mot": "saber",
@@ -881,6 +890,7 @@ window.SCENE = {
      "f": "gitarre",
      "r": "mark",
      "phrase": "Mark tiene que practicar cada día.",
+     "sens": "Mark doit s'exercer chaque jour.",
      "n": "Obligation : <b>tener que</b> + infinitif.",
      "revise": {
       "mot": "tener",
@@ -896,6 +906,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "En clase no se puede usar el teléfono.",
+     "sens": "En cours, on ne peut pas utiliser le téléphone.",
      "n": "Interdiction impersonnelle : <b>no se puede</b> + infinitif.",
      "revise": {
       "mot": "poder",
@@ -911,6 +922,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark quiere tocar en un grupo algún día.",
+     "sens": "Mark veut jouer dans un groupe un jour.",
      "n": "Un projet, une envie : <b>querer</b> + infinitif.",
      "revise": {
       "mot": "querer",
@@ -926,6 +938,7 @@ window.SCENE = {
      ],
      "f": "gitarre",
      "phrase": "No debes apretar tanto la guitarra.",
+     "sens": "Tu ne dois pas serrer autant la guitare.",
      "n": "Un conseil : <b>deber</b> + infinitif.",
      "revise": {
       "mot": "deber",
@@ -942,6 +955,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "¿Puedo abrir la ventana?",
+     "sens": "Je peux ouvrir la fenêtre ?",
      "n": "Demander la permission : <b>¿Puedo…?</b>",
      "revise": {
       "mot": "poder",
@@ -963,6 +977,7 @@ window.SCENE = {
      "f": "frau",
      "r": "mark",
      "phrase": "La profesora quiere que Mark toque más despacio.",
+     "sens": "La professeure veut que Mark joue plus lentement.",
      "n": "<b>querer que</b> + autre sujet → subjonctif.",
      "revise": {
       "mot": "tocar",
@@ -978,6 +993,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Le pide que practique cada día.",
+     "sens": "Elle lui demande de s'exercer chaque jour.",
      "n": "<b>pedir que</b> → subjonctif : practi<b>que</b>.",
      "revise": {
       "mot": "practicar",
@@ -993,6 +1009,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark espera que la clase salga bien.",
+     "sens": "Mark espère que le cours se passe bien.",
      "n": "<b>esperar que</b> → subjonctif.",
      "revise": {
       "mot": "salir",
@@ -1008,6 +1025,7 @@ window.SCENE = {
      ],
      "f": "note",
      "phrase": "Es importante que lea las notas.",
+     "sens": "Il est important qu'il lise les notes.",
      "n": "<b>es importante que</b> → subjonctif.",
      "revise": {
       "mot": "leer",
@@ -1023,6 +1041,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "Mark quiere tocar en un grupo.",
+     "sens": "Mark veut jouer dans un groupe.",
      "n": "Même sujet → <b>querer</b> + infinitif, pas de subjonctif.",
      "revise": {
       "mot": "tocar",
@@ -1039,6 +1058,7 @@ window.SCENE = {
      "f": "frau",
      "r": "mark",
      "phrase": "La profesora se alegra de que Mark haga progresos.",
+     "sens": "La professeure se réjouit que Mark fasse des progrès.",
      "n": "Une émotion (<b>alegrarse de que</b>) → subjonctif.",
      "revise": {
       "mot": "hacer",
@@ -1059,6 +1079,7 @@ window.SCENE = {
      ],
      "f": "mark",
      "phrase": "El acorde debe de ser difícil.",
+     "sens": "L'accord doit être difficile.",
      "n": "<b>deber de</b> + infinitif = une déduction."
     },
     {
@@ -1071,6 +1092,7 @@ window.SCENE = {
      "f": "geige",
      "r": "frau",
      "phrase": "Puede que el violín sea de la profesora.",
+     "sens": "Le violon est peut-être à la professeure.",
      "n": "<b>puede que</b> = il se peut que → toujours le <b>subjonctif</b>."
     },
     {
@@ -1082,6 +1104,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Serán las siete.",
+     "sens": "Il doit être sept heures.",
      "n": "Le <b>futur</b> exprime une supposition sur le présent."
     },
     {
@@ -1093,6 +1116,7 @@ window.SCENE = {
      ],
      "f": "frau",
      "phrase": "Dicen que la profesora tocaba en una orquesta.",
+     "sens": "On dit que la professeure jouait dans un orchestre.",
      "n": "<b>dicen que</b> rapporte une affirmation → <b>indicatif</b>."
     }
    ]
@@ -1137,6 +1161,33 @@ window.SCENE = {
     "C1 | Puede que el violín sea de la profesora.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
     "C1 | Serán las siete.": "The <b>future</b> expresses a guess about the present.",
     "C1 | Dicen que la profesora tocaba en una orquesta.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
+   },
+   "sens": {
+    "A2 | La lámpara está encima del piano.": "The lamp is on top of the piano.",
+    "A2 | Hay un violín al lado del piano.": "There is a violin next to the piano.",
+    "A2 | El cuadro está en la pared.": "The picture is on the wall.",
+    "A2 | Los libros están en la estantería.": "The books are on the shelf.",
+    "A2 | La planta está al lado de la ventana.": "The plant is next to the window.",
+    "A2 | La botella está en el piso.": "The bottle is on the floor.",
+    "A2 | La botella está en el suelo.": "The bottle is on the floor.",
+    "A2 | Mark está sentado en la silla.": "Mark is sitting on the chair.",
+    "A2 | La lámpara grande está al lado de la ventana.": "The big lamp is next to the window.",
+    "B1 | Mark ya sabe tocar tres acordes.": "Mark can already play three chords.",
+    "B1 | Mark tiene que practicar cada día.": "Mark has to practise every day.",
+    "B1 | En clase no se puede usar el teléfono.": "You can't use the phone in class.",
+    "B1 | Mark quiere tocar en un grupo algún día.": "Mark wants to play in a band one day.",
+    "B1 | No debes apretar tanto la guitarra.": "You shouldn't grip the guitar so tightly.",
+    "B1 | ¿Puedo abrir la ventana?": "Can I open the window?",
+    "B2 | La profesora quiere que Mark toque más despacio.": "The teacher wants Mark to play more slowly.",
+    "B2 | Le pide que practique cada día.": "She asks him to practise every day.",
+    "B2 | Mark espera que la clase salga bien.": "Mark hopes the lesson goes well.",
+    "B2 | Es importante que lea las notas.": "It is important that he reads the music.",
+    "B2 | Mark quiere tocar en un grupo.": "Mark wants to play in a band.",
+    "B2 | La profesora se alegra de que Mark haga progresos.": "The teacher is glad that Mark is making progress.",
+    "C1 | El acorde debe de ser difícil.": "The chord must be difficult.",
+    "C1 | Puede que el violín sea de la profesora.": "The violin may belong to the teacher.",
+    "C1 | Serán las siete.": "It is probably seven o'clock.",
+    "C1 | Dicen que la profesora tocaba en una orquesta.": "They say the teacher used to play in an orchestra."
    }
   },
   "tr": {
@@ -1147,7 +1198,8 @@ window.SCENE = {
    "couches": {
     "A1": "İsimler ve artikeller"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "uk": {
    "champs": {
@@ -1157,7 +1209,8 @@ window.SCENE = {
    "couches": {
     "A1": "Іменники й артиклі"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "fa": {
    "champs": {
@@ -1167,7 +1220,8 @@ window.SCENE = {
    "couches": {
     "A1": "اسم‌ها و حرف‌های تعریف"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ar": {
    "champs": {
@@ -1207,6 +1261,33 @@ window.SCENE = {
     "C1 | Puede que el violín sea de la profesora.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
     "C1 | Serán las siete.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
     "C1 | Dicen que la profesora tocaba en una orquesta.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La lámpara está encima del piano.": "المصباح فوق البيانو.",
+    "A2 | Hay un violín al lado del piano.": "هناك كمان بجانب البيانو.",
+    "A2 | El cuadro está en la pared.": "اللوحة على الحائط.",
+    "A2 | Los libros están en la estantería.": "الكتب على الرفّ.",
+    "A2 | La planta está al lado de la ventana.": "النبتة بجانب النافذة.",
+    "A2 | La botella está en el piso.": "الزجاجة على الأرض.",
+    "A2 | La botella está en el suelo.": "الزجاجة على الأرض.",
+    "A2 | Mark está sentado en la silla.": "مارك جالس على الكرسي.",
+    "A2 | La lámpara grande está al lado de la ventana.": "المصباح الكبير بجانب النافذة.",
+    "B1 | Mark ya sabe tocar tres acordes.": "يعرف مارك عزف ثلاثة أوتار بالفعل.",
+    "B1 | Mark tiene que practicar cada día.": "على مارك أن يتمرّن كل يوم.",
+    "B1 | En clase no se puede usar el teléfono.": "لا يمكن استخدام الهاتف في الدرس.",
+    "B1 | Mark quiere tocar en un grupo algún día.": "يريد مارك أن يعزف في فرقة يوماً ما.",
+    "B1 | No debes apretar tanto la guitarra.": "لا ينبغي أن تضغط على الغيتار بهذه القوّة.",
+    "B1 | ¿Puedo abrir la ventana?": "هل يمكنني فتح النافذة؟",
+    "B2 | La profesora quiere que Mark toque más despacio.": "تريد المعلّمة أن يعزف مارك ببطء أكثر.",
+    "B2 | Le pide que practique cada día.": "تطلب منه أن يتمرّن كل يوم.",
+    "B2 | Mark espera que la clase salga bien.": "يأمل مارك أن يسير الدرس جيداً.",
+    "B2 | Es importante que lea las notas.": "من المهمّ أن يقرأ النوتات.",
+    "B2 | Mark quiere tocar en un grupo.": "يريد مارك أن يعزف في فرقة.",
+    "B2 | La profesora se alegra de que Mark haga progresos.": "تفرح المعلّمة بأن مارك يحرز تقدّماً.",
+    "C1 | El acorde debe de ser difícil.": "لا بدّ أن الوتر صعب.",
+    "C1 | Puede que el violín sea de la profesora.": "ربما يكون الكمان للمعلّمة.",
+    "C1 | Serán las siete.": "على الأرجح الساعة السابعة.",
+    "C1 | Dicen que la profesora tocaba en una orquesta.": "يُقال إن المعلّمة كانت تعزف في أوركسترا."
    }
   },
   "pt": {
@@ -1247,6 +1328,33 @@ window.SCENE = {
     "C1 | Puede que el violín sea de la profesora.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
     "C1 | Serán las siete.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
     "C1 | Dicen que la profesora tocaba en una orquesta.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
+   },
+   "sens": {
+    "A2 | La lámpara está encima del piano.": "O abajur está em cima do piano.",
+    "A2 | Hay un violín al lado del piano.": "Há um violino ao lado do piano.",
+    "A2 | El cuadro está en la pared.": "O quadro está na parede.",
+    "A2 | Los libros están en la estantería.": "Os livros estão na estante.",
+    "A2 | La planta está al lado de la ventana.": "A planta está ao lado da janela.",
+    "A2 | La botella está en el piso.": "A garrafa está no chão.",
+    "A2 | La botella está en el suelo.": "A garrafa está no chão.",
+    "A2 | Mark está sentado en la silla.": "Mark está sentado na cadeira.",
+    "A2 | La lámpara grande está al lado de la ventana.": "O abajur grande está ao lado da janela.",
+    "B1 | Mark ya sabe tocar tres acordes.": "Mark já sabe tocar três acordes.",
+    "B1 | Mark tiene que practicar cada día.": "Mark tem que praticar todos os dias.",
+    "B1 | En clase no se puede usar el teléfono.": "Na aula não se pode usar o telefone.",
+    "B1 | Mark quiere tocar en un grupo algún día.": "Mark quer tocar numa banda um dia.",
+    "B1 | No debes apretar tanto la guitarra.": "Você não deve apertar tanto o violão.",
+    "B1 | ¿Puedo abrir la ventana?": "Posso abrir a janela?",
+    "B2 | La profesora quiere que Mark toque más despacio.": "A professora quer que Mark toque mais devagar.",
+    "B2 | Le pide que practique cada día.": "Ela pede que ele pratique todos os dias.",
+    "B2 | Mark espera que la clase salga bien.": "Mark espera que a aula corra bem.",
+    "B2 | Es importante que lea las notas.": "É importante que ele leia as notas.",
+    "B2 | Mark quiere tocar en un grupo.": "Mark quer tocar numa banda.",
+    "B2 | La profesora se alegra de que Mark haga progresos.": "A professora fica feliz que Mark faça progressos.",
+    "C1 | El acorde debe de ser difícil.": "O acorde deve ser difícil.",
+    "C1 | Puede que el violín sea de la profesora.": "Pode ser que o violino seja da professora.",
+    "C1 | Serán las siete.": "Devem ser sete horas.",
+    "C1 | Dicen que la profesora tocaba en una orquesta.": "Dizem que a professora tocava numa orquestra."
    }
   },
   "pl": {
@@ -1257,7 +1365,8 @@ window.SCENE = {
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   },
   "ru": {
    "champs": {
@@ -1267,7 +1376,8 @@ window.SCENE = {
    "couches": {
     "A1": "Существительные и артикли"
    },
-   "questions": {}
+   "questions": {},
+   "sens": {}
   }
  }
 };

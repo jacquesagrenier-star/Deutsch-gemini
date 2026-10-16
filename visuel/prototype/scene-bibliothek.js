@@ -848,6 +848,7 @@ window.SCENE = {
      "f": "bleistift",
      "r": "heft",
      "phrase": "Der Bleistift liegt auf dem Heft.",
+     "sens": "Le crayon est sur le cahier.",
      "n": "das Heft → auf <b>dem</b> Heft."
     },
     {
@@ -860,6 +861,7 @@ window.SCENE = {
      "f": "brille",
      "r": "buch-3",
      "phrase": "Die Brille liegt auf dem Buch.",
+     "sens": "Les lunettes sont sur le livre.",
      "n": "das Buch → auf <b>dem</b> Buch."
     },
     {
@@ -872,6 +874,7 @@ window.SCENE = {
      "f": "rucksack",
      "r": "stuhl",
      "phrase": "Der Rucksack hängt am Stuhl.",
+     "sens": "Le sac à dos est accroché à la chaise.",
      "n": "<b>am</b> = an + <b>dem</b> : der Stuhl → am Stuhl."
     },
     {
@@ -884,6 +887,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "buch-2",
      "phrase": "Die Lampe steht neben den Büchern.",
+     "sens": "La lampe est à côté des livres.",
      "n": "Datif pluriel : <b>den</b> + nom en <b>-n</b> → neben den Büchern."
     },
     {
@@ -896,6 +900,7 @@ window.SCENE = {
      "f": "pflanze",
      "r": "regal",
      "phrase": "Die Pflanze steht vor dem Regal.",
+     "sens": "La plante est devant l'étagère.",
      "n": "<b>vor</b> = devant. das Regal → vor <b>dem</b> Regal."
     },
     {
@@ -907,6 +912,7 @@ window.SCENE = {
      ],
      "f": "uhr",
      "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
      "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
     },
     {
@@ -919,6 +925,7 @@ window.SCENE = {
      "f": "leiter",
      "r": "regal",
      "phrase": "Die Leiter steht am Regal.",
+     "sens": "L'échelle est contre l'étagère.",
      "n": "<b>am</b> = an + <b>dem</b> : das Regal → am Regal."
     },
     {
@@ -931,6 +938,7 @@ window.SCENE = {
      "f": "zettel",
      "r": "heft",
      "phrase": "Der Zettel liegt neben dem Heft.",
+     "sens": "Le bout de papier est à côté du cahier.",
      "n": "<b>neben</b> = à côté de. das Heft → neben <b>dem</b> Heft."
     }
    ]
@@ -948,6 +956,7 @@ window.SCENE = {
      "f": "anna",
      "r": "buch",
      "phrase": "Anna interessiert sich für Geschichte.",
+     "sens": "Anna s'intéresse à l'histoire.",
      "n": "<b>sich interessieren für</b> + accusatif.",
      "revise": {
       "mot": "interessieren",
@@ -963,6 +972,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Sie denkt an ihre Prüfung.",
+     "sens": "Elle pense à son examen.",
      "n": "<b>denken an</b> + accusatif = penser à.",
      "revise": {
       "mot": "denken",
@@ -978,6 +988,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Sie wartet auf ihre Freundin.",
+     "sens": "Elle attend son amie.",
      "n": "<b>warten auf</b> + accusatif = attendre.",
      "revise": {
       "mot": "warten",
@@ -993,6 +1004,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "Der Student träumt von den Ferien.",
+     "sens": "L'étudiant rêve des vacances.",
      "n": "<b>träumen von</b> + datif = rêver de.",
      "revise": {
       "mot": "träumen",
@@ -1009,6 +1021,7 @@ window.SCENE = {
      "f": "heft",
      "r": "anna",
      "phrase": "Anna schreibt eine Arbeit über die Berliner Mauer.",
+     "sens": "Anna écrit un travail sur le mur de Berlin.",
      "n": "<b>schreiben über</b> + accusatif = écrire sur.",
      "revise": {
       "mot": "schreiben",
@@ -1024,6 +1037,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Sie freut sich schon auf das Wochenende.",
+     "sens": "Elle se réjouit déjà du week-end.",
      "n": "<b>sich freuen auf</b> = se réjouir d'une chose à venir.",
      "revise": {
       "mot": "freuen",
@@ -1039,6 +1053,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "Worauf wartest du? — Auf meine Freundin.",
+     "sens": "Qu'est-ce que tu attends ? — Mon amie.",
      "n": "Question sur une chose : <b>wo(r)</b> + préposition → wor<b>auf</b>."
     },
     {
@@ -1050,6 +1065,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "Der Student konzentriert sich auf sein Buch.",
+     "sens": "L'étudiant se concentre sur son livre.",
      "n": "<b>sich konzentrieren auf</b> + accusatif."
     }
    ]
@@ -1067,6 +1083,7 @@ window.SCENE = {
      "f": "anna",
      "r": "buch",
      "phrase": "Die Studentin, die das Buch liest, heißt Anna.",
+     "sens": "L'étudiante qui lit le livre s'appelle Anna.",
      "n": "Sujet de la relative, féminin → <b>die</b>."
     },
     {
@@ -1078,6 +1095,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "Der Student, dessen Haare lockig sind, liest am anderen Tisch.",
+     "sens": "L'étudiant aux cheveux bouclés lit à l'autre table.",
      "n": "Possession, antécédent masculin → <b>dessen</b> (dont les cheveux)."
     },
     {
@@ -1090,6 +1108,7 @@ window.SCENE = {
      "f": "regal",
      "r": "leiter",
      "phrase": "Das Regal, an dem die Leiter steht, ist sehr hoch.",
+     "sens": "L'étagère contre laquelle est l'échelle est très haute.",
      "n": "<b>an</b> + Wo? → datif, neutre → <b>dem</b>."
     },
     {
@@ -1101,6 +1120,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "Hier wird nicht laut gesprochen.",
+     "sens": "Ici, on ne parle pas fort.",
      "n": "Passif impersonnel avec <b>werden</b> : « ici, on ne parle pas fort »."
     },
     {
@@ -1112,6 +1132,7 @@ window.SCENE = {
      ],
      "f": "buch",
      "phrase": "Das Buch ist schon zur Hälfte gelesen.",
+     "sens": "Le livre est déjà lu à moitié.",
      "n": "Passif d'état : <b>sein</b> + participe. <b>lesen</b> → gelesen.",
      "revise": {
       "mot": "lesen",
@@ -1128,6 +1149,7 @@ window.SCENE = {
      "f": "lampe",
      "r": "buch-2",
      "phrase": "Die leuchtende Lampe steht neben den Büchern.",
+     "sens": "La lampe allumée est à côté des livres.",
      "n": "Participe présent (Partizip I) comme adjectif : leuchten + <b>d</b> + terminaison → <b>leuchtende</b>."
     }
    ]
@@ -1144,6 +1166,7 @@ window.SCENE = {
      ],
      "f": "anna",
      "phrase": "Sie muss bald eine Prüfung haben.",
+     "sens": "Elle doit avoir un examen bientôt.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1155,6 +1178,7 @@ window.SCENE = {
      ],
      "f": "student",
      "phrase": "Der Student könnte in Annas Kurs sein.",
+     "sens": "L'étudiant est peut-être dans le cours d'Anna.",
      "n": "<b>könnte</b> = une possibilité parmi d'autres."
     },
     {
@@ -1166,6 +1190,7 @@ window.SCENE = {
      ],
      "f": "fenster",
      "phrase": "Draußen dürfte es ziemlich kalt sein.",
+     "sens": "Dehors, il doit faire plutôt froid.",
      "n": "<b>dürfte</b> = probable, sans en être sûr."
     },
     {
@@ -1177,6 +1202,7 @@ window.SCENE = {
      ],
      "f": "regal",
      "phrase": "Diese Bibliothek soll über eine Million Bücher haben.",
+     "sens": "Cette bibliothèque aurait plus d'un million de livres.",
      "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
     }
    ]
@@ -1222,6 +1248,34 @@ window.SCENE = {
     "C1 | Der Student könnte in Annas Kurs sein.": "<b>könnte</b> = one possibility among others.",
     "C1 | Draußen dürfte es ziemlich kalt sein.": "<b>dürfte</b> = probable, without being sure.",
     "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "<b>sollen</b> = according to what people say: a rumour, not a deduction."
+   },
+   "sens": {
+    "A2 | Der Bleistift liegt auf dem Heft.": "The pencil is on the notebook.",
+    "A2 | Die Brille liegt auf dem Buch.": "The glasses are on the book.",
+    "A2 | Der Rucksack hängt am Stuhl.": "The backpack hangs on the chair.",
+    "A2 | Die Lampe steht neben den Büchern.": "The lamp is next to the books.",
+    "A2 | Die Pflanze steht vor dem Regal.": "The plant is in front of the shelf.",
+    "A2 | Die Uhr hängt an der Wand.": "The clock hangs on the wall.",
+    "A2 | Die Leiter steht am Regal.": "The ladder is against the shelf.",
+    "A2 | Der Zettel liegt neben dem Heft.": "The note is next to the notebook.",
+    "B1 | Anna interessiert sich für Geschichte.": "Anna is interested in history.",
+    "B1 | Sie denkt an ihre Prüfung.": "She is thinking about her exam.",
+    "B1 | Sie wartet auf ihre Freundin.": "She is waiting for her friend.",
+    "B1 | Der Student träumt von den Ferien.": "The student dreams of the holidays.",
+    "B1 | Anna schreibt eine Arbeit über die Berliner Mauer.": "Anna is writing a paper about the Berlin Wall.",
+    "B1 | Sie freut sich schon auf das Wochenende.": "She is already looking forward to the weekend.",
+    "B1 | Worauf wartest du? — Auf meine Freundin.": "What are you waiting for? — For my friend.",
+    "B1 | Der Student konzentriert sich auf sein Buch.": "The student is concentrating on his book.",
+    "B2 | Die Studentin, die das Buch liest, heißt Anna.": "The student who is reading the book is called Anna.",
+    "B2 | Der Student, dessen Haare lockig sind, liest am anderen Tisch.": "The student whose hair is curly is reading at the other table.",
+    "B2 | Das Regal, an dem die Leiter steht, ist sehr hoch.": "The shelf the ladder is against is very tall.",
+    "B2 | Hier wird nicht laut gesprochen.": "No loud talking here.",
+    "B2 | Das Buch ist schon zur Hälfte gelesen.": "The book is already half read.",
+    "B2 | Die leuchtende Lampe steht neben den Büchern.": "The glowing lamp is next to the books.",
+    "C1 | Sie muss bald eine Prüfung haben.": "She must have an exam soon.",
+    "C1 | Der Student könnte in Annas Kurs sein.": "The student might be in Anna's class.",
+    "C1 | Draußen dürfte es ziemlich kalt sein.": "It is probably quite cold outside.",
+    "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "This library is said to have over a million books."
    }
   },
   "tr": {
@@ -1263,6 +1317,34 @@ window.SCENE = {
     "C1 | Der Student könnte in Annas Kurs sein.": "<b>könnte</b> = birçok olasılıktan biri.",
     "C1 | Draußen dürfte es ziemlich kalt sein.": "<b>dürfte</b> = muhtemel, ama emin olmadan.",
     "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "<b>sollen</b> = söylenenlere göre: bir söylenti, bir çıkarım değil."
+   },
+   "sens": {
+    "A2 | Der Bleistift liegt auf dem Heft.": "Kurşun kalem defterin üstünde.",
+    "A2 | Die Brille liegt auf dem Buch.": "Gözlük kitabın üstünde.",
+    "A2 | Der Rucksack hängt am Stuhl.": "Sırt çantası sandalyede asılı.",
+    "A2 | Die Lampe steht neben den Büchern.": "Lamba kitapların yanında duruyor.",
+    "A2 | Die Pflanze steht vor dem Regal.": "Bitki rafın önünde duruyor.",
+    "A2 | Die Uhr hängt an der Wand.": "Saat duvarda asılı.",
+    "A2 | Die Leiter steht am Regal.": "Merdiven rafa dayalı.",
+    "A2 | Der Zettel liegt neben dem Heft.": "Not kâğıdı defterin yanında.",
+    "B1 | Anna interessiert sich für Geschichte.": "Anna tarihle ilgileniyor.",
+    "B1 | Sie denkt an ihre Prüfung.": "Sınavını düşünüyor.",
+    "B1 | Sie wartet auf ihre Freundin.": "Arkadaşını bekliyor.",
+    "B1 | Der Student träumt von den Ferien.": "Öğrenci tatili hayal ediyor.",
+    "B1 | Anna schreibt eine Arbeit über die Berliner Mauer.": "Anna Berlin Duvarı hakkında bir ödev yazıyor.",
+    "B1 | Sie freut sich schon auf das Wochenende.": "Şimdiden hafta sonunu iple çekiyor.",
+    "B1 | Worauf wartest du? — Auf meine Freundin.": "Neyi bekliyorsun? — Arkadaşımı.",
+    "B1 | Der Student konzentriert sich auf sein Buch.": "Öğrenci kitabına odaklanıyor.",
+    "B2 | Die Studentin, die das Buch liest, heißt Anna.": "Kitabı okuyan öğrencinin adı Anna.",
+    "B2 | Der Student, dessen Haare lockig sind, liest am anderen Tisch.": "Saçları kıvırcık olan öğrenci diğer masada okuyor.",
+    "B2 | Das Regal, an dem die Leiter steht, ist sehr hoch.": "Merdivenin dayalı olduğu raf çok yüksek.",
+    "B2 | Hier wird nicht laut gesprochen.": "Burada yüksek sesle konuşulmaz.",
+    "B2 | Das Buch ist schon zur Hälfte gelesen.": "Kitabın yarısı okunmuş bile.",
+    "B2 | Die leuchtende Lampe steht neben den Büchern.": "Yanan lamba kitapların yanında duruyor.",
+    "C1 | Sie muss bald eine Prüfung haben.": "Yakında sınavı olmalı.",
+    "C1 | Der Student könnte in Annas Kurs sein.": "Öğrenci Anna'nın kursunda olabilir.",
+    "C1 | Draußen dürfte es ziemlich kalt sein.": "Dışarısı epey soğuk olsa gerek.",
+    "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "Bu kütüphanede bir milyondan fazla kitap olduğu söyleniyor."
    }
   },
   "uk": {
@@ -1304,6 +1386,34 @@ window.SCENE = {
     "C1 | Der Student könnte in Annas Kurs sein.": "<b>könnte</b> = одна можливість серед інших.",
     "C1 | Draußen dürfte es ziemlich kalt sein.": "<b>dürfte</b> = імовірно, але без певності.",
     "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "<b>sollen</b> = кажуть, що: чутка, а не висновок."
+   },
+   "sens": {
+    "A2 | Der Bleistift liegt auf dem Heft.": "Олівець лежить на зошиті.",
+    "A2 | Die Brille liegt auf dem Buch.": "Окуляри лежать на книжці.",
+    "A2 | Der Rucksack hängt am Stuhl.": "Рюкзак висить на стільці.",
+    "A2 | Die Lampe steht neben den Büchern.": "Лампа стоїть біля книжок.",
+    "A2 | Die Pflanze steht vor dem Regal.": "Рослина стоїть перед полицею.",
+    "A2 | Die Uhr hängt an der Wand.": "Годинник висить на стіні.",
+    "A2 | Die Leiter steht am Regal.": "Драбина стоїть біля полиці.",
+    "A2 | Der Zettel liegt neben dem Heft.": "Записка лежить біля зошита.",
+    "B1 | Anna interessiert sich für Geschichte.": "Анна цікавиться історією.",
+    "B1 | Sie denkt an ihre Prüfung.": "Вона думає про свій іспит.",
+    "B1 | Sie wartet auf ihre Freundin.": "Вона чекає на подругу.",
+    "B1 | Der Student träumt von den Ferien.": "Студент мріє про канікули.",
+    "B1 | Anna schreibt eine Arbeit über die Berliner Mauer.": "Анна пише роботу про Берлінський мур.",
+    "B1 | Sie freut sich schon auf das Wochenende.": "Вона вже чекає на вихідні.",
+    "B1 | Worauf wartest du? — Auf meine Freundin.": "На що ти чекаєш? — На свою подругу.",
+    "B1 | Der Student konzentriert sich auf sein Buch.": "Студент зосереджується на своїй книжці.",
+    "B2 | Die Studentin, die das Buch liest, heißt Anna.": "Студентку, яка читає книжку, звати Анна.",
+    "B2 | Der Student, dessen Haare lockig sind, liest am anderen Tisch.": "Студент із кучерявим волоссям читає за іншим столом.",
+    "B2 | Das Regal, an dem die Leiter steht, ist sehr hoch.": "Полиця, біля якої стоїть драбина, дуже висока.",
+    "B2 | Hier wird nicht laut gesprochen.": "Тут не розмовляють голосно.",
+    "B2 | Das Buch ist schon zur Hälfte gelesen.": "Книжку вже прочитано наполовину.",
+    "B2 | Die leuchtende Lampe steht neben den Büchern.": "Увімкнена лампа стоїть біля книжок.",
+    "C1 | Sie muss bald eine Prüfung haben.": "У неї, мабуть, скоро іспит.",
+    "C1 | Der Student könnte in Annas Kurs sein.": "Студент, можливо, з курсу Анни.",
+    "C1 | Draußen dürfte es ziemlich kalt sein.": "Надворі, напевно, досить холодно.",
+    "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "Кажуть, у цій бібліотеці понад мільйон книжок."
    }
   },
   "fa": {
@@ -1345,6 +1455,34 @@ window.SCENE = {
     "C1 | Der Student könnte in Annas Kurs sein.": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر.",
     "C1 | Draußen dürfte es ziemlich kalt sein.": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم.",
     "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+   },
+   "sens": {
+    "A2 | Der Bleistift liegt auf dem Heft.": "مداد روی دفتر است.",
+    "A2 | Die Brille liegt auf dem Buch.": "عینک روی کتاب است.",
+    "A2 | Der Rucksack hängt am Stuhl.": "کوله‌پشتی به صندلی آویزان است.",
+    "A2 | Die Lampe steht neben den Büchern.": "چراغ کنار کتاب‌ها است.",
+    "A2 | Die Pflanze steht vor dem Regal.": "گیاه جلوی قفسه است.",
+    "A2 | Die Uhr hängt an der Wand.": "ساعت روی دیوار آویزان است.",
+    "A2 | Die Leiter steht am Regal.": "نردبان کنار قفسه است.",
+    "A2 | Der Zettel liegt neben dem Heft.": "یادداشت کنار دفتر است.",
+    "B1 | Anna interessiert sich für Geschichte.": "آنا به تاریخ علاقه دارد.",
+    "B1 | Sie denkt an ihre Prüfung.": "او به امتحانش فکر می‌کند.",
+    "B1 | Sie wartet auf ihre Freundin.": "او منتظر دوستش است.",
+    "B1 | Der Student träumt von den Ferien.": "دانشجو در رؤیای تعطیلات است.",
+    "B1 | Anna schreibt eine Arbeit über die Berliner Mauer.": "آنا مقاله‌ای دربارهٔ دیوار برلین می‌نویسد.",
+    "B1 | Sie freut sich schon auf das Wochenende.": "او از همین حالا منتظر آخر هفته است.",
+    "B1 | Worauf wartest du? — Auf meine Freundin.": "منتظر چه هستی؟ — منتظر دوستم.",
+    "B1 | Der Student konzentriert sich auf sein Buch.": "دانشجو روی کتابش تمرکز می‌کند.",
+    "B2 | Die Studentin, die das Buch liest, heißt Anna.": "دانشجویی که کتاب می‌خواند، آنا نام دارد.",
+    "B2 | Der Student, dessen Haare lockig sind, liest am anderen Tisch.": "دانشجویی که موهای فرفری دارد، پشت میز دیگر می‌خواند.",
+    "B2 | Das Regal, an dem die Leiter steht, ist sehr hoch.": "قفسه‌ای که نردبان کنارش است، خیلی بلند است.",
+    "B2 | Hier wird nicht laut gesprochen.": "اینجا بلند صحبت نمی‌کنند.",
+    "B2 | Das Buch ist schon zur Hälfte gelesen.": "نصف کتاب خوانده شده است.",
+    "B2 | Die leuchtende Lampe steht neben den Büchern.": "چراغ روشن کنار کتاب‌ها است.",
+    "C1 | Sie muss bald eine Prüfung haben.": "او حتماً به‌زودی امتحان دارد.",
+    "C1 | Der Student könnte in Annas Kurs sein.": "دانشجو شاید در کلاس آنا باشد.",
+    "C1 | Draußen dürfte es ziemlich kalt sein.": "بیرون احتمالاً نسبتاً سرد است.",
+    "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "می‌گویند این کتابخانه بیش از یک میلیون کتاب دارد."
    }
   },
   "ar": {
@@ -1386,6 +1524,34 @@ window.SCENE = {
     "C1 | Der Student könnte in Annas Kurs sein.": "<b>könnte</b> = احتمال من بين احتمالات أخرى.",
     "C1 | Draußen dürfte es ziemlich kalt sein.": "<b>dürfte</b> = مرجَّح، دون يقين.",
     "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+   },
+   "sens": {
+    "A2 | Der Bleistift liegt auf dem Heft.": "قلم الرصاص على الدفتر.",
+    "A2 | Die Brille liegt auf dem Buch.": "النظّارة على الكتاب.",
+    "A2 | Der Rucksack hängt am Stuhl.": "حقيبة الظهر معلّقة على الكرسي.",
+    "A2 | Die Lampe steht neben den Büchern.": "المصباح بجانب الكتب.",
+    "A2 | Die Pflanze steht vor dem Regal.": "النبتة أمام الرفّ.",
+    "A2 | Die Uhr hängt an der Wand.": "الساعة معلّقة على الحائط.",
+    "A2 | Die Leiter steht am Regal.": "السلّم عند الرفّ.",
+    "A2 | Der Zettel liegt neben dem Heft.": "الورقة بجانب الدفتر.",
+    "B1 | Anna interessiert sich für Geschichte.": "تهتمّ آنا بالتاريخ.",
+    "B1 | Sie denkt an ihre Prüfung.": "تفكّر في امتحانها.",
+    "B1 | Sie wartet auf ihre Freundin.": "تنتظر صديقتها.",
+    "B1 | Der Student träumt von den Ferien.": "يحلم الطالب بالعطلة.",
+    "B1 | Anna schreibt eine Arbeit über die Berliner Mauer.": "تكتب آنا بحثاً عن جدار برلين.",
+    "B1 | Sie freut sich schon auf das Wochenende.": "تتطلّع بشوق إلى عطلة نهاية الأسبوع.",
+    "B1 | Worauf wartest du? — Auf meine Freundin.": "ماذا تنتظر؟ — أنتظر صديقتي.",
+    "B1 | Der Student konzentriert sich auf sein Buch.": "يركّز الطالب على كتابه.",
+    "B2 | Die Studentin, die das Buch liest, heißt Anna.": "الطالبة التي تقرأ الكتاب اسمها آنا.",
+    "B2 | Der Student, dessen Haare lockig sind, liest am anderen Tisch.": "الطالب ذو الشعر المجعّد يقرأ على الطاولة الأخرى.",
+    "B2 | Das Regal, an dem die Leiter steht, ist sehr hoch.": "الرفّ الذي عنده السلّم عالٍ جداً.",
+    "B2 | Hier wird nicht laut gesprochen.": "هنا لا يُتكلَّم بصوت عالٍ.",
+    "B2 | Das Buch ist schon zur Hälfte gelesen.": "الكتاب مقروء إلى نصفه بالفعل.",
+    "B2 | Die leuchtende Lampe steht neben den Büchern.": "المصباح المضيء بجانب الكتب.",
+    "C1 | Sie muss bald eine Prüfung haben.": "لا بدّ أن لديها امتحاناً قريباً.",
+    "C1 | Der Student könnte in Annas Kurs sein.": "ربما يكون الطالب في صفّ آنا.",
+    "C1 | Draußen dürfte es ziemlich kalt sein.": "على الأرجح الجوّ بارد جداً في الخارج.",
+    "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "يُقال إن في هذه المكتبة أكثر من مليون كتاب."
    }
   },
   "pt": {
@@ -1427,6 +1593,34 @@ window.SCENE = {
     "C1 | Der Student könnte in Annas Kurs sein.": "<b>könnte</b> = uma possibilidade entre outras.",
     "C1 | Draußen dürfte es ziemlich kalt sein.": "<b>dürfte</b> = provável, sem ter certeza.",
     "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "<b>sollen</b> = pelo que dizem: um boato, não uma dedução."
+   },
+   "sens": {
+    "A2 | Der Bleistift liegt auf dem Heft.": "O lápis está em cima do caderno.",
+    "A2 | Die Brille liegt auf dem Buch.": "Os óculos estão em cima do livro.",
+    "A2 | Der Rucksack hängt am Stuhl.": "A mochila está pendurada na cadeira.",
+    "A2 | Die Lampe steht neben den Büchern.": "O abajur está ao lado dos livros.",
+    "A2 | Die Pflanze steht vor dem Regal.": "A planta está em frente à estante.",
+    "A2 | Die Uhr hängt an der Wand.": "O relógio está pendurado na parede.",
+    "A2 | Die Leiter steht am Regal.": "A escada está junto à estante.",
+    "A2 | Der Zettel liegt neben dem Heft.": "O bilhete está ao lado do caderno.",
+    "B1 | Anna interessiert sich für Geschichte.": "Anna se interessa por história.",
+    "B1 | Sie denkt an ihre Prüfung.": "Ela pensa na sua prova.",
+    "B1 | Sie wartet auf ihre Freundin.": "Ela espera a amiga.",
+    "B1 | Der Student träumt von den Ferien.": "O estudante sonha com as férias.",
+    "B1 | Anna schreibt eine Arbeit über die Berliner Mauer.": "Anna escreve um trabalho sobre o Muro de Berlim.",
+    "B1 | Sie freut sich schon auf das Wochenende.": "Ela já está ansiosa pelo fim de semana.",
+    "B1 | Worauf wartest du? — Auf meine Freundin.": "O que você está esperando? — A minha amiga.",
+    "B1 | Der Student konzentriert sich auf sein Buch.": "O estudante se concentra no seu livro.",
+    "B2 | Die Studentin, die das Buch liest, heißt Anna.": "A estudante que lê o livro se chama Anna.",
+    "B2 | Der Student, dessen Haare lockig sind, liest am anderen Tisch.": "O estudante de cabelo cacheado lê na outra mesa.",
+    "B2 | Das Regal, an dem die Leiter steht, ist sehr hoch.": "A estante junto à qual está a escada é muito alta.",
+    "B2 | Hier wird nicht laut gesprochen.": "Aqui não se fala alto.",
+    "B2 | Das Buch ist schon zur Hälfte gelesen.": "O livro já está lido pela metade.",
+    "B2 | Die leuchtende Lampe steht neben den Büchern.": "O abajur aceso está ao lado dos livros.",
+    "C1 | Sie muss bald eine Prüfung haben.": "Ela deve ter uma prova em breve.",
+    "C1 | Der Student könnte in Annas Kurs sein.": "O estudante talvez esteja na turma de Anna.",
+    "C1 | Draußen dürfte es ziemlich kalt sein.": "Lá fora provavelmente está bem frio.",
+    "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "Dizem que esta biblioteca tem mais de um milhão de livros."
    }
   },
   "pl": {
@@ -1468,6 +1662,34 @@ window.SCENE = {
     "C1 | Der Student könnte in Annas Kurs sein.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Draußen dürfte es ziemlich kalt sein.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",
     "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "<b>sollen</b> = jak mówią: plotka, a nie wniosek."
+   },
+   "sens": {
+    "A2 | Der Bleistift liegt auf dem Heft.": "Ołówek leży na zeszycie.",
+    "A2 | Die Brille liegt auf dem Buch.": "Okulary leżą na książce.",
+    "A2 | Der Rucksack hängt am Stuhl.": "Plecak wisi na krześle.",
+    "A2 | Die Lampe steht neben den Büchern.": "Lampa stoi obok książek.",
+    "A2 | Die Pflanze steht vor dem Regal.": "Roślina stoi przed regałem.",
+    "A2 | Die Uhr hängt an der Wand.": "Zegar wisi na ścianie.",
+    "A2 | Die Leiter steht am Regal.": "Drabina stoi przy regale.",
+    "A2 | Der Zettel liegt neben dem Heft.": "Karteczka leży obok zeszytu.",
+    "B1 | Anna interessiert sich für Geschichte.": "Anna interesuje się historią.",
+    "B1 | Sie denkt an ihre Prüfung.": "Myśli o swoim egzaminie.",
+    "B1 | Sie wartet auf ihre Freundin.": "Czeka na swoją przyjaciółkę.",
+    "B1 | Der Student träumt von den Ferien.": "Student marzy o wakacjach.",
+    "B1 | Anna schreibt eine Arbeit über die Berliner Mauer.": "Anna pisze pracę o Murze Berlińskim.",
+    "B1 | Sie freut sich schon auf das Wochenende.": "Już cieszy się na weekend.",
+    "B1 | Worauf wartest du? — Auf meine Freundin.": "Na co czekasz? — Na moją przyjaciółkę.",
+    "B1 | Der Student konzentriert sich auf sein Buch.": "Student koncentruje się na swojej książce.",
+    "B2 | Die Studentin, die das Buch liest, heißt Anna.": "Studentka, która czyta książkę, ma na imię Anna.",
+    "B2 | Der Student, dessen Haare lockig sind, liest am anderen Tisch.": "Student o kręconych włosach czyta przy drugim stole.",
+    "B2 | Das Regal, an dem die Leiter steht, ist sehr hoch.": "Regał, przy którym stoi drabina, jest bardzo wysoki.",
+    "B2 | Hier wird nicht laut gesprochen.": "Tutaj nie mówi się głośno.",
+    "B2 | Das Buch ist schon zur Hälfte gelesen.": "Książka jest już przeczytana do połowy.",
+    "B2 | Die leuchtende Lampe steht neben den Büchern.": "Świecąca lampa stoi obok książek.",
+    "C1 | Sie muss bald eine Prüfung haben.": "Musi mieć wkrótce egzamin.",
+    "C1 | Der Student könnte in Annas Kurs sein.": "Student być może chodzi na kurs z Anną.",
+    "C1 | Draußen dürfte es ziemlich kalt sein.": "Na zewnątrz jest zapewne dość zimno.",
+    "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "Podobno ta biblioteka ma ponad milion książek."
    }
   },
   "ru": {
@@ -1509,6 +1731,34 @@ window.SCENE = {
     "C1 | Der Student könnte in Annas Kurs sein.": "<b>könnte</b> = одна возможность из нескольких.",
     "C1 | Draußen dürfte es ziemlich kalt sein.": "<b>dürfte</b> = вероятно, но без уверенности.",
     "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "<b>sollen</b> = как говорят: слух, а не вывод."
+   },
+   "sens": {
+    "A2 | Der Bleistift liegt auf dem Heft.": "Карандаш лежит на тетради.",
+    "A2 | Die Brille liegt auf dem Buch.": "Очки лежат на книге.",
+    "A2 | Der Rucksack hängt am Stuhl.": "Рюкзак висит на стуле.",
+    "A2 | Die Lampe steht neben den Büchern.": "Лампа стоит рядом с книгами.",
+    "A2 | Die Pflanze steht vor dem Regal.": "Растение стоит перед полкой.",
+    "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
+    "A2 | Die Leiter steht am Regal.": "Лестница стоит у полки.",
+    "A2 | Der Zettel liegt neben dem Heft.": "Записка лежит рядом с тетрадью.",
+    "B1 | Anna interessiert sich für Geschichte.": "Анна интересуется историей.",
+    "B1 | Sie denkt an ihre Prüfung.": "Она думает о своём экзамене.",
+    "B1 | Sie wartet auf ihre Freundin.": "Она ждёт свою подругу.",
+    "B1 | Der Student träumt von den Ferien.": "Студент мечтает о каникулах.",
+    "B1 | Anna schreibt eine Arbeit über die Berliner Mauer.": "Анна пишет работу о Берлинской стене.",
+    "B1 | Sie freut sich schon auf das Wochenende.": "Она уже ждёт выходных.",
+    "B1 | Worauf wartest du? — Auf meine Freundin.": "Чего ты ждёшь? — Свою подругу.",
+    "B1 | Der Student konzentriert sich auf sein Buch.": "Студент сосредоточен на своей книге.",
+    "B2 | Die Studentin, die das Buch liest, heißt Anna.": "Студентку, которая читает книгу, зовут Анна.",
+    "B2 | Der Student, dessen Haare lockig sind, liest am anderen Tisch.": "Студент с кудрявыми волосами читает за другим столом.",
+    "B2 | Das Regal, an dem die Leiter steht, ist sehr hoch.": "Полка, у которой стоит лестница, очень высокая.",
+    "B2 | Hier wird nicht laut gesprochen.": "Здесь не разговаривают громко.",
+    "B2 | Das Buch ist schon zur Hälfte gelesen.": "Книга уже прочитана наполовину.",
+    "B2 | Die leuchtende Lampe steht neben den Büchern.": "Горящая лампа стоит рядом с книгами.",
+    "C1 | Sie muss bald eine Prüfung haben.": "У неё, должно быть, скоро экзамен.",
+    "C1 | Der Student könnte in Annas Kurs sein.": "Студент, возможно, учится на курсе Анны.",
+    "C1 | Draußen dürfte es ziemlich kalt sein.": "На улице, вероятно, довольно холодно.",
+    "C1 | Diese Bibliothek soll über eine Million Bücher haben.": "Говорят, в этой библиотеке больше миллиона книг."
    }
   }
  }

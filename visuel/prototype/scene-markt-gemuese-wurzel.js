@@ -1024,6 +1024,7 @@ window.SCENE = {
      ],
      "f": "zwiebel",
      "phrase": "Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.",
+     "sens": "Les oignons sont entre le chou-rave et le chou.",
      "n": "<b>zwischen</b> + datif : der Kohl → <b>dem</b> Kohl.",
      "r": "kohl"
     },
@@ -1036,6 +1037,7 @@ window.SCENE = {
      ],
      "f": "radieschen-main",
      "phrase": "Anna hält ein Bund Radieschen in der Hand.",
+     "sens": "Anna tient une botte de radis à la main.",
      "n": "<b>das</b> Bund (la botte) est neutre : à l'accusatif, <b>ein</b> Bund ne change pas. (der Bund, c'est la fédération.)",
      "r": "anna",
      "revise": {
@@ -1053,6 +1055,7 @@ window.SCENE = {
      ],
      "f": "knoblauch",
      "phrase": "Der Knoblauch liegt neben den Radieschen.",
+     "sens": "L'ail est à côté des radis.",
      "n": "die Radieschen (pluriel) → datif <b>den</b> Radieschen.",
      "r": "radieschen"
     },
@@ -1065,6 +1068,7 @@ window.SCENE = {
      ],
      "f": "kartoffel",
      "phrase": "Die Kartoffeln liegen neben dem Sellerie.",
+     "sens": "Les pommes de terre sont à côté du céleri.",
      "n": "der Sellerie → datif <b>dem</b> Sellerie.",
      "r": "sellerie"
     },
@@ -1077,6 +1081,7 @@ window.SCENE = {
      ],
      "f": "lauch",
      "phrase": "Der Lauch liegt rechts neben dem Kohl.",
+     "sens": "Le poireau est à droite du chou.",
      "n": "<b>rechts neben</b> + datif : <b>dem</b> Kohl.",
      "r": "kohl"
     }
@@ -1094,6 +1099,7 @@ window.SCENE = {
      ],
      "f": "karotte",
      "phrase": "Ich hätte gern ein Bund Karotten.",
+     "sens": "Je voudrais une botte de carottes.",
      "n": "Des carottes avec leurs fanes se vendent en botte : <b>ein Bund</b> Karotten (das Bund, neutre)."
     },
     {
@@ -1105,6 +1111,7 @@ window.SCENE = {
      ],
      "f": "kartoffel",
      "phrase": "Zwei Kilo Kartoffeln, bitte.",
+     "sens": "Deux kilos de pommes de terre, s'il vous plaît.",
      "n": "Après une quantité, le pluriel sans article : zwei Kilo <b>Kartoffeln</b>.",
      "revise": {
       "mot": "Kartoffel",
@@ -1121,6 +1128,7 @@ window.SCENE = {
      ],
      "f": "blumenkohl",
      "phrase": "Was kostet der Blumenkohl?",
+     "sens": "Combien coûte le chou-fleur ?",
      "n": "<b>der</b> Blumenkohl, comme der Kohl : le dernier mot du composé donne le genre."
     },
     {
@@ -1132,6 +1140,7 @@ window.SCENE = {
      ],
      "f": "kohl",
      "phrase": "Der Kohl ist größer als der Rosenkohl.",
+     "sens": "Le chou est plus gros que les choux de Bruxelles.",
      "n": "Comparatif : <b>größer</b> … <b>als</b>.",
      "r": "rosenkohl",
      "revise": {
@@ -1148,6 +1157,7 @@ window.SCENE = {
      ],
      "f": "knoblauch",
      "phrase": "Ich brauche noch eine Knolle Knoblauch für die Soße.",
+     "sens": "Il me faut encore une tête d'ail pour la sauce.",
      "n": "<b>eine Knolle</b> Knoblauch = une tête d'ail ; <b>eine Zehe</b> = une gousse."
     }
    ]
@@ -1164,6 +1174,7 @@ window.SCENE = {
      ],
      "f": "kartoffel",
      "phrase": "Die Kartoffeln wurden letzte Woche geerntet.",
+     "sens": "Les pommes de terre ont été récoltées la semaine dernière.",
      "n": "Passif au prétérit : <b>wurden</b> + participe II."
     },
     {
@@ -1175,6 +1186,7 @@ window.SCENE = {
      ],
      "f": "lauch",
      "phrase": "Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.",
+     "sens": "Le poireau aux feuilles vert foncé est à côté du chou.",
      "n": "Possession, antécédent masculin → <b>dessen</b>.",
      "r": "kohl"
     },
@@ -1187,6 +1199,7 @@ window.SCENE = {
      ],
      "f": "radieschen-main",
      "phrase": "Anna kauft frische Radieschen.",
+     "sens": "Anna achète des radis frais.",
      "n": "Accusatif pluriel sans article → <b>-e</b> : frisch<b>e</b> Radieschen."
     },
     {
@@ -1198,6 +1211,7 @@ window.SCENE = {
      ],
      "f": "kohl",
      "phrase": "Das Gemüse, das hier verkauft wird, kommt aus der Region.",
+     "sens": "Les légumes vendus ici viennent de la région.",
      "n": "Sujet de la relative, neutre → <b>das</b>."
     },
     {
@@ -1209,6 +1223,7 @@ window.SCENE = {
      ],
      "f": "zwiebel",
      "phrase": "Zwiebeln müssen trocken gelagert werden.",
+     "sens": "Les oignons doivent être conservés au sec.",
      "n": "Passif avec modal : participe II + <b>werden</b> à la fin."
     }
    ]
@@ -1225,6 +1240,7 @@ window.SCENE = {
      ],
      "f": "kohl",
      "phrase": "Aufgrund der Saison gibt es im Oktober besonders viel Kohl.",
+     "sens": "En raison de la saison, il y a beaucoup de chou en octobre.",
      "n": "<b>aufgrund</b> + génitif = en raison de."
     },
     {
@@ -1236,6 +1252,7 @@ window.SCENE = {
      ],
      "f": "brokkoli",
      "phrase": "Je frischer das Gemüse ist, desto mehr Vitamine enthält es.",
+     "sens": "Plus les légumes sont frais, plus ils contiennent de vitamines.",
      "n": "<b>je</b> …, <b>desto</b> … : plus …, plus …"
     },
     {
@@ -1247,6 +1264,7 @@ window.SCENE = {
      ],
      "f": "knoblauch",
      "phrase": "Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.",
+     "sens": "Si j'avais su, je n'aurais pas acheté d'ail au supermarché.",
      "n": "Irréel du passé : <b>hätte</b> + participe II, dans les deux parties."
     },
     {
@@ -1258,6 +1276,7 @@ window.SCENE = {
      ],
      "f": "karotte",
      "phrase": "Die Karotten scheinen frisch geerntet worden zu sein.",
+     "sens": "Les carottes semblent avoir été récoltées fraîchement.",
      "n": "<b>scheinen</b> + infinitif passé passif : geerntet <b>worden zu</b> sein."
     },
     {
@@ -1269,6 +1288,7 @@ window.SCENE = {
      ],
      "f": "radieschen-main",
      "phrase": "Anna dürfte die Radieschen für einen Salat gekauft haben.",
+     "sens": "Anna a sans doute acheté les radis pour une salade.",
      "n": "<b>dürfte</b> + infinitif passé = c'est probable (supposition)."
     }
    ]
@@ -1321,6 +1341,28 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Unreal past: <b>hätte</b> + past participle, in both clauses.",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + perfect passive infinitive: geerntet <b>worden zu</b> sein.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + perfect infinitive = it's probable (an assumption)."
+   },
+   "sens": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "The onions are between the kohlrabi and the cabbage.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "Anna is holding a bunch of radishes.",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "The garlic is next to the radishes.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "The potatoes are next to the celery.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "The leek is to the right of the cabbage.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "I would like a bunch of carrots.",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "Two kilos of potatoes, please.",
+    "B1 | Was kostet der Blumenkohl?": "How much is the cauliflower?",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "The cabbage is bigger than the Brussels sprouts.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "I still need a bulb of garlic for the sauce.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "The potatoes were harvested last week.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "The leek, whose leaves are dark green, is next to the cabbage.",
+    "B2 | Anna kauft frische Radieschen.": "Anna buys fresh radishes.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "The vegetables sold here come from the region.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "Onions must be stored dry.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "Because of the season, there is a lot of cabbage in October.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "The fresher the vegetables, the more vitamins they contain.",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Had I known, I would not have bought garlic at the supermarket.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "The carrots seem to have been freshly harvested.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "Anna probably bought the radishes for a salad."
    }
   },
   "tr": {
@@ -1358,6 +1400,28 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Geçmişte gerçek dışı durum: iki bölümde de <b>hätte</b> + Partizip II.",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + edilgen geçmiş mastar: geerntet <b>worden zu</b> sein.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + geçmiş mastar = muhtemel (tahmin)."
+   },
+   "sens": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "Soğanlar alabaşla lahananın arasında.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "Anna elinde bir demet turp tutuyor.",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "Sarımsak turpların yanında.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "Patatesler kerevizin yanında.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "Pırasa lahananın sağında.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "Bir demet havuç istiyorum.",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "İki kilo patates lütfen.",
+    "B1 | Was kostet der Blumenkohl?": "Karnabahar ne kadar?",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "Lahana Brüksel lahanasından daha büyük.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "Sos için bir baş sarımsağa daha ihtiyacım var.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "Patatesler geçen hafta hasat edildi.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "Yaprakları koyu yeşil olan pırasa lahananın yanında.",
+    "B2 | Anna kauft frische Radieschen.": "Anna taze turp alıyor.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "Burada satılan sebzeler bölgeden geliyor.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "Soğanlar kuru yerde saklanmalı.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "Mevsim nedeniyle ekimde çok lahana oluyor.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "Sebze ne kadar tazeyse o kadar çok vitamin içerir.",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Bilseydim süpermarketten sarımsak almazdım.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "Havuçlar yeni hasat edilmiş gibi görünüyor.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "Anna turpları salata için almış olsa gerek."
    }
   },
   "uk": {
@@ -1395,6 +1459,28 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Нереальне минуле: <b>hätte</b> + Partizip II в обох частинах.",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + пасивний інфінітив минулого: geerntet <b>worden zu</b> sein.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + інфінітив минулого = імовірно (припущення)."
+   },
+   "sens": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "Цибуля лежить між кольрабі та капустою.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "Анна тримає в руці пучок редиски.",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "Часник лежить біля редиски.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "Картопля лежить біля селери.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "Цибуля-порей лежить праворуч від капусти.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "Я хотів би пучок моркви.",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "Два кілограми картоплі, будь ласка.",
+    "B1 | Was kostet der Blumenkohl?": "Скільки коштує цвітна капуста?",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "Капуста більша за брюссельську.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "Мені потрібна ще головка часнику для соусу.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "Картоплю зібрали минулого тижня.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "Цибуля-порей із темно-зеленим листям лежить біля капусти.",
+    "B2 | Anna kauft frische Radieschen.": "Анна купує свіжу редиску.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "Овочі, які тут продають, із цього регіону.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "Цибулю треба зберігати в сухому місці.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "Через сезон у жовтні особливо багато капусти.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "Чим свіжіші овочі, тим більше в них вітамінів.",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Якби я знав, я не купував би часник у супермаркеті.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "Схоже, моркву щойно зібрали.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "Анна, напевно, купила редиску для салату."
    }
   },
   "fa": {
@@ -1432,6 +1518,28 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "غیرواقعی در گذشته: <b>hätte</b> + Partizip II، در هر دو بخش.",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + مصدرِ گذشتهٔ مجهول: <span lang=\"de\">geerntet <b>worden zu</b> sein</span>.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + مصدرِ گذشته = محتمل است (گمان)."
+   },
+   "sens": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "پیازها بین کلم‌قمری و کلم هستند.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "آنا یک دسته تربچه در دست دارد.",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "سیر کنار تربچه‌ها است.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "سیب‌زمینی‌ها کنار کرفس هستند.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "تره‌فرنگی سمت راست کلم است.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "یک دسته هویج می‌خواهم، لطفاً.",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "دو کیلو سیب‌زمینی، لطفاً.",
+    "B1 | Was kostet der Blumenkohl?": "گل‌کلم چند است؟",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "کلم از کلم بروکسل بزرگ‌تر است.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "برای سس یک سیر دیگر لازم دارم.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "سیب‌زمینی‌ها هفتهٔ پیش برداشت شدند.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "تره‌فرنگی که برگ‌هایش سبز تیره است، کنار کلم است.",
+    "B2 | Anna kauft frische Radieschen.": "آنا تربچهٔ تازه می‌خرد.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "سبزیجاتی که اینجا فروخته می‌شود، مال همین منطقه است.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "پیاز را باید در جای خشک نگه داشت.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "به‌خاطر فصل، در اکتبر کلم خیلی زیاد است.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "هرچه سبزیجات تازه‌تر باشند، ویتامین بیشتری دارند.",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "اگر می‌دانستم، از سوپرمارکت سیر نمی‌خریدم.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "به نظر می‌رسد هویج‌ها تازه برداشت شده‌اند.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "آنا احتمالاً تربچه‌ها را برای سالاد خریده است."
    }
   },
   "ar": {
@@ -1469,6 +1577,28 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "غير الواقع في الماضي: <b>hätte</b> + Partizip II، في الجزأين كليهما.",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + مصدر الماضي المبني للمجهول: <span lang=\"de\">geerntet <b>worden zu</b> sein</span>.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + مصدر الماضي = مرجَّح (افتراض)."
+   },
+   "sens": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "البصل بين الكرنب الساقي والملفوف.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "تحمل آنا حزمة فجل في يدها.",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "الثوم بجانب الفجل.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "البطاطا بجانب الكرفس.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "الكرّاث على يمين الملفوف.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "أريد حزمة جزر، من فضلك.",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "كيلوغرامان من البطاطا، من فضلك.",
+    "B1 | Was kostet der Blumenkohl?": "بكم القرنبيط؟",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "الملفوف أكبر من كرنب بروكسل.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "أحتاج أيضاً إلى رأس ثوم للصلصة.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "حُصدت البطاطا الأسبوع الماضي.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "الكرّاث ذو الأوراق الخضراء الداكنة بجانب الملفوف.",
+    "B2 | Anna kauft frische Radieschen.": "تشتري آنا فجلاً طازجاً.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "الخضار التي تُباع هنا من المنطقة.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "يجب حفظ البصل في مكان جافّ.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "بسبب الموسم، يكثر الملفوف في أكتوبر.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "كلّما كانت الخضار أطزج، احتوت على فيتامينات أكثر.",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "لو كنت أعلم، لما اشتريت الثوم من السوبرماركت.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "يبدو أن الجزر حُصد حديثاً.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "على الأرجح اشترت آنا الفجل لتحضير سلطة."
    }
   },
   "pt": {
@@ -1506,6 +1636,28 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Irreal do passado: <b>hätte</b> + Partizip II, nas duas partes.",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + infinitivo passado passivo: geerntet <b>worden zu</b> sein.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + infinitivo passado = é provável (suposição)."
+   },
+   "sens": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "As cebolas estão entre o couve-rábano e o repolho.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "Anna segura um maço de rabanetes na mão.",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "O alho está ao lado dos rabanetes.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "As batatas estão ao lado do aipo.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "O alho-poró está à direita do repolho.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "Eu queria um maço de cenouras.",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "Dois quilos de batatas, por favor.",
+    "B1 | Was kostet der Blumenkohl?": "Quanto custa a couve-flor?",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "O repolho é maior que as couves-de-bruxelas.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "Ainda preciso de uma cabeça de alho para o molho.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "As batatas foram colhidas na semana passada.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "O alho-poró, cujas folhas são verde-escuras, está ao lado do repolho.",
+    "B2 | Anna kauft frische Radieschen.": "Anna compra rabanetes frescos.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "Os legumes vendidos aqui vêm da região.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "As cebolas devem ser guardadas em lugar seco.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "Por causa da estação, em outubro há muito repolho.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "Quanto mais frescos os legumes, mais vitaminas eles têm.",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Se eu soubesse, não teria comprado alho no supermercado.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "As cenouras parecem ter sido colhidas há pouco.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "Anna provavelmente comprou os rabanetes para uma salada."
    }
   },
   "pl": {
@@ -1543,6 +1695,28 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Warunek nierzeczywisty w przeszłości: <b>hätte</b> + imiesłów II w obu częściach.",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + bezokolicznik przeszły strony biernej: geerntet <b>worden zu</b> sein.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + bezokolicznik przeszły = to prawdopodobne (przypuszczenie)."
+   },
+   "sens": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "Cebule leżą między kalarepą a kapustą.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "Anna trzyma w ręku pęczek rzodkiewek.",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "Czosnek leży obok rzodkiewek.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "Ziemniaki leżą obok selera.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "Por leży na prawo od kapusty.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "Poproszę pęczek marchewek.",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "Dwa kilo ziemniaków, proszę.",
+    "B1 | Was kostet der Blumenkohl?": "Ile kosztuje kalafior?",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "Kapusta jest większa niż brukselka.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "Potrzebuję jeszcze główki czosnku do sosu.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "Ziemniaki zostały zebrane w zeszłym tygodniu.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "Por, którego liście są ciemnozielone, leży obok kapusty.",
+    "B2 | Anna kauft frische Radieschen.": "Anna kupuje świeże rzodkiewki.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "Warzywa, które się tu sprzedaje, pochodzą z regionu.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "Cebule trzeba przechowywać w suchym miejscu.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "Ze względu na sezon w październiku jest szczególnie dużo kapusty.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "Im świeższe warzywa, tym więcej witamin zawierają.",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Gdybym wiedział, nie kupiłbym czosnku w supermarkecie.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "Marchewki wyglądają na świeżo zebrane.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "Anna zapewne kupiła rzodkiewki na sałatkę."
    }
   },
   "ru": {
@@ -1580,6 +1754,28 @@ window.SCENE = {
     "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Нереальное прошлое: <b>hätte</b> + Partizip II в обеих частях. По-русски: «Если бы я знал, я бы не купил…»",
     "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "<b>scheinen</b> + инфинитив прошедшего в пассиве: geerntet <b>worden zu</b> sein.",
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + инфинитив прошедшего = вероятно (предположение)."
+   },
+   "sens": {
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "Лук лежит между кольраби и капустой.",
+    "A2 | Anna hält ein Bund Radieschen in der Hand.": "Анна держит в руке пучок редиски.",
+    "A2 | Der Knoblauch liegt neben den Radieschen.": "Чеснок лежит рядом с редиской.",
+    "A2 | Die Kartoffeln liegen neben dem Sellerie.": "Картошка лежит рядом с сельдереем.",
+    "A2 | Der Lauch liegt rechts neben dem Kohl.": "Лук-порей лежит справа от капусты.",
+    "B1 | Ich hätte gern ein Bund Karotten.": "Мне, пожалуйста, пучок моркови.",
+    "B1 | Zwei Kilo Kartoffeln, bitte.": "Два килограмма картошки, пожалуйста.",
+    "B1 | Was kostet der Blumenkohl?": "Сколько стоит цветная капуста?",
+    "B1 | Der Kohl ist größer als der Rosenkohl.": "Капуста больше брюссельской капусты.",
+    "B1 | Ich brauche noch eine Knolle Knoblauch für die Soße.": "Мне нужна ещё головка чеснока для соуса.",
+    "B2 | Die Kartoffeln wurden letzte Woche geerntet.": "Картошку собрали на прошлой неделе.",
+    "B2 | Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.": "Лук-порей с тёмно-зелёными листьями лежит рядом с капустой.",
+    "B2 | Anna kauft frische Radieschen.": "Анна покупает свежую редиску.",
+    "B2 | Das Gemüse, das hier verkauft wird, kommt aus der Region.": "Овощи, которые здесь продают, из этого региона.",
+    "B2 | Zwiebeln müssen trocken gelagert werden.": "Лук нужно хранить в сухом месте.",
+    "C1 | Aufgrund der Saison gibt es im Oktober besonders viel Kohl.": "Из-за сезона в октябре особенно много капусты.",
+    "C1 | Je frischer das Gemüse ist, desto mehr Vitamine enthält es.": "Чем свежее овощи, тем больше в них витаминов.",
+    "C1 | Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.": "Если бы я знал, я не купил бы чеснок в супермаркете.",
+    "C1 | Die Karotten scheinen frisch geerntet worden zu sein.": "Морковь, похоже, недавно собрана.",
+    "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "Анна, вероятно, купила редиску для салата."
    }
   }
  }
