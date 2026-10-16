@@ -6378,6 +6378,7 @@ body[data-theme="dark"] .cp-retour.bon{color:#7fd3a5;} body[data-theme="dark"] .
 .cp-saisie{width:100%; font-size:18px; padding:12px; border-radius:12px; border:1.5px solid #e2d6c0; margin-top:12px; background:#fff; color:#1C2430;}
 body[data-theme="dark"] .cp-saisie{background:#273041; color:#F2F2F6; border-color:#3a4558;}
 .cp-indice{color:#8a5a0e; font-size:14px; margin-top:4px;}
+.cp-faute{text-decoration:underline wavy; text-decoration-thickness:1.5px; text-underline-offset:3px; font-weight:700;}
 .cp-explication{margin-top:8px; font-weight:400; font-size:14.5px;}
 .cp-oral{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px;}
 .cp-oral button{border-radius:999px; padding:10px 16px; font-weight:700; border:1.5px solid #1C2430; background:#fff; color:#1C2430; cursor:pointer;}
@@ -7487,7 +7488,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v825</span>
+    <span class="subtitle-version">v826</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10811,7 +10812,9 @@ const I18N = {
         cp_lent: "Plus lentement",
         cp_bravo: "Bravo !",
         cp_reponse: "La bonne réponse :",
-        cp_effacer: "Recommencer",
+        cp_effacer: "Effacer",
+        cp_tu_as_ecrit: "Tu as écrit :",
+        cp_presque: "Une petite faute de frappe : on la compte juste.",
         cp_q_gram: "Complète la phrase",
         cp_q_dictee: "Écris ce que tu entends",
         cp_q_parler: "Répète à voix haute",
@@ -12005,7 +12008,9 @@ const I18N = {
         cp_lent: "Slower",
         cp_bravo: "Well done!",
         cp_reponse: "The right answer:",
-        cp_effacer: "Start over",
+        cp_effacer: "Clear",
+        cp_tu_as_ecrit: "You wrote:",
+        cp_presque: "Just a small typo: we count it as right.",
         cp_q_gram: "Complete the sentence",
         cp_q_dictee: "Write what you hear",
         cp_q_parler: "Say it out loud",
@@ -13201,7 +13206,9 @@ const I18N = {
         cp_lent: "Daha yavaş",
         cp_bravo: "Aferin!",
         cp_reponse: "Doğru cevap:",
-        cp_effacer: "Baştan başla",
+        cp_effacer: "Temizle",
+        cp_tu_as_ecrit: "Senin yazdığın:",
+        cp_presque: "Küçük bir yazım hatası: doğru sayıyoruz.",
         cp_q_gram: "Cümleyi tamamla",
         cp_q_dictee: "Duyduğunu yaz",
         cp_q_parler: "Yüksek sesle tekrarla",
@@ -14734,7 +14741,9 @@ const I18N = {
         cp_lent: "Повільніше",
         cp_bravo: "Браво!",
         cp_reponse: "Правильна відповідь:",
-        cp_effacer: "Почати знову",
+        cp_effacer: "Стерти",
+        cp_tu_as_ecrit: "Ти написав(-ла):",
+        cp_presque: "Невелика описка: зараховуємо як правильно.",
         cp_q_gram: "Доповни речення",
         cp_q_dictee: "Напиши, що чуєш",
         cp_q_parler: "Повтори вголос",
@@ -16630,7 +16639,9 @@ const I18N = {
         cp_lent: "آهسته‌تر",
         cp_bravo: "آفرین!",
         cp_reponse: "پاسخ درست:",
-        cp_effacer: "از نو",
+        cp_effacer: "پاک کردن",
+        cp_tu_as_ecrit: "نوشتهٔ تو:",
+        cp_presque: "یک غلط تایپی کوچک: درست حساب می‌کنیم.",
         cp_q_gram: "جمله را کامل کن",
         cp_q_dictee: "آنچه می‌شنوی را بنویس",
         cp_q_parler: "بلند تکرار کن",
@@ -17957,7 +17968,9 @@ const I18N = {
         cp_lent: "أبطأ",
         cp_bravo: "أحسنت!",
         cp_reponse: "الإجابة الصحيحة:",
-        cp_effacer: "من جديد",
+        cp_effacer: "مسح",
+        cp_tu_as_ecrit: "ما كتبته:",
+        cp_presque: "خطأ مطبعي صغير: نحسبه صحيحًا.",
         cp_q_gram: "أكمل الجملة",
         cp_q_dictee: "اكتب ما تسمعه",
         cp_q_parler: "كرّرها بصوت عالٍ",
@@ -18157,7 +18170,9 @@ const I18N = {
         cp_lent: "Mais devagar",
         cp_bravo: "Muito bem!",
         cp_reponse: "A resposta certa:",
-        cp_effacer: "Recomeçar",
+        cp_effacer: "Apagar",
+        cp_tu_as_ecrit: "Você escreveu:",
+        cp_presque: "Só um pequeno erro de digitação: conta como certo.",
         cp_q_gram: "Complete a frase",
         cp_q_dictee: "Escreva o que você ouve",
         cp_q_parler: "Repita em voz alta",
@@ -19416,7 +19431,9 @@ const I18N = {
         cp_lent: "Wolniej",
         cp_bravo: "Brawo!",
         cp_reponse: "Prawidłowa odpowiedź:",
-        cp_effacer: "Od nowa",
+        cp_effacer: "Wyczyść",
+        cp_tu_as_ecrit: "Napisałeś(-aś):",
+        cp_presque: "Mała literówka: liczymy jako dobrze.",
         cp_q_gram: "Uzupełnij zdanie",
         cp_q_dictee: "Napisz, co słyszysz",
         cp_q_parler: "Powtórz na głos",
@@ -20673,7 +20690,9 @@ const I18N = {
         cp_lent: "Медленнее",
         cp_bravo: "Молодец!",
         cp_reponse: "Правильный ответ:",
-        cp_effacer: "Заново",
+        cp_effacer: "Стереть",
+        cp_tu_as_ecrit: "Ты написал(а):",
+        cp_presque: "Небольшая опечатка: засчитываем как верно.",
         cp_q_gram: "Дополни предложение",
         cp_q_dictee: "Напиши, что слышишь",
         cp_q_parler: "Повтори вслух",
@@ -39092,7 +39111,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 825;
+const APP_VERSION = 826;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43091,6 +43110,13 @@ function melangerLaSuite(cartes){
     try{ return insererCartesPhrases(cartes, currentCardsFull); }catch(e){ return cartes; }
 }
 
+// v826 : UNE PHRASE NE REVIENT PAS DANS LA MEME SEANCE. Un mot rate revient
+// deux minutes plus tard (SRS_ENCORE_MINUTES) dans les tours de retour, et la
+// seance lui refabriquait LA MEME phrase -- ratee de nouveau, revenue de nouveau.
+// Jacques : « je tourne en rond ». Le mot revient en carte simple ; la phrase,
+// un autre jour.
+const PHRASES_POSEES = new Set();
+
 function insererCartesPhrases(seance, tout){
     const langue = LANGUE_APPRISE === "es" ? "es" : "de";
     const base = new Set(MOTS_DE_BASE_PHRASES[langue]);
@@ -43126,6 +43152,7 @@ function insererCartesPhrases(seance, tout){
         liste.forEach(it => {
             if(pris.has(cle(it))) return;
             const e = evaluer(it);
+            if(e && PHRASES_POSEES.has(e.p.de)) return;
             if(e && (!best || e.cout < best.cout)) best = e;
         });
         return best;
@@ -43163,6 +43190,37 @@ function insererCartesPhrases(seance, tout){
         else k -= palier.tous_les - 1;   // la carte suivante
     }
     return sortie;
+}
+
+// v826 : la dictee montre OU est l'erreur, et pardonne une faute de frappe.
+function ecartLettres(a, b){
+    if(Math.abs(a.length - b.length) > 2) return 3;
+    let prec = Array.from({ length: b.length + 1 }, (_, j) => j);
+    for(let i = 1; i <= a.length; i++){
+        const cour = [i];
+        for(let j = 1; j <= b.length; j++)
+            cour[j] = Math.min(prec[j] + 1, cour[j - 1] + 1, prec[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        prec = cour;
+    }
+    return prec[b.length];
+}
+// Ce que la personne a ecrit, les mots absents de la bonne phrase soulignes
+// (plus longue sous-suite commune, mot a mot, sans casse ni accents).
+function ecartDictee(saisi, attendu){
+    const a = saisi.trim().split(/\s+/), b = attendu.trim().split(/\s+/);
+    const na = a.map(normaliserSaisie), nb = b.map(normaliserSaisie);
+    const L = Array.from({ length: a.length + 1 }, () => new Array(b.length + 1).fill(0));
+    for(let i = a.length - 1; i >= 0; i--)
+        for(let j = b.length - 1; j >= 0; j--)
+            L[i][j] = na[i] === nb[j] ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+    const bons = new Set();
+    for(let i = 0, j = 0; i < a.length && j < b.length; ){
+        if(na[i] === nb[j]){ bons.add(i); i++; j++; }
+        else if(L[i + 1][j] >= L[i][j + 1]) i++;
+        else j++;
+    }
+    return t("cp_tu_as_ecrit") + " " + a.map((m, i) => bons.has(i) ? echapperHtml(m)
+        : '<span class="cp-faute">' + echapperHtml(m) + "</span>").join(" ");
 }
 
 function melangerPhrase(t){
@@ -43302,6 +43360,7 @@ function montrerCartePhrase(item){
     el.textContent = "";
     majCompteurCarte();
     const fait = { repondu: false };
+    if(item.phrase) PHRASES_POSEES.add(item.phrase.de);
     const langueDe = LANGUE_APPRISE === "es" ? "es" : "de";
     const creer = (tag, cls, texte) => {
         const n = document.createElement(tag);
@@ -43535,12 +43594,16 @@ function montrerCartePhrase(item){
             const v = champ.value.trim();
             if(!v){ champ.focus(); return; }
             const n = normaliserSaisie(v);
+            const na = normaliserSaisie(attendu);
+            // v826 : une faute de frappe dans une phrase ne la fait pas rater.
+            const presque = !motSeul && n !== na && na.length >= 20 && ecartLettres(n, na) <= 1;
             // Un nom s'accepte avec ou sans son article.
-            const juste = n === normaliserSaisie(attendu)
+            const juste = n === na || presque
                 || (motSeul && item.cible.mode === "nomen" && n === normaliserSaisie(w[0]));
             champ.disabled = true;
             verif.classList.add("hidden");
-            conclure(juste, attendu);
+            conclure(juste, attendu, presque ? echapperHtml(t("cp_presque"))
+                : (!juste && !motSeul ? ecartDictee(v, attendu) : ""));
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
@@ -43751,6 +43814,7 @@ function repondrePhrase(item, juste){
 }
 
 async function ouvrirSeanceDuJour(sansScene){
+    PHRASES_POSEES.clear();
     // L'essai des scenes (v713) : l'ecran de choix, une fois par jour.
     // Depuis le 10 oct. 2026, en espagnol aussi (langueDeScene).
     // v799 : plus d'ecran de choix ici -- les deux portes sont sur l'accueil.
