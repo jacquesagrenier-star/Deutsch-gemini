@@ -1002,6 +1002,10 @@ const NB_SEANCE = Math.max(1, Math.min(30, parseInt(PARAMS.get("nb"), 10) || 3))
    main a l'app au lieu de proposer « Encore » a l'infini : le jour suivant tout
    de suite, ou l'accueil (Jacques : « la personne a pu vouloir continuer »). */
 const PP = PARAMS.get("pp") === "1";
+/* v831 : l'arret dans la seance (essai) -- l'app donne les mots de la scene deja
+   vus dans les cartes (?mots=a|b|c) : Trouve ! ne demande qu'eux. Pas de
+   devinette sur un mot jamais entendu. */
+const MOTS_PERMIS = (() => { const v = PARAMS.get("mots"); return v ? new Set(v.split("|")) : null; })();
 const PP_DERNIER = PARAMS.get("dernier") === "1";
 const NB_PP = 5;
 function envoyer(type, donnees){
@@ -1137,7 +1141,8 @@ const A_TROUVER = (() => {
    au-dessus du niveau de la seance ne se DEMANDE pas ; il se touche toujours
    en Decouvrir. Hors seance, rien n'est filtre. */
 const RANG = {A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6};
-const aSonNiveau = (m, niv) => (!EN_SEANCE && !PP) || !m.niveau || (RANG[m.niveau] || 9) <= (RANG[niv] || 9);
+const aSonNiveau = (m, niv) => (!MOTS_PERMIS || MOTS_PERMIS.has(m.mot))
+  && ((!EN_SEANCE && !PP) || !m.niveau || (RANG[m.niveau] || 9) <= (RANG[niv] || 9));
 const zonesDe = mot => S.points.filter(p => porte(p, mot)).map(p => p.id);
 let fileTrouver = [];
 /* A QUI appartient ce qu'on demande. Jacques, 6 oct. : on demande l'oreille

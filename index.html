@@ -6403,6 +6403,16 @@ body[data-theme="dark"] .cp-fete-pp p{color:#c6cdd8;}
 body[data-theme="dark"] .cp-tableau-ligne{background:#232a34; border-color:#2c333d;}
 body[data-theme="dark"] .cp-tl-sens{color:#b9c1cd;}
 body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
+.cp-arret-badge{display:inline-block; background:#fff1d6; color:#8a5a12; font-weight:800; font-size:13px; border-radius:20px; padding:3px 10px;}
+.cp-arret-mots{display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 6px;}
+.cp-arret-mots span{border:1px solid #e3dccf; border-radius:8px; padding:3px 9px; font-weight:700; background:#fff;}
+.seance-portes.porte-unique{grid-template-columns:minmax(0,1fr);}
+.seance-portes.porte-unique .seance-porte{height:auto; padding-bottom:50px;}
+.seance-aujourdhui{display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.08); border-radius:10px; padding:6px; margin:4px 0 2px;}
+.seance-aujourdhui-vign{width:42px; height:42px; border-radius:8px; background-size:cover; background-position:center 60%; flex:0 0 auto;}
+.seance-aujourdhui-txt{font-size:11.5px; line-height:1.35; color:rgba(255,255,255,.85);}
+.seance-aujourdhui-txt b{display:block; font-size:12.5px; color:#fff;}
+body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c333d;}
 .cp-faute{text-decoration:underline wavy; text-decoration-thickness:1.5px; text-underline-offset:3px; font-weight:700;}
 .cp-explication{margin-top:8px; font-weight:400; font-size:14.5px;}
 .cp-oral{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:12px;}
@@ -7513,7 +7523,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v830</span>
+    <span class="subtitle-version">v831</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10856,6 +10866,15 @@ const I18N = {
         pp_scene_texte: "Touche les objets pour entendre leur nom. Tu en connais déjà quelques-uns.",
         pp_scene_bouton: "Entrer dans la scène",
         pp_plus_tard: "Plus tard",
+        seance_porte_tout: "Mots, grammaire et scène",
+        seance_aujourdhui: "Aujourd'hui : {lieu}",
+        seance_aujourdhui_sous: "3 questions au milieu de la séance",
+        arret_badge: "Arrêt dans la scène",
+        arret_titre: "Entre dans la scène : {lieu}",
+        arret_texte_a1: "Trois objets à trouver. Tu les as déjà vus dans tes cartes :",
+        arret_texte: "Trois questions dans la scène, à ton niveau.",
+        arret_entrer: "Entrer",
+        arret_passer: "Passer",
         cp_q_gram: "Complète la phrase",
         cp_q_dictee: "Écris ce que tu entends",
         cp_q_parler: "Répète à voix haute",
@@ -12067,6 +12086,15 @@ const I18N = {
         pp_scene_texte: "Tap the objects to hear their names. You already know a few.",
         pp_scene_bouton: "Enter the scene",
         pp_plus_tard: "Later",
+        seance_porte_tout: "Words, grammar and scene",
+        seance_aujourdhui: "Today: {lieu}",
+        seance_aujourdhui_sous: "3 questions halfway through the session",
+        arret_badge: "Scene stop",
+        arret_titre: "Step into the scene: {lieu}",
+        arret_texte_a1: "Three objects to find. You've already seen them in your cards:",
+        arret_texte: "Three questions in the scene, at your level.",
+        arret_entrer: "Enter",
+        arret_passer: "Skip",
         cp_q_gram: "Complete the sentence",
         cp_q_dictee: "Write what you hear",
         cp_q_parler: "Say it out loud",
@@ -13280,6 +13308,15 @@ const I18N = {
         pp_scene_texte: "Adlarını duymak için nesnelere dokun. Bazılarını zaten biliyorsun.",
         pp_scene_bouton: "Sahneye gir",
         pp_plus_tard: "Sonra",
+        seance_porte_tout: "Kelimeler, dilbilgisi ve sahne",
+        seance_aujourdhui: "Bugün: {lieu}",
+        seance_aujourdhui_sous: "Çalışmanın ortasında 3 soru",
+        arret_badge: "Sahne molası",
+        arret_titre: "Sahneye gir: {lieu}",
+        arret_texte_a1: "Bulunacak üç nesne. Onları kartlarında zaten gördün:",
+        arret_texte: "Sahnede seviyene uygun üç soru.",
+        arret_entrer: "Gir",
+        arret_passer: "Geç",
         cp_q_gram: "Cümleyi tamamla",
         cp_q_dictee: "Duyduğunu yaz",
         cp_q_parler: "Yüksek sesle tekrarla",
@@ -14830,6 +14867,15 @@ const I18N = {
         pp_scene_texte: "Торкайся предметів, щоб почути їхні назви. Деякі ти вже знаєш.",
         pp_scene_bouton: "Увійти в сцену",
         pp_plus_tard: "Пізніше",
+        seance_porte_tout: "Слова, граматика і сцена",
+        seance_aujourdhui: "Сьогодні: {lieu}",
+        seance_aujourdhui_sous: "3 запитання посеред заняття",
+        arret_badge: "Зупинка в сцені",
+        arret_titre: "Зайди в сцену: {lieu}",
+        arret_texte_a1: "Три предмети, які треба знайти. Ти вже бачив(-ла) їх у картках:",
+        arret_texte: "Три запитання в сцені, на твоєму рівні.",
+        arret_entrer: "Увійти",
+        arret_passer: "Пропустити",
         cp_q_gram: "Доповни речення",
         cp_q_dictee: "Напиши, що чуєш",
         cp_q_parler: "Повтори вголос",
@@ -16743,6 +16789,15 @@ const I18N = {
         pp_scene_texte: "اشیا را لمس کن تا نامشان را بشنوی. چندتایشان را از قبل می‌دانی.",
         pp_scene_bouton: "ورود به صحنه",
         pp_plus_tard: "بعداً",
+        seance_porte_tout: "واژه‌ها، دستور و صحنه",
+        seance_aujourdhui: "امروز: {lieu}",
+        seance_aujourdhui_sous: "۳ پرسش در میانهٔ جلسه",
+        arret_badge: "توقف در صحنه",
+        arret_titre: "وارد صحنه شو: {lieu}",
+        arret_texte_a1: "سه شیء برای پیدا کردن. قبلاً آن‌ها را در کارت‌هایت دیده‌ای:",
+        arret_texte: "سه پرسش در صحنه، در سطح تو.",
+        arret_entrer: "ورود",
+        arret_passer: "رد شدن",
         cp_q_gram: "جمله را کامل کن",
         cp_q_dictee: "آنچه می‌شنوی را بنویس",
         cp_q_parler: "بلند تکرار کن",
@@ -18087,6 +18142,15 @@ const I18N = {
         pp_scene_texte: "المس الأشياء لتسمع أسماءها. أنت تعرف بعضها من قبل.",
         pp_scene_bouton: "الدخول إلى المشهد",
         pp_plus_tard: "لاحقًا",
+        seance_porte_tout: "كلمات وقواعد ومشهد",
+        seance_aujourdhui: "اليوم: {lieu}",
+        seance_aujourdhui_sous: "3 أسئلة في منتصف الجلسة",
+        arret_badge: "وقفة في المشهد",
+        arret_titre: "ادخل إلى المشهد: {lieu}",
+        arret_texte_a1: "ثلاثة أشياء للبحث عنها. رأيتها من قبل في بطاقاتك:",
+        arret_texte: "ثلاثة أسئلة في المشهد، بمستواك.",
+        arret_entrer: "دخول",
+        arret_passer: "تخطٍّ",
         cp_q_gram: "أكمل الجملة",
         cp_q_dictee: "اكتب ما تسمعه",
         cp_q_parler: "كرّرها بصوت عالٍ",
@@ -18304,6 +18368,15 @@ const I18N = {
         pp_scene_texte: "Toque nos objetos para ouvir o nome deles. Você já conhece alguns.",
         pp_scene_bouton: "Entrar na cena",
         pp_plus_tard: "Mais tarde",
+        seance_porte_tout: "Palavras, gramática e cena",
+        seance_aujourdhui: "Hoje: {lieu}",
+        seance_aujourdhui_sous: "3 perguntas no meio da sessão",
+        arret_badge: "Parada na cena",
+        arret_titre: "Entre na cena: {lieu}",
+        arret_texte_a1: "Três objetos para encontrar. Você já os viu nos seus cartões:",
+        arret_texte: "Três perguntas na cena, no seu nível.",
+        arret_entrer: "Entrar",
+        arret_passer: "Pular",
         cp_q_gram: "Complete a frase",
         cp_q_dictee: "Escreva o que você ouve",
         cp_q_parler: "Repita em voz alta",
@@ -19580,6 +19653,15 @@ const I18N = {
         pp_scene_texte: "Dotykaj przedmiotów, by usłyszeć ich nazwy. Kilka już znasz.",
         pp_scene_bouton: "Wejdź do sceny",
         pp_plus_tard: "Później",
+        seance_porte_tout: "Słowa, gramatyka i scena",
+        seance_aujourdhui: "Dziś: {lieu}",
+        seance_aujourdhui_sous: "3 pytania w połowie sesji",
+        arret_badge: "Przystanek w scenie",
+        arret_titre: "Wejdź do sceny: {lieu}",
+        arret_texte_a1: "Trzy przedmioty do znalezienia. Widziałeś(-aś) je już na fiszkach:",
+        arret_texte: "Trzy pytania w scenie, na twoim poziomie.",
+        arret_entrer: "Wejdź",
+        arret_passer: "Pomiń",
         cp_q_gram: "Uzupełnij zdanie",
         cp_q_dictee: "Napisz, co słyszysz",
         cp_q_parler: "Powtórz na głos",
@@ -20854,6 +20936,15 @@ const I18N = {
         pp_scene_texte: "Нажимай на предметы, чтобы услышать их названия. Некоторые ты уже знаешь.",
         pp_scene_bouton: "Войти в сцену",
         pp_plus_tard: "Позже",
+        seance_porte_tout: "Слова, грамматика и сцена",
+        seance_aujourdhui: "Сегодня: {lieu}",
+        seance_aujourdhui_sous: "3 вопроса в середине занятия",
+        arret_badge: "Остановка в сцене",
+        arret_titre: "Зайди в сцену: {lieu}",
+        arret_texte_a1: "Три предмета, которые нужно найти. Ты уже видел(а) их в карточках:",
+        arret_texte: "Три вопроса в сцене, на твоём уровне.",
+        arret_entrer: "Войти",
+        arret_passer: "Пропустить",
         cp_q_gram: "Дополни предложение",
         cp_q_dictee: "Напиши, что слышишь",
         cp_q_parler: "Повтори вслух",
@@ -34374,6 +34465,16 @@ const ESSAIS = {
     },
     // EN ESSAI le 16 oct. 2026 (v828), admin seul. Jacques, pour sa soeur et son
     // beau-frere, debutants complets en espagnol. Voir ouvrirPremiersPas().
+    // EN ESSAI le 16 oct. 2026 (v831), admin seul. Jacques : « que les scenes
+    // s'integrent dans la seance : au lieu d'un bouton Commencer pour les mots
+    // et la grammaire, puis un autre pour les scenes, que tout soit melange » ;
+    // « seulement Trouve ! ; la decouverte, dans d'autres sections ». Maquette :
+    // .claude/maquette-scene-dans-la-seance.html. Voir preparerArretScene().
+    scene_arret: {
+        etat: "admin",
+        titre: "La scène dans la séance",
+        desc: "Une seule porte sur l'accueil ; au milieu de la séance, un arrêt de 3 questions dans la scène du jour (« Trouve ! » sur des mots déjà vus en A1, les questions du niveau ensuite), puis retour aux cartes."
+    },
     premiers_pas: {
         etat: "admin",
         titre: "Premiers pas (un niveau avant A1)",
@@ -39294,7 +39395,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 830;
+const APP_VERSION = 831;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42782,7 +42883,10 @@ function majTitrePorteMots(){
         porte.classList.remove("porte-pp");
         porte.style.backgroundImage = "";
     }
-    const cle = essaiActif("phrases") ? "seance_porte_mots_grammaire" : "seance_porte_mots";
+    let arret = false;
+    try{ arret = arretSceneActif(); }catch(e){}
+    const cle = arret ? "seance_porte_tout"
+              : essaiActif("phrases") ? "seance_porte_mots_grammaire" : "seance_porte_mots";
     titreMots.setAttribute("data-i18n", cle);
     titreMots.textContent = t(cle);
 }
@@ -42792,8 +42896,14 @@ function majPortesSeance(){
     const porte = document.getElementById("seancePorteScene");
     if(!porte) return;
     const actif = essaiActif("scenes");
-    porte.classList.toggle("hidden", !actif);
-    if(!actif) return;
+    // v831 : avec l'arret dans la seance, une seule porte ; la scene du jour
+    // s'annonce dedans.
+    let arret = false;
+    try{ arret = arretSceneActif(); }catch(e){}
+    try{ majAujourdhuiScene(arret && actif); }catch(e){}
+    if(porte.parentElement) porte.parentElement.classList.toggle("porte-unique", arret && actif);
+    porte.classList.toggle("hidden", !actif || arret);
+    if(!actif || arret) return;
     const s = sceneDuJour();
     porte.style.backgroundImage = "linear-gradient(90deg, rgba(28,36,48,.96) 0%, rgba(28,36,48,.82) 55%, rgba(28,36,48,.45) 100%), url(\"" + vignetteScene(s.nom) + "\")";
     const nb = document.getElementById("seanceSceneNb");
@@ -42969,6 +43079,8 @@ window.addEventListener("message", (e) => {
         // bord est exclu : il ouvre une scene pour la TESTER, et ses reponses
         // ne disent rien de ce que l'admin sait.
         if(sceneOuverteDepuis !== "admin") revisionDeScene(d);
+    } else if(d.type === "fini" && sceneOuverteDepuis === "arret"){
+        revenirDeLArret();
     } else if(d.type === "fini" && sceneOuverteDepuis === "premiers_pas"){
         // La scene de Premiers pas n'est pas la scene du jour : sa porte reste.
         // « Jour suivant » enchaine ; sinon l'accueil, ou la porte montre le jour.
@@ -42984,6 +43096,7 @@ window.addEventListener("message", (e) => {
         if(sceneOuverteDepuis === "admin") openAdminDashboard();
         else if(sceneOuverteDepuis === "libre") openOrbPanel("scenes");
         else if(sceneOuverteDepuis === "premiers_pas"){ goHome(); try{ majTuileSeance(); }catch(err){} }
+        else if(sceneOuverteDepuis === "arret") revenirDeLArret();
         else { goHome(); try{ majTuileSeance(); }catch(err){} }
     }
 });
@@ -43661,8 +43774,8 @@ function montrerCartePhrase(item){
     const type = creer("div", "cp-type");
     type.appendChild(creer("b", item.pp ? "cp-pp" : "", item.pp ? "🌱 " + t("pp_badge") : t("cp_type")));
     const question = item.pp ? (item.forme === "pp_tableau" ? "pp_q_tableau" : "pp_q_choix") : (QUESTIONS[item.forme] || "cp_q_ecoute");
-    if(item.forme !== "pp_fin" && item.forme !== "pp_scene") type.appendChild(document.createTextNode(t(question)));
-    el.appendChild(type);
+    if(item.forme !== "pp_fin" && item.forme !== "pp_scene" && item.forme !== "scene_arret") type.appendChild(document.createTextNode(t(question)));
+    if(item.forme !== "scene_arret") el.appendChild(type);
     const retour = creer("div", "cp-retour hidden");
     const actions = creer("div", "cp-actions");
     const suite = creer("button", "primary hidden", t("setup_continue"));
@@ -43723,7 +43836,32 @@ function montrerCartePhrase(item){
         return b;
     };
 
-    if(item.forme === "pp_tableau"){
+    if(item.forme === "scene_arret"){
+        // L'arret dans la scene du jour : l'image, ce qu'on va y faire, Entrer.
+        const s = item.scene;
+        const image = creer("div", "cp-scene-pp");
+        image.style.backgroundImage = "url(\"" + vignetteScene(s.nom) + "\")";
+        el.appendChild(image);
+        el.appendChild(creer("span", "cp-arret-badge", "🎯 " + t("arret_badge")));
+        el.appendChild(creer("h2", "cp-scene-titre", tf("arret_titre", { lieu: titreCourtScene(s) })));
+        if(item.mots && item.mots.length){
+            el.appendChild(creer("p", "cp-sens", t("arret_texte_a1")));
+            const mots = creer("div", "cp-arret-mots");
+            item.mots.slice(0, 6).forEach(m => {
+                const x = creer("span", "", m[1]);
+                x.setAttribute("lang", langueDe);
+                mots.appendChild(x);
+            });
+            el.appendChild(mots);
+        } else el.appendChild(creer("p", "cp-sens", t("arret_texte")));
+        fait.repondu = true;
+        const entrer = creer("button", "primary", t("arret_entrer") + " ›");
+        entrer.type = "button";
+        entrer.addEventListener("click", () => ouvrirArretScene(item));
+        actions.appendChild(entrer);
+        suite.textContent = t("arret_passer");
+        suite.className = "secondary";
+    } else if(item.forme === "pp_tableau"){
         // Le tableau du jour : chaque ligne se touche et se prononce. Rien a
         // juger : il familiarise, les flashcards font retenir.
         const tab = item.tableau || {};
@@ -44301,6 +44439,108 @@ async function ouvrirPremiersPas(){
     return true;
 }
 
+// ============ LA SCENE DANS LA SEANCE (essai « scene_arret », v831) ============
+// Un arret, UN SEUL par seance, vers le milieu : la scene du jour en mode seance
+// (?seance=1&nb=3), puis retour aux cartes LA OU L'ON ETAIT. En A1, « Trouve ! »
+// ne demande que des mots de la scene deja vus dans les cartes (?mots=) : il en
+// faut trois, sinon pas d'arret ce jour-la (le premier jour d'un debutant). A
+// partir de l'A2, les questions du niveau, comme la scene du jour.
+const ARRET_NB = 3;
+function arretSceneActif(){
+    try{ return essaiActif("scene_arret") && essaiActif("scenes") && !premiersPasEnCours(); }catch(e){ return false; }
+}
+// Les mots de la scene (fichier genere par construire.py), avec leur carte.
+async function motsVusDeScene(nom){
+    const url = baseScenes() + "scene-" + nom + (LANGUE_APPRISE === "es" ? ".es" : "") + ".js";
+    const texte = await (await fetch(url, { cache: "no-cache" })).text();
+    const scene = JSON.parse(texte.slice(texte.indexOf("{"), texte.lastIndexOf("}") + 1));
+    const vus = new Map();
+    const exclus = scene.exclus || [];
+    (scene.points || []).forEach(p => {
+        [{ mot: p.mot, genre: p.genre, theme: p.theme, niveau: p.niveau }].concat(p.aussi || []).forEach(m => {
+            // Comme la scene (aSonNiveau) : un mot au-dessus du A1 ne s'y demande pas.
+            if(!m || !m.mot || vus.has(m.mot) || exclus.indexOf(m.mot) >= 0) return;
+            if(m.niveau && m.niveau !== "A1") return;
+            const carte = carteDeScene({ mot: m.mot, genre: m.genre, theme: m.theme });
+            if(carte && !estNeuf(getWordState(carte.themeId, carte.index)))
+                vus.set(m.mot, (m.genre ? m.genre + " " : "") + m.mot);
+        });
+    });
+    return vus;
+}
+async function preparerArretScene(seance){
+    if(!arretSceneActif() || !seance || seance.length < 6) return seance;
+    try{
+        const s = sceneDuJour();
+        const niveau = niveauSeance();
+        let mots = [];
+        if(niveau === "A1"){
+            const vus = await motsVusDeScene(s.nom);
+            if(vus.size < ARRET_NB) return seance;
+            // Trois mots tires parmi ceux deja vus : ce sont eux que la carte
+            // annonce, et eux seuls que la scene demande.
+            mots = melangerPhrase(Array.from(vus.entries())).slice(0, ARRET_NB);
+        }
+        const arret = { mode: "phrase", forme: "scene_arret", cible: null, themeId: "scene_arret", index: 0,
+                        scene: s, niveau: niveau, mots: mots, phrase: null, word: "" };
+        const sortie = seance.slice();
+        sortie.splice(Math.floor(sortie.length / 2), 0, arret);
+        return sortie;
+    }catch(e){ return seance; }
+}
+function ouvrirArretScene(item){
+    sceneOuverteDepuis = "arret";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        const mots = (item.mots || []).map(m => m[0]).join("|");
+        cadre.title = t("seance_scene_cadre");
+        cadre.src = baseScenes() + "index.html?scene=" + encodeURIComponent(item.scene.nom)
+                  + "&seance=1&niveau=" + encodeURIComponent(item.niveau || "A1")
+                  + "&nb=" + ARRET_NB
+                  + (mots ? "&mots=" + encodeURIComponent(mots) : "")
+                  + "&lang=" + encodeURIComponent(getUiLang())
+                  + langueDeScene()
+                  + "&vitesse=" + facteurVitesse
+                  + "&t=" + Date.now();
+    }
+    showScreen("sceneSeance");
+}
+// Retour de l'arret : la carte suivante de la seance, la ou l'on etait.
+function revenirDeLArret(){
+    try{ localStorage.setItem(SCENE_FAITE_KEY, new Date().toDateString()); }catch(e){}
+    showScreen("flashcards");
+    cacherCartePhrase();
+    nextFlashcard();
+}
+// La porte unique de l'accueil annonce la scene du jour.
+function majAujourdhuiScene(on){
+    const titre = document.getElementById("seancePorteMotsTitre");
+    const porte = titre && titre.closest(".seance-porte");
+    if(!porte) return;
+    let el = porte.querySelector(".seance-aujourdhui");
+    if(!on){ if(el) el.classList.add("hidden"); return; }
+    if(!el){
+        el = document.createElement("div");
+        el.className = "seance-aujourdhui";
+        const go = porte.querySelector(".seance-go");
+        porte.insertBefore(el, go || null);
+    }
+    el.classList.remove("hidden");
+    const s = sceneDuJour();
+    el.textContent = "";
+    const v = document.createElement("span");
+    v.className = "seance-aujourdhui-vign";
+    v.style.backgroundImage = "url(\"" + vignetteScene(s.nom) + "\")";
+    const txt = document.createElement("span");
+    txt.className = "seance-aujourdhui-txt";
+    const b = document.createElement("b");
+    b.textContent = tf("seance_aujourdhui", { lieu: titreCourtScene(s) });
+    txt.appendChild(b);
+    txt.appendChild(document.createTextNode(t("seance_aujourdhui_sous")));
+    el.appendChild(v);
+    el.appendChild(txt);
+}
+
 async function ouvrirSeanceDuJour(sansScene){
     // v828 : en Premiers pas, la porte des mots mene au parcours des 50 mots.
     if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }
@@ -44340,6 +44580,8 @@ async function ouvrirSeanceDuJour(sansScene){
         try{ await prechargerGrammaireSeance(); }catch(e){}
         try{ seance = insererCartesPhrases(seance, tout); }catch(e){}
     }
+    // v831 : la scene du jour, une fois, au milieu (essai « scene_arret »).
+    try{ seance = await preparerArretScene(seance); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
         toastSeanceVide(tout, "alert_all_theme_words_mastered"); return;

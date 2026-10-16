@@ -9208,3 +9208,8 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
 - Maquette .claude/maquette-scene-dans-la-seance.html : une seule porte ; au milieu de la seance,
   un arret de 3 « Trouve ! » sur des mots deja vus ; retour aux cartes ; la decouverte reste dans
   Explorer les scenes. Revient sur le choix des deux portes (v799, 14 oct.).
+- v831 : CABLE en essai (admin seul) apres « la maquette me va ; un seul arret par seance ». Une
+  seule porte « Mots, grammaire et scene » qui annonce « Aujourd'hui : <la scene> » ; au milieu de
+  la seance, une carte « Arret dans la scene » (trois mots deja vus, tires au hasard, annonces et
+  seuls demandes ; au-dessus du A1, les questions du niveau), Entrer ou Passer ; a la fin de la
+  scene, retour a la carte suivante. Pas d'arret si moins de trois mots A1 de la scene ont ete vus.
