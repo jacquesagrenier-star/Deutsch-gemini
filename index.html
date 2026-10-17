@@ -6453,8 +6453,8 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .carreau-mini canvas{display:block; width:100%; height:auto;}
 .carreau-mini.visible{opacity:1; transform:none;}
 .carreau-mini.recoit{box-shadow:0 0 0 3px #E8A23A, 0 6px 22px rgba(232,162,58,.55);}
-.carreau-plus{position:fixed; z-index:10000; pointer-events:none; font:900 22px Nunito, system-ui, sans-serif; color:#E8A23A; text-shadow:0 1px 0 #fff, 0 2px 8px rgba(28,36,48,.25); animation:carreau-plus 1.3s ease-out both;}
-@keyframes carreau-plus{0%{opacity:0; transform:translateY(8px) scale(.7)} 20%{opacity:1; transform:translateY(0) scale(1.1)} 70%{opacity:1; transform:translateY(-10px) scale(1)} 100%{opacity:0; transform:translateY(-22px)}}
+.carreau-plus{position:fixed; z-index:10000; pointer-events:none; font:900 24px Nunito, system-ui, sans-serif; color:#fff; text-shadow:0 0 3px rgba(0,0,0,.65), 0 2px 8px rgba(0,0,0,.45); transform:translate(-50%,-50%); animation:carreau-plus .95s ease-out both;}
+@keyframes carreau-plus{0%{opacity:0; transform:translate(-50%,-50%) scale(.6)} 25%{opacity:1; transform:translate(-50%,-50%) scale(1.15)} 60%{opacity:1; transform:translate(-50%,-50%) scale(1)} 100%{opacity:0; transform:translate(-50%,-80%) scale(.9)}}
 .carreau-vol{position:fixed; border-radius:6px; z-index:9999; pointer-events:none; transform-origin:0 0; box-shadow:0 0 0 3px #E8A23A, 0 8px 22px rgba(232,162,58,.55); animation:carreau-pop .25s ease both; transition:transform .55s cubic-bezier(.5,-0.1,.35,1), border-radius .55s;}
 @keyframes carreau-pop{0%{opacity:0; transform:scale(.3) rotate(-10deg)} 100%{opacity:1; transform:none}}
 body[data-theme="dark"] .cp-or-motseul{background:#232a34;}
@@ -43549,14 +43549,7 @@ function lancerCarreauVersMosaique(poses){
             document.body.appendChild(fond);
             const cadre = fond.getBoundingClientRect();
             const fx = cadre.left, fy = cadre.top, FH = FW * H / L;
-            // v848 : « +1 » au moment du son (Jacques), a gauche de la mosaique.
-            const plus = document.createElement("div");
-            plus.className = "carreau-plus";
-            plus.textContent = "+1";
-            plus.style.left = Math.max(8, fx - 44) + "px";
-            plus.style.top = (fy + Math.max(0, FH / 2 - 16)) + "px";
-            document.body.appendChild(plus);
-            setTimeout(() => plus.remove(), 1400);
+
             const S = Math.round(FW / 2);
             const vol = document.createElement("canvas");
             vol.className = "carreau-vol";
@@ -43567,6 +43560,15 @@ function lancerCarreauVersMosaique(poses){
             cv.drawImage(apres, rect[0], rect[1], rect[2], rect[3], 0, 0, 128, 128);
             const x0 = fx + FW / 2 - S / 2, y0 = fy + FH / 2 - S / 2;
             vol.style.left = x0 + "px"; vol.style.top = y0 + "px";
+            // v848 : « +1 » au CENTRE du carreau qui apparait (Jacques), au
+            // moment du son ; il s'efface pendant que le carreau rapetisse.
+            const plus = document.createElement("div");
+            plus.className = "carreau-plus";
+            plus.textContent = "+1";
+            plus.style.left = (x0 + S / 2) + "px";
+            plus.style.top = (y0 + S / 2) + "px";
+            setTimeout(() => document.body.appendChild(plus), 120);
+            setTimeout(() => plus.remove(), 1100);
             requestAnimationFrame(() => fond.classList.add("visible"));
             setTimeout(() => document.body.appendChild(vol), 120);
             setTimeout(() => {

@@ -9365,5 +9365,6 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   1 000 (le balayage n'existe plus : skipFlashcard() n'est plus appelee). Retires : la phrase
   « au maximum 80 cartes par jour » de la fiche du tableau, et la seconde phrase de la legende de
   l objectif (« une carte balayee fait avancer le tableau »), dans les 9 langues.
-- v848 : « au moment du son, on devrait voir apparaitre aussi +1 » : un +1 ambre monte a gauche
-  de la petite mosaique quand le son de recompense part.
+- v848 : « au moment du son, on devrait voir apparaitre aussi +1 », « au centre de la tuile qui
+  apparait » : un +1 blanc au centre du carreau gagne, qui s efface pendant qu il rapetisse
+  (au moment du son de recompense).
