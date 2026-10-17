@@ -1,0 +1,1021 @@
+{
+ "_lisez_moi": [
+  "Le U-Bahn (16 oct. 2026) : un matin de semaine, Mark prend le metro dans une vieille station de Berlin ; un pied deja leve vers la porte ouverte de la rame jaune, un petit billet blanc dans une main et un cafe a emporter dans l'autre, il se retourne en souriant ; sac a dos, doudoune, sweat a capuche, echarpe verte ; dans la rame, des voyageurs assis ; le long du mur carrele, une poubelle verte, un banc ou une vieille dame en impermeable attend avec sa valise, son parapluie rouge et un petit chien, le kiosque aux bretzels et aux journaux, un musicien de rue qui joue de la guitare, l'etui ouvert et quelques pieces devant lui, l'escalier vers la rue ; au plafond, l'horloge et l'ecran eteint, les lampes. Theme : les transports, la ville, se deplacer. Le lieu ou Mark et Anna se recroiseront (histoire). Scene creee a la demande de Jacques (« creer huit nouvelles scenes », 16 oct. 2026, deuxieme serie), commencee par Fable, construite par Claude (Opus).",
+  "Image : visuel/scenes/ubahn.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png), rendu photo, une seule prise. Les faux titres des deux journaux du kiosque (des lettres sans sens) ont ete effaces gratuitement (effacer_texte.py, ubahn-effacer.json) -> ubahn-propre.png. Garde tel quel : l'horloge n'a que des traits, l'ecran est sombre avec deux reflets, la petite affiche rouge au fond du tunnel est illisible.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Contours (16 oct. 2026) : les personnes et leurs vetements portent une boite « sam » et des « points_sam » (1 = sur l'objet, 0 = a exclure), voir detourer.py ; « plein » seulement pour les fonds (mur, sol, table, fenetre, comptoir) ou pour un groupe d'objets transparents que SAM ne detoure pas (les verres suspendus) ; les lunettes sont des « ellipses ».",
+  "Histoire des personnages : Mark seul, il vit a Berlin depuis peu ; le musicien est der Mann, la vieille dame die Frau, les voyageurs der Fahrgast (des inconnus). La rame jaune est die U-Bahn (aussi Zug) ; le quai der Bahnsteig (plein) ; la doudoune de Mark die Jacke, son sweat a capuche der Pullover ; le gobelet der Kaffee ; le petit billet die Fahrkarte ; l'impermeable de la dame der Mantel ; l'etui ouvert de la guitare der Koffer (koffer-2) ; le panneau vert et blanc au-dessus du kiosque das Schild ; le panneau blanc du mur die Tuer (tuer-2, plein) ; les tubes lumineux du plafond die Lampe.",
+  "SANS ZONE bien que visibles (a signaler) : la rampe de l'escalier, le tunnel au bout du quai, la bande d'eveil au sol, la laisse du chien, le sac rouge sur les genoux de la dame (petit, confondu avec le parapluie), la presentoir vitre du kiosque (on touche les bretzels et le kiosque). Le chapeau demande pour le musicien n'est pas dans l'image.",
+  "Mesures relues sur la grille en % du 16 oct. 2026."
+ ],
+ "image": "ubahn.webp",
+ "source": "../scenes/ubahn-propre.png",
+ "titre": "In der U-Bahn-Station",
+ "alt": "Mark dans une station de métro de Berlin, un matin de semaine : un pied déjà levé vers la porte ouverte de la rame jaune, un petit billet blanc dans une main et un café à emporter dans l'autre, il se retourne avec un sourire ; il porte une doudoune bleu marine sur un sweat gris à capuche, une écharpe verte, un jean, des baskets blanches et un sac à dos noir ; dans la rame, des voyageurs assis ; le long du mur de carreaux verts, une poubelle verte, un banc où une vieille dame en imperméable beige attend avec sa valise, un parapluie rouge et un petit chien, le kiosque avec ses bretzels et ses journaux, un musicien de rue qui joue de la guitare devant son étui ouvert où brillent quelques pièces, et l'escalier qui monte vers la rue ; au plafond, une horloge, un écran éteint et de longues lampes.",
+ "consigne": "Mark prend le métro. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Decke",
+      "an der Wand",
+      "über der Treppe"
+     ],
+     "f": "uhr",
+     "r": "decke",
+     "phrase": "Die Uhr hängt an der Decke.",
+     "sens": "L'horloge est accrochée au plafond.",
+     "n": "die Decke → an <b>der</b> Decke : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo sitzt die Frau?",
+     "c": [
+      "auf der Bank",
+      "auf dem Koffer",
+      "auf der Treppe"
+     ],
+     "f": "frau",
+     "r": "bank",
+     "phrase": "Die Frau sitzt auf der Bank.",
+     "sens": "La dame est assise sur le banc.",
+     "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht der Koffer?",
+     "c": [
+      "vor der Bank",
+      "auf der Bank",
+      "auf der Treppe"
+     ],
+     "f": "koffer",
+     "r": "bank",
+     "phrase": "Der Koffer steht vor der Bank.",
+     "sens": "La valise est devant le banc.",
+     "n": "<b>vor</b> + datif (Wo?) : die Bank → vor <b>der</b> Bank."
+    },
+    {
+     "q": "Wo liegen die Brezeln?",
+     "c": [
+      "im Kiosk",
+      "auf der Bank",
+      "im Koffer"
+     ],
+     "f": "brezel",
+     "r": "kiosk",
+     "phrase": "Die Brezeln liegen im Kiosk.",
+     "sens": "Les bretzels sont dans le kiosque.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Kiosk → im Kiosk."
+    },
+    {
+     "q": "Wo liegen die Münzen?",
+     "c": [
+      "im Koffer",
+      "im Kiosk",
+      "auf der Bank"
+     ],
+     "f": "muenze",
+     "r": "koffer-2",
+     "phrase": "Die Münzen liegen im Koffer.",
+     "sens": "Les pièces sont dans l'étui.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Koffer → im Koffer."
+    },
+    {
+     "q": "Wo sitzt der Hund?",
+     "c": [
+      "neben der Bank",
+      "auf der Treppe",
+      "im Kiosk"
+     ],
+     "f": "hund",
+     "r": "bank",
+     "phrase": "Der Hund sitzt neben der Bank.",
+     "sens": "Le chien est assis à côté du banc.",
+     "n": "<b>neben</b> = à côté de. die Bank → neben <b>der</b> Bank."
+    },
+    {
+     "q": "Wo steht die U-Bahn?",
+     "c": [
+      "am Bahnsteig",
+      "auf der Treppe",
+      "im Kiosk"
+     ],
+     "f": "ubahn",
+     "r": "bahnsteig",
+     "phrase": "Die U-Bahn steht am Bahnsteig.",
+     "sens": "Le métro est à quai.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Bahnsteig → am Bahnsteig."
+    },
+    {
+     "q": "Wo sitzen die Fahrgäste?",
+     "c": [
+      "in der U-Bahn",
+      "am Kiosk",
+      "auf der Treppe"
+     ],
+     "f": "fahrgast",
+     "r": "ubahn",
+     "phrase": "Die Fahrgäste sitzen in der U-Bahn.",
+     "sens": "Les voyageurs sont assis dans le métro.",
+     "n": "die U-Bahn → in <b>der</b> U-Bahn : au datif, le féminin <b>die</b> devient <b>der</b>."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les conjonctions : und, aber, oder, denn, sondern",
+   "qs": [
+    {
+     "q": "Mark hat eine Fahrkarte ___ einen Kaffee.",
+     "c": [
+      "und",
+      "aber",
+      "denn"
+     ],
+     "f": "fahrkarte",
+     "r": "mark",
+     "phrase": "Mark hat eine Fahrkarte und einen Kaffee.",
+     "sens": "Mark a un billet et un café.",
+     "n": "<b>und</b> = et : il relie deux éléments.",
+     "revise": "haben"
+    },
+    {
+     "q": "Mark beeilt sich, ___ die U-Bahn fährt gleich ab.",
+     "c": [
+      "denn",
+      "aber",
+      "oder"
+     ],
+     "f": "mark",
+     "r": "ubahn",
+     "phrase": "Mark beeilt sich, denn die U-Bahn fährt gleich ab.",
+     "sens": "Mark se dépêche, car le métro va partir.",
+     "n": "<b>denn</b> = car : il donne la raison ; le verbe reste en 2e position (die U-Bahn <b>fährt</b>).",
+     "revise": "abfahren"
+    },
+    {
+     "q": "Der Mann singt nicht, ___ er spielt Gitarre.",
+     "c": [
+      "sondern",
+      "aber",
+      "oder"
+     ],
+     "f": "mann",
+     "r": "gitarre",
+     "phrase": "Der Mann singt nicht, sondern er spielt Gitarre.",
+     "sens": "L'homme ne chante pas, il joue de la guitare.",
+     "n": "Après une négation, pour corriger : <b>sondern</b> (mais au contraire).",
+     "revise": "spielen"
+    },
+    {
+     "q": "Möchtest du eine Brezel ___ eine Zeitung?",
+     "c": [
+      "oder",
+      "aber",
+      "sondern"
+     ],
+     "f": "brezel",
+     "r": "zeitung",
+     "phrase": "Möchtest du eine Brezel oder eine Zeitung?",
+     "sens": "Tu veux un bretzel ou un journal ?",
+     "n": "<b>oder</b> = ou : un choix."
+    },
+    {
+     "q": "Der Kiosk ist klein, ___ er hat viele Brezeln.",
+     "c": [
+      "aber",
+      "denn",
+      "sondern"
+     ],
+     "f": "kiosk",
+     "r": "brezel",
+     "phrase": "Der Kiosk ist klein, aber er hat viele Brezeln.",
+     "sens": "Le kiosque est petit, mais il a beaucoup de bretzels.",
+     "n": "<b>aber</b> = mais : une opposition."
+    },
+    {
+     "q": "Die Frau hat einen Regenschirm, ___ draußen regnet es.",
+     "c": [
+      "denn",
+      "aber",
+      "sondern"
+     ],
+     "f": "regenschirm",
+     "r": "frau",
+     "phrase": "Die Frau hat einen Regenschirm, denn draußen regnet es.",
+     "sens": "La dame a un parapluie, car il pleut dehors.",
+     "n": "<b>denn</b> + ordre normal : draußen <b>regnet</b> es.",
+     "revise": "regnen"
+    },
+    {
+     "q": "Der Hund bellt nicht, ___ er sitzt ruhig neben der Bank.",
+     "c": [
+      "sondern",
+      "aber",
+      "denn"
+     ],
+     "f": "hund",
+     "r": "bank",
+     "phrase": "Der Hund bellt nicht, sondern er sitzt ruhig neben der Bank.",
+     "sens": "Le chien n'aboie pas, il est assis tranquillement à côté du banc.",
+     "n": "nicht …, <b>sondern</b> … : la seconde partie remplace la première."
+    },
+    {
+     "q": "Mark trinkt Kaffee ___ steigt in die U-Bahn.",
+     "c": [
+      "und",
+      "denn",
+      "sondern"
+     ],
+     "f": "kaffee",
+     "r": "mark",
+     "phrase": "Mark trinkt Kaffee und steigt in die U-Bahn.",
+     "sens": "Mark boit du café et monte dans le métro.",
+     "n": "<b>und</b> peut relier deux verbes qui ont le même sujet.",
+     "revise": "trinken"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "La condition : wenn, falls",
+   "qs": [
+    {
+     "q": "___ die U-Bahn Verspätung hat, nimmt Mark den Bus.",
+     "c": [
+      "Falls",
+      "Ob",
+      "Dass"
+     ],
+     "f": "ubahn",
+     "r": "mark",
+     "phrase": "Falls die U-Bahn Verspätung hat, nimmt Mark den Bus.",
+     "sens": "Si jamais le métro a du retard, Mark prend le bus.",
+     "n": "<b>falls</b> = au cas où : une condition possible ; le verbe va à la fin.",
+     "revise": "nehmen"
+    },
+    {
+     "q": "Wenn Mark nicht schnell ___, verpasst er die U-Bahn.",
+     "c": [
+      "einsteigt",
+      "steigt ein",
+      "einsteigen"
+     ],
+     "f": "mark",
+     "r": "tuer",
+     "phrase": "Wenn Mark nicht schnell einsteigt, verpasst er die U-Bahn.",
+     "sens": "Si Mark ne monte pas vite, il rate le métro.",
+     "n": "Dans la subordonnée, le verbe séparable se ressoude à la fin : wenn er <b>einsteigt</b>.",
+     "revise": "einsteigen"
+    },
+    {
+     "q": "Wenn es regnet, ___ die Frau ihren Regenschirm.",
+     "c": [
+      "nimmt",
+      "sie nimmt",
+      "nehmen"
+     ],
+     "f": "regenschirm",
+     "r": "frau",
+     "phrase": "Wenn es regnet, nimmt die Frau ihren Regenschirm.",
+     "sens": "Quand il pleut, la dame prend son parapluie.",
+     "n": "Après la subordonnée, la principale commence par le <b>verbe</b> : …, <b>nimmt</b> die Frau.",
+     "revise": "nehmen"
+    },
+    {
+     "q": "Falls du Hunger hast, ___ dir eine Brezel!",
+     "c": [
+      "kauf",
+      "kaufst",
+      "kaufen"
+     ],
+     "f": "brezel",
+     "phrase": "Falls du Hunger hast, kauf dir eine Brezel!",
+     "sens": "Si tu as faim, achète-toi un bretzel !",
+     "n": "Une condition suivie d'un conseil : impératif <b>kauf</b> dir …",
+     "revise": "kaufen"
+    },
+    {
+     "q": "___ Mark einen Sitzplatz findet, trinkt er seinen Kaffee.",
+     "c": [
+      "Wenn",
+      "Ob",
+      "Dass"
+     ],
+     "f": "kaffee",
+     "r": "mark",
+     "phrase": "Wenn Mark einen Sitzplatz findet, trinkt er seinen Kaffee.",
+     "sens": "Si Mark trouve une place assise, il boit son café.",
+     "n": "<b>wenn</b> = si, quand : une condition réelle.",
+     "revise": "finden"
+    },
+    {
+     "q": "Man darf nur einsteigen, wenn man eine Fahrkarte ___.",
+     "c": [
+      "hat",
+      "habe",
+      "hätte"
+     ],
+     "f": "fahrkarte",
+     "phrase": "Man darf nur einsteigen, wenn man eine Fahrkarte hat.",
+     "sens": "On n'a le droit de monter que si l'on a un billet.",
+     "n": "Condition réelle → <b>indicatif</b> : wenn man eine Fahrkarte <b>hat</b>.",
+     "revise": "haben"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark lächelt — er ___ gute Laune haben.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "mark",
+     "phrase": "Er muss gute Laune haben.",
+     "sens": "Il doit être de bonne humeur.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Die Frau ___ zum Flughafen fahren.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "frau",
+     "r": "koffer",
+     "phrase": "Die Frau könnte zum Flughafen fahren.",
+     "sens": "La dame part peut-être à l'aéroport.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der Hund ___ der Frau gehören.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "hund",
+     "r": "frau",
+     "phrase": "Der Hund dürfte der Frau gehören.",
+     "sens": "Le chien appartient sans doute à la dame.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Diese U-Bahn-Station ___ über hundert Jahre alt sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "treppe",
+     "phrase": "Diese U-Bahn-Station soll über hundert Jahre alt sein.",
+     "sens": "Cette station de métro aurait plus de cent ans.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    22
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "sam": [
+    [
+     50.5,
+     0,
+     7,
+     12.5
+    ],
+    [
+     52.5,
+     17.5,
+     5,
+     5
+    ]
+   ],
+   "boites": [
+    [
+     50.5,
+     0,
+     7,
+     12.5
+    ],
+    [
+     52.5,
+     17.5,
+     5,
+     5
+    ]
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    30.5,
+    24.5,
+    10,
+    5.8
+   ]
+  },
+  {
+   "id": "bildschirm",
+   "mot": "Bildschirm",
+   "boite": [
+    42.5,
+    23.5,
+    21,
+    7.5
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     5,
+     24,
+     62
+    ],
+    [
+     24,
+     28,
+     10,
+     10
+    ]
+   ]
+  },
+  {
+   "id": "tuer-2",
+   "mot": "Tür",
+   "plein": true,
+   "boite": [
+    17.5,
+    37.3,
+    5,
+    16
+   ]
+  },
+  {
+   "id": "schild",
+   "mot": "Schild",
+   "boite": [
+    33,
+    35.3,
+    3.7,
+    2.8
+   ]
+  },
+  {
+   "id": "treppe",
+   "mot": "Treppe",
+   "boite": [
+    39,
+    33,
+    16,
+    19.5
+   ]
+  },
+  {
+   "id": "kiosk",
+   "mot": "Kiosk",
+   "boite": [
+    24,
+    37.3,
+    14.5,
+    20
+   ]
+  },
+  {
+   "id": "brezel",
+   "mot": "Brezel",
+   "sur": "kiosk",
+   "boite": [
+    26,
+    41.4,
+    11,
+    7.8
+   ]
+  },
+  {
+   "id": "zeitung",
+   "mot": "Zeitung",
+   "sur": "kiosk",
+   "boite": [
+    25,
+    50.2,
+    10,
+    4.2
+   ]
+  },
+  {
+   "id": "mann",
+   "mot": "Mann",
+   "points_sam": [
+    [
+     41,
+     48,
+     1
+    ],
+    [
+     42,
+     54,
+     1
+    ],
+    [
+     44,
+     51.5,
+     0
+    ]
+   ],
+   "boite": [
+    35.5,
+    46,
+    12,
+    11.5
+   ]
+  },
+  {
+   "id": "gitarre",
+   "mot": "Gitarre",
+   "boite": [
+    36,
+    49.5,
+    11.5,
+    3.8
+   ]
+  },
+  {
+   "id": "hocker",
+   "mot": "Hocker",
+   "boite": [
+    36.3,
+    54.8,
+    5,
+    3
+   ]
+  },
+  {
+   "id": "koffer-2",
+   "mot": "Koffer",
+   "boite": [
+    44.5,
+    54.5,
+    9.5,
+    3.5
+   ]
+  },
+  {
+   "id": "muenze",
+   "mot": "Münze",
+   "sur": "koffer-2",
+   "aussi": [
+    "Geld"
+   ],
+   "boite": [
+    48.5,
+    55.4,
+    5,
+    1.5
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "points_sam": [
+    [
+     20,
+     50,
+     1
+    ],
+    [
+     22,
+     56,
+     1
+    ],
+    [
+     31,
+     63,
+     1
+    ],
+    [
+     25,
+     61,
+     0
+    ]
+   ],
+   "boite": [
+    15,
+    47.5,
+    17,
+    16.5
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "points_sam": [
+    [
+     18,
+     54,
+     1
+    ],
+    [
+     22,
+     58,
+     1
+    ],
+    [
+     28,
+     56,
+     0
+    ]
+   ],
+   "boite": [
+    15,
+    50.7,
+    16,
+    12
+   ]
+  },
+  {
+   "id": "regenschirm",
+   "mot": "Regenschirm",
+   "boite": [
+    26.5,
+    54,
+    8.5,
+    10.5
+   ]
+  },
+  {
+   "id": "koffer",
+   "mot": "Koffer",
+   "boite": [
+    21,
+    58.3,
+    9,
+    8.3
+   ]
+  },
+  {
+   "id": "bank",
+   "mot": "Bank",
+   "points_sam": [
+    [
+     15,
+     59,
+     1
+    ],
+    [
+     14,
+     63,
+     1
+    ],
+    [
+     20,
+     56,
+     0
+    ]
+   ],
+   "boite": [
+    13,
+    54,
+    18,
+    12
+   ]
+  },
+  {
+   "id": "hund",
+   "mot": "Hund",
+   "boite": [
+    34.5,
+    58.3,
+    5.5,
+    7
+   ]
+  },
+  {
+   "id": "muelleimer",
+   "mot": "Mülleimer",
+   "boite": [
+    1.5,
+    55.6,
+    12.5,
+    10
+   ]
+  },
+  {
+   "id": "ubahn",
+   "mot": "U-Bahn",
+   "aussi": [
+    "Zug"
+   ],
+   "sam": [
+    [
+     60,
+     37.5,
+     16,
+     11
+    ],
+    [
+     78,
+     18,
+     22,
+     82
+    ]
+   ],
+   "boites": [
+    [
+     60,
+     37.5,
+     16,
+     11
+    ],
+    [
+     78,
+     18,
+     22,
+     82
+    ]
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "plein": true,
+   "boite": [
+    81.5,
+    28.5,
+    11.5,
+    55
+   ]
+  },
+  {
+   "id": "fahrgast",
+   "mot": "Fahrgast",
+   "sam": [
+    [
+     87.5,
+     41.5,
+     5.5,
+     4.5
+    ],
+    [
+     85.5,
+     45.5,
+     8,
+     17.5
+    ]
+   ],
+   "boite": [
+    85,
+    41,
+    8.5,
+    22
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "devant": 1,
+   "points_sam": [
+    [
+     72,
+     38,
+     1
+    ],
+    [
+     72,
+     52,
+     1
+    ],
+    [
+     70,
+     70,
+     1
+    ],
+    [
+     90,
+     55,
+     0
+    ]
+   ],
+   "boite": [
+    56.5,
+    35.5,
+    30.5,
+    47.5
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "devant": 1,
+   "boite": [
+    64.3,
+    40.6,
+    7.5,
+    4
+   ]
+  },
+  {
+   "id": "schal",
+   "mot": "Schal",
+   "devant": 1,
+   "boite": [
+    72.8,
+    42,
+    8,
+    9.6
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "devant": 1,
+   "points_sam": [
+    [
+     67,
+     52,
+     1
+    ],
+    [
+     76,
+     56,
+     1
+    ],
+    [
+     71,
+     47,
+     1
+    ],
+    [
+     76,
+     46,
+     0
+    ],
+    [
+     60,
+     52,
+     0
+    ],
+    [
+     84,
+     52,
+     0
+    ]
+   ],
+   "boite": [
+    62.5,
+    42,
+    19.5,
+    20.5
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "devant": 1,
+   "boite": [
+    56.5,
+    45.8,
+    8.8,
+    12.2
+   ]
+  },
+  {
+   "id": "kaffee",
+   "mot": "Kaffee",
+   "devant": 1,
+   "boite": [
+    81.8,
+    50.7,
+    4.5,
+    3
+   ]
+  },
+  {
+   "id": "fahrkarte",
+   "mot": "Fahrkarte",
+   "devant": 1,
+   "boite": [
+    85.8,
+    51.7,
+    3.5,
+    2.3
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "devant": 1,
+   "points_sam": [
+    [
+     67,
+     68,
+     1
+    ],
+    [
+     84,
+     68,
+     1
+    ],
+    [
+     72,
+     63,
+     1
+    ],
+    [
+     76,
+     60,
+     0
+    ]
+   ],
+   "boite": [
+    64,
+    59.5,
+    25,
+    22
+   ]
+  },
+  {
+   "id": "turnschuh",
+   "mot": "Turnschuh",
+   "devant": 1,
+   "aussi": [
+    "Schuh"
+   ],
+   "sam": [
+    [
+     64,
+     79,
+     13,
+     4
+    ],
+    [
+     80,
+     74.8,
+     12,
+     3.8
+    ]
+   ],
+   "boites": [
+    [
+     64,
+     79,
+     13,
+     4
+    ],
+    [
+     80,
+     74.8,
+     12,
+     3.8
+    ]
+   ]
+  },
+  {
+   "id": "bahnsteig",
+   "mot": "Bahnsteig",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     60,
+     80,
+     40
+    ],
+    [
+     28,
+     52,
+     32,
+     10
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

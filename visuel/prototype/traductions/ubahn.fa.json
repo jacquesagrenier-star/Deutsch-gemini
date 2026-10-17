@@ -1,0 +1,255 @@
+{
+ "_lisez_moi": [
+  "Traduction du contenu de la scene ubahn (voir construire.py, LES TRADUCTIONS).",
+  "fr = le texte source, recopie du points.json ; trad = sa traduction. Si le fr du points.json change, la traduction est perimee : la page montre le francais jusqu'a ce qu'on la refasse.",
+  "Une question = sa couche et sa phrase allemande. L'allemand ne se traduit pas ; les mots allemands restent en <b>.",
+  "sens = le sens de la phrase, montre apres la reponse (16 oct. 2026) : meme cle et meme paire fr / trad que questions.",
+  "Persan. NON RELU par un locuteur natif. L'allemand hors <b> est dans <span lang=\"de\"> (isole de gauche a droite) ; les fleches entre deux morceaux persans vont vers la gauche."
+ ],
+ "langue": "fa",
+ "scene": "ubahn",
+ "champs": {
+  "alt": {
+   "fr": "Mark dans une station de métro de Berlin, un matin de semaine : un pied déjà levé vers la porte ouverte de la rame jaune, un petit billet blanc dans une main et un café à emporter dans l'autre, il se retourne avec un sourire ; il porte une doudoune bleu marine sur un sweat gris à capuche, une écharpe verte, un jean, des baskets blanches et un sac à dos noir ; dans la rame, des voyageurs assis ; le long du mur de carreaux verts, une poubelle verte, un banc où une vieille dame en imperméable beige attend avec sa valise, un parapluie rouge et un petit chien, le kiosque avec ses bretzels et ses journaux, un musicien de rue qui joue de la guitare devant son étui ouvert où brillent quelques pièces, et l'escalier qui monte vers la rue ; au plafond, une horloge, un écran éteint et de longues lampes.",
+   "trad": "مارک در یک ایستگاه مترو در برلین، یک صبح روز کاری: یک پایش را به سمت درِ باز واگن زرد بالا برده، بلیت کوچک سفیدی در یک دست و قهوهٔ بیرون‌بَری در دست دیگر، با لبخند برمی‌گردد؛ کاپشن پفی سرمه‌ای روی سویشرت خاکستری کلاه‌دار، شال‌گردن سبز، شلوار جین، کتانی سفید و کوله‌پشتی سیاه پوشیده است؛ در واگن مسافرانی نشسته‌اند؛ کنار دیوار کاشی سبز، سطل زبالهٔ سبز، نیمکتی که بانوی سالخورده‌ای با بارانی بژ کنار چمدان، چتر قرمز و سگی کوچک منتظر است، کیوسک با پرتزل‌ها و روزنامه‌ها، نوازنده‌ای خیابانی که جلوی جعبهٔ بازِ گیتارش با چند سکه گیتار می‌زند، و پله‌هایی که به خیابان می‌رسند؛ از سقف ساعتی، صفحه‌ای خاموش و چراغ‌هایی بلند آویزان است."
+  },
+  "consigne": {
+   "fr": "Mark prend le métro. Touche un objet.",
+   "trad": "مارک سوار مترو می‌شود. روی یک شیء بزن."
+  }
+ },
+ "couches": {
+  "A1": {
+   "fr": "Noms et articles",
+   "trad": "اسم‌ها و حرف‌های تعریف"
+  },
+  "A2": {
+   "fr": "Wo? — les prépositions",
+   "trad": "<span lang=\"de\">Wo?</span> — حرف‌های اضافه"
+  },
+  "B1": {
+   "fr": "Les conjonctions : und, aber, oder, denn, sondern",
+   "trad": "حرف‌های ربط: <span lang=\"de\">und, aber, oder, denn, sondern</span>"
+  },
+  "B2": {
+   "fr": "La condition : wenn, falls",
+   "trad": "شرط: <span lang=\"de\">wenn, falls</span>"
+  },
+  "C1": {
+   "fr": "Hypothèses",
+   "trad": "فرض‌ها و گمان‌ها"
+  }
+ },
+ "questions": {
+  "A2 | Die Uhr hängt an der Decke.": {
+   "fr": "die Decke → an <b>der</b> Decke : au datif, le féminin <b>die</b> devient <b>der</b>.",
+   "trad": "<span lang=\"de\">die Decke → an <b>der</b> Decke</span>: در Dativ، مؤنثِ <b>die</b> به <b>der</b> تبدیل می‌شود."
+  },
+  "A2 | Die Frau sitzt auf der Bank.": {
+   "fr": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>.",
+   "trad": "<span lang=\"de\">die Bank → auf <b>der</b> Bank</span>: در Dativ، مؤنثِ <b>die</b> به <b>der</b> تبدیل می‌شود."
+  },
+  "A2 | Der Koffer steht vor der Bank.": {
+   "fr": "<b>vor</b> + datif (Wo?) : die Bank → vor <b>der</b> Bank.",
+   "trad": "<b>vor</b> + <span lang=\"de\">Dativ</span> (<span lang=\"de\">Wo?</span>): <span lang=\"de\">die Bank</span> ← <span lang=\"de\">vor <b>der</b> Bank</span>."
+  },
+  "A2 | Die Brezeln liegen im Kiosk.": {
+   "fr": "<b>im</b> = in + <b>dem</b> : der Kiosk → im Kiosk.",
+   "trad": "<b>im</b> = <span lang=\"de\">in + <b>dem</b></span>: <span lang=\"de\">der Kiosk → im Kiosk</span>."
+  },
+  "A2 | Die Münzen liegen im Koffer.": {
+   "fr": "<b>im</b> = in + <b>dem</b> : der Koffer → im Koffer.",
+   "trad": "<b>im</b> = <span lang=\"de\">in + <b>dem</b></span>: <span lang=\"de\">der Koffer → im Koffer</span>."
+  },
+  "A2 | Der Hund sitzt neben der Bank.": {
+   "fr": "<b>neben</b> = à côté de. die Bank → neben <b>der</b> Bank.",
+   "trad": "<b>neben</b> = کنارِ. <span lang=\"de\">die Bank → neben <b>der</b> Bank</span>."
+  },
+  "A2 | Die U-Bahn steht am Bahnsteig.": {
+   "fr": "<b>am</b> = an + <b>dem</b> : der Bahnsteig → am Bahnsteig.",
+   "trad": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Bahnsteig → am Bahnsteig</span>."
+  },
+  "A2 | Die Fahrgäste sitzen in der U-Bahn.": {
+   "fr": "die U-Bahn → in <b>der</b> U-Bahn : au datif, le féminin <b>die</b> devient <b>der</b>.",
+   "trad": "<span lang=\"de\">die U-Bahn</span> ← <span lang=\"de\">in <b>der</b> U-Bahn</span>: در <span lang=\"de\">Dativ</span>، مؤنثِ <b>die</b> به <b>der</b> تبدیل می‌شود."
+  },
+  "B1 | Mark hat eine Fahrkarte und einen Kaffee.": {
+   "fr": "<b>und</b> = et : il relie deux éléments.",
+   "trad": "<b>und</b> = و: دو جزء را به هم وصل می‌کند."
+  },
+  "B1 | Mark beeilt sich, denn die U-Bahn fährt gleich ab.": {
+   "fr": "<b>denn</b> = car : il donne la raison ; le verbe reste en 2e position (die U-Bahn <b>fährt</b>).",
+   "trad": "<b>denn</b> = زیرا: دلیل را می‌گوید؛ فعل در جایگاه دوم می‌ماند (<span lang=\"de\">die U-Bahn <b>fährt</b></span>)."
+  },
+  "B1 | Der Mann singt nicht, sondern er spielt Gitarre.": {
+   "fr": "Après une négation, pour corriger : <b>sondern</b> (mais au contraire).",
+   "trad": "پس از نفی، برای اصلاح: <b>sondern</b> (بلکه)."
+  },
+  "B1 | Möchtest du eine Brezel oder eine Zeitung?": {
+   "fr": "<b>oder</b> = ou : un choix.",
+   "trad": "<b>oder</b> = یا: انتخاب."
+  },
+  "B1 | Der Kiosk ist klein, aber er hat viele Brezeln.": {
+   "fr": "<b>aber</b> = mais : une opposition.",
+   "trad": "<b>aber</b> = اما: تقابل."
+  },
+  "B1 | Die Frau hat einen Regenschirm, denn draußen regnet es.": {
+   "fr": "<b>denn</b> + ordre normal : draußen <b>regnet</b> es.",
+   "trad": "<b>denn</b> + ترتیب عادی: <span lang=\"de\">draußen <b>regnet</b> es</span>."
+  },
+  "B1 | Der Hund bellt nicht, sondern er sitzt ruhig neben der Bank.": {
+   "fr": "nicht …, <b>sondern</b> … : la seconde partie remplace la première.",
+   "trad": "<span lang=\"de\">nicht</span> …، <b>sondern</b> …: بخش دوم جای بخش اول را می‌گیرد."
+  },
+  "B1 | Mark trinkt Kaffee und steigt in die U-Bahn.": {
+   "fr": "<b>und</b> peut relier deux verbes qui ont le même sujet.",
+   "trad": "<b>und</b> می‌تواند دو فعلِ هم‌فاعل را به هم وصل کند."
+  },
+  "B2 | Falls die U-Bahn Verspätung hat, nimmt Mark den Bus.": {
+   "fr": "<b>falls</b> = au cas où : une condition possible ; le verbe va à la fin.",
+   "trad": "<b>falls</b> = اگر احیاناً: شرطی ممکن؛ فعل به آخر می‌رود."
+  },
+  "B2 | Wenn Mark nicht schnell einsteigt, verpasst er die U-Bahn.": {
+   "fr": "Dans la subordonnée, le verbe séparable se ressoude à la fin : wenn er <b>einsteigt</b>.",
+   "trad": "در جملهٔ پیرو، فعل جداشدنی در آخر دوباره یکی می‌شود: <span lang=\"de\">wenn er <b>einsteigt</b></span>."
+  },
+  "B2 | Wenn es regnet, nimmt die Frau ihren Regenschirm.": {
+   "fr": "Après la subordonnée, la principale commence par le <b>verbe</b> : …, <b>nimmt</b> die Frau.",
+   "trad": "پس از جملهٔ پیرو، جملهٔ اصلی با <b>فعل</b> شروع می‌شود: …، <span lang=\"de\"><b>nimmt</b> die Frau</span>."
+  },
+  "B2 | Falls du Hunger hast, kauf dir eine Brezel!": {
+   "fr": "Une condition suivie d'un conseil : impératif <b>kauf</b> dir …",
+   "trad": "شرط و سپس توصیه: امر <span lang=\"de\"><b>kauf</b> dir</span> …"
+  },
+  "B2 | Wenn Mark einen Sitzplatz findet, trinkt er seinen Kaffee.": {
+   "fr": "<b>wenn</b> = si, quand : une condition réelle.",
+   "trad": "<b>wenn</b> = اگر، وقتی: شرطی واقعی."
+  },
+  "B2 | Man darf nur einsteigen, wenn man eine Fahrkarte hat.": {
+   "fr": "Condition réelle → <b>indicatif</b> : wenn man eine Fahrkarte <b>hat</b>.",
+   "trad": "شرط واقعی ← <b>وجه اخباری</b>: <span lang=\"de\">wenn man eine Fahrkarte <b>hat</b></span>."
+  },
+  "C1 | Er muss gute Laune haben.": {
+   "fr": "<b>müssen</b> = déduction presque certaine.",
+   "trad": "<b>müssen</b> = استنتاجی تقریباً قطعی."
+  },
+  "C1 | Die Frau könnte zum Flughafen fahren.": {
+   "fr": "<b>könnte</b> = une possibilité parmi d'autres.",
+   "trad": "<b>könnte</b> = یک احتمال در میان احتمال‌های دیگر."
+  },
+  "C1 | Der Hund dürfte der Frau gehören.": {
+   "fr": "<b>dürfte</b> = probable, sans en être sûr.",
+   "trad": "<b>dürfte</b> = محتمل، بی‌آنکه مطمئن باشیم."
+  },
+  "C1 | Diese U-Bahn-Station soll über hundert Jahre alt sein.": {
+   "fr": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction.",
+   "trad": "<b>sollen</b> = بنا بر آنچه می‌گویند: یک شایعه، نه یک استنتاج."
+  }
+ },
+ "sens": {
+  "A2 | Die Uhr hängt an der Decke.": {
+   "fr": "L'horloge est accrochée au plafond.",
+   "trad": "ساعت از سقف آویزان است."
+  },
+  "A2 | Die Frau sitzt auf der Bank.": {
+   "fr": "La dame est assise sur le banc.",
+   "trad": "خانم روی نیمکت نشسته است."
+  },
+  "A2 | Der Koffer steht vor der Bank.": {
+   "fr": "La valise est devant le banc.",
+   "trad": "چمدان جلوی نیمکت است."
+  },
+  "A2 | Die Brezeln liegen im Kiosk.": {
+   "fr": "Les bretzels sont dans le kiosque.",
+   "trad": "پرتزل‌ها در کیوسک هستند."
+  },
+  "A2 | Die Münzen liegen im Koffer.": {
+   "fr": "Les pièces sont dans l'étui.",
+   "trad": "سکه‌ها در جعبه هستند."
+  },
+  "A2 | Der Hund sitzt neben der Bank.": {
+   "fr": "Le chien est assis à côté du banc.",
+   "trad": "سگ کنار نیمکت نشسته است."
+  },
+  "A2 | Die U-Bahn steht am Bahnsteig.": {
+   "fr": "Le métro est à quai.",
+   "trad": "مترو کنار سکو ایستاده است."
+  },
+  "A2 | Die Fahrgäste sitzen in der U-Bahn.": {
+   "fr": "Les voyageurs sont assis dans le métro.",
+   "trad": "مسافران در مترو نشسته‌اند."
+  },
+  "B1 | Mark hat eine Fahrkarte und einen Kaffee.": {
+   "fr": "Mark a un billet et un café.",
+   "trad": "مارک یک بلیت و یک قهوه دارد."
+  },
+  "B1 | Mark beeilt sich, denn die U-Bahn fährt gleich ab.": {
+   "fr": "Mark se dépêche, car le métro va partir.",
+   "trad": "مارک عجله می‌کند، چون مترو الان راه می‌افتد."
+  },
+  "B1 | Der Mann singt nicht, sondern er spielt Gitarre.": {
+   "fr": "L'homme ne chante pas, il joue de la guitare.",
+   "trad": "مرد آواز نمی‌خواند، بلکه گیتار می‌زند."
+  },
+  "B1 | Möchtest du eine Brezel oder eine Zeitung?": {
+   "fr": "Tu veux un bretzel ou un journal ?",
+   "trad": "پرتزل می‌خواهی یا روزنامه؟"
+  },
+  "B1 | Der Kiosk ist klein, aber er hat viele Brezeln.": {
+   "fr": "Le kiosque est petit, mais il a beaucoup de bretzels.",
+   "trad": "کیوسک کوچک است، اما پرتزل زیادی دارد."
+  },
+  "B1 | Die Frau hat einen Regenschirm, denn draußen regnet es.": {
+   "fr": "La dame a un parapluie, car il pleut dehors.",
+   "trad": "خانم چتر دارد، چون بیرون باران می‌بارد."
+  },
+  "B1 | Der Hund bellt nicht, sondern er sitzt ruhig neben der Bank.": {
+   "fr": "Le chien n'aboie pas, il est assis tranquillement à côté du banc.",
+   "trad": "سگ پارس نمی‌کند، بلکه آرام کنار نیمکت نشسته است."
+  },
+  "B1 | Mark trinkt Kaffee und steigt in die U-Bahn.": {
+   "fr": "Mark boit du café et monte dans le métro.",
+   "trad": "مارک قهوه می‌نوشد و سوار مترو می‌شود."
+  },
+  "B2 | Falls die U-Bahn Verspätung hat, nimmt Mark den Bus.": {
+   "fr": "Si jamais le métro a du retard, Mark prend le bus.",
+   "trad": "اگر مترو تأخیر داشته باشد، مارک اتوبوس سوار می‌شود."
+  },
+  "B2 | Wenn Mark nicht schnell einsteigt, verpasst er die U-Bahn.": {
+   "fr": "Si Mark ne monte pas vite, il rate le métro.",
+   "trad": "اگر مارک زود سوار نشود، مترو را از دست می‌دهد."
+  },
+  "B2 | Wenn es regnet, nimmt die Frau ihren Regenschirm.": {
+   "fr": "Quand il pleut, la dame prend son parapluie.",
+   "trad": "وقتی باران می‌بارد، خانم چترش را برمی‌دارد."
+  },
+  "B2 | Falls du Hunger hast, kauf dir eine Brezel!": {
+   "fr": "Si tu as faim, achète-toi un bretzel !",
+   "trad": "اگر گرسنه‌ای، برای خودت یک پرتزل بخر!"
+  },
+  "B2 | Wenn Mark einen Sitzplatz findet, trinkt er seinen Kaffee.": {
+   "fr": "Si Mark trouve une place assise, il boit son café.",
+   "trad": "اگر مارک جای نشستن پیدا کند، قهوه‌اش را می‌نوشد."
+  },
+  "B2 | Man darf nur einsteigen, wenn man eine Fahrkarte hat.": {
+   "fr": "On n'a le droit de monter que si l'on a un billet.",
+   "trad": "فقط وقتی بلیت داری می‌توانی سوار شوی."
+  },
+  "C1 | Er muss gute Laune haben.": {
+   "fr": "Il doit être de bonne humeur.",
+   "trad": "حتماً سرحال است."
+  },
+  "C1 | Die Frau könnte zum Flughafen fahren.": {
+   "fr": "La dame part peut-être à l'aéroport.",
+   "trad": "شاید خانم به فرودگاه می‌رود."
+  },
+  "C1 | Der Hund dürfte der Frau gehören.": {
+   "fr": "Le chien appartient sans doute à la dame.",
+   "trad": "سگ احتمالاً مال خانم است."
+  },
+  "C1 | Diese U-Bahn-Station soll über hundert Jahre alt sein.": {
+   "fr": "Cette station de métro aurait plus de cent ans.",
+   "trad": "می‌گویند این ایستگاه مترو بیش از صد سال قدمت دارد."
+  }
+ }
+}

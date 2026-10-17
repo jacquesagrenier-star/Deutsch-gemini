@@ -1,0 +1,1326 @@
+{
+ "_lisez_moi": [
+  "Le coiffeur (16 oct. 2026) : un samedi matin, Anna se fait couper les cheveux dans un petit salon de son quartier de Berlin ; assise dans le fauteuil, une serviette sur les epaules et un magazine ferme sur les genoux, elle sourit a son reflet ; le coiffeur tient une meche entre deux doigts et ses ciseaux ouverts ; des cheveux coupes par terre ; a gauche l'etagere de serviettes et de flacons, le balai, la console avec la brosse ronde ; au fond le petit comptoir avec la vieille caisse, un cafe et un basilic, l'horloge, le tableau de tournesols, les crochets avec le manteau, l'echarpe et le sac d'Anna ; a droite une vieille dame lit sur le canape, la table basse et ses magazines, la vitrine sur la rue. Theme : le coiffeur, le corps et l'apparence, les services du quartier. Scene creee a la demande de Jacques (« creer huit nouvelles scenes », 16 oct. 2026, deuxieme serie), commencee par Fable, construite par Claude (Opus).",
+  "Image : visuel/scenes/friseur.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png), rendu photo, une seule prise. Aucun texte lisible : l'horloge n'a que des traits, l'afficheur de la caisse est sombre (traces illisibles), les magazines ont des couvertures unies.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Contours (16 oct. 2026) : les personnes et leurs vetements portent une boite « sam » et des « points_sam » (1 = sur l'objet, 0 = a exclure), voir detourer.py ; « plein » seulement pour les fonds (mur, sol, table, fenetre, comptoir) ou pour un groupe d'objets transparents que SAM ne detoure pas (les verres suspendus) ; les lunettes sont des « ellipses ».",
+  "Histoire des personnages : Anna seule cliente ; le coiffeur est der Mann (der Friseur existe en allemand, mais el peluquero manque au corpus espagnol), la vieille dame die Frau (des inconnus). La serviette sur les epaules d'Anna est das Handtuch (handtuch-2), comme les piles de l'etagere ; les cheveux d'Anna et les meches coupees par terre sont das Haar ; le cardigan vert de la dame der Pullover (aussi Jacke) ; la console de gauche das Regal (regal-2) ; le rail a crochets der Haken ; le basilic die Pflanze ; le grand miroir der Spiegel (plein : il ne reflete que le mur).",
+  "SANS ZONE bien que visibles (a signaler) : le seche-cheveux noir sur la console (der Foehn manque au corpus allemand), son cable, le peigne (der Kamm manque aussi, et le coiffeur n'en tient pas), le repose-pieds du fauteuil (partie du fauteuil). Espagnol : Tasche = el bolso (surcharge, le sac a main d'Anna).",
+  "Mesures relues sur la grille en % du 16 oct. 2026."
+ ],
+ "image": "friseur.webp",
+ "source": "../scenes/friseur.png",
+ "titre": "Beim Friseur",
+ "alt": "Anna chez le coiffeur, un samedi matin à Berlin : assise dans un fauteuil de cuir noir, une serviette blanche sur les épaules et un magazine fermé sur les genoux, elle sourit pendant que le coiffeur à lunettes tient une mèche de ses cheveux et ses ciseaux ouverts ; par terre, des cheveux coupés ; à gauche, un grand miroir, une haute étagère de serviettes et de flacons, un balai, et une console avec une brosse ronde et trois flacons ; au fond, un petit comptoir avec une vieille caisse enregistreuse, une tasse de café et un pot de basilic, une horloge, un tableau de tournesols, une lampe suspendue et des crochets où pendent le manteau, l'écharpe rouge et le sac d'Anna ; à droite, une vieille dame lit un magazine sur un canapé gris, devant une table basse avec une pile de magazines et un verre d'eau, une grande plante et la vitrine sur la rue, avec un réverbère, un arbre et un vélo.",
+ "consigne": "Anna se fait couper les cheveux. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Wand",
+      "am Fenster",
+      "über dem Sofa"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo hängt der Mantel?",
+     "c": [
+      "am Haken",
+      "am Fenster",
+      "über dem Stuhl"
+     ],
+     "f": "mantel",
+     "r": "haken",
+     "phrase": "Der Mantel hängt am Haken.",
+     "sens": "Le manteau est accroché au crochet.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Haken → am Haken."
+    },
+    {
+     "q": "Wo liegen die Handtücher?",
+     "c": [
+      "im Regal",
+      "auf dem Tisch",
+      "auf dem Boden"
+     ],
+     "f": "handtuch",
+     "r": "regal",
+     "phrase": "Die Handtücher liegen im Regal.",
+     "sens": "Les serviettes sont sur l'étagère.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
+    },
+    {
+     "q": "Wo steht die Kasse?",
+     "c": [
+      "auf der Theke",
+      "auf dem Tisch",
+      "im Regal"
+     ],
+     "f": "kasse",
+     "r": "theke",
+     "phrase": "Die Kasse steht auf der Theke.",
+     "sens": "La caisse est sur le comptoir.",
+     "n": "die Theke → auf <b>der</b> Theke : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo liegen die Haare?",
+     "c": [
+      "auf dem Boden",
+      "auf dem Tisch",
+      "im Regal"
+     ],
+     "f": "haar-2",
+     "r": "boden",
+     "phrase": "Die Haare liegen auf dem Boden.",
+     "sens": "Les cheveux sont par terre.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    },
+    {
+     "q": "Wo steht das Glas?",
+     "c": [
+      "auf dem Tisch",
+      "auf der Theke",
+      "im Regal"
+     ],
+     "f": "glas",
+     "r": "tisch",
+     "phrase": "Das Glas steht auf dem Tisch.",
+     "sens": "Le verre est sur la table.",
+     "n": "der Tisch → auf <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo sitzt die Frau?",
+     "c": [
+      "auf dem Sofa",
+      "auf dem Boden",
+      "an der Theke"
+     ],
+     "f": "frau",
+     "r": "sofa",
+     "phrase": "Die Frau sitzt auf dem Sofa.",
+     "sens": "La dame est assise sur le canapé.",
+     "n": "das Sofa → auf <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo steht der Mann?",
+     "c": [
+      "hinter dem Stuhl",
+      "neben dem Regal",
+      "auf dem Sofa"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "Der Mann steht hinter dem Stuhl.",
+     "sens": "L'homme est debout derrière le fauteuil.",
+     "n": "<b>hinter</b> = derrière. der Stuhl → hinter <b>dem</b> Stuhl."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le pronom réfléchi au datif : ich wasche mir die Haare",
+   "qs": [
+    {
+     "q": "Anna lässt ___ die Haare schneiden.",
+     "c": [
+      "sich",
+      "ihr",
+      "sie"
+     ],
+     "f": "haar",
+     "r": "anna",
+     "phrase": "Anna lässt sich die Haare schneiden.",
+     "sens": "Anna se fait couper les cheveux.",
+     "n": "À la 3e personne, le réfléchi est toujours <b>sich</b>, au datif comme à l'accusatif.",
+     "revise": "schneiden"
+    },
+    {
+     "q": "Ich wasche ___ jeden Morgen die Haare.",
+     "c": [
+      "mir",
+      "mich",
+      "sich"
+     ],
+     "f": "haar",
+     "phrase": "Ich wasche mir jeden Morgen die Haare.",
+     "sens": "Je me lave les cheveux tous les matins.",
+     "n": "Avec un objet (die Haare), le réfléchi passe au datif : ich wasche <b>mir</b> die Haare.",
+     "revise": "waschen"
+    },
+    {
+     "q": "Ich kämme ___ schnell.",
+     "c": [
+      "mich",
+      "mir",
+      "sich"
+     ],
+     "f": "buerste",
+     "phrase": "Ich kämme mich schnell.",
+     "sens": "Je me coiffe vite.",
+     "n": "Sans autre objet, le réfléchi est à l'accusatif : ich kämme <b>mich</b>."
+    },
+    {
+     "q": "Nach der Arbeit wäscht der Mann ___ die Hände.",
+     "c": [
+      "sich",
+      "ihm",
+      "ihn"
+     ],
+     "f": "mann",
+     "phrase": "Nach der Arbeit wäscht der Mann sich die Hände.",
+     "sens": "Après le travail, l'homme se lave les mains.",
+     "n": "3e personne : <b>sich</b>, même au datif (pas ihm).",
+     "revise": "waschen"
+    },
+    {
+     "q": "Du ziehst ___ den Mantel an.",
+     "c": [
+      "dir",
+      "dich",
+      "sich"
+     ],
+     "f": "mantel",
+     "phrase": "Du ziehst dir den Mantel an.",
+     "sens": "Tu mets ton manteau.",
+     "n": "<b>sich etwas anziehen</b> : avec un objet, datif → du ziehst <b>dir</b> den Mantel an.",
+     "revise": "anziehen"
+    },
+    {
+     "q": "Anna sieht ___ im Spiegel an.",
+     "c": [
+      "sich",
+      "ihr",
+      "sie"
+     ],
+     "f": "spiegel",
+     "r": "anna",
+     "phrase": "Anna sieht sich im Spiegel an.",
+     "sens": "Anna se regarde dans le miroir.",
+     "n": "<b>sich ansehen</b> sans autre objet : accusatif ; à la 3e personne, <b>sich</b>.",
+     "revise": "ansehen"
+    },
+    {
+     "q": "Wir setzen ___ aufs Sofa.",
+     "c": [
+      "uns",
+      "sich",
+      "euch"
+     ],
+     "f": "sofa",
+     "phrase": "Wir setzen uns aufs Sofa.",
+     "sens": "Nous nous asseyons sur le canapé.",
+     "n": "1re personne du pluriel : <b>uns</b>, au datif comme à l'accusatif.",
+     "revise": "setzen"
+    },
+    {
+     "q": "Ich schneide ___ die Haare nie selbst.",
+     "c": [
+      "mir",
+      "mich",
+      "sich"
+     ],
+     "f": "schere",
+     "phrase": "Ich schneide mir die Haare nie selbst.",
+     "sens": "Je ne me coupe jamais les cheveux moi-même.",
+     "n": "1re personne du singulier avec un objet : <b>mir</b> (datif), pas mich.",
+     "revise": "schneiden"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Plus… plus : je … desto",
+   "qs": [
+    {
+     "q": "Je kürzer die Haare sind, ___ schneller trocknen sie.",
+     "c": [
+      "desto",
+      "je",
+      "als"
+     ],
+     "f": "haar",
+     "phrase": "Je kürzer die Haare sind, desto schneller trocknen sie.",
+     "sens": "Plus les cheveux sont courts, plus ils sèchent vite.",
+     "n": "<b>je</b> + comparatif (verbe à la fin), puis <b>desto</b> + comparatif (verbe juste après).",
+     "revise": "trocknen"
+    },
+    {
+     "q": "Je länger die Frau wartet, desto ___ liest sie.",
+     "c": [
+      "mehr",
+      "viel",
+      "meisten"
+     ],
+     "f": "frau",
+     "r": "zeitschrift",
+     "phrase": "Je länger die Frau wartet, desto mehr liest sie.",
+     "sens": "Plus la dame attend, plus elle lit.",
+     "n": "Le comparatif de <b>viel</b> est <b>mehr</b>.",
+     "revise": "warten"
+    },
+    {
+     "q": "Je öfter man die Haare wäscht, ___ trockener werden sie.",
+     "c": [
+      "desto",
+      "als",
+      "wie"
+     ],
+     "f": "haar",
+     "phrase": "Je öfter man die Haare wäscht, desto trockener werden sie.",
+     "sens": "Plus on se lave souvent les cheveux, plus ils deviennent secs.",
+     "n": "<b>desto</b> (ou umso) ouvre la deuxième partie, suivi du comparatif.",
+     "revise": "werden"
+    },
+    {
+     "q": "Je besser der Schnitt ist, desto ___ ist Anna.",
+     "c": [
+      "zufriedener",
+      "zufrieden",
+      "am zufriedensten"
+     ],
+     "f": "anna",
+     "phrase": "Je besser der Schnitt ist, desto zufriedener ist Anna.",
+     "sens": "Meilleure est la coupe, plus Anna est contente.",
+     "n": "Après <b>desto</b>, toujours un <b>comparatif</b> : zufrieden<b>er</b>."
+    },
+    {
+     "q": "Je mehr Kunden kommen, ___.",
+     "c": [
+      "desto mehr verdient der Mann",
+      "desto der Mann mehr verdient",
+      "desto mehr der Mann verdient"
+     ],
+     "f": "kasse",
+     "r": "mann",
+     "phrase": "Je mehr Kunden kommen, desto mehr verdient der Mann.",
+     "sens": "Plus il vient de clients, plus l'homme gagne d'argent.",
+     "n": "Après <b>desto</b> + comparatif vient tout de suite le <b>verbe conjugué</b>.",
+     "revise": "verdienen"
+    },
+    {
+     "q": "Je ___ die Haare sind, desto länger dauert der Schnitt.",
+     "c": [
+      "länger",
+      "lang",
+      "am längsten"
+     ],
+     "f": "haar",
+     "phrase": "Je länger die Haare sind, desto länger dauert der Schnitt.",
+     "sens": "Plus les cheveux sont longs, plus la coupe dure longtemps.",
+     "n": "Après <b>je</b>, le comparatif, et le verbe va à la fin : je länger die Haare <b>sind</b>.",
+     "revise": "dauern"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna lächelt — sie ___ mit dem Schnitt zufrieden sein.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "anna",
+     "phrase": "Sie muss mit dem Schnitt zufrieden sein.",
+     "sens": "Elle doit être contente de la coupe.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Die Frau auf dem Sofa ___ die nächste Kundin sein.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "frau",
+     "r": "sofa",
+     "phrase": "Die Frau auf dem Sofa könnte die nächste Kundin sein.",
+     "sens": "La dame sur le canapé est peut-être la prochaine cliente.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der Mantel ___ Anna gehören.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "mantel",
+     "r": "anna",
+     "phrase": "Der Mantel dürfte Anna gehören.",
+     "sens": "Le manteau est sans doute à Anna.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Dieser Friseur ___ der beste im Kiez sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "mann",
+     "phrase": "Dieser Friseur soll der beste im Kiez sein.",
+     "sens": "Ce coiffeur serait le meilleur du quartier.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boites": [
+    [
+     22,
+     0,
+     51,
+     36
+    ],
+    [
+     0,
+     0,
+     22,
+     18
+    ],
+    [
+     0,
+     18,
+     8,
+     40
+    ]
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    51,
+    9.8,
+    11.5,
+    7.6
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    32,
+    12.8,
+    8.2,
+    5.3
+   ]
+  },
+  {
+   "id": "bild",
+   "mot": "Bild",
+   "aussi": [
+    "Gemälde"
+   ],
+   "boite": [
+    30.8,
+    20,
+    11.9,
+    8.8
+   ]
+  },
+  {
+   "id": "haken",
+   "mot": "Haken",
+   "boite": [
+    47.6,
+    19.8,
+    17.6,
+    2.4
+   ]
+  },
+  {
+   "id": "tasche",
+   "mot": "Tasche",
+   "boite": [
+    50,
+    21.5,
+    8,
+    12.5
+   ]
+  },
+  {
+   "id": "schal",
+   "mot": "Schal",
+   "boite": [
+    57,
+    21,
+    5.4,
+    14
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "points_sam": [
+    [
+     53.5,
+     27,
+     1
+    ],
+    [
+     64,
+     30,
+     1
+    ],
+    [
+     61,
+     36,
+     1
+    ],
+    [
+     54,
+     32,
+     0
+    ],
+    [
+     59.5,
+     27,
+     0
+    ]
+   ],
+   "boite": [
+    52,
+    22,
+    14.3,
+    15.5
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "boite": [
+    8,
+    19,
+    19.5,
+    31.5
+   ]
+  },
+  {
+   "id": "handtuch",
+   "mot": "Handtuch",
+   "sur": "regal",
+   "sam": [
+    [
+     9.5,
+     21,
+     13.3,
+     4.5
+    ],
+    [
+     10.8,
+     26.8,
+     7.3,
+     4.2
+    ],
+    [
+     20,
+     33.8,
+     4.6,
+     2.5
+    ]
+   ],
+   "boites": [
+    [
+     9.5,
+     21,
+     13.3,
+     4.5
+    ],
+    [
+     10.8,
+     26.8,
+     7.3,
+     4.2
+    ],
+    [
+     20,
+     33.8,
+     4.6,
+     2.5
+    ]
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "sur": "regal",
+   "sam": [
+    [
+     17.8,
+     27.2,
+     5.2,
+     3.7
+    ],
+    [
+     12.3,
+     32.3,
+     7.8,
+     4.1
+    ]
+   ],
+   "boites": [
+    [
+     17.8,
+     27.2,
+     5.2,
+     3.7
+    ],
+    [
+     12.3,
+     32.3,
+     7.8,
+     4.1
+    ]
+   ]
+  },
+  {
+   "id": "besen",
+   "mot": "Besen",
+   "points_sam": [
+    [
+     13.5,
+     40.8,
+     1
+    ],
+    [
+     19.5,
+     51.8,
+     1
+    ],
+    [
+     20.8,
+     43.1,
+     0
+    ]
+   ],
+   "boite": [
+    9.5,
+    31,
+    14,
+    22
+   ]
+  },
+  {
+   "id": "spiegel",
+   "mot": "Spiegel",
+   "plein": true,
+   "boite": [
+    0,
+    25,
+    12.5,
+    44
+   ]
+  },
+  {
+   "id": "buerste",
+   "mot": "Bürste",
+   "sur": "regal-2",
+   "boite": [
+    12.5,
+    58.3,
+    11.3,
+    3.9
+   ]
+  },
+  {
+   "id": "flasche-2",
+   "mot": "Flasche",
+   "sur": "regal-2",
+   "boite": [
+    10.5,
+    63.5,
+    11.3,
+    8.8
+   ]
+  },
+  {
+   "id": "regal-2",
+   "mot": "Regal",
+   "plein": true,
+   "boite": [
+    10,
+    57.5,
+    18.3,
+    17.2
+   ]
+  },
+  {
+   "id": "kasse",
+   "mot": "Kasse",
+   "sur": "theke",
+   "boite": [
+    34.3,
+    30,
+    13.2,
+    8
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "sur": "theke",
+   "boite": [
+    44.3,
+    33.4,
+    7,
+    5.8
+   ]
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "sur": "theke",
+   "aussi": [
+    "Kaffee"
+   ],
+   "boite": [
+    39.7,
+    37.7,
+    5.2,
+    2.3
+   ]
+  },
+  {
+   "id": "theke",
+   "mot": "Theke",
+   "boite": [
+    33.5,
+    37,
+    19,
+    18
+   ]
+  },
+  {
+   "id": "pflanze-2",
+   "mot": "Pflanze",
+   "boite": [
+    72,
+    25,
+    13,
+    15
+   ]
+  },
+  {
+   "id": "laterne",
+   "mot": "Laterne",
+   "boite": [
+    87.5,
+    6.5,
+    7.5,
+    25
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "boite": [
+    93,
+    6,
+    7,
+    28
+   ]
+  },
+  {
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "boite": [
+    84.5,
+    26.3,
+    15.5,
+    9.3
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "aussi": [
+    "Schaufenster"
+   ],
+   "boite": [
+    75,
+    3,
+    25,
+    40
+   ]
+  },
+  {
+   "id": "mann",
+   "mot": "Mann",
+   "points_sam": [
+    [
+     68,
+     33,
+     1
+    ],
+    [
+     72,
+     45,
+     1
+    ],
+    [
+     70,
+     60,
+     1
+    ],
+    [
+     58,
+     48,
+     0
+    ]
+   ],
+   "boite": [
+    49,
+    30,
+    31.5,
+    43
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "ellipses": [
+    [
+     64.45,
+     35.15,
+     1.05,
+     0.56
+    ],
+    [
+     67.75,
+     35.4,
+     1.35,
+     0.58
+    ]
+   ]
+  },
+  {
+   "id": "schere",
+   "mot": "Schere",
+   "boite": [
+    50.3,
+    40.7,
+    11.5,
+    2.8
+   ]
+  },
+  {
+   "id": "hemd",
+   "mot": "Hemd",
+   "sam": [
+    49,
+    36.3,
+    31.5,
+    15.7
+   ],
+   "points_sam": [
+    [
+     70,
+     40,
+     1
+    ],
+    [
+     75,
+     47,
+     1
+    ],
+    [
+     70,
+     50,
+     1
+    ],
+    [
+     60,
+     48,
+     0
+    ],
+    [
+     66,
+     36.8,
+     0
+    ],
+    [
+     52,
+     41.5,
+     0
+    ],
+    [
+     63.5,
+     43.5,
+     0
+    ]
+   ],
+   "boite": [
+    49.5,
+    36.3,
+    30.5,
+    15.2
+   ]
+  },
+  {
+   "id": "hose-2",
+   "mot": "Hose",
+   "boite": [
+    65.8,
+    50.3,
+    8.8,
+    18.2
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    67.5,
+    68,
+    6,
+    4.8
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "points_sam": [
+    [
+     88,
+     38,
+     1
+    ],
+    [
+     88,
+     47,
+     1
+    ],
+    [
+     78,
+     53,
+     1
+    ],
+    [
+     93,
+     52,
+     0
+    ]
+   ],
+   "boite": [
+    73,
+    36,
+    25,
+    22
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "aussi": [
+    "Jacke"
+   ],
+   "points_sam": [
+    [
+     82,
+     45,
+     1
+    ],
+    [
+     93,
+     46,
+     1
+    ],
+    [
+     87,
+     42,
+     0
+    ],
+    [
+     84,
+     46,
+     0
+    ]
+   ],
+   "boite": [
+    79,
+    40,
+    17,
+    11.5
+   ]
+  },
+  {
+   "id": "zeitschrift",
+   "mot": "Zeitschrift",
+   "boite": [
+    80,
+    43.8,
+    9,
+    4.5
+   ]
+  },
+  {
+   "id": "sofa",
+   "mot": "Sofa",
+   "boite": [
+    77,
+    38,
+    23,
+    17
+   ]
+  },
+  {
+   "id": "glas",
+   "mot": "Glas",
+   "sur": "tisch",
+   "aussi": [
+    "Wasser"
+   ],
+   "boite": [
+    95.8,
+    52,
+    4,
+    3.5
+   ]
+  },
+  {
+   "id": "zeitschrift-2",
+   "mot": "Zeitschrift",
+   "sur": "tisch",
+   "boite": [
+    83.5,
+    53.5,
+    15,
+    5.5
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "boite": [
+    80.5,
+    52.5,
+    19.5,
+    15.5
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "points_sam": [
+    [
+     55,
+     46,
+     1
+    ],
+    [
+     50,
+     56,
+     1
+    ],
+    [
+     40,
+     70,
+     1
+    ],
+    [
+     56,
+     76,
+     0
+    ],
+    [
+     64,
+     45,
+     0
+    ]
+   ],
+   "boite": [
+    20,
+    42,
+    49,
+    43.5
+   ]
+  },
+  {
+   "id": "haar",
+   "mot": "Haar",
+   "sam": [
+    [
+     51.5,
+     41.8,
+     13,
+     3.2
+    ],
+    [
+     57.5,
+     44.5,
+     7.5,
+     10.5
+    ],
+    [
+     50.8,
+     45,
+     2.8,
+     7
+    ]
+   ],
+   "boite": [
+    51,
+    42,
+    14,
+    13
+   ]
+  },
+  {
+   "id": "handtuch-2",
+   "mot": "Handtuch",
+   "points_sam": [
+    [
+     46,
+     53,
+     1
+    ],
+    [
+     63,
+     55,
+     1
+    ],
+    [
+     55,
+     56,
+     0
+    ]
+   ],
+   "boite": [
+    42.5,
+    49.3,
+    26.5,
+    10.5
+   ]
+  },
+  {
+   "id": "bluse",
+   "mot": "Bluse",
+   "points_sam": [
+    [
+     55,
+     57,
+     1
+    ],
+    [
+     44,
+     59,
+     1
+    ],
+    [
+     64,
+     61,
+     1
+    ],
+    [
+     46,
+     52,
+     0
+    ],
+    [
+     64,
+     54,
+     0
+    ],
+    [
+     45,
+     62,
+     0
+    ]
+   ],
+   "boite": [
+    40,
+    50,
+    30,
+    13
+   ]
+  },
+  {
+   "id": "zeitschrift-3",
+   "mot": "Zeitschrift",
+   "boite": [
+    37,
+    60.2,
+    15,
+    4.9
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "points_sam": [
+    [
+     45,
+     65,
+     1
+    ],
+    [
+     33,
+     73,
+     1
+    ],
+    [
+     39,
+     78,
+     1
+    ],
+    [
+     52,
+     72,
+     0
+    ],
+    [
+     44,
+     62,
+     0
+    ]
+   ],
+   "boite": [
+    28.5,
+    61,
+    32,
+    19.5
+   ]
+  },
+  {
+   "id": "stiefel",
+   "mot": "Stiefel",
+   "sam": [
+    [
+     20,
+     75,
+     13.5,
+     5.5
+    ],
+    [
+     32,
+     79.8,
+     8,
+     5.4
+    ]
+   ],
+   "boites": [
+    [
+     20,
+     75,
+     13.5,
+     5.5
+    ],
+    [
+     32,
+     79.8,
+     8,
+     5.4
+    ]
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "points_sam": [
+    [
+     53,
+     82,
+     1
+    ],
+    [
+     37,
+     59,
+     1
+    ],
+    [
+     60,
+     66,
+     1
+    ],
+    [
+     45,
+     70,
+     0
+    ]
+   ],
+   "boite": [
+    33,
+    56.5,
+    36.5,
+    27.5
+   ]
+  },
+  {
+   "id": "haar-2",
+   "mot": "Haar",
+   "plein": true,
+   "sur": "boden",
+   "boites": [
+    [
+     63.5,
+     73.3,
+     7,
+     2
+    ],
+    [
+     67.5,
+     75,
+     5,
+     3
+    ],
+    [
+     66.5,
+     79.8,
+     6,
+     2.2
+    ],
+    [
+     62.5,
+     82.6,
+     4,
+     2
+    ],
+    [
+     52.5,
+     85.4,
+     8,
+     3.2
+    ]
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boites": [
+    [
+     12,
+     62,
+     88,
+     38
+    ],
+    [
+     25,
+     48,
+     75,
+     14
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

@@ -1,0 +1,1040 @@
+{
+ "_lisez_moi": [
+  "Le musee (16 oct. 2026) : un dimanche de pluie, Anna dessine dans une salle d'un vieux musee de Berlin ; assise sur un long banc de velours vert, son carnet ouvert sur les genoux et un crayon a la main, elle leve les yeux vers la sculpture de marbre d'un chien assis sur son socle ; son manteau plie est pose sur le banc, son sac a dos par terre ; aux murs verts, des tableaux dans des cadres dores (montagnes et lac, portrait d'une vieille dame, nature morte de pommes et de fleurs, voilier dans la tempete, cheval), chacun sous sa petite lampe ; un vieux gardien en uniforme est assis pres de la porte ouverte sur la salle suivante ; un jeune homme au casque audio regarde le cheval ; la fenetre, ses rideaux rouges, le radiateur, une grande plante, le lustre, le parquet a chevrons. Theme : l'art, les loisirs culturels, decrire une image. Scene creee a la demande de Jacques (« creer huit nouvelles scenes », 16 oct. 2026, deuxieme serie), commencee par Fable, construite par Claude (Opus).",
+  "Image : visuel/scenes/museum.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png), rendu photo, une seule prise. Le petit cartel gris a cote de la nature morte (des lignes illisibles) a ete efface gratuitement (effacer_texte.py, museum-effacer.json) -> museum-propre.png ; une legere trace claire reste au bord de la tete du chien. Aucun autre texte.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Contours (16 oct. 2026) : les personnes et leurs vetements portent une boite « sam » et des « points_sam » (1 = sur l'objet, 0 = a exclure), voir detourer.py ; « plein » seulement pour les fonds (mur, sol, table, fenetre, comptoir) ou pour un groupe d'objets transparents que SAM ne detoure pas (les verres suspendus) ; les lunettes sont des « ellipses ».",
+  "Histoire des personnages : Anna seule ; le gardien est der Mann (der Waechter manque au corpus allemand), le jeune homme au casque der Student (aussi Mann : des inconnus, rien ne les lie a Anna). Les tableaux sont das Gemaelde (aussi Bild) ; le chien de marbre die Skulptur (aussi Hund) ; le lustre die Lampe, les petites lampes de tableau lampe-2 ; le carnet de croquis das Heft ; la jupe grise der Rock ; le pull rouge der Pullover ; la veste de velours du jeune homme die Jacke ; l'uniforme du gardien die Jacke (die Uniform manque au corpus espagnol) ; la porte ouverte sur la salle suivante die Tuer (plein).",
+  "SANS ZONE bien que visibles (a signaler) : le socle de la sculpture (der Sockel manque aux deux corpus), les collants noirs d'Anna (die Strumpfhose manque au corpus espagnol), les pommes et les fleurs PEINTES dans la nature morte (on touche le tableau), la moulure du plafond, le cadre blanc de la porte d'ou l'on regarde (bord gauche).",
+  "Mesures relues sur la grille en % du 16 oct. 2026."
+ ],
+ "image": "museum.webp",
+ "source": "../scenes/museum-propre.png",
+ "titre": "Im Museum",
+ "alt": "Anna au musée, un dimanche de pluie à Berlin : assise sur un long banc de velours vert, son carnet ouvert sur les genoux et un crayon à la main, elle lève les yeux vers la sculpture de marbre blanc d'un chien assis sur son socle ; son manteau gris plié est posé à côté d'elle, son sac à dos noir par terre ; aux murs vert foncé, des tableaux dans de lourds cadres dorés, chacun sous une petite lampe : des montagnes enneigées au-dessus d'un lac, le portrait d'une vieille dame en noir, une nature morte de pommes et de fleurs jaunes, un grand voilier dans la tempête et un cheval ; un vieux gardien en uniforme est assis sur une chaise près de la porte ouverte sur la salle suivante ; à droite, un jeune homme avec un casque audio et un sac à dos regarde le cheval, devant la haute fenêtre aux rideaux rouges, un radiateur et une grande plante en pot ; au plafond, un lustre ; par terre, un parquet à chevrons.",
+ "consigne": "Anna dessine une sculpture au musée. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt das Bild mit dem Schiff?",
+     "c": [
+      "über der Tür",
+      "neben dem Fenster",
+      "an der Decke"
+     ],
+     "f": "gemaelde",
+     "r": "tuer",
+     "phrase": "Das Bild mit dem Schiff hängt über der Tür.",
+     "sens": "Le tableau du bateau est accroché au-dessus de la porte.",
+     "n": "die Tür → über <b>der</b> Tür : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo sitzt Anna?",
+     "c": [
+      "auf der Bank",
+      "auf dem Stuhl",
+      "auf dem Boden"
+     ],
+     "f": "anna",
+     "r": "bank",
+     "phrase": "Anna sitzt auf der Bank.",
+     "sens": "Anna est assise sur le banc.",
+     "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo liegt der Mantel?",
+     "c": [
+      "auf der Bank",
+      "auf dem Boden",
+      "auf dem Stuhl"
+     ],
+     "f": "mantel",
+     "r": "bank",
+     "phrase": "Der Mantel liegt auf der Bank.",
+     "sens": "Le manteau est posé sur le banc.",
+     "n": "die Bank → auf <b>der</b> Bank : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht der Rucksack?",
+     "c": [
+      "auf dem Boden",
+      "auf der Bank",
+      "neben der Tür"
+     ],
+     "f": "rucksack",
+     "r": "boden",
+     "phrase": "Der Rucksack steht auf dem Boden.",
+     "sens": "Le sac à dos est par terre.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    },
+    {
+     "q": "Wo sitzt der Mann?",
+     "c": [
+      "neben der Tür",
+      "am Fenster",
+      "auf der Bank"
+     ],
+     "f": "mann",
+     "r": "tuer",
+     "phrase": "Der Mann sitzt neben der Tür.",
+     "sens": "L'homme est assis à côté de la porte.",
+     "n": "<b>neben</b> = à côté de. die Tür → neben <b>der</b> Tür."
+    },
+    {
+     "q": "Wo steht der Student?",
+     "c": [
+      "am Fenster",
+      "an der Tür",
+      "auf der Bank"
+     ],
+     "f": "student",
+     "r": "fenster",
+     "phrase": "Der Student steht am Fenster.",
+     "sens": "L'étudiant est près de la fenêtre.",
+     "n": "<b>am</b> = an + <b>dem</b> : das Fenster → am Fenster."
+    },
+    {
+     "q": "Wo hängt die Lampe?",
+     "c": [
+      "an der Decke",
+      "an der Wand",
+      "am Fenster"
+     ],
+     "f": "lampe",
+     "r": "decke",
+     "phrase": "Die Lampe hängt an der Decke.",
+     "sens": "La lampe est accrochée au plafond.",
+     "n": "die Decke → an <b>der</b> Decke : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo steht die Pflanze?",
+     "c": [
+      "neben dem Heizkörper",
+      "auf der Bank",
+      "vor der Tür"
+     ],
+     "f": "pflanze",
+     "r": "heizkoerper",
+     "phrase": "Die Pflanze steht neben dem Heizkörper.",
+     "sens": "La plante est à côté du radiateur.",
+     "n": "<b>neben</b> = à côté de. der Heizkörper → neben <b>dem</b> Heizkörper."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les interrogatifs : welcher ? was für ein ?",
+   "qs": [
+    {
+     "q": "___ Skulptur zeichnet Anna? — Die Skulptur mit dem Hund.",
+     "c": [
+      "Welche",
+      "Welcher",
+      "Welches"
+     ],
+     "f": "skulptur",
+     "r": "anna",
+     "phrase": "Welche Skulptur zeichnet Anna? — Die Skulptur mit dem Hund.",
+     "sens": "Quelle sculpture Anna dessine-t-elle ? — Celle du chien.",
+     "n": "<b>welch-</b> se décline comme l'article défini : die Skulptur → <b>welche</b> ?",
+     "revise": "zeichnen"
+    },
+    {
+     "q": "___ Bild gefällt dir am besten? — Das mit dem Schiff.",
+     "c": [
+      "Welches",
+      "Welcher",
+      "Welchen"
+     ],
+     "f": "gemaelde",
+     "phrase": "Welches Bild gefällt dir am besten? — Das mit dem Schiff.",
+     "sens": "Quel tableau te plaît le plus ? — Celui avec le bateau.",
+     "n": "das Bild, sujet → <b>welches</b> (neutre, nominatif).",
+     "revise": "gefallen"
+    },
+    {
+     "q": "In ___ Saal hängt das Pferd? — Im ersten Saal.",
+     "c": [
+      "welchem",
+      "welchen",
+      "welcher"
+     ],
+     "f": "gemaelde-6",
+     "phrase": "In welchem Saal hängt das Pferd? — Im ersten Saal.",
+     "sens": "Dans quelle salle est le cheval ? — Dans la première salle.",
+     "n": "in + datif (Wo?) : der Saal → in <b>welchem</b> Saal ?",
+     "revise": "hängen"
+    },
+    {
+     "q": "Was für ___ Bild ist das? — Ein Porträt.",
+     "c": [
+      "ein",
+      "einen",
+      "eine"
+     ],
+     "f": "gemaelde-3",
+     "phrase": "Was für ein Bild ist das? — Ein Porträt.",
+     "sens": "Quel genre de tableau est-ce ? — Un portrait.",
+     "n": "<b>was für ein</b> demande la sorte de chose ; ein prend le cas et le genre du nom : das Bild → was für <b>ein</b> Bild ?"
+    },
+    {
+     "q": "Was für ___ Jacke trägt der Student? — Eine braune Jacke.",
+     "c": [
+      "eine",
+      "einen",
+      "ein"
+     ],
+     "f": "jacke-2",
+     "r": "student",
+     "phrase": "Was für eine Jacke trägt der Student? — Eine braune Jacke.",
+     "sens": "Quel genre de veste porte l'étudiant ? — Une veste marron.",
+     "n": "Accusatif féminin : was für <b>eine</b> Jacke ?",
+     "revise": "tragen"
+    },
+    {
+     "q": "Mit ___ Stift zeichnet Anna? — Mit einem Bleistift.",
+     "c": [
+      "was für einem",
+      "was für ein",
+      "welchen"
+     ],
+     "f": "bleistift",
+     "r": "anna",
+     "phrase": "Mit was für einem Stift zeichnet Anna? — Mit einem Bleistift.",
+     "sens": "Avec quel genre de crayon Anna dessine-t-elle ? — Avec un crayon à papier.",
+     "n": "mit + datif : was für <b>einem</b> Stift ? (für ne change rien au cas)",
+     "revise": "zeichnen"
+    },
+    {
+     "q": "___ Mann sitzt an der Tür? — Der Mann in der Uniform.",
+     "c": [
+      "Welcher",
+      "Welchen",
+      "Welches"
+     ],
+     "f": "mann",
+     "r": "tuer",
+     "phrase": "Welcher Mann sitzt an der Tür? — Der Mann in der Uniform.",
+     "sens": "Quel homme est assis près de la porte ? — L'homme en uniforme.",
+     "n": "der Mann, sujet → <b>welcher</b> (nominatif).",
+     "revise": "sitzen"
+    },
+    {
+     "q": "___ Mantel gehört Anna? — Der graue Mantel auf der Bank.",
+     "c": [
+      "Welcher",
+      "Welchen",
+      "Welchem"
+     ],
+     "f": "mantel",
+     "r": "anna",
+     "phrase": "Welcher Mantel gehört Anna? — Der graue Mantel auf der Bank.",
+     "sens": "Quel manteau est à Anna ? — Le manteau gris sur le banc.",
+     "n": "der Mantel est le sujet de gehören → <b>welcher</b>.",
+     "revise": "gehören"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "La manière : indem, dadurch dass",
+   "qs": [
+    {
+     "q": "Anna lernt, ___ sie die Skulptur zeichnet.",
+     "c": [
+      "indem",
+      "damit",
+      "ob"
+     ],
+     "f": "anna",
+     "r": "skulptur",
+     "phrase": "Anna lernt, indem sie die Skulptur zeichnet.",
+     "sens": "Anna apprend en dessinant la sculpture.",
+     "n": "<b>indem</b> = en (+ participe présent) : il dit COMMENT on fait ; verbe à la fin.",
+     "revise": "lernen"
+    },
+    {
+     "q": "Der Student lernt etwas über das Bild, indem er die Kopfhörer ___.",
+     "c": [
+      "benutzt",
+      "benutzen",
+      "zu benutzen"
+     ],
+     "f": "kopfhoerer",
+     "r": "student",
+     "phrase": "Der Student lernt etwas über das Bild, indem er die Kopfhörer benutzt.",
+     "sens": "L'étudiant en apprend plus sur le tableau en utilisant son casque.",
+     "n": "Après indem, le verbe conjugué va <b>à la fin</b>.",
+     "revise": "benutzen"
+    },
+    {
+     "q": "Man schützt die Bilder, ___ man sie nicht berührt.",
+     "c": [
+      "indem",
+      "obwohl",
+      "ob"
+     ],
+     "f": "gemaelde-2",
+     "phrase": "Man schützt die Bilder, indem man sie nicht berührt.",
+     "sens": "On protège les tableaux en ne les touchant pas.",
+     "n": "<b>indem</b> + la manière de faire.",
+     "revise": "schützen"
+    },
+    {
+     "q": "Der Mann passt auf, indem er alle Besucher ___.",
+     "c": [
+      "beobachtet",
+      "beobachten",
+      "zu beobachten"
+     ],
+     "f": "mann",
+     "phrase": "Der Mann passt auf, indem er alle Besucher beobachtet.",
+     "sens": "L'homme surveille la salle en observant tous les visiteurs.",
+     "n": "indem + verbe conjugué en fin de proposition : … <b>beobachtet</b>.",
+     "revise": "beobachten"
+    },
+    {
+     "q": "Anna merkt sich die Skulptur ___, dass sie sie zeichnet.",
+     "c": [
+      "dadurch",
+      "damit",
+      "davon"
+     ],
+     "f": "skulptur",
+     "r": "anna",
+     "phrase": "Anna merkt sich die Skulptur dadurch, dass sie sie zeichnet.",
+     "sens": "Anna retient la sculpture en la dessinant.",
+     "n": "<b>dadurch, dass</b> = indem : dadurch dans la principale, dass ouvre la subordonnée."
+    },
+    {
+     "q": "Man spart Geld, indem man am Sonntag ins Museum ___.",
+     "c": [
+      "geht",
+      "gehen",
+      "gegangen"
+     ],
+     "f": "tuer",
+     "phrase": "Man spart Geld, indem man am Sonntag ins Museum geht.",
+     "sens": "On économise de l'argent en allant au musée le dimanche.",
+     "n": "Sujet man → verbe à la 3e personne du singulier : <b>geht</b>.",
+     "revise": "gehen"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna zeichnet seit einer Stunde — sie ___ Kunst lieben.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "anna",
+     "phrase": "Sie muss Kunst lieben.",
+     "sens": "Elle doit aimer l'art.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der junge Mann ___ Kunst studieren.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "student",
+     "phrase": "Der junge Mann könnte Kunst studieren.",
+     "sens": "Le jeune homme étudie peut-être l'art.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der Mann an der Tür ___ jeden Tag hier sitzen.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "mann",
+     "r": "tuer",
+     "phrase": "Der Mann an der Tür dürfte jeden Tag hier sitzen.",
+     "sens": "L'homme près de la porte est sans doute assis ici tous les jours.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Das Bild mit dem Schiff ___ sehr wertvoll sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "gemaelde",
+     "phrase": "Das Bild mit dem Schiff soll sehr wertvoll sein.",
+     "sens": "Le tableau du bateau aurait beaucoup de valeur.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    33.5,
+    0,
+    24.5,
+    7.5
+   ]
+  },
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    21
+   ]
+  },
+  {
+   "id": "lampe-2",
+   "mot": "Lampe",
+   "sam": [
+    [
+     5,
+     22.4,
+     12,
+     1.8
+    ],
+    [
+     6.2,
+     38.8,
+     8.8,
+     1.8
+    ],
+    [
+     24,
+     39.8,
+     7.5,
+     1.8
+    ],
+    [
+     66,
+     40.3,
+     6,
+     1.6
+    ]
+   ],
+   "boites": [
+    [
+     5,
+     22.4,
+     12,
+     1.8
+    ],
+    [
+     6.2,
+     38.8,
+     8.8,
+     1.8
+    ],
+    [
+     24,
+     39.8,
+     7.5,
+     1.8
+    ],
+    [
+     66,
+     40.3,
+     6,
+     1.6
+    ]
+   ]
+  },
+  {
+   "id": "gemaelde",
+   "mot": "Gemälde",
+   "aussi": [
+    "Bild"
+   ],
+   "boite": [
+    35,
+    21.2,
+    28.5,
+    14
+   ]
+  },
+  {
+   "id": "gemaelde-2",
+   "mot": "Gemälde",
+   "aussi": [
+    "Bild"
+   ],
+   "boite": [
+    1.5,
+    23.5,
+    26,
+    15.3
+   ]
+  },
+  {
+   "id": "gemaelde-3",
+   "mot": "Gemälde",
+   "aussi": [
+    "Bild"
+   ],
+   "boite": [
+    2.4,
+    40.2,
+    16.2,
+    11.9
+   ]
+  },
+  {
+   "id": "gemaelde-4",
+   "mot": "Gemälde",
+   "aussi": [
+    "Bild"
+   ],
+   "boite": [
+    20.5,
+    41.3,
+    13.5,
+    8.3
+   ]
+  },
+  {
+   "id": "gemaelde-5",
+   "mot": "Gemälde",
+   "aussi": [
+    "Bild"
+   ],
+   "boite": [
+    40,
+    43,
+    7,
+    7
+   ]
+  },
+  {
+   "id": "gemaelde-6",
+   "mot": "Gemälde",
+   "aussi": [
+    "Bild",
+    "Pferd"
+   ],
+   "boite": [
+    63,
+    42,
+    9.5,
+    7.2
+   ]
+  },
+  {
+   "id": "vorhang",
+   "mot": "Vorhang",
+   "sam": [
+    [
+     74.8,
+     19.5,
+     9.2,
+     31
+    ],
+    [
+     89.8,
+     13.5,
+     10.2,
+     40
+    ]
+   ],
+   "boites": [
+    [
+     74.8,
+     19.5,
+     9.2,
+     31
+    ],
+    [
+     89.8,
+     13.5,
+     10.2,
+     40
+    ]
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    83.3,
+    19.8,
+    7,
+    34
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "plein": true,
+   "boite": [
+    37.5,
+    35.5,
+    23.5,
+    21
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boite": [
+    0,
+    16,
+    75,
+    47
+   ]
+  },
+  {
+   "id": "skulptur",
+   "mot": "Skulptur",
+   "aussi": [
+    "Hund"
+   ],
+   "boite": [
+    13.5,
+    48.8,
+    19.5,
+    16
+   ]
+  },
+  {
+   "id": "mann",
+   "mot": "Mann",
+   "points_sam": [
+    [
+     38.5,
+     52,
+     1
+    ],
+    [
+     40,
+     60,
+     1
+    ],
+    [
+     34,
+     62,
+     0
+    ]
+   ],
+   "boite": [
+    32.5,
+    48.5,
+    14,
+    16
+   ]
+  },
+  {
+   "id": "krawatte",
+   "mot": "Krawatte",
+   "boite": [
+    37.3,
+    50.8,
+    1.6,
+    3.5
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "points_sam": [
+    [
+     35,
+     54,
+     1
+    ],
+    [
+     42,
+     54,
+     1
+    ],
+    [
+     38,
+     50,
+     0
+    ],
+    [
+     38.5,
+     57.5,
+     0
+    ]
+   ],
+   "boite": [
+    32.5,
+    51,
+    12,
+    7.5
+   ]
+  },
+  {
+   "id": "hose-2",
+   "mot": "Hose",
+   "boite": [
+    35,
+    56.5,
+    11,
+    6.5
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "points_sam": [
+    [
+     33.8,
+     61,
+     1
+    ],
+    [
+     34,
+     57,
+     1
+    ],
+    [
+     38,
+     58,
+     0
+    ]
+   ],
+   "boite": [
+    33,
+    55.5,
+    10,
+    9
+   ]
+  },
+  {
+   "id": "student",
+   "mot": "Student",
+   "aussi": [
+    "Mann"
+   ],
+   "points_sam": [
+    [
+     80,
+     45,
+     1
+    ],
+    [
+     79,
+     52,
+     1
+    ],
+    [
+     77,
+     62,
+     1
+    ],
+    [
+     72,
+     50,
+     0
+    ]
+   ],
+   "boite": [
+    70,
+    42,
+    15,
+    26
+   ]
+  },
+  {
+   "id": "kopfhoerer",
+   "mot": "Kopfhörer",
+   "boite": [
+    77.8,
+    43.3,
+    3.6,
+    3.3
+   ]
+  },
+  {
+   "id": "jacke-2",
+   "mot": "Jacke",
+   "points_sam": [
+    [
+     81,
+     51,
+     1
+    ],
+    [
+     77,
+     54,
+     1
+    ],
+    [
+     72,
+     50,
+     0
+    ],
+    [
+     80,
+     46.5,
+     0
+    ]
+   ],
+   "boite": [
+    73.5,
+    46,
+    11.5,
+    10.5
+   ]
+  },
+  {
+   "id": "hose-3",
+   "mot": "Hose",
+   "boite": [
+    74.5,
+    56.3,
+    6.5,
+    10
+   ]
+  },
+  {
+   "id": "rucksack-2",
+   "mot": "Rucksack",
+   "boite": [
+    69.5,
+    46.3,
+    6.3,
+    7.8
+   ]
+  },
+  {
+   "id": "heizkoerper",
+   "mot": "Heizkörper",
+   "boite": [
+    80.5,
+    53.8,
+    12,
+    8.5
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    88,
+    43,
+    12,
+    23
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "points_sam": [
+    [
+     60,
+     52,
+     1
+    ],
+    [
+     60,
+     58,
+     1
+    ],
+    [
+     45,
+     70,
+     1
+    ],
+    [
+     52,
+     77,
+     1
+    ],
+    [
+     68,
+     66,
+     0
+    ]
+   ],
+   "boite": [
+    36.5,
+    49.4,
+    33.5,
+    30
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "points_sam": [
+    [
+     58,
+     57,
+     1
+    ],
+    [
+     65,
+     60,
+     1
+    ],
+    [
+     55,
+     61.5,
+     0
+    ],
+    [
+     60,
+     52,
+     0
+    ]
+   ],
+   "boite": [
+    53,
+    54.4,
+    16,
+    9.5
+   ]
+  },
+  {
+   "id": "rock",
+   "mot": "Rock",
+   "boite": [
+    51.5,
+    62.5,
+    17,
+    4.5
+   ]
+  },
+  {
+   "id": "bleistift",
+   "mot": "Bleistift",
+   "boite": [
+    50.8,
+    59.7,
+    3,
+    2.5
+   ]
+  },
+  {
+   "id": "heft",
+   "mot": "Heft",
+   "boite": [
+    47.5,
+    61.6,
+    10.5,
+    2.5
+   ]
+  },
+  {
+   "id": "stiefel",
+   "mot": "Stiefel",
+   "sam": [
+    [
+     37,
+     70.5,
+     8.5,
+     4.3
+    ],
+    [
+     47,
+     74.7,
+     7.5,
+     4.3
+    ]
+   ],
+   "boites": [
+    [
+     37,
+     70.5,
+     8.5,
+     4.3
+    ],
+    [
+     47,
+     74.7,
+     7.5,
+     4.3
+    ]
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "sur": "bank",
+   "boite": [
+    61,
+    62.5,
+    18,
+    10
+   ]
+  },
+  {
+   "id": "bank",
+   "mot": "Bank",
+   "points_sam": [
+    [
+     85,
+     66,
+     1
+    ],
+    [
+     45,
+     67,
+     1
+    ],
+    [
+     87,
+     72,
+     1
+    ],
+    [
+     70,
+     66,
+     0
+    ]
+   ],
+   "boite": [
+    38,
+    62,
+    52,
+    16.5
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "boite": [
+    55.5,
+    70.4,
+    14.5,
+    12.5
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     62,
+     100,
+     38
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

@@ -1,0 +1,1519 @@
+{
+ "_lisez_moi": [
+  "Le restaurant (16 oct. 2026) : un soir d'automne, Mark commande dans un petit restaurant de son quartier de Berlin ; la carte ouverte dans une main, il montre un plat du doigt a la serveuse, qui note sur son carnet ; son manteau est sur le dossier de sa chaise, son sac a dos par terre ; a la table voisine, un vieux couple dine (lui coupe sa viande, elle mange une soupe) ; au fond, le comptoir du bar, un serveur avec deux pizzas, la fenetre sur la rue. Theme : manger et boire, le restaurant, commander. Scene creee a la demande de Jacques (« creer huit nouvelles scenes », 16 oct. 2026, deuxieme serie), construite par Fable.",
+  "Image : visuel/scenes/restaurant.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png), rendu photo, une seule prise. Aucun texte lisible : la carte est une feuille unie, le carnet de la serveuse est vide, les bouteilles n'ont pas d'etiquette, l'horloge n'a pas de chiffres, le petit tableau noir du bar est vide.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Contours (16 oct. 2026) : les personnes et leurs vetements portent une boite « sam » et des « points_sam » (1 = sur l'objet, 0 = a exclure), voir detourer.py ; « plein » seulement pour les fonds (mur, sol, table, fenetre, comptoir) ou pour un groupe d'objets transparents que SAM ne detoure pas (les verres suspendus) ; les lunettes sont des « ellipses ».",
+  "Histoire des personnages : Mark seul a sa table, dans son quartier ; la serveuse est die Kellnerin (aussi Frau), le serveur der Kellner (aussi Mann), le vieux couple der Mann et die Frau (des inconnus, pas la famille de Mark). Les bouteilles du bar sont die Flasche (aussi Wein, Bier) ; les verres a vin rouge das Glas (aussi Wein) ; le gilet rouge de la dame der Pullover (aussi Jacke) ; la carte die Speisekarte ; le carnet der Zettel (aussi Papier) ; le gateau sous cloche der Kuchen ; la machine a cafe die Kaffeemaschine ; le comptoir die Theke. Les deux salieres de chaque table sont UNE zone « Salz » (aussi Pfeffer) : l'image ne dit pas laquelle est le sel.",
+  "SANS ZONE bien que visibles (a signaler) : le tablier noir de la serveuse et du serveur (die Schuerze manque au corpus allemand), le pantalon de la serveuse (cache par la table, SAM n'attrapait que la nappe), les tireuses a biere du bar, la rampe de laiton du comptoir, la cloche du gateau (on touche le gateau), le couteau et la fourchette dans les mains du vieux monsieur et la cuillere de la dame (trop petits). La chaise de Mark n'est visible que par un pied et un coin de dossier (stuhl-2). Espagnol : Salat = la ensalada (surcharge ; mots.json dit la lechuga).",
+  "Mesures relues sur la grille en % du 16 oct. 2026."
+ ],
+ "image": "restaurant.webp",
+ "source": "../scenes/restaurant.png",
+ "titre": "Im Restaurant",
+ "alt": "Mark au restaurant, un soir d'automne à Berlin : assis à une table nappée de blanc, la carte ouverte dans une main, il montre un plat du doigt à la serveuse, qui note la commande sur son carnet ; sur la table, une corbeille de petits pains, une assiette avec une serviette, un couteau, une cuillère, une fourchette, un verre et une bouteille d'eau, une bougie, une fleur jaune, le sel et le poivre ; son manteau gris est sur le dossier de sa chaise, son sac à dos par terre ; à la table voisine, un vieux monsieur à lunettes coupe sa viande et une dame en gilet rouge mange une soupe, devant deux verres de vin ; au fond, le comptoir du bar avec sa machine à café, ses tasses et un gâteau sous cloche, les bouteilles et les verres suspendus, un serveur qui apporte deux pizzas, une fenêtre sur la rue et son réverbère, une horloge, un tableau et une plante.",
+ "consigne": "Mark commande son repas au restaurant. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "an der Wand",
+      "am Fenster",
+      "über der Tür"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "Die Uhr hängt an der Wand.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo stehen die Flaschen?",
+     "c": [
+      "im Regal",
+      "auf dem Tisch",
+      "im Korb"
+     ],
+     "f": "flasche-2",
+     "r": "regal",
+     "phrase": "Die Flaschen stehen im Regal.",
+     "sens": "Les bouteilles sont sur l'étagère.",
+     "n": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal."
+    },
+    {
+     "q": "Wo steht der Rucksack?",
+     "c": [
+      "auf dem Boden",
+      "auf dem Stuhl",
+      "auf der Theke"
+     ],
+     "f": "rucksack",
+     "r": "boden",
+     "phrase": "Der Rucksack steht auf dem Boden.",
+     "sens": "Le sac à dos est par terre.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    },
+    {
+     "q": "Wo hängt der Mantel?",
+     "c": [
+      "über dem Stuhl",
+      "an der Wand",
+      "neben der Tür"
+     ],
+     "f": "mantel",
+     "r": "stuhl-2",
+     "phrase": "Der Mantel hängt über dem Stuhl.",
+     "sens": "Le manteau est posé sur le dossier de la chaise.",
+     "n": "<b>über</b> = au-dessus de. der Stuhl → über <b>dem</b> Stuhl."
+    },
+    {
+     "q": "Wo steht die Kerze?",
+     "c": [
+      "auf dem Tisch",
+      "auf der Theke",
+      "im Regal"
+     ],
+     "f": "kerze",
+     "r": "tisch",
+     "phrase": "Die Kerze steht auf dem Tisch.",
+     "sens": "La bougie est sur la table.",
+     "n": "der Tisch → auf <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo liegen die Brötchen?",
+     "c": [
+      "im Korb",
+      "auf dem Teller",
+      "auf der Theke"
+     ],
+     "f": "broetchen",
+     "r": "korb",
+     "phrase": "Die Brötchen liegen im Korb.",
+     "sens": "Les petits pains sont dans la corbeille.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Korb → im Korb."
+    },
+    {
+     "q": "Wo hängt das Bild?",
+     "c": [
+      "neben dem Fenster",
+      "über der Tür",
+      "an der Decke"
+     ],
+     "f": "bild",
+     "r": "fenster",
+     "phrase": "Das Bild hängt neben dem Fenster.",
+     "sens": "Le tableau est accroché à côté de la fenêtre.",
+     "n": "<b>neben</b> = à côté de. das Fenster → neben <b>dem</b> Fenster."
+    },
+    {
+     "q": "Wo steht der Kuchen?",
+     "c": [
+      "auf der Theke",
+      "auf dem Tisch",
+      "im Regal"
+     ],
+     "f": "kuchen",
+     "r": "theke",
+     "phrase": "Der Kuchen steht auf der Theke.",
+     "sens": "Le gâteau est sur le comptoir.",
+     "n": "die Theke → auf <b>der</b> Theke : au datif, le féminin <b>die</b> devient <b>der</b>."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les quantités : ein Glas Wasser, ein Stück Kuchen",
+   "qs": [
+    {
+     "q": "Mark bestellt ein ___ Wasser.",
+     "c": [
+      "Glas",
+      "Glas von",
+      "Gläser"
+     ],
+     "f": "glas",
+     "r": "mark",
+     "phrase": "Mark bestellt ein Glas Wasser.",
+     "sens": "Mark commande un verre d'eau.",
+     "n": "Une quantité se dit sans « de » : ein <b>Glas</b> Wasser.",
+     "revise": "bestellen"
+    },
+    {
+     "q": "Die Frau isst einen ___ Suppe.",
+     "c": [
+      "Teller",
+      "Teller von",
+      "Tellern"
+     ],
+     "f": "suppe",
+     "r": "frau",
+     "phrase": "Die Frau isst einen Teller Suppe.",
+     "sens": "La dame mange une assiette de soupe.",
+     "n": "La mesure d'abord, puis la chose sans article : einen <b>Teller</b> Suppe.",
+     "revise": "essen"
+    },
+    {
+     "q": "Auf dem Tisch steht eine ___ Wasser.",
+     "c": [
+      "Flasche",
+      "Flaschen",
+      "Flasche von"
+     ],
+     "f": "flasche",
+     "r": "tisch",
+     "phrase": "Auf dem Tisch steht eine Flasche Wasser.",
+     "sens": "Sur la table, il y a une bouteille d'eau.",
+     "n": "eine <b>Flasche</b> Wasser : au singulier, sans « de ».",
+     "revise": "stehen"
+    },
+    {
+     "q": "Mark möchte ein ___ Kuchen.",
+     "c": [
+      "Stück",
+      "Stücke",
+      "Stück von"
+     ],
+     "f": "kuchen",
+     "r": "mark",
+     "phrase": "Mark möchte ein Stück Kuchen.",
+     "sens": "Mark voudrait un morceau de gâteau.",
+     "n": "ein <b>Stück</b> Kuchen = un morceau de gâteau."
+    },
+    {
+     "q": "Die Kellnerin bringt einen ___ Brötchen.",
+     "c": [
+      "Korb",
+      "Körbe",
+      "Korbs"
+     ],
+     "f": "korb",
+     "r": "kellnerin",
+     "phrase": "Die Kellnerin bringt einen Korb Brötchen.",
+     "sens": "La serveuse apporte une corbeille de petits pains.",
+     "n": "einen <b>Korb</b> Brötchen : la mesure à l'accusatif, la chose sans article.",
+     "revise": "bringen"
+    },
+    {
+     "q": "Mark bestellt auch eine ___ Kaffee.",
+     "c": [
+      "Tasse",
+      "Tassen",
+      "Tasse von"
+     ],
+     "f": "tasse",
+     "r": "mark",
+     "phrase": "Mark bestellt auch eine Tasse Kaffee.",
+     "sens": "Mark commande aussi une tasse de café.",
+     "n": "eine <b>Tasse</b> Kaffee = une tasse de café.",
+     "revise": "bestellen"
+    },
+    {
+     "q": "Im Regal stehen viele ___ Wein.",
+     "c": [
+      "Flaschen",
+      "Flasche",
+      "Flaschens"
+     ],
+     "f": "flasche-2",
+     "r": "regal",
+     "phrase": "Im Regal stehen viele Flaschen Wein.",
+     "sens": "Sur l'étagère, il y a beaucoup de bouteilles de vin.",
+     "n": "Une mesure féminine prend le pluriel : viele <b>Flaschen</b> Wein.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Der Mann isst ein ___ Fleisch.",
+     "c": [
+      "Stück",
+      "Stücke",
+      "Stück von"
+     ],
+     "f": "fleisch",
+     "r": "mann",
+     "phrase": "Der Mann isst ein Stück Fleisch.",
+     "sens": "Le monsieur mange un morceau de viande.",
+     "n": "Une mesure neutre reste au singulier : ein <b>Stück</b> Fleisch.",
+     "revise": "essen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les adjectifs substantivés : etwas Warmes, nichts Süßes",
+   "qs": [
+    {
+     "q": "Mark möchte etwas ___ essen.",
+     "c": [
+      "Warmes",
+      "warmes",
+      "Warme"
+     ],
+     "f": "speisekarte",
+     "r": "mark",
+     "phrase": "Mark möchte etwas Warmes essen.",
+     "sens": "Mark voudrait manger quelque chose de chaud.",
+     "n": "Après <b>etwas</b>, l'adjectif devient un nom neutre, avec majuscule : etwas Warm<b>es</b>.",
+     "revise": "essen"
+    },
+    {
+     "q": "Die Frau isst nichts ___.",
+     "c": [
+      "Süßes",
+      "Süße",
+      "süßes"
+     ],
+     "f": "frau",
+     "phrase": "Die Frau isst nichts Süßes.",
+     "sens": "La dame ne mange rien de sucré.",
+     "n": "Après <b>nichts</b> : nichts Süß<b>es</b>.",
+     "revise": "essen"
+    },
+    {
+     "q": "Gibt es heute etwas ___ auf der Karte?",
+     "c": [
+      "Neues",
+      "Neue",
+      "neues"
+     ],
+     "f": "speisekarte",
+     "phrase": "Gibt es heute etwas Neues auf der Karte?",
+     "sens": "Y a-t-il quelque chose de nouveau sur la carte aujourd'hui ?",
+     "n": "etwas Neu<b>es</b> = quelque chose de nouveau."
+    },
+    {
+     "q": "Auf der Karte steht viel ___.",
+     "c": [
+      "Gutes",
+      "Gute",
+      "gutes"
+     ],
+     "f": "speisekarte",
+     "phrase": "Auf der Karte steht viel Gutes.",
+     "sens": "Sur la carte, il y a beaucoup de bonnes choses.",
+     "n": "Après <b>viel</b> aussi : viel Gut<b>es</b>.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Das ___ an diesem Restaurant ist die Küche.",
+     "c": [
+      "Beste",
+      "Bestes",
+      "beste"
+     ],
+     "f": "theke",
+     "phrase": "Das Beste an diesem Restaurant ist die Küche.",
+     "sens": "Le meilleur de ce restaurant, c'est la cuisine.",
+     "n": "Après l'article défini <b>das</b>, l'adjectif substantivé prend <b>-e</b> : das Best<b>e</b>."
+    },
+    {
+     "q": "Mark probiert gern alles ___.",
+     "c": [
+      "Neue",
+      "Neues",
+      "neue"
+     ],
+     "f": "mark",
+     "phrase": "Mark probiert gern alles Neue.",
+     "sens": "Mark aime goûter tout ce qui est nouveau.",
+     "n": "Après <b>alles</b>, comme après das : alles Neu<b>e</b>.",
+     "revise": "probieren"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark zeigt auf die Karte — er ___ Hunger haben.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "mark",
+     "r": "speisekarte",
+     "phrase": "Er muss Hunger haben.",
+     "sens": "Il doit avoir faim.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Das Paar ___ jeden Abend hier essen.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "mann",
+     "r": "frau",
+     "phrase": "Das Paar könnte jeden Abend hier essen.",
+     "sens": "Le couple dîne peut-être ici tous les soirs.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Die Pizza ___ für den Tisch am Fenster sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "pizza",
+     "r": "fenster",
+     "phrase": "Die Pizza dürfte für den Tisch am Fenster sein.",
+     "sens": "La pizza doit être pour la table près de la fenêtre.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Dieses Restaurant ___ die beste Küche im Kiez haben.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "theke",
+     "phrase": "Dieses Restaurant soll die beste Küche im Kiez haben.",
+     "sens": "Ce restaurant aurait la meilleure cuisine du quartier.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "plein": true,
+   "boite": [
+    0,
+    0,
+    100,
+    9.5
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "sam": [
+    [
+     2,
+     20,
+     13,
+     5.5
+    ],
+    [
+     31,
+     23,
+     10.5,
+     3.5
+    ],
+    [
+     46,
+     23.5,
+     8.5,
+     3
+    ],
+    [
+     82.5,
+     16,
+     13.5,
+     5.5
+    ]
+   ],
+   "boites": [
+    [
+     2,
+     20,
+     13,
+     5.5
+    ],
+    [
+     31,
+     23,
+     10.5,
+     3.5
+    ],
+    [
+     46,
+     23.5,
+     8.5,
+     3
+    ],
+    [
+     82.5,
+     16,
+     13.5,
+     5.5
+    ]
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boites": [
+    [
+     72,
+     9.5,
+     28,
+     37
+    ],
+    [
+     26,
+     9.5,
+     19,
+     24
+    ]
+   ]
+  },
+  {
+   "id": "flasche-2",
+   "mot": "Flasche",
+   "sur": "regal",
+   "aussi": [
+    "Wein",
+    "Bier"
+   ],
+   "boite": [
+    0,
+    10,
+    41,
+    7.5
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "plein": true,
+   "boite": [
+    0,
+    14.5,
+    42,
+    4
+   ]
+  },
+  {
+   "id": "glas-2",
+   "mot": "Glas",
+   "plein": true,
+   "boite": [
+    0,
+    19.5,
+    30,
+    9.5
+   ]
+  },
+  {
+   "id": "tafel",
+   "mot": "Tafel",
+   "boite": [
+    15,
+    29.5,
+    11,
+    4.5
+   ]
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "boite": [
+    1,
+    31.5,
+    16,
+    4
+   ]
+  },
+  {
+   "id": "kaffeemaschine",
+   "mot": "Kaffeemaschine",
+   "boite": [
+    12,
+    31.5,
+    12,
+    12
+   ]
+  },
+  {
+   "id": "kuchen",
+   "mot": "Kuchen",
+   "boite": [
+    2,
+    35.5,
+    13.5,
+    11
+   ]
+  },
+  {
+   "id": "pizza",
+   "mot": "Pizza",
+   "sam": [
+    [
+     27.5,
+     36,
+     9,
+     3
+    ],
+    [
+     29.5,
+     39.5,
+     15.5,
+     4.5
+    ]
+   ],
+   "boites": [
+    [
+     27.5,
+     36,
+     9,
+     3
+    ],
+    [
+     29.5,
+     39.5,
+     15.5,
+     4.5
+    ]
+   ]
+  },
+  {
+   "id": "flasche-3",
+   "mot": "Flasche",
+   "aussi": [
+    "Wein"
+   ],
+   "boite": [
+    40,
+    35,
+    3.5,
+    6.5
+   ]
+  },
+  {
+   "id": "kellner",
+   "mot": "Kellner",
+   "aussi": [
+    "Mann"
+   ],
+   "boite": [
+    30,
+    26,
+    20,
+    19.5
+   ]
+  },
+  {
+   "id": "hemd-2",
+   "mot": "Hemd",
+   "boite": [
+    32,
+    32,
+    18,
+    13
+   ]
+  },
+  {
+   "id": "theke",
+   "mot": "Theke",
+   "plein": true,
+   "boite": [
+    0,
+    40,
+    45,
+    43
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    43.5,
+    12.5,
+    29.5,
+    31
+   ]
+  },
+  {
+   "id": "himmel",
+   "mot": "Himmel",
+   "plein": true,
+   "boite": [
+    45,
+    14,
+    26.5,
+    20
+   ]
+  },
+  {
+   "id": "laterne",
+   "mot": "Laterne",
+   "boite": [
+    61.5,
+    18.5,
+    6.5,
+    14
+   ]
+  },
+  {
+   "id": "vorhang",
+   "mot": "Vorhang",
+   "plein": true,
+   "boite": [
+    45,
+    34,
+    27,
+    9.5
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    78,
+    16,
+    8.5,
+    5.5
+   ]
+  },
+  {
+   "id": "bild",
+   "mot": "Bild",
+   "aussi": [
+    "Gemälde"
+   ],
+   "boite": [
+    73.5,
+    25,
+    17.5,
+    9.5
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "boite": [
+    73,
+    31,
+    22,
+    15.5
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "plein": true,
+   "boite": [
+    93.5,
+    11,
+    6.5,
+    36
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boite": [
+    91,
+    61,
+    9,
+    37
+   ]
+  },
+  {
+   "id": "mann",
+   "mot": "Mann",
+   "boite": [
+    63,
+    41,
+    20,
+    21
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "ellipses": [
+    [
+     75.3,
+     45.4,
+     1.1,
+     0.6
+    ],
+    [
+     78.0,
+     45.1,
+     0.9,
+     0.55
+    ]
+   ]
+  },
+  {
+   "id": "hemd-3",
+   "mot": "Hemd",
+   "boite": [
+    70,
+    46,
+    5.5,
+    6.5
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "sam": [
+    62,
+    45,
+    19,
+    17
+   ],
+   "points_sam": [
+    [
+     67,
+     53,
+     1
+    ],
+    [
+     65,
+     58,
+     1
+    ],
+    [
+     78,
+     52,
+     1
+    ],
+    [
+     72,
+     48,
+     0
+    ],
+    [
+     74,
+     58,
+     0
+    ]
+   ],
+   "boite": [
+    63,
+    45.5,
+    17,
+    16
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "boite": [
+    80,
+    41,
+    18,
+    15
+   ]
+  },
+  {
+   "id": "pullover-2",
+   "mot": "Pullover",
+   "aussi": [
+    "Jacke"
+   ],
+   "sam": [
+    80.5,
+    46.5,
+    17,
+    10
+   ],
+   "points_sam": [
+    [
+     84,
+     50,
+     1
+    ],
+    [
+     93,
+     50,
+     1
+    ],
+    [
+     88.5,
+     49,
+     0
+    ],
+    [
+     93,
+     54,
+     0
+    ]
+   ],
+   "boite": [
+    81,
+    47,
+    16,
+    9
+   ]
+  },
+  {
+   "id": "teller-3",
+   "mot": "Teller",
+   "sur": "tisch-2",
+   "boite": [
+    76.5,
+    53.5,
+    13,
+    3.8
+   ]
+  },
+  {
+   "id": "fleisch",
+   "mot": "Fleisch",
+   "sur": "teller-3",
+   "aussi": [
+    "Kartoffel"
+   ],
+   "boite": [
+    79,
+    54,
+    8.5,
+    2.6
+   ]
+  },
+  {
+   "id": "suppe",
+   "mot": "Suppe",
+   "sur": "tisch-2",
+   "aussi": [
+    "Teller"
+   ],
+   "boite": [
+    89,
+    51.3,
+    9.5,
+    3.5
+   ]
+  },
+  {
+   "id": "glas-3",
+   "mot": "Glas",
+   "sur": "tisch-2",
+   "aussi": [
+    "Wein"
+   ],
+   "boite": [
+    85,
+    52,
+    5,
+    4.8
+   ]
+  },
+  {
+   "id": "glas-4",
+   "mot": "Glas",
+   "sur": "tisch-2",
+   "aussi": [
+    "Wein"
+   ],
+   "boite": [
+    96,
+    51,
+    4,
+    6
+   ]
+  },
+  {
+   "id": "salz-2",
+   "mot": "Salz",
+   "sur": "tisch-2",
+   "aussi": [
+    "Pfeffer"
+   ],
+   "boite": [
+    92.5,
+    53.3,
+    3.8,
+    2.8
+   ]
+  },
+  {
+   "id": "kerze-2",
+   "mot": "Kerze",
+   "sur": "tisch-2",
+   "boite": [
+    97,
+    47.5,
+    3,
+    10
+   ]
+  },
+  {
+   "id": "salat",
+   "mot": "Salat",
+   "sur": "tisch-2",
+   "boite": [
+    96,
+    56.5,
+    4,
+    3.5
+   ]
+  },
+  {
+   "id": "tisch-2",
+   "mot": "Tisch",
+   "plein": true,
+   "boite": [
+    66,
+    50,
+    34,
+    16
+   ]
+  },
+  {
+   "id": "kellnerin",
+   "mot": "Kellnerin",
+   "aussi": [
+    "Frau"
+   ],
+   "boite": [
+    42,
+    35,
+    28,
+    55
+   ]
+  },
+  {
+   "id": "hemd-4",
+   "mot": "Hemd",
+   "sam": [
+    [
+     42.5,
+     46.5,
+     8.5,
+     12.5
+    ],
+    [
+     59.5,
+     45.5,
+     8.5,
+     12.5
+    ],
+    [
+     48,
+     43.5,
+     13,
+     5
+    ]
+   ],
+   "points_sam": [
+    [
+     46,
+     52,
+     1
+    ],
+    [
+     63,
+     51,
+     1
+    ],
+    [
+     55,
+     44.5,
+     1
+    ],
+    [
+     54,
+     48,
+     0
+    ],
+    [
+     66.5,
+     55,
+     0
+    ],
+    [
+     67,
+     48.5,
+     0
+    ]
+   ],
+   "boite": [
+    43,
+    44,
+    25,
+    16
+   ]
+  },
+  {
+   "id": "zettel",
+   "mot": "Zettel",
+   "aussi": [
+    "Papier"
+   ],
+   "boite": [
+    56,
+    52,
+    10,
+    4
+   ]
+  },
+  {
+   "id": "kugelschreiber",
+   "mot": "Kugelschreiber",
+   "boite": [
+    51,
+    53,
+    6,
+    3
+   ]
+  },
+  {
+   "id": "schuh-2",
+   "mot": "Schuh",
+   "boite": [
+    44,
+    86,
+    14,
+    5
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "boite": [
+    13,
+    43,
+    44,
+    55
+   ]
+  },
+  {
+   "id": "hemd",
+   "mot": "Hemd",
+   "boite": [
+    33.5,
+    51.5,
+    7,
+    3.5
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "sam": [
+    19,
+    50,
+    32,
+    24
+   ],
+   "points_sam": [
+    [
+     30,
+     58,
+     1
+    ],
+    [
+     26,
+     66,
+     1
+    ],
+    [
+     44,
+     57,
+     1
+    ],
+    [
+     47,
+     61,
+     0
+    ],
+    [
+     15,
+     62,
+     0
+    ],
+    [
+     37,
+     54,
+     0
+    ],
+    [
+     28,
+     73,
+     0
+    ]
+   ],
+   "boite": [
+    20,
+    51,
+    30,
+    22
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "sam": [
+    21,
+    70,
+    23,
+    24
+   ],
+   "points_sam": [
+    [
+     26,
+     76,
+     1
+    ],
+    [
+     30,
+     73,
+     1
+    ],
+    [
+     41,
+     88,
+     1
+    ],
+    [
+     36,
+     76,
+     0
+    ],
+    [
+     33,
+     80,
+     0
+    ],
+    [
+     37.2,
+     86,
+     0
+    ],
+    [
+     16,
+     80,
+     0
+    ]
+   ],
+   "boite": [
+    22,
+    71,
+    24,
+    22
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    36,
+    90,
+    16,
+    8
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "sam": [
+    8,
+    60,
+    18,
+    32
+   ],
+   "points_sam": [
+    [
+     14,
+     75,
+     1
+    ],
+    [
+     20,
+     65,
+     1
+    ],
+    [
+     12,
+     86,
+     1
+    ],
+    [
+     23,
+     62,
+     0
+    ],
+    [
+     22,
+     88,
+     0
+    ]
+   ],
+   "boite": [
+    9,
+    61,
+    17,
+    30
+   ]
+  },
+  {
+   "id": "stuhl-2",
+   "mot": "Stuhl",
+   "sam": [
+    [
+     35.8,
+     79.5,
+     3.6,
+     17
+    ],
+    [
+     13.5,
+     61.5,
+     2.8,
+     4.5
+    ]
+   ],
+   "boites": [
+    [
+     35.8,
+     79.5,
+     3.6,
+     17
+    ],
+    [
+     13.5,
+     61.5,
+     2.8,
+     4.5
+    ]
+   ]
+  },
+  {
+   "id": "rucksack",
+   "mot": "Rucksack",
+   "boite": [
+    10,
+    82,
+    23,
+    18
+   ]
+  },
+  {
+   "id": "speisekarte",
+   "mot": "Speisekarte",
+   "boite": [
+    45,
+    55,
+    21,
+    15
+   ]
+  },
+  {
+   "id": "serviette",
+   "mot": "Serviette",
+   "sur": "teller",
+   "boite": [
+    44,
+    62.5,
+    13,
+    5.5
+   ]
+  },
+  {
+   "id": "teller",
+   "mot": "Teller",
+   "sur": "tisch",
+   "boite": [
+    41.5,
+    63.5,
+    15,
+    7
+   ]
+  },
+  {
+   "id": "loeffel",
+   "mot": "Löffel",
+   "sur": "tisch",
+   "boite": [
+    57,
+    65,
+    7,
+    2.5
+   ]
+  },
+  {
+   "id": "messer",
+   "mot": "Messer",
+   "sur": "tisch",
+   "boite": [
+    40,
+    68,
+    10,
+    3
+   ]
+  },
+  {
+   "id": "broetchen",
+   "mot": "Brötchen",
+   "sur": "korb",
+   "aussi": [
+    "Brot"
+   ],
+   "boite": [
+    52.5,
+    68.5,
+    13,
+    5
+   ]
+  },
+  {
+   "id": "korb",
+   "mot": "Korb",
+   "sur": "tisch",
+   "boite": [
+    51,
+    69,
+    16,
+    7.5
+   ]
+  },
+  {
+   "id": "salz",
+   "mot": "Salz",
+   "sur": "tisch",
+   "aussi": [
+    "Pfeffer"
+   ],
+   "boite": [
+    65.3,
+    65.3,
+    7,
+    4.7
+   ]
+  },
+  {
+   "id": "blume",
+   "mot": "Blume",
+   "sur": "tisch",
+   "boite": [
+    63,
+    60,
+    7.5,
+    7
+   ]
+  },
+  {
+   "id": "kerze",
+   "mot": "Kerze",
+   "sur": "tisch",
+   "boite": [
+    71,
+    57.5,
+    5.5,
+    11
+   ]
+  },
+  {
+   "id": "glas",
+   "mot": "Glas",
+   "sur": "tisch",
+   "aussi": [
+    "Wasser"
+   ],
+   "boite": [
+    75,
+    62,
+    5,
+    7.5
+   ]
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "sur": "tisch",
+   "aussi": [
+    "Wasser"
+   ],
+   "boite": [
+    79.5,
+    55,
+    5.5,
+    13.5
+   ]
+  },
+  {
+   "id": "messer-2",
+   "mot": "Messer",
+   "sur": "tisch",
+   "boite": [
+    72,
+    66.5,
+    11,
+    3
+   ]
+  },
+  {
+   "id": "serviette-2",
+   "mot": "Serviette",
+   "sur": "teller-2",
+   "boite": [
+    76,
+    70.5,
+    12,
+    4
+   ]
+  },
+  {
+   "id": "teller-2",
+   "mot": "Teller",
+   "sur": "tisch",
+   "boite": [
+    73,
+    70.5,
+    18,
+    6
+   ]
+  },
+  {
+   "id": "gabel",
+   "mot": "Gabel",
+   "sur": "tisch",
+   "boite": [
+    70,
+    73,
+    16,
+    4
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "plein": true,
+   "boite": [
+    29,
+    60,
+    71,
+    40
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     83,
+     12,
+     17
+    ],
+    [
+     55,
+     92,
+     45,
+     8
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

@@ -1,0 +1,255 @@
+{
+ "_lisez_moi": [
+  "Traduction du contenu de la scene friseur (voir construire.py, LES TRADUCTIONS).",
+  "fr = le texte source, recopie du points.json ; trad = sa traduction. Si le fr du points.json change, la traduction est perimee : la page montre le francais jusqu'a ce qu'on la refasse.",
+  "Une question = sa couche et sa phrase allemande. L'allemand ne se traduit pas ; les mots allemands restent en <b>.",
+  "sens = le sens de la phrase, montre apres la reponse (16 oct. 2026) : meme cle et meme paire fr / trad que questions.",
+  "Arabe. NON RELU par un locuteur natif. L'allemand hors <b> est dans <span lang=\"de\"> (isole de gauche a droite) ; les fleches entre deux morceaux arabes vont vers la gauche."
+ ],
+ "langue": "ar",
+ "scene": "friseur",
+ "champs": {
+  "alt": {
+   "fr": "Anna chez le coiffeur, un samedi matin à Berlin : assise dans un fauteuil de cuir noir, une serviette blanche sur les épaules et un magazine fermé sur les genoux, elle sourit pendant que le coiffeur à lunettes tient une mèche de ses cheveux et ses ciseaux ouverts ; par terre, des cheveux coupés ; à gauche, un grand miroir, une haute étagère de serviettes et de flacons, un balai, et une console avec une brosse ronde et trois flacons ; au fond, un petit comptoir avec une vieille caisse enregistreuse, une tasse de café et un pot de basilic, une horloge, un tableau de tournesols, une lampe suspendue et des crochets où pendent le manteau, l'écharpe rouge et le sac d'Anna ; à droite, une vieille dame lit un magazine sur un canapé gris, devant une table basse avec une pile de magazines et un verre d'eau, une grande plante et la vitrine sur la rue, avec un réverbère, un arbre et un vélo.",
+   "trad": "آنا عند مصفّف الشعر صباح يوم سبت في برلين: جالسة على كرسي من الجلد الأسود، ومنشفة بيضاء على كتفيها ومجلّة مغلقة على ركبتيها، تبتسم بينما يمسك مصفّف الشعر ذو النظّارة خصلة من شعرها ومقصّه المفتوح؛ وعلى الأرض شعر مقصوص؛ وإلى اليسار مرآة كبيرة ورفّ عالٍ من المناشف والقوارير ومكنسة ورفّ حائط عليه فرشاة مستديرة وثلاث قوارير؛ وفي الخلف منضدة صغيرة عليها آلة نقد قديمة وفنجان قهوة وأصيص ريحان، وساعة ولوحة دوّار الشمس ومصباح معلّق وعلّاقات عليها معطف آنا ووشاحها الأحمر وحقيبتها؛ وإلى اليمين سيّدة مسنّة تقرأ مجلّة على أريكة رمادية أمام طاولة منخفضة عليها كومة مجلّات وكأس ماء، ونبتة كبيرة وواجهة المحلّ على الشارع مع مصباح الشارع وشجرة ودرّاجة."
+  },
+  "consigne": {
+   "fr": "Anna se fait couper les cheveux. Touche un objet.",
+   "trad": "آنا تقصّ شعرها. المس شيئًا."
+  }
+ },
+ "couches": {
+  "A1": {
+   "fr": "Noms et articles",
+   "trad": "الأسماء وأدوات التعريف"
+  },
+  "A2": {
+   "fr": "Wo? — les prépositions",
+   "trad": "<span lang=\"de\">Wo?</span> — حروف الجر"
+  },
+  "B1": {
+   "fr": "Le pronom réfléchi au datif : ich wasche mir die Haare",
+   "trad": "الضمير الانعكاسي في <span lang=\"de\">Dativ</span>: <span lang=\"de\">ich wasche mir die Haare</span>"
+  },
+  "B2": {
+   "fr": "Plus… plus : je … desto",
+   "trad": "كلّما… كلّما: <span lang=\"de\">je … desto</span>"
+  },
+  "C1": {
+   "fr": "Hypothèses",
+   "trad": "الافتراضات"
+  }
+ },
+ "questions": {
+  "A2 | Die Uhr hängt an der Wand.": {
+   "fr": "die Wand → an <b>der</b> Wand : au datif, le féminin <b>die</b> devient <b>der</b>.",
+   "trad": "<span lang=\"de\">die Wand → an <b>der</b> Wand</span>: في Dativ يتحوّل المؤنث <b>die</b> إلى <b>der</b>."
+  },
+  "A2 | Der Mantel hängt am Haken.": {
+   "fr": "<b>am</b> = an + <b>dem</b> : der Haken → am Haken.",
+   "trad": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Haken → am Haken</span>."
+  },
+  "A2 | Die Handtücher liegen im Regal.": {
+   "fr": "<b>im</b> = in + <b>dem</b> : das Regal → im Regal.",
+   "trad": "<b>im</b> = <span lang=\"de\">in + <b>dem</b></span>: <span lang=\"de\">das Regal → im Regal</span>."
+  },
+  "A2 | Die Kasse steht auf der Theke.": {
+   "fr": "die Theke → auf <b>der</b> Theke : au datif, le féminin <b>die</b> devient <b>der</b>.",
+   "trad": "<span lang=\"de\">die Theke → auf <b>der</b> Theke</span>: في Dativ يتحوّل المؤنث <b>die</b> إلى <b>der</b>."
+  },
+  "A2 | Die Haare liegen auf dem Boden.": {
+   "fr": "der Boden → auf <b>dem</b> Boden.",
+   "trad": "<span lang=\"de\">der Boden → auf <b>dem</b> Boden</span>."
+  },
+  "A2 | Das Glas steht auf dem Tisch.": {
+   "fr": "der Tisch → auf <b>dem</b> Tisch.",
+   "trad": "<span lang=\"de\">der Tisch → auf <b>dem</b> Tisch</span>."
+  },
+  "A2 | Die Frau sitzt auf dem Sofa.": {
+   "fr": "das Sofa → auf <b>dem</b> Sofa.",
+   "trad": "<span lang=\"de\">das Sofa → auf <b>dem</b> Sofa</span>."
+  },
+  "A2 | Der Mann steht hinter dem Stuhl.": {
+   "fr": "<b>hinter</b> = derrière. der Stuhl → hinter <b>dem</b> Stuhl.",
+   "trad": "<b>hinter</b> = خلف. <span lang=\"de\">der Stuhl → hinter <b>dem</b> Stuhl</span>."
+  },
+  "B1 | Anna lässt sich die Haare schneiden.": {
+   "fr": "À la 3e personne, le réfléchi est toujours <b>sich</b>, au datif comme à l'accusatif.",
+   "trad": "في الغائب يكون الضمير الانعكاسي دائمًا <b>sich</b>، في <span lang=\"de\">Dativ</span> كما في <span lang=\"de\">Akkusativ</span>."
+  },
+  "B1 | Ich wasche mir jeden Morgen die Haare.": {
+   "fr": "Avec un objet (die Haare), le réfléchi passe au datif : ich wasche <b>mir</b> die Haare.",
+   "trad": "مع مفعول (<span lang=\"de\">die Haare</span>) ينتقل الضمير الانعكاسي إلى <span lang=\"de\">Dativ</span>: <span lang=\"de\">ich wasche <b>mir</b> die Haare</span>."
+  },
+  "B1 | Ich kämme mich schnell.": {
+   "fr": "Sans autre objet, le réfléchi est à l'accusatif : ich kämme <b>mich</b>.",
+   "trad": "من دون مفعول آخر يكون الضمير الانعكاسي في <span lang=\"de\">Akkusativ</span>: <span lang=\"de\">ich kämme <b>mich</b></span>."
+  },
+  "B1 | Nach der Arbeit wäscht der Mann sich die Hände.": {
+   "fr": "3e personne : <b>sich</b>, même au datif (pas ihm).",
+   "trad": "الغائب: <b>sich</b>، حتى في <span lang=\"de\">Dativ</span> (لا <span lang=\"de\">ihm</span>)."
+  },
+  "B1 | Du ziehst dir den Mantel an.": {
+   "fr": "<b>sich etwas anziehen</b> : avec un objet, datif → du ziehst <b>dir</b> den Mantel an.",
+   "trad": "<b>sich etwas anziehen</b>: مع مفعول، <span lang=\"de\">Dativ</span> ← <span lang=\"de\">du ziehst <b>dir</b> den Mantel an</span>."
+  },
+  "B1 | Anna sieht sich im Spiegel an.": {
+   "fr": "<b>sich ansehen</b> sans autre objet : accusatif ; à la 3e personne, <b>sich</b>.",
+   "trad": "<b>sich ansehen</b> من دون مفعول آخر: <span lang=\"de\">Akkusativ</span>؛ وفي الغائب <b>sich</b>."
+  },
+  "B1 | Wir setzen uns aufs Sofa.": {
+   "fr": "1re personne du pluriel : <b>uns</b>, au datif comme à l'accusatif.",
+   "trad": "المتكلّم الجمع: <b>uns</b>، في <span lang=\"de\">Dativ</span> كما في <span lang=\"de\">Akkusativ</span>."
+  },
+  "B1 | Ich schneide mir die Haare nie selbst.": {
+   "fr": "1re personne du singulier avec un objet : <b>mir</b> (datif), pas mich.",
+   "trad": "المتكلّم المفرد مع مفعول: <b>mir</b> (<span lang=\"de\">Dativ</span>)، لا <span lang=\"de\">mich</span>."
+  },
+  "B2 | Je kürzer die Haare sind, desto schneller trocknen sie.": {
+   "fr": "<b>je</b> + comparatif (verbe à la fin), puis <b>desto</b> + comparatif (verbe juste après).",
+   "trad": "<b>je</b> + اسم التفضيل (الفعل في الآخر)، ثم <b>desto</b> + اسم التفضيل (الفعل بعده مباشرة)."
+  },
+  "B2 | Je länger die Frau wartet, desto mehr liest sie.": {
+   "fr": "Le comparatif de <b>viel</b> est <b>mehr</b>.",
+   "trad": "صيغة التفضيل من <b>viel</b> هي <b>mehr</b>."
+  },
+  "B2 | Je öfter man die Haare wäscht, desto trockener werden sie.": {
+   "fr": "<b>desto</b> (ou umso) ouvre la deuxième partie, suivi du comparatif.",
+   "trad": "<b>desto</b> (أو <span lang=\"de\">umso</span>) يفتح الجزء الثاني ويليه اسم التفضيل."
+  },
+  "B2 | Je besser der Schnitt ist, desto zufriedener ist Anna.": {
+   "fr": "Après <b>desto</b>, toujours un <b>comparatif</b> : zufrieden<b>er</b>.",
+   "trad": "بعد <b>desto</b> دائمًا <b>اسم تفضيل</b>: <span lang=\"de\">zufrieden<b>er</b></span>."
+  },
+  "B2 | Je mehr Kunden kommen, desto mehr verdient der Mann.": {
+   "fr": "Après <b>desto</b> + comparatif vient tout de suite le <b>verbe conjugué</b>.",
+   "trad": "بعد <b>desto</b> + اسم التفضيل يأتي مباشرة <b>الفعل المصرَّف</b>."
+  },
+  "B2 | Je länger die Haare sind, desto länger dauert der Schnitt.": {
+   "fr": "Après <b>je</b>, le comparatif, et le verbe va à la fin : je länger die Haare <b>sind</b>.",
+   "trad": "بعد <b>je</b> يأتي اسم التفضيل ويذهب الفعل إلى الآخر: <span lang=\"de\">je länger die Haare <b>sind</b></span>."
+  },
+  "C1 | Sie muss mit dem Schnitt zufrieden sein.": {
+   "fr": "<b>müssen</b> = déduction presque certaine.",
+   "trad": "<b>müssen</b> = استنتاج شبه مؤكَّد."
+  },
+  "C1 | Die Frau auf dem Sofa könnte die nächste Kundin sein.": {
+   "fr": "<b>könnte</b> = une possibilité parmi d'autres.",
+   "trad": "<b>könnte</b> = احتمال من بين احتمالات أخرى."
+  },
+  "C1 | Der Mantel dürfte Anna gehören.": {
+   "fr": "<b>dürfte</b> = probable, sans en être sûr.",
+   "trad": "<b>dürfte</b> = مرجَّح، دون يقين."
+  },
+  "C1 | Dieser Friseur soll der beste im Kiez sein.": {
+   "fr": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction.",
+   "trad": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+  }
+ },
+ "sens": {
+  "A2 | Die Uhr hängt an der Wand.": {
+   "fr": "L'horloge est accrochée au mur.",
+   "trad": "الساعة معلّقة على الحائط."
+  },
+  "A2 | Der Mantel hängt am Haken.": {
+   "fr": "Le manteau est accroché au crochet.",
+   "trad": "المعطف معلّق على العلّاقة."
+  },
+  "A2 | Die Handtücher liegen im Regal.": {
+   "fr": "Les serviettes sont sur l'étagère.",
+   "trad": "المناشف على الرفّ."
+  },
+  "A2 | Die Kasse steht auf der Theke.": {
+   "fr": "La caisse est sur le comptoir.",
+   "trad": "الصندوق على المنضدة."
+  },
+  "A2 | Die Haare liegen auf dem Boden.": {
+   "fr": "Les cheveux sont par terre.",
+   "trad": "الشعر على الأرض."
+  },
+  "A2 | Das Glas steht auf dem Tisch.": {
+   "fr": "Le verre est sur la table.",
+   "trad": "الكأس على الطاولة."
+  },
+  "A2 | Die Frau sitzt auf dem Sofa.": {
+   "fr": "La dame est assise sur le canapé.",
+   "trad": "السيّدة جالسة على الأريكة."
+  },
+  "A2 | Der Mann steht hinter dem Stuhl.": {
+   "fr": "L'homme est debout derrière le fauteuil.",
+   "trad": "الرجل واقف خلف الكرسي."
+  },
+  "B1 | Anna lässt sich die Haare schneiden.": {
+   "fr": "Anna se fait couper les cheveux.",
+   "trad": "تقصّ آنا شعرها."
+  },
+  "B1 | Ich wasche mir jeden Morgen die Haare.": {
+   "fr": "Je me lave les cheveux tous les matins.",
+   "trad": "أغسل شعري كلّ صباح."
+  },
+  "B1 | Ich kämme mich schnell.": {
+   "fr": "Je me coiffe vite.",
+   "trad": "أمشّط شعري بسرعة."
+  },
+  "B1 | Nach der Arbeit wäscht der Mann sich die Hände.": {
+   "fr": "Après le travail, l'homme se lave les mains.",
+   "trad": "بعد العمل يغسل الرجل يديه."
+  },
+  "B1 | Du ziehst dir den Mantel an.": {
+   "fr": "Tu mets ton manteau.",
+   "trad": "ترتدي معطفك."
+  },
+  "B1 | Anna sieht sich im Spiegel an.": {
+   "fr": "Anna se regarde dans le miroir.",
+   "trad": "تنظر آنا إلى نفسها في المرآة."
+  },
+  "B1 | Wir setzen uns aufs Sofa.": {
+   "fr": "Nous nous asseyons sur le canapé.",
+   "trad": "نجلس على الأريكة."
+  },
+  "B1 | Ich schneide mir die Haare nie selbst.": {
+   "fr": "Je ne me coupe jamais les cheveux moi-même.",
+   "trad": "لا أقصّ شعري بنفسي أبدًا."
+  },
+  "B2 | Je kürzer die Haare sind, desto schneller trocknen sie.": {
+   "fr": "Plus les cheveux sont courts, plus ils sèchent vite.",
+   "trad": "كلّما كان الشعر أقصر جفّ أسرع."
+  },
+  "B2 | Je länger die Frau wartet, desto mehr liest sie.": {
+   "fr": "Plus la dame attend, plus elle lit.",
+   "trad": "كلّما انتظرت السيّدة أطول قرأت أكثر."
+  },
+  "B2 | Je öfter man die Haare wäscht, desto trockener werden sie.": {
+   "fr": "Plus on se lave souvent les cheveux, plus ils deviennent secs.",
+   "trad": "كلّما غسلنا الشعر أكثر صار أكثر جفافًا."
+  },
+  "B2 | Je besser der Schnitt ist, desto zufriedener ist Anna.": {
+   "fr": "Meilleure est la coupe, plus Anna est contente.",
+   "trad": "كلّما كانت القصّة أفضل كانت آنا أكثر رضًا."
+  },
+  "B2 | Je mehr Kunden kommen, desto mehr verdient der Mann.": {
+   "fr": "Plus il vient de clients, plus l'homme gagne d'argent.",
+   "trad": "كلّما جاء زبائن أكثر ربح الرجل مالاً أكثر."
+  },
+  "B2 | Je länger die Haare sind, desto länger dauert der Schnitt.": {
+   "fr": "Plus les cheveux sont longs, plus la coupe dure longtemps.",
+   "trad": "كلّما كان الشعر أطول استغرق القصّ وقتًا أطول."
+  },
+  "C1 | Sie muss mit dem Schnitt zufrieden sein.": {
+   "fr": "Elle doit être contente de la coupe.",
+   "trad": "لا بدّ أنها راضية عن القصّة."
+  },
+  "C1 | Die Frau auf dem Sofa könnte die nächste Kundin sein.": {
+   "fr": "La dame sur le canapé est peut-être la prochaine cliente.",
+   "trad": "ربما تكون السيّدة على الأريكة الزبونة التالية."
+  },
+  "C1 | Der Mantel dürfte Anna gehören.": {
+   "fr": "Le manteau est sans doute à Anna.",
+   "trad": "على الأرجح المعطف لآنا."
+  },
+  "C1 | Dieser Friseur soll der beste im Kiez sein.": {
+   "fr": "Ce coiffeur serait le meilleur du quartier.",
+   "trad": "يُقال إن هذا الحلّاق هو الأفضل في الحيّ."
+  }
+ }
+}

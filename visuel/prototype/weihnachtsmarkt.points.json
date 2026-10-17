@@ -1,0 +1,1348 @@
+{
+ "_lisez_moi": [
+  "Le marche de Noel (16 oct. 2026) : un soir de decembre, Mark decouvre un petit marche de Noel sur une place de Berlin ; une tasse fumante dans une main, il tend l'autre vers l'etoile de bois que le vendeur lui tend par-dessus l'etal ; sur l'etal, des bougies, des cadeaux, une marmite et un pichet de cuivre, des tasses rouges, des pieces, une caisse de pommes et d'oranges, des noix ; au-dessus, un cheval a bascule, une poupee et des etoiles de bois ; derriere, le sapin illumine, l'eglise et sa tour, un reverbere, un stand de bretzels avec une mere et son enfant ; devant, un brasero, du bois et un chien. Theme : les fetes, l'hiver, acheter. Scene creee a la demande de Jacques (« creer huit nouvelles scenes », 16 oct. 2026, deuxieme serie), construite par Fable.",
+  "Image : visuel/scenes/weihnachtsmarkt.png (fal, 0,15 $, refs Mark.png + Mark-troisquarts.png), rendu photo, une seule prise. Le vendeur demande comme une femme est venu HOMME : garde (c'est der Mann, rien dans l'histoire n'en souffre). Les chiffres romains de l'horloge de l'eglise ont ete effaces gratuitement (effacer_texte.py, weihnachtsmarkt-effacer.json : le cadran repeint en blanc uni, l'inpaint laissait des traces) -> weihnachtsmarkt-propre.png. Aucun autre texte.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Contours (16 oct. 2026) : les personnes et leurs vetements portent une boite « sam » et des « points_sam » (1 = sur l'objet, 0 = a exclure), voir detourer.py ; « plein » seulement pour les fonds (mur, sol, table, fenetre, comptoir) ou pour un groupe d'objets transparents que SAM ne detoure pas (les verres suspendus) ; les lunettes sont des « ellipses ».",
+  "Histoire des personnages : Mark seul, a Berlin, premier Noel allemand ; le vendeur est der Mann (der Verkaeufer manque au corpus espagnol), la mere die Frau, l'enfant das Kind (des inconnus). Le sapin est der Baum (der Weihnachtsbaum / die Tanne manquent au corpus allemand). Le cheval a bascule est das Spielzeug (aussi Pferd), la poupee die Puppe, les etoiles der Stern (stern = celle que Mark recoit, stern-2 = celles de l'etal), la guirlande lumineuse die Lichterkette, le gilet vert du vendeur der Pullover (aussi Jacke), la parka de Mark die Jacke, la neige au sol der Schnee (aussi Boden), le reverbere die Laterne, la tour de l'eglise der Turm.",
+  "SANS ZONE bien que visibles (a signaler) : les BOULES rouges et dorees du sapin (die Kugel manque aux deux corpus), le petit ours en peluche sur l'etagere (pas de mot), les branches de sapin posees pres des bougies, la vapeur, le brasero lui-meme (on touche le feu), les sachets du stand de bretzels, le col gris du vendeur, le tablier. La lanterne a bougie demandee n'est pas dans l'image.",
+  "Mesures relues sur la grille en % du 16 oct. 2026."
+ ],
+ "image": "weihnachtsmarkt.webp",
+ "source": "../scenes/weihnachtsmarkt-propre.png",
+ "titre": "Auf dem Weihnachtsmarkt",
+ "alt": "Mark à un marché de Noël, un soir de décembre à Berlin : une tasse fumante dans une main, il tend l'autre vers l'étoile de bois que le vendeur au bonnet rouge lui tend par-dessus l'étal ; sur l'étal en bois saupoudré de neige, trois bougies rouges, un pichet et une marmite de cuivre, des cadeaux emballés, des tasses rouges, deux pièces, une caisse de pommes et d'oranges et des noix ; au-dessus, un cheval à bascule, une poupée de chiffon et des étoiles de bois sous une guirlande lumineuse ; derrière, un grand sapin illuminé, l'église de briques et sa tour, un réverbère, la lune, et un stand de bretzels où une mère tient son enfant par la main ; devant, un brasero allumé, du bois et un chien assis dans la neige.",
+ "consigne": "Mark découvre son premier marché de Noël à Berlin. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo hängt die Puppe?",
+     "c": [
+      "am Stand",
+      "am Baum",
+      "an der Kirche"
+     ],
+     "f": "puppe",
+     "r": "stand",
+     "phrase": "Die Puppe hängt am Stand.",
+     "sens": "La poupée est accrochée au stand.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Stand → am Stand."
+    },
+    {
+     "q": "Wo steht die Kanne?",
+     "c": [
+      "auf dem Stand",
+      "im Schnee",
+      "auf dem Dach"
+     ],
+     "f": "kanne",
+     "r": "stand",
+     "phrase": "Die Kanne steht auf dem Stand.",
+     "sens": "Le pichet est sur l'étal.",
+     "n": "der Stand → auf <b>dem</b> Stand."
+    },
+    {
+     "q": "Wo liegen die Äpfel?",
+     "c": [
+      "in der Kiste",
+      "im Korb",
+      "auf dem Dach"
+     ],
+     "f": "apfel",
+     "r": "kiste",
+     "phrase": "Die Äpfel liegen in der Kiste.",
+     "sens": "Les pommes sont dans la caisse.",
+     "n": "die Kiste → in <b>der</b> Kiste : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo sitzt der Hund?",
+     "c": [
+      "im Schnee",
+      "auf dem Stand",
+      "in der Kirche"
+     ],
+     "f": "hund",
+     "r": "schnee",
+     "phrase": "Der Hund sitzt im Schnee.",
+     "sens": "Le chien est assis dans la neige.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Schnee → im Schnee."
+    },
+    {
+     "q": "Wo hängt die Uhr?",
+     "c": [
+      "am Turm",
+      "am Stand",
+      "am Baum"
+     ],
+     "f": "uhr",
+     "r": "turm",
+     "phrase": "Die Uhr hängt am Turm.",
+     "sens": "L'horloge est sur la tour.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Turm → am Turm."
+    },
+    {
+     "q": "Wo steht der Mann?",
+     "c": [
+      "hinter dem Stand",
+      "vor der Kirche",
+      "neben dem Hund"
+     ],
+     "f": "mann",
+     "r": "stand",
+     "phrase": "Der Mann steht hinter dem Stand.",
+     "sens": "L'homme est derrière l'étal.",
+     "n": "<b>hinter</b> = derrière. der Stand → hinter <b>dem</b> Stand."
+    },
+    {
+     "q": "Wo ist der Mond?",
+     "c": [
+      "am Himmel",
+      "auf dem Dach",
+      "im Baum"
+     ],
+     "f": "mond",
+     "r": "himmel",
+     "phrase": "Der Mond ist am Himmel.",
+     "sens": "La lune est dans le ciel.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Himmel → am Himmel."
+    },
+    {
+     "q": "Wo steht der Baum?",
+     "c": [
+      "vor der Kirche",
+      "hinter dem Stand",
+      "neben dem Hund"
+     ],
+     "f": "baum",
+     "r": "kirche",
+     "phrase": "Der Baum steht vor der Kirche.",
+     "sens": "Le sapin est devant l'église.",
+     "n": "<b>vor</b> = devant. die Kirche → vor <b>der</b> Kirche."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les pronoms personnels : ihn, ihm, sie, ihr",
+   "qs": [
+    {
+     "q": "Der Stern ist schön. Mark kauft ___.",
+     "c": [
+      "ihn",
+      "ihm",
+      "er"
+     ],
+     "f": "stern",
+     "r": "mark",
+     "phrase": "Mark kauft ihn.",
+     "sens": "Mark l'achète.",
+     "n": "der Stern → à l'accusatif, <b>ihn</b>.",
+     "revise": "kaufen"
+    },
+    {
+     "q": "Der Mann gibt ___ den Stern.",
+     "c": [
+      "ihm",
+      "ihn",
+      "er"
+     ],
+     "f": "mann",
+     "r": "mark",
+     "phrase": "Der Mann gibt ihm den Stern.",
+     "sens": "L'homme lui donne l'étoile.",
+     "n": "À qui ? → datif : Mark → <b>ihm</b>.",
+     "revise": "geben"
+    },
+    {
+     "q": "Die Tasse ist heiß. Mark hält ___ mit Handschuhen.",
+     "c": [
+      "sie",
+      "ihr",
+      "es"
+     ],
+     "f": "tasse",
+     "r": "handschuh",
+     "phrase": "Mark hält sie mit Handschuhen.",
+     "sens": "Mark la tient avec des gants.",
+     "n": "die Tasse → à l'accusatif, <b>sie</b>.",
+     "revise": "halten"
+    },
+    {
+     "q": "Die Brezel schmeckt dem Kind. Die Mutter hat ___ gekauft.",
+     "c": [
+      "sie",
+      "ihr",
+      "es"
+     ],
+     "f": "brezel-2",
+     "r": "kind",
+     "phrase": "Die Mutter hat sie gekauft.",
+     "sens": "La mère l'a achetée.",
+     "n": "die Brezel → à l'accusatif, <b>sie</b>.",
+     "revise": "kaufen"
+    },
+    {
+     "q": "Die Frau hält das Kind. Sie gibt ___ die Hand.",
+     "c": [
+      "ihm",
+      "es",
+      "ihn"
+     ],
+     "f": "kind",
+     "r": "frau",
+     "phrase": "Sie gibt ihm die Hand.",
+     "sens": "Elle lui donne la main.",
+     "n": "das Kind → au datif, <b>ihm</b> (comme le masculin).",
+     "revise": "geben"
+    },
+    {
+     "q": "Der Hund sieht ___ an.",
+     "c": [
+      "ihn",
+      "ihm",
+      "er"
+     ],
+     "f": "hund",
+     "r": "mark",
+     "phrase": "Der Hund sieht ihn an.",
+     "sens": "Le chien le regarde.",
+     "n": "<b>ansehen</b> + accusatif : Mark → <b>ihn</b>.",
+     "revise": "ansehen"
+    },
+    {
+     "q": "Die Frau kauft Brezeln. Die Brezeln schmecken ___.",
+     "c": [
+      "ihr",
+      "sie",
+      "ihn"
+     ],
+     "f": "frau",
+     "r": "brezel-2",
+     "phrase": "Die Brezeln schmecken ihr.",
+     "sens": "Elle aime les bretzels.",
+     "n": "<b>schmecken</b> + datif : die Frau → <b>ihr</b>.",
+     "revise": "schmecken"
+    },
+    {
+     "q": "Die Kerzen sind schön. Mark kauft ___ für seine Mutter.",
+     "c": [
+      "sie",
+      "ihnen",
+      "ihr"
+     ],
+     "f": "kerze",
+     "r": "mark",
+     "phrase": "Mark kauft sie für seine Mutter.",
+     "sens": "Mark les achète pour sa mère.",
+     "n": "die Kerzen (pluriel) → à l'accusatif, <b>sie</b>.",
+     "revise": "kaufen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les mots composés : der Weihnachtsmarkt, die Lichterkette",
+   "qs": [
+    {
+     "q": "Der Markt zu Weihnachten ist der ___.",
+     "c": [
+      "Weihnachtsmarkt",
+      "Marktweihnacht",
+      "Weihnachtenmarkt"
+     ],
+     "f": "stand",
+     "phrase": "Der Markt zu Weihnachten ist der Weihnachtsmarkt.",
+     "sens": "Le marché de Noël, c'est le « Weihnachtsmarkt ».",
+     "n": "Le mot qui précise vient d'abord, le dernier mot donne le genre : der Markt → <b>der</b> Weihnachts<b>markt</b> ; le <b>-s-</b> lie les deux parties."
+    },
+    {
+     "q": "Eine Kette aus Lichtern ist eine ___.",
+     "c": [
+      "Lichterkette",
+      "Kettenlicht",
+      "Lichterskette"
+     ],
+     "f": "lichterkette",
+     "phrase": "Eine Kette aus Lichtern ist eine Lichterkette.",
+     "sens": "Une guirlande lumineuse, c'est une « Lichterkette ».",
+     "n": "Le pluriel <b>Lichter</b> sert de premier mot ; le genre vient de die Kette → <b>die</b> Lichter<b>kette</b>."
+    },
+    {
+     "q": "Ein Stern aus Holz ist ein ___.",
+     "c": [
+      "Holzstern",
+      "Sternholz",
+      "Holzenstern"
+     ],
+     "f": "stern",
+     "phrase": "Ein Stern aus Holz ist ein Holzstern.",
+     "sens": "Une étoile en bois, c'est un « Holzstern ».",
+     "n": "La matière d'abord : Holz + Stern → <b>der</b> Holz<b>stern</b> (das Sternholz serait le bois d'une étoile)."
+    },
+    {
+     "q": "Der Baum zu Weihnachten heißt ___.",
+     "c": [
+      "Weihnachtsbaum",
+      "Baumweihnacht",
+      "Weihnachtbaum"
+     ],
+     "f": "baum",
+     "phrase": "Der Baum zu Weihnachten heißt Weihnachtsbaum.",
+     "sens": "Le sapin de Noël s'appelle « Weihnachtsbaum ».",
+     "n": "Weihnacht<b>s</b>baum : le <b>-s-</b> de liaison, comme dans Weihnachtsmarkt.",
+     "revise": "heißen"
+    },
+    {
+     "q": "Ein Handschuh für den Winter ist ein ___.",
+     "c": [
+      "Winterhandschuh",
+      "Handschuhwinter",
+      "Winterhandschuhe"
+     ],
+     "f": "handschuh",
+     "phrase": "Ein Handschuh für den Winter ist ein Winterhandschuh.",
+     "sens": "Un gant d'hiver, c'est un « Winterhandschuh ».",
+     "n": "Le genre et le nombre viennent du dernier mot : der Handschuh → <b>der</b> Winterhand<b>schuh</b>."
+    },
+    {
+     "q": "Die Uhr an der Kirche ist eine ___.",
+     "c": [
+      "Kirchturmuhr",
+      "Uhrkirchturm",
+      "Kirchenuhrturm"
+     ],
+     "f": "uhr",
+     "r": "turm",
+     "phrase": "Die Uhr an der Kirche ist eine Kirchturmuhr.",
+     "sens": "L'horloge de l'église est une « Kirchturmuhr », une horloge de clocher.",
+     "n": "Trois mots : Kirche + Turm + Uhr → <b>die</b> Kirchturm<b>uhr</b>, l'horloge du clocher ; le -e de Kirche tombe."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Mark lächelt — er ___ den Weihnachtsmarkt mögen.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "mark",
+     "phrase": "Er muss den Weihnachtsmarkt mögen.",
+     "sens": "Il doit aimer le marché de Noël.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der Stern ___ ein Geschenk für seine Mutter sein.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "stern",
+     "r": "mark",
+     "phrase": "Der Stern könnte ein Geschenk für seine Mutter sein.",
+     "sens": "L'étoile est peut-être un cadeau pour sa mère.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der Hund ___ dem Mann am Stand gehören.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "hund",
+     "r": "mann",
+     "phrase": "Der Hund dürfte dem Mann am Stand gehören.",
+     "sens": "Le chien appartient sans doute à l'homme de l'étal.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Dieser Weihnachtsmarkt ___ der älteste in Berlin sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "kirche",
+     "phrase": "Dieser Weihnachtsmarkt soll der älteste in Berlin sein.",
+     "sens": "Ce marché de Noël serait le plus ancien de Berlin.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "himmel",
+   "mot": "Himmel",
+   "plein": true,
+   "boite": [
+    36,
+    0,
+    64,
+    48
+   ]
+  },
+  {
+   "id": "mond",
+   "mot": "Mond",
+   "boite": [
+    57,
+    6.5,
+    5.5,
+    4.5
+   ]
+  },
+  {
+   "id": "turm",
+   "mot": "Turm",
+   "boite": [
+    68,
+    0,
+    18,
+    42
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    73.5,
+    20,
+    7,
+    3.7
+   ]
+  },
+  {
+   "id": "kirche",
+   "mot": "Kirche",
+   "plein": true,
+   "boite": [
+    64,
+    24,
+    36,
+    26
+   ]
+  },
+  {
+   "id": "laterne",
+   "mot": "Laterne",
+   "boite": [
+    89.5,
+    18.5,
+    9,
+    14
+   ]
+  },
+  {
+   "id": "dach",
+   "mot": "Dach",
+   "plein": true,
+   "boites": [
+    [
+     86,
+     30,
+     14,
+     10
+    ],
+    [
+     75,
+     42,
+     25,
+     6
+    ]
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "plein": true,
+   "boites": [
+    [
+     42,
+     11,
+     25,
+     22
+    ],
+    [
+     42,
+     33,
+     14,
+     26
+    ]
+   ]
+  },
+  {
+   "id": "lichterkette",
+   "mot": "Lichterkette",
+   "sam": [
+    [
+     24,
+     0,
+     23,
+     29
+    ],
+    [
+     76,
+     42,
+     24,
+     5.5
+    ]
+   ],
+   "boites": [
+    [
+     24,
+     0,
+     23,
+     29
+    ],
+    [
+     76,
+     42,
+     24,
+     5.5
+    ]
+   ]
+  },
+  {
+   "id": "spielzeug",
+   "mot": "Spielzeug",
+   "aussi": [
+    "Pferd"
+   ],
+   "boite": [
+    13.5,
+    5,
+    20,
+    16
+   ]
+  },
+  {
+   "id": "puppe",
+   "mot": "Puppe",
+   "boite": [
+    35.5,
+    20,
+    12.5,
+    13.5
+   ]
+  },
+  {
+   "id": "stern-2",
+   "mot": "Stern",
+   "sam": [
+    [
+     1,
+     9.5,
+     11,
+     8
+    ],
+    [
+     0,
+     21,
+     12.5,
+     10
+    ],
+    [
+     11,
+     24,
+     11,
+     7.5
+    ],
+    [
+     25,
+     26,
+     9.5,
+     5.5
+    ],
+    [
+     29,
+     30.5,
+     9.5,
+     9
+    ],
+    [
+     0,
+     32,
+     8.5,
+     7
+    ]
+   ],
+   "boites": [
+    [
+     1,
+     9.5,
+     11,
+     8
+    ],
+    [
+     0,
+     21,
+     12.5,
+     10
+    ],
+    [
+     11,
+     24,
+     11,
+     7.5
+    ],
+    [
+     25,
+     26,
+     9.5,
+     5.5
+    ],
+    [
+     29,
+     30.5,
+     9.5,
+     9
+    ],
+    [
+     0,
+     32,
+     8.5,
+     7
+    ]
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     36,
+     17,
+     3
+    ],
+    [
+     23,
+     36.5,
+     20,
+     2.5
+    ]
+   ]
+  },
+  {
+   "id": "mann",
+   "mot": "Mann",
+   "boite": [
+    0,
+    31,
+    38,
+    41
+   ]
+  },
+  {
+   "id": "muetze",
+   "mot": "Mütze",
+   "boite": [
+    11,
+    31,
+    13.5,
+    7.5
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "aussi": [
+    "Jacke"
+   ],
+   "sam": [
+    0,
+    39.5,
+    27,
+    33
+   ],
+   "points_sam": [
+    [
+     8,
+     55,
+     1
+    ],
+    [
+     18,
+     46,
+     1
+    ],
+    [
+     4,
+     65,
+     1
+    ],
+    [
+     25,
+     47,
+     1
+    ],
+    [
+     28,
+     58,
+     0
+    ],
+    [
+     12,
+     69,
+     0
+    ]
+   ],
+   "boite": [
+    0,
+    40,
+    26,
+    32
+   ]
+  },
+  {
+   "id": "stern",
+   "mot": "Stern",
+   "boite": [
+    33.5,
+    41,
+    14.5,
+    9.5
+   ]
+  },
+  {
+   "id": "kerze",
+   "mot": "Kerze",
+   "sur": "stand",
+   "boite": [
+    4.5,
+    58,
+    13,
+    9.5
+   ]
+  },
+  {
+   "id": "kanne",
+   "mot": "Kanne",
+   "sur": "stand",
+   "points_sam": [
+    [
+     19.5,
+     60,
+     1
+    ],
+    [
+     18,
+     57.5,
+     1
+    ]
+   ],
+   "boite": [
+    14.5,
+    55,
+    9.5,
+    9.5
+   ]
+  },
+  {
+   "id": "topf",
+   "mot": "Topf",
+   "sur": "stand",
+   "boite": [
+    20,
+    54.5,
+    10,
+    7
+   ]
+  },
+  {
+   "id": "geschenk",
+   "mot": "Geschenk",
+   "sur": "stand",
+   "boite": [
+    27,
+    50,
+    17.5,
+    12.5
+   ]
+  },
+  {
+   "id": "tasse-2",
+   "mot": "Tasse",
+   "sur": "stand",
+   "sam": [
+    [
+     30.3,
+     57,
+     4.7,
+     5.8
+    ],
+    [
+     32.3,
+     58.6,
+     4.4,
+     5.2
+    ],
+    [
+     36.5,
+     57.5,
+     4.5,
+     5.5
+    ]
+   ],
+   "boite": [
+    30,
+    57,
+    11,
+    7
+   ]
+  },
+  {
+   "id": "muenze",
+   "mot": "Münze",
+   "sur": "stand",
+   "aussi": [
+    "Geld"
+   ],
+   "boite": [
+    27.5,
+    62.8,
+    6.5,
+    2.5
+   ]
+  },
+  {
+   "id": "kiste",
+   "mot": "Kiste",
+   "sur": "stand",
+   "boite": [
+    0,
+    65,
+    17.5,
+    14
+   ]
+  },
+  {
+   "id": "apfel",
+   "mot": "Apfel",
+   "sur": "kiste",
+   "boite": [
+    0,
+    65,
+    15.5,
+    9.5
+   ]
+  },
+  {
+   "id": "orange",
+   "mot": "Orange",
+   "sur": "kiste",
+   "sam": [
+    [
+     9.5,
+     65.5,
+     6,
+     5
+    ],
+    [
+     4,
+     69.5,
+     6,
+     4.5
+    ]
+   ],
+   "boites": [
+    [
+     9.5,
+     65.5,
+     6,
+     5
+    ],
+    [
+     4,
+     69.5,
+     6,
+     4.5
+    ]
+   ]
+  },
+  {
+   "id": "nuss",
+   "mot": "Nuss",
+   "sur": "stand",
+   "boite": [
+    17.5,
+    66,
+    12,
+    8
+   ]
+  },
+  {
+   "id": "stand",
+   "mot": "Stand",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     0,
+     47,
+     60
+    ],
+    [
+     0,
+     60,
+     55,
+     40
+    ]
+   ]
+  },
+  {
+   "id": "stand-2",
+   "mot": "Stand",
+   "plein": true,
+   "boite": [
+    74,
+    42,
+    26,
+    23
+   ]
+  },
+  {
+   "id": "brezel",
+   "mot": "Brezel",
+   "sur": "stand-2",
+   "boite": [
+    80,
+    46,
+    20,
+    7.5
+   ]
+  },
+  {
+   "id": "brezel-2",
+   "mot": "Brezel",
+   "sur": "stand-2",
+   "boite": [
+    76,
+    55,
+    24,
+    6
+   ]
+  },
+  {
+   "id": "frau",
+   "mot": "Frau",
+   "boite": [
+    91.5,
+    44,
+    8.5,
+    22.5
+   ]
+  },
+  {
+   "id": "muetze-4",
+   "mot": "Mütze",
+   "boite": [
+    93,
+    44,
+    7,
+    4.5
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "sam": [
+    91.5,
+    48,
+    8.5,
+    13.5
+   ],
+   "points_sam": [
+    [
+     96,
+     54,
+     1
+    ],
+    [
+     95,
+     59,
+     1
+    ],
+    [
+     93,
+     63.5,
+     0
+    ]
+   ],
+   "boite": [
+    92,
+    48.5,
+    8,
+    12.5
+   ]
+  },
+  {
+   "id": "kind",
+   "mot": "Kind",
+   "boite": [
+    84,
+    51,
+    9.5,
+    18.5
+   ]
+  },
+  {
+   "id": "muetze-3",
+   "mot": "Mütze",
+   "boite": [
+    86.5,
+    51,
+    6,
+    4.5
+   ]
+  },
+  {
+   "id": "jacke-2",
+   "mot": "Jacke",
+   "boite": [
+    84.5,
+    54.5,
+    9,
+    8.5
+   ]
+  },
+  {
+   "id": "hose-3",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "boite": [
+    86,
+    62.5,
+    6.5,
+    3.5
+   ]
+  },
+  {
+   "id": "stiefel-2",
+   "mot": "Stiefel",
+   "boite": [
+    85.5,
+    64.3,
+    8,
+    3
+   ]
+  },
+  {
+   "id": "mark",
+   "mot": "Mann",
+   "boite": [
+    55,
+    32.5,
+    28,
+    61
+   ]
+  },
+  {
+   "id": "muetze-2",
+   "mot": "Mütze",
+   "boite": [
+    64,
+    33,
+    11.5,
+    8
+   ]
+  },
+  {
+   "id": "schal",
+   "mot": "Schal",
+   "boite": [
+    61.5,
+    39.5,
+    11,
+    22
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "sam": [
+    54,
+    41.5,
+    29.5,
+    32
+   ],
+   "points_sam": [
+    [
+     59,
+     56,
+     1
+    ],
+    [
+     77,
+     56,
+     1
+    ],
+    [
+     62,
+     69,
+     1
+    ],
+    [
+     78,
+     47,
+     1
+    ],
+    [
+     67,
+     50,
+     0
+    ],
+    [
+     65.5,
+     59,
+     0
+    ],
+    [
+     62.5,
+     53,
+     0
+    ],
+    [
+     70,
+     53,
+     0
+    ]
+   ],
+   "boite": [
+    54.5,
+    42,
+    28.5,
+    31
+   ]
+  },
+  {
+   "id": "pullover-2",
+   "mot": "Pullover",
+   "sam": [
+    62.5,
+    55.5,
+    7.5,
+    12
+   ],
+   "points_sam": [
+    [
+     66,
+     62,
+     1
+    ],
+    [
+     65,
+     58.5,
+     1
+    ],
+    [
+     70,
+     60,
+     0
+    ],
+    [
+     61,
+     60,
+     0
+    ]
+   ],
+   "boite": [
+    63,
+    56,
+    6.5,
+    11
+   ]
+  },
+  {
+   "id": "handschuh",
+   "mot": "Handschuh",
+   "sam": [
+    [
+     65,
+     50,
+     7.5,
+     6.5
+    ],
+    [
+     39.5,
+     44,
+     7.5,
+     6
+    ]
+   ],
+   "boites": [
+    [
+     65,
+     50,
+     7.5,
+     6.5
+    ],
+    [
+     39.5,
+     44,
+     7.5,
+     6
+    ]
+   ]
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "boite": [
+    59.5,
+    49,
+    6,
+    6.5
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "sam": [
+    59.5,
+    69,
+    20,
+    21
+   ],
+   "points_sam": [
+    [
+     65,
+     78,
+     1
+    ],
+    [
+     76,
+     78,
+     1
+    ],
+    [
+     66,
+     72,
+     1
+    ],
+    [
+     76,
+     72,
+     1
+    ],
+    [
+     71.5,
+     80,
+     0
+    ],
+    [
+     69.5,
+     86,
+     0
+    ]
+   ],
+   "boite": [
+    60,
+    69.5,
+    19,
+    20
+   ]
+  },
+  {
+   "id": "stiefel",
+   "mot": "Stiefel",
+   "sam": [
+    [
+     60.5,
+     84.5,
+     10.5,
+     6
+    ],
+    [
+     73.5,
+     87,
+     9,
+     5
+    ]
+   ],
+   "boites": [
+    [
+     60.5,
+     84.5,
+     10.5,
+     6
+    ],
+    [
+     73.5,
+     87,
+     9,
+     5
+    ]
+   ]
+  },
+  {
+   "id": "hund",
+   "mot": "Hund",
+   "boite": [
+    79,
+    79,
+    21,
+    21
+   ]
+  },
+  {
+   "id": "feuer",
+   "mot": "Feuer",
+   "boite": [
+    44,
+    80,
+    16,
+    18
+   ]
+  },
+  {
+   "id": "holz",
+   "mot": "Holz",
+   "boite": [
+    28,
+    91,
+    20,
+    9
+   ]
+  },
+  {
+   "id": "schnee",
+   "mot": "Schnee",
+   "plein": true,
+   "aussi": [
+    "Boden"
+   ],
+   "boites": [
+    [
+     33,
+     73,
+     67,
+     27
+    ],
+    [
+     55,
+     60,
+     45,
+     13
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

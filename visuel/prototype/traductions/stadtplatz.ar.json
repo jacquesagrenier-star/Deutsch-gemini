@@ -1,0 +1,255 @@
+{
+ "_lisez_moi": [
+  "Traduction du contenu de la scene stadtplatz (voir construire.py, LES TRADUCTIONS).",
+  "fr = le texte source, recopie du points.json ; trad = sa traduction. Si le fr du points.json change, la traduction est perimee : la page montre le francais jusqu'a ce qu'on la refasse.",
+  "Une question = sa couche et sa phrase allemande. L'allemand ne se traduit pas ; les mots allemands restent en <b>.",
+  "sens = le sens de la phrase, montre apres la reponse (16 oct. 2026) : meme cle et meme paire fr / trad que questions.",
+  "Arabe. NON RELU par un locuteur natif. L'allemand hors <b> est dans <span lang=\"de\"> (isole de gauche a droite) ; les fleches entre deux morceaux arabes vont vers la gauche."
+ ],
+ "langue": "ar",
+ "scene": "stadtplatz",
+ "champs": {
+  "alt": {
+   "fr": "Anna sur une place de Berlin, un samedi après-midi de printemps : assise sur le bord d'une fontaine en pierre, elle mange une glace et rit devant un petit chien brun qui la regarde ; son café à emporter est posé à côté d'elle, son sac de cuir sur l'épaule ; un pigeon marche sur les pavés, une poubelle verte, un banc de bois ; au milieu de la place, la statue de bronze d'un homme sur un haut socle, un réverbère, des vélos, la terrasse d'un café sous un grand parasol blanc où un vieux monsieur en casquette lit le journal devant une tasse ; au fond, l'église de briques et sa tour pointue avec son horloge, une rangée de vieilles maisons aux géraniums rouges, un tram jaune, un feu, un panneau, une boîte aux lettres jaune et un jeune arbre ; dans le ciel bleu, des nuages blancs et deux pigeons.",
+   "trad": "آنا في ساحة في برلين بعد ظهر سبت ربيعي: جالسة على حافّة نافورة حجرية تأكل المثلّجات وتضحك أمام كلب صغير بنّي ينظر إليها؛ وقهوتها الجاهزة بجانبها وحقيبتها الجلدية على كتفها؛ وحمامة تمشي على الحجارة، وسلّة مهملات خضراء ومقعد خشبي؛ وفي وسط الساحة تمثال برونزي لرجل على قاعدة عالية، ومصباح شارع ودرّاجات، وشرفة مقهى تحت مظلّة بيضاء كبيرة يقرأ فيها رجل مسنّ بقبّعة الجريدة أمام فنجان؛ وفي الخلف الكنيسة القرميدية وبرجها المدبّب بساعته، وصفّ من البيوت القديمة بزهور الجيرانيوم الحمراء، وترام أصفر وإشارة مرور ولافتة وصندوق بريد أصفر وشجرة فتيّة؛ وفي السماء الزرقاء غيوم بيضاء وحمامتان."
+  },
+  "consigne": {
+   "fr": "Anna mange une glace sur la place. Touche un objet.",
+   "trad": "آنا تأكل المثلّجات في الساحة. المس شيئًا."
+  }
+ },
+ "couches": {
+  "A1": {
+   "fr": "Noms et articles",
+   "trad": "الأسماء وأدوات التعريف"
+  },
+  "A2": {
+   "fr": "Wo? — les prépositions",
+   "trad": "<span lang=\"de\">Wo?</span> — حروف الجر"
+  },
+  "B1": {
+   "fr": "Le verbe en deuxième position : Heute isst Anna ein Eis",
+   "trad": "الفعل في المرتبة الثانية: <span lang=\"de\">Heute isst Anna ein Eis</span>"
+  },
+  "B2": {
+   "fr": "Comme si : als ob + Konjunktiv II",
+   "trad": "كأنّ: <span lang=\"de\">als ob + Konjunktiv II</span>"
+  },
+  "C1": {
+   "fr": "Hypothèses",
+   "trad": "الافتراضات"
+  }
+ },
+ "questions": {
+  "A2 | Anna sitzt am Brunnen.": {
+   "fr": "<b>am</b> = an + <b>dem</b> : der Brunnen → am Brunnen.",
+   "trad": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Brunnen → am Brunnen</span>."
+  },
+  "A2 | Der Mülleimer steht neben dem Brunnen.": {
+   "fr": "<b>neben</b> = à côté de. der Brunnen → neben <b>dem</b> Brunnen.",
+   "trad": "<b>neben</b> = بجانب. <span lang=\"de\">der Brunnen → neben <b>dem</b> Brunnen</span>."
+  },
+  "A2 | Der Mann sitzt unter dem Schirm.": {
+   "fr": "<b>unter</b> = sous. der Schirm → unter <b>dem</b> Schirm.",
+   "trad": "<b>unter</b> = تحت. <span lang=\"de\">der Schirm</span> ← <span lang=\"de\">unter <b>dem</b> Schirm</span>."
+  },
+  "A2 | Die Tasse steht auf dem Tisch.": {
+   "fr": "der Tisch → auf <b>dem</b> Tisch.",
+   "trad": "<span lang=\"de\">der Tisch → auf <b>dem</b> Tisch</span>."
+  },
+  "A2 | Die Uhr ist am Turm.": {
+   "fr": "<b>am</b> = an + <b>dem</b> : der Turm → am Turm.",
+   "trad": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Turm → am Turm</span>."
+  },
+  "A2 | Die Straßenbahn fährt auf der Straße.": {
+   "fr": "die Straße → auf <b>der</b> Straße : au datif, le féminin <b>die</b> devient <b>der</b>.",
+   "trad": "<span lang=\"de\">die Straße → auf <b>der</b> Straße</span>: في Dativ يتحوّل المؤنث <b>die</b> إلى <b>der</b>."
+  },
+  "A2 | Der Briefkasten hängt am Haus.": {
+   "fr": "<b>am</b> = an + <b>dem</b> : das Haus → am Haus.",
+   "trad": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">das Haus → am Haus</span>."
+  },
+  "A2 | Der Hund sitzt vor dem Brunnen.": {
+   "fr": "<b>vor</b> + datif (Wo?) : der Brunnen → vor <b>dem</b> Brunnen.",
+   "trad": "<b>vor</b> + <span lang=\"de\">Dativ</span> (Wo?): <span lang=\"de\">der Brunnen</span> ← <span lang=\"de\">vor <b>dem</b> Brunnen</span>."
+  },
+  "B1 | Heute isst Anna ein Eis.": {
+   "fr": "Le verbe conjugué reste en <b>2e position</b> : si un autre élément ouvre la phrase, le sujet passe <b>après</b> le verbe.",
+   "trad": "يبقى الفعل المصرَّف في <b>المرتبة الثانية</b>: إذا بدأ الجملةَ عنصر آخر انتقل الفاعل إلى <b>ما بعد</b> الفعل."
+  },
+  "B1 | Am Brunnen sitzt Anna.": {
+   "fr": "Un lieu en tête → d'abord le <b>verbe</b>, puis le sujet : am Brunnen <b>sitzt</b> Anna.",
+   "trad": "المكان في البداية ← أولاً <b>الفعل</b> ثم الفاعل: <span lang=\"de\">am Brunnen <b>sitzt</b> Anna</span>."
+  },
+  "B1 | Vor Anna sitzt ein Hund.": {
+   "fr": "Inversion : <b>sitzt</b> ein Hund ; le sujet reste au nominatif (ein Hund).",
+   "trad": "القلب: <span lang=\"de\"><b>sitzt</b> ein Hund</span>؛ يبقى الفاعل في <span lang=\"de\">Nominativ</span> (<span lang=\"de\">ein Hund</span>)."
+  },
+  "B1 | Unter dem Schirm liest ein Mann die Zeitung.": {
+   "fr": "Le verbe en 2e position, puis le sujet : <b>liest</b> ein Mann.",
+   "trad": "الفعل في المرتبة الثانية ثم الفاعل: <span lang=\"de\"><b>liest</b> ein Mann</span>."
+  },
+  "B1 | Am Samstag kommen viele Leute auf den Platz.": {
+   "fr": "Après « Am Samstag », le verbe d'abord : <b>kommen</b> viele Leute ; il s'accorde avec le sujet pluriel.",
+   "trad": "بعد « <span lang=\"de\">Am Samstag</span> » يأتي الفعل أولاً: <span lang=\"de\"><b>kommen</b> viele Leute</span>؛ ويطابق الفاعل الجمع."
+  },
+  "B1 | Auf dem Denkmal steht ein Mann aus Bronze.": {
+   "fr": "Le lieu en tête, le <b>verbe</b> en 2e position, le sujet après.",
+   "trad": "المكان في البداية، و<b>الفعل</b> في المرتبة الثانية، والفاعل بعده."
+  },
+  "B1 | Dann trinkt Anna einen Kaffee.": {
+   "fr": "<b>dann</b> compte comme un élément : dann <b>trinkt</b> Anna.",
+   "trad": "<b>dann</b> يُعَدّ عنصرًا: <span lang=\"de\">dann <b>trinkt</b> Anna</span>."
+  },
+  "B1 | Hinter dem Platz fährt eine Straßenbahn.": {
+   "fr": "Inversion : <b>fährt</b> eine Straßenbahn ; fahren prend un Umlaut : er <b>fährt</b>.",
+   "trad": "القلب: <span lang=\"de\"><b>fährt</b> eine Straßenbahn</span>؛ يأخذ <span lang=\"de\">fahren</span> علامة Umlaut: <span lang=\"de\">er <b>fährt</b></span>."
+  },
+  "B2 | Der Hund schaut, als ob er Hunger hätte.": {
+   "fr": "<b>als ob</b> + Konjunktiv II, verbe à la fin : als ob er Hunger <b>hätte</b>.",
+   "trad": "<b>als ob</b> + <span lang=\"de\">Konjunktiv II</span>، والفعل في الآخر: <span lang=\"de\">als ob er Hunger <b>hätte</b></span>."
+  },
+  "B2 | Anna lacht, als ob der Hund ihr einen Witz erzählt hätte.": {
+   "fr": "Pour le passé : als ob + <b>hätte/wäre</b> + participe II.",
+   "trad": "للماضي: <span lang=\"de\">als ob</span> + <b>hätte/wäre</b> + <span lang=\"de\">Partizip II</span>."
+  },
+  "B2 | Der Mann liest, als ob er allein auf dem Platz wäre.": {
+   "fr": "« comme si » = <b>als ob</b> ; als dass, als weil ne veulent rien dire ici.",
+   "trad": "« كأنّ » = <b>als ob</b>؛ و<span lang=\"de\">als dass</span> و<span lang=\"de\">als weil</span> لا معنى لهما هنا."
+  },
+  "B2 | Die Statue sieht aus, als würde sie gleich losgehen.": {
+   "fr": "<b>als</b> + Konjunktiv II sans ob : le verbe vient juste après als : als <b>würde</b> sie losgehen.",
+   "trad": "<b>als</b> + <span lang=\"de\">Konjunktiv II</span> من دون <span lang=\"de\">ob</span>: يأتي الفعل مباشرة بعد <span lang=\"de\">als</span>: <span lang=\"de\">als <b>würde</b> sie losgehen</span>."
+  },
+  "B2 | Es ist so warm, als ob schon Sommer wäre.": {
+   "fr": "<b>als ob</b> + <b>wäre</b> (Konjunktiv II de sein).",
+   "trad": "<b>als ob</b> + <b>wäre</b> (<span lang=\"de\">Konjunktiv II</span> من <span lang=\"de\">sein</span>)."
+  },
+  "B2 | Die Tauben laufen herum, als ob ihnen der Platz gehörte.": {
+   "fr": "Konjunktiv II d'un verbe régulier = forme du Präteritum : als ob ihnen der Platz <b>gehörte</b>.",
+   "trad": "<span lang=\"de\">Konjunktiv II</span> للفعل القياسي = صيغة <span lang=\"de\">Präteritum</span>: <span lang=\"de\">als ob ihnen der Platz <b>gehörte</b></span>."
+  },
+  "C1 | Sie muss den Hund lustig finden.": {
+   "fr": "<b>müssen</b> = déduction presque certaine.",
+   "trad": "<b>müssen</b> = استنتاج شبه مؤكَّد."
+  },
+  "C1 | Der Hund könnte ein Stück Eis bekommen.": {
+   "fr": "<b>könnte</b> = une possibilité parmi d'autres.",
+   "trad": "<b>könnte</b> = احتمال من بين احتمالات أخرى."
+  },
+  "C1 | Der Mann dürfte jeden Samstag hier sitzen.": {
+   "fr": "<b>dürfte</b> = probable, sans en être sûr.",
+   "trad": "<b>dürfte</b> = مرجَّح، دون يقين."
+  },
+  "C1 | Der Brunnen soll über hundert Jahre alt sein.": {
+   "fr": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction.",
+   "trad": "<b>sollen</b> = بحسب ما يقال: شائعة، لا استنتاج."
+  }
+ },
+ "sens": {
+  "A2 | Anna sitzt am Brunnen.": {
+   "fr": "Anna est assise au bord de la fontaine.",
+   "trad": "آنا جالسة عند النافورة."
+  },
+  "A2 | Der Mülleimer steht neben dem Brunnen.": {
+   "fr": "La poubelle est à côté de la fontaine.",
+   "trad": "سلّة المهملات بجانب النافورة."
+  },
+  "A2 | Der Mann sitzt unter dem Schirm.": {
+   "fr": "Le monsieur est assis sous le parasol.",
+   "trad": "الرجل جالس تحت المظلّة."
+  },
+  "A2 | Die Tasse steht auf dem Tisch.": {
+   "fr": "La tasse est sur la table.",
+   "trad": "الفنجان على الطاولة."
+  },
+  "A2 | Die Uhr ist am Turm.": {
+   "fr": "L'horloge est sur la tour.",
+   "trad": "الساعة على البرج."
+  },
+  "A2 | Die Straßenbahn fährt auf der Straße.": {
+   "fr": "Le tram roule dans la rue.",
+   "trad": "يسير الترام في الشارع."
+  },
+  "A2 | Der Briefkasten hängt am Haus.": {
+   "fr": "La boîte aux lettres est fixée à la maison.",
+   "trad": "صندوق البريد مثبّت على البيت."
+  },
+  "A2 | Der Hund sitzt vor dem Brunnen.": {
+   "fr": "Le chien est assis devant la fontaine.",
+   "trad": "الكلب جالس أمام النافورة."
+  },
+  "B1 | Heute isst Anna ein Eis.": {
+   "fr": "Aujourd'hui, Anna mange une glace.",
+   "trad": "اليوم تأكل آنا المثلّجات."
+  },
+  "B1 | Am Brunnen sitzt Anna.": {
+   "fr": "C'est au bord de la fontaine qu'Anna est assise.",
+   "trad": "عند النافورة تجلس آنا."
+  },
+  "B1 | Vor Anna sitzt ein Hund.": {
+   "fr": "Devant Anna, il y a un chien assis.",
+   "trad": "أمام آنا يجلس كلب."
+  },
+  "B1 | Unter dem Schirm liest ein Mann die Zeitung.": {
+   "fr": "Sous le parasol, un homme lit le journal.",
+   "trad": "تحت المظلّة يقرأ رجل الجريدة."
+  },
+  "B1 | Am Samstag kommen viele Leute auf den Platz.": {
+   "fr": "Le samedi, beaucoup de gens viennent sur la place.",
+   "trad": "يوم السبت يأتي كثير من الناس إلى الساحة."
+  },
+  "B1 | Auf dem Denkmal steht ein Mann aus Bronze.": {
+   "fr": "Sur le monument se dresse un homme en bronze.",
+   "trad": "على النصب يقف رجل من البرونز."
+  },
+  "B1 | Dann trinkt Anna einen Kaffee.": {
+   "fr": "Ensuite, Anna boit un café.",
+   "trad": "ثم تشرب آنا قهوة."
+  },
+  "B1 | Hinter dem Platz fährt eine Straßenbahn.": {
+   "fr": "Derrière la place passe un tram.",
+   "trad": "خلف الساحة يمرّ ترام."
+  },
+  "B2 | Der Hund schaut, als ob er Hunger hätte.": {
+   "fr": "Le chien regarde comme s'il avait faim.",
+   "trad": "ينظر الكلب كأنه جائع."
+  },
+  "B2 | Anna lacht, als ob der Hund ihr einen Witz erzählt hätte.": {
+   "fr": "Anna rit comme si le chien lui avait raconté une blague.",
+   "trad": "تضحك آنا كأنّ الكلب روى لها نكتة."
+  },
+  "B2 | Der Mann liest, als ob er allein auf dem Platz wäre.": {
+   "fr": "Le monsieur lit comme s'il était seul sur la place.",
+   "trad": "يقرأ الرجل كأنه وحده في الساحة."
+  },
+  "B2 | Die Statue sieht aus, als würde sie gleich losgehen.": {
+   "fr": "La statue a l'air de vouloir se mettre en marche.",
+   "trad": "يبدو التمثال كأنه سيمشي الآن."
+  },
+  "B2 | Es ist so warm, als ob schon Sommer wäre.": {
+   "fr": "Il fait aussi chaud que si c'était déjà l'été.",
+   "trad": "الجوّ دافئ كأننا في الصيف."
+  },
+  "B2 | Die Tauben laufen herum, als ob ihnen der Platz gehörte.": {
+   "fr": "Les pigeons se promènent comme si la place leur appartenait.",
+   "trad": "يتجوّل الحمام كأنّ الساحة ملكه."
+  },
+  "C1 | Sie muss den Hund lustig finden.": {
+   "fr": "Elle doit trouver le chien drôle.",
+   "trad": "لا بدّ أنها تجد الكلب مضحكًا."
+  },
+  "C1 | Der Hund könnte ein Stück Eis bekommen.": {
+   "fr": "Le chien aura peut-être un morceau de glace.",
+   "trad": "ربما ينال الكلب قطعة من المثلّجات."
+  },
+  "C1 | Der Mann dürfte jeden Samstag hier sitzen.": {
+   "fr": "Le monsieur est sans doute assis ici tous les samedis.",
+   "trad": "على الأرجح يجلس الرجل هنا كلّ سبت."
+  },
+  "C1 | Der Brunnen soll über hundert Jahre alt sein.": {
+   "fr": "La fontaine aurait plus de cent ans.",
+   "trad": "يُقال إن عمر النافورة أكثر من مئة عام."
+  }
+ }
+}

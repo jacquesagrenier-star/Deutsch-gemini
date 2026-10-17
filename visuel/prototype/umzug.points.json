@@ -1,0 +1,1168 @@
+{
+ "_lisez_moi": [
+  "Le demenagement (16 oct. 2026) : un samedi apres-midi, Anna emmenage dans un vieil appartement de Berlin ; elle porte un grand carton d'ou depasse une plante et sourit a son petit frere, debout sur l'escabeau, qui visse une ampoule dans la lampe du plafond ; ses cles pendent a son passant de ceinture ; par terre, des cartons, du ruban adhesif, des ciseaux, un tapis roule, une pile de livres, une valise rouge, une caisse a outils avec marteau et perceuse, une pizza dans son carton et deux canettes ; le canape encore sous plastique avec ses coussins jaunes, un miroir, une guitare, un lampadaire ; au fond, la fenetre cintree, le radiateur, l'etagere vide avec un tableau de la mer, la table et une chaise renversee dessus, l'horloge posee par terre. Theme : le logement, les meubles, demenager. Scene creee a la demande de Jacques (« creer huit nouvelles scenes », 16 oct. 2026, deuxieme serie), commencee par Fable, construite par Claude (Opus).",
+  "Image : visuel/scenes/umzug.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png), rendu photo, une seule prise. Les chiffres 1 a 12 de l'horloge posee par terre ont ete effaces gratuitement (effacer_texte.py, umzug-effacer.json, chiffre par chiffre pour garder les aiguilles) -> umzug-propre.png. Aucun autre texte : cartons, livres, canettes et ruban sont unis.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Contours (16 oct. 2026) : les personnes et leurs vetements portent une boite « sam » et des « points_sam » (1 = sur l'objet, 0 = a exclure), voir detourer.py ; « plein » seulement pour les fonds (mur, sol, table, fenetre, comptoir) ou pour un groupe d'objets transparents que SAM ne detoure pas (les verres suspendus) ; les lunettes sont des « ellipses ».",
+  "Histoire des personnages : Anna sans compagnon ; l'homme sur l'escabeau est son PETIT FRERE, der Bruder (sa famille est allemande et vit a Berlin, voir .claude/histoire-personnages.md), et les questions le disent. Le sweat gris du frere est der Pullover ; la chemise a carreaux d'Anna das Hemd ; la boite a outils das Werkzeug ; le carton de la pizza et les autres cartons der Karton (karton = celui d'Anna, karton-2 = la pile de gauche, karton-3 = la boite a pizza, karton-4 = les cartons sous la pizza et les canettes) ; l'escabeau die Leiter ; les canettes die Dose ; le chambranle de la porte, au bord de l'image, die Tuer (plein) ; l'arbre vu par la vitre du haut der Baum (plein).",
+  "SANS ZONE bien que visibles (a signaler) : le film plastique autour du canape (on touche le canape), le cable noir au mur du fond et la petite prise derriere l'horloge (trop petits), la deuxieme chaise demandee n'est pas dans l'image. Espagnol : Kissen = el cojin (surcharge : mots.json dit la almohada, l'oreiller).",
+  "Mesures relues sur la grille en % du 16 oct. 2026."
+ ],
+ "image": "umzug.webp",
+ "source": "../scenes/umzug-propre.png",
+ "titre": "Der Umzug",
+ "alt": "Anna emménage dans un vieil appartement de Berlin, un samedi après-midi : elle porte un grand carton d'où dépasse une plante verte et sourit à son petit frère, debout sur un escabeau, qui visse une ampoule dans la lampe du plafond ; ses clés pendent à sa ceinture ; par terre, une pile de cartons, un rouleau de ruban adhésif, des ciseaux, un tapis rouge roulé, une pile de livres, une valise rouge, une caisse à outils rouge avec un marteau et une perceuse, une pizza dans son carton et deux canettes rouges ; à gauche, le canapé encore emballé de plastique avec ses coussins jaunes, un grand miroir posé contre le mur, une guitare et un lampadaire ; au fond, une haute fenêtre cintrée sur un arbre, un radiateur, une étagère blanche vide avec un tableau de la mer, une table en bois avec une chaise retournée dessus et une horloge posée par terre.",
+ "consigne": "Anna emménage dans son nouvel appartement. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo steht der Bruder?",
+     "c": [
+      "auf der Leiter",
+      "auf dem Tisch",
+      "auf dem Sofa"
+     ],
+     "f": "bruder",
+     "r": "leiter",
+     "phrase": "Der Bruder steht auf der Leiter.",
+     "sens": "Le frère est debout sur l'escabeau.",
+     "n": "die Leiter → auf <b>der</b> Leiter : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo liegen die Kissen?",
+     "c": [
+      "auf dem Sofa",
+      "auf dem Boden",
+      "im Karton"
+     ],
+     "f": "kissen",
+     "r": "sofa",
+     "phrase": "Die Kissen liegen auf dem Sofa.",
+     "sens": "Les coussins sont sur le canapé.",
+     "n": "das Sofa → auf <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo steht der Stuhl?",
+     "c": [
+      "auf dem Tisch",
+      "neben dem Sofa",
+      "vor dem Fenster"
+     ],
+     "f": "stuhl",
+     "r": "tisch",
+     "phrase": "Der Stuhl steht auf dem Tisch.",
+     "sens": "La chaise est sur la table.",
+     "n": "der Tisch → auf <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo liegt die Pizza?",
+     "c": [
+      "im Karton",
+      "auf dem Tisch",
+      "auf dem Sofa"
+     ],
+     "f": "pizza",
+     "r": "karton-3",
+     "phrase": "Die Pizza liegt im Karton.",
+     "sens": "La pizza est dans le carton.",
+     "n": "<b>im</b> = in + <b>dem</b> : der Karton → im Karton."
+    },
+    {
+     "q": "Wo steht die Uhr?",
+     "c": [
+      "auf dem Boden",
+      "auf dem Tisch",
+      "im Regal"
+     ],
+     "f": "uhr",
+     "r": "boden",
+     "phrase": "Die Uhr steht auf dem Boden.",
+     "sens": "L'horloge est posée par terre.",
+     "n": "der Boden → auf <b>dem</b> Boden."
+    },
+    {
+     "q": "Wo ist der Heizkörper?",
+     "c": [
+      "unter dem Fenster",
+      "neben der Tür",
+      "über dem Sofa"
+     ],
+     "f": "heizkoerper",
+     "r": "fenster",
+     "phrase": "Der Heizkörper ist unter dem Fenster.",
+     "sens": "Le radiateur est sous la fenêtre.",
+     "n": "<b>unter</b> + datif : das Fenster → unter <b>dem</b> Fenster."
+    },
+    {
+     "q": "Wo steht die Gitarre?",
+     "c": [
+      "neben dem Sofa",
+      "auf dem Tisch",
+      "im Regal"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "Die Gitarre steht neben dem Sofa.",
+     "sens": "La guitare est à côté du canapé.",
+     "n": "<b>neben</b> = à côté de. das Sofa → neben <b>dem</b> Sofa."
+    },
+    {
+     "q": "Wo hängt die Lampe?",
+     "c": [
+      "an der Decke",
+      "an der Wand",
+      "über dem Sofa"
+     ],
+     "f": "lampe",
+     "r": "decke",
+     "phrase": "Die Lampe hängt an der Decke.",
+     "sens": "La lampe est accrochée au plafond.",
+     "n": "die Decke → an <b>der</b> Decke : au datif, le féminin <b>die</b> devient <b>der</b>."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les adverbes pronominaux : darauf, darin, damit, worauf",
+   "qs": [
+    {
+     "q": "Da ist der Tisch. ___ steht ein Stuhl.",
+     "c": [
+      "Darauf",
+      "Auf ihm",
+      "Worauf"
+     ],
+     "f": "stuhl",
+     "r": "tisch",
+     "phrase": "Da ist der Tisch. Darauf steht ein Stuhl.",
+     "sens": "Voilà la table. Il y a une chaise dessus.",
+     "n": "Pour une chose, <b>da-</b> + préposition remplace « préposition + pronom » : auf dem Tisch → <b>darauf</b>.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Das ist Annas Karton. ___ ist eine Pflanze.",
+     "c": [
+      "Darin",
+      "In ihm",
+      "Worin"
+     ],
+     "f": "pflanze",
+     "r": "karton",
+     "phrase": "Das ist Annas Karton. Darin ist eine Pflanze.",
+     "sens": "Voici le carton d'Anna. Dedans, il y a une plante.",
+     "n": "in + chose → <b>darin</b>."
+    },
+    {
+     "q": "Der Bruder hat einen Hammer. ___ arbeitet er später.",
+     "c": [
+      "Damit",
+      "Mit ihm",
+      "Womit"
+     ],
+     "f": "hammer",
+     "r": "bruder",
+     "phrase": "Der Bruder hat einen Hammer. Damit arbeitet er später.",
+     "sens": "Le frère a un marteau. Il s'en servira plus tard.",
+     "n": "mit + chose → <b>damit</b> ; mit ihm renverrait à une personne.",
+     "revise": "arbeiten"
+    },
+    {
+     "q": "___ freut sich Anna? Auf die neue Wohnung.",
+     "c": [
+      "Worauf",
+      "Darauf",
+      "Auf was"
+     ],
+     "f": "anna",
+     "phrase": "Worauf freut sich Anna? Auf die neue Wohnung.",
+     "sens": "De quoi Anna se réjouit-elle ? De son nouvel appartement.",
+     "n": "Une question sur une chose : <b>wo-</b> + préposition → <b>worauf</b> (wor- devant une voyelle).",
+     "revise": "freuen"
+    },
+    {
+     "q": "Anna mag die Wohnung. Sie spricht gern ___.",
+     "c": [
+      "darüber",
+      "über sie",
+      "worüber"
+     ],
+     "f": "anna",
+     "phrase": "Anna mag die Wohnung. Sie spricht gern darüber.",
+     "sens": "Anna aime l'appartement. Elle aime en parler.",
+     "n": "sprechen über + chose → <b>darüber</b>.",
+     "revise": "sprechen"
+    },
+    {
+     "q": "___ denkt der Bruder? An die Pizza!",
+     "c": [
+      "Woran",
+      "Daran",
+      "An was"
+     ],
+     "f": "bruder",
+     "r": "pizza",
+     "phrase": "Woran denkt der Bruder? An die Pizza!",
+     "sens": "À quoi pense le frère ? À la pizza !",
+     "n": "denken an + chose, en question → <b>woran</b>.",
+     "revise": "denken"
+    },
+    {
+     "q": "Die Bücher liegen auf dem Boden. Der Koffer steht ___.",
+     "c": [
+      "daneben",
+      "neben ihnen",
+      "woneben"
+     ],
+     "f": "koffer",
+     "r": "buch",
+     "phrase": "Die Bücher liegen auf dem Boden. Der Koffer steht daneben.",
+     "sens": "Les livres sont par terre. La valise est à côté.",
+     "n": "neben + chose → <b>daneben</b> (à côté).",
+     "revise": "stehen"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le futur antérieur : Futur II",
+   "qs": [
+    {
+     "q": "Bis heute Abend ___ Anna alle Kartons ausgepackt haben.",
+     "c": [
+      "wird",
+      "ist",
+      "hat"
+     ],
+     "f": "karton-2",
+     "r": "anna",
+     "phrase": "Bis heute Abend wird Anna alle Kartons ausgepackt haben.",
+     "sens": "D'ici ce soir, Anna aura déballé tous les cartons.",
+     "n": "Futur II : <b>werden</b> + participe II + <b>haben/sein</b> = ce qui sera fini à un moment futur.",
+     "revise": "auspacken"
+    },
+    {
+     "q": "Gleich wird der Bruder die Glühbirne ___.",
+     "c": [
+      "eingeschraubt haben",
+      "einschrauben haben",
+      "eingeschraubt sein"
+     ],
+     "f": "gluehbirne",
+     "r": "bruder",
+     "phrase": "Gleich wird der Bruder die Glühbirne eingeschraubt haben.",
+     "sens": "Dans un instant, le frère aura vissé l'ampoule.",
+     "n": "Futur II : le participe II (eingeschraubt), puis l'infinitif <b>haben</b> à la fin."
+    },
+    {
+     "q": "In einer Stunde wird der Bruder schon nach Hause ___.",
+     "c": [
+      "gegangen sein",
+      "gegangen haben",
+      "gehen sein"
+     ],
+     "f": "bruder",
+     "phrase": "In einer Stunde wird der Bruder schon nach Hause gegangen sein.",
+     "sens": "Dans une heure, le frère sera déjà rentré chez lui.",
+     "n": "Un verbe de mouvement prend <b>sein</b> : gegangen <b>sein</b>.",
+     "revise": "gehen"
+    },
+    {
+     "q": "Anna ist müde. Sie wird viel ___ haben.",
+     "c": [
+      "getragen",
+      "tragen",
+      "trug"
+     ],
+     "f": "anna",
+     "r": "karton",
+     "phrase": "Anna ist müde. Sie wird viel getragen haben.",
+     "sens": "Anna est fatiguée. Elle a sans doute beaucoup porté.",
+     "n": "Futur II de supposition sur le passé : sie <b>wird</b> viel <b>getragen haben</b> (elle a sans doute beaucoup porté).",
+     "revise": "tragen"
+    },
+    {
+     "q": "Wer hat die Pizza bestellt? Der Bruder wird sie bestellt ___.",
+     "c": [
+      "haben",
+      "sein",
+      "werden"
+     ],
+     "f": "pizza",
+     "r": "bruder",
+     "phrase": "Wer hat die Pizza bestellt? Der Bruder wird sie bestellt haben.",
+     "sens": "Qui a commandé la pizza ? C'est sans doute le frère.",
+     "n": "bestellen se conjugue avec <b>haben</b> : bestellt <b>haben</b>.",
+     "revise": "bestellen"
+    },
+    {
+     "q": "Nächste Woche ___ Anna sich an die neue Wohnung gewöhnt haben.",
+     "c": [
+      "wird",
+      "hat",
+      "ist"
+     ],
+     "f": "anna",
+     "phrase": "Nächste Woche wird Anna sich an die neue Wohnung gewöhnt haben.",
+     "sens": "La semaine prochaine, Anna se sera habituée au nouvel appartement.",
+     "n": "Futur II : <b>wird</b> en deuxième position, <b>gewöhnt haben</b> à la fin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna lächelt — sie ___ sich auf die neue Wohnung freuen.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "anna",
+     "phrase": "Sie muss sich auf die neue Wohnung freuen.",
+     "sens": "Elle doit se réjouir de son nouvel appartement.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Die Bücher ___ ins weiße Regal kommen.",
+     "c": [
+      "könnten",
+      "müssen",
+      "wollen"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "Die Bücher könnten ins weiße Regal kommen.",
+     "sens": "Les livres iront peut-être dans l'étagère blanche.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Die Pizza ___ für Anna und ihren Bruder sein.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "pizza",
+     "r": "bruder",
+     "phrase": "Die Pizza dürfte für Anna und ihren Bruder sein.",
+     "sens": "La pizza est sans doute pour Anna et son frère.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Die Wohnung ___ sehr ruhig sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "fenster",
+     "phrase": "Die Wohnung soll sehr ruhig sein.",
+     "sens": "L'appartement serait très calme.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "decke",
+   "mot": "Decke",
+   "plein": true,
+   "boite": [
+    3,
+    0,
+    94,
+    13
+   ]
+  },
+  {
+   "id": "lampe",
+   "mot": "Lampe",
+   "boite": [
+    62.5,
+    1,
+    14,
+    15
+   ]
+  },
+  {
+   "id": "gluehbirne",
+   "mot": "Glühbirne",
+   "boite": [
+    68.3,
+    15.5,
+    2.5,
+    2.8
+   ]
+  },
+  {
+   "id": "tuer",
+   "mot": "Tür",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     0,
+     4,
+     100
+    ],
+    [
+     96,
+     0,
+     4,
+     100
+    ]
+   ]
+  },
+  {
+   "id": "wand",
+   "mot": "Wand",
+   "plein": true,
+   "boites": [
+    [
+     4,
+     13,
+     27.5,
+     50
+    ],
+    [
+     57.5,
+     13,
+     38.5,
+     20
+    ]
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "plein": true,
+   "boite": [
+    35,
+    25,
+    20,
+    6.5
+   ]
+  },
+  {
+   "id": "fenster",
+   "mot": "Fenster",
+   "plein": true,
+   "boite": [
+    31.5,
+    20.5,
+    26,
+    30
+   ]
+  },
+  {
+   "id": "bruder",
+   "mot": "Bruder",
+   "aussi": [
+    "Mann"
+   ],
+   "points_sam": [
+    [
+     80,
+     25,
+     1
+    ],
+    [
+     87,
+     40,
+     1
+    ],
+    [
+     76,
+     17,
+     1
+    ],
+    [
+     90,
+     45,
+     0
+    ]
+   ],
+   "boite": [
+    68,
+    13.5,
+    27,
+    37
+   ]
+  },
+  {
+   "id": "pullover",
+   "mot": "Pullover",
+   "points_sam": [
+    [
+     85,
+     25,
+     1
+    ],
+    [
+     76,
+     23,
+     1
+    ],
+    [
+     80,
+     19,
+     0
+    ],
+    [
+     71,
+     18,
+     0
+    ]
+   ],
+   "boite": [
+    70.5,
+    17,
+    23.5,
+    15.5
+   ]
+  },
+  {
+   "id": "hose-2",
+   "mot": "Hose",
+   "points_sam": [
+    [
+     84,
+     38,
+     1
+    ],
+    [
+     90,
+     44,
+     1
+    ],
+    [
+     93,
+     37,
+     0
+    ]
+   ],
+   "boite": [
+    80.5,
+    31.5,
+    14,
+    17
+   ]
+  },
+  {
+   "id": "schuh",
+   "mot": "Schuh",
+   "boite": [
+    82.5,
+    48.5,
+    12,
+    3
+   ]
+  },
+  {
+   "id": "leiter",
+   "mot": "Leiter",
+   "devant": 1,
+   "sam": [
+    74.5,
+    50.5,
+    22,
+    15.5
+   ],
+   "points_sam": [
+    [
+     79.6,
+     57,
+     1
+    ],
+    [
+     92.8,
+     56,
+     1
+    ],
+    [
+     86,
+     56.4,
+     1
+    ],
+    [
+     74,
+     53.9,
+     0
+    ],
+    [
+     72.8,
+     60,
+     0
+    ]
+   ],
+   "boite": [
+    74.5,
+    31,
+    22,
+    35
+   ]
+  },
+  {
+   "id": "regal",
+   "mot": "Regal",
+   "boite": [
+    61.5,
+    32.3,
+    18,
+    18.5
+   ]
+  },
+  {
+   "id": "bild",
+   "mot": "Bild",
+   "aussi": [
+    "Gemälde"
+   ],
+   "boite": [
+    63,
+    41,
+    14,
+    5.6
+   ]
+  },
+  {
+   "id": "pflanze",
+   "mot": "Pflanze",
+   "sur": "karton",
+   "boite": [
+    51.8,
+    37.8,
+    13.8,
+    6.2
+   ]
+  },
+  {
+   "id": "karton",
+   "mot": "Karton",
+   "boite": [
+    43,
+    43.3,
+    23.3,
+    7.6
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "points_sam": [
+    [
+     46,
+     37,
+     1
+    ],
+    [
+     42,
+     47,
+     1
+    ],
+    [
+     47,
+     60,
+     1
+    ],
+    [
+     55,
+     47,
+     0
+    ],
+    [
+     58,
+     40,
+     0
+    ]
+   ],
+   "boite": [
+    37.5,
+    34.5,
+    18.5,
+    38
+   ]
+  },
+  {
+   "id": "hemd",
+   "mot": "Hemd",
+   "points_sam": [
+    [
+     40,
+     46,
+     1
+    ],
+    [
+     53,
+     50,
+     1
+    ],
+    [
+     43,
+     41,
+     1
+    ],
+    [
+     50,
+     47,
+     0
+    ],
+    [
+     47.5,
+     42.5,
+     0
+    ]
+   ],
+   "boite": [
+    37.8,
+    39.5,
+    17.4,
+    14.8
+   ]
+  },
+  {
+   "id": "t-shirt",
+   "mot": "T-Shirt",
+   "boite": [
+    45.3,
+    41.5,
+    4.6,
+    2.7
+   ]
+  },
+  {
+   "id": "schluessel",
+   "mot": "Schlüssel",
+   "boite": [
+    46,
+    51.6,
+    2.3,
+    3.3
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "points_sam": [
+    [
+     44,
+     58,
+     1
+    ],
+    [
+     52,
+     62,
+     1
+    ],
+    [
+     47,
+     67,
+     1
+    ]
+   ],
+   "boite": [
+    40.5,
+    53.3,
+    14.5,
+    16.5
+   ]
+  },
+  {
+   "id": "turnschuh",
+   "mot": "Turnschuh",
+   "aussi": [
+    "Schuh"
+   ],
+   "sam": [
+    [
+     44.5,
+     69.8,
+     5,
+     2.6
+    ],
+    [
+     47.5,
+     68,
+     6.5,
+     3
+    ]
+   ],
+   "boites": [
+    [
+     44.5,
+     69.8,
+     5,
+     2.6
+    ],
+    [
+     47.5,
+     68,
+     6.5,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "spiegel",
+   "mot": "Spiegel",
+   "boite": [
+    8.8,
+    37,
+    9.8,
+    17
+   ]
+  },
+  {
+   "id": "lampe-2",
+   "mot": "Lampe",
+   "boite": [
+    18,
+    39.5,
+    9.5,
+    16
+   ]
+  },
+  {
+   "id": "gitarre",
+   "mot": "Gitarre",
+   "boite": [
+    29.5,
+    47.5,
+    9.3,
+    14
+   ]
+  },
+  {
+   "id": "kissen",
+   "mot": "Kissen",
+   "sur": "sofa",
+   "sam": [
+    [
+     10.5,
+     53.8,
+     16.5,
+     6.3
+    ],
+    [
+     4,
+     57.3,
+     5.5,
+     4
+    ]
+   ],
+   "boites": [
+    [
+     10.5,
+     53.8,
+     16.5,
+     6.3
+    ],
+    [
+     4,
+     57.3,
+     5.5,
+     4
+    ]
+   ]
+  },
+  {
+   "id": "sofa",
+   "mot": "Sofa",
+   "boite": [
+    3.8,
+    52.3,
+    29,
+    14.5
+   ]
+  },
+  {
+   "id": "heizkoerper",
+   "mot": "Heizkörper",
+   "sam": [
+    [
+     35.3,
+     51.5,
+     6,
+     7.5
+    ],
+    [
+     82,
+     53.5,
+     13,
+     5.5
+    ]
+   ],
+   "boites": [
+    [
+     35.3,
+     51.5,
+     6,
+     7.5
+    ],
+    [
+     82,
+     53.5,
+     13,
+     5.5
+    ]
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "boite": [
+    58.4,
+    56.6,
+    8.9,
+    5
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "sur": "tisch",
+   "boite": [
+    68,
+    45.8,
+    12,
+    14
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "points_sam": [
+    [
+     74,
+     53.9,
+     1
+    ],
+    [
+     72.8,
+     60,
+     1
+    ],
+    [
+     79.6,
+     57,
+     0
+    ],
+    [
+     86,
+     56.4,
+     0
+    ]
+   ],
+   "boite": [
+    70.5,
+    52,
+    25,
+    13.5
+   ]
+  },
+  {
+   "id": "dose",
+   "mot": "Dose",
+   "sur": "karton-4",
+   "boite": [
+    86.5,
+    59.8,
+    7.8,
+    5
+   ]
+  },
+  {
+   "id": "werkzeug",
+   "mot": "Werkzeug",
+   "boite": [
+    64,
+    63.2,
+    17,
+    11.3
+   ]
+  },
+  {
+   "id": "hammer",
+   "mot": "Hammer",
+   "sur": "werkzeug",
+   "boite": [
+    64.8,
+    66,
+    5.8,
+    4
+   ]
+  },
+  {
+   "id": "bohrmaschine",
+   "mot": "Bohrmaschine",
+   "sur": "werkzeug",
+   "boite": [
+    71.8,
+    67.8,
+    8.5,
+    4
+   ]
+  },
+  {
+   "id": "pizza",
+   "mot": "Pizza",
+   "sur": "karton-3",
+   "boite": [
+    75,
+    73,
+    16.8,
+    3.8
+   ]
+  },
+  {
+   "id": "karton-3",
+   "mot": "Karton",
+   "boite": [
+    71.5,
+    66,
+    23.5,
+    11.5
+   ]
+  },
+  {
+   "id": "karton-4",
+   "mot": "Karton",
+   "sam": [
+    [
+     70,
+     76.5,
+     25,
+     9.5
+    ],
+    [
+     82,
+     62,
+     13,
+     5
+    ]
+   ],
+   "boites": [
+    [
+     70,
+     76.5,
+     25,
+     9.5
+    ],
+    [
+     82,
+     62,
+     13,
+     5
+    ]
+   ]
+  },
+  {
+   "id": "karton-2",
+   "mot": "Karton",
+   "sam": [
+    [
+     4.5,
+     62.8,
+     32.5,
+     17
+    ],
+    [
+     5,
+     76,
+     30.7,
+     15.5
+    ]
+   ],
+   "boites": [
+    [
+     4.5,
+     62.8,
+     32.5,
+     17
+    ],
+    [
+     5,
+     76,
+     30.7,
+     15.5
+    ]
+   ]
+  },
+  {
+   "id": "teppich",
+   "mot": "Teppich",
+   "boite": [
+    35.5,
+    78.8,
+    19.7,
+    9
+   ]
+  },
+  {
+   "id": "klebeband",
+   "mot": "Klebeband",
+   "boite": [
+    30.8,
+    86,
+    7.6,
+    5.2
+   ]
+  },
+  {
+   "id": "schere",
+   "mot": "Schere",
+   "boite": [
+    26.5,
+    90.6,
+    12.6,
+    4
+   ]
+  },
+  {
+   "id": "buch",
+   "mot": "Buch",
+   "boite": [
+    64.5,
+    80.3,
+    18.3,
+    15
+   ]
+  },
+  {
+   "id": "koffer",
+   "mot": "Koffer",
+   "boite": [
+    82.5,
+    76.8,
+    12.7,
+    21.5
+   ]
+  },
+  {
+   "id": "boden",
+   "mot": "Boden",
+   "plein": true,
+   "boites": [
+    [
+     4,
+     63,
+     92,
+     37
+    ],
+    [
+     30,
+     58,
+     40,
+     8
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}

@@ -1,0 +1,1203 @@
+{
+ "_lisez_moi": [
+  "La place de la ville (16 oct. 2026) : un samedi apres-midi de printemps, Anna est assise sur le bord de la fontaine d'une place pavee de son quartier de Berlin ; elle mange une glace et rit devant un petit chien qui la regarde ; son cafe a emporter est pose a cote d'elle ; un pigeon marche sur les paves, une poubelle verte, un banc ; au milieu, la statue de bronze sur son socle, un reverbere, des velos, la terrasse d'un cafe sous un parasol blanc ou un vieux monsieur lit le journal ; au fond, l'eglise de briques et sa tour a horloge, la rangee de maisons aux geraniums, le tram jaune, un feu, une boite aux lettres jaune, un jeune arbre. Theme : la ville, les lieux du quartier, le temps libre. C'est la « vue 2 » du carrefour prevue (Kirche, Brunnen, Denkmal). Scene creee a la demande de Jacques (« creer huit nouvelles scenes », 16 oct. 2026, deuxieme serie), commencee par Fable, construite par Claude (Opus).",
+  "Image : visuel/scenes/stadtplatz.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png), rendu photo, une seule prise. Garde telle quelle : les deux cadrans de la tour portent de petits traits dores (chiffres romains illisibles a cette taille, 50 px de large dans l'image), le journal ne montre que des lignes grises, les petites plaques des facades sont illisibles. Aucune enseigne.",
+  "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
+  "Contours (16 oct. 2026) : les personnes et leurs vetements portent une boite « sam » et des « points_sam » (1 = sur l'objet, 0 = a exclure), voir detourer.py ; « plein » seulement pour les fonds (mur, sol, table, fenetre, comptoir) ou pour un groupe d'objets transparents que SAM ne detoure pas (les verres suspendus) ; les lunettes sont des « ellipses ».",
+  "Histoire des personnages : Anna seule, dans son quartier ; le vieux monsieur est der Mann (un inconnu). Les maisons sont das Haus (aussi Gebaeude, plein : facades) ; la place pavee der Platz (plein) ; la statue et son socle das Denkmal (die Statue manque au corpus allemand) ; le parasol der Schirm ; le cafe a emporter der Kaffee ; les pigeons der Vogel (die Taube manque au corpus espagnol) ; le panneau en losange das Schild ; le trench d'Anna der Mantel ; la casquette du monsieur die Muetze (espagnol : la gorra) ; les geraniums des jardinieres die Blume. L'eglise a deux zones : die Kirche (la nef, plein) et der Turm.",
+  "SANS ZONE bien que visibles (a signaler) : les fenetres des maisons (trop nombreuses, elles font partie de la facade), les toits, la grille autour de l'arbre (das Gitter manque aux deux corpus), le poteau de la poubelle (der Pfosten manque), la deuxieme chaise sous le monsieur (cachee). Espagnol : Muetze = la gorra (surcharge), Tasche = el bolso.",
+  "Mesures relues sur la grille en % du 16 oct. 2026."
+ ],
+ "image": "stadtplatz.webp",
+ "source": "../scenes/stadtplatz.png",
+ "titre": "Auf dem Platz",
+ "alt": "Anna sur une place de Berlin, un samedi après-midi de printemps : assise sur le bord d'une fontaine en pierre, elle mange une glace et rit devant un petit chien brun qui la regarde ; son café à emporter est posé à côté d'elle, son sac de cuir sur l'épaule ; un pigeon marche sur les pavés, une poubelle verte, un banc de bois ; au milieu de la place, la statue de bronze d'un homme sur un haut socle, un réverbère, des vélos, la terrasse d'un café sous un grand parasol blanc où un vieux monsieur en casquette lit le journal devant une tasse ; au fond, l'église de briques et sa tour pointue avec son horloge, une rangée de vieilles maisons aux géraniums rouges, un tram jaune, un feu, un panneau, une boîte aux lettres jaune et un jeune arbre ; dans le ciel bleu, des nuages blancs et deux pigeons.",
+ "consigne": "Anna mange une glace sur la place. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Wo? — les prépositions",
+   "qs": [
+    {
+     "q": "Wo sitzt Anna?",
+     "c": [
+      "am Brunnen",
+      "auf der Bank",
+      "am Tisch"
+     ],
+     "f": "anna",
+     "r": "brunnen",
+     "phrase": "Anna sitzt am Brunnen.",
+     "sens": "Anna est assise au bord de la fontaine.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Brunnen → am Brunnen."
+    },
+    {
+     "q": "Wo steht der Mülleimer?",
+     "c": [
+      "neben dem Brunnen",
+      "vor der Kirche",
+      "unter dem Schirm"
+     ],
+     "f": "muelleimer",
+     "r": "brunnen",
+     "phrase": "Der Mülleimer steht neben dem Brunnen.",
+     "sens": "La poubelle est à côté de la fontaine.",
+     "n": "<b>neben</b> = à côté de. der Brunnen → neben <b>dem</b> Brunnen."
+    },
+    {
+     "q": "Wo sitzt der Mann?",
+     "c": [
+      "unter dem Schirm",
+      "auf der Bank",
+      "am Brunnen"
+     ],
+     "f": "mann",
+     "r": "schirm",
+     "phrase": "Der Mann sitzt unter dem Schirm.",
+     "sens": "Le monsieur est assis sous le parasol.",
+     "n": "<b>unter</b> = sous. der Schirm → unter <b>dem</b> Schirm."
+    },
+    {
+     "q": "Wo steht die Tasse?",
+     "c": [
+      "auf dem Tisch",
+      "auf der Bank",
+      "im Brunnen"
+     ],
+     "f": "tasse",
+     "r": "tisch",
+     "phrase": "Die Tasse steht auf dem Tisch.",
+     "sens": "La tasse est sur la table.",
+     "n": "der Tisch → auf <b>dem</b> Tisch."
+    },
+    {
+     "q": "Wo ist die Uhr?",
+     "c": [
+      "am Turm",
+      "an der Straßenbahn",
+      "am Baum"
+     ],
+     "f": "uhr",
+     "r": "turm",
+     "phrase": "Die Uhr ist am Turm.",
+     "sens": "L'horloge est sur la tour.",
+     "n": "<b>am</b> = an + <b>dem</b> : der Turm → am Turm."
+    },
+    {
+     "q": "Wo fährt die Straßenbahn?",
+     "c": [
+      "auf der Straße",
+      "auf dem Platz",
+      "im Brunnen"
+     ],
+     "f": "strassenbahn",
+     "r": "strasse",
+     "phrase": "Die Straßenbahn fährt auf der Straße.",
+     "sens": "Le tram roule dans la rue.",
+     "n": "die Straße → auf <b>der</b> Straße : au datif, le féminin <b>die</b> devient <b>der</b>."
+    },
+    {
+     "q": "Wo hängt der Briefkasten?",
+     "c": [
+      "am Haus",
+      "am Turm",
+      "am Brunnen"
+     ],
+     "f": "briefkasten",
+     "r": "haus",
+     "phrase": "Der Briefkasten hängt am Haus.",
+     "sens": "La boîte aux lettres est fixée à la maison.",
+     "n": "<b>am</b> = an + <b>dem</b> : das Haus → am Haus."
+    },
+    {
+     "q": "Wo sitzt der Hund?",
+     "c": [
+      "vor dem Brunnen",
+      "auf der Bank",
+      "unter dem Tisch"
+     ],
+     "f": "hund",
+     "r": "brunnen",
+     "phrase": "Der Hund sitzt vor dem Brunnen.",
+     "sens": "Le chien est assis devant la fontaine.",
+     "n": "<b>vor</b> + datif (Wo?) : der Brunnen → vor <b>dem</b> Brunnen."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le verbe en deuxième position : Heute isst Anna ein Eis",
+   "qs": [
+    {
+     "q": "Heute ___ ein Eis.",
+     "c": [
+      "isst Anna",
+      "Anna isst",
+      "Anna essen"
+     ],
+     "f": "eis",
+     "r": "anna",
+     "phrase": "Heute isst Anna ein Eis.",
+     "sens": "Aujourd'hui, Anna mange une glace.",
+     "n": "Le verbe conjugué reste en <b>2e position</b> : si un autre élément ouvre la phrase, le sujet passe <b>après</b> le verbe.",
+     "revise": "essen"
+    },
+    {
+     "q": "Am Brunnen ___.",
+     "c": [
+      "sitzt Anna",
+      "Anna sitzt",
+      "sitzen Anna"
+     ],
+     "f": "anna",
+     "r": "brunnen",
+     "phrase": "Am Brunnen sitzt Anna.",
+     "sens": "C'est au bord de la fontaine qu'Anna est assise.",
+     "n": "Un lieu en tête → d'abord le <b>verbe</b>, puis le sujet : am Brunnen <b>sitzt</b> Anna.",
+     "revise": "sitzen"
+    },
+    {
+     "q": "Vor Anna ___.",
+     "c": [
+      "sitzt ein Hund",
+      "ein Hund sitzt",
+      "sitzt einen Hund"
+     ],
+     "f": "hund",
+     "r": "anna",
+     "phrase": "Vor Anna sitzt ein Hund.",
+     "sens": "Devant Anna, il y a un chien assis.",
+     "n": "Inversion : <b>sitzt</b> ein Hund ; le sujet reste au nominatif (ein Hund).",
+     "revise": "sitzen"
+    },
+    {
+     "q": "Unter dem Schirm ___ die Zeitung.",
+     "c": [
+      "liest ein Mann",
+      "ein Mann liest",
+      "liest einen Mann"
+     ],
+     "f": "mann",
+     "r": "zeitung",
+     "phrase": "Unter dem Schirm liest ein Mann die Zeitung.",
+     "sens": "Sous le parasol, un homme lit le journal.",
+     "n": "Le verbe en 2e position, puis le sujet : <b>liest</b> ein Mann.",
+     "revise": "lesen"
+    },
+    {
+     "q": "Am Samstag ___ auf den Platz.",
+     "c": [
+      "kommen viele Leute",
+      "viele Leute kommen",
+      "kommt viele Leute"
+     ],
+     "f": "platz",
+     "phrase": "Am Samstag kommen viele Leute auf den Platz.",
+     "sens": "Le samedi, beaucoup de gens viennent sur la place.",
+     "n": "Après « Am Samstag », le verbe d'abord : <b>kommen</b> viele Leute ; il s'accorde avec le sujet pluriel.",
+     "revise": "kommen"
+    },
+    {
+     "q": "Auf dem Denkmal ___.",
+     "c": [
+      "steht ein Mann aus Bronze",
+      "ein Mann aus Bronze steht",
+      "stehen ein Mann aus Bronze"
+     ],
+     "f": "denkmal",
+     "phrase": "Auf dem Denkmal steht ein Mann aus Bronze.",
+     "sens": "Sur le monument se dresse un homme en bronze.",
+     "n": "Le lieu en tête, le <b>verbe</b> en 2e position, le sujet après.",
+     "revise": "stehen"
+    },
+    {
+     "q": "Dann ___ einen Kaffee.",
+     "c": [
+      "trinkt Anna",
+      "Anna trinkt",
+      "trinken Anna"
+     ],
+     "f": "kaffee",
+     "r": "anna",
+     "phrase": "Dann trinkt Anna einen Kaffee.",
+     "sens": "Ensuite, Anna boit un café.",
+     "n": "<b>dann</b> compte comme un élément : dann <b>trinkt</b> Anna.",
+     "revise": "trinken"
+    },
+    {
+     "q": "Hinter dem Platz ___.",
+     "c": [
+      "fährt eine Straßenbahn",
+      "eine Straßenbahn fährt",
+      "fahrt eine Straßenbahn"
+     ],
+     "f": "strassenbahn",
+     "phrase": "Hinter dem Platz fährt eine Straßenbahn.",
+     "sens": "Derrière la place passe un tram.",
+     "n": "Inversion : <b>fährt</b> eine Straßenbahn ; fahren prend un Umlaut : er <b>fährt</b>.",
+     "revise": "fahren"
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Comme si : als ob + Konjunktiv II",
+   "qs": [
+    {
+     "q": "Der Hund schaut, als ob er Hunger ___.",
+     "c": [
+      "hätte",
+      "hat",
+      "haben"
+     ],
+     "f": "hund",
+     "phrase": "Der Hund schaut, als ob er Hunger hätte.",
+     "sens": "Le chien regarde comme s'il avait faim.",
+     "n": "<b>als ob</b> + Konjunktiv II, verbe à la fin : als ob er Hunger <b>hätte</b>."
+    },
+    {
+     "q": "Anna lacht, als ob der Hund ihr einen Witz erzählt ___.",
+     "c": [
+      "hätte",
+      "hat",
+      "wäre"
+     ],
+     "f": "anna",
+     "r": "hund",
+     "phrase": "Anna lacht, als ob der Hund ihr einen Witz erzählt hätte.",
+     "sens": "Anna rit comme si le chien lui avait raconté une blague.",
+     "n": "Pour le passé : als ob + <b>hätte/wäre</b> + participe II.",
+     "revise": "lachen"
+    },
+    {
+     "q": "Der Mann liest, als ___ er allein auf dem Platz wäre.",
+     "c": [
+      "ob",
+      "dass",
+      "weil"
+     ],
+     "f": "mann",
+     "phrase": "Der Mann liest, als ob er allein auf dem Platz wäre.",
+     "sens": "Le monsieur lit comme s'il était seul sur la place.",
+     "n": "« comme si » = <b>als ob</b> ; als dass, als weil ne veulent rien dire ici.",
+     "revise": "lesen"
+    },
+    {
+     "q": "Die Statue sieht aus, als ___ sie gleich losgehen.",
+     "c": [
+      "würde",
+      "wird",
+      "wäre"
+     ],
+     "f": "denkmal",
+     "phrase": "Die Statue sieht aus, als würde sie gleich losgehen.",
+     "sens": "La statue a l'air de vouloir se mettre en marche.",
+     "n": "<b>als</b> + Konjunktiv II sans ob : le verbe vient juste après als : als <b>würde</b> sie losgehen."
+    },
+    {
+     "q": "Es ist so warm, als ob schon Sommer ___.",
+     "c": [
+      "wäre",
+      "ist",
+      "war"
+     ],
+     "f": "himmel",
+     "phrase": "Es ist so warm, als ob schon Sommer wäre.",
+     "sens": "Il fait aussi chaud que si c'était déjà l'été.",
+     "n": "<b>als ob</b> + <b>wäre</b> (Konjunktiv II de sein)."
+    },
+    {
+     "q": "Die Tauben laufen herum, als ob ihnen der Platz ___.",
+     "c": [
+      "gehörte",
+      "gehört",
+      "gehören"
+     ],
+     "f": "vogel-2",
+     "r": "platz",
+     "phrase": "Die Tauben laufen herum, als ob ihnen der Platz gehörte.",
+     "sens": "Les pigeons se promènent comme si la place leur appartenait.",
+     "n": "Konjunktiv II d'un verbe régulier = forme du Präteritum : als ob ihnen der Platz <b>gehörte</b>.",
+     "revise": "gehören"
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Anna lacht — sie ___ den Hund lustig finden.",
+     "c": [
+      "muss",
+      "soll",
+      "mag"
+     ],
+     "f": "anna",
+     "r": "hund",
+     "phrase": "Sie muss den Hund lustig finden.",
+     "sens": "Elle doit trouver le chien drôle.",
+     "n": "<b>müssen</b> = déduction presque certaine."
+    },
+    {
+     "q": "Vielleicht, wer weiß: Der Hund ___ ein Stück Eis bekommen.",
+     "c": [
+      "könnte",
+      "muss",
+      "will"
+     ],
+     "f": "hund",
+     "r": "eis",
+     "phrase": "Der Hund könnte ein Stück Eis bekommen.",
+     "sens": "Le chien aura peut-être un morceau de glace.",
+     "n": "<b>könnte</b> = une possibilité parmi d'autres."
+    },
+    {
+     "q": "Wahrscheinlich: Der Mann ___ jeden Samstag hier sitzen.",
+     "c": [
+      "dürfte",
+      "soll",
+      "mag"
+     ],
+     "f": "mann",
+     "r": "tisch",
+     "phrase": "Der Mann dürfte jeden Samstag hier sitzen.",
+     "sens": "Le monsieur est sans doute assis ici tous les samedis.",
+     "n": "<b>dürfte</b> = probable, sans en être sûr."
+    },
+    {
+     "q": "Man sagt es: Der Brunnen ___ über hundert Jahre alt sein.",
+     "c": [
+      "soll",
+      "muss",
+      "dürfte"
+     ],
+     "f": "brunnen",
+     "phrase": "Der Brunnen soll über hundert Jahre alt sein.",
+     "sens": "La fontaine aurait plus de cent ans.",
+     "n": "<b>sollen</b> = d'après ce qu'on dit : une rumeur, pas une déduction."
+    }
+   ]
+  }
+ },
+ "points": [
+  {
+   "id": "wolke",
+   "mot": "Wolke",
+   "plein": true,
+   "sur": "himmel",
+   "boites": [
+    [
+     30,
+     0,
+     25,
+     4.5
+    ],
+    [
+     55,
+     4,
+     23,
+     9
+    ],
+    [
+     0,
+     10,
+     21,
+     13
+    ]
+   ]
+  },
+  {
+   "id": "himmel",
+   "mot": "Himmel",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     0,
+     100,
+     12
+    ],
+    [
+     0,
+     0,
+     40,
+     33
+    ]
+   ]
+  },
+  {
+   "id": "vogel",
+   "mot": "Vogel",
+   "sam": [
+    [
+     9,
+     29,
+     4.3,
+     2.2
+    ],
+    [
+     81,
+     22.3,
+     6.7,
+     3
+    ]
+   ],
+   "boites": [
+    [
+     9,
+     29,
+     4.3,
+     2.2
+    ],
+    [
+     81,
+     22.3,
+     6.7,
+     3
+    ]
+   ]
+  },
+  {
+   "id": "turm",
+   "mot": "Turm",
+   "boite": [
+    15.5,
+    3.5,
+    17,
+    32
+   ]
+  },
+  {
+   "id": "uhr",
+   "mot": "Uhr",
+   "sur": "turm",
+   "sam": [
+    [
+     24.5,
+     21.5,
+     4.2,
+     3.2
+    ],
+    [
+     17.3,
+     21.7,
+     2.5,
+     3.2
+    ]
+   ],
+   "boites": [
+    [
+     24.5,
+     21.5,
+     4.2,
+     3.2
+    ],
+    [
+     17.3,
+     21.7,
+     2.5,
+     3.2
+    ]
+   ]
+  },
+  {
+   "id": "kirche",
+   "mot": "Kirche",
+   "plein": true,
+   "boite": [
+    8,
+    27,
+    30.5,
+    20
+   ]
+  },
+  {
+   "id": "baum-2",
+   "mot": "Baum",
+   "plein": true,
+   "boite": [
+    0,
+    34,
+    12.5,
+    13
+   ]
+  },
+  {
+   "id": "blume",
+   "mot": "Blume",
+   "plein": true,
+   "sur": "haus",
+   "boites": [
+    [
+     72,
+     23.6,
+     3.5,
+     1.6
+    ],
+    [
+     67.5,
+     25,
+     3.5,
+     1.6
+    ],
+    [
+     62.5,
+     26.2,
+     3.5,
+     1.6
+    ],
+    [
+     58.5,
+     27.2,
+     3.5,
+     1.6
+    ],
+    [
+     58.5,
+     34.2,
+     3.5,
+     1.5
+    ],
+    [
+     63,
+     35.3,
+     3,
+     1.5
+    ],
+    [
+     72.5,
+     41.5,
+     3,
+     1.5
+    ],
+    [
+     67.5,
+     41.8,
+     3,
+     1.5
+    ]
+   ]
+  },
+  {
+   "id": "haus",
+   "mot": "Haus",
+   "plein": true,
+   "aussi": [
+    "Gebäude"
+   ],
+   "boites": [
+    [
+     38,
+     13,
+     62,
+     41.5
+    ],
+    [
+     77,
+     3,
+     23,
+     12
+    ]
+   ]
+  },
+  {
+   "id": "denkmal",
+   "mot": "Denkmal",
+   "devant": 1,
+   "boite": [
+    34,
+    32.5,
+    28,
+    27.8
+   ]
+  },
+  {
+   "id": "strassenbahn",
+   "mot": "Straßenbahn",
+   "boite": [
+    0,
+    47,
+    56,
+    8.5
+   ]
+  },
+  {
+   "id": "schild",
+   "mot": "Schild",
+   "boite": [
+    2.8,
+    45.4,
+    3,
+    2.2
+   ]
+  },
+  {
+   "id": "ampel",
+   "mot": "Ampel",
+   "boite": [
+    2.4,
+    47.2,
+    4,
+    3.6
+   ]
+  },
+  {
+   "id": "laterne",
+   "mot": "Laterne",
+   "devant": 1,
+   "boite": [
+    21,
+    37.5,
+    5.3,
+    23
+   ]
+  },
+  {
+   "id": "fahrrad",
+   "mot": "Fahrrad",
+   "boite": [
+    12,
+    53.8,
+    16.5,
+    6
+   ]
+  },
+  {
+   "id": "fahrrad-2",
+   "mot": "Fahrrad",
+   "boite": [
+    69.8,
+    52.3,
+    5,
+    3
+   ]
+  },
+  {
+   "id": "briefkasten",
+   "mot": "Briefkasten",
+   "boite": [
+    84.8,
+    51.3,
+    4,
+    4
+   ]
+  },
+  {
+   "id": "schirm",
+   "mot": "Schirm",
+   "points_sam": [
+    [
+     60,
+     47,
+     1
+    ],
+    [
+     75,
+     47,
+     1
+    ],
+    [
+     66.5,
+     55,
+     1
+    ],
+    [
+     70,
+     58,
+     0
+    ]
+   ],
+   "boite": [
+    48.5,
+    45.3,
+    37.5,
+    19
+   ]
+  },
+  {
+   "id": "baum",
+   "mot": "Baum",
+   "points_sam": [
+    [
+     93,
+     25,
+     1
+    ],
+    [
+     90,
+     45,
+     1
+    ],
+    [
+     93.3,
+     60,
+     1
+    ],
+    [
+     84,
+     18,
+     0
+    ],
+    [
+     98,
+     18,
+     0
+    ],
+    [
+     80,
+     40,
+     0
+    ],
+    [
+     97,
+     40,
+     0
+    ]
+   ],
+   "boite": [
+    77,
+    13,
+    23,
+    53
+   ]
+  },
+  {
+   "id": "strasse",
+   "mot": "Straße",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     54.5,
+     34,
+     3.5
+    ],
+    [
+     56,
+     54.5,
+     44,
+     4
+    ]
+   ]
+  },
+  {
+   "id": "mann",
+   "mot": "Mann",
+   "points_sam": [
+    [
+     80,
+     58,
+     1
+    ],
+    [
+     73,
+     64,
+     1
+    ],
+    [
+     74,
+     59,
+     0
+    ]
+   ],
+   "boite": [
+    70,
+    54.2,
+    15.5,
+    14.2
+   ]
+  },
+  {
+   "id": "muetze",
+   "mot": "Mütze",
+   "boite": [
+    76.9,
+    54.5,
+    4.4,
+    1.6
+   ]
+  },
+  {
+   "id": "brille",
+   "mot": "Brille",
+   "ellipses": [
+    [
+     77.75,
+     56.25,
+     0.5,
+     0.3
+    ],
+    [
+     79.4,
+     56.3,
+     0.6,
+     0.32
+    ]
+   ]
+  },
+  {
+   "id": "zeitung",
+   "mot": "Zeitung",
+   "boite": [
+    70,
+    57.2,
+    10.5,
+    4.8
+   ]
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "points_sam": [
+    [
+     83,
+     60,
+     1
+    ],
+    [
+     81.5,
+     57.5,
+     1
+    ],
+    [
+     76,
+     59,
+     0
+    ]
+   ],
+   "boite": [
+    74.5,
+    56.5,
+    10.5,
+    8
+   ]
+  },
+  {
+   "id": "hose-2",
+   "mot": "Hose",
+   "boite": [
+    70,
+    61.3,
+    8.5,
+    7
+   ]
+  },
+  {
+   "id": "tasse",
+   "mot": "Tasse",
+   "sur": "tisch",
+   "aussi": [
+    "Kaffee"
+   ],
+   "boite": [
+    66,
+    58.8,
+    6.5,
+    2.3
+   ]
+  },
+  {
+   "id": "tisch",
+   "mot": "Tisch",
+   "boite": [
+    59,
+    60,
+    16,
+    8
+   ]
+  },
+  {
+   "id": "stuhl",
+   "mot": "Stuhl",
+   "boite": [
+    52.5,
+    58.7,
+    11,
+    9
+   ]
+  },
+  {
+   "id": "wasser",
+   "mot": "Wasser",
+   "sur": "brunnen",
+   "sam": [
+    [
+     4.3,
+     51.8,
+     4,
+     4.6
+    ],
+    [
+     0,
+     65.5,
+     46,
+     6
+    ]
+   ],
+   "boites": [
+    [
+     4.3,
+     51.8,
+     4,
+     4.6
+    ],
+    [
+     0,
+     65.5,
+     46,
+     6
+    ]
+   ]
+  },
+  {
+   "id": "brunnen",
+   "mot": "Brunnen",
+   "points_sam": [
+    [
+     8,
+     57,
+     1
+    ],
+    [
+     40,
+     66,
+     1
+    ],
+    [
+     5,
+     76,
+     1
+    ],
+    [
+     33,
+     75,
+     0
+    ]
+   ],
+   "boites": [
+    [
+     0,
+     52,
+     17,
+     12
+    ],
+    [
+     0,
+     60,
+     57.5,
+     24
+    ]
+   ]
+  },
+  {
+   "id": "anna",
+   "mot": "Frau",
+   "points_sam": [
+    [
+     31,
+     60,
+     1
+    ],
+    [
+     28,
+     72,
+     1
+    ],
+    [
+     38,
+     76,
+     1
+    ],
+    [
+     21,
+     70,
+     0
+    ]
+   ],
+   "boite": [
+    23,
+    57.3,
+    22,
+    26.8
+   ]
+  },
+  {
+   "id": "eis",
+   "mot": "Eis",
+   "boite": [
+    35.5,
+    63.2,
+    3,
+    3
+   ]
+  },
+  {
+   "id": "t-shirt",
+   "mot": "T-Shirt",
+   "boite": [
+    30,
+    62.8,
+    3,
+    3.5
+   ]
+  },
+  {
+   "id": "mantel",
+   "mot": "Mantel",
+   "points_sam": [
+    [
+     26,
+     72,
+     1
+    ],
+    [
+     28,
+     62.5,
+     1
+    ],
+    [
+     37,
+     65,
+     1
+    ],
+    [
+     22,
+     70,
+     0
+    ],
+    [
+     34,
+     72,
+     0
+    ]
+   ],
+   "boite": [
+    23,
+    60.5,
+    18,
+    20
+   ]
+  },
+  {
+   "id": "tasche",
+   "mot": "Tasche",
+   "boite": [
+    18.5,
+    66.5,
+    8.8,
+    7
+   ]
+  },
+  {
+   "id": "hose",
+   "mot": "Hose",
+   "boite": [
+    28.5,
+    69.3,
+    14.8,
+    12.8
+   ]
+  },
+  {
+   "id": "turnschuh",
+   "mot": "Turnschuh",
+   "aussi": [
+    "Schuh"
+   ],
+   "sam": [
+    [
+     34,
+     81.5,
+     7.3,
+     2.5
+    ],
+    [
+     40.5,
+     78.8,
+     4.6,
+     3.2
+    ]
+   ],
+   "boites": [
+    [
+     34,
+     81.5,
+     7.3,
+     2.5
+    ],
+    [
+     40.5,
+     78.8,
+     4.6,
+     3.2
+    ]
+   ]
+  },
+  {
+   "id": "kaffee",
+   "mot": "Kaffee",
+   "sur": "brunnen",
+   "boite": [
+    40.4,
+    68.4,
+    2.8,
+    2.6
+   ]
+  },
+  {
+   "id": "hund",
+   "mot": "Hund",
+   "boite": [
+    43,
+    74.4,
+    19,
+    12.4
+   ]
+  },
+  {
+   "id": "vogel-2",
+   "mot": "Vogel",
+   "boite": [
+    23.5,
+    85.7,
+    11.5,
+    6
+   ]
+  },
+  {
+   "id": "muelleimer",
+   "mot": "Mülleimer",
+   "boite": [
+    7.6,
+    78.3,
+    12,
+    15.8
+   ]
+  },
+  {
+   "id": "bank",
+   "mot": "Bank",
+   "boite": [
+    64,
+    73.5,
+    36,
+    25
+   ]
+  },
+  {
+   "id": "platz",
+   "mot": "Platz",
+   "plein": true,
+   "boites": [
+    [
+     0,
+     58,
+     100,
+     42
+    ]
+   ]
+  }
+ ],
+ "gros_plans": []
+}
