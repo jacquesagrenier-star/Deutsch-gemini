@@ -9358,4 +9358,5 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   actuel », « le vrai tableau qui est en train de se construire ». Carte d'oral v2 : reussite =
   phrase verte + rond ✓, sans bandeau ; sur Continuer, le son de recompense et LE carreau gagne
   (dessinerMosaique rend sa place) monte vers une mini-mosaique du vrai tableau en haut a droite ;
-  pas de confettis. Page d'essai : .claude/test-carreau.html.
+  pas de confettis. Puis (meme jour) : la mosaique au milieu, le carreau gros (1/4 de sa largeur)
+  qui rapetisse et va se poser. Page d essai : .claude/test-carreau.html.
