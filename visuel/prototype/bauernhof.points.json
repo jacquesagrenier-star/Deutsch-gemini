@@ -1,16 +1,16 @@
 {
  "_lisez_moi": [
   "La ferme (15 oct. 2026) : un matin d'automne dans la cour d'une petite ferme du Brandebourg, Anna, chez son oncle, tend une pomme au cheval par-dessus la cloture et rit ; son oncle porte une botte de paille, son petit cousin donne du grain a une poule ; vache, cochon, moutons, chat, chien, poules, oeufs, pommes, puits, maison de briques et grange. Theme : les animaux, la campagne, la nature. Scene creee a la demande de Jacques (« huit autres scenes basees sur les themes », 15 oct. 2026), construite par Fable.",
-  "Image : visuel/scenes/bauernhof.png (fal, 0,15 $, refs Anna-troisquarts.png + anna-20260908-0439.png). Aucun texte dans l'image. DOUTE : le rendu est plus « illustration » que photo (couleurs, traits), gardee parce que tout y est net et que les objets sont bien separes.",
+  "Image : visuel/scenes/bauernhof.png, PHOTO du 17 oct. 2026 (fal, 0,15 $, memes prompt et action, refs Anna-troisquarts.png + anna-20260908-0439.png) : Jacques voulait des photos, pas des peintures. L'ancienne image peinte du 15 oct. est rangee en visuel/scenes/bauernhof-v1.png. Aucun texte dans l'image.",
   "Memes conventions que klassenzimmer.points.json : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur (ou dans) lequel celui-ci se trouve ; aussi = les autres noms de la zone.",
-  "Histoire des personnages (15 oct.) : la ferme est celle de l'ONCLE d'Anna (sa famille est allemande) ; le fermier est der Onkel (aussi der Mann), le garcon der Cousin (aussi Junge, Kind). Aucun compagnon d'Anna dans l'image ni dans les questions. Cinq Huhn, chacune sa zone (SAM detoure par le rectangle englobant : des boites eloignees d'une meme zone attraperaient la cour). Le bidon de lait est die Kanne (aussi Milch) ; le puits der Brunnen (el pozo en espagnol, surcharge). SANS ZONE bien que visibles (a signaler) : la botte de paille (Stroh manque au corpus allemand), le sac brun (der Sack : el saco manque au corpus espagnol), les clotures (Zaun manque), la grange (Scheune manque), la cheminee (Schornstein manque), les poteaux. Le soleil n'est pas dans le cadre.",
-  "Mesures relues sur la grille en % du 15 oct. 2026.",
-  "Contours repris le 16 oct. 2026 (voir detourer.py) : huhn-4 et huhn-5 pointaient tous deux sur la GROSSE poule du premier plan (la queue pour l'un, la tete pour l'autre : il n'y a que quatre poules dans l'image) ; les deux zones portent maintenant la poule entiere (boite « sam »). huhn-5 (doublon) SUPPRIME le 16 oct. 2026. Les autres zones n'ont pas bouge."
+  "Histoire des personnages (15 oct.) : la ferme est celle de l'ONCLE d'Anna (sa famille est allemande) ; le fermier est der Onkel (aussi der Mann), le garcon der Cousin (aussi Junge, Kind). Aucun compagnon d'Anna dans l'image ni dans les questions. Quatre poules, une zone chacune : huhn (devant le cousin), huhn-2 (a gauche, pres du panier), huhn-3 (au milieu), huhn-4 (devant a droite). Le bidon de lait est die Kanne (aussi Milch) ; le puits der Brunnen (el pozo en espagnol, surcharge). SANS ZONE bien que visibles (a signaler) : la botte de paille (Stroh manque au corpus allemand), le sac brun (der Sack : el saco manque au corpus espagnol), les clotures (Zaun manque), la grange (Scheune manque), la cheminee (Schornstein manque), les volets, l'enclos du cochon. Trop petits dans la photo : la lampe pres de la porte et le pot de fleurs rouges. Le soleil n'est pas dans le cadre.",
+  "Mesures relues sur la grille en % du 17 oct. 2026 (nouvelle image).",
+  "17 oct. 2026, nouvelle image : toutes les zones remesurees, memes id ; detourer.py relance en entier. RETIREES : wasser (plus de flaques dans la photo), ei-2 (plus d'oeuf par terre), lampe et blume (minuscules). AJOUTEES : baum-2 (l'arbre devant la foret), hose-2 et stiefel-2 (le jean et les bottes de l'oncle), hemd-3 (la chemise du cousin). Couches relues contre la photo (.claude/outils-scenes/couches_photos.py) : toutes vraies en allemand ; en espagnol, le seau « cuelga del pozo » (il pend sous le toit du puits, il n'est pas « al lado »)."
  ],
  "image": "bauernhof.webp",
  "source": "../scenes/bauernhof.png",
  "titre": "Auf dem Bauernhof",
- "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache broute dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
  "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
  "exclus": [],
  "couches": {
@@ -385,7 +385,7 @@
     0,
     0,
     100,
-    15
+    20.3
    ]
   },
   {
@@ -394,28 +394,27 @@
    "plein": true,
    "boites": [
     [
-     28,
-     1,
-     17,
-     5
+     1.5,
+     3,
+     45,
+     3.5
     ],
     [
-     60,
-     3.5,
-     12,
-     3
+     0,
+     7.8,
+     30,
+     2.4
     ]
    ]
   },
   {
    "id": "vogel",
    "mot": "Vogel",
-   "plein": true,
    "boite": [
-    1,
-    5.8,
-    4,
-    2.2
+    40,
+    12.6,
+    2.6,
+    1.7
    ]
   },
   {
@@ -423,10 +422,20 @@
    "mot": "Wald",
    "plein": true,
    "boite": [
-    33,
-    14.5,
-    28,
-    4
+    0,
+    20.3,
+    22.5,
+    8
+   ]
+  },
+  {
+   "id": "baum-2",
+   "mot": "Baum",
+   "boite": [
+    22,
+    21.8,
+    8.5,
+    11.5
    ]
   },
   {
@@ -434,10 +443,10 @@
    "mot": "Feld",
    "plein": true,
    "boite": [
-    32,
-    19,
-    21,
-    5
+    0,
+    28.2,
+    22.5,
+    4.1
    ]
   },
   {
@@ -445,10 +454,10 @@
    "mot": "Wiese",
    "plein": true,
    "boite": [
-    22,
-    22,
-    30,
-    12
+    0,
+    32.3,
+    29,
+    6.8
    ]
   },
   {
@@ -456,22 +465,54 @@
    "mot": "Schaf",
    "boites": [
     [
-     28,
-     27.5,
-     6.5,
-     3.5
+     4.8,
+     32.9,
+     5.2,
+     1.6
     ],
     [
-     37.5,
-     26.5,
-     7.5,
-     3
+     11.3,
+     33.7,
+     3,
+     1.2
     ],
     [
-     31.5,
-     26,
-     4,
-     2.5
+     15.3,
+     32,
+     2.5,
+     1
+    ],
+    [
+     6.3,
+     35.3,
+     4.8,
+     1.8
+    ]
+   ],
+   "sam": [
+    [
+     4.8,
+     32.9,
+     5.2,
+     1.6
+    ],
+    [
+     11.3,
+     33.7,
+     3,
+     1.2
+    ],
+    [
+     15.3,
+     32,
+     2.5,
+     1
+    ],
+    [
+     6.3,
+     35.3,
+     4.8,
+     1.8
     ]
    ]
   },
@@ -479,20 +520,20 @@
    "id": "baum",
    "mot": "Baum",
    "boite": [
-    10,
-    4.5,
-    31,
-    22.5
+    67.5,
+    0,
+    32.5,
+    37
    ]
   },
   {
    "id": "dach",
    "mot": "Dach",
    "boite": [
-    48,
-    7,
-    52,
-    19
+    28.5,
+    13.4,
+    41,
+    15.2
    ]
   },
   {
@@ -500,10 +541,10 @@
    "mot": "Haus",
    "plein": true,
    "boite": [
-    48,
-    7,
-    52,
-    33
+    28.5,
+    13.2,
+    40,
+    26.5
    ]
   },
   {
@@ -512,16 +553,16 @@
    "plein": true,
    "boites": [
     [
-     53,
-     27.5,
-     10.5,
-     7
+     37.3,
+     30.1,
+     5.8,
+     5.5
     ],
     [
-     64,
-     27.5,
-     10,
-     7
+     61,
+     31.6,
+     3.3,
+     3
     ]
    ]
   },
@@ -529,50 +570,40 @@
    "id": "tuer",
    "mot": "Tür",
    "boite": [
-    80,
-    27.5,
-    6.5,
-    11
-   ]
-  },
-  {
-   "id": "lampe",
-   "mot": "Lampe",
-   "boite": [
-    91.5,
-    28,
-    3.5,
-    2.8
+    51.8,
+    30.2,
+    6.2,
+    8.4
    ]
   },
   {
    "id": "holz",
    "mot": "Holz",
    "boite": [
-    0,
-    29,
-    8.5,
-    20
+    87.3,
+    40.8,
+    12.7,
+    6.8
    ]
   },
   {
    "id": "leiter",
    "mot": "Leiter",
    "boite": [
-    13.5,
-    23,
-    12,
-    17
+    81.3,
+    31.5,
+    7.8,
+    15
    ]
   },
   {
    "id": "kuerbis",
    "mot": "Kürbis",
    "boite": [
-    3.5,
-    38.5,
-    11,
-    4.5
+    85.8,
+    45.7,
+    6.6,
+    2.4
    ]
   },
   {
@@ -580,68 +611,50 @@
    "mot": "Katze",
    "sur": "mauer",
    "boite": [
-    25.5,
-    31,
-    5,
-    3.5
+    25.6,
+    34.2,
+    2.6,
+    2.4
    ]
   },
   {
    "id": "mauer",
    "mot": "Mauer",
    "boite": [
-    24,
-    33.5,
-    9.5,
-    5.5
+    17,
+    35.8,
+    13,
+    4
    ]
   },
   {
    "id": "bank",
    "mot": "Bank",
    "boite": [
-    56.5,
-    36,
-    13,
-    4
-   ]
-  },
-  {
-   "id": "blume",
-   "mot": "Blume",
-   "boites": [
-    [
-     51.5,
-     34.5,
-     3.5,
-     3
-    ],
-    [
-     72.5,
-     36,
-     4,
-     3
-    ]
+    36.3,
+    37.2,
+    10.2,
+    2.8
    ]
   },
   {
    "id": "brunnen",
    "mot": "Brunnen",
    "boite": [
-    80.5,
-    34.5,
-    19,
-    13
+    50.2,
+    36.2,
+    20.2,
+    15
    ]
   },
   {
    "id": "eimer",
    "mot": "Eimer",
    "boite": [
-    87.5,
-    40.5,
-    3.5,
-    2.5
+    59,
+    42.6,
+    3.6,
+    3
    ]
   },
   {
@@ -651,40 +664,90 @@
     "Mann"
    ],
    "boite": [
-    68.5,
-    38.5,
-    12.5,
-    23
+    64,
+    40.2,
+    13.5,
+    20.4
    ]
   },
   {
    "id": "muetze",
    "mot": "Mütze",
    "boite": [
-    70,
-    38.7,
-    5,
-    2.6
+    70.5,
+    40.2,
+    4.6,
+    1.8
    ]
   },
   {
    "id": "hemd",
    "mot": "Hemd",
    "boite": [
-    68.5,
-    41.5,
-    12,
-    6
+    64,
+    42.6,
+    13.5,
+    8.5
+   ],
+   "points_sam": [
+    [
+     67,
+     44.5,
+     1
+    ],
+    [
+     74.5,
+     44.5,
+     1
+    ],
+    [
+     66,
+     47.5,
+     1
+    ],
+    [
+     69,
+     50,
+     0
+    ],
+    [
+     72.5,
+     41,
+     0
+    ]
+   ]
+  },
+  {
+   "id": "hose-2",
+   "mot": "Hose",
+   "aussi": [
+    "Jeans"
+   ],
+   "boite": [
+    67.2,
+    52.6,
+    7.8,
+    4.2
+   ]
+  },
+  {
+   "id": "stiefel-2",
+   "mot": "Stiefel",
+   "boite": [
+    67.5,
+    55.8,
+    6.9,
+    4.7
    ]
   },
   {
    "id": "kuh",
    "mot": "Kuh",
    "boite": [
-    26,
-    41,
-    21.5,
-    12
+    22.5,
+    40,
+    19.5,
+    9.5
    ]
   },
   {
@@ -693,16 +756,16 @@
    "plein": true,
    "boites": [
     [
-     47,
-     42,
+     6,
+     57,
      18,
-     7
+     11
     ],
     [
-     21,
-     38.5,
-     10,
-     5
+     0,
+     76,
+     7.5,
+     13
     ]
    ]
   },
@@ -711,19 +774,19 @@
    "mot": "Pferd",
    "boite": [
     0,
-    45.5,
-    34.5,
-    23
+    39.2,
+    32.5,
+    34
    ]
   },
   {
    "id": "schwein",
    "mot": "Schwein",
    "boite": [
-    82.5,
-    54.5,
-    17.5,
-    9
+    84,
+    50,
+    16,
+    8.8
    ]
   },
   {
@@ -734,10 +797,10 @@
     "Kind"
    ],
    "boite": [
-    75.5,
-    62.5,
-    15,
-    12.5
+    76.8,
+    59.1,
+    14.4,
+    10.8
    ]
   },
   {
@@ -745,49 +808,141 @@
    "mot": "Hut",
    "boite": [
     77.5,
-    62.5,
-    9,
-    4
+    59.2,
+    8.2,
+    2.8
+   ]
+  },
+  {
+   "id": "hemd-3",
+   "mot": "Hemd",
+   "boite": [
+    79.5,
+    61.6,
+    11.6,
+    5.3
+   ],
+   "sam": [
+    79.5,
+    61.8,
+    11.6,
+    3.3
+   ],
+   "points_sam": [
+    [
+     88,
+     63.5,
+     1
+    ],
+    [
+     85.5,
+     62.8,
+     1
+    ],
+    [
+     81.5,
+     64,
+     1
+    ],
+    [
+     82.5,
+     62,
+     0
+    ]
    ]
   },
   {
    "id": "huhn",
    "mot": "Huhn",
    "boite": [
-    65.5,
-    67,
-    11,
-    7
+    64.4,
+    62.9,
+    13.4,
+    6.4
    ]
   },
   {
    "id": "anna",
    "mot": "Frau",
    "boite": [
-    41.5,
-    45.5,
-    20,
-    36.5
+    28,
+    41,
+    31.6,
+    39
    ]
   },
   {
    "id": "hemd-2",
    "mot": "Hemd",
    "boite": [
-    42,
-    50.5,
-    19,
-    15
+    41.2,
+    46.9,
+    18.3,
+    15.5
+   ],
+   "points_sam": [
+    [
+     42.5,
+     52,
+     1
+    ],
+    [
+     56,
+     51,
+     1
+    ],
+    [
+     53.5,
+     58,
+     1
+    ],
+    [
+     46,
+     52,
+     0
+    ],
+    [
+     47,
+     59,
+     0
+    ],
+    [
+     47,
+     56.3,
+     0
+    ]
    ]
   },
   {
    "id": "t-shirt",
    "mot": "T-Shirt",
    "boite": [
-    46,
-    54.5,
-    6.5,
-    8.5
+    42.8,
+    48.8,
+    7,
+    12
+   ],
+   "points_sam": [
+    [
+     46,
+     52,
+     1
+    ],
+    [
+     46.5,
+     59,
+     1
+    ],
+    [
+     52,
+     52,
+     0
+    ],
+    [
+     47,
+     56.3,
+     0
+    ]
    ]
   },
   {
@@ -797,40 +952,40 @@
     "Jeans"
    ],
    "boite": [
-    44,
-    62.5,
-    14.5,
-    11.5
+    41,
+    60,
+    15.2,
+    10.5
    ]
   },
   {
    "id": "stiefel",
    "mot": "Stiefel",
    "boite": [
-    44,
-    72,
-    15.5,
-    10.5
+    40.5,
+    70,
+    17,
+    10
    ]
   },
   {
    "id": "apfel",
    "mot": "Apfel",
    "boite": [
-    32,
-    56.5,
-    4.5,
-    3
+    29.2,
+    53,
+    3.4,
+    1.7
    ]
   },
   {
    "id": "apfel-2",
    "mot": "Apfel",
    "boite": [
-    48.5,
-    54.8,
-    4.5,
-    3
+    45.1,
+    55.4,
+    3.3,
+    1.9
    ]
   },
   {
@@ -838,20 +993,20 @@
    "mot": "Apfel",
    "sur": "kiste",
    "boite": [
-    17,
-    74.5,
-    19,
-    5
+    20,
+    71.8,
+    12.8,
+    3.6
    ]
   },
   {
    "id": "kiste",
    "mot": "Kiste",
    "boite": [
-    17,
-    74,
-    19.5,
-    9.5
+    18.8,
+    70.8,
+    16.8,
+    10.5
    ]
   },
   {
@@ -861,20 +1016,20 @@
     "Milch"
    ],
    "boite": [
-    3.5,
-    74.5,
-    14,
-    14.5
+    8,
+    70.9,
+    13.2,
+    14.1
    ]
   },
   {
    "id": "korb",
    "mot": "Korb",
    "boite": [
-    8,
-    83,
-    17.5,
-    12
+    16.3,
+    82.1,
+    21.6,
+    14.6
    ]
   },
   {
@@ -882,88 +1037,129 @@
    "mot": "Ei",
    "sur": "korb",
    "boite": [
-    9.5,
-    87,
-    15,
-    3.5
-   ]
-  },
-  {
-   "id": "ei-2",
-   "mot": "Ei",
-   "boite": [
-    25,
-    93.5,
-    4.5,
-    2.5
+    18.8,
+    86.8,
+    17.2,
+    4.6
    ]
   },
   {
    "id": "huhn-2",
    "mot": "Huhn",
    "boite": [
-    20.5,
-    80,
-    13,
-    9
+    35,
+    76.4,
+    10,
+    12.5
    ]
   },
   {
    "id": "huhn-3",
    "mot": "Huhn",
    "boite": [
-    32,
-    79,
-    10.5,
-    8.5
+    46,
+    77.2,
+    13,
+    12.1
+   ],
+   "points_sam": [
+    [
+     55.5,
+     81,
+     1
+    ],
+    [
+     52,
+     85,
+     1
+    ],
+    [
+     47,
+     88.2,
+     1
+    ],
+    [
+     63,
+     87,
+     0
+    ],
+    [
+     44,
+     84,
+     0
+    ]
    ]
   },
   {
    "id": "huhn-4",
    "mot": "Huhn",
    "boite": [
-    43.5,
-    82,
-    10,
-    7.5
+    49.5,
+    80.6,
+    21.8,
+    12.6
    ],
-   "sam": [
-    36,
-    84,
-    19.5,
-    10
+   "points_sam": [
+    [
+     63,
+     86,
+     1
+    ],
+    [
+     68,
+     83,
+     1
+    ],
+    [
+     52,
+     90,
+     1
+    ],
+    [
+     55.5,
+     81,
+     0
+    ],
+    [
+     47,
+     88.2,
+     0
+    ]
    ]
   },
   {
    "id": "hund",
    "mot": "Hund",
    "boite": [
-    63.5,
-    78,
-    36.5,
-    14
-   ]
-  },
-  {
-   "id": "wasser",
-   "mot": "Wasser",
-   "plein": true,
-   "boite": [
-    51,
-    93,
-    22,
-    5.5
+    74,
+    74,
+    26,
+    14.6
    ]
   },
   {
    "id": "boden",
    "mot": "Boden",
    "plein": true,
-   "boite": [
-    25,
-    83,
-    40,
-    17
+   "boites": [
+    [
+     37,
+     89.5,
+     63,
+     10.5
+    ],
+    [
+     56,
+     69.9,
+     44,
+     4
+    ],
+    [
+     0,
+     96.8,
+     37,
+     3.2
+    ]
    ]
   }
  ],

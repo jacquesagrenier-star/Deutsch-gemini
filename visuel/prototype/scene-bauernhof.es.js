@@ -18,7 +18,7 @@ window.SCENE = {
      0,
      0,
      100,
-     15
+     20.3
     ]
    ],
    "fr": "le ciel",
@@ -42,16 +42,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     28,
-     1,
-     17,
-     5
+     1.5,
+     3,
+     45,
+     3.5
     ],
     [
-     60,
-     3.5,
-     12,
-     3
+     0,
+     7.8,
+     30,
+     2.4
     ]
    ],
    "fr": "le nuage",
@@ -75,10 +75,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     1,
-     5.8,
-     4,
-     2.2
+     40,
+     12.6,
+     2.6,
+     1.7
     ]
    ],
    "fr": "l'oiseau",
@@ -102,10 +102,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     33,
-     14.5,
-     28,
-     4
+     0,
+     20.3,
+     22.5,
+     8
     ]
    ],
    "fr": "la forêt",
@@ -114,6 +114,33 @@ window.SCENE = {
    "ar": "غابة",
    "pl": "las",
    "ru": "лес",
+   "latam": null
+  },
+  {
+   "id": "baum-2",
+   "mot": "árbol",
+   "genre": "el",
+   "pluriel": "los árboles",
+   "niveau": "A1",
+   "theme": "los_animales",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     22,
+     21.8,
+     8.5,
+     11.5
+    ]
+   ],
+   "fr": "l'arbre",
+   "en": "the tree",
+   "pt": "a árvore",
+   "ar": "شجرة",
+   "pl": "drzewo",
+   "ru": "дерево",
    "latam": null
   },
   {
@@ -129,10 +156,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     32,
-     19,
-     21,
-     5
+     0,
+     28.2,
+     22.5,
+     4.1
     ]
    ],
    "fr": "la campagne, le champ",
@@ -156,10 +183,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     22,
-     22,
-     30,
-     12
+     0,
+     32.3,
+     29,
+     6.8
     ]
    ],
    "fr": "le pré",
@@ -183,22 +210,28 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     28,
-     27.5,
-     6.5,
-     3.5
+     4.8,
+     32.9,
+     5.2,
+     1.6
     ],
     [
-     37.5,
-     26.5,
-     7.5,
-     3
+     11.3,
+     33.7,
+     3,
+     1.2
     ],
     [
-     31.5,
-     26,
-     4,
-     2.5
+     15.3,
+     32,
+     2.5,
+     1
+    ],
+    [
+     6.3,
+     35.3,
+     4.8,
+     1.8
     ]
    ],
    "fr": "le mouton",
@@ -222,10 +255,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     10,
-     4.5,
-     31,
-     22.5
+     67.5,
+     0,
+     32.5,
+     37
     ]
    ],
    "fr": "l'arbre",
@@ -249,10 +282,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     48,
-     7,
-     52,
-     19
+     28.5,
+     13.4,
+     41,
+     15.2
     ]
    ],
    "fr": "le toit",
@@ -276,10 +309,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     48,
-     7,
-     52,
-     33
+     28.5,
+     13.2,
+     40,
+     26.5
     ]
    ],
    "fr": "la maison",
@@ -303,16 +336,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     53,
-     27.5,
-     10.5,
-     7
+     37.3,
+     30.1,
+     5.8,
+     5.5
     ],
     [
-     64,
-     27.5,
-     10,
-     7
+     61,
+     31.6,
+     3.3,
+     3
     ]
    ],
    "fr": "la fenêtre",
@@ -336,10 +369,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     80,
-     27.5,
-     6.5,
-     11
+     51.8,
+     30.2,
+     6.2,
+     8.4
     ]
    ],
    "fr": "la porte",
@@ -348,33 +381,6 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
-   "latam": null
-  },
-  {
-   "id": "lampe",
-   "mot": "lámpara",
-   "genre": "la",
-   "pluriel": "las lámparas",
-   "niveau": "A1",
-   "theme": "la_casa",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     91.5,
-     28,
-     3.5,
-     2.8
-    ]
-   ],
-   "fr": "la lampe",
-   "en": "the lamp",
-   "pt": "a lâmpada, o abajur",
-   "ar": "مصباح",
-   "pl": "lampa",
-   "ru": "лампа",
    "latam": null
   },
   {
@@ -390,10 +396,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     0,
-     29,
-     8.5,
-     20
+     87.3,
+     40.8,
+     12.7,
+     6.8
     ]
    ],
    "fr": "le bois",
@@ -417,10 +423,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     13.5,
-     23,
-     12,
-     17
+     81.3,
+     31.5,
+     7.8,
+     15
     ]
    ],
    "fr": "l'escalier",
@@ -444,10 +450,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     3.5,
-     38.5,
-     11,
-     4.5
+     85.8,
+     45.7,
+     6.6,
+     2.4
     ]
    ],
    "fr": "la citrouille, la courge",
@@ -471,10 +477,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     25.5,
-     31,
-     5,
-     3.5
+     25.6,
+     34.2,
+     2.6,
+     2.4
     ]
    ],
    "fr": "le chat",
@@ -498,10 +504,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     24,
-     33.5,
-     9.5,
-     5.5
+     17,
+     35.8,
+     13,
+     4
     ]
    ],
    "fr": "le mur (extérieur)",
@@ -525,10 +531,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     56.5,
-     36,
-     13,
-     4
+     36.3,
+     37.2,
+     10.2,
+     2.8
     ]
    ],
    "fr": "la banque, le banc",
@@ -537,39 +543,6 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
-   "latam": null
-  },
-  {
-   "id": "blume",
-   "mot": "flor",
-   "genre": "la",
-   "pluriel": "las flores",
-   "niveau": "A1",
-   "theme": "los_animales",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     51.5,
-     34.5,
-     3.5,
-     3
-    ],
-    [
-     72.5,
-     36,
-     4,
-     3
-    ]
-   ],
-   "fr": "la fleur",
-   "en": "the flower",
-   "pt": "a flor",
-   "ar": "زهرة",
-   "pl": "kwiat",
-   "ru": "цветок",
    "latam": null
   },
   {
@@ -585,10 +558,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     80.5,
-     34.5,
-     19,
-     13
+     50.2,
+     36.2,
+     20.2,
+     15
     ]
    ],
    "fr": "le puits",
@@ -612,10 +585,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     87.5,
-     40.5,
-     3.5,
-     2.5
+     59,
+     42.6,
+     3.6,
+     3
     ]
    ],
    "fr": "le seau",
@@ -654,10 +627,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     68.5,
-     38.5,
-     12.5,
-     23
+     64,
+     40.2,
+     13.5,
+     20.4
     ]
    ],
    "fr": "l'oncle",
@@ -681,10 +654,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     70,
-     38.7,
-     5,
-     2.6
+     70.5,
+     40.2,
+     4.6,
+     1.8
     ]
    ],
    "fr": "le bonnet (la tuque)",
@@ -708,10 +681,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     68.5,
-     41.5,
-     12,
-     6
+     64,
+     42.6,
+     13.5,
+     8.5
     ]
    ],
    "fr": "la chemise",
@@ -720,6 +693,76 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка",
+   "latam": null
+  },
+  {
+   "id": "hose-2",
+   "mot": "pantalón",
+   "genre": "el",
+   "pluriel": "los pantalones",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "vaqueros",
+     "genre": "los",
+     "niveau": "A1",
+     "theme": "la_ropa",
+     "fr": "le jean",
+     "en": "the jeans",
+     "pt": "a calça jeans",
+     "ar": "بنطال جينز",
+     "latam": {
+      "mot": "jeans",
+      "genre": "los",
+      "pluriel": null
+     }
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     67.2,
+     52.6,
+     7.8,
+     4.2
+    ]
+   ],
+   "fr": "le pantalon",
+   "en": "the trousers",
+   "pt": "a calça",
+   "ar": "بنطال، سروال",
+   "pl": "spodnie",
+   "ru": "брюки",
+   "latam": null
+  },
+  {
+   "id": "stiefel-2",
+   "mot": "bota",
+   "genre": "la",
+   "pluriel": "las botas",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     67.5,
+     55.8,
+     6.9,
+     4.7
+    ]
+   ],
+   "fr": "la botte",
+   "en": "the boot",
+   "pt": "a bota",
+   "ar": "جزمة، حذاء طويل",
+   "pl": "kozak, but z cholewą",
+   "ru": "сапог",
    "latam": null
   },
   {
@@ -735,10 +778,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     26,
-     41,
-     21.5,
-     12
+     22.5,
+     40,
+     19.5,
+     9.5
     ]
    ],
    "fr": "la vache",
@@ -762,16 +805,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     47,
-     42,
+     6,
+     57,
      18,
-     7
+     11
     ],
     [
-     21,
-     38.5,
-     10,
-     5
+     0,
+     76,
+     7.5,
+     13
     ]
    ],
    "fr": "l'herbe",
@@ -796,9 +839,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     45.5,
-     34.5,
-     23
+     39.2,
+     32.5,
+     34
     ]
    ],
    "fr": "le cheval",
@@ -822,10 +865,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     82.5,
-     54.5,
-     17.5,
-     9
+     84,
+     50,
+     16,
+     8.8
     ]
    ],
    "fr": "le cochon",
@@ -860,10 +903,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     75.5,
-     62.5,
-     15,
-     12.5
+     76.8,
+     59.1,
+     14.4,
+     10.8
     ]
    ],
    "fr": "le cousin",
@@ -888,9 +931,9 @@ window.SCENE = {
    "boites": [
     [
      77.5,
-     62.5,
-     9,
-     4
+     59.2,
+     8.2,
+     2.8
     ]
    ],
    "fr": "le chapeau",
@@ -899,6 +942,33 @@ window.SCENE = {
    "ar": "قبّعة",
    "pl": "kapelusz",
    "ru": "шляпа",
+   "latam": null
+  },
+  {
+   "id": "hemd-3",
+   "mot": "camisa",
+   "genre": "la",
+   "pluriel": "las camisas",
+   "niveau": "A1",
+   "theme": "la_ropa",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     79.5,
+     61.6,
+     11.6,
+     5.3
+    ]
+   ],
+   "fr": "la chemise",
+   "en": "the shirt",
+   "pt": "a camisa",
+   "ar": "قميص",
+   "pl": "koszula",
+   "ru": "рубашка",
    "latam": null
   },
   {
@@ -914,10 +984,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     65.5,
-     67,
-     11,
-     7
+     64.4,
+     62.9,
+     13.4,
+     6.4
     ]
    ],
    "fr": "la poule",
@@ -941,10 +1011,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     41.5,
-     45.5,
-     20,
-     36.5
+     28,
+     41,
+     31.6,
+     39
     ]
    ],
    "fr": "la femme, l'épouse",
@@ -968,10 +1038,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     42,
-     50.5,
-     19,
-     15
+     41.2,
+     46.9,
+     18.3,
+     15.5
     ]
    ],
    "fr": "la chemise",
@@ -995,10 +1065,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     46,
-     54.5,
-     6.5,
-     8.5
+     42.8,
+     48.8,
+     7,
+     12
     ]
    ],
    "fr": "le tee-shirt",
@@ -1038,10 +1108,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     44,
-     62.5,
-     14.5,
-     11.5
+     41,
+     60,
+     15.2,
+     10.5
     ]
    ],
    "fr": "le pantalon",
@@ -1065,10 +1135,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     44,
-     72,
-     15.5,
-     10.5
+     40.5,
+     70,
+     17,
+     10
     ]
    ],
    "fr": "la botte",
@@ -1092,10 +1162,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     32,
-     56.5,
-     4.5,
-     3
+     29.2,
+     53,
+     3.4,
+     1.7
     ]
    ],
    "fr": "la pomme",
@@ -1119,10 +1189,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     48.5,
-     54.8,
-     4.5,
-     3
+     45.1,
+     55.4,
+     3.3,
+     1.9
     ]
    ],
    "fr": "la pomme",
@@ -1146,10 +1216,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     17,
-     74.5,
-     19,
-     5
+     20,
+     71.8,
+     12.8,
+     3.6
     ]
    ],
    "fr": "la pomme",
@@ -1173,10 +1243,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     17,
-     74,
-     19.5,
-     9.5
+     18.8,
+     70.8,
+     16.8,
+     10.5
     ]
    ],
    "fr": "la caisse",
@@ -1211,10 +1281,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     3.5,
-     74.5,
-     14,
-     14.5
+     8,
+     70.9,
+     13.2,
+     14.1
     ]
    ],
    "fr": "la carafe, le pichet",
@@ -1238,10 +1308,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     8,
-     83,
-     17.5,
-     12
+     16.3,
+     82.1,
+     21.6,
+     14.6
     ]
    ],
    "fr": "le panier",
@@ -1265,37 +1335,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     9.5,
-     87,
-     15,
-     3.5
-    ]
-   ],
-   "fr": "l'œuf",
-   "en": "egg",
-   "pt": "o ovo",
-   "ar": "بيضة",
-   "pl": "jajko",
-   "ru": "яйцо",
-   "latam": null
-  },
-  {
-   "id": "ei-2",
-   "mot": "huevo",
-   "genre": "el",
-   "pluriel": "los huevos",
-   "niveau": "A1",
-   "theme": "la_comida",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     25,
-     93.5,
-     4.5,
-     2.5
+     18.8,
+     86.8,
+     17.2,
+     4.6
     ]
    ],
    "fr": "l'œuf",
@@ -1319,10 +1362,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20.5,
-     80,
-     13,
-     9
+     35,
+     76.4,
+     10,
+     12.5
     ]
    ],
    "fr": "la poule",
@@ -1346,10 +1389,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     32,
-     79,
-     10.5,
-     8.5
+     46,
+     77.2,
+     13,
+     12.1
     ]
    ],
    "fr": "la poule",
@@ -1373,10 +1416,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     43.5,
-     82,
-     10,
-     7.5
+     49.5,
+     80.6,
+     21.8,
+     12.6
     ]
    ],
    "fr": "la poule",
@@ -1400,10 +1443,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     63.5,
-     78,
-     36.5,
-     14
+     74,
+     74,
+     26,
+     14.6
     ]
    ],
    "fr": "le chien",
@@ -1412,33 +1455,6 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
-   "latam": null
-  },
-  {
-   "id": "wasser",
-   "mot": "agua",
-   "genre": "el",
-   "pluriel": "las aguas",
-   "niveau": "A1",
-   "theme": "la_comida",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     51,
-     93,
-     22,
-     5.5
-    ]
-   ],
-   "fr": "l'eau",
-   "en": "water",
-   "pt": "a água",
-   "ar": "ماء",
-   "pl": "woda",
-   "ru": "вода",
    "latam": null
   },
   {
@@ -1454,10 +1470,22 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     25,
-     83,
-     40,
-     17
+     37,
+     89.5,
+     63,
+     10.5
+    ],
+    [
+     56,
+     69.9,
+     44,
+     4
+    ],
+    [
+     0,
+     96.8,
+     37,
+     3.2
     ]
    ],
    "fr": "le sol",
@@ -1475,7 +1503,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "En la granja",
- "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache broute dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
+ "alt": "Anna dans la cour de la ferme de son oncle, un matin d'automne : elle tend une pomme au cheval par-dessus la clôture et rit ; une vache est dans le pré, un cochon est dans son enclos, des moutons sur la colline, un chat sur le muret, un chien couché dans la cour ; son oncle porte une botte de paille, son petit cousin au chapeau de paille donne du grain à une poule ; au sol, un panier d'œufs, une caisse de pommes, un bidon de lait et des poules ; derrière, la maison de briques, la grange avec son échelle et son bois, un puits et un pommier.",
  "consigne": "Anna passe la matinée à la ferme de son oncle, dans le Brandebourg. Touche un objet ou un animal.",
  "exclus": [],
  "couches": {
@@ -1579,7 +1607,7 @@ window.SCENE = {
      "n": "<b>el</b> est masculin → <b>en el</b>, qui ne se contracte jamais."
     },
     {
-     "q": "El cubo está al lado ___ pozo.",
+     "q": "El cubo cuelga ___ pozo.",
      "c": [
       "del",
       "de la",
@@ -1587,12 +1615,12 @@ window.SCENE = {
      ],
      "f": "eimer",
      "r": "brunnen",
-     "phrase": "El cubo está al lado del pozo.",
-     "sens": "Le seau est à côté du puits.",
+     "phrase": "El cubo cuelga del pozo.",
+     "sens": "Le seau est accroché au puits.",
      "n": "<b>de + el = del</b>, toujours.",
      "latam": {
-      "q": "La cubeta está al lado ___ pozo.",
-      "phrase": "La cubeta está al lado del pozo."
+      "q": "La cubeta cuelga ___ pozo.",
+      "phrase": "La cubeta cuelga del pozo."
      }
     }
    ]
@@ -1891,7 +1919,7 @@ window.SCENE = {
  "traductions": {
   "en": {
    "champs": {
-    "alt": "Anna in the yard of her uncle's farm on an autumn morning: she holds an apple out to the horse over the fence and laughs; a cow grazes in the meadow, a pig is in its pen, sheep on the hill, a cat on the low wall, a dog lying in the yard; her uncle carries a bale of straw, her little cousin in a straw hat gives grain to a hen; on the ground, a basket of eggs, a crate of apples, a milk churn and hens; behind, the brick house, the barn with its ladder and firewood, a well and an apple tree.",
+    "alt": "Anna in the yard of her uncle's farm on an autumn morning: she holds an apple out to the horse over the fence and laughs; a cow stands in the meadow, a pig is in its pen, sheep on the hill, a cat on the low wall, a dog lying in the yard; her uncle carries a bale of straw, her little cousin in a straw hat gives grain to a hen; on the ground, a basket of eggs, a crate of apples, a milk churn and hens; behind, the brick house, the barn with its ladder and firewood, a well and an apple tree.",
     "consigne": "Anna is spending the morning at her uncle's farm in Brandenburg. Tap an object or an animal."
    },
    "couches": {
@@ -1910,8 +1938,8 @@ window.SCENE = {
     "A2 | Hay un pájaro en el tejado.": "<b>hay</b> introduces something new; <b>está</b> places something already known.",
     "A2 | Las manzanas están en la caja.": "<b>la</b> is feminine → <b>en la</b>.",
     "A2 | La vaca está en el prado.": "<b>el</b> is masculine → <b>en el</b>, which never contracts.",
-    "A2 | La cubeta está al lado del pozo.": "<b>de + el = del</b>, always.",
-    "A2 | El cubo está al lado del pozo.": "<b>de + el = del</b>, always.",
+    "A2 | La cubeta cuelga del pozo.": "<b>de + el = del</b>, always.",
+    "A2 | El cubo cuelga del pozo.": "<b>de + el = del</b>, always.",
     "B1 | Anna se ríe con el caballo.": "<b>reírse</b>: third person → <b>se</b>.",
     "B1 | El perro se tumba en el piso.": "<b>tumbarse</b> = to lie down; él → <b>se</b>.",
     "B1 | El perro se tumba en el suelo.": "<b>tumbarse</b> = to lie down; él → <b>se</b>.",
@@ -1941,8 +1969,8 @@ window.SCENE = {
     "A2 | Hay un pájaro en el tejado.": "There is a bird on the roof.",
     "A2 | Las manzanas están en la caja.": "The apples are in the crate.",
     "A2 | La vaca está en el prado.": "The cow is in the meadow.",
-    "A2 | La cubeta está al lado del pozo.": "The bucket is next to the well.",
-    "A2 | El cubo está al lado del pozo.": "The bucket is next to the well.",
+    "A2 | La cubeta cuelga del pozo.": "The bucket hangs from the well.",
+    "A2 | El cubo cuelga del pozo.": "The bucket hangs from the well.",
     "B1 | Anna se ríe con el caballo.": "Anna laughs with the horse.",
     "B1 | El perro se tumba en el piso.": "The dog lies down on the ground.",
     "B1 | El perro se tumba en el suelo.": "The dog lies down on the ground.",
@@ -1966,7 +1994,7 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Anna bir sonbahar sabahı amcasının çiftliğinin avlusunda: çitin üzerinden ata bir elma uzatıyor ve gülüyor; çayırda bir inek otluyor, bir domuz ağılında, tepede koyunlar, alçak duvarda bir kedi, avluda yatan bir köpek; amcası bir saman balyası taşıyor, hasır şapkalı küçük kuzeni bir tavuğa yem veriyor; yerde bir sepet yumurta, bir kasa elma, bir süt güğümü ve tavuklar; arkada tuğla ev, merdiveni ve odunlarıyla ahır, bir kuyu ve bir elma ağacı.",
+    "alt": "Anna bir sonbahar sabahı amcasının çiftliğinin avlusunda: çitin üzerinden ata bir elma uzatıyor ve gülüyor; çayırda bir inek duruyor, bir domuz ağılında, tepede koyunlar, alçak duvarda bir kedi, avluda yatan bir köpek; amcası bir saman balyası taşıyor, hasır şapkalı küçük kuzeni bir tavuğa yem veriyor; yerde bir sepet yumurta, bir kasa elma, bir süt güğümü ve tavuklar; arkada tuğla ev, merdiveni ve odunlarıyla ahır, bir kuyu ve bir elma ağacı.",
     "consigne": "Anna sabahı Brandenburg'da amcasının çiftliğinde geçiriyor. Bir nesneye ya da bir hayvana dokun."
    },
    "couches": {
@@ -1977,7 +2005,7 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Анна на подвір'ї ферми свого дядька осіннього ранку: вона простягає коневі яблуко через огорожу і сміється; корова пасеться на лузі, свиня в загоні, вівці на пагорбі, кіт на мурі, пес лежить на подвір'ї; дядько несе тюк соломи, малий двоюрідний брат у солом'яному капелюсі дає зерно курці; на землі кошик яєць, ящик яблук, бідон молока і кури; позаду цегляний будинок, клуня з драбиною і дровами, криниця та яблуня.",
+    "alt": "Анна на подвір'ї ферми свого дядька осіннього ранку: вона простягає коневі яблуко через огорожу і сміється; корова стоїть на лузі, свиня в загоні, вівці на пагорбі, кіт на мурі, пес лежить на подвір'ї; дядько несе тюк соломи, малий двоюрідний брат у солом'яному капелюсі дає зерно курці; на землі кошик яєць, ящик яблук, бідон молока і кури; позаду цегляний будинок, клуня з драбиною і дровами, криниця та яблуня.",
     "consigne": "Анна проводить ранок на фермі свого дядька в Бранденбурзі. Торкнися предмета або тварини."
    },
    "couches": {
@@ -1988,7 +2016,7 @@ window.SCENE = {
   },
   "fa": {
    "champs": {
-    "alt": "آنا در حیاط مزرعهٔ عمویش، در یک صبح پاییزی: از روی نرده سیبی به اسب می‌دهد و می‌خندد؛ گاوی در چمنزار می‌چرد، خوکی در آغلش است، گوسفندها روی تپه، گربه‌ای روی دیوار کوتاه، سگی در حیاط دراز کشیده؛ عمویش بستهٔ کاهی را می‌برد، پسرعموی کوچکش با کلاه حصیری به مرغی دانه می‌دهد؛ روی زمین، سبدی تخم‌مرغ، جعبه‌ای سیب، یک سطل شیر و چند مرغ؛ پشت، خانهٔ آجری، انبار با نردبان و هیزمش، یک چاه و یک درخت سیب.",
+    "alt": "آنا در حیاط مزرعهٔ عمویش، در یک صبح پاییزی: از روی نرده سیبی به اسب می‌دهد و می‌خندد؛ گاوی در چمنزار ایستاده، خوکی در آغلش است، گوسفندها روی تپه، گربه‌ای روی دیوار کوتاه، سگی در حیاط دراز کشیده؛ عمویش بستهٔ کاهی را می‌برد، پسرعموی کوچکش با کلاه حصیری به مرغی دانه می‌دهد؛ روی زمین، سبدی تخم‌مرغ، جعبه‌ای سیب، یک سطل شیر و چند مرغ؛ پشت، خانهٔ آجری، انبار با نردبان و هیزمش، یک چاه و یک درخت سیب.",
     "consigne": "آنا صبح را در مزرعهٔ عمویش در براندنبورگ می‌گذراند. روی یک شیء یا یک حیوان بزن."
    },
    "couches": {
@@ -1999,7 +2027,7 @@ window.SCENE = {
   },
   "ar": {
    "champs": {
-    "alt": "آنا في فناء مزرعة عمّها في صباح خريفي: تمدّ تفاحة للحصان فوق السياج وتضحك؛ بقرة ترعى في المرج، وخنزير في حظيرته، وخراف على التلّ، وقطّ على الجدار المنخفض، وكلب مستلقٍ في الفناء؛ عمّها يحمل حزمة قشّ، وابن عمّها الصغير بقبّعة قشّ يعطي الحبوب لدجاجة؛ وعلى الأرض سلّة بيض وصندوق تفاح وإناء حليب ودجاجات؛ وفي الخلف البيت المبنيّ بالطوب والحظيرة بسلّمها وحطبها وبئر وشجرة تفاح.",
+    "alt": "آنا في فناء مزرعة عمّها في صباح خريفي: تمدّ تفاحة للحصان فوق السياج وتضحك؛ بقرة تقف في المرج، وخنزير في حظيرته، وخراف على التلّ، وقطّ على الجدار المنخفض، وكلب مستلقٍ في الفناء؛ عمّها يحمل حزمة قشّ، وابن عمّها الصغير بقبّعة قشّ يعطي الحبوب لدجاجة؛ وعلى الأرض سلّة بيض وصندوق تفاح وإناء حليب ودجاجات؛ وفي الخلف البيت المبنيّ بالطوب والحظيرة بسلّمها وحطبها وبئر وشجرة تفاح.",
     "consigne": "آنا تقضي الصباح في مزرعة عمّها في براندنبورغ. المس شيئًا أو حيوانًا."
    },
    "couches": {
@@ -2018,8 +2046,8 @@ window.SCENE = {
     "A2 | Hay un pájaro en el tejado.": "<b>hay</b> يقدّم شيئاً جديداً؛ و<b>está</b> يحدّد مكان شيء معروف من قبل.",
     "A2 | Las manzanas están en la caja.": "<b>la</b> مؤنث ← <b>en la</b>.",
     "A2 | La vaca está en el prado.": "<b>el</b> مذكر ← <b>en el</b>، ولا يُدمج أبداً.",
-    "A2 | La cubeta está al lado del pozo.": "<b>de + el = del</b>، دائماً.",
-    "A2 | El cubo está al lado del pozo.": "<b>de + el = del</b>، دائماً.",
+    "A2 | La cubeta cuelga del pozo.": "<b>de + el = del</b>، دائماً.",
+    "A2 | El cubo cuelga del pozo.": "<b>de + el = del</b>، دائماً.",
     "B1 | Anna se ríe con el caballo.": "<b>reírse</b>: في الغائب ← <b>se</b>.",
     "B1 | El perro se tumba en el piso.": "<b>tumbarse</b> = يتمدّد؛ él → <b>se</b>.",
     "B1 | El perro se tumba en el suelo.": "<b>tumbarse</b> = يتمدّد؛ él → <b>se</b>.",
@@ -2049,8 +2077,8 @@ window.SCENE = {
     "A2 | Hay un pájaro en el tejado.": "هناك عصفور على السطح.",
     "A2 | Las manzanas están en la caja.": "التفاح في الصندوق.",
     "A2 | La vaca está en el prado.": "البقرة في المرج.",
-    "A2 | La cubeta está al lado del pozo.": "الدلو بجانب البئر.",
-    "A2 | El cubo está al lado del pozo.": "الدلو بجانب البئر.",
+    "A2 | La cubeta cuelga del pozo.": "الدلو معلّق في البئر.",
+    "A2 | El cubo cuelga del pozo.": "الدلو معلّق في البئر.",
     "B1 | Anna se ríe con el caballo.": "تضحك آنا مع الحصان.",
     "B1 | El perro se tumba en el piso.": "يستلقي الكلب على الأرض.",
     "B1 | El perro se tumba en el suelo.": "يستلقي الكلب على الأرض.",
@@ -2074,7 +2102,7 @@ window.SCENE = {
   },
   "pt": {
    "champs": {
-    "alt": "Anna no pátio da fazenda do tio, numa manhã de outono: ela estende uma maçã ao cavalo por cima da cerca e ri; uma vaca pasta no prado, um porco está no chiqueiro, ovelhas na colina, um gato no muro baixo, um cachorro deitado no pátio; o tio carrega um fardo de palha, o priminho de chapéu de palha dá grãos a uma galinha; no chão, uma cesta de ovos, um caixote de maçãs, um latão de leite e galinhas; atrás, a casa de tijolos, o celeiro com a escada e a lenha, um poço e uma macieira.",
+    "alt": "Anna no pátio da fazenda do tio, numa manhã de outono: ela estende uma maçã ao cavalo por cima da cerca e ri; uma vaca está no prado, um porco está no chiqueiro, ovelhas na colina, um gato no muro baixo, um cachorro deitado no pátio; o tio carrega um fardo de palha, o priminho de chapéu de palha dá grãos a uma galinha; no chão, uma cesta de ovos, um caixote de maçãs, um latão de leite e galinhas; atrás, a casa de tijolos, o celeiro com a escada e a lenha, um poço e uma macieira.",
     "consigne": "Anna passa a manhã na fazenda do tio, em Brandemburgo. Toque num objeto ou num animal."
    },
    "couches": {
@@ -2093,8 +2121,8 @@ window.SCENE = {
     "A2 | Hay un pájaro en el tejado.": "<b>hay</b> apresenta algo novo; <b>está</b> situa algo já conhecido.",
     "A2 | Las manzanas están en la caja.": "<b>la</b> é feminino → <b>en la</b>.",
     "A2 | La vaca está en el prado.": "<b>el</b> é masculino → <b>en el</b>, que nunca se contrai.",
-    "A2 | La cubeta está al lado del pozo.": "<b>de + el = del</b>, sempre (como “do”).",
-    "A2 | El cubo está al lado del pozo.": "<b>de + el = del</b>, sempre (como “do”).",
+    "A2 | La cubeta cuelga del pozo.": "<b>de + el = del</b>, sempre (como “do”).",
+    "A2 | El cubo cuelga del pozo.": "<b>de + el = del</b>, sempre (como “do”).",
     "B1 | Anna se ríe con el caballo.": "<b>reírse</b>: na 3ª pessoa → <b>se</b>.",
     "B1 | El perro se tumba en el piso.": "<b>tumbarse</b> = deitar-se; él → <b>se</b>.",
     "B1 | El perro se tumba en el suelo.": "<b>tumbarse</b> = deitar-se; él → <b>se</b>.",
@@ -2124,8 +2152,8 @@ window.SCENE = {
     "A2 | Hay un pájaro en el tejado.": "Há um pássaro no telhado.",
     "A2 | Las manzanas están en la caja.": "As maçãs estão na caixa.",
     "A2 | La vaca está en el prado.": "A vaca está no prado.",
-    "A2 | La cubeta está al lado del pozo.": "O balde está ao lado do poço.",
-    "A2 | El cubo está al lado del pozo.": "O balde está ao lado do poço.",
+    "A2 | La cubeta cuelga del pozo.": "O balde está pendurado no poço.",
+    "A2 | El cubo cuelga del pozo.": "O balde está pendurado no poço.",
     "B1 | Anna se ríe con el caballo.": "Anna ri com o cavalo.",
     "B1 | El perro se tumba en el piso.": "O cachorro se deita no chão.",
     "B1 | El perro se tumba en el suelo.": "O cachorro se deita no chão.",
@@ -2149,7 +2177,7 @@ window.SCENE = {
   },
   "pl": {
    "champs": {
-    "alt": "Anna na podwórzu gospodarstwa swojego wujka jesiennym rankiem: podaje koniowi jabłko przez płot i śmieje się; krowa pasie się na łące, świnia jest w zagrodzie, owce na wzgórzu, kot na murku, pies leży na podwórzu; wujek niesie belę słomy, mały kuzyn w słomkowym kapeluszu daje ziarno kurze; na ziemi kosz jajek, skrzynka jabłek, bańka na mleko i kury; z tyłu ceglany dom, stodoła z drabiną i drewnem, studnia i jabłoń.",
+    "alt": "Anna na podwórzu gospodarstwa swojego wujka jesiennym rankiem: podaje koniowi jabłko przez płot i śmieje się; krowa stoi na łące, świnia jest w zagrodzie, owce na wzgórzu, kot na murku, pies leży na podwórzu; wujek niesie belę słomy, mały kuzyn w słomkowym kapeluszu daje ziarno kurze; na ziemi kosz jajek, skrzynka jabłek, bańka na mleko i kury; z tyłu ceglany dom, stodoła z drabiną i drewnem, studnia i jabłoń.",
     "consigne": "Anna spędza poranek w gospodarstwie swojego wujka w Brandenburgii. Dotknij przedmiotu albo zwierzęcia."
    },
    "couches": {
@@ -2160,7 +2188,7 @@ window.SCENE = {
   },
   "ru": {
    "champs": {
-    "alt": "Анна во дворе фермы своего дяди осенним утром: она протягивает лошади яблоко через ограду и смеётся; корова пасётся на лугу, свинья в загоне, овцы на холме, кот на каменной стене, пёс лежит во дворе; дядя несёт тюк соломы, маленький двоюродный брат в соломенной шляпе даёт зерно курице; на земле корзина яиц, ящик яблок, бидон молока и куры; позади кирпичный дом, амбар с лестницей и дровами, колодец и яблоня.",
+    "alt": "Анна во дворе фермы своего дяди осенним утром: она протягивает лошади яблоко через ограду и смеётся; корова стоит на лугу, свинья в загоне, овцы на холме, кот на каменной стене, пёс лежит во дворе; дядя несёт тюк соломы, маленький двоюродный брат в соломенной шляпе даёт зерно курице; на земле корзина яиц, ящик яблок, бидон молока и куры; позади кирпичный дом, амбар с лестницей и дровами, колодец и яблоня.",
     "consigne": "Анна проводит утро на ферме своего дяди в Бранденбурге. Нажми на предмет или на животное."
    },
    "couches": {

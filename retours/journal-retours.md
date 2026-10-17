@@ -9339,3 +9339,9 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   rapports WebKit du meme genre, contournes par un changement de style ou un defilement d'un pixel.
   Pose : focus rendu a la page, opacite basculee, defilement d'un pixel ; et le journal note apres
   combien de ms la 1re image est dessinee (« aucune image apres 400 ms » = WebKit fige).
+- Lire la phrase a voix haute : « je ne vois pas d'evaluation ; rien ne m'indique si j'ai reussi ;
+  seulement Continuer, reessayer, entendre ma voix ». Cause probable : l'app iPhone n'est pas
+  recompilee (module natif de reconnaissance du 16 oct. en attente de Codemagic) -> pas de verdict.
+  Recherche du marche demandee : Duolingo (mots qui s'allument, bandeau vert + son, pas de reecoute),
+  ELSA (score par mot), Rosetta Stone (passe ou non). Proposition : mots allumes en direct, bandeau
+  franc + son, sans « reecouter ma voix » ; maquette proposee.

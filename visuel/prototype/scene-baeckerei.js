@@ -15,10 +15,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     4,
      0,
-     54,
-     6
+     0,
+     14.7,
+     9.7
+    ],
+    [
+     40.5,
+     6.2,
+     17.6,
+     6.9
     ]
    ],
    "fr": "lampe",
@@ -45,9 +51,15 @@ window.SCENE = {
    "boites": [
     [
      0,
-     6,
-     72,
-     22
+     0,
+     68,
+     15.3
+    ],
+    [
+     61.6,
+     15.3,
+     6.6,
+     16.5
     ]
    ],
    "fr": "mur",
@@ -73,10 +85,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     32,
-     9,
+     22,
+     4.8,
      12.5,
-     7.5
+     8.8
     ]
    ],
    "fr": "horloge",
@@ -102,10 +114,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     73.5,
-     9,
-     17,
-     43
+     70.5,
+     8.3,
+     21,
+     32
     ]
    ],
    "fr": "rideau",
@@ -147,10 +159,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     88.5,
-     9,
-     11.5,
-     44
+     89,
+     8.5,
+     11,
+     28.2
     ]
    ],
    "fr": "fenêtre",
@@ -177,9 +189,9 @@ window.SCENE = {
    "boites": [
     [
      92,
-     11,
-     7,
-     28
+     10,
+     6,
+     28.5
     ]
    ],
    "fr": "réverbère",
@@ -205,10 +217,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     84,
-     35.5,
-     16,
-     8
+     83.5,
+     30.8,
+     16.5,
+     6.7
     ]
    ],
    "fr": "vélo",
@@ -234,10 +246,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     89,
-     43,
-     11,
-     8
+     89.5,
+     36.7,
+     10.5,
+     2.8
     ]
    ],
    "fr": "rue",
@@ -280,9 +292,9 @@ window.SCENE = {
    "boites": [
     [
      0,
-     24,
-     20,
-     33
+     15.2,
+     17.5,
+     34
     ]
    ],
    "fr": "four",
@@ -308,22 +320,40 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     17.5,
-     25,
-     49.5,
-     2
+     15.5,
+     16.3,
+     46,
+     1.4
     ],
     [
-     20,
-     32,
-     40,
-     2
+     17,
+     27,
+     24,
+     1.5
     ],
     [
-     21,
-     41,
-     39,
-     2
+     23,
+     35.5,
+     18,
+     1.5
+    ],
+    [
+     42.5,
+     26.2,
+     17,
+     1.3
+    ],
+    [
+     42.5,
+     34.4,
+     17,
+     1.3
+    ],
+    [
+     42.5,
+     42.3,
+     16,
+     1.3
     ]
    ],
    "fr": "étagère",
@@ -365,10 +395,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20,
-     18,
-     13.5,
-     7.5
+     42.7,
+     20.7,
+     11.6,
+     5.6
     ]
    ],
    "fr": "jus",
@@ -410,10 +440,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     31.5,
-     19,
-     5,
-     6.5
+     54.9,
+     20.7,
+     3.3,
+     5.6
     ]
    ],
    "fr": "lait",
@@ -439,10 +469,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     36.5,
-     19,
-     7,
-     6.5
+     43.5,
+     28.7,
+     6.7,
+     6
     ]
    ],
    "fr": "farine",
@@ -484,9 +514,9 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     43.5,
-     20.5,
-     7,
+     51.4,
+     29.6,
+     5.8,
      5
     ]
    ],
@@ -513,10 +543,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     51.5,
-     19,
-     9,
-     6.5
+     43.8,
+     36.8,
+     7.8,
+     5.8
     ]
    ],
    "fr": "pot, cafetière",
@@ -542,16 +572,22 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     49.5,
-     23,
-     5.5,
-     3
+     42.7,
+     41.3,
+     4,
+     1.8
     ],
     [
-     58.5,
-     23,
-     7,
-     3
+     50,
+     39.2,
+     3.5,
+     2.9
+    ],
+    [
+     53.2,
+     40.1,
+     5.1,
+     1.7
     ]
    ],
    "fr": "tasse",
@@ -577,16 +613,22 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     20.5,
-     28.5,
-     40,
-     5.5
+     16.5,
+     21,
+     22.5,
+     6.2
     ],
     [
-     21,
-     35,
-     39,
-     8
+     17.3,
+     30.4,
+     19,
+     5.6
+    ],
+    [
+     23,
+     40.3,
+     9,
+     5
     ]
    ],
    "fr": "pain",
@@ -598,35 +640,6 @@ window.SCENE = {
    "ar": "خبز",
    "pl": "chleb",
    "ru": "хлеб"
-  },
-  {
-   "id": "broetchen-2",
-   "mot": "Brötchen",
-   "genre": "das",
-   "pluriel": "Brötchen",
-   "niveau": "A2",
-   "theme": "essen_trinken_a2",
-   "personne": null,
-   "aussi": [],
-   "sur": "regal",
-   "devant": 0,
-   "boites": [
-    [
-     45,
-     43.5,
-     10,
-     5.5
-    ]
-   ],
-   "fr": "petit pain",
-   "en": "bread roll",
-   "tr": "küçük ekmek",
-   "uk": "булочка",
-   "fa": "نان کوچک",
-   "pt": "pãozinho",
-   "ar": "خبز صغير (كعك)",
-   "pl": "bułka",
-   "ru": "булочка"
   },
   {
    "id": "frau",
@@ -657,10 +670,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     5,
+     7.8,
      32,
-     29,
-     23
+     28.5,
+     22.2
     ]
    ],
    "fr": "femme/épouse",
@@ -686,10 +699,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     9,
-     31.5,
-     12,
-     5
+     11.2,
+     32,
+     10.9,
+     4.3
     ]
    ],
    "fr": "bonnet",
@@ -715,10 +728,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     5.5,
-     41,
-     20,
-     12
+     7.8,
+     40,
+     23.2,
+     14.2
     ]
    ],
    "fr": "chemisier",
@@ -730,6 +743,35 @@ window.SCENE = {
    "ar": "بلوزة",
    "pl": "bluzka",
    "ru": "блузка"
+  },
+  {
+   "id": "broetchen-2",
+   "mot": "Brötchen",
+   "genre": "das",
+   "pluriel": "Brötchen",
+   "niveau": "A2",
+   "theme": "essen_trinken_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "tuete",
+   "devant": 0,
+   "boites": [
+    [
+     32.6,
+     41.4,
+     8,
+     2.7
+    ]
+   ],
+   "fr": "petit pain",
+   "en": "bread roll",
+   "tr": "küçük ekmek",
+   "uk": "булочка",
+   "fa": "نان کوچک",
+   "pt": "pãozinho",
+   "ar": "خبز صغير (كعك)",
+   "pl": "bułka",
+   "ru": "булочка"
   },
   {
    "id": "tuete",
@@ -744,10 +786,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     26,
-     43.5,
-     11.5,
-     9.5
+     31.6,
+     43.2,
+     10,
+     7.2
     ]
    ],
    "fr": "le sac (en papier, en plastique)",
@@ -789,10 +831,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     39,
-     45.5,
-     3.5,
-     2
+     42.25,
+     44.3,
+     1.6,
+     0.9
     ]
    ],
    "fr": "pièce de monnaie",
@@ -818,10 +860,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     53.5,
-     32,
-     23.5,
-     57.5
+     42.5,
+     32.4,
+     35,
+     51.9
     ]
    ],
    "fr": "femme/épouse",
@@ -847,10 +889,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     54.5,
-     41,
-     22,
-     34
+     46.5,
+     40.2,
+     31,
+     28
     ]
    ],
    "fr": "manteau",
@@ -876,10 +918,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     55.5,
-     42,
-     7,
-     13
+     60.4,
+     41.4,
+     5.1,
+     15.8
     ]
    ],
    "fr": "pull",
@@ -906,9 +948,9 @@ window.SCENE = {
    "boites": [
     [
      63,
-     55,
-     15.5,
-     9.5
+     50.5,
+     15,
+     12.6
     ]
    ],
    "fr": "sac",
@@ -950,10 +992,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     59.5,
-     69,
-     13,
-     15
+     61.4,
+     67.6,
+     13.6,
+     13.4
     ]
    ],
    "fr": "pantalon",
@@ -995,10 +1037,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     54,
-     82,
-     20,
-     7.5
+     57.1,
+     78.6,
+     18.4,
+     5.8
     ]
    ],
    "fr": "botte",
@@ -1040,10 +1082,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     76,
-     41.5,
-     20,
-     32.5
+     75.3,
+     39,
+     20.8,
+     32.6
     ]
    ],
    "fr": "voisin",
@@ -1069,10 +1111,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     79.5,
-     44.3,
-     8,
-     2.5
+     82.19999999999999,
+     42.449999999999996,
+     2.8,
+     1.2
+    ],
+    [
+     85.9,
+     42.449999999999996,
+     3.2,
+     1.2
     ]
    ],
    "fr": "lunettes",
@@ -1084,6 +1132,35 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки"
+  },
+  {
+   "id": "jacke",
+   "mot": "Jacke",
+   "genre": "die",
+   "pluriel": "Jacken",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     75.3,
+     42.6,
+     17.5,
+     14
+    ]
+   ],
+   "fr": "veste",
+   "en": "jacket",
+   "tr": "ceket",
+   "uk": "куртка",
+   "fa": "کاپشن",
+   "pt": "jaqueta",
+   "ar": "سترة، جاكيت",
+   "pl": "kurtka",
+   "ru": "куртка"
   },
   {
    "id": "zeitung",
@@ -1098,10 +1175,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     86,
-     47.5,
-     10.5,
-     7
+     79.7,
+     48.7,
+     18,
+     5.8
     ]
    ],
    "fr": "journal",
@@ -1113,6 +1190,35 @@ window.SCENE = {
    "ar": "جريدة",
    "pl": "gazeta",
    "ru": "газета"
+  },
+  {
+   "id": "hose-2",
+   "mot": "Hose",
+   "genre": "die",
+   "pluriel": "Hosen",
+   "niveau": "A1",
+   "theme": "kleidung_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     77.3,
+     55.4,
+     11,
+     14.3
+    ]
+   ],
+   "fr": "pantalon",
+   "en": "pants",
+   "tr": "pantolon",
+   "uk": "штани",
+   "fa": "شلوار",
+   "pt": "calça",
+   "ar": "بنطال",
+   "pl": "spodnie",
+   "ru": "брюки"
   },
   {
    "id": "tasse-2",
@@ -1143,10 +1249,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     85,
-     54.5,
-     5.5,
-     3.5
+     84,
+     53.3,
+     7.2,
+     2.7
     ]
    ],
    "fr": "tasse",
@@ -1172,10 +1278,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     90.5,
-     55,
-     9,
-     3
+     91.3,
+     53.7,
+     8.7,
+     2
     ]
    ],
    "fr": "assiette",
@@ -1201,10 +1307,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     92,
-     54.8,
+     93.1,
+     53,
      6,
-     2.5
+     2
     ]
    ],
    "fr": "gâteau",
@@ -1218,10 +1324,10 @@ window.SCENE = {
    "ru": "пирог, торт"
   },
   {
-   "id": "blume-2",
-   "mot": "Blume",
+   "id": "pflanze-2",
+   "mot": "Pflanze",
    "genre": "die",
-   "pluriel": "Blumen",
+   "pluriel": "Pflanzen",
    "niveau": "A1",
    "theme": "natur_a1",
    "personne": null,
@@ -1230,21 +1336,21 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     95.5,
-     50,
-     4.5,
-     5.5
+     90.4,
+     40,
+     9.6,
+     11.3
     ]
    ],
-   "fr": "fleur",
-   "en": "flower",
-   "tr": "çiçek",
-   "uk": "квітка",
-   "fa": "گل",
-   "pt": "flor",
-   "ar": "زهرة",
-   "pl": "kwiat",
-   "ru": "цветок"
+   "fr": "la plante",
+   "en": "plant",
+   "tr": "bitki",
+   "uk": "рослина",
+   "fa": "گیاه",
+   "pt": "planta",
+   "ar": "نبات",
+   "pl": "roślina",
+   "ru": "растение"
   },
   {
    "id": "tisch",
@@ -1259,16 +1365,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     79.5,
-     57,
-     20.5,
-     3.5
+     82.5,
+     53.6,
+     17.5,
+     5.5
     ],
     [
-     88,
-     60.5,
-     5,
-     15
+     92.8,
+     59,
+     2.8,
+     11
     ]
    ],
    "fr": "table",
@@ -1294,10 +1400,82 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     89.5,
-     57.5,
-     8.5,
-     19.5
+     82.35000000000001,
+     74.85000000000001,
+     1.1,
+     2.1
+    ],
+    [
+     83.38000000000001,
+     72.92,
+     1.1,
+     2.1
+    ],
+    [
+     84.42,
+     70.98,
+     1.1,
+     2.1
+    ],
+    [
+     85.45,
+     69.05,
+     1.1,
+     2.1
+    ],
+    [
+     86.48,
+     67.12,
+     1.1,
+     2.1
+    ],
+    [
+     87.52,
+     65.18,
+     1.1,
+     2.1
+    ],
+    [
+     88.55,
+     63.25,
+     1.1,
+     2.1
+    ],
+    [
+     89.58,
+     61.32,
+     1.1,
+     2.1
+    ],
+    [
+     90.62,
+     59.38,
+     1.1,
+     2.1
+    ],
+    [
+     91.65,
+     57.45,
+     1.1,
+     2.1
+    ],
+    [
+     92.5,
+     56.449999999999996,
+     1.8,
+     0.9
+    ],
+    [
+     94.10000000000001,
+     56.0,
+     2.2,
+     0.7
+    ],
+    [
+     96.64999999999999,
+     56.550000000000004,
+     0.9,
+     1.3
     ]
    ],
    "fr": "le bâton",
@@ -1311,33 +1489,33 @@ window.SCENE = {
    "ru": "палка, трость"
   },
   {
-   "id": "heizkoerper",
-   "mot": "Heizkörper",
+   "id": "stuhl",
+   "mot": "Stuhl",
    "genre": "der",
-   "pluriel": "Heizkörper",
-   "niveau": "B1",
-   "theme": "wohnen_b1",
+   "pluriel": "Stühle",
+   "niveau": "A1",
+   "theme": "moebel_haushalt_a1",
    "personne": null,
    "aussi": [],
    "sur": null,
    "devant": 0,
    "boites": [
     [
-     95.5,
-     60.5,
-     4.5,
-     8.5
+     92.8,
+     63.3,
+     7.2,
+     11.8
     ]
    ],
-   "fr": "radiateur",
-   "en": "radiator",
-   "tr": "kalorifer peteği",
-   "uk": "радіатор",
-   "fa": "رادیاتور",
-   "pt": "aquecedor (radiador)",
-   "ar": "مشعاع التدفئة",
-   "pl": "grzejnik, kaloryfer",
-   "ru": "батарея (отопления)"
+   "fr": "chaise",
+   "en": "chair",
+   "tr": "sandalye",
+   "uk": "стілець",
+   "fa": "صندلی",
+   "pt": "cadeira",
+   "ar": "كرسي",
+   "pl": "krzesło",
+   "ru": "стул"
   },
   {
    "id": "hund",
@@ -1352,10 +1530,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     73.5,
-     69.5,
-     14,
-     7.5
+     70,
+     65.5,
+     12.8,
+     7.8
     ]
    ],
    "fr": "chien",
@@ -1381,10 +1559,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     3.5,
-     48.5,
-     17,
-     13
+     0,
+     49.2,
+     21.2,
+     13.8
     ]
    ],
    "fr": "caisse",
@@ -1410,10 +1588,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     19.5,
-     54,
-     9.5,
-     6.5
+     20.8,
+     58.6,
+     7.8,
+     3.2
     ]
    ],
    "fr": "balance",
@@ -1439,10 +1617,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     25.5,
-     55,
-     12,
-     3.5
+     19.8,
+     55.8,
+     17.8,
+     2.2
     ]
    ],
    "fr": "couteau",
@@ -1468,10 +1646,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     35.5,
-     51.5,
-     17.5,
-     5.5
+     31.4,
+     51.8,
+     15.8,
+     5.3
     ]
    ],
    "fr": "carton",
@@ -1497,10 +1675,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     34.5,
-     58,
-     20.5,
-     10
+     38,
+     47.4,
+     14.6,
+     5.4
     ]
    ],
    "fr": "le panier",
@@ -1526,10 +1704,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     35,
-     58.5,
-     19.5,
-     7.5
+     39,
+     47.4,
+     12.5,
+     4.2
     ]
    ],
    "fr": "petit pain",
@@ -1541,6 +1719,35 @@ window.SCENE = {
    "ar": "خبز صغير (كعك)",
    "pl": "bułka",
    "ru": "булочка"
+  },
+  {
+   "id": "brezel",
+   "mot": "Brezel",
+   "genre": "die",
+   "pluriel": "Brezeln",
+   "niveau": "A2",
+   "theme": "essen_trinken_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     46.5,
+     51,
+     11,
+     4.8
+    ]
+   ],
+   "fr": "bretzel",
+   "en": "pretzel",
+   "tr": "pretzel",
+   "uk": "крендель",
+   "fa": "نان پرتزل",
+   "pt": "pretzel",
+   "ar": "بريتزل (خبز معقود)",
+   "pl": "precel",
+   "ru": "брецель (крендель)"
   },
   {
    "id": "torte",
@@ -1571,10 +1778,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     7.5,
-     65.5,
-     16,
-     7.5
+     10.5,
+     67.3,
+     17.5,
+     8
     ]
    ],
    "fr": "gâteau (à étages)",
@@ -1600,10 +1807,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     8.5,
-     66,
-     14,
-     2.5
+     12.5,
+     68.2,
+     13.5,
+     3.5
     ]
    ],
    "fr": "fraise",
@@ -1629,10 +1836,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     23.5,
-     64.5,
-     16,
-     4.5
+     29.5,
+     65.5,
+     10,
+     4.3
     ]
    ],
    "fr": "gâteau",
@@ -1658,10 +1865,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     24.5,
-     71,
-     18,
-     4.5
+     38.3,
+     62,
+     13.8,
+     5.2
     ]
    ],
    "fr": "gâteau",
@@ -1673,64 +1880,6 @@ window.SCENE = {
    "ar": "كعكة",
    "pl": "ciasto",
    "ru": "пирог, торт"
-  },
-  {
-   "id": "kuchen-3",
-   "mot": "Kuchen",
-   "genre": "der",
-   "pluriel": "Kuchen",
-   "niveau": "A1",
-   "theme": "essen_trinken_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     9.5,
-     74.5,
-     15.5,
-     5
-    ]
-   ],
-   "fr": "gâteau",
-   "en": "cake",
-   "tr": "kek",
-   "uk": "пиріг",
-   "fa": "کیک",
-   "pt": "bolo",
-   "ar": "كعكة",
-   "pl": "ciasto",
-   "ru": "пирог, торт"
-  },
-  {
-   "id": "brezel",
-   "mot": "Brezel",
-   "genre": "die",
-   "pluriel": "Brezeln",
-   "niveau": "A2",
-   "theme": "essen_trinken_a2",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     41.5,
-     66.5,
-     18,
-     6.5
-    ]
-   ],
-   "fr": "bretzel",
-   "en": "pretzel",
-   "tr": "pretzel",
-   "uk": "крендель",
-   "fa": "نان پرتزل",
-   "pt": "pretzel",
-   "ar": "بريتزل (خبز معقود)",
-   "pl": "precel",
-   "ru": "брецель (крендель)"
   },
   {
    "id": "schalter",
@@ -1746,9 +1895,21 @@ window.SCENE = {
    "boites": [
     [
      0,
-     55.5,
-     60,
-     42
+     52.8,
+     56,
+     22
+    ],
+    [
+     0,
+     74.8,
+     40,
+     8
+    ],
+    [
+     0,
+     82.8,
+     22,
+     13
     ]
    ],
    "fr": "guichet ; interrupteur",
@@ -1760,64 +1921,6 @@ window.SCENE = {
    "ar": "شبّاك؛ مفتاح كهربائي",
    "pl": "okienko, kasa; włącznik",
    "ru": "окошко, касса; выключатель"
-  },
-  {
-   "id": "blume",
-   "mot": "Blume",
-   "genre": "die",
-   "pluriel": "Blumen",
-   "niveau": "A1",
-   "theme": "natur_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     71.5,
-     86,
-     19,
-     14
-    ]
-   ],
-   "fr": "fleur",
-   "en": "flower",
-   "tr": "çiçek",
-   "uk": "квітка",
-   "fa": "گل",
-   "pt": "flor",
-   "ar": "زهرة",
-   "pl": "kwiat",
-   "ru": "цветок"
-  },
-  {
-   "id": "glas",
-   "mot": "Glas",
-   "genre": "das",
-   "pluriel": "Gläser",
-   "niveau": "A1",
-   "theme": "kueche_kochen_a1",
-   "personne": null,
-   "aussi": [],
-   "sur": null,
-   "devant": 0,
-   "boites": [
-    [
-     78.5,
-     94,
-     8,
-     6
-    ]
-   ],
-   "fr": "verre",
-   "en": "glass",
-   "tr": "bardak",
-   "uk": "склянка",
-   "fa": "لیوان، شیشه",
-   "pt": "copo",
-   "ar": "كوب زجاجي",
-   "pl": "szklanka, szkło",
-   "ru": "стакан"
   },
   {
    "id": "pflanze",
@@ -1832,10 +1935,10 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     82.5,
-     79,
-     17.5,
-     21
+     83,
+     80,
+     17,
+     20
     ]
    ],
    "fr": "la plante",
@@ -1861,10 +1964,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     60,
-     78,
-     24,
-     22
+     22,
+     85,
+     61,
+     15
+    ],
+    [
+     42,
+     76,
+     58,
+     9
     ]
    ],
    "fr": "le sol",
@@ -1880,7 +1989,7 @@ window.SCENE = {
  ],
  "grosPlans": [],
  "titre": "In der Bäckerei",
- "alt": "Anna à la boulangerie de son quartier, un matin : la vendeuse au bonnet blanc lui tend un sachet de petits pains par-dessus le comptoir, Anna lui tend une pièce ; dans la vitrine, une tarte aux fraises, une part de gâteau aux pommes, un gâteau aux noix, des bretzels et un panier de petits pains ; sur le comptoir, la caisse, une balance, un couteau et une boîte à gâteau ; sur les étagères, des pains, des bouteilles de jus et de lait, de la farine, du sucre, une cafetière et des tasses ; à la petite table près de la vitrine, son voisin lit le journal devant un café et une part de gâteau, sa canne contre la table, son chien couché dessous ; des jonquilles et une plante verte au premier plan, un vélo dans la rue.",
+ "alt": "Anna à la boulangerie de son quartier, un matin : la vendeuse au bonnet blanc lui tend un sachet de petits pains par-dessus le comptoir, Anna lui tend une pièce ; dans la vitrine, une tarte aux fraises, une part de gâteau aux pommes et un gâteau aux noix ; sur le comptoir, la caisse, une balance, un couteau, une boîte à gâteau, un panier de petits pains et des bretzels ; sur les étagères, des pains, des bouteilles de jus et de lait, de la farine, du sucre, une cafetière et des tasses ; à la petite table près de la vitrine, son voisin lit le journal devant un café et une part de gâteau, sa canne contre la table, son chien couché à ses pieds ; une plante sur le rebord de la fenêtre, une autre par terre au premier plan, un vélo dans la rue.",
  "consigne": "Anna achète des petits pains à la boulangerie de son quartier. Touche un objet.",
  "exclus": [],
  "couches": {
@@ -1919,15 +2028,15 @@ window.SCENE = {
     {
      "q": "Wo liegt der Hund?",
      "c": [
-      "unter dem Tisch",
+      "auf dem Boden",
       "auf dem Stuhl",
-      "vor der Tür"
+      "im Korb"
      ],
      "f": "hund",
-     "r": "tisch",
-     "phrase": "Der Hund liegt unter dem Tisch.",
-     "sens": "Le chien est couché sous la table.",
-     "n": "<b>unter</b> = sous. der Tisch → unter <b>dem</b> Tisch."
+     "r": "boden",
+     "phrase": "Der Hund liegt auf dem Boden.",
+     "sens": "Le chien est couché par terre.",
+     "n": "der Boden → auf <b>dem</b> Boden."
     },
     {
      "q": "Wo steht das Fahrrad?",
@@ -1956,17 +2065,17 @@ window.SCENE = {
      "n": "der Schalter → auf <b>dem</b> Schalter."
     },
     {
-     "q": "Wo stehen die Blumen?",
+     "q": "Wo liegt der Kuchen?",
      "c": [
-      "im Glas",
-      "im Regal",
-      "im Korb"
+      "auf dem Teller",
+      "im Korb",
+      "im Backofen"
      ],
-     "f": "blume",
-     "r": "glas",
-     "phrase": "Die Blumen stehen im Glas.",
-     "sens": "Les fleurs sont dans le verre.",
-     "n": "<b>im</b> = in + <b>dem</b> : das Glas → im Glas."
+     "f": "kuchen-4",
+     "r": "teller",
+     "phrase": "Der Kuchen liegt auf dem Teller.",
+     "sens": "Le gâteau est sur l'assiette.",
+     "n": "der Teller → auf <b>dem</b> Teller."
     },
     {
      "q": "Wo sitzt der Nachbar?",
@@ -1984,15 +2093,15 @@ window.SCENE = {
     {
      "q": "Wo steht die Pflanze?",
      "c": [
-      "neben dem Fenster",
-      "auf dem Tisch",
-      "im Regal"
+      "am Fenster",
+      "im Regal",
+      "auf dem Schalter"
      ],
-     "f": "pflanze",
+     "f": "pflanze-2",
      "r": "fenster",
-     "phrase": "Die Pflanze steht neben dem Fenster.",
-     "sens": "La plante est à côté de la fenêtre.",
-     "n": "<b>neben</b> = à côté de. das Fenster → neben <b>dem</b> Fenster."
+     "phrase": "Die Pflanze steht am Fenster.",
+     "sens": "La plante est près de la fenêtre.",
+     "n": "<b>am</b> = an + <b>dem</b> : das Fenster → am Fenster."
     }
    ]
   },
@@ -2291,7 +2400,7 @@ window.SCENE = {
  "traductions": {
   "en": {
    "champs": {
-    "alt": "Anna at the bakery in her neighbourhood, one morning: the seller in a white cap hands her a paper bag of rolls over the counter, Anna hands her a coin; in the display, a strawberry cake, a slice of apple cake, a nut cake, pretzels and a basket of rolls; on the counter, the cash register, a scale, a knife and a cake box; on the shelves, loaves of bread, bottles of juice and milk, flour, sugar, a coffee pot and cups; at the small table by the window, her neighbour reads the newspaper over a coffee and a slice of cake, his walking stick against the table, his dog lying underneath; daffodils and a green plant in the foreground, a bicycle in the street.",
+    "alt": "Anna at the bakery in her neighbourhood, one morning: the seller in a white cap hands her a paper bag of rolls over the counter, Anna hands her a coin; in the display, a strawberry cake, a slice of apple cake and a nut cake; on the counter, the cash register, a scale, a knife, a cake box, a basket of rolls and pretzels; on the shelves, loaves of bread, bottles of juice and milk, flour, sugar, a coffee pot and cups; at the small table by the window, her neighbour reads the newspaper over a coffee and a slice of cake, his walking stick against the table, his dog lying at his feet; a plant on the windowsill, another on the floor in the foreground, a bicycle in the street.",
     "consigne": "Anna is buying rolls at the bakery in her neighbourhood. Tap an object."
    },
    "couches": {
@@ -2304,12 +2413,12 @@ window.SCENE = {
    "questions": {
     "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: in the Dativ, feminine <b>die</b> becomes <b>der</b>.",
     "A2 | Die Milch steht im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
-    "A2 | Der Hund liegt unter dem Tisch.": "<b>unter</b> = under. der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Der Hund liegt auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "<b>vor</b> = in front of. das Fenster → vor <b>dem</b> Fenster.",
     "A2 | Die Kasse steht auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
-    "A2 | Die Blumen stehen im Glas.": "<b>im</b> = in + <b>dem</b>: das Glas → im Glas.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "der Teller → auf <b>dem</b> Teller.",
     "A2 | Der Nachbar sitzt am Tisch.": "<b>am</b> = an + <b>dem</b>: der Tisch → am Tisch.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "<b>neben</b> = next to. das Fenster → neben <b>dem</b> Fenster.",
+    "A2 | Die Pflanze steht am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
     "B1 | Anna grüßt ihren Nachbarn.": "Akkusativ of <b>der Nachbar</b> → den/ihren <b>Nachbarn</b>.",
     "B1 | Der Nachbar liest die Zeitung.": "In the Nominativ, no ending: der <b>Nachbar</b>.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "n-Deklination: outside the Nominativ, <b>-n</b> or <b>-en</b>.",
@@ -2332,12 +2441,12 @@ window.SCENE = {
    "sens": {
     "A2 | Die Uhr hängt an der Wand.": "The clock hangs on the wall.",
     "A2 | Die Milch steht im Regal.": "The milk is on the shelf.",
-    "A2 | Der Hund liegt unter dem Tisch.": "The dog is lying under the table.",
+    "A2 | Der Hund liegt auf dem Boden.": "The dog is lying on the ground.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "The bicycle is in front of the window.",
     "A2 | Die Kasse steht auf dem Schalter.": "The till is on the counter.",
-    "A2 | Die Blumen stehen im Glas.": "The flowers are in the glass.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "The cake is on the plate.",
     "A2 | Der Nachbar sitzt am Tisch.": "The neighbour is sitting at the table.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "The plant is next to the window.",
+    "A2 | Die Pflanze steht am Fenster.": "The plant is by the window.",
     "B1 | Anna grüßt ihren Nachbarn.": "Anna greets her neighbour.",
     "B1 | Der Nachbar liest die Zeitung.": "The neighbour is reading the newspaper.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "The shop assistant knows every customer in the neighbourhood.",
@@ -2360,7 +2469,7 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Anna bir sabah mahallesindeki fırında: beyaz bonelı satıcı tezgâhın üzerinden ona bir kese kâğıdı ekmek uzatıyor, Anna ona bir bozuk para uzatıyor; vitrinde bir çilekli pasta, bir dilim elmalı kek, bir cevizli kek, simitler ve bir sepet küçük ekmek; tezgâhta yazar kasa, bir terazi, bir bıçak ve bir pasta kutusu; raflarda ekmekler, meyve suyu ve süt şişeleri, un, şeker, bir cezve ve fincanlar; vitrinin yanındaki küçük masada komşusu bir kahve ve bir dilim kekin önünde gazete okuyor, bastonu masaya dayalı, köpeği altında yatıyor; ön planda nergisler ve yeşil bir bitki, sokakta bir bisiklet.",
+    "alt": "Anna bir sabah mahallesindeki fırında: beyaz boneli satıcı tezgâhın üzerinden ona bir kese kâğıdı ekmek uzatıyor, Anna ona bir bozuk para uzatıyor; vitrinde bir çilekli pasta, bir dilim elmalı kek ve bir cevizli kek; tezgâhta yazar kasa, bir terazi, bir bıçak, bir pasta kutusu, bir sepet küçük ekmek ve simitler; raflarda ekmekler, meyve suyu ve süt şişeleri, un, şeker, bir cezve ve fincanlar; vitrinin yanındaki küçük masada komşusu bir kahve ve bir dilim kekin önünde gazete okuyor, bastonu masaya dayalı, köpeği ayaklarının dibinde yatıyor; pencerenin kenarında bir bitki, ön planda yerde bir bitki daha, sokakta bir bisiklet.",
     "consigne": "Anna mahallesindeki fırından ekmek alıyor. Bir nesneye dokun."
    },
    "couches": {
@@ -2373,12 +2482,12 @@ window.SCENE = {
    "questions": {
     "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: Dativ'de dişil <b>die</b>, <b>der</b> olur.",
     "A2 | Die Milch steht im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
-    "A2 | Der Hund liegt unter dem Tisch.": "<b>unter</b> = altında. der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Der Hund liegt auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "<b>vor</b> = önünde. das Fenster → vor <b>dem</b> Fenster.",
     "A2 | Die Kasse steht auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
-    "A2 | Die Blumen stehen im Glas.": "<b>im</b> = in + <b>dem</b>: das Glas → im Glas.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "der Teller → auf <b>dem</b> Teller.",
     "A2 | Der Nachbar sitzt am Tisch.": "<b>am</b> = an + <b>dem</b>: der Tisch → am Tisch.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "<b>neben</b> = yanında. das Fenster → neben <b>dem</b> Fenster.",
+    "A2 | Die Pflanze steht am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
     "B1 | Anna grüßt ihren Nachbarn.": "Akkusativ hâli: <b>der Nachbar</b> → den/ihren <b>Nachbarn</b>.",
     "B1 | Der Nachbar liest die Zeitung.": "Nominativ'de ek yok: der <b>Nachbar</b>.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "n-Deklination: Nominativ dışında <b>-n</b> ya da <b>-en</b>.",
@@ -2401,12 +2510,12 @@ window.SCENE = {
    "sens": {
     "A2 | Die Uhr hängt an der Wand.": "Saat duvarda asılı.",
     "A2 | Die Milch steht im Regal.": "Süt rafta duruyor.",
-    "A2 | Der Hund liegt unter dem Tisch.": "Köpek masanın altında yatıyor.",
+    "A2 | Der Hund liegt auf dem Boden.": "Köpek yerde yatıyor.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "Bisiklet pencerenin önünde duruyor.",
     "A2 | Die Kasse steht auf dem Schalter.": "Kasa tezgâhın üstünde duruyor.",
-    "A2 | Die Blumen stehen im Glas.": "Çiçekler bardağın içinde.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "Pasta tabağın üstünde.",
     "A2 | Der Nachbar sitzt am Tisch.": "Komşu masada oturuyor.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "Bitki pencerenin yanında duruyor.",
+    "A2 | Die Pflanze steht am Fenster.": "Bitki pencerenin yanında duruyor.",
     "B1 | Anna grüßt ihren Nachbarn.": "Anna komşusunu selamlıyor.",
     "B1 | Der Nachbar liest die Zeitung.": "Komşu gazete okuyor.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "Satıcı kadın mahalledeki her müşteriyi tanıyor.",
@@ -2429,7 +2538,7 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Анна в пекарні свого кварталу, вранці: продавчиня в білому чепчику подає їй через прилавок паперовий пакет із булочками, Анна подає їй монету; у вітрині полуничний торт, шматок яблучного пирога, горіховий пиріг, бретцелі та кошик булочок; на прилавку каса, ваги, ніж і коробка для торта; на полицях хліб, пляшки соку й молока, борошно, цукор, кавник і чашки; за столиком біля вітрини її сусід читає газету за кавою і шматком пирога, його палиця прихилена до столу, його пес лежить під ним; нарциси й зелена рослина на передньому плані, велосипед на вулиці.",
+    "alt": "Анна в пекарні свого кварталу, вранці: продавчиня в білому чепчику подає їй через прилавок паперовий пакет із булочками, Анна подає їй монету; у вітрині полуничний торт, шматок яблучного пирога й горіховий пиріг; на прилавку каса, ваги, ніж, коробка для торта, кошик булочок і бретцелі; на полицях хліб, пляшки соку й молока, борошно, цукор, кавник і чашки; за столиком біля вітрини її сусід читає газету за кавою і шматком пирога, його палиця прихилена до столу, його пес лежить біля його ніг; рослина на підвіконні, ще одна на підлозі на передньому плані, велосипед на вулиці.",
     "consigne": "Анна купує булочки в пекарні свого кварталу. Торкнися предмета."
    },
    "couches": {
@@ -2442,12 +2551,12 @@ window.SCENE = {
    "questions": {
     "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: у Dativ жіночий рід <b>die</b> стає <b>der</b>.",
     "A2 | Die Milch steht im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
-    "A2 | Der Hund liegt unter dem Tisch.": "<b>unter</b> = під. der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Der Hund liegt auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "<b>vor</b> = перед. das Fenster → vor <b>dem</b> Fenster.",
     "A2 | Die Kasse steht auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
-    "A2 | Die Blumen stehen im Glas.": "<b>im</b> = in + <b>dem</b>: das Glas → im Glas.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "der Teller → auf <b>dem</b> Teller.",
     "A2 | Der Nachbar sitzt am Tisch.": "<b>am</b> = an + <b>dem</b>: der Tisch → am Tisch.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "<b>neben</b> = поруч із. das Fenster → neben <b>dem</b> Fenster.",
+    "A2 | Die Pflanze steht am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
     "B1 | Anna grüßt ihren Nachbarn.": "Akkusativ від <b>der Nachbar</b> → den/ihren <b>Nachbarn</b>.",
     "B1 | Der Nachbar liest die Zeitung.": "У Nominativ без закінчення: der <b>Nachbar</b>.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "n-Deklination: поза Nominativ — <b>-n</b> або <b>-en</b>.",
@@ -2470,12 +2579,12 @@ window.SCENE = {
    "sens": {
     "A2 | Die Uhr hängt an der Wand.": "Годинник висить на стіні.",
     "A2 | Die Milch steht im Regal.": "Молоко стоїть на полиці.",
-    "A2 | Der Hund liegt unter dem Tisch.": "Собака лежить під столом.",
+    "A2 | Der Hund liegt auf dem Boden.": "Собака лежить на землі.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "Велосипед стоїть перед вікном.",
     "A2 | Die Kasse steht auf dem Schalter.": "Каса стоїть на прилавку.",
-    "A2 | Die Blumen stehen im Glas.": "Квіти стоять у склянці.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "Пиріг лежить на тарілці.",
     "A2 | Der Nachbar sitzt am Tisch.": "Сусід сидить за столом.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "Рослина стоїть біля вікна.",
+    "A2 | Die Pflanze steht am Fenster.": "Рослина стоїть біля вікна.",
     "B1 | Anna grüßt ihren Nachbarn.": "Анна вітається зі своїм сусідом.",
     "B1 | Der Nachbar liest die Zeitung.": "Сусід читає газету.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "Продавчиня знає кожного клієнта в районі.",
@@ -2498,7 +2607,7 @@ window.SCENE = {
   },
   "fa": {
    "champs": {
-    "alt": "آنا یک صبح در نانوایی محله‌اش: فروشنده با کلاه سفید از روی پیشخوان یک پاکت نان کوچک به او می‌دهد، آنا سکه‌ای به او می‌دهد؛ در ویترین، کیک توت‌فرنگی، یک برش کیک سیب، کیک گردویی، چند پرتزل و سبدی نان کوچک؛ روی پیشخوان، صندوق، ترازو، چاقو و جعبهٔ کیک؛ روی قفسه‌ها، نان‌ها، بطری‌های آب‌میوه و شیر، آرد، شکر، قهوه‌جوش و فنجان‌ها؛ پشت میز کوچک کنار ویترین، همسایه‌اش با یک قهوه و یک برش کیک روزنامه می‌خواند، عصایش به میز تکیه داده، سگش زیر میز خوابیده؛ نرگس‌ها و گیاهی سبز در پیش‌زمینه، دوچرخه‌ای در خیابان.",
+    "alt": "آنا یک صبح در نانوایی محله‌اش: فروشنده با کلاه سفید از روی پیشخوان یک پاکت نان کوچک به او می‌دهد، آنا سکه‌ای به او می‌دهد؛ در ویترین، کیک توت‌فرنگی، یک برش کیک سیب و کیک گردویی؛ روی پیشخوان، صندوق، ترازو، چاقو، جعبهٔ کیک، سبدی نان کوچک و چند پرتزل؛ روی قفسه‌ها، نان‌ها، بطری‌های آب‌میوه و شیر، آرد، شکر، قهوه‌جوش و فنجان‌ها؛ پشت میز کوچک کنار ویترین، همسایه‌اش با یک قهوه و یک برش کیک روزنامه می‌خواند، عصایش به میز تکیه داده، سگش کنار پاهایش خوابیده؛ گیاهی لب پنجره، گیاهی دیگر روی زمین در پیش‌زمینه، دوچرخه‌ای در خیابان.",
     "consigne": "آنا از نانوایی محله‌اش نان کوچک می‌خرد. روی یک شیء بزن."
    },
    "couches": {
@@ -2511,12 +2620,12 @@ window.SCENE = {
    "questions": {
     "A2 | Die Uhr hängt an der Wand.": "<span lang=\"de\">die Wand → an <b>der</b> Wand</span>: در Dativ، مؤنثِ <b>die</b> به <b>der</b> تبدیل می‌شود.",
     "A2 | Die Milch steht im Regal.": "<b>im</b> = <span lang=\"de\">in + <b>dem</b></span>: <span lang=\"de\">das Regal → im Regal</span>.",
-    "A2 | Der Hund liegt unter dem Tisch.": "<b>unter</b> = زیرِ. <span lang=\"de\">der Tisch → unter <b>dem</b> Tisch</span>.",
+    "A2 | Der Hund liegt auf dem Boden.": "<span lang=\"de\">der Boden → auf <b>dem</b> Boden</span>.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "<b>vor</b> = جلوی. <span lang=\"de\">das Fenster → vor <b>dem</b> Fenster</span>.",
     "A2 | Die Kasse steht auf dem Schalter.": "<span lang=\"de\">der Schalter → auf <b>dem</b> Schalter</span>.",
-    "A2 | Die Blumen stehen im Glas.": "<b>im</b> = <span lang=\"de\">in + <b>dem</b></span>: <span lang=\"de\">das Glas → im Glas</span>.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "<span lang=\"de\">der Teller → auf <b>dem</b> Teller</span>.",
     "A2 | Der Nachbar sitzt am Tisch.": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Tisch → am Tisch</span>.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "<b>neben</b> = کنارِ. <span lang=\"de\">das Fenster → neben <b>dem</b> Fenster</span>.",
+    "A2 | Die Pflanze steht am Fenster.": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">das Fenster → am Fenster</span>.",
     "B1 | Anna grüßt ihren Nachbarn.": "<span lang=\"de\">Akkusativ</span>ِ <b>der Nachbar</b> ← <span lang=\"de\">den/ihren <b>Nachbarn</b></span>.",
     "B1 | Der Nachbar liest die Zeitung.": "در <span lang=\"de\">Nominativ</span> بدون پایانه: <span lang=\"de\">der <b>Nachbar</b></span>.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "n-Deklination: بیرون از <span lang=\"de\">Nominativ</span>، <b>-n</b> یا <b>-en</b>.",
@@ -2539,12 +2648,12 @@ window.SCENE = {
    "sens": {
     "A2 | Die Uhr hängt an der Wand.": "ساعت روی دیوار آویزان است.",
     "A2 | Die Milch steht im Regal.": "شیر در قفسه است.",
-    "A2 | Der Hund liegt unter dem Tisch.": "سگ زیر میز دراز کشیده است.",
+    "A2 | Der Hund liegt auf dem Boden.": "سگ روی زمین دراز کشیده است.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "دوچرخه جلوی پنجره است.",
     "A2 | Die Kasse steht auf dem Schalter.": "صندوق پول روی پیشخوان است.",
-    "A2 | Die Blumen stehen im Glas.": "گل‌ها در لیوان هستند.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "کیک روی بشقاب است.",
     "A2 | Der Nachbar sitzt am Tisch.": "همسایه پشت میز نشسته است.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "گیاه کنار پنجره است.",
+    "A2 | Die Pflanze steht am Fenster.": "گیاه کنار پنجره است.",
     "B1 | Anna grüßt ihren Nachbarn.": "آنا به همسایه‌اش سلام می‌کند.",
     "B1 | Der Nachbar liest die Zeitung.": "همسایه روزنامه می‌خواند.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "فروشنده هر مشتری محله را می‌شناسد.",
@@ -2567,7 +2676,7 @@ window.SCENE = {
   },
   "ar": {
    "champs": {
-    "alt": "آنا في مخبز حيّها ذات صباح: البائعة ذات القبّعة البيضاء تناولها كيسًا ورقيًا من الخبز الصغير فوق المنضدة، وآنا تناولها قطعة نقود؛ في الواجهة كعكة فراولة وشريحة كعكة تفاح وكعكة جوز وبريتزل وسلّة خبز صغير؛ وعلى المنضدة الصندوق وميزان وسكين وعلبة كعك؛ وعلى الرفوف أرغفة وزجاجات عصير وحليب ودقيق وسكّر وإبريق قهوة وفناجين؛ وعلى الطاولة الصغيرة قرب الواجهة يقرأ جارها الجريدة أمام قهوة وشريحة كعكة، وعصاه مستندة إلى الطاولة، وكلبه مستلقٍ تحتها؛ وفي المقدّمة أزهار نرجس ونبتة خضراء، ودرّاجة في الشارع.",
+    "alt": "آنا في مخبز حيّها ذات صباح: البائعة ذات القبّعة البيضاء تناولها كيسًا ورقيًا من الخبز الصغير فوق المنضدة، وآنا تناولها قطعة نقود؛ في الواجهة كعكة فراولة وشريحة كعكة تفاح وكعكة جوز؛ وعلى المنضدة الصندوق وميزان وسكين وعلبة كعك وسلّة خبز صغير وبريتزل؛ وعلى الرفوف أرغفة وزجاجات عصير وحليب ودقيق وسكّر وإبريق قهوة وفناجين؛ وعلى الطاولة الصغيرة قرب الواجهة يقرأ جارها الجريدة أمام قهوة وشريحة كعكة، وعصاه مستندة إلى الطاولة، وكلبه مستلقٍ عند قدميه؛ ونبتة على حافة النافذة وأخرى على الأرض في المقدّمة، ودرّاجة في الشارع.",
     "consigne": "آنا تشتري خبزًا صغيرًا من مخبز حيّها. المس شيئًا."
    },
    "couches": {
@@ -2580,12 +2689,12 @@ window.SCENE = {
    "questions": {
     "A2 | Die Uhr hängt an der Wand.": "<span lang=\"de\">die Wand → an <b>der</b> Wand</span>: في Dativ يتحوّل المؤنث <b>die</b> إلى <b>der</b>.",
     "A2 | Die Milch steht im Regal.": "<b>im</b> = <span lang=\"de\">in + <b>dem</b></span>: <span lang=\"de\">das Regal → im Regal</span>.",
-    "A2 | Der Hund liegt unter dem Tisch.": "<b>unter</b> = تحت. <span lang=\"de\">der Tisch → unter <b>dem</b> Tisch</span>.",
+    "A2 | Der Hund liegt auf dem Boden.": "<span lang=\"de\">der Boden → auf <b>dem</b> Boden</span>.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "<b>vor</b> = أمام. <span lang=\"de\">das Fenster → vor <b>dem</b> Fenster</span>.",
     "A2 | Die Kasse steht auf dem Schalter.": "<span lang=\"de\">der Schalter → auf <b>dem</b> Schalter</span>.",
-    "A2 | Die Blumen stehen im Glas.": "<b>im</b> = <span lang=\"de\">in + <b>dem</b></span>: <span lang=\"de\">das Glas → im Glas</span>.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "<span lang=\"de\">der Teller → auf <b>dem</b> Teller</span>.",
     "A2 | Der Nachbar sitzt am Tisch.": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">der Tisch → am Tisch</span>.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "<b>neben</b> = بجانب. <span lang=\"de\">das Fenster → neben <b>dem</b> Fenster</span>.",
+    "A2 | Die Pflanze steht am Fenster.": "<b>am</b> = <span lang=\"de\">an + <b>dem</b></span>: <span lang=\"de\">das Fenster → am Fenster</span>.",
     "B1 | Anna grüßt ihren Nachbarn.": "<span lang=\"de\">Akkusativ</span> لـ <b>der Nachbar</b> ← <span lang=\"de\">den/ihren <b>Nachbarn</b></span>.",
     "B1 | Der Nachbar liest die Zeitung.": "في <span lang=\"de\">Nominativ</span> بلا لاحقة: <span lang=\"de\">der <b>Nachbar</b></span>.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "n-Deklination: خارج <span lang=\"de\">Nominativ</span>، <b>-n</b> أو <b>-en</b>.",
@@ -2608,12 +2717,12 @@ window.SCENE = {
    "sens": {
     "A2 | Die Uhr hängt an der Wand.": "الساعة معلّقة على الحائط.",
     "A2 | Die Milch steht im Regal.": "الحليب على الرفّ.",
-    "A2 | Der Hund liegt unter dem Tisch.": "الكلب مستلقٍ تحت الطاولة.",
+    "A2 | Der Hund liegt auf dem Boden.": "الكلب مستلقٍ على الأرض.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "الدراجة أمام النافذة.",
     "A2 | Die Kasse steht auf dem Schalter.": "الصندوق على المنضدة.",
-    "A2 | Die Blumen stehen im Glas.": "الزهور في الكأس.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "الكعكة على الصحن.",
     "A2 | Der Nachbar sitzt am Tisch.": "الجار جالس إلى الطاولة.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "النبتة بجانب النافذة.",
+    "A2 | Die Pflanze steht am Fenster.": "النبتة عند النافذة.",
     "B1 | Anna grüßt ihren Nachbarn.": "تحيّي آنا جارها.",
     "B1 | Der Nachbar liest die Zeitung.": "الجار يقرأ الجريدة.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "البائعة تعرف كل زبون في الحيّ.",
@@ -2636,7 +2745,7 @@ window.SCENE = {
   },
   "pt": {
    "champs": {
-    "alt": "Anna na padaria do bairro dela, numa manhã: a vendedora de touca branca lhe entrega um saquinho de pãezinhos por cima do balcão, Anna lhe entrega uma moeda; na vitrine, uma torta de morango, uma fatia de bolo de maçã, um bolo de nozes, pretzels e uma cesta de pãezinhos; no balcão, a caixa registradora, uma balança, uma faca e uma caixa de bolo; nas prateleiras, pães, garrafas de suco e de leite, farinha, açúcar, um bule de café e xícaras; na mesinha perto da vitrine, o vizinho dela lê o jornal diante de um café e de uma fatia de bolo, a bengala encostada na mesa, o cachorro deitado embaixo; narcisos e uma planta verde em primeiro plano, uma bicicleta na rua.",
+    "alt": "Anna na padaria do bairro dela, numa manhã: a vendedora de touca branca lhe entrega um saquinho de pãezinhos por cima do balcão, Anna lhe entrega uma moeda; na vitrine, uma torta de morango, uma fatia de bolo de maçã e um bolo de nozes; no balcão, a caixa registradora, uma balança, uma faca, uma caixa de bolo, uma cesta de pãezinhos e pretzels; nas prateleiras, pães, garrafas de suco e de leite, farinha, açúcar, um bule de café e xícaras; na mesinha perto da vitrine, o vizinho dela lê o jornal diante de um café e de uma fatia de bolo, a bengala encostada na mesa, o cachorro deitado aos pés dele; uma planta no parapeito da janela, outra no chão em primeiro plano, uma bicicleta na rua.",
     "consigne": "Anna compra pãezinhos na padaria do bairro dela. Toque num objeto."
    },
    "couches": {
@@ -2649,12 +2758,12 @@ window.SCENE = {
    "questions": {
     "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: no Dativ, o feminino <b>die</b> vira <b>der</b>.",
     "A2 | Die Milch steht im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
-    "A2 | Der Hund liegt unter dem Tisch.": "<b>unter</b> = embaixo de. der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Der Hund liegt auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "<b>vor</b> = na frente de. das Fenster → vor <b>dem</b> Fenster.",
     "A2 | Die Kasse steht auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
-    "A2 | Die Blumen stehen im Glas.": "<b>im</b> = in + <b>dem</b>: das Glas → im Glas.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "der Teller → auf <b>dem</b> Teller.",
     "A2 | Der Nachbar sitzt am Tisch.": "<b>am</b> = an + <b>dem</b>: der Tisch → am Tisch.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "<b>neben</b> = ao lado de. das Fenster → neben <b>dem</b> Fenster.",
+    "A2 | Die Pflanze steht am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
     "B1 | Anna grüßt ihren Nachbarn.": "Akkusativ de <b>der Nachbar</b> → den/ihren <b>Nachbarn</b>.",
     "B1 | Der Nachbar liest die Zeitung.": "No Nominativ, sem terminação: der <b>Nachbar</b>.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "n-Deklination: fora do Nominativ, <b>-n</b> ou <b>-en</b>.",
@@ -2677,12 +2786,12 @@ window.SCENE = {
    "sens": {
     "A2 | Die Uhr hängt an der Wand.": "O relógio está pendurado na parede.",
     "A2 | Die Milch steht im Regal.": "O leite está na prateleira.",
-    "A2 | Der Hund liegt unter dem Tisch.": "O cachorro está deitado debaixo da mesa.",
+    "A2 | Der Hund liegt auf dem Boden.": "O cachorro está deitado no chão.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "A bicicleta está em frente à janela.",
     "A2 | Die Kasse steht auf dem Schalter.": "A caixa registradora está no balcão.",
-    "A2 | Die Blumen stehen im Glas.": "As flores estão no copo.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "O bolo está no prato.",
     "A2 | Der Nachbar sitzt am Tisch.": "O vizinho está sentado à mesa.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "A planta está ao lado da janela.",
+    "A2 | Die Pflanze steht am Fenster.": "A planta está junto à janela.",
     "B1 | Anna grüßt ihren Nachbarn.": "Anna cumprimenta o vizinho.",
     "B1 | Der Nachbar liest die Zeitung.": "O vizinho lê o jornal.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "A vendedora conhece todos os clientes do bairro.",
@@ -2705,7 +2814,7 @@ window.SCENE = {
   },
   "pl": {
    "champs": {
-    "alt": "Anna w piekarni w swojej dzielnicy, pewnego ranka: sprzedawczyni w białym czepku podaje jej przez ladę papierową torebkę z bułkami, Anna podaje jej monetę; w witrynie tort truskawkowy, kawałek szarlotki, ciasto orzechowe, precle i kosz bułek; na ladzie kasa, waga, nóż i pudełko na ciasto; na półkach chleby, butelki soku i mleka, mąka, cukier, dzbanek do kawy i filiżanki; przy stoliku obok witryny jej sąsiad czyta gazetę nad kawą i kawałkiem ciasta, jego laska oparta o stół, jego pies leży pod nim; żonkile i zielona roślina na pierwszym planie, rower na ulicy.",
+    "alt": "Anna w piekarni w swojej dzielnicy, pewnego ranka: sprzedawczyni w białym czepku podaje jej przez ladę papierową torebkę z bułkami, Anna podaje jej monetę; w witrynie tort truskawkowy, kawałek szarlotki i ciasto orzechowe; na ladzie kasa, waga, nóż, pudełko na ciasto, kosz bułek i precle; na półkach chleby, butelki soku i mleka, mąka, cukier, dzbanek do kawy i filiżanki; przy stoliku obok witryny jej sąsiad czyta gazetę nad kawą i kawałkiem ciasta, jego laska oparta o stół, jego pies leży u jego stóp; roślina na parapecie, druga na podłodze na pierwszym planie, rower na ulicy.",
     "consigne": "Anna kupuje bułki w piekarni w swojej dzielnicy. Dotknij przedmiotu."
    },
    "couches": {
@@ -2718,12 +2827,12 @@ window.SCENE = {
    "questions": {
     "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: w Dativ rodzaj żeński <b>die</b> zmienia się w <b>der</b>.",
     "A2 | Die Milch steht im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
-    "A2 | Der Hund liegt unter dem Tisch.": "<b>unter</b> = pod. der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Der Hund liegt auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "<b>vor</b> = przed. das Fenster → vor <b>dem</b> Fenster.",
     "A2 | Die Kasse steht auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
-    "A2 | Die Blumen stehen im Glas.": "<b>im</b> = in + <b>dem</b>: das Glas → im Glas.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "der Teller → auf <b>dem</b> Teller.",
     "A2 | Der Nachbar sitzt am Tisch.": "<b>am</b> = an + <b>dem</b>: der Tisch → am Tisch.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "<b>neben</b> = obok. das Fenster → neben <b>dem</b> Fenster.",
+    "A2 | Die Pflanze steht am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
     "B1 | Anna grüßt ihren Nachbarn.": "Akkusativ od <b>der Nachbar</b> → den/ihren <b>Nachbarn</b>.",
     "B1 | Der Nachbar liest die Zeitung.": "W Nominativ bez końcówki: der <b>Nachbar</b>.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "n-Deklination: poza Nominativ — <b>-n</b> albo <b>-en</b>.",
@@ -2746,12 +2855,12 @@ window.SCENE = {
    "sens": {
     "A2 | Die Uhr hängt an der Wand.": "Zegar wisi na ścianie.",
     "A2 | Die Milch steht im Regal.": "Mleko stoi na półce.",
-    "A2 | Der Hund liegt unter dem Tisch.": "Pies leży pod stołem.",
+    "A2 | Der Hund liegt auf dem Boden.": "Pies leży na ziemi.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "Rower stoi przed oknem.",
     "A2 | Die Kasse steht auf dem Schalter.": "Kasa stoi na ladzie.",
-    "A2 | Die Blumen stehen im Glas.": "Kwiaty stoją w szklance.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "Ciasto leży na talerzu.",
     "A2 | Der Nachbar sitzt am Tisch.": "Sąsiad siedzi przy stole.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "Roślina stoi obok okna.",
+    "A2 | Die Pflanze steht am Fenster.": "Roślina stoi przy oknie.",
     "B1 | Anna grüßt ihren Nachbarn.": "Anna wita swojego sąsiada.",
     "B1 | Der Nachbar liest die Zeitung.": "Sąsiad czyta gazetę.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "Sprzedawczyni zna każdego klienta w dzielnicy.",
@@ -2774,7 +2883,7 @@ window.SCENE = {
   },
   "ru": {
    "champs": {
-    "alt": "Анна в булочной своего квартала, утром: продавщица в белом колпаке протягивает ей через прилавок бумажный пакет с булочками, Анна протягивает ей монету; в витрине клубничный торт, кусок яблочного пирога, ореховый пирог, брецели и корзина булочек; на прилавке касса, весы, нож и коробка для торта; на полках хлеб, бутылки сока и молока, мука, сахар, кофейник и чашки; за столиком у витрины её сосед читает газету за кофе и куском пирога, его трость прислонена к столу, его пёс лежит под ним; нарциссы и зелёное растение на переднем плане, велосипед на улице.",
+    "alt": "Анна в булочной своего квартала, утром: продавщица в белом колпаке протягивает ей через прилавок бумажный пакет с булочками, Анна протягивает ей монету; в витрине клубничный торт, кусок яблочного пирога и ореховый пирог; на прилавке касса, весы, нож, коробка для торта, корзина булочек и брецели; на полках хлеб, бутылки сока и молока, мука, сахар, кофейник и чашки; за столиком у витрины её сосед читает газету за кофе и куском пирога, его трость прислонена к столу, его пёс лежит у его ног; растение на подоконнике, ещё одно на полу на переднем плане, велосипед на улице.",
     "consigne": "Анна покупает булочки в булочной своего квартала. Нажми на предмет."
    },
    "couches": {
@@ -2787,12 +2896,12 @@ window.SCENE = {
    "questions": {
     "A2 | Die Uhr hängt an der Wand.": "die Wand → an <b>der</b> Wand: в Dativ женский род <b>die</b> становится <b>der</b>.",
     "A2 | Die Milch steht im Regal.": "<b>im</b> = in + <b>dem</b>: das Regal → im Regal.",
-    "A2 | Der Hund liegt unter dem Tisch.": "<b>unter</b> = под. der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Der Hund liegt auf dem Boden.": "der Boden → auf <b>dem</b> Boden.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "<b>vor</b> = перед. das Fenster → vor <b>dem</b> Fenster.",
     "A2 | Die Kasse steht auf dem Schalter.": "der Schalter → auf <b>dem</b> Schalter.",
-    "A2 | Die Blumen stehen im Glas.": "<b>im</b> = in + <b>dem</b>: das Glas → im Glas.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "der Teller → auf <b>dem</b> Teller.",
     "A2 | Der Nachbar sitzt am Tisch.": "<b>am</b> = an + <b>dem</b>: der Tisch → am Tisch.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "<b>neben</b> = рядом с. das Fenster → neben <b>dem</b> Fenster.",
+    "A2 | Die Pflanze steht am Fenster.": "<b>am</b> = an + <b>dem</b>: das Fenster → am Fenster.",
     "B1 | Anna grüßt ihren Nachbarn.": "Akkusativ от <b>der Nachbar</b> → den/ihren <b>Nachbarn</b>.",
     "B1 | Der Nachbar liest die Zeitung.": "В Nominativ без окончания: der <b>Nachbar</b>.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "n-Deklination: вне Nominativ — <b>-n</b> или <b>-en</b>.",
@@ -2815,12 +2924,12 @@ window.SCENE = {
    "sens": {
     "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
     "A2 | Die Milch steht im Regal.": "Молоко стоит на полке.",
-    "A2 | Der Hund liegt unter dem Tisch.": "Собака лежит под столом.",
+    "A2 | Der Hund liegt auf dem Boden.": "Собака лежит на земле.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "Велосипед стоит перед окном.",
     "A2 | Die Kasse steht auf dem Schalter.": "Касса стоит на прилавке.",
-    "A2 | Die Blumen stehen im Glas.": "Цветы стоят в стакане.",
+    "A2 | Der Kuchen liegt auf dem Teller.": "Пирог лежит на тарелке.",
     "A2 | Der Nachbar sitzt am Tisch.": "Сосед сидит за столом.",
-    "A2 | Die Pflanze steht neben dem Fenster.": "Растение стоит рядом с окном.",
+    "A2 | Die Pflanze steht am Fenster.": "Растение стоит у окна.",
     "B1 | Anna grüßt ihren Nachbarn.": "Анна здоровается со своим соседом.",
     "B1 | Der Nachbar liest die Zeitung.": "Сосед читает газету.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "Продавщица знает каждого покупателя в районе.",
