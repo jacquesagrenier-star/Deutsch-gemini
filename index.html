@@ -7573,7 +7573,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v851</span>
+    <span class="subtitle-version">v852</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39855,7 +39855,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 851;
+const APP_VERSION = 852;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -44489,6 +44489,11 @@ function montrerCartePhrase(item){
         // le son, pour tous les exercices qui sont reussis ». celebrateMastery()
         // choisit entre les confettis et la grande fete de l'objectif du jour.
         if(juste){ try{ celebrateMastery(palierPhrase || 0, false); }catch(e){} }
+        // v852 (essai carreau_partout) : LE +1 AVEC LES CONFETTIS. Jacques : « des
+        // fois j'ai juste les confettis, pas la mosaique ». Le carreau ne se
+        // posait qu'au « Continuer », une seconde plus tard ; il se pose ici, et
+        // nextFlashcard() ne le pose pas une seconde fois.
+        if(juste){ try{ if(essaiActif("carreau_partout")){ poserCarreau(); item._carreauPose = true; } }catch(e){} }
         retour.classList.remove("hidden");
         retour.classList.add(juste ? "bon" : "faux");
         const ref = texteJuste || (item.phrase ? item.phrase.de : "");
@@ -44916,6 +44921,13 @@ function montrerCartePhrase(item){
         const eclairer = () => {
             if(!v2 || !essai || cible !== item.phrase.de) return;
             const reste = scoreOral(item.phrase.de, essai.textes).manques.slice();
+            // v852 : TOUS LES MOTS VERTS = REUSSI, l'enregistrement s'arrete seul
+            // (Jacques). Un court delai laisse arriver le dernier resultat.
+            if(!reste.length && essai.enCours && !essai.arretAuto){
+                essai.arretAuto = true;
+                journal("arret", "tous les mots reconnus");
+                setTimeout(() => { try{ arreter(); }catch(e){} }, 350);
+            }
             phrase.textContent = "";
             item.phrase.de.split(" ").forEach((m, i) => {
                 if(i) phrase.appendChild(document.createTextNode(" "));
@@ -47203,7 +47215,9 @@ function nextFlashcard(){
     // sont les deux seuls endroits ou l'etudiant passe a une autre carte. Le
     // poser dans loadFlashcard() le compterait deux fois a chaque changement de
     // langue, qui redessine la carte courante.
-    poserCarreau();
+    // v852 : sauf s'il a deja ete pose a la bonne reponse (voir conclure()).
+    const quittee = currentCards[currentFlashcard - 1];
+    if(!(quittee && quittee._carreauPose)) poserCarreau();
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
         // La decouverte guidee (v700) garde la main a la fin de SON paquet :

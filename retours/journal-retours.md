@@ -9386,3 +9386,12 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   vite -> la petite mosaique reste et compte (+2, +3). Cause 2 : les reponses des scenes ne posaient
   aucun carreau -> la scene envoie « bonne » a chaque bonne reponse, l'app pose un carreau (essai
   carreau_partout).
+- 17 oct. : « le son de mon iPhone est tres, tres bas apres le build » -- le module de
+  reconnaissance (chemin SpeechAnalyzer d'iOS 26) passait la session en playAndRecord sans
+  defaultToSpeaker (son vers l'ecouteur des appels), le chemin ancien la laissait en .measurement.
+  Correctif par patch-package dans wortando-ios (3fdeec1) : haut-parleur pendant l'ecoute, retour en
+  .playback a la fin. Nouvelle compilation Codemagic iOS a lancer par Jacques.
+- v852 : « des fois j'ai juste les confettis, pas la mosaique » -- pour les exercices de phrases, le
+  carreau ne se posait qu'au Continuer ; il se pose maintenant a la bonne reponse, avec les
+  confettis (essai carreau_partout). « Quand tous mes mots sont en vert, que l'enregistrement
+  s'arrete automatiquement » : fait (carte d'oral v2).
