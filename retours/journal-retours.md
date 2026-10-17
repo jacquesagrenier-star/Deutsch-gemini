@@ -9327,3 +9327,15 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   atelier de velos (Fable, Mark), metro (Mark), coiffeur, demenagement, place, musee (Anna) -- Fable
   a ete arrete faute de credits apres trois, un agent Opus a fait les cinq autres. 8 images fal
   (1,20 $). Voix v2 demandees par Jacques (« assez de credits pour faire des voix ») : ~29 800 credits.
+
+## 17 octobre 2026 (matin)
+
+- Jacques : « Fable devait corriger la ferme ; et la boulangerie, ce ne sont pas des photos
+  realistes ». Constat : la ferme publiee est toujours l'image peinte du 15 oct. ; deux essais du 16
+  (v2, v3 : image floutee puis « la meme photo nette ») sont restes des illustrations et n'ont pas ete
+  poses ; rien n'a ete tente pour la boulangerie. A refaire : demande d'accord pour les images.
+- v844 : « je vais dans une scene, je fais Retour, la liste ne s'affiche pas, c'est blanc ; il faut
+  que je mette mon doigt sur l'ecran ». 3e fois (v804, v815). Recherche web (demande de Jacques) :
+  rapports WebKit du meme genre, contournes par un changement de style ou un defilement d'un pixel.
+  Pose : focus rendu a la page, opacite basculee, defilement d'un pixel ; et le journal note apres
+  combien de ms la 1re image est dessinee (« aucune image apres 400 ms » = WebKit fige).
