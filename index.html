@@ -7547,7 +7547,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v843</span>
+    <span class="subtitle-version">v844</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -34225,6 +34225,7 @@ function showScreen(id){
         if(sansFondu) target.classList.add("sans-fondu");
         target.classList.add("active");
     }
+    if(depuisScene && target && id !== "sceneSeance") repeindreApresScene(target);
     window.scrollTo(0,0);
     updateGlobalProgress();
     updateOrbBadges();
@@ -39746,7 +39747,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 843;
+const APP_VERSION = 844;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43366,6 +43367,36 @@ function ouvrirScenePremiersPas(nom, dernier){
     }
     showScreen("sceneSeance");
 }
+// v844 (17 oct. 2026) : LA PAGE BLANCHE AU RETOUR D'UNE SCENE, TROISIEME FOIS.
+// Jacques, sur iPhone : « je vais dans une scene, je fais Retour, la liste ne
+// s'affiche pas, c'est blanc ; il faut que je mette mon doigt sur l'ecran ».
+// v804 (cadre vide apres coup) et v815 (sans fondu) n'ont pas suffi. Ici : le
+// cadre rend le focus a la page, l'ecran est repeint en deux temps (une
+// opacite a peine differente, puis rendue), et un defilement d'un pixel aller-
+// retour sert de filet. Et on MESURE : le journal note apres combien de
+// millisecondes la premiere image est vraiment dessinee -- « aucune image
+// apres 400 ms » veut dire que WebKit s'est fige, et ce sera vu au prochain
+// « Signaler un probleme ».
+function repeindreApresScene(ecran){
+    const t0 = Date.now();
+    let dessine = false;
+    try{
+        const c = document.getElementById("sceneCadre");
+        if(c) c.blur();
+        window.focus();
+    }catch(e){}
+    try{ ecran.style.opacity = "0.999"; }catch(e){}
+    requestAnimationFrame(() => {
+        dessine = true;
+        noterAudio(ecran.id, "ECRAN", "retour de scene : 1re image apres " + (Date.now() - t0) + " ms");
+    });
+    setTimeout(() => { try{ ecran.style.opacity = ""; }catch(e){} }, 60);
+    setTimeout(() => {
+        try{ window.scrollBy(0, 1); window.scrollBy(0, -1); }catch(e){}
+        if(!dessine) noterAudio(ecran.id, "ECRAN", "retour de scene : aucune image apres 400 ms");
+    }, 400);
+}
+
 function ouvrirSceneLibre(nom){
     sceneOuverteDepuis = "libre";
     const cadre = document.getElementById("sceneCadre");
