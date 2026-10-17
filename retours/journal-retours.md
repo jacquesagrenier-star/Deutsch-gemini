@@ -9364,4 +9364,6 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   les cartes sans repondre ». Le plafond de 80 carreaux par jour devient un garde-fou technique a
   1 000 (le balayage n'existe plus : skipFlashcard() n'est plus appelee). Retires : la phrase
   « au maximum 80 cartes par jour » de la fiche du tableau, et la seconde phrase de la legende de
-  l'objectif (« une carte balayee fait avancer le tableau »), dans les 9 langues.
+  l objectif (« une carte balayee fait avancer le tableau »), dans les 9 langues.
+- v848 : « au moment du son, on devrait voir apparaitre aussi +1 » : un +1 ambre monte a gauche
+  de la petite mosaique quand le son de recompense part.
