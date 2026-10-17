@@ -9376,3 +9376,8 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   ennuyant de faire juste des cartes ; la seance du jour est tres variee maintenant ») et les
   ramener. Brouillon en francais donne dans la conversation (non envoye) ; traductions uk/fa/tr
   proposees.
+- v850 : « la mosaique en haut, plus petite de 50 %, au format de la vraie ; juste le +1 dedans,
+  sans le carreau (trop petit) ; je garderai les confettis ». La petite mosaique = copie de la bande
+  de l'accueil, 96 px, le +1 dedans ; plus de carreau qui vole. Confettis : sur la reussite de
+  l'oral (pas a chaque carte). Et « une scene dont toutes les questions sont reussies : des
+  confettis » (bons === faits au message « fini »), pour tous.

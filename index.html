@@ -6449,14 +6449,12 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-forme{display:block; width:280px; max-width:92%; height:56px;}
 .cp-or-micro.reussi{background:#2e8b57 !important;}
 /* v847 : le carreau qui monte vers la petite mosaique, en haut a droite. */
-.carreau-mini{position:fixed; z-index:9998; border-radius:9px; overflow:hidden; background:#efe8dc; box-shadow:0 0 0 2px #e3dccf, 0 8px 24px rgba(28,36,48,.22); opacity:0; transform:translateY(-8px); transition:opacity .25s, transform .25s; pointer-events:none;}
+.carreau-mini{position:fixed; z-index:9998; border-radius:6px; overflow:hidden; background:#efe8dc; box-shadow:0 0 0 2px #e3dccf, 0 8px 24px rgba(28,36,48,.22); opacity:0; transform:translateY(-8px); transition:opacity .25s, transform .25s; pointer-events:none;}
 .carreau-mini canvas{display:block; width:100%; height:auto;}
 .carreau-mini.visible{opacity:1; transform:none;}
 .carreau-mini.recoit{box-shadow:0 0 0 3px #E8A23A, 0 6px 22px rgba(232,162,58,.55);}
-.carreau-plus{position:fixed; z-index:10000; pointer-events:none; font:900 24px Nunito, system-ui, sans-serif; color:#fff; text-shadow:0 0 3px rgba(0,0,0,.65), 0 2px 8px rgba(0,0,0,.45); transform:translate(-50%,-50%); animation:carreau-plus .95s ease-out both;}
+.carreau-plus{position:absolute; left:50%; top:50%; pointer-events:none; font:900 17px Nunito, system-ui, sans-serif; color:#fff; text-shadow:0 0 3px rgba(0,0,0,.7), 0 1px 6px rgba(0,0,0,.5); transform:translate(-50%,-50%); animation:carreau-plus 1.1s ease-out both;}
 @keyframes carreau-plus{0%{opacity:0; transform:translate(-50%,-50%) scale(.6)} 25%{opacity:1; transform:translate(-50%,-50%) scale(1.15)} 60%{opacity:1; transform:translate(-50%,-50%) scale(1)} 100%{opacity:0; transform:translate(-50%,-80%) scale(.9)}}
-.carreau-vol{position:fixed; border-radius:6px; z-index:9999; pointer-events:none; transform-origin:0 0; box-shadow:0 0 0 3px #E8A23A, 0 8px 22px rgba(232,162,58,.55); animation:carreau-pop .25s ease both; transition:transform .55s cubic-bezier(.5,-0.1,.35,1), border-radius .55s;}
-@keyframes carreau-pop{0%{opacity:0; transform:scale(.3) rotate(-10deg)} 100%{opacity:1; transform:none}}
 body[data-theme="dark"] .cp-or-motseul{background:#232a34;}
 body[data-theme="dark"] .cp-or-motseul button{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .cp-or-gris{color:#5c6573;}
@@ -7575,7 +7573,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v849</span>
+    <span class="subtitle-version">v850</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39857,7 +39855,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 849;
+const APP_VERSION = 850;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43523,84 +43521,46 @@ function repeindreApresScene(ecran){
 // haut a droite -- une copie de celle de l'accueil (#mosaiqueToile) -- puis
 // s'efface. Rien ne bloque : la carte suivante arrive dessous. Sans mosaique
 // dessinee (jamais passe par l'accueil), le son seul.
-// Ou la mosaique apparait : « coin » (en haut a droite) ou « centre ». A trancher
-// par Jacques sur la page d'essai .claude/test-carreau.html.
-let CARREAU_POSITION = "coin";
-function lancerCarreauVersMosaique(poses){
-    // Une animation a la fois : la suivante attend que la precedente soit finie
-    // (cartes enchainees vite, ou l'oral qui en pose deux d'un coup).
+// v850 (17 oct. 2026) : PLUS DE CARREAU QUI VOLE. Jacques : « la mosaique plus
+// petite de 50 %, au format de la vraie ; juste le +1 dedans, sans le carreau --
+// c'est trop petit ». La petite mosaique est la copie de celle de l'accueil
+// (#mosaiqueToile, la bande), le « +1 » s'y allume avec la lueur ambree.
+// Les confettis : seulement pour une vraie reussite (l'oral), pas a chaque carte.
+function lancerCarreauVersMosaique(poses, avecConfettis){
+    // Une animation a la fois (cartes enchainees vite, ou l'oral qui en pose deux).
     const maintenant = Date.now();
-    if(maintenant - (lancerCarreauVersMosaique.dernier || 0) < 1600) return;
+    // Les confettis de l'oral passent quand meme : la carte suivante peut avoir
+    // deja pose son propre carreau dans le meme toucher.
+    if(maintenant - (lancerCarreauVersMosaique.dernier || 0) < 1400){
+        if(avecConfettis){ try{ launchConfetti(); }catch(e){} }
+        return;
+    }
     lancerCarreauVersMosaique.dernier = maintenant;
     try{ playMasteredSound(); }catch(e){}
-    if(!poses || typeof MOSAIQUES === "undefined") return;
-    const m = mosaiqueCourante();
-    if(!m) return;
-    imageMosaique(m).then(img => {
-        try{
-            const L = 480, H = Math.round(L * img.height / img.width);
-            // Le tableau AVANT le carreau, puis APRES : la difference est le
-            // carreau gagne, que dessinerMosaique() rend en coordonnees.
-            const mini = document.createElement("canvas");
-            mini.width = L; mini.height = H;
-            dessinerMosaique(mini, img, poses - 1, MOSAIQUE_CARREAUX, false);
-            const apres = document.createElement("canvas");
-            apres.width = L; apres.height = H;
-            const rect = dessinerMosaique(apres, img, poses, MOSAIQUE_CARREAUX, false);
-            if(!rect) return;
-            // La mosaique en HAUT A DROITE, dans le coin libre de l'ecran ; le
-            // carreau gros PAR-DESSUS (la moitie de sa largeur, un quart de sa
-            // surface), qui rapetisse et va se poser.
-            const auCentre = CARREAU_POSITION === "centre";
-            const FW = Math.round(auCentre ? Math.min(window.innerWidth * 0.6, 240) : Math.min(window.innerWidth * 0.42, 170));
-            const fond = document.createElement("div");
-            fond.className = "carreau-mini";
-            if(auCentre){ fond.style.left = Math.round((window.innerWidth - FW) / 2) + "px"; fond.style.top = Math.round(window.innerHeight * 0.3) + "px"; }
-            else { fond.style.right = "12px"; fond.style.top = "calc(12px + env(safe-area-inset-top, 0px))"; }
-            fond.style.width = FW + "px";
-            mini.style.cssText = "display:block; width:100%; height:auto;";
-            fond.appendChild(mini);
-            document.body.appendChild(fond);
-            const cadre = fond.getBoundingClientRect();
-            const fx = cadre.left, fy = cadre.top, FH = FW * H / L;
-
-            const S = Math.round(FW / 2);
-            const vol = document.createElement("canvas");
-            vol.className = "carreau-vol";
-            vol.width = 128; vol.height = 128;
-            vol.style.width = S + "px"; vol.style.height = S + "px";
-            const cv = vol.getContext("2d");
-            cv.imageSmoothingEnabled = false;
-            cv.drawImage(apres, rect[0], rect[1], rect[2], rect[3], 0, 0, 128, 128);
-            const x0 = fx + FW / 2 - S / 2, y0 = fy + FH / 2 - S / 2;
-            vol.style.left = x0 + "px"; vol.style.top = y0 + "px";
-            // v848 : « +1 » au CENTRE du carreau qui apparait (Jacques), au
-            // moment du son ; il s'efface pendant que le carreau rapetisse.
-            const plus = document.createElement("div");
-            plus.className = "carreau-plus";
-            plus.textContent = "+1";
-            plus.style.left = (x0 + S / 2) + "px";
-            plus.style.top = (y0 + S / 2) + "px";
-            setTimeout(() => document.body.appendChild(plus), 120);
-            setTimeout(() => plus.remove(), 1100);
-            requestAnimationFrame(() => fond.classList.add("visible"));
-            setTimeout(() => document.body.appendChild(vol), 120);
-            setTimeout(() => {
-                const k = FW / L;
-                const tx = fx + rect[0] * k - x0, ty = fy + rect[1] * k - y0;
-                vol.style.animation = "none";
-                vol.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + Math.max(0.02, rect[2] * k / S).toFixed(3) + ")";
-                vol.style.borderRadius = "1px";
-            }, 420);
-            setTimeout(() => {
-                vol.remove();
-                mini.getContext("2d").drawImage(apres, 0, 0);
-                fond.classList.add("recoit");
-            }, 980);
-            setTimeout(() => fond.classList.remove("visible", "recoit"), 1350);
-            setTimeout(() => fond.remove(), 1650);
-        }catch(e){ try{ noterAudio("carreau", "ORAL", "animation refusee : " + (e && e.name)); }catch(e2){} }
-    }).catch(() => {});
+    if(avecConfettis){ try{ launchConfetti(); }catch(e){} }
+    if(!poses) return;
+    try{
+        const src = document.getElementById("mosaiqueToile");
+        if(!src || !src.width || !src.height) return;
+        const FW = Math.round(Math.min(window.innerWidth * 0.24, 96));
+        const fond = document.createElement("div");
+        fond.className = "carreau-mini";
+        fond.style.right = "12px";
+        fond.style.top = "calc(12px + env(safe-area-inset-top, 0px))";
+        fond.style.width = FW + "px";
+        const copie = document.createElement("canvas");
+        copie.width = src.width; copie.height = src.height;
+        copie.getContext("2d").drawImage(src, 0, 0);
+        fond.appendChild(copie);
+        const plus = document.createElement("div");
+        plus.className = "carreau-plus";
+        plus.textContent = "+1";
+        fond.appendChild(plus);
+        document.body.appendChild(fond);
+        requestAnimationFrame(() => fond.classList.add("visible", "recoit"));
+        setTimeout(() => fond.classList.remove("visible", "recoit"), 1150);
+        setTimeout(() => fond.remove(), 1500);
+    }catch(e){ try{ noterAudio("carreau", "ORAL", "animation refusee : " + (e && e.name)); }catch(e2){} }
 }
 
 function ouvrirSceneLibre(nom){
@@ -43693,6 +43653,12 @@ window.addEventListener("message", (e) => {
     // Seule la page de scene que l'app a ouverte parle ici.
     try{ if(new URL(baseScenes()).origin !== e.origin) return; }catch(err){ return; }
     const cadre = document.getElementById("sceneCadre");
+    // v850 (17 oct. 2026) : UNE SCENE SANS FAUTE, DES CONFETTIS. Jacques :
+    // « lorsqu'on a cinq questions dans une scene et que les cinq sont reussies,
+    // on pourra avoir les confettis ». La scene envoie bons / faits avec « fini ».
+    if(d.type === "fini" && d.faits > 0 && d.bons === d.faits && sceneOuverteDepuis !== "admin"){
+        setTimeout(() => { try{ launchConfetti(); playMasteredSound(); }catch(err){} }, 300);
+    }
     if(d.type === "reponse"){
         // Depuis la seance ET la tuile « Scenes » (v746). Seul le tableau de
         // bord est exclu : il ouvre une scene pour la TESTER, et ses reponses
@@ -45026,7 +44992,7 @@ function montrerCartePhrase(item){
                     let poses = 0;
                     try{ const avant = etatMosaique().c; poserCarreau(true); const v = etatMosaique(); if(v.c > avant) poses = v.c; }catch(e){}
                     try{ registerComboSuccess(); addXp(XP_PER_SUCCESS); updateXpComboDisplay(); checkAndUnlockBadges(); }catch(e){}
-                    suite.addEventListener("click", () => lancerCarreauVersMosaique(poses), { once: true, capture: true });
+                    suite.addEventListener("click", () => lancerCarreauVersMosaique(poses, true), { once: true, capture: true });
                 }
                 return;
             }
