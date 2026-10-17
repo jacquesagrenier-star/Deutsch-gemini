@@ -9368,3 +9368,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
 - v848 : « au moment du son, on devrait voir apparaitre aussi +1 », « au centre de la tuile qui
   apparait » : un +1 blanc au centre du carreau gagne, qui s efface pendant qu il rapetisse
   (au moment du son de recompense).
+- v849 : « des carreaux pour toutes les cartes » (l'oral ne marche pas encore dans l'app avant
+  Codemagic). Essai admin carreau_partout : chaque carreau pose par une carte (flashcard, phrase,
+  oral) monte avec son +1 et le son de recompense ; une animation a la fois (les suivantes sont
+  sautees pendant 1,6 s).

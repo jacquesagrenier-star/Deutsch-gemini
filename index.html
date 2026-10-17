@@ -7575,7 +7575,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v848</span>
+    <span class="subtitle-version">v849</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -34889,6 +34889,13 @@ const ESSAIS = {
     // EN ESSAI le 17 oct. 2026 (v845), admin seul. Jacques : « rien ne m'indique
     // que j'ai reussi » ; apres la recherche du marche : « faisons un a quatre ».
     // Maquette : .claude/maquette-carte-oral-v2.html.
+    // EN ESSAI le 17 oct. 2026 (v849), admin seul. Jacques : « des carreaux pour
+    // toutes les cartes ». Voir poserCarreau() et lancerCarreauVersMosaique().
+    carreau_partout: {
+        etat: "admin",
+        titre: "Le carreau qui monte, partout",
+        desc: "Chaque carte qui ajoute un carreau au tableau le montre : le carreau gagné, gros, avec « +1 », qui rapetisse vers une petite mosaïque en haut à droite, avec le son de la récompense."
+    },
     oral_v2: {
         etat: "admin",
         titre: "L'oral, deuxième version",
@@ -39850,7 +39857,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 848;
+const APP_VERSION = 849;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42511,7 +42518,7 @@ function tessellesMosaique(rang, c0, r0, eclats){
 // rien. Le fichier a dit << treize >> de la v543 a la v631, sans qu'aucune
 // constante ait jamais bouge : il est ne faux. C'est le chiffre ECRIT A LA
 // MAIN qui derive, jamais celui que pose {j} dans ip_tableau_plafond.
-function poserCarreau(){
+function poserCarreau(sansAnimation){
     const v = etatMosaique();
     const jour = getTodayStr();
     if(v.j !== jour){ v.j = jour; v.n = 0; }
@@ -42535,6 +42542,8 @@ function poserCarreau(){
     v.n += 1; v.c += 1;
     ecrireMosaique(v);
     majMosaiqueAccueil();
+    // v849 (essai carreau_partout) : le carreau se voit monter.
+    if(!sansAnimation){ try{ if(essaiActif("carreau_partout")) lancerCarreauVersMosaique(v.c); }catch(e){} }
 }
 
 // Appelee a la fin d'une seance : fait avancer le compte des seances du trophee
@@ -43518,6 +43527,11 @@ function repeindreApresScene(ecran){
 // par Jacques sur la page d'essai .claude/test-carreau.html.
 let CARREAU_POSITION = "coin";
 function lancerCarreauVersMosaique(poses){
+    // Une animation a la fois : la suivante attend que la precedente soit finie
+    // (cartes enchainees vite, ou l'oral qui en pose deux d'un coup).
+    const maintenant = Date.now();
+    if(maintenant - (lancerCarreauVersMosaique.dernier || 0) < 1600) return;
+    lancerCarreauVersMosaique.dernier = maintenant;
     try{ playMasteredSound(); }catch(e){}
     if(!poses || typeof MOSAIQUES === "undefined") return;
     const m = mosaiqueCourante();
@@ -45010,7 +45024,7 @@ function montrerCartePhrase(item){
                     // Le carreau n'est gagne que s'il est vraiment pose (plafond du
                     // jour, trophee en cours) : sinon, le son seul.
                     let poses = 0;
-                    try{ const avant = etatMosaique().c; poserCarreau(); const v = etatMosaique(); if(v.c > avant) poses = v.c; }catch(e){}
+                    try{ const avant = etatMosaique().c; poserCarreau(true); const v = etatMosaique(); if(v.c > avant) poses = v.c; }catch(e){}
                     try{ registerComboSuccess(); addXp(XP_PER_SUCCESS); updateXpComboDisplay(); checkAndUnlockBadges(); }catch(e){}
                     suite.addEventListener("click", () => lancerCarreauVersMosaique(poses), { once: true, capture: true });
                 }
