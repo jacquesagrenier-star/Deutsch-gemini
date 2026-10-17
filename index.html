@@ -7573,7 +7573,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v852</span>
+    <span class="subtitle-version">v853</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39855,7 +39855,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 852;
+const APP_VERSION = 853;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42544,6 +42544,30 @@ function poserCarreau(sansAnimation){
     if(!sansAnimation){ try{ if(essaiActif("carreau_partout")) lancerCarreauVersMosaique(v.c); }catch(e){} }
 }
 
+// v853 (17 oct. 2026) : LE CARREAU SE POSE QUAND LA CARTE EST JUGEE, PAS QUAND
+// ELLE PART. Jacques : « souvent les confettis sont la, la mosaique apparait sur
+// la carte suivante ». Les confettis partent au clic ; nextFlashcard(), lui,
+// attend 950 ms (celebrerPalier), le temps de la fete (markMastered) ou le
+// couvercle du coffre -- et le +1 tombait sur la carte d'apres. Chaque jugement
+// qui fait attendre la carte pose donc son carreau tout de suite, ici ;
+// nextFlashcard() voit la marque et ne le pose pas une seconde fois.
+// ⚠️ LA MARQUE EST LA CARTE ELLE-MEME, ET ELLE SE CONSOMME AU DEPART. Le
+// drapeau de la v852 (item._carreauPose) restait colle a l'objet : une phrase
+// ratee qui revient en fin de seance, ou un mot « Encore », repartait sans
+// carreau la seconde fois.
+let carreauDejaPose = null;
+function poserCarreauDeLaCarte(item, sansAnimation){
+    if(!item || carreauDejaPose === item) return;
+    carreauDejaPose = item;
+    poserCarreau(sansAnimation);
+}
+// Au depart d'une carte : son carreau, sauf s'il est deja pose.
+function carreauAuDepart(quittee){
+    const deja = !!quittee && carreauDejaPose === quittee;
+    carreauDejaPose = null;
+    if(!deja) poserCarreau();
+}
+
 // Appelee a la fin d'une seance : fait avancer le compte des seances du trophee
 // et bascule sur l'image suivante quand il est ecoule.
 // ⚠️ LE TROPHEE SE COMPTE EN JOURS D'ACTIVITE, PLUS EN VISITES (v629).
@@ -44493,7 +44517,7 @@ function montrerCartePhrase(item){
         // fois j'ai juste les confettis, pas la mosaique ». Le carreau ne se
         // posait qu'au « Continuer », une seconde plus tard ; il se pose ici, et
         // nextFlashcard() ne le pose pas une seconde fois.
-        if(juste){ try{ if(essaiActif("carreau_partout")){ poserCarreau(); item._carreauPose = true; } }catch(e){} }
+        if(juste){ try{ poserCarreauDeLaCarte(item); }catch(e){} }
         retour.classList.remove("hidden");
         retour.classList.add(juste ? "bon" : "faux");
         const ref = texteJuste || (item.phrase ? item.phrase.de : "");
@@ -45012,9 +45036,13 @@ function montrerCartePhrase(item){
                     // Le carreau n'est gagne que s'il est vraiment pose (plafond du
                     // jour, trophee en cours) : sinon, le son seul.
                     let poses = 0;
-                    try{ const avant = etatMosaique().c; poserCarreau(true); const v = etatMosaique(); if(v.c > avant) poses = v.c; }catch(e){}
+                    try{ const avant = etatMosaique().c; poserCarreauDeLaCarte(item, true); const v = etatMosaique(); if(v.c > avant) poses = v.c; }catch(e){}
                     try{ registerComboSuccess(); addXp(XP_PER_SUCCESS); updateXpComboDisplay(); checkAndUnlockBadges(); }catch(e){}
-                    suite.addEventListener("click", () => lancerCarreauVersMosaique(poses, true), { once: true, capture: true });
+                    // v853 : AVEC LE ✓, PLUS SUR « CONTINUER ». Au clic, la carte
+                    // suivante arrivait dans la meme image : confettis et +1
+                    // tombaient sur elle. Et nextFlashcard() reposait un second
+                    // carreau en partant (« +2 ») -- la marque l'en empeche.
+                    setTimeout(() => { if(micro.isConnected) lancerCarreauVersMosaique(poses, true); }, 260);
                 }
                 return;
             }
@@ -45034,7 +45062,7 @@ function montrerCartePhrase(item){
             if(v2 && s.niveau === "bon" && !eclatDonne){
                 // Un carreau de plus pour la mosaique (dans le plafond du jour).
                 eclatDonne = true;
-                try{ poserCarreau(); }catch(e){}
+                try{ poserCarreauDeLaCarte(item); }catch(e){}
                 verdict.appendChild(creer("p", "cp-or-eclat", t("or_eclat")));
             }
             if(s.niveau === "rien") verdict.appendChild(creer("p", "", t("or_rien_aide")));
@@ -46228,6 +46256,7 @@ function reviewAgain(){
     // Ici on ne fait donc QUE remettre la carte dans la file de la seance.
     if(dansLePaquetGarde()){
         remettreEnFile(item);
+        try{ poserCarreauDeLaCarte(item); }catch(e){}   // v853
         clearTimeout(attentePalier);
         attentePalier = setTimeout(nextFlashcard, 220);
         return;
@@ -46281,6 +46310,8 @@ let attentePalier = null;
 function celebrerPalier(pointGagne){
     majEcheances(true);
     if(pointGagne){ launchConfetti(); playMasteredSound(); }
+    // v853 : le +1 avec les confettis, pas sur la carte suivante.
+    try{ poserCarreauDeLaCarte(carteCourante()); }catch(e){}
     clearTimeout(attentePalier);
     // La celebration garde son temps d'animation, mais elle ne fait plus
     // disparaitre la carte : elle ouvre « Suivant ».
@@ -46387,6 +46418,7 @@ function basculerGardeCarte(){
     // pour le revoir » demande. On perd en echange le degardage depuis une
     // seance ordinaire -- il se fait dans le paquet des gardes, avec « Sortir
     // du coffre », qui est le seul endroit ou la question se pose vraiment.
+    try{ poserCarreauDeLaCarte(it); }catch(e){}   // v853 : pendant le couvercle
     clearTimeout(attentePalier);
     attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
 }
@@ -46418,6 +46450,7 @@ function sortirDuCoffre(){
     // le mot du coffre ».
     // Le coffre est un lieu de passage, pas un jugement : on y entre, on y
     // tourne, on en sort, et le calendrier du mot n'a pas bouge d'un jour.
+    try{ poserCarreauDeLaCarte(it); }catch(e){}   // v853
     clearTimeout(attentePalier);
     attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
 }
@@ -47182,6 +47215,7 @@ function markMastered(discret){
     // selon le chemin depuis la v596 -- voir ATTENTE_ETOILE_MS.
     feterLeTrophee();
     majEcheances(true);
+    try{ poserCarreauDeLaCarte(item); }catch(e){}   // v853, voir celebrerPalier()
     clearTimeout(attentePalier);
     attentePalier = setTimeout(nextFlashcard,
         (discret && !justReachedMultiple) ? ATTENTE_ETOILE_MS : ATTENTE_FETE_MS);
@@ -47215,9 +47249,8 @@ function nextFlashcard(){
     // sont les deux seuls endroits ou l'etudiant passe a une autre carte. Le
     // poser dans loadFlashcard() le compterait deux fois a chaque changement de
     // langue, qui redessine la carte courante.
-    // v852 : sauf s'il a deja ete pose a la bonne reponse (voir conclure()).
-    const quittee = currentCards[currentFlashcard - 1];
-    if(!(quittee && quittee._carreauPose)) poserCarreau();
+    // v853 : sauf s'il a deja ete pose au jugement (voir poserCarreauDeLaCarte()).
+    carreauAuDepart(currentCards[currentFlashcard - 1]);
     updateOrbBadges();
     if(currentFlashcard >= currentCards.length){
         // La decouverte guidee (v700) garde la main a la fin de SON paquet :
@@ -47283,7 +47316,7 @@ function skipFlashcard(){
     }
     currentFlashcard++;
     carteSeanceSuivie();
-    poserCarreau();
+    carreauAuDepart(currentCards[currentFlashcard - 1]);
     if(currentFlashcard >= currentCards.length){
         finSeanceSuivie(true);
         showInfoToast(t('alert_session_ended'));

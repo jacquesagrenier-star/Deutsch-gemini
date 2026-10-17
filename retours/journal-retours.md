@@ -9395,3 +9395,10 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   carreau ne se posait qu'au Continuer ; il se pose maintenant a la bonne reponse, avec les
   confettis (essai carreau_partout). « Quand tous mes mots sont en vert, que l'enregistrement
   s'arrete automatiquement » : fait (carte d'oral v2).
+- v853 : « souvent les confettis sont la, la mosaique apparait sur la carte suivante ». Cause : les
+  confettis partaient au clic, le carreau seulement au depart de la carte (950 ms apres Je savais,
+  apres la fete d'un mot maitrise, apres le couvercle du coffre). Le carreau se pose maintenant au
+  jugement (poserCarreauDeLaCarte), mesure : +1 a 13 ms, carte changee a ~970 ms. L'oral v2 montrait
+  confettis et +1 au Continuer, donc sur la carte suivante, et reposait un second carreau en partant
+  (+2) : les deux arrivent avec le check, un seul carreau. Le drapeau v852 restait colle aux phrases
+  revenues en fin de seance (pas de carreau au second passage) : remplace.
