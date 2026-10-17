@@ -9353,3 +9353,9 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
 - v846 : « un peu agressant, ce rond qui grossit ou qui clignote ; j'imagine un signal
   oscillatoire, qu'on voit la voix ». Carte d'oral v2 : rond rouge immobile, onde de la voix en
   barres qui defilent (comme le Dictaphone), plus de pulsation.
+- v847 : « pas besoin de dire bravo, on t'a bien compris, ni +1 carreau ; quand on fait
+  Continuer, qu'on voie le carreau monter du milieu de l'ecran vers la mosaique », « avec le son
+  actuel », « le vrai tableau qui est en train de se construire ». Carte d'oral v2 : reussite =
+  phrase verte + rond ✓, sans bandeau ; sur Continuer, le son de recompense et LE carreau gagne
+  (dessinerMosaique rend sa place) monte vers une mini-mosaique du vrai tableau en haut a droite ;
+  pas de confettis. Page d'essai : .claude/test-carreau.html.

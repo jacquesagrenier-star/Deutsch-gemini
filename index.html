@@ -6447,6 +6447,14 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-micro.v2, .cp-or-micro.v2.ecoute{transform:none !important; box-shadow:0 8px 20px rgba(28,36,48,.18); margin:8px 0;}
 .cp-or-micro.v2.ecoute::after{display:none;}
 .cp-or-forme{display:block; width:280px; max-width:92%; height:56px;}
+.cp-or-micro.reussi{background:#2e8b57 !important;}
+/* v847 : le carreau qui monte vers la petite mosaique, en haut a droite. */
+.carreau-mini{position:fixed; top:calc(12px + env(safe-area-inset-top, 0px)); right:12px; width:96px; z-index:9998; border-radius:8px; overflow:hidden; background:#efe8dc; box-shadow:0 0 0 2px #e3dccf, 0 6px 18px rgba(28,36,48,.18); opacity:0; transform:translateY(-8px); transition:opacity .25s, transform .25s; pointer-events:none;}
+.carreau-mini canvas{display:block; width:100%; height:auto;}
+.carreau-mini.visible{opacity:1; transform:none;}
+.carreau-mini.recoit{box-shadow:0 0 0 3px #E8A23A, 0 6px 22px rgba(232,162,58,.55);}
+.carreau-vol{position:fixed; width:64px; height:64px; border-radius:9px; z-index:9999; pointer-events:none; transform-origin:0 0; box-shadow:0 0 0 3px #E8A23A, 0 8px 22px rgba(232,162,58,.55); animation:carreau-pop .35s ease both; transition:transform .75s cubic-bezier(.5,-0.15,.35,1), border-radius .75s;}
+@keyframes carreau-pop{0%{opacity:0; transform:scale(.3) rotate(-10deg)} 100%{opacity:1; transform:none}}
 body[data-theme="dark"] .cp-or-motseul{background:#232a34;}
 body[data-theme="dark"] .cp-or-motseul button{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .cp-or-gris{color:#5c6573;}
@@ -7565,7 +7573,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v846</span>
+    <span class="subtitle-version">v847</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39857,7 +39865,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 846;
+const APP_VERSION = 847;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43507,6 +43515,62 @@ function repeindreApresScene(ecran){
     }, 400);
 }
 
+// v847 (17 oct. 2026) : LE CARREAU QUI MONTE. Une phrase reussie a l'oral
+// (essai oral_v2) : sur « Continuer », le son de la recompense, et un carreau du
+// tableau monte du milieu de l'ecran vers une petite mosaique qui apparait en
+// haut a droite -- une copie de celle de l'accueil (#mosaiqueToile) -- puis
+// s'efface. Rien ne bloque : la carte suivante arrive dessous. Sans mosaique
+// dessinee (jamais passe par l'accueil), le son seul.
+function lancerCarreauVersMosaique(poses){
+    try{ playMasteredSound(); }catch(e){}
+    if(!poses || typeof MOSAIQUES === "undefined") return;
+    const m = mosaiqueCourante();
+    if(!m) return;
+    imageMosaique(m).then(img => {
+        try{
+            const L = 240, H = Math.round(L * img.height / img.width);
+            // Le tableau AVANT le carreau, puis APRES : la difference est le
+            // carreau gagne, que dessinerMosaique() rend en coordonnees.
+            const mini = document.createElement("canvas");
+            mini.width = L; mini.height = H;
+            dessinerMosaique(mini, img, poses - 1, MOSAIQUE_CARREAUX, false);
+            const apres = document.createElement("canvas");
+            apres.width = L; apres.height = H;
+            const rect = dessinerMosaique(apres, img, poses, MOSAIQUE_CARREAUX, false);
+            if(!rect) return;
+            const fond = document.createElement("div");
+            fond.className = "carreau-mini";
+            fond.appendChild(mini);
+            document.body.appendChild(fond);
+            const vol = document.createElement("canvas");
+            vol.className = "carreau-vol";
+            vol.width = 64; vol.height = 64;
+            const cv = vol.getContext("2d");
+            cv.imageSmoothingEnabled = false;
+            cv.drawImage(apres, rect[0], rect[1], rect[2], rect[3], 0, 0, 64, 64);
+            const x0 = window.innerWidth / 2 - 32, y0 = window.innerHeight * 0.55 - 32;
+            vol.style.left = x0 + "px"; vol.style.top = y0 + "px";
+            document.body.appendChild(vol);
+            requestAnimationFrame(() => fond.classList.add("visible"));
+            setTimeout(() => {
+                const r = fond.getBoundingClientRect();
+                const k = r.width / L;
+                const tx = r.left + rect[0] * k - x0, ty = r.top + rect[1] * k - y0;
+                vol.style.animation = "none";
+                vol.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + Math.max(0.05, rect[2] * k / 64).toFixed(3) + ")";
+                vol.style.borderRadius = "1px";
+            }, 380);
+            setTimeout(() => {
+                vol.remove();
+                mini.getContext("2d").drawImage(apres, 0, 0);
+                fond.classList.add("recoit");
+            }, 1180);
+            setTimeout(() => fond.classList.remove("visible", "recoit"), 2100);
+            setTimeout(() => fond.remove(), 2500);
+        }catch(e){ try{ noterAudio("carreau", "ORAL", "animation refusee : " + (e && e.name)); }catch(e2){} }
+    }).catch(() => {});
+}
+
 function ouvrirSceneLibre(nom){
     sceneOuverteDepuis = "libre";
     const cadre = document.getElementById("sceneCadre");
@@ -44915,6 +44979,25 @@ function montrerCartePhrase(item){
                 reessayer.textContent = "🎙 " + t("or_phrase_entiere");
                 return;
             }
+            if(v2 && s.niveau === "bon"){
+                // v847 : pas de bandeau. La phrase en vert, le rond en ✓ ; le
+                // carreau monte sur « Continuer », avec le son de la recompense.
+                verdict.className = "cp-or-verdict hidden";
+                phrase.textContent = "";
+                phrase.appendChild(creer("span", "cp-or-allume", item.phrase.de));
+                reessayer.classList.add("hidden");
+                setTimeout(() => { micro.classList.add("reussi"); micro.textContent = "✓"; }, 260);
+                if(!eclatDonne){
+                    eclatDonne = true;
+                    // Le carreau n'est gagne que s'il est vraiment pose (plafond du
+                    // jour, trophee en cours) : sinon, le son seul.
+                    let poses = 0;
+                    try{ const avant = etatMosaique().c; poserCarreau(); const v = etatMosaique(); if(v.c > avant) poses = v.c; }catch(e){}
+                    try{ registerComboSuccess(); addXp(XP_PER_SUCCESS); updateXpComboDisplay(); checkAndUnlockBadges(); }catch(e){}
+                    suite.addEventListener("click", () => lancerCarreauVersMosaique(poses), { once: true, capture: true });
+                }
+                return;
+            }
             verdict.classList.add(s.niveau);
             verdict.appendChild(creer("h3", "", t(v2 && s.niveau === "bon" ? "or_bravo" : "or_" + s.niveau)));
             if(s.niveau !== "rien" && s.texte){
@@ -44961,7 +45044,7 @@ function montrerCartePhrase(item){
             essai = { enCours: false, juge: false, textes: [], avecReco: false, recoFinie: false, recFini: false };
             const ici = essai;
             if(v2){
-                micro.classList.remove("appel");
+                micro.classList.remove("appel", "reussi");
                 // Le modele se tait : la reconnaissance l'entendrait.
                 try{ arreterAudioPregenere(); }catch(e){}
                 try{ if(window.speechSynthesis && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel(); }catch(e){}
