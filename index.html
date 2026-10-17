@@ -6448,9 +6448,9 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-micro.v2.ecoute::after{display:none;}
 .cp-or-forme{display:block; width:280px; max-width:92%; height:56px;}
 .cp-or-micro.reussi{background:#2e8b57 !important;}
-/* v854 : la pilule du carreau gagne (« Ic »), centree en haut : la mosaique, le carreau allume, +1, 142 / 700, la jauge. */
-.carreau-mini{position:fixed; left:50%; z-index:9998; display:flex; align-items:center; gap:7px; background:#fff; border-radius:10px; padding:4px 9px 4px 4px; box-shadow:0 0 0 1.5px #e3dccf, 0 8px 20px rgba(28,36,48,.2); opacity:0; transform:translate(-50%,-8px); transition:opacity .25s, transform .25s; pointer-events:none;}
-.carreau-mini.visible{opacity:1; transform:translate(-50%,0);}
+/* v855 : la pilule du carreau gagne (« Ic »), sous les boutons des reglages, a droite : la mosaique, le carreau allume, +1, 142 / 700, la jauge. */
+.carreau-mini{position:fixed; right:20px; z-index:9998; display:flex; align-items:center; gap:7px; background:#fff; border-radius:10px; padding:4px 9px 4px 4px; box-shadow:0 0 0 1.5px #e3dccf, 0 8px 20px rgba(28,36,48,.2); opacity:0; transform:translateY(-8px); transition:opacity .25s, transform .25s; pointer-events:none;}
+.carreau-mini.visible{opacity:1; transform:none;}
 .carreau-mini .cm-toile{position:relative; flex:0 0 auto; border-radius:6px; background:#efe8dc;}
 .carreau-mini canvas{display:block; width:100%; height:auto; border-radius:5px;}
 .cm-allume{position:absolute; border:2.5px solid #E8A23A; border-radius:3px; box-shadow:0 0 0 1.5px #fff, 0 0 12px 3px rgba(232,162,58,.9); animation:cm-pulse .55s ease-in-out 3 alternate;}
@@ -7585,7 +7585,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v854</span>
+    <span class="subtitle-version">v855</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39867,7 +39867,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 854;
+const APP_VERSION = 855;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43604,7 +43604,10 @@ function lancerCarreauVersMosaique(poses, avecConfettis){
             } else {
                 fond = document.createElement("div");
                 fond.className = "carreau-mini";
-                fond.style.top = "calc(12px + env(safe-area-inset-top, 0px))";
+                // v855 : SOUS LES BOUTONS DES REGLAGES, A DROITE (Jacques). Centree en
+                // haut, elle cachait le logo ; la bande de 58 a 128 px a droite est
+                // vide sur toutes les cartes, au grand comme au petit iPhone.
+                fond.style.top = "calc(62px + env(safe-area-inset-top, 0px))";
                 const cadreToile = document.createElement("div");
                 cadreToile.className = "cm-toile";
                 cadreToile.style.width = LARGEUR + "px";

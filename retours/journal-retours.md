@@ -9408,3 +9408,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   de place » ; P ecartee (« quatre carres », puis « on ne l'associe pas a la mosaique »). Choisie : Ic,
   une pilule couchee -- mosaique avec le carreau allume, +1, 142 / 700 qui roule, jauge -- « centree
   a la meme hauteur ». Essai carreau_partout.
+- v855 : « ca cache Wortando, je descendrais ; quel endroit risque de moins couvrir ? » puis « juste en
+  bas des reglages ». Mesure sur les ecrans de cartes (mot, phrase a ecouter, phrase a trou ; iPhone 15
+  et SE) : a droite, sous les trois boutons, la bande de 58 a 128 px est vide partout. La pilule y va
+  (top 62 px + zone sure, right 20 px).
