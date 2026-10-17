@@ -9323,3 +9323,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   Ferme : les contours d'Anna et de l'oncle regardes, propres ; huhn-5 (doublon de huhn-4) retire.
   Huit nouvelles scenes confiees a Fable (brief .claude/brief-fable-8-scenes-2.md : 4 Anna, 4 Mark,
   contours par points, sens traduit, au plus 10 images fal, aucune voix sans accord).
+- v843 : les huit scenes en production, dans la seance et le ruban : restaurant, marche de Noel,
+  atelier de velos (Fable, Mark), metro (Mark), coiffeur, demenagement, place, musee (Anna) -- Fable
+  a ete arrete faute de credits apres trois, un agent Opus a fait les cinq autres. 8 images fal
+  (1,20 $). Voix v2 demandees par Jacques (« assez de credits pour faire des voix ») : ~29 800 credits.
