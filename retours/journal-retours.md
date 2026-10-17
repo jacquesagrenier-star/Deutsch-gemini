@@ -9418,3 +9418,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   travers les confettis, pour les autres cartes ». Fait (essai carreau_partout) : plus de pilule ; un
   +1 ambre au milieu des confettis ; au palier de l'objectif du jour, la mosaique sous le bandeau et
   les carreaux gagnes depuis le palier precedent qui poppent un a un.
+- v857 : « il a dit +11 quand la mosaique a apparu » (le compte partait du chargement de la page) et
+  « on avait decide que quand on dit Encore, la carte compte +1 ; ca n'apparait plus, seulement si on
+  dit Je le savais ». Le +1 se montre a chaque carreau pose (Encore compris) ; au palier, la mosaique
+  dit le meme chiffre que le bandeau (+30) et fait popper les trente derniers carreaux.

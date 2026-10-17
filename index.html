@@ -7587,7 +7587,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v856</span>
+    <span class="subtitle-version">v857</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -34907,7 +34907,7 @@ const ESSAIS = {
     carreau_partout: {
         etat: "admin",
         titre: "La mosaïque au palier",
-        desc: "Les cartes gardent leurs confettis, avec un « +1 » jaune au milieu ; une bonne réponse dans une scène pose aussi un carreau. À chaque palier de l'objectif du jour (« +30 ! », « +60 ! »), la mosaïque apparaît sous le bandeau et les carreaux gagnés depuis le palier précédent y poppent un à un, avec le compte qui monte."
+        desc: "Chaque carte qui pose un carreau (« Je savais », « Encore », une phrase, l'oral) montre un « +1 » jaune, au milieu des confettis quand il y en a ; une bonne réponse dans une scène pose aussi un carreau. À chaque palier de l'objectif du jour (« +30 ! », « +60 ! »), la mosaïque apparaît sous le bandeau et les trente derniers carreaux y poppent un à un, avec le compte qui monte."
     },
     oral_v2: {
         etat: "admin",
@@ -39870,7 +39870,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 856;
+const APP_VERSION = 857;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42531,10 +42531,6 @@ function tessellesMosaique(rang, c0, r0, eclats){
 // rien. Le fichier a dit << treize >> de la v543 a la v631, sans qu'aucune
 // constante ait jamais bouge : il est ne faux. C'est le chiffre ECRIT A LA
 // MAIN qui derive, jamais celui que pose {j} dans ip_tableau_plafond.
-// v856 : le compte de carreaux au dernier palier montre (voir montrerMosaiquePalier).
-// En memoire seulement : apres un rechargement, on repart du premier carreau
-// pose -- ce qui est exactement « depuis le debut de cette seance ».
-let mosaiquePalierDepuis = null;
 function poserCarreau(){
     const v = etatMosaique();
     const jour = getTodayStr();
@@ -42556,7 +42552,6 @@ function poserCarreau(){
     // jours, on est paye dans une autre monnaie -- le tableau plein a l'ecran.
     // La recompense EST la recompense.
     if(v.t > 0) return false;
-    if(mosaiquePalierDepuis === null) mosaiquePalierDepuis = v.c;
     v.n += 1; v.c += 1;
     ecrireMosaique(v);
     majMosaiqueAccueil();
@@ -42564,6 +42559,12 @@ function poserCarreau(){
     // carreau_partout). RETIREE EN v856. Jacques : « a chaque fois qu'on tourne
     // une carte, ca peut devenir irritant » -- puis « je reviendrais aux
     // confettis, et juste au +30, voir la mosaique ». Voir montrerMosaiquePalier().
+    // v857 : LE « +1 » A CHAQUE CARREAU, « ENCORE » COMPRIS. Jacques : « on avait
+    // decide que quand on dit Encore, meme si on recule, la carte compte +1 ; ca
+    // n'apparait plus, seulement si on dit Je le savais ». En v856 il ne partait
+    // qu'avec les confettis -- or le carreau recompense la carte TRAVERSEE, pas
+    // la carte sue (v543). Il se montre donc la ou le carreau se pose.
+    try{ montrerPlusUn(); }catch(e){}
     return true;
 }
 
@@ -42579,11 +42580,10 @@ function poserCarreau(){
 // ratee qui revient en fin de seance, ou un mot « Encore », repartait sans
 // carreau la seconde fois.
 let carreauDejaPose = null;
-// `avecPlusUn` : la ou partent des confettis, un « +1 » jaune au milieu (v856).
-function poserCarreauDeLaCarte(item, avecPlusUn){
+function poserCarreauDeLaCarte(item){
     if(!item || carreauDejaPose === item) return;
     carreauDejaPose = item;
-    if(poserCarreau() && avecPlusUn) montrerPlusUn();
+    poserCarreau();
 }
 // Au depart d'une carte : son carreau, sauf s'il est deja pose.
 function carreauAuDepart(quittee){
@@ -43566,7 +43566,7 @@ function repeindreApresScene(ecran){
 // v856 (17 oct. 2026) : LE « +1 » DANS LES CONFETTIS. Jacques : « voir +1 en
 // jaune a travers les confettis, pour les autres cartes ». Au centre de
 // l'explosion (launchConfetti() part de 35 % de la hauteur), il monte et
-// s'efface. Une pastille ambre a texte encre plutot qu'un chiffre jaune nu :
+// s'efface. v857 : a chaque carreau pose, confettis ou non (voir poserCarreau). Une pastille ambre a texte encre plutot qu'un chiffre jaune nu :
 // du jaune sur la carte claire ne se lit pas -- c'est le defaut du +1 blanc sur
 // la mosaique qui a lance tout ce chantier. Pas pendant un palier : le bandeau
 // « +30 ! » et sa mosaique occupent deja le haut de l'ecran.
@@ -43584,9 +43584,8 @@ function montrerPlusUn(){
 // v856 (17 oct. 2026) : LES CARREAUX DU PALIER, QUI POPPENT. Jacques : « comme
 // on fait quand on dit +30, +60 -- on verra la mosaique avec +30 a cote ; on
 // pourrait meme les voir tous popper dans la mosaique ». Sous le bandeau du
-// palier de l'objectif du jour, la mosaique ; les carreaux gagnes depuis le
-// palier precedent (ou depuis le debut de la seance) s'y allument un a un, et
-// le compte roule avec eux. Elle remplace la petite mosaique qui se montrait a
+// palier de l'objectif du jour, la mosaique ; les derniers carreaux gagnes s'y
+// allument un a un, et le compte roule avec eux. Elle remplace la petite mosaique qui se montrait a
 // chaque carreau (v849-v855, maquette .claude/maquette-plus-un.html) : a chaque
 // carte, c'etait trop ; la recompense arrive quand il y a quelque chose a feter.
 // ⚠️ LA MOSAIQUE EST REDESSINEE, PAS COPIEE DE L'ACCUEIL. #mosaiqueToile n'est
@@ -43594,17 +43593,25 @@ function montrerPlusUn(){
 // en bande. On dessine petit (240 px), l'image decodee est gardee.
 // ⚠️ UN DESSIN PAR CARREAU, DONC UN PLAFOND : au-dela de 60, seuls les 60
 // derniers poppent -- 60 dessins de quelques ms, pas 700.
+// v857 : LE MEME CHIFFRE QUE LE BANDEAU. Jacques : « il a dit +11 quand la
+// mosaique a apparu ». La v856 comptait depuis le dernier palier GARDE EN
+// MEMOIRE -- donc depuis le chargement de la page apres une mise a jour, ou
+// depuis le premier carreau apres une reouverture de l'app. Le palier dit
+// « +30 ! » : ce sont les 30 derniers carreaux qui poppent, et la mosaique dit
+// +30 aussi. (Pas exactement les cartes de l'objectif -- un « Encore » pose un
+// carreau sans compter -- mais ce que l'oeil voit est juste : trente carreaux
+// de plus sur le tableau.)
 function montrerMosaiquePalier(){
     const v = etatMosaique();
     const jusqua = v.c;
-    let depuis = mosaiquePalierDepuis === null ? jusqua : mosaiquePalierDepuis;
-    mosaiquePalierDepuis = jusqua;
-    if(v.t > 0 || jusqua <= depuis) return;
+    let objectif = 30;
+    try{ objectif = getDailyGoalTarget() || objectif; }catch(e){}
+    const gagnes = Math.min(objectif, jusqua);
+    let depuis = jusqua - Math.min(gagnes, 60);
+    if(v.t > 0 || gagnes <= 0) return;
     const m = mosaiqueCourante();
     const conteneur = document.getElementById("confettiContainer");
     if(!m || !conteneur) return;
-    const gagnes = jusqua - depuis;
-    depuis = Math.max(depuis, jusqua - 60);
     imageMosaique(m).then(img => {
         try{
             const LARGEUR = 200;
@@ -44593,7 +44600,7 @@ function montrerCartePhrase(item){
         // fois j'ai juste les confettis, pas la mosaique ». Le carreau ne se
         // posait qu'au « Continuer », une seconde plus tard ; il se pose ici, et
         // nextFlashcard() ne le pose pas une seconde fois.
-        if(juste){ try{ poserCarreauDeLaCarte(item, true); }catch(e){} }
+        if(juste){ try{ poserCarreauDeLaCarte(item); }catch(e){} }
         retour.classList.remove("hidden");
         retour.classList.add(juste ? "bon" : "faux");
         const ref = texteJuste || (item.phrase ? item.phrase.de : "");
@@ -45109,7 +45116,7 @@ function montrerCartePhrase(item){
                 setTimeout(() => { micro.classList.add("reussi"); micro.textContent = "✓"; }, 260);
                 if(!eclatDonne){
                     eclatDonne = true;
-                    try{ poserCarreauDeLaCarte(item, true); }catch(e){}
+                    try{ poserCarreauDeLaCarte(item); }catch(e){}
                     try{ registerComboSuccess(); addXp(XP_PER_SUCCESS); updateXpComboDisplay(); checkAndUnlockBadges(); }catch(e){}
                     // v853 : AVEC LE ✓, PLUS SUR « CONTINUER ». Au clic, la carte
                     // suivante arrivait dans la meme image : les confettis
@@ -46384,7 +46391,7 @@ function celebrerPalier(pointGagne){
     majEcheances(true);
     if(pointGagne){ launchConfetti(); playMasteredSound(); }
     // v853 : le +1 avec les confettis, pas sur la carte suivante.
-    try{ poserCarreauDeLaCarte(carteCourante(), pointGagne); }catch(e){}
+    try{ poserCarreauDeLaCarte(carteCourante()); }catch(e){}
     clearTimeout(attentePalier);
     // La celebration garde son temps d'animation, mais elle ne fait plus
     // disparaitre la carte : elle ouvre « Suivant ».
@@ -47292,8 +47299,7 @@ function markMastered(discret){
     // selon le chemin depuis la v596 -- voir ATTENTE_ETOILE_MS.
     feterLeTrophee();
     majEcheances(true);
-    // v856 : le « +1 » avec les petits confettis ; un palier a sa propre fete.
-    try{ poserCarreauDeLaCarte(item, !justReachedMultiple); }catch(e){}   // v853, voir celebrerPalier()
+    try{ poserCarreauDeLaCarte(item); }catch(e){}   // v853, voir celebrerPalier()
     clearTimeout(attentePalier);
     attentePalier = setTimeout(nextFlashcard,
         (discret && !justReachedMultiple) ? ATTENTE_ETOILE_MS : ATTENTE_FETE_MS);
