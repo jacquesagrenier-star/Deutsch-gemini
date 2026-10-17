@@ -7573,7 +7573,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v850</span>
+    <span class="subtitle-version">v851</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39855,7 +39855,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 850;
+const APP_VERSION = 851;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43527,39 +43527,43 @@ function repeindreApresScene(ecran){
 // (#mosaiqueToile, la bande), le « +1 » s'y allume avec la lueur ambree.
 // Les confettis : seulement pour une vraie reussite (l'oral), pas a chaque carte.
 function lancerCarreauVersMosaique(poses, avecConfettis){
-    // Une animation a la fois (cartes enchainees vite, ou l'oral qui en pose deux).
-    const maintenant = Date.now();
-    // Les confettis de l'oral passent quand meme : la carte suivante peut avoir
-    // deja pose son propre carreau dans le meme toucher.
-    if(maintenant - (lancerCarreauVersMosaique.dernier || 0) < 1400){
-        if(avecConfettis){ try{ launchConfetti(); }catch(e){} }
-        return;
-    }
-    lancerCarreauVersMosaique.dernier = maintenant;
     try{ playMasteredSound(); }catch(e){}
     if(avecConfettis){ try{ launchConfetti(); }catch(e){} }
     if(!poses) return;
+    // v851 : PLUS RIEN N'EST SAUTE. La regle « une animation a la fois » perdait
+    // le carreau d'une carte passee vite (Jacques : « des fois je l'ai, des fois
+    // non »). Si la petite mosaique est encore la, elle reste et compte : +2, +3.
+    const L = lancerCarreauVersMosaique;
     try{
-        const src = document.getElementById("mosaiqueToile");
-        if(!src || !src.width || !src.height) return;
-        const FW = Math.round(Math.min(window.innerWidth * 0.24, 96));
-        const fond = document.createElement("div");
-        fond.className = "carreau-mini";
-        fond.style.right = "12px";
-        fond.style.top = "calc(12px + env(safe-area-inset-top, 0px))";
-        fond.style.width = FW + "px";
-        const copie = document.createElement("canvas");
-        copie.width = src.width; copie.height = src.height;
-        copie.getContext("2d").drawImage(src, 0, 0);
-        fond.appendChild(copie);
-        const plus = document.createElement("div");
-        plus.className = "carreau-plus";
-        plus.textContent = "+1";
-        fond.appendChild(plus);
-        document.body.appendChild(fond);
-        requestAnimationFrame(() => fond.classList.add("visible", "recoit"));
-        setTimeout(() => fond.classList.remove("visible", "recoit"), 1150);
-        setTimeout(() => fond.remove(), 1500);
+        if(L.fond && L.fond.isConnected){
+            L.n = (L.n || 1) + 1;
+            L.plus.textContent = "+" + L.n;
+            L.plus.style.animation = "none"; void L.plus.offsetWidth; L.plus.style.animation = "";
+            L.fond.classList.add("visible", "recoit");
+        } else {
+            const src = document.getElementById("mosaiqueToile");
+            if(!src || !src.width || !src.height) return;
+            const FW = Math.round(Math.min(window.innerWidth * 0.24, 96));
+            const fond = document.createElement("div");
+            fond.className = "carreau-mini";
+            fond.style.right = "12px";
+            fond.style.top = "calc(12px + env(safe-area-inset-top, 0px))";
+            fond.style.width = FW + "px";
+            const copie = document.createElement("canvas");
+            copie.width = src.width; copie.height = src.height;
+            copie.getContext("2d").drawImage(src, 0, 0);
+            fond.appendChild(copie);
+            const plus = document.createElement("div");
+            plus.className = "carreau-plus";
+            plus.textContent = "+1";
+            fond.appendChild(plus);
+            document.body.appendChild(fond);
+            L.fond = fond; L.plus = plus; L.n = 1;
+            requestAnimationFrame(() => fond.classList.add("visible", "recoit"));
+        }
+        clearTimeout(L.t1); clearTimeout(L.t2);
+        L.t1 = setTimeout(() => { if(L.fond) L.fond.classList.remove("visible", "recoit"); }, 1300);
+        L.t2 = setTimeout(() => { if(L.fond) L.fond.remove(); L.fond = null; }, 1650);
     }catch(e){ try{ noterAudio("carreau", "ORAL", "animation refusee : " + (e && e.name)); }catch(e2){} }
 }
 
@@ -43658,6 +43662,12 @@ window.addEventListener("message", (e) => {
     // on pourra avoir les confettis ». La scene envoie bons / faits avec « fini ».
     if(d.type === "fini" && d.faits > 0 && d.bons === d.faits && sceneOuverteDepuis !== "admin"){
         setTimeout(() => { try{ launchConfetti(); playMasteredSound(); }catch(err){} }, 300);
+    }
+    // v851 (essai carreau_partout) : une bonne reponse dans une scene pose un
+    // carreau, comme une carte -- et la petite mosaique s'affiche par-dessus.
+    if(d.type === "bonne"){
+        if(sceneOuverteDepuis !== "admin"){ try{ if(essaiActif("carreau_partout")) poserCarreau(); }catch(err){} }
+        return;
     }
     if(d.type === "reponse"){
         // Depuis la seance ET la tuile « Scenes » (v746). Seul le tableau de

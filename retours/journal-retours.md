@@ -9381,3 +9381,8 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   de l'accueil, 96 px, le +1 dedans ; plus de carreau qui vole. Confettis : sur la reussite de
   l'oral (pas a chaque carte). Et « une scene dont toutes les questions sont reussies : des
   confettis » (bons === faits au message « fini »), pour tous.
+- v851 : « des fois j'ai la mosaique avec le +1, des fois non ; dans les scenes, on ne voit pas la
+  mosaique ». Cause 1 : la regle « une animation a la fois » sautait le carreau des cartes passees
+  vite -> la petite mosaique reste et compte (+2, +3). Cause 2 : les reponses des scenes ne posaient
+  aucun carreau -> la scene envoie « bonne » a chaque bonne reponse, l'app pose un carreau (essai
+  carreau_partout).
