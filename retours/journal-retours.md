@@ -9345,3 +9345,11 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   Recherche du marche demandee : Duolingo (mots qui s'allument, bandeau vert + son, pas de reecoute),
   ELSA (score par mot), Rosetta Stone (passe ou non). Proposition : mots allumes en direct, bandeau
   franc + son, sans « reecouter ma voix » ; maquette proposee.
+- v845 (publiee) : la carte d'oral v2 en essai admin (« faisons un a quatre ») ; les voix Flash du
+  16 oct. refaites en v2 (3 124 fichiers, ~94 000 credits, accord de Jacques), AUDIO_REVISION 9 ;
+  ferme et boulangerie en vraies photos (Jacques : « on avait decide de le faire hier »).
+- v846 : « dans l'administration, je vois seulement quatre testeurs » -- son iPhone est en espagnol
+  et le tableau ne lisait que la langue en cours. Il lit maintenant les deux (DE / ES par ligne).
+- v846 : « un peu agressant, ce rond qui grossit ou qui clignote ; j'imagine un signal
+  oscillatoire, qu'on voit la voix ». Carte d'oral v2 : rond rouge immobile, onde de la voix en
+  barres qui defilent (comme le Dictaphone), plus de pulsation.

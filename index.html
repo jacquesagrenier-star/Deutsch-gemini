@@ -6186,6 +6186,7 @@ body.apercu-gratuit::after{content:"Aperçu gratuit"; position:fixed; top:calc(e
 .admin-chiffre small{display:block; opacity:.7; font-size:12px;}
 .admin-chiffre strong{font-size:20px;}
 .admin-appareils{margin:0 0 10px; font-size:13px; opacity:.75;}
+.admin-langue{display:inline-block; font-size:10.5px; font-weight:900; letter-spacing:.04em; border-radius:6px; padding:1px 5px; margin-right:2px; background:#fff6e6; color:#b07a22; vertical-align:1px;}
 .admin-user-row{border-top:1px solid rgba(var(--wt-action-rgb),.12);}
 .admin-user-row > summary{display:flex; align-items:center; gap:10px; padding:10px 2px; cursor:pointer; list-style:none;}
 .admin-user-row > summary::-webkit-details-marker{display:none;}
@@ -6442,8 +6443,10 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-motseul{display:flex; align-items:center; gap:6px; background:#fff; border:1.5px solid #E8A23A; border-radius:12px; padding:8px 10px; margin-top:8px;}
 .cp-or-motseul b{font-size:17px; flex:1;}
 .cp-or-motseul button{border-radius:9px; padding:6px 8px; font-weight:800; font-size:13px; border:1.5px solid #e3dccf; background:#FBF8F3; color:#1C2430; cursor:pointer;}
-.cp-or-micro.appel{animation:cp-or-appel 1.2s ease-in-out infinite;}
-@keyframes cp-or-appel{0%,100%{transform:scale(1)} 50%{transform:scale(1.08)}}
+/* v846 : le rond reste immobile ; c'est l'onde qui montre la voix. */
+.cp-or-micro.v2, .cp-or-micro.v2.ecoute{transform:none !important; box-shadow:0 8px 20px rgba(28,36,48,.18); margin:8px 0;}
+.cp-or-micro.v2.ecoute::after{display:none;}
+.cp-or-forme{display:block; width:280px; max-width:92%; height:56px;}
 body[data-theme="dark"] .cp-or-motseul{background:#232a34;}
 body[data-theme="dark"] .cp-or-motseul button{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .cp-or-gris{color:#5c6573;}
@@ -7562,7 +7565,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v845</span>
+    <span class="subtitle-version">v846</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -35497,9 +35500,21 @@ async function renderAdminUsersList(){
         // commentaire dans syncProgressToCloud. Un testeur y apparait des sa
         // premiere sauvegarde ; ceux d'avant la v504 arrivent d'un coup avec
         // « Reconstruire les resumes ».
-        const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, RESUMES_COLL));
+        // v846 (17 oct. 2026) : LES DEUX LANGUES APPRISES. Jacques, sur son iPhone
+        // en espagnol : « je vois seulement quatre testeurs ». Le tableau lisait
+        // la seule collection de la langue en cours (RESUMES_COLL) : en espagnol,
+        // les testeurs d'allemand disparaissaient. On lit les deux ; chaque ligne
+        // porte sa langue. Une collection illisible n'empeche pas l'autre.
         const users = [];
-        snap.forEach(d => users.push({ id: d.id, ...d.data() }));
+        let lues = 0;
+        for(const [coll, langue] of [["resumes", "de"], ["resumenesEs", "es"]]){
+            try{
+                const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, coll));
+                snap.forEach(d => users.push({ id: d.id, ...d.data(), _langue: langue, _coll: coll }));
+                lues++;
+            }catch(e){ console.warn("[admin] " + coll + " illisible", e); }
+        }
+        if(!lues) throw new Error("aucune collection de resumes lisible");
         // Par derniere sauvegarde, la plus recente en haut (v680) : on ouvre ce
         // tableau pour savoir qui relancer, et le tri par mots maitrises
         // gardait en tete des testeurs partis depuis des semaines.
@@ -35568,19 +35583,19 @@ async function renderAdminUsersList(){
             const retour = u.retoursUsager
                 ? `<div class="admin-retour">${String(u.retoursUsager).replace(/</g, "&lt;")}</div>` : "";
             return `
-            <details class="admin-user-row" data-uid="${u.id}"${ouverts.has(u.id) ? " open" : ""}>
+            <details class="admin-user-row" data-uid="${u._langue}-${u.id}"${ouverts.has(u._langue + "-" + u.id) ? " open" : ""}>
                 <summary>
                     <span class="admin-point admin-point-${etat}"></span>
-                    <span class="admin-nom">${titre}${u.retoursUsager ? ' <span class="admin-bulle" title="Retour">💬</span>' : ""}</span>
+                    <span class="admin-nom"><span class="admin-langue">${u._langue === "es" ? "ES" : "DE"}</span> ${titre}${u.retoursUsager ? ' <span class="admin-bulle" title="Retour">💬</span>' : ""}</span>
                     <small>${quand} · ${mots} mot${mots > 1 ? "s" : ""}</small>
                 </summary>
                 <div class="admin-detail">
                     <small>${tf('admin_user_stats', { vus: mots, mastered: u.masteredCount || 0, total: u.totalCount || 0, streak: u.streak || 0 })}</small><br>
                     <small>${u.email || ""}${u.langueInterface ? " · interface en " + (NOMS_LANGUE[u.langueInterface] || u.langueInterface) : ""}${u.appareil ? " · " + u.appareil : ""}</small>
                     ${retour}
-                    <button class="secondary admin-vhs" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
+                    ${u._coll === RESUMES_COLL ? `<button class="secondary admin-vhs" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
-                    </button>
+                    </button>` : ""}
                 </div>
             </details>
         `;}).join("");
@@ -39842,7 +39857,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 845;
+const APP_VERSION = 846;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -44696,6 +44711,32 @@ function montrerCartePhrase(item){
         const reussis = [];
         let eclatDonne = false;
         const motZone = creer("div", "cp-or-motseul hidden");
+        // v846 : L'ONDE DE LA VOIX. Des barres qui defilent, comme le Dictaphone,
+        // au lieu du rond qui grossit (Jacques : « agressant »). Un niveau par
+        // 60 ms, le plus fort de l'intervalle.
+        const forme = creer("canvas", "cp-or-forme hidden");
+        forme.width = 560; forme.height = 112;
+        const niveaux = [];
+        let niveauDernier = 0, niveauMax = 0;
+        const pousserNiveau = l => {
+            niveauMax = Math.max(niveauMax, l);
+            const maintenant = Date.now();
+            if(maintenant - niveauDernier < 60) return;
+            niveauDernier = maintenant;
+            niveaux.push(Math.max(0.05, Math.min(1, niveauMax)));
+            niveauMax = 0;
+            if(niveaux.length > 56) niveaux.shift();
+            const c = forme.getContext && forme.getContext("2d");
+            if(!c) return;
+            c.clearRect(0, 0, forme.width, forme.height);
+            const larg = forme.width / 56, mi = forme.height / 2;
+            c.fillStyle = "#c0392b";
+            niveaux.forEach((v, i) => {
+                const h = Math.max(6, v * forme.height * 0.92);
+                const x = (56 - niveaux.length + i) * larg;
+                c.fillRect(x + larg * 0.22, mi - h / 2, larg * 0.56, h);
+            });
+        };
         if(v2){
             const lent = creer("button", "cp-or-modele", "🐢 " + t("or_lentement"));
             lent.type = "button";
@@ -44713,6 +44754,7 @@ function montrerCartePhrase(item){
         const consigne = creer("p", "cp-or-consigne", t("or_consigne"));
         const sous = creer("p", "cp-or-sous", "");
         zone.appendChild(micro); zone.appendChild(consigne); zone.appendChild(sous);
+        if(v2){ micro.classList.add("v2"); zone.insertBefore(forme, micro); }
         el.appendChild(zone);
         const verdict = creer("div", "cp-or-verdict hidden");
         el.appendChild(verdict);
@@ -44757,7 +44799,7 @@ function montrerCartePhrase(item){
                 ici.ecouteurs.push(await Natif.addListener("audioLevel", ev => {
                     const l = Math.max(0, Math.min(1, (ev && ev.level) || 0));
                     if(l > ici.pic) ici.pic = l;
-                    if(ici.enCours) micro.style.transform = "scale(" + (1.12 + l * 0.6).toFixed(2) + ")";
+                    if(ici.enCours){ if(v2) pousserNiveau(l); else micro.style.transform = "scale(" + (1.12 + l * 0.6).toFixed(2) + ")"; }
                 }));
                 ici.ecouteurs.push(await Natif.addListener("error", ev => journal("natif", "erreur " + JSON.stringify(ev || {}).slice(0, 80))));
                 ici.ecouteurs.push(await Natif.addListener("listeningState", ev => {
@@ -44838,6 +44880,7 @@ function montrerCartePhrase(item){
             (essai.ecouteurs || []).forEach(h => { try{ h.remove(); }catch(e){} });
             micro.classList.remove("ecoute");
             micro.classList.add("petit");
+            forme.classList.add("hidden");
             micro.style.transform = "";
             consigne.classList.add("hidden");
             sous.textContent = "";
@@ -44996,7 +45039,7 @@ function montrerCartePhrase(item){
                             for(let k = 0; k < buf.length; k++){ const v = (buf[k] - 128) / 128; s += v * v; }
                             const rms = Math.sqrt(s / buf.length);
                             if(rms > ici.pic) ici.pic = rms;
-                            micro.style.transform = "scale(" + (1.12 + Math.min(0.6, rms * 4)).toFixed(2) + ")";
+                            if(v2) pousserNiveau(Math.min(1, rms * 5)); else micro.style.transform = "scale(" + (1.12 + Math.min(0.6, rms * 4)).toFixed(2) + ")";
                             ici.raf = requestAnimationFrame(tour);
                         };
                         ici.raf = requestAnimationFrame(tour);
@@ -45008,6 +45051,7 @@ function montrerCartePhrase(item){
             }
             ici.enCours = true;
             micro.classList.add("ecoute");
+            if(v2){ niveaux.length = 0; forme.classList.remove("hidden"); pousserNiveau(0.05); }
             micro.textContent = "■";
             const debut = Date.now();
             const majMinuterie = () => {
@@ -45030,7 +45074,7 @@ function montrerCartePhrase(item){
                 direAllemand(item.phrase.de, { rate: 0.9, onEnd: () => {
                     if(essai || !document.body.contains(micro)) return;
                     if(Natif){ journal("auto", "micro ouvert apres le modele"); micro.click(); }
-                    else { consigne.textContent = t("or_a_toi"); micro.classList.add("appel"); }
+                    else consigne.textContent = t("or_a_toi");
                 } });
             }catch(e){}
         }
