@@ -6433,6 +6433,21 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-outils{display:flex; gap:6px; flex-wrap:wrap; margin-top:10px;}
 .cp-or-outils button{flex:1; border-radius:11px; padding:9px 6px; font-weight:800; font-size:13px; border:1.5px solid #e3dccf; background:#fff; color:#1C2430; white-space:nowrap; cursor:pointer;}
 .cp-or-manque{text-decoration:underline wavy; text-underline-offset:3px; text-decoration-color:#c58a1e;}
+/* v845 : la carte d'oral v2 (essai oral_v2) */
+.cp-or-ecouter{display:flex; gap:6px; flex-wrap:wrap;}
+.cp-or-allume{color:#2e8b57;}
+.cp-or-gris{color:#b9b2a6;}
+.cp-or-manque.touchable{cursor:pointer; color:#b07a22;}
+.cp-or-eclat{font-weight:800; margin-top:6px !important;}
+.cp-or-motseul{display:flex; align-items:center; gap:6px; background:#fff; border:1.5px solid #E8A23A; border-radius:12px; padding:8px 10px; margin-top:8px;}
+.cp-or-motseul b{font-size:17px; flex:1;}
+.cp-or-motseul button{border-radius:9px; padding:6px 8px; font-weight:800; font-size:13px; border:1.5px solid #e3dccf; background:#FBF8F3; color:#1C2430; cursor:pointer;}
+.cp-or-micro.appel{animation:cp-or-appel 1.2s ease-in-out infinite;}
+@keyframes cp-or-appel{0%,100%{transform:scale(1)} 50%{transform:scale(1.08)}}
+body[data-theme="dark"] .cp-or-motseul{background:#232a34;}
+body[data-theme="dark"] .cp-or-motseul button{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
+body[data-theme="dark"] .cp-or-gris{color:#5c6573;}
+body[data-theme="dark"] .cp-or-allume{color:#7fd3a5;}
 body[data-theme="dark"] .cp-or-outils button{background:#232a34; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .cp-or-verdict.bon{color:#7fd3a5;}
 body[data-theme="dark"] .cp-or-verdict.presque{color:#f0c27a;}
@@ -7547,7 +7562,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v844</span>
+    <span class="subtitle-version">v845</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10921,6 +10936,14 @@ const I18N = {
         or_presque_aide: "Les mots soulignés m'ont échappé. Écoute le modèle et réessaie.",
         or_rien_aide: "Parle un peu plus fort, le téléphone près de la bouche, et réessaie.",
         or_reessayer: "Réessayer",
+        or_lentement: "Lentement",
+        or_bravo: "Bravo !",
+        or_eclat: "+1 éclat pour ta mosaïque",
+        or_touche_mots: "Touche un mot souligné pour l'entendre seul.",
+        or_dis_le: "Dis-le",
+        or_phrase_entiere: "Toute la phrase",
+        or_a_toi: "À toi ! Touche le rond.",
+        or_mot_reussi: "✓ Réussi !",
         or_passer: "Passer",
         or_sans_verdict: "C'est enregistré. Réécoute-toi et compare au modèle.",
         cp_q_gram: "Complète la phrase",
@@ -12169,6 +12192,14 @@ const I18N = {
         or_presque_aide: "I missed the underlined words. Listen to the model and try again.",
         or_rien_aide: "Speak a little louder, with the phone close to your mouth, and try again.",
         or_reessayer: "Try again",
+        or_lentement: "Slowly",
+        or_bravo: "Well done!",
+        or_eclat: "+1 tile for your mosaic",
+        or_touche_mots: "Tap an underlined word to hear it on its own.",
+        or_dis_le: "Say it",
+        or_phrase_entiere: "The whole sentence",
+        or_a_toi: "Your turn! Tap the circle.",
+        or_mot_reussi: "✓ Got it!",
         or_passer: "Skip",
         or_sans_verdict: "Recorded. Listen back and compare with the model.",
         cp_q_gram: "Complete the sentence",
@@ -13419,6 +13450,14 @@ const I18N = {
         or_presque_aide: "Altı çizili kelimeleri kaçırdım. Modeli dinle ve tekrar dene.",
         or_rien_aide: "Biraz daha yüksek sesle, telefonu ağzına yakın tutarak konuş ve tekrar dene.",
         or_reessayer: "Tekrar dene",
+        or_lentement: "Yavaşça",
+        or_bravo: "Harika!",
+        or_eclat: "Mozaiğine +1 parça",
+        or_touche_mots: "Altı çizili bir kelimeye dokun, tek başına dinle.",
+        or_dis_le: "Söyle",
+        or_phrase_entiere: "Cümlenin tamamı",
+        or_a_toi: "Sıra sende! Daireye dokun.",
+        or_mot_reussi: "✓ Oldu!",
         or_passer: "Geç",
         or_sans_verdict: "Kaydedildi. Kendini dinle ve modelle karşılaştır.",
         cp_q_gram: "Cümleyi tamamla",
@@ -15006,6 +15045,14 @@ const I18N = {
         or_presque_aide: "Підкреслені слова я не розчув. Послухай зразок і спробуй ще раз.",
         or_rien_aide: "Говори трохи голосніше, тримай телефон біля рота, і спробуй ще раз.",
         or_reessayer: "Ще раз",
+        or_lentement: "Повільно",
+        or_bravo: "Чудово!",
+        or_eclat: "+1 шматочок до твоєї мозаїки",
+        or_touche_mots: "Торкнися підкресленого слова, щоб почути його окремо.",
+        or_dis_le: "Скажи",
+        or_phrase_entiere: "Усе речення",
+        or_a_toi: "Твоя черга! Торкнися кола.",
+        or_mot_reussi: "✓ Вийшло!",
         or_passer: "Пропустити",
         or_sans_verdict: "Записано. Послухай себе й порівняй зі зразком.",
         cp_q_gram: "Доповни речення",
@@ -16964,6 +17011,14 @@ const I18N = {
         or_presque_aide: "واژه‌های خط‌دار را نشنیدم. به نمونه گوش کن و دوباره امتحان کن.",
         or_rien_aide: "کمی بلندتر حرف بزن، گوشی را نزدیک دهانت نگه دار و دوباره امتحان کن.",
         or_reessayer: "دوباره",
+        or_lentement: "آهسته",
+        or_bravo: "آفرین!",
+        or_eclat: "+۱ تکه برای موزاییک تو",
+        or_touche_mots: "روی یک واژهٔ زیرخط‌دار بزن تا جداگانه بشنوی.",
+        or_dis_le: "بگو",
+        or_phrase_entiere: "کل جمله",
+        or_a_toi: "نوبت توست! روی دایره بزن.",
+        or_mot_reussi: "✓ درست بود!",
         or_passer: "رد شدن",
         or_sans_verdict: "ضبط شد. صدای خودت را گوش کن و با نمونه مقایسه کن.",
         cp_q_gram: "جمله را کامل کن",
@@ -18345,6 +18400,14 @@ const I18N = {
         or_presque_aide: "فاتتني الكلمات المسطَّرة. استمع إلى النموذج وحاول مجددًا.",
         or_rien_aide: "تكلّم بصوت أعلى قليلًا، والهاتف قريب من فمك، وحاول مجددًا.",
         or_reessayer: "حاول مجددًا",
+        or_lentement: "ببطء",
+        or_bravo: "أحسنت!",
+        or_eclat: "+1 قطعة لفسيفسائك",
+        or_touche_mots: "المس كلمة تحتها خط لتسمعها وحدها.",
+        or_dis_le: "قلها",
+        or_phrase_entiere: "الجملة كاملة",
+        or_a_toi: "دورك! المس الدائرة.",
+        or_mot_reussi: "✓ أحسنت!",
         or_passer: "تخطٍّ",
         or_sans_verdict: "تم التسجيل. استمع إلى نفسك وقارن بالنموذج.",
         cp_q_gram: "أكمل الجملة",
@@ -18591,6 +18654,14 @@ const I18N = {
         or_presque_aide: "As palavras sublinhadas me escaparam. Ouça o modelo e tente de novo.",
         or_rien_aide: "Fale um pouco mais alto, com o telefone perto da boca, e tente de novo.",
         or_reessayer: "Tentar de novo",
+        or_lentement: "Devagar",
+        or_bravo: "Muito bem!",
+        or_eclat: "+1 peça para o seu mosaico",
+        or_touche_mots: "Toque numa palavra sublinhada para ouvi-la sozinha.",
+        or_dis_le: "Diga",
+        or_phrase_entiere: "A frase inteira",
+        or_a_toi: "Sua vez! Toque no círculo.",
+        or_mot_reussi: "✓ Acertou!",
         or_passer: "Pular",
         or_sans_verdict: "Gravado. Ouça a si mesmo e compare com o modelo.",
         cp_q_gram: "Complete a frase",
@@ -19904,6 +19975,14 @@ const I18N = {
         or_presque_aide: "Podkreślone słowa mi umknęły. Posłuchaj wzoru i spróbuj jeszcze raz.",
         or_rien_aide: "Mów trochę głośniej, z telefonem przy ustach, i spróbuj jeszcze raz.",
         or_reessayer: "Spróbuj ponownie",
+        or_lentement: "Wolniej",
+        or_bravo: "Brawo!",
+        or_eclat: "+1 kafelek do twojej mozaiki",
+        or_touche_mots: "Dotknij podkreślonego słowa, aby usłyszeć je osobno.",
+        or_dis_le: "Powiedz",
+        or_phrase_entiere: "Całe zdanie",
+        or_a_toi: "Twoja kolej! Dotknij koła.",
+        or_mot_reussi: "✓ Udało się!",
         or_passer: "Pomiń",
         or_sans_verdict: "Nagrane. Posłuchaj siebie i porównaj ze wzorem.",
         cp_q_gram: "Uzupełnij zdanie",
@@ -21215,6 +21294,14 @@ const I18N = {
         or_presque_aide: "Подчёркнутые слова я не расслышал. Послушай образец и попробуй ещё раз.",
         or_rien_aide: "Говори чуть громче, держа телефон у рта, и попробуй ещё раз.",
         or_reessayer: "Ещё раз",
+        or_lentement: "Медленно",
+        or_bravo: "Отлично!",
+        or_eclat: "+1 кусочек для твоей мозаики",
+        or_touche_mots: "Коснись подчёркнутого слова, чтобы услышать его отдельно.",
+        or_dis_le: "Скажи",
+        or_phrase_entiere: "Всё предложение",
+        or_a_toi: "Твоя очередь! Коснись круга.",
+        or_mot_reussi: "✓ Получилось!",
         or_passer: "Пропустить",
         or_sans_verdict: "Записано. Послушай себя и сравни с образцом.",
         cp_q_gram: "Дополни предложение",
@@ -34803,6 +34890,14 @@ const ESSAIS = {
         titre: "L'oral avec un verdict",
         desc: "Un seul rond-micro qui bouge avec la voix ; la reconnaissance vocale du téléphone transcrit, l'app compare avec indulgence : C'est bon / Presque / Je n'ai pas bien entendu. Sans reconnaissance (apps installées pour l'instant) : enregistrer et réécouter, sans verdict."
     },
+    // EN ESSAI le 17 oct. 2026 (v845), admin seul. Jacques : « rien ne m'indique
+    // que j'ai reussi » ; apres la recherche du marche : « faisons un a quatre ».
+    // Maquette : .claude/maquette-carte-oral-v2.html.
+    oral_v2: {
+        etat: "admin",
+        titre: "L'oral, deuxième version",
+        desc: "Les mots s'allument pendant qu'on parle ; « Bravo ! » et un carreau de mosaïque en plus ; un mot manqué se touche pour l'entendre et le redire seul ; 🐢 le modèle au ralenti ; plus de « réécouter ma voix ». Dans les apps, le micro s'ouvre seul après le modèle."
+    },
     // EN PRODUCTION le 16 oct. 2026 (v838) -- Jacques : « en pose tout ».
     scene_arret: {
         etat: "tous",
@@ -39747,7 +39842,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 844;
+const APP_VERSION = 845;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -39931,7 +40026,7 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //      25 298 fichiers -- A1 a C1 au lieu de A1-A2 seuls (v407)
 //   8  TOUT EN MULTILINGUAL V2 : les 1 042 fichiers faits en Flash les 9-11 oct.
 //      regeneres sous le meme nom, + 1 085 textes jamais enregistres (v774)
-const AUDIO_REVISION = "8";
+const AUDIO_REVISION = "9";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -44592,6 +44687,25 @@ function montrerCartePhrase(item){
         modele.type = "button";
         modele.addEventListener("click", () => direPhrase(item));
         el.appendChild(modele);
+        // v845 : LA DEUXIEME VERSION (essai oral_v2). La cible est la phrase, ou
+        // le mot manque que l'on reprend seul ; les mots repris avec succes
+        // restent verts dans la phrase.
+        const v2 = essaiActif("oral_v2");
+        let cible = item.phrase.de;
+        let dernierManques = [];
+        const reussis = [];
+        let eclatDonne = false;
+        const motZone = creer("div", "cp-or-motseul hidden");
+        if(v2){
+            const lent = creer("button", "cp-or-modele", "🐢 " + t("or_lentement"));
+            lent.type = "button";
+            lent.addEventListener("click", () => { try{ direAllemand(item.phrase.de, { rate: 0.55 }); }catch(e){} });
+            const ligne = creer("div", "cp-or-ecouter");
+            el.removeChild(modele);
+            ligne.appendChild(modele); ligne.appendChild(lent);
+            el.appendChild(ligne);
+            el.appendChild(motZone);
+        }
         const zone = creer("div", "cp-or-zone");
         const micro = creer("button", "cp-or-micro", "🎙");
         micro.type = "button";
@@ -44608,7 +44722,8 @@ function montrerCartePhrase(item){
         const modele2 = creer("button", "", "🔊 " + t("cp_modele"));
         [reessayer, relire, modele2].forEach(b => { b.type = "button"; outils.appendChild(b); });
         el.appendChild(outils);
-        modele2.addEventListener("click", () => direPhrase(item));
+        modele2.addEventListener("click", () => { if(v2){ try{ direAllemand(item.phrase.de, { rate: 0.55 }); }catch(e){} } else direPhrase(item); });
+        if(v2) modele2.textContent = "🐢 " + t("or_lentement");
         reessayer.addEventListener("click", () => micro.click());
         fait.repondu = true;
         suite.textContent = t("or_passer");
@@ -44638,7 +44753,7 @@ function montrerCartePhrase(item){
             ici.natif = true; ici.avecReco = true; ici.recFini = true; ici.pic = 0;
             ici.ecouteurs = [];
             try{
-                ici.ecouteurs.push(await Natif.addListener("partialResults", ev => { if(ev && ev.matches && ev.matches.length) ici.textes = ev.matches.slice(); }));
+                ici.ecouteurs.push(await Natif.addListener("partialResults", ev => { if(ev && ev.matches && ev.matches.length){ ici.textes = ev.matches.slice(); eclairer(); } }));
                 ici.ecouteurs.push(await Natif.addListener("audioLevel", ev => {
                     const l = Math.max(0, Math.min(1, (ev && ev.level) || 0));
                     if(l > ici.pic) ici.pic = l;
@@ -44673,9 +44788,48 @@ function montrerCartePhrase(item){
                 if(i) phrase.appendChild(document.createTextNode(" "));
                 const n = normaliserSaisie(m);
                 const k = reste.indexOf(n);
-                if(k >= 0){ reste.splice(k, 1); phrase.appendChild(creer("span", "cp-or-manque", m)); }
+                if(k >= 0){
+                    reste.splice(k, 1);
+                    const sp = creer("span", "cp-or-manque", m);
+                    if(v2){ sp.classList.add("touchable"); sp.addEventListener("click", () => reprendreMot(m)); }
+                    phrase.appendChild(sp);
+                }
+                else if(v2 && reussis.indexOf(n) >= 0) phrase.appendChild(creer("span", "cp-or-allume", m));
                 else phrase.appendChild(document.createTextNode(m));
             });
+        };
+        // v845 : les mots s'allument a mesure que la reconnaissance les entend.
+        const eclairer = () => {
+            if(!v2 || !essai || cible !== item.phrase.de) return;
+            const reste = scoreOral(item.phrase.de, essai.textes).manques.slice();
+            phrase.textContent = "";
+            item.phrase.de.split(" ").forEach((m, i) => {
+                if(i) phrase.appendChild(document.createTextNode(" "));
+                const k = reste.indexOf(normaliserSaisie(m));
+                if(k >= 0){ reste.splice(k, 1); phrase.appendChild(creer("span", "cp-or-gris", m)); }
+                else phrase.appendChild(creer("span", "cp-or-allume", m));
+            });
+        };
+        // v845 : un mot manque, repris seul : l'entendre, lentement, le dire.
+        const reprendreMot = m => {
+            if(essai && essai.enCours) return;
+            const mot = m.replace(/[.,!?;:«»"¿¡()]/g, "");
+            if(!mot) return;
+            cible = mot;
+            motZone.textContent = "";
+            const b = creer("b", "", mot);
+            b.setAttribute("lang", langueDe);
+            motZone.appendChild(b);
+            const ecouter = creer("button", "", "🔊");
+            const lent = creer("button", "", "🐢");
+            const dire = creer("button", "", "🎙 " + t("or_dis_le"));
+            [ecouter, lent, dire].forEach(x => { x.type = "button"; motZone.appendChild(x); });
+            ecouter.addEventListener("click", () => { try{ direAllemand(mot, { rate: 0.9 }); }catch(e){} });
+            lent.addEventListener("click", () => { try{ direAllemand(mot, { rate: 0.55 }); }catch(e){} });
+            dire.addEventListener("click", () => micro.click());
+            motZone.classList.remove("hidden");
+            journal("mot", "repris seul : " + mot);
+            try{ direAllemand(mot, { rate: 0.9 }); }catch(e){}
         };
         const juger = () => {
             if(!essai || essai.juge) return;
@@ -44688,7 +44842,7 @@ function montrerCartePhrase(item){
             consigne.classList.add("hidden");
             sous.textContent = "";
             outils.classList.remove("hidden");
-            relire.classList.toggle("hidden", !(oralPhrase && oralPhrase.url));
+            relire.classList.toggle("hidden", v2 || !(oralPhrase && oralPhrase.url));
             suite.textContent = t("setup_continue");
             suite.className = "primary";
             verdict.className = "cp-or-verdict";
@@ -44699,10 +44853,27 @@ function montrerCartePhrase(item){
                 journal("verdict", "sans reconnaissance");
                 return;
             }
-            const s = scoreOral(item.phrase.de, essai.textes);
-            journal("verdict", s.niveau + ", " + Math.round(s.ratio * 100) + " %, entendu « " + String(s.texte).slice(0, 80) + " »");
+            const s = scoreOral(cible, essai.textes);
+            journal("verdict", (cible === item.phrase.de ? "" : "mot " + cible + " : ") + s.niveau + ", " + Math.round(s.ratio * 100) + " %, entendu « " + String(s.texte).slice(0, 80) + " »");
+            if(v2 && cible !== item.phrase.de){
+                // Le mot seul : vert s'il passe, et retour a la phrase.
+                const n = normaliserSaisie(cible);
+                if(s.niveau === "bon"){
+                    if(reussis.indexOf(n) < 0) reussis.push(n);
+                    dernierManques = dernierManques.filter(x => x !== n);
+                }
+                verdict.classList.add(s.niveau === "bon" ? "bon" : "presque");
+                verdict.appendChild(creer("h3", "", s.niveau === "bon" ? t("or_mot_reussi") : t("or_presque")));
+                if(dernierManques.length) verdict.appendChild(creer("p", "", t("or_touche_mots")));
+                montrerPhrase(dernierManques);
+                cible = item.phrase.de;
+                motZone.classList.add("hidden");
+                reessayer.classList.remove("hidden");
+                reessayer.textContent = "🎙 " + t("or_phrase_entiere");
+                return;
+            }
             verdict.classList.add(s.niveau);
-            verdict.appendChild(creer("h3", "", t("or_" + s.niveau)));
+            verdict.appendChild(creer("h3", "", t(v2 && s.niveau === "bon" ? "or_bravo" : "or_" + s.niveau)));
             if(s.niveau !== "rien" && s.texte){
                 const p = creer("p", "");
                 p.appendChild(document.createTextNode(t("or_entendu") + " "));
@@ -44711,8 +44882,15 @@ function montrerCartePhrase(item){
                 p.appendChild(dit);
                 verdict.appendChild(p);
             }
-            if(s.niveau === "presque"){ verdict.appendChild(creer("p", "", t("or_presque_aide"))); montrerPhrase(s.manques); }
+            if(s.niveau === "presque"){ verdict.appendChild(creer("p", "", t(v2 ? "or_touche_mots" : "or_presque_aide"))); dernierManques = s.manques.slice(); montrerPhrase(s.manques); }
+            else if(v2 && s.niveau === "bon"){ phrase.textContent = ""; phrase.appendChild(creer("span", "cp-or-allume", item.phrase.de)); }
             else montrerPhrase([]);
+            if(v2 && s.niveau === "bon" && !eclatDonne){
+                // Un carreau de plus pour la mosaique (dans le plafond du jour).
+                eclatDonne = true;
+                try{ poserCarreau(); }catch(e){}
+                verdict.appendChild(creer("p", "cp-or-eclat", t("or_eclat")));
+            }
             if(s.niveau === "rien") verdict.appendChild(creer("p", "", t("or_rien_aide")));
             reessayer.classList.toggle("hidden", s.niveau === "bon");
             if(s.niveau === "bon"){ try{ celebrateMastery(0, false); }catch(e){} }
@@ -44736,9 +44914,16 @@ function montrerCartePhrase(item){
             outils.classList.add("hidden");
             micro.classList.remove("petit");
             consigne.classList.remove("hidden");
-            montrerPhrase([]);
+            if(v2 && cible !== item.phrase.de) montrerPhrase(dernierManques); else montrerPhrase([]);
             essai = { enCours: false, juge: false, textes: [], avecReco: false, recoFinie: false, recFini: false };
             const ici = essai;
+            if(v2){
+                micro.classList.remove("appel");
+                // Le modele se tait : la reconnaissance l'entendrait.
+                try{ arreterAudioPregenere(); }catch(e){}
+                try{ if(window.speechSynthesis && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel(); }catch(e){}
+                if(cible === item.phrase.de){ reessayer.textContent = "🎙 " + t("or_reessayer"); eclairer(); }
+            }
             journal("toucher", "v" + APP_VERSION + ", verdict, reconnaissance " + !!Reco + ", natif " + !!Natif + " (" + langueReco + "), MediaRecorder " + (typeof MediaRecorder !== "undefined"));
             if(Natif){
                 if(!(await demarrerNatif(ici))) return;
@@ -44762,6 +44947,7 @@ function montrerCartePhrase(item){
                             textes.push(Array.from(res).map(r => (r[Math.min(a, r.length - 1)] || {}).transcript || "").join(" ").replace(/\s+/g, " ").trim());
                         }
                         ici.textes = textes.filter(Boolean);
+                        eclairer();
                     };
                     reco.onerror = e => { journal("reconnaissance", "erreur " + (e && e.error)); if(e && (e.error === "not-allowed" || e.error === "service-not-allowed")) ici.avecReco = false; };
                     reco.onend = () => { ici.recoFinie = true; if(!ici.enCours && ici.recFini) juger(); };
@@ -44836,6 +45022,18 @@ function montrerCartePhrase(item){
             const remettre = () => { micro.textContent = "🎙"; };
             const fin = setInterval(() => { if(!ici.enCours){ clearInterval(fin); remettre(); } }, 200);
         });
+        // v845 : ECOUTER PUIS PARLER. Le modele est dit a l'arrivee ; dans les
+        // apps (module natif, sans exigence de geste), le micro s'ouvre seul a la
+        // fin. Dans Safari, iOS exige un toucher pour le micro : le rond appelle.
+        if(v2){
+            try{
+                direAllemand(item.phrase.de, { rate: 0.9, onEnd: () => {
+                    if(essai || !document.body.contains(micro)) return;
+                    if(Natif){ journal("auto", "micro ouvert apres le modele"); micro.click(); }
+                    else { consigne.textContent = t("or_a_toi"); micro.classList.add("appel"); }
+                } });
+            }catch(e){}
+        }
     } else if(item.forme === "parler"){
         // Repeter a voix haute : le modele, s'enregistrer, se reecouter. Aucune
         // note (le choix du mode Parler) ; la carte compte dans l'objectif.
