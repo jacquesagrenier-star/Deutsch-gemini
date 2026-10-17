@@ -9360,3 +9360,8 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   (dessinerMosaique rend sa place) monte vers une mini-mosaique du vrai tableau en haut a droite ;
   pas de confettis. Puis (meme jour) : la mosaique au milieu, le carreau gros (1/4 de sa largeur)
   qui rapetisse et va se poser. Page d essai : .claude/test-carreau.html.
+- v848 : « on devrait toujours feliciter la progression et l'effort » ; « on ne peut plus passer
+  les cartes sans repondre ». Le plafond de 80 carreaux par jour devient un garde-fou technique a
+  1 000 (le balayage n'existe plus : skipFlashcard() n'est plus appelee). Retires : la phrase
+  « au maximum 80 cartes par jour » de la fiche du tableau, et la seconde phrase de la legende de
+  l'objectif (« une carte balayee fait avancer le tableau »), dans les 9 langues.
