@@ -9422,3 +9422,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   « on avait decide que quand on dit Encore, la carte compte +1 ; ca n'apparait plus, seulement si on
   dit Je le savais ». Le +1 se montre a chaque carreau pose (Encore compris) ; au palier, la mosaique
   dit le meme chiffre que le bandeau (+30) et fait popper les trente derniers carreaux.
+- 17 oct. : « dans les flashcards, une erreur : ca ne se dit pas le mai ; pour le mois de mai, on dit
+  mai, tout simplement ». Les 12 mois portaient article_fr « le »/« l' » dans themes.json (l'app colle
+  l'article devant la traduction) ; les 7 jours aussi (« le lundi » veut dire chaque lundi). Les 19
+  vides : la carte dit « mai », « lundi ». L'espagnol n'avait pas d'article sur les mois.
