@@ -6448,13 +6448,25 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-micro.v2.ecoute::after{display:none;}
 .cp-or-forme{display:block; width:280px; max-width:92%; height:56px;}
 .cp-or-micro.reussi{background:#2e8b57 !important;}
-/* v847 : le carreau qui monte vers la petite mosaique, en haut a droite. */
-.carreau-mini{position:fixed; z-index:9998; border-radius:6px; overflow:hidden; background:#efe8dc; box-shadow:0 0 0 2px #e3dccf, 0 8px 24px rgba(28,36,48,.22); opacity:0; transform:translateY(-8px); transition:opacity .25s, transform .25s; pointer-events:none;}
-.carreau-mini canvas{display:block; width:100%; height:auto;}
-.carreau-mini.visible{opacity:1; transform:none;}
-.carreau-mini.recoit{box-shadow:0 0 0 3px #E8A23A, 0 6px 22px rgba(232,162,58,.55);}
-.carreau-plus{position:absolute; left:50%; top:50%; pointer-events:none; font:900 17px Nunito, system-ui, sans-serif; color:#fff; text-shadow:0 0 3px rgba(0,0,0,.7), 0 1px 6px rgba(0,0,0,.5); transform:translate(-50%,-50%); animation:carreau-plus 1.1s ease-out both;}
-@keyframes carreau-plus{0%{opacity:0; transform:translate(-50%,-50%) scale(.6)} 25%{opacity:1; transform:translate(-50%,-50%) scale(1.15)} 60%{opacity:1; transform:translate(-50%,-50%) scale(1)} 100%{opacity:0; transform:translate(-50%,-80%) scale(.9)}}
+/* v854 : la pilule du carreau gagne (« Ic »), centree en haut : la mosaique, le carreau allume, +1, 142 / 700, la jauge. */
+.carreau-mini{position:fixed; left:50%; z-index:9998; display:flex; align-items:center; gap:7px; background:#fff; border-radius:10px; padding:4px 9px 4px 4px; box-shadow:0 0 0 1.5px #e3dccf, 0 8px 20px rgba(28,36,48,.2); opacity:0; transform:translate(-50%,-8px); transition:opacity .25s, transform .25s; pointer-events:none;}
+.carreau-mini.visible{opacity:1; transform:translate(-50%,0);}
+.carreau-mini .cm-toile{position:relative; flex:0 0 auto; border-radius:6px; background:#efe8dc;}
+.carreau-mini canvas{display:block; width:100%; height:auto; border-radius:5px;}
+.cm-allume{position:absolute; border:2.5px solid #E8A23A; border-radius:3px; box-shadow:0 0 0 1.5px #fff, 0 0 12px 3px rgba(232,162,58,.9); animation:cm-pulse .55s ease-in-out 3 alternate;}
+@keyframes cm-pulse{0%{transform:scale(1.6); opacity:.2} 100%{transform:none; opacity:1}}
+.cm-plus{display:inline-block; background:#E8A23A; color:#1C2430; border-radius:999px; padding:1px 6px 2px; font:900 11.5px Nunito, system-ui, sans-serif; margin-bottom:2px; animation:cm-pop .5s cubic-bezier(.3,1.6,.5,1) both;}
+@keyframes cm-pop{0%{opacity:0; transform:scale(.3)} 100%{opacity:1; transform:none}}
+.cm-chiffres{font:900 11.5px/1.15 Nunito, system-ui, sans-serif; color:#1C2430; white-space:nowrap;}
+.cm-chiffres small{font-weight:800; color:#576177; font-size:.8em;}
+.cm-roule{display:inline-block; overflow:hidden; height:1.15em; vertical-align:bottom;}
+.cm-roule span{display:block; transition:transform .45s cubic-bezier(.3,1.4,.5,1) .3s;}
+.cm-jauge{height:3px; min-width:62px; background:#eee6da; border-radius:3px; margin-top:3px; overflow:hidden;}
+.cm-jauge div{height:100%; width:0; background:#E8A23A; border-radius:3px; transition:width .6s ease .35s;}
+body[data-theme="dark"] .carreau-mini{background:#232a34; box-shadow:0 0 0 1.5px #3a4352, 0 8px 20px rgba(0,0,0,.4);}
+body[data-theme="dark"] .cm-chiffres{color:#eef1f5;}
+body[data-theme="dark"] .cm-chiffres small{color:#a9b2c0;}
+body[data-theme="dark"] .cm-jauge{background:#3a4352;}
 body[data-theme="dark"] .cp-or-motseul{background:#232a34;}
 body[data-theme="dark"] .cp-or-motseul button{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .cp-or-gris{color:#5c6573;}
@@ -7573,7 +7585,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v853</span>
+    <span class="subtitle-version">v854</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -34892,7 +34904,7 @@ const ESSAIS = {
     carreau_partout: {
         etat: "admin",
         titre: "Le carreau qui monte, partout",
-        desc: "Chaque carte qui ajoute un carreau au tableau le montre : le carreau gagné, gros, avec « +1 », qui rapetisse vers une petite mosaïque en haut à droite, avec le son de la récompense."
+        desc: "Chaque carreau gagné (carte, phrase, oral, scène) se montre au moment de la réussite : une pilule en haut au centre avec la petite mosaïque, le carreau allumé à sa place, « +1 », le compte qui roule (142 / 700) et la jauge."
     },
     oral_v2: {
         etat: "admin",
@@ -39855,7 +39867,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 853;
+const APP_VERSION = 854;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43557,38 +43569,98 @@ function lancerCarreauVersMosaique(poses, avecConfettis){
     // v851 : PLUS RIEN N'EST SAUTE. La regle « une animation a la fois » perdait
     // le carreau d'une carte passee vite (Jacques : « des fois je l'ai, des fois
     // non »). Si la petite mosaique est encore la, elle reste et compte : +2, +3.
+    //
+    // v854 (17 oct. 2026) : LA PILULE « Ic ». Jacques : le +1 blanc pose sur la
+    // mosaique se perd quand les carreaux sont clairs, et la petite mosaique
+    // « derange » -- c'etait une copie IMMOBILE, rien n'y disait ce que la carte
+    // avait change. Choisie parmi dix-neuf (.claude/maquette-plus-un.html) :
+    // une pilule couchee, centree en haut, avec la mosaique a gauche, le carreau
+    // gagne ALLUME a sa place, et a droite « +1 », « 142 / 700 » qui roule et
+    // la jauge. On voit ou le tableau avance, et combien il reste.
+    // ⚠️ LA MOSAIQUE EST REDESSINEE, PLUS COPIEE DE L'ACCUEIL. #mosaiqueToile
+    // n'est pas a jour pendant les cartes (mosaiqueEnRetard, v569 -- on ne
+    // peint pas un ecran qu'on ne regarde pas) et elle est recadree en bande :
+    // la copie montrait un etat perime et ne disait pas OU tombait le carreau.
+    // On dessine petit (240 px) et l'image decodee est gardee (imageMosaique) :
+    // ce n'est pas le travail de 900 px qui gelait l'ecran en septembre.
+    const m = mosaiqueCourante();
+    if(!m) return;
     const L = lancerCarreauVersMosaique;
-    try{
-        if(L.fond && L.fond.isConnected){
-            L.n = (L.n || 1) + 1;
-            L.plus.textContent = "+" + L.n;
-            L.plus.style.animation = "none"; void L.plus.offsetWidth; L.plus.style.animation = "";
-            L.fond.classList.add("visible", "recoit");
-        } else {
-            const src = document.getElementById("mosaiqueToile");
-            if(!src || !src.width || !src.height) return;
-            const FW = Math.round(Math.min(window.innerWidth * 0.24, 96));
-            const fond = document.createElement("div");
-            fond.className = "carreau-mini";
-            fond.style.right = "12px";
-            fond.style.top = "calc(12px + env(safe-area-inset-top, 0px))";
-            fond.style.width = FW + "px";
-            const copie = document.createElement("canvas");
-            copie.width = src.width; copie.height = src.height;
-            copie.getContext("2d").drawImage(src, 0, 0);
-            fond.appendChild(copie);
-            const plus = document.createElement("div");
-            plus.className = "carreau-plus";
-            plus.textContent = "+1";
-            fond.appendChild(plus);
-            document.body.appendChild(fond);
-            L.fond = fond; L.plus = plus; L.n = 1;
-            requestAnimationFrame(() => fond.classList.add("visible", "recoit"));
-        }
-        clearTimeout(L.t1); clearTimeout(L.t2);
-        L.t1 = setTimeout(() => { if(L.fond) L.fond.classList.remove("visible", "recoit"); }, 1300);
-        L.t2 = setTimeout(() => { if(L.fond) L.fond.remove(); L.fond = null; }, 1650);
-    }catch(e){ try{ noterAudio("carreau", "ORAL", "animation refusee : " + (e && e.name)); }catch(e2){} }
+    imageMosaique(m).then(img => {
+        try{
+            const toile = document.createElement("canvas");
+            toile.width = 240;
+            toile.height = Math.round(240 * (m.h || 1) / (m.l || 1));
+            const rect = dessinerMosaique(toile, img, poses, MOSAIQUE_CARREAUX, false);
+            const LARGEUR = 56;
+            let fond = L.fond && L.fond.isConnected ? L.fond : null;
+            const avant = fond ? L.poses : poses - 1;
+            if(fond){
+                // v851 : la pilule encore la reste et compte : +2, +3.
+                L.n += 1;
+                L.plus.textContent = "+" + L.n;
+                L.plus.style.animation = "none"; void L.plus.offsetWidth; L.plus.style.animation = "";
+                L.cadreToile.textContent = "";
+            } else {
+                fond = document.createElement("div");
+                fond.className = "carreau-mini";
+                fond.style.top = "calc(12px + env(safe-area-inset-top, 0px))";
+                const cadreToile = document.createElement("div");
+                cadreToile.className = "cm-toile";
+                cadreToile.style.width = LARGEUR + "px";
+                const droite = document.createElement("div");
+                const plus = document.createElement("div");
+                plus.className = "cm-plus";
+                plus.textContent = "+1";
+                const chiffres = document.createElement("div");
+                chiffres.className = "cm-chiffres";
+                const jauge = document.createElement("div");
+                jauge.className = "cm-jauge";
+                jauge.appendChild(document.createElement("div"));
+                droite.appendChild(plus); droite.appendChild(chiffres); droite.appendChild(jauge);
+                fond.appendChild(cadreToile); fond.appendChild(droite);
+                document.body.appendChild(fond);
+                L.fond = fond; L.plus = plus; L.cadreToile = cadreToile;
+                L.chiffres = chiffres; L.jauge = jauge.firstChild; L.n = 1;
+                requestAnimationFrame(() => fond.classList.add("visible"));
+            }
+            L.poses = poses;
+            L.cadreToile.appendChild(toile);
+            // Le carreau gagne, allume a sa place (10 px au moins : tard dans
+            // le tableau, une tesselle ne fait plus qu'un ou deux pixels ici).
+            if(rect){
+                const k = LARGEUR / toile.width;
+                const w = Math.max(10, rect[2] * k), h = Math.max(10, rect[3] * k);
+                const cx = (rect[0] + rect[2] / 2) * k, cy = (rect[1] + rect[3] / 2) * k;
+                const allume = document.createElement("div");
+                allume.className = "cm-allume";
+                allume.style.left = (cx - w / 2) + "px"; allume.style.top = (cy - h / 2) + "px";
+                allume.style.width = w + "px"; allume.style.height = h + "px";
+                L.cadreToile.appendChild(allume);
+            }
+            // Le chiffre roule de l'ancien au nouveau ; la jauge suit.
+            L.chiffres.textContent = "";
+            const roule = document.createElement("span");
+            roule.className = "cm-roule";
+            const pile = document.createElement("span");
+            pile.appendChild(document.createTextNode(String(avant)));
+            pile.appendChild(document.createElement("br"));
+            pile.appendChild(document.createTextNode(String(poses)));
+            roule.appendChild(pile);
+            L.chiffres.appendChild(roule);
+            const sur = document.createElement("small");
+            sur.textContent = " / " + MOSAIQUE_CARREAUX;
+            L.chiffres.appendChild(sur);
+            L.jauge.style.width = (Math.max(0, avant) / MOSAIQUE_CARREAUX * 100) + "%";
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                pile.style.transform = "translateY(-50%)";
+                if(L.jauge) L.jauge.style.width = (Math.min(poses, MOSAIQUE_CARREAUX) / MOSAIQUE_CARREAUX * 100) + "%";
+            }));
+            clearTimeout(L.t1); clearTimeout(L.t2);
+            L.t1 = setTimeout(() => { if(L.fond) L.fond.classList.remove("visible"); }, 1900);
+            L.t2 = setTimeout(() => { if(L.fond) L.fond.remove(); L.fond = null; }, 2250);
+        }catch(e){ try{ noterAudio("carreau", "ORAL", "animation refusee : " + (e && e.name)); }catch(e2){} }
+    }).catch(() => {});
 }
 
 function ouvrirSceneLibre(nom){

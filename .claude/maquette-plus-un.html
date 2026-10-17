@@ -1,0 +1,722 @@
+<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width, initial-scale=1"><title>Le +1, dix-neuf propositions</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--encre:#1C2430;--ambre:#E8A23A;--papier:#F6F1EA;--carte:#FBF8F3;--trait:#e3dccf;--gris:#576177;--vert:#2e8b57}
+*{box-sizing:border-box}
+body{margin:0;background:#e9e2d6;font-family:Nunito,system-ui,sans-serif;color:var(--encre)}
+.tout{display:flex;gap:28px;flex-wrap:wrap;justify-content:center;padding:22px 16px 40px}
+.notes{max-width:420px;flex:1 1 320px}
+.notes h1{font-size:22px;margin:4px 0 6px}
+.notes p{color:var(--gris);font-size:14.5px;line-height:1.45;margin:6px 0}
+.choix{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+.choix button{display:block;text-align:left;width:100%;border:2px solid var(--trait);background:var(--carte);border-radius:12px;padding:10px 12px;cursor:pointer;font:inherit;color:inherit}
+.choix button b{font-size:15.5px}
+.choix button span{display:block;font-size:13.5px;color:var(--gris);margin-top:2px;line-height:1.35}
+.choix button.on{border-color:var(--encre);background:#fff}
+.reglage{font-size:13.5px;color:var(--gris);margin-top:8px}
+.reglage input{width:100%}
+.reglage select{font:inherit}
+/* Le telephone */
+.colonne{position:sticky;top:12px;align-self:flex-start;flex:0 0 auto;max-width:100%}
+.lettres{display:flex;flex-wrap:wrap;max-width:390px;gap:6px;justify-content:center;margin:0 0 18px}
+.lettres button{width:38px;height:38px;border-radius:50%;border:2px solid var(--trait);background:var(--carte);font:900 15px Nunito,system-ui,sans-serif;color:var(--encre);cursor:pointer}
+.lettres button.on{background:var(--encre);color:#fff;border-color:var(--encre)}
+@media (max-width:860px){.colonne{order:-1;position:static}}
+.tel{position:relative;width:390px;height:760px;max-width:100%;background:var(--papier);border-radius:34px;box-shadow:0 0 0 10px #1C2430,0 20px 50px rgba(0,0,0,.25);overflow:hidden;flex:0 0 auto}
+.barre{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:13px;font-weight:800;color:var(--gris)}
+.fc{margin:46px 18px 0;background:var(--carte);border:1px solid var(--trait);border-radius:20px;padding:26px 18px;text-align:center;min-height:330px}
+.fc .theme{font-size:12.5px;font-weight:800;color:var(--gris);letter-spacing:.05em;text-transform:uppercase}
+.fc .mot{font-size:34px;font-weight:900;margin:44px 0 8px}
+.fc .sens{font-size:17px;color:var(--gris)}
+.fc .ex{font-size:14.5px;color:var(--gris);margin-top:36px;font-style:italic}
+.juge{display:flex;gap:10px;margin:18px 18px 0}
+.juge button{flex:1;border:0;border-radius:14px;padding:16px 0;font:900 16px Nunito,system-ui,sans-serif;cursor:pointer}
+.encore{background:#e6dfd3;color:var(--encre)}
+.savais{background:var(--vert);color:#fff}
+.conf{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+.conf i{position:absolute;width:8px;height:12px;border-radius:2px}
+/* Commun */
+.pastille{position:absolute;z-index:3;background:var(--ambre);color:var(--encre);font:900 15px/1 Nunito,system-ui,sans-serif;padding:5px 9px 6px;border-radius:999px;box-shadow:0 2px 0 #b97c1e,0 4px 12px rgba(28,36,48,.25);white-space:nowrap;animation:pop .5s cubic-bezier(.3,1.6,.5,1) both}
+@keyframes pop{0%{opacity:0;transform:scale(.3)}100%{opacity:1;transform:none}}
+.couche{position:absolute;z-index:40;pointer-events:none}
+.sort{animation:sort .3s ease both}
+@keyframes sort{0%{opacity:0;transform:translateY(-10px)}100%{opacity:1;transform:none}}
+.part{transition:opacity .3s, transform .3s}
+.part.fin{opacity:0;transform:translateY(-8px)}
+/* A */
+.mini{border-radius:7px;overflow:visible;background:#efe8dc;box-shadow:0 0 0 2px #fff,0 6px 18px rgba(28,36,48,.25)}
+.mini canvas{display:block;width:100%;height:auto;border-radius:7px}
+/* B */
+.cadre-allume{position:absolute;border:3px solid var(--ambre);border-radius:3px;box-shadow:0 0 0 2px #fff,0 0 14px 3px rgba(232,162,58,.9);animation:pulse .55s ease-in-out 3 alternate}
+@keyframes pulse{0%{transform:scale(1.6);opacity:.2}100%{transform:none;opacity:1}}
+/* C */
+.compteur{display:flex;align-items:center;gap:9px;background:#fff;border-radius:999px;padding:5px 14px 5px 5px;box-shadow:0 0 0 1.5px var(--trait),0 8px 20px rgba(28,36,48,.18)}
+.compteur canvas{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block;box-shadow:0 0 0 2px var(--ambre)}
+.compteur .chiffres{font:900 17px Nunito,system-ui,sans-serif;min-width:96px}
+.compteur .chiffres small{font-weight:800;color:var(--gris);font-size:13px}
+.compteur .jauge{height:5px;background:#eee6da;border-radius:3px;margin-top:4px;overflow:hidden}
+.compteur .jauge div{height:100%;background:var(--ambre);border-radius:3px;transition:width .6s ease .35s}
+.roule{display:inline-block;overflow:hidden;height:1.15em;vertical-align:bottom}
+.roule span{display:block;transition:transform .45s cubic-bezier(.3,1.4,.5,1) .3s}
+/* D */
+.loupe{width:132px;height:132px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 4px #fff,0 0 0 6px var(--ambre),0 10px 26px rgba(28,36,48,.3);position:relative;background:#efe8dc}
+.loupe canvas{width:100%;height:100%;display:block}
+.loupe .tuile{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 0 2px #fff,0 0 16px 4px rgba(232,162,58,.95);border-radius:2px;animation:tombe .45s cubic-bezier(.3,1.5,.5,1) .25s both}
+/* I a P */
+.sous-mini{margin-top:7px;background:#fff;border-radius:9px;padding:5px 8px 6px;box-shadow:0 0 0 1.5px var(--trait),0 6px 16px rgba(28,36,48,.18)}
+.ligne-compteur{font-size:15px}
+.sous-mini.compacte{margin-top:5px;padding:3px 6px 4px;border-radius:7px}
+.sous-mini.compacte .jauge-l{height:3px;margin-top:2px}
+.pastille.petite{font-size:13px;padding:4px 7px 5px}
+.bande-ib{position:absolute;left:0;right:0;bottom:0;padding:12px 6px 4px;background:linear-gradient(rgba(28,36,48,0),rgba(28,36,48,.82) 45%);color:#fff}
+.bande-ib .chiffres-l small{color:rgba(255,255,255,.75)}
+.bande-ib .jauge-l{height:3px;margin-top:2px;background:rgba(255,255,255,.25)}
+.ligne-ic{display:flex;align-items:center;gap:9px;background:#fff;border-radius:12px;padding:5px 10px 5px 5px;box-shadow:0 0 0 1.5px var(--trait),0 8px 20px rgba(28,36,48,.2)}
+.ligne-ic .jauge-l{height:4px}
+.plus-ic{display:inline-block;background:var(--ambre);color:var(--encre);border-radius:999px;padding:1px 7px 2px;font:900 13px Nunito,system-ui,sans-serif;margin-bottom:2px;animation:pop .5s cubic-bezier(.3,1.6,.5,1) .28s both}
+.chiffres-l{font:900 1em Nunito,system-ui,sans-serif;line-height:1.15}
+.chiffres-l small{font-weight:800;color:var(--gris);font-size:.8em}
+.jauge-l{height:5px;background:#eee6da;border-radius:3px;margin-top:4px;overflow:hidden}
+.jauge-l div{height:100%;background:var(--ambre);border-radius:3px;transition:width .6s ease .35s}
+.boite-j{background:#fff;border-radius:16px;box-shadow:0 0 0 1.5px var(--trait),0 8px 22px rgba(28,36,48,.2);overflow:hidden}
+.haut-j{display:flex;align-items:center;gap:8px;padding:7px 10px}
+.plus-j{background:var(--ambre);color:var(--encre);border-radius:999px;padding:2px 8px 3px;font:900 14px Nunito,system-ui,sans-serif}
+.chiffres-j{font:900 17px Nunito,system-ui,sans-serif}
+.chiffres-j small{font-weight:800;color:var(--gris);font-size:13px}
+.depli-j{max-height:0;overflow:hidden;transition:max-height .45s cubic-bezier(.3,1,.4,1);padding:0 6px}
+.depli-j .mini{margin-bottom:6px}
+.piste-k{position:relative;height:10px;background:#e6dfd3;border-radius:999px;box-shadow:inset 0 0 0 1.5px #d9d0c1,0 6px 18px rgba(28,36,48,.18);transition:height .35s cubic-bezier(.3,1.4,.5,1)}
+.rempli-k{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background-position:0 50%;background-repeat:no-repeat;box-shadow:inset 0 0 0 2px rgba(232,162,58,.9);transition:width .6s ease .35s}
+.legende-k{text-align:right;font:900 13px Nunito,system-ui,sans-serif;color:var(--gris);margin-top:5px}
+.polaroid{position:relative;background:#fff;padding:7px 7px 6px;box-shadow:0 10px 26px rgba(28,36,48,.3);border-radius:2px;transform:rotate(-4deg)}
+.legende-pol{text-align:center;font:700 22px "Caveat",cursive;color:#2b3340;line-height:1.1;margin-top:4px}
+.cadre-dore{padding:5px;background:linear-gradient(135deg,#e2c178,#a67c2c 45%,#f0d995 60%,#8d6823);box-shadow:0 8px 20px rgba(28,36,48,.3);border-radius:2px}
+.cadre-dore .mini{border-radius:0;box-shadow:inset 0 0 0 1px rgba(0,0,0,.2)}
+.cartel{margin:8px auto 0;width:88%;background:#fdfbf6;border:1px solid #ddd3c2;border-radius:2px;padding:5px 7px;font:600 11.5px/1.3 Georgia,serif;color:#3a4150;box-shadow:0 3px 8px rgba(28,36,48,.15);text-align:center}
+.cartel b{font-family:Nunito,system-ui,sans-serif;font-weight:900;font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.geant{position:relative;width:210px;height:104px;border-radius:20px;overflow:visible;box-shadow:0 10px 28px rgba(28,36,48,.3)}
+.fond-geant{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(5px) saturate(1.2);border-radius:20px;transform:scale(1)}
+.voile-geant{position:absolute;inset:0;border-radius:20px;background:rgba(28,36,48,.45)}
+.chiffres-geant{position:absolute;left:0;right:0;top:12px;text-align:center;color:#fff;font:900 50px/1.1 Nunito,system-ui,sans-serif;text-shadow:0 2px 10px rgba(0,0,0,.4)}
+.sur-geant{position:absolute;left:0;right:0;bottom:11px;text-align:center;color:#fff;font:800 13px Nunito,system-ui,sans-serif;opacity:.9}
+.temoin{display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:7px 14px 7px 7px;box-shadow:0 0 0 1.5px var(--trait),0 8px 22px rgba(28,36,48,.2)}
+.carre-temoin{width:54px;height:54px;border-radius:8px;image-rendering:pixelated;box-shadow:0 0 0 2px #fff,0 0 0 4px var(--ambre),0 0 14px 3px rgba(232,162,58,.6);animation:tombe2 .5s cubic-bezier(.3,1.6,.5,1) .1s both}
+@keyframes tombe2{0%{opacity:0;transform:scale(.3) rotate(-20deg)}100%{opacity:1;transform:none}}
+.plus-temoin{font:900 22px/1 Nunito,system-ui,sans-serif;color:#c27d12}
+.cpt-temoin{font:900 15px Nunito,system-ui,sans-serif;color:var(--encre);margin-top:3px}
+@keyframes tombe{0%{opacity:0;transform:translate(-50%,-50%) scale(2.4)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+</style>
+<div class=tout>
+  <div class=notes>
+    <h1>Le +1 : dix-neuf propositions</h1>
+    <p>Touche <b>Je savais</b> sur le téléphone pour voir chaque version. Ce qui me semble déranger aujourd'hui : la petite mosaïque est une copie <b>immobile</b>. Rien n'y bouge, donc l'œil ne voit pas ce que la carte a changé ; le +1 posé dessus dit « un de plus » sans dire <i>où</i>, et il se perd sur un ciel clair.</p>
+    <div class=choix id=choix>
+      <button data-v=A class=on><b>A — La pastille</b><span>La petite mosaïque d'aujourd'hui, et le +1 sort de l'image : une pastille ambre accrochée à son coin. Lisible sur n'importe quel tableau. Le plus petit changement.</span></button>
+      <button data-v=B><b>B — Le carreau qui s'allume</b><span>Mosaïque un peu plus grande ; le carreau gagné apparaît sous nos yeux, entouré d'ambre, il pulse trois fois. La pastille +1 à côté. On voit enfin OÙ le tableau a avancé.</span></button>
+      <button data-v=C><b>C — Le compteur</b><span>Plus d'image en haut : une pilule avec la vignette ronde du tableau, le chiffre qui roule (141 → 142 / 700) et la jauge qui avance. Sobre, toujours lisible, dit combien il reste.</span></button>
+      <button data-v=D><b>D — La loupe</b><span>Un médaillon rond qui grossit la zone du tableau où tombe le carreau : il tombe dedans, s'allume, et le morceau de peinture se complète. Le plus spectaculaire.</span></button>
+      <div style="font-size:12.5px;font-weight:900;color:var(--gris);letter-spacing:.06em;margin-top:8px">QUATRE AUTRES</div>
+      <button data-v=E><b>E — Le bandeau</b><span>Le tableau descend du haut de l'écran sur toute la largeur, comme la bande de l'accueil : trois fois plus grand que la petite mosaïque, on le reconnaît. Le carreau gagné s'allume, une étiquette foncée dit « +1 · 142 / 700 ».</span></button>
+      <button data-v=F><b>F — L'éclat</b><span>C'est ce qui se passe vraiment dans la mosaïque : un carreau éclate en quatre plus fins. Le tableau apparaît un instant au milieu, le carreau se fend en quatre sous nos yeux, puis le tableau file au coin et s'efface.</span></button>
+      <button data-v=G><b>G — Le +1 part du bouton</b><span>Le +1 naît sous le doigt, sur « Je savais », là où il est toujours lisible, puis s'envole avec une traînée ambre jusqu'à la petite mosaïque, où le carreau s'allume à son arrivée. On relie le geste à la récompense.</span></button>
+      <button data-v=H><b>H — L'anneau</b><span>Le tableau en médaillon rond, entouré d'un anneau ambre qui se remplit carreau après carreau (comme les anneaux d'activité d'une montre). L'anneau avance d'un cran, la pastille +1 posée dessus.</span></button>
+      <div style="font-size:12.5px;font-weight:900;color:var(--gris);letter-spacing:.06em;margin-top:8px">HUIT AUTRES, AUTOUR DE B ET C</div>
+      <button data-v=I><b>I — B + C : la mosaïque et son compteur</b><span>Le carreau qui s'allume (B), avec sous l'image une ligne « 142 / 700 » dont le chiffre roule et une jauge ambre qui avance (C). On voit où, et combien. <b>Ma préférée.</b></span></button>
+      <button data-v=Ia><b>Ia — La I, à la taille d'aujourd'hui</b><span>Même mosaïque que maintenant (96 px), et sous elle une ligne fine : « 142 / 700 » et la jauge. Le +1 en pastille à gauche, à la hauteur du carreau.</span></button>
+      <button data-v=Ib><b>Ib — Le compteur dans l'image</b><span>Le compteur se pose en bas de la mosaïque, sur un bandeau foncé (donc lisible même sur un ciel blanc), la jauge ambre tout en bas. Rien sous l'image : la place d'une seule vignette.</span></button>
+      <button data-v=Ic><b>Ic — En longueur</b><span>Une pilule couchée : la petite mosaïque à gauche, carreau allumé, et à droite « +1 », « 142 / 700 » et la jauge. Basse et étroite, elle tient dans le haut de l'écran sans descendre sur la carte.</span></button>
+      <button data-v=J><b>J — Le compteur qui s'ouvre</b><span>La pilule du compteur arrive seule, le chiffre roule, puis elle se déplie vers le bas et révèle la mosaïque, carreau allumé. Le chiffre d'abord, l'image ensuite.</span></button>
+      <button data-v=K><b>K — La jauge-tableau</b><span>Une barre en haut de l'écran dont le remplissage EST le tableau : on y voit la peinture jusqu'à 142 / 700. À chaque carreau, elle s'épaissit, avance d'un cran, et la pastille +1 se pose au bout.</span></button>
+      <button data-v=L><b>L — Le polaroïd</b><span>La petite mosaïque dans un cadre de photo blanc, légèrement penché, avec « 142 / 700 » écrit dessous comme une légende à la main. Le carreau s'allume. Plus chaleureux, plus « objet ».</span></button>
+      <button data-v=M><b>M — Le cartel de musée</b><span>La mosaïque dans un fin cadre doré, et sous elle un petit cartel comme au musée : « Tableau 1 · 142 / 700 carreaux ». Le nom du peintre reste caché jusqu'au dernier carreau.</span></button>
+      <button data-v=N><b>N — Le chiffre géant</b><span>Que le compteur, mais grand : « 142 » au compteur kilométrique, chiffre par chiffre, sur un fond flou du tableau. Très lisible, presque une fête. Pas de mosaïque nette.</span></button>
+      <button data-v=O><b>O — Les étincelles</b><span>Comme B, mais le carreau gagné lance une gerbe de petites étincelles ambre au lieu de pulser. Plus festif, pour aller avec les confettis.</span></button>
+      <button data-v=P><b>P — Le carreau-témoin</b><span>Une pastille : le carreau gagné en gros (sa couleur, sa texture), « +1 », et « 142 / 700 ». Le carreau lui-même, bien visible, sans la mosaïque qui le noie.</span></button>
+    </div>
+    <div class=reglage>Carreaux déjà posés : <b id=nPoses></b><input type=range id=poses min=10 max=680 value=140></div>
+    <div class=reglage>Tableau : <select id=tableau></select></div>
+  </div>
+  <div class=colonne><div class=lettres id=lettres></div>
+  <div class=tel id=tel>
+    <div class=barre><span>9:41</span><span>Ma séance du jour</span></div>
+    <div class=fc><div class=theme>Obst und Gemüse · A1</div><div class=mot>der Apfel</div><div class=sens>la pomme</div><div class=ex>Ich esse jeden Morgen einen Apfel.</div></div>
+    <div class=juge><button class=encore>Encore</button><button class=savais id=savais>Je savais</button></div>
+    <div class=conf id=conf></div>
+  </div></div>
+</div>
+<script>
+// ====== Le dessin de la mosaique : copie de index.html (dessinerMosaique) ======
+const MOSAIQUE_CARREAUX = 700, MOSAIQUE_COLONNES = 6, MOSAIQUE_PROFONDEUR = 5;
+const pyramides = new Map();
+function pyramide(img, c0, r0){
+  const cle = img.src + c0 + "x" + r0;
+  if(pyramides.has(cle)) return pyramides.get(cle);
+  const niveaux = [];
+  for(let d = 0; d <= MOSAIQUE_PROFONDEUR; d++){
+    const cv = document.createElement("canvas"); cv.width = c0 << d; cv.height = r0 << d;
+    const cx = cv.getContext("2d"); cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = "high";
+    cx.drawImage(img, 0, 0, cv.width, cv.height); niveaux.push(cv);
+  }
+  pyramides.set(cle, niveaux); return niveaux;
+}
+function melanger(tab, graine){
+  let s = 1013904223 + graine * 2654435761;
+  for(let j = tab.length - 1; j > 0; j--){ s = (s * 1103515245 + 12345) & 0x7fffffff; const k = s % (j + 1); const t = tab[j]; tab[j] = tab[k]; tab[k] = t; }
+  return tab;
+}
+function tesselles(rang, c0, r0, eclats){
+  const niveaux = [[]];
+  for(let j = 0; j < r0; j++) for(let i = 0; i < c0; i++) niveaux[0].push({ i, j, d: 0, eclate: false });
+  melanger(niveaux[0], rang * 13);
+  let d = 0, idx = 0, dernier = null;
+  for(let n = 0; n < eclats; n++){
+    while(d <= MOSAIQUE_PROFONDEUR && (!niveaux[d] || idx >= niveaux[d].length)){ d++; idx = 0; if(niveaux[d]) melanger(niveaux[d], rang * 13 + d); }
+    if(d > MOSAIQUE_PROFONDEUR || !niveaux[d]) break;
+    const b = niveaux[d][idx++]; b.eclate = true; const nd = b.d + 1;
+    if(!niveaux[nd]) niveaux[nd] = [];
+    niveaux[nd].push({ i: b.i*2, j: b.j*2, d: nd, eclate: false }, { i: b.i*2+1, j: b.j*2, d: nd, eclate: false },
+                     { i: b.i*2, j: b.j*2+1, d: nd, eclate: false }, { i: b.i*2+1, j: b.j*2+1, d: nd, eclate: false });
+    dernier = b;
+  }
+  const feuilles = []; for(const niv of niveaux) if(niv) for(const b of niv) if(!b.eclate) feuilles.push(b);
+  return { feuilles, dernier };
+}
+// Rend le canevas et le rectangle du carreau gagne (le bloc qui vient d'eclater).
+function dessiner(img, poses, L){
+  const H = Math.round(L * img.height / img.width);
+  const cv = document.createElement("canvas"); cv.width = L; cv.height = H;
+  const ctx = cv.getContext("2d");
+  const c0 = MOSAIQUE_COLONNES, r0 = Math.max(2, Math.round(c0 * H / L));
+  const py = pyramide(img, c0, r0);
+  const t = tesselles(1, c0, r0, Math.max(0, poses));
+  ctx.imageSmoothingEnabled = false;
+  for(const b of t.feuilles){ const w = L / (c0 << b.d), h = H / (r0 << b.d); ctx.drawImage(py[b.d], b.i, b.j, 1, 1, b.i*w, b.j*h, w+1, h+1); }
+  let rect = null;
+  if(t.dernier){ const w = L / (c0 << t.dernier.d), h = H / (r0 << t.dernier.d); rect = [t.dernier.i*w, t.dernier.j*h, w, h]; }
+  return { cv, rect, L, H };
+}
+
+// ====== L'etat de la maquette ======
+let VERSION = "A", POSES = 140, IMG = null;
+const tel = document.getElementById("tel");
+const sel = document.getElementById("tableau");
+for(let i = 1; i <= 12; i++){ const o = document.createElement("option"); o.value = "m" + String(i).padStart(2, "0"); o.textContent = "Tableau " + i; sel.appendChild(o); }
+function charger(){ return new Promise(ok => { const im = new Image(); im.onload = () => { IMG = im; ok(); }; im.src = "/branding/mosaique/img/" + sel.value + ".jpg"; }); }
+sel.onchange = charger;
+const curseur = document.getElementById("poses");
+const majN = () => document.getElementById("nPoses").textContent = POSES;
+curseur.oninput = () => { POSES = +curseur.value; majN(); };
+majN();
+const lettres = document.getElementById("lettres");
+function choisirVersion(v){
+  VERSION = v;
+  document.querySelectorAll("#choix button, #lettres button").forEach(x => x.classList.toggle("on", x.dataset.v === v));
+  jouer();
+}
+document.querySelectorAll("#choix button").forEach(b => {
+  b.onclick = () => choisirVersion(b.dataset.v);
+  const l = document.createElement("button"); l.dataset.v = b.dataset.v; l.textContent = b.dataset.v; l.title = b.querySelector("b").textContent;
+  l.onclick = () => choisirVersion(l.dataset.v); if(b.classList.contains("on")) l.classList.add("on"); lettres.appendChild(l);
+});
+
+function confettis(){
+  const c = document.getElementById("conf");
+  const couleurs = ["#3b82f6", "#8b5cf6", "#22c55e", "#f59e0b", "#ef4444", "#06b6d4"];
+  const cx = tel.clientWidth / 2, cy = tel.clientHeight * .35;
+  for(let i = 0; i < 28; i++){
+    const p = document.createElement("i"); const a = Math.random() * Math.PI * 2, r = 90 + Math.random() * 120;
+    p.style.background = couleurs[i % couleurs.length]; p.style.left = cx + "px"; p.style.top = cy + "px";
+    c.appendChild(p);
+    p.animate([{ transform: "translate(0,0) rotate(0)", opacity: 1 }, { transform: `translate(${Math.cos(a)*r}px,${Math.sin(a)*r + 120}px) rotate(${Math.random()*720}deg)`, opacity: 0 }],
+              { duration: 1100 + Math.random() * 400, easing: "cubic-bezier(.2,.7,.4,1)", fill: "forwards" });
+    setTimeout(() => p.remove(), 1600);
+  }
+}
+
+let enCours = null;
+function nettoyer(){ if(enCours){ enCours.remove(); enCours = null; } }
+function finir(el, ms){ setTimeout(() => el.classList.add("fin"), ms); setTimeout(() => { if(enCours === el) nettoyer(); else el.remove(); }, ms + 350); }
+
+function jouer(){
+  if(!IMG) return;
+  nettoyer();
+  POSES = Math.min(POSES + 1, 699); curseur.value = POSES; majN();
+  confettis();
+  const v = ({ A: versionA, B: versionB, C: versionC, D: versionD, E: versionE, F: versionF, G: versionG, H: versionH,
+               I: versionI, Ia: versionIa, Ib: versionIb, Ic: versionIc, J: versionJ, K: versionK, L: versionL, M: versionM, N: versionN, O: versionO, P: versionP })[VERSION];
+  v();
+}
+document.getElementById("savais").onclick = jouer;
+
+// A -- la pastille hors de l'image
+function versionA(){
+  const apres = dessiner(IMG, POSES, 480);
+  const W = 96;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "14px"; el.style.top = "52px"; el.style.width = W + "px";
+  const m = document.createElement("div"); m.className = "mini"; m.appendChild(apres.cv); el.appendChild(m);
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.left = "-16px"; p.style.bottom = "-12px"; p.style.animationDelay = ".15s";
+  el.appendChild(p); tel.appendChild(el); enCours = el; finir(el, 1500);
+}
+
+// B -- le carreau qui s'allume, la ou il tombe
+function versionB(){
+  const avant = dessiner(IMG, POSES - 1, 480), apres = dessiner(IMG, POSES, 480);
+  const W = 140, k = W / 480;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "14px"; el.style.top = "52px"; el.style.width = W + "px";
+  const m = document.createElement("div"); m.className = "mini"; m.style.position = "relative"; m.appendChild(avant.cv); el.appendChild(m);
+  tel.appendChild(el); enCours = el;
+  const r = apres.rect;
+  setTimeout(() => {
+    avant.cv.getContext("2d").drawImage(apres.cv, 0, 0);
+    if(r){
+      // Un tout petit carreau tard dans le tableau : le cadre garde au moins 12 px.
+      const w = Math.max(12, r[2] * k), h = Math.max(12, r[3] * k);
+      const cx = (r[0] + r[2] / 2) * k, cy = (r[1] + r[3] / 2) * k;
+      const c = document.createElement("div"); c.className = "cadre-allume";
+      c.style.left = (cx - w / 2) + "px"; c.style.top = (cy - h / 2) + "px"; c.style.width = w + "px"; c.style.height = h + "px";
+      m.appendChild(c);
+      const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1";
+      p.style.right = (W + 8) + "px"; p.style.top = Math.max(0, cy - 13) + "px";
+      el.appendChild(p);
+    }
+  }, 280);
+  finir(el, 1900);
+}
+
+// C -- le compteur
+function versionC(){
+  const apres = dessiner(IMG, POSES, 240);
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.left = "50%"; el.style.top = "50px"; el.style.transform = "translateX(-50%)";
+  el.style.animationName = "none";
+  const c = document.createElement("div"); c.className = "compteur";
+  c.appendChild(apres.cv);
+  const droite = document.createElement("div");
+  const ch = document.createElement("div"); ch.className = "chiffres";
+  const roule = document.createElement("span"); roule.className = "roule";
+  const pile = document.createElement("span"); pile.innerHTML = (POSES - 1) + "<br>" + POSES; roule.appendChild(pile);
+  ch.appendChild(roule); ch.insertAdjacentHTML("beforeend", " <small>/ " + MOSAIQUE_CARREAUX + "</small>");
+  const j = document.createElement("div"); j.className = "jauge"; const jj = document.createElement("div"); jj.style.width = ((POSES - 1) / MOSAIQUE_CARREAUX * 100) + "%"; j.appendChild(jj);
+  droite.appendChild(ch); droite.appendChild(j); c.appendChild(droite);
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.right = "-14px"; p.style.top = "-10px"; p.style.animationDelay = ".2s";
+  c.style.position = "relative"; c.appendChild(p);
+  el.appendChild(c); tel.appendChild(el); enCours = el;
+  el.animate([{ opacity: 0, transform: "translate(-50%,-10px)" }, { opacity: 1, transform: "translate(-50%,0)" }], { duration: 300, fill: "forwards" });
+  requestAnimationFrame(() => requestAnimationFrame(() => { pile.style.transform = "translateY(-50%)"; jj.style.width = (POSES / MOSAIQUE_CARREAUX * 100) + "%"; }));
+  setTimeout(() => el.animate([{ opacity: 1 }, { opacity: 0, transform: "translate(-50%,-8px)" }], { duration: 300, fill: "forwards" }), 1700);
+  setTimeout(() => { if(enCours === el) nettoyer(); }, 2050);
+}
+
+// D -- la loupe
+function versionD(){
+  const avant = dessiner(IMG, POSES - 1, 960), apres = dessiner(IMG, POSES, 960);
+  const r = apres.rect; if(!r){ versionA(); return; }
+  const D = 264;                       // canevas de la loupe (affiche a 132 px)
+  // On grossit pour que le carreau fasse ~15 % du medaillon, quelle que soit sa taille.
+  const cote = Math.min(Math.max(r[2], r[3]) / 0.15, apres.L, apres.H);
+  const cx = r[0] + r[2] / 2, cy = r[1] + r[3] / 2;
+  const sx = Math.max(0, Math.min(apres.L - cote, cx - cote / 2)), sy = Math.max(0, Math.min(apres.H - cote, cy - cote / 2));
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "16px"; el.style.top = "54px";
+  const l = document.createElement("div"); l.className = "loupe";
+  const cv = document.createElement("canvas"); cv.width = D; cv.height = D;
+  const ctx = cv.getContext("2d"); ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(avant.cv, sx, sy, cote, cote, 0, 0, D, D);
+  l.appendChild(cv);
+  // Le carreau gagne, a sa vraie place dans le medaillon, qui tombe dedans.
+  const e = 132 / cote;
+  const t = document.createElement("canvas"); t.width = 64; t.height = 64;
+  const tc = t.getContext("2d"); tc.imageSmoothingEnabled = false; tc.drawImage(apres.cv, r[0], r[1], r[2], r[3], 0, 0, 64, 64);
+  t.className = "tuile"; t.style.width = (r[2] * e) + "px"; t.style.height = (r[3] * e) + "px";
+  t.style.left = ((cx - sx) * e) + "px"; t.style.top = ((cy - sy) * e) + "px";
+  l.appendChild(t);
+  el.appendChild(l);
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.left = "-10px"; p.style.bottom = "-4px"; p.style.animationDelay = ".35s";
+  el.appendChild(p);
+  tel.appendChild(el); enCours = el;
+  // Une fois pose, le carreau eclate en ses quatre enfants : le morceau de peinture se complete.
+  setTimeout(() => { ctx.drawImage(apres.cv, sx, sy, cote, cote, 0, 0, D, D); t.style.transition = "opacity .35s"; t.style.opacity = "0"; }, 1000);
+  finir(el, 2000);
+}
+// Un cadre ambre sur le carreau gagne (rect en coordonnees du canevas, k = echelle d'affichage).
+function cadreSur(parent, r, k, mini){
+  const w = Math.max(mini || 12, r[2] * k), h = Math.max(mini || 12, r[3] * k);
+  const cx = (r[0] + r[2] / 2) * k, cy = (r[1] + r[3] / 2) * k;
+  const c = document.createElement("div"); c.className = "cadre-allume";
+  c.style.left = (cx - w / 2) + "px"; c.style.top = (cy - h / 2) + "px"; c.style.width = w + "px"; c.style.height = h + "px";
+  parent.appendChild(c);
+  return { cx, cy };
+}
+
+// E -- le bandeau pleine largeur
+function versionE(){
+  const LW = tel.clientWidth, BH = 118;
+  const avant = dessiner(IMG, POSES - 1, 780), apres = dessiner(IMG, POSES, 780);
+  const k = LW / 780, Hs = apres.H * k;
+  const r = apres.rect;
+  // Le bandeau montre la tranche du tableau ou tombe le carreau.
+  const cy = r ? (r[1] + r[3] / 2) * k : Hs / 2;
+  const dy = Math.max(0, Math.min(Hs - BH, cy - BH / 2));
+  const el = document.createElement("div"); el.className = "couche"; el.style.left = "0"; el.style.right = "0"; el.style.top = "0";
+  const b = document.createElement("div");
+  b.style.cssText = "position:relative;height:" + BH + "px;overflow:hidden;box-shadow:0 6px 20px rgba(28,36,48,.3);border-bottom:3px solid var(--ambre)";
+  const hold = document.createElement("div"); hold.style.cssText = "position:absolute;left:0;width:" + LW + "px;top:" + (-dy) + "px";
+  avant.cv.style.cssText = "display:block;width:100%;height:auto"; hold.appendChild(avant.cv); b.appendChild(hold);
+  const et = document.createElement("div");
+  et.style.cssText = "position:absolute;left:12px;bottom:10px;background:rgba(28,36,48,.88);color:#fff;border-radius:999px;padding:5px 12px 6px;font:800 14px Nunito,system-ui,sans-serif;animation:pop .45s cubic-bezier(.3,1.6,.5,1) .3s both";
+  et.innerHTML = '<b style="color:var(--ambre)">+1</b> · ' + POSES + ' <span style="opacity:.7">/ ' + MOSAIQUE_CARREAUX + '</span>';
+  b.appendChild(et); el.appendChild(b); tel.appendChild(el); enCours = el;
+  el.animate([{ transform: "translateY(-100%)" }, { transform: "none" }], { duration: 320, easing: "cubic-bezier(.2,.8,.3,1)", fill: "forwards" });
+  setTimeout(() => { avant.cv.getContext("2d").drawImage(apres.cv, 0, 0); if(r) cadreSur(hold, r, k, 14); }, 330);
+  setTimeout(() => el.animate([{ transform: "none" }, { transform: "translateY(-100%)" }], { duration: 300, easing: "ease-in", fill: "forwards" }), 1900);
+  setTimeout(() => { if(enCours === el) nettoyer(); }, 2250);
+}
+
+// F -- l'eclat : le carreau se fend en quatre, au milieu, puis le tableau file au coin
+function versionF(){
+  const avant = dessiner(IMG, POSES - 1, 480), apres = dessiner(IMG, POSES, 480);
+  const r = apres.rect; if(!r){ versionA(); return; }
+  const W = 250, k = W / 480, Hd = apres.H * k;
+  const el = document.createElement("div"); el.className = "couche";
+  el.style.left = ((tel.clientWidth - W) / 2) + "px"; el.style.top = "150px"; el.style.width = W + "px";
+  el.style.transition = "transform .45s cubic-bezier(.5,0,.3,1), opacity .45s";
+  const m = document.createElement("div"); m.className = "mini"; m.style.position = "relative"; m.style.boxShadow = "0 0 0 3px #fff,0 14px 40px rgba(28,36,48,.35)";
+  m.appendChild(avant.cv); el.appendChild(m); tel.appendChild(el); enCours = el;
+  el.animate([{ opacity: 0, transform: "scale(.85)" }, { opacity: 1, transform: "none" }], { duration: 260, easing: "ease-out" });
+  // Le bloc d'avant, en relief, puis ses quatre enfants qui s'ecartent et se reposent.
+  const bx = r[0] * k, by = r[1] * k, bw = r[2] * k, bh = r[3] * k;
+  const bloc = document.createElement("canvas"); bloc.width = 32; bloc.height = 32;
+  bloc.getContext("2d").drawImage(avant.cv, r[0], r[1], r[2], r[3], 0, 0, 32, 32);
+  bloc.style.cssText = "position:absolute;left:" + bx + "px;top:" + by + "px;width:" + bw + "px;height:" + bh + "px;image-rendering:pixelated;box-shadow:0 0 0 2px #fff,0 0 14px 4px rgba(232,162,58,.9);border-radius:1px";
+  setTimeout(() => { m.appendChild(bloc); bloc.animate([{ transform: "scale(1)" }, { transform: "scale(1.6)" }, { transform: "scale(1.35)" }], { duration: 300, fill: "forwards" }); }, 250);
+  setTimeout(() => {
+    bloc.remove();
+    const morceaux = [];
+    for(let q = 0; q < 4; q++){
+      const qx = q % 2, qy = q >> 1;
+      const c = document.createElement("canvas"); c.width = 16; c.height = 16;
+      c.getContext("2d").drawImage(apres.cv, r[0] + qx * r[2] / 2, r[1] + qy * r[3] / 2, r[2] / 2, r[3] / 2, 0, 0, 16, 16);
+      c.style.cssText = "position:absolute;left:" + (bx + qx * bw / 2) + "px;top:" + (by + qy * bh / 2) + "px;width:" + (bw / 2) + "px;height:" + (bh / 2) + "px;image-rendering:pixelated;box-shadow:0 0 0 1px #fff,0 0 8px 2px rgba(232,162,58,.8)";
+      m.appendChild(c); morceaux.push(c);
+      const ex = (qx ? 1 : -1) * Math.max(4, bw * .35), ey = (qy ? 1 : -1) * Math.max(4, bh * .35);
+      c.animate([{ transform: "scale(1.35)" }, { transform: `translate(${ex}px,${ey}px) scale(1.25)`, offset: .45 }, { transform: "none" }], { duration: 620, easing: "cubic-bezier(.3,1.2,.5,1)", fill: "forwards" });
+    }
+    const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1";
+    p.style.left = Math.min(W - 30, bx + bw + 10) + "px"; p.style.top = Math.max(-14, by - 22) + "px";
+    m.appendChild(p);
+    setTimeout(() => { avant.cv.getContext("2d").drawImage(apres.cv, 0, 0); morceaux.forEach(c => c.remove()); }, 700);
+  }, 560);
+  // Puis le tableau file au coin, la ou vit la mosaique.
+  setTimeout(() => {
+    const dx = tel.clientWidth - 14 - W - parseFloat(el.style.left), dy = 52 - 150;
+    el.style.transformOrigin = "100% 0";
+    el.style.transform = `translate(${dx}px,${dy}px) scale(.38)`;
+    el.style.opacity = "0";
+  }, 1500);
+  setTimeout(() => { if(enCours === el) nettoyer(); }, 2000);
+}
+
+// G -- le +1 part du bouton et vole jusqu'au carreau
+function versionG(){
+  const avant = dessiner(IMG, POSES - 1, 480), apres = dessiner(IMG, POSES, 480);
+  const W = 110, k = W / 480;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "14px"; el.style.top = "52px"; el.style.width = W + "px";
+  const m = document.createElement("div"); m.className = "mini"; m.style.position = "relative"; m.appendChild(avant.cv); el.appendChild(m);
+  tel.appendChild(el); enCours = el;
+  const bt = document.getElementById("savais").getBoundingClientRect(), tr = tel.getBoundingClientRect();
+  const x0 = bt.left - tr.left + bt.width / 2, y0 = bt.top - tr.top + 4;
+  const r = apres.rect;
+  const cible = r ? { x: tel.clientWidth - 14 - W + (r[0] + r[2] / 2) * k, y: 52 + (r[1] + r[3] / 2) * k } : { x: tel.clientWidth - 14 - W / 2, y: 52 + 40 };
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1";
+  p.style.left = "0"; p.style.top = "0"; p.style.zIndex = "45"; p.style.animation = "none";
+  tel.appendChild(p);
+  const pw = p.offsetWidth, ph = p.offsetHeight;
+  const at = (x, y, s) => `translate(${x - pw / 2}px,${y - ph / 2}px) scale(${s})`;
+  // Une courbe : monte d'abord, puis file vers la mosaique.
+  const mx = (x0 + cible.x) / 2 - 60, my = Math.min(y0, cible.y) + 120;
+  p.animate([{ transform: at(x0, y0, .4), opacity: 0 }, { transform: at(x0, y0 - 34, 1.25), opacity: 1, offset: .22 },
+             { transform: at(mx, my, 1.05), opacity: 1, offset: .62 }, { transform: at(cible.x, cible.y, .35), opacity: .9 }],
+            { duration: 900, easing: "cubic-bezier(.45,0,.4,1)", fill: "forwards" });
+  // La traînee : quelques points ambre qui suivent le meme chemin, en retard.
+  for(let i = 1; i <= 5; i++){
+    const d = document.createElement("i");
+    d.style.cssText = "position:absolute;left:0;top:0;width:8px;height:8px;border-radius:50%;background:var(--ambre);z-index:44;pointer-events:none;opacity:0";
+    tel.appendChild(d);
+    const pt = (x, y) => `translate(${x - 4}px,${y - 4}px)`;
+    d.animate([{ transform: pt(x0, y0 - 34), opacity: 0 }, { transform: pt(x0, y0 - 34), opacity: .7 - i * .1, offset: .22 },
+               { transform: pt(mx, my), opacity: .6 - i * .1, offset: .62 }, { transform: pt(cible.x, cible.y), opacity: 0 }],
+              { duration: 900, delay: i * 45, easing: "cubic-bezier(.45,0,.4,1)", fill: "forwards" });
+    setTimeout(() => d.remove(), 1300);
+  }
+  setTimeout(() => {
+    p.remove();
+    avant.cv.getContext("2d").drawImage(apres.cv, 0, 0);
+    if(r) cadreSur(m, r, k, 12);
+    m.animate([{ transform: "scale(1)" }, { transform: "scale(1.08)" }, { transform: "scale(1)" }], { duration: 320 });
+  }, 900);
+  finir(el, 2200);
+}
+
+// H -- l'anneau
+function versionH(){
+  const apres = dessiner(IMG, POSES, 300);
+  const S = 78, R = 44, C = 2 * Math.PI * R;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "18px"; el.style.top = "54px"; el.style.width = (S + 22) + "px"; el.style.height = (S + 22) + "px";
+  const svg = '<svg width="' + (S + 22) + '" height="' + (S + 22) + '" viewBox="0 0 100 100" style="position:absolute;inset:0;transform:rotate(-90deg)">'
+    + '<circle cx=50 cy=50 r=' + R + ' fill="#fff" stroke="#eee6da" stroke-width=8 />'
+    + '<circle class=arc cx=50 cy=50 r=' + R + ' fill=none stroke="#E8A23A" stroke-width=8 stroke-linecap=round stroke-dasharray="' + C + '" stroke-dashoffset="' + (C * (1 - (POSES - 1) / MOSAIQUE_CARREAUX)) + '" style="transition:stroke-dashoffset .7s cubic-bezier(.3,1.3,.5,1) .3s" /></svg>';
+  el.innerHTML = svg;
+  el.style.filter = "drop-shadow(0 8px 16px rgba(28,36,48,.25))";
+  apres.cv.style.cssText = "position:absolute;left:11px;top:11px;width:" + S + "px;height:" + S + "px;border-radius:50%;object-fit:cover";
+  el.appendChild(apres.cv);
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.left = "-12px"; p.style.bottom = "0"; p.style.animationDelay = ".3s";
+  el.appendChild(p);
+  tel.appendChild(el); enCours = el;
+  requestAnimationFrame(() => requestAnimationFrame(() => { el.querySelector(".arc").style.strokeDashoffset = C * (1 - POSES / MOSAIQUE_CARREAUX); }));
+  finir(el, 1900);
+}
+// ====== I a P : autour de B et C ======
+// Le chiffre qui roule (141 -> 142) : une pile de deux nombres qui monte d'un cran.
+function rouleur(de, a, delai){
+  const r = document.createElement("span"); r.className = "roule";
+  const pile = document.createElement("span"); pile.innerHTML = de + "<br>" + a;
+  if(delai !== undefined) pile.style.transitionDelay = delai + "s";
+  r.appendChild(pile);
+  requestAnimationFrame(() => requestAnimationFrame(() => pile.style.transform = "translateY(-50%)"));
+  return r;
+}
+// La ligne du compteur : « 142 / 700 » et la jauge.
+function ligneCompteur(taille){
+  const l = document.createElement("div"); l.className = "ligne-compteur"; if(taille) l.style.fontSize = taille + "px";
+  const ch = document.createElement("div"); ch.className = "chiffres-l";
+  ch.appendChild(rouleur(POSES - 1, POSES));
+  ch.insertAdjacentHTML("beforeend", ' <small>/ ' + MOSAIQUE_CARREAUX + '</small>');
+  const j = document.createElement("div"); j.className = "jauge-l"; const jj = document.createElement("div");
+  jj.style.width = ((POSES - 1) / MOSAIQUE_CARREAUX * 100) + "%"; j.appendChild(jj);
+  requestAnimationFrame(() => requestAnimationFrame(() => jj.style.width = (POSES / MOSAIQUE_CARREAUX * 100) + "%"));
+  l.appendChild(ch); l.appendChild(j);
+  return l;
+}
+// Une mosaique de largeur W, dessinee AVANT, qui passe a APRES apres `ms` en allumant le carreau.
+function miniQuiSAllume(W, ms, allumer){
+  const avant = dessiner(IMG, POSES - 1, 480), apres = dessiner(IMG, POSES, 480);
+  const k = W / 480;
+  const m = document.createElement("div"); m.className = "mini"; m.style.position = "relative"; m.appendChild(avant.cv);
+  setTimeout(() => {
+    avant.cv.getContext("2d").drawImage(apres.cv, 0, 0);
+    if(apres.rect) (allumer || cadreSur)(m, apres.rect, k, 12);
+  }, ms);
+  return { m, apres, k };
+}
+
+// I -- B + C
+function versionI(){
+  const W = 140;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "14px"; el.style.top = "52px"; el.style.width = W + "px";
+  const { m, apres, k } = miniQuiSAllume(W, 280);
+  el.appendChild(m);
+  const bas = document.createElement("div"); bas.className = "sous-mini";
+  bas.appendChild(ligneCompteur());
+  el.appendChild(bas);
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.animationDelay = ".28s";
+  const cy = apres.rect ? (apres.rect[1] + apres.rect[3] / 2) * k : 30;
+  p.style.right = (W + 8) + "px"; p.style.top = Math.max(0, cy - 13) + "px";
+  el.appendChild(p);
+  tel.appendChild(el); enCours = el; finir(el, 2000);
+}
+
+// Ia -- la I a la taille d'aujourd'hui
+function versionIa(){
+  const W = 96;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "12px"; el.style.top = "50px"; el.style.width = W + "px";
+  const { m, apres, k } = miniQuiSAllume(W, 280);
+  el.appendChild(m);
+  const bas = document.createElement("div"); bas.className = "sous-mini compacte";
+  bas.appendChild(ligneCompteur(12));
+  el.appendChild(bas);
+  const p = document.createElement("div"); p.className = "pastille petite"; p.textContent = "+1"; p.style.animationDelay = ".28s";
+  const cy = apres.rect ? (apres.rect[1] + apres.rect[3] / 2) * k : 30;
+  p.style.right = (W + 6) + "px"; p.style.top = Math.max(0, cy - 11) + "px";
+  el.appendChild(p);
+  tel.appendChild(el); enCours = el; finir(el, 2000);
+}
+
+// Ib -- le compteur pose dans le bas de l'image
+function versionIb(){
+  const W = 110;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "12px"; el.style.top = "50px"; el.style.width = W + "px";
+  const { m, apres, k } = miniQuiSAllume(W, 280);
+  m.style.overflow = "hidden"; m.style.borderRadius = "8px";
+  const bande = document.createElement("div"); bande.className = "bande-ib";
+  bande.appendChild(ligneCompteur(12));
+  m.appendChild(bande);
+  el.appendChild(m);
+  const p = document.createElement("div"); p.className = "pastille petite"; p.textContent = "+1"; p.style.animationDelay = ".28s";
+  const cy = apres.rect ? (apres.rect[1] + apres.rect[3] / 2) * k : 30;
+  p.style.right = (W + 6) + "px"; p.style.top = Math.max(0, cy - 11) + "px";
+  el.appendChild(p);
+  tel.appendChild(el); enCours = el; finir(el, 2000);
+}
+
+// Ic -- en longueur
+function versionIc(){
+  const W = 70;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "12px"; el.style.top = "50px";
+  const b = document.createElement("div"); b.className = "ligne-ic";
+  const { m } = miniQuiSAllume(W, 280);
+  m.style.width = W + "px"; m.style.boxShadow = "none"; m.style.flex = "0 0 auto";
+  b.appendChild(m);
+  const droite = document.createElement("div"); droite.style.minWidth = "78px";
+  droite.innerHTML = '<div class="plus-ic">+1</div>';
+  droite.appendChild(ligneCompteur(13));
+  b.appendChild(droite);
+  el.appendChild(b); tel.appendChild(el); enCours = el; finir(el, 2000);
+}
+
+// J -- le compteur qui s'ouvre sur la mosaique
+function versionJ(){
+  const W = 150;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "14px"; el.style.top = "52px"; el.style.width = W + "px";
+  const boite = document.createElement("div"); boite.className = "boite-j";
+  const haut = document.createElement("div"); haut.className = "haut-j";
+  haut.insertAdjacentHTML("beforeend", '<b class="plus-j">+1</b>');
+  const ch = document.createElement("span"); ch.className = "chiffres-j"; ch.appendChild(rouleur(POSES - 1, POSES, .15));
+  ch.insertAdjacentHTML("beforeend", ' <small>/ ' + MOSAIQUE_CARREAUX + '</small>');
+  haut.appendChild(ch); boite.appendChild(haut);
+  const depli = document.createElement("div"); depli.className = "depli-j";
+  const { m } = miniQuiSAllume(W - 12, 850);
+  m.style.boxShadow = "none";
+  depli.appendChild(m); boite.appendChild(depli);
+  el.appendChild(boite); tel.appendChild(el); enCours = el;
+  setTimeout(() => depli.style.maxHeight = "200px", 550);
+  finir(el, 2200);
+}
+
+// K -- la jauge dont le remplissage est le tableau
+function versionK(){
+  const el = document.createElement("div"); el.className = "couche"; el.style.left = "16px"; el.style.right = "16px"; el.style.top = "50px";
+  const TW = tel.clientWidth - 32;
+  const apres = dessiner(IMG, POSES, 780);
+  const url = apres.cv.toDataURL("image/jpeg", .85);
+  const piste = document.createElement("div"); piste.className = "piste-k";
+  const rempli = document.createElement("div"); rempli.className = "rempli-k";
+  rempli.style.width = ((POSES - 1) / MOSAIQUE_CARREAUX * 100) + "%";
+  rempli.style.backgroundImage = "url(" + url + ")"; rempli.style.backgroundSize = TW + "px auto";
+  piste.appendChild(rempli);
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.top = "50%"; p.style.animationDelay = ".3s";
+  p.style.left = "calc(" + (POSES / MOSAIQUE_CARREAUX * 100) + "% - 4px)"; p.style.marginTop = "-13px";
+  piste.appendChild(p);
+  const cpt = document.createElement("div"); cpt.className = "legende-k";
+  cpt.appendChild(rouleur(POSES - 1, POSES, .3)); cpt.insertAdjacentHTML("beforeend", " / " + MOSAIQUE_CARREAUX);
+  el.appendChild(piste); el.appendChild(cpt); tel.appendChild(el); enCours = el;
+  el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 250, fill: "forwards" });
+  requestAnimationFrame(() => requestAnimationFrame(() => { piste.style.height = "38px"; rempli.style.width = (POSES / MOSAIQUE_CARREAUX * 100) + "%"; }));
+  setTimeout(() => { piste.style.height = "10px"; el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 350, delay: 250, fill: "forwards" }); }, 1800);
+  setTimeout(() => { if(enCours === el) nettoyer(); }, 2450);
+}
+
+// L -- le polaroid
+function versionL(){
+  const W = 124;
+  const el = document.createElement("div"); el.className = "couche part"; el.style.right = "16px"; el.style.top = "50px";
+  const pol = document.createElement("div"); pol.className = "polaroid";
+  const { m } = miniQuiSAllume(W, 320);
+  m.style.boxShadow = "none"; m.style.width = W + "px"; m.querySelector("canvas").style.borderRadius = "1px";
+  pol.appendChild(m);
+  const leg = document.createElement("div"); leg.className = "legende-pol";
+  leg.appendChild(rouleur(POSES - 1, POSES, .3)); leg.insertAdjacentHTML("beforeend", " / " + MOSAIQUE_CARREAUX);
+  pol.appendChild(leg);
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.left = "-14px"; p.style.top = "-10px"; p.style.animationDelay = ".3s";
+  pol.appendChild(p);
+  el.appendChild(pol); tel.appendChild(el); enCours = el;
+  pol.animate([{ opacity: 0, transform: "rotate(6deg) translateY(-24px)" }, { opacity: 1, transform: "rotate(-4deg)" }], { duration: 420, easing: "cubic-bezier(.3,1.4,.5,1)", fill: "forwards" });
+  finir(el, 2000);
+}
+
+// M -- le cartel de musee
+function versionM(){
+  const W = 132;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "16px"; el.style.top = "52px"; el.style.width = (W + 12) + "px";
+  const cadre = document.createElement("div"); cadre.className = "cadre-dore";
+  const { m } = miniQuiSAllume(W, 300);
+  m.style.boxShadow = "none"; m.querySelector("canvas").style.borderRadius = "0";
+  cadre.appendChild(m); el.appendChild(cadre);
+  const cartel = document.createElement("div"); cartel.className = "cartel";
+  cartel.innerHTML = "<b>Tableau " + (sel.selectedIndex + 1) + "</b>";
+  const l2 = document.createElement("div"); l2.appendChild(rouleur(POSES - 1, POSES, .3)); l2.insertAdjacentHTML("beforeend", " / " + MOSAIQUE_CARREAUX + " carreaux");
+  cartel.appendChild(l2); el.appendChild(cartel);
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.left = "-16px"; p.style.top = "-10px"; p.style.animationDelay = ".3s";
+  el.appendChild(p);
+  tel.appendChild(el); enCours = el; finir(el, 2000);
+}
+
+// N -- le chiffre geant, au compteur kilometrique
+function versionN(){
+  const apres = dessiner(IMG, POSES, 240);
+  const el = document.createElement("div"); el.className = "couche"; el.style.left = "50%"; el.style.top = "54px";
+  const b = document.createElement("div"); b.className = "geant";
+  apres.cv.className = "fond-geant"; b.appendChild(apres.cv);
+  const voile = document.createElement("div"); voile.className = "voile-geant"; b.appendChild(voile);
+  const ch = document.createElement("div"); ch.className = "chiffres-geant";
+  const de = String(POSES - 1), a = String(POSES);
+  const n = Math.max(de.length, a.length);
+  const dd = de.padStart(n, " "), aa = a.padStart(n, " ");
+  for(let i = 0; i < n; i++){
+    const col = document.createElement("span"); col.className = "roule";
+    const pile = document.createElement("span"); pile.innerHTML = (dd[i] === " " ? "&nbsp;" : dd[i]) + "<br>" + aa[i];
+    pile.style.transitionDelay = (.25 + (n - 1 - i) * .08) + "s";
+    col.appendChild(pile); ch.appendChild(col);
+    if(dd[i] !== aa[i]) requestAnimationFrame(() => requestAnimationFrame(() => pile.style.transform = "translateY(-50%)"));
+  }
+  b.appendChild(ch);
+  b.insertAdjacentHTML("beforeend", '<div class="sur-geant">carreaux sur ' + MOSAIQUE_CARREAUX + '</div>');
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.right = "-12px"; p.style.top = "-10px"; p.style.animationDelay = ".2s";
+  b.appendChild(p);
+  el.appendChild(b); tel.appendChild(el); enCours = el;
+  el.animate([{ opacity: 0, transform: "translateX(-50%) scale(.8)" }, { opacity: 1, transform: "translateX(-50%) scale(1)" }], { duration: 340, easing: "cubic-bezier(.3,1.5,.5,1)", fill: "forwards" });
+  setTimeout(() => el.animate([{ opacity: 1, transform: "translateX(-50%)" }, { opacity: 0, transform: "translateX(-50%) translateY(-10px)" }], { duration: 300, fill: "forwards" }), 1800);
+  setTimeout(() => { if(enCours === el) nettoyer(); }, 2150);
+}
+
+// O -- les etincelles
+function versionO(){
+  const W = 140;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "14px"; el.style.top = "52px"; el.style.width = W + "px";
+  const etincelles = (m, r, k) => {
+    const c = cadreSur(m, r, k, 10);
+    m.lastChild.style.animation = "none";
+    for(let i = 0; i < 14; i++){
+      const d = document.createElement("i"); const a = i / 14 * Math.PI * 2 + Math.random() * .3, R = 22 + Math.random() * 26;
+      const t = 4 + Math.random() * 4;
+      d.style.cssText = "position:absolute;width:" + t + "px;height:" + t + "px;border-radius:50%;background:" + (i % 3 ? "#E8A23A" : "#fff6d8") + ";left:" + (c.cx - t / 2) + "px;top:" + (c.cy - t / 2) + "px;box-shadow:0 0 6px 1px rgba(232,162,58,.9);pointer-events:none";
+      m.appendChild(d);
+      d.animate([{ transform: "translate(0,0) scale(1)", opacity: 1 }, { transform: `translate(${Math.cos(a) * R}px,${Math.sin(a) * R}px) scale(.3)`, opacity: 0 }],
+                { duration: 650 + Math.random() * 300, easing: "cubic-bezier(.2,.8,.4,1)", fill: "forwards" });
+    }
+  };
+  const { m, apres, k } = miniQuiSAllume(W, 280, etincelles);
+  m.style.overflow = "visible";
+  el.appendChild(m);
+  const p = document.createElement("div"); p.className = "pastille"; p.textContent = "+1"; p.style.animationDelay = ".28s";
+  const cy = apres.rect ? (apres.rect[1] + apres.rect[3] / 2) * k : 30;
+  p.style.right = (W + 8) + "px"; p.style.top = Math.max(0, cy - 13) + "px";
+  el.appendChild(p);
+  tel.appendChild(el); enCours = el; finir(el, 1900);
+}
+
+// P -- le carreau-temoin
+function versionP(){
+  // Un seul carre : le bloc tel qu il etait AVANT d eclater (une couleur). Apres, il en fait quatre.
+  const avantP = dessiner(IMG, POSES - 1, 480), apres = dessiner(IMG, POSES, 480), r = apres.rect;
+  const el = document.createElement("div"); el.className = "couche part sort"; el.style.right = "14px"; el.style.top = "52px";
+  const b = document.createElement("div"); b.className = "temoin";
+  const t = document.createElement("canvas"); t.width = 64; t.height = 64;
+  const tc = t.getContext("2d"); tc.imageSmoothingEnabled = false;
+  if(r) tc.drawImage(avantP.cv, r[0], r[1], r[2], r[3], 0, 0, 64, 64);
+  t.className = "carre-temoin"; b.appendChild(t);
+  const txt = document.createElement("div");
+  txt.innerHTML = '<div class="plus-temoin">+1</div>';
+  const l = document.createElement("div"); l.className = "cpt-temoin"; l.appendChild(rouleur(POSES - 1, POSES, .3)); l.insertAdjacentHTML("beforeend", " / " + MOSAIQUE_CARREAUX);
+  txt.appendChild(l); b.appendChild(txt);
+  el.appendChild(b); tel.appendChild(el); enCours = el; finir(el, 1900);
+}
+charger().then(() => setTimeout(jouer, 400));
+</script>

@@ -9402,3 +9402,9 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   confettis et +1 au Continuer, donc sur la carte suivante, et reposait un second carreau en partant
   (+2) : les deux arrivent avec le check, un seul carreau. Le drapeau v852 restait colle aux phrases
   revenues en fin de seance (pas de carreau au second passage) : remplace.
+- v854 : « le +1 blanc sur la mosaique, on le voit mal quand les carres sont blancs ; quelque chose me
+  derange encore dans la mosaique ». Dix-neuf propositions en maquette (.claude/maquette-plus-un.html) ;
+  il aimait B (le carreau qui s'allume) et C (le compteur), puis I (B + C) mais « elle prend beaucoup
+  de place » ; P ecartee (« quatre carres », puis « on ne l'associe pas a la mosaique »). Choisie : Ic,
+  une pilule couchee -- mosaique avec le carreau allume, +1, 142 / 700 qui roule, jauge -- « centree
+  a la meme hauteur ». Essai carreau_partout.
