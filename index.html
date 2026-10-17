@@ -6448,25 +6448,27 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-micro.v2.ecoute::after{display:none;}
 .cp-or-forme{display:block; width:280px; max-width:92%; height:56px;}
 .cp-or-micro.reussi{background:#2e8b57 !important;}
-/* v855 : la pilule du carreau gagne (« Ic »), sous les boutons des reglages, a droite : la mosaique, le carreau allume, +1, 142 / 700, la jauge. */
-.carreau-mini{position:fixed; right:20px; z-index:9998; display:flex; align-items:center; gap:7px; background:#fff; border-radius:10px; padding:4px 9px 4px 4px; box-shadow:0 0 0 1.5px #e3dccf, 0 8px 20px rgba(28,36,48,.2); opacity:0; transform:translateY(-8px); transition:opacity .25s, transform .25s; pointer-events:none;}
-.carreau-mini.visible{opacity:1; transform:none;}
-.carreau-mini .cm-toile{position:relative; flex:0 0 auto; border-radius:6px; background:#efe8dc;}
-.carreau-mini canvas{display:block; width:100%; height:auto; border-radius:5px;}
-.cm-allume{position:absolute; border:2.5px solid #E8A23A; border-radius:3px; box-shadow:0 0 0 1.5px #fff, 0 0 12px 3px rgba(232,162,58,.9); animation:cm-pulse .55s ease-in-out 3 alternate;}
-@keyframes cm-pulse{0%{transform:scale(1.6); opacity:.2} 100%{transform:none; opacity:1}}
-.cm-plus{display:inline-block; background:#E8A23A; color:#1C2430; border-radius:999px; padding:1px 6px 2px; font:900 11.5px Nunito, system-ui, sans-serif; margin-bottom:2px; animation:cm-pop .5s cubic-bezier(.3,1.6,.5,1) both;}
-@keyframes cm-pop{0%{opacity:0; transform:scale(.3)} 100%{opacity:1; transform:none}}
-.cm-chiffres{font:900 11.5px/1.15 Nunito, system-ui, sans-serif; color:#1C2430; white-space:nowrap;}
-.cm-chiffres small{font-weight:800; color:#576177; font-size:.8em;}
-.cm-roule{display:inline-block; overflow:hidden; height:1.15em; vertical-align:bottom;}
-.cm-roule span{display:block; transition:transform .45s cubic-bezier(.3,1.4,.5,1) .3s;}
-.cm-jauge{height:3px; min-width:62px; background:#eee6da; border-radius:3px; margin-top:3px; overflow:hidden;}
-.cm-jauge div{height:100%; width:0; background:#E8A23A; border-radius:3px; transition:width .6s ease .35s;}
-body[data-theme="dark"] .carreau-mini{background:#232a34; box-shadow:0 0 0 1.5px #3a4352, 0 8px 20px rgba(0,0,0,.4);}
-body[data-theme="dark"] .cm-chiffres{color:#eef1f5;}
-body[data-theme="dark"] .cm-chiffres small{color:#a9b2c0;}
-body[data-theme="dark"] .cm-jauge{background:#3a4352;}
+/* v856 : le « +1 » jaune au milieu des confettis. */
+.plus-un{position:fixed; left:50%; top:35%; z-index:10000; background:#E8A23A; color:#1C2430; border-radius:999px; padding:3px 13px 5px; font:900 24px Nunito, system-ui, sans-serif; box-shadow:0 3px 0 #b97c1e, 0 8px 20px rgba(28,36,48,.25); pointer-events:none; animation:plus-un 1.2s cubic-bezier(.2,.8,.3,1) forwards;}
+@keyframes plus-un{0%{opacity:0; transform:translate(-50%,-50%) scale(.3)} 18%{opacity:1; transform:translate(-50%,-50%) scale(1.15)} 30%{transform:translate(-50%,-50%) scale(1)} 70%{opacity:1; transform:translate(-50%,-110%) scale(1)} 100%{opacity:0; transform:translate(-50%,-160%) scale(.9)}}
+/* v856 : la mosaique sous le bandeau « +30 ! », ou les carreaux du palier poppent. */
+.mos-palier{position:fixed; left:50%; top:calc(16% + 46px); transform:translateX(-50%); z-index:10000; background:#fff; border-radius:14px; padding:7px 7px 9px; box-shadow:0 0 0 1.5px #e3dccf, 0 12px 30px rgba(28,36,48,.25); pointer-events:none; animation:mp-entre .45s cubic-bezier(.3,1.4,.5,1) both; transition:opacity .4s, transform .4s;}
+.mos-palier.part{opacity:0; transform:translate(-50%,-12px);}
+@keyframes mp-entre{0%{opacity:0; transform:translate(-50%,14px) scale(.9)} 100%{opacity:1; transform:translateX(-50%)}}
+.mp-toile{position:relative;}
+.mp-toile canvas{display:block; width:100%; height:auto; border-radius:8px;}
+.mp-pop{position:absolute; border:2px solid #E8A23A; border-radius:2px; box-shadow:0 0 0 1px #fff, 0 0 10px 2px rgba(232,162,58,.9); animation:mp-pop .7s ease-out forwards;}
+@keyframes mp-pop{0%{opacity:0; transform:scale(2.2)} 30%{opacity:1; transform:scale(1)} 100%{opacity:0; transform:scale(1)}}
+.mp-bas{display:flex; align-items:center; gap:7px; margin:7px 2px 0;}
+.mp-plus{background:#E8A23A; color:#1C2430; border-radius:999px; padding:1px 8px 2px; font:900 14px Nunito, system-ui, sans-serif;}
+.mp-chiffres{font:900 14px Nunito, system-ui, sans-serif; color:#1C2430; white-space:nowrap;}
+.mp-chiffres small{font-weight:800; color:#576177; font-size:.8em;}
+.mp-jauge{height:4px; background:#eee6da; border-radius:3px; margin:5px 2px 0; overflow:hidden;}
+.mp-jauge div{height:100%; background:#E8A23A; border-radius:3px; transition:width .2s linear;}
+body[data-theme="dark"] .mos-palier{background:#232a34; box-shadow:0 0 0 1.5px #3a4352, 0 12px 30px rgba(0,0,0,.45);}
+body[data-theme="dark"] .mp-chiffres{color:#eef1f5;}
+body[data-theme="dark"] .mp-chiffres small{color:#a9b2c0;}
+body[data-theme="dark"] .mp-jauge{background:#3a4352;}
 body[data-theme="dark"] .cp-or-motseul{background:#232a34;}
 body[data-theme="dark"] .cp-or-motseul button{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .cp-or-gris{color:#5c6573;}
@@ -7585,7 +7587,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v855</span>
+    <span class="subtitle-version">v856</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -34900,11 +34902,12 @@ const ESSAIS = {
     // que j'ai reussi » ; apres la recherche du marche : « faisons un a quatre ».
     // Maquette : .claude/maquette-carte-oral-v2.html.
     // EN ESSAI le 17 oct. 2026 (v849), admin seul. Jacques : « des carreaux pour
-    // toutes les cartes ». Voir poserCarreau() et lancerCarreauVersMosaique().
+    // toutes les cartes ». v856 : plus de petite mosaique a chaque carte -- la
+    // mosaique au palier « +30 ! ». Voir montrerMosaiquePalier().
     carreau_partout: {
         etat: "admin",
-        titre: "Le carreau qui monte, partout",
-        desc: "Chaque carreau gagné (carte, phrase, oral, scène) se montre au moment de la réussite : une pilule en haut au centre avec la petite mosaïque, le carreau allumé à sa place, « +1 », le compte qui roule (142 / 700) et la jauge."
+        titre: "La mosaïque au palier",
+        desc: "Les cartes gardent leurs confettis, avec un « +1 » jaune au milieu ; une bonne réponse dans une scène pose aussi un carreau. À chaque palier de l'objectif du jour (« +30 ! », « +60 ! »), la mosaïque apparaît sous le bandeau et les carreaux gagnés depuis le palier précédent y poppent un à un, avec le compte qui monte."
     },
     oral_v2: {
         etat: "admin",
@@ -39867,7 +39870,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 855;
+const APP_VERSION = 856;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42528,11 +42531,15 @@ function tessellesMosaique(rang, c0, r0, eclats){
 // rien. Le fichier a dit << treize >> de la v543 a la v631, sans qu'aucune
 // constante ait jamais bouge : il est ne faux. C'est le chiffre ECRIT A LA
 // MAIN qui derive, jamais celui que pose {j} dans ip_tableau_plafond.
-function poserCarreau(sansAnimation){
+// v856 : le compte de carreaux au dernier palier montre (voir montrerMosaiquePalier).
+// En memoire seulement : apres un rechargement, on repart du premier carreau
+// pose -- ce qui est exactement « depuis le debut de cette seance ».
+let mosaiquePalierDepuis = null;
+function poserCarreau(){
     const v = etatMosaique();
     const jour = getTodayStr();
     if(v.j !== jour){ v.j = jour; v.n = 0; }
-    if(v.n >= MOSAIQUE_PLAFOND) return;
+    if(v.n >= MOSAIQUE_PLAFOND) return false;
     // ⚠️ PENDANT LE TROPHEE, RIEN NE S'ACCUMULE (v629). L'ancienne version
     // faisait grandir la mosaique suivante SOUS le tableau gagne, au nom de
     // « une recompense ne doit rien couter ». Deux choses l'ont fait tomber.
@@ -42548,12 +42555,16 @@ function poserCarreau(sansAnimation){
     // La seconde est de Jacques : on n'est pas paye en rien pendant ces trois
     // jours, on est paye dans une autre monnaie -- le tableau plein a l'ecran.
     // La recompense EST la recompense.
-    if(v.t > 0) return;
+    if(v.t > 0) return false;
+    if(mosaiquePalierDepuis === null) mosaiquePalierDepuis = v.c;
     v.n += 1; v.c += 1;
     ecrireMosaique(v);
     majMosaiqueAccueil();
-    // v849 (essai carreau_partout) : le carreau se voit monter.
-    if(!sansAnimation){ try{ if(essaiActif("carreau_partout")) lancerCarreauVersMosaique(v.c); }catch(e){} }
+    // v849-v855 : une petite mosaique se montrait ici, a chaque carreau (essai
+    // carreau_partout). RETIREE EN v856. Jacques : « a chaque fois qu'on tourne
+    // une carte, ca peut devenir irritant » -- puis « je reviendrais aux
+    // confettis, et juste au +30, voir la mosaique ». Voir montrerMosaiquePalier().
+    return true;
 }
 
 // v853 (17 oct. 2026) : LE CARREAU SE POSE QUAND LA CARTE EST JUGEE, PAS QUAND
@@ -42568,10 +42579,11 @@ function poserCarreau(sansAnimation){
 // ratee qui revient en fin de seance, ou un mot « Encore », repartait sans
 // carreau la seconde fois.
 let carreauDejaPose = null;
-function poserCarreauDeLaCarte(item, sansAnimation){
+// `avecPlusUn` : la ou partent des confettis, un « +1 » jaune au milieu (v856).
+function poserCarreauDeLaCarte(item, avecPlusUn){
     if(!item || carreauDejaPose === item) return;
     carreauDejaPose = item;
-    poserCarreau(sansAnimation);
+    if(poserCarreau() && avecPlusUn) montrerPlusUn();
 }
 // Au depart d'une carte : son carreau, sauf s'il est deja pose.
 function carreauAuDepart(quittee){
@@ -43551,118 +43563,107 @@ function repeindreApresScene(ecran){
     }, 400);
 }
 
-// v847 (17 oct. 2026) : LE CARREAU QUI MONTE. Une phrase reussie a l'oral
-// (essai oral_v2) : sur « Continuer », le son de la recompense, et un carreau du
-// tableau monte du milieu de l'ecran vers une petite mosaique qui apparait en
-// haut a droite -- une copie de celle de l'accueil (#mosaiqueToile) -- puis
-// s'efface. Rien ne bloque : la carte suivante arrive dessous. Sans mosaique
-// dessinee (jamais passe par l'accueil), le son seul.
-// v850 (17 oct. 2026) : PLUS DE CARREAU QUI VOLE. Jacques : « la mosaique plus
-// petite de 50 %, au format de la vraie ; juste le +1 dedans, sans le carreau --
-// c'est trop petit ». La petite mosaique est la copie de celle de l'accueil
-// (#mosaiqueToile, la bande), le « +1 » s'y allume avec la lueur ambree.
-// Les confettis : seulement pour une vraie reussite (l'oral), pas a chaque carte.
-function lancerCarreauVersMosaique(poses, avecConfettis){
-    try{ playMasteredSound(); }catch(e){}
-    if(avecConfettis){ try{ launchConfetti(); }catch(e){} }
-    if(!poses) return;
-    // v851 : PLUS RIEN N'EST SAUTE. La regle « une animation a la fois » perdait
-    // le carreau d'une carte passee vite (Jacques : « des fois je l'ai, des fois
-    // non »). Si la petite mosaique est encore la, elle reste et compte : +2, +3.
-    //
-    // v854 (17 oct. 2026) : LA PILULE « Ic ». Jacques : le +1 blanc pose sur la
-    // mosaique se perd quand les carreaux sont clairs, et la petite mosaique
-    // « derange » -- c'etait une copie IMMOBILE, rien n'y disait ce que la carte
-    // avait change. Choisie parmi dix-neuf (.claude/maquette-plus-un.html) :
-    // une pilule couchee, centree en haut, avec la mosaique a gauche, le carreau
-    // gagne ALLUME a sa place, et a droite « +1 », « 142 / 700 » qui roule et
-    // la jauge. On voit ou le tableau avance, et combien il reste.
-    // ⚠️ LA MOSAIQUE EST REDESSINEE, PLUS COPIEE DE L'ACCUEIL. #mosaiqueToile
-    // n'est pas a jour pendant les cartes (mosaiqueEnRetard, v569 -- on ne
-    // peint pas un ecran qu'on ne regarde pas) et elle est recadree en bande :
-    // la copie montrait un etat perime et ne disait pas OU tombait le carreau.
-    // On dessine petit (240 px) et l'image decodee est gardee (imageMosaique) :
-    // ce n'est pas le travail de 900 px qui gelait l'ecran en septembre.
+// v856 (17 oct. 2026) : LE « +1 » DANS LES CONFETTIS. Jacques : « voir +1 en
+// jaune a travers les confettis, pour les autres cartes ». Au centre de
+// l'explosion (launchConfetti() part de 35 % de la hauteur), il monte et
+// s'efface. Une pastille ambre a texte encre plutot qu'un chiffre jaune nu :
+// du jaune sur la carte claire ne se lit pas -- c'est le defaut du +1 blanc sur
+// la mosaique qui a lance tout ce chantier. Pas pendant un palier : le bandeau
+// « +30 ! » et sa mosaique occupent deja le haut de l'ecran.
+function montrerPlusUn(){
+    try{ if(!essaiActif("carreau_partout")) return; }catch(e){ return; }
+    const conteneur = document.getElementById("confettiContainer");
+    if(!conteneur || conteneur.querySelector(".daily-goal-text")) return;
+    const el = document.createElement("div");
+    el.className = "plus-un";
+    el.textContent = "+1";
+    conteneur.appendChild(el);
+    el.addEventListener("animationend", () => el.remove());
+}
+
+// v856 (17 oct. 2026) : LES CARREAUX DU PALIER, QUI POPPENT. Jacques : « comme
+// on fait quand on dit +30, +60 -- on verra la mosaique avec +30 a cote ; on
+// pourrait meme les voir tous popper dans la mosaique ». Sous le bandeau du
+// palier de l'objectif du jour, la mosaique ; les carreaux gagnes depuis le
+// palier precedent (ou depuis le debut de la seance) s'y allument un a un, et
+// le compte roule avec eux. Elle remplace la petite mosaique qui se montrait a
+// chaque carreau (v849-v855, maquette .claude/maquette-plus-un.html) : a chaque
+// carte, c'etait trop ; la recompense arrive quand il y a quelque chose a feter.
+// ⚠️ LA MOSAIQUE EST REDESSINEE, PAS COPIEE DE L'ACCUEIL. #mosaiqueToile n'est
+// pas a jour pendant les cartes (mosaiqueEnRetard, v569) et elle est recadree
+// en bande. On dessine petit (240 px), l'image decodee est gardee.
+// ⚠️ UN DESSIN PAR CARREAU, DONC UN PLAFOND : au-dela de 60, seuls les 60
+// derniers poppent -- 60 dessins de quelques ms, pas 700.
+function montrerMosaiquePalier(){
+    const v = etatMosaique();
+    const jusqua = v.c;
+    let depuis = mosaiquePalierDepuis === null ? jusqua : mosaiquePalierDepuis;
+    mosaiquePalierDepuis = jusqua;
+    if(v.t > 0 || jusqua <= depuis) return;
     const m = mosaiqueCourante();
-    if(!m) return;
-    const L = lancerCarreauVersMosaique;
+    const conteneur = document.getElementById("confettiContainer");
+    if(!m || !conteneur) return;
+    const gagnes = jusqua - depuis;
+    depuis = Math.max(depuis, jusqua - 60);
     imageMosaique(m).then(img => {
         try{
+            const LARGEUR = 200;
             const toile = document.createElement("canvas");
             toile.width = 240;
             toile.height = Math.round(240 * (m.h || 1) / (m.l || 1));
-            const rect = dessinerMosaique(toile, img, poses, MOSAIQUE_CARREAUX, false);
-            const LARGEUR = 56;
-            let fond = L.fond && L.fond.isConnected ? L.fond : null;
-            const avant = fond ? L.poses : poses - 1;
-            if(fond){
-                // v851 : la pilule encore la reste et compte : +2, +3.
-                L.n += 1;
-                L.plus.textContent = "+" + L.n;
-                L.plus.style.animation = "none"; void L.plus.offsetWidth; L.plus.style.animation = "";
-                L.cadreToile.textContent = "";
-            } else {
-                fond = document.createElement("div");
-                fond.className = "carreau-mini";
-                // v855 : SOUS LES BOUTONS DES REGLAGES, A DROITE (Jacques). Centree en
-                // haut, elle cachait le logo ; la bande de 58 a 128 px a droite est
-                // vide sur toutes les cartes, au grand comme au petit iPhone.
-                fond.style.top = "calc(62px + env(safe-area-inset-top, 0px))";
-                const cadreToile = document.createElement("div");
-                cadreToile.className = "cm-toile";
-                cadreToile.style.width = LARGEUR + "px";
-                const droite = document.createElement("div");
-                const plus = document.createElement("div");
-                plus.className = "cm-plus";
-                plus.textContent = "+1";
-                const chiffres = document.createElement("div");
-                chiffres.className = "cm-chiffres";
-                const jauge = document.createElement("div");
-                jauge.className = "cm-jauge";
-                jauge.appendChild(document.createElement("div"));
-                droite.appendChild(plus); droite.appendChild(chiffres); droite.appendChild(jauge);
-                fond.appendChild(cadreToile); fond.appendChild(droite);
-                document.body.appendChild(fond);
-                L.fond = fond; L.plus = plus; L.cadreToile = cadreToile;
-                L.chiffres = chiffres; L.jauge = jauge.firstChild; L.n = 1;
-                requestAnimationFrame(() => fond.classList.add("visible"));
-            }
-            L.poses = poses;
-            L.cadreToile.appendChild(toile);
-            // Le carreau gagne, allume a sa place (10 px au moins : tard dans
-            // le tableau, une tesselle ne fait plus qu'un ou deux pixels ici).
-            if(rect){
-                const k = LARGEUR / toile.width;
-                const w = Math.max(10, rect[2] * k), h = Math.max(10, rect[3] * k);
-                const cx = (rect[0] + rect[2] / 2) * k, cy = (rect[1] + rect[3] / 2) * k;
-                const allume = document.createElement("div");
-                allume.className = "cm-allume";
-                allume.style.left = (cx - w / 2) + "px"; allume.style.top = (cy - h / 2) + "px";
-                allume.style.width = w + "px"; allume.style.height = h + "px";
-                L.cadreToile.appendChild(allume);
-            }
-            // Le chiffre roule de l'ancien au nouveau ; la jauge suit.
-            L.chiffres.textContent = "";
-            const roule = document.createElement("span");
-            roule.className = "cm-roule";
-            const pile = document.createElement("span");
-            pile.appendChild(document.createTextNode(String(avant)));
-            pile.appendChild(document.createElement("br"));
-            pile.appendChild(document.createTextNode(String(poses)));
-            roule.appendChild(pile);
-            L.chiffres.appendChild(roule);
+            dessinerMosaique(toile, img, depuis, MOSAIQUE_CARREAUX, false);
+            const bloc = document.createElement("div");
+            bloc.className = "mos-palier";
+            const cadre = document.createElement("div");
+            cadre.className = "mp-toile";
+            cadre.style.width = LARGEUR + "px";
+            cadre.appendChild(toile);
+            const bas = document.createElement("div");
+            bas.className = "mp-bas";
+            const plus = document.createElement("span");
+            plus.className = "mp-plus";
+            plus.textContent = "+" + gagnes;
+            const chiffres = document.createElement("span");
+            chiffres.className = "mp-chiffres";
+            const nombre = document.createElement("b");
+            nombre.textContent = String(depuis);
             const sur = document.createElement("small");
             sur.textContent = " / " + MOSAIQUE_CARREAUX;
-            L.chiffres.appendChild(sur);
-            L.jauge.style.width = (Math.max(0, avant) / MOSAIQUE_CARREAUX * 100) + "%";
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                pile.style.transform = "translateY(-50%)";
-                if(L.jauge) L.jauge.style.width = (Math.min(poses, MOSAIQUE_CARREAUX) / MOSAIQUE_CARREAUX * 100) + "%";
-            }));
-            clearTimeout(L.t1); clearTimeout(L.t2);
-            L.t1 = setTimeout(() => { if(L.fond) L.fond.classList.remove("visible"); }, 1900);
-            L.t2 = setTimeout(() => { if(L.fond) L.fond.remove(); L.fond = null; }, 2250);
-        }catch(e){ try{ noterAudio("carreau", "ORAL", "animation refusee : " + (e && e.name)); }catch(e2){} }
+            chiffres.appendChild(nombre); chiffres.appendChild(sur);
+            const jauge = document.createElement("div");
+            jauge.className = "mp-jauge";
+            const jj = document.createElement("div");
+            jj.style.width = (depuis / MOSAIQUE_CARREAUX * 100) + "%";
+            jauge.appendChild(jj);
+            bas.appendChild(plus); bas.appendChild(chiffres);
+            bloc.appendChild(cadre); bloc.appendChild(bas); bloc.appendChild(jauge);
+            conteneur.appendChild(bloc);
+            const k = LARGEUR / toile.width;
+            const n = jusqua - depuis;
+            const pas = Math.max(45, Math.min(110, 2200 / n));
+            for(let i = 1; i <= n; i++){
+                setTimeout(() => {
+                    if(!bloc.isConnected) return;
+                    const poses = depuis + i;
+                    const r = dessinerMosaique(toile, img, poses, MOSAIQUE_CARREAUX, false);
+                    nombre.textContent = String(poses);
+                    jj.style.width = (Math.min(poses, MOSAIQUE_CARREAUX) / MOSAIQUE_CARREAUX * 100) + "%";
+                    if(!r) return;
+                    const w = Math.max(10, r[2] * k), h = Math.max(10, r[3] * k);
+                    const p = document.createElement("div");
+                    p.className = "mp-pop";
+                    p.style.left = ((r[0] + r[2] / 2) * k - w / 2) + "px";
+                    p.style.top = ((r[1] + r[3] / 2) * k - h / 2) + "px";
+                    p.style.width = w + "px"; p.style.height = h + "px";
+                    cadre.appendChild(p);
+                    p.addEventListener("animationend", () => p.remove());
+                }, 350 + i * pas);
+            }
+            // Le bandeau du palier dure 5,5 s ; la mosaique part avec lui.
+            const fin = Math.max(4600, 350 + n * pas + 1600);
+            setTimeout(() => bloc.classList.add("part"), fin);
+            setTimeout(() => bloc.remove(), fin + 400);
+        }catch(e){ try{ noterAudio("carreau", "ORAL", "palier refuse : " + (e && e.name)); }catch(e2){} }
     }).catch(() => {});
 }
 
@@ -44592,7 +44593,7 @@ function montrerCartePhrase(item){
         // fois j'ai juste les confettis, pas la mosaique ». Le carreau ne se
         // posait qu'au « Continuer », une seconde plus tard ; il se pose ici, et
         // nextFlashcard() ne le pose pas une seconde fois.
-        if(juste){ try{ poserCarreauDeLaCarte(item); }catch(e){} }
+        if(juste){ try{ poserCarreauDeLaCarte(item, true); }catch(e){} }
         retour.classList.remove("hidden");
         retour.classList.add(juste ? "bon" : "faux");
         const ref = texteJuste || (item.phrase ? item.phrase.de : "");
@@ -45108,16 +45109,13 @@ function montrerCartePhrase(item){
                 setTimeout(() => { micro.classList.add("reussi"); micro.textContent = "✓"; }, 260);
                 if(!eclatDonne){
                     eclatDonne = true;
-                    // Le carreau n'est gagne que s'il est vraiment pose (plafond du
-                    // jour, trophee en cours) : sinon, le son seul.
-                    let poses = 0;
-                    try{ const avant = etatMosaique().c; poserCarreauDeLaCarte(item, true); const v = etatMosaique(); if(v.c > avant) poses = v.c; }catch(e){}
+                    try{ poserCarreauDeLaCarte(item, true); }catch(e){}
                     try{ registerComboSuccess(); addXp(XP_PER_SUCCESS); updateXpComboDisplay(); checkAndUnlockBadges(); }catch(e){}
                     // v853 : AVEC LE ✓, PLUS SUR « CONTINUER ». Au clic, la carte
-                    // suivante arrivait dans la meme image : confettis et +1
+                    // suivante arrivait dans la meme image : les confettis
                     // tombaient sur elle. Et nextFlashcard() reposait un second
-                    // carreau en partant (« +2 ») -- la marque l'en empeche.
-                    setTimeout(() => { if(micro.isConnected) lancerCarreauVersMosaique(poses, true); }, 260);
+                    // carreau en partant -- la marque l'en empeche.
+                    setTimeout(() => { if(micro.isConnected){ try{ playMasteredSound(); launchConfetti(); }catch(e){} } }, 260);
                 }
                 return;
             }
@@ -46386,7 +46384,7 @@ function celebrerPalier(pointGagne){
     majEcheances(true);
     if(pointGagne){ launchConfetti(); playMasteredSound(); }
     // v853 : le +1 avec les confettis, pas sur la carte suivante.
-    try{ poserCarreauDeLaCarte(carteCourante()); }catch(e){}
+    try{ poserCarreauDeLaCarte(carteCourante(), pointGagne); }catch(e){}
     clearTimeout(attentePalier);
     // La celebration garde son temps d'animation, mais elle ne fait plus
     // disparaitre la carte : elle ouvre « Suivant ».
@@ -47156,7 +47154,7 @@ const VIDEO_BASE_URL = ASSETS_BASE + "video/";
 function stopMasteryCelebrations(){
     const container = document.getElementById("confettiContainer");
     if(container){
-        container.querySelectorAll(".daily-goal-text").forEach(el => el.remove());
+        container.querySelectorAll(".daily-goal-text, .mos-palier, .plus-un").forEach(el => el.remove());
     }
 }
 
@@ -47183,6 +47181,10 @@ function showDailyGoalText(threshold){
 // n'aurait plus rien signifie -- le palier serait devenu entierement muet.
 function triggerDailyGoalCelebration(multiple){
     showDailyGoalText(getDailyGoalTarget() * multiple);
+    // v856 (essai carreau_partout) : la mosaique sous le « +30 ! ». Le delai
+    // laisse la carte qui franchit le palier poser son propre carreau : le
+    // palier est compte AVANT (recordDailyActivity), le carreau juste apres.
+    try{ if(essaiActif("carreau_partout")) setTimeout(montrerMosaiquePalier, 450); }catch(e){}
     playDailyGoalFanfare();
     setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
 }
@@ -47290,7 +47292,8 @@ function markMastered(discret){
     // selon le chemin depuis la v596 -- voir ATTENTE_ETOILE_MS.
     feterLeTrophee();
     majEcheances(true);
-    try{ poserCarreauDeLaCarte(item); }catch(e){}   // v853, voir celebrerPalier()
+    // v856 : le « +1 » avec les petits confettis ; un palier a sa propre fete.
+    try{ poserCarreauDeLaCarte(item, !justReachedMultiple); }catch(e){}   // v853, voir celebrerPalier()
     clearTimeout(attentePalier);
     attentePalier = setTimeout(nextFlashcard,
         (discret && !justReachedMultiple) ? ATTENTE_ETOILE_MS : ATTENTE_FETE_MS);

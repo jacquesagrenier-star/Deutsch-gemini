@@ -9412,3 +9412,9 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   bas des reglages ». Mesure sur les ecrans de cartes (mot, phrase a ecouter, phrase a trou ; iPhone 15
   et SE) : a droite, sous les trois boutons, la bande de 58 a 128 px est vide partout. La pilule y va
   (top 62 px + zone sure, right 20 px).
+- v856 : « a chaque fois qu'on tourne une carte, voir ca, ca peut devenir irritant pour l'usager ? »
+  Puis : « comme on fait quand on dit +30, +60 : on verra la mosaique avec +30 a cote ; les voir tous
+  popper dans la mosaique » ; « je reviendrais aux confettis comme avant » ; « voir +1 en jaune a
+  travers les confettis, pour les autres cartes ». Fait (essai carreau_partout) : plus de pilule ; un
+  +1 ambre au milieu des confettis ; au palier de l'objectif du jour, la mosaique sous le bandeau et
+  les carreaux gagnes depuis le palier precedent qui poppent un a un.
