@@ -9372,3 +9372,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   Codemagic). Essai admin carreau_partout : chaque carreau pose par une carte (flashcard, phrase,
   oral) monte avec son +1 et le son de recompense ; une animation a la fois (les suivantes sont
   sautees pendant 1,6 s).
+- Demande : un message aux testeurs pour dire a quel point l'app a change (« je trouvais ca
+  ennuyant de faire juste des cartes ; la seance du jour est tres variee maintenant ») et les
+  ramener. Brouillon en francais donne dans la conversation (non envoye) ; traductions uk/fa/tr
+  proposees.
