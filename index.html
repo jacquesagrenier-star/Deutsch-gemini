@@ -6449,11 +6449,11 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .cp-or-forme{display:block; width:280px; max-width:92%; height:56px;}
 .cp-or-micro.reussi{background:#2e8b57 !important;}
 /* v847 : le carreau qui monte vers la petite mosaique, en haut a droite. */
-.carreau-mini{position:fixed; z-index:9998; border-radius:10px; overflow:hidden; background:#efe8dc; box-shadow:0 0 0 2px #e3dccf, 0 12px 34px rgba(28,36,48,.28); opacity:0; transform:scale(.94); transition:opacity .25s, transform .25s; pointer-events:none;}
+.carreau-mini{position:fixed; z-index:9998; border-radius:9px; overflow:hidden; background:#efe8dc; box-shadow:0 0 0 2px #e3dccf, 0 8px 24px rgba(28,36,48,.22); opacity:0; transform:translateY(-8px); transition:opacity .25s, transform .25s; pointer-events:none;}
 .carreau-mini canvas{display:block; width:100%; height:auto;}
 .carreau-mini.visible{opacity:1; transform:none;}
 .carreau-mini.recoit{box-shadow:0 0 0 3px #E8A23A, 0 6px 22px rgba(232,162,58,.55);}
-.carreau-vol{position:fixed; border-radius:6px; z-index:9999; pointer-events:none; transform-origin:0 0; box-shadow:0 0 0 3px #E8A23A, 0 8px 22px rgba(232,162,58,.55); animation:carreau-pop .35s ease both; transition:transform .75s cubic-bezier(.5,-0.15,.35,1), border-radius .75s;}
+.carreau-vol{position:fixed; border-radius:6px; z-index:9999; pointer-events:none; transform-origin:0 0; box-shadow:0 0 0 3px #E8A23A, 0 8px 22px rgba(232,162,58,.55); animation:carreau-pop .25s ease both; transition:transform .55s cubic-bezier(.5,-0.1,.35,1), border-radius .55s;}
 @keyframes carreau-pop{0%{opacity:0; transform:scale(.3) rotate(-10deg)} 100%{opacity:1; transform:none}}
 body[data-theme="dark"] .cp-or-motseul{background:#232a34;}
 body[data-theme="dark"] .cp-or-motseul button{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
@@ -43521,6 +43521,9 @@ function repeindreApresScene(ecran){
 // haut a droite -- une copie de celle de l'accueil (#mosaiqueToile) -- puis
 // s'efface. Rien ne bloque : la carte suivante arrive dessous. Sans mosaique
 // dessinee (jamais passe par l'accueil), le son seul.
+// Ou la mosaique apparait : « coin » (en haut a droite) ou « centre ». A trancher
+// par Jacques sur la page d'essai .claude/test-carreau.html.
+let CARREAU_POSITION = "coin";
 function lancerCarreauVersMosaique(poses){
     try{ playMasteredSound(); }catch(e){}
     if(!poses || typeof MOSAIQUES === "undefined") return;
@@ -43538,17 +43541,22 @@ function lancerCarreauVersMosaique(poses){
             apres.width = L; apres.height = H;
             const rect = dessinerMosaique(apres, img, poses, MOSAIQUE_CARREAUX, false);
             if(!rect) return;
-            // La mosaique au milieu de l'ecran, le carreau gros PAR-DESSUS
-            // (un quart de sa largeur), qui rapetisse et va se poser.
-            const FW = Math.min(window.innerWidth * 0.72, 300), FH = FW * H / L;
-            const fx = (window.innerWidth - FW) / 2, fy = Math.max(60, (window.innerHeight - FH) * 0.42);
+            // La mosaique en HAUT A DROITE, dans le coin libre de l'ecran ; le
+            // carreau gros PAR-DESSUS (la moitie de sa largeur, un quart de sa
+            // surface), qui rapetisse et va se poser.
+            const auCentre = CARREAU_POSITION === "centre";
+            const FW = Math.round(auCentre ? Math.min(window.innerWidth * 0.6, 240) : Math.min(window.innerWidth * 0.42, 170));
             const fond = document.createElement("div");
             fond.className = "carreau-mini";
-            fond.style.left = fx + "px"; fond.style.top = fy + "px"; fond.style.width = FW + "px";
+            if(auCentre){ fond.style.left = Math.round((window.innerWidth - FW) / 2) + "px"; fond.style.top = Math.round(window.innerHeight * 0.3) + "px"; }
+            else { fond.style.right = "12px"; fond.style.top = "calc(12px + env(safe-area-inset-top, 0px))"; }
+            fond.style.width = FW + "px";
             mini.style.cssText = "display:block; width:100%; height:auto;";
             fond.appendChild(mini);
             document.body.appendChild(fond);
-            const S = Math.round(FW / 4);
+            const cadre = fond.getBoundingClientRect();
+            const fx = cadre.left, fy = cadre.top, FH = FW * H / L;
+            const S = Math.round(FW / 2);
             const vol = document.createElement("canvas");
             vol.className = "carreau-vol";
             vol.width = 128; vol.height = 128;
@@ -43559,21 +43567,21 @@ function lancerCarreauVersMosaique(poses){
             const x0 = fx + FW / 2 - S / 2, y0 = fy + FH / 2 - S / 2;
             vol.style.left = x0 + "px"; vol.style.top = y0 + "px";
             requestAnimationFrame(() => fond.classList.add("visible"));
-            setTimeout(() => document.body.appendChild(vol), 180);
+            setTimeout(() => document.body.appendChild(vol), 120);
             setTimeout(() => {
                 const k = FW / L;
                 const tx = fx + rect[0] * k - x0, ty = fy + rect[1] * k - y0;
                 vol.style.animation = "none";
                 vol.style.transform = "translate(" + tx + "px," + ty + "px) scale(" + Math.max(0.02, rect[2] * k / S).toFixed(3) + ")";
                 vol.style.borderRadius = "1px";
-            }, 900);
+            }, 420);
             setTimeout(() => {
                 vol.remove();
                 mini.getContext("2d").drawImage(apres, 0, 0);
                 fond.classList.add("recoit");
-            }, 1700);
-            setTimeout(() => fond.classList.remove("visible", "recoit"), 2600);
-            setTimeout(() => fond.remove(), 3000);
+            }, 980);
+            setTimeout(() => fond.classList.remove("visible", "recoit"), 1350);
+            setTimeout(() => fond.remove(), 1650);
         }catch(e){ try{ noterAudio("carreau", "ORAL", "animation refusee : " + (e && e.name)); }catch(e2){} }
     }).catch(() => {});
 }
