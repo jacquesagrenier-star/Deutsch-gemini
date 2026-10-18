@@ -9,9 +9,11 @@ Aucune dépendance.
     python tests/a1_voyage.py --libres de          # les mots A1 qu'aucune escale ne prend encore
 
 L'A1 voyage (18 oct. 2026) range l'A1 EXISTANT par situations : après Premiers pas,
-12 escales (10 utiles à tous, puis 2 seulement touristiques), deux escales de
-remplacement pour qui « s'installe » (elles prennent la place des 2 touristiques),
-puis la suite de l'A1 en 8 étapes. Les mots ne s'écrivent pas : chaque escale
+12 escales (10 utiles à tous, puis 2 seulement touristiques), les mêmes pour tous,
+puis la suite de l'A1 : d'abord les deux étapes « installe » (le logement, les
+démarches, avec leurs phrases et leur dialogue), puis 8 étapes par thèmes. Depuis
+la v864, plus de question « voyage ou je m'installe » : « installe » veut dire
+« en tête de la suite ». Les mots ne s'écrivent pas : chaque escale
 NOMME des mots qui existent déjà dans l'A1 (themes.json, verbe.json...). Ce qui
 s'écrit : le tableau, les phrases toutes faites et le dialogue de chaque escale.
 
