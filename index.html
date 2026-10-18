@@ -7590,7 +7590,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v859</span>
+    <span class="subtitle-version">v860</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -34913,7 +34913,7 @@ const ESSAIS = {
     carreau_partout: {
         etat: "admin",
         titre: "La mosaïque au palier",
-        desc: "Chaque carte qui pose un carreau (« Je savais », « Encore », une phrase, l'oral) montre un « +1 » jaune, au milieu des confettis quand il y en a ; une bonne réponse dans une scène pose aussi un carreau. À chaque palier de l'objectif du jour (« +30 ! », « +60 ! »), la mosaïque apparaît sous le bandeau et les trente derniers carreaux y poppent un à un, avec le compte qui monte."
+        desc: "Chaque carte qui pose un carreau (« Je savais », « Encore », une phrase, l'oral) montre un « +1 » jaune, au milieu des confettis quand il y en a ; une bonne réponse dans une scène ou dans un exercice de grammaire pose aussi un carreau. À chaque palier de l'objectif du jour (« +30 ! », « +60 ! »), la mosaïque apparaît sous le bandeau et les trente derniers carreaux y poppent un à un, avec le compte qui monte."
     },
     oral_v2: {
         etat: "admin",
@@ -39876,7 +39876,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 859;
+const APP_VERSION = 860;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48684,6 +48684,12 @@ function checkAnswer(){
             // Sans le toast : un exercice ne programme aucune revision, la
             // phrase « ce mot reviendra dans N jours » n'aurait rien decrit.
             celebrateMastery(justReachedMultiple, false);
+            // v860 (essai carreau_partout) : UNE BONNE REPONSE DE GRAMMAIRE POSE UN
+            // CARREAU, comme une bonne reponse de scene. Jacques, 18 oct. 2026 :
+            // « ils doivent aussi donner des carreaux ». Jusque-la les confettis
+            // partaient seuls. Apres celebrateMastery() : un palier « +30 ! »
+            // montre deja sa mosaique, et le +1 ne se pose pas sur le bandeau.
+            try{ if(essaiActif("carreau_partout")) poserCarreau(); }catch(e){}
         }
     }else{
         feedback.className = "feedback show wrong";
