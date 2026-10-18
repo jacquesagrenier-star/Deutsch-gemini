@@ -6410,6 +6410,77 @@ body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
 .cp-arret-mots{display:flex; flex-wrap:wrap; gap:6px; margin:4px 0 6px;}
 .cp-arret-mots span{border:1px solid #e3dccf; border-radius:8px; padding:3px 9px; font-weight:700; background:#fff;}
 .seance-portes.porte-unique{grid-template-columns:minmax(0,1fr);}
+/* v862 (essai a1_voyage) : l'escale, ses phrases toutes faites, son dialogue,
+   le jalon, le carnet. Maquette : .claude/maquette-a1-voyage.html. */
+.cp-type b.cp-av{background:#e6eef6; color:#2F5D8A;}
+.av-moule{font-size:22px; font-weight:900; line-height:1.3; margin:12px 0 4px;}
+.av-moule u{text-decoration:none; background:#fde7c2; border-radius:5px; padding:0 6px;}
+.av-variantes{display:flex; flex-wrap:wrap; gap:7px; margin:12px 0;}
+.av-variantes button{font:inherit; font-size:14px; font-weight:800; background:#fff; border:1.5px solid #e3dccf; border-radius:20px; padding:6px 12px; color:inherit; cursor:pointer;}
+.av-exemple{display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:#fff; border:1.5px solid #e6dfd3; border-radius:14px; padding:11px 13px; font:inherit; color:inherit; cursor:pointer; flex-wrap:wrap;}
+.av-exemple b{flex:1 1 70%; font-size:17px;}
+.av-exemple small{flex:1 1 100%; order:3; color:#576177; font-size:14px;}
+.av-exemple i{font-style:normal;}
+.av-dialogue-titre{font-size:12px; font-weight:900; letter-spacing:.06em; text-transform:uppercase; color:#b07a22; margin:10px 0 4px;}
+.av-bulle-eux{display:block; width:88%; text-align:left; background:#1C2430; color:#fff; border:0; border-radius:16px 16px 16px 4px; padding:10px 13px; margin:4px 0 12px; font:inherit; cursor:pointer;}
+.av-bulle-eux b{display:block; font-size:16px;}
+.av-bulle-eux small{display:block; color:rgba(255,255,255,.75); font-size:13px; margin-top:3px;}
+.av-bulle-eux.av-apres{margin-top:12px; opacity:.92;}
+.av-q-titre{font-size:22px; margin:6px 0 6px;}
+.av-q-sous{color:#576177; line-height:1.45; margin:0 0 14px;}
+.av-opt{background:#fff; border:1.5px solid #e3dccf; border-radius:16px; padding:13px 14px; margin-bottom:10px; cursor:pointer;}
+.av-opt b{display:block; font-size:16px;}
+.av-opt small{display:block; color:#7b8798; font-size:13px; margin-top:3px;}
+.av-opt.choisi{border-color:#E8A23A; box-shadow:0 0 0 2px rgba(232,162,58,.28);}
+.av-dates{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;}
+.av-dates label{flex:1 1 130px; display:flex; flex-direction:column; gap:3px; font-size:12px; font-weight:800; color:#7b8798;}
+.av-date{font:inherit; font-size:15px; padding:8px 9px; border:1.5px solid #e3dccf; border-radius:10px; background:#fff; color:inherit; min-width:0;}
+.av-suite{background:linear-gradient(135deg,#2F5D8A,#1C2430); color:#fff; border-radius:18px; padding:14px; margin:14px 0 4px; text-align:left;}
+.av-suite-k{font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; color:#E8A23A;}
+.av-suite-t{font-weight:900; font-size:18px; margin:4px 0 8px;}
+.av-suite-l{display:flex; gap:9px; align-items:flex-start; font-size:14px; line-height:1.4; margin-top:7px; color:rgba(255,255,255,.92);}
+.av-suite-pt{flex:0 0 auto; width:22px; height:22px; border-radius:50%; background:rgba(255,255,255,.14); display:flex; align-items:center; justify-content:center; font-size:12px;}
+.av-pret{text-align:center; background:linear-gradient(135deg,#2F5D8A,#1C2430); color:#fff; border-radius:18px; padding:16px 12px; margin:8px 0 14px;}
+.av-pret-e{font-size:40px;}
+.av-pret h2{margin:4px 0; font-size:21px; color:#fff;}
+.av-pret p{margin:0; font-size:14px; color:rgba(255,255,255,.88); line-height:1.45;}
+.av-change{background:#fff; border:1.5px solid #e3dccf; border-radius:16px; padding:12px 14px;}
+.av-change-k{font-size:11px; font-weight:900; letter-spacing:.07em; text-transform:uppercase; color:#b07a22;}
+.av-change p{font-size:14px; line-height:1.5; margin:8px 0 0; color:#3d4656;}
+.av-change-proch{font-weight:900;}
+.av-jauge{height:7px; background:#efe6d6; border-radius:9px; overflow:hidden; margin-top:7px;}
+.av-jauge span{display:block; height:100%; background:#E8A23A;}
+.av-avis{display:flex; flex-direction:column; gap:8px;}
+.av-avis button{font:inherit; font-weight:800; font-size:15px; background:#fff; border:1.5px solid #e3dccf; border-radius:12px; padding:10px; color:inherit; cursor:pointer;}
+.av-avis button.choisi{border-color:#E8A23A; box-shadow:0 0 0 2px rgba(232,162,58,.28);}
+.av-retour-suite{color:#576177; line-height:1.5; margin:14px 0 0;}
+.av-porte-bas{display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; margin:2px 0 8px; font-size:12.5px;}
+.av-depart{color:#ffd28a; font-weight:800;}
+.av-carnet-lien{font:inherit; font-size:12.5px; font-weight:800; color:#ffd28a; background:rgba(255,255,255,.1); border:0; border-radius:20px; padding:4px 10px; cursor:pointer;}
+.carnet-sous{color:#576177; line-height:1.45; margin:0 0 12px;}
+.carnet-liste{display:flex; flex-direction:column; gap:7px; padding-bottom:30px;}
+.carnet-rub{font-size:12px; font-weight:900; letter-spacing:.07em; text-transform:uppercase; color:#b07a22; margin:12px 0 2px;}
+.carnet-ph{display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:#fff; border:1.5px solid #e6dfd3; border-radius:12px; padding:10px 12px; font:inherit; color:inherit; cursor:pointer;}
+.carnet-ph span{flex:1; min-width:0;}
+.carnet-ph b{display:block; font-size:16px;}
+.carnet-ph small{display:block; color:#7b8798; font-size:13px; margin-top:2px;}
+.carnet-ph i{font-style:normal; font-size:18px;}
+.carnet-vide{color:#7b8798;}
+body[data-theme="dark"] .cp-type b.cp-av{background:rgba(120,170,220,.16); color:#9cc3ea;}
+body[data-theme="dark"] .av-variantes button,
+body[data-theme="dark"] .av-exemple,
+body[data-theme="dark"] .av-opt,
+body[data-theme="dark"] .av-date,
+body[data-theme="dark"] .av-change,
+body[data-theme="dark"] .av-avis button,
+body[data-theme="dark"] .carnet-ph{background:#232a34; border-color:#2c333d;}
+body[data-theme="dark"] .av-exemple small,
+body[data-theme="dark"] .av-q-sous,
+body[data-theme="dark"] .av-change p,
+body[data-theme="dark"] .av-retour-suite,
+body[data-theme="dark"] .carnet-sous{color:#c6cdd8;}
+body[data-theme="dark"] .av-bulle-eux{background:#3a4352;}
+body[data-theme="dark"] .av-jauge{background:#2c333d;}
 .seance-portes.porte-unique .seance-porte{height:auto; padding-bottom:50px;}
 .seance-aujourdhui{display:flex; align-items:center; gap:8px; background:rgba(255,255,255,.08); border-radius:10px; padding:6px; margin:4px 0 2px;}
 .seance-aujourdhui-vign{width:42px; height:42px; border-radius:8px; background-size:cover; background-position:center 60%; flex:0 0 auto;}
@@ -7590,7 +7661,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v861</span>
+    <span class="subtitle-version">v862</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9267,6 +9338,21 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
     <iframe id="sceneCadre" class="scene-cadre" title="La scène du jour" allow="autoplay"></iframe>
 </section>
 
+<!-- v862 (essai a1_voyage) : le carnet de phrases -- les phrases toutes faites
+     des escales deja ouvertes, a ouvrir sur place. Rempli par
+     ouvrirCarnetPhrases(). -->
+<section id="carnetPhrases" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="av_carnet_kicker">A1 voyage</div>
+            <h2 data-i18n="av_carnet_titre">Mon carnet de phrases</h2>
+        </div>
+    </div>
+    <p class="carnet-sous" data-i18n="av_carnet_sous">Les phrases toutes faites de tes escales, à ouvrir sur place. Touche une phrase pour l'entendre.</p>
+    <div id="carnetListe" class="carnet-liste"></div>
+</section>
+
 <section id="flashcards" class="screen">
     <button class="back" onclick="handleFlashcardBack()"><span data-i18n="back_button">‹ Retour</span></button>
 
@@ -10936,6 +11022,52 @@ const I18N = {
         pp_porte_titre: "Premiers mots",
         pp_fin_titre: "Tes premiers pas sont faits !",
         pp_fin_texte: "Tu as les phrases de base pour te présenter, commander, demander ton chemin, réserver et dire que tu ne comprends pas. La suite continue au niveau A1.",
+        // v862 (essai a1_voyage)
+        av_badge: "✈️ Escale {n}",
+        av_suite_badge: "A1 · étape {n}",
+        av_q_titre: "Tu pars bientôt en voyage ?",
+        av_q_sous: "Facultatif. Si tu donnes tes dates, l'app te dit chaque jour combien de temps il reste avant le départ.",
+        av_q_voyage: "✈️ Oui, je pars",
+        av_q_depart: "Départ",
+        av_q_retour: "Retour",
+        av_q_installe: "🏡 Je m'installe dans le pays",
+        av_q_installe_sous: "Même chemin, avec le logement et les démarches",
+        av_q_aucun: "🎯 Pas de voyage prévu",
+        av_q_aucun_sous: "Même chemin, à ton rythme",
+        av_q_bloc: "Phrase toute faite : touche une variante pour l'entendre dans la phrase.",
+        av_q_dialogue: "À toi de jouer : réponds à voix haute.",
+        av_escale_fin_titre: "Escale {n} : terminée !",
+        av_escale_fin_texte: "Prochaine escale : {t}.",
+        av_jalon_titre_voyage: "Ton voyage est prêt !",
+        av_jalon_titre: "12 escales : bravo !",
+        av_jalon_texte: "{n} phrases toutes faites t'attendent dans ton carnet. Ouvre-le sur place.",
+        av_jalon_k: "Et maintenant : ton A1 est fait à {p} %",
+        av_jalon_change: "Jusqu'ici, tu as appris des phrases toutes faites. Maintenant, tu apprends à fabriquer les tiennes : la famille, le logement, le travail, et la grammaire pour dire ce que tu veux.",
+        av_jalon_demain: "Prochaine étape : {t}",
+        av_retour_titre: "Bon retour !",
+        av_retour_texte: "Ton voyage s'est terminé le {d}. As-tu pu parler ?",
+        av_retour_oui: "😄 J'ai pu parler",
+        av_retour_unpeu: "🙂 Un peu",
+        av_retour_non: "😅 C'était difficile",
+        av_retour_suite: "Encore {n} étapes et ton A1 est complet. La prochaine fois, tu pourras raconter ton voyage, pas seulement commander.",
+        av_fin_a1_titre: "A1 terminé !",
+        av_fin_a1_texte: "Tu as vu tout le vocabulaire de l'A1. Place à l'A2.",
+        av_fin_a1_bouton: "Commencer l'A2",
+        av_porte: "Escale {n} sur {t}",
+        av_porte_suite: "A1 · la suite · {n} sur {t}",
+        av_depart_dans: "Départ dans {n} jours",
+        av_depart_demain: "Départ demain",
+        av_en_voyage: "Bon voyage !",
+        av_carnet_n: "📒 Mon carnet · {n} phrases",
+        av_carnet_kicker: "A1 voyage",
+        av_carnet_titre: "Mon carnet de phrases",
+        av_carnet_sous: "Les phrases toutes faites de tes escales, à ouvrir sur place. Touche une phrase pour l'entendre.",
+        av_carnet_vide: "Ton carnet se remplit à chaque escale.",
+        av_pp_suite_k: "La suite",
+        av_pp_suite_t: "Ton A1 commence",
+        av_pp_e1: "12 escales : manger dehors, le marché, le train, la santé, rencontrer des gens…",
+        av_pp_e2: "Le jalon : ton voyage est prêt.",
+        av_pp_e3: "Le reste de l'A1 : la famille, le logement, le travail, l'école…",
         pp_fin_bouton: "Continuer",
         pp_q_tableau: "Écoute chaque ligne. Les cartes viennent après.",
         pp_porte_jour: "Étape {n} sur {t}",
@@ -12191,6 +12323,52 @@ const I18N = {
         pp_porte_titre: "First words",
         pp_fin_titre: "Your first steps are done!",
         pp_fin_texte: "You have the basic phrases to introduce yourself, order, ask the way, book a room and say you don't understand. It continues at level A1.",
+        // v862 (a1_voyage trial)
+        av_badge: "✈️ Stop {n}",
+        av_suite_badge: "A1 · step {n}",
+        av_q_titre: "Are you travelling soon?",
+        av_q_sous: "Optional. If you give your dates, the app shows you each day how long is left before you leave.",
+        av_q_voyage: "✈️ Yes, I'm leaving",
+        av_q_depart: "Departure",
+        av_q_retour: "Return",
+        av_q_installe: "🏡 I'm moving to the country",
+        av_q_installe_sous: "Same path, with housing and paperwork",
+        av_q_aucun: "🎯 No trip planned",
+        av_q_aucun_sous: "Same path, at your own pace",
+        av_q_bloc: "Ready-made phrase: tap a variant to hear it in the sentence.",
+        av_q_dialogue: "Your turn: answer out loud.",
+        av_escale_fin_titre: "Stop {n}: done!",
+        av_escale_fin_texte: "Next stop: {t}.",
+        av_jalon_titre_voyage: "Your trip is ready!",
+        av_jalon_titre: "12 stops: well done!",
+        av_jalon_texte: "{n} ready-made phrases are waiting in your phrasebook. Open it on the spot.",
+        av_jalon_k: "And now: your A1 is {p}% done",
+        av_jalon_change: "Until now, you learned ready-made phrases. Now you learn to build your own: family, home, work, and the grammar to say what you want.",
+        av_jalon_demain: "Next step: {t}",
+        av_retour_titre: "Welcome back!",
+        av_retour_texte: "Your trip ended on {d}. Were you able to speak?",
+        av_retour_oui: "😄 I could speak",
+        av_retour_unpeu: "🙂 A little",
+        av_retour_non: "😅 It was hard",
+        av_retour_suite: "{n} more steps and your A1 is complete. Next time, you'll be able to tell the story of your trip, not just order.",
+        av_fin_a1_titre: "A1 complete!",
+        av_fin_a1_texte: "You've seen all the A1 vocabulary. On to A2.",
+        av_fin_a1_bouton: "Start A2",
+        av_porte: "Stop {n} of {t}",
+        av_porte_suite: "A1 · next · {n} of {t}",
+        av_depart_dans: "Leaving in {n} days",
+        av_depart_demain: "Leaving tomorrow",
+        av_en_voyage: "Have a good trip!",
+        av_carnet_n: "📒 My phrasebook · {n} phrases",
+        av_carnet_kicker: "A1 travel",
+        av_carnet_titre: "My phrasebook",
+        av_carnet_sous: "The ready-made phrases from your stops, to open on the spot. Tap a phrase to hear it.",
+        av_carnet_vide: "Your phrasebook fills up at every stop.",
+        av_pp_suite_k: "What's next",
+        av_pp_suite_t: "Your A1 begins",
+        av_pp_e1: "12 stops: eating out, the market, the train, health, meeting people…",
+        av_pp_e2: "The milestone: your trip is ready.",
+        av_pp_e3: "The rest of A1: family, home, work, school…",
         pp_fin_bouton: "Continue",
         pp_q_tableau: "Listen to each line. The cards come next.",
         pp_porte_jour: "Step {n} of {t}",
@@ -29042,6 +29220,11 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(PHRASES_RATEES_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
+            // L'A1 voyage (v862, essai) : l'escale, les dates, l'avis au retour.
+            a1VoyageJson: (function(){
+                try{ return localStorage.getItem(A1_VOYAGE_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             // La decouverte guidee (v700) : commencee, finie ou passee, et
             // l'offre d'abonnement deja montree. Sans elle, un deuxieme
             // appareil rouvrirait l'offre une seconde fois.
@@ -29487,6 +29670,15 @@ async function restoreProgressFromCloud(){
                && !lirePhrasesRatees().length){
                 const d = JSON.parse(data.phrasesRateesJson);
                 if(Array.isArray(d) && d.length) ecrirePhrasesRatees(d);
+            }
+        }catch(e){}
+        try{
+            // L'A1 voyage (v862) : un appareil qui n'a rien reprend l'etat du
+            // cloud ; celui qui a deja avance garde le sien.
+            if(typeof data.a1VoyageJson === "string" && data.a1VoyageJson
+               && !localStorage.getItem(A1_VOYAGE_KEY)){
+                const d = JSON.parse(data.a1VoyageJson);
+                if(d && typeof d === "object") ecrireA1Voyage(d);
             }
         }catch(e){}
         try{
@@ -34922,6 +35114,12 @@ const ESSAIS = {
         titre: "L'oral, deuxième version",
         desc: "Les mots s'allument pendant qu'on parle ; « Bravo ! » et un carreau de mosaïque en plus ; un mot manqué se touche pour l'entendre et le redire seul ; 🐢 le modèle au ralenti ; plus de « réécouter ma voix ». Dans les apps, le micro s'ouvre seul après le modèle."
     },
+    // EN ESSAI le 18 oct. 2026 (v862), admin seul. Voir chargerA1Voyage().
+    a1_voyage: {
+        etat: "admin",
+        titre: "L'A1 voyage",
+        desc: "Après Premiers pas, l'A1 commence par 12 escales (manger dehors, le marché, le train, la santé…) : la séance puise ses mots neufs dans l'escale, avec sa feuille de conjugaison, ses phrases toutes faites, son dialogue à voix haute et sa scène. Puis le jalon « Ton voyage est prêt », la suite de l'A1 en 8 étapes, et l'A2. La question du départ (dates facultatives) au début de Premiers pas. Le carnet de phrases sur la porte. Les comptes qui ont déjà de l'A1 gardent l'ancien ordre."
+    },
     // EN PRODUCTION le 16 oct. 2026 (v838) -- Jacques : « en pose tout ».
     scene_arret: {
         etat: "tous",
@@ -35160,6 +35358,20 @@ function afficherEssais(){
                 ouvrirChoixSeance();
             };
             box.appendChild(r);
+        }
+        // v862 : l'A1 voyage se teste sur un compte qui a deja de l'A1 -- il
+        // garderait l'ancien ordre. D'ou : recommencer (la question revient),
+        // sauter une escale, simuler le retour du voyage.
+        if(nom === "a1_voyage" && actif){
+            [["recommencer", "RECOMMENCER L'A1 VOYAGE (LA QUESTION REVIENT) →"],
+             ["escale", "PASSER À L'ESCALE SUIVANTE →"],
+             ["retour", "SIMULER LE RETOUR DU VOYAGE →"]].forEach(x => {
+                const o = document.createElement("button");
+                o.className = "secondary";
+                o.textContent = x[1];
+                o.onclick = () => adminA1Voyage(x[0]);
+                box.appendChild(o);
+            });
         }
         // Chaque scene entiere, pour la tester a fond -- allumee ou non.
         if(nom === "scenes"){
@@ -39878,7 +40090,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 861;
+const APP_VERSION = 862;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43423,6 +43635,9 @@ function majTitrePorteMots(){
         }catch(e){}
         return;
     }
+    // v862 (essai a1_voyage) : l'escale du jour, le depart, le carnet.
+    try{ if(a1VoyageEnCours() && majPorteA1Voyage(titreMots, porte)) return; }catch(e){}
+    try{ retirerPorteA1Voyage(porte); }catch(e){}
     if(porte && porte.classList.contains("porte-pp")){
         porte.classList.remove("porte-pp");
         porte.style.backgroundImage = "";
@@ -44505,7 +44720,18 @@ function classeGenrePhrase(g){
 }
 
 function direPhrase(item){
-    try{ direAllemand(item.phrase.de, { rate: 0.9 }); }catch(e){}
+    try{
+        // v862 (essai a1_voyage) : dans un dialogue, la replique d'en face
+        // d'abord, une seule fois, puis le modele.
+        if(item.contexte && !item._contexteDit){
+            item._contexteDit = true;
+            direAllemand(item.contexte.p, { rate: 0.9, onEnd: () => setTimeout(() => {
+                try{ direAllemand(item.phrase.de, { rate: 0.9 }); }catch(e){}
+            }, 350) });
+            return;
+        }
+        direAllemand(item.phrase.de, { rate: 0.9 });
+    }catch(e){}
 }
 function direMotPhrase(item){
     try{ direAllemand(motDictee(item.cible), { rate: 0.9 }); }catch(e){}
@@ -44583,12 +44809,30 @@ function montrerCartePhrase(item){
     const QUESTIONS = { ecoute: "cp_q_ecoute", trou: "cp_q_trou", ordre: "cp_q_ordre", gram: "cp_q_gram",
                         dictee: "cp_q_dictee", dictee_mot: "cp_q_dictee", parler: "cp_q_parler" };
     const type = creer("div", "cp-type");
-    type.appendChild(creer("b", item.pp ? "cp-pp" : "", item.pp ? "🌱 " + t("pp_badge") : t("cp_type")));
-    const question = (item.pp && item.forme === "pp_tableau") ? "pp_q_tableau"
+    // v862 (essai a1_voyage) : « ✈️ Escale 3 » au lieu de « Phrase ».
+    try{ marquerCarteA1V(item); }catch(e){}
+    if(item.av && item.avBadge) type.appendChild(creer("b", "cp-av", item.avBadge));
+    else type.appendChild(creer("b", item.pp ? "cp-pp" : "", item.pp ? "🌱 " + t("pp_badge") : t("cp_type")));
+    const question = ((item.pp || item.avTableau) && item.forme === "pp_tableau") ? "pp_q_tableau"
                    : (item.pp && item.forme === "ecoute") ? "pp_q_choix"
+                   : item.forme === "av_bloc" ? "av_q_bloc"
+                   : (item.av && item.forme === "parler") ? "av_q_dialogue"
                    : (QUESTIONS[item.forme] || "cp_q_ecoute");
-    if(["pp_fin", "pp_scene", "scene_arret"].indexOf(item.forme) < 0) type.appendChild(document.createTextNode(t(question)));
-    if(item.forme !== "scene_arret") el.appendChild(type);
+    const sansConsigne = ["pp_fin", "pp_scene", "scene_arret", "av_question", "av_jalon", "av_retour", "av_escale_fin", "av_fin_a1"];
+    if(sansConsigne.indexOf(item.forme) < 0) type.appendChild(document.createTextNode(t(question)));
+    if(sansConsigne.indexOf(item.forme) < 0 || item.forme === "pp_fin" || item.forme === "pp_scene") el.appendChild(type);
+    // Le dialogue : la replique d'en face, au-dessus de la phrase a dire.
+    if(item.contexte){
+        const b = creer("button", "av-bulle-eux");
+        b.type = "button";
+        const p = creer("b", "", item.contexte.p);
+        p.setAttribute("lang", langueDe);
+        b.appendChild(p);
+        b.appendChild(creer("small", "", item.contexte.sens));
+        b.addEventListener("click", () => { try{ direAllemand(item.contexte.p, { rate: 0.9 }); }catch(e){} });
+        if(item.avTitre) el.appendChild(creer("p", "av-dialogue-titre", item.avTitre));
+        el.appendChild(b);
+    }
     const retour = creer("div", "cp-retour hidden");
     const actions = creer("div", "cp-actions");
     const suite = creer("button", "primary hidden", t("setup_continue"));
@@ -44682,6 +44926,170 @@ function montrerCartePhrase(item){
         fait.repondu = true;
         suite.classList.remove("hidden");
         suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+    } else if(item.forme === "av_question"){
+        // v862 (essai a1_voyage) : la question du depart (maquette, ecran 1).
+        // Les trois reponses menent au MEME chemin ; elles ne changent que le
+        // jalon, le compte a rebours et les deux escales de « je m'installe ».
+        const s0 = lireA1Voyage();
+        el.appendChild(creer("h2", "av-q-titre", t("av_q_titre")));
+        el.appendChild(creer("p", "av-q-sous", t("av_q_sous")));
+        let choix = s0.r || "";
+        const dep = creer("input", "av-date"); dep.type = "date"; dep.value = s0.dep || "";
+        const ret = creer("input", "av-date"); ret.type = "date"; ret.value = s0.ret || "";
+        const boutons = [];
+        [["voyage", "av_q_voyage", ""], ["installe", "av_q_installe", "av_q_installe_sous"], ["aucun", "av_q_aucun", "av_q_aucun_sous"]].forEach(o => {
+            const b = creer("div", "av-opt" + (choix === o[0] ? " choisi" : ""));
+            b.setAttribute("role", "button");
+            b.tabIndex = 0;
+            b.appendChild(creer("b", "", t(o[1])));
+            if(o[2]) b.appendChild(creer("small", "", t(o[2])));
+            if(o[0] === "voyage"){
+                const dates = creer("div", "av-dates");
+                const l1 = creer("label", "", t("av_q_depart")); l1.appendChild(dep);
+                const l2 = creer("label", "", t("av_q_retour")); l2.appendChild(ret);
+                dates.appendChild(l1); dates.appendChild(l2);
+                b.appendChild(dates);
+            }
+            b.addEventListener("click", () => {
+                choix = o[0];
+                boutons.forEach(x => x.classList.toggle("choisi", x === b));
+            });
+            boutons.push(b);
+            el.appendChild(b);
+        });
+        fait.repondu = true;
+        // Continuer sans rien choisir = « Pas de voyage prevu » : la question
+        // est facultative, elle ne bloque pas.
+        suite.classList.remove("hidden");
+        suite.addEventListener("click", ev => {
+            const s = lireA1Voyage();
+            s.r = choix || "aucun";
+            s.a = true;
+            delete s.q;
+            if(s.r === "voyage"){ s.dep = dep.value || ""; s.ret = ret.value || ""; }
+            else { delete s.dep; delete s.ret; }
+            s.e = s.e || 0;
+            ecrireA1Voyage(s);
+            // Hors Premiers pas, la question etait seule : on relance la seance,
+            // qui part de l'escale 1.
+            if(item.relancer){
+                ev.stopImmediatePropagation();
+                cacherCartePhrase();
+                ouvrirSeanceDuJour(true);
+            }
+        }, { once: true, capture: true });
+    } else if(item.forme === "av_bloc"){
+        // La phrase toute faite : le moule, ses variantes (touchees, elles se
+        // disent dans la phrase), l'exemple complet. Rien a juger : elle va au
+        // carnet de phrases.
+        const b = item.bloc;
+        const moule = creer("p", "av-moule");
+        moule.setAttribute("lang", langueDe);
+        const morceaux = (b.p || "").split("…");
+        morceaux.forEach((x, i) => {
+            moule.appendChild(document.createTextNode(x));
+            if(i < morceaux.length - 1) moule.appendChild(creer("u", "", "…"));
+        });
+        el.appendChild(moule);
+        el.appendChild(creer("p", "cp-sens", sensPremiersPas(b.s)));
+        const variantes = creer("div", "av-variantes");
+        (b.v || []).forEach(v => {
+            const x = creer("button", "", v);
+            x.type = "button";
+            x.setAttribute("lang", langueDe);
+            x.addEventListener("click", () => { try{ direAllemand((b.p || "").replace("…", v), { rate: 0.9 }); }catch(e){} });
+            variantes.appendChild(x);
+        });
+        el.appendChild(variantes);
+        const ex = creer("button", "av-exemple");
+        ex.type = "button";
+        const exb = creer("b", "", b.ex);
+        exb.setAttribute("lang", langueDe);
+        ex.appendChild(exb);
+        ex.appendChild(creer("small", "", sensPremiersPas(b.exs)));
+        ex.appendChild(creer("i", "", "🔊"));
+        ex.addEventListener("click", () => { try{ direAllemand(b.ex, { rate: 0.9 }); }catch(e){} });
+        el.appendChild(ex);
+        fait.repondu = true;
+        suite.classList.remove("hidden");
+        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+        try{ direAllemand(b.ex, { rate: 0.9 }); }catch(e){}
+    } else if(item.forme === "av_escale_fin"){
+        const esc = escalesA1Voyage();
+        const f = creer("div", "cp-fete-pp");
+        f.appendChild(creer("div", "cp-fete-emoji", (esc[item.n] && esc[item.n].icone) || "✓"));
+        f.appendChild(creer("h2", "", tf("av_escale_fin_titre", { n: item.n + 1 })));
+        const proch = esc[item.n + 1];
+        if(proch) f.appendChild(creer("p", "", tf("av_escale_fin_texte", { t: (proch.icone ? proch.icone + " " : "") + sensPremiersPas(proch.s) })));
+        el.appendChild(f);
+        fait.repondu = true;
+        suite.classList.remove("hidden");
+        try{ launchConfetti(); playMasteredSound(); }catch(e){}
+    } else if(item.forme === "av_jalon"){
+        // Le jalon (maquette, ecran 6) : ce qui est fait, et CE QUI CHANGE --
+        // c'est lui qui donne envie de continuer apres les escales.
+        const s = lireA1Voyage();
+        const pret = creer("div", "av-pret");
+        pret.appendChild(creer("div", "av-pret-e", "✈️"));
+        pret.appendChild(creer("h2", "", t(s.r === "voyage" ? "av_jalon_titre_voyage" : "av_jalon_titre")));
+        const nb = escalesA1Voyage().reduce((n, e) => n + (e.blocs || []).length, 0);
+        pret.appendChild(creer("p", "", tf("av_jalon_texte", { n: nb })));
+        el.appendChild(pret);
+        const pc = pourcentA1Vu();
+        const ch = creer("div", "av-change");
+        ch.appendChild(creer("div", "av-change-k", tf("av_jalon_k", { p: pc })));
+        const jauge = creer("div", "av-jauge");
+        const js = creer("span");
+        js.style.width = Math.min(100, pc) + "%";
+        jauge.appendChild(js);
+        ch.appendChild(jauge);
+        ch.appendChild(creer("p", "", t("av_jalon_change")));
+        const et = suiteA1Voyage()[0];
+        if(et) ch.appendChild(creer("p", "av-change-proch", tf("av_jalon_demain", { t: (et.icone ? et.icone + " " : "") + sensPremiersPas(et.s) })));
+        el.appendChild(ch);
+        fait.repondu = true;
+        suite.classList.remove("hidden");
+        try{ celebrateMastery(0, false); }catch(e){}
+    } else if(item.forme === "av_retour"){
+        // Au retour du voyage (maquette, ecran 8) : le moment ou l'on decroche.
+        // Une question, puis un nouveau but -- raconter son voyage.
+        const s = lireA1Voyage();
+        const r = creer("div", "av-pret av-retour");
+        r.appendChild(creer("div", "av-pret-e", "🧳"));
+        r.appendChild(creer("h2", "", t("av_retour_titre")));
+        r.appendChild(creer("p", "", tf("av_retour_texte", { d: dateLisibleA1V(s.ret) })));
+        el.appendChild(r);
+        const avis = creer("div", "av-avis");
+        ["oui", "unpeu", "non"].forEach(k => {
+            const b = creer("button", "", t("av_retour_" + k));
+            b.type = "button";
+            b.addEventListener("click", () => {
+                const v = lireA1Voyage(); v.retour = true; v.avis = k; ecrireA1Voyage(v);
+                Array.from(avis.children).forEach(x => x.classList.toggle("choisi", x === b));
+            });
+            avis.appendChild(b);
+        });
+        el.appendChild(avis);
+        const restant = !s.fin ? (escalesA1Voyage().length - (s.e || 0)) + suiteA1Voyage().length
+                               : suiteA1Voyage().length - (s.k || 0);
+        el.appendChild(creer("p", "av-retour-suite", tf("av_retour_suite", { n: Math.max(1, restant) })));
+        fait.repondu = true;
+        suite.classList.remove("hidden");
+        suite.addEventListener("click", () => { const v = lireA1Voyage(); v.retour = true; ecrireA1Voyage(v); }, { once: true, capture: true });
+    } else if(item.forme === "av_fin_a1"){
+        const f = creer("div", "cp-fete-pp");
+        f.appendChild(creer("div", "cp-fete-emoji", "🏅"));
+        f.appendChild(creer("h2", "", t("av_fin_a1_titre")));
+        f.appendChild(creer("p", "", t("av_fin_a1_texte")));
+        el.appendChild(f);
+        fait.repondu = true;
+        suite.textContent = t("av_fin_a1_bouton") + " ›";
+        suite.classList.remove("hidden");
+        suite.addEventListener("click", () => {
+            const v = lireA1Voyage(); v.sf = true; ecrireA1Voyage(v);
+            try{ fixerNiveauSeance("A2"); }catch(e){}
+        }, { once: true, capture: true });
+        try{ celebrateMastery(0, false); }catch(e){}
     } else if(item.forme === "pp_fin"){
         // Le dernier jour : la fete et le A1, avant la scene.
         const fete = creer("div", "cp-fete-pp");
@@ -44689,6 +45097,21 @@ function montrerCartePhrase(item){
         fete.appendChild(creer("h2", "", t("pp_fin_titre")));
         fete.appendChild(creer("p", "", t("pp_fin_texte")));
         el.appendChild(fete);
+        // v862 (essai a1_voyage) : la suite annoncee -- les escales, le jalon,
+        // le reste de l'A1 (maquette, ecran 2).
+        const avSuite = a1VoyageEssai() && lireA1Voyage().a !== false;
+        if(avSuite){
+            const bloc = creer("div", "av-suite");
+            bloc.appendChild(creer("div", "av-suite-k", t("av_pp_suite_k")));
+            bloc.appendChild(creer("div", "av-suite-t", t("av_pp_suite_t")));
+            [["1", "av_pp_e1"], ["✈️", "av_pp_e2"], ["2", "av_pp_e3"]].forEach(x => {
+                const l = creer("div", "av-suite-l");
+                l.appendChild(creer("span", "av-suite-pt", x[0]));
+                l.appendChild(creer("span", "", t(x[1])));
+                bloc.appendChild(l);
+            });
+            el.appendChild(bloc);
+        }
         fait.repondu = true;
         suite.textContent = t("pp_fin_bouton") + " ›";
         suite.classList.remove("hidden");
@@ -44696,6 +45119,7 @@ function montrerCartePhrase(item){
             const s = lirePremiersPas();
             s.fini = true; s.a = false;
             ecrirePremiersPas(s);
+            if(avSuite){ const v = lireA1Voyage(); v.a = true; delete v.q; ecrireA1Voyage(v); }
             try{ fixerNiveauSeance("A1"); }catch(e){}
         }, { once: true, capture: true });
         try{ celebrateMastery(0, false); }catch(e){}
@@ -45480,10 +45904,27 @@ function montrerCartePhrase(item){
         suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
         direPhrase(item);
     }
+    // v862 : la derniere replique d'en face, sous la derniere carte du dialogue.
+    if(item.apres){
+        const b = creer("button", "av-bulle-eux av-apres");
+        b.type = "button";
+        const p = creer("b", "", item.apres.p);
+        p.setAttribute("lang", langueDe);
+        b.appendChild(p);
+        b.appendChild(creer("small", "", item.apres.sens));
+        b.addEventListener("click", () => { try{ direAllemand(item.apres.p, { rate: 0.9 }); }catch(e){} });
+        el.appendChild(b);
+    }
     el.appendChild(retour);
     actions.appendChild(suite);
     el.appendChild(actions);
     window.scrollTo(0, 0);
+}
+function dateLisibleA1V(iso){
+    try{
+        const p = String(iso || "").split("-").map(Number);
+        return new Date(p[0], p[1] - 1, p[2]).toLocaleDateString(getUiLang(), { day: "numeric", month: "long" });
+    }catch(e){ return iso || ""; }
 }
 
 // La reponse revise le mot vise, avec les regles de la scene (revisionDeScene) :
@@ -45712,6 +46153,8 @@ async function ouvrirPremiersPas(taille){
     panneauAvantFlashcards = null;
     flashcardFromSearch = false;
     const jour = joursPremiersPas()[items[0].jourPP] || {};
+    // v862 (essai a1_voyage) : la question du depart, avant la premiere carte.
+    try{ if(questionA1VoyageDue(true)){ await chargerA1Voyage(); items.unshift(itemA1V("av_question")); } }catch(e){}
     currentTheme = { id: "seance_premiers_pas", name: sensPremiersPas(jour.s) };
     currentFlashcard = 0;
     flashcardMode = "phrase";
@@ -45719,6 +46162,416 @@ async function ouvrirPremiersPas(taille){
     showScreen("flashcards");
     loadFlashcard();
     return true;
+}
+
+// ============ L'A1 VOYAGE (essai « a1_voyage », v862, 18 oct. 2026) ============
+// Maquette validee : .claude/maquette-a1-voyage.html. Jacques : un seul chemin
+// pour tous -- Premiers pas, puis un A1 qui COMMENCE PAR 12 ESCALES de voyage
+// (10 utiles a tous, 2 touristiques en dernier), le jalon « Ton voyage est
+// pret », puis la suite de l'A1 en 8 etapes, et l'A2. Pas de porte « voyage ou
+// regulier » : un choix qu'on ne sait pas faire au depart, et deux A1 a tenir.
+//
+// ⚠️ LES MOTS NE S'ECRIVENT PAS. Une escale NOMME des mots de l'A1 existant
+// (a1-voyage.json, controle par tests/a1_voyage.py) ; la seance du jour puise
+// son neuf dans ces mots-la au lieu de tout l'A1, avec la meme repetition
+// espacee. Ce qui s'ajoute : la feuille de conjugaison (le tableau de Premiers
+// pas, reutilise), les phrases toutes faites (av_bloc), le dialogue (des cartes
+// d'oral « parler » precedees de la replique d'en face) et la scene de
+// l'escale a l'arret. La suite prend tout l'A1 qui reste.
+//
+// ⚠️ LES COMPTES DEJA DANS L'A1 GARDENT L'ANCIEN ORDRE (decide le 18 oct.) :
+// la question du depart n'est posee qu'au debut de Premiers pas, ou a un compte
+// qui n'a presque rien vu de l'A1 (moins de A1V_SEUIL_NOUVEAU mots). Sinon
+// l'etat vaut { a: false } et rien ne change. L'admin recommence par sa carte.
+let A1_VOYAGE_DONNEES = null, chargementA1Voyage = null;
+function chargerA1Voyage(){
+    if(A1_VOYAGE_DONNEES) return Promise.resolve(A1_VOYAGE_DONNEES);
+    if(!chargementA1Voyage){
+        chargementA1Voyage = fetch(urlDonnees("a1-voyage.json"), { cache: "no-cache" })
+            .then(r => r.ok ? r.json() : null)
+            .then(d => { A1_VOYAGE_DONNEES = (d && Array.isArray(d.escales) && d.escales.length) ? d : null; return A1_VOYAGE_DONNEES; })
+            .catch(() => null)
+            .finally(() => { if(!A1_VOYAGE_DONNEES) chargementA1Voyage = null; });
+    }
+    return chargementA1Voyage;
+}
+const A1_VOYAGE_KEY = PREFIXE_STOCKAGE + "a1Voyage";
+const A1V_SEUIL_NOUVEAU = 10;
+// { a: sur le chemin des escales (false = ancien ordre), r: « voyage » |
+//   « installe » | « aucun », dep / ret : « AAAA-MM-JJ », e: escale en cours,
+//   t: son tableau vu, b: ses phrases vues (nombre), d: son dialogue fait,
+//   fin: escales finies, jalon: jalon montre, k: etape de la suite,
+//   sf: suite finie (l'A2 commence), retour: avis donne au retour }
+function lireA1Voyage(){
+    let v = {};
+    try{ v = JSON.parse(localStorage.getItem(A1_VOYAGE_KEY) || "{}"); if(!v || typeof v !== "object") v = {}; }
+    catch(e){ v = {}; }
+    return v;
+}
+function ecrireA1Voyage(v){
+    try{ localStorage.setItem(A1_VOYAGE_KEY, JSON.stringify(v)); }catch(e){}
+}
+function a1VoyageEssai(){
+    try{ return essaiActif("a1_voyage"); }catch(e){ return false; }
+}
+function a1VoyageEnCours(){
+    if(!a1VoyageEssai()) return false;
+    const s = lireA1Voyage();
+    if(s.a !== true || s.sf) return false;
+    if(premiersPasEnCours()) return false;
+    return niveauSeance() === "A1";
+}
+// Les 12 escales DE CETTE PERSONNE : pour « je m'installe », les deux
+// touristiques laissent la place au logement et aux demarches (Jacques).
+function escalesA1Voyage(){
+    const d = A1_VOYAGE_DONNEES;
+    if(!d) return [];
+    const liste = d.escales.slice();
+    if(lireA1Voyage().r === "installe" && Array.isArray(d.installe)){
+        let j = 0;
+        for(let i = 0; i < liste.length && j < d.installe.length; i++){
+            if(liste[i].pour === "voyage") liste[i] = d.installe[j++];
+        }
+    }
+    return liste;
+}
+function suiteA1Voyage(){ return (A1_VOYAGE_DONNEES && A1_VOYAGE_DONNEES.suite) || []; }
+// Le mot d'une carte, tel que le fichier le nomme : le nom sans article, le
+// verbe a l'infinitif.
+function texteDeCarte(it){
+    const w = it && it.word;
+    if(Array.isArray(w)) return w[0] || "";
+    return (w && (w.infinitif || w.mot)) || "";
+}
+function estNeuveCarte(it){ return estNeuf(getWordState(it.themeId, it.index)); }
+function poolEscale(base, esc){
+    const m = new Set((esc && esc.mots) || []);
+    return base.filter(it => m.has(texteDeCarte(it)));
+}
+// La suite : tout l'A1 qu'aucune escale de la personne n'a pris. Chaque etape
+// garde les noms de ses themes ; le reste (verbes, adjectifs, autres themes)
+// est reparti egalement, dans l'ordre de frequence.
+function poolSuite(base, k){
+    const suite = suiteA1Voyage();
+    const pris = new Set();
+    escalesA1Voyage().forEach(e => (e.mots || []).forEach(m => pris.add(m)));
+    const parEtape = suite.map(() => []);
+    const libres = [];
+    base.forEach(it => {
+        if(pris.has(texteDeCarte(it))) return;
+        const i = it.mode === "nomen" ? suite.findIndex(e => (e.themes || []).indexOf(it.themeId) >= 0) : -1;
+        (i >= 0 ? parEtape[i] : libres).push(it);
+    });
+    const tries = ordonnerParFrequence(libres);
+    const part = Math.ceil(tries.length / Math.max(1, suite.length));
+    return (parEtape[k] || []).concat(tries.slice(k * part, (k + 1) * part));
+}
+// La scene a l'arret : la premiere de l'escale, puis la suivante d'une seance
+// a l'autre (le numero du jour, comme sceneDuJour()).
+function objetScene(nom){
+    const connue = SCENES_SEANCE.find(s => s.nom === nom);
+    return connue || { nom: nom, titre: "seance_scene_" + nom, desc: "", ouvrir: "" };
+}
+function sceneDuLieu(lieu){
+    const noms = lieu ? (lieu.scenes || (lieu.scene ? [lieu.scene] : [])) : [];
+    if(!noms.length) return null;
+    const jour = Math.floor(Date.now() / 86400000);
+    return objetScene(noms[jour % noms.length]);
+}
+function latamA1V(){ return LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL === "latam"; }
+function blocA1V(b){ return (latamA1V() && b.la) ? Object.assign({}, b, b.la) : b; }
+function repliqueA1V(l){ return (latamA1V() && l.la) ? l.la : l.p; }
+function isoLocal(d){
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+}
+function joursJusqua(iso){
+    if(!iso) return null;
+    const p = iso.split("-").map(Number);
+    if(p.length !== 3 || p.some(isNaN)) return null;
+    const cible = new Date(p[0], p[1] - 1, p[2]);
+    const auj = new Date(); auj.setHours(0, 0, 0, 0);
+    return Math.round((cible - auj) / 86400000);
+}
+// Le pourcentage de l'A1 deja vu : le jalon et le retour le disent.
+function pourcentA1Vu(){
+    try{
+        const base = paquetDuNiveau("A1");
+        if(!base.length) return 0;
+        return Math.round(100 * base.filter(it => !estNeuveCarte(it)).length / base.length);
+    }catch(e){ return 0; }
+}
+// La question du depart : au debut de Premiers pas, ou pour un compte neuf qui
+// commence directement a l'A1. Un compte qui a deja de l'A1 garde l'ancien ordre.
+function questionA1VoyageDue(depuisPremiersPas){
+    if(!a1VoyageEssai()) return false;
+    const s = lireA1Voyage();
+    if(s.q) return true;                   // l'admin recommence
+    if(s.r !== undefined || s.a === false) return false;
+    if(depuisPremiersPas) return true;
+    let vus = 0;
+    try{ vus = paquetDuNiveau("A1").filter(it => !estNeuveCarte(it)).length; }catch(e){}
+    if(vus >= A1V_SEUIL_NOUVEAU){ s.a = false; ecrireA1Voyage(s); return false; }
+    return true;
+}
+function itemA1V(forme, extra){
+    return Object.assign({ mode: "phrase", forme: forme, av: true, cible: null, themeId: "a1v_" + forme, index: 0,
+                           phrase: null, word: "" }, extra || {});
+}
+// Avance l'escale (ou l'etape) quand tout y est fait : plus de mot neuf, le
+// tableau, les phrases et le dialogue vus. Appelee a l'ouverture de la seance.
+function avancerA1Voyage(base){
+    const s = lireA1Voyage();
+    let change = false;
+    if(!s.fin){
+        const esc = escalesA1Voyage();
+        s.e = s.e || 0;
+        while(s.e < esc.length){
+            const e = esc[s.e];
+            const reste = poolEscale(base, e).some(estNeuveCarte);
+            if(reste || !s.t || (s.b || 0) < (e.blocs || []).length || !s.d) break;
+            s.e++; s.t = false; s.b = 0; s.d = false; change = true;
+        }
+        if(s.e >= esc.length){ s.fin = true; s.t = false; s.k = 0; change = true; }
+    }
+    if(s.fin && !s.sf){
+        const suite = suiteA1Voyage();
+        s.k = s.k || 0;
+        while(s.k < suite.length){
+            if(poolSuite(base, s.k).some(estNeuveCarte) || !s.t) break;
+            s.k++; s.t = false; change = true;
+        }
+    }
+    if(change) ecrireA1Voyage(s);
+    return s;
+}
+// Ce que la seance du jour doit savoir : le reservoir du neuf et la scene.
+async function preparerA1Voyage(base){
+    if(!a1VoyageEnCours()) return null;
+    await chargerA1Voyage();
+    if(!A1_VOYAGE_DONNEES) return null;
+    const s = avancerA1Voyage(base);
+    if(!s.fin){
+        const esc = escalesA1Voyage();
+        const e = esc[s.e];
+        return { escale: e, n: s.e, total: esc.length, pool: poolEscale(base, e), scene: sceneDuLieu(e), etat: s };
+    }
+    const suite = suiteA1Voyage();
+    if(s.k >= suite.length) return { finA1: true, pool: base, scene: null, etat: s };
+    const et = suite[s.k];
+    return { etape: et, n: s.k, total: suite.length, pool: poolSuite(base, s.k), scene: sceneDuLieu(et), etat: s };
+}
+function titreLieuA1V(av){
+    const lieu = av.escale || av.etape;
+    return lieu ? sensPremiersPas(lieu.s) : "";
+}
+function badgeA1V(av){
+    return av.escale ? tf("av_badge", { n: av.n + 1 }) : tf("av_suite_badge", { n: av.n + 1 });
+}
+// Les cartes ajoutees a la seance : le tableau en tete, trois phrases toutes
+// faites au plus, le dialogue quand l'escale se termine, puis la fin d'escale
+// (ou le jalon, apres la 12e). Les cartes du retour et du jalon manque passent
+// en tete.
+function insererA1Voyage(seance, av){
+    const s = av.etat;
+    const sortie = seance.slice();
+    const tete = [];
+    const lieu = av.escale || av.etape;
+    const badge = av.finA1 ? "" : badgeA1V(av);
+    if(s.ret && !s.retour && joursJusqua(s.ret) !== null && joursJusqua(s.ret) < 0) tete.push(itemA1V("av_retour"));
+    if(av.finA1){
+        tete.push(itemA1V("av_fin_a1"));
+        return tete.concat(sortie);
+    }
+    if(s.fin && !s.jalon) tete.push(itemA1V("av_jalon"));
+    if(lieu && !s.t){
+        tete.push(itemA1V("pp_tableau", { tableau: lieu.tableau, avBadge: badge, avTableau: true, themeId: "a1v_tableau", index: av.n }));
+    }
+    if(av.escale){
+        const blocs = av.escale.blocs || [];
+        const deja = s.b || 0;
+        const montres = blocs.slice(deja, deja + 3).map((b, i) =>
+            itemA1V("av_bloc", { bloc: blocA1V(b), rang: deja + i, avBadge: badge, index: av.n * 10 + deja + i, word: b.ex || "" }));
+        let pos = 3;
+        montres.forEach(it => { sortie.splice(Math.min(pos, sortie.length), 0, it); pos += 5; });
+        // Le dialogue : quand les phrases sont toutes vues et que le neuf de
+        // l'escale s'epuise dans cette seance.
+        const dansSeance = new Set(seance.map(cle));
+        const neufsApres = av.pool.filter(it => estNeuveCarte(it) && !dansSeance.has(cle(it))).length;
+        if(deja + montres.length >= blocs.length && neufsApres === 0 && !s.d){
+            dialogueA1V(av, badge).forEach(it => sortie.push(it));
+            const derniere = av.n >= av.total - 1;
+            sortie.push(itemA1V(derniere ? "av_jalon" : "av_escale_fin", { n: av.n }));
+        }
+    }
+    return tete.concat(sortie);
+}
+// Le dialogue : une carte d'oral par replique « moi », precedee de la replique
+// d'en face, qu'on entend. La replique finale d'en face, s'il y en a une, se
+// lit sous la derniere.
+function dialogueA1V(av, badge){
+    const d = av.escale.dialogue || {};
+    const lignes = d.l || [];
+    const out = [];
+    let avant = null;
+    lignes.forEach((l, i) => {
+        if(l.q !== "moi"){ avant = l; return; }
+        const p = repliqueA1V(l);
+        out.push(itemA1V("parler", {
+            avBadge: badge, avTitre: sensPremiersPas(d.t), themeId: "a1v_dialogue", index: av.n * 10 + i, word: p,
+            phrase: { de: p, sens: sensPremiersPas(l.s), mots: p.split(" ") },
+            contexte: avant ? { p: repliqueA1V(avant), sens: sensPremiersPas(avant.s) } : null
+        }));
+        avant = null;
+    });
+    if(out.length){
+        out[out.length - 1].avDernier = true;
+        if(avant) out[out.length - 1].apres = { p: repliqueA1V(avant), sens: sensPremiersPas(avant.s) };
+    }
+    return out;
+}
+// Ce qu'une carte de l'A1 voyage marque en s'affichant.
+function marquerCarteA1V(item){
+    if(!item || !item.av) return;
+    const s = lireA1Voyage();
+    if(item.avTableau) s.t = true;
+    if(item.forme === "av_bloc") s.b = Math.max(s.b || 0, item.rang + 1);
+    if(item.avDernier) s.d = true;
+    if(item.forme === "av_jalon") s.jalon = true;
+    ecrireA1Voyage(s);
+}
+// Le carnet : les phrases des escales deja ouvertes, l'escale en cours
+// jusqu'a la derniere vue.
+function phrasesDuCarnet(){
+    const s = lireA1Voyage();
+    const out = [];
+    escalesA1Voyage().forEach((e, i) => {
+        const fin = s.fin || i < (s.e || 0) ? (e.blocs || []).length : (i === (s.e || 0) ? (s.b || 0) : 0);
+        if(!fin) return;
+        out.push({ escale: e, blocs: (e.blocs || []).slice(0, fin).map(blocA1V) });
+    });
+    return out;
+}
+function nbPhrasesCarnet(){ return phrasesDuCarnet().reduce((n, g) => n + g.blocs.length, 0); }
+async function ouvrirCarnetPhrases(){
+    await chargerA1Voyage();
+    const box = document.getElementById("carnetListe");
+    if(box){
+        box.textContent = "";
+        const groupes = phrasesDuCarnet();
+        if(!groupes.length){
+            const p = document.createElement("p");
+            p.className = "carnet-vide";
+            p.textContent = t("av_carnet_vide");
+            box.appendChild(p);
+        }
+        groupes.forEach(g => {
+            const h = document.createElement("div");
+            h.className = "carnet-rub";
+            h.textContent = (g.escale.icone || "") + " " + sensPremiersPas(g.escale.s);
+            box.appendChild(h);
+            g.blocs.forEach(b => {
+                const l = document.createElement("button");
+                l.type = "button";
+                l.className = "carnet-ph";
+                const tx = document.createElement("span");
+                const de = document.createElement("b");
+                de.textContent = b.ex;
+                de.setAttribute("lang", LANGUE_APPRISE === "es" ? "es" : "de");
+                const sens = document.createElement("small");
+                sens.textContent = sensPremiersPas(b.exs);
+                tx.appendChild(de); tx.appendChild(sens);
+                const son = document.createElement("i");
+                son.textContent = "🔊";
+                l.appendChild(tx); l.appendChild(son);
+                l.addEventListener("click", () => { try{ direAllemand(b.ex, { rate: 0.9 }); }catch(e){} });
+                box.appendChild(l);
+            });
+        });
+    }
+    showScreen("carnetPhrases");
+}
+// La porte de l'accueil, pendant les escales et la suite.
+function majPorteA1Voyage(titreMots, porte){
+    const s = lireA1Voyage();
+    const d = A1_VOYAGE_DONNEES;
+    if(!d){
+        chargerA1Voyage().then(x => { if(x){ try{ majTuileSeance(); }catch(e){} } });
+        return false;
+    }
+    let lieu = null, texte = "";
+    if(!s.fin){
+        const esc = escalesA1Voyage();
+        lieu = esc[Math.min(s.e || 0, esc.length - 1)];
+        texte = tf("av_porte", { n: Math.min((s.e || 0) + 1, esc.length), t: esc.length }) + " · " + sensPremiersPas(lieu.s);
+    } else {
+        const suite = suiteA1Voyage();
+        if((s.k || 0) >= suite.length) return false;
+        lieu = suite[s.k || 0];
+        texte = tf("av_porte_suite", { n: (s.k || 0) + 1, t: suite.length }) + " · " + sensPremiersPas(lieu.s);
+    }
+    titreMots.removeAttribute("data-i18n");
+    titreMots.textContent = (lieu.icone ? lieu.icone + " " : "") + texte;
+    const sc = sceneDuLieu(lieu);
+    if(porte){
+        porte.classList.add("porte-pp");
+        porte.style.backgroundImage = sc ? "linear-gradient(90deg, rgba(28,36,48,.96) 0%, rgba(28,36,48,.82) 55%, rgba(28,36,48,.45) 100%), url(\"" + vignetteScene(sc.nom) + "\")" : "";
+        let bas = porte.querySelector(".av-porte-bas");
+        if(!bas){
+            bas = document.createElement("div");
+            bas.className = "av-porte-bas";
+            const go = porte.querySelector(".seance-go");
+            porte.insertBefore(bas, go || null);
+        }
+        bas.textContent = "";
+        const jd = joursJusqua(s.dep);
+        if(s.r === "voyage" && jd !== null && joursJusqua(s.ret) !== null && joursJusqua(s.ret) >= 0){
+            const dep = document.createElement("span");
+            dep.className = "av-depart";
+            dep.textContent = jd > 1 ? tf("av_depart_dans", { n: jd }) : jd === 1 ? t("av_depart_demain") : t("av_en_voyage");
+            bas.appendChild(dep);
+        }
+        const n = nbPhrasesCarnet();
+        if(n){
+            const c = document.createElement("button");
+            c.type = "button";
+            c.className = "av-carnet-lien";
+            c.textContent = tf("av_carnet_n", { n: n });
+            c.addEventListener("click", ev => { ev.stopPropagation(); ouvrirCarnetPhrases(); });
+            bas.appendChild(c);
+        }
+        bas.classList.toggle("hidden", !bas.childNodes.length);
+    }
+    return true;
+}
+function retirerPorteA1Voyage(porte){
+    const bas = porte && porte.querySelector(".av-porte-bas");
+    if(bas) bas.remove();
+}
+// Les boutons de l'admin : recommencer (la question revient), sauter une
+// escale, simuler le retour du voyage.
+function adminA1Voyage(action){
+    const s = lireA1Voyage();
+    if(action === "recommencer"){
+        ecrireA1Voyage({ q: true });
+        fixerNiveauSeance("A1");
+        showInfoToast("A1 voyage : la question du départ revient à la prochaine séance.");
+        return;
+    }
+    if(action === "escale"){
+        if(!s.fin){ s.e = (s.e || 0) + 1; s.t = false; s.b = 0; s.d = false; if(s.e >= 12){ s.fin = true; s.k = 0; } }
+        else { s.k = (s.k || 0) + 1; s.t = false; }
+        s.a = true;
+        ecrireA1Voyage(s);
+        majTuileSeance();
+        showInfoToast(s.fin ? "Étape de suite " + ((s.k || 0) + 1) : "Escale " + (s.e + 1));
+        return;
+    }
+    if(action === "retour"){
+        const hier = new Date(Date.now() - 86400000);
+        s.r = "voyage"; s.ret = isoLocal(hier); s.dep = s.dep || isoLocal(new Date(Date.now() - 8 * 86400000)); s.retour = false;
+        ecrireA1Voyage(s);
+        showInfoToast("A1 voyage : le message du retour vient à la prochaine séance.");
+    }
 }
 
 // ============ LA SCENE DANS LA SEANCE (essai « scene_arret », v831) ============
@@ -45750,10 +46603,10 @@ async function motsVusDeScene(nom){
     });
     return vus;
 }
-async function preparerArretScene(seance){
+async function preparerArretScene(seance, sceneImposee){
     if(!arretSceneActif() || !seance || seance.length < 6) return seance;
     try{
-        const s = sceneDuJour();
+        const s = sceneImposee || sceneDuJour();
         const niveau = niveauSeance();
         let mots = [];
         if(niveau === "A1"){
@@ -45856,14 +46709,24 @@ async function ouvrirSeanceDuJour(sansScene){
     });
     // v829 : les flashcards de Premiers pas deja vues reviennent en revision.
     try{ if(essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, cartesPremiersPasVues()); } }catch(e){}
-    let seance = cartesDeSeance(tout, pool);
+    // v862 (essai a1_voyage) : la question du depart pour un compte neuf, puis
+    // le neuf pris dans l'escale du jour au lieu de tout l'A1.
+    let question = false, av = null;
+    try{ question = niveau === "A1" && questionA1VoyageDue(false); }catch(e){}
+    try{ if(!question) av = await preparerA1Voyage(pool); }catch(e){ av = null; }
+    let seance = cartesDeSeance(tout, av ? av.pool : pool);
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
     if(essaiActif("phrases")){
         try{ await prechargerGrammaireSeance(); }catch(e){}
         try{ seance = insererCartesPhrases(seance, tout); }catch(e){}
     }
     // v831 : la scene du jour, une fois, au milieu (essai « scene_arret »).
-    try{ seance = await preparerArretScene(seance); }catch(e){}
+    // v862 : pendant les escales, la scene de l'escale.
+    try{ seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
+    try{ if(av) seance = insererA1Voyage(seance, av); }catch(e){}
+    // La question seule : sa reponse relance la seance, qui part alors de
+    // l'escale 1 (voir montrerCartePhrase, av_question).
+    if(question) seance = [itemA1V("av_question", { relancer: true })];
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
         toastSeanceVide(tout, "alert_all_theme_words_mastered"); return;
