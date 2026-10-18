@@ -7590,7 +7590,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v860</span>
+    <span class="subtitle-version">v861</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -34910,8 +34910,10 @@ const ESSAIS = {
     // EN ESSAI le 17 oct. 2026 (v849), admin seul. Jacques : « des carreaux pour
     // toutes les cartes ». v856 : plus de petite mosaique a chaque carte -- la
     // mosaique au palier « +30 ! ». Voir montrerMosaiquePalier().
+    // EN PRODUCTION le 18 oct. 2026 (v861) -- Jacques : « rendu public pour
+    // tous les testeurs ».
     carreau_partout: {
-        etat: "admin",
+        etat: "tous",
         titre: "La mosaïque au palier",
         desc: "Chaque carte qui pose un carreau (« Je savais », « Encore », une phrase, l'oral) montre un « +1 » jaune, au milieu des confettis quand il y en a ; une bonne réponse dans une scène ou dans un exercice de grammaire pose aussi un carreau. À chaque palier de l'objectif du jour (« +30 ! », « +60 ! »), la mosaïque apparaît sous le bandeau et les trente derniers carreaux y poppent un à un, avec le compte qui monte."
     },
@@ -39876,7 +39878,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 860;
+const APP_VERSION = 861;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
