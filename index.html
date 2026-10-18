@@ -6588,6 +6588,7 @@ body[data-theme="dark"] #decouverte > button.primary{
 .abo-plus-tard{margin-top:12px;}
 
 /* ===== Fonctions en essai (v713) : la ligne du tableau de bord ===== */
+.essai-prod{font-size:13px; color:#7b8798; line-height:1.45; margin:0 0 10px;}
 .essai-ligne{display:flex; gap:10px; align-items:center; justify-content:space-between;
     padding:10px 0; border-top:1px solid var(--wt-bordure-accent);}
 .essai-ligne:first-child{border-top:0; padding-top:0;}
@@ -7661,7 +7662,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v862</span>
+    <span class="subtitle-version">v863</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -35330,7 +35331,18 @@ function afficherEssais(){
     const box = document.getElementById("adminEssais");
     if(!box) return;
     box.innerHTML = "";
-    Object.keys(ESSAIS).forEach(nom => {
+    // v863 : LA CARTE NE MONTRE PLUS QUE CE QUI SE TESTE. Jacques : « enleve tout
+    // ce qu'il y a pour revoir, ouvrir les scenes... ca pollue ». Les essais en
+    // production tiennent sur une ligne ; les boutons des scenes sont partis
+    // (Explorer les scenes, sur l'accueil, les ouvre toutes).
+    const enProduction = Object.keys(ESSAIS).filter(nom => ESSAIS[nom].etat === "tous");
+    if(enProduction.length){
+        const p = document.createElement("p");
+        p.className = "essai-prod";
+        p.textContent = "En production : " + enProduction.map(nom => ESSAIS[nom].titre).join(" · ");
+        box.appendChild(p);
+    }
+    Object.keys(ESSAIS).filter(nom => ESSAIS[nom].etat !== "tous").forEach(nom => {
         const e = ESSAIS[nom];
         const ligne = document.createElement("div");
         ligne.className = "essai-ligne";
@@ -35347,18 +35359,6 @@ function afficherEssais(){
             ligne.appendChild(b);
         }
         box.appendChild(ligne);
-        // La scene ne se propose qu'une fois par jour : pour verifier une
-        // correction le jour meme, on la rejoue d'ici (Jacques, 6 oct.).
-        if(nom === "scenes" && actif){
-            const r = document.createElement("button");
-            r.className = "secondary";
-            r.textContent = "REVOIR LA SCÈNE DU JOUR →";
-            r.onclick = () => {
-                try{ localStorage.removeItem(SCENE_FAITE_KEY); }catch(e){}
-                ouvrirChoixSeance();
-            };
-            box.appendChild(r);
-        }
         // v862 : l'A1 voyage se teste sur un compte qui a deja de l'A1 -- il
         // garderait l'ancien ordre. D'ou : recommencer (la question revient),
         // sauter une escale, simuler le retour du voyage.
@@ -35370,16 +35370,6 @@ function afficherEssais(){
                 o.className = "secondary";
                 o.textContent = x[1];
                 o.onclick = () => adminA1Voyage(x[0]);
-                box.appendChild(o);
-            });
-        }
-        // Chaque scene entiere, pour la tester a fond -- allumee ou non.
-        if(nom === "scenes"){
-            SCENES_SEANCE.forEach(s => {
-                const o = document.createElement("button");
-                o.className = "secondary";
-                o.textContent = "OUVRIR : " + s.titre.toUpperCase() + " →";
-                o.onclick = () => ouvrirSceneAdmin(s.nom);
                 box.appendChild(o);
             });
         }
@@ -40090,7 +40080,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 862;
+const APP_VERSION = 863;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -46552,9 +46542,15 @@ function retirerPorteA1Voyage(porte){
 function adminA1Voyage(action){
     const s = lireA1Voyage();
     if(action === "recommencer"){
-        ecrireA1Voyage({ q: true });
+        // v863 : L'ESCALE 1 TOUT DE SUITE SUR LA PORTE. Avec { q: true } seul,
+        // l'accueil ne montrait rien avant d'avoir repondu a la question --
+        // Jacques : « je ne vois pas les escales sur la page d'accueil ».
+        ecrireA1Voyage({ q: true, a: true, e: 0 });
+        try{
+            if(premiersPasEnCours()){ const p = lirePremiersPas(); p.a = false; ecrirePremiersPas(p); }
+        }catch(e){}
         fixerNiveauSeance("A1");
-        showInfoToast("A1 voyage : la question du départ revient à la prochaine séance.");
+        showInfoToast("A1 voyage recommencé : l'escale 1 est sur la porte, la question du départ ouvre la prochaine séance.");
         return;
     }
     if(action === "escale"){
@@ -46661,7 +46657,16 @@ function majAujourdhuiScene(on){
         porte.insertBefore(el, go || null);
     }
     el.classList.remove("hidden");
-    const s = sceneDuJour();
+    // v863 (essai a1_voyage) : pendant une escale, la scene de l'escale -- c'est
+    // elle que l'arret ouvrira (preparerArretScene), pas celle du jour.
+    let s = sceneDuJour();
+    try{
+        if(a1VoyageEnCours() && A1_VOYAGE_DONNEES){
+            const v = lireA1Voyage();
+            const lieu = !v.fin ? escalesA1Voyage()[v.e || 0] : suiteA1Voyage()[v.k || 0];
+            s = sceneDuLieu(lieu) || s;
+        }
+    }catch(e){}
     el.textContent = "";
     const v = document.createElement("span");
     v.className = "seance-aujourdhui-vign";

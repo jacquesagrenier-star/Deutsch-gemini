@@ -50,6 +50,9 @@ HORS_CLIC = {
     "ecran:auth": "ecran de depart quand personne n'est connecte",
     "ecran:resetPassword": "ouvert par le lien recu par courriel "
                            "(?mode=resetPassword&oobCode=...), jamais par un clic",
+    "ecran:choixSeance": "l'ancien choix « la scene ou les cartes » (v713), remplace par la "
+                         "porte unique de l'accueil (v831) ; son dernier chemin, le bouton admin "
+                         "« Revoir la scene du jour », est retire en v863 a la demande de Jacques",
 }
 
 
