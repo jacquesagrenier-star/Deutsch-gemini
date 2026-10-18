@@ -1990,6 +1990,9 @@ body[data-theme="dark"] .next-badge-progress{
     .global-loading-bar{animation:none; background:#E8A23A;}
 }
 
+/* v871 : changer de langue apprise avant de se connecter. */
+.auth-autre-langue{font:inherit; font-size:14px; font-weight:800; color:#b07a22; background:none; border:0; padding:4px 0; margin-top:4px; cursor:pointer;}
+body[data-theme="dark"] .auth-autre-langue{color:#E8A23A;}
 .auth-value-card{
     display:flex;
     flex-direction:column;
@@ -6493,10 +6496,10 @@ body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
 .fc-ligne.fc-a-venir{opacity:.55; cursor:default;}
 .fc-ligne.fc-a-venir i{color:#7b8798;}
 .fc-detail{margin:2px 0 8px;}
+.fc-entrainer{display:block; width:100%; margin-top:10px;}
 body[data-theme="dark"] .fc-ligne{background:#232a34; border-color:#2c333d;}
 body[data-theme="dark"] .cp-tl-forme u{background:rgba(232,162,58,.28);}
 body[data-theme="dark"] .cp-type b.cp-av{background:rgba(120,170,220,.16); color:#9cc3ea;}
-.fc-entrainer{display:block; width:100%; margin-top:10px;}
 body[data-theme="dark"] .av-variantes button,
 body[data-theme="dark"] .av-exemple,
 body[data-theme="dark"] .av-opt,
@@ -6756,7 +6759,10 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
     <div class="title-row" style="margin-top: 10px;">
         <div>
             <div class="kicker" data-i18n="auth_kicker">Bienvenue</div>
-            <h2 data-i18n="auth_title">Apprends l'allemand, un mot à la fois</h2>
+            <h2 data-i18n="auth_title">Apprends une langue, un mot à la fois</h2>
+            <!-- v871 : changer de langue apprise avant de se connecter
+                 (majLienAutreLangueAuth). -->
+            <button type="button" id="authAutreLangue" class="auth-autre-langue hidden" onclick="ouvrirAutreLangueApprise()"></button>
         </div>
     </div>
 
@@ -7692,7 +7698,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v870</span>
+    <span class="subtitle-version">v871</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10090,7 +10096,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
     </details>
 
     <details class="reglages-groupe" id="groupeCompte">
-        <summary data-i18n="settings_groupe_compte">Compte et aide</summary>
+        <summary data-i18n="settings_groupe_compte">Compte, aide et rétroaction</summary>
         <!-- SIGNALER QUELQUE CHOSE. Suggestion d'usagers, relayee par Jacques.
              Elle repare un desequilibre : l'app demande beaucoup de retours et
              n'offrait aucun endroit pour en donner. Un testeur qui rencontre un
@@ -11118,13 +11124,13 @@ const I18N = {
         fc_vue: "Vue",
         fc_bientot: "Bientôt",
         fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "M'ENTRAÎNER →",
         av_pp_suite_k: "La suite",
         av_pp_suite_t: "Ton A1 commence",
         av_pp_e1: "12 escales : manger dehors, le marché, le train, la santé, rencontrer des gens…",
         av_pp_e2: "Tu pars bientôt ? Donne ta date de départ, on te dira le rythme pour être prêt.",
         av_pp_e3: "Le reste de l'A1 : le logement, les démarches, la famille, le travail…",
         pp_fin_bouton: "Continuer",
-        fc_entrainer: "M'ENTRAÎNER →",
         pp_q_tableau: "Écoute chaque ligne. Les cartes viennent après.",
         pp_porte_jour: "Étape {n} sur {t}",
         pp_jour_reussi: "Étape {n} réussie",
@@ -11696,9 +11702,11 @@ const I18N = {
         settings_progress_by_category: "Progression par catégorie",
 
         auth_kicker: "Bienvenue",
-        auth_title: "Apprends l'allemand, un mot à la fois",
+        auth_title: "Apprends une langue, un mot à la fois",
+        auth_apprendre_es: "J'apprends l'espagnol ›",
+        auth_apprendre_de: "J'apprends l'allemand ›",
         auth_desc: "Connecte-toi, ou crée ton compte avec ton code d'invitation.",
-        auth_value_1: "Vocabulaire et grammaire allemande organisés par niveau, du A1 au C1.",
+        auth_value_1: "Vocabulaire et grammaire organisés par niveau, du A1 au C1.",
         auth_value_2: "Objectifs quotidiens, séries, XP et badges pour rester motivé.",
         auth_value_3: "Répétition espacée : chaque mot revient au bon moment pour rester en mémoire.",
         auth_mode_login: "Se connecter",
@@ -11817,7 +11825,7 @@ const I18N = {
         settings_langue_titre: "Langue",
         settings_groupe_son: "Son",
         settings_groupe_progression: "Ma progression",
-        settings_groupe_compte: "Compte et aide",
+        settings_groupe_compte: "Compte, aide et rétroaction",
         auth_signup_loading: "CRÉATION…",
         auth_logged_in_as: "Connecté en tant que : ",
         auth_logout: "SE DÉCONNECTER",
@@ -12429,6 +12437,7 @@ const I18N = {
         fc_vue: "Seen",
         fc_bientot: "Coming soon",
         fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "PRACTISE →",
         av_pp_suite_k: "What's next",
         av_pp_suite_t: "Your A1 begins",
         av_pp_e1: "12 stops: eating out, the market, the train, health, meeting people…",
@@ -12437,7 +12446,6 @@ const I18N = {
         pp_fin_bouton: "Continue",
         pp_q_tableau: "Listen to each line. The cards come next.",
         pp_porte_jour: "Step {n} of {t}",
-        fc_entrainer: "PRACTISE →",
         pp_jour_reussi: "Step {n} done",
         pp_scene_titre: "Step into the scene",
         pp_scene_texte: "Tap the objects to hear their names. You already know a few.",
@@ -13005,9 +13013,11 @@ const I18N = {
         settings_progress_by_category: "Progress by category",
 
         auth_kicker: "Welcome",
-        auth_title: "Learn German, one word at a time",
+        auth_title: "Learn a language, one word at a time",
+        auth_apprendre_es: "I'm learning Spanish ›",
+        auth_apprendre_de: "I'm learning German ›",
         auth_desc: "Sign in, or create your account with your invitation code.",
-        auth_value_1: "German vocabulary and grammar organized by level, from A1 to C1.",
+        auth_value_1: "Vocabulary and grammar organized by level, from A1 to C1.",
         auth_value_2: "Daily goals, streaks, XP and badges to keep you motivated.",
         auth_value_3: "Spaced repetition: every word comes back at just the right time to stick.",
         auth_mode_login: "Sign in",
@@ -13126,7 +13136,7 @@ const I18N = {
         settings_langue_titre: "Language",
         settings_groupe_son: "Sound",
         settings_groupe_progression: "My progress",
-        settings_groupe_compte: "Account and help",
+        settings_groupe_compte: "Account, help and feedback",
         auth_signup_loading: "CREATING…",
         auth_logged_in_as: "Signed in as: ",
         auth_logout: "SIGN OUT",
@@ -13742,6 +13752,7 @@ const I18N = {
         fc_vue: "Görüldü",
         fc_bientot: "Yakında",
         fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "ALIŞTIRMA YAP →",
         av_pp_suite_k: "Devamı",
         av_pp_suite_t: "A1'in başlıyor",
         av_pp_e1: "12 durak: dışarıda yemek, pazar, tren, sağlık, insanlarla tanışmak…",
@@ -13752,7 +13763,6 @@ const I18N = {
         pp_porte_jour: "Adım {n} / {t}",
         pp_jour_reussi: "Adım {n} tamam",
         pp_scene_titre: "Sahneye gir",
-        fc_entrainer: "ALIŞTIRMA YAP →",
         pp_scene_texte: "Adlarını duymak için nesnelere dokun. Bazılarını zaten biliyorsun.",
         pp_scene_bouton: "Sahneye gir",
         pp_plus_tard: "Sonra",
@@ -14318,9 +14328,11 @@ const I18N = {
         settings_progress_by_category: "Kategoriye göre ilerleme",
 
         auth_kicker: "Hoş geldin",
-        auth_title: "Almancayı kelime kelime öğren",
+        auth_title: "Bir dili kelime kelime öğren",
+        auth_apprendre_es: "İspanyolca öğreniyorum ›",
+        auth_apprendre_de: "Almanca öğreniyorum ›",
         auth_desc: "Giriş yap ya da davet kodunla hesabını oluştur.",
-        auth_value_1: "A1'den C1'e, seviyeye göre düzenlenmiş Almanca kelime ve dilbilgisi.",
+        auth_value_1: "A1'den C1'e, seviyeye göre düzenlenmiş kelime ve dilbilgisi.",
         auth_value_2: "Motivasyonunu koruyacak günlük hedefler, seriler, XP ve rozetler.",
         auth_value_3: "Aralıklı tekrar: her kelime, akılda kalması için tam doğru anda geri gelir.",
         auth_mode_login: "Giriş yap",
@@ -14439,7 +14451,7 @@ const I18N = {
         settings_langue_titre: "Dil",
         settings_groupe_son: "Ses",
         settings_groupe_progression: "İlerlemem",
-        settings_groupe_compte: "Hesap ve yardım",
+        settings_groupe_compte: "Hesap, yardım ve geri bildirim",
         auth_signup_loading: "OLUŞTURULUYOR…",
         auth_logged_in_as: "Giriş yapan: ",
         auth_logout: "ÇIKIŞ YAP",
@@ -15232,7 +15244,7 @@ const I18N = {
         settings_langue_titre: "Мова",
         settings_groupe_son: "Звук",
         settings_groupe_progression: "Мій прогрес",
-        settings_groupe_compte: "Обліковий запис і допомога",
+        settings_groupe_compte: "Обліковий запис, допомога і відгуки",
         adj_decl_title: "Відмінювання прикметників",
         adj_decl_intro: "Закінчення прикметника залежить від того, що стоїть перед ним: означений артикль, неозначений артикль або нічого.",
         adj_decl_definite_title: "Після означеного артикля (der/die/das…)",
@@ -15392,6 +15404,7 @@ const I18N = {
         fc_vue: "Переглянуто",
         fc_bientot: "Незабаром",
         fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "ТРЕНУВАТИСЯ →",
         av_pp_suite_k: "Далі",
         av_pp_suite_t: "Починається твій A1",
         av_pp_e1: "12 зупинок: поїсти в місті, ринок, потяг, здоров'я, знайомства…",
@@ -15404,7 +15417,6 @@ const I18N = {
         pp_scene_titre: "Зайди в сцену",
         pp_scene_texte: "Торкайся предметів, щоб почути їхні назви. Деякі ти вже знаєш.",
         pp_scene_bouton: "Увійти в сцену",
-        fc_entrainer: "ТРЕНУВАТИСЯ →",
         pp_plus_tard: "Пізніше",
         seance_porte_tout: "Слова, граматика і сцена",
         seance_aujourdhui: "Сьогодні: {lieu}",
@@ -15657,9 +15669,11 @@ const I18N = {
         nomen_title_en: "Wortschatz і теми",
         verbenniveau_title_en: "Verben за рівнями",
         auth_kicker: "Ласкаво просимо",
-        auth_title: "Вивчай німецьку слово за словом",
+        auth_title: "Вивчай мову слово за словом",
+        auth_apprendre_es: "Я вивчаю іспанську ›",
+        auth_apprendre_de: "Я вивчаю німецьку ›",
         auth_desc: "Увійди або створи обліковий запис за кодом запрошення.",
-        auth_value_1: "Німецька лексика та граматика за рівнями, від A1 до C1.",
+        auth_value_1: "Лексика та граматика за рівнями, від A1 до C1.",
         auth_value_2: "Щоденні цілі, серії, XP і значки — щоб не втрачати запал.",
         auth_value_3: "Інтервальне повторення: кожне слово повертається саме тоді, коли треба.",
         auth_mode_login: "Увійти",
@@ -16825,9 +16839,11 @@ const I18N = {
         settings_daily_goal: "هدف روزانه",
         settings_progress_by_category: "پیشرفت بر پایهٔ دسته",
         auth_kicker: "خوش آمدی",
-        auth_title: "آلمانی را کلمه به کلمه یاد بگیر",
+        auth_title: "یک زبان را کلمه به کلمه یاد بگیر",
+        auth_apprendre_es: "اسپانیایی یاد می‌گیرم ›",
+        auth_apprendre_de: "آلمانی یاد می‌گیرم ›",
         auth_desc: "وارد شو، یا با کد دعوتت حساب بساز.",
-        auth_value_1: "واژگان و دستور زبان آلمانی، مرتب‌شده بر پایهٔ سطح، از A1 تا C1.",
+        auth_value_1: "واژگان و دستور زبان، مرتب‌شده بر پایهٔ سطح، از A1 تا C1.",
         auth_value_2: "هدف‌های روزانه، زنجیره‌ها، امتیاز و نشان‌ها تا انگیزه‌ات را نگه دارد.",
         auth_value_3: "تکرار با فاصله: هر واژه درست در زمان مناسب بازمی‌گردد تا در حافظه بماند.",
         auth_mode_login: "ورود",
@@ -16958,7 +16974,7 @@ const I18N = {
         settings_langue_titre: "زبان",
         settings_groupe_son: "صدا",
         settings_groupe_progression: "پیشرفت من",
-        settings_groupe_compte: "حساب و راهنما",
+        settings_groupe_compte: "حساب، راهنما و بازخورد",
         op_due_desc: "نشستی از {n} کارت · {r} برای مرور",
         op_due_desc_neufs: "نشستی از {n} کارت",
         op_due_desc_zero: "فعلاً چیزی برای مرور نیست",
@@ -17412,6 +17428,7 @@ const I18N = {
         fc_vue: "دیده‌شده",
         fc_bientot: "به‌زودی",
         fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "تمرین کن ←",
         av_pp_suite_k: "ادامه",
         av_pp_suite_t: "A1 تو شروع می‌شود",
         av_pp_e1: "۱۲ ایستگاه: غذا خوردن بیرون، بازار، قطار، سلامت، آشنا شدن با مردم…",
@@ -17428,7 +17445,6 @@ const I18N = {
         seance_porte_tout: "واژه‌ها، دستور و صحنه",
         seance_aujourdhui: "امروز: {lieu}",
         seance_aujourdhui_sous: "۳ پرسش در میانهٔ جلسه",
-        fc_entrainer: "تمرین کن ←",
         arret_badge: "توقف در صحنه",
         arret_titre: "وارد صحنه شو: {lieu}",
         arret_texte_a1: "سه شیء برای پیدا کردن. قبلاً آن‌ها را در کارت‌هایت دیده‌ای:",
@@ -18051,9 +18067,11 @@ const I18N = {
         orb_pruefung_sub: "A2 · B1 · C1",
         settings_progress_by_category: "التقدّم حسب الفئة",
         auth_kicker: "أهلًا بك",
-        auth_title: "تعلّم الألمانية كلمةً كلمة",
+        auth_title: "تعلّم لغةً كلمةً كلمة",
+        auth_apprendre_es: "أتعلّم الإسبانية ›",
+        auth_apprendre_de: "أتعلّم الألمانية ›",
         auth_desc: "سجّل الدخول، أو أنشئ حسابك برمز الدعوة.",
-        auth_value_1: "مفردات الألمانية وقواعدها مرتّبة حسب المستوى، من A1 إلى C1.",
+        auth_value_1: "المفردات والقواعد مرتّبة حسب المستوى، من A1 إلى C1.",
         auth_value_2: "أهداف يومية وسلاسل ونقاط وأوسمة للحفاظ على الحافز.",
         auth_value_3: "تكرار متباعد: كل كلمة تعود في وقتها المناسب لتبقى في الذاكرة.",
         auth_mode_login: "تسجيل الدخول",
@@ -18172,7 +18190,7 @@ const I18N = {
         settings_langue_titre: "اللغة",
         settings_groupe_son: "الصوت",
         settings_groupe_progression: "تقدّمي",
-        settings_groupe_compte: "الحساب والمساعدة",
+        settings_groupe_compte: "الحساب والمساعدة والملاحظات",
         auth_signup_loading: "جارٍ الإنشاء…",
         auth_logged_in_as: "متصل باسم: ",
         auth_logout: "تسجيل الخروج",
@@ -18856,6 +18874,7 @@ const I18N = {
         fc_vue: "تمّت رؤيتها",
         fc_bientot: "قريبًا",
         fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "تدرّب ←",
         av_pp_suite_k: "التتمة",
         av_pp_suite_t: "يبدأ مستواك A1",
         av_pp_e1: "12 محطة: الأكل في الخارج، السوق، القطار، الصحة، التعرّف على الناس…",
@@ -18874,7 +18893,6 @@ const I18N = {
         seance_aujourdhui_sous: "3 أسئلة في منتصف الجلسة",
         arret_badge: "وقفة في المشهد",
         arret_titre: "ادخل إلى المشهد: {lieu}",
-        fc_entrainer: "تدرّب ←",
         arret_texte_a1: "ثلاثة أشياء للبحث عنها. رأيتها من قبل في بطاقاتك:",
         arret_texte: "ثلاثة أسئلة في المشهد، بمستواك.",
         arret_entrer: "دخول",
@@ -19166,6 +19184,7 @@ const I18N = {
         fc_vue: "Vista",
         fc_bientot: "Em breve",
         fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "PRATICAR →",
         av_pp_suite_k: "A continuação",
         av_pp_suite_t: "Seu A1 começa",
         av_pp_e1: "12 paradas: comer fora, o mercado, o trem, a saúde, conhecer pessoas…",
@@ -19184,7 +19203,6 @@ const I18N = {
         seance_aujourdhui_sous: "3 perguntas no meio da sessão",
         arret_badge: "Parada na cena",
         arret_titre: "Entre na cena: {lieu}",
-        fc_entrainer: "PRATICAR →",
         arret_texte_a1: "Três objetos para encontrar. Você já os viu nos seus cartões:",
         arret_texte: "Três perguntas na cena, no seu nível.",
         arret_entrer: "Entrar",
@@ -19732,9 +19750,11 @@ const I18N = {
         settings_reset_daily: "ZERAR A CONTAGEM DO DIA (TESTES)",
         settings_progress_by_category: "Progresso por categoria",
         auth_kicker: "Bem-vindo",
-        auth_title: "Aprenda alemão, uma palavra de cada vez",
+        auth_title: "Aprenda um idioma, uma palavra de cada vez",
+        auth_apprendre_es: "Estou aprendendo espanhol ›",
+        auth_apprendre_de: "Estou aprendendo alemão ›",
         auth_desc: "Entre, ou crie sua conta com o seu código de convite.",
-        auth_value_1: "Vocabulário e gramática do alemão organizados por nível, do A1 ao C1.",
+        auth_value_1: "Vocabulário e gramática organizados por nível, do A1 ao C1.",
         auth_value_2: "Metas diárias, sequências, XP e medalhas para manter a motivação.",
         auth_value_3: "Repetição espaçada: cada palavra volta no momento certo para ficar na memória.",
         auth_mode_login: "Entrar",
@@ -19853,7 +19873,7 @@ const I18N = {
         settings_langue_titre: "Idioma",
         settings_groupe_son: "Som",
         settings_groupe_progression: "Meu progresso",
-        settings_groupe_compte: "Conta e ajuda",
+        settings_groupe_compte: "Conta, ajuda e feedback",
         auth_signup_loading: "CRIANDO…",
         auth_logged_in_as: "Conectado como: ",
         auth_logout: "SAIR",
@@ -20542,6 +20562,7 @@ const I18N = {
         fc_vue: "Obejrzana",
         fc_bientot: "Wkrótce",
         fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "ĆWICZ →",
         av_pp_suite_k: "Dalej",
         av_pp_suite_t: "Zaczyna się twój A1",
         av_pp_e1: "12 przystanków: jedzenie na mieście, targ, pociąg, zdrowie, poznawanie ludzi…",
@@ -20562,7 +20583,6 @@ const I18N = {
         arret_titre: "Wejdź do sceny: {lieu}",
         arret_texte_a1: "Trzy przedmioty do znalezienia. Widziałeś(-aś) je już na fiszkach:",
         arret_texte: "Trzy pytania w scenie, na twoim poziomie.",
-        fc_entrainer: "ĆWICZ →",
         arret_entrer: "Wejdź",
         arret_passer: "Pomiń",
         or_consigne: "Dotknij mikrofonu i powiedz zdanie",
@@ -21108,9 +21128,11 @@ const I18N = {
         settings_reset_daily: "ZERUJ DZISIEJSZY LICZNIK (TESTY)",
         settings_progress_by_category: "Postępy według kategorii",
         auth_kicker: "Witaj",
-        auth_title: "Ucz się niemieckiego, słowo po słowie",
+        auth_title: "Ucz się języka, słowo po słowie",
+        auth_apprendre_es: "Uczę się hiszpańskiego ›",
+        auth_apprendre_de: "Uczę się niemieckiego ›",
         auth_desc: "Zaloguj się albo załóż konto z kodem zaproszenia.",
-        auth_value_1: "Niemieckie słownictwo i gramatyka uporządkowane według poziomów, od A1 do C1.",
+        auth_value_1: "Słownictwo i gramatyka uporządkowane według poziomów, od A1 do C1.",
         auth_value_2: "Dzienne cele, serie, XP i odznaki, żeby nie stracić motywacji.",
         auth_value_3: "Powtórki w odstępach: każde słowo wraca we właściwym momencie, żeby zostać w pamięci.",
         auth_mode_login: "Zaloguj się",
@@ -21227,7 +21249,7 @@ const I18N = {
         settings_langue_titre: "Język",
         settings_groupe_son: "Dźwięk",
         settings_groupe_progression: "Moje postępy",
-        settings_groupe_compte: "Konto i pomoc",
+        settings_groupe_compte: "Konto, pomoc i opinie",
         auth_signup_loading: "TWORZENIE…",
         auth_logged_in_as: "Zalogowano jako: ",
         auth_logout: "WYLOGUJ SIĘ",
@@ -21916,6 +21938,7 @@ const I18N = {
         fc_vue: "Просмотрена",
         fc_bientot: "Скоро",
         fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "ТРЕНИРОВАТЬСЯ →",
         av_pp_suite_k: "Дальше",
         av_pp_suite_t: "Начинается твой A1",
         av_pp_e1: "12 остановок: поесть в городе, рынок, поезд, здоровье, знакомства…",
@@ -21938,7 +21961,6 @@ const I18N = {
         arret_texte: "Три вопроса в сцене, на твоём уровне.",
         arret_entrer: "Войти",
         arret_passer: "Пропустить",
-        fc_entrainer: "ТРЕНИРОВАТЬСЯ →",
         or_consigne: "Нажми на микрофон и скажи фразу",
         or_ecoute: "Слушаю…",
         or_arreter: "Круг растёт вместе с голосом. Нажми, чтобы остановить.",
@@ -22485,9 +22507,11 @@ const I18N = {
         settings_reset_daily: "СБРОСИТЬ СЧЁТЧИК ДНЯ (ТЕСТЫ)",
         settings_progress_by_category: "Прогресс по категориям",
         auth_kicker: "Добро пожаловать",
-        auth_title: "Учи немецкий, слово за словом",
+        auth_title: "Учи язык, слово за словом",
+        auth_apprendre_es: "Я учу испанский ›",
+        auth_apprendre_de: "Я учу немецкий ›",
         auth_desc: "Войди или создай аккаунт с помощью кода-приглашения.",
-        auth_value_1: "Немецкая лексика и грамматика по уровням, от A1 до C1.",
+        auth_value_1: "Лексика и грамматика по уровням, от A1 до C1.",
         auth_value_2: "Цели на день, серии, очки опыта и значки, чтобы не терять мотивацию.",
         auth_value_3: "Интервальное повторение: каждое слово возвращается в нужный момент, чтобы остаться в памяти.",
         auth_mode_login: "Войти",
@@ -22606,7 +22630,7 @@ const I18N = {
         settings_langue_titre: "Язык",
         settings_groupe_son: "Звук",
         settings_groupe_progression: "Мой прогресс",
-        settings_groupe_compte: "Аккаунт и помощь",
+        settings_groupe_compte: "Аккаунт, помощь и отзывы",
         auth_signup_loading: "СОЗДАНИЕ…",
         auth_logged_in_as: "Вход выполнен как:",
         auth_logout: "ВЫЙТИ",
@@ -24069,7 +24093,19 @@ const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "es" ? "./?apprendre=de" : "
 // le portugais du Bresil (v784, 13 oct. 2026), puis l'arabe (15 oct. 2026).
 // Sans effet pour qui est DEJA en espagnol : il garde le bouton de retour.
 const LANGUES_UI_AVEC_ESPAGNOL = ["fr", "en", "pt", "ar"];
+// v871 : SUR L'ECRAN DE CONNEXION, LA BASCULE AVANT DE SE CONNECTER. Une
+// testeuse d'espagnol lisait « Apprends l'allemand » en entrant son mot de
+// passe : la langue apprise se decide avant la connexion (l'adresse, ou le
+// dernier choix sur l'appareil, sinon l'allemand -- l'app Android charge la
+// racine). Le slogan est devenu neutre, et ce lien laisse changer de langue.
+function majLienAutreLangueAuth(){
+    const b = document.getElementById("authAutreLangue");
+    if(!b) return;
+    b.textContent = t(LANGUE_APPRISE === "es" ? "auth_apprendre_de" : "auth_apprendre_es");
+    b.classList.toggle("hidden", LANGUE_APPRISE !== "es" && !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang()));
+}
 function masquerEspagnolSelonLangueUi(){
+    try{ majLienAutreLangueAuth(); }catch(e){}
     if(LANGUE_APPRISE === "es") return;
     const cache = !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang());
     document.querySelectorAll('.setup-choice[onclick*="ouvrirAutreLangueApprise"]')
@@ -35586,6 +35622,8 @@ const ESSAIS = {
     // voyage. Maquette validee : .claude/maquette-conjugaison-niveaux.html.
     // Voir preparerFeuille().
     // EN PRODUCTION le 18 oct. 2026 (v869), a la demande de Jacques.
+    // v870 : B2 et C1 (allemand), B2 (espagnol), avec leurs series d'exercices
+    // -- Jacques : « go » pour la suite, recommandation 4 de la maquette.
     feuilles_conj: {
         etat: "tous",
         titre: "Les feuilles de conjugaison (A2-C1)",
@@ -35622,8 +35660,6 @@ function basculerEssai(nom){
     if(!isAdminUser() || !ESSAIS[nom]) return;
     const coupes = essaisCoupes();
     const k = coupes.indexOf(nom);
-    // v870 : B2 et C1 (allemand), B2 (espagnol), avec leurs series d'exercices
-    // -- Jacques : « go » pour la suite, recommandation 4 de la maquette.
     if(k < 0) coupes.push(nom); else coupes.splice(k, 1);
     try{ localStorage.setItem(ESSAIS_COUPES_KEY, JSON.stringify(coupes)); }catch(e){}
     afficherEssais();
@@ -40570,7 +40606,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 870;
+const APP_VERSION = 871;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47261,6 +47297,26 @@ async function ouvrirMesFeuilles(){
     }
     showScreen("mesFeuilles");
 }
+// v870 : « M'ENTRAINER » depuis une feuille. Les series ecrites pour les feuilles
+// B2-C1 n'avaient pas d'autre entree que les trois questions de la seance.
+// ⚠️ LES NOMS EN TOUTES LETTRES : tests/chemins.py suit la chaine passee a
+// startExerciseSet*, pas une variable -- une serie qui n'y figure pas parait
+// sans chemin depuis l'accueil (et l'est, pour le verificateur). Les autres
+// (Perfekt, Prateritum..., et les series espagnoles) passent par la ligne
+// generique, deja lancees ailleurs.
+function lancerSerieFeuille(serie){
+    const retour = () => { ouvrirMesFeuilles(); };
+    const relancer = () => lancerSerieFeuille(serie);
+    switch(serie){
+        case "passivExercises": return startExerciseSetMelange("passivExercises", "fc_kicker", retour, relancer);
+        case "konjunktiv2VergangenheitExercises": return startExerciseSetMelange("konjunktiv2VergangenheitExercises", "fc_kicker", retour, relancer);
+        case "konjunktiv1Exercises": return startExerciseSetMelange("konjunktiv1Exercises", "fc_kicker", retour, relancer);
+        case "werdenExercises": return startExerciseSetMelange("werdenExercises", "fc_kicker", retour, relancer);
+        case "partizipExercises": return startExerciseSetMelange("partizipExercises", "fc_kicker", retour, relancer);
+        case "funktionsverbExercises": return startExerciseSetMelange("funktionsverbExercises", "fc_kicker", retour, relancer);
+        default: return startExerciseSetMelange(serie, "fc_kicker", retour, relancer);
+    }
+}
 // La porte des mots, a l'A2 et au B1 : la feuille du jour, et « Mes feuilles ».
 function majPorteFeuilles(){
     const titre = document.getElementById("seancePorteMotsTitre");
@@ -47297,26 +47353,6 @@ function majPorteFeuilles(){
         c.className = "av-carnet-lien";
         c.textContent = tf("fc_porte_lien", { n: n });
         c.addEventListener("click", ev => { ev.stopPropagation(); ouvrirMesFeuilles(); });
-// v870 : « M'ENTRAINER » depuis une feuille. Les series ecrites pour les feuilles
-// B2-C1 n'avaient pas d'autre entree que les trois questions de la seance.
-// ⚠️ LES NOMS EN TOUTES LETTRES : tests/chemins.py suit la chaine passee a
-// startExerciseSet*, pas une variable -- une serie qui n'y figure pas parait
-// sans chemin depuis l'accueil (et l'est, pour le verificateur). Les autres
-// (Perfekt, Prateritum..., et les series espagnoles) passent par la ligne
-// generique, deja lancees ailleurs.
-function lancerSerieFeuille(serie){
-    const retour = () => { ouvrirMesFeuilles(); };
-    const relancer = () => lancerSerieFeuille(serie);
-    switch(serie){
-        case "passivExercises": return startExerciseSetMelange("passivExercises", "fc_kicker", retour, relancer);
-        case "konjunktiv2VergangenheitExercises": return startExerciseSetMelange("konjunktiv2VergangenheitExercises", "fc_kicker", retour, relancer);
-        case "konjunktiv1Exercises": return startExerciseSetMelange("konjunktiv1Exercises", "fc_kicker", retour, relancer);
-        case "werdenExercises": return startExerciseSetMelange("werdenExercises", "fc_kicker", retour, relancer);
-        case "partizipExercises": return startExerciseSetMelange("partizipExercises", "fc_kicker", retour, relancer);
-        case "funktionsverbExercises": return startExerciseSetMelange("funktionsverbExercises", "fc_kicker", retour, relancer);
-        default: return startExerciseSetMelange(serie, "fc_kicker", retour, relancer);
-    }
-}
         bas.appendChild(c);
     }
     bas.classList.remove("hidden");
