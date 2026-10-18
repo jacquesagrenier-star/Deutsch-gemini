@@ -6496,6 +6496,7 @@ body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
 body[data-theme="dark"] .fc-ligne{background:#232a34; border-color:#2c333d;}
 body[data-theme="dark"] .cp-tl-forme u{background:rgba(232,162,58,.28);}
 body[data-theme="dark"] .cp-type b.cp-av{background:rgba(120,170,220,.16); color:#9cc3ea;}
+.fc-entrainer{display:block; width:100%; margin-top:10px;}
 body[data-theme="dark"] .av-variantes button,
 body[data-theme="dark"] .av-exemple,
 body[data-theme="dark"] .av-opt,
@@ -7691,7 +7692,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v869</span>
+    <span class="subtitle-version">v870</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11123,6 +11124,7 @@ const I18N = {
         av_pp_e2: "Tu pars bientôt ? Donne ta date de départ, on te dira le rythme pour être prêt.",
         av_pp_e3: "Le reste de l'A1 : le logement, les démarches, la famille, le travail…",
         pp_fin_bouton: "Continuer",
+        fc_entrainer: "M'ENTRAÎNER →",
         pp_q_tableau: "Écoute chaque ligne. Les cartes viennent après.",
         pp_porte_jour: "Étape {n} sur {t}",
         pp_jour_reussi: "Étape {n} réussie",
@@ -12435,6 +12437,7 @@ const I18N = {
         pp_fin_bouton: "Continue",
         pp_q_tableau: "Listen to each line. The cards come next.",
         pp_porte_jour: "Step {n} of {t}",
+        fc_entrainer: "PRACTISE →",
         pp_jour_reussi: "Step {n} done",
         pp_scene_titre: "Step into the scene",
         pp_scene_texte: "Tap the objects to hear their names. You already know a few.",
@@ -13749,6 +13752,7 @@ const I18N = {
         pp_porte_jour: "Adım {n} / {t}",
         pp_jour_reussi: "Adım {n} tamam",
         pp_scene_titre: "Sahneye gir",
+        fc_entrainer: "ALIŞTIRMA YAP →",
         pp_scene_texte: "Adlarını duymak için nesnelere dokun. Bazılarını zaten biliyorsun.",
         pp_scene_bouton: "Sahneye gir",
         pp_plus_tard: "Sonra",
@@ -15400,6 +15404,7 @@ const I18N = {
         pp_scene_titre: "Зайди в сцену",
         pp_scene_texte: "Торкайся предметів, щоб почути їхні назви. Деякі ти вже знаєш.",
         pp_scene_bouton: "Увійти в сцену",
+        fc_entrainer: "ТРЕНУВАТИСЯ →",
         pp_plus_tard: "Пізніше",
         seance_porte_tout: "Слова, граматика і сцена",
         seance_aujourdhui: "Сьогодні: {lieu}",
@@ -17423,6 +17428,7 @@ const I18N = {
         seance_porte_tout: "واژه‌ها، دستور و صحنه",
         seance_aujourdhui: "امروز: {lieu}",
         seance_aujourdhui_sous: "۳ پرسش در میانهٔ جلسه",
+        fc_entrainer: "تمرین کن ←",
         arret_badge: "توقف در صحنه",
         arret_titre: "وارد صحنه شو: {lieu}",
         arret_texte_a1: "سه شیء برای پیدا کردن. قبلاً آن‌ها را در کارت‌هایت دیده‌ای:",
@@ -18868,6 +18874,7 @@ const I18N = {
         seance_aujourdhui_sous: "3 أسئلة في منتصف الجلسة",
         arret_badge: "وقفة في المشهد",
         arret_titre: "ادخل إلى المشهد: {lieu}",
+        fc_entrainer: "تدرّب ←",
         arret_texte_a1: "ثلاثة أشياء للبحث عنها. رأيتها من قبل في بطاقاتك:",
         arret_texte: "ثلاثة أسئلة في المشهد، بمستواك.",
         arret_entrer: "دخول",
@@ -19177,6 +19184,7 @@ const I18N = {
         seance_aujourdhui_sous: "3 perguntas no meio da sessão",
         arret_badge: "Parada na cena",
         arret_titre: "Entre na cena: {lieu}",
+        fc_entrainer: "PRATICAR →",
         arret_texte_a1: "Três objetos para encontrar. Você já os viu nos seus cartões:",
         arret_texte: "Três perguntas na cena, no seu nível.",
         arret_entrer: "Entrar",
@@ -20554,6 +20562,7 @@ const I18N = {
         arret_titre: "Wejdź do sceny: {lieu}",
         arret_texte_a1: "Trzy przedmioty do znalezienia. Widziałeś(-aś) je już na fiszkach:",
         arret_texte: "Trzy pytania w scenie, na twoim poziomie.",
+        fc_entrainer: "ĆWICZ →",
         arret_entrer: "Wejdź",
         arret_passer: "Pomiń",
         or_consigne: "Dotknij mikrofonu i powiedz zdanie",
@@ -21929,6 +21938,7 @@ const I18N = {
         arret_texte: "Три вопроса в сцене, на твоём уровне.",
         arret_entrer: "Войти",
         arret_passer: "Пропустить",
+        fc_entrainer: "ТРЕНИРОВАТЬСЯ →",
         or_consigne: "Нажми на микрофон и скажи фразу",
         or_ecoute: "Слушаю…",
         or_arreter: "Круг растёт вместе с голосом. Нажми, чтобы остановить.",
@@ -35578,8 +35588,8 @@ const ESSAIS = {
     // EN PRODUCTION le 18 oct. 2026 (v869), a la demande de Jacques.
     feuilles_conj: {
         etat: "tous",
-        titre: "Les feuilles de conjugaison (A2-B1)",
-        desc: "À l'A2 et au B1, une séance sur deux commence par une feuille de conjugaison (un temps ou une construction ; allemand, 24 feuilles : le passé avec sein, les séparables, le Präteritum, le Konjunktiv II… ; espagnol, 20 feuilles : pretérito, imperfecto, futuro, condicional, subjuntivo…), dans l'ordre du niveau. Juste après : la carte d'un verbe du jour, verso ouvert sur ce temps, une phrase en situation à remettre en ordre et trois questions de la série d'exercices du temps. « Mes feuilles » sur la porte ; une feuille dont la série rate revient une fois."
+        titre: "Les feuilles de conjugaison (A2-C1)",
+        desc: "De l'A2 au C1, une séance sur deux commence par une feuille de conjugaison, dans l'ordre du niveau : un temps ou une construction (allemand, 42 feuilles : le passé avec sein, les séparables, le Präteritum, le Konjunktiv II, le passif, le Konjunktiv I, le Futur II, le participe étendu… ; espagnol, A2-B2, 28 feuilles : pretérito, imperfecto, futuro, condicional, subjuntivo, subjonctif imparfait, phrases en si, passif…). Juste après : la carte d'un verbe du jour, verso ouvert sur ce temps, une phrase en situation à remettre en ordre et trois questions de la série d'exercices du temps. « Mes feuilles » sur la porte ; une feuille dont la série rate revient une fois."
     },
     // EN PRODUCTION le 16 oct. 2026 (v838) -- Jacques : « en pose tout ».
     scene_arret: {
@@ -35612,6 +35622,8 @@ function basculerEssai(nom){
     if(!isAdminUser() || !ESSAIS[nom]) return;
     const coupes = essaisCoupes();
     const k = coupes.indexOf(nom);
+    // v870 : B2 et C1 (allemand), B2 (espagnol), avec leurs series d'exercices
+    // -- Jacques : « go » pour la suite, recommandation 4 de la maquette.
     if(k < 0) coupes.push(nom); else coupes.splice(k, 1);
     try{ localStorage.setItem(ESSAIS_COUPES_KEY, JSON.stringify(coupes)); }catch(e){}
     afficherEssais();
@@ -40558,7 +40570,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 869;
+const APP_VERSION = 870;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47222,7 +47234,19 @@ async function ouvrirMesFeuilles(){
                 const detail = document.createElement("div");
                 detail.className = "fc-detail hidden";
                 b.addEventListener("click", () => {
-                    if(!detail.childNodes.length) construireTableau(f).forEach(n => detail.appendChild(n));
+                    if(!detail.childNodes.length){
+                        construireTableau(f).forEach(n => detail.appendChild(n));
+                        // v870 : la serie de la feuille, en entier, dans l'ecran
+                        // d'exercices (par blocs de dix, avec la phrase dite).
+                        if(f.serie){
+                            const go = document.createElement("button");
+                            go.type = "button";
+                            go.className = "secondary fc-entrainer";
+                            go.textContent = t("fc_entrainer");
+                            go.addEventListener("click", () => lancerSerieFeuille(f.serie));
+                            detail.appendChild(go);
+                        }
+                    }
                     detail.classList.toggle("hidden");
                 });
                 box.appendChild(detail);
@@ -47273,6 +47297,26 @@ function majPorteFeuilles(){
         c.className = "av-carnet-lien";
         c.textContent = tf("fc_porte_lien", { n: n });
         c.addEventListener("click", ev => { ev.stopPropagation(); ouvrirMesFeuilles(); });
+// v870 : « M'ENTRAINER » depuis une feuille. Les series ecrites pour les feuilles
+// B2-C1 n'avaient pas d'autre entree que les trois questions de la seance.
+// ⚠️ LES NOMS EN TOUTES LETTRES : tests/chemins.py suit la chaine passee a
+// startExerciseSet*, pas une variable -- une serie qui n'y figure pas parait
+// sans chemin depuis l'accueil (et l'est, pour le verificateur). Les autres
+// (Perfekt, Prateritum..., et les series espagnoles) passent par la ligne
+// generique, deja lancees ailleurs.
+function lancerSerieFeuille(serie){
+    const retour = () => { ouvrirMesFeuilles(); };
+    const relancer = () => lancerSerieFeuille(serie);
+    switch(serie){
+        case "passivExercises": return startExerciseSetMelange("passivExercises", "fc_kicker", retour, relancer);
+        case "konjunktiv2VergangenheitExercises": return startExerciseSetMelange("konjunktiv2VergangenheitExercises", "fc_kicker", retour, relancer);
+        case "konjunktiv1Exercises": return startExerciseSetMelange("konjunktiv1Exercises", "fc_kicker", retour, relancer);
+        case "werdenExercises": return startExerciseSetMelange("werdenExercises", "fc_kicker", retour, relancer);
+        case "partizipExercises": return startExerciseSetMelange("partizipExercises", "fc_kicker", retour, relancer);
+        case "funktionsverbExercises": return startExerciseSetMelange("funktionsverbExercises", "fc_kicker", retour, relancer);
+        default: return startExerciseSetMelange(serie, "fc_kicker", retour, relancer);
+    }
+}
         bas.appendChild(c);
     }
     bas.classList.remove("hidden");

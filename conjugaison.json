@@ -1,10 +1,10 @@
 {
  "_lisez_moi": [
-  "Les feuilles de conjugaison de l'A2 et du B1 (18 oct. 2026, essai « feuilles_conj »). Maquette validée par Jacques : .claude/maquette-conjugaison-niveaux.html.",
+  "Les feuilles de conjugaison, de l'A2 au C1 (A2-B1 le 18 oct. 2026, B2-C1 le même jour, essai « feuilles_conj » passé en production en v869). Maquette validée par Jacques : .claude/maquette-conjugaison-niveaux.html.",
   "Une feuille enseigne un TEMPS ou une CONSTRUCTION, avec des verbes modèles fixes : même forme que le tableau de Premiers pas et de l'A1 voyage (pp_tableau) -- t (titre), l: [[forme, sens]] (6 lignes), a (astuce).",
   "Dans la forme, [crochets] = la partie qui change, surlignée à l'écran ; la voix lit la forme SANS les crochets (audio/manifest.py, source « conjugaison »).",
   "serie : la série d'exercices qui suit la feuille dans la séance (exercices.json) ; null = pas encore de série. temps : le champ de verbe.json (perfekt, praeteritum, konjunktiv2) d'où vient la « phrase en situation » du verbe du jour ; null = pas de phrase.",
-  "Une feuille sur deux séances, dans l'ordre du niveau. B2 et C1 viendront avec leurs exercices.",
+  "Une feuille sur deux séances, dans l'ordre du niveau. B2 et C1 ont chacun leurs séries d'exercices, écrites avec leurs feuilles : passivExercises, konjunktiv2VergangenheitExercises, konjunktiv1Exercises, werdenExercises, partizipExercises, funktionsverbExercises.",
   "Contrôle : python tests/conjugaison.py. Sens en fr, en, tr, uk, fa, ar, pt, pl, ru."
  ],
  "niveaux": {
@@ -2612,7 +2612,7 @@
    },
    {
     "id": "passif_present",
-    "serie": null,
+    "serie": "passivExercises",
     "temps": null,
     "t": {
      "fr": "Le passif au présent : wird gemacht",
@@ -2721,6 +2721,2044 @@
      "pt": "werden + particípio no fim: diz-se o que é feito, sem dizer quem faz. Em português, muitas vezes com “se”: “Hier wird Deutsch gesprochen” = aqui se fala alemão. Para dizer quem faz: von + dativo: “Das Auto wird von meinem Bruder repariert.”",
      "pl": "werden + imiesłów na końcu: mówimy, co się robi, nie mówiąc kto. Po polsku często „się”: „Hier wird Deutsch gesprochen” = tutaj mówi się po niemiecku. Aby wskazać wykonawcę: von + celownik: „Das Auto wird von meinem Bruder repariert.”",
      "ru": "werden + причастие в конце: говорят, что делается, не называя, кто делает. По-русски часто — неопределённо-личное: «здесь говорят по-немецки». Чтобы назвать исполнителя: von + дательный падеж: «Das Auto wird von meinem Bruder repariert.»"
+    }
+   }
+  ],
+  "B2": [
+   {
+    "id": "passif_temps",
+    "serie": "passivExercises",
+    "temps": null,
+    "t": {
+     "fr": "Le passif à tous les temps",
+     "en": "The passive in every tense",
+     "tr": "Bütün zamanlarda edilgen",
+     "uk": "Пасив у всіх часах",
+     "fa": "مجهول در همهٔ زمان‌ها",
+     "ar": "المبني للمجهول في كل الأزمنة",
+     "pt": "A voz passiva em todos os tempos",
+     "pl": "Strona bierna we wszystkich czasach",
+     "ru": "Пассив во всех временах"
+    },
+    "l": [
+     [
+      "Die Brücke [wird] gebaut.",
+      {
+       "fr": "Le pont est en construction.",
+       "en": "The bridge is being built.",
+       "tr": "Köprü yapılıyor.",
+       "uk": "Міст будують.",
+       "fa": "پل در حال ساخته شدن است.",
+       "ar": "الجسر قيد البناء.",
+       "pt": "A ponte está sendo construída.",
+       "pl": "Most jest budowany.",
+       "ru": "Мост строят."
+      }
+     ],
+     [
+      "Sie [wurde] 1990 gebaut.",
+      {
+       "fr": "Il a été construit en 1990.",
+       "en": "It was built in 1990.",
+       "tr": "1990'da yapıldı.",
+       "uk": "Його збудували 1990 року.",
+       "fa": "در ۱۹۹۰ ساخته شد.",
+       "ar": "بُني عام 1990.",
+       "pt": "Foi construída em 1990.",
+       "pl": "Zbudowano go w 1990 roku.",
+       "ru": "Его построили в 1990 году."
+      }
+     ],
+     [
+      "Sie [ist] gebaut [worden].",
+      {
+       "fr": "Il a été construit (c'est fait).",
+       "en": "It has been built.",
+       "tr": "Yapıldı (bitti).",
+       "uk": "Його збудовано.",
+       "fa": "ساخته شده است.",
+       "ar": "لقد بُني.",
+       "pt": "Ela foi construída (está feita).",
+       "pl": "Został zbudowany.",
+       "ru": "Его построили (готово)."
+      }
+     ],
+     [
+      "Sie [muss] gebaut [werden].",
+      {
+       "fr": "Il doit être construit.",
+       "en": "It has to be built.",
+       "tr": "Yapılması gerekiyor.",
+       "uk": "Його треба збудувати.",
+       "fa": "باید ساخته شود.",
+       "ar": "يجب بناؤه.",
+       "pt": "Ela precisa ser construída.",
+       "pl": "Musi zostać zbudowany.",
+       "ru": "Его нужно построить."
+      }
+     ],
+     [
+      "Sie [war] schon gebaut [worden].",
+      {
+       "fr": "Il avait déjà été construit.",
+       "en": "It had already been built.",
+       "tr": "Çoktan yapılmıştı.",
+       "uk": "Його вже було збудовано.",
+       "fa": "قبلاً ساخته شده بود.",
+       "ar": "كان قد بُني من قبل.",
+       "pt": "Ela já tinha sido construída.",
+       "pl": "Był już zbudowany.",
+       "ru": "Его уже построили (к тому времени)."
+      }
+     ],
+     [
+      "Sie [wird] bald gebaut [werden].",
+      {
+       "fr": "Il sera bientôt construit.",
+       "en": "It will soon be built.",
+       "tr": "Yakında yapılacak.",
+       "uk": "Його скоро збудують.",
+       "fa": "به‌زودی ساخته خواهد شد.",
+       "ar": "سيُبنى قريبًا.",
+       "pt": "Ela logo será construída.",
+       "pl": "Wkrótce zostanie zbudowany.",
+       "ru": "Его скоро построят."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le passif, c'est werden + participe : c'est werden qui change de temps (wird, wurde, ist … worden, war … worden, wird … werden). Au Perfekt, son participe perd son ge- : gebaut worden, jamais « geworden ».",
+     "en": "The passive is werden + participle: it's werden that changes tense (wird, wurde, ist … worden, war … worden, wird … werden). In the Perfekt its participle loses its ge-: gebaut worden, never “geworden”.",
+     "tr": "Edilgen, werden + ortaçtır: zamanı değişen werden'dir (wird, wurde, ist … worden, war … worden, wird … werden). Perfekt'te ortacı ge- kaybeder: gebaut worden, asla “geworden” değil.",
+     "uk": "Пасив — це werden + дієприкметник: час змінює саме werden (wird, wurde, ist … worden, war … worden, wird … werden). У Perfekt його дієприкметник втрачає ge-: gebaut worden, ніколи не «geworden».",
+     "fa": "مجهول یعنی werden + اسم مفعول: این werden است که زمانش عوض می‌شود (wird، wurde، ist … worden، war … worden، wird … werden). در Perfekt اسم مفعولش ge- را از دست می‌دهد: gebaut worden، هرگز «geworden».",
+     "ar": "المبني للمجهول هو werden + اسم المفعول: وwerden هو الذي يتغيّر زمنه (wird، wurde، ist … worden، war … worden، wird … werden). وفي الـPerfekt يفقد اسم مفعوله ge-: ‏gebaut worden، لا «geworden» أبدًا.",
+     "pt": "A passiva é werden + particípio: é werden que muda de tempo (wird, wurde, ist … worden, war … worden, wird … werden). No Perfekt, seu particípio perde o ge-: gebaut worden, nunca “geworden”.",
+     "pl": "Strona bierna to werden + imiesłów: czas zmienia samo werden (wird, wurde, ist … worden, war … worden, wird … werden). W Perfekt jego imiesłów traci ge-: gebaut worden, nigdy „geworden”.",
+     "ru": "Пассив — это werden + причастие: время меняет именно werden (wird, wurde, ist … worden, war … worden, wird … werden). В Perfekt его причастие теряет ge-: gebaut worden, никогда не «geworden»."
+    }
+   },
+   {
+    "id": "passif_modal",
+    "serie": "passivExercises",
+    "temps": null,
+    "t": {
+     "fr": "Le passif avec un modal : muss repariert werden",
+     "en": "The passive with a modal: muss repariert werden",
+     "tr": "Kip fiiliyle edilgen: muss repariert werden",
+     "uk": "Пасив із модальним дієсловом: muss repariert werden",
+     "fa": "مجهول با فعل وجهی: muss repariert werden",
+     "ar": "المجهول مع فعل ناقص: muss repariert werden",
+     "pt": "A passiva com modal: muss repariert werden",
+     "pl": "Strona bierna z modalnym: muss repariert werden",
+     "ru": "Пассив с модальным глаголом: muss repariert werden"
+    },
+    "l": [
+     [
+      "Das Auto muss repariert [werden].",
+      {
+       "fr": "La voiture doit être réparée.",
+       "en": "The car has to be repaired.",
+       "tr": "Arabanın tamir edilmesi gerek.",
+       "uk": "Машину треба відремонтувати.",
+       "fa": "ماشین باید تعمیر شود.",
+       "ar": "يجب إصلاح السيارة.",
+       "pt": "O carro precisa ser consertado.",
+       "pl": "Samochód musi zostać naprawiony.",
+       "ru": "Машину нужно отремонтировать."
+      }
+     ],
+     [
+      "Das kann nicht geändert [werden].",
+      {
+       "fr": "On ne peut pas le changer.",
+       "en": "That can't be changed.",
+       "tr": "Bu değiştirilemez.",
+       "uk": "Цього не можна змінити.",
+       "fa": "این قابل تغییر نیست.",
+       "ar": "لا يمكن تغيير ذلك.",
+       "pt": "Isso não pode ser mudado.",
+       "pl": "Tego nie można zmienić.",
+       "ru": "Это нельзя изменить."
+      }
+     ],
+     [
+      "Hier darf nicht geraucht [werden].",
+      {
+       "fr": "Il est interdit de fumer ici.",
+       "en": "Smoking is not allowed here.",
+       "tr": "Burada sigara içilmez.",
+       "uk": "Тут не можна курити.",
+       "fa": "اینجا سیگار کشیدن ممنوع است.",
+       "ar": "لا يُسمح بالتدخين هنا.",
+       "pt": "Aqui não se pode fumar.",
+       "pl": "Tu nie wolno palić.",
+       "ru": "Здесь нельзя курить."
+      }
+     ],
+     [
+      "Die Tabletten sollen kühl gelagert [werden].",
+      {
+       "fr": "Les comprimés doivent être conservés au frais.",
+       "en": "The tablets should be stored in a cool place.",
+       "tr": "Haplar serin yerde saklanmalı.",
+       "uk": "Пігулки слід зберігати в прохолодному місці.",
+       "fa": "قرص‌ها باید در جای خنک نگهداری شوند.",
+       "ar": "يجب حفظ الحبوب في مكان بارد.",
+       "pt": "Os comprimidos devem ser guardados em local fresco.",
+       "pl": "Tabletki należy przechowywać w chłodnym miejscu.",
+       "ru": "Таблетки следует хранить в прохладном месте."
+      }
+     ],
+     [
+      "Das Formular [musste] ausgefüllt werden.",
+      {
+       "fr": "Le formulaire a dû être rempli.",
+       "en": "The form had to be filled in.",
+       "tr": "Formun doldurulması gerekti.",
+       "uk": "Формуляр довелося заповнити.",
+       "fa": "فرم باید پر می‌شد.",
+       "ar": "كان لا بدّ من ملء الاستمارة.",
+       "pt": "O formulário teve de ser preenchido.",
+       "pl": "Formularz trzeba było wypełnić.",
+       "ru": "Анкету пришлось заполнить."
+      }
+     ],
+     [
+      "Das [hätte] vermieden werden können.",
+      {
+       "fr": "Cela aurait pu être évité.",
+       "en": "That could have been avoided.",
+       "tr": "Bundan kaçınılabilirdi.",
+       "uk": "Цього можна було уникнути.",
+       "fa": "می‌شد از این جلوگیری کرد.",
+       "ar": "كان يمكن تجنّب ذلك.",
+       "pt": "Isso poderia ter sido evitado.",
+       "pl": "Można było tego uniknąć.",
+       "ru": "Этого можно было избежать."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le modal se conjugue en 2e place ; la fin est toujours participe + werden : « muss repariert werden ». Au passé, le modal passe au Präteritum (musste). Pour un regret : hätte + participe + werden + modal à l'infinitif.",
+     "en": "The modal is conjugated in 2nd place; the end is always participle + werden: “muss repariert werden”. In the past, the modal goes into the Präteritum (musste). For regret: hätte + participle + werden + modal in the infinitive.",
+     "tr": "Kip fiili 2. sırada çekimlenir; son kısım hep ortaç + werden'dir: “muss repariert werden”. Geçmişte kip fiili Präteritum'a geçer (musste). Pişmanlık için: hätte + ortaç + werden + mastar hâlinde kip fiili.",
+     "uk": "Модальне дієслово відмінюється на 2-му місці; у кінці завжди дієприкметник + werden: «muss repariert werden». У минулому модальне дієслово стає в Präteritum (musste). Для жалю: hätte + дієприкметник + werden + модальне в інфінітиві.",
+     "fa": "فعل وجهی در جایگاه دوم صرف می‌شود؛ آخر جمله همیشه اسم مفعول + werden است: «muss repariert werden». در گذشته فعل وجهی Präteritum می‌شود (musste). برای افسوس: hätte + اسم مفعول + werden + فعل وجهی به شکل مصدر.",
+     "ar": "يُصرَّف الفعل الناقص في المرتبة الثانية، وفي آخر الجملة دائمًا اسم المفعول + werden: «muss repariert werden». وفي الماضي يصير الفعل الناقص في الـPräteritum ‏(musste). وللتحسّر: hätte + اسم المفعول + werden + الفعل الناقص مصدرًا.",
+     "pt": "O modal é conjugado na 2.ª posição; o fim é sempre particípio + werden: “muss repariert werden”. No passado, o modal vai para o Präteritum (musste). Para lamentar: hätte + particípio + werden + modal no infinitivo.",
+     "pl": "Czasownik modalny odmienia się na 2. miejscu; na końcu zawsze imiesłów + werden: „muss repariert werden”. W przeszłości modalny przechodzi w Präteritum (musste). Dla żalu: hätte + imiesłów + werden + modalny w bezokoliczniku.",
+     "ru": "Модальный глагол спрягается на 2-м месте; в конце всегда причастие + werden: «muss repariert werden». В прошлом модальный глагол ставят в Präteritum (musste). Для сожаления: hätte + причастие + werden + модальный в инфинитиве."
+    }
+   },
+   {
+    "id": "passif_etat",
+    "serie": "passivExercises",
+    "temps": null,
+    "t": {
+     "fr": "Action ou état : wird / ist geschlossen",
+     "en": "Action or state: wird / ist geschlossen",
+     "tr": "Eylem mi durum mu: wird / ist geschlossen",
+     "uk": "Дія чи стан: wird / ist geschlossen",
+     "fa": "کار یا حالت: wird / ist geschlossen",
+     "ar": "فعل أم حال: wird / ist geschlossen",
+     "pt": "Ação ou estado: wird / ist geschlossen",
+     "pl": "Czynność czy stan: wird / ist geschlossen",
+     "ru": "Действие или состояние: wird / ist geschlossen"
+    },
+    "l": [
+     [
+      "Die Tür [wird] geschlossen.",
+      {
+       "fr": "On ferme la porte (en ce moment).",
+       "en": "The door is being closed.",
+       "tr": "Kapı kapatılıyor.",
+       "uk": "Двері зачиняють.",
+       "fa": "در دارد بسته می‌شود.",
+       "ar": "يُغلَق الباب الآن.",
+       "pt": "A porta está sendo fechada.",
+       "pl": "Drzwi są zamykane.",
+       "ru": "Дверь закрывают."
+      }
+     ],
+     [
+      "Die Tür [ist] geschlossen.",
+      {
+       "fr": "La porte est fermée.",
+       "en": "The door is closed.",
+       "tr": "Kapı kapalı.",
+       "uk": "Двері зачинені.",
+       "fa": "در بسته است.",
+       "ar": "الباب مغلق.",
+       "pt": "A porta está fechada.",
+       "pl": "Drzwi są zamknięte.",
+       "ru": "Дверь закрыта."
+      }
+     ],
+     [
+      "Der Tisch [wird] gedeckt.",
+      {
+       "fr": "On met la table.",
+       "en": "The table is being set.",
+       "tr": "Sofra kuruluyor.",
+       "uk": "Стіл накривають.",
+       "fa": "میز دارد چیده می‌شود.",
+       "ar": "تُعَدّ المائدة.",
+       "pt": "A mesa está sendo posta.",
+       "pl": "Stół jest nakrywany.",
+       "ru": "Стол накрывают."
+      }
+     ],
+     [
+      "Der Tisch [ist] gedeckt.",
+      {
+       "fr": "La table est mise.",
+       "en": "The table is set.",
+       "tr": "Sofra kurulu.",
+       "uk": "Стіл накритий.",
+       "fa": "میز چیده شده است.",
+       "ar": "المائدة مُعدّة.",
+       "pt": "A mesa está posta.",
+       "pl": "Stół jest nakryty.",
+       "ru": "Стол накрыт."
+      }
+     ],
+     [
+      "Das Geschäft [wurde] um neun geöffnet.",
+      {
+       "fr": "Le magasin a été ouvert à neuf heures.",
+       "en": "The shop was opened at nine.",
+       "tr": "Dükkân saat dokuzda açıldı.",
+       "uk": "Магазин відчинили о дев'ятій.",
+       "fa": "مغازه ساعت نه باز شد.",
+       "ar": "فُتح المحلّ في التاسعة.",
+       "pt": "A loja foi aberta às nove.",
+       "pl": "Sklep został otwarty o dziewiątej.",
+       "ru": "Магазин открыли в девять."
+      }
+     ],
+     [
+      "Um zehn [war] es schon geöffnet.",
+      {
+       "fr": "À dix heures, il était déjà ouvert.",
+       "en": "By ten it was already open.",
+       "tr": "Saat onda çoktan açıktı.",
+       "uk": "О десятій він уже був відчинений.",
+       "fa": "ساعت ده باز بود.",
+       "ar": "في العاشرة كان مفتوحًا بالفعل.",
+       "pt": "Às dez ela já estava aberta.",
+       "pl": "O dziesiątej był już otwarty.",
+       "ru": "В десять он уже был открыт."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "werden + participe = l'action, ce qu'on fait (Vorgangspassiv). sein + participe = le résultat, l'état qui reste (Zustandspassiv). Les panneaux disent l'état : « Geschlossen », « Besetzt ».",
+     "en": "werden + participle = the action, what is being done (Vorgangspassiv). sein + participle = the result, the state that remains (Zustandspassiv). Signs show the state: “Geschlossen”, “Besetzt”.",
+     "tr": "werden + ortaç = eylem, yapılan şey (Vorgangspassiv). sein + ortaç = sonuç, kalan durum (Zustandspassiv). Tabelalar durumu gösterir: “Geschlossen”, “Besetzt”.",
+     "uk": "werden + дієприкметник = дія, те, що роблять (Vorgangspassiv). sein + дієприкметник = результат, стан, що лишається (Zustandspassiv). Таблички показують стан: «Geschlossen», «Besetzt».",
+     "fa": "werden + اسم مفعول = کار، آنچه انجام می‌شود (Vorgangspassiv). sein + اسم مفعول = نتیجه، حالتی که می‌ماند (Zustandspassiv). تابلوها حالت را نشان می‌دهند: «Geschlossen»، «Besetzt».",
+     "ar": "werden + اسم المفعول = الفعل، ما يُفعل (Vorgangspassiv). وsein + اسم المفعول = النتيجة، الحال الباقية (Zustandspassiv). واللافتات تقول الحال: «Geschlossen»، «Besetzt».",
+     "pt": "werden + particípio = a ação, o que está sendo feito (Vorgangspassiv). sein + particípio = o resultado, o estado que fica (Zustandspassiv). As placas mostram o estado: “Geschlossen”, “Besetzt”.",
+     "pl": "werden + imiesłów = czynność, to, co się robi (Vorgangspassiv). sein + imiesłów = wynik, stan, który zostaje (Zustandspassiv). Tabliczki mówią o stanie: „Geschlossen”, „Besetzt”.",
+     "ru": "werden + причастие = действие, то, что делают (Vorgangspassiv). sein + причастие = результат, оставшееся состояние (Zustandspassiv). Таблички говорят о состоянии: «Geschlossen», «Besetzt»."
+    }
+   },
+   {
+    "id": "k2_passe",
+    "serie": "konjunktiv2VergangenheitExercises",
+    "temps": null,
+    "t": {
+     "fr": "J'aurais fait : hätte gemacht, wäre gegangen",
+     "en": "I would have: hätte gemacht, wäre gegangen",
+     "tr": "Yapardım (geçmiş): hätte gemacht, wäre gegangen",
+     "uk": "Я б зробив: hätte gemacht, wäre gegangen",
+     "fa": "انجام می‌دادم: hätte gemacht، wäre gegangen",
+     "ar": "لكنتُ فعلتُ: hätte gemacht، wäre gegangen",
+     "pt": "Eu teria feito: hätte gemacht, wäre gegangen",
+     "pl": "Zrobiłbym: hätte gemacht, wäre gegangen",
+     "ru": "Я бы сделал: hätte gemacht, wäre gegangen"
+    },
+    "l": [
+     [
+      "Ich [hätte] dich angerufen.",
+      {
+       "fr": "Je t'aurais appelé.",
+       "en": "I would have called you.",
+       "tr": "Seni arardım.",
+       "uk": "Я б тобі зателефонував.",
+       "fa": "به تو زنگ می‌زدم.",
+       "ar": "لكنتُ اتصلتُ بك.",
+       "pt": "Eu teria te ligado.",
+       "pl": "Zadzwoniłbym do ciebie.",
+       "ru": "Я бы тебе позвонил."
+      }
+     ],
+     [
+      "Wir [wären] gern geblieben.",
+      {
+       "fr": "Nous serions volontiers restés.",
+       "en": "We would have liked to stay.",
+       "tr": "Kalmayı isterdik.",
+       "uk": "Ми б охоче залишилися.",
+       "fa": "با کمال میل می‌ماندیم.",
+       "ar": "كنّا سنبقى بكل سرور.",
+       "pt": "Nós teríamos ficado com prazer.",
+       "pl": "Chętnie byśmy zostali.",
+       "ru": "Мы бы с удовольствием остались."
+      }
+     ],
+     [
+      "Wenn ich das gewusst [hätte], …",
+      {
+       "fr": "Si j'avais su, …",
+       "en": "If I had known that, …",
+       "tr": "Bunu bilseydim, …",
+       "uk": "Якби я це знав, …",
+       "fa": "اگر این را می‌دانستم، …",
+       "ar": "لو كنتُ أعرف ذلك، …",
+       "pt": "Se eu soubesse disso, …",
+       "pl": "Gdybym to wiedział, …",
+       "ru": "Если бы я это знал, …"
+      }
+     ],
+     [
+      "… [wäre] ich nicht gekommen.",
+      {
+       "fr": "… je ne serais pas venu.",
+       "en": "… I wouldn't have come.",
+       "tr": "… gelmezdim.",
+       "uk": "… я б не прийшов.",
+       "fa": "… نمی‌آمدم.",
+       "ar": "… لما جئتُ.",
+       "pt": "… eu não teria vindo.",
+       "pl": "… nie przyszedłbym.",
+       "ru": "… я бы не пришёл."
+      }
+     ],
+     [
+      "Fast [hätte] ich es vergessen.",
+      {
+       "fr": "J'ai failli l'oublier.",
+       "en": "I almost forgot.",
+       "tr": "Az kalsın unutuyordum.",
+       "uk": "Я мало не забув.",
+       "fa": "نزدیک بود فراموشش کنم.",
+       "ar": "كدتُ أنساه.",
+       "pt": "Eu quase esqueci.",
+       "pl": "Prawie zapomniałem.",
+       "ru": "Я чуть не забыл."
+      }
+     ],
+     [
+      "Er tut so, als [hätte] er nichts gesehen.",
+      {
+       "fr": "Il fait comme s'il n'avait rien vu.",
+       "en": "He acts as if he hadn't seen anything.",
+       "tr": "Hiçbir şey görmemiş gibi davranıyor.",
+       "uk": "Він поводиться так, ніби нічого не бачив.",
+       "fa": "طوری رفتار می‌کند که انگار چیزی ندیده.",
+       "ar": "يتصرّف كأنه لم يرَ شيئًا.",
+       "pt": "Ele age como se não tivesse visto nada.",
+       "pl": "Zachowuje się, jakby nic nie widział.",
+       "ru": "Он делает вид, будто ничего не видел."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "L'irréel du passé, c'est le Perfekt avec l'auxiliaire au Konjunktiv II : hätte + participe (pour les verbes en haben), wäre + participe (pour les verbes en sein). Les deux parties de la phrase avec wenn prennent ce temps. « Fast hätte ich… » = j'ai failli…",
+     "en": "The past unreal is the Perfekt with the auxiliary in Konjunktiv II: hätte + participle (haben verbs), wäre + participle (sein verbs). Both halves of a wenn sentence take this tense. “Fast hätte ich…” = I almost…",
+     "tr": "Geçmişte gerçekleşmemiş durum, yardımcı fiili Konjunktiv II'de olan Perfekt'tir: hätte + ortaç (haben'li fiiller), wäre + ortaç (sein'lı fiiller). wenn'li cümlenin iki yarısı da bu zamanı alır. “Fast hätte ich…” = az kalsın…",
+     "uk": "Нереальне в минулому — це Perfekt з допоміжним дієсловом у Konjunktiv II: hätte + дієприкметник (дієслова з haben), wäre + дієприкметник (з sein). Обидві частини речення з wenn стоять у цьому часі. «Fast hätte ich…» = я мало не…",
+     "fa": "شرطیِ گذشته همان Perfekt است با فعل کمکی در Konjunktiv II: ‏hätte + اسم مفعول (فعل‌های haben)، wäre + اسم مفعول (فعل‌های sein). هر دو نیمهٔ جمله با wenn همین زمان را می‌گیرند. «Fast hätte ich…» = نزدیک بود…",
+     "ar": "غير الواقع في الماضي هو الـPerfekt مع الفعل المساعد في Konjunktiv II: hätte + اسم المفعول (أفعال haben)، وwäre + اسم المفعول (أفعال sein). ويأخذ شقّا جملة wenn هذا الزمن. «Fast hätte ich…» = كدتُ…",
+     "pt": "O irreal do passado é o Perfekt com o auxiliar no Konjunktiv II: hätte + particípio (verbos com haben), wäre + particípio (verbos com sein). As duas partes da frase com wenn usam esse tempo. “Fast hätte ich…” = eu quase…",
+     "pl": "Nierzeczywistość w przeszłości to Perfekt z posiłkowym w Konjunktiv II: hätte + imiesłów (czasowniki z haben), wäre + imiesłów (z sein). Obie części zdania z wenn stoją w tym czasie. „Fast hätte ich…” = prawie…",
+     "ru": "Нереальное в прошлом — это Perfekt со вспомогательным глаголом в Konjunktiv II: hätte + причастие (глаголы с haben), wäre + причастие (с sein). Обе части предложения с wenn стоят в этом времени. «Fast hätte ich…» = я чуть не…"
+    }
+   },
+   {
+    "id": "double_infinitif",
+    "serie": "konjunktiv2VergangenheitExercises",
+    "temps": null,
+    "t": {
+     "fr": "Tu aurais dû : hätte kommen sollen",
+     "en": "You should have: hätte kommen sollen",
+     "tr": "Gelmeliydin: hätte kommen sollen",
+     "uk": "Тобі слід було: hätte kommen sollen",
+     "fa": "باید می‌آمدی: hätte kommen sollen",
+     "ar": "كان ينبغي: hätte kommen sollen",
+     "pt": "Você deveria ter: hätte kommen sollen",
+     "pl": "Powinieneś był: hätte kommen sollen",
+     "ru": "Тебе следовало: hätte kommen sollen"
+    },
+    "l": [
+     [
+      "Du hättest früher kommen [sollen].",
+      {
+       "fr": "Tu aurais dû venir plus tôt.",
+       "en": "You should have come earlier.",
+       "tr": "Daha erken gelmeliydin.",
+       "uk": "Тобі слід було прийти раніше.",
+       "fa": "باید زودتر می‌آمدی.",
+       "ar": "كان ينبغي أن تأتي أبكر.",
+       "pt": "Você deveria ter vindo mais cedo.",
+       "pl": "Powinieneś był przyjść wcześniej.",
+       "ru": "Тебе следовало прийти раньше."
+      }
+     ],
+     [
+      "Ich hätte dir helfen [können].",
+      {
+       "fr": "J'aurais pu t'aider.",
+       "en": "I could have helped you.",
+       "tr": "Sana yardım edebilirdim.",
+       "uk": "Я міг би тобі допомогти.",
+       "fa": "می‌توانستم کمکت کنم.",
+       "ar": "كان بإمكاني مساعدتك.",
+       "pt": "Eu poderia ter te ajudado.",
+       "pl": "Mogłem ci pomóc.",
+       "ru": "Я мог бы тебе помочь."
+      }
+     ],
+     [
+      "Das hättest du mir sagen [müssen].",
+      {
+       "fr": "Tu aurais dû me le dire.",
+       "en": "You should have told me.",
+       "tr": "Bunu bana söylemen gerekirdi.",
+       "uk": "Ти мав мені це сказати.",
+       "fa": "باید این را به من می‌گفتی.",
+       "ar": "كان عليك أن تقول لي ذلك.",
+       "pt": "Você devia ter me dito isso.",
+       "pl": "Powinieneś był mi to powiedzieć.",
+       "ru": "Ты должен был мне это сказать."
+      }
+     ],
+     [
+      "Wir hätten nicht so viel essen [sollen].",
+      {
+       "fr": "Nous n'aurions pas dû manger autant.",
+       "en": "We shouldn't have eaten so much.",
+       "tr": "Bu kadar çok yememeliydik.",
+       "uk": "Нам не слід було стільки їсти.",
+       "fa": "نباید این‌قدر زیاد می‌خوردیم.",
+       "ar": "ما كان ينبغي أن نأكل كل هذا.",
+       "pt": "Nós não deveríamos ter comido tanto.",
+       "pl": "Nie powinniśmy byli tyle jeść.",
+       "ru": "Нам не следовало столько есть."
+      }
+     ],
+     [
+      "Er hat nicht kommen [können].",
+      {
+       "fr": "Il n'a pas pu venir.",
+       "en": "He wasn't able to come.",
+       "tr": "Gelemedi.",
+       "uk": "Він не зміг прийти.",
+       "fa": "نتوانست بیاید.",
+       "ar": "لم يستطع المجيء.",
+       "pt": "Ele não pôde vir.",
+       "pl": "Nie mógł przyjść.",
+       "ru": "Он не смог прийти."
+      }
+     ],
+     [
+      "Sie hat das Haus verkaufen [müssen].",
+      {
+       "fr": "Elle a dû vendre la maison.",
+       "en": "She had to sell the house.",
+       "tr": "Evi satmak zorunda kaldı.",
+       "uk": "Їй довелося продати будинок.",
+       "fa": "مجبور شد خانه را بفروشد.",
+       "ar": "اضطرّت إلى بيع البيت.",
+       "pt": "Ela teve que vender a casa.",
+       "pl": "Musiała sprzedać dom.",
+       "ru": "Ей пришлось продать дом."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Avec un modal au passé composé ou à l'irréel, le modal reste à l'infinitif tout à la fin : « hätte kommen sollen », « hat nicht kommen können » — jamais « gesollt » ou « gekonnt » derrière un autre verbe. C'est le « double infinitif ».",
+     "en": "With a modal in the perfect or the past unreal, the modal stays in the infinitive at the very end: “hätte kommen sollen”, “hat nicht kommen können” — never “gesollt” or “gekonnt” after another verb. That's the “double infinitive”.",
+     "tr": "Perfekt'te ya da gerçekleşmemiş geçmişte kip fiili, en sonda mastar hâlinde kalır: “hätte kommen sollen”, “hat nicht kommen können” — başka bir fiilden sonra asla “gesollt” ya da “gekonnt” denmez. Buna “çift mastar” denir.",
+     "uk": "З модальним дієсловом у Perfekt чи в нереальному минулому модальне лишається в інфінітиві в самому кінці: «hätte kommen sollen», «hat nicht kommen können» — ніколи не «gesollt» чи «gekonnt» після іншого дієслова. Це «подвійний інфінітив».",
+     "fa": "وقتی فعل وجهی در Perfekt یا شرطیِ گذشته بیاید، به شکل مصدر در آخرِ آخر می‌ماند: «hätte kommen sollen»، «hat nicht kommen können» — بعد از فعل دیگر هرگز «gesollt» یا «gekonnt» نمی‌آید. این «مصدر دوگانه» است.",
+     "ar": "مع فعل ناقص في الـPerfekt أو في غير الواقع الماضي، يبقى الفعل الناقص مصدرًا في آخر الجملة: «hätte kommen sollen»، «hat nicht kommen können» — ولا يُقال «gesollt» أو «gekonnt» بعد فعل آخر أبدًا. وهذا «المصدر المزدوج».",
+     "pt": "Com um modal no Perfekt ou no irreal do passado, o modal fica no infinitivo bem no fim: “hätte kommen sollen”, “hat nicht kommen können” — nunca “gesollt” ou “gekonnt” depois de outro verbo. É o “duplo infinitivo”.",
+     "pl": "Z czasownikiem modalnym w Perfekt lub w nierzeczywistości przeszłej modalny zostaje w bezokoliczniku na samym końcu: „hätte kommen sollen”, „hat nicht kommen können” — nigdy „gesollt” ani „gekonnt” po innym czasowniku. To „podwójny bezokolicznik”.",
+     "ru": "С модальным глаголом в Perfekt или в нереальном прошлом модальный остаётся в инфинитиве в самом конце: «hätte kommen sollen», «hat nicht kommen können» — никогда не «gesollt» или «gekonnt» после другого глагола. Это «двойной инфинитив»."
+    }
+   },
+   {
+    "id": "passif_ersatz",
+    "serie": "passivExercises",
+    "temps": null,
+    "t": {
+     "fr": "Sans passif : lässt sich, ist zu, -bar",
+     "en": "Without the passive: lässt sich, ist zu, -bar",
+     "tr": "Edilgensiz: lässt sich, ist zu, -bar",
+     "uk": "Без пасиву: lässt sich, ist zu, -bar",
+     "fa": "بدون مجهول: lässt sich، ist zu، -bar",
+     "ar": "بلا مجهول: lässt sich، ist zu، -bar",
+     "pt": "Sem passiva: lässt sich, ist zu, -bar",
+     "pl": "Bez strony biernej: lässt sich, ist zu, -bar",
+     "ru": "Без пассива: lässt sich, ist zu, -bar"
+    },
+    "l": [
+     [
+      "Das Problem [lässt sich] lösen.",
+      {
+       "fr": "Le problème peut être résolu.",
+       "en": "The problem can be solved.",
+       "tr": "Sorun çözülebilir.",
+       "uk": "Проблему можна розв'язати.",
+       "fa": "مشکل حل‌شدنی است.",
+       "ar": "يمكن حلّ المشكلة.",
+       "pt": "O problema tem solução.",
+       "pl": "Problem da się rozwiązać.",
+       "ru": "Проблему можно решить."
+      }
+     ],
+     [
+      "Die Tür [lässt sich] nicht öffnen.",
+      {
+       "fr": "La porte ne s'ouvre pas.",
+       "en": "The door won't open.",
+       "tr": "Kapı açılmıyor.",
+       "uk": "Двері не відчиняються.",
+       "fa": "در باز نمی‌شود.",
+       "ar": "لا يمكن فتح الباب.",
+       "pt": "A porta não abre.",
+       "pl": "Drzwi nie dają się otworzyć.",
+       "ru": "Дверь не открывается."
+      }
+     ],
+     [
+      "Die Rechnung [ist] sofort [zu] bezahlen.",
+      {
+       "fr": "La facture est à payer tout de suite.",
+       "en": "The bill is to be paid immediately.",
+       "tr": "Fatura hemen ödenmeli.",
+       "uk": "Рахунок треба сплатити негайно.",
+       "fa": "صورت‌حساب باید فوراً پرداخت شود.",
+       "ar": "يجب دفع الفاتورة فورًا.",
+       "pt": "A conta deve ser paga imediatamente.",
+       "pl": "Rachunek należy zapłacić natychmiast.",
+       "ru": "Счёт нужно оплатить сразу."
+      }
+     ],
+     [
+      "Seine Schrift [ist] kaum [zu] lesen.",
+      {
+       "fr": "Son écriture est à peine lisible.",
+       "en": "His handwriting can hardly be read.",
+       "tr": "Yazısı zor okunuyor.",
+       "uk": "Його почерк ледве можна прочитати.",
+       "fa": "دست‌خطش به‌سختی خوانده می‌شود.",
+       "ar": "خطّه بالكاد يُقرأ.",
+       "pt": "A letra dele mal dá para ler.",
+       "pl": "Jego pismo ledwo da się odczytać.",
+       "ru": "Его почерк едва можно прочитать."
+      }
+     ],
+     [
+      "Das Wasser ist [trinkbar].",
+      {
+       "fr": "L'eau est potable.",
+       "en": "The water is drinkable.",
+       "tr": "Su içilebilir.",
+       "uk": "Вода придатна для пиття.",
+       "fa": "آب قابل نوشیدن است.",
+       "ar": "الماء صالح للشرب.",
+       "pt": "A água é potável.",
+       "pl": "Woda nadaje się do picia.",
+       "ru": "Вода пригодна для питья."
+      }
+     ],
+     [
+      "Hier [kann man] gut parken.",
+      {
+       "fr": "Ici, on peut facilement se garer.",
+       "en": "You can park easily here.",
+       "tr": "Burada rahatça park edilebilir.",
+       "uk": "Тут легко припаркуватися.",
+       "fa": "اینجا راحت می‌شود پارک کرد.",
+       "ar": "يمكن الوقوف هنا بسهولة.",
+       "pt": "Aqui dá para estacionar bem.",
+       "pl": "Tu można łatwo zaparkować.",
+       "ru": "Здесь легко припарковаться."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "L'allemand évite souvent le passif lourd. « sich lassen » + infinitif = on peut (lässt sich lösen). « sein + zu » + infinitif = on peut ou on doit, selon le contexte (ist zu bezahlen). « -bar » fait un adjectif (trinkbar, machbar). Et « man » reste le plus simple.",
+     "en": "German often avoids a heavy passive. “sich lassen” + infinitive = can be (lässt sich lösen). “sein + zu” + infinitive = can or must be, depending on context (ist zu bezahlen). “-bar” makes an adjective (trinkbar, machbar). And “man” is still the simplest.",
+     "tr": "Almanca ağır edilgenden çoğu zaman kaçınır. “sich lassen” + mastar = -ebilir (lässt sich lösen). “sein + zu” + mastar = bağlama göre -ebilir ya da -meli (ist zu bezahlen). “-bar” sıfat yapar (trinkbar, machbar). En basiti de hâlâ “man”.",
+     "uk": "Німецька часто уникає громіздкого пасиву. «sich lassen» + інфінітив = можна (lässt sich lösen). «sein + zu» + інфінітив = можна або треба, залежно від контексту (ist zu bezahlen). «-bar» утворює прикметник (trinkbar, machbar). А найпростіше — «man».",
+     "fa": "آلمانی اغلب از مجهولِ سنگین پرهیز می‌کند. «sich lassen» + مصدر = می‌شود (lässt sich lösen). «sein + zu» + مصدر = بسته به بافت، می‌شود یا باید (ist zu bezahlen). «-bar» صفت می‌سازد (trinkbar، machbar). و ساده‌ترین هنوز «man» است.",
+     "ar": "كثيرًا ما تتجنّب الألمانية المجهول الثقيل. «sich lassen» + المصدر = يمكن (lässt sich lösen). «sein + zu» + المصدر = يمكن أو يجب بحسب السياق (ist zu bezahlen). و«-bar» تصنع صفة (trinkbar، machbar). ويبقى «man» الأبسط.",
+     "pt": "O alemão muitas vezes evita a passiva pesada. “sich lassen” + infinitivo = dá para (lässt sich lösen). “sein + zu” + infinitivo = pode ou deve, conforme o contexto (ist zu bezahlen). “-bar” forma um adjetivo (trinkbar, machbar). E “man” continua o mais simples.",
+     "pl": "Niemiecki często unika ciężkiej strony biernej. „sich lassen” + bezokolicznik = da się (lässt sich lösen). „sein + zu” + bezokolicznik = można lub trzeba, zależnie od kontekstu (ist zu bezahlen). „-bar” tworzy przymiotnik (trinkbar, machbar). A najprostsze wciąż jest „man”.",
+     "ru": "Немецкий часто избегает громоздкого пассива. «sich lassen» + инфинитив = можно (lässt sich lösen). «sein + zu» + инфинитив = можно или нужно, по контексту (ist zu bezahlen). «-bar» образует прилагательное (trinkbar, machbar). А проще всего — «man»."
+    }
+   },
+   {
+    "id": "werden_emplois",
+    "serie": "werdenExercises",
+    "temps": null,
+    "t": {
+     "fr": "werden : quatre emplois",
+     "en": "werden: four uses",
+     "tr": "werden: dört kullanım",
+     "uk": "werden: чотири вживання",
+     "fa": "werden: چهار کاربرد",
+     "ar": "werden: أربعة استعمالات",
+     "pt": "werden: quatro usos",
+     "pl": "werden: cztery zastosowania",
+     "ru": "werden: четыре употребления"
+    },
+    "l": [
+     [
+      "Er [wird] Arzt.",
+      {
+       "fr": "Il devient médecin.",
+       "en": "He's becoming a doctor.",
+       "tr": "Doktor oluyor.",
+       "uk": "Він стає лікарем.",
+       "fa": "او پزشک می‌شود.",
+       "ar": "سيصبح طبيبًا.",
+       "pt": "Ele vai ser médico.",
+       "pl": "Zostaje lekarzem.",
+       "ru": "Он становится врачом."
+      }
+     ],
+     [
+      "Es [wird] bald schneien.",
+      {
+       "fr": "Il neigera bientôt.",
+       "en": "It will snow soon.",
+       "tr": "Yakında kar yağacak.",
+       "uk": "Скоро піде сніг.",
+       "fa": "به‌زودی برف خواهد بارید.",
+       "ar": "ستثلج قريبًا.",
+       "pt": "Logo vai nevar.",
+       "pl": "Wkrótce będzie padać śnieg.",
+       "ru": "Скоро пойдёт снег."
+      }
+     ],
+     [
+      "Das Haus [wird] renoviert.",
+      {
+       "fr": "La maison est en rénovation.",
+       "en": "The house is being renovated.",
+       "tr": "Ev yenileniyor.",
+       "uk": "Будинок ремонтують.",
+       "fa": "خانه دارد بازسازی می‌شود.",
+       "ar": "يُجدَّد البيت.",
+       "pt": "A casa está sendo reformada.",
+       "pl": "Dom jest remontowany.",
+       "ru": "Дом ремонтируют."
+      }
+     ],
+     [
+      "Er [wird] wohl krank sein.",
+      {
+       "fr": "Il doit être malade.",
+       "en": "He's probably ill.",
+       "tr": "Herhalde hasta.",
+       "uk": "Він, мабуть, хворий.",
+       "fa": "لابد بیمار است.",
+       "ar": "لا بدّ أنه مريض.",
+       "pt": "Ele deve estar doente.",
+       "pl": "Pewnie jest chory.",
+       "ru": "Он, наверное, болен."
+      }
+     ],
+     [
+      "Sie ist Ärztin [geworden].",
+      {
+       "fr": "Elle est devenue médecin.",
+       "en": "She has become a doctor.",
+       "tr": "Doktor oldu.",
+       "uk": "Вона стала лікаркою.",
+       "fa": "او پزشک شده است.",
+       "ar": "أصبحت طبيبة.",
+       "pt": "Ela se tornou médica.",
+       "pl": "Została lekarką.",
+       "ru": "Она стала врачом."
+      }
+     ],
+     [
+      "Er ist operiert [worden].",
+      {
+       "fr": "Il a été opéré.",
+       "en": "He has been operated on.",
+       "tr": "Ameliyat edildi.",
+       "uk": "Його прооперували.",
+       "fa": "او عمل شده است.",
+       "ar": "أُجريت له عملية.",
+       "pt": "Ele foi operado.",
+       "pl": "Został zoperowany.",
+       "ru": "Его прооперировали."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "werden seul = devenir. werden + infinitif = futur, ou supposition avec wohl. werden + participe = passif. Le Perfekt trahit l'emploi : « ist Ärztin geworden » (devenir) mais « ist operiert worden » (passif).",
+     "en": "werden alone = to become. werden + infinitive = future, or a guess with wohl. werden + participle = passive. The Perfekt gives it away: “ist Ärztin geworden” (become) but “ist operiert worden” (passive).",
+     "tr": "Tek başına werden = olmak (hâline gelmek). werden + mastar = gelecek zaman ya da wohl ile tahmin. werden + ortaç = edilgen. Perfekt kullanımı ele verir: “ist Ärztin geworden” (oldu) ama “ist operiert worden” (edilgen).",
+     "uk": "werden саме = ставати. werden + інфінітив = майбутній час або припущення з wohl. werden + дієприкметник = пасив. Perfekt усе видає: «ist Ärztin geworden» (стала), але «ist operiert worden» (пасив).",
+     "fa": "werden به‌تنهایی = شدن. werden + مصدر = آینده یا حدس با wohl. werden + اسم مفعول = مجهول. Perfekt کاربرد را لو می‌دهد: «ist Ärztin geworden» (شد) ولی «ist operiert worden» (مجهول).",
+     "ar": "werden وحده = أصبح. وwerden + المصدر = المستقبل، أو الظنّ مع wohl. وwerden + اسم المفعول = المجهول. والـPerfekt يكشف الاستعمال: «ist Ärztin geworden» (أصبحت) لكن «ist operiert worden» (مجهول).",
+     "pt": "werden sozinho = tornar-se. werden + infinitivo = futuro, ou suposição com wohl. werden + particípio = passiva. O Perfekt entrega o uso: “ist Ärztin geworden” (tornou-se) mas “ist operiert worden” (passiva).",
+     "pl": "Samo werden = stawać się. werden + bezokolicznik = czas przyszły lub przypuszczenie z wohl. werden + imiesłów = strona bierna. Perfekt zdradza użycie: „ist Ärztin geworden” (została), ale „ist operiert worden” (strona bierna).",
+     "ru": "werden само = становиться. werden + инфинитив = будущее или предположение с wohl. werden + причастие = пассив. Perfekt выдаёт употребление: «ist Ärztin geworden» (стала), но «ist operiert worden» (пассив)."
+    }
+   },
+   {
+    "id": "k2_forts",
+    "serie": "konjunktiv2Exercises",
+    "temps": null,
+    "t": {
+     "fr": "Les formes soutenues : käme, ginge, wüsste",
+     "en": "The formal forms: käme, ginge, wüsste",
+     "tr": "Resmî biçimler: käme, ginge, wüsste",
+     "uk": "Книжні форми: käme, ginge, wüsste",
+     "fa": "صورت‌های رسمی: käme، ginge، wüsste",
+     "ar": "الصيغ الفصيحة: käme، ginge، wüsste",
+     "pt": "As formas cultas: käme, ginge, wüsste",
+     "pl": "Formy staranne: käme, ginge, wüsste",
+     "ru": "Книжные формы: käme, ginge, wüsste"
+    },
+    "l": [
+     [
+      "ich [käme]",
+      {
+       "fr": "je viendrais",
+       "en": "I would come",
+       "tr": "gelirdim",
+       "uk": "я прийшов би",
+       "fa": "می‌آمدم",
+       "ar": "لجئتُ",
+       "pt": "eu viria",
+       "pl": "przyszedłbym",
+       "ru": "я пришёл бы"
+      }
+     ],
+     [
+      "es [ginge]",
+      {
+       "fr": "ça irait",
+       "en": "it would work",
+       "tr": "olurdu",
+       "uk": "це вдалося б",
+       "fa": "می‌شد",
+       "ar": "لأمكن ذلك",
+       "pt": "daria",
+       "pl": "dałoby się",
+       "ru": "это получилось бы"
+      }
+     ],
+     [
+      "ich [wüsste]",
+      {
+       "fr": "je saurais",
+       "en": "I would know",
+       "tr": "bilirdim",
+       "uk": "я знав би",
+       "fa": "می‌دانستم",
+       "ar": "لعرفتُ",
+       "pt": "eu saberia",
+       "pl": "wiedziałbym",
+       "ru": "я знал бы"
+      }
+     ],
+     [
+      "es [gäbe]",
+      {
+       "fr": "il y aurait",
+       "en": "there would be",
+       "tr": "olurdu (var olurdu)",
+       "uk": "було б",
+       "fa": "وجود می‌داشت",
+       "ar": "لكان هناك",
+       "pt": "haveria",
+       "pl": "byłoby",
+       "ru": "было бы"
+      }
+     ],
+     [
+      "ich [bliebe]",
+      {
+       "fr": "je resterais",
+       "en": "I would stay",
+       "tr": "kalırdım",
+       "uk": "я залишився б",
+       "fa": "می‌ماندم",
+       "ar": "لبقيتُ",
+       "pt": "eu ficaria",
+       "pl": "zostałbym",
+       "ru": "я остался бы"
+      }
+     ],
+     [
+      "ich [bräuchte]",
+      {
+       "fr": "j'aurais besoin",
+       "en": "I would need",
+       "tr": "ihtiyacım olurdu",
+       "uk": "мені знадобилося б",
+       "fa": "نیاز می‌داشتم",
+       "ar": "لاحتجتُ",
+       "pt": "eu precisaria",
+       "pl": "potrzebowałbym",
+       "ru": "мне понадобилось бы"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le Konjunktiv II des verbes forts se fait sur le Präteritum : kam → käme, ging → ginge, wusste → wüsste. À l'oral, on dit souvent würde + infinitif, sauf pour une poignée de verbes très courants : wüsste, gäbe, käme, ginge, bräuchte, ließe.",
+     "en": "The Konjunktiv II of strong verbs is built on the Präteritum: kam → käme, ging → ginge, wusste → wüsste. In speech people often say würde + infinitive, except for a handful of very common verbs: wüsste, gäbe, käme, ginge, bräuchte, ließe.",
+     "tr": "Güçlü fiillerin Konjunktiv II'si Präteritum'dan yapılır: kam → käme, ging → ginge, wusste → wüsste. Konuşmada çoğu zaman würde + mastar denir; çok sık kullanılan birkaç fiil hariç: wüsste, gäbe, käme, ginge, bräuchte, ließe.",
+     "uk": "Konjunktiv II сильних дієслів утворюють від Präteritum: kam → käme, ging → ginge, wusste → wüsste. У розмові частіше кажуть würde + інфінітив, крім кількох дуже вживаних дієслів: wüsste, gäbe, käme, ginge, bräuchte, ließe.",
+     "fa": "Konjunktiv II فعل‌های قوی از Präteritum ساخته می‌شود: kam → käme، ging → ginge، wusste → wüsste. در گفتار اغلب würde + مصدر می‌گویند، به‌جز چند فعل بسیار رایج: wüsste، gäbe، käme، ginge، bräuchte، ließe.",
+     "ar": "يُصاغ Konjunktiv II للأفعال القوية من الـPräteritum: kam → käme، ging → ginge، wusste → wüsste. وفي الكلام يُقال غالبًا würde + المصدر، إلا مع بضعة أفعال شائعة جدًا: wüsste، gäbe، käme، ginge، bräuchte، ließe.",
+     "pt": "O Konjunktiv II dos verbos fortes se forma a partir do Präteritum: kam → käme, ging → ginge, wusste → wüsste. Falando, diz-se muitas vezes würde + infinitivo, exceto com alguns verbos muito comuns: wüsste, gäbe, käme, ginge, bräuchte, ließe.",
+     "pl": "Konjunktiv II czasowników mocnych tworzy się od Präteritum: kam → käme, ging → ginge, wusste → wüsste. W mowie często mówi się würde + bezokolicznik, poza kilkoma bardzo częstymi czasownikami: wüsste, gäbe, käme, ginge, bräuchte, ließe.",
+     "ru": "Konjunktiv II сильных глаголов образуют от Präteritum: kam → käme, ging → ginge, wusste → wüsste. В разговоре чаще говорят würde + инфинитив, кроме нескольких очень частых глаголов: wüsste, gäbe, käme, ginge, bräuchte, ließe."
+    }
+   },
+   {
+    "id": "participe_adjectif",
+    "serie": "partizipExercises",
+    "temps": null,
+    "t": {
+     "fr": "Le participe comme adjectif",
+     "en": "The participle as an adjective",
+     "tr": "Sıfat olarak ortaç",
+     "uk": "Дієприкметник як прикметник",
+     "fa": "اسم فاعل و مفعول در نقش صفت",
+     "ar": "اسم الفاعل والمفعول صفةً",
+     "pt": "O particípio como adjetivo",
+     "pl": "Imiesłów jako przymiotnik",
+     "ru": "Причастие как прилагательное"
+    },
+    "l": [
+     [
+      "das [schlafende] Kind",
+      {
+       "fr": "l'enfant qui dort",
+       "en": "the sleeping child",
+       "tr": "uyuyan çocuk",
+       "uk": "дитина, що спить",
+       "fa": "کودکِ خواب",
+       "ar": "الطفل النائم",
+       "pt": "a criança que dorme",
+       "pl": "śpiące dziecko",
+       "ru": "спящий ребёнок"
+      }
+     ],
+     [
+      "die [geschlossene] Tür",
+      {
+       "fr": "la porte fermée",
+       "en": "the closed door",
+       "tr": "kapalı kapı",
+       "uk": "зачинені двері",
+       "fa": "درِ بسته",
+       "ar": "الباب المغلق",
+       "pt": "a porta fechada",
+       "pl": "zamknięte drzwi",
+       "ru": "закрытая дверь"
+      }
+     ],
+     [
+      "der [fahrende] Zug",
+      {
+       "fr": "le train en marche",
+       "en": "the moving train",
+       "tr": "hareket eden tren",
+       "uk": "потяг, що рухається",
+       "fa": "قطارِ در حال حرکت",
+       "ar": "القطار المتحرّك",
+       "pt": "o trem em movimento",
+       "pl": "jadący pociąg",
+       "ru": "идущий поезд"
+      }
+     ],
+     [
+      "ein [gekochtes] Ei",
+      {
+       "fr": "un œuf dur",
+       "en": "a boiled egg",
+       "tr": "haşlanmış yumurta",
+       "uk": "варене яйце",
+       "fa": "تخم‌مرغِ آب‌پز",
+       "ar": "بيضة مسلوقة",
+       "pt": "um ovo cozido",
+       "pl": "jajko na twardo",
+       "ru": "варёное яйцо"
+      }
+     ],
+     [
+      "[kochendes] Wasser",
+      {
+       "fr": "de l'eau bouillante",
+       "en": "boiling water",
+       "tr": "kaynar su",
+       "uk": "окріп",
+       "fa": "آبِ جوش",
+       "ar": "ماء مغلي",
+       "pt": "água fervendo",
+       "pl": "wrząca woda",
+       "ru": "кипяток"
+      }
+     ],
+     [
+      "die [steigenden] Preise",
+      {
+       "fr": "les prix qui augmentent",
+       "en": "rising prices",
+       "tr": "artan fiyatlar",
+       "uk": "зростаючі ціни",
+       "fa": "قیمت‌های رو به افزایش",
+       "ar": "الأسعار المرتفعة",
+       "pt": "os preços em alta",
+       "pl": "rosnące ceny",
+       "ru": "растущие цены"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Partizip I (infinitif + d) : ce qui est EN TRAIN de se faire, par le nom lui-même : das schlafende Kind. Partizip II : ce qui est FAIT ou subi : die geschlossene Tür, ein gekochtes Ei. Devant un nom, les deux prennent la terminaison d'adjectif.",
+     "en": "Partizip I (infinitive + d): what is IN PROGRESS, done by the noun itself: das schlafende Kind. Partizip II: what is DONE or undergone: die geschlossene Tür, ein gekochtes Ei. Before a noun both take the adjective ending.",
+     "tr": "Partizip I (mastar + d): ismin kendisinin yapmakta olduğu, SÜREN şey: das schlafende Kind. Partizip II: YAPILMIŞ ya da maruz kalınan şey: die geschlossene Tür, ein gekochtes Ei. İsmin önünde ikisi de sıfat eki alır.",
+     "uk": "Partizip I (інфінітив + d): те, що ТРИВАЄ і що робить сам іменник: das schlafende Kind. Partizip II: те, що ЗРОБЛЕНО або чого зазнали: die geschlossene Tür, ein gekochtes Ei. Перед іменником обидва беруть закінчення прикметника.",
+     "fa": "Partizip I (مصدر + d): آنچه در حال انجام است و خودِ اسم انجامش می‌دهد: das schlafende Kind. Partizip II: آنچه انجام شده یا بر اسم رفته است: die geschlossene Tür، ein gekochtes Ei. پیش از اسم، هر دو پایانهٔ صفت می‌گیرند.",
+     "ar": "Partizip I (المصدر + d): ما هو جارٍ ويقوم به الاسم نفسه: das schlafende Kind. وPartizip II: ما تمّ أو وقع على الاسم: die geschlossene Tür، ein gekochtes Ei. وقبل الاسم يأخذ كلاهما لاحقة الصفة.",
+     "pt": "Partizip I (infinitivo + d): o que está EM CURSO, feito pelo próprio substantivo: das schlafende Kind. Partizip II: o que está FEITO ou foi sofrido: die geschlossene Tür, ein gekochtes Ei. Antes de um substantivo, os dois levam a terminação de adjetivo.",
+     "pl": "Partizip I (bezokolicznik + d): to, co TRWA i co robi sam rzeczownik: das schlafende Kind. Partizip II: to, co ZROBIONE lub czemu coś zrobiono: die geschlossene Tür, ein gekochtes Ei. Przed rzeczownikiem oba biorą końcówkę przymiotnika.",
+     "ru": "Partizip I (инфинитив + d): то, что ПРОИСХОДИТ и что делает само существительное: das schlafende Kind. Partizip II: то, что СДЕЛАНО или с чем это сделали: die geschlossene Tür, ein gekochtes Ei. Перед существительным оба получают окончание прилагательного."
+    }
+   },
+   {
+    "id": "verbes_prep_b2",
+    "serie": "verbenMitPraepExercises",
+    "temps": null,
+    "t": {
+     "fr": "Verbes à préposition du B2",
+     "en": "B2 verbs with prepositions",
+     "tr": "B2 edatlı fiiller",
+     "uk": "Дієслова з прийменником рівня B2",
+     "fa": "فعل‌های حرف‌اضافه‌دارِ B2",
+     "ar": "أفعال بحروف جر في B2",
+     "pt": "Verbos com preposição do B2",
+     "pl": "Czasowniki z przyimkiem na B2",
+     "ru": "Глаголы с предлогом уровня B2"
+    },
+    "l": [
+     [
+      "Das beruht [auf] einem Irrtum.",
+      {
+       "fr": "Cela repose sur une erreur.",
+       "en": "That is based on a mistake.",
+       "tr": "Bu bir yanılgıya dayanıyor.",
+       "uk": "Це ґрунтується на помилці.",
+       "fa": "این بر پایهٔ یک اشتباه است.",
+       "ar": "هذا مبنيّ على خطأ.",
+       "pt": "Isso se baseia num engano.",
+       "pl": "To opiera się na pomyłce.",
+       "ru": "Это основано на ошибке."
+      }
+     ],
+     [
+      "Wir verfügen [über] genug Geld.",
+      {
+       "fr": "Nous disposons d'assez d'argent.",
+       "en": "We have enough money at our disposal.",
+       "tr": "Yeterli paramız var.",
+       "uk": "Ми маємо достатньо грошей.",
+       "fa": "پول کافی در اختیار داریم.",
+       "ar": "لدينا ما يكفي من المال.",
+       "pt": "Nós dispomos de dinheiro suficiente.",
+       "pl": "Dysponujemy wystarczającymi pieniędzmi.",
+       "ru": "Мы располагаем достаточными деньгами."
+      }
+     ],
+     [
+      "Ich beziehe mich [auf] Ihren Brief.",
+      {
+       "fr": "Je me réfère à votre lettre.",
+       "en": "I am referring to your letter.",
+       "tr": "Mektubunuza atıfta bulunuyorum.",
+       "uk": "Я посилаюся на ваш лист.",
+       "fa": "به نامهٔ شما اشاره می‌کنم.",
+       "ar": "أشير إلى رسالتك.",
+       "pt": "Refiro-me à sua carta.",
+       "pl": "Nawiązuję do pańskiego listu.",
+       "ru": "Я ссылаюсь на ваше письмо."
+      }
+     ],
+     [
+      "Es hängt [von] dir ab.",
+      {
+       "fr": "Ça dépend de toi.",
+       "en": "It depends on you.",
+       "tr": "Sana bağlı.",
+       "uk": "Це залежить від тебе.",
+       "fa": "بستگی به تو دارد.",
+       "ar": "الأمر يتوقّف عليك.",
+       "pt": "Depende de você.",
+       "pl": "To zależy od ciebie.",
+       "ru": "Это зависит от тебя."
+      }
+     ],
+     [
+      "Sie zweifelt [an] seiner Ehrlichkeit.",
+      {
+       "fr": "Elle doute de son honnêteté.",
+       "en": "She doubts his honesty.",
+       "tr": "Onun dürüstlüğünden şüphe ediyor.",
+       "uk": "Вона сумнівається в його чесності.",
+       "fa": "به صداقت او شک دارد.",
+       "ar": "تشكّ في صدقه.",
+       "pt": "Ela duvida da honestidade dele.",
+       "pl": "Wątpi w jego uczciwość.",
+       "ru": "Она сомневается в его честности."
+      }
+     ],
+     [
+      "Er neigt [zu] Übertreibungen.",
+      {
+       "fr": "Il a tendance à exagérer.",
+       "en": "He tends to exaggerate.",
+       "tr": "Abartmaya eğilimli.",
+       "uk": "Він схильний перебільшувати.",
+       "fa": "تمایل به اغراق دارد.",
+       "ar": "يميل إلى المبالغة.",
+       "pt": "Ele tende a exagerar.",
+       "pl": "Ma skłonność do przesady.",
+       "ru": "Он склонен к преувеличениям."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Au B2, les verbes à préposition deviennent abstraits : beruhen auf, verfügen über, sich beziehen auf, abhängen von, zweifeln an, neigen zu. La préposition fixe aussi le cas : auf + datif avec beruhen, auf + accusatif avec sich beziehen. On les apprend en bloc.",
+     "en": "At B2, verbs with prepositions become abstract: beruhen auf, verfügen über, sich beziehen auf, abhängen von, zweifeln an, neigen zu. The preposition also fixes the case: auf + dative with beruhen, auf + accusative with sich beziehen. Learn them as a unit.",
+     "tr": "B2'de edatlı fiiller soyutlaşır: beruhen auf, verfügen über, sich beziehen auf, abhängen von, zweifeln an, neigen zu. Edat hâli de belirler: beruhen ile auf + datif, sich beziehen ile auf + akuzatif. Bütün olarak öğrenilir.",
+     "uk": "На B2 дієслова з прийменником стають абстрактними: beruhen auf, verfügen über, sich beziehen auf, abhängen von, zweifeln an, neigen zu. Прийменник визначає й відмінок: auf + давальний із beruhen, auf + знахідний із sich beziehen. Їх учать цілим блоком.",
+     "fa": "در B2 فعل‌های حرف‌اضافه‌دار انتزاعی می‌شوند: beruhen auf، verfügen über، sich beziehen auf، abhängen von، zweifeln an، neigen zu. حرف اضافه حالت را هم تعیین می‌کند: auf + داتیو با beruhen، auf + آکوزاتیو با sich beziehen. یکجا یادشان بگیر.",
+     "ar": "في B2 تصبح الأفعال ذات حروف الجر مجرّدة: beruhen auf، verfügen über، sich beziehen auf، abhängen von، zweifeln an، neigen zu. وحرف الجر يحدّد الحالة أيضًا: auf + الداتيف مع beruhen، وauf + الأكوزاتيف مع sich beziehen. تُحفظ ككتلة واحدة.",
+     "pt": "No B2, os verbos com preposição ficam abstratos: beruhen auf, verfügen über, sich beziehen auf, abhängen von, zweifeln an, neigen zu. A preposição também fixa o caso: auf + dativo com beruhen, auf + acusativo com sich beziehen. Aprenda-os em bloco.",
+     "pl": "Na B2 czasowniki z przyimkiem stają się abstrakcyjne: beruhen auf, verfügen über, sich beziehen auf, abhängen von, zweifeln an, neigen zu. Przyimek ustala też przypadek: auf + celownik przy beruhen, auf + biernik przy sich beziehen. Uczymy się ich w całości.",
+     "ru": "На B2 глаголы с предлогом становятся абстрактными: beruhen auf, verfügen über, sich beziehen auf, abhängen von, zweifeln an, neigen zu. Предлог задаёт и падеж: auf + дательный с beruhen, auf + винительный с sich beziehen. Их учат целиком."
+    }
+   }
+  ],
+  "C1": [
+   {
+    "id": "k1",
+    "serie": "konjunktiv1Exercises",
+    "temps": null,
+    "t": {
+     "fr": "« D'après lui… » : le Konjunktiv I",
+     "en": "“According to him…”: Konjunktiv I",
+     "tr": "“Ona göre…”: Konjunktiv I",
+     "uk": "«За його словами…»: Konjunktiv I",
+     "fa": "«به گفتهٔ او…»: Konjunktiv I",
+     "ar": "«بحسب قوله…»: Konjunktiv I",
+     "pt": "“Segundo ele…”: o Konjunktiv I",
+     "pl": "„Według niego…”: Konjunktiv I",
+     "ru": "«По его словам…»: Konjunktiv I"
+    },
+    "l": [
+     [
+      "Er sagt, er [sei] krank.",
+      {
+       "fr": "Il dit qu'il est malade.",
+       "en": "He says he is ill.",
+       "tr": "Hasta olduğunu söylüyor.",
+       "uk": "Він каже, що хворий.",
+       "fa": "می‌گوید بیمار است.",
+       "ar": "يقول إنه مريض.",
+       "pt": "Ele diz que está doente.",
+       "pl": "Mówi, że jest chory.",
+       "ru": "Он говорит, что болен."
+      }
+     ],
+     [
+      "…, er [habe] keine Zeit.",
+      {
+       "fr": "… qu'il n'a pas le temps.",
+       "en": "… that he has no time.",
+       "tr": "… vakti olmadığını.",
+       "uk": "… що не має часу.",
+       "fa": "… که وقت ندارد.",
+       "ar": "… أنه ليس لديه وقت.",
+       "pt": "… que não tem tempo.",
+       "pl": "… że nie ma czasu.",
+       "ru": "… что у него нет времени."
+      }
+     ],
+     [
+      "…, er [komme] später.",
+      {
+       "fr": "… qu'il viendra plus tard.",
+       "en": "… that he'll come later.",
+       "tr": "… daha sonra geleceğini.",
+       "uk": "… що прийде пізніше.",
+       "fa": "… که بعداً می‌آید.",
+       "ar": "… أنه سيأتي لاحقًا.",
+       "pt": "… que vem mais tarde.",
+       "pl": "… że przyjdzie później.",
+       "ru": "… что придёт позже."
+      }
+     ],
+     [
+      "…, er [könne] nicht.",
+      {
+       "fr": "… qu'il ne peut pas.",
+       "en": "… that he can't.",
+       "tr": "… yapamayacağını.",
+       "uk": "… що не може.",
+       "fa": "… که نمی‌تواند.",
+       "ar": "… أنه لا يستطيع.",
+       "pt": "… que não pode.",
+       "pl": "… że nie może.",
+       "ru": "… что не может."
+      }
+     ],
+     [
+      "…, er [wisse] es nicht.",
+      {
+       "fr": "… qu'il ne le sait pas.",
+       "en": "… that he doesn't know.",
+       "tr": "… bilmediğini.",
+       "uk": "… що не знає.",
+       "fa": "… که نمی‌داند.",
+       "ar": "… أنه لا يعرف.",
+       "pt": "… que não sabe.",
+       "pl": "… że nie wie.",
+       "ru": "… что не знает."
+      }
+     ],
+     [
+      "Es [gebe] keine Alternative.",
+      {
+       "fr": "Il n'y aurait pas d'alternative (selon lui).",
+       "en": "There is no alternative (he says).",
+       "tr": "(Ona göre) başka seçenek yokmuş.",
+       "uk": "Мовляв, альтернативи немає.",
+       "fa": "(به گفتهٔ او) راه دیگری نیست.",
+       "ar": "(بحسب قوله) لا بديل.",
+       "pt": "Não haveria alternativa (segundo ele).",
+       "pl": "Rzekomo nie ma alternatywy.",
+       "ru": "Мол, альтернативы нет."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le Konjunktiv I dit « c'est lui qui le dit, pas moi » : la langue des journaux, de la radio, des rapports. On l'entend surtout à la 3e personne : radical + e (er habe, er komme, er wisse), et sein fait er sei.",
+     "en": "Konjunktiv I says “that's what he says, not me”: the language of newspapers, radio and reports. You mostly hear it in the 3rd person: stem + e (er habe, er komme, er wisse), and sein gives er sei.",
+     "tr": "Konjunktiv I, “bunu ben değil, o söylüyor” der: gazetelerin, radyonun, raporların dili. En çok 3. şahısta duyulur: kök + e (er habe, er komme, er wisse); sein ise er sei olur.",
+     "uk": "Konjunktiv I означає «це каже він, а не я»: мова газет, радіо, звітів. Найчастіше — у 3-й особі: основа + e (er habe, er komme, er wisse), а sein дає er sei.",
+     "fa": "Konjunktiv I می‌گوید «این را او می‌گوید، نه من»: زبانِ روزنامه، رادیو و گزارش. بیشتر در سوم‌شخص شنیده می‌شود: ریشه + e (er habe، er komme، er wisse)، و sein می‌شود er sei.",
+     "ar": "يقول Konjunktiv I «هو من يقول ذلك، لا أنا»: لغة الصحف والإذاعة والتقارير. ونسمعه خاصة مع الغائب: الجذر + e ‏(er habe، er komme، er wisse)، وsein يصير er sei.",
+     "pt": "O Konjunktiv I diz “é ele quem diz, não eu”: a língua dos jornais, do rádio, dos relatórios. Ouve-se sobretudo na 3.ª pessoa: radical + e (er habe, er komme, er wisse), e sein dá er sei.",
+     "pl": "Konjunktiv I mówi „to on tak twierdzi, nie ja”: język gazet, radia, raportów. Słychać go głównie w 3. osobie: temat + e (er habe, er komme, er wisse), a sein daje er sei.",
+     "ru": "Konjunktiv I говорит «это утверждает он, а не я»: язык газет, радио, отчётов. Чаще всего — в 3-м лице: основа + e (er habe, er komme, er wisse), а sein даёт er sei."
+    }
+   },
+   {
+    "id": "k1_ersatz",
+    "serie": "konjunktiv1Exercises",
+    "temps": null,
+    "t": {
+     "fr": "Quand le Konjunktiv I ne se voit pas",
+     "en": "When Konjunktiv I doesn't show",
+     "tr": "Konjunktiv I görünmediğinde",
+     "uk": "Коли Konjunktiv I не видно",
+     "fa": "وقتی Konjunktiv I دیده نمی‌شود",
+     "ar": "حين لا يظهر Konjunktiv I",
+     "pt": "Quando o Konjunktiv I não se vê",
+     "pl": "Gdy Konjunktiv I nie widać",
+     "ru": "Когда Konjunktiv I не виден"
+    },
+    "l": [
+     [
+      "Sie sagen, sie [hätten] keine Zeit.",
+      {
+       "fr": "Ils disent qu'ils n'ont pas le temps.",
+       "en": "They say they have no time.",
+       "tr": "Vakitleri olmadığını söylüyorlar.",
+       "uk": "Вони кажуть, що не мають часу.",
+       "fa": "می‌گویند وقت ندارند.",
+       "ar": "يقولون إنه ليس لديهم وقت.",
+       "pt": "Eles dizem que não têm tempo.",
+       "pl": "Mówią, że nie mają czasu.",
+       "ru": "Они говорят, что у них нет времени."
+      }
+     ],
+     [
+      "Sie sagten, sie [kämen] später.",
+      {
+       "fr": "Ils ont dit qu'ils viendraient plus tard.",
+       "en": "They said they would come later.",
+       "tr": "Daha sonra geleceklerini söylediler.",
+       "uk": "Вони сказали, що прийдуть пізніше.",
+       "fa": "گفتند بعداً می‌آیند.",
+       "ar": "قالوا إنهم سيأتون لاحقًا.",
+       "pt": "Eles disseram que viriam mais tarde.",
+       "pl": "Powiedzieli, że przyjdą później.",
+       "ru": "Они сказали, что придут позже."
+      }
+     ],
+     [
+      "Er meint, ich [hätte] recht.",
+      {
+       "fr": "Il pense que j'ai raison.",
+       "en": "He thinks I'm right.",
+       "tr": "Haklı olduğumu düşünüyor.",
+       "uk": "Він вважає, що я маю рацію.",
+       "fa": "فکر می‌کند حق با من است.",
+       "ar": "يرى أنني على حق.",
+       "pt": "Ele acha que eu tenho razão.",
+       "pl": "Uważa, że mam rację.",
+       "ru": "Он считает, что я прав."
+      }
+     ],
+     [
+      "Sie meinen, sie [könnten] helfen.",
+      {
+       "fr": "Ils pensent pouvoir aider.",
+       "en": "They think they could help.",
+       "tr": "Yardım edebileceklerini düşünüyorlar.",
+       "uk": "Вони вважають, що можуть допомогти.",
+       "fa": "فکر می‌کنند می‌توانند کمک کنند.",
+       "ar": "يرون أن بإمكانهم المساعدة.",
+       "pt": "Eles acham que podem ajudar.",
+       "pl": "Uważają, że mogą pomóc.",
+       "ru": "Они считают, что могут помочь."
+      }
+     ],
+     [
+      "Sie sagen, sie [seien] müde.",
+      {
+       "fr": "Ils disent qu'ils sont fatigués.",
+       "en": "They say they are tired.",
+       "tr": "Yorgun olduklarını söylüyorlar.",
+       "uk": "Вони кажуть, що втомилися.",
+       "fa": "می‌گویند خسته‌اند.",
+       "ar": "يقولون إنهم متعبون.",
+       "pt": "Eles dizem que estão cansados.",
+       "pl": "Mówią, że są zmęczeni.",
+       "ru": "Они говорят, что устали."
+      }
+     ],
+     [
+      "Sie sagten, sie [würden] es prüfen.",
+      {
+       "fr": "Ils ont dit qu'ils allaient vérifier.",
+       "en": "They said they would check it.",
+       "tr": "Kontrol edeceklerini söylediler.",
+       "uk": "Вони сказали, що перевірять.",
+       "fa": "گفتند بررسی‌اش می‌کنند.",
+       "ar": "قالوا إنهم سيتحقّقون من ذلك.",
+       "pt": "Eles disseram que iam verificar.",
+       "pl": "Powiedzieli, że to sprawdzą.",
+       "ru": "Они сказали, что проверят."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Au pluriel et avec ich, le Konjunktiv I ressemble souvent au présent (sie haben, ich habe) : on ne verrait pas qu'on rapporte. On prend alors le Konjunktiv II (hätten, kämen, könnten) ou würde + infinitif. Seul sein reste distinct : sie seien.",
+     "en": "In the plural and with ich, Konjunktiv I often looks like the present (sie haben, ich habe): nobody would see it's reported speech. So use Konjunktiv II instead (hätten, kämen, könnten) or würde + infinitive. Only sein stays distinct: sie seien.",
+     "tr": "Çoğulda ve ich ile Konjunktiv I çoğu zaman şimdiki zamana benzer (sie haben, ich habe): aktarıldığı anlaşılmaz. O zaman Konjunktiv II (hätten, kämen, könnten) ya da würde + mastar kullanılır. Yalnızca sein farklı kalır: sie seien.",
+     "uk": "У множині та з ich Konjunktiv I часто збігається з теперішнім часом (sie haben, ich habe): не видно, що мову передають. Тоді беруть Konjunktiv II (hätten, kämen, könnten) або würde + інфінітив. Відмінним лишається тільки sein: sie seien.",
+     "fa": "در جمع و با ich، Konjunktiv I اغلب شبیه زمان حال است (sie haben، ich habe): معلوم نمی‌شود که نقل قول است. پس Konjunktiv II (hätten، kämen، könnten) یا würde + مصدر به کار می‌رود. فقط sein متمایز می‌ماند: sie seien.",
+     "ar": "في الجمع ومع ich يشبه Konjunktiv I المضارع غالبًا (sie haben، ich habe): فلا يظهر أن الكلام منقول. عندئذ نستعمل Konjunktiv II ‏(hätten، kämen، könnten) أو würde + المصدر. ويبقى sein وحده مميّزًا: sie seien.",
+     "pt": "No plural e com ich, o Konjunktiv I muitas vezes se parece com o presente (sie haben, ich habe): não se veria que é discurso indireto. Usa-se então o Konjunktiv II (hätten, kämen, könnten) ou würde + infinitivo. Só sein continua distinto: sie seien.",
+     "pl": "W liczbie mnogiej i z ich Konjunktiv I często wygląda jak czas teraźniejszy (sie haben, ich habe): nie widać, że to mowa zależna. Wtedy używa się Konjunktiv II (hätten, kämen, könnten) lub würde + bezokolicznik. Odrębne zostaje tylko sein: sie seien.",
+     "ru": "Во множественном числе и с ich Konjunktiv I часто совпадает с настоящим временем (sie haben, ich habe): не видно, что речь косвенная. Тогда берут Konjunktiv II (hätten, kämen, könnten) или würde + инфинитив. Отличается только sein: sie seien."
+    }
+   },
+   {
+    "id": "k1_passe",
+    "serie": "konjunktiv1Exercises",
+    "temps": null,
+    "t": {
+     "fr": "Le discours rapporté au passé",
+     "en": "Reported speech in the past",
+     "tr": "Geçmişte dolaylı anlatım",
+     "uk": "Непряма мова в минулому",
+     "fa": "نقل قول غیرمستقیم در گذشته",
+     "ar": "الكلام المنقول في الماضي",
+     "pt": "O discurso indireto no passado",
+     "pl": "Mowa zależna w przeszłości",
+     "ru": "Косвенная речь в прошлом"
+    },
+    "l": [
+     [
+      "Er sagt, er [habe] es gesehen.",
+      {
+       "fr": "Il dit l'avoir vu.",
+       "en": "He says he saw it.",
+       "tr": "Onu gördüğünü söylüyor.",
+       "uk": "Він каже, що бачив це.",
+       "fa": "می‌گوید آن را دیده است.",
+       "ar": "يقول إنه رآه.",
+       "pt": "Ele diz que viu.",
+       "pl": "Mówi, że to widział.",
+       "ru": "Он говорит, что видел это."
+      }
+     ],
+     [
+      "Sie sagt, sie [sei] gestern gekommen.",
+      {
+       "fr": "Elle dit être arrivée hier.",
+       "en": "She says she came yesterday.",
+       "tr": "Dün geldiğini söylüyor.",
+       "uk": "Вона каже, що приїхала вчора.",
+       "fa": "می‌گوید دیروز آمده است.",
+       "ar": "تقول إنها جاءت أمس.",
+       "pt": "Ela diz que chegou ontem.",
+       "pl": "Mówi, że przyjechała wczoraj.",
+       "ru": "Она говорит, что приехала вчера."
+      }
+     ],
+     [
+      "Er behauptet, er [habe] nichts gewusst.",
+      {
+       "fr": "Il prétend n'avoir rien su.",
+       "en": "He claims he knew nothing.",
+       "tr": "Hiçbir şey bilmediğini iddia ediyor.",
+       "uk": "Він стверджує, що нічого не знав.",
+       "fa": "ادعا می‌کند چیزی نمی‌دانسته.",
+       "ar": "يزعم أنه لم يكن يعرف شيئًا.",
+       "pt": "Ele afirma que não sabia de nada.",
+       "pl": "Twierdzi, że nic nie wiedział.",
+       "ru": "Он утверждает, что ничего не знал."
+      }
+     ],
+     [
+      "Sie sagen, sie [seien] umgezogen.",
+      {
+       "fr": "Ils disent avoir déménagé.",
+       "en": "They say they've moved.",
+       "tr": "Taşındıklarını söylüyorlar.",
+       "uk": "Вони кажуть, що переїхали.",
+       "fa": "می‌گویند اسباب‌کشی کرده‌اند.",
+       "ar": "يقولون إنهم انتقلوا.",
+       "pt": "Eles dizem que se mudaram.",
+       "pl": "Mówią, że się przeprowadzili.",
+       "ru": "Они говорят, что переехали."
+      }
+     ],
+     [
+      "Er sagt, er [habe] arbeiten müssen.",
+      {
+       "fr": "Il dit qu'il a dû travailler.",
+       "en": "He says he had to work.",
+       "tr": "Çalışmak zorunda kaldığını söylüyor.",
+       "uk": "Він каже, що мусив працювати.",
+       "fa": "می‌گوید مجبور بوده کار کند.",
+       "ar": "يقول إنه اضطرّ إلى العمل.",
+       "pt": "Ele diz que teve de trabalhar.",
+       "pl": "Mówi, że musiał pracować.",
+       "ru": "Он говорит, что ему пришлось работать."
+      }
+     ],
+     [
+      "Das Haus [sei] verkauft worden.",
+      {
+       "fr": "La maison aurait été vendue.",
+       "en": "The house has reportedly been sold.",
+       "tr": "Evin satıldığı söyleniyor.",
+       "uk": "Кажуть, будинок продали.",
+       "fa": "گویا خانه فروخته شده است.",
+       "ar": "يُقال إن البيت بيع.",
+       "pt": "A casa teria sido vendida.",
+       "pl": "Dom podobno został sprzedany.",
+       "ru": "Говорят, дом продали."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Pour rapporter un fait passé, un seul temps suffit : habe ou sei + participe, quel que soit le temps de départ (Präteritum, Perfekt ou plus-que-parfait). Le choix entre habe et sei suit le Perfekt.",
+     "en": "To report a past event one tense is enough: habe or sei + participle, whatever the original tense (Präteritum, Perfekt or past perfect). The choice between habe and sei follows the Perfekt.",
+     "tr": "Geçmiş bir olayı aktarmak için tek zaman yeter: başlangıçtaki zaman ne olursa olsun (Präteritum, Perfekt ya da Plusquamperfekt) habe veya sei + ortaç. habe ile sei arasındaki seçim Perfekt'i izler.",
+     "uk": "Щоб передати минулу подію, досить одного часу: habe або sei + дієприкметник, хоч би яким був вихідний час (Präteritum, Perfekt чи Plusquamperfekt). Вибір між habe і sei — як у Perfekt.",
+     "fa": "برای نقل رویدادی در گذشته یک زمان کافی است: habe یا sei + اسم مفعول، هر زمانی که جملهٔ اصلی داشته باشد (Präteritum، Perfekt یا ماضی بعید). انتخاب habe یا sei مثل Perfekt است.",
+     "ar": "لنقل حدث ماضٍ يكفي زمن واحد: habe أو sei + اسم المفعول، مهما كان الزمن الأصلي (Präteritum أو Perfekt أو الماضي التام). والاختيار بين habe وsei يتبع الـPerfekt.",
+     "pt": "Para relatar um fato passado basta um tempo: habe ou sei + particípio, seja qual for o tempo original (Präteritum, Perfekt ou mais-que-perfeito). A escolha entre habe e sei segue o Perfekt.",
+     "pl": "Aby zrelacjonować przeszłe wydarzenie, wystarczy jeden czas: habe lub sei + imiesłów, bez względu na czas wyjściowy (Präteritum, Perfekt czy zaprzeszły). Wybór między habe i sei jak w Perfekt.",
+     "ru": "Чтобы передать прошлое событие, хватает одного времени: habe или sei + причастие, каким бы ни было исходное время (Präteritum, Perfekt или плюсквамперфект). Выбор между habe и sei — как в Perfekt."
+    }
+   },
+   {
+    "id": "k1_questions",
+    "serie": "konjunktiv1Exercises",
+    "temps": null,
+    "t": {
+     "fr": "Questions et ordres rapportés",
+     "en": "Reported questions and orders",
+     "tr": "Aktarılan sorular ve emirler",
+     "uk": "Непрямі питання й накази",
+     "fa": "پرسش‌ها و امرهای غیرمستقیم",
+     "ar": "الأسئلة والأوامر المنقولة",
+     "pt": "Perguntas e ordens indiretas",
+     "pl": "Pytania i polecenia zależne",
+     "ru": "Косвенные вопросы и приказы"
+    },
+    "l": [
+     [
+      "Sie fragt, ob ich Zeit [habe].",
+      {
+       "fr": "Elle demande si j'ai le temps.",
+       "en": "She asks whether I have time.",
+       "tr": "Vaktim olup olmadığını soruyor.",
+       "uk": "Вона питає, чи маю я час.",
+       "fa": "می‌پرسد آیا وقت دارم.",
+       "ar": "تسأل هل لديّ وقت.",
+       "pt": "Ela pergunta se eu tenho tempo.",
+       "pl": "Pyta, czy mam czas.",
+       "ru": "Она спрашивает, есть ли у меня время."
+      }
+     ],
+     [
+      "Er fragt, wann der Zug [fahre].",
+      {
+       "fr": "Il demande quand part le train.",
+       "en": "He asks when the train leaves.",
+       "tr": "Trenin ne zaman kalktığını soruyor.",
+       "uk": "Він питає, коли відходить потяг.",
+       "fa": "می‌پرسد قطار کی حرکت می‌کند.",
+       "ar": "يسأل متى يغادر القطار.",
+       "pt": "Ele pergunta quando o trem sai.",
+       "pl": "Pyta, kiedy odjeżdża pociąg.",
+       "ru": "Он спрашивает, когда отходит поезд."
+      }
+     ],
+     [
+      "Sie wollte wissen, wo ich [wohne].",
+      {
+       "fr": "Elle voulait savoir où j'habite.",
+       "en": "She wanted to know where I live.",
+       "tr": "Nerede oturduğumu bilmek istedi.",
+       "uk": "Вона хотіла знати, де я живу.",
+       "fa": "می‌خواست بداند کجا زندگی می‌کنم.",
+       "ar": "أرادت أن تعرف أين أسكن.",
+       "pt": "Ela queria saber onde eu moro.",
+       "pl": "Chciała wiedzieć, gdzie mieszkam.",
+       "ru": "Она хотела знать, где я живу."
+      }
+     ],
+     [
+      "Er sagt, ich [solle] warten.",
+      {
+       "fr": "Il dit que je dois attendre.",
+       "en": "He says I should wait.",
+       "tr": "Beklememi söylüyor.",
+       "uk": "Він каже, щоб я почекав.",
+       "fa": "می‌گوید باید صبر کنم.",
+       "ar": "يقول إن عليّ أن أنتظر.",
+       "pt": "Ele diz que eu devo esperar.",
+       "pl": "Mówi, że mam poczekać.",
+       "ru": "Он говорит, чтобы я подождал."
+      }
+     ],
+     [
+      "Sie bat, man [möge] leise sein.",
+      {
+       "fr": "Elle a demandé qu'on fasse silence.",
+       "en": "She asked people to be quiet.",
+       "tr": "Sessiz olunmasını rica etti.",
+       "uk": "Вона попросила, щоб було тихо.",
+       "fa": "خواهش کرد ساکت باشند.",
+       "ar": "طلبت أن يلتزموا الهدوء.",
+       "pt": "Ela pediu que fizessem silêncio.",
+       "pl": "Poprosiła, żeby było cicho.",
+       "ru": "Она попросила, чтобы было тихо."
+      }
+     ],
+     [
+      "Er fragte, wer das gewesen [sei].",
+      {
+       "fr": "Il a demandé qui c'était.",
+       "en": "He asked who it had been.",
+       "tr": "Bunun kim olduğunu sordu.",
+       "uk": "Він запитав, хто це був.",
+       "fa": "پرسید چه کسی بوده است.",
+       "ar": "سأل من كان ذلك.",
+       "pt": "Ele perguntou quem tinha sido.",
+       "pl": "Zapytał, kto to był.",
+       "ru": "Он спросил, кто это был."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Question fermée : ob ; question ouverte : le mot interrogatif (wann, wo, wer). Le verbe part à la fin, au Konjunktiv I. Un ordre se rapporte avec sollen (« er solle warten ») ; une prière polie avec mögen (« man möge »).",
+     "en": "Yes/no question: ob; open question: the question word (wann, wo, wer). The verb goes to the end, in Konjunktiv I. An order is reported with sollen (“er solle warten”); a polite request with mögen (“man möge”).",
+     "tr": "Evet/hayır sorusu: ob; açık soru: soru sözcüğü (wann, wo, wer). Fiil sona, Konjunktiv I'e gider. Emir sollen ile aktarılır (“er solle warten”); kibar rica mögen ile (“man möge”).",
+     "uk": "Закрите питання: ob; відкрите: питальне слово (wann, wo, wer). Дієслово йде в кінець, у Konjunktiv I. Наказ передають через sollen («er solle warten»), ввічливе прохання — через mögen («man möge»).",
+     "fa": "پرسش آری/نه: ob؛ پرسش باز: کلمهٔ پرسشی (wann، wo، wer). فعل به آخر جمله می‌رود، با Konjunktiv I. امر با sollen نقل می‌شود («er solle warten»)؛ خواهشِ مؤدبانه با mögen («man möge»).",
+     "ar": "السؤال المغلق: ob، والمفتوح: أداة الاستفهام (wann، wo، wer). ويذهب الفعل إلى الآخر بـ Konjunktiv I. ويُنقل الأمر بـ sollen («er solle warten»)، والرجاء المهذّب بـ mögen («man möge»).",
+     "pt": "Pergunta fechada: ob; pergunta aberta: a palavra interrogativa (wann, wo, wer). O verbo vai para o fim, no Konjunktiv I. Uma ordem se relata com sollen (“er solle warten”); um pedido educado com mögen (“man möge”).",
+     "pl": "Pytanie zamknięte: ob; otwarte: słowo pytające (wann, wo, wer). Czasownik idzie na koniec, w Konjunktiv I. Polecenie relacjonuje się z sollen („er solle warten”), grzeczną prośbę z mögen („man möge”).",
+     "ru": "Общий вопрос: ob; специальный: вопросительное слово (wann, wo, wer). Глагол уходит в конец, в Konjunktiv I. Приказ передают через sollen («er solle warten»), вежливую просьбу — через mögen («man möge»)."
+    }
+   },
+   {
+    "id": "futur2",
+    "serie": "werdenExercises",
+    "temps": null,
+    "t": {
+     "fr": "Le futur antérieur et la supposition",
+     "en": "Future perfect and supposition",
+     "tr": "Bitmiş gelecek ve tahmin",
+     "uk": "Майбутній доконаний і припущення",
+     "fa": "آیندهٔ کامل و حدس",
+     "ar": "المستقبل التام والظنّ",
+     "pt": "O futuro perfeito e a suposição",
+     "pl": "Czas przyszły dokonany i przypuszczenie",
+     "ru": "Будущее завершённое и предположение"
+    },
+    "l": [
+     [
+      "Bis Montag [werde] ich es gelesen [haben].",
+      {
+       "fr": "D'ici lundi, je l'aurai lu.",
+       "en": "By Monday I'll have read it.",
+       "tr": "Pazartesiye kadar okumuş olacağım.",
+       "uk": "До понеділка я це прочитаю.",
+       "fa": "تا دوشنبه آن را خوانده‌ام.",
+       "ar": "بحلول الاثنين سأكون قد قرأته.",
+       "pt": "Até segunda eu terei lido.",
+       "pl": "Do poniedziałku to przeczytam.",
+       "ru": "К понедельнику я это прочитаю."
+      }
+     ],
+     [
+      "Bis dahin [werden] wir umgezogen [sein].",
+      {
+       "fr": "D'ici là, nous aurons déménagé.",
+       "en": "By then we'll have moved.",
+       "tr": "O zamana kadar taşınmış olacağız.",
+       "uk": "До того часу ми вже переїдемо.",
+       "fa": "تا آن موقع اسباب‌کشی کرده‌ایم.",
+       "ar": "حتى ذلك الحين سنكون قد انتقلنا.",
+       "pt": "Até lá teremos nos mudado.",
+       "pl": "Do tego czasu się przeprowadzimy.",
+       "ru": "К тому времени мы переедем."
+      }
+     ],
+     [
+      "Sie [wird] wohl noch [schlafen].",
+      {
+       "fr": "Elle doit encore dormir.",
+       "en": "She's probably still asleep.",
+       "tr": "Herhalde hâlâ uyuyordur.",
+       "uk": "Вона, мабуть, ще спить.",
+       "fa": "لابد هنوز خواب است.",
+       "ar": "لا بدّ أنها ما زالت نائمة.",
+       "pt": "Ela deve estar dormindo ainda.",
+       "pl": "Pewnie jeszcze śpi.",
+       "ru": "Она, наверное, ещё спит."
+      }
+     ],
+     [
+      "Er [wird] den Zug verpasst [haben].",
+      {
+       "fr": "Il aura raté le train.",
+       "en": "He must have missed the train.",
+       "tr": "Treni kaçırmış olmalı.",
+       "uk": "Він, мабуть, пропустив потяг.",
+       "fa": "لابد قطار را از دست داده است.",
+       "ar": "لا بدّ أنه فوّت القطار.",
+       "pt": "Ele deve ter perdido o trem.",
+       "pl": "Pewnie spóźnił się na pociąg.",
+       "ru": "Он, наверное, опоздал на поезд."
+      }
+     ],
+     [
+      "Sie [wird] schon angekommen [sein].",
+      {
+       "fr": "Elle doit déjà être arrivée.",
+       "en": "She'll have arrived by now.",
+       "tr": "Çoktan varmıştır.",
+       "uk": "Вона, мабуть, уже приїхала.",
+       "fa": "لابد رسیده است.",
+       "ar": "لا بدّ أنها وصلت.",
+       "pt": "Ela já deve ter chegado.",
+       "pl": "Pewnie już dotarła.",
+       "ru": "Она, наверное, уже приехала."
+      }
+     ],
+     [
+      "Das [wird] er vergessen [haben].",
+      {
+       "fr": "Il l'aura oublié.",
+       "en": "He'll have forgotten that.",
+       "tr": "Bunu unutmuş olmalı.",
+       "uk": "Він, мабуть, про це забув.",
+       "fa": "لابد آن را فراموش کرده است.",
+       "ar": "لا بدّ أنه نسي ذلك.",
+       "pt": "Ele deve ter esquecido isso.",
+       "pl": "Pewnie o tym zapomniał.",
+       "ru": "Он, наверное, об этом забыл."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "werden + participe + haben / sein : ce qui sera fini à un moment de l'avenir (bis Montag). Mais le plus souvent, c'est une supposition sur le passé, comme le futur antérieur français : « Er wird den Zug verpasst haben » = il aura raté le train. Pour le présent : werden + wohl + infinitif.",
+     "en": "werden + participle + haben / sein: what will be finished by some point in the future (bis Montag). But it's most often a guess about the past: “Er wird den Zug verpasst haben” = he must have missed the train. For the present: werden + wohl + infinitive.",
+     "tr": "werden + ortaç + haben / sein: gelecekte bir ana kadar bitmiş olacak olan (bis Montag). Ama çoğu zaman geçmişle ilgili bir tahmindir: “Er wird den Zug verpasst haben” = treni kaçırmış olmalı. Şimdi için: werden + wohl + mastar.",
+     "uk": "werden + дієприкметник + haben / sein: те, що буде завершено до певного моменту (bis Montag). Але найчастіше це припущення про минуле: «Er wird den Zug verpasst haben» = він, мабуть, пропустив потяг. Для теперішнього: werden + wohl + інфінітив.",
+     "fa": "werden + اسم مفعول + haben / sein: آنچه تا لحظه‌ای در آینده تمام شده است (bis Montag). ولی بیشتر وقت‌ها حدسی دربارهٔ گذشته است: «Er wird den Zug verpasst haben» = لابد قطار را از دست داده. برای حال: werden + wohl + مصدر.",
+     "ar": "werden + اسم المفعول + haben / sein: ما سيكون قد انتهى في لحظة من المستقبل (bis Montag). لكنه في الغالب ظنّ بشأن الماضي: «Er wird den Zug verpasst haben» = لا بدّ أنه فوّت القطار. وللحاضر: werden + wohl + المصدر.",
+     "pt": "werden + particípio + haben / sein: o que estará terminado num momento futuro (bis Montag). Mas na maioria das vezes é uma suposição sobre o passado: “Er wird den Zug verpasst haben” = ele deve ter perdido o trem. Para o presente: werden + wohl + infinitivo.",
+     "pl": "werden + imiesłów + haben / sein: to, co będzie zakończone do pewnego momentu (bis Montag). Najczęściej jednak to przypuszczenie o przeszłości: „Er wird den Zug verpasst haben” = pewnie spóźnił się na pociąg. Dla teraźniejszości: werden + wohl + bezokolicznik.",
+     "ru": "werden + причастие + haben / sein: то, что будет завершено к моменту в будущем (bis Montag). Но чаще всего это предположение о прошлом: «Er wird den Zug verpasst haben» = он, наверное, опоздал на поезд. Для настоящего: werden + wohl + инфинитив."
+    }
+   },
+   {
+    "id": "passif_passe_modal",
+    "serie": "passivExercises",
+    "temps": null,
+    "t": {
+     "fr": "Le passif au passé avec un modal",
+     "en": "The past passive with a modal",
+     "tr": "Kip fiiliyle geçmiş edilgen",
+     "uk": "Пасив минулого з модальним дієсловом",
+     "fa": "مجهولِ گذشته با فعل وجهی",
+     "ar": "المجهول في الماضي مع فعل ناقص",
+     "pt": "A passiva no passado com modal",
+     "pl": "Strona bierna w przeszłości z modalnym",
+     "ru": "Пассив прошедшего с модальным глаголом"
+    },
+    "l": [
+     [
+      "Der Unfall hätte verhindert werden [können].",
+      {
+       "fr": "L'accident aurait pu être évité.",
+       "en": "The accident could have been prevented.",
+       "tr": "Kaza önlenebilirdi.",
+       "uk": "Аварії можна було запобігти.",
+       "fa": "می‌شد از تصادف جلوگیری کرد.",
+       "ar": "كان يمكن منع الحادث.",
+       "pt": "O acidente poderia ter sido evitado.",
+       "pl": "Wypadkowi można było zapobiec.",
+       "ru": "Аварию можно было предотвратить."
+      }
+     ],
+     [
+      "Das Gesetz hätte geändert werden [müssen].",
+      {
+       "fr": "La loi aurait dû être modifiée.",
+       "en": "The law should have been changed.",
+       "tr": "Yasanın değiştirilmesi gerekirdi.",
+       "uk": "Закон слід було змінити.",
+       "fa": "قانون باید تغییر داده می‌شد.",
+       "ar": "كان يجب تعديل القانون.",
+       "pt": "A lei deveria ter sido mudada.",
+       "pl": "Prawo powinno było zostać zmienione.",
+       "ru": "Закон следовало изменить."
+      }
+     ],
+     [
+      "Der Fehler hätte früher bemerkt werden [sollen].",
+      {
+       "fr": "L'erreur aurait dû être remarquée plus tôt.",
+       "en": "The mistake should have been noticed earlier.",
+       "tr": "Hatanın daha önce fark edilmesi gerekirdi.",
+       "uk": "Помилку слід було помітити раніше.",
+       "fa": "اشتباه باید زودتر دیده می‌شد.",
+       "ar": "كان ينبغي ملاحظة الخطأ أبكر.",
+       "pt": "O erro deveria ter sido notado antes.",
+       "pl": "Błąd powinien był zostać zauważony wcześniej.",
+       "ru": "Ошибку следовало заметить раньше."
+      }
+     ],
+     [
+      "Die Tür muss aufgebrochen [worden sein].",
+      {
+       "fr": "La porte a dû être forcée.",
+       "en": "The door must have been forced open.",
+       "tr": "Kapı zorla açılmış olmalı.",
+       "uk": "Двері, мабуть, зламали.",
+       "fa": "لابد در را به زور باز کرده‌اند.",
+       "ar": "لا بدّ أن الباب كُسر.",
+       "pt": "A porta deve ter sido arrombada.",
+       "pl": "Drzwi musiały zostać wyważone.",
+       "ru": "Дверь, должно быть, взломали."
+      }
+     ],
+     [
+      "Er soll verhaftet [worden sein].",
+      {
+       "fr": "Il aurait été arrêté (dit-on).",
+       "en": "He is said to have been arrested.",
+       "tr": "Tutuklandığı söyleniyor.",
+       "uk": "Кажуть, його заарештували.",
+       "fa": "گفته می‌شود دستگیر شده است.",
+       "ar": "يُقال إنه اعتُقل.",
+       "pt": "Dizem que ele foi preso.",
+       "pl": "Podobno został aresztowany.",
+       "ru": "Говорят, его арестовали."
+      }
+     ],
+     [
+      "Die Fenster konnten nicht geöffnet [werden].",
+      {
+       "fr": "Les fenêtres n'ont pas pu être ouvertes.",
+       "en": "The windows couldn't be opened.",
+       "tr": "Pencereler açılamadı.",
+       "uk": "Вікна не вдалося відчинити.",
+       "fa": "پنجره‌ها باز نشدند.",
+       "ar": "لم يكن ممكنًا فتح النوافذ.",
+       "pt": "As janelas não puderam ser abertas.",
+       "pl": "Okien nie dało się otworzyć.",
+       "ru": "Окна не удалось открыть."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Regret : hätte + participe + werden + modal (« hätte vermieden werden können »). Supposition sur le passé : müssen / dürfen + participe + worden sein (« muss aufgebrochen worden sein »). Rumeur : sollen + … worden sein (« soll verhaftet worden sein »).",
+     "en": "Regret: hätte + participle + werden + modal (“hätte vermieden werden können”). Guess about the past: müssen / dürfen + participle + worden sein (“muss aufgebrochen worden sein”). Rumour: sollen + … worden sein (“soll verhaftet worden sein”).",
+     "tr": "Pişmanlık: hätte + ortaç + werden + kip fiili (“hätte vermieden werden können”). Geçmişle ilgili tahmin: müssen / dürfen + ortaç + worden sein (“muss aufgebrochen worden sein”). Söylenti: sollen + … worden sein (“soll verhaftet worden sein”).",
+     "uk": "Жаль: hätte + дієприкметник + werden + модальне (“hätte vermieden werden können”). Припущення про минуле: müssen / dürfen + дієприкметник + worden sein («muss aufgebrochen worden sein»). Чутки: sollen + … worden sein («soll verhaftet worden sein»).",
+     "fa": "افسوس: hätte + اسم مفعول + werden + فعل وجهی («hätte vermieden werden können»). حدس دربارهٔ گذشته: müssen / dürfen + اسم مفعول + worden sein («muss aufgebrochen worden sein»). شایعه: sollen + … worden sein («soll verhaftet worden sein»).",
+     "ar": "التحسّر: hätte + اسم المفعول + werden + الفعل الناقص («hätte vermieden werden können»). والظنّ بشأن الماضي: müssen / dürfen + اسم المفعول + worden sein («muss aufgebrochen worden sein»). والإشاعة: sollen + … worden sein («soll verhaftet worden sein»).",
+     "pt": "Lamento: hätte + particípio + werden + modal (“hätte vermieden werden können”). Suposição sobre o passado: müssen / dürfen + particípio + worden sein (“muss aufgebrochen worden sein”). Boato: sollen + … worden sein (“soll verhaftet worden sein”).",
+     "pl": "Żal: hätte + imiesłów + werden + modalny („hätte vermieden werden können”). Przypuszczenie o przeszłości: müssen / dürfen + imiesłów + worden sein („muss aufgebrochen worden sein”). Pogłoska: sollen + … worden sein („soll verhaftet worden sein”).",
+     "ru": "Сожаление: hätte + причастие + werden + модальный («hätte vermieden werden können»). Предположение о прошлом: müssen / dürfen + причастие + worden sein («muss aufgebrochen worden sein»). Слух: sollen + … worden sein («soll verhaftet worden sein»)."
+    }
+   },
+   {
+    "id": "participe_etendu",
+    "serie": "partizipExercises",
+    "temps": null,
+    "t": {
+     "fr": "Le participe étendu",
+     "en": "The extended participle",
+     "tr": "Genişletilmiş ortaç",
+     "uk": "Розширене дієприкметникове означення",
+     "fa": "صفتِ گستردهٔ فعلی",
+     "ar": "النعت الموسّع باسم الفاعل أو المفعول",
+     "pt": "O particípio estendido",
+     "pl": "Rozbudowana przydawka imiesłowowa",
+     "ru": "Распространённое причастное определение"
+    },
+    "l": [
+     [
+      "die von der Stadt [geplante] Brücke",
+      {
+       "fr": "le pont prévu par la ville",
+       "en": "the bridge planned by the city",
+       "tr": "belediyenin planladığı köprü",
+       "uk": "міст, запланований містом",
+       "fa": "پلی که شهرداری برنامه‌ریزی کرده",
+       "ar": "الجسر الذي خطّطت له المدينة",
+       "pt": "a ponte planejada pela prefeitura",
+       "pl": "most zaplanowany przez miasto",
+       "ru": "мост, запланированный городом"
+      }
+     ],
+     [
+      "der seit Jahren [andauernde] Streit",
+      {
+       "fr": "la dispute qui dure depuis des années",
+       "en": "the quarrel that has lasted for years",
+       "tr": "yıllardır süren kavga",
+       "uk": "суперечка, що триває роками",
+       "fa": "دعوایی که سال‌هاست ادامه دارد",
+       "ar": "الخلاف المستمرّ منذ سنوات",
+       "pt": "a briga que dura há anos",
+       "pl": "trwający od lat spór",
+       "ru": "длящийся годами спор"
+      }
+     ],
+     [
+      "die gestern [veröffentlichte] Nachricht",
+      {
+       "fr": "la nouvelle publiée hier",
+       "en": "the news published yesterday",
+       "tr": "dün yayımlanan haber",
+       "uk": "новина, опублікована вчора",
+       "fa": "خبری که دیروز منتشر شد",
+       "ar": "الخبر الذي نُشر أمس",
+       "pt": "a notícia publicada ontem",
+       "pl": "wczoraj opublikowana wiadomość",
+       "ru": "опубликованная вчера новость"
+      }
+     ],
+     [
+      "der bis Montag zu [schreibende] Bericht",
+      {
+       "fr": "le rapport à rédiger d'ici lundi",
+       "en": "the report to be written by Monday",
+       "tr": "pazartesiye kadar yazılacak rapor",
+       "uk": "звіт, який треба написати до понеділка",
+       "fa": "گزارشی که باید تا دوشنبه نوشته شود",
+       "ar": "التقرير الواجب كتابته قبل الاثنين",
+       "pt": "o relatório a ser escrito até segunda",
+       "pl": "raport do napisania do poniedziałku",
+       "ru": "отчёт, который нужно написать к понедельнику"
+      }
+     ],
+     [
+      "die schnell [wachsende] Stadt",
+      {
+       "fr": "la ville qui grandit vite",
+       "en": "the rapidly growing city",
+       "tr": "hızla büyüyen şehir",
+       "uk": "місто, що швидко зростає",
+       "fa": "شهری که سریع رشد می‌کند",
+       "ar": "المدينة سريعة النموّ",
+       "pt": "a cidade que cresce rápido",
+       "pl": "szybko rosnące miasto",
+       "ru": "быстро растущий город"
+      }
+     ],
+     [
+      "die vom Arzt [verschriebenen] Tabletten",
+      {
+       "fr": "les comprimés prescrits par le médecin",
+       "en": "the tablets prescribed by the doctor",
+       "tr": "doktorun yazdığı haplar",
+       "uk": "пігулки, призначені лікарем",
+       "fa": "قرص‌هایی که پزشک تجویز کرده",
+       "ar": "الحبوب التي وصفها الطبيب",
+       "pt": "os comprimidos receitados pelo médico",
+       "pl": "tabletki przepisane przez lekarza",
+       "ru": "прописанные врачом таблетки"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Là où le français met une relative après le nom, l'allemand écrit tout AVANT : article + compléments + participe + nom. Pour comprendre, lis l'article, saute jusqu'au nom, puis remonte : « die … Brücke » → le pont que la ville a prévu. zu + Partizip I = qui doit être fait.",
+     "en": "Where English uses a relative clause after the noun, German puts everything BEFORE it: article + complements + participle + noun. To understand, read the article, jump to the noun, then go back: “die … Brücke” → the bridge the city planned. zu + Partizip I = which must be done.",
+     "tr": "Almanca, niteleyen her şeyi ismin ÖNÜNE yazar: artikel + tümleçler + ortaç + isim. Anlamak için artikeli oku, isme atla, sonra geri dön: “die … Brücke” → belediyenin planladığı köprü. zu + Partizip I = yapılması gereken.",
+     "uk": "Там, де українська ставить підрядне речення після іменника, німецька пише все ПЕРЕД ним: артикль + додатки + дієприкметник + іменник. Щоб зрозуміти, прочитай артикль, перескоч до іменника й повернися: «die … Brücke» → міст, який запланувало місто. zu + Partizip I = який треба зробити.",
+     "fa": "آلمانی همهٔ توضیحات را پیش از اسم می‌نویسد: حرف تعریف + متمم‌ها + اسم فاعل/مفعول + اسم. برای فهمیدن، حرف تعریف را بخوان، تا اسم جلو برو و بعد برگرد: «die … Brücke» → پلی که شهرداری برنامه‌ریزی کرده. zu + Partizip I = آنچه باید انجام شود.",
+     "ar": "تضع الألمانية كل الوصف قبل الاسم: الأداة + المتمّمات + اسم الفاعل أو المفعول + الاسم. ولكي تفهم، اقرأ الأداة ثم اقفز إلى الاسم ثم عُد: «die … Brücke» → الجسر الذي خطّطت له المدينة. وzu + Partizip I = ما يجب فعله.",
+     "pt": "Onde o português põe uma oração relativa depois do substantivo, o alemão escreve tudo ANTES: artigo + complementos + particípio + substantivo. Para entender, leia o artigo, pule até o substantivo e volte: “die … Brücke” → a ponte que a prefeitura planejou. zu + Partizip I = que deve ser feito.",
+     "pl": "Tam, gdzie polski często stawia zdanie względne po rzeczowniku, niemiecki pisze wszystko PRZED nim: rodzajnik + dopełnienia + imiesłów + rzeczownik. Żeby zrozumieć, przeczytaj rodzajnik, przeskocz do rzeczownika i wróć: „die … Brücke” → most, który zaplanowało miasto. zu + Partizip I = który trzeba zrobić.",
+     "ru": "Немецкий пишет всё определение ПЕРЕД существительным: артикль + дополнения + причастие + существительное. Чтобы понять, прочитай артикль, перескочи к существительному и вернись: «die … Brücke» → мост, который запланировал город. zu + Partizip I = который нужно сделать."
+    }
+   },
+   {
+    "id": "fvg",
+    "serie": "funktionsverbExercises",
+    "temps": null,
+    "t": {
+     "fr": "Verbe + nom figés : eine Entscheidung treffen",
+     "en": "Fixed verb + noun: eine Entscheidung treffen",
+     "tr": "Kalıplaşmış fiil + isim: eine Entscheidung treffen",
+     "uk": "Сталі звороти дієслово + іменник: eine Entscheidung treffen",
+     "fa": "فعل + اسمِ ثابت: eine Entscheidung treffen",
+     "ar": "فعل + اسم ثابتان: eine Entscheidung treffen",
+     "pt": "Verbo + nome fixos: eine Entscheidung treffen",
+     "pl": "Stałe połączenia czasownik + rzeczownik: eine Entscheidung treffen",
+     "ru": "Устойчивые сочетания глагол + существительное: eine Entscheidung treffen"
+    },
+    "l": [
+     [
+      "eine Entscheidung [treffen]",
+      {
+       "fr": "prendre une décision",
+       "en": "make a decision",
+       "tr": "karar vermek",
+       "uk": "ухвалити рішення",
+       "fa": "تصمیم گرفتن",
+       "ar": "اتخاذ قرار",
+       "pt": "tomar uma decisão",
+       "pl": "podjąć decyzję",
+       "ru": "принять решение"
+      }
+     ],
+     [
+      "etwas in Frage [stellen]",
+      {
+       "fr": "remettre quelque chose en cause",
+       "en": "call something into question",
+       "tr": "bir şeyi sorgulamak",
+       "uk": "ставити щось під сумнів",
+       "fa": "چیزی را زیر سؤال بردن",
+       "ar": "التشكيك في أمر",
+       "pt": "questionar algo",
+       "pl": "podważać coś",
+       "ru": "ставить что-то под сомнение"
+      }
+     ],
+     [
+      "Rücksicht [nehmen] auf",
+      {
+       "fr": "tenir compte de",
+       "en": "show consideration for",
+       "tr": "dikkate almak",
+       "uk": "зважати на",
+       "fa": "ملاحظه کردن",
+       "ar": "مراعاة",
+       "pt": "levar em consideração",
+       "pl": "brać pod uwagę",
+       "ru": "считаться с"
+      }
+     ],
+     [
+      "etwas zur Verfügung [stellen]",
+      {
+       "fr": "mettre quelque chose à disposition",
+       "en": "make something available",
+       "tr": "bir şeyi hizmete sunmak",
+       "uk": "надати щось у розпорядження",
+       "fa": "چیزی را در اختیار گذاشتن",
+       "ar": "وضع شيء تحت التصرّف",
+       "pt": "pôr algo à disposição",
+       "pl": "oddać coś do dyspozycji",
+       "ru": "предоставить что-то"
+      }
+     ],
+     [
+      "etwas zum Ausdruck [bringen]",
+      {
+       "fr": "exprimer quelque chose",
+       "en": "express something",
+       "tr": "bir şeyi ifade etmek",
+       "uk": "висловити щось",
+       "fa": "چیزی را بیان کردن",
+       "ar": "التعبير عن شيء",
+       "pt": "expressar algo",
+       "pl": "wyrazić coś",
+       "ru": "выразить что-то"
+      }
+     ],
+     [
+      "in Kraft [treten]",
+      {
+       "fr": "entrer en vigueur",
+       "en": "come into force",
+       "tr": "yürürlüğe girmek",
+       "uk": "набути чинності",
+       "fa": "اجرایی شدن",
+       "ar": "دخول حيّز التنفيذ",
+       "pt": "entrar em vigor",
+       "pl": "wejść w życie",
+       "ru": "вступить в силу"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Dans la langue écrite, beaucoup de verbes simples deviennent nom + verbe « vide » : entscheiden → eine Entscheidung treffen, fragen → eine Frage stellen. Le sens est dans le nom ; le verbe ne se devine pas, il s'apprend avec lui (on « trifft » une décision, on ne la « macht » pas).",
+     "en": "In written German many simple verbs become noun + “light” verb: entscheiden → eine Entscheidung treffen, fragen → eine Frage stellen. The meaning is in the noun; the verb can't be guessed, it's learned with it (you “treffen” a decision, you don't “machen” it).",
+     "tr": "Yazı dilinde pek çok basit fiil isim + “boş” fiile dönüşür: entscheiden → eine Entscheidung treffen, fragen → eine Frage stellen. Anlam isimdedir; fiil tahmin edilmez, isimle birlikte öğrenilir (karar “treffen” edilir, “machen” edilmez).",
+     "uk": "У писемній мові багато простих дієслів стають іменником + «порожнім» дієсловом: entscheiden → eine Entscheidung treffen, fragen → eine Frage stellen. Зміст — в іменнику; дієслово не вгадаєш, його вчать разом з іменником (рішення «trifft», а не «macht»).",
+     "fa": "در زبان نوشتاری، بسیاری از فعل‌های ساده به اسم + فعلِ «کم‌معنا» تبدیل می‌شوند: entscheiden → eine Entscheidung treffen، fragen → eine Frage stellen. معنا در اسم است؛ فعل را نمی‌شود حدس زد و باید همراه اسم یاد گرفت (تصمیم را «trifft» می‌کنند، نه «macht»).",
+     "ar": "في اللغة المكتوبة تصير أفعال بسيطة كثيرة اسمًا + فعلًا «فارغًا»: entscheiden → eine Entscheidung treffen، fragen → eine Frage stellen. والمعنى في الاسم، أما الفعل فلا يُخمَّن بل يُحفظ معه (نقول «trifft» للقرار لا «macht»).",
+     "pt": "Na língua escrita, muitos verbos simples viram substantivo + verbo “vazio”: entscheiden → eine Entscheidung treffen, fragen → eine Frage stellen. O sentido está no substantivo; o verbo não se adivinha, aprende-se junto (uma decisão se “trifft”, não se “macht”).",
+     "pl": "W języku pisanym wiele prostych czasowników zamienia się w rzeczownik + „pusty” czasownik: entscheiden → eine Entscheidung treffen, fragen → eine Frage stellen. Sens jest w rzeczowniku; czasownika nie da się zgadnąć, uczy się go razem z nim (decyzję się „trifft”, a nie „macht”).",
+     "ru": "В письменной речи многие простые глаголы превращаются в существительное + «пустой» глагол: entscheiden → eine Entscheidung treffen, fragen → eine Frage stellen. Смысл — в существительном; глагол не угадать, его учат вместе с ним (решение «trifft», а не «macht»)."
     }
    }
   ]

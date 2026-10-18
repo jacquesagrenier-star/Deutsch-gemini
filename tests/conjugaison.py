@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Contrôle des feuilles de conjugaison A2-B1 (conjugaison.json et
-espanol/datos/conjugaison.json). Aucune dépendance.
+"""Contrôle des feuilles de conjugaison A2-C1 (conjugaison.json et
+espanol/datos/conjugaison.json) et des séries d'exercices écrites pour elles.
+Aucune dépendance.
 
     python tests/conjugaison.py            # contrôle les fichiers présents
     python tests/conjugaison.py --detail   # et la liste des feuilles
@@ -12,7 +13,7 @@ forme que le tableau (pp_tableau) : t, l: [[forme, sens]], a. Maquette validée 
 .claude/maquette-conjugaison-niveaux.html.
 
 Ce qu'il vérifie :
-  - « niveaux » : A2 et B1, le nombre de feuilles attendu pour chacun ;
+  - « niveaux » : le nombre de feuilles attendu pour chacun (allemand A2-C1) ;
   - chaque feuille : un id unique, un titre « t » et une astuce « a » dans toutes
     les langues d'interface de la langue apprise, non vides ;
   - exactement 6 lignes, chacune [forme, sens complet] ;
@@ -20,7 +21,15 @@ Ce qu'il vérifie :
     des crochets bien appariés et non imbriqués, rien de vide entre eux ;
   - « serie » : null ou une série qui existe dans les exercices de la langue ;
   - « temps » : null ou un temps dont verbe.json (verbos.json) a la phrase ;
-  - aucune forme en double dans tout le fichier (une voix par texte).
+  - aucune forme en double dans tout le fichier (une voix par texte) ;
+  - à partir du B2, chaque feuille a SA série (Jacques, 18 oct. : « B2 et C1
+    avec leurs exercices ») ;
+  - les séries écrites pour les feuilles (SERIES_ECRITES) : 50 questions au
+    moins, un seul « ___ », la bonne réponse parmi 4 options distinctes,
+    traduction, indice et explication dans toutes les langues, pas de question
+    en double ; et la phrase que l'app reconstruit pour la voix (l'énoncé, le
+    blanc rempli) ne garde pas de parenthèse d'indice -- sinon il faut audioDe
+    (le défaut du 9 oct. 2026 : « vor Wo (Dativ) Haus »).
 """
 import json
 import os
@@ -36,15 +45,65 @@ FICHIERS = {
            "exercices": "exercices.json",
            "verbes": "verbe.json",
            "temps": {"perfekt": "perfekt", "praeteritum": "praeteritum", "konjunktiv2": "konjunktiv2"},
-           "niveaux": {"A2": 12, "B1": 12}},
+           "niveaux": {"A2": 12, "B1": 12, "B2": 10, "C1": 8},
+           "series_ecrites": ["passivExercises", "konjunktiv2VergangenheitExercises", "konjunktiv1Exercises",
+                              "werdenExercises", "partizipExercises", "funktionsverbExercises"]},
     "es": {"chemin": os.path.join("espanol", "datos", "conjugaison.json"),
            "langues": ["fr", "en", "pt", "ar"],
            "exercices": os.path.join("espanol", "datos", "ejercicios.json"),
            "verbes": os.path.join("espanol", "datos", "verbos.json"),
            "temps": {t: "exemple_" + t for t in ("preterito", "imperfecto", "perfecto", "futuro", "condicional", "subjuntivo")},
-           "niveaux": {"A2": 10, "B1": 10}},
+           "niveaux": {"A2": 10, "B1": 10, "B2": 8},
+           "series_ecrites": ["subjuntivoImperfectoExercises", "oracionesSiExercises", "compuestosExercises",
+                              "pasivaExercises"]},
 }
 NB_LIGNES = 6
+NIVEAUX_SERIE_OBLIGATOIRE = ("B2", "C1")
+# B2-C1 : feuilles et séries écrites ensemble le 18 oct. 2026 (allemand B2-C1,
+# espagnol B2 -- l'espagnol n'a pas de C1).
+PLANCHER_QUESTIONS = 50
+
+
+def champ(base, langue):
+    """translation (fr), translation_en, translation_tr... : le francais est le champ nu."""
+    return base if langue == "fr" else base + "_" + langue
+
+
+def verifier_series(nom_fichier, jeux, noms, langues):
+    err = []
+    for nom in noms:
+        liste = jeux.get(nom)
+        if not isinstance(liste, list):
+            err.append("%s : série %s absente" % (nom_fichier, nom))
+            continue
+        if len(liste) < PLANCHER_QUESTIONS:
+            err.append("%s : %d questions, sous le plancher de %d" % (nom, len(liste), PLANCHER_QUESTIONS))
+        vues = set()
+        for k, ex in enumerate(liste):
+            ou = "%s[%d]" % (nom, k)
+            q = ex.get("question") or ""
+            if q.count("___") != 1:
+                err.append("%s : il faut un seul ___ : %r" % (ou, q))
+            if q in vues:
+                err.append("%s : question en double : %r" % (ou, q))
+            vues.add(q)
+            bon = ex.get("correct")
+            opts = ex.get("options") or []
+            if not bon or bon not in (ex.get("answers") or []):
+                err.append("%s : correct absent des answers" % ou)
+            # Les séries espagnoles se répondent au clavier, sans options.
+            if "options" in ex and (len(opts) != 4 or len(set(opts)) != 4 or bon not in opts):
+                err.append("%s : 4 options distinctes, dont la bonne" % ou)
+            for base in ("translation", "hint", "explanation"):
+                for l in langues:
+                    v = ex.get(champ(base, l))
+                    if not (isinstance(v, str) and v.strip()):
+                        err.append("%s : %s manquant" % (ou, champ(base, l)))
+            if not ex.get("audioDe") and "___" in q and bon:
+                dite = q.replace("___", bon, 1)
+                if "(" in dite or ")" in dite:
+                    err.append("%s : la phrase dite garderait une parenthèse, il faut audioDe : %r" % (ou, dite))
+    return err
 
 
 def lire(chemin):
@@ -106,6 +165,8 @@ def verifier(code, info, detail):
             if not sens_complet(f.get("a"), langues):
                 err.append("%s : astuce « a » incomplète" % ou)
             serie = f.get("serie")
+            if serie is None and niv in NIVEAUX_SERIE_OBLIGATOIRE:
+                err.append("%s : une feuille %s doit avoir sa série d'exercices" % (ou, niv))
             if serie is not None and not (isinstance(jeux.get(serie), list) and jeux[serie]):
                 err.append("%s : série inconnue %r" % (ou, serie))
             temps = f.get("temps")
@@ -135,6 +196,10 @@ def verifier(code, info, detail):
                 formes[dit] = f.get("id")
             if detail:
                 print("  %s %-22s %-24s %s" % (niv, f.get("id"), serie or "-", f["t"].get("fr")))
+    err += verifier_series(info["exercices"], jeux, info.get("series_ecrites", []), langues)
+    if detail:
+        for s in info.get("series_ecrites", []):
+            print("  série %-36s %d questions" % (s, len(jeux.get(s) or [])))
     return err
 
 
