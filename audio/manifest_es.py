@@ -161,6 +161,11 @@ def recolter(variante):
     import manifest as manifest_de
     for t in manifest_de.a1_voyage_textes(charger("a1-voyage.json"), latam=(variante == "latam"), espagnol=True):
         prendre(t, "a1_voyage", "A1")
+    # FEUILLES DE CONJUGAISON (v867, 18 oct. 2026) : espanol/datos/conjugaison.json,
+    # la meme regle que manifest.py (conjugaison_textes) -- la forme sans ses
+    # crochets. Les memes textes dans les deux variantes.
+    for niveau, t in manifest_de.conjugaison_textes(charger("conjugaison.json")):
+        prendre(t, "conjugaison", niveau)
     return out
 
 

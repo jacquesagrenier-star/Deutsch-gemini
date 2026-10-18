@@ -147,6 +147,10 @@ def main():
     p.add_argument("--reprendre-refus", action="store_true",
                    help="ne refaire que les refus, avec la porteuse de --porteuse")
     p.add_argument("--porteuse", default=PORTEUSE)
+    # v867 : comme generer.py -- une depense approuvee pour un lot (les feuilles
+    # de conjugaison) ne couvre pas le reste du niveau.
+    p.add_argument("--sources", default="",
+                   help="ne produire que ces sources (prefixes, ex. conjugaison,a1_voyage)")
     a = p.parse_args()
 
     voix, dossier = VOIX[a.variante]
@@ -161,6 +165,9 @@ def main():
     refus = json.load(io.open(refus_chemin, encoding="utf-8")) if os.path.exists(refus_chemin) else {}
     a_faire = [e for e in manifest_es.entrees(a.variante)
                if e["niveau"] in niveaux and not os.path.exists(os.path.join(sortie, e["id"] + ".mp3"))]
+    if a.sources:
+        prefixes = tuple(s.strip() for s in a.sources.split(","))
+        a_faire = [e for e in a_faire if e["source"].startswith(prefixes)]
     if a.reprendre_refus:
         a_faire = [e for e in a_faire if e["id"] in refus]
         for e in a_faire:

@@ -1,0 +1,1475 @@
+{
+ "_lisez_moi": [
+  "Les feuilles de conjugaison espagnoles de l'A2 et du B1 (18 oct. 2026, essai « feuilles_conj »). Même moteur que l'allemand (conjugaison.json), programme propre à l'espagnol : A2 = les passés (pretérito, imperfecto, leur opposition, perfecto), ir a, l'impératif, estar + gérondif ; B1 = futur, conditionnel, subjonctif présent et ses emplois, impératif négatif, plus-que-parfait.",
+  "Une feuille : t (titre), l: [[forme, sens]] (6 lignes), a (astuce). [crochets] = la partie qui change, surlignée ; la voix lit la forme sans les crochets (audio/manifest_es.py, source « conjugaison »).",
+  "Variante d'Espagne et d'Amérique latine dans la même ligne : « vosotros » marqué (en Espagne) dans le sens, « ellos · ustedes » pour le pluriel des deux côtés. Les formes sont les mêmes dans les deux variantes : une voix par variante (Lolita, Monica), mêmes textes.",
+  "serie : la série d'exercices qui suit (espanol/datos/ejercicios.json : praeteritumExercises = Pretérito, perfektExercises = Imperfecto, konjunktiv2Exercises = Subjuntivo...) ; null = pas de série. temps : le champ exemple_<temps> de verbos.json pour la phrase en situation ; null = pas de phrase.",
+  "Contrôle : python tests/conjugaison.py. Sens en fr, en, pt, ar (les langues d'interface qui offrent l'espagnol)."
+ ],
+ "niveaux": {
+  "A2": [
+   {
+    "id": "preterito_regular",
+    "serie": "praeteritumExercises",
+    "temps": "preterito",
+    "t": {
+     "fr": "Le passé simple : hablé, comí",
+     "en": "The simple past: hablé, comí",
+     "pt": "O pretérito: hablé, comí",
+     "ar": "الماضي البسيط: hablé، comí"
+    },
+    "l": [
+     [
+      "yo [hablé] con ella",
+      {
+       "fr": "j'ai parlé avec elle",
+       "en": "I spoke to her",
+       "pt": "eu falei com ela",
+       "ar": "تحدّثتُ معها"
+      }
+     ],
+     [
+      "tú [comiste] paella",
+      {
+       "fr": "tu as mangé une paella",
+       "en": "you ate paella",
+       "pt": "você comeu paella",
+       "ar": "أكلتَ الباييّا"
+      }
+     ],
+     [
+      "él · ella [vivió] en Lima",
+      {
+       "fr": "il · elle a vécu à Lima",
+       "en": "he · she lived in Lima",
+       "pt": "ele · ela morou em Lima",
+       "ar": "هو · هي عاش في ليما"
+      }
+     ],
+     [
+      "nosotros [llegamos] tarde",
+      {
+       "fr": "nous sommes arrivés en retard",
+       "en": "we arrived late",
+       "pt": "nós chegamos tarde",
+       "ar": "وصلنا متأخّرين"
+      }
+     ],
+     [
+      "vosotros [bebisteis] agua",
+      {
+       "fr": "vous avez bu de l'eau (à plusieurs, en Espagne)",
+       "en": "you drank water (plural, Spain)",
+       "pt": "vocês beberam água (Espanha)",
+       "ar": "شربتم الماء (في إسبانيا)"
+      }
+     ],
+     [
+      "ellos · ustedes [escribieron]",
+      {
+       "fr": "ils ont écrit · vous avez écrit (à plusieurs)",
+       "en": "they wrote · you wrote (plural)",
+       "pt": "eles escreveram · vocês escreveram",
+       "ar": "هم كتبوا · أنتم كتبتم"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Pour une action finie, à un moment précis : « Ayer comí paella. » -ar fait -é, -aste, -ó, -amos, -asteis, -aron ; -er et -ir font -í, -iste, -ió, -imos, -isteis, -ieron. L'accent écrit compte : hablo (je parle), habló (il a parlé).",
+     "en": "For a finished action at a specific time: “Ayer comí paella.” -ar verbs: -é, -aste, -ó, -amos, -asteis, -aron; -er and -ir: -í, -iste, -ió, -imos, -isteis, -ieron. The written accent matters: hablo (I speak), habló (he spoke).",
+     "pt": "Para uma ação terminada, num momento preciso: “Ayer comí paella.” -ar faz -é, -aste, -ó, -amos, -asteis, -aron; -er e -ir fazem -í, -iste, -ió, -imos, -isteis, -ieron. O acento escrito conta: hablo (eu falo), habló (ele falou).",
+     "ar": "للفعل المنتهي في لحظة محدّدة: «Ayer comí paella.» أفعال -ar تأخذ ‎-é، -aste، -ó، -amos، -asteis، -aron، وأفعال -er و-ir تأخذ ‎-í، -iste، -ió، -imos، -isteis، -ieron. والنبرة المكتوبة مهمّة: hablo (أتكلّم)، habló (تكلّم)."
+    }
+   },
+   {
+    "id": "preterito_ser_ir",
+    "serie": "praeteritumExercises",
+    "temps": "preterito",
+    "t": {
+     "fr": "Ser et ir au passé : fui, fue",
+     "en": "Ser and ir in the past: fui, fue",
+     "pt": "Ser e ir no passado: fui, fue",
+     "ar": "ser وir في الماضي: fui، fue"
+    },
+    "l": [
+     [
+      "yo [fui] a Madrid",
+      {
+       "fr": "je suis allé(e) à Madrid",
+       "en": "I went to Madrid",
+       "pt": "eu fui a Madri",
+       "ar": "ذهبتُ إلى مدريد"
+      }
+     ],
+     [
+      "tú [fuiste] muy amable",
+      {
+       "fr": "tu as été très gentil(le)",
+       "en": "you were very kind",
+       "pt": "você foi muito gentil",
+       "ar": "كنتَ لطيفًا جدًّا"
+      }
+     ],
+     [
+      "la fiesta [fue] genial",
+      {
+       "fr": "la fête a été géniale",
+       "en": "the party was great",
+       "pt": "a festa foi ótima",
+       "ar": "كان الحفل رائعًا"
+      }
+     ],
+     [
+      "nosotros [fuimos] al cine",
+      {
+       "fr": "nous sommes allés au cinéma",
+       "en": "we went to the cinema",
+       "pt": "nós fomos ao cinema",
+       "ar": "ذهبنا إلى السينما"
+      }
+     ],
+     [
+      "vosotros [fuisteis] a la playa",
+      {
+       "fr": "vous êtes allés à la plage (à plusieurs, en Espagne)",
+       "en": "you went to the beach (plural, Spain)",
+       "pt": "vocês foram à praia (Espanha)",
+       "ar": "ذهبتم إلى الشاطئ (في إسبانيا)"
+      }
+     ],
+     [
+      "ellos · ustedes [fueron] a casa",
+      {
+       "fr": "ils sont rentrés · vous êtes rentrés à la maison",
+       "en": "they went home · you went home (plural)",
+       "pt": "eles foram · vocês foram para casa",
+       "ar": "هم ذهبوا · أنتم ذهبتم إلى البيت"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Ser (être) et ir (aller) ont exactement les mêmes formes au passé : fui, fuiste, fue, fuimos, fuisteis, fueron. C'est la phrase qui tranche : « Fui a Madrid » (je suis allé), « Fue muy fácil » (c'était très facile). Pas d'accent écrit sur ces formes.",
+     "en": "Ser (to be) and ir (to go) have exactly the same past forms: fui, fuiste, fue, fuimos, fuisteis, fueron. The sentence decides: “Fui a Madrid” (I went), “Fue muy fácil” (it was very easy). No written accent on these forms.",
+     "pt": "Ser e ir têm exatamente as mesmas formas no passado — como em português: fui, fuiste, fue, fuimos, fuisteis, fueron. É a frase que decide: “Fui a Madrid” (eu fui a Madri), “Fue muy fácil” (foi muito fácil). Sem acento escrito nessas formas.",
+     "ar": "للفعلين ser (يكون) وir (يذهب) الصيغ نفسها تمامًا في الماضي: fui، fuiste، fue، fuimos، fuisteis، fueron. والجملة هي التي تحسم: «Fui a Madrid» (ذهبتُ)، «Fue muy fácil» (كان سهلًا جدًّا). ولا نبرة مكتوبة على هذه الصيغ."
+    }
+   },
+   {
+    "id": "preterito_irregulier",
+    "serie": "praeteritumExercises",
+    "temps": "preterito",
+    "t": {
+     "fr": "Les passés irréguliers : tuve, hice",
+     "en": "Irregular pasts: tuve, hice",
+     "pt": "Os pretéritos irregulares: tuve, hice",
+     "ar": "الماضي الشاذ: tuve، hice"
+    },
+    "l": [
+     [
+      "[tuve] un problema",
+      {
+       "fr": "j'ai eu un problème",
+       "en": "I had a problem",
+       "pt": "eu tive um problema",
+       "ar": "واجهتُ مشكلة"
+      }
+     ],
+     [
+      "[estuve] en Cuba",
+      {
+       "fr": "j'ai été à Cuba",
+       "en": "I was in Cuba",
+       "pt": "eu estive em Cuba",
+       "ar": "كنتُ في كوبا"
+      }
+     ],
+     [
+      "[hice] la cena",
+      {
+       "fr": "j'ai préparé le dîner",
+       "en": "I made dinner",
+       "pt": "eu fiz o jantar",
+       "ar": "حضّرتُ العشاء"
+      }
+     ],
+     [
+      "no [pude] venir",
+      {
+       "fr": "je n'ai pas pu venir",
+       "en": "I couldn't come",
+       "pt": "eu não pude vir",
+       "ar": "لم أستطع المجيء"
+      }
+     ],
+     [
+      "ella [vino] ayer",
+      {
+       "fr": "elle est venue hier",
+       "en": "she came yesterday",
+       "pt": "ela veio ontem",
+       "ar": "جاءت أمس"
+      }
+     ],
+     [
+      "¿qué [dijeron]?",
+      {
+       "fr": "qu'est-ce qu'ils ont dit ?",
+       "en": "what did they say?",
+       "pt": "o que eles disseram?",
+       "ar": "ماذا قالوا؟"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Ces verbes changent de radical et perdent l'accent écrit : tener → tuv-, estar → estuv-, hacer → hic- (él hizo), poder → pud-, venir → vin-, decir → dij-. Terminaisons : -e, -iste, -o, -imos, -isteis, -ieron (après j : -eron, dijeron).",
+     "en": "These verbs change their stem and lose the written accent: tener → tuv-, estar → estuv-, hacer → hic- (él hizo), poder → pud-, venir → vin-, decir → dij-. Endings: -e, -iste, -o, -imos, -isteis, -ieron (after j: -eron, dijeron).",
+     "pt": "Esses verbos mudam de radical e perdem o acento escrito: tener → tuv-, estar → estuv-, hacer → hic- (él hizo), poder → pud-, venir → vin-, decir → dij-. Terminações: -e, -iste, -o, -imos, -isteis, -ieron (depois de j: -eron, dijeron).",
+     "ar": "تغيّر هذه الأفعال جذرها وتفقد النبرة المكتوبة: tener → tuv-، estar → estuv-، hacer → hic- ‏(él hizo)، poder → pud-، venir → vin-، decir → dij-. اللواحق: ‎-e، -iste، -o، -imos، -isteis، -ieron (وبعد j: ‏-eron، dijeron)."
+    }
+   },
+   {
+    "id": "imperfecto",
+    "serie": "perfektExercises",
+    "temps": "imperfecto",
+    "t": {
+     "fr": "L'imparfait : hablaba, comía",
+     "en": "The imperfect: hablaba, comía",
+     "pt": "O imperfeito: hablaba, comía",
+     "ar": "الماضي الاستمراري: hablaba، comía"
+    },
+    "l": [
+     [
+      "yo [trabajaba] mucho",
+      {
+       "fr": "je travaillais beaucoup",
+       "en": "I used to work a lot",
+       "pt": "eu trabalhava muito",
+       "ar": "كنتُ أعمل كثيرًا"
+      }
+     ],
+     [
+      "tú [vivías] cerca",
+      {
+       "fr": "tu habitais tout près",
+       "en": "you lived nearby",
+       "pt": "você morava perto",
+       "ar": "كنتَ تسكن قريبًا"
+      }
+     ],
+     [
+      "él · ella [tenía] un perro",
+      {
+       "fr": "il · elle avait un chien",
+       "en": "he · she had a dog",
+       "pt": "ele · ela tinha um cachorro",
+       "ar": "كان لديه · لديها كلب"
+      }
+     ],
+     [
+      "nosotros [jugábamos] al fútbol",
+      {
+       "fr": "nous jouions au foot",
+       "en": "we used to play football",
+       "pt": "nós jogávamos futebol",
+       "ar": "كنّا نلعب كرة القدم"
+      }
+     ],
+     [
+      "vosotros [estabais] cansados",
+      {
+       "fr": "vous étiez fatigués (à plusieurs, en Espagne)",
+       "en": "you were tired (plural, Spain)",
+       "pt": "vocês estavam cansados (Espanha)",
+       "ar": "كنتم متعبين (في إسبانيا)"
+      }
+     ],
+     [
+      "ellos · ustedes [querían] salir",
+      {
+       "fr": "ils voulaient sortir · vous vouliez sortir",
+       "en": "they wanted to go out · you wanted to go out",
+       "pt": "eles queriam sair · vocês queriam sair",
+       "ar": "هم كانوا يريدون الخروج · أنتم كنتم تريدون"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "L'imparfait décrit et raconte ce qui se répétait : « De niño, jugaba al fútbol. » -ar fait -aba (hablaba, hablábamos) ; -er et -ir font -ía (comía, vivía). Yo et él ont la même forme : le sujet, ou le contexte, lève le doute.",
+     "en": "The imperfect describes things and tells what used to happen: “De niño, jugaba al fútbol.” -ar verbs: -aba (hablaba, hablábamos); -er and -ir: -ía (comía, vivía). Yo and él share the same form: the subject, or the context, clears it up.",
+     "pt": "O imperfeito descreve e conta o que se repetia: “De niño, jugaba al fútbol.” -ar faz -aba (hablaba, hablábamos); -er e -ir fazem -ía (comía, vivía). Yo e él têm a mesma forma: o sujeito, ou o contexto, desfaz a dúvida.",
+     "ar": "يصف الماضي الاستمراري ويحكي ما كان يتكرّر: «De niño, jugaba al fútbol.» أفعال -ar تأخذ ‎-aba ‏(hablaba، hablábamos)، وأفعال -er و-ir تأخذ ‎-ía ‏(comía، vivía). ولـ yo وél الصيغة نفسها: الفاعل أو السياق يزيل اللبس."
+    }
+   },
+   {
+    "id": "imperfecto_irregulier",
+    "serie": "perfektExercises",
+    "temps": "imperfecto",
+    "t": {
+     "fr": "Trois imparfaits irréguliers : era, iba, veía",
+     "en": "Three irregular imperfects: era, iba, veía",
+     "pt": "Três imperfeitos irregulares: era, iba, veía",
+     "ar": "ثلاثة أفعال شاذة في الماضي الاستمراري: era، iba، veía"
+    },
+    "l": [
+     [
+      "yo [era] pequeño",
+      {
+       "fr": "j'étais petit",
+       "en": "I was little",
+       "pt": "eu era pequeno",
+       "ar": "كنتُ صغيرًا"
+      }
+     ],
+     [
+      "la casa [era] azul",
+      {
+       "fr": "la maison était bleue",
+       "en": "the house was blue",
+       "pt": "a casa era azul",
+       "ar": "كان البيت أزرق"
+      }
+     ],
+     [
+      "[éramos] amigos",
+      {
+       "fr": "nous étions amis",
+       "en": "we were friends",
+       "pt": "nós éramos amigos",
+       "ar": "كنّا أصدقاء"
+      }
+     ],
+     [
+      "yo [iba] a la escuela",
+      {
+       "fr": "j'allais à l'école",
+       "en": "I used to go to school",
+       "pt": "eu ia à escola",
+       "ar": "كنتُ أذهب إلى المدرسة"
+      }
+     ],
+     [
+      "[íbamos] a la playa",
+      {
+       "fr": "nous allions à la plage",
+       "en": "we used to go to the beach",
+       "pt": "nós íamos à praia",
+       "ar": "كنّا نذهب إلى الشاطئ"
+      }
+     ],
+     [
+      "[veía] la tele",
+      {
+       "fr": "je regardais la télé",
+       "en": "I used to watch TV",
+       "pt": "eu via televisão",
+       "ar": "كنتُ أشاهد التلفاز"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Seuls trois verbes sont irréguliers à l'imparfait : ser (era, eras, era, éramos, erais, eran), ir (iba, ibas, iba, íbamos, ibais, iban) et ver (veía…). Tous les autres suivent le modèle -aba / -ía, même tener ou hacer.",
+     "en": "Only three verbs are irregular in the imperfect: ser (era, eras, era, éramos, erais, eran), ir (iba, ibas, iba, íbamos, ibais, iban) and ver (veía…). All the others follow -aba / -ía, even tener and hacer.",
+     "pt": "Só três verbos são irregulares no imperfeito: ser (era, eras, era, éramos, erais, eran), ir (iba, ibas, iba, íbamos, ibais, iban) e ver (veía…). Todos os outros seguem o modelo -aba / -ía, até tener e hacer.",
+     "ar": "ثلاثة أفعال فقط شاذة في الماضي الاستمراري: ser ‏(era، eras، era، éramos، erais، eran)، وir ‏(iba، ibas، iba، íbamos، ibais، iban)، وver ‏(veía…). وتتبع كل الأفعال الأخرى نموذج ‎-aba / -ía، حتى tener وhacer."
+    }
+   },
+   {
+    "id": "preterito_ou_imperfecto",
+    "serie": "praeteritumExercises",
+    "temps": null,
+    "t": {
+     "fr": "Le décor et l'action : comía, llegó",
+     "en": "Background and action: comía, llegó",
+     "pt": "O cenário e a ação: comía, llegó",
+     "ar": "الخلفية والحدث: comía، llegó"
+    },
+    "l": [
+     [
+      "[Llovía] cuando [salí].",
+      {
+       "fr": "Il pleuvait quand je suis sorti(e).",
+       "en": "It was raining when I went out.",
+       "pt": "Chovia quando eu saí.",
+       "ar": "كانت تمطر حين خرجتُ."
+      }
+     ],
+     [
+      "[Comíamos] y [sonó] el teléfono.",
+      {
+       "fr": "Nous mangions et le téléphone a sonné.",
+       "en": "We were eating and the phone rang.",
+       "pt": "Nós comíamos e o telefone tocou.",
+       "ar": "كنّا نأكل فرنّ الهاتف."
+      }
+     ],
+     [
+      "[Era] tarde y no [había] nadie.",
+      {
+       "fr": "Il était tard et il n'y avait personne.",
+       "en": "It was late and nobody was there.",
+       "pt": "Era tarde e não havia ninguém.",
+       "ar": "كان الوقت متأخّرًا ولم يكن هناك أحد."
+      }
+     ],
+     [
+      "De pronto [vi] a Ana.",
+      {
+       "fr": "Tout à coup, j'ai vu Ana.",
+       "en": "Suddenly I saw Ana.",
+       "pt": "De repente eu vi a Ana.",
+       "ar": "فجأة رأيتُ آنا."
+      }
+     ],
+     [
+      "Siempre [íbamos] en tren.",
+      {
+       "fr": "Nous y allions toujours en train.",
+       "en": "We always went by train.",
+       "pt": "Nós sempre íamos de trem.",
+       "ar": "كنّا نذهب دائمًا بالقطار."
+      }
+     ],
+     [
+      "Ayer [fuimos] en coche.",
+      {
+       "fr": "Hier, nous y sommes allés en voiture.",
+       "en": "Yesterday we went by car.",
+       "pt": "Ontem nós fomos de carro.",
+       "ar": "أمس ذهبنا بالسيارة."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Comme en français : l'imparfait pose le décor ou dit l'habitude (llovía, siempre íbamos), le passé simple dit ce qui arrive, une fois, à un moment (salí, sonó, ayer fuimos). Les mots ayer, de pronto, una vez appellent le passé simple ; siempre, de niño, cada día l'imparfait.",
+     "en": "The imperfect sets the scene or describes a habit (llovía, siempre íbamos); the preterite says what happens, once, at a given moment (salí, sonó, ayer fuimos). Words like ayer, de pronto, una vez call for the preterite; siempre, de niño, cada día for the imperfect.",
+     "pt": "Como em português: o imperfeito monta o cenário ou diz o hábito (llovía, siempre íbamos), o pretérito diz o que acontece, uma vez, num momento (salí, sonó, ayer fuimos). Palavras como ayer, de pronto, una vez pedem o pretérito; siempre, de niño, cada día, o imperfeito.",
+     "ar": "الماضي الاستمراري يرسم الخلفية أو يصف العادة (llovía، siempre íbamos)، والماضي البسيط يحكي ما يحدث مرّة في لحظة معيّنة (salí، sonó، ayer fuimos). وكلمات مثل ayer وde pronto وuna vez تستدعي الماضي البسيط، وsiempre وde niño وcada día تستدعي الاستمراري."
+    }
+   },
+   {
+    "id": "perfecto",
+    "serie": null,
+    "temps": "perfecto",
+    "t": {
+     "fr": "Le passé composé : he comido",
+     "en": "The present perfect: he comido",
+     "pt": "O pretérito perfeito composto: he comido",
+     "ar": "الماضي القريب: he comido"
+    },
+    "l": [
+     [
+      "yo [he] comido",
+      {
+       "fr": "j'ai mangé",
+       "en": "I have eaten",
+       "pt": "eu comi",
+       "ar": "لقد أكلتُ"
+      }
+     ],
+     [
+      "tú [has] terminado",
+      {
+       "fr": "tu as fini",
+       "en": "you have finished",
+       "pt": "você terminou",
+       "ar": "لقد انتهيتَ"
+      }
+     ],
+     [
+      "ella [ha] llegado",
+      {
+       "fr": "elle est arrivée",
+       "en": "she has arrived",
+       "pt": "ela chegou",
+       "ar": "لقد وصلت"
+      }
+     ],
+     [
+      "[hemos] visto la película",
+      {
+       "fr": "nous avons vu le film",
+       "en": "we have seen the film",
+       "pt": "nós vimos o filme",
+       "ar": "لقد شاهدنا الفيلم"
+      }
+     ],
+     [
+      "¿[habéis] estado en México?",
+      {
+       "fr": "vous êtes déjà allés au Mexique ? (en Espagne)",
+       "en": "have you (plural) been to Mexico? (Spain)",
+       "pt": "vocês já estiveram no México? (Espanha)",
+       "ar": "هل زرتم المكسيك؟ (في إسبانيا)"
+      }
+     ],
+     [
+      "[han] escrito un libro",
+      {
+       "fr": "ils ont écrit un livre",
+       "en": "they have written a book",
+       "pt": "eles escreveram um livro",
+       "ar": "لقد كتبوا كتابًا"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Haber au présent + le participe (-ado, -ido), toujours avec haber, jamais avec ser : « Ella ha llegado. » Participes irréguliers : hecho, dicho, visto, escrito, puesto, vuelto. En Espagne, il sert pour ce qui touche encore aujourd'hui (hoy, esta semana) ; en Amérique latine, on dit plus souvent « comí ».",
+     "en": "Haber in the present + the participle (-ado, -ido), always with haber, never ser: “Ella ha llegado.” Irregular participles: hecho, dicho, visto, escrito, puesto, vuelto. In Spain it's used for what still touches today (hoy, esta semana); in Latin America people more often say “comí”.",
+     "pt": "Haber no presente + o particípio (-ado, -ido), sempre com haber: “Ella ha llegado.” Particípios irregulares: hecho, dicho, visto, escrito, puesto, vuelto. Atenção: não equivale ao “tenho comido” português. Na Espanha, serve para o que ainda toca o hoje (hoy, esta semana); na América Latina se diz mais “comí”.",
+     "ar": "haber في المضارع + اسم المفعول (‎-ado، -ido)، دائمًا مع haber: «Ella ha llegado.» أسماء مفعول شاذة: hecho، dicho، visto، escrito، puesto، vuelto. في إسبانيا يُستعمل لما لا يزال متّصلًا باليوم (hoy، esta semana)، وفي أمريكا اللاتينية يُقال غالبًا «comí»."
+    }
+   },
+   {
+    "id": "ir_a",
+    "serie": "perifrasisExercises",
+    "temps": null,
+    "t": {
+     "fr": "Le futur proche : voy a comer",
+     "en": "The near future: voy a comer",
+     "pt": "O futuro próximo: voy a comer",
+     "ar": "المستقبل القريب: voy a comer"
+    },
+    "l": [
+     [
+      "[voy a] llamar a mi madre",
+      {
+       "fr": "je vais appeler ma mère",
+       "en": "I'm going to call my mother",
+       "pt": "eu vou ligar para a minha mãe",
+       "ar": "سأتّصل بأمّي"
+      }
+     ],
+     [
+      "¿[vas a] venir?",
+      {
+       "fr": "tu vas venir ?",
+       "en": "are you going to come?",
+       "pt": "você vai vir?",
+       "ar": "هل ستأتي؟"
+      }
+     ],
+     [
+      "[va a] llover",
+      {
+       "fr": "il va pleuvoir",
+       "en": "it's going to rain",
+       "pt": "vai chover",
+       "ar": "ستمطر"
+      }
+     ],
+     [
+      "[vamos a] cenar fuera",
+      {
+       "fr": "nous allons dîner dehors",
+       "en": "we're going to eat out",
+       "pt": "nós vamos jantar fora",
+       "ar": "سنتعشّى خارج البيت"
+      }
+     ],
+     [
+      "¿qué [vais a] hacer?",
+      {
+       "fr": "qu'est-ce que vous allez faire ? (en Espagne)",
+       "en": "what are you (plural) going to do? (Spain)",
+       "pt": "o que vocês vão fazer? (Espanha)",
+       "ar": "ماذا ستفعلون؟ (في إسبانيا)"
+      }
+     ],
+     [
+      "[van a] mudarse",
+      {
+       "fr": "ils vont déménager",
+       "en": "they're going to move",
+       "pt": "eles vão se mudar",
+       "ar": "سينتقلون إلى بيت آخر"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Ir au présent + a + l'infinitif : c'est le futur de tous les jours, comme « je vais » en français. N'oublie pas le a : « Voy a comer », jamais « voy comer ». Avec un pronom, il peut aller à la fin : « Voy a llamarte. »",
+     "en": "Ir in the present + a + the infinitive: it's the everyday future, like “I'm going to”. Don't forget the a: “Voy a comer”, never “voy comer”. A pronoun can go on the end: “Voy a llamarte.”",
+     "pt": "Ir no presente + a + infinitivo: é o futuro do dia a dia, como “eu vou” em português. Não esqueça o a: “Voy a comer”, nunca “voy comer”. Com pronome, ele pode ir no fim: “Voy a llamarte.”",
+     "ar": "ir في المضارع + a + المصدر: هو مستقبل الحياة اليومية. لا تنسَ a: «Voy a comer» وليس «voy comer» أبدًا. ويمكن أن يلتصق الضمير بآخر المصدر: «Voy a llamarte.»"
+    }
+   },
+   {
+    "id": "imperativo",
+    "serie": "imperativoExercises",
+    "temps": null,
+    "t": {
+     "fr": "L'impératif : habla, ven, hable",
+     "en": "The imperative: habla, ven, hable",
+     "pt": "O imperativo: habla, ven, hable",
+     "ar": "صيغة الأمر: habla، ven، hable"
+    },
+    "l": [
+     [
+      "[habla] más despacio",
+      {
+       "fr": "parle plus lentement",
+       "en": "speak more slowly",
+       "pt": "fala mais devagar",
+       "ar": "تكلّم ببطء أكثر"
+      }
+     ],
+     [
+      "[come] algo",
+      {
+       "fr": "mange quelque chose",
+       "en": "eat something",
+       "pt": "come alguma coisa",
+       "ar": "كُل شيئًا"
+      }
+     ],
+     [
+      "[ven] aquí",
+      {
+       "fr": "viens ici",
+       "en": "come here",
+       "pt": "vem aqui",
+       "ar": "تعالَ إلى هنا"
+      }
+     ],
+     [
+      "[pon] la mesa",
+      {
+       "fr": "mets la table",
+       "en": "set the table",
+       "pt": "põe a mesa",
+       "ar": "حضّر المائدة"
+      }
+     ],
+     [
+      "[hable] más alto, por favor",
+      {
+       "fr": "parlez plus fort, s'il vous plaît",
+       "en": "speak louder, please (polite)",
+       "pt": "fale mais alto, por favor",
+       "ar": "تكلّم بصوت أعلى من فضلك (للمجاملة)"
+      }
+     ],
+     [
+      "[pase], [pase]",
+      {
+       "fr": "entrez, entrez",
+       "en": "come in, come in (polite)",
+       "pt": "entre, entre",
+       "ar": "تفضّل بالدخول"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Avec tú, l'impératif ressemble au présent de él : habla, come, escribe. Huit verbes courts sont irréguliers : ven, pon, haz, di, sal, ten, ve, sé. Avec usted, -ar prend -e et -er / -ir prennent -a : hable, coma, escriba.",
+     "en": "With tú, the imperative looks like the él present: habla, come, escribe. Eight short verbs are irregular: ven, pon, haz, di, sal, ten, ve, sé. With usted, -ar takes -e and -er / -ir take -a: hable, coma, escriba.",
+     "pt": "Com tú, o imperativo se parece com o presente de él: habla, come, escribe. Oito verbos curtos são irregulares: ven, pon, haz, di, sal, ten, ve, sé. Com usted, -ar leva -e e -er / -ir levam -a: hable, coma, escriba.",
+     "ar": "مع tú تشبه صيغة الأمر مضارع él: ‏habla، come، escribe. وثمانية أفعال قصيرة شاذة: ven، pon، haz، di، sal، ten، ve، sé. ومع usted تأخذ أفعال -ar الحرف ‎-e، وأفعال -er و-ir الحرف ‎-a: ‏hable، coma، escriba."
+    }
+   },
+   {
+    "id": "estar_gerundio",
+    "serie": "perifrasisExercises",
+    "temps": null,
+    "t": {
+     "fr": "En train de : estoy comiendo",
+     "en": "Right now: estoy comiendo",
+     "pt": "Agora mesmo: estoy comiendo",
+     "ar": "يفعل الآن: estoy comiendo"
+    },
+    "l": [
+     [
+      "[estoy] [comiendo]",
+      {
+       "fr": "je suis en train de manger",
+       "en": "I'm eating",
+       "pt": "eu estou comendo",
+       "ar": "أنا آكل الآن"
+      }
+     ],
+     [
+      "¿qué [estás] [haciendo]?",
+      {
+       "fr": "qu'est-ce que tu fais ?",
+       "en": "what are you doing?",
+       "pt": "o que você está fazendo?",
+       "ar": "ماذا تفعل الآن؟"
+      }
+     ],
+     [
+      "[está] [lloviendo]",
+      {
+       "fr": "il pleut (en ce moment)",
+       "en": "it's raining",
+       "pt": "está chovendo",
+       "ar": "إنها تمطر الآن"
+      }
+     ],
+     [
+      "[estamos] [esperando] el bus",
+      {
+       "fr": "nous attendons le bus",
+       "en": "we're waiting for the bus",
+       "pt": "nós estamos esperando o ônibus",
+       "ar": "ننتظر الحافلة"
+      }
+     ],
+     [
+      "[están] [durmiendo]",
+      {
+       "fr": "ils dorment (en ce moment)",
+       "en": "they're sleeping",
+       "pt": "eles estão dormindo",
+       "ar": "إنهم نائمون الآن"
+      }
+     ],
+     [
+      "[sigo] [estudiando] español",
+      {
+       "fr": "je continue à apprendre l'espagnol",
+       "en": "I'm still studying Spanish",
+       "pt": "eu continuo estudando espanhol",
+       "ar": "ما زلتُ أدرس الإسبانية"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Estar + gérondif : ce qui se passe en ce moment même. -ar fait -ando (hablando), -er et -ir font -iendo (comiendo, viviendo). Quelques gérondifs changent de voyelle : durmiendo, diciendo, pidiendo ; et leyendo, oyendo s'écrivent avec y.",
+     "en": "Estar + gerund: what's happening right now. -ar gives -ando (hablando), -er and -ir give -iendo (comiendo, viviendo). A few gerunds change their vowel: durmiendo, diciendo, pidiendo; and leyendo, oyendo are spelled with y.",
+     "pt": "Estar + gerúndio: o que está acontecendo agora mesmo — como em português. -ar faz -ando (hablando), -er e -ir fazem -iendo (comiendo, viviendo). Alguns gerúndios mudam de vogal: durmiendo, diciendo, pidiendo; e leyendo, oyendo se escrevem com y.",
+     "ar": "estar + اسم الفاعل: لما يحدث في هذه اللحظة. أفعال -ar تعطي ‎-ando ‏(hablando)، و-er و-ir تعطي ‎-iendo ‏(comiendo، viviendo). وبعضها يغيّر حرف العلّة: durmiendo، diciendo، pidiendo؛ وتُكتب leyendo وoyendo بحرف y."
+    }
+   }
+  ],
+  "B1": [
+   {
+    "id": "futuro",
+    "serie": "futuroExercises",
+    "temps": "futuro",
+    "t": {
+     "fr": "Le futur : hablaré, comeré",
+     "en": "The future: hablaré, comeré",
+     "pt": "O futuro: hablaré, comeré",
+     "ar": "المستقبل: hablaré، comeré"
+    },
+    "l": [
+     [
+      "yo [viajaré] a Chile",
+      {
+       "fr": "je voyagerai au Chili",
+       "en": "I'll travel to Chile",
+       "pt": "eu viajarei ao Chile",
+       "ar": "سأسافر إلى تشيلي"
+      }
+     ],
+     [
+      "tú [aprenderás] rápido",
+      {
+       "fr": "tu apprendras vite",
+       "en": "you'll learn quickly",
+       "pt": "você aprenderá rápido",
+       "ar": "ستتعلّم بسرعة"
+      }
+     ],
+     [
+      "mañana [lloverá]",
+      {
+       "fr": "demain il pleuvra",
+       "en": "it'll rain tomorrow",
+       "pt": "amanhã choverá",
+       "ar": "ستمطر غدًا"
+      }
+     ],
+     [
+      "[viviremos] juntos",
+      {
+       "fr": "nous vivrons ensemble",
+       "en": "we'll live together",
+       "pt": "nós viveremos juntos",
+       "ar": "سنعيش معًا"
+      }
+     ],
+     [
+      "vosotros [llegaréis] a tiempo",
+      {
+       "fr": "vous arriverez à temps (à plusieurs, en Espagne)",
+       "en": "you'll arrive on time (plural, Spain)",
+       "pt": "vocês chegarão a tempo (Espanha)",
+       "ar": "ستصلون في الوقت (في إسبانيا)"
+      }
+     ],
+     [
+      "ellos · ustedes [estarán] bien",
+      {
+       "fr": "ils iront bien · vous irez bien",
+       "en": "they'll be fine · you'll be fine",
+       "pt": "eles estarão bem · vocês estarão bem",
+       "ar": "سيكونون بخير · ستكونون بخير"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "On garde l'infinitif entier et on ajoute -é, -ás, -á, -emos, -éis, -án, les mêmes pour -ar, -er et -ir : hablaré, comeré, viviré. Dans la conversation, on dit souvent « voy a viajar » ; le futur sert aux promesses, aux prévisions et aux suppositions : « Serán las diez » (il doit être dix heures).",
+     "en": "Keep the whole infinitive and add -é, -ás, -á, -emos, -éis, -án, the same for -ar, -er and -ir: hablaré, comeré, viviré. In conversation, people often say “voy a viajar”; the future is for promises, forecasts and guesses: “Serán las diez” (it must be ten o'clock).",
+     "pt": "Mantém-se o infinitivo inteiro e acrescenta-se -é, -ás, -á, -emos, -éis, -án, as mesmas para -ar, -er e -ir: hablaré, comeré, viviré. Na conversa se diz muito “voy a viajar”; o futuro serve para promessas, previsões e suposições: “Serán las diez” (devem ser dez horas).",
+     "ar": "نُبقي المصدر كاملًا ونضيف ‎-é، -ás، -á، -emos، -éis، -án، وهي نفسها لـ -ar و-er و-ir: ‏hablaré، comeré، viviré. وفي الكلام يُقال كثيرًا «voy a viajar»، أما المستقبل فللوعود والتوقّعات والتخمين: «Serán las diez» (لا بدّ أنّ الساعة العاشرة)."
+    }
+   },
+   {
+    "id": "futuro_irregulier",
+    "serie": "futuroExercises",
+    "temps": "futuro",
+    "t": {
+     "fr": "Les futurs irréguliers : tendré, haré",
+     "en": "Irregular futures: tendré, haré",
+     "pt": "Os futuros irregulares: tendré, haré",
+     "ar": "المستقبل الشاذ: tendré، haré"
+    },
+    "l": [
+     [
+      "[tendré] tiempo",
+      {
+       "fr": "j'aurai le temps",
+       "en": "I'll have time",
+       "pt": "eu terei tempo",
+       "ar": "سيكون لديّ وقت"
+      }
+     ],
+     [
+      "[haré] la compra",
+      {
+       "fr": "je ferai les courses",
+       "en": "I'll do the shopping",
+       "pt": "eu farei as compras",
+       "ar": "سأتسوّق"
+      }
+     ],
+     [
+      "¿[podrás] venir?",
+      {
+       "fr": "tu pourras venir ?",
+       "en": "will you be able to come?",
+       "pt": "você poderá vir?",
+       "ar": "هل ستستطيع المجيء؟"
+      }
+     ],
+     [
+      "[saldremos] a las ocho",
+      {
+       "fr": "nous partirons à huit heures",
+       "en": "we'll leave at eight",
+       "pt": "nós sairemos às oito",
+       "ar": "سنخرج في الثامنة"
+      }
+     ],
+     [
+      "te lo [diré] mañana",
+      {
+       "fr": "je te le dirai demain",
+       "en": "I'll tell you tomorrow",
+       "pt": "eu te direi amanhã",
+       "ar": "سأقول لك غدًا"
+      }
+     ],
+     [
+      "[vendrán] todos",
+      {
+       "fr": "ils viendront tous",
+       "en": "they'll all come",
+       "pt": "todos virão",
+       "ar": "سيأتون جميعًا"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Une douzaine de verbes raccourcissent leur radical, mais gardent les terminaisons régulières : tener → tendr-, salir → saldr-, venir → vendr-, poner → pondr-, poder → podr-, saber → sabr-, hacer → har-, decir → dir-, querer → querr-. Le conditionnel prend exactement les mêmes radicaux.",
+     "en": "About a dozen verbs shorten their stem but keep the regular endings: tener → tendr-, salir → saldr-, venir → vendr-, poner → pondr-, poder → podr-, saber → sabr-, hacer → har-, decir → dir-, querer → querr-. The conditional uses exactly the same stems.",
+     "pt": "Uns doze verbos encurtam o radical, mas mantêm as terminações regulares: tener → tendr-, salir → saldr-, venir → vendr-, poner → pondr-, poder → podr-, saber → sabr-, hacer → har-, decir → dir-, querer → querr-. O condicional usa exatamente os mesmos radicais.",
+     "ar": "نحو اثني عشر فعلًا يقصّر جذره لكنه يحتفظ باللواحق القياسية: tener → tendr-، salir → saldr-، venir → vendr-، poner → pondr-، poder → podr-، saber → sabr-، hacer → har-، decir → dir-، querer → querr-. ويستعمل الشرطي الجذور نفسها تمامًا."
+    }
+   },
+   {
+    "id": "condicional",
+    "serie": "condicionalExercises",
+    "temps": "condicional",
+    "t": {
+     "fr": "Le conditionnel : hablaría, tendría",
+     "en": "The conditional: hablaría, tendría",
+     "pt": "O condicional: hablaría, tendría",
+     "ar": "الشرطي: hablaría، tendría"
+    },
+    "l": [
+     [
+      "yo [compraría] una casa",
+      {
+       "fr": "j'achèterais une maison",
+       "en": "I'd buy a house",
+       "pt": "eu compraria uma casa",
+       "ar": "كنتُ سأشتري بيتًا"
+      }
+     ],
+     [
+      "tú [entenderías] todo",
+      {
+       "fr": "tu comprendrais tout",
+       "en": "you'd understand everything",
+       "pt": "você entenderia tudo",
+       "ar": "كنتَ ستفهم كل شيء"
+      }
+     ],
+     [
+      "ella [viviría] en la playa",
+      {
+       "fr": "elle vivrait à la plage",
+       "en": "she'd live by the beach",
+       "pt": "ela moraria na praia",
+       "ar": "كانت ستعيش على الشاطئ"
+      }
+     ],
+     [
+      "[tendríamos] más tiempo",
+      {
+       "fr": "nous aurions plus de temps",
+       "en": "we'd have more time",
+       "pt": "nós teríamos mais tempo",
+       "ar": "كان سيكون لدينا وقت أكثر"
+      }
+     ],
+     [
+      "yo no [diría] eso",
+      {
+       "fr": "je ne dirais pas ça",
+       "en": "I wouldn't say that",
+       "pt": "eu não diria isso",
+       "ar": "ما كنتُ لأقول ذلك"
+      }
+     ],
+     [
+      "ellos · ustedes [podrían] ayudar",
+      {
+       "fr": "ils pourraient · vous pourriez aider",
+       "en": "they · you could help",
+       "pt": "eles · vocês poderiam ajudar",
+       "ar": "هم · أنتم بإمكانكم المساعدة"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "L'infinitif entier + -ía, -ías, -ía, -íamos, -íais, -ían : hablaría, comería. Les verbes irréguliers prennent les radicaux du futur : tendría, haría, podría, diría. Yo et él ont la même forme : « Yo compraría », « ella compraría ».",
+     "en": "The whole infinitive + -ía, -ías, -ía, -íamos, -íais, -ían: hablaría, comería. Irregular verbs use the future stems: tendría, haría, podría, diría. Yo and él share the same form: “yo compraría”, “ella compraría”.",
+     "pt": "O infinitivo inteiro + -ía, -ías, -ía, -íamos, -íais, -ían: hablaría, comería. Os irregulares usam os radicais do futuro: tendría, haría, podría, diría. Yo e él têm a mesma forma: “yo compraría”, “ella compraría”.",
+     "ar": "المصدر كاملًا + ‎-ía، -ías، -ía، -íamos، -íais، -ían: ‏hablaría، comería. والأفعال الشاذة تأخذ جذور المستقبل: tendría، haría، podría، diría. ولـ yo وél الصيغة نفسها: «yo compraría»، «ella compraría»."
+    }
+   },
+   {
+    "id": "condicional_politesse",
+    "serie": "condicionalExercises",
+    "temps": "condicional",
+    "t": {
+     "fr": "Demander poliment : ¿podría…?",
+     "en": "Asking politely: ¿podría…?",
+     "pt": "Pedir com educação: ¿podría…?",
+     "ar": "الطلب بأدب: ¿podría…?"
+    },
+    "l": [
+     [
+      "¿[Podría] ayudarme?",
+      {
+       "fr": "Pourriez-vous m'aider ?",
+       "en": "Could you help me?",
+       "pt": "O senhor poderia me ajudar?",
+       "ar": "هل يمكنك مساعدتي؟"
+      }
+     ],
+     [
+      "Me [gustaría] reservar una mesa.",
+      {
+       "fr": "J'aimerais réserver une table.",
+       "en": "I'd like to book a table.",
+       "pt": "Eu gostaria de reservar uma mesa.",
+       "ar": "أودّ حجز طاولة."
+      }
+     ],
+     [
+      "¿Le [importaría] cerrar la puerta?",
+      {
+       "fr": "Ça vous dérangerait de fermer la porte ?",
+       "en": "Would you mind closing the door?",
+       "pt": "O senhor se importaria de fechar a porta?",
+       "ar": "هل تمانع إغلاق الباب؟"
+      }
+     ],
+     [
+      "[Deberías] descansar.",
+      {
+       "fr": "Tu devrais te reposer.",
+       "en": "You should rest.",
+       "pt": "Você deveria descansar.",
+       "ar": "ينبغي أن ترتاح."
+      }
+     ],
+     [
+      "Yo que tú, [iría] al médico.",
+      {
+       "fr": "À ta place, j'irais chez le médecin.",
+       "en": "If I were you, I'd see a doctor.",
+       "pt": "Se eu fosse você, iria ao médico.",
+       "ar": "لو كنتُ مكانك لذهبتُ إلى الطبيب."
+      }
+     ],
+     [
+      "¿Qué me [recomendaría]?",
+      {
+       "fr": "Que me recommanderiez-vous ?",
+       "en": "What would you recommend?",
+       "pt": "O que o senhor me recomendaria?",
+       "ar": "بماذا تنصحني؟"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le conditionnel adoucit une demande : « ¿Puede ayudarme? » est correct, « ¿Podría ayudarme? » est poli. « Me gustaría » remplace « quiero », qui sonne direct. Pour un conseil : « deberías » ou « yo que tú… » (à ta place…).",
+     "en": "The conditional softens a request: “¿Puede ayudarme?” is correct, “¿Podría ayudarme?” is polite. “Me gustaría” replaces “quiero”, which sounds blunt. For advice: “deberías” or “yo que tú…” (if I were you…).",
+     "pt": "O condicional suaviza um pedido: “¿Puede ayudarme?” está certo, “¿Podría ayudarme?” é educado. “Me gustaría” substitui “quiero”, que soa direto. Para um conselho: “deberías” ou “yo que tú…” (se eu fosse você…).",
+     "ar": "يليّن الشرطي الطلب: «¿Puede ayudarme?» صحيحة، و«¿Podría ayudarme?» مهذّبة. و«Me gustaría» تحلّ محلّ «quiero» التي تبدو مباشرة. وللنصيحة: «deberías» أو «yo que tú…» (لو كنتُ مكانك…)."
+    }
+   },
+   {
+    "id": "subjuntivo",
+    "serie": "konjunktiv2Exercises",
+    "temps": "subjuntivo",
+    "t": {
+     "fr": "Le subjonctif présent : que hable, que coma",
+     "en": "The present subjunctive: que hable, que coma",
+     "pt": "O presente do subjuntivo: que hable, que coma",
+     "ar": "صيغة الشكّ في المضارع: que hable، que coma"
+    },
+    "l": [
+     [
+      "que yo [hable]",
+      {
+       "fr": "que je parle",
+       "en": "that I speak",
+       "pt": "que eu fale",
+       "ar": "أن أتكلّم"
+      }
+     ],
+     [
+      "que tú [comas]",
+      {
+       "fr": "que tu manges",
+       "en": "that you eat",
+       "pt": "que você coma",
+       "ar": "أن تأكل"
+      }
+     ],
+     [
+      "que él · ella [viva]",
+      {
+       "fr": "qu'il · elle vive",
+       "en": "that he · she lives",
+       "pt": "que ele · ela viva",
+       "ar": "أن يعيش · تعيش"
+      }
+     ],
+     [
+      "que nosotros [trabajemos]",
+      {
+       "fr": "que nous travaillions",
+       "en": "that we work",
+       "pt": "que nós trabalhemos",
+       "ar": "أن نعمل"
+      }
+     ],
+     [
+      "que vosotros [leáis]",
+      {
+       "fr": "que vous lisiez (à plusieurs, en Espagne)",
+       "en": "that you read (plural, Spain)",
+       "pt": "que vocês leiam (Espanha)",
+       "ar": "أن تقرؤوا (في إسبانيا)"
+      }
+     ],
+     [
+      "que ellos · ustedes [escriban]",
+      {
+       "fr": "qu'ils écrivent · que vous écriviez",
+       "en": "that they · you write",
+       "pt": "que eles · vocês escrevam",
+       "ar": "أن يكتبوا · أن تكتبوا"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "On échange les voyelles : -ar prend un e (hable, hables, hable…), -er et -ir prennent un a (coma, viva). La base vient du « yo » du présent : tengo → tenga, hago → haga, digo → diga. Il apparaît après que, quand la phrase dit un souhait, un doute ou un sentiment.",
+     "en": "Swap the vowels: -ar verbs take e (hable, hables, hable…), -er and -ir take a (coma, viva). The base comes from the present “yo”: tengo → tenga, hago → haga, digo → diga. It appears after que when the sentence expresses a wish, a doubt or a feeling.",
+     "pt": "Trocam-se as vogais: -ar leva e (hable, hables, hable…), -er e -ir levam a (coma, viva). A base vem do “yo” do presente: tengo → tenga, hago → haga, digo → diga. Como em português, aparece depois de que, quando a frase diz um desejo, uma dúvida ou um sentimento.",
+     "ar": "نبدّل حروف العلّة: أفعال -ar تأخذ e ‏(hable، hables، hable…)، و-er و-ir تأخذ a ‏(coma، viva). والأساس يأتي من «yo» في المضارع: tengo → tenga، hago → haga، digo → diga. ويظهر بعد que عندما تعبّر الجملة عن رغبة أو شكّ أو شعور."
+    }
+   },
+   {
+    "id": "subjuntivo_irregulier",
+    "serie": "konjunktiv2Exercises",
+    "temps": "subjuntivo",
+    "t": {
+     "fr": "Les subjonctifs irréguliers : sea, vaya, tenga",
+     "en": "Irregular subjunctives: sea, vaya, tenga",
+     "pt": "Os subjuntivos irregulares: sea, vaya, tenga",
+     "ar": "صيغ الشكّ الشاذة: sea، vaya، tenga"
+    },
+    "l": [
+     [
+      "que [sea] verdad",
+      {
+       "fr": "que ce soit vrai",
+       "en": "that it's true",
+       "pt": "que seja verdade",
+       "ar": "أن يكون صحيحًا"
+      }
+     ],
+     [
+      "que [vayas] con cuidado",
+      {
+       "fr": "que tu fasses attention (en route)",
+       "en": "that you go carefully",
+       "pt": "que você vá com cuidado",
+       "ar": "أن تذهب بحذر"
+      }
+     ],
+     [
+      "que [tengas] suerte",
+      {
+       "fr": "que tu aies de la chance",
+       "en": "that you're lucky",
+       "pt": "que você tenha sorte",
+       "ar": "أن يحالفك الحظّ"
+      }
+     ],
+     [
+      "que [esté] bien",
+      {
+       "fr": "qu'il aille bien",
+       "en": "that he's well",
+       "pt": "que ele esteja bem",
+       "ar": "أن يكون بخير"
+      }
+     ],
+     [
+      "que lo [sepan]",
+      {
+       "fr": "qu'ils le sachent",
+       "en": "that they know it",
+       "pt": "que eles saibam",
+       "ar": "أن يعرفوا ذلك"
+      }
+     ],
+     [
+      "que [haya] tiempo",
+      {
+       "fr": "qu'il y ait le temps",
+       "en": "that there's time",
+       "pt": "que haja tempo",
+       "ar": "أن يكون هناك وقت"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Six verbes ne suivent pas la règle du « yo » : ser → sea, ir → vaya, estar → esté, saber → sepa, haber → haya, dar → dé. Tener, hacer, venir, decir, salir suivent la règle : tenga, haga, venga, diga, salga. On les entend dans les vœux : « ¡Que tengas suerte! »",
+     "en": "Six verbs don't follow the “yo” rule: ser → sea, ir → vaya, estar → esté, saber → sepa, haber → haya, dar → dé. Tener, hacer, venir, decir, salir do follow it: tenga, haga, venga, diga, salga. You hear them in good wishes: “¡Que tengas suerte!”",
+     "pt": "Seis verbos não seguem a regra do “yo”: ser → sea, ir → vaya, estar → esté, saber → sepa, haber → haya, dar → dé. Tener, hacer, venir, decir, salir seguem: tenga, haga, venga, diga, salga. Eles aparecem nos votos: “¡Que tengas suerte!”",
+     "ar": "ستة أفعال لا تتبع قاعدة «yo»: ser → sea، ir → vaya، estar → esté، saber → sepa، haber → haya، dar → dé. أما tener وhacer وvenir وdecir وsalir فتتبعها: tenga، haga، venga، diga، salga. ونسمعها في التمنّيات: «¡Que tengas suerte!»"
+    }
+   },
+   {
+    "id": "subjuntivo_souhait",
+    "serie": "konjunktiv2Exercises",
+    "temps": "subjuntivo",
+    "t": {
+     "fr": "Vouloir que, espérer que",
+     "en": "Wanting, hoping that…",
+     "pt": "Querer que, esperar que",
+     "ar": "أن تريد، أن تأمل…"
+    },
+    "l": [
+     [
+      "Quiero que [vengas].",
+      {
+       "fr": "Je veux que tu viennes.",
+       "en": "I want you to come.",
+       "pt": "Quero que você venha.",
+       "ar": "أريدك أن تأتي."
+      }
+     ],
+     [
+      "Espero que [estés] bien.",
+      {
+       "fr": "J'espère que tu vas bien.",
+       "en": "I hope you're well.",
+       "pt": "Espero que você esteja bem.",
+       "ar": "آمل أن تكون بخير."
+      }
+     ],
+     [
+      "Me alegra que [estéis] aquí.",
+      {
+       "fr": "Je suis content que vous soyez là. (en Espagne)",
+       "en": "I'm glad you're here. (plural, Spain)",
+       "pt": "Fico feliz que vocês estejam aqui. (Espanha)",
+       "ar": "يسعدني أنكم هنا. (في إسبانيا)"
+      }
+     ],
+     [
+      "No creo que [llueva].",
+      {
+       "fr": "Je ne crois pas qu'il pleuve.",
+       "en": "I don't think it'll rain.",
+       "pt": "Não acho que vá chover.",
+       "ar": "لا أظنّ أنها ستمطر."
+      }
+     ],
+     [
+      "Es importante que [descanses].",
+      {
+       "fr": "C'est important que tu te reposes.",
+       "en": "It's important that you rest.",
+       "pt": "É importante que você descanse.",
+       "ar": "من المهمّ أن ترتاح."
+      }
+     ],
+     [
+      "¡Ojalá [haga] sol!",
+      {
+       "fr": "Pourvu qu'il fasse beau !",
+       "en": "I hope it's sunny!",
+       "pt": "Tomara que faça sol!",
+       "ar": "يا ليت الجوّ يكون مشمسًا!"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Deux sujets différents, et le premier veut, espère, craint ou juge : le second verbe passe au subjonctif. « Quiero ir » (moi, j'y vais), mais « Quiero que vayas » (toi). Attention : « Creo que llueve » (je crois : indicatif), mais « No creo que llueva » (doute : subjonctif).",
+     "en": "Two different subjects, and the first one wants, hopes, fears or judges: the second verb goes into the subjunctive. “Quiero ir” (I'm going), but “Quiero que vayas” (you). Note: “Creo que llueve” (indicative), but “No creo que llueva” (doubt: subjunctive).",
+     "pt": "Dois sujeitos diferentes, e o primeiro quer, espera, teme ou julga: o segundo verbo vai para o subjuntivo. “Quiero ir” (eu vou), mas “Quiero que vayas” (você). Atenção: “Creo que llueve” (indicativo), mas “No creo que llueva” (dúvida: subjuntivo).",
+     "ar": "فاعلان مختلفان، والأول يريد أو يأمل أو يخاف أو يحكم: فيذهب الفعل الثاني إلى صيغة الشكّ. «Quiero ir» (أنا سأذهب)، لكن «Quiero que vayas» (أنت). وانتبه: «Creo que llueve» (الإخبار)، لكن «No creo que llueva» (الشكّ)."
+    }
+   },
+   {
+    "id": "subjuntivo_cuando",
+    "serie": "konjunktiv2Exercises",
+    "temps": "subjuntivo",
+    "t": {
+     "fr": "Quand tu arriveras : cuando llegues",
+     "en": "When you arrive: cuando llegues",
+     "pt": "Quando você chegar: cuando llegues",
+     "ar": "عندما تصل: cuando llegues"
+    },
+    "l": [
+     [
+      "Cuando [llegues], llámame.",
+      {
+       "fr": "Quand tu arriveras, appelle-moi.",
+       "en": "When you arrive, call me.",
+       "pt": "Quando você chegar, me liga.",
+       "ar": "عندما تصل، اتّصل بي."
+      }
+     ],
+     [
+      "Te lo explico para que lo [entiendas].",
+      {
+       "fr": "Je te l'explique pour que tu comprennes.",
+       "en": "I'm explaining so that you understand.",
+       "pt": "Explico para que você entenda.",
+       "ar": "أشرح لك ذلك لكي تفهم."
+      }
+     ],
+     [
+      "Antes de que [salgas], come algo.",
+      {
+       "fr": "Avant que tu sortes, mange quelque chose.",
+       "en": "Before you go out, eat something.",
+       "pt": "Antes de você sair, coma alguma coisa.",
+       "ar": "قبل أن تخرج، كُل شيئًا."
+      }
+     ],
+     [
+      "Hasta que no [termine], no salgo.",
+      {
+       "fr": "Tant que je n'ai pas fini, je ne sors pas.",
+       "en": "I'm not going out until I finish.",
+       "pt": "Até eu terminar, não saio.",
+       "ar": "لن أخرج حتى أنتهي."
+      }
+     ],
+     [
+      "Cuando [sea] mayor, viajaré.",
+      {
+       "fr": "Quand je serai grand, je voyagerai.",
+       "en": "When I grow up, I'll travel.",
+       "pt": "Quando eu for grande, vou viajar.",
+       "ar": "عندما أكبر سأسافر."
+      }
+     ],
+     [
+      "Cuando [llego], siempre llamo.",
+      {
+       "fr": "Quand j'arrive, j'appelle toujours.",
+       "en": "When I arrive, I always call.",
+       "pt": "Quando eu chego, sempre ligo.",
+       "ar": "عندما أصل أتّصل دائمًا."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Là où le français met un futur (« quand tu arriveras »), l'espagnol met le subjonctif : « cuando llegues ». Jamais de futur après cuando ! Para que et antes de que demandent toujours le subjonctif. La dernière ligne compare : une habitude, c'est l'indicatif (« cuando llego »).",
+     "en": "When cuando refers to the future, Spanish uses the subjunctive: “cuando llegues” (when you arrive). Never the future after cuando! Para que and antes de que always take the subjunctive. The last line compares: a habit takes the indicative (“cuando llego”).",
+     "pt": "Quando cuando fala do futuro, o espanhol usa o subjuntivo, como o português: “cuando llegues” (quando você chegar). Nunca o futuro depois de cuando! Para que e antes de que pedem sempre o subjuntivo. A última linha compara: um hábito leva o indicativo (“cuando llego”).",
+     "ar": "عندما تشير cuando إلى المستقبل تستعمل الإسبانية صيغة الشكّ: «cuando llegues» (عندما تصل). ولا مستقبل أبدًا بعد cuando! وتطلب para que وantes de que صيغة الشكّ دائمًا. والسطر الأخير للمقارنة: العادة تأخذ الإخبار («cuando llego»)."
+    }
+   },
+   {
+    "id": "imperativo_negativo",
+    "serie": "imperativoExercises",
+    "temps": "subjuntivo",
+    "t": {
+     "fr": "Ne fais pas… : no hables, no vayas",
+     "en": "Don't…: no hables, no vayas",
+     "pt": "Não faça…: no hables, no vayas",
+     "ar": "لا تفعل…: no hables، no vayas"
+    },
+    "l": [
+     [
+      "No [hables] tan alto.",
+      {
+       "fr": "Ne parle pas si fort.",
+       "en": "Don't speak so loudly.",
+       "pt": "Não fale tão alto.",
+       "ar": "لا تتكلّم بصوت عالٍ هكذا."
+      }
+     ],
+     [
+      "No [comas] eso.",
+      {
+       "fr": "Ne mange pas ça.",
+       "en": "Don't eat that.",
+       "pt": "Não coma isso.",
+       "ar": "لا تأكل هذا."
+      }
+     ],
+     [
+      "No [vayas] solo.",
+      {
+       "fr": "N'y va pas seul.",
+       "en": "Don't go alone.",
+       "pt": "Não vá sozinho.",
+       "ar": "لا تذهب وحدك."
+      }
+     ],
+     [
+      "No te [preocupes].",
+      {
+       "fr": "Ne t'inquiète pas.",
+       "en": "Don't worry.",
+       "pt": "Não se preocupe.",
+       "ar": "لا تقلق."
+      }
+     ],
+     [
+      "No [toque] nada, por favor.",
+      {
+       "fr": "Ne touchez à rien, s'il vous plaît.",
+       "en": "Please don't touch anything. (polite)",
+       "pt": "Não toque em nada, por favor.",
+       "ar": "لا تلمس شيئًا من فضلك (للمجاملة)."
+      }
+     ],
+     [
+      "No [lleguéis] tarde.",
+      {
+       "fr": "N'arrivez pas en retard. (à plusieurs, en Espagne)",
+       "en": "Don't be late. (plural, Spain)",
+       "pt": "Não cheguem tarde. (Espanha)",
+       "ar": "لا تتأخّروا. (في إسبانيا)"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "À la forme négative, l'impératif prend le subjonctif : habla → no hables, ven → no vengas, ve → no vayas. Le pronom passe devant : « Siéntate » mais « No te sientes ». Avec usted, la forme est la même à l'affirmatif et au négatif : hable, no hable.",
+     "en": "In the negative, the imperative uses the subjunctive: habla → no hables, ven → no vengas, ve → no vayas. The pronoun moves in front: “Siéntate” but “No te sientes”. With usted, the form is the same in the affirmative and negative: hable, no hable.",
+     "pt": "Na forma negativa, o imperativo usa o subjuntivo: habla → no hables, ven → no vengas, ve → no vayas. O pronome vai para a frente: “Siéntate”, mas “No te sientes”. Com usted, a forma é a mesma no afirmativo e no negativo: hable, no hable.",
+     "ar": "في النفي تستعمل صيغة الأمر صيغة الشكّ: habla → no hables، ven → no vengas، ve → no vayas. وينتقل الضمير إلى الأمام: «Siéntate» لكن «No te sientes». ومع usted الصيغة واحدة في الإثبات والنفي: hable، no hable."
+    }
+   },
+   {
+    "id": "pluscuamperfecto",
+    "serie": null,
+    "temps": null,
+    "t": {
+     "fr": "Le plus-que-parfait : había comido",
+     "en": "The past perfect: había comido",
+     "pt": "O mais-que-perfeito: había comido",
+     "ar": "الماضي التام: había comido"
+    },
+    "l": [
+     [
+      "yo ya [había] comido",
+      {
+       "fr": "j'avais déjà mangé",
+       "en": "I had already eaten",
+       "pt": "eu já tinha comido",
+       "ar": "كنتُ قد أكلتُ"
+      }
+     ],
+     [
+      "¿[habías] estado allí?",
+      {
+       "fr": "tu y étais déjà allé(e) ?",
+       "en": "had you been there?",
+       "pt": "você já tinha estado lá?",
+       "ar": "هل كنتَ قد زرتَ المكان؟"
+      }
+     ],
+     [
+      "el tren ya [había] salido",
+      {
+       "fr": "le train était déjà parti",
+       "en": "the train had already left",
+       "pt": "o trem já tinha saído",
+       "ar": "كان القطار قد غادر"
+      }
+     ],
+     [
+      "nunca [habíamos] visto el mar",
+      {
+       "fr": "nous n'avions jamais vu la mer",
+       "en": "we had never seen the sea",
+       "pt": "nós nunca tínhamos visto o mar",
+       "ar": "لم نكن قد رأينا البحر من قبل"
+      }
+     ],
+     [
+      "[habíais] olvidado la llave",
+      {
+       "fr": "vous aviez oublié la clé (à plusieurs, en Espagne)",
+       "en": "you had forgotten the key (plural, Spain)",
+       "pt": "vocês tinham esquecido a chave (Espanha)",
+       "ar": "كنتم قد نسيتم المفتاح (في إسبانيا)"
+      }
+     ],
+     [
+      "me dijo que [había] terminado",
+      {
+       "fr": "il m'a dit qu'il avait fini",
+       "en": "he told me he had finished",
+       "pt": "ele me disse que tinha terminado",
+       "ar": "قال لي إنه كان قد انتهى"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Haber à l'imparfait (había, habías, había, habíamos, habíais, habían) + le participe : ce qui s'était passé AVANT un autre moment du passé. Les mots ya (déjà) et nunca (jamais) se placent devant había, jamais entre había et le participe.",
+     "en": "Haber in the imperfect (había, habías, había, habíamos, habíais, habían) + the participle: what had happened BEFORE another moment in the past. Ya (already) and nunca (never) go before había, never between había and the participle.",
+     "pt": "Haber no imperfeito (había, habías, había, habíamos, habíais, habían) + o particípio: o que tinha acontecido ANTES de outro momento do passado. Ya (já) e nunca vão antes de había, nunca entre había e o particípio.",
+     "ar": "haber في الماضي الاستمراري (había، habías، había، habíamos، habíais، habían) + اسم المفعول: لما كان قد حدث قبل لحظة أخرى في الماضي. وتوضع ya (سبق أن) وnunca (أبدًا) قبل había، ولا تُوضع أبدًا بينها وبين اسم المفعول."
+    }
+   }
+  ]
+ }
+}
