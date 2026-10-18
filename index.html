@@ -6478,6 +6478,23 @@ body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
 .carnet-ph small{display:block; color:#7b8798; font-size:13px; margin-top:2px;}
 .carnet-ph i{font-style:normal; font-size:18px;}
 .carnet-vide{color:#7b8798;}
+/* v867 (essai feuilles_conj) : la partie qui change, surlignee dans la feuille ;
+   la porte ; « Mes feuilles ». */
+.cp-tl-forme u{text-decoration:none; background:#fde7c2; border-radius:4px; padding:0 3px;}
+.fc-porte-bas{display:flex; flex-wrap:wrap; align-items:center; gap:6px 10px; margin:2px 0 8px; font-size:12.5px;}
+.fc-porte-auj{color:#ffd28a; font-weight:800;}
+.fc-ligne{display:flex; align-items:center; gap:10px; width:100%; text-align:left; background:#fff; border:1.5px solid #e6dfd3; border-radius:12px; padding:10px 12px; font:inherit; color:inherit; cursor:pointer;}
+.fc-ligne span{flex:1; min-width:0;}
+.fc-ligne b{display:block; font-size:15.5px;}
+.fc-ligne small{display:block; color:#7b8798; font-size:12.5px; margin-top:2px;}
+.fc-ligne i{font-style:normal; font-size:11px; font-weight:900; letter-spacing:.05em; text-transform:uppercase; color:#0F6E56;}
+.fc-ligne.fc-revoir{border-color:#E8A23A;}
+.fc-ligne.fc-revoir i{color:#a8452f;}
+.fc-ligne.fc-a-venir{opacity:.55; cursor:default;}
+.fc-ligne.fc-a-venir i{color:#7b8798;}
+.fc-detail{margin:2px 0 8px;}
+body[data-theme="dark"] .fc-ligne{background:#232a34; border-color:#2c333d;}
+body[data-theme="dark"] .cp-tl-forme u{background:rgba(232,162,58,.28);}
 body[data-theme="dark"] .cp-type b.cp-av{background:rgba(120,170,220,.16); color:#9cc3ea;}
 body[data-theme="dark"] .av-variantes button,
 body[data-theme="dark"] .av-exemple,
@@ -7674,7 +7691,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v866</span>
+    <span class="subtitle-version">v867</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9364,6 +9381,20 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
     </div>
     <p class="carnet-sous" data-i18n="av_carnet_sous">Les phrases toutes faites de tes escales, à ouvrir sur place. Touche une phrase pour l'entendre.</p>
     <div id="carnetListe" class="carnet-liste"></div>
+</section>
+
+<!-- v867 (essai feuilles_conj) : « Mes feuilles » -- les feuilles de
+     conjugaison du niveau, vues ou a venir. Rempli par ouvrirMesFeuilles(). -->
+<section id="mesFeuilles" class="screen">
+    <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
+    <div class="title-row">
+        <div>
+            <div class="kicker" data-i18n="fc_kicker">Conjugaison</div>
+            <h2 data-i18n="fc_titre">Mes feuilles</h2>
+        </div>
+    </div>
+    <p class="carnet-sous" data-i18n="fc_sous">Les feuilles de conjugaison de ton niveau. Touche une feuille pour l'ouvrir, puis une ligne pour l'entendre.</p>
+    <div id="feuillesListe" class="carnet-liste"></div>
 </section>
 
 <section id="flashcards" class="screen">
@@ -11073,6 +11104,19 @@ const I18N = {
         av_carnet_titre: "Mon carnet de phrases",
         av_carnet_sous: "Les phrases toutes faites de tes escales, à ouvrir sur place. Touche une phrase pour l'entendre.",
         av_carnet_vide: "Ton carnet se remplit à chaque escale.",
+        // v867 (essai feuilles_conj) : les feuilles de conjugaison A2-B1.
+        fc_badge: "📄 Feuille {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 Feuille à revoir · {niveau}",
+        fc_kicker: "Conjugaison",
+        fc_titre: "Mes feuilles",
+        fc_sous: "Les feuilles de conjugaison de ton niveau. Touche une feuille pour l'ouvrir, puis une ligne pour l'entendre.",
+        fc_vide: "Ta première feuille arrive dans ta séance du jour.",
+        fc_porte_auj: "Aujourd'hui, la feuille : {t}",
+        fc_porte_lien: "📄 Mes feuilles · {n}",
+        fc_a_revoir: "À revoir",
+        fc_vue: "Vue",
+        fc_bientot: "Bientôt",
+        fc_niveau: "{niveau} · {n} / {t}",
         av_pp_suite_k: "La suite",
         av_pp_suite_t: "Ton A1 commence",
         av_pp_e1: "12 escales : manger dehors, le marché, le train, la santé, rencontrer des gens…",
@@ -12371,6 +12415,18 @@ const I18N = {
         av_carnet_titre: "My phrasebook",
         av_carnet_sous: "The ready-made phrases from your stops, to open on the spot. Tap a phrase to hear it.",
         av_carnet_vide: "Your phrasebook fills up at every stop.",
+        fc_badge: "📄 Sheet {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 Sheet to review · {niveau}",
+        fc_kicker: "Conjugation",
+        fc_titre: "My sheets",
+        fc_sous: "The conjugation sheets for your level. Tap a sheet to open it, then a line to hear it.",
+        fc_vide: "Your first sheet will come up in your daily session.",
+        fc_porte_auj: "Today's sheet: {t}",
+        fc_porte_lien: "📄 My sheets · {n}",
+        fc_a_revoir: "To review",
+        fc_vue: "Seen",
+        fc_bientot: "Coming soon",
+        fc_niveau: "{niveau} · {n} / {t}",
         av_pp_suite_k: "What's next",
         av_pp_suite_t: "Your A1 begins",
         av_pp_e1: "12 stops: eating out, the market, the train, health, meeting people…",
@@ -13671,6 +13727,18 @@ const I18N = {
         av_carnet_titre: "Cümle defterim",
         av_carnet_sous: "Duraklarındaki hazır cümleler, yerinde açmak için. Dinlemek için bir cümleye dokun.",
         av_carnet_vide: "Defterin her durakta doluyor.",
+        fc_badge: "📄 Tablo {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 Tekrar edilecek tablo · {niveau}",
+        fc_kicker: "Fiil çekimi",
+        fc_titre: "Tablolarım",
+        fc_sous: "Seviyenin fiil çekimi tabloları. Açmak için bir tabloya, dinlemek için bir satıra dokun.",
+        fc_vide: "İlk tablon günlük çalışmanda gelecek.",
+        fc_porte_auj: "Bugünün tablosu: {t}",
+        fc_porte_lien: "📄 Tablolarım · {n}",
+        fc_a_revoir: "Tekrar et",
+        fc_vue: "Görüldü",
+        fc_bientot: "Yakında",
+        fc_niveau: "{niveau} · {n} / {t}",
         av_pp_suite_k: "Devamı",
         av_pp_suite_t: "A1'in başlıyor",
         av_pp_e1: "12 durak: dışarıda yemek, pazar, tren, sağlık, insanlarla tanışmak…",
@@ -15308,6 +15376,18 @@ const I18N = {
         av_carnet_titre: "Мій записник фраз",
         av_carnet_sous: "Готові фрази з твоїх зупинок, щоб відкривати на місці. Торкнися фрази, щоб її почути.",
         av_carnet_vide: "Записник поповнюється на кожній зупинці.",
+        fc_badge: "📄 Таблиця {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 Таблиця для повторення · {niveau}",
+        fc_kicker: "Дієвідмінювання",
+        fc_titre: "Мої таблиці",
+        fc_sous: "Таблиці дієвідмінювання твого рівня. Торкнися таблиці, щоб відкрити її, а потім рядка, щоб його почути.",
+        fc_vide: "Перша таблиця з’явиться в сьогоднішньому занятті.",
+        fc_porte_auj: "Сьогодні таблиця: {t}",
+        fc_porte_lien: "📄 Мої таблиці · {n}",
+        fc_a_revoir: "Повторити",
+        fc_vue: "Переглянуто",
+        fc_bientot: "Незабаром",
+        fc_niveau: "{niveau} · {n} / {t}",
         av_pp_suite_k: "Далі",
         av_pp_suite_t: "Починається твій A1",
         av_pp_e1: "12 зупинок: поїсти в місті, ринок, потяг, здоров'я, знайомства…",
@@ -17315,6 +17395,18 @@ const I18N = {
         av_carnet_titre: "دفترچهٔ جمله‌های من",
         av_carnet_sous: "جمله‌های آمادهٔ ایستگاه‌هایت، برای باز کردن در همان‌جا. روی جمله بزن تا آن را بشنوی.",
         av_carnet_vide: "دفترچه‌ات در هر ایستگاه پرتر می‌شود.",
+        fc_badge: "📄 برگهٔ {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 برگه برای مرور · {niveau}",
+        fc_kicker: "صرف فعل",
+        fc_titre: "برگه‌های من",
+        fc_sous: "برگه‌های صرف فعلِ سطح تو. روی یک برگه بزن تا باز شود، و روی یک سطر تا آن را بشنوی.",
+        fc_vide: "اولین برگه‌ات در جلسهٔ امروز می‌آید.",
+        fc_porte_auj: "برگهٔ امروز: {t}",
+        fc_porte_lien: "📄 برگه‌های من · {n}",
+        fc_a_revoir: "برای مرور",
+        fc_vue: "دیده‌شده",
+        fc_bientot: "به‌زودی",
+        fc_niveau: "{niveau} · {n} / {t}",
         av_pp_suite_k: "ادامه",
         av_pp_suite_t: "A1 تو شروع می‌شود",
         av_pp_e1: "۱۲ ایستگاه: غذا خوردن بیرون، بازار، قطار، سلامت، آشنا شدن با مردم…",
@@ -18746,6 +18838,18 @@ const I18N = {
         av_carnet_titre: "دفتر عباراتي",
         av_carnet_sous: "العبارات الجاهزة من محطاتك، لتفتحها هناك. المس عبارة لتسمعها.",
         av_carnet_vide: "يمتلئ دفترك في كل محطة.",
+        fc_badge: "📄 الورقة {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 ورقة للمراجعة · {niveau}",
+        fc_kicker: "تصريف الأفعال",
+        fc_titre: "أوراقي",
+        fc_sous: "أوراق تصريف الأفعال لمستواك. المس ورقة لفتحها، ثم سطرًا لسماعه.",
+        fc_vide: "ستظهر ورقتك الأولى في جلسة اليوم.",
+        fc_porte_auj: "ورقة اليوم: {t}",
+        fc_porte_lien: "📄 أوراقي · {n}",
+        fc_a_revoir: "للمراجعة",
+        fc_vue: "تمّت رؤيتها",
+        fc_bientot: "قريبًا",
+        fc_niveau: "{niveau} · {n} / {t}",
         av_pp_suite_k: "التتمة",
         av_pp_suite_t: "يبدأ مستواك A1",
         av_pp_e1: "12 محطة: الأكل في الخارج، السوق، القطار، الصحة، التعرّف على الناس…",
@@ -19043,6 +19147,18 @@ const I18N = {
         av_carnet_titre: "Meu caderno de frases",
         av_carnet_sous: "As frases prontas das suas paradas, para abrir no lugar. Toque numa frase para ouvi-la.",
         av_carnet_vide: "Seu caderno vai se enchendo a cada parada.",
+        fc_badge: "📄 Folha {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 Folha para revisar · {niveau}",
+        fc_kicker: "Conjugação",
+        fc_titre: "Minhas folhas",
+        fc_sous: "As folhas de conjugação do seu nível. Toque numa folha para abri-la e numa linha para ouvi-la.",
+        fc_vide: "Sua primeira folha vai aparecer na sessão do dia.",
+        fc_porte_auj: "Hoje, a folha: {t}",
+        fc_porte_lien: "📄 Minhas folhas · {n}",
+        fc_a_revoir: "Revisar",
+        fc_vue: "Vista",
+        fc_bientot: "Em breve",
+        fc_niveau: "{niveau} · {n} / {t}",
         av_pp_suite_k: "A continuação",
         av_pp_suite_t: "Seu A1 começa",
         av_pp_e1: "12 paradas: comer fora, o mercado, o trem, a saúde, conhecer pessoas…",
@@ -20406,6 +20522,18 @@ const I18N = {
         av_carnet_titre: "Mój notes ze zdaniami",
         av_carnet_sous: "Gotowe zdania z twoich przystanków, do otwarcia na miejscu. Dotknij zdania, żeby je usłyszeć.",
         av_carnet_vide: "Twój notes zapełnia się na każdym przystanku.",
+        fc_badge: "📄 Tabela {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 Tabela do powtórki · {niveau}",
+        fc_kicker: "Koniugacja",
+        fc_titre: "Moje tabele",
+        fc_sous: "Tabele koniugacji z twojego poziomu. Dotknij tabeli, aby ją otworzyć, a potem linijki, aby ją usłyszeć.",
+        fc_vide: "Pierwsza tabela pojawi się w dzisiejszej sesji.",
+        fc_porte_auj: "Dziś tabela: {t}",
+        fc_porte_lien: "📄 Moje tabele · {n}",
+        fc_a_revoir: "Do powtórki",
+        fc_vue: "Obejrzana",
+        fc_bientot: "Wkrótce",
+        fc_niveau: "{niveau} · {n} / {t}",
         av_pp_suite_k: "Dalej",
         av_pp_suite_t: "Zaczyna się twój A1",
         av_pp_e1: "12 przystanków: jedzenie na mieście, targ, pociąg, zdrowie, poznawanie ludzi…",
@@ -21767,6 +21895,18 @@ const I18N = {
         av_carnet_titre: "Мой блокнот фраз",
         av_carnet_sous: "Готовые фразы с твоих остановок, чтобы открывать на месте. Коснись фразы, чтобы её услышать.",
         av_carnet_vide: "Блокнот пополняется на каждой остановке.",
+        fc_badge: "📄 Таблица {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 Таблица на повторение · {niveau}",
+        fc_kicker: "Спряжение",
+        fc_titre: "Мои таблицы",
+        fc_sous: "Таблицы спряжения твоего уровня. Нажми на таблицу, чтобы открыть её, а потом на строку, чтобы её услышать.",
+        fc_vide: "Первая таблица появится в сегодняшнем занятии.",
+        fc_porte_auj: "Сегодня таблица: {t}",
+        fc_porte_lien: "📄 Мои таблицы · {n}",
+        fc_a_revoir: "Повторить",
+        fc_vue: "Просмотрена",
+        fc_bientot: "Скоро",
+        fc_niveau: "{niveau} · {n} / {t}",
         av_pp_suite_k: "Дальше",
         av_pp_suite_t: "Начинается твой A1",
         av_pp_e1: "12 остановок: поесть в городе, рынок, поезд, здоровье, знакомства…",
@@ -35431,6 +35571,15 @@ const ESSAIS = {
         titre: "L'A1 voyage",
         desc: "Après Premiers pas, l'A1 commence par 12 escales (manger dehors, le marché, le train, la santé…) : la séance puise ses mots neufs dans l'escale, avec sa feuille de conjugaison, ses phrases toutes faites, son dialogue à voix haute et sa scène. Puis le jalon, la suite de l'A1 (le logement et les démarches d'abord, puis 8 étapes), et l'A2. Aucune question : la porte invite à donner sa date de départ (facultatif) et dit alors le rythme pour être prêt. Le carnet de phrases sur la porte. Les comptes qui ont déjà de l'A1 gardent l'ancien ordre."
     },
+    // EN ESSAI le 18 oct. 2026 (v867), admin seul. Jacques : que tous les
+    // niveaux aient des feuilles de conjugaison, comme Premiers pas et l'A1
+    // voyage. Maquette validee : .claude/maquette-conjugaison-niveaux.html.
+    // Voir preparerFeuille().
+    feuilles_conj: {
+        etat: "admin",
+        titre: "Les feuilles de conjugaison (A2-B1)",
+        desc: "À l'A2 et au B1, une séance sur deux commence par une feuille de conjugaison (un temps ou une construction : le passé avec sein, les séparables, le Präteritum, le Konjunktiv II…), dans l'ordre du niveau. Juste après : la carte d'un verbe du jour, verso ouvert sur ce temps, une phrase en situation à remettre en ordre et trois questions de la série d'exercices du temps. « Mes feuilles » sur la porte ; une feuille dont la série rate revient une fois."
+    },
     // EN PRODUCTION le 16 oct. 2026 (v838) -- Jacques : « en pose tout ».
     scene_arret: {
         etat: "tous",
@@ -37926,6 +38075,13 @@ function loadFlashcard(){
         verbDetailsEl.classList.remove("hidden");
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
+        // v867 (essai feuilles_conj) : le verbe du jour, juste apres la feuille,
+        // s'ouvre sur le temps de la feuille. Le Perfekt allemand est deja dans
+        // le bloc visible ; les autres temps vivent dans le bloc replie.
+        if(item.feuilleTemps && item.feuilleTemps !== "perfekt"){
+            const extra = verbDetailsEl.querySelector(".verb-extra");
+            if(extra && extra.classList.contains("hidden")) toggleVerbExtra();
+        }
     } else if(flashcardMode === 'adjektive'){
         const germanWord = card[0];
         // Direction "en" : mot allemand connu, anglais (card[5]) = cible, toujours
@@ -40401,7 +40557,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 866;
+const APP_VERSION = 867;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43971,6 +44127,7 @@ function majPortesSeance(){
     let arret = false;
     try{ arret = arretSceneActif(); }catch(e){}
     try{ majAujourdhuiScene(arret && actif); }catch(e){}
+    try{ majPorteFeuilles(); }catch(e){}
     // v832 : en Premiers pas aussi, une seule porte -- chaque jour de voyage
     // finit deja par sa scene (Jacques : « la seance a encore les deux portes »).
     let pp = false;
@@ -44690,7 +44847,10 @@ async function prechargerGrammaireSeance(){
         }
         const prep = ((PREPOSITIONS_PAR_NIVEAU[langue] || {})[niveau] || []).filter(x => !serieAcquise(x, g, s))[0];
         if(prep && noms.indexOf(prep) < 0) noms.push(prep);
-        const conj = ((CONJUGAISON_PAR_NIVEAU[langue] || {})[niveau] || []).filter(x => !serieAcquise(x, g, s))[0];
+        let conj = ((CONJUGAISON_PAR_NIVEAU[langue] || {})[niveau] || []).filter(x => !serieAcquise(x, g, s))[0];
+        // v867 (essai feuilles_conj) : la serie de la feuille du jour, ou de la
+        // derniere vue -- on voit, puis on s'exerce.
+        try{ const sf = serieDeFeuille(niveau); if(sf && !serieAcquise(sf, g, s)) conj = sf; }catch(e){}
         if(conj && noms.indexOf(conj) < 0) noms.push(conj);
         if(noms.length){
             const cle = noms.join("|");
@@ -45122,9 +45282,13 @@ function montrerCartePhrase(item){
     const type = creer("div", "cp-type");
     // v862 (essai a1_voyage) : « ✈️ Escale 3 » au lieu de « Phrase ».
     try{ marquerCarteA1V(item); }catch(e){}
+    // v867 (essai feuilles_conj) : « 📄 Feuille 3/12 · A2 » sur la feuille et
+    // sur les cartes qui la suivent.
+    try{ marquerFeuille(item); }catch(e){}
     if(item.av && item.avBadge) type.appendChild(creer("b", "cp-av", item.avBadge));
+    else if(item.fcBadge) type.appendChild(creer("b", "cp-av", item.fcBadge));
     else type.appendChild(creer("b", item.pp ? "cp-pp" : "", item.pp ? "🌱 " + t("pp_badge") : t("cp_type")));
-    const question = ((item.pp || item.avTableau) && item.forme === "pp_tableau") ? "pp_q_tableau"
+    const question = ((item.pp || item.avTableau || item.fcFeuille) && item.forme === "pp_tableau") ? "pp_q_tableau"
                    : (item.pp && item.forme === "ecoute") ? "pp_q_choix"
                    : item.forme === "av_bloc" ? "av_q_bloc"
                    : (item.av && item.forme === "parler") ? "av_q_dialogue"
@@ -45218,22 +45382,8 @@ function montrerCartePhrase(item){
     } else if(item.forme === "pp_tableau"){
         // Le tableau du jour : chaque ligne se touche et se prononce. Rien a
         // juger : il familiarise, les flashcards font retenir.
-        const tab = item.tableau || {};
-        el.appendChild(creer("p", "cp-tableau-titre", sensPremiersPas(tab.t)));
-        const table = creer("div", "cp-tableau");
-        (tab.l || []).forEach(l => {
-            const ligne = creer("button", "cp-tableau-ligne");
-            ligne.type = "button";
-            ligne.appendChild(creer("span", "cp-tl-sens", sensPremiersPas(l[1])));
-            const forme = creer("b", "cp-tl-forme", l[0]);
-            forme.setAttribute("lang", langueDe);
-            ligne.appendChild(forme);
-            ligne.appendChild(creer("span", "cp-tl-son", "🔊"));
-            ligne.addEventListener("click", () => { try{ direAllemand(l[0], { rate: 0.85 }); }catch(e){} });
-            table.appendChild(ligne);
-        });
-        el.appendChild(table);
-        if(tab.a) el.appendChild(creer("div", "cp-astuce", sensPremiersPas(tab.a)));
+        // v867 : le meme rendu sert aux feuilles de conjugaison (construireTableau).
+        construireTableau(item.tableau || {}).forEach(n => el.appendChild(n));
         fait.repondu = true;
         suite.classList.remove("hidden");
         suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
@@ -46789,6 +46939,343 @@ async function ouvrirCarnetPhrases(){
     }
     showScreen("carnetPhrases");
 }
+
+// ============ LES FEUILLES DE CONJUGAISON (essai « feuilles_conj », v867, 18 oct. 2026) ============
+// Maquette validee : .claude/maquette-conjugaison-niveaux.html. Jacques : que
+// tous les niveaux aient des feuilles de conjugaison, comme Premiers pas et
+// l'A1 voyage. Tranche le 18 oct. :
+//   - une feuille par TEMPS NOUVEAU, pas par verbe neuf (236 verbes A2, 515
+//     B1 : une feuille presque a chaque seance, qui repeterait la carte) ;
+//   - des verbes modeles FIXES sur la feuille (ecrits, traduits, voix), et le
+//     verbe du jour juste apres, sur sa carte et dans une phrase ;
+//   - les comptes deja a l'A2 ou au B1 recoivent les feuilles de leur niveau
+//     depuis la premiere ;
+//   - A2 et B1 d'abord (leurs series d'exercices existent) ; B2 et C1 plus
+//     tard, avec les leurs.
+//
+// conjugaison.json (espanol/datos/conjugaison.json pour l'espagnol), controle
+// par tests/conjugaison.py : par niveau, une liste ORDONNEE de feuilles, de la
+// forme du tableau de Premiers pas (t, l, a) ; dans la forme, [crochets] = la
+// partie qui change, surlignee, et que la voix lit sans les crochets. « serie »
+// = les exercices qui suivent la feuille ; « temps » = le champ de verbe.json
+// d'ou vient la phrase en situation.
+//
+// Dans la seance : la feuille en tete, UNE SEANCE SUR DEUX (FC_ECART jours),
+// puis la carte d'un verbe du jour, verso ouvert sur le temps ; une phrase de ce
+// verbe a ce temps, a remettre en ordre ; FC_QUESTIONS questions de la serie.
+// La serie de conjugaison que tire la seance devient celle de la feuille
+// (prechargerGrammaireSeance). Une feuille dont la serie rate (fenetre de la
+// seance : moins de 8 justes sur 10) est « a revoir » : elle revient une fois
+// en tete de la seance suivante, puis pas avant FC_REVOIR_JOURS.
+let FEUILLES_DONNEES = null, chargementFeuilles = null;
+function chargerFeuilles(){
+    if(FEUILLES_DONNEES) return Promise.resolve(FEUILLES_DONNEES);
+    if(!chargementFeuilles){
+        chargementFeuilles = fetch(urlDonnees("conjugaison.json"), { cache: "no-cache" })
+            .then(r => r.ok ? r.json() : null)
+            .then(d => { FEUILLES_DONNEES = (d && d.niveaux && typeof d.niveaux === "object") ? d : null; return FEUILLES_DONNEES; })
+            .catch(() => null)
+            .finally(() => { if(!FEUILLES_DONNEES) chargementFeuilles = null; });
+    }
+    return chargementFeuilles;
+}
+const FEUILLES_KEY = PREFIXE_STOCKAGE + "feuillesConj";
+const FC_ECART = 2, FC_QUESTIONS = 3, FC_REVOIR_JOURS = 7;
+// { <niveau>: { n: prochaine feuille (rang), j: jour de la derniere montree,
+//   v: [ids vues, dans l'ordre], r: { id: jour ou elle est revenue } } }
+function lireFeuilles(){
+    try{ const v = JSON.parse(localStorage.getItem(FEUILLES_KEY) || "{}"); return (v && typeof v === "object") ? v : {}; }
+    catch(e){ return {}; }
+}
+function ecrireFeuilles(v){
+    try{ localStorage.setItem(FEUILLES_KEY, JSON.stringify(v)); }catch(e){}
+}
+function feuillesEssai(){
+    try{ return essaiActif("feuilles_conj"); }catch(e){ return false; }
+}
+function feuillesDuNiveau(niv){
+    const d = FEUILLES_DONNEES;
+    return (d && Array.isArray(d.niveaux[niv])) ? d.niveaux[niv] : [];
+}
+// Le jour LOCAL : une feuille montree a 23 h ne doit pas compter pour le
+// lendemain.
+function jourFeuille(){
+    return Math.floor((Date.now() - new Date().getTimezoneOffset() * 60000) / 86400000);
+}
+// Le champ de la carte de verbe ou vit la phrase de ce temps.
+function champTempsFeuille(temps){
+    if(!temps) return null;
+    return LANGUE_APPRISE === "es" ? "exemple_" + temps : temps;
+}
+function serieRatee(nom){
+    const l = lireGrammaireSeance()[nom] || [];
+    return l.length >= GRAMMAIRE_SEANCE_FENETRE && l.reduce((a, b) => a + b, 0) < GRAMMAIRE_SEANCE_JUSTES;
+}
+// Les feuilles « a revoir » du niveau : pour chaque serie qui rate, la DERNIERE
+// feuille vue qui y mene (plusieurs feuilles partagent la serie du Perfekt).
+function feuillesARevoir(niv){
+    const e = lireFeuilles()[niv] || {};
+    const liste = feuillesDuNiveau(niv);
+    const vues = (e.v || []).map(id => liste.find(f => f.id === id)).filter(Boolean);
+    const faites = new Set(), out = [];
+    for(let i = vues.length - 1; i >= 0; i--){
+        const f = vues[i];
+        if(!f.serie || faites.has(f.serie)) continue;
+        faites.add(f.serie);
+        if(serieRatee(f.serie)) out.push(f);
+    }
+    return out;
+}
+// La feuille du jour, SANS rien marquer : { f, revoir } ou null.
+function feuilleDuJour(niv){
+    const liste = feuillesDuNiveau(niv);
+    if(!liste.length) return null;
+    const e = lireFeuilles()[niv] || {};
+    const jour = jourFeuille();
+    if(e.j === jour) return null;
+    const r = e.r || {};
+    const rev = feuillesARevoir(niv).find(f => !(r[f.id] !== undefined && jour - r[f.id] < FC_REVOIR_JOURS));
+    if(rev) return { f: rev, revoir: true };
+    if(e.j !== undefined && jour - e.j < FC_ECART) return null;
+    const n = e.n || 0;
+    return n < liste.length ? { f: liste[n], revoir: false } : null;
+}
+// La serie de conjugaison de la seance : celle de la feuille du jour, sinon de
+// la derniere feuille vue qui en a une.
+function serieDeFeuille(niv){
+    if(!feuillesEssai() || !FEUILLES_DONNEES) return null;
+    const fj = feuilleDuJour(niv);
+    if(fj && fj.f.serie) return fj.f.serie;
+    const liste = feuillesDuNiveau(niv);
+    const vues = (lireFeuilles()[niv] || {}).v || [];
+    for(let i = vues.length - 1; i >= 0; i--){
+        const f = liste.find(x => x.id === vues[i]);
+        if(f && f.serie) return f.serie;
+    }
+    return null;
+}
+async function preparerFeuille(niveau){
+    if(!feuillesEssai()) return null;
+    await chargerFeuilles();
+    if(!FEUILLES_DONNEES) return null;
+    const fj = feuilleDuJour(niveau);
+    if(!fj) return null;
+    let questions = [];
+    if(fj.f.serie){
+        try{ questions = melangerPhrase(grammaireUtile(await jeu(fj.f.serie)).slice(0, 30)).slice(0, FC_QUESTIONS); }
+        catch(e){ questions = []; }
+    }
+    return { niveau: niveau, f: fj.f, rang: feuillesDuNiveau(niveau).indexOf(fj.f), revoir: fj.revoir, questions: questions };
+}
+// Le verbe de la phrase en situation, quand la seance n'en a pas : un verbe
+// deja vu, du niveau ou d'en dessous, dont la phrase de ce temps est courte.
+function verbeVuPourFeuille(tout, champ){
+    const ok = (tout || []).filter(it => it.mode === "verben" && it.word && !Array.isArray(it.word)
+        && !estNeuf(getWordState(it.themeId, it.index))
+        && (() => { const n = motsPhrase(it.word[champ]).length; return n >= 3 && n <= 9; })()
+        && !PHRASES_POSEES.has(String(it.word[champ]).trim()));
+    return ok.length ? ok[Math.floor(Math.random() * ok.length)] : null;
+}
+function insererFeuille(seance, fc, tout){
+    const f = fc.f;
+    const total = feuillesDuNiveau(fc.niveau).length;
+    const badge = fc.revoir ? tf("fc_badge_revoir", { niveau: fc.niveau })
+                            : tf("fc_badge", { n: fc.rang + 1, t: total, niveau: fc.niveau });
+    const sortie = seance.slice();
+    const champ = champTempsFeuille(f.temps);
+    // Le verbe du jour : une carte de verbe de la seance qui a la phrase de ce
+    // temps passe juste apres la feuille (une COPIE : les cartes du paquet
+    // servent aux seances suivantes).
+    let verbe = null;
+    if(champ){
+        const i = sortie.findIndex(it => it.mode === "verben" && it.word && !Array.isArray(it.word)
+                                         && String(it.word[champ] || "").trim());
+        if(i >= 0){
+            verbe = Object.assign({}, sortie[i], { feuilleTemps: f.temps });
+            sortie.splice(i, 1);
+            sortie.unshift(verbe);
+        }
+    }
+    // La phrase en situation : ce verbe, a ce temps, a remettre en ordre.
+    const source = champ ? (verbe && motsPhrase(verbe.word[champ]).length <= 10 ? verbe : verbeVuPourFeuille(tout, champ)) : null;
+    if(source){
+        const de = String(source.word[champ] || "").trim();
+        const sens = texteTraduit(source.word, champ);
+        const mots = motsPhrase(de);
+        if(de && sens && mots.length >= 3 && mots.length <= 10 && !PHRASES_POSEES.has(de)){
+            sortie.splice(Math.min(4, sortie.length), 0, {
+                mode: "phrase", forme: "ordre", cible: source, phrase: { de: de, sens: sens, mots: mots }, vise: -1,
+                themeId: source.themeId, index: source.index, word: source.word, fcBadge: badge });
+        }
+    }
+    // Les questions de la serie, espacees.
+    let pos = 7;
+    (fc.questions || []).forEach((ex, k) => {
+        sortie.splice(Math.min(pos, sortie.length), 0, {
+            mode: "phrase", forme: "gram", ex: ex, jeu: f.serie, cible: null,
+            themeId: "fc_gram", index: k, word: "", fcBadge: badge });
+        pos += 6;
+    });
+    const tete = { mode: "phrase", forme: "pp_tableau", tableau: f, fcFeuille: true, fcRevoir: !!fc.revoir,
+                   fcNiveau: fc.niveau, fcRang: fc.rang, fcBadge: badge, cible: null,
+                   themeId: "fc_tableau", index: fc.rang, phrase: null, word: "" };
+    return [tete].concat(sortie);
+}
+// La feuille marque son passage en s'affichant (comme le tableau de l'A1 voyage).
+function marquerFeuille(item){
+    if(!item || !item.fcFeuille || !item.tableau) return;
+    const v = lireFeuilles();
+    const e = v[item.fcNiveau] || (v[item.fcNiveau] = {});
+    const jour = jourFeuille();
+    const id = item.tableau.id;
+    e.j = jour;
+    if(item.fcRevoir){
+        e.r = e.r || {};
+        e.r[id] = jour;
+    } else {
+        e.v = e.v || [];
+        if(e.v.indexOf(id) < 0) e.v.push(id);
+        e.n = Math.max(e.n || 0, (item.fcRang || 0) + 1);
+    }
+    ecrireFeuilles(v);
+}
+function nbFeuillesVues(){
+    const v = lireFeuilles();
+    return Object.keys(v).reduce((n, niv) => n + ((v[niv] && v[niv].v) || []).length, 0);
+}
+// Le rendu d'un tableau (Premiers pas, A1 voyage, feuilles) : le titre, les
+// lignes qui se touchent et se disent, l'astuce. [crochets] = surligne.
+function texteFormeTableau(forme){
+    return String(forme || "").replace(/[\[\]]/g, "");
+}
+function construireTableau(tab){
+    const creer = (tag, cls, texte) => {
+        const n = document.createElement(tag);
+        if(cls) n.className = cls;
+        if(texte !== undefined) n.textContent = texte;
+        return n;
+    };
+    const langueDe = LANGUE_APPRISE === "es" ? "es" : "de";
+    const out = [creer("p", "cp-tableau-titre", sensPremiersPas(tab.t))];
+    const table = creer("div", "cp-tableau");
+    (tab.l || []).forEach(l => {
+        const ligne = creer("button", "cp-tableau-ligne");
+        ligne.type = "button";
+        ligne.appendChild(creer("span", "cp-tl-sens", sensPremiersPas(l[1])));
+        const brut = String(l[0] || "");
+        const forme = creer("b", "cp-tl-forme", brut.indexOf("[") < 0 ? brut : undefined);
+        if(brut.indexOf("[") >= 0){
+            brut.split(/(\[[^\]]*\])/).forEach(m => {
+                if(!m) return;
+                if(m.charAt(0) === "[") forme.appendChild(creer("u", "", m.slice(1, -1)));
+                else forme.appendChild(document.createTextNode(m));
+            });
+        }
+        forme.setAttribute("lang", langueDe);
+        ligne.appendChild(forme);
+        ligne.appendChild(creer("span", "cp-tl-son", "🔊"));
+        const dit = texteFormeTableau(brut);
+        ligne.addEventListener("click", () => { try{ direAllemand(dit, { rate: 0.85 }); }catch(e){} });
+        table.appendChild(ligne);
+    });
+    out.push(table);
+    if(tab.a) out.push(creer("div", "cp-astuce", sensPremiersPas(tab.a)));
+    return out;
+}
+// « Mes feuilles » : par niveau, les feuilles vues (a rouvrir), « a revoir »,
+// et celles a venir, grisees.
+async function ouvrirMesFeuilles(){
+    await chargerFeuilles();
+    const box = document.getElementById("feuillesListe");
+    if(box){
+        box.textContent = "";
+        const etat = lireFeuilles();
+        const niveaux = FEUILLES_DONNEES ? Object.keys(FEUILLES_DONNEES.niveaux) : [];
+        let rien = true;
+        niveaux.forEach(niv => {
+            const liste = feuillesDuNiveau(niv);
+            const vues = new Set((etat[niv] && etat[niv].v) || []);
+            let courant = "A1";
+            try{ courant = niveauSeance(); }catch(e){}
+            if(!vues.size && niv !== courant) return;
+            rien = false;
+            const revoir = new Set(feuillesARevoir(niv).map(f => f.id));
+            const h = document.createElement("div");
+            h.className = "carnet-rub";
+            h.textContent = tf("fc_niveau", { niveau: niv, n: vues.size, t: liste.length });
+            box.appendChild(h);
+            liste.forEach((f, i) => {
+                const vue = vues.has(f.id);
+                const b = document.createElement("button");
+                b.type = "button";
+                b.className = "fc-ligne" + (!vue ? " fc-a-venir" : (revoir.has(f.id) ? " fc-revoir" : ""));
+                const tx = document.createElement("span");
+                const ti = document.createElement("b");
+                ti.textContent = (i + 1) + ". " + sensPremiersPas(f.t);
+                tx.appendChild(ti);
+                const et = document.createElement("i");
+                et.textContent = !vue ? t("fc_bientot") : (revoir.has(f.id) ? t("fc_a_revoir") : "✓ " + t("fc_vue"));
+                b.appendChild(tx); b.appendChild(et);
+                box.appendChild(b);
+                if(!vue){ b.disabled = true; return; }
+                const detail = document.createElement("div");
+                detail.className = "fc-detail hidden";
+                b.addEventListener("click", () => {
+                    if(!detail.childNodes.length) construireTableau(f).forEach(n => detail.appendChild(n));
+                    detail.classList.toggle("hidden");
+                });
+                box.appendChild(detail);
+            });
+        });
+        if(rien){
+            const p = document.createElement("p");
+            p.className = "carnet-vide";
+            p.textContent = t("fc_vide");
+            box.appendChild(p);
+        }
+    }
+    showScreen("mesFeuilles");
+}
+// La porte des mots, a l'A2 et au B1 : la feuille du jour, et « Mes feuilles ».
+function majPorteFeuilles(){
+    const titre = document.getElementById("seancePorteMotsTitre");
+    const porte = titre && titre.closest(".seance-porte");
+    if(!porte) return;
+    let bas = porte.querySelector(".fc-porte-bas");
+    const cacher = () => { if(bas) bas.classList.add("hidden"); };
+    if(!feuillesEssai()) return cacher();
+    if(!FEUILLES_DONNEES){
+        if(!chargementFeuilles) chargerFeuilles().then(d => { if(d){ try{ majPorteFeuilles(); }catch(e){} } });
+        return cacher();
+    }
+    let niv = "A1";
+    try{ niv = niveauSeance(); }catch(e){}
+    const fj = feuillesDuNiveau(niv).length ? feuilleDuJour(niv) : null;
+    const n = nbFeuillesVues();
+    if(!fj && !n) return cacher();
+    if(!bas){
+        bas = document.createElement("div");
+        bas.className = "fc-porte-bas";
+        const go = porte.querySelector(".seance-go");
+        porte.insertBefore(bas, go || null);
+    }
+    bas.textContent = "";
+    if(fj){
+        const s = document.createElement("span");
+        s.className = "fc-porte-auj";
+        s.textContent = "📄 " + tf("fc_porte_auj", { t: sensPremiersPas(fj.f.t) });
+        bas.appendChild(s);
+    }
+    if(n){
+        const c = document.createElement("button");
+        c.type = "button";
+        c.className = "av-carnet-lien";
+        c.textContent = tf("fc_porte_lien", { n: n });
+        c.addEventListener("click", ev => { ev.stopPropagation(); ouvrirMesFeuilles(); });
+        bas.appendChild(c);
+    }
+    bas.classList.remove("hidden");
+}
 // La porte de l'accueil, pendant les escales et la suite.
 function majPorteA1Voyage(titreMots, porte){
     const s = lireA1Voyage();
@@ -47094,6 +47581,10 @@ async function ouvrirSeanceDuJour(sansScene){
     let av = null;
     try{ if(niveau === "A1") activerA1Voyage(); }catch(e){}
     try{ av = await preparerA1Voyage(pool); }catch(e){ av = null; }
+    // v867 (essai feuilles_conj) : la feuille de conjugaison du jour, a l'A2 et
+    // au B1 -- avant la grammaire, dont elle choisit la serie de conjugaison.
+    let fc = null;
+    try{ fc = await preparerFeuille(niveau); }catch(e){ fc = null; }
     let seance = cartesDeSeance(tout, av ? av.pool : pool);
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
     if(essaiActif("phrases")){
@@ -47104,6 +47595,7 @@ async function ouvrirSeanceDuJour(sansScene){
     // v862 : pendant les escales, la scene de l'escale.
     try{ seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
     try{ if(av) seance = insererA1Voyage(seance, av); }catch(e){}
+    try{ if(fc && seance.length) seance = insererFeuille(seance, fc, tout); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
         toastSeanceVide(tout, "alert_all_theme_words_mastered"); return;

@@ -250,6 +250,13 @@ for g in charger("prononciation.json").get("groupes") or []:
                 for e in var.get("exemples") or []:
                     demander("prononciation", e.get("mot"))
 
+# 11. LES FEUILLES DE CONJUGAISON (conjugaison.json, v867) : construireTableau()
+# dit texteFormeTableau(l[0]) -- la forme, crochets retires (replace(/[\[\]]/g, "")).
+for feuilles in (charger("conjugaison.json").get("niveaux") or {}).values():
+    for f in feuilles:
+        for l in f.get("l") or []:
+            demander("conjugaison", str(l[0]).replace("[", "").replace("]", ""))
+
 # ---------------------------------------------------------------- le manifeste
 
 # Ce que manifest.py produit AUJOURD'HUI : la reference de l'etat « absent du

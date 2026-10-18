@@ -1,0 +1,2728 @@
+{
+ "_lisez_moi": [
+  "Les feuilles de conjugaison de l'A2 et du B1 (18 oct. 2026, essai « feuilles_conj »). Maquette validée par Jacques : .claude/maquette-conjugaison-niveaux.html.",
+  "Une feuille enseigne un TEMPS ou une CONSTRUCTION, avec des verbes modèles fixes : même forme que le tableau de Premiers pas et de l'A1 voyage (pp_tableau) -- t (titre), l: [[forme, sens]] (6 lignes), a (astuce).",
+  "Dans la forme, [crochets] = la partie qui change, surlignée à l'écran ; la voix lit la forme SANS les crochets (audio/manifest.py, source « conjugaison »).",
+  "serie : la série d'exercices qui suit la feuille dans la séance (exercices.json) ; null = pas encore de série. temps : le champ de verbe.json (perfekt, praeteritum, konjunktiv2) d'où vient la « phrase en situation » du verbe du jour ; null = pas de phrase.",
+  "Une feuille sur deux séances, dans l'ordre du niveau. B2 et C1 viendront avec leurs exercices.",
+  "Contrôle : python tests/conjugaison.py. Sens en fr, en, tr, uk, fa, ar, pt, pl, ru."
+ ],
+ "niveaux": {
+  "A2": [
+   {
+    "id": "perfekt_haben",
+    "serie": "perfektExercises",
+    "temps": "perfekt",
+    "t": {
+     "fr": "Le passé avec haben",
+     "en": "The past with haben",
+     "tr": "haben ile geçmiş zaman",
+     "uk": "Минулий час із haben",
+     "fa": "گذشته با haben",
+     "ar": "الماضي مع haben",
+     "pt": "O passado com haben",
+     "pl": "Czas przeszły z haben",
+     "ru": "Прошедшее время с haben"
+    },
+    "l": [
+     [
+      "ich habe [gekocht]",
+      {
+       "fr": "j'ai cuisiné",
+       "en": "I cooked",
+       "tr": "yemek yaptım",
+       "uk": "я готував(ла)",
+       "fa": "آشپزی کردم",
+       "ar": "طبختُ",
+       "pt": "eu cozinhei",
+       "pl": "gotowałem (-łam)",
+       "ru": "я готовил(а)"
+      }
+     ],
+     [
+      "du hast [gekauft]",
+      {
+       "fr": "tu as acheté",
+       "en": "you bought",
+       "tr": "satın aldın",
+       "uk": "ти купив(ла)",
+       "fa": "خریدی",
+       "ar": "اشتريتَ",
+       "pt": "você comprou",
+       "pl": "kupiłeś (-łaś)",
+       "ru": "ты купил(а)"
+      }
+     ],
+     [
+      "er · sie hat [gearbeitet]",
+      {
+       "fr": "il · elle a travaillé",
+       "en": "he · she worked",
+       "tr": "o çalıştı",
+       "uk": "він працював · вона працювала",
+       "fa": "او کار کرد",
+       "ar": "هو عمل · هي عملت",
+       "pt": "ele · ela trabalhou",
+       "pl": "on pracował · ona pracowała",
+       "ru": "он работал · она работала"
+      }
+     ],
+     [
+      "wir haben [gespielt]",
+      {
+       "fr": "nous avons joué",
+       "en": "we played",
+       "tr": "oynadık",
+       "uk": "ми грали",
+       "fa": "بازی کردیم",
+       "ar": "لعبنا",
+       "pt": "nós jogamos",
+       "pl": "graliśmy",
+       "ru": "мы играли"
+      }
+     ],
+     [
+      "ihr habt [gelernt]",
+      {
+       "fr": "vous avez appris (à plusieurs)",
+       "en": "you learned (all of you)",
+       "tr": "öğrendiniz (çoğul)",
+       "uk": "ви вчили (кілька осіб)",
+       "fa": "یاد گرفتید (جمع)",
+       "ar": "تعلّمتم (لجمع المخاطبين)",
+       "pt": "vocês aprenderam",
+       "pl": "uczyliście się (wy)",
+       "ru": "вы учили (несколько человек)"
+      }
+     ],
+     [
+      "sie · Sie haben [gewohnt]",
+      {
+       "fr": "ils ont habité · vous avez habité (poli)",
+       "en": "they lived · you lived (polite)",
+       "tr": "oturdular · oturdunuz (kibar)",
+       "uk": "вони жили · ви жили (ввічливо)",
+       "fa": "آن‌ها زندگی کردند · شما زندگی کردید (مؤدبانه)",
+       "ar": "هم سكنوا · حضرتك سكنت (للمجاملة)",
+       "pt": "eles moraram · o senhor / a senhora morou (polido)",
+       "pl": "oni mieszkali · pan / pani mieszkał (-ła) (grzecznościowo)",
+       "ru": "они жили · вы жили (вежливо)"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le passé de la conversation, c'est haben au présent, en 2e place, et le participe à la fin : « Ich habe gestern Pizza gekocht. » Le participe régulier se fabrique ainsi : ge + radical + t (kaufen → gekauft). Après un t ou un d, on glisse un e : gearbeitet.",
+     "en": "The everyday past is haben in the present, in 2nd place, with the participle at the end: “Ich habe gestern Pizza gekocht.” A regular participle is built like this: ge + stem + t (kaufen → gekauft). After t or d, add an e: gearbeitet.",
+     "tr": "Konuşma dilindeki geçmiş zaman: şimdiki zamanda haben 2. sırada, ortaç cümlenin sonunda: “Ich habe gestern Pizza gekocht.” Düzenli ortaç şöyle yapılır: ge + kök + t (kaufen → gekauft). t veya d’den sonra bir e eklenir: gearbeitet.",
+     "uk": "Розмовний минулий час — це haben у теперішньому часі на 2-му місці й дієприкметник у кінці: «Ich habe gestern Pizza gekocht.» Правильний дієприкметник утворюють так: ge + основа + t (kaufen → gekauft). Після t чи d додають e: gearbeitet.",
+     "fa": "گذشتهٔ گفتاری یعنی haben در زمان حال، در جایگاه دوم، و اسم مفعول در آخر جمله: «Ich habe gestern Pizza gekocht.» اسم مفعول باقاعده این‌طور ساخته می‌شود: ge + ریشه + t (kaufen → gekauft). بعد از t یا d یک e اضافه می‌شود: gearbeitet.",
+     "ar": "الماضي في الكلام هو haben في المضارع في المرتبة الثانية، واسم المفعول في آخر الجملة: «Ich habe gestern Pizza gekocht.» ويُصاغ اسم المفعول القياسي هكذا: ge + الجذر + t ‏(kaufen → gekauft). وبعد t أو d نضيف e: ‏gearbeitet.",
+     "pt": "O passado da conversa é haben no presente, na 2.ª posição, e o particípio no fim: “Ich habe gestern Pizza gekocht.” O particípio regular se forma assim: ge + radical + t (kaufen → gekauft). Depois de t ou d, acrescenta-se um e: gearbeitet.",
+     "pl": "Przeszłość w rozmowie to haben w czasie teraźniejszym na 2. miejscu i imiesłów na końcu: „Ich habe gestern Pizza gekocht.” Regularny imiesłów tworzy się tak: ge + temat + t (kaufen → gekauft). Po t lub d dodaje się e: gearbeitet.",
+     "ru": "Разговорное прошедшее — это haben в настоящем времени на 2-м месте и причастие в конце: «Ich habe gestern Pizza gekocht.» Правильное причастие строится так: ge + основа + t (kaufen → gekauft). После t или d вставляют e: gearbeitet."
+    }
+   },
+   {
+    "id": "participes_forts",
+    "serie": "perfektExercises",
+    "temps": "perfekt",
+    "t": {
+     "fr": "Les participes irréguliers",
+     "en": "Irregular participles",
+     "tr": "Düzensiz ortaçlar",
+     "uk": "Неправильні дієприкметники",
+     "fa": "اسم مفعول‌های بی‌قاعده",
+     "ar": "أسماء المفعول الشاذة",
+     "pt": "Os particípios irregulares",
+     "pl": "Imiesłowy nieregularne",
+     "ru": "Неправильные причастия"
+    },
+    "l": [
+     [
+      "ich habe [gegessen]",
+      {
+       "fr": "j'ai mangé",
+       "en": "I ate",
+       "tr": "yedim",
+       "uk": "я їв (їла)",
+       "fa": "خوردم",
+       "ar": "أكلتُ",
+       "pt": "eu comi",
+       "pl": "zjadłem (-łam)",
+       "ru": "я поел(а)"
+      }
+     ],
+     [
+      "du hast [getrunken]",
+      {
+       "fr": "tu as bu",
+       "en": "you drank",
+       "tr": "içtin",
+       "uk": "ти пив (пила)",
+       "fa": "نوشیدی",
+       "ar": "شربتَ",
+       "pt": "você bebeu",
+       "pl": "wypiłeś (-łaś)",
+       "ru": "ты выпил(а)"
+      }
+     ],
+     [
+      "er · sie hat [geschrieben]",
+      {
+       "fr": "il · elle a écrit",
+       "en": "he · she wrote",
+       "tr": "o yazdı",
+       "uk": "він написав · вона написала",
+       "fa": "او نوشت",
+       "ar": "هو كتب · هي كتبت",
+       "pt": "ele · ela escreveu",
+       "pl": "on napisał · ona napisała",
+       "ru": "он написал · она написала"
+      }
+     ],
+     [
+      "wir haben [gefunden]",
+      {
+       "fr": "nous avons trouvé",
+       "en": "we found",
+       "tr": "bulduk",
+       "uk": "ми знайшли",
+       "fa": "پیدا کردیم",
+       "ar": "وجدنا",
+       "pt": "nós encontramos",
+       "pl": "znaleźliśmy",
+       "ru": "мы нашли"
+      }
+     ],
+     [
+      "ihr habt [gesehen]",
+      {
+       "fr": "vous avez vu (à plusieurs)",
+       "en": "you saw (all of you)",
+       "tr": "gördünüz (çoğul)",
+       "uk": "ви бачили (кілька осіб)",
+       "fa": "دیدید (جمع)",
+       "ar": "رأيتم (لجمع المخاطبين)",
+       "pt": "vocês viram",
+       "pl": "widzieliście (wy)",
+       "ru": "вы видели (несколько человек)"
+      }
+     ],
+     [
+      "sie · Sie haben [genommen]",
+      {
+       "fr": "ils ont pris · vous avez pris (poli)",
+       "en": "they took · you took (polite)",
+       "tr": "aldılar · aldınız (kibar)",
+       "uk": "вони взяли · ви взяли (ввічливо)",
+       "fa": "آن‌ها برداشتند · شما برداشتید (مؤدبانه)",
+       "ar": "هم أخذوا · حضرتك أخذت (للمجاملة)",
+       "pt": "eles pegaram · o senhor / a senhora pegou (polido)",
+       "pl": "oni wzięli · pan / pani wziął (wzięła) (grzecznościowo)",
+       "ru": "они взяли · вы взяли (вежливо)"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Les verbes forts font leur participe en ge + radical + en, et leur voyelle change souvent : trinken → getrunken, nehmen → genommen, schreiben → geschrieben. Pas de règle sûre : on apprend le participe avec le verbe, comme l'article avec le nom.",
+     "en": "Strong verbs form their participle with ge + stem + en, and the vowel often changes: trinken → getrunken, nehmen → genommen, schreiben → geschrieben. There's no safe rule: learn the participle with the verb, like the article with the noun.",
+     "tr": "Güçlü fiillerin ortacı ge + kök + en ile yapılır ve ünlü çoğu zaman değişir: trinken → getrunken, nehmen → genommen, schreiben → geschrieben. Kesin bir kural yok: ortacı, ismin artikeli gibi, fiille birlikte öğrenin.",
+     "uk": "Сильні дієслова утворюють дієприкметник як ge + основа + en, і голосний часто змінюється: trinken → getrunken, nehmen → genommen, schreiben → geschrieben. Надійного правила немає: дієприкметник вчать разом із дієсловом, як артикль з іменником.",
+     "fa": "فعل‌های قوی اسم مفعولشان را با ge + ریشه + en می‌سازند و واکه‌شان اغلب عوض می‌شود: trinken → getrunken، nehmen → genommen، schreiben → geschrieben. قاعدهٔ مطمئنی ندارد: اسم مفعول را همراه فعل یاد بگیر، مثل حرف تعریف همراه اسم.",
+     "ar": "الأفعال القوية تصوغ اسم المفعول بـ ge + الجذر + en، وكثيرًا ما يتغيّر حرف العلّة: trinken → getrunken، ‏nehmen → genommen، ‏schreiben → geschrieben. لا قاعدة مضمونة: احفظ اسم المفعول مع الفعل، كما تحفظ أداة التعريف مع الاسم.",
+     "pt": "Os verbos fortes formam o particípio com ge + radical + en, e a vogal muitas vezes muda: trinken → getrunken, nehmen → genommen, schreiben → geschrieben. Não há regra segura: aprenda o particípio junto com o verbo, como o artigo com o substantivo.",
+     "pl": "Czasowniki mocne tworzą imiesłów według wzoru ge + temat + en, a samogłoska często się zmienia: trinken → getrunken, nehmen → genommen, schreiben → geschrieben. Nie ma pewnej reguły: imiesłowu uczymy się razem z czasownikiem, jak rodzajnika z rzeczownikiem.",
+     "ru": "Сильные глаголы образуют причастие как ge + основа + en, и гласная часто меняется: trinken → getrunken, nehmen → genommen, schreiben → geschrieben. Надёжного правила нет: причастие учат вместе с глаголом, как артикль с существительным."
+    }
+   },
+   {
+    "id": "perfekt_sein",
+    "serie": "perfektExercises",
+    "temps": "perfekt",
+    "t": {
+     "fr": "Le passé avec sein",
+     "en": "The past with sein",
+     "tr": "sein ile geçmiş zaman",
+     "uk": "Минулий час із sein",
+     "fa": "گذشته با sein",
+     "ar": "الماضي مع sein",
+     "pt": "O passado com sein",
+     "pl": "Czas przeszły z sein",
+     "ru": "Прошедшее время с sein"
+    },
+    "l": [
+     [
+      "ich [bin] gegangen",
+      {
+       "fr": "je suis allé(e)",
+       "en": "I went",
+       "tr": "gittim",
+       "uk": "я пішов (пішла)",
+       "fa": "رفتم",
+       "ar": "ذهبتُ",
+       "pt": "eu fui",
+       "pl": "poszedłem (poszłam)",
+       "ru": "я пошёл (пошла)"
+      }
+     ],
+     [
+      "du [bist] gekommen",
+      {
+       "fr": "tu es venu(e)",
+       "en": "you came",
+       "tr": "geldin",
+       "uk": "ти прийшов (прийшла)",
+       "fa": "آمدی",
+       "ar": "جئتَ",
+       "pt": "você veio",
+       "pl": "przyszedłeś (przyszłaś)",
+       "ru": "ты пришёл (пришла)"
+      }
+     ],
+     [
+      "er · sie [ist] geblieben",
+      {
+       "fr": "il · elle est resté(e)",
+       "en": "he · she stayed",
+       "tr": "o kaldı",
+       "uk": "він залишився · вона залишилася",
+       "fa": "او ماند",
+       "ar": "هو بقي · هي بقيت",
+       "pt": "ele · ela ficou",
+       "pl": "on został · ona została",
+       "ru": "он остался · она осталась"
+      }
+     ],
+     [
+      "wir [sind] gefahren",
+      {
+       "fr": "nous sommes partis (en voiture, en train)",
+       "en": "we went (by car, by train)",
+       "tr": "(araçla) gittik",
+       "uk": "ми поїхали",
+       "fa": "(با وسیله) رفتیم",
+       "ar": "سافرنا (بالسيارة أو القطار)",
+       "pt": "nós fomos (de carro, de trem)",
+       "pl": "pojechaliśmy",
+       "ru": "мы поехали"
+      }
+     ],
+     [
+      "ihr [seid] aufgestanden",
+      {
+       "fr": "vous vous êtes levés (à plusieurs)",
+       "en": "you got up (all of you)",
+       "tr": "kalktınız (çoğul)",
+       "uk": "ви встали (кілька осіб)",
+       "fa": "بلند شدید (جمع)",
+       "ar": "نهضتم (لجمع المخاطبين)",
+       "pt": "vocês se levantaram",
+       "pl": "wstaliście (wy)",
+       "ru": "вы встали (несколько человек)"
+      }
+     ],
+     [
+      "sie [sind] geworden",
+      {
+       "fr": "ils sont devenus",
+       "en": "they became",
+       "tr": "oldular",
+       "uk": "вони стали",
+       "fa": "آن‌ها شدند",
+       "ar": "أصبحوا",
+       "pt": "eles se tornaram",
+       "pl": "oni stali się",
+       "ru": "они стали"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "On prend sein quand on bouge d'un endroit à un autre (gehen, fahren, kommen, fliegen) ou quand on change d'état (aufstehen, einschlafen, werden). Et pour bleiben et sein : « Ich bin zu Hause geblieben. » Tous les autres verbes prennent haben.",
+     "en": "Use sein when you move from one place to another (gehen, fahren, kommen, fliegen) or change state (aufstehen, einschlafen, werden). Also with bleiben and sein: “Ich bin zu Hause geblieben.” All other verbs take haben.",
+     "tr": "Bir yerden başka bir yere hareket edildiğinde (gehen, fahren, kommen, fliegen) ya da durum değiştiğinde (aufstehen, einschlafen, werden) sein kullanılır. bleiben ve sein ile de: “Ich bin zu Hause geblieben.” Diğer bütün fiiller haben alır.",
+     "uk": "sein беруть, коли переміщуються з місця на місце (gehen, fahren, kommen, fliegen) або змінюють стан (aufstehen, einschlafen, werden). А також із bleiben і sein: «Ich bin zu Hause geblieben.» Усі інші дієслова беруть haben.",
+     "fa": "وقتی از جایی به جای دیگر می‌رویم (gehen، fahren، kommen، fliegen) یا حالتمان عوض می‌شود (aufstehen، einschlafen، werden)، sein می‌آید. همین‌طور با bleiben و sein: «Ich bin zu Hause geblieben.» بقیهٔ فعل‌ها haben می‌گیرند.",
+     "ar": "نستعمل sein عند الانتقال من مكان إلى آخر (gehen، ‏fahren، ‏kommen، ‏fliegen) أو عند تغيّر الحال (aufstehen، ‏einschlafen، ‏werden)، ومع bleiben وsein أيضًا: «Ich bin zu Hause geblieben.» أما سائر الأفعال فتأخذ haben.",
+     "pt": "Usa-se sein quando a pessoa se desloca de um lugar para outro (gehen, fahren, kommen, fliegen) ou muda de estado (aufstehen, einschlafen, werden). E com bleiben e sein: “Ich bin zu Hause geblieben.” Todos os outros verbos usam haben.",
+     "pl": "sein stosujemy, gdy przemieszczamy się z miejsca na miejsce (gehen, fahren, kommen, fliegen) albo zmieniamy stan (aufstehen, einschlafen, werden). A także z bleiben i sein: „Ich bin zu Hause geblieben.” Wszystkie inne czasowniki biorą haben.",
+     "ru": "sein берут, когда перемещаются из одного места в другое (gehen, fahren, kommen, fliegen) или меняют состояние (aufstehen, einschlafen, werden). А также с bleiben и sein: «Ich bin zu Hause geblieben.» Все остальные глаголы берут haben."
+    }
+   },
+   {
+    "id": "separables",
+    "serie": null,
+    "temps": null,
+    "t": {
+     "fr": "Les verbes séparables",
+     "en": "Separable verbs",
+     "tr": "Ayrılabilen fiiller",
+     "uk": "Відокремлювані дієслова",
+     "fa": "فعل‌های جداشدنی",
+     "ar": "الأفعال المنفصلة",
+     "pt": "Os verbos separáveis",
+     "pl": "Czasowniki rozdzielnie złożone",
+     "ru": "Глаголы с отделяемой приставкой"
+    },
+    "l": [
+     [
+      "Ich kaufe heute [ein].",
+      {
+       "fr": "Je fais les courses aujourd'hui.",
+       "en": "I'm doing the shopping today.",
+       "tr": "Bugün alışveriş yapıyorum.",
+       "uk": "Сьогодні я роблю покупки.",
+       "fa": "امروز خرید می‌کنم.",
+       "ar": "أتسوّق اليوم.",
+       "pt": "Hoje eu faço as compras.",
+       "pl": "Dziś robię zakupy.",
+       "ru": "Сегодня я делаю покупки."
+      }
+     ],
+     [
+      "Du rufst mich [an].",
+      {
+       "fr": "Tu m'appelles.",
+       "en": "You call me.",
+       "tr": "Beni arıyorsun.",
+       "uk": "Ти мені телефонуєш.",
+       "fa": "به من زنگ می‌زنی.",
+       "ar": "تتّصل بي.",
+       "pt": "Você me liga.",
+       "pl": "Dzwonisz do mnie.",
+       "ru": "Ты мне звонишь."
+      }
+     ],
+     [
+      "Er kommt [mit].",
+      {
+       "fr": "Il vient avec nous.",
+       "en": "He's coming along.",
+       "tr": "O da geliyor.",
+       "uk": "Він іде з нами.",
+       "fa": "او هم می‌آید.",
+       "ar": "هو يأتي معنا.",
+       "pt": "Ele vem junto.",
+       "pl": "On idzie z nami.",
+       "ru": "Он идёт с нами."
+      }
+     ],
+     [
+      "Wir fangen um neun Uhr [an].",
+      {
+       "fr": "Nous commençons à neuf heures.",
+       "en": "We start at nine.",
+       "tr": "Saat dokuzda başlıyoruz.",
+       "uk": "Ми починаємо о дев'ятій.",
+       "fa": "ساعت نه شروع می‌کنیم.",
+       "ar": "نبدأ في الساعة التاسعة.",
+       "pt": "Nós começamos às nove.",
+       "pl": "Zaczynamy o dziewiątej.",
+       "ru": "Мы начинаем в девять."
+      }
+     ],
+     [
+      "Ihr räumt das Zimmer [auf].",
+      {
+       "fr": "Vous rangez la chambre (à plusieurs).",
+       "en": "You tidy the room (all of you).",
+       "tr": "Odayı topluyorsunuz (çoğul).",
+       "uk": "Ви прибираєте кімнату (кілька осіб).",
+       "fa": "اتاق را مرتب می‌کنید (جمع).",
+       "ar": "ترتّبون الغرفة.",
+       "pt": "Vocês arrumam o quarto.",
+       "pl": "Sprzątacie pokój (wy).",
+       "ru": "Вы убираете комнату (несколько человек)."
+      }
+     ],
+     [
+      "Der Zug fährt um acht [ab].",
+      {
+       "fr": "Le train part à huit heures.",
+       "en": "The train leaves at eight.",
+       "tr": "Tren sekizde kalkıyor.",
+       "uk": "Потяг відправляється о восьмій.",
+       "fa": "قطار ساعت هشت حرکت می‌کند.",
+       "ar": "يغادر القطار في الثامنة.",
+       "pt": "O trem sai às oito.",
+       "pl": "Pociąg odjeżdża o ósmej.",
+       "ru": "Поезд отправляется в восемь."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le petit mot devant le verbe (ein-, an-, mit-, auf-, ab-) se détache au présent et part à la toute fin de la phrase. Dans le dictionnaire, il est collé : einkaufen, anrufen, mitkommen. L'accent tombe toujours sur lui : EINkaufen.",
+     "en": "The little word in front of the verb (ein-, an-, mit-, auf-, ab-) breaks off in the present and goes to the very end of the sentence. In the dictionary it's attached: einkaufen, anrufen, mitkommen. It always carries the stress: EINkaufen.",
+     "tr": "Fiilin önündeki küçük sözcük (ein-, an-, mit-, auf-, ab-) şimdiki zamanda ayrılır ve cümlenin en sonuna gider. Sözlükte bitişiktir: einkaufen, anrufen, mitkommen. Vurgu hep ondadır: EINkaufen.",
+     "uk": "Маленьке слово перед дієсловом (ein-, an-, mit-, auf-, ab-) у теперішньому часі відокремлюється й іде в самий кінець речення. У словнику воно злите: einkaufen, anrufen, mitkommen. Наголос завжди на ньому: EINkaufen.",
+     "fa": "کلمهٔ کوچک جلوی فعل (ein-، an-، mit-، auf-، ab-) در زمان حال جدا می‌شود و به آخرِ آخر جمله می‌رود. در فرهنگ لغت چسبیده است: einkaufen، anrufen، mitkommen. تکیه همیشه روی آن است: EINkaufen.",
+     "ar": "الكلمة الصغيرة أمام الفعل (ein-، ‏an-، ‏mit-، ‏auf-، ‏ab-) تنفصل في المضارع وتذهب إلى آخر الجملة تمامًا. وفي القاموس تكون ملتصقة: einkaufen، ‏anrufen، ‏mitkommen. والنبر يقع عليها دائمًا: EINkaufen.",
+     "pt": "A palavrinha na frente do verbo (ein-, an-, mit-, auf-, ab-) se solta no presente e vai para o finalzinho da frase. No dicionário ela vem colada: einkaufen, anrufen, mitkommen. A tônica cai sempre nela: EINkaufen.",
+     "pl": "Małe słówko przed czasownikiem (ein-, an-, mit-, auf-, ab-) odrywa się w czasie teraźniejszym i idzie na sam koniec zdania. W słowniku jest przyklejone: einkaufen, anrufen, mitkommen. Akcent zawsze pada na nie: EINkaufen.",
+     "ru": "Маленькое слово перед глаголом (ein-, an-, mit-, auf-, ab-) в настоящем времени отделяется и уходит в самый конец предложения. В словаре оно слитно: einkaufen, anrufen, mitkommen. Ударение всегда на нём: EINkaufen."
+    }
+   },
+   {
+    "id": "separables_places",
+    "serie": null,
+    "temps": null,
+    "t": {
+     "fr": "aufstehen : où va « auf » ?",
+     "en": "aufstehen: where does “auf” go?",
+     "tr": "aufstehen: “auf” nereye gider?",
+     "uk": "aufstehen: куди йде «auf»?",
+     "fa": "aufstehen: «auf» کجا می‌رود؟",
+     "ar": "aufstehen: أين تذهب «auf»؟",
+     "pt": "aufstehen: para onde vai o “auf”?",
+     "pl": "aufstehen: gdzie idzie „auf”?",
+     "ru": "aufstehen: куда уходит «auf»?"
+    },
+    "l": [
+     [
+      "Ich stehe um sieben [auf].",
+      {
+       "fr": "Je me lève à sept heures.",
+       "en": "I get up at seven.",
+       "tr": "Yedide kalkıyorum.",
+       "uk": "Я встаю о сьомій.",
+       "fa": "ساعت هفت بلند می‌شوم.",
+       "ar": "أستيقظ في السابعة.",
+       "pt": "Eu me levanto às sete.",
+       "pl": "Wstaję o siódmej.",
+       "ru": "Я встаю в семь."
+      }
+     ],
+     [
+      "Ich bin früh [auf]gestanden.",
+      {
+       "fr": "Je me suis levé(e) tôt.",
+       "en": "I got up early.",
+       "tr": "Erken kalktım.",
+       "uk": "Я встав (встала) рано.",
+       "fa": "زود بلند شدم.",
+       "ar": "استيقظتُ مبكرًا.",
+       "pt": "Eu me levantei cedo.",
+       "pl": "Wstałem (wstałam) wcześnie.",
+       "ru": "Я встал(а) рано."
+      }
+     ],
+     [
+      "Ich muss früh [auf]stehen.",
+      {
+       "fr": "Je dois me lever tôt.",
+       "en": "I have to get up early.",
+       "tr": "Erken kalkmam lazım.",
+       "uk": "Мені треба рано вставати.",
+       "fa": "باید زود بلند شوم.",
+       "ar": "يجب أن أستيقظ مبكرًا.",
+       "pt": "Eu tenho que me levantar cedo.",
+       "pl": "Muszę wcześnie wstać.",
+       "ru": "Мне надо рано вставать."
+      }
+     ],
+     [
+      "Steh [auf]!",
+      {
+       "fr": "Lève-toi !",
+       "en": "Get up!",
+       "tr": "Kalk!",
+       "uk": "Вставай!",
+       "fa": "بلند شو!",
+       "ar": "انهض!",
+       "pt": "Levanta!",
+       "pl": "Wstawaj!",
+       "ru": "Вставай!"
+      }
+     ],
+     [
+      "Ich bin müde, weil ich früh [auf]stehe.",
+      {
+       "fr": "Je suis fatigué(e) parce que je me lève tôt.",
+       "en": "I'm tired because I get up early.",
+       "tr": "Yorgunum çünkü erken kalkıyorum.",
+       "uk": "Я втомлений (втомлена), бо рано встаю.",
+       "fa": "خسته‌ام چون زود بلند می‌شوم.",
+       "ar": "أنا متعب لأنني أستيقظ مبكرًا.",
+       "pt": "Estou cansado porque me levanto cedo.",
+       "pl": "Jestem zmęczony (zmęczona), bo wcześnie wstaję.",
+       "ru": "Я устал(а), потому что рано встаю."
+      }
+     ],
+     [
+      "Es ist schwer, früh [auf]zustehen.",
+      {
+       "fr": "C'est difficile de se lever tôt.",
+       "en": "It's hard to get up early.",
+       "tr": "Erken kalkmak zor.",
+       "uk": "Важко рано вставати.",
+       "fa": "زود بلند شدن سخت است.",
+       "ar": "من الصعب الاستيقاظ مبكرًا.",
+       "pt": "É difícil levantar cedo.",
+       "pl": "Trudno wcześnie wstawać.",
+       "ru": "Трудно рано вставать."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "La particule ne part à la fin que quand le verbe est conjugué en 2e place (lignes 1 et 4). Partout ailleurs, elle reste collée : à l'infinitif, au participe (auf-ge-standen), en fin de subordonnée, et avec zu (auf-zu-stehen). Même jeu pour einkaufen, anrufen, mitkommen.",
+     "en": "The particle only goes to the end when the verb is conjugated in 2nd place (lines 1 and 4). Everywhere else it stays attached: in the infinitive, the participle (auf-ge-standen), at the end of a subclause, and with zu (auf-zu-stehen). Same for einkaufen, anrufen, mitkommen.",
+     "tr": "Ön ek yalnızca fiil 2. sırada çekimlendiğinde sona gider (1. ve 4. satırlar). Başka her yerde bitişik kalır: mastarda, ortaçta (auf-ge-standen), yan cümlenin sonunda ve zu ile (auf-zu-stehen). einkaufen, anrufen, mitkommen için de aynı.",
+     "uk": "Частка йде в кінець лише тоді, коли дієслово відмінюване й стоїть на 2-му місці (рядки 1 і 4). Усюди інакше вона залишається злитою: в інфінітиві, у дієприкметнику (auf-ge-standen), у кінці підрядного речення і з zu (auf-zu-stehen). Так само einkaufen, anrufen, mitkommen.",
+     "fa": "پیشوند فقط وقتی به آخر جمله می‌رود که فعلِ صرف‌شده در جایگاه دوم باشد (سطرهای ۱ و ۴). در بقیهٔ جاها چسبیده می‌ماند: در مصدر، در اسم مفعول (auf-ge-standen)، در آخر جملهٔ پیرو و با zu ‏(auf-zu-stehen). برای einkaufen، anrufen، mitkommen هم همین‌طور است.",
+     "ar": "لا تذهب السابقة إلى آخر الجملة إلا عندما يكون الفعل مصرّفًا في المرتبة الثانية (السطران 1 و4). وفي ما عدا ذلك تبقى ملتصقة: في المصدر، وفي اسم المفعول (auf-ge-standen)، وفي آخر الجملة التابعة، ومع zu ‏(auf-zu-stehen). وكذلك einkaufen و‏anrufen و‏mitkommen.",
+     "pt": "A partícula só vai para o fim quando o verbo está conjugado na 2.ª posição (linhas 1 e 4). Em todos os outros casos ela fica colada: no infinitivo, no particípio (auf-ge-standen), no fim da oração subordinada e com zu (auf-zu-stehen). O mesmo vale para einkaufen, anrufen, mitkommen.",
+     "pl": "Partykuła idzie na koniec tylko wtedy, gdy czasownik jest odmieniony i stoi na 2. miejscu (linijki 1 i 4). Wszędzie indziej zostaje przyklejona: w bezokoliczniku, w imiesłowie (auf-ge-standen), na końcu zdania podrzędnego i z zu (auf-zu-stehen). Tak samo einkaufen, anrufen, mitkommen.",
+     "ru": "Приставка уходит в конец, только когда глагол спрягается и стоит на 2-м месте (строки 1 и 4). Во всех остальных случаях она остаётся слитной: в инфинитиве, в причастии (auf-ge-standen), в конце придаточного и с zu (auf-zu-stehen). Так же einkaufen, anrufen, mitkommen."
+    }
+   },
+   {
+    "id": "sans_ge",
+    "serie": "perfektExercises",
+    "temps": "perfekt",
+    "t": {
+     "fr": "Sans ge- : bezahlt, telefoniert",
+     "en": "Without ge-: bezahlt, telefoniert",
+     "tr": "ge- olmadan: bezahlt, telefoniert",
+     "uk": "Без ge-: bezahlt, telefoniert",
+     "fa": "بدون ge-: bezahlt، telefoniert",
+     "ar": "من دون ge-: bezahlt، telefoniert",
+     "pt": "Sem ge-: bezahlt, telefoniert",
+     "pl": "Bez ge-: bezahlt, telefoniert",
+     "ru": "Без ge-: bezahlt, telefoniert"
+    },
+    "l": [
+     [
+      "Ich habe schon [bezahlt].",
+      {
+       "fr": "J'ai déjà payé.",
+       "en": "I've already paid.",
+       "tr": "Ben zaten ödedim.",
+       "uk": "Я вже заплатив (заплатила).",
+       "fa": "من قبلاً پرداخت کرده‌ام.",
+       "ar": "لقد دفعتُ بالفعل.",
+       "pt": "Eu já paguei.",
+       "pl": "Już zapłaciłem (zapłaciłam).",
+       "ru": "Я уже заплатил(а)."
+      }
+     ],
+     [
+      "Hast du das [verstanden]?",
+      {
+       "fr": "Tu as compris ?",
+       "en": "Did you understand that?",
+       "tr": "Bunu anladın mı?",
+       "uk": "Ти це зрозумів (зрозуміла)?",
+       "fa": "این را فهمیدی؟",
+       "ar": "هل فهمتَ هذا؟",
+       "pt": "Você entendeu isso?",
+       "pl": "Zrozumiałeś (zrozumiałaś) to?",
+       "ru": "Ты это понял(а)?"
+      }
+     ],
+     [
+      "Er hat mich [besucht].",
+      {
+       "fr": "Il m'a rendu visite.",
+       "en": "He visited me.",
+       "tr": "Beni ziyaret etti.",
+       "uk": "Він мене відвідав.",
+       "fa": "او به دیدنم آمد.",
+       "ar": "زارني.",
+       "pt": "Ele me visitou.",
+       "pl": "On mnie odwiedził.",
+       "ru": "Он меня навестил."
+      }
+     ],
+     [
+      "Wir haben lange [telefoniert].",
+      {
+       "fr": "Nous avons longtemps parlé au téléphone.",
+       "en": "We talked on the phone for a long time.",
+       "tr": "Uzun süre telefonda konuştuk.",
+       "uk": "Ми довго говорили по телефону.",
+       "fa": "مدت زیادی تلفنی حرف زدیم.",
+       "ar": "تحدّثنا بالهاتف طويلًا.",
+       "pt": "Nós falamos muito tempo ao telefone.",
+       "pl": "Długo rozmawialiśmy przez telefon.",
+       "ru": "Мы долго говорили по телефону."
+      }
+     ],
+     [
+      "Habt ihr das Wort [vergessen]?",
+      {
+       "fr": "Vous avez oublié le mot ? (à plusieurs)",
+       "en": "Did you forget the word? (all of you)",
+       "tr": "Kelimeyi unuttunuz mu? (çoğul)",
+       "uk": "Ви забули слово? (кілька осіб)",
+       "fa": "کلمه را فراموش کردید؟ (جمع)",
+       "ar": "هل نسيتم الكلمة؟",
+       "pt": "Vocês esqueceram a palavra?",
+       "pl": "Zapomnieliście słowa? (wy)",
+       "ru": "Вы забыли слово? (несколько человек)"
+      }
+     ],
+     [
+      "Sie haben das Auto [repariert].",
+      {
+       "fr": "Ils ont réparé la voiture.",
+       "en": "They repaired the car.",
+       "tr": "Arabayı tamir ettiler.",
+       "uk": "Вони полагодили машину.",
+       "fa": "آن‌ها ماشین را تعمیر کردند.",
+       "ar": "أصلحوا السيارة.",
+       "pt": "Eles consertaram o carro.",
+       "pl": "Naprawili samochód.",
+       "ru": "Они починили машину."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Pas de ge- au participe quand le verbe commence par be-, ver-, er-, ent-, emp-, zer- ou ge- (bezahlen → bezahlt, vergessen → vergessen), ni quand il finit par -ieren (telefonieren → telefoniert, reparieren → repariert). Astuce : ces verbes ne sont pas accentués sur la première syllabe.",
+     "en": "No ge- in the participle when the verb starts with be-, ver-, er-, ent-, emp-, zer- or ge- (bezahlen → bezahlt, vergessen → vergessen), or ends in -ieren (telefonieren → telefoniert, reparieren → repariert). Tip: these verbs aren't stressed on the first syllable.",
+     "tr": "Fiil be-, ver-, er-, ent-, emp-, zer- veya ge- ile başlıyorsa (bezahlen → bezahlt, vergessen → vergessen) ya da -ieren ile bitiyorsa (telefonieren → telefoniert, reparieren → repariert) ortaçta ge- olmaz. İpucu: bu fiillerde vurgu ilk hecede değildir.",
+     "uk": "Без ge- у дієприкметнику, коли дієслово починається на be-, ver-, er-, ent-, emp-, zer- чи ge- (bezahlen → bezahlt, vergessen → vergessen) або закінчується на -ieren (telefonieren → telefoniert, reparieren → repariert). Підказка: у цих дієсловах наголос не на першому складі.",
+     "fa": "وقتی فعل با be-، ver-، er-، ent-، emp-، zer- یا ge- شروع شود (bezahlen → bezahlt، vergessen → vergessen) یا به -ieren ختم شود (telefonieren → telefoniert، reparieren → repariert)، اسم مفعول ge- نمی‌گیرد. نکته: تکیهٔ این فعل‌ها روی هجای اول نیست.",
+     "ar": "لا يأخذ اسم المفعول ge- إذا بدأ الفعل بـ be- أو ver- أو er- أو ent- أو emp- أو zer- أو ge- ‏(bezahlen → bezahlt، ‏vergessen → vergessen)، ولا إذا انتهى بـ -ieren ‏(telefonieren → telefoniert، ‏reparieren → repariert). تلميح: هذه الأفعال لا يقع نبرها على المقطع الأول.",
+     "pt": "Sem ge- no particípio quando o verbo começa com be-, ver-, er-, ent-, emp-, zer- ou ge- (bezahlen → bezahlt, vergessen → vergessen), nem quando termina em -ieren (telefonieren → telefoniert, reparieren → repariert). Dica: esses verbos não têm a tônica na primeira sílaba.",
+     "pl": "Bez ge- w imiesłowie, gdy czasownik zaczyna się od be-, ver-, er-, ent-, emp-, zer- lub ge- (bezahlen → bezahlt, vergessen → vergessen) albo kończy się na -ieren (telefonieren → telefoniert, reparieren → repariert). Wskazówka: te czasowniki nie mają akcentu na pierwszej sylabie.",
+     "ru": "Без ge- в причастии, когда глагол начинается с be-, ver-, er-, ent-, emp-, zer- или ge- (bezahlen → bezahlt, vergessen → vergessen) или кончается на -ieren (telefonieren → telefoniert, reparieren → repariert). Подсказка: у этих глаголов ударение не на первом слоге."
+    }
+   },
+   {
+    "id": "reflechis_passe",
+    "serie": "perfektExercises",
+    "temps": "perfekt",
+    "t": {
+     "fr": "Les verbes réfléchis au passé",
+     "en": "Reflexive verbs in the past",
+     "tr": "Dönüşlü fiillerin geçmiş zamanı",
+     "uk": "Зворотні дієслова в минулому часі",
+     "fa": "فعل‌های انعکاسی در گذشته",
+     "ar": "الأفعال الانعكاسية في الماضي",
+     "pt": "Os verbos reflexivos no passado",
+     "pl": "Czasowniki zwrotne w czasie przeszłym",
+     "ru": "Возвратные глаголы в прошедшем времени"
+    },
+    "l": [
+     [
+      "Ich habe [mich] gefreut.",
+      {
+       "fr": "J'étais content(e).",
+       "en": "I was pleased.",
+       "tr": "Sevindim.",
+       "uk": "Я зрадів (зраділа).",
+       "fa": "خوشحال شدم.",
+       "ar": "فرحتُ.",
+       "pt": "Eu fiquei contente.",
+       "pl": "Ucieszyłem (ucieszyłam) się.",
+       "ru": "Я обрадовался (обрадовалась)."
+      }
+     ],
+     [
+      "Du hast [dich] beeilt.",
+      {
+       "fr": "Tu t'es dépêché(e).",
+       "en": "You hurried.",
+       "tr": "Acele ettin.",
+       "uk": "Ти поспішив (поспішила).",
+       "fa": "عجله کردی.",
+       "ar": "أسرعتَ.",
+       "pt": "Você se apressou.",
+       "pl": "Pospieszyłeś (pospieszyłaś) się.",
+       "ru": "Ты поторопился (поторопилась)."
+      }
+     ],
+     [
+      "Er hat [sich] verletzt.",
+      {
+       "fr": "Il s'est blessé.",
+       "en": "He hurt himself.",
+       "tr": "Yaralandı.",
+       "uk": "Він поранився.",
+       "fa": "او زخمی شد.",
+       "ar": "جُرح.",
+       "pt": "Ele se machucou.",
+       "pl": "On się zranił.",
+       "ru": "Он поранился."
+      }
+     ],
+     [
+      "Wir haben [uns] getroffen.",
+      {
+       "fr": "Nous nous sommes rencontrés.",
+       "en": "We met.",
+       "tr": "Buluştuk.",
+       "uk": "Ми зустрілися.",
+       "fa": "همدیگر را دیدیم.",
+       "ar": "التقينا.",
+       "pt": "Nós nos encontramos.",
+       "pl": "Spotkaliśmy się.",
+       "ru": "Мы встретились."
+      }
+     ],
+     [
+      "Habt ihr [euch] gestritten?",
+      {
+       "fr": "Vous vous êtes disputés ?",
+       "en": "Did you (all) argue?",
+       "tr": "Kavga mı ettiniz?",
+       "uk": "Ви посварилися?",
+       "fa": "با هم دعوا کردید؟",
+       "ar": "هل تشاجرتم؟",
+       "pt": "Vocês brigaram?",
+       "pl": "Pokłóciliście się?",
+       "ru": "Вы поссорились?"
+      }
+     ],
+     [
+      "Sie haben [sich] verabschiedet.",
+      {
+       "fr": "Ils se sont dit au revoir.",
+       "en": "They said goodbye.",
+       "tr": "Vedalaştılar.",
+       "uk": "Вони попрощалися.",
+       "fa": "آن‌ها خداحافظی کردند.",
+       "ar": "تودّعوا.",
+       "pt": "Eles se despediram.",
+       "pl": "Pożegnali się.",
+       "ru": "Они попрощались."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Au passé, les verbes réfléchis prennent toujours haben, même quand le français dit « je me suis » : « Ich habe mich verliebt. » Le petit mot (mich, dich, sich, uns, euch, sich) se met juste après haben.",
+     "en": "In the past, reflexive verbs always take haben: “Ich habe mich verliebt.” The little word (mich, dich, sich, uns, euch, sich) goes right after haben.",
+     "tr": "Geçmiş zamanda dönüşlü fiiller her zaman haben alır: “Ich habe mich verliebt.” Küçük sözcük (mich, dich, sich, uns, euch, sich) haben’den hemen sonra gelir.",
+     "uk": "У минулому часі зворотні дієслова завжди беруть haben: «Ich habe mich verliebt.» Маленьке слово (mich, dich, sich, uns, euch, sich) ставлять одразу після haben.",
+     "fa": "در گذشته، فعل‌های انعکاسی همیشه haben می‌گیرند: «Ich habe mich verliebt.» کلمهٔ کوچک (mich، dich، sich، uns، euch، sich) درست بعد از haben می‌آید.",
+     "ar": "في الماضي تأخذ الأفعال الانعكاسية haben دائمًا: «Ich habe mich verliebt.» وتأتي الكلمة الصغيرة (mich، ‏dich، ‏sich، ‏uns، ‏euch، ‏sich) بعد haben مباشرة.",
+     "pt": "No passado, os verbos reflexivos usam sempre haben: “Ich habe mich verliebt.” A palavrinha (mich, dich, sich, uns, euch, sich) vem logo depois de haben.",
+     "pl": "W czasie przeszłym czasowniki zwrotne zawsze biorą haben: „Ich habe mich verliebt.” Małe słówko (mich, dich, sich, uns, euch, sich) stoi zaraz po haben.",
+     "ru": "В прошедшем времени возвратные глаголы всегда берут haben: «Ich habe mich verliebt.» Маленькое слово (mich, dich, sich, uns, euch, sich) ставят сразу после haben."
+    }
+   },
+   {
+    "id": "war_hatte",
+    "serie": "praeteritumExercises",
+    "temps": "praeteritum",
+    "t": {
+     "fr": "J'étais, j'avais : war, hatte",
+     "en": "I was, I had: war, hatte",
+     "tr": "-dım, vardı: war, hatte",
+     "uk": "Був, мав: war, hatte",
+     "fa": "بودم، داشتم: war، hatte",
+     "ar": "كنتُ، كان لديّ: war، hatte",
+     "pt": "Eu estava, eu tinha: war, hatte",
+     "pl": "Byłem, miałem: war, hatte",
+     "ru": "Был, имел: war, hatte"
+    },
+    "l": [
+     [
+      "Ich [war] in Berlin.",
+      {
+       "fr": "J'étais à Berlin.",
+       "en": "I was in Berlin.",
+       "tr": "Berlin'deydim.",
+       "uk": "Я був (була) в Берліні.",
+       "fa": "در برلین بودم.",
+       "ar": "كنتُ في برلين.",
+       "pt": "Eu estive em Berlim.",
+       "pl": "Byłem (byłam) w Berlinie.",
+       "ru": "Я был(а) в Берлине."
+      }
+     ],
+     [
+      "Du [warst] krank.",
+      {
+       "fr": "Tu étais malade.",
+       "en": "You were ill.",
+       "tr": "Hastaydın.",
+       "uk": "Ти був хворий (була хвора).",
+       "fa": "مریض بودی.",
+       "ar": "كنتَ مريضًا.",
+       "pt": "Você estava doente.",
+       "pl": "Byłeś chory (byłaś chora).",
+       "ru": "Ты был болен (была больна)."
+      }
+     ],
+     [
+      "Er [hatte] keine Zeit.",
+      {
+       "fr": "Il n'avait pas le temps.",
+       "en": "He had no time.",
+       "tr": "Zamanı yoktu.",
+       "uk": "Він не мав часу.",
+       "fa": "او وقت نداشت.",
+       "ar": "لم يكن لديه وقت.",
+       "pt": "Ele não tinha tempo.",
+       "pl": "On nie miał czasu.",
+       "ru": "У него не было времени."
+      }
+     ],
+     [
+      "Wir [waren] im Kino.",
+      {
+       "fr": "Nous étions au cinéma.",
+       "en": "We were at the cinema.",
+       "tr": "Sinemadaydık.",
+       "uk": "Ми були в кіно.",
+       "fa": "سینما بودیم.",
+       "ar": "كنّا في السينما.",
+       "pt": "Nós estávamos no cinema.",
+       "pl": "Byliśmy w kinie.",
+       "ru": "Мы были в кино."
+      }
+     ],
+     [
+      "Ihr [hattet] Glück.",
+      {
+       "fr": "Vous avez eu de la chance (à plusieurs).",
+       "en": "You were lucky (all of you).",
+       "tr": "Şanslıydınız (çoğul).",
+       "uk": "Вам пощастило (кільком особам).",
+       "fa": "شانس آوردید (جمع).",
+       "ar": "كنتم محظوظين.",
+       "pt": "Vocês tiveram sorte.",
+       "pl": "Mieliście szczęście (wy).",
+       "ru": "Вам повезло (нескольким)."
+      }
+     ],
+     [
+      "Sie [hatten] Hunger.",
+      {
+       "fr": "Ils avaient faim.",
+       "en": "They were hungry.",
+       "tr": "Açtılar.",
+       "uk": "Вони були голодні.",
+       "fa": "آن‌ها گرسنه بودند.",
+       "ar": "كانوا جائعين.",
+       "pt": "Eles estavam com fome.",
+       "pl": "Byli głodni.",
+       "ru": "Они были голодны."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Pour sein et haben, on dit war et hatte plutôt que « ich bin gewesen », même à l'oral : « Gestern war ich müde. » Attention, ich et er ont la même forme, sans -t : ich war, er war ; ich hatte, er hatte.",
+     "en": "For sein and haben, Germans say war and hatte rather than “ich bin gewesen”, even when speaking: “Gestern war ich müde.” Note that ich and er share the same form, with no -t: ich war, er war; ich hatte, er hatte.",
+     "tr": "sein ve haben için konuşmada bile “ich bin gewesen” yerine war ve hatte denir: “Gestern war ich müde.” Dikkat: ich ve er aynı biçimdedir, -t olmadan: ich war, er war; ich hatte, er hatte.",
+     "uk": "Для sein і haben навіть у розмові кажуть war і hatte, а не «ich bin gewesen»: «Gestern war ich müde.» Увага: ich і er мають однакову форму, без -t: ich war, er war; ich hatte, er hatte.",
+     "fa": "برای sein و haben، حتی در گفتار، به جای «ich bin gewesen» می‌گویند war و hatte: «Gestern war ich müde.» دقت کن: ich و er یک شکل دارند، بدون -t: ich war، er war؛ ich hatte، er hatte.",
+     "ar": "مع sein وhaben يقول الألمان war وhatte بدل «ich bin gewesen» حتى في الكلام: «Gestern war ich müde.» انتبه: لـ ich وer الصيغة نفسها، بلا -t: ‏ich war، ‏er war؛ ‏ich hatte، ‏er hatte.",
+     "pt": "Para sein e haben, diz-se war e hatte em vez de “ich bin gewesen”, mesmo falando: “Gestern war ich müde.” Atenção: ich e er têm a mesma forma, sem -t: ich war, er war; ich hatte, er hatte.",
+     "pl": "Przy sein i haben nawet w mowie mówi się war i hatte, a nie „ich bin gewesen”: „Gestern war ich müde.” Uwaga: ich i er mają tę samą formę, bez -t: ich war, er war; ich hatte, er hatte.",
+     "ru": "Для sein и haben даже в разговоре говорят war и hatte, а не «ich bin gewesen»: «Gestern war ich müde.» Внимание: у ich и er одна и та же форма, без -t: ich war, er war; ich hatte, er hatte."
+    }
+   },
+   {
+    "id": "modaux_passe",
+    "serie": "praeteritumExercises",
+    "temps": "praeteritum",
+    "t": {
+     "fr": "Les modaux au passé : konnte, musste",
+     "en": "Modal verbs in the past: konnte, musste",
+     "tr": "Kip fiillerinin geçmişi: konnte, musste",
+     "uk": "Модальні дієслова в минулому: konnte, musste",
+     "fa": "فعل‌های وجهی در گذشته: konnte، musste",
+     "ar": "الأفعال الناقصة في الماضي: konnte، musste",
+     "pt": "Os modais no passado: konnte, musste",
+     "pl": "Czasowniki modalne w przeszłości: konnte, musste",
+     "ru": "Модальные глаголы в прошедшем: konnte, musste"
+    },
+    "l": [
+     [
+      "Ich [konnte] nicht kommen.",
+      {
+       "fr": "Je n'ai pas pu venir.",
+       "en": "I couldn't come.",
+       "tr": "Gelemedim.",
+       "uk": "Я не зміг (змогла) прийти.",
+       "fa": "نتوانستم بیایم.",
+       "ar": "لم أستطع المجيء.",
+       "pt": "Eu não pude vir.",
+       "pl": "Nie mogłem (mogłam) przyjść.",
+       "ru": "Я не смог(ла) прийти."
+      }
+     ],
+     [
+      "Du [musstest] arbeiten.",
+      {
+       "fr": "Tu devais travailler.",
+       "en": "You had to work.",
+       "tr": "Çalışman gerekiyordu.",
+       "uk": "Ти мусив (мусила) працювати.",
+       "fa": "مجبور بودی کار کنی.",
+       "ar": "كان عليك أن تعمل.",
+       "pt": "Você tinha que trabalhar.",
+       "pl": "Musiałeś (musiałaś) pracować.",
+       "ru": "Тебе надо было работать."
+      }
+     ],
+     [
+      "Er [wollte] Arzt werden.",
+      {
+       "fr": "Il voulait devenir médecin.",
+       "en": "He wanted to become a doctor.",
+       "tr": "Doktor olmak istiyordu.",
+       "uk": "Він хотів стати лікарем.",
+       "fa": "او می‌خواست پزشک شود.",
+       "ar": "كان يريد أن يصبح طبيبًا.",
+       "pt": "Ele queria ser médico.",
+       "pl": "On chciał zostać lekarzem.",
+       "ru": "Он хотел стать врачом."
+      }
+     ],
+     [
+      "Wir [durften] nicht rauchen.",
+      {
+       "fr": "Nous n'avions pas le droit de fumer.",
+       "en": "We weren't allowed to smoke.",
+       "tr": "Sigara içmemize izin yoktu.",
+       "uk": "Нам не можна було курити.",
+       "fa": "اجازه نداشتیم سیگار بکشیم.",
+       "ar": "لم يكن مسموحًا لنا بالتدخين.",
+       "pt": "Nós não podíamos fumar.",
+       "pl": "Nie wolno nam było palić.",
+       "ru": "Нам нельзя было курить."
+      }
+     ],
+     [
+      "Ihr [solltet] warten.",
+      {
+       "fr": "Vous deviez attendre (on vous l'avait dit).",
+       "en": "You were supposed to wait.",
+       "tr": "Beklemeniz gerekiyordu (size söylenmişti).",
+       "uk": "Ви мали чекати (вам так сказали).",
+       "fa": "قرار بود صبر کنید.",
+       "ar": "كان عليكم أن تنتظروا (قيل لكم ذلك).",
+       "pt": "Vocês deviam esperar (tinham pedido).",
+       "pl": "Mieliście czekać (tak wam powiedziano).",
+       "ru": "Вы должны были ждать (вам так сказали)."
+      }
+     ],
+     [
+      "Sie [mochten] den Film nicht.",
+      {
+       "fr": "Ils n'ont pas aimé le film.",
+       "en": "They didn't like the film.",
+       "tr": "Filmi beğenmediler.",
+       "uk": "Їм не сподобався фільм.",
+       "fa": "آن‌ها فیلم را دوست نداشتند.",
+       "ar": "لم يعجبهم الفيلم.",
+       "pt": "Eles não gostaram do filme.",
+       "pl": "Nie podobał im się film.",
+       "ru": "Им не понравился фильм."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Au passé, les modaux perdent leur tréma et prennent -te : können → konnte, müssen → musste, dürfen → durfte, mögen → mochte. On les emploie au Präteritum même à l'oral : « Ich konnte nicht », jamais « ich habe nicht gekonnt ».",
+     "en": "In the past, modal verbs lose their umlaut and add -te: können → konnte, müssen → musste, dürfen → durfte, mögen → mochte. They're used in the Präteritum even in speech: “Ich konnte nicht”, not “ich habe nicht gekonnt”.",
+     "tr": "Geçmiş zamanda kip fiilleri Umlaut’larını kaybeder ve -te alır: können → konnte, müssen → musste, dürfen → durfte, mögen → mochte. Konuşmada bile Präteritum kullanılır: “Ich konnte nicht”, “ich habe nicht gekonnt” değil.",
+     "uk": "У минулому часі модальні дієслова втрачають умлаут і додають -te: können → konnte, müssen → musste, dürfen → durfte, mögen → mochte. Навіть у розмові їх вживають у Präteritum: «Ich konnte nicht», а не «ich habe nicht gekonnt».",
+     "fa": "در گذشته، فعل‌های وجهی اوملاوت خود را از دست می‌دهند و -te می‌گیرند: können → konnte، müssen → musste، dürfen → durfte، mögen → mochte. حتی در گفتار هم با Präteritum به کار می‌روند: «Ich konnte nicht»، نه «ich habe nicht gekonnt».",
+     "ar": "في الماضي تفقد الأفعال الناقصة علامة الأوملاوت وتأخذ -te: ‏können → konnte، ‏müssen → musste، ‏dürfen → durfte، ‏mögen → mochte. وتُستعمل في الـPräteritum حتى في الكلام: «Ich konnte nicht» لا «ich habe nicht gekonnt».",
+     "pt": "No passado, os modais perdem o trema e ganham -te: können → konnte, müssen → musste, dürfen → durfte, mögen → mochte. Usam-se no Präteritum mesmo falando: “Ich konnte nicht”, e não “ich habe nicht gekonnt”.",
+     "pl": "W przeszłości czasowniki modalne tracą umlaut i dostają -te: können → konnte, müssen → musste, dürfen → durfte, mögen → mochte. Nawet w mowie używa się ich w Präteritum: „Ich konnte nicht”, a nie „ich habe nicht gekonnt”.",
+     "ru": "В прошедшем времени модальные глаголы теряют умлаут и получают -te: können → konnte, müssen → musste, dürfen → durfte, mögen → mochte. Даже в разговоре их употребляют в Präteritum: «Ich konnte nicht», а не «ich habe nicht gekonnt»."
+    }
+   },
+   {
+    "id": "imperatif",
+    "serie": null,
+    "temps": null,
+    "t": {
+     "fr": "L'impératif : Komm ! Kommen Sie !",
+     "en": "The imperative: Komm! Kommen Sie!",
+     "tr": "Emir kipi: Komm! Kommen Sie!",
+     "uk": "Наказовий спосіб: Komm! Kommen Sie!",
+     "fa": "وجه امری: Komm! Kommen Sie!",
+     "ar": "صيغة الأمر: Komm! Kommen Sie!",
+     "pt": "O imperativo: Komm! Kommen Sie!",
+     "pl": "Tryb rozkazujący: Komm! Kommen Sie!",
+     "ru": "Повелительное наклонение: Komm! Kommen Sie!"
+    },
+    "l": [
+     [
+      "[Komm] her!",
+      {
+       "fr": "Viens ici !",
+       "en": "Come here!",
+       "tr": "Buraya gel!",
+       "uk": "Іди сюди!",
+       "fa": "بیا اینجا!",
+       "ar": "تعالَ إلى هنا!",
+       "pt": "Vem cá!",
+       "pl": "Chodź tu!",
+       "ru": "Иди сюда!"
+      }
+     ],
+     [
+      "[Kommt] mit!",
+      {
+       "fr": "Venez avec nous ! (à plusieurs)",
+       "en": "Come along! (all of you)",
+       "tr": "Siz de gelin! (çoğul)",
+       "uk": "Ходіть з нами! (кілька осіб)",
+       "fa": "شما هم بیایید! (جمع)",
+       "ar": "تعالوا معنا!",
+       "pt": "Venham junto!",
+       "pl": "Chodźcie z nami! (wy)",
+       "ru": "Пойдёмте с нами! (несколько человек)"
+      }
+     ],
+     [
+      "[Kommen] Sie herein!",
+      {
+       "fr": "Entrez ! (poli)",
+       "en": "Come in! (polite)",
+       "tr": "Buyurun, girin! (kibar)",
+       "uk": "Заходьте! (ввічливо)",
+       "fa": "بفرمایید داخل! (مؤدبانه)",
+       "ar": "تفضّل بالدخول! (للمجاملة)",
+       "pt": "Entre! (polido)",
+       "pl": "Proszę wejść! (grzecznościowo)",
+       "ru": "Входите! (вежливо)"
+      }
+     ],
+     [
+      "[Ruf] mich an!",
+      {
+       "fr": "Appelle-moi !",
+       "en": "Call me!",
+       "tr": "Beni ara!",
+       "uk": "Подзвони мені!",
+       "fa": "به من زنگ بزن!",
+       "ar": "اتّصل بي!",
+       "pt": "Me liga!",
+       "pl": "Zadzwoń do mnie!",
+       "ru": "Позвони мне!"
+      }
+     ],
+     [
+      "[Nimm] den Bus!",
+      {
+       "fr": "Prends le bus !",
+       "en": "Take the bus!",
+       "tr": "Otobüse bin!",
+       "uk": "Сідай на автобус!",
+       "fa": "اتوبوس بگیر!",
+       "ar": "خذ الحافلة!",
+       "pt": "Pega o ônibus!",
+       "pl": "Jedź autobusem!",
+       "ru": "Садись на автобус!"
+      }
+     ],
+     [
+      "[Seien] Sie bitte pünktlich!",
+      {
+       "fr": "Soyez à l'heure, s'il vous plaît !",
+       "en": "Please be on time!",
+       "tr": "Lütfen dakik olun!",
+       "uk": "Будь ласка, будьте вчасно!",
+       "fa": "لطفاً سر وقت باشید!",
+       "ar": "كن في الموعد من فضلك!",
+       "pt": "Seja pontual, por favor!",
+       "pl": "Proszę być punktualnie!",
+       "ru": "Пожалуйста, будьте вовремя!"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Avec du : la forme du présent sans du et sans -st (du kommst → Komm !). Le e qui devient i reste : du nimmst → Nimm ! Avec ihr : la forme du présent, sans ihr (Kommt !). Avec Sie : le verbe d'abord, Sie juste après. Sein est irrégulier : Sei ! Seid ! Seien Sie !",
+     "en": "With du: the present form without du and without -st (du kommst → Komm!). An e that becomes i stays: du nimmst → Nimm! With ihr: the present form, without ihr (Kommt!). With Sie: the verb first, Sie right after. Sein is irregular: Sei! Seid! Seien Sie!",
+     "tr": "du ile: şimdiki zaman biçimi, du’suz ve -st’siz (du kommst → Komm!). i’ye dönen e öyle kalır: du nimmst → Nimm! ihr ile: şimdiki zaman biçimi, ihr’siz (Kommt!). Sie ile: önce fiil, hemen ardından Sie. sein düzensizdir: Sei! Seid! Seien Sie!",
+     "uk": "З du: форма теперішнього часу без du і без -st (du kommst → Komm!). e, що стає i, залишається: du nimmst → Nimm! З ihr: форма теперішнього часу без ihr (Kommt!). Із Sie: спершу дієслово, одразу після нього Sie. sein неправильне: Sei! Seid! Seien Sie!",
+     "fa": "با du: شکل زمان حال بدون du و بدون -st ‏(du kommst → Komm!). e‌ای که i می‌شود همان می‌ماند: du nimmst → Nimm! با ihr: شکل زمان حال بدون ihr ‏(Kommt!). با Sie: اول فعل، بلافاصله بعدش Sie. فعل sein بی‌قاعده است: Sei! Seid! Seien Sie!",
+     "ar": "مع du: صيغة المضارع بلا du وبلا -st ‏(du kommst → Komm!). والـe التي تصير i تبقى: du nimmst → Nimm! ومع ihr: صيغة المضارع بلا ihr ‏(Kommt!). ومع Sie: الفعل أولًا ثم Sie مباشرة. والفعل sein شاذ: Sei! Seid! Seien Sie!",
+     "pt": "Com du: a forma do presente sem du e sem -st (du kommst → Komm!). O e que vira i continua: du nimmst → Nimm! Com ihr: a forma do presente, sem ihr (Kommt!). Com Sie: primeiro o verbo, Sie logo depois. Sein é irregular: Sei! Seid! Seien Sie!",
+     "pl": "Z du: forma czasu teraźniejszego bez du i bez -st (du kommst → Komm!). e, które zmienia się w i, zostaje: du nimmst → Nimm! Z ihr: forma czasu teraźniejszego bez ihr (Kommt!). Z Sie: najpierw czasownik, zaraz po nim Sie. sein jest nieregularne: Sei! Seid! Seien Sie!",
+     "ru": "С du: форма настоящего времени без du и без -st (du kommst → Komm!). e, которое становится i, остаётся: du nimmst → Nimm! С ihr: форма настоящего времени без ihr (Kommt!). С Sie: сначала глагол, сразу за ним Sie. sein неправильный: Sei! Seid! Seien Sie!"
+    }
+   },
+   {
+    "id": "werden_devenir",
+    "serie": null,
+    "temps": null,
+    "t": {
+     "fr": "Devenir : werden",
+     "en": "To become: werden",
+     "tr": "Olmak (hâle gelmek): werden",
+     "uk": "Ставати: werden",
+     "fa": "شدن: werden",
+     "ar": "يصبح: werden",
+     "pt": "Tornar-se: werden",
+     "pl": "Stawać się: werden",
+     "ru": "Становиться: werden"
+    },
+    "l": [
+     [
+      "ich [werde] müde",
+      {
+       "fr": "je commence à être fatigué(e)",
+       "en": "I'm getting tired",
+       "tr": "yoruluyorum",
+       "uk": "я втомлююся",
+       "fa": "خسته می‌شوم",
+       "ar": "بدأتُ أتعب",
+       "pt": "estou ficando cansado",
+       "pl": "robię się zmęczony (zmęczona)",
+       "ru": "я устаю"
+      }
+     ],
+     [
+      "du [wirst] groß",
+      {
+       "fr": "tu grandis",
+       "en": "you're getting big",
+       "tr": "büyüyorsun",
+       "uk": "ти ростеш",
+       "fa": "بزرگ می‌شوی",
+       "ar": "أنت تكبر",
+       "pt": "você está crescendo",
+       "pl": "rośniesz",
+       "ru": "ты растёшь"
+      }
+     ],
+     [
+      "er [wird] Arzt",
+      {
+       "fr": "il devient médecin",
+       "en": "he's becoming a doctor",
+       "tr": "doktor oluyor",
+       "uk": "він стає лікарем",
+       "fa": "او پزشک می‌شود",
+       "ar": "سيصبح طبيبًا",
+       "pt": "ele vai ser médico",
+       "pl": "on zostaje lekarzem",
+       "ru": "он становится врачом"
+      }
+     ],
+     [
+      "wir [werden] Freunde",
+      {
+       "fr": "nous devenons amis",
+       "en": "we're becoming friends",
+       "tr": "arkadaş oluyoruz",
+       "uk": "ми стаємо друзями",
+       "fa": "با هم دوست می‌شویم",
+       "ar": "نصبح أصدقاء",
+       "pt": "nós ficamos amigos",
+       "pl": "zostajemy przyjaciółmi",
+       "ru": "мы становимся друзьями"
+      }
+     ],
+     [
+      "ihr [werdet] nass",
+      {
+       "fr": "vous vous mouillez (à plusieurs)",
+       "en": "you're getting wet (all of you)",
+       "tr": "ıslanıyorsunuz (çoğul)",
+       "uk": "ви мокнете (кілька осіб)",
+       "fa": "خیس می‌شوید (جمع)",
+       "ar": "تبتلّون",
+       "pt": "vocês estão se molhando",
+       "pl": "mokniecie (wy)",
+       "ru": "вы промокаете (несколько человек)"
+      }
+     ],
+     [
+      "es [wird] dunkel",
+      {
+       "fr": "il commence à faire nuit",
+       "en": "it's getting dark",
+       "tr": "hava kararıyor",
+       "uk": "темніє",
+       "fa": "هوا تاریک می‌شود",
+       "ar": "بدأ الظلام يحلّ",
+       "pt": "está escurecendo",
+       "pl": "robi się ciemno",
+       "ru": "темнеет"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "werden est irrégulier à du et à er : du wirst, er wird. Il dit qu'on change : « Es wird kalt. » (Il commence à faire froid.) Retiens-le bien : au B1, werden sert aussi au futur, et plus tard au passif.",
+     "en": "werden is irregular with du and er: du wirst, er wird. It says something is changing: “Es wird kalt.” (It's getting cold.) Learn it well: at B1, werden is also used for the future, and later for the passive.",
+     "tr": "werden, du ve er ile düzensizdir: du wirst, er wird. Bir değişimi anlatır: “Es wird kalt.” (Hava soğuyor.) İyi öğrenin: B1’de werden gelecek zaman için, daha sonra da edilgen yapı için kullanılır.",
+     "uk": "werden неправильне з du і er: du wirst, er wird. Воно означає зміну: «Es wird kalt.» (Холоднішає.) Добре запам’ятайте: на B1 werden служить і для майбутнього часу, а пізніше — для пасиву.",
+     "fa": "werden با du و er بی‌قاعده است: du wirst، er wird. از تغییر خبر می‌دهد: «Es wird kalt.» (هوا سرد می‌شود.) خوب یادش بگیر: در B1 از werden برای آینده و بعدها برای مجهول هم استفاده می‌شود.",
+     "ar": "الفعل werden شاذ مع du وer: ‏du wirst، ‏er wird. وهو يعبّر عن التغيّر: «Es wird kalt.» (بدأ الطقس يبرد.) احفظه جيدًا: في B1 يُستعمل werden للمستقبل أيضًا، ثم للمبني للمجهول لاحقًا.",
+     "pt": "werden é irregular com du e er: du wirst, er wird. Ele indica uma mudança: “Es wird kalt.” (Está esfriando.) Guarde bem: no B1, werden serve também para o futuro e, mais tarde, para a voz passiva.",
+     "pl": "werden jest nieregularne przy du i er: du wirst, er wird. Mówi o zmianie: „Es wird kalt.” (Robi się zimno.) Dobrze je zapamiętaj: na B1 werden służy też do czasu przyszłego, a później do strony biernej.",
+     "ru": "werden неправильный с du и er: du wirst, er wird. Он говорит об изменении: «Es wird kalt.» (Холодает.) Запомните его хорошо: на B1 werden служит и для будущего времени, а позже — для пассива."
+    }
+   },
+   {
+    "id": "raconter_journee",
+    "serie": "perfektExercises",
+    "temps": "perfekt",
+    "t": {
+     "fr": "Raconter sa journée",
+     "en": "Telling about your day",
+     "tr": "Gününü anlatmak",
+     "uk": "Розповісти про свій день",
+     "fa": "تعریف کردن روزت",
+     "ar": "أن تحكي يومك",
+     "pt": "Contar o seu dia",
+     "pl": "Opowiedzieć o swoim dniu",
+     "ru": "Рассказать о своём дне"
+    },
+    "l": [
+     [
+      "Ich bin um sieben [aufgestanden].",
+      {
+       "fr": "Je me suis levé(e) à sept heures.",
+       "en": "I got up at seven.",
+       "tr": "Yedide kalktım.",
+       "uk": "Я встав (встала) о сьомій.",
+       "fa": "ساعت هفت بلند شدم.",
+       "ar": "استيقظتُ في السابعة.",
+       "pt": "Eu me levantei às sete.",
+       "pl": "Wstałem (wstałam) o siódmej.",
+       "ru": "Я встал(а) в семь."
+      }
+     ],
+     [
+      "Dann habe ich [gefrühstückt].",
+      {
+       "fr": "Ensuite, j'ai pris mon petit déjeuner.",
+       "en": "Then I had breakfast.",
+       "tr": "Sonra kahvaltı ettim.",
+       "uk": "Потім я поснідав (поснідала).",
+       "fa": "بعد صبحانه خوردم.",
+       "ar": "ثم تناولتُ الفطور.",
+       "pt": "Depois eu tomei café da manhã.",
+       "pl": "Potem zjadłem (zjadłam) śniadanie.",
+       "ru": "Потом я позавтракал(а)."
+      }
+     ],
+     [
+      "Ich bin mit dem Bus [gefahren].",
+      {
+       "fr": "J'ai pris le bus.",
+       "en": "I went by bus.",
+       "tr": "Otobüsle gittim.",
+       "uk": "Я поїхав (поїхала) автобусом.",
+       "fa": "با اتوبوس رفتم.",
+       "ar": "ذهبتُ بالحافلة.",
+       "pt": "Eu fui de ônibus.",
+       "pl": "Pojechałem (pojechałam) autobusem.",
+       "ru": "Я поехал(а) на автобусе."
+      }
+     ],
+     [
+      "Mittags [hatte] ich keine Zeit.",
+      {
+       "fr": "À midi, je n'avais pas le temps.",
+       "en": "At lunchtime I had no time.",
+       "tr": "Öğlen hiç vaktim yoktu.",
+       "uk": "Опівдні я не мав (мала) часу.",
+       "fa": "ظهر وقت نداشتم.",
+       "ar": "عند الظهر لم يكن لديّ وقت.",
+       "pt": "Na hora do almoço eu não tinha tempo.",
+       "pl": "W południe nie miałem (miałam) czasu.",
+       "ru": "В обед у меня не было времени."
+      }
+     ],
+     [
+      "Abends [war] ich müde.",
+      {
+       "fr": "Le soir, j'étais fatigué(e).",
+       "en": "In the evening I was tired.",
+       "tr": "Akşam yorgundum.",
+       "uk": "Увечері я був утомлений (була втомлена).",
+       "fa": "عصر خسته بودم.",
+       "ar": "في المساء كنتُ متعبًا.",
+       "pt": "À noite eu estava cansado.",
+       "pl": "Wieczorem byłem zmęczony (byłam zmęczona).",
+       "ru": "Вечером я устал(а)."
+      }
+     ],
+     [
+      "Ich habe einen Film [gesehen].",
+      {
+       "fr": "J'ai regardé un film.",
+       "en": "I watched a film.",
+       "tr": "Bir film izledim.",
+       "uk": "Я подивився (подивилася) фільм.",
+       "fa": "یک فیلم دیدم.",
+       "ar": "شاهدتُ فيلمًا.",
+       "pt": "Eu vi um filme.",
+       "pl": "Obejrzałem (obejrzałam) film.",
+       "ru": "Я посмотрел(а) фильм."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Pour raconter à l'oral, on mélange : le Perfekt pour presque tout (bin aufgestanden, habe gefrühstückt), mais war, hatte et les modaux (konnte, musste) au Präteritum. Les petits mots dann, danach, mittags, abends font avancer le récit, et le verbe reste en 2e place juste après eux.",
+     "en": "When telling a story out loud, you mix: the Perfekt for almost everything (bin aufgestanden, habe gefrühstückt), but war, hatte and the modals (konnte, musste) in the Präteritum. Little words like dann, danach, mittags, abends move the story along, and the verb stays in 2nd place right after them.",
+     "tr": "Sözlü anlatımda karıştırılır: hemen her şey için Perfekt (bin aufgestanden, habe gefrühstückt), ama war, hatte ve kip fiilleri (konnte, musste) Präteritum’da. dann, danach, mittags, abends gibi küçük sözcükler anlatıyı ilerletir ve fiil onlardan hemen sonra 2. sırada kalır.",
+     "uk": "В усній розповіді змішують: Perfekt майже для всього (bin aufgestanden, habe gefrühstückt), але war, hatte і модальні дієслова (konnte, musste) — у Präteritum. Слівця dann, danach, mittags, abends рухають розповідь, а дієслово залишається на 2-му місці одразу після них.",
+     "fa": "در تعریف کردنِ شفاهی ترکیب می‌کنیم: Perfekt برای تقریباً همه‌چیز (bin aufgestanden، habe gefrühstückt)، ولی war، hatte و فعل‌های وجهی (konnte، musste) با Präteritum. کلمه‌های کوچکی مثل dann، danach، mittags، abends روایت را جلو می‌برند و فعل درست بعد از آن‌ها در جایگاه دوم می‌ماند.",
+     "ar": "في الحكي الشفهي نمزج: الـPerfekt لكل شيء تقريبًا (bin aufgestanden، ‏habe gefrühstückt)، أما war وhatte والأفعال الناقصة (konnte، ‏musste) ففي الـPräteritum. والكلمات الصغيرة dann و‏danach و‏mittags و‏abends تدفع الحكاية إلى الأمام، ويبقى الفعل بعدها مباشرة في المرتبة الثانية.",
+     "pt": "Para contar algo falando, misturamos: o Perfekt para quase tudo (bin aufgestanden, habe gefrühstückt), mas war, hatte e os modais (konnte, musste) no Präteritum. Palavrinhas como dann, danach, mittags, abends fazem a história avançar, e o verbo fica na 2.ª posição logo depois delas.",
+     "pl": "Opowiadając ustnie, mieszamy: Perfekt prawie do wszystkiego (bin aufgestanden, habe gefrühstückt), ale war, hatte i czasowniki modalne (konnte, musste) w Präteritum. Słówka dann, danach, mittags, abends popychają opowieść do przodu, a czasownik zostaje na 2. miejscu zaraz po nich.",
+     "ru": "В устном рассказе смешивают: Perfekt почти для всего (bin aufgestanden, habe gefrühstückt), но war, hatte и модальные глаголы (konnte, musste) — в Präteritum. Словечки dann, danach, mittags, abends двигают рассказ вперёд, а глагол остаётся на 2-м месте сразу после них."
+    }
+   }
+  ],
+  "B1": [
+   {
+    "id": "praet_faible",
+    "serie": "praeteritumExercises",
+    "temps": "praeteritum",
+    "t": {
+     "fr": "Le Präteritum des verbes réguliers",
+     "en": "The Präteritum of regular verbs",
+     "tr": "Düzenli fiillerin Präteritum’u",
+     "uk": "Präteritum правильних дієслів",
+     "fa": "Präteritum فعل‌های باقاعده",
+     "ar": "الـPräteritum للأفعال القياسية",
+     "pt": "O Präteritum dos verbos regulares",
+     "pl": "Präteritum czasowników regularnych",
+     "ru": "Präteritum правильных глаголов"
+    },
+    "l": [
+     [
+      "Ich [wohnte] in Paris.",
+      {
+       "fr": "J'habitais à Paris.",
+       "en": "I lived in Paris.",
+       "tr": "Paris'te oturuyordum.",
+       "uk": "Я жив (жила) в Парижі.",
+       "fa": "در پاریس زندگی می‌کردم.",
+       "ar": "كنتُ أسكن في باريس.",
+       "pt": "Eu morava em Paris.",
+       "pl": "Mieszkałem (mieszkałam) w Paryżu.",
+       "ru": "Я жил(а) в Париже."
+      }
+     ],
+     [
+      "Du [arbeitetest] viel.",
+      {
+       "fr": "Tu travaillais beaucoup.",
+       "en": "You worked a lot.",
+       "tr": "Çok çalışıyordun.",
+       "uk": "Ти багато працював (працювала).",
+       "fa": "زیاد کار می‌کردی.",
+       "ar": "كنتَ تعمل كثيرًا.",
+       "pt": "Você trabalhava muito.",
+       "pl": "Dużo pracowałeś (pracowałaś).",
+       "ru": "Ты много работал(а)."
+      }
+     ],
+     [
+      "Er [kaufte] ein Auto.",
+      {
+       "fr": "Il acheta une voiture.",
+       "en": "He bought a car.",
+       "tr": "Bir araba aldı.",
+       "uk": "Він купив машину.",
+       "fa": "او یک ماشین خرید.",
+       "ar": "اشترى سيارة.",
+       "pt": "Ele comprou um carro.",
+       "pl": "On kupił samochód.",
+       "ru": "Он купил машину."
+      }
+     ],
+     [
+      "Wir [spielten] Karten.",
+      {
+       "fr": "Nous jouions aux cartes.",
+       "en": "We played cards.",
+       "tr": "Kâğıt oynuyorduk.",
+       "uk": "Ми грали в карти.",
+       "fa": "ورق بازی می‌کردیم.",
+       "ar": "كنّا نلعب الورق.",
+       "pt": "Nós jogávamos cartas.",
+       "pl": "Graliśmy w karty.",
+       "ru": "Мы играли в карты."
+      }
+     ],
+     [
+      "Ihr [lerntet] Deutsch.",
+      {
+       "fr": "Vous appreniez l'allemand (à plusieurs).",
+       "en": "You were learning German (all of you).",
+       "tr": "Almanca öğreniyordunuz (çoğul).",
+       "uk": "Ви вчили німецьку (кілька осіб).",
+       "fa": "آلمانی یاد می‌گرفتید (جمع).",
+       "ar": "كنتم تتعلّمون الألمانية.",
+       "pt": "Vocês aprendiam alemão.",
+       "pl": "Uczyliście się niemieckiego (wy).",
+       "ru": "Вы учили немецкий (несколько человек)."
+      }
+     ],
+     [
+      "Sie [machten] Urlaub.",
+      {
+       "fr": "Ils étaient en vacances.",
+       "en": "They were on holiday.",
+       "tr": "Tatildeydiler.",
+       "uk": "Вони були у відпустці.",
+       "fa": "آن‌ها در تعطیلات بودند.",
+       "ar": "كانوا في عطلة.",
+       "pt": "Eles estavam de férias.",
+       "pl": "Byli na urlopie.",
+       "ru": "Они были в отпуске."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Radical + te, puis la terminaison : ich machte, du machtest, er machte, wir machten, ihr machtet, sie machten. Ich et er ont la même forme. Après t ou d, on glisse un e : arbeitete. C'est le temps des récits écrits : romans, journaux, contes.",
+     "en": "Stem + te, then the ending: ich machte, du machtest, er machte, wir machten, ihr machtet, sie machten. Ich and er share the same form. After t or d, add an e: arbeitete. It's the tense of written stories: novels, newspapers, fairy tales.",
+     "tr": "Kök + te, ardından çekim eki: ich machte, du machtest, er machte, wir machten, ihr machtet, sie machten. ich ve er aynı biçimdedir. t veya d’den sonra bir e eklenir: arbeitete. Yazılı anlatıların zamanıdır: romanlar, gazeteler, masallar.",
+     "uk": "Основа + te, потім закінчення: ich machte, du machtest, er machte, wir machten, ihr machtet, sie machten. ich і er мають однакову форму. Після t чи d додають e: arbeitete. Це час письмових розповідей: романів, газет, казок.",
+     "fa": "ریشه + te، بعد شناسه: ich machte، du machtest، er machte، wir machten، ihr machtet، sie machten. ich و er یک شکل دارند. بعد از t یا d یک e اضافه می‌شود: arbeitete. این زمانِ روایت‌های نوشتاری است: رمان، روزنامه، قصه.",
+     "ar": "الجذر + te ثم اللاحقة: ‏ich machte، ‏du machtest، ‏er machte، ‏wir machten، ‏ihr machtet، ‏sie machten. ولـ ich وer الصيغة نفسها. وبعد t أو d نضيف e: ‏arbeitete. إنه زمن الحكايات المكتوبة: الروايات والصحف والقصص.",
+     "pt": "Radical + te, depois a terminação: ich machte, du machtest, er machte, wir machten, ihr machtet, sie machten. Ich e er têm a mesma forma. Depois de t ou d, acrescenta-se um e: arbeitete. É o tempo das narrativas escritas: romances, jornais, contos.",
+     "pl": "Temat + te, potem końcówka: ich machte, du machtest, er machte, wir machten, ihr machtet, sie machten. ich i er mają tę samą formę. Po t lub d dodaje się e: arbeitete. To czas opowieści pisanych: powieści, gazet, baśni.",
+     "ru": "Основа + te, затем окончание: ich machte, du machtest, er machte, wir machten, ihr machtet, sie machten. У ich и er одна форма. После t или d вставляют e: arbeitete. Это время письменных рассказов: романов, газет, сказок."
+    }
+   },
+   {
+    "id": "praet_fort",
+    "serie": "praeteritumExercises",
+    "temps": "praeteritum",
+    "t": {
+     "fr": "Le Präteritum des verbes forts : gehen",
+     "en": "The Präteritum of strong verbs: gehen",
+     "tr": "Güçlü fiillerin Präteritum’u: gehen",
+     "uk": "Präteritum сильних дієслів: gehen",
+     "fa": "Präteritum فعل‌های قوی: gehen",
+     "ar": "الـPräteritum للأفعال القوية: gehen",
+     "pt": "O Präteritum dos verbos fortes: gehen",
+     "pl": "Präteritum czasowników mocnych: gehen",
+     "ru": "Präteritum сильных глаголов: gehen"
+    },
+    "l": [
+     [
+      "ich [ging]",
+      {
+       "fr": "j'allais · j'allai",
+       "en": "I went",
+       "tr": "gittim · gidiyordum",
+       "uk": "я йшов (ішла)",
+       "fa": "رفتم · می‌رفتم",
+       "ar": "ذهبتُ",
+       "pt": "eu fui · eu ia",
+       "pl": "szedłem (szłam)",
+       "ru": "я шёл (шла)"
+      }
+     ],
+     [
+      "du [gingst]",
+      {
+       "fr": "tu allais",
+       "en": "you went",
+       "tr": "gittin",
+       "uk": "ти йшов (ішла)",
+       "fa": "رفتی",
+       "ar": "ذهبتَ",
+       "pt": "você foi · você ia",
+       "pl": "szedłeś (szłaś)",
+       "ru": "ты шёл (шла)"
+      }
+     ],
+     [
+      "er · sie [ging]",
+      {
+       "fr": "il · elle allait",
+       "en": "he · she went",
+       "tr": "o gitti",
+       "uk": "він ішов · вона йшла",
+       "fa": "او رفت",
+       "ar": "هو ذهب · هي ذهبت",
+       "pt": "ele · ela foi",
+       "pl": "on szedł · ona szła",
+       "ru": "он шёл · она шла"
+      }
+     ],
+     [
+      "wir [gingen]",
+      {
+       "fr": "nous allions",
+       "en": "we went",
+       "tr": "gittik",
+       "uk": "ми йшли",
+       "fa": "رفتیم",
+       "ar": "ذهبنا",
+       "pt": "nós fomos · nós íamos",
+       "pl": "szliśmy",
+       "ru": "мы шли"
+      }
+     ],
+     [
+      "ihr [gingt]",
+      {
+       "fr": "vous alliez (à plusieurs)",
+       "en": "you went (all of you)",
+       "tr": "gittiniz (çoğul)",
+       "uk": "ви йшли (кілька осіб)",
+       "fa": "رفتید (جمع)",
+       "ar": "ذهبتم",
+       "pt": "vocês foram",
+       "pl": "szliście (wy)",
+       "ru": "вы шли (несколько человек)"
+      }
+     ],
+     [
+      "sie · Sie [gingen]",
+      {
+       "fr": "ils allaient · vous alliez (poli)",
+       "en": "they went · you went (polite)",
+       "tr": "gittiler · gittiniz (kibar)",
+       "uk": "вони йшли · ви йшли (ввічливо)",
+       "fa": "آن‌ها رفتند · شما رفتید (مؤدبانه)",
+       "ar": "هم ذهبوا · حضرتك ذهبت (للمجاملة)",
+       "pt": "eles foram · o senhor / a senhora foi (polido)",
+       "pl": "oni szli · pan / pani szedł (szła) (grzecznościowo)",
+       "ru": "они шли · вы шли (вежливо)"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Les verbes forts changent de voyelle et ne prennent pas -te. Ich et er n'ont aucune terminaison : ich ging, er ging. Les autres reprennent celles du présent : -st, -en, -t, -en. Le français a deux temps (j'allais, j'allai) ; l'allemand écrit n'en a qu'un.",
+     "en": "Strong verbs change their vowel and don't take -te. Ich and er have no ending at all: ich ging, er ging. The others take the present-tense endings: -st, -en, -t, -en.",
+     "tr": "Güçlü fiiller ünlü değiştirir ve -te almaz. ich ve er hiç ek almaz: ich ging, er ging. Diğerleri şimdiki zamanın eklerini alır: -st, -en, -t, -en.",
+     "uk": "Сильні дієслова змінюють голосний і не беруть -te. ich і er не мають закінчення: ich ging, er ging. Інші беруть закінчення теперішнього часу: -st, -en, -t, -en.",
+     "fa": "فعل‌های قوی واکه‌شان عوض می‌شود و -te نمی‌گیرند. ich و er هیچ شناسه‌ای ندارند: ich ging، er ging. بقیه شناسه‌های زمان حال را می‌گیرند: -st، -en، -t، -en.",
+     "ar": "تغيّر الأفعال القوية حرف العلّة ولا تأخذ -te. ولا لاحقة إطلاقًا مع ich وer: ‏ich ging، ‏er ging. وتأخذ البقية لواحق المضارع: ‏-st، ‏-en، ‏-t، ‏-en.",
+     "pt": "Os verbos fortes mudam de vogal e não levam -te. Ich e er não têm terminação nenhuma: ich ging, er ging. Os outros pegam as terminações do presente: -st, -en, -t, -en.",
+     "pl": "Czasowniki mocne zmieniają samogłoskę i nie biorą -te. ich i er nie mają żadnej końcówki: ich ging, er ging. Pozostałe biorą końcówki czasu teraźniejszego: -st, -en, -t, -en.",
+     "ru": "Сильные глаголы меняют гласную и не берут -te. У ich и er нет окончания: ich ging, er ging. Остальные берут окончания настоящего времени: -st, -en, -t, -en."
+    }
+   },
+   {
+    "id": "praet_familles",
+    "serie": "praeteritumExercises",
+    "temps": "praeteritum",
+    "t": {
+     "fr": "Les familles de verbes forts",
+     "en": "Families of strong verbs",
+     "tr": "Güçlü fiil aileleri",
+     "uk": "Родини сильних дієслів",
+     "fa": "خانواده‌های فعل‌های قوی",
+     "ar": "عائلات الأفعال القوية",
+     "pt": "As famílias de verbos fortes",
+     "pl": "Rodziny czasowników mocnych",
+     "ru": "Семьи сильных глаголов"
+    },
+    "l": [
+     [
+      "Er [fuhr] nach Berlin.",
+      {
+       "fr": "Il alla à Berlin.",
+       "en": "He went to Berlin.",
+       "tr": "Berlin'e gitti.",
+       "uk": "Він поїхав до Берліна.",
+       "fa": "او به برلین رفت.",
+       "ar": "سافر إلى برلين.",
+       "pt": "Ele foi para Berlim.",
+       "pl": "On pojechał do Berlina.",
+       "ru": "Он поехал в Берлин."
+      }
+     ],
+     [
+      "Sie [schrieb] einen Brief.",
+      {
+       "fr": "Elle écrivit une lettre.",
+       "en": "She wrote a letter.",
+       "tr": "Bir mektup yazdı.",
+       "uk": "Вона написала листа.",
+       "fa": "او یک نامه نوشت.",
+       "ar": "كتبت رسالة.",
+       "pt": "Ela escreveu uma carta.",
+       "pl": "Ona napisała list.",
+       "ru": "Она написала письмо."
+      }
+     ],
+     [
+      "Wir [fanden] den Weg.",
+      {
+       "fr": "Nous trouvâmes le chemin.",
+       "en": "We found the way.",
+       "tr": "Yolu bulduk.",
+       "uk": "Ми знайшли дорогу.",
+       "fa": "راه را پیدا کردیم.",
+       "ar": "وجدنا الطريق.",
+       "pt": "Nós encontramos o caminho.",
+       "pl": "Znaleźliśmy drogę.",
+       "ru": "Мы нашли дорогу."
+      }
+     ],
+     [
+      "Ich [nahm] den Zug.",
+      {
+       "fr": "Je pris le train.",
+       "en": "I took the train.",
+       "tr": "Trene bindim.",
+       "uk": "Я сів (сіла) на потяг.",
+       "fa": "با قطار رفتم.",
+       "ar": "أخذتُ القطار.",
+       "pt": "Eu peguei o trem.",
+       "pl": "Pojechałem (pojechałam) pociągiem.",
+       "ru": "Я сел(а) на поезд."
+      }
+     ],
+     [
+      "Er [kam] zu spät.",
+      {
+       "fr": "Il arriva trop tard.",
+       "en": "He came too late.",
+       "tr": "Çok geç geldi.",
+       "uk": "Він прийшов надто пізно.",
+       "fa": "او دیر آمد.",
+       "ar": "جاء متأخرًا.",
+       "pt": "Ele chegou tarde demais.",
+       "pl": "On przyszedł za późno.",
+       "ru": "Он пришёл слишком поздно."
+      }
+     ],
+     [
+      "Sie [sahen] einen Film.",
+      {
+       "fr": "Ils virent un film.",
+       "en": "They saw a film.",
+       "tr": "Bir film izlediler.",
+       "uk": "Вони подивилися фільм.",
+       "fa": "آن‌ها یک فیلم دیدند.",
+       "ar": "شاهدوا فيلمًا.",
+       "pt": "Eles viram um filme.",
+       "pl": "Obejrzeli film.",
+       "ru": "Они посмотрели фильм."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Les verbes forts vont par familles : ei → ie (schreiben – schrieb, bleiben – blieb) ; i → a (finden – fand, trinken – trank) ; a → u (fahren – fuhr, tragen – trug) ; e → a (nehmen – nahm, sprechen – sprach, sehen – sah). Retiens un verbe par famille, les autres suivent.",
+     "en": "Strong verbs come in families: ei → ie (schreiben – schrieb, bleiben – blieb); i → a (finden – fand, trinken – trank); a → u (fahren – fuhr, tragen – trug); e → a (nehmen – nahm, sprechen – sprach, sehen – sah). Learn one verb per family and the others follow.",
+     "tr": "Güçlü fiiller aileler hâlinde gelir: ei → ie (schreiben – schrieb, bleiben – blieb); i → a (finden – fand, trinken – trank); a → u (fahren – fuhr, tragen – trug); e → a (nehmen – nahm, sprechen – sprach, sehen – sah). Her aileden bir fiil öğrenin, diğerleri onu izler.",
+     "uk": "Сильні дієслова йдуть родинами: ei → ie (schreiben – schrieb, bleiben – blieb); i → a (finden – fand, trinken – trank); a → u (fahren – fuhr, tragen – trug); e → a (nehmen – nahm, sprechen – sprach, sehen – sah). Запам’ятайте одне дієслово з кожної родини — решта за ним.",
+     "fa": "فعل‌های قوی خانواده‌خانواده‌اند: ei → ie ‏(schreiben – schrieb، bleiben – blieb)؛ i → a ‏(finden – fand، trinken – trank)؛ a → u ‏(fahren – fuhr، tragen – trug)؛ e → a ‏(nehmen – nahm، sprechen – sprach، sehen – sah). از هر خانواده یک فعل را یاد بگیر، بقیه از آن پیروی می‌کنند.",
+     "ar": "تأتي الأفعال القوية في عائلات: ei → ie ‏(schreiben – schrieb، ‏bleiben – blieb)؛ i → a ‏(finden – fand، ‏trinken – trank)؛ a → u ‏(fahren – fuhr، ‏tragen – trug)؛ e → a ‏(nehmen – nahm، ‏sprechen – sprach، ‏sehen – sah). احفظ فعلًا من كل عائلة، وتتبعه البقية.",
+     "pt": "Os verbos fortes vêm em famílias: ei → ie (schreiben – schrieb, bleiben – blieb); i → a (finden – fand, trinken – trank); a → u (fahren – fuhr, tragen – trug); e → a (nehmen – nahm, sprechen – sprach, sehen – sah). Guarde um verbo de cada família, os outros seguem.",
+     "pl": "Czasowniki mocne tworzą rodziny: ei → ie (schreiben – schrieb, bleiben – blieb); i → a (finden – fand, trinken – trank); a → u (fahren – fuhr, tragen – trug); e → a (nehmen – nahm, sprechen – sprach, sehen – sah). Zapamiętaj jeden czasownik z każdej rodziny, reszta pójdzie za nim.",
+     "ru": "Сильные глаголы идут семьями: ei → ie (schreiben – schrieb, bleiben – blieb); i → a (finden – fand, trinken – trank); a → u (fahren – fuhr, tragen – trug); e → a (nehmen – nahm, sprechen – sprach, sehen – sah). Запомните один глагол из каждой семьи — остальные последуют."
+    }
+   },
+   {
+    "id": "praet_mixte",
+    "serie": "praeteritumExercises",
+    "temps": "praeteritum",
+    "t": {
+     "fr": "Les verbes mixtes : dachte, brachte",
+     "en": "Mixed verbs: dachte, brachte",
+     "tr": "Karma fiiller: dachte, brachte",
+     "uk": "Змішані дієслова: dachte, brachte",
+     "fa": "فعل‌های مختلط: dachte، brachte",
+     "ar": "الأفعال المختلطة: dachte، brachte",
+     "pt": "Os verbos mistos: dachte, brachte",
+     "pl": "Czasowniki mieszane: dachte, brachte",
+     "ru": "Смешанные глаголы: dachte, brachte"
+    },
+    "l": [
+     [
+      "Ich [dachte] an dich.",
+      {
+       "fr": "Je pensais à toi.",
+       "en": "I was thinking of you.",
+       "tr": "Seni düşünüyordum.",
+       "uk": "Я думав (думала) про тебе.",
+       "fa": "به تو فکر می‌کردم.",
+       "ar": "كنتُ أفكّر فيك.",
+       "pt": "Eu pensava em você.",
+       "pl": "Myślałem (myślałam) o tobie.",
+       "ru": "Я думал(а) о тебе."
+      }
+     ],
+     [
+      "Er [brachte] Blumen mit.",
+      {
+       "fr": "Il apporta des fleurs.",
+       "en": "He brought flowers.",
+       "tr": "Yanında çiçek getirdi.",
+       "uk": "Він приніс квіти.",
+       "fa": "او گل آورد.",
+       "ar": "أحضر معه أزهارًا.",
+       "pt": "Ele trouxe flores.",
+       "pl": "On przyniósł kwiaty.",
+       "ru": "Он принёс цветы."
+      }
+     ],
+     [
+      "Wir [wussten] es nicht.",
+      {
+       "fr": "Nous ne le savions pas.",
+       "en": "We didn't know.",
+       "tr": "Bunu bilmiyorduk.",
+       "uk": "Ми цього не знали.",
+       "fa": "ما این را نمی‌دانستیم.",
+       "ar": "لم نكن نعرف ذلك.",
+       "pt": "Nós não sabíamos.",
+       "pl": "Nie wiedzieliśmy o tym.",
+       "ru": "Мы этого не знали."
+      }
+     ],
+     [
+      "Sie [kannte] ihn gut.",
+      {
+       "fr": "Elle le connaissait bien.",
+       "en": "She knew him well.",
+       "tr": "Onu iyi tanıyordu.",
+       "uk": "Вона добре його знала.",
+       "fa": "او را خوب می‌شناخت.",
+       "ar": "كانت تعرفه جيدًا.",
+       "pt": "Ela o conhecia bem.",
+       "pl": "Ona dobrze go znała.",
+       "ru": "Она хорошо его знала."
+      }
+     ],
+     [
+      "Ich [rannte] zum Bus.",
+      {
+       "fr": "Je courus jusqu'au bus.",
+       "en": "I ran to the bus.",
+       "tr": "Otobüse koştum.",
+       "uk": "Я побіг (побігла) до автобуса.",
+       "fa": "به سمت اتوبوس دویدم.",
+       "ar": "ركضتُ إلى الحافلة.",
+       "pt": "Eu corri para o ônibus.",
+       "pl": "Pobiegłem (pobiegłam) do autobusu.",
+       "ru": "Я побежал(а) к автобусу."
+      }
+     ],
+     [
+      "Wir [verbrachten] eine Woche in Wien.",
+      {
+       "fr": "Nous passâmes une semaine à Vienne.",
+       "en": "We spent a week in Vienna.",
+       "tr": "Viyana'da bir hafta geçirdik.",
+       "uk": "Ми провели тиждень у Відні.",
+       "fa": "یک هفته را در وین گذراندیم.",
+       "ar": "قضينا أسبوعًا في فيينا.",
+       "pt": "Nós passamos uma semana em Viena.",
+       "pl": "Spędziliśmy tydzień w Wiedniu.",
+       "ru": "Мы провели неделю в Вене."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Les verbes mixtes changent de voyelle comme un verbe fort, mais prennent -te comme un verbe régulier : denken – dachte – gedacht, bringen – brachte – gebracht, wissen – wusste – gewusst, kennen – kannte – gekannt. Ils sont peu nombreux, mais très fréquents.",
+     "en": "Mixed verbs change their vowel like a strong verb but take -te like a regular one: denken – dachte – gedacht, bringen – brachte – gebracht, wissen – wusste – gewusst, kennen – kannte – gekannt. There are few of them, but they're very common.",
+     "tr": "Karma fiiller güçlü fiil gibi ünlü değiştirir ama düzenli fiil gibi -te alır: denken – dachte – gedacht, bringen – brachte – gebracht, wissen – wusste – gewusst, kennen – kannte – gekannt. Sayıları az ama çok sık kullanılırlar.",
+     "uk": "Змішані дієслова змінюють голосний, як сильні, але беруть -te, як правильні: denken – dachte – gedacht, bringen – brachte – gebracht, wissen – wusste – gewusst, kennen – kannte – gekannt. Їх небагато, але вони дуже вживані.",
+     "fa": "فعل‌های مختلط مثل فعل قوی واکه عوض می‌کنند، ولی مثل فعل باقاعده -te می‌گیرند: denken – dachte – gedacht، bringen – brachte – gebracht، wissen – wusste – gewusst، kennen – kannte – gekannt. تعدادشان کم است ولی خیلی پرکاربردند.",
+     "ar": "تغيّر الأفعال المختلطة حرف العلّة كالأفعال القوية، لكنها تأخذ -te كالأفعال القياسية: ‏denken – dachte – gedacht، ‏bringen – brachte – gebracht، ‏wissen – wusste – gewusst، ‏kennen – kannte – gekannt. عددها قليل لكنها شائعة جدًا.",
+     "pt": "Os verbos mistos mudam de vogal como um verbo forte, mas levam -te como um regular: denken – dachte – gedacht, bringen – brachte – gebracht, wissen – wusste – gewusst, kennen – kannte – gekannt. São poucos, mas muito frequentes.",
+     "pl": "Czasowniki mieszane zmieniają samogłoskę jak mocne, ale biorą -te jak regularne: denken – dachte – gedacht, bringen – brachte – gebracht, wissen – wusste – gewusst, kennen – kannte – gekannt. Jest ich niewiele, ale są bardzo częste.",
+     "ru": "Смешанные глаголы меняют гласную, как сильные, но берут -te, как правильные: denken – dachte – gedacht, bringen – brachte – gebracht, wissen – wusste – gewusst, kennen – kannte – gekannt. Их немного, но они очень частые."
+    }
+   },
+   {
+    "id": "plusquamperfekt",
+    "serie": null,
+    "temps": null,
+    "t": {
+     "fr": "Le plus-que-parfait : hatte gemacht",
+     "en": "The past perfect: hatte gemacht",
+     "tr": "Miş’li geçmişin hikâyesi: hatte gemacht",
+     "uk": "Давноминулий час: hatte gemacht",
+     "fa": "ماضی بعید: hatte gemacht",
+     "ar": "الماضي التام: hatte gemacht",
+     "pt": "O mais-que-perfeito: hatte gemacht",
+     "pl": "Czas zaprzeszły: hatte gemacht",
+     "ru": "Плюсквамперфект: hatte gemacht"
+    },
+    "l": [
+     [
+      "Ich [hatte] schon gegessen.",
+      {
+       "fr": "J'avais déjà mangé.",
+       "en": "I had already eaten.",
+       "tr": "Ben çoktan yemiştim.",
+       "uk": "Я вже поїв (поїла).",
+       "fa": "قبلاً غذا خورده بودم.",
+       "ar": "كنتُ قد أكلتُ.",
+       "pt": "Eu já tinha comido.",
+       "pl": "Już wcześniej zjadłem (zjadłam).",
+       "ru": "Я уже поел(а) (до того)."
+      }
+     ],
+     [
+      "Du [hattest] es vergessen.",
+      {
+       "fr": "Tu l'avais oublié.",
+       "en": "You had forgotten it.",
+       "tr": "Onu unutmuştun.",
+       "uk": "Ти про це забув (забула).",
+       "fa": "آن را فراموش کرده بودی.",
+       "ar": "كنتَ قد نسيتَه.",
+       "pt": "Você tinha esquecido.",
+       "pl": "Zapomniałeś (zapomniałaś) o tym.",
+       "ru": "Ты об этом забыл(а)."
+      }
+     ],
+     [
+      "Er [war] schon gegangen.",
+      {
+       "fr": "Il était déjà parti.",
+       "en": "He had already left.",
+       "tr": "O çoktan gitmişti.",
+       "uk": "Він уже пішов.",
+       "fa": "او قبلاً رفته بود.",
+       "ar": "كان قد ذهب.",
+       "pt": "Ele já tinha ido embora.",
+       "pl": "On już wcześniej wyszedł.",
+       "ru": "Он уже ушёл (к тому времени)."
+      }
+     ],
+     [
+      "Wir [hatten] lange gewartet.",
+      {
+       "fr": "Nous avions longtemps attendu.",
+       "en": "We had waited a long time.",
+       "tr": "Uzun süre beklemiştik.",
+       "uk": "Ми довго чекали (до того).",
+       "fa": "مدت زیادی صبر کرده بودیم.",
+       "ar": "كنّا قد انتظرنا طويلًا.",
+       "pt": "Nós tínhamos esperado muito.",
+       "pl": "Długo czekaliśmy (wcześniej).",
+       "ru": "Мы долго ждали (до того)."
+      }
+     ],
+     [
+      "Ihr [wart] noch nie dort gewesen.",
+      {
+       "fr": "Vous n'y étiez encore jamais allés.",
+       "en": "You had never been there before.",
+       "tr": "Oraya daha önce hiç gitmemiştiniz.",
+       "uk": "Ви там ще ніколи не були.",
+       "fa": "هرگز آنجا نرفته بودید.",
+       "ar": "لم تكونوا قد زرتم ذلك المكان من قبل.",
+       "pt": "Vocês nunca tinham estado lá.",
+       "pl": "Nigdy wcześniej tam nie byliście.",
+       "ru": "Вы там ещё никогда не бывали."
+      }
+     ],
+     [
+      "Der Zug [war] schon abgefahren.",
+      {
+       "fr": "Le train était déjà parti.",
+       "en": "The train had already left.",
+       "tr": "Tren çoktan kalkmıştı.",
+       "uk": "Потяг уже відійшов.",
+       "fa": "قطار قبلاً رفته بود.",
+       "ar": "كان القطار قد غادر.",
+       "pt": "O trem já tinha partido.",
+       "pl": "Pociąg już odjechał.",
+       "ru": "Поезд уже ушёл."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "hatte ou war (au Präteritum) + le participe : ce qui s'était passé AVANT un autre moment du passé. Même choix qu'au Perfekt entre haben et sein. On le trouve souvent après nachdem : « Nachdem er gegessen hatte, ging er spazieren. »",
+     "en": "hatte or war (Präteritum) + the participle: what had happened BEFORE another moment in the past. Same choice between haben and sein as in the Perfekt. It often follows nachdem: “Nachdem er gegessen hatte, ging er spazieren.”",
+     "tr": "hatte veya war (Präteritum) + ortaç: geçmişteki başka bir andan ÖNCE olmuş olanı anlatır. haben ile sein arasındaki seçim Perfekt’teki gibidir. Çoğu zaman nachdem’den sonra gelir: “Nachdem er gegessen hatte, ging er spazieren.”",
+     "uk": "hatte або war (Präteritum) + дієприкметник: те, що сталося ДО іншого моменту в минулому. Вибір між haben і sein — такий самий, як у Perfekt. Часто трапляється після nachdem: «Nachdem er gegessen hatte, ging er spazieren.»",
+     "fa": "hatte یا war ‏(Präteritum) + اسم مفعول: آنچه پیش از لحظهٔ دیگری در گذشته اتفاق افتاده بود. انتخاب بین haben و sein مثل Perfekt است. اغلب بعد از nachdem می‌آید: «Nachdem er gegessen hatte, ging er spazieren.»",
+     "ar": "hatte أو war (في الـPräteritum) + اسم المفعول: لما كان قد حدث قبل لحظة أخرى في الماضي. والاختيار بين haben وsein كما في الـPerfekt. وكثيرًا ما يأتي بعد nachdem: «Nachdem er gegessen hatte, ging er spazieren.»",
+     "pt": "hatte ou war (no Präteritum) + o particípio: o que tinha acontecido ANTES de outro momento do passado. A escolha entre haben e sein é a mesma do Perfekt. Aparece muito depois de nachdem: “Nachdem er gegessen hatte, ging er spazieren.”",
+     "pl": "hatte lub war (Präteritum) + imiesłów: to, co wydarzyło się PRZED innym momentem w przeszłości. Wybór między haben i sein jak w Perfekt. Często po nachdem: „Nachdem er gegessen hatte, ging er spazieren.”",
+     "ru": "hatte или war (Präteritum) + причастие: то, что случилось ДО другого момента в прошлом. Выбор между haben и sein — как в Perfekt. Часто стоит после nachdem: «Nachdem er gegessen hatte, ging er spazieren.»"
+    }
+   },
+   {
+    "id": "k2_formes",
+    "serie": "konjunktiv2Exercises",
+    "temps": "konjunktiv2",
+    "t": {
+     "fr": "Si j'étais… : wäre, hätte, würde",
+     "en": "If I were…: wäre, hätte, würde",
+     "tr": "Olsaydım…: wäre, hätte, würde",
+     "uk": "Якби я був…: wäre, hätte, würde",
+     "fa": "اگر بودم…: wäre، hätte، würde",
+     "ar": "لو كنتُ…: wäre، hätte، würde",
+     "pt": "Se eu fosse…: wäre, hätte, würde",
+     "pl": "Gdybym był…: wäre, hätte, würde",
+     "ru": "Если бы я был…: wäre, hätte, würde"
+    },
+    "l": [
+     [
+      "ich [wäre]",
+      {
+       "fr": "je serais",
+       "en": "I would be",
+       "tr": "olurdum",
+       "uk": "я був би (була б)",
+       "fa": "می‌بودم",
+       "ar": "لكنتُ",
+       "pt": "eu seria · eu estaria",
+       "pl": "byłbym (byłabym)",
+       "ru": "я был бы (была бы)"
+      }
+     ],
+     [
+      "ich [hätte]",
+      {
+       "fr": "j'aurais",
+       "en": "I would have",
+       "tr": "sahip olurdum",
+       "uk": "я мав би (мала б)",
+       "fa": "می‌داشتم",
+       "ar": "لكان لديّ",
+       "pt": "eu teria",
+       "pl": "miałbym (miałabym)",
+       "ru": "у меня было бы"
+      }
+     ],
+     [
+      "ich [würde] kommen",
+      {
+       "fr": "je viendrais",
+       "en": "I would come",
+       "tr": "gelirdim",
+       "uk": "я прийшов би (прийшла б)",
+       "fa": "می‌آمدم",
+       "ar": "لجئتُ",
+       "pt": "eu viria",
+       "pl": "przyszedłbym (przyszłabym)",
+       "ru": "я пришёл бы (пришла бы)"
+      }
+     ],
+     [
+      "Wenn ich Zeit [hätte], …",
+      {
+       "fr": "Si j'avais le temps, …",
+       "en": "If I had time, …",
+       "tr": "Vaktim olsaydı, …",
+       "uk": "Якби я мав (мала) час, …",
+       "fa": "اگر وقت داشتم، …",
+       "ar": "لو كان لديّ وقت، …",
+       "pt": "Se eu tivesse tempo, …",
+       "pl": "Gdybym miał (miała) czas, …",
+       "ru": "Если бы у меня было время, …"
+      }
+     ],
+     [
+      "… [würde] ich mitkommen.",
+      {
+       "fr": "… je viendrais avec vous.",
+       "en": "… I would come along.",
+       "tr": "… ben de gelirdim.",
+       "uk": "… я пішов би (пішла б) з вами.",
+       "fa": "… من هم می‌آمدم.",
+       "ar": "… لجئتُ معكم.",
+       "pt": "… eu iria junto.",
+       "pl": "… poszedłbym (poszłabym) z wami.",
+       "ru": "… я пошёл бы (пошла бы) с вами."
+      }
+     ],
+     [
+      "An deiner Stelle [wäre] ich vorsichtig.",
+      {
+       "fr": "À ta place, je serais prudent(e).",
+       "en": "If I were you, I'd be careful.",
+       "tr": "Senin yerinde olsam dikkatli olurdum.",
+       "uk": "На твоєму місці я був би обережним (була б обережною).",
+       "fa": "جای تو بودم، احتیاط می‌کردم.",
+       "ar": "لو كنتُ مكانك لكنتُ حذرًا.",
+       "pt": "No seu lugar, eu teria cuidado.",
+       "pl": "Na twoim miejscu byłbym ostrożny (byłabym ostrożna).",
+       "ru": "На твоём месте я был бы осторожен (была бы осторожна)."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Pour presque tous les verbes, le conditionnel se dit würde + infinitif à la fin : « ich würde kommen ». Mais jamais avec sein et haben : là, on dit wäre et hätte. « Ich würde haben », personne ne le dit. Dans la phrase avec wenn, le verbe conjugué va à la fin.",
+     "en": "For almost every verb, the conditional is würde + infinitive at the end: “ich würde kommen”. But never with sein and haben: for those, say wäre and hätte. Nobody says “ich würde haben”. In a wenn clause, the conjugated verb goes to the end.",
+     "tr": "Neredeyse bütün fiillerde şart kipi, sonda mastarla würde + mastar ile yapılır: “ich würde kommen”. Ama sein ve haben ile asla: onlar için wäre ve hätte denir. Kimse “ich würde haben” demez. wenn’li cümlede çekimli fiil sona gider.",
+     "uk": "Майже для всіх дієслів умовний спосіб — це würde + інфінітив у кінці: «ich würde kommen». Але ніколи з sein і haben: для них кажуть wäre і hätte. «Ich würde haben» ніхто не каже. У реченні з wenn відмінюване дієслово йде в кінець.",
+     "fa": "تقریباً برای همهٔ فعل‌ها، شرطی یعنی würde + مصدر در آخر جمله: «ich würde kommen». ولی هرگز با sein و haben: برای آن‌ها wäre و hätte می‌گوییم. هیچ‌کس نمی‌گوید «ich würde haben». در جمله با wenn، فعل صرف‌شده به آخر جمله می‌رود.",
+     "ar": "مع جميع الأفعال تقريبًا يُصاغ الشرط بـ würde + المصدر في آخر الجملة: «ich würde kommen». لكن لا يُستعمل أبدًا مع sein وhaben: نقول معهما wäre وhätte. لا أحد يقول «ich würde haben». وفي جملة wenn يذهب الفعل المصرّف إلى آخرها.",
+     "pt": "Para quase todos os verbos, o condicional é würde + infinitivo no fim: “ich würde kommen”. Mas nunca com sein e haben: com eles se diz wäre e hätte. Ninguém diz “ich würde haben”. Na frase com wenn, o verbo conjugado vai para o fim.",
+     "pl": "Prawie dla wszystkich czasowników tryb przypuszczający to würde + bezokolicznik na końcu: „ich würde kommen”. Ale nigdy z sein i haben: tu mówi się wäre i hätte. Nikt nie mówi „ich würde haben”. W zdaniu z wenn odmieniony czasownik idzie na koniec.",
+     "ru": "Почти для всех глаголов сослагательное наклонение — это würde + инфинитив в конце: «ich würde kommen». Но никогда с sein и haben: для них говорят wäre и hätte. «Ich würde haben» никто не говорит. В предложении с wenn спрягаемый глагол уходит в конец."
+    }
+   },
+   {
+    "id": "k2_modaux",
+    "serie": "konjunktiv2Exercises",
+    "temps": "konjunktiv2",
+    "t": {
+     "fr": "Tu devrais, ça pourrait : sollte, könnte",
+     "en": "You should, it could: sollte, könnte",
+     "tr": "-meli, -ebilir: sollte, könnte",
+     "uk": "Тобі слід, могло б: sollte, könnte",
+     "fa": "باید، ممکن بود: sollte، könnte",
+     "ar": "ينبغي، قد يكون: sollte، könnte",
+     "pt": "Você deveria, poderia: sollte, könnte",
+     "pl": "Powinieneś, mogłoby: sollte, könnte",
+     "ru": "Тебе следовало бы, могло бы: sollte, könnte"
+    },
+    "l": [
+     [
+      "Du [solltest] mehr schlafen.",
+      {
+       "fr": "Tu devrais dormir davantage.",
+       "en": "You should sleep more.",
+       "tr": "Daha çok uyumalısın.",
+       "uk": "Тобі слід більше спати.",
+       "fa": "باید بیشتر بخوابی.",
+       "ar": "ينبغي أن تنام أكثر.",
+       "pt": "Você deveria dormir mais.",
+       "pl": "Powinieneś (powinnaś) więcej spać.",
+       "ru": "Тебе следует больше спать."
+      }
+     ],
+     [
+      "Ich [könnte] dir helfen.",
+      {
+       "fr": "Je pourrais t'aider.",
+       "en": "I could help you.",
+       "tr": "Sana yardım edebilirim.",
+       "uk": "Я міг би (могла б) тобі допомогти.",
+       "fa": "می‌توانستم کمکت کنم.",
+       "ar": "يمكنني أن أساعدك.",
+       "pt": "Eu poderia te ajudar.",
+       "pl": "Mógłbym (mogłabym) ci pomóc.",
+       "ru": "Я мог(ла) бы тебе помочь."
+      }
+     ],
+     [
+      "Das [könnte] stimmen.",
+      {
+       "fr": "Ça pourrait être vrai.",
+       "en": "That could be true.",
+       "tr": "Bu doğru olabilir.",
+       "uk": "Це може бути правдою.",
+       "fa": "ممکن است درست باشد.",
+       "ar": "قد يكون هذا صحيحًا.",
+       "pt": "Isso pode ser verdade.",
+       "pl": "To może być prawda.",
+       "ru": "Это может быть правдой."
+      }
+     ],
+     [
+      "Wir [müssten] früher gehen.",
+      {
+       "fr": "Nous devrions partir plus tôt.",
+       "en": "We ought to leave earlier.",
+       "tr": "Daha erken gitmemiz gerekirdi.",
+       "uk": "Нам треба було б піти раніше.",
+       "fa": "باید زودتر می‌رفتیم.",
+       "ar": "علينا أن نذهب أبكر.",
+       "pt": "Nós teríamos que sair mais cedo.",
+       "pl": "Musielibyśmy wyjść wcześniej.",
+       "ru": "Нам надо было бы уйти раньше."
+      }
+     ],
+     [
+      "[Dürfte] ich etwas fragen?",
+      {
+       "fr": "Pourrais-je poser une question ?",
+       "en": "May I ask something?",
+       "tr": "Bir şey sorabilir miyim?",
+       "uk": "Чи можна мені дещо запитати?",
+       "fa": "اجازه هست چیزی بپرسم؟",
+       "ar": "هل يمكنني أن أسأل شيئًا؟",
+       "pt": "Posso perguntar uma coisa?",
+       "pl": "Czy mógłbym (mogłabym) o coś zapytać?",
+       "ru": "Можно мне кое-что спросить?"
+      }
+     ],
+     [
+      "Ihr [solltet] das probieren.",
+      {
+       "fr": "Vous devriez goûter ça (à plusieurs).",
+       "en": "You should try that (all of you).",
+       "tr": "Bunu denemelisiniz (çoğul).",
+       "uk": "Вам варто це скуштувати (кільком особам).",
+       "fa": "باید این را امتحان کنید (جمع).",
+       "ar": "ينبغي أن تجرّبوا هذا.",
+       "pt": "Vocês deveriam provar isso.",
+       "pl": "Powinniście tego spróbować (wy).",
+       "ru": "Вам стоит это попробовать (нескольким)."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "sollte donne un conseil (tu devrais), könnte une possibilité (ça pourrait), müsste une obligation adoucie, dürfte une demande très polie. könnte, müsste, dürfte gardent le tréma ; c'est lui qui les distingue du passé konnte, musste, durfte. sollte, lui, a la même forme qu'au passé : seul le sens tranche.",
+     "en": "sollte gives advice (you should), könnte a possibility (it could), müsste a softened obligation, dürfte a very polite request. könnte, müsste, dürfte keep the umlaut, which sets them apart from the past forms konnte, musste, durfte. sollte has the same form as the past: only the meaning tells.",
+     "tr": "sollte tavsiye verir (-malısın), könnte bir olasılık bildirir (olabilir), müsste yumuşatılmış bir zorunluluk, dürfte çok kibar bir rica. könnte, müsste, dürfte Umlaut’u korur; onları geçmiş zamandaki konnte, musste, durfte’den ayıran budur. sollte ise geçmiş zamanla aynı biçimdedir: farkı yalnızca anlam belirler.",
+     "uk": "sollte дає пораду (тобі слід), könnte — можливість (могло б), müsste — пом’якшений обов’язок, dürfte — дуже ввічливе прохання. könnte, müsste, dürfte зберігають умлаут — саме він відрізняє їх від минулих форм konnte, musste, durfte. А sollte має ту саму форму, що й у минулому: різницю видно лише зі змісту.",
+     "fa": "sollte توصیه است (باید)، könnte امکان (ممکن بود)، müsste اجبارِ نرم‌شده، و dürfte درخواستی بسیار مؤدبانه. könnte، müsste، dürfte اوملاوت را نگه می‌دارند و همین آن‌ها را از گذشتهٔ konnte، musste، durfte جدا می‌کند. اما sollte همان شکل گذشته را دارد: فقط معنا فرق را نشان می‌دهد.",
+     "ar": "sollte للنصيحة (ينبغي)، وkönnte للاحتمال (قد يكون)، وmüsste لإلزام مخفَّف، وdürfte لطلب مهذّب جدًا. وتحتفظ könnte وmüsste وdürfte بالأوملاوت، وهو ما يميّزها عن صيغ الماضي konnte وmusste وdurfte. أما sollte فصيغتها هي صيغة الماضي نفسها: والمعنى وحده يفصل.",
+     "pt": "sollte dá um conselho (você deveria), könnte uma possibilidade (poderia), müsste uma obrigação suavizada, dürfte um pedido muito educado. könnte, müsste, dürfte mantêm o trema: é ele que os distingue do passado konnte, musste, durfte. Já sollte tem a mesma forma do passado: só o sentido decide.",
+     "pl": "sollte to rada (powinieneś), könnte — możliwość (mogłoby), müsste — złagodzony obowiązek, dürfte — bardzo grzeczna prośba. könnte, müsste, dürfte zachowują umlaut i to on odróżnia je od przeszłych konnte, musste, durfte. sollte ma tę samą formę co w przeszłości: rozstrzyga tylko sens.",
+     "ru": "sollte даёт совет (тебе следовало бы), könnte — возможность (могло бы), müsste — смягчённую обязанность, dürfte — очень вежливую просьбу. könnte, müsste, dürfte сохраняют умлаут — он и отличает их от прошедших konnte, musste, durfte. А у sollte та же форма, что и в прошедшем: различает только смысл."
+    }
+   },
+   {
+    "id": "k2_poli",
+    "serie": "konjunktiv2Exercises",
+    "temps": "konjunktiv2",
+    "t": {
+     "fr": "Demander poliment",
+     "en": "Asking politely",
+     "tr": "Kibarca rica etmek",
+     "uk": "Ввічливо просити",
+     "fa": "مؤدبانه درخواست کردن",
+     "ar": "الطلب بأدب",
+     "pt": "Pedir com educação",
+     "pl": "Grzecznie prosić",
+     "ru": "Вежливо просить"
+    },
+    "l": [
+     [
+      "[Könnten] Sie mir helfen?",
+      {
+       "fr": "Pourriez-vous m'aider ?",
+       "en": "Could you help me?",
+       "tr": "Bana yardım edebilir miydiniz?",
+       "uk": "Чи не могли б ви мені допомогти?",
+       "fa": "ممکن است به من کمک کنید؟",
+       "ar": "هل يمكنك مساعدتي؟",
+       "pt": "O senhor poderia me ajudar?",
+       "pl": "Czy mógłby pan mi pomóc?",
+       "ru": "Не могли бы вы мне помочь?"
+      }
+     ],
+     [
+      "[Hätten] Sie kurz Zeit?",
+      {
+       "fr": "Auriez-vous un moment ?",
+       "en": "Would you have a moment?",
+       "tr": "Biraz vaktiniz var mıydı?",
+       "uk": "Чи не знайдеться у вас хвилинка?",
+       "fa": "یک لحظه وقت دارید؟",
+       "ar": "هل لديك لحظة؟",
+       "pt": "O senhor teria um minutinho?",
+       "pl": "Czy miałby pan chwilę?",
+       "ru": "У вас не найдётся минутка?"
+      }
+     ],
+     [
+      "[Würden] Sie das Fenster öffnen?",
+      {
+       "fr": "Voudriez-vous ouvrir la fenêtre ?",
+       "en": "Would you open the window?",
+       "tr": "Pencereyi açar mıydınız?",
+       "uk": "Чи не відчинили б ви вікно?",
+       "fa": "ممکن است پنجره را باز کنید؟",
+       "ar": "هل تفتح النافذة من فضلك؟",
+       "pt": "O senhor poderia abrir a janela?",
+       "pl": "Czy otworzyłby pan okno?",
+       "ru": "Не откроете ли вы окно?"
+      }
+     ],
+     [
+      "Ich [hätte] gern einen Kaffee.",
+      {
+       "fr": "Je voudrais un café.",
+       "en": "I'd like a coffee.",
+       "tr": "Bir kahve rica ediyorum.",
+       "uk": "Я хотів би (хотіла б) каву.",
+       "fa": "یک قهوه می‌خواهم.",
+       "ar": "أودّ قهوة.",
+       "pt": "Eu queria um café.",
+       "pl": "Poproszę kawę.",
+       "ru": "Я бы хотел(а) кофе."
+      }
+     ],
+     [
+      "[Wäre] es möglich, morgen zu kommen?",
+      {
+       "fr": "Serait-il possible de venir demain ?",
+       "en": "Would it be possible to come tomorrow?",
+       "tr": "Yarın gelmek mümkün olur muydu?",
+       "uk": "Чи можна було б прийти завтра?",
+       "fa": "ممکن است فردا بیایم؟",
+       "ar": "هل يمكن المجيء غدًا؟",
+       "pt": "Seria possível vir amanhã?",
+       "pl": "Czy byłoby możliwe przyjść jutro?",
+       "ru": "Можно было бы прийти завтра?"
+      }
+     ],
+     [
+      "[Dürfte] ich kurz stören?",
+      {
+       "fr": "Puis-je vous déranger un instant ?",
+       "en": "May I disturb you for a moment?",
+       "tr": "Bir saniye rahatsız edebilir miyim?",
+       "uk": "Чи можна вас на хвилинку потурбувати?",
+       "fa": "اجازه هست یک لحظه مزاحم شوم؟",
+       "ar": "هل تسمح لي بأن أزعجك لحظة؟",
+       "pt": "Posso incomodar um instante?",
+       "pl": "Czy mogę na chwilę przeszkodzić?",
+       "ru": "Можно вас на минутку побеспокоить?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le Konjunktiv II adoucit toute demande. « Können Sie mir helfen? » est correct ; « Könnten Sie mir helfen? » est poli. Au guichet, au restaurant, au téléphone avec une administration, c'est lui qu'on attend. « Ich hätte gern… » remplace « Ich will… », qui sonne brusque.",
+     "en": "The Konjunktiv II softens any request. “Können Sie mir helfen?” is correct; “Könnten Sie mir helfen?” is polite. At a counter, in a restaurant, on the phone with an office, it's what people expect. “Ich hätte gern…” replaces “Ich will…”, which sounds abrupt.",
+     "tr": "Konjunktiv II her ricayı yumuşatır. “Können Sie mir helfen?” doğrudur; “Könnten Sie mir helfen?” kibardır. Gişede, restoranda, bir resmî daireyle telefonda beklenen budur. “Ich hätte gern…”, kaba duyulan “Ich will…”in yerini alır.",
+     "uk": "Konjunktiv II пом’якшує будь-яке прохання. «Können Sie mir helfen?» — правильно; «Könnten Sie mir helfen?» — ввічливо. Біля віконця, у ресторані, по телефону з установою чекають саме його. «Ich hätte gern…» замінює «Ich will…», що звучить різко.",
+     "fa": "Konjunktiv II هر درخواستی را نرم‌تر می‌کند. «Können Sie mir helfen?» درست است؛ «Könnten Sie mir helfen?» مؤدبانه است. پشت باجه، در رستوران، پای تلفن با یک اداره، همین را انتظار دارند. «Ich hätte gern…» جای «Ich will…» را می‌گیرد که تند به نظر می‌رسد.",
+     "ar": "يليّن الـKonjunktiv II كل طلب. «Können Sie mir helfen?» صحيحة؛ و«Könnten Sie mir helfen?» مهذّبة. وعند الشبّاك وفي المطعم وعلى الهاتف مع إدارة، هذا ما يُنتظر منك. و«Ich hätte gern…» تحلّ محلّ «Ich will…» التي تبدو فظّة.",
+     "pt": "O Konjunktiv II suaviza qualquer pedido. “Können Sie mir helfen?” está certo; “Könnten Sie mir helfen?” é educado. No guichê, no restaurante, ao telefone com uma repartição, é o que se espera. “Ich hätte gern…” substitui “Ich will…”, que soa brusco.",
+     "pl": "Konjunktiv II łagodzi każdą prośbę. „Können Sie mir helfen?” jest poprawne; „Könnten Sie mir helfen?” jest grzeczne. Przy okienku, w restauracji, przez telefon z urzędem tego się oczekuje. „Ich hätte gern…” zastępuje „Ich will…”, które brzmi szorstko.",
+     "ru": "Konjunktiv II смягчает любую просьбу. «Können Sie mir helfen?» — правильно; «Könnten Sie mir helfen?» — вежливо. У окошка, в ресторане, по телефону с учреждением ждут именно его. «Ich hätte gern…» заменяет «Ich will…», которое звучит резко."
+    }
+   },
+   {
+    "id": "futur",
+    "serie": null,
+    "temps": null,
+    "t": {
+     "fr": "Le futur : ich werde…",
+     "en": "The future: ich werde…",
+     "tr": "Gelecek zaman: ich werde…",
+     "uk": "Майбутній час: ich werde…",
+     "fa": "آینده: ich werde…",
+     "ar": "المستقبل: ich werde…",
+     "pt": "O futuro: ich werde…",
+     "pl": "Czas przyszły: ich werde…",
+     "ru": "Будущее время: ich werde…"
+    },
+    "l": [
+     [
+      "Ich [werde] dich anrufen.",
+      {
+       "fr": "Je t'appellerai.",
+       "en": "I'll call you.",
+       "tr": "Seni arayacağım.",
+       "uk": "Я тобі подзвоню.",
+       "fa": "به تو زنگ خواهم زد.",
+       "ar": "سأتصل بك.",
+       "pt": "Eu vou te ligar.",
+       "pl": "Zadzwonię do ciebie.",
+       "ru": "Я тебе позвоню."
+      }
+     ],
+     [
+      "Du [wirst] es sehen.",
+      {
+       "fr": "Tu verras.",
+       "en": "You'll see.",
+       "tr": "Göreceksin.",
+       "uk": "Ось побачиш.",
+       "fa": "خواهی دید.",
+       "ar": "سترى.",
+       "pt": "Você vai ver.",
+       "pl": "Zobaczysz.",
+       "ru": "Вот увидишь."
+      }
+     ],
+     [
+      "Es [wird] morgen regnen.",
+      {
+       "fr": "Il pleuvra demain.",
+       "en": "It'll rain tomorrow.",
+       "tr": "Yarın yağmur yağacak.",
+       "uk": "Завтра буде дощ.",
+       "fa": "فردا باران خواهد آمد.",
+       "ar": "ستمطر غدًا.",
+       "pt": "Amanhã vai chover.",
+       "pl": "Jutro będzie padać.",
+       "ru": "Завтра будет дождь."
+      }
+     ],
+     [
+      "Wir [werden] umziehen.",
+      {
+       "fr": "Nous allons déménager.",
+       "en": "We're going to move.",
+       "tr": "Taşınacağız.",
+       "uk": "Ми переїдемо.",
+       "fa": "اسباب‌کشی خواهیم کرد.",
+       "ar": "سننتقل إلى بيت آخر.",
+       "pt": "Nós vamos nos mudar.",
+       "pl": "Przeprowadzimy się.",
+       "ru": "Мы переедем."
+      }
+     ],
+     [
+      "Ihr [werdet] euch wundern.",
+      {
+       "fr": "Vous allez être surpris (à plusieurs).",
+       "en": "You'll be surprised (all of you).",
+       "tr": "Şaşıracaksınız (çoğul).",
+       "uk": "Ви здивуєтеся (кілька осіб).",
+       "fa": "تعجب خواهید کرد (جمع).",
+       "ar": "ستتفاجؤون.",
+       "pt": "Vocês vão se surpreender.",
+       "pl": "Zdziwicie się (wy).",
+       "ru": "Вы удивитесь (несколько человек)."
+      }
+     ],
+     [
+      "Sie [werden] bald kommen.",
+      {
+       "fr": "Ils viendront bientôt.",
+       "en": "They'll come soon.",
+       "tr": "Yakında gelecekler.",
+       "uk": "Вони скоро прийдуть.",
+       "fa": "آن‌ها به‌زودی خواهند آمد.",
+       "ar": "سيأتون قريبًا.",
+       "pt": "Eles vão chegar logo.",
+       "pl": "Wkrótce przyjdą.",
+       "ru": "Они скоро придут."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "werden au présent + l'infinitif à la fin. Mais à l'oral, l'allemand dit le plus souvent le présent avec un mot de temps : « Ich rufe dich morgen an. » Le futur sert surtout aux promesses, aux prévisions et aux annonces : « Es wird regnen. »",
+     "en": "werden in the present + the infinitive at the end. But in speech, German usually uses the present with a time word: “Ich rufe dich morgen an.” The future is mostly for promises, forecasts and announcements: “Es wird regnen.”",
+     "tr": "Şimdiki zamanda werden + sonda mastar. Ama konuşmada Almanca çoğu zaman bir zaman sözcüğüyle şimdiki zamanı kullanır: “Ich rufe dich morgen an.” Gelecek zaman daha çok sözler, tahminler ve duyurular içindir: “Es wird regnen.”",
+     "uk": "werden у теперішньому часі + інфінітив у кінці. Але в розмові німці здебільшого вживають теперішній час зі словом часу: «Ich rufe dich morgen an.» Майбутній час служить переважно для обіцянок, прогнозів і оголошень: «Es wird regnen.»",
+     "fa": "werden در زمان حال + مصدر در آخر جمله. ولی در گفتار، آلمانی بیشتر زمان حال را با یک قید زمان به کار می‌برد: «Ich rufe dich morgen an.» آینده بیشتر برای قول، پیش‌بینی و اعلان است: «Es wird regnen.»",
+     "ar": "werden في المضارع + المصدر في آخر الجملة. لكن في الكلام يستعمل الألمان غالبًا المضارع مع كلمة زمن: «Ich rufe dich morgen an.» ويُستعمل المستقبل خاصة للوعود والتوقّعات والإعلانات: «Es wird regnen.»",
+     "pt": "werden no presente + o infinitivo no fim. Mas, falando, o alemão usa quase sempre o presente com uma palavra de tempo: “Ich rufe dich morgen an.” O futuro serve sobretudo para promessas, previsões e anúncios: “Es wird regnen.”",
+     "pl": "werden w czasie teraźniejszym + bezokolicznik na końcu. Ale w mowie Niemcy najczęściej używają czasu teraźniejszego ze słowem określającym czas: „Ich rufe dich morgen an.” Czas przyszły służy głównie do obietnic, prognoz i zapowiedzi: „Es wird regnen.”",
+     "ru": "werden в настоящем времени + инфинитив в конце. Но в разговоре немцы чаще говорят настоящее время со словом времени: «Ich rufe dich morgen an.» Будущее время служит в основном для обещаний, прогнозов и объявлений: «Es wird regnen.»"
+    }
+   },
+   {
+    "id": "lassen",
+    "serie": null,
+    "temps": null,
+    "t": {
+     "fr": "Faire faire : lassen",
+     "en": "To have something done: lassen",
+     "tr": "Yaptırmak: lassen",
+     "uk": "Доручити зробити: lassen",
+     "fa": "سپردن کار به دیگری: lassen",
+     "ar": "جعل غيرك يفعل: lassen",
+     "pt": "Mandar fazer: lassen",
+     "pl": "Kazać zrobić: lassen",
+     "ru": "Поручить сделать: lassen"
+    },
+    "l": [
+     [
+      "Ich [lasse] mein Auto reparieren.",
+      {
+       "fr": "Je fais réparer ma voiture.",
+       "en": "I'm having my car repaired.",
+       "tr": "Arabamı tamir ettiriyorum.",
+       "uk": "Я віддаю машину в ремонт.",
+       "fa": "ماشینم را می‌دهم تعمیر کنند.",
+       "ar": "أُصلح سيارتي عند الميكانيكي.",
+       "pt": "Eu mando consertar o meu carro.",
+       "pl": "Oddaję samochód do naprawy.",
+       "ru": "Я отдаю машину в ремонт."
+      }
+     ],
+     [
+      "Du [lässt] dir die Haare schneiden.",
+      {
+       "fr": "Tu te fais couper les cheveux.",
+       "en": "You're getting your hair cut.",
+       "tr": "Saçını kestiriyorsun.",
+       "uk": "Ти йдеш підстригтися.",
+       "fa": "موهایت را کوتاه می‌کنی (در آرایشگاه).",
+       "ar": "تقصّ شعرك عند الحلاق.",
+       "pt": "Você vai cortar o cabelo.",
+       "pl": "Idziesz się ostrzyc.",
+       "ru": "Ты стрижёшься (у парикмахера)."
+      }
+     ],
+     [
+      "Er [lässt] das Licht an.",
+      {
+       "fr": "Il laisse la lumière allumée.",
+       "en": "He leaves the light on.",
+       "tr": "Işığı açık bırakıyor.",
+       "uk": "Він залишає світло ввімкненим.",
+       "fa": "او چراغ را روشن می‌گذارد.",
+       "ar": "يترك الضوء مضاءً.",
+       "pt": "Ele deixa a luz acesa.",
+       "pl": "On zostawia włączone światło.",
+       "ru": "Он оставляет свет включённым."
+      }
+     ],
+     [
+      "Wir [lassen] die Kinder spielen.",
+      {
+       "fr": "Nous laissons les enfants jouer.",
+       "en": "We let the children play.",
+       "tr": "Çocukların oynamasına izin veriyoruz.",
+       "uk": "Ми дозволяємо дітям гратися.",
+       "fa": "می‌گذاریم بچه‌ها بازی کنند.",
+       "ar": "ندع الأطفال يلعبون.",
+       "pt": "Nós deixamos as crianças brincar.",
+       "pl": "Pozwalamy dzieciom się bawić.",
+       "ru": "Мы даём детям поиграть."
+      }
+     ],
+     [
+      "[Lass] mich in Ruhe!",
+      {
+       "fr": "Laisse-moi tranquille !",
+       "en": "Leave me alone!",
+       "tr": "Beni rahat bırak!",
+       "uk": "Дай мені спокій!",
+       "fa": "راحتم بگذار!",
+       "ar": "دعني وشأني!",
+       "pt": "Me deixa em paz!",
+       "pl": "Zostaw mnie w spokoju!",
+       "ru": "Оставь меня в покое!"
+      }
+     ],
+     [
+      "Sie hat ihr Handy zu Hause [gelassen].",
+      {
+       "fr": "Elle a laissé son portable à la maison.",
+       "en": "She left her phone at home.",
+       "tr": "Telefonunu evde bıraktı.",
+       "uk": "Вона залишила телефон удома.",
+       "fa": "او موبایلش را در خانه جا گذاشت.",
+       "ar": "تركت هاتفها في البيت.",
+       "pt": "Ela deixou o celular em casa.",
+       "pl": "Zostawiła telefon w domu.",
+       "ru": "Она оставила телефон дома."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "lassen a trois sens : faire faire (on ne le fait pas soi-même : « Ich lasse mein Auto reparieren »), laisser faire (permettre) et laisser quelque part. Le second verbe va à la fin, à l'infinitif, sans zu. Le a devient ä à du et à er : du lässt, er lässt.",
+     "en": "lassen has three meanings: to have something done (you don't do it yourself: “Ich lasse mein Auto reparieren”), to let (allow), and to leave somewhere. The second verb goes to the end, in the infinitive, without zu. The a becomes ä with du and er: du lässt, er lässt.",
+     "tr": "lassen’in üç anlamı vardır: yaptırmak (kendin yapmazsın: “Ich lasse mein Auto reparieren”), izin vermek ve bir yerde bırakmak. İkinci fiil sona, mastar hâlinde ve zu olmadan gider. du ve er ile a, ä olur: du lässt, er lässt.",
+     "uk": "lassen має три значення: доручити зробити (робиш не сам: «Ich lasse mein Auto reparieren»), дозволити і залишити десь. Друге дієслово йде в кінець в інфінітиві, без zu. З du і er a стає ä: du lässt, er lässt.",
+     "fa": "lassen سه معنا دارد: دادن کاری به دیگری برای انجام (خودت انجامش نمی‌دهی: «Ich lasse mein Auto reparieren»)، اجازه دادن، و جا گذاشتن. فعل دوم به شکل مصدر و بدون zu به آخر جمله می‌رود. با du و er، a به ä تبدیل می‌شود: du lässt، er lässt.",
+     "ar": "للفعل lassen ثلاثة معانٍ: أن تجعل غيرك يفعل الشيء (لا تفعله بنفسك: «Ich lasse mein Auto reparieren»)، وأن تسمح، وأن تترك الشيء في مكان. ويذهب الفعل الثاني إلى آخر الجملة في صيغة المصدر بلا zu. ومع du وer تصير a إلى ä: ‏du lässt، ‏er lässt.",
+     "pt": "lassen tem três sentidos: mandar fazer (você não faz sozinho: “Ich lasse mein Auto reparieren”), deixar (permitir) e deixar em algum lugar. O segundo verbo vai para o fim, no infinitivo, sem zu. O a vira ä com du e er: du lässt, er lässt.",
+     "pl": "lassen ma trzy znaczenia: kazać coś zrobić (nie robisz tego sam: „Ich lasse mein Auto reparieren”), pozwolić i zostawić gdzieś. Drugi czasownik idzie na koniec, w bezokoliczniku, bez zu. Przy du i er a zmienia się w ä: du lässt, er lässt.",
+     "ru": "У lassen три значения: поручить сделать (делаешь не сам: «Ich lasse mein Auto reparieren»), позволить и оставить где-то. Второй глагол идёт в конец, в инфинитиве, без zu. С du и er a становится ä: du lässt, er lässt."
+    }
+   },
+   {
+    "id": "verbes_preposition",
+    "serie": "verbenMitPraepExercises",
+    "temps": null,
+    "t": {
+     "fr": "Verbes à préposition : darauf, worauf",
+     "en": "Verbs with prepositions: darauf, worauf",
+     "tr": "Edatlı fiiller: darauf, worauf",
+     "uk": "Дієслова з прийменником: darauf, worauf",
+     "fa": "فعل‌های حرف‌اضافه‌دار: darauf، worauf",
+     "ar": "أفعال بحروف جر: darauf، worauf",
+     "pt": "Verbos com preposição: darauf, worauf",
+     "pl": "Czasowniki z przyimkiem: darauf, worauf",
+     "ru": "Глаголы с предлогом: darauf, worauf"
+    },
+    "l": [
+     [
+      "Ich warte [auf] den Bus.",
+      {
+       "fr": "J'attends le bus.",
+       "en": "I'm waiting for the bus.",
+       "tr": "Otobüsü bekliyorum.",
+       "uk": "Я чекаю на автобус.",
+       "fa": "منتظر اتوبوسم.",
+       "ar": "أنتظر الحافلة.",
+       "pt": "Eu estou esperando o ônibus.",
+       "pl": "Czekam na autobus.",
+       "ru": "Я жду автобус."
+      }
+     ],
+     [
+      "[Worauf] wartest du?",
+      {
+       "fr": "Qu'est-ce que tu attends ?",
+       "en": "What are you waiting for?",
+       "tr": "Neyi bekliyorsun?",
+       "uk": "На що ти чекаєш?",
+       "fa": "منتظر چه هستی؟",
+       "ar": "ماذا تنتظر؟",
+       "pt": "O que você está esperando?",
+       "pl": "Na co czekasz?",
+       "ru": "Чего ты ждёшь?"
+      }
+     ],
+     [
+      "Ich warte [darauf].",
+      {
+       "fr": "Je l'attends (cette chose).",
+       "en": "I'm waiting for it.",
+       "tr": "Onu bekliyorum.",
+       "uk": "Я на це чекаю.",
+       "fa": "منتظر آن هستم.",
+       "ar": "أنتظره.",
+       "pt": "Estou esperando por isso.",
+       "pl": "Czekam na to.",
+       "ru": "Я этого жду."
+      }
+     ],
+     [
+      "Er denkt [an] seine Familie.",
+      {
+       "fr": "Il pense à sa famille.",
+       "en": "He's thinking of his family.",
+       "tr": "Ailesini düşünüyor.",
+       "uk": "Він думає про свою родину.",
+       "fa": "او به خانواده‌اش فکر می‌کند.",
+       "ar": "يفكّر في عائلته.",
+       "pt": "Ele pensa na família.",
+       "pl": "On myśli o swojej rodzinie.",
+       "ru": "Он думает о своей семье."
+      }
+     ],
+     [
+      "Wir freuen uns [über] das Geschenk.",
+      {
+       "fr": "Le cadeau nous fait plaisir.",
+       "en": "We're happy about the present.",
+       "tr": "Hediyeye seviniyoruz.",
+       "uk": "Ми радіємо подарунку.",
+       "fa": "از هدیه خوشحالیم.",
+       "ar": "نحن سعداء بالهدية.",
+       "pt": "Nós estamos felizes com o presente.",
+       "pl": "Cieszymy się z prezentu.",
+       "ru": "Мы рады подарку."
+      }
+     ],
+     [
+      "Sie interessiert sich [für] Musik.",
+      {
+       "fr": "Elle s'intéresse à la musique.",
+       "en": "She's interested in music.",
+       "tr": "Müzikle ilgileniyor.",
+       "uk": "Вона цікавиться музикою.",
+       "fa": "او به موسیقی علاقه دارد.",
+       "ar": "تهتمّ بالموسيقى.",
+       "pt": "Ela se interessa por música.",
+       "pl": "Ona interesuje się muzyką.",
+       "ru": "Она интересуется музыкой."
+      }
+     ]
+    ],
+    "a": {
+     "fr": "La préposition fait partie du verbe, souvent sans rapport avec le français : warten auf, denken an, sich freuen über, sich interessieren für. Pour une chose, la question est wo(r) + préposition (worauf ?) et la reprise da(r) + préposition (darauf). Pour une personne : auf wen ? — auf ihn.",
+     "en": "The preposition is part of the verb, often not the one you'd expect: warten auf, denken an, sich freuen über, sich interessieren für. For a thing, the question is wo(r) + preposition (worauf?) and the answer da(r) + preposition (darauf). For a person: auf wen? — auf ihn.",
+     "tr": "Edat fiilin bir parçasıdır ve çoğu zaman beklenen edat değildir: warten auf, denken an, sich freuen über, sich interessieren für. Bir şey için soru wo(r) + edat (worauf?), yanıttaki gönderme da(r) + edat (darauf) olur. Bir kişi için: auf wen? — auf ihn.",
+     "uk": "Прийменник — частина дієслова, і часто не той, якого чекаєш: warten auf, denken an, sich freuen über, sich interessieren für. Про річ питають wo(r) + прийменник (worauf?), а відповідають da(r) + прийменник (darauf). Про людину: auf wen? — auf ihn.",
+     "fa": "حرف اضافه بخشی از فعل است و اغلب آن چیزی نیست که انتظار داری: warten auf، denken an، sich freuen über، sich interessieren für. برای یک چیز، پرسش wo(r) + حرف اضافه است (worauf?) و ارجاع da(r) + حرف اضافه (darauf). برای یک شخص: auf wen? — auf ihn.",
+     "ar": "حرف الجر جزء من الفعل، وكثيرًا ما لا يكون الحرف المتوقَّع: ‏warten auf، ‏denken an، ‏sich freuen über، ‏sich interessieren für. وللشيء يكون السؤال wo(r) + حرف الجر (worauf?) والإحالة da(r) + حرف الجر (darauf). وللشخص: auf wen? — auf ihn.",
+     "pt": "A preposição faz parte do verbo e muitas vezes não é a que se espera: warten auf, denken an, sich freuen über, sich interessieren für. Para uma coisa, a pergunta é wo(r) + preposição (worauf?) e a retomada da(r) + preposição (darauf). Para uma pessoa: auf wen? — auf ihn.",
+     "pl": "Przyimek należy do czasownika i często nie jest tym, którego się spodziewasz: warten auf, denken an, sich freuen über, sich interessieren für. O rzecz pytamy wo(r) + przyimek (worauf?), a nawiązujemy da(r) + przyimek (darauf). O osobę: auf wen? — auf ihn.",
+     "ru": "Предлог — часть глагола, и часто не тот, которого ждёшь: warten auf, denken an, sich freuen über, sich interessieren für. О вещи спрашивают wo(r) + предлог (worauf?), а отвечают da(r) + предлог (darauf). О человеке: auf wen? — auf ihn."
+    }
+   },
+   {
+    "id": "passif_present",
+    "serie": null,
+    "temps": null,
+    "t": {
+     "fr": "Le passif au présent : wird gemacht",
+     "en": "The present passive: wird gemacht",
+     "tr": "Şimdiki zamanda edilgen: wird gemacht",
+     "uk": "Пасив у теперішньому часі: wird gemacht",
+     "fa": "مجهول در زمان حال: wird gemacht",
+     "ar": "المبني للمجهول في المضارع: wird gemacht",
+     "pt": "A voz passiva no presente: wird gemacht",
+     "pl": "Strona bierna w czasie teraźniejszym: wird gemacht",
+     "ru": "Пассив в настоящем времени: wird gemacht"
+    },
+    "l": [
+     [
+      "Das Paket [wird] heute geliefert.",
+      {
+       "fr": "Le colis est livré aujourd'hui.",
+       "en": "The parcel is being delivered today.",
+       "tr": "Paket bugün teslim ediliyor.",
+       "uk": "Посилку доставляють сьогодні.",
+       "fa": "بسته امروز تحویل داده می‌شود.",
+       "ar": "يُسلَّم الطرد اليوم.",
+       "pt": "O pacote é entregue hoje.",
+       "pl": "Paczka zostanie dziś dostarczona.",
+       "ru": "Посылку доставят сегодня."
+      }
+     ],
+     [
+      "Hier [wird] Deutsch gesprochen.",
+      {
+       "fr": "Ici, on parle allemand.",
+       "en": "German is spoken here.",
+       "tr": "Burada Almanca konuşulur.",
+       "uk": "Тут розмовляють німецькою.",
+       "fa": "اینجا آلمانی صحبت می‌شود.",
+       "ar": "تُتكلَّم الألمانية هنا.",
+       "pt": "Aqui se fala alemão.",
+       "pl": "Tutaj mówi się po niemiecku.",
+       "ru": "Здесь говорят по-немецки."
+      }
+     ],
+     [
+      "Die Tür [wird] um acht geöffnet.",
+      {
+       "fr": "La porte ouvre à huit heures.",
+       "en": "The door is opened at eight.",
+       "tr": "Kapı sekizde açılır.",
+       "uk": "Двері відчиняють о восьмій.",
+       "fa": "در ساعت هشت باز می‌شود.",
+       "ar": "يُفتح الباب في الثامنة.",
+       "pt": "A porta é aberta às oito.",
+       "pl": "Drzwi są otwierane o ósmej.",
+       "ru": "Дверь открывают в восемь."
+      }
+     ],
+     [
+      "Das Auto [wird] gerade repariert.",
+      {
+       "fr": "La voiture est en train d'être réparée.",
+       "en": "The car is being repaired right now.",
+       "tr": "Araba şu anda tamir ediliyor.",
+       "uk": "Машину саме ремонтують.",
+       "fa": "ماشین الان دارد تعمیر می‌شود.",
+       "ar": "تُصلَح السيارة الآن.",
+       "pt": "O carro está sendo consertado agora.",
+       "pl": "Samochód jest właśnie naprawiany.",
+       "ru": "Машину сейчас ремонтируют."
+      }
+     ],
+     [
+      "Die Fenster [werden] geputzt.",
+      {
+       "fr": "On nettoie les fenêtres.",
+       "en": "The windows are being cleaned.",
+       "tr": "Pencereler temizleniyor.",
+       "uk": "Вікна миють.",
+       "fa": "پنجره‌ها تمیز می‌شوند.",
+       "ar": "تُنظَّف النوافذ.",
+       "pt": "As janelas estão sendo limpas.",
+       "pl": "Okna są myte.",
+       "ru": "Окна моют."
+      }
+     ],
+     [
+      "Wann [wird] das Essen serviert?",
+      {
+       "fr": "Quand le repas est-il servi ?",
+       "en": "When is the meal served?",
+       "tr": "Yemek ne zaman servis edilir?",
+       "uk": "Коли подають їжу?",
+       "fa": "غذا کی سرو می‌شود؟",
+       "ar": "متى يُقدَّم الطعام؟",
+       "pt": "Quando a comida é servida?",
+       "pl": "Kiedy podaje się jedzenie?",
+       "ru": "Когда подают еду?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "werden + participe à la fin : on dit ce qui se fait, sans dire qui le fait. Le français dit souvent « on » : « Hier wird Deutsch gesprochen » = ici, on parle allemand. Pour nommer qui le fait : von + datif : « Das Auto wird von meinem Bruder repariert. »",
+     "en": "werden + the participle at the end: you say what is being done without saying who does it. To name who does it: von + dative: “Das Auto wird von meinem Bruder repariert.”",
+     "tr": "werden + sonda ortaç: kimin yaptığını söylemeden ne yapıldığını anlatır. Yapanı belirtmek için: von + datif: “Das Auto wird von meinem Bruder repariert.”",
+     "uk": "werden + дієприкметник у кінці: кажуть, що робиться, не кажучи, хто робить. Українською часто — неозначено-особове речення: «тут розмовляють німецькою». Щоб назвати виконавця: von + давальний відмінок: «Das Auto wird von meinem Bruder repariert.»",
+     "fa": "werden + اسم مفعول در آخر جمله: می‌گوییم چه کاری انجام می‌شود، بی‌آنکه بگوییم چه کسی انجامش می‌دهد. برای نام بردن انجام‌دهنده: von + حالت داتیو: «Das Auto wird von meinem Bruder repariert.»",
+     "ar": "werden + اسم المفعول في آخر الجملة: نقول ما يُفعل دون ذكر الفاعل. ولذكر الفاعل: von + حالة الداتيف: «Das Auto wird von meinem Bruder repariert.»",
+     "pt": "werden + particípio no fim: diz-se o que é feito, sem dizer quem faz. Em português, muitas vezes com “se”: “Hier wird Deutsch gesprochen” = aqui se fala alemão. Para dizer quem faz: von + dativo: “Das Auto wird von meinem Bruder repariert.”",
+     "pl": "werden + imiesłów na końcu: mówimy, co się robi, nie mówiąc kto. Po polsku często „się”: „Hier wird Deutsch gesprochen” = tutaj mówi się po niemiecku. Aby wskazać wykonawcę: von + celownik: „Das Auto wird von meinem Bruder repariert.”",
+     "ru": "werden + причастие в конце: говорят, что делается, не называя, кто делает. По-русски часто — неопределённо-личное: «здесь говорят по-немецки». Чтобы назвать исполнителя: von + дательный падеж: «Das Auto wird von meinem Bruder repariert.»"
+    }
+   }
+  ]
+ }
+}

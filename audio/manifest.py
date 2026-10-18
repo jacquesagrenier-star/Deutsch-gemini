@@ -308,6 +308,22 @@ def recolter():
     for t in a1_voyage_textes(charger("a1-voyage.json")):
         prendre(t, "A1", "phrase" if " " in t.strip() else "mot", "a1_voyage")
 
+    # FEUILLES DE CONJUGAISON (v867, 18 oct. 2026) : conjugaison.json. Chaque
+    # ligne d'une feuille se touche et se dit -- la forme SANS ses crochets
+    # (texteFormeTableau dans index.html), au niveau de la feuille.
+    for niveau, texte in conjugaison_textes(charger("conjugaison.json")):
+        prendre(texte, niveau, "phrase" if " " in texte.strip() else "mot", "conjugaison")
+
+    return out
+
+
+def conjugaison_textes(d):
+    """(niveau, texte dit) pour chaque ligne des feuilles de conjugaison."""
+    out = []
+    for niveau, feuilles in (d.get("niveaux") or {}).items():
+        for f in feuilles:
+            for l in f.get("l", []):
+                out.append((niveau, l[0].replace("[", "").replace("]", "")))
     return out
 
 
