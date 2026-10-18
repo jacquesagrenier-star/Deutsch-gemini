@@ -6586,7 +6586,10 @@ body[data-theme="dark"] #decouverte > button.primary{
 .explorer-haut strong{font-size:15px;}
 .explorer-tout{border:0; background:none; font:inherit; font-weight:800; color:#9a6a12; cursor:pointer; padding:2px 0 2px 8px;}
 .explorer-desc{font-size:12.5px; color:#576177; margin:2px 0 9px; line-height:1.35;}
-.explorer-ruban{display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px;}
+/* v859 : align-items flex-start. Etirees a la meme hauteur, les vignettes
+   centraient leur contenu (un bouton le fait) : un titre sur une ligne
+   descendait l'image de 6 px par rapport a un titre sur deux (Jacques). */
+.explorer-ruban{display:flex; align-items:flex-start; gap:7px; overflow-x:auto; scrollbar-width:none; padding-bottom:2px;}
 .explorer-ruban::-webkit-scrollbar{display:none;}
 .explorer-v{flex:0 0 auto; width:66px; border:0; background:none; padding:0; font:inherit; color:inherit; cursor:pointer; position:relative;}
 .explorer-v img{width:66px; height:100px; object-fit:cover; border-radius:10px; display:block; background:#e6dcc8;}
@@ -7587,7 +7590,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v858</span>
+    <span class="subtitle-version">v859</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -39873,7 +39876,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 858;
+const APP_VERSION = 859;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

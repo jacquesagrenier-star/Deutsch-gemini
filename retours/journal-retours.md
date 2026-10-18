@@ -9430,3 +9430,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   decrivait encore « deux portes », retirees en v838. Reecrite dans les 9 langues (une seance : mots,
   revisions, grammaire, quelques questions sur la scene du jour ; la petite pousse = Premiers pas), voix
   Charlotte refaite pour les 7 langues qui en ont une (v2, persan en v3), VOIX_VISITE.revision 9.
+- v859 : « dans Explorer les scenes en espagnol, le demenagement, le lac, la guitare, la pharmacie : les
+  rectangles ne sont pas alignes ». Les vignettes etaient etirees a la meme hauteur et un bouton centre
+  son contenu : un titre sur une ligne (le lac, la guitare) descendait l'image de 6 px. Ruban aligne par
+  le haut (align-items:flex-start) ; vaut aussi pour l'allemand.
