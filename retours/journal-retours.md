@@ -9426,3 +9426,7 @@ sections ». Et : « dans les scenes, a partir de l'A2, je n'ai pas la traductio
   mai, tout simplement ». Les 12 mois portaient article_fr « le »/« l' » dans themes.json (l'app colle
   l'article devant la traduction) ; les 7 jours aussi (« le lundi » veut dire chaque lundi). Les 19
   vides : la carte dit « mai », « lundi ». L'espagnol n'avait pas d'article sur les mois.
+- v858 : « est-ce qu'on doit refaire la visite narree ? » Seule l'etape de la seance etait fausse : elle
+  decrivait encore « deux portes », retirees en v838. Reecrite dans les 9 langues (une seance : mots,
+  revisions, grammaire, quelques questions sur la scene du jour ; la petite pousse = Premiers pas), voix
+  Charlotte refaite pour les 7 langues qui en ont une (v2, persan en v3), VOIX_VISITE.revision 9.
