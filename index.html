@@ -7674,7 +7674,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v865</span>
+    <span class="subtitle-version">v866</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -40401,7 +40401,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 865;
+const APP_VERSION = 866;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -45249,39 +45249,51 @@ function montrerCartePhrase(item){
         const b = item.bloc;
         const morceaux = (b.p || "").split("…");
         const avant = morceaux[0] || "", apres = morceaux.slice(1).join("…");
-        let rempli = b.ex || "";
-        if(rempli.indexOf(avant) === 0 && rempli.length >= avant.length + apres.length && (!apres || rempli.slice(-apres.length) === apres)){
-            rempli = rempli.slice(avant.length, rempli.length - apres.length);
-        } else rempli = (b.v || [])[0] || "…";
+        // La variante qui donne l'exemple, s'il y en a une (contractions comprises).
+        let rempli = (b.v || []).find(v => phraseBlocA1V(b.p, v) === b.ex);
+        if(rempli === undefined){
+            rempli = b.ex || "";
+            if(rempli.indexOf(avant) === 0 && rempli.length >= avant.length + apres.length && (!apres || rempli.slice(-apres.length) === apres)){
+                rempli = rempli.slice(avant.length, rempli.length - apres.length);
+            } else rempli = (b.v || [])[0] || "…";
+        }
         const phrase = creer("button", "av-moule");
         phrase.type = "button";
         phrase.setAttribute("lang", langueDe);
+        const debut = document.createTextNode(avant);
         const trou = creer("u", "", rempli);
-        phrase.appendChild(document.createTextNode(avant));
+        phrase.appendChild(debut);
         phrase.appendChild(trou);
         phrase.appendChild(document.createTextNode(apres));
         phrase.appendChild(creer("i", "", " 🔊"));
+        // « a el » -> « al », « de el » -> « del » (espagnol) : a l'ecran comme a la voix.
+        const poser = mot => { const c = contracterA1V(avant, mot); debut.nodeValue = c.avant; trou.textContent = c.mot; };
+        poser(rempli);
         const sens = creer("p", "cp-sens", sensPremiersPas(b.exs));
-        const dire = () => { try{ direAllemand(avant + trou.textContent + apres, { rate: 0.9 }); }catch(e){} };
+        const dire = () => { try{ direAllemand(debut.nodeValue + trou.textContent + apres, { rate: 0.9 }); }catch(e){} };
         phrase.addEventListener("click", dire);
         el.appendChild(phrase);
         el.appendChild(sens);
         const variantes = creer("div", "av-variantes");
-        const choisir = (mot, bouton, exemple, perso) => {
-            trou.textContent = mot;
-            // Le sens exact n'existe que pour l'exemple ; sinon, le moule. Le mot
-            // a soi (un nom, le plus souvent) se pose aussi dans le sens.
-            sens.textContent = exemple ? sensPremiersPas(b.exs)
+        const choisir = (mot, bouton, exemple, perso, rang) => {
+            poser(mot);
+            // v866 : LA TRADUCTION SUIT LE MOT. Jacques : « lorsqu'on change le mot,
+            // il faudrait avoir la traduction totale ». Chaque variante a son sens
+            // complet (b.vs, dans le fichier) ; a defaut, l'exemple ou le moule. Le
+            // mot a soi (un nom, le plus souvent) se pose dans le sens du moule.
+            const vs = (rang !== undefined && Array.isArray(b.vs)) ? b.vs[rang] : null;
+            sens.textContent = vs ? sensPremiersPas(vs)
+                             : exemple ? sensPremiersPas(b.exs)
                              : perso ? sensPremiersPas(b.s).replace("…", mot)
                              : sensPremiersPas(b.s);
             Array.from(variantes.children).forEach(x => x.classList.toggle("choisi", x === bouton));
             dire();
         };
-        (b.v || []).forEach(v => {
+        (b.v || []).forEach((v, i) => {
             const x = creer("button", v === rempli ? "choisi" : "", v);
             x.type = "button";
             x.setAttribute("lang", langueDe);
-            x.addEventListener("click", () => choisir(v, x, v === rempli));
+            x.addEventListener("click", () => choisir(v, x, v === rempli, false, i));
             variantes.appendChild(x);
         });
         const mien = creer("button", "av-mien", t("av_bloc_mien"));
@@ -46550,6 +46562,22 @@ function sceneDuLieu(lieu){
     return objetScene(noms[jour % noms.length]);
 }
 function latamA1V(){ return LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL === "latam"; }
+// v866 : LES CONTRACTIONS ESPAGNOLES. Un moule « ¿Qué autobús va a …? » et la
+// variante « el centro » donnaient « va a el centro » : l'espagnol dit « al »
+// (et « del » pour « de el »). La meme regle vit dans audio/manifest.py
+// (contracter), sinon le fichier de voix ne correspond plus au texte.
+function contracterA1V(avant, mot){
+    if(LANGUE_APPRISE === "es" && /^el /i.test(mot)){
+        if(/(^|\s)a $/i.test(avant)) return { avant: avant.slice(0, -2) + "al ", mot: mot.slice(3) };
+        if(/(^|\s)de $/i.test(avant)) return { avant: avant.slice(0, -3) + "del ", mot: mot.slice(3) };
+    }
+    return { avant: avant, mot: mot };
+}
+function phraseBlocA1V(p, mot){
+    const m = (p || "").split("…");
+    const c = contracterA1V(m[0] || "", mot);
+    return c.avant + c.mot + m.slice(1).join("…");
+}
 function blocA1V(b){ return (latamA1V() && b.la) ? Object.assign({}, b, b.la) : b; }
 function repliqueA1V(l){ return (latamA1V() && l.la) ? l.la : l.p; }
 function isoLocal(d){

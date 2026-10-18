@@ -26,7 +26,8 @@ Ce qu'il vérifie :
     (allemand : fr en tr uk fa ar pt pl ru ; espagnol : fr en pt ar) ;
   - un tableau par escale et par étape (4 à 8 lignes) ;
   - 5 ou 6 phrases toutes faites par escale, chacune avec un « … » à remplir,
-    3 variantes, un exemple complet et son sens ;
+    3 variantes et le sens complet de chacune (« vs », v866), un exemple complet
+    et son sens ;
   - un dialogue de 4 à 6 répliques qui alternent, « eux » d'abord ; les répliques
     « moi » font 10 mots au plus (elles se disent à voix haute et se jugent) ;
   - chaque scène existe (visuel/prototype/scene-<nom>.js, et .es.js pour l'espagnol) ;
@@ -178,6 +179,13 @@ def verifier(code, info, data, detail):
                 v = b.get("v", [])
                 if len(v) != 3 or not all(isinstance(x, str) and x.strip() for x in v):
                     err.append("%s : il faut 3 variantes" % ob)
+                # v866 : la traduction complete de la phrase avec chaque variante.
+                vs = b.get("vs", [])
+                if len(vs) != 3 or not all(sens_complet(x, langues) for x in vs):
+                    err.append("%s : il faut « vs », le sens complet de chacune des 3 variantes" % ob)
+                la = b.get("la") or {}
+                if la.get("v") and (len(la.get("vs", [])) != len(la["v"]) or not all(sens_complet(x, langues) for x in la.get("vs", []))):
+                    err.append("%s : la variante « la » change v, il lui faut son propre « vs »" % ob)
                 if not (b.get("ex") or "").strip():
                     err.append("%s : pas d'exemple « ex »" % ob)
                 if not sens_complet(b.get("exs"), langues):

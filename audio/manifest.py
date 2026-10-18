@@ -40,6 +40,7 @@ import hashlib
 import io
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -310,7 +311,19 @@ def recolter():
     return out
 
 
-def a1_voyage_textes(d, latam=False):
+def contracter(avant, mot, espagnol):
+    """« a el » -> « al », « de el » -> « del » : le miroir de contracterA1V()
+    dans index.html (v866). Sans lui, le fichier de voix ne correspond plus au
+    texte que l'app dit."""
+    if espagnol and re.match(r"(?i)el ", mot):
+        if re.search(r"(?i)(^|\s)a $", avant):
+            return avant[:-2] + "al ", mot[3:]
+        if re.search(r"(?i)(^|\s)de $", avant):
+            return avant[:-3] + "del ", mot[3:]
+    return avant, mot
+
+
+def a1_voyage_textes(d, latam=False, espagnol=False):
     """Les textes allemands (ou espagnols) que l'A1 voyage fait entendre."""
     out = []
     lieux = d.get("escales", []) + d.get("installe", []) + d.get("suite", [])
@@ -325,7 +338,8 @@ def a1_voyage_textes(d, latam=False):
             if b.get("ex"):
                 out.append(b["ex"])
             for v in b.get("v", []):
-                out.append(avant + v + apres)
+                a, m = contracter(avant, v, espagnol)
+                out.append(a + m + apres)
         for l in (e.get("dialogue") or {}).get("l", []):
             out.append(l["la"] if latam and l.get("la") else l["p"])
     return out

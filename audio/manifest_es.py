@@ -159,7 +159,7 @@ def recolter(variante):
     # A1 VOYAGE (v862-v864, 18 oct. 2026) : espanol/datos/a1-voyage.json, la
     # meme regle que manifest.py (a1_voyage_textes), variante comprise.
     import manifest as manifest_de
-    for t in manifest_de.a1_voyage_textes(charger("a1-voyage.json"), latam=(variante == "latam")):
+    for t in manifest_de.a1_voyage_textes(charger("a1-voyage.json"), latam=(variante == "latam"), espagnol=True):
         prendre(t, "a1_voyage", "A1")
     return out
 
