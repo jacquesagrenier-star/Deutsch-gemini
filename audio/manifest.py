@@ -299,6 +299,35 @@ def recolter():
         for p in etape["phrases"]:
             prendre(p["p"], "A1", "phrase", "premiers_pas")
 
+    # A1 VOYAGE (v862-v864, 18 oct. 2026) : a1-voyage.json. Ce que l'app dit, au
+    # caractere pres : les lignes des tableaux (escales ET suite), l'exemple de
+    # chaque phrase toute faite et son moule rempli par chaque variante -- comme
+    # la carte av_bloc : avant + variante + apres, coupe au premier « … » --, et
+    # chaque replique des dialogues (« eux » comme « moi »).
+    for t in a1_voyage_textes(charger("a1-voyage.json")):
+        prendre(t, "A1", "phrase" if " " in t.strip() else "mot", "a1_voyage")
+
+    return out
+
+
+def a1_voyage_textes(d, latam=False):
+    """Les textes allemands (ou espagnols) que l'A1 voyage fait entendre."""
+    out = []
+    lieux = d.get("escales", []) + d.get("installe", []) + d.get("suite", [])
+    for e in lieux:
+        for l in (e.get("tableau") or {}).get("l", []):
+            out.append(l[0])
+        for b in e.get("blocs", []):
+            if latam and isinstance(b.get("la"), dict):
+                b = dict(b, **b["la"])
+            morceaux = (b.get("p") or "").split("…")
+            avant, apres = morceaux[0], "…".join(morceaux[1:])
+            if b.get("ex"):
+                out.append(b["ex"])
+            for v in b.get("v", []):
+                out.append(avant + v + apres)
+        for l in (e.get("dialogue") or {}).get("l", []):
+            out.append(l["la"] if latam and l.get("la") else l["p"])
     return out
 
 

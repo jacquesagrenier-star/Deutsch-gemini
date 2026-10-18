@@ -156,6 +156,11 @@ def recolter(variante):
         for p in etape["phrases"]:
             p = dict(p, **p["la"]) if variante == "latam" and isinstance(p.get("la"), dict) else p
             prendre(p["p"], "premiers_pas", "A1")
+    # A1 VOYAGE (v862-v864, 18 oct. 2026) : espanol/datos/a1-voyage.json, la
+    # meme regle que manifest.py (a1_voyage_textes), variante comprise.
+    import manifest as manifest_de
+    for t in manifest_de.a1_voyage_textes(charger("a1-voyage.json"), latam=(variante == "latam")):
+        prendre(t, "a1_voyage", "A1")
     return out
 
 
