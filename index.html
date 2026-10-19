@@ -6743,6 +6743,35 @@ body[data-theme="dark"] #decouverte > button.primary{
 .explorer-v img{width:66px; height:100px; object-fit:cover; border-radius:10px; display:block; background:#e6dcc8;}
 .explorer-v span{display:block; font-size:11px; font-weight:600; text-align:center; margin-top:3px; line-height:1.2;}
 .explorer-v.verrou img{filter:grayscale(.6) brightness(.85);}
+/* v878 : la ligne « Ecouter » sous les scenes (maquette C3). */
+.ecoute-ligne-accueil{grid-column:1 / -1; position:relative; display:flex; align-items:center; gap:10px; background:#1C2430; color:#fff;
+    border-radius:999px; padding:9px 10px 9px 9px; padding-inline:9px 10px;}
+.ela-play{width:38px; height:38px; flex:0 0 auto; border:0; border-radius:50%; background:#E8A23A; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 0 4px rgba(232,162,58,.18); cursor:pointer; padding:0;}
+.ela-play svg{margin-left:3px; fill:#1C2430;}
+.ela-txt{flex:0 1 auto; min-width:0; border:0; background:none; color:inherit; font:inherit; text-align:start; padding:0; cursor:pointer;}
+.ela-kick{display:block; font-size:9.5px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; color:#E8A23A;}
+.ela-txt strong{display:block; font-size:14.5px; font-weight:900; line-height:1.15; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+.ela-onde{flex:1; min-width:0; height:20px; display:flex; align-items:center; gap:3px; overflow:hidden;}
+.ela-onde i{display:block; flex:0 0 3px; border-radius:2px; background:#6b7a8f; animation:ela-onde 1.2s ease-in-out infinite;}
+.ela-onde i:nth-child(3n){background:#E8A23A;}
+@keyframes ela-onde{0%,100%{transform:scaleY(.35)} 50%{transform:scaleY(1)}}
+@media (prefers-reduced-motion: reduce){ .ela-onde i{animation:none;} }
+.ela-niv{flex:0 0 auto; border:0; border-radius:999px; padding:3px 9px 4px; font:inherit; font-size:12px; font-weight:900; cursor:pointer; white-space:nowrap;
+    background:rgba(255,255,255,.14); color:#fff; box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.28);}
+.ela-liste{display:none; position:absolute; top:calc(100% + 6px); inset-inline-end:6px; z-index:30; width:236px; background:#fff; color:#1C2430;
+    border-radius:14px; padding:8px; box-shadow:0 0 0 1.5px #e3dccf, 0 14px 30px rgba(28,36,48,.28);}
+.ela-liste.ouvert{display:block;}
+.ela-liste-titre{font-size:11.5px; font-weight:800; color:#576177; margin:0 2px 6px;}
+.ela-choix{display:flex; gap:5px; flex-wrap:wrap;}
+.ela-choix button{flex:1 0 28%; border:1.5px solid #e3dccf; background:#FBF8F3; border-radius:9px; padding:6px 0; font:inherit; font-size:13px; font-weight:900; color:#1C2430; cursor:pointer;}
+.ela-choix button.on{background:#1C2430; border-color:#1C2430; color:#fff;}
+.ela-liste-pied{font-size:11px; color:#576177; margin:7px 2px 0; line-height:1.35;}
+body[data-theme="dark"] .ecoute-ligne-accueil{background:#232c38; box-shadow:inset 0 0 0 1px #343e4c;}
+body[data-theme="dark"] .ela-liste{background:#1d232c; color:#eef1f5; box-shadow:0 0 0 1.5px #2c333d, 0 14px 30px rgba(0,0,0,.5);}
+body[data-theme="dark"] .ela-liste-titre, body[data-theme="dark"] .ela-liste-pied{color:#a9b2c0;}
+body[data-theme="dark"] .ela-choix button{background:#232a34; border-color:#2c333d; color:#eef1f5;}
+body[data-theme="dark"] .ela-choix button.on{background:#E8A23A; border-color:#E8A23A; color:#1C2430;}
 .explorer-v.verrou::after{content:"🔒"; position:absolute; top:4px; inset-inline-end:4px; font-size:12px;}
 body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
 body[data-theme="dark"] .explorer-desc{color:rgba(255,255,255,.72);}
@@ -7342,6 +7371,29 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
             <div class="explorer-ruban" id="explorerRuban"></div>
         </div>
 
+        <!-- v878 : LA LIGNE « ECOUTER ». Jacques, 19 oct. 2026 : le mode Ecoute
+             n'etait « pas assez mis en evidence » -- une section pour ceux qui
+             ecoutent dans le metro, l'autobus, en marchant. Six modeles, puis
+             six versions du lecteur, puis quatre formats compacts : il a choisi
+             la ligne (C3, .claude/maquette-ecouter-compact.html), la plus mince.
+             Le rond lance le mode Ecoute ; la pastille choisit le niveau. -->
+        <div class="ecoute-ligne-accueil" id="ecouteLigneAccueil">
+            <button type="button" class="ela-play" onclick="ecouterDepuisAccueil()" data-i18n-aria-label="orb_ecouter_title" aria-label="Écouter">
+                <svg width="14" height="16" viewBox="0 0 22 24" aria-hidden="true"><path d="M2 2l18 10L2 22z"/></svg>
+            </button>
+            <button type="button" class="ela-txt" onclick="ecouterDepuisAccueil()">
+                <span class="ela-kick" data-i18n="orb_ecouter_title">Écouter</span>
+                <strong data-i18n="ela_titre">Écoute. Répète.</strong>
+            </button>
+            <div class="ela-onde" id="ecouteLigneOnde" aria-hidden="true"></div>
+            <button type="button" class="ela-niv" id="ecouteLigneNiv" onclick="basculerNiveauEcoute(event)">A1 ▾</button>
+            <div class="ela-liste" id="ecouteLigneListe" onclick="event.stopPropagation()">
+                <div class="ela-liste-titre" data-i18n="ela_niveau_titre">Niveau à écouter</div>
+                <div class="ela-choix" id="ecouteLigneChoix"></div>
+                <p class="ela-liste-pied" data-i18n="ela_niveau_pied">Au départ, celui de ta séance. Le changer ici ne touche pas à ta séance.</p>
+            </div>
+        </div>
+
 
         <!-- Section « Les mots ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -7741,7 +7793,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v877</span>
+    <span class="subtitle-version">v878</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11234,6 +11286,9 @@ const I18N = {
         seance_n_questions: "{n} questions",
         explorer_titre: "Explorer les scènes",
         explorer_desc: "Touche les objets, écoute leur nom. Librement, sans questions.",
+        ela_titre: "Écoute. Répète.",
+        ela_niveau_titre: "Niveau à écouter",
+        ela_niveau_pied: "Au départ, celui de ta séance. Le changer ici ne touche pas à ta séance.",
         reglage_questions_titre: "Questions de la scène du jour",
         reglage_questions_desc: "Nombre de questions posées dans la scène du jour. Si la scène n'en a pas assez à ton niveau, elle ajoute celles du niveau d'avant, en révision.",
         seance_sous: "Révisions et mots nouveaux",
@@ -12547,6 +12602,9 @@ const I18N = {
         seance_n_questions: "{n} questions",
         explorer_titre: "Explore the scenes",
         explorer_desc: "Tap the objects, hear their names. Freely, no questions.",
+        ela_titre: "Listen. Repeat.",
+        ela_niveau_titre: "Level to listen to",
+        ela_niveau_pied: "It starts at your session's level. Changing it here doesn't change your session.",
         reglage_questions_titre: "Questions in today's scene",
         reglage_questions_desc: "Number of questions in today's scene. If the scene doesn't have enough at your level, it adds some from the level below, as review.",
         seance_sous: "Reviews and new words",
@@ -13862,6 +13920,9 @@ const I18N = {
         seance_n_questions: "{n} soru",
         explorer_titre: "Sahneleri keşfet",
         explorer_desc: "Nesnelere dokun, adlarını dinle. Serbestçe, soru yok.",
+        ela_titre: "Dinle. Tekrarla.",
+        ela_niveau_titre: "Dinlenecek seviye",
+        ela_niveau_pied: "Başta oturumunun seviyesi. Burada değiştirmek oturumunu etkilemez.",
         reglage_questions_titre: "Günün sahnesindeki sorular",
         reglage_questions_desc: "Günün sahnesinde sorulan soru sayısı. Sahnede senin seviyende yeterince soru yoksa, bir önceki seviyeden tekrar soruları ekler.",
         seance_sous: "Tekrarlar ve yeni kelimeler",
@@ -15514,6 +15575,9 @@ const I18N = {
         seance_n_questions: "{n} запитань",
         explorer_titre: "Досліджуй сцени",
         explorer_desc: "Торкайся предметів, слухай їхні назви. Вільно, без запитань.",
+        ela_titre: "Слухай. Повторюй.",
+        ela_niveau_titre: "Рівень для прослуховування",
+        ela_niveau_pied: "Спочатку це рівень твого заняття. Зміна тут не впливає на заняття.",
         reglage_questions_titre: "Запитання сцени дня",
         reglage_questions_desc: "Кількість запитань у сцені дня. Якщо на твоєму рівні їх замало, сцена додає запитання з попереднього рівня для повторення.",
         seance_sous: "Повторення та нові слова",
@@ -17538,6 +17602,9 @@ const I18N = {
         seance_n_questions: "{n} پرسش",
         explorer_titre: "کاوش در صحنه‌ها",
         explorer_desc: "روی اشیا بزن، نامشان را بشنو. آزادانه، بدون پرسش.",
+        ela_titre: "گوش کن. تکرار کن.",
+        ela_niveau_titre: "سطح شنیدن",
+        ela_niveau_pied: "در آغاز، سطح جلسه‌ات است. تغییرش در اینجا جلسه‌ات را تغییر نمی‌دهد.",
         reglage_questions_titre: "پرسش‌های صحنهٔ امروز",
         reglage_questions_desc: "تعداد پرسش‌های صحنهٔ امروز. اگر صحنه در سطح تو پرسش کافی نداشته باشد، از سطح قبلی برای مرور اضافه می‌کند.",
         seance_sous: "مرور و واژه‌های تازه",
@@ -18984,6 +19051,9 @@ const I18N = {
         seance_n_questions: "{n} أسئلة",
         explorer_titre: "استكشف المشاهد",
         explorer_desc: "المس الأشياء واستمع إلى أسمائها. بحرية، بلا أسئلة.",
+        ela_titre: "استمع. كرّر.",
+        ela_niveau_titre: "مستوى الاستماع",
+        ela_niveau_pied: "في البداية هو مستوى جلستك. تغييره هنا لا يغيّر جلستك.",
         reglage_questions_titre: "أسئلة مشهد اليوم",
         reglage_questions_desc: "عدد الأسئلة في مشهد اليوم. إذا لم يكن في المشهد ما يكفي من أسئلة مستواك، يضيف أسئلة من المستوى السابق للمراجعة.",
         seance_sous: "مراجعات وكلمات جديدة",
@@ -19294,6 +19364,9 @@ const I18N = {
         seance_n_questions: "{n} perguntas",
         explorer_titre: "Explore as cenas",
         explorer_desc: "Toque nos objetos, ouça o nome deles. À vontade, sem perguntas.",
+        ela_titre: "Ouça. Repita.",
+        ela_niveau_titre: "Nível para ouvir",
+        ela_niveau_pied: "No início, é o nível da sua sessão. Mudar aqui não altera a sessão.",
         reglage_questions_titre: "Perguntas da cena do dia",
         reglage_questions_desc: "Número de perguntas na cena do dia. Se a cena não tiver o bastante no seu nível, ela acrescenta perguntas do nível anterior, como revisão.",
         seance_sous: "Revisões e palavras novas",
@@ -20672,6 +20745,9 @@ const I18N = {
         seance_n_questions: "{n} pytań",
         explorer_titre: "Odkrywaj sceny",
         explorer_desc: "Dotykaj przedmiotów, słuchaj ich nazw. Swobodnie, bez pytań.",
+        ela_titre: "Słuchaj. Powtarzaj.",
+        ela_niveau_titre: "Poziom do słuchania",
+        ela_niveau_pied: "Na początek poziom twojej sesji. Zmiana tutaj nie zmienia sesji.",
         reglage_questions_titre: "Pytania w scenie dnia",
         reglage_questions_desc: "Liczba pytań w scenie dnia. Jeśli na twoim poziomie jest ich za mało, scena dodaje pytania z poprzedniego poziomu jako powtórkę.",
         seance_sous: "Powtórki i nowe słowa",
@@ -22048,6 +22124,9 @@ const I18N = {
         seance_n_questions: "{n} вопросов",
         explorer_titre: "Исследуй сцены",
         explorer_desc: "Нажимай на предметы, слушай их названия. Свободно, без вопросов.",
+        ela_titre: "Слушай. Повторяй.",
+        ela_niveau_titre: "Уровень для прослушивания",
+        ela_niveau_pied: "Сначала это уровень твоего занятия. Изменение здесь не меняет занятие.",
         reglage_questions_titre: "Вопросы сцены дня",
         reglage_questions_desc: "Количество вопросов в сцене дня. Если на твоём уровне их не хватает, сцена добавляет вопросы с предыдущего уровня для повторения.",
         seance_sous: "Повторение и новые слова",
@@ -39751,6 +39830,7 @@ function poolEcoute(niveau){
 // ---- Menu ----
 
 function ouvrirEcouteMenu(){
+    ecouteDepuisAccueil = false;
     const r = ecouteReglagesCharges();
     if(r.sens) ecouteSens = r.sens;
     if(r.vitesse) ecouteVitesse = r.vitesse;
@@ -40632,7 +40712,90 @@ function arreterEcoute(){
     ecouteMajBouton();
 }
 
-function quitterEcoute(){ ouvrirEcouteMenu(); }
+// v878 : lancee depuis la ligne de l'accueil, l'ecoute y revient.
+function quitterEcoute(){
+    if(ecouteDepuisAccueil){ ecouteDepuisAccueil = false; goHome(); return; }
+    ouvrirEcouteMenu();
+}
+
+// ============ LA LIGNE « ECOUTER » DE L'ACCUEIL (v878) ============
+// Le rond lance le mode Ecoute au niveau de la pastille. Ce niveau est a part
+// de celui de la seance (Jacques a valide « le changer ici ne touche pas a ta
+// seance ») : l'ecoute est une revision passive, ecouter du B1 en revisant
+// l'A1 ne derange rien. Sans choix, il suit la seance. En version gratuite, il
+// suit l'echantillon, comme le menu Ecoute (v697), et la pastille ouvre l'offre.
+const ECOUTE_NIVEAU_KEY = PREFIXE_STOCKAGE + "ecouteNiveau";
+let ecouteDepuisAccueil = false;
+function niveauEcouteAccueil(){
+    if(!accesComplet()) return niveauEchantillon();
+    try{
+        const v = localStorage.getItem(ECOUTE_NIVEAU_KEY);
+        if(v === "ALL" || LEVELS.indexOf(v) >= 0) return v;
+    }catch(e){}
+    return niveauSeance();
+}
+function majLigneEcoute(){
+    const pastille = document.getElementById("ecouteLigneNiv");
+    if(!pastille) return;
+    const onde = document.getElementById("ecouteLigneOnde");
+    if(onde && !onde.children.length){
+        for(let i = 0; i < 40; i++){
+            const b = document.createElement("i");
+            b.style.height = (30 + Math.round(Math.abs(Math.sin(i * 1.7)) * 70)) + "%";
+            b.style.animationDelay = (-(i * 0.09)).toFixed(2) + "s";
+            onde.appendChild(b);
+        }
+    }
+    const niv = niveauEcouteAccueil();
+    const nom = n => n === "ALL" ? t("ecoute_level_all") : n;
+    pastille.textContent = nom(niv) + " ▾";
+    const choix = document.getElementById("ecouteLigneChoix");
+    if(!choix) return;
+    choix.innerHTML = "";
+    LEVELS.concat(["ALL"]).forEach(n => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = nom(n);
+        if(n === niv) b.className = "on";
+        b.addEventListener("click", () => choisirNiveauEcoute(n));
+        choix.appendChild(b);
+    });
+}
+function fermerNiveauEcoute(){
+    const l = document.getElementById("ecouteLigneListe");
+    if(l) l.classList.remove("ouvert");
+}
+function basculerNiveauEcoute(ev){
+    if(ev) ev.stopPropagation();
+    if(!accesComplet()){ ouvrirAbonnement(); return; }
+    const l = document.getElementById("ecouteLigneListe");
+    if(!l) return;
+    const ouvrir = !l.classList.contains("ouvert");
+    if(ouvrir){ majLigneEcoute(); l.classList.add("ouvert"); }
+    else l.classList.remove("ouvert");
+}
+function choisirNiveauEcoute(n){
+    try{ localStorage.setItem(ECOUTE_NIVEAU_KEY, n); }catch(e){}
+    fermerNiveauEcoute();
+    majLigneEcoute();
+}
+document.addEventListener("click", fermerNiveauEcoute);
+async function ecouterDepuisAccueil(){
+    fermerNiveauEcoute();
+    const r = ecouteReglagesCharges();
+    if(r.sens) ecouteSens = r.sens;
+    if(r.vitesse) ecouteVitesse = r.vitesse;
+    if(r.pause) ecoutePauseFacteur = r.pause;
+    const niv = niveauEcouteAccueil();
+    // Le geste doit atteindre la synthese sans attendre (iOS) : si les mots
+    // sont deja la, on lance tout de suite ; sinon on amorce, puis on charge.
+    if(!themesLoaded){
+        amorcerSynthese();
+        try{ await loadThemesJson(); }catch(e){}
+    }
+    ecouteDepuisAccueil = true;
+    demarrerEcoute(niv);
+}
 
 function renderEcouteReglages(){
     const vb = document.getElementById("ecouteVitesseBar");
@@ -40690,7 +40853,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 877;
+const APP_VERSION = 878;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47911,6 +48074,7 @@ function majTuileSeance(){
     }
     try{ majPortesSeance(); }catch(e){}
     try{ majExplorerScenes(); }catch(e){}
+    try{ majLigneEcoute(); }catch(e){}
     const box = document.getElementById("seanceNiveaux");
     if(!box) return;
     box.innerHTML = "";
