@@ -7698,7 +7698,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v873</span>
+    <span class="subtitle-version">v874</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -30279,8 +30279,48 @@ async function restoreProgressFromCloud(){
 // Appelé depuis le script Firebase (module) juste après la connexion. On
 // RESTAURE d'abord, on televerse ensuite : l'ordre inverse ecrasait le cloud
 // avec le localStorage vide d'une app fraichement installee.
+// ============ LA LANGUE APPRISE RETENUE DANS LE COMPTE (v874) ============
+// Nicole, app Android, 18 oct. 2026 : elle passe a l'espagnol, met l'app en
+// arriere-plan (bouton d'accueil), revient -- et doit se reconnecter, en
+// allemand. Android avait oublie la memoire de l'app (connexion ET langue), et
+// la langue ne vivait que la : sans adresse ?apprendre=, l'app repartait sur
+// l'allemand. Elle est maintenant aussi dans le document commun du compte
+// (`users/<uid>`, qui sert aux deux langues). Apres la connexion :
+//   - si l'appareil n'a AUCUN choix (ni ?apprendre= dans l'adresse, ni
+//     CLE_LANGUE_APPRISE), on suit le compte -- et on recharge dans sa langue ;
+//   - sinon l'appareil a raison, et le compte apprend sa langue s'il l'ignore.
+// Renvoie vrai quand la page part vers l'autre langue (rien d'autre a faire).
+async function accorderLangueAuCompte(){
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    if(!user || !window.firestoreDb) return false;
+    const ref = window.fsDoc(window.firestoreDb, "users", user.uid);
+    let parAdresse = null, surAppareil = null;
+    try{ parAdresse = new URLSearchParams(location.search).get("apprendre"); }catch(e){}
+    try{ surAppareil = localStorage.getItem(CLE_LANGUE_APPRISE); }catch(e){}
+    const choisieIci = ["es", "de"].includes(parAdresse) || ["es", "de"].includes(surAppareil);
+    let duCompte = null;
+    try{
+        const s = await window.fsGetDoc(ref);
+        duCompte = s.exists() ? (s.data() || {}).langueApprise : null;
+    }catch(e){ return false; }
+    if(!choisieIci && ["es", "de"].includes(duCompte) && duCompte !== LANGUE_APPRISE){
+        try{ location.href = new URL("./?apprendre=" + duCompte, location.href).href; }
+        catch(e){ location.href = "./?apprendre=" + duCompte; }
+        return true;
+    }
+    if(duCompte !== LANGUE_APPRISE){
+        try{ await window.fsSetDoc(ref, { langueApprise: LANGUE_APPRISE }, { merge: true }); }catch(e){}
+    }
+    return false;
+}
+
 window.onDeutschAiUserSignedIn = function(){
-    restoreProgressFromCloud().then(scheduleCloudSync);
+    // La langue d'abord : restaurer la progression allemande pour repartir
+    // aussitot vers l'espagnol ne servirait a rien.
+    accorderLangueAuCompte().catch(() => false).then(part => {
+        if(part) return;
+        restoreProgressFromCloud().then(scheduleCloudSync);
+    });
     loadVhsKapitelAccessFlag();
 };
 
@@ -40606,7 +40646,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 873;
+const APP_VERSION = 874;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
