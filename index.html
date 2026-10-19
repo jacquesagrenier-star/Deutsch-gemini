@@ -7741,7 +7741,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v876</span>
+    <span class="subtitle-version">v877</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -40690,7 +40690,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 876;
+const APP_VERSION = 877;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -44751,11 +44751,11 @@ function revisionDeScene(d){
 //
 // La seance garde sa longueur : chaque exercice prend la PLACE d'une carte. Ce
 // qu'on y met depend du nombre de mots deja rencontres (PALIERS_SEANCE) :
-//   palier 1, debutant : une carte sur cinq devient une phrase (ecouter, trou) ;
+//   palier 1, debutant : une carte sur quatre devient une phrase (ecouter,
+//              trou, et la dire a voix haute -- phrase courte, v877) ;
 //   palier 2 : une sur trois -- s'y ajoutent l'ordre, la grammaire, la dictee
 //              d'un mot ;
-//   palier 3 : une sur deux -- la dictee d'une phrase et la repetition a voix
-//              haute (s'enregistrer, se reecouter, sans note).
+//   palier 3 : une sur deux -- la dictee d'une phrase.
 // Les mots seuls restent ouverts a part (themes) : la seance guide, elle
 // n'enferme pas.
 //
@@ -44775,10 +44775,15 @@ function revisionDeScene(d){
 // la scene) ; la grammaire et l'oral comptent dans l'objectif du jour.
 // mots_max / inconnus_max (v813) : au palier 3, des phrases un peu plus longues
 // et un inconnu de plus -- les exemples B2-C1 depassent souvent huit mots.
+// v877 : L'ORAL DES LE DEBUT, ET PLUS SOUVENT. Jacques, 19 oct. 2026 : « des le
+// debut sur des phrases courtes, puis que ca revienne plus souvent ; on la voit
+// pas souvent l'oral, puis c'est important ». Il n'arrivait qu'a 400 mots vus,
+// et aucun testeur n'y etait. parler_max : la longueur permise a la phrase a
+// dire (5 mots au palier 1, 7 au palier 2) ; les autres formes gardent mots_max.
 const PALIERS_SEANCE = [
-    { vus: 0,   debut: 2, tous_les: 4, mots_max: 8,  inconnus_max: 1, formes: ["ecoute", "ecoute", "trou"] },
-    { vus: 60,  debut: 2, tous_les: 3, mots_max: 8,  inconnus_max: 1, formes: ["ecoute", "gram", "trou", "ordre", "gram", "dictee_mot"] },
-    { vus: 400, debut: 1, tous_les: 2, mots_max: 11, inconnus_max: 2, formes: ["gram", "ecoute", "ordre", "trou", "gram", "dictee", "parler"] }
+    { vus: 0,   debut: 2, tous_les: 4, mots_max: 8,  inconnus_max: 1, parler_max: 5, formes: ["ecoute", "parler", "trou", "ecoute", "parler"] },
+    { vus: 60,  debut: 2, tous_les: 3, mots_max: 8,  inconnus_max: 1, parler_max: 7, formes: ["ecoute", "parler", "gram", "trou", "ordre", "parler", "gram", "dictee_mot"] },
+    { vus: 400, debut: 1, tous_les: 2, mots_max: 11, inconnus_max: 2, formes: ["gram", "parler", "ecoute", "ordre", "trou", "parler", "gram", "dictee"] }
 ];
 // L'ORDRE DU COURS, A1 -> B2 (v813). Les series « a blocs » (chunks) n'y sont
 // pas : elles ont leur ecran. Une serie sans question utilisable est sautee.
@@ -45137,8 +45142,8 @@ function insererCartesPhrases(seance, tout){
     const avecPhrase = it => MODES_PHRASES.indexOf(it.mode) >= 0;
     const pris = new Set();
     const cle = it => it.themeId + "#" + it.index;
-    const evaluer = it => {
-        const p = phraseDeCarte(it, palier.mots_max);
+    const evaluer = (it, max) => {
+        const p = phraseDeCarte(it, max || palier.mots_max);
         if(!p) return null;
         const vise = placeDuMot(it, p.mots);
         let inconnus = 0, appui = 0;
@@ -45151,11 +45156,11 @@ function insererCartesPhrases(seance, tout){
         if(inconnus > palier.inconnus_max) return null;
         return { it: it, p: p, vise: vise, cout: inconnus * 10 - appui + p.mots.length * 0.1 };
     };
-    const meilleur = liste => {
+    const meilleur = (liste, max) => {
         let best = null;
         liste.forEach(it => {
             if(pris.has(cle(it))) return;
-            const e = evaluer(it);
+            const e = evaluer(it, max);
             if(e && PHRASES_POSEES.has(e.p.de)) return;
             if(e && (!best || e.cout < best.cout)) best = e;
         });
@@ -45195,7 +45200,8 @@ function insererCartesPhrases(seance, tout){
                                themeId: remplacee.themeId, index: remplacee.index, word: remplacee.word };
                 continue;
             }
-            const e = meilleur(sortie.slice(0, k).filter(avecPhrase)) || meilleur(vus.filter(avecPhrase));
+            const max = f === "parler" ? palier.parler_max : 0;
+            const e = meilleur(sortie.slice(0, k).filter(avecPhrase), max) || meilleur(vus.filter(avecPhrase), max);
             if(!e) continue;
             if(f === "trou" && e.vise < 0) continue;
             pris.add(cle(e.it));
