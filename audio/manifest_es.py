@@ -166,6 +166,10 @@ def recolter(variante):
     # crochets. Les memes textes dans les deux variantes.
     for niveau, t in manifest_de.conjugaison_textes(charger("conjugaison.json")):
         prendre(t, "conjugaison", niveau)
+    # LES REPERES (v879, 19 oct. 2026) : espanol/datos/reperes.json, la meme
+    # regle que manifest.py (reperes_textes). Les memes textes dans les deux variantes.
+    for t in manifest_de.reperes_textes(charger("reperes.json")):
+        prendre(t, "reperes", "A1")
     return out
 
 

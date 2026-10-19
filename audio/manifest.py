@@ -314,6 +314,21 @@ def recolter():
     for niveau, texte in conjugaison_textes(charger("conjugaison.json")):
         prendre(texte, niveau, "phrase" if " " in texte.strip() else "mot", "conjugaison")
 
+    # LES REPERES (v879, 19 oct. 2026) : reperes.json. Chaque ligne des tableaux
+    # (nombres, jours, mois), les nombres composes des exercices (x) et les
+    # suites a dire a voix haute (p).
+    for texte in reperes_textes(charger("reperes.json")):
+        prendre(texte, "A1", "phrase" if " " in texte.strip() else "mot", "reperes")
+
+    return out
+
+
+def reperes_textes(d):
+    """Les textes que les reperes font entendre (allemand ou espagnol)."""
+    out = []
+    for r in d.get("reperes", []):
+        for l in r.get("l", []) + r.get("x", []) + r.get("p", []):
+            out.append(l[0])
     return out
 
 

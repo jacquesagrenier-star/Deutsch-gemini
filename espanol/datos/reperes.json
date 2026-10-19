@@ -1,0 +1,738 @@
+{
+ "_lisez_moi": [
+  "Les repères (v879) : jours, mois et nombres, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
+  "Cinq blocs, dans l'ordre, jamais mélangés : n0-20, n20-100, n100-1000, jours, mois. type « nombre » : sens = le nombre en chiffres ; x = nombres composés pour s'exercer. type « suite » : sens par langue ; p = suites à dire à voix haute.",
+  "Contrôle : python tests/reperes.py."
+ ],
+ "reperes": [
+  {
+   "id": "n0-20",
+   "type": "nombre",
+   "t": {
+    "fr": "Les nombres de 0 à 20",
+    "en": "Numbers from 0 to 20",
+    "tr": "0'dan 20'ye sayılar",
+    "uk": "Числа від 0 до 20",
+    "fa": "عددهای 0 تا 20",
+    "ar": "الأعداد من 0 إلى 20",
+    "pt": "Os números de 0 a 20",
+    "pl": "Liczby od 0 do 20",
+    "ru": "Числа от 0 до 20"
+   },
+   "a": {
+    "fr": "uno devient un devant un nom masculin : un libro, una mesa. De 16 à 19, un seul mot : dieciséis (dix-et-six).",
+    "en": "uno becomes un before a masculine noun: un libro, una mesa. From 16 to 19, one word: dieciséis (ten-and-six).",
+    "tr": "uno, eril bir isimden önce un olur: un libro, una mesa. 16'dan 19'a tek kelime: dieciséis (on-ve-altı).",
+    "uk": "uno перед іменником чоловічого роду стає un: un libro, una mesa. Від 16 до 19 — одне слово: dieciséis (десять-і-шість).",
+    "fa": "uno پیش از اسم مذکر un می‌شود: un libro، una mesa. از 16 تا 19 یک کلمه است: dieciséis (ده-و-شش).",
+    "ar": "uno تصبح un قبل الاسم المذكر: un libro، una mesa. من 16 إلى 19 كلمة واحدة: dieciséis (عشرة-و-ستة).",
+    "pt": "uno vira un antes de um substantivo masculino: un libro, una mesa. De 16 a 19, uma só palavra: dieciséis (dez-e-seis).",
+    "pl": "uno przed rzeczownikiem rodzaju męskiego to un: un libro, una mesa. Od 16 do 19 jedno słowo: dieciséis (dziesięć-i-sześć).",
+    "ru": "uno перед существительным мужского рода становится un: un libro, una mesa. С 16 до 19 — одно слово: dieciséis (десять-и-шесть)."
+   },
+   "l": [
+    [
+     "cero",
+     "0"
+    ],
+    [
+     "uno",
+     "1"
+    ],
+    [
+     "dos",
+     "2"
+    ],
+    [
+     "tres",
+     "3"
+    ],
+    [
+     "cuatro",
+     "4"
+    ],
+    [
+     "cinco",
+     "5"
+    ],
+    [
+     "seis",
+     "6"
+    ],
+    [
+     "siete",
+     "7"
+    ],
+    [
+     "ocho",
+     "8"
+    ],
+    [
+     "nueve",
+     "9"
+    ],
+    [
+     "diez",
+     "10"
+    ],
+    [
+     "once",
+     "11"
+    ],
+    [
+     "doce",
+     "12"
+    ],
+    [
+     "trece",
+     "13"
+    ],
+    [
+     "catorce",
+     "14"
+    ],
+    [
+     "quince",
+     "15"
+    ],
+    [
+     "dieciséis",
+     "16"
+    ],
+    [
+     "diecisiete",
+     "17"
+    ],
+    [
+     "dieciocho",
+     "18"
+    ],
+    [
+     "diecinueve",
+     "19"
+    ],
+    [
+     "veinte",
+     "20"
+    ]
+   ],
+   "x": []
+  },
+  {
+   "id": "n20-100",
+   "type": "nombre",
+   "t": {
+    "fr": "Les dizaines, jusqu'à 100",
+    "en": "Tens, up to 100",
+    "tr": "Onluklar, 100'e kadar",
+    "uk": "Десятки, до 100",
+    "fa": "دهگان‌ها، تا 100",
+    "ar": "العشرات حتى 100",
+    "pt": "As dezenas, até 100",
+    "pl": "Dziesiątki, do 100",
+    "ru": "Десятки, до 100"
+   },
+   "a": {
+    "fr": "Jusqu'à 29, un seul mot : veintiuno, veintidós. À partir de 31, trois mots avec y : treinta y uno. 100 se dit cien.",
+    "en": "Up to 29, one word: veintiuno, veintidós. From 31 on, three words with y: treinta y uno. 100 is cien.",
+    "tr": "29'a kadar tek kelime: veintiuno, veintidós. 31'den itibaren y ile üç kelime: treinta y uno. 100: cien.",
+    "uk": "До 29 — одне слово: veintiuno, veintidós. Від 31 — три слова з y: treinta y uno. 100 — cien.",
+    "fa": "تا 29 یک کلمه است: veintiuno، veintidós. از 31 به بعد سه کلمه با y: treinta y uno. عدد 100 می‌شود cien.",
+    "ar": "حتى 29 كلمة واحدة: veintiuno، veintidós. ابتداءً من 31 ثلاث كلمات مع y: treinta y uno. والعدد 100 هو cien.",
+    "pt": "Até 29, uma só palavra: veintiuno, veintidós. A partir de 31, três palavras com y: treinta y uno. 100 é cien.",
+    "pl": "Do 29 jedno słowo: veintiuno, veintidós. Od 31 trzy słowa z y: treinta y uno. 100 to cien.",
+    "ru": "До 29 — одно слово: veintiuno, veintidós. С 31 — три слова с y: treinta y uno. 100 — cien."
+   },
+   "l": [
+    [
+     "veinte",
+     "20"
+    ],
+    [
+     "veintiuno",
+     "21"
+    ],
+    [
+     "veintidós",
+     "22"
+    ],
+    [
+     "treinta",
+     "30"
+    ],
+    [
+     "treinta y uno",
+     "31"
+    ],
+    [
+     "cuarenta",
+     "40"
+    ],
+    [
+     "cincuenta",
+     "50"
+    ],
+    [
+     "sesenta",
+     "60"
+    ],
+    [
+     "setenta",
+     "70"
+    ],
+    [
+     "ochenta",
+     "80"
+    ],
+    [
+     "noventa",
+     "90"
+    ],
+    [
+     "cien",
+     "100"
+    ]
+   ],
+   "x": [
+    [
+     "veintitrés",
+     "23"
+    ],
+    [
+     "veintiséis",
+     "26"
+    ],
+    [
+     "treinta y cinco",
+     "35"
+    ],
+    [
+     "cuarenta y tres",
+     "43"
+    ],
+    [
+     "cuarenta y siete",
+     "47"
+    ],
+    [
+     "cincuenta y ocho",
+     "58"
+    ],
+    [
+     "sesenta y cuatro",
+     "64"
+    ],
+    [
+     "setenta y seis",
+     "76"
+    ],
+    [
+     "ochenta y nueve",
+     "89"
+    ],
+    [
+     "noventa y dos",
+     "92"
+    ]
+   ]
+  },
+  {
+   "id": "n100-1000",
+   "type": "nombre",
+   "t": {
+    "fr": "Les centaines, jusqu'à 1000",
+    "en": "Hundreds, up to 1,000",
+    "tr": "Yüzler, 1000'e kadar",
+    "uk": "Сотні, до 1000",
+    "fa": "صدگان‌ها، تا 1000",
+    "ar": "المئات حتى 1000",
+    "pt": "As centenas, até 1000",
+    "pl": "Setki, do 1000",
+    "ru": "Сотни, до 1000"
+   },
+   "a": {
+    "fr": "cien tout seul, mais ciento devant la suite : ciento uno. Les centaines s'accordent : doscientas personas. À part : quinientos, setecientos, novecientos. 1000 = mil.",
+    "en": "cien on its own, but ciento before more: ciento uno. Hundreds agree: doscientas personas. Irregular: quinientos, setecientos, novecientos. 1000 = mil.",
+    "tr": "Tek başına cien, devamı varsa ciento: ciento uno. Yüzler uyum yapar: doscientas personas. Düzensiz: quinientos, setecientos, novecientos. 1000 = mil.",
+    "uk": "Окремо — cien, але ciento, коли далі є число: ciento uno. Сотні узгоджуються: doscientas personas. Неправильні: quinientos, setecientos, novecientos. 1000 = mil.",
+    "fa": "به‌تنهایی cien، ولی اگر عددی بعدش بیاید ciento: ciento uno. صدگان‌ها مطابقت دارند: doscientas personas. بی‌قاعده: quinientos، setecientos، novecientos. 1000 = mil.",
+    "ar": "وحدها cien، لكن ciento إذا تلاها عدد: ciento uno. المئات تطابق الاسم: doscientas personas. شاذة: quinientos، setecientos، novecientos. و1000 = mil.",
+    "pt": "cien sozinho, mas ciento antes de mais números: ciento uno. As centenas concordam: doscientas personas. Irregulares: quinientos, setecientos, novecientos. 1000 = mil.",
+    "pl": "Samo cien, ale ciento, gdy coś następuje: ciento uno. Setki się odmieniają: doscientas personas. Nieregularne: quinientos, setecientos, novecientos. 1000 = mil.",
+    "ru": "Отдельно — cien, но ciento, если дальше есть число: ciento uno. Сотни согласуются: doscientas personas. Неправильные: quinientos, setecientos, novecientos. 1000 = mil."
+   },
+   "l": [
+    [
+     "cien",
+     "100"
+    ],
+    [
+     "doscientos",
+     "200"
+    ],
+    [
+     "trescientos",
+     "300"
+    ],
+    [
+     "cuatrocientos",
+     "400"
+    ],
+    [
+     "quinientos",
+     "500"
+    ],
+    [
+     "seiscientos",
+     "600"
+    ],
+    [
+     "setecientos",
+     "700"
+    ],
+    [
+     "ochocientos",
+     "800"
+    ],
+    [
+     "novecientos",
+     "900"
+    ],
+    [
+     "mil",
+     "1000"
+    ]
+   ],
+   "x": [
+    [
+     "ciento uno",
+     "101"
+    ],
+    [
+     "ciento veinte",
+     "120"
+    ],
+    [
+     "doscientos cincuenta",
+     "250"
+    ],
+    [
+     "trescientos cuarenta y cinco",
+     "345"
+    ],
+    [
+     "quinientos cinco",
+     "505"
+    ],
+    [
+     "seiscientos ochenta",
+     "680"
+    ],
+    [
+     "setecientos doce",
+     "712"
+    ],
+    [
+     "novecientos noventa y nueve",
+     "999"
+    ]
+   ]
+  },
+  {
+   "id": "jours",
+   "type": "suite",
+   "t": {
+    "fr": "Les jours de la semaine",
+    "en": "The days of the week",
+    "tr": "Haftanın günleri",
+    "uk": "Дні тижня",
+    "fa": "روزهای هفته",
+    "ar": "أيام الأسبوع",
+    "pt": "Os dias da semana",
+    "pl": "Dni tygodnia",
+    "ru": "Дни недели"
+   },
+   "a": {
+    "fr": "Sans majuscule, et masculins : el lunes. « Lundi » (quand ?) se dit el lunes, sans préposition.",
+    "en": "No capital letter, and masculine: el lunes. “On Monday” is just el lunes.",
+    "tr": "Büyük harfle yazılmaz ve erildir: el lunes. “Pazartesi günü” sadece el lunes denir.",
+    "uk": "Без великої літери, чоловічого роду: el lunes. «У понеділок» — просто el lunes.",
+    "fa": "با حرف کوچک نوشته می‌شوند و مذکرند: el lunes. «روز دوشنبه» فقط el lunes است.",
+    "ar": "تُكتب بحرف صغير وهي مذكرة: el lunes. «يوم الاثنين» تُقال el lunes فقط.",
+    "pt": "Sem maiúscula, e masculinos: el lunes. “Na segunda-feira” é só el lunes.",
+    "pl": "Małą literą i rodzaju męskiego: el lunes. „W poniedziałek” to po prostu el lunes.",
+    "ru": "Со строчной буквы, мужского рода: el lunes. «В понедельник» — просто el lunes."
+   },
+   "l": [
+    [
+     "lunes",
+     {
+      "fr": "lundi",
+      "en": "Monday",
+      "tr": "Pazartesi",
+      "uk": "понеділок",
+      "fa": "دوشنبه",
+      "ar": "الاثنين",
+      "pt": "segunda-feira",
+      "pl": "poniedziałek",
+      "ru": "понедельник"
+     }
+    ],
+    [
+     "martes",
+     {
+      "fr": "mardi",
+      "en": "Tuesday",
+      "tr": "Salı",
+      "uk": "вівторок",
+      "fa": "سه‌شنبه",
+      "ar": "الثلاثاء",
+      "pt": "terça-feira",
+      "pl": "wtorek",
+      "ru": "вторник"
+     }
+    ],
+    [
+     "miércoles",
+     {
+      "fr": "mercredi",
+      "en": "Wednesday",
+      "tr": "Çarşamba",
+      "uk": "середа",
+      "fa": "چهارشنبه",
+      "ar": "الأربعاء",
+      "pt": "quarta-feira",
+      "pl": "środa",
+      "ru": "среда"
+     }
+    ],
+    [
+     "jueves",
+     {
+      "fr": "jeudi",
+      "en": "Thursday",
+      "tr": "Perşembe",
+      "uk": "четвер",
+      "fa": "پنجشنبه",
+      "ar": "الخميس",
+      "pt": "quinta-feira",
+      "pl": "czwartek",
+      "ru": "четверг"
+     }
+    ],
+    [
+     "viernes",
+     {
+      "fr": "vendredi",
+      "en": "Friday",
+      "tr": "Cuma",
+      "uk": "п'ятниця",
+      "fa": "جمعه",
+      "ar": "الجمعة",
+      "pt": "sexta-feira",
+      "pl": "piątek",
+      "ru": "пятница"
+     }
+    ],
+    [
+     "sábado",
+     {
+      "fr": "samedi",
+      "en": "Saturday",
+      "tr": "Cumartesi",
+      "uk": "субота",
+      "fa": "شنبه",
+      "ar": "السبت",
+      "pt": "sábado",
+      "pl": "sobota",
+      "ru": "суббота"
+     }
+    ],
+    [
+     "domingo",
+     {
+      "fr": "dimanche",
+      "en": "Sunday",
+      "tr": "Pazar",
+      "uk": "неділя",
+      "fa": "یکشنبه",
+      "ar": "الأحد",
+      "pt": "domingo",
+      "pl": "niedziela",
+      "ru": "воскресенье"
+     }
+    ]
+   ],
+   "p": [
+    [
+     "lunes, martes, miércoles",
+     {
+      "fr": "lundi, mardi, mercredi",
+      "en": "Monday, Tuesday, Wednesday",
+      "tr": "Pazartesi, Salı, Çarşamba",
+      "uk": "понеділок, вівторок, середа",
+      "fa": "دوشنبه, سه‌شنبه, چهارشنبه",
+      "ar": "الاثنين, الثلاثاء, الأربعاء",
+      "pt": "segunda-feira, terça-feira, quarta-feira",
+      "pl": "poniedziałek, wtorek, środa",
+      "ru": "понедельник, вторник, среда"
+     }
+    ],
+    [
+     "jueves, viernes, sábado, domingo",
+     {
+      "fr": "jeudi, vendredi, samedi, dimanche",
+      "en": "Thursday, Friday, Saturday, Sunday",
+      "tr": "Perşembe, Cuma, Cumartesi, Pazar",
+      "uk": "четвер, п'ятниця, субота, неділя",
+      "fa": "پنجشنبه, جمعه, شنبه, یکشنبه",
+      "ar": "الخميس, الجمعة, السبت, الأحد",
+      "pt": "quinta-feira, sexta-feira, sábado, domingo",
+      "pl": "czwartek, piątek, sobota, niedziela",
+      "ru": "четверг, пятница, суббота, воскресенье"
+     }
+    ]
+   ]
+  },
+  {
+   "id": "mois",
+   "type": "suite",
+   "t": {
+    "fr": "Les mois de l'année",
+    "en": "The months of the year",
+    "tr": "Yılın ayları",
+    "uk": "Місяці року",
+    "fa": "ماه‌های سال",
+    "ar": "أشهر السنة",
+    "pt": "Os meses do ano",
+    "pl": "Miesiące roku",
+    "ru": "Месяцы года"
+   },
+   "a": {
+    "fr": "Sans majuscule : enero, febrero. « En janvier » se dit en enero.",
+    "en": "No capital letter: enero, febrero. “In January” is en enero.",
+    "tr": "Büyük harfle yazılmaz: enero, febrero. “Ocak'ta” en enero denir.",
+    "uk": "Без великої літери: enero, febrero. «У січні» — en enero.",
+    "fa": "با حرف کوچک: enero، febrero. «در ژانویه» می‌شود en enero.",
+    "ar": "بحرف صغير: enero، febrero. «في يناير» تُقال en enero.",
+    "pt": "Sem maiúscula: enero, febrero. “Em janeiro” se diz en enero.",
+    "pl": "Małą literą: enero, febrero. „W styczniu” to en enero.",
+    "ru": "Со строчной буквы: enero, febrero. «В январе» — en enero."
+   },
+   "l": [
+    [
+     "enero",
+     {
+      "fr": "janvier",
+      "en": "January",
+      "tr": "Ocak",
+      "uk": "січень",
+      "fa": "ژانویه",
+      "ar": "يناير",
+      "pt": "janeiro",
+      "pl": "styczeń",
+      "ru": "январь"
+     }
+    ],
+    [
+     "febrero",
+     {
+      "fr": "février",
+      "en": "February",
+      "tr": "Şubat",
+      "uk": "лютий",
+      "fa": "فوریه",
+      "ar": "فبراير",
+      "pt": "fevereiro",
+      "pl": "luty",
+      "ru": "февраль"
+     }
+    ],
+    [
+     "marzo",
+     {
+      "fr": "mars",
+      "en": "March",
+      "tr": "Mart",
+      "uk": "березень",
+      "fa": "مارس",
+      "ar": "مارس",
+      "pt": "março",
+      "pl": "marzec",
+      "ru": "март"
+     }
+    ],
+    [
+     "abril",
+     {
+      "fr": "avril",
+      "en": "April",
+      "tr": "Nisan",
+      "uk": "квітень",
+      "fa": "آوریل",
+      "ar": "أبريل",
+      "pt": "abril",
+      "pl": "kwiecień",
+      "ru": "апрель"
+     }
+    ],
+    [
+     "mayo",
+     {
+      "fr": "mai",
+      "en": "May",
+      "tr": "Mayıs",
+      "uk": "травень",
+      "fa": "مه",
+      "ar": "مايو",
+      "pt": "maio",
+      "pl": "maj",
+      "ru": "май"
+     }
+    ],
+    [
+     "junio",
+     {
+      "fr": "juin",
+      "en": "June",
+      "tr": "Haziran",
+      "uk": "червень",
+      "fa": "ژوئن",
+      "ar": "يونيو",
+      "pt": "junho",
+      "pl": "czerwiec",
+      "ru": "июнь"
+     }
+    ],
+    [
+     "julio",
+     {
+      "fr": "juillet",
+      "en": "July",
+      "tr": "Temmuz",
+      "uk": "липень",
+      "fa": "ژوئیه",
+      "ar": "يوليو",
+      "pt": "julho",
+      "pl": "lipiec",
+      "ru": "июль"
+     }
+    ],
+    [
+     "agosto",
+     {
+      "fr": "août",
+      "en": "August",
+      "tr": "Ağustos",
+      "uk": "серпень",
+      "fa": "اوت",
+      "ar": "أغسطس",
+      "pt": "agosto",
+      "pl": "sierpień",
+      "ru": "август"
+     }
+    ],
+    [
+     "septiembre",
+     {
+      "fr": "septembre",
+      "en": "September",
+      "tr": "Eylül",
+      "uk": "вересень",
+      "fa": "سپتامبر",
+      "ar": "سبتمبر",
+      "pt": "setembro",
+      "pl": "wrzesień",
+      "ru": "сентябрь"
+     }
+    ],
+    [
+     "octubre",
+     {
+      "fr": "octobre",
+      "en": "October",
+      "tr": "Ekim",
+      "uk": "жовтень",
+      "fa": "اکتبر",
+      "ar": "أكتوبر",
+      "pt": "outubro",
+      "pl": "październik",
+      "ru": "октябрь"
+     }
+    ],
+    [
+     "noviembre",
+     {
+      "fr": "novembre",
+      "en": "November",
+      "tr": "Kasım",
+      "uk": "листопад",
+      "fa": "نوامبر",
+      "ar": "نوفمبر",
+      "pt": "novembro",
+      "pl": "listopad",
+      "ru": "ноябрь"
+     }
+    ],
+    [
+     "diciembre",
+     {
+      "fr": "décembre",
+      "en": "December",
+      "tr": "Aralık",
+      "uk": "грудень",
+      "fa": "دسامبر",
+      "ar": "ديسمبر",
+      "pt": "dezembro",
+      "pl": "grudzień",
+      "ru": "декабрь"
+     }
+    ]
+   ],
+   "p": [
+    [
+     "enero, febrero, marzo, abril",
+     {
+      "fr": "janvier, février, mars, avril",
+      "en": "January, February, March, April",
+      "tr": "Ocak, Şubat, Mart, Nisan",
+      "uk": "січень, лютий, березень, квітень",
+      "fa": "ژانویه, فوریه, مارس, آوریل",
+      "ar": "يناير, فبراير, مارس, أبريل",
+      "pt": "janeiro, fevereiro, março, abril",
+      "pl": "styczeń, luty, marzec, kwiecień",
+      "ru": "январь, февраль, март, апрель"
+     }
+    ],
+    [
+     "mayo, junio, julio, agosto",
+     {
+      "fr": "mai, juin, juillet, août",
+      "en": "May, June, July, August",
+      "tr": "Mayıs, Haziran, Temmuz, Ağustos",
+      "uk": "травень, червень, липень, серпень",
+      "fa": "مه, ژوئن, ژوئیه, اوت",
+      "ar": "مايو, يونيو, يوليو, أغسطس",
+      "pt": "maio, junho, julho, agosto",
+      "pl": "maj, czerwiec, lipiec, sierpień",
+      "ru": "май, июнь, июль, август"
+     }
+    ],
+    [
+     "septiembre, octubre, noviembre, diciembre",
+     {
+      "fr": "septembre, octobre, novembre, décembre",
+      "en": "September, October, November, December",
+      "tr": "Eylül, Ekim, Kasım, Aralık",
+      "uk": "вересень, жовтень, листопад, грудень",
+      "fa": "سپتامبر, اکتبر, نوامبر, دسامبر",
+      "ar": "سبتمبر, أكتوبر, نوفمبر, ديسمبر",
+      "pt": "setembro, outubro, novembro, dezembro",
+      "pl": "wrzesień, październik, listopad, grudzień",
+      "ru": "сентябрь, октябрь, ноябрь, декабрь"
+     }
+    ]
+   ]
+  }
+ ]
+}
