@@ -327,8 +327,11 @@ def reperes_textes(d):
     """Les textes que les reperes font entendre (allemand ou espagnol)."""
     out = []
     for r in d.get("reperes", []):
-        for l in r.get("l", []) + r.get("x", []) + r.get("p", []):
+        for l in r.get("l", []) + r.get("p", []):
             out.append(l[0])
+        # x : le pluriel dit apres la reponse (x[1]) ; ailleurs, le mot lui-meme.
+        for x in r.get("x", []):
+            out.append(x[1] if r.get("type") == "pluriel" else x[0])
     return out
 
 

@@ -228,10 +228,21 @@ def construire(langue):
     reperes.append({"id": "mois", "type": "suite", "t": TITRES["mois"], "a": ASTUCES[langue]["mois"],
                     "l": [[m, mois[i]] for i, m in enumerate(MOIS_MOTS[langue])],
                     "p": suites(MOIS_MOTS[langue], MOIS, [4, 4, 4])})
+    # v880 : l'alphabet, le genre, le pluriel (voir reperes_suite.py).
+    import reperes_suite as rs
+    reperes.append({"id": "alphabet", "type": "lettre", "t": rs.TITRES["alphabet"], "a": rs.ASTUCES[langue]["alphabet"],
+                    "l": [[nom, lettre, conf] for lettre, nom, conf in rs.ALPHABET[langue]],
+                    "p": [[s, mot] for s, mot in rs.EPELER[langue]]})
+    for id_, l, x in rs.GENRE[langue]:
+        reperes.append({"id": id_, "type": "genre", "t": rs.TITRES[id_], "a": rs.ASTUCES[langue][id_],
+                        "l": [list(e) for e in l], "x": [list(e) for e in x]})
+    reperes.append({"id": "pluriel", "type": "pluriel", "t": rs.TITRES["pluriel"], "a": rs.ASTUCES[langue]["pluriel"],
+                    "l": [list(e) for e in rs.PLURIEL[langue][0]], "x": [list(e) for e in rs.PLURIEL[langue][1]]})
     return {
         "_lisez_moi": [
-            "Les repères (v879) : jours, mois et nombres, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
-            "Cinq blocs, dans l'ordre, jamais mélangés : n0-20, n20-100, n100-1000, jours, mois. type « nombre » : sens = le nombre en chiffres ; x = nombres composés pour s'exercer. type « suite » : sens par langue ; p = suites à dire à voix haute.",
+            "Les repères (v879-v880) : nombres, jours, mois, alphabet, genre, pluriel, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
+            "Blocs dans l'ordre, jamais mélangés. type « nombre » : sens = le nombre en chiffres ; x = nombres composés pour s'exercer. type « suite » : sens par langue ; p = suites à dire à voix haute. type « lettre » : [nom dit, lettre, lettres qui se confondent] ; p = [épellation dite, mot]. type « genre » : [mot avec article, règle] (« ⚠️ » = exception) ; x = mots pour s'exercer. type « pluriel » : l = [pluriel, règle] ; x = [singulier, pluriel, règle, leurre, leurre].",
+            "Les pourcentages du genre sont MESURÉS sur les noms de nos thèmes (19 oct. 2026), pas recopiés d'une grammaire.",
             "Contrôle : python tests/reperes.py.",
         ],
         "reperes": reperes,

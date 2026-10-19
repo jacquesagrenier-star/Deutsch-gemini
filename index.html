@@ -6743,6 +6743,12 @@ body[data-theme="dark"] #decouverte > button.primary{
 .explorer-v img{width:66px; height:100px; object-fit:cover; border-radius:10px; display:block; background:#e6dcc8;}
 .explorer-v span{display:block; font-size:11px; font-weight:600; text-align:center; margin-top:3px; line-height:1.2;}
 .explorer-v.verrou img{filter:grayscale(.6) brightness(.85);}
+/* v880 : le son du jour -- les lettres en cause, soulignees dans le mot. */
+.son-lettres{text-decoration:underline; text-decoration-color:#E8A23A; text-decoration-thickness:3px; text-underline-offset:3px;}
+.rp-articles button{font-size:18px; font-weight:800;}
+#cartePhrase .pron-tete{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin:6px 0 4px;}
+#cartePhrase .pron-graphie{font-size:30px; font-weight:900;}
+#cartePhrase .pron-mots{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
 /* v878 : la ligne « Ecouter » sous les scenes (maquette C3). */
 .ecoute-ligne-accueil{grid-column:1 / -1; position:relative; display:flex; align-items:center; gap:10px; background:#1C2430; color:#fff;
     border-radius:999px; padding:9px 10px 9px 9px; padding-inline:9px 10px;}
@@ -7793,7 +7799,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v879</span>
+    <span class="subtitle-version">v880</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11297,6 +11303,15 @@ const I18N = {
         rp_q_sens: "Écoute et choisis le sens",
         rp_q_suite: "Lequel vient après ?",
         rp_q_suite_dire: "Dis la suite à voix haute",
+        rp_q_lettre: "Écoute et choisis la lettre",
+        rp_q_epeler: "Écoute les lettres et écris le mot",
+        rp_q_article: "Quel article ?",
+        rp_q_pluriel: "Quel est le pluriel ?",
+        rp_q_dire_mot: "Dis-le à voix haute, avec l'article",
+        rp_exception: "⚠️ Exception",
+        son_badge: "🔊 Le son du jour",
+        son_q: "Écoute chaque mot et regarde les lettres",
+        son_q_dire: "À toi : dis ce mot",
         reglage_questions_titre: "Questions de la scène du jour",
         reglage_questions_desc: "Nombre de questions posées dans la scène du jour. Si la scène n'en a pas assez à ton niveau, elle ajoute celles du niveau d'avant, en révision.",
         seance_sous: "Révisions et mots nouveaux",
@@ -12621,6 +12636,15 @@ const I18N = {
         rp_q_sens: "Listen and pick the meaning",
         rp_q_suite: "Which one comes next?",
         rp_q_suite_dire: "Say the sequence out loud",
+        rp_q_lettre: "Listen and pick the letter",
+        rp_q_epeler: "Listen to the letters and type the word",
+        rp_q_article: "Which article?",
+        rp_q_pluriel: "What's the plural?",
+        rp_q_dire_mot: "Say it out loud, with the article",
+        rp_exception: "⚠️ Exception",
+        son_badge: "🔊 Sound of the day",
+        son_q: "Listen to each word and look at the letters",
+        son_q_dire: "Your turn: say this word",
         reglage_questions_titre: "Questions in today's scene",
         reglage_questions_desc: "Number of questions in today's scene. If the scene doesn't have enough at your level, it adds some from the level below, as review.",
         seance_sous: "Reviews and new words",
@@ -13947,6 +13971,15 @@ const I18N = {
         rp_q_sens: "Dinle ve anlamını seç",
         rp_q_suite: "Sonra hangisi gelir?",
         rp_q_suite_dire: "Sırayı yüksek sesle söyle",
+        rp_q_lettre: "Dinle ve harfi seç",
+        rp_q_epeler: "Harfleri dinle ve kelimeyi yaz",
+        rp_q_article: "Hangi artikel?",
+        rp_q_pluriel: "Çoğulu hangisi?",
+        rp_q_dire_mot: "Artikeliyle birlikte yüksek sesle söyle",
+        rp_exception: "⚠️ İstisna",
+        son_badge: "🔊 Günün sesi",
+        son_q: "Her kelimeyi dinle ve harflere bak",
+        son_q_dire: "Sıra sende: bu kelimeyi söyle",
         reglage_questions_titre: "Günün sahnesindeki sorular",
         reglage_questions_desc: "Günün sahnesinde sorulan soru sayısı. Sahnede senin seviyende yeterince soru yoksa, bir önceki seviyeden tekrar soruları ekler.",
         seance_sous: "Tekrarlar ve yeni kelimeler",
@@ -15610,6 +15643,15 @@ const I18N = {
         rp_q_sens: "Послухай і вибери значення",
         rp_q_suite: "Що йде далі?",
         rp_q_suite_dire: "Скажи послідовність уголос",
+        rp_q_lettre: "Послухай і вибери літеру",
+        rp_q_epeler: "Послухай літери й напиши слово",
+        rp_q_article: "Який артикль?",
+        rp_q_pluriel: "Яка форма множини?",
+        rp_q_dire_mot: "Скажи вголос, з артиклем",
+        rp_exception: "⚠️ Виняток",
+        son_badge: "🔊 Звук дня",
+        son_q: "Послухай кожне слово й подивись на літери",
+        son_q_dire: "Твоя черга: скажи це слово",
         reglage_questions_titre: "Запитання сцени дня",
         reglage_questions_desc: "Кількість запитань у сцені дня. Якщо на твоєму рівні їх замало, сцена додає запитання з попереднього рівня для повторення.",
         seance_sous: "Повторення та нові слова",
@@ -17645,6 +17687,15 @@ const I18N = {
         rp_q_sens: "گوش کن و معنی را انتخاب کن",
         rp_q_suite: "بعدی کدام است؟",
         rp_q_suite_dire: "این ترتیب را بلند بگو",
+        rp_q_lettre: "گوش کن و حرف را انتخاب کن",
+        rp_q_epeler: "حروف را بشنو و واژه را بنویس",
+        rp_q_article: "کدام حرف تعریف؟",
+        rp_q_pluriel: "جمعش کدام است؟",
+        rp_q_dire_mot: "آن را با حرف تعریف بلند بگو",
+        rp_exception: "⚠️ استثنا",
+        son_badge: "🔊 صدای امروز",
+        son_q: "هر واژه را بشنو و به حروف نگاه کن",
+        son_q_dire: "نوبت توست: این واژه را بگو",
         reglage_questions_titre: "پرسش‌های صحنهٔ امروز",
         reglage_questions_desc: "تعداد پرسش‌های صحنهٔ امروز. اگر صحنه در سطح تو پرسش کافی نداشته باشد، از سطح قبلی برای مرور اضافه می‌کند.",
         seance_sous: "مرور و واژه‌های تازه",
@@ -19102,6 +19153,15 @@ const I18N = {
         rp_q_sens: "استمع واختر المعنى",
         rp_q_suite: "أيّها يأتي بعد ذلك؟",
         rp_q_suite_dire: "قل التسلسل بصوت عالٍ",
+        rp_q_lettre: "استمع واختر الحرف",
+        rp_q_epeler: "استمع إلى الحروف واكتب الكلمة",
+        rp_q_article: "أيّ أداة تعريف؟",
+        rp_q_pluriel: "ما صيغة الجمع؟",
+        rp_q_dire_mot: "قلها بصوت عالٍ مع أداة التعريف",
+        rp_exception: "⚠️ استثناء",
+        son_badge: "🔊 صوت اليوم",
+        son_q: "استمع إلى كل كلمة وانظر إلى الحروف",
+        son_q_dire: "دورك: قل هذه الكلمة",
         reglage_questions_titre: "أسئلة مشهد اليوم",
         reglage_questions_desc: "عدد الأسئلة في مشهد اليوم. إذا لم يكن في المشهد ما يكفي من أسئلة مستواك، يضيف أسئلة من المستوى السابق للمراجعة.",
         seance_sous: "مراجعات وكلمات جديدة",
@@ -19423,6 +19483,15 @@ const I18N = {
         rp_q_sens: "Ouça e escolha o sentido",
         rp_q_suite: "Qual vem depois?",
         rp_q_suite_dire: "Diga a sequência em voz alta",
+        rp_q_lettre: "Ouça e escolha a letra",
+        rp_q_epeler: "Ouça as letras e escreva a palavra",
+        rp_q_article: "Qual artigo?",
+        rp_q_pluriel: "Qual é o plural?",
+        rp_q_dire_mot: "Diga em voz alta, com o artigo",
+        rp_exception: "⚠️ Exceção",
+        son_badge: "🔊 O som do dia",
+        son_q: "Ouça cada palavra e olhe as letras",
+        son_q_dire: "Sua vez: diga esta palavra",
         reglage_questions_titre: "Perguntas da cena do dia",
         reglage_questions_desc: "Número de perguntas na cena do dia. Se a cena não tiver o bastante no seu nível, ela acrescenta perguntas do nível anterior, como revisão.",
         seance_sous: "Revisões e palavras novas",
@@ -20812,6 +20881,15 @@ const I18N = {
         rp_q_sens: "Posłuchaj i wybierz znaczenie",
         rp_q_suite: "Co jest dalej?",
         rp_q_suite_dire: "Powiedz tę kolejność na głos",
+        rp_q_lettre: "Posłuchaj i wybierz literę",
+        rp_q_epeler: "Posłuchaj liter i wpisz słowo",
+        rp_q_article: "Który rodzajnik?",
+        rp_q_pluriel: "Jaka jest liczba mnoga?",
+        rp_q_dire_mot: "Powiedz na głos, z rodzajnikiem",
+        rp_exception: "⚠️ Wyjątek",
+        son_badge: "🔊 Dźwięk dnia",
+        son_q: "Posłuchaj każdego słowa i spójrz na litery",
+        son_q_dire: "Twoja kolej: powiedz to słowo",
         reglage_questions_titre: "Pytania w scenie dnia",
         reglage_questions_desc: "Liczba pytań w scenie dnia. Jeśli na twoim poziomie jest ich za mało, scena dodaje pytania z poprzedniego poziomu jako powtórkę.",
         seance_sous: "Powtórki i nowe słowa",
@@ -22199,6 +22277,15 @@ const I18N = {
         rp_q_sens: "Послушай и выбери значение",
         rp_q_suite: "Что идёт дальше?",
         rp_q_suite_dire: "Скажи последовательность вслух",
+        rp_q_lettre: "Послушай и выбери букву",
+        rp_q_epeler: "Послушай буквы и напиши слово",
+        rp_q_article: "Какой артикль?",
+        rp_q_pluriel: "Какое множественное число?",
+        rp_q_dire_mot: "Скажи вслух, с артиклем",
+        rp_exception: "⚠️ Исключение",
+        son_badge: "🔊 Звук дня",
+        son_q: "Послушай каждое слово и посмотри на буквы",
+        son_q_dire: "Твоя очередь: скажи это слово",
         reglage_questions_titre: "Вопросы сцены дня",
         reglage_questions_desc: "Количество вопросов в сцене дня. Если на твоём уровне их не хватает, сцена добавляет вопросы с предыдущего уровня для повторения.",
         seance_sous: "Повторение и новые слова",
@@ -35856,8 +35943,15 @@ const ESSAIS = {
     // les mois et les nombres tot dans le parcours ». Voir preparerReperes().
     reperes: {
         etat: "tous",
-        titre: "Les repères : nombres, jours, mois",
+        titre: "Les repères : nombres, jours, mois, alphabet, genre, pluriel",
         desc: "En Premiers pas et à l'A1, un bloc neuf par jour : 0-20, les dizaines, les centaines, les jours, les mois. Le tableau entier, puis 5 exercices (entendre, écrire en chiffres, l'ordre, le dire à voix haute) ; chaque bloc revient à J+1, J+3 et J+7."
+    },
+    // EN PRODUCTION le 19 oct. 2026 (v880) -- Jacques : « la prononciation dans
+    // la seance du jour ». Voir preparerSonDuJour().
+    son_du_jour: {
+        etat: "tous",
+        titre: "Le son du jour",
+        desc: "Une fois par jour, au milieu de la séance : une règle de prononciation (celle de la tuile Prononciation), ses mots avec les lettres soulignées, puis l'un d'eux à dire à voix haute, avec le verdict de l'oral."
     },
     // EN ESSAI le 18 oct. 2026 (v867), admin seul. Jacques : que tous les
     // niveaux aient des feuilles de conjugaison, comme Premiers pas et l'A1
@@ -40943,7 +41037,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 879;
+const APP_VERSION = 880;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -46024,6 +46118,88 @@ function montrerCartePhrase(item){
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
         direPhrase(item);
+    } else if(item.forme === "rp_son"){
+        // v880 : le son du jour -- la regle, puis ses mots, lettres soulignees.
+        try{ marquerSonDuJour(item); }catch(e){}
+        const r = item.regle || {};
+        const rtl = document.documentElement.dir === "rtl";
+        const tete = creer("div", "pron-tete");
+        tete.appendChild(creer("span", "pron-graphie", r.graphie || ""));
+        if(r.api) tete.appendChild(creer("span", "pron-api", r.api));
+        tete.appendChild(creer("span", "pron-court", texteDeFiche(item.court)));
+        el.appendChild(tete);
+        const expl = creer("p", "pron-expl", texteDeFiche(item.explication));
+        if(rtl) expl.setAttribute("dir", "auto");
+        el.appendChild(expl);
+        const mots = creer("div", "pron-mots");
+        (r.exemples || []).forEach(e => {
+            const b = creer("button", "pron-mot");
+            b.type = "button";
+            const fort = creer("b");
+            fort.setAttribute("lang", langueDe);
+            const [avant, son, apres] = surlignerSon(e.mot, r.graphie);
+            fort.appendChild(document.createTextNode(avant));
+            if(son) fort.appendChild(creer("u", "son-lettres", son));
+            fort.appendChild(document.createTextNode(apres));
+            b.appendChild(fort);
+            b.appendChild(creer("small", "", texteTraduit(e, "traduction")));
+            b.addEventListener("click", () => { try{ direAllemand(e.mot, { rate: 1 }); }catch(x){} });
+            mots.appendChild(b);
+        });
+        el.appendChild(mots);
+        fait.repondu = true;
+        suite.classList.remove("hidden");
+        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+        try{ direAllemand(r.exemples[0].mot, { rate: 1 }); }catch(x){}
+    } else if(item.forme === "rp_epeler"){
+        // v880 : LE MOT EPELE (« Hah, Oh, Teh, Eh, Ell »), a ecrire. Casse et
+        // accents ne comptent pas (normaliserSaisie) : on juge l'oreille.
+        el.appendChild(rangeeEcoute);
+        const champ = saisie();
+        el.appendChild(champ);
+        const verif = boutonVerifier(() => {
+            if(fait.repondu) return;
+            const v = champ.value.trim();
+            if(!v){ champ.focus(); return; }
+            champ.disabled = true;
+            verif.classList.add("hidden");
+            conclure(normaliserSaisie(v) === normaliserSaisie(item.phrase.sens), item.phrase.sens + " — " + item.phrase.de);
+        });
+        champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
+        actions.appendChild(verif);
+        direPhrase(item);
+    } else if(item.forme === "rp_article" || item.forme === "rp_pluriel"){
+        // v880 : LE GENRE (le nom seul, choisir l'article) et LE PLURIEL (le
+        // singulier, choisir le pluriel parmi trois). La reponse dit la regle,
+        // ou « ⚠️ Exception ».
+        const article = item.forme === "rp_article";
+        const espace = item.phrase.de.indexOf(" ");
+        const nom = article ? item.phrase.de.slice(espace + 1) : item.singulier;
+        const q = creer("p", "cp-phrase rp-suite-q", nom);
+        q.setAttribute("lang", langueDe);
+        el.appendChild(q);
+        const options = article ? (LANGUE_APPRISE === "es" ? ["el", "la"] : ["der", "die", "das"]) : (item.choix || []);
+        const juste = article ? item.phrase.de.slice(0, espace) : item.phrase.de;
+        const choix = creer("div", "cp-choix" + (article ? " rp-articles" : ""));
+        options.forEach(o => {
+            const b = creer("button", "", o);
+            b.type = "button";
+            b.setAttribute("lang", langueDe);
+            b.addEventListener("click", () => {
+                if(fait.repondu) return;
+                Array.from(choix.children).forEach(x => {
+                    x.disabled = true;
+                    if(x.textContent === juste) x.classList.add("bon");
+                });
+                if(o !== juste) b.classList.add("faux");
+                const regle = String(item.phrase.sens || "");
+                const exception = regle.indexOf("⚠️") === 0;
+                conclure(o === juste, item.phrase.de + (article ? "" : " (" + regle + ")"),
+                         article ? echapperHtml(exception ? t("rp_exception") + " · " + regle.replace("⚠️", "").trim() : regle) : "");
+            });
+            choix.appendChild(b);
+        });
+        el.appendChild(choix);
     } else if(item.forme === "rp_suite"){
         // v879 : « Montag → ? » -- l'ordre de la serie, a choisir parmi trois.
         const q = creer("p", "cp-phrase rp-suite-q", item.avant + " → ?");
@@ -47043,6 +47219,7 @@ async function ouvrirPremiersPas(taille){
     let items = seq.slice(p, fin);
     // v879 : les reperes (jours, mois, nombres) des Premiers pas.
     try{ const rp = await preparerReperes(); if(rp && items.length > 2) items = insererReperes(items, rp); }catch(e){}
+    try{ const sd = await preparerSonDuJour(); if(sd && items.length > 2) items = insererSonDuJour(items, sd); }catch(e){}
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
     currentCardsFull = [];
@@ -47672,6 +47849,45 @@ function exercicesRepere(r, n, badge){
     const carte = (forme, de, s, extra) => Object.assign({ mode: "phrase", forme: forme, cible: null, themeId: "rp_" + r.id,
         index: 0, word: "", rpBadge: badge, phrase: { de: de, sens: s, mots: motsPhrase(de) } }, extra || {});
     const out = [];
+    // v880 : l'alphabet (entendre la lettre, ecrire le mot epele), le genre
+    // (choisir l'article, le dire avec), le pluriel (choisir, le dire).
+    if(r.type === "lettre"){
+        const L = melangerPhrase((r.l || []).slice());
+        const P = melangerPhrase((r.p || []).slice());
+        const formes = ["ecoute", "rp_epeler", "ecoute", "rp_epeler", "ecoute"];
+        let a = 0, b = 0;
+        for(let k = 0; k < n; k++){
+            const f = formes[k % formes.length];
+            if(f === "rp_epeler" && P.length){
+                const e = P[b++ % P.length];
+                out.push(carte("rp_epeler", e[0], e[1], { q: "rp_q_epeler" }));
+            } else if(L.length){
+                const l = L[a++ % L.length];
+                out.push(carte("ecoute", l[0], l[1], { q: "rp_q_lettre", leurres: (l[2] || []).slice(0, 2) }));
+            }
+        }
+        return out;
+    }
+    if(r.type === "genre"){
+        const pris = melangerPhrase((r.l || []).concat(r.x || []));
+        const formes = ["rp_article", "rp_article", "parler", "rp_article", "rp_article"];
+        for(let k = 0; k < n && k < pris.length; k++){
+            const l = pris[k], f = formes[k % formes.length];
+            if(f === "parler") out.push(carte("parler", l[0], l[1], { q: "rp_q_dire_mot" }));
+            else out.push(carte("rp_article", l[0], l[1], { q: "rp_q_article" }));
+        }
+        return out;
+    }
+    if(r.type === "pluriel"){
+        const pris = melangerPhrase((r.x || []).slice());
+        const formes = ["rp_pluriel", "rp_pluriel", "parler", "rp_pluriel", "rp_pluriel"];
+        for(let k = 0; k < n && k < pris.length; k++){
+            const x = pris[k], f = formes[k % formes.length];
+            if(f === "parler") out.push(carte("parler", x[1], x[0] + " → " + x[1], { q: "rp_q_dire_mot" }));
+            else out.push(carte("rp_pluriel", x[1], x[2], { q: "rp_q_pluriel", singulier: x[0], choix: melangerPhrase([x[1], x[3], x[4]]) }));
+        }
+        return out;
+    }
     if(r.type === "nombre"){
         // Entendre (choisir), entendre (ecrire en chiffres), le dire.
         const formes = ["ecoute", "rp_chiffres", "parler", "rp_chiffres", "ecoute"];
@@ -47745,6 +47961,67 @@ function marquerRepere(item){
         st.rj[item.rpRevu] = jour;
     }
     ecrireReperes(st);
+}
+
+// ============ LE SON DU JOUR (v880, 19 oct. 2026) ============
+// Jacques : « la prononciation dans les exercices de la seance du jour » ;
+// « des exercices de prononciation, c'est la base ». Une fois par jour, au
+// milieu de la seance : une regle de prononciation.json (celle de la tuile
+// Prononciation, ecrite pour chaque langue d'interface), ses mots d'exemple
+// avec les lettres en cause soulignees -- « les voir a l'interieur du mot » --,
+// puis l'un d'eux a dire, avec le verdict de l'oral. Les regles defilent dans
+// l'ordre du fichier, une par jour, puis recommencent.
+const SON_DU_JOUR_KEY = PREFIXE_STOCKAGE + "sonDuJour";
+async function chargerPrononciationSeance(){
+    if(PRONONCIATION) return PRONONCIATION;
+    try{ const r = await fetch(urlDonnees("prononciation.json")); PRONONCIATION = await r.json(); }catch(e){}
+    return PRONONCIATION;
+}
+async function preparerSonDuJour(){
+    if(!essaiActif("son_du_jour")) return null;
+    const P = await chargerPrononciationSeance();
+    if(!P || !Array.isArray(P.groupes)) return null;
+    const regles = [];
+    P.groupes.forEach(g => (g.regles || []).forEach(r => { if(r.exemples && r.exemples.length) regles.push(r); }));
+    if(!regles.length) return null;
+    let st = {};
+    try{ st = JSON.parse(localStorage.getItem(SON_DU_JOUR_KEY) || "{}") || {}; }catch(e){ st = {}; }
+    if(st.j === getTodayStr()) return null;
+    const i = ((typeof st.i === "number" ? st.i : -1) + 1) % regles.length;
+    return { regle: regles[i], i: i };
+}
+function marquerSonDuJour(item){
+    if(!item || item.forme !== "rp_son") return;
+    try{ localStorage.setItem(SON_DU_JOUR_KEY, JSON.stringify({ j: getTodayStr(), i: item.sonIndex })); }catch(e){}
+}
+// Les lettres de la regle, soulignees dans le mot : « sp · st » souligne sp
+// ou st ; « -er » seulement en fin de mot ; « ch (ich) » cherche ch.
+function surlignerSon(mot, graphie){
+    const morceaux = String(graphie || "").replace(/\([^)]*\)/g, " ").split("·")
+        .map(s => s.trim()).filter(Boolean).sort((a, b) => b.length - a.length);
+    const bas = mot.toLowerCase();
+    for(const m of morceaux){
+        const fin = m.charAt(0) === "-";
+        const cle = (fin ? m.slice(1) : m).toLowerCase();
+        if(!cle) continue;
+        const k = fin ? (bas.endsWith(cle) ? bas.length - cle.length : -1) : bas.indexOf(cle);
+        if(k >= 0) return [mot.slice(0, k), mot.slice(k, k + cle.length), mot.slice(k + cle.length)];
+    }
+    return [mot, "", ""];
+}
+function insererSonDuJour(seance, sd){
+    const r = sd.regle;
+    const variante = LANGUE_APPRISE === "es" ? VARIANTE_ESPAGNOL : null;
+    const v = (variante && r.variantes && r.variantes[variante]) || r;
+    const ex = r.exemples[Math.floor(Math.random() * r.exemples.length)];
+    const base = { mode: "phrase", cible: null, themeId: "son_" + r.id, index: sd.i, word: "", rpBadge: t("son_badge") };
+    const fiche = Object.assign({}, base, { forme: "rp_son", q: "son_q", sonIndex: sd.i, regle: r, court: v.court, explication: v.explication, phrase: null });
+    const dire = Object.assign({}, base, { forme: "parler", q: "son_q_dire", sonGraphie: r.graphie,
+        phrase: { de: ex.mot, sens: texteTraduit(ex, "traduction"), mots: motsPhrase(ex.mot) } });
+    const sortie = seance.slice();
+    const pos = Math.max(1, Math.min(Math.floor(sortie.length / 2), sortie.length - 1));
+    sortie.splice(pos, 0, fiche, dire);
+    return sortie;
 }
 
 // La feuille marque son passage en s'affichant (comme le tableau de l'A1 voyage).
@@ -48256,6 +48533,8 @@ async function ouvrirSeanceDuJour(sansScene){
     try{ if(fc && seance.length) seance = insererFeuille(seance, fc, tout); }catch(e){}
     // v879 : les reperes (jours, mois, nombres), tot dans l'A1.
     try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
+    // v880 : le son du jour, une fois par jour, au milieu.
+    try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
         toastSeanceVide(tout, "alert_all_theme_words_mastered"); return;

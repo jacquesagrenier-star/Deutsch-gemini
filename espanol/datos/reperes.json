@@ -1,7 +1,8 @@
 {
  "_lisez_moi": [
-  "Les repères (v879) : jours, mois et nombres, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
-  "Cinq blocs, dans l'ordre, jamais mélangés : n0-20, n20-100, n100-1000, jours, mois. type « nombre » : sens = le nombre en chiffres ; x = nombres composés pour s'exercer. type « suite » : sens par langue ; p = suites à dire à voix haute.",
+  "Les repères (v879-v880) : nombres, jours, mois, alphabet, genre, pluriel, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
+  "Blocs dans l'ordre, jamais mélangés. type « nombre » : sens = le nombre en chiffres ; x = nombres composés pour s'exercer. type « suite » : sens par langue ; p = suites à dire à voix haute. type « lettre » : [nom dit, lettre, lettres qui se confondent] ; p = [épellation dite, mot]. type « genre » : [mot avec article, règle] (« ⚠️ » = exception) ; x = mots pour s'exercer. type « pluriel » : l = [pluriel, règle] ; x = [singulier, pluriel, règle, leurre, leurre].",
+  "Les pourcentages du genre sont MESURÉS sur les noms de nos thèmes (19 oct. 2026), pas recopiés d'une grammaire.",
   "Contrôle : python tests/reperes.py."
  ],
  "reperes": [
@@ -731,6 +732,644 @@
       "pl": "wrzesień, październik, listopad, grudzień",
       "ru": "сентябрь, октябрь, ноябрь, декабрь"
      }
+    ]
+   ]
+  },
+  {
+   "id": "alphabet",
+   "type": "lettre",
+   "t": {
+    "fr": "L'alphabet, pour épeler",
+    "en": "The alphabet, to spell",
+    "tr": "Alfabe, harf harf söylemek için",
+    "uk": "Абетка, щоб диктувати по літерах",
+    "fa": "الفبا، برای هجی کردن",
+    "ar": "الأبجدية للتهجئة",
+    "pt": "O alfabeto, para soletrar",
+    "pl": "Alfabet, żeby literować",
+    "ru": "Алфавит, чтобы называть по буквам"
+   },
+   "a": {
+    "fr": "h ne se prononce jamais (hache). j (jota), et g devant e ou i, se raclent au fond de la gorge. b et v se disent pareil : on précise « be » et « uve » (en Amérique latine : « be larga », « ve corta »). ñ = eñe.",
+    "en": "h is always silent (hache). j (jota), and g before e or i, are a rough throat sound. b and v sound the same, so people say “be” and “uve” (in Latin America: “be larga”, “ve corta”). ñ = eñe.",
+    "tr": "h hiç okunmaz (hache). j (jota) ve e, i önündeki g gırtlaktan, hırıltılı okunur. b ile v aynı okunur; bu yüzden “be” ve “uve” denir (Latin Amerika'da: “be larga”, “ve corta”). ñ = eñe.",
+    "uk": "h ніколи не вимовляють (hache). j (jota) і g перед e, i — хрипкий звук з горла. b і v звучать однаково, тому кажуть «be» і «uve» (у Латинській Америці: «be larga», «ve corta»). ñ = eñe.",
+    "fa": "h هرگز خوانده نمی‌شود (hache). j (jota) و g پیش از e و i مثل «خ» از ته گلو گفته می‌شوند. b و v یکسان خوانده می‌شوند؛ برای همین می‌گویند «be» و «uve» (در آمریکای لاتین: «be larga» و «ve corta»). ñ = eñe.",
+    "ar": "حرف h لا يُلفظ أبدًا (hache). وj (jota) وg قبل e وi تُلفظان كالخاء. b وv تُلفظان بالطريقة نفسها، لذلك يُقال «be» و«uve» (وفي أمريكا اللاتينية: «be larga» و«ve corta»). ñ = eñe.",
+    "pt": "O h nunca se pronuncia (hache). O j (jota) e o g antes de e, i soam como um “r” forte da garganta. b e v soam igual: diz-se “be” e “uve” (na América Latina: “be larga”, “ve corta”). ñ = eñe.",
+    "pl": "h nigdy się nie wymawia (hache). j (jota) i g przed e, i brzmią jak polskie „ch”. b i v brzmią tak samo, więc mówi się „be” i „uve” (w Ameryce Łacińskiej: „be larga”, „ve corta”). ñ = eñe.",
+    "ru": "h никогда не произносится (hache). j (jota) и g перед e, i звучат как русское «х». b и v звучат одинаково, поэтому говорят «be» и «uve» (в Латинской Америке — «be larga», «ve corta»). ñ = eñe."
+   },
+   "l": [
+    [
+     "a",
+     "A",
+     [
+      "E",
+      "O"
+     ]
+    ],
+    [
+     "be",
+     "B",
+     [
+      "V",
+      "P"
+     ]
+    ],
+    [
+     "ce",
+     "C",
+     [
+      "S",
+      "Z"
+     ]
+    ],
+    [
+     "de",
+     "D",
+     [
+      "T",
+      "B"
+     ]
+    ],
+    [
+     "e",
+     "E",
+     [
+      "I",
+      "A"
+     ]
+    ],
+    [
+     "efe",
+     "F",
+     [
+      "V",
+      "S"
+     ]
+    ],
+    [
+     "ge",
+     "G",
+     [
+      "J",
+      "H"
+     ]
+    ],
+    [
+     "hache",
+     "H",
+     [
+      "J",
+      "G"
+     ]
+    ],
+    [
+     "i",
+     "I",
+     [
+      "E",
+      "Y"
+     ]
+    ],
+    [
+     "jota",
+     "J",
+     [
+      "G",
+      "H"
+     ]
+    ],
+    [
+     "ka",
+     "K",
+     [
+      "Q",
+      "C"
+     ]
+    ],
+    [
+     "ele",
+     "L",
+     [
+      "R",
+      "E"
+     ]
+    ],
+    [
+     "eme",
+     "M",
+     [
+      "N",
+      "Ñ"
+     ]
+    ],
+    [
+     "ene",
+     "N",
+     [
+      "Ñ",
+      "M"
+     ]
+    ],
+    [
+     "eñe",
+     "Ñ",
+     [
+      "N",
+      "Y"
+     ]
+    ],
+    [
+     "o",
+     "O",
+     [
+      "U",
+      "A"
+     ]
+    ],
+    [
+     "pe",
+     "P",
+     [
+      "B",
+      "T"
+     ]
+    ],
+    [
+     "cu",
+     "Q",
+     [
+      "K",
+      "C"
+     ]
+    ],
+    [
+     "erre",
+     "R",
+     [
+      "L",
+      "D"
+     ]
+    ],
+    [
+     "ese",
+     "S",
+     [
+      "Z",
+      "C"
+     ]
+    ],
+    [
+     "te",
+     "T",
+     [
+      "D",
+      "P"
+     ]
+    ],
+    [
+     "u",
+     "U",
+     [
+      "O",
+      "W"
+     ]
+    ],
+    [
+     "uve",
+     "V",
+     [
+      "B",
+      "F"
+     ]
+    ],
+    [
+     "uve doble",
+     "W",
+     [
+      "V",
+      "U"
+     ]
+    ],
+    [
+     "equis",
+     "X",
+     [
+      "S",
+      "J"
+     ]
+    ],
+    [
+     "ye",
+     "Y",
+     [
+      "I",
+      "J"
+     ]
+    ],
+    [
+     "zeta",
+     "Z",
+     [
+      "C",
+      "S"
+     ]
+    ]
+   ],
+   "p": [
+    [
+     "hache, o, ele, a",
+     "hola"
+    ],
+    [
+     "te, a, equis, i",
+     "taxi"
+    ],
+    [
+     "ce, a, ese, a",
+     "casa"
+    ],
+    [
+     "pe, e, ese, o",
+     "peso"
+    ],
+    [
+     "uve, i, ene, o",
+     "vino"
+    ],
+    [
+     "jota, u, e, uve, e, ese",
+     "jueves"
+    ],
+    [
+     "zeta, u, eme, o",
+     "zumo"
+    ],
+    [
+     "ge, e, ene, te, e",
+     "gente"
+    ]
+   ]
+  },
+  {
+   "id": "genre-m",
+   "type": "genre",
+   "t": {
+    "fr": "Le genre : les terminaisons masculines (el)",
+    "en": "Gender: masculine endings (el)",
+    "tr": "Cinsiyet: eril sonekler (el)",
+    "uk": "Рід: закінчення чоловічого роду (el)",
+    "fa": "جنس: پایانه‌های مذکر (el)",
+    "ar": "الجنس: نهايات المذكر (el)",
+    "pt": "O gênero: terminações masculinas (el)",
+    "pl": "Rodzaj: końcówki męskie (el)",
+    "ru": "Род: окончания мужского рода (el)"
+   },
+   "a": {
+    "fr": "-o, -or, -aje, -ante : el, dans 96 à 100 % de nos mots. Méfie-toi de -ma : el problema, el idioma, el clima (mots savants), mais la cama, la forma. Exceptions à retenir : la mano, la foto, la moto, la flor.",
+    "en": "-o, -or, -aje, -ante: el, in 96 to 100% of our words. Careful with -ma: el problema, el idioma, el clima (learned words), but la cama, la forma. Exceptions to remember: la mano, la foto, la moto, la flor.",
+    "tr": "-o, -or, -aje, -ante: kelimelerimizin %96-100'ünde el. -ma'ya dikkat: el problema, el idioma, el clima (bilimsel kökenli), ama la cama, la forma. Akılda tutulacak istisnalar: la mano, la foto, la moto, la flor.",
+    "uk": "-o, -or, -aje, -ante: el у 96–100 % наших слів. Обережно з -ma: el problema, el idioma, el clima (книжні слова), але la cama, la forma. Винятки, які варто запам'ятати: la mano, la foto, la moto, la flor.",
+    "fa": "‏-o، -or، -aje، -ante: در 96 تا 100 درصد واژه‌های ما el. مراقب -ma باش: el problema، el idioma، el clima (واژه‌های علمی)، اما la cama، la forma. استثناهایی که باید به خاطر بسپاری: la mano، la foto، la moto، la flor.",
+    "ar": "‏-o و-or و-aje و-ante: el في 96 إلى 100٪ من كلماتنا. احذر -ma: el problema وel idioma وel clima (كلمات عالِمة)، لكن la cama وla forma. استثناءات يجب حفظها: la mano وla foto وla moto وla flor.",
+    "pt": "-o, -or, -aje, -ante: el em 96 a 100% das nossas palavras. Cuidado com -ma: el problema, el idioma, el clima (palavras eruditas), mas la cama, la forma. Exceções para lembrar: la mano, la foto, la moto, la flor.",
+    "pl": "-o, -or, -aje, -ante: el w 96–100% naszych słów. Uwaga na -ma: el problema, el idioma, el clima (słowa uczone), ale la cama, la forma. Wyjątki do zapamiętania: la mano, la foto, la moto, la flor.",
+    "ru": "-o, -or, -aje, -ante: el в 96–100 % наших слов. Осторожно с -ma: el problema, el idioma, el clima (книжные слова), но la cama, la forma. Исключения, которые стоит запомнить: la mano, la foto, la moto, la flor."
+   },
+   "l": [
+    [
+     "el libro",
+     "-o → el · 99 %"
+    ],
+    [
+     "el color",
+     "-or → el · 96 %"
+    ],
+    [
+     "el viaje",
+     "-aje → el · 100 %"
+    ],
+    [
+     "el restaurante",
+     "-ante → el · 100 %"
+    ],
+    [
+     "el problema",
+     "-ma → el 41 % · la 59 %"
+    ],
+    [
+     "la mano",
+     "⚠️ -o → la"
+    ],
+    [
+     "la foto",
+     "⚠️ -o → la"
+    ],
+    [
+     "la flor",
+     "⚠️ -or → la"
+    ],
+    [
+     "la cama",
+     "-ma → el 41 % · la 59 %"
+    ]
+   ],
+   "x": [
+    [
+     "el piso",
+     "-o → el · 99 %"
+    ],
+    [
+     "el baño",
+     "-o → el · 99 %"
+    ],
+    [
+     "el ordenador",
+     "-or → el · 96 %"
+    ],
+    [
+     "el equipaje",
+     "-aje → el · 100 %"
+    ],
+    [
+     "el estudiante",
+     "-ante → el · 100 %"
+    ],
+    [
+     "el idioma",
+     "-ma → el 41 % · la 59 %"
+    ],
+    [
+     "el clima",
+     "-ma → el 41 % · la 59 %"
+    ],
+    [
+     "la moto",
+     "⚠️ -o → la"
+    ],
+    [
+     "la forma",
+     "-ma → el 41 % · la 59 %"
+    ]
+   ]
+  },
+  {
+   "id": "genre-f",
+   "type": "genre",
+   "t": {
+    "fr": "Le genre : les terminaisons féminines (la)",
+    "en": "Gender: feminine endings (la)",
+    "tr": "Cinsiyet: dişil sonekler (la)",
+    "uk": "Рід: закінчення жіночого роду (la)",
+    "fa": "جنس: پایانه‌های مؤنث (la)",
+    "ar": "الجنس: نهايات المؤنث (la)",
+    "pt": "O gênero: terminações femininas (la)",
+    "pl": "Rodzaj: końcówki żeńskie (la)",
+    "ru": "Род: окончания женского рода (la)"
+   },
+   "a": {
+    "fr": "-a, -ión, -dad, -tad, -umbre : la. Pièges fréquents : el día, el mapa, el problema, el idioma, el avión, el camión. -e ne dit rien (el padre, la madre, la llave) : apprends l'article avec le mot.",
+    "en": "-a, -ión, -dad, -tad, -umbre: la. Common traps: el día, el mapa, el problema, el idioma, el avión, el camión. -e tells you nothing (el padre, la madre, la llave): learn the article with the word.",
+    "tr": "-a, -ión, -dad, -tad, -umbre: la. Sık tuzaklar: el día, el mapa, el problema, el idioma, el avión, el camión. -e hiçbir şey söylemez (el padre, la madre, la llave): artikeli kelimeyle birlikte öğren.",
+    "uk": "-a, -ión, -dad, -tad, -umbre: la. Часті пастки: el día, el mapa, el problema, el idioma, el avión, el camión. -e нічого не підказує (el padre, la madre, la llave): вчи артикль разом зі словом.",
+    "fa": "‏-a، -ión، -dad، -tad، -umbre: la. دام‌های رایج: el día، el mapa، el problema، el idioma، el avión، el camión. ‏-e چیزی نمی‌گوید (el padre، la madre، la llave): حرف تعریف را همراه واژه یاد بگیر.",
+    "ar": "‏-a و-ión و-dad و-tad و-umbre: la. فخاخ شائعة: el día وel mapa وel problema وel idioma وel avión وel camión. ‏-e لا تدل على شيء (el padre وla madre وla llave): احفظ أداة التعريف مع الكلمة.",
+    "pt": "-a, -ión, -dad, -tad, -umbre: la. Armadilhas comuns: el día, el mapa, el problema, el idioma, el avión, el camión. -e não diz nada (el padre, la madre, la llave): aprenda o artigo com a palavra.",
+    "pl": "-a, -ión, -dad, -tad, -umbre: la. Częste pułapki: el día, el mapa, el problema, el idioma, el avión, el camión. -e nic nie mówi (el padre, la madre, la llave): ucz się rodzajnika razem ze słowem.",
+    "ru": "-a, -ión, -dad, -tad, -umbre: la. Частые ловушки: el día, el mapa, el problema, el idioma, el avión, el camión. -e ничего не подсказывает (el padre, la madre, la llave): учи артикль вместе со словом."
+   },
+   "l": [
+    [
+     "la casa",
+     "-a → la · 95 %"
+    ],
+    [
+     "la estación",
+     "-ión → la · 99 %"
+    ],
+    [
+     "la ciudad",
+     "-dad → la · 100 %"
+    ],
+    [
+     "la libertad",
+     "-tad → la · 100 %"
+    ],
+    [
+     "la costumbre",
+     "-umbre → la · 100 %"
+    ],
+    [
+     "el día",
+     "⚠️ -a → el"
+    ],
+    [
+     "el mapa",
+     "⚠️ -a → el"
+    ],
+    [
+     "el avión",
+     "⚠️ -ión → el"
+    ]
+   ],
+   "x": [
+    [
+     "la cocina",
+     "-a → la · 95 %"
+    ],
+    [
+     "la puerta",
+     "-a → la · 95 %"
+    ],
+    [
+     "la habitación",
+     "-ión → la · 99 %"
+    ],
+    [
+     "la lección",
+     "-ión → la · 99 %"
+    ],
+    [
+     "la universidad",
+     "-dad → la · 100 %"
+    ],
+    [
+     "la edad",
+     "-dad → la · 100 %"
+    ],
+    [
+     "el tranvía",
+     "⚠️ -a → el"
+    ],
+    [
+     "el camión",
+     "⚠️ -ión → el"
+    ],
+    [
+     "el idioma",
+     "⚠️ -a → el"
+    ]
+   ]
+  },
+  {
+   "id": "pluriel",
+   "type": "pluriel",
+   "t": {
+    "fr": "Le pluriel",
+    "en": "The plural",
+    "tr": "Çoğul",
+    "uk": "Множина",
+    "fa": "جمع",
+    "ar": "الجمع",
+    "pt": "O plural",
+    "pl": "Liczba mnoga",
+    "ru": "Множественное число"
+   },
+   "a": {
+    "fr": "Voyelle → + s (la casa → las casas). Consonne → + es (el árbol → los árboles). -z → -ces (el lápiz → los lápices). Un mot en -s non accentué ne change pas (el lunes → los lunes). L'accent écrit peut tomber ou apparaître : canción → canciones, joven → jóvenes.",
+    "en": "Vowel → + s (la casa → las casas). Consonant → + es (el árbol → los árboles). -z → -ces (el lápiz → los lápices). A word ending in unstressed -s doesn't change (el lunes → los lunes). The written accent can drop or appear: canción → canciones, joven → jóvenes.",
+    "tr": "Ünlü → + s (la casa → las casas). Ünsüz → + es (el árbol → los árboles). -z → -ces (el lápiz → los lápices). Vurgusuz -s ile biten kelime değişmez (el lunes → los lunes). Yazılı vurgu düşebilir ya da eklenebilir: canción → canciones, joven → jóvenes.",
+    "uk": "Голосна → + s (la casa → las casas). Приголосна → + es (el árbol → los árboles). -z → -ces (el lápiz → los lápices). Слово на ненаголошене -s не змінюється (el lunes → los lunes). Знак наголосу може зникнути або з'явитися: canción → canciones, joven → jóvenes.",
+    "fa": "واکه → + s (la casa → las casas). همخوان → + es (el árbol → los árboles). ‏-z → -ces (el lápiz → los lápices). واژه‌ای که به -s بی‌تکیه ختم شود تغییر نمی‌کند (el lunes → los lunes). علامت تکیه ممکن است بیفتد یا اضافه شود: canción → canciones، joven → jóvenes.",
+    "ar": "حرف علة → + s (la casa → las casas). حرف ساكن → + es (el árbol → los árboles). ‎-z → -ces (el lápiz → los lápices). الكلمة المنتهية بـ ‎-s غير المنبورة لا تتغير (el lunes → los lunes). علامة النبر قد تسقط أو تظهر: canción → canciones وjoven → jóvenes.",
+    "pt": "Vogal → + s (la casa → las casas). Consoante → + es (el árbol → los árboles). -z → -ces (el lápiz → los lápices). Palavra em -s átono não muda (el lunes → los lunes). O acento gráfico pode cair ou aparecer: canción → canciones, joven → jóvenes.",
+    "pl": "Samogłoska → + s (la casa → las casas). Spółgłoska → + es (el árbol → los árboles). -z → -ces (el lápiz → los lápices). Słowo na nieakcentowane -s się nie zmienia (el lunes → los lunes). Akcent graficzny może zniknąć lub się pojawić: canción → canciones, joven → jóvenes.",
+    "ru": "Гласная → + s (la casa → las casas). Согласная → + es (el árbol → los árboles). -z → -ces (el lápiz → los lápices). Слово на безударное -s не меняется (el lunes → los lunes). Знак ударения может исчезнуть или появиться: canción → canciones, joven → jóvenes."
+   },
+   "l": [
+    [
+     "las casas",
+     "la casa → +s"
+    ],
+    [
+     "los libros",
+     "el libro → +s"
+    ],
+    [
+     "los árboles",
+     "el árbol → +es"
+    ],
+    [
+     "las ciudades",
+     "la ciudad → +es"
+    ],
+    [
+     "los lápices",
+     "el lápiz → -ces"
+    ],
+    [
+     "los lunes",
+     "el lunes → ="
+    ],
+    [
+     "las canciones",
+     "la canción → +es (ó → o)"
+    ],
+    [
+     "los jóvenes",
+     "el joven → +es (o → ó)"
+    ]
+   ],
+   "x": [
+    [
+     "la casa",
+     "las casas",
+     "+s",
+     "las casaes",
+     "los casas"
+    ],
+    [
+     "el libro",
+     "los libros",
+     "+s",
+     "los libroes",
+     "las libros"
+    ],
+    [
+     "el sofá",
+     "los sofás",
+     "+s",
+     "los sofáes",
+     "los sofá"
+    ],
+    [
+     "el árbol",
+     "los árboles",
+     "+es",
+     "los árbols",
+     "los árbol"
+    ],
+    [
+     "la ciudad",
+     "las ciudades",
+     "+es",
+     "las ciudads",
+     "las ciudadas"
+    ],
+    [
+     "la mujer",
+     "las mujeres",
+     "+es",
+     "las mujers",
+     "las mujeras"
+    ],
+    [
+     "el hotel",
+     "los hoteles",
+     "+es",
+     "los hotels",
+     "los hotelos"
+    ],
+    [
+     "el lápiz",
+     "los lápices",
+     "-z → -ces",
+     "los lápizes",
+     "los lápizs"
+    ],
+    [
+     "la luz",
+     "las luces",
+     "-z → -ces",
+     "las luzes",
+     "las luzs"
+    ],
+    [
+     "el lunes",
+     "los lunes",
+     "=",
+     "los luneses",
+     "los lun"
+    ],
+    [
+     "la crisis",
+     "las crisis",
+     "=",
+     "las crisises",
+     "las crisisas"
+    ],
+    [
+     "la canción",
+     "las canciones",
+     "+es (ó → o)",
+     "las canciónes",
+     "las cancións"
+    ],
+    [
+     "el joven",
+     "los jóvenes",
+     "+es (o → ó)",
+     "los jovenes",
+     "los jóvens"
+    ],
+    [
+     "el autobús",
+     "los autobuses",
+     "+es (ú → u)",
+     "los autobúses",
+     "los autobús"
     ]
    ]
   }

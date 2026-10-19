@@ -1,7 +1,8 @@
 {
  "_lisez_moi": [
-  "Les repères (v879) : jours, mois et nombres, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
-  "Cinq blocs, dans l'ordre, jamais mélangés : n0-20, n20-100, n100-1000, jours, mois. type « nombre » : sens = le nombre en chiffres ; x = nombres composés pour s'exercer. type « suite » : sens par langue ; p = suites à dire à voix haute.",
+  "Les repères (v879-v880) : nombres, jours, mois, alphabet, genre, pluriel, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
+  "Blocs dans l'ordre, jamais mélangés. type « nombre » : sens = le nombre en chiffres ; x = nombres composés pour s'exercer. type « suite » : sens par langue ; p = suites à dire à voix haute. type « lettre » : [nom dit, lettre, lettres qui se confondent] ; p = [épellation dite, mot]. type « genre » : [mot avec article, règle] (« ⚠️ » = exception) ; x = mots pour s'exercer. type « pluriel » : l = [pluriel, règle] ; x = [singulier, pluriel, règle, leurre, leurre].",
+  "Les pourcentages du genre sont MESURÉS sur les noms de nos thèmes (19 oct. 2026), pas recopiés d'une grammaire.",
   "Contrôle : python tests/reperes.py."
  ],
  "reperes": [
@@ -727,6 +728,764 @@
       "pl": "wrzesień, październik, listopad, grudzień",
       "ru": "сентябрь, октябрь, ноябрь, декабрь"
      }
+    ]
+   ]
+  },
+  {
+   "id": "alphabet",
+   "type": "lettre",
+   "t": {
+    "fr": "L'alphabet, pour épeler",
+    "en": "The alphabet, to spell",
+    "tr": "Alfabe, harf harf söylemek için",
+    "uk": "Абетка, щоб диктувати по літерах",
+    "fa": "الفبا، برای هجی کردن",
+    "ar": "الأبجدية للتهجئة",
+    "pt": "O alfabeto, para soletrar",
+    "pl": "Alfabet, żeby literować",
+    "ru": "Алфавит, чтобы называть по буквам"
+   },
+   "a": {
+    "fr": "Attention : E se dit « é », I « i », U « ou », J « yott », V « faou », W « vé », Z « tsètt ». En épelant, ä se dit « A-Umlaut » et ß « Eszett ».",
+    "en": "Watch out: E sounds like “ay”, I like “ee”, U like “oo”, J is “yot”, V is “fow”, W is “vay”, Z is “tset”. When spelling, ä is “A-Umlaut” and ß is “Eszett”.",
+    "tr": "Dikkat: E “e”, I “i”, U “u”, J “yot”, V “fau”, W “ve”, Z “tset” okunur. Harf harf söylerken ä “A-Umlaut”, ß “Eszett” denir.",
+    "uk": "Увага: E — «е», I — «і», U — «у», J — «йот», V — «фау», W — «ве», Z — «цет». Коли диктуєш по літерах, ä — «A-Umlaut», ß — «Eszett».",
+    "fa": "دقت کن: E «اِ»، I «ای»، U «او»، J «یُت»، V «فاو»، W «وِ»، Z «تسِت» خوانده می‌شود. هنگام هجی، ä را «A-Umlaut» و ß را «Eszett» می‌گویند.",
+    "ar": "انتبه: E تُلفظ «إيه»، وI «إي»، وU «أو»، وJ «يوت»، وV «فاو»، وW «فيه»، وZ «تسيت». عند التهجئة تُقال ä «A-Umlaut» وß «Eszett».",
+    "pt": "Atenção: E se diz “ê”, I “i”, U “u”, J “iót”, V “fau”, W “vê”, Z “tsét”. Ao soletrar, ä é “A-Umlaut” e ß é “Eszett”.",
+    "pl": "Uwaga: E czyta się „e”, I „i”, U „u”, J „jot”, V „fau”, W „we”, Z „cet”. Przy literowaniu ä to „A-Umlaut”, a ß to „Eszett”.",
+    "ru": "Внимание: E — «э», I — «и», U — «у», J — «йот», V — «фау», W — «ве», Z — «цэт». По буквам ä называют «A-Umlaut», а ß — «Eszett»."
+   },
+   "l": [
+    [
+     "Ah",
+     "A",
+     [
+      "E",
+      "H"
+     ]
+    ],
+    [
+     "Beh",
+     "B",
+     [
+      "P",
+      "D"
+     ]
+    ],
+    [
+     "Zeh",
+     "C",
+     [
+      "Z",
+      "T"
+     ]
+    ],
+    [
+     "Deh",
+     "D",
+     [
+      "T",
+      "B"
+     ]
+    ],
+    [
+     "Eh",
+     "E",
+     [
+      "I",
+      "Ä"
+     ]
+    ],
+    [
+     "Eff",
+     "F",
+     [
+      "V",
+      "S"
+     ]
+    ],
+    [
+     "Geh",
+     "G",
+     [
+      "J",
+      "K"
+     ]
+    ],
+    [
+     "Hah",
+     "H",
+     [
+      "A",
+      "K"
+     ]
+    ],
+    [
+     "Ih",
+     "I",
+     [
+      "E",
+      "Y"
+     ]
+    ],
+    [
+     "Jott",
+     "J",
+     [
+      "G",
+      "Y"
+     ]
+    ],
+    [
+     "Kah",
+     "K",
+     [
+      "Q",
+      "G"
+     ]
+    ],
+    [
+     "Ell",
+     "L",
+     [
+      "R",
+      "M"
+     ]
+    ],
+    [
+     "Emm",
+     "M",
+     [
+      "N",
+      "L"
+     ]
+    ],
+    [
+     "Enn",
+     "N",
+     [
+      "M",
+      "L"
+     ]
+    ],
+    [
+     "Oh",
+     "O",
+     [
+      "U",
+      "Ö"
+     ]
+    ],
+    [
+     "Peh",
+     "P",
+     [
+      "B",
+      "T"
+     ]
+    ],
+    [
+     "Kuh",
+     "Q",
+     [
+      "K",
+      "U"
+     ]
+    ],
+    [
+     "Err",
+     "R",
+     [
+      "L",
+      "E"
+     ]
+    ],
+    [
+     "Ess",
+     "S",
+     [
+      "Z",
+      "F"
+     ]
+    ],
+    [
+     "Teh",
+     "T",
+     [
+      "D",
+      "P"
+     ]
+    ],
+    [
+     "Uh",
+     "U",
+     [
+      "O",
+      "Ü"
+     ]
+    ],
+    [
+     "Fau",
+     "V",
+     [
+      "F",
+      "W"
+     ]
+    ],
+    [
+     "Weh",
+     "W",
+     [
+      "V",
+      "B"
+     ]
+    ],
+    [
+     "Ix",
+     "X",
+     [
+      "S",
+      "I"
+     ]
+    ],
+    [
+     "Ypsilon",
+     "Y",
+     [
+      "J",
+      "I"
+     ]
+    ],
+    [
+     "Zett",
+     "Z",
+     [
+      "C",
+      "S"
+     ]
+    ],
+    [
+     "Ä",
+     "Ä",
+     [
+      "E",
+      "A"
+     ]
+    ],
+    [
+     "Ö",
+     "Ö",
+     [
+      "O",
+      "Ü"
+     ]
+    ],
+    [
+     "Ü",
+     "Ü",
+     [
+      "U",
+      "I"
+     ]
+    ],
+    [
+     "Eszett",
+     "ß",
+     [
+      "S",
+      "Z"
+     ]
+    ]
+   ],
+   "p": [
+    [
+     "Hah, Oh, Teh, Eh, Ell",
+     "Hotel"
+    ],
+    [
+     "Teh, Ah, Ix, Ih",
+     "Taxi"
+    ],
+    [
+     "Beh, Uh, Ess",
+     "Bus"
+    ],
+    [
+     "Zett, Uh, Geh",
+     "Zug"
+    ],
+    [
+     "Enn, Ah, Emm, Eh",
+     "Name"
+    ],
+    [
+     "Eh, Uh, Err, Oh",
+     "Euro"
+    ],
+    [
+     "Weh, Ih, Eh, Enn",
+     "Wien"
+    ],
+    [
+     "Jott, Uh, Ell, Ih",
+     "Juli"
+    ]
+   ]
+  },
+  {
+   "id": "genre-die",
+   "type": "genre",
+   "t": {
+    "fr": "Le genre : les terminaisons en die",
+    "en": "Gender: endings that take die",
+    "tr": "Cinsiyet: die alan sonekler",
+    "uk": "Рід: закінчення з die",
+    "fa": "جنس: پایانه‌هایی که die می‌گیرند",
+    "ar": "الجنس: النهايات التي تأخذ die",
+    "pt": "O gênero: terminações com die",
+    "pl": "Rodzaj: końcówki z die",
+    "ru": "Род: окончания с die"
+   },
+   "a": {
+    "fr": "-ung, -heit, -keit, -schaft, -ion, -tät : die, presque sans exception. -e : die 9 fois sur 10 — mais der Name, der Junge, der Käse, das Auge, das Ende.",
+    "en": "-ung, -heit, -keit, -schaft, -ion, -tät: die, almost without exception. -e: die 9 times out of 10 — but der Name, der Junge, der Käse, das Auge, das Ende.",
+    "tr": "-ung, -heit, -keit, -schaft, -ion, -tät: neredeyse istisnasız die. -e: 10'da 9 die — ama der Name, der Junge, der Käse, das Auge, das Ende.",
+    "uk": "-ung, -heit, -keit, -schaft, -ion, -tät: die, майже без винятків. -e: die у 9 випадках з 10 — але der Name, der Junge, der Käse, das Auge, das Ende.",
+    "fa": "‏-ung، -heit، -keit، -schaft، -ion، -tät: تقریباً همیشه die. ‏-e: از هر 10 تا 9 تا die است — اما der Name، der Junge، der Käse، das Auge، das Ende.",
+    "ar": "‏-ung و-heit و-keit و-schaft و-ion و-tät: die تقريبًا بلا استثناء. ‏-e: die في 9 من 10 — لكن der Name وder Junge وder Käse وdas Auge وdas Ende.",
+    "pt": "-ung, -heit, -keit, -schaft, -ion, -tät: die, quase sem exceção. -e: die 9 em cada 10 vezes — mas der Name, der Junge, der Käse, das Auge, das Ende.",
+    "pl": "-ung, -heit, -keit, -schaft, -ion, -tät: die, prawie bez wyjątków. -e: die w 9 na 10 przypadków — ale der Name, der Junge, der Käse, das Auge, das Ende.",
+    "ru": "-ung, -heit, -keit, -schaft, -ion, -tät: die, почти без исключений. -e: die в 9 случаях из 10 — но der Name, der Junge, der Käse, das Auge, das Ende."
+   },
+   "l": [
+    [
+     "die Wohnung",
+     "-ung → die · 99 %"
+    ],
+    [
+     "die Gesundheit",
+     "-heit · -keit → die · 100 %"
+    ],
+    [
+     "die Freundschaft",
+     "-schaft → die · 100 %"
+    ],
+    [
+     "die Information",
+     "-ion → die · 99 %"
+    ],
+    [
+     "die Universität",
+     "-tät → die · 100 %"
+    ],
+    [
+     "die Familie",
+     "-ie → die · 94 %"
+    ],
+    [
+     "die Musik",
+     "-ik → die · 89 %"
+    ],
+    [
+     "die Lampe",
+     "-e → die · 90 %"
+    ],
+    [
+     "der Junge",
+     "⚠️ -e → der"
+    ],
+    [
+     "das Auge",
+     "⚠️ -e → das"
+    ]
+   ],
+   "x": [
+    [
+     "die Zeitung",
+     "-ung → die · 99 %"
+    ],
+    [
+     "die Prüfung",
+     "-ung → die · 99 %"
+    ],
+    [
+     "die Krankheit",
+     "-heit · -keit → die · 100 %"
+    ],
+    [
+     "die Mannschaft",
+     "-schaft → die · 100 %"
+    ],
+    [
+     "die Temperatur",
+     "-ur → die · 84 %"
+    ],
+    [
+     "die Adresse",
+     "-e → die · 90 %"
+    ],
+    [
+     "die Suppe",
+     "-e → die · 90 %"
+    ],
+    [
+     "die Banane",
+     "-e → die · 90 %"
+    ],
+    [
+     "der Name",
+     "⚠️ -e → der"
+    ],
+    [
+     "der Käse",
+     "⚠️ -e → der"
+    ],
+    [
+     "das Ende",
+     "⚠️ -e → das"
+    ]
+   ]
+  },
+  {
+   "id": "genre-der",
+   "type": "genre",
+   "t": {
+    "fr": "Le genre : les terminaisons en der",
+    "en": "Gender: endings that take der",
+    "tr": "Cinsiyet: der alan sonekler",
+    "uk": "Рід: закінчення з der",
+    "fa": "جنس: پایانه‌هایی که der می‌گیرند",
+    "ar": "الجنس: النهايات التي تأخذ der",
+    "pt": "O gênero: terminações com der",
+    "pl": "Rodzaj: końcówki z der",
+    "ru": "Род: окончания с der"
+   },
+   "a": {
+    "fr": "Jours, mois, saisons : der (der Montag, der Juli, der Winter). -ling, -ist, -ismus : der. -er : der 7 fois sur 10, surtout les métiers (der Lehrer) — mais die Mutter, die Schwester, das Fenster.",
+    "en": "Days, months, seasons: der (der Montag, der Juli, der Winter). -ling, -ist, -ismus: der. -er: der 7 times out of 10, especially jobs (der Lehrer) — but die Mutter, die Schwester, das Fenster.",
+    "tr": "Günler, aylar, mevsimler: der (der Montag, der Juli, der Winter). -ling, -ist, -ismus: der. -er: 10'da 7 der, özellikle meslekler (der Lehrer) — ama die Mutter, die Schwester, das Fenster.",
+    "uk": "Дні, місяці, пори року: der (der Montag, der Juli, der Winter). -ling, -ist, -ismus: der. -er: der у 7 випадках з 10, особливо професії (der Lehrer) — але die Mutter, die Schwester, das Fenster.",
+    "fa": "روزها، ماه‌ها و فصل‌ها: der (der Montag، der Juli، der Winter). ‏-ling، -ist، -ismus: der. ‏-er: از هر 10 تا 7 تا der، به‌ویژه شغل‌ها (der Lehrer) — اما die Mutter، die Schwester، das Fenster.",
+    "ar": "الأيام والأشهر والفصول: der (der Montag وder Juli وder Winter). ‏-ling و-ist و-ismus: der. ‏-er: der في 7 من 10، خاصة المهن (der Lehrer) — لكن die Mutter وdie Schwester وdas Fenster.",
+    "pt": "Dias, meses, estações: der (der Montag, der Juli, der Winter). -ling, -ist, -ismus: der. -er: der 7 em cada 10 vezes, sobretudo profissões (der Lehrer) — mas die Mutter, die Schwester, das Fenster.",
+    "pl": "Dni, miesiące, pory roku: der (der Montag, der Juli, der Winter). -ling, -ist, -ismus: der. -er: der w 7 na 10 przypadków, zwłaszcza zawody (der Lehrer) — ale die Mutter, die Schwester, das Fenster.",
+    "ru": "Дни, месяцы, времена года: der (der Montag, der Juli, der Winter). -ling, -ist, -ismus: der. -er: der в 7 случаях из 10, особенно профессии (der Lehrer) — но die Mutter, die Schwester, das Fenster."
+   },
+   "l": [
+    [
+     "der Montag",
+     "Montag · Juli · Winter → der"
+    ],
+    [
+     "der Frühling",
+     "-ling → der · 80 %"
+    ],
+    [
+     "der Polizist",
+     "-ist → der · 85 %"
+    ],
+    [
+     "der Tourismus",
+     "-ismus → der · 100 %"
+    ],
+    [
+     "der Lehrer",
+     "-er → der · 71 %"
+    ],
+    [
+     "die Mutter",
+     "⚠️ -er → die"
+    ],
+    [
+     "das Fenster",
+     "⚠️ -er → das"
+    ]
+   ],
+   "x": [
+    [
+     "der Juli",
+     "Montag · Juli · Winter → der"
+    ],
+    [
+     "der Winter",
+     "Montag · Juli · Winter → der"
+    ],
+    [
+     "der Journalist",
+     "-ist → der · 85 %"
+    ],
+    [
+     "der Kellner",
+     "-er → der · 71 %"
+    ],
+    [
+     "der Bäcker",
+     "-er → der · 71 %"
+    ],
+    [
+     "der Schüler",
+     "-er → der · 71 %"
+    ],
+    [
+     "die Schwester",
+     "⚠️ -er → die"
+    ],
+    [
+     "die Butter",
+     "⚠️ -er → die"
+    ],
+    [
+     "das Zimmer",
+     "⚠️ -er → das"
+    ]
+   ]
+  },
+  {
+   "id": "genre-das",
+   "type": "genre",
+   "t": {
+    "fr": "Le genre : les terminaisons en das",
+    "en": "Gender: endings that take das",
+    "tr": "Cinsiyet: das alan sonekler",
+    "uk": "Рід: закінчення з das",
+    "fa": "جنس: پایانه‌هایی که das می‌گیرند",
+    "ar": "الجنس: النهايات التي تأخذ das",
+    "pt": "O gênero: terminações com das",
+    "pl": "Rodzaj: końcówki z das",
+    "ru": "Род: окончания с das"
+   },
+   "a": {
+    "fr": "-chen (le petit) : toujours das — das Mädchen, même pour une fille. -ment, -nis, -um : das le plus souvent (der Moment, die Erlaubnis, der Raum font exception). Un verbe devenu nom : das Essen, das Leben.",
+    "en": "-chen (little): always das — das Mädchen, even for a girl. -ment, -nis, -um: usually das (der Moment, die Erlaubnis, der Raum are exceptions). A verb used as a noun: das Essen, das Leben.",
+    "tr": "-chen (küçültme): her zaman das — das Mädchen, bir kız için bile. -ment, -nis, -um: çoğunlukla das (der Moment, die Erlaubnis, der Raum istisnadır). İsim olmuş fiil: das Essen, das Leben.",
+    "uk": "-chen (зменшувальне): завжди das — das Mädchen, навіть про дівчинку. -ment, -nis, -um: найчастіше das (винятки: der Moment, die Erlaubnis, der Raum). Дієслово як іменник: das Essen, das Leben.",
+    "fa": "‏-chen (کوچک‌سازی): همیشه das — das Mädchen، حتی برای یک دختر. ‏-ment، -nis، -um: بیشتر das (استثناها: der Moment، die Erlaubnis، der Raum). فعلی که اسم شده: das Essen، das Leben.",
+    "ar": "‏-chen (التصغير): دائمًا das — das Mädchen، حتى للفتاة. ‏-ment و-nis و-um: das غالبًا (الاستثناءات: der Moment وdie Erlaubnis وder Raum). الفعل حين يصير اسمًا: das Essen وdas Leben.",
+    "pt": "-chen (diminutivo): sempre das — das Mädchen, mesmo para uma menina. -ment, -nis, -um: das na maioria das vezes (der Moment, die Erlaubnis, der Raum são exceções). Verbo usado como substantivo: das Essen, das Leben.",
+    "pl": "-chen (zdrobnienie): zawsze das — das Mädchen, nawet o dziewczynce. -ment, -nis, -um: zwykle das (wyjątki: der Moment, die Erlaubnis, der Raum). Czasownik jako rzeczownik: das Essen, das Leben.",
+    "ru": "-chen (уменьшительное): всегда das — das Mädchen, даже о девочке. -ment, -nis, -um: чаще всего das (исключения: der Moment, die Erlaubnis, der Raum). Глагол в роли существительного: das Essen, das Leben."
+   },
+   "l": [
+    [
+     "das Mädchen",
+     "-chen → das"
+    ],
+    [
+     "das Brötchen",
+     "-chen → das"
+    ],
+    [
+     "das Medikament",
+     "-ment → das · 92 %"
+    ],
+    [
+     "das Ergebnis",
+     "-nis → das · 83 %"
+    ],
+    [
+     "das Museum",
+     "-um → das · 65 %"
+    ],
+    [
+     "das Essen",
+     "essen → das Essen"
+    ],
+    [
+     "der Moment",
+     "⚠️ -ment → der"
+    ],
+    [
+     "die Erlaubnis",
+     "⚠️ -nis → die"
+    ],
+    [
+     "der Raum",
+     "⚠️ -um → der"
+    ]
+   ],
+   "x": [
+    [
+     "das Instrument",
+     "-ment → das · 92 %"
+    ],
+    [
+     "das Dokument",
+     "-ment → das · 92 %"
+    ],
+    [
+     "das Zeugnis",
+     "-nis → das · 83 %"
+    ],
+    [
+     "das Datum",
+     "-um → das · 65 %"
+    ],
+    [
+     "das Studium",
+     "-um → das · 65 %"
+    ],
+    [
+     "das Leben",
+     "leben → das Leben"
+    ],
+    [
+     "das Schwimmen",
+     "schwimmen → das Schwimmen"
+    ],
+    [
+     "der Baum",
+     "⚠️ -um → der"
+    ]
+   ]
+  },
+  {
+   "id": "pluriel",
+   "type": "pluriel",
+   "t": {
+    "fr": "Le pluriel",
+    "en": "The plural",
+    "tr": "Çoğul",
+    "uk": "Множина",
+    "fa": "جمع",
+    "ar": "الجمع",
+    "pt": "O plural",
+    "pl": "Liczba mnoga",
+    "ru": "Множественное число"
+   },
+   "a": {
+    "fr": "Au pluriel, l'article est toujours die. Féminins : -n ou -en presque toujours (die Lampen, die Frauen). Mots en -er, -el, -en (der, das) : rien, parfois un tréma (die Lehrer, die Äpfel). Mots étrangers : -s (die Autos). Pour le reste, apprends le pluriel avec le mot.",
+    "en": "In the plural, the article is always die. Feminine nouns: -n or -en almost always (die Lampen, die Frauen). Words in -er, -el, -en (der, das): nothing, sometimes an umlaut (die Lehrer, die Äpfel). Foreign words: -s (die Autos). For the rest, learn the plural with the word.",
+    "tr": "Çoğulda artikel her zaman die'dır. Dişil isimler: neredeyse her zaman -n veya -en (die Lampen, die Frauen). -er, -el, -en ile biten der/das isimler: ek yok, bazen Umlaut (die Lehrer, die Äpfel). Yabancı kelimeler: -s (die Autos). Geri kalanında çoğulu kelimeyle birlikte öğren.",
+    "uk": "У множині артикль завжди die. Жіночий рід: майже завжди -n або -en (die Lampen, die Frauen). Слова на -er, -el, -en (der, das): нічого, іноді умлаут (die Lehrer, die Äpfel). Іншомовні слова: -s (die Autos). В інших випадках вчи множину разом зі словом.",
+    "fa": "در جمع، حرف تعریف همیشه die است. اسم‌های مؤنث: تقریباً همیشه -n یا -en (die Lampen، die Frauen). واژه‌های مختوم به -er، -el، -en (der، das): بدون پسوند، گاهی با اوملاوت (die Lehrer، die Äpfel). واژه‌های خارجی: -s (die Autos). برای بقیه، جمع را همراه واژه یاد بگیر.",
+    "ar": "في الجمع تكون أداة التعريف دائمًا die. المؤنث: ‎-n أو ‎-en تقريبًا دائمًا (die Lampen وdie Frauen). الكلمات المنتهية بـ ‎-er و‎-el و‎-en (der وdas): لا شيء، وأحيانًا Umlaut (die Lehrer وdie Äpfel). الكلمات الأجنبية: ‎-s (die Autos). وفي الباقي احفظ الجمع مع الكلمة.",
+    "pt": "No plural, o artigo é sempre die. Femininos: quase sempre -n ou -en (die Lampen, die Frauen). Palavras em -er, -el, -en (der, das): nada, às vezes um trema (die Lehrer, die Äpfel). Palavras estrangeiras: -s (die Autos). No resto, aprenda o plural junto com a palavra.",
+    "pl": "W liczbie mnogiej rodzajnik to zawsze die. Rodzaj żeński: prawie zawsze -n lub -en (die Lampen, die Frauen). Słowa na -er, -el, -en (der, das): bez końcówki, czasem z umlautem (die Lehrer, die Äpfel). Słowa obce: -s (die Autos). Liczby mnogiej reszty słów ucz się razem ze słowem.",
+    "ru": "Во множественном числе артикль всегда die. Женский род: почти всегда -n или -en (die Lampen, die Frauen). Слова на -er, -el, -en (der, das): ничего, иногда умлаут (die Lehrer, die Äpfel). Иностранные слова: -s (die Autos). В остальном учи множественное число вместе со словом."
+   },
+   "l": [
+    [
+     "die Tage",
+     "der Tag → -e"
+    ],
+    [
+     "die Stühle",
+     "der Stuhl → ¨-e"
+    ],
+    [
+     "die Kinder",
+     "das Kind → -er"
+    ],
+    [
+     "die Häuser",
+     "das Haus → ¨-er"
+    ],
+    [
+     "die Frauen",
+     "die Frau → -en"
+    ],
+    [
+     "die Lampen",
+     "die Lampe → -n"
+    ],
+    [
+     "die Autos",
+     "das Auto → -s"
+    ],
+    [
+     "die Lehrer",
+     "der Lehrer → –"
+    ],
+    [
+     "die Äpfel",
+     "der Apfel → ¨"
+    ]
+   ],
+   "x": [
+    [
+     "der Tisch",
+     "die Tische",
+     "-e",
+     "die Tischen",
+     "die Tischer"
+    ],
+    [
+     "der Zug",
+     "die Züge",
+     "¨-e",
+     "die Zuge",
+     "die Zügen"
+    ],
+    [
+     "die Stadt",
+     "die Städte",
+     "¨-e",
+     "die Stadte",
+     "die Stadten"
+    ],
+    [
+     "das Buch",
+     "die Bücher",
+     "¨-er",
+     "die Buche",
+     "die Büchen"
+    ],
+    [
+     "das Bild",
+     "die Bilder",
+     "-er",
+     "die Bilde",
+     "die Bilds"
+    ],
+    [
+     "die Zeitung",
+     "die Zeitungen",
+     "-en",
+     "die Zeitunge",
+     "die Zeitungs"
+    ],
+    [
+     "die Schule",
+     "die Schulen",
+     "-n",
+     "die Schules",
+     "die Schulener"
+    ],
+    [
+     "das Hotel",
+     "die Hotels",
+     "-s",
+     "die Hotele",
+     "die Hoteln"
+    ],
+    [
+     "das Zimmer",
+     "die Zimmer",
+     "–",
+     "die Zimmern",
+     "die Zimmers"
+    ],
+    [
+     "der Vater",
+     "die Väter",
+     "¨",
+     "die Vatern",
+     "die Vaters"
+    ],
+    [
+     "die Tür",
+     "die Türen",
+     "-en",
+     "die Türer",
+     "die Türs"
+    ],
+    [
+     "das Handy",
+     "die Handys",
+     "-s",
+     "die Handyen",
+     "die Handye"
     ]
    ]
   }
