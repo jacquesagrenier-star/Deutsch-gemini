@@ -6616,7 +6616,9 @@ body[data-theme="dark"] .mp-chiffres small{color:#a9b2c0;}
 body[data-theme="dark"] .mp-jauge{background:#3a4352;}
 body[data-theme="dark"] .cp-or-motseul{background:#232a34;}
 body[data-theme="dark"] .cp-or-motseul button{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
-body[data-theme="dark"] .cp-or-gris{color:#5c6573;}
+body[data-theme="dark"] .cp-or-gris{color:#808a99;}
+/* v876 : le rond du micro, encre sur carte foncee, ne se voyait presque pas. */
+body[data-theme="dark"] .cp-or-micro:not(.ecoute){background:#E8A23A; box-shadow:0 8px 20px rgba(0,0,0,.35);}
 body[data-theme="dark"] .cp-or-allume{color:#7fd3a5;}
 body[data-theme="dark"] .cp-or-outils button{background:#232a34; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .cp-or-verdict.bon{color:#7fd3a5;}
@@ -7739,7 +7741,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v875</span>
+    <span class="subtitle-version">v876</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -35684,8 +35686,9 @@ const ESSAIS = {
         titre: "La mosaïque au palier",
         desc: "Chaque carte qui pose un carreau (« Je savais », « Encore », une phrase, l'oral) montre un « +1 » jaune, au milieu des confettis quand il y en a ; une bonne réponse dans une scène ou dans un exercice de grammaire pose aussi un carreau. À chaque palier de l'objectif du jour (« +30 ! », « +60 ! »), la mosaïque apparaît sous le bandeau et les trente derniers carreaux y poppent un à un, avec le compte qui monte."
     },
+    // EN PRODUCTION le 19 oct. 2026 (v876) -- Jacques : « go, l'oral v2 ».
     oral_v2: {
-        etat: "admin",
+        etat: "tous",
         titre: "L'oral, deuxième version",
         desc: "Les mots s'allument pendant qu'on parle ; « Bravo ! » et un carreau de mosaïque en plus ; un mot manqué se touche pour l'entendre et le redire seul ; 🐢 le modèle au ralenti ; plus de « réécouter ma voix ». Dans les apps, le micro s'ouvre seul après le modèle."
     },
@@ -40687,7 +40690,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 875;
+const APP_VERSION = 876;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
