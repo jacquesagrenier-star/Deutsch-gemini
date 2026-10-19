@@ -6778,6 +6778,59 @@ body[data-theme="dark"] .ela-liste{background:#1d232c; color:#eef1f5; box-shadow
 body[data-theme="dark"] .ela-liste-titre, body[data-theme="dark"] .ela-liste-pied{color:#a9b2c0;}
 body[data-theme="dark"] .ela-choix button{background:#232a34; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .ela-choix button.on{background:#E8A23A; border-color:#E8A23A; color:#1C2430;}
+/* v881 : LES DEUX PILULES DE L'ACCUEIL, un seul gabarit. La seance en ambre (la
+   marque, l'action principale), Ecouter en bleu-vert (une autre activite). */
+.pilule-accueil{--pa:#E8A23A; --pa-rgb:232,162,58; grid-column:1 / -1; position:relative; display:flex; align-items:center; gap:11px;
+    background:#1C2430; color:#fff; border-radius:999px; padding:9px 12px 9px 9px; padding-inline:9px 12px; text-align:start;}
+.pilule-accueil.pa-ecoute{--pa:#4fb3a9; --pa-rgb:79,179,169;}
+.pa-play{width:46px; height:46px; flex:0 0 auto; border:0; border-radius:50%; background:var(--pa); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 0 0 4px rgba(var(--pa-rgb),.2); cursor:pointer; padding:0;}
+.pa-play svg{margin-left:3px; fill:#1C2430;}
+.pa-txt{flex:1 1 auto; min-width:0;}
+.pa-titre{display:block; width:100%; border:0; background:none; color:inherit; font:inherit; text-align:start; padding:0; cursor:pointer;}
+.pa-kick{display:block; font-size:9.5px; font-weight:900; letter-spacing:.12em; text-transform:uppercase; color:var(--pa); line-height:1.3;}
+.pilule-accueil .pa-titre strong{display:block; font-size:14.5px; font-weight:900; line-height:1.2; color:#fff; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-height:0;}
+/* La liste du niveau passe AU-DESSUS des scenes et des tuiles qui suivent. */
+.orb-seance.pilule-mode{position:relative; z-index:6;}
+.ecoute-ligne-accueil.pilule-accueil{z-index:5;}
+.pa-sous{display:flex; align-items:center; gap:6px; margin-top:2px; min-width:0;}
+.pa-niv{flex:0 0 auto; border:0; background:none; color:#fff; font:inherit; font-size:11.5px; font-weight:900; padding:0; cursor:pointer; white-space:nowrap;}
+.pa-sens{flex:1 1 auto; min-width:0; border:0; background:none; color:#b9c2cf; font:inherit; font-size:11.5px; font-weight:700; padding:0; text-align:start;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer;}
+span.pa-sens{cursor:default;}
+.pa-sens::before{content:"· "; color:#7b8798;}
+.pa-sens:empty::before{content:none;}
+.pa-anneau{--p:0; width:46px; height:46px; flex:0 0 auto; border-radius:50%; position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:conic-gradient(var(--pa) 0 calc(var(--p) * 1%), rgba(255,255,255,.16) calc(var(--p) * 1%) 100%);}
+.pa-anneau::before{content:""; position:absolute; inset:4px; border-radius:50%; background:#1C2430;}
+.pa-anneau b, .pa-anneau small{position:relative; line-height:1.05; direction:ltr;}
+.pa-anneau b{font-size:14px; font-weight:900;}
+.pa-anneau small{font-size:8.5px; font-weight:700; color:#b9c2cf;}
+.pa-anneau.atteint b{color:var(--pa);}
+.pilule-accueil .ela-onde{flex:0 0 64px; height:20px;}
+.pilule-accueil .ela-onde i:nth-child(3n){background:var(--pa);}
+.pa-liste{display:none; position:absolute; top:calc(100% + 6px); inset-inline-start:52px; z-index:30; width:250px; background:#fff; color:#1C2430;
+    border-radius:14px; padding:9px; box-shadow:0 0 0 1.5px #e3dccf, 0 14px 30px rgba(28,36,48,.28);}
+.pa-liste.ouvert{display:block;}
+.pa-liste-titre{font-size:11.5px; font-weight:800; color:#576177; margin:0 2px 6px;}
+.pa-liste .seance-niveaux{display:flex; gap:5px; flex-wrap:wrap;}
+.pa-liste .seance-niveau{flex:1 0 26%; border:1.5px solid #e3dccf; background:#FBF8F3; color:#1C2430; border-radius:9px; padding:6px 0; font:inherit; font-size:13px; font-weight:900; cursor:pointer;}
+.pa-liste .seance-niveau.on{background:#1C2430; border-color:#1C2430; color:#fff;}
+.pa-liste-pied{font-size:11.5px; color:#576177; margin:7px 2px 0; line-height:1.35;}
+.pa-liste-liens{display:flex; flex-direction:column; align-items:flex-start; gap:4px; margin-top:7px;}
+.pa-lien{border:0; background:none; padding:3px 2px; font:inherit; font-size:12.5px; font-weight:800; color:#9a6a12; cursor:pointer; text-align:start;}
+#spDateEdit .av-date-edit{margin-top:8px; color:#1C2430;}
+.orb-seance.pilule-mode{padding:0; background:none !important; border:0; box-shadow:none !important; border-radius:999px; overflow:visible; cursor:default;}
+.orb-seance.pilule-mode > :not(.seance-pilule){display:none !important;}
+body[data-theme="dark"] .pilule-accueil{background:#232c38; box-shadow:inset 0 0 0 1px #343e4c;}
+body[data-theme="dark"] .pa-anneau::before{background:#232c38;}
+body[data-theme="dark"] .pilule-accueil .pa-anneau small, body[data-theme="dark"] .pilule-accueil .pa-sens{color:#c3cad6;}
+body[data-theme="dark"] .pa-liste{background:#1d232c; color:#eef1f5; box-shadow:0 0 0 1.5px #2c333d, 0 14px 30px rgba(0,0,0,.5);}
+body[data-theme="dark"] .pa-liste-titre, body[data-theme="dark"] .pa-liste-pied{color:#a9b2c0;}
+body[data-theme="dark"] .pa-liste .seance-niveau{background:#232a34; border-color:#2c333d; color:#eef1f5;}
+body[data-theme="dark"] .pa-liste .seance-niveau.on{background:#E8A23A; border-color:#E8A23A; color:#1C2430;}
+body[data-theme="dark"] .pa-lien{color:#e8b860;}
+body[data-theme="dark"] #spDateEdit .av-date-edit{color:#eef1f5;}
 .explorer-v.verrou::after{content:"🔒"; position:absolute; top:4px; inset-inline-end:4px; font-size:12px;}
 body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
 body[data-theme="dark"] .explorer-desc{color:rgba(255,255,255,.72);}
@@ -7323,7 +7376,41 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
              verbe sur les deux boutons, alignes a la meme hauteur (demande
              expresse). Plus de clic sur la tuile entiere : chaque porte a son
              bouton. « Mis de cote » et « par theme » sont descendus en tuiles. -->
-        <div class="orb orb-seance" data-orbid="seance">
+        <!-- v881 : LA PILULE. Jacques, 19 oct. 2026 : le bloc etait « trop lourd,
+             trop gros », « un peu intimidant ». Choisie parmi 8 + 4 + 4 maquettes
+             (.claude/maquette-seance-ecouter-harmonie.html, version A) : la meme
+             pilule que la ligne Ecouter -- le rond a gauche, le titre, le niveau,
+             l'anneau du jour a droite. L'ancien contenu reste dans le DOM, cache
+             (ses fonctions continuent d'y ecrire) ; majPiluleSeance() en tire le
+             titre, le niveau et le compte. Le carnet et les feuilles sont passes
+             en tuiles ; la date de depart, dans la pastille du niveau. -->
+        <div class="orb orb-seance pilule-mode" data-orbid="seance">
+            <div class="seance-pilule pilule-accueil" id="seancePilule">
+                <button type="button" class="pa-play" onclick="ouvrirSeanceDuJour(true)" data-i18n-aria-label="seance_commencer" aria-label="Commencer">
+                    <svg width="15" height="17" viewBox="0 0 22 24" aria-hidden="true"><path d="M2 2l18 10L2 22z"/></svg>
+                </button>
+                <div class="pa-txt">
+                    <button type="button" class="pa-titre" onclick="ouvrirSeanceDuJour(true)">
+                        <span class="pa-kick" data-i18n="seance_titre">Ma séance du jour</span>
+                        <strong id="spTitre"></strong>
+                    </button>
+                    <div class="pa-sous">
+                        <button type="button" class="pa-niv" id="spNiv" onclick="basculerListeSeance(event)">A1 ▾</button>
+                        <button type="button" class="pa-sens" id="spSens" onclick="basculerListeSeance(event)"></button>
+                    </div>
+                </div>
+                <div class="pa-anneau" id="spAnneau" aria-hidden="true"><b id="spFait">0</b><small id="spSur">/30</small></div>
+                <div class="pa-liste" id="spListe" onclick="event.stopPropagation()">
+                    <div class="pa-liste-titre" data-i18n="seance_ton_niveau">Ton niveau</div>
+                    <div id="spNiveauxPlace"></div>
+                    <p class="pa-liste-pied" id="spClair"></p>
+                    <div id="spDateEdit"></div>
+                    <div class="pa-liste-liens">
+                        <button type="button" class="pa-lien hidden" id="spDate" onclick="ouvrirDateSeance()"></button>
+                        <button type="button" class="pa-lien" onclick="fermerListeSeance(); ouvrirInfoProgression();" data-i18n="carte_info_titre">Comment lire ta progression</button>
+                    </div>
+                </div>
+            </div>
             <div class="seance-haut">
                 <strong data-i18n="seance_titre">Ma séance du jour</strong>
                 <span id="seanceSub" class="seance-sub"></span>
@@ -7383,17 +7470,24 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
              six versions du lecteur, puis quatre formats compacts : il a choisi
              la ligne (C3, .claude/maquette-ecouter-compact.html), la plus mince.
              Le rond lance le mode Ecoute ; la pastille choisit le niveau. -->
-        <div class="ecoute-ligne-accueil" id="ecouteLigneAccueil">
-            <button type="button" class="ela-play" onclick="ecouterDepuisAccueil()" data-i18n-aria-label="orb_ecouter_title" aria-label="Écouter">
-                <svg width="14" height="16" viewBox="0 0 22 24" aria-hidden="true"><path d="M2 2l18 10L2 22z"/></svg>
+        <!-- v881 : le meme gabarit que la pilule de la seance (pilule-accueil),
+             avec son accent a elle, bleu-vert : deux activites, une famille. -->
+        <div class="ecoute-ligne-accueil pilule-accueil pa-ecoute" id="ecouteLigneAccueil">
+            <button type="button" class="pa-play" onclick="ecouterDepuisAccueil()" data-i18n-aria-label="orb_ecouter_title" aria-label="Écouter">
+                <svg width="15" height="17" viewBox="0 0 22 24" aria-hidden="true"><path d="M2 2l18 10L2 22z"/></svg>
             </button>
-            <button type="button" class="ela-txt" onclick="ecouterDepuisAccueil()">
-                <span class="ela-kick" data-i18n="orb_ecouter_title">Écouter</span>
-                <strong data-i18n="ela_titre">Écoute. Répète.</strong>
-            </button>
+            <div class="pa-txt">
+                <button type="button" class="pa-titre" onclick="ecouterDepuisAccueil()">
+                    <span class="pa-kick" data-i18n="orb_ecouter_title">Écouter</span>
+                    <strong data-i18n="ela_titre">Écoute. Répète.</strong>
+                </button>
+                <div class="pa-sous">
+                    <button type="button" class="pa-niv" id="ecouteLigneNiv" onclick="basculerNiveauEcoute(event)">A1 ▾</button>
+                    <span class="pa-sens" id="ecouteLigneNb"></span>
+                </div>
+            </div>
             <div class="ela-onde" id="ecouteLigneOnde" aria-hidden="true"></div>
-            <button type="button" class="ela-niv" id="ecouteLigneNiv" onclick="basculerNiveauEcoute(event)">A1 ▾</button>
-            <div class="ela-liste" id="ecouteLigneListe" onclick="event.stopPropagation()">
+            <div class="ela-liste pa-liste" id="ecouteLigneListe" onclick="event.stopPropagation()">
                 <div class="ela-liste-titre" data-i18n="ela_niveau_titre">Niveau à écouter</div>
                 <div class="ela-choix" id="ecouteLigneChoix"></div>
                 <p class="ela-liste-pied" data-i18n="ela_niveau_pied">Au départ, celui de ta séance. Le changer ici ne touche pas à ta séance.</p>
@@ -7421,6 +7515,16 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
             <div>
                 <strong data-i18n="seance_par_theme">Par thème</strong>
             </div>
+        </div>
+        <!-- v881 : le carnet de phrases et les feuilles de conjugaison, sortis
+             de la porte de seance. Visibles des qu'ils ont du contenu. -->
+        <div class="orb hidden" data-orbid="carnet" id="tuileCarnet" onclick="ouvrirCarnetPhrases()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v17"/><path d="M12 8h4M12 11.5h4"/></svg></div>
+            <div><strong id="tuileCarnetTxt"></strong></div>
+        </div>
+        <div class="orb hidden" data-orbid="feuilles" id="tuileFeuilles" onclick="ouvrirMesFeuilles()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12h6M9.5 15.5h6"/></svg></div>
+            <div><strong id="tuileFeuillesTxt"></strong></div>
         </div>
         <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
@@ -7799,7 +7903,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v880</span>
+    <span class="subtitle-version">v881</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11295,6 +11399,8 @@ const I18N = {
         ela_titre: "Écoute. Répète.",
         ela_niveau_titre: "Niveau à écouter",
         ela_niveau_pied: "Au départ, celui de ta séance. Le changer ici ne touche pas à ta séance.",
+        av_date_court: "✈️ Tu pars bientôt ?",
+        ela_n_mots: "{n} mots",
         rp_badge: "🧭 Repères {n}/{t}",
         rp_badge_revoir: "🧭 Repères · révision",
         rp_q_nombre: "Écoute et choisis le nombre",
@@ -12628,6 +12734,8 @@ const I18N = {
         ela_titre: "Listen. Repeat.",
         ela_niveau_titre: "Level to listen to",
         ela_niveau_pied: "It starts at your session's level. Changing it here doesn't change your session.",
+        av_date_court: "✈️ Travelling soon?",
+        ela_n_mots: "{n} words",
         rp_badge: "🧭 Basics {n}/{t}",
         rp_badge_revoir: "🧭 Basics · review",
         rp_q_nombre: "Listen and pick the number",
@@ -13963,6 +14071,8 @@ const I18N = {
         ela_titre: "Dinle. Tekrarla.",
         ela_niveau_titre: "Dinlenecek seviye",
         ela_niveau_pied: "Başta oturumunun seviyesi. Burada değiştirmek oturumunu etkilemez.",
+        av_date_court: "✈️ Yakında yola mı çıkıyorsun?",
+        ela_n_mots: "{n} kelime",
         rp_badge: "🧭 Temeller {n}/{t}",
         rp_badge_revoir: "🧭 Temeller · tekrar",
         rp_q_nombre: "Dinle ve sayıyı seç",
@@ -15635,6 +15745,8 @@ const I18N = {
         ela_titre: "Слухай. Повторюй.",
         ela_niveau_titre: "Рівень для прослуховування",
         ela_niveau_pied: "Спочатку це рівень твого заняття. Зміна тут не впливає на заняття.",
+        av_date_court: "✈️ Скоро в дорогу?",
+        ela_n_mots: "{n} слів",
         rp_badge: "🧭 Основи {n}/{t}",
         rp_badge_revoir: "🧭 Основи · повторення",
         rp_q_nombre: "Послухай і вибери число",
@@ -17679,6 +17791,8 @@ const I18N = {
         ela_titre: "گوش کن. تکرار کن.",
         ela_niveau_titre: "سطح شنیدن",
         ela_niveau_pied: "در آغاز، سطح جلسه‌ات است. تغییرش در اینجا جلسه‌ات را تغییر نمی‌دهد.",
+        av_date_court: "✈️ به‌زودی سفر می‌روی؟",
+        ela_n_mots: "{n} واژه",
         rp_badge: "🧭 پایه‌ها {n}/{t}",
         rp_badge_revoir: "🧭 پایه‌ها · مرور",
         rp_q_nombre: "گوش کن و عدد را انتخاب کن",
@@ -19145,6 +19259,8 @@ const I18N = {
         ela_titre: "استمع. كرّر.",
         ela_niveau_titre: "مستوى الاستماع",
         ela_niveau_pied: "في البداية هو مستوى جلستك. تغييره هنا لا يغيّر جلستك.",
+        av_date_court: "✈️ هل ستسافر قريبًا؟",
+        ela_n_mots: "{n} كلمة",
         rp_badge: "🧭 الأساسيات {n}/{t}",
         rp_badge_revoir: "🧭 الأساسيات · مراجعة",
         rp_q_nombre: "استمع واختر العدد",
@@ -19475,6 +19591,8 @@ const I18N = {
         ela_titre: "Ouça. Repita.",
         ela_niveau_titre: "Nível para ouvir",
         ela_niveau_pied: "No início, é o nível da sua sessão. Mudar aqui não altera a sessão.",
+        av_date_court: "✈️ Vai viajar em breve?",
+        ela_n_mots: "{n} palavras",
         rp_badge: "🧭 Básicos {n}/{t}",
         rp_badge_revoir: "🧭 Básicos · revisão",
         rp_q_nombre: "Ouça e escolha o número",
@@ -20873,6 +20991,8 @@ const I18N = {
         ela_titre: "Słuchaj. Powtarzaj.",
         ela_niveau_titre: "Poziom do słuchania",
         ela_niveau_pied: "Na początek poziom twojej sesji. Zmiana tutaj nie zmienia sesji.",
+        av_date_court: "✈️ Wkrótce wyjeżdżasz?",
+        ela_n_mots: "{n} słów",
         rp_badge: "🧭 Podstawy {n}/{t}",
         rp_badge_revoir: "🧭 Podstawy · powtórka",
         rp_q_nombre: "Posłuchaj i wybierz liczbę",
@@ -22269,6 +22389,8 @@ const I18N = {
         ela_titre: "Слушай. Повторяй.",
         ela_niveau_titre: "Уровень для прослушивания",
         ela_niveau_pied: "Сначала это уровень твоего занятия. Изменение здесь не меняет занятие.",
+        av_date_court: "✈️ Скоро в путь?",
+        ela_n_mots: "{n} слов",
         rp_badge: "🧭 Основы {n}/{t}",
         rp_badge_revoir: "🧭 Основы · повторение",
         rp_q_nombre: "Послушай и выбери число",
@@ -40933,6 +41055,13 @@ function majLigneEcoute(){
     const niv = niveauEcouteAccueil();
     const nom = n => n === "ALL" ? t("ecoute_level_all") : n;
     pastille.textContent = nom(niv) + " ▾";
+    // v881 : la ligne grise dit combien de mots attendent a ce niveau.
+    const nb = document.getElementById("ecouteLigneNb");
+    if(nb){
+        let n = 0;
+        try{ if(themesLoaded) n = accesComplet() ? poolEcoute(niv).length : filtrerGratuit(poolEcoute(niveauEchantillon())).length; }catch(e){ n = 0; }
+        nb.textContent = n ? tf("ela_n_mots", { n: n }) : "";
+    }
     const choix = document.getElementById("ecouteLigneChoix");
     if(!choix) return;
     choix.innerHTML = "";
@@ -40955,7 +41084,7 @@ function basculerNiveauEcoute(ev){
     const l = document.getElementById("ecouteLigneListe");
     if(!l) return;
     const ouvrir = !l.classList.contains("ouvert");
-    if(ouvrir){ majLigneEcoute(); l.classList.add("ouvert"); }
+    if(ouvrir){ try{ fermerListeSeance(); }catch(e){} majLigneEcoute(); l.classList.add("ouvert"); }
     else l.classList.remove("ouvert");
 }
 function choisirNiveauEcoute(n){
@@ -41037,7 +41166,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 880;
+const APP_VERSION = 881;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48617,6 +48746,7 @@ function majCompteDuJour(){
     // changement d'ecran, majTuileSeance() presque jamais. Le coffre doit
     // apparaitre des le retour d'une seance ou l'on vient d'y mettre un mot.
     try{ majBoutonGardes(); }catch(e){}
+    try{ majAnneauSeance(); }catch(e){}
 }
 
 function majTuileSeance(){
@@ -48708,7 +48838,131 @@ function majTuileSeance(){
     // v816 : le niveau en clair (« Débutant : les premiers mots... »).
     const clair = document.getElementById("seanceNiveauClair");
     if(clair) clair.textContent = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
+    try{ majPiluleSeance(); }catch(e){}
 }
+
+// ============ LA PILULE DE LA SEANCE (v881) ============
+// Elle lit ce que les fonctions de la porte ont deja ecrit (titre, niveau en
+// clair, compte du jour) au lieu de le recalculer : une seule source.
+function majPiluleSeance(){
+    const pil = document.getElementById("seancePilule");
+    if(!pil) return;
+    let pp = false;
+    try{ pp = premiersPasEnCours(); }catch(e){}
+    const niveau = niveauSeance();
+    const titre = document.getElementById("seancePorteMotsTitre");
+    const sp = document.getElementById("spTitre");
+    // Le titre court : « 🛬 Escale 1 sur 12 » sans le lieu (la seance le dit).
+    if(sp) sp.textContent = titre ? titre.textContent.trim().split(" · ")[0] : "";
+    const niv = document.getElementById("spNiv");
+    if(niv) niv.textContent = (pp ? "🌱" : niveau) + " ▾";
+    const clairTxt = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
+    const clair = document.getElementById("spClair");
+    if(clair) clair.textContent = clairTxt;
+    // Les boutons de niveau vivent dans la liste de la pastille.
+    const place = document.getElementById("spNiveauxPlace");
+    const box = document.getElementById("seanceNiveaux");
+    if(place && box && box.parentElement !== place) place.appendChild(box);
+    // La ligne grise : le depart (compte a rebours, ou l'invitation), sinon le
+    // nom du niveau -- la partie avant les deux-points, le reste dans la liste.
+    let sous = String(clairTxt).split(/\s*[:：]\s*/)[0];
+    let dateTxt = "";
+    try{
+        if(a1VoyageEnCours() && A1_VOYAGE_DONNEES){
+            const s = lireA1Voyage();
+            const jd = joursJusqua(s.dep);
+            if(jd !== null && jd >= -14){
+                const restantes = s.fin ? 0 : Math.max(0, escalesA1Voyage().length - (s.e || 0));
+                sous = jd <= 0 ? t("av_en_voyage")
+                     : restantes === 0 ? tf("av_depart_pret", { n: jd })
+                     : tf("av_depart_rythme", { n: jd, e: Math.max(1, Math.ceil(restantes / Math.max(1, jd / 7))) });
+                dateTxt = t("av_date_modifier");
+            } else if(!s.fin && !s.sansDate){
+                sous = t("av_date_court");
+                dateTxt = t("av_date_ajouter");
+            }
+        }
+    }catch(e){}
+    const sens = document.getElementById("spSens");
+    if(sens) sens.textContent = sous;
+    const lien = document.getElementById("spDate");
+    if(lien){ lien.textContent = dateTxt ? "✈️ " + dateTxt.replace(/^✈️\s*/, "") : ""; lien.classList.toggle("hidden", !dateTxt); }
+    majAnneauSeance();
+    majTuilesCarnetFeuilles();
+}
+function majAnneauSeance(){
+    const a = document.getElementById("spAnneau");
+    if(!a) return;
+    let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
+    try{ fait = getDailyActivityCount() || 0; }catch(e){}
+    try{ cible = getDailyGoalTarget() || cible; }catch(e){}
+    const f = document.getElementById("spFait"), s = document.getElementById("spSur");
+    if(f) f.textContent = fait >= cible ? "✓" : String(fait);
+    if(s) s.textContent = fait >= cible ? fait + "/" + cible : "/" + cible;
+    a.style.setProperty("--p", Math.min(100, Math.round(100 * fait / Math.max(1, cible))));
+    a.classList.toggle("atteint", fait >= cible);
+    a.title = fait + " / " + cible;
+}
+function majTuilesCarnetFeuilles(){
+    const c = document.getElementById("tuileCarnet");
+    if(c){
+        let n = 0;
+        try{ n = nbPhrasesCarnet(); }catch(e){}
+        c.classList.toggle("hidden", !n);
+        const tx = document.getElementById("tuileCarnetTxt");
+        if(tx && n) tx.textContent = (n === 1 ? t("av_carnet_1") : tf("av_carnet_n", { n: n })).replace(/^\S+\s+/, "");
+    }
+    const f = document.getElementById("tuileFeuilles");
+    if(f){
+        let n = 0;
+        try{ n = feuillesEssai() ? nbFeuillesVues() : 0; }catch(e){}
+        f.classList.toggle("hidden", !n);
+        const tx = document.getElementById("tuileFeuillesTxt");
+        if(tx && n) tx.textContent = tf("fc_porte_lien", { n: n }).replace(/^\S+\s+/, "");
+    }
+}
+function fermerListeSeance(){
+    const l = document.getElementById("spListe");
+    if(l) l.classList.remove("ouvert");
+    const d = document.getElementById("spDateEdit");
+    if(d) d.textContent = "";
+}
+function basculerListeSeance(ev){
+    if(ev) ev.stopPropagation();
+    const l = document.getElementById("spListe");
+    if(!l) return;
+    if(l.classList.contains("ouvert")){ fermerListeSeance(); return; }
+    try{ fermerNiveauEcoute(); }catch(e){}
+    majPiluleSeance();
+    l.classList.add("ouvert");
+}
+function ouvrirDateSeance(){
+    const d = document.getElementById("spDateEdit");
+    if(!d) return;
+    editerDateDepart(d);
+    // « Non merci » : l'invitation quitte la ligne grise (comme le ✕ d'avant).
+    let s = {};
+    try{ s = lireA1Voyage(); }catch(e){}
+    const f = d.querySelector(".av-date-edit");
+    if(f && !s.dep){
+        const non = document.createElement("button");
+        non.type = "button";
+        non.className = "av-invite-non";
+        non.textContent = t("av_date_non");
+        non.addEventListener("click", () => { const v = lireA1Voyage(); v.sansDate = true; ecrireA1Voyage(v); majTuileSeance(); });
+        f.appendChild(non);
+    }
+    // OK, Effacer ou Non merci : la liste se referme.
+    if(f) f.addEventListener("click", ev => {
+        if(ev.target.closest(".av-invite-oui, .av-invite-non")) setTimeout(() => { try{ fermerListeSeance(); }catch(e){} }, 60);
+    });
+}
+document.addEventListener("click", () => { try{ fermerListeSeance(); }catch(e){} });
+// Choisir un niveau dans la liste la referme (le niveau se voit sur la pastille).
+document.addEventListener("click", ev => {
+    const b = ev.target && ev.target.closest && ev.target.closest("#spListe .seance-niveau");
+    if(b) setTimeout(() => { try{ fermerListeSeance(); }catch(e){} }, 120);
+}, true);
 
 // L'entree par THEME, depuis la tuile Flashcards. Elle ouvre la liste des
 // themes existante -- on ne reconstruit pas un ecran qui marche.
