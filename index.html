@@ -7698,7 +7698,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v871</span>
+    <span class="subtitle-version">v872</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -40606,7 +40606,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 871;
+const APP_VERSION = 872;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -40643,10 +40643,30 @@ function afficherNumeroVersion(){
 //
 // Hors https (ouverture du fichier en local pour tester), le navigateur
 // refuse les service workers : on n'essaie meme pas.
+// ⚠️ PAS DE SERVICE WORKER DANS L'APP NATIVE (v872). Nicole, sur l'app Android
+// du test ferme (18 oct. 2026) : la premiere ouverture marche, la suivante
+// affiche « Impossible de charger la page web », alors que wortando.com s'ouvre
+// dans Chrome. Capacitor fait passer TOUTES les requetes d'un service worker par
+// son serveur local (Bridge.java, ServiceWorkerController ->
+// getLocalServer().shouldInterceptRequest), fait pour des fichiers embarques et
+// non pour notre site distant : des que le worker controle la page, il ne peut
+// plus la recuperer. Dans l'app il ne sert a rien -- le demarrage rapide vient
+// deja de la WebView, et les notifications web n'existent pas dans une WebView.
+// On ne l'installe donc pas, et on retire celui qu'une version precedente a pose.
 function enregistrerServiceWorker(){
     if(!("serviceWorker" in navigator)) return;
     const sur = location.protocol === "https:" || location.hostname === "localhost";
     if(!sur) return;
+    let natif = false;
+    try{ natif = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()); }catch(e){}
+    if(natif){
+        try{
+            navigator.serviceWorker.getRegistrations()
+                .then(rs => rs.forEach(r => r.unregister()))
+                .catch(() => {});
+        }catch(e){}
+        return;
+    }
     window.addEventListener("load", () => {
         navigator.serviceWorker.register("firebase-messaging-sw.js").catch(() => {});
     });

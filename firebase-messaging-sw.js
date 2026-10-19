@@ -171,7 +171,19 @@ self.addEventListener("fetch", (e) => {
         if(rep) return rep;
         const secours = await caches.match(cle);
         if(secours) return secours;            // hors ligne : on sert la copie
-        return Response.error();
+        // v872 : SE RETIRER PLUTOT QUE MONTRER UNE ERREUR. Ni copie ni reseau :
+        // c'etait Response.error(), donc l'ecran d'erreur du telephone, et
+        // aucune page pour corriger quoi que ce soit. Cas vecu dans l'app
+        // Android (18 oct. 2026), ou Capacitor detourne les requetes du worker.
+        // Le worker se desinscrit et la page se recharge sans lui : la
+        // navigation passe alors directement par le reseau. Pas de boucle
+        // possible -- une fois desinscrit, il n'intercepte plus rien.
+        try{ await self.registration.unregister(); }catch(err){}
+        return new Response(
+            '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width">'
+            + '<script>setTimeout(function(){ location.reload(); }, 300);</script>',
+            { headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } }
+        );
     })());
 });
 
