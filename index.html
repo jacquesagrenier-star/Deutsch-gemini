@@ -6746,6 +6746,9 @@ body[data-theme="dark"] #decouverte > button.primary{
 /* v880 : le son du jour -- les lettres en cause, soulignees dans le mot. */
 .son-lettres{text-decoration:underline; text-decoration-color:#E8A23A; text-decoration-thickness:3px; text-underline-offset:3px;}
 .rp-articles button{font-size:18px; font-weight:800;}
+/* v882 : la prononciation sous le mot d'un tableau. */
+.cp-tl-pr{display:block; font-size:11.5px; font-weight:700; color:#6b5a3a; letter-spacing:.02em; margin-top:1px;}
+body[data-theme="dark"] .cp-tl-pr{color:#d9c49a;}
 #cartePhrase .pron-tete{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin:6px 0 4px;}
 #cartePhrase .pron-graphie{font-size:30px; font-weight:900;}
 #cartePhrase .pron-mots{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
@@ -6783,6 +6786,14 @@ body[data-theme="dark"] .ela-choix button.on{background:#E8A23A; border-color:#E
 .pilule-accueil{--pa:#E8A23A; --pa-rgb:232,162,58; grid-column:1 / -1; position:relative; display:flex; align-items:center; gap:11px;
     background:#1C2430; color:#fff; border-radius:999px; padding:9px 12px 9px 9px; padding-inline:9px 12px; text-align:start;}
 .pilule-accueil.pa-ecoute{--pa:#4fb3a9; --pa-rgb:79,179,169;}
+/* v882 : le bouton ▶ A DROITE (Jacques : « on est porte a cliquer a droite » --
+   le pouce). L'anneau et l'onde passent a gauche, dans la meme case de 46 px,
+   pour que les deux pilules restent alignees. En persan et en arabe, l'ordre
+   s'inverse de lui-meme : le bouton est a gauche, la ou le pouce lit. */
+.pilule-accueil > .pa-anneau, .pilule-accueil > .ela-onde{order:0;}
+.pilule-accueil > .pa-txt{order:1;}
+.pilule-accueil > .pa-play{order:2;}
+.pilule-accueil{padding-inline:12px 9px;}
 .pa-play{width:46px; height:46px; flex:0 0 auto; border:0; border-radius:50%; background:var(--pa); display:flex; align-items:center; justify-content:center;
     box-shadow:0 0 0 4px rgba(var(--pa-rgb),.2); cursor:pointer; padding:0;}
 .pa-play svg{margin-left:3px; fill:#1C2430;}
@@ -6794,7 +6805,11 @@ body[data-theme="dark"] .ela-choix button.on{background:#E8A23A; border-color:#E
 .orb-seance.pilule-mode{position:relative; z-index:6;}
 .ecoute-ligne-accueil.pilule-accueil{z-index:5;}
 .pa-sous{display:flex; align-items:center; gap:6px; margin-top:2px; min-width:0;}
-.pa-niv{flex:0 0 auto; border:0; background:none; color:#fff; font:inherit; font-size:11.5px; font-weight:900; padding:0; cursor:pointer; white-space:nowrap;}
+/* v882 : la pastille du niveau se voit (Jacques : « un peu petit, la fleche pour
+   changer de niveau, on voit pas tellement ») -- une capsule cerclee, ▾ plus grand. */
+.pa-niv{flex:0 0 auto; border:0; background:rgba(255,255,255,.14); box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.45); color:#fff; font:inherit;
+    font-size:12px; font-weight:900; padding:2px 8px 3px 9px; border-radius:999px; cursor:pointer; white-space:nowrap; line-height:1.25;}
+.pa-niv::after{content:""; display:inline-block; margin-inline-start:5px; vertical-align:2px; border:4.5px solid transparent; border-top:6px solid currentColor; border-bottom:0;}
 .pa-sens{flex:1 1 auto; min-width:0; border:0; background:none; color:#b9c2cf; font:inherit; font-size:11.5px; font-weight:700; padding:0; text-align:start;
     white-space:nowrap; overflow:hidden; text-overflow:ellipsis; cursor:pointer;}
 span.pa-sens{cursor:default;}
@@ -6807,9 +6822,9 @@ span.pa-sens{cursor:default;}
 .pa-anneau b{font-size:14px; font-weight:900;}
 .pa-anneau small{font-size:8.5px; font-weight:700; color:#b9c2cf;}
 .pa-anneau.atteint b{color:var(--pa);}
-.pilule-accueil .ela-onde{flex:0 0 64px; height:20px;}
+.pilule-accueil .ela-onde{flex:0 0 46px; height:22px; justify-content:center;}
 .pilule-accueil .ela-onde i:nth-child(3n){background:var(--pa);}
-.pa-liste{display:none; position:absolute; top:calc(100% + 6px); inset-inline-start:52px; z-index:30; width:250px; background:#fff; color:#1C2430;
+.pa-liste{display:none; position:absolute; top:calc(100% + 6px); inset-inline-start:62px; z-index:30; width:250px; background:#fff; color:#1C2430;
     border-radius:14px; padding:9px; box-shadow:0 0 0 1.5px #e3dccf, 0 14px 30px rgba(28,36,48,.28);}
 .pa-liste.ouvert{display:block;}
 .pa-liste-titre{font-size:11.5px; font-weight:800; color:#576177; margin:0 2px 6px;}
@@ -7395,7 +7410,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
                         <strong id="spTitre"></strong>
                     </button>
                     <div class="pa-sous">
-                        <button type="button" class="pa-niv" id="spNiv" onclick="basculerListeSeance(event)">A1 ▾</button>
+                        <button type="button" class="pa-niv" id="spNiv" onclick="basculerListeSeance(event)">A1</button>
                         <button type="button" class="pa-sens" id="spSens" onclick="basculerListeSeance(event)"></button>
                     </div>
                 </div>
@@ -7482,7 +7497,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
                     <strong data-i18n="ela_titre">Écoute. Répète.</strong>
                 </button>
                 <div class="pa-sous">
-                    <button type="button" class="pa-niv" id="ecouteLigneNiv" onclick="basculerNiveauEcoute(event)">A1 ▾</button>
+                    <button type="button" class="pa-niv" id="ecouteLigneNiv" onclick="basculerNiveauEcoute(event)">A1</button>
                     <span class="pa-sens" id="ecouteLigneNb"></span>
                 </div>
             </div>
@@ -7903,7 +7918,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v881</span>
+    <span class="subtitle-version">v882</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11491,8 +11506,8 @@ const I18N = {
         sec_mots: "Travailler les mots",
         sec_phrase: "Travailler la phrase",
         sec_pratique: "Pratiquer",
-        reperes_seance: "Ta séance du jour : chaque jour, touche « Commencer ». Quelques mots nouveaux, et les révisions qui reviennent au bon moment. C'est le plus simple pour progresser.",
-        reperes_niveau: "Ton niveau : les nouveaux mots viennent du niveau choisi ici, de A1 (débutant) à C1 (avancé). Tu peux en changer quand tu veux.",
+        reperes_seance: "Ta séance du jour : chaque jour, touche ▶. Quelques mots nouveaux, et les révisions qui reviennent au bon moment. C'est le plus simple pour progresser.",
+        reperes_niveau: "Ton niveau : les nouveaux mots viennent du niveau choisi ici (touche « A1 ▾ »), de A1 (débutant) à C1 (avancé). Tu peux en changer quand tu veux.",
         reperes_gardes: "Mis de côté : les mots que tu mets de côté pour les retravailler t'attendent ici.",
         gardes_explication: "« Mis de côté » : pendant ta séance du jour, quand un mot te résiste, touche « {bouton} » sur sa carte. Il se retrouve ici, et tu le retravailles quand tu veux.",
         reperes_themes: "Par thème : tu préfères un sujet précis ? La famille, la maison, la nourriture…",
@@ -12826,8 +12841,8 @@ const I18N = {
         sec_mots: "Work on words",
         sec_phrase: "Work on sentences",
         sec_pratique: "Practise",
-        reperes_seance: "Today's session: every day, tap “Start”. A few new words, and reviews that come back at the right moment. It's the easiest way to make progress.",
-        reperes_niveau: "Your level: new words come from the level chosen here, from A1 (beginner) to C1 (advanced). You can change it whenever you like.",
+        reperes_seance: "Today's session: every day, tap ▶. A few new words, and reviews that come back at the right moment. It's the easiest way to make progress.",
+        reperes_niveau: "Your level: new words come from the level chosen here (tap “A1 ▾”), from A1 (beginner) to C1 (advanced). You can change it whenever you like.",
         reperes_gardes: "Set aside: the words you set aside to work on again are waiting for you here.",
         gardes_explication: "“Set aside”: during today's session, when a word gives you trouble, tap “{bouton}” on its card. It ends up here, and you can practise it again whenever you like.",
         reperes_themes: "By theme: prefer a specific topic? Family, home, food…",
@@ -14163,8 +14178,8 @@ const I18N = {
         sec_mots: "Kelime çalışması",
         sec_phrase: "Cümle çalışması",
         sec_pratique: "Alıştırma",
-        reperes_seance: "Bugünkü oturumun: her gün «Başla»ya dokun. Birkaç yeni kelime ve tam zamanında geri gelen tekrarlar. İlerlemenin en kolay yolu bu.",
-        reperes_niveau: "Seviyen: yeni kelimeler burada seçtiğin seviyeden gelir, A1'den (başlangıç) C1'e (ileri) kadar. İstediğin zaman değiştirebilirsin.",
+        reperes_seance: "Bugünkü oturumun: her gün ▶ düğmesine dokun. Birkaç yeni kelime ve tam zamanında geri gelen tekrarlar. İlerlemenin en kolay yolu bu.",
+        reperes_niveau: "Seviyen: yeni kelimeler burada seçtiğin seviyeden gelir («A1 ▾» simgesine dokun), A1'den (başlangıç) C1'e (ileri) kadar. İstediğin zaman değiştirebilirsin.",
         reperes_gardes: "Kenara ayrılanlar: yeniden çalışmak için kenara ayırdığın kelimeler seni burada bekliyor.",
         gardes_explication: "« Kenara ayrılanlar »: bugünkü oturumunda bir kelime seni zorlarsa, kartındaki « {bouton} » düğmesine dokun. Kelime buraya gelir, istediğin zaman yeniden çalışırsın.",
         reperes_themes: "Temaya göre: belirli bir konu mu istiyorsun? Aile, ev, yiyecek…",
@@ -15825,8 +15840,8 @@ const I18N = {
         sec_mots: "Робота зі словами",
         sec_phrase: "Робота з реченням",
         sec_pratique: "Практика",
-        reperes_seance: "Твій сеанс на сьогодні: щодня торкайся «Почати». Кілька нових слів і повторення, що повертаються в потрібний момент. Це найпростіший спосіб просуватися.",
-        reperes_niveau: "Твій рівень: нові слова беруться з рівня, обраного тут, від A1 (початковий) до C1 (просунутий). Його можна змінити будь-коли.",
+        reperes_seance: "Твій сеанс на сьогодні: щодня торкайся ▶. Кілька нових слів і повторення, що повертаються в потрібний момент. Це найпростіший спосіб просуватися.",
+        reperes_niveau: "Твій рівень: нові слова беруться з рівня, обраного тут (торкнися «A1 ▾»), від A1 (початковий) до C1 (просунутий). Його можна змінити будь-коли.",
         reperes_gardes: "Відкладені: слова, які ти відкладаєш, щоб попрацювати з ними знову, чекають тут.",
         gardes_explication: "«Відкладені»: під час сеансу на сьогодні, якщо слово дається важко, торкнися «{bouton}» на його картці. Воно опиниться тут, і ти повернешся до нього, коли захочеш.",
         reperes_themes: "За темою: хочеш конкретну тему? Сім'я, дім, їжа…",
@@ -17881,8 +17896,8 @@ const I18N = {
         sec_mots: "کار روی واژه‌ها",
         sec_phrase: "کار روی جمله",
         sec_pratique: "تمرین",
-        reperes_seance: "جلسهٔ امروزت: هر روز «شروع» را بزن. چند واژهٔ تازه، و مرورهایی که درست به‌موقع برمی‌گردند. ساده‌ترین راه پیشرفت همین است.",
-        reperes_niveau: "سطح تو: واژه‌های تازه از سطحی می‌آیند که این‌جا انتخاب می‌کنی، از A1 (مبتدی) تا C1 (پیشرفته). هر وقت خواستی می‌توانی عوضش کنی.",
+        reperes_seance: "جلسهٔ امروزت: هر روز ▶ را بزن. چند واژهٔ تازه، و مرورهایی که درست به‌موقع برمی‌گردند. ساده‌ترین راه پیشرفت همین است.",
+        reperes_niveau: "سطح تو: واژه‌های تازه از سطحی می‌آیند که این‌جا انتخاب می‌کنی («A1 ▾» را بزن)، از A1 (مبتدی) تا C1 (پیشرفته). هر وقت خواستی می‌توانی عوضش کنی.",
         reperes_gardes: "کنارگذاشته‌ها: واژه‌هایی که برای کار دوباره کنار می‌گذاری این‌جا منتظرت هستند.",
         gardes_explication: "«کنارگذاشته‌ها»: در جلسهٔ امروزت، وقتی واژه‌ای برایت سخت است، روی کارتش «{bouton}» را بزن. به این‌جا می‌آید و هر وقت خواستی دوباره تمرینش می‌کنی.",
         reperes_themes: "بر پایهٔ موضوع: موضوع خاصی را ترجیح می‌دهی؟ خانواده، خانه، غذا…",
@@ -19340,8 +19355,8 @@ const I18N = {
         sec_mots: "العمل على الكلمات",
         sec_phrase: "العمل على الجملة",
         sec_pratique: "التدرّب",
-        reperes_seance: "جلستك اليوم: كل يوم، المس «ابدأ». بضع كلمات جديدة، ومراجعات تعود في الوقت المناسب. هذه أسهل طريقة للتقدّم.",
-        reperes_niveau: "مستواك: تأتي الكلمات الجديدة من المستوى الذي تختاره هنا، من A1 (مبتدئ) إلى C1 (متقدّم). يمكنك تغييره متى شئت.",
+        reperes_seance: "جلستك اليوم: كل يوم، المس ▶. بضع كلمات جديدة، ومراجعات تعود في الوقت المناسب. هذه أسهل طريقة للتقدّم.",
+        reperes_niveau: "مستواك: تأتي الكلمات الجديدة من المستوى الذي تختاره هنا (المس «A1 ▾»)، من A1 (مبتدئ) إلى C1 (متقدّم). يمكنك تغييره متى شئت.",
         reperes_gardes: "الموضوعة جانبًا: الكلمات التي تضعها جانبًا لتعيد العمل عليها تنتظرك هنا.",
         gardes_explication: "«الموضوعة جانبًا»: خلال جلستك اليوم، حين تصعب عليك كلمة، المس «{bouton}» على بطاقتها. ستجدها هنا، وتعيد التدرّب عليها متى شئت.",
         reperes_themes: "حسب الموضوع: تفضّل موضوعًا محددًا؟ العائلة، البيت، الطعام…",
@@ -19683,8 +19698,8 @@ const I18N = {
         sec_mots: "Trabalhar as palavras",
         sec_phrase: "Trabalhar a frase",
         sec_pratique: "Praticar",
-        reperes_seance: "A sua sessão do dia: todos os dias, toque em «Começar». Algumas palavras novas e as revisões que voltam na hora certa. É o jeito mais simples de progredir.",
-        reperes_niveau: "O seu nível: as palavras novas vêm do nível escolhido aqui, de A1 (iniciante) a C1 (avançado). Você pode mudar quando quiser.",
+        reperes_seance: "A sua sessão do dia: todos os dias, toque em ▶. Algumas palavras novas e as revisões que voltam na hora certa. É o jeito mais simples de progredir.",
+        reperes_niveau: "O seu nível: as palavras novas vêm do nível escolhido aqui (toque em «A1 ▾»), de A1 (iniciante) a C1 (avançado). Você pode mudar quando quiser.",
         reperes_gardes: "Separadas: as palavras que você separa para trabalhar de novo esperam por você aqui.",
         gardes_explication: "« Separadas »: durante a sua sessão do dia, quando uma palavra for difícil, toque em « {bouton} » no cartão dela. Ela vem para cá, e você pratica de novo quando quiser.",
         reperes_themes: "Por tema: prefere um assunto específico? A família, a casa, a comida…",
@@ -21083,8 +21098,8 @@ const I18N = {
         sec_mots: "Praca nad słowami",
         sec_phrase: "Praca nad zdaniem",
         sec_pratique: "Ćwiczenia",
-        reperes_seance: "Twoja dzisiejsza sesja: codziennie dotknij „Zacznij”. Kilka nowych słów i powtórki, które wracają we właściwym momencie. To najprostszy sposób na postępy.",
-        reperes_niveau: "Twój poziom: nowe słowa pochodzą z poziomu wybranego tutaj, od A1 (początkujący) do C1 (zaawansowany). Możesz go zmienić w dowolnej chwili.",
+        reperes_seance: "Twoja dzisiejsza sesja: codziennie dotknij ▶. Kilka nowych słów i powtórki, które wracają we właściwym momencie. To najprostszy sposób na postępy.",
+        reperes_niveau: "Twój poziom: nowe słowa pochodzą z poziomu wybranego tutaj (dotknij „A1 ▾”), od A1 (początkujący) do C1 (zaawansowany). Możesz go zmienić w dowolnej chwili.",
         reperes_gardes: "Odłożone: słowa, które odkładasz, żeby do nich wrócić, czekają tutaj.",
         gardes_explication: "„Odłożone”: podczas dzisiejszej sesji, gdy słowo sprawia ci trudność, dotknij „{bouton}” na jego karcie. Trafi tutaj i wrócisz do niego, kiedy zechcesz.",
         reperes_themes: "Według tematu: wolisz konkretny temat? Rodzina, dom, jedzenie…",
@@ -22481,8 +22496,8 @@ const I18N = {
         sec_mots: "Работа со словами",
         sec_phrase: "Работа с предложением",
         sec_pratique: "Практика",
-        reperes_seance: "Твоё занятие на сегодня: каждый день нажимай «Начать». Несколько новых слов и повторения, которые возвращаются в нужный момент. Это самый простой способ двигаться вперёд.",
-        reperes_niveau: "Твой уровень: новые слова берутся с уровня, выбранного здесь, от A1 (начальный) до C1 (продвинутый). Его можно сменить в любой момент.",
+        reperes_seance: "Твоё занятие на сегодня: каждый день нажимай ▶. Несколько новых слов и повторения, которые возвращаются в нужный момент. Это самый простой способ двигаться вперёд.",
+        reperes_niveau: "Твой уровень: новые слова берутся с уровня, выбранного здесь (нажми «A1 ▾»), от A1 (начальный) до C1 (продвинутый). Его можно сменить в любой момент.",
         reperes_gardes: "Отложенные: слова, которые ты откладываешь, чтобы поработать над ними снова, ждут тебя здесь.",
         gardes_explication: "«Отложенные»: во время занятия на сегодня, если слово даётся с трудом, нажми «{bouton}» на его карточке. Оно окажется здесь, и ты вернёшься к нему, когда захочешь.",
         reperes_themes: "По темам: хочешь конкретную тему? Семья, дом, еда…",
@@ -30040,7 +30055,10 @@ async function syncProgressToCloud(){
             vusCount,
             streak: getStreakCount(),
             xp: getXp(),
-            dailyGoalTarget: getDailyGoalTarget(),
+            // v882 : seulement un objectif CHOISI. La valeur calculee (la rampe de la
+            // premiere semaine, 10 le premier jour) restauree sur un autre appareil y
+            // deviendrait un choix, et l'y figerait.
+            dailyGoalTarget: (function(){ const v = parseInt(localStorage.getItem(DAILY_GOAL_STORAGE_KEY), 10); return Number.isFinite(v) && v > 0 ? v : null; })(),
             // Utilisés côté serveur (Cloud Function de rappel quotidien) pour savoir
             // si l'objectif du jour est déjà atteint sans avoir à tout recalculer :
             // dailyActivityDate permet de détecter une valeur d'hier restée en cache
@@ -31353,7 +31371,28 @@ function showBadgeDetail(id){
 function getDailyGoalTarget(){
     let v;
     try{ v = parseInt(localStorage.getItem(DAILY_GOAL_STORAGE_KEY), 10); }catch(e){ v = NaN; }
-    return Number.isFinite(v) && v > 0 ? v : DEFAULT_DAILY_GOAL_TARGET;
+    if(Number.isFinite(v) && v > 0) return v;   // un objectif choisi par la personne prime
+    // v882 : LA PREMIERE SEMAINE EN DOUCEUR. Mesure du 19 oct. 2026 : sur 117
+    // seances ouvertes en sept jours, 34 quittees des la premiere carte, 26
+    // finies ; mediane des non finies, 35 % du paquet. Trente cartes le premier
+    // jour, c'est un examen. On monte : 10, 15, 15, puis 20 jusqu'au 7e jour,
+    // puis l'objectif normal. Tout suit : la taille de la seance, l'anneau de
+    // l'accueil, la fete de l'objectif atteint.
+    // ⚠️ Le tableau EN LITTERAL, dans la fonction : une constante declaree plus
+    // bas tomberait dans sa zone morte si l'objectif est lu tot (deja vecu).
+    const rampe = [10, 15, 15, 20, 20, 20, 20];
+    const j = jourDApprentissage();
+    if(j >= 1 && j <= rampe.length) return Math.min(DEFAULT_DAILY_GOAL_TARGET, rampe[j - 1]);
+    return DEFAULT_DAILY_GOAL_TARGET;
+}
+// Le combientieme jour d'apprentissage est aujourd'hui (1 = le premier). Un jour
+// compte des qu'on y a travaille (noterJourTravaille) ; avant la premiere carte
+// d'aujourd'hui, c'est le jour suivant le dernier compte.
+function jourDApprentissage(){
+    try{
+        const j = joursTravailles();
+        return j.dernier === getTodayStr() ? Math.max(1, j.n) : (j.n || 0) + 1;
+    }catch(e){ return 99; }
 }
 
 function setDailyGoalTarget(v){
@@ -36139,12 +36178,14 @@ function basculerEssai(nom){
 // jour. Rien ne bloque l'ecran. « Revoir les points de decouverte » (tableau
 // admin pendant l'essai, reglages en production) les fait tous revenir.
 const REPERES = [
-    { id: "seance", sel: "#home .orb-seance .seance-go",
+    // v882 : la pilule (v881) a remplace « Commencer » par le rond ▶ ; la
+    // bulle visait l'ancien bouton, cache, et flottait en haut de l'ecran.
+    { id: "seance", sel: "#home #seancePilule .pa-play",
       cle: "reperes_seance" },
     // v800 : APRES les pastilles, et non dans « Ton niveau » : dans l'etiquette,
     // le point chevauchait le texte (Jacques : « il y en a qui ne sont pas du
     // tout au bon endroit »).
-    { id: "niveau", sel: "#home .orb-seance .seance-niveaux", apres: true,
+    { id: "niveau", sel: "#home #seancePilule .pa-niv", apres: true,
       cle: "reperes_niveau" },
     // « Mis de cote » n'apparait qu'une fois un mot mis de cote : son point
     // aussi, donc, et c'est le bon moment pour le decouvrir. (Jacques, v795.)
@@ -41054,7 +41095,7 @@ function majLigneEcoute(){
     }
     const niv = niveauEcouteAccueil();
     const nom = n => n === "ALL" ? t("ecoute_level_all") : n;
-    pastille.textContent = nom(niv) + " ▾";
+    pastille.textContent = nom(niv);   // v882 : la fleche est dessinee par .pa-niv::after
     // v881 : la ligne grise dit combien de mots attendent a ce niveau.
     const nb = document.getElementById("ecouteLigneNb");
     if(nb){
@@ -41166,7 +41207,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 881;
+const APP_VERSION = 882;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -41370,7 +41411,11 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //      25 298 fichiers -- A1 a C1 au lieu de A1-A2 seuls (v407)
 //   8  TOUT EN MULTILINGUAL V2 : les 1 042 fichiers faits en Flash les 9-11 oct.
 //      regeneres sous le meme nom, + 1 085 textes jamais enregistres (v774)
-const AUDIO_REVISION = "9";
+//  10  LES NOMBRES ESPAGNOLS REFAITS (v882, 19 oct. 2026) : Jacques entendait
+//      « once » (11) mal dit. Les 59 nombres des reperes, dans les deux voix,
+//      regeneres en v2 dans une porteuse (« Número: once. », sinon « Palabra: »)
+//      puis recoupes ; les anciens sont dans ~/.wortando/audio-nombres-es-avant-19-oct.
+const AUDIO_REVISION = "10";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -47349,6 +47394,7 @@ async function ouvrirPremiersPas(taille){
     // v879 : les reperes (jours, mois, nombres) des Premiers pas.
     try{ const rp = await preparerReperes(); if(rp && items.length > 2) items = insererReperes(items, rp); }catch(e){}
     try{ const sd = await preparerSonDuJour(); if(sd && items.length > 2) items = insererSonDuJour(items, sd); }catch(e){}
+    try{ items = premiereCarteFacile(items); }catch(e){}
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
     currentCardsFull = [];
@@ -47945,6 +47991,8 @@ function reperesPourMoi(){
 }
 async function preparerReperes(){
     if(!reperesPourMoi()) return null;
+    // v882 : pas le premier jour -- il appartient aux premiers mots (sauf remise a zero admin).
+    if(!lireReperes().force && jourDApprentissage() < 2) return null;
     const R = await chargerReperes();
     if(!R) return null;
     const st = lireReperes();
@@ -48092,6 +48140,25 @@ function marquerRepere(item){
     ecrireReperes(st);
 }
 
+// ============ LA PREMIERE CARTE EST UNE VICTOIRE (v882) ============
+// Mesure du 19 oct. 2026 : 34 seances quittees DES LA PREMIERE CARTE. Celle
+// d'un vrai debutant etait le tableau de « sein » (six lignes et une note),
+// puis, carte 3, celui des nombres (21 lignes). Le premier jour, une seance
+// commence par un mot qu'on entend et qu'on comprend ; les tableaux viennent
+// apres trois cartes. Les jours suivants, l'ordre voulu revient (le tableau
+// d'abord, c'est le parcours de Premiers pas).
+function premiereCarteFacile(cartes){
+    if(!cartes || cartes.length < 3 || jourDApprentissage() > 1) return cartes;
+    const lourde = c => !!(c && c.mode === "phrase" && /^(pp_tableau|av_bloc|av_jalon|av_escale_fin|scene_arret|rp_son)$/.test(c.forme || ""));
+    if(!lourde(cartes[0])) return cartes;
+    const sortie = cartes.slice();
+    const tetes = [];
+    while(sortie.length > 2 && lourde(sortie[0])) tetes.push(sortie.shift());
+    // Jamais en derniere position : en Premiers pas, la derniere carte porte la position.
+    sortie.splice(Math.min(3, sortie.length - 1), 0, ...tetes);
+    return sortie;
+}
+
 // ============ LE SON DU JOUR (v880, 19 oct. 2026) ============
 // Jacques : « la prononciation dans les exercices de la seance du jour » ;
 // « des exercices de prononciation, c'est la base ». Une fois par jour, au
@@ -48108,6 +48175,8 @@ async function chargerPrononciationSeance(){
 }
 async function preparerSonDuJour(){
     if(!essaiActif("son_du_jour")) return null;
+    // v882 : a partir du 3e jour d'apprentissage.
+    if(jourDApprentissage() < 3) return null;
     const P = await chargerPrononciationSeance();
     if(!P || !Array.isArray(P.groupes)) return null;
     const regles = [];
@@ -48204,6 +48273,20 @@ function construireTableau(tab){
             });
         }
         forme.setAttribute("lang", langueDe);
+        // v882 : la prononciation sous le mot, si la ligne en porte une pour la
+        // langue de l'interface (les nombres espagnols : « once » -> ON-sé).
+        // θ = c/z : « s » en Amerique latine, « th » en Espagne.
+        const pr = (l[2] && typeof l[2] === "object" && !Array.isArray(l[2])) ? l[2][getUiLang()] : "";
+        if(pr){
+            const th = (LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL !== "latam") ? "th" : "s";
+            // Dans une syllabe forte (en capitales), le son s'ecrit en capitales :
+            // « θIN-ko » -> THIN-ko, « DIÉθ » -> DIÉTH ; ailleurs, « ON-θé » -> ON-thé.
+            const maj = c => !!c && c !== c.toLowerCase();
+            const prTexte = pr.replace(/θ/g, (m, i, s) => (maj(s[i + 1]) || maj(s[i - 1])) ? th.toUpperCase() : th);
+            const p = creer("small", "cp-tl-pr", prTexte);
+            p.setAttribute("lang", getUiLang());
+            forme.appendChild(p);
+        }
         ligne.appendChild(forme);
         ligne.appendChild(creer("span", "cp-tl-son", "🔊"));
         const dit = texteFormeTableau(brut);
@@ -48664,6 +48747,7 @@ async function ouvrirSeanceDuJour(sansScene){
     try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
     // v880 : le son du jour, une fois par jour, au milieu.
     try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
+    try{ seance = premiereCarteFacile(seance); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
         toastSeanceVide(tout, "alert_all_theme_words_mastered"); return;
@@ -48855,7 +48939,7 @@ function majPiluleSeance(){
     // Le titre court : « 🛬 Escale 1 sur 12 » sans le lieu (la seance le dit).
     if(sp) sp.textContent = titre ? titre.textContent.trim().split(" · ")[0] : "";
     const niv = document.getElementById("spNiv");
-    if(niv) niv.textContent = (pp ? "🌱" : niveau) + " ▾";
+    if(niv) niv.textContent = pp ? "🌱" : niveau;   // v882 : la fleche est dessinee par .pa-niv::after
     const clairTxt = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
     const clair = document.getElementById("spClair");
     if(clair) clair.textContent = clairTxt;

@@ -230,6 +230,14 @@ def construire(langue):
                     "p": suites(MOIS_MOTS[langue], MOIS, [4, 4, 4])})
     # v880 : l'alphabet, le genre, le pluriel (voir reperes_suite.py).
     import reperes_suite as rs
+    # v882 : la prononciation sous chaque nombre espagnol (3e element, par langue d'interface).
+    if langue == "es":
+        for r in reperes:
+            if r["type"] == "nombre":
+                for l in r["l"]:
+                    pr = rs.PRONONCIATION_NOMBRES_ES_FR.get(l[0])
+                    if pr:
+                        l.append({"fr": pr})
     reperes.append({"id": "alphabet", "type": "lettre", "t": rs.TITRES["alphabet"], "a": rs.ASTUCES[langue]["alphabet"],
                     "l": [[nom, lettre, conf] for lettre, nom, conf in rs.ALPHABET[langue]],
                     "p": [[s, mot] for s, mot in rs.EPELER[langue]]})

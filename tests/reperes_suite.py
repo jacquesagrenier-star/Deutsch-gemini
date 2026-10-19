@@ -213,6 +213,23 @@ GENRE = {
   ],
 }
 
+# v882 : LA PRONONCIATION A COTE DU NOMBRE (Jacques : « le chiffre en espagnol, la
+# prononciation : once »). Ecrite pour un lecteur francophone, la syllabe forte
+# en capitales. θ = le son de c (devant e, i) et de z : l'app l'ecrit « s » pour
+# l'Amerique latine et « th » pour l'Espagne (VARIANTE_ESPAGNOL).
+PRONONCIATION_NOMBRES_ES_FR = {
+    "cero": "θÉ-ro", "uno": "OU-no", "dos": "DOS", "tres": "TRÉS", "cuatro": "KOUA-tro", "cinco": "θIN-ko",
+    "seis": "SÉÏS", "siete": "SIÉ-té", "ocho": "O-tcho", "nueve": "NOUÉ-bé", "diez": "DIÉθ", "once": "ON-θé",
+    "doce": "DO-θé", "trece": "TRÉ-θé", "catorce": "ka-TOR-θé", "quince": "KIN-θé", "dieciséis": "dié-θi-SÉÏS",
+    "diecisiete": "dié-θi-SIÉ-té", "dieciocho": "dié-θi-O-tcho", "diecinueve": "dié-θi-NOUÉ-bé", "veinte": "BÉÏN-té",
+    "veintiuno": "béïn-ti-OU-no", "veintidós": "béïn-ti-DOS", "treinta": "TRÉÏN-ta", "treinta y uno": "TRÉÏN-ta i OU-no",
+    "cuarenta": "koua-RÉN-ta", "cincuenta": "θin-KOUÉN-ta", "sesenta": "sé-SÉN-ta", "setenta": "sé-TÉN-ta",
+    "ochenta": "o-TCHÉN-ta", "noventa": "no-BÉN-ta", "cien": "θIÉN", "doscientos": "dos-θIÉN-tos",
+    "trescientos": "trés-θIÉN-tos", "cuatrocientos": "koua-tro-θIÉN-tos", "quinientos": "ki-NIÉN-tos",
+    "seiscientos": "séïs-θIÉN-tos", "setecientos": "sé-té-θIÉN-tos", "ochocientos": "o-tcho-θIÉN-tos",
+    "novecientos": "no-bé-θIÉN-tos", "mil": "MIL",
+}
+
 # Le pluriel : tableau [pluriel, regle] ; exercices [singulier, pluriel, regle, leurre, leurre].
 PLURIEL = {
   "de": (
