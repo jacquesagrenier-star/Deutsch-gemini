@@ -7922,7 +7922,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v889</span>
+    <span class="subtitle-version">v890</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26013,7 +26013,13 @@ async function handleEmailSignup() {
         try {
             codeSnap = await window.fsGetDoc(window.fsDoc(window.firestoreDb, 'inviteCodes', code));
         } catch (e) {
-            showInfoToast(t('alert_invite_check_failed'));
+            // v890 : LA RAISON DANS LE MESSAGE. Jacques (20 oct. 2026) : « toujours
+            // impossible de vérifier le code », que je ne reproduisais pas (la
+            // lecture anonyme de inviteCodes répond). Sans la raison, impossible
+            // de séparer réseau, Firebase non chargé et règle refusée.
+            const raison = String((e && (e.code || e.name)) || "") + (e && e.message ? " : " + e.message : "");
+            showInfoToast(t('alert_invite_check_failed') + " (" + raison.slice(0, 90) + ")");
+            try{ console.error("verification du code", e); }catch(x){}
             return;
         }
         if (!codeSnap.exists() || codeSnap.data().used) {
@@ -41276,7 +41282,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 889;
+const APP_VERSION = 890;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
