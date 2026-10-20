@@ -31,6 +31,19 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .scene{position:relative;width:100%;aspect-ratio:1080/1935;overflow:hidden;
   background:#2a2a2a;user-select:none;-webkit-user-select:none}
 .scene img{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* LE ZOOM A DEUX DOIGTS (20 oct. 2026, Jacques : « agrandir avec les deux doigts,
+   et la rapetisser »). Seul ce calque zoome : l'image, les zones, les contours et
+   les etiquettes. Le panneau des questions (.bas) reste a sa place. */
+.plan{position:absolute;inset:0;transform-origin:0 0;will-change:transform}
+.scene.zoomable{touch-action:pan-y}
+.scene.zoome{touch-action:none}
+.zoom-retour{position:absolute;right:8px;top:8px;z-index:1900;width:38px;height:38px;border-radius:50%;border:0;
+  background:rgba(251,247,239,.94);color:var(--encre);font:700 19px/1 system-ui,sans-serif;cursor:pointer;
+  box-shadow:0 2px 10px rgba(0,0,0,.35)}
+.zoom-retour[hidden]{display:none}
+/* Zoomee, l'etiquette garde sa taille : elle s'ancre en bas au centre et se
+   reduit de l'inverse du zoom (--zoom, pose par zoomAppliquer). */
+.plan .etiquette{transform-origin:50% 100%;transform:translate(-50%,-100%) scale(calc(1 / var(--zoom, 1)))}
 .zone{position:absolute;border:0;padding:0;margin:0;background:transparent;
   cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:6px}
 .zone:focus-visible{outline:2px dashed var(--ambre)}
@@ -224,7 +237,8 @@ html,body{margin:0;background:#11151b;color:var(--encre);
     <div class="carte" id="carte"></div>
   </div>
   <div class="scene" id="scene">
-    <img id="photo" alt="">
+    <div class="plan" id="plan"><img id="photo" alt=""></div>
+    <button type="button" class="zoom-retour" id="zoomRetour" hidden aria-label="1:1">↺</button>
     <div class="bas" id="bas"></div>
   </div>
 </div>
@@ -402,6 +416,7 @@ function T(cle, v){
 
 const $ = id => document.getElementById(id);
 const scene = $("scene");
+const calquePlan = $("plan");
 document.querySelector(".haut").appendChild($("bas"));
 $("photo").src = S.image;
 $("photo").alt = S.alt || "";
@@ -695,7 +710,7 @@ function sous(xp, yp){
 /* Un bouton invisible par zone, pour le clavier et les lecteurs d'ecran
    seulement : le doigt, lui, est lu par la scene. */
 function boutonsZones(){
-  scene.querySelectorAll("button.zone").forEach(b => b.remove());
+  calquePlan.querySelectorAll("button.zone").forEach(b => b.remove());
   for (const p of ZONES){
     const [x,y,w,h] = p.cadre;
     const b = document.createElement("button");
@@ -703,13 +718,14 @@ function boutonsZones(){
     b.style.cssText = `left:${x}%;top:${y}%;width:${w}%;height:${h}%;pointer-events:none`;
     b.setAttribute("aria-label", p.personne || p.mot);
     b.addEventListener("click", () => toucher(p.id, null));
-    scene.appendChild(b);
+    calquePlan.appendChild(b);
   }
 }
 boutonsZones();
 scene.addEventListener("click", e => {
   if (e.target.closest(".bas") || e.target.closest("button:not(.zone)") || e.target.closest(".gros-plan")) return;
-  const r = scene.getBoundingClientRect();
+  // Mesure sur le CALQUE : a n'importe quel zoom, le point touche reste juste.
+  const r = calquePlan.getBoundingClientRect();
   const pt = [(e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100];
   const g = grosPlanSous(pt);
   if (g && !zoom && veutGrosPlan(g)) return ouvrirGrosPlan(g);
@@ -756,7 +772,7 @@ function calque(classe){
   v.setAttribute("preserveAspectRatio", "none");
   v.setAttribute("class", classe);
   v.setAttribute("aria-hidden", "true");
-  scene.appendChild(v);
+  calquePlan.appendChild(v);
   return v;
 }
 const voile = calque("voile"), toile = calque("contours");
@@ -795,7 +811,7 @@ function dessiner(){
        ${a.second ? 'stroke-dasharray="6 4"' : ""}/>`).join("");
   toile.classList.toggle("vivant", principaux.length > 0);
 }
-function effacer(){ allumes = []; dessiner(); scene.querySelectorAll(".etiquette").forEach(n => n.remove());
+function effacer(){ allumes = []; dessiner(); calquePlan.querySelectorAll(".etiquette").forEach(n => n.remove());
   if (zoom) zoom.svg.innerHTML = ""; }
 function anneau(id, second){
   if (zoom && zoom.g.formes[id]) return anneauGros(id, second);
@@ -831,7 +847,7 @@ function etiquette(id, quel){
   // liste d'Anna ne voulait rien dire, et la liste melait tout (Jacques, 6 oct.).
   e.innerHTML = (p.personne ? `<b>${p.personne}</b> · ` : "") + groupe(n)
               + `<span class="fr">${sensDe(n)}${n.pluriel ? " · " + T("pluriel") + ` <span lang="${LANG_CIBLE}">${plurielDe(n)}</span>` : ""}</span>`;
-  scene.appendChild(e);
+  calquePlan.appendChild(e);
   // Une etiquette centree sur un objet du bord sortait de l'ecran (das Handy) :
   // on la ramene dans le cadre apres l'avoir mesuree.
   const r = e.getBoundingClientRect(), c = scene.getBoundingClientRect(), marge = 6;
@@ -865,6 +881,7 @@ function veutGrosPlan(g){
 const grosPlanDe = ids => GROS.find(g => ids.length && ids.every(id => g.formes[id] && P[id].detail)) || null;
 
 function ouvrirGrosPlan(g, sansAnim){
+  try{ zoomRemettre(); }catch(e){}
   fermerGrosPlan(); effacer();
   const [x,y,w,h] = g.cadre;
   const el = document.createElement("div");
@@ -1370,6 +1387,72 @@ function fin(){
 }
 
 demarrer();
+/* ---------- le zoom a deux doigts (20 oct. 2026) ----------
+   Deux doigts : agrandir (jusqu'a x4) ou rapetisser (jamais sous la taille
+   normale), autour du point entre les doigts. Agrandie, la scene se deplace d'un
+   doigt ; un toucher bref reste un toucher (un mot, une reponse). ↺ revient a
+   1:1, le gros plan aussi. */
+const ZOOM = {s: 1, x: 0, y: 0, pinch: null, pan: null, bouge: false};
+scene.classList.add("zoomable");
+function zoomAppliquer(){
+  const W = scene.clientWidth, H = scene.clientHeight;
+  ZOOM.s = Math.max(1, Math.min(4, ZOOM.s));
+  ZOOM.x = Math.min(0, Math.max(W * (1 - ZOOM.s), ZOOM.x));
+  ZOOM.y = Math.min(0, Math.max(H * (1 - ZOOM.s), ZOOM.y));
+  calquePlan.style.transform = ZOOM.s === 1 ? "" : `translate(${ZOOM.x}px,${ZOOM.y}px) scale(${ZOOM.s})`;
+  calquePlan.style.setProperty("--zoom", ZOOM.s);
+  scene.classList.toggle("zoome", ZOOM.s > 1);
+  const b = $("zoomRetour"); if (b) b.hidden = ZOOM.s === 1;
+}
+function zoomRemettre(){ ZOOM.s = 1; ZOOM.x = 0; ZOOM.y = 0; zoomAppliquer(); }
+function zoomPoint(t){ const r = scene.getBoundingClientRect(); return [t.clientX - r.left, t.clientY - r.top]; }
+scene.addEventListener("touchstart", e => {
+  if (e.target.closest(".bas") || e.target.closest(".gros-plan") || e.target.closest(".zoom-retour")) return;
+  if (e.touches.length === 2){
+    const a = zoomPoint(e.touches[0]), b = zoomPoint(e.touches[1]);
+    ZOOM.pinch = {d: Math.hypot(a[0] - b[0], a[1] - b[1]) || 1, m: [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], s: ZOOM.s, x: ZOOM.x, y: ZOOM.y};
+    ZOOM.pan = null; ZOOM.bouge = true;
+  } else if (e.touches.length === 1){
+    ZOOM.bouge = false;
+    if (ZOOM.s > 1) ZOOM.pan = {p: zoomPoint(e.touches[0]), x: ZOOM.x, y: ZOOM.y};
+  }
+}, {passive: true});
+scene.addEventListener("touchmove", e => {
+  if (ZOOM.pinch && e.touches.length >= 2){
+    e.preventDefault();
+    const a = zoomPoint(e.touches[0]), b = zoomPoint(e.touches[1]);
+    const d = Math.hypot(a[0] - b[0], a[1] - b[1]) || 1, m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+    const p0 = ZOOM.pinch, s = Math.max(1, Math.min(4, p0.s * d / p0.d));
+    // Le point de l'image qui etait sous les doigts y reste.
+    const ix = (p0.m[0] - p0.x) / p0.s, iy = (p0.m[1] - p0.y) / p0.s;
+    ZOOM.s = s; ZOOM.x = m[0] - ix * s; ZOOM.y = m[1] - iy * s;
+    zoomAppliquer();
+  } else if (ZOOM.pan && e.touches.length === 1 && ZOOM.s > 1){
+    const p = zoomPoint(e.touches[0]);
+    const dx = p[0] - ZOOM.pan.p[0], dy = p[1] - ZOOM.pan.p[1];
+    if (Math.abs(dx) + Math.abs(dy) > 8) ZOOM.bouge = true;
+    if (!ZOOM.bouge) return;
+    e.preventDefault();
+    ZOOM.x = ZOOM.pan.x + dx; ZOOM.y = ZOOM.pan.y + dy;
+    zoomAppliquer();
+  }
+}, {passive: false});
+scene.addEventListener("touchend", e => {
+  if (e.touches.length < 2) ZOOM.pinch = null;
+  if (e.touches.length === 0){
+    ZOOM.pan = null;
+    // Seul le clic qui suit IMMEDIATEMENT le geste est avale -- un pincement
+    // n'en produit souvent aucun, et le toucher suivant doit compter.
+    if (ZOOM.bouge) setTimeout(() => { ZOOM.bouge = false; }, 350);
+  }
+}, {passive: true});
+// Un geste de zoom ou de deplacement n'est pas un toucher : le clic qui suit est avale.
+scene.addEventListener("click", e => {
+  if (ZOOM.bouge){ ZOOM.bouge = false; e.stopPropagation(); e.preventDefault(); }
+}, true);
+$("zoomRetour").addEventListener("click", e => { e.stopPropagation(); zoomRemettre(); });
+addEventListener("resize", () => zoomRemettre());
+
 </script>
 </body>
 </html>

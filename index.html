@@ -7918,7 +7918,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v885</span>
+    <span class="subtitle-version">v886</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -31382,8 +31382,30 @@ function getDailyGoalTarget(){
     // bas tomberait dans sa zone morte si l'objectif est lu tot (deja vecu).
     const rampe = [10, 15, 15, 20, 20, 20, 20];
     const j = jourDApprentissage();
-    if(j >= 1 && j <= rampe.length) return Math.min(DEFAULT_DAILY_GOAL_TARGET, rampe[j - 1]);
+    // v886 : SEULEMENT POUR UN VRAI DEBUTANT. Jacques (espagnol, des centaines de
+    // mots vus, peu de JOURS comptes) recevait 20 cartes et « 20 de plus ? » :
+    // « mon objectif est 30 ». Les jours seuls ne disent pas qui debute.
+    if(j >= 1 && j <= rampe.length && nbMotsVus() < 100) return Math.min(DEFAULT_DAILY_GOAL_TARGET, rampe[j - 1]);
     return DEFAULT_DAILY_GOAL_TARGET;
+}
+// Le nombre de mots deja vus dans la langue apprise (un etat de revision). Garde
+// trente secondes : l'objectif est lu souvent, le compte change lentement.
+// ⚠️ « var », pas « let » : lue tot (l'objectif), une « let » plus bas plante tout.
+var MOTS_VUS_MEMO;
+function nbMotsVus(){
+    const maintenant = Date.now();
+    if(MOTS_VUS_MEMO && maintenant - MOTS_VUS_MEMO.t < 30000) return MOTS_VUS_MEMO.n;
+    let n = 0;
+    try{
+        const p = getProgress();
+        for(const k in p){
+            const th = p[k];
+            if(!th || typeof th !== "object") continue;
+            for(const i in th){ const st = th[i]; if(st && typeof st === "object" && !estNeuf(st)) n++; }
+        }
+    }catch(e){ n = 9999; }
+    MOTS_VUS_MEMO = { t: maintenant, n: n };
+    return n;
 }
 // Le combientieme jour d'apprentissage est aujourd'hui (1 = le premier). Un jour
 // compte des qu'on y a travaille (noterJourTravaille) ; avant la premiere carte
@@ -41231,7 +41253,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 885;
+const APP_VERSION = 886;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -45923,6 +45945,51 @@ let oralPhrase = null;
 // « Presque » ; moins : « Je n'ai pas bien entendu ». Ca juge si la phrase est
 // COMPREHENSIBLE, pas la finesse de l'accent.
 const ORAL_SEUIL_BON = 0.7, ORAL_SEUIL_PRESQUE = 0.3;
+// v886 : LES NOMBRES DITS EN MOTS, ECRITS EN CHIFFRES. Jacques, sur « Son tres
+// euros con cincuenta » : « est-ce assez indulgent ? ». Les moteurs de
+// reconnaissance ecrivent volontiers « 3,50 € » ou « 31 » : l'app les remet en
+// mots avant de comparer, en espagnol et en allemand, prix compris.
+function nombreEnMots(n, langue){
+    if(!Number.isFinite(n) || n < 0 || n >= 1000000) return String(n);
+    if(langue === "es"){
+        const u = ["cero","uno","dos","tres","cuatro","cinco","seis","siete","ocho","nueve","diez","once","doce","trece","catorce","quince",
+                   "dieciséis","diecisiete","dieciocho","diecinueve","veinte","veintiuno","veintidós","veintitrés","veinticuatro","veinticinco",
+                   "veintiséis","veintisiete","veintiocho","veintinueve"];
+        const d = { 3: "treinta", 4: "cuarenta", 5: "cincuenta", 6: "sesenta", 7: "setenta", 8: "ochenta", 9: "noventa" };
+        const c = { 1: "ciento", 2: "doscientos", 3: "trescientos", 4: "cuatrocientos", 5: "quinientos", 6: "seiscientos", 7: "setecientos", 8: "ochocientos", 9: "novecientos" };
+        if(n < 30) return u[n];
+        if(n < 100) return d[Math.floor(n / 10)] + (n % 10 ? " y " + u[n % 10] : "");
+        if(n === 100) return "cien";
+        if(n < 1000) return c[Math.floor(n / 100)] + (n % 100 ? " " + nombreEnMots(n % 100, "es") : "");
+        const k = Math.floor(n / 1000);
+        return (k === 1 ? "mil" : nombreEnMots(k, "es") + " mil") + (n % 1000 ? " " + nombreEnMots(n % 1000, "es") : "");
+    }
+    if(langue === "de"){
+        const u = ["null","eins","zwei","drei","vier","fünf","sechs","sieben","acht","neun","zehn","elf","zwölf","dreizehn","vierzehn","fünfzehn",
+                   "sechzehn","siebzehn","achtzehn","neunzehn"];
+        const d = { 2: "zwanzig", 3: "dreißig", 4: "vierzig", 5: "fünfzig", 6: "sechzig", 7: "siebzig", 8: "achtzig", 9: "neunzig" };
+        const pref = x => x === 1 ? "ein" : u[x];
+        const sous100 = x => x < 20 ? u[x] : (x % 10 ? pref(x % 10) + "und" : "") + d[Math.floor(x / 10)];
+        const sous1000 = x => x < 100 ? sous100(x) : (Math.floor(x / 100) === 1 ? "hundert" : u[Math.floor(x / 100)] + "hundert") + (x % 100 ? sous100(x % 100) : "");
+        if(n < 1000) return sous1000(n);
+        const k = Math.floor(n / 1000);
+        return (k === 1 ? "tausend" : sous1000(k) + "tausend") + (n % 1000 ? sous1000(n % 1000) : "");
+    }
+    return String(n);
+}
+function chiffresEnMots(texte){
+    const langue = LANGUE_APPRISE === "es" ? "es" : (LANGUE_APPRISE === "de" || !LANGUE_APPRISE) ? "de" : "";
+    if(!langue || !/\d/.test(texte || "")) return texte;
+    const m = x => nombreEnMots(parseInt(x, 10), langue);
+    return String(texte)
+        // Un prix : « 3,50 € » -> tres euros con cincuenta / drei Euro fünfzig.
+        .replace(/(\d+)[,.](\d{1,2})\s*(?:€|euros?)/gi, (t, a, b) => langue === "es"
+            ? m(a) + " euros con " + m(b.length === 1 ? b + "0" : b)
+            : m(a) + " Euro " + m(b.length === 1 ? b + "0" : b))
+        .replace(/(\d+)\s*€/g, (t, a) => m(a) + (langue === "es" ? " euros" : " Euro"))
+        .replace(/\d+/g, x => x.length <= 6 ? m(x) : x);
+}
+
 function scoreOral(attendu, entendus, chiffres){
     const mots = s => normaliserSaisie(s).split(" ").filter(Boolean);
     // v879 (les reperes) : dire « einundzwanzig », la reconnaissance ecrit
@@ -45932,6 +45999,8 @@ function scoreOral(attendu, entendus, chiffres){
         entendus = (entendus || []).map(tx => String(tx || "").replace(/(\d)[.,\s  ](?=\d{3}\b)/g, "$1")
             .split(/\s+/).map(w => w.replace(/[.,!?]+$/, "") === chiffres.n ? chiffres.mot : w).join(" "));
     }
+    // v886 : les autres chiffres, et les prix, remis en mots (chiffresEnMots).
+    entendus = (entendus || []).map(tx => chiffresEnMots(String(tx || "")));
     const cible = mots(attendu);
     let meilleur = { ratio: 0, manques: cible.slice(), texte: "" };
     (entendus || []).forEach(tx => {
@@ -46690,6 +46759,8 @@ function montrerCartePhrase(item){
         const demarrerNatif = async ici => {
             try{
                 const dispo = await Natif.available();
+                // v886 : ce que le module annonce (Jacques, 20 oct. : 15 s d'ecoute, RIEN transcrit).
+                journal("natif", "disponible " + JSON.stringify(dispo || {}).slice(0, 80));
                 if(!dispo || !dispo.available){ journal("natif", "indisponible"); consigne.textContent = t("parler_sans_micro"); essai = null; return false; }
                 const perm = await Natif.requestPermissions();
                 journal("natif", "permissions " + JSON.stringify(perm || {}).slice(0, 80));
@@ -46707,7 +46778,7 @@ function montrerCartePhrase(item){
             ici.natif = true; ici.avecReco = true; ici.recFini = true; ici.pic = 0;
             ici.ecouteurs = [];
             try{
-                ici.ecouteurs.push(await Natif.addListener("partialResults", ev => { if(ev && ev.matches && ev.matches.length){ ici.textes = ev.matches.slice(); eclairer(); } }));
+                ici.ecouteurs.push(await Natif.addListener("partialResults", ev => { ici.nbPartiels = (ici.nbPartiels || 0) + 1; if(ev && ev.matches && ev.matches.length){ ici.textes = ev.matches.slice(); eclairer(); } }));
                 ici.ecouteurs.push(await Natif.addListener("audioLevel", ev => {
                     const l = Math.max(0, Math.min(1, (ev && ev.level) || 0));
                     if(l > ici.pic) ici.pic = l;
@@ -46732,6 +46803,7 @@ function montrerCartePhrase(item){
                     r = await Natif.start(options);
                     journal("natif", "nouvel essai accepte");
                 }
+                journal("natif", "start rendu " + JSON.stringify(r || {}).slice(0, 80));
                 if(r && r.matches && r.matches.length) ici.textes = r.matches.slice();
             }catch(e){ journal("natif", "start refuse : " + String(e && e.message).slice(0, 80)); ici.avecReco = false; }
             return true;
@@ -46827,7 +46899,8 @@ function montrerCartePhrase(item){
                 return;
             }
             const s = scoreOral(cible, essai.textes, item.oralChiffres);
-            journal("verdict", (cible === item.phrase.de ? "" : "mot " + cible + " : ") + s.niveau + ", " + Math.round(s.ratio * 100) + " %, entendu « " + String(s.texte).slice(0, 80) + " »");
+            journal("verdict", (cible === item.phrase.de ? "" : "mot " + cible + " : ") + s.niveau + ", " + Math.round(s.ratio * 100) + " %, entendu « " + String(s.texte).slice(0, 80) + " »"
+                + (essai.natif ? " · partiels " + (essai.nbPartiels || 0) + ", micro max " + Math.round(100 * (essai.pic || 0)) + " %" : ""));
             if(v2 && cible !== item.phrase.de){
                 // Le mot seul : vert s'il passe, et retour a la phrase.
                 const n = normaliserSaisie(cible);
