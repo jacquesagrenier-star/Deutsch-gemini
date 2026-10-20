@@ -7918,7 +7918,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v884</span>
+    <span class="subtitle-version">v885</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -40152,6 +40152,15 @@ function contenuEcoute(item){
 }
 
 function poolEcoute(niveau){
+    // v885 : 🌱 PREMIERS PAS DANS L'ECOUTE (Jacques : « est-ce normal que pour
+    // ecouter, on n'ait pas les Premiers pas ? » -- non, un oubli). Leurs cartes
+    // ont deja le format d'une carte d'expression : contenuEcoute() les lit telles
+    // quelles (l'expression, son sens, l'exemple). Ouvertes aussi en gratuit,
+    // comme le parcours lui-meme.
+    if(niveau === "PP"){
+        try{ return toutesCartesPremiersPas().map(it => ({ word: it.word, index: it.index, themeId: it.themeId, type: "redewendungen" })); }
+        catch(e){ return []; }
+    }
     const tous = (niveau === "ALL");
     const pool = [];
 
@@ -40287,7 +40296,8 @@ function demarrerEcoute(niveau){
     amorcerSynthese();
     // Version gratuite (v697) : les mots de l'echantillon, et ce qui est deja
     // commence -- le meme vocabulaire que la seance, entendu.
-    const pool = accesComplet() ? poolEcoute(niveau) : filtrerGratuit(poolEcoute(niveauEchantillon()));
+    const pool = niveau === "PP" ? poolEcoute("PP")
+               : accesComplet() ? poolEcoute(niveau) : filtrerGratuit(poolEcoute(niveauEchantillon()));
     if(!pool.length){ showInfoToast(t("alert_level_unavailable")); return; }
     // ⚠️ L'ECOUTE NE SE PLAFONNE PAS (v624). Signale par Jacques : « on peut
     // écouter seulement 5 ». La cause n'était pas ici mais dans
@@ -41081,12 +41091,14 @@ function quitterEcoute(){
 const ECOUTE_NIVEAU_KEY = PREFIXE_STOCKAGE + "ecouteNiveau";
 let ecouteDepuisAccueil = false;
 function niveauEcouteAccueil(){
-    if(!accesComplet()) return niveauEchantillon();
+    let pp = false;
+    try{ pp = premiersPasEnCours(); }catch(e){}
+    if(!accesComplet()) return pp ? "PP" : niveauEchantillon();
     try{
         const v = localStorage.getItem(ECOUTE_NIVEAU_KEY);
-        if(v === "ALL" || LEVELS.indexOf(v) >= 0) return v;
+        if(v === "ALL" || v === "PP" || LEVELS.indexOf(v) >= 0) return v;
     }catch(e){}
-    return niveauSeance();
+    return pp ? "PP" : niveauSeance();
 }
 function majLigneEcoute(){
     const pastille = document.getElementById("ecouteLigneNiv");
@@ -41101,8 +41113,9 @@ function majLigneEcoute(){
         }
     }
     const niv = niveauEcouteAccueil();
-    const nom = n => n === "ALL" ? t("ecoute_level_all") : n;
-    pastille.textContent = nom(niv);   // v882 : la fleche est dessinee par .pa-niv::after
+    const nom = n => n === "ALL" ? t("ecoute_level_all") : n === "PP" ? "🌱" : n;
+    pastille.textContent = nom(niv);
+    if(niv === "PP" && !PREMIERS_PAS_DONNEES){ try{ chargerPremiersPas().then(d => { if(d) majLigneEcoute(); }); }catch(e){} }   // v882 : la fleche est dessinee par .pa-niv::after
     // v881 : la ligne grise dit combien de mots attendent a ce niveau.
     const nb = document.getElementById("ecouteLigneNb");
     if(nb){
@@ -41113,7 +41126,7 @@ function majLigneEcoute(){
     const choix = document.getElementById("ecouteLigneChoix");
     if(!choix) return;
     choix.innerHTML = "";
-    LEVELS.concat(["ALL"]).forEach(n => {
+    ["PP"].concat(LEVELS, ["ALL"]).forEach(n => {
         const b = document.createElement("button");
         b.type = "button";
         b.textContent = nom(n);
@@ -41150,6 +41163,10 @@ async function ecouterDepuisAccueil(){
     const niv = niveauEcouteAccueil();
     // Le geste doit atteindre la synthese sans attendre (iOS) : si les mots
     // sont deja la, on lance tout de suite ; sinon on amorce, puis on charge.
+    if(niv === "PP" && !PREMIERS_PAS_DONNEES){
+        amorcerSynthese();
+        try{ await chargerPremiersPas(); }catch(e){}
+    }
     if(!themesLoaded){
         amorcerSynthese();
         try{ await loadThemesJson(); }catch(e){}
@@ -41214,7 +41231,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 884;
+const APP_VERSION = 885;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
