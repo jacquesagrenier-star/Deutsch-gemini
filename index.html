@@ -7918,7 +7918,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v882</span>
+    <span class="subtitle-version">v883</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41207,7 +41207,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 882;
+const APP_VERSION = 883;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -45938,8 +45938,25 @@ function arreterOralPhrase(){
     oralPhrase = null;
 }
 
+// v883 : LA RECONNAISSANCE NATIVE NE SURVIT NI A LA CARTE NI A L'APP. Arreter le
+// module meme quand la carte ne le suit plus (oralPhrase vide) : c'est son arret
+// qui rend le son a l'iPhone. Sans session, l'arret ne fait rien.
+function arreterReconnaissanceNative(){
+    try{
+        const C = window.Capacitor;
+        const P = C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.SpeechRecognition;
+        if(P) P.stop().catch(() => {});
+    }catch(e){}
+}
+document.addEventListener("visibilitychange", () => {
+    if(!document.hidden) return;
+    try{ arreterOralPhrase(); }catch(e){}
+    arreterReconnaissanceNative();
+});
+
 function cacherCartePhrase(){
     arreterOralPhrase();
+    arreterReconnaissanceNative();
     const zone = document.getElementById("flashcards");
     if(zone) zone.classList.remove("en-phrase");
     const el = document.getElementById("cartePhrase");
@@ -46654,6 +46671,15 @@ function montrerCartePhrase(item){
                 journal("natif", "permissions " + JSON.stringify(perm || {}).slice(0, 80));
                 if(perm && perm.speechRecognition && perm.speechRecognition !== "granted"){ consigne.textContent = t("parler_micro_refuse"); essai = null; return false; }
             }catch(e){ journal("natif", "erreur " + String(e && e.message).slice(0, 80)); consigne.textContent = t("parler_sans_micro"); essai = null; return false; }
+            // v883 : REPARTIR D'UNE SESSION PROPRE. Rapport de Jacques (iPhone, 19 oct.
+            // 2026) : « start refuse : Speech recognition is already running », puis
+            // plus AUCUN son dans l'app. Le module garde une session qu'il croit
+            // active ; tant qu'elle l'est, il refuse de redemarrer ET laisse la
+            // session audio de l'iPhone en enregistrement (playAndRecord,
+            // measurement) -- c'est son arret qui remet la lecture normale
+            // (clearLegacyRecognitionResources, patch wortando-ios). On l'arrete
+            // donc TOUJOURS avant de demarrer, en attendant la fin de l'arret.
+            try{ await Natif.stop(); }catch(e){}
             ici.natif = true; ici.avecReco = true; ici.recFini = true; ici.pic = 0;
             ici.ecouteurs = [];
             try{
@@ -46670,7 +46696,18 @@ function montrerCartePhrase(item){
                     if(etat === "stopped"){ ici.recoFinie = true; if(!ici.enCours) juger(); }
                 }));
                 oralPhrase = { natif: Natif, ecouteurs: ici.ecouteurs };
-                const r = await Natif.start({ language: langueReco, maxResults: 3, partialResults: true, popup: false });
+                const options = { language: langueReco, maxResults: 3, partialResults: true, popup: false };
+                let r;
+                try{ r = await Natif.start(options); }
+                catch(e){
+                    // Encore « deja en cours » : arret force, une courte pause, un second essai.
+                    if(!/already running/i.test(String(e && e.message))) throw e;
+                    journal("natif", "deja en cours : arret force puis nouvel essai");
+                    try{ if(Natif.forceStop) await Natif.forceStop(); else await Natif.stop(); }catch(x){}
+                    await new Promise(ok => setTimeout(ok, 300));
+                    r = await Natif.start(options);
+                    journal("natif", "nouvel essai accepte");
+                }
                 if(r && r.matches && r.matches.length) ici.textes = r.matches.slice();
             }catch(e){ journal("natif", "start refuse : " + String(e && e.message).slice(0, 80)); ici.avecReco = false; }
             return true;
