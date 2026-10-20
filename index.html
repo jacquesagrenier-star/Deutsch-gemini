@@ -7922,7 +7922,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v888</span>
+    <span class="subtitle-version">v889</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41276,7 +41276,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 888;
+const APP_VERSION = 889;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -42810,7 +42810,11 @@ function texteCarteAPrononcer(){
 // n'est donc plus condamne pour la session par un creux de reseau.
 
 function speakWord(){
-    if(!currentCards.length || !('speechSynthesis' in window)) return;
+    // v889 : PLUS DE GARDE speechSynthesis ICI. L'app Android (WebView) n'a pas
+    // de synthese : la garde coupait le haut-parleur du mot AVANT le vrai
+    // fichier, alors que le retournement et la phrase, qui ne l'avaient pas,
+    // parlaient (20 oct. 2026). Elle ne protege plus que la branche anglaise.
+    if(!currentCards.length) return;
     const textToSpeak = texteCarteAPrononcer();
     if(!textToSpeak) return;
     const learningEnglish = getLearningDirection() === 'en';
@@ -42819,6 +42823,7 @@ function speakWord(){
     // Le toucher du haut-parleur est une demande EXPRESSE : il retente le vrai
     // fichier meme s'il a echoue plus tot dans la session (voir son.onerror).
     if(!learningEnglish){ oublierAbsence(textToSpeak); direAllemand(textToSpeak, { rate: 0.9 }); return; }
+    if(!('speechSynthesis' in window)) return;
     arreterAudioPregenere();
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
