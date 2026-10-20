@@ -7918,7 +7918,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v883</span>
+    <span class="subtitle-version">v884</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -38874,10 +38874,17 @@ function loadFlashcard(){
             : cas;
         habillerCarte(etiquetteCarte,
             (flashcardMode === 'praep' || flashcardMode === 'kasusverben') ? casDeLibelle(card[2] + " " + cas) : "aucun");
-        verbDetailsEl.innerHTML = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapiteladjektive' || cas)
-            ? `${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}${praepDiagramHtml}`
-            : `<strong>${label} :</strong> ${cas}<div class="verb-sep"></div>${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}${praepDiagramHtml}`;
-        verbDetailsEl.classList.remove("hidden");
+        // v884 : PAS DE BOITE VIDE. Jacques : une carte qui est deja une phrase
+        // (« ¿A qué hora es la salida? ») n'a pas forcement d'exemple -- mais le
+        // cadre s'affichait quand meme, vide, avec son seul bouton 🔊.
+        const avecExemple = !!String(exampleSentence || "").trim();
+        const blocExemple = avecExemple
+            ? `${exampleSentence}${grammarSpeakBtn}${exampleSentenceFr ? `<br>(${exampleSentenceFr})` : ""}` : "";
+        const sansCategorie = (flashcardMode === 'partikeln' || flashcardMode === 'vhskapiteladjektive' || cas);
+        verbDetailsEl.innerHTML = sansCategorie
+            ? `${blocExemple}${praepDiagramHtml}`
+            : `<strong>${label} :</strong> ${cas}${blocExemple ? `<div class="verb-sep"></div>${blocExemple}` : ""}${praepDiagramHtml}`;
+        verbDetailsEl.classList.toggle("hidden", sansCategorie && !avecExemple && !praepDiagramHtml);
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
     } else {
@@ -41207,7 +41214,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 883;
+const APP_VERSION = 884;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -50669,7 +50676,11 @@ function normaliserSaisie(txt){
     return (txt || "").toString().toLowerCase()
         .replace(/\u00df/g, "ss")
         .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .replace(/[.,!?;:\u00ab\u00bb"'\u2019\u2013\u2014-]/g, " ")
+        // v884 : \u00ab \u00bf \u00bb et \u00ab \u00a1 \u00bb aussi (Jacques : \u00ab \u00bfEn qu\u00e9 piso\u2026? \u00bb, le \u00ab En \u00bb ne
+        // passait jamais a l'oral -- l'app attendait \u00ab \u00bfen \u00bb). Ils faisaient aussi
+        // compter faux une dictee espagnole tapee sans eux. Et les guillemets
+        // anglais, les points de suspension, les parentheses.
+        .replace(/[.,!?;:\u00ab\u00bb"'\u2019\u2013\u2014\u00bf\u00a1\u201c\u201d\u201e\u2026()-]/g, " ")
         .replace(/\s+/g, " ")
         .trim();
 }
