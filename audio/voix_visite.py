@@ -47,6 +47,11 @@ CLIPS = {
     # v895 : l'etape Ecoute. Repete. (4) -- et l'ordre change : t5 (la seance)
     # ouvre la visite, t4 (le tableau) la clot. Voir CLIPS_DE_PAGE.
     "ecoute":  ["dec_te_titre", "dec_te_texte"],
+    # v896 : l'etape des mots parle aussi -- trois versions, selon ce qu'elle
+    # affiche (clipMotsDecouverte dans index.html).
+    "mots":    ["dec_t1_titre_plusieurs", "dec_t1_texte_plusieurs"],
+    "mot_peu": ["dec_t1_titre", "dec_t1_texte_peu"],
+    "mot":     ["dec_t1_titre", "dec_t1_texte"],
 }
 
 
@@ -102,7 +107,7 @@ def normaliser(brut, cible):
 # qui disent le meme texte. Langues de l'interface espagnole : fr et en.
 # Doit suivre CLIPS_PROPRES_ES dans index.html.
 # v895 : l'intro ne nomme plus la langue -- l'espagnol reprend celle de l'allemand.
-CLIPS_PROPRES_ES = ["t4", "d5"]
+CLIPS_PROPRES_ES = ["t4", "d5", "mots", "mot_peu"]
 LANGUES_ES = ["fr", "en"]
 
 
