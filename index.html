@@ -7961,7 +7961,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v893</span>
+    <span class="subtitle-version">v894</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10843,6 +10843,9 @@ onAuthStateChanged(auth, (user) => {
         // connexion (qui contient le bloc « connecté en tant que »).
         if(authModeToggle) authModeToggle.classList.add("hidden");
         if(typeof setAuthMode === "function") setAuthMode("login");
+        // v894 : cet appareil a connu une connexion -- la prochaine fois,
+        // « Se connecter » d'abord (modeAuthParDefaut).
+        try{ localStorage.setItem("wortando_dejaConnecte", "1"); }catch(e){}
         userAccountInfo.classList.remove("hidden");
         userEmailDisplay.textContent = user.email;
         // Premier lancement (configuration jamais complétée) : passe par l'écran
@@ -25955,8 +25958,27 @@ const CODE_INVITATION = (() => {
 // L'onglet a montrer a quelqu'un qui n'est pas connecte : « Creer un compte »
 // s'il arrive par un lien d'invitation (et le code est pose), sinon
 // « Se connecter ».
+// v894 : ET « CREER UN COMPTE » A LA PREMIERE VISITE. Jacques, 20 oct. 2026 :
+// « la premiere fois que quelqu'un entre dans l'application, qu'il rentre dans
+// creer le compte, et ensuite dans le sign-in ». La premiere visite, c'est un
+// appareil sans aucune connexion reussie (CLE_DEJA_CONNECTE, posee par le rappel
+// d'authentification) ET sans un seul mot dans sa progression -- de quoi
+// reconnaitre aussi les testeurs d'avant la v894, qui n'ont pas encore la
+// marque. ⚠️ Pas « une cle existe » : la page cree des la premiere ouverture,
+// avant toute connexion, une progression vide ({__migrations}), l'XP, etc.
+const CLE_DEJA_CONNECTE = "wortando_dejaConnecte";
+function appareilDejaVenu(){
+    try{
+        if(localStorage.getItem(CLE_DEJA_CONNECTE)) return true;
+        return ["deutschAI_progress_v4", "wortandoEs_progress_v4"].some(k => {
+            let v = null;
+            try{ v = JSON.parse(localStorage.getItem(k) || "null"); }catch(e){}
+            return !!v && Object.keys(v).some(x => x !== "__migrations");
+        });
+    }catch(e){ return true; }
+}
 function modeAuthParDefaut(){
-    if(!CODE_INVITATION) return "login";
+    if(!CODE_INVITATION) return appareilDejaVenu() ? "login" : "signup";
     const champ = document.getElementById("authInviteCode");
     if(champ && !champ.value) champ.value = CODE_INVITATION;
     return "signup";
@@ -41357,7 +41379,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 893;
+const APP_VERSION = 894;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
