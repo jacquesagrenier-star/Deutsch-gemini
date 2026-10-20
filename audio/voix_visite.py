@@ -44,6 +44,9 @@ CLIPS = {
     "scene":   ["dec_ts_titre", "dec_ts_texte"],
     "t5":      ["dec_t5_titre", "dec_t5_texte"],
     "t6":      ["dec_t6_titre", "dec_t6_texte"],
+    # v895 : l'etape Ecoute. Repete. (4) -- et l'ordre change : t5 (la seance)
+    # ouvre la visite, t4 (le tableau) la clot. Voir CLIPS_DE_PAGE.
+    "ecoute":  ["dec_te_titre", "dec_te_texte"],
 }
 
 
@@ -98,7 +101,8 @@ def normaliser(brut, cible):
 # leurs, dans voix-visite/es/<langue>/ -- les autres sont ceux de l'allemand,
 # qui disent le meme texte. Langues de l'interface espagnole : fr et en.
 # Doit suivre CLIPS_PROPRES_ES dans index.html.
-CLIPS_PROPRES_ES = ["intro", "t4", "d5"]
+# v895 : l'intro ne nomme plus la langue -- l'espagnol reprend celle de l'allemand.
+CLIPS_PROPRES_ES = ["t4", "d5"]
 LANGUES_ES = ["fr", "en"]
 
 

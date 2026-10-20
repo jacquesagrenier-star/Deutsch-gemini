@@ -6383,6 +6383,11 @@ body[data-theme="dark"] .dec-bravo{color:#F2F2F6;}
 /* La seance du jour montree a l'etape 5 (v702) : la vraie tuile de l'accueil,
    mais qu'on ne peut pas lancer -- un toucher y ferait quitter la visite. */
 .dec-scene.lecture{pointer-events:none;}
+/* L'essai d'Ecoute. Repete. (v895) : seul a repondre dans la scene en lecture. */
+.dec-ecoute-essai{pointer-events:auto; margin-top:14px; text-align:center;}
+.dec-ecoute-mot{margin:14px 0 2px; font-size:26px; font-weight:900; min-height:1.3em;}
+.dec-ecoute-consigne{margin:0; font-weight:800; color:#246a62; min-height:1.4em;}
+body[data-theme="dark"] .dec-ecoute-consigne{color:#7fd0c7;}
 /* La scene a toucher de l'etape 5 (v806) : la page des scenes dans un cadre,
    qui calcule elle-meme la taille de l'image a partir de sa hauteur. */
 .dec-scene-cadre{display:block; width:100%; height:50vh; border:0; border-radius:12px; background:#1C2430;}
@@ -6876,9 +6881,9 @@ body[data-theme="dark"] .cp-annonce{background:rgba(232,162,58,.15); color:#f0b4
 .seance-pilule.atteint .pa-entrer{background:transparent; box-shadow:inset 0 0 0 2.5px var(--pa);}
 .seance-pilule.atteint .pa-entrer svg{stroke:var(--pa);}
 .pilule-accueil.pa-ecoute{background:transparent; color:#1C2430; box-shadow:inset 0 0 0 1.5px var(--pa); padding-block:8px;}
-.pilule-accueil.pa-ecoute .pa-kick{color:#2f7f76;}
+.pilule-accueil.pa-ecoute .pa-kick{color:#246a62;}
 .pilule-accueil.pa-ecoute .pa-titre strong{color:#1C2430;}
-.pilule-accueil.pa-ecoute .pa-niv{background:transparent; box-shadow:inset 0 0 0 1.5px var(--pa); color:#2f7f76;}
+.pilule-accueil.pa-ecoute .pa-niv{background:transparent; box-shadow:inset 0 0 0 1.5px var(--pa); color:#246a62;}
 .pilule-accueil.pa-ecoute .pa-sens, .pilule-accueil.pa-ecoute .pa-sens::before{color:#576177;}
 .pilule-accueil.pa-ecoute .pa-play{width:40px; height:40px; box-shadow:none;}
 .pilule-accueil.pa-ecoute .ela-onde i{background:#9fb0ad;}
@@ -7961,7 +7966,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v894</span>
+    <span class="subtitle-version">v895</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12051,15 +12056,19 @@ const I18N = {
         dec_progression_aria: "Étape {n} sur {total}",
         dec_kicker: "Découvre Wortando",
         dec_t0_titre: "Bienvenue dans Wortando !",
-        dec_t0_texte: "Voici une petite visite guidée de l'application. Deux minutes, six aperçus : des mots, un verbe, un peu de grammaire, ton tableau, une scène et ta séance du jour. L'application en contient bien plus : thèmes, expressions, prononciation, préparation aux examens, écoute, dictée, dictionnaire, et bien d'autres.",
+        dec_t0_texte: "Voici une petite visite de l'application, en deux minutes. Chaque jour, trois choses t'attendent sur l'accueil : ta séance du jour, les scènes à explorer et l'écoute. On les voit ensemble, avec tes premiers mots et ton tableau.",
         dec_t0_bouton: "COMMENCER LA VISITE",
         dec_ecouter: "Réécouter",
-        dec_ts_titre: "Une scène à toucher",
-        dec_ts_texte: "Chaque scène est un moment de la vie de Mark et d'Anna. Touche les objets et les personnes : tu entends leur nom, avec leur article. Il y en a plus de vingt, et ta séance t'en propose une chaque jour.",
+        dec_ts_titre: "Explorer les scènes",
+        dec_ts_texte: "Juste sous ta séance : près de quarante scènes de la vie de Mark et d'Anna. Touche les objets et les personnes : tu entends leur nom, avec leur article. Essaie ici.",
+        dec_te_titre: "Écoute. Répète.",
+        dec_te_texte: "En dessous, l'écoute : l'application dit les mots de ton niveau et te laisse le temps de les répéter à voix haute. Idéal en marchant ou en cuisinant. Essaie avec tes premiers mots.",
+        dec_te_essai: "▶ Écouter mes premiers mots",
+        dec_te_repete: "À toi : répète !",
         dec_t5_titre: "Ta séance du jour",
-        dec_t5_texte: "Chaque jour, une seule séance : quelques mots nouveaux, les révisions qui reviennent au bon moment, un peu de grammaire, et quelques questions sur la scène du jour. Tout fait avancer ton tableau. Ton niveau se change ici. Tu pars de zéro ? La petite pousse, c'est Premiers pas : les phrases essentielles pour voyager. Ensuite, l'A1 commence par douze escales de voyage : manger dehors, le train, le marché, la santé. Et si tu pars bientôt, donne ta date de départ : l'application te dira le rythme pour être prêt.",
+        dec_t5_texte: "C'est le cœur de l'application. Chaque jour, une seule séance de quelques minutes : des mots nouveaux, les révisions qui reviennent au bon moment, un peu de grammaire, l'oral, et la scène du jour. Tout fait avancer ton tableau. Sur l'accueil, la flèche la lance. Ton niveau se change ici. Tu pars de zéro ? La petite pousse, c'est Premiers pas : les phrases essentielles pour voyager.",
         dec_t6_titre: "La visite est terminée !",
-        dec_t6_texte: "Tu as vu un peu de chaque partie, et il reste bien plus à découvrir. L'essentiel tient en quelques minutes par jour : ta séance du jour. Elle t'attend sur l'accueil. Bon apprentissage !",
+        dec_t6_texte: "Sur l'accueil, tout est là : ta séance du jour d'abord, puis les scènes et l'écoute, quand tu veux. Quelques minutes par jour suffisent. Bon apprentissage !",
         dec_t6_bouton: "COMMENCER",
         dec_t1_titre: "Ton premier mot",
         dec_t1_titre_plusieurs: "Tes premiers mots",
@@ -12076,14 +12085,14 @@ const I18N = {
         dec_t3_texte: "Une ou deux questions, comme dans les exercices de l'app. Chaque réponse est expliquée.",
         dec_t4_titre: "Ton tableau commence",
         dec_t4_texte: "Chaque carte travaillée ouvre un carreau. Sous les carreaux se cache l'œuvre d'un grand peintre de langue allemande : tu ne sauras laquelle qu'en la dévoilant. Chaque tableau terminé rejoint ta galerie.",
-        dec_t4_d1: "Exemple : 30 cartes, une séance.",
+        dec_t4_d1: "Exemple : 30 cartes, tes premières séances.",
         dec_t4_d2: "100 cartes.",
         dec_t4_d3: "250 cartes.",
         dec_t4_d4: "450 cartes.",
         dec_t4_d5: "700 cartes : le tableau complet ! Ajaccio, d'Anton Faistauer, 1926.",
         dec_t4_pretour: "Plus de soixante tableaux t'attendent. Le tien commence aujourd'hui.",
         dec_admin_titre: "Découverte guidée",
-        dec_admin_desc: "Les six étapes que voit un nouveau compte après l'écran de bienvenue. Les réponses comptent comme de vraies réponses.",
+        dec_admin_desc: "Les cinq étapes que voit un nouveau compte après l'écran de bienvenue. Les réponses comptent comme de vraies réponses.",
         dec_admin_btn: "REVOIR LA DÉCOUVERTE GUIDÉE →",
         dec_admin_btn_zero: "COMME UN DÉBUTANT (ZÉRO) →",
         dec_admin_btn_peu: "COMME QUELQU'UN QUI EN CONNAÎT UN PEU →",
@@ -13388,15 +13397,19 @@ const I18N = {
         dec_progression_aria: "Step {n} of {total}",
         dec_kicker: "Discover Wortando",
         dec_t0_titre: "Welcome to Wortando!",
-        dec_t0_texte: "Here is a short guided tour of the app. Two minutes, six previews: words, a verb, a bit of grammar, your painting, a scene and today's session. The app holds much more: themes, expressions, pronunciation, exam preparation, listening, dictation, a dictionary, and much else.",
+        dec_t0_texte: "Here is a short tour of the app, in two minutes. Every day, three things are waiting for you on the home screen: today's session, the scenes to explore, and listening. Let's look at them together, with your first words and your painting.",
         dec_t0_bouton: "START THE TOUR",
         dec_ecouter: "Listen again",
-        dec_ts_titre: "A scene to tap",
-        dec_ts_texte: "Every scene is a moment in the lives of Mark and Anna. Tap the objects and the people: you hear their names, with their articles. There are more than twenty, and your session offers you one every day.",
+        dec_ts_titre: "Explore the scenes",
+        dec_ts_texte: "Right below your session: nearly forty scenes from the lives of Mark and Anna. Tap the objects and the people: you hear their name, with its article. Try it here.",
+        dec_te_titre: "Listen. Repeat.",
+        dec_te_texte: "Below that, listening: the app says the words of your level and gives you time to repeat them out loud. Perfect while walking or cooking. Try it with your first words.",
+        dec_te_essai: "▶ Listen to my first words",
+        dec_te_repete: "Your turn: repeat!",
         dec_t5_titre: "Today's session",
-        dec_t5_texte: "Every day, one session: a few new words, the reviews that come back at just the right moment, a bit of grammar, and a few questions on today's scene. It all makes your painting grow. You can change your level here. Starting from zero? The little sprout is First steps: the essential phrases for travelling. Then A1 starts with twelve travel stops: eating out, the train, the market, health. And if you're leaving soon, add your departure date: the app will tell you the pace to be ready.",
+        dec_t5_texte: "This is the heart of the app. Every day, a single session of a few minutes: new words, the reviews that come back at just the right time, a little grammar, speaking, and the scene of the day. Everything moves your painting forward. On the home screen, the arrow starts it. You change your level here. Starting from zero? The little sprout is First steps: the essential phrases for travelling.",
         dec_t6_titre: "The tour is over!",
-        dec_t6_texte: "You've seen a bit of each part, and there's much more to discover. What matters most takes a few minutes a day: today's session. It's waiting for you on the home screen. Happy learning!",
+        dec_t6_texte: "Everything is on the home screen: today's session first, then the scenes and listening, whenever you like. A few minutes a day is enough. Happy learning!",
         dec_t6_bouton: "LET'S START",
         dec_t1_titre: "Your first word",
         dec_t1_titre_plusieurs: "Your first words",
@@ -13413,7 +13426,7 @@ const I18N = {
         dec_t3_texte: "One or two questions, just like the app's exercises. Every answer is explained.",
         dec_t4_titre: "Your painting begins",
         dec_t4_texte: "Every card you work on opens a tile. Beneath the tiles hides the work of a great German-speaking painter: you'll only know which one by revealing it. Every finished painting joins your gallery.",
-        dec_t4_d1: "Example: 30 cards, one session.",
+        dec_t4_d1: "Example: 30 cards, your first sessions.",
         dec_t4_d2: "100 cards.",
         dec_t4_d3: "250 cards.",
         dec_t4_d4: "450 cards.",
@@ -14729,15 +14742,19 @@ const I18N = {
         dec_progression_aria: "Adım {n} / {total}",
         dec_kicker: "Wortando'yu keşfet",
         dec_t0_titre: "Wortando'ya hoş geldin!",
-        dec_t0_texte: "İşte uygulamada kısa bir rehberli tur. İki dakika, altı örnek: kelimeler, bir fiil, biraz dilbilgisi, tablon, bir sahne ve bugünkü oturumun. Uygulamada çok daha fazlası var: temalar, deyimler, telaffuz, sınavlara hazırlık, dinleme, dikte, sözlük ve daha birçok şey.",
+        dec_t0_texte: "İşte uygulamada iki dakikalık kısa bir tur. Her gün ana ekranda seni üç şey bekliyor: bugünkü oturumun, keşfedilecek sahneler ve dinleme. İlk kelimelerin ve tablonla birlikte onlara bakalım.",
         dec_t0_bouton: "TURA BAŞLA",
         dec_ecouter: "Tekrar dinle",
-        dec_ts_titre: "Dokunabileceğin bir sahne",
-        dec_ts_texte: "Her sahne, Mark ile Anna'nın hayatından bir an. Nesnelere ve kişilere dokun: adlarını artikelleriyle birlikte duyarsın. Yirmiden fazla sahne var ve oturumun sana her gün birini sunar.",
+        dec_ts_titre: "Sahneleri keşfet",
+        dec_ts_texte: "Oturumunun hemen altında: Mark ile Anna'nın hayatından kırka yakın sahne. Nesnelere ve kişilere dokun: adlarını artikelleriyle birlikte duyarsın. Burada dene.",
+        dec_te_titre: "Dinle. Tekrarla.",
+        dec_te_texte: "Onun altında dinleme: uygulama seviyendeki kelimeleri söyler ve onları sesli tekrarlaman için sana zaman tanır. Yürürken ya da yemek yaparken ideal. İlk kelimelerinle dene.",
+        dec_te_essai: "▶ İlk kelimelerimi dinle",
+        dec_te_repete: "Sıra sende: tekrarla!",
         dec_t5_titre: "Bugünkü oturumun",
-        dec_t5_texte: "Her gün tek bir oturum: birkaç yeni kelime, tam zamanında geri gelen tekrarlar, biraz dilbilgisi ve günün sahnesi üzerine birkaç soru. Hepsi tablonu ilerletir. Seviyeni burada değiştirebilirsin. Sıfırdan mı başlıyorsun? Küçük filiz İlk adımlar'dır: seyahat için temel cümleler. Ardından A1, on iki yolculuk durağıyla başlar: dışarıda yemek, tren, pazar, sağlık. Yakında yola çıkıyorsan gidiş tarihini gir: uygulama hazır olman için gereken temponu söyler.",
+        dec_t5_texte: "Uygulamanın kalbi burası. Her gün birkaç dakikalık tek bir oturum: yeni kelimeler, tam zamanında geri gelen tekrarlar, biraz dilbilgisi, konuşma ve günün sahnesi. Her şey tablonu ilerletir. Ana ekranda ok onu başlatır. Seviyeni buradan değiştirirsin. Sıfırdan mı başlıyorsun? Küçük filiz İlk adımlar'dır: seyahat için temel cümleler.",
         dec_t6_titre: "Tur bitti!",
-        dec_t6_texte: "Her bölümden biraz gördün ve keşfedecek çok daha fazlası var. En önemlisi günde birkaç dakika sürer: bugünkü oturumun. Ana ekranda seni bekliyor. İyi çalışmalar!",
+        dec_t6_texte: "Her şey ana ekranda: önce bugünkü oturumun, sonra istediğin zaman sahneler ve dinleme. Günde birkaç dakika yeter. İyi öğrenmeler!",
         dec_t6_bouton: "BAŞLA",
         dec_t1_titre: "İlk kelimen",
         dec_t1_titre_plusieurs: "İlk kelimelerin",
@@ -14754,7 +14771,7 @@ const I18N = {
         dec_t3_texte: "Uygulamadaki alıştırmalar gibi bir iki soru. Her cevap açıklanır.",
         dec_t4_titre: "Tablon başlıyor",
         dec_t4_texte: "Çalışılan her kart bir parça açar. Parçaların altında Almanca konuşan büyük bir ressamın eseri saklı: hangisi olduğunu ancak onu ortaya çıkararak öğreneceksin. Biten her tablo galerine eklenir.",
-        dec_t4_d1: "Örnek: 30 kart, bir oturum.",
+        dec_t4_d1: "Örnek: 30 kart, ilk oturumların.",
         dec_t4_d2: "100 kart.",
         dec_t4_d3: "250 kart.",
         dec_t4_d4: "450 kart.",
@@ -15522,15 +15539,19 @@ const I18N = {
         dec_progression_aria: "Крок {n} з {total}",
         dec_kicker: "Знайомство з Wortando",
         dec_t0_titre: "Ласкаво просимо до Wortando!",
-        dec_t0_texte: "Ось коротка екскурсія застосунком. Дві хвилини, шість прикладів: слова, дієслово, трохи граматики, твоя картина, сцена і твій сеанс на сьогодні. У застосунку набагато більше: теми, вирази, вимова, підготовка до іспитів, слухання, диктант, словник і багато іншого.",
+        dec_t0_texte: "Ось коротка екскурсія застосунком — на дві хвилини. Щодня на головному екрані на тебе чекають три речі: твій сеанс на сьогодні, сцени, які можна досліджувати, і слухання. Подивімося на них разом — з твоїми першими словами й твоєю картиною.",
         dec_t0_bouton: "ПОЧАТИ ЕКСКУРСІЮ",
         dec_ecouter: "Прослухати ще раз",
-        dec_ts_titre: "Сцена, якої можна торкнутися",
-        dec_ts_texte: "Кожна сцена — це мить із життя Марка й Анни. Торкайся предметів і людей: ти почуєш їхні назви разом з артиклем. Сцен понад двадцять, і щодня твій сеанс пропонує тобі одну з них.",
+        dec_ts_titre: "Досліджуй сцени",
+        dec_ts_texte: "Одразу під твоїм сеансом — майже сорок сцен із життя Марка й Анни. Торкайся предметів і людей: ти почуєш їхню назву разом з артиклем. Спробуй тут.",
+        dec_te_titre: "Слухай. Повторюй.",
+        dec_te_texte: "Нижче — слухання: застосунок вимовляє слова твого рівня й дає тобі час повторити їх уголос. Чудово під час прогулянки чи готування. Спробуй зі своїми першими словами.",
+        dec_te_essai: "▶ Послухати мої перші слова",
+        dec_te_repete: "Твоя черга: повтори!",
         dec_t5_titre: "Твій сеанс на сьогодні",
-        dec_t5_texte: "Щодня — один сеанс: кілька нових слів, повторення, які повертаються в потрібний момент, трохи граматики і кілька запитань до сцени дня. Усе це рухає вперед твою картину. Рівень тут можна змінити. Починаєш з нуля? Маленький паросток — це «Перші кроки»: найпотрібніші фрази для подорожі. Потім A1 починається з дванадцяти зупинок подорожі: поїсти в місті, потяг, ринок, здоров'я. А якщо незабаром їдеш, вкажи дату від'їзду: застосунок підкаже темп, щоб бути готовим.",
+        dec_t5_texte: "Це серце застосунку. Щодня — один сеанс на кілька хвилин: нові слова, повторення, що повертаються саме вчасно, трохи граматики, усне мовлення і сцена дня. Усе це просуває твою картину. На головному екрані його запускає стрілка. Рівень змінюється тут. Починаєш з нуля? Маленький паросток — це «Перші кроки»: найпотрібніші фрази для подорожі.",
         dec_t6_titre: "Екскурсію завершено!",
-        dec_t6_texte: "Ось потроху з кожної частини, а відкрити можна ще набагато більше. Найважливіше займає кілька хвилин на день: твій сеанс на сьогодні. Він чекає на головному екрані. Успіхів у навчанні!",
+        dec_t6_texte: "На головному екрані є все: спершу твій сеанс на сьогодні, а потім сцени й слухання — коли захочеш. Кількох хвилин на день достатньо. Успішного навчання!",
         dec_t6_bouton: "ПОЧАТИ",
         dec_t1_titre: "Твоє перше слово",
         dec_t1_titre_plusieurs: "Твої перші слова",
@@ -15547,7 +15568,7 @@ const I18N = {
         dec_t3_texte: "Одне-два запитання, як у вправах застосунку. Кожну відповідь пояснено.",
         dec_t4_titre: "Твоя картина починається",
         dec_t4_texte: "Кожна опрацьована картка відкриває плитку. Під плитками ховається твір великого німецькомовного художника: який саме, ти дізнаєшся, лише відкривши його. Кожна завершена картина потрапляє до твоєї галереї.",
-        dec_t4_d1: "Приклад: 30 карток, один сеанс.",
+        dec_t4_d1: "Приклад: 30 карток, твої перші сеанси.",
         dec_t4_d2: "100 карток.",
         dec_t4_d3: "250 карток.",
         dec_t4_d4: "450 карток.",
@@ -17278,15 +17299,19 @@ const I18N = {
         dec_progression_aria: "گام {n} از {total}",
         dec_kicker: "آشنایی با Wortando",
         dec_t0_titre: "به Wortando خوش آمدی!",
-        dec_t0_texte: "این یک گشت کوتاه در برنامه است. دو دقیقه، شش نمونه: چند واژه، یک فعل، کمی دستور زبان، تابلوی تو، یک صحنه و جلسهٔ امروزت. برنامه خیلی بیشتر از این دارد: موضوع‌ها، اصطلاحات، تلفظ، آمادگی برای آزمون‌ها، شنیدن، دیکته، فرهنگ لغت و بسیاری چیزهای دیگر.",
+        dec_t0_texte: "این یک گشت کوتاه دو دقیقه‌ای در برنامه است. هر روز سه چیز در صفحهٔ اصلی منتظر توست: جلسهٔ امروزت، صحنه‌هایی برای کاوش و شنیدن. با اولین واژه‌هایت و تابلویت، آن‌ها را با هم می‌بینیم.",
         dec_t0_bouton: "شروع گشت",
         dec_ecouter: "دوباره گوش کن",
-        dec_ts_titre: "صحنه‌ای برای لمس کردن",
-        dec_ts_texte: "هر صحنه لحظه‌ای از زندگی مارک و آناست. چیزها و آدم‌ها را لمس کن: نامشان را همراه با حرف تعریفشان می‌شنوی. بیش از بیست صحنه هست و جلسه‌ات هر روز یکی را به تو پیشنهاد می‌کند.",
+        dec_ts_titre: "کاوش در صحنه‌ها",
+        dec_ts_texte: "درست زیر جلسه‌ات: نزدیک به چهل صحنه از زندگی مارک و آنا. اشیا و آدم‌ها را لمس کن: نامشان را همراه با حرف تعریفشان می‌شنوی. اینجا امتحان کن.",
+        dec_te_titre: "گوش کن. تکرار کن.",
+        dec_te_texte: "پایین‌تر، شنیدن: برنامه واژه‌های سطح تو را می‌گوید و به تو فرصت می‌دهد آن‌ها را بلند تکرار کنی. برای هنگام قدم زدن یا آشپزی عالی است. با اولین واژه‌هایت امتحان کن.",
+        dec_te_essai: "▶ شنیدن اولین واژه‌هایم",
+        dec_te_repete: "نوبت توست: تکرار کن!",
         dec_t5_titre: "جلسهٔ امروزت",
-        dec_t5_texte: "هر روز یک جلسه: چند واژهٔ تازه، مرورهایی که درست به‌موقع برمی‌گردند، کمی دستور زبان و چند پرسش دربارهٔ صحنهٔ امروز. همهٔ این‌ها تابلویت را پیش می‌برند. سطحت را همین‌جا می‌توانی عوض کنی. از صفر شروع می‌کنی؟ جوانهٔ کوچک یعنی «گام‌های نخست»: جمله‌های ضروری برای سفر. سپس A1 با دوازده ایستگاه سفر شروع می‌شود: غذا خوردن بیرون، قطار، بازار، سلامت. و اگر به‌زودی سفر می‌روی، تاریخ حرکتت را بنویس: برنامه می‌گوید با چه سرعتی پیش بروی تا آماده باشی.",
+        dec_t5_texte: "این قلب برنامه است. هر روز فقط یک جلسهٔ چنددقیقه‌ای: واژه‌های تازه، مرورهایی که درست به‌موقع برمی‌گردند، کمی دستور زبان، گفتار و صحنهٔ روز. همه‌چیز تابلویت را جلو می‌برد. در صفحهٔ اصلی، پیکان آن را شروع می‌کند. سطحت را اینجا عوض می‌کنی. از صفر شروع می‌کنی؟ جوانهٔ کوچک «گام‌های نخست» است: جمله‌های ضروری برای سفر.",
         dec_t6_titre: "گشت تمام شد!",
-        dec_t6_texte: "از هر بخش کمی دیدی و هنوز خیلی چیزها برای کشف کردن مانده است. مهم‌ترین کار روزی چند دقیقه است: جلسهٔ امروزت. در صفحهٔ اصلی منتظر توست. یادگیری خوبی داشته باشی!",
+        dec_t6_texte: "همه‌چیز در صفحهٔ اصلی است: اول جلسهٔ امروزت، بعد هر وقت خواستی صحنه‌ها و شنیدن. چند دقیقه در روز کافی است. یادگیری خوبی داشته باشی!",
         dec_t6_bouton: "شروع کنیم",
         dec_t1_titre: "نخستین واژه‌ات",
         dec_t1_titre_plusieurs: "نخستین واژه‌هایت",
@@ -17303,7 +17328,7 @@ const I18N = {
         dec_t3_texte: "یکی دو پرسش، درست مانند تمرین‌های برنامه. هر پاسخ توضیح داده می‌شود.",
         dec_t4_titre: "تابلوی تو آغاز می‌شود",
         dec_t4_texte: "هر کارتی که کار می‌کنی یک کاشی را باز می‌کند. زیر کاشی‌ها اثر یک نقاش بزرگ آلمانی‌زبان پنهان است: تنها با آشکار کردنش می‌فهمی کدام است. هر تابلوی تمام‌شده به گالری تو اضافه می‌شود.",
-        dec_t4_d1: "نمونه: سی کارت، یک جلسه.",
+        dec_t4_d1: "نمونه: سی کارت، اولین جلسه‌هایت.",
         dec_t4_d2: "صد کارت.",
         dec_t4_d3: "دویست و پنجاه کارت.",
         dec_t4_d4: "چهارصد و پنجاه کارت.",
@@ -18520,15 +18545,19 @@ const I18N = {
         dec_progression_aria: "الخطوة {n} من {total}",
         dec_kicker: "تعرّف على Wortando",
         dec_t0_titre: "مرحبًا بك في Wortando!",
-        dec_t0_texte: "إليك جولة قصيرة في التطبيق. دقيقتان وست لمحات: كلمات، وفعل، وقليل من القواعد، ولوحتك، ومشهد، وجلستك اليوم. وفي التطبيق أكثر من ذلك بكثير: مواضيع، وتعابير، ونطق، وتحضير للامتحانات، واستماع، وإملاء، وقاموس، وغير ذلك الكثير.",
+        dec_t0_texte: "إليك جولة قصيرة في التطبيق، في دقيقتين. كل يوم، تنتظرك ثلاثة أشياء في الصفحة الرئيسية: جلستك اليوم، والمشاهد التي تستكشفها، والاستماع. لنرها معًا، مع كلماتك الأولى ولوحتك.",
         dec_t0_bouton: "ابدأ الجولة",
         dec_ecouter: "استمع مرة أخرى",
-        dec_ts_titre: "مشهد تلمسه",
-        dec_ts_texte: "كل مشهد لحظة من حياة مارك وآنا. المس الأشياء والأشخاص: تسمع أسماءها مع أداة التعريف. هناك أكثر من عشرين مشهدًا، وتقترح عليك جلستك واحدًا كل يوم.",
+        dec_ts_titre: "استكشف المشاهد",
+        dec_ts_texte: "تحت جلستك مباشرة: قرابة أربعين مشهدًا من حياة مارك وآنا. المس الأشياء والأشخاص: تسمع اسمها مع أداة التعريف. جرّب هنا.",
+        dec_te_titre: "استمع. كرّر.",
+        dec_te_texte: "وتحتها الاستماع: يقول التطبيق كلمات مستواك ويمنحك الوقت لتكرارها بصوت عالٍ. مثالي أثناء المشي أو الطبخ. جرّب مع كلماتك الأولى.",
+        dec_te_essai: "▶ الاستماع إلى كلماتي الأولى",
+        dec_te_repete: "دورك: كرّر!",
         dec_t5_titre: "جلستك اليوم",
-        dec_t5_texte: "كل يوم، جلسة واحدة: بضع كلمات جديدة، والمراجعات التي تعود في الوقت المناسب، وقليل من القواعد، وبضعة أسئلة عن مشهد اليوم. كل ذلك يجعل لوحتك تتقدّم. ويمكنك تغيير مستواك هنا. تبدأ من الصفر؟ البرعم الصغير هو «الخطوات الأولى»: العبارات الأساسية للسفر. بعد ذلك يبدأ مستوى A1 باثنتي عشرة محطة سفر: الأكل في الخارج، القطار، السوق، الصحة. وإذا كنت ستسافر قريبًا، أدخل تاريخ سفرك: سيخبرك التطبيق بالوتيرة لتكون جاهزًا.",
+        dec_t5_texte: "هذا قلب التطبيق. كل يوم جلسة واحدة لبضع دقائق: كلمات جديدة، ومراجعات تعود في الوقت المناسب تمامًا، وقليل من القواعد، والتحدث، ومشهد اليوم. كل ذلك يُقدّم لوحتك. في الصفحة الرئيسية، يبدأها السهم. تغيّر مستواك من هنا. تبدأ من الصفر؟ البرعم الصغير هو «الخطوات الأولى»: العبارات الأساسية للسفر.",
         dec_t6_titre: "انتهت الجولة!",
-        dec_t6_texte: "رأيت لمحة من كل جزء، وما زال هناك الكثير لتكتشفه. أهمّ شيء لا يأخذ إلا بضع دقائق في اليوم: جلستك اليوم. إنها تنتظرك في الشاشة الرئيسية. تعلّمًا موفّقًا!",
+        dec_t6_texte: "كل شيء في الصفحة الرئيسية: جلستك اليوم أولًا، ثم المشاهد والاستماع متى شئت. بضع دقائق في اليوم تكفي. تعلّمًا موفقًا!",
         dec_t6_bouton: "لنبدأ",
         dec_t1_titre: "كلمتك الأولى",
         dec_t1_titre_plusieurs: "كلماتك الأولى",
@@ -18545,7 +18574,7 @@ const I18N = {
         dec_t3_texte: "سؤال أو سؤالان، مثل تمارين التطبيق. كل إجابة مشروحة.",
         dec_t4_titre: "لوحتك تبدأ",
         dec_t4_texte: "كل بطاقة تعمل عليها تفتح قطعة. تحت القطع تختبئ لوحة لرسّام كبير من الناطقين بالألمانية: لن تعرف أيّها إلا حين تكشفها. وكل لوحة تكتمل تنضمّ إلى معرضك.",
-        dec_t4_d1: "مثال: ثلاثون بطاقة، جلسة واحدة.",
+        dec_t4_d1: "مثال: ثلاثون بطاقة، جلساتك الأولى.",
         dec_t4_d2: "مئة بطاقة.",
         dec_t4_d3: "مئتان وخمسون بطاقة.",
         dec_t4_d4: "أربعمئة وخمسون بطاقة.",
@@ -20255,15 +20284,19 @@ const I18N = {
         dec_progression_aria: "Etapa {n} de {total}",
         dec_kicker: "Conheça a Wortando",
         dec_t0_titre: "Bem-vindo à Wortando!",
-        dec_t0_texte: "Aqui vai uma pequena visita guiada pelo aplicativo. Dois minutos, seis amostras: palavras, um verbo, um pouco de gramática, o seu quadro, uma cena e a sua sessão do dia. O aplicativo tem muito mais: temas, expressões, pronúncia, preparação para provas, escuta, ditado, dicionário e muito mais.",
+        dec_t0_texte: "Aqui vai uma pequena visita pelo aplicativo, em dois minutos. Todo dia, três coisas esperam por você na tela inicial: a sua sessão do dia, as cenas para explorar e a escuta. Vamos vê-las juntos, com as suas primeiras palavras e o seu quadro.",
         dec_t0_bouton: "COMEÇAR A VISITA",
         dec_ecouter: "Ouvir de novo",
-        dec_ts_titre: "Uma cena para tocar",
-        dec_ts_texte: "Cada cena é um momento da vida de Mark e Anna. Toque nos objetos e nas pessoas: você ouve o nome deles, com o artigo. São mais de vinte, e a sua sessão propõe uma a cada dia.",
+        dec_ts_titre: "Explore as cenas",
+        dec_ts_texte: "Logo abaixo da sua sessão: quase quarenta cenas da vida de Mark e Anna. Toque nos objetos e nas pessoas: você ouve o nome deles, com o artigo. Experimente aqui.",
+        dec_te_titre: "Ouça. Repita.",
+        dec_te_texte: "Mais abaixo, a escuta: o aplicativo diz as palavras do seu nível e dá tempo para você repeti-las em voz alta. Perfeito para caminhar ou cozinhar. Experimente com as suas primeiras palavras.",
+        dec_te_essai: "▶ Ouvir minhas primeiras palavras",
+        dec_te_repete: "Sua vez: repita!",
         dec_t5_titre: "A sua sessão do dia",
-        dec_t5_texte: "Todo dia, uma só sessão: algumas palavras novas, as revisões que voltam no momento certo, um pouco de gramática e algumas perguntas sobre a cena do dia. Tudo faz o seu quadro avançar. Você pode mudar de nível aqui. Começando do zero? O brotinho é Primeiros passos: as frases essenciais para viajar. Depois, o A1 começa com doze paradas de viagem: comer fora, o trem, o mercado, a saúde. E, se você vai viajar em breve, informe a data da partida: o aplicativo dirá o ritmo para estar pronto.",
+        dec_t5_texte: "Este é o coração do aplicativo. Todo dia, uma só sessão de poucos minutos: palavras novas, as revisões que voltam na hora certa, um pouco de gramática, a fala e a cena do dia. Tudo faz o seu quadro avançar. Na tela inicial, a seta a inicia. O seu nível se muda aqui. Começando do zero? O brotinho é Primeiros passos: as frases essenciais para viajar.",
         dec_t6_titre: "A visita terminou!",
-        dec_t6_texte: "Você viu um pouco de cada parte, e ainda há muito mais para descobrir. O essencial leva poucos minutos por dia: a sua sessão do dia. Ela está esperando na tela inicial. Bons estudos!",
+        dec_t6_texte: "Está tudo na tela inicial: primeiro a sua sessão do dia, depois as cenas e a escuta, quando quiser. Alguns minutos por dia bastam. Bons estudos!",
         dec_t6_bouton: "COMEÇAR",
         dec_t1_titre: "Sua primeira palavra",
         dec_t1_titre_plusieurs: "Suas primeiras palavras",
@@ -20280,7 +20313,7 @@ const I18N = {
         dec_t3_texte: "Uma ou duas perguntas, como nos exercícios do app. Cada resposta é explicada.",
         dec_t4_titre: "Seu quadro começa",
         dec_t4_texte: "Cada carta trabalhada abre um quadradinho. Debaixo deles se esconde a obra de um grande pintor de língua alemã: você só vai saber qual quando revelá-la. Cada quadro terminado entra na sua galeria.",
-        dec_t4_d1: "Exemplo: 30 cartas, uma sessão.",
+        dec_t4_d1: "Exemplo: 30 cartas, as suas primeiras sessões.",
         dec_t4_d2: "100 cartas.",
         dec_t4_d3: "250 cartas.",
         dec_t4_d4: "450 cartas.",
@@ -21657,15 +21690,19 @@ const I18N = {
         dec_progression_aria: "Krok {n} z {total}",
         dec_kicker: "Poznaj Wortando",
         dec_t0_titre: "Witaj w Wortando!",
-        dec_t0_texte: "Oto krótka wycieczka po aplikacji. Dwie minuty, sześć zapowiedzi: słowa, czasownik, trochę gramatyki, twój obraz, scena i twoja dzisiejsza sesja. W aplikacji jest o wiele więcej: tematy, wyrażenia, wymowa, przygotowanie do egzaminów, słuchanie, dyktando, słownik i wiele innych.",
+        dec_t0_texte: "Oto krótka, dwuminutowa wycieczka po aplikacji. Codziennie na ekranie głównym czekają na ciebie trzy rzeczy: twoja dzisiejsza sesja, sceny do odkrywania i słuchanie. Zobaczmy je razem, z twoimi pierwszymi słowami i twoim obrazem.",
         dec_t0_bouton: "ZACZNIJ WYCIECZKĘ",
         dec_ecouter: "Posłuchaj jeszcze raz",
-        dec_ts_titre: "Scena do dotykania",
-        dec_ts_texte: "Każda scena to chwila z życia Marka i Anny. Dotykaj przedmiotów i ludzi: usłyszysz ich nazwy razem z rodzajnikiem. Scen jest ponad dwadzieścia, a twoja sesja codziennie proponuje ci jedną z nich.",
+        dec_ts_titre: "Odkrywaj sceny",
+        dec_ts_texte: "Tuż pod twoją sesją: prawie czterdzieści scen z życia Marka i Anny. Dotykaj przedmiotów i ludzi: usłyszysz ich nazwę razem z rodzajnikiem. Spróbuj tutaj.",
+        dec_te_titre: "Słuchaj. Powtarzaj.",
+        dec_te_texte: "Niżej słuchanie: aplikacja wymawia słowa z twojego poziomu i daje ci czas, by powtórzyć je na głos. Idealne na spacer albo przy gotowaniu. Spróbuj ze swoimi pierwszymi słowami.",
+        dec_te_essai: "▶ Posłuchaj moich pierwszych słów",
+        dec_te_repete: "Twoja kolej: powtórz!",
         dec_t5_titre: "Twoja dzisiejsza sesja",
-        dec_t5_texte: "Każdego dnia jedna sesja: kilka nowych słów, powtórki, które wracają we właściwym momencie, trochę gramatyki i kilka pytań do sceny dnia. Wszystko to odsłania twój obraz. Poziom możesz tu zmienić. Zaczynasz od zera? Mały kiełek to Pierwsze kroki: najważniejsze zwroty w podróży. Potem A1 zaczyna się od dwunastu przystanków podróży: jedzenie na mieście, pociąg, targ, zdrowie. A jeśli niedługo wyjeżdżasz, podaj datę wyjazdu: aplikacja podpowie tempo, żebyś był gotowy.",
+        dec_t5_texte: "To serce aplikacji. Codziennie jedna sesja na kilka minut: nowe słowa, powtórki, które wracają w odpowiednim momencie, trochę gramatyki, mówienie i scena dnia. Wszystko to posuwa twój obraz do przodu. Na ekranie głównym uruchamia ją strzałka. Poziom zmieniasz tutaj. Zaczynasz od zera? Mały kiełek to „Pierwsze kroki”: najważniejsze zwroty na podróż.",
         dec_t6_titre: "Wycieczka skończona!",
-        dec_t6_texte: "Zobaczyłeś(-aś) po trochu z każdej części, a do odkrycia zostało jeszcze dużo więcej. Najważniejsze zajmuje kilka minut dziennie: twoja dzisiejsza sesja. Czeka na ekranie głównym. Owocnej nauki!",
+        dec_t6_texte: "Wszystko jest na ekranie głównym: najpierw twoja dzisiejsza sesja, potem sceny i słuchanie, kiedy zechcesz. Wystarczy kilka minut dziennie. Owocnej nauki!",
         dec_t6_bouton: "ZACZYNAMY",
         dec_t1_titre: "Twoje pierwsze słowo",
         dec_t1_titre_plusieurs: "Twoje pierwsze słowa",
@@ -21682,7 +21719,7 @@ const I18N = {
         dec_t3_texte: "Jedno czy dwa pytania, jak w ćwiczeniach w aplikacji. Każda odpowiedź jest wyjaśniona.",
         dec_t4_titre: "Twój obraz zaczyna powstawać",
         dec_t4_texte: "Każda przerobiona karta odsłania jeden kwadrat. Pod kwadratami kryje się dzieło wielkiego niemieckojęzycznego malarza: dowiesz się, jakie, dopiero gdy je odsłonisz. Każdy skończony obraz trafia do twojej galerii.",
-        dec_t4_d1: "Przykład: 30 kart, jedna sesja.",
+        dec_t4_d1: "Przykład: 30 kart, twoje pierwsze sesje.",
         dec_t4_d2: "100 kart.",
         dec_t4_d3: "250 kart.",
         dec_t4_d4: "450 kart.",
@@ -23064,15 +23101,19 @@ const I18N = {
         dec_progression_aria: "Шаг {n} из {total}",
         dec_kicker: "Знакомство с Wortando",
         dec_t0_titre: "Добро пожаловать в Wortando!",
-        dec_t0_texte: "Вот небольшая экскурсия по приложению. Две минуты, шесть примеров: слова, глагол, немного грамматики, твоя картина, сцена и твоё занятие на сегодня. А в приложении гораздо больше: темы, выражения, произношение, подготовка к экзаменам, аудирование, диктант, словарь и многое другое.",
+        dec_t0_texte: "Вот небольшая экскурсия по приложению — на две минуты. Каждый день на главном экране тебя ждут три вещи: твоё занятие на сегодня, сцены, которые можно исследовать, и слушание. Посмотрим на них вместе — с твоими первыми словами и твоей картиной.",
         dec_t0_bouton: "НАЧАТЬ ЭКСКУРСИЮ",
         dec_ecouter: "Послушать ещё",
-        dec_ts_titre: "Сцена, которую можно потрогать",
-        dec_ts_texte: "Каждая сцена — это момент из жизни Марка и Анны. Нажимай на предметы и людей: ты услышишь их названия вместе с артиклем. Сцен больше двадцати, и каждый день занятие предлагает тебе одну из них.",
+        dec_ts_titre: "Исследуй сцены",
+        dec_ts_texte: "Прямо под твоим занятием — почти сорок сцен из жизни Марка и Анны. Касайся предметов и людей: ты услышишь их название вместе с артиклем. Попробуй здесь.",
+        dec_te_titre: "Слушай. Повторяй.",
+        dec_te_texte: "Ниже — слушание: приложение произносит слова твоего уровня и даёт время повторить их вслух. Отлично подходит для прогулки или готовки. Попробуй со своими первыми словами.",
+        dec_te_essai: "▶ Послушать мои первые слова",
+        dec_te_repete: "Твоя очередь: повтори!",
         dec_t5_titre: "Твоё занятие на сегодня",
-        dec_t5_texte: "Каждый день — одно занятие: несколько новых слов, повторения, которые возвращаются в нужный момент, немного грамматики и несколько вопросов по сцене дня. Всё это двигает твою картину. Уровень здесь можно сменить. Начинаешь с нуля? Маленький росток — это «Первые шаги»: самые нужные фразы для поездки. Потом A1 начинается с двенадцати остановок путешествия: поесть в городе, поезд, рынок, здоровье. А если скоро уезжаешь, укажи дату отъезда: приложение подскажет темп, чтобы быть готовым.",
+        dec_t5_texte: "Это сердце приложения. Каждый день — одно занятие на несколько минут: новые слова, повторения, которые возвращаются точно вовремя, немного грамматики, устная речь и сцена дня. Всё это продвигает твою картину. На главном экране его запускает стрелка. Уровень меняется здесь. Начинаешь с нуля? Маленький росток — это «Первые шаги»: самые нужные фразы для поездки.",
         dec_t6_titre: "Экскурсия окончена!",
-        dec_t6_texte: "Ты увидел(а) понемногу от каждой части, а открыть предстоит гораздо больше. Самое важное занимает несколько минут в день: твоё занятие на сегодня. Оно ждёт тебя на главном экране. Удачи в учёбе!",
+        dec_t6_texte: "Всё есть на главном экране: сначала твоё занятие на сегодня, а потом сцены и слушание — когда захочешь. Нескольких минут в день достаточно. Успешной учёбы!",
         dec_t6_bouton: "НАЧАТЬ",
         dec_t1_titre: "Твоё первое слово",
         dec_t1_titre_plusieurs: "Твои первые слова",
@@ -23089,7 +23130,7 @@ const I18N = {
         dec_t3_texte: "Один-два вопроса, как в упражнениях приложения. Каждый ответ объясняется.",
         dec_t4_titre: "Твоя картина начинается",
         dec_t4_texte: "Каждая проработанная карточка открывает квадратик. Под квадратиками скрыта работа великого немецкоязычного художника: какая — узнаешь, только открыв её. Каждая законченная картина попадает в твою галерею.",
-        dec_t4_d1: "Пример: 30 карточек, одно занятие.",
+        dec_t4_d1: "Пример: 30 карточек, твои первые занятия.",
         dec_t4_d2: "100 карточек.",
         dec_t4_d3: "250 карточек.",
         dec_t4_d4: "450 карточек.",
@@ -23794,7 +23835,6 @@ const I18N_ESPAGNOL = {
         "pron_kicker": "Lire l'espagnol",
         "pron_intro": "L'espagnol se lit presque toujours comme il s'écrit : ces règles suffisent pour lire n'importe quel mot. Touche un mot pour l'entendre.",
         "pron_accent": "L'accent tonique",
-        "dec_t0_texte": "Voici une petite visite guidée de l'application. Deux minutes, six aperçus : des mots, un verbe, un peu de grammaire, ton tableau, une scène et ta séance du jour. L'application en contient bien plus : thèmes, expressions, fiches de grammaire, prononciation, écoute, dictée, dictionnaire, et bien d'autres.",
         "dec_t1_texte_plusieurs": "En espagnol, chaque nom est masculin ou féminin, et son article le dit : el ou la. Pas toujours comme en français : la leche, le lait.",
         "dec_t1_texte_peu": "Rappel : le petit mot devant le nom, l'article, dit son genre : el (masculin) ou la (féminin). La couleur le montre. Écoute le mot, puis dis si tu le savais.",
         "dec_t4_texte": "Chaque carte travaillée ouvre un carreau. Sous les carreaux se cache l'œuvre d'un grand peintre : tu ne sauras laquelle qu'en la dévoilant. Chaque tableau terminé rejoint ta galerie.",
@@ -23930,7 +23970,6 @@ const I18N_ESPAGNOL = {
         "pron_kicker": "Reading Spanish",
         "pron_intro": "Spanish is almost always read the way it is written: these rules are enough to read any word. Tap a word to hear it.",
         "pron_accent": "Stress",
-        "dec_t0_texte": "Here is a short guided tour of the app. Two minutes, six previews: words, a verb, a bit of grammar, your painting, a scene and today's session. The app holds much more: themes, expressions, grammar sheets, pronunciation, listening, dictation, a dictionary, and much else.",
         "dec_t1_texte_plusieurs": "In Spanish, every noun is masculine or feminine, and its article tells you which: el or la. Always learn a word with its article.",
         "dec_t1_texte_peu": "Reminder: the little word in front of the noun, the article, gives its gender: el (masculine) or la (feminine). The colour shows it. Listen, then say whether you knew the word.",
         "dec_t4_texte": "Every card you work on opens a tile. Beneath the tiles hides the work of a great painter: you'll only know which one by revealing it. Every finished painting joins your gallery.",
@@ -24066,7 +24105,6 @@ const I18N_ESPAGNOL = {
         "pron_kicker": "Ler o espanhol",
         "pron_intro": "O espanhol se lê quase sempre como se escreve: estas regras bastam para ler qualquer palavra. Toque em uma palavra para ouvi-la.",
         "pron_accent": "O acento tônico",
-        "dec_t0_texte": "Esta é uma pequena visita guiada do aplicativo. Dois minutos, seis amostras: palavras, um verbo, um pouco de gramática, o seu quadro, uma cena e a sua sessão do dia. O aplicativo tem muito mais: temas, expressões, fichas de gramática, pronúncia, escuta, ditado, dicionário e muito mais.",
         "dec_t1_texte_plusieurs": "Em espanhol, todo substantivo é masculino ou feminino, e o artigo diz qual: el ou la. Nem sempre como em português: el viaje, a viagem.",
         "dec_t1_texte_peu": "Lembrete: a palavrinha antes do substantivo, o artigo, indica o gênero: el (masculino) ou la (feminino). A cor mostra isso. Ouça e depois diga se você sabia.",
         "dec_t4_texte": "Cada cartão trabalhado abre um ladrilho. Sob os ladrilhos se esconde a obra de um grande pintor: você só saberá qual ao revelá-la. Cada quadro terminado entra na sua galeria.",
@@ -24202,7 +24240,6 @@ const I18N_ESPAGNOL = {
         "pron_kicker": "قراءة الإسبانية",
         "pron_intro": "تُقرأ الإسبانية دائماً تقريباً كما تُكتب: هذه القواعد تكفي لقراءة أي كلمة. المس الكلمة لتسمعها.",
         "pron_accent": "النبر",
-        "dec_t0_texte": "إليك جولة قصيرة في التطبيق. دقيقتان وست لمحات: كلمات، وفعل، وقليل من القواعد، ولوحتك، ومشهد، وجلستك اليوم. وفي التطبيق أكثر من ذلك بكثير: مواضيع، وتعابير، وملخّصات قواعد، ونطق، واستماع، وإملاء، وقاموس، وغير ذلك الكثير.",
         "dec_t1_texte_plusieurs": "في الإسبانية، كل اسم مذكر أو مؤنث، وأداة التعريف تدلّ عليه: el أو la. وليس دائماً كما في العربية: la leche، الحليب.",
         "dec_t1_texte_peu": "تذكير: الكلمة الصغيرة التي تسبق الاسم، أي أداة التعريف، تدلّ على جنسه: el (مذكر) أو la (مؤنث). واللون يُظهر ذلك. استمع إلى الكلمة، ثم قل إن كنت تعرفها.",
         "dec_t4_texte": "كل بطاقة تعمل عليها تفتح قطعة. تحت القطع تختبئ لوحة لرسّام كبير: لن تعرف أيّها إلا حين تكشفها. وكل لوحة تكتمل تنضمّ إلى معرضك.",
@@ -24960,7 +24997,14 @@ const DECOUVERTE_KEY = PREFIXE_STOCKAGE + "decouverte";
 // v806 (15 oct. 2026) : six etapes. La visite datait d'avant les scenes, qui
 // sont devenues le coeur de la seance : l'etape 5 en montre une, a toucher,
 // avant la seance du jour (6). La fin est l'etape 7 (DECOUVERTE_ETAPES + 1).
-const DECOUVERTE_ETAPES = 6;
+// v895 (20 oct. 2026) : CINQ ETAPES, DANS L'ORDRE DE L'ACCUEIL. Jacques :
+// « on a mis l'emphase sur ma seance du jour, explorer les scenes, puis
+// ecouter ; on devrait mettre l'emphase dans la visite aussi ». 1 la seance
+// du jour, 2 les premiers mots (les cartes de la seance), 3 les scenes, 4
+// Ecoute. Repete. (nouvelle), 5 le tableau. Le verbe et la grammaire ne sont
+// plus des etapes a part : la seance les annonce, c'est la qu'ils vivent.
+// La fin est l'etape 6 (DECOUVERTE_ETAPES + 1).
+const DECOUVERTE_ETAPES = 5;
 
 // CE QUE LA DECOUVERTE MONTRE, SELON LA REPONSE A « TU CONNAIS DEJA UN PEU
 // D'ALLEMAND ? » (v699). Le seul endroit ou ces choix vivent.
@@ -25210,9 +25254,9 @@ async function lancerDecouverte(reponseForcee){
     // « Passer » a pu etre touche pendant le chargement.
     if(decouverte !== moi) return true;
     moi.noms = moi.contenu.noms.map(carteDeNomDecouverte).filter(Boolean);
-    moi.verbe = carteDeVerbeDecouverte(moi.contenu.verbe);
-    try{ moi.exos = await exercicesDecouverte(moi.contenu, moi.noms); }catch(e){ moi.exos = []; }
-    if(decouverte !== moi) return true;
+    // v895 : le verbe et la grammaire ne sont plus des etapes (voir
+    // DECOUVERTE_ETAPES) ; leurs donnees restent dans DECOUVERTE_CONTENU, que le
+    // verificateur controle toujours.
     moi.pret = true;
     // Le bouton a ete touche pendant le chargement : on y va maintenant.
     if(moi.demarrer) allerEtapeDecouverte(1);
@@ -25257,9 +25301,7 @@ function revenirEtapeDecouverte(){
     try{ arreterAudioPregenere(); }catch(e){}
     try{ stopMasteryCelebrations(); }catch(e){}
     let n = Math.min(decouverte.etape - 1, DECOUVERTE_ETAPES);
-    if(n === 3 && !decouverte.exos.length) n = 2;
-    if(n === 2 && !decouverte.verbe) n = 1;
-    if(n === 1 && !decouverte.noms.length) n = 0;
+    if(n === 2 && !decouverte.noms.length) n = 1;
     if(n <= 0 || !decouverte.pret) montrerIntroDecouverte();
     else allerEtapeDecouverte(n);
 }
@@ -25296,14 +25338,17 @@ function revoirDecouverte(reponse){
 // relancer le script et monter VOIX_VISITE.revision.
 // ⚠️ LE MEME LECTEUR QUE LA VOIX ALLEMANDE (obtenirLecteur) : sur iOS, c'est
 // l'element deja debloque qui peut jouer sans nouveau geste.
-const VOIX_VISITE = { revision: "10", langues: ["fr", "en", "tr", "uk", "fa", "ar", "pt"], languesEs: ["fr", "en"] };
+const VOIX_VISITE = { revision: "11", langues: ["fr", "en", "tr", "uk", "fa", "ar", "pt"], languesEs: ["fr", "en"] };
 // Les clips gardent leur nom d'avant la v806 (t5 = la seance, t6 = la fin) :
 // ce sont les noms des fichiers de voix-visite/. La scene (5) dit « scene ».
-const CLIPS_DE_PAGE = { 0: "intro", 4: "t4", 5: "scene", 6: "t5", 7: "t6" };
+// v895 : t5 (la seance) ouvre la visite, t4 (le tableau) la clot ; « ecoute »
+// est le clip de l'etape nouvelle. Les noms des fichiers ne changent pas.
+const CLIPS_DE_PAGE = { 0: "intro", 1: "t5", 3: "scene", 4: "ecoute", 5: "t4", 6: "t6" };
 // LA VISITE ESPAGNOLE (v759) n'a a elle que les clips dont le texte differe
 // (I18N_ESPAGNOL) : voix-visite/es/<langue>/. Les autres -- la seance, la
 // fin, les paliers du tableau -- disent le meme texte : ceux de l'allemand.
-const CLIPS_PROPRES_ES = ["intro", "t4", "d5"];
+// v895 : l'intro ne nomme plus la langue -- l'espagnol reprend celle de l'allemand.
+const CLIPS_PROPRES_ES = ["t4", "d5"];
 // ⚠️ UN CLIP DONT LE TEXTE A CHANGE SE TAIT jusqu'a son nouvel
 // enregistrement (audio/voix_visite.py) : la voix dit le texte affiche, mot
 // pour mot, ou ne dit rien. Vider la liste une fois les clips deposes.
@@ -25396,17 +25441,14 @@ function peindreCadreDecouverte(){
     const etape = document.getElementById("decouverteEtape");
     if(etape) etape.textContent = (n && n <= DECOUVERTE_ETAPES) ? n + " / " + DECOUVERTE_ETAPES : "";
     const plusieurs = decouverte.noms.length > 1 || (decouverte.contenu.noms || []).length > 1;
-    const temps = (decouverte.contenu.verbe && decouverte.contenu.verbe.temps) || "praesens";
-    const titres = { 0: "dec_t0_titre", 1: plusieurs ? "dec_t1_titre_plusieurs" : "dec_t1_titre",
-                     2: "dec_t2_titre", 3: "dec_t3_titre", 4: "dec_t4_titre", 5: "dec_ts_titre",
-                     6: "dec_t5_titre", 7: "dec_t6_titre" };
+    const titres = { 0: "dec_t0_titre", 1: "dec_t5_titre", 2: plusieurs ? "dec_t1_titre_plusieurs" : "dec_t1_titre",
+                     3: "dec_ts_titre", 4: "dec_te_titre", 5: "dec_t4_titre", 6: "dec_t6_titre" };
     // « zero » : le genre explique avant les mots ; « peu » : un rappel d'une
     // phrase (v788). La soeur de Jacques bloquait des l'entree sur « el ou la ».
     const texteMots = plusieurs ? "dec_t1_texte_plusieurs"
         : (decouverte.reponse === "peu" ? "dec_t1_texte_peu" : "dec_t1_texte");
-    const textes = { 0: "dec_t0_texte", 1: texteMots,
-                     2: "dec_t2_texte_" + temps, 3: "dec_t3_texte", 4: "dec_t4_texte", 5: "dec_ts_texte",
-                     6: "dec_t5_texte", 7: "dec_t6_texte" };
+    const textes = { 0: "dec_t0_texte", 1: "dec_t5_texte", 2: texteMots,
+                     3: "dec_ts_texte", 4: "dec_te_texte", 5: "dec_t4_texte", 6: "dec_t6_texte" };
     const titre = document.getElementById("decouverteTitre");
     if(titre) titre.textContent = t(titres[n]);
     const texte = document.getElementById("decouverteTexte");
@@ -25435,7 +25477,7 @@ function rendreBlocsDecouverte(){
     const scene = document.getElementById("decouverteScene");
     if(scene){
         scene.classList.remove("fait"); scene.classList.remove("lecture");
-        scene.querySelectorAll(".dec-scene-cadre").forEach(c => c.remove());
+        scene.querySelectorAll(".dec-scene-cadre, .dec-ecoute-essai").forEach(c => c.remove());
     }
 }
 
@@ -25444,9 +25486,8 @@ function allerEtapeDecouverte(n){
     // Une etape dont la donnee manque (fichier pas arrive) est sautee plutot
     // que montree vide. Le verificateur garantit que les donnees existent :
     // ceci ne couvre que le reseau.
-    if(n === 1 && !decouverte.noms.length) n = 2;
-    if(n === 2 && !decouverte.verbe) n = 3;
-    if(n === 3 && !decouverte.exos.length) n = 4;
+    if(n === 2 && !decouverte.noms.length) n = 3;
+    if(n > DECOUVERTE_ETAPES){ finVisiteDecouverte(); return; }
     clearTimeout(attentePalier);
     clearTimeout(minuteurTableau);
     rendreBlocsDecouverte();
@@ -25463,12 +25504,11 @@ function allerEtapeDecouverte(n){
         if(el) el.classList.add("hidden");
     });
     window.scrollTo(0, 0);
-    if(n === 1) montrerCartesDecouverte(decouverte.noms);
-    else if(n === 2) montrerCartesDecouverte([decouverte.verbe]);
-    else if(n === 3) montrerExercicesDecouverte();
-    else if(n === 4) montrerTableauDecouverte();
-    else if(n === 5) montrerSceneDecouverte();
-    else montrerSeanceDecouverte();
+    if(n === 1) montrerSeanceDecouverte();
+    else if(n === 2) montrerCartesDecouverte(decouverte.noms);
+    else if(n === 3) montrerSceneDecouverte();
+    else if(n === 4) montrerEcouteDecouverte();
+    else montrerTableauDecouverte();
     // Le bouton Retour du telephone : une entree par etape franchie.
     synchroniserHistorique();
 }
@@ -25505,7 +25545,7 @@ function montrerCartesDecouverte(cartes){
 // carreau est deja pose, la carte reste a l'ecran, et la suite attend un geste
 // -- le temps de lire le bravo, et un toucher pour la voix de l'etape d'apres.
 function decouverteCartesFaites(){
-    if(!decouverte || (decouverte.etape !== 1 && decouverte.etape !== 2)) return;
+    if(!decouverte || decouverte.etape !== 2) return;
     const actions = document.getElementById("flashcardActions");
     if(actions) actions.classList.add("hidden");
     // La carte jugee ne repond plus : la toucher aurait demande un jugement
@@ -25514,7 +25554,7 @@ function decouverteCartesFaites(){
     if(scene) scene.classList.add("fait");
     const bravo = document.getElementById("decouverteBravo");
     if(bravo){
-        bravo.textContent = t(decouverte.etape === 1 ? "dec_t1_bravo" : "dec_t2_bravo");
+        bravo.textContent = t("dec_t1_bravo");
         bravo.classList.remove("hidden");
     }
     const suite = document.getElementById("decouverteSuite");
@@ -25737,8 +25777,60 @@ function montrerSeanceDecouverte(){
         emprunterBlocDecouverte(duo);
     }
     narrerDecouverte("t5");
-    const fin = document.getElementById("decouverteFin");
-    if(fin) fin.classList.remove("hidden");
+    const suite = document.getElementById("decouverteSuite");
+    if(suite) suite.classList.remove("hidden");
+}
+
+// L'ETAPE 4, ECOUTE. REPETE. (v895). La vraie ligne de l'accueil, empruntee en
+// lecture seule comme la tuile de la seance, et un essai : les mots de
+// l'etape 2, dits un a un par la voix de l'app, avec un temps pour les
+// repeter -- ce que fait le mode Ecoute. Le bouton est un geste : sur iPhone,
+// c'est lui qui permet au son de partir.
+function montrerEcouteDecouverte(){
+    const moi = decouverte, passage = moi.passage;
+    const ailleurs = () => decouverte !== moi || moi.passage !== passage;
+    const scene = document.getElementById("decouverteScene");
+    const ligne = document.getElementById("ecouteLigneAccueil");
+    if(ligne && scene){
+        try{ majLigneEcoute(); }catch(e){}
+        emprunterBlocDecouverte(ligne);
+        scene.classList.add("lecture");
+    }
+    const mots = (moi.noms || []).map(it => ((it.word[1] || "") + " " + it.word[0]).trim()).filter(Boolean);
+    if(scene && mots.length){
+        const zone = document.createElement("div");
+        zone.className = "dec-ecoute-essai";
+        const bouton = document.createElement("button");
+        bouton.type = "button";
+        bouton.className = "secondary";
+        bouton.textContent = t("dec_te_essai");
+        const mot = document.createElement("p");
+        mot.className = "dec-ecoute-mot";
+        mot.setAttribute("lang", LANGUE_ENSEIGNEE.voix);
+        const consigne = document.createElement("p");
+        consigne.className = "dec-ecoute-consigne";
+        const dire = i => {
+            if(ailleurs()) return;
+            if(i >= mots.length){ bouton.disabled = false; consigne.textContent = ""; return; }
+            mot.textContent = mots[i];
+            consigne.textContent = "";
+            try{
+                direAllemand(mots[i], { rate: 0.9, onEnd: () => {
+                    if(ailleurs()) return;
+                    consigne.textContent = t("dec_te_repete");
+                    setTimeout(() => dire(i + 1), 2300);
+                }});
+            }catch(e){ setTimeout(() => dire(i + 1), 2300); }
+        };
+        bouton.addEventListener("click", () => { bouton.disabled = true; dire(0); });
+        zone.appendChild(bouton);
+        zone.appendChild(mot);
+        zone.appendChild(consigne);
+        scene.appendChild(zone);
+    }
+    narrerDecouverte("ecoute");
+    const suite = document.getElementById("decouverteSuite");
+    if(suite) suite.classList.remove("hidden");
 }
 
 // LA PAGE DE FIN (v701). Elle dit que la visite est finie, que l'app commence,
@@ -41379,7 +41471,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 894;
+const APP_VERSION = 895;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
