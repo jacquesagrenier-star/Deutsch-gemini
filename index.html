@@ -7966,7 +7966,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v897</span>
+    <span class="subtitle-version">v898</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11638,6 +11638,7 @@ const I18N = {
         srs_etat_4: "je maîtrise",
         home_streak_unit: "jours",
         home_streak_unit_one: "jour",
+        home_serie_suffixe: "d'affilée",
         home_week_unit: "cette semaine",
         en_module_mastered_label: "✅ Maîtrisé",
         en_module_mastered_hint: "{pct} % du module. Il te reste {reste} cartes à faire passer en « maîtrisé ».",
@@ -12981,6 +12982,7 @@ const I18N = {
         srs_etat_4: "I know it",
         home_streak_unit: "days",
         home_streak_unit_one: "day",
+        home_serie_suffixe: "in a row",
         home_week_unit: "this week",
         en_module_mastered_label: "✅ Mastered",
         en_module_mastered_hint: "{pct}% of the module. {reste} cards still to move into “mastered”.",
@@ -14326,6 +14328,7 @@ const I18N = {
         srs_etat_4: "biliyorum",
         home_streak_unit: "gün",
         home_streak_unit_one: "gün",
+        home_serie_suffixe: "üst üste",
         home_week_unit: "bu hafta",
         en_module_mastered_label: "✅ Öğrenildi",
         en_module_mastered_hint: "Modülün %{pct} kadarı. {reste} kart hâlâ “öğrenildi” durumuna geçmedi.",
@@ -16497,6 +16500,7 @@ const I18N = {
         progress_info_apres: "« Я не знав » забирає опанування, і відсоток знижується.\n\nОпановане слово повертається через 16 днів для перевірки, далі все рідше, не перестаючи рахуватись.",
         home_streak_unit: "днів",
         home_streak_unit_one: "день",
+        home_serie_suffixe: "поспіль",
         home_week_unit: "цього тижня",
         home_daily_goal_label: "🎯 Ціль на день",
         home_week_zero: "Цього тижня: 0",
@@ -18060,6 +18064,7 @@ const I18N = {
         srs_etat_4: "آموخته‌ام",
         home_streak_unit: "روز",
         home_streak_unit_one: "روز",
+        home_serie_suffixe: "پیاپی",
         home_week_unit: "این هفته",
         en_module_mastered_label: "✅ آموخته",
         en_module_mastered_hint: "{pct} ٪ از این بخش. {reste} کارت مانده تا به «آموخته» برسند.",
@@ -19095,6 +19100,7 @@ const I18N = {
         srs_etat_4: "أتقنتها",
         home_streak_unit: "أيام",
         home_streak_unit_one: "يوم",
+        home_serie_suffixe: "على التوالي",
         home_week_unit: "هذا الأسبوع",
         en_module_mastered_label: "✅ متقَن",
         en_module_mastered_hint: "{pct} % من الوحدة. تبقّت لك {reste} بطاقات لتنقلها إلى «متقَن».",
@@ -19881,6 +19887,7 @@ const I18N = {
         srs_etat_4: "já domino",
         home_streak_unit: "dias",
         home_streak_unit_one: "dia",
+        home_serie_suffixe: "em sequência",
         home_week_unit: "esta semana",
         en_module_mastered_label: "✅ Dominado",
         en_module_mastered_hint: "{pct} % do módulo. Faltam {reste} cartas para passar a “dominada”.",
@@ -21289,6 +21296,7 @@ const I18N = {
         srs_etat_4: "umiem",
         home_streak_unit: "dni",
         home_streak_unit_one: "dzień",
+        home_serie_suffixe: "z rzędu",
         home_week_unit: "w tym tygodniu",
         en_module_mastered_label: "✅ Opanowane",
         en_module_mastered_hint: "{pct} % modułu. Do „opanowanych” zostało jeszcze kart: {reste}.",
@@ -22695,6 +22703,7 @@ const I18N = {
         srs_etat_4: "знаю",
         home_streak_unit: "дн.",
         home_streak_unit_one: "день",
+        home_serie_suffixe: "подряд",
         home_week_unit: "на этой неделе",
         en_module_mastered_label: "✅ Выучено",
         en_module_mastered_hint: "{pct} % модуля. Осталось перевести в «выученные» карточек: {reste}.",
@@ -32073,7 +32082,12 @@ function updateHomeStatsPanel(percent){
         const n = getStreakCount();
         serieEl.classList.toggle("hidden", n < 1);
         const uniteEl = document.getElementById("serieUnite");
-        if(uniteEl) uniteEl.textContent = uniteSerie(n);
+        // v898 : « D'AFFILEE ». Jacques, pour sa soeur : « elle l'a fait
+        // plusieurs jours, ca lui indique juste une journee, comme si elle avait
+        // perdu le compte ». Elle avait saute deux jours : la SERIE etait
+        // repartie a un. Le chiffre etait lu comme un total -- il dit
+        // maintenant ce qu'il compte.
+        if(uniteEl) uniteEl.textContent = uniteSerie(n) + " " + t("home_serie_suffixe");
         serieEl.title = n + " " + (uniteEl ? uniteEl.textContent : "");
     }
 
@@ -41484,7 +41498,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 897;
+const APP_VERSION = 898;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
