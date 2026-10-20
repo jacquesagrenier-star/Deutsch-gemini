@@ -6861,6 +6861,10 @@ body[data-theme="dark"] #spDateEdit .av-date-edit{color:#eef1f5;}
       longueur : « 24/30 » etait deja serre, « 120/150 » ne tenait pas.
    4. Ecouter descend d'un cran : un contour bleu-vert sur le fond de la page,
       au lieu d'une seconde pilule sombre qui pesait autant que la seance. */
+/* v892 : l'annonce du bloc et de sa dictee. */
+.cp-annonce{margin:0 0 10px; padding:7px 11px; border-radius:11px; background:rgba(232,162,58,.13); color:#8a5c0e; font-size:13px; font-weight:800; line-height:1.35;}
+body[data-theme="dark"] .cp-annonce{background:rgba(232,162,58,.15); color:#f0b456;}
+.cp-annonce.court{display:table; padding:3px 10px; border-radius:999px; font-size:12px;}
 .pilule-accueil > .pa-anneau{width:52px; height:52px;}
 .pa-anneau::before{inset:3px;}
 .pa-anneau b{font-size:16px; letter-spacing:-.02em;}
@@ -7957,7 +7961,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v891</span>
+    <span class="subtitle-version">v893</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11420,6 +11424,10 @@ const I18N = {
         or_bravo: "Bravo !",
         or_eclat: "+1 éclat pour ta mosaïque",
         or_touche_mots: "Touche un mot souligné pour l'entendre seul.",
+        cp_retiens_ecrire: "📝 Retiens bien cette phrase : tu vas l'écrire dans quelques cartes.",
+        cp_dictee_preparee: "📝 La phrase que tu as remise en ordre tout à l'heure : écris-la de mémoire.",
+        cp_ecrire_court: "📝 À écrire bientôt",
+        cp_dictee_court: "📝 Maintenant, de mémoire",
         or_dis_le: "Dis-le",
         or_phrase_entiere: "Toute la phrase",
         or_a_toi: "À toi ! Touche le rond.",
@@ -12755,6 +12763,10 @@ const I18N = {
         or_bravo: "Well done!",
         or_eclat: "+1 tile for your mosaic",
         or_touche_mots: "Tap an underlined word to hear it on its own.",
+        cp_retiens_ecrire: "📝 Remember this sentence: you'll write it in a few cards.",
+        cp_dictee_preparee: "📝 The sentence you put in order a moment ago: write it from memory.",
+        cp_ecrire_court: "📝 To write soon",
+        cp_dictee_court: "📝 Now, from memory",
         or_dis_le: "Say it",
         or_phrase_entiere: "The whole sentence",
         or_a_toi: "Your turn! Tap the circle.",
@@ -14092,6 +14104,10 @@ const I18N = {
         or_bravo: "Harika!",
         or_eclat: "Mozaiğine +1 parça",
         or_touche_mots: "Altı çizili bir kelimeye dokun, tek başına dinle.",
+        cp_retiens_ecrire: "📝 Bu cümleyi iyi aklında tut: birkaç kart sonra onu yazacaksın.",
+        cp_dictee_preparee: "📝 Az önce sıraladığın cümle: şimdi onu ezberden yaz.",
+        cp_ecrire_court: "📝 Birazdan yazacaksın",
+        cp_dictee_court: "📝 Şimdi ezberden",
         or_dis_le: "Söyle",
         or_phrase_entiere: "Cümlenin tamamı",
         or_a_toi: "Sıra sende! Daireye dokun.",
@@ -15766,6 +15782,10 @@ const I18N = {
         or_bravo: "Чудово!",
         or_eclat: "+1 шматочок до твоєї мозаїки",
         or_touche_mots: "Торкнися підкресленого слова, щоб почути його окремо.",
+        cp_retiens_ecrire: "📝 Добре запам’ятай це речення: за кілька карток ти його напишеш.",
+        cp_dictee_preparee: "📝 Те саме речення, що й кілька карток тому: напиши його з пам’яті.",
+        cp_ecrire_court: "📝 Скоро писатимеш",
+        cp_dictee_court: "📝 Тепер — з пам’яті",
         or_dis_le: "Скажи",
         or_phrase_entiere: "Усе речення",
         or_a_toi: "Твоя черга! Торкнися кола.",
@@ -17812,6 +17832,10 @@ const I18N = {
         or_bravo: "آفرین!",
         or_eclat: "+۱ تکه برای موزاییک تو",
         or_touche_mots: "روی یک واژهٔ زیرخط‌دار بزن تا جداگانه بشنوی.",
+        cp_retiens_ecrire: "📝 این جمله را خوب به خاطر بسپار: چند کارت بعد آن را می‌نویسی.",
+        cp_dictee_preparee: "📝 همان جمله‌ای که چند کارت پیش مرتب کردی: آن را از حفظ بنویس.",
+        cp_ecrire_court: "📝 به‌زودی می‌نویسی",
+        cp_dictee_court: "📝 حالا از حفظ",
         or_dis_le: "بگو",
         or_phrase_entiere: "کل جمله",
         or_a_toi: "نوبت توست! روی دایره بزن.",
@@ -19280,6 +19304,10 @@ const I18N = {
         or_bravo: "أحسنت!",
         or_eclat: "+1 قطعة لفسيفسائك",
         or_touche_mots: "المس كلمة تحتها خط لتسمعها وحدها.",
+        cp_retiens_ecrire: "📝 احفظ هذه الجملة جيدًا: ستكتبها بعد بضع بطاقات.",
+        cp_dictee_preparee: "📝 الجملة التي رتّبتها قبل قليل: اكتبها من الذاكرة.",
+        cp_ecrire_court: "📝 ستكتبها قريبًا",
+        cp_dictee_court: "📝 الآن، من الذاكرة",
         or_dis_le: "قلها",
         or_phrase_entiere: "الجملة كاملة",
         or_a_toi: "دورك! المس الدائرة.",
@@ -19612,6 +19640,10 @@ const I18N = {
         or_bravo: "Muito bem!",
         or_eclat: "+1 peça para o seu mosaico",
         or_touche_mots: "Toque numa palavra sublinhada para ouvi-la sozinha.",
+        cp_retiens_ecrire: "📝 Guarde bem esta frase: você vai escrevê-la daqui a alguns cartões.",
+        cp_dictee_preparee: "📝 A frase que você colocou em ordem há pouco: escreva-a de memória.",
+        cp_ecrire_court: "📝 Para escrever em breve",
+        cp_dictee_court: "📝 Agora, de memória",
         or_dis_le: "Diga",
         or_phrase_entiere: "A frase inteira",
         or_a_toi: "Sua vez! Toque no círculo.",
@@ -21012,6 +21044,10 @@ const I18N = {
         or_bravo: "Brawo!",
         or_eclat: "+1 kafelek do twojej mozaiki",
         or_touche_mots: "Dotknij podkreślonego słowa, aby usłyszeć je osobno.",
+        cp_retiens_ecrire: "📝 Zapamiętaj dobrze to zdanie: za kilka kart je napiszesz.",
+        cp_dictee_preparee: "📝 To samo zdanie, co kilka kart temu: napisz je z pamięci.",
+        cp_ecrire_court: "📝 Do napisania wkrótce",
+        cp_dictee_court: "📝 Teraz z pamięci",
         or_dis_le: "Powiedz",
         or_phrase_entiere: "Całe zdanie",
         or_a_toi: "Twoja kolej! Dotknij koła.",
@@ -22410,6 +22446,10 @@ const I18N = {
         or_bravo: "Отлично!",
         or_eclat: "+1 кусочек для твоей мозаики",
         or_touche_mots: "Коснись подчёркнутого слова, чтобы услышать его отдельно.",
+        cp_retiens_ecrire: "📝 Запомни это предложение: через несколько карточек ты его напишешь.",
+        cp_dictee_preparee: "📝 То же предложение, что несколько карточек назад: напиши его по памяти.",
+        cp_ecrire_court: "📝 Скоро напишешь",
+        cp_dictee_court: "📝 Теперь по памяти",
         or_dis_le: "Скажи",
         or_phrase_entiere: "Всё предложение",
         or_a_toi: "Твоя очередь! Коснись круга.",
@@ -41317,7 +41357,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 891;
+const APP_VERSION = 893;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -45416,9 +45456,21 @@ function revisionDeScene(d){
 // pas souvent l'oral, puis c'est important ». Il n'arrivait qu'a 400 mots vus,
 // et aucun testeur n'y etait. parler_max : la longueur permise a la phrase a
 // dire (5 mots au palier 1, 7 au palier 2) ; les autres formes gardent mots_max.
+// v892 : LES BLOCS AVANT LA DICTEE. Jacques, 20 oct. 2026 : « deux, trois ou
+// quatre cartes avant de demander d'ecrire, la meme phrase en blocs ; la
+// personne essaierait de s'en rappeler parce qu'elle saurait que quelques
+// cartes plus tard on va lui demander de l'ecrire ». Chaque dictee d'une
+// phrase est precedee, 3 a 5 cartes plus tot, de la MEME phrase a remettre en
+// ordre, avec l'annonce « tu vas l'ecrire ». Trois raisons, dites a Jacques :
+// l'echafaudage qui s'efface (reconnaitre, ordonner, produire), l'attente d'un
+// test qui fait mieux encoder, et le petit delai qui oblige a aller rechercher
+// la phrase en memoire au lieu de la recopier. Le bloc REMPLACE une carte de
+// mot (une revision, jamais la carte du mot vise), la seance ne s'allonge pas.
+// Au palier 2, la dictee de phrase arrive avec lui (6 mots au plus) ; sans
+// place pour son bloc, elle redevient un simple ordre.
 const PALIERS_SEANCE = [
     { vus: 0,   debut: 2, tous_les: 4, mots_max: 8,  inconnus_max: 1, parler_max: 5, formes: ["ecoute", "parler", "trou", "ecoute", "parler"] },
-    { vus: 60,  debut: 2, tous_les: 3, mots_max: 8,  inconnus_max: 1, parler_max: 7, formes: ["ecoute", "parler", "gram", "trou", "ordre", "parler", "gram", "dictee_mot"] },
+    { vus: 60,  debut: 2, tous_les: 3, mots_max: 8,  inconnus_max: 1, parler_max: 7, dictee_max: 6, formes: ["ecoute", "parler", "gram", "trou", "dictee", "parler", "gram", "dictee_mot"] },
     { vus: 400, debut: 1, tous_les: 2, mots_max: 11, inconnus_max: 2, formes: ["gram", "parler", "ecoute", "ordre", "trou", "parler", "gram", "dictee"] }
 ];
 // L'ORDRE DU COURS, A1 -> B2 (v813). Les series « a blocs » (chunks) n'y sont
@@ -45734,7 +45786,7 @@ function noterPhraseRatee(item, juste){
     reste.push({ de: item.phrase.de, c: item.themeId + "#" + item.index, f: item.forme, j: jour });
     ecrirePhrasesRatees(reste);
     if(!item.retour){
-        const copie = Object.assign({}, item, { retour: true, intrus: null });
+        const copie = Object.assign({}, item, { retour: true, intrus: null, prepaDictee: false, prepa: false });
         RETOURS_FIN_SEANCE.push(copie);
     }
 }
@@ -45836,7 +45888,7 @@ function insererCartesPhrases(seance, tout){
                                themeId: remplacee.themeId, index: remplacee.index, word: remplacee.word };
                 continue;
             }
-            const max = f === "parler" ? palier.parler_max : 0;
+            const max = f === "parler" ? palier.parler_max : (f === "dictee" && palier.dictee_max) ? palier.dictee_max : 0;
             const e = meilleur(sortie.slice(0, k).filter(avecPhrase), max) || meilleur(vus.filter(avecPhrase), max);
             if(!e) continue;
             if(f === "trou" && e.vise < 0) continue;
@@ -45849,9 +45901,53 @@ function insererCartesPhrases(seance, tout){
         else k -= palier.tous_les - 1;   // la carte suivante
     }
     try{ localStorage.setItem(CYCLE_FORMES_KEY, String(n % 1000)); }catch(e){}
+    // v892 : le bloc de chaque dictee, 3 a 5 cartes plus tot (voir PALIERS_SEANCE).
+    for(let k = 0; k < sortie.length; k++){
+        const d = sortie[k];
+        if(!d || d.forme !== "dictee" || !d.phrase || d.prepa) continue;
+        // Une carte de mot qu'on peut ceder : pas une phrase, pas le mot de la
+        // dictee, pas un mot neuf -- on ne retire qu'une revision, d'un mot deja
+        // su (meme vise par une autre phrase : il est connu, la phrase tient).
+        const libre = i => {
+            const c = sortie[i];
+            return i >= 1 && c && avecPhrase(c)
+                && !(d.cible && cle(c) === cle(d.cible)) && !estNeuf(getWordState(c.themeId, c.index));
+        };
+        const bloc = { mode: "phrase", forme: "ordre", cible: d.cible, phrase: d.phrase, vise: d.vise, prepaDictee: true,
+                       themeId: d.themeId, index: d.index, word: d.word };
+        // 1. Le bloc 3 a 5 cartes AVANT la dictee.
+        const avant = [4, 3, 5].map(e => k - e).find(libre);
+        if(avant !== undefined){ sortie[avant] = bloc; d.prepa = true; continue; }
+        // 2. Sinon (dictee trop tot) : le bloc prend sa place, la dictee glisse
+        //    3 a 5 cartes plus loin. Jamais deux cartes collees : le delai EST
+        //    l'exercice.
+        const apres = [4, 3, 5].map(e => k + e).find(libre);
+        if(apres !== undefined){ d.prepa = true; sortie[apres] = d; sortie[k] = bloc; continue; }
+        // 3. Pas de place : au palier 2 la dictee redevient un simple ordre ; au
+        //    palier 3 elle reste seule, comme avant la v892.
+        if(palier.dictee_max) d.forme = "ordre";
+    }
     return sortie;
 }
 const CYCLE_FORMES_KEY = PREFIXE_STOCKAGE + "cycleFormes";
+// v893 : L'ANNONCE S'ALLEGE. Jacques : « est-ce qu'on a besoin de le dire, ou
+// a force de le faire, ils vont s'en rendre compte ? » -- les deux : l'attente
+// de devoir ecrire ne joue que si on la connait, donc la phrase entiere les 5
+// premiers blocs ; ensuite la personne a compris, et une etiquette suffit.
+const DUOS_VUS_KEY = PREFIXE_STOCKAGE + "duosVus";
+const DUOS_ANNONCE_ENTIERE = 5;
+function duosVus(){ try{ return parseInt(localStorage.getItem(DUOS_VUS_KEY) || "0", 10) || 0; }catch(e){ return 0; } }
+function annonceDuo(creer, item, dictee){
+    let n = duosVus();
+    if(!dictee && !item.duoCompte){
+        item.duoCompte = true;
+        try{ localStorage.setItem(DUOS_VUS_KEY, String(n + 1)); }catch(e){}
+        n++;
+    }
+    const entiere = n <= DUOS_ANNONCE_ENTIERE;
+    const cle = dictee ? (entiere ? "cp_dictee_preparee" : "cp_dictee_court") : (entiere ? "cp_retiens_ecrire" : "cp_ecrire_court");
+    return creer("p", "cp-annonce" + (entiere ? "" : " court"), t(cle));
+}
 
 // v826 : la dictee montre OU est l'erreur, et pardonne une faute de frappe.
 function ecartLettres(a, b){
@@ -46613,6 +46709,7 @@ function montrerCartePhrase(item){
         });
         el.appendChild(choix);
     } else if(item.forme === "ordre"){
+        if(item.prepaDictee) el.appendChild(annonceDuo(creer, item, false));
         el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const ligne = creer("div", "cp-ligne");
         ligne.setAttribute("lang", langueDe);
@@ -46706,6 +46803,7 @@ function montrerCartePhrase(item){
         const motSeul = item.forme === "dictee_mot";
         const w = item.cible.word;
         const attendu = motSeul ? motDictee(item.cible) : item.phrase.de;
+        if(item.prepa) el.appendChild(annonceDuo(creer, item, true));
         el.appendChild(rangeeEcoute);
         if(!motSeul) el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const champ = saisie();
