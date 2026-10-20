@@ -6582,7 +6582,7 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 /* v845 : la carte d'oral v2 (essai oral_v2) */
 .cp-or-ecouter{display:flex; gap:6px; flex-wrap:wrap;}
 .cp-or-allume{color:#2e8b57;}
-.cp-or-gris{color:#b9b2a6;}
+.cp-or-gris{color:#b9b2a6; cursor:pointer;}
 .cp-or-manque.touchable{cursor:pointer; color:#b07a22;}
 .cp-or-eclat{font-weight:800; margin-top:6px !important;}
 .cp-or-motseul{display:flex; align-items:center; gap:6px; background:#fff; border:1.5px solid #E8A23A; border-radius:12px; padding:8px 10px; margin-top:8px;}
@@ -7922,7 +7922,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v887</span>
+    <span class="subtitle-version">v888</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41276,7 +41276,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 887;
+const APP_VERSION = 888;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -46801,7 +46801,7 @@ function montrerCartePhrase(item){
             ici.natif = true; ici.avecReco = true; ici.recFini = true; ici.pic = 0;
             ici.ecouteurs = [];
             try{
-                ici.ecouteurs.push(await Natif.addListener("partialResults", ev => { ici.nbPartiels = (ici.nbPartiels || 0) + 1; if(ev && ev.matches && ev.matches.length){ ici.textes = ev.matches.slice(); eclairer(); } }));
+                ici.ecouteurs.push(await Natif.addListener("partialResults", ev => { ici.nbPartiels = (ici.nbPartiels || 0) + 1; if(ev && garderTextes(ici, ev.matches)) eclairer(); }));
                 ici.ecouteurs.push(await Natif.addListener("audioLevel", ev => {
                     const l = Math.max(0, Math.min(1, (ev && ev.level) || 0));
                     if(l > ici.pic) ici.pic = l;
@@ -46827,7 +46827,7 @@ function montrerCartePhrase(item){
                     journal("natif", "nouvel essai accepte");
                 }
                 journal("natif", "start rendu " + JSON.stringify(r || {}).slice(0, 80));
-                if(r && r.matches && r.matches.length) ici.textes = r.matches.slice();
+                if(r) garderTextes(ici, r.matches);
             }catch(e){ journal("natif", "start refuse : " + String(e && e.message).slice(0, 80)); ici.avecReco = false; }
             return true;
         };
@@ -46841,6 +46841,15 @@ function montrerCartePhrase(item){
             const p = lecteur.play();
             if(p && p.catch) p.catch(e => journal("relecture", "refusee : " + (e && e.name)));
         });
+        // v888 : UN RESULTAT VIDE N'EFFACE RIEN. Jacques (iPhone, 20 oct. 2026) :
+        // les mots s'allumaient pendant l'ecoute, puis tout repassait en noir au
+        // verdict, sans mot a toucher. Le module rend en s'arretant un resultat
+        // final vide ([""]), qui remplacait les partiels juste avant le jugement.
+        const garderTextes = (ici, liste) => {
+            const pleins = (liste || []).map(x => String(x || "").trim()).filter(Boolean);
+            if(pleins.length) ici.textes = pleins;
+            return pleins.length > 0;
+        };
         const montrerPhrase = manques => {
             phrase.textContent = "";
             const reste = (manques || []).slice();
@@ -46873,13 +46882,19 @@ function montrerCartePhrase(item){
             item.phrase.de.split(" ").forEach((m, i) => {
                 if(i) phrase.appendChild(document.createTextNode(" "));
                 const k = reste.indexOf(normaliserSaisie(m));
-                if(k >= 0){ reste.splice(k, 1); phrase.appendChild(creer("span", "cp-or-gris", m)); }
+                if(k >= 0){
+                    reste.splice(k, 1);
+                    const sp = creer("span", "cp-or-gris", m);
+                    sp.addEventListener("click", () => reprendreMot(m));
+                    phrase.appendChild(sp);
+                }
                 else phrase.appendChild(creer("span", "cp-or-allume", m));
             });
         };
         // v845 : un mot manque, repris seul : l'entendre, lentement, le dire.
         const reprendreMot = m => {
-            if(essai && essai.enCours) return;
+            // v888 : touche pendant l'ecoute = arreter, juger, PUIS faire entendre le mot.
+            if(essai && essai.enCours){ essai.motDemande = m; journal("mot", "touche pendant l'ecoute : " + m); arreter(); return; }
             const mot = m.replace(/[.,!?;:«»"¿¡()]/g, "");
             if(!mot) return;
             cible = mot;
@@ -46973,6 +46988,7 @@ function montrerCartePhrase(item){
             }
             if(s.niveau === "presque"){ verdict.appendChild(creer("p", "", t(v2 ? "or_touche_mots" : "or_presque_aide"))); dernierManques = s.manques.slice(); montrerPhrase(s.manques); }
             else if(v2 && s.niveau === "bon"){ phrase.textContent = ""; phrase.appendChild(creer("span", "cp-or-allume", item.phrase.de)); }
+            else if(v2){ dernierManques = s.manques.slice(); montrerPhrase(s.manques); }
             else montrerPhrase([]);
             if(v2 && s.niveau === "bon" && !eclatDonne){
                 // Un carreau de plus pour la mosaique (dans le plafond du jour).
@@ -46981,7 +46997,10 @@ function montrerCartePhrase(item){
                 verdict.appendChild(creer("p", "cp-or-eclat", t("or_eclat")));
             }
             if(s.niveau === "rien") verdict.appendChild(creer("p", "", t("or_rien_aide")));
+            if(v2 && s.niveau === "rien" && dernierManques.length) verdict.appendChild(creer("p", "", t("or_touche_mots")));
             reessayer.classList.toggle("hidden", s.niveau === "bon");
+            // Le mot touche pendant l'ecoute : on le fait entendre maintenant.
+            if(v2 && essai.motDemande && s.niveau !== "bon"){ const md = essai.motDemande; essai.motDemande = null; setTimeout(() => reprendreMot(md), 150); }
             if(s.niveau === "bon"){ try{ celebrateMastery(0, false); }catch(e){} }
         };
         const arreter = () => {
@@ -47035,8 +47054,7 @@ function montrerCartePhrase(item){
                         for(let a = 0; a < n; a++){
                             textes.push(Array.from(res).map(r => (r[Math.min(a, r.length - 1)] || {}).transcript || "").join(" ").replace(/\s+/g, " ").trim());
                         }
-                        ici.textes = textes.filter(Boolean);
-                        eclairer();
+                        if(garderTextes(ici, textes)) eclairer();
                     };
                     reco.onerror = e => { journal("reconnaissance", "erreur " + (e && e.error)); if(e && (e.error === "not-allowed" || e.error === "service-not-allowed")) ici.avecReco = false; };
                     reco.onend = () => { ici.recoFinie = true; if(!ici.enCours && ici.recFini) juger(); };
