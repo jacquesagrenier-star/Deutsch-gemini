@@ -6850,6 +6850,41 @@ body[data-theme="dark"] .pa-liste .seance-niveau{background:#232a34; border-colo
 body[data-theme="dark"] .pa-liste .seance-niveau.on{background:#E8A23A; border-color:#E8A23A; color:#1C2430;}
 body[data-theme="dark"] .pa-lien{color:#e8b860;}
 body[data-theme="dark"] #spDateEdit .av-date-edit{color:#eef1f5;}
+/* v891 (Jacques, 20 oct. 2026, maquettes .claude/maquette-ecouter-discret.html
+   et maquette-seance-bouton.html) : LA SEANCE PASSE DEVANT.
+   1. Son bouton est un chevron, pas un ▶ : on commence un travail, on ne lance
+      pas un son. Le ▶ reste a Ecouter, ou l'on ecoute.
+   2. PLUS DE COCHE, nulle part : « un crochet donne l'impression qu'on ne peut
+      pas continuer si on veut en faire plus ». Objectif atteint : l'anneau dit
+      le nombre fait, en ambre, et le chevron passe en contour -- toujours la.
+   3. L'anneau s'elargit (52 px, trait de 3) et le chiffre se reduit avec sa
+      longueur : « 24/30 » etait deja serre, « 120/150 » ne tenait pas.
+   4. Ecouter descend d'un cran : un contour bleu-vert sur le fond de la page,
+      au lieu d'une seconde pilule sombre qui pesait autant que la seance. */
+.pilule-accueil > .pa-anneau{width:52px; height:52px;}
+.pa-anneau::before{inset:3px;}
+.pa-anneau b{font-size:16px; letter-spacing:-.02em;}
+.pa-anneau b[data-l="3"]{font-size:13.5px; letter-spacing:-.04em;}
+.pa-anneau small{font-size:9px;}
+.pa-anneau small[data-l="3"]{font-size:8px; letter-spacing:-.02em;}
+.pilule-accueil .ela-onde{flex-basis:52px;}
+.pa-entrer svg{margin:0 0 0 2px; fill:none; stroke:#1C2430; stroke-width:3; stroke-linecap:round; stroke-linejoin:round;}
+.seance-pilule.atteint .pa-entrer{background:transparent; box-shadow:inset 0 0 0 2.5px var(--pa);}
+.seance-pilule.atteint .pa-entrer svg{stroke:var(--pa);}
+.pilule-accueil.pa-ecoute{background:transparent; color:#1C2430; box-shadow:inset 0 0 0 1.5px var(--pa); padding-block:8px;}
+.pilule-accueil.pa-ecoute .pa-kick{color:#2f7f76;}
+.pilule-accueil.pa-ecoute .pa-titre strong{color:#1C2430;}
+.pilule-accueil.pa-ecoute .pa-niv{background:transparent; box-shadow:inset 0 0 0 1.5px var(--pa); color:#2f7f76;}
+.pilule-accueil.pa-ecoute .pa-sens, .pilule-accueil.pa-ecoute .pa-sens::before{color:#576177;}
+.pilule-accueil.pa-ecoute .pa-play{width:40px; height:40px; box-shadow:none;}
+.pilule-accueil.pa-ecoute .ela-onde i{background:#9fb0ad;}
+.pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){background:var(--pa);}
+body[data-theme="dark"] .pilule-accueil.pa-ecoute{background:transparent; box-shadow:inset 0 0 0 1.5px var(--pa);}
+body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-kick, body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-niv{color:#7fd0c7;}
+body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-titre strong{color:#F2F2F6;}
+body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-sens, body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-sens::before{color:#a9b2c0;}
+body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i{background:#5d6b7c;}
+body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){background:var(--pa);}
 .explorer-v.verrou::after{content:"🔒"; position:absolute; top:4px; inset-inline-end:4px; font-size:12px;}
 body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
 body[data-theme="dark"] .explorer-desc{color:rgba(255,255,255,.72);}
@@ -7405,8 +7440,8 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
              en tuiles ; la date de depart, dans la pastille du niveau. -->
         <div class="orb orb-seance pilule-mode" data-orbid="seance">
             <div class="seance-pilule pilule-accueil" id="seancePilule">
-                <button type="button" class="pa-play" onclick="ouvrirSeanceDuJour(true)" data-i18n-aria-label="seance_commencer" aria-label="Commencer">
-                    <svg width="15" height="17" viewBox="0 0 22 24" aria-hidden="true"><path d="M2 2l18 10L2 22z"/></svg>
+                <button type="button" class="pa-play pa-entrer" onclick="ouvrirSeanceDuJour(true)" data-i18n-aria-label="seance_commencer" aria-label="Commencer">
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
                 </button>
                 <div class="pa-txt">
                     <button type="button" class="pa-titre" onclick="ouvrirSeanceDuJour(true)">
@@ -7922,7 +7957,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v890</span>
+    <span class="subtitle-version">v891</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41282,7 +41317,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 890;
+const APP_VERSION = 891;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -49189,10 +49224,13 @@ function majAnneauSeance(){
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
     const f = document.getElementById("spFait"), s = document.getElementById("spSur");
-    if(f) f.textContent = fait >= cible ? "✓" : String(fait);
-    if(s) s.textContent = fait >= cible ? fait + "/" + cible : "/" + cible;
+    // v891 : plus de « ✓ » -- le nombre fait, toujours (voir le CSS de la v891).
+    if(f){ f.textContent = String(fait); f.dataset.l = String(fait).length >= 3 ? "3" : ""; }
+    if(s){ s.textContent = "/" + cible; s.dataset.l = String(cible).length >= 3 ? "3" : ""; }
     a.style.setProperty("--p", Math.min(100, Math.round(100 * fait / Math.max(1, cible))));
     a.classList.toggle("atteint", fait >= cible);
+    const pil = document.getElementById("seancePilule");
+    if(pil) pil.classList.toggle("atteint", fait >= cible);
     a.title = fait + " / " + cible;
 }
 function majTuilesCarnetFeuilles(){
