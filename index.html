@@ -6665,6 +6665,10 @@ body[data-theme="dark"] #decouverte > button.primary{
 
 /* ===== Fonctions en essai (v713) : la ligne du tableau de bord ===== */
 .essai-prod{font-size:13px; color:#7b8798; line-height:1.45; margin:0 0 10px;}
+/* v887 : l'essai de l'oral sur une phrase choisie (admin). */
+.essai-oral-admin{display:flex; flex-direction:column; gap:6px; margin-top:10px;}
+.essai-oral-champ{width:100%; box-sizing:border-box; border:1.5px solid #e3dccf; border-radius:10px; padding:9px 10px; font:inherit; font-size:15px; background:#fff; color:#1C2430;}
+body[data-theme="dark"] .essai-oral-champ{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
 .essai-ligne{display:flex; gap:10px; align-items:center; justify-content:space-between;
     padding:10px 0; border-top:1px solid var(--wt-bordure-accent);}
 .essai-ligne:first-child{border-top:0; padding-top:0;}
@@ -7918,7 +7922,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v886</span>
+    <span class="subtitle-version">v887</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -36394,6 +36398,25 @@ function afficherEssais(){
         };
         box.appendChild(o);
     }
+    // v887 : ESSAYER L'ORAL SUR UNE PHRASE CHOISIE (Jacques : « donne-moi la
+    // carte dans l'administration afin que je puisse la tester »). Une phrase
+    // dans la langue apprise ; la carte d'oral s'ouvre seule, avec son journal.
+    {
+        const ligne = document.createElement("div");
+        ligne.className = "essai-oral-admin";
+        const champ = document.createElement("input");
+        champ.type = "text";
+        champ.className = "essai-oral-champ";
+        champ.setAttribute("lang", LANGUE_APPRISE === "es" ? "es" : "de");
+        champ.value = LANGUE_APPRISE === "es" ? "Son tres euros con cincuenta." : "Das macht drei Euro fünfzig.";
+        const o = document.createElement("button");
+        o.className = "secondary";
+        o.textContent = "ORAL : ESSAYER CETTE PHRASE →";
+        o.onclick = () => adminEssaiOral(champ.value);
+        ligne.appendChild(champ);
+        ligne.appendChild(o);
+        box.appendChild(ligne);
+    }
     Object.keys(ESSAIS).filter(nom => ESSAIS[nom].etat !== "tous").forEach(nom => {
         const e = ESSAIS[nom];
         const ligne = document.createElement("div");
@@ -41253,7 +41276,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 886;
+const APP_VERSION = 887;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48690,6 +48713,28 @@ function retirerPorteA1Voyage(porte){
     if(bas) bas.remove();
 }
 // Les boutons de l'admin : recommencer a l'escale 1, sauter une escale.
+// v887 : la carte d'oral sur une phrase choisie (admin). Une seance d'une seule
+// carte : le verdict, le journal audio et « Signaler un probleme » marchent
+// comme dans une vraie seance.
+function adminEssaiOral(texte){
+    if(!isAdminUser()) return;
+    const de = String(texte || "").trim();
+    if(!de){ showInfoToast("Écris d'abord une phrase."); return; }
+    const item = { mode: "phrase", forme: "parler", cible: null, themeId: "admin_oral", index: 0, word: "",
+                   phrase: { de: de, sens: "", mots: motsPhrase(de) } };
+    PHRASES_POSEES.clear();
+    currentCardsFull = [];
+    currentCards = [item];
+    currentFlashcard = 0;
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    currentTheme = { id: "admin_oral", name: "Oral" };
+    flashcardMode = "phrase";
+    setFlashHeader("seance_titre", null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
 function adminA1Voyage(action){
     const s = lireA1Voyage();
     if(action === "recommencer"){
