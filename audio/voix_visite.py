@@ -80,6 +80,56 @@ def composer(morceaux):
     return " ".join(sortie)
 
 
+# CE QUE LA VOIX DIT MAL (v897). Jacques, a l'ecoute de la visite francaise :
+# « 1895, elle ne le dit pas comme un francophone le dirait », et « c'est bizarre
+# la facon qu'elle dit la visite est terminee ». L'ecran garde son texte ; seul
+# ce qui part a ElevenLabs est ajuste : les annees en toutes lettres, et le
+# titre de fin sans son point d'exclamation, qui lui donnait un ton etrange.
+# Les memes mots, dits comme on les dit. L'empreinte suit le texte ajuste :
+# un ajustement nouveau refait le clip.
+UNITES_FR = ["zéro", "un", "deux", "trois", "quatre", "cinq", "six", "sept", "huit", "neuf", "dix", "onze",
+             "douze", "treize", "quatorze", "quinze", "seize", "dix-sept", "dix-huit", "dix-neuf"]
+DIZAINES_FR = {2: "vingt", 3: "trente", 4: "quarante", 5: "cinquante", 6: "soixante"}
+
+
+def nombre_fr(n, fin=True):
+    """0-99 en toutes lettres (orthographe traditionnelle, traits d'union)."""
+    if n < 20:
+        return UNITES_FR[n]
+    d, u = divmod(n, 10)
+    if d in (7, 9):
+        base = "soixante" if d == 7 else "quatre-vingt"
+        reste = 10 + u
+        if d == 7 and u == 1:
+            return "soixante et onze"
+        return base + "-" + UNITES_FR[reste]
+    if d == 8:
+        return "quatre-vingts" if u == 0 and fin else "quatre-vingt" + ("-" + UNITES_FR[u] if u else "")
+    mot = DIZAINES_FR[d]
+    if u == 0:
+        return mot
+    return mot + (" et un" if u == 1 else "-" + UNITES_FR[u])
+
+
+def annee_fr(m):
+    a = int(m.group(0))
+    siecle, reste = divmod(a, 100)
+    texte = "mille " + UNITES_FR[siecle - 10] + " cent" if siecle > 10 else "mille"
+    return texte + (" " + nombre_fr(reste) if reste else "")
+
+
+AJUSTEMENTS = {
+    "fr": [(re.compile(r"\b1[1-9]\d\d\b"), annee_fr),
+           ("La visite est terminée !", "La visite est terminée.")],
+}
+
+
+def prononcer(texte, langue):
+    for avant, apres in AJUSTEMENTS.get(langue, []):
+        texte = avant.sub(apres, texte) if hasattr(avant, "sub") else texte.replace(avant, apres)
+    return texte
+
+
 def generer(texte, langue, cle):
     corps = {"text": texte, "model_id": MODELE.get(langue, MODELE_DEFAUT)}
     if langue in MODELE:
@@ -136,7 +186,7 @@ def main():
                for langue in LANGUES_ES for clip in CLIPS_PROPRES_ES]
     caracteres = 0
     for cle_manifeste, langue, clip, cles, t, dossier in taches:
-        texte = composer([t[c] for c in cles])
+        texte = prononcer(composer([t[c] for c in cles]), langue)
         empreinte = hashlib.sha1(texte.encode("utf-8")).hexdigest()
         cible = dossier / f"{clip}.mp3"
         if cible.exists() and manifeste.get(cle_manifeste, {}).get(clip) == empreinte:
