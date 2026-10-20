@@ -7966,7 +7966,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v898</span>
+    <span class="subtitle-version">v899</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41498,7 +41498,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 898;
+const APP_VERSION = 899;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -41592,7 +41592,12 @@ function noterVersion(quoi, detail){
         cache: nav.transferSize === 0 && nav.decodedBodySize > 0,
         navigation: nav.type || "?",
         natif: natif,
-        sw: !!(navigator.serviceWorker && navigator.serviceWorker.controller)
+        sw: !!(navigator.serviceWorker && navigator.serviceWorker.controller),
+        // v899 : L'ADRESSE D'OUVERTURE. Avant de fermer l'ancien lien
+        // (demenagement/JOUR-J.md, A6), savoir QUI passe encore par
+        // github.io plutot que wortando.com -- pour ne prevenir qu'eux.
+        // Seulement le nom du site, rien d'autre.
+        hote: location.host || location.protocol
     });
 })();
 
