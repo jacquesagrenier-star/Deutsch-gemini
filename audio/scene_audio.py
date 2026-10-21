@@ -103,11 +103,15 @@ def main():
 
     chemin = os.path.join(RACINE, "scenes", a.scene + ".json")
     d = json.load(io.open(chemin, encoding="utf-8"))
+    # ⚠️ LA LANGUE DITE SE LIT DANS LA SCENE (21 oct. 2026, serie espagnole) :
+    #    « es » porte le texte dit, comme « de » pour la serie allemande. Meme
+    #    regle que video/sous_titres.py. Une scene sans « langue » est allemande.
+    DIT = d.get("langue", "de")
     # ⚠️ UN PLAN SANS REPLIQUE N'A PAS D'AUDIO. Les plans muets vivent
     #    desormais dans la meme liste que les autres, parce que mouvement.py
     #    y cherche les decors a animer. C'est ici qu'on les saute -- pas en
     #    les retirant du fichier, qui doit decrire l'episode entier.
-    plans = [p for p in d["plans"] if (p.get("de") or "").strip()]
+    plans = [p for p in d["plans"] if (p.get(DIT) or "").strip()]
     locuteurs = d["locuteurs"]
 
     # Un locuteur sans voix arrete tout AVANT la premiere depense : sinon on
@@ -134,15 +138,15 @@ def main():
     def modele_de(loc):
         return locuteurs.get(loc, {}).get("modele") or a.modele
 
-    car = sum(len(p["de"]) for p in plans)
-    print("  %s — %d plans, %d s" % (d["situation"], len(plans), d["duree"]))
+    car = sum(len(p[DIT]) for p in plans)
+    print("  %s — %d plans, %d s" % (d["situation"], len(plans), d.get("duree", 0)))
     for cle, v in locuteurs.items():
         n = sum(1 for p in plans if p["locuteur"] == cle)
         print("    %-10s %-12s %2d replique(s)" % (v["nom"], v.get("voix") or "?", n))
     par_modele = {}
     for p in plans:
         m = modele_de(p["locuteur"])
-        par_modele[m] = par_modele.get(m, 0) + len(p["de"])
+        par_modele[m] = par_modele.get(m, 0) + len(p[DIT])
     total = 0
     for m in sorted(par_modele):
         c = generer.MODELES[m][1]
@@ -189,14 +193,14 @@ def main():
             # convention de comedien, pas de l'allemand : a l'ecran l'apprenant
             # doit lire la phrase correcte. Le champ n'est donc lu QU'ICI, et
             # "de" continue de nourrir sous-titres, lexique et traductions.
-            texte = p.get("de_diction") or p["de"]
+            texte = p.get(DIT + "_diction") or p[DIT]
             if nom_modele == "v3" and p.get("balise"):
                 texte = p["balise"] + " " + texte
             # Ses voisines dans la scene, quel que soit le locuteur :
             # c'est la CONVERSATION qui donne le contexte, pas la voix.
             i = plans.index(p)
-            avant = plans[i - 1]["de"] if i > 0 else None
-            apres = plans[i + 1]["de"] if i + 1 < len(plans) else None
+            avant = plans[i - 1][DIT] if i > 0 else None
+            apres = plans[i + 1][DIT] if i + 1 < len(plans) else None
             octets = generer.synthetiser(texte, modele, cle_api, avant, apres)
         except generer.TexteBloque:
             sys.exit("\n  Texte refuse par ElevenLabs au plan %d. Rien n'est "
@@ -231,9 +235,9 @@ def main():
             sys.exit("  Egalisation echouee sur %s." % nom)
         manifeste.append({"plan": p["n"], "locuteur": p["locuteur"],
                           "modele": modele_de(p["locuteur"]),
-                          "fichier": nom, "de": p["de"],
+                          "fichier": nom, DIT: p[DIT],
                           "duree_reelle": round(normaliser.duree(fini), 2),
-                          "duree_prevue": p["duree"]})
+                          "duree_prevue": p.get("duree")})
 
     io.open(os.path.join(dossier, "manifeste.json"), "w",
             encoding="utf-8", newline="").write(
@@ -246,13 +250,14 @@ def main():
 
     reel = sum(x["duree_reelle"] for x in manifeste)
     print("\n  %d fichiers dans audio/scenes/%s/" % (len(manifeste), a.scene))
-    print("  duree reelle %.1f s, prevue %d s" % (reel, d["duree"]))
-    ecarts = [x for x in manifeste if abs(x["duree_reelle"] - x["duree_prevue"]) >= 2]
+    print("  duree reelle %.1f s, prevue %d s" % (reel, d.get("duree", 0)))
+    ecarts = [x for x in manifeste if x["duree_prevue"] is not None
+              and abs(x["duree_reelle"] - x["duree_prevue"]) >= 2]
     if ecarts:
         print("\n  Plans dont la duree reelle s'ecarte de 2 s ou plus du plan :")
         for x in ecarts:
             print("    %2d  prevu %2d s, reel %5.1f s  « %s »"
-                  % (x["plan"], x["duree_prevue"], x["duree_reelle"], x["de"][:48]))
+                  % (x["plan"], x["duree_prevue"], x["duree_reelle"], x[DIT][:48]))
         print("  Reporter ces durees dans la scene : c'est l'audio qui a raison,")
         print("  et le chiffrage HeyGen se calcule dessus.")
 
