@@ -4519,6 +4519,16 @@ body[data-theme="dark"] .judge-again{
     background:rgba(240,214,110,.15); border-color:rgba(240,214,110,.40); color:#efdd9c;
 }
 .judge-good{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
+/* v909 : la bille de verre de la seance, en vert, avec un crochet blanc. */
+.judge-good .judge-bille{order:-2; position:relative; width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 50% 85%, rgba(255,255,255,.5), rgba(255,255,255,0) 45%), #2e9e6a;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.55), inset 0 1.5px 0 rgba(255,255,255,.85),
+               inset 0 -6px 10px -6px rgba(10,70,40,.55), 0 3px 7px -2px rgba(10,70,40,.35);}
+.judge-good .judge-bille::before{content:""; position:absolute; left:24%; top:8%; width:44%; height:24%; border-radius:50%;
+    pointer-events:none; background:radial-gradient(closest-side, rgba(255,255,255,.85), rgba(255,255,255,0));}
+.judge-good .judge-bille svg{position:relative; order:0; width:17px; height:17px; fill:none; stroke:#fff;
+    stroke-width:3.2; stroke-linecap:round; stroke-linejoin:round;}
 .judge-good:hover{background:#cdf0dc;}
 /* ⚠️ L'ECHEANCE EST LA SECONDE LIGNE DU BOUTON, PAS UNE NOTE DE BAS DE PAGE.
    Jacques proposait de remplacer « Je savais » par « Revoir dans 10 minutes ».
@@ -8117,7 +8127,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v908</span>
+    <span class="subtitle-version">v909</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -9978,8 +9988,13 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <span class="judge-titre" data-i18n="review_again">↺ Encore</span>
                 <small class="judge-echeance" id="judgeEcheanceAgain"></small>
             </button>
-            <button class="judge-button judge-good" onclick="reviewGood()">
-                <span class="judge-titre" data-i18n="review_good">Je savais ✓</span>
+            <!-- v909 : PLUS DE « JE SAVAIS », UNE BILLE ET UN CROCHET. Marc-Antoine
+                 (21 oct. 2026) : « OK, avec un crochet blanc dans un carré vert » ;
+                 Jacques : « un cercle avec le glacis, puis un crochet dedans, puis
+                 les quatre points de progression ». Le nom reste pour les lecteurs
+                 d'ecran (aria-label), et les aides disent « ✓ ». -->
+            <button class="judge-button judge-good" onclick="reviewGood()" data-i18n-aria-label="review_good" aria-label="OK">
+                <span class="judge-titre judge-bille" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span>
                 <span class="srs-ladder" id="srsLadder">
                     <span class="srs-pips" id="srsPips" aria-hidden="true"></span>
                     <span class="srs-ladder-text" id="srsLadderText"></span>
@@ -11693,7 +11708,7 @@ const I18N = {
         myvocab_vide_explication: "<strong>Mon vocabulaire est encore vide.</strong><br>C'est ta réserve personnelle : les mots que tu rencontres ailleurs — en cours, dans un texte, dans une conversation — et qui ne sont pas dans l'app.<br><br>Cherche-en un ci-dessus, puis touche le <strong>+</strong> à côté du résultat du dictionnaire. Il deviendra une carte à réviser comme les autres.",
         myvocab_how: "Cherche un mot, puis touche le + à côté d'une entrée du dictionnaire pour le mettre ici.",
         review_again: "↺ Encore",
-        review_good: "Je savais",
+        review_good: "OK",
         review_known: "Je le sais par cœur",
         known_echeance: "pas avant {n} jours",
         flash_end_title: "Paquet terminé",
@@ -11781,7 +11796,7 @@ const I18N = {
         ip_partie_boutons: "Les quatre boutons",
         srs_aide_garder: "Le mot va dans ton coffre et la carte avance — mais rien n'est jugé : elle reste due et revient à la prochaine séance. Tu la retrouves aussi à part, par « Gardés », pour la retravailler seule. Dans le coffre, réviser ne change rien : ni échéance, ni palier, ni objectif du jour.",
         srs_aide_intro: "Tu réponds une seule chose — si le mot t'est revenu. C'est l'app qui en déduit la date.",
-        srs_aide_echelle: "Chaque « Je savais » d'affilée éloigne le mot un peu plus :",
+        srs_aide_echelle: "Chaque « ✓ » d'affilée éloigne le mot un peu plus :",
         srs_aide_minutes: "{n} min",
         srs_aide_jour: "{n} jour",
         srs_aide_jours: "{n} jours",
@@ -11790,7 +11805,7 @@ const I18N = {
         srs_aide_encore: "Le mot repart de zéro et revient {n} cartes plus loin, dans cette séance.",
         srs_aide_pastilles: "Les {n} pastilles comptent ces réussites d'affilée.",
         srs_aide_connu: "Le mot passe directement à « maîtrisé », sans faire les quatre étapes. Utile pour un mot déjà su : il sort du paquet sans qu'il faille le juger quatre fois.",
-        srs_aide_apres: "Par les quatre « Je savais » comme par l'étoile, un mot maîtrisé n'est pas rangé pour de bon : il revient dans {n} jours pour vérifier. Chaque fois que tu le confirmes, il s'éloigne davantage — 35 jours, puis 3 mois, puis 6, puis un an. Un mot comme « Hallo » finit par ne plus revenir du tout.",
+        srs_aide_apres: "Par les quatre « ✓ » comme par l'étoile, un mot maîtrisé n'est pas rangé pour de bon : il revient dans {n} jours pour vérifier. Chaque fois que tu le confirmes, il s'éloigne davantage — 35 jours, puis 3 mois, puis 6, puis un an. Un mot comme « Hallo » finit par ne plus revenir du tout.",
         srs_etat_1: "je commence",
         srs_etat_2: "je progresse",
         srs_etat_3: "j'y suis presque",
@@ -11851,7 +11866,7 @@ const I18N = {
         ip_seance_gardes: "« Gardés » ouvre ton coffre : les mots que tu y as mis avec « Garder ». Tu peux y tourner autant que tu veux — rien de ce que tu y fais ne change une échéance ni l'objectif du jour.",
         ip_seance_theme: "« par thème » est l'autre porte : tu choisis toi-même un thème, au lieu de laisser l'app composer la séance.",
         ip_seance_t: "Le compte de la séance",
-        ip_seance_p: "Les cartes que tu as jugées aujourd'hui, sur ton objectif. Une carte demande une réponse — « Encore » ou « Je savais » — pour compter.",
+        ip_seance_p: "Les cartes que tu as jugées aujourd'hui, sur ton objectif. Une carte demande une réponse — « Encore » ou « ✓ » — pour compter.",
         ip_vocab_t: "La progression du vocabulaire",
         ip_vocab_p: "Où tu en es du niveau affiché. Touche la flèche pour voir les cinq niveaux.",
         ip_partie_tableau: "Le tableau",
@@ -11867,7 +11882,7 @@ const I18N = {
         mosaique_plafond: "Le tableau a avancé au maximum pour aujourd'hui. Il reprendra demain.",
         flash_recto: "Revenir au recto de la carte",
         legende_seance_niveau: "Les pastilles A1 à C1 ne décident que de la provenance des mots NOUVEAUX. Tes révisions reviennent de tous les niveaux déjà travaillés, quel que soit celui qui est choisi.",
-        legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « Je savais »).",
+        legende_objectif_quoi: "Aujourd'hui — les cartes que tu as jugées (« Encore » ou « ✓ »).",
         legende_mosaique: "Le tableau — il commence en gros carreaux de couleur, et chaque carte en affine un, révision comprise. Le peintre, l'année et le titre apparaissent à mesure. Touche-le pour l'agrandir.",
         legende_jours: "Jours travaillés — le total des journées où tu as fait quelque chose. Il ne redescend jamais, même après des vacances.",
         legende_serie: "🔥 jours — le nombre de jours d'affilée où tu as travaillé, vocabulaire ou grammaire. Un jour sauté le ramène à zéro.",
@@ -13069,7 +13084,7 @@ const I18N = {
         myvocab_vide_explication: "<strong>My vocabulary is still empty.</strong><br>It's your personal stock: the words you meet elsewhere — in class, in a text, in a conversation — that aren't in the app.<br><br>Search for one above, then tap the <strong>+</strong> beside the dictionary result. It becomes a card you review like any other.",
         myvocab_how: "Search for a word, then tap the + beside a dictionary entry to save it here.",
         review_again: "↺ Again",
-        review_good: "I knew it",
+        review_good: "OK",
         review_known: "I know it by heart",
         known_echeance: "not before {n} days",
         flash_end_title: "Deck finished",
@@ -13157,7 +13172,7 @@ const I18N = {
         ip_partie_boutons: "The four buttons",
         srs_aide_garder: "The word goes into your chest and the card moves on — but nothing is judged: it stays due and comes back next session. You also find it on its own, under “Kept”, to work on separately. Inside the chest, reviewing changes nothing: no due date, no step, no daily goal.",
         srs_aide_intro: "You answer one thing only — whether the word came back to you. The app works out the date.",
-        srs_aide_echelle: "Each « I knew it » in a row pushes the word further away:",
+        srs_aide_echelle: "Each « ✓ » in a row pushes the word further away:",
         srs_aide_minutes: "{n} min",
         srs_aide_jour: "{n} day",
         srs_aide_jours: "{n} days",
@@ -13166,7 +13181,7 @@ const I18N = {
         srs_aide_encore: "The word starts over and comes back {n} cards later, in this session.",
         srs_aide_pastilles: "The {n} dots count those successes in a row.",
         srs_aide_connu: "The word jumps straight to « mastered », skipping the four steps. Handy for a word you already know: it leaves the deck without being judged four times.",
-        srs_aide_apres: "Through four “I knew it”s or straight through the star, a mastered word isn't put away for good: it comes back in {n} days as a check. Each time you confirm it, it moves further away — 35 days, then 3 months, then 6, then a year. A word like “Hallo” eventually stops coming back at all.",
+        srs_aide_apres: "Through four “✓”s or straight through the star, a mastered word isn't put away for good: it comes back in {n} days as a check. Each time you confirm it, it moves further away — 35 days, then 3 months, then 6, then a year. A word like “Hallo” eventually stops coming back at all.",
         srs_etat_1: "getting started",
         srs_etat_2: "making progress",
         srs_etat_3: "almost there",
@@ -13227,7 +13242,7 @@ const I18N = {
         ip_seance_gardes: "“Kept” opens your chest: the words you put there with “Keep”. You can go round it as often as you like — nothing you do there changes a due date or the daily goal.",
         ip_seance_theme: "“by theme” is the other door: you pick a theme yourself instead of letting the app build the session.",
         ip_seance_t: "The session count",
-        ip_seance_p: "The cards you judged today, against your goal. A card needs an answer — « Again » or « I knew it » — to count.",
+        ip_seance_p: "The cards you judged today, against your goal. A card needs an answer — « Again » or « ✓ » — to count.",
         ip_vocab_t: "Vocabulary progress",
         ip_vocab_p: "How far you are through the level shown. Tap the arrow to see the five levels.",
         ip_partie_tableau: "The painting",
@@ -13243,7 +13258,7 @@ const I18N = {
         mosaique_plafond: "The painting has moved as far as it can today. It picks up again tomorrow.",
         flash_recto: "Back to the front of the card",
         legende_seance_niveau: "The A1–C1 pills only decide where NEW words come from. Your reviews come back from every level you have already worked, whichever one is selected.",
-        legende_objectif_quoi: "Today — the cards you judged (« Again » or « I knew it »).",
+        legende_objectif_quoi: "Today — the cards you judged (« Again » or « ✓ »).",
         legende_mosaique: "The painting — it starts as large squares of colour, and every card makes one of them finer, reviews included. Painter, year and title appear as you go. Tap it to enlarge.",
         legende_jours: "Days worked — the total number of days you did something. It never goes down, not even after a holiday.",
         legende_serie: "🔥 days — days in a row you have worked, vocabulary or grammar. Miss a day and it goes back to zero.",
@@ -14447,7 +14462,7 @@ const I18N = {
         myvocab_vide_explication: "<strong>Kelimelerim henüz boş.</strong><br>Burası senin kişisel stokun: başka yerlerde — derste, bir metinde, bir sohbette — karşılaştığın ve uygulamada bulunmayan kelimeler.<br><br>Yukarıdan bir kelime ara, sonra sözlük sonucunun yanındaki <strong>+</strong> işaretine dokun. O kelime, diğerleri gibi tekrar ettiğin bir karta dönüşür.",
         myvocab_how: "Bir kelime ara, sonra sözlük kaydının yanındaki + işaretine dokunarak buraya kaydet.",
         review_again: "↺ Tekrar",
-        review_good: "Biliyordum",
+        review_good: "OK",
         review_known: "Ezbere biliyorum",
         known_echeance: "{n} günden önce değil",
         flash_end_title: "Deste bitti",
@@ -14535,7 +14550,7 @@ const I18N = {
         ip_partie_boutons: "Dört düğme",
         srs_aide_garder: "Kelime sandığına gider ve kart ilerler — ama hiçbir şey değerlendirilmez: kelime sırada kalır ve bir sonraki seansta geri gelir. Ayrıca “Saklananlar” altında, tek başına çalışmak için bulursun. Sandığın içinde tekrar etmek hiçbir şeyi değiştirmez: ne tarih, ne basamak, ne günlük hedef.",
         srs_aide_intro: "Tek bir şey söylüyorsun — kelime aklına geldi mi. Tarihi uygulama hesaplar.",
-        srs_aide_echelle: "Üst üste her « Biliyordum » kelimeyi biraz daha uzağa iter:",
+        srs_aide_echelle: "Üst üste her « ✓ » kelimeyi biraz daha uzağa iter:",
         srs_aide_minutes: "{n} dk",
         srs_aide_jour: "{n} gün",
         srs_aide_jours: "{n} gün",
@@ -14544,7 +14559,7 @@ const I18N = {
         srs_aide_encore: "Kelime sıfırdan başlar ve bu oturumda {n} kart sonra geri gelir.",
         srs_aide_pastilles: "{n} nokta, üst üste gelen bu başarıları sayar.",
         srs_aide_connu: "Kelime dört adımı atlayıp doğrudan « öğrenildi » olur. Zaten bildiğin bir kelime için pratik: dört kez değerlendirilmeden desteden çıkar.",
-        srs_aide_apres: "İster dört “Biliyordum” ile ister doğrudan yıldızla olsun, öğrenilen kelime büsbütün kaldırılmaz: kontrol için {n} gün sonra geri gelir. Her doğruladığında biraz daha uzaklaşır — 35 gün, sonra 3 ay, sonra 6 ay, sonra bir yıl. « Hallo » gibi bir kelime sonunda hiç geri gelmez.",
+        srs_aide_apres: "İster dört “✓” ile ister doğrudan yıldızla olsun, öğrenilen kelime büsbütün kaldırılmaz: kontrol için {n} gün sonra geri gelir. Her doğruladığında biraz daha uzaklaşır — 35 gün, sonra 3 ay, sonra 6 ay, sonra bir yıl. « Hallo » gibi bir kelime sonunda hiç geri gelmez.",
         srs_etat_1: "başlıyor",
         srs_etat_2: "ilerliyor",
         srs_etat_3: "neredeyse tamam",
@@ -16223,7 +16238,7 @@ const I18N = {
         ip_partie_boutons: "Чотири кнопки",
         srs_aide_garder: "Слово йде до твоєї скрині, і картка рухається далі — але нічого не оцінюється: вона лишається до повторення й повернеться наступного заняття. Ти також знайдеш її окремо, у «Збережених», щоб опрацювати саму. У скрині повторення нічого не змінює: ні терміну, ні щабля, ні денної мети.",
         srs_aide_intro: "Ти відповідаєш лише на одне — чи згадалося слово. Дату застосунок вирахує сам.",
-        srs_aide_echelle: "Кожне «Пам'ятаю» поспіль відсуває слово трохи далі:",
+        srs_aide_echelle: "Кожне «✓» поспіль відсуває слово трохи далі:",
         srs_aide_minutes: "{n} хв",
         srs_aide_jour: "{n} день",
         srs_aide_jours: "{n} дні",
@@ -16231,7 +16246,7 @@ const I18N = {
         srs_aide_encore: "Слово починає спочатку і повертається через {n} карток, у цьому ж сеансі.",
         srs_aide_pastilles: "{n} кружечки рахують ці успіхи поспіль.",
         srs_aide_connu: "Слово одразу стає «засвоєним», без чотирьох кроків. Зручно для слова, яке ти вже знаєш: воно виходить з колоди без чотирьох оцінювань.",
-        srs_aide_apres: "Чи через чотири «Пам'ятаю», чи одразу через зірку, засвоєне слово не відкладається назавжди: воно повернеться через {n} днів для перевірки. Щоразу, коли ти його підтверджуєш, воно віддаляється ще більше — 35 днів, потім 3 місяці, далі 6, далі рік. Слово на кшталт « Hallo » зрештою перестає повертатися зовсім.",
+        srs_aide_apres: "Чи через чотири «✓», чи одразу через зірку, засвоєне слово не відкладається назавжди: воно повернеться через {n} днів для перевірки. Щоразу, коли ти його підтверджуєш, воно віддаляється ще більше — 35 днів, потім 3 місяці, далі 6, далі рік. Слово на кшталт « Hallo » зрештою перестає повертатися зовсім.",
         qual_0: "Ти починаєш!",
         qual_1: "На правильному шляху!",
         qual_20: "Є поступ!",
@@ -16827,7 +16842,7 @@ const I18N = {
         flash_end_done: "ЗАВЕРШИТИ",
         encore_neufs: "Ще {n} карток",
         review_again: "↺ Ще раз",
-        review_good: "Пам'ятаю",
+        review_good: "OK",
         review_known: "Знаю напам'ять",
         review_tomorrow: "Повторити завтра",
         review_mastered: "Засвоєно ✓",
@@ -17887,7 +17902,7 @@ const I18N = {
         dict_section_note: "برای ساختن کارت از یک واژه و یافتن دوبارهٔ آن در «واژگان من»، + را لمس کن.",
         srs_aide_intro: "تو فقط یک چیز پاسخ می‌دهی — اینکه واژه به یادت آمد یا نه. برنامه از همان، فاصلهٔ مرور بعدی را درمی‌آورد.",
         srs_aide_connu: "واژه یک‌راست به «آموخته» می‌رود، بدون گذراندن چهار پله. برای واژه‌هایی به کار می‌آید که از پیش بلدی.",
-        srs_aide_apres: "چه با چهار «می‌دانستم» و چه یک‌راست با ستاره، واژهٔ آموخته برای همیشه کنار گذاشته نمی‌شود: {n} روز دیگر برای بررسی بازمی‌گردد. هر بار که آن را تأیید کنی، دورتر می‌رود — ۳۵ روز، سپس ۳ ماه، سپس ۶ ماه، سپس یک سال. واژه‌ای مثل « Hallo » سرانجام دیگر برنمی‌گردد.",
+        srs_aide_apres: "چه با چهار «✓» و چه یک‌راست با ستاره، واژهٔ آموخته برای همیشه کنار گذاشته نمی‌شود: {n} روز دیگر برای بررسی بازمی‌گردد. هر بار که آن را تأیید کنی، دورتر می‌رود — ۳۵ روز، سپس ۳ ماه، سپس ۶ ماه، سپس یک سال. واژه‌ای مثل « Hallo » سرانجام دیگر برنمی‌گردد.",
         settings_revoir_maitrises_desc: "واژه‌های دسته‌بندی‌شده در «آموخته» را دوباره به گردش می‌آورد، بی‌آنکه پیشرفت یا درصد تو پاک شود.",
         confirm_revoir_maitrises: "همهٔ واژه‌های آموخته‌ات دوباره به مرور بازگردند؟ پیشرفت و درصد تو دست‌نخورده می‌ماند.",
         examen_aide_1: "سه مرجع رسمی آلمانی فهرست واژگانی را منتشر می‌کنند که باید در هر سطح دانست. واژه‌ای که این نشان را دارد، دست‌کم در یکی از آن‌ها آمده است.",
@@ -18204,7 +18219,7 @@ const I18N = {
         myvocab_tout_diplome: "همهٔ واژه‌های تو وارد درس شده‌اند. واژه‌های تازه پیدا کن!",
         myvocab_how: "یک واژه را جست‌وجو کن، سپس + کنار یکی از مدخل‌های فرهنگ را لمس کن تا کنار گذاشته شود.",
         review_again: "↺ دوباره",
-        review_good: "می‌دانستم",
+        review_good: "OK",
         review_known: "از بر بلدم",
         known_echeance: "نه پیش از {n} روز",
         flash_end_title: "بستهٔ کارت‌ها تمام شد",
@@ -18289,7 +18304,7 @@ const I18N = {
         srs_etat_0: "واژهٔ نو",
         ip_partie_boutons: "چهار دکمه",
         srs_aide_garder: "واژه به صندوق تو می‌رود و کارت جلو می‌رود — اما چیزی داوری نمی‌شود: کارت همچنان سررسید می‌ماند و در جلسهٔ بعد برمی‌گردد. آن را جداگانه هم، در «نگه‌داشته‌ها»، برای کار روی خودش پیدا می‌کنی. درون صندوق، مرور هیچ چیزی را تغییر نمی‌دهد: نه سررسید، نه پله، نه هدف روزانه.",
-        srs_aide_echelle: "هر «می‌دانستم» پشت‌سرهم، واژه را کمی دورتر می‌برد:",
+        srs_aide_echelle: "هر «✓» پشت‌سرهم، واژه را کمی دورتر می‌برد:",
         srs_aide_minutes: "{n} دقیقه",
         srs_aide_jour: "{n} روز",
         srs_aide_jours: "{n} روز",
@@ -19187,7 +19202,7 @@ const I18N = {
         ip_seance_gardes: "«المحفوظات» يفتح خزانتك: الكلمات التي وضعتها فيها بـ«احتفظ». يمكنك الدوران فيها كما تشاء — لا شيء مما تفعله هناك يغيّر موعداً ولا هدف اليوم.",
         ip_seance_theme: "«حسب الموضوع» هو الباب الآخر: تختار الموضوع بنفسك، بدل أن تدع التطبيق يؤلّف الجلسة.",
         ip_seance_t: "عدّاد الجلسة",
-        ip_seance_p: "البطاقات التي حكمت عليها اليوم، من أصل هدفك. البطاقة تحتاج إلى إجابة — «مرة أخرى» أو «كنت أعرفها» — لتُحتسب.",
+        ip_seance_p: "البطاقات التي حكمت عليها اليوم، من أصل هدفك. البطاقة تحتاج إلى إجابة — «مرة أخرى» أو «✓» — لتُحتسب.",
         ip_vocab_t: "تقدّم المفردات",
         ip_vocab_p: "أين أنت من المستوى المعروض. المس السهم لرؤية المستويات الخمسة.",
         ip_partie_tableau: "اللوحة",
@@ -19203,7 +19218,7 @@ const I18N = {
         mosaique_plafond: "تقدّمت اللوحة إلى أقصى ما يُسمح به اليوم. وستستأنف غداً.",
         flash_recto: "العودة إلى وجه البطاقة",
         legende_seance_niveau: "النقاط من A1 إلى C1 لا تحدّد إلا مصدر الكلمات الجديدة. أما مراجعاتك فتعود من كل المستويات التي عملت عليها، مهما كان المختار.",
-        legende_objectif_quoi: "اليوم — البطاقات التي حكمت عليها («مرة أخرى» أو «كنت أعرفها»).",
+        legende_objectif_quoi: "اليوم — البطاقات التي حكمت عليها («مرة أخرى» أو «✓»).",
         legende_mosaique: "اللوحة — تبدأ بمربّعات لونية كبيرة، وكل بطاقة تجعل واحداً منها أدقّ، بما فيها المراجعات. ويظهر الرسّام والسنة والعنوان تباعاً. المسها لتكبيرها.",
         legende_jours: "أيام العمل — مجموع الأيام التي فعلت فيها شيئاً. لا ينزل أبداً، ولو بعد إجازة.",
         legende_serie: "🔥 أيام — عدد الأيام المتتالية التي عملت فيها، مفردات أو قواعد. ويوم واحد فائت يعيده إلى الصفر.",
@@ -19323,7 +19338,7 @@ const I18N = {
         ip_partie_boutons: "الأزرار الأربعة",
         srs_aide_garder: "تذهب الكلمة إلى خزانتك وتتقدّم البطاقة — لكن لا حكم عليها: تبقى مستحقّة وتعود في الجلسة القادمة. وتجدها كذلك على حدة، عبر «المحفوظات»، لتعمل عليها وحدها. داخل الخزانة، المراجعة لا تغيّر شيئاً: لا الموعد، ولا الدرجة، ولا هدف اليوم.",
         srs_aide_intro: "أنت تجيب عن شيء واحد فقط — هل عادت إليك الكلمة. والتطبيق هو من يستنتج الموعد.",
-        srs_aide_echelle: "كل «كنت أعرفها» متتالية تُبعد الكلمة أكثر قليلاً:",
+        srs_aide_echelle: "كل «✓» متتالية تُبعد الكلمة أكثر قليلاً:",
         srs_aide_minutes: "{n} د",
         srs_aide_jour: "{n} يوم",
         srs_aide_jours: "{n} أيام",
@@ -19332,7 +19347,7 @@ const I18N = {
         srs_aide_encore: "تعود الكلمة إلى الصفر وتظهر بعد {n} بطاقات، في هذه الجلسة نفسها.",
         srs_aide_pastilles: "النقاط الـ{n} تعدّ هذه النجاحات المتتالية.",
         srs_aide_connu: "تنتقل الكلمة مباشرة إلى «متقَنة»، دون المرور بالمراحل الأربع. مفيد لكلمة تعرفها أصلاً: تخرج من المجموعة دون الحاجة إلى الحكم عليها أربع مرات.",
-        srs_aide_apres: "سواء عبر «كنت أعرفها» أربع مرات أو عبر النجمة، الكلمة المتقَنة ليست مطويّة إلى الأبد: تعود بعد {n} يوماً للتحقّق. وكلما أكّدتها ابتعدت أكثر — 35 يوماً، ثم 3 أشهر، ثم 6، ثم سنة. وكلمة مثل «Hallo» تنتهي إلى ألّا تعود أبداً.",
+        srs_aide_apres: "سواء عبر «✓» أربع مرات أو عبر النجمة، الكلمة المتقَنة ليست مطويّة إلى الأبد: تعود بعد {n} يوماً للتحقّق. وكلما أكّدتها ابتعدت أكثر — 35 يوماً، ثم 3 أشهر، ثم 6، ثم سنة. وكلمة مثل «Hallo» تنتهي إلى ألّا تعود أبداً.",
         srs_etat_1: "بدأت",
         srs_etat_2: "أتقدّم",
         srs_etat_3: "أوشكت",
@@ -19681,7 +19696,7 @@ const I18N = {
         myvocab_tout_diplome: "كل كلماتك دخلت الدورة. ابحث عن كلمات جديدة!",
         myvocab_how: "ابحث عن كلمة، ثم المس + بجانب أحد مداخل القاموس لوضعها هنا.",
         review_again: "↺ مرة أخرى",
-        review_good: "كنت أعرفها",
+        review_good: "OK",
         review_known: "أحفظها عن ظهر قلب",
         known_echeance: "ليس قبل {n} يوماً",
         flash_end_title: "انتهت المجموعة",
@@ -20035,7 +20050,7 @@ const I18N = {
         myvocab_vide_explication: "<strong>Meu vocabulário ainda está vazio.</strong><br>É a sua reserva pessoal: as palavras que você encontra em outros lugares — na aula, num texto, numa conversa — e que não estão no app.<br><br>Procure uma aqui em cima e toque no <strong>+</strong> ao lado do resultado do dicionário. Ela vira uma carta para revisar como as outras.",
         myvocab_how: "Procure uma palavra e toque no + ao lado de uma entrada do dicionário para guardá-la aqui.",
         review_again: "↺ De novo",
-        review_good: "Eu sabia",
+        review_good: "OK",
         review_known: "Sei de cor",
         known_echeance: "não antes de {n} dias",
         flash_end_title: "Baralho terminado",
@@ -20126,7 +20141,7 @@ const I18N = {
         ip_partie_boutons: "Os quatro botões",
         srs_aide_garder: "A palavra vai para o seu baú e a carta avança — mas nada é avaliado: ela continua pendente e volta na próxima sessão. Você também a encontra à parte, em “Guardadas”, para trabalhá-la sozinha. Dentro do baú, revisar não muda nada: nem data, nem etapa, nem meta do dia.",
         srs_aide_intro: "Você responde uma coisa só — se a palavra veio à cabeça. O app calcula a data.",
-        srs_aide_echelle: "Cada “Eu sabia” seguido afasta a palavra um pouco mais:",
+        srs_aide_echelle: "Cada “✓” seguido afasta a palavra um pouco mais:",
         srs_aide_minutes: "{n} min",
         srs_aide_jour: "{n} dia",
         srs_aide_jours: "{n} dias",
@@ -20135,7 +20150,7 @@ const I18N = {
         srs_aide_encore: "A palavra recomeça do zero e volta {n} cartas depois, nesta sessão.",
         srs_aide_pastilles: "As {n} bolinhas contam esses acertos seguidos.",
         srs_aide_connu: "A palavra passa direto para “dominada”, sem fazer as quatro etapas. Útil para uma palavra que você já sabe: ela sai do baralho sem precisar ser avaliada quatro vezes.",
-        srs_aide_apres: "Pelos quatro “Eu sabia” ou direto pela estrela, uma palavra dominada não é guardada para sempre: ela volta em {n} dias para conferir. Cada vez que você confirma, ela se afasta mais — 35 dias, depois 3 meses, depois 6, depois um ano. Uma palavra como “Hallo” acaba não voltando mais.",
+        srs_aide_apres: "Pelos quatro “✓” ou direto pela estrela, uma palavra dominada não é guardada para sempre: ela volta em {n} dias para conferir. Cada vez que você confirma, ela se afasta mais — 35 dias, depois 3 meses, depois 6, depois um ano. Uma palavra como “Hallo” acaba não voltando mais.",
         srs_etat_1: "estou começando",
         srs_etat_2: "estou progredindo",
         srs_etat_3: "quase lá",
@@ -20196,7 +20211,7 @@ const I18N = {
         ip_seance_gardes: "“Guardadas” abre o seu baú: as palavras que você colocou lá com “Guardar”. Você pode passar por elas quantas vezes quiser — nada do que você faz ali muda uma data nem a meta do dia.",
         ip_seance_theme: "“por tema” é a outra porta: você mesmo escolhe um tema, em vez de deixar o app montar a sessão.",
         ip_seance_t: "A contagem da sessão",
-        ip_seance_p: "As cartas que você avaliou hoje, em relação à sua meta. Uma carta precisa de uma resposta — “De novo” ou “Eu sabia” — para contar.",
+        ip_seance_p: "As cartas que você avaliou hoje, em relação à sua meta. Uma carta precisa de uma resposta — “De novo” ou “✓” — para contar.",
         ip_vocab_t: "O progresso do vocabulário",
         ip_vocab_p: "Até onde você chegou no nível mostrado. Toque na seta para ver os cinco níveis.",
         ip_partie_tableau: "O quadro",
@@ -20212,7 +20227,7 @@ const I18N = {
         mosaique_plafond: "O quadro já avançou o máximo por hoje. Ele continua amanhã.",
         flash_recto: "Voltar para a frente da carta",
         legende_seance_niveau: "As bolinhas A1 a C1 só decidem de onde vêm as palavras NOVAS. Suas revisões voltam de todos os níveis já trabalhados, seja qual for o escolhido.",
-        legende_objectif_quoi: "Hoje — as cartas que você avaliou (“De novo” ou “Eu sabia”).",
+        legende_objectif_quoi: "Hoje — as cartas que você avaliou (“De novo” ou “✓”).",
         legende_mosaique: "O quadro — ele começa em grandes quadrados de cor, e cada carta deixa um deles mais fino, revisões incluídas. O pintor, o ano e o título aparecem aos poucos. Toque nele para ampliar.",
         legende_jours: "Dias de estudo — o total de dias em que você fez alguma coisa. Ele nunca diminui, nem depois das férias.",
         legende_serie: "🔥 dias — o número de dias seguidos em que você estudou, vocabulário ou gramática. Um dia pulado o leva de volta a zero.",
@@ -21452,7 +21467,7 @@ const I18N = {
         myvocab_vide_explication: "<strong>Moje słownictwo jest jeszcze puste.</strong><br>To twój osobisty zapas: słowa, które spotykasz gdzie indziej — na zajęciach, w tekście, w rozmowie — a których nie ma w aplikacji.<br><br>Wyszukaj jakieś powyżej, a potem dotknij <strong>+</strong> obok wyniku ze słownika. Stanie się kartą do powtarzania jak każda inna.",
         myvocab_how: "Wyszukaj słowo, a potem dotknij + obok hasła ze słownika, żeby je tu zapisać.",
         review_again: "↺ Jeszcze raz",
-        review_good: "Pamiętam",
+        review_good: "OK",
         review_known: "Znam na pamięć",
         known_echeance: "nie wcześniej niż za {n} dni",
         flash_end_title: "Talia skończona",
@@ -21543,7 +21558,7 @@ const I18N = {
         ip_partie_boutons: "Cztery przyciski",
         srs_aide_garder: "Słowo trafia do twojej skrzyni, a karta idzie dalej — ale nic nie jest oceniane: zostaje do powtórki i wraca na następnej sesji. Znajdziesz ją też osobno, w „Zachowanych”, żeby przećwiczyć ją oddzielnie. W skrzyni powtarzanie niczego nie zmienia: ani terminu, ani etapu, ani dziennego celu.",
         srs_aide_intro: "Odpowiadasz tylko na jedno — czy słowo przyszło ci do głowy. Datę wylicza aplikacja.",
-        srs_aide_echelle: "Każde kolejne „Pamiętam” z rzędu odsuwa słowo trochę dalej:",
+        srs_aide_echelle: "Każde kolejne „✓” z rzędu odsuwa słowo trochę dalej:",
         srs_aide_minutes: "{n} min",
         srs_aide_jour: "{n} dzień",
         srs_aide_jours: "{n} dni",
@@ -21552,7 +21567,7 @@ const I18N = {
         srs_aide_encore: "Słowo zaczyna od zera i wraca {n} kart dalej, w tej samej sesji.",
         srs_aide_pastilles: "{n} kropki liczą te trafienia z rzędu.",
         srs_aide_connu: "Słowo od razu przechodzi do „opanowanych”, bez czterech etapów. Przydatne przy słowie, które już znasz: wychodzi z talii bez czterokrotnej oceny.",
-        srs_aide_apres: "Czy przez cztery „Pamiętam”, czy prosto przez gwiazdkę — opanowane słowo nie jest odłożone na zawsze: wraca za {n} dni na sprawdzenie. Za każdym razem, gdy je potwierdzisz, oddala się bardziej — 35 dni, potem 3 miesiące, potem 6, potem rok. Słowo takie jak „Hallo” w końcu przestaje wracać.",
+        srs_aide_apres: "Czy przez cztery „✓”, czy prosto przez gwiazdkę — opanowane słowo nie jest odłożone na zawsze: wraca za {n} dni na sprawdzenie. Za każdym razem, gdy je potwierdzisz, oddala się bardziej — 35 dni, potem 3 miesiące, potem 6, potem rok. Słowo takie jak „Hallo” w końcu przestaje wracać.",
         srs_etat_1: "zaczynam",
         srs_etat_2: "robię postępy",
         srs_etat_3: "prawie umiem",
@@ -21613,7 +21628,7 @@ const I18N = {
         ip_seance_gardes: "„Zachowane” otwiera twoją skrzynię: słowa, które tam włożyłeś(-aś) przyciskiem „Zachowaj”. Możesz je przerabiać, ile chcesz — nic, co tam robisz, nie zmienia terminu ani dziennego celu.",
         ip_seance_theme: "„według tematu” to drugie wejście: sam(a) wybierasz temat, zamiast pozwolić aplikacji ułożyć sesję.",
         ip_seance_t: "Licznik sesji",
-        ip_seance_p: "Karty, które dziś oceniłeś(-aś), względem twojego celu. Żeby karta się liczyła, potrzebna jest odpowiedź — „Jeszcze raz” albo „Pamiętam”.",
+        ip_seance_p: "Karty, które dziś oceniłeś(-aś), względem twojego celu. Żeby karta się liczyła, potrzebna jest odpowiedź — „Jeszcze raz” albo „✓”.",
         ip_vocab_t: "Postępy w słownictwie",
         ip_vocab_p: "W którym miejscu pokazanego poziomu jesteś. Dotknij strzałki, żeby zobaczyć pięć poziomów.",
         ip_partie_tableau: "Obraz",
@@ -21629,7 +21644,7 @@ const I18N = {
         mosaique_plafond: "Obraz posunął się dziś maksymalnie. Ruszy dalej jutro.",
         flash_recto: "Wróć na przód karty",
         legende_seance_niveau: "Kropki od A1 do C1 decydują tylko o tym, skąd pochodzą NOWE słowa. Twoje powtórki wracają ze wszystkich poziomów, nad którymi już pracowałeś(-aś), niezależnie od wybranego.",
-        legende_objectif_quoi: "Dziś — karty, które oceniłeś(-aś) („Jeszcze raz” albo „Pamiętam”).",
+        legende_objectif_quoi: "Dziś — karty, które oceniłeś(-aś) („Jeszcze raz” albo „✓”).",
         legende_mosaique: "Obraz — zaczyna się od dużych kolorowych kwadratów, a każda karta jeden z nich wyostrza, powtórki też. Malarz, rok i tytuł pojawiają się stopniowo. Dotknij, żeby powiększyć.",
         legende_jours: "Dni nauki — łączna liczba dni, w których coś zrobiłeś(-aś). Nigdy nie spada, nawet po wakacjach.",
         legende_serie: "🔥 dni — liczba dni z rzędu, w których się uczyłeś(-aś), słownictwa albo gramatyki. Jeden opuszczony dzień i licznik wraca do zera.",
@@ -22867,7 +22882,7 @@ const I18N = {
         myvocab_vide_explication: "<strong>Мой словарь пока пуст.</strong><br>Это твой личный запас: слова, которые ты встречаешь в другом месте — на уроке, в тексте, в разговоре — и которых нет в приложении.<br><br>Найди слово через поиск выше и нажми <strong>+</strong> рядом с результатом из словаря. Оно станет карточкой, которую ты повторяешь, как все остальные.",
         myvocab_how: "Найди слово и нажми + рядом со словарной статьёй, чтобы сохранить его здесь.",
         review_again: "↺ Ещё раз",
-        review_good: "Знаю",
+        review_good: "OK",
         review_known: "Знаю наизусть",
         known_echeance: "не раньше чем через {n} дн.",
         flash_end_title: "Колода пройдена",
@@ -22958,7 +22973,7 @@ const I18N = {
         ip_partie_boutons: "Четыре кнопки",
         srs_aide_garder: "Слово попадает в копилку, и карточка уходит дальше — но без оценки: она остаётся к повторению и вернётся на следующем занятии. Ещё ты найдёшь её отдельно, в разделе «Отложенные», чтобы поработать над ней отдельно. Повторение внутри копилки ничего не меняет: ни срок, ни ступень, ни цель дня.",
         srs_aide_intro: "Ты отвечаешь только на одно — вспомнилось ли слово. Дату приложение вычисляет само.",
-        srs_aide_echelle: "Каждое «Знаю» подряд отодвигает слово чуть дальше:",
+        srs_aide_echelle: "Каждое «✓» подряд отодвигает слово чуть дальше:",
         srs_aide_minutes: "{n} мин",
         srs_aide_jour: "{n} день",
         srs_aide_jours: "{n} дн.",
@@ -22967,7 +22982,7 @@ const I18N = {
         srs_aide_encore: "Слово начинает с нуля и вернётся через {n} карточек, на этом же занятии.",
         srs_aide_pastilles: "Кружки ({n}) отмечают эти успехи подряд.",
         srs_aide_connu: "Слово сразу становится «выученным», минуя четыре ступени. Удобно для слова, которое ты уже знаешь: оно уходит из колоды, и его не нужно оценивать четыре раза.",
-        srs_aide_apres: "Через четыре «Знаю» или сразу через звёздочку — выученное слово не убирается навсегда: оно вернётся через {n} дн. для проверки. Каждый раз, когда ты его подтверждаешь, оно отодвигается дальше — 35 дней, потом 3 месяца, потом 6, потом год. Слово вроде «Hallo» в конце концов перестаёт возвращаться совсем.",
+        srs_aide_apres: "Через четыре «✓» или сразу через звёздочку — выученное слово не убирается навсегда: оно вернётся через {n} дн. для проверки. Каждый раз, когда ты его подтверждаешь, оно отодвигается дальше — 35 дней, потом 3 месяца, потом 6, потом год. Слово вроде «Hallo» в конце концов перестаёт возвращаться совсем.",
         srs_etat_1: "только начинаю",
         srs_etat_2: "продвигаюсь",
         srs_etat_3: "почти у цели",
@@ -23028,7 +23043,7 @@ const I18N = {
         ip_seance_gardes: "«Отложенные» открывает твою копилку: слова, которые ты положил(а) туда кнопкой «Отложить». По ней можно ходить сколько угодно — ничто из того, что ты там делаешь, не меняет ни сроки, ни цель дня.",
         ip_seance_theme: "«по темам» — это другая дверь: ты сам(а) выбираешь тему, а не даёшь приложению составить занятие.",
         ip_seance_t: "Счётчик занятия",
-        ip_seance_p: "Карточки, которые ты оценил(а) сегодня, относительно твоей цели. Чтобы карточка засчиталась, нужен ответ — «Ещё раз» или «Знаю».",
+        ip_seance_p: "Карточки, которые ты оценил(а) сегодня, относительно твоей цели. Чтобы карточка засчиталась, нужен ответ — «Ещё раз» или «✓».",
         ip_vocab_t: "Прогресс по словарю",
         ip_vocab_p: "Где ты сейчас на показанном уровне. Нажми на стрелку, чтобы увидеть все пять уровней.",
         ip_partie_tableau: "Картина",
@@ -23044,7 +23059,7 @@ const I18N = {
         mosaique_plafond: "Картина на сегодня продвинулась до предела. Завтра она продолжится.",
         flash_recto: "Вернуться к лицевой стороне карточки",
         legende_seance_niveau: "Кнопки от A1 до C1 решают только, откуда берутся НОВЫЕ слова. Твои повторения приходят со всех уровней, над которыми ты уже работал(а), какой бы ни был выбран.",
-        legende_objectif_quoi: "Сегодня — карточки, которые ты оценил(а) («Ещё раз» или «Знаю»).",
+        legende_objectif_quoi: "Сегодня — карточки, которые ты оценил(а) («Ещё раз» или «✓»).",
         legende_mosaique: "Картина — она начинается с крупных цветных квадратов, и каждая карточка делает один из них мельче, повторения тоже. Художник, год и название появляются постепенно. Нажми на неё, чтобы увеличить.",
         legende_jours: "Дни занятий — общее число дней, когда ты что-то делал(а). Оно никогда не уменьшается, даже после отпуска.",
         legende_serie: "🔥 дн. — сколько дней подряд ты занимаешься, словами или грамматикой. Пропущенный день обнуляет счёт.",
@@ -36721,7 +36736,7 @@ const ESSAIS = {
     carreau_partout: {
         etat: "tous",
         titre: "La mosaïque au palier",
-        desc: "Chaque carte qui pose un carreau (« Je savais », « Encore », une phrase, l'oral) montre un « +1 » jaune, au milieu des confettis quand il y en a ; une bonne réponse dans une scène ou dans un exercice de grammaire pose aussi un carreau. À chaque palier de l'objectif du jour (« +30 ! », « +60 ! »), la mosaïque apparaît sous le bandeau et les trente derniers carreaux y poppent un à un, avec le compte qui monte."
+        desc: "Chaque carte qui pose un carreau (« ✓ », « Encore », une phrase, l'oral) montre un « +1 » jaune, au milieu des confettis quand il y en a ; une bonne réponse dans une scène ou dans un exercice de grammaire pose aussi un carreau. À chaque palier de l'objectif du jour (« +30 ! », « +60 ! »), la mosaïque apparaît sous le bandeau et les trente derniers carreaux y poppent un à un, avec le compte qui monte."
     },
     // EN PRODUCTION le 19 oct. 2026 (v876) -- Jacques : « go, l'oral v2 ».
     oral_v2: {
@@ -41935,7 +41950,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 908;
+const APP_VERSION = 909;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -50557,7 +50572,7 @@ function texteAideSrs(){
         +   '<p>' + tf("srs_aide_encore", { n: SRS_CARTES_AVANT_RETOUR }) + '</p>'
         + '</div>'
         + '<div class="srs-aide-bloc savais">'
-        +   '<div class="srs-aide-titre">' + t("review_good") + '</div>'
+        +   '<div class="srs-aide-titre">✓ ' + t("review_good") + '</div>'
         +   '<p>' + t("srs_aide_echelle") + '</p>'
         +   '<div class="srs-aide-echelle">'
         +     '<span class="etape e1">' + etape(0) + '</span>'
