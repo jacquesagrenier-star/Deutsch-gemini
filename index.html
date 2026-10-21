@@ -8199,7 +8199,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v911</span>
+    <span class="subtitle-version">v912</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -42177,7 +42177,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 911;
+const APP_VERSION = 912;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -49991,9 +49991,25 @@ async function motsVusDeScene(nom){
 async function preparerArretScene(seance, sceneImposee){
     if(!arretSceneActif() || !seance || seance.length < 6) return seance;
     try{
-        const s = sceneImposee || sceneDuJour();
-        const arret = await arretDeScene(s);
-        if(!arret) return seance;
+        // v912 : SI LA SCENE PREVUE N'EST PAS PRETE, UNE AUTRE. Jacques, 21 oct.
+        // 2026 : « je suis en train de faire A1, et j'obtiens jamais de scene ».
+        // En A1, une scene ne s'arrete que si trois de ses mots sont deja vus ;
+        // pendant l'A1 voyage, la scene de l'escale est imposee, et tant qu'elle
+        // n'avait pas ses trois mots, la seance n'en proposait AUCUNE, des jours
+        // durant. On essaie donc, dans l'ordre : la scene prevue, celle du jour,
+        // puis les suivantes de la liste (huit au plus, lues ensemble et gardees
+        // en memoire par motsVusDeScene).
+        const prevue = sceneImposee || sceneDuJour();
+        const candidates = [prevue];
+        const ajouter = x => { if(x && !candidates.some(c => c.nom === x.nom)) candidates.push(x); };
+        ajouter(sceneDuJour());
+        const depart = Math.max(0, SCENES_SEANCE.findIndex(x => x.nom === sceneDuJour().nom));
+        for(let k = 1; k < SCENES_SEANCE.length && candidates.length < 8; k++) ajouter(SCENES_SEANCE[(depart + k) % SCENES_SEANCE.length]);
+        const arrets = await Promise.all(candidates.map(c => arretDeScene(c).catch(() => null)));
+        const iArret = arrets.findIndex(x => !!x);
+        if(iArret < 0) return seance;
+        const arret = arrets[iArret];
+        const s = candidates[iArret];
         const sortie = seance.slice();
         // v903 (essai « profil ») : « je retiens mieux ce que je vois » -- deux
         // arrets, au tiers et aux deux tiers, si la seance est assez longue et
