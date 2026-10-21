@@ -6958,6 +6958,14 @@ body[data-theme="dark"] #seancePilule .pa-anneau small, body[data-theme="dark"] 
 body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
 body[data-theme="dark"] .explorer-desc{color:rgba(255,255,255,.72);}
 body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
+/* v904 : les couleurs des reperes -- la pastille d'une ligne du tableau, et la
+   grande teinte de la carte « Quelle couleur est-ce ? ». Le blanc a besoin d'un
+   bord, en jour comme en nuit. */
+.cp-tl-teinte{ flex:0 0 auto; width:20px; height:20px; border-radius:50%;
+    border:1px solid rgba(28,36,48,.25); margin-right:8px; align-self:center; }
+.rp-teinte{ width:120px; height:120px; border-radius:24px; margin:8px auto 14px;
+    border:1px solid rgba(28,36,48,.2); box-shadow:0 4px 14px rgba(28,36,48,.12); }
+body[data-theme="dark"] .cp-tl-teinte, body[data-theme="dark"] .rp-teinte{ border-color:rgba(255,255,255,.35); }
 /* v903 : LE PROFIL D'APPRENTISSAGE (essai « profil »), voir ouvrirProfil(). */
 #profil{padding-top:18px;}
 .pf-etapes{display:flex; gap:6px; margin:0 0 20px;}
@@ -8093,7 +8101,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v903</span>
+    <span class="subtitle-version">v904</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11603,6 +11611,8 @@ const I18N = {
         rp_q_nombre: "Écoute et choisis le nombre",
         rp_q_chiffres: "Écoute et écris le nombre en chiffres",
         rp_q_dire: "Dis ce nombre à voix haute",
+        rp_q_dire_couleur: "Dis cette couleur à voix haute",
+        rp_q_teinte: "Quelle couleur est-ce ?",
         rp_q_sens: "Écoute et choisis le sens",
         rp_q_suite: "Lequel vient après ?",
         rp_q_suite_dire: "Dis la suite à voix haute",
@@ -12971,6 +12981,8 @@ const I18N = {
         rp_q_nombre: "Listen and pick the number",
         rp_q_chiffres: "Listen and type the number in digits",
         rp_q_dire: "Say this number out loud",
+        rp_q_dire_couleur: "Say this color out loud",
+        rp_q_teinte: "Which color is this?",
         rp_q_sens: "Listen and pick the meaning",
         rp_q_suite: "Which one comes next?",
         rp_q_suite_dire: "Say the sequence out loud",
@@ -14341,6 +14353,8 @@ const I18N = {
         rp_q_nombre: "Dinle ve sayıyı seç",
         rp_q_chiffres: "Dinle ve sayıyı rakamla yaz",
         rp_q_dire: "Bu sayıyı yüksek sesle söyle",
+        rp_q_dire_couleur: "Bu rengi yüksek sesle söyle",
+        rp_q_teinte: "Bu hangi renk?",
         rp_q_sens: "Dinle ve anlamını seç",
         rp_q_suite: "Sonra hangisi gelir?",
         rp_q_suite_dire: "Sırayı yüksek sesle söyle",
@@ -16028,6 +16042,8 @@ const I18N = {
         rp_q_nombre: "Послухай і вибери число",
         rp_q_chiffres: "Послухай і запиши число цифрами",
         rp_q_dire: "Скажи це число вголос",
+        rp_q_dire_couleur: "Скажи цей колір вголос",
+        rp_q_teinte: "Який це колір?",
         rp_q_sens: "Послухай і вибери значення",
         rp_q_suite: "Що йде далі?",
         rp_q_suite_dire: "Скажи послідовність уголос",
@@ -18083,6 +18099,8 @@ const I18N = {
         rp_q_nombre: "گوش کن و عدد را انتخاب کن",
         rp_q_chiffres: "گوش کن و عدد را با رقم بنویس",
         rp_q_dire: "این عدد را بلند بگو",
+        rp_q_dire_couleur: "این رنگ را بلند بگو",
+        rp_q_teinte: "این چه رنگی است؟",
         rp_q_sens: "گوش کن و معنی را انتخاب کن",
         rp_q_suite: "بعدی کدام است؟",
         rp_q_suite_dire: "این ترتیب را بلند بگو",
@@ -19561,6 +19579,8 @@ const I18N = {
         rp_q_nombre: "استمع واختر العدد",
         rp_q_chiffres: "استمع واكتب العدد بالأرقام",
         rp_q_dire: "قل هذا العدد بصوت عالٍ",
+        rp_q_dire_couleur: "قل هذا اللون بصوت عالٍ",
+        rp_q_teinte: "ما هذا اللون؟",
         rp_q_sens: "استمع واختر المعنى",
         rp_q_suite: "أيّها يأتي بعد ذلك؟",
         rp_q_suite_dire: "قل التسلسل بصوت عالٍ",
@@ -19897,6 +19917,8 @@ const I18N = {
         rp_q_nombre: "Ouça e escolha o número",
         rp_q_chiffres: "Ouça e escreva o número em algarismos",
         rp_q_dire: "Diga este número em voz alta",
+        rp_q_dire_couleur: "Diga esta cor em voz alta",
+        rp_q_teinte: "Que cor é esta?",
         rp_q_sens: "Ouça e escolha o sentido",
         rp_q_suite: "Qual vem depois?",
         rp_q_suite_dire: "Diga a sequência em voz alta",
@@ -21306,6 +21328,8 @@ const I18N = {
         rp_q_nombre: "Posłuchaj i wybierz liczbę",
         rp_q_chiffres: "Posłuchaj i wpisz liczbę cyframi",
         rp_q_dire: "Powiedz tę liczbę na głos",
+        rp_q_dire_couleur: "Powiedz ten kolor na głos",
+        rp_q_teinte: "Jaki to kolor?",
         rp_q_sens: "Posłuchaj i wybierz znaczenie",
         rp_q_suite: "Co jest dalej?",
         rp_q_suite_dire: "Powiedz tę kolejność na głos",
@@ -22713,6 +22737,8 @@ const I18N = {
         rp_q_nombre: "Послушай и выбери число",
         rp_q_chiffres: "Послушай и запиши число цифрами",
         rp_q_dire: "Скажи это число вслух",
+        rp_q_dire_couleur: "Скажи этот цвет вслух",
+        rp_q_teinte: "Какой это цвет?",
         rp_q_sens: "Послушай и выбери значение",
         rp_q_suite: "Что идёт дальше?",
         rp_q_suite_dire: "Скажи последовательность вслух",
@@ -26924,6 +26950,7 @@ async function loadVerbeJson() {
         const response = await fetch(urlDonnees('verbe.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier verbe.json introuvable");
         const data = await response.json();
+        const phrasesLatam = await phrasesVarianteEspagnol();   // v904
         let words = [];
         Object.keys(data).forEach(lvl => {
             const arr = data[lvl] || [];
@@ -26932,7 +26959,7 @@ async function loadVerbeJson() {
                     infinitif: v.infinitif || "",
                     traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "", traduction_uk: v.traduction_uk || "", traduction_fa: v.traduction_fa || "", traduction_pt: v.traduction_pt || "", traduction_ar: v.traduction_ar || "", traduction_pl: v.traduction_pl || "", traduction_ru: v.traduction_ru || "",
                     praesens: v.praesens || {},
-                    exemple: v.exemple || "", exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "", exemple_uk: v.exemple_uk || "", exemple_fa: v.exemple_fa || "", exemple_pt: v.exemple_pt || "", exemple_ar: v.exemple_ar || "", exemple_pl: v.exemple_pl || "", exemple_ru: v.exemple_ru || "",
+                    exemple: phraseVariante(v.exemple || "", phrasesLatam), exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "", exemple_uk: v.exemple_uk || "", exemple_fa: v.exemple_fa || "", exemple_pt: v.exemple_pt || "", exemple_ar: v.exemple_ar || "", exemple_pl: v.exemple_pl || "", exemple_ru: v.exemple_ru || "",
                     praeteritum: v.praeteritum || "", praeteritum_fr: v.praeteritum_fr || "", praeteritum_en: v.praeteritum_en || "", praeteritum_tr: v.praeteritum_tr || "", praeteritum_uk: v.praeteritum_uk || "", praeteritum_fa: v.praeteritum_fa || "", praeteritum_pt: v.praeteritum_pt || "", praeteritum_ar: v.praeteritum_ar || "", praeteritum_pl: v.praeteritum_pl || "", praeteritum_ru: v.praeteritum_ru || "",
                     perfekt: v.perfekt || "", perfekt_fr: v.perfekt_fr || "", perfekt_en: v.perfekt_en || "", perfekt_tr: v.perfekt_tr || "", perfekt_uk: v.perfekt_uk || "", perfekt_fa: v.perfekt_fa || "", perfekt_pt: v.perfekt_pt || "", perfekt_ar: v.perfekt_ar || "", perfekt_pl: v.perfekt_pl || "", perfekt_ru: v.perfekt_ru || "",
                     konjunktiv2: v.konjunktiv2 || "", konjunktiv2_fr: v.konjunktiv2_fr || "", konjunktiv2_en: v.konjunktiv2_en || "", konjunktiv2_tr: v.konjunktiv2_tr || "", konjunktiv2_uk: v.konjunktiv2_uk || "", konjunktiv2_fa: v.konjunktiv2_fa || "", konjunktiv2_pt: v.konjunktiv2_pt || "", konjunktiv2_ar: v.konjunktiv2_ar || "", konjunktiv2_pl: v.konjunktiv2_pl || "", konjunktiv2_ru: v.konjunktiv2_ru || "",
@@ -27012,6 +27039,7 @@ async function loadAdjektiveJson() {
         const response = await fetch(urlDonnees('adjectif.json'), { cache: 'no-cache' });
         if (!response.ok) throw new Error("Fichier adjectif.json introuvable");
         const data = await response.json();
+        const phrasesLatam = await phrasesVarianteEspagnol();   // v904
         const levels = ["A1", "A2", "B1", "B2", "C1"];
         let words = [];
         levels.forEach(lvl => {
@@ -27020,7 +27048,7 @@ async function loadAdjektiveJson() {
                 words.push([
                     w.mot || w.word || "",
                     w.traduction || w.fr || "",
-                    w.exemple || w.example || "",
+                    phraseVariante(w.exemple || w.example || "", phrasesLatam),
                     lvl,
                     w.exemple_fr || "",
                     w.traduction_en || "",
@@ -27391,6 +27419,7 @@ async function loadThemesJson() {
         const rawJson = await response.json();
         const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
         const variantesEspagnol = LANGUE_APPRISE === "es" ? (((await chargerVariantesEspagnol()) || {}).noms || null) : null;
+        const phrasesLatam = await phrasesVarianteEspagnol();
         
         const DEFAULT_SVG = '<svg viewBox="0 0 24 24"><path d="M17 11V3H7v8H2v10h20V11h-5zm-8-6h6v2H9V5zm6 14H9v-4h6v4zm4 0h-2v-6H7v6H5v-8h14v8z"/></svg>';
         const grouped = {};
@@ -27479,7 +27508,7 @@ async function loadThemesJson() {
                     w.exemple_ru || ""       // rang 26
                 ];
             });
-            if(variantesEspagnol) words.forEach(w => appliquerVarianteEspagnol(w, variantesEspagnol));
+            if(variantesEspagnol) words.forEach(w => appliquerVarianteEspagnol(w, variantesEspagnol, phrasesLatam));
 
             const rawVerben = t.verben || [];
             // Les verbes des chapitres VHS suivent le même contrat que verbe.json
@@ -39918,9 +39947,24 @@ function contexteEcran(){
 }
 
 const RETOURS_KEY = PREFIXE_STOCKAGE + "retours";
-const RETOURS_MAX = 4000;   // caractere, pas nombre : c'est la taille qui compte
+const RETOURS_MAX = 12000;   // caractere, pas nombre : c'est la taille qui compte
 
+// v904 : LE JOURNAL AUDIO PART AVANT LE TEXTE. Depuis la v803, chaque retour
+// emporte ~700 caracteres de journal (lignes « ~ ») : cinq retours d'un matin
+// remplissaient les 4 000 caracteres, et le 21 oct. 2026 le texte du premier
+// (el departamento / el piso) a ete coupe. On retire d'abord les journaux des
+// retours les plus anciens ; le texte de quelqu'un ne se coupe qu'en dernier.
 function couperRetours(tout){
+    if(tout.length <= RETOURS_MAX) return tout;
+    const nl = String.fromCharCode(10);
+    const lignes = tout.split(nl);
+    let dernierEnTete = -1;
+    lignes.forEach((l, i) => { if(/^\[\d{4}-\d{2}-\d{2}T/.test(l)) dernierEnTete = i; });
+    let taille = tout.length;
+    for(let i = 0; i < dernierEnTete && taille > RETOURS_MAX; i++){
+        if(lignes[i].startsWith("  ~ ")){ taille -= lignes[i].length + 1; lignes[i] = null; }
+    }
+    tout = lignes.filter(l => l !== null).join(nl);
     if(tout.length <= RETOURS_MAX) return tout;
     const perdus = tout.length - RETOURS_MAX;
     return "[COUPE] " + perdus + " caracteres plus anciens ont ete retires, faute de place."
@@ -40464,7 +40508,20 @@ function chargerVariantesEspagnol(){
     }
     return promesseVariantesEspagnol;
 }
-function appliquerVarianteEspagnol(carte, variantes){
+// v904 : LES PHRASES DES AUTRES MOTS. Jacques, 21 oct. 2026 : on apprend
+// « el departamento », puis une carte plus loin la dictee dit « El piso tiene
+// tres habitaciones ». La carte du mot changeait, pas les phrases des AUTRES
+// mots qui le contiennent. variantes.json, section « phrases » : la phrase du
+// cours -> celle d'Amerique latine. Rien a faire en mode Espagne.
+async function phrasesVarianteEspagnol(){
+    if(LANGUE_APPRISE !== "es" || VARIANTE_ESPAGNOL !== "latam") return null;
+    return ((await chargerVariantesEspagnol()) || {}).phrases || null;
+}
+function phraseVariante(phrase, phrases){
+    return (phrases && phrase && Object.prototype.hasOwnProperty.call(phrases, phrase)) ? phrases[phrase] : phrase;
+}
+function appliquerVarianteEspagnol(carte, variantes, phrases){
+    if(Array.isArray(carte) && phrases) carte[5] = phraseVariante(carte[5], phrases);
     const v = Array.isArray(carte) ? variantes[carte[0]] : null;
     if(!v) return;
     if(VARIANTE_ESPAGNOL === "latam"){
@@ -41808,7 +41865,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 903;
+const APP_VERSION = 904;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -46809,7 +46866,11 @@ function montrerCartePhrase(item){
         }
         suite.classList.remove("hidden");
         // La phrase allemande apres le son de reussite, pas par-dessus.
-        if(item.phrase) setTimeout(() => { if(retour.isConnected) direPhrase(item); }, juste ? 700 : 0);
+        // v904 : la dictee d'un MOT redit le mot, pas la phrase d'ou il vient.
+        // Jacques, 21 oct. 2026 : « la habitación », une faute, et la voix dit
+        // « El piso tiene tres habitaciones ».
+        const redire = item.forme === "dictee_mot" ? () => direMotPhrase(item) : () => direPhrase(item);
+        if(item.phrase) setTimeout(() => { if(retour.isConnected) redire(); }, juste ? 700 : 0);
     };
     const ecouter = creer("button", "cp-ecouter", "🔊 " + t("cp_ecouter"));
     ecouter.type = "button";
@@ -47155,9 +47216,17 @@ function montrerCartePhrase(item){
         el.appendChild(choix);
     } else if(item.forme === "rp_suite"){
         // v879 : « Montag → ? » -- l'ordre de la serie, a choisir parmi trois.
-        const q = creer("p", "cp-phrase rp-suite-q", item.avant + " → ?");
-        q.setAttribute("lang", langueDe);
-        el.appendChild(q);
+        // v904 : ou une teinte a nommer (le bloc des couleurs).
+        if(item.teinte){
+            const pastille = creer("div", "rp-teinte");
+            pastille.style.background = item.teinte;
+            pastille.setAttribute("aria-hidden", "true");
+            el.appendChild(pastille);
+        } else {
+            const q = creer("p", "cp-phrase rp-suite-q", item.avant + " → ?");
+            q.setAttribute("lang", langueDe);
+            el.appendChild(q);
+        }
         const choix = creer("div", "cp-choix");
         (item.choix || []).forEach(o => {
             const b = creer("button", "", o);
@@ -47171,12 +47240,12 @@ function montrerCartePhrase(item){
                     if(x.textContent === item.phrase.de) x.classList.add("bon");
                 });
                 if(!juste) b.classList.add("faux");
-                conclure(juste, item.avant + " → " + item.phrase.de + " (" + item.phrase.sens + ")");
+                conclure(juste, (item.teinte ? "" : item.avant + " → ") + item.phrase.de + " (" + item.phrase.sens + ")");
             });
             choix.appendChild(b);
         });
         el.appendChild(choix);
-        try{ direAllemand(item.avant, { rate: 0.9 }); }catch(e){}
+        if(!item.teinte){ try{ direAllemand(item.avant, { rate: 0.9 }); }catch(e){} }
     } else if(item.forme === "trou"){
         const phrase = creer("p", "cp-phrase");
         phrase.setAttribute("lang", langueDe);
@@ -47244,7 +47313,14 @@ function montrerCartePhrase(item){
             tuile.type = "button";
             tuile.addEventListener("click", () => {
                 if(fait.repondu) return;
-                if(tuile.parentNode === banque) ligne.appendChild(tuile);
+                if(tuile.parentNode === banque){
+                    ligne.appendChild(tuile);
+                    // v904 : le mot se dit quand il entre dans la phrase (Jacques,
+                    // 21 oct. 2026 : « on devrait entendre le mot chaque fois que
+                    // l'on en selectionne un »). Sans la ponctuation collee.
+                    const dit = x.m.replace(/^[¿¡«"(]+|[.,;:!?»")]+$/g, "");
+                    if(dit) try{ direAllemand(dit, { rate: 0.9 }); }catch(e){}
+                }
                 else banque.appendChild(tuile);
             });
             banque.appendChild(tuile);
@@ -48779,8 +48855,8 @@ function insererFeuille(seance, fc, tout){
 // le tableau complet d'un bloc, puis ses exercices intercales dans la seance,
 // puis deux exercices du bloc a J+1, J+3 et J+7 (REPERES_REVOIR_JOURS).
 //
-// Cinq blocs, un neuf par jour au plus, dans l'ordre : 0-20, dizaines, centaines,
-// jours, mois (reperes.json, construit par tests/reperes_construire.py). Pour qui
+// Les blocs, un neuf par jour au plus, dans l'ordre : 0-20, dizaines, centaines,
+// jours, couleurs (v904), mois, alphabet, genre, pluriel (reperes.json, construit par tests/reperes_construire.py). Pour qui
 // est en Premiers pas ou au niveau A1 ; un compte plus avance ne les voit pas.
 let REPERES_DONNEES = null, chargementReperes = null;
 function chargerReperes(){
@@ -48885,6 +48961,22 @@ function exercicesRepere(r, n, badge){
             const x = pris[k], f = formes[k % formes.length];
             if(f === "parler") out.push(carte("parler", x[1], x[0] + " → " + x[1], { q: "rp_q_dire_mot" }));
             else out.push(carte("rp_pluriel", x[1], x[2], { q: "rp_q_pluriel", singulier: x[0], choix: melangerPhrase([x[1], x[3], x[4]]) }));
+        }
+        return out;
+    }
+    // v904 : LES COULEURS. Entendre et choisir le sens (deux autres couleurs en
+    // leurres), voir la teinte et choisir le mot, la dire a voix haute.
+    if(r.type === "couleur"){
+        const L = r.l || [];
+        const pris = melangerPhrase(L.slice());
+        const formes = ["ecoute", "rp_teinte", "parler", "rp_teinte", "ecoute"];
+        for(let k = 0; k < n && k < pris.length && L.length > 3; k++){
+            const l = pris[k], f = formes[k % formes.length];
+            const autres = melangerPhrase(L.filter(x => x !== l)).slice(0, 2);
+            if(f === "ecoute") out.push(carte("ecoute", l[0], sens(l), { q: "rp_q_sens", leurres: autres.map(sens) }));
+            else if(f === "rp_teinte") out.push(carte("rp_suite", l[0], sens(l), { q: "rp_q_teinte", teinte: l[2],
+                choix: melangerPhrase([l[0]].concat(autres.map(x => x[0]))) }));
+            else out.push(carte("parler", l[0], sens(l), { q: "rp_q_dire_couleur", teinte: l[2] }));
         }
         return out;
     }
@@ -49085,6 +49177,13 @@ function construireTableau(tab){
     (tab.l || []).forEach(l => {
         const ligne = creer("button", "cp-tableau-ligne");
         ligne.type = "button";
+        // v904 : une ligne de couleur porte sa teinte (« #rrggbb ») : on la voit.
+        if(typeof l[2] === "string" && /^#[0-9a-f]{6}$/i.test(l[2])){
+            const pastille = creer("span", "cp-tl-teinte");
+            pastille.style.background = l[2];
+            pastille.setAttribute("aria-hidden", "true");
+            ligne.appendChild(pastille);
+        }
         ligne.appendChild(creer("span", "cp-tl-sens", sensPremiersPas(l[1])));
         const brut = String(l[0] || "");
         const forme = creer("b", "cp-tl-forme", brut.indexOf("[") < 0 ? brut : undefined);

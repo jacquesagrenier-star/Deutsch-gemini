@@ -49,7 +49,30 @@ MOIS = [
     ("décembre", "December", "Aralık", "грудень", "دسامبر", "ديسمبر", "dezembro", "grudzień", "декабрь"),
 ]
 
+# v904 (21 oct. 2026) : LES COULEURS. Jacques : « on devrait apprendre les
+# couleurs au debut de A1 ». Un bloc juste apres les jours. Chaque ligne porte
+# sa teinte (l[2], « #rrggbb ») : le tableau la montre, on apprend en voyant.
+COULEURS = [
+    ("rouge", "red", "kırmızı", "червоний", "قرمز", "أحمر", "vermelho", "czerwony", "красный"),
+    ("bleu", "blue", "mavi", "синій", "آبی", "أزرق", "azul", "niebieski", "синий"),
+    ("vert", "green", "yeşil", "зелений", "سبز", "أخضر", "verde", "zielony", "зелёный"),
+    ("jaune", "yellow", "sarı", "жовтий", "زرد", "أصفر", "amarelo", "żółty", "жёлтый"),
+    ("noir", "black", "siyah", "чорний", "سیاه", "أسود", "preto", "czarny", "чёрный"),
+    ("blanc", "white", "beyaz", "білий", "سفید", "أبيض", "branco", "biały", "белый"),
+    ("gris", "gray", "gri", "сірий", "خاکستری", "رمادي", "cinza", "szary", "серый"),
+    ("marron", "brown", "kahverengi", "коричневий", "قهوه‌ای", "بني", "marrom", "brązowy", "коричневый"),
+    ("orange", "orange", "turuncu", "помаранчевий", "نارنجی", "برتقالي", "laranja", "pomarańczowy", "оранжевый"),
+    ("rose", "pink", "pembe", "рожевий", "صورتی", "وردي", "rosa", "różowy", "розовый"),
+    ("violet", "purple", "mor", "фіолетовий", "بنفش", "بنفسجي", "roxo", "fioletowy", "фиолетовый"),
+]
+TEINTES = ["#d93a32", "#2f6fd6", "#2e9e4f", "#f2c500", "#1c1c1c", "#ffffff", "#8c8c8c",
+           "#7a4a24", "#f28a1a", "#f2a0c0", "#7d3fb5"]
+COULEURS_MOTS = {"de": ["rot", "blau", "grün", "gelb", "schwarz", "weiß", "grau", "braun", "orange", "rosa", "lila"],
+                 "es": ["rojo", "azul", "verde", "amarillo", "negro", "blanco", "gris", "marrón", "naranja", "rosa", "morado"]}
+
 TITRES = {
+    "couleurs": par_langue("Les couleurs", "Colors", "Renkler", "Кольори",
+                           "رنگ‌ها", "الألوان", "As cores", "Kolory", "Цвета"),
     "n0-20": par_langue("Les nombres de 0 à 20", "Numbers from 0 to 20", "0'dan 20'ye sayılar", "Числа від 0 до 20",
                         "عددهای 0 تا 20", "الأعداد من 0 إلى 20", "Os números de 0 a 20", "Liczby od 0 do 20", "Числа от 0 до 20"),
     "n20-100": par_langue("Les dizaines, jusqu'à 100", "Tens, up to 100", "Onluklar, 100'e kadar", "Десятки, до 100",
@@ -64,6 +87,16 @@ TITRES = {
 
 ASTUCES = {
   "de": {
+    "couleurs": par_langue(
+        "Les couleurs sont des adjectifs : das Auto ist rot. Devant un nom, elles prennent une terminaison : ein rotes Auto. orange, rosa et lila ne changent jamais.",
+        "Colors are adjectives: das Auto ist rot. Before a noun they take an ending: ein rotes Auto. orange, rosa and lila never change.",
+        "Renkler sıfattır: das Auto ist rot. Bir isimden önce ek alırlar: ein rotes Auto. orange, rosa ve lila hiç değişmez.",
+        "Кольори — це прикметники: das Auto ist rot. Перед іменником вони мають закінчення: ein rotes Auto. orange, rosa і lila ніколи не змінюються.",
+        "رنگ‌ها صفت هستند: das Auto ist rot. پیش از اسم پسوند می‌گیرند: ein rotes Auto. orange، rosa و lila هیچ‌وقت تغییر نمی‌کنند.",
+        "الألوان صفات: das Auto ist rot. وقبل الاسم تأخذ نهاية: ein rotes Auto. أما orange وrosa وlila فلا تتغير أبدًا.",
+        "As cores são adjetivos: das Auto ist rot. Antes de um substantivo, ganham uma terminação: ein rotes Auto. orange, rosa e lila nunca mudam.",
+        "Kolory to przymiotniki: das Auto ist rot. Przed rzeczownikiem dostają końcówkę: ein rotes Auto. orange, rosa i lila nigdy się nie zmieniają.",
+        "Цвета — это прилагательные: das Auto ist rot. Перед существительным у них есть окончание: ein rotes Auto. orange, rosa и lila никогда не меняются."),
     "n0-20": par_langue(
         "elf et zwölf sont à part. De 13 à 19 : l'unité puis zehn (dreizehn = trois-dix). Attention : sechzehn et siebzehn perdent une lettre. Au téléphone, zwei se dit souvent zwo.",
         "elf and zwölf are special. From 13 to 19: the unit, then zehn (dreizehn = three-ten). Careful: sechzehn and siebzehn drop a letter. On the phone, zwei is often said zwo.",
@@ -116,6 +149,16 @@ ASTUCES = {
         "Все мужского рода: der Januar. «В январе» — im Januar."),
   },
   "es": {
+    "couleurs": par_langue(
+        "Les couleurs en -o s'accordent : un libro rojo, una mesa roja. Les autres ne changent qu'au pluriel : una mesa azul, dos mesas azules. En Amérique latine, marrón se dit souvent café.",
+        "Colors ending in -o agree: un libro rojo, una mesa roja. The others only change in the plural: una mesa azul, dos mesas azules. In Latin America, marrón is often café.",
+        "-o ile biten renkler uyum yapar: un libro rojo, una mesa roja. Diğerleri yalnızca çoğulda değişir: una mesa azul, dos mesas azules. Latin Amerika'da marrón yerine çoğu zaman café denir.",
+        "Кольори на -o узгоджуються: un libro rojo, una mesa roja. Інші змінюються лише в множині: una mesa azul, dos mesas azules. У Латинській Америці marrón часто кажуть café.",
+        "رنگ‌هایی که به -o ختم می‌شوند مطابقت دارند: un libro rojo، una mesa roja. بقیه فقط در جمع تغییر می‌کنند: una mesa azul، dos mesas azules. در آمریکای لاتین به marrón اغلب café می‌گویند.",
+        "الألوان المنتهية بـ -o تطابق الاسم: un libro rojo، una mesa roja. والبقية لا تتغير إلا في الجمع: una mesa azul، dos mesas azules. في أمريكا اللاتينية تُقال marrón غالبًا café.",
+        "As cores em -o concordam: un libro rojo, una mesa roja. As outras só mudam no plural: una mesa azul, dos mesas azules. Na América Latina, marrón costuma ser café.",
+        "Kolory zakończone na -o się odmieniają: un libro rojo, una mesa roja. Pozostałe zmieniają się tylko w liczbie mnogiej: una mesa azul, dos mesas azules. W Ameryce Łacińskiej marrón to często café.",
+        "Цвета на -o согласуются: un libro rojo, una mesa roja. Остальные меняются только во множественном числе: una mesa azul, dos mesas azules. В Латинской Америке marrón часто называют café."),
     "n0-20": par_langue(
         "uno devient un devant un nom masculin : un libro, una mesa. De 16 à 19, un seul mot : dieciséis (dix-et-six).",
         "uno becomes un before a masculine noun: un libro, una mesa. From 16 to 19, one word: dieciséis (ten-and-six).",
@@ -224,6 +267,9 @@ def construire(langue):
     reperes.append({"id": "jours", "type": "suite", "t": TITRES["jours"], "a": ASTUCES[langue]["jours"],
                     "l": [[m, jours[i]] for i, m in enumerate(JOURS_MOTS[langue])],
                     "p": suites(JOURS_MOTS[langue], JOURS, [3, 4])})
+    couleurs = [par_langue(*s) for s in COULEURS]
+    reperes.append({"id": "couleurs", "type": "couleur", "t": TITRES["couleurs"], "a": ASTUCES[langue]["couleurs"],
+                    "l": [[m, couleurs[i], TEINTES[i]] for i, m in enumerate(COULEURS_MOTS[langue])]})
     mois = [par_langue(*s) for s in MOIS]
     reperes.append({"id": "mois", "type": "suite", "t": TITRES["mois"], "a": ASTUCES[langue]["mois"],
                     "l": [[m, mois[i]] for i, m in enumerate(MOIS_MOTS[langue])],
@@ -248,8 +294,8 @@ def construire(langue):
                     "l": [list(e) for e in rs.PLURIEL[langue][0]], "x": [list(e) for e in rs.PLURIEL[langue][1]]})
     return {
         "_lisez_moi": [
-            "Les repères (v879-v880) : nombres, jours, mois, alphabet, genre, pluriel, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
-            "Blocs dans l'ordre, jamais mélangés. type « nombre » : sens = le nombre en chiffres ; x = nombres composés pour s'exercer. type « suite » : sens par langue ; p = suites à dire à voix haute. type « lettre » : [nom dit, lettre, lettres qui se confondent] ; p = [épellation dite, mot]. type « genre » : [mot avec article, règle] (« ⚠️ » = exception) ; x = mots pour s'exercer. type « pluriel » : l = [pluriel, règle] ; x = [singulier, pluriel, règle, leurre, leurre].",
+            "Les repères (v879-v880, v904) : nombres, jours, couleurs, mois, alphabet, genre, pluriel, très tôt dans la séance du jour. Fichier DÉRIVÉ : le refaire avec python tests/reperes_construire.py, jamais à la main.",
+            "Blocs dans l'ordre, jamais mélangés. type « nombre » : sens = le nombre en chiffres ; x = nombres composés pour s'exercer. type « suite » : sens par langue ; p = suites à dire à voix haute. type « couleur » : [mot, sens par langue, teinte #rrggbb]. type « lettre » : [nom dit, lettre, lettres qui se confondent] ; p = [épellation dite, mot]. type « genre » : [mot avec article, règle] (« ⚠️ » = exception) ; x = mots pour s'exercer. type « pluriel » : l = [pluriel, règle] ; x = [singulier, pluriel, règle, leurre, leurre].",
             "Les pourcentages du genre sont MESURÉS sur les noms de nos thèmes (19 oct. 2026), pas recopiés d'une grammaire.",
             "Contrôle : python tests/reperes.py.",
         ],

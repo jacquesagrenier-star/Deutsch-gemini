@@ -15,8 +15,8 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "tests"))
 import reperes_construire as rc
 
-ORDRE = {"de": ["n0-20", "n20-100", "n100-1000", "jours", "mois", "alphabet", "genre-die", "genre-der", "genre-das", "pluriel"],
-         "es": ["n0-20", "n20-100", "n100-1000", "jours", "mois", "alphabet", "genre-m", "genre-f", "pluriel"]}
+ORDRE = {"de": ["n0-20", "n20-100", "n100-1000", "jours", "couleurs", "mois", "alphabet", "genre-die", "genre-der", "genre-das", "pluriel"],
+         "es": ["n0-20", "n20-100", "n100-1000", "jours", "couleurs", "mois", "alphabet", "genre-m", "genre-f", "pluriel"]}
 erreurs = []
 
 def verifier(chemin, langue):
@@ -59,6 +59,11 @@ def verifier(chemin, langue):
             for x in r.get("x", []):
                 if len(x) != 5 or len(set(x[1:2] + x[3:5])) != 3:
                     erreurs.append("%s : %r -- il faut le pluriel et deux leurres differents" % (ou, x))
+        elif r["type"] == "couleur":
+            for l in r["l"]:
+                manque = [lg for lg in rc.LANGUES if not (l[1] or {}).get(lg)]
+                if manque or len(l) < 3 or not (isinstance(l[2], str) and len(l[2]) == 7 and l[2][0] == "#"):
+                    erreurs.append("%s : %r -- il faut le sens dans les 9 langues et une teinte #rrggbb" % (ou, l[0]))
         else:
             for l in r["l"]:
                 manque = [lg for lg in rc.LANGUES if not (l[1] or {}).get(lg)]

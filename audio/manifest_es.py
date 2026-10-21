@@ -56,6 +56,9 @@ def recolter(variante):
             out.append((str(t).strip(), source, niveau or "A1"))
 
     variantes = charger("variantes.json").get("noms", {}) if variante == "latam" else {}
+    # v904 : les phrases des AUTRES mots qui contiennent un mot d'Espagne
+    # (variantes.json, « phrases ») -- phraseVariante() dans index.html.
+    phrases = charger("variantes.json").get("phrases", {}) if variante == "latam" else {}
     d = charger("temas.json")
     for theme in (d["themes"] if isinstance(d, dict) else d):
         niv = (theme.get("niveau") or "A1").upper()
@@ -69,14 +72,15 @@ def recolter(variante):
                 prendre(art + " " + mot, "noms.article", niv)
             if pl and pl not in ("—", "-"):
                 prendre(article_pluriel(art) + pl, "noms.pluriel", niv)
-            prendre(ex, "noms", niv)
+            prendre(phrases.get(ex, ex), "noms", niv)
     for fichier, cle in (("verbos.json", "infinitif"), ("adjetivos.json", "mot"),
                          ("adverbios.json", "mot"), ("expresiones.json", "mot"),
                          ("funcionales.json", "mot")):
         for niv, liste in charger(fichier).items():
             for x in liste:
                 prendre(x.get(cle), fichier, niv)
-                prendre(x.get("exemple"), fichier, niv)
+                ex = x.get("exemple")
+                prendre(phrases.get(ex, ex) if fichier in ("verbos.json", "adjetivos.json") else ex, fichier, niv)
                 if fichier != "verbos.json":
                     continue
                 # LA CARTE DE VERBE DEPUIS LE 13 OCT. 2026 : une phrase par
