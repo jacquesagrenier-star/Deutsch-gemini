@@ -617,6 +617,36 @@ REGLES = [
      u"oublies dans le sable), << a real photograph... as a passer-by would "
      u"take it with a good phone camera >> et la liste des matieres : une "
      u"vraie photo, Mark et Anna reconnaissables, aucun lieu perdu."),
+    ("retouche-de-style", "faute",
+     r"(?i)(\bturn (it|this|the (drawing|picture|illustration|image)) into\b"
+     r"|\bthe first reference picture is (a|an|the) (blurred|out-of-focus|"
+     r"drawing|illustration|painting|sketch|layout)\b"
+     r"|\bfixes the composition only\b|\bproduce the same photograph sharp\b"
+     r"|\bexactly the scene laid out in the first reference\b)",
+     u"Une image donnee en reference pour en changer le STYLE (dessin -> "
+     u"photo) : le modele rend la meme image dans le meme style",
+     u"TROIS FOIS, 0,45 $ en tout. 11 oct. 2026, marktplatz (0,15 $) : "
+     u"<< Turn it into a real photograph, keep everything exactly where it "
+     u"is >>, le dessin en premiere reference -> le meme dessin, trait pour "
+     u"trait. 16 oct. 2026, bauernhof (2 x 0,15 $), avec deux mecaniques "
+     u"DIFFERENTES, choisies pour contourner ce premier echec : (1) le dessin "
+     u"presente comme << the exact layout of the photograph to take >>, sans "
+     u"le mot dessin, et la matiere photographique decrite positivement -> "
+     u"le meme dessin, a l'ecart pres de 12/255 ; (2) le dessin FLOUTE "
+     u"(gaussien 7 px, le trait de pinceau disparu) presente comme << a "
+     u"blurred, out-of-focus phone photograph >> a rendre nette -> toujours "
+     u"une illustration, nette. La palette saturee, la peau lisse et la "
+     u"lumiere uniforme suffisent au modele pour reconnaitre et garder le "
+     u"style : il n'a pas besoin du trait. La composition, elle, est tenue au "
+     u"pixel pres les trois fois -- c'est ce que l'edition sait faire.",
+     u"La retouche DEPLACE, retire, efface, ajoute ; elle ne change pas de "
+     u"STYLE, meme floutee, meme sans nommer le dessin. Une scene sortie en "
+     u"dessin se REFAIT depuis le texte (voir << saynetes-en-foule >> : moins "
+     u"de personnes, la matiere nommee, << as a passer-by would take it with "
+     u"a good phone camera >>) -- et ses zones se remesurent, parce qu'une "
+     u"image refaite depuis le texte ne garde pas les positions. Verifier le "
+     u"STYLE a la reception, avant de mesurer une seule zone : chaque zone "
+     u"mesuree sur un dessin est du travail qu'on perdra."),
 ]
 
 # --------------------------------------------------------------------------
@@ -633,6 +663,35 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"Une GEOGRAPHIE en gauche/droite DE L'IMAGE tient sept images d'affilee",
+     u"21 oct. 2026",
+     u"Episode espagnol 2 (El carro), demande de Jacques : << qu'on donne assez "
+     u"d'informations pour qu'il n'y ait pas ce genre de probleme >> (les cotes "
+     u"de l'episode 3 allemand). Ecrit AVANT les prompts : camera toujours du "
+     u"meme cote de la rue, la voiture pointe vers la GAUCHE de l'image (on "
+     u"roule a droite), Mark TOUJOURS a gauche de la voisine (regle des 180 "
+     u"degres), lui regarde vers le bord droit, elle vers le bord gauche, le "
+     u"soleil vient de la droite. Puis un decor maitre SANS personne, donne en "
+     u"reference a tous les autres. Six images sur six justes du premier coup "
+     u"(portraits, gros plan, vue du balcon, retouche une heure plus tard). Le "
+     u"decor maitre lui-meme : une prise sur trois avait la voiture a l'envers "
+     u"-- c'est la geographie ecrite qui l'a fait refuser.",
+     u"Ecrire la carte du lieu en tete de la feuille, en GAUCHE/DROITE DE "
+     u"L'IMAGE (jamais du corps), avec le sens des vehicules, le cote du soleil "
+     u"et qui est a gauche de qui ; fabriquer d'abord le decor vide, le juger "
+     u"CONTRE la carte, puis le referencer partout << POUR LE LIEU >>."),
+    (u"Faire relire par un autre modele AVEC les images attrape ce que je decris de memoire",
+     u"21 oct. 2026",
+     u"Relecture par Fable des dix prompts espagnols, images ouvertes : une "
+     u"epaule que j'avais decrite sur anna-serre.png n'y est pas (elle est sur "
+     u"anna-moyen, et de l'autre cote) ; << her pose stays >> contredisait << her "
+     u"arms hang at her sides >> (sa main etait sur le comptoir) ; un sac de "
+     u"chariot demande sous la ligne de coupe ; un carton sur lequel Mark "
+     u"s'assoit, absent de la base ; un comptoir dans mark-moyen.png que je "
+     u"reprenais << tel quel >>. Tout corrige avant de payer, puis dix images "
+     u"bonnes au premier essai.",
+     u"Donner au relecteur les IMAGES de reference, pas leur description, et lui "
+     u"demander de separer les FAITS (verifiables sur un fichier) des AVIS."),
     (u"RETIRER quelqu'un par une retouche : tout le reste reste en place",
      u"11 oct. 2026",
      u"wohnzimmer-vide, 0,15 $, du premier coup. La premiere prise du salon "
@@ -1018,7 +1077,7 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "personne-sans-reference", "pose-pour-la-camera",
               "fruit-a-etiquette", "objet-sous-le-personnage",
               "personnage-qui-se-penche", "tete-calee-sur-le-fond",
-              "saynetes-en-foule")
+              "saynetes-en-foule", "retouche-de-style")
 
 # Toute personne nommee dans une scene. Voir << saynetes-en-foule >>.
 FOULE = re.compile(r"(?i)\b(woman|man|girl|boy|lady|doctor|teacher|nurse|"

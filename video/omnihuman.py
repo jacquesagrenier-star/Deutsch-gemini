@@ -76,12 +76,26 @@ import io
 import json
 import os
 import re
+import ssl
 import sys
 import time
 import urllib.error
 import urllib.request
 
 sys.stdout.reconfigure(encoding="utf-8")
+
+# ⚠️ LE CDN DE FAL N'EST PAS RECONNU PAR LE MAGASIN DE WINDOWS. 21 oct. 2026 :
+#    v3.fal.media signe avec SSL.com (ECC CA R2), racine absente du magasin que
+#    Python lit -- CERTIFICATE_VERIFY_FAILED, mais SEULEMENT AU TELECHARGEMENT.
+#    queue.fal.run passe : l'image est donc generee et FACTUREE, puis perdue a
+#    la derniere etape. curl ne voit rien (schannel complete la chaine seul).
+#    certifi la connait ; tous les outils fal importent ce module.
+try:
+    import certifi
+    ssl._create_default_https_context = (
+        lambda: ssl.create_default_context(cafile=certifi.where()))
+except ImportError:
+    pass
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "video"))
