@@ -47,8 +47,9 @@ import montage as M                                         # noqa: E402
 
 SR = 16000
 FENETRE = 0.120        # de combien une frontiere peut glisser
-VOYELLES = "aeiouyäöüáéèêàâîïôûùAEIOUYÄÖÜ"
+VOYELLES = "aeiouyäöüáéèêàâîïôûùíóúAEIOUYÄÖÜÁÉÍÓÚ"   # + í ó ú : la serie espagnole (21 oct. 2026)
 PART_FIXE = 1.2        # ce que "pese" un mot avant meme ses voyelles
+DIT = "de"   # la langue dite, fixee par main() d'apres la scene
 PAUSE = {",": 1.4, ";": 1.6, ":": 1.6, ".": 2.0, "!": 2.0, "?": 2.0}
 
 
@@ -217,6 +218,11 @@ def main():
     plans = {p["n"]: p for p in json.load(io.open(feuille, encoding="utf-8"))}
     scene = json.load(io.open(os.path.join(RACINE, "scenes", a.scene + ".json"),
                               encoding="utf-8"))
+    # 21 oct. 2026 : LA LANGUE DITE n'est plus toujours l'allemand. La serie
+    # espagnole (scenes/es-*.json) porte « langue »: « es » et son texte dit
+    # sous « es » ; la serie allemande n'a pas ce champ et reste sous « de ».
+    global DIT
+    DIT = scene.get("langue", "de")
 
     # ============ UN CLIP PEUT PORTER PLUSIEURS REPLIQUES ============
     #
@@ -265,17 +271,17 @@ def main():
         p = groupe[0]
         n = p["n"]
         info = plans[n]
-        de, tr = p.get("de", ""), p.get(a.langue, "")
+        de, tr = p.get(DIT, ""), p.get(a.langue, "")
         if not de:
             continue
         if info["type"] == "replique":
             piste = os.path.join(tel, "plan%02d-pleine.mp3" % n)
             if not os.path.exists(piste):
                 continue
-            membres = [q for q in groupe if q.get("de")]
+            membres = [q for q in groupe if q.get(DIT)]
             # Le decoupage se fait sur le texte COMPLET du clip : c'est la seule
             # facon que le calage au prorata voie la vraie duree de parole.
-            mots = decouper(F, piste, " ".join(q["de"] for q in membres))
+            mots = decouper(F, piste, " ".join(q[DIT] for q in membres))
             # ⚠️ Le clip est coupe a `amorce` avant le premier mot : la piste
             # et le montage n'ont pas la meme origine. On recale sur le
             # premier mot, que monter_avatar place a `amorce` du debut.
@@ -287,7 +293,7 @@ def main():
             # cadre, et l'une resterait affichee pendant que l'autre est dite.
             i = 0
             for k, q in enumerate(membres):
-                nb = len(q["de"].split())
+                nb = len(q[DIT].split())
                 part = mots[i:i + nb]
                 i += nb
                 if not part:
