@@ -31,6 +31,22 @@ modèle ByteDance hébergé par fal. Le ticket BytePlus le trancherait ; en
 attendant, la pastille « Commercial use » est un engagement de fal envers
 nous.
 
+## Les autres modèles de la chaîne — vérifié le 21 octobre 2026
+
+Depuis le 17 septembre, les répliques passent par Kling et les plans fixes
+par H3 Max. Les quatre pages chez fal portent la pastille **« Commercial use »** :
+
+| Modèle (chez fal) | Sert à | Ce que dit la page |
+| --- | --- | --- |
+| `fal-ai/kling-video/ai-avatar/v2/standard` | les répliques | « Commercial use permitted (Partner) » |
+| `bytedance/seedance-2.0/fast/image-to-video` | les plans de marche | pastille « Commercial use » |
+| `minimax/h3-max/image-to-video` | les plans fixes | pastille « Commercial use » |
+| `fal-ai/nano-banana-pro` | les images des plans | « Commercial use enabled through fal.ai » |
+
+Les conditions de fal (aucune propriété réclamée, pas d'entraînement, pas de
+filigrane) valent pour tous. Reste ouvert, comme pour OmniHuman : les
+éventuelles conditions propres à l'éditeur du modèle (§14(b)), mineures.
+
 ## ⚠️ LE VRAI SUJET N'EST PAS L'USAGE, C'EST LA PROPRIÉTÉ
 
 Ce que disent les juristes et la jurisprudence, relevé le 16 septembre 2026 :
