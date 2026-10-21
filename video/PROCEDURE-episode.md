@@ -97,6 +97,19 @@ souffle et celui qui *ferme* la parole doivent différer, sinon une fenêtre du
 souffle à 0,99 compte encore comme de la voix et repousse la recherche après
 ce qu'on cherche.
 
+⚠️ **EN ESPAGNOL, LE « TSS » EST SOUVENT UN « S » FINAL** (21 oct. 2026).
+L'outil a été écrit pour l'allemand. Sur la série espagnole il a signalé sept
+« souffles » après la voix — et les sept répliques finissent par *-s*
+(maletas, cajas, billetes, países). C'est une consonne, pas une saleté :
+l'effacer couperait le mot. **Lire le texte de la réplique avant d'appliquer.**
+
+⚠️ **ET LE « TOC » VENAIT DU CONTEXTE ENVOYÉ À ELEVENLABS** (21 oct. 2026).
+Avec la réplique SUIVANTE en `next_text`, 20 pistes sur 36 se terminaient en
+plein son : le modèle entame la phrase d'après, et le fichier coupe dedans.
+Jacques : « des petits tocs entre les phrases ». `audio/scene_audio.py`
+n'envoie plus que la réplique précédente. Contrôle : le dernier échantillon de
+chaque piste doit être proche de zéro (`scratchpad/tocs_es.py` l'a mesuré).
+
 ---
 
 ## Étape 3 — générer, plan par plan

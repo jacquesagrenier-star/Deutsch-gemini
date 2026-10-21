@@ -180,6 +180,11 @@ def main():
         if not a.reglages_du_cours:
             generer.REGLAGES = (DIALOGUE_V3 if nom_modele == "v3"
                                 else DIALOGUE)
+            # Une voix peut demander ses propres reglages (scene["locuteurs"]
+            # [...]["reglages"]). 21 oct. 2026 : la voisine d'es-02, creee par
+            # Voice Design, sonnait « saccadee » a stability 0,40 / style 0,45.
+            if locuteurs[p["locuteur"]].get("reglages"):
+                generer.REGLAGES = locuteurs[p["locuteur"]]["reglages"]
         try:
             # LA BALISE NE VIT PAS DANS LE CHAMP "de". Ce texte allemand sert
             # aussi aux sous-titres et au lexique : [warmly] s'y afficherait a
@@ -200,7 +205,15 @@ def main():
             # c'est la CONVERSATION qui donne le contexte, pas la voix.
             i = plans.index(p)
             avant = plans[i - 1][DIT] if i > 0 else None
-            apres = plans[i + 1][DIT] if i + 1 < len(plans) else None
+            # ⚠️ PAS DE next_text (21 oct. 2026). Jacques : « j'entends des
+            #    petits tocs entre les phrases ». Mesure sur la serie espagnole :
+            #    avec la replique SUIVANTE en contexte, 20 pistes sur 36 se
+            #    terminaient EN PLEIN SON (dernier echantillon jusqu'a 18 619) --
+            #    le modele entame la phrase suivante, et le fichier coupe dedans.
+            #    Dix essais : sans contexte, ou avec la seule replique PRECEDENTE,
+            #    toutes finissent sur un vrai silence. On garde previous_text,
+            #    qui suffit contre la repetition des phrases courtes (14 sept.).
+            apres = None
             octets = generer.synthetiser(texte, modele, cle_api, avant, apres)
         except generer.TexteBloque:
             sys.exit("\n  Texte refuse par ElevenLabs au plan %d. Rien n'est "
