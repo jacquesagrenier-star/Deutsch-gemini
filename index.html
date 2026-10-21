@@ -7056,6 +7056,22 @@ body[data-theme="dark"] .judge-good{color:#fff; border-color:transparent;
     background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.75) 50%, rgba(255,255,255,0)); filter:blur(1px);}
 body[data-theme="dark"] .cp-actions button.primary{color:#fff;
     background:linear-gradient(180deg, rgba(46,136,86,.88), rgba(40,124,78,.84));}
+/* v913 : LES PETITES ICONES DES TUILES EN VERRE AMBRE. Jacques, 21 oct. 2026 :
+   « le petit icone dans le milieu, est-ce qu'on pourrait le mettre glacis
+   aussi ? », puis « un peu plus apparentes » ; choix : « entre A et B » de
+   .claude/maquette-icones-verre.html -- un ambre plus pale que la pilule, plus
+   grandes (38 px), icone a l'encre. Celles qui ont un anneau de progression
+   restent rondes, dedans. #home pour passer devant les regles par tuile. */
+#home .orb .orb-icon{position:relative; overflow:hidden; width:38px; height:38px; border-radius:11px; border:0;
+    background:linear-gradient(180deg, #fbe2b6, #f3c985);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7), inset 0 0 8px 2px rgba(255,255,255,.4),
+               inset 0 -8px 10px -8px rgba(160,100,20,.45), 0 4px 9px -4px rgba(140,85,15,.5);}
+#home .orb .orb-icon-wrap .orb-icon{width:32px; height:32px; border-radius:50%;}
+#home .orb .orb-icon::after{content:""; position:absolute; top:2px; left:20%; width:60%; height:5px; border-radius:999px; pointer-events:none;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.95) 50%, rgba(255,255,255,0)); filter:blur(.6px);}
+#home .orb .orb-icon svg{position:relative; width:22px; height:22px; stroke:#3d2a0c; stroke-width:2;}
+#home .orb .orb-icon-wrap .orb-icon svg{width:19px; height:19px;}
+body[data-theme="dark"] #home .orb .orb-icon{background:linear-gradient(180deg, rgba(246,178,66,.92), rgba(232,162,58,.88));}
 /* v903 : LE PROFIL D'APPRENTISSAGE (essai « profil »), voir ouvrirProfil(). */
 #profil{padding-top:18px;}
 .pf-etapes{display:flex; gap:6px; margin:0 0 20px;}
@@ -8199,7 +8215,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v912</span>
+    <span class="subtitle-version">v913</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -32621,6 +32637,20 @@ function joursActifs(){
         log.forEach(ts => { jours[getTodayStr(new Date(ts))] = 1; });
     }catch(e){}
     try{ if(getDailyActivityCount() > 0) jours[getTodayStr()] = 1; }catch(e){}
+    // v913 : LA BULLE NE DOIT JAMAIS CONTREDIRE LA FLAMME. Jacques : « j'ai six
+    // jours d'affilee, mais je vois seulement trois jours » -- le journal de
+    // memorisation ne note pas chaque revision. Deux sources de plus : la serie
+    // elle-meme (ses N derniers jours, jusqu'a son dernier jour actif), et le
+    // journal des seances du jour (7 jours, une carte passee suffit).
+    try{
+        const st = JSON.parse(localStorage.getItem(directionScopedKey(STREAK_KEY)) || "null");
+        const n = getStreakCount();
+        const dernier = (st && st.lastActiveDate) ? new Date(st.lastActiveDate + "T12:00:00") : null;
+        if(n > 0 && dernier && !isNaN(dernier)){
+            for(let k = 0; k < Math.min(n, 60); k++){ const d = new Date(dernier); d.setDate(dernier.getDate() - k); jours[getTodayStr(d)] = 1; }
+        }
+    }catch(e){}
+    try{ lireSeances().forEach(x => { if(x && x.d && (x.p > 0 || x.f)) jours[getTodayStr(new Date(x.d))] = 1; }); }catch(e){}
     return jours;
 }
 let calSerie = null;
@@ -42177,7 +42207,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 912;
+const APP_VERSION = 913;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47830,7 +47860,15 @@ function montrerCartePhrase(item){
                 || (motSeul && item.cible.mode === "nomen" && n === normaliserSaisie(w[0]));
             champ.disabled = true;
             verif.classList.add("hidden");
-            conclure(juste, attendu, presque ? echapperHtml(t("cp_presque"))
+            // v913 : la dictee d'un mot donne aussi son sens. Jacques, 21 oct.
+            // 2026 : « el espejo » -- « il me l'ecrit en espagnol, mais j'aimerais
+            // avoir la traduction en francais aussi ».
+            let sensMot = "";
+            if(motSeul){
+                try{ sensMot = item.cible.mode === "verben" ? texteTraduit(item.cible.word, "traduction")
+                                                           : texteCarte(item.cible.word, item.cible.mode, "traduction"); }catch(e){}
+            }
+            conclure(juste, sensMot ? attendu + " (" + sensMot + ")" : attendu, presque ? echapperHtml(t("cp_presque"))
                 : (!juste && !motSeul ? ecartDictee(v, attendu) : ""));
         });
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
@@ -49975,6 +50013,7 @@ async function motsVusDeScene(nom){
     }
     const scene = await SCENES_LUES.get(url);
     const vus = new Map();
+    vus.tous = new Map();   // v912 : tous les mots A1 de la scene, vus ou non
     const exclus = scene.exclus || [];
     (scene.points || []).forEach(p => {
         [{ mot: p.mot, genre: p.genre, theme: p.theme, niveau: p.niveau }].concat(p.aussi || []).forEach(m => {
@@ -49982,6 +50021,7 @@ async function motsVusDeScene(nom){
             if(!m || !m.mot || vus.has(m.mot) || exclus.indexOf(m.mot) >= 0) return;
             if(m.niveau && m.niveau !== "A1") return;
             const carte = carteDeScene({ mot: m.mot, genre: m.genre, theme: m.theme });
+            if(carte) vus.tous.set(m.mot, (m.genre ? m.genre + " " : "") + m.mot);
             if(carte && !estNeuf(getWordState(carte.themeId, carte.index)))
                 vus.set(m.mot, (m.genre ? m.genre + " " : "") + m.mot);
         });
@@ -50006,7 +50046,17 @@ async function preparerArretScene(seance, sceneImposee){
         const depart = Math.max(0, SCENES_SEANCE.findIndex(x => x.nom === sceneDuJour().nom));
         for(let k = 1; k < SCENES_SEANCE.length && candidates.length < 8; k++) ajouter(SCENES_SEANCE[(depart + k) % SCENES_SEANCE.length]);
         const arrets = await Promise.all(candidates.map(c => arretDeScene(c).catch(() => null)));
-        const iArret = arrets.findIndex(x => !!x);
+        let iArret = arrets.findIndex(x => !!x);
+        // v912 (suite) : AUCUNE N'A TROIS MOTS VUS -- c'est le cas ordinaire en A1,
+        // ou les mots vus viennent des escales (verbes, mots du voyage) et rarement
+        // des objets dessines (Jacques : « ca fait au moins 24 [seances] »). La
+        // scene prevue s'arrete quand meme, avec ses mots vus completes par
+        // d'autres mots A1 ; si elle ne peut pas, la premiere qui le peut.
+        if(iArret < 0){
+            for(let k = 0; k < candidates.length && iArret < 0; k++){
+                try{ const a = await arretDeScene(candidates[k], true); if(a){ arrets[k] = a; iArret = k; } }catch(e){}
+            }
+        }
         if(iArret < 0) return seance;
         const arret = arrets[iArret];
         const s = candidates[iArret];
@@ -50029,16 +50079,23 @@ async function preparerArretScene(seance, sceneImposee){
     }catch(e){ return seance; }
 }
 // L'arret dans une scene, ou null si elle n'a pas encore de quoi demander.
-async function arretDeScene(s){
+async function arretDeScene(s, completer){
     if(!s) return null;
     const niveau = niveauSeance();
     let mots = [];
     if(niveau === "A1"){
         const vus = await motsVusDeScene(s.nom);
-        if(vus.size < ARRET_NB) return null;
+        if(vus.size < ARRET_NB && !completer) return null;
         // Trois mots tires parmi ceux deja vus : ce sont eux que la carte
         // annonce, et eux seuls que la scene demande.
         mots = melangerPhrase(Array.from(vus.entries())).slice(0, ARRET_NB);
+        // v912 : « completer » -- les vus d'abord, puis d'autres mots A1 de la
+        // scene, comme les scenes de Premiers pas (la scene dit le mot, 🔈).
+        if(mots.length < ARRET_NB && vus.tous){
+            const autres = melangerPhrase(Array.from(vus.tous.entries()).filter(([m]) => !vus.has(m)));
+            mots = mots.concat(autres.slice(0, ARRET_NB - mots.length));
+        }
+        if(!mots.length) return null;
     }
     return { mode: "phrase", forme: "scene_arret", cible: null, themeId: "scene_arret", index: 0,
              scene: s, niveau: niveau, mots: mots, phrase: null, word: "" };
