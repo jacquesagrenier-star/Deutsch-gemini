@@ -816,8 +816,11 @@ function dessiner(){
        ${a.second ? 'stroke-dasharray="6 4"' : ""}/>`).join("");
   toile.classList.toggle("vivant", principaux.length > 0);
 }
+/* Le gros plan a ses propres etiquettes (etiquetteGros les pose dans zoom.el) :
+   effacer() n'otait que celles de la scene, et chez le medecin l'oreille, les
+   yeux, le nez de Mark s'empilaient l'un sur l'autre (Jacques, 20 oct. 2026). */
 function effacer(){ allumes = []; dessiner(); calquePlan.querySelectorAll(".etiquette").forEach(n => n.remove());
-  if (zoom) zoom.svg.innerHTML = ""; }
+  if (zoom){ zoom.svg.innerHTML = ""; zoom.el.querySelectorAll(".etiquette").forEach(n => n.remove()); } }
 function anneau(id, second){
   if (zoom && zoom.g.formes[id]) return anneauGros(id, second);
   allumes.push({id, second: !!second}); dessiner();

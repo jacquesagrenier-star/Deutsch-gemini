@@ -6958,6 +6958,44 @@ body[data-theme="dark"] #seancePilule .pa-anneau small, body[data-theme="dark"] 
 body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
 body[data-theme="dark"] .explorer-desc{color:rgba(255,255,255,.72);}
 body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
+/* v903 : LE PROFIL D'APPRENTISSAGE (essai « profil »), voir ouvrirProfil(). */
+#profil{padding-top:18px;}
+.pf-etapes{display:flex; gap:6px; margin:0 0 20px;}
+.pf-etapes i{flex:1; height:4px; border-radius:3px; background:rgba(28,36,48,.12);}
+.pf-etapes i.on{background:#E8A23A;}
+.pf-q{font-size:23px; font-weight:900; line-height:1.2; margin:0 0 6px; letter-spacing:-.01em; color:#1C2430;}
+.pf-sous{font-size:14px; color:#576177; margin:0 0 18px; line-height:1.4;}
+.pf-raison, .pf-facon{display:flex; align-items:center; gap:12px; width:100%; border:1.5px solid rgba(28,36,48,.14); background:#fff; border-radius:16px;
+    margin:0 0 10px; font:inherit; color:#1C2430; text-align:start; cursor:pointer; transition:border-color .15s, background .15s, box-shadow .15s;}
+.pf-raison{padding:13px 14px; font-size:15.5px; font-weight:800;}
+.pf-raison .pf-ic{font-size:23px; width:30px; text-align:center; flex:0 0 auto;}
+.pf-raison small{display:block; font-size:12.5px; font-weight:600; color:#576177; margin-top:2px;}
+.pf-facon{padding:9px 10px;}
+.pf-facon > b{font-size:15px; font-weight:900; line-height:1.25;}
+.pf-raison.on, .pf-facon.on{border-color:#E8A23A; background:#FFF6E6; box-shadow:0 0 0 3px rgba(232,162,58,.22);}
+.pf-pied{font-size:12.5px; color:#576177; text-align:center; margin:16px 0 0;}
+/* Les apercus : on montre la facon d'apprendre, on ne la nomme pas. */
+.pf-ap{position:relative; width:64px; height:54px; flex:0 0 auto; border-radius:12px; overflow:hidden; display:flex; align-items:center; justify-content:center;}
+.pf-ap-image{background-size:cover; background-position:center 35%; background-color:#d9cdb8;}
+.pf-ap-image i{position:absolute; left:46%; top:42%; width:20px; height:14px; margin:-7px 0 0 -10px; border-radius:50%; box-shadow:0 0 0 2px #E8A23A, 0 0 7px rgba(232,162,58,.9);}
+.pf-ap-oreille{gap:2px; background:linear-gradient(135deg,#E8F5F3,#CFEAE6);}
+.pf-ap-oreille i{width:3px; border-radius:2px; background:#2f8f86;}
+.pf-ap-oreille i:nth-child(3n){background:#4fb3a9;}
+.pf-ap-oreille i:nth-child(1){height:10px;} .pf-ap-oreille i:nth-child(2){height:20px;} .pf-ap-oreille i:nth-child(3){height:28px;}
+.pf-ap-oreille i:nth-child(4){height:14px;} .pf-ap-oreille i:nth-child(5){height:24px;} .pf-ap-oreille i:nth-child(6){height:11px;} .pf-ap-oreille i:nth-child(7){height:18px;}
+.pf-ap-mots{flex-direction:column; gap:2px; background:linear-gradient(135deg,#FFF6E6,#F7E3BF);}
+.pf-ap-mots b{font-size:9.5px; font-weight:900; border-radius:5px; padding:0 6px; color:#fff; line-height:1.5;}
+.pf-ap-mots b:nth-child(1){background:#4a6fb3;} .pf-ap-mots b:nth-child(2){background:#c4544a;} .pf-ap-mots b:nth-child(3){background:#3d9468;}
+.pf-ap-tout{display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; align-items:stretch; justify-items:stretch;}
+.pf-ap-tout span:nth-child(1){background-size:cover; background-position:center; background-color:#d9cdb8;}
+.pf-ap-tout span:nth-child(2){background:linear-gradient(135deg,#E8F5F3,#CFEAE6);}
+.pf-ap-tout span:nth-child(3){background:linear-gradient(135deg,#FFF6E6,#F7E3BF);}
+.pf-ap-tout span:nth-child(4){background:#1C2430; color:#E8A23A; font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center;}
+body[data-theme="dark"] .pf-q{color:#F2F2F6;}
+body[data-theme="dark"] .pf-sous, body[data-theme="dark"] .pf-pied, body[data-theme="dark"] .pf-raison small{color:#a9b2c0;}
+body[data-theme="dark"] .pf-raison, body[data-theme="dark"] .pf-facon{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
+body[data-theme="dark"] .pf-raison.on, body[data-theme="dark"] .pf-facon.on{background:#2a2418; border-color:#E8A23A;}
+body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
 </style>
 
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -7224,6 +7262,34 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
         </div>
         <div class="spacer"></div>
         <button class="primary" onclick="completeInitialSetup()" data-i18n="setup_continue">CONTINUER</button>
+    </div>
+</section>
+
+<!-- ================= LE PROFIL D'APPRENTISSAGE (v903, essai « profil ») =================
+     Deux questions juste apres l'ecran de bienvenue, choisies par Jacques le
+     20 oct. 2026 (maquette .claude/maquette-inscription-deux-questions.html,
+     « 1 et 2B »). Un toucher par question : on avance seul. Le mot « scene »
+     n'y figure pas (« ca ne dit rien a quelqu'un qui s'inscrit ») : chaque
+     facon d'apprendre se MONTRE par un petit apercu. Voir ouvrirProfil(). -->
+<section id="profil" class="screen" aria-labelledby="pfQuestion">
+    <div class="pf-etapes" aria-hidden="true"><i class="on"></i><i id="pfEtape2"></i></div>
+    <div id="pfEcran1">
+        <h2 class="pf-q" id="pfQuestion" data-i18n="profil_q1">Pourquoi tu apprends l'allemand ?</h2>
+        <p class="pf-sous" data-i18n="profil_q1_sous">Pour que ta séance parte de ce qui compte pour toi.</p>
+        <button type="button" class="pf-raison" data-raison="voyager" onclick="choisirRaisonProfil('voyager')"><span class="pf-ic" aria-hidden="true">✈️</span><span><span data-i18n="profil_r_voyager">Pour voyager</span><small data-i18n="profil_r_voyager_sous">Se débrouiller sur place, dès le départ</small></span></button>
+        <button type="button" class="pf-raison" data-raison="vivre" onclick="choisirRaisonProfil('vivre')"><span class="pf-ic" aria-hidden="true">🏠</span><span><span data-i18n="profil_r_vivre">Pour vivre en Allemagne</span><small data-i18n="profil_r_vivre_sous">Le quotidien : rendez-vous, courses, démarches</small></span></button>
+        <button type="button" class="pf-raison" data-raison="cours" onclick="choisirRaisonProfil('cours')"><span class="pf-ic" aria-hidden="true">🎓</span><span><span data-i18n="profil_r_cours">Pour mon cours ou mes études</span><small data-i18n="profil_r_cours_sous">Le programme, niveau par niveau</small></span></button>
+        <button type="button" class="pf-raison" data-raison="plaisir" onclick="choisirRaisonProfil('plaisir')"><span class="pf-ic" aria-hidden="true">❤️</span><span><span data-i18n="profil_r_plaisir">Pour le plaisir</span><small data-i18n="profil_r_plaisir_sous">Un peu de tout, à ton rythme</small></span></button>
+        <p class="pf-pied" data-i18n="profil_pied1">Tu pourras changer d'avis à tout moment, depuis ta séance du jour.</p>
+    </div>
+    <div id="pfEcran2" class="hidden">
+        <h2 class="pf-q" data-i18n="profil_q2">Qu'est-ce qui te ressemble le plus ?</h2>
+        <p class="pf-sous" data-i18n="profil_q2_sous">On dosera ta séance en fonction. Tu auras toujours un peu de tout.</p>
+        <button type="button" class="pf-facon" data-facon="images" onclick="choisirFaconProfil('images')"><span class="pf-ap pf-ap-image" id="pfApImage" aria-hidden="true"><i></i></span><b data-i18n="profil_f_images">Je retiens mieux ce que je vois</b></button>
+        <button type="button" class="pf-facon" data-facon="oreille" onclick="choisirFaconProfil('oreille')"><span class="pf-ap pf-ap-oreille" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><b data-i18n="profil_f_oreille">Je retiens mieux ce que j'entends et répète</b></button>
+        <button type="button" class="pf-facon" data-facon="regles" onclick="choisirFaconProfil('regles')"><span class="pf-ap pf-ap-mots" id="pfApMots" aria-hidden="true"><b>der</b><b>die</b><b>das</b></span><b data-i18n="profil_f_regles">J'aime comprendre comment ça marche</b></button>
+        <button type="button" class="pf-facon" data-facon="tout" onclick="choisirFaconProfil('tout')"><span class="pf-ap pf-ap-tout" id="pfApTout" aria-hidden="true"><span></span><span></span><span></span><span>+</span></span><b data-i18n="profil_f_tout">Un peu de tout, je ne sais pas encore</b></button>
+        <p class="pf-pied" data-i18n="profil_pied2">Un seul choix · modifiable à tout moment</p>
     </div>
 </section>
 
@@ -7530,6 +7596,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
                     <div id="spDateEdit"></div>
                     <div class="pa-liste-liens">
                         <button type="button" class="pa-lien hidden" id="spDate" onclick="ouvrirDateSeance()"></button>
+                        <button type="button" class="pa-lien hidden" id="spProfil" onclick="fermerListeSeance(); ouvrirProfil(() => goHome());" data-i18n="profil_lien">Ma façon d'apprendre ›</button>
                         <button type="button" class="pa-lien" onclick="fermerListeSeance(); ouvrirInfoProgression();" data-i18n="carte_info_titre">Comment lire ta progression</button>
                     </div>
                 </div>
@@ -8026,7 +8093,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v902</span>
+    <span class="subtitle-version">v903</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12113,6 +12180,30 @@ const I18N = {
         setup_niveau_b2: "Niveau avancé (B2)",
         setup_niveau_c1: "Niveau très avancé (C1)",
         setup_niveau_note: "Tu pourras changer de niveau à tout moment, depuis ta séance du jour.",
+        // v903 : le profil d'apprentissage (essai « profil »), voir ouvrirProfil().
+        profil_q1: "Pourquoi tu apprends l'allemand ?",
+        profil_q1_sous: "Pour que ta séance parte de ce qui compte pour toi.",
+        profil_r_voyager: "Pour voyager",
+        profil_r_voyager_sous: "Se débrouiller sur place, dès le départ",
+        profil_r_vivre: "Pour vivre en Allemagne",
+        profil_r_vivre_sous: "Le quotidien : rendez-vous, courses, démarches",
+        profil_r_cours: "Pour mon cours ou mes études",
+        profil_r_cours_sous: "Le programme, niveau par niveau",
+        profil_r_plaisir: "Pour le plaisir",
+        profil_r_plaisir_sous: "Un peu de tout, à ton rythme",
+        profil_pied1: "Tu pourras changer d'avis à tout moment, depuis ta séance du jour.",
+        profil_q2: "Qu'est-ce qui te ressemble le plus ?",
+        profil_q2_sous: "On dosera ta séance en fonction. Tu auras toujours un peu de tout.",
+        profil_f_images: "Je retiens mieux ce que je vois",
+        profil_f_oreille: "Je retiens mieux ce que j'entends et répète",
+        profil_f_regles: "J'aime comprendre comment ça marche",
+        profil_f_tout: "Un peu de tout, je ne sais pas encore",
+        profil_pied2: "Un seul choix · modifiable à tout moment",
+        profil_ok_images: "C'est noté : plus d'images dans ta séance.",
+        profil_ok_oreille: "C'est noté : plus d'écoute et d'oral dans ta séance.",
+        profil_ok_regles: "C'est noté : plus de grammaire dans ta séance.",
+        profil_ok_tout: "C'est noté : un peu de tout dans ta séance.",
+        profil_lien: "Ma façon d'apprendre ›",
         dec_passer: "Passer",
         dec_progression_aria: "Étape {n} sur {total}",
         dec_kicker: "Découvre Wortando",
@@ -13455,6 +13546,30 @@ const I18N = {
         setup_niveau_b2: "Advanced (B2)",
         setup_niveau_c1: "Very advanced (C1)",
         setup_niveau_note: "You can change your level at any time from your daily session.",
+        // v903: the learning profile (trial "profil"), see ouvrirProfil().
+        profil_q1: "Why are you learning German?",
+        profil_q1_sous: "So your session starts from what matters to you.",
+        profil_r_voyager: "To travel",
+        profil_r_voyager_sous: "Get by on the spot, from day one",
+        profil_r_vivre: "To live in Germany",
+        profil_r_vivre_sous: "Everyday life: appointments, shopping, paperwork",
+        profil_r_cours: "For my course or studies",
+        profil_r_cours_sous: "The curriculum, level by level",
+        profil_r_plaisir: "For fun",
+        profil_r_plaisir_sous: "A bit of everything, at your pace",
+        profil_pied1: "You can change your mind at any time from your daily session.",
+        profil_q2: "Which one sounds most like you?",
+        profil_q2_sous: "We'll balance your session accordingly. You'll always get a bit of everything.",
+        profil_f_images: "I remember best what I see",
+        profil_f_oreille: "I remember best what I hear and repeat",
+        profil_f_regles: "I like to understand how it works",
+        profil_f_tout: "A bit of everything, I don't know yet",
+        profil_pied2: "One choice · change it any time",
+        profil_ok_images: "Got it: more pictures in your session.",
+        profil_ok_oreille: "Got it: more listening and speaking in your session.",
+        profil_ok_regles: "Got it: more grammar in your session.",
+        profil_ok_tout: "Got it: a bit of everything in your session.",
+        profil_lien: "How I like to learn ›",
         dec_passer: "Skip",
         dec_progression_aria: "Step {n} of {total}",
         dec_kicker: "Discover Wortando",
@@ -23782,6 +23897,8 @@ const I18N_ESPAGNOL = {
         "home_subtitle": "Ton tuteur personnel pour la grammaire espagnole et le vocabulaire.",
         "auth_title": "Apprends l'espagnol, un mot à la fois",
         "setup_niveau_label": "Tu connais déjà un peu d'espagnol ?",
+        "profil_q1": "Pourquoi tu apprends l'espagnol ?",
+        "profil_r_vivre": "Pour vivre dans un pays hispanophone",
         "abo_titre": "Apprends l'espagnol sans limite",
         "abo_av_voix": "La voix espagnole sur chaque carte",
         "search_title": "Chercher un mot espagnol ou français",
@@ -23917,6 +24034,8 @@ const I18N_ESPAGNOL = {
         "home_subtitle": "Your personal tutor for Spanish grammar and vocabulary.",
         "auth_title": "Learn Spanish, one word at a time",
         "setup_niveau_label": "Do you already know some Spanish?",
+        "profil_q1": "Why are you learning Spanish?",
+        "profil_r_vivre": "To live in a Spanish-speaking country",
         "abo_titre": "Learn Spanish without limits",
         "abo_av_voix": "The Spanish voice on every card",
         "search_title": "Search a Spanish or English word",
@@ -24052,6 +24171,8 @@ const I18N_ESPAGNOL = {
         "home_subtitle": "Seu tutor pessoal de gramática e vocabulário espanhol.",
         "auth_title": "Aprenda espanhol, uma palavra de cada vez",
         "setup_niveau_label": "Você já sabe um pouco de espanhol?",
+        "profil_q1": "Por que você está aprendendo espanhol?",
+        "profil_r_vivre": "Para morar num país de língua espanhola",
         "abo_titre": "Aprenda espanhol sem limites",
         "abo_av_voix": "A voz espanhola em cada cartão",
         "search_title": "Buscar uma palavra em espanhol ou em português",
@@ -24187,6 +24308,8 @@ const I18N_ESPAGNOL = {
         "home_subtitle": "معلّمك الخاص لقواعد الإسبانية ومفرداتها.",
         "auth_title": "تعلّم الإسبانية كلمةً كلمة",
         "setup_niveau_label": "هل لديك معرفة سابقة بالإسبانية؟",
+        "profil_q1": "لماذا تتعلّم الإسبانية؟",
+        "profil_r_vivre": "للعيش في بلد ناطق بالإسبانية",
         "abo_titre": "تعلّم الإسبانية بلا حدود",
         "abo_av_voix": "الصوت الإسباني على كل بطاقة",
         "search_title": "ابحث عن كلمة إسبانية أو عربية",
@@ -25017,8 +25140,101 @@ function ouvrirBienvenue(){
     if(!actif || actif.id !== "setup") showScreen("setup");
 }
 
-function completeInitialSetup(){
-    markSetupDone();
+// ============ LE PROFIL D'APPRENTISSAGE (v903, essai « profil ») ============
+// Deux questions juste apres l'ecran de bienvenue : pourquoi on apprend, et ce
+// qui nous ressemble (« je retiens mieux ce que je vois »...). Jacques, 20 oct.
+// 2026 : « Pourquoi tu apprends l'allemand ? ca, c'est bon » ; « les scenes, ca
+// ne dit rien a quelqu'un qui s'inscrit » ; « 1 et 2B ».
+// ⚠️ UNE PREFERENCE, PAS UN « STYLE D'APPRENTISSAGE ». Adapter l'enseignement au
+// style declare n'a pas d'effet prouve ; ce qui motive, c'est de faire ce qu'on
+// aime. D'ou « tu auras toujours un peu de tout » : chaque reponse DOSE la
+// seance, aucune ne retire une partie.
+//   images  -> deux arrets de scene par seance au lieu d'un (preparerArretScene)
+//   oreille -> le trou et la dictee d'un mot deviennent ecoute et oral
+//   regles  -> une question de grammaire de plus par cycle (formesSelonProfil)
+//   tout    -> rien ne change
+//   raison  -> un jour sur deux, la scene du jour vient des lieux qui lui
+//              correspondent (SCENES_PAR_RAISON, sceneDuJour) ; « plaisir » : rien.
+// { r: raison, f: facon, d: date du choix }. Au nuage : champ profilJson.
+const PROFIL_KEY = PREFIXE_STOCKAGE + "profil";
+const PROFIL_RAISONS = ["voyager", "vivre", "cours", "plaisir"];
+const PROFIL_FACONS = ["images", "oreille", "regles", "tout"];
+function lireProfil(){
+    try{
+        const v = JSON.parse(localStorage.getItem(PROFIL_KEY) || "null");
+        return v && typeof v === "object" ? v : null;
+    }catch(e){ return null; }
+}
+function ecrireProfil(v){
+    try{ localStorage.setItem(PROFIL_KEY, JSON.stringify(v)); }catch(e){}
+    try{ scheduleCloudSync(); }catch(e){}
+}
+// Le profil qui agit sur la seance : l'essai allume, et une reponse donnee.
+function profilActif(){
+    try{ if(!essaiActif("profil")) return null; }catch(e){ return null; }
+    return lireProfil();
+}
+// Une seule fois, a l'inscription. L'anglais (l'autre sens de l'app) n'a ni
+// les scenes ni la seance melangee : rien a doser.
+function profilAPoser(){
+    try{ return essaiActif("profil") && !lireProfil() && getLearningDirection() !== "en"; }catch(e){ return false; }
+}
+let suiteProfil = null;
+function ouvrirProfil(suite){
+    suiteProfil = suite || null;
+    const p = lireProfil() || {};
+    document.querySelectorAll("#profil [data-raison]").forEach(b => b.classList.toggle("on", b.getAttribute("data-raison") === p.r));
+    document.querySelectorAll("#profil [data-facon]").forEach(b => b.classList.toggle("on", b.getAttribute("data-facon") === p.f));
+    // Les apercus : une vraie image de l'app, les articles de la langue apprise.
+    try{
+        const img = "url(\"" + vignetteScene("restaurant") + "\")";
+        document.getElementById("pfApImage").style.backgroundImage = img;
+        document.querySelector("#pfApTout span").style.backgroundImage = img;
+    }catch(e){}
+    const mots = document.getElementById("pfApMots");
+    if(mots) mots.innerHTML = LANGUE_APPRISE === "es" ? "<b>el</b><b>la</b><b>los</b>" : "<b>der</b><b>die</b><b>das</b>";
+    etapeProfil(1);
+    showScreen("profil");
+}
+function etapeProfil(n){
+    const e1 = document.getElementById("pfEcran1"), e2 = document.getElementById("pfEcran2"), b2 = document.getElementById("pfEtape2");
+    if(e1) e1.classList.toggle("hidden", n !== 1);
+    if(e2) e2.classList.toggle("hidden", n !== 2);
+    if(b2) b2.classList.toggle("on", n === 2);
+    try{ window.scrollTo(0, 0); }catch(e){}
+}
+// Un toucher par question : on voit son choix s'allumer, puis on avance.
+function choisirRaisonProfil(r){
+    if(PROFIL_RAISONS.indexOf(r) < 0) return;
+    const p = lireProfil() || {};
+    p.r = r;
+    ecrireProfil(p);
+    document.querySelectorAll("#profil [data-raison]").forEach(b => b.classList.toggle("on", b.getAttribute("data-raison") === r));
+    setTimeout(() => etapeProfil(2), 280);
+}
+function choisirFaconProfil(f){
+    if(PROFIL_FACONS.indexOf(f) < 0) return;
+    const p = lireProfil() || {};
+    p.f = f;
+    p.d = new Date().toISOString().slice(0, 10);
+    ecrireProfil(p);
+    document.querySelectorAll("#profil [data-facon]").forEach(b => b.classList.toggle("on", b.getAttribute("data-facon") === f));
+    const suite = suiteProfil;
+    suiteProfil = null;
+    setTimeout(() => {
+        try{ majTuileSeance(); }catch(e){}
+        if(suite) suite(); else goHome();
+        try{ showInfoToast(t("profil_ok_" + f)); }catch(e){}
+    }, 300);
+}
+
+function completeInitialSetup(apresProfil){
+    if(!apresProfil){
+        markSetupDone();
+        // v903 (essai « profil ») : les deux questions d'abord, une seule fois ;
+        // elles rappellent cette fonction, qui reprend ici, a la decouverte.
+        if(profilAPoser()){ ouvrirProfil(() => completeInitialSetup(true)); return; }
+    }
     // LA DECOUVERTE GUIDEE (v700), la premiere fois seulement : le drapeau
     // voyage avec la sauvegarde, et un compte existant ne passe jamais ici.
     if(!lireDecouverte().debut && getLearningDirection() !== "en"){
@@ -30428,6 +30644,12 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(DECOUVERTE_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
+            // Le profil d'apprentissage (v903, essai « profil ») : pourquoi on
+            // apprend, comment on aime apprendre. Voir lireProfil().
+            profilJson: (function(){
+                try{ return localStorage.getItem(PROFIL_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             langueInterface: getUiLang(),
             // Le niveau de la seance du jour (v720) : sans lui, un appareil
             // neuf -- ou la nouvelle adresse du demenagement -- repartait en A1,
@@ -30866,6 +31088,14 @@ async function restoreProgressFromCloud(){
                && !lirePhrasesRatees().length){
                 const d = JSON.parse(data.phrasesRateesJson);
                 if(Array.isArray(d) && d.length) ecrirePhrasesRatees(d);
+            }
+        }catch(e){}
+        try{
+            // Le profil (v903) : un appareil qui n'en a pas reprend celui du
+            // cloud ; un choix fait sur ce telephone reste le sien.
+            if(typeof data.profilJson === "string" && data.profilJson && !lireProfil()){
+                const d = JSON.parse(data.profilJson);
+                if(d && typeof d === "object" && (d.r || d.f)) ecrireProfil(d);
             }
         }catch(e){}
         try{
@@ -36442,6 +36672,17 @@ const ESSAIS = {
         desc: "Une seule porte sur l'accueil ; au milieu de la séance, un arrêt de 3 questions dans la scène du jour (« Trouve ! » sur des mots déjà vus en A1, les questions du niveau ensuite), puis retour aux cartes."
     },
     // EN PRODUCTION le 16 oct. 2026 (v838) -- Jacques : « en pose tout ».
+    // EN ESSAI le 20 oct. 2026 (v903), admin seul. Jacques : « Pourquoi tu
+    // apprends l'allemand ? ca, c'est bon » ; « les scenes, ca ne dit rien a
+    // quelqu'un qui s'inscrit, plutot apprendre a partir d'images » ; choisi
+    // « 1 et 2B » dans .claude/maquette-inscription-deux-questions.html. Voir
+    // ouvrirProfil(). Pour la production : traduire les cles profil_* (fr et
+    // en seulement), passer a « tous ».
+    profil: {
+        etat: "admin",
+        titre: "Deux questions à l'inscription",
+        desc: "Après l'écran de bienvenue : pourquoi tu apprends (la scène du jour, un jour sur deux, vient des lieux qui comptent pour toi) et ce qui te ressemble (images : deux scènes par séance ; écouter : plus d'écoute et d'oral ; règles : plus de grammaire ; un peu de tout : comme aujourd'hui). Se change par « Ma façon d'apprendre › » sous la pilule."
+    },
     premiers_pas: {
         etat: "tous",
         titre: "Premiers pas (un niveau avant A1)",
@@ -36679,6 +36920,14 @@ function afficherEssais(){
             ecrireReperes({ force: 1 });
             showInfoToast("Repères remis à zéro : la prochaine séance commence par 0 à 20.");
         };
+        box.appendChild(o);
+    }
+    // v903 : les deux questions de l'inscription, a revoir sur ce compte.
+    if(ESSAIS.profil){
+        const o = document.createElement("button");
+        o.className = "secondary";
+        o.textContent = "PROFIL : VOIR LES DEUX QUESTIONS →";
+        o.onclick = () => ouvrirProfil(() => goHome());
         box.appendChild(o);
     }
     // v887 : ESSAYER L'ORAL SUR UNE PHRASE CHOISIE (Jacques : « donne-moi la
@@ -41559,7 +41808,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 902;
+const APP_VERSION = 903;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -45060,11 +45309,36 @@ function baseScenes(){
     return (ADRESSE_DEFINITIVE || "https://jacquesagrenier-star.github.io/Deutsch-gemini/") + "visuel/prototype/";
 }
 
+// v903 (essai « profil ») : les lieux qui correspondent a chaque raison
+// d'apprendre. « plaisir » n'en a pas : toutes les scenes, a tour de role.
+const SCENES_PAR_RAISON = {
+    voyager: ["flughafen", "hotel", "zug", "ubahn", "restaurant", "stadtplatz", "museum", "strand", "camping", "kreuzung", "weihnachtsmarkt", "baeckerei"],
+    vivre: ["buergeramt", "arztpraxis", "apotheke", "supermarkt", "post", "waschsalon", "umzug", "friseur", "kleidergeschaeft", "fahrradwerkstatt", "kueche", "heimwerken"],
+    cours: ["klassenzimmer", "bibliothek", "buero", "familie", "wohnzimmer", "fruehstueck", "musik", "sportplatz"]
+};
+function scenesDuProfil(){
+    let p = null;
+    try{ p = profilActif(); }catch(e){}
+    const noms = p && SCENES_PAR_RAISON[p.r];
+    return noms ? SCENES_SEANCE.filter(s => noms.indexOf(s.nom) >= 0) : [];
+}
 function sceneDuJour(){
     // Une scene par jour, a tour de role : le numero du jour, pas le hasard,
     // pour que la scene ne change pas entre deux ouvertures.
     const jour = Math.floor(Date.now() / 86400000);
+    // v903 : avec un profil, un jour sur deux parmi les lieux de sa raison.
+    const lieux = scenesDuProfil();
+    if(lieux.length && jour % 2 === 0) return lieux[Math.floor(jour / 2) % lieux.length];
     return SCENES_SEANCE[jour % SCENES_SEANCE.length];
+}
+// v903 : une seconde scene pour la meme seance (« je retiens mieux ce que je
+// vois ») -- la suivante parmi les lieux du profil, sinon dans la liste entiere.
+function autreSceneQue(s){
+    const lieux = scenesDuProfil();
+    const liste = lieux.length > 1 ? lieux : SCENES_SEANCE;
+    const i = liste.findIndex(x => x.nom === s.nom);
+    const autre = liste[(i + 1) % liste.length];
+    return autre && autre.nom !== s.nom ? autre : SCENES_SEANCE.find(x => x.nom !== s.nom);
 }
 
 function sceneDejaFaite(){
@@ -46026,6 +46300,22 @@ function phrasesRateesDues(tout){
     return dues;
 }
 
+// v903 (essai « profil ») : le cycle des formes selon ce qui ressemble a la
+// personne. Meme longueur, donc le compteur du cycle (CYCLE_FORMES_KEY) reste
+// juste ; « un peu de tout » ne retire rien : l'oreille garde la grammaire, les
+// regles gardent l'ecoute et l'oral.
+function formesSelonProfil(formes){
+    let p = null;
+    try{ p = profilActif(); }catch(e){}
+    if(!p) return formes;
+    if(p.f === "oreille") return formes.map(x => x === "trou" ? "ecoute" : x === "dictee_mot" ? "parler" : x);
+    if(p.f === "regles"){
+        const f = formes.slice(), i = f.indexOf("ecoute");
+        if(i >= 0) f[i] = "gram";
+        return f;
+    }
+    return formes;
+}
 function insererCartesPhrases(seance, tout){
     const langue = LANGUE_APPRISE === "es" ? "es" : "de";
     const base = new Set(MOTS_DE_BASE_PHRASES[langue]);
@@ -46074,6 +46364,8 @@ function insererCartesPhrases(seance, tout){
     let n = 0;
     try{ n = parseInt(localStorage.getItem(CYCLE_FORMES_KEY) || "0", 10) || 0; }catch(e){}
     const dues = phrasesRateesDues(tout);
+    // v903 : le dosage du profil (essai « profil »), meme longueur de cycle.
+    const formes = formesSelonProfil(palier.formes);
     // v822 : LES PHRASES ARRIVENT VITE. Jacques : « s'assurer que les phrases
     // viennent assez vite, pour pas que la personne decroche parce qu'elle
     // s'ennuie ». La premiere a la 3e carte (debut), puis tous_les ; et une case
@@ -46092,8 +46384,8 @@ function insererCartesPhrases(seance, tout){
             pris.add(cle(d.cible));
             item = d;
         }
-        for(let essai = 0; essai < palier.formes.length && !item; essai++){
-            const f = palier.formes[(n + essai) % palier.formes.length];
+        for(let essai = 0; essai < formes.length && !item; essai++){
+            const f = formes[(n + essai) % formes.length];
             if(f === "gram"){
                 const q = questionGrammaire(vus.length);
                 if(q) item = { mode: "phrase", forme: "gram", ex: q.ex, jeu: q.nom, cible: null,
@@ -49172,21 +49464,40 @@ async function preparerArretScene(seance, sceneImposee){
     if(!arretSceneActif() || !seance || seance.length < 6) return seance;
     try{
         const s = sceneImposee || sceneDuJour();
-        const niveau = niveauSeance();
-        let mots = [];
-        if(niveau === "A1"){
-            const vus = await motsVusDeScene(s.nom);
-            if(vus.size < ARRET_NB) return seance;
-            // Trois mots tires parmi ceux deja vus : ce sont eux que la carte
-            // annonce, et eux seuls que la scene demande.
-            mots = melangerPhrase(Array.from(vus.entries())).slice(0, ARRET_NB);
-        }
-        const arret = { mode: "phrase", forme: "scene_arret", cible: null, themeId: "scene_arret", index: 0,
-                        scene: s, niveau: niveau, mots: mots, phrase: null, word: "" };
+        const arret = await arretDeScene(s);
+        if(!arret) return seance;
         const sortie = seance.slice();
+        // v903 (essai « profil ») : « je retiens mieux ce que je vois » -- deux
+        // arrets, au tiers et aux deux tiers, si la seance est assez longue et
+        // si la seconde scene a, elle aussi, de quoi demander (A1 : 3 mots vus).
+        let p = null;
+        try{ p = profilActif(); }catch(e){}
+        if(p && p.f === "images" && sortie.length >= 8){
+            const second = await arretDeScene(autreSceneQue(s));
+            if(second){
+                sortie.splice(Math.floor(2 * sortie.length / 3), 0, second);
+                sortie.splice(Math.floor(sortie.length / 3), 0, arret);
+                return sortie;
+            }
+        }
         sortie.splice(Math.floor(sortie.length / 2), 0, arret);
         return sortie;
     }catch(e){ return seance; }
+}
+// L'arret dans une scene, ou null si elle n'a pas encore de quoi demander.
+async function arretDeScene(s){
+    if(!s) return null;
+    const niveau = niveauSeance();
+    let mots = [];
+    if(niveau === "A1"){
+        const vus = await motsVusDeScene(s.nom);
+        if(vus.size < ARRET_NB) return null;
+        // Trois mots tires parmi ceux deja vus : ce sont eux que la carte
+        // annonce, et eux seuls que la scene demande.
+        mots = melangerPhrase(Array.from(vus.entries())).slice(0, ARRET_NB);
+    }
+    return { mode: "phrase", forme: "scene_arret", cible: null, themeId: "scene_arret", index: 0,
+             scene: s, niveau: niveau, mots: mots, phrase: null, word: "" };
 }
 function ouvrirArretScene(item){
     sceneOuverteDepuis = "arret";
@@ -49622,6 +49933,9 @@ function majPiluleSeance(){
     if(sens){ sens.textContent = sous; ajusterSansPoints(sens, 10.5, "11px"); }
     const lien = document.getElementById("spDate");
     if(lien){ lien.textContent = dateTxt ? "✈️ " + dateTxt.replace(/^✈️\s*/, "") : ""; lien.classList.toggle("hidden", !dateTxt); }
+    // v903 (essai « profil ») : changer d'avis sur sa facon d'apprendre.
+    const lienProfil = document.getElementById("spProfil");
+    if(lienProfil){ let on = false; try{ on = essaiActif("profil"); }catch(e){} lienProfil.classList.toggle("hidden", !on); }
     majAnneauSeance();
     majTuilesCarnetFeuilles();
 }

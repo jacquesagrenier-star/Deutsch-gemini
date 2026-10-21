@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deux questions à l'inscription</title>
+<style>
+/* Maquette du 20 oct. 2026 (Jacques : « Pourquoi tu apprends l'allemand ? ça,
+   c'est bon » ; « les scenes, ca ne dit rien a quelqu'un qui s'inscrit » ;
+   « plutot apprendre a partir d'images » ; « pas commencer a enumerer ce qu'on
+   fait » ; « quelque chose qui permet a l'usager de se retrouver rapidement »).
+   Ecran 1 : la raison. Ecran 2 : la facon d'apprendre qu'on prefere, en trois
+   presentations (A, B, C) a comparer. Rien n'est branche : c'est la forme. */
+:root{--page:#ECE7DE; --papier:#F7F3EC; --encre:#1C2430; --gris:#576177; --ambre:#E8A23A; --ambre-fonce:#9a6a12;}
+*{box-sizing:border-box;}
+body{margin:0; background:var(--page); color:var(--encre); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; padding:18px 16px 40px;}
+h1{font-size:20px; margin:0 0 4px;}
+.chapeau{color:var(--gris); font-size:14px; margin:0 0 18px; max-width:860px; line-height:1.45;}
+.grille{display:flex; flex-wrap:wrap; gap:30px 26px; align-items:flex-start;}
+.col{width:330px;}
+.etiq{font-weight:900; font-size:16px; margin:0 0 3px;}
+.note{font-size:12.5px; color:var(--gris); margin:0 0 12px; line-height:1.4; min-height:52px;}
+.tel{width:330px; height:660px; border-radius:44px; padding:10px; background:#111; box-shadow:0 20px 40px -18px rgba(0,0,0,.5);}
+.ecran{position:relative; height:100%; border-radius:35px; overflow:hidden; background:var(--papier); padding:46px 18px 18px; display:flex; flex-direction:column;}
+.ilot{position:absolute; top:9px; left:50%; width:96px; height:26px; margin-left:-48px; border-radius:20px; background:#000;}
+.etapes{display:flex; gap:6px; margin:0 0 18px;}
+.etapes i{flex:1; height:4px; border-radius:3px; background:rgba(28,36,48,.12);}
+.etapes i.on{background:var(--ambre);}
+.q{font-size:22px; font-weight:900; line-height:1.2; margin:0 0 6px; letter-spacing:-.01em;}
+.sous{font-size:13.5px; color:var(--gris); margin:0 0 16px; line-height:1.35;}
+.pied{margin-top:auto; font-size:12px; color:var(--gris); text-align:center;}
+.pied b{color:var(--encre);}
+
+/* Ecran 1 : des lignes, une icone, un mot */
+.raison{display:flex; align-items:center; gap:12px; width:100%; border:1.5px solid rgba(28,36,48,.14); background:#fff; border-radius:16px;
+    padding:12px 14px; margin:0 0 9px; font:inherit; font-size:15px; font-weight:800; color:var(--encre); text-align:start; cursor:pointer;}
+.raison span.ic{font-size:22px; width:30px; text-align:center;}
+.raison small{display:block; font-size:12px; font-weight:600; color:var(--gris); margin-top:1px;}
+.raison.on{border-color:var(--ambre); background:#FFF6E6; box-shadow:0 0 0 3px rgba(232,162,58,.22);}
+
+/* Les petits apercus : on MONTRE la facon d'apprendre, on ne la nomme pas */
+.apercu{position:relative; border-radius:12px; overflow:hidden;}
+.ap-image{background:url(../visuel/prototype/vignettes/restaurant.webp) center 35%/cover;}
+.ap-image .pastille{position:absolute; left:46%; top:30%; transform:translate(-50%,-100%); background:#fff; color:var(--encre); border-radius:8px;
+    font-size:10.5px; font-weight:900; padding:2px 6px 3px; box-shadow:0 2px 6px rgba(0,0,0,.3); white-space:nowrap;}
+.ap-image .pastille::after{content:""; position:absolute; left:50%; bottom:-4px; margin-left:-4px; border:4px solid transparent; border-top-color:#fff; border-bottom:0;}
+.ap-image .anneau{position:absolute; left:46%; top:38%; width:26px; height:18px; margin:-9px 0 0 -13px; border-radius:50%; box-shadow:0 0 0 2px var(--ambre), 0 0 8px rgba(232,162,58,.9);}
+.ap-oreille{background:linear-gradient(135deg,#E8F5F3,#CFEAE6); display:flex; align-items:center; justify-content:center; gap:3px;}
+.ap-oreille i{width:4px; border-radius:3px; background:#2f8f86;}
+.ap-oreille i:nth-child(3n){background:#4fb3a9;}
+.ap-oreille .bulle{font-size:10.5px; font-weight:900; color:#1d6a62; margin-left:8px; background:#fff; border-radius:8px; padding:3px 7px;}
+.ap-mots{background:linear-gradient(135deg,#FFF6E6,#F7E3BF); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;}
+.ap-mots .art{display:flex; gap:5px;}
+.ap-mots .art b{font-size:12px; font-weight:900; border-radius:7px; padding:2px 7px; color:#fff;}
+.ap-mots .art b:nth-child(1){background:#4a6fb3;} .ap-mots .art b:nth-child(2){background:#c4544a;} .ap-mots .art b:nth-child(3){background:#3d9468;}
+.ap-mots .regle{font-size:11px; font-weight:800; color:#7a5310;}
+.ap-tout{display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;}
+.ap-tout > div{position:relative;}
+/* En petit, l'apercu ne garde que l'essentiel : l'image et son anneau, l'onde,
+   les trois articles. Les etiquettes ecrites se coupaient. */
+.phrase .apercu .pastille, .phrase .apercu .bulle, .phrase .apercu .regle,
+.ap-tout .pastille, .ap-tout .bulle, .ap-tout .regle{display:none;}
+.phrase .ap-mots .art, .ap-tout .ap-mots .art{flex-direction:column; gap:2px;}
+.phrase .ap-mots .art b, .ap-tout .ap-mots .art b{font-size:9px; padding:0 5px; border-radius:5px;}
+.phrase .ap-oreille i, .ap-tout .ap-oreille i{width:3px; transform:scaleY(.7);}
+.ap-tout .ap-mots .art{gap:1px;}
+.ap-tout .ap-mots .art b{font-size:7.5px; padding:0 4px;}
+
+/* Variante A : quatre grandes cartes, l'apercu en haut */
+.cartes{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.carte{border:1.5px solid rgba(28,36,48,.14); background:#fff; border-radius:16px; padding:8px; cursor:pointer; text-align:start; font:inherit; color:var(--encre);}
+.carte .apercu{height:92px; margin:0 0 8px;}
+.carte b{display:block; font-size:14px; font-weight:900; line-height:1.2;}
+.carte small{display:block; font-size:11.5px; color:var(--gris); margin-top:2px; line-height:1.3;}
+.carte.on{border-color:var(--ambre); box-shadow:0 0 0 3px rgba(232,162,58,.22); background:#FFF6E6;}
+
+/* Variante B : « je retiens mieux... », en phrases a la premiere personne */
+.phrase{display:flex; align-items:center; gap:12px; width:100%; border:1.5px solid rgba(28,36,48,.14); background:#fff; border-radius:16px;
+    padding:9px 10px; margin:0 0 9px; font:inherit; color:var(--encre); text-align:start; cursor:pointer;}
+.phrase .apercu{width:62px; height:52px; flex:0 0 auto;}
+.phrase b{display:block; font-size:14.5px; font-weight:900; line-height:1.25;}
+.phrase.on{border-color:var(--ambre); background:#FFF6E6; box-shadow:0 0 0 3px rgba(232,162,58,.22);}
+
+/* Variante C : deux grands choix d'abord (voir / entendre), le reste en dessous */
+.duel{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:0 0 12px;}
+.duel .carte .apercu{height:150px;}
+.duel .carte b{font-size:15px;}
+.petits{display:flex; gap:8px;}
+.petit{flex:1; border:1.5px solid rgba(28,36,48,.14); background:#fff; border-radius:999px; padding:9px 6px; font:inherit; font-size:13px; font-weight:800; color:var(--encre); cursor:pointer;}
+.petit.on{border-color:var(--ambre); background:#FFF6E6;}
+.suite{margin-top:12px; border:0; border-radius:999px; background:var(--encre); color:#fff; font:inherit; font-weight:900; font-size:15px; padding:13px; width:100%;}
+.retour-app{font-size:12.5px; color:var(--gris); margin:10px 0 0; line-height:1.4; background:#fff; border-radius:12px; padding:9px 11px; border:1px dashed rgba(28,36,48,.25);}
+.retour-app b{color:var(--encre);}
+</style>
+</head>
+<body>
+<h1>Deux questions à l'inscription</h1>
+<p class="chapeau">Juste après la création du compte, avant la première carte. Écran 1 : <b>pourquoi tu apprends</b>. Écran 2 : <b>comment tu aimes apprendre</b>, sans jamais dire « scène » : chaque choix se <b>montre</b> par un petit aperçu (une image avec son mot, une onde sonore, der / die / das), pour qu'on s'y retrouve d'un coup d'œil. Trois présentations de l'écran 2 à comparer. Touche les choix.</p>
+<div class="grille" id="grille"></div>
+
+<template id="t-apercus">
+  <div class="apercu ap-image"><span class="anneau"></span><span class="pastille">der Kaffee</span></div>
+  <div class="apercu ap-oreille"><i style="height:10px"></i><i style="height:22px"></i><i style="height:30px"></i><i style="height:16px"></i><i style="height:26px"></i><i style="height:12px"></i><i style="height:20px"></i><span class="bulle">Guten Tag!</span></div>
+  <div class="apercu ap-mots"><span class="art"><b>der</b><b>die</b><b>das</b></span><span class="regle">ich bin · du bist</span></div>
+</template>
+
+<script>
+const ap = i => document.getElementById("t-apercus").content.children[i].outerHTML;
+const tout = '<div class="apercu ap-tout">' + [0, 1, 2].map(i => '<div>' + ap(i).replace('class="apercu', 'style="position:absolute;inset:0;border-radius:0" class="apercu') + '</div>').join("") +
+  '<div style="background:#1C2430;display:flex;align-items:center;justify-content:center;color:#E8A23A;font-weight:900;font-size:18px">+</div></div>';
+const CHOIX = [
+  {ap: ap(0), titre: "Avec des images", sous: "Je retiens ce que je vois.", moi: "Je retiens mieux ce que je vois"},
+  {ap: ap(1), titre: "En écoutant et en parlant", sous: "Je retiens ce que j'entends.", moi: "Je retiens mieux ce que j'entends et répète"},
+  {ap: ap(2), titre: "Avec les mots et les règles", sous: "J'aime comprendre comment ça marche.", moi: "J'aime comprendre comment ça marche"},
+  {ap: tout, titre: "Un peu de tout", sous: "Je ne sais pas encore.", moi: "Un peu de tout, je ne sais pas encore"}
+];
+const entete = (n, q, s) => '<div class="tel"><div class="ecran"><div class="ilot"></div><div class="etapes"><i class="on"></i><i' + (n > 1 ? ' class="on"' : '') + '></i></div>' +
+  '<p class="q">' + q + '</p><p class="sous">' + s + '</p>';
+const fin = pied => '<p class="pied">' + pied + '</p></div></div>';
+const ECRANS = [
+  {nom: "Écran 1 · Pourquoi tu apprends", note: "Une ligne par raison, une icône, et en petit ce que ça changera pour la personne. Quatre raisons seulement : celles que l'app sait déjà servir (le voyage a son parcours, la vie là-bas ses lieux du quotidien).",
+   html: entete(1, "Pourquoi tu apprends l'allemand ?", "Pour que ta séance parte de ce qui compte pour toi.") +
+     [["✈️", "Pour voyager", "Se débrouiller sur place, dès le départ"], ["🏠", "Pour vivre en Allemagne", "Le quotidien : rendez-vous, courses, démarches"],
+      ["🎓", "Pour mon cours ou mes études", "Le programme, niveau par niveau"], ["❤️", "Pour le plaisir", "Un peu de tout, à ton rythme"]]
+       .map(([i, t, s]) => '<button class="raison"><span class="ic">' + i + '</span><span>' + t + '<small>' + s + '</small></span></button>').join("") +
+     fin("Tu pourras changer d'avis dans les réglages.")},
+  {nom: "Écran 2 · A, quatre cartes", note: "Le plus visuel : chaque carte montre en grand à quoi ressemble cette façon d'apprendre. La carte « images » montre une vraie image de l'app, avec un mot posé sur un objet.",
+   html: entete(2, "Comment tu aimes apprendre ?", "On dosera ta séance en fonction. Tu auras toujours un peu de tout.") +
+     '<div class="cartes">' + CHOIX.map(c => '<button class="carte">' + c.ap + '<b>' + c.titre + '</b><small>' + c.sous + '</small></button>').join("") + '</div>' +
+     fin("Un seul choix · modifiable à tout moment")},
+  {nom: "Écran 2 · B, « je retiens mieux… »", note: "Des phrases à la première personne : on se reconnaît dans une phrase plus vite que dans une catégorie. L'aperçu est petit, à gauche ; c'est la phrase qui fait choisir.",
+   html: entete(2, "Qu'est-ce qui te ressemble le plus ?", "On dosera ta séance en fonction. Tu auras toujours un peu de tout.") +
+     CHOIX.map(c => '<button class="phrase">' + c.ap + '<b>' + c.moi + '</b></button>').join("") +
+     fin("Un seul choix · modifiable à tout moment")},
+  {nom: "Écran 2 · C, voir ou entendre", note: "Ta formulation, au plus court : deux grands choix, voir ou entendre. Les deux autres en petit dessous. Le plus rapide à trancher ; on y perd un peu de nuance.",
+   html: entete(2, "Tu retiens mieux…", "On dosera ta séance en fonction. Tu auras toujours un peu de tout.") +
+     '<div class="duel"><button class="carte">' + CHOIX[0].ap + '<b>Ce que je vois</b><small>Avec des images</small></button><button class="carte">' + CHOIX[1].ap + '<b>Ce que j\'entends</b><small>En écoutant et en parlant</small></button></div>' +
+     '<div class="petits"><button class="petit">Les règles</button><button class="petit">Un peu de tout</button></div>' +
+     '<p class="retour-app"><b>Ce que la personne voit ensuite</b>, une ligne : « C\'est noté : plus d\'images dans ta séance. » Puis la première carte.</p>' +
+     fin("Un seul choix · modifiable à tout moment")}
+];
+const g = document.getElementById("grille");
+for (const e of ECRANS) {
+  const d = document.createElement("div"); d.className = "col";
+  d.innerHTML = '<div class="etiq">' + e.nom + '</div><p class="note">' + e.note + '</p>' + e.html;
+  g.appendChild(d);
+}
+// Un seul choix par ecran : toucher en allume un, eteint les autres.
+document.querySelectorAll(".ecran").forEach(ec => ec.addEventListener("click", ev => {
+  const b = ev.target.closest(".raison, .carte, .phrase, .petit"); if (!b) return;
+  ec.querySelectorAll(".on").forEach(x => { if (!x.matches(".etapes i")) x.classList.remove("on"); });
+  b.classList.add("on");
+}));
+</script>
+</body>
+</html>
