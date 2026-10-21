@@ -6921,10 +6921,14 @@ body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){back
             mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);}
 #seancePilule::after{content:""; position:absolute; top:3px; height:7px; width:34%; left:calc(6% + (var(--vx) - 14%) * .75); border-radius:999px;
     pointer-events:none; z-index:2; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.85) 50%, rgba(255,255,255,0)); filter:blur(1.2px);}
-#seancePilule .pa-kick{display:flex; align-items:center; gap:5px; color:#1C2430;}
-#seancePilule .pa-kick::before{content:""; width:12px; height:5px; flex:0 0 auto;
-    background:radial-gradient(circle at 2.5px 2.5px, #1C2430 2.3px, transparent 2.6px), radial-gradient(circle at 9.5px 2.5px, #1C2430 2.3px, transparent 2.6px);}
-#seancePilule .pa-titre strong{color:#1C2430;}
+#seancePilule .pa-kick{color:#1C2430;}
+#seancePilule .pa-titre strong, #seancePilule .pa-sens{color:#1C2430; text-overflow:clip;}
+/* v902 : « Ma seance du jour » en titre, seul, sans les deux points du trema
+   devant (Jacques : « enleve les deux petits points »). ajusterTitrePilule()
+   veille a ce qu'il tienne. */
+#seancePilule.pa-concis .pa-kick{display:none;}
+#seancePilule.pa-concis .pa-titre strong{font-size:16px; line-height:1.25;}
+#seancePilule.pa-concis .pa-sous{margin-top:4px;}
 #seancePilule .pa-niv{background:rgba(255,255,255,.3); box-shadow:inset 0 0 0 1px rgba(28,36,48,.45); color:#1C2430;}
 #seancePilule .pa-sens, #seancePilule .pa-sens::before{color:rgba(28,36,48,.78);}
 /* L'anneau : plus de trou peint en encre, un masque -- la vitre se voit au centre. */
@@ -8022,7 +8026,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v901</span>
+    <span class="subtitle-version">v902</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -35812,6 +35816,7 @@ function showScreen(id){
     if(id === "home"){
         try{ majCompteDuJour(); }catch(e){}
         try{ majTitrePorteMots(); }catch(e){}
+        try{ majTitrePilule(); }catch(e){}
         // Les carreaux poses pendant la seance se posent VRAIMENT maintenant :
         // l'etat etait deja ecrit a chaque carte, seul le dessin attendait.
         if(mosaiqueEnRetard){ try{ majMosaiqueAccueil(); }catch(e){} }
@@ -41554,7 +41559,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 901;
+const APP_VERSION = 902;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -49289,9 +49294,18 @@ async function ouvrirSeanceDuJour(sansScene){
     try{ fc = await preparerFeuille(niveau); }catch(e){ fc = null; }
     let seance = cartesDeSeance(tout, av ? av.pool : pool);
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
+    // v902 (Jacques : « au premier clic il y a encore un petit delai, puis plus
+    // rien ») : les questions de grammaire viennent d'exercices.json, 8,5 Mo. Au
+    // telephone, s'il n'est pas encore arrive quand on touche la pilule, la
+    // seance l'attendait. Desormais : deja la, rien ne change ; pas encore la,
+    // la seance s'ouvre tout de suite et les phrases se glissent plus loin des
+    // qu'il arrive (phrasesApres, plus bas).
+    let phrasesApres = false;
     if(essaiActif("phrases")){
-        try{ await prechargerGrammaireSeance(); }catch(e){}
-        try{ seance = insererCartesPhrases(seance, tout); }catch(e){}
+        if(JEUX_EXOS){
+            try{ await prechargerGrammaireSeance(); }catch(e){}
+            try{ seance = insererCartesPhrases(seance, tout); }catch(e){}
+        } else phrasesApres = true;
     }
     // v831 : la scene du jour, une fois, au milieu (essai « scene_arret »).
     // v862 : pendant les escales, la scene de l'escale.
@@ -49327,6 +49341,23 @@ async function ouvrirSeanceDuJour(sansScene){
     setFlashHeader("seance_titre", null);
     showScreen("flashcards");
     loadFlashcard();
+    if(phrasesApres) glisserPhrasesPlusTard(seance, tout);
+}
+// Les phrases d'une seance ouverte avant l'arrivee d'exercices.json (v902).
+// Elles ne remplacent que des cartes de mots ORDINAIRES, apres la carte
+// affichee : jamais la scene, l'escale, la feuille, les reperes ni le son du
+// jour (tous en mode « phrase »), qui en temps normal sont poses APRES les
+// phrases et ne risquent rien. La seance garde sa longueur : insererCartesPhrases
+// remplace, il n'ajoute pas. Si l'on a quitte la seance entre-temps, rien.
+function glisserPhrasesPlusTard(paquet, tout){
+    prechargerGrammaireSeance().then(() => {
+        if(currentCards !== paquet || !JEUX_EXOS) return;
+        const places = [];
+        for(let i = currentFlashcard + 1; i < paquet.length; i++) if(paquet[i] && paquet[i].mode !== "phrase") places.push(i);
+        if(!places.length) return;
+        const avec = insererCartesPhrases(places.map(i => paquet[i]), tout);
+        places.forEach((i, k) => { paquet[i] = avec[k]; });
+    }).catch(() => {});
 }
 
 // Le sous-titre de la tuile : ce qu'il reste a faire, pas un pourcentage.
@@ -49508,6 +49539,48 @@ function prechaufferSeance(){
         try{ if(essaiActif("phrases")) prechargerGrammaireSeance().catch(() => {}); }catch(e){}
     }, 700);
 }
+// v902 : JAMAIS DE « … » DANS LE TITRE DE LA PILULE, dans aucune langue ni sur
+// aucun telephone. S'il ne tient pas, la police descend par demi-pixels jusqu'a
+// 14 px ; s'il ne tient toujours pas, il passe sur deux lignes, a 14,5 px --
+// deux lignes lisibles valent mieux qu'une ligne en 12 px (le russe et
+// l'ukrainien sur un ecran de 360 px). Mesure a l'ecran (clientWidth nul quand
+// l'accueil est cache : on le refait a l'arrivee).
+// La ligne du dessous (« · Tu pars bientot ? » en A1 voyage) suit la meme regle,
+// plus bas : 10,5 px, puis deux lignes a 11 px.
+function ajusterTitrePilule(sp){ ajusterSansPoints(sp, 14, "14.5px"); ajusterSansPoints(document.getElementById("spSens"), 10.5, "11px"); }
+function ajusterSansPoints(el, mini, tailleDeuxLignes){
+    if(!el) return;
+    el.style.fontSize = ""; el.style.whiteSpace = ""; el.style.lineHeight = "";
+    if(!el.clientWidth) return;
+    let taille = parseFloat(getComputedStyle(el).fontSize) || 15;
+    while(el.scrollWidth > el.clientWidth + 1 && taille > mini){
+        taille -= 0.5;
+        el.style.fontSize = taille + "px";
+    }
+    if(el.scrollWidth > el.clientWidth + 1){
+        el.style.fontSize = tailleDeuxLignes; el.style.whiteSpace = "normal"; el.style.lineHeight = "1.15";
+    }
+}
+addEventListener("resize", () => { try{ ajusterTitrePilule(document.getElementById("spTitre")); }catch(e){} });
+// Le titre court : « 🛬 Escale 1 sur 12 » sans le lieu (la seance le dit).
+// v902 (Jacques : « on voit "Mots, grammaire et s…" ; il ne faut jamais qu'on
+// ait trois petits points », « juste mettre Ma seance du jour, le plus
+// concis ») : la porte ordinaire ne dit plus ce qu'elle contient, la pilule dit
+// « Ma seance du jour » en titre, sans surtitre. Premiers pas et l'escale
+// gardent leur titre (« Jour 3 sur 15 ») sous le surtitre : il apprend quelque
+// chose. Appelee aussi a chaque arrivee sur l'accueil (showScreen), juste apres
+// majTitrePorteMots() : c'est la seulement que le titre se mesure.
+function majTitrePilule(){
+    const pil = document.getElementById("seancePilule");
+    const sp = document.getElementById("spTitre");
+    if(!pil || !sp) return;
+    const titre = document.getElementById("seancePorteMotsTitre");
+    const ordinaire = !titre || ["seance_porte_mots", "seance_porte_mots_grammaire", "seance_porte_tout"]
+        .indexOf(titre.getAttribute("data-i18n")) >= 0;
+    pil.classList.toggle("pa-concis", ordinaire);
+    sp.textContent = ordinaire ? t("seance_titre") : titre.textContent.trim().split(" · ")[0];
+    ajusterTitrePilule(sp);
+}
 function majPiluleSeance(){
     const pil = document.getElementById("seancePilule");
     if(!pil) return;
@@ -49515,10 +49588,7 @@ function majPiluleSeance(){
     let pp = false;
     try{ pp = premiersPasEnCours(); }catch(e){}
     const niveau = niveauSeance();
-    const titre = document.getElementById("seancePorteMotsTitre");
-    const sp = document.getElementById("spTitre");
-    // Le titre court : « 🛬 Escale 1 sur 12 » sans le lieu (la seance le dit).
-    if(sp) sp.textContent = titre ? titre.textContent.trim().split(" · ")[0] : "";
+    majTitrePilule();
     const niv = document.getElementById("spNiv");
     if(niv) niv.textContent = pp ? "🌱" : niveau;   // v882 : la fleche est dessinee par .pa-niv::after
     const clairTxt = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
@@ -49549,7 +49619,7 @@ function majPiluleSeance(){
         }
     }catch(e){}
     const sens = document.getElementById("spSens");
-    if(sens) sens.textContent = sous;
+    if(sens){ sens.textContent = sous; ajusterSansPoints(sens, 10.5, "11px"); }
     const lien = document.getElementById("spDate");
     if(lien){ lien.textContent = dateTxt ? "✈️ " + dateTxt.replace(/^✈️\s*/, "") : ""; lien.classList.toggle("hidden", !dateTxt); }
     majAnneauSeance();
