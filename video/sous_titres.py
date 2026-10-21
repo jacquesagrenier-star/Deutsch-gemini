@@ -350,7 +350,10 @@ def main():
             lignes.append("Dialogue: 0,%s,%s,FR,,0,0,0,,%s"
                           % (tc(debut), tc(fin_texte), echapper(tr)))
 
-    base = os.path.splitext(os.path.basename(a.clip))[0] if a.clip else "EPISODE-01-avatar"
+    # 21 oct. 2026 : le nom par defaut suit l'episode (il valait « EPISODE-01 »
+    # pour tous, et l'episode 2 recevait un EPISODE-01-avatar.fr.ass).
+    num = a.scene.split("-")[0]
+    base = os.path.splitext(os.path.basename(a.clip))[0] if a.clip else "EPISODE-%s-avatar" % num
     dst = os.path.join(ep, "%s.%s.ass" % (base, a.langue))
     io.open(dst, "w", encoding="utf-8-sig", newline="\r\n").write(
         ENTETE + "\n".join(lignes) + "\n")
@@ -360,7 +363,7 @@ def main():
         print("  Relancer avec --incruster pour les graver dans la video.")
         return
 
-    clip = a.clip or os.path.join(ep, "EPISODE-01-avatar-sonorise.mp4")
+    clip = a.clip or os.path.join(ep, "EPISODE-%s-avatar-sonorise.mp4" % num)
     if not os.path.exists(clip):
         sys.exit("  Video introuvable : %s" % clip)
     sortie = a.sortie or os.path.splitext(clip)[0] + "-st.mp4"
