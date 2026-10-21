@@ -96,6 +96,17 @@ const ADRESSE_DEFINITIVE = "";
 <link rel="icon" type="image/png" href="branding/wortando-app-icon.png">
 <link rel="apple-touch-icon" href="branding/wortando-apple-touch-icon.png">
 <link rel="manifest" href="manifest.json">
+<script>
+/* L'APP INSTALLEE DEMARRE DANS SA LANGUE (21 oct. 2026). Marc-Antoine, iPhone :
+   l'espagnol choisi dans Safari, l'app ajoutee a l'ecran d'accueil -- et des
+   cartes allemandes. L'app installee a son PROPRE stockage (iOS ne lui passe
+   ni le choix de langue ni la connexion de Safari) et s'ouvrait sur start_url,
+   « ./ » : l'allemand, jusqu'a ce que le compte la renvoie vers l'espagnol.
+   En espagnol, le manifeste dit « ./?apprendre=es ». L'allemand ne change pas. */
+if(document.documentElement.getAttribute("data-apprendre") === "es"){
+    try{ document.querySelector('link[rel="manifest"]').setAttribute("href", "manifest-es.json"); }catch(e){}
+}
+</script>
 
 <!-- APP INSTALLABLE SUR L'ECRAN D'ACCUEIL (v258).
 
@@ -430,6 +441,9 @@ window.LIEN_REINIT = (function(){
     // Exposee (v256) pour que la mise a jour silencieuse puisse recouvrir
     // l'ecran avant de recharger la page.
     window.ouvertureCouvrir = couvrir;
+    // Et la decouvrir (21 oct. 2026) : accorderLangueAuCompte() la pose le temps
+    // de lire la langue du compte, sur un appareil qui n'a pas de choix propre.
+    window.ouvertureDecouvrir = function(){ decouvrir(true); };
 
     // REMBOBINER AVANT DE REMONTRER L'ECRAN, jamais apres (v443). Un <video>
     // reste affiche sur sa derniere image, ici le logo d'encre de la fin. On
@@ -9843,7 +9857,10 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <!-- Au RECTO depuis la v722 : la carte ne se retourne plus
                      seule, c'est donc ici qu'on voit qu'un mot est nouveau. -->
                 <div id="flashNouveau" class="carte-nouveau hidden" data-i18n="carte_nouveau_mot">Nouveau mot</div>
-                <div id="flashWord" class="word">Tisch</div>
+                <!-- Vide (21 oct. 2026) : il portait « Tisch », visible -- et allemand,
+                     meme dans l'app espagnole -- si la carte s'affichait avant
+                     d'etre dessinee. loadFlashcard() le remplit toujours. -->
+                <div id="flashWord" class="word"></div>
                 <div class="tap-hint" data-i18n="flash_tap_hint">Touche la carte pour voir la réponse</div>
             </div>
 
@@ -9857,7 +9874,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <div id="flashGenre" class="carte-genre hidden"></div>
                 <div id="flashArticle" class="article hidden"></div>
                 <div class="word-audio-row" id="flashMotRow">
-                    <div id="flashBackWord" class="back-word">Tisch</div>
+                    <div id="flashBackWord" class="back-word"></div>
                     <button id="audioBtn" class="icon-audio-btn" onclick="event.stopPropagation(); speakWord();" aria-label="Écouter">
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
@@ -27076,7 +27093,10 @@ async function loadVerbeJson() {
         verbeTheme.words = words;
     } catch (e) {
         console.warn("Chargement de secours pour verbe.json", e);
-        verbeTheme.words = [
+        // ⚠️ PAS DE SECOURS ALLEMAND DANS L'APP ESPAGNOLE (21 oct. 2026) : verbos.json
+        // qui ne repond pas donnait « haben » et « sein » a la seance espagnole.
+        // Une liste vide se rattrape au prochain chargement ; une carte allemande, non.
+        verbeTheme.words = LANGUE_APPRISE === "es" ? [] : [
             { infinitif:"haben", traduction:"avoir",
               praesens:{ich:"habe",du:"hast",er_sie_es:"hat",wir:"haben",ihr:"habt",sie_Sie:"haben"},
               exemple:"Ich habe einen Bruder.", exemple_fr:"J'ai un frère.",
@@ -27150,7 +27170,8 @@ async function loadAdjektiveJson() {
         adjektiveTheme.words = words;
     } catch (e) {
         console.warn("Chargement de secours pour adjectif.json", e);
-        adjektiveTheme.words = [
+        // Pas de secours allemand en espagnol (voir verbe.json, plus haut).
+        adjektiveTheme.words = LANGUE_APPRISE === "es" ? [] : [
             ["gut", "bon, bien", "Der Kuchen schmeckt sehr gut.", "A1"],
             ["groß", "grand", "Mein Bruder ist sehr groß.", "A1"],
             ["klein", "petit", "Das Baby hat kleine Hände.", "A1"]
@@ -29272,11 +29293,15 @@ const redewendungenTheme = {
   words: []
 };
 
+// ⚠️ Les trois listes ecrites en dur ci-dessous (adverbes, pronoms,
+// determinants) sont ALLEMANDES : en espagnol elles partent vides (21 oct. 2026).
+// adverbios.json remplit la premiere ; funcionales.json n'a ni pronoms ni
+// determinants, qui restaient « man » et « der » dans l'app espagnole.
 const adverbienTheme = {
   id: "adverbien_vokabular",
   name: "Adverbes",
   svg: '<svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>',
-  words: [
+  words: LANGUE_APPRISE === "es" ? [] : [
     ["heute", "aujourd'hui", "adverbe de temps", "Ich arbeite heute von zu Hause.", "Je travaille de la maison aujourd'hui.", "today", "I'm working from home today."],
     ["morgen", "demain", "adverbe de temps", "Wir sehen uns morgen.", "On se voit demain.", "tomorrow", "See you tomorrow."],
     ["gestern", "hier", "adverbe de temps", "Gestern habe ich sie getroffen.", "Je l'ai rencontrée hier.", "yesterday", "I met her yesterday."],
@@ -29340,7 +29365,7 @@ const pronomenVokabularTheme = {
   id: "pronomen_vokabular",
   name: "Pronoms",
   svg: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0114 0"/></svg>',
-  words: [
+  words: LANGUE_APPRISE === "es" ? [] : [
     ["man", "on", "pronom indéfini", "Hier darf man nicht parken.", "Ici, on n'a pas le droit de se garer.", "one, you", "You may not park here."]
   ]
 };
@@ -29349,7 +29374,7 @@ const artikelwoerterTheme = {
   id: "artikelwoerter_vokabular",
   name: "Déterminants",
   svg: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h10"/><path d="M7 13h6"/></svg>',
-  words: [
+  words: LANGUE_APPRISE === "es" ? [] : [
     ["der", "le (masculin)", "article défini", "Der Zug fährt um acht.", "Le train part à huit heures.", "the (masculine)", "The train leaves at eight."]
   ]
 };
@@ -31321,24 +31346,70 @@ async function restoreProgressFromCloud(){
 //     CLE_LANGUE_APPRISE), on suit le compte -- et on recharge dans sa langue ;
 //   - sinon l'appareil a raison, et le compte apprend sa langue s'il l'ignore.
 // Renvoie vrai quand la page part vers l'autre langue (rien d'autre a faire).
+// ⚠️ ET LE COMPTE DECIDE AVANT LA PREMIERE CARTE (21 oct. 2026). Marc-Antoine,
+// iPhone : l'espagnol choisi dans Safari, puis l'app ajoutee a l'ecran
+// d'accueil. Elle a son PROPRE stockage -- ni le choix de langue ni la
+// connexion de Safari -- et s'ouvrait sur « ./ » : la page allemande, a qui
+// seule la lecture de ce document disait de partir. Le temps qu'elle revienne
+// (une lecture Firestore, plusieurs secondes sur un telephone qui vient de se
+// connecter, ou jamais si elle echouait : « client is offline », vu le 20 oct.),
+// l'accueil allemand -- identique a l'espagnol, en francais -- etait la, et sa
+// seance aussi : des cartes allemandes dans « l'app espagnole ».
+// D'ou, sur un appareil sans choix propre, et tant que la langue du compte n'y
+// a pas ete confirmee une fois (CLE_LANGUE_CONFIRMEE) :
+//   - l'ecran d'ouverture recouvre l'app le temps de la lecture (8 s au plus) ;
+//   - trois essais au lieu d'un : un echec n'est plus un oui silencieux.
+// Un appareil qui a son choix (adresse ou CLE_LANGUE_APPRISE) ne change pas :
+// il a raison, et le compte apprend sa langue en arriere-plan, comme avant.
+const CLE_LANGUE_CONFIRMEE = "wortando_langueCompteConfirmee";
 async function accorderLangueAuCompte(){
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     if(!user || !window.firestoreDb) return false;
     const ref = window.fsDoc(window.firestoreDb, "users", user.uid);
-    let parAdresse = null, surAppareil = null;
+    let parAdresse = null, surAppareil = null, confirmee = null;
     try{ parAdresse = new URLSearchParams(location.search).get("apprendre"); }catch(e){}
     try{ surAppareil = localStorage.getItem(CLE_LANGUE_APPRISE); }catch(e){}
+    try{ confirmee = localStorage.getItem(CLE_LANGUE_CONFIRMEE); }catch(e){}
     const choisieIci = ["es", "de"].includes(parAdresse) || ["es", "de"].includes(surAppareil);
-    let duCompte = null;
-    try{
-        const s = await window.fsGetDoc(ref);
-        duCompte = s.exists() ? (s.data() || {}).langueApprise : null;
-    }catch(e){ return false; }
+    // L'ecran d'ouverture : pose s'il est parti, et repose s'il part pendant
+    // la lecture (au demarrage, son animation joue encore et s'en va seule).
+    let couvert = false, fini = false, garde = null, veille = null;
+    const couvrirSiParti = () => {
+        if(couvert || fini) return;
+        const ecran = document.getElementById("splashOuverture");
+        if(!ecran || !ecran.classList.contains("parti")) return;
+        if(typeof window.ouvertureCouvrir !== "function" || typeof window.ouvertureDecouvrir !== "function") return;
+        try{ window.ouvertureCouvrir(); couvert = true; }catch(e){}
+    };
+    const decouvrirSiCouvert = () => {
+        fini = true;
+        if(garde){ clearTimeout(garde); garde = null; }
+        if(veille){ clearInterval(veille); veille = null; }
+        if(couvert){ couvert = false; try{ window.ouvertureDecouvrir(); }catch(e){} }
+    };
+    if(!choisieIci && confirmee !== LANGUE_APPRISE){
+        couvrirSiParti();
+        veille = setInterval(couvrirSiParti, 200);
+        garde = setTimeout(decouvrirSiCouvert, 8000);
+    }
+    let s = null;
+    for(let essai = 0; essai < 3 && !s; essai++){
+        try{ s = await window.fsGetDoc(ref); }
+        catch(e){ if(essai < 2) await new Promise(ok => setTimeout(ok, 1500)); }
+    }
+    if(!s){ decouvrirSiCouvert(); return false; }
+    const duCompte = s.exists() ? (s.data() || {}).langueApprise : null;
     if(!choisieIci && ["es", "de"].includes(duCompte) && duCompte !== LANGUE_APPRISE){
+        // « Passage a l'espagnol... » sur l'ecran d'ouverture de la page suivante.
+        try{ sessionStorage.setItem("wortando_passage", t(duCompte === "es" ? "passage_vers_es" : "passage_vers_de")); }catch(e){}
         try{ location.href = new URL("./?apprendre=" + duCompte, location.href).href; }
         catch(e){ location.href = "./?apprendre=" + duCompte; }
         return true;
     }
+    // La langue est la bonne : on rend l'ecran AVANT d'ecrire -- une ecriture
+    // Firestore hors ligne attend le reseau, l'usager n'a pas a l'attendre.
+    try{ localStorage.setItem(CLE_LANGUE_CONFIRMEE, LANGUE_APPRISE); }catch(e){}
+    decouvrirSiCouvert();
     if(duCompte !== LANGUE_APPRISE){
         try{ await window.fsSetDoc(ref, { langueApprise: LANGUE_APPRISE }, { merge: true }); }catch(e){}
     }
