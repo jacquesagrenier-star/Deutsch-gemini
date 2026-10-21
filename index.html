@@ -6887,6 +6887,17 @@ body[data-theme="dark"] .cp-annonce{background:rgba(232,162,58,.15); color:#f0b4
 .pilule-accueil.pa-ecoute .pa-niv{background:transparent; box-shadow:inset 0 0 0 1.5px var(--pa); color:#246a62;}
 .pilule-accueil.pa-ecoute .pa-sens, .pilule-accueil.pa-ecoute .pa-sens::before{color:#576177;}
 .pilule-accueil.pa-ecoute .pa-play{width:40px; height:40px; box-shadow:none;}
+/* v908 : Jacques, 21 oct. 2026 : « je mettrais Écouter, répéter dans le titre »
+   et « le bouton [...] classique comme le bouton pour ma séance du jour ». Un seul
+   titre (plus de surtitre « ÉCOUTER ») ; le meme triangle, avec le verre de la
+   seance (« avec le glacis ») dans le bleu-vert de l'ecoute. */
+.pilule-accueil.pa-ecoute .pa-kick{display:none;}
+.pilule-accueil.pa-ecoute .pa-play{position:relative;
+    background:radial-gradient(circle at 50% 85%, rgba(255,255,255,.55), rgba(255,255,255,0) 45%), var(--pa);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.6), inset 0 1.5px 0 rgba(255,255,255,.9), inset 0 -6px 10px -6px rgba(15,80,72,.45), 0 3px 8px -2px rgba(15,80,72,.35);}
+.pilule-accueil.pa-ecoute .pa-play::before{content:""; position:absolute; left:24%; top:8%; width:44%; height:24%; border-radius:50%; pointer-events:none;
+    background:radial-gradient(closest-side, rgba(255,255,255,.9), rgba(255,255,255,0));}
+.pilule-accueil.pa-ecoute .pa-play svg{position:relative; fill:#1C2430;}
 .pilule-accueil.pa-ecoute .ela-onde i{background:#9fb0ad;}
 .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){background:var(--pa);}
 body[data-theme="dark"] .pilule-accueil.pa-ecoute{background:transparent; box-shadow:inset 0 0 0 1.5px var(--pa);}
@@ -7682,7 +7693,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
             <div class="pa-txt">
                 <button type="button" class="pa-titre" onclick="ecouterDepuisAccueil()">
                     <span class="pa-kick" data-i18n="orb_ecouter_title">Écouter</span>
-                    <strong data-i18n="ela_titre">Écoute. Répète.</strong>
+                    <strong data-i18n="ela_titre">Écouter, répéter</strong>
                 </button>
                 <div class="pa-sous">
                     <button type="button" class="pa-niv" id="ecouteLigneNiv" onclick="basculerNiveauEcoute(event)">A1</button>
@@ -8106,7 +8117,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v907</span>
+    <span class="subtitle-version">v908</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11606,7 +11617,7 @@ const I18N = {
         seance_n_questions: "{n} questions",
         explorer_titre: "Explorer les scènes",
         explorer_desc: "Touche les objets, écoute leur nom. Librement, sans questions.",
-        ela_titre: "Écoute. Répète.",
+        ela_titre: "Écouter, répéter",
         ela_niveau_titre: "Niveau à écouter",
         ela_niveau_pied: "Au départ, celui de ta séance. Le changer ici ne touche pas à ta séance.",
         av_date_court: "✈️ Tu pars bientôt ?",
@@ -12234,7 +12245,7 @@ const I18N = {
         dec_ecouter: "Réécouter",
         dec_ts_titre: "Explorer les scènes",
         dec_ts_texte: "Juste sous ta séance : près de quarante scènes de la vie de Mark et d'Anna. Touche les objets et les personnes : tu entends leur nom, avec leur article. Essaie ici.",
-        dec_te_titre: "Écoute. Répète.",
+        dec_te_titre: "Écouter, répéter",
         dec_te_texte: "En dessous, l'écoute : l'application dit les mots de ton niveau et te laisse le temps de les répéter à voix haute. Idéal en marchant ou en cuisinant. Essaie avec tes premiers mots.",
         dec_te_essai: "▶ Écouter mes premiers mots",
         dec_te_repete: "À toi : répète !",
@@ -12982,7 +12993,7 @@ const I18N = {
         seance_n_questions: "{n} questions",
         explorer_titre: "Explore the scenes",
         explorer_desc: "Tap the objects, hear their names. Freely, no questions.",
-        ela_titre: "Listen. Repeat.",
+        ela_titre: "Listen and repeat",
         ela_niveau_titre: "Level to listen to",
         ela_niveau_pied: "It starts at your session's level. Changing it here doesn't change your session.",
         av_date_court: "✈️ Travelling soon?",
@@ -13608,7 +13619,7 @@ const I18N = {
         dec_ecouter: "Listen again",
         dec_ts_titre: "Explore the scenes",
         dec_ts_texte: "Right below your session: nearly forty scenes from the lives of Mark and Anna. Tap the objects and the people: you hear their name, with its article. Try it here.",
-        dec_te_titre: "Listen. Repeat.",
+        dec_te_titre: "Listen and repeat",
         dec_te_texte: "Below that, listening: the app says the words of your level and gives you time to repeat them out loud. Perfect while walking or cooking. Try it with your first words.",
         dec_te_essai: "▶ Listen to my first words",
         dec_te_repete: "Your turn: repeat!",
@@ -14360,7 +14371,7 @@ const I18N = {
         seance_n_questions: "{n} soru",
         explorer_titre: "Sahneleri keşfet",
         explorer_desc: "Nesnelere dokun, adlarını dinle. Serbestçe, soru yok.",
-        ela_titre: "Dinle. Tekrarla.",
+        ela_titre: "Dinle ve tekrarla",
         ela_niveau_titre: "Dinlenecek seviye",
         ela_niveau_pied: "Başta oturumunun seviyesi. Burada değiştirmek oturumunu etkilemez.",
         av_date_court: "✈️ Yakında yola mı çıkıyorsun?",
@@ -14962,7 +14973,7 @@ const I18N = {
         dec_ecouter: "Tekrar dinle",
         dec_ts_titre: "Sahneleri keşfet",
         dec_ts_texte: "Oturumunun hemen altında: Mark ile Anna'nın hayatından kırka yakın sahne. Nesnelere ve kişilere dokun: adlarını artikelleriyle birlikte duyarsın. Burada dene.",
-        dec_te_titre: "Dinle. Tekrarla.",
+        dec_te_titre: "Dinle ve tekrarla",
         dec_te_texte: "Onun altında dinleme: uygulama seviyendeki kelimeleri söyler ve onları sesli tekrarlaman için sana zaman tanır. Yürürken ya da yemek yaparken ideal. İlk kelimelerinle dene.",
         dec_te_essai: "▶ İlk kelimelerimi dinle",
         dec_te_repete: "Sıra sende: tekrarla!",
@@ -15759,7 +15770,7 @@ const I18N = {
         dec_ecouter: "Прослухати ще раз",
         dec_ts_titre: "Досліджуй сцени",
         dec_ts_texte: "Одразу під твоїм сеансом — майже сорок сцен із життя Марка й Анни. Торкайся предметів і людей: ти почуєш їхню назву разом з артиклем. Спробуй тут.",
-        dec_te_titre: "Слухай. Повторюй.",
+        dec_te_titre: "Слухай і повторюй",
         dec_te_texte: "Нижче — слухання: застосунок вимовляє слова твого рівня й дає тобі час повторити їх уголос. Чудово під час прогулянки чи готування. Спробуй зі своїми першими словами.",
         dec_te_essai: "▶ Послухати мої перші слова",
         dec_te_repete: "Твоя черга: повтори!",
@@ -16055,7 +16066,7 @@ const I18N = {
         seance_n_questions: "{n} запитань",
         explorer_titre: "Досліджуй сцени",
         explorer_desc: "Торкайся предметів, слухай їхні назви. Вільно, без запитань.",
-        ela_titre: "Слухай. Повторюй.",
+        ela_titre: "Слухай і повторюй",
         ela_niveau_titre: "Рівень для прослуховування",
         ela_niveau_pied: "Спочатку це рівень твого заняття. Зміна тут не впливає на заняття.",
         av_date_court: "✈️ Скоро в дорогу?",
@@ -17528,7 +17539,7 @@ const I18N = {
         dec_ecouter: "دوباره گوش کن",
         dec_ts_titre: "کاوش در صحنه‌ها",
         dec_ts_texte: "درست زیر جلسه‌ات: نزدیک به چهل صحنه از زندگی مارک و آنا. اشیا و آدم‌ها را لمس کن: نامشان را همراه با حرف تعریفشان می‌شنوی. اینجا امتحان کن.",
-        dec_te_titre: "گوش کن. تکرار کن.",
+        dec_te_titre: "گوش کن و تکرار کن",
         dec_te_texte: "پایین‌تر، شنیدن: برنامه واژه‌های سطح تو را می‌گوید و به تو فرصت می‌دهد آن‌ها را بلند تکرار کنی. برای هنگام قدم زدن یا آشپزی عالی است. با اولین واژه‌هایت امتحان کن.",
         dec_te_essai: "▶ شنیدن اولین واژه‌هایم",
         dec_te_repete: "نوبت توست: تکرار کن!",
@@ -18118,7 +18129,7 @@ const I18N = {
         seance_n_questions: "{n} پرسش",
         explorer_titre: "کاوش در صحنه‌ها",
         explorer_desc: "روی اشیا بزن، نامشان را بشنو. آزادانه، بدون پرسش.",
-        ela_titre: "گوش کن. تکرار کن.",
+        ela_titre: "گوش کن و تکرار کن",
         ela_niveau_titre: "سطح شنیدن",
         ela_niveau_pied: "در آغاز، سطح جلسه‌ات است. تغییرش در اینجا جلسه‌ات را تغییر نمی‌دهد.",
         av_date_court: "✈️ به‌زودی سفر می‌روی؟",
@@ -18783,7 +18794,7 @@ const I18N = {
         dec_ecouter: "استمع مرة أخرى",
         dec_ts_titre: "استكشف المشاهد",
         dec_ts_texte: "تحت جلستك مباشرة: قرابة أربعين مشهدًا من حياة مارك وآنا. المس الأشياء والأشخاص: تسمع اسمها مع أداة التعريف. جرّب هنا.",
-        dec_te_titre: "استمع. كرّر.",
+        dec_te_titre: "استمع وكرّر",
         dec_te_texte: "وتحتها الاستماع: يقول التطبيق كلمات مستواك ويمنحك الوقت لتكرارها بصوت عالٍ. مثالي أثناء المشي أو الطبخ. جرّب مع كلماتك الأولى.",
         dec_te_essai: "▶ الاستماع إلى كلماتي الأولى",
         dec_te_repete: "دورك: كرّر!",
@@ -19604,7 +19615,7 @@ const I18N = {
         seance_n_questions: "{n} أسئلة",
         explorer_titre: "استكشف المشاهد",
         explorer_desc: "المس الأشياء واستمع إلى أسمائها. بحرية، بلا أسئلة.",
-        ela_titre: "استمع. كرّر.",
+        ela_titre: "استمع وكرّر",
         ela_niveau_titre: "مستوى الاستماع",
         ela_niveau_pied: "في البداية هو مستوى جلستك. تغييره هنا لا يغيّر جلستك.",
         av_date_court: "✈️ هل ستسافر قريبًا؟",
@@ -19948,7 +19959,7 @@ const I18N = {
         seance_n_questions: "{n} perguntas",
         explorer_titre: "Explore as cenas",
         explorer_desc: "Toque nos objetos, ouça o nome deles. À vontade, sem perguntas.",
-        ela_titre: "Ouça. Repita.",
+        ela_titre: "Ouvir e repetir",
         ela_niveau_titre: "Nível para ouvir",
         ela_niveau_pied: "No início, é o nível da sua sessão. Mudar aqui não altera a sessão.",
         av_date_court: "✈️ Vai viajar em breve?",
@@ -20540,7 +20551,7 @@ const I18N = {
         dec_ecouter: "Ouvir de novo",
         dec_ts_titre: "Explore as cenas",
         dec_ts_texte: "Logo abaixo da sua sessão: quase quarenta cenas da vida de Mark e Anna. Toque nos objetos e nas pessoas: você ouve o nome deles, com o artigo. Experimente aqui.",
-        dec_te_titre: "Ouça. Repita.",
+        dec_te_titre: "Ouvir e repetir",
         dec_te_texte: "Mais abaixo, a escuta: o aplicativo diz as palavras do seu nível e dá tempo para você repeti-las em voz alta. Perfeito para caminhar ou cozinhar. Experimente com as suas primeiras palavras.",
         dec_te_essai: "▶ Ouvir minhas primeiras palavras",
         dec_te_repete: "Sua vez: repita!",
@@ -21365,7 +21376,7 @@ const I18N = {
         seance_n_questions: "{n} pytań",
         explorer_titre: "Odkrywaj sceny",
         explorer_desc: "Dotykaj przedmiotów, słuchaj ich nazw. Swobodnie, bez pytań.",
-        ela_titre: "Słuchaj. Powtarzaj.",
+        ela_titre: "Słuchaj i powtarzaj",
         ela_niveau_titre: "Poziom do słuchania",
         ela_niveau_pied: "Na początek poziom twojej sesji. Zmiana tutaj nie zmienia sesji.",
         av_date_court: "✈️ Wkrótce wyjeżdżasz?",
@@ -21955,7 +21966,7 @@ const I18N = {
         dec_ecouter: "Posłuchaj jeszcze raz",
         dec_ts_titre: "Odkrywaj sceny",
         dec_ts_texte: "Tuż pod twoją sesją: prawie czterdzieści scen z życia Marka i Anny. Dotykaj przedmiotów i ludzi: usłyszysz ich nazwę razem z rodzajnikiem. Spróbuj tutaj.",
-        dec_te_titre: "Słuchaj. Powtarzaj.",
+        dec_te_titre: "Słuchaj i powtarzaj",
         dec_te_texte: "Niżej słuchanie: aplikacja wymawia słowa z twojego poziomu i daje ci czas, by powtórzyć je na głos. Idealne na spacer albo przy gotowaniu. Spróbuj ze swoimi pierwszymi słowami.",
         dec_te_essai: "▶ Posłuchaj moich pierwszych słów",
         dec_te_repete: "Twoja kolej: powtórz!",
@@ -22780,7 +22791,7 @@ const I18N = {
         seance_n_questions: "{n} вопросов",
         explorer_titre: "Исследуй сцены",
         explorer_desc: "Нажимай на предметы, слушай их названия. Свободно, без вопросов.",
-        ela_titre: "Слушай. Повторяй.",
+        ela_titre: "Слушай и повторяй",
         ela_niveau_titre: "Уровень для прослушивания",
         ela_niveau_pied: "Сначала это уровень твоего занятия. Изменение здесь не меняет занятие.",
         av_date_court: "✈️ Скоро в путь?",
@@ -23375,7 +23386,7 @@ const I18N = {
         dec_ecouter: "Послушать ещё",
         dec_ts_titre: "Исследуй сцены",
         dec_ts_texte: "Прямо под твоим занятием — почти сорок сцен из жизни Марка и Анны. Касайся предметов и людей: ты услышишь их название вместе с артиклем. Попробуй здесь.",
-        dec_te_titre: "Слушай. Повторяй.",
+        dec_te_titre: "Слушай и повторяй",
         dec_te_texte: "Ниже — слушание: приложение произносит слова твоего уровня и даёт время повторить их вслух. Отлично подходит для прогулки или готовки. Попробуй со своими первыми словами.",
         dec_te_essai: "▶ Послушать мои первые слова",
         dec_te_repete: "Твоя очередь: повтори!",
@@ -41924,7 +41935,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 907;
+const APP_VERSION = 908;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
