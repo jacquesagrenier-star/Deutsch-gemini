@@ -6306,6 +6306,7 @@ body[data-theme="dark"] button.serie-salut{color:#F2F2F6;}
 body[data-theme="dark"] button.serie-salut svg{fill:#F0B456; stroke:#F7C77A;}
 .cal-serie{position:fixed; z-index:9000; background:#fffdf8; border:1.5px solid #e6dfd3; border-radius:16px; padding:12px 14px 10px;
     box-shadow:0 12px 30px -12px rgba(28,36,48,.35); color:#1C2430; width:min(300px, calc(100vw - 32px));}
+.bulle-pp button.primary{width:100%; margin-top:6px; padding:11px 12px; border-radius:12px; font-size:14px;}
 .cal-serie-titre{font-weight:900; font-size:15px; margin:0 0 2px; display:flex; align-items:center; gap:6px;}
 .cal-serie-titre svg{width:18px; height:18px; fill:#F0A23A; stroke:#B9770E; stroke-width:1.6;}
 .cal-serie-sous{font-size:12px; color:#576177; margin:0 0 10px;}
@@ -8215,7 +8216,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v913</span>
+    <span class="subtitle-version">v914</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11733,6 +11734,7 @@ const I18N = {
         rp_q_dire_couleur: "Dis cette couleur à voix haute",
         rp_q_teinte: "Quelle couleur est-ce ?",
         revoir_pp_lien: "↺ Revoir les premiers pas",
+        recommencer_pp_lien: "↺ Recommencer les premiers pas à l'étape 1",
         revoir_niveau_lien: "↺ Revoir le niveau {n}",
         revoir_niveau_clair: "Tu revois le niveau {n} depuis le début : {f} / {t} mots",
         revoir_niveau_toast: "La séance reprend le niveau {n} depuis le début. Rien n'est effacé : tes mots restent appris.",
@@ -13117,6 +13119,7 @@ const I18N = {
         rp_q_dire_couleur: "Say this color out loud",
         rp_q_teinte: "Which color is this?",
         revoir_pp_lien: "↺ Review the first steps",
+        recommencer_pp_lien: "↺ Restart the first steps from step 1",
         revoir_niveau_lien: "↺ Review level {n}",
         revoir_niveau_clair: "You're reviewing level {n} from the start: {f} / {t} words",
         revoir_niveau_toast: "Your session goes back through level {n} from the start. Nothing is erased: your words stay learned.",
@@ -14503,6 +14506,7 @@ const I18N = {
         rp_q_dire_couleur: "Bu rengi yüksek sesle söyle",
         rp_q_teinte: "Bu hangi renk?",
         revoir_pp_lien: "↺ İlk adımları tekrarla",
+        recommencer_pp_lien: "↺ İlk adımlara 1. adımdan yeniden başla",
         revoir_niveau_lien: "↺ {n} seviyesini tekrarla",
         revoir_niveau_clair: "{n} seviyesini baştan tekrarlıyorsun: {f} / {t} kelime",
         revoir_niveau_toast: "Oturumun {n} seviyesini baştan alıyor. Hiçbir şey silinmez: öğrendiğin kelimeler kalır.",
@@ -16206,6 +16210,7 @@ const I18N = {
         rp_q_dire_couleur: "Скажи цей колір вголос",
         rp_q_teinte: "Який це колір?",
         revoir_pp_lien: "↺ Повторити перші кроки",
+        recommencer_pp_lien: "↺ Почати перші кроки знову з кроку 1",
         revoir_niveau_lien: "↺ Повторити рівень {n}",
         revoir_niveau_clair: "Ти повторюєш рівень {n} з початку: {f} / {t} слів",
         revoir_niveau_toast: "Заняття повертається до рівня {n} з початку. Нічого не стирається: вивчені слова залишаються.",
@@ -18277,6 +18282,7 @@ const I18N = {
         rp_q_dire_couleur: "این رنگ را بلند بگو",
         rp_q_teinte: "این چه رنگی است؟",
         revoir_pp_lien: "↺ مرور گام‌های نخست",
+        recommencer_pp_lien: "↺ شروع دوبارهٔ گام‌های نخست از گام ۱",
         revoir_niveau_lien: "↺ مرور سطح {n}",
         revoir_niveau_clair: "سطح {n} را از اول مرور می‌کنی: {f} / {t} واژه",
         revoir_niveau_toast: "جلسه‌ات سطح {n} را از اول مرور می‌کند. چیزی پاک نمی‌شود: واژه‌هایی که یاد گرفته‌ای می‌مانند.",
@@ -19779,6 +19785,7 @@ const I18N = {
         rp_q_dire_couleur: "قل هذا اللون بصوت عالٍ",
         rp_q_teinte: "ما هذا اللون؟",
         revoir_pp_lien: "↺ مراجعة الخطوات الأولى",
+        recommencer_pp_lien: "↺ البدء من جديد بالخطوات الأولى من الخطوة 1",
         revoir_niveau_lien: "↺ مراجعة المستوى {n}",
         revoir_niveau_clair: "تراجع المستوى {n} من البداية: {f} / {t} كلمة",
         revoir_niveau_toast: "تعود جلستك إلى المستوى {n} من البداية. لا يُمحى شيء: تبقى كلماتك محفوظة.",
@@ -20123,6 +20130,7 @@ const I18N = {
         rp_q_dire_couleur: "Diga esta cor em voz alta",
         rp_q_teinte: "Que cor é esta?",
         revoir_pp_lien: "↺ Rever os primeiros passos",
+        recommencer_pp_lien: "↺ Recomeçar os primeiros passos na etapa 1",
         revoir_niveau_lien: "↺ Rever o nível {n}",
         revoir_niveau_clair: "Você está revendo o nível {n} desde o início: {f} / {t} palavras",
         revoir_niveau_toast: "A sessão retoma o nível {n} desde o início. Nada é apagado: suas palavras continuam aprendidas.",
@@ -21548,6 +21556,7 @@ const I18N = {
         rp_q_dire_couleur: "Powiedz ten kolor na głos",
         rp_q_teinte: "Jaki to kolor?",
         revoir_pp_lien: "↺ Powtórz pierwsze kroki",
+        recommencer_pp_lien: "↺ Zacznij pierwsze kroki od nowa, od kroku 1",
         revoir_niveau_lien: "↺ Powtórz poziom {n}",
         revoir_niveau_clair: "Powtarzasz poziom {n} od początku: {f} / {t} słów",
         revoir_niveau_toast: "Sesja wraca do poziomu {n} od początku. Nic nie jest usuwane: nauczone słowa zostają.",
@@ -22971,6 +22980,7 @@ const I18N = {
         rp_q_dire_couleur: "Скажи этот цвет вслух",
         rp_q_teinte: "Какой это цвет?",
         revoir_pp_lien: "↺ Повторить первые шаги",
+        recommencer_pp_lien: "↺ Начать первые шаги заново с шага 1",
         revoir_niveau_lien: "↺ Повторить уровень {n}",
         revoir_niveau_clair: "Ты повторяешь уровень {n} с начала: {f} / {t} слов",
         revoir_niveau_toast: "Занятие возвращается к уровню {n} с начала. Ничего не стирается: выученные слова остаются.",
@@ -42207,7 +42217,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 913;
+const APP_VERSION = 914;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -45709,6 +45719,36 @@ function revoirCartePassee(it){
     r.f[cleRevoir(it)] = 1;
     ecrireRevoirNiveau(r);
 }
+// v914 : la bulle de la 🌱 -- « Recommencer a l'etape 1 », ou rien (toucher a cote ferme).
+let bullePP = null;
+function fermerBullePP(){
+    if(bullePP){ bullePP.remove(); bullePP = null; }
+    document.removeEventListener("click", clicHorsBullePP, true);
+}
+function clicHorsBullePP(e){ if(bullePP && !bullePP.contains(e.target)) fermerBullePP(); }
+function proposerRecommencerPP(ancre){
+    fermerBullePP();
+    const b = document.createElement("div");
+    b.className = "cal-serie bulle-pp";
+    b.setAttribute("role", "dialog");
+    const titre = document.createElement("p");
+    titre.className = "cal-serie-titre";
+    titre.textContent = "🌱 " + t("pp_badge");
+    const bouton = document.createElement("button");
+    bouton.type = "button";
+    bouton.className = "primary";
+    bouton.textContent = t("recommencer_pp_lien");
+    bouton.addEventListener("click", e => { e.stopPropagation(); fermerBullePP(); lancerRevoirNiveau("pp"); });
+    b.append(titre, bouton);
+    document.body.appendChild(b);
+    bullePP = b;
+    const ra = ancre.getBoundingClientRect();
+    const L = b.offsetWidth;
+    b.style.left = Math.max(16, Math.min(ra.left, innerWidth - 16 - L)) + "px";
+    b.style.top = (ra.bottom + 8) + "px";
+    setTimeout(() => document.addEventListener("click", clicHorsBullePP, true), 0);
+}
+
 function majLiensRevoir(){
     const place = document.getElementById("spRevoir");
     if(!place) return;
@@ -45727,6 +45767,12 @@ function majLiensRevoir(){
         const pps = lirePremiersPas();
         if(essaiActif("premiers_pas") && !premiersPasEnCours() && (pps.fini || pps.k > 0 || pps.p > 0))
             ajouter("pp", t("revoir_pp_lien"));
+        // v914 : ET PENDANT QU'ON Y EST. Jacques, 21 oct. 2026 : « en cliquant sur
+        // la petite pousse, etre capable aussi de remettre a zero » -- le lien ne
+        // paraissait que depuis un autre niveau. Un lien et non le 🌱 lui-meme :
+        // un toucher par megarde ne doit pas effacer la position.
+        else if(premiersPasEnCours() && (pps.p > 0 || pps.k > 0))
+            ajouter("pp", t("recommencer_pp_lien"));
     }catch(e){}
     const r = lireRevoirNiveau();
     NIVEAUX_CECR.forEach(niv => {
@@ -47535,6 +47581,17 @@ function montrerCartePhrase(item){
         fait.repondu = true;
         suite.textContent = t("pp_fin_bouton") + " ›";
         suite.classList.remove("hidden");
+        // v914 : « ou a la fin, lorsqu'on complete tout, on doit etre en mesure de
+        // resetter » (Jacques). Le second bouton repart a l'etape 1, tout de suite.
+        const recommencer = creer("button", "secondary", t("recommencer_pp_lien"));
+        recommencer.type = "button";
+        recommencer.addEventListener("click", () => {
+            if(fait.recommence) return;
+            fait.recommence = true;
+            lancerRevoirNiveau("pp");
+            try{ ouvrirPremiersPas(); }catch(e){}
+        });
+        actions.appendChild(recommencer);
         suite.addEventListener("click", () => {
             const s = lirePremiersPas();
             s.fini = true; s.a = false;
@@ -50039,42 +50096,44 @@ async function preparerArretScene(seance, sceneImposee){
         // durant. On essaie donc, dans l'ordre : la scene prevue, celle du jour,
         // puis les suivantes de la liste (huit au plus, lues ensemble et gardees
         // en memoire par motsVusDeScene).
+        // v914 : LE RYTHME DES SCENES SUIT LE PROFIL. Jacques, 21 oct. 2026 :
+        // « si j'ai un objectif de 30, est-ce que ca veut dire que je vais avoir
+        // seulement une scene ? » -- puis, sur la proposition faite : une scene
+        // toutes les 8 cartes (sans profil, ou « un peu de tout »), toutes les 4
+        // (« je retiens mieux ce que je vois »), toutes les 12 (« ce que
+        // j'entends », « comment ca marche »). Reparties regulierement, jamais a
+        // la derniere carte, et une scene DIFFERENTE a chaque arret.
+        let p = null;
+        try{ p = profilActif(); }catch(e){}
+        const ecart = (p && p.f === "images") ? 4 : (p && (p.f === "oreille" || p.f === "regles")) ? 12 : 8;
+        const nb = Math.max(1, Math.floor(seance.length / ecart));
         const prevue = sceneImposee || sceneDuJour();
         const candidates = [prevue];
         const ajouter = x => { if(x && !candidates.some(c => c.nom === x.nom)) candidates.push(x); };
         ajouter(sceneDuJour());
         const depart = Math.max(0, SCENES_SEANCE.findIndex(x => x.nom === sceneDuJour().nom));
-        for(let k = 1; k < SCENES_SEANCE.length && candidates.length < 8; k++) ajouter(SCENES_SEANCE[(depart + k) % SCENES_SEANCE.length]);
-        const arrets = await Promise.all(candidates.map(c => arretDeScene(c).catch(() => null)));
-        let iArret = arrets.findIndex(x => !!x);
-        // v912 (suite) : AUCUNE N'A TROIS MOTS VUS -- c'est le cas ordinaire en A1,
-        // ou les mots vus viennent des escales (verbes, mots du voyage) et rarement
-        // des objets dessines (Jacques : « ca fait au moins 24 [seances] »). La
-        // scene prevue s'arrete quand meme, avec ses mots vus completes par
-        // d'autres mots A1 ; si elle ne peut pas, la premiere qui le peut.
-        if(iArret < 0){
-            for(let k = 0; k < candidates.length && iArret < 0; k++){
-                try{ const a = await arretDeScene(candidates[k], true); if(a){ arrets[k] = a; iArret = k; } }catch(e){}
-            }
+        const voulus = Math.max(8, nb + 3);
+        for(let k = 1; k < SCENES_SEANCE.length && candidates.length < voulus; k++) ajouter(SCENES_SEANCE[(depart + k) % SCENES_SEANCE.length]);
+        // D'abord les scenes qui ont deja trois mots vus (dans l'ordre : la prevue,
+        // celle du jour, les suivantes) ; s'il en manque, les autres, leurs mots vus
+        // completes par d'autres mots A1 (v913 : le cas ordinaire en A1, ou les mots
+        // vus viennent des escales et rarement des objets dessines).
+        const stricts = await Promise.all(candidates.map(c => arretDeScene(c).catch(() => null)));
+        const choisis = stricts.filter(x => !!x).slice(0, nb);
+        if(choisis.length < nb){
+            const pris = new Set(choisis.map(a => a.scene.nom));
+            const reste = candidates.filter(c => !pris.has(c.nom));
+            const completes = await Promise.all(reste.map(c => arretDeScene(c, true).catch(() => null)));
+            completes.forEach(a => { if(a && choisis.length < nb) choisis.push(a); });
         }
-        if(iArret < 0) return seance;
-        const arret = arrets[iArret];
-        const s = candidates[iArret];
+        if(!choisis.length) return seance;
         const sortie = seance.slice();
-        // v903 (essai « profil ») : « je retiens mieux ce que je vois » -- deux
-        // arrets, au tiers et aux deux tiers, si la seance est assez longue et
-        // si la seconde scene a, elle aussi, de quoi demander (A1 : 3 mots vus).
-        let p = null;
-        try{ p = profilActif(); }catch(e){}
-        if(p && p.f === "images" && sortie.length >= 8){
-            const second = await arretDeScene(autreSceneQue(s));
-            if(second){
-                sortie.splice(Math.floor(2 * sortie.length / 3), 0, second);
-                sortie.splice(Math.floor(sortie.length / 3), 0, arret);
-                return sortie;
-            }
+        const n = choisis.length;
+        // Des positions reparties : 30 cartes et 3 scenes -> apres la 7e, la 15e, la 22e.
+        for(let k = n; k >= 1; k--){
+            const pos = Math.max(2, Math.min(sortie.length - 1, Math.round(seance.length * k / (n + 1))));
+            sortie.splice(pos, 0, choisis[k - 1]);
         }
-        sortie.splice(Math.floor(sortie.length / 2), 0, arret);
         return sortie;
     }catch(e){ return seance; }
 }
@@ -50400,8 +50459,13 @@ function majTuileSeance(){
         b.addEventListener("click", ev => {
             ev.stopPropagation();
             const s = lirePremiersPas();
+            // v914 : RETOUCHER 🌱 PROPOSE DE RECOMMENCER. Jacques, 21 oct. 2026 :
+            // « lorsqu'on a complete [...] puis qu'on clique encore sur la petite
+            // pousse, [...] ca devrait m'offrir de la remettre a zero ». Fini, ou
+            // deja en cours : une bulle (rien ne s'efface sans le demander).
+            // Quitte en route, sur un autre niveau : on y revient, ou on en etait.
+            if(s.fini || (pp && (s.p > 0 || s.k > 0))){ proposerRecommencerPP(b); return; }
             s.a = true;
-            if(s.fini){ s.fini = false; s.p = 0; delete s.k; }   // v907 : p, pas k (voir lancerRevoirNiveau)
             ecrirePremiersPas(s);
             majTuileSeance();
         });
