@@ -6946,8 +6946,10 @@ body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){back
 #seancePilule .pa-entrer::before{content:""; position:absolute; left:24%; top:8%; width:44%; height:24%; border-radius:50%; pointer-events:none;
     background:radial-gradient(closest-side, rgba(255,255,255,.95), rgba(255,255,255,0));}
 #seancePilule .pa-entrer svg{position:relative; stroke:#1C2430;}
-#seancePilule.atteint .pa-entrer{background:rgba(255,255,255,.18); box-shadow:inset 0 0 0 2.5px #1C2430;}
-#seancePilule.atteint .pa-entrer svg{stroke:#1C2430;}
+/* v906 : la bille ne change plus quand l'objectif est atteint. La v900 la
+   remplacait alors par un anneau d'encre -- « un cercle noir autour du bouton »,
+   Jacques, 21 oct. 2026 : « c'etait mieux sans ». L'anneau du compte dit deja
+   que l'objectif est atteint. */
 /* Mode nuit : sur le noir, la teinte doit etre plus dense, sinon l'ambre vire au brun. */
 body[data-theme="dark"] #seancePilule{background:linear-gradient(180deg, rgba(246,178,66,.9), rgba(232,162,58,.86)) #CC8F33;
     box-shadow:inset 0 0 0 4px rgba(255,255,255,.14), inset 0 0 8px 3px rgba(255,255,255,.32),
@@ -7602,6 +7604,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                     <div class="pa-liste-titre" data-i18n="seance_ton_niveau">Ton niveau</div>
                     <div id="spNiveauxPlace"></div>
                     <p class="pa-liste-pied" id="spClair"></p>
+                    <p class="pa-liste-pied hidden" id="spDepart"></p>
                     <div id="spDateEdit"></div>
                     <div class="pa-liste-liens">
                         <div class="pa-revoir" id="spRevoir"></div>
@@ -8103,7 +8106,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v905</span>
+    <span class="subtitle-version">v906</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41921,7 +41924,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 905;
+const APP_VERSION = 906;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -45431,7 +45434,13 @@ function majLiensRevoir(){
         b.addEventListener("click", ev => { ev.stopPropagation(); lancerRevoirNiveau(niv); });
         place.appendChild(b);
     };
-    try{ if(essaiActif("premiers_pas") && lirePremiersPas().fini) ajouter("pp", t("revoir_pp_lien")); }catch(e){}
+    // v906 : aussi pour qui a quitte Premiers pas en route (un niveau touche
+    // avant la fin) -- le marqueur « fini » ne se pose qu'au dernier bouton.
+    try{
+        const pps = lirePremiersPas();
+        if(essaiActif("premiers_pas") && !premiersPasEnCours() && (pps.fini || pps.k > 0 || pps.p > 0))
+            ajouter("pp", t("revoir_pp_lien"));
+    }catch(e){}
     const r = lireRevoirNiveau();
     NIVEAUX_CECR.forEach(niv => {
         try{ if(!(r && r.n === niv) && niveauFini(niv)) ajouter(niv, tf("revoir_niveau_lien", { n: niv })); }catch(e){}
@@ -50191,9 +50200,15 @@ function majPiluleSeance(){
     const place = document.getElementById("spNiveauxPlace");
     const box = document.getElementById("seanceNiveaux");
     if(place && box && box.parentElement !== place) place.appendChild(box);
-    // La ligne grise : le depart (compte a rebours, ou l'invitation), sinon le
-    // nom du niveau -- la partie avant les deux-points, le reste dans la liste.
+    // La ligne grise : le nom du niveau -- la partie avant les deux-points, le
+    // reste dans la liste.
+    // v906 : LE DEPART QUITTE LA PILULE. Jacques, 21 oct. 2026 : « Escale 1 sur
+    // 12, départ dans 5 jours, 12 escales par semaine pour être prêt -- il y a
+    // trop de choses ». Comme Premiers pas : l'escale en titre, le niveau dessous ;
+    // le compte a rebours (ou l'invitation) descend dans la liste, au-dessus de
+    // « Changer la date ».
     let sous = String(clairTxt).split(/\s*[:：]\s*/)[0];
+    let departTxt = "";
     let dateTxt = "";
     try{
         if(a1VoyageEnCours() && A1_VOYAGE_DONNEES){
@@ -50201,18 +50216,20 @@ function majPiluleSeance(){
             const jd = joursJusqua(s.dep);
             if(jd !== null && jd >= -14){
                 const restantes = s.fin ? 0 : Math.max(0, escalesA1Voyage().length - (s.e || 0));
-                sous = jd <= 0 ? t("av_en_voyage")
+                departTxt = jd <= 0 ? t("av_en_voyage")
                      : restantes === 0 ? tf("av_depart_pret", { n: jd })
                      : tf("av_depart_rythme", { n: jd, e: Math.max(1, Math.ceil(restantes / Math.max(1, jd / 7))) });
                 dateTxt = t("av_date_modifier");
             } else if(!s.fin && !s.sansDate){
-                sous = t("av_date_court");
+                departTxt = t("av_date_court");
                 dateTxt = t("av_date_ajouter");
             }
         }
     }catch(e){}
     const sens = document.getElementById("spSens");
     if(sens){ sens.textContent = sous; ajusterSansPoints(sens, 10.5, "11px"); }
+    const depart = document.getElementById("spDepart");
+    if(depart){ depart.textContent = departTxt; depart.classList.toggle("hidden", !departTxt); }
     const lien = document.getElementById("spDate");
     if(lien){ lien.textContent = dateTxt ? "✈️ " + dateTxt.replace(/^✈️\s*/, "") : ""; lien.classList.toggle("hidden", !dateTxt); }
     // v903 (essai « profil ») : changer d'avis sur sa facon d'apprendre.
