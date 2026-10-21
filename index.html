@@ -8106,7 +8106,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v906</span>
+    <span class="subtitle-version">v907</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41924,7 +41924,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 906;
+const APP_VERSION = 907;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -45373,8 +45373,12 @@ function niveauFini(niv){
 }
 function lancerRevoirNiveau(niv){
     if(niv === "pp"){
+        // v907 : la position vit dans « p » depuis la v838 ; remettre seulement
+        // l'ancien « k » a zero laissait la seance a la derniere carte, qui
+        // refermait aussitot le parcours (Jacques : « ça me passe tout de suite
+        // à A1 »).
         const s = lirePremiersPas();
-        s.a = true; s.fini = false; s.k = 0;
+        s.a = true; s.fini = false; s.p = 0; delete s.k;
         ecrirePremiersPas(s);
         ecrireRevoirNiveau(null);
         showInfoToast(t("revoir_pp_toast"));
@@ -50071,7 +50075,7 @@ function majTuileSeance(){
             ev.stopPropagation();
             const s = lirePremiersPas();
             s.a = true;
-            if(s.fini){ s.fini = false; s.k = 0; }
+            if(s.fini){ s.fini = false; s.p = 0; delete s.k; }   // v907 : p, pas k (voir lancerRevoirNiveau)
             ecrirePremiersPas(s);
             majTuileSeance();
         });
