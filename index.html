@@ -6894,6 +6894,66 @@ body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-titre strong{color:#F2F2F6
 body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-sens, body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-sens::before{color:#a9b2c0;}
 body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i{background:#5d6b7c;}
 body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){background:var(--pa);}
+/* v900 (Jacques, 20 oct. 2026) : LA SEANCE EN VITRE AMBREE. « Au lieu d'un fond
+   noir, un fond orange, comme les deux points du logo », « plus de punch »,
+   puis « comme le W de l'ouverture, le glacis d'Apple, une vitre ». Choisie
+   parmi .claude/maquette-seance-punch.html (6 couleurs : l'ambre, le 1),
+   maquette-seance-ambre-variantes.html, maquette-seance-verre.html et
+   maquette-seance-vitre.html (la version 1, « vitre ambree »).
+   Ce qui fait la vitre, et pas un aplat orange : la teinte est TRANSLUCIDE
+   (la page passe a travers) ; un lisere de lumiere d'un pixel et demi, vif sur
+   deux coins opposes, comme les boutons d'Apple ; une trainee blanche qui
+   glisse en haut ; et le bouton est une bille de verre clair, comme le W.
+   Le texte passe a l'encre (contraste 7,2 sur l'ambre). Ecouter ne change pas.
+   Pas d'overflow:hidden ici : la liste du niveau (.pa-liste) sort de la pilule. */
+@property --vx{syntax:"<percentage>"; inherits:true; initial-value:28%;}
+#seancePilule{--vx:28%; color:#1C2430;
+    background:linear-gradient(180deg, rgba(240,170,60,.72), rgba(232,162,58,.66));
+    -webkit-backdrop-filter:blur(8px) saturate(1.6); backdrop-filter:blur(8px) saturate(1.6);
+    box-shadow:inset 0 0 0 4px rgba(255,255,255,.14), inset 0 0 8px 3px rgba(255,255,255,.32),
+        inset 0 -10px 14px -10px rgba(160,90,10,.45), 0 8px 18px -10px rgba(140,80,10,.55);
+    animation:vitreLumiere 7s ease-in-out infinite alternate;}
+@keyframes vitreLumiere{from{--vx:14%;} to{--vx:86%;}}
+#seancePilule::before{content:""; position:absolute; inset:0; border-radius:inherit; padding:2px; pointer-events:none; z-index:2;
+    background:conic-gradient(from calc(var(--vx) * 3.6 - 120deg), rgba(255,255,255,1), rgba(255,255,255,.25) 18%, rgba(255,255,255,.12) 32%,
+        rgba(255,255,255,.85) 50%, rgba(255,255,255,.2) 68%, rgba(255,255,255,.15) 82%, rgba(255,255,255,1));
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor;
+            mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);}
+#seancePilule::after{content:""; position:absolute; top:3px; height:7px; width:34%; left:calc(6% + (var(--vx) - 14%) * .75); border-radius:999px;
+    pointer-events:none; z-index:2; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.85) 50%, rgba(255,255,255,0)); filter:blur(1.2px);}
+/* La lumiere qui traverse la vitre se pose sur la page, dessous. */
+.orb-seance.pilule-mode::after{content:""; position:absolute; z-index:-1; left:22%; right:30%; bottom:-10px; height:12px; border-radius:50%; pointer-events:none;
+    background:radial-gradient(closest-side, rgba(255,196,90,.95), rgba(255,196,90,0)); filter:blur(2px);}
+#seancePilule .pa-kick{display:flex; align-items:center; gap:5px; color:#1C2430;}
+#seancePilule .pa-kick::before{content:""; width:12px; height:5px; flex:0 0 auto;
+    background:radial-gradient(circle at 2.5px 2.5px, #1C2430 2.3px, transparent 2.6px), radial-gradient(circle at 9.5px 2.5px, #1C2430 2.3px, transparent 2.6px);}
+#seancePilule .pa-titre strong{color:#1C2430;}
+#seancePilule .pa-niv{background:rgba(255,255,255,.3); box-shadow:inset 0 0 0 1px rgba(28,36,48,.45); color:#1C2430;}
+#seancePilule .pa-sens, #seancePilule .pa-sens::before{color:rgba(28,36,48,.78);}
+/* L'anneau : plus de trou peint en encre, un masque -- la vitre se voit au centre. */
+#seancePilule .pa-anneau{background:none;}
+#seancePilule .pa-anneau::before{inset:0; background:conic-gradient(#1C2430 0 calc(var(--p) * 1%), rgba(28,36,48,.18) calc(var(--p) * 1%) 100%);
+    -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));
+            mask:radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));}
+#seancePilule .pa-anneau small{color:rgba(28,36,48,.78);}
+#seancePilule .pa-anneau.atteint b{color:#1C2430;}
+/* Le bouton : une bille de verre clair, lisere et point de lumiere. */
+#seancePilule .pa-entrer{position:relative; background:radial-gradient(circle at 50% 85%, rgba(255,255,255,.75), rgba(255,255,255,0) 45%), rgba(255,255,255,.42);
+    -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.75), inset 0 1.5px 0 #fff, inset 0 -6px 10px -6px rgba(120,70,10,.35), 0 3px 8px -2px rgba(120,60,0,.35);}
+#seancePilule .pa-entrer::before{content:""; position:absolute; left:24%; top:8%; width:44%; height:24%; border-radius:50%; pointer-events:none;
+    background:radial-gradient(closest-side, rgba(255,255,255,.95), rgba(255,255,255,0));}
+#seancePilule .pa-entrer svg{position:relative; stroke:#1C2430;}
+#seancePilule.atteint .pa-entrer{background:rgba(255,255,255,.18); box-shadow:inset 0 0 0 2.5px #1C2430;}
+#seancePilule.atteint .pa-entrer svg{stroke:#1C2430;}
+/* Mode nuit : sur le noir, la teinte doit etre plus dense, sinon l'ambre vire au brun. */
+body[data-theme="dark"] #seancePilule{background:linear-gradient(180deg, rgba(246,178,66,.9), rgba(232,162,58,.86)) #CC8F33;
+    box-shadow:inset 0 0 0 4px rgba(255,255,255,.14), inset 0 0 8px 3px rgba(255,255,255,.32),
+        inset 0 -10px 14px -10px rgba(160,90,10,.45), 0 8px 22px -8px rgba(232,162,58,.45);}
+body[data-theme="dark"] #seancePilule .pa-anneau::before{background:conic-gradient(#1C2430 0 calc(var(--p) * 1%), rgba(28,36,48,.18) calc(var(--p) * 1%) 100%);}
+body[data-theme="dark"] #seancePilule .pa-anneau small, body[data-theme="dark"] #seancePilule .pa-sens{color:rgba(28,36,48,.78);}
+body[data-theme="dark"] .orb-seance.pilule-mode::after{background:radial-gradient(closest-side, rgba(255,180,70,.7), rgba(255,180,70,0));}
+@media (prefers-reduced-motion: reduce){ #seancePilule{animation:none;} }
 .explorer-v.verrou::after{content:"🔒"; position:absolute; top:4px; inset-inline-end:4px; font-size:12px;}
 body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
 body[data-theme="dark"] .explorer-desc{color:rgba(255,255,255,.72);}
@@ -7966,7 +8026,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v899</span>
+    <span class="subtitle-version">v900</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41498,7 +41558,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 899;
+const APP_VERSION = 900;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
