@@ -8216,7 +8216,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v914</span>
+    <span class="subtitle-version">v915</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26721,7 +26721,12 @@ function getFriendlyAuthError(error) {
         "auth/invalid-credential": "E-mail ou mot de passe incorrect.",
         "auth/too-many-requests": "Trop de tentatives. Réessaie plus tard."
     };
-    return messages[error.code] || "Une erreur est survenue. Réessaie.";
+    // v915 : LE CODE DANS LE MESSAGE. Jacques, 21 oct. 2026, sur le compte de
+    // demonstration Apple : « une erreur est survenue, reessaie » -- et F12 ne
+    // s'ouvrait pas sur son portable. Sans le code, impossible de savoir
+    // pourquoi ; il s'affiche maintenant entre parentheses.
+    const code = (error && (error.code || error.name)) ? String(error.code || error.name) : "";
+    return messages[error.code] || ("Une erreur est survenue. Réessaie." + (code ? " (" + code + ")" : ""));
 }
 
 // Bascule le texte/état désactivé d'un bouton d'authentification pendant un
@@ -42217,7 +42222,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 914;
+const APP_VERSION = 915;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
