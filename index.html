@@ -6990,6 +6990,39 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
 .rp-teinte{ width:120px; height:120px; border-radius:24px; margin:8px auto 14px;
     border:1px solid rgba(28,36,48,.2); box-shadow:0 4px 14px rgba(28,36,48,.12); }
 body[data-theme="dark"] .cp-tl-teinte, body[data-theme="dark"] .rp-teinte{ border-color:rgba(255,255,255,.35); }
+/* v910 : LE BOUTON ✓ EN RECTANGLE DE VERRE, ET PLUS DE MECANIQUE A LIRE.
+   Jacques, 21 oct. 2026 : « on va le mettre entierement le rectangle glacis.
+   On va enlever retour dans 10 minutes avec les points de progression [...] les
+   gens vont le voir quand ca revient a un certain rythme. Ils n'ont pas besoin
+   de comprendre la mecanique » (idee de Marc-Antoine). Les echeances (« retour
+   dans 2 minutes », « pas avant 16 jours ») et les quatre points ne s'affichent
+   plus ; la repetition espacee, elle, ne change pas. « Pour le retravailler »
+   (Mettre de cote) reste : ce n'est pas une echeance, c'est ce que fait le bouton. */
+.judge-good{position:relative; overflow:hidden; color:#fff; border-color:transparent;
+    background:linear-gradient(180deg, rgba(62,178,118,.92), rgba(38,150,96,.88));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.35), inset 0 0 8px 2px rgba(255,255,255,.3),
+        inset 0 -10px 14px -10px rgba(8,70,40,.55), 0 6px 14px -8px rgba(8,70,40,.55);}
+.judge-good:hover{background:linear-gradient(180deg, rgba(70,186,126,.95), rgba(44,158,102,.92));}
+.judge-good::after{content:""; position:absolute; top:3px; left:12%; width:76%; height:6px; border-radius:999px; pointer-events:none;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.75) 50%, rgba(255,255,255,0)); filter:blur(1px);}
+.judge-good .judge-bille{width:auto; height:auto; background:none; box-shadow:none;}
+.judge-good .judge-bille::before{display:none;}
+.judge-good .judge-bille svg{width:26px; height:26px; stroke-width:3.4; filter:drop-shadow(0 1px 1px rgba(8,60,35,.35));}
+.judge-good .srs-pips, .judge-good .srs-ladder-text, #judgeEcheanceAgain, #judgeEcheanceKnown{display:none !important;}
+body[data-theme="dark"] .judge-good{color:#fff; border-color:transparent;
+    background:linear-gradient(180deg, rgba(62,178,118,.88), rgba(38,150,96,.82));}
+/* v910 : LES BOUTONS « CONTINUER » (et « Verifier », a la meme place) dans le
+   MEME VERRE VERT que le ✓. Jacques : « le glacis, exactement comme pour la
+   seance du jour », puis « la meme vert que le crochet ». */
+.cp-actions button.primary{position:relative; overflow:hidden; color:#fff; border:0;
+    background:linear-gradient(180deg, rgba(62,178,118,.92), rgba(38,150,96,.88));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.35), inset 0 0 8px 2px rgba(255,255,255,.3),
+        inset 0 -10px 14px -10px rgba(8,70,40,.55), 0 6px 14px -8px rgba(8,70,40,.55);}
+.cp-actions button.primary:hover{background:linear-gradient(180deg, rgba(70,186,126,.95), rgba(44,158,102,.92));}
+.cp-actions button.primary::after{content:""; position:absolute; top:3px; left:12%; width:76%; height:6px; border-radius:999px; pointer-events:none;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.75) 50%, rgba(255,255,255,0)); filter:blur(1px);}
+body[data-theme="dark"] .cp-actions button.primary{color:#fff;
+    background:linear-gradient(180deg, rgba(62,178,118,.88), rgba(38,150,96,.82));}
 /* v903 : LE PROFIL D'APPRENTISSAGE (essai « profil »), voir ouvrirProfil(). */
 #profil{padding-top:18px;}
 .pf-etapes{display:flex; gap:6px; margin:0 0 20px;}
@@ -8127,7 +8160,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v909</span>
+    <span class="subtitle-version">v910</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41950,7 +41983,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 909;
+const APP_VERSION = 910;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
