@@ -6921,9 +6921,6 @@ body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){back
             mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);}
 #seancePilule::after{content:""; position:absolute; top:3px; height:7px; width:34%; left:calc(6% + (var(--vx) - 14%) * .75); border-radius:999px;
     pointer-events:none; z-index:2; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.85) 50%, rgba(255,255,255,0)); filter:blur(1.2px);}
-/* La lumiere qui traverse la vitre se pose sur la page, dessous. */
-.orb-seance.pilule-mode::after{content:""; position:absolute; z-index:-1; left:22%; right:30%; bottom:-10px; height:12px; border-radius:50%; pointer-events:none;
-    background:radial-gradient(closest-side, rgba(255,196,90,.95), rgba(255,196,90,0)); filter:blur(2px);}
 #seancePilule .pa-kick{display:flex; align-items:center; gap:5px; color:#1C2430;}
 #seancePilule .pa-kick::before{content:""; width:12px; height:5px; flex:0 0 auto;
     background:radial-gradient(circle at 2.5px 2.5px, #1C2430 2.3px, transparent 2.6px), radial-gradient(circle at 9.5px 2.5px, #1C2430 2.3px, transparent 2.6px);}
@@ -6952,7 +6949,6 @@ body[data-theme="dark"] #seancePilule{background:linear-gradient(180deg, rgba(24
         inset 0 -10px 14px -10px rgba(160,90,10,.45), 0 8px 22px -8px rgba(232,162,58,.45);}
 body[data-theme="dark"] #seancePilule .pa-anneau::before{background:conic-gradient(#1C2430 0 calc(var(--p) * 1%), rgba(28,36,48,.18) calc(var(--p) * 1%) 100%);}
 body[data-theme="dark"] #seancePilule .pa-anneau small, body[data-theme="dark"] #seancePilule .pa-sens{color:rgba(28,36,48,.78);}
-body[data-theme="dark"] .orb-seance.pilule-mode::after{background:radial-gradient(closest-side, rgba(255,180,70,.7), rgba(255,180,70,0));}
 @media (prefers-reduced-motion: reduce){ #seancePilule{animation:none;} }
 .explorer-v.verrou::after{content:"🔒"; position:absolute; top:4px; inset-inline-end:4px; font-size:12px;}
 body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
@@ -8026,7 +8022,7 @@ body[data-theme="dark"] .explorer-tout{color:#E8A23A;}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v900</span>
+    <span class="subtitle-version">v901</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -41558,7 +41554,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 900;
+const APP_VERSION = 901;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -43617,6 +43613,11 @@ function compterPaquetDuNiveau(niveau){
 // chaque liste, jamais deux rangs bruts.
 let rangsFrequence = null;
 let chargementFrequence = null;
+// v901 : le fichier lu D'AVANCE (prechaufferSeance), mais pas encore applique.
+// rangsFrequence ne se remplit toujours qu'a la demande : des qu'il est la, les
+// panneaux (Quel article ?, Dictee...) trient leurs mots neufs par frequence --
+// le remplir a l'accueil changeait leur ordre (26 ecarts au parcours allemand).
+let frequenceLueDAvance = null;
 
 function motDeLaCarte(it){
     const w = it && it.word;
@@ -43629,8 +43630,8 @@ function motDeLaCarte(it){
 async function chargerFrequence(){
     if(rangsFrequence) return rangsFrequence;
     if(!chargementFrequence){
-        chargementFrequence = fetch(urlDonnees('frequence.json'), { cache: 'no-cache' })
-            .then(r => r.ok ? r.json() : null)
+        chargementFrequence = (frequenceLueDAvance || fetch(urlDonnees('frequence.json'), { cache: 'no-cache' })
+            .then(r => r.ok ? r.json() : null))
             .then(d => {
                 const m = new Map();
                 const cats = (d && d.categories) || {};
@@ -49137,10 +49138,17 @@ function arretSceneActif(){
     try{ return essaiActif("scene_arret") && essaiActif("scenes") && !premiersPasEnCours(); }catch(e){ return false; }
 }
 // Les mots de la scene (fichier genere par construire.py), avec leur carte.
+// v901 : la scene lue reste en memoire -- elle etait retelechargee a CHAQUE
+// seance. Seule la scene est gardee ; les mots vus se recalculent a chaque fois.
+const SCENES_LUES = new Map();
 async function motsVusDeScene(nom){
     const url = baseScenes() + "scene-" + nom + (LANGUE_APPRISE === "es" ? ".es" : "") + ".js";
-    const texte = await (await fetch(url, { cache: "no-cache" })).text();
-    const scene = JSON.parse(texte.slice(texte.indexOf("{"), texte.lastIndexOf("}") + 1));
+    if(!SCENES_LUES.has(url)){
+        SCENES_LUES.set(url, fetch(url, { cache: "no-cache" }).then(r => r.text())
+            .then(texte => JSON.parse(texte.slice(texte.indexOf("{"), texte.lastIndexOf("}") + 1))));
+        SCENES_LUES.get(url).catch(() => SCENES_LUES.delete(url));
+    }
+    const scene = await SCENES_LUES.get(url);
     const vus = new Map();
     const exclus = scene.exclus || [];
     (scene.points || []).forEach(p => {
@@ -49475,9 +49483,35 @@ function majTuileSeance(){
 // ============ LA PILULE DE LA SEANCE (v881) ============
 // Elle lit ce que les fonctions de la porte ont deja ecrit (titre, niveau en
 // clair, compte du jour) au lieu de le recalculer : une seule source.
+// v901 (Jacques, 20 oct. 2026) : « quand on clique pour la seance du jour, il y
+// a un leger delai ; est-ce que ca peut etre instantane ? ». Mesure : 0,55 s au
+// PREMIER toucher (fichiers locaux ; plus au telephone, sur le reseau), 0,06 s au
+// second. ouvrirSeanceDuJour() attend, l'un apres l'autre, la frequence, la
+// grammaire, l'A1 voyage, Premiers pas, la scene du jour : tous gardent leur
+// resultat, seul le premier appel coute. On les lance donc ici, en silence, un
+// instant apres que l'accueil est peint -- le temps qu'on lise l'ecran. Rien que
+// des LECTURES : preparerA1Voyage() fait avancer l'escale, on n'appelle que son
+// chargement. Une fois par ouverture de l'app (la grammaire se recalcule seule si
+// le niveau change, prechargerGrammaireSeance compare sa cle).
+let seancePrechauffee = false;
+function prechaufferSeance(){
+    if(seancePrechauffee) return;
+    seancePrechauffee = true;
+    setTimeout(() => {
+        // La frequence : lue, pas appliquee (voir frequenceLueDAvance).
+        try{ if(!rangsFrequence && !chargementFrequence && !frequenceLueDAvance)
+            frequenceLueDAvance = fetch(urlDonnees('frequence.json'), { cache: 'no-cache' })
+                .then(r => r.ok ? r.json() : null).catch(() => null); }catch(e){}
+        try{ if(essaiActif("premiers_pas")) chargerPremiersPas(); }catch(e){}
+        try{ if(niveauSeance() === "A1" || a1VoyageEnCours()) chargerA1Voyage(); }catch(e){}
+        try{ if(arretSceneActif()) motsVusDeScene(sceneDuJour().nom).catch(() => {}); }catch(e){}
+        try{ if(essaiActif("phrases")) prechargerGrammaireSeance().catch(() => {}); }catch(e){}
+    }, 700);
+}
 function majPiluleSeance(){
     const pil = document.getElementById("seancePilule");
     if(!pil) return;
+    prechaufferSeance();
     let pp = false;
     try{ pp = premiersPasEnCours(); }catch(e){}
     const niveau = niveauSeance();
