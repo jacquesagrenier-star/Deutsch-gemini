@@ -6296,6 +6296,36 @@ body[data-theme="dark"] .flashcard.carte-adjectif.flipped .flashcard-back{
    voyait qu'une flamme et un chiffre, et rien ne disait « jours d'affilee ».
    Demande de Jacques. */
 .serie-unite{font-weight:600; margin-inline-start:2px;}
+/* v911 : la flamme en bouton, tout au bout de la ligne, plus grosse et pleine ;
+   le mot ne se lit plus que dans la bulle et par les lecteurs d'ecran. */
+button.serie-salut{order:9; margin-inline-start:2px; padding:3px 9px 3px 7px; gap:3px; font:inherit; font-size:16px; font-weight:900;
+    color:#1C2430; cursor:pointer;}
+button.serie-salut svg{width:20px; height:20px; fill:#F0A23A; stroke:#B9770E; stroke-width:1.6;}
+button.serie-salut .serie-unite{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
+body[data-theme="dark"] button.serie-salut{color:#F2F2F6;}
+body[data-theme="dark"] button.serie-salut svg{fill:#F0B456; stroke:#F7C77A;}
+.cal-serie{position:fixed; z-index:9000; background:#fffdf8; border:1.5px solid #e6dfd3; border-radius:16px; padding:12px 14px 10px;
+    box-shadow:0 12px 30px -12px rgba(28,36,48,.35); color:#1C2430; width:min(300px, calc(100vw - 32px));}
+.cal-serie-titre{font-weight:900; font-size:15px; margin:0 0 2px; display:flex; align-items:center; gap:6px;}
+.cal-serie-titre svg{width:18px; height:18px; fill:#F0A23A; stroke:#B9770E; stroke-width:1.6;}
+.cal-serie-sous{font-size:12px; color:#576177; margin:0 0 10px;}
+.cal-serie-grille{display:grid; grid-template-columns:repeat(7, 1fr); gap:6px 4px; text-align:center;}
+.cal-serie-jour{font-size:10.5px; font-weight:800; color:#8a93a3; text-transform:uppercase;}
+.cal-serie-case{width:30px; height:30px; margin:0 auto; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:11.5px; font-weight:800; color:#8a93a3; background:rgba(28,36,48,.05);}
+.cal-serie-case.fait{background:#F0A23A; color:#1C2430; box-shadow:inset 0 0 0 1px rgba(185,119,14,.5);}
+.cal-serie-case.auj{box-shadow:inset 0 0 0 2px #1C2430;}
+.cal-serie-case.fait.auj{box-shadow:inset 0 0 0 2px #1C2430;}
+.cal-serie-enc{margin:10px 0 0; padding:8px 10px; border-radius:10px; background:rgba(46,139,87,.12); color:#1f6b42;
+    font-size:13px; font-weight:800; line-height:1.35; text-align:center;}
+body[data-theme="dark"] .cal-serie-enc{color:#7fd3a5;}
+.cal-serie-legende{display:flex; gap:12px; justify-content:center; margin-top:10px; font-size:11.5px; color:#576177;}
+.cal-serie-legende i{display:inline-block; width:10px; height:10px; border-radius:50%; margin-inline-end:4px; vertical-align:-1px;}
+body[data-theme="dark"] .cal-serie{background:#232a34; border-color:#2c333d; color:#F2F2F6;}
+body[data-theme="dark"] .cal-serie-sous, body[data-theme="dark"] .cal-serie-legende{color:#a9b2c0;}
+body[data-theme="dark"] .cal-serie-case{background:rgba(255,255,255,.07); color:#a9b2c0;}
+body[data-theme="dark"] .cal-serie-case.fait{background:#F0B456; color:#1C2430;}
+body[data-theme="dark"] .cal-serie-case.auj{box-shadow:inset 0 0 0 2px #F2F2F6;}
 body[data-theme="dark"] .serie-salut{color:#F2F2F6;}
 body[data-theme="dark"] .serie-salut svg{stroke:#F0B456;}
 
@@ -6999,30 +7029,33 @@ body[data-theme="dark"] .cp-tl-teinte, body[data-theme="dark"] .rp-teinte{ borde
    plus ; la repetition espacee, elle, ne change pas. « Pour le retravailler »
    (Mettre de cote) reste : ce n'est pas une echeance, c'est ce que fait le bouton. */
 .judge-good{position:relative; overflow:hidden; color:#fff; border-color:transparent;
-    background:linear-gradient(180deg, rgba(62,178,118,.92), rgba(38,150,96,.88));
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.35), inset 0 0 8px 2px rgba(255,255,255,.3),
-        inset 0 -10px 14px -10px rgba(8,70,40,.55), 0 6px 14px -8px rgba(8,70,40,.55);}
-.judge-good:hover{background:linear-gradient(180deg, rgba(70,186,126,.95), rgba(44,158,102,.92));}
+    background:linear-gradient(180deg, rgba(40,122,76,.86), rgba(34,108,67,.82));
+    -webkit-backdrop-filter:blur(8px) saturate(1.5); backdrop-filter:blur(8px) saturate(1.5);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6), inset 0 0 10px 3px rgba(255,255,255,.35), 0 6px 14px -8px rgba(8,70,40,.45);}
+.judge-good:hover{background:linear-gradient(180deg, rgba(46,132,84,.9), rgba(38,116,72,.86));}
 .judge-good::after{content:""; position:absolute; top:3px; left:12%; width:76%; height:6px; border-radius:999px; pointer-events:none;
     background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.75) 50%, rgba(255,255,255,0)); filter:blur(1px);}
 .judge-good .judge-bille{width:auto; height:auto; background:none; box-shadow:none;}
 .judge-good .judge-bille::before{display:none;}
-.judge-good .judge-bille svg{width:26px; height:26px; stroke-width:3.4; filter:drop-shadow(0 1px 1px rgba(8,60,35,.35));}
+/* v911 (variante A de .claude/maquette-verre-lime.html) : le verre plus clair, le crochet plus gros ;
+   la teinte est celle de la boite « Bravo » (.cp-retour.bon, #2E8B57), trois crans plus foncee
+   (echantillon 3 de .claude/maquette-vert-bravo.html) -- Jacques. */
+.judge-good .judge-bille svg{width:38px; height:38px; stroke-width:3.6; filter:drop-shadow(0 1px 1.5px rgba(8,60,35,.4));}
 .judge-good .srs-pips, .judge-good .srs-ladder-text, #judgeEcheanceAgain, #judgeEcheanceKnown{display:none !important;}
 body[data-theme="dark"] .judge-good{color:#fff; border-color:transparent;
-    background:linear-gradient(180deg, rgba(62,178,118,.88), rgba(38,150,96,.82));}
+    background:linear-gradient(180deg, rgba(46,136,86,.88), rgba(40,124,78,.84));}
 /* v910 : LES BOUTONS « CONTINUER » (et « Verifier », a la meme place) dans le
    MEME VERRE VERT que le ✓. Jacques : « le glacis, exactement comme pour la
    seance du jour », puis « la meme vert que le crochet ». */
 .cp-actions button.primary{position:relative; overflow:hidden; color:#fff; border:0;
-    background:linear-gradient(180deg, rgba(62,178,118,.92), rgba(38,150,96,.88));
-    box-shadow:inset 0 0 0 1px rgba(255,255,255,.35), inset 0 0 8px 2px rgba(255,255,255,.3),
-        inset 0 -10px 14px -10px rgba(8,70,40,.55), 0 6px 14px -8px rgba(8,70,40,.55);}
-.cp-actions button.primary:hover{background:linear-gradient(180deg, rgba(70,186,126,.95), rgba(44,158,102,.92));}
+    background:linear-gradient(180deg, rgba(40,122,76,.86), rgba(34,108,67,.82));
+    -webkit-backdrop-filter:blur(8px) saturate(1.5); backdrop-filter:blur(8px) saturate(1.5);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6), inset 0 0 10px 3px rgba(255,255,255,.35), 0 6px 14px -8px rgba(8,70,40,.45);}
+.cp-actions button.primary:hover{background:linear-gradient(180deg, rgba(46,132,84,.9), rgba(38,116,72,.86));}
 .cp-actions button.primary::after{content:""; position:absolute; top:3px; left:12%; width:76%; height:6px; border-radius:999px; pointer-events:none;
     background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.75) 50%, rgba(255,255,255,0)); filter:blur(1px);}
 body[data-theme="dark"] .cp-actions button.primary{color:#fff;
-    background:linear-gradient(180deg, rgba(62,178,118,.88), rgba(38,150,96,.82));}
+    background:linear-gradient(180deg, rgba(46,136,86,.88), rgba(40,124,78,.84));}
 /* v903 : LE PROFIL D'APPRENTISSAGE (essai « profil »), voir ouvrirProfil(). */
 #profil{padding-top:18px;}
 .pf-etapes{display:flex; gap:6px; margin:0 0 20px;}
@@ -7431,7 +7464,6 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              Le nombre seul a l'ecran, l'unite pour les lecteurs d'ecran : sur
              une ligne deja partagee, « 12 jours » en toutes lettres ne tiendrait
              pas dans toutes les langues. -->
-        <span id="serieAccueil" class="serie-salut hidden"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.7 2.2-4.8.2 1.6 1 2.6 2 3 0-3.1-.4-5.6.3-8.2z"/></svg><span id="streakCount">0</span><span id="serieUnite" class="serie-unite">jours</span></span>
     <label class="search-launch" for="homeSearchInput">
         <svg viewBox="0 0 24 24"><path d="M10.5 7.4C9.2 6.2 7.5 5.6 5.2 5.6c-.9 0-1.7.1-2.4.2v9.8c.7-.1 1.5-.2 2.4-.2 2.3 0 4 .6 5.3 1.8"/><path d="M10.5 7.4c1.3-1.2 3-1.8 5.3-1.8.9 0 1.7.1 2.4.2v4.4"/><path d="M10.5 7.4v9.8"/><circle cx="16.6" cy="15.4" r="3.1"/><path d="M18.9 17.7 21.4 20.2"/></svg>
         <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
@@ -7441,6 +7473,13 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                onfocus="ouvrirRechercheDepuisAccueil()"
                oninput="ouvrirRechercheDepuisAccueil(this.value)">
     </label>
+        <!-- v911 : LA FLAMME TOUT AU BOUT, ET ELLE S'OUVRE. Jacques, 21 oct. 2026 :
+             « mets la flamme, mets le chiffre, puis place ca le plus a droite
+             possible », pour ne plus couper « Bon apres-midi Jacq… » ; « assez
+             grosse pour qu'on la voie bien » ; « si on clique dessus, la personne
+             pourrait voir, pendant les deux dernieres semaines, ou elle a eu des
+             seances ». L'unite reste pour les lecteurs d'ecran, et dans la bulle. -->
+        <button type="button" id="serieAccueil" class="serie-salut hidden" onclick="ouvrirCalendrierSerie(event)" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.7 2.2-4.8.2 1.6 1 2.6 2 3 0-3.1-.4-5.6.3-8.2z"/></svg><span id="streakCount">0</span><span id="serieUnite" class="serie-unite">jours</span></button>
     </div>
 
     <h1>
@@ -8160,7 +8199,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v910</span>
+    <span class="subtitle-version">v911</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11846,6 +11885,14 @@ const I18N = {
         home_streak_unit: "jours",
         home_streak_unit_one: "jour",
         home_serie_suffixe: "d'affilée",
+        serie_deux_semaines: "Les deux dernières semaines",
+        serie_jour_fait: "séance faite",
+        serie_jour_vide: "pas de séance",
+        serie_enc_semaine: "Une semaine sans manquer un jour, bravo ! L'habitude est prise.",
+        serie_enc_aujourdhui: "Une séance aujourd'hui, et ta série continue.",
+        serie_enc_regulier: "Très régulier : c'est comme ça que les mots restent.",
+        serie_enc_rythme: "Beau rythme ! Quelques minutes par jour suffisent.",
+        serie_enc_debut: "Chaque jour compte : une petite séance, et c'est reparti.",
         home_week_unit: "cette semaine",
         en_module_mastered_label: "✅ Maîtrisé",
         en_module_mastered_hint: "{pct} % du module. Il te reste {reste} cartes à faire passer en « maîtrisé ».",
@@ -13222,6 +13269,14 @@ const I18N = {
         home_streak_unit: "days",
         home_streak_unit_one: "day",
         home_serie_suffixe: "in a row",
+        serie_deux_semaines: "The last two weeks",
+        serie_jour_fait: "session done",
+        serie_jour_vide: "no session",
+        serie_enc_semaine: "A full week without missing a day, well done! The habit is set.",
+        serie_enc_aujourdhui: "One session today and your streak keeps going.",
+        serie_enc_regulier: "Very regular: that's how words stick.",
+        serie_enc_rythme: "Nice rhythm! A few minutes a day is enough.",
+        serie_enc_debut: "Every day counts: one short session and you're back on track.",
         home_week_unit: "this week",
         en_module_mastered_label: "✅ Mastered",
         en_module_mastered_hint: "{pct}% of the module. {reste} cards still to move into “mastered”.",
@@ -14600,6 +14655,14 @@ const I18N = {
         home_streak_unit: "gün",
         home_streak_unit_one: "gün",
         home_serie_suffixe: "üst üste",
+        serie_deux_semaines: "Son iki hafta",
+        serie_jour_fait: "çalışıldı",
+        serie_jour_vide: "çalışılmadı",
+        serie_enc_semaine: "Hiç gün kaçırmadan bir hafta, bravo! Alışkanlık oturdu.",
+        serie_enc_aujourdhui: "Bugün bir oturum, serin devam etsin.",
+        serie_enc_regulier: "Çok düzenlisin: kelimeler böyle akılda kalır.",
+        serie_enc_rythme: "Güzel tempo! Günde birkaç dakika yeter.",
+        serie_enc_debut: "Her gün önemli: kısa bir oturum ve yeniden yoldasın.",
         home_week_unit: "bu hafta",
         en_module_mastered_label: "✅ Öğrenildi",
         en_module_mastered_hint: "Modülün %{pct} kadarı. {reste} kart hâlâ “öğrenildi” durumuna geçmedi.",
@@ -16780,6 +16843,14 @@ const I18N = {
         home_streak_unit: "днів",
         home_streak_unit_one: "день",
         home_serie_suffixe: "поспіль",
+        serie_deux_semaines: "Останні два тижні",
+        serie_jour_fait: "заняття було",
+        serie_jour_vide: "заняття не було",
+        serie_enc_semaine: "Тиждень без жодного пропуску, браво! Звичка вже є.",
+        serie_enc_aujourdhui: "Одне заняття сьогодні — і серія триває.",
+        serie_enc_regulier: "Дуже регулярно: саме так слова запам'ятовуються.",
+        serie_enc_rythme: "Гарний ритм! Кількох хвилин на день достатньо.",
+        serie_enc_debut: "Кожен день важливий: коротке заняття — і ти знову в ритмі.",
         home_week_unit: "цього тижня",
         home_daily_goal_label: "🎯 Ціль на день",
         home_week_zero: "Цього тижня: 0",
@@ -18352,6 +18423,14 @@ const I18N = {
         home_streak_unit: "روز",
         home_streak_unit_one: "روز",
         home_serie_suffixe: "پیاپی",
+        serie_deux_semaines: "دو هفتهٔ گذشته",
+        serie_jour_fait: "جلسه انجام شد",
+        serie_jour_vide: "بدون جلسه",
+        serie_enc_semaine: "یک هفته بدون حتی یک روز غیبت، آفرین! عادت شکل گرفته.",
+        serie_enc_aujourdhui: "یک جلسه امروز، و پیاپی‌ات ادامه دارد.",
+        serie_enc_regulier: "خیلی منظم: واژه‌ها همین‌طور در ذهن می‌مانند.",
+        serie_enc_rythme: "ریتم خوبی است! چند دقیقه در روز کافی است.",
+        serie_enc_debut: "هر روز مهم است: یک جلسهٔ کوتاه و دوباره در مسیری.",
         home_week_unit: "این هفته",
         en_module_mastered_label: "✅ آموخته",
         en_module_mastered_hint: "{pct} ٪ از این بخش. {reste} کارت مانده تا به «آموخته» برسند.",
@@ -19388,6 +19467,14 @@ const I18N = {
         home_streak_unit: "أيام",
         home_streak_unit_one: "يوم",
         home_serie_suffixe: "على التوالي",
+        serie_deux_semaines: "الأسبوعان الأخيران",
+        serie_jour_fait: "جلسة منجزة",
+        serie_jour_vide: "بلا جلسة",
+        serie_enc_semaine: "أسبوع كامل دون أن يفوتك يوم، أحسنت! العادة ترسّخت.",
+        serie_enc_aujourdhui: "جلسة واحدة اليوم وتستمر سلسلتك.",
+        serie_enc_regulier: "منتظم جدًا: هكذا تبقى الكلمات في الذاكرة.",
+        serie_enc_rythme: "إيقاع جميل! بضع دقائق في اليوم تكفي.",
+        serie_enc_debut: "كل يوم مهم: جلسة قصيرة وتعود إلى المسار.",
         home_week_unit: "هذا الأسبوع",
         en_module_mastered_label: "✅ متقَن",
         en_module_mastered_hint: "{pct} % من الوحدة. تبقّت لك {reste} بطاقات لتنقلها إلى «متقَن».",
@@ -20191,6 +20278,14 @@ const I18N = {
         home_streak_unit: "dias",
         home_streak_unit_one: "dia",
         home_serie_suffixe: "em sequência",
+        serie_deux_semaines: "As duas últimas semanas",
+        serie_jour_fait: "sessão feita",
+        serie_jour_vide: "sem sessão",
+        serie_enc_semaine: "Uma semana sem faltar um dia, parabéns! O hábito pegou.",
+        serie_enc_aujourdhui: "Uma sessão hoje e a sua sequência continua.",
+        serie_enc_regulier: "Muito regular: é assim que as palavras ficam.",
+        serie_enc_rythme: "Belo ritmo! Alguns minutos por dia bastam.",
+        serie_enc_debut: "Cada dia conta: uma sessão curta e você volta ao ritmo.",
         home_week_unit: "esta semana",
         en_module_mastered_label: "✅ Dominado",
         en_module_mastered_hint: "{pct} % do módulo. Faltam {reste} cartas para passar a “dominada”.",
@@ -21608,6 +21703,14 @@ const I18N = {
         home_streak_unit: "dni",
         home_streak_unit_one: "dzień",
         home_serie_suffixe: "z rzędu",
+        serie_deux_semaines: "Ostatnie dwa tygodnie",
+        serie_jour_fait: "sesja zrobiona",
+        serie_jour_vide: "bez sesji",
+        serie_enc_semaine: "Tydzień bez opuszczonego dnia, brawo! Nawyk już jest.",
+        serie_enc_aujourdhui: "Jedna sesja dziś i twoja seria trwa dalej.",
+        serie_enc_regulier: "Bardzo regularnie: tak właśnie słowa zostają w pamięci.",
+        serie_enc_rythme: "Dobry rytm! Kilka minut dziennie wystarczy.",
+        serie_enc_debut: "Każdy dzień się liczy: krótka sesja i wracasz do rytmu.",
         home_week_unit: "w tym tygodniu",
         en_module_mastered_label: "✅ Opanowane",
         en_module_mastered_hint: "{pct} % modułu. Do „opanowanych” zostało jeszcze kart: {reste}.",
@@ -23023,6 +23126,14 @@ const I18N = {
         home_streak_unit: "дн.",
         home_streak_unit_one: "день",
         home_serie_suffixe: "подряд",
+        serie_deux_semaines: "Последние две недели",
+        serie_jour_fait: "занятие было",
+        serie_jour_vide: "занятия не было",
+        serie_enc_semaine: "Неделя без пропусков, браво! Привычка сложилась.",
+        serie_enc_aujourdhui: "Одно занятие сегодня — и серия продолжается.",
+        serie_enc_regulier: "Очень регулярно: так слова и запоминаются.",
+        serie_enc_rythme: "Хороший ритм! Нескольких минут в день достаточно.",
+        serie_enc_debut: "Каждый день важен: короткое занятие — и ты снова в ритме.",
         home_week_unit: "на этой неделе",
         en_module_mastered_label: "✅ Выучено",
         en_module_mastered_hint: "{pct} % модуля. Осталось перевести в «выученные» карточек: {reste}.",
@@ -31748,7 +31859,7 @@ function joursTravailles(){
         // jamais » est la seule promesse de ce compteur.
         try{ localStorage.setItem(directionScopedKey(JOURS_KEY), JSON.stringify(v)); }catch(e){}
     }
-    return { n: v.n || 0, dernier: v.dernier || "" };
+    return { n: v.n || 0, dernier: v.dernier || "", j: Array.isArray(v.j) ? v.j : [] };
 }
 
 function amorceJoursTravailles(){
@@ -31765,6 +31876,8 @@ function noterJourTravaille(){
     const jour = getTodayStr();
     if(v.dernier === jour) return;
     v.dernier = jour; v.n += 1;
+    // v911 : les dates elles-memes, pour le calendrier de la flamme (60 au plus).
+    v.j = (v.j || []).filter(d => d !== jour).concat([jour]).slice(-60);
     try{ localStorage.setItem(directionScopedKey(JOURS_KEY), JSON.stringify(v)); }catch(e){}
 }
 const STREAK_KEY = PREFIXE_STOCKAGE + "streak";
@@ -32496,6 +32609,87 @@ function cycleHomeLevel(){
 
 // « 2 jours », et en ukrainien le pluriel suit le nombre : 2-4 -> « дні »,
 // 5-20 -> « днів », sauf 12-14 qui restent en « днів ». « 2 днів » est faux.
+// v911 : LES DEUX DERNIERES SEMAINES, A LA FLAMME. Un jour compte s'il a laisse
+// une trace : la liste des jours travailles (depuis la v911), le journal de
+// memorisation (60 jours d'horodatages, comme amorceJoursTravailles), ou une
+// activite aujourd'hui. Rien de nouveau a sauvegarder au nuage : le journal y est.
+function joursActifs(){
+    const jours = {};
+    try{ joursTravailles().j.forEach(d => { jours[d] = 1; }); }catch(e){}
+    try{
+        const log = JSON.parse(localStorage.getItem(directionScopedKey(MASTERY_LOG_KEY)) || "[]") || [];
+        log.forEach(ts => { jours[getTodayStr(new Date(ts))] = 1; });
+    }catch(e){}
+    try{ if(getDailyActivityCount() > 0) jours[getTodayStr()] = 1; }catch(e){}
+    return jours;
+}
+let calSerie = null;
+function fermerCalendrierSerie(){
+    if(calSerie){ calSerie.remove(); calSerie = null; }
+    document.removeEventListener("click", clicHorsCalSerie, true);
+    window.removeEventListener("scroll", fermerCalendrierSerie, true);
+}
+function clicHorsCalSerie(e){ if(calSerie && !calSerie.contains(e.target)) fermerCalendrierSerie(); }
+function ouvrirCalendrierSerie(ev){
+    if(ev) ev.stopPropagation();
+    if(calSerie){ fermerCalendrierSerie(); return; }
+    const ancre = document.getElementById("serieAccueil");
+    if(!ancre) return;
+    const n = getStreakCount() || 0;
+    const actifs = joursActifs();
+    const creer = (tag, cls, txt) => { const e = document.createElement(tag); if(cls) e.className = cls; if(txt !== undefined) e.textContent = txt; return e; };
+    const b = creer("div", "cal-serie");
+    b.setAttribute("role", "dialog");
+    const titre = creer("p", "cal-serie-titre");
+    titre.innerHTML = ancre.querySelector("svg").outerHTML;
+    titre.appendChild(document.createTextNode(n + " " + uniteSerie(n) + " " + t("home_serie_suffixe")));
+    b.appendChild(titre);
+    b.appendChild(creer("p", "cal-serie-sous", t("serie_deux_semaines")));
+    const grille = creer("div", "cal-serie-grille");
+    // 14 jours, alignes sur la semaine : la derniere ligne finit aujourd'hui.
+    const auj = new Date(); auj.setHours(12, 0, 0, 0);
+    const jours = [];
+    for(let k = 13; k >= 0; k--){ const d = new Date(auj); d.setDate(auj.getDate() - k); jours.push(d); }
+    let initiale;
+    try{ const f = new Intl.DateTimeFormat(getUiLang(), { weekday: "narrow" }); initiale = d => f.format(d); }
+    catch(e){ initiale = d => "LMMJVSD"[(d.getDay() + 6) % 7]; }
+    jours.slice(7).forEach(d => grille.appendChild(creer("span", "cal-serie-jour", initiale(d))));
+    jours.forEach((d, i) => {
+        const cle = getTodayStr(d);
+        const c = creer("span", "cal-serie-case" + (actifs[cle] ? " fait" : "") + (i === 13 ? " auj" : ""), String(d.getDate()));
+        c.title = d.toLocaleDateString(getUiLang(), { weekday: "long", day: "numeric", month: "long" })
+                + " · " + t(actifs[cle] ? "serie_jour_fait" : "serie_jour_vide");
+        grille.appendChild(c);
+    });
+    b.appendChild(grille);
+    // v911 : UNE PHRASE D'ENCOURAGEMENT, selon les deux semaines. Jacques :
+    // « dependant du resultat ». Jamais de reproche : une absence ne se compte
+    // pas, seul ce qui a ete fait se nomme (voir la note de joursTravailles()).
+    const faits = jours.filter(d => actifs[getTodayStr(d)]).length;
+    const aujFait = !!actifs[getTodayStr(auj)];
+    const cleEnc = (n >= 7 && aujFait) ? "serie_enc_semaine"
+                 : (!aujFait && n >= 1) ? "serie_enc_aujourdhui"
+                 : faits >= 10 ? "serie_enc_regulier"
+                 : faits >= 4 ? "serie_enc_rythme"
+                 : "serie_enc_debut";
+    b.appendChild(creer("p", "cal-serie-enc", t(cleEnc)));
+    const leg = creer("div", "cal-serie-legende");
+    const l1 = creer("span"); const p1 = creer("i"); p1.style.background = "#F0A23A"; l1.append(p1, document.createTextNode(t("serie_jour_fait")));
+    const l2 = creer("span"); const p2 = creer("i"); p2.style.background = "rgba(28,36,48,.12)"; l2.append(p2, document.createTextNode(t("serie_jour_vide")));
+    leg.append(l1, l2);
+    b.appendChild(leg);
+    document.body.appendChild(b);
+    calSerie = b;
+    const ra = ancre.getBoundingClientRect();
+    const L = b.offsetWidth;
+    b.style.left = Math.max(16, Math.min(ra.right - L, innerWidth - 16 - L)) + "px";
+    b.style.top = (ra.bottom + 8) + "px";
+    setTimeout(() => {
+        document.addEventListener("click", clicHorsCalSerie, true);
+        window.addEventListener("scroll", fermerCalendrierSerie, true);
+    }, 0);
+}
+
 function uniteSerie(n){
     if(getUiLang() === "uk" && n !== 1){
         const d = n % 10, c = n % 100;
@@ -41983,7 +42177,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 910;
+const APP_VERSION = 911;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

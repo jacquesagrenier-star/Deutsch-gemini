@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vert Bravo</title>
+<style>
+body{margin:0; background:#f6f1e8; font-family:"Nunito", system-ui, sans-serif; color:#1C2430; padding:16px;}
+h1{font-size:18px; margin:0 0 4px;}
+p.intro{margin:0 0 16px; font-size:13px; color:#576177;}
+.grille{display:grid; grid-template-columns:repeat(auto-fit, minmax(330px, 1fr)); gap:16px;}
+.carte{background:#fffdf8; border:1.5px solid #e6dfd3; border-radius:18px; padding:14px;}
+.carte h2{font-size:15px; margin:0 0 2px;}
+.carte small{display:block; font-size:12px; color:#576177; margin-bottom:12px;}
+.bravo{padding:10px 12px; border-radius:12px; font-weight:700; background:rgba(46,139,87,.12); color:#1f6b42; margin-bottom:12px;}
+.ligne{display:grid; grid-template-columns:92px 1fr; gap:10px; align-items:stretch;}
+.ok, .continuer{position:relative; overflow:hidden; border:0; border-radius:14px; color:#fff;
+    -webkit-backdrop-filter:blur(8px) saturate(1.5); backdrop-filter:blur(8px) saturate(1.5);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.55), inset 0 0 10px 3px rgba(255,255,255,.3), 0 6px 14px -8px rgba(8,60,35,.5);}
+.ok{display:flex; align-items:center; justify-content:center; min-height:66px;}
+.ok svg{width:38px; height:38px; fill:none; stroke:#fff; stroke-width:3.6; stroke-linecap:round; stroke-linejoin:round; filter:drop-shadow(0 1px 1.5px rgba(8,50,30,.45));}
+.continuer{font:900 14px inherit; letter-spacing:.06em; text-shadow:0 1px 2px rgba(8,50,30,.35);}
+.ok::after, .continuer::after{content:""; position:absolute; top:3px; left:12%; width:76%; height:6px; border-radius:999px;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.75) 50%, rgba(255,255,255,0)); filter:blur(1px);}
+.v1 .ok, .v1 .continuer{background:linear-gradient(180deg, rgba(52,148,94,.74), rgba(46,139,87,.68));}
+.v2 .ok, .v2 .continuer{background:linear-gradient(180deg, rgba(46,136,86,.8), rgba(40,124,78,.76));}
+.v3 .ok, .v3 .continuer{background:linear-gradient(180deg, rgba(40,122,76,.86), rgba(34,108,67,.82));}
+.v4 .ok, .v4 .continuer{background:linear-gradient(180deg, rgba(34,108,67,.9), rgba(27,92,57,.88));}
+</style>
+</head>
+<body>
+<h1>Le vert de « Bravo », plus foncé : quatre échantillons</h1>
+<p class="intro">La même teinte que la boîte « Bravo » (#2E8B57), du plus clair (1) au plus foncé (4), toujours en verre.</p>
+<div class="grille">
+  <div class="carte v1"><h2>1 · Un cran plus foncé</h2><small>Proche de la v911 ; le verre se voit le plus.</small>
+    <div class="bravo">Bravo ! la habitación</div>
+    <div class="ligne"><div class="ok"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></div><button class="continuer">CONTINUER</button></div></div>
+  <div class="carte v2"><h2>2 · Deux crans</h2><small>Le vert de « Bravo » bien affirmé.</small>
+    <div class="bravo">Bravo ! la habitación</div>
+    <div class="ligne"><div class="ok"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></div><button class="continuer">CONTINUER</button></div></div>
+  <div class="carte v3"><h2>3 · Trois crans</h2><small>Un vert sapin clair ; le blanc ressort nettement.</small>
+    <div class="bravo">Bravo ! la habitación</div>
+    <div class="ligne"><div class="ok"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></div><button class="continuer">CONTINUER</button></div></div>
+  <div class="carte v4"><h2>4 · Le plus foncé</h2><small>Presque le vert du texte « Bravo » ; le plus contrasté.</small>
+    <div class="bravo">Bravo ! la habitación</div>
+    <div class="ligne"><div class="ok"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></div><button class="continuer">CONTINUER</button></div></div>
+</div>
+</body>
+</html>
