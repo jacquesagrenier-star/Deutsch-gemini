@@ -6842,6 +6842,7 @@ span.pa-sens{cursor:default;}
 .pa-liste .seance-niveau.on{background:#1C2430; border-color:#1C2430; color:#fff;}
 .pa-liste-pied{font-size:11.5px; color:#576177; margin:7px 2px 0; line-height:1.35;}
 .pa-liste-liens{display:flex; flex-direction:column; align-items:flex-start; gap:4px; margin-top:7px;}
+.pa-revoir{display:contents;}   /* v905 : les liens « ↺ Revoir … » */
 .pa-lien{border:0; background:none; padding:3px 2px; font:inherit; font-size:12.5px; font-weight:800; color:#9a6a12; cursor:pointer; text-align:start;}
 #spDateEdit .av-date-edit{margin-top:8px; color:#1C2430;}
 .orb-seance.pilule-mode{padding:0; background:none !important; border:0; box-shadow:none !important; border-radius:999px; overflow:visible; cursor:default;}
@@ -7603,6 +7604,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                     <p class="pa-liste-pied" id="spClair"></p>
                     <div id="spDateEdit"></div>
                     <div class="pa-liste-liens">
+                        <div class="pa-revoir" id="spRevoir"></div>
                         <button type="button" class="pa-lien hidden" id="spDate" onclick="ouvrirDateSeance()"></button>
                         <button type="button" class="pa-lien hidden" id="spProfil" onclick="fermerListeSeance(); ouvrirProfil(() => goHome());" data-i18n="profil_lien">Ma façon d'apprendre ›</button>
                         <button type="button" class="pa-lien" onclick="fermerListeSeance(); ouvrirInfoProgression();" data-i18n="carte_info_titre">Comment lire ta progression</button>
@@ -8101,7 +8103,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v904</span>
+    <span class="subtitle-version">v905</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11613,6 +11615,12 @@ const I18N = {
         rp_q_dire: "Dis ce nombre à voix haute",
         rp_q_dire_couleur: "Dis cette couleur à voix haute",
         rp_q_teinte: "Quelle couleur est-ce ?",
+        revoir_pp_lien: "↺ Revoir les premiers pas",
+        revoir_niveau_lien: "↺ Revoir le niveau {n}",
+        revoir_niveau_clair: "Tu revois le niveau {n} depuis le début : {f} / {t} mots",
+        revoir_niveau_toast: "La séance reprend le niveau {n} depuis le début. Rien n'est effacé : tes mots restent appris.",
+        revoir_pp_toast: "Les premiers pas reprennent à l'étape 1. Rien n'est effacé.",
+        revoir_niveau_fini: "Tu as revu tout le niveau {n} !",
         rp_q_sens: "Écoute et choisis le sens",
         rp_q_suite: "Lequel vient après ?",
         rp_q_suite_dire: "Dis la suite à voix haute",
@@ -12983,6 +12991,12 @@ const I18N = {
         rp_q_dire: "Say this number out loud",
         rp_q_dire_couleur: "Say this color out loud",
         rp_q_teinte: "Which color is this?",
+        revoir_pp_lien: "↺ Review the first steps",
+        revoir_niveau_lien: "↺ Review level {n}",
+        revoir_niveau_clair: "You're reviewing level {n} from the start: {f} / {t} words",
+        revoir_niveau_toast: "Your session goes back through level {n} from the start. Nothing is erased: your words stay learned.",
+        revoir_pp_toast: "First steps start again at step 1. Nothing is erased.",
+        revoir_niveau_fini: "You've reviewed all of level {n}!",
         rp_q_sens: "Listen and pick the meaning",
         rp_q_suite: "Which one comes next?",
         rp_q_suite_dire: "Say the sequence out loud",
@@ -14355,6 +14369,12 @@ const I18N = {
         rp_q_dire: "Bu sayıyı yüksek sesle söyle",
         rp_q_dire_couleur: "Bu rengi yüksek sesle söyle",
         rp_q_teinte: "Bu hangi renk?",
+        revoir_pp_lien: "↺ İlk adımları tekrarla",
+        revoir_niveau_lien: "↺ {n} seviyesini tekrarla",
+        revoir_niveau_clair: "{n} seviyesini baştan tekrarlıyorsun: {f} / {t} kelime",
+        revoir_niveau_toast: "Oturumun {n} seviyesini baştan alıyor. Hiçbir şey silinmez: öğrendiğin kelimeler kalır.",
+        revoir_pp_toast: "İlk adımlar 1. adımdan yeniden başlıyor. Hiçbir şey silinmez.",
+        revoir_niveau_fini: "{n} seviyesinin tamamını tekrarladın!",
         rp_q_sens: "Dinle ve anlamını seç",
         rp_q_suite: "Sonra hangisi gelir?",
         rp_q_suite_dire: "Sırayı yüksek sesle söyle",
@@ -16044,6 +16064,12 @@ const I18N = {
         rp_q_dire: "Скажи це число вголос",
         rp_q_dire_couleur: "Скажи цей колір вголос",
         rp_q_teinte: "Який це колір?",
+        revoir_pp_lien: "↺ Повторити перші кроки",
+        revoir_niveau_lien: "↺ Повторити рівень {n}",
+        revoir_niveau_clair: "Ти повторюєш рівень {n} з початку: {f} / {t} слів",
+        revoir_niveau_toast: "Заняття повертається до рівня {n} з початку. Нічого не стирається: вивчені слова залишаються.",
+        revoir_pp_toast: "Перші кроки починаються знову з кроку 1. Нічого не стирається.",
+        revoir_niveau_fini: "Рівень {n} повторено повністю!",
         rp_q_sens: "Послухай і вибери значення",
         rp_q_suite: "Що йде далі?",
         rp_q_suite_dire: "Скажи послідовність уголос",
@@ -18101,6 +18127,12 @@ const I18N = {
         rp_q_dire: "این عدد را بلند بگو",
         rp_q_dire_couleur: "این رنگ را بلند بگو",
         rp_q_teinte: "این چه رنگی است؟",
+        revoir_pp_lien: "↺ مرور گام‌های نخست",
+        revoir_niveau_lien: "↺ مرور سطح {n}",
+        revoir_niveau_clair: "سطح {n} را از اول مرور می‌کنی: {f} / {t} واژه",
+        revoir_niveau_toast: "جلسه‌ات سطح {n} را از اول مرور می‌کند. چیزی پاک نمی‌شود: واژه‌هایی که یاد گرفته‌ای می‌مانند.",
+        revoir_pp_toast: "گام‌های نخست از گام ۱ دوباره شروع می‌شود. چیزی پاک نمی‌شود.",
+        revoir_niveau_fini: "همهٔ سطح {n} را مرور کردی!",
         rp_q_sens: "گوش کن و معنی را انتخاب کن",
         rp_q_suite: "بعدی کدام است؟",
         rp_q_suite_dire: "این ترتیب را بلند بگو",
@@ -19581,6 +19613,12 @@ const I18N = {
         rp_q_dire: "قل هذا العدد بصوت عالٍ",
         rp_q_dire_couleur: "قل هذا اللون بصوت عالٍ",
         rp_q_teinte: "ما هذا اللون؟",
+        revoir_pp_lien: "↺ مراجعة الخطوات الأولى",
+        revoir_niveau_lien: "↺ مراجعة المستوى {n}",
+        revoir_niveau_clair: "تراجع المستوى {n} من البداية: {f} / {t} كلمة",
+        revoir_niveau_toast: "تعود جلستك إلى المستوى {n} من البداية. لا يُمحى شيء: تبقى كلماتك محفوظة.",
+        revoir_pp_toast: "تبدأ الخطوات الأولى من جديد من الخطوة 1. لا يُمحى شيء.",
+        revoir_niveau_fini: "راجعت المستوى {n} كله!",
         rp_q_sens: "استمع واختر المعنى",
         rp_q_suite: "أيّها يأتي بعد ذلك؟",
         rp_q_suite_dire: "قل التسلسل بصوت عالٍ",
@@ -19919,6 +19957,12 @@ const I18N = {
         rp_q_dire: "Diga este número em voz alta",
         rp_q_dire_couleur: "Diga esta cor em voz alta",
         rp_q_teinte: "Que cor é esta?",
+        revoir_pp_lien: "↺ Rever os primeiros passos",
+        revoir_niveau_lien: "↺ Rever o nível {n}",
+        revoir_niveau_clair: "Você está revendo o nível {n} desde o início: {f} / {t} palavras",
+        revoir_niveau_toast: "A sessão retoma o nível {n} desde o início. Nada é apagado: suas palavras continuam aprendidas.",
+        revoir_pp_toast: "Os primeiros passos recomeçam na etapa 1. Nada é apagado.",
+        revoir_niveau_fini: "Você revisou todo o nível {n}!",
         rp_q_sens: "Ouça e escolha o sentido",
         rp_q_suite: "Qual vem depois?",
         rp_q_suite_dire: "Diga a sequência em voz alta",
@@ -21330,6 +21374,12 @@ const I18N = {
         rp_q_dire: "Powiedz tę liczbę na głos",
         rp_q_dire_couleur: "Powiedz ten kolor na głos",
         rp_q_teinte: "Jaki to kolor?",
+        revoir_pp_lien: "↺ Powtórz pierwsze kroki",
+        revoir_niveau_lien: "↺ Powtórz poziom {n}",
+        revoir_niveau_clair: "Powtarzasz poziom {n} od początku: {f} / {t} słów",
+        revoir_niveau_toast: "Sesja wraca do poziomu {n} od początku. Nic nie jest usuwane: nauczone słowa zostają.",
+        revoir_pp_toast: "Pierwsze kroki zaczynają się od nowa od kroku 1. Nic nie jest usuwane.",
+        revoir_niveau_fini: "Poziom {n} powtórzony w całości!",
         rp_q_sens: "Posłuchaj i wybierz znaczenie",
         rp_q_suite: "Co jest dalej?",
         rp_q_suite_dire: "Powiedz tę kolejność na głos",
@@ -22739,6 +22789,12 @@ const I18N = {
         rp_q_dire: "Скажи это число вслух",
         rp_q_dire_couleur: "Скажи этот цвет вслух",
         rp_q_teinte: "Какой это цвет?",
+        revoir_pp_lien: "↺ Повторить первые шаги",
+        revoir_niveau_lien: "↺ Повторить уровень {n}",
+        revoir_niveau_clair: "Ты повторяешь уровень {n} с начала: {f} / {t} слов",
+        revoir_niveau_toast: "Занятие возвращается к уровню {n} с начала. Ничего не стирается: выученные слова остаются.",
+        revoir_pp_toast: "Первые шаги начинаются заново с шага 1. Ничего не стирается.",
+        revoir_niveau_fini: "Уровень {n} повторён полностью!",
         rp_q_sens: "Послушай и выбери значение",
         rp_q_suite: "Что идёт дальше?",
         rp_q_suite_dire: "Скажи последовательность вслух",
@@ -41865,7 +41921,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 904;
+const APP_VERSION = 905;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -45272,7 +45328,114 @@ function niveauSeance(){
 function fixerNiveauSeance(niv){
     if(NIVEAUX_CECR.indexOf(niv) < 0) return;
     try{ localStorage.setItem(NIVEAU_SEANCE_KEY, niv); }catch(e){}
+    // v905 : choisir un autre niveau arrete la revision en cours.
+    try{ const r = lireRevoirNiveau(); if(r && r.n !== niv) ecrireRevoirNiveau(null); }catch(e){}
     majTuileSeance();
+}
+
+// ============ REVOIR UN NIVEAU FINI (v905) ============
+// Jacques, 21 oct. 2026 : « lorsque j'ai fini mes premiers pas, que je puisse
+// revoir mes premiers pas [...] Ca devrait etre la meme chose pour chacun des
+// niveaux ». Toucher 🌱 recommencait deja le parcours (v833), mais rien ne le
+// disait. Maintenant un niveau fini porte ✓ et un lien « ↺ Revoir … » dans la
+// liste de la pastille.
+// ⚠️ REVOIR N'EFFACE RIEN. Premiers pas reprend a l'etape 1 (ses cartes sont
+// les siennes). Un niveau A1-C1 est fini quand il n'a plus un seul mot neuf :
+// le revoir, c'est que la seance reprenne ses mots dans l'ordre de la premiere
+// fois (la frequence), a la place du neuf ; les echeances passent toujours
+// devant. Chaque carte passee est notee (revoirCartePassee) ; quand il n'en
+// reste plus, la revision s'arrete d'elle-meme. Etat local : { n, f: { cle: 1 } }.
+const REVOIR_NIVEAU_KEY = PREFIXE_STOCKAGE + "revoirNiveau";
+let REVOIR_SEANCE = null;   // les cles des cartes de la seance ouverte qui comptent pour la revision
+function lireRevoirNiveau(){
+    try{
+        const v = JSON.parse(localStorage.getItem(REVOIR_NIVEAU_KEY) || "null");
+        return (v && NIVEAUX_CECR.indexOf(v.n) >= 0) ? { n: v.n, f: v.f || {} } : null;
+    }catch(e){ return null; }
+}
+function ecrireRevoirNiveau(v){
+    try{
+        if(v) localStorage.setItem(REVOIR_NIVEAU_KEY, JSON.stringify(v));
+        else localStorage.removeItem(REVOIR_NIVEAU_KEY);
+    }catch(e){}
+}
+function cleRevoir(it){ return it.themeId + "|" + it.index; }
+// Le meme paquet que la seance (l'echantillon en version gratuite).
+function paquetSeanceDuNiveau(niv){
+    return accesComplet() ? paquetDuNiveau(niv) : filtrerGratuit(paquetDuNiveau(niv));
+}
+function niveauFini(niv){
+    const p = paquetSeanceDuNiveau(niv);
+    return p.length > 0 && !p.some(it => estNeuf(getWordState(it.themeId, it.index)));
+}
+function lancerRevoirNiveau(niv){
+    if(niv === "pp"){
+        const s = lirePremiersPas();
+        s.a = true; s.fini = false; s.k = 0;
+        ecrirePremiersPas(s);
+        ecrireRevoirNiveau(null);
+        showInfoToast(t("revoir_pp_toast"));
+    } else {
+        if(essaiActif("premiers_pas")){
+            const s = lirePremiersPas();
+            if(s.a !== false){ s.a = false; ecrirePremiersPas(s); }
+        }
+        try{ localStorage.setItem(NIVEAU_SEANCE_KEY, niv); }catch(e){}
+        ecrireRevoirNiveau({ n: niv, f: {} });
+        showInfoToast(tf("revoir_niveau_toast", { n: niv }));
+    }
+    try{ fermerListeSeance(); }catch(e){}
+    majTuileSeance();
+}
+// Ce qui reste a revoir du niveau, dans l'ordre de la premiere fois ; null
+// s'il n'y a pas de revision (ou si elle vient de finir).
+function cartesARevoir(pool, niv){
+    const r = lireRevoirNiveau();
+    if(!r || r.n !== niv) return null;
+    const reste = ordonnerParFrequence(pool.filter(it => !r.f[cleRevoir(it)]));
+    if(!reste.length){
+        ecrireRevoirNiveau(null);
+        showInfoToast(tf("revoir_niveau_fini", { n: niv }));
+        return null;
+    }
+    return reste;
+}
+// Comme cartesDeSeance(), mais le neuf est remplace par la suite du niveau.
+function cartesDeSeanceRevoir(poolTout, aRevoir){
+    const taille = tailleSeance();
+    const reserve = Math.min(Math.round(taille * PART_NEUFS_RESERVEE), aRevoir.length);
+    const dues = cartesEchuesTriees((poolTout || []).filter(
+        it => !estNeuf(getWordState(it.themeId, it.index)))).slice(0, taille - reserve);
+    const dans = new Set(dues.map(cleRevoir));
+    const pris = aRevoir.filter(it => !dans.has(cleRevoir(it))).slice(0, Math.max(0, taille - dues.length));
+    const duNiveau = new Set(aRevoir.map(cleRevoir));
+    REVOIR_SEANCE = new Set(dues.concat(pris).map(cleRevoir).filter(c => duNiveau.has(c)));
+    return dues.concat(pris);
+}
+function revoirCartePassee(it){
+    if(!it || !REVOIR_SEANCE || it.themeId === undefined || !REVOIR_SEANCE.has(cleRevoir(it))) return;
+    const r = lireRevoirNiveau();
+    if(!r) return;
+    r.f[cleRevoir(it)] = 1;
+    ecrireRevoirNiveau(r);
+}
+function majLiensRevoir(){
+    const place = document.getElementById("spRevoir");
+    if(!place) return;
+    place.innerHTML = "";
+    const ajouter = (niv, texte) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "pa-lien";
+        b.textContent = texte;
+        b.addEventListener("click", ev => { ev.stopPropagation(); lancerRevoirNiveau(niv); });
+        place.appendChild(b);
+    };
+    try{ if(essaiActif("premiers_pas") && lirePremiersPas().fini) ajouter("pp", t("revoir_pp_lien")); }catch(e){}
+    const r = lireRevoirNiveau();
+    NIVEAUX_CECR.forEach(niv => {
+        try{ if(!(r && r.n === niv) && niveauFini(niv)) ajouter(niv, tf("revoir_niveau_lien", { n: niv })); }catch(e){}
+    });
 }
 
 // ============ LA SCENE DU JOUR, EN ESSAI (v713) ============
@@ -49696,13 +49859,20 @@ async function ouvrirSeanceDuJour(sansScene){
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
     let av = null;
-    try{ if(niveau === "A1") activerA1Voyage(); }catch(e){}
-    try{ av = await preparerA1Voyage(pool); }catch(e){ av = null; }
+    // v905 : un niveau fini qu'on revoit -- sa suite remplace le neuf, et les
+    // escales de l'A1 voyage n'avancent pas pendant ce temps.
+    REVOIR_SEANCE = null;
+    let aRevoir = null;
+    try{ aRevoir = cartesARevoir(pool, niveau); }catch(e){ aRevoir = null; }
+    if(!aRevoir){
+        try{ if(niveau === "A1") activerA1Voyage(); }catch(e){}
+        try{ av = await preparerA1Voyage(pool); }catch(e){ av = null; }
+    }
     // v867 (essai feuilles_conj) : la feuille de conjugaison du jour, a l'A2 et
     // au B1 -- avant la grammaire, dont elle choisit la serie de conjugaison.
     let fc = null;
     try{ fc = await preparerFeuille(niveau); }catch(e){ fc = null; }
-    let seance = cartesDeSeance(tout, av ? av.pool : pool);
+    let seance = aRevoir ? cartesDeSeanceRevoir(tout, aRevoir) : cartesDeSeance(tout, av ? av.pool : pool);
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
     // v902 (Jacques : « au premier clic il y a encore un petit delai, puis plus
     // rien ») : les questions de grammaire viennent d'exercices.json, 8,5 Mo. Au
@@ -49882,7 +50052,9 @@ function majTuileSeance(){
         const b = document.createElement("button");
         b.type = "button";
         b.className = "seance-niveau seance-pp" + (pp ? " on" : "");
-        b.textContent = "🌱";
+        let ppFini = false;
+        try{ ppFini = !!lirePremiersPas().fini; }catch(e){}
+        b.textContent = ppFini ? "🌱✓" : "🌱";   // v905
         b.title = t("pp_badge");
         b.setAttribute("aria-label", t("pp_badge"));
         b.setAttribute("aria-pressed", pp ? "true" : "false");
@@ -49901,7 +50073,9 @@ function majTuileSeance(){
         b.type = "button";
         const on = niv === niveau && !pp;
         b.className = "seance-niveau" + (on ? " on" : "");
-        b.textContent = niv;
+        let fini = false;
+        try{ fini = niveauFini(niv); }catch(e){}
+        b.textContent = fini ? niv + "✓" : niv;   // v905
         b.setAttribute("aria-pressed", on ? "true" : "false");
         b.addEventListener("click", ev => {
             // ⚠️ Sans ceci, choisir un niveau lancerait la seance de l'ancien :
@@ -50001,9 +50175,18 @@ function majPiluleSeance(){
     majTitrePilule();
     const niv = document.getElementById("spNiv");
     if(niv) niv.textContent = pp ? "🌱" : niveau;   // v882 : la fleche est dessinee par .pa-niv::after
-    const clairTxt = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
+    let clairTxt = pp ? t("pp_niveau_clair") : t("niveau_clair_" + niveau);
+    // v905 : la revision d'un niveau fini, avec ce qui est fait.
+    try{
+        const r = lireRevoirNiveau();
+        if(!pp && r && r.n === niveau){
+            const total = paquetSeanceDuNiveau(niveau).length;
+            clairTxt = tf("revoir_niveau_clair", { n: niveau, f: Math.min(total, Object.keys(r.f).length), t: total });
+        }
+    }catch(e){}
     const clair = document.getElementById("spClair");
     if(clair) clair.textContent = clairTxt;
+    try{ majLiensRevoir(); }catch(e){}
     // Les boutons de niveau vivent dans la liste de la pastille.
     const place = document.getElementById("spNiveauxPlace");
     const box = document.getElementById("seanceNiveaux");
@@ -51414,6 +51597,7 @@ function nextFlashcard(){
     noterEtape("reponse");
     currentFlashcard++;
     carteSeanceSuivie();
+    try{ revoirCartePassee(currentCards[currentFlashcard - 1]); }catch(e){}   // v905
     // UN CARREAU PAR CARTE TRAVERSEE (v543). Ici et dans skipFlashcard() : ce
     // sont les deux seuls endroits ou l'etudiant passe a une autre carte. Le
     // poser dans loadFlashcard() le compterait deux fois a chaque changement de
@@ -51485,6 +51669,7 @@ function skipFlashcard(){
     }
     currentFlashcard++;
     carteSeanceSuivie();
+    try{ revoirCartePassee(currentCards[currentFlashcard - 1]); }catch(e){}   // v905
     carreauAuDepart(currentCards[currentFlashcard - 1]);
     if(currentFlashcard >= currentCards.length){
         finSeanceSuivie(true);
