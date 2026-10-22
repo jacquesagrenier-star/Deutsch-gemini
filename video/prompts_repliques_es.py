@@ -225,20 +225,91 @@ PLANS = [
 #    (verbe-sans-plafond), et TENU jusqu'a la fin (geste-qui-revient). Le cote se
 #    dit par l'image (cote-du-corps).
 GESTES = {
+    # Relu par Fable le 22 oct. : pas de tapis nomme (objet hors champ, du cote ou
+    # les fantomes apparaissaient), a hauteur de POITRINE (a la taille, la main
+    # entrait dans le flou de l'epaule), l'autre main immobile comme dans l'image.
     ("es-01-llegada-madrid", 6):
-        "As she says the first words, her hand nearer the right edge of the picture rises to the height of her "
-        "waist, palm open and fingers together, pointing towards the right of the picture where the baggage belt "
-        "is, and it stays there while she speaks; her other hand rests on the strap of her bag.",
+        "As she says the first words, her forearm nearer the right edge of the picture comes up from the elbow "
+        "until the hand is level with her chest, palm open and fingers together, turned towards the right edge "
+        "of the picture, and it stays there while she speaks, well short of the dark shoulder; her other hand "
+        "hangs relaxed at her side, exactly as in the image.",
+    # La main sur le REVERS du trench : la phrase TENUE de ce plan le dit aussi
+    # (sinon « on ne voit que le trench » contredisait la main sur la poitrine).
     ("es-01-llegada-madrid", 9):
-        "On her first word she lays her hand nearer the left edge of the picture flat on her chest, just below "
-        "her collarbone, and it stays there, warm and still; her other hand hangs relaxed at her side.",
+        # 1re prise (22 oct.) : elle a joint les deux mains a la taille, comme au plan 11.
+        # D'ou UNE seule main qui MONTE, et l'autre dite immobile d'abord.
+        "Her hand nearer the right edge of the picture stays hanging at her side, exactly as in the image, for "
+        "the whole shot. Only her other hand moves: on her first word it rises from her side up to her chest and "
+        "lays itself flat over the lapel of her coat, over her heart, just below her collarbone, and it stays "
+        "there, warm and still, the beige fabric of the trench coat showing all around it.",
+    # Pas de doigts entrelaces : ils fondent ensemble chez ces modeles.
     ("es-01-llegada-madrid", 11):
-        "On her first words her two hands come together in front of her waist, fingers loosely interlaced a few "
-        "centimetres from her coat, and they stay joined there while she speaks.",
+        "On her first words her hand nearer the left edge of the picture closes loosely round the fingers of the "
+        "other, in front of her waist, a few centimetres from her coat, and they stay joined there while she "
+        "speaks.",
     ("es-01-llegada-madrid", 15):
         "Her hand nearer the right edge of the picture rises to waist height, palm down and relaxed, and rocks "
         "once gently from side to side, a few centimetres, then stays there, open and easy, while she finishes; "
         "her other hand hangs relaxed at her side.",
+    # 22 oct. 2026 : Mark et la voisine, meme regle (voir l'acquis du jour dans
+    # video/verifier_prompt.py) -- l'autre main immobile D'ABORD.
+    # Mark : la question polie
+    ('es-01-llegada-madrid', 5):
+        'His hand nearer the left edge of the picture stays low at his side, exactly as in the image, for the whole shot. Only his hand nearer the right edge of the picture moves: as he starts his question it comes up from the elbow to waist height, palm open and turned up, a small polite offering, and it stays there until he has finished.',
+    # Mark : « moi » -- le nouveau travail
+    ('es-01-llegada-madrid', 10):
+        'His hand nearer the left edge of the picture stays low at his side, exactly as in the image, for the whole shot. Only his hand nearer the right edge of the picture moves: on his first word it rises to his chest and lays its fingertips flat on his black T-shirt, just below the collar of his jacket, as if to say « me », and it stays there.',
+    # Mark : il montre le chemin qu'il espere
+    ('es-01-llegada-madrid', 14):
+        'His hand nearer the left edge of the picture stays low at his side, exactly as in the image, for the whole shot. Only his hand nearer the right edge of the picture moves: on his first words it rises to waist height and points loosely with two fingers past the right edge of the picture, a little downwards, the way ahead, and it stays there while he speaks.',
+    # Mark : le bonjour
+    ('es-02-el-carro', 2):
+        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: as he says good morning it rises to the height of his shoulder, palm out and open, a small friendly greeting, and it stays raised while he asks his question.',
+    # Mark : la surprise heureuse
+    ('es-02-el-carro', 5):
+        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: on his first words it comes up to waist height, palm open and turned up, fingers spread, in happy surprise, and it stays there.',
+    # Mark : il compte les mots nouveaux
+    ('es-02-el-carro', 7):
+        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: as he repeats the new words it rises in front of his chest and counts on its fingers: first the thumb comes up, then the index finger beside it, and the hand stays there holding the two fingers up.',
+    # Mark : sur de lui
+    ('es-02-el-carro', 11):
+        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: on his first word it rises to waist height, palm down and flat, and makes one slow, sure sweep a few centimetres out to the side, then stays there, palm down, calm and certain.',
+    # Mark : pris en faute
+    ('es-02-el-carro', 13):
+        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: as he hesitates it rises to the back of his own neck and rests there, fingers against his hairline, and it stays there until he finishes.',
+    # Mark : le pouce leve en riant
+    ('es-02-el-carro', 15):
+        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: with his laugh it rises in front of his chest, thumb up, and it stays there.',
+    # La voisine : la main sur le coeur -- quelqu'un de chez elle
+    ('es-02-el-carro', 3):
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: on the word she repeats it rises to her chest and lays itself flat over her heart, on the plain white blouse, and it stays there, warm and still.',
+    # La voisine : l'index de la maitresse d'ecole
+    ('es-02-el-carro', 6):
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: as she starts to explain it rises to the height of her shoulder, index finger raised, the small gesture of a teacher asking for attention, and it stays raised while she speaks.',
+    # La voisine : « muy bien »
+    ('es-02-el-carro', 8):
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: on her first words it rises in front of her chest and makes a small circle with the thumb and the index finger, the other fingers open, and it stays there.',
+    # La voisine : la main sur la hanche, pratique
+    ('es-02-el-carro', 10):
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: on her first word it settles on her hip, fingers forward, elbow out to the side, and it stays there, practical and sure.',
+    # La voisine : l'index qui dit non
+    ('es-02-el-carro', 12):
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: as she repeats the word it rises to the height of her chest, index finger up, and wags gently from side to side twice, then stays raised.',
+    # La voisine : elle rit, la main sur le ventre
+    ('es-02-el-carro', 14):
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: with her laugh it rises and rests flat on her stomach, just above her waist, and it stays there while she laughs.',
+}
+# La tenue d'un plan qui pose une main sur la poitrine (voir GESTES, plan 9).
+TENUE_PLAN = {
+    ("es-01-llegada-madrid", 9):
+        "Across her chest we see only the beige trench coat, the plain grey knit of her sweater, the brown "
+        "leather strap and her hand resting on the lapel, from the first frame to the last.",
+    ("es-01-llegada-madrid", 10):
+        "Across his chest we see only his grey jacket, his black T-shirt, plain and unmarked, and his fingertips "
+        "resting on it, from the first frame to the last.",
+    ("es-02-el-carro", 3):
+        "Across her chest we see only her navy coat, her plain white blouse and her hand resting on it, from the "
+        "first frame to the last.",
 }
 
 
@@ -254,7 +325,7 @@ def ecrire(sc, n, P, cadre, cote, fond, emotion, parole, mains, apres):
     #    lignes de lettres blanches illisibles sur la poitrine d'Ana, de 2,8 s a la
     #    fin -- 0,40 $. Remede de la garde negative : ne pas nommer le texte,
     #    REMPLIR la place avec ce qui s'y trouve, du debut a la fin.
-    blocs.append(TENUE[(sc, P["he"])])
+    blocs.append(TENUE_PLAN.get((sc, n)) or TENUE[(sc, P["he"])])
     blocs.append(BORD[(sc, P["he"], cadre[0])])
     blocs.append("Finally %s stops speaking and %s. %s blinks, %s breathes, and %s holds that expression "
                  "the whole time %s waits." % (P["he"], apres, P["He"], P["he"], P["he"], P["he"]))

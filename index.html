@@ -6345,8 +6345,6 @@ body[data-theme="dark"] .ep-fermer, body[data-theme="dark"] .ep-regle{color:#a9b
 body[data-theme="dark"] #home .orb#tuileEpisodes .orb-icon{background:linear-gradient(180deg, #3d4a5b, #222b37);}
 .ep-nouveau{position:absolute; top:-8px; inset-inline-end:-6px; z-index:2; background:#E8A23A; color:#1C2430; font-size:11px; font-weight:900;
     padding:2px 8px; border-radius:999px; letter-spacing:.02em; box-shadow:0 2px 6px -2px rgba(140,85,15,.6);}
-.ep-tuile-sous{display:block; font-size:12px; font-weight:700; color:#576177; margin-top:2px;}
-body[data-theme="dark"] .ep-tuile-sous{color:#a9b2c0;}
 .ep-prochain{font-size:13.5px !important; font-weight:800; color:#8a5a12; background:rgba(232,162,58,.14); border-radius:10px; padding:8px 10px;}
 body[data-theme="dark"] .ep-prochain{color:#f3c985;}
 /* Le lecteur occupe tout l'ecran (Jacques : « qu'il apparaisse plein ecran »). */
@@ -6539,6 +6537,9 @@ body[data-theme="dark"] .cp-fete-pp p{color:#c6cdd8;}
 .cp-tl-sens{flex:1 1 45%; color:#576177; font-size:14.5px;}
 .cp-tl-forme{flex:1 1 45%; font-size:17px;}
 .cp-tl-son{flex:0 0 auto;}
+/* v919 : le haut-parleur dessine (iconeHP) -- a la taille et a la couleur du texte. */
+.ic-hp{display:inline-block; width:1.05em; height:1.05em; vertical-align:-0.17em; flex:0 0 auto;}
+.cp-tl-son .ic-hp{width:18px; height:18px; color:var(--wt-action, #1C2430);}
 .cp-astuce{margin-top:10px; background:#fff6e6; border-radius:10px; padding:9px 11px; font-size:14px; line-height:1.45; color:#5b4a2c;}
 .cp-scene-pp{height:190px; border-radius:14px; background-size:cover; background-position:center; margin:6px 0 10px;}
 .cp-jour-reussi{display:inline-block; background:#d9f0e6; color:#0F6E56; font-weight:800; font-size:13px; border-radius:20px; padding:3px 10px;}
@@ -6853,6 +6854,11 @@ body[data-theme="dark"] .essai-oral-champ{background:#1d232c; border-color:#2c33
 body[data-theme="dark"] .cp-tl-pr{color:#d9c49a;}
 #cartePhrase .pron-tete{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; margin:6px 0 4px;}
 #cartePhrase .pron-graphie{font-size:30px; font-weight:900;}
+/* v919 : les morceaux de la graphie, touchables (le son du jour). */
+.pron-morceau{font:inherit; color:inherit; background:rgba(232,162,58,.16); border:0; border-radius:8px;
+    padding:0 6px; margin:2px 0; cursor:pointer; border-bottom:2px solid #E8A23A;}
+.pron-morceau:active{background:rgba(232,162,58,.38);}
+.pron-mot.allume{border-color:#E8A23A; box-shadow:0 0 0 2px rgba(232,162,58,.45);}
 #cartePhrase .pron-mots{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
 /* v878 : la ligne « Ecouter » sous les scenes (maquette C3). */
 .ecoute-ligne-accueil{grid-column:1 / -1; position:relative; display:flex; align-items:center; gap:10px; background:#1C2430; color:#fff;
@@ -7873,7 +7879,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <div class="orb hidden" data-orbid="episodes" id="tuileEpisodes" onclick="ouvrirMesEpisodes()">
             <span class="ep-nouveau hidden" id="tuileEpisodesNouveau" data-i18n="ep_nouveau">Nouveau</span>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="10" width="17" height="10" rx="1.8"/><path d="M3.9 9.6 19.4 5.4l.9 3.3L4.8 12.9z"/><path d="M8.4 8.4l1.7 2.9M12.6 7.2l1.7 2.9M16.8 6l1.7 2.9"/></svg></div>
-            <div><strong data-i18n="ep_tuile">Mes épisodes</strong><span class="ep-tuile-sous" id="tuileEpisodesSous"></span></div>
+            <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
         </div>
         <div class="orb" data-orbid="gardes" id="seanceGardes" onclick="ouvrirGardes()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/><path d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/><path d="M10.8 14.2h2.4v3.2h-2.4z"/></svg></div>
@@ -8274,7 +8280,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v918</span>
+    <span class="subtitle-version">v919</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10299,7 +10305,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <div id="parlerPhrase" style="font-size:20px; font-weight:600; line-height:1.4;"></div>
         <div id="parlerTrad" style="color:#576177; margin-top:8px; line-height:1.4;"></div>
         <div class="spacer"></div>
-        <button class="secondary" onclick="parlerJouerModele()" data-i18n="parler_modele_btn">🔊 LE MODÈLE</button>
+        <button class="secondary" onclick="parlerJouerModele()" ><svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg> <span data-i18n="parler_modele_btn">LE MODÈLE</span></button>
     </div>
 
     <div class="card">
@@ -10402,7 +10408,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
 
     <div class="card">
         <div class="question" id="question"></div>
-        <button id="dictationReplayBtn" class="secondary hidden" style="margin:8px 0;" onclick="replayDictationAudio()" data-i18n="dictation_replay_btn">🔊 RÉÉCOUTER</button>
+        <button id="dictationReplayBtn" class="secondary hidden" style="margin:8px 0;" onclick="replayDictationAudio()" ><svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg> <span data-i18n="dictation_replay_btn">RÉÉCOUTER</span></button>
         <div class="translation-example" id="questionTranslation"></div>
         <div id="hint" style="color:#576177;margin-bottom:15px"></div>
 
@@ -10425,7 +10431,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              qu'apres la reponse : avant, la faire entendre donnerait la
              solution. Voir phraseAllemandeDeLExercice(). -->
         <button id="feedbackSpeakBtn" class="secondary hidden" style="margin:10px 0 0;"
-                onclick="direPhraseExercice()" data-i18n="exercice_ecouter_btn">🔊 ENTENDRE LA PHRASE</button>
+                onclick="direPhraseExercice()" ><svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg> <span data-i18n="exercice_ecouter_btn">ENTENDRE LA PHRASE</span></button>
 
         <div class="spacer"></div>
         <button id="nextButton" class="secondary hidden" onclick="nextExercise()" data-i18n="next_exercise_button">EXERCICE SUIVANT →</button>
@@ -11807,7 +11813,7 @@ const I18N = {
         rp_q_pluriel: "Quel est le pluriel ?",
         rp_q_dire_mot: "Dis-le à voix haute, avec l'article",
         rp_exception: "⚠️ Exception",
-        son_badge: "🔊 Le son du jour",
+        son_badge: "Le son du jour",
         son_q: "Écoute chaque mot et regarde les lettres",
         son_q_dire: "À toi : dis ce mot",
         reglage_questions_titre: "Questions de la scène du jour",
@@ -12290,8 +12296,8 @@ const I18N = {
         regle_explication: "Les noms en {fin} sont {genre} dans {taux} % de nos mots",
         op_nomen_o6_d: "der · die · das — autant de chaque",
         kicker_quiz_article: "Quel article ?",
-        dictation_replay_btn: "🔊 RÉÉCOUTER",
-        exercice_ecouter_btn: "🔊 ENTENDRE LA PHRASE",
+        dictation_replay_btn: "RÉÉCOUTER",
+        exercice_ecouter_btn: "ENTENDRE LA PHRASE",
         dictation_instruction: "Écoute et écris ce que tu entends.",
         dictation_hint: "Pas besoin d'écrire l'article (der/die/das).",
         dictation_explanation_prefix: "Le mot était :",
@@ -12487,8 +12493,6 @@ const I18N = {
         ep_plus_loin: "Bientôt",
         ep_regle: "Un jour de pratique = au moins 10 exercices dans la journée. Les jours n'ont pas besoin de se suivre.",
         ep_prochain: "Prochain épisode : {titre}",
-        ep_tuile_sous_1: "Prochain dans 1 jour de pratique",
-        ep_tuile_sous_n: "Prochain dans {n} jours de pratique",
         ep_nouveau: "Nouveau",
         ep_admin_reset: "Remettre la surprise à zéro (admin)",
         ep_admin_reset_fait: "Surprise remise à zéro : elle reviendra au 10e exercice du jour.",
@@ -12760,7 +12764,7 @@ const I18N = {
         parler_kicker: "Parler",
         parler_title: "S'entendre le dire",
         parler_desc: "Le modèle, puis toi, l'un après l'autre. C'est de s'entendre qui fait entendre l'écart — l'écouter en répétant ne suffit pas. Rien n'est noté et rien n'est envoyé : l'enregistrement reste sur l'appareil et disparaît à la phrase suivante.",
-        parler_modele_btn: "🔊 LE MODÈLE",
+        parler_modele_btn: "LE MODÈLE",
         parler_rec_btn: "🎙 M'ENREGISTRER",
         parler_stop_btn: "⏹ ARRÊTER",
         parler_essai_btn: "▶ MON ESSAI",
@@ -13207,7 +13211,7 @@ const I18N = {
         rp_q_pluriel: "What's the plural?",
         rp_q_dire_mot: "Say it out loud, with the article",
         rp_exception: "⚠️ Exception",
-        son_badge: "🔊 Sound of the day",
+        son_badge: "Sound of the day",
         son_q: "Listen to each word and look at the letters",
         son_q_dire: "Your turn: say this word",
         reglage_questions_titre: "Questions in today's scene",
@@ -13688,8 +13692,8 @@ const I18N = {
         regle_explication: "Nouns in {fin} are {genre} in {taux}% of our words",
         op_nomen_o6_d: "der · die · das — equal thirds",
         kicker_quiz_article: "Which article?",
-        dictation_replay_btn: "🔊 REPLAY",
-        exercice_ecouter_btn: "🔊 HEAR THE SENTENCE",
+        dictation_replay_btn: "REPLAY",
+        exercice_ecouter_btn: "HEAR THE SENTENCE",
         dictation_instruction: "Listen and write what you hear.",
         dictation_hint: "No need to write the article (der/die/das).",
         dictation_explanation_prefix: "The word was:",
@@ -13885,8 +13889,6 @@ const I18N = {
         ep_plus_loin: "Coming soon",
         ep_regle: "A practice day = at least 10 exercises in one day. The days don't need to be in a row.",
         ep_prochain: "Next episode: {titre}",
-        ep_tuile_sous_1: "Next one in 1 day of practice",
-        ep_tuile_sous_n: "Next one in {n} days of practice",
         ep_nouveau: "New",
         ep_admin_reset: "Reset the surprise (admin)",
         ep_admin_reset_fait: "Surprise reset: it will come back at the 10th exercise of the day.",
@@ -14158,7 +14160,7 @@ const I18N = {
         parler_kicker: "Speaking",
         parler_title: "Hear yourself say it",
         parler_desc: "The model, then you, one after the other. Hearing yourself is what makes the gap audible — listening while repeating does not. Nothing is graded and nothing is sent: the recording stays on the device and is dropped at the next sentence.",
-        parler_modele_btn: "🔊 THE MODEL",
+        parler_modele_btn: "THE MODEL",
         parler_rec_btn: "🎙 RECORD ME",
         parler_stop_btn: "⏹ STOP",
         parler_essai_btn: "▶ MY ATTEMPT",
@@ -14609,7 +14611,7 @@ const I18N = {
         rp_q_pluriel: "Çoğulu hangisi?",
         rp_q_dire_mot: "Artikeliyle birlikte yüksek sesle söyle",
         rp_exception: "⚠️ İstisna",
-        son_badge: "🔊 Günün sesi",
+        son_badge: "Günün sesi",
         son_q: "Her kelimeyi dinle ve harflere bak",
         son_q_dire: "Sıra sende: bu kelimeyi söyle",
         reglage_questions_titre: "Günün sahnesindeki sorular",
@@ -15090,8 +15092,8 @@ const I18N = {
         regle_explication: "{fin} ile biten isimler kelimelerimizin %{taux} kadarında {genre}",
         op_nomen_o6_d: "der · die · das — her birinden eşit sayıda",
         kicker_quiz_article: "Hangi artikel?",
-        dictation_replay_btn: "🔊 TEKRAR DİNLE",
-        exercice_ecouter_btn: "🔊 CÜMLEYİ DİNLE",
+        dictation_replay_btn: "TEKRAR DİNLE",
+        exercice_ecouter_btn: "CÜMLEYİ DİNLE",
         dictation_instruction: "Dinle ve duyduğunu yaz.",
         dictation_hint: "Artikeli (der/die/das) yazmana gerek yok.",
         dictation_explanation_prefix: "Kelime şuydu:",
@@ -15263,8 +15265,6 @@ const I18N = {
         ep_plus_loin: "Yakında",
         ep_regle: "Bir pratik günü = bir günde en az 10 alıştırma. Günlerin art arda olması gerekmez.",
         ep_prochain: "Sonraki bölüm: {titre}",
-        ep_tuile_sous_1: "Sonraki 1 pratik gününde",
-        ep_tuile_sous_n: "Sonraki {n} pratik gününde",
         ep_nouveau: "Yeni",
         ep_admin_reset: "Sürprizi sıfırla (yönetici)",
         ep_admin_reset_fait: "Sürpriz sıfırlandı: günün 10. alıştırmasında yeniden gelecek.",
@@ -15536,7 +15536,7 @@ const I18N = {
         parler_kicker: "Konuşma",
         parler_title: "Kendini söylerken duy",
         parler_desc: "Önce örnek, sonra sen. Farkı duyuran şey kendini dinlemektir — tekrar ederken dinlemek yetmez. Not verilmez ve hiçbir şey gönderilmez: kayıt cihazda kalır ve sonraki cümlede silinir.",
-        parler_modele_btn: "🔊 ÖRNEK",
+        parler_modele_btn: "ÖRNEK",
         parler_rec_btn: "🎙 BENİ KAYDET",
         parler_stop_btn: "⏹ DURDUR",
         parler_essai_btn: "▶ BENİM DENEMEM",
@@ -15780,7 +15780,7 @@ const I18N = {
         parler_kicker: "Мовлення",
         parler_title: "Почути себе",
         parler_desc: "Спочатку зразок, потім ти. Саме власний голос робить різницю чутною — слухати, повторюючи, не достатньо. Ніяких оцінок і нічого не надсилається: запис залишається на пристрої і зникає на наступній фразі.",
-        parler_modele_btn: "🔊 ЗРАЗОК",
+        parler_modele_btn: "ЗРАЗОК",
         parler_rec_btn: "🎙 ЗАПИСАТИ СЕБЕ",
         parler_stop_btn: "⏹ ЗУПИНИТИ",
         parler_essai_btn: "▶ МОЯ СПРОБА",
@@ -15951,8 +15951,8 @@ const I18N = {
         next_badge_unit_days: "днів",
         next_badge_unit_xp: "очок",
         dictation_start_btn: "🎧 ПОТРЕНУВАТИСЯ: ДИКТАНТ",
-        dictation_replay_btn: "🔊 ПРОСЛУХАТИ ЩЕ РАЗ",
-        exercice_ecouter_btn: "🔊 ПРОСЛУХАТИ ФРАЗУ",
+        dictation_replay_btn: "ПРОСЛУХАТИ ЩЕ РАЗ",
+        exercice_ecouter_btn: "ПРОСЛУХАТИ ФРАЗУ",
         dictation_instruction: "Слухай і пиши те, що чуєш.",
         dictation_hint: "Артикль (der/die/das) писати не потрібно.",
         dictation_explanation_prefix: "Це було слово:",
@@ -16075,8 +16075,6 @@ const I18N = {
         ep_plus_loin: "Незабаром",
         ep_regle: "День практики = щонайменше 10 вправ за день. Дні не мусять іти поспіль.",
         ep_prochain: "Наступний епізод: {titre}",
-        ep_tuile_sous_1: "Наступний — через 1 день практики",
-        ep_tuile_sous_n: "Наступний — через {n} днів практики",
         ep_nouveau: "Нове",
         ep_admin_reset: "Скинути сюрприз (адмін)",
         ep_admin_reset_fait: "Сюрприз скинуто: він повернеться на 10-й вправі дня.",
@@ -16343,7 +16341,7 @@ const I18N = {
         rp_q_pluriel: "Яка форма множини?",
         rp_q_dire_mot: "Скажи вголос, з артиклем",
         rp_exception: "⚠️ Виняток",
-        son_badge: "🔊 Звук дня",
+        son_badge: "Звук дня",
         son_q: "Послухай кожне слово й подивись на літери",
         son_q_dire: "Твоя черга: скажи це слово",
         reglage_questions_titre: "Запитання сцени дня",
@@ -17445,7 +17443,7 @@ const I18N = {
         parler_kicker: "گفتن",
         parler_title: "خودت را بشنو که می‌گویی",
         parler_desc: "اول الگو، سپس تو، یکی پس از دیگری. این شنیدنِ خود است که فاصله را آشکار می‌کند — شنیدن هنگام تکرار بس نیست. هیچ نمره‌ای داده نمی‌شود و هیچ چیز فرستاده نمی‌شود: ضبط روی دستگاه می‌ماند و با جملهٔ بعدی از میان می‌رود.",
-        parler_modele_btn: "🔊 الگو",
+        parler_modele_btn: "الگو",
         parler_rec_btn: "🎙 ضبط خودم",
         adj_decl_btn: "تمرین: پایانه را برگزین →",
         kicker_zuinf_exercise: "zu + مصدر · تمرین",
@@ -17688,8 +17686,8 @@ const I18N = {
         regle_explication: "اسم‌های پایان‌یافته به {fin} در {taux}٪ واژه‌های ما {genre} هستند",
         op_nomen_o6_d: "der · die · das — به نسبت برابر",
         kicker_quiz_article: "کدام حرف تعریف؟",
-        dictation_replay_btn: "🔊 دوباره بشنو",
-        exercice_ecouter_btn: "🔊 شنیدن جمله",
+        dictation_replay_btn: "دوباره بشنو",
+        exercice_ecouter_btn: "شنیدن جمله",
         dictation_instruction: "بشنو و آنچه می‌شنوی بنویس.",
         dictation_hint: "نوشتن حرف تعریف (der/die/das) لازم نیست.",
         dictation_explanation_prefix: "واژه این بود:",
@@ -17868,8 +17866,6 @@ const I18N = {
         ep_plus_loin: "به‌زودی",
         ep_regle: "یک روز تمرین = دست‌کم ۱۰ تمرین در یک روز. لازم نیست روزها پشت سر هم باشند.",
         ep_prochain: "قسمت بعدی: {titre}",
-        ep_tuile_sous_1: "قسمت بعدی پس از ۱ روز تمرین",
-        ep_tuile_sous_n: "قسمت بعدی پس از {n} روز تمرین",
         ep_nouveau: "تازه",
         ep_admin_reset: "بازنشانی غافلگیری (مدیر)",
         ep_admin_reset_fait: "غافلگیری بازنشانی شد: در دهمین تمرین روز دوباره می‌آید.",
@@ -18430,7 +18426,7 @@ const I18N = {
         rp_q_pluriel: "جمعش کدام است؟",
         rp_q_dire_mot: "آن را با حرف تعریف بلند بگو",
         rp_exception: "⚠️ استثنا",
-        son_badge: "🔊 صدای امروز",
+        son_badge: "صدای امروز",
         son_q: "هر واژه را بشنو و به حروف نگاه کن",
         son_q_dire: "نوبت توست: این واژه را بگو",
         reglage_questions_titre: "پرسش‌های صحنهٔ امروز",
@@ -18825,7 +18821,7 @@ const I18N = {
         parler_kicker: "المحادثة",
         parler_title: "أن تسمع نفسك تقولها",
         parler_desc: "النموذج، ثم أنت، واحداً بعد الآخر. سماعُ نفسك هو ما يُسمعك الفارق — والاستماع أثناء التكرار لا يكفي. لا شيء يُقيَّم ولا شيء يُرسَل: التسجيل يبقى على الجهاز ويزول مع الجملة التالية.",
-        parler_modele_btn: "🔊 النموذج",
+        parler_modele_btn: "النموذج",
         parler_rec_btn: "🎙 سجّل صوتي",
         parler_stop_btn: "⏹ إيقاف",
         parler_essai_btn: "▶ محاولتي",
@@ -19147,8 +19143,6 @@ const I18N = {
         ep_plus_loin: "قريبًا",
         ep_regle: "يوم التدريب = 10 تمارين على الأقل في اليوم. لا يلزم أن تكون الأيام متتالية.",
         ep_prochain: "الحلقة التالية: {titre}",
-        ep_tuile_sous_1: "التالية بعد يوم تدريب واحد",
-        ep_tuile_sous_n: "التالية بعد {n} أيام تدريب",
         ep_nouveau: "جديد",
         ep_admin_reset: "إعادة ضبط المفاجأة (المشرف)",
         ep_admin_reset_fait: "أُعيد ضبط المفاجأة: ستعود عند التمرين العاشر في اليوم.",
@@ -19335,8 +19329,8 @@ const I18N = {
         regle_explication: "الأسماء المنتهية بـ{fin} تكون {genre} في {taux} % من كلماتنا",
         op_nomen_o6_d: "der · die · das — بقدر متساوٍ من كل",
         kicker_quiz_article: "أي أداة تعريف؟",
-        dictation_replay_btn: "🔊 أعد السماع",
-        exercice_ecouter_btn: "🔊 استمع إلى الجملة",
+        dictation_replay_btn: "أعد السماع",
+        exercice_ecouter_btn: "استمع إلى الجملة",
         dictation_instruction: "استمع واكتب ما تسمعه.",
         dictation_hint: "لا حاجة إلى كتابة أداة التعريف (der/die/das).",
         dictation_explanation_prefix: "الكلمة كانت:",
@@ -19948,7 +19942,7 @@ const I18N = {
         rp_q_pluriel: "ما صيغة الجمع؟",
         rp_q_dire_mot: "قلها بصوت عالٍ مع أداة التعريف",
         rp_exception: "⚠️ استثناء",
-        son_badge: "🔊 صوت اليوم",
+        son_badge: "صوت اليوم",
         son_q: "استمع إلى كل كلمة وانظر إلى الحروف",
         son_q_dire: "دورك: قل هذه الكلمة",
         reglage_questions_titre: "أسئلة مشهد اليوم",
@@ -20293,7 +20287,7 @@ const I18N = {
         rp_q_pluriel: "Qual é o plural?",
         rp_q_dire_mot: "Diga em voz alta, com o artigo",
         rp_exception: "⚠️ Exceção",
-        son_badge: "🔊 O som do dia",
+        son_badge: "O som do dia",
         son_q: "Ouça cada palavra e olhe as letras",
         son_q_dire: "Sua vez: diga esta palavra",
         reglage_questions_titre: "Perguntas da cena do dia",
@@ -20765,8 +20759,8 @@ const I18N = {
         regle_explication: "Os substantivos em {fin} são {genre} em {taux} % das nossas palavras",
         op_nomen_o6_d: "der · die · das — a mesma quantidade de cada",
         kicker_quiz_article: "Qual artigo?",
-        dictation_replay_btn: "🔊 OUVIR DE NOVO",
-        exercice_ecouter_btn: "🔊 OUVIR A FRASE",
+        dictation_replay_btn: "OUVIR DE NOVO",
+        exercice_ecouter_btn: "OUVIR A FRASE",
         dictation_instruction: "Ouça e escreva o que você ouve.",
         dictation_hint: "Não precisa escrever o artigo (der/die/das).",
         dictation_explanation_prefix: "A palavra era:",
@@ -20937,8 +20931,6 @@ const I18N = {
         ep_plus_loin: "Em breve",
         ep_regle: "Um dia de prática = pelo menos 10 exercícios no dia. Os dias não precisam ser seguidos.",
         ep_prochain: "Próximo episódio: {titre}",
-        ep_tuile_sous_1: "O próximo em 1 dia de prática",
-        ep_tuile_sous_n: "O próximo em {n} dias de prática",
         ep_nouveau: "Novo",
         ep_admin_reset: "Reiniciar a surpresa (admin)",
         ep_admin_reset_fait: "Surpresa reiniciada: ela volta no 10º exercício do dia.",
@@ -21264,7 +21256,7 @@ const I18N = {
         parler_kicker: "Falar",
         parler_title: "Ouvir a si mesmo",
         parler_desc: "O modelo, depois você, um após o outro. É ouvir a si mesmo que faz ouvir a diferença — escutar enquanto repete não basta. Nada é avaliado e nada é enviado: a gravação fica no aparelho e desaparece na frase seguinte.",
-        parler_modele_btn: "🔊 O MODELO",
+        parler_modele_btn: "O MODELO",
         parler_rec_btn: "🎙 ME GRAVAR",
         parler_stop_btn: "⏹ PARAR",
         parler_essai_btn: "▶ MINHA TENTATIVA",
@@ -21734,7 +21726,7 @@ const I18N = {
         rp_q_pluriel: "Jaka jest liczba mnoga?",
         rp_q_dire_mot: "Powiedz na głos, z rodzajnikiem",
         rp_exception: "⚠️ Wyjątek",
-        son_badge: "🔊 Dźwięk dnia",
+        son_badge: "Dźwięk dnia",
         son_q: "Posłuchaj każdego słowa i spójrz na litery",
         son_q_dire: "Twoja kolej: powiedz to słowo",
         reglage_questions_titre: "Pytania w scenie dnia",
@@ -22206,8 +22198,8 @@ const I18N = {
         regle_explication: "Rzeczowniki na {fin} mają rodzajnik {genre} w {taux} % naszych słów",
         op_nomen_o6_d: "der · die · das — po równo",
         kicker_quiz_article: "Który rodzajnik?",
-        dictation_replay_btn: "🔊 POSŁUCHAJ JESZCZE RAZ",
-        exercice_ecouter_btn: "🔊 POSŁUCHAJ ZDANIA",
+        dictation_replay_btn: "POSŁUCHAJ JESZCZE RAZ",
+        exercice_ecouter_btn: "POSŁUCHAJ ZDANIA",
         dictation_instruction: "Posłuchaj i napisz, co słyszysz.",
         dictation_hint: "Nie trzeba pisać rodzajnika (der/die/das).",
         dictation_explanation_prefix: "Słowo brzmiało:",
@@ -22376,8 +22368,6 @@ const I18N = {
         ep_plus_loin: "Wkrótce",
         ep_regle: "Dzień ćwiczeń = co najmniej 10 ćwiczeń w ciągu dnia. Dni nie muszą następować po sobie.",
         ep_prochain: "Następny odcinek: {titre}",
-        ep_tuile_sous_1: "Następny za 1 dzień ćwiczeń",
-        ep_tuile_sous_n: "Następny za {n} dni ćwiczeń",
         ep_nouveau: "Nowy",
         ep_admin_reset: "Zresetuj niespodziankę (admin)",
         ep_admin_reset_fait: "Niespodzianka zresetowana: wróci przy 10. ćwiczeniu dnia.",
@@ -22703,7 +22693,7 @@ const I18N = {
         parler_kicker: "Mówienie",
         parler_title: "Usłysz siebie",
         parler_desc: "Wzór, potem ty, jedno po drugim. Dopiero słysząc siebie, słyszysz różnicę — samo słuchanie podczas powtarzania nie wystarcza. Nic nie jest oceniane ani wysyłane: nagranie zostaje na urządzeniu i znika przy następnym zdaniu.",
-        parler_modele_btn: "🔊 WZÓR",
+        parler_modele_btn: "WZÓR",
         parler_rec_btn: "🎙 NAGRAJ MNIE",
         parler_stop_btn: "⏹ STOP",
         parler_essai_btn: "▶ MOJA PRÓBA",
@@ -23173,7 +23163,7 @@ const I18N = {
         rp_q_pluriel: "Какое множественное число?",
         rp_q_dire_mot: "Скажи вслух, с артиклем",
         rp_exception: "⚠️ Исключение",
-        son_badge: "🔊 Звук дня",
+        son_badge: "Звук дня",
         son_q: "Послушай каждое слово и посмотри на буквы",
         son_q_dire: "Твоя очередь: скажи это слово",
         reglage_questions_titre: "Вопросы сцены дня",
@@ -23648,8 +23638,8 @@ const I18N = {
         regle_explication: "Существительные на {fin} — {genre} в {taux} % наших слов",
         op_nomen_o6_d: "der · die · das — поровну",
         kicker_quiz_article: "Какой артикль?",
-        dictation_replay_btn: "🔊 ПОСЛУШАТЬ ЕЩЁ",
-        exercice_ecouter_btn: "🔊 ПОСЛУШАТЬ ПРЕДЛОЖЕНИЕ",
+        dictation_replay_btn: "ПОСЛУШАТЬ ЕЩЁ",
+        exercice_ecouter_btn: "ПОСЛУШАТЬ ПРЕДЛОЖЕНИЕ",
         dictation_instruction: "Послушай и напиши, что слышишь.",
         dictation_hint: "Артикль (der/die/das) писать не нужно.",
         dictation_explanation_prefix: "Слово было:",
@@ -23820,8 +23810,6 @@ const I18N = {
         ep_plus_loin: "Скоро",
         ep_regle: "День практики = не меньше 10 упражнений за день. Дни не обязательно идут подряд.",
         ep_prochain: "Следующий эпизод: {titre}",
-        ep_tuile_sous_1: "Следующий — через 1 день практики",
-        ep_tuile_sous_n: "Следующий — через {n} дней практики",
         ep_nouveau: "Новое",
         ep_admin_reset: "Сбросить сюрприз (админ)",
         ep_admin_reset_fait: "Сюрприз сброшен: он вернётся на 10-м упражнении дня.",
@@ -24147,7 +24135,7 @@ const I18N = {
         parler_kicker: "Говорение",
         parler_title: "Услышать себя",
         parler_desc: "Сначала образец, потом ты, по очереди. Разницу слышно именно тогда, когда слышишь себя — повторять, слушая, недостаточно. Ничего не оценивается и никуда не отправляется: запись остаётся на устройстве и исчезает при переходе к следующему предложению.",
-        parler_modele_btn: "🔊 ОБРАЗЕЦ",
+        parler_modele_btn: "ОБРАЗЕЦ",
         parler_rec_btn: "🎙 ЗАПИСАТЬ МЕНЯ",
         parler_stop_btn: "⏹ СТОП",
         parler_essai_btn: "▶ МОЯ ПОПЫТКА",
@@ -42432,7 +42420,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 918;
+const APP_VERSION = 919;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47534,7 +47522,11 @@ function montrerCartePhrase(item){
     // v879 : les reperes (jours, mois, nombres) marquent leur passage.
     try{ marquerRepere(item); }catch(e){}
     if(item.av && item.avBadge) type.appendChild(creer("b", "cp-av", item.avBadge));
-    else if(item.rpBadge) type.appendChild(creer("b", "cp-av", item.rpBadge));
+    else if(item.rpBadge){
+        const bv = creer("b", "cp-av", item.rpBadge);
+        if(String(item.themeId).indexOf("son_") === 0) bv.prepend(iconeHP(), " ");
+        type.appendChild(bv);
+    }
     else if(item.fcBadge) type.appendChild(creer("b", "cp-av", item.fcBadge));
     else type.appendChild(creer("b", item.pp ? "cp-pp" : "", item.pp ? "🌱 " + t("pp_badge") : t("cp_type")));
     const question = item.q ? item.q
@@ -47595,7 +47587,7 @@ function montrerCartePhrase(item){
         const redire = item.forme === "dictee_mot" ? () => direMotPhrase(item) : () => direPhrase(item);
         if(item.phrase) setTimeout(() => { if(retour.isConnected) redire(); }, juste ? 700 : 0);
     };
-    const ecouter = creer("button", "cp-ecouter", "🔊 " + t("cp_ecouter"));
+    const ecouter = creer("button", "cp-ecouter"); ecouter.append(iconeHP(), " " + t("cp_ecouter"));
     ecouter.type = "button";
     ecouter.addEventListener("click", () => item.forme === "dictee_mot" ? direMotPhrase(item) : direPhrase(item));
     // v825 : LE RALENTI. Jacques : « mettre au ralenti lorsqu'on entend qu'on doit
@@ -47669,7 +47661,7 @@ function montrerCartePhrase(item){
         phrase.appendChild(debut);
         phrase.appendChild(trou);
         phrase.appendChild(document.createTextNode(apres));
-        phrase.appendChild(creer("i", "", " 🔊"));
+        { const hp = creer("i", "", " "); hp.appendChild(iconeHP()); phrase.appendChild(hp); }
         // « a el » -> « al », « de el » -> « del » (espagnol) : a l'ecran comme a la voix.
         const poser = mot => { const c = contracterA1V(avant, mot); debut.nodeValue = c.avant; trou.textContent = c.mot; };
         poser(rempli);
@@ -47879,14 +47871,37 @@ function montrerCartePhrase(item){
         const r = item.regle || {};
         const rtl = document.documentElement.dir === "rtl";
         const tete = creer("div", "pron-tete");
-        tete.appendChild(creer("span", "pron-graphie", r.graphie || ""));
+        const mots = creer("div", "pron-mots");
+        // v919 : CHAQUE MORCEAU DE LA GRAPHIE SE TOUCHE et dit SON mot, qui s'allume
+        // (Jacques, 22 oct. 2026 : « an en in on un [...] on voudrait etre en mesure
+        // de les entendre en pesant dessus »). Le morceau seul ne se dit pas : « an »
+        // isole, la voix le lirait en anglais ou en francais. C'est le mot qui le porte.
+        const graphie = creer("span", "pron-graphie");
+        graphie.setAttribute("lang", langueDe);
+        String(r.graphie || "").split("·").forEach((brut, k) => {
+            if(k) graphie.appendChild(document.createTextNode(" · "));
+            const morceau = brut.trim();
+            const cle = morceauxGraphie(morceau)[0] || "";
+            let i = -1;
+            for(const exact of [true, false]){
+                if(i < 0 && cle) i = (r.exemples || []).findIndex(e => sonDansMot(e.mot, cle, exact));
+            }
+            if(i < 0){ graphie.appendChild(document.createTextNode(morceau)); return; }
+            const b = creer("button", "pron-morceau", morceau);
+            b.type = "button";
+            b.addEventListener("click", () => {
+                Array.from(mots.children).forEach((x, j) => x.classList.toggle("allume", j === i));
+                try{ direAllemand(r.exemples[i].mot, { rate: 1 }); }catch(x){}
+            });
+            graphie.appendChild(b);
+        });
+        tete.appendChild(graphie);
         if(r.api) tete.appendChild(creer("span", "pron-api", r.api));
         tete.appendChild(creer("span", "pron-court", texteDeFiche(item.court)));
         el.appendChild(tete);
         const expl = creer("p", "pron-expl", texteDeFiche(item.explication));
         if(rtl) expl.setAttribute("dir", "auto");
         el.appendChild(expl);
-        const mots = creer("div", "pron-mots");
         (r.exemples || []).forEach(e => {
             const b = creer("button", "pron-mot");
             b.type = "button";
@@ -48059,8 +48074,13 @@ function montrerCartePhrase(item){
                     // v904 : le mot se dit quand il entre dans la phrase (Jacques,
                     // 21 oct. 2026 : « on devrait entendre le mot chaque fois que
                     // l'on en selectionne un »). Sans la ponctuation collee.
-                    const dit = x.m.replace(/^[¿¡«"(]+|[.,;:!?»")]+$/g, "");
-                    if(dit) try{ direAllemand(dit, { rate: 0.9 }); }catch(e){}
+                    // v919 : en espagnol, la MINUSCULE -- le fichier du mot de tuile
+                    // (audio/manifest_es.py, source « tuiles ») : « Es » en tete de
+                    // phrase et « es » sont le meme son. L'allemand garde sa
+                    // majuscule, qui distingue le nom (« Essen » / « essen »).
+                    let dit = x.m.replace(/^[¿¡«"(]+|[.,;:!?»")]+$/g, "");
+                    if(LANGUE_APPRISE === "es") dit = dit.toLowerCase();
+                    if(dit && /[\p{L}\p{N}]/u.test(dit)) try{ direAllemand(dit, { rate: 0.9 }); }catch(e){}
                 }
                 else banque.appendChild(tuile);
             });
@@ -48166,7 +48186,7 @@ function montrerCartePhrase(item){
         phrase.setAttribute("lang", langueDe);
         el.appendChild(phrase);
         el.appendChild(creer("p", "cp-sens", item.phrase.sens));
-        const modele = creer("button", "cp-or-modele", "🔊 " + t("cp_modele"));
+        const modele = creer("button", "cp-or-modele"); modele.append(iconeHP(), " " + t("cp_modele"));
         modele.type = "button";
         modele.addEventListener("click", () => direPhrase(item));
         el.appendChild(modele);
@@ -48229,7 +48249,7 @@ function montrerCartePhrase(item){
         const outils = creer("div", "cp-or-outils hidden");
         const reessayer = creer("button", "", "🎙 " + t("or_reessayer"));
         const relire = creer("button", "hidden", "▶ " + t("cp_reecouter"));
-        const modele2 = creer("button", "", "🔊 " + t("cp_modele"));
+        const modele2 = creer("button", ""); modele2.append(iconeHP(), " " + t("cp_modele"));
         [reessayer, relire, modele2].forEach(b => { b.type = "button"; outils.appendChild(b); });
         el.appendChild(outils);
         modele2.addEventListener("click", () => { if(v2){ try{ direAllemand(item.phrase.de, { rate: 0.55 }); }catch(e){} } else direPhrase(item); });
@@ -48375,7 +48395,7 @@ function montrerCartePhrase(item){
             const b = creer("b", "", mot);
             b.setAttribute("lang", langueDe);
             motZone.appendChild(b);
-            const ecouter = creer("button", "", "🔊");
+            const ecouter = creer("button", ""); ecouter.appendChild(iconeHP()); ecouter.setAttribute("aria-label", t("cp_ecouter"));
             const lent = creer("button", "", "🐢");
             const dire = creer("button", "", "🎙 " + t("or_dis_le"));
             [ecouter, lent, dire].forEach(x => { x.type = "button"; motZone.appendChild(x); });
@@ -48623,7 +48643,7 @@ function montrerCartePhrase(item){
         el.appendChild(p);
         el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const oral = creer("div", "cp-oral");
-        const modele = creer("button", "", "🔊 " + t("cp_modele"));
+        const modele = creer("button", ""); modele.append(iconeHP(), " " + t("cp_modele"));
         modele.type = "button";
         modele.addEventListener("click", () => direPhrase(item));
         const enreg = creer("button", "", "🎙 " + t("cp_enregistrer"));
@@ -49414,7 +49434,7 @@ async function ouvrirCarnetPhrases(){
                 sens.textContent = sensPremiersPas(b.exs);
                 tx.appendChild(de); tx.appendChild(sens);
                 const son = document.createElement("i");
-                son.textContent = "🔊";
+                son.appendChild(iconeHP());
                 l.appendChild(tx); l.appendChild(son);
                 l.addEventListener("click", () => { try{ direAllemand(b.ex, { rate: 0.9 }); }catch(e){} });
                 box.appendChild(l);
@@ -49873,16 +49893,34 @@ function marquerSonDuJour(item){
 }
 // Les lettres de la regle, soulignees dans le mot : « sp · st » souligne sp
 // ou st ; « -er » seulement en fin de mot ; « ch (ich) » cherche ch.
+// v919 : OU EST LE MORCEAU DANS LE MOT -- [debut, longueur], ou null. « -e » se cherche
+// a la fin. Si le morceau n'a pas d'accent, on le cherche aussi dans le mot SANS ses
+// accents (« en » dans « también ») : lettre a lettre, donc les positions restent justes.
+// Meme regle que son_dans_mot() de tests/prononciation_es.py, qui exige un exemple
+// par morceau.
+function sansAccentLettre(s){ return Array.from(s).map(c => c.normalize("NFD").charAt(0)).join(""); }
+function sonDansMot(mot, morceau, avecAccents){
+    const fin = morceau.charAt(0) === "-";
+    const cle = (fin ? morceau.slice(1) : morceau).toLowerCase();
+    if(!cle) return null;
+    let bas = mot.toLowerCase();
+    if(!avecAccents){
+        if(cle !== sansAccentLettre(cle)) return null;
+        bas = sansAccentLettre(bas);
+    }
+    const k = fin ? (bas.endsWith(cle) ? bas.length - cle.length : -1) : bas.indexOf(cle);
+    return k >= 0 ? [k, cle.length] : null;
+}
+function morceauxGraphie(graphie){
+    return String(graphie || "").replace(/\([^)]*\)/g, " ").split("·").map(s => s.trim()).filter(Boolean);
+}
 function surlignerSon(mot, graphie){
-    const morceaux = String(graphie || "").replace(/\([^)]*\)/g, " ").split("·")
-        .map(s => s.trim()).filter(Boolean).sort((a, b) => b.length - a.length);
-    const bas = mot.toLowerCase();
-    for(const m of morceaux){
-        const fin = m.charAt(0) === "-";
-        const cle = (fin ? m.slice(1) : m).toLowerCase();
-        if(!cle) continue;
-        const k = fin ? (bas.endsWith(cle) ? bas.length - cle.length : -1) : bas.indexOf(cle);
-        if(k >= 0) return [mot.slice(0, k), mot.slice(k, k + cle.length), mot.slice(k + cle.length)];
+    const morceaux = morceauxGraphie(graphie).sort((a, b) => b.length - a.length);
+    for(const exact of [true, false]){
+        for(const m of morceaux){
+            const r = sonDansMot(mot, m, exact);
+            if(r) return [mot.slice(0, r[0]), mot.slice(r[0], r[0] + r[1]), mot.slice(r[0] + r[1])];
+        }
     }
     return [mot, "", ""];
 }
@@ -49927,6 +49965,17 @@ function nbFeuillesVues(){
 // lignes qui se touchent et se disent, l'astuce. [crochets] = surligne.
 function texteFormeTableau(forme){
     return String(forme || "").replace(/[\[\]]/g, "");
+}
+// v919 : LE HAUT-PARLEUR DESSINE a la place de l'emoji 🔊, que chaque telephone
+// dessine a sa facon -- en petit, sur iPhone, il ne ressemblait plus a un haut-parleur
+// (Jacques, 22 oct. 2026 : « dans les jours de la semaine, le petit haut-parleur [...]
+// c'est completement autre chose »). Heroicons « speaker-wave », plein (MIT) : le
+// choix D de .claude/maquette-haut-parleur.html. Il prend la couleur du texte.
+const HP_SVG = '<svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg>';
+function iconeHP(){
+    const tpl = document.createElement("template");
+    tpl.innerHTML = HP_SVG;
+    return tpl.content.firstChild;
 }
 function construireTableau(tab){
     const creer = (tag, cls, texte) => {
@@ -49974,7 +50023,7 @@ function construireTableau(tab){
             forme.appendChild(p);
         }
         ligne.appendChild(forme);
-        ligne.appendChild(creer("span", "cp-tl-son", "🔊"));
+        const son = creer("span", "cp-tl-son"); son.appendChild(iconeHP()); ligne.appendChild(son);
         const dit = texteFormeTableau(brut);
         ligne.addEventListener("click", () => { try{ direAllemand(dit, { rate: 0.85 }); }catch(e){} });
         table.appendChild(ligne);
@@ -50925,7 +50974,7 @@ const EPISODES_HOTE = "https://deutschai-b6fbb.web.app/episodes/";
 const EPISODES = {
     es: [
         // v918 : « v2 », la traduction agrandie (nouveau nom : pas d'ancienne en cache).
-        { n: 1, titre: "Llegada a Madrid", video: "es/ep01-v2", affiche: "es/ep01-affiche.jpg" },
+        { n: 1, titre: "Llegada a Madrid", video: "es/ep01-v3", affiche: "es/ep01-affiche.jpg" },
         { n: 2, titre: "El carro", video: "es/ep02-v2", affiche: "es/ep02-affiche.jpg" }
     ]
 };
@@ -51125,18 +51174,14 @@ function majTuileEpisodes(){
     const voir = liste.length > 0 && s.d > 0;
     tuile.classList.toggle("hidden", !voir);
     if(!voir) return;
-    // v918 : « Nouveau » tant qu'un episode debloque n'a pas ete regarde ; dessous,
-    // quand vient le prochain.
+    // v918 : « Nouveau » tant qu'un episode debloque n'a pas ete regarde.
+    // v919 : plus de ligne « Prochain dans N jours de pratique » sous le titre (Jacques,
+    // 22 oct. : « enleve dessous ») -- la surprise le dit deja, une fois.
     const nouveau = document.getElementById("tuileEpisodesNouveau");
     if(nouveau){
         let pasVu = false;
         for(let n = 1; n <= s.d; n++) if(!s.v[n]) pasVu = true;
         nouveau.classList.toggle("hidden", !pasVu);
-    }
-    const sous = document.getElementById("tuileEpisodesSous");
-    if(sous){
-        const n = joursAvantEpisode();
-        sous.textContent = s.d < liste.length ? (n === 1 ? t("ep_tuile_sous_1") : tf("ep_tuile_sous_n", { n: n })) : "";
     }
 }
 function fermerListeSeance(){

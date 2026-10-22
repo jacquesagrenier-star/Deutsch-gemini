@@ -649,6 +649,22 @@ REGLES = [
      u"la retenir. Une replique qui en remet a la reprise : ne pas reessayer a l'aveugle -- "
      u"changer de modele pour ce plan (OmniHuman n'en a jamais fait en ~40 prises), sur "
      u"decision de Jacques puisque ca change le rendu."),
+    ("geste-repete", "faute",
+     None,   # logique a part, dans verifier_scene() : elle compare les prompts entre eux
+     u"Le meme geste (ou la meme immobilite) dans plusieurs repliques d'un personnage",
+     u"22 oct. 2026, es-01 (Ana, 1,11 $ de reprises). Ses quatre plans moyens portaient la "
+     u"MEME phrase de mains (<< Her hands stay at her sides, open and empty >>) : Kling en a "
+     u"fait le meme geste a chaque fois, les deux mains qui s'ouvrent. Jacques : << le geste "
+     u"est bien, mais repetitif, ca fait machinal -- les Espagnols parlent beaucoup avec leurs "
+     u"mains >>. Mark (es-01 5/10/14, es-02 x6) avait le travers inverse : la meme phrase "
+     u"d'immobilite, et les bras ballants identiques d'un plan a l'autre.",
+     u"UN GESTE PAR REPLIQUE, ecrit pour CE que dit la replique (montrer, main sur le coeur, "
+     u"mains jointes, << c'est facile >>...) : par sa geometrie (nom-du-geste), son amplitude "
+     u"(verbe-sans-plafond), TENU jusqu'a la fin (geste-qui-revient), le cote dit par l'image "
+     u"(cote-du-corps). Une seule main bouge, l'autre est dite immobile D'ABORD -- sinon les "
+     u"deux se rejoignent (es-01 plan 09, 1re prise). Dans video/prompts_repliques_es.py : le "
+     u"dictionnaire GESTES. Ce controle refuse une scene ou deux prompts partagent une phrase "
+     u"de mains : video/verifier_prompt.py --scene <scene>."),
     ("retouche-de-style", "faute",
      r"(?i)(\bturn (it|this|the (drawing|picture|illustration|image)) into\b"
      r"|\bthe first reference picture is (a|an|the) (blurred|out-of-focus|"
@@ -695,6 +711,18 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"UN GESTE DIFFERENT PAR REPLIQUE : une main qui bouge, l'autre dite immobile d'abord",
+     u"22 oct. 2026",
+     u"es-01, Ana, quatre reprises Kling (1,11 $ + 0,25 $ pour le plan 09). Montrer le tapis "
+     u"(plan 06), mains jointes a la taille (11), paume ouverte << c'est facile >> (15) : justes "
+     u"du premier coup. La main sur le coeur (09) : la 1re prise a joint les DEUX mains a la "
+     u"taille, comme au plan 11 ; reecrite << sa main cote droit de l'image reste pendante, "
+     u"pour tout le plan. Seule l'autre bouge : elle MONTE jusqu'a la poitrine et se pose a plat "
+     u"sur le revers >>, juste a la reprise. Aucune incrustation de texte sur les cinq prises.",
+     u"Ecrire le geste dans GESTES (video/prompts_repliques_es.py), pour ce que la replique "
+     u"DIT ; immobiliser l'autre main EN PREMIER, puis decrire le trajet de celle qui bouge "
+     u"(d'ou elle part, ou elle s'arrete) ; un geste qui touche la poitrine change aussi la "
+     u"TENUE du plan (TENUE_PLAN). Puis --scene, qui refuse deux repliques au meme geste."),
     (u"H3 Max : la MEME image en premiere ET en derniere image verrouille le cadre",
      u"21 oct. 2026",
      u"es-02, plan 09 (Mark fier, 0,32 $ de reprise). Le prompt portait la phrase de "
@@ -1307,6 +1335,8 @@ def controler(texte, image=False):
                                 u"%d negations (le guide en demande le moins "
                                 u"possible)" % n))
             continue
+        if code == "geste-repete":
+            continue    # compare les prompts entre eux : verifier_scene()
         ou = sans_verrou if code == "camera-qui-bouge" else texte
         m = re.search(motif, ou)
         if m:
@@ -1350,13 +1380,45 @@ def verifier_fichier(chemin, bavard=True):
                 bavard)
 
 
+# Ce que font les MAINS (ou les bras). Voir << geste-repete >>. Le PARAGRAPHE entier, pas
+# la phrase : << l'autre main reste immobile >> se repete a bon droit d'une replique a
+# l'autre ; c'est le paragraphe -- l'immobile ET celle qui bouge -- qui doit differer.
+MOT_MAINS = re.compile(r"\b(hands?|arms?|forearm|fingers|palm)\b", re.I)
+
+
+def gestes_repetes(fichiers):
+    """Les phrases de mains que deux prompts (ou plus) d'une meme scene partagent."""
+    vus = {}
+    for f in fichiers:
+        texte = io.open(f, encoding="utf-8").read()
+        if EST_IMAGE.search(texte):
+            continue
+        for m in set(x.strip() for x in re.split(r"\n\s*\n", texte) if MOT_MAINS.search(x)):
+            # Les phrases de TENUE (<< Across her chest we see only ... >>) et de BORD
+            # se repetent par construction : seules comptent celles qui font bouger
+            # ou tiennent les mains.
+            if re.search(r"(?i)we see only|beyond the|edge of the frame", m):
+                continue
+            vus.setdefault(m, []).append(os.path.basename(f))
+    return {m: fs for m, fs in vus.items() if len(fs) > 1}
+
+
 def verifier_scene(scene, bavard=True):
     d = os.path.join(RACINE, "video", "episode-%s" % scene,
                      "_essai-avatar", "prompts")
     fichiers = sorted(glob.glob(os.path.join(d, "plan*.txt")))
     if not fichiers:
         sys.exit("  aucun prompt dans %s" % d)
-    return sum(verifier_fichier(f, bavard) for f in fichiers)
+    fautes = sum(verifier_fichier(f, bavard) for f in fichiers)
+    regle = next(r for r in REGLES if r[0] == "geste-repete")
+    for phrase, fs in sorted(gestes_repetes(fichiers).items()):
+        fautes += 1
+        print("  %s" % ", ".join(fs))
+        print("    [FAUTE] geste-repete -- %s" % regle[3])
+        print("           ... %s ..." % phrase[:110])
+        print("           deja paye : %s" % regle[4])
+        print("           a la place : %s" % regle[5])
+    return fautes
 
 
 def lecons():
