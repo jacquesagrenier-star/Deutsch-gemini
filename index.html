@@ -6399,6 +6399,7 @@ body[data-theme="dark"] .cal-serie-bilan{color:#F2F2F6; background:rgba(240,180,
 .bilan-chiffre b{display:block; font-size:24px; font-weight:900; line-height:1.1;}
 .bilan-chiffre span{font-size:12px; font-weight:700; color:#576177;}
 .bilan-section{margin-top:14px;}
+.bilan-note{margin:2px 0 0; font-size:11.5px; color:#8a93a3; text-align:center;}
 .bilan-section h3{margin:0 0 8px; font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:.04em; color:#8a5a12;}
 .bilan-notion{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:14px; background:rgba(28,36,48,.05); margin-bottom:8px;}
 .bilan-notion-txt{flex:1 1 auto; min-width:0;}
@@ -8363,7 +8364,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v925</span>
+    <span class="subtitle-version">v926</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12105,6 +12106,7 @@ const I18N = {
         bilan_fin_regulier: "Cinq jours ou plus cette semaine : c'est la régularité qui fait apprendre.",
         bilan_fin_normal: "Ce qui résiste aujourd'hui sera su la semaine prochaine. Une séance à la fois.",
         bilan_ouvrir: "Voir ma semaine ›",
+        bilan_compte_depuis: "Exercices comptés depuis le {date}.",
         bilan_commencer: "Commencer ma séance du jour",
         bilan_refaire: "✓ Encore une série",
         bilan_mots_refaire: "✓ Les revoir encore",
@@ -13537,6 +13539,7 @@ const I18N = {
         bilan_fin_regulier: "Five days or more this week: regularity is what makes you learn.",
         bilan_fin_normal: "What resists today will be known next week. One session at a time.",
         bilan_ouvrir: "See my week ›",
+        bilan_compte_depuis: "Exercises counted since {date}.",
         bilan_commencer: "Start my daily session",
         bilan_refaire: "✓ One more set",
         bilan_mots_refaire: "✓ Review them again",
@@ -14971,6 +14974,7 @@ const I18N = {
         bilan_fin_regulier: "Bu hafta beş gün ya da daha fazla: öğrenmeyi sağlayan düzenliliktir.",
         bilan_fin_normal: "Bugün zorlayan, gelecek hafta bilinecek. Her seferinde bir oturum.",
         bilan_ouvrir: "Haftamı gör ›",
+        bilan_compte_depuis: "Alıştırmalar {date} tarihinden beri sayılıyor.",
         bilan_commencer: "Günlük oturumumu başlat",
         bilan_refaire: "✓ Bir dizi daha",
         bilan_mots_refaire: "✓ Tekrar gözden geçir",
@@ -17217,6 +17221,7 @@ const I18N = {
         bilan_fin_regulier: "П'ять днів або більше цього тижня: саме регулярність навчає.",
         bilan_fin_normal: "Те, що опирається сьогодні, буде знайоме наступного тижня. Одне заняття за раз.",
         bilan_ouvrir: "Мій тиждень ›",
+        bilan_compte_depuis: "Вправи враховуються з {date}.",
         bilan_commencer: "Почати заняття дня",
         bilan_refaire: "✓ Ще одна серія",
         bilan_mots_refaire: "✓ Повторити ще раз",
@@ -18848,6 +18853,7 @@ const I18N = {
         bilan_fin_regulier: "پنج روز یا بیشتر در این هفته: نظم است که یاد می‌دهد.",
         bilan_fin_normal: "آنچه امروز مقاومت می‌کند، هفتهٔ بعد آموخته خواهد شد. هر بار یک جلسه.",
         bilan_ouvrir: "دیدن هفته‌ام ›",
+        bilan_compte_depuis: "تمرین‌ها از {date} شمرده می‌شوند.",
         bilan_commencer: "شروع جلسهٔ امروز",
         bilan_refaire: "✓ یک سری دیگر",
         bilan_mots_refaire: "✓ دوباره مرور کن",
@@ -19936,6 +19942,7 @@ const I18N = {
         bilan_fin_regulier: "خمسة أيام أو أكثر هذا الأسبوع: الانتظام هو ما يجعلك تتعلم.",
         bilan_fin_normal: "ما يصعب اليوم ستعرفه الأسبوع المقبل. جلسة واحدة في كل مرة.",
         bilan_ouvrir: "عرض أسبوعي ›",
+        bilan_compte_depuis: "تُحتسب التمارين منذ {date}.",
         bilan_commencer: "ابدأ جلسة اليوم",
         bilan_refaire: "✓ سلسلة أخرى",
         bilan_mots_refaire: "✓ راجعها مرة أخرى",
@@ -20786,6 +20793,7 @@ const I18N = {
         bilan_fin_regulier: "Cinco dias ou mais esta semana: é a regularidade que faz aprender.",
         bilan_fin_normal: "O que resiste hoje será sabido na semana que vem. Uma sessão de cada vez.",
         bilan_ouvrir: "Ver minha semana ›",
+        bilan_compte_depuis: "Exercícios contados desde {date}.",
         bilan_commencer: "Começar minha sessão do dia",
         bilan_refaire: "✓ Mais uma série",
         bilan_mots_refaire: "✓ Revisar de novo",
@@ -22259,6 +22267,7 @@ const I18N = {
         bilan_fin_regulier: "Pięć dni lub więcej w tym tygodniu: to regularność uczy.",
         bilan_fin_normal: "To, co opiera się dziś, będzie znane w przyszłym tygodniu. Jedna sesja na raz.",
         bilan_ouvrir: "Zobacz mój tydzień ›",
+        bilan_compte_depuis: "Ćwiczenia liczone od {date}.",
         bilan_commencer: "Zacznij sesję dnia",
         bilan_refaire: "✓ Jeszcze jedna seria",
         bilan_mots_refaire: "✓ Powtórz jeszcze raz",
@@ -23730,6 +23739,7 @@ const I18N = {
         bilan_fin_regulier: "Пять дней или больше на этой неделе: учит именно регулярность.",
         bilan_fin_normal: "То, что сопротивляется сегодня, будет знакомо на следующей неделе. Одно занятие за раз.",
         bilan_ouvrir: "Моя неделя ›",
+        bilan_compte_depuis: "Упражнения считаются с {date}.",
         bilan_commencer: "Начать занятие дня",
         bilan_refaire: "✓ Ещё одна серия",
         bilan_mots_refaire: "✓ Повторить ещё раз",
@@ -33435,15 +33445,29 @@ function calculerBilan(){
     const debut = Date.now() - BILAN_JOURS * 86400000;
     const l = lireReponsesBilan().filter(x => x && x.t >= debut);
     // Ce qui a ete fait : les exercices par jour (v920), les acquis, les jours.
+    // v926 : LES JOURS ACTIFS SONT CEUX DE LA FLAMME (joursActifs). Jacques : « ca me
+    // dit seulement un jour actif alors que j'ai 7 jours consecutifs ». Le bilan
+    // comptait les jours de la liste v.j et des comptes v.c -- or v.j est neuve
+    // (v911), et une restauration du nuage d'avant la v920 la vidait ; v.c date de
+    // la v920. La flamme, elle, croise la serie, le journal de memorisation et les
+    // seances. Une seule source pour les deux : ils ne peuvent plus se contredire.
+    // Et les exercices d'un jour actif d'avant la v920 ne sont pas connus : on le dit
+    // (compteDepuis) au lieu de laisser croire a une petite semaine.
     const v = joursTravailles();
-    let exercices = 0, jours = 0;
+    let actifs = {};
+    try{ actifs = joursActifs(); }catch(e){}
+    let exercices = 0, jours = 0, sansCompte = 0;
     for(let k = 0; k < BILAN_JOURS; k++){
         const d = new Date(); d.setDate(d.getDate() - k);
         const cle = getTodayStr(d);
         const n = v.c[cle] || (k === 0 ? getDailyActivityCount() : 0);
         exercices += n;
-        if(n > 0 || v.j.indexOf(cle) >= 0) jours++;
+        const actif = n > 0 || !!actifs[cle] || v.j.indexOf(cle) >= 0;
+        if(actif) jours++;
+        if(actif && !n) sansCompte++;
     }
+    const comptes = Object.keys(v.c).sort();
+    const compteDepuis = (sansCompte && comptes.length) ? comptes[0] : null;
     let acquis = 0;
     try{
         const log = JSON.parse(localStorage.getItem(directionScopedKey(MASTERY_LOG_KEY)) || "[]") || [];
@@ -33471,7 +33495,7 @@ function calculerBilan(){
         if(x.t > e.t){ e.t = x.t; e.w = x.w || e.w; e.s = x.s || e.s; }
     });
     const mots = Object.values(parMot).filter(e => e.w).sort((a, b) => b.n - a.n || b.t - a.t);
-    return { exercices: exercices, jours: jours, acquis: acquis, notions: notions, grammaire: grammaire,
+    return { exercices: exercices, jours: jours, acquis: acquis, notions: notions, grammaire: grammaire, compteDepuis: compteDepuis,
              mots: mots.slice(0, 5), motsCles: mots.slice(0, 12).map(e => e.c) };
 }
 // Une fois par semaine, a l'accueil -- et toujours depuis la bulle de la flamme.
@@ -33549,6 +33573,11 @@ function ouvrirBilanSemaine(ev, retour){
         chiffres.appendChild(c);
     });
     carte.appendChild(chiffres);
+    if(b.compteDepuis){
+        const d = new Date(b.compteDepuis + "T12:00:00");
+        carte.appendChild(creer("p", "bilan-note", tf("bilan_compte_depuis",
+            { date: d.toLocaleDateString(getUiLang(), { day: "numeric", month: "long" }) })));
+    }
     // La notion a travailler.
     if(b.notions.length){
         const s = creer("section", "bilan-section");
@@ -43243,7 +43272,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 925;
+const APP_VERSION = 926;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -46192,11 +46221,25 @@ function repeindreToileMosaique(canvas){
         try{ noterAudio("mosaique", "ECRAN", "toile redessinee : 1re image apres " + (Date.now() - t0) + " ms"); }catch(e){}
         requestAnimationFrame(() => { canvas.style.opacity = ""; });
     });
+    // v926 : « ELLE N'EST TOUJOURS PAS LA » (Jacques, iPhone, apres la v925). Le
+    // remede le plus sur connu pour WebKit : retirer la toile de l'affichage et la
+    // remettre, ce qui recree sa couche. Deux fois : apres le fondu de l'ecran
+    // d'accueil (une toile dessinee pendant qu'un parent s'anime en opacite est le
+    // cas type ou la couche reste figee), puis une seconde plus tard en filet.
+    const recreer = () => {
+        try{
+            canvas.style.display = "none";
+            void canvas.offsetHeight;   // force le calcul de la mise en page
+            canvas.style.display = "";
+        }catch(e){}
+    };
     setTimeout(() => {
         canvas.style.opacity = "";   // au cas ou l'image n'est jamais tombee (onglet en fond)
+        recreer();
         try{ window.scrollBy(0, 1); window.scrollBy(0, -1); }catch(e){}
         if(!dessine){ try{ noterAudio("mosaique", "ECRAN", "toile redessinee : aucune image apres 400 ms"); }catch(e){} }
     }, 400);
+    setTimeout(recreer, 1200);
 }
 function tailleToileMosaique(canvas, m){
     const L = Math.min(900, m.l || 900);
@@ -52602,6 +52645,15 @@ function sortirDuCoffre(){
     // Le coffre est un lieu de passage, pas un jugement : on y entre, on y
     // tourne, on en sort, et le calendrier du mot n'a pas bouge d'un jour.
     try{ poserCarreauDeLaCarte(it); }catch(e){}   // v853
+    // v926 : LE MOT SORTI QUITTE AUSSI LE PAQUET. Jacques : « quand je demande de
+    // sortir du coffre, il recule, puis il me remet la meme carte ». Un mot garde
+    // est echu ; en fin de paquet, cartesRevenues() reprend les cartes echues de
+    // currentCardsFull -- et le mot a peine sorti revenait. Le paquet des gardes
+    // ne contient que des mots gardes : celui-ci n'y a plus sa place.
+    if(it){
+        const meme = x => x && x.themeId === it.themeId && x.index === it.index;
+        currentCardsFull = (currentCardsFull || []).filter(x => !meme(x));
+    }
     clearTimeout(attentePalier);
     attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
 }
