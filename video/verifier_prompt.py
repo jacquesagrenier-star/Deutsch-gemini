@@ -643,7 +643,10 @@ REGLES = [
      u"poitrine decrite, 4 avaient encore des sous-titres MOT A MOT, et 3 sur 4 les ont REFAITS "
      u"a la reprise -- les memes repliques (es-01 16, es-02 06 et 12). Ce n'est pas du hasard : "
      u"quelque chose dans ces pistes declenche Kling. Le delogo de ffmpeg laisse une bande floue "
-     u"et des restes de lettres (les mots n'ont pas la meme largeur) : inutilisable.",
+     u"et des restes de lettres (les mots n'ont pas la meme largeur) : inutilisable. "
+     u"22 oct. 2026, es-02 plan 08 (la voisine, « muy bien ») : propre en septembre, il en a "
+     u"fait a la reprise des gestes, PUIS a la reprise suivante (2 x 0,40 $) -- une replique "
+     u"qui en fait deux fois de suite en refera.",
      u"Decrire la poitrine du debut a la fin (<< Across her chest we see only... >>) -- ca "
      u"en evite certains, pas tous. Passer CHAQUE prise Kling a video/texte_incruste.py avant de "
      u"la retenir. Une replique qui en remet a la reprise : ne pas reessayer a l'aveugle -- "
@@ -658,6 +661,9 @@ REGLES = [
      u"est bien, mais repetitif, ca fait machinal -- les Espagnols parlent beaucoup avec leurs "
      u"mains >>. Mark (es-01 5/10/14, es-02 x6) avait le travers inverse : la meme phrase "
      u"d'immobilite, et les bras ballants identiques d'un plan a l'autre.",
+     u"⚠️ OMNIHUMAN FAIT PEU DE GESTES DEMANDES (22 oct. 2026, es-02 plan 12, 0,92 $ : la main "
+     u"« plus ou moins » n'est jamais venue ; pilote par la voix, il bouge le visage). Un geste "
+     u"qui compte se demande a Kling ; OmniHuman reste le remede du texte incruste. "
      u"UN GESTE PAR REPLIQUE, ecrit pour CE que dit la replique (montrer, main sur le coeur, "
      u"mains jointes, << c'est facile >>...) : par sa geometrie (nom-du-geste), son amplitude "
      u"(verbe-sans-plafond), TENU jusqu'a la fin (geste-qui-revient), le cote dit par l'image "
