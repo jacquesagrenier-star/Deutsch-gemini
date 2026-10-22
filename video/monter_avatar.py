@@ -404,6 +404,14 @@ def main():
     # dossier du 2. Un fichier mal nomme est la premiere marche vers une
     # mesure fausse -- deja paye deux fois sur ce projet.
     num = a.scene.split("-")[0] if a.scene and a.scene[:2].isdigit() else "01"
+    # ⚠️ ET LA SERIE ESPAGNOLE (21 oct. 2026) : « es-02-el-carro » ne commence pas
+    #    par un chiffre, et l'episode 2 est ressorti en EPISODE-01 -- la meme faute
+    #    que ci-dessus, par une autre porte. Le numero vient du champ « episode ».
+    fscene = os.path.join(RACINE, "scenes", a.scene + ".json")
+    if not a.scene[:2].isdigit() and os.path.exists(fscene):
+        d_sc = json.load(io.open(fscene, encoding="utf-8"))
+        if d_sc.get("episode"):
+            num = "%s-%02d" % (d_sc.get("langue", "").upper() or "X", int(d_sc["episode"]))
     defaut = ("EPISODE-%s-vitrine.mp4" % num if (a.vitrine or a.ordre)
               else "EPISODE-%s-avatar.mp4" % num)
     dst = a.sortie or os.path.join(ep, defaut)

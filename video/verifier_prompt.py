@@ -617,18 +617,38 @@ REGLES = [
      u"oublies dans le sable), << a real photograph... as a passer-by would "
      u"take it with a good phone camera >> et la liste des matieres : une "
      u"vraie photo, Mark et Anna reconnaissables, aucun lieu perdu."),
+    ("interlocuteur-fantome", "doute",
+     None,   # logique a part, dans controler()
+     u"L'interlocuteur hors champ, nomme par son cote : le modele le dessine au bord",
+     u"21 oct. 2026, es-02 plan 02 (Kling, 0,20 $) : << speaking to someone just off "
+     u"screen beyond the RIGHT edge >> -- une silhouette fantome est apparue au bord "
+     u"droit au milieu du plan, puis repartie. intrus_au_bord.py (premiere/derniere image) "
+     u"rendait 2,6 : il ne voyait pas ce qui ressort avant la fin. DEUXIEME PRISE (0,20 $), "
+     u"bord rempli mais l'autre encore NOMME (<< he greets an older lady >>, << asks her >>) : "
+     u"une tete au bas du cadre, et Mark qui baisse les yeux vers elle.",
+     u"NE JAMAIS NOMMER L'INTERLOCUTEUR -- ni « someone », ni « her », ni « the lady » : "
+     u"ce que le prompt nomme, le modele le fabrique. Donner un POINT a regarder : << He "
+     u"speaks towards a point just beyond the right edge of the picture, level with his own "
+     u"eyes. >> Et remplir l'espace jusqu'a ce bord (<< between him and the edge of the frame, "
+     u"the sunny pavement... runs on, open >>). intrus_au_bord.py mesure toutes les "
+     u"demi-secondes."),
     ("texte-incruste", "doute",
      None,   # logique a part, dans controler() : une replique sans la poitrine decrite
      u"Kling incruste de faux sous-titres sur le personnage",
      u"21 oct. 2026, es-01 plan 13 (Ana, 0,40 $ de reprise) : deux lignes de lettres "
      u"blanches illisibles sur sa poitrine, de 2,8 s a la fin de la prise. Le prompt ne "
      u"parlait d'aucun texte, et rien dans le retour ne le signalait : vu sur une bande "
-     u"d'images. Mesure : video/texte_incruste.py (270 contre 2 a 29 pour les prises propres).",
-     u"Ne pas nommer le texte (garde-negative) : REMPLIR la place. Dire ce qu'on voit sur "
-     u"la poitrine du debut a la fin -- << Across her chest we see only the beige trench "
-     u"coat, the plain grey knit of her sweater and the brown leather strap, from the first "
-     u"frame to the last. >> -- et passer CHAQUE prise a video/texte_incruste.py avant de "
-     u"la retenir."),
+     u"d'images. Mesure : video/texte_incruste.py (270 contre 2 a 29 pour les prises propres). "
+     u"⚠️ LE REMEDE CI-DESSOUS NE SUFFIT PAS, mesure le meme soir : sur 24 repliques AVEC la "
+     u"poitrine decrite, 4 avaient encore des sous-titres MOT A MOT, et 3 sur 4 les ont REFAITS "
+     u"a la reprise -- les memes repliques (es-01 16, es-02 06 et 12). Ce n'est pas du hasard : "
+     u"quelque chose dans ces pistes declenche Kling. Le delogo de ffmpeg laisse une bande floue "
+     u"et des restes de lettres (les mots n'ont pas la meme largeur) : inutilisable.",
+     u"Decrire la poitrine du debut a la fin (<< Across her chest we see only... >>) -- ca "
+     u"en evite certains, pas tous. Passer CHAQUE prise Kling a video/texte_incruste.py avant de "
+     u"la retenir. Une replique qui en remet a la reprise : ne pas reessayer a l'aveugle -- "
+     u"changer de modele pour ce plan (OmniHuman n'en a jamais fait en ~40 prises), sur "
+     u"decision de Jacques puisque ca change le rendu."),
     ("retouche-de-style", "faute",
      r"(?i)(\bturn (it|this|the (drawing|picture|illustration|image)) into\b"
      r"|\bthe first reference picture is (a|an|the) (blurred|out-of-focus|"
@@ -1224,6 +1244,13 @@ def controler(texte, image=False):
             #    << from the top of his head to his bare feet >>. Les pieds
             #    sont DANS le cadre, puisque c'est le cadre qu'on commande. Un
             #    controle qui accuse le juste se fait desarmer.
+            continue
+        if code == "interlocuteur-fantome":
+            cote = re.search(r"(?i)off screen beyond the (left|right) edge", texte)
+            if cote and not re.search(r"(?i)between (him|her) and the edge of the frame", texte):
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"interlocuteur a %s, et rien entre le personnage et ce bord"
+                                % cote.group(1).lower()))
             continue
         if code == "texte-incruste":
             if VERBES_PAROLE.search(texte) and not re.search(
