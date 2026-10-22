@@ -1,0 +1,472 @@
+==============================================================
+EPISODIO 03 (serie espagnole) -- EL CAFE
+« ¿Me regala un café? » : au bar, Ana souffle la formule de Madrid
+22 octobre 2026 -- ECRIT, RIEN DE GENERE (a valider avec Jacques)
+==============================================================
+
+Scene : scenes/es-03-el-cafe.json (texte dit sous « es »).
+Le gag : Mark commande a la mexicaine (« ¿Me regala un café? » = donnez-moi),
+or en Espagne regalar veut dire OFFRIR : le serveur rit, « ¡Aquí se paga! ».
+L'arc : Ana (es-01) le reconnait au comptoir et lui souffle « ¿Me pones un
+café? ». Puis les trois cafes, la tostada con tomate, et la chute du lundi.
+
+⚠️ CE QUI EST NOUVEAU DANS CET EPISODE, et qui a demande deux tables de plus
+   dans video/prompts_repliques_es.py (TENUE_PLAN, BORD_PLAN) : DEUX hommes
+   (Mark et le serveur) qui ne regardent pas du meme cote, et Mark qui change
+   de tenue au plan 17 (le lundi). Les prompts d'es-01 et d'es-02 n'ont pas
+   bouge (verifie par git diff le 22 oct.).
+
+--------------------------------------------------------------
+LA GEOGRAPHIE -- ECRITE AVANT TOUT, ET CHAQUE IMAGE LA SERT
+--------------------------------------------------------------
+   UN SEUL BAR, UN SEUL COMPTOIR. La camera est TOUJOURS du cote des clients,
+   face au comptoir, a hauteur d'epaule ; elle ne passe jamais derriere le
+   zinc. Donc la gauche et la droite de l'image restent les memes partout.
+
+      GAUCHE DE L'IMAGE  <-------------------------------->  DROITE DE L'IMAGE
+
+      [ machine a cafe ]  ....... le ZINC (comptoir) .......  [ vitrine ]  [ fenetre ]
+            LE SERVEUR, derriere le zinc, au centre-droit, face aux clients
+      MARK, cote clients       ...un bras d'ecart...      ANA, cote clients
+
+   LE COMPTOIR   un long zinc gris-argent, mat, use ; derriere, un mur de
+                 carreaux blancs et des etageres de tasses blanches (PAS de
+                 bouteilles : leurs etiquettes ecrivent ; PAS d'ardoise :
+                 elle ecrirait le menu).
+   LA MACHINE    chrome, a l'extremite GAUCHE du zinc, sur le comptoir
+                 arriere. Rien d'ecrit dessus.
+   LA VITRINE    a l'extremite DROITE du zinc, une vitrine basse de verre avec
+                 des demi-baguettes grillees a la tomate.
+   LA LUMIERE    matin, elle vient de la DROITE de l'image (la fenetre sur la
+                 rue) ; les ombres tombent vers la GAUCHE.
+   LES REGARDS   ⚠️ MARK EST TOUJOURS A GAUCHE DE SES INTERLOCUTEURS (regle
+                 des 180 degres, convention de la serie). Dans ses plans il
+                 regarde vers le bord DROIT (le serveur, en face a droite ;
+                 Ana, a sa droite). Le serveur regarde vers le bord GAUCHE
+                 (Mark). Ana regarde vers le bord GAUCHE (Mark a sa gauche ;
+                 et quand elle commande, le serveur est devant elle, un peu a
+                 gauche : le meme bord). Trois personnes, un seul axe : ca
+                 tient parce qu'on filme en alternance, un visage par plan.
+   ⚠️ LE LUNDI (plans 16-18) : MEME bar, MEME place, MEME cadrage ; seule la
+      tenue de Mark change. C'est le cadrage identique qui dit « le lendemain,
+      il revient ».
+
+   ⚠️ ET ON NE DIT JAMAIS « sa main droite » : on situe par l'IMAGE et par un
+      voisin visible (« his hand nearer the left edge », « nearer the
+      machine »).
+
+--------------------------------------------------------------
+LES OBJETS QUI REVIENNENT -- A VERIFIER UN PAR UN SUR CHAQUE IMAGE
+--------------------------------------------------------------
+  LE ZINC            gris-argent mat, bord arrondi. TOUTES les images.
+  LA MACHINE         chrome, deux becs, sans marque. 01, 03 (derriere le
+                     serveur, a gauche), 05 (de pres), 02/04/16 (floue, loin).
+  LES TASSES         petites tasses BLANCHES a soucoupe blanche ; le cortado
+                     dans un petit VERRE droit. 01, 05, 12, 15.
+  LE DISTRIBUTEUR    de serviettes, metal chrome, carre. 01, 15.
+  LA VITRINE         verre, demi-baguettes a la tomate. 01, 02 (a droite de
+                     Mark, floue), 04 (derriere Ana, a droite).
+  LA TENUE DE MARK   DIMANCHE : pull gris moyen uni, col blanc de t-shirt.
+                     Plans 02 (et toutes ses repliques 03 a 14).
+                     LUNDI : chemise bleu clair, veste sombre non structuree,
+                     pas de cravate = la tenue d'es-04 (meme jour). Plans 16,
+                     17.
+  LA TENUE D'ANA     pull rouille uni, la MEME sangle de cuir brun en
+                     bandouliere qu'a l'aeroport (es-01) -- l'objet qui aide a
+                     la reconnaitre. Cheveux attaches comme a l'aeroport.
+                     Plan 04 (et ses repliques 06, 08, 13).
+  LA TENUE DU        chemise blanche, manches retroussees, gilet noir uni, un
+  SERVEUR            torchon blanc sous la main posee sur le zinc. Plan 03 (et
+                     ses repliques 04, 10, 18).
+
+--------------------------------------------------------------
+L'ORDRE DE FABRICATION -- chaque image sert de reference a la suivante
+--------------------------------------------------------------
+  01 le bar vide         texte seul : c'est le DECOR MAITRE
+  02 Mark au comptoir    personnages/Mark.png (visage) + 01 (le lieu)
+  03 le serveur          personnages/camarero.png (visage) + 01 (le lieu)
+  04 Ana au comptoir     ana-voyageuse-moyen.png (visage, cheveux) + 01 (le lieu)
+  05 la machine          01 (POUR LA MACHINE ET LE ZINC)
+  12 les trois cafes     01 (POUR LE ZINC ET LES TASSES)
+  15 le petit-dejeuner   12 (POUR LES TASSES) + 01 (le lieu)
+  16 Mark le lundi       retouche de 02 (la tenue seule)
+
+  8 images, 1,20 $. On regarde chacune AVANT de lancer la suivante.
+
+  personnages/camarero.png : A DECOUPER (gratuit) dans
+  video/episode-02-beim-buergeramt/01-images/beamter-moyen.png -- tete et
+  epaules, SANS la plaque « Information » ni le tampon (ils ecrivent). Acquis
+  du 9 oct. : un personnage secondaire devient recurrent en DECOUPANT sa
+  meilleure image. Comme la voisine d'es-02 (dame-trottoir -> vecina.png).
+
+  ⚠️ ANA : l'ancrage canon est personnages/anna-20260908-0439.png (regle 3 de
+     _mise_en_scene : toujours depuis l'image maitresse). Mais la serie
+     ESPAGNOLE a ses propres images validees par Jacques le 21 oct.
+     (ana-voyageuse-moyen.png, ana-voyageuse-serre.png), et c'est l'une
+     d'elles que la consigne demande. On part de ana-voyageuse-moyen.png
+     POUR LE VISAGE ET LES CHEVEUX SEULEMENT ; si le trench revient malgre le
+     texte (une reference gagne sur ce qu'elle montre, acquis du 16 sept.),
+     refaire avec anna-20260908-0439.png, qui n'a pas de decor cuit dedans.
+
+
+PLAN 01   Le bar, le matin, vide -- le decor maitre
+INTENTION
+   A quoi sert ce plan : il ouvre l'episode (« Domingo por la mañana. Un bar
+   de barrio en Madrid. ») et il FIXE le lieu pour les sept autres images, qui
+   le prendront en reference.
+   Ce qui doit etre lisible sans le son : un bar de quartier espagnol, le
+   zinc, la machine, les tostadas, le soleil du matin. Personne dans le
+   cadre : un decor vide se reference sans transporter de visage.
+   Ce qui s'ajoutera : la narration, le sous-titre.
+   Ce qui a deja rate : les enseignes et affiches qui ecrivent (affiche-qui-
+   ecrit) -- ici PAS d'ardoise, PAS de bouteilles a etiquette, PAS de journal
+   sur le zinc : on dit ce qui remplit ces places (carreaux blancs, tasses).
+
+PROMPT D'IMAGE (Framing)
+A real photograph, as a customer would take it with a good phone camera,
+standing on the customer side of the counter of a small neighbourhood bar in
+central Madrid on a sunny morning, looking straight at the counter. Vertical
+frame.
+
+The long bar counter is topped with dull grey zinc, worn and matte, with a
+rounded front edge, and it runs across the picture from the left edge to the
+right edge. On the back counter behind it, at the left end, stands a chrome
+espresso machine with two spouts and bare polished sides, a row of small white
+cups on white saucers warming on top of it. At the right end of the counter
+sits a low glass case holding toasted half-baguettes spread with grated tomato.
+Between the two, on the zinc, a square chrome napkin dispenser and a small
+glass of sugar sachets in plain white paper.
+
+Behind the counter the wall is covered in plain white tiles, and above the
+tiles run two shelves of white cups and plain clear glasses. The morning sun
+comes in through a street window at the right of the picture and lies across
+the zinc, and the shadows of the cups and the dispenser fall towards the left.
+Nobody is in the bar: it is early, quiet, ready.
+
+The textures of real worn zinc, chrome, white glazed tile, bread crust,
+tomato, glass and sunlight.
+
+Reference : AUCUNE (decor maitre)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mad_bar_manana
+
+PROMPT DE MOUVEMENT (H3 Max) -- Decor anime, H3 Max, narration ~3,5 s. Rien ne bouge que la vapeur.
+The camera is locked on a tripod and stays there for the whole shot: the same lens, the same height, the same distance. The bar stays empty and still exactly as in the image. From the top of the chrome espresso machine at the left a thin wisp of steam rises slowly and drifts apart in the sunlight. The sunlight on the zinc stays steady. The framing holds to the very end: in the last frame everything is the same size and in the same place in the picture as in the first.
+
+
+PLAN 02   Mark au comptoir (image maitresse de ses repliques du dimanche)
+INTENTION
+   A quoi sert ce plan : le visage de Mark pour l'avatar, repliques 03, 07,
+   09, 11, 14 ; et le plan 02 lui-meme, anime par H3 (« Mark tiene hambre. Y
+   quiere un café. »). Il est au zinc, cote clients, et s'adresse vers la
+   DROITE du cadre (le serveur en face, Ana a sa droite).
+   Ce qui doit etre lisible : Mark, pull gris, au comptoir d'un bar de Madrid,
+   une main posee sur le zinc, le visage tourne vers la droite.
+   Ce qui s'ajoutera : sa voix (accent mexicain), le sous-titre.
+   Ce qui a deja rate : la scene precedente en reference qui ramene sa piece
+   (acquis du 6 oct.) -- d'ou Mark.png, un portrait de studio, pour le visage,
+   et le decor maitre 01 pour le lieu. Les mains dont on ne dit rien (objet-
+   qui-se-materialise) : on dit ou elles sont. La ligne de coupe dite d'abord
+   (cadrage avatar : visage grand).
+
+PROMPT D'IMAGE (Framing)
+The young man of the first reference picture, with exactly his face and his
+curly dark hair, stands on the customer side of the zinc counter of the bar
+shown in the second reference picture, in the morning sun. He wears a plain
+mid-grey knit sweater over a white T-shirt whose collar shows at the neck.
+
+He is seen from the hips up, a little left of centre in a vertical frame. The
+bottom edge of the picture crosses his sweater at the hips, and the top of his
+head sits a hand's width under the top edge, so that his face is one of the
+largest things in the picture.
+
+The zinc counter runs across the picture in front of him at the height of his
+hips, and his hand nearer the left edge of the picture rests on it, open and
+relaxed; his other arm hangs at his side. Behind him and far to the left, out
+of focus, the chrome espresso machine; to the right, out of focus, the glass
+case of toast and the sunlit window. His head is turned towards the right
+edge of the picture, where someone stands beyond the frame, and he looks there
+with a friendly, open face. The sun comes from the right of the picture and
+lights his face.
+
+Reference : personnages/Mark.png (POUR LE VISAGE SEULEMENT)
+            video/episode-es-03-el-cafe/01-images/mad_bar_manana.png (POUR LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mark-bar
+
+PROMPT DE MOUVEMENT (H3 Max) -- Decor anime, H3 Max, narration ~2,5 s. Il s'installe : un seul geste.
+The camera is locked on a tripod and stays there for the whole shot: the same lens, the same height, the same distance. He stays at the counter exactly as in the image, his hand resting on the zinc. His eyes move once towards the glass case at the right of the picture, hungry, and come back to the point beyond the right edge; he gives one small pleased nod, a few centimetres, and keeps his friendly face, his mouth closed. Behind him the bar stays soft and still. The framing holds to the very end: in the last frame everything is the same size and in the same place in the picture as in the first.
+
+
+PLAN 03   Le serveur derriere le zinc (image maitresse de ses repliques)
+INTENTION
+   A quoi sert ce plan : le visage du serveur pour l'avatar, repliques 04, 10,
+   18. Il est DERRIERE le comptoir, la machine a sa gauche dans l'image, et il
+   s'adresse vers la GAUCHE du cadre (Mark).
+   Ce qui doit etre lisible : un serveur de bar madrilene, la quarantaine,
+   chemise blanche et gilet noir, une main a plat sur le zinc sur son torchon,
+   l'air amuse.
+   Ce qui s'ajoutera : sa voix (a choisir), le sous-titre.
+   Ce qui a deja rate : personne-sans-reference (la medecin devenue blanche)
+   -- son visage entre par personnages/camarero.png, decoupe SANS la plaque
+   « Information ». Le torchon sous la main : un objet DANS l'image des le
+   depart, pour que la main immobile ait quelque chose a tenir.
+
+PROMPT D'IMAGE (Framing)
+The man of the first reference picture, in his forties, with exactly his face,
+his short dark hair and his stubble, stands behind the zinc counter of the bar
+shown in the second reference picture, on the bar side, facing the customers.
+He wears a plain white shirt with the sleeves rolled to the forearm and a
+plain black waistcoat, buttoned.
+
+He is seen from the hips up, a little right of centre in a vertical frame. The
+bottom edge of the picture crosses his waistcoat at the hips, behind the zinc,
+and the top of his head sits a hand's width under the top edge, so that his
+face is one of the largest things in the picture.
+
+The zinc counter runs across the bottom of the picture in front of him, and
+his hand nearer the left edge of the picture rests flat on a folded white
+cloth on the zinc; his other arm hangs at his side. Behind him and to the
+left, a little out of focus, the chrome espresso machine with its row of
+white cups; behind him the white tiled wall and the shelves of cups. His head
+is turned towards the left edge of the picture, where someone stands beyond
+the frame, and he looks there with an amused, kindly face, the beginning of
+a grin. The sun comes from the right of the picture.
+
+Reference : personnages/camarero.png (POUR LE VISAGE SEULEMENT -- a decouper
+            d'abord dans beamter-moyen.png)
+            video/episode-es-03-el-cafe/01-images/mad_bar_manana.png (POUR LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : camarero-bar
+
+
+PLAN 04   Ana au comptoir, en tenue de tous les jours (image maitresse de ses repliques)
+INTENTION
+   A quoi sert ce plan : le visage d'Ana pour l'avatar, repliques 06, 08, 13.
+   C'est la DEUXIEME IMAGE MAITRESSE d'Ana que l'arc reclamait (« en
+   quotidien, meme visage, autres vetements, generee A PARTIR DE l'image,
+   jamais du texte »). Elle est au zinc, a la DROITE de Mark, et s'adresse
+   vers la GAUCHE du cadre.
+   Ce qui doit etre lisible : la meme femme qu'a l'aeroport, reconnaissable
+   (visage, cheveux attaches, la sangle de cuir brun), mais en pull, un
+   dimanche ; elle vient de reconnaitre quelqu'un.
+   Ce qui s'ajoutera : sa voix (Lolita), le sous-titre.
+   Ce qui a deja rate : les deux Annas (8 sept.) -- generee depuis l'image ;
+   et une reference gagne sur ce qu'elle MONTRE (16 sept.) : le trench peut
+   revenir. On dit la reference « POUR LE VISAGE ET LES CHEVEUX », on decrit
+   la tenue en entier, et on regarde si le trench est revenu avant de garder.
+
+PROMPT D'IMAGE (Framing)
+The woman of the first reference picture, with exactly her face, her freckles
+and her dark blonde hair tied back, stands on the customer side of the zinc
+counter of the bar shown in the second reference picture, in the morning sun.
+Her clothes are Sunday clothes: a plain rust-coloured knit sweater with a
+round neck, and across her chest, from one shoulder to the opposite hip, the
+same narrow brown leather strap of a small shoulder bag.
+
+She is seen from the hips up, a little right of centre in a vertical frame.
+The bottom edge of the picture crosses her sweater at the hips, and the top
+of her head sits a hand's width under the top edge, so that her face is one
+of the largest things in the picture.
+
+The zinc counter runs across the picture in front of her at the height of her
+hips, and her hand nearer the right edge of the picture rests on it, open and
+relaxed; her other arm hangs at her side. Behind her and to the right, out of
+focus, the glass case of toast and the sunlit window; behind her and far to
+the left, out of focus, the chrome espresso machine. Her head is turned
+towards the left edge of the picture, where someone stands beyond the frame,
+and she looks there with the warm, surprised half-smile of someone who has
+just recognised a face. The sun comes from the right of the picture.
+
+Reference : video/episode-es-01-llegada-madrid/01-images/ana-voyageuse-moyen.png
+            (POUR LE VISAGE ET LES CHEVEUX SEULEMENT ; repli :
+            personnages/anna-20260908-0439.png si le trench revient)
+            video/episode-es-03-el-cafe/01-images/mad_bar_manana.png (POUR LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : ana-bar
+
+
+PLAN 05   La machine a cafe, de pres
+INTENTION
+   A quoi sert ce plan : la lecon du mot, en image. Narration : « En México,
+   ¿me regala? es ¿me da?. En España, regalar es dar gratis. » Un cafe qui
+   coule : ce cafe-la se paie.
+   Ce qui doit etre lisible : la MEME machine qu'au plan 01, une tasse dessous,
+   le filet de cafe.
+   Ce qui s'ajoutera : la narration, le sous-titre.
+   Ce qui a deja rate : une reference de matiere n'est pas une reference de
+   disposition (22 sept.) -- on dit pour QUOI on reference 01 : la machine et
+   le zinc. Rien d'ecrit sur la machine : on dit ses flancs nus.
+
+PROMPT D'IMAGE (Framing)
+A close-up photograph, vertical frame, of the chrome espresso machine of the
+reference picture, seen from the customer side across the zinc counter, in
+the morning sun. The machine fills the upper two thirds of the picture, its
+polished sides bare and plain, the row of white cups warming on top. Under
+one of its two spouts stands a small white cup on a white saucer, and a thin
+dark stream of coffee falls from the spout into the cup, with a little steam
+rising beside it.
+
+In the lower third, the dull grey zinc of the counter, worn and matte,
+catches the sunlight that comes from the right of the picture. The textures
+of real chrome, glazed china, coffee crema, steam and worn metal.
+
+Reference : video/episode-es-03-el-cafe/01-images/mad_bar_manana.png (POUR LA MACHINE ET LE ZINC)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mad_bar_maquina
+
+PROMPT DE MOUVEMENT (H3 Max) -- Decor anime, H3 Max, narration ~6 s. Le cafe coule, c'est tout.
+The camera is locked on a tripod and stays there for the whole shot: the same lens, the same height, the same distance. The machine stays exactly where it is. The thin dark stream of coffee keeps falling from the spout into the small white cup for the whole shot, and the steam beside it rises and drifts slowly apart in the sunlight. The sunlight on the zinc stays steady. The framing holds to the very end: in the last frame everything is the same size and in the same place in the picture as in the first.
+
+
+PLAN 12   Les trois cafes sur le zinc
+INTENTION
+   A quoi sert ce plan : la lecon des trois cafes, en image. Narration :
+   « Solo: solo café. Cortado: café con un poco de leche. Con leche: mitad
+   café, mitad leche. » Trois recipients, trois couleurs, de gauche a droite
+   dans l'ordre de la narration (le sous-titre nommera chacun).
+   Ce qui doit etre lisible : un cafe noir dans une petite tasse, un cafe
+   brun clair dans un petit verre, un cafe au lait beige dans une tasse plus
+   grande -- cote a cote, du plus petit au plus grand.
+   Ce qui s'ajoutera : la narration, les trois noms en sous-titre (PAS dans
+   l'image).
+   Ce qui a deja rate : beaucoup d'objets sans grille (9 oct.) -- ici une
+   rangee de trois, enumeree de gauche a droite. Les tasses doivent etre
+   CELLES du bar (objets qui reviennent) : reference 01 pour les tasses.
+
+PROMPT D'IMAGE (Framing)
+A close-up photograph, vertical frame, looking down a little at the zinc
+counter of the reference picture, in the morning sun. On the dull grey zinc
+stand three coffees in a row, side by side, from the left of the picture to
+the right: first a tiny white cup on a white saucer holding black espresso
+with a thin golden crema; then a small straight clear glass holding coffee
+of a light brown colour, espresso with a dash of milk; then a bigger white
+cup on a white saucer holding pale beige milky coffee. A little steam rises
+from each of the three.
+
+Behind them, out of focus, the white tiled wall of the bar. The sun comes
+from the right of the picture and the three shadows fall towards the left.
+The textures of real glazed china, clear glass, crema, foam and worn zinc.
+
+Reference : video/episode-es-03-el-cafe/01-images/mad_bar_manana.png (POUR LE ZINC ET LES TASSES)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mad_bar_tres_cafes
+
+PROMPT DE MOUVEMENT (H3 Max) -- Decor anime, H3 Max, narration ~7 s. Trois cafes, de la vapeur.
+The camera is locked on a tripod and stays there for the whole shot: the same lens, the same height, the same distance. The three coffees stay exactly where they are on the zinc, in the same order. From each of the three a little steam rises slowly and drifts apart in the sunlight, for the whole shot. The sunlight stays steady. The framing holds to the very end: in the last frame everything is the same size and in the same place in the picture as in the first.
+
+
+PLAN 15   Le petit-dejeuner de Madrid
+INTENTION
+   A quoi sert ce plan : la commande servie. Narration : « El desayuno de
+   Madrid: café con leche y tostada con tomate. » Deux cafes au lait et deux
+   tostadas : les deux commandes identiques, c'est la blague du plan 14.
+   Ce qui doit etre lisible : deux grandes tasses de cafe au lait et deux
+   demi-baguettes a la tomate luisantes d'huile, sur le zinc.
+   Ce qui s'ajoutera : la narration, le sous-titre.
+   Ce qui a deja rate : les objets qui ne raccordent pas (16 sept.) -- la
+   tasse de cafe au lait doit etre CELLE du plan 12 : reference 12 pour les
+   tasses, 01 pour le zinc et le distributeur.
+
+PROMPT D'IMAGE (Framing)
+A close-up photograph, vertical frame, looking down a little at the zinc
+counter of the second reference picture, in the morning sun. On the dull grey
+zinc, side by side, stand two white cups on white saucers holding pale beige
+milky coffee, the same big cups as in the first reference picture, and in
+front of them two small white plates, each with a toasted half-baguette
+spread with grated tomato, red and glistening with olive oil, a pinch of salt
+on top. At the right of the picture, the square chrome napkin dispenser.
+
+Behind, out of focus, the white tiled wall. The sun comes from the right of
+the picture and the shadows fall towards the left. The textures of real
+glazed china, foam, bread crust, tomato, olive oil, chrome and worn zinc.
+
+Reference : video/episode-es-03-el-cafe/01-images/mad_bar_tres_cafes.png (POUR LES TASSES)
+            video/episode-es-03-el-cafe/01-images/mad_bar_manana.png (POUR LE ZINC ET LE DISTRIBUTEUR)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mad_bar_desayuno
+
+PROMPT DE MOUVEMENT (H3 Max) -- Decor anime, H3 Max, narration ~4,5 s. Vapeur ; rien ne se deplace.
+The camera is locked on a tripod and stays there for the whole shot: the same lens, the same height, the same distance. The two cups and the two plates stay exactly where they are on the zinc. From the two cups a little steam rises slowly and drifts apart in the sunlight, for the whole shot. The sunlight stays steady. The framing holds to the very end: in the last frame everything is the same size and in the same place in the picture as in the first.
+
+
+PLAN 16   Mark le lundi, chemise et veste (image maitresse de la replique 17)
+INTENTION
+   A quoi sert ce plan : la chute. Narration : « Al día siguiente. Lunes,
+   antes del trabajo. » puis replique 17, « ¿Me pones un café con leche? »,
+   du premier coup. LE MEME CADRE qu'au plan 02 (c'est ce qui dit « il
+   revient ») ; seule la tenue change, et c'est la tenue d'es-04 -- meme jour.
+   Ce qui doit etre lisible : Mark, meme place, meme pose, en chemise bleu
+   clair et veste sombre ; sur de lui.
+   Ce qui s'ajoutera : la narration, sa voix, le sous-titre.
+   Ce qui a deja rate : ajout-qui-remplace -- c'est une RETOUCHE de 02, une
+   seule chose change (acquis du 11 oct.), et on enumere ce qui reste.
+
+PROMPT D'IMAGE (Framing)
+Retouch the reference photograph. The framing, the camera height, the bar, the
+zinc counter, the chrome machine far to the left, the glass case and the
+sunlit window to the right, the morning light, his pose, his hand resting on
+the zinc and his face all stay exactly as they are.
+
+What changes is his clothes only: in place of the grey sweater he now wears a
+plain light-blue button-down shirt, open at the collar, under an unstructured
+dark jacket, with the shirt plain and unmarked. His face keeps its friendly
+look towards the right edge of the picture, with a little more confidence in
+it.
+
+Reference : video/episode-es-03-el-cafe/01-images/mark-bar.png (la seule, c'est une retouche)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mark-bar-lunes
+
+PROMPT DE MOUVEMENT (H3 Max) -- Decor anime, H3 Max, narration ~3 s. Il arrive, un seul geste : il ajuste sa veste.
+The camera is locked on a tripod and stays there for the whole shot: the same lens, the same height, the same distance. He stays at the counter exactly as in the image, his hand resting on the zinc. His other hand comes up once and settles the collar of his dark jacket with a short tug, then stays at his side; he breathes in, pleased with himself, and keeps his confident face towards the right edge of the picture, his mouth closed. Behind him the bar stays soft and still. The framing holds to the very end: in the last frame everything is the same size and in the same place in the picture as in the first.
+
+
+--------------------------------------------------------------
+LES REPLIQUES (Kling Avatar v2 Standard) -- prompts dans _essai-avatar/prompts/
+--------------------------------------------------------------
+  Generes par python video/prompts_repliques_es.py (22 oct. 2026) et passes au
+  controle : python -X utf8 video/verifier_prompt.py --scene es-03-el-cafe
+  -> 12 prompts, AUCUNE faute, AUCUN doute.
+
+  Un geste DIFFERENT par replique, ecrit pour ce que dit la replique (acquis
+  du 22 oct.) ; l'autre main dite immobile d'abord :
+    03 Mark      paume offerte (la demande polie)
+    04 serveur   le pouce qui frotte l'index (l'argent) -- le gag
+    06 Ana       l'index vers lui (« ¡Anda! », elle le reconnait)
+    07 Mark      la main ouverte vers elle, surprise heureuse
+    08 Ana       les deux mains a plat sur le zinc (elle s'installe pour expliquer)
+    09 Mark      l'index leve (il retient la formule)
+    10 serveur   trois doigts (solo, cortado, con leche)
+    11 Mark      les doigts a la tempe (perdu)
+    13 Ana       deux doigts (un cafe, une tostada)
+    14 Mark      l'index vers la droite (« lo mismo »)
+    17 Mark      la main levee du client habitue
+    18 serveur   le pouce dresse (« muy bien »)
+
+  ⚠️ A LA RECEPTION, chaque prise Kling passe a video/texte_incruste.py et a
+     video/intrus_au_bord.py avant d'etre retenue (texte-incruste,
+     interlocuteur-fantome : les deux defauts d'es-01/es-02).
+
+--------------------------------------------------------------
+LE DEVIS -- estimation, rien de depense
+--------------------------------------------------------------
+  Images (nano-banana-pro, 0,15 $) ......  8 images       1,20 $
+     + 1 decoupe gratuite (camarero.png)
+  Repliques (Kling Avatar v2 Standard, ~0,06 $/s ; ~0,9 s par mot + 1 s)
+     12 repliques, 89 mots .............. ~92 s           ~5,55 $
+  Decors animes (H3 Max, 0,08 $/s, 5 s) .  6 plans (01, 02, 05, 12, 15, 16)
+                                         30 s            2,40 $
+  ------------------------------------------------------------
+  TOTAL (sans reprise) ................................... ~9,15 $
+  Une reprise Kling de plus = ~0,40 $ ; une image de plus = 0,15 $.
+  Les voix ElevenLabs (compte deja paye) ne sont pas comptees ; le serveur
+  demande une voix a CHOISIR par Jacques (profil dans le JSON, « locuteurs »).
