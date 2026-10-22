@@ -6308,6 +6308,32 @@ body[data-theme="dark"] button.serie-salut svg{fill:#F0B456; stroke:#F7C77A;}
     box-shadow:0 12px 30px -12px rgba(28,36,48,.35); color:#1C2430; width:min(300px, calc(100vw - 32px));}
 .bulle-pp button.primary{width:100%; margin-top:6px; padding:11px 12px; border-radius:12px; font-size:14px;}
 .cal-serie-titre{font-weight:900; font-size:15px; margin:0 0 2px; display:flex; align-items:center; gap:6px; padding-inline-end:30px;}
+/* v917 : les episodes -- la surprise, le lecteur, la liste « Mes episodes ». */
+.ep-voile{position:fixed; inset:0; z-index:9500; background:rgba(12,16,22,.72); display:flex; align-items:center; justify-content:center; padding:16px;}
+.ep-boite{position:relative; background:#fffdf8; color:#1C2430; border-radius:20px; padding:20px 18px 18px; width:min(380px, 100%);
+    max-height:calc(100vh - 32px); overflow:auto; box-shadow:0 20px 50px -18px rgba(0,0,0,.6);}
+.ep-boite h2{margin:0 34px 8px 0; font-size:20px; font-weight:900;}
+.ep-boite p{margin:0 0 12px; font-size:15px; line-height:1.4;}
+.ep-fermer{position:absolute; top:8px; inset-inline-end:8px; width:34px; height:34px; padding:0; border:none; border-radius:50%;
+    background:transparent; color:#576177; font-size:18px; line-height:34px; cursor:pointer; z-index:2;}
+.ep-fermer:hover, .ep-fermer:focus-visible{background:rgba(28,36,48,.07);}
+.ep-affiche{display:block; width:100%; max-height:46vh; object-fit:cover; border-radius:14px; margin:4px 0 14px;}
+.ep-actions{display:flex; gap:10px;}
+.ep-actions button{flex:1; padding:12px; border-radius:12px; font-size:15px; font-weight:800;}
+.ep-boite.ep-lecteur{padding:0; background:#000; width:min(420px, 100%); overflow:hidden;}
+.ep-lecteur video{display:block; width:100%; max-height:calc(100vh - 32px); background:#000;}
+.ep-lecteur .ep-fermer{color:#fff; background:rgba(0,0,0,.45);}
+.ep-ligne{display:flex; align-items:center; gap:12px; width:100%; text-align:start; padding:8px; margin:0 0 8px;
+    border:1.5px solid #e6dfd3; border-radius:14px; background:#fff; color:inherit; cursor:pointer;}
+.ep-ligne img{width:58px; height:84px; object-fit:cover; border-radius:10px; flex:none;}
+.ep-ligne-txt{display:flex; flex-direction:column; gap:3px; font-size:14px;}
+.ep-ligne-txt b{font-size:15.5px;}
+.ep-ligne.verrou{cursor:default; opacity:.6;}
+.ep-ligne.verrou img{filter:saturate(.35) brightness(.92);}
+.ep-regle{font-size:12.5px !important; color:#576177; margin:6px 0 0 !important;}
+body[data-theme="dark"] .ep-boite:not(.ep-lecteur){background:#232a34; color:#F2F2F6;}
+body[data-theme="dark"] .ep-ligne{background:#1b2129; border-color:#2c333d;}
+body[data-theme="dark"] .ep-fermer, body[data-theme="dark"] .ep-regle{color:#a9b2c0;}
 /* v916 : le ✕ du calendrier (Jacques : « un petit X en haut du tableau a droite »). */
 .cal-serie-fermer{position:absolute; top:6px; inset-inline-end:6px; width:32px; height:32px; padding:0; border:none; border-radius:50%;
     background:transparent; color:#576177; font-size:17px; line-height:32px; cursor:pointer;}
@@ -7823,6 +7849,11 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <!-- v799 : sortis de la tuile de seance (Jacques : « je le mettrais tout
              simplement dans des tuiles »). Sans orb-de : valables dans les deux
              directions, comme ils l'etaient dans la seance. -->
+        <!-- v917 : la serie en recompense (essai « episodes »), visible des le premier episode debloque. -->
+        <div class="orb hidden" data-orbid="episodes" id="tuileEpisodes" onclick="ouvrirMesEpisodes()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M10.2 9.4v5.2l4.4-2.6z"/></svg></div>
+            <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
+        </div>
         <div class="orb" data-orbid="gardes" id="seanceGardes" onclick="ouvrirGardes()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/><path d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/><path d="M10.8 14.2h2.4v3.2h-2.4z"/></svg></div>
             <div>
@@ -8222,7 +8253,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v916</span>
+    <span class="subtitle-version">v917</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12425,6 +12456,15 @@ const I18N = {
         abo_confidentialite: "Confidentialité",
         abo_apercu: "Aperçu : le paiement n'est pas encore branché.",
         abo_fermer: "Fermer",
+        ep_tuile: "Mes épisodes",
+        ep_surprise_titre: "Surprise !",
+        ep_debloque: "L'épisode {n} de « {serie} » est débloqué : {titre}.",
+        ep_regarder: "Regarder",
+        ep_plus_tard: "Plus tard",
+        ep_bientot_1: "Dans 1 jour de pratique",
+        ep_bientot_n: "Dans {n} jours de pratique, consécutifs ou non",
+        ep_plus_loin: "Bientôt",
+        ep_regle: "Un jour de pratique = au moins 10 exercices dans la journée. Les jours n'ont pas besoin de se suivre.",
         settings_progress_texte: "{n} maîtrisés sur {total} ({pct} %).",
         settings_langue_titre: "Langue",
         settings_groupe_son: "Son",
@@ -13808,6 +13848,15 @@ const I18N = {
         abo_confidentialite: "Privacy",
         abo_apercu: "Preview: payment is not connected yet.",
         abo_fermer: "Close",
+        ep_tuile: "My episodes",
+        ep_surprise_titre: "Surprise!",
+        ep_debloque: "Episode {n} of “{serie}” is unlocked: {titre}.",
+        ep_regarder: "Watch",
+        ep_plus_tard: "Later",
+        ep_bientot_1: "In 1 day of practice",
+        ep_bientot_n: "In {n} days of practice, in a row or not",
+        ep_plus_loin: "Coming soon",
+        ep_regle: "A practice day = at least 10 exercises in one day. The days don't need to be in a row.",
         settings_progress_texte: "{n} mastered out of {total} ({pct}%).",
         settings_langue_titre: "Language",
         settings_groupe_son: "Sound",
@@ -15171,6 +15220,15 @@ const I18N = {
         abo_confidentialite: "Gizlilik",
         abo_apercu: "Önizleme: ödeme henüz bağlı değil.",
         abo_fermer: "Kapat",
+        ep_tuile: "Bölümlerim",
+        ep_surprise_titre: "Sürpriz!",
+        ep_debloque: "«{serie}» dizisinin {n}. bölümü açıldı: {titre}.",
+        ep_regarder: "İzle",
+        ep_plus_tard: "Sonra",
+        ep_bientot_1: "1 pratik gününde",
+        ep_bientot_n: "{n} pratik gününde, art arda ya da değil",
+        ep_plus_loin: "Yakında",
+        ep_regle: "Bir pratik günü = bir günde en az 10 alıştırma. Günlerin art arda olması gerekmez.",
         settings_progress_texte: "{total} öğeden {n} tanesi öğrenildi (%{pct}).",
         settings_langue_titre: "Dil",
         settings_groupe_son: "Ses",
@@ -15968,6 +16026,15 @@ const I18N = {
         abo_confidentialite: "Конфіденційність",
         abo_apercu: "Попередній перегляд: оплату ще не підключено.",
         abo_fermer: "Закрити",
+        ep_tuile: "Мої епізоди",
+        ep_surprise_titre: "Сюрприз!",
+        ep_debloque: "Епізод {n} серіалу «{serie}» відкрито: {titre}.",
+        ep_regarder: "Дивитися",
+        ep_plus_tard: "Пізніше",
+        ep_bientot_1: "Через 1 день практики",
+        ep_bientot_n: "Через {n} днів практики, поспіль чи ні",
+        ep_plus_loin: "Незабаром",
+        ep_regle: "День практики = щонайменше 10 вправ за день. Дні не мусять іти поспіль.",
         settings_progress_texte: "Опановано {n} з {total} ({pct}%).",
         settings_langue_titre: "Мова",
         settings_groupe_son: "Звук",
@@ -17746,6 +17813,15 @@ const I18N = {
         abo_confidentialite: "حریم خصوصی",
         abo_apercu: "پیش‌نمایش: پرداخت هنوز وصل نشده است.",
         abo_fermer: "بستن",
+        ep_tuile: "قسمت‌های من",
+        ep_surprise_titre: "غافلگیری!",
+        ep_debloque: "قسمت {n} از «{serie}» باز شد: {titre}.",
+        ep_regarder: "تماشا",
+        ep_plus_tard: "بعداً",
+        ep_bientot_1: "پس از ۱ روز تمرین",
+        ep_bientot_n: "پس از {n} روز تمرین، پشت سر هم یا نه",
+        ep_plus_loin: "به‌زودی",
+        ep_regle: "یک روز تمرین = دست‌کم ۱۰ تمرین در یک روز. لازم نیست روزها پشت سر هم باشند.",
         settings_progress_texte: "{n} از {total} مورد یاد گرفته شده است ({pct}٪).",
         settings_langue_titre: "زبان",
         settings_groupe_son: "صدا",
@@ -19010,6 +19086,15 @@ const I18N = {
         abo_confidentialite: "الخصوصية",
         abo_apercu: "معاينة: الدفع غير مفعّل بعد.",
         abo_fermer: "إغلاق",
+        ep_tuile: "حلقاتي",
+        ep_surprise_titre: "مفاجأة!",
+        ep_debloque: "فُتحت الحلقة {n} من «{serie}»: {titre}.",
+        ep_regarder: "شاهِد",
+        ep_plus_tard: "لاحقًا",
+        ep_bientot_1: "بعد يوم تدريب واحد",
+        ep_bientot_n: "بعد {n} أيام تدريب، متتالية أو لا",
+        ep_plus_loin: "قريبًا",
+        ep_regle: "يوم التدريب = 10 تمارين على الأقل في اليوم. لا يلزم أن تكون الأيام متتالية.",
         settings_progress_texte: "تم إتقان {n} من أصل {total} ({pct}٪).",
         settings_langue_titre: "اللغة",
         settings_groupe_son: "الصوت",
@@ -20785,6 +20870,15 @@ const I18N = {
         abo_confidentialite: "Privacidade",
         abo_apercu: "Prévia: o pagamento ainda não está ligado.",
         abo_fermer: "Fechar",
+        ep_tuile: "Meus episódios",
+        ep_surprise_titre: "Surpresa!",
+        ep_debloque: "O episódio {n} de “{serie}” foi desbloqueado: {titre}.",
+        ep_regarder: "Assistir",
+        ep_plus_tard: "Mais tarde",
+        ep_bientot_1: "Em 1 dia de prática",
+        ep_bientot_n: "Em {n} dias de prática, seguidos ou não",
+        ep_plus_loin: "Em breve",
+        ep_regle: "Um dia de prática = pelo menos 10 exercícios no dia. Os dias não precisam ser seguidos.",
         settings_progress_texte: "{n} dominadas de {total} ({pct} %).",
         settings_langue_titre: "Idioma",
         settings_groupe_son: "Som",
@@ -22209,6 +22303,15 @@ const I18N = {
         abo_confidentialite: "Prywatność",
         abo_apercu: "Podgląd: płatności nie są jeszcze podłączone.",
         abo_fermer: "Zamknij",
+        ep_tuile: "Moje odcinki",
+        ep_surprise_titre: "Niespodzianka!",
+        ep_debloque: "Odcinek {n} serialu „{serie}” jest odblokowany: {titre}.",
+        ep_regarder: "Oglądaj",
+        ep_plus_tard: "Później",
+        ep_bientot_1: "Za 1 dzień ćwiczeń",
+        ep_bientot_n: "Za {n} dni ćwiczeń, pod rząd lub nie",
+        ep_plus_loin: "Wkrótce",
+        ep_regle: "Dzień ćwiczeń = co najmniej 10 ćwiczeń w ciągu dnia. Dni nie muszą następować po sobie.",
         settings_progress_texte: "{n} opanowanych z {total} ({pct} %).",
         settings_langue_titre: "Język",
         settings_groupe_son: "Dźwięk",
@@ -23638,6 +23741,15 @@ const I18N = {
         abo_confidentialite: "Конфиденциальность",
         abo_apercu: "Предпросмотр: оплата ещё не подключена.",
         abo_fermer: "Закрыть",
+        ep_tuile: "Мои эпизоды",
+        ep_surprise_titre: "Сюрприз!",
+        ep_debloque: "Эпизод {n} сериала «{serie}» открыт: {titre}.",
+        ep_regarder: "Смотреть",
+        ep_plus_tard: "Позже",
+        ep_bientot_1: "Через 1 день практики",
+        ep_bientot_n: "Через {n} дней практики, подряд или нет",
+        ep_plus_loin: "Скоро",
+        ep_regle: "День практики = не меньше 10 упражнений за день. Дни не обязательно идут подряд.",
         settings_progress_texte: "Выучено {n} из {total} ({pct} %).",
         settings_langue_titre: "Язык",
         settings_groupe_son: "Звук",
@@ -32337,6 +32449,8 @@ function recordDailyActivity(compteDansObjectif){
         justReachedMultiple = multiplesReached;
     }
     try{ localStorage.setItem(dailyKey, JSON.stringify(daily)); }catch(e){}
+    // v917 : le 10e exercice du jour debloque un episode (voir episodesApresExercice()).
+    if(compteDansObjectif !== false){ try{ episodesApresExercice(daily.count); }catch(e){} }
     // ⚠️ LES DEUX COMPTEURS SUIVENT LE GESTE, PAS LA CARTE SUIVANTE. Mis a jour
     // seulement dans loadFlashcard(), le compteur restait fige pendant les
     // 1 250 ms qui separent un jugement de la carte suivante -- on repond, et
@@ -36965,6 +37079,14 @@ function basculerApercuGratuit(){
 // TOUT LE MONDE, essai ou pas. C'est le role de tests/syntaxe.js, avant
 // chaque envoi.
 const ESSAIS = {
+    // EN PRODUCTION le 22 oct. 2026 (v917), espagnol seulement (EPISODES.de vide).
+    // Jacques : une surprise pour Nicole et Daniel -- le 10e exercice d'une
+    // journee debloque l'episode 1, puis un episode tous les 7 jours de pratique.
+    episodes: {
+        etat: "tous",
+        titre: "Épisodes vidéo en récompense",
+        desc: "Le 10e exercice d'une journée débloque l'épisode 1 de « Mark en Madrid » (surprise entre deux cartes), puis un épisode tous les 7 jours de pratique (10 exercices ou plus). Tuile « Mes épisodes »."
+    },
     // EN PRODUCTION le 10 oct. 2026 (v745), allemand et espagnol, tous les
     // niveaux -- Jacques : « donne acces a tout le monde ». Les relectures
     // des questions (allemandes en cours, espagnoles a faire) suivront, avec
@@ -42235,7 +42357,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 916;
+const APP_VERSION = 917;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -50692,6 +50814,7 @@ function majAnneauSeance(){
     a.title = fait + " / " + cible;
 }
 function majTuilesCarnetFeuilles(){
+    try{ majTuileEpisodes(); }catch(e){}
     const c = document.getElementById("tuileCarnet");
     if(c){
         let n = 0;
@@ -50708,6 +50831,185 @@ function majTuilesCarnetFeuilles(){
         const tx = document.getElementById("tuileFeuillesTxt");
         if(tx && n) tx.textContent = tf("fc_porte_lien", { n: n }).replace(/^\S+\s+/, "");
     }
+}
+// ============ LES EPISODES EN RECOMPENSE (essai « episodes », v917) ============
+// Decide avec Jacques le 21 oct. 2026 (memoire « episodes-en-recompense ») et
+// precise le 22 : la serie se debloque A LA PRATIQUE, pas a la fin d'une seance.
+// « Peu importe l'objectif du jour : au moment ou il atteint 10, qui est le
+// minimum, la video apparaitrait -- parce qu'on ne sait pas s'ils vont finir. »
+//   - le 10e exercice d'une journee debloque l'episode 1 : la SURPRISE, entre
+//     deux cartes (Regarder / Plus tard) ;
+//   - ensuite, un episode tous les 7 JOURS DE PRATIQUE, consecutifs ou non ; un
+//     jour de pratique = au moins 10 exercices ce jour-la, compte une fois ;
+//   - la tuile « Mes episodes » paraît des le premier, pour les revoir.
+// Les videos vivent sur Firebase Hosting (audio/mp3/episodes/, a cote des voix),
+// recompressees pour le telephone (~8 Mo), sous-titres incrustes : francais pour
+// une interface en francais, anglais pour toutes les autres. La serie allemande
+// n'y est pas encore : EPISODES.de vide = rien ne change en allemand.
+const EPISODES_HOTE = "https://deutschai-b6fbb.web.app/episodes/";
+const EPISODES = {
+    es: [
+        { n: 1, titre: "Llegada a Madrid", video: "es/ep01-v1", affiche: "es/ep01-affiche.jpg" },
+        { n: 2, titre: "El carro", video: "es/ep02-v1", affiche: "es/ep02-affiche.jpg" }
+    ]
+};
+const EPISODES_SERIE = { es: "Mark en Madrid" };
+const EPISODES_KEY = PREFIXE_STOCKAGE + "episodes";
+const EPISODE_SEUIL = 10;   // exercices dans la journee
+const EPISODE_JOURS = 7;    // jours de pratique entre deux episodes
+function episodesDeLaLangue(){
+    try{ if(!essaiActif("episodes")) return []; }catch(e){ return []; }
+    return EPISODES[LANGUE_APPRISE] || [];
+}
+// { d: episodes debloques, j: jours de pratique comptes depuis le dernier
+//   deblocage (« AAAA-MM-JJ »), v: { n: 1 } episodes regardes }
+function lireEpisodes(){
+    try{
+        const v = JSON.parse(localStorage.getItem(EPISODES_KEY) || "null");
+        if(v && typeof v === "object") return { d: v.d || 0, j: Array.isArray(v.j) ? v.j : [], v: v.v || {} };
+    }catch(e){}
+    return { d: 0, j: [], v: {} };
+}
+function ecrireEpisodes(s){
+    try{ localStorage.setItem(EPISODES_KEY, JSON.stringify(s)); }catch(e){}
+}
+// Appelee par recordDailyActivity() a chaque exercice qui compte, avec le compte du jour.
+function episodesApresExercice(compteDuJour){
+    const liste = episodesDeLaLangue();
+    if(!liste.length || compteDuJour < EPISODE_SEUIL) return;
+    try{ if(decouverteEnCours()) return; }catch(e){}
+    const s = lireEpisodes();
+    const auj = getTodayStr();
+    if(s.d === 0){
+        s.d = 1; s.j = [auj];
+        ecrireEpisodes(s);
+        majTuileEpisodes();
+        setTimeout(() => montrerSurpriseEpisode(liste[0]), 700);
+        return;
+    }
+    if(s.j.indexOf(auj) >= 0) return;
+    s.j.push(auj);
+    if(s.j.length > EPISODE_JOURS && s.d < liste.length){
+        // Le jour qui debloque compte deja pour le suivant (comme le premier).
+        s.d += 1; s.j = [auj];
+        ecrireEpisodes(s);
+        majTuileEpisodes();
+        setTimeout(() => montrerSurpriseEpisode(liste[s.d - 1]), 700);
+        return;
+    }
+    ecrireEpisodes(s);
+}
+// Les jours de pratique qui restent avant l'episode suivant.
+function joursAvantEpisode(){
+    const s = lireEpisodes();
+    return Math.max(1, EPISODE_JOURS + 1 - s.j.length);
+}
+function urlEpisode(ep){
+    return EPISODES_HOTE + ep.video + "." + (getUiLang() === "fr" ? "fr" : "en") + ".mp4";
+}
+function voileEpisode(){
+    fermerVoileEpisode();
+    const v = document.createElement("div");
+    v.className = "ep-voile";
+    v.id = "episodeVoile";
+    v.addEventListener("click", e => { if(e.target === v) fermerVoileEpisode(); });
+    const boite = document.createElement("div");
+    boite.className = "ep-boite";
+    boite.setAttribute("role", "dialog");
+    const x = document.createElement("button");
+    x.type = "button"; x.className = "ep-fermer"; x.textContent = "✕";
+    x.setAttribute("aria-label", t("abo_fermer"));
+    x.addEventListener("click", fermerVoileEpisode);
+    boite.appendChild(x);
+    v.appendChild(boite);
+    document.body.appendChild(v);
+    return boite;
+}
+function fermerVoileEpisode(){
+    const v = document.getElementById("episodeVoile");
+    if(!v) return;
+    const vid = v.querySelector("video");
+    if(vid){ try{ vid.pause(); }catch(e){} }
+    v.remove();
+}
+function montrerSurpriseEpisode(ep){
+    if(!ep) return;
+    const b = voileEpisode();
+    b.classList.add("ep-surprise");
+    const h = document.createElement("h2");
+    h.textContent = "🎬 " + t("ep_surprise_titre");
+    const p = document.createElement("p");
+    p.textContent = tf("ep_debloque", { n: ep.n, serie: EPISODES_SERIE[LANGUE_APPRISE] || "", titre: ep.titre });
+    const img = document.createElement("img");
+    img.className = "ep-affiche"; img.alt = ""; img.src = EPISODES_HOTE + ep.affiche;
+    const go = document.createElement("button");
+    go.type = "button"; go.className = "primary"; go.textContent = "▶ " + t("ep_regarder");
+    go.addEventListener("click", () => lireEpisode(ep));
+    const tard = document.createElement("button");
+    tard.type = "button"; tard.className = "secondary"; tard.textContent = t("ep_plus_tard");
+    tard.addEventListener("click", fermerVoileEpisode);
+    const actions = document.createElement("div");
+    actions.className = "ep-actions";
+    actions.append(tard, go);
+    b.append(h, p, img, actions);
+}
+function lireEpisode(ep){
+    const b = voileEpisode();
+    b.classList.add("ep-lecteur");
+    const vid = document.createElement("video");
+    vid.src = urlEpisode(ep);
+    vid.poster = EPISODES_HOTE + ep.affiche;
+    vid.controls = true;
+    vid.setAttribute("playsinline", "");
+    vid.preload = "auto";
+    b.appendChild(vid);
+    const s = lireEpisodes();
+    s.v[ep.n] = 1;
+    ecrireEpisodes(s);
+    // Le toucher sur « Regarder » est le geste qui autorise le son (iPhone).
+    try{ const pr = vid.play(); if(pr && pr.catch) pr.catch(() => {}); }catch(e){}
+}
+function ouvrirMesEpisodes(){
+    const liste = episodesDeLaLangue();
+    const s = lireEpisodes();
+    const b = voileEpisode();
+    b.classList.add("ep-liste");
+    const h = document.createElement("h2");
+    h.textContent = "🎬 " + (EPISODES_SERIE[LANGUE_APPRISE] || t("ep_tuile"));
+    b.appendChild(h);
+    liste.forEach(ep => {
+        const l = document.createElement("button");
+        l.type = "button";
+        const ouvert = ep.n <= s.d;
+        l.className = "ep-ligne" + (ouvert ? "" : " verrou");
+        const img = document.createElement("img");
+        img.alt = ""; img.src = EPISODES_HOTE + ep.affiche;
+        const txt = document.createElement("span");
+        txt.className = "ep-ligne-txt";
+        const tt = document.createElement("b");
+        tt.textContent = ep.n + ". " + ep.titre;
+        const sous = document.createElement("span");
+        if(ouvert) sous.textContent = "▶ " + t("ep_regarder");
+        else if(ep.n === s.d + 1){
+            const n = joursAvantEpisode();
+            sous.textContent = "🔒 " + (n === 1 ? t("ep_bientot_1") : tf("ep_bientot_n", { n: n }));
+        } else sous.textContent = "🔒 " + t("ep_plus_loin");
+        txt.append(tt, sous);
+        l.append(img, txt);
+        if(ouvert) l.addEventListener("click", () => lireEpisode(ep));
+        else l.setAttribute("aria-disabled", "true");
+        b.appendChild(l);
+    });
+    const regle = document.createElement("p");
+    regle.className = "ep-regle";
+    regle.textContent = t("ep_regle");
+    b.appendChild(regle);
+}
+function majTuileEpisodes(){
+    const tuile = document.getElementById("tuileEpisodes");
+    if(!tuile) return;
+    const voir = episodesDeLaLangue().length > 0 && lireEpisodes().d > 0;
+    tuile.classList.toggle("hidden", !voir);
 }
 function fermerListeSeance(){
     const l = document.getElementById("spListe");
