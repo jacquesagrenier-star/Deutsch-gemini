@@ -6332,6 +6332,10 @@ body[data-theme="dark"] button.serie-salut svg{fill:#F0B456; stroke:#F7C77A;}
 .ep-actions button{flex:1; padding:12px; border-radius:12px; font-size:15px; font-weight:800;}
 .ep-boite.ep-lecteur{padding:0; background:#000; width:min(420px, 100%); overflow:hidden;}
 .ep-lecteur video{display:block; width:100%; max-height:calc(100vh - 32px); background:#000;}
+/* v929 : la carte de fin, dans la meme boite que la surprise. */
+.ep-fin{text-align:center;}
+.ep-fin .ep-regle{font-size:12.5px; color:#576177; margin:6px 0 0;}
+body[data-theme="dark"] .ep-fin .ep-regle{color:#a9b2c0;}
 .ep-lecteur .ep-fermer{color:#fff; background:rgba(0,0,0,.45);}
 .ep-ligne{display:flex; align-items:center; gap:12px; width:100%; text-align:start; padding:8px; margin:0 0 8px;
     border:1.5px solid #e6dfd3; border-radius:14px; background:#fff; color:inherit; cursor:pointer;}
@@ -8364,7 +8368,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v928</span>
+    <span class="subtitle-version">v929</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12632,6 +12636,10 @@ const I18N = {
         ep_bientot_1: "Dans 1 jour de pratique",
         ep_bientot_n: "Dans {n} jours de pratique, consécutifs ou non",
         ep_plus_loin: "Bientôt",
+        ep_fin_titre: "À suivre…",
+        ep_fin_bientot: "Le prochain épisode arrive bientôt.",
+        ep_revoir: "Revoir l'épisode",
+        ep_fin_ok: "Continuer",
         ep_regle: "Un jour de pratique = au moins 10 exercices dans la journée. Les jours n'ont pas besoin de se suivre.",
         ep_prochain: "Prochain épisode : {titre}",
         ep_nouveau: "Nouveau",
@@ -14064,6 +14072,10 @@ const I18N = {
         ep_bientot_1: "In 1 day of practice",
         ep_bientot_n: "In {n} days of practice, in a row or not",
         ep_plus_loin: "Coming soon",
+        ep_fin_titre: "To be continued…",
+        ep_fin_bientot: "The next episode is coming soon.",
+        ep_revoir: "Watch again",
+        ep_fin_ok: "Continue",
         ep_regle: "A practice day = at least 10 exercises in one day. The days don't need to be in a row.",
         ep_prochain: "Next episode: {titre}",
         ep_nouveau: "New",
@@ -15476,6 +15488,10 @@ const I18N = {
         ep_bientot_1: "1 pratik gününde",
         ep_bientot_n: "{n} pratik gününde, art arda ya da değil",
         ep_plus_loin: "Yakında",
+        ep_fin_titre: "Devam edecek…",
+        ep_fin_bientot: "Sonraki bölüm yakında geliyor.",
+        ep_revoir: "Bölümü tekrar izle",
+        ep_fin_ok: "Devam",
         ep_regle: "Bir pratik günü = bir günde en az 10 alıştırma. Günlerin art arda olması gerekmez.",
         ep_prochain: "Sonraki bölüm: {titre}",
         ep_nouveau: "Yeni",
@@ -16286,6 +16302,10 @@ const I18N = {
         ep_bientot_1: "Через 1 день практики",
         ep_bientot_n: "Через {n} днів практики, поспіль чи ні",
         ep_plus_loin: "Незабаром",
+        ep_fin_titre: "Далі буде…",
+        ep_fin_bientot: "Наступний епізод уже скоро.",
+        ep_revoir: "Переглянути ще раз",
+        ep_fin_ok: "Далі",
         ep_regle: "День практики = щонайменше 10 вправ за день. Дні не мусять іти поспіль.",
         ep_prochain: "Наступний епізод: {titre}",
         ep_nouveau: "Нове",
@@ -18113,6 +18133,10 @@ const I18N = {
         ep_bientot_1: "پس از ۱ روز تمرین",
         ep_bientot_n: "پس از {n} روز تمرین، پشت سر هم یا نه",
         ep_plus_loin: "به‌زودی",
+        ep_fin_titre: "ادامه دارد…",
+        ep_fin_bientot: "قسمت بعدی به‌زودی می‌آید.",
+        ep_revoir: "دوباره دیدن قسمت",
+        ep_fin_ok: "ادامه",
         ep_regle: "یک روز تمرین = دست‌کم ۱۰ تمرین در یک روز. لازم نیست روزها پشت سر هم باشند.",
         ep_prochain: "قسمت بعدی: {titre}",
         ep_nouveau: "تازه",
@@ -19427,6 +19451,10 @@ const I18N = {
         ep_bientot_1: "بعد يوم تدريب واحد",
         ep_bientot_n: "بعد {n} أيام تدريب، متتالية أو لا",
         ep_plus_loin: "قريبًا",
+        ep_fin_titre: "يتبع…",
+        ep_fin_bientot: "الحلقة التالية قريبًا.",
+        ep_revoir: "شاهد الحلقة مجددًا",
+        ep_fin_ok: "متابعة",
         ep_regle: "يوم التدريب = 10 تمارين على الأقل في اليوم. لا يلزم أن تكون الأيام متتالية.",
         ep_prochain: "الحلقة التالية: {titre}",
         ep_nouveau: "جديد",
@@ -21286,6 +21314,10 @@ const I18N = {
         ep_bientot_1: "Em 1 dia de prática",
         ep_bientot_n: "Em {n} dias de prática, seguidos ou não",
         ep_plus_loin: "Em breve",
+        ep_fin_titre: "Continua…",
+        ep_fin_bientot: "O próximo episódio chega em breve.",
+        ep_revoir: "Rever o episódio",
+        ep_fin_ok: "Continuar",
         ep_regle: "Um dia de prática = pelo menos 10 exercícios no dia. Os dias não precisam ser seguidos.",
         ep_prochain: "Próximo episódio: {titre}",
         ep_nouveau: "Novo",
@@ -22759,6 +22791,10 @@ const I18N = {
         ep_bientot_1: "Za 1 dzień ćwiczeń",
         ep_bientot_n: "Za {n} dni ćwiczeń, pod rząd lub nie",
         ep_plus_loin: "Wkrótce",
+        ep_fin_titre: "Ciąg dalszy nastąpi…",
+        ep_fin_bientot: "Następny odcinek już wkrótce.",
+        ep_revoir: "Obejrzyj jeszcze raz",
+        ep_fin_ok: "Dalej",
         ep_regle: "Dzień ćwiczeń = co najmniej 10 ćwiczeń w ciągu dnia. Dni nie muszą następować po sobie.",
         ep_prochain: "Następny odcinek: {titre}",
         ep_nouveau: "Nowy",
@@ -24237,6 +24273,10 @@ const I18N = {
         ep_bientot_1: "Через 1 день практики",
         ep_bientot_n: "Через {n} дней практики, подряд или нет",
         ep_plus_loin: "Скоро",
+        ep_fin_titre: "Продолжение следует…",
+        ep_fin_bientot: "Следующий эпизод уже скоро.",
+        ep_revoir: "Посмотреть ещё раз",
+        ep_fin_ok: "Дальше",
         ep_regle: "День практики = не меньше 10 упражнений за день. Дни не обязательно идут подряд.",
         ep_prochain: "Следующий эпизод: {titre}",
         ep_nouveau: "Новое",
@@ -33544,14 +33584,16 @@ function retourAuBilanSiDemande(){
     bilanRetour = false;
     setTimeout(() => { try{ ouvrirBilanSemaine(null, true); }catch(e){} }, 150);
 }
-function fermerBilanSemaine(){
+function fermerBilanSemaine(sansHistorique){
     const v = document.querySelector(".bilan-voile");
-    if(v) v.remove();
+    if(!v) return;
+    v.remove();
+    if(!sansHistorique){ try{ synchroniserHistorique(); }catch(e){} }
 }
 function ouvrirBilanSemaine(ev, retour){
     if(ev) ev.stopPropagation();
     try{ fermerCalendrierSerie(); }catch(e){}
-    fermerBilanSemaine();
+    fermerBilanSemaine(true);
     if(!retour) BILAN_FAITS.clear();
     bilanRetour = false;
     try{ localStorage.setItem(BILAN_VU_KEY, getTodayStr()); }catch(e){}
@@ -33659,6 +33701,7 @@ function ouvrirBilanSemaine(ev, retour){
     carte.appendChild(seance);
     voile.appendChild(carte);
     document.body.appendChild(voile);
+    try{ synchroniserHistorique(); }catch(e){}
 }
 // « Revoir ces mots » : un paquet des mots rates, comme « Mis de cote ».
 async function revoirMotsDuBilan(cles){
@@ -37218,6 +37261,10 @@ function etatHistorique(){
     if(mos && !mos.classList.contains("hidden")) cle += "+mosaique";
     const video = document.getElementById("onboardingOverlay");
     if(video && video.classList.contains("show") && !video.classList.contains("hidden")) cle += "+video";
+    // v929 : l'episode et le bilan de la semaine ont leur entree, pour que le bouton
+    // Retour du telephone les ferme au lieu de quitter l'app (Jose, Android).
+    if(document.getElementById("episodeVoile")) cle += "+episode";
+    if(document.querySelector(".bilan-voile")) cle += "+bilan";
     return cle;
 }
 
@@ -37287,6 +37334,8 @@ function fermerFenetreDessus(){
     if(mos && !mos.classList.contains("hidden")){ fermerMosaiquePleinEcran(); return true; }
     const video = document.getElementById("onboardingOverlay");
     if(video && video.classList.contains("show")){ closeOnboardingVideo(); return true; }
+    if(document.getElementById("episodeVoile")){ fermerVoileEpisode(); return true; }
+    if(document.querySelector(".bilan-voile")){ fermerBilanSemaine(); return true; }
     return false;
 }
 
@@ -43290,7 +43339,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 928;
+const APP_VERSION = 929;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -51965,7 +52014,8 @@ function urlEpisode(ep){
     return EPISODES_HOTE + ep.video + "." + (getUiLang() === "fr" ? "fr" : "en") + ".mp4";
 }
 function voileEpisode(){
-    fermerVoileEpisode();
+    const remplace = !!document.getElementById("episodeVoile");
+    fermerVoileEpisode(true);
     const v = document.createElement("div");
     v.className = "ep-voile";
     v.id = "episodeVoile";
@@ -51980,14 +52030,17 @@ function voileEpisode(){
     boite.appendChild(x);
     v.appendChild(boite);
     document.body.appendChild(v);
+    if(!remplace){ try{ synchroniserHistorique(); }catch(e){} }
     return boite;
 }
-function fermerVoileEpisode(){
+function fermerVoileEpisode(sansHistorique){
     const v = document.getElementById("episodeVoile");
     if(!v) return;
     const vid = v.querySelector("video");
     if(vid){ try{ vid.pause(); }catch(e){} }
+    try{ if(document.fullscreenElement === v && document.exitFullscreen) document.exitFullscreen().catch(() => {}); }catch(e){}
     v.remove();
+    if(!sansHistorique){ try{ synchroniserHistorique(); }catch(e){} }
 }
 function montrerSurpriseEpisode(ep){
     if(!ep) return;
@@ -52039,13 +52092,80 @@ function lireEpisode(ep){
     const s = lireEpisodes();
     s.v[ep.n] = 1;
     ecrireEpisodes(s);
+    // v929 : A LA FIN, « A SUIVRE ». Jacques : « a la fin de l'episode, qu'on trouve
+    // une facon d'indiquer que le prochain episode viendra quand l'usager aura fait
+    // sept jours, consecutifs ou non -- et on ne le voit pas ». La surprise le disait
+    // AVANT la video ; c'est apres, l'envie de la suite au plus haut, qu'il faut le dire.
+    vid.addEventListener("ended", () => { try{ finEpisode(ep, b, vid); }catch(e){} });
     // Le toucher sur « Regarder » est le geste qui autorise le son (iPhone).
     try{ const pr = vid.play(); if(pr && pr.catch) pr.catch(() => {}); }catch(e){}
+    // v929 : LE PLEIN ECRAN DU SYSTEME, SUR IPHONE SEULEMENT. Jose, sur Android : « elle
+    // n'a pas de X pour fermer l'episode, elle est obligee de sortir de l'application ».
+    // Le plein ecran d'Android passe PAR-DESSUS notre ✕ ; celui de l'iPhone a son propre
+    // bouton « OK ». Ailleurs, la boite occupe deja tout l'ecran (.ep-voile.plein), ✕
+    // compris -- et le bouton plein ecran des commandes reste la pour qui le veut.
+    // Puis Jacques : « pas plein ecran non plus, il y a une bande en haut et en bas » --
+    // la barre d'etat et la barre de navigation d'Android. Ailleurs qu'a l'iPhone, c'est
+    // donc la FENETRE de l'episode qui passe en plein ecran, ✕ compris : les barres
+    // disparaissent et le bouton reste la.
     try{
-        if(vid.requestFullscreen){ const f = vid.requestFullscreen(); if(f && f.catch) f.catch(() => {}); }
-        else if(vid.webkitEnterFullscreen) vid.addEventListener("loadedmetadata", () => { try{ vid.webkitEnterFullscreen(); }catch(e){} }, { once: true });
+        if(AUDIO_LECTEUR_UNIQUE && vid.webkitEnterFullscreen)
+            vid.addEventListener("loadedmetadata", () => { try{ vid.webkitEnterFullscreen(); }catch(e){} }, { once: true });
+        else {
+            const voile = b.parentNode;
+            if(voile && voile.requestFullscreen){
+                const f = voile.requestFullscreen({ navigationUI: "hide" });
+                if(f && f.catch) f.catch(() => {});
+            }
+        }
     }catch(e){}
     majTuileEpisodes();
+}
+// La carte de fin : on sort du plein ecran du systeme (sinon l'iPhone reste sur la
+// derniere image), puis la boite du lecteur montre la suite a la place de la video.
+function finEpisode(ep, boite, vid){
+    try{
+        if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+        if(vid.webkitDisplayingFullscreen && vid.webkitExitFullscreen) vid.webkitExitFullscreen();
+    }catch(e){}
+    const voile = boite.parentNode;
+    if(voile) voile.classList.remove("plein");
+    boite.classList.remove("ep-lecteur");
+    boite.classList.add("ep-fin");
+    Array.from(boite.children).forEach(c => { if(!c.classList.contains("ep-fermer")) c.remove(); });
+    const h = document.createElement("h2");
+    h.textContent = "🎬 " + t("ep_fin_titre");
+    boite.appendChild(h);
+    const suivant = episodesDeLaLangue()[ep.n];
+    const s = lireEpisodes();
+    if(suivant && suivant.n > s.d){
+        const img = document.createElement("img");
+        img.className = "ep-affiche"; img.alt = ""; img.src = EPISODES_HOTE + suivant.affiche;
+        const pr = document.createElement("p");
+        pr.className = "ep-prochain";
+        const n = joursAvantEpisode();
+        pr.textContent = tf("ep_prochain", { titre: suivant.titre }) + " — "
+                       + (n === 1 ? t("ep_bientot_1") : tf("ep_bientot_n", { n: n })).toLowerCase();
+        const regle = document.createElement("p");
+        regle.className = "ep-regle";
+        regle.textContent = t("ep_regle");
+        boite.append(img, pr, regle);
+    } else if(!suivant){
+        const pr = document.createElement("p");
+        pr.className = "ep-prochain";
+        pr.textContent = t("ep_fin_bientot");
+        boite.appendChild(pr);
+    }
+    const actions = document.createElement("div");
+    actions.className = "ep-actions";
+    const revoir = document.createElement("button");
+    revoir.type = "button"; revoir.className = "secondary"; revoir.textContent = "↺ " + t("ep_revoir");
+    revoir.addEventListener("click", () => lireEpisode(ep));
+    const ok = document.createElement("button");
+    ok.type = "button"; ok.className = "primary"; ok.textContent = t("ep_fin_ok");
+    ok.addEventListener("click", fermerVoileEpisode);
+    actions.append(revoir, ok);
+    boite.appendChild(actions);
 }
 function ouvrirMesEpisodes(){
     const liste = episodesDeLaLangue();
