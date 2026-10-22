@@ -46442,7 +46442,9 @@ function carteDeScene(d){
 // en version gratuite pour un mot hors de l'echantillon, rien ne s'ecrit.
 function revisionDeScene(d){
     try{
-        if(getLearningDirection() !== "de" || prefixeLangue() !== "") return false;
+        // La scene est allemande : seul le cours d'allemand l'inscrit. prefixeLangue()
+        // vaut "" pour l'espagnol aussi (v738) -- c'est la langue enseignee qui tranche.
+        if(LANGUE_ENSEIGNEE.code !== "de" || getLearningDirection() !== "de" || prefixeLangue() !== "") return false;
         const it = carteDeScene(d);
         if(!it) return false;
         if(!accesComplet() && !filtrerGratuit([it]).length) return false;
