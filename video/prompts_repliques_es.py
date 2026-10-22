@@ -134,7 +134,7 @@ BORD_PLAN = {
     ("es-03-el-cafe", 10):
         "On the left of the picture, between him and the edge of the frame, the zinc counter and the chrome "
         "coffee machine run on, bright and still, from the first frame to the last.",
-    ("es-03-el-cafe", 18):
+    ("es-03-el-cafe", 22):
         "On the left of the picture, between him and the edge of the frame, the zinc counter and the chrome "
         "coffee machine run on, bright and still, from the first frame to the last.",
     ("es-04-tu-o-usted", 15):
@@ -344,12 +344,38 @@ PLANS = [
      'He answers with a short hesitation in the middle, then asks for the same.',
      None,
      'keeps a sheepish half-smile that reaches his eyes, his mouth closed'),
-    ('es-03-el-cafe', 17, IL, MOYEN, 'right', BAR,
-     'Monday morning, in his work shirt and jacket: he walks in knowing the formula, and the confidence shows before he speaks.',
+    # 22 oct. 2026 : « ¡Qué padre! » -- le malentendu dans l'autre sens (voir _humour de la scene).
+    ('es-03-el-cafe', 16, IL, MOYEN, 'right', BAR,
+     'The breakfast has just arrived and it is perfect: he is delighted, and the Mexican expression escapes him.',
+     'He exclaims two words of delight.',
+     None,
+     'keeps a delighted smile, his mouth closed'),
+    ('es-03-el-cafe', 17, ELLE, MOYEN, 'left', BAR,
+     'She has understood « your father » and, puzzled, looks for the father: comic bewilderment, kind.',
+     'She asks two short puzzled questions.',
+     None,
+     'keeps a puzzled half-smile, her eyebrows raised, her mouth closed'),
+    ('es-03-el-cafe', 18, IL, MOYEN, 'right', BAR,
+     'He understands the misunderstanding and laughs at it: no, no, not his father.',
+     'He says « no, no » with a laugh, then exclaims two short phrases of delight.',
+     None,
+     'his mouth closes into a laughing smile that stays'),
+    ('es-03-el-cafe', 19, ELLE, MOYEN, 'left', BAR,
+     'She bursts out laughing, then gives him the Madrid word as a present.',
+     'She laughs on the first word, then says one short sentence with the Madrid word.',
+     None,
+     'her mouth closes into a broad smile that stays, her eyes still laughing'),
+    ('es-03-el-cafe', 23, IL, MOYEN, 'right', BAR,
+     'Monday: he has the formula AND the new word, and he places it proudly, a little too proudly.',
+     'He exclaims two words, proud of himself.',
+     None,
+     'keeps a proud, beaming smile, his mouth closed'),
+    ('es-03-el-cafe', 21, IL, MOYEN, 'right', BAR,
+     'The next morning, back at the same counter: he walks in knowing the formula, and the confidence shows before he speaks.',
      'He says good morning and asks for his coffee in the Madrid formula, sure of every word.',
      None,
      'keeps a quiet, confident smile and waits, his mouth closed'),
-    ('es-03-el-cafe', 18, IL, MOYEN, 'left', BAR,
+    ('es-03-el-cafe', 22, IL, MOYEN, 'left', BAR,
      'The waiter is proud of his customer, the way a coach is proud: warm, loud, pleased.',
      'He says « very good » with a grin, then calls the order out towards the machine in one short sentence.',
      None,
@@ -516,22 +542,37 @@ GESTES = {
     # ------------------------------------------------------------------
     # Mark : la demande polie, paume offerte
     ('es-03-el-cafe', 3):
-        'His hand nearer the left edge of the picture stays resting on the zinc counter, exactly as in the image, for the whole shot. Only his other hand moves: as he asks for his coffee it comes up from the elbow to waist height, palm open and turned up, a small polite offering, and it stays there until he has finished.',
+        'His hand nearer the left edge of the picture stays hanging at his side, exactly as in the image, for the whole shot. Only his other hand moves: as he asks for his coffee it comes up from the elbow to waist height, palm open and turned up, a small polite offering, and it stays there until he has finished.',
     # Mark : la surprise heureuse, la main ouverte vers elle
     ('es-03-el-cafe', 7):
-        'His hand nearer the left edge of the picture stays resting on the zinc counter, exactly as in the image, for the whole shot. Only his other hand moves: on his first word it comes up level with his chest, palm open and turned towards the right edge of the picture, fingers spread in happy surprise, and it stays there.',
+        'His hand nearer the left edge of the picture stays hanging at his side, exactly as in the image, for the whole shot. Only his other hand moves: on his first word it comes up level with his chest, palm open and turned towards the right edge of the picture, fingers spread in happy surprise, and it stays there.',
     # Mark : il repete la formule, l'index leve pour la retenir
     ('es-03-el-cafe', 9):
-        'His hand nearer the left edge of the picture stays resting on the zinc counter, exactly as in the image, for the whole shot. Only his other hand moves: as he repeats the formula it rises in front of his chest with the index finger pointing up, the way one holds on to a sentence one has just learned, and it stays there.',
+        'His hand nearer the left edge of the picture stays hanging at his side, exactly as in the image, for the whole shot. Only his other hand moves: as he repeats the formula it rises in front of his chest with the index finger pointing up, the way one holds on to a sentence one has just learned, and it stays there.',
     # Mark : perdu, la main a la tempe
     ('es-03-el-cafe', 11):
-        'His hand nearer the left edge of the picture stays resting on the zinc counter, exactly as in the image, for the whole shot. Only his other hand moves: on the unknown word it rises to the side of his head and its fingertips scratch once above his ear, puzzled, and the hand stays there while he asks.',
+        'His hand nearer the left edge of the picture stays hanging at his side, exactly as in the image, for the whole shot. Only his other hand moves: on the unknown word it rises to the side of his head and its fingertips scratch once above his ear, puzzled, and the hand stays there while he asks.',
     # Mark : « la meme chose » -- il montre la commande, vers la droite
     ('es-03-el-cafe', 14):
-        'His hand nearer the left edge of the picture stays resting on the zinc counter, exactly as in the image, for the whole shot. Only his other hand moves: on « lo mismo » it rises to waist height and its index finger points towards the right edge of the picture, a little downwards, at the order that was just given, and it stays pointing there.',
-    # Mark, lundi : le bonjour sur de lui, main levee
+        'His hand nearer the left edge of the picture stays hanging at his side, exactly as in the image, for the whole shot. Only his other hand moves: on « lo mismo » it rises to waist height and its index finger points towards the right edge of the picture, a little downwards, at the order that was just given, and it stays pointing there.',
+    # Mark : « ¡Qué padre! », la main a plat sur la poitrine, ravi
+    ('es-03-el-cafe', 16):
+        'His hand nearer the left edge of the picture stays hanging at his side, exactly as in the image, for the whole shot. Only his other hand moves: on his first word it comes up and lays itself flat on the middle of his chest, delighted, and it stays there.',
+    # Ana : « ¿Tu padre? », elle cherche vers la porte, la paume ouverte
     ('es-03-el-cafe', 17):
-        'His hand nearer the left edge of the picture stays resting on the zinc counter, exactly as in the image, for the whole shot. Only his other hand moves: on his good morning it rises to the height of his shoulder, palm out and open, the greeting of a regular, and it stays raised while he orders.',
+        'Her hand nearer the left edge of the picture stays resting on the zinc counter behind her, exactly as in the image, for the whole shot. Only her other hand moves: on her first word it rises to the height of her shoulder, palm up and open, fingers apart, turned towards the right edge of the picture, and it stays there while she asks.',
+    # Mark : « No, no », la main qui balance, paume vers l'avant
+    ('es-03-el-cafe', 18):
+        'His hand nearer the left edge of the picture stays hanging at his side, exactly as in the image, for the whole shot. Only his other hand moves: on « no, no » it rises in front of his chest, palm forward, and waves twice from side to side, a few centimetres, then stays there, open, while he laughs.',
+    # Ana : « ¡qué guay! », la main qui lui tend le mot, paume vers le haut
+    ('es-03-el-cafe', 19):
+        'Her hand nearer the left edge of the picture stays resting on the zinc counter behind her, exactly as in the image, for the whole shot. Only her other hand moves: on « qué guay » it opens in front of her chest, palm up, turned towards the left edge of the picture, as if handing him the word, and it stays there.',
+    # Mark, lundi : « ¡Qué guay! », le poing serre de fierte
+    ('es-03-el-cafe', 23):
+        'His hand nearer the left edge of the picture stays hanging at his side, exactly as in the image, for the whole shot. Only his other hand moves: on his two words it rises in front of his chest and closes into a small proud fist, and it stays there.',
+    # Mark, lundi : le bonjour sur de lui, main levee
+    ('es-03-el-cafe', 21):
+        'His hand nearer the left edge of the picture stays hanging at his side, exactly as in the image, for the whole shot. Only his other hand moves: on his good morning it rises to the height of his shoulder, palm out and open, the greeting of a regular, and it stays raised while he orders.',
     # Le serveur : le pouce frotte l'index -- l'argent
     ('es-03-el-cafe', 4):
         'His hand nearer the left edge of the picture stays flat on the white cloth on the zinc counter, exactly as in the image, for the whole shot. Only his other hand moves: on « se paga » it comes up to chest height and its thumb rubs slowly against the tips of the index and middle fingers, the gesture for money, and it stays there, still rubbing, while he laughs.',
@@ -539,17 +580,17 @@ GESTES = {
     ('es-03-el-cafe', 10):
         'His hand nearer the left edge of the picture stays flat on the white cloth on the zinc counter, exactly as in the image, for the whole shot. Only his other hand moves: as he names the three coffees it rises in front of his chest with three fingers up, the thumb and the little finger folded in, counting, and it stays there holding them up.',
     # Le serveur : le pouce dresse -- « muy bien »
-    ('es-03-el-cafe', 18):
+    ('es-03-el-cafe', 22):
         'His hand nearer the left edge of the picture stays flat on the white cloth on the zinc counter, exactly as in the image, for the whole shot. Only his other hand moves: on « muy bien » it rises to the height of his shoulder, closed in a loose fist with the thumb pointing straight up, and it stays there while he calls the order.',
     # Ana : elle le reconnait, l'index vers lui
     ('es-03-el-cafe', 6):
-        'Her hand nearer the right edge of the picture stays resting on the zinc counter, exactly as in the image, for the whole shot. Only her other hand moves: on « ¡Anda! » it rises to the height of her chin and its index finger points towards the left edge of the picture, the gesture of recognising someone, and it stays pointing there, delighted.',
-    # Ana : elle explique, les deux mains sur le comptoir
+        'Her hand nearer the left edge of the picture stays resting on the zinc counter behind her, exactly as in the image, for the whole shot. Only her other hand moves: on « ¡Anda! » it rises to the height of her chin and its index finger points towards the left edge of the picture, the gesture of recognising someone, and it stays pointing there, delighted.',
+    # Ana : elle explique, la main qui bat le rythme des mots (le comptoir est dans son dos)
     ('es-03-el-cafe', 8):
-        'Her hand nearer the right edge of the picture stays resting on the zinc counter, exactly as in the image, for the whole shot. Only her other hand moves: as she starts to explain it comes down and settles flat on the zinc a hand\'s width from the first, both hands on the counter and her elbows out, the pose of someone settling in to explain, and it stays there.',
+        'Her hand nearer the left edge of the picture stays resting on the zinc counter behind her, exactly as in the image, for the whole shot. Only her other hand moves: as she starts to explain as she explains it rises in front of her chest with the fingers together and beats gently down twice, a few centimetres, marking the rhythm of the words she says slowly, then it stays there.',
     # Ana : deux doigts, un cafe et une tostada
     ('es-03-el-cafe', 13):
-        'Her hand nearer the right edge of the picture stays resting on the zinc counter, exactly as in the image, for the whole shot. Only her other hand moves: as she orders it rises in front of her chest with two fingers up, the index and the middle finger, one for the coffee and one for the toast, and it stays there holding them up.',
+        'Her hand nearer the left edge of the picture stays resting on the zinc counter behind her, exactly as in the image, for the whole shot. Only her other hand moves: as she orders it rises in front of her chest with two fingers up, the index and the middle finger, one for the coffee and one for the toast, and it stays there holding them up.',
     # ------------------------------------------------------------------
     # es-04 TU O USTED (22 oct. 2026). Mark au bureau : la main cote bord gauche sur
     # le dossier de la chaise, l'autre bouge. Lucia : la tasse blanche dans la main
@@ -622,15 +663,12 @@ TENUE_PLAN = {
     ("es-03-el-cafe", 10):
         "Across his chest we see only his plain white shirt, his plain black waistcoat and his three raised "
         "fingers in front of it, from the first frame to the last.",
-    ("es-03-el-cafe", 18):
+    ("es-03-el-cafe", 22):
         "Across his chest we see only his plain white shirt and his plain black waistcoat, from the first frame "
         "to the last.",
     ("es-03-el-cafe", 9):
         "Across his chest we see only his plain mid-grey knit sweater, the white collar of his T-shirt and his "
         "raised hand in front of it, from the first frame to the last.",
-    ("es-03-el-cafe", 17):
-        "Across his chest we see only his plain light-blue shirt and his dark jacket, open and unmarked, from "
-        "the first frame to the last.",
     ("es-03-el-cafe", 13):
         "Across her chest we see only her plain rust-coloured sweater, the brown leather strap of her bag and "
         "her two raised fingers in front of it, from the first frame to the last.",

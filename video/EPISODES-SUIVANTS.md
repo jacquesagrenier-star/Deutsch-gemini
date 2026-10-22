@@ -108,3 +108,12 @@ fabrication, devis) dans `video/episode-*/` ; les prompts des répliques dans
 5. **es-04, plan 13** : « en Canarias dicen « ustedes », como tú » -- à garder ou à remplacer par
    « como en México ».
 6. Les caméos (Beamter → serveur ; cycliste → directeur et voisin) : oui ou visages neufs.
+
+## Décidé le 22 oct. (soir)
+- **Plus de visage d'une série à l'autre.** Jacques, sur le serveur d'es-03 qui reprenait le
+  fonctionnaire de Berlin : « ça n'a pas de sens ». Le serveur a son propre visage (fait).
+  **es-04 :** le directeur ne reprend PAS le cycliste allemand -- visage neuf à décrire.
+  **05 :** le cycliste en voisin du Späti reste possible (même série, même Kiez).
+  ⚠️ **es-02, déjà publié :** la voisine mexicaine reprend le visage de la dame du feu rouge de
+  l'épisode 3 allemand -- le même défaut. À décider : la laisser, ou refaire ses six répliques.
+

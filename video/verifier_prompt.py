@@ -646,12 +646,41 @@ REGLES = [
      u"et des restes de lettres (les mots n'ont pas la meme largeur) : inutilisable. "
      u"22 oct. 2026, es-02 plan 08 (la voisine, « muy bien ») : propre en septembre, il en a "
      u"fait a la reprise des gestes, PUIS a la reprise suivante (2 x 0,40 $) -- une replique "
-     u"qui en fait deux fois de suite en refera.",
+     u"qui en fait deux fois de suite en refera. "
+     u"22 oct. 2026, es-03 (17 prises) : le detecteur a signale 5 prises, dont 4 a tort (le "
+     u"mouvement des mains), et il a MANQUE le plan 19 -- quelques petites lettres blanches sur "
+     u"le pull d'Ana, sous son seuil. Seul l'oeil sur la planche d'images les a vues.",
      u"Decrire la poitrine du debut a la fin (<< Across her chest we see only... >>) -- ca "
      u"en evite certains, pas tous. Passer CHAQUE prise Kling a video/texte_incruste.py avant de "
-     u"la retenir. Une replique qui en remet a la reprise : ne pas reessayer a l'aveugle -- "
+     u"la retenir, PUIS la regarder sur une planche d'images (le detecteur se trompe dans les "
+     u"deux sens : il prend un geste pour du texte, et rate un petit texte). Une replique qui en remet a la reprise : ne pas reessayer a l'aveugle -- "
      u"changer de modele pour ce plan (OmniHuman n'en a jamais fait en ~40 prises), sur "
      u"decision de Jacques puisque ca change le rendu."),
+    ("comptoir-devant", "doute",
+     r"(?i)\b(counter|bar|desk|table|zinc)\b[^.]{0,80}\bin front of (him|her|them)\b",
+     u"Le comptoir « devant » un personnage : le modele le met ENTRE lui et la camera -- de l'autre cote",
+     u"22 oct. 2026, es-03 : << The zinc counter runs across the picture in front of her at the height "
+     u"of her hips >> -- Ana est sortie DERRIERE le zinc, cote serveur. Mark, decrit pareil, est sorti du "
+     u"bon cote par chance. Jacques : << c'est comme si Marc etait de l'autre cote du comptoir >>. Image "
+     u"et cinq repliques a refaire (~1,35 $).",
+     u"Dire de quel COTE est la personne, et ce qui est entre elle et la camera : << She stands on the "
+     u"customer side; the counter is BEHIND her and to her side, her elbow resting on it; nothing stands "
+     u"between her and the camera. >> Et faire d'abord le plan d'ensemble (acquis du 22 oct.). "
+     u"⚠️ MEME CETTE PHRASE-LA A RATE (22 oct., 2e essai : le zinc encore au premier plan). Ce qui a "
+     u"marche, au 3e : << with her back half turned to the counter: the zinc counter is BEHIND HER BACK, "
+     u"... and in front of her there is only the open floor of the bar and the camera >>. Si le regard "
+     u"sort du mauvais cote, l'image retournee en MIROIR le corrige gratuitement (le decor flou suit)."),
+    ("visage-d-une-serie-a-l-autre", "faute",
+     None,   # se juge a la lecture de la feuille : quelle image de quelle serie sert de visage
+     u"Un visage d'une serie repris dans l'autre (Berlin <-> Madrid)",
+     u"22 oct. 2026, es-03 (0,15 $ + une image a refaire) : le serveur madrilene reprenait le "
+     u"visage du Beamter allemand (beamter-moyen.png), sur le modele de la voisine d'es-02 (le "
+     u"visage de la dame du feu rouge de l'episode 3). Jacques : « ca n'a pas de sens » -- qui suit "
+     u"les deux series reconnait le fonctionnaire de Berlin derriere un zinc de Madrid.",
+     u"Un visage reste dans SA serie. Un cameo a l'interieur d'une serie peut se defendre (le "
+     u"cycliste de Berlin en voisin du Spaeti : meme Kiez) ; d'une serie a l'autre, jamais. Un "
+     u"personnage neuf de l'autre serie se decrit une fois (age, origine, traits) et son image "
+     u"devient sa reference. Mark et Ana/Anna sont l'exception voulue : la serie les suit."),
     ("geste-repete", "faute",
      None,   # logique a part, dans verifier_scene() : elle compare les prompts entre eux
      u"Le meme geste (ou la meme immobilite) dans plusieurs repliques d'un personnage",
@@ -717,6 +746,17 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"LE PLAN D'ENSEMBLE D'ABORD : tous les personnages d'un lieu, a leur place, avant le moindre portrait",
+     u"22 oct. 2026",
+     u"es-03 (El cafe) : chaque personnage fait SEUL, et trois erreurs n'ont ete vues qu'au montage, une "
+     u"fois les repliques payees -- le serveur au visage du fonctionnaire de Berlin, Ana du mauvais cote du "
+     u"zinc, Mark deplace dans sa retouche du lundi. Jacques : << ca augmente les couts >> ; et << j'aurais "
+     u"aime une scene ou on voit les deux ensemble >>.",
+     u"Des que deux personnages partagent un lieu : 1) le decor maitre vide ; 2) le PLAN D'ENSEMBLE, tous "
+     u"les personnages a leur place (le cote de chacun dit en toutes lettres, voir << comptoir-devant >>), "
+     u"REGARDE avant de continuer -- c'est la que se voient les cotes, les regards, les tenues ; 3) les "
+     u"portraits des repliques tires de ce plan d'ensemble. Le plan d'ensemble sert aussi a l'episode : "
+     u"le spectateur voit enfin ou sont les gens."),
     (u"UN GESTE DIFFERENT PAR REPLIQUE : une main qui bouge, l'autre dite immobile d'abord",
      u"22 oct. 2026",
      u"es-01, Ana, quatre reprises Kling (1,11 $ + 0,25 $ pour le plan 09). Montrer le tapis "
@@ -1145,7 +1185,7 @@ PHRASE_VERROU = re.compile(r"(?i)Locked-off camera:[^.]*\.")
 #
 #    Ce qui reste est ce qui a reellement coute des images : la garde
 #    negative, l'icone appelee par son nom, et l'empilement de negations.
-POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
+POUR_IMAGE = ("garde-negative", "comptoir-devant", "icone-nommee-par-son-nom",
               "negations-en-nombre", "qualificatifs-empiles",
               "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
               "sol-bord-a-bord", "corps-sans-contact",
@@ -1341,8 +1381,8 @@ def controler(texte, image=False):
                                 u"%d negations (le guide en demande le moins "
                                 u"possible)" % n))
             continue
-        if code == "geste-repete":
-            continue    # compare les prompts entre eux : verifier_scene()
+        if code in ("geste-repete", "visage-d-une-serie-a-l-autre"):
+            continue    # geste-repete : verifier_scene() ; le visage : a la lecture de la feuille
         ou = sans_verrou if code == "camera-qui-bouge" else texte
         m = re.search(motif, ou)
         if m:
