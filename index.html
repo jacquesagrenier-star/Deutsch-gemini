@@ -8364,7 +8364,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v927</span>
+    <span class="subtitle-version">v928</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -37469,7 +37469,16 @@ function showScreen(id){
         if(sansFondu) target.classList.add("sans-fondu");
         target.classList.add("active");
     }
-    if(depuisScene && target && id !== "sceneSeance") repeindreApresScene(target);
+    // v928 : LE RETOUR DES CARTES A SON TOUR. Jacques, iPhone, 22 oct. 2026, apres
+    // la v927 : « il n'y a pas juste la mosaique qui n'est pas la : la roue de
+    // reglage et le mode jour-nuit non plus, quand je sors de Mettre de cote ». Ce
+    // n'etait donc pas la toile (v925-v927 la soignaient seule) : c'est TOUT
+    // l'ecran que WebKit ne repeignait pas -- le defaut de la v815, revenu. Le fondu
+    // retire en v815 n'a pas suffi ; le remede complet est celui des scenes (v844),
+    // jamais applique ici : rendre le focus, opacite a peine differente puis rendue,
+    // defilement d'un pixel aller-retour. Et la mesure au journal.
+    if(target && id !== "sceneSeance" && (depuisScene || (ecranQuitte === "flashcards" && id === "home")))
+        repeindreApresScene(target, depuisScene ? "retour de scene" : "retour des cartes");
     window.scrollTo(0,0);
     updateGlobalProgress();
     updateOrbBadges();
@@ -43281,7 +43290,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 927;
+const APP_VERSION = 928;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47230,7 +47239,8 @@ function ouvrirScenePremiersPas(nom, dernier){
 // millisecondes la premiere image est vraiment dessinee -- « aucune image
 // apres 400 ms » veut dire que WebKit s'est fige, et ce sera vu au prochain
 // « Signaler un probleme ».
-function repeindreApresScene(ecran){
+function repeindreApresScene(ecran, quoi){
+    quoi = quoi || "retour de scene";
     const t0 = Date.now();
     let dessine = false;
     try{
@@ -47238,15 +47248,18 @@ function repeindreApresScene(ecran){
         if(c) c.blur();
         window.focus();
     }catch(e){}
-    try{ ecran.style.opacity = "0.999"; }catch(e){}
+    // v928 : L'EN-TETE AUSSI. La roue des reglages et le bouton jour-nuit vivent
+    // dans <header>, hors de l'ecran : ils manquaient avec le tableau.
+    const cibles = [ecran].concat(Array.from(document.querySelectorAll("body > header")));
+    cibles.forEach(c => { try{ c.style.opacity = "0.999"; }catch(e){} });
     requestAnimationFrame(() => {
         dessine = true;
-        noterAudio(ecran.id, "ECRAN", "retour de scene : 1re image apres " + (Date.now() - t0) + " ms");
+        noterAudio(ecran.id, "ECRAN", quoi + " : 1re image apres " + (Date.now() - t0) + " ms");
     });
-    setTimeout(() => { try{ ecran.style.opacity = ""; }catch(e){} }, 60);
+    setTimeout(() => { cibles.forEach(c => { try{ c.style.opacity = ""; }catch(e){} }); }, 60);
     setTimeout(() => {
         try{ window.scrollBy(0, 1); window.scrollBy(0, -1); }catch(e){}
-        if(!dessine) noterAudio(ecran.id, "ECRAN", "retour de scene : aucune image apres 400 ms");
+        if(!dessine) noterAudio(ecran.id, "ECRAN", quoi + " : aucune image apres 400 ms");
     }, 400);
 }
 
