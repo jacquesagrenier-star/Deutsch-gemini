@@ -6367,6 +6367,60 @@ body[data-theme="dark"] .cal-serie-fermer:hover{background:rgba(255,255,255,.08)
 .cal-serie-case.fait{background:#F0A23A; color:#1C2430; box-shadow:inset 0 0 0 1px rgba(185,119,14,.5);}
 .cal-serie-case.auj{box-shadow:inset 0 0 0 2px #1C2430;}
 .cal-serie-case.fait.auj{box-shadow:inset 0 0 0 2px #1C2430;}
+/* v920 : LE BILAN DE LA SEMAINE (ouvrirBilanSemaine). */
+.cal-serie-bilan{display:block; width:100%; margin-top:10px; padding:9px 10px; border:0; border-radius:10px; cursor:pointer;
+    font:inherit; font-size:13px; font-weight:800; color:#1C2430; background:rgba(232,162,58,.22);}
+.cal-serie-bilan:hover{background:rgba(232,162,58,.34);}
+body[data-theme="dark"] .cal-serie-bilan{color:#F2F2F6; background:rgba(240,180,86,.2);}
+.bilan-voile{position:fixed; inset:0; z-index:9000; background:rgba(15,20,28,.55); display:flex; align-items:center; justify-content:center; padding:16px;}
+.bilan-carte{position:relative; background:#fff; color:#1C2430; border-radius:20px; width:100%; max-width:420px; max-height:calc(100vh - 32px);
+    overflow:auto; padding:20px 18px 16px; box-shadow:0 18px 40px -12px rgba(0,0,0,.45);}
+.bilan-fermer{position:absolute; top:10px; inset-inline-end:10px; width:34px; height:34px; border:0; border-radius:50%;
+    background:transparent; color:#576177; font-size:18px; cursor:pointer;}
+.bilan-titre{margin:0 0 2px; font-size:22px; font-weight:900;}
+.bilan-dates{margin:0 0 14px; font-size:13px; color:#576177;}
+.bilan-chiffres{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:6px;}
+.bilan-chiffre{background:rgba(232,162,58,.14); border-radius:14px; padding:10px 6px; text-align:center;}
+.bilan-chiffre b{display:block; font-size:24px; font-weight:900; line-height:1.1;}
+.bilan-chiffre span{font-size:12px; font-weight:700; color:#576177;}
+.bilan-section{margin-top:14px;}
+.bilan-section h3{margin:0 0 8px; font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:.04em; color:#8a5a12;}
+.bilan-notion{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:14px; background:rgba(28,36,48,.05); margin-bottom:8px;}
+.bilan-notion-txt{flex:1 1 auto; min-width:0;}
+.bilan-notion-txt b{display:block; font-size:15px; font-weight:800;}
+.bilan-notion-txt span{font-size:12.5px; color:#576177;}
+.bilan-go{flex:0 0 auto; border:0; border-radius:12px; padding:9px 12px; cursor:pointer; font:inherit; font-size:13.5px; font-weight:800;
+    color:#fff; background:linear-gradient(180deg, rgba(46,132,84,.95), rgba(34,108,67,.92));}
+.bilan-go.large{display:block; width:100%; margin-top:8px; padding:11px 12px;}
+.bilan-notion.fait .bilan-go{background:transparent; color:#1f6b42; box-shadow:inset 0 0 0 1.5px rgba(46,139,87,.55);}
+.bilan-seance{display:block; width:100%; margin-top:12px; padding:13px 14px; border:0; border-radius:14px; cursor:pointer;
+    font:inherit; font-size:15px; font-weight:900; color:#1C2430; background:linear-gradient(180deg, #F6B954, #E8A23A);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.5), 0 6px 14px -8px rgba(140,85,15,.6);}
+body[data-theme="dark"] .bilan-notion.fait .bilan-go{color:#7fd3a5;}
+.bilan-mots{list-style:none; margin:0; padding:0;}
+.bilan-mots li{display:flex; align-items:baseline; gap:8px; padding:7px 2px; border-bottom:1px solid rgba(28,36,48,.08);}
+.bilan-mots li b{font-size:15px; font-weight:800;}
+.bilan-mots li span{flex:1 1 auto; font-size:13px; color:#576177; min-width:0;}
+.bilan-mots li i{font-style:normal; font-size:12px; font-weight:800; color:#8a5a12;}
+.bilan-bravo, .bilan-fin{margin:0; font-size:14px; font-weight:700; line-height:1.4;}
+.bilan-fin{margin-top:16px; padding:10px 12px; border-radius:12px; background:rgba(46,139,87,.12); color:#1f6b42; text-align:center;}
+body[data-theme="dark"] .bilan-carte{background:#232a34; color:#F2F2F6;}
+body[data-theme="dark"] .bilan-dates, body[data-theme="dark"] .bilan-chiffre span, body[data-theme="dark"] .bilan-notion-txt span,
+body[data-theme="dark"] .bilan-mots li span, body[data-theme="dark"] .bilan-fermer{color:#a9b2c0;}
+body[data-theme="dark"] .bilan-section h3, body[data-theme="dark"] .bilan-mots li i{color:#f3c985;}
+body[data-theme="dark"] .bilan-notion{background:rgba(255,255,255,.06);}
+body[data-theme="dark"] .bilan-mots li{border-color:rgba(255,255,255,.1);}
+body[data-theme="dark"] .bilan-fin{color:#7fd3a5;}
+/* v920 : les jours se touchent ; le jour choisi est cercle d'ambre, son detail dessous. */
+button.cal-serie-case{border:0; padding:0; font-family:inherit; cursor:pointer;}
+.cal-serie-case.choisi{outline:2.5px solid #E8A23A; outline-offset:2px;}
+.cal-serie-detail{margin:10px 0 0; padding:8px 10px; border-radius:10px; background:rgba(28,36,48,.05);
+    font-size:13px; line-height:1.4; text-align:center; min-height:38px;}
+.cal-serie-detail b{display:block; font-weight:800; font-size:12px; color:#576177; margin-bottom:2px;}
+.cal-serie-detail b::first-letter{text-transform:uppercase;}
+.cal-serie-detail span{font-weight:700;}
+body[data-theme="dark"] .cal-serie-detail{background:rgba(255,255,255,.06);}
+body[data-theme="dark"] .cal-serie-detail b{color:#a9b2c0;}
 .cal-serie-enc{margin:10px 0 0; padding:8px 10px; border-radius:10px; background:rgba(46,139,87,.12); color:#1f6b42;
     font-size:13px; font-weight:800; line-height:1.35; text-align:center;}
 body[data-theme="dark"] .cal-serie-enc{color:#7fd3a5;}
@@ -7754,11 +7808,11 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              en tuiles ; la date de depart, dans la pastille du niveau. -->
         <div class="orb orb-seance pilule-mode" data-orbid="seance">
             <div class="seance-pilule pilule-accueil" id="seancePilule">
-                <button type="button" class="pa-play pa-entrer" onclick="ouvrirSeanceDuJour(true)" data-i18n-aria-label="seance_commencer" aria-label="Commencer">
+                <button type="button" class="pa-play pa-entrer" onclick="entrerSeanceDuJour()" data-i18n-aria-label="seance_commencer" aria-label="Commencer">
                     <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
                 </button>
                 <div class="pa-txt">
-                    <button type="button" class="pa-titre" onclick="ouvrirSeanceDuJour(true)">
+                    <button type="button" class="pa-titre" onclick="entrerSeanceDuJour()">
                         <span class="pa-kick" data-i18n="seance_titre">Ma séance du jour</span>
                         <strong id="spTitre"></strong>
                     </button>
@@ -7802,7 +7856,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <div class="seance-porte">
                     <span class="seance-porte-titre" id="seancePorteMotsTitre" data-i18n="seance_porte_mots">Les mots</span>
                     <b class="seance-porte-val"><span id="seanceCompte" class="seance-compte"></span> <span data-i18n="seance_porte_cartes">cartes</span></b>
-                    <button type="button" class="seance-go" onclick="ouvrirSeanceDuJour(true);">
+                    <button type="button" class="seance-go" onclick="entrerSeanceDuJour();">
                         <span data-i18n="seance_commencer">Commencer</span>
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8"
                              stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
@@ -8280,7 +8334,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v919</span>
+    <span class="subtitle-version">v920</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11970,6 +12024,37 @@ const I18N = {
         serie_deux_semaines: "Les deux dernières semaines",
         serie_jour_fait: "séance faite",
         serie_jour_vide: "pas de séance",
+        serie_det_ex_1: "1 exercice",
+        serie_det_ex_n: "{n} exercices",
+        serie_det_mots_1: "1 acquis",
+        serie_det_mots_n: "{n} acquis",
+        serie_det_seance_finie: "séance du jour terminée",
+        serie_det_seance_p: "séance du jour : {p} cartes sur {n}",
+        serie_det_rien: "Pas d'activité ce jour-là.",
+        serie_det_inconnu: "Jour travaillé (le détail n'était pas encore noté).",
+        bilan_titre: "Ta semaine",
+        bilan_dates: "Du {debut} au {fin}",
+        bilan_exercice: "exercice",
+        bilan_exercices: "exercices",
+        bilan_jour: "jour actif",
+        bilan_jours: "jours actifs",
+        bilan_acquis_1: "acquis",
+        bilan_acquis: "acquis",
+        bilan_notion_titre: "La notion à travailler",
+        bilan_notions_titre: "Les notions à travailler",
+        bilan_fautes: "{f} erreurs sur {n} réponses",
+        bilan_travailler: "Travailler ça",
+        bilan_notion_aucune: "Aucune notion de grammaire ne t'a résisté cette semaine. Bravo !",
+        bilan_mots_titre: "Les mots qui résistent",
+        bilan_revoir_mots: "Revoir ces mots",
+        bilan_mots_introuvables: "Ces mots ne sont plus dans tes paquets.",
+        bilan_fin_rien: "Rien ne t'a résisté cette semaine : continue comme ça !",
+        bilan_fin_regulier: "Cinq jours ou plus cette semaine : c'est la régularité qui fait apprendre.",
+        bilan_fin_normal: "Ce qui résiste aujourd'hui sera su la semaine prochaine. Une séance à la fois.",
+        bilan_ouvrir: "Voir ma semaine ›",
+        bilan_commencer: "Commencer ma séance du jour",
+        bilan_refaire: "✓ Encore une série",
+        bilan_mots_refaire: "✓ Les revoir encore",
         serie_enc_semaine: "Une semaine sans manquer un jour, bravo ! L'habitude est prise.",
         serie_enc_aujourdhui: "Une séance aujourd'hui, et ta série continue.",
         serie_enc_regulier: "Très régulier : c'est comme ça que les mots restent.",
@@ -13368,6 +13453,37 @@ const I18N = {
         serie_deux_semaines: "The last two weeks",
         serie_jour_fait: "session done",
         serie_jour_vide: "no session",
+        serie_det_ex_1: "1 exercise",
+        serie_det_ex_n: "{n} exercises",
+        serie_det_mots_1: "1 item mastered",
+        serie_det_mots_n: "{n} items mastered",
+        serie_det_seance_finie: "daily session finished",
+        serie_det_seance_p: "daily session: {p} of {n} cards",
+        serie_det_rien: "No activity that day.",
+        serie_det_inconnu: "Day practised (details weren't recorded yet).",
+        bilan_titre: "Your week",
+        bilan_dates: "{debut} to {fin}",
+        bilan_exercice: "exercise",
+        bilan_exercices: "exercises",
+        bilan_jour: "active day",
+        bilan_jours: "active days",
+        bilan_acquis_1: "mastered",
+        bilan_acquis: "mastered",
+        bilan_notion_titre: "The topic to work on",
+        bilan_notions_titre: "The topics to work on",
+        bilan_fautes: "{f} mistakes out of {n} answers",
+        bilan_travailler: "Work on it",
+        bilan_notion_aucune: "No grammar topic gave you trouble this week. Well done!",
+        bilan_mots_titre: "Words that resist",
+        bilan_revoir_mots: "Review these words",
+        bilan_mots_introuvables: "These words are no longer in your decks.",
+        bilan_fin_rien: "Nothing gave you trouble this week: keep it up!",
+        bilan_fin_regulier: "Five days or more this week: regularity is what makes you learn.",
+        bilan_fin_normal: "What resists today will be known next week. One session at a time.",
+        bilan_ouvrir: "See my week ›",
+        bilan_commencer: "Start my daily session",
+        bilan_refaire: "✓ One more set",
+        bilan_mots_refaire: "✓ Review them again",
         serie_enc_semaine: "A full week without missing a day, well done! The habit is set.",
         serie_enc_aujourdhui: "One session today and your streak keeps going.",
         serie_enc_regulier: "Very regular: that's how words stick.",
@@ -14768,6 +14884,37 @@ const I18N = {
         serie_deux_semaines: "Son iki hafta",
         serie_jour_fait: "çalışıldı",
         serie_jour_vide: "çalışılmadı",
+        serie_det_ex_1: "1 alıştırma",
+        serie_det_ex_n: "{n} alıştırma",
+        serie_det_mots_1: "1 öğe öğrenildi",
+        serie_det_mots_n: "{n} öğe öğrenildi",
+        serie_det_seance_finie: "günlük oturum tamamlandı",
+        serie_det_seance_p: "günlük oturum: {n} karttan {p}",
+        serie_det_rien: "O gün etkinlik yok.",
+        serie_det_inconnu: "Çalışılan gün (ayrıntılar henüz kaydedilmiyordu).",
+        bilan_titre: "Haftan",
+        bilan_dates: "{debut} – {fin}",
+        bilan_exercice: "alıştırma",
+        bilan_exercices: "alıştırma",
+        bilan_jour: "aktif gün",
+        bilan_jours: "aktif gün",
+        bilan_acquis_1: "öğrenildi",
+        bilan_acquis: "öğrenildi",
+        bilan_notion_titre: "Çalışılacak konu",
+        bilan_notions_titre: "Çalışılacak konular",
+        bilan_fautes: "{n} yanıtta {f} hata",
+        bilan_travailler: "Çalış",
+        bilan_notion_aucune: "Bu hafta hiçbir dilbilgisi konusu seni zorlamadı. Tebrikler!",
+        bilan_mots_titre: "Zorlayan kelimeler",
+        bilan_revoir_mots: "Bu kelimeleri tekrar et",
+        bilan_mots_introuvables: "Bu kelimeler artık destelerinde yok.",
+        bilan_fin_rien: "Bu hafta hiçbir şey seni zorlamadı: böyle devam!",
+        bilan_fin_regulier: "Bu hafta beş gün ya da daha fazla: öğrenmeyi sağlayan düzenliliktir.",
+        bilan_fin_normal: "Bugün zorlayan, gelecek hafta bilinecek. Her seferinde bir oturum.",
+        bilan_ouvrir: "Haftamı gör ›",
+        bilan_commencer: "Günlük oturumumu başlat",
+        bilan_refaire: "✓ Bir dizi daha",
+        bilan_mots_refaire: "✓ Tekrar gözden geçir",
         serie_enc_semaine: "Hiç gün kaçırmadan bir hafta, bravo! Alışkanlık oturdu.",
         serie_enc_aujourdhui: "Bugün bir oturum, serin devam etsin.",
         serie_enc_regulier: "Çok düzenlisin: kelimeler böyle akılda kalır.",
@@ -16983,6 +17130,37 @@ const I18N = {
         serie_deux_semaines: "Останні два тижні",
         serie_jour_fait: "заняття було",
         serie_jour_vide: "заняття не було",
+        serie_det_ex_1: "1 вправа",
+        serie_det_ex_n: "вправ: {n}",
+        serie_det_mots_1: "1 засвоєно",
+        serie_det_mots_n: "засвоєно: {n}",
+        serie_det_seance_finie: "заняття дня завершено",
+        serie_det_seance_p: "заняття дня: {p} з {n} карток",
+        serie_det_rien: "Цього дня активності не було.",
+        serie_det_inconnu: "День занять (подробиці ще не записувалися).",
+        bilan_titre: "Твій тиждень",
+        bilan_dates: "{debut} – {fin}",
+        bilan_exercice: "вправа",
+        bilan_exercices: "вправ",
+        bilan_jour: "активний день",
+        bilan_jours: "активних днів",
+        bilan_acquis_1: "засвоєно",
+        bilan_acquis: "засвоєно",
+        bilan_notion_titre: "Тема для роботи",
+        bilan_notions_titre: "Теми для роботи",
+        bilan_fautes: "{f} помилок із {n} відповідей",
+        bilan_travailler: "Попрацювати",
+        bilan_notion_aucune: "Цього тижня жодна граматична тема не завдала труднощів. Браво!",
+        bilan_mots_titre: "Слова, що опираються",
+        bilan_revoir_mots: "Повторити ці слова",
+        bilan_mots_introuvables: "Цих слів уже немає у твоїх наборах.",
+        bilan_fin_rien: "Цього тижня нічого не завдало труднощів: так тримати!",
+        bilan_fin_regulier: "П'ять днів або більше цього тижня: саме регулярність навчає.",
+        bilan_fin_normal: "Те, що опирається сьогодні, буде знайоме наступного тижня. Одне заняття за раз.",
+        bilan_ouvrir: "Мій тиждень ›",
+        bilan_commencer: "Почати заняття дня",
+        bilan_refaire: "✓ Ще одна серія",
+        bilan_mots_refaire: "✓ Повторити ще раз",
         serie_enc_semaine: "Тиждень без жодного пропуску, браво! Звичка вже є.",
         serie_enc_aujourdhui: "Одне заняття сьогодні — і серія триває.",
         serie_enc_regulier: "Дуже регулярно: саме так слова запам'ятовуються.",
@@ -18577,6 +18755,37 @@ const I18N = {
         serie_deux_semaines: "دو هفتهٔ گذشته",
         serie_jour_fait: "جلسه انجام شد",
         serie_jour_vide: "بدون جلسه",
+        serie_det_ex_1: "۱ تمرین",
+        serie_det_ex_n: "{n} تمرین",
+        serie_det_mots_1: "۱ مورد آموخته شد",
+        serie_det_mots_n: "{n} مورد آموخته شد",
+        serie_det_seance_finie: "جلسهٔ روز تمام شد",
+        serie_det_seance_p: "جلسهٔ روز: {p} از {n} کارت",
+        serie_det_rien: "آن روز فعالیتی نبود.",
+        serie_det_inconnu: "روز تمرین (جزئیات هنوز ثبت نمی‌شد).",
+        bilan_titre: "هفتهٔ تو",
+        bilan_dates: "{debut} تا {fin}",
+        bilan_exercice: "تمرین",
+        bilan_exercices: "تمرین",
+        bilan_jour: "روز فعال",
+        bilan_jours: "روز فعال",
+        bilan_acquis_1: "آموخته",
+        bilan_acquis: "آموخته",
+        bilan_notion_titre: "مبحثی برای کار",
+        bilan_notions_titre: "مباحثی برای کار",
+        bilan_fautes: "{f} اشتباه از {n} پاسخ",
+        bilan_travailler: "کار روی آن",
+        bilan_notion_aucune: "این هفته هیچ مبحث دستوری برایت دشوار نبود. آفرین!",
+        bilan_mots_titre: "واژه‌هایی که مقاومت می‌کنند",
+        bilan_revoir_mots: "مرور این واژه‌ها",
+        bilan_mots_introuvables: "این واژه‌ها دیگر در دسته‌هایت نیستند.",
+        bilan_fin_rien: "این هفته هیچ چیز برایت دشوار نبود: همین‌طور ادامه بده!",
+        bilan_fin_regulier: "پنج روز یا بیشتر در این هفته: نظم است که یاد می‌دهد.",
+        bilan_fin_normal: "آنچه امروز مقاومت می‌کند، هفتهٔ بعد آموخته خواهد شد. هر بار یک جلسه.",
+        bilan_ouvrir: "دیدن هفته‌ام ›",
+        bilan_commencer: "شروع جلسهٔ امروز",
+        bilan_refaire: "✓ یک سری دیگر",
+        bilan_mots_refaire: "✓ دوباره مرور کن",
         serie_enc_semaine: "یک هفته بدون حتی یک روز غیبت، آفرین! عادت شکل گرفته.",
         serie_enc_aujourdhui: "یک جلسه امروز، و پیاپی‌ات ادامه دارد.",
         serie_enc_regulier: "خیلی منظم: واژه‌ها همین‌طور در ذهن می‌مانند.",
@@ -19634,6 +19843,37 @@ const I18N = {
         serie_deux_semaines: "الأسبوعان الأخيران",
         serie_jour_fait: "جلسة منجزة",
         serie_jour_vide: "بلا جلسة",
+        serie_det_ex_1: "تمرين واحد",
+        serie_det_ex_n: "{n} تمارين",
+        serie_det_mots_1: "عنصر واحد متقن",
+        serie_det_mots_n: "{n} عناصر متقنة",
+        serie_det_seance_finie: "جلسة اليوم مكتملة",
+        serie_det_seance_p: "جلسة اليوم: {p} من {n} بطاقات",
+        serie_det_rien: "لا نشاط في ذلك اليوم.",
+        serie_det_inconnu: "يوم تدرّب (لم تكن التفاصيل تُسجَّل بعد).",
+        bilan_titre: "أسبوعك",
+        bilan_dates: "من {debut} إلى {fin}",
+        bilan_exercice: "تمرين",
+        bilan_exercices: "تمارين",
+        bilan_jour: "يوم نشط",
+        bilan_jours: "أيام نشطة",
+        bilan_acquis_1: "متقن",
+        bilan_acquis: "متقنة",
+        bilan_notion_titre: "الموضوع الذي تحتاج إلى العمل عليه",
+        bilan_notions_titre: "المواضيع التي تحتاج إلى العمل عليها",
+        bilan_fautes: "{f} أخطاء من {n} إجابات",
+        bilan_travailler: "تدرّب عليه",
+        bilan_notion_aucune: "لم يصعب عليك أي موضوع نحوي هذا الأسبوع. أحسنت!",
+        bilan_mots_titre: "الكلمات الصعبة",
+        bilan_revoir_mots: "راجع هذه الكلمات",
+        bilan_mots_introuvables: "لم تعد هذه الكلمات في مجموعاتك.",
+        bilan_fin_rien: "لم يصعب عليك شيء هذا الأسبوع: واصل هكذا!",
+        bilan_fin_regulier: "خمسة أيام أو أكثر هذا الأسبوع: الانتظام هو ما يجعلك تتعلم.",
+        bilan_fin_normal: "ما يصعب اليوم ستعرفه الأسبوع المقبل. جلسة واحدة في كل مرة.",
+        bilan_ouvrir: "عرض أسبوعي ›",
+        bilan_commencer: "ابدأ جلسة اليوم",
+        bilan_refaire: "✓ سلسلة أخرى",
+        bilan_mots_refaire: "✓ راجعها مرة أخرى",
         serie_enc_semaine: "أسبوع كامل دون أن يفوتك يوم، أحسنت! العادة ترسّخت.",
         serie_enc_aujourdhui: "جلسة واحدة اليوم وتستمر سلسلتك.",
         serie_enc_regulier: "منتظم جدًا: هكذا تبقى الكلمات في الذاكرة.",
@@ -20447,6 +20687,37 @@ const I18N = {
         serie_deux_semaines: "As duas últimas semanas",
         serie_jour_fait: "sessão feita",
         serie_jour_vide: "sem sessão",
+        serie_det_ex_1: "1 exercício",
+        serie_det_ex_n: "{n} exercícios",
+        serie_det_mots_1: "1 item dominado",
+        serie_det_mots_n: "{n} itens dominados",
+        serie_det_seance_finie: "sessão do dia concluída",
+        serie_det_seance_p: "sessão do dia: {p} de {n} cartões",
+        serie_det_rien: "Nenhuma atividade nesse dia.",
+        serie_det_inconnu: "Dia praticado (os detalhes ainda não eram registrados).",
+        bilan_titre: "Sua semana",
+        bilan_dates: "De {debut} a {fin}",
+        bilan_exercice: "exercício",
+        bilan_exercices: "exercícios",
+        bilan_jour: "dia ativo",
+        bilan_jours: "dias ativos",
+        bilan_acquis_1: "dominado",
+        bilan_acquis: "dominados",
+        bilan_notion_titre: "O tema para trabalhar",
+        bilan_notions_titre: "Os temas para trabalhar",
+        bilan_fautes: "{f} erros em {n} respostas",
+        bilan_travailler: "Praticar isso",
+        bilan_notion_aucune: "Nenhum tema de gramática te deu trabalho esta semana. Parabéns!",
+        bilan_mots_titre: "As palavras que resistem",
+        bilan_revoir_mots: "Revisar estas palavras",
+        bilan_mots_introuvables: "Estas palavras não estão mais nos seus baralhos.",
+        bilan_fin_rien: "Nada te deu trabalho esta semana: continue assim!",
+        bilan_fin_regulier: "Cinco dias ou mais esta semana: é a regularidade que faz aprender.",
+        bilan_fin_normal: "O que resiste hoje será sabido na semana que vem. Uma sessão de cada vez.",
+        bilan_ouvrir: "Ver minha semana ›",
+        bilan_commencer: "Começar minha sessão do dia",
+        bilan_refaire: "✓ Mais uma série",
+        bilan_mots_refaire: "✓ Revisar de novo",
         serie_enc_semaine: "Uma semana sem faltar um dia, parabéns! O hábito pegou.",
         serie_enc_aujourdhui: "Uma sessão hoje e a sua sequência continua.",
         serie_enc_regulier: "Muito regular: é assim que as palavras ficam.",
@@ -21886,6 +22157,37 @@ const I18N = {
         serie_deux_semaines: "Ostatnie dwa tygodnie",
         serie_jour_fait: "sesja zrobiona",
         serie_jour_vide: "bez sesji",
+        serie_det_ex_1: "1 ćwiczenie",
+        serie_det_ex_n: "ćwiczenia: {n}",
+        serie_det_mots_1: "1 opanowany element",
+        serie_det_mots_n: "opanowane elementy: {n}",
+        serie_det_seance_finie: "sesja dnia ukończona",
+        serie_det_seance_p: "sesja dnia: {p} z {n} kart",
+        serie_det_rien: "Tego dnia nie było aktywności.",
+        serie_det_inconnu: "Dzień nauki (szczegóły nie były jeszcze zapisywane).",
+        bilan_titre: "Twój tydzień",
+        bilan_dates: "{debut} – {fin}",
+        bilan_exercice: "ćwiczenie",
+        bilan_exercices: "ćwiczeń",
+        bilan_jour: "aktywny dzień",
+        bilan_jours: "aktywnych dni",
+        bilan_acquis_1: "opanowane",
+        bilan_acquis: "opanowanych",
+        bilan_notion_titre: "Temat do przećwiczenia",
+        bilan_notions_titre: "Tematy do przećwiczenia",
+        bilan_fautes: "{f} błędów na {n} odpowiedzi",
+        bilan_travailler: "Przećwicz to",
+        bilan_notion_aucune: "W tym tygodniu żaden temat gramatyczny nie sprawił ci trudności. Brawo!",
+        bilan_mots_titre: "Słowa, które się opierają",
+        bilan_revoir_mots: "Powtórz te słowa",
+        bilan_mots_introuvables: "Tych słów nie ma już w twoich zestawach.",
+        bilan_fin_rien: "W tym tygodniu nic nie sprawiło ci trudności: tak trzymaj!",
+        bilan_fin_regulier: "Pięć dni lub więcej w tym tygodniu: to regularność uczy.",
+        bilan_fin_normal: "To, co opiera się dziś, będzie znane w przyszłym tygodniu. Jedna sesja na raz.",
+        bilan_ouvrir: "Zobacz mój tydzień ›",
+        bilan_commencer: "Zacznij sesję dnia",
+        bilan_refaire: "✓ Jeszcze jedna seria",
+        bilan_mots_refaire: "✓ Powtórz jeszcze raz",
         serie_enc_semaine: "Tydzień bez opuszczonego dnia, brawo! Nawyk już jest.",
         serie_enc_aujourdhui: "Jedna sesja dziś i twoja seria trwa dalej.",
         serie_enc_regulier: "Bardzo regularnie: tak właśnie słowa zostają w pamięci.",
@@ -23323,6 +23625,37 @@ const I18N = {
         serie_deux_semaines: "Последние две недели",
         serie_jour_fait: "занятие было",
         serie_jour_vide: "занятия не было",
+        serie_det_ex_1: "1 упражнение",
+        serie_det_ex_n: "упражнений: {n}",
+        serie_det_mots_1: "1 освоено",
+        serie_det_mots_n: "освоено: {n}",
+        serie_det_seance_finie: "занятие дня завершено",
+        serie_det_seance_p: "занятие дня: {p} из {n} карточек",
+        serie_det_rien: "В этот день активности не было.",
+        serie_det_inconnu: "День занятий (подробности ещё не записывались).",
+        bilan_titre: "Твоя неделя",
+        bilan_dates: "{debut} – {fin}",
+        bilan_exercice: "упражнение",
+        bilan_exercices: "упражнений",
+        bilan_jour: "активный день",
+        bilan_jours: "активных дней",
+        bilan_acquis_1: "освоено",
+        bilan_acquis: "освоено",
+        bilan_notion_titre: "Тема для работы",
+        bilan_notions_titre: "Темы для работы",
+        bilan_fautes: "{f} ошибок из {n} ответов",
+        bilan_travailler: "Поработать",
+        bilan_notion_aucune: "На этой неделе ни одна грамматическая тема не вызвала трудностей. Браво!",
+        bilan_mots_titre: "Слова, которые сопротивляются",
+        bilan_revoir_mots: "Повторить эти слова",
+        bilan_mots_introuvables: "Этих слов больше нет в твоих наборах.",
+        bilan_fin_rien: "На этой неделе ничто не вызвало трудностей: так держать!",
+        bilan_fin_regulier: "Пять дней или больше на этой неделе: учит именно регулярность.",
+        bilan_fin_normal: "То, что сопротивляется сегодня, будет знакомо на следующей неделе. Одно занятие за раз.",
+        bilan_ouvrir: "Моя неделя ›",
+        bilan_commencer: "Начать занятие дня",
+        bilan_refaire: "✓ Ещё одна серия",
+        bilan_mots_refaire: "✓ Повторить ещё раз",
         serie_enc_semaine: "Неделя без пропусков, браво! Привычка сложилась.",
         serie_enc_aujourdhui: "Одно занятие сегодня — и серия продолжается.",
         serie_enc_regulier: "Очень регулярно: так слова и запоминаются.",
@@ -31447,9 +31780,17 @@ async function restoreProgressFromCloud(){
             if(typeof data.joursJson === "string" && data.joursJson){
                 const d = JSON.parse(data.joursJson);
                 const l = joursTravailles();
-                if(d && typeof d === "object" && (d.n || 0) > l.n){
-                    localStorage.setItem(directionScopedKey(JOURS_KEY),
-                        JSON.stringify({ n: d.n, dernier: d.dernier || l.dernier || "" }));
+                if(d && typeof d === "object"){
+                    // v920 : les dates et les comptes par jour se FUSIONNENT (union,
+                    // le plus grand compte par jour) : un jour fait sur le telephone
+                    // et un autre sur l'ordinateur doivent tous deux paraitre.
+                    const j = Array.from(new Set(l.j.concat(Array.isArray(d.j) ? d.j : []))).sort().slice(-60);
+                    const c = Object.assign({}, l.c);
+                    if(d.c && typeof d.c === "object") Object.keys(d.c).forEach(k => { c[k] = Math.max(c[k] || 0, Number(d.c[k]) || 0); });
+                    const plus = (d.n || 0) > l.n;
+                    localStorage.setItem(directionScopedKey(JOURS_KEY), JSON.stringify({
+                        n: plus ? d.n : l.n, dernier: plus ? (d.dernier || l.dernier || "") : l.dernier,
+                        j: j, c: c }));
                 }
             }
         }catch(e){}
@@ -32071,7 +32412,24 @@ function joursTravailles(){
         // jamais » est la seule promesse de ce compteur.
         try{ localStorage.setItem(directionScopedKey(JOURS_KEY), JSON.stringify(v)); }catch(e){}
     }
-    return { n: v.n || 0, dernier: v.dernier || "", j: Array.isArray(v.j) ? v.j : [] };
+    return { n: v.n || 0, dernier: v.dernier || "", j: Array.isArray(v.j) ? v.j : [],
+             c: (v.c && typeof v.c === "object") ? v.c : {} };
+}
+
+// v920 : LE NOMBRE D'EXERCICES DE CHAQUE JOUR, pour le calendrier de la flamme
+// (Marc-Antoine, 22 oct. 2026 : toucher un jour et voir ce qu'on y a fait).
+// Jusque-la, seul le compte du JOUR MEME existait (dailyActivity, remis a zero
+// a minuit). Range dans l'objet des jours travailles, qui voyage au nuage :
+// c = { "2026-10-22": 34, ... }, 60 jours au plus, comme j.
+function noterExercicesDuJour(compte){
+    const v = joursTravailles();
+    const jour = getTodayStr();
+    v.c[jour] = Math.max(v.c[jour] || 0, compte);
+    const garder = Object.keys(v.c).sort().slice(-60);
+    const c = {};
+    garder.forEach(d => { c[d] = v.c[d]; });
+    v.c = c;
+    try{ localStorage.setItem(directionScopedKey(JOURS_KEY), JSON.stringify(v)); }catch(e){}
 }
 
 function amorceJoursTravailles(){
@@ -32504,6 +32862,7 @@ function recordDailyActivity(compteDansObjectif){
     // passe une heure sur le Perfekt a travaille (meme raison qu'a la v534
     // pour la serie).
     noterJourTravaille();
+    if(compteDansObjectif !== false){ try{ noterExercicesDuJour(daily.count); }catch(e){} }
 
     let justReachedMultiple = 0;
     const multiplesReached = target > 0 ? Math.floor(daily.count / target) : 0;
@@ -32851,6 +33210,373 @@ function joursActifs(){
     try{ lireSeances().forEach(x => { if(x && x.d && (x.p > 0 || x.f)) jours[getTodayStr(new Date(x.d))] = 1; }); }catch(e){}
     return jours;
 }
+// v920 : CE QU'ON A FAIT UN JOUR DONNE, pour le calendrier de la flamme. Trois
+// sources, chacune avec sa memoire : les exercices (depuis la v920, 60 jours ;
+// aujourd'hui toujours), les mots maitrises (journal de memorisation, 60 jours),
+// la seance du jour (7 jours). Un jour actif d'avant la v920 n'a pas son compte :
+// on le dit, au lieu d'afficher un zero faux.
+function detailJourSerie(cle){
+    const v = joursTravailles();
+    let ex = v.c[cle];
+    if(cle === getTodayStr()) ex = Math.max(ex || 0, getDailyActivityCount());
+    let mots = 0;
+    try{
+        const log = JSON.parse(localStorage.getItem(directionScopedKey(MASTERY_LOG_KEY)) || "[]") || [];
+        log.forEach(ts => { if(getTodayStr(new Date(ts)) === cle) mots++; });
+    }catch(e){}
+    let seance = null;
+    try{
+        lireSeances().forEach(x => {
+            if(!x || !x.d || getTodayStr(new Date(x.d)) !== cle) return;
+            if(!seance || x.f || (!seance.f && (x.p || 0) > (seance.p || 0))) seance = x;
+        });
+    }catch(e){}
+    return { ex: typeof ex === "number" ? ex : null, mots: mots, seance: seance };
+}
+function texteDetailJour(cle, actif){
+    const d = detailJourSerie(cle);
+    const morceaux = [];
+    if(d.ex) morceaux.push(d.ex === 1 ? t("serie_det_ex_1") : tf("serie_det_ex_n", { n: d.ex }));
+    if(d.mots) morceaux.push(d.mots === 1 ? t("serie_det_mots_1") : tf("serie_det_mots_n", { n: d.mots }));
+    if(d.seance && d.seance.f) morceaux.push(t("serie_det_seance_finie"));
+    else if(d.seance && d.seance.p > 0) morceaux.push(tf("serie_det_seance_p", { p: d.seance.p, n: d.seance.n }));
+    if(morceaux.length) return morceaux.join(" · ");
+    return t(actif ? "serie_det_inconnu" : "serie_det_rien");
+}
+// ==================== LE BILAN DE LA SEMAINE (v920) ====================
+// Jacques, 22 oct. 2026 : « envoyer une recapitulation [...] les choses
+// incomprises dans la derniere semaine, les exercices qui sont lies » ; puis
+// « construis le bilan de la semaine dans l'app, avec les difficultes
+// regroupees par notion et un bouton pour les travailler ».
+//
+// CE QUE LA SEANCE FAISAIT DEJA, ET CE QUI MANQUAIT. La repetition espacee
+// personnalise deja chaque MOT : rate, il revient plus tot. Deux choses
+// manquaient : (1) VOIR ses difficultes -- la machine savait, la personne non ;
+// (2) les regrouper par NOTION -- dix fautes de ser/estar sont dix echecs isoles
+// pour la repetition espacee, et UN probleme pour un professeur, qui se
+// travaille par une petite serie ciblee.
+//
+// LES DONNEES. Rien de cela n'etait garde : les resultats d'exercices vivent en
+// memoire le temps d'une serie, et l'etat d'un mot ne dit pas QUAND il a ete
+// rate. D'ou ce journal : chaque reponse de grammaire (juste ou fausse -- pour
+// un taux, pas seulement un compte) et chaque mot rate, 14 jours au plus. Sur
+// l'appareil, comme les phrases ratees (v827) : un bilan est un regard sur la
+// semaine, pas une donnee a reconstruire ailleurs.
+//
+// LE TON. Celui de la flamme : on nomme ce qui est a travailler, jamais un
+// reproche, et une semaine sans difficulte se felicite.
+const BILAN_REPONSES_KEY = PREFIXE_STOCKAGE + "bilanReponses";
+const BILAN_VU_KEY = PREFIXE_STOCKAGE + "bilanVu";
+const BILAN_JOURS = 7;
+const BILAN_MEMOIRE_JOURS = 14;
+const BILAN_MAX_REPONSES = 800;
+// Une notion se signale a partir de 2 fautes ET d'un quart de reponses fausses :
+// deux fautes sur cinquante ne sont pas un probleme, deux sur trois en sont un.
+const BILAN_NOTION_FAUTES = 2;
+const BILAN_NOTION_TAUX = 0.25;
+// Les jeux de grammaire de la seance : le titre (la cle du bandeau de l'ecran
+// d'exercices, deja traduite) et la fonction qui ouvre le jeu. Releves dans ce
+// fichier le 22 oct. 2026 ; un jeu absent d'ici n'est simplement pas propose.
+const BILAN_JEUX = {
+    aberSondernExercises: ["kicker_aber_sondern", "startAberSondernUebung"],
+    acentosExercises: ["kicker_acentos", "startAcentosUebung"],
+    adjektiveDeklinationExercises: ["kicker_adjektive_deklination", "startAdjektiveDeklinationExercises"],
+    adverbienNuanceExercises: ["kicker_adverbien_nuance", "startAdverbienNuance"],
+    alsWennExercises: ["kicker_als_wenn", "startAlsWennUebung"],
+    condicionalExercises: ["kicker_es_condicional", "startCondicionalExercise"],
+    demostrativosExercises: ["kicker_demostrativos", "startDemostrativosUebung"],
+    derEinExercises: ["kicker_der_ein", "startDerEinUebung"],
+    deshalbTrotzdemExercises: ["kicker_deshalb_trotzdem", "startDeshalbTrotzdemUebung"],
+    exercises: ["kicker_verben_praesens", "startExercises"],
+    falsosAmigosExercises: ["kicker_falsos_amigos", "startFalsosAmigosUebung"],
+    futuroExercises: ["kicker_es_futuro", "startFuturoExercise"],
+    gustarExercises: ["kicker_gustar", "startGustarUebung"],
+    imperativoExercises: ["kicker_es_imperativo", "startImperativoExercise"],
+    infinitivExercises: ["kicker_verben_infinitiv", "startInfinitivExercise"],
+    kasusReconnaissanceExercises: ["kicker_kasus_reconnaissance", "startKasusReconnaissance"],
+    konjunktionenNuanceExercises: ["kicker_konjunktionen_nuance", "startKonjunktionenNuance"],
+    konjunktiv2Exercises: ["kicker_verben_konjunktiv2", "startKonjunktiv2Exercise"],
+    konnektorenExercises: ["kicker_konnektoren", "startKonnektorenUebung"],
+    numerosExercises: ["kicker_numeros", "startNumerosUebung"],
+    obwohlTrotzdemExercises: ["kicker_obwohl_trotzdem", "startObwohlTrotzdemUebung"],
+    partikelnNuanceExercises: ["kicker_partikeln_nuance", "startPartikelnNuance"],
+    perfektExercises: ["kicker_verben_perfekt", "startPerfektExercise"],
+    perifrasisExercises: ["kicker_perifrasis", "startPerifrasisUebung"],
+    porParaExercises: ["kicker_por_para", "startPorParaUebung"],
+    positionsverbenExercises: ["kicker_positionsverben", "startPositionsverbenUebung"],
+    possessivExercises: ["kicker_possessiv_exercise", "startPossessivExercise"],
+    praepReconnaissanceExercises: ["kicker_praep_reconnaissance", "startPraepReconnaissance"],
+    praepWahlExercises: ["kicker_praep_wahl", "startPraepWahl"],
+    praepWoWohinExercises: ["kicker_praep_wowohin", "startPraepWoWohin"],
+    praeteritumExercises: ["kicker_verben_praeteritum", "startPraeteritumExercise"],
+    premierePlaceExercises: ["kicker_premiere_place", "startPremierePlaceUebung"],
+    preposicionesExercises: ["kicker_preposiciones", "startPreposicionesUebung"],
+    preposicionesViajeExercises: ["kicker_preposiciones_viaje", "startPreposicionesViajeUebung"],
+    relativGenitivOrderExercises: ["kicker_relativ_gen_order", "startRelativGenitivOrder"],
+    relativGenitivReconnaissanceExercises: ["kicker_relativ_gen_reconnaissance", "startRelativGenitivReconnaissance"],
+    relativReconDativ: ["kicker_relativ_reconnaissance_dativ", "startRelativReconDativ"],
+    relativReconMixed: ["kicker_relativ_reconnaissance_mixed", "startRelativReconMixed"],
+    relativReconNomAkk: ["kicker_relativ_reconnaissance_nomakk", "startRelativReconNomAkk"],
+    serEstarExercises: ["kicker_ser_estar", "startSerEstarUebung"],
+    transformationConnecteursExercises: ["kicker_transformation_connecteurs", "startTransformationConnecteursUebung"],
+    verbenMitPraepExercises: ["kicker_verben_praep", "startVerbenMitPraep"],
+    verbosConPreposicionExercises: ["kicker_verbos_preposicion", "startVerbosConPreposicionUebung"],
+    weilObwohlExercises: ["kicker_weil_obwohl", "startWeilObwohlUebung"],
+    wennObExercises: ["kicker_wenn_ob", "startWennObUebung"],
+    wennWannExercises: ["kicker_wenn_wann", "startWennWannUebung"],
+    wissenKennenExercises: ["kicker_wissen_kennen", "startWissenKennenUebung"],
+    wortstellungFrageExercises: ["kicker_wortstellung_frage", "startWortstellungFrageExercise"],
+    wortstellungNichtExercises: ["kicker_wortstellung_nicht", "startWortstellungNichtExercise"],
+    wortstellungSubExercises: ["kicker_wortstellung_sub", "startWortstellungSubExercise"],
+    wortstellungTekamoloExercises: ["kicker_wortstellung_tekamolo", "startWortstellungTekamoloExercise"],
+    wortstellungV2Exercises: ["kicker_wortstellung_v2", "startWortstellungV2Exercise"],
+    zuInfinitivExercises: ["kicker_zuinf_exercise", "startZuInfinitivExercise"]
+};
+function lireReponsesBilan(){
+    try{ const l = JSON.parse(localStorage.getItem(BILAN_REPONSES_KEY) || "[]"); return Array.isArray(l) ? l : []; }
+    catch(e){ return []; }
+}
+function noterReponseBilan(r){
+    try{
+        const limite = Date.now() - BILAN_MEMOIRE_JOURS * 86400000;
+        const l = lireReponsesBilan().filter(x => x && x.t >= limite);
+        r.t = Date.now();
+        l.push(r);
+        localStorage.setItem(BILAN_REPONSES_KEY, JSON.stringify(l.slice(-BILAN_MAX_REPONSES)));
+    }catch(e){}
+}
+function noterGrammaireBilan(jeuNom, juste){
+    if(!jeuNom || juste === null || juste === undefined) return;
+    noterReponseBilan({ g: jeuNom, ok: juste ? 1 : 0 });
+}
+// Un mot rate : sa cle (pour refaire la carte), ce qu'on lisait (w) et son sens (s).
+function noterMotRateBilan(it, w, s){
+    if(!it || !it.themeId || it.index === undefined) return;
+    noterReponseBilan({ c: it.themeId + "#" + it.index, w: String(w || "").slice(0, 80), s: String(s || "").slice(0, 80), ok: 0 });
+}
+function calculerBilan(){
+    const debut = Date.now() - BILAN_JOURS * 86400000;
+    const l = lireReponsesBilan().filter(x => x && x.t >= debut);
+    // Ce qui a ete fait : les exercices par jour (v920), les acquis, les jours.
+    const v = joursTravailles();
+    let exercices = 0, jours = 0;
+    for(let k = 0; k < BILAN_JOURS; k++){
+        const d = new Date(); d.setDate(d.getDate() - k);
+        const cle = getTodayStr(d);
+        const n = v.c[cle] || (k === 0 ? getDailyActivityCount() : 0);
+        exercices += n;
+        if(n > 0 || v.j.indexOf(cle) >= 0) jours++;
+    }
+    let acquis = 0;
+    try{
+        const log = JSON.parse(localStorage.getItem(directionScopedKey(MASTERY_LOG_KEY)) || "[]") || [];
+        acquis = log.filter(ts => ts >= debut).length;
+    }catch(e){}
+    // Les notions : par jeu, fautes et total.
+    const parJeu = {};
+    l.forEach(x => {
+        if(!x.g) return;
+        const e = parJeu[x.g] || (parJeu[x.g] = { jeu: x.g, fautes: 0, total: 0 });
+        e.total++;
+        if(!x.ok) e.fautes++;
+    });
+    const notions = Object.values(parJeu)
+        .filter(e => BILAN_JEUX[e.jeu] && e.fautes >= BILAN_NOTION_FAUTES && e.fautes / e.total >= BILAN_NOTION_TAUX)
+        .sort((a, b) => b.fautes - a.fautes || b.fautes / b.total - a.fautes / a.total)
+        .slice(0, 2);
+    const grammaire = Object.values(parJeu).reduce((s, e) => s + e.total, 0);
+    // Les mots qui resistent : les plus rates, puis les plus recents.
+    const parMot = {};
+    l.forEach(x => {
+        if(!x.c || x.ok) return;
+        const e = parMot[x.c] || (parMot[x.c] = { c: x.c, n: 0, t: 0, w: x.w, s: x.s });
+        e.n++;
+        if(x.t > e.t){ e.t = x.t; e.w = x.w || e.w; e.s = x.s || e.s; }
+    });
+    const mots = Object.values(parMot).filter(e => e.w).sort((a, b) => b.n - a.n || b.t - a.t);
+    return { exercices: exercices, jours: jours, acquis: acquis, notions: notions, grammaire: grammaire,
+             mots: mots.slice(0, 5), motsCles: mots.slice(0, 12).map(e => e.c) };
+}
+// Une fois par semaine, a l'accueil -- et toujours depuis la bulle de la flamme.
+// La premiere fois, on ne montre rien : le journal commence a peine, un bilan
+// vide decevrait. On pose la date, et le premier bilan vient sept jours plus tard.
+// OU IL S'OUVRE (Jacques, 22 oct. 2026 : « j'imagine que ca apparait lorsqu'on
+// clique sur seance du jour ») : en ENTRANT dans la seance du jour, une fois par
+// semaine -- la carte se lit comme le seuil de la semaine qui commence, et son
+// bouton principal mene a la seance. Pas a l'accueil : on n'y vient pas toujours
+// pour travailler.
+function bilanAMontrer(){
+    let vu = null;
+    try{ vu = localStorage.getItem(BILAN_VU_KEY); }catch(e){}
+    if(!vu){ try{ localStorage.setItem(BILAN_VU_KEY, getTodayStr()); }catch(e){} return false; }
+    const ecart = (Date.now() - new Date(vu + "T12:00:00").getTime()) / 86400000;
+    if(ecart < BILAN_JOURS) return false;
+    const b = calculerBilan();
+    return !(b.jours < 2 && b.exercices < 20);   // une semaine presque vide : rien a dire
+}
+// Les boutons de la seance du jour passent par ici.
+function entrerSeanceDuJour(){
+    let montrer = false;
+    try{ montrer = bilanAMontrer(); }catch(e){}
+    if(montrer){ ouvrirBilanSemaine(); return; }
+    ouvrirSeanceDuJour(true);
+}
+// LE RETOUR A LA CARTE (Jacques : « lorsqu'on clique sur travailler ca, puis
+// qu'on le travaille, apres ca, ca devrait revenir encore a la carte ; puis
+// d'avoir la possibilite de revenir a une seance normale »). « Travailler ca » et
+// « Revoir ces mots » posent bilanRetour ; tout retour a l'accueil (le bouton
+// Retour des resultats, la fin du paquet) rouvre alors la carte, qui marque d'un
+// ✓ ce qui vient d'etre travaille. « Commencer ma seance du jour » en sort.
+let bilanRetour = false;
+const BILAN_FAITS = new Set();   // ce qui a ete travaille depuis la carte, cette fois-ci
+function retourAuBilanSiDemande(){
+    if(!bilanRetour) return;
+    bilanRetour = false;
+    setTimeout(() => { try{ ouvrirBilanSemaine(null, true); }catch(e){} }, 150);
+}
+function fermerBilanSemaine(){
+    const v = document.querySelector(".bilan-voile");
+    if(v) v.remove();
+}
+function ouvrirBilanSemaine(ev, retour){
+    if(ev) ev.stopPropagation();
+    try{ fermerCalendrierSerie(); }catch(e){}
+    fermerBilanSemaine();
+    if(!retour) BILAN_FAITS.clear();
+    bilanRetour = false;
+    try{ localStorage.setItem(BILAN_VU_KEY, getTodayStr()); }catch(e){}
+    const b = calculerBilan();
+    const creer = (tag, cls, txt) => { const e = document.createElement(tag); if(cls) e.className = cls; if(txt !== undefined) e.textContent = txt; return e; };
+    const voile = creer("div", "bilan-voile");
+    voile.addEventListener("click", e => { if(e.target === voile) fermerBilanSemaine(); });
+    const carte = creer("div", "bilan-carte");
+    carte.setAttribute("role", "dialog");
+    carte.setAttribute("aria-label", t("bilan_titre"));
+    const x = creer("button", "bilan-fermer", "✕");
+    x.type = "button";
+    x.setAttribute("aria-label", t("abo_fermer"));
+    x.addEventListener("click", fermerBilanSemaine);
+    carte.appendChild(x);
+    carte.appendChild(creer("h2", "bilan-titre", t("bilan_titre")));
+    const d0 = new Date(); d0.setDate(d0.getDate() - (BILAN_JOURS - 1));
+    const fmt = d => d.toLocaleDateString(getUiLang(), { day: "numeric", month: "long" });
+    carte.appendChild(creer("p", "bilan-dates", tf("bilan_dates", { debut: fmt(d0), fin: fmt(new Date()) })));
+    // Ce qui a ete fait.
+    const chiffres = creer("div", "bilan-chiffres");
+    [[b.exercices, b.exercices === 1 ? "bilan_exercice" : "bilan_exercices"],
+     [b.jours, b.jours === 1 ? "bilan_jour" : "bilan_jours"],
+     [b.acquis, b.acquis === 1 ? "bilan_acquis_1" : "bilan_acquis"]].forEach(([n, cle]) => {
+        const c = creer("div", "bilan-chiffre");
+        c.appendChild(creer("b", "", String(n)));
+        c.appendChild(creer("span", "", t(cle)));
+        chiffres.appendChild(c);
+    });
+    carte.appendChild(chiffres);
+    // La notion a travailler.
+    if(b.notions.length){
+        const s = creer("section", "bilan-section");
+        s.appendChild(creer("h3", "", t(b.notions.length === 1 ? "bilan_notion_titre" : "bilan_notions_titre")));
+        b.notions.forEach(e => {
+            const [cle, lanceur] = BILAN_JEUX[e.jeu];
+            const fait = BILAN_FAITS.has(e.jeu);
+            const ligne = creer("div", "bilan-notion" + (fait ? " fait" : ""));
+            const txt = creer("div", "bilan-notion-txt");
+            txt.appendChild(creer("b", "", t(cle)));
+            txt.appendChild(creer("span", "", tf("bilan_fautes", { f: e.fautes, n: e.total })));
+            ligne.appendChild(txt);
+            const go = creer("button", "bilan-go", t(fait ? "bilan_refaire" : "bilan_travailler"));
+            go.type = "button";
+            // Le jeu s'ouvre avec la carte comme ecran de retour : son bouton
+            // Retour (et « Accueil ») ramene ici. Le lanceur du jeu n'est appele
+            // que si le melange ne sait pas l'ouvrir.
+            go.addEventListener("click", () => {
+                fermerBilanSemaine();
+                BILAN_FAITS.add(e.jeu);
+                bilanRetour = true;
+                const relance = () => { bilanRetour = true; startExerciseSetMelange(e.jeu, cle, goHome, relance); };
+                try{ relance(); }
+                catch(err){ try{ if(typeof window[lanceur] === "function") window[lanceur](); }catch(e2){} }
+            });
+            ligne.appendChild(go);
+            s.appendChild(ligne);
+        });
+        carte.appendChild(s);
+    } else if(b.grammaire >= 5){
+        const s = creer("section", "bilan-section");
+        s.appendChild(creer("h3", "", t("bilan_notion_titre")));
+        s.appendChild(creer("p", "bilan-bravo", t("bilan_notion_aucune")));
+        carte.appendChild(s);
+    }
+    // Les mots qui resistent.
+    if(b.mots.length){
+        const s = creer("section", "bilan-section");
+        s.appendChild(creer("h3", "", t("bilan_mots_titre")));
+        const ul = creer("ul", "bilan-mots");
+        b.mots.forEach(e => {
+            const li = creer("li");
+            const w = creer("b", "", e.w);
+            w.setAttribute("lang", LANGUE_APPRISE === "es" ? "es" : "de");
+            li.appendChild(w);
+            if(e.s) li.appendChild(creer("span", "", e.s));
+            if(e.n > 1) li.appendChild(creer("i", "", "×" + e.n));
+            ul.appendChild(li);
+        });
+        s.appendChild(ul);
+        const go = creer("button", "bilan-go large", t(BILAN_FAITS.has("mots") ? "bilan_mots_refaire" : "bilan_revoir_mots"));
+        go.type = "button";
+        go.addEventListener("click", () => {
+            fermerBilanSemaine();
+            BILAN_FAITS.add("mots");
+            bilanRetour = true;
+            revoirMotsDuBilan(b.motsCles);
+        });
+        s.appendChild(go);
+        carte.appendChild(s);
+    }
+    // Le mot de la fin, selon la semaine.
+    const cleFin = (!b.notions.length && !b.mots.length) ? "bilan_fin_rien"
+                 : b.jours >= 5 ? "bilan_fin_regulier" : "bilan_fin_normal";
+    carte.appendChild(creer("p", "bilan-fin", t(cleFin)));
+    // La seance normale, toujours a un geste.
+    const seance = creer("button", "bilan-seance", t("bilan_commencer"));
+    seance.type = "button";
+    seance.addEventListener("click", () => { fermerBilanSemaine(); bilanRetour = false; ouvrirSeanceDuJour(true); });
+    carte.appendChild(seance);
+    voile.appendChild(carte);
+    document.body.appendChild(voile);
+}
+// « Revoir ces mots » : un paquet des mots rates, comme « Mis de cote ».
+async function revoirMotsDuBilan(cles){
+    const voulus = new Set(cles || []);
+    if(!voulus.size) return;
+    await chargerFrequence();
+    const tout = [];
+    NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, paquetDuNiveau(n)); });
+    try{
+        await chargerPremiersPas();
+        tout.push.apply(tout, toutesCartesPremiersPas());
+        sequencePremiersPas().forEach(x => { if(x.phrase && x.themeId) tout.push(x); });
+    }catch(e){}
+    const vus = new Set();
+    const cartes = tout.filter(it => {
+        const c = it.themeId + "#" + it.index;
+        if(!voulus.has(c) || vus.has(c)) return false;
+        vus.add(c);
+        return true;
+    });
+    if(!cartes.length){ showInfoToast(t("bilan_mots_introuvables")); return; }
+    currentCardsFull = cartes;
+    currentCards = cartes.slice();
+    retourSeanceAccueil = true;
+    panneauAvantFlashcards = null;
+    flashcardFromSearch = false;
+    currentTheme = { id: "bilan", name: t("bilan_mots_titre") };
+    currentFlashcard = 0;
+    flashcardMode = cartes[0].mode || "nomen";
+    setFlashHeader("bilan_mots_titre", null);
+    showScreen("flashcards");
+    loadFlashcard();
+}
 let calSerie = null;
 function fermerCalendrierSerie(){
     if(calSerie){ calSerie.remove(); calSerie = null; }
@@ -32889,14 +33615,29 @@ function ouvrirCalendrierSerie(ev){
     try{ const f = new Intl.DateTimeFormat(getUiLang(), { weekday: "narrow" }); initiale = d => f.format(d); }
     catch(e){ initiale = d => "LMMJVSD"[(d.getDay() + 6) % 7]; }
     jours.slice(7).forEach(d => grille.appendChild(creer("span", "cal-serie-jour", initiale(d))));
+    // v920 : TOUCHER UN JOUR dit ce qu'on y a fait (idee de Marc-Antoine) : la
+    // date, puis les exercices, les mots maitrises, la seance du jour.
+    const detail = creer("div", "cal-serie-detail");
+    detail.setAttribute("aria-live", "polite");
+    const montrerJour = (c, d, cle) => {
+        Array.from(grille.querySelectorAll(".cal-serie-case.choisi")).forEach(x => x.classList.remove("choisi"));
+        c.classList.add("choisi");
+        detail.textContent = "";
+        detail.appendChild(creer("b", "", d.toLocaleDateString(getUiLang(), { weekday: "long", day: "numeric", month: "long" })));
+        detail.appendChild(creer("span", "", texteDetailJour(cle, !!actifs[cle])));
+    };
     jours.forEach((d, i) => {
         const cle = getTodayStr(d);
-        const c = creer("span", "cal-serie-case" + (actifs[cle] ? " fait" : "") + (i === 13 ? " auj" : ""), String(d.getDate()));
-        c.title = d.toLocaleDateString(getUiLang(), { weekday: "long", day: "numeric", month: "long" })
-                + " · " + t(actifs[cle] ? "serie_jour_fait" : "serie_jour_vide");
+        const c = creer("button", "cal-serie-case" + (actifs[cle] ? " fait" : "") + (i === 13 ? " auj" : ""), String(d.getDate()));
+        c.type = "button";
+        c.setAttribute("aria-label", d.toLocaleDateString(getUiLang(), { weekday: "long", day: "numeric", month: "long" })
+                + " · " + t(actifs[cle] ? "serie_jour_fait" : "serie_jour_vide"));
+        c.addEventListener("click", e => { e.stopPropagation(); montrerJour(c, d, cle); });
         grille.appendChild(c);
+        if(i === 13) setTimeout(() => montrerJour(c, d, cle), 0);
     });
     b.appendChild(grille);
+    b.appendChild(detail);
     // v911 : UNE PHRASE D'ENCOURAGEMENT, selon les deux semaines. Jacques :
     // « dependant du resultat ». Jamais de reproche : une absence ne se compte
     // pas, seul ce qui a ete fait se nomme (voir la note de joursTravailles()).
@@ -32913,6 +33654,11 @@ function ouvrirCalendrierSerie(ev){
     const l2 = creer("span"); const p2 = creer("i"); p2.style.background = "rgba(28,36,48,.12)"; l2.append(p2, document.createTextNode(t("serie_jour_vide")));
     leg.append(l1, l2);
     b.appendChild(leg);
+    // v920 : le bilan de la semaine, a toute heure.
+    const bilan = creer("button", "cal-serie-bilan", t("bilan_ouvrir"));
+    bilan.type = "button";
+    bilan.addEventListener("click", ouvrirBilanSemaine);
+    b.appendChild(bilan);
     document.body.appendChild(b);
     calSerie = b;
     const ra = ancre.getBoundingClientRect();
@@ -36640,7 +37386,7 @@ if(!VIDEO_ACCUEIL_ACTIVE){
     });
 }
 
-function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); }
+function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); try{ retourAuBilanSiDemande(); }catch(e){} }
 
 // Salutation selon l'heure + prénom déduit de l'e-mail (pas de nom affiché
 // collecté à l'inscription -- utilise la partie avant @, mise en majuscule).
@@ -42420,7 +43166,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 919;
+const APP_VERSION = 920;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48851,6 +49597,9 @@ function repondrePhrase(item, juste){
     try{
         const it = item.cible;
         if(item.forme === "gram" && juste !== null) noterGrammaireSeance(item.jeu, juste);
+        // v920 : le bilan de la semaine.
+        if(item.forme === "gram") noterGrammaireBilan(item.jeu, juste);
+        else if(it && juste === false && item.phrase) noterMotRateBilan(it, item.phrase.de, item.phrase.sens);
         if(!it || juste === null) return recordDailyActivity();
         const st = getWordState(it.themeId, it.index);
         const neuf = estNeuf(st);
@@ -50974,7 +51723,7 @@ const EPISODES_HOTE = "https://deutschai-b6fbb.web.app/episodes/";
 const EPISODES = {
     es: [
         // v918 : « v2 », la traduction agrandie (nouveau nom : pas d'ancienne en cache).
-        { n: 1, titre: "Llegada a Madrid", video: "es/ep01-v3", affiche: "es/ep01-affiche.jpg" },
+        { n: 1, titre: "Llegada a Madrid", video: "es/ep01-v4", affiche: "es/ep01-affiche.jpg" },
         { n: 2, titre: "El carro", video: "es/ep02-v2", affiche: "es/ep02-affiche.jpg" }
     ]
 };
@@ -51545,6 +52294,11 @@ function reviewAgain(){
     if(estNeuf(state)) noterMotNeuf();
     state.srsHits = 0;
     setWordState(item.themeId, item.index, state);
+    // v920 : le bilan de la semaine -- le mot tel qu'on le lisait, et son sens.
+    try{
+        const recto = document.getElementById("flashWord");
+        noterMotRateBilan(item, texteCarteAPrononcer(), recto ? recto.textContent : "");
+    }catch(e){}
     sessionVues++;
     remettreEnFile(item);
     scheduleReview(SRS_ENCORE_MINUTES);   // revient dans la meme session
@@ -53856,6 +54610,7 @@ function checkAnswer(){
         const tokens = tuilesDepuisPhrase(ex.correct);
         if(tokens.length >= 2){
             exerciseResults.push({ topic: ex.topic, correct: false, ex });
+            noterGrammaireBilan(revisionErreursEnCours ? null : exerciseJeuNom, false);   // v920
             resetCombo();
             passerEnRattrapageTuiles(ex, tokens);
             return;
@@ -53864,6 +54619,7 @@ function checkAnswer(){
     answered = true;
     const enRattrapage = !!ex.estRattrapage;
     if(!enRattrapage) exerciseResults.push({ topic: ex.topic, correct: isCorrect, ex });
+    if(!enRattrapage && !revisionErreursEnCours) noterGrammaireBilan(exerciseJeuNom, isCorrect);   // v920
     const feedback = document.getElementById("feedback");
     if(isCorrect){
         if(!enRattrapage) scoreValue++;

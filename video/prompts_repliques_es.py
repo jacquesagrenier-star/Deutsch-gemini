@@ -255,13 +255,13 @@ GESTES = {
     # video/verifier_prompt.py) -- l'autre main immobile D'ABORD.
     # Mark : la question polie
     ('es-01-llegada-madrid', 5):
-        'His hand nearer the left edge of the picture stays low at his side, exactly as in the image, for the whole shot. Only his hand nearer the right edge of the picture moves: as he starts his question it comes up from the elbow to waist height, palm open and turned up, a small polite offering, and it stays there until he has finished.',
+        'Only one of his hands is in the picture, the one nearer the right edge, hanging low at his side; the other stays hidden behind the blurred beige shoulder for the whole shot. Only that visible hand moves: as he starts his question it comes up from the elbow to waist height, palm open and turned up, a small polite offering, and it stays there until he has finished.',
     # Mark : « moi » -- le nouveau travail
     ('es-01-llegada-madrid', 10):
-        'His hand nearer the left edge of the picture stays low at his side, exactly as in the image, for the whole shot. Only his hand nearer the right edge of the picture moves: on his first word it rises to his chest and lays its fingertips flat on his black T-shirt, just below the collar of his jacket, as if to say « me », and it stays there.',
+        'Only one of his hands is in the picture, the one nearer the right edge, hanging low at his side; the other stays hidden behind the blurred beige shoulder for the whole shot. Only that visible hand moves: on his first word it rises to his chest and lays its fingertips flat on his black T-shirt, just below the collar of his jacket, as if to say « me », and it stays there.',
     # Mark : il montre le chemin qu'il espere
     ('es-01-llegada-madrid', 14):
-        'His hand nearer the left edge of the picture stays low at his side, exactly as in the image, for the whole shot. Only his hand nearer the right edge of the picture moves: on his first words it rises to waist height and points loosely with two fingers past the right edge of the picture, a little downwards, the way ahead, and it stays there while he speaks.',
+        'Only one of his hands is in the picture, the one nearer the right edge, hanging low at his side; the other stays hidden behind the blurred beige shoulder for the whole shot. Only that visible hand moves: on his first words it rises to waist height, the elbow kept at his side, and the forearm alone points loosely with two fingers towards the right edge of the picture, a little downwards, the way ahead, and it stays there while he speaks.',
     # Mark : le bonjour
     ('es-02-el-carro', 2):
         'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: as he says good morning it rises to the height of his shoulder, palm out and open, a small friendly greeting, and it stays raised while he asks his question.',
@@ -270,34 +270,34 @@ GESTES = {
         'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: on his first words it comes up to waist height, palm open and turned up, fingers spread, in happy surprise, and it stays there.',
     # Mark : il compte les mots nouveaux
     ('es-02-el-carro', 7):
-        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: as he repeats the new words it rises in front of his chest and counts on its fingers: first the thumb comes up, then the index finger beside it, and the hand stays there holding the two fingers up.',
+        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: as he repeats the new words it rises in front of his chest, two fingers raised, the thumb and the index, counting, and it stays there holding them up.',
     # Mark : sur de lui
     ('es-02-el-carro', 11):
         'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: on his first word it rises to waist height, palm down and flat, and makes one slow, sure sweep a few centimetres out to the side, then stays there, palm down, calm and certain.',
     # Mark : pris en faute
     ('es-02-el-carro', 13):
-        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: as he hesitates it rises to the back of his own neck and rests there, fingers against his hairline, and it stays there until he finishes.',
-    # Mark : le pouce leve en riant
+        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: as he hesitates it rises to the back of his own neck and rests there until he finishes.',
+    # Mark : la main a plat sur la poitrine en riant
     ('es-02-el-carro', 15):
-        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: with his laugh it rises in front of his chest, thumb up, and it stays there.',
+        'His hand nearer the car stays resting on the box in the open boot, exactly as in the image, for the whole shot. Only his other hand moves: with his laugh it comes up and lays itself flat on the middle of his chest, and it stays there while he laughs.',
     # La voisine : la main sur le coeur -- quelqu'un de chez elle
     ('es-02-el-carro', 3):
-        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: on the word she repeats it rises to her chest and lays itself flat over her heart, on the plain white blouse, and it stays there, warm and still.',
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves, the one nearer the right edge of the picture, which starts low at her side by the hem of her coat: on the word she repeats it rises to her chest and lays itself flat over her heart, on the lapel of her navy coat, and it stays there, warm and still.',
     # La voisine : l'index de la maitresse d'ecole
     ('es-02-el-carro', 6):
-        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: as she starts to explain it rises to the height of her shoulder, index finger raised, the small gesture of a teacher asking for attention, and it stays raised while she speaks.',
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves, the one nearer the right edge of the picture, which starts low at her side by the hem of her coat: as she starts to explain it rises to the height of her shoulder, index finger raised, the small gesture of a teacher asking for attention, and it stays raised while she speaks.',
     # La voisine : « muy bien »
     ('es-02-el-carro', 8):
-        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: on her first words it rises in front of her chest and makes a small circle with the thumb and the index finger, the other fingers open, and it stays there.',
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves, the one nearer the right edge of the picture, which starts low at her side by the hem of her coat: on her first words it rises in front of her chest and makes a small circle with the thumb and the index finger, the other fingers open, and it stays there.',
     # La voisine : la main sur la hanche, pratique
     ('es-02-el-carro', 10):
-        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: on her first word it settles on her hip, fingers forward, elbow out to the side, and it stays there, practical and sure.',
-    # La voisine : l'index qui dit non
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves, the one nearer the right edge of the picture, which starts low at her side by the hem of her coat: on her first word it settles on her hip, fingers forward, elbow out to the side, and it stays there, practical and sure.',
+    # La voisine : la main « plus ou moins »
     ('es-02-el-carro', 12):
-        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: as she repeats the word it rises to the height of her chest, index finger up, and wags gently from side to side twice, then stays raised.',
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves, the one nearer the right edge of the picture, which starts low at her side by the hem of her coat: as she repeats the word it rises to the height of her chest, palm down and fingers spread, and tilts gently from side to side, the « more or less » of the hand, then stays there.',
     # La voisine : elle rit, la main sur le ventre
     ('es-02-el-carro', 14):
-        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves: with her laugh it rises and rests flat on her stomach, just above her waist, and it stays there while she laughs.',
+        'Her hand stays on the black handle of her shopping trolley, exactly as in the image, for the whole shot. Only her other hand moves, the one nearer the right edge of the picture, which starts low at her side by the hem of her coat: with her laugh it rises and rests flat on her stomach, just above her waist, and it stays there while she laughs.',
 }
 # La tenue d'un plan qui pose une main sur la poitrine (voir GESTES, plan 9).
 TENUE_PLAN = {
@@ -308,8 +308,14 @@ TENUE_PLAN = {
         "Across his chest we see only his grey jacket, his black T-shirt, plain and unmarked, and his fingertips "
         "resting on it, from the first frame to the last.",
     ("es-02-el-carro", 3):
-        "Across her chest we see only her navy coat, her plain white blouse and her hand resting on it, from the "
-        "first frame to the last.",
+        "Across her chest we see only her navy coat, her plain white blouse and her hand resting on the lapel, "
+        "from the first frame to the last.",
+    ("es-02-el-carro", 7):
+        "Across his chest we see only his plain white T-shirt and his raised hand in front of it, from the first "
+        "frame to the last.",
+    ("es-02-el-carro", 15):
+        "Across his chest we see only his plain white T-shirt and his hand resting flat on it, from the first "
+        "frame to the last.",
 }
 
 
