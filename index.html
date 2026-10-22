@@ -6331,9 +6331,29 @@ body[data-theme="dark"] button.serie-salut svg{fill:#F0B456; stroke:#F7C77A;}
 .ep-ligne.verrou{cursor:default; opacity:.6;}
 .ep-ligne.verrou img{filter:saturate(.35) brightness(.92);}
 .ep-regle{font-size:12.5px !important; color:#576177; margin:6px 0 0 !important;}
+.ep-raz{display:block; margin:12px auto 0; font-size:13px;}
 body[data-theme="dark"] .ep-boite:not(.ep-lecteur){background:#232a34; color:#F2F2F6;}
 body[data-theme="dark"] .ep-ligne{background:#1b2129; border-color:#2c333d;}
 body[data-theme="dark"] .ep-fermer, body[data-theme="dark"] .ep-regle{color:#a9b2c0;}
+/* v918 : la tuile aux couleurs du logo -- encre et ambre -- pour qu'elle se
+   distingue des icones ambre pale (Jacques : « de nos couleurs, parce qu'elle
+   vient d'apparaitre », et un clap plutot qu'un ▶ qui ressemblait a l'ecoute). */
+#home .orb#tuileEpisodes{position:relative;}
+#home .orb#tuileEpisodes .orb-icon{background:linear-gradient(180deg, #34404f, #1C2430);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.16), inset 0 -8px 10px -8px rgba(0,0,0,.5), 0 4px 9px -4px rgba(12,16,22,.6);}
+#home .orb#tuileEpisodes .orb-icon svg{stroke:#F0A23A;}
+body[data-theme="dark"] #home .orb#tuileEpisodes .orb-icon{background:linear-gradient(180deg, #3d4a5b, #222b37);}
+.ep-nouveau{position:absolute; top:-8px; inset-inline-end:-6px; z-index:2; background:#E8A23A; color:#1C2430; font-size:11px; font-weight:900;
+    padding:2px 8px; border-radius:999px; letter-spacing:.02em; box-shadow:0 2px 6px -2px rgba(140,85,15,.6);}
+.ep-tuile-sous{display:block; font-size:12px; font-weight:700; color:#576177; margin-top:2px;}
+body[data-theme="dark"] .ep-tuile-sous{color:#a9b2c0;}
+.ep-prochain{font-size:13.5px !important; font-weight:800; color:#8a5a12; background:rgba(232,162,58,.14); border-radius:10px; padding:8px 10px;}
+body[data-theme="dark"] .ep-prochain{color:#f3c985;}
+/* Le lecteur occupe tout l'ecran (Jacques : « qu'il apparaisse plein ecran »). */
+.ep-voile.plein{padding:0; background:#000;}
+.ep-voile.plein .ep-boite.ep-lecteur{width:100vw; height:100vh; height:100dvh; max-height:none; border-radius:0; display:flex; align-items:center;}
+.ep-voile.plein .ep-lecteur video{width:100%; height:100%; max-height:none; object-fit:contain;}
+.ep-voile.plein .ep-fermer{top:calc(env(safe-area-inset-top, 0px) + 10px);}
 /* v916 : le ✕ du calendrier (Jacques : « un petit X en haut du tableau a droite »). */
 .cal-serie-fermer{position:absolute; top:6px; inset-inline-end:6px; width:32px; height:32px; padding:0; border:none; border-radius:50%;
     background:transparent; color:#576177; font-size:17px; line-height:32px; cursor:pointer;}
@@ -7851,8 +7871,9 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              directions, comme ils l'etaient dans la seance. -->
         <!-- v917 : la serie en recompense (essai « episodes »), visible des le premier episode debloque. -->
         <div class="orb hidden" data-orbid="episodes" id="tuileEpisodes" onclick="ouvrirMesEpisodes()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M10.2 9.4v5.2l4.4-2.6z"/></svg></div>
-            <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
+            <span class="ep-nouveau hidden" id="tuileEpisodesNouveau" data-i18n="ep_nouveau">Nouveau</span>
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="3.5" y="10" width="17" height="10" rx="1.8"/><path d="M3.9 9.6 19.4 5.4l.9 3.3L4.8 12.9z"/><path d="M8.4 8.4l1.7 2.9M12.6 7.2l1.7 2.9M16.8 6l1.7 2.9"/></svg></div>
+            <div><strong data-i18n="ep_tuile">Mes épisodes</strong><span class="ep-tuile-sous" id="tuileEpisodesSous"></span></div>
         </div>
         <div class="orb" data-orbid="gardes" id="seanceGardes" onclick="ouvrirGardes()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/><path d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/><path d="M10.8 14.2h2.4v3.2h-2.4z"/></svg></div>
@@ -8253,7 +8274,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v917</span>
+    <span class="subtitle-version">v918</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12465,6 +12486,12 @@ const I18N = {
         ep_bientot_n: "Dans {n} jours de pratique, consécutifs ou non",
         ep_plus_loin: "Bientôt",
         ep_regle: "Un jour de pratique = au moins 10 exercices dans la journée. Les jours n'ont pas besoin de se suivre.",
+        ep_prochain: "Prochain épisode : {titre}",
+        ep_tuile_sous_1: "Prochain dans 1 jour de pratique",
+        ep_tuile_sous_n: "Prochain dans {n} jours de pratique",
+        ep_nouveau: "Nouveau",
+        ep_admin_reset: "Remettre la surprise à zéro (admin)",
+        ep_admin_reset_fait: "Surprise remise à zéro : elle reviendra au 10e exercice du jour.",
         settings_progress_texte: "{n} maîtrisés sur {total} ({pct} %).",
         settings_langue_titre: "Langue",
         settings_groupe_son: "Son",
@@ -13857,6 +13884,12 @@ const I18N = {
         ep_bientot_n: "In {n} days of practice, in a row or not",
         ep_plus_loin: "Coming soon",
         ep_regle: "A practice day = at least 10 exercises in one day. The days don't need to be in a row.",
+        ep_prochain: "Next episode: {titre}",
+        ep_tuile_sous_1: "Next one in 1 day of practice",
+        ep_tuile_sous_n: "Next one in {n} days of practice",
+        ep_nouveau: "New",
+        ep_admin_reset: "Reset the surprise (admin)",
+        ep_admin_reset_fait: "Surprise reset: it will come back at the 10th exercise of the day.",
         settings_progress_texte: "{n} mastered out of {total} ({pct}%).",
         settings_langue_titre: "Language",
         settings_groupe_son: "Sound",
@@ -15229,6 +15262,12 @@ const I18N = {
         ep_bientot_n: "{n} pratik gününde, art arda ya da değil",
         ep_plus_loin: "Yakında",
         ep_regle: "Bir pratik günü = bir günde en az 10 alıştırma. Günlerin art arda olması gerekmez.",
+        ep_prochain: "Sonraki bölüm: {titre}",
+        ep_tuile_sous_1: "Sonraki 1 pratik gününde",
+        ep_tuile_sous_n: "Sonraki {n} pratik gününde",
+        ep_nouveau: "Yeni",
+        ep_admin_reset: "Sürprizi sıfırla (yönetici)",
+        ep_admin_reset_fait: "Sürpriz sıfırlandı: günün 10. alıştırmasında yeniden gelecek.",
         settings_progress_texte: "{total} öğeden {n} tanesi öğrenildi (%{pct}).",
         settings_langue_titre: "Dil",
         settings_groupe_son: "Ses",
@@ -16035,6 +16074,12 @@ const I18N = {
         ep_bientot_n: "Через {n} днів практики, поспіль чи ні",
         ep_plus_loin: "Незабаром",
         ep_regle: "День практики = щонайменше 10 вправ за день. Дні не мусять іти поспіль.",
+        ep_prochain: "Наступний епізод: {titre}",
+        ep_tuile_sous_1: "Наступний — через 1 день практики",
+        ep_tuile_sous_n: "Наступний — через {n} днів практики",
+        ep_nouveau: "Нове",
+        ep_admin_reset: "Скинути сюрприз (адмін)",
+        ep_admin_reset_fait: "Сюрприз скинуто: він повернеться на 10-й вправі дня.",
         settings_progress_texte: "Опановано {n} з {total} ({pct}%).",
         settings_langue_titre: "Мова",
         settings_groupe_son: "Звук",
@@ -17822,6 +17867,12 @@ const I18N = {
         ep_bientot_n: "پس از {n} روز تمرین، پشت سر هم یا نه",
         ep_plus_loin: "به‌زودی",
         ep_regle: "یک روز تمرین = دست‌کم ۱۰ تمرین در یک روز. لازم نیست روزها پشت سر هم باشند.",
+        ep_prochain: "قسمت بعدی: {titre}",
+        ep_tuile_sous_1: "قسمت بعدی پس از ۱ روز تمرین",
+        ep_tuile_sous_n: "قسمت بعدی پس از {n} روز تمرین",
+        ep_nouveau: "تازه",
+        ep_admin_reset: "بازنشانی غافلگیری (مدیر)",
+        ep_admin_reset_fait: "غافلگیری بازنشانی شد: در دهمین تمرین روز دوباره می‌آید.",
         settings_progress_texte: "{n} از {total} مورد یاد گرفته شده است ({pct}٪).",
         settings_langue_titre: "زبان",
         settings_groupe_son: "صدا",
@@ -19095,6 +19146,12 @@ const I18N = {
         ep_bientot_n: "بعد {n} أيام تدريب، متتالية أو لا",
         ep_plus_loin: "قريبًا",
         ep_regle: "يوم التدريب = 10 تمارين على الأقل في اليوم. لا يلزم أن تكون الأيام متتالية.",
+        ep_prochain: "الحلقة التالية: {titre}",
+        ep_tuile_sous_1: "التالية بعد يوم تدريب واحد",
+        ep_tuile_sous_n: "التالية بعد {n} أيام تدريب",
+        ep_nouveau: "جديد",
+        ep_admin_reset: "إعادة ضبط المفاجأة (المشرف)",
+        ep_admin_reset_fait: "أُعيد ضبط المفاجأة: ستعود عند التمرين العاشر في اليوم.",
         settings_progress_texte: "تم إتقان {n} من أصل {total} ({pct}٪).",
         settings_langue_titre: "اللغة",
         settings_groupe_son: "الصوت",
@@ -20879,6 +20936,12 @@ const I18N = {
         ep_bientot_n: "Em {n} dias de prática, seguidos ou não",
         ep_plus_loin: "Em breve",
         ep_regle: "Um dia de prática = pelo menos 10 exercícios no dia. Os dias não precisam ser seguidos.",
+        ep_prochain: "Próximo episódio: {titre}",
+        ep_tuile_sous_1: "O próximo em 1 dia de prática",
+        ep_tuile_sous_n: "O próximo em {n} dias de prática",
+        ep_nouveau: "Novo",
+        ep_admin_reset: "Reiniciar a surpresa (admin)",
+        ep_admin_reset_fait: "Surpresa reiniciada: ela volta no 10º exercício do dia.",
         settings_progress_texte: "{n} dominadas de {total} ({pct} %).",
         settings_langue_titre: "Idioma",
         settings_groupe_son: "Som",
@@ -22312,6 +22375,12 @@ const I18N = {
         ep_bientot_n: "Za {n} dni ćwiczeń, pod rząd lub nie",
         ep_plus_loin: "Wkrótce",
         ep_regle: "Dzień ćwiczeń = co najmniej 10 ćwiczeń w ciągu dnia. Dni nie muszą następować po sobie.",
+        ep_prochain: "Następny odcinek: {titre}",
+        ep_tuile_sous_1: "Następny za 1 dzień ćwiczeń",
+        ep_tuile_sous_n: "Następny za {n} dni ćwiczeń",
+        ep_nouveau: "Nowy",
+        ep_admin_reset: "Zresetuj niespodziankę (admin)",
+        ep_admin_reset_fait: "Niespodzianka zresetowana: wróci przy 10. ćwiczeniu dnia.",
         settings_progress_texte: "{n} opanowanych z {total} ({pct} %).",
         settings_langue_titre: "Język",
         settings_groupe_son: "Dźwięk",
@@ -23750,6 +23819,12 @@ const I18N = {
         ep_bientot_n: "Через {n} дней практики, подряд или нет",
         ep_plus_loin: "Скоро",
         ep_regle: "День практики = не меньше 10 упражнений за день. Дни не обязательно идут подряд.",
+        ep_prochain: "Следующий эпизод: {titre}",
+        ep_tuile_sous_1: "Следующий — через 1 день практики",
+        ep_tuile_sous_n: "Следующий — через {n} дней практики",
+        ep_nouveau: "Новое",
+        ep_admin_reset: "Сбросить сюрприз (админ)",
+        ep_admin_reset_fait: "Сюрприз сброшен: он вернётся на 10-м упражнении дня.",
         settings_progress_texte: "Выучено {n} из {total} ({pct} %).",
         settings_langue_titre: "Язык",
         settings_groupe_son: "Звук",
@@ -42357,7 +42432,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 917;
+const APP_VERSION = 918;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -50849,8 +50924,9 @@ function majTuilesCarnetFeuilles(){
 const EPISODES_HOTE = "https://deutschai-b6fbb.web.app/episodes/";
 const EPISODES = {
     es: [
-        { n: 1, titre: "Llegada a Madrid", video: "es/ep01-v1", affiche: "es/ep01-affiche.jpg" },
-        { n: 2, titre: "El carro", video: "es/ep02-v1", affiche: "es/ep02-affiche.jpg" }
+        // v918 : « v2 », la traduction agrandie (nouveau nom : pas d'ancienne en cache).
+        { n: 1, titre: "Llegada a Madrid", video: "es/ep01-v2", affiche: "es/ep01-affiche.jpg" },
+        { n: 2, titre: "El carro", video: "es/ep02-v2", affiche: "es/ep02-affiche.jpg" }
     ]
 };
 const EPISODES_SERIE = { es: "Mark en Madrid" };
@@ -50951,11 +51027,27 @@ function montrerSurpriseEpisode(ep){
     const actions = document.createElement("div");
     actions.className = "ep-actions";
     actions.append(tard, go);
-    b.append(h, p, img, actions);
+    b.append(h, p, img);
+    // v918 : LE PROCHAIN, DES LA SURPRISE. Jacques : « sinon on decouvre que ca va
+    // apparaitre dans 7 jours seulement lorsqu'on clique sur la nouvelle tuile ».
+    const suivant = episodesDeLaLangue()[ep.n];
+    if(suivant){
+        const pr = document.createElement("p");
+        pr.className = "ep-prochain";
+        const n = joursAvantEpisode();
+        pr.textContent = tf("ep_prochain", { titre: suivant.titre }) + " — "
+                       + (n === 1 ? t("ep_bientot_1") : tf("ep_bientot_n", { n: n })).toLowerCase();
+        b.appendChild(pr);
+    }
+    b.appendChild(actions);
 }
 function lireEpisode(ep){
     const b = voileEpisode();
     b.classList.add("ep-lecteur");
+    // v918 : tout l'ecran (« qu'il apparaisse plein ecran ») ; et, la ou le
+    // navigateur le permet, le vrai plein ecran du systeme, demande pendant le
+    // geste qui a lance la video.
+    b.parentNode.classList.add("plein");
     const vid = document.createElement("video");
     vid.src = urlEpisode(ep);
     vid.poster = EPISODES_HOTE + ep.affiche;
@@ -50968,6 +51060,11 @@ function lireEpisode(ep){
     ecrireEpisodes(s);
     // Le toucher sur « Regarder » est le geste qui autorise le son (iPhone).
     try{ const pr = vid.play(); if(pr && pr.catch) pr.catch(() => {}); }catch(e){}
+    try{
+        if(vid.requestFullscreen){ const f = vid.requestFullscreen(); if(f && f.catch) f.catch(() => {}); }
+        else if(vid.webkitEnterFullscreen) vid.addEventListener("loadedmetadata", () => { try{ vid.webkitEnterFullscreen(); }catch(e){} }, { once: true });
+    }catch(e){}
+    majTuileEpisodes();
 }
 function ouvrirMesEpisodes(){
     const liste = episodesDeLaLangue();
@@ -51004,12 +51101,43 @@ function ouvrirMesEpisodes(){
     regle.className = "ep-regle";
     regle.textContent = t("ep_regle");
     b.appendChild(regle);
+    // v918 : l'admin peut remettre la surprise a zero SUR CET APPAREIL (l'etat est
+    // local) -- Jacques : « reset pour que je puisse le voir sur mon telephone ».
+    if(isAdminUser()){
+        const raz = document.createElement("button");
+        raz.type = "button";
+        raz.className = "pa-lien ep-raz";
+        raz.textContent = "↺ " + t("ep_admin_reset");
+        raz.addEventListener("click", () => {
+            try{ localStorage.removeItem(EPISODES_KEY); }catch(e){}
+            fermerVoileEpisode();
+            majTuileEpisodes();
+            showInfoToast(t("ep_admin_reset_fait"));
+        });
+        b.appendChild(raz);
+    }
 }
 function majTuileEpisodes(){
     const tuile = document.getElementById("tuileEpisodes");
     if(!tuile) return;
-    const voir = episodesDeLaLangue().length > 0 && lireEpisodes().d > 0;
+    const liste = episodesDeLaLangue();
+    const s = lireEpisodes();
+    const voir = liste.length > 0 && s.d > 0;
     tuile.classList.toggle("hidden", !voir);
+    if(!voir) return;
+    // v918 : « Nouveau » tant qu'un episode debloque n'a pas ete regarde ; dessous,
+    // quand vient le prochain.
+    const nouveau = document.getElementById("tuileEpisodesNouveau");
+    if(nouveau){
+        let pasVu = false;
+        for(let n = 1; n <= s.d; n++) if(!s.v[n]) pasVu = true;
+        nouveau.classList.toggle("hidden", !pasVu);
+    }
+    const sous = document.getElementById("tuileEpisodesSous");
+    if(sous){
+        const n = joursAvantEpisode();
+        sous.textContent = s.d < liste.length ? (n === 1 ? t("ep_tuile_sous_1") : tf("ep_tuile_sous_n", { n: n })) : "";
+    }
 }
 function fermerListeSeance(){
     const l = document.getElementById("spListe");

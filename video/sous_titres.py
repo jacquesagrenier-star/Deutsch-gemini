@@ -103,6 +103,12 @@ def decouper(F, piste, texte):
 
 
 def echapper(s):
+    # Les guillemets et la ponctuation haute restent colles a leur mot (espace
+    # insecable) : sinon « restait seul en bout de ligne, son mot a la suivante
+    # (22 oct. 2026, « on ne dit pas « / estacionar »).
+    s = s.replace("« ", "« ").replace(" »", " »")
+    for p in (" :", " ;", " !", " ?"):
+        s = s.replace(p, " " + p[1])
     return s.replace("\\", "\\\\").replace("{", "\\{").replace("}", "\\}")
 
 
@@ -121,6 +127,30 @@ def echapper(s):
 # garde colores les mots deja dits. Le style ne porte donc plus la couleur de
 # surbrillance -- elle est ecrite dans chaque ligne, sur le seul mot du
 # moment.
+# ⚠️ LA TRADUCTION AGRANDIE (22 oct. 2026). Jacques, sur l'episode espagnol :
+# « la traduction en francais est un peu trop petite ; il faudrait l'agrandir
+# parce que c'est pas facile a lire -- au debut on s'y retrouve pas ». Elle
+# passait en Arial 40 italique beige : 52 droit, presque blanc, contour 4.
+# Plus grande, elle prend deux ou trois lignes : la phrase dite (marge fixe de
+# 215 px) la chevaucherait. marge_dite() la remonte selon les lignes de la
+# traduction, estimees a TRAD_CAR caracteres par ligne.
+TRAD_CAR, TRAD_PX, TRAD_BAS = 36, 64, 110
+
+
+def marge_dite(trad):
+    """La marge basse de la phrase dite, au-dessus d'une traduction de n lignes."""
+    if not trad:
+        return 215
+    n = max(1, -(-len(trad) // TRAD_CAR))
+    return max(215, TRAD_BAS + n * TRAD_PX + 36)
+
+
+def remonter(lignes, trad):
+    """Pose marge_dite() sur les lignes de la phrase dite (style DE, marge 0)."""
+    mv = marge_dite(trad)
+    return [l.replace(",DE,,0,0,0,,", ",DE,,0,0,%d,," % mv, 1) for l in lignes]
+
+
 ENTETE = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -131,7 +161,7 @@ ScaledBorderAndShadow: yes
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: DE,Arial,54,&H00FFFFFF,&H00FFFFFF,&H00101418,&H00000000,-1,0,0,0,100,100,0,0,1,4,2,2,45,45,215,1
-Style: FR,Arial,40,&H00E8D8C8,&H00E8D8C8,&H00101418,&H00000000,0,1,0,0,100,100,0,0,1,3,2,2,45,45,120,1
+Style: FR,Arial,52,&H00E6ECF2,&H00E6ECF2,&H00101418,&H00000000,0,0,0,0,100,100,0,0,1,4,2,2,45,45,110,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -300,8 +330,8 @@ def main():
                     continue
                 d = debut if k == 0 else max(debut, part[0][1] + decalage)
                 f = fin if k == len(membres) - 1 else min(fin, part[-1][2] + decalage)
-                lignes += phrase_mot_a_mot(part, decalage, d, f)
                 trq = q.get(a.langue, "")
+                lignes += remonter(phrase_mot_a_mot(part, decalage, d, f), trq)
                 if trq:
                     lignes.append("Dialogue: 0,%s,%s,FR,,0,0,0,,%s"
                                   % (tc(d), tc(f), echapper(trq)))
@@ -347,10 +377,10 @@ def main():
                 decalage = info["debut"] + 0.35
                 if mots:
                     fin_texte = min(fin, mots[-1][2] + decalage + TENUE)
-                lignes += phrase_mot_a_mot(mots, decalage, debut, fin_texte)
+                lignes += remonter(phrase_mot_a_mot(mots, decalage, debut, fin_texte), tr)
             else:
-                lignes.append("Dialogue: 0,%s,%s,DE,,0,0,0,,%s"
-                              % (tc(debut), tc(fin), echapper(de)))
+                lignes += remonter(["Dialogue: 0,%s,%s,DE,,0,0,0,,%s"
+                                    % (tc(debut), tc(fin), echapper(de))], tr)
         if tr:
             # La traduction suit l'allemand : elle sort du cadre avec lui.
             lignes.append("Dialogue: 0,%s,%s,FR,,0,0,0,,%s"

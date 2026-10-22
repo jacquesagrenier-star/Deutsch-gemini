@@ -217,7 +217,33 @@ PLANS = [
 ]
 
 
+# ⚠️ UN GESTE DIFFERENT PAR REPLIQUE D'ANA (22 oct. 2026). Jacques : « dans
+#    l'aeroport, Anna fait toujours le meme geste avec les mains ; le geste est
+#    bien, mais repetitif, ca fait machinal -- les Espagnols parlent beaucoup avec
+#    leurs mains ». Ses quatre plans moyens ouvraient tous les deux mains. Chaque
+#    geste est ecrit par sa GEOMETRIE (nom-du-geste), avec son amplitude
+#    (verbe-sans-plafond), et TENU jusqu'a la fin (geste-qui-revient). Le cote se
+#    dit par l'image (cote-du-corps).
+GESTES = {
+    ("es-01-llegada-madrid", 6):
+        "As she says the first words, her hand nearer the right edge of the picture rises to the height of her "
+        "waist, palm open and fingers together, pointing towards the right of the picture where the baggage belt "
+        "is, and it stays there while she speaks; her other hand rests on the strap of her bag.",
+    ("es-01-llegada-madrid", 9):
+        "On her first word she lays her hand nearer the left edge of the picture flat on her chest, just below "
+        "her collarbone, and it stays there, warm and still; her other hand hangs relaxed at her side.",
+    ("es-01-llegada-madrid", 11):
+        "On her first words her two hands come together in front of her waist, fingers loosely interlaced a few "
+        "centimetres from her coat, and they stay joined there while she speaks.",
+    ("es-01-llegada-madrid", 15):
+        "Her hand nearer the right edge of the picture rises to waist height, palm down and relaxed, and rocks "
+        "once gently from side to side, a few centimetres, then stays there, open and easy, while she finishes; "
+        "her other hand hangs relaxed at her side.",
+}
+
+
 def ecrire(sc, n, P, cadre, cote, fond, emotion, parole, mains, apres):
+    mains = GESTES.get((sc, n), mains)
     f = lambda s: s.format(plan=cadre[0], cadrage=cadre[1], cote=cote, **P)
     regard = (" %s speaks towards a point just beyond the %s edge of the picture, level with %s own eyes."
               % (P["He"], cote, P["his"]))
