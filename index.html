@@ -6307,7 +6307,13 @@ body[data-theme="dark"] button.serie-salut svg{fill:#F0B456; stroke:#F7C77A;}
 .cal-serie{position:fixed; z-index:9000; background:#fffdf8; border:1.5px solid #e6dfd3; border-radius:16px; padding:12px 14px 10px;
     box-shadow:0 12px 30px -12px rgba(28,36,48,.35); color:#1C2430; width:min(300px, calc(100vw - 32px));}
 .bulle-pp button.primary{width:100%; margin-top:6px; padding:11px 12px; border-radius:12px; font-size:14px;}
-.cal-serie-titre{font-weight:900; font-size:15px; margin:0 0 2px; display:flex; align-items:center; gap:6px;}
+.cal-serie-titre{font-weight:900; font-size:15px; margin:0 0 2px; display:flex; align-items:center; gap:6px; padding-inline-end:30px;}
+/* v916 : le ✕ du calendrier (Jacques : « un petit X en haut du tableau a droite »). */
+.cal-serie-fermer{position:absolute; top:6px; inset-inline-end:6px; width:32px; height:32px; padding:0; border:none; border-radius:50%;
+    background:transparent; color:#576177; font-size:17px; line-height:32px; cursor:pointer;}
+.cal-serie-fermer:hover, .cal-serie-fermer:focus-visible{background:rgba(28,36,48,.07);}
+body[data-theme="dark"] .cal-serie-fermer{color:#a9b2c0;}
+body[data-theme="dark"] .cal-serie-fermer:hover{background:rgba(255,255,255,.08);}
 .cal-serie-titre svg{width:18px; height:18px; fill:#F0A23A; stroke:#B9770E; stroke-width:1.6;}
 .cal-serie-sous{font-size:12px; color:#576177; margin:0 0 10px;}
 .cal-serie-grille{display:grid; grid-template-columns:repeat(7, 1fr); gap:6px 4px; text-align:center;}
@@ -8216,7 +8222,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v915</span>
+    <span class="subtitle-version">v916</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -32685,6 +32691,13 @@ function ouvrirCalendrierSerie(ev){
     const creer = (tag, cls, txt) => { const e = document.createElement(tag); if(cls) e.className = cls; if(txt !== undefined) e.textContent = txt; return e; };
     const b = creer("div", "cal-serie");
     b.setAttribute("role", "dialog");
+    // v916 : un ✕ en haut a droite. Toucher a cote fermait deja, mais rien ne le
+    // disait (Jacques : « je devrais avoir un petit X en haut a droite »).
+    const fermer = creer("button", "cal-serie-fermer", "✕");
+    fermer.type = "button";
+    fermer.setAttribute("aria-label", t("abo_fermer"));
+    fermer.addEventListener("click", e => { e.stopPropagation(); fermerCalendrierSerie(); });
+    b.appendChild(fermer);
     const titre = creer("p", "cal-serie-titre");
     titre.innerHTML = ancre.querySelector("svg").outerHTML;
     titre.appendChild(document.createTextNode(n + " " + uniteSerie(n) + " " + t("home_serie_suffixe")));
@@ -42222,7 +42235,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 915;
+const APP_VERSION = 916;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -46359,7 +46372,10 @@ window.addEventListener("message", (e) => {
     } else if(d.type === "fini" && sceneOuverteDepuis === "premiers_pas"){
         // La scene de Premiers pas n'est pas la scene du jour : sa porte reste.
         // « Jour suivant » enchaine ; sinon l'accueil, ou la porte montre le jour.
-        if(d.suite && premiersPasEnCours()){ ouvrirPremiersPas(); return; }
+        // v916 : apres la DERNIERE scene aussi, tant que le parcours n'est pas
+        // marque fini -- ouvrirPremiersPas() montre alors la carte de fin
+        // (recommencer ou passer a l'A1) au lieu de renvoyer a l'accueil.
+        if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }
         goHome();
         try{ majTuileSeance(); }catch(err){}
     } else if(d.type === "fini"){
@@ -47597,12 +47613,19 @@ function montrerCartePhrase(item){
             try{ ouvrirPremiersPas(); }catch(e){}
         });
         actions.appendChild(recommencer);
-        suite.addEventListener("click", () => {
+        suite.addEventListener("click", (ev) => {
             const s = lirePremiersPas();
             s.fini = true; s.a = false;
             ecrirePremiersPas(s);
             if(avSuite){ const v = lireA1Voyage(); v.a = true; delete v.q; ecrireA1Voyage(v); }
             try{ fixerNiveauSeance("A1"); }catch(e){}
+            // v916 : la carte rouverte apres la derniere scene (ouvrirPremiersPas) --
+            // il n'y a plus de scene derriere elle : la seance A1, tout de suite.
+            if(item.apresScene){
+                ev.stopImmediatePropagation();
+                cacherCartePhrase();
+                try{ ouvrirSeanceDuJour(); }catch(e){ goHome(); }
+            }
         }, { once: true, capture: true });
         try{ celebrateMastery(0, false); }catch(e){}
     } else if(item.forme === "pp_scene"){
@@ -48814,15 +48837,30 @@ async function ouvrirPremiersPas(taille){
     const seq = sequencePremiersPas();
     if(!seq.length){ showInfoToast(t("seance_sous")); return false; }
     const p = positionPremiersPas();
-    const n = Math.max(5, taille || tailleSeance());
-    let fin = Math.min(seq.length, p + n);
-    // On ne s'arrete pas juste avant la fin d'une etape : la scene la ferme.
-    while(fin < seq.length && (seq[fin].forme === "pp_scene" || seq[fin].forme === "pp_fin")) fin++;
-    let items = seq.slice(p, fin);
-    // v879 : les reperes (jours, mois, nombres) des Premiers pas.
-    try{ const rp = await preparerReperes(); if(rp && items.length > 2) items = insererReperes(items, rp); }catch(e){}
-    try{ const sd = await preparerSonDuJour(); if(sd && items.length > 2) items = insererSonDuJour(items, sd); }catch(e){}
-    try{ items = premiereCarteFacile(items); }catch(e){}
+    // v916 : LE PARCOURS AU BOUT, MAIS PAS MARQUE FINI -- LA CARTE DE FIN, PAS LA
+    // SCENE. Jacques, 22 oct. 2026 : « il retourne a la page d'accueil, puis je
+    // retourne encore dans une scene, la meme scene, il y a comme une boucle » ;
+    // puis « ca devrait me dire que j'ai complete et est-ce que je veux
+    // recommencer ou passer a A1 ». La derniere scene vient APRES la carte de fin
+    // (pp_fin), et c'est le bouton de cette carte qui marque le parcours fini :
+    // passee d'un geste, elle ne marquait rien, la position restait sur la
+    // derniere scene, et chaque seance la rouvrait -- sa fin menant a l'accueil.
+    const iFin = seq.findIndex(x => x.forme === "pp_fin");
+    const auBout = iFin >= 0 && p > iFin;
+    let items;
+    if(auBout){
+        items = [Object.assign({}, seq[iFin], { apresScene: true })];
+    } else {
+        const n = Math.max(5, taille || tailleSeance());
+        let fin = Math.min(seq.length, p + n);
+        // On ne s'arrete pas juste avant la fin d'une etape : la scene la ferme.
+        while(fin < seq.length && (seq[fin].forme === "pp_scene" || seq[fin].forme === "pp_fin")) fin++;
+        items = seq.slice(p, fin);
+        // v879 : les reperes (jours, mois, nombres) des Premiers pas.
+        try{ const rp = await preparerReperes(); if(rp && items.length > 2) items = insererReperes(items, rp); }catch(e){}
+        try{ const sd = await preparerSonDuJour(); if(sd && items.length > 2) items = insererSonDuJour(items, sd); }catch(e){}
+        try{ items = premiereCarteFacile(items); }catch(e){}
+    }
     PHRASES_POSEES.clear();
     RETOURS_FIN_SEANCE.length = 0;
     currentCardsFull = [];
@@ -51265,6 +51303,16 @@ async function ouvrirGardes(){
     await chargerFrequence();
     const tout = [];
     NIVEAUX_CECR.forEach(n => { tout.push.apply(tout, paquetDuNiveau(n)); });
+    // v916 : LES CARTES DE PREMIERS PAS AUSSI. Jacques, 22 oct. 2026 : « la
+    // fonction mettre de cote ne fonctionne pas ; ma soeur Nicole a mis quelques
+    // mots de cote, puis c'est toujours vide ». Le mot etait bien garde -- mais
+    // sous le theme de Premiers pas (premiers_pas2_de/_es, et ses phrases), que
+    // les paquets A1-C1 ne contiennent pas : la tuile ne le trouvait jamais.
+    try{
+        await chargerPremiersPas();
+        tout.push.apply(tout, toutesCartesPremiersPas());
+        sequencePremiersPas().forEach(x => { if(x.phrase && x.themeId) tout.push(x); });
+    }catch(e){}
     const gardes = tout.filter(it => getWordState(it.themeId, it.index).garde);
     if(!gardes.length){ showInfoToast(t("gardes_vide")); majBoutonGardes(); return; }
     currentCardsFull = gardes;
