@@ -8363,7 +8363,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v924</span>
+    <span class="subtitle-version">v925</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -43243,7 +43243,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 924;
+const APP_VERSION = 925;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -46172,6 +46172,32 @@ const imagesMosaique = {};
 // vivaient en double, dans la carte d'accueil et le plein ecran ; la
 // decouverte guidee en aurait fait une troisieme copie. 900 px au plus : au-dela
 // le canevas coute sans que l'oeil y gagne.
+// v925 : LE TABLEAU ABSENT AU RETOUR, JUSQU'AU PREMIER TOUCHER. Jacques, iPhone,
+// 22 oct. 2026 : « j'allais dans les mises de cote ; quand je suis ressorti, mon
+// tableau n'etait plus la ; il a fallu que je mette mon doigt n'importe ou sur la
+// page d'accueil pour que le tableau revienne ». Les cartes de « Mis de cote »
+// posent des carreaux (v853) : la mosaique est redessinee au retour
+// (mosaiqueEnRetard), dans une tache a part, juste apres l'apparition de
+// l'accueil -- et WebKit ne recompose pas toujours une toile redessinee a ce
+// moment-la (le canevas porte une translation). C'est le defaut de la page
+// blanche au retour d'une scene (v844, repeindreApresScene) ; meme remede : une
+// opacite a peine differente puis rendue, un defilement d'un pixel aller-retour.
+// Et on MESURE, comme la : le journal dit si l'image est tombee.
+function repeindreToileMosaique(canvas){
+    const t0 = Date.now();
+    let dessine = false;
+    canvas.style.opacity = "0.999";
+    requestAnimationFrame(() => {
+        dessine = true;
+        try{ noterAudio("mosaique", "ECRAN", "toile redessinee : 1re image apres " + (Date.now() - t0) + " ms"); }catch(e){}
+        requestAnimationFrame(() => { canvas.style.opacity = ""; });
+    });
+    setTimeout(() => {
+        canvas.style.opacity = "";   // au cas ou l'image n'est jamais tombee (onglet en fond)
+        try{ window.scrollBy(0, 1); window.scrollBy(0, -1); }catch(e){}
+        if(!dessine){ try{ noterAudio("mosaique", "ECRAN", "toile redessinee : aucune image apres 400 ms"); }catch(e){} }
+    }, 400);
+}
 function tailleToileMosaique(canvas, m){
     const L = Math.min(900, m.l || 900);
     canvas.width = L;
@@ -46306,6 +46332,7 @@ function majMosaiqueAccueil(){
                 // etre -- une texture qui donne envie d'ouvrir -- et la notice
                 // attend qu'on l'ouvre. La jauge, elle, reste : elle ne se lit
                 // pas, elle se voit.
+                try{ repeindreToileMosaique(canvas); }catch(e){}
             }finally{ marquerGel(null); }
         }, () => { bloc.classList.add("hidden"); });
 
