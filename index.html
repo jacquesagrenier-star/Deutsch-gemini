@@ -4465,11 +4465,21 @@ body[data-theme="dark"] .dict-trans{color:#aab3c2;}
    `1fr` et non `auto` : les colonnes restent egales quelle que soit la longueur
    des libelles, sinon l'ukrainien ferait glisser toute la rangee. */
 .judge-row{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:7px;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:8px;
     align-items:stretch;
 }
-/* Le paquet des gardes n'en montre que trois -- voir plus bas. */
+/* Le paquet des gardes en montre trois -- voir plus bas. */
 .flashcard-actions.paquet-garde .judge-row{grid-template-columns:repeat(3,1fr);}
+/* v923 : les deux gestes, plus grands ; la ligne mince dessous. */
+.judge-row .judge-button{min-height:64px; font-size:14.5px;}
+.judge-again .minuterie{width:24px; height:24px;}
+.judge-continuer{display:block; font-size:14.5px;}
+.judge-row2{display:flex; gap:8px; margin-top:8px;}
+.judge-row2 .judge-button{flex:1 1 0; flex-direction:row; gap:7px; padding:6px 10px; min-height:0; font-size:12.5px;}
+.judge-row2 .judge-button svg{order:0; width:19px; height:19px;}
+.judge-row2 .judge-button .judge-echeance{display:inline; font-size:11.5px;}
+#judgeKnownBtn{display:none !important;}
+.flashcard-actions.paquet-garde .judge-row2{display:none;}
 /* ⚠️ RESSERRE (v559). Les trois boutons prenaient le tiers de l'ecran a eux
    seuls. On gagne la hauteur sur le REMPLISSAGE, pas sur le texte : le libelle
    descend de 15 a 14 px, l'echeance de 13 a 12, et le rembourrage de 14 a 10 --
@@ -7159,9 +7169,23 @@ body[data-theme="dark"] .cp-tl-teinte, body[data-theme="dark"] .rp-teinte{ borde
    la teinte est celle de la boite « Bravo » (.cp-retour.bon, #2E8B57), trois crans plus foncee
    (echantillon 3 de .claude/maquette-vert-bravo.html) -- Jacques. */
 .judge-good .judge-bille svg{width:38px; height:38px; stroke-width:3.6; filter:drop-shadow(0 1px 1.5px rgba(8,60,35,.4));}
-.judge-good .srs-pips, .judge-good .srs-ladder-text, #judgeEcheanceAgain, #judgeEcheanceKnown{display:none !important;}
-body[data-theme="dark"] .judge-good{color:#fff; border-color:transparent;
-    background:linear-gradient(180deg, rgba(46,136,86,.88), rgba(40,124,78,.84));}
+.judge-good .srs-ladder-text, #judgeEcheanceKnown{display:none !important;}
+/* v923 : LE ✓ REDEVIENT LA BILLE, AVEC SES QUATRE POINTS, ET DIT « CONTINUER ». Jacques
+   a pris la D de .claude/maquette-verso-carte.html : « le D est plus beau ». Les points
+   reviennent (masques en v910) parce qu'ils repondent a la crainte que « Continuer »
+   fasse croire qu'on ne reverra pas le mot. Le « Continuer » des exercices reste en
+   verre : la, l'app a juge ; ici, c'est la personne. */
+.judge-good{color:#1c6b47; background:#d9f5e6; border-color:#9fdcbe; box-shadow:none;
+    -webkit-backdrop-filter:none; backdrop-filter:none;}
+.judge-good:hover{background:#cdf0dc;}
+.judge-good::after{display:none;}
+.judge-good .judge-bille{order:-2; width:30px; height:30px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(circle at 35% 30%, #5fcf92, #2a8a57); box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6), 0 2px 5px -2px rgba(8,60,35,.5);}
+.judge-good .judge-bille svg{width:17px; height:17px; stroke-width:2.6; filter:none;}
+.judge-good .srs-ladder{order:-1;}
+.judge-good .judge-continuer{order:0;}
+body[data-theme="dark"] .judge-good{color:#a8e6c4; background:rgba(46,139,87,.18); border-color:rgba(127,211,165,.4);}
+
 /* v910 : LES BOUTONS « CONTINUER » (et « Verifier », a la meme place) dans le
    MEME VERRE VERT que le ✓. Jacques : « le glacis, exactement comme pour la
    seance du jour », puis « la meme vert que le crochet ». */
@@ -8339,7 +8363,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v922</span>
+    <span class="subtitle-version">v923</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -8488,7 +8512,6 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
     <p class="echelle-intro" data-i18n="srs_aide_echelle"></p>
     <div id="echelleMaitrise" class="echelle-maitrise"></div>
     <ul class="info-legende">
-        <li data-i18n="progress_info_deja"></li>
         <li data-i18n="progress_info_apres"></li>
     </ul>
 
@@ -10197,7 +10220,11 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              fin de l'echelle. -->
         <div class="judge-row">
             <button class="judge-button judge-again" onclick="reviewAgain()">
-                <span class="judge-titre" data-i18n="review_again">↺ Encore</span>
+                <!-- v923 : LA MINUTERIE, PLUS LE ↺. Jacques : « on a mis le meme signe
+                     que pour retourner la carte » ; « Encore tout seul, on ne sait pas
+                     trop ce que ca veut dire ». Icone Lucide « timer » (ISC). -->
+                <svg class="minuterie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/></svg>
+                <span class="judge-titre" data-i18n="review_again">Encore</span>
                 <small class="judge-echeance" id="judgeEcheanceAgain"></small>
             </button>
             <!-- v909 : PLUS DE « JE SAVAIS », UNE BILLE ET UN CROCHET. Marc-Antoine
@@ -10207,11 +10234,54 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                  d'ecran (aria-label), et les aides disent « ✓ ». -->
             <button class="judge-button judge-good" onclick="reviewGood()" data-i18n-aria-label="review_good" aria-label="OK">
                 <span class="judge-titre judge-bille" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span>
+                <!-- v923 : « CONTINUER ». Jacques : « les gens peuvent avoir l'impression que
+                     s'ils cliquent sur continuer, ils ne reverront pas -- c'est le danger ».
+                     Les QUATRE POINTS y repondent sans un mot : un mot se gagne en plusieurs
+                     fois, donc il reviendra (choix D de .claude/maquette-verso-carte.html). -->
+                <span class="judge-continuer" data-i18n="review_continuer">Continuer</span>
                 <span class="srs-ladder" id="srsLadder">
                     <span class="srs-pips" id="srsPips" aria-hidden="true"></span>
                     <span class="srs-ladder-text" id="srsLadderText"></span>
                 </span>
             </button>
+            <!-- ⚠️ LE TROISIEME BOUTON DU PAQUET DES GARDES. Il prend la place
+                 de « Je le sais par coeur » ET du coffre : on n'ouvre pas son
+                 coffre pour graduer un mot, et deux commandes pour le meme
+                 drapeau se contrediraient. Il juge le mot su ET retire le
+                 drapeau -- le menage se fait mot par mot, quand la question se
+                 pose, jamais dans un ecran de gestion. -->
+            <button type="button" class="judge-button judge-suivante"
+                    onclick="suivanteDansLeCoffre()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                     aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+                <span class="judge-titre" data-i18n="coffre_suivante">Suivante</span>
+                <small class="judge-echeance" data-i18n="coffre_suivante_sous">elle reste dans le coffre</small>
+            </button>
+            <button type="button" class="judge-button judge-sortir garde-sortir"
+                    onclick="sortirDuCoffre()">
+                <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
+                     aria-hidden="true">
+                    <path class="gc-corps" d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/>
+                    <rect class="gc-serrure" x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/>
+                    <path class="gc-couvercle" d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/>
+                </svg>
+                <span class="judge-titre" data-i18n="garde_sortir">Sortir du coffre</span>
+            </button>
+        </div>
+        <!-- v923 (2) : « JE LE CONNAIS DEJA » CACHE AUSSI. Jacques : « encore la, c'est
+             beaucoup d'informations ; on veut eviter que la personne ne sache pas quoi
+             faire. Je mettrai seulement 3 boutons. » Un mot deja connu monte en quatre
+             « Continuer ».
+             v923 : DEUX BOUTONS, PUIS UNE LIGNE MINCE. Jacques, 22 oct. 2026 : « trop de
+             boutons pour choisir quand on tourne une carte » ; « je garderais juste deux
+             boutons, Encore avec la minuterie et Continuer ; puis sur une ligne, totale
+             mais plus mince, l'icone de mettre de cote ». « Je le connais deja » y vit
+             aussi, mais SEULEMENT SUR UN MOT NOUVEAU (majEcheances) : c'est la qu'on dit
+             « je le sais, je ne veux pas le revoir » ; un mot en revision s'espace de
+             lui-meme avec Continuer. -->
+        <div class="judge-row2">
             <button class="judge-button judge-known" id="judgeKnownBtn" onclick="markKnownAlready()">
                 <!-- ⚠️ UNE ETOILE, PAS UN CROCHET (v593). Le bouton portait le
                      MEME ✓ que « Je savais » a cote, alors que les deux gestes
@@ -10240,31 +10310,6 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                      pourquoi. Les trois autres boutons ont leur petite ligne ;
                      celui-ci a la sienne. -->
                 <small class="judge-echeance" data-i18n="garder_sous">pour le retravailler</small>
-            </button>
-            <!-- ⚠️ LE TROISIEME BOUTON DU PAQUET DES GARDES. Il prend la place
-                 de « Je le sais par coeur » ET du coffre : on n'ouvre pas son
-                 coffre pour graduer un mot, et deux commandes pour le meme
-                 drapeau se contrediraient. Il juge le mot su ET retire le
-                 drapeau -- le menage se fait mot par mot, quand la question se
-                 pose, jamais dans un ecran de gestion. -->
-            <button type="button" class="judge-button judge-suivante"
-                    onclick="suivanteDansLeCoffre()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                     stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
-                     aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-                <span class="judge-titre" data-i18n="coffre_suivante">Suivante</span>
-                <small class="judge-echeance" data-i18n="coffre_suivante_sous">elle reste dans le coffre</small>
-            </button>
-            <button type="button" class="judge-button judge-sortir garde-sortir"
-                    onclick="sortirDuCoffre()">
-                <svg class="garde-coffre" viewBox="0 0 24 24" fill="none"
-                     stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"
-                     aria-hidden="true">
-                    <path class="gc-corps" d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/>
-                    <rect class="gc-serrure" x="10.8" y="14.2" width="2.4" height="3.2" rx=".7"/>
-                    <path class="gc-couvercle" d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/>
-                </svg>
-                <span class="judge-titre" data-i18n="garde_sortir">Sortir du coffre</span>
             </button>
         </div>
         <!-- ⚠️ LE LIEN D'AIDE EST PARTI D'ICI (v600), ET C'EST LA v598 QUI
@@ -11920,9 +11965,11 @@ const I18N = {
         myvocab_tout_diplome: "Tous tes mots sont entrés dans le cours. Cherche-en de nouveaux !",
         myvocab_vide_explication: "<strong>Mon vocabulaire est encore vide.</strong><br>C'est ta réserve personnelle : les mots que tu rencontres ailleurs — en cours, dans un texte, dans une conversation — et qui ne sont pas dans l'app.<br><br>Cherche-en un ci-dessus, puis touche le <strong>+</strong> à côté du résultat du dictionnaire. Il deviendra une carte à réviser comme les autres.",
         myvocab_how: "Cherche un mot, puis touche le + à côté d'une entrée du dictionnaire pour le mettre ici.",
-        review_again: "↺ Encore",
+        review_again: "Encore",
         review_good: "OK",
-        review_known: "Je le sais par cœur",
+        review_known: "Je le connais déjà",
+        review_continuer: "Continuer",
+        review_continuer_sous: "il reviendra plus tard",
         known_echeance: "pas avant {n} jours",
         flash_end_title: "Paquet terminé",
         flash_end_summary: "{vues} cartes vues, dont {sues} sues du premier coup.",
@@ -12143,7 +12190,7 @@ const I18N = {
         legende_objectif: "La barre « Aujourd'hui » — les cartes faites depuis ce matin, sur ton objectif. Elle repart à zéro chaque jour. Le nombre visé se change dans les réglages, et il donne aussi la taille de ta séance.",
         progress_info_titre: "Ce qui fait bouger ce pourcentage",
         progress_info_compte: "Le pourcentage compte tes mots maîtrisés sur tous les mots du niveau affiché : les mots des thèmes, les verbes et les adjectifs réunis.",
-        progress_info_deja: "« Je le sais par cœur » saute toute l'échelle et le marque maîtrisé tout de suite.",
+        progress_info_deja: "Sur un mot nouveau, « Je le connais déjà » saute toute l'échelle et le marque maîtrisé tout de suite.",
         progress_info_apres: "« Je ne savais pas » lui retire sa maîtrise, et le pourcentage redescend.\n\nUn mot maîtrisé revient après 16 jours pour vérifier, puis de plus en plus rarement, sans cesser d'être compté.",
 
         // --- Recherche dans les flashcards (v188) ---
@@ -13349,9 +13396,11 @@ const I18N = {
         myvocab_tout_diplome: "All your words have entered the course. Go find new ones!",
         myvocab_vide_explication: "<strong>My vocabulary is still empty.</strong><br>It's your personal stock: the words you meet elsewhere — in class, in a text, in a conversation — that aren't in the app.<br><br>Search for one above, then tap the <strong>+</strong> beside the dictionary result. It becomes a card you review like any other.",
         myvocab_how: "Search for a word, then tap the + beside a dictionary entry to save it here.",
-        review_again: "↺ Again",
+        review_again: "Again",
         review_good: "OK",
-        review_known: "I know it by heart",
+        review_known: "I already know it",
+        review_continuer: "Continue",
+        review_continuer_sous: "it will come back later",
         known_echeance: "not before {n} days",
         flash_end_title: "Deck finished",
         flash_end_summary: "{vues} cards seen, {sues} right first time.",
@@ -13572,7 +13621,7 @@ const I18N = {
         legende_objectif: "The “Today” bar — cards done since this morning, out of your goal. It resets every day. The target is set in the settings, and it also sets the size of your session.",
         progress_info_titre: "What moves this percentage",
         progress_info_compte: "The percentage counts the words you have mastered out of every word in the level shown: theme words, verbs and adjectives together.",
-        progress_info_deja: "“I know it by heart” skips the whole ladder and marks it mastered straight away.",
+        progress_info_deja: "On a new word, “I already know it” skips the whole ladder and marks it mastered straight away.",
         progress_info_apres: "\\\"I didn't know\\\" takes its mastery away, and the percentage drops back.\n\nA mastered word comes back after 16 days as a check, then less and less often, without ever stopping being counted.",
 
         // --- Flashcard search (v188) ---
@@ -14780,9 +14829,11 @@ const I18N = {
         myvocab_tout_diplome: "Tüm kelimelerin kursa girdi. Git yenilerini bul!",
         myvocab_vide_explication: "<strong>Kelimelerim henüz boş.</strong><br>Burası senin kişisel stokun: başka yerlerde — derste, bir metinde, bir sohbette — karşılaştığın ve uygulamada bulunmayan kelimeler.<br><br>Yukarıdan bir kelime ara, sonra sözlük sonucunun yanındaki <strong>+</strong> işaretine dokun. O kelime, diğerleri gibi tekrar ettiğin bir karta dönüşür.",
         myvocab_how: "Bir kelime ara, sonra sözlük kaydının yanındaki + işaretine dokunarak buraya kaydet.",
-        review_again: "↺ Tekrar",
+        review_again: "Tekrar",
         review_good: "OK",
-        review_known: "Ezbere biliyorum",
+        review_known: "Zaten biliyorum",
+        review_continuer: "Devam",
+        review_continuer_sous: "daha sonra tekrar gelecek",
         known_echeance: "{n} günden önce değil",
         flash_end_title: "Deste bitti",
         flash_end_summary: "{vues} kart görüldü, {sues} tanesi ilk seferde doğru.",
@@ -15003,7 +15054,7 @@ const I18N = {
         legende_objectif: "“Bugün” çubuğu — bu sabahtan beri yapılan kartlar, hedefine oranla. Her gün sıfırlanır. Hedef ayarlardan değişir ve oturumunun boyutunu da belirler.",
         progress_info_titre: "Bu yüzdeyi ne değiştirir",
         progress_info_compte: "Yüzde, gösterilen seviyedeki tüm kelimeler içinde öğrendiğin kelimeleri sayar: tema kelimeleri, fiiller ve sıfatlar birlikte.",
-        progress_info_deja: "« Ezbere biliyorum » tüm basamakları atlar ve kelimeyi hemen öğrenilmiş sayar.",
+        progress_info_deja: "Yeni bir kelimede « Zaten biliyorum » tüm basamakları atlar ve kelimeyi hemen öğrenilmiş sayar.",
         progress_info_apres: "« Bilmiyordum » ustalığını geri alır ve yüzde düşer.\n\nUstalaşılmış bir kelime 16 gün sonra kontrol için döner, sonra giderek daha seyrek — ama sayılmayı hiç bırakmaz.",
 
         // --- Flashcard search (v188) ---
@@ -17127,7 +17178,7 @@ const I18N = {
         legende_objectif: "Смужка «Сьогодні» — картки, зроблені від ранку, з твоєї цілі. Щодня обнуляється. Ціль змінюється в налаштуваннях і водночас задає розмір сеансу.",
         progress_info_titre: "Що змінює цей відсоток",
         progress_info_compte: "Відсоток рахує засвоєні тобою слова з-поміж усіх слів показаного рівня: слова тем, дієслова та прикметники разом.",
-        progress_info_deja: "« Знаю напам'ять » пропускає всі щаблі й одразу позначає слово засвоєним.",
+        progress_info_deja: "На новому слові « Я вже знаю » пропускає всі щаблі й одразу позначає слово засвоєним.",
         progress_info_apres: "« Я не знав » забирає опанування, і відсоток знижується.\n\nОпановане слово повертається через 16 днів для перевірки, далі все рідше, не перестаючи рахуватись.",
         home_streak_unit: "днів",
         home_streak_unit_one: "день",
@@ -17265,9 +17316,11 @@ const I18N = {
         flash_end_summary_one: "Переглянуто 1 картку.",
         flash_end_done: "ЗАВЕРШИТИ",
         encore_neufs: "Ще {n} карток",
-        review_again: "↺ Ще раз",
+        review_again: "Ще раз",
         review_good: "OK",
-        review_known: "Знаю напам'ять",
+        review_known: "Я вже знаю",
+        review_continuer: "Далі",
+        review_continuer_sous: "воно ще повернеться",
         review_tomorrow: "Повторити завтра",
         review_mastered: "Засвоєно ✓",
         review_retry_unmastered: "Повторити незасвоєні картки",
@@ -18245,7 +18298,7 @@ const I18N = {
         legende_objectif: "نوار «امروز» — کارت‌هایی که از صبح انجام داده‌ای، از هدف تو. هر روز صفر می‌شود. هدف در تنظیمات تغییر می‌کند و اندازهٔ جلسه را هم تعیین می‌کند.",
         progress_info_titre: "چه چیزی این درصد را تغییر می‌دهد",
         progress_info_compte: "این درصد واژه‌هایی را که آموخته‌ای، از میان همهٔ واژه‌های سطح نمایش‌داده‌شده می‌شمارد: واژه‌های موضوع‌ها، فعل‌ها و صفت‌ها با هم.",
-        progress_info_deja: "«از بر بلدم» همهٔ پله‌ها را رد می‌کند و واژه را بی‌درنگ آموخته‌شده نشان می‌دهد.",
+        progress_info_deja: "روی واژهٔ تازه، «از قبل بلدم» همهٔ پله‌ها را رد می‌کند و واژه را بی‌درنگ آموخته‌شده نشان می‌دهد.",
         progress_info_apres: "« نمی‌دانستم » تسلط را پس می‌گیرد و درصد پایین می‌آید.\n\nواژهٔ مسلط‌شده پس از ۱۶ روز برای بررسی بازمی‌گردد، سپس هر بار دیرتر، بی‌آنکه از شمارش بیفتد.",
         home_daily_goal_label: "🎯 هدف امروز",
         home_week_zero: "این هفته: 0",
@@ -18656,9 +18709,11 @@ const I18N = {
         myvocab_diplomes: "{n} واژه از واژه‌های تو وارد درس شده‌اند: حالا کارت کامل دارند.",
         myvocab_tout_diplome: "همهٔ واژه‌های تو وارد درس شده‌اند. واژه‌های تازه پیدا کن!",
         myvocab_how: "یک واژه را جست‌وجو کن، سپس + کنار یکی از مدخل‌های فرهنگ را لمس کن تا کنار گذاشته شود.",
-        review_again: "↺ دوباره",
+        review_again: "دوباره",
         review_good: "OK",
-        review_known: "از بر بلدم",
+        review_known: "از قبل بلدم",
+        review_continuer: "ادامه",
+        review_continuer_sous: "بعداً دوباره می‌آید",
         known_echeance: "نه پیش از {n} روز",
         flash_end_title: "بستهٔ کارت‌ها تمام شد",
         flash_end_summary: "{vues} کارت دیده شد، که {sues} تای آن‌ها بار اول درست بود.",
@@ -19717,7 +19772,7 @@ const I18N = {
         legende_objectif: "شريط «اليوم» — البطاقات المنجزة منذ الصباح، من أصل هدفك. يعود إلى الصفر كل يوم. ويُغيَّر العدد المنشود في الإعدادات، وهو أيضاً ما يحدّد حجم جلستك.",
         progress_info_titre: "ما الذي يحرّك هذه النسبة",
         progress_info_compte: "تحسب النسبة كلماتك المتقَنة من مجموع كلمات المستوى المعروض: كلمات المواضيع والأفعال والصفات مجتمعة.",
-        progress_info_deja: "«أحفظها عن ظهر قلب» يتخطّى السلّم كله ويعلّمها متقَنة فوراً.",
+        progress_info_deja: "في كلمة جديدة، «أعرفها مسبقًا» يتخطّى السلّم كله ويعلّمها متقَنة فوراً.",
         progress_info_apres: "«لم أكن أعرفها» يسحب منها الإتقان، فتنزل النسبة.\n\nوالكلمة المتقَنة تعود بعد 16 يوماً للتحقّق، ثم على فترات أطول فأطول، دون أن تخرج من الحساب.",
         search_launch: "القاموس — ابحث عن كلمة",
         search_kicker: "البطاقات والقاموس",
@@ -20225,9 +20280,11 @@ const I18N = {
         myvocab_diplomes: "{n} من كلماتك دخلت الدورة: صار لها الآن بطاقة كاملة.",
         myvocab_tout_diplome: "كل كلماتك دخلت الدورة. ابحث عن كلمات جديدة!",
         myvocab_how: "ابحث عن كلمة، ثم المس + بجانب أحد مداخل القاموس لوضعها هنا.",
-        review_again: "↺ مرة أخرى",
+        review_again: "مرة أخرى",
         review_good: "OK",
-        review_known: "أحفظها عن ظهر قلب",
+        review_known: "أعرفها مسبقًا",
+        review_continuer: "متابعة",
+        review_continuer_sous: "ستعود لاحقًا",
         known_echeance: "ليس قبل {n} يوماً",
         flash_end_title: "انتهت المجموعة",
         flash_end_summary: "رأيتَ {vues} بطاقة، عرفتَ {sues} منها من أول مرة.",
@@ -20580,9 +20637,11 @@ const I18N = {
         myvocab_tout_diplome: "Todas as suas palavras entraram no curso. Vá procurar novas!",
         myvocab_vide_explication: "<strong>Meu vocabulário ainda está vazio.</strong><br>É a sua reserva pessoal: as palavras que você encontra em outros lugares — na aula, num texto, numa conversa — e que não estão no app.<br><br>Procure uma aqui em cima e toque no <strong>+</strong> ao lado do resultado do dicionário. Ela vira uma carta para revisar como as outras.",
         myvocab_how: "Procure uma palavra e toque no + ao lado de uma entrada do dicionário para guardá-la aqui.",
-        review_again: "↺ De novo",
+        review_again: "De novo",
         review_good: "OK",
-        review_known: "Sei de cor",
+        review_known: "Já conheço",
+        review_continuer: "Continuar",
+        review_continuer_sous: "ela volta mais tarde",
         known_echeance: "não antes de {n} dias",
         flash_end_title: "Baralho terminado",
         flash_end_summary: "{vues} cartas vistas, {sues} acertadas de primeira.",
@@ -20806,7 +20865,7 @@ const I18N = {
         legende_objectif: "A barra “Hoje” — as cartas feitas desde a manhã, em relação à sua meta. Ela volta a zero todo dia. O número desejado se muda nas configurações, e ele também define o tamanho da sua sessão.",
         progress_info_titre: "O que faz essa porcentagem mudar",
         progress_info_compte: "A porcentagem conta as suas palavras dominadas sobre todas as palavras do nível mostrado: as palavras dos temas, os verbos e os adjetivos juntos.",
-        progress_info_deja: "“Sei de cor” pula a escada inteira e a marca como dominada na hora.",
+        progress_info_deja: "Numa palavra nova, “Já conheço” pula a escada inteira e a marca como dominada na hora.",
         progress_info_apres: "“Eu não sabia” tira o domínio dela, e a porcentagem cai.\n\nUma palavra dominada volta depois de 16 dias para conferir, depois cada vez mais raramente, sem deixar de ser contada.",
         search_launch: "Dicionário — buscar uma palavra",
         search_kicker: "Flashcards e dicionário",
@@ -22050,9 +22109,11 @@ const I18N = {
         myvocab_tout_diplome: "Wszystkie twoje słowa weszły do kursu. Poszukaj nowych!",
         myvocab_vide_explication: "<strong>Moje słownictwo jest jeszcze puste.</strong><br>To twój osobisty zapas: słowa, które spotykasz gdzie indziej — na zajęciach, w tekście, w rozmowie — a których nie ma w aplikacji.<br><br>Wyszukaj jakieś powyżej, a potem dotknij <strong>+</strong> obok wyniku ze słownika. Stanie się kartą do powtarzania jak każda inna.",
         myvocab_how: "Wyszukaj słowo, a potem dotknij + obok hasła ze słownika, żeby je tu zapisać.",
-        review_again: "↺ Jeszcze raz",
+        review_again: "Jeszcze raz",
         review_good: "OK",
-        review_known: "Znam na pamięć",
+        review_known: "Już to znam",
+        review_continuer: "Dalej",
+        review_continuer_sous: "wróci później",
         known_echeance: "nie wcześniej niż za {n} dni",
         flash_end_title: "Talia skończona",
         flash_end_summary: "Obejrzane karty: {vues}, za pierwszym razem: {sues}.",
@@ -22276,7 +22337,7 @@ const I18N = {
         legende_objectif: "Pasek „Dziś” — karty zrobione od rana, względem twojego celu. Codziennie wraca do zera. Docelową liczbę zmienisz w ustawieniach; wyznacza ona też wielkość twojej sesji.",
         progress_info_titre: "Co zmienia ten procent",
         progress_info_compte: "Procent liczy twoje opanowane słowa spośród wszystkich słów pokazanego poziomu: słowa z tematów, czasowniki i przymiotniki razem.",
-        progress_info_deja: "„Znam na pamięć” przeskakuje całą drabinkę i od razu oznacza słowo jako opanowane.",
+        progress_info_deja: "Przy nowym słowie „Już to znam” przeskakuje całą drabinkę i od razu oznacza słowo jako opanowane.",
         progress_info_apres: "„Nie pamiętam” odbiera mu status opanowanego i procent spada.\n\nOpanowane słowo wraca po 16 dniach na sprawdzenie, potem coraz rzadziej, i cały czas jest liczone.",
         search_launch: "Słownik — wyszukaj słowo",
         search_kicker: "Fiszki i słownik",
@@ -23518,9 +23579,11 @@ const I18N = {
         myvocab_tout_diplome: "Все твои слова вошли в курс. Ищи новые!",
         myvocab_vide_explication: "<strong>Мой словарь пока пуст.</strong><br>Это твой личный запас: слова, которые ты встречаешь в другом месте — на уроке, в тексте, в разговоре — и которых нет в приложении.<br><br>Найди слово через поиск выше и нажми <strong>+</strong> рядом с результатом из словаря. Оно станет карточкой, которую ты повторяешь, как все остальные.",
         myvocab_how: "Найди слово и нажми + рядом со словарной статьёй, чтобы сохранить его здесь.",
-        review_again: "↺ Ещё раз",
+        review_again: "Ещё раз",
         review_good: "OK",
-        review_known: "Знаю наизусть",
+        review_known: "Я уже знаю",
+        review_continuer: "Дальше",
+        review_continuer_sous: "оно ещё вернётся",
         known_echeance: "не раньше чем через {n} дн.",
         flash_end_title: "Колода пройдена",
         flash_end_summary: "Карточек просмотрено: {vues}, с первого раза: {sues}.",
@@ -23744,7 +23807,7 @@ const I18N = {
         legende_objectif: "Полоска «Сегодня» — карточки, сделанные с утра, относительно твоей цели. Каждый день она начинается с нуля. Число меняется в настройках, и оно же задаёт размер твоего занятия.",
         progress_info_titre: "Что двигает этот процент",
         progress_info_compte: "Процент — это доля выученных слов среди всех слов показанного уровня: слова из тем, глаголы и прилагательные вместе.",
-        progress_info_deja: "«Знаю наизусть» перепрыгивает всю лестницу и сразу отмечает слово как выученное.",
+        progress_info_deja: "На новом слове «Я уже знаю» перепрыгивает всю лестницу и сразу отмечает слово как выученное.",
         progress_info_apres: "«Не знал(а)» отнимает у слова статус выученного, и процент снова уменьшается.\n\nВыученное слово возвращается через 16 дней для проверки, потом всё реже и реже, но продолжает учитываться.",
         search_launch: "Словарь — найти слово",
         search_kicker: "Карточки и словарь",
@@ -43171,7 +43234,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 922;
+const APP_VERSION = 923;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -52208,7 +52271,7 @@ function texteAideSrs(){
         +   '<p>' + tf("srs_aide_encore", { n: SRS_CARTES_AVANT_RETOUR }) + '</p>'
         + '</div>'
         + '<div class="srs-aide-bloc savais">'
-        +   '<div class="srs-aide-titre">✓ ' + t("review_good") + '</div>'
+        +   '<div class="srs-aide-titre">✓ ' + t("review_continuer") + '</div>'
         +   '<p>' + t("srs_aide_echelle") + '</p>'
         +   '<div class="srs-aide-echelle">'
         +     '<span class="etape e1">' + etape(0) + '</span>'
@@ -52217,10 +52280,6 @@ function texteAideSrs(){
         +     '<span class="fleche">\u2192</span><span class="etape fin">' + etape(3) + '</span>'
         +   '</div>'
         +   '<p>' + tf("srs_aide_pastilles", { n: SRS_PALIERS }) + '</p>'
-        + '</div>'
-        + '<div class="srs-aide-bloc connu">'
-        +   '<div class="srs-aide-titre">' + t("review_known") + '</div>'
-        +   '<p>' + t("srs_aide_connu") + '</p>'
         + '</div>'
         // ⚠️ LE COFFRE DIT LA SEULE CHOSE QU'ON NE PEUT PAS DEVINER : il fait
         // avancer la carte SANS rien juger. Les trois autres repondent a
