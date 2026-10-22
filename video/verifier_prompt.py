@@ -617,6 +617,18 @@ REGLES = [
      u"oublies dans le sable), << a real photograph... as a passer-by would "
      u"take it with a good phone camera >> et la liste des matieres : une "
      u"vraie photo, Mark et Anna reconnaissables, aucun lieu perdu."),
+    ("texte-incruste", "doute",
+     None,   # logique a part, dans controler() : une replique sans la poitrine decrite
+     u"Kling incruste de faux sous-titres sur le personnage",
+     u"21 oct. 2026, es-01 plan 13 (Ana, 0,40 $ de reprise) : deux lignes de lettres "
+     u"blanches illisibles sur sa poitrine, de 2,8 s a la fin de la prise. Le prompt ne "
+     u"parlait d'aucun texte, et rien dans le retour ne le signalait : vu sur une bande "
+     u"d'images. Mesure : video/texte_incruste.py (270 contre 2 a 29 pour les prises propres).",
+     u"Ne pas nommer le texte (garde-negative) : REMPLIR la place. Dire ce qu'on voit sur "
+     u"la poitrine du debut a la fin -- << Across her chest we see only the beige trench "
+     u"coat, the plain grey knit of her sweater and the brown leather strap, from the first "
+     u"frame to the last. >> -- et passer CHAQUE prise a video/texte_incruste.py avant de "
+     u"la retenir."),
     ("retouche-de-style", "faute",
      r"(?i)(\bturn (it|this|the (drawing|picture|illustration|image)) into\b"
      r"|\bthe first reference picture is (a|an|the) (blurred|out-of-focus|"
@@ -663,6 +675,18 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"H3 Max : la MEME image en premiere ET en derniere image verrouille le cadre",
+     u"21 oct. 2026",
+     u"es-02, plan 09 (Mark fier, 0,32 $ de reprise). Le prompt portait la phrase de "
+     u"verrou (<< the camera is locked on a tripod... >>) et celle de la queue (<< in "
+     u"the last frame everything is the same size... >>) : H3 a quand meme AVANCE la "
+     u"camera, Mark grossissant d'image en image. Reprise avec end_image_url = l'image "
+     u"de depart : cadre fixe du debut a la fin, le hochement de tete demande est "
+     u"toujours la. Sur les trois autres decors du jour (rue de nuit, balcon, "
+     u"sandwich), la phrase seule avait suffi : ce n'est pas systematique.",
+     u"Pour un plan fixe chez H3 ou un visage occupe le cadre : video/mouvement.py "
+     u"--modele h3 --fin-identique. Le texte demande un etat ; l'image de fin "
+     u"l'impose. A ne pas utiliser si le plan doit FINIR ailleurs qu'il a commence."),
     (u"Une GEOGRAPHIE en gauche/droite DE L'IMAGE tient sept images d'affilee",
      u"21 oct. 2026",
      u"Episode espagnol 2 (El carro), demande de Jacques : << qu'on donne assez "
@@ -1200,6 +1224,12 @@ def controler(texte, image=False):
             #    << from the top of his head to his bare feet >>. Les pieds
             #    sont DANS le cadre, puisque c'est le cadre qu'on commande. Un
             #    controle qui accuse le juste se fait desarmer.
+            continue
+        if code == "texte-incruste":
+            if VERBES_PAROLE.search(texte) and not re.search(
+                    r"(?i)across (his|her) chest we see only", texte):
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"replique sans la poitrine decrite du debut a la fin"))
             continue
         if code == "corps-sans-contact":
             # Le defaut est arrive sur une image, mais la question vaut pour
