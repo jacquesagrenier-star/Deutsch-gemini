@@ -7659,6 +7659,37 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
 <!-- ================= HOME ================= -->
 
 <section id="home" class="screen active">
+<script>
+// v937 : UN APPAREIL NEUF VOIT LA CONNEXION, PAS L'ACCUEIL. Frederic, 23 oct. 2026,
+// app Android a peine installee : l'accueil, sans compte ni langue demandee. Le
+// HTML ouvre sur l'accueil et c'est le rappel de Firebase qui bascule vers « Se
+// connecter / Creer un compte » -- quelques secondes a la premiere ouverture.
+// Ici, avant la premiere peinture : un appareil jamais connecte (meme regle
+// qu'appareilDejaVenu, plus bas) commence sur l'ecran de connexion. Si une
+// session existait malgre tout, le rappel ramene a l'accueil (auth active).
+(function(){
+    try{
+        if(localStorage.getItem("wortando_dejaConnecte")) return;
+        var venu = ["deutschAI_progress_v4", "wortandoEs_progress_v4"].some(function(k){
+            var v = null;
+            try{ v = JSON.parse(localStorage.getItem(k) || "null"); }catch(e){}
+            return !!v && Object.keys(v).some(function(x){ return x !== "__migrations"; });
+        });
+        if(venu) return;
+        var auth = document.getElementById("auth"), home = document.getElementById("home");
+        if(!auth || !home) return;
+        home.classList.remove("active");
+        auth.classList.add("active");
+        // Et l'onglet « Creer un compte », comme setAuthMode("signup") : c'est ce
+        // que modeAuthParDefaut() rend a un appareil neuf, lien d'invitation ou non.
+        [["authLoginCard", "hidden", true], ["authSignupCard", "hidden", false],
+         ["authModeLoginBtn", "active", false], ["authModeSignupBtn", "active", true]].forEach(function(r){
+            var el = document.getElementById(r[0]);
+            if(el) el.classList.toggle(r[1], r[2]);
+        });
+    }catch(e){}
+})();
+</script>
 
     <!-- ⚠️ LA RECHERCHE MONTE SUR LA LIGNE DU SALUT (v549). Elle occupait une
          ligne a elle seule pour un geste qui mene AILLEURS. A droite du salut,
@@ -8481,7 +8512,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v936</span>
+    <span class="subtitle-version">v937</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -27481,6 +27512,8 @@ const CODE_INVITATION = (() => {
 // reconnaitre aussi les testeurs d'avant la v894, qui n'ont pas encore la
 // marque. ⚠️ Pas « une cle existe » : la page cree des la premiere ouverture,
 // avant toute connexion, une progression vide ({__migrations}), l'XP, etc.
+// ⚠️ La meme regle est recopiee dans le petit script en tete de #home (v937),
+// qui tourne avant ces fonctions : changer l'une, c'est changer l'autre.
 const CLE_DEJA_CONNECTE = "wortando_dejaConnecte";
 function appareilDejaVenu(){
     try{
@@ -43581,7 +43614,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 936;
+const APP_VERSION = 937;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
