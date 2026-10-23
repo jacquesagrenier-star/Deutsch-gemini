@@ -7079,6 +7079,50 @@ body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-titre strong{color:#F2F2F6
 body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-sens, body[data-theme="dark"] .pilule-accueil.pa-ecoute .pa-sens::before{color:#a9b2c0;}
 body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i{background:#5d6b7c;}
 body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){background:var(--pa);}
+/* v932 : L'ACCUEIL ALLEGE (voir le commentaire de #episodeLigne). Sur l'accueil,
+   les sections et leurs tuiles se cachent ; dans la vue « Tout le contenu »,
+   c'est l'inverse. Les tuiles restent dans #orbGrid : seule la vue change. */
+#home:not(.vue-contenu) #orbGrid > .orb-section,
+#home:not(.vue-contenu) #orbGrid > .orb:not(.orb-seance){display:none !important;}
+#home.vue-contenu #orbGrid > .orb-seance, #home.vue-contenu #explorerScenes, #home.vue-contenu #ecouteLigneAccueil,
+#home.vue-contenu #episodeLigne, #home.vue-contenu #accueilRaccourcis{display:none !important;}
+.hors-contenu{display:none !important;}
+/* La ligne des episodes : la pilule d'Ecouter, en charbon doux et ambre, les
+   couleurs de la tuile des episodes (v921). */
+.pilule-accueil.pa-episodes{--pa:#3d434c; --pa-rgb:61,67,76;}
+.pilule-accueil > .ep-ligne-ico{order:0;}
+.ep-ligne-ico{flex:0 0 52px; height:44px; border-radius:14px; background:linear-gradient(180deg, #4a525e, #363d47);
+    display:flex; align-items:center; justify-content:center; box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);}
+.ep-ligne-ico svg{width:25px; height:25px; fill:#F0A23A;}
+.pilule-accueil.pa-episodes .pa-play{background:radial-gradient(circle at 50% 85%, rgba(255,255,255,.3), rgba(255,255,255,0) 45%), var(--pa);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.35), inset 0 1.5px 0 rgba(255,255,255,.55), 0 3px 8px -2px rgba(20,24,30,.4);}
+.pilule-accueil.pa-episodes .pa-play svg{fill:#F0A23A;}
+.pilule-accueil.pa-episodes .pa-sens::before{content:none;}
+/* « Prochain : dans 8 jours de pratique » ne se coupe pas : il passe a la ligne. */
+.pilule-accueil.pa-episodes .pa-sens{white-space:normal; line-height:1.3;}
+.ep-ligne-nouveau{flex:0 0 auto; background:#E8A23A; color:#1C2430; font-size:11px; font-weight:900; line-height:1.4; padding:1px 8px; border-radius:999px;}
+body[data-theme="dark"] .pilule-accueil.pa-episodes{--pa:#6b7483; --pa-rgb:107,116,131;}
+body[data-theme="dark"] .ep-ligne-ico{background:linear-gradient(180deg, #555e6b, #3f4652);}
+/* « Mis de cote » et « Tout le contenu » : deux tuiles en largeur, le texte a gauche. */
+.accueil-raccourcis{grid-column:1 / -1; display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.accueil-raccourcis .orb{aspect-ratio:auto; min-height:0; flex-direction:column; align-items:flex-start; justify-content:flex-start;
+    text-align:start; gap:8px; padding:12px 14px;}
+.accueil-raccourcis .orb strong{display:block;}
+.raccourci-sous{display:block; margin-top:2px; font-size:12px; font-weight:600; line-height:1.3; color:#576177;}
+.raccourci-sous:not(:empty)::after{content:" \203A";}
+html[dir="rtl"] .raccourci-sous:not(:empty)::after{content:" \2039";}
+body[data-theme="dark"] .raccourci-sous{color:#a9b2c0;}
+/* L'en-tete de la vue « Tout le contenu ». */
+.entete-contenu{display:none; grid-column:1 / -1; align-items:center; gap:12px; margin:2px 0 2px;}
+#home.vue-contenu .entete-contenu{display:flex;}
+.entete-contenu h2{margin:0; font-size:22px; font-weight:900; color:#1C2430;}
+.retour-contenu{flex:0 0 auto; width:40px; height:40px; border-radius:50%; border:1px solid rgba(30,41,59,.25); background:rgba(255,255,255,.7);
+    display:flex; align-items:center; justify-content:center; padding:0; cursor:pointer;}
+.retour-contenu svg{width:22px; height:22px; fill:none; stroke:#1C2430; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;}
+html[dir="rtl"] .retour-contenu svg{transform:scaleX(-1);}
+body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
+body[data-theme="dark"] .retour-contenu{background:#232c38; border-color:#343e4c;}
+body[data-theme="dark"] .retour-contenu svg{stroke:#F2F2F6;}
 /* v900 (Jacques, 20 oct. 2026) : LA SEANCE EN VITRE AMBREE. « Au lieu d'un fond
    noir, un fond orange, comme les deux points du logo », « plus de punch »,
    puis « comme le W de l'ouverture, le glacis d'Apple, une vitre ». Choisie
@@ -7952,6 +7996,60 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <p class="ela-liste-pied" data-i18n="ela_niveau_pied">Au départ, celui de ta séance. Le changer ici ne touche pas à ta séance.</p>
             </div>
         </div>
+        <!-- v932 : L'ACCUEIL ALLEGE. Marc-Antoine, 23 oct. 2026 : toutes ces tuiles,
+             « c'est overwhelming ». Choix de Jacques parmi cinq propositions
+             (.claude/maquette-accueil-allege.html, puis maquette-accueil-A.html) :
+             l'accueil garde ce qu'on fait chaque jour -- la seance, les scenes,
+             l'ecoute --, puis les episodes et « Mis de cote » ; tout le reste est
+             derriere « Tout le contenu ».
+             ⚠️ LES TUILES NE BOUGENT PAS DU DOM. « Tout le contenu » est une VUE de
+             l'accueil (#home.vue-contenu, voir appliquerVueContenu()), pas un autre
+             ecran : les panneaux, leurs « Retour », les badges et le parcours de
+             test les trouvent la ou ils les ont toujours trouvees. -->
+        <!-- La ligne des episodes : la pilule d'Ecouter, l'icone du cinema (Jacques :
+             « le meme genre de clic que sur Ecouter »). Visible des le premier episode
+             debloque ; le ▶ lance celui qui attend, sinon ouvre la liste. -->
+        <div class="pilule-accueil pa-ecoute pa-episodes hidden" id="episodeLigne">
+            <button type="button" class="pa-play" onclick="episodeDepuisAccueil()" data-i18n-aria-label="ep_tuile" aria-label="Mes épisodes">
+                <svg width="15" height="17" viewBox="0 0 22 24" aria-hidden="true"><path d="M2 2l18 10L2 22z"/></svg>
+            </button>
+            <div class="pa-txt">
+                <button type="button" class="pa-titre" onclick="episodeDepuisAccueil()">
+                    <span class="pa-kick" data-i18n="ep_tuile">Mes épisodes</span>
+                    <strong data-i18n="ep_tuile">Mes épisodes</strong>
+                </button>
+                <div class="pa-sous">
+                    <span class="ep-ligne-nouveau hidden" id="episodeLigneNouveau" data-i18n="ep_nouveau">Nouveau</span>
+                    <span class="pa-sens" id="episodeLigneSous"></span>
+                </div>
+            </div>
+            <div class="ep-ligne-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
+        </div>
+        <!-- « Mis de cote » reste a l'accueil (Jacques), a cote de la porte de tout le
+             reste. Il ne se cache pas quand il est vide : voir majBoutonGardes(). -->
+        <div class="accueil-raccourcis" id="accueilRaccourcis">
+            <div class="orb" data-orbid="gardes" id="seanceGardes" onclick="ouvrirGardes()">
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/><path d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/><path d="M10.8 14.2h2.4v3.2h-2.4z"/></svg></div>
+                <div>
+                    <strong data-i18n="gardes_titre">Mis de côté</strong>
+                    <span class="raccourci-sous" id="gardesSous"></span>
+                </div>
+            </div>
+            <div class="orb" id="tuileToutContenu" onclick="ouvrirToutLeContenu()" role="button" tabindex="0">
+                <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg></div>
+                <div>
+                    <strong data-i18n="accueil_tout_titre">Tout le contenu</strong>
+                    <span class="raccourci-sous" data-i18n="accueil_tout_sous">Mots, grammaire, pratique</span>
+                </div>
+            </div>
+        </div>
+        <!-- L'en-tete de la vue « Tout le contenu » ; cache sur l'accueil. -->
+        <div class="entete-contenu" id="enteteContenu">
+            <button type="button" class="retour-contenu" onclick="quitterToutLeContenu()" data-i18n-aria-label="accueil_tout_retour" aria-label="Retour à l'accueil">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+            </button>
+            <h2 data-i18n="accueil_tout_titre">Tout le contenu</h2>
+        </div>
 
 
         <!-- Section « Les mots ». Voir le commentaire de .orb-section : les
@@ -7968,12 +8066,6 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
             <span class="ep-nouveau hidden" id="tuileEpisodesNouveau" data-i18n="ep_nouveau">Nouveau</span>
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
             <div><strong data-i18n="ep_tuile">Mes épisodes</strong></div>
-        </div>
-        <div class="orb" data-orbid="gardes" id="seanceGardes" onclick="ouvrirGardes()">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/><path d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/><path d="M10.8 14.2h2.4v3.2h-2.4z"/></svg></div>
-            <div>
-                <strong data-i18n="gardes_titre">Mis de côté</strong>
-            </div>
         </div>
         <div class="orb" data-orbid="themes" onclick="ouvrirThemesDuNiveau()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></div>
@@ -8368,7 +8460,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v931</span>
+    <span class="subtitle-version">v932</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12643,6 +12735,16 @@ const I18N = {
         ep_regle: "Un jour de pratique = au moins 10 exercices dans la journée. Les jours n'ont pas besoin de se suivre.",
         ep_prochain: "Prochain épisode : {titre}",
         ep_nouveau: "Nouveau",
+        accueil_tout_titre: "Tout le contenu",
+        accueil_tout_sous: "Mots, grammaire, pratique",
+        accueil_tout_retour: "Retour à l'accueil",
+        accueil_gardes_0: "Vide pour l'instant",
+        accueil_gardes_1: "1 mot à revoir",
+        accueil_gardes_n: "{n} mots à revoir",
+        ep_ligne_episode: "Ép. {n} · {titre}",
+        ep_ligne_prochain_1: "Prochain : dans 1 jour de pratique",
+        ep_ligne_prochain_n: "Prochain : dans {n} jours de pratique",
+        ep_ligne_revoir_serie: "Revoir la série",
         ep_admin_reset: "Remettre la surprise à zéro (admin)",
         ep_admin_reset_fait: "Surprise remise à zéro : elle reviendra au 10e exercice du jour.",
         settings_progress_texte: "{n} maîtrisés sur {total} ({pct} %).",
@@ -14079,6 +14181,16 @@ const I18N = {
         ep_regle: "A practice day = at least 10 exercises in one day. The days don't need to be in a row.",
         ep_prochain: "Next episode: {titre}",
         ep_nouveau: "New",
+        accueil_tout_titre: "All content",
+        accueil_tout_sous: "Words, grammar, practice",
+        accueil_tout_retour: "Back to home",
+        accueil_gardes_0: "Empty for now",
+        accueil_gardes_1: "1 word to review",
+        accueil_gardes_n: "{n} words to review",
+        ep_ligne_episode: "Ep. {n} · {titre}",
+        ep_ligne_prochain_1: "Next: in 1 day of practice",
+        ep_ligne_prochain_n: "Next: in {n} days of practice",
+        ep_ligne_revoir_serie: "Watch the series again",
         ep_admin_reset: "Reset the surprise (admin)",
         ep_admin_reset_fait: "Surprise reset: it will come back at the 10th exercise of the day.",
         settings_progress_texte: "{n} mastered out of {total} ({pct}%).",
@@ -15495,6 +15607,16 @@ const I18N = {
         ep_regle: "Bir pratik günü = bir günde en az 10 alıştırma. Günlerin art arda olması gerekmez.",
         ep_prochain: "Sonraki bölüm: {titre}",
         ep_nouveau: "Yeni",
+        accueil_tout_titre: "Tüm içerik",
+        accueil_tout_sous: "Kelimeler, dilbilgisi, pratik",
+        accueil_tout_retour: "Ana sayfaya dön",
+        accueil_gardes_0: "Şimdilik boş",
+        accueil_gardes_1: "Tekrar edilecek 1 kelime",
+        accueil_gardes_n: "Tekrar edilecek {n} kelime",
+        ep_ligne_episode: "{n}. bölüm · {titre}",
+        ep_ligne_prochain_1: "Sonraki: 1 pratik gününde",
+        ep_ligne_prochain_n: "Sonraki: {n} pratik gününde",
+        ep_ligne_revoir_serie: "Diziyi yeniden izle",
         ep_admin_reset: "Sürprizi sıfırla (yönetici)",
         ep_admin_reset_fait: "Sürpriz sıfırlandı: günün 10. alıştırmasında yeniden gelecek.",
         settings_progress_texte: "{total} öğeden {n} tanesi öğrenildi (%{pct}).",
@@ -16309,6 +16431,16 @@ const I18N = {
         ep_regle: "День практики = щонайменше 10 вправ за день. Дні не мусять іти поспіль.",
         ep_prochain: "Наступний епізод: {titre}",
         ep_nouveau: "Нове",
+        accueil_tout_titre: "Усі розділи",
+        accueil_tout_sous: "Слова, граматика, практика",
+        accueil_tout_retour: "Назад на головну",
+        accueil_gardes_0: "Поки що порожньо",
+        accueil_gardes_1: "1 слово до повторення",
+        accueil_gardes_n: "Слів до повторення: {n}",
+        ep_ligne_episode: "Еп. {n} · {titre}",
+        ep_ligne_prochain_1: "Наступний: через 1 день практики",
+        ep_ligne_prochain_n: "Наступний: через {n} днів практики",
+        ep_ligne_revoir_serie: "Переглянути серію ще раз",
         ep_admin_reset: "Скинути сюрприз (адмін)",
         ep_admin_reset_fait: "Сюрприз скинуто: він повернеться на 10-й вправі дня.",
         settings_progress_texte: "Опановано {n} з {total} ({pct}%).",
@@ -18140,6 +18272,16 @@ const I18N = {
         ep_regle: "یک روز تمرین = دست‌کم ۱۰ تمرین در یک روز. لازم نیست روزها پشت سر هم باشند.",
         ep_prochain: "قسمت بعدی: {titre}",
         ep_nouveau: "تازه",
+        accueil_tout_titre: "همهٔ بخش‌ها",
+        accueil_tout_sous: "واژه‌ها، دستور زبان، تمرین",
+        accueil_tout_retour: "بازگشت به صفحهٔ اصلی",
+        accueil_gardes_0: "فعلاً خالی است",
+        accueil_gardes_1: "۱ واژه برای مرور",
+        accueil_gardes_n: "{n} واژه برای مرور",
+        ep_ligne_episode: "قسمت {n} · {titre}",
+        ep_ligne_prochain_1: "بعدی: پس از ۱ روز تمرین",
+        ep_ligne_prochain_n: "بعدی: پس از {n} روز تمرین",
+        ep_ligne_revoir_serie: "دوباره دیدن مجموعه",
         ep_admin_reset: "بازنشانی غافلگیری (مدیر)",
         ep_admin_reset_fait: "غافلگیری بازنشانی شد: در دهمین تمرین روز دوباره می‌آید.",
         settings_progress_texte: "{n} از {total} مورد یاد گرفته شده است ({pct}٪).",
@@ -19458,6 +19600,16 @@ const I18N = {
         ep_regle: "يوم التدريب = 10 تمارين على الأقل في اليوم. لا يلزم أن تكون الأيام متتالية.",
         ep_prochain: "الحلقة التالية: {titre}",
         ep_nouveau: "جديد",
+        accueil_tout_titre: "كل المحتوى",
+        accueil_tout_sous: "الكلمات والقواعد والتدريب",
+        accueil_tout_retour: "العودة إلى الصفحة الرئيسية",
+        accueil_gardes_0: "فارغ حاليًا",
+        accueil_gardes_1: "كلمة واحدة للمراجعة",
+        accueil_gardes_n: "كلمات للمراجعة: {n}",
+        ep_ligne_episode: "الحلقة {n} · {titre}",
+        ep_ligne_prochain_1: "التالية: بعد يوم تدريب واحد",
+        ep_ligne_prochain_n: "التالية: بعد {n} أيام تدريب",
+        ep_ligne_revoir_serie: "شاهد السلسلة مجددًا",
         ep_admin_reset: "إعادة ضبط المفاجأة (المشرف)",
         ep_admin_reset_fait: "أُعيد ضبط المفاجأة: ستعود عند التمرين العاشر في اليوم.",
         settings_progress_texte: "تم إتقان {n} من أصل {total} ({pct}٪).",
@@ -21321,6 +21473,16 @@ const I18N = {
         ep_regle: "Um dia de prática = pelo menos 10 exercícios no dia. Os dias não precisam ser seguidos.",
         ep_prochain: "Próximo episódio: {titre}",
         ep_nouveau: "Novo",
+        accueil_tout_titre: "Todo o conteúdo",
+        accueil_tout_sous: "Palavras, gramática, prática",
+        accueil_tout_retour: "Voltar ao início",
+        accueil_gardes_0: "Vazio por enquanto",
+        accueil_gardes_1: "1 palavra para rever",
+        accueil_gardes_n: "{n} palavras para rever",
+        ep_ligne_episode: "Ep. {n} · {titre}",
+        ep_ligne_prochain_1: "Próximo: em 1 dia de prática",
+        ep_ligne_prochain_n: "Próximo: em {n} dias de prática",
+        ep_ligne_revoir_serie: "Rever a série",
         ep_admin_reset: "Reiniciar a surpresa (admin)",
         ep_admin_reset_fait: "Surpresa reiniciada: ela volta no 10º exercício do dia.",
         settings_progress_texte: "{n} dominadas de {total} ({pct} %).",
@@ -22798,6 +22960,16 @@ const I18N = {
         ep_regle: "Dzień ćwiczeń = co najmniej 10 ćwiczeń w ciągu dnia. Dni nie muszą następować po sobie.",
         ep_prochain: "Następny odcinek: {titre}",
         ep_nouveau: "Nowy",
+        accueil_tout_titre: "Cała zawartość",
+        accueil_tout_sous: "Słowa, gramatyka, ćwiczenia",
+        accueil_tout_retour: "Wróć do strony głównej",
+        accueil_gardes_0: "Na razie pusto",
+        accueil_gardes_1: "1 słowo do powtórki",
+        accueil_gardes_n: "Słów do powtórki: {n}",
+        ep_ligne_episode: "Odc. {n} · {titre}",
+        ep_ligne_prochain_1: "Następny: za 1 dzień ćwiczeń",
+        ep_ligne_prochain_n: "Następny: za {n} dni ćwiczeń",
+        ep_ligne_revoir_serie: "Obejrzyj serię jeszcze raz",
         ep_admin_reset: "Zresetuj niespodziankę (admin)",
         ep_admin_reset_fait: "Niespodzianka zresetowana: wróci przy 10. ćwiczeniu dnia.",
         settings_progress_texte: "{n} opanowanych z {total} ({pct} %).",
@@ -24280,6 +24452,16 @@ const I18N = {
         ep_regle: "День практики = не меньше 10 упражнений за день. Дни не обязательно идут подряд.",
         ep_prochain: "Следующий эпизод: {titre}",
         ep_nouveau: "Новое",
+        accueil_tout_titre: "Все разделы",
+        accueil_tout_sous: "Слова, грамматика, практика",
+        accueil_tout_retour: "Назад на главную",
+        accueil_gardes_0: "Пока пусто",
+        accueil_gardes_1: "1 слово на повторение",
+        accueil_gardes_n: "Слов на повторение: {n}",
+        ep_ligne_episode: "Эп. {n} · {titre}",
+        ep_ligne_prochain_1: "Следующий: через 1 день практики",
+        ep_ligne_prochain_n: "Следующий: через {n} дней практики",
+        ep_ligne_revoir_serie: "Посмотреть серию ещё раз",
         ep_admin_reset: "Сбросить сюрприз (админ)",
         ep_admin_reset_fait: "Сюрприз сброшен: он вернётся на 10-м упражнении дня.",
         settings_progress_texte: "Выучено {n} из {total} ({pct} %).",
@@ -37248,12 +37430,19 @@ const ECRANS_RACINES = new Set(["home", "auth", "resetPassword", "setup"]);
 //   apres    : a lancer quand ils sont arrives (rechargement de version)
 //   enRetour : un Retour est en train d'etre rejoue
 var HIST = null;
+// v932 : la vue « Tout le contenu » de l'accueil est ouverte. Elle survit a un
+// panneau ouvert depuis elle : son « Retour » (goHome) y ramene. Voir
+// appliquerVueContenu(). `var` pour la meme raison que HIST.
+var VUE_CONTENU = false;
 
 // Ce qui est a l'ecran, en une cle. Le panneau compte son id : deux panneaux
 // differents sont deux etapes.
 function etatHistorique(){
     const actif = document.querySelector(".screen.active");
     let cle = actif ? actif.id : "home";
+    // v932 : « Tout le contenu » est une etape : Retour y revient depuis un
+    // panneau, puis en sort vers l'accueil, au lieu de quitter l'app.
+    if(cle === "home" && VUE_CONTENU) cle += "+contenu";
     if(cle === "orbPanel" && openOrbId) cle += ":" + openOrbId;
     // La visite compte son etape : chaque etape franchie est une entree.
     if(cle === "decouverte" && decouverte) cle += ":" + decouverte.etape;
@@ -37336,6 +37525,8 @@ function fermerFenetreDessus(){
     if(video && video.classList.contains("show")){ closeOnboardingVideo(); return true; }
     if(document.getElementById("episodeVoile")){ fermerVoileEpisode(); return true; }
     if(document.querySelector(".bilan-voile")){ fermerBilanSemaine(); return true; }
+    const home = document.getElementById("home");
+    if(VUE_CONTENU && home && home.classList.contains("active")){ quitterToutLeContenu(); return true; }
     return false;
 }
 
@@ -37350,6 +37541,7 @@ function retourSansEffet(){
 // Ouvre l'ecran d'une cle de la pile. "" est la racine : l'accueil.
 function allerVersCleHistorique(cle){
     const ecran = cle.split("+")[0];
+    if(ecran === "home") VUE_CONTENU = cle.split("+").indexOf("contenu") > 0;
     if(!ecran){ goHome(); return; }
     const morceaux = ecran.split(":");
     if(morceaux[0] === "orbPanel" && morceaux[1]){ openOrbPanel(morceaux[1]); return; }
@@ -37539,6 +37731,7 @@ function showScreen(id){
     // chaque changement d'ecran ne coute rien, contrairement a majTuileSeance()
     // qui balaie le corpus entier.
     if(id === "home"){
+        try{ appliquerVueContenu(); }catch(e){}
         try{ majCompteDuJour(); }catch(e){}
         try{ majTitrePorteMots(); }catch(e){}
         try{ majTitrePilule(); }catch(e){}
@@ -37557,6 +37750,38 @@ if(!VIDEO_ACCUEIL_ACTIVE){
         const b = document.getElementById("homeHelpLaunch");
         if(b) b.style.display = "none";
     });
+}
+
+// v932 : LA VUE « TOUT LE CONTENU » DE L'ACCUEIL (voir le commentaire de
+// #episodeLigne). Une classe sur #home montre les sections de tuiles et cache le
+// quotidien (CSS) ; tout ce qui entoure la grille sur l'accueil -- le salut, le
+// tableau, la progression -- se cache aussi, par .hors-contenu, en remontant de
+// la grille a #home : on ne depend pas de la facon dont l'accueil est emboite.
+function appliquerVueContenu(){
+    const home = document.getElementById("home");
+    const grille = document.getElementById("orbGrid");
+    if(!home || !grille) return;
+    home.classList.toggle("vue-contenu", VUE_CONTENU);
+    for(let el = grille; el && el !== home && el.parentElement; el = el.parentElement){
+        Array.from(el.parentElement.children).forEach(s => {
+            if(s !== el) s.classList.toggle("hors-contenu", VUE_CONTENU);
+        });
+    }
+}
+function ouvrirToutLeContenu(){
+    VUE_CONTENU = true;
+    const home = document.getElementById("home");
+    if(home && home.classList.contains("active")){
+        appliquerVueContenu();
+        window.scrollTo(0, 0);
+        synchroniserHistorique();
+    } else showScreen("home");
+}
+function quitterToutLeContenu(){
+    VUE_CONTENU = false;
+    appliquerVueContenu();
+    window.scrollTo(0, 0);
+    synchroniserHistorique();
 }
 
 function goHome(){ showScreen("home"); renderBadgesGrid(); updateHomeGreeting(); updateMyVocabTile(); noterEtape("accueil"); installerReperes(); try{ retourAuBilanSiDemande(); }catch(e){} }
@@ -43339,7 +43564,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 931;
+const APP_VERSION = 932;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -52233,6 +52458,7 @@ function ouvrirMesEpisodes(){
     }
 }
 function majTuileEpisodes(){
+    try{ majLigneEpisodes(); }catch(e){}
     const tuile = document.getElementById("tuileEpisodes");
     if(!tuile) return;
     const liste = episodesDeLaLangue();
@@ -52249,6 +52475,43 @@ function majTuileEpisodes(){
         for(let n = 1; n <= s.d; n++) if(!s.v[n]) pasVu = true;
         nouveau.classList.toggle("hidden", !pasVu);
     }
+}
+// v932 : le premier episode debloque qui n'a pas ete regarde, ou null.
+function episodeAVoir(){
+    const liste = episodesDeLaLangue();
+    const s = lireEpisodes();
+    for(let n = 1; n <= s.d; n++) if(!s.v[n] && liste[n - 1]) return liste[n - 1];
+    return null;
+}
+// v932 : LA LIGNE DES EPISODES DE L'ACCUEIL, sous Ecouter (Jacques, 23 oct. 2026 :
+// « lorsque j'ai une video, qu'elle apparaisse tout de suite sous Ecouter »). Elle
+// suit la tuile : visible des le premier episode debloque. En dessous du titre,
+// l'episode qui attend (« Nouveau »), sinon le delai du suivant, sinon la serie
+// a revoir.
+function majLigneEpisodes(){
+    const ligne = document.getElementById("episodeLigne");
+    if(!ligne) return;
+    const liste = episodesDeLaLangue();
+    const s = lireEpisodes();
+    const voir = liste.length > 0 && s.d > 0;
+    ligne.classList.toggle("hidden", !voir);
+    if(!voir) return;
+    const ep = episodeAVoir();
+    const nouveau = document.getElementById("episodeLigneNouveau");
+    const sous = document.getElementById("episodeLigneSous");
+    if(nouveau) nouveau.classList.toggle("hidden", !ep);
+    if(!sous) return;
+    if(ep) sous.textContent = tf("ep_ligne_episode", { n: ep.n, titre: ep.titre });
+    else if(liste[s.d]){
+        const n = joursAvantEpisode();
+        sous.textContent = n === 1 ? t("ep_ligne_prochain_1") : tf("ep_ligne_prochain_n", { n: n });
+    } else sous.textContent = t("ep_ligne_revoir_serie");
+}
+// Le ▶ de la ligne : l'episode qui attend, sinon la liste (pour revoir).
+function episodeDepuisAccueil(){
+    const ep = episodeAVoir();
+    if(ep) lireEpisode(ep);
+    else ouvrirMesEpisodes();
 }
 function fermerListeSeance(){
     const l = document.getElementById("spListe");
@@ -52869,6 +53132,12 @@ function majBoutonGardes(){
     // Vide, il repond -- le toast dit quoi faire pour y mettre un mot.
     const b = document.getElementById("seanceGardes");
     if(b) b.classList.remove("hidden");
+    // v932 : sur l'accueil, la tuile dit ce qu'elle contient (« 12 mots à revoir »).
+    const sous = document.getElementById("gardesSous");
+    if(sous){
+        const n = nombreGardes();
+        sous.textContent = n === 0 ? t("accueil_gardes_0") : n === 1 ? t("accueil_gardes_1") : tf("accueil_gardes_n", { n: n });
+    }
 }
 
 // v804 (15 oct. 2026) : LE PREMIER CLIC EXPLIQUE. Jacques : « lorsqu'on clique

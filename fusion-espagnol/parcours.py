@@ -129,7 +129,9 @@ def releve(app, page_app=None):
                 page.wait_for_timeout(400)
 
             def accueil():
-                page.evaluate("() => { window.__regrainer(20261010); goHome(); }")
+                # v932 : l'accueil de depart est toujours l'accueil allege, jamais
+                # la vue « Tout le contenu » laissee ouverte par le chemin precedent.
+                page.evaluate("() => { window.__regrainer(20261010); if('VUE_CONTENU' in window) VUE_CONTENU = false; goHome(); }")
                 attendre()
 
             def noter(chemin):
@@ -155,8 +157,17 @@ def releve(app, page_app=None):
             accueil()
             erreurs.clear()
             noter("accueil")
-            tuiles = page.evaluate("""() => [...document.querySelectorAll('#home [data-orbid]')]
-                .filter(e => e.offsetParent !== null).map(e => e.dataset.orbid)""")
+            visibles = """() => [...document.querySelectorAll('#home [data-orbid]')]
+                .filter(e => e.offsetParent !== null).map(e => e.dataset.orbid)"""
+            tuiles = page.evaluate(visibles)
+            # v932 : la plupart des tuiles vivent dans la vue « Tout le contenu »
+            # de l'accueil. On la releve, et on y prend les tuiles qui manquent :
+            # un chemin garde le meme nom qu'avant, d'ou qu'on ouvre sa tuile.
+            if page.evaluate("() => typeof ouvrirToutLeContenu === 'function'"):
+                page.evaluate("() => ouvrirToutLeContenu()")
+                attendre()
+                noter("tout le contenu")
+                tuiles += [t for t in page.evaluate(visibles) if t not in tuiles]
             for orb in tuiles:
                 accueil()
                 erreurs.clear()
