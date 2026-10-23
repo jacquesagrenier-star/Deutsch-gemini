@@ -7086,6 +7086,9 @@ body[data-theme="dark"] .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){back
 #home:not(.vue-contenu) #orbGrid > .orb:not(.orb-seance){display:none !important;}
 #home.vue-contenu #orbGrid > .orb-seance, #home.vue-contenu #explorerScenes, #home.vue-contenu #ecouteLigneAccueil,
 #home.vue-contenu #episodeLigne, #home.vue-contenu #accueilRaccourcis{display:none !important;}
+/* v933 : ni la tuile des episodes (Jacques : « on l'a deja sur la page d'accueil »,
+   par la ligne #episodeLigne). */
+#home.vue-contenu #tuileEpisodes{display:none !important;}
 .hors-contenu{display:none !important;}
 /* La ligne des episodes : la pilule d'Ecouter, en charbon doux et ambre, les
    couleurs de la tuile des episodes (v921). */
@@ -7113,16 +7116,11 @@ body[data-theme="dark"] .ep-ligne-ico{background:linear-gradient(180deg, #555e6b
 html[dir="rtl"] .raccourci-sous:not(:empty)::after{content:" \2039";}
 body[data-theme="dark"] .raccourci-sous{color:#a9b2c0;}
 /* L'en-tete de la vue « Tout le contenu ». */
-.entete-contenu{display:none; grid-column:1 / -1; align-items:center; gap:12px; margin:2px 0 2px;}
+.entete-contenu{display:none; grid-column:1 / -1; flex-direction:column; align-items:flex-start; gap:0; margin:0 0 2px;}
+.entete-contenu .back{margin-bottom:8px;}
 #home.vue-contenu .entete-contenu{display:flex;}
 .entete-contenu h2{margin:0; font-size:22px; font-weight:900; color:#1C2430;}
-.retour-contenu{flex:0 0 auto; width:40px; height:40px; border-radius:50%; border:1px solid rgba(30,41,59,.25); background:rgba(255,255,255,.7);
-    display:flex; align-items:center; justify-content:center; padding:0; cursor:pointer;}
-.retour-contenu svg{width:22px; height:22px; fill:none; stroke:#1C2430; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;}
-html[dir="rtl"] .retour-contenu svg{transform:scaleX(-1);}
 body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
-body[data-theme="dark"] .retour-contenu{background:#232c38; border-color:#343e4c;}
-body[data-theme="dark"] .retour-contenu svg{stroke:#F2F2F6;}
 /* v900 (Jacques, 20 oct. 2026) : LA SEANCE EN VITRE AMBREE. « Au lieu d'un fond
    noir, un fond orange, comme les deux points du logo », « plus de punch »,
    puis « comme le W de l'ouverture, le glacis d'Apple, une vitre ». Choisie
@@ -8045,9 +8043,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         </div>
         <!-- L'en-tete de la vue « Tout le contenu » ; cache sur l'accueil. -->
         <div class="entete-contenu" id="enteteContenu">
-            <button type="button" class="retour-contenu" onclick="quitterToutLeContenu()" data-i18n-aria-label="accueil_tout_retour" aria-label="Retour à l'accueil">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
-            </button>
+            <button class="back" onclick="quitterToutLeContenu()"><span data-i18n="back_button">‹ Retour</span></button>
             <h2 data-i18n="accueil_tout_titre">Tout le contenu</h2>
         </div>
 
@@ -8460,7 +8456,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v932</span>
+    <span class="subtitle-version">v933</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12737,7 +12733,6 @@ const I18N = {
         ep_nouveau: "Nouveau",
         accueil_tout_titre: "Tout le contenu",
         accueil_tout_sous: "Mots, grammaire, pratique",
-        accueil_tout_retour: "Retour à l'accueil",
         accueil_gardes_0: "Vide pour l'instant",
         accueil_gardes_1: "1 mot à revoir",
         accueil_gardes_n: "{n} mots à revoir",
@@ -14183,7 +14178,6 @@ const I18N = {
         ep_nouveau: "New",
         accueil_tout_titre: "All content",
         accueil_tout_sous: "Words, grammar, practice",
-        accueil_tout_retour: "Back to home",
         accueil_gardes_0: "Empty for now",
         accueil_gardes_1: "1 word to review",
         accueil_gardes_n: "{n} words to review",
@@ -15609,7 +15603,6 @@ const I18N = {
         ep_nouveau: "Yeni",
         accueil_tout_titre: "Tüm içerik",
         accueil_tout_sous: "Kelimeler, dilbilgisi, pratik",
-        accueil_tout_retour: "Ana sayfaya dön",
         accueil_gardes_0: "Şimdilik boş",
         accueil_gardes_1: "Tekrar edilecek 1 kelime",
         accueil_gardes_n: "Tekrar edilecek {n} kelime",
@@ -16433,7 +16426,6 @@ const I18N = {
         ep_nouveau: "Нове",
         accueil_tout_titre: "Усі розділи",
         accueil_tout_sous: "Слова, граматика, практика",
-        accueil_tout_retour: "Назад на головну",
         accueil_gardes_0: "Поки що порожньо",
         accueil_gardes_1: "1 слово до повторення",
         accueil_gardes_n: "Слів до повторення: {n}",
@@ -18274,7 +18266,6 @@ const I18N = {
         ep_nouveau: "تازه",
         accueil_tout_titre: "همهٔ بخش‌ها",
         accueil_tout_sous: "واژه‌ها، دستور زبان، تمرین",
-        accueil_tout_retour: "بازگشت به صفحهٔ اصلی",
         accueil_gardes_0: "فعلاً خالی است",
         accueil_gardes_1: "۱ واژه برای مرور",
         accueil_gardes_n: "{n} واژه برای مرور",
@@ -19602,7 +19593,6 @@ const I18N = {
         ep_nouveau: "جديد",
         accueil_tout_titre: "كل المحتوى",
         accueil_tout_sous: "الكلمات والقواعد والتدريب",
-        accueil_tout_retour: "العودة إلى الصفحة الرئيسية",
         accueil_gardes_0: "فارغ حاليًا",
         accueil_gardes_1: "كلمة واحدة للمراجعة",
         accueil_gardes_n: "كلمات للمراجعة: {n}",
@@ -21475,7 +21465,6 @@ const I18N = {
         ep_nouveau: "Novo",
         accueil_tout_titre: "Todo o conteúdo",
         accueil_tout_sous: "Palavras, gramática, prática",
-        accueil_tout_retour: "Voltar ao início",
         accueil_gardes_0: "Vazio por enquanto",
         accueil_gardes_1: "1 palavra para rever",
         accueil_gardes_n: "{n} palavras para rever",
@@ -22962,7 +22951,6 @@ const I18N = {
         ep_nouveau: "Nowy",
         accueil_tout_titre: "Cała zawartość",
         accueil_tout_sous: "Słowa, gramatyka, ćwiczenia",
-        accueil_tout_retour: "Wróć do strony głównej",
         accueil_gardes_0: "Na razie pusto",
         accueil_gardes_1: "1 słowo do powtórki",
         accueil_gardes_n: "Słów do powtórki: {n}",
@@ -24454,7 +24442,6 @@ const I18N = {
         ep_nouveau: "Новое",
         accueil_tout_titre: "Все разделы",
         accueil_tout_sous: "Слова, грамматика, практика",
-        accueil_tout_retour: "Назад на главную",
         accueil_gardes_0: "Пока пусто",
         accueil_gardes_1: "1 слово на повторение",
         accueil_gardes_n: "Слов на повторение: {n}",
@@ -37774,6 +37761,7 @@ function ouvrirToutLeContenu(){
     if(home && home.classList.contains("active")){
         appliquerVueContenu();
         window.scrollTo(0, 0);
+        try{ repeindreApresScene(home, "ouverture du contenu"); }catch(e){}
         synchroniserHistorique();
     } else showScreen("home");
 }
@@ -37781,6 +37769,10 @@ function quitterToutLeContenu(){
     VUE_CONTENU = false;
     appliquerVueContenu();
     window.scrollTo(0, 0);
+    // v933 : Jacques, iPhone : au retour de « Tout le contenu », le tableau et la
+    // roue des reglages manquaient « une fois sur quelques-unes » jusqu'au toucher --
+    // le defaut de repeinture de WebKit (v815, v928). Meme remede, et sa mesure.
+    try{ repeindreApresScene(document.getElementById("home"), "retour du contenu"); }catch(e){}
     synchroniserHistorique();
 }
 
@@ -43564,7 +43556,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 932;
+const APP_VERSION = 933;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
