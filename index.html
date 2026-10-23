@@ -7121,9 +7121,25 @@ body[data-theme="dark"] .raccourci-sous{color:#a9b2c0;}
    « ambre » parmi trois (.claude/maquette-contours-accueil.html). La seance, deja
    ambre, reste la seule pleine : c'est elle qui compte le plus. Les boutons ▶
    d'Ecouter et des episodes gardent leur couleur. */
-.explorer-scenes, body[data-theme="dark"] .explorer-scenes{border:1.5px solid #E8A23A;}
-.pilule-accueil.pa-ecoute, body[data-theme="dark"] .pilule-accueil.pa-ecoute{box-shadow:inset 0 0 0 1.5px #E8A23A;}
+/* #home devant (v936) : la regle de nuit des scenes, plus bas, remettait le gris. */
+#home .explorer-scenes, body[data-theme="dark"] #home .explorer-scenes{border:1.5px solid #E8A23A;}
+/* v936 : une vraie BORDURE, comme les scenes, et non plus une ombre interieure.
+   Jacques : le contour d'Ecouter et des episodes paraissait « plus large ou plus
+   fonce » -- c'etait vrai : une bordure de 1,5 px est arrondie a 1 px par le
+   navigateur, une ombre de 1,5 px non. Le meme trait partout, maintenant. */
+.pilule-accueil.pa-ecoute, body[data-theme="dark"] .pilule-accueil.pa-ecoute{box-shadow:none; border:1.5px solid #E8A23A;}
 .accueil-raccourcis .orb, body[data-theme="dark"] .accueil-raccourcis .orb{border:1.5px solid #E8A23A;}
+/* v936 : LA SEANCE SE DETACHE PAR SON OMBRE. Jacques voulait la mettre encore plus
+   en avant : un halo qui respirait faisait « comme un flash, un peu fatigant », et
+   une ombre large ajoutait un halo de plus a l'anneau clair de la vitre. Choisi
+   parmi six essais (.claude/halo-*.png, la 6) : une ombre ambre qui tombe SOUS la
+   pilule seulement (etalement negatif), sans le liseré clair de la vitre (v900) ;
+   le reflet qui glisse en haut reste. Et de l'air avant les scenes. */
+/* #home devant : la vitre (#seancePilule, plus bas dans ce fichier) pose son
+   propre box-shadow, qu'il faut remplacer, de jour comme de nuit. */
+#home #seancePilule, body[data-theme="dark"] #home #seancePilule{box-shadow:inset 0 -10px 14px -10px rgba(160,90,10,.35), 0 12px 14px -9px rgba(170,95,10,.6);}
+#seancePilule::before{display:none;}
+.orb-seance.pilule-mode{margin-bottom:12px;}
 /* L'en-tete de la vue « Tout le contenu ». */
 .entete-contenu{display:none; grid-column:1 / -1; flex-direction:column; align-items:flex-start; gap:0; margin:0 0 2px;}
 .entete-contenu .back{margin-bottom:8px;}
@@ -8465,7 +8481,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v935</span>
+    <span class="subtitle-version">v936</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -43565,7 +43581,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 935;
+const APP_VERSION = 936;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
