@@ -730,6 +730,22 @@ REGLES = [
      u"image refaite depuis le texte ne garde pas les positions. Verifier le "
      u"STYLE a la reception, avant de mesurer une seule zone : chaque zone "
      u"mesuree sur un dessin est du travail qu'on perdra."),
+    ("portrait-pour-une-epaule", "doute",
+     r"(?i)\b(shoulder|upper arm|back of (his|her) head)\b[^.]{0,90}\bof the "
+     r"(first|second|third|fourth) reference picture\b",
+     u"Un PORTRAIT de face donne en reference pour une epaule au bord : le "
+     u"modele ramene le visage, net, tourne vers l'autre",
+     u"23 oct. 2026, 04 Schrippe plan 10 (0,15 $ + une reprise). Anna dans la "
+     u"file, << the shoulder and upper arm of the dark green sweater of the "
+     u"third reference picture, well out of focus, his back to her >>, avec "
+     u"mark-theke.png (Mark de face) en reference. Mark est sorti NET, de "
+     u"profil, tourne vers elle, la moitie du visage au bord droit -- un "
+     u"second visage que Kling risque d'animer pendant la replique d'Anna.",
+     u"Une reference transporte ce qu'elle MONTRE : pour un dos, donner une "
+     u"image DE DOS (personnages/Mark-dos.png) et decrire ce qu'on en voit "
+     u"(la nuque, les cheveux, l'epaule, coupes par le bord). A la reprise : "
+     u"aucun visage, Anna plus grande. Il est reste net et grand -- un vrai "
+     u"champ-contrechamp, acceptable ; le flou ne se commande pas."),
 ]
 
 # --------------------------------------------------------------------------
@@ -746,6 +762,24 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"Le PLAN D'ENSEMBLE fait avant les portraits : juste du premier coup, deux episodes de suite",
+     u"23 oct. 2026",
+     u"04 Schrippe (boulangerie : Anna, Mark, la boulangere) et es-04 (le bureau, "
+     u"quatre personnes ; l'ascenseur, deux). Les trois plans d'ensemble ont donne "
+     u"les bons cotes, les bons regards et le comptoir du bon cote AU PREMIER ESSAI, "
+     u"avec la phrase de << comptoir-devant >> (<< both stand on the SAME side of the "
+     u"counter, the customer side; the counter is at their right, and between them "
+     u"and the camera there is only the open floor >>). La seule reprise d'ensemble "
+     u"(es-04 plan 09) venait d'une TENUE : Mark en blouson zippe au lieu de la veste "
+     u"souple d'es-03 -- vue sur l'ensemble, donc corrigee avant ses quatre portraits.",
+     u"L'ORDRE, quand un personnage est NEUF : son portrait d'abord (Visage neuf : oui, "
+     u"le decor vide seul en reference -- image_plan.py refuse tout visage connu a "
+     u"cote), PUIS le plan d'ensemble avec toutes les images de visage, PUIS les "
+     u"portraits des personnages connus. Une tenue se dit en entier dans le texte "
+     u"(<< unstructured dark navy blazer with soft lapels, worn open >>) : << dark "
+     u"jacket >> a donne un blouson. Et une tenue reprise d'un autre episode se "
+     u"verifie sur SON IMAGE avant d'ecrire : la feuille d'es-04 disait << pantalon "
+     u"sombre >>, l'image d'es-03 montrait un jean."),
     (u"LE PLAN D'ENSEMBLE D'ABORD : tous les personnages d'un lieu, a leur place, avant le moindre portrait",
      u"22 oct. 2026",
      u"es-03 (El cafe) : chaque personnage fait SEUL, et trois erreurs n'ont ete vues qu'au montage, une "

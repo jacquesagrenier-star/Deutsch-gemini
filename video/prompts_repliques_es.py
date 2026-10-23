@@ -600,16 +600,16 @@ GESTES = {
     # ------------------------------------------------------------------
     # Mark : la main sur le coeur, politesse mexicaine
     ('es-04-tu-o-usted', 4):
-        'His hand nearer the left edge of the picture stays resting on the back of the grey office chair, exactly as in the image, for the whole shot. Only his other hand moves: on « mucho gusto » it rises to his chest and lays itself flat on the lapel of his jacket, over his heart, the formal greeting of a well-brought-up man, and it stays there.',
+        'His hand nearer the right edge of the picture stays resting on the back of the grey office chair, exactly as in the image, for the whole shot. Only his other hand moves: on « mucho gusto » it rises to his chest and lays itself flat on the lapel of his jacket, over his heart, the formal greeting of a well-brought-up man, and it stays there.',
     # Mark : il essaie le tu, la paume hesitante
     ('es-04-tu-o-usted', 7):
-        'His hand nearer the left edge of the picture stays resting on the back of the grey office chair, exactly as in the image, for the whole shot. Only his other hand moves: on « vale » it comes up to waist height, palm open and turned up, and rocks once from side to side, a few centimetres, unsure, then stays there, open.',
+        'His hand nearer the right edge of the picture stays resting on the back of the grey office chair, exactly as in the image, for the whole shot. Only his other hand moves: on « vale » it comes up to waist height, palm open and turned up, and rocks once from side to side, a few centimetres, unsure, then stays there, open.',
     # Mark : la question au groupe, la main qui balaie vers la droite
     ('es-04-tu-o-usted', 10):
-        'His hand nearer the left edge of the picture stays resting on the back of the grey office chair, exactly as in the image, for the whole shot. Only his other hand moves: on « ustedes » it rises to shoulder height, palm open and facing the right edge of the picture, and sweeps a few centimetres towards that edge, taking in the whole room, then stays there, open.',
+        'His hand nearer the right edge of the picture stays resting on the back of the grey office chair, exactly as in the image, for the whole shot. Only his other hand moves: on « ustedes » it rises to shoulder height, palm open and facing the right edge of the picture, and sweeps a few centimetres towards that edge, taking in the whole room, then stays there, open.',
     # Mark : le verbe change aussi -- les doigts au front
     ('es-04-tu-o-usted', 12):
-        'His hand nearer the left edge of the picture stays resting on the back of the grey office chair, exactly as in the image, for the whole shot. Only his other hand moves: on « coméis » it rises to his forehead and lays its fingertips flat on it, as the thing dawns on him, and it stays there while he exclaims.',
+        'His hand nearer the right edge of the picture stays resting on the back of the grey office chair, exactly as in the image, for the whole shot. Only his other hand moves: on « coméis » it rises to his forehead and lays its fingertips flat on it, as the thing dawns on him, and it stays there while he exclaims.',
     # Mark, ascenseur : le bonjour leger
     ('es-04-tu-o-usted', 15):
         'His hand nearer the left edge of the picture stays in his trouser pocket, exactly as in the image, for the whole shot. Only his other hand moves: on « hola » it comes up to shoulder height, palm out and open, an easy greeting between neighbours, and it stays raised while he asks.',
