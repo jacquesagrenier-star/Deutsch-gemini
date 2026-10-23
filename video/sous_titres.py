@@ -407,8 +407,20 @@ def main():
     # du lecteur Windows doivent etre echappes -- sinon ffmpeg les lit comme
     # des separateurs d'options et se plaint d'un fichier introuvable.
     chemin = dst.replace("\\", "/").replace(":", "\\:")
-    subprocess.run([F, "-y", "-v", "error", "-i", clip,
-                    "-vf", "subtitles='%s'" % chemin,
+    # ⚠️ shaping=complex : en mise en forme simple, chaque lam-alif (لا) du persan
+    # et de l'arabe laissait un carré vide devant lui (22 oct. 2026). Sans effet
+    # sur les langues latines et cyrilliques. Il faut un ffmpeg avec HarfBuzz :
+    # celui d'imageio_ffmpeg (F) PLANTE sur cette option ; le ffmpeg du systeme
+    # (winget, Gyan full_build) la gere.
+    import shutil
+    graveur = shutil.which("ffmpeg")
+    filtre = "subtitles='%s':shaping=complex" % chemin if graveur else "subtitles='%s'" % chemin
+    if not graveur:
+        graveur = F
+        if a.langue in ("fa", "ar"):
+            print("  ⚠️ pas de ffmpeg systeme : les lam-alif auront un carre vide")
+    subprocess.run([graveur, "-y", "-v", "error", "-i", clip,
+                    "-vf", filtre,
                     "-c:v", "libx264", "-crf", "18", "-preset", "medium",
                     "-pix_fmt", "yuv420p", "-c:a", "copy", sortie], check=True)
     print("  %s" % os.path.relpath(sortie, RACINE))

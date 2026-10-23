@@ -8368,7 +8368,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v930</span>
+    <span class="subtitle-version">v931</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -38061,7 +38061,7 @@ function basculerApercuGratuit(){
 // TOUT LE MONDE, essai ou pas. C'est le role de tests/syntaxe.js, avant
 // chaque envoi.
 const ESSAIS = {
-    // EN PRODUCTION le 22 oct. 2026 (v917), espagnol seulement (EPISODES.de vide).
+    // EN PRODUCTION le 22 oct. 2026 (v917) en espagnol, en allemand depuis la v931.
     // Jacques : une surprise pour Nicole et Daniel -- le 10e exercice d'une
     // journee debloque l'episode 1, puis un episode tous les 7 jours de pratique.
     episodes: {
@@ -43339,7 +43339,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 930;
+const APP_VERSION = 931;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -51949,8 +51949,8 @@ function majTuilesCarnetFeuilles(){
 //   - la tuile « Mes episodes » paraît des le premier, pour les revoir.
 // Les videos vivent sur Firebase Hosting (audio/mp3/episodes/, a cote des voix),
 // recompressees pour le telephone (~8 Mo), sous-titres incrustes : francais pour
-// une interface en francais, anglais pour toutes les autres. La serie allemande
-// n'y est pas encore : EPISODES.de vide = rien ne change en allemand.
+// une interface en francais, anglais pour les autres -- sauf la serie allemande
+// (v931), gravee dans les neuf langues d'interface (EPISODES_LANGUES).
 const EPISODES_HOTE = "https://deutschai-b6fbb.web.app/episodes/";
 const EPISODES = {
     es: [
@@ -51959,9 +51959,19 @@ const EPISODES = {
         { n: 2, titre: "El carro", video: "es/ep02-v3", affiche: "es/ep02-affiche.jpg" },
         // v930 (22 oct. 2026) : les retrouvailles avec Ana au bar, et « ¡qué guay! ».
         { n: 3, titre: "El café", video: "es/ep03-v1", affiche: "es/ep03-affiche.jpg" }
+    ],
+    // v931 (22 oct. 2026) : la serie allemande, publiee d'un coup quand ses trois
+    // episodes avaient leurs neuf langues de sous-titres (« ne publie pas avant
+    // que toutes les traductions soient disponibles »).
+    de: [
+        { n: 1, titre: "Ankunft in Berlin", video: "de/ep01-v1", affiche: "de/ep01-affiche.jpg" },
+        { n: 2, titre: "Beim Bürgeramt", video: "de/ep02-v1", affiche: "de/ep02-affiche.jpg" },
+        { n: 3, titre: "Auf dem Radweg", video: "de/ep03-v1", affiche: "de/ep03-affiche.jpg" }
     ]
 };
-const EPISODES_SERIE = { es: "Mark en Madrid" };
+const EPISODES_SERIE = { es: "Mark en Madrid", de: "Mark in Berlin" };
+// Les langues de sous-titres gravees, par serie ; une autre interface prend l'anglais.
+const EPISODES_LANGUES = { es: ["fr", "en"], de: ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"] };
 const EPISODES_KEY = PREFIXE_STOCKAGE + "episodes";
 const EPISODE_SEUIL = 10;   // exercices dans la journee
 const EPISODE_JOURS = 7;    // jours de pratique entre deux episodes
@@ -52013,7 +52023,9 @@ function joursAvantEpisode(){
     return Math.max(1, EPISODE_JOURS + 1 - s.j.length);
 }
 function urlEpisode(ep){
-    return EPISODES_HOTE + ep.video + "." + (getUiLang() === "fr" ? "fr" : "en") + ".mp4";
+    const ui = getUiLang();
+    const langue = (EPISODES_LANGUES[LANGUE_APPRISE] || ["fr", "en"]).indexOf(ui) >= 0 ? ui : "en";
+    return EPISODES_HOTE + ep.video + "." + langue + ".mp4";
 }
 function voileEpisode(){
     const remplace = !!document.getElementById("episodeVoile");
