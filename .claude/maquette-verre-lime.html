@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verre lime</title>
+<style>
+:root{--papier:#f6f1e8; --encre:#1C2430;}
+body{margin:0; background:var(--papier); font-family:"Nunito", system-ui, sans-serif; color:var(--encre); padding:16px;}
+h1{font-size:18px; margin:0 0 4px;}
+p.intro{margin:0 0 16px; font-size:13px; color:#576177;}
+.grille{display:grid; grid-template-columns:repeat(auto-fit, minmax(330px, 1fr)); gap:16px;}
+.carte{background:#fffdf8; border:1.5px solid #e6dfd3; border-radius:18px; padding:14px; }
+.carte h2{font-size:15px; margin:0 0 2px;}
+.carte small{display:block; font-size:12px; color:#576177; margin-bottom:12px;}
+/* un fond avec un peu de matiere, pour que la transparence se voie */
+.fond{border-radius:14px; padding:12px; background:
+    radial-gradient(circle at 20% 30%, rgba(232,162,58,.25), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(79,179,169,.22), transparent 45%), #fbf7ef;}
+.rangee{display:grid; grid-template-columns:repeat(4, 1fr); gap:7px; margin-bottom:12px;}
+.b{border-radius:14px; border:1.5px solid transparent; padding:9px 4px; min-height:64px; font:800 12.5px/1.18 inherit; text-align:center;
+   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px;}
+.encore{background:#fef9e0; border-color:#ecdfa6; color:#7f6c18;}
+.coeur{background:#f6efe3; border-color:#e5d6bd; color:#7a5a1e;}
+.garde{background:#fcebdc; border-color:#f0c9a6; color:#9a4f12;}
+.garde em{font-style:normal; font-weight:700; font-size:11px;}
+.ok{position:relative; overflow:hidden;}
+.ok::after{content:""; position:absolute; top:3px; left:12%; width:76%; height:6px; border-radius:999px;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.8) 50%, rgba(255,255,255,0)); filter:blur(1px);}
+.ok svg{fill:none; stroke-linecap:round; stroke-linejoin:round;}
+.continuer{position:relative; overflow:hidden; width:100%; border:0; border-radius:14px; padding:14px; font:900 14px inherit; letter-spacing:.06em;}
+.continuer::after{content:""; position:absolute; top:3px; left:12%; width:76%; height:6px; border-radius:999px;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.8) 50%, rgba(255,255,255,0)); filter:blur(1px);}
+
+/* ---------- A : le vert d'aujourd'hui, mais en verre clair ---------- */
+.A .ok, .A .continuer{color:#fff;
+    background:linear-gradient(180deg, rgba(62,178,118,.62), rgba(38,150,96,.55));
+    -webkit-backdrop-filter:blur(8px) saturate(1.5); backdrop-filter:blur(8px) saturate(1.5);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6), inset 0 0 10px 3px rgba(255,255,255,.35), 0 6px 14px -8px rgba(8,70,40,.45);}
+.A .ok svg{width:38px; height:38px; stroke:#fff; stroke-width:3.6; filter:drop-shadow(0 1px 1.5px rgba(8,60,35,.4));}
+
+/* ---------- B : lime vif, crochet blanc ---------- */
+.B .ok, .B .continuer{color:#fff;
+    background:linear-gradient(180deg, rgba(132,214,60,.68), rgba(100,190,40,.6));
+    -webkit-backdrop-filter:blur(8px) saturate(1.5); backdrop-filter:blur(8px) saturate(1.5);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.65), inset 0 0 10px 3px rgba(255,255,255,.38), 0 6px 14px -8px rgba(60,110,10,.5);
+    text-shadow:0 1px 2px rgba(40,80,0,.45);}
+.B .ok svg{width:38px; height:38px; stroke:#fff; stroke-width:3.8; filter:drop-shadow(0 1px 2px rgba(40,80,0,.5));}
+
+/* ---------- C : lime tendre, tres transparent, crochet vert fonce ---------- */
+.C .ok, .C .continuer{color:#24520c;
+    background:linear-gradient(180deg, rgba(190,240,110,.55), rgba(160,225,80,.45));
+    -webkit-backdrop-filter:blur(10px) saturate(1.6); backdrop-filter:blur(10px) saturate(1.6);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75), inset 0 0 12px 4px rgba(255,255,255,.45), 0 6px 14px -8px rgba(80,130,20,.45);}
+.C .ok svg{width:38px; height:38px; stroke:#2f6b12; stroke-width:3.8;}
+
+/* ---------- D : lime-vert entre les deux, crochet blanc cerne ---------- */
+.D .ok, .D .continuer{color:#fff;
+    background:linear-gradient(180deg, rgba(104,200,84,.6), rgba(70,176,70,.52));
+    -webkit-backdrop-filter:blur(8px) saturate(1.5); backdrop-filter:blur(8px) saturate(1.5);
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.65), inset 0 0 10px 3px rgba(255,255,255,.4), 0 6px 14px -8px rgba(30,100,30,.45);
+    text-shadow:0 1px 2px rgba(20,70,20,.4);}
+.D .ok svg{width:40px; height:40px; stroke:#fff; stroke-width:4; filter:drop-shadow(0 1px 2px rgba(20,70,20,.5));}
+</style>
+</head>
+<body>
+<h1>Le bouton ✓ et « Continuer » : quatre verres</h1>
+<p class="intro">Plus transparents, le crochet plus gros et seul dans le bouton. Un fond un peu coloré derrière, pour que la transparence se voie. Choisis une lettre.</p>
+<div class="grille">
+  <div class="carte A"><h2>A · Le vert d'aujourd'hui, en verre clair</h2><small>Même vert qu'en v910, moitié moins opaque ; crochet blanc de 38 px.</small>
+    <div class="fond">
+      <div class="rangee">
+        <div class="b encore">↺ Encore</div>
+        <div class="b ok"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></div>
+        <div class="b coeur">☆<br>Je le sais par cœur</div>
+        <div class="b garde">Mettre de côté<em>pour le retravailler</em></div>
+      </div>
+      <button class="continuer">CONTINUER</button>
+    </div>
+  </div>
+  <div class="carte B"><h2>B · Lime vif</h2><small>Un vert lime franc, translucide ; crochet blanc de 38 px.</small>
+    <div class="fond">
+      <div class="rangee">
+        <div class="b encore">↺ Encore</div>
+        <div class="b ok"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></div>
+        <div class="b coeur">☆<br>Je le sais par cœur</div>
+        <div class="b garde">Mettre de côté<em>pour le retravailler</em></div>
+      </div>
+      <button class="continuer">CONTINUER</button>
+    </div>
+  </div>
+  <div class="carte C"><h2>C · Lime tendre, très transparent</h2><small>Le plus léger ; crochet vert foncé (le blanc ne se lirait pas).</small>
+    <div class="fond">
+      <div class="rangee">
+        <div class="b encore">↺ Encore</div>
+        <div class="b ok"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></div>
+        <div class="b coeur">☆<br>Je le sais par cœur</div>
+        <div class="b garde">Mettre de côté<em>pour le retravailler</em></div>
+      </div>
+      <button class="continuer">CONTINUER</button>
+    </div>
+  </div>
+  <div class="carte D"><h2>D · Entre le vert et le lime</h2><small>Un vert-lime, translucide ; crochet blanc de 40 px, un peu plus épais.</small>
+    <div class="fond">
+      <div class="rangee">
+        <div class="b encore">↺ Encore</div>
+        <div class="b ok"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></div>
+        <div class="b coeur">☆<br>Je le sais par cœur</div>
+        <div class="b garde">Mettre de côté<em>pour le retravailler</em></div>
+      </div>
+      <button class="continuer">CONTINUER</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

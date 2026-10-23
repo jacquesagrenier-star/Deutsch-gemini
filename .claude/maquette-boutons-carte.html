@@ -1,0 +1,236 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Boutons de la carte</title>
+<style>
+body{margin:0; padding:16px; background:#F7F3EC; color:#1C2430; font-family:system-ui,-apple-system,"Segoe UI",sans-serif;}
+h1{font-size:22px; margin:0 0 4px;} p.sous{margin:0 0 14px; color:#576177; font-size:14px; line-height:1.45; max-width:780px;}
+.grille{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px;}
+.choix{background:#fff; border:1.5px solid #e6dfd3; border-radius:16px; padding:12px 14px; position:relative;}
+.choix.actuel{border-color:#E8A23A;}
+.num{position:absolute; top:10px; right:12px; font-weight:900; font-size:20px; color:#E8A23A;}
+.nom{font-weight:800; font-size:14px; margin:0 26px 4px 0;}
+.pq{font-size:12.5px; color:#576177; margin:0 0 10px; line-height:1.4;}
+.carte{position:relative; background:#fffdf8; border:1px solid #eadfcb; border-radius:16px; padding:22px 12px; text-align:center; margin-bottom:10px;}
+.mot{font-size:24px; font-weight:900;} .sens{font-size:14px; color:#576177; margin-top:4px;}
+.signet{position:absolute; top:8px; right:8px; width:34px; height:34px; border-radius:10px; border:0; background:#fdead9; color:#95571b; display:flex; align-items:center; justify-content:center;}
+.signet svg{width:20px; height:20px;}
+.rang{display:flex; gap:8px;} .rang.petit{margin-top:4px;}
+.jb{flex:1 1 0; min-width:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:10px 6px; border-radius:14px; border:1.5px solid; font:inherit; font-weight:800; font-size:13px; min-height:64px;}
+.jb svg{width:24px; height:24px;}
+.jb small{font-size:11px; font-weight:700; opacity:.8;}
+.encore{background:#fef9e0; border-color:#ecdfa6; color:#7f6c18;}
+.ok{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
+.coeur{background:#eef2f8; border-color:#cdd6e6; color:#3b4a66;} .coeur.mini{flex:0 0 auto; min-height:0; flex-direction:row; padding:7px 12px; font-size:12.5px;}
+.coeur.mini svg{width:16px; height:16px;}
+.garde{background:#fdead9; border-color:#f0c59e; color:#95571b;}
+.bille{width:30px; height:30px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #5fcf92, #2a8a57); display:flex; align-items:center; justify-content:center; box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6);}
+.bille svg{width:17px; height:17px; fill:none; stroke:#fff; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;}
+.pips{display:flex; gap:3px;} .pips i{width:6px; height:6px; border-radius:50%; background:rgba(28,107,71,.25);} .pips i.on{background:#1c6b47;}
+.note{font-size:11.5px; color:#8a5a12; font-weight:800; margin-top:8px;}
+.ronds{justify-content:center; gap:28px;}
+.rond{border:0; background:none; display:flex; flex-direction:column; align-items:center; gap:5px; font:inherit; font-size:12.5px; font-weight:800;}
+.rond > svg, .rond .bille{width:58px; height:58px; border-radius:50%; padding:14px; box-sizing:border-box;}
+.rond.encore{background:none;} .rond.encore > svg{background:#fef9e0; border:1.5px solid #ecdfa6; color:#7f6c18;}
+.rond.ok{color:#1c6b47;} .rond .bille svg{width:26px; height:26px;}
+</style></head><body>
+<h1>Le verso de la carte : moins de boutons</h1>
+<p class="sous">Le <b>0</b> est la carte d'aujourd'hui. De <b>1</b> à <b>5</b>, des façons d'en faire moins. Les icônes viennent de Lucide (licence ISC : libre, sans redevance). Mon avis est dans la conversation.</p>
+<div class="grille"><div class="choix actuel"><div class="num">0</div><div class="nom">Aujourd'hui (pour comparer)</div><p class="pq">Quatre boutons : deux jugements, un raccourci, un rangement. « ↺ » est aussi le signe de « retourner la carte ».</p><div class="carte"><div class="mot">la mesa</div><div class="sens">la table</div></div><div class="rang"><button class="jb encore"><span class="t">↺ Encore</span></button><button class="jb ok"><span class="bille"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span><span class="pips"><i class="on"></i><i></i><i></i><i></i></span><span class="t"></span></button><button class="jb coeur"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+</svg><span class="t">Je le sais par cœur</span></button><button class="jb garde"><svg viewBox="0 0 24 24"><path d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/><path d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/><path d="M10.8 14.2h2.4v3.2h-2.4z"/></svg><span class="t">Mettre de côté</span></button></div></div><div class="choix"><div class="num">1</div><div class="nom">Deux gestes : « Pas encore » au sablier, et ✓</div><p class="pq">La seule question qu'on se pose vraiment : est-ce que le mot m'est revenu ? « Pas encore » dit qu'on va le revoir, sans culpabiliser. « Mettre de côté » devient un signet en haut de la carte (le geste qu'on connaît des livres et des navigateurs). « Je le connais déjà » n'apparaît que sur un mot NOUVEAU (voir dessous).</p><div class="carte"><button class="signet" title="Mettre de côté"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+</svg></button><div class="mot">la mesa</div><div class="sens">la table</div></div><div class="rang"><button class="jb encore"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 22h14" />
+  <path d="M5 2h14" />
+  <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" />
+  <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />
+</svg><span class="t">Pas encore</span><small>on le revoit tout à l'heure</small></button><button class="jb ok"><span class="bille"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span><span class="pips"><i class="on"></i><i></i><i></i><i></i></span><span class="t"></span></button></div><div class="note">Sur un mot nouveau seulement :</div><div class="rang petit"><button class="jb coeur mini"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+</svg><span class="t">Je le connais déjà</span></button></div></div><div class="choix"><div class="num">2</div><div class="nom">Deux gestes, minuterie et « 2 min »</div><p class="pq">Comme 1, mais le délai est écrit : la minuterie et « Encore dans 2 min ». Le plus explicite, au prix d'un chiffre de plus.</p><div class="carte"><button class="signet" title="Mettre de côté"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+</svg></button><div class="mot">la mesa</div><div class="sens">la table</div></div><div class="rang"><button class="jb encore"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M10 2h4" />
+  <path d="M12 14v-4" />
+  <path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6" />
+  <path d="M9 17H4v5" />
+</svg><span class="t">Encore</span><small>dans 2 min</small></button><button class="jb ok"><span class="bille"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span><span class="pips"><i class="on"></i><i></i><i></i><i></i></span><span class="t"></span></button></div><div class="note">Sur un mot nouveau seulement :</div><div class="rang petit"><button class="jb coeur mini"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+</svg><span class="t">Je le connais déjà</span></button></div></div><div class="choix"><div class="num">3</div><div class="nom">Deux gestes, réveil</div><p class="pq">Le réveil plutôt que le sablier : « ça sonnera bientôt ». Libellé « Revoir bientôt ».</p><div class="carte"><button class="signet" title="Mettre de côté"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+</svg></button><div class="mot">la mesa</div><div class="sens">la table</div></div><div class="rang"><button class="jb encore"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="13" r="8" />
+  <path d="M12 9v4l2 2" />
+  <path d="M5 3 2 6" />
+  <path d="m22 6-3-3" />
+  <path d="M6.38 18.7 4 21" />
+  <path d="M17.64 18.67 20 21" />
+</svg><span class="t">Revoir bientôt</span></button><button class="jb ok"><span class="bille"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span><span class="pips"><i class="on"></i><i></i><i></i><i></i></span><span class="t"></span></button></div></div><div class="choix"><div class="num">4</div><div class="nom">Trois boutons : on garde « Je le connais » partout</div><p class="pq">Si l'on veut garder le raccourci même en révision. Le signet sort quand même de la rangée.</p><div class="carte"><button class="signet" title="Mettre de côté"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+</svg></button><div class="mot">la mesa</div><div class="sens">la table</div></div><div class="rang"><button class="jb encore"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 22h14" />
+  <path d="M5 2h14" />
+  <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" />
+  <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />
+</svg><span class="t">Pas encore</span></button><button class="jb ok"><span class="bille"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span><span class="pips"><i class="on"></i><i></i><i></i><i></i></span><span class="t"></span></button><button class="jb coeur"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+</svg><span class="t">Je le connais</span></button></div></div><div class="choix"><div class="num">5</div><div class="nom">Deux grosses pastilles, le texte dessous</div><p class="pq">Le plus simple à l'œil : deux ronds, comme « oui / pas encore ». Le texte est petit, l'icône parle.</p><div class="carte"><button class="signet" title="Mettre de côté"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z" />
+</svg></button><div class="mot">la mesa</div><div class="sens">la table</div></div><div class="rang ronds"><button class="rond encore"><svg
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 22h14" />
+  <path d="M5 2h14" />
+  <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22" />
+  <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2" />
+</svg><span>Pas encore</span></button><button class="rond ok"><span class="bille"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span><span>Je savais</span></button></div></div></div></body></html>

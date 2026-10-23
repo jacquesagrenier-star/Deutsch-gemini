@@ -165,6 +165,19 @@ def recolter(variante):
     import manifest as manifest_de
     for t in manifest_de.a1_voyage_textes(charger("a1-voyage.json"), latam=(variante == "latam"), espagnol=True):
         prendre(t, "a1_voyage", "A1")
+    # LES MOTS DES TUILES (v919, 22 oct. 2026). Depuis la v904, « Construire la
+    # phrase » dit chaque mot touche ; mais un mot de phrase n'a pas de fichier a
+    # lui, et « es », « soy », « Madrid » partaient a la voix du telephone
+    # (Jacques, trois fois le 22 oct.). Le chemin des debutants d'abord : les
+    # phrases de Premiers pas et d'A1 voyage, mot par mot, comme le decoupe
+    # motsPhrase(), sans la ponctuation collee, EN MINUSCULES -- l'app demande la
+    # minuscule en espagnol (« Es » en tete de phrase et « es » sont un seul son).
+    for t, source, _ in list(out):
+        if source in ("premiers_pas", "a1_voyage") and " " in t:
+            for m in t.split():
+                m = re.sub(r'[.,;:!?»")]+$', "", re.sub(r'^[¿¡«"(]+', "", m)).lower()
+                if re.search(r"\w", m):      # « – » ou « · » seuls : rien a dire
+                    prendre(m, "tuiles", "A1")
     # FEUILLES DE CONJUGAISON (v867, 18 oct. 2026) : espanol/datos/conjugaison.json,
     # la meme regle que manifest.py (conjugaison_textes) -- la forme sans ses
     # crochets. Les memes textes dans les deux variantes.

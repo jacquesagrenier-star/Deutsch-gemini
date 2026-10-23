@@ -16,8 +16,9 @@ UN BORD. Le personnage, lui, vit au centre -- il bouge la tete, il gesticule,
 et c'est normal. On compare donc la premiere et la derniere image UNIQUEMENT
 sur les bandes de bord, la ou rien ne devrait changer.
 
-⚠️ CE QUE CA NE VOIT PAS. Un intrus qui entre et ressort avant la fin, ou qui
-   apparait au centre derriere le personnage. La mesure est faite pour le cas
+⚠️ CE QUE CA NE VOIT PAS. Un intrus qui apparait au centre derriere le
+   personnage. (Celui qui entre et ressort avant la fin est vu depuis le 21 oct.
+   2026 : on mesure toutes les demi-secondes.) La mesure est faite pour le cas
    observe le 16 septembre 2026 -- une silhouette sombre entree par la droite
    au plan 16, invisible sur l'image maitresse et sur la premiere image.
 """
@@ -67,9 +68,19 @@ def main():
     for c in a.clips:
         d = duree(c)
         d0 = image_a(c, 0.05, os.path.join(tmp, "a.png"))
-        d1 = image_a(c, max(0.05, d - 0.12), os.path.join(tmp, "b.png"))
-        vals = {}
-        for cote in ("g", "d"):
+        # ⚠️ TOUTES LES DEMI-SECONDES, PLUS SEULEMENT LA DERNIERE IMAGE (21 oct.
+        #    2026). es-02 plan 02 (Kling) : une silhouette fantome au bord droit,
+        #    au milieu du plan, partie avant la fin -- la premiere version
+        #    comparait la premiere et la derniere image et rendait 2,6, << rien >>.
+        #    On garde le PIRE instant.
+        instants = [x / 2.0 for x in range(1, int((d - 0.12) * 2) + 1)] + [max(0.05, d - 0.12)]
+        vals = {"g": 0.0, "d": 0.0}
+        for k, ti in enumerate(instants):
+            d1 = image_a(c, ti, os.path.join(tmp, "b%d.png" % k))
+            for cote in ("g", "d"):
+                av, ap = bande(d0, cote), bande(d1, cote)
+                vals[cote] = max(vals[cote], ImageStat.Stat(ImageChops.subtract(av, ap)).mean[0])
+        for cote in ():
             # ⚠️ ON NE MESURE PAS LE CHANGEMENT, ON MESURE L ASSOMBRISSEMENT.
             #    Premiere version : la difference absolue entre la premiere et
             #    la derniere image. Etalonnee sur les onze prises du 16 sept.

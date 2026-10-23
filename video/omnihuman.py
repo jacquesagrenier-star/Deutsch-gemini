@@ -76,12 +76,26 @@ import io
 import json
 import os
 import re
+import ssl
 import sys
 import time
 import urllib.error
 import urllib.request
 
 sys.stdout.reconfigure(encoding="utf-8")
+
+# ⚠️ LE CDN DE FAL N'EST PAS RECONNU PAR LE MAGASIN DE WINDOWS. 21 oct. 2026 :
+#    v3.fal.media signe avec SSL.com (ECC CA R2), racine absente du magasin que
+#    Python lit -- CERTIFICATE_VERIFY_FAILED, mais SEULEMENT AU TELECHARGEMENT.
+#    queue.fal.run passe : l'image est donc generee et FACTUREE, puis perdue a
+#    la derniere etape. curl ne voit rien (schannel complete la chaine seul).
+#    certifi la connait ; tous les outils fal importent ce module.
+try:
+    import certifi
+    ssl._create_default_https_context = (
+        lambda: ssl.create_default_context(cafile=certifi.where()))
+except ImportError:
+    pass
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "video"))
@@ -92,6 +106,25 @@ MODELE = "fal-ai/bytedance/omnihuman/v1.5"
 PRIX = 0.16                      # $ la seconde, releve sur la fiche du modele
 INITIER = "https://rest.alpha.fal.ai/storage/upload/initiate"
 FILE = "https://queue.fal.run/" + MODELE
+SUFFIXE = "omnihuman"            # planNN-<suffixe>.mp4 : la prise dit son modele
+
+# ⚠️ KLING AVATAR v2 STANDARD, DECIDE PAR JACQUES LE 17 SEPT. 2026, BRANCHE LE
+#    21 OCT. pour la serie espagnole. Meme panier (image + VRAIE piste), meme
+#    prompt, duree = piste ; 0,0562 $/s contre 0,16, sortie 720x1280 a 30 im/s.
+#    Pas de resolution a choisir. La prise porte son nom (planNN-kling.mp4) :
+#    une prise etiquetee d'un modele qui ne l'a pas faite finit citee comme un
+#    fait (voir PROCEDURE-episode.md, etape 3).
+MODELES = {
+    "omnihuman": ("fal-ai/bytedance/omnihuman/v1.5", 0.16),
+    "kling": ("fal-ai/kling-video/ai-avatar/v2/standard", 0.0562),
+}
+
+
+def choisir_modele(nom):
+    global MODELE, PRIX, FILE, SUFFIXE
+    MODELE, PRIX = MODELES[nom]
+    FILE = "https://queue.fal.run/" + MODELE
+    SUFFIXE = nom
 
 # Les limites viennent de la fiche du modele : au-dela, il refuse.
 DUREE_MAX = {"1080p": 30.0, "720p": 60.0}
@@ -370,8 +403,9 @@ def archiver(chemin):
 def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
     ep, tel, essai = dossiers(scene)
     img, mp3, prompt, src = panier(tel, essai, n)
-    sortie = os.path.join(essai, "plan%02d-omnihuman.mp4" % n)
-    recu = os.path.join(essai, "plan%02d-fal.json" % n)
+    sortie = os.path.join(essai, "plan%02d-%s.mp4" % (n, SUFFIXE))
+    recu = os.path.join(essai, "plan%02d-fal.json" % n if SUFFIXE == "omnihuman"
+                        else "plan%02d-%s-fal.json" % (n, SUFFIXE))
 
     if os.path.exists(sortie) and not refaire:
         print("  plan %d : deja la (%s). --refaire pour la remplacer."
@@ -410,10 +444,11 @@ def un_plan(scene, n, cle_api, resolution, turbo, simuler, refaire):
     u_mp3, o_mp3 = deposer(mp3, "audio/mpeg", cle_api)
     print("    depose : image %.1f Mo, piste %.0f ko" % (o_img / 1e6, o_mp3 / 1e3))
 
-    corps = {"image_url": u_img, "audio_url": u_mp3, "prompt": prompt,
-             "resolution": resolution}
-    if turbo:
-        corps["turbo_mode"] = True
+    corps = {"image_url": u_img, "audio_url": u_mp3, "prompt": prompt}
+    if SUFFIXE == "omnihuman":
+        corps["resolution"] = resolution
+        if turbo:
+            corps["turbo_mode"] = True
 
     soum = _json(FILE, cle_api, corps)
     print("    requete %s" % soum.get("request_id", "?"))
@@ -490,7 +525,9 @@ def recuperer_en_souffrance(scene):
     for r in recus:
         d = json.load(io.open(r, encoding="utf-8"))
         n = int(os.path.basename(r)[4:6])
-        sortie = os.path.join(essai, "plan%02d-omnihuman.mp4" % n)
+        suffixe = next((k for k, (m, _) in MODELES.items() if m == d.get("modele")),
+                       "omnihuman")
+        sortie = os.path.join(essai, "plan%02d-%s.mp4" % (n, suffixe))
         if os.path.exists(sortie) or not d.get("response_url"):
             continue
         if d.get("etat") == "recue":
@@ -569,9 +606,12 @@ def main():
     p.add_argument("--patience", type=float, default=0.0,
                    help="minutes ; reessaie un plan tant que le service d'en "
                         "face est absent (un echec n'est pas facture)")
+    p.add_argument("--modele", default="omnihuman", choices=sorted(MODELES),
+                   help="omnihuman (defaut) ou kling (Kling Avatar v2 Standard)")
     p.add_argument("--plafond", type=float, default=2.0,
                    help="dollars ; le lot est refuse au-dela (defaut 2,00)")
     a = p.parse_args()
+    choisir_modele(a.modele)
 
     ep, tel, essai = dossiers(a.scene)
     if a.recuperer:
@@ -582,7 +622,7 @@ def main():
         for f in sorted(glob.glob(os.path.join(tel, "plan*-pleine.mp3"))):
             n = int(os.path.basename(f)[4:6])
             if a.refaire or not os.path.exists(
-                    os.path.join(essai, "plan%02d-omnihuman.mp4" % n)):
+                    os.path.join(essai, "plan%02d-%s.mp4" % (n, SUFFIXE))):
                 ns.append(n)
     elif a.plan:
         ns = a.plan

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Verso de la carte</title>
+<style>
+body{margin:0; padding:16px; background:#F7F3EC; color:#1C2430; font-family:system-ui,-apple-system,"Segoe UI",sans-serif;}
+h1{font-size:22px; margin:0 0 4px;} p.sous{margin:0 0 14px; color:#576177; font-size:14px; line-height:1.45; max-width:800px;}
+.grille{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:14px;}
+.choix{background:#fff; border:1.5px solid #e6dfd3; border-radius:18px; padding:12px 14px 14px; position:relative;}
+.num{position:absolute; top:10px; right:12px; font-weight:900; font-size:20px; color:#E8A23A;}
+.nom{font-weight:800; font-size:14px; margin:0 26px 4px 0;} .pq{font-size:12.5px; color:#576177; margin:0 0 10px; line-height:1.4;}
+.carte{background:#fffdf8; border:1px solid #eadfcb; border-radius:16px; padding:24px 12px; text-align:center; margin-bottom:12px;}
+.mot{font-size:24px; font-weight:900;} .sens{font-size:14px; color:#576177; margin-top:4px;}
+.rang{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+.b{display:flex; flex-direction:column; align-items:center; justify-content:center; gap:3px; min-height:66px; border-radius:16px; font:inherit; font-weight:800; font-size:14.5px; border:1.5px solid; padding:8px 6px; position:relative; overflow:hidden;}
+.b small{font-size:11.5px; font-weight:700; opacity:.85;}
+.encore{background:#fef9e0; border-color:#ecdfa6; color:#7f6c18;}
+.encore svg{width:24px; height:24px; fill:none; stroke:currentColor; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+/* Le verre vert des « Continuer » des exercices. */
+.verre{color:#fff; border:0; background:linear-gradient(180deg, rgba(40,122,76,.86), rgba(34,108,67,.82));
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6), inset 0 0 10px 3px rgba(255,255,255,.35), 0 6px 14px -8px rgba(8,70,40,.45);}
+.verre::after{content:""; position:absolute; top:3px; left:12%; width:76%; height:6px; border-radius:999px;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.75) 50%, rgba(255,255,255,0)); filter:blur(1px);}
+.clair{background:#d9f5e6; border-color:#9fdcbe; color:#1c6b47;}
+.coche{width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:2.8; stroke-linecap:round; stroke-linejoin:round;}
+.bille{width:30px; height:30px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #5fcf92, #2a8a57); display:flex; align-items:center; justify-content:center; box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6);}
+.bille svg{width:17px; height:17px; fill:none; stroke:#fff; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round;}
+.ligne{display:flex; align-items:center; gap:6px;}
+.pips{display:flex; gap:4px;} .pips i{width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.35);} .pips i.on{background:#fff;}
+.clair .pips i{background:rgba(28,107,71,.22);} .clair .pips i.on{background:#1c6b47;}
+.mince{display:flex; gap:8px; margin-top:8px;}
+.m{flex:1; display:flex; align-items:center; justify-content:center; gap:7px; padding:7px 10px; border-radius:12px; border:1.5px solid; font:inherit; font-size:12.5px; font-weight:800;}
+.m svg{width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linejoin:round;}
+.m small{font-size:11.5px; font-weight:700; opacity:.85;}
+.garde{background:#fdead9; border-color:#f0c59e; color:#95571b;}
+.connu{background:#eef2f8; border-color:#cdd6e6; color:#3b4a66;}
+.note{font-size:11.5px; color:#8a5a12; font-weight:800; margin:10px 0 0;}
+</style></head><body>
+<h1>Le verso de la carte : tes deux boutons</h1>
+<p class="sous">À gauche, partout : <b>Encore</b> avec la minuterie et « retour dans 2 minutes » (ta proposition 2), sur toute la moitié de la largeur. À droite, quatre façons de faire <b>Continuer</b> : de la plus proche des exercices (A) à celle qui garde le ✓ et ses quatre points (D). En bas, la ligne mince : « Mettre de côté » ; sur un mot <b>nouveau</b> seulement, « Je le connais déjà » s'y ajoute (dernière carte de chaque proposition).</p>
+<div class="grille" id="g"></div>
+<script>
+const MIN = '<svg viewBox="0 0 24 24"><path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/></svg>';
+const COCHE = '<svg class="coche" viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg>';
+const BILLE = '<span class="bille"><svg viewBox="0 0 24 24"><path d="M5.5 12.5l4.2 4.2L18.5 8"/></svg></span>';
+const PIPS = '<span class="pips"><i class="on"></i><i class="on"></i><i></i><i></i></span>';
+const COFFRE = '<svg viewBox="0 0 24 24"><path d="M5 12.8h14v6.1a1.6 1.6 0 0 1-1.6 1.6H6.6A1.6 1.6 0 0 1 5 18.9z"/><path d="M3.8 12.8V10.2A1.6 1.6 0 0 1 5.4 8.6h13.2a1.6 1.6 0 0 1 1.6 1.6v2.6z"/><path d="M10.8 14.2h2.4v3.2h-2.4z"/></svg>';
+const ETOILE = '<svg viewBox="0 0 24 24"><path d="M12 3.5l2.63 5.33 5.87.86-4.25 4.14 1 5.85L12 16.95 6.75 19.7l1-5.85L3.5 9.7l5.87-.86z"/></svg>';
+const ENCORE = `<button class="b encore">${MIN}<span>Encore</span><small>retour dans 2 minutes</small></button>`;
+const VARIANTES = [
+  ["A", "Continuer, exactement comme dans les exercices", "Le même bouton de verre vert que « Continuer » des phrases et des exercices. Le plus cohérent ; mais rien ne dit que le mot reviendra.",
+   `<button class="b verre"><span>Continuer</span></button>`],
+  ["B", "Continuer en verre, avec le ✓", "Le crochet dit « je savais », le mot dit ce qui se passe. Toujours rien sur le retour du mot.",
+   `<button class="b verre"><span class="ligne">${COCHE}Continuer</span></button>`],
+  ["C", "Continuer en verre, ✓ et les quatre points", "Les quatre points montrent l'avancée du mot : sans explication, on comprend qu'il faut plusieurs fois, donc qu'il reviendra. C'est ce qui répond au danger que tu as vu.",
+   `<button class="b verre"><span class="ligne">${COCHE}Continuer</span>${PIPS}</button>`],
+  ["D", "La bille au crochet, les quatre points, « Continuer » dessous", "Le bouton d'aujourd'hui (la bille de verre et ses points), avec le mot « Continuer ». Plus clair, moins semblable aux exercices.",
+   `<button class="b clair">${BILLE}${PIPS}<span>Continuer</span></button>`],
+];
+const g = document.getElementById("g");
+VARIANTES.forEach(([n, nom, pq, droite]) => {
+  const d = document.createElement("div");
+  d.className = "choix";
+  d.innerHTML = `<div class="num">${n}</div><div class="nom">${nom}</div><p class="pq">${pq}</p>
+    <div class="carte"><div class="mot">la mesa</div><div class="sens">la table</div></div>
+    <div class="rang">${ENCORE}${droite}</div>
+    <div class="mince"><button class="m garde">${COFFRE}Mettre de côté <small>pour le retravailler</small></button></div>
+    <p class="note">Sur un mot nouveau :</p>
+    <div class="mince"><button class="m connu">${ETOILE}Je le connais déjà</button><button class="m garde">${COFFRE}Mettre de côté</button></div>`;
+  g.appendChild(d);
+});
+</script>
+</body></html>

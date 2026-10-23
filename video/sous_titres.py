@@ -47,8 +47,9 @@ import montage as M                                         # noqa: E402
 
 SR = 16000
 FENETRE = 0.120        # de combien une frontiere peut glisser
-VOYELLES = "aeiouyäöüáéèêàâîïôûùAEIOUYÄÖÜ"
+VOYELLES = "aeiouyäöüáéèêàâîïôûùíóúAEIOUYÄÖÜÁÉÍÓÚ"   # + í ó ú : la serie espagnole (21 oct. 2026)
 PART_FIXE = 1.2        # ce que "pese" un mot avant meme ses voyelles
+DIT = "de"   # la langue dite, fixee par main() d'apres la scene
 PAUSE = {",": 1.4, ";": 1.6, ":": 1.6, ".": 2.0, "!": 2.0, "?": 2.0}
 
 
@@ -102,6 +103,12 @@ def decouper(F, piste, texte):
 
 
 def echapper(s):
+    # Les guillemets et la ponctuation haute restent colles a leur mot (espace
+    # insecable) : sinon « restait seul en bout de ligne, son mot a la suivante
+    # (22 oct. 2026, « on ne dit pas « / estacionar »).
+    s = s.replace("« ", "« ").replace(" »", " »")
+    for p in (" :", " ;", " !", " ?"):
+        s = s.replace(p, " " + p[1])
     return s.replace("\\", "\\\\").replace("{", "\\{").replace("}", "\\}")
 
 
@@ -120,6 +127,30 @@ def echapper(s):
 # garde colores les mots deja dits. Le style ne porte donc plus la couleur de
 # surbrillance -- elle est ecrite dans chaque ligne, sur le seul mot du
 # moment.
+# ⚠️ LA TRADUCTION AGRANDIE (22 oct. 2026). Jacques, sur l'episode espagnol :
+# « la traduction en francais est un peu trop petite ; il faudrait l'agrandir
+# parce que c'est pas facile a lire -- au debut on s'y retrouve pas ». Elle
+# passait en Arial 40 italique beige : 52 droit, presque blanc, contour 4.
+# Plus grande, elle prend deux ou trois lignes : la phrase dite (marge fixe de
+# 215 px) la chevaucherait. marge_dite() la remonte selon les lignes de la
+# traduction, estimees a TRAD_CAR caracteres par ligne.
+TRAD_CAR, TRAD_PX, TRAD_BAS = 36, 64, 110
+
+
+def marge_dite(trad):
+    """La marge basse de la phrase dite, au-dessus d'une traduction de n lignes."""
+    if not trad:
+        return 215
+    n = max(1, -(-len(trad) // TRAD_CAR))
+    return max(215, TRAD_BAS + n * TRAD_PX + 36)
+
+
+def remonter(lignes, trad):
+    """Pose marge_dite() sur les lignes de la phrase dite (style DE, marge 0)."""
+    mv = marge_dite(trad)
+    return [l.replace(",DE,,0,0,0,,", ",DE,,0,0,%d,," % mv, 1) for l in lignes]
+
+
 ENTETE = """[Script Info]
 ScriptType: v4.00+
 PlayResX: 1080
@@ -130,7 +161,7 @@ ScaledBorderAndShadow: yes
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: DE,Arial,54,&H00FFFFFF,&H00FFFFFF,&H00101418,&H00000000,-1,0,0,0,100,100,0,0,1,4,2,2,45,45,215,1
-Style: FR,Arial,40,&H00E8D8C8,&H00E8D8C8,&H00101418,&H00000000,0,1,0,0,100,100,0,0,1,3,2,2,45,45,120,1
+Style: FR,Arial,52,&H00E6ECF2,&H00E6ECF2,&H00101418,&H00000000,0,0,0,0,100,100,0,0,1,4,2,2,45,45,110,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -217,6 +248,11 @@ def main():
     plans = {p["n"]: p for p in json.load(io.open(feuille, encoding="utf-8"))}
     scene = json.load(io.open(os.path.join(RACINE, "scenes", a.scene + ".json"),
                               encoding="utf-8"))
+    # 21 oct. 2026 : LA LANGUE DITE n'est plus toujours l'allemand. La serie
+    # espagnole (scenes/es-*.json) porte « langue »: « es » et son texte dit
+    # sous « es » ; la serie allemande n'a pas ce champ et reste sous « de ».
+    global DIT
+    DIT = scene.get("langue", "de")
 
     # ============ UN CLIP PEUT PORTER PLUSIEURS REPLIQUES ============
     #
@@ -265,17 +301,17 @@ def main():
         p = groupe[0]
         n = p["n"]
         info = plans[n]
-        de, tr = p.get("de", ""), p.get(a.langue, "")
+        de, tr = p.get(DIT, ""), p.get(a.langue, "")
         if not de:
             continue
         if info["type"] == "replique":
             piste = os.path.join(tel, "plan%02d-pleine.mp3" % n)
             if not os.path.exists(piste):
                 continue
-            membres = [q for q in groupe if q.get("de")]
+            membres = [q for q in groupe if q.get(DIT)]
             # Le decoupage se fait sur le texte COMPLET du clip : c'est la seule
             # facon que le calage au prorata voie la vraie duree de parole.
-            mots = decouper(F, piste, " ".join(q["de"] for q in membres))
+            mots = decouper(F, piste, " ".join(q[DIT] for q in membres))
             # ⚠️ Le clip est coupe a `amorce` avant le premier mot : la piste
             # et le montage n'ont pas la meme origine. On recale sur le
             # premier mot, que monter_avatar place a `amorce` du debut.
@@ -287,15 +323,15 @@ def main():
             # cadre, et l'une resterait affichee pendant que l'autre est dite.
             i = 0
             for k, q in enumerate(membres):
-                nb = len(q["de"].split())
+                nb = len(q[DIT].split())
                 part = mots[i:i + nb]
                 i += nb
                 if not part:
                     continue
                 d = debut if k == 0 else max(debut, part[0][1] + decalage)
                 f = fin if k == len(membres) - 1 else min(fin, part[-1][2] + decalage)
-                lignes += phrase_mot_a_mot(part, decalage, d, f)
                 trq = q.get(a.langue, "")
+                lignes += remonter(phrase_mot_a_mot(part, decalage, d, f), trq)
                 if trq:
                     lignes.append("Dialogue: 0,%s,%s,FR,,0,0,0,,%s"
                                   % (tc(d), tc(f), echapper(trq)))
@@ -341,16 +377,19 @@ def main():
                 decalage = info["debut"] + 0.35
                 if mots:
                     fin_texte = min(fin, mots[-1][2] + decalage + TENUE)
-                lignes += phrase_mot_a_mot(mots, decalage, debut, fin_texte)
+                lignes += remonter(phrase_mot_a_mot(mots, decalage, debut, fin_texte), tr)
             else:
-                lignes.append("Dialogue: 0,%s,%s,DE,,0,0,0,,%s"
-                              % (tc(debut), tc(fin), echapper(de)))
+                lignes += remonter(["Dialogue: 0,%s,%s,DE,,0,0,0,,%s"
+                                    % (tc(debut), tc(fin), echapper(de))], tr)
         if tr:
             # La traduction suit l'allemand : elle sort du cadre avec lui.
             lignes.append("Dialogue: 0,%s,%s,FR,,0,0,0,,%s"
                           % (tc(debut), tc(fin_texte), echapper(tr)))
 
-    base = os.path.splitext(os.path.basename(a.clip))[0] if a.clip else "EPISODE-01-avatar"
+    # 21 oct. 2026 : le nom par defaut suit l'episode (il valait « EPISODE-01 »
+    # pour tous, et l'episode 2 recevait un EPISODE-01-avatar.fr.ass).
+    num = a.scene.split("-")[0]
+    base = os.path.splitext(os.path.basename(a.clip))[0] if a.clip else "EPISODE-%s-avatar" % num
     dst = os.path.join(ep, "%s.%s.ass" % (base, a.langue))
     io.open(dst, "w", encoding="utf-8-sig", newline="\r\n").write(
         ENTETE + "\n".join(lignes) + "\n")
@@ -360,7 +399,7 @@ def main():
         print("  Relancer avec --incruster pour les graver dans la video.")
         return
 
-    clip = a.clip or os.path.join(ep, "EPISODE-01-avatar-sonorise.mp4")
+    clip = a.clip or os.path.join(ep, "EPISODE-%s-avatar-sonorise.mp4" % num)
     if not os.path.exists(clip):
         sys.exit("  Video introuvable : %s" % clip)
     sortie = a.sortie or os.path.splitext(clip)[0] + "-st.mp4"

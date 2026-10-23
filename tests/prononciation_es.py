@@ -24,7 +24,7 @@ LES EXEMPLES sont des mots du corpus, deja dits par les DEUX voix, et absents
 de variantes.json : un mot que l'Amerique latine remplace ne s'entendrait
 pas tel qu'il est ecrit sur la carte.
 """
-import hashlib, io, json, os, re, sys
+import hashlib, io, json, os, re, sys, unicodedata
 
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -47,7 +47,7 @@ VOYELLES = [
   L("cinq voyelles, toujours entières", "five pure vowels"),
   L("Cinq voyelles, toujours prononcées de la même façon et en entier : a, e (« é »), i, o, u (« ou »). Jamais muettes, jamais nasales.",
     "Five vowels, always pronounced the same way and in full: a « ah », e « eh », i « ee », o « oh », u « oo ». No gliding (o is not the « oh-w » of « go »), and never reduced to « uh »."),
-  ["casa", "mesa", "libro"]),
+  ["casa", "mesa", "libro", "luna"]),
  ("u", "u", "[u]",
   L("toujours « ou »", "always « oo »"),
   L("Le u se dit toujours « ou » : luna se dit « louna ». Jamais le « u » français.",
@@ -62,7 +62,7 @@ VOYELLES = [
   L("pas de nasales : la voyelle, puis le n", "the vowel, then a real n"),
   L("Pas de voyelles nasales : dans pan, también, cinco, on dit la voyelle PUIS le n, comme dans « Anne » : « pann », « tam-bién ». Jamais « pain » ni « tambien » à la française.",
     "Before n, the vowel stays pure and the n is fully pronounced: pan « pahn », también « tahm-byen ». Don't let the vowel turn into « uh »."),
-  ["pan", "también", "cinco"]),
+  ["pan", "tren", "cinco", "con", "un", "también"]),
  ("diphtongues", "ue · ie", "[we] [je]",
   L("deux voyelles d'un seul coup", "two vowels in one beat"),
   L("Deux voyelles ensemble se disent d'un seul coup : bueno « boué-no », tiempo « tiém-po », nuevo « noué-vo ».",
@@ -88,17 +88,17 @@ CONSONNES = [
   L("toujours « k »", "always « k »"),
   L("ca, co, cu se disent « ka, ko, kou ». Devant e et i, on écrit qu et le u ne s'entend pas : queso « késo », aquí « aki ».",
     "ca, co, cu are « ka, ko, koo ». Before e and i, Spanish writes qu and the u is silent: queso « keh-so », aquí « ah-kee »."),
-  ["casa", "queso", "aquí"]),
+  ["casa", "comer", "cuatro", "queso", "aquí"]),
  ("j", "j · ge · gi", "[x]",
   L("raclé au fond de la gorge", "a strong h, like Scottish loch"),
   L("Le j, et le g devant e ou i, est un raclement au fond de la gorge, comme un « r » français soufflé : jamón, gente. Au Mexique, il est plus doux, presque un « h » soufflé.",
     "j, and g before e or i, is a rasp in the throat like the « ch » of Scottish « loch » — a strong, breathy h: jamón, gente. In Mexico it is softer, close to an English h."),
-  ["jamón", "ojo", "gente"]),
+  ["jamón", "ojo", "gente", "página"]),
  ("g-gu", "ga · go · gu · gue · gui", "[g]",
   L("g dur ; gue, gui : u muet", "hard g; in gue, gui the u is silent"),
   L("ga, go, gu ont un g dur, comme « gare ». Devant e et i, on écrit gu et le u ne s'entend pas : guerra « guérra ». Le tréma le fait entendre : bilingüe « bi-lin-goué ».",
     "ga, go, gu have a hard g as in « go ». Before e and i, Spanish writes gu and the u is silent: guerra « geh-rra ». A diaeresis makes it heard: bilingüe « bee-leen-gweh »."),
-  ["gato", "guerra", "bilingüe"]),
+  ["gato", "amigo", "guerra", "guitarra", "bilingüe"]),
  ("ch", "ch", "[tʃ]",
   L("« tch »", "« ch » as in church"),
   L("ch se dit « tch » : noche « notché », ocho « otcho ». Jamais le « ch » français de « chat ».",
@@ -146,7 +146,7 @@ ACCENT = [
   L("une syllabe plus forte", "one stressed syllable"),
   L("Chaque mot a une syllabe plus forte. Mot terminé par une voyelle, n ou s : l'avant-dernière (casa, hablan). Autre consonne : la dernière (ciudad, hablar). Sinon, l'accent écrit la montre (café, médico, canción). Le piège du francophone : mettre la force à la fin, comme en français.",
     "Every word has one stressed syllable. Ending in a vowel, n or s: the second-to-last (casa, hablan). Any other consonant: the last (ciudad, hablar). Otherwise the written accent shows it (café, médico, canción)."),
-  ["médico", "canción", "café", "ciudad"]),
+  ["sofá", "médico", "aquí", "canción", "música", "café"]),
 ]
 
 # LE PORTUGAIS DU BRESIL (13 oct. 2026), ecrit CONTRE le portugais et non traduit
@@ -265,6 +265,18 @@ def corpus():
     return idx
 
 
+def sans_accent(s):
+    return "".join(unicodedata.normalize("NFD", c)[0] for c in s)
+
+
+def son_dans_mot(mot, morceau):
+    fin = morceau.startswith("-")
+    cle = (morceau[1:] if fin else morceau).lower()
+    bas = mot.lower()
+    essais = [bas, sans_accent(bas)] if cle == sans_accent(cle) else [bas]
+    return any(b.endswith(cle) if fin else cle in b for b in essais)
+
+
 def construire():
     idx = corpus()
     remplaces = set(json.load(io.open(os.path.join(DATOS, "variantes.json"), encoding="utf-8")).get("noms", {}))
@@ -312,6 +324,14 @@ def construire():
                     if not os.path.exists(os.path.join(RACINE, "audio", "mp3", voix, h + ".mp3")):
                         fautes.append("%s : « %s » sans voix %s" % (rid, mot, voix))
                 ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_pt", "traduction_ar") if e.get(c)}})
+            # v919 : CHAQUE MORCEAU DE LA GRAPHIE A SON EXEMPLE. La carte du son du
+            # jour rend chaque morceau touchable et lui fait dire son mot ; un morceau
+            # sans mot resterait muet (Jacques, 22 oct. 2026 : « an en in on un [...]
+            # devrait avoir un exemple chacun »). Meme regle que sonDansMot() dans
+            # index.html : a la fin pour « -e », accents ignores si le morceau n'en a pas.
+            for morceau in [m.strip() for m in re.sub(r"\([^)]*\)", " ", graphie).split("·") if m.strip()]:
+                if not any(son_dans_mot(e["mot"], morceau) for e in ex):
+                    fautes.append("%s : « %s » sans exemple" % (rid, morceau))
             if len(ex) < 2:
                 fautes.append("%s : moins de deux exemples" % rid)
             r = {"id": rid, "graphie": graphie, "api": api, "court": court, "explication": expl, "exemples": ex}

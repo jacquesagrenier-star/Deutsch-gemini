@@ -251,6 +251,36 @@ def main():
               % ", ".join(str(n) for n in ordre))
     else:
         ordre = ORDRE
+    # ⚠️ LA QUEUE D'UN PLAN N'EST PAS LA MEME POUR TOUS. La regle generale --
+    # amorce + narration + queue -- taille chaque plan sur SA PAROLE, ce qui
+    # est juste tant que le plan ne raconte rien apres. La chute de l'episode
+    # 3 raconte precisement apres : le cycliste sort du cadre et Mark leve les
+    # bras, deux secondes ou personne ne parle. Avec la queue commune de 0,90
+    # s, une prise de six secondes etait recoupee a quatre, et le geste
+    # disparaissait -- sans erreur, sans avertissement, et apres avoir paye la
+    # prise.
+    #
+    # La queue particuliere vit donc a cote des plans, dans _queues.txt, comme
+    # l'ordre : « 18 3.0 » par ligne, le reste garde --queue.
+    queues = {}
+    feuille_queues = os.path.join(ep, "_queues.txt")
+    if os.path.exists(feuille_queues):
+        brut = io.open(feuille_queues, encoding="utf-8").read()
+        for ligne in brut.splitlines():
+            ligne = ligne.split("#")[0].strip()
+            if not ligne:
+                continue
+            bouts = ligne.replace(",", " ").split()
+            if len(bouts) >= 2:
+                queues[int(bouts[0])] = float(bouts[1])
+        if queues:
+            print("  queues particulieres : %s"
+                  % ", ".join("plan %02d -> %.2f s" % (k, queues[k])
+                              for k in sorted(queues)))
+
+    def queue_de(n):
+        return queues.get(n, a.queue)
+
     tel = os.path.join(ep, "_a-televerser")
     # ⚠️ DEUX ENDROITS SELON L'EPISODE, ET C'EST UNE DERIVE A NE PAS
     # ARBITRER EN SILENCE. L'episode 1 range ses prises retenues dans
@@ -282,7 +312,12 @@ def main():
     for n in ordre:
         dst = os.path.join(tmp, "plan%02d.mp4" % n)
         if n in PARLANTS:
-            src = os.path.join(ret, "plan%02d-omnihuman.mp4" % n)
+            # La prise porte le nom de son modele (omnihuman.py --modele) ;
+            # Kling d'abord, depuis la serie espagnole (21 oct. 2026).
+            src = next((c for c in (os.path.join(ret, "plan%02d-%s.mp4" % (n, m))
+                                    for m in ("kling", "omnihuman"))
+                        if os.path.exists(c)),
+                       os.path.join(ret, "plan%02d-omnihuman.mp4" % n))
             piste = os.path.join(tel, "plan%02d-pleine.mp3" % n)
             if not os.path.exists(src) and a.a_blanc and os.path.exists(piste):
                 # Le plan n'existe pas encore : on garde sa PLACE et sa VOIX.
@@ -290,7 +325,7 @@ def main():
                 if img:
                     tete, queue, _ = M.parole(F, piste)
                     debut = max(0.0, tete - a.amorce)
-                    duree = (queue - debut) + a.queue
+                    duree = (queue - debut) + queue_de(n)
                     duree = min(duree, M.duree(F, piste) - debut)
                     carton(F, img, piste, dst, debut, duree)
                     a_blanc.append(n)
@@ -307,7 +342,7 @@ def main():
                 continue
             tete, queue, _ = M.parole(F, piste)
             debut = max(0.0, tete - a.amorce)
-            duree = (queue - debut) + a.queue
+            duree = (queue - debut) + queue_de(n)
             duree = min(duree, M.duree(F, src) - debut)
             normaliser(F, src, dst, debut, duree)
             print("  %02d    avatar          %6.2f s   %.2f -> %.2f"
@@ -344,7 +379,7 @@ def main():
                       % (n, duree))
             else:
                 dv = M.duree(F, voix)
-                duree = min(M.duree(F, src), a.amorce + dv + a.queue)
+                duree = min(M.duree(F, src), a.amorce + dv + queue_de(n))
                 narrer(F, src, voix, dst, duree, a.amorce)
                 print("  %02d    decor + voix    %6.2f s   narration %.2f s"
                       % (n, duree, dv))
@@ -369,6 +404,14 @@ def main():
     # dossier du 2. Un fichier mal nomme est la premiere marche vers une
     # mesure fausse -- deja paye deux fois sur ce projet.
     num = a.scene.split("-")[0] if a.scene and a.scene[:2].isdigit() else "01"
+    # ⚠️ ET LA SERIE ESPAGNOLE (21 oct. 2026) : « es-02-el-carro » ne commence pas
+    #    par un chiffre, et l'episode 2 est ressorti en EPISODE-01 -- la meme faute
+    #    que ci-dessus, par une autre porte. Le numero vient du champ « episode ».
+    fscene = os.path.join(RACINE, "scenes", a.scene + ".json")
+    if not a.scene[:2].isdigit() and os.path.exists(fscene):
+        d_sc = json.load(io.open(fscene, encoding="utf-8"))
+        if d_sc.get("episode"):
+            num = "%s-%02d" % (d_sc.get("langue", "").upper() or "X", int(d_sc["episode"]))
     defaut = ("EPISODE-%s-vitrine.mp4" % num if (a.vitrine or a.ordre)
               else "EPISODE-%s-avatar.mp4" % num)
     dst = a.sortie or os.path.join(ep, defaut)

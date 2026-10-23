@@ -1,0 +1,65 @@
+VOIX CANDIDATES -- serie espagnole (ep. 1 et 2), 21 oct. 2026
+Modele : eleven_multilingual_v2 (Flash interdit). Fichiers ECOUTER-*.mp3 : les
+candidates dans l'ordre ci-dessous, une seconde de silence entre elles.
+
+⚠️ Les voix de la BIBLIOTHEQUE s'utilisent directement par leur ID, sans les
+   ajouter au compte (verifie le 21 oct.). La cle du projet ne peut pas
+   CHERCHER dans la bibliotheque (droit de synthese seulement) : les ID
+   viennent des pages publiques elevenlabs.io/text-to-speech/mexican-accent,
+   /spanish-castilian-accent, /latin-american-accent, /spanish.
+⚠️ Les voix de la VOISINE sont des apercus du createur de voix (Voice Design) :
+   pour s'en servir, il faut ENREGISTRER celle choisie dans le compte
+   (create-voice-from-preview) -- a faire seulement avec l'accord de Jacques.
+
+1. NARRATEUR (Espagne)
+   1  Martin Osborne, « Mature and Polished »  6xftrpatV0jGmFHxDjUv  castillan, ~45 ans
+   2  Emilio, « Warm, Solid and Convincing »    ZCh4e9eZSUf41K4cmCEL  Espagne
+   3  David Martin, « Clear, Calm and Elegant » y6WtESLj18d0diFRruBs  castillan, jeune
+
+2. MARK (Mexique)
+   1  Alejandro Ballesteros, « Warm and Joyful »   YKUjKbMlejgvkOZlnnvt  page « Mexican accent »
+   2  Mat Oyarzo, « Motivating, Young and Clear »   kKcRoM4gR6HLJt6Zupbs  page « Mexican accent »
+   3  Antonio, « Confident, Gentle and Clear »      htFfPSZGJwjBv1CL0aMD  pages Mexique et Am. latine
+   4  la voix allemande de Mark (mark-vd-03)        J8ovlSvQ5WTDCCxIM8U0  (meme voix que l'episode allemand)
+
+3. ANA (Madrid)
+   1  Lolita (deja la voix espagnole de l'app)      3EsCRTMlRTbsPyDyDm45
+   2  Sara Martin, « Gentle and Layered »           KHCvMklQZZo0O30ERnVn  castillane
+   3  la voix allemande d'Anna                      92qyovlOYJE0EVmWB0fA
+
+4. LA VOISINE (Madrid, ~60 ans) -- apercus Voice Design, pas encore enregistres
+   1  lPq3QXP4uzHfzVDhQqj1
+   2  b5CDyxJGSGIGNhpbMTB6
+   3  PXMvvdBhlzdSOSA7fZsj
+
+CHOIX DE JACQUES (21 oct. 2026)
+   NARRATEUR  3  David Martin           y6WtESLj18d0diFRruBs
+   MARK       4  sa voix allemande       J8ovlSvQ5WTDCCxIM8U0  (la meme voix dans les deux series)
+   ANA        1  Lolita                 3EsCRTMlRTbsPyDyDm45  (« tres beau », apres ecoute des six repliques de l'ep. 1 ; « th » mesure)
+   VOISINE    3  apercu Voice Design    PXMvvdBhlzdSOSA7fZsj  (choisie par moi a la demande de Jacques, sur mesure :
+                 dans « se estaciona », le « ci » de la n. 3 est un souffle faible, part d'aigus 0,29 contre 0,58-0,66
+                 pour les « s » voisins = « th » d'Espagne ; la n. 2 le dit « s » (0,52) ; la n. 1, trop sourde,
+                 ne se mesure pas). A ENREGISTRER dans le compte avant usage.
+
+ANALYSE (21 oct. 2026) -- Jacques ne juge pas les accents espagnols : on mesure.
+  TIMBRE (SpeechBrain ECAPA, cosinus a la voix de la serie allemande ; etalonnage :
+  meme voix meme langue 0,56-0,61, deux voix differentes 0,18)
+     Mark   direct 0,49   changeur 0,32   source Alejandro 0,23
+     Anna   direct 0,40   changeur 0,47   source Lolita 0,17
+  ACCENT (audio/accent_es.py --v2 : mediane des paires s/z ; < 0,2 « th » Espagne, > 0,6 « s »)
+     Mark direct (J8ov)   1,56  « s » -- juste pour un Mexicain (ni argentin ni caraibe)
+     Anna direct (92qy)   0,88  « s » -- FAUX pour une Madrilene
+     Lolita               0,02  « th »
+     Anna via changeur    0,37  incertain (le « th » s'affaiblit a la conversion ; temoin instable 0,49)
+  => MARK : voix allemande en direct (choix de Jacques, et la mesure le confirme).
+
+VOISINE DEVENUE MEXICAINE (idee de Jacques, 21 oct. 2026) -> voix Guadalajara n. 1, 99xYMbm7BaFGAbjADhFF,
+enregistree (« Wortando - vecina Guadalajara »), accent en phrases 1,35 (« s »). La voix madrilene n. 3
+(PXMvvdBhlzdSOSA7fZsj, « Wortando - vecina Madrid ») est enregistree mais ne sert plus.
+DISTRIBUTION FINALE : narrateur David Martin, Mark voix allemande en direct, Ana Lolita, voisine Guadalajara.
+Elle est ecrite dans scenes/es-0*.json, champ « locuteurs ».
+
+VOISINE, DEUXIEME TOUR (21 oct. 2026) : la voix « Guadalajara » etait « saccadee, difficile a comprendre ».
+Sept candidates sur ses vraies repliques (voisine-tour2/) ; Jacques choisit la n. 4, JHENNY, 2Lb1en5ujrODDIqmp7F3
+(bibliotheque, latino-americaine neutre, accent en phrases 1,13 = « s »). Reglages poses (0,60 / 0,15).
+Deux voix creees restent enregistrees sans servir : « Wortando - vecina Madrid » et « Wortando - vecina Guadalajara ».

@@ -617,6 +617,119 @@ REGLES = [
      u"oublies dans le sable), << a real photograph... as a passer-by would "
      u"take it with a good phone camera >> et la liste des matieres : une "
      u"vraie photo, Mark et Anna reconnaissables, aucun lieu perdu."),
+    ("interlocuteur-fantome", "doute",
+     None,   # logique a part, dans controler()
+     u"L'interlocuteur hors champ, nomme par son cote : le modele le dessine au bord",
+     u"21 oct. 2026, es-02 plan 02 (Kling, 0,20 $) : << speaking to someone just off "
+     u"screen beyond the RIGHT edge >> -- une silhouette fantome est apparue au bord "
+     u"droit au milieu du plan, puis repartie. intrus_au_bord.py (premiere/derniere image) "
+     u"rendait 2,6 : il ne voyait pas ce qui ressort avant la fin. DEUXIEME PRISE (0,20 $), "
+     u"bord rempli mais l'autre encore NOMME (<< he greets an older lady >>, << asks her >>) : "
+     u"une tete au bas du cadre, et Mark qui baisse les yeux vers elle.",
+     u"NE JAMAIS NOMMER L'INTERLOCUTEUR -- ni « someone », ni « her », ni « the lady » : "
+     u"ce que le prompt nomme, le modele le fabrique. Donner un POINT a regarder : << He "
+     u"speaks towards a point just beyond the right edge of the picture, level with his own "
+     u"eyes. >> Et remplir l'espace jusqu'a ce bord (<< between him and the edge of the frame, "
+     u"the sunny pavement... runs on, open >>). intrus_au_bord.py mesure toutes les "
+     u"demi-secondes."),
+    ("texte-incruste", "doute",
+     None,   # logique a part, dans controler() : une replique sans la poitrine decrite
+     u"Kling incruste de faux sous-titres sur le personnage",
+     u"21 oct. 2026, es-01 plan 13 (Ana, 0,40 $ de reprise) : deux lignes de lettres "
+     u"blanches illisibles sur sa poitrine, de 2,8 s a la fin de la prise. Le prompt ne "
+     u"parlait d'aucun texte, et rien dans le retour ne le signalait : vu sur une bande "
+     u"d'images. Mesure : video/texte_incruste.py (270 contre 2 a 29 pour les prises propres). "
+     u"⚠️ LE REMEDE CI-DESSOUS NE SUFFIT PAS, mesure le meme soir : sur 24 repliques AVEC la "
+     u"poitrine decrite, 4 avaient encore des sous-titres MOT A MOT, et 3 sur 4 les ont REFAITS "
+     u"a la reprise -- les memes repliques (es-01 16, es-02 06 et 12). Ce n'est pas du hasard : "
+     u"quelque chose dans ces pistes declenche Kling. Le delogo de ffmpeg laisse une bande floue "
+     u"et des restes de lettres (les mots n'ont pas la meme largeur) : inutilisable. "
+     u"22 oct. 2026, es-02 plan 08 (la voisine, « muy bien ») : propre en septembre, il en a "
+     u"fait a la reprise des gestes, PUIS a la reprise suivante (2 x 0,40 $) -- une replique "
+     u"qui en fait deux fois de suite en refera. "
+     u"22 oct. 2026, es-03 (17 prises) : le detecteur a signale 5 prises, dont 4 a tort (le "
+     u"mouvement des mains), et il a MANQUE le plan 19 -- quelques petites lettres blanches sur "
+     u"le pull d'Ana, sous son seuil. Seul l'oeil sur la planche d'images les a vues.",
+     u"Decrire la poitrine du debut a la fin (<< Across her chest we see only... >>) -- ca "
+     u"en evite certains, pas tous. Passer CHAQUE prise Kling a video/texte_incruste.py avant de "
+     u"la retenir, PUIS la regarder sur une planche d'images (le detecteur se trompe dans les "
+     u"deux sens : il prend un geste pour du texte, et rate un petit texte). Une replique qui en remet a la reprise : ne pas reessayer a l'aveugle -- "
+     u"changer de modele pour ce plan (OmniHuman n'en a jamais fait en ~40 prises), sur "
+     u"decision de Jacques puisque ca change le rendu."),
+    ("comptoir-devant", "doute",
+     r"(?i)\b(counter|bar|desk|table|zinc)\b[^.]{0,80}\bin front of (him|her|them)\b",
+     u"Le comptoir « devant » un personnage : le modele le met ENTRE lui et la camera -- de l'autre cote",
+     u"22 oct. 2026, es-03 : << The zinc counter runs across the picture in front of her at the height "
+     u"of her hips >> -- Ana est sortie DERRIERE le zinc, cote serveur. Mark, decrit pareil, est sorti du "
+     u"bon cote par chance. Jacques : << c'est comme si Marc etait de l'autre cote du comptoir >>. Image "
+     u"et cinq repliques a refaire (~1,35 $).",
+     u"Dire de quel COTE est la personne, et ce qui est entre elle et la camera : << She stands on the "
+     u"customer side; the counter is BEHIND her and to her side, her elbow resting on it; nothing stands "
+     u"between her and the camera. >> Et faire d'abord le plan d'ensemble (acquis du 22 oct.). "
+     u"⚠️ MEME CETTE PHRASE-LA A RATE (22 oct., 2e essai : le zinc encore au premier plan). Ce qui a "
+     u"marche, au 3e : << with her back half turned to the counter: the zinc counter is BEHIND HER BACK, "
+     u"... and in front of her there is only the open floor of the bar and the camera >>. Si le regard "
+     u"sort du mauvais cote, l'image retournee en MIROIR le corrige gratuitement (le decor flou suit)."),
+    ("visage-d-une-serie-a-l-autre", "faute",
+     None,   # se juge a la lecture de la feuille : quelle image de quelle serie sert de visage
+     u"Un visage d'une serie repris dans l'autre (Berlin <-> Madrid)",
+     u"22 oct. 2026, es-03 (0,15 $ + une image a refaire) : le serveur madrilene reprenait le "
+     u"visage du Beamter allemand (beamter-moyen.png), sur le modele de la voisine d'es-02 (le "
+     u"visage de la dame du feu rouge de l'episode 3). Jacques : « ca n'a pas de sens » -- qui suit "
+     u"les deux series reconnait le fonctionnaire de Berlin derriere un zinc de Madrid.",
+     u"Un visage reste dans SA serie. Un cameo a l'interieur d'une serie peut se defendre (le "
+     u"cycliste de Berlin en voisin du Spaeti : meme Kiez) ; d'une serie a l'autre, jamais. Un "
+     u"personnage neuf de l'autre serie se decrit une fois (age, origine, traits) et son image "
+     u"devient sa reference. Mark et Ana/Anna sont l'exception voulue : la serie les suit."),
+    ("geste-repete", "faute",
+     None,   # logique a part, dans verifier_scene() : elle compare les prompts entre eux
+     u"Le meme geste (ou la meme immobilite) dans plusieurs repliques d'un personnage",
+     u"22 oct. 2026, es-01 (Ana, 1,11 $ de reprises). Ses quatre plans moyens portaient la "
+     u"MEME phrase de mains (<< Her hands stay at her sides, open and empty >>) : Kling en a "
+     u"fait le meme geste a chaque fois, les deux mains qui s'ouvrent. Jacques : << le geste "
+     u"est bien, mais repetitif, ca fait machinal -- les Espagnols parlent beaucoup avec leurs "
+     u"mains >>. Mark (es-01 5/10/14, es-02 x6) avait le travers inverse : la meme phrase "
+     u"d'immobilite, et les bras ballants identiques d'un plan a l'autre.",
+     u"⚠️ OMNIHUMAN FAIT PEU DE GESTES DEMANDES (22 oct. 2026, es-02 plan 12, 0,92 $ : la main "
+     u"« plus ou moins » n'est jamais venue ; pilote par la voix, il bouge le visage). Un geste "
+     u"qui compte se demande a Kling ; OmniHuman reste le remede du texte incruste. "
+     u"UN GESTE PAR REPLIQUE, ecrit pour CE que dit la replique (montrer, main sur le coeur, "
+     u"mains jointes, << c'est facile >>...) : par sa geometrie (nom-du-geste), son amplitude "
+     u"(verbe-sans-plafond), TENU jusqu'a la fin (geste-qui-revient), le cote dit par l'image "
+     u"(cote-du-corps). Une seule main bouge, l'autre est dite immobile D'ABORD -- sinon les "
+     u"deux se rejoignent (es-01 plan 09, 1re prise). Dans video/prompts_repliques_es.py : le "
+     u"dictionnaire GESTES. Ce controle refuse une scene ou deux prompts partagent une phrase "
+     u"de mains : video/verifier_prompt.py --scene <scene>."),
+    ("retouche-de-style", "faute",
+     r"(?i)(\bturn (it|this|the (drawing|picture|illustration|image)) into\b"
+     r"|\bthe first reference picture is (a|an|the) (blurred|out-of-focus|"
+     r"drawing|illustration|painting|sketch|layout)\b"
+     r"|\bfixes the composition only\b|\bproduce the same photograph sharp\b"
+     r"|\bexactly the scene laid out in the first reference\b)",
+     u"Une image donnee en reference pour en changer le STYLE (dessin -> "
+     u"photo) : le modele rend la meme image dans le meme style",
+     u"TROIS FOIS, 0,45 $ en tout. 11 oct. 2026, marktplatz (0,15 $) : "
+     u"<< Turn it into a real photograph, keep everything exactly where it "
+     u"is >>, le dessin en premiere reference -> le meme dessin, trait pour "
+     u"trait. 16 oct. 2026, bauernhof (2 x 0,15 $), avec deux mecaniques "
+     u"DIFFERENTES, choisies pour contourner ce premier echec : (1) le dessin "
+     u"presente comme << the exact layout of the photograph to take >>, sans "
+     u"le mot dessin, et la matiere photographique decrite positivement -> "
+     u"le meme dessin, a l'ecart pres de 12/255 ; (2) le dessin FLOUTE "
+     u"(gaussien 7 px, le trait de pinceau disparu) presente comme << a "
+     u"blurred, out-of-focus phone photograph >> a rendre nette -> toujours "
+     u"une illustration, nette. La palette saturee, la peau lisse et la "
+     u"lumiere uniforme suffisent au modele pour reconnaitre et garder le "
+     u"style : il n'a pas besoin du trait. La composition, elle, est tenue au "
+     u"pixel pres les trois fois -- c'est ce que l'edition sait faire.",
+     u"La retouche DEPLACE, retire, efface, ajoute ; elle ne change pas de "
+     u"STYLE, meme floutee, meme sans nommer le dessin. Une scene sortie en "
+     u"dessin se REFAIT depuis le texte (voir << saynetes-en-foule >> : moins "
+     u"de personnes, la matiere nommee, << as a passer-by would take it with "
+     u"a good phone camera >>) -- et ses zones se remesurent, parce qu'une "
+     u"image refaite depuis le texte ne garde pas les positions. Verifier le "
+     u"STYLE a la reception, avant de mesurer une seule zone : chaque zone "
+     u"mesuree sur un dessin est du travail qu'on perdra."),
 ]
 
 # --------------------------------------------------------------------------
@@ -633,6 +746,70 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"LE PLAN D'ENSEMBLE D'ABORD : tous les personnages d'un lieu, a leur place, avant le moindre portrait",
+     u"22 oct. 2026",
+     u"es-03 (El cafe) : chaque personnage fait SEUL, et trois erreurs n'ont ete vues qu'au montage, une "
+     u"fois les repliques payees -- le serveur au visage du fonctionnaire de Berlin, Ana du mauvais cote du "
+     u"zinc, Mark deplace dans sa retouche du lundi. Jacques : << ca augmente les couts >> ; et << j'aurais "
+     u"aime une scene ou on voit les deux ensemble >>.",
+     u"Des que deux personnages partagent un lieu : 1) le decor maitre vide ; 2) le PLAN D'ENSEMBLE, tous "
+     u"les personnages a leur place (le cote de chacun dit en toutes lettres, voir << comptoir-devant >>), "
+     u"REGARDE avant de continuer -- c'est la que se voient les cotes, les regards, les tenues ; 3) les "
+     u"portraits des repliques tires de ce plan d'ensemble. Le plan d'ensemble sert aussi a l'episode : "
+     u"le spectateur voit enfin ou sont les gens."),
+    (u"UN GESTE DIFFERENT PAR REPLIQUE : une main qui bouge, l'autre dite immobile d'abord",
+     u"22 oct. 2026",
+     u"es-01, Ana, quatre reprises Kling (1,11 $ + 0,25 $ pour le plan 09). Montrer le tapis "
+     u"(plan 06), mains jointes a la taille (11), paume ouverte << c'est facile >> (15) : justes "
+     u"du premier coup. La main sur le coeur (09) : la 1re prise a joint les DEUX mains a la "
+     u"taille, comme au plan 11 ; reecrite << sa main cote droit de l'image reste pendante, "
+     u"pour tout le plan. Seule l'autre bouge : elle MONTE jusqu'a la poitrine et se pose a plat "
+     u"sur le revers >>, juste a la reprise. Aucune incrustation de texte sur les cinq prises.",
+     u"Ecrire le geste dans GESTES (video/prompts_repliques_es.py), pour ce que la replique "
+     u"DIT ; immobiliser l'autre main EN PREMIER, puis decrire le trajet de celle qui bouge "
+     u"(d'ou elle part, ou elle s'arrete) ; un geste qui touche la poitrine change aussi la "
+     u"TENUE du plan (TENUE_PLAN). Puis --scene, qui refuse deux repliques au meme geste."),
+    (u"H3 Max : la MEME image en premiere ET en derniere image verrouille le cadre",
+     u"21 oct. 2026",
+     u"es-02, plan 09 (Mark fier, 0,32 $ de reprise). Le prompt portait la phrase de "
+     u"verrou (<< the camera is locked on a tripod... >>) et celle de la queue (<< in "
+     u"the last frame everything is the same size... >>) : H3 a quand meme AVANCE la "
+     u"camera, Mark grossissant d'image en image. Reprise avec end_image_url = l'image "
+     u"de depart : cadre fixe du debut a la fin, le hochement de tete demande est "
+     u"toujours la. Sur les trois autres decors du jour (rue de nuit, balcon, "
+     u"sandwich), la phrase seule avait suffi : ce n'est pas systematique.",
+     u"Pour un plan fixe chez H3 ou un visage occupe le cadre : video/mouvement.py "
+     u"--modele h3 --fin-identique. Le texte demande un etat ; l'image de fin "
+     u"l'impose. A ne pas utiliser si le plan doit FINIR ailleurs qu'il a commence."),
+    (u"Une GEOGRAPHIE en gauche/droite DE L'IMAGE tient sept images d'affilee",
+     u"21 oct. 2026",
+     u"Episode espagnol 2 (El carro), demande de Jacques : << qu'on donne assez "
+     u"d'informations pour qu'il n'y ait pas ce genre de probleme >> (les cotes "
+     u"de l'episode 3 allemand). Ecrit AVANT les prompts : camera toujours du "
+     u"meme cote de la rue, la voiture pointe vers la GAUCHE de l'image (on "
+     u"roule a droite), Mark TOUJOURS a gauche de la voisine (regle des 180 "
+     u"degres), lui regarde vers le bord droit, elle vers le bord gauche, le "
+     u"soleil vient de la droite. Puis un decor maitre SANS personne, donne en "
+     u"reference a tous les autres. Six images sur six justes du premier coup "
+     u"(portraits, gros plan, vue du balcon, retouche une heure plus tard). Le "
+     u"decor maitre lui-meme : une prise sur trois avait la voiture a l'envers "
+     u"-- c'est la geographie ecrite qui l'a fait refuser.",
+     u"Ecrire la carte du lieu en tete de la feuille, en GAUCHE/DROITE DE "
+     u"L'IMAGE (jamais du corps), avec le sens des vehicules, le cote du soleil "
+     u"et qui est a gauche de qui ; fabriquer d'abord le decor vide, le juger "
+     u"CONTRE la carte, puis le referencer partout << POUR LE LIEU >>."),
+    (u"Faire relire par un autre modele AVEC les images attrape ce que je decris de memoire",
+     u"21 oct. 2026",
+     u"Relecture par Fable des dix prompts espagnols, images ouvertes : une "
+     u"epaule que j'avais decrite sur anna-serre.png n'y est pas (elle est sur "
+     u"anna-moyen, et de l'autre cote) ; << her pose stays >> contredisait << her "
+     u"arms hang at her sides >> (sa main etait sur le comptoir) ; un sac de "
+     u"chariot demande sous la ligne de coupe ; un carton sur lequel Mark "
+     u"s'assoit, absent de la base ; un comptoir dans mark-moyen.png que je "
+     u"reprenais << tel quel >>. Tout corrige avant de payer, puis dix images "
+     u"bonnes au premier essai.",
+     u"Donner au relecteur les IMAGES de reference, pas leur description, et lui "
+     u"demander de separer les FAITS (verifiables sur un fichier) des AVIS."),
     (u"RETIRER quelqu'un par une retouche : tout le reste reste en place",
      u"11 oct. 2026",
      u"wohnzimmer-vide, 0,15 $, du premier coup. La premiere prise du salon "
@@ -1008,7 +1185,7 @@ PHRASE_VERROU = re.compile(r"(?i)Locked-off camera:[^.]*\.")
 #
 #    Ce qui reste est ce qui a reellement coute des images : la garde
 #    negative, l'icone appelee par son nom, et l'empilement de negations.
-POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
+POUR_IMAGE = ("garde-negative", "comptoir-devant", "icone-nommee-par-son-nom",
               "negations-en-nombre", "qualificatifs-empiles",
               "taille-par-adjectif", "nom-du-geste", "repere-hors-champ",
               "sol-bord-a-bord", "corps-sans-contact",
@@ -1018,7 +1195,7 @@ POUR_IMAGE = ("garde-negative", "icone-nommee-par-son-nom",
               "personne-sans-reference", "pose-pour-la-camera",
               "fruit-a-etiquette", "objet-sous-le-personnage",
               "personnage-qui-se-penche", "tete-calee-sur-le-fond",
-              "saynetes-en-foule")
+              "saynetes-en-foule", "retouche-de-style")
 
 # Toute personne nommee dans une scene. Voir << saynetes-en-foule >>.
 FOULE = re.compile(r"(?i)\b(woman|man|girl|boy|lady|doctor|teacher|nurse|"
@@ -1142,6 +1319,19 @@ def controler(texte, image=False):
             #    sont DANS le cadre, puisque c'est le cadre qu'on commande. Un
             #    controle qui accuse le juste se fait desarmer.
             continue
+        if code == "interlocuteur-fantome":
+            cote = re.search(r"(?i)off screen beyond the (left|right) edge", texte)
+            if cote and not re.search(r"(?i)between (him|her) and the edge of the frame", texte):
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"interlocuteur a %s, et rien entre le personnage et ce bord"
+                                % cote.group(1).lower()))
+            continue
+        if code == "texte-incruste":
+            if VERBES_PAROLE.search(texte) and not re.search(
+                    r"(?i)across (his|her) chest we see only", texte):
+                trouves.append((code, gravite, titre, cout, remede,
+                                u"replique sans la poitrine decrite du debut a la fin"))
+            continue
         if code == "corps-sans-contact":
             # Le defaut est arrive sur une image, mais la question vaut pour
             # tout prompt qui plante quelqu'un sur une surface : ou coupe-t-on ?
@@ -1191,6 +1381,8 @@ def controler(texte, image=False):
                                 u"%d negations (le guide en demande le moins "
                                 u"possible)" % n))
             continue
+        if code in ("geste-repete", "visage-d-une-serie-a-l-autre"):
+            continue    # geste-repete : verifier_scene() ; le visage : a la lecture de la feuille
         ou = sans_verrou if code == "camera-qui-bouge" else texte
         m = re.search(motif, ou)
         if m:
@@ -1234,13 +1426,45 @@ def verifier_fichier(chemin, bavard=True):
                 bavard)
 
 
+# Ce que font les MAINS (ou les bras). Voir << geste-repete >>. Le PARAGRAPHE entier, pas
+# la phrase : << l'autre main reste immobile >> se repete a bon droit d'une replique a
+# l'autre ; c'est le paragraphe -- l'immobile ET celle qui bouge -- qui doit differer.
+MOT_MAINS = re.compile(r"\b(hands?|arms?|forearm|fingers|palm)\b", re.I)
+
+
+def gestes_repetes(fichiers):
+    """Les phrases de mains que deux prompts (ou plus) d'une meme scene partagent."""
+    vus = {}
+    for f in fichiers:
+        texte = io.open(f, encoding="utf-8").read()
+        if EST_IMAGE.search(texte):
+            continue
+        for m in set(x.strip() for x in re.split(r"\n\s*\n", texte) if MOT_MAINS.search(x)):
+            # Les phrases de TENUE (<< Across her chest we see only ... >>) et de BORD
+            # se repetent par construction : seules comptent celles qui font bouger
+            # ou tiennent les mains.
+            if re.search(r"(?i)we see only|beyond the|edge of the frame", m):
+                continue
+            vus.setdefault(m, []).append(os.path.basename(f))
+    return {m: fs for m, fs in vus.items() if len(fs) > 1}
+
+
 def verifier_scene(scene, bavard=True):
     d = os.path.join(RACINE, "video", "episode-%s" % scene,
                      "_essai-avatar", "prompts")
     fichiers = sorted(glob.glob(os.path.join(d, "plan*.txt")))
     if not fichiers:
         sys.exit("  aucun prompt dans %s" % d)
-    return sum(verifier_fichier(f, bavard) for f in fichiers)
+    fautes = sum(verifier_fichier(f, bavard) for f in fichiers)
+    regle = next(r for r in REGLES if r[0] == "geste-repete")
+    for phrase, fs in sorted(gestes_repetes(fichiers).items()):
+        fautes += 1
+        print("  %s" % ", ".join(fs))
+        print("    [FAUTE] geste-repete -- %s" % regle[3])
+        print("           ... %s ..." % phrase[:110])
+        print("           deja paye : %s" % regle[4])
+        print("           a la place : %s" % regle[5])
+    return fautes
 
 
 def lecons():

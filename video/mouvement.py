@@ -47,6 +47,7 @@ import io
 import json
 import os
 import re
+import subprocess
 import sys
 
 sys.stdout.reconfigure(encoding="utf-8")
@@ -60,10 +61,49 @@ PRIX = 0.2419            # $ la seconde en 720p, tier rapide -- releve le 15/09/
 RESOLUTION = "720p"      # comme l'episode 1 ; le 480p coute moitie moins et se voit
 AMORCE, QUEUE = 0.35, 0.90       # les memes que monter_avatar.py
 
+# ⚠️ H3 MAX POUR LES PLANS FIXES (memoire du 17 sept. 2026 : « plan fixe, meme a
+#    deux personnages, reussit » ; il marche au RALENTI sur un plan de marche).
+#    Branche le 21 oct. pour la serie espagnole : 0,08 $/s contre 0,24.
+#    prompt_expansion_mode « disabled » : par defaut H3 REECRIT le prompt avant
+#    de generer ; on paierait alors un texte que personne n'a relu (acquis du
+#    22 sept. : « imprimer le prompt EXACT avant l'envoi »).
+MODELES = {
+    "seedance": ("bytedance/seedance-2.0/fast/image-to-video", 0.2419, "720p"),
+    "h3": ("minimax/h3-max/image-to-video", 0.08, "768P"),
+}
 
-def duree_a_generer(narration):
+
+def choisir_modele(nom):
+    global MODELE, FILE, PRIX, RESOLUTION
+    MODELE, PRIX, RESOLUTION = MODELES[nom]
+    FILE = "https://queue.fal.run/" + MODELE
+
+
+def queues_particulieres(scene):
+    """Les queues par plan, dans _queues.txt, a cote des plans.
+
+    ⚠️ LE MEME FICHIER QUE monter_avatar.py, ET C'EST TOUT L'INTERET. Si ce
+       script gardait la queue commune pendant que le montage en applique une
+       autre, on paierait une prise trop courte pour le plan qu'on vient
+       justement d'allonger -- et rien ne s'en plaindrait.
+    """
+    chemin = os.path.join(RACINE, "video", "episode-" + scene, "_queues.txt")
+    out = {}
+    if not os.path.exists(chemin):
+        return out
+    for ligne in io.open(chemin, encoding="utf-8").read().splitlines():
+        ligne = ligne.split("#")[0].strip()
+        if not ligne:
+            continue
+        bouts = ligne.replace(",", " ").split()
+        if len(bouts) >= 2:
+            out[int(bouts[0])] = float(bouts[1])
+    return out
+
+
+def duree_a_generer(narration, queue=QUEUE):
     """Ce qu'il faut demander au modele : entier de secondes, arrondi en HAUT."""
-    besoin = AMORCE + float(narration) + QUEUE
+    besoin = AMORCE + float(narration) + queue
     return max(4, min(15, int(besoin) + (1 if besoin > int(besoin) else 0)))
 
 
@@ -82,7 +122,13 @@ def prompt_du_plan(scene, n):
     suite = re.search(r"^PLAN \d\d\b", txt[debut.end():], re.M)
     bloc = txt[debut.start(): debut.end() + (suite.start() if suite else len(txt))]
 
-    m = re.search(r"^PROMPT DE MOUVEMENT[^\n]*\n(.*?)(?=\n\s*(?:-{10,}|⚠|PROMPT |$))",
+    # ⚠️ \Z ET NON $. En mode multiligne, $ marque la fin de CHAQUE ligne :
+    #    une simple LIGNE VIDE terminait donc le prompt. Un prompt ecrit en
+    #    plusieurs paragraphes partait ampute de tout ce qui suivait la
+    #    premiere ligne vide -- sans erreur, et apres avoir paye la prise.
+    #    Vu le 22 septembre 2026 en imprimant le prompt avant l'envoi : le
+    #    plan 18 n'aurait envoye que sa premiere phrase.
+    m = re.search(r"^PROMPT DE MOUVEMENT[^\n]*\n(.*?)(?=\n\s*(?:-{10,}|⚠|PROMPT )|\Z)",
                   bloc, re.S | re.M)
     if not m:
         sys.exit("  plan %02d : aucun bloc « PROMPT DE MOUVEMENT »" % n)
@@ -97,7 +143,13 @@ def main():
                     help="tous les decors qui n'ont pas encore de prise")
     ap.add_argument("--simuler", action="store_true",
                     help="dit tout et n'envoie rien -- A LIRE AVANT DE PAYER")
+    ap.add_argument("--modele", default="seedance", choices=sorted(MODELES))
+    ap.add_argument("--fin-identique", dest="fin_identique", action="store_true",
+                    help="H3 : la MEME image en premiere et en derniere image, pour que le cadre "
+                         "ne puisse pas deriver (21 oct. 2026, plan 09 d'es-02 : H3 avancait la camera "
+                         "malgre « the camera is locked on a tripod »)")
     a = ap.parse_args()
+    choisir_modele(a.modele)
 
     d = json.load(io.open(os.path.join(RACINE, "scenes", a.scene + ".json"),
                           encoding="utf-8"))
@@ -115,6 +167,12 @@ def main():
     if not decors:
         sys.exit("  aucun plan de decor a faire.")
 
+    queues = queues_particulieres(a.scene)
+    if queues:
+        print("  queues particulieres : %s"
+              % ", ".join("plan %02d -> %.2f s" % (k, queues[k])
+                          for k in sorted(queues)))
+
     lots, total = [], 0.0
     for p in decors:
         # ⚠️ L'EXTENSION ECRITE DANS LA SCENE NE FAIT PAS FOI. Les plans de
@@ -129,7 +187,7 @@ def main():
         if not img:
             sys.exit("  plan %02d : aucune image « %s.* » dans 01-images/"
                      % (p["n"], base))
-        sec = duree_a_generer(p.get("duree_audio") or 0)
+        sec = duree_a_generer(p.get("duree_audio") or 0, queues.get(p["n"], QUEUE))
         cout = sec * PRIX
         total += cout
         lots.append((p, img, sec, cout, prompt_du_plan(a.scene, p["n"])))
@@ -159,6 +217,14 @@ def main():
                  # ⚠️ voir l'entete : la piste inventee du modele n'a rien a
                  # faire ici, la voix vient d'ElevenLabs.
                  "generate_audio": False}
+        if a.modele == "h3":
+            # Ni aspect_ratio ni generate_audio dans son schema : le format
+            # suit l'image (9:16), et une piste eventuelle est retiree au
+            # telechargement.
+            corps = {"prompt": pr, "image_url": url, "resolution": RESOLUTION,
+                     "duration": sec, "prompt_expansion_mode": "disabled"}
+            if a.fin_identique:
+                corps["end_image_url"] = url
         soum = O._json(FILE, cle, corps)
         print("           requete %s" % soum.get("request_id", "?"))
         res = O.attendre(soum["status_url"], soum["response_url"], cle)
@@ -172,6 +238,11 @@ def main():
             k += 1
         dst = os.path.join(prises, "plan%02d-%02d.mp4" % (p["n"], k))
         n_octets = O.telecharger(lien, dst)
+        if a.modele == "h3":
+            muet = dst + ".muet.mp4"
+            subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", dst, "-an", "-c:v", "copy", muet],
+                           check=True)
+            os.replace(muet, dst)
         print("  ecrit : %s  (%.1f Mo, %.2f $)"
               % (os.path.basename(dst), (n_octets or 0) / 1e6, cout))
 
