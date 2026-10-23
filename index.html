@@ -3081,6 +3081,9 @@ body[data-theme="dark"] .info-progression-box p{ color:#B9BFCC; }
    drapeaux pour que la question tienne sur un ecran de telephone. */
 .setup-niveaux .setup-choice{padding:12px 8px; font-size:13px;}
 .setup-niveau-note{margin-top:8px; font-size:12px; color:#576177;}
+/* v940 : la date de depart sur la bienvenue. */
+.setup-voyage-date{display:flex; flex-direction:column; gap:4px; max-width:240px; font-size:12px; font-weight:800; color:#576177;}
+body[data-theme="dark"] .setup-voyage-date{color:#aab3c2;}
 body[data-theme="dark"] .setup-niveau-note{color:#aab3c2;}
 
 .level-pill-label{
@@ -7592,6 +7595,18 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
             </div>
             <div class="setup-niveau-note" data-i18n="setup_niveau_note">Tu pourras changer de niveau à tout moment, depuis ta séance du jour.</div>
         </div>
+        <!-- v940 : LA DATE DE DEPART, DES L'INSCRIPTION. Jacques, 23 oct. 2026 :
+             « mon amie Louise va partir en voyage au mois de novembre ; ca serait
+             bien qu'on lui propose des le depart, meme au premier pas ». Facultatif ;
+             pour qui part de zero ou de quelques mots (l'A1 voyage), cache sinon.
+             Voir choisirDateDepartBienvenue(). -->
+        <div class="setup-choice-group" id="setupVoyage">
+            <div class="setup-choice-label" data-i18n="av_date_court">✈️ Tu pars bientôt ?</div>
+            <label class="setup-voyage-date"><span data-i18n="av_date_label">Date de départ</span>
+                <input type="date" class="av-date" id="setupDateDepart" onchange="choisirDateDepartBienvenue(this.value)">
+            </label>
+            <div class="setup-niveau-note" data-i18n="setup_voyage_note">Facultatif : on te dira chaque jour le rythme pour être prêt.</div>
+        </div>
         <div class="spacer"></div>
         <button class="primary" onclick="completeInitialSetup()" data-i18n="setup_continue">CONTINUER</button>
     </div>
@@ -8516,7 +8531,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v939</span>
+    <span class="subtitle-version">v940</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12692,6 +12707,7 @@ const I18N = {
         setup_niveau_b2: "Niveau avancé (B2)",
         setup_niveau_c1: "Niveau très avancé (C1)",
         setup_niveau_note: "Tu pourras changer de niveau à tout moment, depuis ta séance du jour.",
+        setup_voyage_note: "Facultatif : on te dira chaque jour le rythme pour être prêt.",
         // v903 : le profil d'apprentissage (essai « profil »), voir ouvrirProfil().
         profil_q1: "Pourquoi tu apprends l'allemand ?",
         profil_q1_sous: "Pour que ta séance parte de ce qui compte pour toi.",
@@ -14137,6 +14153,7 @@ const I18N = {
         setup_niveau_b2: "Advanced (B2)",
         setup_niveau_c1: "Very advanced (C1)",
         setup_niveau_note: "You can change your level at any time from your daily session.",
+        setup_voyage_note: "Optional: each day, we'll tell you the pace to be ready.",
         // v903: the learning profile (trial "profil"), see ouvrirProfil().
         profil_q1: "Why are you learning German?",
         profil_q1_sous: "So your session starts from what matters to you.",
@@ -15586,6 +15603,7 @@ const I18N = {
         setup_niveau_b2: "İleri seviye (B2)",
         setup_niveau_c1: "Çok ileri seviye (C1)",
         setup_niveau_note: "Seviyeni istediğin zaman günün oturumundan değiştirebilirsin.",
+        setup_voyage_note: "İsteğe bağlı: hazır olman için gereken tempoyu her gün söyleriz.",
         dec_passer: "Geç",
         dec_progression_aria: "Adım {n} / {total}",
         dec_kicker: "Wortando'yu keşfet",
@@ -16409,6 +16427,7 @@ const I18N = {
         setup_niveau_b2: "Високий рівень (B2)",
         setup_niveau_c1: "Дуже високий рівень (C1)",
         setup_niveau_note: "Рівень можна змінити будь-коли в щоденному занятті.",
+        setup_voyage_note: "Необов'язково: щодня підкажемо, у якому темпі рухатися, щоб бути готовим.",
         dec_passer: "Пропустити",
         dec_progression_aria: "Крок {n} з {total}",
         dec_kicker: "Знайомство з Wortando",
@@ -18249,6 +18268,7 @@ const I18N = {
         setup_niveau_b2: "سطح پیشرفته (B2)",
         setup_niveau_c1: "سطح خیلی پیشرفته (C1)",
         setup_niveau_note: "هر وقت بخواهی می‌توانی سطح را از جلسهٔ امروز عوض کنی.",
+        setup_voyage_note: "اختیاری: هر روز می‌گوییم با چه سرعتی پیش بروی تا آماده باشی.",
         dec_passer: "رد شدن",
         dec_progression_aria: "گام {n} از {total}",
         dec_kicker: "آشنایی با Wortando",
@@ -19576,6 +19596,7 @@ const I18N = {
         setup_niveau_b2: "مستوى متقدم (B2)",
         setup_niveau_c1: "مستوى متقدم جداً (C1)",
         setup_niveau_note: "يمكن تغيير المستوى في أي وقت من جلسة اليوم.",
+        setup_voyage_note: "اختياري: سنخبرك كل يوم بالوتيرة اللازمة لتكون جاهزاً.",
         dec_passer: "تخطٍّ",
         dec_progression_aria: "الخطوة {n} من {total}",
         dec_kicker: "تعرّف على Wortando",
@@ -21448,6 +21469,7 @@ const I18N = {
         setup_niveau_b2: "Nível avançado (B2)",
         setup_niveau_c1: "Nível muito avançado (C1)",
         setup_niveau_note: "Você pode mudar de nível a qualquer momento, pela sua sessão do dia.",
+        setup_voyage_note: "Opcional: a cada dia, diremos o ritmo para você estar pronto.",
         dec_passer: "Pular",
         dec_progression_aria: "Etapa {n} de {total}",
         dec_kicker: "Conheça a Wortando",
@@ -22934,6 +22956,7 @@ const I18N = {
         setup_niveau_b2: "Poziom zaawansowany (B2)",
         setup_niveau_c1: "Poziom bardzo zaawansowany (C1)",
         setup_niveau_note: "Poziom możesz zmienić w każdej chwili, w swojej dzisiejszej sesji.",
+        setup_voyage_note: "Opcjonalnie: codziennie podpowiemy, w jakim tempie iść, żeby być gotowym.",
         dec_passer: "Pomiń",
         dec_progression_aria: "Krok {n} z {total}",
         dec_kicker: "Poznaj Wortando",
@@ -24425,6 +24448,7 @@ const I18N = {
         setup_niveau_b2: "Продвинутый уровень (B2)",
         setup_niveau_c1: "Очень продвинутый уровень (C1)",
         setup_niveau_note: "Уровень можно сменить в любой момент — в своём занятии на сегодня.",
+        setup_voyage_note: "Необязательно: каждый день подскажем, в каком темпе идти, чтобы быть готовым.",
         dec_passer: "Пропустить",
         dec_progression_aria: "Шаг {n} из {total}",
         dec_kicker: "Знакомство с Wortando",
@@ -26353,6 +26377,32 @@ function choisirNiveauDeclare(reponse){
     fixerNiveauSeance(niv);
     document.querySelectorAll("[data-niveau-declare]").forEach(b =>
         b.classList.toggle("active", b.getAttribute("data-niveau-declare") === reponse));
+    majVoyageBienvenue();
+}
+
+// v940 : LA DATE DE DEPART SUR LA BIENVENUE (voir #setupVoyage). Elle va la ou la
+// porte des escales la lit (lireA1Voyage().dep) : le compte a rebours se voit
+// dans le menu de la pastille des Premiers pas, puis des escales. Seulement pour
+// qui commence (zero, quelques mots, ou rien de choisi) : au-dela, pas d'escales,
+// donc personne pour lire la date.
+function majVoyageBienvenue(){
+    const g = document.getElementById("setupVoyage");
+    if(!g) return;
+    let reponse = null, sur = false;
+    try{ reponse = localStorage.getItem(NIVEAU_DECLARE_KEY); }catch(e){}
+    try{ sur = a1VoyageEssai() && lireA1Voyage().a !== false; }catch(e){}
+    g.classList.toggle("hidden", !sur || !!(reponse && reponse !== "zero" && reponse !== "peu"));
+    const champ = document.getElementById("setupDateDepart");
+    if(champ){
+        try{ champ.min = isoLocal(new Date()); }catch(e){}
+        try{ champ.value = lireA1Voyage().dep || ""; }catch(e){}
+    }
+}
+function choisirDateDepartBienvenue(valeur){
+    const v = lireA1Voyage();
+    if(valeur){ v.dep = valeur; delete v.sansDate; }
+    else delete v.dep;
+    ecrireA1Voyage(v);
 }
 
 // L'ECRAN DE BIENVENUE, A L'INSCRIPTION SEULEMENT (v700). Depuis la v678, le
@@ -26366,6 +26416,7 @@ function choisirNiveauDeclare(reponse){
 // l'inscription sait, sans deviner, que le compte est neuf.
 function ouvrirBienvenue(){
     refreshSetupChoiceActiveStates();
+    majVoyageBienvenue();
     const actif = document.querySelector(".screen.active");
     if(!actif || actif.id !== "setup") showScreen("setup");
 }
@@ -43688,7 +43739,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 939;
+const APP_VERSION = 940;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -52232,7 +52283,13 @@ function majPiluleSeance(){
     let departTxt = "";
     let dateTxt = "";
     try{
-        if(a1VoyageEnCours() && A1_VOYAGE_DONNEES){
+        // v940 : DES PREMIERS PAS AUSSI (Jacques : « meme au premier pas ») --
+        // les escales suivent, le rythme les compte deja toutes. Les donnees des
+        // escales ne sont pas encore la pendant Premiers pas : on les charge,
+        // puis on redessine (une fois : ensuite elles sont la).
+        const avant = pp && a1VoyageEssai() && lireA1Voyage().a !== false;
+        if(avant && !A1_VOYAGE_DONNEES) chargerA1Voyage().then(x => { if(x){ try{ majPiluleSeance(); }catch(e){} } });
+        if((a1VoyageEnCours() || avant) && A1_VOYAGE_DONNEES){
             const s = lireA1Voyage();
             const jd = joursJusqua(s.dep);
             if(jd !== null && jd >= -14){
