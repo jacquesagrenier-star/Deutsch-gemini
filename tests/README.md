@@ -78,6 +78,36 @@ envoyer se retrouve dans le corpus. À relancer après un changement de
 `revisionDeScene()`, de l'échelle de répétition espacée ou d'une scène.
 Playwright : `npm i -g playwright` une fois sur le PC.
 
+# L'allemand qui fuit dans l'app espagnole
+
+```
+python tests/allemand_dans_espagnol.py                       # compte neuf, « je pars de zéro », 3 jours
+python tests/allemand_dans_espagnol.py --niveau peu --variante latam --jours 5
+python tests/allemand_dans_espagnol.py --releve r.json       # garde tout ce qui a été relevé
+python tests/allemand_dans_espagnol.py --relire r.json       # réanalyse un relevé, sans navigateur
+```
+
+Né le 21 oct. 2026 : Marc-Antoine, compte espagnol neuf sur iPhone, reçoit
+« Tisch ». Le script VIT les premiers jours d'un compte espagnol neuf dans un
+Chromium sans tête (heure figée puis avancée d'un jour, hasard à graine) :
+l'écran de bienvenue et le niveau déclaré, la visite guidée (ses cartes
+retournées), Premiers pas, la séance du jour de chaque jour carte par carte
+(recto, verso, réponse) et son **paquet entier**, la scène du jour, Écouter,
+répéter, l'A1 voyage — puis **chaque objet de chaque scène** touché en mode
+Découvrir, et l'app installée (le `start_url` du manifeste ouvert avec un
+stockage vierge, comme l'icône de l'écran d'accueil d'un iPhone). Il relève le
+texte affiché, ce qui est dit (`direAllemand`, la synthèse, les fichiers son)
+et les fichiers demandés au serveur.
+
+Est allemand : un mot à ä, ö ou ß ; un mot du corpus allemand (themes.json,
+verbe.json, adjectif.json, adverbe.json, funktionswort.json, formes conjuguées
+et exemples compris) absent du corpus espagnol et de ses traductions ; un
+fichier de données allemand demandé (themes.json à la racine,
+`scene-<nom>.js` sans `.es`…) ; une app installée qui démarre en `de`. Sortie :
+chaque fuite avec son chemin, sa source et la ligne ; code 1 s'il y en a. Les
+faux amis de l'interface (« coiffeur », les prénoms Mark et Anna) sont dans
+`FAUX_AMIS`. Python : `pip install playwright` (Chromium est celui du PC).
+
 # Exportateur
 
 ```bash
