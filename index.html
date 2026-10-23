@@ -7018,6 +7018,10 @@ span.pa-sens{cursor:default;}
 .pa-revoir{display:contents;}   /* v905 : les liens « ↺ Revoir … » */
 .pa-lien{border:0; background:none; padding:3px 2px; font:inherit; font-size:12.5px; font-weight:800; color:#9a6a12; cursor:pointer; text-align:start;}
 #spDateEdit .av-date-edit{margin-top:8px; color:#1C2430;}
+/* v939 : l'etiquette et « Non merci » gardaient le blanc de l'ancienne porte
+   sombre -- invisibles sur ce menu blanc. */
+#spDateEdit .av-date-edit label, #spDateEdit .av-invite-non{color:#576177;}
+body[data-theme="dark"] #spDateEdit .av-date-edit label, body[data-theme="dark"] #spDateEdit .av-invite-non{color:#a9b2c0;}
 .orb-seance.pilule-mode{padding:0; background:none !important; border:0; box-shadow:none !important; border-radius:999px; overflow:visible; cursor:default;}
 .orb-seance.pilule-mode > :not(.seance-pilule){display:none !important;}
 body[data-theme="dark"] .pilule-accueil{background:#232c38; box-shadow:inset 0 0 0 1px #343e4c;}
@@ -8512,7 +8516,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v938</span>
+    <span class="subtitle-version">v939</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11441,6 +11445,9 @@ onAuthStateChanged(auth, (user) => {
         else if(window.INSCRIPTION_EN_COURS){
             if(typeof ouvrirBienvenue === "function") ouvrirBienvenue();
         }
+        // v939 : l'espagnol choisi SUR la bienvenue recharge la page -- on y
+        // revient, dans la nouvelle langue (voir reprendreBienvenueApresBascule).
+        else if(typeof reprendreBienvenueApresBascule === "function" && reprendreBienvenueApresBascule()){}
         else if(typeof isSetupDone === "function" && !isSetupDone()){
             // L'ECRAN DE REGLAGES N'EST PLUS MONTRE (v678). Sa seule vraie question
             // etait la langue -- devinee maintenant d'apres le telephone, et
@@ -11524,7 +11531,14 @@ function choisirVarianteEspagnol(v){
     if(v !== "es" && v !== "latam") return;
     try{ localStorage.setItem(PREFIXE_STOCKAGE + "variante", v); }catch(e){}
     // Les cartes sont construites au chargement : on recharge, tout simplement.
-    if(v !== VARIANTE_ESPAGNOL) location.reload();
+    // v939 : depuis la bienvenue, on y revient apres (reprendreBienvenueApresBascule).
+    if(v !== VARIANTE_ESPAGNOL){
+        try{
+            const ecran = document.querySelector(".screen.active");
+            if(ecran && ecran.id === "setup") sessionStorage.setItem(CLE_ROUVRIR_BIENVENUE, "1");
+        }catch(e){}
+        location.reload();
+    }
 }
 const THEME_STORAGE_KEY = PREFIXE_STOCKAGE + "theme";
 
@@ -26044,10 +26058,18 @@ function masquerEspagnolSelonLangueUi(){
 // localStorage : il survit au rechargement de cet onglet, pas a une app
 // refermee -- on ne rouvre pas les reglages le lendemain.
 const CLE_ROUVRIR_REGLAGES = "wortando_rouvrirReglages";
+// v939 : MEME CHOSE POUR LA BIENVENUE. Jacques, 23 oct. 2026 (Frederic) : qui
+// choisissait l'espagnol sur l'ecran de bienvenue, juste apres l'inscription,
+// rechargeait la page ; le rappel d'authentification, ne voyant pas de
+// configuration faite dans le stockage espagnol, la marquait faite et envoyait
+// a l'accueil -- sans le choix Espagne / Amerique latine, sans le niveau, sans
+// la visite. On rouvre donc la bienvenue, dans la nouvelle langue.
+const CLE_ROUVRIR_BIENVENUE = "wortando_rouvrirBienvenue";
 function ouvrirAutreLangueApprise(){
     try{
         const ecran = document.querySelector(".screen.active");
         if(ecran && ecran.id === "settings") sessionStorage.setItem(CLE_ROUVRIR_REGLAGES, "1");
+        if(ecran && ecran.id === "setup") sessionStorage.setItem(CLE_ROUVRIR_BIENVENUE, "1");
     }catch(e){}
     // « Passage a l'espagnol... » (v774) : lu par l'ecran d'ouverture de la page
     // suivante, et montre des maintenant sur celle-ci, le temps qu'elle parte.
@@ -26064,6 +26086,18 @@ function ouvrirAutreLangueApprise(){
     }catch(e){}
     try{ location.href = new URL(AUTRE_LANGUE_APPRISE_URL, location.href).href; }
     catch(e){ location.href = AUTRE_LANGUE_APPRISE_URL; }
+}
+// Appelee par le rappel d'authentification (personne connectee) : vrai si la
+// bienvenue a ete rouverte.
+function reprendreBienvenueApresBascule(){
+    let oui = false;
+    try{
+        oui = sessionStorage.getItem(CLE_ROUVRIR_BIENVENUE) === "1";
+        sessionStorage.removeItem(CLE_ROUVRIR_BIENVENUE);
+    }catch(e){}
+    if(!oui) return false;
+    ouvrirBienvenue();
+    return true;
 }
 function rouvrirReglagesApresBascule(){
     let oui = false;
@@ -43654,7 +43688,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 938;
+const APP_VERSION = 939;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
