@@ -4,6 +4,7 @@
     python audio/refaire_es.py                          # a blanc : ce qui serait fait
     python audio/refaire_es.py --renormaliser s.json    # GRATUIT : les SATURE du controle
     python audio/refaire_es.py --assembler              # GRATUIT : les paires « a · b »
+    python audio/refaire_es.py --recopier               # GRATUIT : meme texte, autre majuscule
     python audio/refaire_es.py --payer                  # PAYANT : REFAITS, en porteuse
 
 Les trois gestes, du moins cher au plus cher. Le controle qui trouve les
@@ -160,6 +161,31 @@ def assembler(payer):
     return rates
 
 
+def recopier(payer):
+    """4. RECOPIER (24 oct. 2026). Un texte du manifeste sans fichier, dont le
+    MEME texte a une majuscule pres a deja le sien : « Abre la ventana, por
+    favor. » que l'app demande, « abre la ventana... » qu'on avait genere. Le son
+    est le meme : on copie sous la cle demandee, sans un credit."""
+    faits = 0
+    for variante, (_, dossier) in sorted(VOIX.items()):
+        for e in manifest_es.entrees(variante):
+            cible, original = chemins(dossier, e["id"])
+            if os.path.exists(cible):
+                continue
+            t = e["texte"]
+            for autre in {t[:1].lower() + t[1:], t[:1].upper() + t[1:]} - {t}:
+                src, src_orig = chemins(dossier, manifest_es.identifiant(autre))
+                if os.path.exists(src):
+                    faits += 1
+                    if payer:
+                        shutil.copy2(src, cible)
+                        if os.path.exists(src_orig):
+                            shutil.copy2(src_orig, original)
+                    break
+    print("recopier : %d fichiers (deux voix), gratuit" % faits)
+    return 0
+
+
 def en_porteuse(payer):
     modele, taux = generer.MODELES["v2"]
     cout = int(sum(len(PORTEUSE % dit) * (1 if v else len(VOIX)) for _, dit, v in REFAITS) * taux)
@@ -202,16 +228,19 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--renormaliser", default="", help="le JSON de controler_sons.py --json")
     p.add_argument("--assembler", action="store_true")
+    p.add_argument("--recopier", action="store_true")
     p.add_argument("--payer", action="store_true", help="appelle ElevenLabs pour REFAITS")
     a = p.parse_args()
     N.FF = N.ffmpeg()
-    agir = bool(a.renormaliser or a.assembler or a.payer)
+    agir = bool(a.renormaliser or a.assembler or a.recopier or a.payer)
     rates = 0
     if a.renormaliser or not agir:
         if a.renormaliser:
             rates += renormaliser(a.renormaliser, True)
     if a.assembler or not agir:
         rates += assembler(a.assembler)
+    if a.recopier or not agir:
+        rates += recopier(a.recopier)
     if a.payer or not agir:
         rates += en_porteuse(a.payer)
     print("fait, %d rate(s)" % rates if agir else "(a blanc -- rien n'a ete touche)")

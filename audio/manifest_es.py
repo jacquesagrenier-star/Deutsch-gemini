@@ -99,6 +99,12 @@ def recolter(variante):
         for e in jeu:
             q, bon = e.get("question") or "", e.get("correct") or ""
             if "___" in q and bon:
+                # LA MAJUSCULE DE L'APP (24 oct. 2026). phraseAllemandeDeLExercice()
+                # met une capitale quand le blanc ouvre une phrase : elle demande
+                # « Abre la ventana, por favor. », on avait fait « abre la... » --
+                # 48 phrases par voix a la voix du telephone, l'imperatif surtout.
+                if q.startswith("___") and re.search(r"[.?!]", q):
+                    bon = bon[:1].upper() + bon[1:]
                 prendre(q.replace("___", bon, 1), "exercices." + nom, "EX")
     # Les fiches de grammaire : leurs exemples ont un haut-parleur.
     for f in charger("grammaire.json").get("fiches", []):
