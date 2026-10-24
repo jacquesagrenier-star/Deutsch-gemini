@@ -3323,11 +3323,14 @@ html[data-apprendre="es"] [data-seulement-de]{ display:none !important; }
 html[data-apprendre="es"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="es"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
 
-/* Conjonctions et chapitres VHS : contenu proprement allemand, sans
-   equivalent espagnol pour l'instant. Masques plutot que remplis a
-   l'approximation. */
-html[data-apprendre="es"] [data-orbid="konjunktionen"],
-html[data-apprendre="es"] [data-orbid="vhskapitel"]{ display:none !important; }
+/* Conjonctions : contenu proprement allemand, sans equivalent espagnol pour
+   l'instant. Masquees plutot que remplies a l'approximation.
+   v942 : les chapitres VHS, eux, servent en espagnol a « Mon cours » (le
+   manuel d'espagnol de Jacques, espanol/mon-cours/) -- tuile admin seule,
+   comme en allemand. Pas de « Niveau B1 » en tete : le B1 n'y est qu'une
+   cle interne. */
+html[data-apprendre="es"] [data-orbid="konjunktionen"]{ display:none !important; }
+html[data-apprendre="es"] #vhsKapitelListe .title-row .pill{ display:none; }
 /* ------------------------------------------------------------------
    Options de panneau sans objet en espagnol.
 
@@ -7188,6 +7191,12 @@ body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
 #seancePilule.pa-concis .pa-kick{display:none;}
 #seancePilule.pa-concis .pa-titre strong{font-size:16px; line-height:1.25;}
 #seancePilule.pa-concis .pa-sous{margin-top:4px;}
+/* v942 : Premiers pas, escales, feuilles -- le titre en grand, l'etape dessous. */
+#seancePilule.pa-etape .pa-titre{display:flex; flex-direction:column;}
+#seancePilule.pa-etape .pa-titre strong{font-size:16px; line-height:1.25;}
+#seancePilule.pa-etape .pa-kick{order:2; font-size:12px; font-weight:800; letter-spacing:0; text-transform:none;
+    line-height:1.3; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; opacity:.85;}
+#seancePilule.pa-etape .pa-sous{margin-top:3px;}
 #seancePilule .pa-niv{background:rgba(255,255,255,.3); box-shadow:inset 0 0 0 1px rgba(28,36,48,.45); color:#1C2430;}
 #seancePilule .pa-sens, #seancePilule .pa-sens::before{color:rgba(28,36,48,.78);}
 /* L'anneau : plus de trou peint en encre, un masque -- la vitre se voit au centre. */
@@ -8531,7 +8540,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v941</span>
+    <span class="subtitle-version">v942</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -25383,7 +25392,9 @@ const I18N_ESPAGNOL = {
         "seance_choix_allemand": "Espagnol",
         "mosaique_reste": "encore {n} cartes avant le tableau entier d'un peintre du monde hispanophone",
         "mosaique_intro_texte": "Chaque carte que tu passes rend l'image un peu plus nette. À la fin, l'œuvre entière d'un peintre du monde hispanophone apparaît, avec son nom et son histoire, et elle rejoint ta galerie.",
-        "ip_tableau_1": "Un tableau du monde hispanophone commence en gros carreaux de couleur. Chaque carte que tu traverses en rend un plus fin — les révisions comptent autant que les mots nouveaux."
+        "ip_tableau_1": "Un tableau du monde hispanophone commence en gros carreaux de couleur. Chaque carte que tu traverses en rend un plus fin — les révisions comptent autant que les mots nouveaux.",
+        "vhs_kapitel_tile_title": "Mon cours",
+        "vhs_kapitel_liste_title": "Mon cours d'espagnol"
     },
     "en": {
         "carte_genre_el": "masculine",
@@ -25523,7 +25534,9 @@ const I18N_ESPAGNOL = {
         "seance_choix_allemand": "Spanish",
         "mosaique_reste": "{n} cards left before the whole painting, by an artist from the Spanish-speaking world",
         "mosaique_intro_texte": "Every card you complete makes the image a little sharper. At the end, the whole work of a painter from the Spanish-speaking world appears, with their name and story, and joins your gallery.",
-        "ip_tableau_1": "A painting from the Spanish-speaking world starts as large squares of colour. Every card you go through makes one of them finer — reviews count as much as new words."
+        "ip_tableau_1": "A painting from the Spanish-speaking world starts as large squares of colour. Every card you go through makes one of them finer — reviews count as much as new words.",
+        "vhs_kapitel_tile_title": "My course",
+        "vhs_kapitel_liste_title": "My Spanish course"
     },
     "pt": {
         "carte_genre_el": "masculino",
@@ -25663,7 +25676,9 @@ const I18N_ESPAGNOL = {
         "seance_choix_allemand": "Espanhol",
         "mosaique_reste": "mais {n} cartas até o quadro inteiro de um pintor do mundo de língua espanhola",
         "mosaique_intro_texte": "Cada carta que você faz deixa a imagem um pouco mais nítida. No fim, a obra inteira de um pintor do mundo de língua espanhola aparece, com seu nome e sua história, e entra na sua galeria.",
-        "ip_tableau_1": "Um quadro do mundo de língua espanhola começa em grandes quadrados de cor. Cada carta que você passa deixa um deles mais fino — as revisões contam tanto quanto as palavras novas."
+        "ip_tableau_1": "Um quadro do mundo de língua espanhola começa em grandes quadrados de cor. Cada carta que você passa deixa um deles mais fino — as revisões contam tanto quanto as palavras novas.",
+        "vhs_kapitel_tile_title": "Meu curso",
+        "vhs_kapitel_liste_title": "Meu curso de espanhol"
     },
     "ar": {
         "carte_genre_el": "مذكر",
@@ -25803,7 +25818,9 @@ const I18N_ESPAGNOL = {
         "seance_choix_allemand": "الإسبانية",
         "mosaique_reste": "بقيت {n} بطاقة حتى اللوحة الكاملة لرسّام من العالم الناطق بالإسبانية",
         "mosaique_intro_texte": "كل بطاقة تُنهيها تجعل الصورة أوضح قليلاً. وفي النهاية تظهر اللوحة كاملةً لرسّام من العالم الناطق بالإسبانية، مع اسمه وقصته، وتنضمّ إلى معرضك.",
-        "ip_tableau_1": "تبدأ لوحة من العالم الناطق بالإسبانية بمربّعات لونية كبيرة. كل بطاقة تمرّ بها تجعل واحداً منها أدقّ — والمراجعات تُحتسب كما الكلمات الجديدة."
+        "ip_tableau_1": "تبدأ لوحة من العالم الناطق بالإسبانية بمربّعات لونية كبيرة. كل بطاقة تمرّ بها تجعل واحداً منها أدقّ — والمراجعات تُحتسب كما الكلمات الجديدة.",
+        "vhs_kapitel_tile_title": "دروسي",
+        "vhs_kapitel_liste_title": "دروسي في الإسبانية"
     },
     "tr": {
         "profil_q1": "Neden İspanyolca öğreniyorsun?",
@@ -28522,6 +28539,15 @@ async function loadAdjektiveJson() {
 }
 
 let themes = [];
+// v942 : en espagnol, les rangees de « Mon cours » (chapitres VHS, admin seul)
+// vivent ICI et pas dans `themes` : l'ecoute, la seance, les totaux, la
+// recherche parcourent `themes` sans toujours passer par themesComptes(), et
+// leurs comptes bougeaient pour tout le monde (« Ecouter » 3475 -> 3485). Vide
+// en allemand, ou les chapitres restent ou ils ont toujours ete.
+let themesCours = [];
+function themeParId(id){
+    return themes.find(t => t.id === id) || themesCours.find(t => t.id === id);
+}
 let themesLoaded = false;
 
 function showGlobalLoadingBar(){
@@ -28966,7 +28992,7 @@ async function loadThemesJson() {
             const rawAdjektive = t.adjektive || [];
             const adjektive = rawAdjektive.map(a => {
                 if (Array.isArray(a)) return a;
-                return [
+                const carte = [
                     a.mot || "",
                     a.traduction || "",
                     "",
@@ -28975,6 +29001,11 @@ async function loadThemesJson() {
                     a.traduction_en || "",
                     a.exemple_en || ""
                 ];
+                // v942, « Mon cours » espagnol : le feminin (rubio -> rubia) en
+                // propriete nommee, pas en rang -- le rang 7 est deja lu par la
+                // carte (categorie anglaise).
+                if (a.feminin) carte.feminin = a.feminin;
+                return carte;
             });
 
             if (!grouped[baseId]) {
@@ -28985,6 +29016,11 @@ async function loadThemesJson() {
         });
 
         themes = order.map(id => grouped[id]);
+        themesCours = [];
+        if (LANGUE_APPRISE === "es") {
+            themesCours = themes.filter(th => estChapitreVhs(th));
+            themes = themes.filter(th => !estChapitreVhs(th));
+        }
         themesLoaded = true;
         renderThemes();
         renderNomenLevels();
@@ -40646,7 +40682,7 @@ function renderVhsKapitelListe(){
     const container = document.getElementById("vhsKapitelList");
     if(!container) return;
 
-    const chapters = themes
+    const chapters = themes.concat(themesCours)
         .filter(th => th.id.startsWith('vhs_kapitel'))
         .map(th => ({ theme: th, num: parseInt(th.id.replace('vhs_kapitel', ''), 10) || 0 }))
         .sort((a, b) => a.num - b.num);
@@ -40687,6 +40723,19 @@ function renderVhsKapitelListe(){
                     <div class="level-pill-stat">${adjMastered}/${adjTotal}</div>
                 </div>` : "";
 
+        // v942, « Mon cours » espagnol : une rangee par page du manuel, nommee
+        // (« Descripción física ») ; son compte prend toutes ses cartes, et une
+        // page sans noms n'a pas de pastille « Noms 0/0 ». L'allemand ne change pas.
+        const es = LANGUE_APPRISE === "es";
+        const nomsPillHtml = (!es || total > 0) ? `
+                <div class="level-pill" data-action="noms">
+                    <div class="level-pill-label">${t('vhs_kapitel_pill_noms')}</div>
+                    <div class="level-pill-stat">${mastered}/${total}</div>
+                </div>` : "";
+        const sus = es ? mastered + verbenMastered + adjMastered : mastered;
+        const cartes = es ? total + verbenTotal + adjTotal : total;
+        const pourcent = es ? (cartes ? Math.round(sus / cartes * 100) : 0) : percentage;
+
         const item = document.createElement("div");
         item.className = "theme-item";
         item.innerHTML = `
@@ -40694,22 +40743,18 @@ function renderVhsKapitelListe(){
                 <div class="theme-left">
                     <div class="theme-icon">${theme.svg || ''}</div>
                     <div>
-                        <div class="theme-name">${tf('vhs_kapitel_row_label', { n: num })}</div>
+                        <div class="theme-name">${es ? theme.name : tf('vhs_kapitel_row_label', { n: num })}</div>
                     </div>
                 </div>
-                <div class="theme-count">${mastered}/${total}</div>
+                <div class="theme-count">${sus}/${cartes}</div>
             </div>
             <div class="theme-progress">
                 <div class="theme-progress-bar">
-                    <div class="theme-progress-fill" style="width:${percentage}%"></div>
+                    <div class="theme-progress-fill" style="width:${pourcent}%"></div>
                 </div>
-                <div class="theme-percent">${percentage}${t('mastered_suffix')}</div>
+                <div class="theme-percent">${pourcent}${t('mastered_suffix')}</div>
             </div>
-            <div class="level-pills">
-                <div class="level-pill" data-action="noms">
-                    <div class="level-pill-label">${t('vhs_kapitel_pill_noms')}</div>
-                    <div class="level-pill-stat">${mastered}/${total}</div>
-                </div>${verbenPillHtml}${adjPillHtml}
+            <div class="level-pills">${nomsPillHtml}${verbenPillHtml}${adjPillHtml}
             </div>
         `;
         item.querySelectorAll(".level-pill").forEach(pillEl => {
@@ -40724,10 +40769,22 @@ function renderVhsKapitelListe(){
     });
 }
 
+// v942 : le titre d'une seance de theme. « Mon cours » espagnol (un chapitre
+// VHS en espagnol) n'affiche ni son B1, cle interne, ni « Adjektive » : la page
+// du manuel, puis la pastille dans la langue de l'interface. L'allemand garde
+// exactement son titre d'avant.
+function titreChapitreCours(theme, level, sorte){
+    if(LANGUE_APPRISE === "es" && estChapitreVhs(theme)){
+        const cle = sorte === "Verben" ? 'vhs_kapitel_pill_verben' : sorte === "Adjektive" ? 'vhs_kapitel_pill_adjektive' : 'vhs_kapitel_pill_noms';
+        return theme.name + " · " + t(cle);
+    }
+    return theme.name + " · " + level + (sorte ? " · " + sorte : "");
+}
+
 function startTheme(themeId, level, returnScreen){
     flashcardMode = 'nomen';
     nomenReturnScreen = returnScreen || 'nomen';
-    const theme = themes.find(t => t.id === themeId);
+    const theme = themeParId(themeId);
     if(!theme) return;
     const levelData = theme.levels[level];
     if(!levelData){ showInfoToast(t('alert_level_unavailable')); return; }
@@ -40737,7 +40794,7 @@ function startTheme(themeId, level, returnScreen){
     const complet = accesComplet();
     if(!complet && !themeNiveauGratuit(levelData.id)){ ouvrirAbonnement(); return; }
 
-    currentTheme = { id: levelData.id, name: `${theme.name} · ${level}` };
+    currentTheme = { id: levelData.id, name: titreChapitreCours(theme, level, "") };
 
     const now = Date.now();
     const allItems = complet
@@ -40789,7 +40846,7 @@ function motsJamaisVus(levelData){
 }
 
 function finirTheme(themeId, level, returnScreen){
-    const theme = themes.find(t => t.id === themeId);
+    const theme = themeParId(themeId);
     if(!theme) return;
     const levelData = theme.levels[level];
     if(!levelData){ showInfoToast(t('alert_level_unavailable')); return; }
@@ -40818,13 +40875,13 @@ function finirTheme(themeId, level, returnScreen){
 function startThemeVerben(themeId, level, returnScreen){
     flashcardMode = 'vhskapitelverben';
     nomenReturnScreen = returnScreen || 'nomen';
-    const theme = themes.find(t => t.id === themeId);
+    const theme = themeParId(themeId);
     if(!theme) return;
     const levelData = theme.levels[level];
     if(!levelData || !levelData.verben || levelData.verben.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
 
     const verbenThemeId = levelData.id + '__verben';
-    currentTheme = { id: verbenThemeId, name: `${theme.name} · ${level} · Verben` };
+    currentTheme = { id: verbenThemeId, name: titreChapitreCours(theme, level, "Verben") };
 
     const now = Date.now();
     const allItems = levelData.verben.map((word, index) => ({ word, index, themeId: verbenThemeId }));
@@ -40845,13 +40902,13 @@ function startThemeVerben(themeId, level, returnScreen){
 function startThemeAdjektive(themeId, level, returnScreen){
     flashcardMode = 'vhskapiteladjektive';
     nomenReturnScreen = returnScreen || 'nomen';
-    const theme = themes.find(t => t.id === themeId);
+    const theme = themeParId(themeId);
     if(!theme) return;
     const levelData = theme.levels[level];
     if(!levelData || !levelData.adjektive || levelData.adjektive.length === 0){ showInfoToast(t('alert_level_unavailable')); return; }
 
     const adjThemeId = levelData.id + '__adjektive';
-    currentTheme = { id: adjThemeId, name: `${theme.name} · ${level} · Adjektive` };
+    currentTheme = { id: adjThemeId, name: titreChapitreCours(theme, level, "Adjektive") };
 
     const now = Date.now();
     const allItems = levelData.adjektive.map((word, index) => ({ word, index, themeId: adjThemeId }));
@@ -41499,7 +41556,10 @@ function loadFlashcard(){
         articleEl.classList.add("hidden");
         pluralEl.classList.add("hidden");
     } else if(flashcardMode === 'kasusverben' || flashcardMode === 'praep' || flashcardMode === 'partikeln' || flashcardMode === 'adverbien' || flashcardMode === 'konjunktionen' || flashcardMode === 'zahlen' || flashcardMode === 'pronomen' || flashcardMode === 'artikelwoerter' || flashcardMode === 'redewendungen' || flashcardMode === 'vhskapiteladjektive'){
-        const germanWord = card[0];
+        // v942 : « rubio, rubia » a l'ecran ; la voix garde le mot seul
+        // (motAllemandDeLaCarte), dont le fichier existe deja.
+        const germanWord = (flashcardMode === 'vhskapiteladjektive' && card.feminin && card.feminin !== card[0])
+            ? card[0] + ", " + card.feminin : card[0];
         const uiLang = getUiLang();
         const useEn = uiLang === 'en';
         const typeCarte = TYPE_CARTE_PAR_MODE[flashcardMode] || "funktionswort";
@@ -43921,7 +43981,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 941;
+const APP_VERSION = 942;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -44138,7 +44198,13 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //      points de suspension faisaient trainer « hayyyy » ; « a pie », dit sans
 //      porteuse parce qu'il contient une espace, sortait en anglais (une tarte).
 //      audio/refaire_es.py ; les anciens dans ~/.wortando/audio-es-avant-23-oct.
-const AUDIO_REVISION = "11";
+//  12  LES SYLLABES SATUREES ET LES PAIRES « x · y » (v942, 24 oct. 2026), deux
+//      voix. Sous 400 ms, normaliser.py poussait un gain infini : 36 mots (a,
+//      qué, que, tú, un, hay...) sortaient en creneau, « un son agressant ».
+//      Renormalises depuis leurs originaux ; les 41 paires de Premiers pas
+//      (« once · doce » disait « once » a l'anglaise) refaites a partir des mots
+//      seuls ; « pues », « minutos » en porteuse. audio/controler_sons.py.
+const AUDIO_REVISION = "12";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -47267,6 +47333,24 @@ function etatsDuNiveau(niveau){
     return total ? { sus: sus, cours: cours, total: total } : null;
 }
 
+// v942 : 🌱 PREMIERS PAS DANS LA PROGRESSION. Jacques, 24 oct. 2026 : « lorsqu'on
+// est avec premier pas, on voit progression du vocabulaire A1, puis on n'a pas
+// la premiere pousse ». Ses flashcards sont les siennes (themePremiersPas) : on
+// les compte comme un niveau, avant A1. Les donnees arrivent a part ; tant
+// qu'elles manquent, la carte montre le niveau CECR et se refait a l'arrivee.
+function etatsPremiersPas(){
+    if(!essaiActif("premiers_pas")) return null;
+    if(!PREMIERS_PAS_DONNEES){ chargerPremiersPas().then(d => { if(d) majCarteVocab(); }); return null; }
+    let sus = 0, cours = 0, total = 0;
+    toutesCartesPremiersPas().forEach(it => {
+        total++;
+        const st = getWordState(it.themeId, it.index);
+        if(st.mastered) sus++;
+        else if(!estNeuf(st)) cours++;
+    });
+    return total ? { sus: sus, cours: cours, total: total } : null;
+}
+
 function basculerVocabNiveaux(){
     vocabDeplie = !vocabDeplie;
     const bloc = document.getElementById("vocabNiveaux");
@@ -47283,13 +47367,19 @@ function majCarteVocab(){
     const bloc = document.getElementById("carteVocab");
     if(!bloc) return;
     const courant = niveauSeance();
-    const e = etatsDuNiveau(courant);
+    let ppEnCours = false, ppFait = false;
+    try{ ppEnCours = premiersPasEnCours(); const s = lirePremiersPas(); ppFait = !!(s.fini || s.a); }catch(e){}
+    const ePP = etatsPremiersPas();
+    const surPP = ppEnCours && !!ePP;
+    const e = surPP ? ePP : etatsDuNiveau(courant);
     // Les donnees arrivent apres le premier rendu : tant qu'elles manquent, le
     // bloc reste absent. Un « 0 / 0 » a l'ouverture est le defaut de la v533.
     if(!e){ bloc.classList.add("hidden"); return; }
 
     const nivEl = document.getElementById("vocabNiveauCourant");
-    if(nivEl) nivEl.textContent = "· " + courant;
+    // « · 🌱 » seul, comme le bouton de la seance : « Premiers pas » en toutes
+    // lettres faisait passer le titre sur deux lignes a 390 px.
+    if(nivEl){ nivEl.textContent = "· " + (surPP ? "🌱" : courant); nivEl.title = surPP ? t("pp_badge") : ""; }
     const compte = document.getElementById("vocabCompte");
     if(compte) compte.textContent = (e.sus + e.cours) + " / " + e.total;
     const bSus = document.getElementById("vocabSus");
@@ -47299,14 +47389,19 @@ function majCarteVocab(){
 
     const liste = document.getElementById("vocabNiveaux");
     if(liste && vocabDeplie){
-        liste.innerHTML = NIVEAUX_VOCAB.map(niv => {
-            const n = etatsDuNiveau(niv);
+        // La ligne 🌱 tant que Premiers pas compte pour la personne : en cours,
+        // fini, ou des cartes deja vues ; jamais pour qui a commence en A1.
+        const avecPP = ePP && (ppEnCours || ppFait || ePP.sus + ePP.cours > 0);
+        liste.innerHTML = (avecPP ? ["PP"] : []).concat(NIVEAUX_VOCAB).map(niv => {
+            const n = niv === "PP" ? ePP : etatsDuNiveau(niv);
             if(!n) return "";
             const vus = n.sus + n.cours;
-            return '<button type="button" class="vocab-ligne' + (niv === courant ? ' courant' : '')
+            const ici = niv === "PP" ? surPP : (niv === courant && !surPP);
+            return '<button type="button" class="vocab-ligne' + (ici ? ' courant' : '')
                  + '" data-niv="' + niv + '" onclick="choisirNiveauVocab(this.dataset.niv)"'
-                 + ' aria-pressed="' + (niv === courant ? 'true' : 'false') + '">'
-                 + '<span class="vocab-ligne-niv">' + niv + '</span>'
+                 + ' aria-pressed="' + (ici ? 'true' : 'false') + '"'
+                 + (niv === "PP" ? ' title="' + t("pp_badge") + '" aria-label="' + t("pp_badge") + '"' : '') + '>'
+                 + '<span class="vocab-ligne-niv">' + (niv === "PP" ? "🌱" : niv) + '</span>'
                  + '<span class="vocab-ligne-piste">'
                  +   '<span class="carte-vocab-part sus" style="width:' + (n.sus * 100 / n.total) + '%"></span>'
                  +   '<span class="carte-vocab-part cours" style="width:' + (n.cours * 100 / n.total) + '%"></span>'
@@ -47391,6 +47486,12 @@ const NIVEAU_SEANCE_KEY = PREFIXE_STOCKAGE + "niveauSeance";
 // reglages separes auraient permis de regarder B1 en revisant A1, et il
 // aurait fallu expliquer pourquoi.
 function choisirNiveauVocab(niv){
+    // v942 : CETTE LISTE NE TOUCHE PAS A PREMIERS PAS. Jacques, 24 oct. 2026 :
+    // « on pourrait vouloir regarder ou on en est partout, mais vouloir continuer
+    // avec les premiers pas, donc je ne relierais pas les deux ». La ligne 🌱 se
+    // lit seulement ; pendant Premiers pas, toucher A1-C1 ne change rien non
+    // plus. Entrer, sortir ou recommencer passe par les boutons de la seance.
+    if(niv === "PP" || premiersPasEnCours()) return;
     fixerNiveauSeance(niv);
     majCarteVocab();
 }
@@ -52453,7 +52554,18 @@ function majTitrePilule(){
     const ordinaire = !titre || ["seance_porte_mots", "seance_porte_mots_grammaire", "seance_porte_tout"]
         .indexOf(titre.getAttribute("data-i18n")) >= 0;
     pil.classList.toggle("pa-concis", ordinaire);
-    sp.textContent = ordinaire ? t("seance_titre") : titre.textContent.trim().split(" · ")[0];
+    // v942 : « MA SEANCE DU JOUR » EN GRAND PARTOUT, L'ETAPE EN PETIT DESSOUS.
+    // Jacques, 24 oct. 2026 : dans Premiers pas, « j'aimerais que Ma seance du jour
+    // soit en plus gros, Etape 1 sur 8 en plus petit ; ca devrait prendre autant de
+    // place que sur A1 ». Le surtitre (.pa-kick) porte donc l'etape, et le CSS
+    // (.pa-etape) le range sous le titre ; la pilule gagne une ligne.
+    pil.classList.toggle("pa-etape", !ordinaire);
+    sp.textContent = t("seance_titre");
+    const kick = pil.querySelector(".pa-titre .pa-kick");
+    if(kick && !ordinaire){
+        kick.removeAttribute("data-i18n");
+        kick.textContent = titre.textContent.trim().split(" · ")[0];
+    }
     ajusterTitrePilule(sp);
 }
 function majPiluleSeance(){
