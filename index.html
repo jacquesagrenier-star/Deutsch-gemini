@@ -5302,6 +5302,10 @@ body[data-theme="dark"] .vocab-ligne.courant{background:rgba(232,162,58,.12);}
 .vocab-legende .pt-sus{background:#0F6E56;}
 .vocab-legende .pt-cours{background:var(--wt-action);}
 .vocab-legende .pt-reste{background:rgba(30,41,59,.18);}
+/* v944 : sous la barre, maitrises et en cours en chiffres. */
+.vocab-detail{margin-top:7px; font-size:11.5px;}
+.vocab-detail b{color:#1C2430; font-weight:800; font-variant-numeric:tabular-nums;}
+body[data-theme="dark"] .vocab-detail b{color:#F2F2F6;}
 body[data-theme="dark"] .carte-vocab-tete{color:#F2F2F6;}
 body[data-theme="dark"] .carte-vocab-niveau,
 body[data-theme="dark"] .vocab-ligne.courant .vocab-ligne-niv{color:#F0B456;}
@@ -6341,6 +6345,15 @@ body[data-theme="dark"] button.serie-salut{background:linear-gradient(180deg, rg
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.35), inset 0 0 6px 2px rgba(255,255,255,.14),
         inset 0 -7px 9px -7px rgba(0,0,0,.35), 0 5px 12px -6px rgba(232,162,58,.45);}
 body[data-theme="dark"] button.serie-salut::after{background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55) 50%, rgba(255,255,255,0));}
+/* v944 : LA TEINTE DE LA SEANCE, PAS PLUS PALE. Jacques, le meme jour : « un peu
+   plus fonce pour la flamme et le nombre de jours ; en fait, la couleur de ma
+   seance du jour, ca va bien ressortir ». Le fond reprend celui de #seancePilule
+   (jour et nuit) ; la flamme, ambre sur ambre, se perdait : elle passe en creme
+   cernee de brun, le chiffre reste a l'encre. */
+button.serie-salut, body[data-theme="dark"] button.serie-salut{color:#1C2430;
+    background:linear-gradient(180deg, rgba(240,170,60,.72), rgba(232,162,58,.66));}
+body[data-theme="dark"] button.serie-salut{background:linear-gradient(180deg, rgba(246,178,66,.9), rgba(232,162,58,.86)) #CC8F33;}
+button.serie-salut svg, body[data-theme="dark"] button.serie-salut svg{fill:#FFF4DF; stroke:#8A4A06;}
 .cal-serie{position:fixed; z-index:9000; background:#fffdf8; border:1.5px solid #e6dfd3; border-radius:16px; padding:12px 14px 10px;
     box-shadow:0 12px 30px -12px rgba(28,36,48,.35); color:#1C2430; width:min(300px, calc(100vw - 32px));}
 .bulle-pp button.primary{width:100%; margin-top:6px; padding:11px 12px; border-radius:12px; font-size:14px;}
@@ -7226,7 +7239,15 @@ body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
     -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));
             mask:radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));}
 #seancePilule .pa-anneau small{color:rgba(28,36,48,.78);}
-#seancePilule .pa-anneau.atteint b{color:#1C2430;}
+/* v944 : L'OBJECTIF ATTEINT S'ALLUME. Jacques, 24 oct. 2026 : « moi j'ai 83 sur
+   30 : mettre le 83 en vert aussitot qu'on atteint le 30, ou illumine » ; et
+   « une facon de montrer qu'on est deux fois, trois fois plus que prevu ». Le
+   chiffre passe au vert, avec un halo de lumiere qui le detache de la vitre ;
+   au double, au triple, une pastille « ×2 », « ×3 » sur l'anneau. */
+#seancePilule .pa-anneau.atteint b{color:#0B6B4F; text-shadow:0 0 5px rgba(255,255,255,.95), 0 0 11px rgba(255,255,255,.7);}
+.pa-fois{position:absolute; top:-7px; right:-11px; z-index:3; padding:1px 5px; border-radius:999px; background:#0F6E56; color:#fff;
+    font-size:10px; font-weight:900; line-height:1.35; direction:ltr; box-shadow:0 0 0 1.5px rgba(255,255,255,.9), 0 2px 5px rgba(0,0,0,.25);}
+.pa-fois.hidden{display:none;}
 /* Le bouton : une bille de verre clair, lisere et point de lumiere. */
 #seancePilule .pa-entrer{position:relative; background:radial-gradient(circle at 50% 85%, rgba(255,255,255,.75), rgba(255,255,255,0) 45%), rgba(255,255,255,.42);
     -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
@@ -7921,6 +7942,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <div id="vocabSus" class="carte-vocab-part sus" style="width:0%"></div>
                 <div id="vocabCours" class="carte-vocab-part cours" style="width:0%"></div>
             </div>
+            <div id="vocabDetail" class="vocab-legende vocab-detail"></div>
             <div id="vocabNiveaux" class="carte-vocab-niveaux hidden"></div>
         </div>
 
@@ -8002,7 +8024,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                         <button type="button" class="pa-sens" id="spSens" onclick="basculerListeSeance(event)"></button>
                     </div>
                 </div>
-                <div class="pa-anneau" id="spAnneau" aria-hidden="true"><b id="spFait">0</b><small id="spSur">/30</small></div>
+                <div class="pa-anneau" id="spAnneau" aria-hidden="true"><b id="spFait">0</b><small id="spSur">/30</small><span id="spFois" class="pa-fois hidden"></span></div>
                 <div class="pa-liste" id="spListe" onclick="event.stopPropagation()">
                     <div class="pa-liste-titre" data-i18n="seance_ton_niveau">Ton niveau</div>
                     <div id="spNiveauxPlace"></div>
@@ -8561,7 +8583,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v943</span>
+    <span class="subtitle-version">v944</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -44002,7 +44024,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 943;
+const APP_VERSION = 944;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47407,6 +47429,14 @@ function majCarteVocab(){
     if(bSus) bSus.style.width = (e.sus * 100 / e.total) + "%";
     const bCours = document.getElementById("vocabCours");
     if(bCours) bCours.style.width = (e.cours * 100 / e.total) + "%";
+    // v944 : LES MAITRISES EN CHIFFRES. Jacques, 24 oct. 2026, en Premiers pas :
+    // « je vois 191/191, mais je ne vois pas de maitrise, seulement en cours ».
+    // Il en avait un : un trait d'un demi-pour-cent ne se voit pas, et le compte
+    // ci-dessus additionne vus et maitrises. Le libelle avant le nombre, comme
+    // dans la legende : « maitrise 1 » s'accorde dans toutes les langues.
+    const detail = document.getElementById("vocabDetail");
+    if(detail) detail.innerHTML = '<span><i class="pt-sus"></i>' + t("vocab_sus") + ' <b>' + e.sus + '</b></span>'
+        + '<span><i class="pt-cours"></i>' + t("vocab_cours") + ' <b>' + e.cours + '</b></span>';
 
     const liste = document.getElementById("vocabNiveaux");
     if(liste && vocabDeplie){
@@ -52671,6 +52701,10 @@ function majAnneauSeance(){
     if(s){ s.textContent = "/" + cible; s.dataset.l = String(cible).length >= 3 ? "3" : ""; }
     a.style.setProperty("--p", Math.min(100, Math.round(100 * fait / Math.max(1, cible))));
     a.classList.toggle("atteint", fait >= cible);
+    // v944 : ×2 au double de l'objectif, ×3 au triple (le multiple entier atteint).
+    const fois = Math.floor(fait / Math.max(1, cible));
+    const pf = document.getElementById("spFois");
+    if(pf){ pf.textContent = "×" + fois; pf.classList.toggle("hidden", fois < 2); }
     const pil = document.getElementById("seancePilule");
     if(pil) pil.classList.toggle("atteint", fait >= cible);
     a.title = fait + " / " + cible;
