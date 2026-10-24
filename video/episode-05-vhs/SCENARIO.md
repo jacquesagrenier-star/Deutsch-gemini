@@ -1,7 +1,7 @@
 # Épisode 05 — « Zweiter Stock » (la Volkshochschule)
 
-Écrit le 24 oct. 2026, **version 2** après la décision de Jacques : **la mère de Mark est
-allemande, Mark parle déjà allemand** ; il ne peut donc pas suivre un cours d'allemand —
+Écrit le 24 oct. 2026, **version 2** après le rappel de Jacques : **la mère de Mark est
+allemande, Mark parle déjà allemand** (sa fiche le dit depuis le 7 sept.) ; il ne peut donc pas suivre un cours d'allemand —
 **Mark et Anna sont dans le même cours d'espagnol** (l'idée de départ de Jacques, 6 oct.).
 À lire par Jacques avant toute génération. **Rien n'est généré.**
 Suite directe de 04 « Schrippe » (« Wird Mark sie wiedersehen? »). « Pfand » passe en 06.
@@ -82,10 +82,11 @@ llamas?, ¿dónde vives?, vivo en…* — un clin d'œil à la série espagnole 
 
 ## À trancher avant de tourner
 
-1. **La mère allemande de Mark** : je l'inscris dans sa fiche (`scenes/personnages.json`) et
-   dans la fiche d'histoire des scènes. ⚠️ La règle actuelle dit « Mark ne parle pas encore
-   bien allemand » : elle devient « Mark parle allemand (sa mère est allemande), mais ne connaît
-   ni Berlin ni ses usages ». Les scènes de l'app qui le montrent en débutant sont à revoir.
+1. ~~La mère allemande de Mark~~ : **déjà dans sa fiche depuis le 7 sept.** (`scenes/personnages.json`,
+   « origine » : père franco-canadien, mère allemande). C'est la fiche d'histoire des scènes
+   (`.claude/histoire-personnages.md`) qui disait le contraire : corrigée le 24 oct. La réplique
+   prévue par la fiche (« Mein Vater ist Frankokanadier und meine Mutter ist Deutsche ») pourra
+   servir quand Carmen ou Anna s'étonnera de son allemand.
 2. **La rue** : « Lenaustraße » existe à Neukölln (un vrai Kiez). La garder ?
 3. **La même rue, pas le même immeuble** (8 et 12) : d'accord ?
 4. **Plans 15-17, le *du* taquiné** : d'accord, ou une fin plus sobre (« Bis nächsten Dienstag,
