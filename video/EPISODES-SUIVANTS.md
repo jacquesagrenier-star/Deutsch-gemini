@@ -117,3 +117,6 @@ fabrication, devis) dans `video/episode-*/` ; les prompts des répliques dans
   ⚠️ **es-02, déjà publié :** la voisine mexicaine reprend le visage de la dame du feu rouge de
   l'épisode 3 allemand -- le même défaut. À décider : la laisser, ou refaire ses six répliques.
 
+## Décidé le 24 oct. 2026 -- la suite de la série allemande
+- **04 « Schrippe » : nouvelle fin.** Jacques : « il n'y a rien qui nous dit qu'ils vont se revoir ». Au plan 18 Mark se demande s'il l'attend et n'ose pas (« Soll ich auf sie warten? … Nein. Das ist komisch. ») ; plan 19 neuf : Anna sort et part à gauche, Mark s'éloigne à droite, dos tourné ; le narrateur : « Wird Mark sie wiedersehen? ». Le spectateur voit ce que Mark ne voit pas.
+- **L'épisode suivant (05) : la Volkshochschule.** Mark s'inscrit à un cours d'allemand ; dans le couloir, il retrouve Anna, qui y suit un cours d'espagnol, même soir, chaque semaine. Ils découvrent qu'ils habitent le même quartier, et c'est là que la relation se développe. Jacques : pas de deuxième boulangerie (« ce ne sont pas des nouveaux mots »). **« Pfand » passe en 06** (scène déjà écrite sous 05-pfand : renuméroter le moment venu).
