@@ -738,6 +738,64 @@ window.SCENE = {
    "pl": "ogrzewanie",
    "ru": "отопление",
    "latam": null
+  },
+  {
+   "id": "lautsprecher",
+   "mot": "altavoz",
+   "genre": "el",
+   "pluriel": "los altavoces",
+   "niveau": "A2",
+   "theme": "la_tecnologia",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     91,
+     27.5,
+     5.6,
+     4.6
+    ]
+   ],
+   "fr": "le haut-parleur",
+   "en": "the speaker",
+   "pt": "a caixa de som",
+   "ar": "مكبّر الصوت",
+   "pl": "głośnik",
+   "ru": "динамик, колонка",
+   "latam": {
+    "mot": "bocina",
+    "genre": "la",
+    "pluriel": "las bocinas"
+   }
+  },
+  {
+   "id": "gitarrenkoffer",
+   "mot": "estuche de guitarra",
+   "genre": "el",
+   "pluriel": "los estuches de guitarra",
+   "niveau": "A2",
+   "theme": "la_musica",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     14,
+     79,
+     52,
+     19
+    ]
+   ],
+   "fr": "l'étui à guitare",
+   "en": "the guitar case",
+   "pt": "o estojo de violão",
+   "ar": "حقيبة الغيتار",
+   "pl": "futerał na gitarę",
+   "ru": "чехол для гитары",
+   "latam": null
   }
  ],
  "grosPlans": [],

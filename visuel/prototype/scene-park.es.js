@@ -954,6 +954,55 @@ window.SCENE = {
    "pl": "drzewo",
    "ru": "дерево",
    "latam": null
+  },
+  {
+   "id": "rasen",
+   "mot": "césped",
+   "genre": "el",
+   "pluriel": "los céspedes",
+   "niveau": "A2",
+   "theme": "la_naturaleza",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     58,
+     100,
+     14
+    ],
+    [
+     55,
+     55,
+     45,
+     3
+    ],
+    [
+     90,
+     72,
+     10,
+     17.5
+    ],
+    [
+     60,
+     89.5,
+     40,
+     10.5
+    ]
+   ],
+   "fr": "la pelouse",
+   "en": "the lawn",
+   "pt": "o gramado",
+   "ar": "العشب، المرجة",
+   "pl": "trawnik",
+   "ru": "газон",
+   "latam": {
+    "mot": "pasto",
+    "genre": "el",
+    "pluriel": "los pastos"
+   }
   }
  ],
  "grosPlans": [],

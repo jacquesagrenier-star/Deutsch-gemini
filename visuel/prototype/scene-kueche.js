@@ -1309,6 +1309,122 @@ window.SCENE = {
    "ar": "حوض المطبخ",
    "pl": "zlew",
    "ru": "мойка"
+  },
+  {
+   "id": "wasserhahn",
+   "mot": "Wasserhahn",
+   "genre": "der",
+   "pluriel": "Wasserhähne",
+   "niveau": "A2",
+   "theme": "kueche_kochen_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "spuele",
+   "devant": 0,
+   "boites": [
+    [
+     74.4,
+     39.5,
+     3.8,
+     5.3
+    ]
+   ],
+   "fr": "robinet",
+   "en": "tap",
+   "tr": "musluk",
+   "uk": "кран",
+   "fa": "شیر آب",
+   "pt": "torneira",
+   "ar": "صنبور الماء",
+   "pl": "kran",
+   "ru": "кран"
+  },
+  {
+   "id": "schuerze",
+   "mot": "Schürze",
+   "genre": "die",
+   "pluriel": "Schürzen",
+   "niveau": "A2",
+   "theme": "kueche_kochen_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     27,
+     38.5,
+     21.5,
+     21
+    ]
+   ],
+   "fr": "tablier",
+   "en": "apron",
+   "tr": "önlük",
+   "uk": "фартух",
+   "fa": "پیش‌بند",
+   "pt": "avental",
+   "ar": "مريلة",
+   "pl": "fartuch",
+   "ru": "фартук"
+  },
+  {
+   "id": "dampf",
+   "mot": "Dampf",
+   "genre": "der",
+   "pluriel": "Dämpfe",
+   "niveau": "B1",
+   "theme": "kueche_kochen_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     52,
+     32.5,
+     10,
+     11
+    ]
+   ],
+   "fr": "vapeur",
+   "en": "steam",
+   "tr": "buhar",
+   "uk": "пара",
+   "fa": "بخار",
+   "pt": "vapor",
+   "ar": "بخار",
+   "pl": "para",
+   "ru": "пар"
+  },
+  {
+   "id": "flasche",
+   "mot": "Flasche",
+   "genre": "die",
+   "pluriel": "Flaschen",
+   "niveau": "A1",
+   "theme": "kueche_kochen_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     80.5,
+     41.5,
+     2.6,
+     3.3
+    ]
+   ],
+   "fr": "bouteille",
+   "en": "bottle",
+   "tr": "şişe",
+   "uk": "пляшка",
+   "fa": "بطری",
+   "pt": "garrafa",
+   "ar": "زجاجة",
+   "pl": "butelka",
+   "ru": "бутылка"
   }
  ],
  "grosPlans": [],

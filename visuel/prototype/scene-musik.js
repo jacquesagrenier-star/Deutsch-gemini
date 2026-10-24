@@ -783,6 +783,64 @@ window.SCENE = {
    "ar": "تدفئة",
    "pl": "ogrzewanie",
    "ru": "отопление"
+  },
+  {
+   "id": "lautsprecher",
+   "mot": "Lautsprecher",
+   "genre": "der",
+   "pluriel": "Lautsprecher",
+   "niveau": "A2",
+   "theme": "medien_technologie_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     91,
+     27.5,
+     5.6,
+     4.6
+    ]
+   ],
+   "fr": "haut-parleur",
+   "en": "speaker",
+   "tr": "hoparlör",
+   "uk": "гучномовець, колонка",
+   "fa": "بلندگو",
+   "pt": "caixa de som, alto-falante",
+   "ar": "مكبّر الصوت",
+   "pl": "głośnik",
+   "ru": "динамик, колонка"
+  },
+  {
+   "id": "gitarrenkoffer",
+   "mot": "Gitarrenkoffer",
+   "genre": "der",
+   "pluriel": "Gitarrenkoffer",
+   "niveau": "A2",
+   "theme": "musik_kunst_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     14,
+     79,
+     52,
+     19
+    ]
+   ],
+   "fr": "étui à guitare",
+   "en": "guitar case",
+   "tr": "gitar kılıfı",
+   "uk": "футляр для гітари",
+   "fa": "جعبهٔ گیتار",
+   "pt": "estojo de violão",
+   "ar": "حقيبة الغيتار",
+   "pl": "futerał na gitarę",
+   "ru": "чехол для гитары"
   }
  ],
  "grosPlans": [],

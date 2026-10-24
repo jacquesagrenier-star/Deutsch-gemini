@@ -62,19 +62,28 @@ def main():
     # deplace ensuite vers un autre theme (vocabulaire_b2.py) ne doit pas
     # revenir dans son theme d'origine a la relance. Le sens departage les
     # homographes voulus (planta : l'etage, et la plante).
-    partout = {(m["mot"], m.get("traduction")) for t in temas["themes"] for m in t["mots"]}
+    # Les rangees de « Mon cours » (vhs_kapitel*, admin seul) ne comptent pas :
+    # un mot du cours absent du programme doit pouvoir y entrer.
+    partout = {(m["mot"], m.get("traduction")) for t in temas["themes"]
+               if not t["id"].startswith("vhs_kapitel") for m in t["mots"]}
     for theme, lignes in aj.get("ajouts", {}).items():
         if theme not in par_id:
             sys.exit("theme inconnu : %s" % theme)
         t = par_id[theme]
         deja = {m["mot"] for m in t["mots"]}
-        for mot, art, pl, fr, en, ex, ex_fr, ex_en in lignes:
+        for ligne in lignes:
+            # 24 oct. 2026 : un 9e champ facultatif, les autres langues
+            # ({"traduction_pt": ..., "exemple_pt": ..., "traduction_ar": ...}),
+            # que portent les mots voisins. Les fichiers a 8 champs restent bons.
+            mot, art, pl, fr, en, ex, ex_fr, ex_en = ligne[:8]
             if mot in deja or (mot, fr) in partout:
                 continue
             e = {"traduction": fr, "traduction_en": en, "exemple": ex, "exemple_fr": ex_fr,
                  "exemple_en": ex_en, "theme_source": theme, "mot": mot, "genre": art}
             if pl:
                 e["pluriel"] = pl
+            if len(ligne) > 8:
+                e.update(ligne[8])
             t["mots"].append(e)
             deja.add(mot)
             ajoutes += 1
@@ -110,10 +119,34 @@ def main():
                 autres += 1
         ecrire(chemin, d)
 
+    # LES ADJECTIFS (24 oct. 2026, mots du cours de Jacques) : rangés par
+    # niveau dans adjetivos.json. Ligne : [mot, feminin, theme_source,
+    # traduction fr, traduction en, exemple, exemple fr, exemple en, {autres
+    # langues}]. Un adjectif deja present a n'importe quel niveau n'est pas
+    # rajoute ; un nom du meme mot (el cuadrado) n'empeche pas l'adjectif.
+    adjectifs = 0
+    if "adjetivos" in aj:
+        chemin = os.path.join(DATOS, "adjetivos.json")
+        d = lire(chemin)
+        deja = {x["mot"] for v in d.values() for x in v}
+        for niv, lignes in aj["adjetivos"].items():
+            for ligne in lignes:
+                mot, fem, source, fr, en, ex, ex_fr, ex_en = ligne[:8]
+                if mot in deja:
+                    continue
+                e = {"traduction": fr, "traduction_en": en, "exemple": ex, "exemple_fr": ex_fr,
+                     "exemple_en": ex_en, "theme_source": source, "mot": mot, "feminin": fem}
+                if len(ligne) > 8:
+                    e.update(ligne[8])
+                d.setdefault(niv, []).append(e)
+                deja.add(mot)
+                adjectifs += 1
+        ecrire(chemin, d)
+
     ecrire(temas_chemin, temas)
     ecrire(var_chemin, var)
-    print("themes crees : %d   mots ajoutes : %d   variantes posees : %d   expressions et mots-outils : %d"
-          % (crees, ajoutes, poses, autres))
+    print("themes crees : %d   mots ajoutes : %d   variantes posees : %d   expressions et mots-outils : %d   adjectifs : %d"
+          % (crees, ajoutes, poses, autres, adjectifs))
 
 
 if __name__ == "__main__":

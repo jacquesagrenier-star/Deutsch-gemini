@@ -1,0 +1,63 @@
+{
+ "_lisez_moi": [
+  "Les mots du cours d'espagnol de Jacques (« Mon cours », pages 1 et 2, 24 oct. 2026) qui n'existaient dans AUCUN fichier du programme : temas, verbos, adjetivos, adverbios, expresiones, funcionales. Ils entrent ici dans le programme ordinaire, pour tout le monde ; les rangées « Mon cours » restent à part.",
+  "Appliqué par : python espanol/ajouter_mots.py espanol/ajouts/mots-cours-jacques.json (idempotent).",
+  "Noms : [mot, article, pluriel, fr, en, exemple, exemple fr, exemple en, {pt, ar}]. Adjectifs (par niveau) : [mot, féminin, theme_source, fr, en, exemple, exemple fr, exemple en, {pt, ar}].",
+  "« cuadrado » existait comme nom (el cuadrado, le carré, los_colores) : on ajoute l'adjectif. Les traductions suivent le corpus : le nom avec son article, l'adjectif au masculin."
+ ],
+ "ajouts": {
+  "el_aspecto": [
+   ["tatuaje", "el", "tatuajes", "le tatouage", "the tattoo",
+    "Mi hermano tiene un tatuaje en el brazo.", "Mon frère a un tatouage sur le bras.", "My brother has a tattoo on his arm.",
+    {"traduction_pt": "a tatuagem", "exemple_pt": "Meu irmão tem uma tatuagem no braço.",
+     "traduction_ar": "وشم", "exemple_ar": "لأخي وشم على ذراعه."}],
+   ["piercing", "el", "piercings", "le piercing", "the piercing",
+    "Mi prima lleva un piercing en la nariz.", "Ma cousine a un piercing au nez.", "My cousin has a nose piercing.",
+    {"traduction_pt": "o piercing", "exemple_pt": "Minha prima tem um piercing no nariz.",
+     "traduction_ar": "ثقب زينة (بيرسينغ)", "exemple_ar": "ابنة عمّي تضع حلقة في أنفها."}]
+  ],
+  "la_ropa": [
+   ["gafas de sol", "las", null, "les lunettes de soleil", "sunglasses",
+    "En verano siempre llevo gafas de sol.", "En été, je porte toujours des lunettes de soleil.", "In summer I always wear sunglasses.",
+    {"traduction_pt": "os óculos de sol", "exemple_pt": "No verão, sempre uso óculos de sol.",
+     "traduction_ar": "نظّارة شمسية", "exemple_ar": "في الصيف أضع دائمًا نظّارة شمسية."}]
+  ]
+ },
+ "variantes": {
+  "gafas de sol": {"mot": "lentes de sol", "genre": "los", "pluriel": "lentes de sol", "exemple": "En verano siempre llevo lentes de sol."}
+ },
+ "adjetivos": {
+  "A2": [
+   ["rizado", "rizada", "el_aspecto", "bouclé, frisé", "curly",
+    "Mi hija tiene el pelo rizado.", "Ma fille a les cheveux bouclés.", "My daughter has curly hair.",
+    {"traduction_pt": "cacheado", "exemple_pt": "Minha filha tem o cabelo cacheado.",
+     "traduction_ar": "مجعّد", "exemple_ar": "شعر ابنتي مجعّد."}],
+   ["pelirrojo", "pelirroja", "el_aspecto", "roux", "red-haired",
+    "Su novia es pelirroja.", "Sa copine est rousse.", "His girlfriend is a redhead.",
+    {"traduction_pt": "ruivo", "exemple_pt": "A namorada dele é ruiva.",
+     "traduction_ar": "أحمر الشعر", "exemple_ar": "صديقته حمراء الشعر."}],
+   ["estudioso", "estudiosa", "la_personalidad", "studieux", "studious",
+    "Mi hermana es muy estudiosa.", "Ma sœur est très studieuse.", "My sister is very studious.",
+    {"traduction_pt": "estudioso", "exemple_pt": "Minha irmã é muito estudiosa.",
+     "traduction_ar": "مجتهد", "exemple_ar": "أختي مجتهدة جدًا."}],
+   ["avergonzado", "avergonzada", "las_emociones", "gêné, honteux", "embarrassed, ashamed",
+    "Estaba avergonzado por su error.", "Il avait honte de son erreur.", "He was embarrassed about his mistake.",
+    {"traduction_pt": "envergonhado", "exemple_pt": "Ele estava envergonhado com o erro.",
+     "traduction_ar": "خجِل", "exemple_ar": "كان يشعر بالخجل من خطئه."}]
+  ],
+  "B1": [
+   ["ovalado", "ovalada", "adj_forma", "ovale", "oval",
+    "El espejo del baño es ovalado.", "Le miroir de la salle de bains est ovale.", "The bathroom mirror is oval.",
+    {"traduction_pt": "oval", "exemple_pt": "O espelho do banheiro é oval.",
+     "traduction_ar": "بيضوي", "exemple_ar": "مرآة الحمّام بيضوية."}],
+   ["cuadrado", "cuadrada", "adj_forma", "carré", "square",
+    "Tenemos una mesa cuadrada en la cocina.", "Nous avons une table carrée dans la cuisine.", "We have a square table in the kitchen.",
+    {"traduction_pt": "quadrado", "exemple_pt": "Temos uma mesa quadrada na cozinha.",
+     "traduction_ar": "مربّع", "exemple_ar": "عندنا طاولة مربّعة في المطبخ."}],
+   ["alargado", "alargada", "adj_forma", "allongé", "elongated",
+    "Tiene la cara alargada.", "Il a le visage allongé.", "He has a long face.",
+    {"traduction_pt": "alongado", "exemple_pt": "Ele tem o rosto alongado.",
+     "traduction_ar": "مستطيل، ممدود", "exemple_ar": "وجهه طويل."}]
+  ]
+ }
+}

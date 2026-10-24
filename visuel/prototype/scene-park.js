@@ -1015,6 +1015,53 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево"
+  },
+  {
+   "id": "rasen",
+   "mot": "Rasen",
+   "genre": "der",
+   "pluriel": "Rasen",
+   "niveau": "B1",
+   "theme": "natur_b1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     58,
+     100,
+     14
+    ],
+    [
+     55,
+     55,
+     45,
+     3
+    ],
+    [
+     90,
+     72,
+     10,
+     17.5
+    ],
+    [
+     60,
+     89.5,
+     40,
+     10.5
+    ]
+   ],
+   "fr": "pelouse, gazon",
+   "en": "lawn",
+   "tr": "çimen",
+   "uk": "газон",
+   "fa": "چمن",
+   "pt": "gramado",
+   "ar": "عشب الحديقة، مرجة",
+   "pl": "trawnik",
+   "ru": "газон"
   }
  ],
  "grosPlans": [],

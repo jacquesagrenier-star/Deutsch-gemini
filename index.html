@@ -6320,6 +6320,27 @@ button.serie-salut svg{width:20px; height:20px; fill:#F0A23A; stroke:#B9770E; st
 button.serie-salut .serie-unite{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;}
 body[data-theme="dark"] button.serie-salut{color:#F2F2F6;}
 body[data-theme="dark"] button.serie-salut svg{fill:#F0B456; stroke:#F7C77A;}
+/* v943 : LA FLAMME EN VITRE, COMME LA SEANCE. Jacques, 24 oct. 2026 : « glacis
+   comme ma seance du jour, assez pale, plus pale que ma seance du jour, mais dans
+   la meme teinte [...] pour qu'on sente qu'on puisse peser dessus ». La meme
+   recette que #seancePilule (v900) en plus leger : teinte ambre translucide,
+   lisere de lumiere, trainee blanche en haut, ombre ambre dessous ; elle
+   s'enfonce d'un pixel sous le doigt. Pas d'animation : une seule vitre vit. */
+button.serie-salut{position:relative; border:0;
+    background:linear-gradient(180deg, rgba(240,170,60,.40), rgba(232,162,58,.30));
+    -webkit-backdrop-filter:blur(6px) saturate(1.5); backdrop-filter:blur(6px) saturate(1.5);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.75), inset 0 0 6px 2px rgba(255,255,255,.35),
+        inset 0 -7px 9px -7px rgba(160,90,10,.40), 0 5px 10px -6px rgba(150,85,10,.55);
+    transition:transform .08s, box-shadow .08s;}
+button.serie-salut::after{content:""; position:absolute; top:2px; left:20%; width:46%; height:5px; border-radius:999px; pointer-events:none;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.9) 50%, rgba(255,255,255,0)); filter:blur(.8px);}
+button.serie-salut:active{transform:translateY(1px);
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.75), inset 0 0 6px 2px rgba(255,255,255,.35),
+        inset 0 -5px 8px -6px rgba(160,90,10,.45), 0 2px 5px -3px rgba(150,85,10,.55);}
+body[data-theme="dark"] button.serie-salut{background:linear-gradient(180deg, rgba(246,178,66,.42), rgba(232,162,58,.34));
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,.35), inset 0 0 6px 2px rgba(255,255,255,.14),
+        inset 0 -7px 9px -7px rgba(0,0,0,.35), 0 5px 12px -6px rgba(232,162,58,.45);}
+body[data-theme="dark"] button.serie-salut::after{background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.55) 50%, rgba(255,255,255,0));}
 .cal-serie{position:fixed; z-index:9000; background:#fffdf8; border:1.5px solid #e6dfd3; border-radius:16px; padding:12px 14px 10px;
     box-shadow:0 12px 30px -12px rgba(28,36,48,.35); color:#1C2430; width:min(300px, calc(100vw - 32px));}
 .bulle-pp button.primary{width:100%; margin-top:6px; padding:11px 12px; border-radius:12px; font-size:14px;}
@@ -8540,7 +8561,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v942</span>
+    <span class="subtitle-version">v943</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -43981,7 +44002,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 942;
+const APP_VERSION = 943;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

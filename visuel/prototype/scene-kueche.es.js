@@ -366,8 +366,8 @@ window.SCENE = {
    "mot": "tapa",
    "genre": "la",
    "pluriel": "las tapas",
-   "niveau": "A1",
-   "theme": "el_restaurante",
+   "niveau": "A2",
+   "theme": "la_cocina_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -380,10 +380,10 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "la tapa",
-   "en": "the tapa",
-   "pt": "a tapa (petisco)",
-   "ar": "تاباس (مقبّلات إسبانية)",
+   "fr": "le couvercle",
+   "en": "the lid",
+   "pt": "a tampa",
+   "ar": "غطاء",
    "pl": "pokrywka",
    "ru": "крышка",
    "latam": null
@@ -1226,6 +1226,114 @@ window.SCENE = {
    "ar": "حوض المطبخ",
    "pl": "zlew",
    "ru": "мойка",
+   "latam": null
+  },
+  {
+   "id": "wasserhahn",
+   "mot": "grifo",
+   "genre": "el",
+   "pluriel": "los grifos",
+   "niveau": "A1",
+   "theme": "la_casa",
+   "personne": null,
+   "aussi": [],
+   "sur": "spuele",
+   "devant": 0,
+   "boites": [
+    [
+     74.4,
+     39.5,
+     3.8,
+     5.3
+    ]
+   ],
+   "fr": "le robinet",
+   "en": "the tap",
+   "pt": "a torneira",
+   "ar": "صنبور",
+   "pl": "kran",
+   "ru": "кран",
+   "latam": null
+  },
+  {
+   "id": "schuerze",
+   "mot": "delantal",
+   "genre": "el",
+   "pluriel": "los delantales",
+   "niveau": "A2",
+   "theme": "la_cocina_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     27,
+     38.5,
+     21.5,
+     21
+    ]
+   ],
+   "fr": "le tablier",
+   "en": "the apron",
+   "pt": "o avental",
+   "ar": "مريلة المطبخ",
+   "pl": "fartuch",
+   "ru": "фартук",
+   "latam": null
+  },
+  {
+   "id": "dampf",
+   "mot": "vapor",
+   "genre": "el",
+   "pluriel": "los vapores",
+   "niveau": "A2",
+   "theme": "la_cocina_a2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     52,
+     32.5,
+     10,
+     11
+    ]
+   ],
+   "fr": "la vapeur",
+   "en": "the steam",
+   "pt": "o vapor",
+   "ar": "بخار",
+   "pl": "para",
+   "ru": "пар",
+   "latam": null
+  },
+  {
+   "id": "flasche",
+   "mot": "botella",
+   "genre": "la",
+   "pluriel": "las botellas",
+   "niveau": "A1",
+   "theme": "la_comida",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     80.5,
+     41.5,
+     2.6,
+     3.3
+    ]
+   ],
+   "fr": "la bouteille",
+   "en": "bottle",
+   "pt": "a garrafa",
+   "ar": "زجاجة",
+   "pl": "butelka",
+   "ru": "бутылка",
    "latam": null
   }
  ],
