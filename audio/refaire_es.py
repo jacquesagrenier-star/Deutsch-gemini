@@ -53,10 +53,15 @@ from recouper import recouper, Refus  # noqa
 PORTEUSE = "Palabra. ... %s"
 # (texte affiche, donc nom du fichier ; texte dit dans la porteuse ; voix, ou
 # None pour les deux). Faits le 23 oct. : ("¿Hay…?", "¿Hay?"), ("a pie", "a pie").
-# Le 24 oct., les deux mots que controler_sons.py dit TRAINE -- dans UNE voix.
+# Le 24 oct., les deux mots que controler_sons.py disait TRAINE, dans une voix :
+# ("pues", "pues", "es-es"), ("minutos", "minutos", "es-419"). Puis les mots
+# NEUFS du cours a espace et sans article : generer_es.py les enverrait sans
+# porteuse, comme « a pie ». Faits ici d'abord, generer_es.py saute ensuite ce
+# qui existe.
 REFAITS = [
-    ("pues", "pues", "es-es"),
-    ("minutos", "minutos", "es-419"),
+    ("gafas de sol", "gafas de sol", "es-es"),
+    ("lentes de sol", "lentes de sol", "es-419"),
+    ("estuche de guitarra", "estuche de guitarra", None),
 ]
 PAUSE_PAIRE = 0.30      # s de silence entre « once » et « doce »
 ARCHIVE = os.path.join(os.path.expanduser("~"), ".wortando",

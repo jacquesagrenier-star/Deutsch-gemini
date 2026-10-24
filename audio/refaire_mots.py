@@ -95,6 +95,10 @@ def main():
                    help="doit etre le meme que celui du corpus")
     p.add_argument("--max", type=int, default=0, help="limiter le nombre de mots")
     p.add_argument("--blanc", action="store_true")
+    # 24 oct. 2026 : un lot de mots NEUFS (Gitarrenkoffer, Schürze...). Sans ce
+    # filtre, le script reprend tous les mots isoles pas encore refaits -- 50 000
+    # credits a blanc ce jour-la.
+    p.add_argument("--textes", default="", help="seulement ces mots, separes par des virgules")
     a = p.parse_args()
 
     if "%s" not in a.porteuse:
@@ -123,6 +127,9 @@ def main():
             if e["niveau"] in niveaux and e["genre"] == "mot"
             and " " not in e["texte"].strip()
             and e["id"] not in faits]
+    if a.textes:
+        voulus = {t.strip() for t in a.textes.split(",")}
+        mots = [e for e in mots if e["texte"] in voulus]
     if a.max:
         mots = mots[:a.max]
 

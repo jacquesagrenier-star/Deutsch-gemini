@@ -41,10 +41,17 @@ PROJET = "deutschai-b6fbb"
 
 def outil_present(nom):
     for ext in ("", ".cmd", ".exe"):
+        # 300 s et non 60 (24 oct. 2026) : firebase --version prend 9 s au
+        # repos, mais plus d'une minute quand la machine normalise ou controle
+        # en parallele -- et le script disait alors « pas installe », a tort,
+        # deux fois dans la journee. Present mais lent n'est pas absent.
         try:
-            subprocess.run([nom + ext, "--version"], capture_output=True, timeout=60)
+            subprocess.run([nom + ext, "--version"], capture_output=True, timeout=300)
             return nom + ext
-        except (FileNotFoundError, subprocess.TimeoutExpired, OSError):
+        except subprocess.TimeoutExpired:
+            print("  %s ne repond pas en 300 s -- machine trop chargee ?" % (nom + ext))
+            continue
+        except (FileNotFoundError, OSError):
             continue
     return None
 
