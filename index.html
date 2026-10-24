@@ -8617,7 +8617,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v947</span>
+    <span class="subtitle-version">v948</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -44070,7 +44070,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 947;
+const APP_VERSION = 948;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48211,7 +48211,11 @@ function montrerMosaiquePalier(multiple){
             conteneur.appendChild(bloc);
             const k = LARGEUR / toile.width;
             const n = jusqua - depuis;
-            const pas = Math.max(45, Math.min(110, 2200 / n));
+            // v948 : avec l'anneau, les carreaux tiennent dans la cascade de la
+            // kalimba (SONS_PALIER_T), et la piece part maintenant.
+            const pas = multiple ? Math.max(25, SONS_PALIER_T.duree_carreaux * 1000 / n)
+                                 : Math.max(45, Math.min(110, 2200 / n));
+            if(multiple) jouerSonPalier(multiple);
             for(let i = 1; i <= n; i++){
                 setTimeout(() => {
                     if(!bloc.isConnected) return;
@@ -48231,7 +48235,9 @@ function montrerMosaiquePalier(multiple){
                 }, 350 + i * pas);
             }
             // Le bandeau du palier dure 5,5 s ; la mosaique part avec lui.
-            const fin = Math.max(4600, 350 + n * pas + 1600);
+            const fin = multiple
+                ? (SONS_PALIER_T.carreaux + SONS_PALIER_T.duree_carreaux - SONS_PALIER_T.chevauche + Math.min(3, multiple) * SONS_PALIER_T.tour) * 1000 + 1900
+                : Math.max(4600, 350 + n * pas + 1600);
             setTimeout(() => bloc.classList.add("part"), fin);
             setTimeout(() => bloc.remove(), fin + 400);
         }catch(e){ try{ noterAudio("carreau", "ORAL", "palier refuse : " + (e && e.name)); }catch(e2){} }
@@ -48268,11 +48274,13 @@ function anneauDuPalier(bloc, multiple){
         setTimeout(() => { arc.style.transition = "stroke-dashoffset .9s ease-in-out"; poser(0); }, 1100);
     };
     if(calme){ finir(); return; }
-    const t0 = performance.now() + 350, duree = 700 * multiple;
+    const T = SONS_PALIER_T;
+    const t0 = performance.now() + (T.carreaux + T.duree_carreaux - T.chevauche) * 1000;
+    const duree = T.tour * 1000 * Math.min(3, multiple);
     const pas = t => {
         if(!a.isConnected) return;
         const k = Math.max(0, Math.min(1, (t - t0) / duree));
-        const p = k * multiple;
+        const p = k * Math.min(3, multiple);
         if(k >= 1){ finir(); return; }
         poser(p - Math.floor(p));
         requestAnimationFrame(pas);
@@ -52808,6 +52816,7 @@ function majAnneauSeance(){
     const pil = document.getElementById("seancePilule");
     if(pil) pil.classList.toggle("atteint", fait >= cible);
     a.title = fait + " / " + cible;
+    try{ preparerSonsEssai(); }catch(e){}
 }
 function majTuilesCarnetFeuilles(){
     try{ majTuileEpisodes(); }catch(e){}
@@ -54228,6 +54237,8 @@ function startSilentUnlockLoop(){
 
 function prepareMasterySound(){
     buildToneBuffer(BRAVO_NOTES, BRAVO_NOTE_GAP, BRAVO_NOTE_DURATION, 0.55).then(buf => {
+        // v948 : la kalimba de l'essai, si elle est deja posee, garde sa place.
+        if(sonsEssaiPrepares) return;
         const blob = audioBufferToWavBlob(buf);
         const url = URL.createObjectURL(blob);
         masteryAudioEl = new Audio(url);
@@ -54251,6 +54262,119 @@ function prepareMasterySound(){
     }).catch(() => {
         fanfareAudioReady = false;
     });
+}
+
+// ============ LES SONS DU PALIER (essai anneau_palier, v948) ============
+// Jacques, 24 oct. 2026, a l'ecoute de propositions : la kalimba pour les
+// carreaux qui s'allument (« le 2 »), puis « une petite piece musicale qui dure
+// pour un tour, une autre pour deux tours, une autre pour trois tours ». Une
+// mesure par tour d'anneau (1 s) ; la piece commence une demi-seconde avant la
+// fin des carreaux (« est-ce trop long ? » -- 2,5 s pour ×1, 3,5 s pour ×2,
+// 4,5 s pour ×3). Toucher l'ecran coupe le son avec l'image.
+// FABRIQUEES HORS LIGNE puis jouees par un <audio>, comme le carillon : c'est
+// le chemin qu'iOS joue meme bouton silencieux baisse (voir buildToneBuffer).
+// La ligne de temps est PARTAGEE avec l'image : SONS_PALIER_T.
+const SONS_PALIER_T = { carreaux: 0.35, duree_carreaux: 1.5, chevauche: 0.5, tour: 1.0 };
+const NOTES_PALIER = { C3: 130.81, F3: 174.61, G3: 196, C4: 261.63, G4: 392, C5: 523.25, D5: 587.33, E5: 659.25,
+                       G5: 783.99, A5: 880, C6: 1046.5, D6: 1174.66, E6: 1318.51 };
+const PIECES_PALIER = {
+    1: { m: [["C5", 0], ["E5", .25], ["G5", .5], ["C6", .75]], b: [["C3", 0]], fin: ["C5", "G5", "C6"] },
+    2: { m: [["G4", 0], ["C5", .25], ["E5", .5], ["G5", .75], ["A5", 1], ["G5", 1.25], ["E5", 1.5], ["C6", 1.75]],
+         b: [["C3", 0], ["G3", 1]], fin: ["C5", "E5", "G5", "C6"] },
+    3: { m: [["C5", 0], ["D5", .25], ["E5", .5], ["G5", .75], ["E5", 1], ["G5", 1.25], ["A5", 1.5], ["C6", 1.75],
+             ["D6", 2], ["C6", 2.25], ["A5", 2.5], ["E6", 2.75]],
+         b: [["C3", 0], ["F3", 1], ["G3", 2]], fin: ["C4", "C5", "E5", "G5", "C6"] }
+};
+function sonEnveloppe(ctx, osc, t, att, dur, g){
+    const v = ctx.createGain();
+    v.gain.setValueAtTime(0, t);
+    v.gain.linearRampToValueAtTime(g, t + att);
+    v.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+    osc.connect(v); v.connect(ctx.destination);
+    osc.start(t); osc.stop(t + dur + 0.05);
+}
+function sonOsc(ctx, type, f){ const o = ctx.createOscillator(); o.type = type; o.frequency.value = f; return o; }
+// La kalimba : une sinusoide qui s'eteint, et une attaque metallique tres breve.
+function sonKalimba(ctx, t, f, g, dur){
+    sonEnveloppe(ctx, sonOsc(ctx, "sine", f), t, 0.004, dur, g);
+    sonEnveloppe(ctx, sonOsc(ctx, "sine", f * 5.4), t, 0.002, 0.06, g * 0.3);
+}
+function sonCloche(ctx, t, f, g){
+    sonEnveloppe(ctx, sonOsc(ctx, "sine", f), t, 0.006, 1.4, g);
+    sonEnveloppe(ctx, sonOsc(ctx, "sine", f * 2.01), t, 0.006, 0.6, g * 0.3);
+    sonEnveloppe(ctx, sonOsc(ctx, "sine", f * 3), t, 0.006, 0.3, g * 0.12);
+}
+function construireSonPalier(m){
+    const OfflineCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if(!OfflineCtx) return Promise.reject(new Error("OfflineAudioContext indisponible"));
+    const T = SONS_PALIER_T, N = NOTES_PALIER, P = PIECES_PALIER[m];
+    const tA = T.carreaux + T.duree_carreaux - T.chevauche, tF = tA + m * T.tour;
+    const sr = 44100, ctx = new OfflineCtx(1, Math.ceil(sr * (tF + 2)), sr);
+    // Les carreaux : une note sur deux, la gamme pentatonique qui monte.
+    const penta = [N.C5, N.D5, N.E5, N.G5, N.A5, N.C6];
+    for(let i = 0; i < 30; i += 2){
+        sonKalimba(ctx, T.carreaux + i * T.duree_carreaux / 30, penta[Math.min(penta.length - 1, Math.floor(i / 5))], 0.2, 0.45);
+    }
+    P.m.forEach(([n, k]) => sonKalimba(ctx, tA + k * T.tour, N[n], 0.24, 0.55));
+    P.b.forEach(([n, k]) => sonEnveloppe(ctx, sonOsc(ctx, "triangle", N[n]), tA + k * T.tour, 0.01, T.tour, 0.2));
+    P.fin.forEach((n, i) => sonCloche(ctx, tF + i * 0.03, N[n], 0.18));
+    if(m >= 2){ sonCloche(ctx, tF + 0.35, N.G5, 0.17); sonCloche(ctx, tF + 0.47, N.C6, 0.17); }
+    return ctx.startRendering();
+}
+// LES CONFETTIS A LA KALIMBA (option A). Marc-Antoine, rapporte par Jacques :
+// le son des confettis est « un peu trop aigu » -- Do-Mi-Sol a l'octave 6 en
+// onde triangle (BRAVO_NOTES). Ecoute de cinq propositions ; Jacques : « A » --
+// les memes trois notes une octave plus bas, a la kalimba, l'instrument des
+// carreaux. Dans l'essai d'abord ; masteryAudioEl est simplement remplace.
+function construireBravoKalimba(){
+    const OfflineCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if(!OfflineCtx) return Promise.reject(new Error("OfflineAudioContext indisponible"));
+    const ctx = new OfflineCtx(1, Math.ceil(44100 * 1.0), 44100);
+    [NOTES_PALIER.C5, NOTES_PALIER.E5, NOTES_PALIER.G5].forEach((f, i) => sonKalimba(ctx, 0.01 + i * 0.1, f, 0.42, 0.55));
+    return ctx.startRendering();
+}
+let sonsEssaiPrepares = false;
+// Appelee a l'accueil (majAnneauSeance) : l'essai n'est connu qu'apres la
+// connexion, alors que prepareMasterySound() part au demarrage.
+function preparerSonsEssai(){
+    if(sonsEssaiPrepares) return;
+    try{ if(!essaiActif("anneau_palier")) return; }catch(e){ return; }
+    sonsEssaiPrepares = true;
+    preparerSonsPalier();
+    construireBravoKalimba().then(buf => {
+        const el = new Audio(URL.createObjectURL(audioBufferToWavBlob(buf)));
+        el.preload = "auto";
+        masteryAudioEl = el;
+        masteryAudioReady = true;
+    }).catch(() => {});
+}
+let sonsPalierEls = {}, sonPalierEnCours = null;
+function preparerSonsPalier(){
+    [1, 2, 3].forEach(m => {
+        if(sonsPalierEls[m]) return;
+        construireSonPalier(m).then(buf => {
+            const el = new Audio(URL.createObjectURL(audioBufferToWavBlob(buf)));
+            el.preload = "auto";
+            sonsPalierEls[m] = el;
+        }).catch(() => {});
+    });
+}
+// Rend true si la piece est partie ; false, et l'appelant garde l'ancienne fanfare.
+function jouerSonPalier(m){
+    const el = sonsPalierEls[Math.max(1, Math.min(3, m))];
+    if(!el) return false;
+    try{
+        couperSonPalier();
+        el.currentTime = 0;
+        const p = el.play();
+        if(p && typeof p.catch === "function") p.catch(() => {});
+        sonPalierEnCours = el;
+        return true;
+    }catch(e){ return false; }
+}
+function couperSonPalier(){
+    try{ if(sonPalierEnCours){ sonPalierEnCours.pause(); sonPalierEnCours.currentTime = 0; } }catch(e){}
+    sonPalierEnCours = null;
 }
 
 function playMasteredSound(){
@@ -54420,6 +54544,7 @@ function stopMasteryCelebrations(){
     if(container){
         container.querySelectorAll(".daily-goal-text, .mos-palier, .plus-un").forEach(el => el.remove());
     }
+    couperSonPalier();
 }
 
 // Gros bandeau "+N !" affiché à chaque palier de l'objectif du jour franchi,
@@ -54452,6 +54577,9 @@ function triggerDailyGoalCelebration(multiple){
     // laisse la carte qui franchit le palier poser son propre carreau : le
     // palier est compte AVANT (recordDailyActivity), le carreau juste apres.
     try{ if(essaiActif("carreau_partout")) setTimeout(() => montrerMosaiquePalier(anneau ? multiple : 0), 450); }catch(e){}
+    // v948 : avec l'anneau, la piece du palier (jouee par montrerMosaiquePalier,
+    // a l'instant ou la mosaique parait) remplace la fanfare et la foule.
+    if(anneau && sonsPalierEls[Math.max(1, Math.min(3, multiple))]) return;
     playDailyGoalFanfare();
     setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
 }
