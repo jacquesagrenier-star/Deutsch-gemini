@@ -8621,7 +8621,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v949</span>
+    <span class="subtitle-version">v950</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11534,6 +11534,11 @@ onAuthStateChanged(auth, (user) => {
         try{ localStorage.setItem("wortando_dejaConnecte", "1"); }catch(e){}
         userAccountInfo.classList.remove("hidden");
         userEmailDisplay.textContent = user.email;
+        // v950 : les sons d'un essai admin (kalimba, pieces du palier) se preparent
+        // ICI, une fois le compte connu -- a l'ouverture, l'accueil se dessine
+        // souvent avant que la session Firebase soit retablie, et rien ne le
+        // redessinait ensuite : Jacques gardait l'ancien carillon en v949.
+        try{ if(typeof preparerSonsEssai === "function") setTimeout(preparerSonsEssai, 0); }catch(e){}
         // Premier lancement (configuration jamais complétée) : passe par l'écran
         // de configuration. Vérifié inconditionnellement (pas seulement si on
         // vient de l'écran de connexion) car une session Firebase déjà persistée
@@ -44074,7 +44079,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 949;
+const APP_VERSION = 950;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -54406,6 +54411,9 @@ function couperSonPalier(){
 }
 
 function playMasteredSound(){
+    // v950 : filet -- si la connexion n'a pas encore prepare la kalimba, la
+    // premiere carte la prepare pour les suivantes.
+    try{ preparerSonsEssai(); }catch(e){}
     try{
         if(masteryAudioReady && masteryAudioEl){
             masteryAudioEl.currentTime = 0;
