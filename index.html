@@ -8621,7 +8621,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v951</span>
+    <span class="subtitle-version">v952</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -44079,7 +44079,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 951;
+const APP_VERSION = 952;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -52844,7 +52844,14 @@ function majAnneauSeance(){
     // v891 : plus de « ✓ » -- le nombre fait, toujours (voir le CSS de la v891).
     if(f){ f.textContent = String(fait); f.dataset.l = String(fait).length >= 3 ? "3" : ""; }
     if(s){ s.textContent = "/" + cible; s.dataset.l = String(cible).length >= 3 ? "3" : ""; }
-    a.style.setProperty("--p", Math.min(100, Math.round(100 * fait / Math.max(1, cible))));
+    // v952 : APRES L'OBJECTIF, L'ANNEAU REPART DE ZERO vers le palier suivant.
+    // Jacques, 24 oct. 2026 : « on avait dit qu'a chaque ×2, ×3, on recommencait
+    // le cycle de progression a zero ; l'application ne le fait pas ». Plein au
+    // palier tout juste atteint (30, 60...), puis un nouveau tour des le suivant.
+    const reste = fait % Math.max(1, cible);
+    const pAnneau = fait < cible ? Math.round(100 * fait / Math.max(1, cible))
+                  : (reste === 0 ? 100 : Math.round(100 * reste / cible));
+    a.style.setProperty("--p", pAnneau);
     a.classList.toggle("atteint", fait >= cible);
     // v944 : ×2 au double de l'objectif, ×3 au triple (le multiple entier atteint).
     const fois = Math.floor(fait / Math.max(1, cible));
