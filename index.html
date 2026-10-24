@@ -8621,7 +8621,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v950</span>
+    <span class="subtitle-version">v951</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -44079,7 +44079,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 950;
+const APP_VERSION = 951;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -44302,7 +44302,9 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //      Renormalises depuis leurs originaux ; les 41 paires de Premiers pas
 //      (« once · doce » disait « once » a l'anglaise) refaites a partir des mots
 //      seuls ; « pues », « minutos » en porteuse. audio/controler_sons.py.
-const AUDIO_REVISION = "12";
+//  13  « minutos » (Monica, a son debit) et 99 expressions courtes de deux mots
+//      (« a veces », « de nada »...) refaites en porteuse, deux voix (v951, 24 oct.).
+const AUDIO_REVISION = "13";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -46833,6 +46835,8 @@ function poserCarreau(){
     // qu'avec les confettis -- or le carreau recompense la carte TRAVERSEE, pas
     // la carte sue (v543). Il se montre donc la ou le carreau se pose.
     try{ montrerPlusUn(); }catch(e){}
+    // v951 : sa note, s'il n'y a pas eu de « bravo » (essai anneau_palier).
+    try{ jouerNotePlusUn(); }catch(e){}
     return true;
 }
 
@@ -54366,6 +54370,29 @@ function construireBravoKalimba(){
     [NOTES_PALIER.C5, NOTES_PALIER.E5, NOTES_PALIER.G5].forEach((f, i) => sonKalimba(ctx, 0.01 + i * 0.1, f, 0.42, 0.55));
     return ctx.startRendering();
 }
+// v951 : LE « +1 » SANS REUSSITE A SA NOTE. Jacques, 24 oct. 2026 : « j'ai le
+// +1 quand je reussis, avec le nouveau son ; quand je ne reussis pas, le +1 sans
+// bruit » -- propose : une seule note de kalimba, grave et douce, distincte des
+// trois notes de la reussite (on entend le carreau gagne, pas un « bravo » sur
+// une erreur). « Ok, bonne idee. »
+let notePlusUnEl = null, dernierBravo = 0;
+function construireNotePlusUn(){
+    const OfflineCtx = window.OfflineAudioContext || window.webkitOfflineAudioContext;
+    if(!OfflineCtx) return Promise.reject(new Error("OfflineAudioContext indisponible"));
+    const ctx = new OfflineCtx(1, Math.ceil(44100 * 0.8), 44100);
+    sonKalimba(ctx, 0.01, NOTES_PALIER.G4, 0.3, 0.6);
+    return ctx.startRendering();
+}
+// Le carreau d'une carte reussie arrive juste apres les confettis : la note ne
+// part que si aucun son de reussite (ni piece de palier) n'a joue a l'instant.
+function jouerNotePlusUn(){
+    if(!notePlusUnEl || Date.now() - dernierBravo < 900 || sonPalierEnCours) return;
+    try{
+        notePlusUnEl.currentTime = 0;
+        const p = notePlusUnEl.play();
+        if(p && typeof p.catch === "function") p.catch(() => {});
+    }catch(e){}
+}
 let sonsEssaiPrepares = false;
 // Appelee a l'accueil (majAnneauSeance) : l'essai n'est connu qu'apres la
 // connexion, alors que prepareMasterySound() part au demarrage.
@@ -54374,6 +54401,11 @@ function preparerSonsEssai(){
     try{ if(!essaiActif("anneau_palier")) return; }catch(e){ return; }
     sonsEssaiPrepares = true;
     preparerSonsPalier();
+    construireNotePlusUn().then(buf => {
+        const el = new Audio(URL.createObjectURL(audioBufferToWavBlob(buf)));
+        el.preload = "auto";
+        notePlusUnEl = el;
+    }).catch(() => {});
     construireBravoKalimba().then(buf => {
         const el = new Audio(URL.createObjectURL(audioBufferToWavBlob(buf)));
         el.preload = "auto";
@@ -54414,6 +54446,7 @@ function playMasteredSound(){
     // v950 : filet -- si la connexion n'a pas encore prepare la kalimba, la
     // premiere carte la prepare pour les suivantes.
     try{ preparerSonsEssai(); }catch(e){}
+    dernierBravo = Date.now();
     try{
         if(masteryAudioReady && masteryAudioEl){
             masteryAudioEl.currentTime = 0;
