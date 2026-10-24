@@ -6818,6 +6818,23 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .mp-pop{position:absolute; border:2px solid #E8A23A; border-radius:2px; box-shadow:0 0 0 1px #fff, 0 0 10px 2px rgba(232,162,58,.9); animation:mp-pop .7s ease-out forwards;}
 @keyframes mp-pop{0%{opacity:0; transform:scale(2.2)} 30%{opacity:1; transform:scale(1)} 100%{opacity:0; transform:scale(1)}}
 .mp-bas{display:flex; align-items:center; gap:7px; margin:7px 2px 0;}
+/* v947 (essai anneau_palier) : l'anneau de la seance au coin de la mosaique, meme vitre. */
+.mp-anneau{position:absolute; top:-20px; right:-20px; width:58px; height:58px; border-radius:50%; color:#1C2430;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    background:linear-gradient(180deg, rgba(240,170,60,.86), rgba(232,162,58,.8)) #F0B456;
+    box-shadow:inset 0 0 0 3px rgba(255,255,255,.18), inset 0 0 7px 2px rgba(255,255,255,.4),
+        inset 0 -8px 10px -8px rgba(160,90,10,.5), 0 6px 12px -6px rgba(140,80,10,.6), 0 0 0 1.5px #fff;}
+.mp-anneau::after{content:""; position:absolute; top:4px; left:22%; width:46%; height:5px; border-radius:999px; pointer-events:none;
+    background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.85) 50%, rgba(255,255,255,0)); filter:blur(.8px);}
+.mp-anneau svg{position:absolute; inset:2px; width:54px; height:54px;}
+.mp-anneau b{position:relative; font:900 15px Nunito, system-ui, sans-serif; line-height:1; color:#0B6B4F;
+    text-shadow:0 0 4px #fff, 0 0 10px #fff, 0 0 16px rgba(255,255,255,.75); animation:chiffreScintille 2.8s ease-in-out infinite;}
+.mp-anneau small{position:relative; font:800 9px Nunito, system-ui, sans-serif; color:rgba(28,36,48,.78); margin-top:1px;}
+.mpa-fois{position:absolute; top:-3px; right:-5px; padding:0 4px; border-radius:999px; background:#0F6E56; color:#fff;
+    font:900 9px Nunito, system-ui, sans-serif; line-height:1.45; box-shadow:0 0 0 1.2px #fff, 0 1px 4px rgba(0,0,0,.25);
+    transform:scale(0); transition:transform .4s cubic-bezier(.3,1.7,.5,1);}
+.mpa-fois.vu{transform:scale(1);}
+@media (prefers-reduced-motion: reduce){ .mp-anneau b{animation:none;} .mpa-fois{transition:none;} }
 .mp-plus{background:#E8A23A; color:#1C2430; border-radius:999px; padding:1px 8px 2px; font:900 14px Nunito, system-ui, sans-serif;}
 .mp-chiffres{font:900 14px Nunito, system-ui, sans-serif; color:#1C2430; white-space:nowrap;}
 .mp-chiffres small{font-weight:800; color:#576177; font-size:.8em;}
@@ -8600,7 +8617,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v946</span>
+    <span class="subtitle-version">v947</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -38797,6 +38814,18 @@ const ESSAIS = {
     // mosaique au palier « +30 ! ». Voir montrerMosaiquePalier().
     // EN PRODUCTION le 18 oct. 2026 (v861) -- Jacques : « rendu public pour
     // tous les testeurs ».
+    // EN ESSAI le 24 oct. 2026 (v947), admin seul. Jacques : « quand on atteint
+    // +30, +60, on voit les carreaux de la mosaique qui s'allument ; dans le coin
+    // droit en haut, je mettrais l'anneau, et la progression tournerait deux fois
+    // quand c'est deux ; un ×2 a ce moment-la » ; puis « pas besoin de voir +30 ou
+    // +60 apparaitre », « le chiffre de la meme couleur que l'accueil », « en
+    // glacis comme sur la page d'accueil », « que l'anneau recommence a augmenter ».
+    // Simulations dans la conversation du 24 oct. Voir anneauDuPalier().
+    anneau_palier: {
+        etat: "admin",
+        titre: "L'anneau au palier",
+        desc: "Au palier de l'objectif du jour (30, 60, 90 exercices), plus de bandeau « +30 ! » : la mosaïque du palier porte au coin l'anneau de la séance, en verre ambré ; il fait un tour, deux tours, trois tours, le chiffre s'illumine en vert, la pastille « ×2 » ou « ×3 » apparaît, puis l'anneau repart de zéro vers le palier suivant, pendant que les carreaux gagnés s'allument."
+    },
     carreau_partout: {
         etat: "tous",
         titre: "La mosaïque au palier",
@@ -44041,7 +44070,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 946;
+const APP_VERSION = 947;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48134,7 +48163,7 @@ function montrerPlusUn(){
 // +30 aussi. (Pas exactement les cartes de l'objectif -- un « Encore » pose un
 // carreau sans compter -- mais ce que l'oeil voit est juste : trente carreaux
 // de plus sur le tableau.)
-function montrerMosaiquePalier(){
+function montrerMosaiquePalier(multiple){
     const v = etatMosaique();
     const jusqua = v.c;
     let objectif = 30;
@@ -48175,8 +48204,10 @@ function montrerMosaiquePalier(){
             const jj = document.createElement("div");
             jj.style.width = (depuis / MOSAIQUE_CARREAUX * 100) + "%";
             jauge.appendChild(jj);
-            bas.appendChild(plus); bas.appendChild(chiffres);
+            if(!multiple) bas.appendChild(plus);
+            bas.appendChild(chiffres);
             bloc.appendChild(cadre); bloc.appendChild(bas); bloc.appendChild(jauge);
+            if(multiple) anneauDuPalier(bloc, multiple);
             conteneur.appendChild(bloc);
             const k = LARGEUR / toile.width;
             const n = jusqua - depuis;
@@ -48205,6 +48236,48 @@ function montrerMosaiquePalier(){
             setTimeout(() => bloc.remove(), fin + 400);
         }catch(e){ try{ noterAudio("carreau", "ORAL", "palier refuse : " + (e && e.name)); }catch(e2){} }
     }).catch(() => {});
+}
+
+// v947 (essai anneau_palier) : L'ANNEAU DE LA SEANCE AU COIN DE LA MOSAIQUE.
+// La meme vitre ambree que « Ma seance du jour », le meme chiffre (vert
+// illumine : le palier est atteint) sur « /30 ». Il fait autant de tours que
+// le palier (1, 2, 3), puis la pastille « ×2 », « ×3 » ; puis il se vide --
+// Jacques : « que l'anneau recommence a augmenter » vers le palier suivant.
+// Sans mouvement si le telephone le demande : l'anneau plein, la pastille.
+function anneauDuPalier(bloc, multiple){
+    let fait = 0, cible = 30;
+    try{ fait = getDailyActivityCount() || 0; }catch(e){}
+    try{ cible = getDailyGoalTarget() || cible; }catch(e){}
+    const R = 23, C = 2 * Math.PI * R;
+    const a = document.createElement("div");
+    a.className = "mp-anneau";
+    a.innerHTML = '<svg viewBox="0 0 54 54" aria-hidden="true">'
+        + '<circle cx="27" cy="27" r="' + R + '" fill="none" stroke="rgba(28,36,48,.18)" stroke-width="3.5"/>'
+        + '<circle class="mpa-arc" cx="27" cy="27" r="' + R + '" fill="none" stroke="#1C2430" stroke-width="3.5" stroke-linecap="round"'
+        + ' transform="rotate(-90 27 27)" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + C.toFixed(1) + '"/></svg>'
+        + '<b>' + fait + '</b><small>/' + cible + '</small><span class="mpa-fois">×' + multiple + '</span>';
+    bloc.appendChild(a);
+    const arc = a.querySelector(".mpa-arc"), fois = a.querySelector(".mpa-fois");
+    const poser = p => arc.setAttribute("stroke-dashoffset", (C * (1 - Math.min(1, p))).toFixed(1));
+    let calme = false;
+    try{ calme = window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+    const finir = () => {
+        poser(1);
+        if(multiple >= 2) fois.classList.add("vu");
+        // L'anneau repart vers le palier suivant : il se vide en douceur.
+        setTimeout(() => { arc.style.transition = "stroke-dashoffset .9s ease-in-out"; poser(0); }, 1100);
+    };
+    if(calme){ finir(); return; }
+    const t0 = performance.now() + 350, duree = 700 * multiple;
+    const pas = t => {
+        if(!a.isConnected) return;
+        const k = Math.max(0, Math.min(1, (t - t0) / duree));
+        const p = k * multiple;
+        if(k >= 1){ finir(); return; }
+        poser(p - Math.floor(p));
+        requestAnimationFrame(pas);
+    };
+    requestAnimationFrame(pas);
 }
 
 function ouvrirSceneLibre(nom){
@@ -54371,11 +54444,14 @@ function showDailyGoalText(threshold){
 // sur le fait que le clip soit muet ou non, et sans clip cette condition
 // n'aurait plus rien signifie -- le palier serait devenu entierement muet.
 function triggerDailyGoalCelebration(multiple){
-    showDailyGoalText(getDailyGoalTarget() * multiple);
+    // v947 (essai anneau_palier) : l'anneau dit le palier -- plus de « +30 ! ».
+    let anneau = false;
+    try{ anneau = essaiActif("anneau_palier") && essaiActif("carreau_partout"); }catch(e){}
+    if(!anneau) showDailyGoalText(getDailyGoalTarget() * multiple);
     // v856 (essai carreau_partout) : la mosaique sous le « +30 ! ». Le delai
     // laisse la carte qui franchit le palier poser son propre carreau : le
     // palier est compte AVANT (recordDailyActivity), le carreau juste apres.
-    try{ if(essaiActif("carreau_partout")) setTimeout(montrerMosaiquePalier, 450); }catch(e){}
+    try{ if(essaiActif("carreau_partout")) setTimeout(() => montrerMosaiquePalier(anneau ? multiple : 0), 450); }catch(e){}
     playDailyGoalFanfare();
     setTimeout(playCelebrationCheerSound, CELEBRATION_CHEER_DELAY_MS);
 }
