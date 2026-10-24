@@ -6818,6 +6818,10 @@ body[data-theme="dark"] .cp-arret-mots span{background:#232a34; border-color:#2c
 .mp-pop{position:absolute; border:2px solid #E8A23A; border-radius:2px; box-shadow:0 0 0 1px #fff, 0 0 10px 2px rgba(232,162,58,.9); animation:mp-pop .7s ease-out forwards;}
 @keyframes mp-pop{0%{opacity:0; transform:scale(2.2)} 30%{opacity:1; transform:scale(1)} 100%{opacity:0; transform:scale(1)}}
 .mp-bas{display:flex; align-items:center; gap:7px; margin:7px 2px 0;}
+/* v949 : l'anneau seul, quand la mosaique ne parait pas (trophee) : plus grand, au centre. */
+.mos-palier.mp-seul{padding:0; background:transparent; box-shadow:none; width:58px; height:58px;}
+body[data-theme="dark"] .mos-palier.mp-seul{background:transparent; box-shadow:none;}
+.mp-seul .mp-anneau{top:0; right:0; transform:scale(1.6); transform-origin:center;}
 /* v947 (essai anneau_palier) : l'anneau de la seance au coin de la mosaique, meme vitre. */
 .mp-anneau{position:absolute; top:-20px; right:-20px; width:58px; height:58px; border-radius:50%; color:#1C2430;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
@@ -8617,7 +8621,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v948</span>
+    <span class="subtitle-version">v949</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -44070,7 +44074,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 948;
+const APP_VERSION = 949;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48170,10 +48174,10 @@ function montrerMosaiquePalier(multiple){
     try{ objectif = getDailyGoalTarget() || objectif; }catch(e){}
     const gagnes = Math.min(objectif, jusqua);
     let depuis = jusqua - Math.min(gagnes, 60);
-    if(v.t > 0 || gagnes <= 0) return;
+    if(v.t > 0 || gagnes <= 0){ if(multiple) anneauPalierSeul(multiple); return; }
     const m = mosaiqueCourante();
     const conteneur = document.getElementById("confettiContainer");
-    if(!m || !conteneur) return;
+    if(!m || !conteneur){ if(multiple) anneauPalierSeul(multiple); return; }
     imageMosaique(m).then(img => {
         try{
             const LARGEUR = 200;
@@ -48241,7 +48245,23 @@ function montrerMosaiquePalier(multiple){
             setTimeout(() => bloc.classList.add("part"), fin);
             setTimeout(() => bloc.remove(), fin + 400);
         }catch(e){ try{ noterAudio("carreau", "ORAL", "palier refuse : " + (e && e.name)); }catch(e2){} }
-    }).catch(() => {});
+    }).catch(() => { if(multiple) anneauPalierSeul(multiple); });
+}
+// v949 : L'ANNEAU SEUL. Pendant le trophee la mosaique du palier ne parait pas
+// (rien ne s'accumule) ; l'essai, qui retire le « +30 ! » et la fanfare,
+// laissait alors un palier muet et vide. L'anneau et sa piece suffisent.
+function anneauPalierSeul(multiple){
+    const conteneur = document.getElementById("confettiContainer");
+    if(!conteneur) return;
+    const bloc = document.createElement("div");
+    bloc.className = "mos-palier mp-seul";
+    anneauDuPalier(bloc, multiple);
+    conteneur.appendChild(bloc);
+    jouerSonPalier(multiple);
+    const T = SONS_PALIER_T;
+    const fin = (T.carreaux + T.duree_carreaux - T.chevauche + Math.min(3, multiple) * T.tour) * 1000 + 1900;
+    setTimeout(() => bloc.classList.add("part"), fin);
+    setTimeout(() => bloc.remove(), fin + 400);
 }
 
 // v947 (essai anneau_palier) : L'ANNEAU DE LA SEANCE AU COIN DE LA MOSAIQUE.
@@ -49408,6 +49428,10 @@ function montrerCartePhrase(item){
         // le son, pour tous les exercices qui sont reussis ». celebrateMastery()
         // choisit entre les confettis et la grande fete de l'objectif du jour.
         if(juste){ try{ celebrateMastery(palierPhrase || 0, false); }catch(e){} }
+        // v949 : LE PALIER NE SE PERD PLUS SUR UNE REPONSE FAUSSE. Jacques, 24 oct.
+        // 2026 : « je suis passe de 87 a 96, et je n'ai pas eu la fete ». Le
+        // 90e exercice compte meme rate ; seule la fete partait avec juste.
+        else if(palierPhrase > 0){ try{ triggerDailyGoalCelebration(palierPhrase); }catch(e){} }
         // v852 (essai carreau_partout) : LE +1 AVEC LES CONFETTIS. Jacques : « des
         // fois j'ai juste les confettis, pas la mosaique ». Le carreau ne se
         // posait qu'au « Continuer », une seconde plus tard ; il se pose ici, et
@@ -49475,7 +49499,7 @@ function montrerCartePhrase(item){
         construireTableau(item.tableau || {}).forEach(n => el.appendChild(n));
         fait.repondu = true;
         suite.classList.remove("hidden");
-        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+        suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
     } else if(item.forme === "av_bloc"){
         // La phrase toute faite : le moule, ses variantes (touchees, elles se
         // disent dans la phrase), l'exemple complet. Rien a juger : elle va au
@@ -49557,7 +49581,7 @@ function montrerCartePhrase(item){
         el.appendChild(variantes);
         fait.repondu = true;
         suite.classList.remove("hidden");
-        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+        suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
         dire();
     } else if(item.forme === "av_escale_fin"){
         const f = creer("div", "cp-fete-pp");
@@ -49762,7 +49786,7 @@ function montrerCartePhrase(item){
         el.appendChild(mots);
         fait.repondu = true;
         suite.classList.remove("hidden");
-        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+        suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
         try{ direAllemand(r.exemples[0].mot, { rate: 1 }); }catch(x){}
     } else if(item.forme === "rp_epeler"){
         // v880 : LE MOT EPELE (« Hah, Oh, Teh, Eh, Ell »), a ecrire. Casse et
@@ -50101,7 +50125,7 @@ function montrerCartePhrase(item){
         fait.repondu = true;
         suite.textContent = t("or_passer");
         suite.className = "secondary";
-        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+        suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
         const journal = (etape, detail) => { try{ noterAudio(etape, "ORAL", detail || ""); }catch(e){} };
         const Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
         const langueReco = LANGUE_APPRISE === "es" ? (VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES") : "de-DE";
@@ -50658,7 +50682,7 @@ function montrerCartePhrase(item){
         etatOral.classList.add("hidden");
         el.appendChild(etatOral);
         suite.classList.remove("hidden");
-        suite.addEventListener("click", () => repondrePhrase(item, null), { once: true, capture: true });
+        suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
         direPhrase(item);
     }
     // v862 : la derniere replique d'en face, sous la derniere carte du dialogue.
@@ -50690,6 +50714,10 @@ function dateLisibleA1V(iso){
 // (pas de mot vise) ne comptent que dans l'objectif du jour.
 // Renvoie ce que renvoie recordDailyActivity() : le palier de l'objectif du jour
 // tout juste franchi (0 sinon), pour que la fete soit la meme qu'ailleurs.
+// v949 : un « Continuer » qui franchit le palier a sa fete, comme une carte.
+function palierApresPhrase(palier){
+    if(palier > 0){ try{ triggerDailyGoalCelebration(palier); }catch(e){} }
+}
 function repondrePhrase(item, juste){
     try{
         const it = item.cible;
