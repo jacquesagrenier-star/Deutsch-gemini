@@ -730,6 +730,16 @@ REGLES = [
      u"image refaite depuis le texte ne garde pas les positions. Verifier le "
      u"STYLE a la reception, avant de mesurer une seule zone : chaque zone "
      u"mesuree sur un dessin est du travail qu'on perdra."),
+    ("regard-qui-fuit-l-autre", "doute",
+     r"(?i)(looks?|eyes are turned|head (is )?turned)[^.]{0,80}(towards|to) the (left|right) edge[^.]{0,200}(the young man|the woman|the man|him|her)",
+     u"Deux personnes dans le cadre, et l'une doit regarder AILLEURS que l'autre : le modele les tourne l'une vers l'autre",
+     u"24 oct. 2026, 04 Schrippe plan 19 (2 x 0,15 $). Anna sort de la boulangerie et doit regarder a gauche, du "
+     u"mauvais cote, pendant que Mark s'eloigne a droite. Deux prises : << she looks along the pavement towards the "
+     u"left edge >>, puis << her head and her eyes are turned towards the LEFT edge... in profile >> -- les deux fois "
+     u"elle regardait Mark. Un modele d'image compose une scene ; deux personnes s'y regardent.",
+     u"Ne pas commander le REGARD : commander le CORPS et la MARCHE. A la 3e prise, << She is already walking away "
+     u"towards the LEFT edge, mid-stride, in profile: her body, her face and her steps all go to the left ... her back "
+     u"is to the right side of the street >> -- juste. Le clip (H3) n'a plus qu'a continuer la marche."),
     ("portrait-pour-une-epaule", "doute",
      r"(?i)\b(shoulder|upper arm|back of (his|her) head)\b[^.]{0,90}\bof the "
      r"(first|second|third|fourth) reference picture\b",
