@@ -6838,6 +6838,11 @@ body[data-theme="dark"] .mos-palier.mp-seul{background:transparent; box-shadow:n
     font:900 9px Nunito, system-ui, sans-serif; line-height:1.45; box-shadow:0 0 0 1.2px #fff, 0 1px 4px rgba(0,0,0,.25);
     transform:scale(0); transition:transform .4s cubic-bezier(.3,1.7,.5,1);}
 .mpa-fois.vu{transform:scale(1);}
+/* v953 : la couronne d'etincelles des ×2, ×3... */
+.mpa-etincelle{position:absolute; left:50%; top:50%; margin:-9px 0 0 -8px; font-size:17px; line-height:1; color:#fff; pointer-events:none; z-index:4;
+    text-shadow:0 0 3px #fff, 0 0 8px #FFD27A, 0 0 14px #E8A23A, 0 0 2px #B9770E; opacity:0; animation:mpaEtincelle 1.4s ease-out forwards;}
+@keyframes mpaEtincelle{0%{opacity:0; transform:translate(0,0) scale(.3) rotate(0deg);}
+    25%{opacity:1;} 100%{opacity:0; transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(160deg);}}
 @media (prefers-reduced-motion: reduce){ .mp-anneau b{animation:none;} .mpa-fois{transition:none;} }
 .mp-plus{background:#E8A23A; color:#1C2430; border-radius:999px; padding:1px 8px 2px; font:900 14px Nunito, system-ui, sans-serif;}
 .mp-chiffres{font:900 14px Nunito, system-ui, sans-serif; color:#1C2430; white-space:nowrap;}
@@ -8621,7 +8626,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v952</span>
+    <span class="subtitle-version">v953</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -44079,7 +44084,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 952;
+const APP_VERSION = 953;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48279,6 +48284,26 @@ function anneauPalierSeul(multiple){
 // le palier (1, 2, 3), puis la pastille « ×2 », « ×3 » ; puis il se vide --
 // Jacques : « que l'anneau recommence a augmenter » vers le palier suivant.
 // Sans mouvement si le telephone le demande : l'anneau plein, la pastille.
+// Les etincelles partent du centre de l'anneau en rayons ; une de plus par
+// palier (8 a ×2, 9 a ×3...), plafonnees a 14.
+function etincelerAnneau(a, multiple){
+    let calme = false;
+    try{ calme = window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+    if(calme) return;
+    const n = Math.min(14, 6 + multiple);
+    for(let i = 0; i < n; i++){
+        const e = document.createElement("span");
+        e.className = "mpa-etincelle";
+        e.textContent = "\u2726";
+        const angle = (i / n) * 2 * Math.PI + (i % 2 ? 0.18 : 0);
+        const dist = 40 + (i % 3) * 8;
+        e.style.setProperty("--dx", Math.round(Math.cos(angle) * dist) + "px");
+        e.style.setProperty("--dy", Math.round(Math.sin(angle) * dist) + "px");
+        e.style.animationDelay = (i % 4) * 70 + "ms";
+        a.appendChild(e);
+        e.addEventListener("animationend", () => e.remove());
+    }
+}
 function anneauDuPalier(bloc, multiple){
     let fait = 0, cible = 30;
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
@@ -48299,6 +48324,10 @@ function anneauDuPalier(bloc, multiple){
     const finir = () => {
         poser(1);
         if(multiple >= 2) fois.classList.add("vu");
+        // v953 : des ×2, une couronne d'etincelles autour de l'anneau. Jacques,
+        // 24 oct. 2026 : « a partir de 2, je mettrais des etincelles autour de
+        // l'anneau » ; trois tours au plus, meme a ×10 (« c'est bon, 3 tours »).
+        if(multiple >= 2) etincelerAnneau(a, multiple);
         // L'anneau repart vers le palier suivant : il se vide en douceur.
         setTimeout(() => { arc.style.transition = "stroke-dashoffset .9s ease-in-out"; poser(0); }, 1100);
     };
