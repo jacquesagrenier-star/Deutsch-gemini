@@ -108,15 +108,30 @@ def ffmpeg():
 FF = None
 
 
-def mesurer(chemin):
-    """Sonie integree, crete et plage, par la premiere passe de loudnorm."""
+def mesurer(chemin, boucles=0):
+    """Sonie integree, crete et plage, par la premiere passe de loudnorm.
+
+    ⚠️ SOUS 400 MS, LA SONIE NE SE MESURE PAS (24 oct. 2026). EBU R128 integre
+    par blocs de 400 ms : un fichier plus court n'en remplit aucun, et loudnorm
+    rend « -inf ». Le gain du premier temps valait alors l'infini, et « a »,
+    « qué » sortaient en creneau sature (crete +6,7 dBFS, RMS -1,7 dB) --
+    « un son agressant », a dit Jacques. On remesure donc le mot joue quatre
+    fois de suite : meme contenu, meme crete, et enfin assez long pour un bloc.
+    """
     r = subprocess.run(
-        [FF, "-hide_banner", "-nostats", "-i", chemin,
+        [FF, "-hide_banner", "-nostats"]
+        + (["-stream_loop", str(boucles)] if boucles else [])
+        + ["-i", chemin,
          "-af", "loudnorm=I=%s:TP=%s:print_format=json" % (CIBLE_LUFS, CRETE_MAX),
          "-f", "null", "-"],
         capture_output=True, text=True, encoding="utf-8", errors="replace")
     m = re.search(r"\{[^{}]*input_i[^{}]*\}", r.stderr, re.S)
-    return json.loads(m.group(0)) if m else None
+    d = json.loads(m.group(0)) if m else None
+    if d and not boucles and d.get("input_i") in ("-inf", "inf"):
+        return mesurer(chemin, boucles=3)
+    if d and d.get("input_i") in ("-inf", "inf"):
+        return None          # muet meme en boucle : ne rien fabriquer
+    return d
 
 
 def _ff(src, dst, filtre):
