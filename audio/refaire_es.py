@@ -186,7 +186,8 @@ def recopier(payer):
     return 0
 
 
-def en_porteuse(payer):
+def en_porteuse(payer, refaits=None):
+    REFAITS = refaits if refaits is not None else globals()["REFAITS"]
     modele, taux = generer.MODELES["v2"]
     cout = int(sum(len(PORTEUSE % dit) * (1 if v else len(VOIX)) for _, dit, v in REFAITS) * taux)
     print("en porteuse : %d textes, %r, %s : environ %d credits"
@@ -230,6 +231,10 @@ def main():
     p.add_argument("--assembler", action="store_true")
     p.add_argument("--recopier", action="store_true")
     p.add_argument("--payer", action="store_true", help="appelle ElevenLabs pour REFAITS")
+    # 24 oct. 2026 : les 99 textes courts de deux mots generes SANS porteuse
+    # (196 fichiers, « a veces », « de nada »), listes par controler_sons.py
+    # (SANS_PORTEUSE). Un JSON [[affiche, dit, voix], ...] remplace REFAITS.
+    p.add_argument("--liste", default="", help="JSON [[affiche, dit, voix], ...] a la place de REFAITS")
     a = p.parse_args()
     N.FF = N.ffmpeg()
     agir = bool(a.renormaliser or a.assembler or a.recopier or a.payer)
@@ -242,7 +247,8 @@ def main():
     if a.recopier or not agir:
         rates += recopier(a.recopier)
     if a.payer or not agir:
-        rates += en_porteuse(a.payer)
+        liste = [tuple(x) for x in json.load(io.open(a.liste, encoding="utf-8"))] if a.liste else None
+        rates += en_porteuse(a.payer, liste)
     print("fait, %d rate(s)" % rates if agir else "(a blanc -- rien n'a ete touche)")
 
 
