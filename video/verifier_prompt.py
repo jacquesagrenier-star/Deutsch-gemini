@@ -762,6 +762,26 @@ REGLES = [
 #
 #    (titre, date, ce qui l'a etabli, comment s'en servir)
 ACQUIS = [
+    (u"Texte incruste par Kling dans une BANDE FIXE : RECADRER, gratuit, plutot que changer de modele",
+     u"24 oct. 2026",
+     u"04 Schrippe, la boulangere, plans 08 et 17 : de faux sous-titres sur la vitrine, entre 75 et "
+     u"87 % de la hauteur, du debut a la fin -- et encore a la reprise Kling (0,64 $). Son plan 04, "
+     u"meme image, etait propre. Recadre a 72 % de l'image (le haut, centre sur elle), remis en "
+     u"720x1280 : plus aucune trace (texte_incruste.py : propre), et son visage plus grand. Les "
+     u"trois plans de la boulangere recadres pareil, pour qu'ils gardent le meme cadre.",
+     u"Avant OmniHuman (qui demande l'accord de Jacques et fait peu de gestes) : regarder OU est le "
+     u"texte sur plusieurs instants. S'il reste dans une bande qui ne porte ni visage ni geste, "
+     u"recadrer au-dessus (crop puis scale, crf 16) ; garder l'original en -avant-recadrage.mp4, "
+     u"et recadrer de la meme facon les autres plans du meme personnage."),
+    (u"Un intrus qui ENTRE en fin de prise : couper avant lui, sur la prise ou il arrive le plus tard",
+     u"24 oct. 2026",
+     u"04 Schrippe plan 11 (Mark se retourne vers Anna) : aux deux prises Kling, une silhouette entre "
+     u"par le bord gauche -- l'interlocutrice qu'il regarde, fabriquee malgre le bord rempli -- a 2,3 s "
+     u"dans la 2e, a 2,8 s dans la 1re ; la replique finit a 2,45 s. La 1re prise coupee a 2,65 s : "
+     u"l'intrus n'apparait jamais, Mark garde un temps de sourire. Zero dollar de plus.",
+     u"Regarder plusieurs instants des prises signalees par intrus_au_bord.py ; si l'intrus vient "
+     u"APRES la fin de la parole, couper (ffmpeg -t) la prise ou il arrive le plus tard, en gardant "
+     u"au moins 0,2 s apres le dernier mot. Ne racheter une prise que s'il entre PENDANT la parole."),
     (u"Le PLAN D'ENSEMBLE fait avant les portraits : juste du premier coup, deux episodes de suite",
      u"23 oct. 2026",
      u"04 Schrippe (boulangerie : Anna, Mark, la boulangere) et es-04 (le bureau, "

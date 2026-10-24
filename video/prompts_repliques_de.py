@@ -89,8 +89,11 @@ BORD = {
         "On the left of the picture, between her and the edge of the frame, the glass counter with its baskets "
         "of rolls runs on, open and quiet, from the first frame to the last.",
     ("04-schrippe", "anna", "right"):
-        "On the right of the picture, between her and the edge of the frame, the blurred dark green shoulder in "
-        "the foreground stays exactly as it is in the image, just as blurred, from the first frame to the last.",
+        # 23 oct. 2026 : l'image retenue (anna-schlange, 2e prise) montre la nuque et
+        # l'epaule de Mark, NETTES et grandes, de dos -- plus une epaule floue.
+        "On the right of the picture, in the foreground, the back of the dark wavy head and the dark green "
+        "shoulder seen from behind stay perfectly still, exactly as they are in the image, from the first frame "
+        "to the last.",
     ("05-pfand", "nachbar", "right"):
         "On the right of the picture, between him and the edge of the frame, the lit shop door and the pavement "
         "run on, open and quiet, from the first frame to the last.",
