@@ -12,7 +12,7 @@ Entrées (rien n'est tiré de la mémoire de qui que ce soit) :
   KanjiVG (git clone)            groupes kvg:element de chaque SVG
   textes/textes_n5.json         les textes écrits à la main (sens retenus, mnémotechniques, confiance)
   textes/noms_composants.json   le nom français / anglais de chaque composant
-  textes/a_relire.json          les 20 kanji de la page de relecture
+  textes/a_relire.json          le lot en cours de relecture (20 kanji au plus)
 
 Sorties : mnemoniques_n5.json, composants.json, a-relire.html.
 Bibliothèque standard seulement. Code de sortie 1 si une vérification échoue.
@@ -33,6 +33,10 @@ SOURCES = os.path.join(ICI, "textes")
 KVG_DEPOT = "https://github.com/KanjiVG/kanjivg.git"
 NS = "{http://kanjivg.tagaini.net}"
 NIVEAU = "N5"
+NOTES = {"basse": 0, "moyenne": 1, "haute": 2}
+ETATS = ("validée", "à juger", "à réécrire", "hors charte", "refusée")
+ORIGINES_NOMS = ("KANJIDIC (fr et en)", "KANJIDIC (fr)", "KANJIDIC (en)", "Wortando")
+TYPES_LECTURE = {"on": "on (sino-japonaise)", "kun": "kun (japonaise)"}
 
 
 # ---------------------------------------------------------------- kana, romaji
@@ -318,13 +322,17 @@ def deriver(dossier_kvg):
                 ecartes.append(OrderedDict(mot=m["kanji"], kana=m["kana"], sens_en=m["tanos"]["champs"]["waller_definition"],
                                            raison=statut, lectures_possibles=[list(x) for x in val] if val else None))
         # Départage, et repli quand aucun mot N5 ne s'aligne : tous les niveaux.
-        tous = Counter()
-        for m in tous_mots:
-            if m["kanji"] and k in m["kanji"]:
-                statut, val = lecture_dans(m, k)
-                if statut == "ok":
-                    for cle in {x[0] for x in val}:
-                        tous[cle] += 1
+        tous, mots_tous = Counter(), {}
+        for niv, liste in mots_json["niveaux"].items():
+            for m in liste:
+                if m["kanji"] and k in m["kanji"]:
+                    statut, val = lecture_dans(m, k)
+                    if statut == "ok":
+                        for cle, surf, variante in dict(((x[0], x) for x in val)).values():
+                            tous[cle] += 1
+                            mots_tous.setdefault(cle, []).append(OrderedDict(
+                                mot=m["kanji"], kana=m["kana"], niveau=niv, variante=variante or None,
+                                sens_en=m["tanos"]["champs"]["waller_definition"]))
         base = comptes if comptes else tous
         classement = sorted(base, key=lambda c: (-comptes[c], -tous[c], c))
         retenue = classement[0] if classement else None
@@ -343,7 +351,13 @@ def deriver(dossier_kvg):
             lecture_derivee=None if retenue is None else OrderedDict(
                 type=retenue[0], kana=retenue[1], romaji=romaji(retenue[1]), mots_n5=comptes[retenue],
                 egalite=egalite, comptee_sur="N5" if comptes else "tous niveaux (aucun mot N5 aligné)"),
+            # Toutes les lectures, comptées sur les mots N5 à N1 : sert à dire si
+            # la lecture enseignée est la plus utile.
+            comptes_tous_niveaux=[OrderedDict(type=c[0], lecture=c[1], romaji=romaji(c[1]), tous_niveaux=tous[c],
+                                              mots_n5=comptes[c])
+                                  for c in sorted(tous, key=lambda c: (-tous[c], -comptes[c], c))],
             mots_par_lecture={"%s:%s" % c: v for c, v in mots_par_lecture.items()},
+            mots_tous_par_lecture={"%s:%s" % c: v for c, v in mots_tous.items()},
             mots_non_alignes=ecartes,
             kanjivg=kvg,
         )
@@ -364,8 +378,42 @@ def contient_mot(texte, mot):
     return re.search(r"(?<![\w-])" + re.escape(mot.lower()) + r"(?![\w-])", t) is not None
 
 
+def charger_charte():
+    """Les identifiants de charte-des-sons.md : la première colonne, entre accents graves."""
+    with open(os.path.join(ICI, "charte-des-sons.md"), encoding="utf-8") as f:
+        return re.findall(r"^\| `([a-z-]+)` \|", f.read(), flags=re.M)
+
+
+# Chaque son de la charte, et comment le reconnaître dans le romaji d'une lecture.
+SONS = OrderedDict([
+    ("u", r"u|ū"),
+    ("voyelle-longue", r"[āīūēō]|ii"),
+    ("ei", r"ei"),
+    ("r", r"r"),
+    ("h", r"(?<![sc])h"),
+    ("fu", r"fu|fū"),
+    ("tsu", r"ts"),
+    ("chi", r"ch"),
+    ("shi", r"sh"),
+    ("ji", r"j"),
+    ("g", r"g[ie]"),
+    ("s", r"(?<!t)s(?!h)"),
+    ("w", r"w"),
+    ("yoon", r"[kgnhbpmr]y"),
+    ("n-final", r"n(?![aeiouāīūēōy])"),
+    ("geminee", r"([kstpc])\1|tch"),
+    # Vaut pour toute lecture : le son visé forme des syllabes entières du mot français.
+    ("syllabe-entiere", r"."),
+])
+
+
+def sons_difficiles(rom):
+    return [s for s, motif in SONS.items() if re.search(motif, rom)]
+
+
 def construire(dossier_kvg):
     derive, meta_k, meta_m = deriver(dossier_kvg)
+    charte = charger_charte()
     textes = charger(os.path.join(SOURCES, "textes_n5.json"))
     noms = charger(os.path.join(SOURCES, "noms_composants.json"))
     selection = charger(os.path.join(SOURCES, "a_relire.json"))
@@ -403,14 +451,16 @@ def construire(dossier_kvg):
             erreurs.append("%s : sens_en « %s » absent de KANJIDIC %s" % (k, t["sens_en"], d["sens_en_candidats"]))
 
         # Les mnémotechniques citent le sens et le romaji, et ont un morceau en gras.
-        for langue in ("fr", "en"):
-            txt = t["mnemo_" + langue]
+        # Les réécritures en attente (propositions_fr) suivent les mêmes règles.
+        a_verifier = [("fr", "mnemo_fr", t["mnemo_fr"]), ("en", "mnemo_en", t["mnemo_en"])]
+        a_verifier += [("fr", "propositions_fr[%d]" % i, p["mnemo_fr"]) for i, p in enumerate(t.get("propositions_fr", []))]
+        for langue, nom, txt in a_verifier:
             if not contient_mot(txt, t["sens_" + langue]):
-                erreurs.append("%s : mnemo_%s ne cite pas le sens « %s »" % (k, langue, t["sens_" + langue]))
+                erreurs.append("%s : %s ne cite pas le sens « %s »" % (k, nom, t["sens_" + langue]))
             if "(%s)" % lect["romaji"] not in txt:
-                erreurs.append("%s : mnemo_%s ne cite pas la lecture « (%s) »" % (k, langue, lect["romaji"]))
+                erreurs.append("%s : %s ne cite pas la lecture « (%s) »" % (k, nom, lect["romaji"]))
             if "**" not in txt:
-                erreurs.append("%s : mnemo_%s sans morceau en gras" % (k, langue))
+                erreurs.append("%s : %s sans morceau en gras" % (k, nom))
 
         # Composants : ceux de KanjiVG, sous leur nom du lexique.
         kvg = d["kanjivg"]
@@ -428,13 +478,120 @@ def construire(dossier_kvg):
             if el not in noms:
                 erreurs.append("%s : composant %s sans nom dans noms_composants.json" % (k, el))
                 continue
-            for langue in ("fr", "en"):
-                if not contient_mot(t["mnemo_" + langue], noms[el][langue]):
-                    erreurs.append("%s : mnemo_%s ne nomme pas %s « %s »" % (k, langue, el, noms[el][langue]))
+            for langue, nom, txt in a_verifier:
+                if not contient_mot(txt, noms[el][langue]):
+                    erreurs.append("%s : %s ne nomme pas %s « %s »" % (k, nom, el, noms[el][langue]))
             noms_cites.append(OrderedDict(element=el, fr=noms[el]["fr"], en=noms[el]["en"]))
             utilises.setdefault(el, []).append(k)
-        if t["confiance"] not in ("haute", "moyenne", "basse"):
-            erreurs.append("%s : confiance « %s »" % (k, t["confiance"]))
+
+        # Autres lectures : une deuxième mnémotechnique (français seulement) pour une
+        # lecture plus utile que celle retenue. Mêmes règles, sur sa propre lecture.
+        autres_l = []
+        for i, a in enumerate(t.get("autres_lectures", [])):
+            nom = "autres_lectures[%d]" % i
+            lt = a.get("lecture") or {}
+            c = [c for c in d["comptes_tous_niveaux"] if (c["type"], c["lecture"]) == (lt.get("type"), lt.get("kana"))]
+            if not c:
+                erreurs.append("%s : %s, lecture %s absente des mots JLPT" % (k, nom, dict(lt)))
+                continue
+            c = c[0]
+            txt = a["mnemo_fr"]
+            if not contient_mot(txt, t["sens_fr"]):
+                erreurs.append("%s : %s ne cite pas le sens « %s »" % (k, nom, t["sens_fr"]))
+            if "(%s)" % c["romaji"] not in txt:
+                erreurs.append("%s : %s ne cite pas la lecture « (%s) »" % (k, nom, c["romaji"]))
+            if "**" not in txt:
+                erreurs.append("%s : %s sans morceau en gras" % (k, nom))
+            for el in t["composants_cites"]:
+                if el in noms and not contient_mot(txt, noms[el]["fr"]):
+                    erreurs.append("%s : %s ne nomme pas %s « %s »" % (k, nom, el, noms[el]["fr"]))
+            for cle in ("confiance", "lien"):
+                if a.get(cle) not in NOTES or not a.get(cle + "_pourquoi"):
+                    erreurs.append("%s : %s, note %s manquante ou invalide" % (k, nom, cle))
+            sons_a = sons_difficiles(c["romaji"])
+            ch = a.get("charte") or {}
+            if set(ch) != set(sons_a):
+                erreurs.append("%s : %s, charte jugée sur %s, la lecture %s demande %s" % (k, nom, sorted(ch), c["romaji"], sons_a))
+            ec = [OrderedDict(son=s, raison=v[len("écart : "):]) for s, v in ch.items() if v != "ok"]
+            av = a.get("avis_jacques", [])
+            cour = [x for x in av if x.get("mnemo_juge") == txt]
+            etat_a = ("refusée" if cour and cour[-1]["avis"] == "refuse" else "hors charte" if ec
+                      else "validée" if cour else
+                      "à juger" if NOTES.get(a.get("confiance"), 0) >= 1 and NOTES.get(a.get("lien"), 0) >= 1
+                      else "à réécrire")
+            ex = sorted(d["mots_tous_par_lecture"].get("%s:%s" % (lt["type"], lt["kana"]), []),
+                        key=lambda m: (m["variante"] is not None, -int(m["niveau"][1:]), len(m["mot"])))[:2]
+            autres_l.append(OrderedDict(
+                lecture=OrderedDict(type=c["type"], nom=TYPES_LECTURE[c["type"]], kana=c["lecture"], romaji=c["romaji"],
+                                    mots_tous_niveaux=c["tous_niveaux"], mots_n5=c["mots_n5"]),
+                mnemo_fr=txt, confiance=a["confiance"], confiance_pourquoi=a["confiance_pourquoi"],
+                lien=a["lien"], lien_pourquoi=a["lien_pourquoi"], charte=ch, charte_ecarts=ec,
+                etat=etat_a, avis_jacques=av,
+                exemples=[OrderedDict(mot=m["mot"], kana=m["kana"], romaji=romaji(m["kana"]), niveau=m["niveau"],
+                                      sens_en=m["sens_en"]) for m in ex]))
+
+        # Deux notes : « confiance » pour le son, « lien » pour le chemin de l'image au sens.
+        for nom, notes in [("texte", t)] + [("propositions_fr[%d]" % i, p) for i, p in enumerate(t.get("propositions_fr", []))]:
+            for cle in ("confiance", "lien"):
+                if notes.get(cle) not in NOTES:
+                    erreurs.append("%s : %s, %s « %s »" % (k, nom, cle, notes.get(cle)))
+                if not notes.get(cle + "_pourquoi"):
+                    erreurs.append("%s : %s, %s_pourquoi manquant" % (k, nom, cle))
+
+        # La lecture enseignée est écrite dans le texte, et doit être celle retenue.
+        le = t.get("lecture_enseignee") or {}
+        if (le.get("type"), le.get("kana")) != (lect["type"], lect["kana"]):
+            erreurs.append("%s : lecture_enseignee %s, la lecture retenue est %s %s"
+                           % (k, dict(le), lect["type"], lect["kana"]))
+
+        # Charte des sons : un verdict par son difficile de la lecture, pour le
+        # texte et pour chaque réécriture.
+        sons = sons_difficiles(lect["romaji"])
+        for nom, v in [("texte", t)] + [("propositions_fr[%d]" % i, p) for i, p in enumerate(t.get("propositions_fr", []))]:
+            ch = v.get("charte") or {}
+            if set(ch) != set(sons):
+                erreurs.append("%s : %s, charte jugée sur %s, la lecture %s demande %s"
+                               % (k, nom, sorted(ch), lect["romaji"], sons))
+            for son, verdict in ch.items():
+                if son not in charte:
+                    erreurs.append("%s : %s, son « %s » absent de charte-des-sons.md" % (k, nom, son))
+                if verdict != "ok" and not verdict.startswith("écart : "):
+                    erreurs.append("%s : %s, verdict de charte « %s » (ok ou « écart : … »)" % (k, nom, verdict))
+        ecarts = [OrderedDict(son=s, raison=v[len("écart : "):]) for s, v in (t.get("charte") or {}).items() if v != "ok"]
+
+        # La lecture la plus utile : celle du plus grand nombre de mots, tous niveaux JLPT.
+        utile = d["comptes_tous_niveaux"][0] if d["comptes_tous_niveaux"] else None
+        utile_couverte = utile is None or (utile["type"], utile["lecture"]) == (lect["type"], lect["kana"])
+        # Couverte aussi quand une deuxième mnémotechnique l'enseigne.
+        utile_par_autre = utile is not None and any(
+            (a["lecture"]["type"], a["lecture"]["kana"]) == (utile["type"], utile["lecture"]) for a in autres_l)
+        mots_enseignee = next((c["tous_niveaux"] for c in d["comptes_tous_niveaux"]
+                               if (c["type"], c["lecture"]) == (lect["type"], lect["kana"])), 0)
+        # Écart « net » : la lecture la plus utile porte au moins deux fois plus de mots,
+        # et au moins cinq de plus. En dessous, les comptes sont trop petits pour trancher.
+        ecart_utile = None if utile_couverte else (
+            "net" if utile["tous_niveaux"] >= 2 * mots_enseignee and utile["tous_niveaux"] - mots_enseignee >= 5
+            else "faible")
+
+        # Verdicts de Jacques : chacun garde le texte jugé. Un verdict ne vaut que
+        # pour ce texte-là ; une réécriture repart « à juger ».
+        avis_k = t.get("avis_jacques", [])
+        for a in avis_k:
+            if a.get("avis") not in ("ok", "refuse") or not a.get("date") or not a.get("mnemo_juge"):
+                erreurs.append("%s : avis_jacques mal formé %s" % (k, dict(a)))
+        courant = [a for a in avis_k if a.get("mnemo_juge") == t["mnemo_fr"]]
+        if courant and courant[-1]["avis"] == "refuse":
+            etat = "refusée"
+        elif ecarts:
+            etat = "hors charte"
+        elif courant:
+            etat = "validée"
+        elif NOTES.get(t["confiance"], 0) >= 1 and NOTES.get(t["lien"], 0) >= 1:
+            etat = "à juger"
+        else:
+            etat = "à réécrire"
+        if etat == "refusée" and not t.get("propositions_fr"):
+            avis.append("%s : refusé sans réécriture proposée" % k)
 
         # Exemples : deux mots N5 qui ont la lecture retenue ; à défaut, des
         # mots N5 qui contiennent le kanji sous une lecture spéciale (signalés).
@@ -488,6 +645,13 @@ def construire(dossier_kvg):
             sens_fr_candidats=d["sens_fr_candidats"],
             sens_en_candidats=d["sens_en_candidats"],
             lecture=lect,
+            lecture_enseignee=OrderedDict(type=lect["type"], nom=TYPES_LECTURE[lect["type"]], kana=lect["kana"],
+                                          romaji=lect["romaji"]),
+            lecture_la_plus_utile=None if utile is None else OrderedDict(
+                type=utile["type"], nom=TYPES_LECTURE[utile["type"]], kana=utile["lecture"], romaji=utile["romaji"],
+                mots_tous_niveaux=utile["tous_niveaux"], mots_n5=utile["mots_n5"], couverte=utile_couverte,
+                mots_tous_niveaux_lecture_enseignee=mots_enseignee, ecart=ecart_utile,
+                par_deuxieme_mnemo=utile_par_autre),
             lecture_fragile=fragile,
             comptes_lecture=d["comptes_lecture"],
             mots_n5_contenant=d["mots_n5"],
@@ -502,9 +666,28 @@ def construire(dossier_kvg):
             mnemo_en=t["mnemo_en"],
             confiance=t["confiance"],
             confiance_pourquoi=t["confiance_pourquoi"],
+            lien=t["lien"],
+            lien_pourquoi=t["lien_pourquoi"],
+            charte=t.get("charte") or {},
+            charte_ecarts=ecarts,
+            etat=etat,
+            avis_jacques=avis_k,
+            propositions_fr=t.get("propositions_fr", []),
+            autres_lectures=autres_l,
             exemples=exemples,
         ))
 
+    hors = ["%s (%s)" % (e["kanji"], ", ".join(x["son"] for x in e["charte_ecarts"])) for e in entrees if e["charte_ecarts"]]
+    if hors:
+        avis.append("%d mnémotechniques hors charte des sons : %s" % (len(hors), " ".join(hors)))
+    for force in ("net", "faible"):
+        non_couv = ["%s (enseigne %s %s : %d mots ; plus utile %s %s : %d mots)" % (
+            e["kanji"], e["lecture"]["type"], e["lecture"]["kana"], u["mots_tous_niveaux_lecture_enseignee"],
+            u["type"], u["kana"], u["mots_tous_niveaux"])
+            for e in entrees for u in [e["lecture_la_plus_utile"]] if u and u["ecart"] == force and not u["par_deuxieme_mnemo"]]
+        if non_couv:
+            avis.append("%d kanji dont la lecture la plus utile (celle du plus de mots N5–N1) n'est pas enseignée, "
+                        "écart %s : %s" % (len(non_couv), force, " ; ".join(non_couv)))
     if peu:
         avis.append("%d kanji ont moins de deux mots N5 sous la lecture retenue ; exemples complétés "
                     "par une autre lecture (marquée) : %s" % (len(peu), " ".join(peu)))
@@ -518,6 +701,7 @@ def construire(dossier_kvg):
         kvg = d["kanjivg"] or {"composants": [], "sous_composants": []}
         for el in [c["element"] for c in kvg["composants"]] + kvg["sous_composants"] + ([k] if not kvg["composants"] else []):
             lexique.setdefault(el, OrderedDict(element=el, fr=noms.get(el, {}).get("fr"), en=noms.get(el, {}).get("en"),
+                                               origine=noms.get(el, {}).get("origine"),
                                                dans=[], cite_dans=utilises.get(el, [])))
             if k not in lexique[el]["dans"] and el != k:
                 lexique[el]["dans"].append(k)
@@ -532,6 +716,10 @@ def construire(dossier_kvg):
     for el, n in noms.items():
         if el.startswith("_"):
             continue
+        # Chaque nom dit d'où il vient : un sens KANJIDIC2, ou un nom écrit pour Wortando
+        # (jamais un nom de WaniKani, Heisig, KanjiDamage ou Kanji Koohii : voir LICENCES.md).
+        if n.get("origine") not in ORIGINES_NOMS:
+            erreurs.append("nom de %s : origine « %s » (attendu : %s)" % (el, n.get("origine"), ", ".join(ORIGINES_NOMS)))
         for langue in ("fr", "en"):
             if (langue, n[langue]) in vus:
                 erreurs.append("nom %s « %s » donné à %s et %s" % (langue, n[langue], vus[(langue, n[langue])], el))
@@ -558,10 +746,45 @@ def ecrire_json(nom, obj):
         f.write("\n")
 
 
+def notes_html(n):
+    ecarts = [s for s, v in n["charte"].items() if v != "ok"]
+    charte = ('<span class="note-charte n-basse">hors charte : %s</span>' % html.escape(", ".join(ecarts)) if ecarts
+              else '<span class="note-charte n-haute">charte ok</span>')
+    return ('<span class="note-son n-{c}">son {c}</span> <span class="note-lien n-{l}">lien {l}</span> {ch}'
+            .format(c=html.escape(n["confiance"]), l=html.escape(n["lien"]), ch=charte))
+
+
+def charte_html(n):
+    ecarts = ["%s : %s" % (s, v[len("écart : "):]) for s, v in n["charte"].items() if v != "ok"]
+    if ecarts:
+        return "<br>Charte : " + html.escape(" ; ".join(ecarts))
+    return "<br>Charte : " + ("conforme (%s)" % html.escape(", ".join(n["charte"])) if n["charte"] else "aucun son difficile")
+
+
+def utile_html(e):
+    u = e["lecture_la_plus_utile"]
+    if not u or u["couverte"]:
+        return ""
+    if u["par_deuxieme_mnemo"]:
+        return (' <span class="utile e-ok">la plus utile, {nom} <span lang=ja>{kana}</span> <i>{rom}</i> ({n} mots N5–N1),'
+                ' a sa deuxième mnémotechnique</span>').format(
+            nom=html.escape(u["nom"]), kana=html.escape(u["kana"]), rom=html.escape(u["romaji"]), n=u["mots_tous_niveaux"])
+    return (' <span class="utile e-{cl}">la plus utile : {nom} <span lang=ja>{kana}</span> <i>{rom}</i>, '
+            '{n} mots N5–N1 contre {m} (écart {ecart})</span>').format(
+        cl="non" if u["ecart"] == "net" else "att", nom=html.escape(u["nom"]), kana=html.escape(u["kana"]),
+        rom=html.escape(u["romaji"]), n=u["mots_tous_niveaux"], m=u["mots_tous_niveaux_lecture_enseignee"],
+        ecart=u["ecart"])
+
+
 def page_relecture(entrees, selection):
     par_kanji = {e["kanji"]: e for e in entrees}
+    etats = Counter(e["etat"] for e in entrees)
     cartes = []
-    for k in selection["kanji"]:
+    rejuger = selection.get("a_rejuger", [])
+    for k in selection["kanji"] + rejuger:
+        if rejuger and k == rejuger[0]:
+            cartes.append('<h2>À rejuger : {n} kanji que les règles du 7 octobre font repasser</h2>\n'
+                          '<p class="intro">{note}</p>'.format(n=len(rejuger), note=html.escape(selection.get("note_rejuger", ""))))
         e = par_kanji[k]
         l = e["lecture"]
         ex = " · ".join("%s <span class=k>%s</span>%s" % (
@@ -570,18 +793,55 @@ def page_relecture(entrees, selection):
             " <small>(lecture spéciale)</small>" if m.get("lecture_speciale") else "")
             for m in e["exemples"])
         comp = ", ".join("%s %s" % (c["element"], html.escape(c["fr"])) for c in e["composants_cites"]) or "—"
+        versions = []
+        if e["etat"] != "refusée":
+            versions.append(("Texte actuel", e))
+        nouv = e["propositions_fr"]
+        versions += [("Réécriture" if len(nouv) == 1 else "Version %d" % (i + 1), p) for i, p in enumerate(nouv)]
+        versions += [('Deuxième lecture : %s <span lang=ja>%s</span> <i>%s</i>' % (
+            html.escape(a["lecture"]["nom"]), html.escape(a["lecture"]["kana"]), html.escape(a["lecture"]["romaji"])), a)
+            for a in e["autres_lectures"]]
+        refus = ""
+        juges = [a for a in e["avis_jacques"] if a["mnemo_juge"] == e["mnemo_fr"]]
+        if e["etat"] == "refusée":
+            refus = '<p class=refus>Refusé le %s : <s>%s</s></p>' % (html.escape(juges[-1]["date"]), gras(e["mnemo_fr"]))
+        blocs = "\n".join("""    <div class=version>
+      <p class=vtete><b>{titre}</b> {notes}</p>
+      <p class=mnemo>{mnemo}</p>
+      <p class=pourquoi>Son : {cp}<br>Lien : {lp}{ch}</p>
+      <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
+    </div>""".format(titre=titre, notes=notes_html(v), mnemo=gras(v["mnemo_fr"]),
+                     cp=html.escape(v["confiance_pourquoi"]), lp=html.escape(v["lien_pourquoi"]), ch=charte_html(v))
+            for titre, v in versions)
         cartes.append("""<article>
   <div class=kanji lang=ja>{k}</div>
   <div class=corps>
-    <p class=tete><b>{sens}</b> · <span lang=ja>{kana}</span> <i>{romaji}</i> <small>(lecture {type}, {n} mot{s} N5)</small></p>
+    <p class=tete><b>{sens}</b> · <span lang=ja>{kana}</span> <i>{romaji}</i> <small>({n} mot{s} N5)</small></p>
+    <p class=lect>Lecture enseignée : <b>{typenom}</b>{utile}</p>
     <p class=comp>Composants : {comp}</p>
-    <p class=mnemo>{mnemo}</p>
+    {refus}
+{blocs}
     <p class=ex lang=ja>{ex}</p>
-    <p class=cases><label><span class=case></span> ça marche</label><label><span class=case></span> ça ne marche pas</label></p>
-    <p class=note>Remarque :</p>
+    <p class=remarque>Remarque :</p>
   </div>
 </article>""".format(k=k, sens=html.escape(e["sens_fr"]), kana=html.escape(l["kana"]), romaji=html.escape(l["romaji"]),
-                     type=l["type"], n=l["mots_n5"], s="s" if l["mots_n5"] > 1 else "", comp=comp, mnemo=gras(e["mnemo_fr"]), ex=ex))
+                     typenom=html.escape(e["lecture_enseignee"]["nom"]), utile=utile_html(e),
+                     n=l["mots_n5"], s="s" if l["mots_n5"] > 1 else "", comp=comp, refus=refus,
+                     blocs=blocs, ex=ex))
+    lignes = []
+    for e in entrees:
+        lignes.append("<tr><td class=tk lang=ja>{k}</td><td>{sens}<br><i>{romaji}</i><br><small>{typ}</small></td><td>{mnemo}{utile}</td>"
+                      "<td class=notes><span class=\"etat e-{cl}\">{etat}</span> {notes}</td></tr>".format(
+                          k=e["kanji"], sens=html.escape(e["sens_fr"]), romaji=html.escape(e["lecture"]["romaji"]),
+                          typ=html.escape(e["lecture_enseignee"]["nom"]),
+                          utile="<br>" + utile_html(e) if utile_html(e) else "",
+                          mnemo=gras(e["mnemo_fr"]) + "".join(
+                              '<br><small>2<sup>e</sup> lecture, %s <i>%s</i> (%s) :</small> %s' % (
+                                  html.escape(a["lecture"]["nom"]), html.escape(a["lecture"]["romaji"]),
+                                  html.escape(a["etat"]), gras(a["mnemo_fr"])) for a in e["autres_lectures"]),
+                          notes=notes_html(e), etat=html.escape(e["etat"]),
+                          cl="ok" if e["etat"] == "validée" else "non" if e["etat"] in ("refusée", "à réécrire", "hors charte") else "att"))
+    bilan = " · ".join("%s %d" % (x, etats[x]) for x in ETATS if etats[x])
     return """<!doctype html>
 <html lang="fr">
 <head>
@@ -590,40 +850,63 @@ def page_relecture(entrees, selection):
 <title>Kanji N5 à relire</title>
 <!-- Généré par construire.py : ne pas modifier à la main. -->
 <style>
-:root{{--encre:#1C2430;--papier:#FBF8F2;--ambre:#E8A23A;--trait:#d9d2c3;--doux:#5b6470}}
-@media (prefers-color-scheme: dark){{:root:not([data-theme="light"]){{--encre:#ECE7DD;--papier:#171C24;--trait:#3a4250;--doux:#a7afba}}}}
-:root[data-theme="dark"]{{--encre:#ECE7DD;--papier:#171C24;--trait:#3a4250;--doux:#a7afba}}
+:root{{--encre:#1C2430;--papier:#FBF8F2;--ambre:#E8A23A;--trait:#d9d2c3;--doux:#5b6470;--vert:#2f7a4d;--rouge:#a8402f}}
+@media (prefers-color-scheme: dark){{:root:not([data-theme="light"]){{--encre:#ECE7DD;--papier:#171C24;--trait:#3a4250;--doux:#a7afba;--vert:#7cc79a;--rouge:#e8907f}}}}
+:root[data-theme="dark"]{{--encre:#ECE7DD;--papier:#171C24;--trait:#3a4250;--doux:#a7afba;--vert:#7cc79a;--rouge:#e8907f}}
 *{{box-sizing:border-box}}
 body{{margin:0;padding:24px 16px;background:var(--papier);color:var(--encre);font:16px/1.5 Georgia,"Times New Roman",serif}}
-main{{max-width:820px;margin:0 auto}}
+main{{max-width:860px;margin:0 auto}}
 h1{{font-size:1.5rem;margin:0 0 .25rem}}
+h2{{font-size:1.2rem;margin:2.5rem 0 .5rem}}
 .intro{{color:var(--doux);margin:0 0 1.5rem}}
+.bilan{{font-size:.95rem;margin:0 0 1.5rem}}
 article{{display:flex;gap:20px;border-top:1px solid var(--trait);padding:18px 0;break-inside:avoid;page-break-inside:avoid}}
 .kanji{{font-size:88px;line-height:1;min-width:110px;text-align:center;font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}}
 .corps{{flex:1;min-width:0}}
 .corps p{{margin:.2rem 0}}
 .tete{{font-size:1.1rem}}
 .tete i{{color:var(--doux)}}
-.comp,.ex,small{{color:var(--doux);font-size:.9rem}}
-.mnemo{{font-size:1.05rem;margin:.5rem 0!important}}
-.mnemo strong{{background:linear-gradient(transparent 60%,color-mix(in srgb,var(--ambre) 45%,transparent) 60%)}}
+.comp,.ex,small,.pourquoi,.lect{{color:var(--doux);font-size:.9rem}}
+.refus{{color:var(--rouge);font-size:.95rem}}
+.version{{border-left:3px solid var(--trait);padding:.2rem 0 .2rem .8rem;margin:.7rem 0}}
+.vtete{{font-size:.95rem}}
+.mnemo{{font-size:1.05rem;margin:.35rem 0!important}}
+strong{{background:linear-gradient(transparent 60%,color-mix(in srgb,var(--ambre) 45%,transparent) 60%)}}
+.note-son,.note-lien,.note-charte,.etat{{display:inline-block;font:.78rem/1.6 system-ui,sans-serif;padding:0 .45rem;border:1px solid var(--trait);border-radius:3px;white-space:nowrap}}
+.n-haute{{color:var(--vert)}} .n-basse{{color:var(--rouge)}} .n-moyenne{{color:var(--doux)}}
+.e-ok{{color:var(--vert)}} .e-non{{color:var(--rouge)}} .e-att{{color:var(--doux)}}
 .k{{opacity:.8}}
-.cases{{display:flex;gap:28px;margin-top:.6rem!important;flex-wrap:wrap}}
+.utile{{font-size:.85rem}}
+.lect b{{color:var(--encre)}}
+.cases{{display:flex;gap:28px;margin-top:.4rem!important;flex-wrap:wrap}}
 .case{{display:inline-block;width:16px;height:16px;border:1.5px solid var(--encre);vertical-align:-2px;margin-right:6px}}
-.note{{color:var(--doux);border-bottom:1px dotted var(--trait);padding-bottom:1.2rem}}
-@media (max-width:520px){{article{{flex-direction:column;gap:6px}}.kanji{{text-align:left;font-size:72px}}}}
-@media print{{body{{background:#fff;color:#000}}}}
+.remarque{{color:var(--doux);border-bottom:1px dotted var(--trait);padding-bottom:1.2rem}}
+.tableau{{overflow-x:auto}}
+table{{border-collapse:collapse;width:100%;font-size:.92rem}}
+td{{border-top:1px solid var(--trait);padding:.45rem .4rem;vertical-align:top}}
+td.tk{{font-size:1.8rem;line-height:1.1;font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}}
+td i{{color:var(--doux)}}
+td.notes span{{margin:0 0 .25rem}}
+.etat{{font-weight:600}}
+@media (max-width:520px){{article{{flex-direction:column;gap:6px}}.kanji{{text-align:left;font-size:72px}}td{{padding:.35rem .25rem}}}}
+@media print{{body{{background:#fff;color:#000}}.tableau{{overflow:visible}}}}
 </style>
 </head>
 <body>
 <main>
-<h1>Kanji N5 : 20 mnémotechniques à juger</h1>
-<p class="intro">Brouillon à relire. Pour chaque kanji : est-ce que la phrase française fait <em>entendre</em> la lecture (le morceau souligné) et <em>voir</em> le sens ? Cochez, annotez, imprimez. Rien n'est envoyé. {n} kanji choisis pour varier : simples, composés, lectures on et kun, et trois de confiance basse.</p>
+<h1>Kanji N5 : {titre}</h1>
+<p class="intro">Brouillon à relire. Chaque mnémotechnique a deux notes : <b>son</b> (le morceau souligné fait-il entendre la lecture ?) et <b>lien</b> (l'image mène-t-elle d'elle-même au sens ?). Une mnémotechnique n'est proposée que si les deux valent au moins « moyenne », et si elle respecte la <b>charte des sons</b> (<code>charte-des-sons.md</code>). Chaque kanji dit quelle lecture il enseigne, <b>on</b> (sino-japonaise) ou <b>kun</b> (japonaise), et signale quand une autre lecture sert dans plus de mots. Cochez, annotez, imprimez. Rien n'est envoyé.</p>
+<p class="bilan">Les {total} kanji : {bilan}.</p>
 {cartes}
+<h2>Les {total} kanji, texte retenu</h2>
+<div class="tableau"><table>
+{lignes}
+</table></div>
 </main>
 </body>
 </html>
-""".format(cartes="\n".join(cartes), n=len(selection["kanji"]))
+""".format(titre=html.escape(selection["titre"]), total=len(entrees), bilan=html.escape(bilan),
+           cartes="\n".join(cartes), lignes="\n".join(lignes))
 
 
 def main():
@@ -641,14 +924,13 @@ def main():
         return 0
 
     entrees, lexique, meta, erreurs, avis, selection = construire(dossier)
-    for k in selection["kanji"]:
+    for k in selection["kanji"] + selection.get("a_rejuger", []):
         if k not in {e["kanji"] for e in entrees}:
             erreurs.append("a_relire.json : %s sans entrée" % k)
-    if len(selection["kanji"]) != 20:
-        erreurs.append("a_relire.json : %d kanji au lieu de 20" % len(selection["kanji"]))
-    basses = [k for k in selection["kanji"] if any(e["kanji"] == k and e["confiance"] == "basse" for e in entrees)]
-    if len(basses) != 3:
-        erreurs.append("a_relire.json : %d kanji de confiance basse au lieu de 3" % len(basses))
+    if not 1 <= len(selection["kanji"]) <= 20:
+        erreurs.append("a_relire.json : %d kanji, un lot en compte 1 à 20" % len(selection["kanji"]))
+    if not selection.get("titre"):
+        erreurs.append("a_relire.json : titre du lot manquant")
 
     ecrire_json("mnemoniques_n5.json", OrderedDict(meta=meta, kanji=entrees))
     nommes = [v for v in lexique.values() if v["fr"]]
@@ -665,6 +947,10 @@ def main():
     typ = Counter(e["lecture"]["type"] for e in entrees)
     print("Kanji N5 dans kanji.json : %d ; entrées écrites : %d" % (meta["kanji_n5_dans_kanji_json"], len(entrees)))
     print("Confiance : haute %d, moyenne %d, basse %d" % (conf["haute"], conf["moyenne"], conf["basse"]))
+    lien = Counter(e["lien"] for e in entrees)
+    etats = Counter(e["etat"] for e in entrees)
+    print("Lien image-sens : haute %d, moyenne %d, basse %d" % (lien["haute"], lien["moyenne"], lien["basse"]))
+    print("États : " + ", ".join("%s %d" % (x, etats[x]) for x in ETATS))
     print("Lectures retenues : on %d, kun %d" % (typ["on"], typ["kun"]))
     print("Composants KanjiVG : %d, dont %d nommés, %d cités dans un mnémotechnique"
           % (len(lexique), len(nommes), sum(1 for v in lexique.values() if v["cite_dans"])))

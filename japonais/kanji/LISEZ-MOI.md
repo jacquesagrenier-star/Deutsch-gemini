@@ -2,16 +2,19 @@
 
 **Statut : brouillon à relire.** Ce dossier sert à juger la méthode sur les kanji du niveau JLPT N5 avant de l'étendre aux quelque 2 000 autres. Aucun texte n'est validé.
 
+> **Droit d'auteur (règle du 7 oct. 2026)** : ne jamais consulter WaniKani, Heisig (*Remembering the Kanji* / *Les kanji dans la tête*), KanjiDamage ni les histoires de Kanji Koohii, et n'en rien reproduire, même traduit. Une mnémotechnique qui ressemble à une de leurs histoires se réécrit. Détails : `LICENCES.md`, section « Mnémoniques ».
+
 ## Ce qu'il y a dans le dossier
 
 | Fichier | Rôle |
 |---|---|
 | `mnemoniques_n5.json` | Une entrée par kanji : sens retenu, lecture retenue et ses comptes, composants, mnémotechniques français et anglais, confiance, exemples. **Généré**, ne pas modifier à la main. |
 | `composants.json` | Le lexique des composants KanjiVG : un nom français et un nom anglais par composant, les kanji où il apparaît, ceux où un mnémotechnique le cite. **Généré.** |
-| `a-relire.html` | 20 kanji à juger, à ouvrir dans un navigateur et à imprimer. **Généré.** |
+| `a-relire.html` | Le lot en cours (20 kanji au plus) à juger, puis l'état des 79 kanji. À ouvrir dans un navigateur et à imprimer. **Généré.** |
 | `textes/textes_n5.json` | **Les textes écrits à la main** : sens choisi, mnémotechniques, confiance et sa raison. C'est ici qu'on corrige. |
-| `textes/noms_composants.json` | Le nom de chaque composant. Changer un nom ici le change partout. |
-| `textes/a_relire.json` | La liste des 20 kanji de la page de relecture. |
+| `textes/noms_composants.json` | Le nom de chaque composant, avec son `origine` (sens KANJIDIC2 ou nom écrit pour Wortando). Changer un nom ici le change partout. |
+| `textes/a_relire.json` | Le titre et les kanji du lot en cours de relecture. |
+| `charte-des-sons.md` | La charte des sons : le rendu français fixé pour chaque son japonais difficile. `construire.py` en lit les identifiants. |
 | `construire.py` | Refait les trois fichiers générés et vérifie tout. |
 
 Pour reconstruire :
@@ -35,10 +38,18 @@ Pour chaque kanji N5 de `japonais/kanji.json` :
 3. **Les composants** : les groupes `kvg:element` de KanjiVG, au premier niveau sous le kanji (`composants`), plus les éléments plus profonds (`sous_composants`). Un kanji sans sous-groupe est son propre composant. `traits_libres` compte les traits que KanjiVG ne range dans aucun élément nommé.
 4. **Le mnémotechnique français** : une ou deux phrases qui relient les composants, le sens et le son de la lecture. Le morceau qui porte le son est en **gras**, la lecture en romaji Hepburn est écrite à côté entre parenthèses.
 5. **Le mnémotechnique anglais**, écrit séparément, avec un son anglais.
-6. **Une note de confiance** sur le jeu de mots **français** seulement, avec sa raison.
-7. **Deux mots N5 d'exemple** pris dans `mots.json`, avec leur lecture.
+6. **Deux notes** sur le texte **français** seulement, chacune avec sa raison (haute / moyenne / basse) :
+   - `confiance` : **le son**. Le morceau en gras fait-il entendre la lecture ?
+   - `lien` (depuis le 7 oct.) : **l'image mène-t-elle d'elle-même au sens ?** Le pilote du 4 oct. a montré que la note du son ne suffit pas : trois des quatre refus étaient notés « haute » en son, mais reliaient l'image au sens par un lien arbitraire (des autocollants pour « homme », Djibouti pour « heure », un smash de tennis pour « ciel »).
+   - Une mnémotechnique n'est **proposée** que si les deux notes valent au moins « moyenne ».
+   - `avis_jacques` garde chaque verdict (`ok` / `refuse`, date, remarque) **avec le texte jugé** (`mnemo_juge`) : un verdict ne vaut que pour ce texte-là, une réécriture repart à juger. `propositions_fr` contient les réécritures en attente de choix.
+   - **La charte des sons** (`charte-des-sons.md`, depuis le 7 oct.), sur un principe fixé par Jacques : *un rendu n'est refusé que s'il fait retenir un autre son japonais* (le r et le j français sont donc acceptés ; h, chi, tsu, u et n final restent stricts ; et le son visé doit former des **syllabes entières** du mot français, sans consonne collée : « djinn » fait entendre *jin*, refusé) : `construire.py` repère dans la lecture les sons difficiles (r, h, tsu, ji, n final, voyelle longue…). Chaque texte et chaque réécriture donne, dans `charte`, un verdict par son : `ok` ou `écart : …`. Un oubli est une erreur ; un écart rend la mnémotechnique **hors charte**, même validée.
+   - Le script en tire un `etat` : **validée** (ok sur le texte actuel), **refusée**, **hors charte** (un écart à la charte), **à juger** (les deux notes au moins moyennes), **à réécrire** (une note basse).
+7. **La lecture enseignée** (`lecture_enseignee`, depuis le 7 oct.) : chaque texte écrit quelle lecture il enseigne, **on** (sino-japonaise) ou **kun** (japonaise), et le script vérifie que c'est la lecture retenue. Il calcule aussi `lecture_la_plus_utile` : celle que portent le plus de mots JLPT, tous niveaux N5 à N1. Quand ce n'est pas la lecture enseignée, il le signale, avec un écart **net** (au moins deux fois plus de mots, et cinq de plus) ou **faible** (petits comptes, à ne pas surinterpréter).
+8. **Une deuxième mnémotechnique** (`autres_lectures`, depuis le 7 oct.) quand la lecture la plus utile n'est pas la lecture enseignée avec un écart net : on garde la lecture enseignée et on ajoute un texte français pour l'autre, avec les mêmes notes, la même charte et ses propres exemples (pris sur tous les niveaux, les formes sans sonorisation d'abord). Les 8 écarts nets en ont une : 中 人 女 小 山 長 食 高.
+9. **Deux mots N5 d'exemple** pris dans `mots.json`, avec leur lecture.
 
-Ce que `construire.py` vérifie pour chaque kanji : le sens est un sens KANJIDIC ; chaque mnémotechnique contient le mot du sens et la lecture « (romaji) » exacte ; il a un morceau en gras ; chaque composant cité appartient bien à la décomposition KanjiVG et son nom du lexique figure dans les deux textes ; deux composants n'ont jamais le même nom ; la page de relecture a 20 kanji dont 3 de confiance basse. Le romaji est calculé à partir des kana, pas recopié.
+Ce que `construire.py` vérifie pour chaque kanji : le sens est un sens KANJIDIC ; chaque mnémotechnique contient le mot du sens et la lecture « (romaji) » exacte ; il a un morceau en gras ; chaque composant cité appartient bien à la décomposition KanjiVG et son nom du lexique figure dans les deux textes ; deux composants n'ont jamais le même nom ; les deux notes sont présentes et valides ; les réécritures de `propositions_fr` suivent les mêmes règles que le texte ; chaque verdict cite le texte jugé ; le lot de relecture compte 1 à 20 kanji. Le romaji est calculé à partir des kana, pas recopié.
 
 ## Les chiffres
 
@@ -49,6 +60,9 @@ Ce que `construire.py` vérifie pour chaque kanji : le sens est un sens KANJIDIC
 | Confiance haute | 52 |
 | Confiance moyenne | 21 |
 | Confiance basse | 6 (九, 何, 半, 左, 本, 白) |
+| Lien image-sens haute / moyenne / basse (7 oct.) | 41 / 21 / 17 |
+| États au 7 oct., après la règle « syllabe entière » : validée / hors charte / à juger / à réécrire | 12 / 27 / 33 / 7 |
+| Lecture la plus utile non enseignée : écart net (couvert par une 2e mnémotechnique) / faible | 8 (8) / 19 |
 | Lectures retenues on / kun | 39 / 40 |
 | Composants KanjiVG distincts | 80, tous nommés |
 | … dont cités dans au moins un mnémotechnique | 72 |
@@ -79,7 +93,7 @@ La liste N5 de `kanji.json` compte **79 kanji** alors qu'on en attendait 103. L'
 - L'**image** relie-t-elle bien les composants au sens ? Est-elle drôle, visuelle, jamais vulgaire ni méprisante ?
 - Les **mots** sont-ils connus de tous les francophones ? Deux sont propres à la France : « kawa » (川, argot pour le café) et « Nénette » (年, vieilli). Le Québec ne les connaît pas forcément.
 - Les **noms des composants** (`textes/noms_composants.json`) sont-ils simples et faciles à revoir d'un kanji à l'autre ? Un nom changé là change partout.
-- La page `a-relire.html` présente 20 cas variés, avec deux cases à cocher par kanji.
+- La page `a-relire.html` présente le lot en cours, deux cases à cocher par version, puis le tableau des 79 kanji avec leurs deux notes et leur état.
 
 ## Ce qu'un relecteur japonais natif doit vérifier
 
