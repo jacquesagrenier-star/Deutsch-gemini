@@ -6704,6 +6704,9 @@ body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
 .av-dates{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;}
 .av-dates label{flex:1 1 130px; display:flex; flex-direction:column; gap:3px; font-size:12px; font-weight:800; color:#7b8798;}
 .av-date{font:inherit; font-size:15px; padding:8px 9px; border:1.5px solid #e3dccf; border-radius:10px; background:#fff; color:inherit; min-width:0;}
+/* v955 : l'heure du rappel de l'app installee (reglages, #rappelHeureBloc). */
+.rappel-heure{font:inherit; font-size:18px; padding:6px 10px; border:1.5px solid #e3dccf; border-radius:10px; background:#fff; color:#1C2430;}
+body[data-theme="dark"] .rappel-heure{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); color:#eef1f5; color-scheme:dark;}
 .av-suite{background:linear-gradient(135deg,#2F5D8A,#1C2430); color:#fff; border-radius:18px; padding:14px; margin:14px 0 4px; text-align:left;}
 .av-suite-k{font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; color:#E8A23A;}
 .av-suite-t{font-weight:900; font-size:18px; margin:4px 0 8px;}
@@ -8666,7 +8669,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v954</span>
+    <span class="subtitle-version">v955</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11020,6 +11023,12 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <p style="color:#576177" data-i18n="notif_desc">Reçois une notification quand tu n'as pas encore atteint ton objectif du jour.</p>
         <div class="spacer"></div>
         <button id="notifToggleBtn" class="secondary" onclick="toggleNotifications()" data-i18n="notif_btn_enable">ACTIVER LES RAPPELS</button>
+        <!-- v955 : l'heure du rappel LOCAL de l'app installee. Cachee sur le
+             web, voir rappelNatif(). -->
+        <div id="rappelHeureBloc" class="hidden" style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px;">
+            <label for="rappelHeure" style="font-weight:600;" data-i18n="rappel_heure">Heure du rappel</label>
+            <input type="time" id="rappelHeure" value="19:00" step="300" onchange="changerHeureRappel(this.value)" class="rappel-heure">
+        </div>
     </div>
 
     <details class="reglages-groupe" id="groupeSon">
@@ -11065,6 +11074,14 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
             <p style="color:#b45309; margin-top:6px; font-weight:600;" data-i18n="musique_avert">⚠️ Si tu laisses la musique jouer, l'application n'emettra plus AUCUN son quand le bouton silencieux est baisse.</p>
             <div class="spacer"></div>
             <button class="secondary" id="musiqueBtn" onclick="basculerMusique()">Laisser la musique jouer</button>
+        </div>
+        <!-- v955 : les vibrations de l'app installee. Cachee sur le web, voir
+             vibrerNatif(). -->
+        <div class="card hidden" id="vibrationsCarte">
+            <strong data-i18n="vibrations_titre">Vibrations</strong>
+            <p style="color:#576177; margin-top:6px;" data-i18n="vibrations_desc">Une vibration légère à chaque bonne réponse, et une plus marquée quand tu atteins ton objectif du jour.</p>
+            <div class="spacer"></div>
+            <button class="secondary" id="vibrationsBtn" onclick="basculerVibrations()">Vibrer aux bonnes réponses</button>
         </div>
     </details>
 
@@ -12772,6 +12789,14 @@ const I18N = {
         notif_token_failed: "Impossible d'activer les rappels pour l'instant. Réessaie plus tard.",
         notif_enabled_success: "Rappels activés ! Tu recevras une notification si tu n'as pas atteint ton objectif du jour.",
         notif_disabled_success: "Rappels désactivés.",
+        rappel_heure: "Heure du rappel",
+        rappel_regle: "Rappel réglé : chaque jour à {h}, tant que ton objectif du jour n'est pas atteint.",
+        rappel_refuse: "Notifications refusées. Tu peux les autoriser dans les réglages de ton téléphone.",
+        rappel_notif_titre: "Ta séance du jour t'attend",
+        rappel_notif_texte: "Quelques minutes suffisent pour garder tes jours d'affilée.",
+        vibrations_titre: "Vibrations",
+        vibrations_desc: "Une vibration légère à chaque bonne réponse, et une plus marquée quand tu atteins ton objectif du jour.",
+        vibrations_bouton: "Vibrer aux bonnes réponses",
         notif_error_prefix: "Erreur : ",
         settings_invite_title: "Inviter un ami",
         settings_invite_desc: "Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'allemand ou l'anglais.",
@@ -14220,6 +14245,14 @@ const I18N = {
         notif_token_failed: "Couldn't enable reminders right now. Try again later.",
         notif_enabled_success: "Reminders enabled! You'll get a notification if you haven't reached your daily goal.",
         notif_disabled_success: "Reminders disabled.",
+        rappel_heure: "Reminder time",
+        rappel_regle: "Reminder set: every day at {h}, unless you've already reached your daily goal.",
+        rappel_refuse: "Notifications are off. You can allow them in your phone's settings.",
+        rappel_notif_titre: "Your daily session is waiting",
+        rappel_notif_texte: "A few minutes are enough to keep your days in a row going.",
+        vibrations_titre: "Vibrations",
+        vibrations_desc: "A light vibration for each correct answer, and a stronger one when you reach your daily goal.",
+        vibrations_bouton: "Vibrate on correct answers",
         notif_error_prefix: "Error: ",
         settings_invite_title: "Invite a friend",
         settings_invite_desc: "Learning with Wortando? Share it with someone who'd like to learn German or English.",
@@ -15672,6 +15705,14 @@ const I18N = {
         notif_token_failed: "Hatırlatmalar şu anda açılamadı. Daha sonra tekrar dene.",
         notif_enabled_success: "Hatırlatmalar açıldı! Günlük hedefine ulaşmadıysan bir bildirim alacaksın.",
         notif_disabled_success: "Hatırlatmalar kapatıldı.",
+        rappel_heure: "Hatırlatma saati",
+        rappel_regle: "Hatırlatma ayarlandı: her gün saat {h}, günlük hedefine henüz ulaşmadıysan.",
+        rappel_refuse: "Bildirimler kapalı. Telefonunun ayarlarından izin verebilirsin.",
+        rappel_notif_titre: "Günlük çalışman seni bekliyor",
+        rappel_notif_texte: "Üst üste günlerini sürdürmek için birkaç dakika yeter.",
+        vibrations_titre: "Titreşim",
+        vibrations_desc: "Her doğru cevapta hafif bir titreşim, günlük hedefine ulaştığında daha belirgin bir titreşim.",
+        vibrations_bouton: "Doğru cevaplarda titre",
         notif_error_prefix: "Hata: ",
         settings_invite_title: "Bir arkadaşını davet et",
         settings_invite_desc: "Wortando ile mi öğreniyorsun? Almanca ya da İngilizce öğrenmek isteyen biriyle paylaş.",
@@ -16568,6 +16609,14 @@ const I18N = {
         notif_token_failed: "Наразі не вдається увімкнути нагадування. Спробуй пізніше.",
         notif_enabled_success: "Нагадування увімкнено! Ти отримаєш сповіщення, якщо не досягнеш цілі на день.",
         notif_disabled_success: "Нагадування вимкнено.",
+        rappel_heure: "Час нагадування",
+        rappel_regle: "Нагадування встановлено: щодня о {h}, якщо денну ціль ще не досягнуто.",
+        rappel_refuse: "Сповіщення вимкнено. Їх можна дозволити в налаштуваннях телефона.",
+        rappel_notif_titre: "Твоє щоденне заняття чекає",
+        rappel_notif_texte: "Кількох хвилин досить, щоб не перервати дні поспіль.",
+        vibrations_titre: "Вібрація",
+        vibrations_desc: "Легка вібрація за кожну правильну відповідь і сильніша, коли денну ціль досягнуто.",
+        vibrations_bouton: "Вібрувати при правильних відповідях",
         notif_error_prefix: "Помилка: ",
         invite_share_text: "Я вчу німецьку (та англійську) з Wortando — попроси в мене код запрошення, щоб спробувати",
         invite_share_copied: "Повідомлення скопійовано — встав його там, де хочеш надіслати!",
@@ -18379,6 +18428,14 @@ const I18N = {
         notif_token_failed: "فعلاً روشن کردن یادآوری‌ها ممکن نیست. بعداً دوباره تلاش کن.",
         notif_enabled_success: "یادآوری‌ها روشن شد! اگر به هدف امروزت نرسیده باشی، اعلان دریافت می‌کنی.",
         notif_disabled_success: "یادآوری‌ها خاموش شد.",
+        rappel_heure: "ساعت یادآوری",
+        rappel_regle: "یادآوری تنظیم شد: هر روز ساعت {h}، اگر هنوز به هدف امروزت نرسیده باشی.",
+        rappel_refuse: "اعلان‌ها خاموش‌اند. می‌توانی در تنظیمات گوشی‌ات به آن‌ها اجازه بدهی.",
+        rappel_notif_titre: "جلسهٔ امروزت منتظر توست",
+        rappel_notif_texte: "چند دقیقه کافی است تا روزهای پیاپی‌ات قطع نشود.",
+        vibrations_titre: "لرزش",
+        vibrations_desc: "لرزشی سبک برای هر پاسخ درست، و لرزشی قوی‌تر وقتی به هدف امروزت می‌رسی.",
+        vibrations_bouton: "لرزش برای پاسخ‌های درست",
         notif_error_prefix: "خطا: ",
         settings_invite_title: "دعوت از یک دوست",
         settings_invite_btn: "هم‌رسانی Wortando",
@@ -20135,6 +20192,14 @@ const I18N = {
         notif_token_failed: "تعذّر تفعيل التذكيرات الآن. أعد المحاولة لاحقاً.",
         notif_enabled_success: "فُعّلت التذكيرات! سيصلك إشعار إن لم تبلغ هدف اليوم.",
         notif_disabled_success: "أُوقفت التذكيرات.",
+        rappel_heure: "وقت التذكير",
+        rappel_regle: "تم ضبط التذكير: كل يوم الساعة {h}، ما لم تبلغ هدف اليوم.",
+        rappel_refuse: "الإشعارات متوقفة. يمكنك السماح بها من إعدادات هاتفك.",
+        rappel_notif_titre: "جلستك اليومية بانتظارك",
+        rappel_notif_texte: "بضع دقائق تكفي لتحافظ على أيامك المتتالية.",
+        vibrations_titre: "الاهتزاز",
+        vibrations_desc: "اهتزاز خفيف عند كل إجابة صحيحة، وأقوى حين تبلغ هدف اليوم.",
+        vibrations_bouton: "الاهتزاز عند الإجابات الصحيحة",
         notif_error_prefix: "خطأ: ",
         settings_invite_title: "ادعُ صديقاً",
         settings_invite_desc: "أتتعلّم مع Wortando؟ شاركه مع من يودّ تعلّم الألمانية أو الإنجليزية.",
@@ -21639,6 +21704,14 @@ const I18N = {
         notif_token_failed: "Não foi possível ativar os lembretes agora. Tente de novo mais tarde.",
         notif_enabled_success: "Lembretes ativados! Você vai receber uma notificação se não tiver alcançado sua meta do dia.",
         notif_disabled_success: "Lembretes desativados.",
+        rappel_heure: "Horário do lembrete",
+        rappel_regle: "Lembrete definido: todos os dias às {h}, se você ainda não tiver alcançado a sua meta do dia.",
+        rappel_refuse: "Notificações desativadas. Você pode permiti-las nos ajustes do seu celular.",
+        rappel_notif_titre: "Sua sessão do dia está esperando",
+        rappel_notif_texte: "Alguns minutos bastam para manter seus dias em sequência.",
+        vibrations_titre: "Vibração",
+        vibrations_desc: "Uma vibração leve a cada resposta certa, e uma mais forte quando você alcança a sua meta do dia.",
+        vibrations_bouton: "Vibrar nas respostas certas",
         notif_error_prefix: "Erro: ",
         settings_invite_title: "Convidar um amigo",
         settings_invite_desc: "Você aprende com a Wortando? Compartilhe com alguém que queira aprender alemão ou inglês.",
@@ -23153,6 +23226,14 @@ const I18N = {
         notif_token_failed: "Nie udało się teraz włączyć przypomnień. Spróbuj później.",
         notif_enabled_success: "Przypomnienia włączone! Dostaniesz powiadomienie, jeśli nie osiągniesz dziennego celu.",
         notif_disabled_success: "Przypomnienia wyłączone.",
+        rappel_heure: "Godzina przypomnienia",
+        rappel_regle: "Przypomnienie ustawione: codziennie o {h}, jeśli dzienny cel nie jest jeszcze osiągnięty.",
+        rappel_refuse: "Powiadomienia są wyłączone. Możesz je włączyć w ustawieniach telefonu.",
+        rappel_notif_titre: "Twoja dzisiejsza sesja czeka",
+        rappel_notif_texte: "Kilka minut wystarczy, by nie przerwać dni z rzędu.",
+        vibrations_titre: "Wibracje",
+        vibrations_desc: "Lekka wibracja przy każdej dobrej odpowiedzi i mocniejsza, gdy osiągniesz dzienny cel.",
+        vibrations_bouton: "Wibruj przy dobrych odpowiedziach",
         notif_error_prefix: "Błąd: ",
         settings_invite_title: "Zaproś znajomego",
         settings_invite_desc: "Uczysz się z Wortando? Poleć je komuś, kto chciałby się uczyć niemieckiego albo angielskiego.",
@@ -24668,6 +24749,14 @@ const I18N = {
         notif_token_failed: "Сейчас не удаётся включить напоминания. Попробуй позже.",
         notif_enabled_success: "Напоминания включены! Ты получишь уведомление, если не достигнешь цели дня.",
         notif_disabled_success: "Напоминания выключены.",
+        rappel_heure: "Время напоминания",
+        rappel_regle: "Напоминание установлено: каждый день в {h}, если цель дня ещё не достигнута.",
+        rappel_refuse: "Уведомления отключены. Их можно разрешить в настройках телефона.",
+        rappel_notif_titre: "Твоё ежедневное занятие ждёт",
+        rappel_notif_texte: "Нескольких минут достаточно, чтобы не прервать дни подряд.",
+        vibrations_titre: "Вибрация",
+        vibrations_desc: "Лёгкая вибрация при каждом правильном ответе и более сильная, когда цель дня достигнута.",
+        vibrations_bouton: "Вибрировать при правильных ответах",
         notif_error_prefix: "Ошибка:",
         settings_invite_title: "Пригласить друга",
         settings_invite_desc: "Учишься с Wortando? Поделись им с тем, кто хотел бы выучить немецкий или английский.",
@@ -28464,9 +28553,14 @@ function setNotificationsEnabledLocally(enabled){
 function updateNotificationsUi(){
     const btn = document.getElementById("notifToggleBtn");
     if(!btn) return;
-    const on = areNotificationsEnabledLocally();
+    const natif = !!rappelNatif();
+    const on = natif ? !!(lireRappel() || {}).actif : areNotificationsEnabledLocally();
     btn.textContent = on ? t("notif_btn_disable") : t("notif_btn_enable");
     btn.classList.toggle("danger", on);
+    const bloc = document.getElementById("rappelHeureBloc");
+    if(bloc) bloc.classList.toggle("hidden", !natif);
+    const champ = document.getElementById("rappelHeure");
+    if(natif && champ) champ.value = (lireRappel() || {}).heure || RAPPEL_HEURE_DEFAUT;
 }
 
 async function enableNotifications(){
@@ -28517,8 +28611,166 @@ async function disableNotifications(){
 }
 
 function toggleNotifications(){
+    if(rappelNatif()){ basculerRappelNatif(); return; }
     if(areNotificationsEnabledLocally()) disableNotifications();
     else enableNotifications();
+}
+
+// ---- Le rappel quotidien de l'app installee (v955) ----------------------
+// ⚠️ LES NOTIFICATIONS CI-DESSUS N'ARRIVENT PAS DANS L'APP. Elles passent par
+// le service worker et le push du navigateur, que la vue web d'une app iPhone
+// ne recoit pas. L'app installee programme donc elle-meme une notification
+// LOCALE (@capacitor/local-notifications, dans wortando-ios) : ni APNs, ni
+// serveur, ni jeton dans Firestore.
+//
+// Elle sert aussi la revision d'Apple (regle 4.2, « fonctionnalite minimale ») :
+// c'est l'une des fonctions qu'un site emballe ne sait pas faire.
+//
+// LA PROMESSE DE LA CARTE EST TENUE : « quand tu n'as pas encore atteint ton
+// objectif du jour ». Une notification qui se repete tous les jours ne sait pas
+// se taire ; on programme donc les RAPPEL_JOURS prochains jours un par un, et
+// on reprogramme a chaque retour dans l'app et au palier de l'objectif -- le
+// jour ou l'objectif est atteint, celui du jour saute. Qui n'ouvre plus l'app
+// pendant une semaine n'est plus relance : un rappel, pas une insistance.
+//
+// Rien ne change sur le web : sans le module natif, rappelNatif() rend null et
+// tout passe par l'ancien chemin. Une compilation d'avant la v955, qui n'a pas
+// le module, se comporte comme le web.
+const RAPPEL_CLE = "wortando_rappel";   // sans prefixe : un rappel pour l'app, quelle que soit la langue apprise
+const RAPPEL_HEURE_DEFAUT = "19:00";
+const RAPPEL_JOURS = 7;
+const RAPPEL_ID0 = 7101;                // ids 7101 a 7107, rien d'autre ne programme de notification
+
+function pluginNatif(nom){
+    try{
+        const C = window.Capacitor;
+        if(C && typeof C.isNativePlatform === "function" && C.isNativePlatform()
+           && C.Plugins && C.Plugins[nom]) return C.Plugins[nom];
+    }catch(e){}
+    return null;
+}
+function rappelNatif(){ return pluginNatif("LocalNotifications"); }
+
+function lireRappel(){
+    try{
+        const r = JSON.parse(localStorage.getItem(RAPPEL_CLE) || "null");
+        if(r && /^\d\d:\d\d$/.test(r.heure)) return r;
+    }catch(e){}
+    return null;
+}
+function ecrireRappel(r){
+    try{ localStorage.setItem(RAPPEL_CLE, JSON.stringify(r)); }catch(e){}
+}
+
+async function annulerRappels(LN){
+    const ids = [];
+    for(let i = 0; i < RAPPEL_JOURS; i++) ids.push({ id: RAPPEL_ID0 + i });
+    try{ await LN.cancel({ notifications: ids }); }catch(e){}
+}
+
+async function programmerRappels(){
+    const LN = rappelNatif();
+    if(!LN) return;
+    await annulerRappels(LN);
+    const r = lireRappel();
+    if(!r || !r.actif) return;
+    const [h, m] = r.heure.split(":").map(Number);
+    const maintenant = new Date();
+    let atteint = false;
+    try{ atteint = getDailyActivityCount() >= getDailyGoalTarget(); }catch(e){}
+    const liste = [];
+    for(let j = 0; j <= RAPPEL_JOURS && liste.length < RAPPEL_JOURS; j++){
+        const quand = new Date(maintenant.getFullYear(), maintenant.getMonth(), maintenant.getDate() + j, h, m, 0, 0);
+        if(quand <= maintenant || (j === 0 && atteint)) continue;
+        liste.push({
+            id: RAPPEL_ID0 + liste.length,
+            title: t("rappel_notif_titre"),
+            body: t("rappel_notif_texte"),
+            schedule: { at: quand }
+        });
+    }
+    try{ await LN.schedule({ notifications: liste }); }catch(e){}
+}
+
+async function basculerRappelNatif(){
+    const LN = rappelNatif();
+    if(!LN) return;
+    const r = lireRappel() || { actif: false, heure: RAPPEL_HEURE_DEFAUT };
+    if(r.actif){
+        r.actif = false;
+        ecrireRappel(r);
+        await annulerRappels(LN);
+        updateNotificationsUi();
+        showInfoToast(t("notif_disabled_success"));
+        return;
+    }
+    let perm = null;
+    try{
+        perm = await LN.checkPermissions();
+        if(!perm || perm.display !== "granted") perm = await LN.requestPermissions();
+    }catch(e){ perm = null; }
+    if(!perm || perm.display !== "granted"){ showInfoToast(t("rappel_refuse")); return; }
+    r.actif = true;
+    ecrireRappel(r);
+    await programmerRappels();
+    updateNotificationsUi();
+    showInfoToast(tf("rappel_regle", { h: r.heure }));
+}
+
+function changerHeureRappel(valeur){
+    if(!/^\d\d:\d\d$/.test(valeur || "")) return;
+    const r = lireRappel() || { actif: false, heure: RAPPEL_HEURE_DEFAUT };
+    r.heure = valeur;
+    ecrireRappel(r);
+    if(r.actif){
+        programmerRappels();
+        showInfoToast(tf("rappel_regle", { h: valeur }));
+    }
+}
+
+// Chaque retour dans l'app reprogramme : le jour avance, l'objectif a pu etre
+// atteint ailleurs (l'autre langue n'a pas le meme compteur), la langue de
+// l'interface a pu changer (le texte du rappel la suit).
+document.addEventListener("visibilitychange", () => {
+    if(!document.hidden && rappelNatif()) programmerRappels();
+});
+setTimeout(() => { if(rappelNatif()) programmerRappels(); }, 4000);
+
+// ---- Les vibrations de l'app installee (v955) ---------------------------
+// Une vibration legere a chaque bonne reponse (playMasteredSound, le son de
+// toutes les reussites : carte, exercice, oral), une notification « succes »
+// au palier de l'objectif du jour (triggerDailyGoalCelebration). Module
+// @capacitor/haptics de wortando-ios ; sur le web, pluginNatif() rend null et
+// rien ne se passe. Le reglage vit dans le groupe Son.
+const VIBRATIONS_CLE = "wortando_vibrations";   // "0" = coupees
+
+function vibrationsActives(){
+    try{ return localStorage.getItem(VIBRATIONS_CLE) !== "0"; }catch(e){ return true; }
+}
+
+function vibrerNatif(genre){
+    const H = pluginNatif("Haptics");
+    if(!H || !vibrationsActives()) return;
+    try{
+        const p = genre === "palier" ? H.notification({ type: "SUCCESS" }) : H.impact({ style: "LIGHT" });
+        if(p && typeof p.catch === "function") p.catch(() => {});
+    }catch(e){}
+}
+
+function basculerVibrations(){
+    try{ localStorage.setItem(VIBRATIONS_CLE, vibrationsActives() ? "0" : "1"); }catch(e){}
+    renderVibrationsSetting();
+    vibrerNatif("juste");
+}
+
+function renderVibrationsSetting(){
+    const carte = document.getElementById("vibrationsCarte");
+    if(carte) carte.classList.toggle("hidden", !pluginNatif("Haptics"));
+    const b = document.getElementById("vibrationsBtn");
+    if(!b) return;
+    const on = vibrationsActives();
+    b.textContent = (on ? "\u2713  " : "\u2014  ") + t("vibrations_bouton")
+                  + (on ? "" : "  \u00b7  " + t("carte_dire_non"));
 }
 
 // Intégration de la catégorie verbe liée à verbe.json (structure par niveau A1/A2/B1/B2 ; niveaux ajoutés au fur et à mesure)
@@ -38386,6 +38638,7 @@ function openSettings(){
     renderDailyGoalSetting();
     renderBadgesGrid();
     updateNotificationsUi();
+    renderVibrationsSetting();
     refreshSetupChoiceActiveStates();
     const adminCard = document.getElementById("adminDashboardCard");
     if(adminCard) adminCard.classList.toggle("hidden", !isAdminUser());
@@ -44159,7 +44412,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 954;
+const APP_VERSION = 955;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -54593,6 +54846,7 @@ function playMasteredSound(){
     // v950 : filet -- si la connexion n'a pas encore prepare la kalimba, la
     // premiere carte la prepare pour les suivantes.
     try{ preparerSonsEssai(); }catch(e){}
+    vibrerNatif("juste");   // v955 : l'app installee seulement
     dernierBravo = Date.now();
     try{
         if(masteryAudioReady && masteryAudioEl){
@@ -54785,6 +55039,9 @@ function showDailyGoalText(threshold){
 // sur le fait que le clip soit muet ou non, et sans clip cette condition
 // n'aurait plus rien signifie -- le palier serait devenu entierement muet.
 function triggerDailyGoalCelebration(multiple){
+    // v955 : l'app installee vibre, et le rappel du jour se tait (voir programmerRappels).
+    vibrerNatif("palier");
+    if(rappelNatif()) programmerRappels();
     // v947 (essai anneau_palier) : l'anneau dit le palier -- plus de « +30 ! ».
     let anneau = false;
     try{ anneau = essaiActif("anneau_palier") && essaiActif("carreau_partout"); }catch(e){}
