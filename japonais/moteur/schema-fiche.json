@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "wortando/fiche",
+  "title": "Fichier de fiches Wortando (proposition, CONCEPTION.md section 2)",
+  "description": "Un fichier = des sources declarees une fois + des entrees. Chaque valeur d'entree est une feuille {v, src, statut} : la licence se lit dans sources[src], la relecture dans statut. Les exemples reels sont dans exemples/*.json (un fichier = une entree, pour la lisibilite ; le vrai fichier portera 'entrees': [...]).",
+  "type": "object",
+  "required": ["sources"],
+  "properties": {
+    "sources": {
+      "description": "Cle courte -> {nom, licence, fichier}. Un champ ne cite que la cle.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["nom", "licence"],
+        "properties": {"nom": {"type": "string"}, "licence": {"type": "string"}, "fichier": {"type": "string"}}
+      }
+    },
+    "entree":  {"$ref": "#/$defs/fiche"},
+    "entrees": {"type": "array", "items": {"$ref": "#/$defs/fiche"}}
+  },
+  "$defs": {
+    "statut": {
+      "description": "Ordre croissant de confiance. Le moteur peut filtrer par statut minimal (ex. ne montrer une mnemotechnique qu'a partir de 'relu').",
+      "enum": ["manquant", "brouillon", "source", "relu", "relu_natif", "valide"]
+    },
+    "feuille": {
+      "description": "Une valeur + d'ou elle vient + ou en est sa relecture. 'note' explique un manque.",
+      "type": "object",
+      "required": ["v", "statut"],
+      "properties": {
+        "v": {},
+        "src": {"type": ["string", "null"]},
+        "statut": {"$ref": "#/$defs/statut"},
+        "note": {"type": "string"}
+      }
+    },
+    "glose": {
+      "description": "'affichee' est UN CHOIX (avec son statut) ; 'autres' = le reste, accepte comme bonne reponse ; 'pistes' = ce qui aide a choisir sans etre une glose du mot (ex. sens du kanji).",
+      "type": "object",
+      "required": ["affichee"],
+      "properties": {
+        "affichee": {"$ref": "#/$defs/feuille"},
+        "autres": {"type": "array"},
+        "pistes": {"type": "array", "items": {"$ref": "#/$defs/feuille"}}
+      }
+    },
+    "fiche": {
+      "type": "object",
+      "required": ["id", "type", "niveau"],
+      "properties": {
+        "id": {
+          "description": "STABLE pour toujours : c'est la cle de progression (getWordState(themeId, id)). Mot : 'jmdict:<seq>' (repli 'ja:<kanji>|<kana>'), kanji : 'kanji:<car>', kana : 'kana:<id kana.json>'.",
+          "type": "string", "pattern": "^(jmdict|ja|kanji|kana|phrase|de):.+"
+        },
+        "cle_progression": {
+          "description": "Seulement pour les fiches MIGREES depuis un ancien format (allemand) : la cle exacte que cleMot(themeId, index) rendait, figee a la conversion. Absente pour le japonais, ou id fait foi.",
+          "type": "object", "properties": {"theme": {"type": "string"}, "k": {"type": ["string", "integer"]}}
+        },
+        "type": {"enum": ["mot", "kanji", "kana", "phrase"]},
+        "niveau": {"description": "Une valeur de LANGUES.<code>.niveaux (N5..N1 pour ja).", "type": "string"},
+        "cap": {"description": "Capacite requise pour que la fiche apparaisse (facultatif ; ex. 'kanji').", "type": "string"},
+        "ecritures": {
+          "description": "Mot : kanji (null si le mot s'ecrit en kana), kana, romaji (calcule, jamais saisi).",
+          "type": "object",
+          "properties": {"kanji": {"$ref": "#/$defs/feuille"}, "kana": {"$ref": "#/$defs/feuille"}, "romaji": {"$ref": "#/$defs/feuille"}}
+        },
+        "furigana": {"description": "v = [[texte, lecture|null], ...] : une lecture par bloc de kanji, null sur l'okurigana.", "$ref": "#/$defs/feuille"},
+        "classe": {"description": "Code JMdict (v1, v5k, adj-i, n...). C'est l'entree du moteur de conjugaison.", "$ref": "#/$defs/feuille"},
+        "flexion": {
+          "description": "Les formes ne sont PAS stockees : moteur = le fournisseur de la capacite 'conjugaison' de la langue (japonais-conjugaison : conjuguer(kanji, kana, classe)). null = mot invariable.",
+          "type": ["object", "null"]
+        },
+        "gloses": {"type": "object", "properties": {"fr": {"$ref": "#/$defs/glose"}, "en": {"$ref": "#/$defs/glose"}}},
+        "kanji": {"description": "Mot -> kanji contenus (calcule au build).", "type": "array", "items": {"type": "string"}},
+        "mots": {"description": "Kanji -> ids des mots qui le contiennent (index inverse calcule au build, jamais tenu a la main).", "type": "array", "items": {"type": "string"}},
+        "caractere": {"type": "string"},
+        "traits": {"$ref": "#/$defs/feuille"},
+        "trace": {"description": "SVG KanjiVG, nomme par point de code sur 5 chiffres hexa (comme japonais/kana/traits/).", "type": "object"},
+        "lectures": {"type": "object", "properties": {"on": {"$ref": "#/$defs/feuille"}, "kun": {"$ref": "#/$defs/feuille"}, "retenue": {"$ref": "#/$defs/feuille"}}},
+        "sens": {"type": "object", "properties": {"fr": {"$ref": "#/$defs/glose"}, "en": {"$ref": "#/$defs/glose"}}},
+        "composants": {"description": "Elements KanjiVG ; noms dans composants.json (stables et cumulatifs).", "type": "array", "items": {"type": "string"}},
+        "mnemo": {
+          "description": "UNE entree par langue d'apprenant, ecrite pour elle (jamais traduite). confiance = le son ; image_mene_au_sens = l'image conduit-elle au sens (lecon du pilote N5).",
+          "type": "object",
+          "additionalProperties": {
+            "allOf": [{"$ref": "#/$defs/feuille"}],
+            "properties": {
+              "confiance": {"enum": ["haute", "moyenne", "basse", null]},
+              "image_mene_au_sens": {"enum": ["oui", "en_partie", "non", null]}
+            }
+          }
+        },
+        "phrases": {"description": "Ids de phrases (Tatoeba) ; chaque phrase porte son propre statut.", "type": "array", "items": {"type": "string"}},
+        "image": {
+          "description": "Image du mot sur sa carte (CONCEPTION.md section 4) : {scene, p} = recadrage d'une illustration autour d'un point, ou {fichier} sous ASSETS_BASE/illustrations/mots/. Jamais de texte dans l'image.",
+          "type": ["object", "null"]
+        },
+        "frequence": {"$ref": "#/$defs/feuille"},
+        "provenance": {"description": "Pointeurs vers la ligne d'origine (fichier:ligne), pour remonter a la source.", "type": "object"}
+      }
+    }
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "sources": {
+    "tanos": {
+      "nom": "Listes JLPT de Jonathan Waller (tanos.co.uk)",
+      "licence": "CC BY",
+      "fichier": "japonais/mots.json @ japonais-donnees"
+    },
+    "kanjidic2": {
+      "nom": "KANJIDIC2 (EDRDG) 2025-310",
+      "licence": "CC BY-SA 4.0",
+      "fichier": "japonais/kanji.json @ japonais-donnees"
+    },
+    "jmdict": {
+      "nom": "JMdict (EDRDG)",
+      "licence": "CC BY-SA 4.0",
+      "fichier": "japonais/conjugaison/oracles/jmdict-courants.json @ japonais-conjugaison (copie 2021)"
+    },
+    "kanjivg": {
+      "nom": "KanjiVG (Ulrich Apel)",
+      "licence": "CC BY-SA 3.0",
+      "fichier": "japonais/kanji/composants.json @ japonais-kanji-mnemo"
+    },
+    "wortando": {
+      "nom": "Texte original Wortando",
+      "licence": "a choisir par le proprietaire",
+      "fichier": "japonais/kanji/mnemoniques_n5.json @ japonais-kanji-mnemo"
+    },
+    "calcul": {
+      "nom": "Calcule par un script a partir des champs voisins",
+      "licence": "-",
+      "fichier": "japonais/kanji/construire.py @ japonais-kanji-mnemo"
+    }
+  },
+  "entree": {
+    "id": "kanji:水",
+    "type": "kanji",
+    "niveau": "N5",
+    "caractere": "水",
+    "traits": {
+      "v": 4,
+      "src": "kanjidic2",
+      "statut": "source"
+    },
+    "trace": {
+      "svg": "kanji/traits/06c34.svg",
+      "src": "kanjivg",
+      "statut": "a_extraire",
+      "note": "pas encore extrait pour les kanji (fait pour les kana)"
+    },
+    "lectures": {
+      "on": {
+        "v": [
+          "スイ"
+        ],
+        "src": "kanjidic2",
+        "statut": "source"
+      },
+      "kun": {
+        "v": [
+          "みず",
+          "みず-"
+        ],
+        "src": "kanjidic2",
+        "statut": "source"
+      },
+      "retenue": {
+        "v": {
+          "type": "on",
+          "kana": "スイ",
+          "romaji": "sui"
+        },
+        "src": "calcul",
+        "statut": "brouillon"
+      }
+    },
+    "sens": {
+      "fr": {
+        "affichee": {
+          "v": "eau",
+          "src": "kanjidic2",
+          "statut": "brouillon"
+        },
+        "autres": []
+      },
+      "en": {
+        "affichee": {
+          "v": "water",
+          "src": "kanjidic2",
+          "statut": "brouillon"
+        },
+        "autres": []
+      }
+    },
+    "composants": [
+      "水"
+    ],
+    "mnemo": {
+      "fr": {
+        "v": "La fontaine m'arrose d'eau : je **suis** (sui) trempé.",
+        "src": "wortando",
+        "statut": "brouillon",
+        "confiance": "haute",
+        "pourquoi": "« suis » [sɥi] est très proche de すい.",
+        "image_mene_au_sens": null
+      },
+      "en": {
+        "v": "The fountain's water tastes **swee**t (sui).",
+        "src": "wortando",
+        "statut": "brouillon",
+        "confiance": null,
+        "image_mene_au_sens": null
+      }
+    },
+    "mots": [
+      "jmdict:1371260",
+      "jmdict:1372190"
+    ],
+    "frequence": {
+      "v": 223,
+      "src": "kanjidic2",
+      "statut": "source"
+    }
+  }
+}
