@@ -1,0 +1,755 @@
+{
+ "_lisez_moi": [
+  "PROTOTYPE JAPONAIS (12 oct. 2026) : l'interieur d'une superette. Le moteur de l'app ne connait pas encore le japonais ; rien n'est branche. Voir JAPONAIS-SCENES.md.",
+  "Memes conventions que les scenes allemandes : boite = [x, y, largeur, hauteur] en % ; la plus PETITE gagne ; sur = l'objet sur lequel celui-ci se trouve ; aussi = les autres noms de la zone ; sam = la boite donnee a SAM quand elle doit etre plus grande ; plein = la zone est le rectangle.",
+  "NOUVEAU : « mot » et « aussi » sont des mots JAPONAIS (forme du corpus, kanji ou kana) ; la table « lexique » donne pour chacun la lecture en kana, la traduction francaise, l'id JMdict et le niveau JLPT (ou « hors N5-N3 »).",
+  "Image : visuel/scenes/konbini-propre.png = konbini.png passe par effacer_texte.py (konbini-effacer.json : les gobelets de nouilles portaient une marque lisible ; l'afficheur est reste sombre).",
+  "Mesures a la grille de 1 % sur la source 1536 x 2752 ; NON verifiees au toucher dans le navigateur (la page ne sait pas lire le lexique japonais)."
+ ],
+ "image": "konbini.webp",
+ "source": "../scenes/konbini-propre.png",
+ "titre": "コンビニで",
+ "titre_fr": "Au konbini",
+ "alt": "L'intérieur d'une supérette japonaise le soir : un rayon de pain et de friandises à gauche, les frigos de boissons à droite, une vitrine d'onigiri et de bento au centre, et au fond la caisse où une cliente paie.",
+ "consigne": "Il est tard, tu as faim. Touche un objet de la supérette.",
+ "exclus": [
+  "壁",
+  "床",
+  "電気"
+ ],
+ "points": [
+  {
+   "id": "denki",
+   "mot": "電気",
+   "boite": [
+    0,
+    0,
+    100,
+    21
+   ],
+   "plein": true
+  },
+  {
+   "id": "kabe",
+   "mot": "壁",
+   "boite": [
+    0,
+    21,
+    75,
+    17
+   ],
+   "plein": true
+  },
+  {
+   "id": "tokei",
+   "mot": "時計",
+   "boite": [
+    14.3,
+    24.2,
+    7.4,
+    4.6
+   ]
+  },
+  {
+   "id": "koukoku-hidari",
+   "mot": "広告",
+   "boite": [
+    13.5,
+    29.7,
+    10.4,
+    7.8
+   ],
+   "sur": "kabe",
+   "rigide": "rectangle"
+  },
+  {
+   "id": "koukoku-ue",
+   "mot": "広告",
+   "boite": [
+    36,
+    22.5,
+    21,
+    4.3
+   ],
+   "sur": "kabe",
+   "rigide": "rectangle"
+  },
+  {
+   "id": "koukoku-migi",
+   "mot": "広告",
+   "boite": [
+    60.5,
+    30,
+    9.2,
+    7.5
+   ],
+   "sur": "kabe",
+   "rigide": "rectangle"
+  },
+  {
+   "id": "terebi",
+   "mot": "テレビ",
+   "boite": [
+    59,
+    22.5,
+    12,
+    4.7
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "tana-ushiro",
+   "mot": "棚",
+   "boite": [
+    27,
+    29,
+    30,
+    4.5
+   ],
+   "sur": "kabe"
+  },
+  {
+   "id": "hako",
+   "mot": "箱",
+   "boite": [
+    27,
+    29.3,
+    13.5,
+    3.3
+   ],
+   "sur": "tana-ushiro"
+  },
+  {
+   "id": "bin",
+   "mot": "瓶",
+   "boite": [
+    40,
+    29,
+    16.8,
+    3.6
+   ],
+   "sur": "tana-ushiro"
+  },
+  {
+   "id": "denshi-renji",
+   "mot": "電子レンジ",
+   "boite": [
+    27.3,
+    37.5,
+    8.4,
+    3
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "reji",
+   "mot": "レジ",
+   "boite": [
+    21,
+    43,
+    39,
+    11.5
+   ],
+   "sam": [
+    21,
+    42.5,
+    40,
+    12.5
+   ]
+  },
+  {
+   "id": "ten-in",
+   "mot": "店員",
+   "boite": [
+    43.6,
+    34.5,
+    14.8,
+    12.3
+   ],
+   "aussi": [
+    "人",
+    "男"
+   ]
+  },
+  {
+   "id": "kyaku",
+   "mot": "客",
+   "boite": [
+    34,
+    37.8,
+    10.5,
+    21
+   ],
+   "aussi": [
+    "人",
+    "女",
+    "コート"
+   ]
+  },
+  {
+   "id": "kaban",
+   "mot": "かばん",
+   "boite": [
+    36.5,
+    45.6,
+    6.8,
+    6
+   ],
+   "sur": "kyaku"
+  },
+  {
+   "id": "okane",
+   "mot": "お金",
+   "boite": [
+    41,
+    42.8,
+    2.6,
+    1.6
+   ],
+   "plein": true
+  },
+  {
+   "id": "kago-reji",
+   "mot": "かご",
+   "boite": [
+    41.5,
+    44,
+    8,
+    3.2
+   ]
+  },
+  {
+   "id": "fukuro",
+   "mot": "袋",
+   "boite": [
+    57.3,
+    38.5,
+    12.8,
+    5.6
+   ],
+   "sur": "kabe"
+  },
+  {
+   "id": "ojiisan",
+   "mot": "客",
+   "boite": [
+    60.5,
+    40,
+    12.4,
+    28.5
+   ],
+   "aussi": [
+    "人",
+    "男",
+    "おじいさん"
+   ]
+  },
+  {
+   "id": "boushi",
+   "mot": "帽子",
+   "boite": [
+    65.5,
+    40,
+    6.6,
+    3.2
+   ],
+   "sur": "ojiisan"
+  },
+  {
+   "id": "ocha",
+   "mot": "お茶",
+   "boite": [
+    74.5,
+    47,
+    4.6,
+    4.2
+   ],
+   "aussi": [
+    "飲み物",
+    "瓶"
+   ]
+  },
+  {
+   "id": "reizouko",
+   "mot": "冷蔵庫",
+   "boite": [
+    73,
+    37,
+    27,
+    43.5
+   ],
+   "sam": [
+    72,
+    36.5,
+    28,
+    44.5
+   ]
+  },
+  {
+   "id": "nomimono",
+   "mot": "飲み物",
+   "boite": [
+    86,
+    42,
+    14,
+    36
+   ],
+   "sur": "reizouko",
+   "aussi": [
+    "瓶",
+    "水",
+    "牛乳",
+    "ジュース"
+   ],
+   "plein": true
+  },
+  {
+   "id": "mado",
+   "mot": "窓",
+   "boite": [
+    75.5,
+    19,
+    24.5,
+    18.5
+   ],
+   "aussi": [
+    "ドア"
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "kuruma",
+   "mot": "車",
+   "boite": [
+    86,
+    32,
+    14,
+    5
+   ],
+   "sur": "mado",
+   "plein": true
+  },
+  {
+   "id": "tana-hidari",
+   "mot": "棚",
+   "boite": [
+    0,
+    31.5,
+    26.5,
+    44
+   ],
+   "sam": [
+    0,
+    31,
+    27,
+    45
+   ]
+  },
+  {
+   "id": "pan",
+   "mot": "パン",
+   "boite": [
+    0,
+    37.5,
+    23,
+    16
+   ],
+   "sur": "tana-hidari"
+  },
+  {
+   "id": "okashi",
+   "mot": "お菓子",
+   "boite": [
+    3,
+    53.5,
+    23.5,
+    11.5
+   ],
+   "sur": "tana-hidari"
+  },
+  {
+   "id": "kappumen",
+   "mot": "カップ麺",
+   "boite": [
+    5.5,
+    64.7,
+    13,
+    6.5
+   ],
+   "sur": "tana-hidari"
+  },
+  {
+   "id": "shookeesu",
+   "mot": "ショーケース",
+   "boite": [
+    34.5,
+    53.5,
+    31,
+    27
+   ],
+   "aussi": [
+    "棚"
+   ]
+  },
+  {
+   "id": "onigiri",
+   "mot": "おにぎり",
+   "boites": [
+    [
+     41.4,
+     56.6,
+     6,
+     2.6
+    ],
+    [
+     39,
+     64.7,
+     10,
+     4.2
+    ]
+   ],
+   "sur": "shookeesu"
+  },
+  {
+   "id": "obentou",
+   "mot": "お弁当",
+   "boite": [
+    40.5,
+    59.5,
+    17.7,
+    5.3
+   ],
+   "sur": "shookeesu"
+  },
+  {
+   "id": "sandoitchi",
+   "mot": "サンドイッチ",
+   "boite": [
+    49.5,
+    64.5,
+    9.5,
+    4.3
+   ],
+   "sur": "shookeesu"
+  },
+  {
+   "id": "yuka",
+   "mot": "床",
+   "boite": [
+    0,
+    66,
+    100,
+    34
+   ],
+   "plein": true
+  },
+  {
+   "id": "kago",
+   "mot": "かご",
+   "boite": [
+    0,
+    75.4,
+    29,
+    24.6
+   ]
+  },
+  {
+   "id": "kasa",
+   "mot": "傘",
+   "boite": [
+    72,
+    75.4,
+    28,
+    24.6
+   ]
+  }
+ ],
+ "lexique": {
+  "電気": {
+   "jmdict": "jmdict:1443000",
+   "niveau": "N5",
+   "mot": "電気",
+   "kana": "でんき",
+   "fr": "électricité ; lumière (électrique)"
+  },
+  "壁": {
+   "jmdict": "jmdict:1509290",
+   "niveau": "N4",
+   "mot": "壁",
+   "kana": "かべ",
+   "fr": "mur"
+  },
+  "時計": {
+   "jmdict": "jmdict:1316140",
+   "niveau": "N5",
+   "mot": "時計",
+   "kana": "とけい",
+   "fr": "montre ; horloge"
+  },
+  "広告": {
+   "jmdict": "jmdict:1278510",
+   "niveau": "N3",
+   "mot": "広告",
+   "kana": "こうこく",
+   "fr": "publicité ; affiche",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "テレビ": {
+   "jmdict": "jmdict:1080510",
+   "niveau": "N5",
+   "mot": "テレビ",
+   "kana": "テレビ",
+   "fr": "télévision"
+  },
+  "棚": {
+   "jmdict": "jmdict:1416700",
+   "niveau": "N4",
+   "mot": "棚",
+   "kana": "たな",
+   "fr": "étagère"
+  },
+  "箱": {
+   "jmdict": "jmdict:1585650",
+   "niveau": "N5",
+   "mot": "箱",
+   "kana": "はこ",
+   "fr": "boîte"
+  },
+  "瓶": {
+   "jmdict": "jmdict:1491120",
+   "niveau": "N3",
+   "mot": "瓶",
+   "kana": "びん",
+   "fr": "bouteille",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "電子レンジ": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "電子レンジ",
+   "kana": "でんしレンジ",
+   "fr": "four à micro-ondes"
+  },
+  "レジ": {
+   "jmdict": "jmdict:1145130",
+   "niveau": "N4",
+   "mot": "レジ",
+   "kana": "レジ",
+   "fr": "caisse (de paiement)"
+  },
+  "店員": {
+   "jmdict": "jmdict:1440670",
+   "niveau": "N4",
+   "mot": "店員",
+   "kana": "てんいん",
+   "fr": "vendeur ; employé de magasin"
+  },
+  "人": {
+   "jmdict": "jmdict:1580640",
+   "niveau": "N5",
+   "mot": "人",
+   "kana": "ひと",
+   "fr": "personne"
+  },
+  "男": {
+   "jmdict": "jmdict:1419990",
+   "niveau": "N5",
+   "mot": "男",
+   "kana": "おとこ",
+   "fr": "homme"
+  },
+  "客": {
+   "jmdict": "jmdict:1226630",
+   "niveau": "N4",
+   "mot": "客",
+   "kana": "きゃく",
+   "fr": "invité ; client"
+  },
+  "女": {
+   "jmdict": "jmdict:1344930",
+   "niveau": "N5",
+   "mot": "女",
+   "kana": "おんな",
+   "fr": "femme"
+  },
+  "コート": {
+   "jmdict": "jmdict:1049000",
+   "niveau": "N5",
+   "mot": "コート",
+   "kana": "コート",
+   "fr": "manteau"
+  },
+  "かばん": {
+   "jmdict": "jmdict:1208910",
+   "niveau": "N5",
+   "mot": "かばん",
+   "kana": "かばん",
+   "fr": "sac"
+  },
+  "お金": {
+   "jmdict": "jmdict:1001820",
+   "niveau": "N5",
+   "mot": "お金",
+   "kana": "おかね",
+   "fr": "argent"
+  },
+  "かご": {
+   "jmdict": "jmdict:1590200",
+   "niveau": "N3",
+   "mot": "かご",
+   "kana": "かご",
+   "fr": "panier",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "袋": {
+   "jmdict": "jmdict:1411070",
+   "niveau": "N3",
+   "mot": "袋",
+   "kana": "ふくろ",
+   "fr": "sac (en plastique, en papier)",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "おじいさん": {
+   "jmdict": "jmdict:1002320",
+   "niveau": "N5",
+   "mot": "おじいさん",
+   "kana": "おじいさん",
+   "fr": "grand-père ; homme âgé"
+  },
+  "帽子": {
+   "jmdict": "jmdict:1519170",
+   "niveau": "N5",
+   "mot": "帽子",
+   "kana": "ぼうし",
+   "fr": "chapeau"
+  },
+  "お茶": {
+   "jmdict": "jmdict:1002430",
+   "niveau": "N5",
+   "mot": "お茶",
+   "kana": "おちゃ",
+   "fr": "thé (vert)"
+  },
+  "飲み物": {
+   "jmdict": "jmdict:1600430",
+   "niveau": "N5",
+   "mot": "飲み物",
+   "kana": "のみもの",
+   "fr": "boisson"
+  },
+  "冷蔵庫": {
+   "jmdict": "jmdict:1557110",
+   "niveau": "N5",
+   "mot": "冷蔵庫",
+   "kana": "れいぞうこ",
+   "fr": "réfrigérateur"
+  },
+  "水": {
+   "jmdict": "jmdict:1371260",
+   "niveau": "N5",
+   "mot": "水",
+   "kana": "みず",
+   "fr": "eau"
+  },
+  "牛乳": {
+   "jmdict": "jmdict:1231590",
+   "niveau": "N5",
+   "mot": "牛乳",
+   "kana": "ぎゅうにゅう",
+   "fr": "lait"
+  },
+  "ジュース": {
+   "jmdict": "jmdict:1065950",
+   "niveau": "N3",
+   "mot": "ジュース",
+   "kana": "ジュース",
+   "fr": "jus (de fruits)",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "窓": {
+   "jmdict": "jmdict:1401400",
+   "niveau": "N5",
+   "mot": "窓",
+   "kana": "まど",
+   "fr": "fenêtre"
+  },
+  "ドア": {
+   "jmdict": "jmdict:1087820",
+   "niveau": "N5",
+   "mot": "ドア",
+   "kana": "ドア",
+   "fr": "porte (à l'occidentale)"
+  },
+  "車": {
+   "jmdict": "jmdict:1323080",
+   "niveau": "N5",
+   "mot": "車",
+   "kana": "くるま",
+   "fr": "voiture"
+  },
+  "パン": {
+   "jmdict": "jmdict:1103090",
+   "niveau": "N5",
+   "mot": "パン",
+   "kana": "パン",
+   "fr": "pain"
+  },
+  "お菓子": {
+   "jmdict": "jmdict:1001710",
+   "niveau": "N5",
+   "mot": "お菓子",
+   "kana": "おかし",
+   "fr": "friandises ; gâteaux"
+  },
+  "カップ麺": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "カップ麺",
+   "kana": "カップめん",
+   "fr": "nouilles instantanées en gobelet"
+  },
+  "ショーケース": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "ショーケース",
+   "kana": "ショーケース",
+   "fr": "vitrine réfrigérée"
+  },
+  "おにぎり": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "おにぎり",
+   "kana": "おにぎり",
+   "fr": "boulette de riz (onigiri)"
+  },
+  "お弁当": {
+   "jmdict": "jmdict:1513065",
+   "niveau": "N5",
+   "mot": "お弁当",
+   "kana": "おべんとう",
+   "fr": "bento"
+  },
+  "サンドイッチ": {
+   "jmdict": "jmdict:1058580",
+   "niveau": "N4",
+   "mot": "サンドイッチ",
+   "kana": "サンドイッチ",
+   "fr": "sandwich"
+  },
+  "床": {
+   "jmdict": "jmdict:1349380",
+   "niveau": "N3",
+   "mot": "床",
+   "kana": "ゆか",
+   "fr": "sol ; plancher",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "傘": {
+   "jmdict": "jmdict:1301940",
+   "niveau": "N5",
+   "mot": "傘",
+   "kana": "かさ",
+   "fr": "parapluie"
+  }
+ }
+}

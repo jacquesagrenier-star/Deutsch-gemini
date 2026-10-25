@@ -1,0 +1,826 @@
+{
+ "_lisez_moi": [
+  "PROTOTYPE JAPONAIS (12 oct. 2026) : l'entree d'une maison et la piece a vivre derriere. Rien n'est branche dans l'app. Voir JAPONAIS-SCENES.md.",
+  "Memes conventions que konbini.points.json ; « lexique » donne kana, francais, id JMdict et niveau de chaque mot.",
+  "Image : visuel/scenes/genkan.png telle quelle (aucun texte lisible ; le sceau rouge et la signature de l'estampe sont une oeuvre, pas une etiquette).",
+  "Les chaussures sont cinq zones (une par paire, plus celle qu'il tient) ; les coussins trois zones ; chacune porte le meme mot.",
+  "Ecart a noter : le jeune homme a encore une chaussure au pied POSEE SUR LE PLANCHER de la maison (le prompt la voulait sur le carrelage) -- une faute d'usage au Japon ; a montrer a Jacques.",
+  "Mesures a la grille de 1 % ; NON verifiees au toucher dans le navigateur."
+ ],
+ "image": "genkan.webp",
+ "source": "../scenes/genkan.png",
+ "titre": "玄関で",
+ "titre_fr": "À l'entrée de la maison",
+ "alt": "L'entrée d'une maison japonaise : des chaussures alignées sur le carrelage, un jeune homme assis sur la marche qui délace sa chaussure, des chaussons prêts sur le plancher, un porte-parapluies, un meuble à chaussures avec un vase et des clés, un manteau et un bonnet au crochet ; au fond, par la porte coulissante ouverte, la pièce à tatami avec le kotatsu, une femme qui sert le thé et un chat endormi sur un coussin.",
+ "consigne": "Tu arrives chez tes hôtes. Touche un objet de la maison.",
+ "exclus": [
+  "壁",
+  "床",
+  "廊下",
+  "畳",
+  "部屋",
+  "玄関",
+  "電気"
+ ],
+ "points": [
+  {
+   "id": "kabe",
+   "mot": "壁",
+   "boite": [
+    0,
+    0,
+    100,
+    27
+   ],
+   "plein": true
+  },
+  {
+   "id": "tokei",
+   "mot": "時計",
+   "boite": [
+    2.3,
+    16.2,
+    7.8,
+    10
+   ]
+  },
+  {
+   "id": "heya",
+   "mot": "部屋",
+   "boite": [
+    14,
+    27,
+    58,
+    33
+   ],
+   "aussi": [
+    "居間"
+   ],
+   "plein": true
+  },
+  {
+   "id": "to",
+   "mot": "戸",
+   "boite": [
+    14.5,
+    27.4,
+    12,
+    33.5
+   ],
+   "aussi": [
+    "障子"
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "denki",
+   "mot": "電気",
+   "boite": [
+    48.2,
+    27.6,
+    10.5,
+    6
+   ],
+   "aussi": [
+    "電灯"
+   ]
+  },
+  {
+   "id": "mado",
+   "mot": "窓",
+   "boite": [
+    41.4,
+    32.5,
+    28.2,
+    10.2
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "e",
+   "mot": "絵",
+   "boite": [
+    75.5,
+    28.4,
+    10,
+    8.5
+   ],
+   "sur": "kabe",
+   "rigide": "rectangle"
+  },
+  {
+   "id": "boushi",
+   "mot": "帽子",
+   "boite": [
+    91.4,
+    25.4,
+    8.6,
+    6.8
+   ]
+  },
+  {
+   "id": "kooto",
+   "mot": "コート",
+   "boite": [
+    82.3,
+    27.4,
+    17.7,
+    30.8
+   ],
+   "aussi": [
+    "上着"
+   ]
+  },
+  {
+   "id": "terebi",
+   "mot": "テレビ",
+   "boite": [
+    26.8,
+    42,
+    11.5,
+    6.3
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "tana",
+   "mot": "棚",
+   "boite": [
+    26.8,
+    47.7,
+    12,
+    5.5
+   ]
+  },
+  {
+   "id": "shokubutsu",
+   "mot": "植物",
+   "boite": [
+    41,
+    39.3,
+    8.6,
+    11.5
+   ]
+  },
+  {
+   "id": "onna",
+   "mot": "女",
+   "boite": [
+    53.6,
+    42.3,
+    15.5,
+    12.8
+   ],
+   "aussi": [
+    "人",
+    "女性"
+   ]
+  },
+  {
+   "id": "kyuusu",
+   "mot": "急須",
+   "boite": [
+    53.2,
+    48,
+    4.2,
+    2.2
+   ],
+   "aussi": [
+    "お茶"
+   ],
+   "plein": true
+  },
+  {
+   "id": "chawan",
+   "mot": "茶碗",
+   "boites": [
+    [
+     55,
+     49.4,
+     3.7,
+     1.5
+    ],
+    [
+     43.2,
+     49.2,
+     3.3,
+     1.6
+    ]
+   ],
+   "aussi": [
+    "カップ"
+   ],
+   "plein": true
+  },
+  {
+   "id": "mikan",
+   "mot": "みかん",
+   "boite": [
+    47.7,
+    48.4,
+    6,
+    2.4
+   ],
+   "aussi": [
+    "果物"
+   ],
+   "plein": true
+  },
+  {
+   "id": "kotatsu",
+   "mot": "こたつ",
+   "boite": [
+    36,
+    48.4,
+    33.2,
+    10.8
+   ],
+   "aussi": [
+    "テーブル"
+   ],
+   "sam": [
+    35.5,
+    48,
+    34.5,
+    11.5
+   ]
+  },
+  {
+   "id": "zabuton-1",
+   "mot": "座布団",
+   "boite": [
+    27.3,
+    54.3,
+    7.4,
+    2.2
+   ]
+  },
+  {
+   "id": "zabuton-2",
+   "mot": "座布団",
+   "boite": [
+    43.6,
+    56.4,
+    14.6,
+    2.8
+   ]
+  },
+  {
+   "id": "zabuton-3",
+   "mot": "座布団",
+   "boite": [
+    63.6,
+    55,
+    6.6,
+    1.8
+   ]
+  },
+  {
+   "id": "neko",
+   "mot": "猫",
+   "boite": [
+    46.8,
+    55,
+    8.8,
+    2.8
+   ],
+   "sur": "zabuton-2"
+  },
+  {
+   "id": "tatami",
+   "mot": "畳",
+   "boite": [
+    26,
+    53,
+    44,
+    11
+   ],
+   "plein": true
+  },
+  {
+   "id": "rouka",
+   "mot": "廊下",
+   "boite": [
+    11,
+    63,
+    69,
+    16.5
+   ],
+   "aussi": [
+    "床"
+   ],
+   "plein": true
+  },
+  {
+   "id": "agarikamachi",
+   "mot": "上がり框",
+   "boite": [
+    11,
+    78.4,
+    71,
+    5.2
+   ],
+   "plein": true
+  },
+  {
+   "id": "surippa",
+   "mot": "スリッパ",
+   "boite": [
+    58.2,
+    73.6,
+    11.8,
+    4.8
+   ]
+  },
+  {
+   "id": "otoko",
+   "mot": "男",
+   "boite": [
+    8.6,
+    51,
+    41.4,
+    39.8
+   ],
+   "aussi": [
+    "人",
+    "セーター",
+    "ズボン"
+   ]
+  },
+  {
+   "id": "kutsushita",
+   "mot": "靴下",
+   "boite": [
+    26.4,
+    85.8,
+    8.2,
+    3.6
+   ],
+   "sur": "otoko"
+  },
+  {
+   "id": "kutsu-te",
+   "mot": "靴",
+   "boite": [
+    36,
+    72.3,
+    14,
+    4.2
+   ]
+  },
+  {
+   "id": "kutsu-kuro",
+   "mot": "靴",
+   "boite": [
+    19,
+    85.3,
+    8.5,
+    8.4
+   ]
+  },
+  {
+   "id": "kutsu-chairo",
+   "mot": "靴",
+   "boite": [
+    37.7,
+    83.2,
+    14.2,
+    8.5
+   ]
+  },
+  {
+   "id": "kutsu-shiro",
+   "mot": "靴",
+   "boite": [
+    52.7,
+    83.5,
+    12.8,
+    8.2
+   ]
+  },
+  {
+   "id": "kutsu-aka",
+   "mot": "靴",
+   "boite": [
+    67.3,
+    84.3,
+    11.4,
+    6.4
+   ]
+  },
+  {
+   "id": "kasa",
+   "mot": "傘",
+   "boite": [
+    0,
+    60,
+    11,
+    18.3
+   ]
+  },
+  {
+   "id": "kasatate",
+   "mot": "傘立て",
+   "boite": [
+    0,
+    75.4,
+    11.5,
+    18.3
+   ]
+  },
+  {
+   "id": "kutsubako",
+   "mot": "靴箱",
+   "boite": [
+    79,
+    57.6,
+    21,
+    35
+   ],
+   "aussi": [
+    "棚",
+    "下駄箱"
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "hana",
+   "mot": "花",
+   "boite": [
+    90,
+    51,
+    10,
+    5.2
+   ],
+   "sur": "kutsubako"
+  },
+  {
+   "id": "kabin",
+   "mot": "花瓶",
+   "boite": [
+    91.5,
+    55.5,
+    7.5,
+    4.2
+   ],
+   "sur": "kutsubako"
+  },
+  {
+   "id": "kagi",
+   "mot": "鍵",
+   "boite": [
+    90,
+    60.2,
+    10,
+    4.2
+   ],
+   "sur": "kutsubako",
+   "plein": true
+  },
+  {
+   "id": "genkan",
+   "mot": "玄関",
+   "boite": [
+    0,
+    83,
+    100,
+    17
+   ],
+   "plein": true
+  }
+ ],
+ "lexique": {
+  "壁": {
+   "jmdict": "jmdict:1509290",
+   "niveau": "N4",
+   "mot": "壁",
+   "kana": "かべ",
+   "fr": "mur"
+  },
+  "時計": {
+   "jmdict": "jmdict:1316140",
+   "niveau": "N5",
+   "mot": "時計",
+   "kana": "とけい",
+   "fr": "montre ; horloge"
+  },
+  "部屋": {
+   "jmdict": "jmdict:1499320",
+   "niveau": "N5",
+   "mot": "部屋",
+   "kana": "へや",
+   "fr": "pièce ; chambre"
+  },
+  "居間": {
+   "jmdict": "jmdict:1231720",
+   "niveau": "N3",
+   "mot": "居間",
+   "kana": "いま",
+   "fr": "salon ; pièce à vivre",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "戸": {
+   "jmdict": "jmdict:1266970",
+   "niveau": "N5",
+   "mot": "戸",
+   "kana": "と",
+   "fr": "porte (à la japonaise)"
+  },
+  "障子": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "障子",
+   "kana": "しょうじ",
+   "fr": "cloison coulissante en papier (shōji)"
+  },
+  "電気": {
+   "jmdict": "jmdict:1443000",
+   "niveau": "N5",
+   "mot": "電気",
+   "kana": "でんき",
+   "fr": "électricité ; lumière (électrique)"
+  },
+  "電灯": {
+   "jmdict": "jmdict:1443660",
+   "niveau": "N4",
+   "mot": "電灯",
+   "kana": "でんとう",
+   "fr": "lumière électrique ; lampe"
+  },
+  "窓": {
+   "jmdict": "jmdict:1401400",
+   "niveau": "N5",
+   "mot": "窓",
+   "kana": "まど",
+   "fr": "fenêtre"
+  },
+  "絵": {
+   "jmdict": "jmdict:1202270",
+   "niveau": "N5",
+   "mot": "絵",
+   "kana": "え",
+   "fr": "dessin ; peinture"
+  },
+  "帽子": {
+   "jmdict": "jmdict:1519170",
+   "niveau": "N5",
+   "mot": "帽子",
+   "kana": "ぼうし",
+   "fr": "chapeau"
+  },
+  "コート": {
+   "jmdict": "jmdict:1049000",
+   "niveau": "N5",
+   "mot": "コート",
+   "kana": "コート",
+   "fr": "manteau"
+  },
+  "上着": {
+   "jmdict": "jmdict:1580340",
+   "niveau": "N5",
+   "mot": "上着",
+   "kana": "うわぎ",
+   "fr": "veste ; manteau"
+  },
+  "テレビ": {
+   "jmdict": "jmdict:1080510",
+   "niveau": "N5",
+   "mot": "テレビ",
+   "kana": "テレビ",
+   "fr": "télévision"
+  },
+  "棚": {
+   "jmdict": "jmdict:1416700",
+   "niveau": "N4",
+   "mot": "棚",
+   "kana": "たな",
+   "fr": "étagère"
+  },
+  "植物": {
+   "jmdict": "jmdict:1357300",
+   "niveau": "N3",
+   "mot": "植物",
+   "kana": "しょくぶつ",
+   "fr": "plante",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "女": {
+   "jmdict": "jmdict:1344930",
+   "niveau": "N5",
+   "mot": "女",
+   "kana": "おんな",
+   "fr": "femme"
+  },
+  "人": {
+   "jmdict": "jmdict:1580640",
+   "niveau": "N5",
+   "mot": "人",
+   "kana": "ひと",
+   "fr": "personne"
+  },
+  "女性": {
+   "jmdict": "jmdict:1345250",
+   "niveau": "N4",
+   "mot": "女性",
+   "kana": "じょせい",
+   "fr": "femme"
+  },
+  "急須": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "急須",
+   "kana": "きゅうす",
+   "fr": "théière (japonaise)"
+  },
+  "お茶": {
+   "jmdict": "jmdict:1002430",
+   "niveau": "N5",
+   "mot": "お茶",
+   "kana": "おちゃ",
+   "fr": "thé (vert)"
+  },
+  "茶碗": {
+   "jmdict": "jmdict:1597530",
+   "niveau": "N5",
+   "mot": "茶碗",
+   "kana": "ちゃわん",
+   "fr": "bol ; tasse"
+  },
+  "カップ": {
+   "jmdict": "jmdict:1037670",
+   "niveau": "N5",
+   "mot": "カップ",
+   "kana": "カップ",
+   "fr": "tasse"
+  },
+  "みかん": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "みかん",
+   "kana": "みかん",
+   "fr": "mandarine (satsuma)"
+  },
+  "果物": {
+   "jmdict": "jmdict:1193060",
+   "niveau": "N5",
+   "mot": "果物",
+   "kana": "くだもの",
+   "fr": "fruit"
+  },
+  "こたつ": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "こたつ",
+   "kana": "こたつ",
+   "fr": "kotatsu (table basse chauffante)"
+  },
+  "テーブル": {
+   "jmdict": "jmdict:1078630",
+   "niveau": "N5",
+   "mot": "テーブル",
+   "kana": "テーブル",
+   "fr": "table"
+  },
+  "座布団": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "座布団",
+   "kana": "ざぶとん",
+   "fr": "coussin de sol (zabuton)"
+  },
+  "猫": {
+   "jmdict": "jmdict:1467640",
+   "niveau": "N5",
+   "mot": "猫",
+   "kana": "ねこ",
+   "fr": "chat"
+  },
+  "畳": {
+   "jmdict": "jmdict:1356750",
+   "niveau": "N4",
+   "mot": "畳",
+   "kana": "たたみ",
+   "fr": "tatami"
+  },
+  "廊下": {
+   "jmdict": "jmdict:1560670",
+   "niveau": "N5",
+   "mot": "廊下",
+   "kana": "ろうか",
+   "fr": "couloir"
+  },
+  "床": {
+   "jmdict": "jmdict:1349380",
+   "niveau": "N3",
+   "mot": "床",
+   "kana": "ゆか",
+   "fr": "sol ; plancher",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "上がり框": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "上がり框",
+   "kana": "あがりかまち",
+   "fr": "marche du genkan"
+  },
+  "スリッパ": {
+   "jmdict": "jmdict:1073900",
+   "niveau": "N5",
+   "mot": "スリッパ",
+   "kana": "スリッパ",
+   "fr": "pantoufles"
+  },
+  "男": {
+   "jmdict": "jmdict:1419990",
+   "niveau": "N5",
+   "mot": "男",
+   "kana": "おとこ",
+   "fr": "homme"
+  },
+  "セーター": {
+   "jmdict": "jmdict:1074270",
+   "niveau": "N5",
+   "mot": "セーター",
+   "kana": "セーター",
+   "fr": "pull-over"
+  },
+  "ズボン": {
+   "jmdict": "jmdict:1074260",
+   "niveau": "N5",
+   "mot": "ズボン",
+   "kana": "ズボン",
+   "fr": "pantalon"
+  },
+  "靴下": {
+   "jmdict": "jmdict:1246740",
+   "niveau": "N5",
+   "mot": "靴下",
+   "kana": "くつした",
+   "fr": "chaussettes"
+  },
+  "靴": {
+   "jmdict": "jmdict:1246700",
+   "niveau": "N5",
+   "mot": "靴",
+   "kana": "くつ",
+   "fr": "chaussure"
+  },
+  "傘": {
+   "jmdict": "jmdict:1301940",
+   "niveau": "N5",
+   "mot": "傘",
+   "kana": "かさ",
+   "fr": "parapluie"
+  },
+  "傘立て": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "傘立て",
+   "kana": "かさたて",
+   "fr": "porte-parapluies"
+  },
+  "靴箱": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "靴箱",
+   "kana": "くつばこ",
+   "fr": "meuble à chaussures"
+  },
+  "下駄箱": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "下駄箱",
+   "kana": "げたばこ",
+   "fr": "meuble à chaussures (getabako)"
+  },
+  "花": {
+   "jmdict": "jmdict:1194500",
+   "niveau": "N5",
+   "mot": "花",
+   "kana": "はな",
+   "fr": "fleur"
+  },
+  "花瓶": {
+   "jmdict": "jmdict:1194870",
+   "niveau": "N5",
+   "mot": "花瓶",
+   "kana": "かびん",
+   "fr": "vase (à fleurs)"
+  },
+  "鍵": {
+   "jmdict": "jmdict:1260490",
+   "niveau": "N5",
+   "mot": "鍵",
+   "kana": "かぎ",
+   "fr": "clé"
+  },
+  "玄関": {
+   "jmdict": "jmdict:1263400",
+   "niveau": "N5",
+   "mot": "玄関",
+   "kana": "げんかん",
+   "fr": "entrée ; hall d'entrée"
+  }
+ }
+}

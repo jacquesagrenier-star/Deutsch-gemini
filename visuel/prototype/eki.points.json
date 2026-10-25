@@ -1,0 +1,706 @@
+{
+ "_lisez_moi": [
+  "PROTOTYPE JAPONAIS (12 oct. 2026) : les portillons et le quai d'une petite gare. Rien n'est branche dans l'app. Voir JAPONAIS-SCENES.md.",
+  "Memes conventions que konbini.points.json (boite en %, la plus petite gagne, sur, aussi, sam, plein, rigide) ; « lexique » donne kana, francais, id JMdict et niveau de chaque mot.",
+  "Image : visuel/scenes/eki-propre.png = eki.png passe par effacer_texte.py (eki-effacer.json : deux kanji sur l'afficheur du train, le plan de lignes du distributeur).",
+  "Les quatre portillons sont quatre zones (une zone a plusieurs boites fait chercher SAM dans le rectangle englobant, qui ici serait plein de sol).",
+  "Mesures a la grille de 1 % ; NON verifiees au toucher dans le navigateur."
+ ],
+ "image": "eki.webp",
+ "source": "../scenes/eki-propre.png",
+ "titre": "駅で",
+ "titre_fr": "À la gare",
+ "alt": "Une petite gare japonaise vue depuis le hall : trois portillons automatiques, un distributeur de billets à gauche, le guichet de l'employé à droite, et derrière, le quai avec sa ligne jaune, un banc, un distributeur de boissons, des voyageurs et un train argenté à bande orange, portes ouvertes.",
+ "consigne": "Ton train est là. Touche un objet de la gare.",
+ "exclus": [
+  "屋根",
+  "床",
+  "ホーム",
+  "線路"
+ ],
+ "points": [
+  {
+   "id": "yane",
+   "mot": "屋根",
+   "boite": [
+    0,
+    0,
+    100,
+    11.5
+   ],
+   "plein": true
+  },
+  {
+   "id": "tokei",
+   "mot": "時計",
+   "boite": [
+    46,
+    11.2,
+    7.8,
+    5.2
+   ]
+  },
+  {
+   "id": "hashira",
+   "mot": "柱",
+   "boite": [
+    69.8,
+    0,
+    3.2,
+    42
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "densha",
+   "mot": "電車",
+   "boite": [
+    0,
+    14,
+    100,
+    17.5
+   ],
+   "aussi": [
+    "列車"
+   ],
+   "sam": [
+    0,
+    13.5,
+    100,
+    19
+   ]
+  },
+  {
+   "id": "doa",
+   "mot": "ドア",
+   "boites": [
+    [
+     17.7,
+     18.8,
+     11.8,
+     8.8
+    ],
+    [
+     76.8,
+     18.8,
+     12.7,
+     8.8
+    ]
+   ],
+   "sur": "densha"
+  },
+  {
+   "id": "mado-densha",
+   "mot": "窓",
+   "boites": [
+    [
+     36,
+     19.3,
+     33,
+     4.5
+    ],
+    [
+     0,
+     19.3,
+     11,
+     4.5
+    ],
+    [
+     92,
+     19.3,
+     8,
+     4.5
+    ]
+   ],
+   "sur": "densha",
+   "plein": true
+  },
+  {
+   "id": "jihanki",
+   "mot": "自動販売機",
+   "boite": [
+    27.3,
+    24.6,
+    14.2,
+    14.2
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "nomimono",
+   "mot": "飲み物",
+   "boite": [
+    28,
+    25.5,
+    12.2,
+    7
+   ],
+   "sur": "jihanki",
+   "plein": true
+  },
+  {
+   "id": "gomibako",
+   "mot": "ごみ箱",
+   "boite": [
+    42.3,
+    32,
+    7.2,
+    6.5
+   ],
+   "aussi": [
+    "ごみ"
+   ]
+  },
+  {
+   "id": "otoko",
+   "mot": "男",
+   "boite": [
+    51.4,
+    25.6,
+    7.4,
+    14
+   ],
+   "aussi": [
+    "人",
+    "乗客",
+    "スーツ",
+    "背広"
+   ]
+  },
+  {
+   "id": "kaban",
+   "mot": "かばん",
+   "boite": [
+    56.4,
+    33,
+    3.2,
+    3.6
+   ],
+   "sur": "otoko"
+  },
+  {
+   "id": "onnanoko",
+   "mot": "女の子",
+   "boite": [
+    62.7,
+    26,
+    7.5,
+    12.2
+   ],
+   "aussi": [
+    "人",
+    "学生",
+    "乗客"
+   ]
+  },
+  {
+   "id": "ryukku",
+   "mot": "リュック",
+   "boite": [
+    66,
+    28.4,
+    4.6,
+    4
+   ],
+   "sur": "onnanoko",
+   "aussi": [
+    "かばん"
+   ]
+  },
+  {
+   "id": "obaasan",
+   "mot": "おばあさん",
+   "boite": [
+    10,
+    29.7,
+    8.8,
+    10.2
+   ],
+   "aussi": [
+    "人",
+    "女",
+    "乗客",
+    "コート"
+   ]
+  },
+  {
+   "id": "benchi",
+   "mot": "ベンチ",
+   "boite": [
+    0,
+    31.7,
+    19.6,
+    6.2
+   ]
+  },
+  {
+   "id": "suutsukeesu",
+   "mot": "スーツケース",
+   "boite": [
+    20,
+    31,
+    5.2,
+    8
+   ],
+   "aussi": [
+    "荷物"
+   ]
+  },
+  {
+   "id": "kaidan",
+   "mot": "階段",
+   "boite": [
+    85.5,
+    25.4,
+    14.5,
+    16.4
+   ]
+  },
+  {
+   "id": "hoomu",
+   "mot": "ホーム",
+   "boites": [
+    [
+     0,
+     37.8,
+     100,
+     6.2
+    ],
+    [
+     20,
+     51.5,
+     80,
+     9
+    ]
+   ],
+   "plein": true
+  },
+  {
+   "id": "sen",
+   "mot": "線",
+   "boites": [
+    [
+     0,
+     39.8,
+     100,
+     1.9
+    ],
+    [
+     21,
+     53.8,
+     79,
+     2.6
+    ]
+   ],
+   "aussi": [
+    "黄色"
+   ],
+   "plein": true
+  },
+  {
+   "id": "senro",
+   "mot": "線路",
+   "boite": [
+    20,
+    46.5,
+    80,
+    5.5
+   ],
+   "plein": true
+  },
+  {
+   "id": "chizu",
+   "mot": "地図",
+   "boite": [
+    0,
+    48,
+    13.8,
+    12.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "kenbaiki",
+   "mot": "券売機",
+   "boite": [
+    0,
+    60.5,
+    15.2,
+    13.2
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "kaisatsu-1",
+   "mot": "改札",
+   "boite": [
+    18,
+    62.7,
+    9.6,
+    20.5
+   ]
+  },
+  {
+   "id": "kaisatsu-2",
+   "mot": "改札",
+   "boite": [
+    35.8,
+    62.7,
+    9.4,
+    20.5
+   ]
+  },
+  {
+   "id": "kaisatsu-3",
+   "mot": "改札",
+   "boite": [
+    55.3,
+    62.7,
+    9.5,
+    20.5
+   ]
+  },
+  {
+   "id": "kaisatsu-4",
+   "mot": "改札",
+   "boite": [
+    75.3,
+    62.7,
+    7.2,
+    20.5
+   ]
+  },
+  {
+   "id": "madoguchi",
+   "mot": "窓口",
+   "boite": [
+    80,
+    52,
+    20,
+    22.5
+   ],
+   "aussi": [
+    "窓"
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "ekiin",
+   "mot": "駅員",
+   "boite": [
+    86.4,
+    56.6,
+    13.6,
+    12.8
+   ],
+   "aussi": [
+    "人",
+    "男",
+    "制服"
+   ]
+  },
+  {
+   "id": "boushi",
+   "mot": "帽子",
+   "boite": [
+    92.5,
+    56.6,
+    7,
+    3.2
+   ],
+   "sur": "ekiin"
+  },
+  {
+   "id": "yuka",
+   "mot": "床",
+   "boite": [
+    0,
+    83,
+    100,
+    17
+   ],
+   "plein": true
+  }
+ ],
+ "lexique": {
+  "屋根": {
+   "jmdict": "jmdict:1182700",
+   "niveau": "N3",
+   "mot": "屋根",
+   "kana": "やね",
+   "fr": "toit",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "時計": {
+   "jmdict": "jmdict:1316140",
+   "niveau": "N5",
+   "mot": "時計",
+   "kana": "とけい",
+   "fr": "montre ; horloge"
+  },
+  "柱": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "柱",
+   "kana": "はしら",
+   "fr": "pilier ; poteau"
+  },
+  "電車": {
+   "jmdict": "jmdict:1443530",
+   "niveau": "N5",
+   "mot": "電車",
+   "kana": "でんしゃ",
+   "fr": "train"
+  },
+  "列車": {
+   "jmdict": "jmdict:1558370",
+   "niveau": "N3",
+   "mot": "列車",
+   "kana": "れっしゃ",
+   "fr": "train",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "ドア": {
+   "jmdict": "jmdict:1087820",
+   "niveau": "N5",
+   "mot": "ドア",
+   "kana": "ドア",
+   "fr": "porte (à l'occidentale)"
+  },
+  "窓": {
+   "jmdict": "jmdict:1401400",
+   "niveau": "N5",
+   "mot": "窓",
+   "kana": "まど",
+   "fr": "fenêtre"
+  },
+  "自動販売機": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "自動販売機",
+   "kana": "じどうはんばいき",
+   "fr": "distributeur automatique (de boissons)"
+  },
+  "飲み物": {
+   "jmdict": "jmdict:1600430",
+   "niveau": "N5",
+   "mot": "飲み物",
+   "kana": "のみもの",
+   "fr": "boisson"
+  },
+  "ごみ箱": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "ごみ箱",
+   "kana": "ごみばこ",
+   "fr": "poubelle"
+  },
+  "ごみ": {
+   "jmdict": "jmdict:1369900",
+   "niveau": "N4",
+   "mot": "ごみ",
+   "kana": "ごみ",
+   "fr": "ordures ; déchets"
+  },
+  "男": {
+   "jmdict": "jmdict:1419990",
+   "niveau": "N5",
+   "mot": "男",
+   "kana": "おとこ",
+   "fr": "homme"
+  },
+  "人": {
+   "jmdict": "jmdict:1580640",
+   "niveau": "N5",
+   "mot": "人",
+   "kana": "ひと",
+   "fr": "personne"
+  },
+  "乗客": {
+   "jmdict": "jmdict:1580490",
+   "niveau": "N3",
+   "mot": "乗客",
+   "kana": "じょうきゃく",
+   "fr": "passager ; voyageur",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "スーツ": {
+   "jmdict": "jmdict:1066680",
+   "niveau": "N4",
+   "mot": "スーツ",
+   "kana": "スーツ",
+   "fr": "costume"
+  },
+  "背広": {
+   "jmdict": "jmdict:1472740",
+   "niveau": "N5",
+   "mot": "背広",
+   "kana": "せびろ",
+   "fr": "costume (pour homme)"
+  },
+  "かばん": {
+   "jmdict": "jmdict:1208910",
+   "niveau": "N5",
+   "mot": "かばん",
+   "kana": "かばん",
+   "fr": "sac"
+  },
+  "女の子": {
+   "jmdict": "jmdict:1344970",
+   "niveau": "N5",
+   "mot": "女の子",
+   "kana": "おんなのこ",
+   "fr": "fille ; petite fille"
+  },
+  "学生": {
+   "jmdict": "jmdict:1206900",
+   "niveau": "N5",
+   "mot": "学生",
+   "kana": "がくせい",
+   "fr": "étudiant"
+  },
+  "リュック": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "リュック",
+   "kana": "リュック",
+   "fr": "sac à dos"
+  },
+  "おばあさん": {
+   "jmdict": "jmdict:1002330",
+   "niveau": "N5",
+   "mot": "おばあさん",
+   "kana": "おばあさん",
+   "fr": "grand-mère ; vieille dame"
+  },
+  "女": {
+   "jmdict": "jmdict:1344930",
+   "niveau": "N5",
+   "mot": "女",
+   "kana": "おんな",
+   "fr": "femme"
+  },
+  "コート": {
+   "jmdict": "jmdict:1049000",
+   "niveau": "N5",
+   "mot": "コート",
+   "kana": "コート",
+   "fr": "manteau"
+  },
+  "ベンチ": {
+   "jmdict": "jmdict:1120280",
+   "niveau": "N3",
+   "mot": "ベンチ",
+   "kana": "ベンチ",
+   "fr": "banc",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "スーツケース": {
+   "jmdict": "jmdict:1066690",
+   "niveau": "N4",
+   "mot": "スーツケース",
+   "kana": "スーツケース",
+   "fr": "valise"
+  },
+  "荷物": {
+   "jmdict": "jmdict:1195430",
+   "niveau": "N5",
+   "mot": "荷物",
+   "kana": "にもつ",
+   "fr": "bagages"
+  },
+  "階段": {
+   "jmdict": "jmdict:1203090",
+   "niveau": "N5",
+   "mot": "階段",
+   "kana": "かいだん",
+   "fr": "escalier"
+  },
+  "ホーム": {
+   "jmdict": "jmdict:1121740",
+   "niveau": "N3",
+   "mot": "ホーム",
+   "kana": "ホーム",
+   "fr": "quai",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  },
+  "線": {
+   "jmdict": "jmdict:1391780",
+   "niveau": "N4",
+   "mot": "線",
+   "kana": "せん",
+   "fr": "ligne"
+  },
+  "黄色": {
+   "jmdict": "jmdict:1576760",
+   "niveau": "N5",
+   "mot": "黄色",
+   "kana": "きいろ",
+   "fr": "jaune"
+  },
+  "線路": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "線路",
+   "kana": "せんろ",
+   "fr": "voie ferrée ; rails"
+  },
+  "地図": {
+   "jmdict": "jmdict:1421290",
+   "niveau": "N5",
+   "mot": "地図",
+   "kana": "ちず",
+   "fr": "carte ; plan"
+  },
+  "券売機": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "券売機",
+   "kana": "けんばいき",
+   "fr": "distributeur de billets"
+  },
+  "改札": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "改札",
+   "kana": "かいさつ",
+   "fr": "portillon (de gare) ; contrôle des billets"
+  },
+  "窓口": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "窓口",
+   "kana": "まどぐち",
+   "fr": "guichet"
+  },
+  "駅員": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "駅員",
+   "kana": "えきいん",
+   "fr": "employé de gare"
+  },
+  "制服": {
+   "jmdict": null,
+   "niveau": "hors N5-N3",
+   "mot": "制服",
+   "kana": "せいふく",
+   "fr": "uniforme"
+  },
+  "帽子": {
+   "jmdict": "jmdict:1519170",
+   "niveau": "N5",
+   "mot": "帽子",
+   "kana": "ぼうし",
+   "fr": "chapeau"
+  },
+  "床": {
+   "jmdict": "jmdict:1349380",
+   "niveau": "N3",
+   "mot": "床",
+   "kana": "ゆか",
+   "fr": "sol ; plancher",
+   "fr_source": "manuel (le corpus N3 n'a pas encore sa glose française)"
+  }
+ }
+}
