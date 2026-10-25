@@ -1274,6 +1274,7 @@ function toucher(id, pt){
     }
     const juste = !!retenue;
     verrou = true; faits++;
+    envoyer("exercice", {juste});   // v957 : chaque question compte, voir repondre()
     reviser(A_TROUVER.find(t => t.mot === cible), juste);
     effacer();
     if (juste){
@@ -1342,7 +1343,13 @@ function poserTrouve(p, total){
 }
 function repondre(q, opts, k){
   if (verrou) return; verrou = true; faits++;
-  const juste = opts[k].ok; if (juste){ bons++; bravo(); envoyer("bonne"); }
+  const juste = opts[k].ok;
+  /* v957 : CHAQUE QUESTION EST UN EXERCICE (Jacques, 25 oct. 2026, apres
+     Claire : « chaque question d'une scene est consideree comme un exercice au
+     meme titre que les autres »). Envoye AVANT la revision du mot : l'app sait
+     alors que cette page compte elle-meme, et ne compte plus par la revision. */
+  envoyer("exercice", {juste});
+  if (juste){ bons++; bravo(); envoyer("bonne"); }
   if (q.revise) reviser(q.revise, juste);
   // Apres la reponse, le panneau se resserre : la bonne reponse seule (et la
   // fausse si on s'est trompe), pour ne pas couvrir le sac ou la table.
