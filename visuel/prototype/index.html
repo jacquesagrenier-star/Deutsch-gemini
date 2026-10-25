@@ -512,6 +512,18 @@ let bravoAudio = null;
   } catch (e) {}
 })();
 function sonBravo(){
+  /* 25 oct. 2026 (Claire, rapporte par Jacques) : les scenes jouaient encore
+     l'ancien carillon xylophone, alors que les cartes ont la kalimba de
+     l'essai anneau_palier. Ouverte dans l'app (cadre de meme origine), la
+     scene prend le son de l'app, quel qu'il soit ; seule (ou depuis file://,
+     ou l'acces au parent est refuse), elle garde sa copie ci-dessus. */
+  try {
+    const app = window.parent;
+    if (app && app !== window && typeof app.playMasteredSound === "function"){
+      app.playMasteredSound();
+      return;
+    }
+  } catch (e) {}
   try {
     if (bravoAudio){
       bravoAudio.currentTime = 0;
