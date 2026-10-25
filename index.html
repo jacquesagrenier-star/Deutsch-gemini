@@ -6844,6 +6844,25 @@ body[data-theme="dark"] .mos-palier.mp-seul{background:transparent; box-shadow:n
 @keyframes mpaEtincelle{0%{opacity:0; transform:translate(0,0) scale(.3) rotate(0deg);}
     25%{opacity:1;} 100%{opacity:0; transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(160deg);}}
 @media (prefers-reduced-motion: reduce){ .mp-anneau b{animation:none;} .mpa-fois{transition:none;} }
+/* v954 : DES ETOILES DANS L'ANNEAU DU PALIER. Jacques, 25 oct. 2026 : « des
+   petites etoiles dans le milieu du cercle, un peu plus apparentes, pour
+   chacun : ×1, ×2, ×3 » -- sur l'anneau qui vient pendant les cartes, pas sur
+   « Ma seance du jour ». Trois a l'objectif, une de plus par palier, six au
+   plus ; autour du chiffre, jamais dessus. Un contour ambre fonce : le blanc
+   seul se perdait sur la vitre. */
+.mpa-etoiles{position:absolute; inset:0; z-index:3; pointer-events:none;}
+.mpa-etoiles i{position:absolute; font-style:normal; font-size:10px; line-height:1; color:#fff;
+    text-shadow:0 0 1px #8a4f06, 0 0 3px rgba(138,79,6,.85), 0 0 6px #fff;
+    animation:etoileApparait .45s ease-out backwards, etoileAnneau 2.4s ease-in-out .45s infinite;}
+.mpa-etoiles i:nth-child(1){top:9px; left:12px;}
+.mpa-etoiles i:nth-child(2){top:9px; right:12px; animation-delay:.1s, .9s;}
+.mpa-etoiles i:nth-child(3){bottom:10px; left:11px; animation-delay:.2s, 1.4s;}
+.mpa-etoiles i:nth-child(4){bottom:10px; right:11px; animation-delay:.3s, .7s;}
+.mpa-etoiles i:nth-child(5){top:calc(50% - 5px); left:6px; font-size:9px; animation-delay:.4s, 1.1s;}
+.mpa-etoiles i:nth-child(6){top:calc(50% - 5px); right:6px; font-size:9px; animation-delay:.5s, 1.7s;}
+@keyframes etoileApparait{from{opacity:0; transform:scale(0) rotate(-90deg);} to{opacity:1; transform:scale(1) rotate(0deg);}}
+@keyframes etoileAnneau{0%, 100%{opacity:.6; transform:scale(.8) rotate(0deg);} 50%{opacity:1; transform:scale(1.2) rotate(45deg);}}
+@media (prefers-reduced-motion: reduce){ .mpa-etoiles i{animation:none; opacity:1;} }
 .mp-plus{background:#E8A23A; color:#1C2430; border-radius:999px; padding:1px 8px 2px; font:900 14px Nunito, system-ui, sans-serif;}
 .mp-chiffres{font:900 14px Nunito, system-ui, sans-serif; color:#1C2430; white-space:nowrap;}
 .mp-chiffres small{font-weight:800; color:#576177; font-size:.8em;}
@@ -7075,6 +7094,18 @@ span.pa-sens{cursor:default;}
 .pa-liste{display:none; position:absolute; top:calc(100% + 6px); inset-inline-start:62px; z-index:30; width:250px; background:#fff; color:#1C2430;
     border-radius:14px; padding:9px; box-shadow:0 0 0 1.5px #e3dccf, 0 14px 30px rgba(28,36,48,.28);}
 .pa-liste.ouvert{display:block;}
+/* v954 : l'objectif du jour se regle en touchant l'anneau (Jacques, 25 oct.
+   2026). Le panneau s'ouvre sous l'anneau, au bord de debut de la pilule.
+   Le nombre a sa couleur propre : les <strong> de la pilule sont en blanc. */
+#spAnneau{cursor:pointer; -webkit-tap-highlight-color:transparent;}
+.pa-objectif{inset-inline-start:0; width:190px; text-align:center;}
+.pa-objectif .pa-liste-titre{text-align:center;}
+.pa-objectif-reglage{display:flex; align-items:center; justify-content:center; gap:14px;}
+#spObjectifN{font-size:24px; font-weight:900; min-width:44px; text-align:center; color:#1C2430;}
+body[data-theme="dark"] #spObjectifN{color:#eef1f5;}
+.pa-objectif-pas{width:42px; height:42px; border-radius:50%; border:1.5px solid #e3dccf; background:#FBF8F3; color:#1C2430; font:inherit; font-size:22px; font-weight:800; line-height:1; cursor:pointer;}
+.pa-objectif-pas:disabled{opacity:.35; cursor:default;}
+body[data-theme="dark"] .pa-objectif-pas{background:#262d37; border-color:#3a4350; color:#eef1f5;}
 .pa-liste-titre{font-size:11.5px; font-weight:800; color:#576177; margin:0 2px 6px;}
 .pa-liste .seance-niveaux{display:flex; gap:5px; flex-wrap:wrap;}
 .pa-liste .seance-niveau{flex:1 0 26%; border:1.5px solid #e3dccf; background:#FBF8F3; color:#1C2430; border-radius:9px; padding:6px 0; font:inherit; font-size:13px; font-weight:900; cursor:pointer;}
@@ -8067,7 +8098,16 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                         <button type="button" class="pa-sens" id="spSens" onclick="basculerListeSeance(event)"></button>
                     </div>
                 </div>
-                <div class="pa-anneau" id="spAnneau" aria-hidden="true"><b id="spFait">0</b><small id="spSur">/30</small><span id="spFois" class="pa-fois hidden"></span></div>
+                <div class="pa-anneau" id="spAnneau" role="button" tabindex="0" onclick="basculerObjectifSeance(event)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); basculerObjectifSeance(event);}" data-i18n-aria-label="settings_daily_goal" aria-label="Objectif quotidien"><b id="spFait">0</b><small id="spSur">/30</small><span id="spFois" class="pa-fois hidden"></span></div>
+                <div class="pa-liste pa-objectif" id="spObjectif" onclick="event.stopPropagation()">
+                    <div class="pa-liste-titre" data-i18n="settings_daily_goal">Objectif quotidien</div>
+                    <div class="pa-objectif-reglage">
+                        <button type="button" class="pa-objectif-pas" onclick="changerObjectifSeance(-5)" aria-label="− 5">−</button>
+                        <strong id="spObjectifN">30</strong>
+                        <button type="button" class="pa-objectif-pas" onclick="changerObjectifSeance(5)" aria-label="+ 5">+</button>
+                    </div>
+                    <p class="pa-liste-pied" data-i18n="seance_cartes_par_jour">cartes par jour</p>
+                </div>
                 <div class="pa-liste" id="spListe" onclick="event.stopPropagation()">
                     <div class="pa-liste-titre" data-i18n="seance_ton_niveau">Ton niveau</div>
                     <div id="spNiveauxPlace"></div>
@@ -8626,7 +8666,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v953</span>
+    <span class="subtitle-version">v954</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -12590,6 +12630,7 @@ const I18N = {
         all_levels: "Tous les niveaux",
         all_themes: "Tous les th\u00e8mes",
         praeteritum_ecrit: "\u00c0 l'\u00e9crit surtout \u2014 \u00e0 l'oral, on emploie le parfait pour ce verbe.",
+        perfekt_haben_sein: "Correct, mais peu employé : avec haben et sein, on dit presque toujours le Präteritum, même à l'oral (« Ich hatte Hunger » plutôt que « Ich habe Hunger gehabt »).",
         kicker_zahlen_vocab: "Nombres \u00b7 Vocabulaire",
         level_a1: "Niveau A1",
         level_a2: "Niveau A2",
@@ -12749,6 +12790,7 @@ const I18N = {
         streak_freeze_earned: "Gel de série gagné ! Il protégera ta série un jour où tu en manques un.",
         streak_freeze_hint: "Gel de série disponible : protège ta série un jour manqué.",
         settings_daily_goal: "Objectif quotidien",
+        seance_cartes_par_jour: "cartes par jour",
         settings_daily_goal_desc: "Nombre de cartes à réviser par jour pour remplir la barre « Objectif du jour » de l'écran d'accueil.",
         settings_reset_daily: "RÉINITIALISER LE COMPTE DU JOUR (TESTS)",
         settings_progress_by_category: "Progression par catégorie",
@@ -14036,6 +14078,7 @@ const I18N = {
         all_levels: "All levels",
         all_themes: "All topics",
         praeteritum_ecrit: "Mainly written \u2014 in speech, the perfect is used for this verb.",
+        perfekt_haben_sein: "Correct but rarely used: with haben and sein, German almost always uses the Präteritum, even in speech („Ich hatte Hunger“ rather than „Ich habe Hunger gehabt“).",
         kicker_zahlen_vocab: "Numbers \u00b7 Vocabulary",
         level_a1: "Level A1",
         level_a2: "Level A2",
@@ -14195,6 +14238,7 @@ const I18N = {
         streak_freeze_earned: "Streak freeze earned! It will protect your streak on a missed day.",
         streak_freeze_hint: "Streak freeze available: protects your streak on one missed day.",
         settings_daily_goal: "Daily goal",
+        seance_cartes_par_jour: "cards a day",
         settings_daily_goal_desc: "Number of cards to review per day to fill the \"Daily goal\" bar on the home screen.",
         settings_reset_daily: "RESET TODAY'S COUNT (TESTING)",
         settings_progress_by_category: "Progress by category",
@@ -15486,6 +15530,7 @@ const I18N = {
         all_levels: "Tüm seviyeler",
         all_themes: "Tüm konular",
         praeteritum_ecrit: "Çoğunlukla yazılı — konuşmada bu fiil için Perfekt kullanılır.",
+        perfekt_haben_sein: "Doğru ama pek kullanılmaz: haben ve sein ile konuşmada bile neredeyse her zaman Präteritum kullanılır („Ich habe Hunger gehabt“ yerine „Ich hatte Hunger“).",
         kicker_zahlen_vocab: "Sayılar · Kelime",
         level_a1: "A1 seviyesi",
         level_a2: "A2 seviyesi",
@@ -15645,6 +15690,7 @@ const I18N = {
         streak_freeze_earned: "Seri koruması kazanıldı! Kaçırdığın bir günde serini korur.",
         streak_freeze_hint: "Seri koruması mevcut: kaçırdığın bir günde serini korur.",
         settings_daily_goal: "Günlük hedef",
+        seance_cartes_par_jour: "kart / gün",
         settings_daily_goal_desc: "Ana ekrandaki “Günlük hedef” çubuğunu doldurmak için günde tekrar edilecek kart sayısı.",
         settings_reset_daily: "BUGÜNKÜ SAYACI SIFIRLA (TEST)",
         settings_progress_by_category: "Kategoriye göre ilerleme",
@@ -16442,6 +16488,7 @@ const I18N = {
         verbenniveau_rektion_desc: "Перевір, якого відмінка вимагають уже пройдені дієслова (Akkusativ, Dativ…).",
         verbenniveau_rektion_btn: "ВПРАВИ: ЯКИЙ ВІДМІНОК ПІСЛЯ ЦЬОГО ДІЄСЛОВА? →",
         praeteritum_ecrit: "Переважно на письмі — усно для цього дієслова вживають Perfekt.",
+        perfekt_haben_sein: "Правильно, але вживається рідко: з haben і sein майже завжди кажуть Präteritum, навіть усно („Ich hatte Hunger“, а не „Ich habe Hunger gehabt“).",
         grp_meinung: "Думка та згода",
         grp_diskussion: "Обговорення та відтінки",
         grp_ton: "Відтінки й тон",
@@ -17753,6 +17800,7 @@ const I18N = {
         settings_invite_desc: "Вивчаєш німецьку з Wortando? Поділись застосунком із тим, хто хотів би вчити німецьку або англійську.",
         settings_invite_btn: "ПОДІЛИТИСЯ WORTANDO",
         settings_daily_goal: "Щоденна ціль",
+        seance_cartes_par_jour: "карток на день",
         settings_daily_goal_desc: "Скільки карток повторювати щодня, щоб заповнити смужку «Ціль на день» на головному екрані.",
         settings_reset_daily: "СКИНУТИ ЛІЧИЛЬНИК ДНЯ (ТЕСТИ)",
         settings_trademark: "Wortando™ — торговельна марка.",
@@ -18347,6 +18395,7 @@ const I18N = {
         streak_freeze_earned: "انجماد زنجیره به دست آوردی! روزی که یک روز را از دست بدهی، از زنجیره‌ات محافظت می‌کند.",
         streak_freeze_hint: "انجماد زنجیره در دسترس است: در یک روز از دست رفته از زنجیره‌ات محافظت می‌کند.",
         settings_daily_goal: "هدف روزانه",
+        seance_cartes_par_jour: "کارت در روز",
         settings_progress_by_category: "پیشرفت بر پایهٔ دسته",
         auth_kicker: "خوش آمدی",
         auth_title: "یک زبان را کلمه به کلمه یاد بگیر",
@@ -18579,6 +18628,7 @@ const I18N = {
         all_levels: "همهٔ سطح‌ها",
         all_themes: "همهٔ موضوع‌ها",
         praeteritum_ecrit: "بیشتر در نوشتار — در گفتار برای این فعل از ماضی نقلی استفاده می‌شود.",
+        perfekt_haben_sein: "درست است، اما کم به کار می‌رود: با haben و sein حتی در گفتار تقریباً همیشه Präteritum می‌گویند („Ich hatte Hunger“ به جای „Ich habe Hunger gehabt“).",
         kicker_zahlen_vocab: "عددها · واژگان",
         level_a1: "سطح A1",
         level_a2: "سطح A2",
@@ -20103,6 +20153,7 @@ const I18N = {
         streak_freeze_earned: "ربحتَ تجميد سلسلة! سيحمي سلسلتك يوماً تفوته.",
         streak_freeze_hint: "تجميد سلسلة متاح: يحمي سلسلتك يوماً فائتاً.",
         settings_daily_goal: "الهدف اليومي",
+        seance_cartes_par_jour: "بطاقة في اليوم",
         settings_daily_goal_desc: "عدد البطاقات التي تراجعها يومياً لملء شريط «هدف اليوم» في الصفحة الرئيسية.",
         settings_reset_daily: "إعادة ضبط عدّاد اليوم (اختبار)",
         orb_en_satzbau_sub: "do / does · ترتيب الكلمات",
@@ -20151,6 +20202,7 @@ const I18N = {
         all_levels: "كل المستويات",
         all_themes: "كل المواضيع",
         praeteritum_ecrit: "في الكتابة خاصة — أما في الكلام فيُستعمل الماضي المركّب لهذا الفعل.",
+        perfekt_haben_sein: "صحيح لكنه قليل الاستعمال: مع haben و sein يُستعمل Präteritum غالبًا، حتى في الكلام („Ich hatte Hunger“ بدلًا من „Ich habe Hunger gehabt“).",
         kicker_zahlen_vocab: "الأعداد · المفردات",
         level_a1: "المستوى A1",
         level_a2: "المستوى A2",
@@ -21449,6 +21501,7 @@ const I18N = {
         all_levels: "Todos os níveis",
         all_themes: "Todos os temas",
         praeteritum_ecrit: "Sobretudo na escrita — na fala, usa-se o Perfekt para este verbo.",
+        perfekt_haben_sein: "Correto, mas pouco usado: com haben e sein, usa-se quase sempre o Präteritum, mesmo na fala („Ich hatte Hunger“ em vez de „Ich habe Hunger gehabt“).",
         kicker_zahlen_vocab: "Números · Vocabulário",
         level_a1: "Nível A1",
         level_a2: "Nível A2",
@@ -21604,6 +21657,7 @@ const I18N = {
         streak_freeze_earned: "Proteção de sequência ganha! Ela vai proteger sua sequência num dia em que você faltar.",
         streak_freeze_hint: "Proteção de sequência disponível: protege sua sequência num dia perdido.",
         settings_daily_goal: "Meta diária",
+        seance_cartes_par_jour: "cartões por dia",
         settings_daily_goal_desc: "Número de cartas para revisar por dia para encher a barra “Meta do dia” da tela inicial.",
         settings_reset_daily: "ZERAR A CONTAGEM DO DIA (TESTES)",
         settings_progress_by_category: "Progresso por categoria",
@@ -22961,6 +23015,7 @@ const I18N = {
         all_levels: "Wszystkie poziomy",
         all_themes: "Wszystkie tematy",
         praeteritum_ecrit: "Głównie w piśmie — w mowie używa się przy tym czasowniku Perfekt.",
+        perfekt_haben_sein: "Poprawne, ale rzadko używane: z haben i sein prawie zawsze mówi się w Präteritum, także w mowie („Ich hatte Hunger“ zamiast „Ich habe Hunger gehabt“).",
         kicker_zahlen_vocab: "Liczby · Słownictwo",
         level_a1: "Poziom A1",
         level_a2: "Poziom A2",
@@ -23116,6 +23171,7 @@ const I18N = {
         streak_freeze_earned: "Zdobyto ochronę serii! Uratuje twoją serię w dniu, który opuścisz.",
         streak_freeze_hint: "Ochrona serii dostępna: chroni serię w jednym opuszczonym dniu.",
         settings_daily_goal: "Cel dzienny",
+        seance_cartes_par_jour: "kart dziennie",
         settings_daily_goal_desc: "Liczba kart do powtórzenia dziennie, żeby wypełnić pasek „Cel na dziś” na ekranie głównym.",
         settings_reset_daily: "ZERUJ DZISIEJSZY LICZNIK (TESTY)",
         settings_progress_by_category: "Postępy według kategorii",
@@ -24474,6 +24530,7 @@ const I18N = {
         all_levels: "Все уровни",
         all_themes: "Все темы",
         praeteritum_ecrit: "В основном на письме — в устной речи у этого глагола используют Perfekt.",
+        perfekt_haben_sein: "Правильно, но употребляется редко: с haben и sein почти всегда говорят в Präteritum, даже устно („Ich hatte Hunger“, а не „Ich habe Hunger gehabt“).",
         kicker_zahlen_vocab: "Числа · Словарь",
         level_a1: "Уровень A1",
         level_a2: "Уровень A2",
@@ -24629,6 +24686,7 @@ const I18N = {
         streak_freeze_earned: "Заморозка серии получена! Она защитит твою серию в день, который ты пропустишь.",
         streak_freeze_hint: "Есть заморозка серии: она защищает серию в один пропущенный день.",
         settings_daily_goal: "Цель на день",
+        seance_cartes_par_jour: "карточек в день",
         settings_daily_goal_desc: "Сколько карточек повторять в день, чтобы заполнить полоску «Цель дня» на главном экране.",
         settings_reset_daily: "СБРОСИТЬ СЧЁТЧИК ДНЯ (ТЕСТЫ)",
         settings_progress_by_category: "Прогресс по категориям",
@@ -33124,8 +33182,23 @@ const PRAETERITUM_ORAL = new Set([
     "sitzen", "stehen", "liegen", "gehen", "kommen"
 ]);
 
+// Une locution se conjugue par son dernier mot : « zu tun haben » est un
+// verbe en haben, et son preterit est l'oral courant (25 oct. 2026, remarque
+// d'une relectrice germanophone : la carte disait l'inverse).
+function verbeDeBase(infinitif){
+    const mots = (infinitif || "").trim().split(/\s+/);
+    return mots[mots.length - 1];
+}
+
 function praeteritumEstEcrit(infinitif){
-    return !PRAETERITUM_ORAL.has((infinitif || "").trim());
+    return !PRAETERITUM_ORAL.has(verbeDeBase(infinitif));
+}
+
+// Avec haben et sein, le parfait est juste mais rare : « Ich hatte Hunger »,
+// pas « Ich habe Hunger gehabt ». La note le dit sous le Perfekt.
+function perfektPeuEmploye(infinitif){
+    const base = verbeDeBase(infinitif);
+    return base === "haben" || base === "sein";
 }
 
 const LEVELS = ["A1", "A2", "B1", "B2", "C1"];
@@ -41406,6 +41479,8 @@ function loadFlashcard(){
             // doit jamais recevoir de HTML.
             const exampleDisplay = card.exempleHighlight || card.exemple || "";
             const perfektDisplay = card.perfektHighlight || card.perfekt || "";
+            const perfektNote = perfektPeuEmploye(card.infinitif)
+                ? `<div class="registre-note">${t('perfekt_haben_sein')}</div>` : "";
             // L'espagnol : le present, puis l'exemple ; pas de Perfekt (fusion,
             // etape 3 -- c'etait le texte de fork.py).
             const coreHtml = LANGUE_APPRISE === "es"
@@ -41416,7 +41491,7 @@ function loadFlashcard(){
                 `<div class="verb-sep"></div>` +
                 `<strong>Präsens :</strong> ${exampleDisplay}${praesensSpeakBtn}<br>(${exampleTr || ""})` +
                 `<div class="verb-sep"></div>` +
-                `<strong>Perfekt :</strong> ${perfektDisplay}${perfektSpeakBtn}<br>(${perfektTr || ""})`;
+                `<strong>Perfekt :</strong> ${perfektDisplay}${perfektSpeakBtn}<br>(${perfektTr || ""})${perfektNote}`;
             const imp = card.imperativ;
             const impSpeakBtn = imp ? sentenceSpeakBtnHtml(`${imp.du} ${imp.ihr} ${imp.sie_Sie}`, "de") : "";
             const impHtml = imp
@@ -41447,7 +41522,7 @@ function loadFlashcard(){
                   + blocEs("CONDICIONAL", "condicional", card.condicional)
                   + blocEs("SUBJUNTIVO", "subjuntivo", card.subjuntivo)
                   + blocImperativoEspagnol(card.imperativo)
-                : `<strong>Prätéritum :</strong> ${praeteritumDisplay}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})${praeteritumNote}` +
+                : `<strong>Präteritum :</strong> ${praeteritumDisplay}${praeteritumSpeakBtn}<br>(${praeteritumTr || ""})${praeteritumNote}` +
                 `<div class="verb-sep"></div>` +
                 `<strong>Konjunktiv II :</strong> ${konjunktiv2Display}${konjunktiv2SpeakBtn}<br>(${konjunktiv2Tr || ""})` +
                 impHtml;
@@ -44084,7 +44159,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 953;
+const APP_VERSION = 954;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48324,6 +48399,12 @@ function anneauDuPalier(bloc, multiple){
     const finir = () => {
         poser(1);
         if(multiple >= 2) fois.classList.add("vu");
+        // v954 : les etoiles du centre -- trois a l'objectif, une de plus par palier.
+        const et = document.createElement("span");
+        et.className = "mpa-etoiles";
+        et.setAttribute("aria-hidden", "true");
+        et.innerHTML = "<i>✦</i>".repeat(Math.min(6, multiple + 2));
+        a.appendChild(et);
         // v953 : des ×2, une couronne d'etincelles autour de l'anneau. Jacques,
         // 24 oct. 2026 : « a partir de 2, je mettrais des etincelles autour de
         // l'anneau » ; trois tours au plus, meme a ×10 (« c'est bon, 3 tours »).
@@ -53268,6 +53349,8 @@ function episodeDepuisAccueil(){
 function fermerListeSeance(){
     const l = document.getElementById("spListe");
     if(l) l.classList.remove("ouvert");
+    const o = document.getElementById("spObjectif");
+    if(o) o.classList.remove("ouvert");
     const d = document.getElementById("spDateEdit");
     if(d) d.textContent = "";
 }
@@ -53276,9 +53359,37 @@ function basculerListeSeance(ev){
     const l = document.getElementById("spListe");
     if(!l) return;
     if(l.classList.contains("ouvert")){ fermerListeSeance(); return; }
+    fermerListeSeance();
     try{ fermerNiveauEcoute(); }catch(e){}
     majPiluleSeance();
     l.classList.add("ouvert");
+}
+// v954 : toucher l'anneau ouvre le reglage de l'objectif du jour (Jacques,
+// 25 oct. 2026). Le meme reglage que celui des parametres : adjustDailyGoal()
+// redessine l'anneau, la carte de progression et la taille de la seance.
+function basculerObjectifSeance(ev){
+    if(ev) ev.stopPropagation();
+    const o = document.getElementById("spObjectif");
+    if(!o) return;
+    if(o.classList.contains("ouvert")){ fermerListeSeance(); return; }
+    fermerListeSeance();
+    try{ fermerNiveauEcoute(); }catch(e){}
+    majObjectifSeance();
+    o.classList.add("ouvert");
+}
+function majObjectifSeance(){
+    const v = getDailyGoalTarget();
+    const n = document.getElementById("spObjectifN");
+    if(n) n.textContent = String(v);
+    const pas = document.querySelectorAll("#spObjectif .pa-objectif-pas");
+    if(pas.length === 2){
+        pas[0].disabled = v <= DAILY_GOAL_MIN;
+        pas[1].disabled = v >= DAILY_GOAL_MAX;
+    }
+}
+function changerObjectifSeance(delta){
+    adjustDailyGoal(delta);
+    majObjectifSeance();
 }
 function ouvrirDateSeance(){
     const d = document.getElementById("spDateEdit");
