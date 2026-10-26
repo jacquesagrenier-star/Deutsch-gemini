@@ -3311,7 +3311,6 @@ html[data-apprendre="es"] [data-seulement-de]{ display:none !important; }
    de cacher retombe sur l'allemand (le moteur ne connait que « es » ou le
    reste). On ne montre donc que ce qui existe en japonais : la seance, les mots,
    les kana, « Mis de cote ». Une tuile qu'on porte en japonais s'ajoute ici. */
-html[data-apprendre="ja"] #carteMosaique,
 html[data-apprendre="ja"] #explorerScenes,
 html[data-apprendre="ja"] #ecouteLigneAccueil,
 html[data-apprendre="ja"] #episodeLigne,
@@ -8718,7 +8717,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v961</span>
+    <span class="subtitle-version">v962</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -26484,6 +26483,11 @@ const I18N_JAPONAIS = {
         "op_adverbien_sub": "よく · もう · まだ",
         "verbe_ja_formes": "Formes",
         "accueil_tout_sous": "Kana et mots",
+        "auth_apprendre_de": "Tu apprends le japonais · passer à l'allemand ›",
+        "mosaique_reste": "encore {n} cartes avant l'œuvre entière d'un peintre japonais",
+        "mosaique_intro_texte": "Chaque carte que tu passes rend l'image un peu plus nette. À la fin, l'œuvre entière d'un peintre japonais apparaît, paravent à fond d'or ou rouleau de Jakuchū, avec son nom et son histoire, et elle rejoint ta galerie.",
+        "ip_tableau_1": "Une œuvre japonaise commence en gros carreaux de couleur. Chaque carte que tu traverses en rend un plus fin — les révisions comptent autant que les mots nouveaux.",
+        "dec_t4_d5": "700 cartes : l'œuvre complète ! Le dieu du vent et le dieu du tonnerre, de Tawaraya Sōtatsu.",
         "kicker_verben_praesens": "Verbes · Formes polies"
     },
     "en": {
@@ -26512,6 +26516,11 @@ const I18N_JAPONAIS = {
         "op_adverbien_sub": "よく · もう · まだ",
         "verbe_ja_formes": "Forms",
         "accueil_tout_sous": "Kana and words",
+        "auth_apprendre_de": "You're learning Japanese · switch to German ›",
+        "mosaique_reste": "{n} cards left before the whole work, by a Japanese painter",
+        "mosaique_intro_texte": "Every card you complete makes the image a little sharper. At the end, the whole work of a Japanese painter appears, a gold-leaf screen or a scroll by Jakuchū, with their name and story, and joins your gallery.",
+        "ip_tableau_1": "A Japanese work starts as large tiles of color. Every card you go through makes one of them finer — reviews count as much as new words.",
+        "dec_t4_d5": "700 cards: the whole work! The Wind God and the Thunder God, by Tawaraya Sōtatsu.",
         "kicker_verben_praesens": "Verbs · Polite forms"
     }
 };
@@ -28016,7 +28025,9 @@ function decouverteExercicesFaits(){
 // sa serie -- vers la fin, comme Ajaccio pour l'allemand. Son nom est dans
 // dec_t4_d5 de I18N_ESPAGNOL (et dans la voix, voix-visite/es/).
 // `!x.base` : un tableau herite de la collection allemande ne compte pas.
-const DEMO_TABLEAU = LANGUE_APPRISE === "es" ? { rang: 65, peintre: /Sorolla/ } : { rang: 61, peintre: /Faistauer/ };
+const DEMO_TABLEAU = LANGUE_APPRISE === "es" ? { rang: 65, peintre: /Sorolla/ }
+                   : LANGUE_APPRISE === "ja" ? { rang: 60, peintre: /Sōtatsu/ }
+                   : { rang: 61, peintre: /Faistauer/ };
 
 function montrerTableauDecouverte(){
     const zone = document.getElementById("decouverteMosaique");
@@ -44918,7 +44929,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 961;
+const APP_VERSION = 962;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47327,7 +47338,11 @@ const MOSAIQUE_CLE = PREFIXE_STOCKAGE + "mosaique";
 // Jacques (espanol/mosaique/). La collection allemande reste lue pour
 // l'HERITAGE : voir migrerMosaiqueEspagnole().
 const MOSAIQUE_BASE_DE = RACINE_DEPOT + "branding/mosaique/";
-const MOSAIQUE_BASE = LANGUE_APPRISE === "es" ? RACINE_DEPOT + "espanol/mosaique/" : MOSAIQUE_BASE_DE;
+// LE JAPONAIS (v962) : 42 paravents a fond d'or et 18 rouleaux d'Ito Jakuchu,
+// choisis avec Jacques le 26 oct. 2026 (japonais/mosaique/construire_app.py).
+const MOSAIQUE_BASE = LANGUE_APPRISE === "es" ? RACINE_DEPOT + "espanol/mosaique/"
+                    : LANGUE_APPRISE === "ja" ? RACINE_DEPOT + "japonais/mosaique/app/"
+                    : MOSAIQUE_BASE_DE;
 let MOSAIQUES = null;
 let chargementMosaiques = null;
 // Une notice par PEINTRE, pas par tableau : vingt-deux textes au lieu de
@@ -47357,6 +47372,13 @@ function chargerPeintres(){
 // langues. On se rabat sur le francais plutot que de ne rien montrer : un texte
 // dans la mauvaise langue vaut mieux qu'un blanc, et il disparaitra tout seul
 // le jour ou les traductions arriveront -- il suffira d'ajouter les cles.
+// Pas de chaine de repli ici : `titre` EST deja le francais (ou la langue
+// d'origine du tableau), et le repli du francais passe par l'anglais.
+function titreTableau(m){
+    if(!m) return "";
+    return m["titre_" + getUiLang()] || m.titre || "";
+}
+
 function noticePeintre(nom){
     const n = (PEINTRES || {})[nom];
     if(!n) return "";
@@ -47822,7 +47844,7 @@ function cartoucheMosaique(m, part, fini, avecNotice){
         bouts.push('<span class="mos-annee">' + tf("mosaique_annee", { a: m.annee }) + '</span>');
     if(fini || part >= 0.70)
         bouts.push('<span class="mos-peintre">' + m.peintre + '</span>');
-    if(fini) bouts.push('<span class="mos-titre">' + m.titre + '</span>');
+    if(fini) bouts.push('<span class="mos-titre">' + titreTableau(m) + '</span>');
     let h = "";
     if(bouts.length) h += '<div class="mos-ligne mos-identite">'
                         + bouts.join('<span class="mos-sep">\u00b7</span>') + '</div>';
@@ -48018,8 +48040,17 @@ function majMosaiqueAccueil(){
                 // raisonnement.
                 const r = (m.l || 1) / (m.h || 1);
                 const chute = Math.max(0, 1 - Math.min(r, 3) / 3);
+                // v962 : UN ROULEAU VERTICAL A SON CADRAGE. Les Jakuchu du
+                // japonais font 0,58 de large pour 1 de haut : le quart de la
+                // chute tombait sur des feuilles et coupait les tetes. `centre`
+                // (0 = haut, 1 = bas) est la hauteur du sujet, posee a l'oeil
+                // rouleau par rouleau ; la bande y est centree. Sans `centre`,
+                // la regle d'avant, inchangee pour l'allemand et l'espagnol.
+                const haut = typeof m.centre === "number"
+                    ? Math.min(chute, Math.max(0, m.centre - (1 - chute) / 2))
+                    : 0.25 * chute;
                 canvas.style.transform =
-                    "translateY(" + (-25 * chute).toFixed(2) + "%)";
+                    "translateY(" + (-100 * haut).toFixed(2) + "%)";
                 // ⚠️ LA MARCHE QUI VALAIT TOUTE LA REFONTE NE SE VOYAIT PAS
                 // (v629). Le redessin de l'accueil est REPORTE tant qu'on n'y
                 // est pas : quelqu'un qui terminait un tableau quittait les
@@ -48186,8 +48217,10 @@ function ouvrirMosaiquePleinEcran(rang){
             dessinerMosaique(toile, img, gagnee ? total : v.c, total, gagnee);
             if(gagnee){
                 const bio = noticePeintre(m.peintre);
-                leg.innerHTML = '<b>' + m.titre + '</b><br>' + m.peintre
-                    + ' · ' + (m.annee || "") + (m.mort ? ' · \u2020' + m.mort : "")
+                // v962 : sans annee, plus de « Sotatsu · · †1640 » -- on ne
+                // joint que ce qui existe.
+                leg.innerHTML = '<b>' + titreTableau(m) + '</b><br>'
+                    + [m.peintre, m.annee, m.mort ? '\u2020' + m.mort : ""].filter(Boolean).join(' · ')
                     + (bio ? '<div class="mos-plein-notice">' + bio + '</div>' : "");
             } else {
                 // ⚠️ LE CARTOUCHE PROGRESSIF VIT ICI DEPUIS LA v588. Il ne
@@ -48269,9 +48302,9 @@ function ouvrirGalerieMosaiques(){
                 if(!m) return "";
                 return '<figure class="galerie-item" onclick="ouvrirMosaiquePleinEcran(' + r + ')">'
                      + '<img loading="lazy" src="' + urlImageMosaique(m)
-                     + '" alt="' + m.titre.replace(/"/g, "") + '">'
-                     + '<figcaption><b>' + m.titre + '</b><br>' + m.peintre
-                     + ' · ' + (m.annee || "") + '</figcaption></figure>';
+                     + '" alt="' + titreTableau(m).replace(/"/g, "") + '">'
+                     + '<figcaption><b>' + titreTableau(m) + '</b><br>'
+                     + [m.peintre, m.annee].filter(Boolean).join(' · ') + '</figcaption></figure>';
             }).join("");
         }
         showScreen("galerieMosaique");
