@@ -3337,6 +3337,10 @@ html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclic
 .lecture-ja .lj-romaji{ font-style: italic; }
 .note-ja{ margin-top: 8px; font-size: 0.85rem; color: inherit; opacity: .72; text-align: center; }
 .forme-ja{ margin: 4px 0 8px; }
+/* Un kana seul au recto : grand, comme on le voit sur une affiche. */
+.word.kana-ja{ font-size: 4.4rem !important; line-height: 1.15; }
+.trace-ja{ display: block; width: 92px; height: 92px; margin: 8px auto 0; background: #fff; border-radius: 10px; }
+body[data-theme="dark"] .trace-ja{ filter: invert(1); background: #000; }
 .forme-ja small{ opacity: .72; }
 .forme-ja .lj-kana{ opacity: .72; }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
@@ -8329,6 +8333,10 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12h6M9.5 15.5h6"/></svg></div>
             <div><strong id="tuileFeuillesTxt"></strong></div>
         </div>
+        <div class="orb" data-orbid="kana" data-seulement-ja onclick="ouvrirKana()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="14" stroke="none" style="fill:var(--wt-icone)">あ</text></svg></div>
+            <div><strong>Kana</strong></div>
+        </div>
         <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
             <div class="orb-icon-wrap">
@@ -11938,8 +11946,39 @@ function lectureJaponaise(e){
         lecture: e.lecture,
         romaji: e.romaji || "",
         furigana: Array.isArray(e.furigana) ? e.furigana : null,
-        note: e.note || ""
+        note: e.note || "",
+        note_en: e.note_en || "",
+        // Un kana : son trace (KanjiVG, ordre des traits numerote).
+        svg: e.svg || "",
+        kana: e.classe === "kana"
     };
+}
+
+// Les kana, en themes de cartes (fichier derive : japonais/kana/outils/vers_themes.py).
+async function chargerKanaJaponais(){
+    try{
+        const r = await fetch(cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + "datos/kana.json"), { cache: "no-cache" });
+        if(!r.ok) return [];
+        const d = await r.json();
+        return Array.isArray(d.themes) ? d.themes : [];
+    }catch(e){ return []; }
+}
+
+// La tuile « Kana » : la liste des themes, ou les six themes de kana viennent
+// en tete.
+function ouvrirKana(){
+    try{ openNomen(); }catch(e){}
+}
+
+// La seance japonaise apprend les kana AVANT les mots : un debutant ne lit ni
+// les furigana ni les phrases sans eux. Les mots neufs des themes de kana
+// passent devant, dans leur ordre (あいうえお d'abord) ; les autres suivent.
+function kanaDabord(neufs){
+    if(LANGUE_APPRISE !== "ja") return null;
+    const kana = neufs.filter(it => /^kana_/.test(it.themeId || ""));
+    if(!kana.length) return null;
+    const autres = neufs.filter(it => !/^kana_/.test(it.themeId || ""));
+    return kana.concat(ordonnerParFrequence(autres));
 }
 
 // Le mot avec ses furigana, en HTML : <ruby>漢<rt>かん</rt></ruby> pour chaque
@@ -11963,6 +12002,8 @@ function libJa(fr, en){ return getUiLang() === "en" ? en : fr; }
 function habillerCarteJaponaise(card){
     const ja = (card && card.ja) || null;
     const mot = Array.isArray(card) ? card[0] : (card && (card.infinitif || card.mot)) || "";
+    const rectoEl = document.getElementById("flashWord");
+    if(rectoEl) rectoEl.classList.remove("kana-ja");
     ["flashArticle", "flashGenre", "flashPlural", "flashPaire"].forEach(id => {
         const el = document.getElementById(id);
         if(el) el.classList.add("hidden");
@@ -11977,27 +12018,50 @@ function habillerCarteJaponaise(card){
         el.setAttribute("lang", "ja");
         if(ja && ja.lecture) el.dataset.dire = ja.lecture;
     });
-    const back = document.getElementById("flashBackWord");
-    if(back && back.textContent && !back.dataset.dire && mot && back.textContent.indexOf(mot) === 0 && ja) back.dataset.dire = ja.lecture;
+    // Un kana se RECONNAIT avant de s'ecrire : le recto montre toujours le
+    // signe, quel que soit le sens choisi pour les mots ; le verso donne le
+    // romaji, le trace et le mnemonique.
+    if(ja && ja.kana){
+        const recto = document.getElementById("flashWord");
+        if(recto){
+            recto.textContent = mot;
+            recto.classList.add("mot-ja", "kana-ja");
+            recto.setAttribute("lang", "ja");
+        }
+        const tr = document.getElementById("flashTranslation");
+        if(tr) tr.classList.add("hidden");
+    }
     const lect = document.getElementById("flashLectureJa");
     if(lect){
         lect.textContent = "";
         if(ja && ja.lecture){
-            const k = document.createElement("span");
-            k.className = "lj-kana";
-            k.setAttribute("lang", "ja");
-            k.textContent = ja.lecture;
-            lect.appendChild(k);
+            // Un kana : sa lecture, c'est lui-meme -- seul le romaji apprend
+            // quelque chose.
+            if(!ja.kana){
+                const k = document.createElement("span");
+                k.className = "lj-kana";
+                k.setAttribute("lang", "ja");
+                k.textContent = ja.lecture;
+                lect.appendChild(k);
+            }
             if(ja.romaji){
                 const r = document.createElement("span");
                 r.className = "lj-romaji";
                 r.textContent = ja.romaji;
                 lect.appendChild(r);
             }
-            if(ja.note && getUiLang() !== "en"){
+            if(ja.svg){
+                const img = document.createElement("img");
+                img.className = "trace-ja";
+                img.alt = "";
+                img.src = LANGUE_ENSEIGNEE.donnees + ja.svg;
+                lect.appendChild(img);
+            }
+            const note = getUiLang() === "en" ? (ja.note_en || "") : ja.note;
+            if(note){
                 const n = document.createElement("div");
                 n.className = "note-ja";
-                n.textContent = ja.note;
+                n.textContent = note;
                 lect.appendChild(n);
             }
         }
@@ -29637,6 +29701,9 @@ async function loadThemesJson() {
         if (!response.ok) throw new Error("Erreur themes.json");
         const rawJson = await response.json();
         const rawThemesData = Array.isArray(rawJson) ? rawJson : (rawJson.themes || []);
+        // Le japonais : les kana d'abord (japonais/datos/kana.json), six themes
+        // de cartes avant les mots -- on ne lit aucun mot sans eux.
+        if(LANGUE_APPRISE === "ja") rawThemesData.unshift(...(await chargerKanaJaponais()));
         const variantesEspagnol = LANGUE_APPRISE === "es" ? (((await chargerVariantesEspagnol()) || {}).noms || null) : null;
         const phrasesLatam = await phrasesVarianteEspagnol();
         
@@ -47066,7 +47133,7 @@ function cartesDeSeance(poolTout, poolNeufs){
     const dues = cartesEchuesTriees((poolTout || []).filter(
         it => !estNeuf(getWordState(it.themeId, it.index)))).slice(0, taille - reserve);
     const place = Math.min(taille - dues.length, plafond);
-    return dues.concat(ordonnerParFrequence(neufs).slice(0, Math.max(0, place)));
+    return dues.concat((kanaDabord(neufs) || ordonnerParFrequence(neufs)).slice(0, Math.max(0, place)));
 }
 
 function cartesDeSession(items){
@@ -56484,6 +56551,9 @@ let JEUX_EXOS = null;
 let chargementJeuxExos = null;
 
 async function jeu(nom){
+    // Le japonais n'a pas encore d'exercices.json : pas de requete, pas de
+    // « Exercices indisponibles » a l'ouverture de la seance.
+    if(LANGUE_APPRISE === "ja") return [];
     if(!JEUX_EXOS){
         if(!chargementJeuxExos){
             chargementJeuxExos = fetch(urlDonnees('exercices.json'), { cache: 'no-cache' })
