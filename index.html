@@ -3320,6 +3320,10 @@ html[data-apprendre="ja"] [data-seulement-de],
 html[data-apprendre="ja"] [data-seulement-es],
 html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]){ display:none !important; }
 html:not([data-apprendre="ja"]) [data-seulement-ja]{ display:none !important; }
+/* « Tout le contenu » : les sections dont toutes les tuiles sont cachees. */
+html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_phrase"]),
+html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_pratique"]),
+html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_parcours"]){ display:none !important; }
 /* Les exercices allemands des ecrans de niveau (Präsens, cas regi, articles). */
 html[data-apprendre="ja"] button[onclick*="startExercises"],
 html[data-apprendre="ja"] button[onclick*="startVerbRektionExercise"],
@@ -11360,6 +11364,11 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <div class="info-box" data-i18n="settings_admin_desc">Visible seulement par ton compte : gérer les codes d'invitation et voir la progression des testeurs.</div>
         <div class="spacer"></div>
         <button class="secondary" onclick="openAdminDashboard()" data-i18n="settings_admin_btn">TABLEAU DE BORD →</button>
+        <!-- Le japonais (essai, 26 oct. 2026) : l'admin seul l'ouvre, tant qu'un
+             natif ne l'a pas relu. gardeEssaiJaponais renvoie tout autre compte
+             vers l'allemand. -->
+        <div class="spacer"></div>
+        <button class="secondary" onclick="ouvrirEssaiJaponais()">日本語 — ESSAI JAPONAIS →</button>
     </div>
 </section>
 
@@ -12111,6 +12120,15 @@ function carteVerbeJaponais(card, exampleTr){
     return simples
         ? `${core}<button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${simples}</div>`
         : core;
+}
+
+// L'entree de l'essai, dans la carte Administration des reglages. En japonais,
+// le meme bouton ramene a l'allemand.
+function ouvrirEssaiJaponais(){
+    const cible = LANGUE_APPRISE === "ja" ? "de" : "ja";
+    try{ localStorage.setItem(CLE_LANGUE_APPRISE, cible); }catch(e){}
+    try{ location.href = new URL("./?apprendre=" + cible, location.href).href; }
+    catch(e){ location.href = "./?apprendre=" + cible; }
 }
 
 // LA GARDE DE L'ESSAI JAPONAIS. Tant que le japonais n'a pas ete relu par un
@@ -26435,6 +26453,7 @@ const I18N_JAPONAIS = {
         "orb_adverbien_sub": "よく · もう · まだ",
         "op_adverbien_sub": "よく · もう · まだ",
         "verbe_ja_formes": "Formes",
+        "accueil_tout_sous": "Kana et mots",
         "kicker_verben_praesens": "Verbes · Formes polies"
     },
     "en": {
@@ -26462,6 +26481,7 @@ const I18N_JAPONAIS = {
         "orb_adverbien_sub": "よく · もう · まだ",
         "op_adverbien_sub": "よく · もう · まだ",
         "verbe_ja_formes": "Forms",
+        "accueil_tout_sous": "Kana and words",
         "kicker_verben_praesens": "Verbs · Polite forms"
     }
 };
@@ -26855,7 +26875,7 @@ const LANGUES_UI_AVEC_ESPAGNOL = ["fr", "en", "pt", "ar"];
 function majLienAutreLangueAuth(){
     const b = document.getElementById("authAutreLangue");
     if(!b) return;
-    b.textContent = t(LANGUE_APPRISE === "es" ? "auth_apprendre_de" : "auth_apprendre_es");
+    b.textContent = t(LANGUE_APPRISE !== "de" ? "auth_apprendre_de" : "auth_apprendre_es");
     b.classList.toggle("hidden", LANGUE_APPRISE !== "es" && !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang()));
 }
 function masquerEspagnolSelonLangueUi(){
@@ -26889,7 +26909,7 @@ function ouvrirAutreLangueApprise(){
     // « Passage a l'espagnol... » (v774) : lu par l'ecran d'ouverture de la page
     // suivante, et montre des maintenant sur celle-ci, le temps qu'elle parte.
     try{
-        const phrase = t(LANGUE_APPRISE === "es" ? "passage_vers_de" : "passage_vers_es");
+        const phrase = t(LANGUE_APPRISE !== "de" ? "passage_vers_de" : "passage_vers_es");
         sessionStorage.setItem("wortando_passage", phrase);
         const ouverture = document.getElementById("splashOuverture");
         const texte = document.getElementById("splashPassageTexte");
