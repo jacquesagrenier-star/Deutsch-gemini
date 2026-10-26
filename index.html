@@ -8669,7 +8669,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v959</span>
+    <span class="subtitle-version">v960</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -28815,8 +28815,15 @@ function vibrationsActives(){
 // est un retour haptique discret, qui se perd sous la fanfare du palier.
 // vibrate() fait vibrer le telephone pour de bon (moteur haptique continu sur
 // iPhone, vibreur sur Android), 400 ms. La notification reste en repli.
-function vibrerPalier(){
+// v960 : L'INSTRUMENT. Jacques, 26 oct. : le toucher de la carte vibre, le
+// palier non. Le journal (envoye avec « Signaler un probleme ») dira si le
+// palier a appele la vibration, et ce qui l'a arretee.
+function vibrerPalier(origine){
     const H = pluginNatif("Haptics");
+    try{
+        noterAudio("vibration", "VIBRATION", (origine || "palier") + " : "
+            + (!H ? "module absent" : !vibrationsActives() ? "coupee dans les reglages" : "demandee"));
+    }catch(e){}
     if(!H || !vibrationsActives()) return;
     const repli = () => {
         try{
@@ -28835,7 +28842,7 @@ function vibrerPalier(){
 function basculerVibrations(){
     try{ localStorage.setItem(VIBRATIONS_CLE, vibrationsActives() ? "0" : "1"); }catch(e){}
     renderVibrationsSetting();
-    vibrerPalier();
+    vibrerPalier("reglage");
 }
 
 function renderVibrationsSetting(){
@@ -34068,6 +34075,9 @@ function recordDailyActivity(compteDansObjectif){
     if(multiplesReached > daily.milestonesCelebrated){
         daily.milestonesCelebrated = multiplesReached;
         justReachedMultiple = multiplesReached;
+        // v960 : au journal, pour savoir si la fete (et la vibration) a suivi.
+        try{ noterAudio("vibration", "PALIER", "palier " + multiplesReached + " atteint : " + daily.count + " / objectif " + target
+            + ", ecran " + ((document.querySelector(".screen.active") || {}).id || "?")); }catch(e){}
     }
     try{ localStorage.setItem(dailyKey, JSON.stringify(daily)); }catch(e){}
     // v917 : le 10e exercice du jour debloque un episode (voir episodesApresExercice()).
@@ -44492,7 +44502,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 959;
+const APP_VERSION = 960;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -55180,7 +55190,7 @@ function showDailyGoalText(threshold){
 // n'aurait plus rien signifie -- le palier serait devenu entierement muet.
 function triggerDailyGoalCelebration(multiple){
     // v955 : l'app installee vibre, et le rappel du jour se tait (voir programmerRappels).
-    vibrerPalier();
+    vibrerPalier("palier " + multiple);
     if(rappelNatif()) programmerRappels();
     // v957 : le rappel propose une fois, apres la fete (voir proposerRappel).
     setTimeout(proposerRappel, 5000);
