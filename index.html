@@ -14,8 +14,11 @@
 (function(){
     var a = null;
     try{ a = new URLSearchParams(location.search).get("apprendre"); }catch(e){}
-    if(a !== "es" && a !== "de"){
-        try{ a = localStorage.getItem("wortando_langueApprise") === "es" ? "es" : "de"; }catch(e){ a = "de"; }
+    if(a !== "es" && a !== "de" && a !== "ja"){
+        try{
+            a = localStorage.getItem("wortando_langueApprise");
+            if(a !== "es" && a !== "ja") a = "de";
+        }catch(e){ a = "de"; }
     }
     try{ document.documentElement.setAttribute("data-apprendre", a); }catch(e){}
 })();
@@ -11584,6 +11587,8 @@ onAuthStateChanged(auth, (user) => {
     const userEmailDisplay = document.getElementById("userEmailDisplay");
 
     if (user) {
+        // Le japonais n'est qu'un essai de l'admin (25 oct. 2026).
+        if(typeof gardeEssaiJaponais === "function" && gardeEssaiJaponais(user)) return;
         userProfile.textContent = user.email ? user.email.substring(0, 2).toUpperCase() : "CM";
         authContent.classList.add("hidden");
         // Connecté : plus besoin de choisir entre « Se connecter » et « Créer un
@@ -11678,18 +11683,26 @@ const CLE_LANGUE_APPRISE = "wortando_langueApprise";
 const LANGUE_APPRISE = (() => {
     let a = null;
     try{ a = new URLSearchParams(location.search).get("apprendre"); }catch(e){}
-    if(a === "es" || a === "de"){
+    // LE JAPONAIS (essai admin, 25 oct. 2026) : meme moteur, ?apprendre=ja.
+    // Un compte qui n'est pas l'admin est renvoye vers l'allemand des que son
+    // identite est connue (voir gardeEssaiJaponais).
+    if(a === "es" || a === "de" || a === "ja"){
         try{ localStorage.setItem(CLE_LANGUE_APPRISE, a); }catch(e){}
         return a;
     }
-    try{ return localStorage.getItem(CLE_LANGUE_APPRISE) === "es" ? "es" : "de"; }
+    try{
+        const r = localStorage.getItem(CLE_LANGUE_APPRISE);
+        return (r === "es" || r === "ja") ? r : "de";
+    }
     catch(e){ return "de"; }
 })();
 // LE PREFIXE DE STOCKAGE. L'allemand garde le sien, inchange : toute la
 // progression des testeurs est rangee dessous. L'espagnol reprend celui de
 // l'app espagnole actuelle (le fork renommait « deutschAI_ » en « wortandoEs_ ») :
 // ses testeurs retrouveront leur progression le jour de la bascule.
-const PREFIXE_STOCKAGE = LANGUE_APPRISE === "es" ? "wortandoEs_" : "deutschAI_";
+// Le japonais a le sien, neuf : il ne doit rien lire de l'allemand.
+const PREFIXE_STOCKAGE = LANGUE_APPRISE === "es" ? "wortandoEs_"
+                       : LANGUE_APPRISE === "ja" ? "wortandoJa_" : "deutschAI_";
 // LA VARIANTE DE L'ESPAGNOL (fusion, etape 3 ; decide par Jacques le 10 oct.
 // 2026 : les deux des le lancement). "es" = Espagne, la base du cours ;
 // "latam" = Amerique latine, qui cache vosotros et remplace les mots de
@@ -11759,7 +11772,10 @@ const UI_LANG_KEY = PREFIXE_STOCKAGE + "uiLang";
 // L'espagnol ne se lit qu'en francais et en anglais (fusion, etape 2) : ses
 // libelles propres n'existent que dans ces deux langues, et une interface
 // turque y parlerait encore d'allemand. L'allemand garde ses six langues.
-const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en", "pt", "ar"] : ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"];
+// Le japonais : francais et anglais seulement (decide le 4 oct. 2026).
+const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en", "pt", "ar"]
+               : LANGUE_APPRISE === "ja" ? ["fr", "en"]
+               : ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"];
 const DEFAULT_UI_LANG = "fr";
 
 // Direction d'apprentissage : "de" = apprendre l'allemand (contenu existant),
@@ -11852,7 +11868,43 @@ const LANGUE_ESPAGNOL = {
     prefixeProgression: ""
 };
 
-const LANGUE_ENSEIGNEE = LANGUE_APPRISE === "es" ? LANGUE_ESPAGNOL : LANGUE_ALLEMAND;
+// LE JAPONAIS (essai, 25 oct. 2026). Ses donnees ont la forme de l'espagnol
+// (japonais/datos/, voir son LISEZ-MOI.md), plus la lecture, le romaji et les
+// furigana de chaque mot. Pas encore de voix enregistree : la voix ja-JP du
+// telephone (decide le 25 oct. : ElevenLabs plus tard).
+const LANGUE_JAPONAIS = {
+    code:    "ja",
+    nom:     "日本語",
+    voix:    "ja-JP",
+    donnees: RACINE_DEPOT + "japonais/",
+    audio:   "",
+    fichiers: {
+        "verbe.json":         "datos/verbes.json",
+        "adjectif.json":      "datos/adjectifs.json",
+        "redewendung.json":   "datos/expressions.json",
+        "adverbe.json":       "datos/adverbes.json",
+        "themes.json":        "datos/themes.json",
+        "funktionswort.json": "datos/fonctionnels.json"
+    },
+    prefixeProgression: ""
+};
+
+const LANGUE_ENSEIGNEE = LANGUE_APPRISE === "es" ? LANGUE_ESPAGNOL
+                       : LANGUE_APPRISE === "ja" ? LANGUE_JAPONAIS : LANGUE_ALLEMAND;
+
+// LA GARDE DE L'ESSAI JAPONAIS. Tant que le japonais n'a pas ete relu par un
+// natif, seul l'admin l'ouvre : un autre compte arrive en allemand, et la
+// langue retenue sur l'appareil redevient l'allemand. Appelee par
+// onAuthStateChanged des que le compte est connu ; rend true si elle recharge.
+function gardeEssaiJaponais(user){
+    if(LANGUE_APPRISE !== "ja") return false;
+    const email = (user && user.email || "").toLowerCase();
+    if(email && email === ADMIN_EMAIL.toLowerCase()) return false;
+    try{ localStorage.setItem(CLE_LANGUE_APPRISE, "de"); }catch(e){}
+    try{ location.replace(new URL("./?apprendre=de", location.href).href); }
+    catch(e){ location.replace("./?apprendre=de"); }
+    return true;
+}
 
 // LES ARTICLES ET LES PERSONNES (fusion, etape 3). L'allemand ecrivait « die »
 // en dur pour tout pluriel -- juste chez lui, puisqu'il n'a qu'un article
@@ -26499,7 +26551,7 @@ const ANGLAIS_EN_RETRAIT = true;
 // L'autre langue : la meme page, avec la langue dans l'adresse -- elle y est
 // retenue (bascule, v736). Avant, « Espagnol » ouvrait l'app generee par
 // fork.py, dans espanol/.
-const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "es" ? "./?apprendre=de" : "./?apprendre=es";
+const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "de" ? "./?apprendre=es" : "./?apprendre=de";
 // L'ESPAGNOL N'EST PROPOSE QUE DANS LES LANGUES OU SON CONTENU EST TRADUIT
 // (13 oct. 2026, decide par Jacques). Les themes, verbes, exercices
 // (espanol/datos) et I18N_ESPAGNOL n'existent qu'en francais et en anglais :
@@ -29352,7 +29404,8 @@ async function loadThemesJson() {
             // Le nom s'affiche dans la langue apprise, comme « Familie » en
             // allemand. En espagnol, nom_theme est en ANGLAIS (« The house ») :
             // le nom espagnol est dans nom_theme_es (« La casa »).
-            const name = t.name || (LANGUE_APPRISE === "es" && t.nom_theme_es) || t.nom_theme || `Thème ${idx + 1}`;
+            const name = t.name || (LANGUE_APPRISE === "es" && t.nom_theme_es)
+                || (LANGUE_APPRISE === "ja" && t.nom_theme_ja) || t.nom_theme || `Thème ${idx + 1}`;
             const niveau = (t.niveau || "A1").toUpperCase();
             const svg = t.svg || DEFAULT_SVG;
             const entryId = t.id || `theme_${idx}`;
@@ -29366,7 +29419,7 @@ async function loadThemesJson() {
                     // « der » par defaut n'a de sens qu'en allemand : les 45
                     // nombres espagnols n'ont pas de genre, et la voix disait
                     // « der setecientos ». Vide, la carte dit « setecientos ».
-                    w.genre || w.article || (LANGUE_APPRISE === "es" ? "" : "der"),
+                    w.genre || w.article || (LANGUE_APPRISE === "de" ? "der" : ""),
                     w.pluriel || w.plural || "—",
                     w.traduction || w.fr || "",
                     w.traduction_en || w.en || "",
@@ -42714,8 +42767,11 @@ function restaurerBrouillonRetour(){
 // porte les MEMES noms de champs que l'allemande : dans le meme document,
 // l'une ecraserait l'autre. Elle vit donc dans `usuariosEs`, et son resume
 // pour le tableau admin dans `resumenesEs`. Regles : firestore.rules.
-const COLL_PROGRESSION = LANGUE_APPRISE === "es" ? "usuariosEs" : "users";
-const RESUMES_COLL = LANGUE_APPRISE === "es" ? "resumenesEs" : "resumes";
+// Le japonais (essai, 25 oct. 2026) suit la meme regle : `usersJa`, `resumesJa`
+// (regles a ajouter dans firestore.rules ; sans elles, la progression reste sur
+// l'appareil et l'ecriture echoue sans bruit).
+const COLL_PROGRESSION = LANGUE_APPRISE === "es" ? "usuariosEs" : LANGUE_APPRISE === "ja" ? "usersJa" : "users";
+const RESUMES_COLL = LANGUE_APPRISE === "es" ? "resumenesEs" : LANGUE_APPRISE === "ja" ? "resumesJa" : "resumes";
 
 const CARTE_MOT_KEY = PREFIXE_STOCKAGE + "carteDitMot";
 const CARTE_PLURIEL_KEY = PREFIXE_STOCKAGE + "carteDitPluriel";
