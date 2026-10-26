@@ -3320,6 +3320,13 @@ html[data-apprendre="ja"] [data-seulement-de],
 html[data-apprendre="ja"] [data-seulement-es],
 html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]){ display:none !important; }
 html:not([data-apprendre="ja"]) [data-seulement-ja]{ display:none !important; }
+/* Les exercices allemands des ecrans de niveau (Präsens, cas regi, articles). */
+html[data-apprendre="ja"] button[onclick*="startExercises"],
+html[data-apprendre="ja"] button[onclick*="startVerbRektionExercise"],
+html[data-apprendre="ja"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
+/* Dans les panneaux des mots : parcourir, rien d'autre. Dictees, quiz d'article,
+   declinaisons, temps allemands, nuances : tous allemands ou espagnols. */
+html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="Kana"]){ display:none !important; }
 /* Le mot japonais : police du systeme d'abord (Hiragino sur iPhone, Noto sur
    Android), et lang="ja" sur l'element, sans quoi un kanji partage avec le
    chinois prend la forme chinoise. Les furigana au-dessus, petits et lisibles. */
@@ -26334,6 +26341,71 @@ if(LANGUE_APPRISE === "es"){
     // drapeaux sont poses avant le premier affichage.
     adapterChoixALaLangueApprise();
 }
+
+// LE JAPONAIS (essai, 26 oct. 2026) : comme I18N_ESPAGNOL, verse par-dessus
+// I18N avant tout affichage, en francais et en anglais seulement (les deux
+// langues d'interface du japonais, decide le 4 oct.).
+const I18N_JAPONAIS = {
+    "fr": {
+        "home_title_1": "Apprends le japonais",
+        "home_subtitle": "Ton tuteur personnel pour le vocabulaire japonais, les kana et les kanji.",
+        "auth_title": "Apprends le japonais, un mot à la fois",
+        "setup_niveau_label": "Tu connais déjà un peu de japonais ?",
+        "profil_q1": "Pourquoi tu apprends le japonais ?",
+        "profil_r_vivre": "Pour vivre au Japon",
+        "abo_titre": "Apprends le japonais sans limite",
+        "abo_av_voix": "La voix japonaise sur chaque carte",
+        "flip_direction_fr": "🔁 Sens : FR → JA",
+        "flip_direction_de": "🔁 Sens : JA → FR",
+        "voice_lang_de": "Japonais",
+        "carte_dire_desc": "Au verso d'une carte, le japonais se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours.",
+        "settings_invite_desc": "Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre le japonais.",
+        "invite_share_text": "J'apprends le japonais avec Wortando — demande-moi un code d'invitation pour essayer !",
+        "auth_value_1": "Vocabulaire japonais organisé par niveau, du N5 au N1, avec les kana et les kanji.",
+        "setup_learning_de": "Japonais",
+        "setup_learning_autre": "Allemand",
+        "seance_choix_allemand": "Japonais",
+        "title_adjektive_allemands": "Adjectifs japonais",
+        "orb_adjektive_sub": "en い · en な",
+        "op_adjektive_sub": "en い · en な",
+        "orb_adverbien_sub": "よく · もう · まだ",
+        "op_adverbien_sub": "よく · もう · まだ",
+        "verbe_ja_formes": "Formes",
+        "kicker_verben_praesens": "Verbes · Formes polies"
+    },
+    "en": {
+        "home_title_1": "Learn Japanese",
+        "home_subtitle": "Your personal tutor for Japanese vocabulary, kana and kanji.",
+        "auth_title": "Learn Japanese, one word at a time",
+        "setup_niveau_label": "Do you already know some Japanese?",
+        "profil_q1": "Why are you learning Japanese?",
+        "profil_r_vivre": "To live in Japan",
+        "abo_titre": "Learn Japanese without limits",
+        "abo_av_voix": "The Japanese voice on every card",
+        "flip_direction_fr": "🔁 Direction: EN → JA",
+        "flip_direction_de": "🔁 Direction: JA → EN",
+        "voice_lang_de": "Japanese",
+        "carte_dire_desc": "On the back of a card, the Japanese is spoken automatically. Choose what you want to hear. What you remove stays on screen, and its speaker button still works.",
+        "settings_invite_desc": "Learning with Wortando? Share it with someone who'd like to learn Japanese.",
+        "invite_share_text": "I'm learning Japanese with Wortando — ask me for an invitation code to try it!",
+        "auth_value_1": "Japanese vocabulary organised by level, from N5 to N1, with kana and kanji.",
+        "setup_learning_de": "Japanese",
+        "setup_learning_autre": "German",
+        "seance_choix_allemand": "Japanese",
+        "title_adjektive_allemands": "Japanese adjectives",
+        "orb_adjektive_sub": "い · な adjectives",
+        "op_adjektive_sub": "い · な adjectives",
+        "orb_adverbien_sub": "よく · もう · まだ",
+        "op_adverbien_sub": "よく · もう · まだ",
+        "verbe_ja_formes": "Forms",
+        "kicker_verben_praesens": "Verbs · Polite forms"
+    }
+};
+if(LANGUE_APPRISE === "ja"){
+    for(const l of Object.keys(I18N_JAPONAIS)) Object.assign(I18N[l], I18N_JAPONAIS[l]);
+    document.title = "Wortando 日本語";
+}
+
 
 function getUiLang(){
     let lang;
