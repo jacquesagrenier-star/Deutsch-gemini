@@ -6891,25 +6891,10 @@ body[data-theme="dark"] .mos-palier.mp-seul{background:transparent; box-shadow:n
 @keyframes mpaEtincelle{0%{opacity:0; transform:translate(0,0) scale(.3) rotate(0deg);}
     25%{opacity:1;} 100%{opacity:0; transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(160deg);}}
 @media (prefers-reduced-motion: reduce){ .mp-anneau b{animation:none;} .mpa-fois{transition:none;} }
-/* v954 : DES ETOILES DANS L'ANNEAU DU PALIER. Jacques, 25 oct. 2026 : « des
-   petites etoiles dans le milieu du cercle, un peu plus apparentes, pour
-   chacun : ×1, ×2, ×3 » -- sur l'anneau qui vient pendant les cartes, pas sur
-   « Ma seance du jour ». Trois a l'objectif, une de plus par palier, six au
-   plus ; autour du chiffre, jamais dessus. Un contour ambre fonce : le blanc
-   seul se perdait sur la vitre. */
-.mpa-etoiles{position:absolute; inset:0; z-index:3; pointer-events:none;}
-.mpa-etoiles i{position:absolute; font-style:normal; font-size:10px; line-height:1; color:#fff;
-    text-shadow:0 0 1px #8a4f06, 0 0 3px rgba(138,79,6,.85), 0 0 6px #fff;
-    animation:etoileApparait .45s ease-out backwards, etoileAnneau 2.4s ease-in-out .45s infinite;}
-.mpa-etoiles i:nth-child(1){top:9px; left:12px;}
-.mpa-etoiles i:nth-child(2){top:9px; right:12px; animation-delay:.1s, .9s;}
-.mpa-etoiles i:nth-child(3){bottom:10px; left:11px; animation-delay:.2s, 1.4s;}
-.mpa-etoiles i:nth-child(4){bottom:10px; right:11px; animation-delay:.3s, .7s;}
-.mpa-etoiles i:nth-child(5){top:calc(50% - 5px); left:6px; font-size:9px; animation-delay:.4s, 1.1s;}
-.mpa-etoiles i:nth-child(6){top:calc(50% - 5px); right:6px; font-size:9px; animation-delay:.5s, 1.7s;}
-@keyframes etoileApparait{from{opacity:0; transform:scale(0) rotate(-90deg);} to{opacity:1; transform:scale(1) rotate(0deg);}}
-@keyframes etoileAnneau{0%, 100%{opacity:.6; transform:scale(.8) rotate(0deg);} 50%{opacity:1; transform:scale(1.2) rotate(45deg);}}
-@media (prefers-reduced-motion: reduce){ .mpa-etoiles i{animation:none; opacity:1;} }
+/* v963 : LES ETOILES FIXES AUTOUR DU CHIFFRE (v954) SONT RETIREES. Jacques,
+   26 oct. 2026 : « j'aime l'eclatement des etoiles, mais les etoiles que tu
+   mets autour de l'anneau, ca j'aime pas ». L'eclatement (les etincelles
+   en rayons des ×2, v953) reste. */
 .mp-plus{background:#E8A23A; color:#1C2430; border-radius:999px; padding:1px 8px 2px; font:900 14px Nunito, system-ui, sans-serif;}
 .mp-chiffres{font:900 14px Nunito, system-ui, sans-serif; color:#1C2430; white-space:nowrap;}
 .mp-chiffres small{font-weight:800; color:#576177; font-size:.8em;}
@@ -8717,7 +8702,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v962</span>
+    <span class="subtitle-version">v963</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -44929,7 +44914,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 962;
+const APP_VERSION = 963;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -49222,12 +49207,6 @@ function anneauDuPalier(bloc, multiple){
     const finir = () => {
         poser(1);
         if(multiple >= 2) fois.classList.add("vu");
-        // v954 : les etoiles du centre -- trois a l'objectif, une de plus par palier.
-        const et = document.createElement("span");
-        et.className = "mpa-etoiles";
-        et.setAttribute("aria-hidden", "true");
-        et.innerHTML = "<i>✦</i>".repeat(Math.min(6, multiple + 2));
-        a.appendChild(et);
         // v953 : des ×2, une couronne d'etincelles autour de l'anneau. Jacques,
         // 24 oct. 2026 : « a partir de 2, je mettrais des etincelles autour de
         // l'anneau » ; trois tours au plus, meme a ×10 (« c'est bon, 3 tours »).
@@ -55649,7 +55628,14 @@ function showDailyGoalText(threshold){
 // n'aurait plus rien signifie -- le palier serait devenu entierement muet.
 function triggerDailyGoalCelebration(multiple){
     // v955 : l'app installee vibre, et le rappel du jour se tait (voir programmerRappels).
-    vibrerPalier("palier " + multiple);
+    // v963 : LA VIBRATION APRES LES SONS, PAS EN MEME TEMPS. Jacques, 26 oct. 2026,
+    // deux fois : le toucher de la carte « Vibrations » vibre, le palier jamais --
+    // ni avec la notification d'iOS (v955) ni avec la vraie vibration (v959). Le
+    // seul ecart entre les deux : au palier, la demande partait a l'instant ou
+    // demarrent les sons de la fete. On la pose apres eux (carreaux 0,35 + 1,5 s),
+    // quand l'anneau a fait son tour. Si le palier reste muet, le test qui tranche :
+    // la carte « Vibrations » juste APRES un palier, sans fermer l'app.
+    setTimeout(() => vibrerPalier("palier " + multiple + ", apres les sons"), 2200);
     if(rappelNatif()) programmerRappels();
     // v957 : le rappel propose une fois, apres la fete (voir proposerRappel).
     setTimeout(proposerRappel, 5000);
