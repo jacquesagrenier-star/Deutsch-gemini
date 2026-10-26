@@ -1,4 +1,4 @@
-"""Extrait allégé des sources japonaises N5-N3, pour une session cloud.
+"""Extrait allégé des sources japonaises, pour une session cloud.
 
 Le cloud ne peut pas télécharger JMdict (réseau bloqué, voir japonais/RAPPORT.md
 sur la branche japonais-donnees). Ce script lit les résultats calculés sur le PC
@@ -7,19 +7,27 @@ et n'en garde que ce qu'il faut pour fabriquer les cartes :
   ~/.wortando/japonais-donnees/japonais/mots.json         (Tanos + JMdict, 50 Mo)
   ~/.wortando/japonais-phrases/japonais/phrases/phrases.json (Tatoeba, 6 Mo)
 
-  -> japonais/cartes/sources/mots-n5-n3.json
+  -> japonais/cartes/sources/mots-n5-n3.json   (8 oct. 2026)
+  -> japonais/cartes/sources/mots-n2-n1.json   (--n2-n1, 25 oct. 2026)
 
-Usage : python japonais/cartes/outils/extraire_sources.py
+Le N2 et le N1 vont dans un fichier à part : refaire celui du N5-N3 changerait
+les phrases candidates de mots déjà jugés (les décisions citent leurs ids).
+Leurs phrases viennent du phrases.json refait le 25 oct. pour les cinq niveaux
+(japonais/phrases/construire.py, NIVEAUX étendu).
+
+Usage : python japonais/cartes/outils/extraire_sources.py [--n2-n1]
 """
 import json
 import sys
 from pathlib import Path
 
-NIVEAUX = ["N5", "N4", "N3"]
+N2_N1 = "--n2-n1" in sys.argv
+NIVEAUX = ["N2", "N1"] if N2_N1 else ["N5", "N4", "N3"]
 ACCUEIL = Path.home() / ".wortando"
 MOTS = ACCUEIL / "japonais-donnees/japonais/mots.json"
-PHRASES = ACCUEIL / "japonais-phrases/japonais/phrases/phrases.json"
-SORTIE = Path(__file__).resolve().parents[1] / "sources/mots-n5-n3.json"
+PHRASES = (Path(__file__).resolve().parents[2] / "phrases/phrases.json" if N2_N1
+           else ACCUEIL / "japonais-phrases/japonais/phrases/phrases.json")
+SORTIE = Path(__file__).resolve().parents[1] / ("sources/mots-n2-n1.json" if N2_N1 else "sources/mots-n5-n3.json")
 
 CHAMPS_PHRASE = ["japonais", "francais", "anglais", "francais_direct", "ids_tatoeba",
                  "auteurs", "longueur", "niveau_mot_le_plus_difficile",

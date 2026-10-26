@@ -20,6 +20,7 @@ Bibliothèque standard seulement. Code de sortie 1 si une vérification échoue.
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 from collections import Counter, OrderedDict
@@ -27,7 +28,10 @@ from collections import Counter, OrderedDict
 ICI = os.path.dirname(os.path.abspath(__file__))
 CARTES = os.path.dirname(ICI)
 DEPOT = os.path.dirname(os.path.dirname(CARTES))
-NIVEAUX = ["N5", "N4", "N3"]
+# N2 et N1 ajoutés le 25 oct. 2026 : leurs sources sont dans un fichier à part
+# (sources/mots-n2-n1.json, voir extraire_sources.py --n2-n1).
+NIVEAUX = ["N5", "N4", "N3", "N2", "N1"]
+FICHIERS_SOURCES = ["mots-n5-n3.json", "mots-n2-n1.json"]
 TAILLE_LOT = 50
 VERDICTS = ["BON", "A_AMELIORER", "A_REMPLACER", "FAUX"]
 
@@ -389,14 +393,22 @@ def phrases_eligibles(e):
 
 
 def charger_entrees():
-    src = json.load(open(os.path.join(CARTES, "sources", "mots-n5-n3.json"), encoding="utf-8"))
     par_niveau = OrderedDict((n, []) for n in NIVEAUX)
-    for e in src["entrees"]:
-        par_niveau[e["niveau"]].append(e)
+    for nom in FICHIERS_SOURCES:
+        chemin = os.path.join(CARTES, "sources", nom)
+        if not os.path.exists(chemin):
+            continue
+        for e in json.load(open(chemin, encoding="utf-8"))["entrees"]:
+            par_niveau[e["niveau"]].append(e)
     gardees, ecartees, vus = OrderedDict(), [], {}
     for niv in NIVEAUX:
         groupes = OrderedDict()
         for e in par_niveau[niv]:
+            if not e["jmdict_id"]:
+                # 15 mots du N2-N1 que JMdict ne connaît pas : sans id stable, pas de carte.
+                ecartees.append({"id": None, "niveau": niv, "kanji": e["kanji"], "kana": e["kana"],
+                                 "waller_en": e["waller_en"], "garde": None, "raison": "aucun id JMdict"})
+                continue
             groupes.setdefault(e["jmdict_id"], []).append(e)
         gardees[niv] = []
         for jid, l in groupes.items():
@@ -488,7 +500,9 @@ def charger_decisions(erreurs):
     if not os.path.isdir(dossier):
         return dec
     for nom in sorted(os.listdir(dossier)):
-        if not nom.endswith(".json"):
+        # Seuls les lots de mots (n3-001.json…) ; particules.json et expressions.json
+        # ont leur propre format et sont lus par japonais/datos/construire.py.
+        if not re.match(r"^n[1-5]-\d{3}\.json$", nom):
             continue
         try:
             l = json.load(open(os.path.join(dossier, nom), encoding="utf-8"))
@@ -501,6 +515,23 @@ def charger_decisions(erreurs):
             d["_fichier"] = nom
             dec[d["id"]] = d
     return dec
+
+
+def charger_domaines(erreurs):
+    """Le catalogue (domaines.json) et les domaines donnés après coup aux mots
+    déjà jugés (domaines-attribues/*.json, des objets {id: domaine})."""
+    cat = json.load(open(os.path.join(CARTES, "domaines.json"), encoding="utf-8"))
+    connus = {d["id"] for d in cat["domaines"]}
+    attribues = {}
+    dossier = os.path.join(CARTES, "domaines-attribues")
+    if os.path.isdir(dossier):
+        for nom in sorted(os.listdir(dossier)):
+            if nom.endswith(".json"):
+                for i, dom in json.load(open(os.path.join(dossier, nom), encoding="utf-8")).items():
+                    if i in attribues and attribues[i] != dom:
+                        erreurs.append("%s : domaine en double pour %s" % (nom, i))
+                    attribues[i] = dom
+    return connus, attribues
 
 
 def feuille(v, src, statut="brouillon", note=None):
@@ -521,7 +552,7 @@ def flexion_de(classe):
     return None
 
 
-def construire_fiche(e, niv, idx_kanji, d, erreurs, phrases_sortie):
+def construire_fiche(e, niv, idx_kanji, d, erreurs, phrases_sortie, domaines=None):
     jid = "jmdict:" + e["jmdict_id"]
     k, note_k = forme_kanji(e)
     classe = classe_de(e)
@@ -619,6 +650,11 @@ def construire_fiche(e, niv, idx_kanji, d, erreurs, phrases_sortie):
     fiche["phrases"] = ph
     if d is not None and d.get("note_phrase"):
         fiche["note_phrases"] = d["note_phrase"]
+    connus, attribues = domaines or (set(), {})
+    dom = (d or {}).get("domaine") or attribues.get(jid)
+    if dom is not None and dom not in connus:
+        erreurs.append("%s : domaine %r absent de domaines.json" % (jid, dom))
+    fiche["domaine"] = dom
     fiche["image"] = None
     fiche["verdict_machine"] = verdict
     fiche["raison"] = raison
@@ -715,6 +751,7 @@ def principal():
     if args.lots:
         ecrire_lots(gardees, idx_kanji)
     decisions = charger_decisions(erreurs)
+    domaines = charger_domaines(erreurs)
     connus = {"jmdict:" + e["jmdict_id"] for l in gardees.values() for e in l}
     for i, d in decisions.items():
         if i not in connus:
@@ -724,7 +761,7 @@ def principal():
     # du premier mot qui la prend (le plus facile, puisqu'on construit N5 d'abord).
     fichiers, pour_page, phrases = OrderedDict(), OrderedDict(), OrderedDict()
     for niv in NIVEAUX:
-        fiches = [construire_fiche(e, niv, idx_kanji, decisions.get("jmdict:" + e["jmdict_id"]), erreurs, phrases)
+        fiches = [construire_fiche(e, niv, idx_kanji, decisions.get("jmdict:" + e["jmdict_id"]), erreurs, phrases, domaines)
                   for e in gardees[niv]]
         pour_page[niv] = (fiches, phrases)
         propres = [OrderedDict((k, v) for k, v in f.items() if not k.startswith("_")) for f in fiches]
@@ -760,6 +797,8 @@ def principal():
     incomplets = [l for l, (a, b) in etat.items() if a < b]
     print("Lots incomplets :", ", ".join("%s (%d/%d)" % (l, *etat[l]) for l in incomplets) or "aucun")
     print("Doublons écartés :", len(ecartees))
+    sans_dom = Counter(niv for niv, (fiches, _) in pour_page.items() for f in fiches if not f.get("domaine"))
+    print("Sans domaine :", ", ".join("%s %d" % (n, sans_dom[n]) for n in NIVEAUX if sans_dom[n]) or "aucun")
     if erreurs:
         print("\n%d ERREUR(S) :" % len(erreurs))
         for e in erreurs[:200]:

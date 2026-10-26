@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Phrases d'exemple Tatoeba pour les mots JLPT N5, N4 et N3.
+"""Phrases d'exemple Tatoeba pour les mots JLPT N5 à N1.
 
 Télécharge les listes de vocabulaire JLPT de Jonathan Waller (tanos.co.uk,
 CC BY) et les exports de Tatoeba (CC BY 2.0 FR), puis choisit pour chaque mot
@@ -36,9 +36,9 @@ from collections import defaultdict
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE_DEPOT = os.path.abspath(os.path.join(ICI, "..", ".."))
 
-NIVEAUX = ["N5", "N4", "N3"]
+NIVEAUX = ["N5", "N4", "N3", "N2", "N1"]  # N2 et N1 ajoutés le 25 oct. 2026
 # Plus le nombre est grand, plus le mot est facile (N5 = le plus facile).
-RANG = {"N5": 5, "N4": 4, "N3": 3, "hors liste": 0}
+RANG = {"N5": 5, "N4": 4, "N3": 3, "N2": 2, "N1": 1, "hors liste": 0}
 
 TANOS = "https://www.tanos.co.uk/jlpt/jlpt{n}/vocab/"
 TATOEBA = "https://downloads.tatoeba.org/exports/"

@@ -50,3 +50,15 @@ Un fichier = une liste JSON, une décision par mot du lot, dans l'ordre du lot :
 Tout reste `brouillon` : ne jamais écrire « validé » ni « vérifié ».
 
 Pour contrôler un lot : `python japonais/cartes/outils/construire.py --sec` (vérifie sans rien écrire).
+
+## Ajouts du 25 octobre 2026 : N2, N1 et le domaine
+
+**`domaine`** (obligatoire pour tout mot jugé à partir du N3) : l'id d'**un** domaine de `japonais/cartes/domaines.json`, celui où un apprenant chercherait le mot. Le champ `pour` de chaque domaine dit ce qui y entre. Les domaines deviennent les thèmes de l'app, un par domaine et par niveau : un domaine trop vague vide les autres, donc « mots_utiles » seulement quand aucun autre ne va, et « actions » pour les verbes d'action générale. Verbes, adjectifs et adverbes reçoivent aussi un domaine (le plus proche de leur sens : 泳ぐ → sport, 寒い → meteo, 急に → temps). Le script refuse un id absent du catalogue.
+
+```json
+{"id": "jmdict:1186230", "fr": "vulgaire", "fr_src": "wortando", "domaine": "caractere", "...": "..."}
+```
+
+**N2 et N1** : beaucoup de candidates n'ont qu'un français « via l'anglais » (`fr via l'anglais` dans les drapeaux) ; il faut alors lire l'anglais ET le français et vérifier que le français dit bien le japonais. Un mot sans phrase acceptable garde `"phrases": []` et sa `note_phrase` : c'est fréquent au N1 (24 % des mots n'ont aucune candidate), ce n'est pas une faute.
+
+Les mots N5 et N4, jugés avant ce jour, reçoivent leur domaine à part : `japonais/cartes/domaines-attribues/<lot>.json`, un objet `{"jmdict:…": "domaine"}`.
