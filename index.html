@@ -8669,7 +8669,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v958</span>
+    <span class="subtitle-version">v959</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -28810,13 +28810,25 @@ function vibrationsActives(){
     try{ return localStorage.getItem(VIBRATIONS_CLE) !== "0"; }catch(e){ return true; }
 }
 
+// v959 : UNE VRAIE VIBRATION, PAS DEUX TAPOTEMENTS. Jacques, iPhone, 26 oct. :
+// « juste deux toc-toc, on le sent a peine » -- la notification SUCCESS d'iOS
+// est un retour haptique discret, qui se perd sous la fanfare du palier.
+// vibrate() fait vibrer le telephone pour de bon (moteur haptique continu sur
+// iPhone, vibreur sur Android), 400 ms. La notification reste en repli.
 function vibrerPalier(){
     const H = pluginNatif("Haptics");
     if(!H || !vibrationsActives()) return;
+    const repli = () => {
+        try{
+            const q = H.notification({ type: "SUCCESS" });
+            if(q && typeof q.catch === "function") q.catch(() => {});
+        }catch(e){}
+    };
     try{
-        const p = H.notification({ type: "SUCCESS" });
-        if(p && typeof p.catch === "function") p.catch(() => {});
-    }catch(e){}
+        const p = typeof H.vibrate === "function" ? H.vibrate({ duration: 400 }) : null;
+        if(p && typeof p.catch === "function") p.catch(repli);
+        else if(!p) repli();
+    }catch(e){ repli(); }
 }
 
 // Rallumer fait sentir la vibration qu'on vient de choisir.
@@ -33505,8 +33517,13 @@ function verbeDeBase(infinitif){
     return mots[mots.length - 1];
 }
 
+// v959 : un verbe separable en haben aussi -- « Was hattest du vor? », « Sie
+// hatte ein rotes Kleid an » se disent (vorhaben, anhaben ; la relectrice, 26 oct. :
+// « fur sein und haben sowie fur Modalverben wird das Prateritum auch mundlich
+// benutzt »).
 function praeteritumEstEcrit(infinitif){
-    return !PRAETERITUM_ORAL.has(verbeDeBase(infinitif));
+    const base = verbeDeBase(infinitif);
+    return !PRAETERITUM_ORAL.has(base) && !/haben$/.test(base);
 }
 
 // Avec haben et sein, le parfait est juste mais rare : « Ich hatte Hunger »,
@@ -44475,7 +44492,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 958;
+const APP_VERSION = 959;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

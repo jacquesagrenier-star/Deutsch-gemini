@@ -552,9 +552,9 @@ window.SCENE = {
   },
   {
    "id": "schneemann",
-   "mot": "nieve",
-   "genre": "la",
-   "pluriel": "las —",
+   "mot": "muñeco de nieve",
+   "genre": "el",
+   "pluriel": "los muñecos de nieve",
    "niveau": "A1",
    "theme": "el_clima",
    "personne": null,
@@ -569,12 +569,12 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "la neige",
-   "en": "the snow",
-   "pt": "a neve",
-   "ar": "ثلج",
-   "pl": "śnieg",
-   "ru": "снег",
+   "fr": "le bonhomme de neige",
+   "en": "the snowman",
+   "pt": "o boneco de neve",
+   "ar": "رجل الثلج",
+   "pl": "bałwan",
+   "ru": "снеговик",
    "latam": null
   },
   {
