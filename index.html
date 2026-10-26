@@ -8672,7 +8672,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v957</span>
+    <span class="subtitle-version">v960</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -28862,20 +28862,39 @@ function vibrationsActives(){
     try{ return localStorage.getItem(VIBRATIONS_CLE) !== "0"; }catch(e){ return true; }
 }
 
-function vibrerPalier(){
+// v959 : UNE VRAIE VIBRATION, PAS DEUX TAPOTEMENTS. Jacques, iPhone, 26 oct. :
+// « juste deux toc-toc, on le sent a peine » -- la notification SUCCESS d'iOS
+// est un retour haptique discret, qui se perd sous la fanfare du palier.
+// vibrate() fait vibrer le telephone pour de bon (moteur haptique continu sur
+// iPhone, vibreur sur Android), 400 ms. La notification reste en repli.
+// v960 : L'INSTRUMENT. Jacques, 26 oct. : le toucher de la carte vibre, le
+// palier non. Le journal (envoye avec « Signaler un probleme ») dira si le
+// palier a appele la vibration, et ce qui l'a arretee.
+function vibrerPalier(origine){
     const H = pluginNatif("Haptics");
-    if(!H || !vibrationsActives()) return;
     try{
-        const p = H.notification({ type: "SUCCESS" });
-        if(p && typeof p.catch === "function") p.catch(() => {});
+        noterAudio("vibration", "VIBRATION", (origine || "palier") + " : "
+            + (!H ? "module absent" : !vibrationsActives() ? "coupee dans les reglages" : "demandee"));
     }catch(e){}
+    if(!H || !vibrationsActives()) return;
+    const repli = () => {
+        try{
+            const q = H.notification({ type: "SUCCESS" });
+            if(q && typeof q.catch === "function") q.catch(() => {});
+        }catch(e){}
+    };
+    try{
+        const p = typeof H.vibrate === "function" ? H.vibrate({ duration: 400 }) : null;
+        if(p && typeof p.catch === "function") p.catch(repli);
+        else if(!p) repli();
+    }catch(e){ repli(); }
 }
 
 // Rallumer fait sentir la vibration qu'on vient de choisir.
 function basculerVibrations(){
     try{ localStorage.setItem(VIBRATIONS_CLE, vibrationsActives() ? "0" : "1"); }catch(e){}
     renderVibrationsSetting();
-    vibrerPalier();
+    vibrerPalier("reglage");
 }
 
 function renderVibrationsSetting(){
@@ -33558,8 +33577,13 @@ function verbeDeBase(infinitif){
     return mots[mots.length - 1];
 }
 
+// v959 : un verbe separable en haben aussi -- « Was hattest du vor? », « Sie
+// hatte ein rotes Kleid an » se disent (vorhaben, anhaben ; la relectrice, 26 oct. :
+// « fur sein und haben sowie fur Modalverben wird das Prateritum auch mundlich
+// benutzt »).
 function praeteritumEstEcrit(infinitif){
-    return !PRAETERITUM_ORAL.has(verbeDeBase(infinitif));
+    const base = verbeDeBase(infinitif);
+    return !PRAETERITUM_ORAL.has(base) && !/haben$/.test(base);
 }
 
 // Avec haben et sein, le parfait est juste mais rare : « Ich hatte Hunger »,
@@ -34104,6 +34128,9 @@ function recordDailyActivity(compteDansObjectif){
     if(multiplesReached > daily.milestonesCelebrated){
         daily.milestonesCelebrated = multiplesReached;
         justReachedMultiple = multiplesReached;
+        // v960 : au journal, pour savoir si la fete (et la vibration) a suivi.
+        try{ noterAudio("vibration", "PALIER", "palier " + multiplesReached + " atteint : " + daily.count + " / objectif " + target
+            + ", ecran " + ((document.querySelector(".screen.active") || {}).id || "?")); }catch(e){}
     }
     try{ localStorage.setItem(dailyKey, JSON.stringify(daily)); }catch(e){}
     // v917 : le 10e exercice du jour debloque un episode (voir episodesApresExercice()).
@@ -44531,7 +44558,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 957;
+const APP_VERSION = 960;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47832,7 +47859,35 @@ function fermerMosaiquePleinEcran(){
     const v = document.getElementById("mosaiquePlein");
     if(v) v.classList.add("hidden");
     synchroniserHistorique();
+    // v958 : le plein ecran a sa propre toile, et le fermer ne passe pas par
+    // showScreen() : sans cela, une toile d'accueil perdue le restait.
+    try{ majMosaiqueAccueil(); }catch(e){}
 }
+
+// v958 : « TOUT EST LA, SAUF LA MOSAIQUE » (Jacques, iPhone, 26 oct. 2026). L'app
+// s'est rouverte dans les reglages ou il l'avait laissee : iOS ne l'avait pas
+// fermee, seulement suspendue -- et WebKit libere la memoire des toiles d'une
+// app suspendue. Rien ne la redessinait : mosaiqueEnRetard etait faux, et le
+// plein ecran dessine sur sa propre toile. Au retour au premier plan, on redessine
+// donc toujours (tout de suite si l'accueil est affiche, sinon a son retour), et
+// le journal dit si la toile etait vide -- c'est ce qui confirmera la cause.
+function toileMosaiqueVide(canvas){
+    try{
+        if(!canvas || !canvas.width || !canvas.height) return "sans taille";
+        const ctx = canvas.getContext("2d");
+        const w = canvas.width, h = canvas.height;
+        for(const [x, y] of [[w / 2, h / 2], [w / 4, h / 3], [3 * w / 4, 2 * h / 3]]){
+            if(ctx.getImageData(Math.floor(x), Math.floor(y), 1, 1).data[3] > 0) return "pleine";
+        }
+        return "vide";
+    }catch(e){ return "illisible"; }
+}
+document.addEventListener("visibilitychange", () => {
+    if(document.hidden) return;
+    try{ noterAudio("mosaique", "ECRAN", "retour au premier plan, toile " + toileMosaiqueVide(document.getElementById("mosaiqueToile"))); }catch(e){}
+    mosaiqueEnRetard = true;
+    try{ majMosaiqueAccueil(); }catch(e){}
+});
 
 // ⚠️ LA GALERIE NE MONTRE QUE CE QUI A ETE GAGNE. Des silhouettes pour les
 // images a venir seraient le defaut du denominateur inatteignable sous une
@@ -55191,7 +55246,7 @@ function showDailyGoalText(threshold){
 // n'aurait plus rien signifie -- le palier serait devenu entierement muet.
 function triggerDailyGoalCelebration(multiple){
     // v955 : l'app installee vibre, et le rappel du jour se tait (voir programmerRappels).
-    vibrerPalier();
+    vibrerPalier("palier " + multiple);
     if(rappelNatif()) programmerRappels();
     // v957 : le rappel propose une fois, apres la fete (voir proposerRappel).
     setTimeout(proposerRappel, 5000);

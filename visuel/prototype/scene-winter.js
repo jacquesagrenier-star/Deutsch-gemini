@@ -584,11 +584,11 @@ window.SCENE = {
   },
   {
    "id": "schneemann",
-   "mot": "Schnee",
+   "mot": "Schneemann",
    "genre": "der",
-   "pluriel": "—",
-   "niveau": "A1",
-   "theme": "wetter_a1",
+   "pluriel": "Schneemänner",
+   "niveau": "A2",
+   "theme": "wetter_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -601,15 +601,15 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "neige",
-   "en": "snow",
-   "tr": "kar",
-   "uk": "сніг",
-   "fa": "برف",
-   "pt": "neve",
-   "ar": "ثلج",
-   "pl": "śnieg",
-   "ru": "снег"
+   "fr": "bonhomme de neige",
+   "en": "snowman",
+   "tr": "kardan adam",
+   "uk": "сніговик",
+   "fa": "آدم‌برفی",
+   "pt": "boneco de neve",
+   "ar": "رجل الثلج",
+   "pl": "bałwan",
+   "ru": "снеговик"
   },
   {
    "id": "besen",
