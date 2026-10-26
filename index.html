@@ -12079,6 +12079,36 @@ function habillerCarteJaponaise(card){
     // La phrase d'exemple aussi : lang="ja", pour la forme japonaise des kanji.
     const det = document.getElementById("flashVerbDetails");
     if(det) det.setAttribute("lang", "ja");
+    // Un adjectif : son type et ses quatre formes, au-dessus de l'exemple.
+    if(det && card && card.formesJa && !card.infinitif){
+        det.insertAdjacentHTML("afterbegin", formesAdjectifJaponais(card));
+        det.classList.remove("hidden");
+    }
+}
+
+// Les adjectifs en い se conjuguent (高い, 高くない, 高かった) ; ceux en な
+// passent par la copule (静かだ, 静かじゃない). C'est la premiere chose a
+// savoir d'un adjectif japonais, d'ou le type en tete.
+const FORMES_ADJ_JA = [
+    ["present", "présent", "present"],
+    ["negatif", "négatif", "negative"],
+    ["passe", "passé", "past"],
+    ["passe_negatif", "passé négatif", "past negative"]
+];
+function formesAdjectifJaponais(card){
+    const ech = s => String(s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    const f = card.formesJa || {};
+    const type = card.typeJa === "na"
+        ? libJa("adjectif en な", "な-adjective")
+        : card.typeJa === "i" ? libJa("adjectif en い", "い-adjective") : "";
+    const lignes = FORMES_ADJ_JA.map(([cle, fr, en]) => {
+        const x = f[cle];
+        if(!x || !x.kanji) return "";
+        const kana = x.kana && x.kana !== x.kanji ? ` <span class="lj-kana">(${ech(x.kana)})</span>` : "";
+        return `<div class="forme-ja"><span lang="ja">${ech(x.kanji)}</span>${kana}${sentenceSpeakBtnHtml(x.kana || x.kanji, "de")}<br><small>${ech(libJa(fr, en))}</small></div>`;
+    }).join("");
+    if(!lignes) return "";
+    return `<div class="verb-core">${type ? `<strong>${ech(type)}</strong>` : ""}${lignes}</div><div class="verb-sep"></div>`;
 }
 
 // Les formes d'un verbe japonais, calculees par japonais/conjugaison. Au recto
@@ -29369,6 +29399,14 @@ async function loadAdjektiveJson() {
                     w.traduction_ru || "",   // rang 23 (russe)
                     w.exemple_ru || ""       // rang 24
                 ]);
+                // Le japonais : lecture, furigana et formes (い / な), en
+                // proprietes nommees comme pour les noms.
+                if(LANGUE_APPRISE === "ja"){
+                    const c = words[words.length - 1];
+                    c.ja = lectureJaponaise(w);
+                    c.formesJa = w.formes || null;
+                    c.typeJa = w.type || "";
+                }
             });
         });
         adjektiveTheme.words = words;
@@ -29601,6 +29639,7 @@ async function loadAdverbienJson() {
                     a.traduction_ru || "", a.exemple_ru || "",  // rangs 30 et 31 (russe)
                     cat.ru || ""                                // rang 32
                 ]);
+                if(LANGUE_APPRISE === "ja") words[words.length - 1].ja = lectureJaponaise(a);
             });
         });
         if (words.length) adverbienTheme.words = words;
