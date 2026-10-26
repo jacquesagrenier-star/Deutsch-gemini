@@ -19,9 +19,6 @@ les autres sessions lui rendent compte et n'en lancent pas d'autres (voir CLAUDE
 | 2026-10-24 | Série allemande | 05 = la Volkshochschule (Mark retrouve Anna) ; Pfand passe en 06 | |
 | 2026-10-24 | Mon cours (espagnol) | Les pages de son manuel deviennent des cartes, rangée « Mon cours » réservée à l'admin (Chapitres VHS ouverts à l'espagnol, v942) ; les mots seulement, jamais les images du manuel | « oui » |
 | 2026-10-24 | Mon cours (espagnol) | Les mots du cours absents du programme y entrent pour tous (10 mots, v943) | « ce sont des mots qu'on devrait ajouter » |
-| 2026-10-25 | App iPhone (règle 4.2) | Rappel quotidien local, vibrations, notes au réviseur ; puis la séance du jour hors ligne, seulement dans sa forme sans risque (le push reste la sortie) | « on peut mettre en place tout ce qu'on peut faire sans risque » |
-| 2026-10-25 | Hors-ligne | Les cartes tournent autant qu'on veut sans réseau, mais ne montent pas d'étape vers « maîtrisé » (une révision du jour au retour du réseau) | « ça les ferait pas avancer plus, mais ça lui permettrait de pratiquer » |
-| 2026-10-25 | Vibrations | Seulement aux paliers de l'objectif (+30, +60, +90) ; pas en fin de séance, pas sur le « Bravo » de l'oral | « chaque palier, comme au +30, +60, +90 » |
 | 2026-10-25 | Son des confettis | La kalimba pour tous, à la place du carillon xylophone (v956) | « je trouve ça parfait » |
 | 2026-10-25 | Scènes | Chaque question d'une scène compte comme un exercice : objectif, série, épisodes (v957) | « au même titre que les autres » |
 | 2026-10-25 | Rappel quotidien | Proposé une fois dans l'app installée, au premier palier de l'objectif (v957) | « oui, propose le rappel » |
