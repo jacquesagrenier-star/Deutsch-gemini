@@ -8702,7 +8702,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v964</span>
+    <span class="subtitle-version">v965</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -29225,12 +29225,23 @@ function vibrerPalier(origine){
             if(q && typeof q.catch === "function") q.catch(() => {});
         }catch(e){}
     };
-    try{
-        const p = typeof H.vibrate === "function" ? H.vibrate({ duration: 400 }) : null;
-        if(p && typeof p.catch === "function") p.catch(repli);
-        else if(!p) repli();
-    }catch(e){ repli(); }
+    // v965 : « TA-TAAA », PLUS FORT. Jacques, 26 oct. 2026 : « est-ce qu'on peut
+    // faire vibrer plus intensement ? ». L'intensite est deja au maximum que
+    // l'iPhone accorde a une app (force et nettete a 1) ; ce qui reste, c'est la
+    // duree et le rythme : un coup, une pause, un coup plus long. Deux coups se
+    // sentent bien mieux qu'un seul, en main comme en poche.
+    const coup = duree => {
+        try{
+            const p = typeof H.vibrate === "function" ? H.vibrate({ duration: duree }) : null;
+            if(p && typeof p.catch === "function") p.catch(repli);
+            else if(!p) repli();
+        }catch(e){ repli(); }
+    };
+    coup(VIBRATION_RYTHME[0]);
+    setTimeout(() => coup(VIBRATION_RYTHME[2]), VIBRATION_RYTHME[0] + VIBRATION_RYTHME[1]);
 }
+// En millisecondes : premier coup, pause, second coup.
+const VIBRATION_RYTHME = [450, 150, 750];
 
 // v964 : L'ESSAI DE LA VIBRATION, pour l'admin. Jacques, 26 oct. 2026 : le
 // palier ne vibre toujours pas en v963, la carte « Vibrations » si. Trois gestes,
@@ -44944,7 +44955,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 964;
+const APP_VERSION = 965;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
