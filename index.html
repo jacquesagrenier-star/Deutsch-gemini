@@ -8702,7 +8702,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v963</span>
+    <span class="subtitle-version">v964</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11353,6 +11353,16 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              vers l'allemand. -->
         <div class="spacer"></div>
         <button class="secondary" onclick="ouvrirEssaiJaponais()">日本語 — ESSAI JAPONAIS →</button>
+        <!-- v964 : L'ESSAI DE LA VIBRATION (admin). Le palier ne vibre pas,
+             la carte « Vibrations » oui : trois gestes pour savoir ce qui
+             l'empeche. Voir essaiVibration(). -->
+        <div class="spacer"></div>
+        <div class="info-box">Essai vibration : A seule · B pendant un son · C la fête du palier entière.</div>
+        <div style="display:flex; gap:8px; margin-top:8px;">
+            <button class="secondary" style="flex:1;" onclick="essaiVibration('A')">A</button>
+            <button class="secondary" style="flex:1;" onclick="essaiVibration('B')">B</button>
+            <button class="secondary" style="flex:1;" onclick="essaiVibration('C')">C</button>
+        </div>
     </div>
 </section>
 
@@ -29222,6 +29232,26 @@ function vibrerPalier(origine){
     }catch(e){ repli(); }
 }
 
+// v964 : L'ESSAI DE LA VIBRATION, pour l'admin. Jacques, 26 oct. 2026 : le
+// palier ne vibre toujours pas en v963, la carte « Vibrations » si. Trois gestes,
+// du plus simple au plus complet ; celui qui cesse de vibrer designe la cause :
+//   A. la vibration seule (comme la carte) ;
+//   B. la meme, pendant que joue le son de reussite (l'audio la bloque-t-il ?) ;
+//   C. la fete du palier entiere, sons, anneau et vibration differee de 2,2 s.
+// Chaque geste est note au journal (« Signaler un probleme » l'emporte).
+function essaiVibration(geste){
+    try{ noterAudio("vibration", "ESSAI", "geste " + geste); }catch(e){}
+    if(geste === "A"){ vibrerPalier("essai A"); return; }
+    if(geste === "B"){
+        try{ playMasteredSound(); }catch(e){}
+        setTimeout(() => vibrerPalier("essai B, pendant le son"), 150);
+        return;
+    }
+    if(geste === "C"){
+        try{ triggerDailyGoalCelebration(1); }catch(e){}
+    }
+}
+
 // Rallumer fait sentir la vibration qu'on vient de choisir.
 function basculerVibrations(){
     try{ localStorage.setItem(VIBRATIONS_CLE, vibrationsActives() ? "0" : "1"); }catch(e){}
@@ -44914,7 +44944,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 963;
+const APP_VERSION = 964;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
