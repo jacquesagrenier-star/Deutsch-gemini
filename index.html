@@ -8669,7 +8669,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v957</span>
+    <span class="subtitle-version">v958</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -44475,7 +44475,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 957;
+const APP_VERSION = 958;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47776,7 +47776,35 @@ function fermerMosaiquePleinEcran(){
     const v = document.getElementById("mosaiquePlein");
     if(v) v.classList.add("hidden");
     synchroniserHistorique();
+    // v958 : le plein ecran a sa propre toile, et le fermer ne passe pas par
+    // showScreen() : sans cela, une toile d'accueil perdue le restait.
+    try{ majMosaiqueAccueil(); }catch(e){}
 }
+
+// v958 : « TOUT EST LA, SAUF LA MOSAIQUE » (Jacques, iPhone, 26 oct. 2026). L'app
+// s'est rouverte dans les reglages ou il l'avait laissee : iOS ne l'avait pas
+// fermee, seulement suspendue -- et WebKit libere la memoire des toiles d'une
+// app suspendue. Rien ne la redessinait : mosaiqueEnRetard etait faux, et le
+// plein ecran dessine sur sa propre toile. Au retour au premier plan, on redessine
+// donc toujours (tout de suite si l'accueil est affiche, sinon a son retour), et
+// le journal dit si la toile etait vide -- c'est ce qui confirmera la cause.
+function toileMosaiqueVide(canvas){
+    try{
+        if(!canvas || !canvas.width || !canvas.height) return "sans taille";
+        const ctx = canvas.getContext("2d");
+        const w = canvas.width, h = canvas.height;
+        for(const [x, y] of [[w / 2, h / 2], [w / 4, h / 3], [3 * w / 4, 2 * h / 3]]){
+            if(ctx.getImageData(Math.floor(x), Math.floor(y), 1, 1).data[3] > 0) return "pleine";
+        }
+        return "vide";
+    }catch(e){ return "illisible"; }
+}
+document.addEventListener("visibilitychange", () => {
+    if(document.hidden) return;
+    try{ noterAudio("mosaique", "ECRAN", "retour au premier plan, toile " + toileMosaiqueVide(document.getElementById("mosaiqueToile"))); }catch(e){}
+    mosaiqueEnRetard = true;
+    try{ majMosaiqueAccueil(); }catch(e){}
+});
 
 // ⚠️ LA GALERIE NE MONTRE QUE CE QUI A ETE GAGNE. Des silhouettes pour les
 // images a venir seraient le defaut du denominateur inatteignable sous une
