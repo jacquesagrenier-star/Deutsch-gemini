@@ -56,6 +56,16 @@ Structure des fichiers JSON, organisés par niveau CECR (`A1`, `A2`, ...) :
 
 ⚠️ **`Indexbackup.json`** malgré son extension `.json`, contient en fait du HTML (une ancienne sauvegarde de `index.html`). Ne pas essayer de le parser comme du JSON.
 
+## Plusieurs sessions Claude : un chef d'orchestre
+
+Décidé par Jacques le 26 oct. 2026 : « Je n'aime pas qu'il y ait plusieurs Claude PC qui travaillent en même temps et qu'il n'y ait pas de communication entre eux. » Les sessions partagent les fichiers, **pas les conversations** : ce qui n'est pas écrit n'existe pas pour les autres.
+
+- **Le chef d'orchestre** est la session Claude PC `local_1c9de23b-8002-42cf-b95f-df9cefe95b1c` (« Chef d'orchestre (Claude PC) »). C'est à elle que Jacques demande où on en est.
+- **Toute autre session ne lance aucune session** de son côté : elle propose le chantier au chef (`SendMessage`, `to` = l'id du chef), qui le lance, pour que tous les rapports remontent au même endroit.
+- **Chaque décision de Jacques s'écrit dans `decisions/DECISIONS.md` dans le même tour** (date, sujet, décision, ses mots). **Le relire au début de chaque session**, et avant de présenter quoi que ce soit comme « à décider ».
+- Une session qui finit un travail, publie une version ou attend Jacques envoie une ligne au chef. Vaut aussi pour une session que Jacques ouvre lui-même.
+- Si le chef est archivé : demander à Jacques quelle session prend le relais, et mettre l'id à jour ici.
+
 ## Retours des testeurs
 
 Le bouton « Signaler un problème ou une idée » (v478) écrit dans le document Firestore de la personne, champ `retoursUsager`. **Au début de chaque session, lancer `node tests/retours.js`** et rapporter ce qui est nouveau — sinon ces retours dorment jusqu'à ce que quelqu'un pense à ouvrir le tableau de bord admin.
