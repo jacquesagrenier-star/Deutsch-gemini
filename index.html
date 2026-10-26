@@ -3305,6 +3305,33 @@ html[data-apprendre="es"] [data-orbid="pruefung"]{ display:none !important; }
 /* Le choix Espagne / Amerique latine n'existe qu'en espagnol. */
 html:not([data-apprendre="es"]) [data-seulement-es]{ display:none !important; }
 html[data-apprendre="es"] [data-seulement-de]{ display:none !important; }
+/* ============ LE JAPONAIS (essai admin, 26 oct. 2026) ============
+   UNE LISTE BLANCHE, PAS UNE LISTE NOIRE. L'espagnol cache ce qui lui manque,
+   un bloc a la fois ; le japonais part de presque rien, et tout ce qu'on oublie
+   de cacher retombe sur l'allemand (le moteur ne connait que « es » ou le
+   reste). On ne montre donc que ce qui existe en japonais : la seance, les mots,
+   les kana, « Mis de cote ». Une tuile qu'on porte en japonais s'ajoute ici. */
+html[data-apprendre="ja"] #carteMosaique,
+html[data-apprendre="ja"] #explorerScenes,
+html[data-apprendre="ja"] #ecouteLigneAccueil,
+html[data-apprendre="ja"] #episodeLigne,
+html[data-apprendre="ja"] .search-launch,
+html[data-apprendre="ja"] [data-seulement-de],
+html[data-apprendre="ja"] [data-seulement-es],
+html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]){ display:none !important; }
+html:not([data-apprendre="ja"]) [data-seulement-ja]{ display:none !important; }
+/* Le mot japonais : police du systeme d'abord (Hiragino sur iPhone, Noto sur
+   Android), et lang="ja" sur l'element, sans quoi un kanji partage avec le
+   chinois prend la forme chinoise. Les furigana au-dessus, petits et lisibles. */
+.mot-ja{ font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Noto Sans CJK JP", sans-serif; }
+.mot-ja rt{ font-size: 0.42em; font-weight: 500; opacity: .75; letter-spacing: 0; }
+.lecture-ja{ margin-top: 6px; font-size: 0.95rem; color: inherit; opacity: .72; text-align: center; }
+.lecture-ja .lj-kana{ margin-right: .5em; }
+.lecture-ja .lj-romaji{ font-style: italic; }
+.note-ja{ margin-top: 8px; font-size: 0.85rem; color: inherit; opacity: .72; text-align: center; }
+.forme-ja{ margin: 4px 0 8px; }
+.forme-ja small{ opacity: .72; }
+.forme-ja .lj-kana{ opacity: .72; }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
    Repris de fork.py. Les regles « display:none » sont prefixees par
    html[data-apprendre="es"] : en allemand, rien n'est cache. Les classes
@@ -10430,6 +10457,9 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                     </button>
                 </div>
                 <div id="flashPaire" class="plural hidden"></div>
+                <!-- Le japonais : la lecture en kana et le romaji, puis la note
+                     d'usage (habillerCarteJaponaise). -->
+                <div id="flashLectureJa" class="lecture-ja hidden" data-seulement-ja></div>
                 <div id="flashUsage" class="usage-mark hidden"></div>
                 <div id="flashTranslation" class="translation">Table</div>
                 <div id="flashVerbDetails" class="verb-details hidden"></div>
@@ -11891,6 +11921,126 @@ const LANGUE_JAPONAIS = {
 
 const LANGUE_ENSEIGNEE = LANGUE_APPRISE === "es" ? LANGUE_ESPAGNOL
                        : LANGUE_APPRISE === "ja" ? LANGUE_JAPONAIS : LANGUE_ALLEMAND;
+
+// Ce que la carte japonaise montre en plus du mot : sa lecture en kana, le
+// romaji, les furigana (paires [kanji, lecture], lecture nulle sur un kana) et
+// la note d'usage. null hors du japonais ou sur une entree sans lecture.
+function lectureJaponaise(e){
+    if(!e || Array.isArray(e) || !e.lecture) return null;
+    return {
+        lecture: e.lecture,
+        romaji: e.romaji || "",
+        furigana: Array.isArray(e.furigana) ? e.furigana : null,
+        note: e.note || ""
+    };
+}
+
+// Le mot avec ses furigana, en HTML : <ruby>漢<rt>かん</rt></ruby> pour chaque
+// kanji, le kana tel quel. Echappe : la donnee n'est jamais du HTML.
+function rubyJaponais(mot, ja){
+    const ech = s => String(s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    const f = ja && ja.furigana;
+    if(!f || !f.length || f.map(p => p[0]).join("") !== mot) return ech(mot);
+    return f.map(([k, r]) => r ? `<ruby>${ech(k)}<rt>${ech(r)}</rt></ruby>` : ech(k)).join("");
+}
+
+// Le japonais ne se lit qu'en francais et en anglais (decide le 4 oct. 2026) :
+// ses libelles propres vivent ici, en paires, plutot que dans les neuf
+// dictionnaires d'interface.
+function libJa(fr, en){ return getUiLang() === "en" ? en : fr; }
+
+// LA CARTE JAPONAISE, posee par-dessus le rendu commun de loadFlashcard() :
+// le mot recoit ses furigana et lang="ja", la lecture et le romaji viennent
+// dessous, et ce qui n'existe pas en japonais (article, genre, pluriel, paire
+// masculin/feminin) disparait. Le haut-parleur dit la lecture (dataset.dire).
+function habillerCarteJaponaise(card){
+    const ja = (card && card.ja) || null;
+    const mot = Array.isArray(card) ? card[0] : (card && (card.infinitif || card.mot)) || "";
+    ["flashArticle", "flashGenre", "flashPlural", "flashPaire"].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.classList.add("hidden");
+    });
+    ["flashWord", "flashBackWord"].forEach(id => {
+        const el = document.getElementById(id);
+        if(!el) return;
+        delete el.dataset.dire;
+        if(el.textContent !== mot || !mot) return;
+        el.innerHTML = rubyJaponais(mot, ja);
+        el.classList.add("mot-ja");
+        el.setAttribute("lang", "ja");
+        if(ja && ja.lecture) el.dataset.dire = ja.lecture;
+    });
+    const back = document.getElementById("flashBackWord");
+    if(back && back.textContent && !back.dataset.dire && mot && back.textContent.indexOf(mot) === 0 && ja) back.dataset.dire = ja.lecture;
+    const lect = document.getElementById("flashLectureJa");
+    if(lect){
+        lect.textContent = "";
+        if(ja && ja.lecture){
+            const k = document.createElement("span");
+            k.className = "lj-kana";
+            k.setAttribute("lang", "ja");
+            k.textContent = ja.lecture;
+            lect.appendChild(k);
+            if(ja.romaji){
+                const r = document.createElement("span");
+                r.className = "lj-romaji";
+                r.textContent = ja.romaji;
+                lect.appendChild(r);
+            }
+            if(ja.note && getUiLang() !== "en"){
+                const n = document.createElement("div");
+                n.className = "note-ja";
+                n.textContent = ja.note;
+                lect.appendChild(n);
+            }
+        }
+        lect.classList.toggle("hidden", !(ja && ja.lecture));
+    }
+    // La phrase d'exemple aussi : lang="ja", pour la forme japonaise des kanji.
+    const det = document.getElementById("flashVerbDetails");
+    if(det) det.setAttribute("lang", "ja");
+}
+
+// Les formes d'un verbe japonais, calculees par japonais/conjugaison. Au recto
+// du bloc : la politesse (ます et ses trois voisines), qu'on dit des le premier
+// jour ; deplie : les formes simples, dont la forme en て qui porte la moitie
+// de la grammaire.
+const FORMES_JA_POLIES = [
+    ["masu", "présent poli", "polite present"],
+    ["masen", "négatif poli", "polite negative"],
+    ["mashita", "passé poli", "polite past"],
+    ["masen_deshita", "passé négatif poli", "polite past negative"]
+];
+const FORMES_JA_SIMPLES = [
+    ["te", "forme en て", "て-form"],
+    ["ta", "passé simple", "plain past"],
+    ["nai", "négatif simple", "plain negative"],
+    ["nakatta", "passé négatif simple", "plain past negative"],
+    ["mashou", "invitation (« faisons »)", "invitation (“let's”)"],
+    ["volitif", "volitif (« faisons », familier)", "volitional (casual)"],
+    ["potentiel", "potentiel (« pouvoir »)", "potential (“can”)"],
+    ["ba", "conditionnel en ば", "ば-conditional"],
+    ["imperatif", "impératif (brusque)", "imperative (blunt)"]
+];
+function carteVerbeJaponais(card, exampleTr){
+    const ech = s => String(s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    const f = card.formesJa || {};
+    const ligne = ([cle, fr, en]) => {
+        const x = f[cle];
+        if(!x || !x.kanji) return "";
+        const kana = x.kana && x.kana !== x.kanji ? ` <span class="lj-kana">(${ech(x.kana)})</span>` : "";
+        return `<div class="forme-ja"><span lang="ja">${ech(x.kanji)}</span>${kana}${sentenceSpeakBtnHtml(x.kana || x.kanji, "de")}<br><small>${ech(libJa(fr, en))}</small></div>`;
+    };
+    const polies = FORMES_JA_POLIES.map(ligne).join("");
+    const simples = FORMES_JA_SIMPLES.map(ligne).join("");
+    const ex = card.exemple
+        ? `<div class="verb-sep"></div><span lang="ja">${ech(card.exemple)}</span>${sentenceSpeakBtnHtml(card.exemple, "de")}${exampleTr ? `<br>(${ech(exampleTr)})` : ""}`
+        : "";
+    const core = `<div class="verb-core">${polies}${ex}</div>`;
+    return simples
+        ? `${core}<button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${simples}</div>`
+        : core;
+}
 
 // LA GARDE DE L'ESSAI JAPONAIS. Tant que le japonais n'a pas ete relu par un
 // natif, seul l'admin l'ouvre : un autre compte arrive en allemand, et la
@@ -28941,7 +29091,10 @@ async function loadVerbeJson() {
             const arr = data[lvl] || [];
             arr.forEach(v => {
                 words.push({
-                    infinitif: v.infinitif || "",
+                    infinitif: v.infinitif || v.mot || "",
+                    // Le japonais : lecture et furigana, puis les formes calculees
+                    // par japonais/conjugaison (masu, te, nai...).
+                    ja: lectureJaponaise(v), formesJa: v.formes || null,
                     traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "", traduction_uk: v.traduction_uk || "", traduction_fa: v.traduction_fa || "", traduction_pt: v.traduction_pt || "", traduction_ar: v.traduction_ar || "", traduction_pl: v.traduction_pl || "", traduction_ru: v.traduction_ru || "",
                     praesens: v.praesens || {},
                     exemple: phraseVariante(v.exemple || "", phrasesLatam), exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "", exemple_uk: v.exemple_uk || "", exemple_fa: v.exemple_fa || "", exemple_pt: v.exemple_pt || "", exemple_ar: v.exemple_ar || "", exemple_pl: v.exemple_pl || "", exemple_ru: v.exemple_ru || "",
@@ -29504,6 +29657,10 @@ async function loadThemesJson() {
                 ];
             });
             if(variantesEspagnol) words.forEach(w => appliquerVarianteEspagnol(w, variantesEspagnol, phrasesLatam));
+            // Le japonais : la lecture, le romaji et les furigana suivent la
+            // carte en propriete nommee, comme le feminin des adjectifs (v942) --
+            // les rangs sont pleins et lus partout.
+            if(LANGUE_APPRISE === "ja") words.forEach((w, i) => { w.ja = lectureJaponaise(rawWords[i]); });
 
             const rawVerben = t.verben || [];
             // Les verbes des chapitres VHS suivent le même contrat que verbe.json
@@ -41851,6 +42008,8 @@ function loadFlashcard(){
             const perfSpeakBtn = sentenceSpeakBtnHtml(perfektTr, "en");
             const perfHtml = perfektTr ? `<div class="verb-sep"></div>${perfektTr}${perfSpeakBtn}<br>&rarr; ${card.perfekt || ""}` : "";
             verbDetailsEl.innerHTML = `<div class="verb-core"><strong>${translatedWord}</strong><div class="verb-sep"></div>${exHtml}${perfHtml}</div>`;
+        } else if(LANGUE_APPRISE === "ja"){
+            verbDetailsEl.innerHTML = carteVerbeJaponais(card, exampleTr);
         } else if(!card.praesens){
             // Verbe de chapitre VHS pas encore enrichi (conjugaison et temps à
             // venir) : on n'affiche que la phrase d'exemple, plutôt qu'un tableau
@@ -42327,6 +42486,9 @@ function loadFlashcard(){
     // Remplie ici, pour TOUS les modes a la fois, et non dans les huit branches
     // de rendu -- meme raison que la marque d'usage juste au-dessus.
     remplirVoisins(card, flashcardMode);
+
+    // Le japonais, par-dessus le rendu commun : furigana, lecture, romaji.
+    if(LANGUE_APPRISE === "ja"){ try{ habillerCarteJaponaise(card); }catch(e){} }
 
     // Le trophee suit l'etat du mot : il est la des la maitrise, et encore la
     // quand la carte revient se faire verifier seize jours apres. La classe de
@@ -46063,6 +46225,9 @@ function retourDepuisAideExamen(){
 // la sonde repondrait sur le mauvais.
 function texteCarteAPrononcer(){
     const backWordEl = document.getElementById("flashBackWord");
+    // Le japonais dit la LECTURE (kana), pas le mot : avec ses furigana, le
+    // texte de l'element serait « 兄あに », et une voix lit mal un kanji seul.
+    if(backWordEl && backWordEl.dataset.dire) return backWordEl.dataset.dire;
     let texte = backWordEl ? backWordEl.textContent : "";
     if(!texte) return "";
     // Pour les noms allemands, inclure l'article (der/die/das) dans la
@@ -51372,6 +51537,8 @@ function ecrirePremiersPas(v){
 }
 function premiersPasEnCours(){
     try{
+        // Le japonais n'a pas encore ses Premiers pas (ils seront les kana).
+        if(LANGUE_APPRISE === "ja") return false;
         if(!essaiActif("premiers_pas")) return false;
         const s = lirePremiersPas();
         if(s.fini) return false;
@@ -52969,6 +53136,11 @@ function majAujourdhuiScene(on){
     el.appendChild(txt);
 }
 
+// Le japonais (essai) : une seance de MOTS seulement. Les scenes, les escales
+// d'A1 voyage, les feuilles de conjugaison, les reperes, le son du jour et les
+// cartes-phrases n'existent qu'en allemand et en espagnol ; inseres ici, ils
+// montreraient de l'allemand. Chacun s'ouvrira quand il aura son japonais.
+function seanceJaponaise(){ return LANGUE_APPRISE === "ja"; }
 async function ouvrirSeanceDuJour(sansScene){
     // v828 : en Premiers pas, la porte des mots mene au parcours des 50 mots.
     if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }
@@ -53001,7 +53173,7 @@ async function ouvrirSeanceDuJour(sansScene){
         tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)));
     });
     // v829 : les flashcards de Premiers pas deja vues reviennent en revision.
-    try{ if(essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, cartesPremiersPasVues()); } }catch(e){}
+    try{ if(!seanceJaponaise() && essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, cartesPremiersPasVues()); } }catch(e){}
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
     let av = null;
@@ -53011,13 +53183,13 @@ async function ouvrirSeanceDuJour(sansScene){
     let aRevoir = null;
     try{ aRevoir = cartesARevoir(pool, niveau); }catch(e){ aRevoir = null; }
     if(!aRevoir){
-        try{ if(niveau === "A1") activerA1Voyage(); }catch(e){}
-        try{ av = await preparerA1Voyage(pool); }catch(e){ av = null; }
+        try{ if(niveau === "A1" && !seanceJaponaise()) activerA1Voyage(); }catch(e){}
+        try{ av = seanceJaponaise() ? null : await preparerA1Voyage(pool); }catch(e){ av = null; }
     }
     // v867 (essai feuilles_conj) : la feuille de conjugaison du jour, a l'A2 et
     // au B1 -- avant la grammaire, dont elle choisit la serie de conjugaison.
     let fc = null;
-    try{ fc = await preparerFeuille(niveau); }catch(e){ fc = null; }
+    try{ fc = seanceJaponaise() ? null : await preparerFeuille(niveau); }catch(e){ fc = null; }
     let seance = aRevoir ? cartesDeSeanceRevoir(tout, aRevoir) : cartesDeSeance(tout, av ? av.pool : pool);
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
     // v902 (Jacques : « au premier clic il y a encore un petit delai, puis plus
@@ -53027,7 +53199,7 @@ async function ouvrirSeanceDuJour(sansScene){
     // la seance s'ouvre tout de suite et les phrases se glissent plus loin des
     // qu'il arrive (phrasesApres, plus bas).
     let phrasesApres = false;
-    if(essaiActif("phrases")){
+    if(!seanceJaponaise() && essaiActif("phrases")){
         if(JEUX_EXOS){
             try{ await prechargerGrammaireSeance(); }catch(e){}
             try{ seance = insererCartesPhrases(seance, tout); }catch(e){}
@@ -53035,13 +53207,13 @@ async function ouvrirSeanceDuJour(sansScene){
     }
     // v831 : la scene du jour, une fois, au milieu (essai « scene_arret »).
     // v862 : pendant les escales, la scene de l'escale.
-    try{ seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
+    try{ if(!seanceJaponaise()) seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
     try{ if(av) seance = insererA1Voyage(seance, av); }catch(e){}
     try{ if(fc && seance.length) seance = insererFeuille(seance, fc, tout); }catch(e){}
     // v879 : les reperes (jours, mois, nombres), tot dans l'A1.
-    try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
+    try{ const rp = seanceJaponaise() ? null : await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
     // v880 : le son du jour, une fois par jour, au milieu.
-    try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
+    try{ const sd = seanceJaponaise() ? null : await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
     try{ seance = premiereCarteFacile(seance); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
