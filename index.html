@@ -6750,6 +6750,9 @@ body[data-theme="dark"] .cp-astuce{background:#2a2418; color:#e9d6b0;}
 .av-date{font:inherit; font-size:15px; padding:8px 9px; border:1.5px solid #e3dccf; border-radius:10px; background:#fff; color:inherit; min-width:0;}
 /* v955 : l'heure du rappel de l'app installee (reglages, #rappelHeureBloc). */
 .rappel-heure{font:inherit; font-size:18px; padding:6px 10px; border:1.5px solid #e3dccf; border-radius:10px; background:#fff; color:#1C2430;}
+/* v967 : « ✓ disponible hors ligne » sous la pilule (app installee seulement). */
+.pa-horsligne{display:inline-block; font-size:11.5px; font-weight:700; color:#2e7d4f; white-space:nowrap;}
+body[data-theme="dark"] .pa-horsligne{color:#7fd3a0;}
 body[data-theme="dark"] .rappel-heure{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.16); color:#eef1f5; color-scheme:dark;}
 .av-suite{background:linear-gradient(135deg,#2F5D8A,#1C2430); color:#fff; border-radius:18px; padding:14px; margin:14px 0 4px; text-align:left;}
 .av-suite-k{font-size:11px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; color:#E8A23A;}
@@ -8128,6 +8131,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                     <div class="pa-sous">
                         <button type="button" class="pa-niv" id="spNiv" onclick="basculerListeSeance(event)">A1</button>
                         <button type="button" class="pa-sens" id="spSens" onclick="basculerListeSeance(event)"></button>
+                        <span class="pa-horsligne hidden" id="spHorsLigne" data-i18n="hl_dispo">✓ disponible hors ligne</span>
                     </div>
                 </div>
                 <div class="pa-anneau" id="spAnneau" role="button" tabindex="0" onclick="basculerObjectifSeance(event)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); basculerObjectifSeance(event);}" data-i18n-aria-label="settings_daily_goal" aria-label="Objectif quotidien"><b id="spFait">0</b><small id="spSur">/30</small><span id="spFois" class="pa-fois hidden"></span></div>
@@ -8702,7 +8706,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v966</span>
+    <span class="subtitle-version">v967</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -13105,6 +13109,15 @@ const I18N = {
         vibrations_titre: "Vibrations",
         vibrations_desc: "Une courte vibration à chaque palier de ton objectif du jour : +30, +60, +90…",
         vibrations_bouton: "Vibrer aux paliers de l'objectif",
+        hl_titre: "Pas de réseau — ta séance est prête hors ligne",
+        hl_sous: "{n} cartes, avec leurs voix. Tes réponses compteront au retour du réseau.",
+        hl_commencer: "COMMENCER",
+        hl_en_ligne: "Réessayer en ligne",
+        hl_fin_titre: "Séance terminée",
+        hl_fin_texte: "La suite au retour du réseau. Tes réponses seront comptées à ce moment-là.",
+        hl_recommencer: "REVOIR LES CARTES",
+        hl_encore_sous: "revient dans quelques cartes",
+        hl_dispo: "✓ disponible hors ligne",
         notif_error_prefix: "Erreur : ",
         settings_invite_title: "Inviter un ami",
         settings_invite_desc: "Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'allemand ou l'anglais.",
@@ -14564,6 +14577,15 @@ const I18N = {
         vibrations_titre: "Vibrations",
         vibrations_desc: "A short vibration at each milestone of your daily goal: +30, +60, +90…",
         vibrations_bouton: "Vibrate at goal milestones",
+        hl_titre: "No network — your session is ready offline",
+        hl_sous: "{n} cards, with their audio. Your answers will count once you're back online.",
+        hl_commencer: "START",
+        hl_en_ligne: "Try again online",
+        hl_fin_titre: "Session finished",
+        hl_fin_texte: "More when you're back online. Your answers will be counted then.",
+        hl_recommencer: "GO THROUGH THE CARDS AGAIN",
+        hl_encore_sous: "comes back in a few cards",
+        hl_dispo: "✓ available offline",
         notif_error_prefix: "Error: ",
         settings_invite_title: "Invite a friend",
         settings_invite_desc: "Learning with Wortando? Share it with someone who'd like to learn German or English.",
@@ -16027,6 +16049,15 @@ const I18N = {
         vibrations_titre: "Titreşim",
         vibrations_desc: "Günlük hedefinin her aşamasında kısa bir titreşim: +30, +60, +90…",
         vibrations_bouton: "Hedef aşamalarında titre",
+        hl_titre: "Ağ yok — çalışman çevrimdışı hazır",
+        hl_sous: "{n} kart, sesleriyle. Cevapların bağlantı geri geldiğinde sayılacak.",
+        hl_commencer: "BAŞLA",
+        hl_en_ligne: "Çevrimiçi tekrar dene",
+        hl_fin_titre: "Çalışma bitti",
+        hl_fin_texte: "Devamı bağlantı geri gelince. Cevapların o zaman sayılacak.",
+        hl_recommencer: "KARTLARI YENİDEN GÖZDEN GEÇİR",
+        hl_encore_sous: "birkaç kart sonra geri gelir",
+        hl_dispo: "✓ çevrimdışı kullanılabilir",
         notif_error_prefix: "Hata: ",
         settings_invite_title: "Bir arkadaşını davet et",
         settings_invite_desc: "Wortando ile mi öğreniyorsun? Almanca ya da İngilizce öğrenmek isteyen biriyle paylaş.",
@@ -16934,6 +16965,15 @@ const I18N = {
         vibrations_titre: "Вібрація",
         vibrations_desc: "Коротка вібрація на кожному етапі денної цілі: +30, +60, +90…",
         vibrations_bouton: "Вібрувати на етапах цілі",
+        hl_titre: "Немає мережі — твоє заняття готове офлайн",
+        hl_sous: "{n} карток із озвученням. Відповіді зарахуються, коли мережа повернеться.",
+        hl_commencer: "ПОЧАТИ",
+        hl_en_ligne: "Спробувати онлайн",
+        hl_fin_titre: "Заняття завершено",
+        hl_fin_texte: "Далі — коли повернеться мережа. Тоді й зарахуються твої відповіді.",
+        hl_recommencer: "ПОВТОРИТИ КАРТКИ",
+        hl_encore_sous: "повернеться за кілька карток",
+        hl_dispo: "✓ доступно офлайн",
         notif_error_prefix: "Помилка: ",
         invite_share_text: "Я вчу німецьку (та англійську) з Wortando — попроси в мене код запрошення, щоб спробувати",
         invite_share_copied: "Повідомлення скопійовано — встав його там, де хочеш надіслати!",
@@ -18756,6 +18796,15 @@ const I18N = {
         vibrations_titre: "لرزش",
         vibrations_desc: "لرزشی کوتاه در هر مرحلهٔ هدف امروزت: +30، +60، +90…",
         vibrations_bouton: "لرزش در مرحله‌های هدف",
+        hl_titre: "اینترنت نیست — جلسهٔ امروزت آفلاین آماده است",
+        hl_sous: "{n} کارت، همراه با صدا. پاسخ‌هایت وقتی اینترنت برگردد حساب می‌شوند.",
+        hl_commencer: "شروع",
+        hl_en_ligne: "دوباره آنلاین امتحان کن",
+        hl_fin_titre: "جلسه تمام شد",
+        hl_fin_texte: "ادامه وقتی اینترنت برگردد. پاسخ‌هایت آن موقع حساب می‌شوند.",
+        hl_recommencer: "دوباره مرور کارت‌ها",
+        hl_encore_sous: "چند کارت بعد برمی‌گردد",
+        hl_dispo: "✓ آفلاین در دسترس است",
         notif_error_prefix: "خطا: ",
         settings_invite_title: "دعوت از یک دوست",
         settings_invite_btn: "هم‌رسانی Wortando",
@@ -20523,6 +20572,15 @@ const I18N = {
         vibrations_titre: "الاهتزاز",
         vibrations_desc: "اهتزاز قصير عند كل مرحلة من هدف اليوم: +30، +60، +90…",
         vibrations_bouton: "الاهتزاز عند مراحل الهدف",
+        hl_titre: "لا توجد شبكة — جلستك جاهزة دون اتصال",
+        hl_sous: "{n} بطاقة مع أصواتها. ستُحتسب إجاباتك عند عودة الشبكة.",
+        hl_commencer: "ابدأ",
+        hl_en_ligne: "حاول مجددًا عبر الإنترنت",
+        hl_fin_titre: "انتهت الجلسة",
+        hl_fin_texte: "البقية عند عودة الشبكة. ستُحتسب إجاباتك حينها.",
+        hl_recommencer: "راجع البطاقات مجددًا",
+        hl_encore_sous: "تعود بعد بضع بطاقات",
+        hl_dispo: "✓ متاحة دون اتصال",
         notif_error_prefix: "خطأ: ",
         settings_invite_title: "ادعُ صديقاً",
         settings_invite_desc: "أتتعلّم مع Wortando؟ شاركه مع من يودّ تعلّم الألمانية أو الإنجليزية.",
@@ -22038,6 +22096,15 @@ const I18N = {
         vibrations_titre: "Vibração",
         vibrations_desc: "Uma vibração curta a cada etapa da sua meta do dia: +30, +60, +90…",
         vibrations_bouton: "Vibrar nas etapas da meta",
+        hl_titre: "Sem rede — sua sessão está pronta offline",
+        hl_sous: "{n} cartões, com os áudios. Suas respostas vão contar quando a rede voltar.",
+        hl_commencer: "COMEÇAR",
+        hl_en_ligne: "Tentar de novo online",
+        hl_fin_titre: "Sessão concluída",
+        hl_fin_texte: "O resto quando a rede voltar. Suas respostas serão contadas nesse momento.",
+        hl_recommencer: "REVER OS CARTÕES",
+        hl_encore_sous: "volta em alguns cartões",
+        hl_dispo: "✓ disponível offline",
         notif_error_prefix: "Erro: ",
         settings_invite_title: "Convidar um amigo",
         settings_invite_desc: "Você aprende com a Wortando? Compartilhe com alguém que queira aprender alemão ou inglês.",
@@ -23563,6 +23630,15 @@ const I18N = {
         vibrations_titre: "Wibracje",
         vibrations_desc: "Krótka wibracja przy każdym progu dziennego celu: +30, +60, +90…",
         vibrations_bouton: "Wibruj przy progach celu",
+        hl_titre: "Brak sieci — twoja sesja jest gotowa offline",
+        hl_sous: "{n} kart z nagraniami. Odpowiedzi zostaną policzone, gdy sieć wróci.",
+        hl_commencer: "ZACZNIJ",
+        hl_en_ligne: "Spróbuj ponownie online",
+        hl_fin_titre: "Sesja zakończona",
+        hl_fin_texte: "Ciąg dalszy, gdy wróci sieć. Wtedy policzymy twoje odpowiedzi.",
+        hl_recommencer: "PRZEJRZYJ KARTY JESZCZE RAZ",
+        hl_encore_sous: "wróci za kilka kart",
+        hl_dispo: "✓ dostępne offline",
         notif_error_prefix: "Błąd: ",
         settings_invite_title: "Zaproś znajomego",
         settings_invite_desc: "Uczysz się z Wortando? Poleć je komuś, kto chciałby się uczyć niemieckiego albo angielskiego.",
@@ -25089,6 +25165,15 @@ const I18N = {
         vibrations_titre: "Вибрация",
         vibrations_desc: "Короткая вибрация на каждом этапе цели дня: +30, +60, +90…",
         vibrations_bouton: "Вибрировать на этапах цели",
+        hl_titre: "Нет сети — твоё занятие готово офлайн",
+        hl_sous: "{n} карточек с озвучкой. Ответы засчитаются, когда вернётся сеть.",
+        hl_commencer: "НАЧАТЬ",
+        hl_en_ligne: "Попробовать онлайн",
+        hl_fin_titre: "Занятие окончено",
+        hl_fin_texte: "Продолжение — когда вернётся сеть. Тогда и засчитаются твои ответы.",
+        hl_recommencer: "ПОВТОРИТЬ КАРТОЧКИ",
+        hl_encore_sous: "вернётся через несколько карточек",
+        hl_dispo: "✓ доступно офлайн",
         notif_error_prefix: "Ошибка:",
         settings_invite_title: "Пригласить друга",
         settings_invite_desc: "Учишься с Wortando? Поделись им с тем, кто хотел бы выучить немецкий или английский.",
@@ -29248,6 +29333,528 @@ function renderVibrationsSetting(){
     const on = vibrationsActives();
     b.textContent = (on ? "\u2713  " : "\u2014  ") + t("vibrations_bouton")
                   + (on ? "" : "  \u00b7  " + t("carte_dire_non"));
+}
+
+// ============ LA SEANCE HORS LIGNE DE L'APP INSTALLEE (v967) ============
+// Decide avec Jacques le 25-26 oct. 2026 (plan : wortando-ios,
+// revision-apple/PLAN-HORS-LIGNE.md ; « go », puis « on peut lancer [le
+// hors-]ligne pour tout le monde »). Trois morceaux, tous ici :
+//
+//   1. METTRE DE COTE (mettreSeanceDeCote). Quand le reseau est la, l'app
+//      installee range dans le dossier Cache du telephone (@capacitor/filesystem)
+//      la seance A VENIR : ses cartes (texte deja traduit dans la langue de
+//      l'interface), leurs voix, et le lecteur. Environ 3 Mo pour 50 cartes.
+//      On ecrit dans un dossier neuf, puis on remplace l'ancien d'un coup : un
+//      telechargement coupe laisse la seance d'avant intacte.
+//   2. LE LECTEUR (lecteurHorsLigne). Ouverte sans reseau, l'app affiche
+//      www/hors-ligne.html, figee dans l'app ; elle ne contient qu'une amorce
+//      qui ouvre hors-ligne/lecteur.html, ecrit ici. Le lecteur suit donc
+//      chaque push, comme le reste. Il joue les cartes en boucle (une carte
+//      ratee revient), et note chaque reponse dans un journal (dossier Data :
+//      c'est de la progression, elle ne doit pas disparaitre).
+//   3. RECOLLER (recollerHorsLigne). Au retour du reseau, APRES le
+//      rechargement de la progression du cloud (rien ne s'ecrase de ce qui a
+//      ete fait ailleurs) : par carte, la DERNIERE reponse seulement, une seule
+//      revision, sans monter plusieurs etapes -- la regle de revisionDeScene().
+//      La boucle fait pratiquer autant qu'on veut, elle ne fait pas avancer
+//      plus vite (Jacques : « ca les ferait pas avancer plus, mais ca lui
+//      permettrait de pratiquer »).
+//
+// ⚠️ RIEN DE CELA NE TOURNE SUR LE WEB : sans le module de fichiers,
+// pluginNatif("Filesystem") rend null et chaque fonction s'arrete a sa
+// premiere ligne. Une compilation d'avant le module (wortando-ios 9f9d205) se
+// comporte comme le web.
+// ⚠️ AUCUN SERVICE WORKER, AUCUN CACHE DU SITE (v872 et CLAUDE.md). Ce qu'on
+// met de cote, c'est une seance, pas le site : il n'y a rien a perimer.
+// ⚠️ LA COMPOSITION NE TOUCHE A RIEN. ouvrirSeanceDuJour() pose des marques
+// en composant (A1 voyage, phrases deja posees, son du jour, scene) ; la
+// lancer en arriere-plan changerait la prochaine seance en ligne. D'ou une
+// composition a part, faite de lectures seules : les echues (jusqu'a demain)
+// puis le neuf du niveau, comme cartesDeSeance(). Les phrases, les scenes et
+// les feuilles restent en ligne.
+// ⚠️ LES VOIX PASSENT PAR downloadFile, PAS PAR fetch() : Firebase Hosting ne
+// sert pas d'en-tete CORS, un fetch depuis wortando.com serait refuse. Le
+// telechargement natif n'y est pas soumis. (Marque « obsolete » par Capacitor
+// au profit de @capacitor/file-transfer, il reste dans la 8.1.4 figee par
+// wortando-ios.)
+const HL_CARTES = 50;                       // la seance + la reserve, decide avec Jacques
+const HL_DOSSIER = "hors-ligne";            // lu par l'amorce de www/hors-ligne.html
+const HL_DOSSIER_NEUF = "hors-ligne-neuf";
+const HL_JOURNAL = "hors-ligne-journal.json";
+const HL_CLE = "wortando_horsLigne";        // sans prefixe : un etat par appareil
+const HL_APPLIQUES_CLE = PREFIXE_STOCKAGE + "horsLigneAppliques";
+let horsLigneEnCours = false;
+
+function lireEtatHorsLigne(){
+    try{ return JSON.parse(localStorage.getItem(HL_CLE) || "null"); }catch(e){ return null; }
+}
+function uidCourant(){
+    const u = window.firebaseAuth && window.firebaseAuth.currentUser;
+    return u ? u.uid : null;
+}
+function horsLignePossible(){
+    return !!pluginNatif("Filesystem") && LANGUE_APPRISE !== "ja" && getLearningDirection() !== "en";
+}
+
+// Les echues jusqu'a DEMAIN (la seance A VENIR : celle d'aujourd'hui si elle
+// n'est pas faite, sinon la suite), puis le neuf. Un quart reserve au neuf,
+// comme en ligne ; le plafond du jour, sauf si l'objectif est deja atteint --
+// la seance servira alors demain, quand le plafond sera reparti de zero.
+function composerSeanceHorsLigne(){
+    const niveau = niveauSeance();
+    const complet = accesComplet();
+    const pool = complet ? paquetDuNiveau(niveau) : filtrerGratuit(paquetDuNiveau(niveau));
+    const tout = [];
+    NIVEAUX_CECR.forEach(n => {
+        tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)));
+    });
+    const total = Math.max(HL_CARTES, tailleSeance());
+    const demain = Date.now() + 86400000;
+    let atteint = false;
+    try{ atteint = getDailyActivityCount() >= getDailyGoalTarget(); }catch(e){}
+    const plafond = atteint ? PLAFOND_NEUFS : placeNeufsRestante();
+    const neufs = pool.filter(it => estNeuf(getWordState(it.themeId, it.index)));
+    const reserve = Math.min(Math.round(total * PART_NEUFS_RESERVEE), plafond, neufs.length);
+    const dues = tout.filter(it => {
+        const st = getWordState(it.themeId, it.index);
+        return !estNeuf(st) && !st.mastered && (st.due || 0) <= demain;
+    }).sort((a, b) => (getWordState(a.themeId, a.index).due || 0) - (getWordState(b.themeId, b.index).due || 0))
+      .slice(0, total - reserve);
+    const place = Math.max(0, Math.min(total - dues.length, plafond));
+    return dues.concat((kanaDabord(neufs) || ordonnerParFrequence(neufs)).slice(0, place));
+}
+
+// Une carte, en texte : les memes champs que loadFlashcard() lit, pour les
+// modes de la seance. Un mode qu'on ne sait pas montrer rend null : la carte
+// reste pour la seance en ligne.
+function carteHorsLigne(it){
+    const card = it && it.word;
+    if(!card) return null;
+    const mode = it.mode || "nomen";
+    let mot = "", art = "", pl = "", plDit = "", tr = "", ex = "", exTr = "";
+    const lignes = [];
+    if(mode === "nomen"){
+        mot = card[0] || "";
+        art = card[1] || "";
+        const montreFrancais = langueCarte(card, "nomen", "traduction") === "fr";
+        tr = (montreFrancais && card[9] ? card[9] : "") + texteCarte(card, "nomen", "traduction");
+        const forme = (card[2] || "").trim();
+        if(forme && forme !== "—" && forme !== "-"){
+            plDit = articlePluriel(card[1]) + forme;
+            pl = t("label_plural") + " " + plDit;
+        }
+        ex = card[5] || "";
+        exTr = texteCarte(card, "nomen", "exemple");
+    } else if(mode === "verben"){
+        mot = card.infinitif || "";
+        tr = texteTraduit(card, "traduction");
+        ex = card.exemple || "";
+        exTr = texteTraduit(card, "exemple");
+        if(LANGUE_APPRISE === "de" && card.perfekt){
+            lignes.push({ de: card.perfekt, tr: texteTraduit(card, "perfekt") });
+        }
+    } else if(mode === "adjektive"){
+        mot = card[0] || "";
+        tr = texteCarte(card, "adjektive", "traduction");
+        ex = card[2] || "";
+        exTr = texteCarte(card, "adjektive", "exemple");
+        if(card[15] && card[16]){ pl = card[15] + " · " + card[16]; plDit = mot + ", " + card[15] + ", " + card[16]; }
+    } else if(TYPE_CARTE_PAR_MODE[mode] === "funktionswort" || TYPE_CARTE_PAR_MODE[mode] === "expression"
+              || ["pronomen", "artikelwoerter"].includes(mode)){
+        const type = TYPE_CARTE_PAR_MODE[mode] || "funktionswort";
+        mot = card.feminin ? card[0] + ", " + card.feminin : (card[0] || "");
+        tr = texteCarte(card, type, "traduction");
+        ex = card[3] || "";
+        exTr = texteCarte(card, type, "exemple");
+    } else return null;
+    if(!mot || !tr) return null;
+    const dire = (art ? art + " " : "") + mot;
+    const son = (txt) => { const h = txt ? empreinteAudio(txt) : null; return (h && !audioAbsents.has(h)) ? h : null; };
+    const st = getWordState(it.themeId, it.index);
+    return {
+        k: it.themeId, i: it.index, m: mode,
+        recto: frontIsFrench ? tr : mot,
+        mot: mot, art: art, pl: pl, tr: frontIsFrench ? "" : tr, ex: ex, exTr: exTr, l: lignes,
+        neuf: !st.reviews && !st.mastered,
+        s: { mot: son(dire), pl: son(plDit), ex: son(ex) }
+    };
+}
+
+async function mettreSeanceDeCote(){
+    const F = pluginNatif("Filesystem");
+    if(!F || typeof F.downloadFile !== "function" || !horsLignePossible() || horsLigneEnCours) return;
+    const uid = uidCourant();
+    if(!uid || !AUDIO_BASE) return;
+    horsLigneEnCours = true;
+    try{
+        await chargerFrequence();
+        const cartes = composerSeanceHorsLigne().map(it => { try{ return carteHorsLigne(it); }catch(e){ return null; } }).filter(Boolean);
+        if(cartes.length < 5) return;
+        const sons = new Set();
+        cartes.forEach(c => Object.keys(c.s).forEach(k => { if(c.s[k]) sons.add(c.s[k]); }));
+        try{ await F.rmdir({ path: HL_DOSSIER_NEUF, directory: "CACHE", recursive: true }); }catch(e){}
+        await F.mkdir({ path: HL_DOSSIER_NEUF + "/sons", directory: "CACHE", recursive: true });
+        // Les voix d'hier qui servent encore sont copiees, pas retelechargees.
+        const anciens = new Set();
+        try{
+            const r = await F.readdir({ path: HL_DOSSIER + "/sons", directory: "CACHE" });
+            (r.files || []).forEach(f => anciens.add(typeof f === "string" ? f : f.name));
+        }catch(e){}
+        const manquants = new Set();
+        for(const h of sons){
+            const nom = h + ".mp3";
+            const vers = HL_DOSSIER_NEUF + "/sons/" + nom;
+            try{
+                if(anciens.has(nom)) await F.copy({ from: HL_DOSSIER + "/sons/" + nom, to: vers, directory: "CACHE", toDirectory: "CACHE" });
+                else await F.downloadFile({ url: AUDIO_BASE + nom + "?r=" + AUDIO_REVISION, path: vers, directory: "CACHE", recursive: true });
+            }catch(e){ manquants.add(h); }
+        }
+        cartes.forEach(c => Object.keys(c.s).forEach(k => { if(manquants.has(c.s[k])) c.s[k] = null; }));
+        const textes = {};
+        ["hl_titre", "hl_sous", "hl_commencer", "hl_en_ligne", "hl_fin_titre", "hl_fin_texte",
+         "hl_recommencer", "hl_encore_sous", "flash_tap_hint", "carte_nouveau_mot",
+         "review_again", "review_continuer", "back_button"].forEach(k => { textes[k] = t(k); });
+        const seance = {
+            v: 1, cree: Date.now(), uid: uid, langue: LANGUE_APPRISE,
+            rtl: ["fa", "ar"].includes(getUiLang()),
+            sombre: document.body.getAttribute("data-theme") === "dark",
+            cartes: cartes, textes: textes
+        };
+        await F.writeFile({ path: HL_DOSSIER_NEUF + "/seance.json", data: JSON.stringify(seance), directory: "CACHE", encoding: "utf8", recursive: true });
+        await F.writeFile({ path: HL_DOSSIER_NEUF + "/lecteur.html", data: htmlLecteurHorsLigne(), directory: "CACHE", encoding: "utf8", recursive: true });
+        try{ await F.rmdir({ path: HL_DOSSIER, directory: "CACHE", recursive: true }); }catch(e){}
+        await F.rename({ from: HL_DOSSIER_NEUF, to: HL_DOSSIER, directory: "CACHE", toDirectory: "CACHE" });
+        try{ localStorage.setItem(HL_CLE, JSON.stringify({ t: Date.now(), uid: uid, langue: LANGUE_APPRISE, n: cartes.length })); }catch(e){}
+        majMentionHorsLigne();
+    }catch(e){
+    }finally{
+        horsLigneEnCours = false;
+    }
+}
+
+// « ✓ disponible hors ligne » sous la pilule de la seance (decide avec
+// Jacques : pas de bulle, pas de visite). Seulement dans l'app installee, et
+// seulement si la seance rangee est celle de ce compte, dans cette langue.
+function majMentionHorsLigne(){
+    const el = document.getElementById("spHorsLigne");
+    if(!el) return;
+    const e = lireEtatHorsLigne();
+    const ok = horsLignePossible() && !!e && e.uid === uidCourant() && e.langue === LANGUE_APPRISE;
+    el.classList.toggle("hidden", !ok);
+}
+
+// Un jour fait hors ligne compte pour CE jour, meme recolle le lendemain :
+// la flamme et le calendrier des jours travailles. Sans gel ni recompense --
+// recordDailyActivity() les garde pour le jour present.
+function jourAvant(jour){
+    const p = jour.split("-").map(Number);
+    return getTodayStr(new Date(p[0], p[1] - 1, p[2] - 1));
+}
+function noterJourHorsLigne(jour){
+    const v = joursTravailles();
+    v.j = v.j || [];
+    if(!v.j.includes(jour)){
+        v.n += 1;
+        v.j = v.j.concat([jour]).sort().slice(-60);
+        if(!v.dernier || v.dernier < jour) v.dernier = jour;
+        try{ localStorage.setItem(directionScopedKey(JOURS_KEY), JSON.stringify(v)); }catch(e){}
+    }
+    const cleSerie = directionScopedKey(STREAK_KEY);
+    let s = null;
+    try{ s = JSON.parse(localStorage.getItem(cleSerie) || "null"); }catch(e){}
+    if(typeof s === "number") s = { count: s, lastActiveDate: null };
+    if(!s || typeof s !== "object") s = { count: 0, lastActiveDate: null };
+    if(s.lastActiveDate && s.lastActiveDate >= jour) return;
+    s.count = s.lastActiveDate === jourAvant(jour) ? (s.count || 0) + 1 : 1;
+    s.lastActiveDate = jour;
+    try{ localStorage.setItem(cleSerie, JSON.stringify(s)); }catch(e){}
+}
+
+// Un carreau de mosaique par carte, sans le « +1 » ni sa note : au
+// recollage, trente notes d'affilee a l'ouverture de l'app seraient un vacarme.
+function carreauSilencieux(){
+    const v = etatMosaique();
+    const jour = getTodayStr();
+    if(v.j !== jour){ v.j = jour; v.n = 0; }
+    if(v.n >= MOSAIQUE_PLAFOND || v.t > 0 || v.b) return;
+    v.n += 1; v.c += 1;
+    ecrireMosaique(v);
+}
+
+async function recollerHorsLigne(){
+    const F = pluginNatif("Filesystem");
+    const uid = uidCourant();
+    if(!F || !uid) return;
+    let entrees;
+    try{
+        const r = await F.readFile({ path: HL_JOURNAL, directory: "DATA", encoding: "utf8" });
+        entrees = (JSON.parse(r.data) || {}).entrees;
+    }catch(e){ return; }
+    if(!Array.isArray(entrees) || !entrees.length) return;
+    let appliques;
+    try{ appliques = new Set(JSON.parse(localStorage.getItem(HL_APPLIQUES_CLE) || "[]")); }catch(e){ appliques = new Set(); }
+    const miennes = entrees.filter(e => e && e.uid === uid && e.langue === LANGUE_APPRISE);
+    if(!miennes.length) return;
+    // La derniere reponse de chaque carte.
+    const derniere = new Map();
+    miennes.forEach(e => {
+        if(appliques.has(e.id)) return;
+        const k = e.k + ":" + e.i;
+        const avant = derniere.get(k);
+        if(!avant || e.t >= avant.t) derniere.set(k, e);
+    });
+    const aujourdhui = getTodayStr();
+    let poses = 0;
+    derniere.forEach(e => {
+        try{
+            const st = getWordState(e.k, e.i);
+            const neuf = estNeuf(st);
+            // Pas de montee avant l'echeance : la regle de revisionDeScene().
+            if(e.juste && !neuf && (st.due || 0) > Date.now()) return;
+            if(neuf) noterMotNeuf();
+            if(!e.juste){
+                st.srsHits = 0;
+                programmerEcheance(st, SRS_ENCORE_MINUTES);
+            } else {
+                const reussites = st.srsHits || 0;
+                st.srsHits = reussites + 1;
+                if(reussites === 0) programmerEcheance(st, SRS_PREMIERE_MINUTES);
+                else if(reussites + 1 >= SRS_PALIERS){ programmerMaitrise(st); try{ logMasteryEvent(); }catch(err){} }
+                else programmerEcheance(st, 1440);
+            }
+            setWordState(e.k, e.i, st);
+            const jour = getTodayStr(new Date(e.t));
+            if(jour === aujourdhui) recordDailyActivity();
+            else noterJourHorsLigne(jour);
+            carreauSilencieux();
+            poses++;
+        }catch(err){}
+    });
+    // Les numeros appliques gardent la trace d'abord : si la reecriture du
+    // journal echoue, rien ne comptera deux fois.
+    miennes.forEach(e => appliques.add(e.id));
+    try{ localStorage.setItem(HL_APPLIQUES_CLE, JSON.stringify(Array.from(appliques).slice(-2000))); }catch(e){}
+    const restantes = entrees.filter(e => !(e && e.uid === uid && e.langue === LANGUE_APPRISE));
+    try{
+        await F.writeFile({ path: HL_JOURNAL, data: JSON.stringify({ entrees: restantes }), directory: "DATA", encoding: "utf8" });
+    }catch(e){}
+    if(poses){ try{ majMosaiqueAccueil(); }catch(e){} try{ majPiluleSeance(); }catch(e){} }
+}
+
+// Apres le rechargement du cloud : recoller, puis ranger la seance suivante.
+// Sur le web, rend tout de suite (rien a faire).
+function horsLigneApresRestauration(){
+    if(!horsLignePossible()) return Promise.resolve();
+    return recollerHorsLigne().catch(() => {}).then(() => {
+        majMentionHorsLigne();
+        setTimeout(mettreSeanceDeCote, 15000);
+    });
+}
+document.addEventListener("visibilitychange", () => {
+    if(document.hidden || !horsLignePossible()) return;
+    const e = lireEtatHorsLigne();
+    if(!e || Date.now() - (e.t || 0) > 3600000) setTimeout(mettreSeanceDeCote, 3000);
+});
+
+// LE LECTEUR. Cette fonction n'est jamais appelee ici : son TEXTE est ecrit
+// dans lecteur.html (htmlLecteurHorsLigne) et tourne dans le cadre de la page
+// hors ligne de l'app. Elle ne doit donc rien emprunter a index.html : tout ce
+// qu'elle sait vient de seance.json, et elle atteint les modules natifs par
+// parent.Capacitor (voir le contrat dans www/hors-ligne.html, wortando-ios).
+// ⚠️ Du JavaScript a l'ancienne (var, function) : il tourne tel quel, sans
+// rien de ce que le reste du fichier suppose.
+function lecteurHorsLigne(){
+    var P = window.parent;
+    var C = P && P.Capacitor;
+    var F = C && C.Plugins && C.Plugins.Filesystem;
+    function dire(quoi){ try{ P.postMessage({ lecteur: quoi }, "*"); }catch(e){} }
+    if(!F){ dire("echec"); return; }
+    var S = null, file = [], courante = -1, retournee = false, journal = [], sons = {}, joue = null;
+    function $(id){ return document.getElementById(id); }
+    function txt(k){ return (S && S.textes && S.textes[k]) || ""; }
+    function ecran(id){
+        ["hlAccueil", "hlCarte", "hlFin"].forEach(function(x){ $(x).hidden = x !== id; });
+    }
+    function lireSon(h){
+        if(!h) return Promise.resolve(null);
+        if(sons[h]) return Promise.resolve(sons[h]);
+        return F.readFile({ path: "hors-ligne/sons/" + h + ".mp3", directory: "CACHE" }).then(function(r){
+            sons[h] = "data:audio/mpeg;base64," + r.data;
+            return sons[h];
+        }).catch(function(){ return null; });
+    }
+    function jouer(h){
+        lireSon(h).then(function(url){
+            if(!url) return;
+            try{ if(joue){ joue.pause(); } joue = new Audio(url); var p = joue.play(); if(p && p.catch) p.catch(function(){}); }catch(e){}
+        });
+    }
+    function bouton(h){
+        if(!h) return null;
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "hl-son"; b.textContent = "🔊";
+        b.addEventListener("click", function(ev){ ev.stopPropagation(); jouer(h); });
+        return b;
+    }
+    function ligne(classe, texte, h){
+        var d = document.createElement("div");
+        d.className = classe;
+        var s = document.createElement("span"); s.textContent = texte;
+        d.appendChild(s);
+        var b = bouton(h); if(b) d.appendChild(b);
+        return d;
+    }
+    function noter(c, juste){
+        journal.push({ id: S.uid.slice(0, 6) + "-" + Date.now() + "-" + Math.floor(Math.random() * 1e6),
+                       uid: S.uid, langue: S.langue, k: c.k, i: c.i, m: c.m, juste: juste, t: Date.now() });
+        F.writeFile({ path: "hors-ligne-journal.json", data: JSON.stringify({ entrees: journal }), directory: "DATA", encoding: "utf8" }).catch(function(){});
+    }
+    function montrer(){
+        if(!file.length){ ecran("hlFin"); return; }
+        courante = file[0];
+        retournee = false;
+        var c = S.cartes[courante];
+        $("hlCompteur").textContent = (S.cartes.length - file.length + 1) + " / " + S.cartes.length;
+        $("hlNouveau").hidden = !c.neuf;
+        $("hlRecto").textContent = c.recto;
+        $("hlAide").hidden = false;
+        var v = $("hlVerso"); v.innerHTML = ""; v.hidden = true;
+        $("hlJuger").hidden = true;
+        $("hlCarteBloc").className = "hl-carte" + (c.art ? " hl-" + c.art.toLowerCase() : "");
+        if(c.art){ var a = document.createElement("div"); a.className = "hl-art"; a.textContent = c.art; v.appendChild(a); }
+        v.appendChild(ligne("hl-mot", c.mot, c.s.mot));
+        if(c.pl) v.appendChild(ligne("hl-pl", c.pl, c.s.pl));
+        if(c.tr){ var tr = document.createElement("div"); tr.className = "hl-tr"; tr.textContent = c.tr; v.appendChild(tr); }
+        if(c.ex){
+            v.appendChild(ligne("hl-ex", c.ex, c.s.ex));
+            if(c.exTr){ var et = document.createElement("div"); et.className = "hl-extr"; et.textContent = c.exTr; v.appendChild(et); }
+        }
+        (c.l || []).forEach(function(x){
+            var d = document.createElement("div"); d.className = "hl-ex"; d.textContent = x.de; v.appendChild(d);
+            if(x.tr){ var e2 = document.createElement("div"); e2.className = "hl-extr"; e2.textContent = x.tr; v.appendChild(e2); }
+        });
+        ecran("hlCarte");
+        lireSon(c.s.mot); lireSon(c.s.pl); lireSon(c.s.ex);
+    }
+    function retourner(){
+        if(retournee) return;
+        retournee = true;
+        $("hlAide").hidden = true;
+        $("hlVerso").hidden = false;
+        $("hlJuger").hidden = false;
+        jouer(S.cartes[courante].s.mot);
+    }
+    function juger(juste){
+        var c = S.cartes[courante];
+        noter(c, juste);
+        file.shift();
+        // Ratee : elle revient trois cartes plus loin (SRS_CARTES_AVANT_RETOUR).
+        if(!juste) file.splice(Math.min(3, file.length), 0, courante);
+        montrer();
+    }
+    function commencer(){
+        file = S.cartes.map(function(c, i){ return i; });
+        montrer();
+    }
+    function enLigne(){ dire("en-ligne"); }
+    Promise.all([
+        F.readFile({ path: "hors-ligne/seance.json", directory: "CACHE", encoding: "utf8" }),
+        F.readFile({ path: "hors-ligne-journal.json", directory: "DATA", encoding: "utf8" }).catch(function(){ return null; })
+    ]).then(function(r){
+        S = JSON.parse(r[0].data);
+        if(!S || !S.cartes || !S.cartes.length || !S.uid) throw new Error("vide");
+        try{ journal = (JSON.parse(r[1].data) || {}).entrees || []; }catch(e){ journal = []; }
+        if(S.rtl) document.documentElement.dir = "rtl";
+        if(S.sombre) document.documentElement.setAttribute("data-theme", "dark");
+        $("hlTitre").textContent = txt("hl_titre");
+        $("hlSous").textContent = txt("hl_sous").split("{n}").join(String(S.cartes.length));
+        $("hlCommencer").textContent = txt("hl_commencer");
+        $("hlEnLigne").textContent = txt("hl_en_ligne");
+        $("hlEnLigne2").textContent = txt("hl_en_ligne");
+        $("hlRetour").textContent = txt("back_button");
+        $("hlAide").textContent = txt("flash_tap_hint");
+        $("hlNouveau").textContent = txt("carte_nouveau_mot");
+        $("hlEncoreTitre").textContent = txt("review_again");
+        $("hlEncoreSous").textContent = txt("hl_encore_sous");
+        $("hlContinuer").textContent = txt("review_continuer");
+        $("hlFinTitre").textContent = txt("hl_fin_titre");
+        $("hlFinTexte").textContent = txt("hl_fin_texte");
+        $("hlRecommencer").textContent = txt("hl_recommencer");
+        $("hlCommencer").addEventListener("click", commencer);
+        $("hlRecommencer").addEventListener("click", commencer);
+        $("hlEnLigne").addEventListener("click", enLigne);
+        $("hlEnLigne2").addEventListener("click", enLigne);
+        $("hlRetour").addEventListener("click", function(){ ecran("hlAccueil"); });
+        $("hlCarteBloc").addEventListener("click", retourner);
+        $("hlEncore").addEventListener("click", function(){ juger(false); });
+        $("hlContinuer").addEventListener("click", function(){ juger(true); });
+        ecran("hlAccueil");
+        dire("pret");
+    }).catch(function(){ dire("echec"); });
+}
+
+const HL_STYLE = [
+    ":root{--papier:#F2EEE2;--encre:#1C2430;--doux:#576177;--ambre:#B86E0A;--point:#E8A23A;--carte:#fff;--trait:#e3dccf;--der:#2f6fd6;--die:#d2486b;--das:#2e9a5c}",
+    "@media (prefers-color-scheme: dark){:root:not([data-theme=light]){--papier:#141a24;--encre:#eef1f5;--doux:#a9b2c0;--ambre:#E8A23A;--carte:#1f2735;--trait:#334055}}",
+    ":root[data-theme=dark]{--papier:#141a24;--encre:#eef1f5;--doux:#a9b2c0;--ambre:#E8A23A;--carte:#1f2735;--trait:#334055}",
+    "html,body{margin:0;min-height:100%;background:var(--papier);color:var(--encre);font:17px -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}",
+    "main{max-width:520px;margin:0 auto;padding:calc(env(safe-area-inset-top) + 18px) 16px calc(env(safe-area-inset-bottom) + 18px);box-sizing:border-box}",
+    "section{display:flex;flex-direction:column;gap:14px}section[hidden]{display:none}",
+    ".hl-centre{min-height:80vh;justify-content:center;text-align:center;align-items:center}",
+    ".hl-points{display:flex;gap:10px}.hl-points span{width:14px;height:14px;border-radius:50%;background:var(--point)}",
+    "h1{font-size:22px;margin:4px 0 0;max-width:24ch}p{margin:0;max-width:32ch;line-height:1.45;color:var(--doux)}",
+    "button{font:inherit;cursor:pointer}",
+    ".hl-primaire{font-weight:700;color:var(--papier);background:var(--encre);border:0;border-radius:12px;padding:13px 26px;min-width:200px}",
+    ".hl-lien{background:none;border:0;color:var(--doux);text-decoration:underline;padding:8px}",
+    ".hl-tete{display:flex;justify-content:space-between;align-items:center}",
+    ".hl-compteur{font-weight:700;color:var(--doux);font-size:15px}",
+    ".hl-carte{background:var(--carte);border:2px solid var(--trait);border-radius:20px;padding:22px 18px;min-height:300px;display:flex;flex-direction:column;justify-content:center;gap:10px;text-align:center}",
+    ".hl-carte.hl-der,.hl-carte.hl-el{border-color:var(--der)}.hl-carte.hl-die,.hl-carte.hl-la{border-color:var(--die)}.hl-carte.hl-das{border-color:var(--das)}",
+    ".hl-nouveau{align-self:center;font-size:12px;font-weight:800;letter-spacing:.04em;color:var(--ambre);text-transform:uppercase}.hl-nouveau[hidden]{display:none}",
+    ".hl-recto{font-size:28px;font-weight:800}.hl-aide{font-size:14px;color:var(--doux)}.hl-aide[hidden]{display:none}",
+    "#hlVerso{display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--trait);padding-top:12px}#hlVerso[hidden]{display:none}",
+    ".hl-art{font-weight:800;color:var(--doux)}.hl-mot{font-size:26px;font-weight:800}",
+    ".hl-mot,.hl-pl,.hl-ex{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}",
+    ".hl-pl{color:var(--doux)}.hl-tr{font-weight:700}.hl-ex{font-style:italic}.hl-extr{font-size:15px;color:var(--doux)}",
+    ".hl-son{border:0;background:none;font-size:20px;padding:4px;line-height:1}",
+    ".hl-juger{display:flex;gap:10px}.hl-juger[hidden]{display:none}",
+    ".hl-juger button{flex:1;border-radius:14px;padding:12px 8px;font-weight:700;border:2px solid var(--trait);background:var(--carte);color:var(--encre)}",
+    ".hl-juger small{display:block;font-weight:500;font-size:12px;color:var(--doux);margin-top:2px}",
+    "#hlContinuer{background:var(--encre);color:var(--papier);border-color:var(--encre)}"
+].join("\n");
+
+function htmlLecteurHorsLigne(){
+    return "<!doctype html><html><head><meta charset=\"utf-8\">"
+        + "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1,viewport-fit=cover\">"
+        // « <!" + "-- » coupe : dans un <script>, « <!-- » change la facon dont
+        // le navigateur cherche la fin du script.
+        + "<!" + "-- wortando-lecteur-hors-ligne v" + APP_VERSION + " --" + ">"
+        + "<style>" + HL_STYLE + "</style></head><body><main>"
+        + "<section id=\"hlAccueil\" class=\"hl-centre\">"
+        +   "<div class=\"hl-points\" aria-hidden=\"true\"><span></span><span></span></div>"
+        +   "<h1 id=\"hlTitre\"></h1><p id=\"hlSous\"></p>"
+        +   "<button type=\"button\" class=\"hl-primaire\" id=\"hlCommencer\"></button>"
+        +   "<button type=\"button\" class=\"hl-lien\" id=\"hlEnLigne\"></button>"
+        + "</section>"
+        + "<section id=\"hlCarte\" hidden>"
+        +   "<div class=\"hl-tete\"><button type=\"button\" class=\"hl-lien\" id=\"hlRetour\"></button><span class=\"hl-compteur\" id=\"hlCompteur\"></span></div>"
+        +   "<div class=\"hl-carte\" id=\"hlCarteBloc\" role=\"button\" tabindex=\"0\">"
+        +     "<div class=\"hl-nouveau\" id=\"hlNouveau\" hidden></div>"
+        +     "<div class=\"hl-recto\" id=\"hlRecto\"></div><div class=\"hl-aide\" id=\"hlAide\"></div>"
+        +     "<div id=\"hlVerso\" hidden></div>"
+        +   "</div>"
+        +   "<div class=\"hl-juger\" id=\"hlJuger\" hidden>"
+        +     "<button type=\"button\" id=\"hlEncore\"><span id=\"hlEncoreTitre\"></span><small id=\"hlEncoreSous\"></small></button>"
+        +     "<button type=\"button\" id=\"hlContinuer\"></button>"
+        +   "</div>"
+        + "</section>"
+        + "<section id=\"hlFin\" class=\"hl-centre\" hidden>"
+        +   "<div class=\"hl-points\" aria-hidden=\"true\"><span></span><span></span></div>"
+        +   "<h1 id=\"hlFinTitre\"></h1><p id=\"hlFinTexte\"></p>"
+        +   "<button type=\"button\" class=\"hl-primaire\" id=\"hlRecommencer\"></button>"
+        +   "<button type=\"button\" class=\"hl-lien\" id=\"hlEnLigne2\"></button>"
+        + "</section>"
+        + "</main><scr" + "ipt>(" + lecteurHorsLigne.toString() + ")();</scr" + "ipt></body></html>";
 }
 
 // Intégration de la catégorie verbe liée à verbe.json (structure par niveau A1/A2/B1/B2 ; niveaux ajoutés au fur et à mesure)
@@ -33663,7 +34270,11 @@ window.onDeutschAiUserSignedIn = function(){
     // aussitot vers l'espagnol ne servirait a rien.
     accorderLangueAuCompte().catch(() => false).then(part => {
         if(part) return;
-        restoreProgressFromCloud().then(scheduleCloudSync);
+        // v967 : la seance faite hors ligne se recolle APRES le cloud (rien ne
+        // s'ecrase), avant la synchronisation. Sur le web, ne fait rien.
+        restoreProgressFromCloud()
+            .then(v => horsLigneApresRestauration().then(() => v, () => v))
+            .then(scheduleCloudSync);
     });
     loadVhsKapitelAccessFlag();
 };
@@ -44925,7 +45536,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 966;
+const APP_VERSION = 967;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -55650,6 +56261,8 @@ function triggerDailyGoalCelebration(multiple){
     if(rappelNatif()) programmerRappels();
     // v957 : le rappel propose une fois, apres la fete (voir proposerRappel).
     setTimeout(proposerRappel, 5000);
+    // v967 : l'objectif atteint, la seance mise de cote devient celle de demain.
+    if(horsLignePossible()) setTimeout(mettreSeanceDeCote, 8000);
     // v947 (essai anneau_palier) : l'anneau dit le palier -- plus de « +30 ! ».
     let anneau = false;
     try{ anneau = essaiActif("anneau_palier") && essaiActif("carreau_partout"); }catch(e){}
