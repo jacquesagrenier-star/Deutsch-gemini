@@ -17,6 +17,10 @@ les autres sessions lui rendent compte et n'en lancent pas d'autres (voir CLAUDE
 | 2026-10-22 | Vidéo | L'humour toujours : de situation, et de langue entre le Mexique et l'Espagne | |
 | 2026-10-23 | Abonnement | 6,99 €/mois, 49,99 €/an (9,99 / 69,99 $ CA), essai 7 jours | « ok » |
 | 2026-10-24 | Série allemande | 05 = la Volkshochschule (Mark retrouve Anna) ; Pfand passe en 06 | |
+| 2026-10-25 | App iPhone (règle 4.2) | Rappel quotidien local, vibrations, notes au réviseur, puis la séance du jour hors ligne ; mettre en place tout ce qui est sans risque (fait : v955-v956, wortando-ios 8b0729d) | « on peut mettre en place tout ce qu'on peut faire sans risque » |
+| 2026-10-25 | Hors-ligne | À construire, plus seulement à évaluer : la séance à venir mise de côté côté natif, push = sortie, aucun service worker. Code seulement après validation du plan (wortando-ios/revision-apple/PLAN-HORS-LIGNE.md) | « go » |
+| 2026-10-25 | Hors-ligne | Pratique illimitée hors ligne ; au retour du réseau, une seule révision par carte (la dernière réponse), sans monter plusieurs étapes | « ça les ferait pas avancer plus, mais ça lui permettrait de pratiquer » |
+| 2026-10-25 | Vibrations | Seulement à chaque palier de l'objectif (+30, +60, +90…) ; ni fin de séance, ni « Bravo » de l'oral, ni bonnes réponses (fait en v956) | « chaque palier, comme au +30, +60, +90 » |
 | 2026-10-26 | Japonais | Même moteur que l'allemand et l'espagnol (fait en v961, essai admin) | « on avait déjà pris la décision » |
 | 2026-10-26 | Livres Amazon | En attente | « on peut attendre un peu » |
 | 2026-10-26 | Voisine d'es-02 | Décidé (n'est plus une question ouverte) | « on avait tout décidé » |
