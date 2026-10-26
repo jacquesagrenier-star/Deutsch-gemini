@@ -19,6 +19,15 @@ les autres sessions lui rendent compte et n'en lancent pas d'autres (voir CLAUDE
 | 2026-10-24 | Série allemande | 05 = la Volkshochschule (Mark retrouve Anna) ; Pfand passe en 06 | |
 | 2026-10-24 | Mon cours (espagnol) | Les pages de son manuel deviennent des cartes, rangée « Mon cours » réservée à l'admin (Chapitres VHS ouverts à l'espagnol, v942) ; les mots seulement, jamais les images du manuel | « oui » |
 | 2026-10-24 | Mon cours (espagnol) | Les mots du cours absents du programme y entrent pour tous (10 mots, v943) | « ce sont des mots qu'on devrait ajouter » |
+| 2026-10-24 | Premiers pas | Dans la pilule de la séance : « Ma séance du jour » en grand, l'étape en petit dessous, autant de place qu'en A1 (v942) | « Ma séance du jour en plus gros, Étape 1 sur 8 en plus petit » |
+| 2026-10-24 | Progression du vocabulaire | Une ligne 🌱 Premiers pas avant A1 ; la liste montre une ligne touchée, sans faire entrer dans Premiers pas ni en sortir (v942, v945) | « je ne relierais pas les deux » |
+| 2026-10-24 | Progression du vocabulaire | Le nombre de maîtrisés en chiffres sous la barre (v944) | « si on a de la place, oui » |
+| 2026-10-24 | Flamme (jours d'affilée) | Pilule en verre, à la teinte de « Ma séance du jour » (v944) | « la couleur de ma séance du jour, ça va bien ressortir » |
+| 2026-10-24 | Anneau de la séance | Objectif atteint : chiffre vert illuminé qui scintille ; pastille ×2, ×3… ; l'anneau repart de zéro après chaque palier (v944-v952) | « que l'anneau recommence à augmenter » |
+| 2026-10-24 | Palier dans les exercices | Essai admin « anneau au palier » : plus de « +30 ! », l'anneau en verre au coin de la mosaïque, 1-2-3 tours (trois au plus), ×N, étincelles dès ×2 (v947-v953) | « c'est bon, 3 tours » ; « à partir de 2, des étincelles » |
+| 2026-10-24 | Sons du palier | Kalimba pour les carreaux, une petite pièce par palier (×1, ×2, ×3), une mesure par tour ; note grave pour le +1 sans réussite (essai, v948-v951) | « le 2 » ; « une pièce pour un tour, une autre pour deux, une autre pour trois » |
+| 2026-10-24 | Épisodes | 04 « Schrippe » (9 langues) et es-04 « ¿Tú o usted? » publiés (v945) | « c'est très bien, on peut les publier » |
+| 2026-10-24 | Voix | Toujours ElevenLabs, pas de découpage maison des mots dans les phrases | « qu'on soit sûr et certain » |
 | 2026-10-25 | Son des confettis | La kalimba pour tous, à la place du carillon xylophone (v956) | « je trouve ça parfait » |
 | 2026-10-25 | Scènes | Chaque question d'une scène compte comme un exercice : objectif, série, épisodes (v957) | « au même titre que les autres » |
 | 2026-10-25 | Rappel quotidien | Proposé une fois dans l'app installée, au premier palier de l'objectif (v957) | « oui, propose le rappel » |
