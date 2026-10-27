@@ -8720,7 +8720,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v972</span>
+    <span class="subtitle-version">v973</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -28499,6 +28499,14 @@ function refreshDynamicUiLang(){
     try{ filterAndRenderThemes(); }catch(e){}
     try{ renderOrbPanel(); }catch(e){}
     try{ renderPraepQuickRef(); }catch(e){}
+    // v973 : L'ACCUEIL AUSSI. Ses lignes construites en JS -- « maîtrisé N · en
+    // cours N » sous la progression, « · Premiers pas » sur la pilule -- restaient
+    // dans l'ancienne langue apres un changement : les captures App Store en
+    // anglais, prises juste apres le passage du francais a l'anglais, les
+    // montraient en francais (27 oct. 2026).
+    try{ majCarteVocab(); }catch(e){}
+    try{ majTuileSeance(); }catch(e){}
+    try{ majPortesSeance(); }catch(e){}
     // Si une carte ou un exercice est affiché au moment du basculement, on le
     // recharge aussi (mot/traduction/question déjà vus dans l'ancienne langue).
     try{
@@ -45947,7 +45955,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 972;
+const APP_VERSION = 973;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
