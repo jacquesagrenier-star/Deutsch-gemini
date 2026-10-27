@@ -62,9 +62,19 @@ tournée dans ce lieu, dans **tous** les épisodes.
   pour la série.
 
 ### La Volkshochschule — épisode 05 « Zweiter Stock » (à tourner)
-- Lieu **récurrent** : le cours d'espagnol de Mark et d'Anna, chaque mardi soir. Maîtres à
-  fabriquer avant les plans : la façade le soir, l'escalier, le couloir du 3e, **la salle du
-  cours** (tableau blanc vide, tables, la chaise d'Anna et celle de Mark toujours aux mêmes places).
+- Lieu **récurrent** : le cours d'espagnol de Mark et d'Anna, chaque mardi soir. Carte complète
+  dans `video/episode-05-vhs/A-TOURNER.txt` (écrite le 26 oct.). Les maîtres sont à fabriquer,
+  vides, dans `video/episode-05-vhs/01-images/` :
+  - `vhs-fassade` : bâtiment des années 60, quatre niveaux de fenêtres éclairées, porte vitrée
+    au milieu, vélos à GAUCHE, réverbère à DROITE, sans aucune lettre ;
+  - `vhs-treppe` : marches de pierre grise, rampe de bois, soubassement **vert pâle**, lampes
+    rondes ; la porte vitrée (noire le soir) à GAUCHE, l'escalier qui monte vers la DROITE ;
+  - `vhs-flur` : le couloir du **premier** étage, portes de bois fermées **sans numéro** à
+    DROITE, la cage d'escalier ouverte à GAUCHE ;
+  - `kurs-raum` : **la salle**, vue du fond, coin gauche. Tableau blanc **vide** au fond, porte
+    dans le mur de DROITE près du tableau, deux rangées de tables de bois clair, fenêtres
+    noires du soir à GAUCHE. Anna au 2e rang côté fenêtres ; **la chaise de Mark à sa droite,
+    chaque semaine**. Aucun poster, aucune horloge.
 
 ### Les lieux d'un seul épisode (gardés pour mémoire)
 - L'aéroport (épisode 1), le Bürgeramt (épisode 2), la piste cyclable (épisode 3) : voir leurs
@@ -77,4 +87,12 @@ tournée dans ce lieu, dans **tous** les épisodes.
 - **Le bureau et l'ascenseur** — es-04 : `mad_oficina_manana.png` (fenêtres et toits de Madrid à
   DROITE, cuisine au fond à gauche, portes d'ascenseur au fond) et `mad_ascensor_vacio.png`
   (acier brossé, panneau de boutons à droite).
-- **La boutique d'Ana** — à venir (épisode 6) : à créer vide et à écrire ici.
+- **La boutique d'Ana** — es-05 « La tienda de Ana » (à tourner). Lieu **récurrent** ; carte
+  complète dans `video/episode-es-05-la-tienda/A-TOURNER.txt` (26 oct.). Maître à fabriquer,
+  vide : `tienda.png`. On la voit depuis l'entrée.
+  - À GAUCHE : un portant de bois le long du mur, avec trois vestes moutarde au bout, et la
+    cabine d'essayage au fond (rideau de lin écru), devant laquelle Mark se tient toujours.
+  - À DROITE : le comptoir de bois clair, Ana derrière, et des étagères de pulls pliés.
+  - La lumière : soleil bas par la vitrine, à DROITE.
+  - Dehors : `mad_calle_tienda.png`, une devanture **bleu foncé** (pas le vert de la
+    boulangerie de Berlin).

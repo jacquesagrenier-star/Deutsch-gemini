@@ -8715,7 +8715,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v968</span>
+    <span class="subtitle-version">v969</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -29409,8 +29409,9 @@ function renderVibrationsSetting(){
 // en composant (A1 voyage, phrases deja posees, son du jour, scene) ; la
 // lancer en arriere-plan changerait la prochaine seance en ligne. D'ou une
 // composition a part, faite de lectures seules : les echues (jusqu'a demain)
-// puis le neuf du niveau, comme cartesDeSeance(). Les phrases, les scenes et
-// les feuilles restent en ligne.
+// puis le neuf du niveau, comme cartesDeSeance(). v969 : les exercices de
+// phrases y sont glisses par la vraie insererCartesPhrases() (voir
+// preparerCartesHorsLigne). Les scenes et les feuilles restent en ligne.
 // ⚠️ LES VOIX PASSENT PAR downloadFile, PAS PAR fetch() : Firebase Hosting ne
 // sert pas d'en-tete CORS, un fetch depuis wortando.com serait refuse. Le
 // telechargement natif n'y est pas soumis. (Marque « obsolete » par Capacitor
@@ -29460,13 +29461,92 @@ function composerSeanceHorsLigne(){
     }).sort((a, b) => (getWordState(a.themeId, a.index).due || 0) - (getWordState(b.themeId, b.index).due || 0))
       .slice(0, total - reserve);
     const place = Math.max(0, Math.min(total - dues.length, plafond));
-    return dues.concat((kanaDabord(neufs) || ordonnerParFrequence(neufs)).slice(0, place));
+    return { mots: dues.concat((kanaDabord(neufs) || ordonnerParFrequence(neufs)).slice(0, place)), tout: tout };
+}
+
+// ⚠️ UN SEUL BLOC SANS ATTENTE (v969). insererCartesPhrases() et les
+// generateurs de leurres, de trous et d'intrus lisent currentCardsFull -- le
+// paquet de la seance EN LIGNE -- et la composition avance le cycle des formes
+// (CYCLE_FORMES_KEY). On pose le paquet hors ligne, on compose, puis on remet
+// les deux comme avant, dans le meme bloc synchrone : une seance en ligne
+// ouverte ne voit rien passer, et sa prochaine forme reste celle qu'elle
+// attendait. Une phrase qu'on ne sait pas preparer est simplement absente.
+function preparerCartesHorsLigne(){
+    const c = composerSeanceHorsLigne();
+    const avant = currentCardsFull;
+    let cycle = null;
+    try{ cycle = localStorage.getItem(CYCLE_FORMES_KEY); }catch(e){}
+    try{
+        currentCardsFull = c.tout;
+        let items = c.mots;
+        if(essaiActif("phrases")){ try{ items = insererCartesPhrases(c.mots, c.tout); }catch(e){ items = c.mots; } }
+        return items.map(it => { try{ return carteHorsLigne(it); }catch(e){ return null; } }).filter(Boolean);
+    } finally {
+        currentCardsFull = avant;
+        try{
+            if(cycle === null) localStorage.removeItem(CYCLE_FORMES_KEY);
+            else localStorage.setItem(CYCLE_FORMES_KEY, cycle);
+        }catch(e){}
+    }
+}
+
+// L'empreinte de la voix d'un texte, ou null si on la sait absente.
+function sonHorsLigne(txt){
+    const h = txt ? empreinteAudio(txt) : null;
+    return (h && !audioAbsents.has(h)) ? h : null;
+}
+
+// Un exercice de phrase, PREPARE d'avance : les options, le trou, les intrus
+// sont tires ici par les memes fonctions qu'en ligne ; le lecteur n'a plus
+// qu'a les montrer et a juger. Seules les formes qui n'ont besoin que du texte
+// et des voix ; la reconnaissance vocale n'est pas sure sans reseau, donc
+// « repeter » se fait sans verdict (il compte pour l'objectif, comme en ligne
+// quand la reconnaissance manque).
+function phraseHorsLigne(it){
+    const f = it.forme, c = it.cible;
+    const base = { m: "phrase", f: f, k: c ? c.themeId : null, i: c ? c.index : null };
+    if(f === "gram"){
+        const ex = it.ex;
+        if(!ex || !Array.isArray(ex.answers) || !ex.answers.length) return null;
+        const opts = valeurTraduite(ex, "options");
+        return Object.assign(base, {
+            q: ex.question || "", sens: texteTraduit(ex, "translation") || "", indice: texteTraduit(ex, "hint") || "",
+            options: Array.isArray(opts) && opts.length ? opts.map(String) : null,
+            rep: ex.answers.map(String), tol: !!ex.tolerant,
+            corr: valeurTraduite(ex, "correct") || ex.correct || "", expl: texteTraduit(ex, "explanation") || "",
+            g: (it.jeu || "") + ":" + (ex.question || "")
+        });
+    }
+    if(!c || !it.phrase || !it.phrase.de) return null;
+    const p = it.phrase;
+    const o = Object.assign(base, { de: p.de, sens: p.sens || "", s: { ph: sonHorsLigne(p.de) } });
+    if(f === "ecoute"){
+        o.options = melangerPhrase([p.sens].concat(leurresPhrase(it, 2)));
+        if(o.options.length < 2) return null;
+    } else if(f === "trou"){
+        if(typeof it.vise !== "number" || it.vise < 0) return null;
+        o.mots = p.mots; o.vise = it.vise;
+        o.options = choixDuTrou(it).map(x => ({ texte: x.texte, genre: x.genre || "", juste: !!x.juste }));
+        if(o.options.length < 2) return null;
+    } else if(f === "ordre"){
+        o.mots = p.mots; o.intrus = intrusOrdre(it);
+    } else if(f === "dictee"){
+        o.presque = true;
+    } else if(f === "dictee_mot"){
+        o.mot = motDictee(c);
+        o.nu = c.mode === "nomen" ? (c.word[0] || "") : "";
+        o.s.mot = sonHorsLigne(o.mot);
+        try{ o.sensMot = c.mode === "verben" ? texteTraduit(c.word, "traduction") : texteCarte(c.word, c.mode, "traduction"); }catch(e){}
+        if(!o.mot) return null;
+    } else if(f !== "parler") return null;
+    return o;
 }
 
 // Une carte, en texte : les memes champs que loadFlashcard() lit, pour les
 // modes de la seance. Un mode qu'on ne sait pas montrer rend null : la carte
 // reste pour la seance en ligne.
 function carteHorsLigne(it){
+    if(it && it.mode === "phrase") return phraseHorsLigne(it);
     const card = it && it.word;
     if(!card) return null;
     const mode = it.mode || "nomen";
@@ -29508,7 +29588,7 @@ function carteHorsLigne(it){
     } else return null;
     if(!mot || !tr) return null;
     const dire = (art ? art + " " : "") + mot;
-    const son = (txt) => { const h = txt ? empreinteAudio(txt) : null; return (h && !audioAbsents.has(h)) ? h : null; };
+    const son = sonHorsLigne;
     const st = getWordState(it.themeId, it.index);
     return {
         k: it.themeId, i: it.index, m: mode,
@@ -29527,10 +29607,13 @@ async function mettreSeanceDeCote(){
     horsLigneEnCours = true;
     try{
         await chargerFrequence();
-        const cartes = composerSeanceHorsLigne().map(it => { try{ return carteHorsLigne(it); }catch(e){ return null; } }).filter(Boolean);
+        // La grammaire de la seance, comme ouvrirSeanceDuJour() quand
+        // exercices.json est deja la (sinon, pas de question de grammaire).
+        if(typeof JEUX_EXOS !== "undefined" && JEUX_EXOS){ try{ await prechargerGrammaireSeance(); }catch(e){} }
+        const cartes = preparerCartesHorsLigne();
         if(cartes.length < 5) return;
         const sons = new Set();
-        cartes.forEach(c => Object.keys(c.s).forEach(k => { if(c.s[k]) sons.add(c.s[k]); }));
+        cartes.forEach(c => Object.keys(c.s || {}).forEach(k => { if(c.s[k]) sons.add(c.s[k]); }));   // la grammaire n'a pas de voix
         try{ await F.rmdir({ path: HL_DOSSIER_NEUF, directory: "CACHE", recursive: true }); }catch(e){}
         await F.mkdir({ path: HL_DOSSIER_NEUF + "/sons", directory: "CACHE", recursive: true });
         // Les voix d'hier qui servent encore sont copiees, pas retelechargees.
@@ -29548,11 +29631,13 @@ async function mettreSeanceDeCote(){
                 else await F.downloadFile({ url: AUDIO_BASE + nom + "?r=" + AUDIO_REVISION, path: vers, directory: "CACHE", recursive: true });
             }catch(e){ manquants.add(h); }
         }
-        cartes.forEach(c => Object.keys(c.s).forEach(k => { if(manquants.has(c.s[k])) c.s[k] = null; }));
+        cartes.forEach(c => Object.keys(c.s || {}).forEach(k => { if(manquants.has(c.s[k])) c.s[k] = null; }));
         const textes = {};
         ["hl_titre", "hl_sous", "hl_commencer", "hl_en_ligne", "hl_fin_titre", "hl_fin_texte",
          "hl_recommencer", "hl_encore_sous", "flash_tap_hint", "carte_nouveau_mot",
-         "review_again", "review_continuer", "back_button"].forEach(k => { textes[k] = t(k); });
+         "review_again", "review_continuer", "back_button",
+         "cp_q_ecoute", "cp_q_trou", "cp_q_ordre", "cp_q_dictee", "cp_q_parler", "cp_q_gram",
+         "cp_ecouter", "cp_bravo", "cp_reponse", "cp_presque", "verify_button", "setup_continue"].forEach(k => { textes[k] = t(k); });
         const seance = {
             v: 1, cree: Date.now(), uid: uid, langue: LANGUE_APPRISE,
             rtl: ["fa", "ar"].includes(getUiLang()),
@@ -29634,17 +29719,29 @@ async function recollerHorsLigne(){
     try{ appliques = new Set(JSON.parse(localStorage.getItem(HL_APPLIQUES_CLE) || "[]")); }catch(e){ appliques = new Set(); }
     const miennes = entrees.filter(e => e && e.uid === uid && e.langue === LANGUE_APPRISE);
     if(!miennes.length) return;
-    // La derniere reponse de chaque carte.
+    // La derniere reponse de chaque carte. v969 : « repeter » sans verdict
+    // (juste === null) et les questions de grammaire (sans mot) ne comptent que
+    // pour l'objectif, une fois chacune, comme en ligne (repondrePhrase).
     const derniere = new Map();
     miennes.forEach(e => {
         if(appliques.has(e.id)) return;
-        const k = e.k + ":" + e.i;
+        const k = e.juste === null ? "n:" + e.k + ":" + e.i
+                : (e.g || e.k === null || e.k === undefined) ? "g:" + (e.g || e.id)
+                : e.k + ":" + e.i;
         const avant = derniere.get(k);
         if(!avant || e.t >= avant.t) derniere.set(k, e);
     });
     const aujourdhui = getTodayStr();
     let poses = 0;
-    derniere.forEach(e => {
+    derniere.forEach((e, k) => {
+        if(k.charAt(1) === ":" && (k.charAt(0) === "n" || k.charAt(0) === "g")){
+            try{
+                const jour = getTodayStr(new Date(e.t));
+                if(jour === aujourdhui) recordDailyActivity();
+                else noterJourHorsLigne(jour);
+            }catch(err){}
+            return;
+        }
         try{
             const st = getWordState(e.k, e.i);
             const neuf = estNeuf(st);
@@ -29767,15 +29864,20 @@ function lecteurHorsLigne(){
     }
     function noter(c, juste){
         journal.push({ id: S.uid.slice(0, 6) + "-" + Date.now() + "-" + Math.floor(Math.random() * 1e6),
-                       uid: S.uid, langue: S.langue, k: c.k, i: c.i, m: c.m, juste: juste, t: Date.now() });
+                       uid: S.uid, langue: S.langue, k: c.k, i: c.i, m: c.m, f: c.f || null, g: c.g || null,
+                       juste: juste, t: Date.now() });
         F.writeFile({ path: "hors-ligne-journal.json", data: JSON.stringify({ entrees: journal }), directory: "DATA", encoding: "utf8" }).catch(function(){});
     }
     function montrer(){
         if(!file.length){ ecran("hlFin"); return; }
         courante = file[0];
         retournee = false;
+        document.body.setAttribute("data-carte", String(courante));   // pour tests/hors_ligne.py
         var c = S.cartes[courante];
         $("hlCompteur").textContent = (S.cartes.length - file.length + 1) + " / " + S.cartes.length;
+        if(c.m === "phrase"){ montrerPhrase(c); return; }
+        $("hlPhrase").hidden = true;
+        $("hlCarteBloc").hidden = false;
         $("hlNouveau").hidden = !c.neuf;
         $("hlRecto").textContent = c.recto;
         $("hlAide").hidden = false;
@@ -29805,13 +29907,225 @@ function lecteurHorsLigne(){
         $("hlJuger").hidden = false;
         jouer(S.cartes[courante].s.mot);
     }
+    // juste : true, false, ou null (« repeter » sans verdict : compte, ne juge pas).
     function juger(juste){
         var c = S.cartes[courante];
         noter(c, juste);
         file.shift();
         // Ratee : elle revient trois cartes plus loin (SRS_CARTES_AVANT_RETOUR).
-        if(!juste) file.splice(Math.min(3, file.length), 0, courante);
+        if(juste === false) file.splice(Math.min(3, file.length), 0, courante);
         montrer();
+    }
+    // La saisie comme en ligne (normaliserSaisie) : casse, accents, eszett et
+    // ponctuation ne comptent pas.
+    function normal(v){
+        return String(v || "").toLowerCase().replace(/\u00df/g, "ss").normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+            .replace(/[.,!?;:\u00ab\u00bb"'\u2019\u2013\u2014\u00bf\u00a1\u201c\u201d\u201e\u2026()-]/g, " ")
+            .replace(/\s+/g, " ").trim();
+    }
+    function ecart(a, b){
+        if(Math.abs(a.length - b.length) > 2) return 3;
+        var prec = [], j;
+        for(j = 0; j <= b.length; j++) prec.push(j);
+        for(var i = 1; i <= a.length; i++){
+            var cour = [i];
+            for(j = 1; j <= b.length; j++) cour[j] = Math.min(prec[j] + 1, cour[j - 1] + 1, prec[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+            prec = cour;
+        }
+        return prec[b.length];
+    }
+    function melanger(t){
+        var a = t.slice();
+        for(var i = a.length - 1; i > 0; i--){ var j = Math.floor(Math.random() * (i + 1)); var x = a[i]; a[i] = a[j]; a[j] = x; }
+        return a;
+    }
+    function el(tag, cls, texte){
+        var e = document.createElement(tag);
+        if(cls) e.className = cls;
+        if(texte !== undefined && texte !== null) e.textContent = texte;
+        return e;
+    }
+    // Les exercices de phrases, deja prepares par l'app (options, trou,
+    // intrus) : ici on les montre et on juge, comme montrerCartePhrase().
+    function montrerPhrase(c){
+        $("hlCarteBloc").hidden = true;
+        $("hlJuger").hidden = true;
+        var z = $("hlPhrase");
+        z.innerHTML = "";
+        z.hidden = false;
+        var fini = false;
+        var q = { ecoute: "cp_q_ecoute", trou: "cp_q_trou", ordre: "cp_q_ordre", dictee: "cp_q_dictee",
+                  dictee_mot: "cp_q_dictee", parler: "cp_q_parler", gram: "cp_q_gram" }[c.f];
+        z.appendChild(el("div", "hl-type", txt(q)));
+        var son = c.f === "dictee_mot" ? c.s.mot : (c.s ? c.s.ph : null);
+        var corps = el("div", "hl-corps");
+        var retour = el("div", "hl-retour"); retour.hidden = true;
+        var actions = el("div", "hl-actions");
+        var suite = el("button", "hl-primaire", txt("setup_continue")); suite.type = "button"; suite.hidden = true;
+        function conclure(juste, ref, expl){
+            if(fini) return;
+            fini = true;
+            Array.prototype.forEach.call(actions.querySelectorAll(".hl-verifier"), function(b){ b.hidden = true; });
+            if(juste !== null){
+                retour.hidden = false;
+                retour.className = "hl-retour " + (juste ? "bon" : "faux");
+                retour.textContent = (juste ? txt("cp_bravo") : txt("cp_reponse")) + " " + (ref || c.de || "");
+                if(expl){ var x = el("div", "hl-expl"); x.innerHTML = expl; retour.appendChild(x); }
+            }
+            suite.hidden = false;
+            suite.onclick = function(){ juger(juste); };
+            if(son && juste !== null) setTimeout(function(){ jouer(son); }, juste ? 600 : 0);
+        }
+        function ecouter(){
+            if(!son) return;
+            var b = el("button", "hl-ecouter", "\uD83D\uDD0A " + txt("cp_ecouter"));
+            b.type = "button";
+            b.addEventListener("click", function(){ jouer(son); });
+            corps.appendChild(b);
+        }
+        function verifier(fn){
+            var b = el("button", "hl-primaire hl-verifier", txt("verify_button"));
+            b.type = "button";
+            b.addEventListener("click", fn);
+            actions.appendChild(b);
+        }
+        function choix(options, juste, rendre, ref){
+            var box = el("div", "hl-choix");
+            options.forEach(function(o){
+                var b = el("button", "");
+                b.type = "button";
+                rendre(b, o);
+                b.addEventListener("click", function(){
+                    if(fini) return;
+                    var ok = juste(o);
+                    Array.prototype.forEach.call(box.children, function(x, n){ x.disabled = true; if(juste(options[n])) x.classList.add("bon"); });
+                    if(!ok) b.classList.add("faux");
+                    conclure(ok, typeof ref === "function" ? ref() : ref);
+                });
+                box.appendChild(b);
+            });
+            corps.appendChild(box);
+        }
+        function saisie(){
+            var champ = el("input", "hl-saisie");
+            champ.type = "text";
+            champ.setAttribute("autocomplete", "off");
+            champ.setAttribute("autocapitalize", "off");
+            champ.setAttribute("spellcheck", "false");
+            corps.appendChild(champ);
+            return champ;
+        }
+        if(c.f === "ecoute"){
+            ecouter();
+            choix(c.options, function(o){ return o === c.sens; }, function(b, o){ b.textContent = o; }, c.de + " \u2014 " + c.sens);
+        } else if(c.f === "trou"){
+            var ph = el("p", "hl-phrase");
+            var trou = el("span", "hl-trou", "\u00a0");
+            var forme = String(c.mots[c.vise] || "").replace(/[.,!?;:]+$/, "");
+            c.mots.forEach(function(m, n){
+                if(n) ph.appendChild(document.createTextNode(" "));
+                if(n === c.vise){
+                    ph.appendChild(trou);
+                    var fin = m.match(/[.,!?;:]+$/);
+                    if(fin) ph.appendChild(document.createTextNode(fin[0]));
+                } else ph.appendChild(document.createTextNode(m));
+            });
+            corps.appendChild(ph);
+            corps.appendChild(el("p", "hl-sens", c.sens));
+            choix(c.options, function(o){ return !!o.juste; }, function(b, o){
+                if(o.genre){ b.appendChild(el("span", "hl-genre", o.genre + " ")); }
+                b.appendChild(document.createTextNode(o.texte));
+            }, function(){ trou.textContent = forme; return c.de; });
+        } else if(c.f === "ordre"){
+            corps.appendChild(el("p", "hl-sens", c.sens));
+            var ligne = el("div", "hl-ligne"), banque = el("div", "hl-banque");
+            var tuiles = melanger(c.mots.concat(c.intrus || []));
+            if(tuiles.join(" ") === c.de && tuiles.length > 1) tuiles = tuiles.slice(1).concat(tuiles.slice(0, 1));
+            tuiles.forEach(function(m){
+                var t = el("button", "hl-tuile", m);
+                t.type = "button";
+                t.addEventListener("click", function(){
+                    if(fini) return;
+                    (t.parentNode === banque ? ligne : banque).appendChild(t);
+                });
+                banque.appendChild(t);
+            });
+            corps.appendChild(ligne);
+            corps.appendChild(banque);
+            verifier(function(){
+                if(fini || !ligne.children.length) return;
+                var dit = Array.prototype.map.call(ligne.children, function(x){ return x.textContent; }).join(" ");
+                var ok = dit === c.de;
+                ligne.classList.add(ok ? "bon" : "faux");
+                conclure(ok);
+            });
+        } else if(c.f === "dictee" || c.f === "dictee_mot"){
+            var motSeul = c.f === "dictee_mot";
+            var attendu = motSeul ? c.mot : c.de;
+            ecouter();
+            if(!motSeul) corps.appendChild(el("p", "hl-sens", c.sens));
+            var champ = saisie();
+            verifier(function(){
+                if(fini) return;
+                var v = champ.value.trim();
+                if(!v){ champ.focus(); return; }
+                var n = normal(v), na = normal(attendu);
+                var presque = !motSeul && n !== na && na.length >= 20 && ecart(n, na) <= 1;
+                var ok = n === na || presque || (motSeul && c.nu && n === normal(c.nu));
+                champ.disabled = true;
+                conclure(ok, motSeul && c.sensMot ? attendu + " (" + c.sensMot + ")" : attendu, presque ? txt("cp_presque") : "");
+            });
+            champ.addEventListener("keydown", function(e){ if(e.key === "Enter") actions.querySelector(".hl-verifier").click(); });
+        } else if(c.f === "gram"){
+            corps.appendChild(el("p", "hl-phrase", c.q));
+            if(c.sens) corps.appendChild(el("p", "hl-sens", c.sens));
+            if(c.indice) corps.appendChild(el("p", "hl-indice", c.indice));
+            var jugerG = function(v){
+                v = String(v || "").trim();
+                if(!v) return null;
+                return c.tol ? c.rep.some(function(a){ return normal(a) === normal(v); })
+                             : c.rep.some(function(a){ return String(a).toLowerCase() === v.toLowerCase(); });
+            };
+            if(c.options){
+                var boite = el("div", "hl-choix");
+                c.options.forEach(function(o){
+                    var b = el("button", "", o);
+                    b.type = "button";
+                    b.addEventListener("click", function(){
+                        if(fini) return;
+                        var ok = !!jugerG(o);
+                        Array.prototype.forEach.call(boite.children, function(x){ x.disabled = true; if(jugerG(x.textContent)) x.classList.add("bon"); });
+                        if(!ok) b.classList.add("faux");
+                        conclure(ok, c.corr, c.expl);
+                    });
+                    boite.appendChild(b);
+                });
+                corps.appendChild(boite);
+            } else {
+                var champG = saisie();
+                verifier(function(){
+                    if(fini) return;
+                    var r = jugerG(champG.value);
+                    if(r === null){ champG.focus(); return; }
+                    champG.disabled = true;
+                    conclure(r, c.corr, c.expl);
+                });
+            }
+        } else {
+            // « repeter » : le modele, la phrase, et on avance. Pas de verdict
+            // sans reseau ; la reponse compte pour l'objectif.
+            ecouter();
+            corps.appendChild(el("p", "hl-phrase", c.de));
+            corps.appendChild(el("p", "hl-sens", c.sens));
+            conclure(null);
+        }
+        z.appendChild(corps);
+        z.appendChild(retour);
+        z.appendChild(actions);
+        z.appendChild(suite);
+        ecran("hlCarte");
+        lireSon(c.s ? c.s.ph : null); lireSon(c.s ? c.s.mot : null);
+        if(son && (c.f === "ecoute" || c.f === "dictee" || c.f === "dictee_mot" || c.f === "parler")) jouer(son);
     }
     function commencer(){
         file = S.cartes.map(function(c, i){ return i; });
@@ -29881,7 +30195,24 @@ const HL_STYLE = [
     ".hl-juger{display:flex;gap:10px}.hl-juger[hidden]{display:none}",
     ".hl-juger button{flex:1;border-radius:14px;padding:12px 8px;font-weight:700;border:2px solid var(--trait);background:var(--carte);color:var(--encre)}",
     ".hl-juger small{display:block;font-weight:500;font-size:12px;color:var(--doux);margin-top:2px}",
-    "#hlContinuer{background:var(--encre);color:var(--papier);border-color:var(--encre)}"
+    "#hlContinuer{background:var(--encre);color:var(--papier);border-color:var(--encre)}",
+    "#hlPhrase{display:flex;flex-direction:column;gap:12px}#hlPhrase[hidden],.hl-carte[hidden]{display:none}",
+    ".hl-type{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ambre)}",
+    ".hl-corps{background:var(--carte);border:2px solid var(--trait);border-radius:20px;padding:18px 16px;display:flex;flex-direction:column;gap:12px}",
+    ".hl-phrase{font-size:21px;font-weight:700;margin:0;line-height:1.4}.hl-sens{margin:0;color:var(--doux)}.hl-indice{margin:0;font-size:14px;color:var(--doux);font-style:italic}",
+    ".hl-trou{display:inline-block;min-width:3em;border-bottom:2px solid var(--ambre)}",
+    ".hl-ecouter{align-self:flex-start;border:2px solid var(--trait);background:none;color:var(--encre);border-radius:12px;padding:8px 14px;font-weight:700}",
+    ".hl-choix{display:flex;flex-direction:column;gap:8px}",
+    ".hl-choix button,.hl-tuile{border:2px solid var(--trait);background:var(--papier);color:var(--encre);border-radius:12px;padding:10px 12px;text-align:start}",
+    ".hl-choix button.bon,.hl-ligne.bon{border-color:#2e9a5c}.hl-choix button.faux,.hl-ligne.faux{border-color:#d2486b}",
+    ".hl-genre{font-weight:800;color:var(--doux)}",
+    ".hl-ligne,.hl-banque{display:flex;flex-wrap:wrap;gap:8px;min-height:46px}.hl-ligne{border-bottom:2px dashed var(--trait);padding-bottom:8px}",
+    ".hl-tuile{padding:8px 12px}",
+    ".hl-saisie{font:inherit;font-size:18px;padding:10px 12px;border-radius:12px;border:2px solid var(--trait);background:var(--papier);color:var(--encre)}",
+    ".hl-retour{font-weight:700}.hl-retour.bon{color:#2e9a5c}.hl-retour.faux{color:#d2486b}.hl-retour[hidden]{display:none}",
+    ".hl-expl{font-weight:400;color:var(--doux);margin-top:6px}",
+    ".hl-actions{display:flex;justify-content:center}.hl-verifier[hidden],.hl-primaire[hidden]{display:none}",
+    "#hlPhrase>.hl-primaire{align-self:center}"
 ].join("\n");
 
 function htmlLecteurHorsLigne(){
@@ -29904,6 +30235,7 @@ function htmlLecteurHorsLigne(){
         +     "<div class=\"hl-recto\" id=\"hlRecto\"></div><div class=\"hl-aide\" id=\"hlAide\"></div>"
         +     "<div id=\"hlVerso\" hidden></div>"
         +   "</div>"
+        +   "<div id=\"hlPhrase\" hidden></div>"
         +   "<div class=\"hl-juger\" id=\"hlJuger\" hidden>"
         +     "<button type=\"button\" id=\"hlEncore\"><span id=\"hlEncoreTitre\"></span><small id=\"hlEncoreSous\"></small></button>"
         +     "<button type=\"button\" id=\"hlContinuer\"></button>"
@@ -45608,7 +45940,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 968;
+const APP_VERSION = 969;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

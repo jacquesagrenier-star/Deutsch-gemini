@@ -322,6 +322,20 @@ progression, pas un mot. Il faut **une ligne par mot**.
 huit sont la forme des styles. libass abandonne une balise mal formée **sans
 un mot**, et le texte reste blanc.
 
+⚠️ **Persan et arabe : contrôler contre Chrome, jamais à l'œil** (26 oct. 2026).
+`sous_titres.py` grave avec le ffmpeg du système (HarfBuzz, `shaping=complex`)
+et règle le sens d'écriture (Encoding -1 + U+200F en tête de ligne) ; sans ces
+réglages, chaque lam-alif laissait un carré vide et les lignes mêlées d'un mot
+latin sortaient dans le désordre — passées « vérifiées » quatre jours. Après
+chaque gravure fa / ar :
+
+```bash
+python video/controler_rtl.py --scene 04-schrippe --langue ar --video audio/mp3/episodes/de/ep04-v2.ar.mp4
+```
+
+La planche (dossier temporaire du système) met la bande gravée à gauche, Chrome
+à droite : même texte, même ordre, sinon on ne dépose pas.
+
 ⚠️ **`WrapStyle`, et les trois valeurs veulent dire trois choses** :
 `2` = aucun retour à la ligne, le texte déborde de l'écran ;
 `0` = coupe en **équilibrant**, donc élargir les marges n'y change rien ;
