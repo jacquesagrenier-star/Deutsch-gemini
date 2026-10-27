@@ -419,6 +419,9 @@ FICHES = [
 # Les titres des series d'exercices (kicker), verses dans I18N au chargement.
 TEXTES = {
     "fr": {
+        "pron_kicker": "Lire le japonais",
+        "pron_fins": "La longueur des sons",
+        "pron_accent": "L'intonation",
         "fiche_entrainer": "M'ENTRAÎNER →",
         "fiche_entrainer_x": "M'ENTRAÎNER : {x} →",
         "gram_attention": "Attention",
@@ -434,6 +437,9 @@ TEXTES = {
         "kicker_aru_iru_ja": "あります et います",
     },
     "en": {
+        "pron_kicker": "Reading Japanese",
+        "pron_fins": "Sound length",
+        "pron_accent": "Pitch",
         "fiche_entrainer": "PRACTICE →",
         "fiche_entrainer_x": "PRACTICE: {x} →",
         "gram_attention": "Watch out",

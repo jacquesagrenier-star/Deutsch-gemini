@@ -3317,7 +3317,7 @@ html[data-apprendre="ja"] #episodeLigne,
 html[data-apprendre="ja"] .search-launch,
 html[data-apprendre="ja"] [data-seulement-de],
 html[data-apprendre="ja"] [data-seulement-es],
-html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]){ display:none !important; }
+html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]){ display:none !important; }
 /* Les kanji et les kana dans le texte courant (fiches, exercices, tableaux) :
    une police japonaise en repli, sinon un kanji partage avec le chinois peut
    prendre sa forme chinoise. */
@@ -12067,8 +12067,8 @@ function habillerCarteJaponaise(card){
         lect.textContent = "";
         if(ja && ja.lecture){
             // Un kana : sa lecture, c'est lui-meme -- seul le romaji apprend
-            // quelque chose.
-            if(!ja.kana){
+            // quelque chose. De meme pour un mot ecrit tout en kana.
+            if(!ja.kana && ja.lecture !== mot){
                 const k = document.createElement("span");
                 k.className = "lj-kana";
                 k.setAttribute("lang", "ja");
@@ -51317,7 +51317,39 @@ function normaliserJaponais(s){
         .replace(/[\s、。！？!?,.・「」『』（）()〜~ー－-]/g, "")
         .replace(/[ァ-ヶ]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60)));
 }
+// Ce qu'on a entendu, avec les mots connus remis en kana : la reconnaissance
+// ecrit 分かりません quand la carte attend わかりません. Les verbes et les
+// adjectifs se conjuguent : leur radical (分か -> わか) est remplace aussi.
+let REMPLACEMENTS_KANA_JA = null;
+function enKanaJaponais(texte){
+    if(!REMPLACEMENTS_KANA_JA || REMPLACEMENTS_KANA_JA.n !== LECTURES_MOTS_JA.size){
+        const paires = [];
+        LECTURES_MOTS_JA.forEach((lect, mot) => {
+            if(!/[\u4e00-\u9fff]/.test(mot)) return;
+            paires.push([mot, lect]);
+            const fin = mot.slice(-1);
+            if(mot.length >= 2 && /[\u3041-\u309f]/.test(fin) && lect.slice(-1) === fin)
+                paires.push([mot.slice(0, -1), lect.slice(0, -1)]);
+        });
+        paires.sort((a, b) => b[0].length - a[0].length);
+        REMPLACEMENTS_KANA_JA = { n: LECTURES_MOTS_JA.size, paires: paires };
+    }
+    let s = String(texte || "");
+    if(!/[\u4e00-\u9fff]/.test(s)) return s;
+    for(const [mot, lect] of REMPLACEMENTS_KANA_JA.paires){
+        if(s.indexOf(mot) >= 0) s = s.split(mot).join(lect);
+        if(!/[\u4e00-\u9fff]/.test(s)) break;
+    }
+    return s;
+}
 function scoreOralJaponais(attendu, entendus){
+    // Chaque reponse entendue compte aussi remise en kana.
+    entendus = (entendus || []).reduce((l, tx) => {
+        l.push(tx);
+        const k = enKanaJaponais(tx);
+        if(k !== tx) l.push(k);
+        return l;
+    }, []);
     // La cible ecrite (二十一, 月曜日), et sa lecture en kana si on la connait :
     // la reconnaissance rend l'une ou l'autre.
     const cibles = [normaliserJaponais(attendu)];
@@ -52838,9 +52870,11 @@ function ecrirePremiersPas(v){
 }
 function premiersPasEnCours(){
     try{
-        // Le japonais n'a pas encore ses Premiers pas (ils seront les kana).
-        if(LANGUE_APPRISE === "ja") return false;
         if(!essaiActif("premiers_pas")) return false;
+        // Le japonais : les Premiers pas (six etapes de voyage) ne s'ouvrent que
+        // par 🌱 -- par defaut la seance japonaise apprend les kana d'abord,
+        // sans quoi rien ne se lit.
+        if(LANGUE_APPRISE === "ja"){ const s = lirePremiersPas(); return s.a === true && !s.fini; }
         const s = lirePremiersPas();
         if(s.fini) return false;
         if(s.a === undefined) return declareZero();
@@ -52876,7 +52910,7 @@ function joursPremiersPas(){
     }));
 }
 // v837 : un theme neuf -- les 40 cartes des v829-v836 avaient d'autres numeros.
-function themePremiersPas(){ return "premiers_pas2_" + (LANGUE_APPRISE === "es" ? "es" : "de"); }
+function themePremiersPas(){ return "premiers_pas2_" + (LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "ja" ? "ja" : "de"); }
 // Les flashcards, au format d'une carte d'expression (RANGS_CARTE.expression) :
 // le sens et l'exemple dans les neuf langues, la situation comme categorie.
 const RANGS_PP = { fr: [1, 4, 2], en: [5, 6, 7], tr: [10, 11, 12], uk: [15, 16, 17], fa: [18, 19, 20],
@@ -52893,6 +52927,9 @@ function toutesCartesPremiersPas(){
             w[r[1]] = (c[3] && c[3][l]) || "";
             w[r[2]] = (jour.s && jour.s[l]) || "";
         });
+        // Le japonais : la lecture et le romaji, en 5e position de la carte.
+        const ja = c[4] && c[4].ja;
+        if(ja) w.ja = { lecture: ja.lecture, romaji: ja.romaji || "", furigana: null, note: "", note_en: "", svg: "", kana: false, kanji: false };
         out.push({ mode: "redewendungen", themeId: themePremiersPas(), index: k++, ppJour: d, word: w });
     }));
     return out;
@@ -52930,7 +52967,9 @@ function sequencePremiersPas(){
         if(d === jours.length - 1){
             seq.push({ mode: "phrase", forme: "pp_fin", pp: true, cible: null, themeId: theme + "_fin", index: 0, jourPP: d, phrase: null, word: "" });
         }
-        seq.push({ mode: "phrase", forme: "pp_scene", pp: true, cible: null, themeId: theme + "_scene", index: d,
+        // Une etape sans scene (le japonais, tant que ses scenes ne sont pas
+        // jouables) se ferme sur sa derniere carte.
+        if(jour.scene) seq.push({ mode: "phrase", forme: "pp_scene", pp: true, cible: null, themeId: theme + "_scene", index: d,
                    scene: jour.scene, jourPP: d, phrase: null, word: "" });
     });
     seq.forEach((it, i) => { it.ppPos = i; });
@@ -54527,7 +54566,7 @@ async function ouvrirSeanceDuJour(sansScene){
     // v879 : les reperes (jours, mois, nombres), tot dans l'A1.
     try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
     // v880 : le son du jour, une fois par jour, au milieu.
-    try{ const sd = seanceJaponaise() ? null : await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
+    try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
     try{ seance = premiereCarteFacile(seance); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
