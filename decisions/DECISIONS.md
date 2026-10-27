@@ -50,3 +50,4 @@ les autres sessions lui rendent compte et n'en lancent pas d'autres (voir CLAUDE
 | 2026-10-26 | Firebase | Hébergement : ne garder que les 5 dernières versions (stockage gratuit plein) ; réglé par Jacques dans la console | « ne garder que les 5 dernières versions » |
 | 2026-10-26 | Play Console | Mot de passe du compte de démo vérifié (le matin) | « On a déjà vérifié ce matin » |
 | 2026-10-26 | Japonais | Construire tout ce qui peut l'être pour le japonais dans l'app, sans le rendre disponible (essai admin) ; toujours aucune voix payée | « construire tout ce qu'on peut construire pour la version japonaise dans l'application. Sans la rendre disponible pour le moment » |
+| 2026-10-26 | Épisodes | Préparer (sans générer) le prochain épisode allemand (05, la VHS) et le prochain espagnol | « prépare le prochain épisode vidéo pour l'allemand et le prochain épisode vidéo pour l'espagnol » |
