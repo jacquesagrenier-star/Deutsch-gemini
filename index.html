@@ -3317,10 +3317,13 @@ html[data-apprendre="ja"] #episodeLigne,
 html[data-apprendre="ja"] .search-launch,
 html[data-apprendre="ja"] [data-seulement-de],
 html[data-apprendre="ja"] [data-seulement-es],
-html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]){ display:none !important; }
+html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]){ display:none !important; }
+/* Les kanji et les kana dans le texte courant (fiches, exercices, tableaux) :
+   une police japonaise en repli, sinon un kanji partage avec le chinois peut
+   prendre sa forme chinoise. */
+html[data-apprendre="ja"] body{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Noto Sans CJK JP", sans-serif; }
 html:not([data-apprendre="ja"]) [data-seulement-ja]{ display:none !important; }
 /* « Tout le contenu » : les sections dont toutes les tuiles sont cachees. */
-html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_phrase"]),
 html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_pratique"]),
 html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_parcours"]){ display:none !important; }
 /* Les exercices allemands des ecrans de niveau (Präsens, cas regi, articles). */
@@ -3329,7 +3332,7 @@ html[data-apprendre="ja"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="ja"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
 /* Dans les panneaux des mots : parcourir, rien d'autre. Dictees, quiz d'article,
    declinaisons, temps allemands, nuances : tous allemands ou espagnols. */
-html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="Kana"]){ display:none !important; }
+html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="Kana"]):not([onclick*="abrirGramatica"]){ display:none !important; }
 /* Le mot japonais : police du systeme d'abord (Hiragino sur iPhone, Noto sur
    Android), et lang="ja" sur l'element, sans quoi un kanji partage avec le
    chinois prend la forme chinoise. Les furigana au-dessus, petits et lisibles. */
@@ -8399,6 +8402,12 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         </h2>
         <!-- LES FICHES PROPRES A L'ESPAGNOL (v747) : en allemand, data-seulement-es
              les cache. Elles ouvrent leur fiche directement (abrirGramatica). -->
+        <div class="orb" data-seulement-ja data-orbid="ja-grammaire" onclick="abrirIndiceGramatica()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
+            <div>
+                <strong data-i18n="orb_es_indice">Toutes les fiches</strong>
+            </div>
+        </div>
         <div class="orb" data-seulement-es data-orbid="es-indice" onclick="abrirIndiceGramatica()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
             <div>
@@ -32096,6 +32105,17 @@ function startSerEstarUebung(){
     startExerciseSetMelange("serEstarExercises", "kicker_ser_estar",
                      () => abrirGramatica("ser-estar"), startSerEstarUebung);
 }
+// LES SERIES DU JAPONAIS (essai, 27 oct. 2026) : une par fiche, qui y ramene.
+function serieJa(jeuNom, kicker, fiche, relancer){
+    startExerciseSetMelange(jeuNom, kicker, () => abrirGramatica(fiche), relancer);
+}
+function exercicesParticulesJa(){ serieJa("particulesJaExercises", "kicker_particules_ja", "particules", exercicesParticulesJa); }
+function exercicesMasuJa(){ serieJa("masuJaExercises", "kicker_masu_ja", "masu", exercicesMasuJa); }
+function exercicesTeJa(){ serieJa("teJaExercises", "kicker_te_ja", "groupes-te", exercicesTeJa); }
+function exercicesAdjectifsJa(){ serieJa("adjectifsJaExercises", "kicker_adjectifs_ja", "adjectifs", exercicesAdjectifsJa); }
+function exercicesKosoadoJa(){ serieJa("kosoadoJaExercises", "kicker_kosoado_ja", "kosoado", exercicesKosoadoJa); }
+function exercicesQuestionsJa(){ serieJa("questionsJaExercises", "kicker_questions_ja", "questions", exercicesQuestionsJa); }
+function exercicesAruIruJa(){ serieJa("aruIruJaExercises", "kicker_aru_iru_ja", "aru-iru", exercicesAruIruJa); }
 function startPorParaUebung(){
     startExerciseSetMelange("porParaExercises", "kicker_por_para",
                      () => abrirGramatica("por-para"), startPorParaUebung);
@@ -57383,9 +57403,9 @@ let JEUX_EXOS = null;
 let chargementJeuxExos = null;
 
 async function jeu(nom){
-    // Le japonais n'a pas encore d'exercices.json : pas de requete, pas de
-    // « Exercices indisponibles » a l'ouverture de la seance.
-    if(LANGUE_APPRISE === "ja") return [];
+    // Le japonais a son exercices.json (japonais/datos/exercices_construire.py) :
+    // les series de ses fiches de grammaire. La seance japonaise n'en tire pas
+    // de cartes-phrases (seanceJaponaise) : ses phrases n'ont pas d'espaces.
     if(!JEUX_EXOS){
         if(!chargementJeuxExos){
             chargementJeuxExos = fetch(urlDonnees('exercices.json'), { cache: 'no-cache' })
