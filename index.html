@@ -8720,7 +8720,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v971</span>
+    <span class="subtitle-version">v972</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -45947,7 +45947,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 971;
+const APP_VERSION = 972;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -54421,12 +54421,17 @@ async function preparerArretScene(seance, sceneImposee, enPremiersPas){
         // celle du jour, les suivantes) ; s'il en manque, les autres, leurs mots vus
         // completes par d'autres mots A1 (v913 : le cas ordinaire en A1, ou les mots
         // vus viennent des escales et rarement des objets dessines).
-        const stricts = await Promise.all(candidates.map(c => arretDeScene(c).catch(() => null)));
+        // v972 : EN PREMIERS PAS, TOUJOURS L'A1. Frederic, 27 oct. 2026, en
+        // espagnol : une scene A2 est apparue dans ses Premiers pas. Le niveau
+        // venait de niveauSeance(), le niveau CHOISI un jour sur la pastille,
+        // qui reste en memoire pendant Premiers pas.
+        const niv = enPremiersPas ? "A1" : null;
+        const stricts = await Promise.all(candidates.map(c => arretDeScene(c, false, niv).catch(() => null)));
         const choisis = stricts.filter(x => !!x).slice(0, nb);
         if(choisis.length < nb){
             const pris = new Set(choisis.map(a => a.scene.nom));
             const reste = candidates.filter(c => !pris.has(c.nom));
-            const completes = await Promise.all(reste.map(c => arretDeScene(c, true).catch(() => null)));
+            const completes = await Promise.all(reste.map(c => arretDeScene(c, true, niv).catch(() => null)));
             completes.forEach(a => { if(a && choisis.length < nb) choisis.push(a); });
         }
         if(!choisis.length) return seance;
@@ -54441,9 +54446,9 @@ async function preparerArretScene(seance, sceneImposee, enPremiersPas){
     }catch(e){ return seance; }
 }
 // L'arret dans une scene, ou null si elle n'a pas encore de quoi demander.
-async function arretDeScene(s, completer){
+async function arretDeScene(s, completer, niveauImpose){
     if(!s) return null;
-    const niveau = niveauSeance();
+    const niveau = niveauImpose || niveauSeance();
     let mots = [];
     if(niveau === "A1"){
         const vus = await motsVusDeScene(s.nom);
