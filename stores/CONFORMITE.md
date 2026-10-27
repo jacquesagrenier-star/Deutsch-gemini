@@ -25,8 +25,9 @@ collecte, on corrige la politique ET ces réponses dans le même tour.
 ### Google Play Console
 1. **Contenu de l'appli → Sécurité des données** : remplir avec le §3.
    Champ « URL de suppression du compte » : `https://wortando.com/supprimer-compte`.
-2. **Accès à l'appli** : compte de démo avec mot de passe qui marche le jour de
-   l'examen (en oct., celui du compte `+googleplay` avait été oublié).
+2. **Accès à l'appli** : FAIT — mot de passe du compte de démo vérifié par
+   Jacques le 26 oct. au matin. « Sécurité des données » mis à jour le 26 oct.
+   (URL de suppression = /supprimer-compte, Diagnostics ajoutés), envoyé pour examen.
 3. **Avant la demande d'accès à la production** (vers le 6 nov.) : que les
    12 testeurs **ouvrent l'app Android plusieurs fois** pendant les 14 jours, et
    qu'au moins quelques-uns laissent un avis dans « Commentaires des

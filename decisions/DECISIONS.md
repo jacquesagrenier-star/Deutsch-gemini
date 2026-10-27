@@ -48,3 +48,4 @@ les autres sessions lui rendent compte et n'en lancent pas d'autres (voir CLAUDE
 | 2026-10-26 | App iPhone | D'accord pour ajouter le module de fichiers du hors-ligne (compilations déjà lancées sans lui) | « Ouais, on peut ajouter module » |
 | 2026-10-26 | Hors-ligne | Plan validé ; pour tout le monde (pas réservé à l'abonnement), sans étape « admin seul » ; Jacques valide lui-même | « on peut lancer [le hors-]ligne pour tout le monde [...] Puis moi, je le validerai » |
 | 2026-10-26 | Firebase | Hébergement : ne garder que les 5 dernières versions (stockage gratuit plein) ; réglé par Jacques dans la console | « ne garder que les 5 dernières versions » |
+| 2026-10-26 | Play Console | Mot de passe du compte de démo vérifié (le matin) | « On a déjà vérifié ce matin » |
