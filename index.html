@@ -5605,36 +5605,23 @@ body[data-theme="dark"] .mos-cadre{
 /* v979 : quand l'image a pris le relais, le canevas reste dessine mais ne se voit plus. */
 .mos-toile-image{pointer-events:none;}
 .mos-cadre.en-image > canvas.mos-toile{visibility:hidden;}
-/* v981 : LE MODE TRANSIT -- l'icone du casque dans la barre des cartes, son menu,
-   les liens « je ne peux pas parler / ecouter » et la pastille « version silencieuse ». */
-.title-row-pills{position:relative;}
-.transit-btn{display:inline-grid; place-items:center; width:34px; height:34px; padding:0; border-radius:50%; border:1.5px solid #B9C7D1; background:#FBFAF6; cursor:pointer; flex:none;}
-.transit-btn svg{width:17px; height:17px; fill:none; stroke:#173A4E; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; display:none;}
-.transit-btn .tr-ic-normal{display:block;}
-.transit-btn.actif{background:#173A4E; border-color:#173A4E;}
-.transit-btn.actif .tr-ic-normal{display:none;}
-.transit-btn.actif.micro .tr-ic-micro, .transit-btn.actif.son .tr-ic-son{display:block; stroke:#F0B456;}
-.transit-btn:focus-visible{outline:3px solid #E8A23A; outline-offset:2px;}
-body[data-theme="dark"] .transit-btn{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.22);}
-body[data-theme="dark"] .transit-btn svg{stroke:#C9D6DE;}
-body[data-theme="dark"] .transit-btn.actif{background:#F0B456; border-color:#F0B456;}
-body[data-theme="dark"] .transit-btn.actif.micro .tr-ic-micro, body[data-theme="dark"] .transit-btn.actif.son .tr-ic-son{stroke:#0B2230;}
-.menu-transit{position:absolute; z-index:60; inset-inline-start:0; top:calc(100% + 6px); width:min(290px, 86vw); background:#FBFAF6; border:1px solid #D7CFBE; border-radius:16px; padding:10px; display:grid; gap:7px; box-shadow:0 14px 30px rgba(23,58,78,.22); text-align:start;}
-.menu-transit.hidden{display:none;}
-.menu-transit .mt-titre{font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#566070;}
-.menu-transit button{display:flex; gap:10px; align-items:flex-start; width:100%; padding:9px 10px; border-radius:12px; border:1.5px solid #C9D6DE; background:#fff; font:inherit; text-align:start; cursor:pointer; color:#4C566B; font-size:12.5px; line-height:1.3;}
-.menu-transit button b{display:block; color:#173A4E; font-size:14px;}
-.menu-transit button.choisi{border-color:#173A4E; box-shadow:inset 0 0 0 1.5px #173A4E;}
-.menu-transit svg{width:20px; height:20px; flex:none; fill:none; stroke:#173A4E; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; margin-top:1px;}
-.menu-transit .mt-pied{font-size:11.5px; color:#566070; text-align:center;}
-.menu-transit .mt-eteindre{justify-content:center; font-weight:800; color:#173A4E;}
-.menu-transit .mt-eteindre.hidden{display:none;}
-body[data-theme="dark"] .menu-transit{background:#1B2A35; border-color:#2E3E4A;}
-body[data-theme="dark"] .menu-transit button{background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.18); color:#A4ABBC;}
-body[data-theme="dark"] .menu-transit button b, body[data-theme="dark"] .menu-transit .mt-eteindre{color:#EEF2F5;}
-body[data-theme="dark"] .menu-transit button.choisi{border-color:#F0B456; box-shadow:inset 0 0 0 1.5px #F0B456;}
-body[data-theme="dark"] .menu-transit svg{stroke:#C9D6DE;}
-body[data-theme="dark"] .menu-transit .mt-titre, body[data-theme="dark"] .menu-transit .mt-pied{color:#A4ABBC;}
+/* v981-v982 : LE MODE TRANSIT -- les boutons micro et haut-parleur de la barre
+   des cartes, les liens « je ne peux pas parler / ecouter » et la pastille
+   « version silencieuse ». Un bouton coupe = fond fonce, icone barree. */
+.tr-btn{display:inline-grid; place-items:center; width:34px; height:34px; padding:0; border-radius:50%; border:1.5px solid #B9C7D1; background:#FBFAF6; cursor:pointer; flex:none;}
+.tr-btn svg{width:17px; height:17px; fill:none; stroke:#173A4E; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round;}
+.tr-btn .tr-coupe{display:none;}
+.tr-btn.coupe{background:#173A4E; border-color:#173A4E;}
+.tr-btn.coupe svg{stroke:#F0B456;}
+.tr-btn.coupe .tr-ouvert{display:none;}
+.tr-btn.coupe .tr-coupe{display:inline;}
+.tr-btn:focus-visible{outline:3px solid #E8A23A; outline-offset:2px;}
+body[data-theme="dark"] .tr-btn{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.22);}
+body[data-theme="dark"] .tr-btn svg{stroke:#C9D6DE;}
+body[data-theme="dark"] .tr-btn.coupe{background:#F0B456; border-color:#F0B456;}
+body[data-theme="dark"] .tr-btn.coupe svg{stroke:#0B2230;}
+/* Son coupe : les boutons « Modele » et « Lentement » de l'oral n'ont plus rien a faire entendre. */
+body.transit-son-coupe #cartePhrase .cp-or-modele, body.transit-son-coupe #cartePhrase .cp-modele{display:none;}
 .cp-transit-lien{display:block; margin:10px auto 0; background:none; border:0; padding:6px 4px; font:inherit; font-size:13px; font-weight:700; color:#173A4E; text-decoration:underline; text-underline-offset:3px; cursor:pointer;}
 body[data-theme="dark"] .cp-transit-lien{color:#9CC3DD;}
 .cp-transit-badge{display:inline-block; font-size:11px; font-weight:800; color:#2E5770; background:#E4EDF2; border-radius:6px; padding:3px 7px; margin-inline-start:8px; vertical-align:middle;}
@@ -8773,7 +8760,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v981</span>
+    <span class="subtitle-version">v982</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10488,17 +10475,11 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         </div>
         <div class="title-row-pills">
             <div class="pill combo-pill hidden" id="comboPillFlash">🔥 x<span id="comboCountFlash">0</span></div>
-            <!-- v981 : LE MODE TRANSIT. Voir choisirTransit(). -->
-            <button type="button" class="transit-btn" id="transitBtn" onclick="basculerMenuTransit(event)"
-                    aria-haspopup="true" aria-expanded="false"
-                    data-i18n-aria-label="tr_bouton" aria-label="Transports : sans micro ou sans son"><svg class="tr-ic-normal" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg><svg class="tr-ic-micro" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M3 3l18 18"/></svg><svg class="tr-ic-son" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16 9l5 6M21 9l-5 6"/></svg></button>
-            <div class="menu-transit hidden" id="menuTransit" onclick="event.stopPropagation()">
-                <div class="mt-titre" data-i18n="tr_titre">Pour cette séance</div>
-                <button type="button" id="mtMicro" onclick="choisirTransit('micro')"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M3 3l18 18"/></svg><span><b data-i18n="tr_micro">Sans micro</b><span data-i18n="tr_micro_d">J'ai mes écouteurs, je ne peux pas parler</span></span></button>
-                <button type="button" id="mtSon" onclick="choisirTransit('son')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16 9l5 6M21 9l-5 6"/></svg><span><b data-i18n="tr_son">Sans son</b><span data-i18n="tr_son_d">Pas d'écouteurs : aucun son</span></span></button>
-                <button type="button" class="mt-eteindre hidden" id="mtEteindre" onclick="choisirTransit(null)" data-i18n="tr_eteindre">Rétablir le son et le micro</button>
-                <div class="mt-pied" data-i18n="tr_pied">S'éteint à la fin de la séance</div>
-            </div>
+            <!-- v982 : LE MODE TRANSIT, deux boutons. Voir basculerTransit(). -->
+            <button type="button" class="tr-btn" id="trMicroBtn" onclick="basculerTransit('micro')" aria-pressed="false"
+                    data-i18n-aria-label="tr_btn_micro" aria-label="Couper ou rétablir le micro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/><path class="tr-coupe" d="M3 3l18 18"/></svg></button>
+            <button type="button" class="tr-btn" id="trSonBtn" onclick="basculerTransit('son')" aria-pressed="false"
+                    data-i18n-aria-label="tr_btn_son" aria-label="Couper ou rétablir le son"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"/><path class="tr-ouvert" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/><path class="tr-coupe" d="M16 9l5 6M21 9l-5 6"/></svg></button>
             <div class="pill" id="flashCounter">1 / 10</div>
         </div>
     </div>
@@ -12502,19 +12483,14 @@ const I18N = {
         cp_q_ordre: "Construis la phrase",
         cp_ecouter: "Écouter",
         cp_lent: "Plus lentement",
-        tr_bouton: "Transports : sans micro ou sans son",
-        tr_titre: "Pour cette séance",
-        tr_micro: "Sans micro",
-        tr_micro_d: "J'ai mes écouteurs, je ne peux pas parler",
-        tr_son: "Sans son",
-        tr_son_d: "Pas d'écouteurs : aucun son",
-        tr_pied: "S'éteint à la fin de la séance",
-        tr_eteindre: "Rétablir le son et le micro",
+        tr_micro_retabli: "Micro rétabli.",
+        tr_son_retabli: "Son rétabli.",
+        tr_btn_micro: "Couper ou rétablir le micro",
+        tr_btn_son: "Couper ou rétablir le son",
         tr_lien_parler: "Je ne peux pas parler maintenant",
         tr_lien_ecouter: "Je ne peux pas écouter maintenant",
         tr_actif_micro: "Sans micro jusqu'à la fin de la séance : l'oral devient une phrase à reconstruire.",
         tr_actif_son: "Sans son jusqu'à la fin de la séance : les écoutes deviennent de la lecture.",
-        tr_eteint: "Le son et le micro sont rétablis.",
         tr_q_lis: "Lis et choisis le sens",
         tr_q_lire: "Lis la phrase",
         tr_remplace: "Version silencieuse",
@@ -14004,19 +13980,14 @@ const I18N = {
         cp_q_ordre: "Build the sentence",
         cp_ecouter: "Listen",
         cp_lent: "Slower",
-        tr_bouton: "On the go: no mic or no sound",
-        tr_titre: "For this session",
-        tr_micro: "No mic",
-        tr_micro_d: "I have earphones but can't speak",
-        tr_son: "No sound",
-        tr_son_d: "No earphones: no sound at all",
-        tr_pied: "Turns off at the end of the session",
-        tr_eteindre: "Turn sound and mic back on",
+        tr_micro_retabli: "Mic back on.",
+        tr_son_retabli: "Sound back on.",
+        tr_btn_micro: "Mute or unmute the mic",
+        tr_btn_son: "Mute or unmute the sound",
         tr_lien_parler: "I can't speak right now",
         tr_lien_ecouter: "I can't listen right now",
         tr_actif_micro: "No mic until the end of the session: speaking becomes building the sentence.",
         tr_actif_son: "No sound until the end of the session: listening becomes reading.",
-        tr_eteint: "Sound and mic are back on.",
         tr_q_lis: "Read and choose the meaning",
         tr_q_lire: "Read the sentence",
         tr_remplace: "Silent version",
@@ -15507,19 +15478,14 @@ const I18N = {
         cp_q_ordre: "Cümleyi kur",
         cp_ecouter: "Dinle",
         cp_lent: "Daha yavaş",
-        tr_bouton: "Yolda: mikrofonsuz ya da sessiz",
-        tr_titre: "Bu oturum için",
-        tr_micro: "Mikrofonsuz",
-        tr_micro_d: "Kulaklığım var ama konuşamıyorum",
-        tr_son: "Sessiz",
-        tr_son_d: "Kulaklık yok: hiç ses yok",
-        tr_pied: "Oturum bitince kapanır",
-        tr_eteindre: "Sesi ve mikrofonu geri aç",
+        tr_micro_retabli: "Mikrofon geri açıldı.",
+        tr_son_retabli: "Ses geri açıldı.",
+        tr_btn_micro: "Mikrofonu kapat ya da aç",
+        tr_btn_son: "Sesi kapat ya da aç",
         tr_lien_parler: "Şu an konuşamıyorum",
         tr_lien_ecouter: "Şu an dinleyemiyorum",
         tr_actif_micro: "Oturum sonuna kadar mikrofonsuz: konuşma alıştırmaları cümle kurmaya dönüşür.",
         tr_actif_son: "Oturum sonuna kadar sessiz: dinleme alıştırmaları okumaya dönüşür.",
-        tr_eteint: "Ses ve mikrofon geri açıldı.",
         tr_q_lis: "Oku ve anlamı seç",
         tr_q_lire: "Cümleyi oku",
         tr_remplace: "Sessiz sürüm",
@@ -17421,19 +17387,14 @@ const I18N = {
         cp_q_ordre: "Склади речення",
         cp_ecouter: "Слухати",
         cp_lent: "Повільніше",
-        tr_bouton: "У дорозі: без мікрофона або без звуку",
-        tr_titre: "Для цього заняття",
-        tr_micro: "Без мікрофона",
-        tr_micro_d: "Маю навушники, але не можу говорити",
-        tr_son: "Без звуку",
-        tr_son_d: "Без навушників: жодного звуку",
-        tr_pied: "Вимикається наприкінці заняття",
-        tr_eteindre: "Повернути звук і мікрофон",
+        tr_micro_retabli: "Мікрофон повернуто.",
+        tr_son_retabli: "Звук повернуто.",
+        tr_btn_micro: "Вимкнути або ввімкнути мікрофон",
+        tr_btn_son: "Вимкнути або ввімкнути звук",
         tr_lien_parler: "Зараз не можу говорити",
         tr_lien_ecouter: "Зараз не можу слухати",
         tr_actif_micro: "Без мікрофона до кінця заняття: усні вправи стають складанням речення.",
         tr_actif_son: "Без звуку до кінця заняття: аудіювання стає читанням.",
-        tr_eteint: "Звук і мікрофон повернуто.",
         tr_q_lis: "Прочитай і вибери значення",
         tr_q_lire: "Прочитай речення",
         tr_remplace: "Беззвучна версія",
@@ -19648,19 +19609,14 @@ const I18N = {
         cp_q_ordre: "جمله را بساز",
         cp_ecouter: "گوش بده",
         cp_lent: "آهسته‌تر",
-        tr_bouton: "در راه: بدون میکروفون یا بدون صدا",
-        tr_titre: "برای این جلسه",
-        tr_micro: "بدون میکروفون",
-        tr_micro_d: "هدفون دارم ولی نمی‌توانم حرف بزنم",
-        tr_son: "بدون صدا",
-        tr_son_d: "هدفون ندارم: هیچ صدایی پخش نشود",
-        tr_pied: "در پایان جلسه خاموش می‌شود",
-        tr_eteindre: "برگرداندن صدا و میکروفون",
+        tr_micro_retabli: "میکروفون برگشت.",
+        tr_son_retabli: "صدا برگشت.",
+        tr_btn_micro: "قطع یا وصل کردن میکروفون",
+        tr_btn_son: "قطع یا وصل کردن صدا",
         tr_lien_parler: "الان نمی‌توانم حرف بزنم",
         tr_lien_ecouter: "الان نمی‌توانم گوش بدهم",
         tr_actif_micro: "تا پایان جلسه بدون میکروفون: تمرین‌های گفتاری به ساختن جمله تبدیل می‌شوند.",
         tr_actif_son: "تا پایان جلسه بدون صدا: تمرین‌های شنیداری به خواندن تبدیل می‌شوند.",
-        tr_eteint: "صدا و میکروفون برگشتند.",
         tr_q_lis: "بخوان و معنی را انتخاب کن",
         tr_q_lire: "جمله را بخوان",
         tr_remplace: "نسخهٔ بی‌صدا",
@@ -21323,19 +21279,14 @@ const I18N = {
         cp_q_ordre: "كوِّن الجملة",
         cp_ecouter: "استمع",
         cp_lent: "أبطأ",
-        tr_bouton: "في الطريق: بلا ميكروفون أو بلا صوت",
-        tr_titre: "لهذه الجلسة",
-        tr_micro: "بلا ميكروفون",
-        tr_micro_d: "معي سماعات لكن لا أستطيع الكلام",
-        tr_son: "بلا صوت",
-        tr_son_d: "بلا سماعات: لا صوت إطلاقًا",
-        tr_pied: "يتوقف في نهاية الجلسة",
-        tr_eteindre: "إعادة الصوت والميكروفون",
+        tr_micro_retabli: "عاد الميكروفون.",
+        tr_son_retabli: "عاد الصوت.",
+        tr_btn_micro: "كتم الميكروفون أو تشغيله",
+        tr_btn_son: "كتم الصوت أو تشغيله",
         tr_lien_parler: "لا أستطيع الكلام الآن",
         tr_lien_ecouter: "لا أستطيع الاستماع الآن",
         tr_actif_micro: "بلا ميكروفون حتى نهاية الجلسة: تمارين النطق تصبح ترتيب الجملة.",
         tr_actif_son: "بلا صوت حتى نهاية الجلسة: تمارين الاستماع تصبح قراءة.",
-        tr_eteint: "عاد الصوت والميكروفون.",
         tr_q_lis: "اقرأ واختر المعنى",
         tr_q_lire: "اقرأ الجملة",
         tr_remplace: "نسخة صامتة",
@@ -21687,19 +21638,14 @@ const I18N = {
         cp_q_ordre: "Monte a frase",
         cp_ecouter: "Ouvir",
         cp_lent: "Mais devagar",
-        tr_bouton: "Em trânsito: sem microfone ou sem som",
-        tr_titre: "Para esta sessão",
-        tr_micro: "Sem microfone",
-        tr_micro_d: "Estou de fone, mas não posso falar",
-        tr_son: "Sem som",
-        tr_son_d: "Sem fone: nenhum som",
-        tr_pied: "Desliga no fim da sessão",
-        tr_eteindre: "Reativar som e microfone",
+        tr_micro_retabli: "Microfone reativado.",
+        tr_son_retabli: "Som reativado.",
+        tr_btn_micro: "Desligar ou religar o microfone",
+        tr_btn_son: "Desligar ou religar o som",
         tr_lien_parler: "Não posso falar agora",
         tr_lien_ecouter: "Não posso ouvir agora",
         tr_actif_micro: "Sem microfone até o fim da sessão: a fala vira montar a frase.",
         tr_actif_son: "Sem som até o fim da sessão: a escuta vira leitura.",
-        tr_eteint: "Som e microfone reativados.",
         tr_q_lis: "Leia e escolha o sentido",
         tr_q_lire: "Leia a frase",
         tr_remplace: "Versão silenciosa",
@@ -23252,19 +23198,14 @@ const I18N = {
         cp_q_ordre: "Ułóż zdanie",
         cp_ecouter: "Posłuchaj",
         cp_lent: "Wolniej",
-        tr_bouton: "W drodze: bez mikrofonu lub bez dźwięku",
-        tr_titre: "Na tę sesję",
-        tr_micro: "Bez mikrofonu",
-        tr_micro_d: "Mam słuchawki, ale nie mogę mówić",
-        tr_son: "Bez dźwięku",
-        tr_son_d: "Bez słuchawek: żadnego dźwięku",
-        tr_pied: "Wyłącza się na koniec sesji",
-        tr_eteindre: "Przywróć dźwięk i mikrofon",
+        tr_micro_retabli: "Mikrofon przywrócony.",
+        tr_son_retabli: "Dźwięk przywrócony.",
+        tr_btn_micro: "Wyłącz lub włącz mikrofon",
+        tr_btn_son: "Wyłącz lub włącz dźwięk",
         tr_lien_parler: "Nie mogę teraz mówić",
         tr_lien_ecouter: "Nie mogę teraz słuchać",
         tr_actif_micro: "Bez mikrofonu do końca sesji: mówienie zamienia się w układanie zdania.",
         tr_actif_son: "Bez dźwięku do końca sesji: słuchanie zamienia się w czytanie.",
-        tr_eteint: "Dźwięk i mikrofon przywrócone.",
         tr_q_lis: "Przeczytaj i wybierz znaczenie",
         tr_q_lire: "Przeczytaj zdanie",
         tr_remplace: "Wersja bez dźwięku",
@@ -24817,19 +24758,14 @@ const I18N = {
         cp_q_ordre: "Составь предложение",
         cp_ecouter: "Слушать",
         cp_lent: "Медленнее",
-        tr_bouton: "В дороге: без микрофона или без звука",
-        tr_titre: "На это занятие",
-        tr_micro: "Без микрофона",
-        tr_micro_d: "Есть наушники, но говорить не могу",
-        tr_son: "Без звука",
-        tr_son_d: "Без наушников: никакого звука",
-        tr_pied: "Выключается в конце занятия",
-        tr_eteindre: "Вернуть звук и микрофон",
+        tr_micro_retabli: "Микрофон возвращён.",
+        tr_son_retabli: "Звук возвращён.",
+        tr_btn_micro: "Выключить или включить микрофон",
+        tr_btn_son: "Выключить или включить звук",
         tr_lien_parler: "Сейчас не могу говорить",
         tr_lien_ecouter: "Сейчас не могу слушать",
         tr_actif_micro: "Без микрофона до конца занятия: устные задания становятся составлением фразы.",
         tr_actif_son: "Без звука до конца занятия: аудирование становится чтением.",
-        tr_eteint: "Звук и микрофон возвращены.",
         tr_q_lis: "Прочитай и выбери значение",
         tr_q_lire: "Прочитай фразу",
         tr_remplace: "Беззвучная версия",
@@ -46349,7 +46285,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 981;
+const APP_VERSION = 982;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -51907,67 +51843,46 @@ function cacherCartePhrase(){
 //   son, « dictee » -> « ordre », « dictee_mot » -> « trou » sur le meme mot,
 //   « ecoute » -> la phrase LUE avec les memes choix ; « rp_chiffres » et
 //   « rp_epeler » montrent l'ecrit au lieu de le dire.
-// - « Sans micro » : pas d'oral. « Sans son » : ni oral ni son -- direAllemand(),
-//   la lecture des cartes et les sons de reussite se taisent.
+// - DEUX INTERRUPTEURS INDEPENDANTS (v982 ; la v981 avait un menu a choix
+//   unique, « pas assez intuitif » pour Jacques, qui voulait pouvoir couper
+//   l'un, l'autre ou les deux). Micro coupe : l'oral devient une phrase a
+//   reconstruire. Son coupe : direAllemand(), la lecture des cartes et les sons
+//   de reussite se taisent, les ecoutes se lisent ; l'oral RESTE (on lit la
+//   phrase et on la dit, sans modele sonore).
 // - DEUX ENTREES, RIEN SUR L'ACCUEIL (Jacques : « il ne faudrait pas trop
-//   surcharger la pilule ») : un lien sur l'exercice meme, et l'icone du casque
-//   dans la barre des cartes.
+//   surcharger la pilule ») : un lien sur l'exercice meme, et les deux boutons
+//   micro et haut-parleur dans la barre des cartes, comme en visio.
 // - IL S'ETEINT TOUT SEUL en quittant la seance (showScreen), pour qu'on ne perde
-//   jamais l'oral par oubli. Jamais memorise : une variable, pas un reglage.
-var MODE_TRANSIT = null;            // null | "micro" | "son"
+//   jamais l'oral par oubli. Jamais memorise : des variables, pas un reglage.
+var MICRO_COUPE = false, SON_COUPE = false;
 var CARTE_PHRASE_AFFICHEE = null;   // l'item d'origine de la carte-phrase a l'ecran
-function transitSansSon(){ return MODE_TRANSIT === "son"; }
+function transitSansSon(){ return SON_COUPE; }
+function transitSansMicro(){ return MICRO_COUPE; }
 function majBoutonTransit(){
-    const b = document.getElementById("transitBtn");
-    if(b){
-        b.classList.toggle("actif", !!MODE_TRANSIT);
-        b.classList.toggle("micro", MODE_TRANSIT === "micro");
-        b.classList.toggle("son", MODE_TRANSIT === "son");
-    }
-    const m = document.getElementById("mtMicro"), s = document.getElementById("mtSon"), e = document.getElementById("mtEteindre");
-    if(m) m.classList.toggle("choisi", MODE_TRANSIT === "micro");
-    if(s) s.classList.toggle("choisi", MODE_TRANSIT === "son");
-    if(e) e.classList.toggle("hidden", !MODE_TRANSIT);
+    [["trMicroBtn", MICRO_COUPE], ["trSonBtn", SON_COUPE]].forEach(([id, coupe]) => {
+        const b = document.getElementById(id);
+        if(!b) return;
+        b.classList.toggle("coupe", coupe);
+        b.setAttribute("aria-pressed", coupe ? "true" : "false");
+    });
+    document.body.classList.toggle("transit-son-coupe", SON_COUPE);
 }
-function fermerMenuTransit(){
-    const m = document.getElementById("menuTransit");
-    if(m) m.classList.add("hidden");
-    const b = document.getElementById("transitBtn");
-    if(b) b.setAttribute("aria-expanded", "false");
-}
-function basculerMenuTransit(ev){
-    if(ev) ev.stopPropagation();
-    const m = document.getElementById("menuTransit");
-    if(!m) return;
-    const ouvrir = m.classList.contains("hidden");
-    m.classList.toggle("hidden", !ouvrir);
-    const b = document.getElementById("transitBtn");
-    if(b) b.setAttribute("aria-expanded", ouvrir ? "true" : "false");
+// quoi : "micro" ou "son" ; coupe : true, false, ou rien pour inverser.
+function basculerTransit(quoi, coupe){
+    const avant = MICRO_COUPE + "/" + SON_COUPE;
+    if(quoi === "micro") MICRO_COUPE = (coupe === undefined) ? !MICRO_COUPE : !!coupe;
+    else if(quoi === "son") SON_COUPE = (coupe === undefined) ? !SON_COUPE : !!coupe;
+    else return;
     majBoutonTransit();
-    // Ramene le menu dans l'ecran : en arabe et en persan le bouton n'est pas
-    // au bord, et le menu ancre sur lui sortait de 170 px a gauche.
-    m.style.transform = "";
-    if(ouvrir){
-        const r = m.getBoundingClientRect(), marge = 12, larg = window.innerWidth;
-        let dx = 0;
-        if(r.left < marge) dx = marge - r.left;
-        else if(r.right > larg - marge) dx = (larg - marge) - r.right;
-        if(dx) m.style.transform = "translateX(" + Math.round(dx) + "px)";
-    }
-}
-document.addEventListener("click", () => { try{ fermerMenuTransit(); }catch(e){} });
-function choisirTransit(mode){
-    const avant = MODE_TRANSIT;
-    MODE_TRANSIT = mode || null;
-    fermerMenuTransit();
-    majBoutonTransit();
-    if(MODE_TRANSIT === "son"){
+    if(SON_COUPE){
         try{ if("speechSynthesis" in window) speechSynthesis.cancel(); }catch(e){}
         try{ arreterAudioPregenere(); }catch(e){}
     }
-    try{ noterAudio("transit", "TRANSIT", "mode " + (MODE_TRANSIT || "eteint")); }catch(e){}
-    try{ showInfoToast(t(MODE_TRANSIT === "micro" ? "tr_actif_micro" : MODE_TRANSIT === "son" ? "tr_actif_son" : "tr_eteint")); }catch(e){}
-    if(avant !== MODE_TRANSIT) rafraichirCarteTransit();
+    const maintenant = quoi === "micro" ? MICRO_COUPE : SON_COUPE;
+    try{ noterAudio("transit", "TRANSIT", quoi + (maintenant ? " coupe" : " retabli")); }catch(e){}
+    try{ showInfoToast(t(quoi === "micro" ? (maintenant ? "tr_actif_micro" : "tr_micro_retabli")
+                                          : (maintenant ? "tr_actif_son" : "tr_son_retabli"))); }catch(e){}
+    if(avant !== MICRO_COUPE + "/" + SON_COUPE) rafraichirCarteTransit();
 }
 // La carte-phrase affichee se refait dans le nouveau mode, si on n'y a pas encore repondu.
 function rafraichirCarteTransit(){
@@ -51976,22 +51891,21 @@ function rafraichirCarteTransit(){
     if(el.querySelector(".cp-retour:not(.hidden)")) return;
     montrerCartePhrase(CARTE_PHRASE_AFFICHEE);
 }
-// En quittant la seance (tout ecran autre que les cartes et la scene), le mode s'eteint.
+// En quittant la seance (tout ecran autre que les cartes et la scene), tout se retablit.
 function eteindreTransitHorsSeance(id){
-    if(!MODE_TRANSIT || id === "flashcards" || id === "sceneSeance") return;
-    MODE_TRANSIT = null;
-    fermerMenuTransit();
+    if(!(MICRO_COUPE || SON_COUPE) || id === "flashcards" || id === "sceneSeance") return;
+    MICRO_COUPE = false; SON_COUPE = false;
     majBoutonTransit();
-    try{ noterAudio("transit", "TRANSIT", "eteint en quittant la seance (" + id + ")"); }catch(e){}
+    try{ noterAudio("transit", "TRANSIT", "retabli en quittant la seance (" + id + ")"); }catch(e){}
 }
 // La version silencieuse d'un item, ou null s'il reste tel quel.
 function substitutTransit(item){
-    if(!MODE_TRANSIT || !item || !item.phrase || item.transitDe) return null;
+    if(!(MICRO_COUPE || SON_COUPE) || !item || !item.phrase || item.transitDe) return null;
     const f = item.forme;
     const mots = Array.isArray(item.phrase.mots) ? item.phrase.mots : null;
     const copie = (plus) => Object.assign({}, item, { transitDe: f, prepa: false, prepaDictee: false, intrus: null }, plus);
     const ordre = () => (mots && mots.length >= 2) ? copie({ forme: "ordre", q: "cp_q_ordre" }) : null;
-    if(f === "parler") return ordre() || copie({ forme: "transit_lire", q: "tr_q_lire" });
+    if(f === "parler") return MICRO_COUPE ? (ordre() || copie({ forme: "transit_lire", q: "tr_q_lire" })) : null;
     if(!transitSansSon()) return null;
     if(f === "ecoute") return copie({ transitLu: true, q: "tr_q_lis" });
     if(f === "rp_chiffres" || f === "rp_epeler") return copie({ transitLu: true });
@@ -53194,7 +53108,7 @@ function montrerCartePhrase(item){
         if(lectureRepereJa(item.phrase.de)) el.appendChild(creer("p", "cp-sens", lectureRepereJa(item.phrase.de)));
         el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const oral = creer("div", "cp-oral");
-        const modele = creer("button", ""); modele.append(iconeHP(), " " + t("cp_modele"));
+        const modele = creer("button", "cp-modele"); modele.append(iconeHP(), " " + t("cp_modele"));
         modele.type = "button";
         modele.addEventListener("click", () => direPhrase(item));
         const enreg = creer("button", "", "🎙 " + t("cp_enregistrer"));
@@ -53383,11 +53297,11 @@ function montrerCartePhrase(item){
     // v981 : « je ne peux pas parler / ecouter maintenant », sur l'exercice meme.
     if(!item.transitDe){
         const ecoute = ["ecoute", "dictee", "dictee_mot", "rp_chiffres", "rp_epeler"].indexOf(item.forme) >= 0;
-        if(item.forme === "parler" || (ecoute && !transitSansSon())){
+        if((item.forme === "parler" && !MICRO_COUPE) || (ecoute && !SON_COUPE)){
             const parler = item.forme === "parler";
             const lien = creer("button", "cp-transit-lien", t(parler ? "tr_lien_parler" : "tr_lien_ecouter"));
             lien.type = "button";
-            lien.addEventListener("click", (ev) => { ev.stopPropagation(); choisirTransit(parler ? "micro" : "son"); });
+            lien.addEventListener("click", (ev) => { ev.stopPropagation(); basculerTransit(parler ? "micro" : "son", true); });
             el.appendChild(lien);
         }
     }
