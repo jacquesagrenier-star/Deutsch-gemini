@@ -78,6 +78,32 @@ envoyer se retrouve dans le corpus. À relancer après un changement de
 `revisionDeScene()`, de l'échelle de répétition espacée ou d'une scène.
 Playwright : `npm i -g playwright` une fois sur le PC.
 
+# La séance hors ligne de l'app installée
+
+```
+python tests/hors_ligne.py
+python tests/hors_ligne.py --app es
+```
+
+L'app servie en local (comme le parcours), avec un faux `@capacitor/filesystem`
+en mémoire à la place du module natif. Le test vérifie, dans l'ordre :
+- **le web n'est pas touché** : sans le module, rien ne tourne et la mention
+  « ✓ disponible hors ligne » reste cachée ;
+- **la mise de côté** : 50 cartes au plus (mots ET exercices de phrases), leurs
+  voix, le lecteur ; le cycle des formes et le paquet de la séance en ligne
+  restent intacts ;
+- **le lecteur** : chaque carte est jouée avec la bonne réponse, une phrase est
+  ratée exprès et doit revenir plus loin, une ligne de journal par réponse ;
+- **le recollage** : une révision par carte (la dernière réponse), « répéter »
+  et la grammaire pour l'objectif seulement, un second recollage ne compte rien,
+  et « Supprimer mon compte » efface la séance rangée.
+
+À relancer après tout changement de `mettreSeanceDeCote()`,
+`preparerCartesHorsLigne()`, `lecteurHorsLigne()`, `recollerHorsLigne()`, ou
+de la composition des phrases (`insererCartesPhrases()` et ses générateurs).
+Il ne dit rien de ce que seul un téléphone montre (place réelle, voix jouées) :
+pour cela, l'essai en mode avion.
+
 # Exportateur
 
 ```bash
