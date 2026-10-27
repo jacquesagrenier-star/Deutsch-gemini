@@ -3302,6 +3302,11 @@ html[data-apprendre="es"] [data-i18n="credits_degres"],
 html[data-apprendre="es"] [data-i18n="credits_freq"],
 html[data-apprendre="es"] [data-i18n="credits_examens"],
 html[data-apprendre="es"] [data-orbid="pruefung"]{ display:none !important; }
+/* Le japonais : ses propres credits (credits_dict, dans I18N_JAPONAIS). */
+html[data-apprendre="ja"] [data-i18n="credits_voix"],
+html[data-apprendre="ja"] [data-i18n="credits_degres"],
+html[data-apprendre="ja"] [data-i18n="credits_freq"],
+html[data-apprendre="ja"] [data-i18n="credits_examens"]{ display:none !important; }
 /* Le choix Espagne / Amerique latine n'existe qu'en espagnol. */
 html:not([data-apprendre="es"]) [data-seulement-es]{ display:none !important; }
 html[data-apprendre="es"] [data-seulement-de]{ display:none !important; }
@@ -3311,7 +3316,7 @@ html[data-apprendre="es"] [data-seulement-de]{ display:none !important; }
    de cacher retombe sur l'allemand (le moteur ne connait que « es » ou le
    reste). On ne montre donc que ce qui existe en japonais : la seance, les mots,
    les kana, « Mis de cote ». Une tuile qu'on porte en japonais s'ajoute ici. */
-html[data-apprendre="ja"] #explorerScenes,
+html[data-apprendre="ja"] .explorer-tout,
 html[data-apprendre="ja"] #ecouteLigneAccueil,
 html[data-apprendre="ja"] #episodeLigne,
 html[data-apprendre="ja"] .search-launch,
@@ -26564,6 +26569,7 @@ const I18N_JAPONAIS = {
     "fr": {
         "home_title_1": "Apprends le japonais",
         "home_subtitle": "Ton tuteur personnel pour le vocabulaire japonais, les kana et les kanji.",
+        "credits_dict": "Mots et kanji : JMdict et KANJIDIC2 (EDRDG, CC BY-SA 4.0) ; listes JLPT de Jonathan Waller (tanos.co.uk, CC BY) ; phrases d'exemple : Tatoeba (CC BY 2.0 FR) ; ordre des traits : KanjiVG (kanjivg.tagaini.net), © Ulrich Apel, CC BY-SA 3.0.",
         "auth_title": "Apprends le japonais, un mot à la fois",
         "setup_niveau_label": "Tu connais déjà un peu de japonais ?",
         "profil_q1": "Pourquoi tu apprends le japonais ?",
@@ -26597,6 +26603,7 @@ const I18N_JAPONAIS = {
     "en": {
         "home_title_1": "Learn Japanese",
         "home_subtitle": "Your personal tutor for Japanese vocabulary, kana and kanji.",
+        "credits_dict": "Words and kanji: JMdict and KANJIDIC2 (EDRDG, CC BY-SA 4.0); JLPT lists by Jonathan Waller (tanos.co.uk, CC BY); example sentences: Tatoeba (CC BY 2.0 FR); stroke order: KanjiVG (kanjivg.tagaini.net), © Ulrich Apel, CC BY-SA 3.0.",
         "auth_title": "Learn Japanese, one word at a time",
         "setup_niveau_label": "Do you already know some Japanese?",
         "profil_q1": "Why are you learning Japanese?",
@@ -49944,9 +49951,36 @@ function majPortesSeance(){
 // Le ruban : la scene du jour d'abord, puis les autres. Une vignette ouvre la
 // scene ENTIERE, sur Decouvrir (le prototype commence la). Version gratuite :
 // la classe seule, les autres portent un cadenas et menent a l'offre.
+// LES SCENES DU JAPONAIS (essai, 27 oct. 2026) : les siennes, pas celles de
+// l'allemand -- un konbini, une gare, l'entree d'une maison. Explorer seulement
+// (toucher, ecouter) : elles n'entrent pas encore dans la seance.
+const SCENES_JA = [
+    { nom: "konbini", ja: "コンビニで", fr: "Au konbini", en: "At the konbini" },
+    { nom: "eki", ja: "駅で", fr: "À la gare", en: "At the station" },
+    { nom: "genkan", ja: "玄関で", fr: "À l'entrée", en: "In the entryway" }
+];
+function majExplorerScenesJa(ruban){
+    const nb = document.getElementById("explorerNb");
+    if(nb) nb.textContent = SCENES_JA.length;
+    ruban.innerHTML = "";
+    SCENES_JA.forEach(s => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "explorer-v";
+        const img = document.createElement("img");
+        img.loading = "lazy"; img.alt = ""; img.src = vignetteScene(s.nom);
+        const sp = document.createElement("span");
+        sp.textContent = libJa(s.fr, s.en);
+        b.appendChild(img); b.appendChild(sp);
+        b.setAttribute("aria-label", s.ja);
+        b.addEventListener("click", () => ouvrirSceneDepuisAccueil(s.nom));
+        ruban.appendChild(b);
+    });
+}
 function majExplorerScenes(){
     const ruban = document.getElementById("explorerRuban");
     if(!ruban) return;
+    if(LANGUE_APPRISE === "ja") return majExplorerScenesJa(ruban);
     const nb = document.getElementById("explorerNb");
     if(nb) nb.textContent = SCENES_SEANCE.length;
     // v800 : CINQ vignettes, qui changent chaque jour (Jacques : « qu'on ne voie
@@ -50328,6 +50362,7 @@ function ouvrirSceneSeance(){
 // les memes zones ; en espagnol, elle charge les mots espagnols de la scene
 // (construire.py, visuel/prototype/espanol/) et la voix de la variante.
 function langueDeScene(){
+    if(LANGUE_APPRISE === "ja") return "&apprendre=ja";
     if(LANGUE_APPRISE !== "es") return "";
     return "&apprendre=es&variante=" + (VARIANTE_ESPAGNOL === "latam" ? "latam" : "es");
 }

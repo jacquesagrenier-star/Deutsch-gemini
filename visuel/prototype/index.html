@@ -262,8 +262,10 @@ const NOM_SCENE = (new URLSearchParams(location.search).get("scene") || "")
 /* LA LANGUE APPRISE (10 oct. 2026) : ?apprendre=es, passe par l'app. La
    scene espagnole est la MEME scene -- image, zones, masques -- avec ses mots
    espagnols : scene-<nom>.es.js, fait par construire.py depuis espanol/. */
-const APPRENDRE = new URLSearchParams(location.search).get("apprendre") === "es" ? "es" : "de";
-const SUFFIXE_LANGUE = APPRENDRE === "es" ? ".es" : "";
+/* Le japonais (essai admin, 27 oct. 2026) : ses trois scenes a lui (konbini,
+   eki, genkan), scene-<nom>.ja.js, faites par japonais/scenes/construire_scenes.py. */
+const APPRENDRE = (a => a === "es" || a === "ja" ? a : "de")(new URLSearchParams(location.search).get("apprendre"));
+const SUFFIXE_LANGUE = APPRENDRE === "es" ? ".es" : APPRENDRE === "ja" ? ".ja" : "";
 /* ?t= : jamais la version en cache. Le telephone de Jacques a melange une
    ancienne image et de nouvelles coordonnees (6 oct.) ; un prototype qu'on
    corrige toutes les dix minutes ne doit rien garder. */
@@ -293,12 +295,17 @@ for (const v of (window.SCENES[NOM_SCENE].vues || []))
 <script>
 "use strict";
 const EST_ES = APPRENDRE === "es";
+/* Le japonais : ni article ni pluriel ; la lecture (kana · romaji) sous le
+   mot, et la voix du telephone, qui dit la lecture. */
+const EST_JA = APPRENDRE === "ja";
 const LATAM = EST_ES && new URLSearchParams(location.search).get("variante") === "latam";
-const LANG_CIBLE = EST_ES ? "es" : "de";
+const LANG_CIBLE = EST_ES ? "es" : EST_JA ? "ja" : "de";
+/* Ce que la voix dit d'un mot : l'article et le nom, ou la lecture japonaise. */
+const motDit = p => EST_JA ? (p.lecture || p.mot) : p.genre + " " + p.mot;
 /* Le mot de la langue apprise que la page dit elle-meme. v830 : le bouton
    « Continuer », lui, est dans la langue de l'interface -- « Seguir » ne disait
    rien a une debutante (Jacques, 16 oct. 2026). */
-const MOTS_CIBLE = EST_ES ? {juste: "¡Correcto!"} : {juste: "Richtig!"};
+const MOTS_CIBLE = EST_ES ? {juste: "¡Correcto!"} : EST_JA ? {juste: "せいかい！"} : {juste: "Richtig!"};
 /* Le pluriel : l'allemand dit toujours « die », l'espagnol porte son article
    (los / las) dans le fichier de la scene. */
 const plurielDe = n => EST_ES ? n.pluriel : "die " + n.pluriel;
@@ -577,8 +584,8 @@ function bravo(){ confettis(); sonBravo(); }
 let voixDe = null;
 function chargerVoix(){
   const v = speechSynthesis.getVoices();
-  const pays = EST_ES ? (LATAM ? /^es(-|_)(MX|US|419)/i : /^es(-|_)ES/i) : /^de(-|_)DE/i;
-  const langue = EST_ES ? /^es/i : /^de/i;
+  const pays = EST_ES ? (LATAM ? /^es(-|_)(MX|US|419)/i : /^es(-|_)ES/i) : EST_JA ? /^ja(-|_)JP/i : /^de(-|_)DE/i;
+  const langue = EST_ES ? /^es/i : EST_JA ? /^ja/i : /^de/i;
   voixDe = v.find(x => pays.test(x.lang) && /google|natural|online/i.test(x.name))
         || v.find(x => pays.test(x.lang)) || v.find(x => langue.test(x.lang)) || null;
 }
@@ -593,7 +600,7 @@ function direTelephone(t){
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(t);
-  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92 * VITESSE_VOIX;
+  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : EST_JA ? "ja-JP" : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92 * VITESSE_VOIX;
   speechSynthesis.speak(u);
 }
 /* LA VOIX D'AURORA, comme dans l'app (Jacques, 9 oct. : « on n'a pas la voix
@@ -651,7 +658,8 @@ function empreinte(t){ return sha1Hex(t).slice(0, 16); }
 function dire(t){
   if (audioEnCours){ audioEnCours.pause(); audioEnCours = null; }
   if ("speechSynthesis" in window) speechSynthesis.cancel();
-  if (audioAbsents.has(t)) return direTelephone(t);
+  // Le japonais n'a pas de voix enregistree (decide le 25 oct. 2026).
+  if (EST_JA || audioAbsents.has(t)) return direTelephone(t);
   try {
     const a = new Audio(AUDIO_BASE + empreinte(t) + ".mp3?r=" + AUDIO_REVISION);
     a.playbackRate = VITESSE_VOIX;
@@ -843,6 +851,8 @@ $("voirZones").addEventListener("change", e => {
   else effacer();
 });
 function groupe(p){
+  if (EST_JA) return `<span lang="ja"><span class="nom">${p.mot}</span></span>`
+    + (p.lecture ? ` <small class="lecture-ja">${p.lecture !== p.mot ? p.lecture + " · " : ""}${p.romaji || ""}</small>` : "");
   const art = p.genre || "";
   return `<span lang="${LANG_CIBLE}"><span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span></span>`;
 }
@@ -1172,9 +1182,9 @@ const A_TROUVER = (() => {
   for (const v of VUES){
     const s = window.SCENES[v], exclus = s.exclus || [];
     for (const p of s.points){
-      for (const m of [{mot: p.mot, genre: p.genre, niveau: p.niveau, theme: p.theme}, ...p.aussi]){
+      for (const m of [{mot: p.mot, genre: p.genre, niveau: p.niveau, theme: p.theme, lecture: p.lecture, romaji: p.romaji}, ...p.aussi]){
         if (exclus.includes(m.mot)) continue;
-        if (!vus.has(m.mot)) vus.set(m.mot, {mot: m.mot, genre: m.genre, niveau: m.niveau, theme: m.theme, vues: []});
+        if (!vus.has(m.mot)) vus.set(m.mot, {mot: m.mot, genre: m.genre, niveau: m.niveau, theme: m.theme, lecture: m.lecture, romaji: m.romaji, vues: []});
         if (!vus.get(m.mot).vues.includes(v)) vus.get(m.mot).vues.push(v);
       }
     }
@@ -1226,15 +1236,15 @@ function trouver(){
   $("bas").classList.remove("en-haut");
   entete("A1 · " + T("trouve") + "  " + compte(i+1, fileTrouver.length),
          `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, !EN_SEANCE && !PP);
-  $("reecouter").addEventListener("click", () => dire(p.genre + " " + p.mot));
+  $("reecouter").addEventListener("click", () => dire(motDit(p)));
   $("bas").innerHTML = `<div class="score">${compte(bons, faits)}</div>`;
-  dire(p.genre + " " + p.mot);
+  dire(motDit(p));
 }
 function toucher(id, pt){
   const p = P[id];
   if (niveau === "A1" && modeA1 === "decouvrir"){
     effacer(); anneau(id); etiquette(id);
-    dire((p.personne ? p.personne + ". " : "") + p.genre + " " + p.mot);
+    dire((p.personne ? p.personne + ". " : "") + motDit(p));
     return;
   }
   if ((niveau === "A1" || etapeTrouve) && attenteToucher && !verrou){
@@ -1307,7 +1317,7 @@ function toucher(id, pt){
     return;
   }
   // aux autres niveaux, toucher un objet montre son nom : on peut toujours chercher un mot
-  effacer(); anneau(id); etiquette(id); dire(p.genre + " " + p.mot);
+  effacer(); anneau(id); etiquette(id); dire(motDit(p));
 }
 
 /* ---------- A2 a C1 : une question a choix ---------- */
@@ -1339,7 +1349,7 @@ function poserTrouve(p, total){
   entete("A1 · " + T("trouve") + "  " + compte(i+1, total),
          `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""}`, false);
   $("bas").innerHTML = `<div class="score">${compte(bons, faits)}</div>`;
-  dire(p.genre + " " + p.mot);
+  dire(motDit(p));
 }
 function repondre(q, opts, k){
   if (verrou) return; verrou = true; faits++;
