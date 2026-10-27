@@ -1,0 +1,1152 @@
+// GENERE par anglais/outils/scenes.py (depuis scene-waschsalon.js) -- ne pas modifier a la main.
+window.SCENE = {
+ "image": "waschsalon.webp",
+ "points": [
+  {
+   "id": "lampe",
+   "mot": "lamp",
+   "genre": "",
+   "pluriel": "lamps",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     18.5,
+     14.5,
+     33.5,
+     2.8
+    ],
+    [
+     31.5,
+     0,
+     4,
+     8.5
+    ]
+   ],
+   "fr": "lampe"
+  },
+  {
+   "id": "wand",
+   "mot": "wall",
+   "genre": "",
+   "pluriel": "walls",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     17,
+     60,
+     30
+    ]
+   ],
+   "fr": "mur"
+  },
+  {
+   "id": "uhr",
+   "mot": "clock",
+   "genre": "",
+   "pluriel": "clocks",
+   "niveau": "A1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     27.5,
+     24,
+     7.5,
+     4.5
+    ]
+   ],
+   "fr": "horloge"
+  },
+  {
+   "id": "flasche",
+   "mot": "bottle",
+   "genre": "",
+   "pluriel": "bottles",
+   "niveau": "A1",
+   "theme": "food_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     19.5,
+     30,
+     12,
+     4.3
+    ]
+   ],
+   "fr": "bouteille"
+  },
+  {
+   "id": "handtuch",
+   "mot": "towel",
+   "genre": "",
+   "pluriel": "towels",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     32.5,
+     32.3,
+     9,
+     2.5
+    ]
+   ],
+   "fr": "serviette"
+  },
+  {
+   "id": "regal",
+   "mot": "shelf",
+   "genre": "",
+   "pluriel": "shelves",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     18,
+     33,
+     23,
+     3.5
+    ]
+   ],
+   "fr": "étagère"
+  },
+  {
+   "id": "spiegel",
+   "mot": "mirror",
+   "genre": "",
+   "pluriel": "mirrors",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     45,
+     29,
+     12,
+     8.5
+    ]
+   ],
+   "fr": "miroir"
+  },
+  {
+   "id": "heizkoerper",
+   "mot": "radiator",
+   "genre": "",
+   "pluriel": "radiators",
+   "niveau": "B1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     34,
+     40,
+     24,
+     6.5
+    ]
+   ],
+   "fr": "radiateur"
+  },
+  {
+   "id": "tuer",
+   "mot": "door",
+   "genre": "",
+   "pluriel": "doors",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     64.5,
+     18.5,
+     9,
+     33
+    ]
+   ],
+   "fr": "porte"
+  },
+  {
+   "id": "fenster",
+   "mot": "window",
+   "genre": "",
+   "pluriel": "windows",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "store window",
+     "genre": "",
+     "niveau": "B1",
+     "fr": "vitrine",
+     "gb": {
+      "mot": "shop window",
+      "pluriel": "shop windows"
+     }
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     85,
+     18.5,
+     15,
+     36
+    ]
+   ],
+   "fr": "fenêtre"
+  },
+  {
+   "id": "schild",
+   "mot": "sign",
+   "genre": "",
+   "pluriel": "signs",
+   "niveau": "A2",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "road sign",
+     "genre": "",
+     "niveau": "B1",
+     "fr": "panneau de signalisation"
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     91,
+     21.5,
+     8.5,
+     5
+    ]
+   ],
+   "fr": "le panneau"
+  },
+  {
+   "id": "fussgaenger",
+   "mot": "pedestrian",
+   "genre": "",
+   "pluriel": "pedestrians",
+   "niveau": "B1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "man",
+     "genre": "",
+     "niveau": "A1",
+     "theme": "people_a1",
+     "fr": "homme/mari"
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     87.5,
+     31.5,
+     7,
+     11.5
+    ]
+   ],
+   "fr": "piéton"
+  },
+  {
+   "id": "fahrrad",
+   "mot": "bike",
+   "genre": "",
+   "pluriel": "bikes",
+   "niveau": "A1",
+   "theme": "travel_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     86.5,
+     40,
+     13,
+     7.5
+    ]
+   ],
+   "fr": "vélo"
+  },
+  {
+   "id": "strasse",
+   "mot": "street",
+   "genre": "",
+   "pluriel": "streets",
+   "niveau": "A1",
+   "theme": "city_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     86.5,
+     43,
+     13.5,
+     7
+    ]
+   ],
+   "fr": "rue"
+  },
+  {
+   "id": "pflanze",
+   "mot": "plant",
+   "genre": "",
+   "pluriel": "plants",
+   "niveau": "A1",
+   "theme": "weather_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     71.5,
+     35.5,
+     16.5,
+     17
+    ]
+   ],
+   "fr": "la plante"
+  },
+  {
+   "id": "waschmaschine-3",
+   "mot": "washing machine",
+   "genre": "",
+   "pluriel": "washing machines",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     13,
+     42.5,
+     12.5,
+     13
+    ]
+   ],
+   "fr": "machine à laver"
+  },
+  {
+   "id": "waschmittel",
+   "mot": "laundry detergent",
+   "genre": "",
+   "niveau": "B1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "bottle",
+     "genre": "",
+     "niveau": "A1",
+     "theme": "food_a1",
+     "fr": "bouteille"
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     2.5,
+     42,
+     5,
+     11.5
+    ]
+   ],
+   "fr": "lessive, détergent",
+   "gb": {
+    "mot": "washing powder",
+    "pluriel": null
+   }
+  },
+  {
+   "id": "seife",
+   "mot": "soap",
+   "genre": "",
+   "pluriel": "soaps",
+   "niveau": "B1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     10.3,
+     52.8,
+     4,
+     2
+    ]
+   ],
+   "fr": "savon"
+  },
+  {
+   "id": "muenze",
+   "mot": "coin",
+   "genre": "",
+   "pluriel": "coins",
+   "niveau": "A1",
+   "theme": "shopping_a1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "money",
+     "genre": "",
+     "niveau": "A1",
+     "theme": "shopping_a1",
+     "fr": "argent"
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     6.5,
+     54.8,
+     4.5,
+     1.6
+    ]
+   ],
+   "fr": "pièce de monnaie"
+  },
+  {
+   "id": "waschmaschine-2",
+   "mot": "washing machine",
+   "genre": "",
+   "pluriel": "washing machines",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     47,
+     10,
+     42
+    ]
+   ],
+   "fr": "machine à laver"
+  },
+  {
+   "id": "waschmaschine",
+   "mot": "washing machine",
+   "genre": "",
+   "pluriel": "washing machines",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     9,
+     50,
+     14,
+     36
+    ]
+   ],
+   "fr": "machine à laver"
+  },
+  {
+   "id": "hemd",
+   "mot": "shirt",
+   "genre": "",
+   "pluriel": "shirts",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     14.5,
+     59,
+     10,
+     10
+    ]
+   ],
+   "fr": "chemise"
+  },
+  {
+   "id": "anna",
+   "mot": "woman",
+   "genre": "",
+   "pluriel": "women",
+   "niveau": "A1",
+   "theme": "people_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     18.5,
+     44.5,
+     29,
+     30
+    ]
+   ],
+   "fr": "femme/épouse"
+  },
+  {
+   "id": "pullover",
+   "mot": "sweater",
+   "genre": "",
+   "pluriel": "sweaters",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     27.5,
+     52,
+     20,
+     16
+    ]
+   ],
+   "fr": "pull",
+   "gb": {
+    "mot": "jumper",
+    "pluriel": "jumpers"
+   }
+  },
+  {
+   "id": "handtuch-2",
+   "mot": "towel",
+   "genre": "",
+   "pluriel": "towels",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     29.5,
+     62,
+     10,
+     8
+    ]
+   ],
+   "fr": "serviette"
+  },
+  {
+   "id": "hose",
+   "mot": "pants",
+   "genre": "",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     22.5,
+     64.5,
+     24,
+     8.5
+    ]
+   ],
+   "fr": "pantalon",
+   "gb": {
+    "mot": "trousers",
+    "pluriel": null
+   }
+  },
+  {
+   "id": "schuh",
+   "mot": "shoe",
+   "genre": "",
+   "pluriel": "shoes",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "sneaker",
+     "genre": "",
+     "niveau": "A1",
+     "theme": "clothes_a1",
+     "fr": "basket",
+     "gb": {
+      "mot": "trainer",
+      "pluriel": "trainers"
+     }
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     26.5,
+     69.5,
+     21,
+     5
+    ]
+   ],
+   "fr": "chaussure"
+  },
+  {
+   "id": "korb",
+   "mot": "basket",
+   "genre": "",
+   "pluriel": "baskets",
+   "niveau": "A2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     14,
+     73,
+     30.5,
+     13.5
+    ]
+   ],
+   "fr": "le panier"
+  },
+  {
+   "id": "jeans",
+   "mot": "jeans",
+   "genre": "",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "pants",
+     "genre": "",
+     "niveau": "A1",
+     "theme": "clothes_a1",
+     "fr": "pantalon",
+     "gb": {
+      "mot": "trousers",
+      "pluriel": null
+     }
+    }
+   ],
+   "sur": "korb",
+   "devant": 0,
+   "boites": [
+    [
+     16.5,
+     73,
+     12,
+     6.5
+    ]
+   ],
+   "fr": "jean"
+  },
+  {
+   "id": "t-shirt",
+   "mot": "T-shirt",
+   "genre": "",
+   "pluriel": "T-shirts",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "korb",
+   "devant": 0,
+   "boites": [
+    [
+     26,
+     72.5,
+     14.5,
+     4.8
+    ]
+   ],
+   "fr": "t-shirt"
+  },
+  {
+   "id": "kleid",
+   "mot": "dress",
+   "genre": "",
+   "pluriel": "dresses",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "korb",
+   "devant": 0,
+   "boites": [
+    [
+     32.5,
+     74.5,
+     12,
+     8.5
+    ]
+   ],
+   "fr": "robe"
+  },
+  {
+   "id": "socke",
+   "mot": "sock",
+   "genre": "",
+   "pluriel": "socks",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "korb",
+   "devant": 0,
+   "boites": [
+    [
+     19,
+     77.5,
+     14.5,
+     9
+    ]
+   ],
+   "fr": "chaussette"
+  },
+  {
+   "id": "buegeleisen",
+   "mot": "iron",
+   "genre": "",
+   "pluriel": "irons",
+   "niveau": "B2",
+   "personne": null,
+   "aussi": [],
+   "sur": "tisch",
+   "devant": 0,
+   "boites": [
+    [
+     56,
+     47,
+     6.5,
+     6
+    ]
+   ],
+   "fr": "fer à repasser"
+  },
+  {
+   "id": "decke",
+   "mot": "blanket",
+   "genre": "",
+   "pluriel": "blankets",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "tisch",
+   "devant": 0,
+   "boites": [
+    [
+     52,
+     54,
+     17.5,
+     5
+    ]
+   ],
+   "fr": "couverture"
+  },
+  {
+   "id": "pullover-2",
+   "mot": "sweater",
+   "genre": "",
+   "pluriel": "sweaters",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "tisch",
+   "devant": 0,
+   "boites": [
+    [
+     53.5,
+     59,
+     19,
+     5.5
+    ]
+   ],
+   "fr": "pull",
+   "gb": {
+    "mot": "jumper",
+    "pluriel": "jumpers"
+   }
+  },
+  {
+   "id": "tisch",
+   "mot": "table",
+   "genre": "",
+   "pluriel": "tables",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     48.5,
+     50,
+     30,
+     17
+    ],
+    [
+     54,
+     66.5,
+     12,
+     16
+    ]
+   ],
+   "fr": "table"
+  },
+  {
+   "id": "muelleimer",
+   "mot": "trash can",
+   "genre": "",
+   "pluriel": "trash cans",
+   "niveau": "A2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     59,
+     75,
+     15,
+     12
+    ]
+   ],
+   "fr": "poubelle",
+   "gb": {
+    "mot": "bin",
+    "pluriel": "bins"
+   }
+  },
+  {
+   "id": "frau",
+   "mot": "woman",
+   "genre": "",
+   "pluriel": "women",
+   "niveau": "A1",
+   "theme": "people_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     68.5,
+     45.5,
+     22,
+     25
+    ]
+   ],
+   "fr": "femme/épouse"
+  },
+  {
+   "id": "jacke",
+   "mot": "jacket",
+   "genre": "",
+   "pluriel": "jackets",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     73.5,
+     50,
+     16.5,
+     10
+    ]
+   ],
+   "fr": "veste"
+  },
+  {
+   "id": "zeitung",
+   "mot": "newspaper",
+   "genre": "",
+   "pluriel": "newspapers",
+   "niveau": "A1",
+   "theme": "tech_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     68.5,
+     47.5,
+     16,
+     11
+    ]
+   ],
+   "fr": "journal"
+  },
+  {
+   "id": "tasse",
+   "mot": "cup",
+   "genre": "",
+   "pluriel": "cups",
+   "niveau": "A1",
+   "theme": "food_a1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "coffee",
+     "genre": "",
+     "niveau": "A1",
+     "theme": "food_a1",
+     "fr": "café"
+    }
+   ],
+   "sur": "bank",
+   "devant": 0,
+   "boites": [
+    [
+     81.5,
+     60.5,
+     6,
+     3.5
+    ]
+   ],
+   "fr": "tasse"
+  },
+  {
+   "id": "maedchen",
+   "mot": "girl",
+   "genre": "",
+   "pluriel": "girls",
+   "niveau": "A1",
+   "theme": "people_a1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "child",
+     "genre": "",
+     "niveau": "A1",
+     "theme": "family_a1",
+     "fr": "enfant"
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     74,
+     55,
+     25,
+     21
+    ]
+   ],
+   "fr": "fille (enfant)"
+  },
+  {
+   "id": "pullover-3",
+   "mot": "sweater",
+   "genre": "",
+   "pluriel": "sweaters",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     85.5,
+     58,
+     13.5,
+     9.5
+    ]
+   ],
+   "fr": "pull",
+   "gb": {
+    "mot": "jumper",
+    "pluriel": "jumpers"
+   }
+  },
+  {
+   "id": "handy",
+   "mot": "cell phone",
+   "genre": "",
+   "pluriel": "cell phones",
+   "niveau": "A1",
+   "theme": "tech_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     84.5,
+     64.5,
+     4,
+     2.5
+    ]
+   ],
+   "fr": "téléphone portable",
+   "gb": {
+    "mot": "mobile phone",
+    "pluriel": "mobile phones"
+   }
+  },
+  {
+   "id": "hose-2",
+   "mot": "pants",
+   "genre": "",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [
+    {
+     "mot": "jeans",
+     "genre": "",
+     "niveau": "A1",
+     "theme": "clothes_a1",
+     "fr": "jean"
+    }
+   ],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     74.5,
+     66.5,
+     16,
+     8
+    ]
+   ],
+   "fr": "pantalon",
+   "gb": {
+    "mot": "trousers",
+    "pluriel": null
+   }
+  },
+  {
+   "id": "schuh-2",
+   "mot": "shoe",
+   "genre": "",
+   "pluriel": "shoes",
+   "niveau": "A1",
+   "theme": "clothes_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     74,
+     73,
+     9,
+     3
+    ]
+   ],
+   "fr": "chaussure"
+  },
+  {
+   "id": "bank",
+   "mot": "bank",
+   "genre": "",
+   "pluriel": "banks",
+   "niveau": "A1",
+   "theme": "city_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     75.5,
+     68.5,
+     24.5,
+     11
+    ]
+   ],
+   "fr": "la banque"
+  },
+  {
+   "id": "boden",
+   "mot": "floor",
+   "genre": "",
+   "pluriel": "floors",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     86,
+     100,
+     14
+    ],
+    [
+     44,
+     72,
+     15,
+     14
+    ]
+   ],
+   "fr": "le sol"
+  }
+ ],
+ "grosPlans": [],
+ "titre": "At the laundromat",
+ "alt": "Anna au lavomatique de son quartier : accroupie devant la machine à laver ouverte, elle y pousse une chemise bleue, une serviette blanche dans l'autre main ; à côté d'elle, un panier rouge plein de linge (un jean, un t-shirt jaune, une robe rouge, des chaussettes) ; sur la machine, une bouteille de lessive, un savon et des pièces ; sur la table en bois, un fer à repasser, une couverture bleue et un pull vert pliés ; une corbeille à papier ; sur le banc près de la vitrine, une vieille dame lit le journal devant une tasse de café et une petite fille joue avec un téléphone ; au mur, une horloge, une étagère avec des bouteilles et des serviettes, un radiateur et un miroir ; dehors, un passant et un vélo.",
+ "consigne": "Anna fait sa lessive au lavomatique de son quartier. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Les noms"
+  }
+ },
+ "traductions": {}
+};

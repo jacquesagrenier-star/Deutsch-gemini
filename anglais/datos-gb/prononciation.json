@@ -1,0 +1,560 @@
+{
+ "_note": "Derive de anglais/outils/prononciation_a1.py (construire.py) : ne pas modifier a la main. Brouillon.",
+ "groupes": [
+  {
+   "id": "voyelles",
+   "regles": [
+    {
+     "id": "i-court-long",
+     "graphie": "i · ee · ea",
+     "api": "[ɪ] · [iː]",
+     "court": {
+      "fr": "ship ≠ sheep : un i court, un i long"
+     },
+     "explication": {
+      "fr": "Le français n'a qu'un i ; l'anglais en a deux. Le i court [ɪ] est relâché, presque un « é » fermé : ship, sit, live. Le i long [iː] est tendu et tenu : sheep, seat, leave. Les confondre change le mot : live (vivre) ≠ leave (partir)."
+     },
+     "exemples": [
+      {
+       "mot": "ship",
+       "traduction": "le bateau"
+      },
+      {
+       "mot": "sheep",
+       "traduction": "le mouton"
+      },
+      {
+       "mot": "sit",
+       "traduction": "être assis"
+      },
+      {
+       "mot": "seat",
+       "traduction": "le siège"
+      },
+      {
+       "mot": "live",
+       "traduction": "vivre"
+      },
+      {
+       "mot": "leave",
+       "traduction": "partir"
+      }
+     ]
+    },
+    {
+     "id": "a-trois",
+     "graphie": "a",
+     "api": "[æ] · [eɪ] · [ɑː]",
+     "court": {
+      "fr": "cat, cake, car : trois a"
+     },
+     "explication": {
+      "fr": "La lettre a se lit de trois façons. [æ], entre « a » et « è », bouche bien ouverte : cat, apple, black. [eɪ], « éï », quand un e muet suit : cake, name, late. [ɑː], un a profond : car, father."
+     },
+     "exemples": [
+      {
+       "mot": "cat",
+       "traduction": "le chat"
+      },
+      {
+       "mot": "apple",
+       "traduction": "la pomme"
+      },
+      {
+       "mot": "cake",
+       "traduction": "le gâteau"
+      },
+      {
+       "mot": "name",
+       "traduction": "le nom"
+      },
+      {
+       "mot": "car",
+       "traduction": "la voiture"
+      },
+      {
+       "mot": "father",
+       "traduction": "le père"
+      }
+     ]
+    },
+    {
+     "id": "u-court",
+     "graphie": "u · o",
+     "api": "[ʌ]",
+     "court": {
+      "fr": "cup, sun, mother : un « eu » bref"
+     },
+     "explication": {
+      "fr": "Le son [ʌ] est un « eu » bref et ouvert, la bouche à peine ouverte. Il s'écrit souvent u (bus, sun, cup), parfois o (mother, love, Monday). Jamais « u » à la française."
+     },
+     "exemples": [
+      {
+       "mot": "bus",
+       "traduction": "le bus"
+      },
+      {
+       "mot": "sun",
+       "traduction": "le soleil"
+      },
+      {
+       "mot": "cup",
+       "traduction": "la tasse"
+      },
+      {
+       "mot": "mother",
+       "traduction": "la mère"
+      },
+      {
+       "mot": "love",
+       "traduction": "l'amour"
+      },
+      {
+       "mot": "Monday",
+       "traduction": "lundi"
+      }
+     ]
+    },
+    {
+     "id": "schwa",
+     "graphie": "a · e · o (sans accent)",
+     "api": "[ə]",
+     "court": {
+      "fr": "les voyelles sans accent s'effacent"
+     },
+     "explication": {
+      "fr": "Dans une syllabe sans accent, la voyelle devient un « e » neutre très bref, le schwa [ə] : banana « be-NA-ne », teacher « TI-tcheur », doctor, the. C'est le son le plus fréquent de l'anglais : le prononcer, c'est déjà avoir l'accent."
+     },
+     "exemples": [
+      {
+       "mot": "banana",
+       "traduction": "la banane"
+      },
+      {
+       "mot": "teacher",
+       "traduction": "le professeur"
+      },
+      {
+       "mot": "doctor",
+       "traduction": "le médecin"
+      },
+      {
+       "mot": "about",
+       "traduction": "à propos de"
+      },
+      {
+       "mot": "sofa",
+       "traduction": "le canapé"
+      }
+     ]
+    },
+    {
+     "id": "diphtongues",
+     "graphie": "o · i · ay · ow",
+     "api": "[oʊ] · [aɪ] · [eɪ] · [aʊ]",
+     "court": {
+      "fr": "go, my, day, now : des voyelles qui glissent"
+     },
+     "explication": {
+      "fr": "Beaucoup de voyelles anglaises glissent d'un son à l'autre. go « gôou », home ; my « maï », time ; day « déï », say ; now « naou », house. Un « o » tout rond à la française sonne étranger : il faut le faire glisser."
+     },
+     "exemples": [
+      {
+       "mot": "go",
+       "traduction": "aller"
+      },
+      {
+       "mot": "home",
+       "traduction": "la maison"
+      },
+      {
+       "mot": "my",
+       "traduction": "mon, ma"
+      },
+      {
+       "mot": "time",
+       "traduction": "le temps"
+      },
+      {
+       "mot": "day",
+       "traduction": "le jour"
+      },
+      {
+       "mot": "now",
+       "traduction": "maintenant"
+      },
+      {
+       "mot": "house",
+       "traduction": "la maison"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "consonnes",
+   "regles": [
+    {
+     "id": "th-sourd",
+     "graphie": "th",
+     "api": "[θ]",
+     "court": {
+      "fr": "three, think : la langue entre les dents"
+     },
+     "explication": {
+      "fr": "Le th de three se fait en posant le bout de la langue entre les dents et en soufflant, sans vibration. Ni « s » ni « f » : three (trois) ≠ free (libre) ≠ « sri ». Il revient dans thank you, think, bathroom."
+     },
+     "exemples": [
+      {
+       "mot": "three",
+       "traduction": "trois"
+      },
+      {
+       "mot": "think",
+       "traduction": "penser"
+      },
+      {
+       "mot": "thank you",
+       "traduction": "merci"
+      },
+      {
+       "mot": "bathroom",
+       "traduction": "la salle de bain"
+      },
+      {
+       "mot": "Thursday",
+       "traduction": "jeudi"
+      }
+     ]
+    },
+    {
+     "id": "th-sonore",
+     "graphie": "th",
+     "api": "[ð]",
+     "court": {
+      "fr": "the, this : le même, avec la voix"
+     },
+     "explication": {
+      "fr": "Même position de la langue, mais la gorge vibre : the, this, that, mother, father. Ni « d » ni « z ». C'est le th des petits mots les plus fréquents : the, they, there."
+     },
+     "exemples": [
+      {
+       "mot": "the",
+       "traduction": "le, la, les"
+      },
+      {
+       "mot": "this",
+       "traduction": "ce, ceci"
+      },
+      {
+       "mot": "mother",
+       "traduction": "la mère"
+      },
+      {
+       "mot": "father",
+       "traduction": "le père"
+      },
+      {
+       "mot": "brother",
+       "traduction": "le frère"
+      }
+     ]
+    },
+    {
+     "id": "h",
+     "graphie": "h",
+     "api": "[h]",
+     "court": {
+      "fr": "house, hello : le h se souffle"
+     },
+     "explication": {
+      "fr": "Le h anglais s'entend : un souffle léger, comme sur une vitre qu'on embue. house, hello, happy, hotel. L'oublier change le mot : hear (entendre) ≠ ear (l'oreille). Quelques mots ont un h muet : hour, honest."
+     },
+     "exemples": [
+      {
+       "mot": "house",
+       "traduction": "la maison"
+      },
+      {
+       "mot": "hello",
+       "traduction": "bonjour"
+      },
+      {
+       "mot": "happy",
+       "traduction": "heureux"
+      },
+      {
+       "mot": "hotel",
+       "traduction": "l'hôtel"
+      },
+      {
+       "mot": "hear",
+       "traduction": "entendre"
+      },
+      {
+       "mot": "ear",
+       "traduction": "l'oreille"
+      }
+     ]
+    },
+    {
+     "id": "r",
+     "graphie": "r",
+     "api": "[ɹ]",
+     "court": {
+      "fr": "le r ne racle pas, et se tait en fin de mot"
+     },
+     "explication": {
+      "fr": "Le r anglais ne se fait pas dans la gorge : la langue se recourbe vers l'arrière sans toucher le palais (red, very, sorry). En anglais britannique, il ne se prononce pas en fin de mot ni devant une consonne : car « kaa », water « OUO-te », teacher « TI-tche »."
+     },
+     "exemples": [
+      {
+       "mot": "red",
+       "traduction": "rouge"
+      },
+      {
+       "mot": "very",
+       "traduction": "très"
+      },
+      {
+       "mot": "sorry",
+       "traduction": "désolé"
+      },
+      {
+       "mot": "car",
+       "traduction": "la voiture"
+      },
+      {
+       "mot": "water",
+       "traduction": "l'eau"
+      }
+     ]
+    },
+    {
+     "id": "w",
+     "graphie": "w · wh",
+     "api": "[w]",
+     "court": {
+      "fr": "water, what : un « ou » rapide"
+     },
+     "explication": {
+      "fr": "Le w est un « ou » très bref qui glisse vers la voyelle : water « OUO-ter », window, we, what. Jamais un « v »."
+     },
+     "exemples": [
+      {
+       "mot": "water",
+       "traduction": "l'eau"
+      },
+      {
+       "mot": "window",
+       "traduction": "la fenêtre"
+      },
+      {
+       "mot": "we",
+       "traduction": "nous"
+      },
+      {
+       "mot": "what",
+       "traduction": "que, quoi"
+      },
+      {
+       "mot": "Wednesday",
+       "traduction": "mercredi"
+      }
+     ]
+    },
+    {
+     "id": "t-flap",
+     "graphie": "t · tt",
+     "api": "[ɾ]",
+     "court": {
+      "fr": "water, city : le t reste un t net"
+     },
+     "explication": {
+      "fr": "En anglais britannique, le t entre deux voyelles reste un vrai t, net : water « OUO-te », city « SI-ti », better « BÈ-te ». (L'américain, lui, en fait presque un d.)"
+     },
+     "exemples": [
+      {
+       "mot": "water",
+       "traduction": "l'eau"
+      },
+      {
+       "mot": "city",
+       "traduction": "la ville"
+      },
+      {
+       "mot": "better",
+       "traduction": "meilleur"
+      },
+      {
+       "mot": "pretty",
+       "traduction": "joli"
+      },
+      {
+       "mot": "thirty",
+       "traduction": "trente"
+      }
+     ]
+    },
+    {
+     "id": "muettes",
+     "graphie": "k · w · d · s · t",
+     "api": "—",
+     "court": {
+      "fr": "knife, write, Wednesday : des lettres muettes"
+     },
+     "explication": {
+      "fr": "Certaines lettres ne se prononcent pas : le k devant n (knife, know), le w devant r (write, wrong), le premier d de Wednesday « OUÈNZ-déï », le s d'island, le t de listen. Il faut les apprendre avec le mot."
+     },
+     "exemples": [
+      {
+       "mot": "knife",
+       "traduction": "le couteau"
+      },
+      {
+       "mot": "know",
+       "traduction": "savoir"
+      },
+      {
+       "mot": "write",
+       "traduction": "écrire"
+      },
+      {
+       "mot": "wrong",
+       "traduction": "faux"
+      },
+      {
+       "mot": "Wednesday",
+       "traduction": "mercredi"
+      },
+      {
+       "mot": "listen",
+       "traduction": "écouter"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fins",
+   "regles": [
+    {
+     "id": "s-final",
+     "graphie": "-s · -es",
+     "api": "[s] · [z] · [ɪz]",
+     "court": {
+      "fr": "cats, dogs, buses : trois -s"
+     },
+     "explication": {
+      "fr": "Le -s du pluriel et de la 3ᵉ personne se dit [s] après un son sourd (cats, books, works), [z] après un son sonore (dogs, days, plays), et « iz » après s, sh, ch, x (buses, watches, boxes). Il ne s'efface jamais."
+     },
+     "exemples": [
+      {
+       "mot": "cats",
+       "traduction": "les chats"
+      },
+      {
+       "mot": "books",
+       "traduction": "les livres"
+      },
+      {
+       "mot": "dogs",
+       "traduction": "les chiens"
+      },
+      {
+       "mot": "days",
+       "traduction": "les jours"
+      },
+      {
+       "mot": "buses",
+       "traduction": "les bus"
+      },
+      {
+       "mot": "boxes",
+       "traduction": "les boîtes"
+      }
+     ]
+    },
+    {
+     "id": "ed-final",
+     "graphie": "-ed",
+     "api": "[t] · [d] · [ɪd]",
+     "court": {
+      "fr": "worked, played, wanted : trois -ed"
+     },
+     "explication": {
+      "fr": "Le -ed du passé se dit [t] après un son sourd (worked « weurkt », stopped), [d] après un son sonore (played, lived), et « id » seulement après t ou d (wanted, needed). Le plus souvent, on n'ajoute pas de syllabe."
+     },
+     "exemples": [
+      {
+       "mot": "worked",
+       "traduction": "a travaillé"
+      },
+      {
+       "mot": "stopped",
+       "traduction": "s'est arrêté"
+      },
+      {
+       "mot": "played",
+       "traduction": "a joué"
+      },
+      {
+       "mot": "lived",
+       "traduction": "a vécu"
+      },
+      {
+       "mot": "wanted",
+       "traduction": "a voulu"
+      },
+      {
+       "mot": "needed",
+       "traduction": "a eu besoin"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accent",
+   "regles": [
+    {
+     "id": "accent",
+     "graphie": "ˈ",
+     "api": "[ˈ]",
+     "court": {
+      "fr": "une syllabe forte par mot"
+     },
+     "explication": {
+      "fr": "Chaque mot a une syllabe plus forte, plus longue et plus haute ; les autres s'effacent. Elle n'est pas toujours à la fin, comme en français : TEAcher, baNAna, comPUter, hoTEL, PHOto. Mal placée, elle rend un mot méconnaissable : il faut l'apprendre avec le mot."
+     },
+     "exemples": [
+      {
+       "mot": "teacher",
+       "traduction": "le professeur"
+      },
+      {
+       "mot": "banana",
+       "traduction": "la banane"
+      },
+      {
+       "mot": "computer",
+       "traduction": "l'ordinateur"
+      },
+      {
+       "mot": "hotel",
+       "traduction": "l'hôtel"
+      },
+      {
+       "mot": "photo",
+       "traduction": "la photo"
+      },
+      {
+       "mot": "breakfast",
+       "traduction": "le petit-déjeuner"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

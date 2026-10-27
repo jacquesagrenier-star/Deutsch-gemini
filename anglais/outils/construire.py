@@ -29,7 +29,7 @@ try:
 except Exception:
     pass
 
-import noms_a1, mots_a1, phrases_a1, variante, exemples_imposes, grammaire_a1
+import noms_a1, mots_a1, phrases_a1, variante, exemples_imposes, grammaire_a1, parcours_debutant
 
 NIVEAUX = ["A1", "A2", "B1", "B2", "C1"]
 RAPPORT = []
@@ -494,9 +494,13 @@ def construire():
     textes = dict(grammaire_a1.TEXTES)
     for f in grammaire_a1.FICHES:
         textes["kicker_" + f["serie"]] = f["kicker"]
+    textes.update(parcours_debutant.prononciation_a1.TITRES)
     us["grammaire.json"] = {"textes": {"fr": textes}, "fiches": fiches}
     us["exercices.json"] = {"jeux": jeux}
     print("Grammaire : %d fiches, %d questions." % (len(fiches), sum(len(q) for q in jeux.values())))
+
+    # Le parcours debutant : reperes, prononciation, feuilles, Premiers pas.
+    parcours_debutant.construire(us, gb, vers_gb)
 
     # Pas de cle « _lisez_moi » dans les fichiers : le chargeur des verbes
     # prend chaque cle pour un niveau (il retombait sur sa liste de secours

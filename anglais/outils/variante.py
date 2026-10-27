@@ -71,7 +71,8 @@ VOCABULAIRE_PHRASES = [
     ("driver's license", "driving licence"), ("city hall", "town hall"),
     ("trash", "rubbish"), ("garbage", "rubbish"),
     ("candy", "sweets"), ("french fries", "chips"),
-    ("gotten", "got"), ("the check, please", "the bill, please"),
+    ("gotten", "got"), ("the check, please", "the bill, please"), ("the check", "the bill"),
+    ("911", "999"),
 ]
 
 # « the store », « a store » -> shop : pas le verbe « to store ».

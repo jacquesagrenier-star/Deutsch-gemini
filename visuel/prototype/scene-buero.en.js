@@ -1,0 +1,650 @@
+// GENERE par anglais/outils/scenes.py (depuis scene-buero.js) -- ne pas modifier a la main.
+window.SCENE = {
+ "image": "buero.webp",
+ "points": [
+  {
+   "id": "fenster",
+   "mot": "window",
+   "genre": "",
+   "pluriel": "windows",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     0,
+     19,
+     47
+    ],
+    [
+     29,
+     3,
+     17,
+     45
+    ]
+   ],
+   "fr": "fenêtre"
+  },
+  {
+   "id": "lampe",
+   "mot": "lamp",
+   "genre": "",
+   "pluriel": "lamps",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     71,
+     6.3,
+     13,
+     8
+    ]
+   ],
+   "fr": "lampe"
+  },
+  {
+   "id": "lampe-2",
+   "mot": "lamp",
+   "genre": "",
+   "pluriel": "lamps",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     39,
+     0,
+     19,
+     5.5
+    ]
+   ],
+   "fr": "lampe"
+  },
+  {
+   "id": "uhr",
+   "mot": "clock",
+   "genre": "",
+   "pluriel": "clocks",
+   "niveau": "A1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     87,
+     18.3,
+     8.7,
+     5.5
+    ]
+   ],
+   "fr": "horloge"
+  },
+  {
+   "id": "tafel",
+   "mot": "board",
+   "genre": "",
+   "pluriel": "boards",
+   "niveau": "A1",
+   "theme": "school_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     74,
+     25.5,
+     21,
+     15.5
+    ]
+   ],
+   "fr": "tableau"
+  },
+  {
+   "id": "ordner",
+   "mot": "folder",
+   "genre": "",
+   "pluriel": "folders",
+   "niveau": "B2",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     55,
+     35.5,
+     11.5,
+     4.5
+    ]
+   ],
+   "fr": "dossier, classeur"
+  },
+  {
+   "id": "ordner-2",
+   "mot": "folder",
+   "genre": "",
+   "pluriel": "folders",
+   "niveau": "B2",
+   "personne": null,
+   "aussi": [],
+   "sur": "regal",
+   "devant": 0,
+   "boites": [
+    [
+     55,
+     41.8,
+     8,
+     4.5
+    ]
+   ],
+   "fr": "dossier, classeur"
+  },
+  {
+   "id": "regal",
+   "mot": "shelf",
+   "genre": "",
+   "pluriel": "shelves",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     52.5,
+     33.8,
+     14.5,
+     16
+    ]
+   ],
+   "fr": "étagère"
+  },
+  {
+   "id": "pflanze",
+   "mot": "plant",
+   "genre": "",
+   "pluriel": "plants",
+   "niveau": "A1",
+   "theme": "weather_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     8,
+     26,
+     28,
+     32
+    ]
+   ],
+   "fr": "la plante"
+  },
+  {
+   "id": "drucker",
+   "mot": "printer",
+   "genre": "",
+   "pluriel": "printers",
+   "niveau": "A1",
+   "theme": "tech_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     33,
+     41.8,
+     19,
+     7.5
+    ]
+   ],
+   "fr": "imprimante"
+  },
+  {
+   "id": "frau",
+   "mot": "woman",
+   "genre": "",
+   "pluriel": "women",
+   "niveau": "A1",
+   "theme": "people_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     71,
+     34.8,
+     24,
+     20
+    ]
+   ],
+   "fr": "femme/épouse"
+  },
+  {
+   "id": "mark",
+   "mot": "man",
+   "genre": "",
+   "pluriel": "men",
+   "niveau": "A1",
+   "theme": "people_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     40,
+     44,
+     35,
+     22
+    ]
+   ],
+   "fr": "homme/mari"
+  },
+  {
+   "id": "telefon",
+   "mot": "phone",
+   "genre": "",
+   "pluriel": "phones",
+   "niveau": "A1",
+   "theme": "tech_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     25.5,
+     63.3,
+     16.5,
+     6
+    ]
+   ],
+   "fr": "le téléphone"
+  },
+  {
+   "id": "bildschirm",
+   "mot": "screen",
+   "genre": "",
+   "pluriel": "screens",
+   "niveau": "A1",
+   "theme": "tech_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     4,
+     55,
+     19.5,
+     17
+    ]
+   ],
+   "fr": "écran"
+  },
+  {
+   "id": "tastatur",
+   "mot": "keyboard",
+   "genre": "",
+   "pluriel": "keyboards",
+   "niveau": "A2",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     5,
+     74.8,
+     16,
+     5
+    ]
+   ],
+   "fr": "clavier"
+  },
+  {
+   "id": "maus",
+   "mot": "mouse",
+   "genre": "",
+   "pluriel": "mice",
+   "niveau": "A1",
+   "theme": "animals_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     19,
+     77.3,
+     8,
+     3
+    ]
+   ],
+   "fr": "souris"
+  },
+  {
+   "id": "tasse",
+   "mot": "cup",
+   "genre": "",
+   "pluriel": "cups",
+   "niveau": "A1",
+   "theme": "food_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     25,
+     70.8,
+     8,
+     6
+    ]
+   ],
+   "fr": "tasse"
+  },
+  {
+   "id": "kugelschreiber",
+   "mot": "ballpoint pen",
+   "genre": "",
+   "pluriel": "ballpoint pens",
+   "niveau": "B1",
+   "personne": null,
+   "aussi": [],
+   "sur": "papier",
+   "devant": 0,
+   "boites": [
+    [
+     38.8,
+     78.3,
+     3.5,
+     4
+    ]
+   ],
+   "fr": "stylo à bille"
+  },
+  {
+   "id": "papier",
+   "mot": "paper",
+   "genre": "",
+   "niveau": "A1",
+   "theme": "school_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     24,
+     77.8,
+     31,
+     9
+    ]
+   ],
+   "fr": "le papier"
+  },
+  {
+   "id": "heft",
+   "mot": "notebook",
+   "genre": "",
+   "pluriel": "notebooks",
+   "niveau": "A1",
+   "theme": "school_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     45.5,
+     62.8,
+     28.5,
+     8
+    ]
+   ],
+   "fr": "cahier"
+  },
+  {
+   "id": "schere",
+   "mot": "scissors",
+   "genre": "",
+   "niveau": "A2",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     74.5,
+     67.8,
+     8.5,
+     4.5
+    ]
+   ],
+   "fr": "ciseaux"
+  },
+  {
+   "id": "pflanze-2",
+   "mot": "plant",
+   "genre": "",
+   "pluriel": "plants",
+   "niveau": "A1",
+   "theme": "weather_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": "schreibtisch",
+   "devant": 0,
+   "boites": [
+    [
+     84,
+     66,
+     9.5,
+     8
+    ]
+   ],
+   "fr": "la plante"
+  },
+  {
+   "id": "lampe-tisch",
+   "mot": "lamp",
+   "genre": "",
+   "pluriel": "lamps",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70.5,
+     55.8,
+     25,
+     9
+    ]
+   ],
+   "fr": "lampe"
+  },
+  {
+   "id": "muelleimer",
+   "mot": "trash can",
+   "genre": "",
+   "pluriel": "trash cans",
+   "niveau": "A2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     77,
+     59.8,
+     12,
+     6.5
+    ]
+   ],
+   "fr": "poubelle",
+   "gb": {
+    "mot": "bin",
+    "pluriel": "bins"
+   }
+  },
+  {
+   "id": "schreibtisch",
+   "mot": "desk",
+   "genre": "",
+   "pluriel": "desks",
+   "niveau": "A1",
+   "theme": "work_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     5,
+     63,
+     88,
+     30
+    ]
+   ],
+   "fr": "bureau (meuble)"
+  },
+  {
+   "id": "wand",
+   "mot": "wall",
+   "genre": "",
+   "pluriel": "walls",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     58,
+     0,
+     40,
+     48
+    ]
+   ],
+   "fr": "mur"
+  },
+  {
+   "id": "boden",
+   "mot": "floor",
+   "genre": "",
+   "pluriel": "floors",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     0,
+     90,
+     100,
+     10
+    ]
+   ],
+   "fr": "le sol"
+  },
+  {
+   "id": "schrank",
+   "mot": "closet",
+   "genre": "",
+   "pluriel": "closets",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     32,
+     49,
+     20,
+     12
+    ]
+   ],
+   "fr": "armoire",
+   "gb": {
+    "mot": "wardrobe",
+    "pluriel": "wardrobes"
+   }
+  },
+  {
+   "id": "klebeband",
+   "mot": "tape",
+   "genre": "",
+   "niveau": "A2",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     70,
+     75,
+     9,
+     5
+    ]
+   ],
+   "fr": "ruban adhésif"
+  },
+  {
+   "id": "tuer",
+   "mot": "door",
+   "genre": "",
+   "pluriel": "doors",
+   "niveau": "A1",
+   "theme": "home_a1",
+   "personne": null,
+   "aussi": [],
+   "sur": null,
+   "devant": 0,
+   "boites": [
+    [
+     93,
+     0,
+     7,
+     100
+    ]
+   ],
+   "fr": "porte"
+  }
+ ],
+ "grosPlans": [],
+ "titre": "At the office",
+ "alt": "Mark en stage dans un bureau de Berlin : au téléphone, il prend des notes dans un cahier ; sur le bureau, un écran, un clavier, une souris, une tasse, du papier et un stylo ; derrière lui, une collègue lit des papiers, une imprimante, des classeurs et un tableau blanc.",
+ "consigne": "Mark fait un stage dans un bureau. Touche un objet.",
+ "exclus": [],
+ "couches": {
+  "A1": {
+   "titre": "Les noms"
+  }
+ },
+ "traductions": {}
+};

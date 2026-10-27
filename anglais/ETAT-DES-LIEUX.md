@@ -25,9 +25,24 @@ mêmes images de scènes ; l'anglais se situe à **Boston**.
   adjectifs, prétérit, faux amis) et **126 questions** en 13 séries « M'entraîner » ;
 - la **séance du jour** en anglais (mots seulement, comme le japonais à ses débuts).
 
-**Reste à faire pour l'A1 complet** : prononciation et son du jour, repères (nombres,
-jours, mois, heure), Premiers pas, feuilles de conjugaison, cartes-phrases dans la séance,
-scènes (mots anglais des scènes, à Boston), mosaïque, puis relecture par un anglophone.
+**Ajouté en v984 (27 oct., au soir)** :
+- **37 scènes** en anglais, à Boston (`anglais/outils/scenes.py` → `scene-<nom>.en.js`) :
+  1 415 zones, dont 1 044 renvoient à une carte du corpus A1 ; couche « Les noms »
+  (découvrir, trouver) ; ruban « Explorer les scènes » et scène du jour dans la séance.
+  Les six scènes trop européennes sont écartées (décision de Jacques) ;
+- **Premiers pas** : 8 étapes de voyage à Boston (arrivée, café, chemin, transports,
+  hôtel, achats, santé, bavarder), 168 cartes, 70 phrases, un tableau de grammaire par étape ;
+- **repères** : nombres jusqu'à 1000 (prononciation figurée), jours, mois, l'heure,
+  couleurs, pluriel ;
+- **prononciation** : 15 règles (i court et long, th, h, r, t américain, -s, -ed, accent
+  tonique…), avec la version britannique du r et du t ; et le son du jour ;
+- **feuilles de conjugaison A1** (to be, présent simple, -ing, can, was / were, prétérit) ;
+- **cartes-phrases** dans la séance : écoute, oral, ordre, dictée et questions de grammaire
+  anglaise, comme en allemand et en espagnol.
+
+**Reste** : la mosaïque (à choisir par Jacques), les couches A2-C1 des scènes (questions
+écrites pour l'anglais), l'A1 voyage, la voix (ElevenLabs, sur accord), puis la relecture
+par un anglophone avant toute ouverture aux testeurs.
 
 **Publié** : v983, le 27 oct. 2026 (parcours allemand 128 chemins et espagnol 77 chemins
 à 0 écart). Pour l'essayer : Réglages → Administration → « ENGLISH — ESSAI ANGLAIS ».

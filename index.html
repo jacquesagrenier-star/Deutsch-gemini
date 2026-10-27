@@ -3365,15 +3365,13 @@ html[data-apprendre="en"] [data-i18n="credits_degres"],
 html[data-apprendre="en"] [data-i18n="credits_freq"],
 html[data-apprendre="en"] [data-i18n="credits_examens"],
 html[data-apprendre="en"] #carteMosaique,
-html[data-apprendre="en"] #explorerScenes,
-html[data-apprendre="en"] .explorer-tout,
 html[data-apprendre="en"] #ecouteLigneAccueil,
 html[data-apprendre="en"] #episodeLigne,
 html[data-apprendre="en"] .search-launch,
 html[data-apprendre="en"] [data-seulement-de],
 html[data-apprendre="en"] [data-seulement-es],
 html[data-apprendre="en"] [data-seulement-ja],
-html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]){ display:none !important; }
+html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]){ display:none !important; }
 html:not([data-apprendre="en"]) [data-seulement-en]{ display:none !important; }
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_pratique"]),
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_parcours"]),
@@ -12084,7 +12082,11 @@ const LANGUE_ANGLAIS = {
         "redewendung.json":   DOSSIER_ANGLAIS + "expressions.json",
         "adverbe.json":       DOSSIER_ANGLAIS + "adverbes.json",
         "themes.json":        DOSSIER_ANGLAIS + "themes.json",
-        "funktionswort.json": DOSSIER_ANGLAIS + "fonctionnels.json"
+        "funktionswort.json": DOSSIER_ANGLAIS + "fonctionnels.json",
+        "reperes.json":       DOSSIER_ANGLAIS + "reperes.json",
+        "prononciation.json": DOSSIER_ANGLAIS + "prononciation.json",
+        "conjugaison.json":   DOSSIER_ANGLAIS + "conjugaison.json",
+        "premiers-pas.json":  DOSSIER_ANGLAIS + "premiers-pas.json"
     },
     prefixeProgression: ""
 };
@@ -50345,6 +50347,7 @@ function majLiensRevoir(){
 // etals), la blessure (la sante). Une scene a plusieurs vues s'ouvre par sa
 // premiere ; la seance va d'elle-meme a la vue de chaque question.
 // Le titre de chaque scene est une cle de traduction (seance_scene_<nom>).
+const SCENES_ECARTEES_ANGLAIS = ["kreuzung", "ubahn", "zug", "stadtplatz", "weihnachtsmarkt", "post"];
 const SCENES_SEANCE = [
     { nom: "klassenzimmer", titre: "seance_scene_klassenzimmer", desc: "op_scenes_classe_d", ouvrir: "ouvrirSceneClasse" },
     { nom: "untersuchung", titre: "seance_scene_untersuchung", desc: "op_scenes_examen_d", ouvrir: "ouvrirSceneExamen" },
@@ -50404,7 +50407,10 @@ const SCENES_SEANCE = [
     { nom: "stadtplatz", titre: "seance_scene_stadtplatz", desc: "op_scenes_place_d", ouvrir: "ouvrirScenePlace" },
     { nom: "museum", titre: "seance_scene_museum", desc: "op_scenes_musee_d", ouvrir: "ouvrirSceneMusee" },
     { nom: "ubahn", titre: "seance_scene_ubahn", desc: "op_scenes_metro_d", ouvrir: "ouvrirSceneMetro" }
-];
+// L'ANGLAIS (essai, 27 oct. 2026) : ces six scenes montrent trop l'Europe pour
+// passer a Boston -- ecartees par Jacques (« Ecarte ces six scenes de l'anglais
+// pour l'instant ; on garde les 37 autres »). Ailleurs, la liste est entiere.
+].filter(s => LANGUE_APPRISE !== "en" || SCENES_ECARTEES_ANGLAIS.indexOf(s.nom) < 0);
 const SCENE_FAITE_KEY = PREFIXE_STOCKAGE + "sceneFaite";
 
 function baseScenes(){
@@ -50602,8 +50608,6 @@ function majExplorerScenes(){
     const ruban = document.getElementById("explorerRuban");
     if(!ruban) return;
     if(LANGUE_APPRISE === "ja") return majExplorerScenesJa(ruban);
-    // L'anglais n'a pas encore ses scenes : rien a charger (le ruban est cache).
-    if(LANGUE_APPRISE === "en") return;
     const nb = document.getElementById("explorerNb");
     if(nb) nb.textContent = SCENES_SEANCE.length;
     // v800 : CINQ vignettes, qui changent chaque jour (Jacques : « qu'on ne voie
@@ -50986,6 +50990,8 @@ function ouvrirSceneSeance(){
 // (construire.py, visuel/prototype/espanol/) et la voix de la variante.
 function langueDeScene(){
     if(LANGUE_APPRISE === "ja") return "&apprendre=ja";
+    // L'anglais (essai) : scene-<nom>.en.js, americain ou britannique.
+    if(LANGUE_APPRISE === "en") return "&apprendre=en&variante=" + VARIANTE_ANGLAIS;
     if(LANGUE_APPRISE !== "es") return "";
     return "&apprendre=es&variante=" + (VARIANTE_ESPAGNOL === "latam" ? "latam" : "es");
 }
@@ -51226,6 +51232,11 @@ const PALIERS_SEANCE = [
 // L'espagnol (memes noms de jeux, contenu espagnol : exercises = Presente,
 // perfektExercises = Imperfecto, konjunktiv2Exercises = Subjuntivo...) a le sien.
 const COURS_GRAMMAIRE_PAR_LANGUE = {
+    // L'anglais (essai, 27 oct. 2026) : les series de ses fiches A1, dans
+    // l'ordre ou un debutant les rencontre (anglais/outils/grammaire_a1.py).
+    en: ["beEnExercises", "articlesEnExercises", "plurielEnExercises", "presentEnExercises", "pronomsEnExercises",
+         "thereEnExercises", "canEnExercises", "questionsEnExercises", "continuEnExercises", "prepositionsEnExercises",
+         "adjectifsEnExercises", "passeEnExercises", "fauxAmisEnExercises"],
     de: [
         // A1 -- v840 : le present (« Ich ___ jeden Tag Deutsch ») en tete ; il
         // existait dans l'etude, jamais dans la seance.
@@ -51303,11 +51314,20 @@ const MOTS_DE_BASE_PHRASES = {
     es: ("yo tú él ella nosotros vosotros ellos ellas mi mis tu tus su sus el la los las un una unos unas no y o pero también " +
          "muy hoy mañana aquí allí ahora siempre en de del a al con para por sin sobre es soy eres somos son está estoy estás están " +
          "hay tengo tienes tiene tenemos tienen voy vas va vamos van me te se lo le que qué quién dónde cómo cuándo este esta estos " +
-         "estas ese esa bien mucho mucha muchos dos tres").split(" ")
+         "estas ese esa bien mucho mucha muchos dos tres").split(" "),
+    // L'anglais (essai, 27 oct. 2026) : les petits mots qu'une phrase A1 peut
+    // contenir sans qu'on les ait vus en carte.
+    en: ("i you he she it we they me him her us them my your his its our their the a an this that these those " +
+         "is am are was were i'm you're he's she's it's we're they're isn't aren't don't doesn't didn't can can't " +
+         "do does did have has had go goes not no yes and or but also very too here there now today tomorrow " +
+         "in on at to from with for of by about what who where when why how one two three good new old big small " +
+         "please thanks some any every all").split(" ")
 };
 const SOCLE_PHRASES = {
     de: ["ich", "du", "wir", "bin", "bist", "ist", "habe", "hast", "hat", "gehe", "geht", "gehen"],
-    es: ["yo", "tú", "soy", "es", "tengo", "tiene", "voy", "va"]
+    es: ["yo", "tú", "soy", "es", "tengo", "tiene", "voy", "va"],
+    // L'anglais (essai, 27 oct. 2026).
+    en: ["i", "you", "i'm", "it's", "is", "have", "has", "go", "goes"]
 };
 // La serie de grammaire en cours, chargee a l'ouverture de la seance (jeu() est
 // asynchrone, la composition de la seance ne l'est pas).
@@ -51411,7 +51431,8 @@ const CONJUGAISON_PAR_NIVEAU = {
     de: { A1: ["exercises"], A2: ["perfektExercises", "praeteritumExercises"], B1: ["konjunktiv2Exercises"],
           B2: ["konjunktiv2Exercises", "praeteritumExercises"] },
     es: { A1: ["exercises"], A2: ["praeteritumExercises", "perfektExercises", "futuroExercises", "imperativoExercises"],
-          B1: ["condicionalExercises", "konjunktiv2Exercises"], B2: ["konjunktiv2Exercises", "condicionalExercises"] }
+          B1: ["condicionalExercises", "konjunktiv2Exercises"], B2: ["konjunktiv2Exercises", "condicionalExercises"] },
+    en: { A1: ["presentEnExercises", "beEnExercises", "continuEnExercises", "passeEnExercises"] }
 };
 // 16 oct. 2026 : une LISTE par niveau, comme la conjugaison -- la premiere
 // serie non acquise entre dans le tirage. Le choix de la preposition (« Ich
@@ -51425,10 +51446,11 @@ const PREPOSITIONS_PAR_NIVEAU = {
     es: { A1: ["preposicionesExercises", "preposicionesViajeExercises"],
           A2: ["preposicionesViajeExercises", "porParaExercises"],
           B1: ["verbosConPreposicionExercises", "porParaExercises"],
-          B2: ["verbosConPreposicionExercises"] }
+          B2: ["verbosConPreposicionExercises"] },
+    en: { A1: ["prepositionsEnExercises"] }
 };
 async function prechargerGrammaireSeance(){
-    const langue = LANGUE_APPRISE === "es" ? "es" : "de";
+    const langue = LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : "de";
     const cours = COURS_GRAMMAIRE_PAR_LANGUE[langue] || [];
     const g = lireGrammaire(), s = lireGrammaireSeance();
     let melange = false, niveau = "A1";
@@ -51579,7 +51601,7 @@ function formesSelonProfil(formes){
     return formes;
 }
 function insererCartesPhrases(seance, tout){
-    const langue = LANGUE_APPRISE === "es" ? "es" : "de";
+    const langue = LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : "de";
     const base = new Set(MOTS_DE_BASE_PHRASES[langue]);
     const socle = SOCLE_PHRASES[langue];
     const connus = new Set();
@@ -51804,7 +51826,10 @@ function leurresPhrase(item, n){
 const FAMILLES_ARTICLES = {
     de: [["der", "die", "das", "den", "dem", "des"], ["ein", "eine", "einen", "einem", "einer"],
          ["mein", "meine", "meinen", "meinem", "meiner"], ["kein", "keine", "keinen", "keinem", "keiner"]],
-    es: [["el", "la", "los", "las"], ["un", "una", "unos", "unas"], ["mi", "mis"], ["este", "esta", "estos", "estas"]]
+    es: [["el", "la", "los", "las"], ["un", "una", "unos", "unas"], ["mi", "mis"], ["este", "esta", "estos", "estas"]],
+    // L'anglais (essai) : les intrus des phrases a remettre en ordre.
+    en: [["a", "an", "the"], ["this", "that", "these", "those"], ["is", "are", "am"],
+         ["my", "your", "his", "her", "our", "their"], ["in", "on", "at"], ["do", "does", "did"]]
 };
 function intrusOrdre(item){
     const mots = item.phrase.mots;
@@ -51819,7 +51844,7 @@ function intrusOrdre(item){
         if(dans.has(nuPhrase(x)) || out.some(o => nuPhrase(o) === nuPhrase(x))) return;
         out.push(x);
     };
-    const familles = FAMILLES_ARTICLES[LANGUE_APPRISE === "es" ? "es" : "de"];
+    const familles = FAMILLES_ARTICLES[LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : "de"];
     melangerPhrase(mots).forEach(m => {
         const n = nuPhrase(m);
         const f = familles.find(fa => fa.indexOf(n) >= 0);
@@ -53656,8 +53681,6 @@ function premiersPasEnCours(){
         // par 🌱 -- par defaut la seance japonaise apprend les kana d'abord,
         // sans quoi rien ne se lit.
         if(LANGUE_APPRISE === "ja"){ const s = lirePremiersPas(); return s.a === true && !s.fini; }
-        // L'anglais n'a pas encore ses Premiers pas.
-        if(LANGUE_APPRISE === "en") return false;
         const s = lirePremiersPas();
         if(s.fini) return false;
         if(s.a === undefined) return declareZero();
@@ -55316,7 +55339,7 @@ async function ouvrirSeanceDuJour(sansScene){
         tout.push.apply(tout, complet ? paquetDuNiveau(n) : filtrerGratuit(paquetDuNiveau(n)));
     });
     // v829 : les flashcards de Premiers pas deja vues reviennent en revision.
-    try{ if(!seanceJaponaise() && essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, cartesPremiersPasVues()); } }catch(e){}
+    try{ if(LANGUE_APPRISE !== "ja" && essaiActif("premiers_pas")){ await chargerPremiersPas(); tout.push.apply(tout, cartesPremiersPasVues()); } }catch(e){}
     // v862 (essai a1_voyage) : le neuf pris dans l'escale du jour au lieu de
     // tout l'A1. v864 : un compte neuf y part sans question.
     let av = null;
@@ -55342,7 +55365,7 @@ async function ouvrirSeanceDuJour(sansScene){
     // la seance s'ouvre tout de suite et les phrases se glissent plus loin des
     // qu'il arrive (phrasesApres, plus bas).
     let phrasesApres = false;
-    if(!seanceJaponaise() && essaiActif("phrases")){
+    if(LANGUE_APPRISE !== "ja" && essaiActif("phrases")){
         if(JEUX_EXOS){
             try{ await prechargerGrammaireSeance(); }catch(e){}
             try{ seance = insererCartesPhrases(seance, tout); }catch(e){}
@@ -55350,7 +55373,7 @@ async function ouvrirSeanceDuJour(sansScene){
     }
     // v831 : la scene du jour, une fois, au milieu (essai « scene_arret »).
     // v862 : pendant les escales, la scene de l'escale.
-    try{ if(!seanceJaponaise()) seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
+    try{ if(LANGUE_APPRISE !== "ja") seance = await preparerArretScene(seance, av ? av.scene : null); }catch(e){}
     try{ if(av) seance = insererA1Voyage(seance, av); }catch(e){}
     try{ if(fc && seance.length) seance = insererFeuille(seance, fc, tout); }catch(e){}
     // v879 : les reperes (jours, mois, nombres), tot dans l'A1.

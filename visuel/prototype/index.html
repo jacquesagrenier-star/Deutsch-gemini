@@ -264,8 +264,10 @@ const NOM_SCENE = (new URLSearchParams(location.search).get("scene") || "")
    espagnols : scene-<nom>.es.js, fait par construire.py depuis espanol/. */
 /* Le japonais (essai admin, 27 oct. 2026) : ses trois scenes a lui (konbini,
    eki, genkan), scene-<nom>.ja.js, faites par japonais/scenes/construire_scenes.py. */
-const APPRENDRE = (a => a === "es" || a === "ja" ? a : "de")(new URLSearchParams(location.search).get("apprendre"));
-const SUFFIXE_LANGUE = APPRENDRE === "es" ? ".es" : APPRENDRE === "ja" ? ".ja" : "";
+/* L'anglais (essai admin, 27 oct. 2026) : les memes scenes, a Boston,
+   scene-<nom>.en.js, faites par anglais/outils/scenes.py. */
+const APPRENDRE = (a => a === "es" || a === "ja" || a === "en" ? a : "de")(new URLSearchParams(location.search).get("apprendre"));
+const SUFFIXE_LANGUE = APPRENDRE === "es" ? ".es" : APPRENDRE === "ja" ? ".ja" : APPRENDRE === "en" ? ".en" : "";
 /* ?t= : jamais la version en cache. Le telephone de Jacques a melange une
    ancienne image et de nouvelles coordonnees (6 oct.) ; un prototype qu'on
    corrige toutes les dix minutes ne doit rien garder. */
@@ -298,17 +300,21 @@ const EST_ES = APPRENDRE === "es";
 /* Le japonais : ni article ni pluriel ; la lecture (kana · romaji) sous le
    mot, et la voix du telephone, qui dit la lecture. */
 const EST_JA = APPRENDRE === "ja";
+/* L'anglais : ni article ni genre ; americain par defaut, britannique si
+   l'app passe variante=gb (le mot « gb » de la zone remplace alors le sien). */
+const EST_EN = APPRENDRE === "en";
+const GB = EST_EN && new URLSearchParams(location.search).get("variante") === "gb";
 const LATAM = EST_ES && new URLSearchParams(location.search).get("variante") === "latam";
-const LANG_CIBLE = EST_ES ? "es" : EST_JA ? "ja" : "de";
+const LANG_CIBLE = EST_ES ? "es" : EST_JA ? "ja" : EST_EN ? "en" : "de";
 /* Ce que la voix dit d'un mot : l'article et le nom, ou la lecture japonaise. */
-const motDit = p => EST_JA ? (p.lecture || p.mot) : p.genre + " " + p.mot;
+const motDit = p => EST_JA ? (p.lecture || p.mot) : EST_EN ? p.mot : p.genre + " " + p.mot;
 /* Le mot de la langue apprise que la page dit elle-meme. v830 : le bouton
    « Continuer », lui, est dans la langue de l'interface -- « Seguir » ne disait
    rien a une debutante (Jacques, 16 oct. 2026). */
-const MOTS_CIBLE = EST_ES ? {juste: "¡Correcto!"} : EST_JA ? {juste: "せいかい！"} : {juste: "Richtig!"};
+const MOTS_CIBLE = EST_ES ? {juste: "¡Correcto!"} : EST_JA ? {juste: "せいかい！"} : EST_EN ? {juste: "Correct!"} : {juste: "Richtig!"};
 /* Le pluriel : l'allemand dit toujours « die », l'espagnol porte son article
    (los / las) dans le fichier de la scene. */
-const plurielDe = n => EST_ES ? n.pluriel : "die " + n.pluriel;
+const plurielDe = n => EST_ES || EST_EN ? n.pluriel : "die " + n.pluriel;
 /* La carte de l'app garde le mot d'Espagne (movil) et ne fait que MONTRER
    celui d'ici (celular) : une revision envoyee a l'app doit donc porter le
    mot d'Espagne, sinon elle ne trouve pas sa carte. */
@@ -320,6 +326,12 @@ if (LATAM)
         BASE_DE[m.latam.mot] = {mot: m.mot, genre: m.genre};
         Object.assign(m, m.latam);
       }
+/* Le britannique : la zone dit flat, pas apartment. La carte de l'app est la
+   meme dans les deux variantes (meme theme, meme rang) : rien a retenir. */
+if (GB)
+  for (const s of Object.values(window.SCENES))
+    for (const p of s.points)
+      for (const m of [p, ...p.aussi]) if (m.gb) Object.assign(m, m.gb);
 /* Les questions qui citent un mot a variante portent leur version d'ici
    (construire.py l'exige) : la question dit ce que l'image nomme. */
 if (LATAM)
@@ -584,8 +596,9 @@ function bravo(){ confettis(); sonBravo(); }
 let voixDe = null;
 function chargerVoix(){
   const v = speechSynthesis.getVoices();
-  const pays = EST_ES ? (LATAM ? /^es(-|_)(MX|US|419)/i : /^es(-|_)ES/i) : EST_JA ? /^ja(-|_)JP/i : /^de(-|_)DE/i;
-  const langue = EST_ES ? /^es/i : EST_JA ? /^ja/i : /^de/i;
+  const pays = EST_ES ? (LATAM ? /^es(-|_)(MX|US|419)/i : /^es(-|_)ES/i) : EST_JA ? /^ja(-|_)JP/i
+             : EST_EN ? (GB ? /^en(-|_)GB/i : /^en(-|_)US/i) : /^de(-|_)DE/i;
+  const langue = EST_ES ? /^es/i : EST_JA ? /^ja/i : EST_EN ? /^en/i : /^de/i;
   voixDe = v.find(x => pays.test(x.lang) && /google|natural|online/i.test(x.name))
         || v.find(x => pays.test(x.lang)) || v.find(x => langue.test(x.lang)) || null;
 }
@@ -600,7 +613,7 @@ function direTelephone(t){
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(t);
-  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : EST_JA ? "ja-JP" : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92 * VITESSE_VOIX;
+  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : EST_JA ? "ja-JP" : EST_EN ? (GB ? "en-GB" : "en-US") : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92 * VITESSE_VOIX;
   speechSynthesis.speak(u);
 }
 /* LA VOIX D'AURORA, comme dans l'app (Jacques, 9 oct. : « on n'a pas la voix
@@ -658,8 +671,9 @@ function empreinte(t){ return sha1Hex(t).slice(0, 16); }
 function dire(t){
   if (audioEnCours){ audioEnCours.pause(); audioEnCours = null; }
   if ("speechSynthesis" in window) speechSynthesis.cancel();
-  // Le japonais n'a pas de voix enregistree (decide le 25 oct. 2026).
-  if (EST_JA || audioAbsents.has(t)) return direTelephone(t);
+  // Le japonais n'a pas de voix enregistree (decide le 25 oct. 2026), ni
+  // l'anglais pour l'instant (27 oct.) : la voix du telephone.
+  if (EST_JA || EST_EN || audioAbsents.has(t)) return direTelephone(t);
   try {
     const a = new Audio(AUDIO_BASE + empreinte(t) + ".mp3?r=" + AUDIO_REVISION);
     a.playbackRate = VITESSE_VOIX;
@@ -853,6 +867,7 @@ $("voirZones").addEventListener("change", e => {
 function groupe(p){
   if (EST_JA) return `<span lang="ja"><span class="nom">${p.mot}</span></span>`
     + (p.lecture ? ` <small class="lecture-ja">${p.lecture !== p.mot ? p.lecture + " · " : ""}${p.romaji || ""}</small>` : "");
+  if (EST_EN) return `<span lang="en"><span class="nom">${p.mot}</span></span>`;
   const art = p.genre || "";
   return `<span lang="${LANG_CIBLE}"><span class="art g-${art}">${art}</span> <span class="nom g-${art}">${p.mot}</span></span>`;
 }
