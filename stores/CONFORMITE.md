@@ -44,6 +44,21 @@ collecte, on corrige la politique ET ces réponses dans le même tour.
    13 pouces et une mise en page correcte ; sinon, la limiter à l'iPhone.
 4. URL de confidentialité : `https://wortando.com/confidentialite`.
 
+**État au 27 oct. (fait par Claude dans App Store Connect)** : App Privacy
+rempli selon le §4 et **publié** ; URL de confidentialité posée ; compilation
+**11** attachée à la version 1.0 ; nom « Wortando: German & Spanish » (comme
+Google Play), sous-titre « Speak it on your next trip », catégories Éducation +
+Voyages ; description, texte promotionnel, mots-clés, URL d'assistance et de
+marketing (wortando.com), copyright « 2026 Jacques Grenier » (fiche anglaise
+de `Wortando-médias/app-store/fiche-app-store.md`). iPad : la compilation est
+déjà **iPhone seulement** (`TARGETED_DEVICE_FAMILY = 1`), pas de captures iPad.
+**Reste à Jacques** : captures 6,9 pouces (prises sur l'iPhone, voir
+NOTES-REVISEUR §4) ; App Review Information (compte de démo, contact, et les
+notes du §3 de NOTES-REVISEUR, refusées par Apple tant que le contact manque) ;
+Content Rights (attestation des droits) ; Age Ratings (la page affichait une
+erreur) ; statut de commerçant DSA (UE) ; mode de sortie (réglé sur
+« automatique après l'examen » par défaut) ; puis « Add for Review ».
+
 ## 3. Google Play — Sécurité des données
 
 Chiffrement en transit : **oui** (HTTPS partout). Suppression : **oui**, dans
