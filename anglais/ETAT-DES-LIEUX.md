@@ -29,6 +29,29 @@ mêmes images de scènes ; l'anglais se situe à **Boston**.
 jours, mois, heure), Premiers pas, feuilles de conjugaison, cartes-phrases dans la séance,
 scènes (mots anglais des scènes, à Boston), mosaïque, puis relecture par un anglophone.
 
+**Publié** : v983, le 27 oct. 2026 (parcours allemand 128 chemins et espagnol 77 chemins
+à 0 écart). Pour l'essayer : Réglages → Administration → « ENGLISH — ESSAI ANGLAIS ».
+
+### Les scènes à Boston : celles que l'image trahit (relevé du 27 oct., rien de généré)
+
+Les 43 images ont été regardées. Celles-ci montrent l'Europe au point de ne pas passer
+pour Boston :
+
+| Scène | Ce qui trahit l'Europe |
+|---|---|
+| `kreuzung` (le carrefour) | Tout Berlin : tram et bus jaunes, arrêt « H », taxi Mercedes crème, deux boîtes aux lettres jaunes de la Deutsche Post, croix verte de pharmacie, colonne à affiches, piste cyclable rouge |
+| `ubahn` (le métro) | Rame jaune et carrelage vert du U-Bahn berlinois, présentoir à bretzels (le métro de Boston est vert, orange, rouge ou bleu) |
+| `zug` (le train) | Paysage bavarois par la fenêtre : Alpes, église à bulbe, champs de colza |
+| `stadtplatz` (la place) | Tram jaune, église de brique gothique, boîte aux lettres jaune, façades à jardinières (la Green Line de Boston est verte) |
+| `weihnachtsmarkt` (marché de Noël) | Marché de Noël allemand (bretzels, vin chaud, église de brique) : Boston en a, mais l'image reste très allemande |
+| `post` (la poste) | Boîte aux lettres jaune derrière la vitre (américaine : bleue) ; l'intérieur passe |
+
+Les autres passent pour Boston (intérieurs, marché, parc, plage, hiver…), parfois avec
+un détail de second plan (bâtisse de brique rouge du `bauernhof`, bretzels de la
+`baeckerei`) qui ne gêne pas. Le `buergeramt` (bureau des citoyens) n'a pas d'équivalent
+américain : son image passe, mais il faudra lui donner un autre rôle (bureau de la ville,
+DMV…).
+
 ## En bref
 
 - **Un ancien module anglais dort dans `index.html`.** Il a été construit en août pour
