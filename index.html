@@ -3338,7 +3338,7 @@ html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclic
 .lecture-ja{ margin-top: 6px; font-size: 0.95rem; color: inherit; opacity: .72; text-align: center; }
 .lecture-ja .lj-kana{ margin-right: .5em; }
 .lecture-ja .lj-romaji{ font-style: italic; }
-.note-ja{ margin-top: 8px; font-size: 0.85rem; color: inherit; opacity: .72; text-align: center; }
+.note-ja{ margin-top: 8px; font-size: 0.85rem; color: inherit; opacity: .72; text-align: center; white-space: pre-line; }
 .forme-ja{ margin: 4px 0 8px; }
 /* Un kana seul au recto : grand, comme on le voit sur une affiche. */
 .word.kana-ja{ font-size: 4.4rem !important; line-height: 1.15; }
@@ -8327,7 +8327,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         </div>
         <div class="orb" data-orbid="kana" data-seulement-ja onclick="ouvrirKana()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="14" stroke="none" style="fill:var(--wt-icone)">あ</text></svg></div>
-            <div><strong>Kana</strong></div>
+            <div><strong>Kana · 漢字</strong></div>
         </div>
         <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
@@ -11945,20 +11945,29 @@ function lectureJaponaise(e){
         furigana: Array.isArray(e.furigana) ? e.furigana : null,
         note: e.note || "",
         note_en: e.note_en || "",
-        // Un kana : son trace (KanjiVG, ordre des traits numerote).
+        // Un kana ou un kanji : son trace (KanjiVG, ordre des traits numerote).
         svg: e.svg || "",
-        kana: e.classe === "kana"
+        kana: e.classe === "kana",
+        // Un kanji : son sens, montre au verso sous le signe.
+        kanji: e.classe === "kanji",
+        sens: e.traduction || "",
+        sens_en: e.traduction_en || ""
     };
 }
 
-// Les kana, en themes de cartes (fichier derive : japonais/kana/outils/vers_themes.py).
+// Les kana, puis les kanji N5, en themes de cartes (fichiers derives :
+// japonais/kana/outils/vers_themes.py et japonais/kanji/vers_themes.py).
 async function chargerKanaJaponais(){
-    try{
-        const r = await fetch(cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + "datos/kana.json"), { cache: "no-cache" });
-        if(!r.ok) return [];
-        const d = await r.json();
-        return Array.isArray(d.themes) ? d.themes : [];
-    }catch(e){ return []; }
+    const themes = async fichier => {
+        try{
+            const r = await fetch(cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + "datos/" + fichier), { cache: "no-cache" });
+            if(!r.ok) return [];
+            const d = await r.json();
+            return Array.isArray(d.themes) ? d.themes : [];
+        }catch(e){ return []; }
+    };
+    const [kana, kanji] = await Promise.all([themes("kana.json"), themes("kanji.json")]);
+    return kana.concat(kanji);
 }
 
 // La tuile « Kana » : la liste des themes, ou les six themes de kana viennent
@@ -11970,12 +11979,19 @@ function ouvrirKana(){
 // La seance japonaise apprend les kana AVANT les mots : un debutant ne lit ni
 // les furigana ni les phrases sans eux. Les mots neufs des themes de kana
 // passent devant, dans leur ordre (あいうえお d'abord) ; les autres suivent.
+// Les kanji, eux, viennent au compte-gouttes parmi les mots (un pour quatre) :
+// un kanji s'apprend mieux quand on vient de le croiser dans un mot.
 function kanaDabord(neufs){
     if(LANGUE_APPRISE !== "ja") return null;
     const kana = neufs.filter(it => /^kana_/.test(it.themeId || ""));
-    if(!kana.length) return null;
-    const autres = neufs.filter(it => !/^kana_/.test(it.themeId || ""));
-    return kana.concat(ordonnerParFrequence(autres));
+    const kanji = neufs.filter(it => /^kanji_/.test(it.themeId || ""));
+    const mots = ordonnerParFrequence(neufs.filter(it => !/^kan[aj]/.test(it.themeId || "")));
+    const suite = [];
+    while(mots.length || kanji.length){
+        suite.push(...mots.splice(0, 4));
+        if(kanji.length) suite.push(kanji.shift());
+    }
+    return kana.concat(suite);
 }
 
 // Le mot avec ses furigana, en HTML : <ruby>漢<rt>かん</rt></ruby> pour chaque
@@ -12018,15 +12034,20 @@ function habillerCarteJaponaise(card){
     // Un kana se RECONNAIT avant de s'ecrire : le recto montre toujours le
     // signe, quel que soit le sens choisi pour les mots ; le verso donne le
     // romaji, le trace et le mnemonique.
-    if(ja && ja.kana){
+    if(ja && (ja.kana || ja.kanji)){
         const recto = document.getElementById("flashWord");
         if(recto){
             recto.textContent = mot;
             recto.classList.add("mot-ja", "kana-ja");
             recto.setAttribute("lang", "ja");
         }
+        // Un kanji se reconnait de meme, mais il a un SENS : au verso, sous le
+        // signe, comme la traduction d'un mot.
         const tr = document.getElementById("flashTranslation");
-        if(tr) tr.classList.add("hidden");
+        if(tr && ja.kanji){
+            tr.textContent = libJa(ja.sens, ja.sens_en || ja.sens);
+            tr.classList.remove("hidden");
+        } else if(tr) tr.classList.add("hidden");
     }
     const lect = document.getElementById("flashLectureJa");
     if(lect){
