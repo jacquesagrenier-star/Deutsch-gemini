@@ -6,6 +6,13 @@ allemande, Mark parle déjà allemand** (sa fiche le dit depuis le 7 sept.) ; il
 À lire par Jacques avant toute génération. **Rien n'est généré.**
 Suite directe de 04 « Schrippe » (« Wird Mark sie wiedersehen? »). « Pfand » passe en 06.
 
+> **26 oct. 2026 : préparé pour le tournage** (`scenes/05-vhs.json`, `A-TOURNER.txt`,
+> `QUESTIONS.md`). **Une correction** au découpage ci-dessous : Mark arrive au **premier**
+> étage, pas au troisième. Qui compte le rez-de-chaussée comme « un » monte un escalier de
+> MOINS. Les plans 02 à 06 sont réécrits en conséquence (« Hier sind Sie im ersten. »). La
+> réplique 13 devient « ¿En serio? ¡Yo también! En el número ocho. », et la 15 « Auf Spanisch
+> duzen wir uns schon… ». Le JSON fait foi.
+
 ## L'idée en une phrase
 
 Mark compte les étages comme à Montréal, se trompe d'étage et arrive en retard à son premier

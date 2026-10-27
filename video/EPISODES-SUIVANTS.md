@@ -120,3 +120,28 @@ fabrication, devis) dans `video/episode-*/` ; les prompts des répliques dans
 ## Décidé le 24 oct. 2026 -- la suite de la série allemande
 - **04 « Schrippe » : nouvelle fin.** Jacques : « il n'y a rien qui nous dit qu'ils vont se revoir ». Au plan 18 Mark se demande s'il l'attend et n'ose pas (« Soll ich auf sie warten? … Nein. Das ist komisch. ») ; plan 19 neuf : Anna sort et part à gauche, Mark s'éloigne à droite, dos tourné ; le narrateur : « Wird Mark sie wiedersehen? ». Le spectateur voit ce que Mark ne voit pas.
 - **L'épisode suivant (05) : la Volkshochschule.** Mark s'inscrit à un cours d'allemand ; dans le couloir, il retrouve Anna, qui y suit un cours d'espagnol, même soir, chaque semaine. Ils découvrent qu'ils habitent le même quartier, et c'est là que la relation se développe. Jacques : pas de deuxième boulangerie (« ce ne sont pas des nouveaux mots »). **« Pfand » passe en 06** (scène déjà écrite sous 05-pfand : renuméroter le moment venu).
+
+## Préparés le 26 oct. 2026 (nuit) : 05 « Zweiter Stock » et es-05 « La tienda de Ana »
+
+Demande de Jacques : « prépare le prochain épisode vidéo pour l'allemand et le prochain épisode
+vidéo pour l'espagnol ». **Rien n'est généré ni payé.** Les questions à trancher, chacune avec
+une proposition, sont dans `video/episode-05-vhs/QUESTIONS.md` (les deux épisodes).
+
+| Épisode | Plans | Images | Coût estimé |
+|---|---|---|---|
+| 05 « Zweiter Stock » (VHS) | 17 (12 parlés) | 15 | ≈ 8,60 $ (≈ 10 $ si tout le décor est animé) |
+| es-05 « La tienda de Ana » | 20 (14 parlés) | 10 | ≈ 7,15 $ (≈ 8,60 $) |
+
+- **05** : scénario v2 du 24 oct., avec une correction : Mark arrive au **premier** étage, pas au
+  troisième (qui compte comme à Montréal monte un escalier de moins). Le Hausmeister et Carmen
+  sont des visages neufs, et leurs voix sont à choisir. Quatre répliques sont en espagnol
+  (`langue_dite`). Fichiers : `scenes/05-vhs.json`, `video/episode-05-vhs/A-TOURNER.txt`.
+- **es-05** : l'épisode 5 du document des scénarios, réécrit après es-03. Ana, patronne de sa
+  boutique, reconnaît « el chico del café ». On y trouve *chamarra / chaqueta*, les tailles
+  *chica / pequeña* (« ¡Usted es un chico! »), les prénoms enfin, et la bise ratée (une au
+  Mexique, deux à Madrid). Aucune voix neuve. Fichiers : `scenes/es-05-la-tienda.json`,
+  `video/episode-es-05-la-tienda/A-TOURNER.txt`.
+- Prompts des répliques : `video/prompts_repliques_suite.py`. Contrôle : 0 faute, 0 doute.
+- Deux lieux récurrents sont décrits dans `video/LIEUX.md` : la salle de la VHS et la boutique
+  d'Ana.
+

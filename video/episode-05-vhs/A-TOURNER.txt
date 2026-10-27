@@ -1,0 +1,764 @@
+==============================================================
+EPISODE 05 -- ZWEITER STOCK (la Volkshochschule)
+Le cours d'espagnol, un etage de trop peu, et un prenom enfin
+26 octobre 2026 (nuit) -- PREPARE SANS JACQUES, RIEN N'EST GENERE
+==============================================================
+
+Scene : scenes/05-vhs.json (texte dit sous « de » ; quatre repliques en espagnol,
+        marquees « langue_dite »: « es »).
+Histoire et raisons : SCENARIO.md (v2 du 24 oct.) ; ce qui reste a trancher :
+        QUESTIONS.md (les deux episodes, l'allemand et l'espagnol).
+Prompts des repliques : _essai-avatar/prompts/ (generes par
+        video/prompts_repliques_suite.py ; controle --scene 05-vhs : 0 faute,
+        0 doute, 26 oct.).
+
+Le gag : a Berlin on compte les etages a partir de ZERO (Erdgeschoss, erster,
+zweiter Stock). Mark compte comme a Montreal (le rez-de-chaussee = un), monte
+UN escalier, se croit au deuxieme -- il est au premier. Le Hausmeister lui
+recite les etages. Le detour le met en retard ; le retard lui laisse la seule
+chaise libre, a cote d'Anna. Il apprend son prenom de la bouche de Carmen, la
+prof ; l'exercice en paires leur fait dire ou ils habitent : la meme rue.
+
+⚠️ CORRIGE PAR RAPPORT AU SCENARIO v2 : le v2 l'envoyait au TROISIEME (« ich bin
+   doch nur zwei Etagen hochgegangen »). Faux : qui compte le rez-de-chaussee
+   comme un etage monte un escalier de MOINS, pas de plus. Il arrive donc au
+   premier. Meme gag, meme lecon, l'arithmetique tient (et un spectateur
+   allemand l'aurait vu).
+
+⚠️ A TRANCHER PAR JACQUES AVANT TOUTE DEPENSE : QUESTIONS.md (la rue, la fin,
+   les deux voix neuves, la tenue de Mark). Les images partiraient sur les
+   choix PAR DEFAUT de cette feuille.
+
+--------------------------------------------------------------
+LA GEOGRAPHIE -- ECRITE AVANT TOUT, ET CHAQUE IMAGE LA SERT
+--------------------------------------------------------------
+   UN SEUL BATIMENT, QUATRE LIEUX, CHACUN VU TOUJOURS DU MEME COTE.
+
+   1. LA FACADE (01, 17) -- vue du trottoir d'en face, le soir : un batiment
+      scolaire des annees 60, quatre etages de fenetres eclairees, la porte
+      vitree au rez-de-chaussee AU MILIEU, un rack de velos a GAUCHE, un
+      reverbere a DROITE, pave mouille. Aucune lettre sur la facade.
+
+   2. LA CAGE D'ESCALIER (02, 14, 15, 16) -- marches de pierre usees, rampe de
+      bois sur tube d'acier, murs blancs casses, lampes rondes au plafond.
+      Au bas : le hall du rez-de-chaussee et la porte vitree d'entree, NOIRE
+      (il fait nuit), a GAUCHE de l'image. L'escalier MONTE vers la DROITE.
+
+      GAUCHE DE L'IMAGE  <----------------------------->  DROITE DE L'IMAGE
+      [ porte vitree, noire ]   hall   ANNA ... MARK   [ pied de l'escalier,
+                                        (15-16 : face a face)  rampe de bois ]
+         Au plan 15 Mark regarde vers la GAUCHE (Anna) ; au plan 16 Anna
+         regarde vers la DROITE (Mark). La convention des recurrents est
+         gardee (personnages.json, _mise_en_scene).
+
+   3. LE COULOIR DU PREMIER ETAGE (03-06) -- long, il part dans la profondeur
+      au centre ; mur VERT PALE en bas (soubassement peint), blanc au-dessus ;
+      une rangee de portes de bois fermees SANS numero lisible sur le mur de
+      DROITE ; a GAUCHE, la porte ouverte de la cage d'escalier d'ou Mark
+      arrive ; tubes lumineux au plafond, fenetre noire au fond.
+         MARK, a GAUCHE, vient de l'escalier : il regarde vers la DROITE.
+         LE HAUSMEISTER, a DROITE, devant une porte : il regarde vers la
+         GAUCHE. Comme la boulangere de 04 : la figure d'un episode est a la
+         droite de Mark.
+
+   4. LA SALLE DU COURS (07-13) -- LIEU RECURRENT (chaque mardi) : voir
+      video/LIEUX.md. La camera est au FOND de la salle, dans le coin GAUCHE.
+      Au mur du fond, le TABLEAU BLANC, VIDE (aucun mot : une scene n'en porte
+      jamais), et CARMEN debout devant. La PORTE est dans le mur de DROITE,
+      pres du tableau. Les tables de bois clair en DEUX RANGEES face au
+      tableau ; six apprenants, vus de dos ou de trois-quarts dos, flous.
+      ANNA au deuxieme rang, la place cote fenetres (GAUCHE) ; a sa DROITE, la
+      SEULE chaise libre -- celle de Mark, chaque semaine. Fenetres noires du
+      soir dans le mur de GAUCHE. Lumiere : tubes au plafond, egale.
+         CARMEN regarde vers la DROITE (la porte, puis la chaise libre).
+         ANNA, assise, regarde vers la DROITE (Mark, assis a sa droite).
+         MARK, assis, regarde vers la GAUCHE (Anna).
+
+   ⚠️ ET ON NE DIT JAMAIS « sa main droite » (cote-du-corps) : on situe par
+      l'IMAGE et par un voisin visible (« the hand nearer the table »).
+
+--------------------------------------------------------------
+LES OBJETS QUI REVIENNENT -- A VERIFIER UN PAR UN SUR CHAQUE IMAGE
+--------------------------------------------------------------
+  LA TENUE DE MARK   doudoune BLEU MARINE unie, OUVERTE, sur un pull en maille
+                     GRIS CLAIR uni, jean bleu ; sac a dos GRIS FONCE uni sur
+                     une epaule (couloir, escalier). Il la GARDE en classe : il
+                     arrive en retard et s'assoit aussitot -- c'est le recit
+                     qui le dit. 02, 03, 07, 10, 14, 15, 17. Verifiable :
+                     python video/accorder_tenue.py --mesurer a.png b.png
+  LA TENUE D'ANNA    CELLE DE 04, a l'identique (anna-alltag.png) : manteau de
+                     laine ROUILLE ouvert, pull CREME uni, sac de toile naturelle
+                     a l'epaule. Gardee en classe (une reference, pas de
+                     derive). 07, 09, 12, 14, 16, 17.
+  LE HAUSMEISTER     blouse de travail GRISE boutonnee jusqu'en haut, un
+                     trousseau de cles dans la main cote couloir. 04, 06.
+  CARMEN             gilet de maille BLEU CANARD (teal) uni sur chemisier blanc
+                     uni, lunettes a monture rouge, cheveux sombres meches de
+                     gris en chignon bas ; un feutre ferme a la main. 07, 08, 11.
+  LE CAHIER D'ANNA   cahier ouvert sur la table, pages lignees VIDES (pas
+                     d'ecriture lisible). 09, 12.
+  LE TABLEAU BLANC   VIDE. 07, 08, 11. ⚠️ C'est le piege de ce lieu : un tableau
+                     de classe « appelle » des mots ecrits (affiche-qui-ecrit).
+
+⚠️ LA REFERENCE TRANSPORTE UN OBJET COMME UN VISAGE (ep. 3, 16 sept.) : pour la
+   salle, referencer le DECOR MAITRE (22 kurs-raum) sur chaque image de classe,
+   « POUR LE LIEU » ; pour l'escalier, le maitre 23.
+
+--------------------------------------------------------------
+L'ORDRE DE FABRICATION -- chaque image sert de reference a la suivante
+--------------------------------------------------------------
+  LE PLAN D'ENSEMBLE D'ABORD (acquis du 22 oct.) : la salle, Carmen, Mark a la
+  porte, Anna et la chaise libre (07) -- on juge cotes, regards et tenues AVANT
+  les portraits de replique.
+
+  01 vhs-fassade      texte seul : le DECOR MAITRE EXTERIEUR
+  23 vhs-treppe       texte seul : le DECOR MAITRE DE L'ESCALIER, vide
+  21 vhs-flur         23 (POUR LE BATIMENT : memes murs, memes lampes) : le
+                      couloir du premier, vide
+  22 kurs-raum        21 (POUR LE BATIMENT) : la salle, VIDE -- maitre recurrent
+  04 hausmeister      AUCUN visage (Visage neuf : oui) + 21 (le lieu)
+  08 carmen           AUCUN visage (Visage neuf : oui) + 22 (le lieu)
+  03 mark-flur        Mark.png + Mark-troisquarts.png (visage) + 21 (le lieu)
+                      -> fixe LA TENUE de l'episode (doudoune marine)
+  07 kurs-ensemble    anna-alltag + 03 (Mark, visage et tenue) + 08 (Carmen)
+                      + 22 (le lieu). ⚠️ REGARDE avant de continuer.
+  09 anna-kurs        anna-alltag + 22 + 07 (sa place, sa table, son cahier)
+  10 mark-kurs        Mark.png + 03 (tenue) + 22 + 07 (la chaise, la table)
+  02 mark-treppe      Mark.png + 03 (tenue) + 23 (le lieu)
+  15 mark-eg          Mark.png + 03 (tenue) + 23 (le lieu)
+  16 anna-eg          anna-alltag + 23 (le lieu)
+  14 treppe-zu-zweit  anna-alltag + 03 (Mark) + 23 (le lieu)
+  17 strasse-zu-zweit retouche de 01 + personnages/Mark-dos.png + anna-alltag
+                      ⚠️ portrait-pour-une-epaule : anna-alltag est DE FACE ;
+                      si elle revient de face, REPLI GRATUIT : le plan 17 sur
+                      la facade seule (01), la narration suffit.
+
+  15 images, 2,25 $. On regarde chacune AVANT la suivante : d'abord son STYLE
+  (photo ou dessin ?), puis la geographie, puis les objets.
+
+--------------------------------------------------------------
+LE DECOUPAGE -- 17 plans, environ 80 s, 12 parlants
+--------------------------------------------------------------
+01  DECOR  6 s   narration -- la facade le soir (plan fixe possible, 0 $)
+    de : Dienstagabend. Mark hat heute seinen ersten Spanischkurs. Raum
+         zweihundertvierzehn, im zweiten Stock.
+    fr : Mardi soir. Mark a son premier cours d'espagnol. Salle deux cent
+         quatorze, au deuxieme etage.
+02  DECOR  6 s   narration -- Mark sur le palier, deux doigts leves
+    de : Mark zaehlt wie in Montreal: Unten ist eins. Eine Treppe hoch: zwei.
+    fr : Mark compte comme a Montreal : en bas, c'est un. Un escalier plus
+         haut : deux.
+03  MARK   5 s   -> droite
+    de : Entschuldigung, wo ist Raum zweihundertvierzehn?
+    jeu : poli, un peu essouffle, sur d'etre au bon etage. La paume du « ou ? ».
+04  LE HAUSMEISTER  6 s   -> gauche
+    de : Zweihundertvierzehn? Das ist im zweiten Stock. Hier sind Sie im ersten.
+    jeu : factuel. L'index vers le plafond : l'etage du dessus.
+05  MARK   6 s   -> droite
+    de : Im ersten? Aber ich bin doch im zweiten! Unten war der erste!
+    jeu : perdu, et ca l'amuse deja. Deux doigts leves.
+06  LE HAUSMEISTER  8 s   -> gauche   ⚠️ LA CHARGE UTILE
+    de : Unten ist das Erdgeschoss. Erdgeschoss, erster Stock, zweiter Stock.
+         Wir fangen bei null an.
+    jeu : LA POINTE RESTE AU NEUTRE (regle comique de la serie, ep. 3 plan 15 ;
+          04 plan 08). La main plate monte trois marches dans l'air.
+07  DECOR  6 s   narration -- LE PLAN D'ENSEMBLE
+    de : Noch eine Treppe. Mark kommt zu spaet. Nur ein Platz ist noch frei.
+08  CARMEN  5 s   -> droite   (en espagnol)
+    es : ¡Llegas tarde! Siéntate allí, al lado de Anna.
+    jeu : autoritaire avec le sourire. La paume qui montre la chaise.
+    ⚠️ LE PRENOM ARRIVE ICI, par elle : 04 finissait sur un prenom inconnu.
+09  ANNA   4 s   -> droite
+    de : Der Mann aus der Baeckerei!
+    jeu : elle CHUCHOTE (le cours a commence), ravie. La main pres de la bouche.
+10  MARK   4 s   -> gauche
+    de : Anna... So heissen Sie also!
+    jeu : il chuchote aussi, rejoui. La paume qui lui « rend » son prenom.
+11  CARMEN  6 s   -> droite   (en espagnol)
+    es : Y ahora, en parejas: ¿Cómo te llamas? ¿Dónde vives?
+    jeu : enjouee. Deux doigts serres : par deux.
+12  ANNA   6 s   -> droite   (en espagnol, avec SA voix : l'accent allemand est juste)
+    es : Me llamo Anna. Vivo en la calle Lenau, número doce.
+    jeu : eleve appliquee, un sourire de jeu. La main sur la poitrine.
+13  MARK   5 s   -> gauche   (en espagnol)
+    es : ¿En serio? ¡Yo también! En el número ocho.
+    jeu : vraie surprise, il oublie de chuchoter. Le bout des doigts sur la poitrine.
+14  DECOR  6 s   narration -- tous deux dans l'escalier (plan fixe possible)
+    de : Nach dem Kurs gehen sie zusammen die Treppe hinunter. Bis ins Erdgeschoss.
+15  MARK   4 s   -> gauche
+    de : Auf Spanisch duzen wir uns schon...
+    jeu : une taquinerie, a moitie serieuse, un peu timide. Le pouce vers la
+          classe, la-haut.
+16  ANNA   4 s   -> droite
+    de : Auf Deutsch noch nicht.
+    jeu : son humour sec ; le sourire arrive sur le dernier mot. L'index leve.
+          PAS DE FLIRT : une regle de politesse, dite avec chaleur.
+17  DECOR  6 s   narration -- LA CHUTE : de dos, ils rentrent par la meme rue
+    de : Auf Spanisch: du. Auf Deutsch: noch Sie. Noch.
+    fr : En espagnol : tu. En allemand : encore vous. Pour l'instant.
+
+--------------------------------------------------------------
+LE VOCABULAIRE QUE L'EPISODE ENSEIGNE
+--------------------------------------------------------------
+das Erdgeschoss · der erste / zweite Stock · die Etage · die Treppe ·
+hinuntergehen · bei null anfangen · zu spaet kommen · ein Platz ist frei ·
+der Raum · der Spanischkurs · die Volkshochschule · So heissen Sie also! ·
+duzen / siezen · noch nicht ; les ordinaux ; zweihundertvierzehn.
+En prime, de l'espagnol sous-titre : llegas tarde · siéntate · al lado de ·
+en parejas · ¿cómo te llamas? · ¿dónde vives? · vivo en... · yo también.
+
+⚠️ SOUS-TITRES : video/sous_titres.py fait du mot a mot ALLEMAND. Les plans 08,
+   11, 12, 13 sont en espagnol (« langue_dite » dans le JSON) : verifier avant
+   de graver qu'il ne leur colle pas un mot a mot allemand.
+
+--------------------------------------------------------------
+LE COUT, ESTIME AVANT DE COMMENCER
+--------------------------------------------------------------
+  15 images neuves (nano-banana-pro, 0,15 $ piece)            2,25 $
+  12 plans parlants (Kling Avatar v2 Standard ~0,06 $/s ;
+     estime comme 04 : 0,8 s par mot + 1 s ; 97 mots -> ~90 s)  5,40 $
+   2 plans de decor animes (02, 07 ; H3 Max 0,08 $/s, 6 s)     0,96 $
+     01, 14 et 17 en IMAGES TENUES a 0 $ (plan_fixe.py) ; animes,
+     +1,44 $.
+  ----------------------------------------------------------------
+  TOTAL                                                      ~8,60 $
+                                       (~10,05 $ si tout le decor est anime)
+  Reserve de reprises conseillee : +2 $ (es-03 : devis 9 $, reel 13 $).
+  + ElevenLabs : 17 pistes (~1 000 credits) + le choix de DEUX voix neuves
+    (Hausmeister, Carmen : apercus Voice Design ou voix de bibliotheque par ID).
+
+⚠️ LES VOIX DE MARK PARTENT EN v3 (balises dans le JSON), les autres en v2.
+⚠️ CHAQUE PRISE KLING PASSE PAR video/texte_incruste.py avant d'etre retenue.
+⚠️ 07 a TROIS personnages ancres (Anna, Mark, Carmen) + des apprenants flous.
+   Repli si la prise derive : Carmen floue au tableau, sans visage net.
+
+
+==============================================================
+LES IMAGES -- INTENTION PUIS PROMPT, AVANT DE PAYER
+==============================================================
+⚠️ Regle du 16 septembre 2026 : l'INTENTION en francais, puis le PROMPT EXACT,
+   puis la relecture croisee AVEC les images, puis seulement la depense.
+   `python video/image_plan.py --scene 05-vhs --plan NN --montrer` (gratuit)
+   avant chaque image.
+
+
+PLAN 01   La facade le soir -- le decor maitre exterieur
+INTENTION
+   A quoi sert ce plan : poser le lieu, l'heure (le soir, mardi) et l'idee
+   « une ecole pour adultes ». Le spectateur doit compter quatre niveaux de
+   fenetres : c'est le sujet de l'episode.
+   Ce qui doit etre lisible : un batiment public simple, tous les etages
+   eclaires, l'entree vitree au milieu du rez-de-chaussee.
+   Ce qui a deja rate : affiche-qui-ecrit -- une enseigne d'ecole « appelle »
+   son nom ; la facade est decrite par sa MATIERE, sans enseigne.
+
+PROMPT D'IMAGE (Framing)
+A real photograph, as a passer-by would take it with a good phone camera from
+the pavement across a quiet Berlin street, on a Tuesday evening after dark.
+
+A plain four-storey public building from the 1960s fills most of the picture:
+a pale rendered facade with long regular rows of windows, every window lit with
+the warm light of rooms in use, so that the four levels can be counted at a
+glance -- the ground floor and three floors above it. In the middle of the
+ground floor, a wide glass entrance door, lit from inside. On the left of the
+picture, a metal bicycle rack with three bicycles; on the right, a street lamp
+on a grey post. The pavement and the cobbled street in front shine, wet, under
+the lamp. A bare street tree stands at the left edge.
+
+The facade carries no sign: plain render, glass and metal only. The textures of
+real render, glass, metal, stone and wet cobbles.
+
+Reference : AUCUNE (decor maitre)
+Visage neuf : non
+Position neuve : non
+Image a nommer : vhs-fassade
+
+
+PLAN 23   La cage d'escalier, vide -- le decor maitre de l'escalier (ne se monte pas)
+INTENTION
+   A quoi sert ce plan : le lieu de quatre plans (02, 14, 15, 16) et un lieu
+   qui REVIENT chaque mardi. Image maitresse VIDE, reprise « POUR LE LIEU ».
+   Ce qui doit etre lisible : le bas de l'escalier -- le hall du
+   rez-de-chaussee, la porte vitree noire a GAUCHE, l'escalier qui monte vers
+   la DROITE, la rampe de bois, le palier du premier en haut.
+   Ce qui a deja rate : un decor « de memoire » qui change d'un plan a
+   l'autre (continuite du decor, 16 sept.) -- d'ou ce maitre.
+
+PROMPT D'IMAGE (Framing)
+A real photograph, vertical frame, taken in the ground-floor hall of a plain
+1960s Berlin school building in the evening, empty of people.
+
+On the left of the picture, the glass entrance door of the building, its panes
+dark blue-black with the night outside. From the middle of the picture a wide
+staircase of worn grey stone steps rises towards the right, with a smooth
+wooden handrail on a slim steel rail, up to a landing where the stairs turn
+back; the landing is visible near the top of the picture. The walls are an
+off-white, with a pale green painted dado at the bottom. Round white ceiling
+lamps give an even, slightly warm light. The floor of the hall is grey
+terrazzo, polished by years of shoes.
+
+Plain surfaces only: no sign, no notice board, no floor plan on the walls. The
+textures of real stone, wood, steel, paint and glass.
+
+Reference : AUCUNE (decor maitre)
+Visage neuf : non
+Position neuve : non
+Image a nommer : vhs-treppe
+
+
+PLAN 21   Le couloir du premier etage, vide -- decor maitre (ne se monte pas)
+INTENTION
+   A quoi sert ce plan : le lieu des repliques 03 a 06. Meme batiment que 23 :
+   memes murs (soubassement vert pale), memes lampes.
+   Ce qui doit etre lisible : un long couloir d'ecole le soir, des portes de
+   salle fermees a DROITE, la porte ouverte de l'escalier a GAUCHE.
+   Ce qui a deja rate : des numeros de porte LISIBLES -- ici un numero
+   repondrait a la question de Mark ; les portes n'en portent pas.
+
+PROMPT D'IMAGE (Framing)
+A real photograph, vertical frame, taken in a long first-floor corridor of the
+same building as the reference picture, in the evening, empty of people.
+
+The corridor runs straight away from the camera into the depth, to a dark
+window at its far end. Its walls are off-white with the same pale green painted
+dado at the bottom as in the reference picture, and the same round white
+ceiling lamps run along it in a line. Along the RIGHT wall, a row of plain
+wooden classroom doors, all closed, each with a small square glass pane. On the
+LEFT, near the camera, the wide doorway of the stairwell stands open, and the
+first grey stone steps and the wooden handrail can be seen through it. The
+floor is grey terrazzo.
+
+The doors and walls are plain: no numbers, no signs, no notices. The textures
+of real paint, wood, glass and stone.
+
+Reference : video/episode-05-vhs/01-images/vhs-treppe.png (POUR LE BATIMENT)
+Visage neuf : non
+Position neuve : non
+Image a nommer : vhs-flur
+
+
+PLAN 22   La salle du cours d'espagnol, vide -- LE DECOR MAITRE RECURRENT (ne se monte pas)
+INTENTION
+   A quoi sert ce plan : LA salle de Mark et d'Anna, chaque mardi soir, pour
+   tous les episodes qui y reviendront (video/LIEUX.md). On la voit d'abord
+   VIDE, depuis le fond, coin gauche -- l'angle de toute la serie.
+   Ce qui doit etre lisible : le tableau blanc VIDE au fond, la porte dans le
+   mur de DROITE pres du tableau, deux rangees de tables de bois clair face au
+   tableau, les fenetres noires du soir a GAUCHE.
+   Ce qui a deja rate : affiche-qui-ecrit et horloge-a-l-heure : un tableau
+   et une horloge de classe se remplissent tout seuls ; on decrit la SURFACE
+   VIDE, et on ne demande pas d'horloge.
+
+PROMPT D'IMAGE (Framing)
+A real photograph, vertical frame, taken from the back left corner of an
+adult-education classroom in the same building as the reference picture, in
+the evening, empty of people.
+
+On the far wall, facing the camera, a wide white board, its whole surface clean
+and bare and white, with a narrow tray along its bottom edge holding two closed
+markers. In the RIGHT wall, close to the white board, a plain wooden door
+stands half open onto the lit corridor. Two rows of light wooden tables face
+the white board, with grey plastic chairs pushed in, three tables in each row.
+Along the LEFT wall, tall windows, dark blue-black with the evening, reflect the
+room faintly. Long ceiling lights give an even light. The walls are off-white
+with the same pale green dado as in the reference picture; the floor is grey
+linoleum.
+
+The walls are bare: no poster, no map, no clock, no notice. The textures of
+real wood, plastic, paint and glass.
+
+Reference : video/episode-05-vhs/01-images/vhs-flur.png (POUR LE BATIMENT)
+Visage neuf : non
+Position neuve : non
+Image a nommer : kurs-raum
+
+
+PLAN 04   Le Hausmeister (image maitresse de ses repliques 04, 06)
+INTENTION
+   A quoi sert ce plan : le visage du Hausmeister pour l'avatar, tourne vers la
+   GAUCHE (Mark). Figure d'un episode : VISAGE NEUF, aucune reference de
+   personnage (image_plan.py refuse alors toute reference de visage).
+   Ce qui doit etre lisible : un homme d'une soixantaine d'annees, calme,
+   factuel, devant une porte de salle, ses cles a la main -- l'homme qui
+   connait le batiment.
+   Ce qui a deja rate : corps-sans-contact, sol-bord-a-bord -- ligne de coupe
+   posee ; les mains dites.
+
+PROMPT D'IMAGE (Framing)
+A man of about sixty-two stands in the corridor shown in the reference picture,
+in front of one of the closed wooden doors on the right: a broad, calm face
+with a short grey moustache, short grey hair combed back, heavy eyebrows,
+reading glasses hanging on a cord on his chest, the steady expression of
+someone who knows every room of the building. He wears a plain grey cotton work
+coat buttoned to the top.
+
+He is seen from the hips up, a little right of centre in a vertical frame. The
+bottom edge of the picture crosses his work coat at the hips, and the top of
+his head sits a hand's width under the top edge, so that his face is one of the
+largest things in the picture. His hand nearer the door hangs at his side,
+closed round a ring of keys; his other arm hangs relaxed, the hand empty. His
+head is turned towards the left edge of the picture and he looks there with a
+level, patient face, mouth closed. On the left, between him and the edge of the
+picture, the corridor runs on towards the open doorway of the stairwell, soft.
+
+Reference : video/episode-05-vhs/01-images/vhs-flur.png (POUR LE LIEU)
+Visage neuf : oui
+Position neuve : non
+Image a nommer : hausmeister
+
+
+PLAN 08   Carmen au tableau (image maitresse de ses repliques 08, 11)
+INTENTION
+   A quoi sert ce plan : le visage de Carmen pour l'avatar, tournee vers la
+   DROITE (la porte, la chaise libre). Figure d'un episode : VISAGE NEUF.
+   Ce qui doit etre lisible : une Espagnole d'une cinquantaine d'annees,
+   chaleureuse et sure d'elle, devant SON tableau -- vide.
+   Ce qui a deja rate : le tableau qui s'ecrit tout seul (affiche-qui-ecrit) :
+   on dit sa surface blanche ; un feutre FERME dans la main.
+
+PROMPT D'IMAGE (Framing)
+A Spanish woman of about fifty-three stands in front of the white board of the
+classroom shown in the reference picture: warm olive skin, dark brown eyes,
+thick dark hair with streaks of grey gathered in a low bun, red-framed glasses,
+small gold earrings, a lively face with smile lines, the confident warmth of a
+teacher who has run this class for twenty years. She wears a plain dark teal
+knit cardigan over a plain white blouse.
+
+She is seen from the hips up, a little left of centre in a vertical frame. The
+bottom edge of the picture crosses her cardigan at the hips, and the top of her
+head sits a hand's width under the top edge, so that her face is one of the
+largest things in the picture. Behind her, the white board is clean, bare and
+white over its whole surface. Her hand nearer the left edge holds a closed board
+marker low in front of her; her other arm hangs relaxed, the hand empty. Her
+head is turned towards the right edge of the picture and she looks there with a
+warm, expectant smile, mouth closed. On the right, between her and the edge of
+the picture, the end of the white board and the pale wall, soft.
+
+Reference : video/episode-05-vhs/01-images/kurs-raum.png (POUR LE LIEU)
+Visage neuf : oui
+Position neuve : non
+Image a nommer : carmen
+
+
+PLAN 03   Mark dans le couloir (image maitresse de ses repliques 03, 05) -- FIXE LA TENUE
+INTENTION
+   A quoi sert ce plan : le visage de Mark pour l'avatar, tourne vers la
+   DROITE (le Hausmeister). Et c'est l'image qui FIXE SA TENUE pour tout
+   l'episode : toutes ses autres images la recoivent en reference.
+   Ce qui doit etre lisible : Mark, doudoune marine ouverte, pull gris clair,
+   sac a dos sur une epaule, a peine essouffle, poli, devant la porte ouverte
+   de l'escalier.
+   Ce qui a deja rate : la scene precedente en reference qui ramene sa piece
+   (6 oct.) -- d'ou les PORTRAITS de studio pour le visage et le maitre pour le
+   lieu.
+
+PROMPT D'IMAGE (Framing)
+The young man of the first two reference pictures, with exactly his face and
+his thick dark wavy hair, stands in the corridor shown in the third reference
+picture, just in front of the open doorway of the stairwell. He wears an open
+plain navy-blue padded jacket over a plain light-grey crew-neck knit sweater,
+and blue jeans; a plain dark grey backpack hangs from one shoulder.
+
+He is seen from the hips up, a little left of centre in a vertical frame. The
+bottom edge of the picture crosses his jeans at the hips, and the top of his
+head sits a hand's width under the top edge, so that his face is one of the
+largest things in the picture. His hand nearer the left edge holds the strap of
+the backpack at his shoulder; his other arm hangs relaxed, the hand empty. His
+head is turned towards the right edge of the picture and he looks there with an
+open, friendly face, a little flushed from the stairs, mouth closed. On the
+right, between him and the edge of the picture, the corridor runs on: the pale
+green dado and a closed wooden door, soft.
+
+Reference : personnages/Mark.png, personnages/Mark-troisquarts.png (POUR LE
+            VISAGE SEULEMENT)
+            video/episode-05-vhs/01-images/vhs-flur.png (POUR LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mark-flur
+
+
+PLAN 07   La salle, les trois a leur place -- LE PLAN D'ENSEMBLE
+INTENTION
+   A quoi sert ce plan : « Nur ein Platz ist noch frei. » ET la carte de la
+   salle en photo (acquis du 22 oct.). On le REGARDE avant tout portrait de
+   classe : cotes, regards, tenues, et LA chaise libre a droite d'Anna.
+   Ce qui doit etre lisible : Carmen au tableau VIDE, le bras vers la chaise ;
+   Mark dans l'embrasure de la porte (mur de droite), essouffle ; Anna au
+   deuxieme rang, tournee vers la porte ; la chaise vide a sa droite.
+   Ce qui a deja rate : ajout-qui-remplace (6 oct.) -- la salle est decrite
+   PLEINE des la premiere image, chacun entre par SON image ; comptoir-devant
+   -- on dit ou est chacun et ce qu'il y a entre lui et la camera.
+
+PROMPT D'IMAGE (Framing)
+A real photograph, vertical frame, taken from the back left corner of the
+classroom of the fourth reference picture during an evening lesson, in its even
+ceiling light, the windows on the left dark with the night.
+
+At the far wall, in front of the white board -- clean, bare and white over its
+whole surface -- stands the teacher of the third reference picture, with exactly
+her face, her red-framed glasses, her dark hair in a low bun and her dark teal
+cardigan, a closed marker in one hand; her other arm is held out towards the
+right of the picture, palm up, showing a seat.
+
+In the right wall, near the white board, the wooden door stands open, and in
+the doorway stands the young man of the second reference picture, with exactly
+his face, his dark wavy hair, his open navy-blue padded jacket, light-grey
+sweater and dark grey backpack, a little out of breath, looking at the teacher.
+
+The two rows of light wooden tables face the white board. Six learners sit at
+them, seen from behind or in three-quarter back view, soft and out of focus,
+ordinary sweaters, nobody's face turned to the camera. In the second row, at
+the table nearest the windows, sits the woman of the first reference picture,
+with exactly her face, her dark blonde hair loosely pulled back and her open
+rust-red wool coat over her cream sweater, an open exercise book in front of
+her; she has turned her head towards the door on the right and looks at the
+young man there. At her right, the one empty grey chair of the room, pulled
+out from the table, waiting.
+
+The textures of real wood, plastic, wool, paper and skin.
+
+Reference : video/episode-04-schrippe/01-images/anna-alltag.png (ANNA, VISAGE ET TENUE)
+            video/episode-05-vhs/01-images/mark-flur.png (MARK, VISAGE ET TENUE)
+            video/episode-05-vhs/01-images/carmen.png (CARMEN)
+            video/episode-05-vhs/01-images/kurs-raum.png (LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : kurs-ensemble
+
+PROMPT DE MOUVEMENT (H3 Max) -- Decor anime, narration ~6 s. Un seul geste : il entre.
+The camera is locked on a tripod and stays there for the whole shot: the same lens, the same height, the same distance. In the doorway on the right, the young man in the navy-blue jacket brings one open hand up a few centimetres from his side, an apologetic greeting, and it stays there while he catches his breath, his face sheepish and amused. The teacher keeps her arm held out towards the empty chair, smiling. The woman in the rust-red coat keeps looking at the doorway, and her eyebrows rise slowly in recognition, her mouth closed. The learners stay at their tables, soft and still. The framing holds to the very end: in the last frame everything is the same size and in the same place in the picture as in the first.
+
+
+PLAN 09   Anna a sa table (image maitresse de ses repliques 09, 12)
+INTENTION
+   A quoi sert ce plan : le visage d'Anna pour l'avatar, assise, tournee vers
+   la DROITE (Mark, assis a sa droite). Sa tenue de 04, a l'identique.
+   Ce qui doit etre lisible : Anna reconnaissable, en manteau rouille, son
+   cahier ouvert aux pages vides, la classe floue derriere.
+   Ce qui a deja rate : repere-hors-champ et corps-sans-contact -- assise, la
+   ligne de coupe est la TABLE.
+
+PROMPT D'IMAGE (Framing)
+The woman of the first reference picture, with exactly her face, her grey-blue
+eyes, her freckles and her dark blonde hair loosely pulled back, and exactly her
+clothes -- the open rust-red wool coat over the plain cream knit sweater -- sits
+at a light wooden table in the classroom of the second reference picture, at the
+place she has in the third reference picture.
+
+She is seen from the waist up, seated, a little left of centre in a vertical
+frame. The edge of the table crosses the picture near the bottom, and the top of
+her head sits a hand's width under the top edge, so that her face is one of the
+largest things in the picture. She sits on the far side of the table, the
+table between her and the camera, as a learner sits at her desk. On the table
+lies an open exercise book with blank ruled pages; her hand nearer the left
+edge rests flat on it, her other hand rests on the table. Her head is turned towards the right
+edge of the picture and she looks there with a surprised, delighted half-smile,
+mouth closed. On the right, between her and the edge of the picture, the table
+runs on, bare. Behind her, the dark windows and the pale wall, soft.
+
+Reference : video/episode-04-schrippe/01-images/anna-alltag.png (VISAGE ET TENUE)
+            video/episode-05-vhs/01-images/kurs-raum.png (POUR LE LIEU)
+            video/episode-05-vhs/01-images/kurs-ensemble.png (SA PLACE)
+Visage neuf : non
+Position neuve : non
+Image a nommer : anna-kurs
+
+
+PLAN 10   Mark a sa table (image maitresse de ses repliques 10, 13)
+INTENTION
+   A quoi sert ce plan : le visage de Mark pour l'avatar, assis, tourne vers
+   la GAUCHE (Anna). La chaise libre de 07, maintenant la sienne.
+   Ce qui doit etre lisible : le MEME Mark que 03 -- doudoune ouverte, pull
+   gris -- assis, mains sur la table nue, rejoui.
+   Ce qui a deja rate : portrait de studio sans la tenue -- 03 en reference.
+
+PROMPT D'IMAGE (Framing)
+The young man of the first reference picture, with exactly his face and his
+thick dark wavy hair, wearing exactly the clothes of the second reference
+picture -- the open plain navy-blue padded jacket over the plain light-grey
+sweater -- sits at a light wooden table in the classroom of the third reference
+picture, on the chair that is empty in the fourth reference picture.
+
+He is seen from the waist up, seated, a little right of centre in a vertical
+frame. The edge of the table crosses the picture near the bottom, and the top of
+his head sits a hand's width under the top edge, so that his face is one of the
+largest things in the picture. He sits on the far side of the table, the
+table between him and the camera, as a learner sits at his desk; his hands rest
+flat on its bare top. His head is turned towards the left edge of the picture and he looks there
+with a glad, surprised smile, mouth closed. On the left, between him and the
+edge of the picture, the table runs on, bare. Behind him, the pale wall and the
+half-open door, soft.
+
+Reference : personnages/Mark.png (LE VISAGE)
+            video/episode-05-vhs/01-images/mark-flur.png (LA TENUE)
+            video/episode-05-vhs/01-images/kurs-raum.png (POUR LE LIEU)
+            video/episode-05-vhs/01-images/kurs-ensemble.png (LA CHAISE)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mark-kurs
+
+
+PLAN 02   Mark sur le palier, deux doigts leves -- decor anime
+INTENTION
+   A quoi sert ce plan : la narration « Unten ist eins. Eine Treppe hoch:
+   zwei. » -- il compte, sur ses doigts, et il est sur de lui. Le spectateur
+   allemand sait deja qu'il se trompe.
+   Ce qui doit etre lisible : Mark sur le palier du PREMIER, une main sur la
+   rampe, deux doigts leves, content ; l'escalier qui continue derriere lui.
+   Ce qui a deja rate : marcher dans l'escalier (Seedance/H3, le plan le plus
+   cher et le plus rate) -- il est ARRETE sur le palier.
+
+PROMPT D'IMAGE (Framing)
+The young man of the first reference picture, with exactly his face and his
+thick dark wavy hair, wearing exactly the clothes of the second reference
+picture -- the open navy-blue padded jacket, the light-grey sweater, the dark
+grey backpack on one shoulder -- has just reached the first-floor landing of the
+staircase shown in the third reference picture, and stands still on it.
+
+He is seen from the hips up, in the middle of a vertical frame, seen a little
+from below, as from a few steps lower. His hand nearer the stairs rests on the
+wooden handrail; his other hand is raised beside his shoulder with the index
+and the middle finger up, two, as he counts. He looks ahead, slightly up,
+pleased and sure of himself, mouth closed. Behind him the stairs go on up
+towards the next landing, the off-white wall and its pale green dado, the round
+ceiling lamps.
+
+Reference : personnages/Mark.png (LE VISAGE)
+            video/episode-05-vhs/01-images/mark-flur.png (LA TENUE)
+            video/episode-05-vhs/01-images/vhs-treppe.png (POUR LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mark-treppe
+
+PROMPT DE MOUVEMENT (H3 Max) -- Decor anime, narration ~5 s. Rien que son visage et sa main.
+The camera is locked on a tripod and stays there for the whole shot: the same lens, the same height, the same distance. He stays where he is on the landing, his hand on the handrail. His two raised fingers stay up, and he gives them one small satisfied nod, then turns his head a little towards the corridor ahead, pleased with himself, his mouth closed. The stairs, the wall and the lamps stay still. The framing holds to the very end: in the last frame he is the same size and in the same place in the picture as in the first.
+
+
+PLAN 15   Mark au pied de l'escalier (image maitresse de sa replique 15)
+INTENTION
+   A quoi sert ce plan : le visage de Mark pour l'avatar, tourne vers la
+   GAUCHE (Anna), au pied de l'escalier, apres le cours. Meme tenue.
+   Ce qui doit etre lisible : Mark, une main sur la rampe, un demi-sourire
+   joueur, la porte noire de l'entree a gauche.
+
+PROMPT D'IMAGE (Framing)
+The young man of the first reference picture, with exactly his face and his
+thick dark wavy hair, wearing exactly the clothes of the second reference
+picture -- the open navy-blue padded jacket, the light-grey sweater, the dark
+grey backpack on one shoulder -- stands at the foot of the staircase in the hall
+shown in the third reference picture.
+
+He is seen from the hips up, a little right of centre in a vertical frame. The
+bottom edge of the picture crosses his jeans at the hips, and the top of his
+head sits a hand's width under the top edge, so that his face is one of the
+largest things in the picture. His hand nearer the right edge rests on the end
+of the wooden handrail; his other arm hangs relaxed, the hand empty. His head is
+turned towards the left edge of the picture and he looks there with a playful,
+slightly shy half-smile, mouth closed. On the left, between him and the edge of
+the picture, the hall runs on: the pale wall and the dark glass of the entrance
+door, soft.
+
+Reference : personnages/Mark.png (LE VISAGE)
+            video/episode-05-vhs/01-images/mark-flur.png (LA TENUE)
+            video/episode-05-vhs/01-images/vhs-treppe.png (POUR LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mark-eg
+
+
+PLAN 16   Anna au pied de l'escalier (image maitresse de sa replique 16)
+INTENTION
+   A quoi sert ce plan : le visage d'Anna pour l'avatar, tournee vers la
+   DROITE (Mark), en face de lui dans le hall. Son sac a l'epaule : elle
+   s'en va.
+   Ce qui doit etre lisible : Anna, manteau rouille, sac de toile, une main
+   sur la bretelle, l'humour sec dans les yeux.
+
+PROMPT D'IMAGE (Framing)
+The woman of the first reference picture, with exactly her face, her grey-blue
+eyes, her freckles and her dark blonde hair loosely pulled back, and exactly her
+clothes -- the open rust-red wool coat, the plain cream knit sweater, the natural
+canvas tote bag on her shoulder -- stands in the ground-floor hall shown in the
+second reference picture, near the foot of the staircase.
+
+She is seen from the hips up, a little left of centre in a vertical frame. The
+bottom edge of the picture crosses her coat at the hips, and the top of her head
+sits a hand's width under the top edge, so that her face is one of the largest
+things in the picture. Her hand nearer the left edge holds the strap of the
+tote bag at her shoulder; her other arm hangs relaxed, the hand empty. Her head
+is turned towards the right edge of the picture and she looks there with a
+quiet, amused look, mouth closed. On the right, between her and the edge of the
+picture, the foot of the staircase and its wooden handrail, soft.
+
+Reference : video/episode-04-schrippe/01-images/anna-alltag.png (VISAGE ET TENUE)
+            video/episode-05-vhs/01-images/vhs-treppe.png (POUR LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : anna-eg
+
+
+PLAN 14   Tous deux dans l'escalier -- plan fixe possible
+INTENTION
+   A quoi sert ce plan : « Nach dem Kurs gehen sie zusammen die Treppe
+   hinunter. » -- ENSEMBLE, pour la premiere fois dans la serie, a cote l'un de
+   l'autre ; ils parlent, ils sourient. Pas de flirt : deux voisins.
+   Ce qui doit etre lisible : les deux, cote a cote, sur les marches, vus d'en
+   bas, chacun dans sa tenue ; Anna a GAUCHE, Mark a DROITE (comme en bas).
+   Ce qui a deja rate : la marche (le plan le plus cher et le plus rate) : ils
+   sont ARRETES, une marche l'un de l'autre, le temps d'une phrase -- plan fixe.
+
+PROMPT D'IMAGE (Framing)
+A real photograph, vertical frame, taken from the hall at the foot of the
+staircase shown in the third reference picture, looking up the stairs, in the
+evening light of the round ceiling lamps.
+
+Halfway down the stairs, the woman of the first reference picture, with exactly
+her face and her clothes -- the open rust-red wool coat, the cream sweater, the
+canvas tote bag -- and the young man of the second reference picture, with
+exactly his face and his clothes -- the open navy-blue padded jacket, the
+light-grey sweater, the dark grey backpack -- have stopped side by side, she on
+the left of the picture by the wall, he on the right by the wooden handrail,
+his hand on it. They have paused in the middle of a conversation: she is
+laughing at something he has said, and he looks at her, pleased, both seen from
+the knees up, three or four steps above the camera. Above them the stairs turn
+at the landing; the off-white walls and the pale green dado.
+
+The textures of real stone, wood, wool and skin.
+
+Reference : video/episode-04-schrippe/01-images/anna-alltag.png (ANNA)
+            video/episode-05-vhs/01-images/mark-flur.png (MARK)
+            video/episode-05-vhs/01-images/vhs-treppe.png (LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : treppe-zu-zweit
+
+
+PLAN 17   La chute : de dos, la meme rue -- retouche de la facade
+INTENTION
+   A quoi sert ce plan : « Auf Spanisch: du. Auf Deutsch: noch Sie. Noch. » --
+   ils rentrent ENSEMBLE, puisqu'ils habitent la meme rue ; on les voit de dos,
+   un pas d'ecart, sous le reverbere. Le spectateur sait ce qu'eux taisent.
+   Ce qui doit etre lisible : la MEME facade qu'en 01, la porte vitree
+   derriere eux, deux silhouettes reconnaissables a leurs couleurs (rouille,
+   marine), de dos, qui partent vers la DROITE.
+   Ce qui a deja rate : portrait-pour-une-epaule -- anna-alltag est de face ;
+   s'il ramene un visage tourne vers nous, REPLI GRATUIT : 01 seul.
+
+PROMPT D'IMAGE (Framing)
+The same street and the same lit school building as in the first reference
+picture, in the same evening light, after the lesson: change only this. On the
+wet pavement in front of the building, a little right of the entrance door,
+two people walk away from the camera side by side towards the right of the
+picture, seen from behind, an arm's length apart: on the left, the young man of
+the second reference picture -- the back of his dark wavy head, his navy-blue
+padded jacket and his dark grey backpack -- and on the right, the woman of the
+third reference picture -- her dark blonde hair pulled back, the back of her
+rust-red wool coat, her canvas tote bag. Their shadows fall on the shining
+cobbles under the street lamp. Everything else stays exactly as it is.
+
+Reference : video/episode-05-vhs/01-images/vhs-fassade.png (A RETOUCHER)
+            personnages/Mark-dos.png (MARK, DE DOS)
+            video/episode-04-schrippe/01-images/anna-alltag.png (ANNA, LA TENUE)
+Visage neuf : non
+Position neuve : non
+Image a nommer : strasse-zu-zweit
