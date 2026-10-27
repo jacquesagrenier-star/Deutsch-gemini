@@ -5602,6 +5602,9 @@ body[data-theme="dark"] .mos-cadre{
     display:block; position:absolute; inset-inline:0; top:0;
     width:100%; height:auto;
 }
+/* v979 : quand l'image a pris le relais, le canevas reste dessine mais ne se voit plus. */
+.mos-toile-image{pointer-events:none;}
+.mos-cadre.en-image > canvas.mos-toile{visibility:hidden;}
 .mos-cartouche{text-align:start; line-height:1.35;}
 /* L'EN-TETE : le rang a gauche, les actions a droite, sur la meme ligne que
    celle que le rang occupait deja. */
@@ -7974,6 +7977,9 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                  role="button" tabindex="0"
                  data-i18n-aria-label="mosaique_agrandir" aria-label="Agrandir le tableau">
                 <canvas id="mosaiqueToile" class="mos-toile" width="900" height="700"></canvas>
+                <!-- v979 : CE QUI S'AFFICHE, C'EST CETTE IMAGE, copie du canevas apres
+                     chaque dessin (toileEnImage). Voir la note de toileEnImage(). -->
+                <img id="mosaiqueImage" class="mos-toile mos-toile-image" alt="" aria-hidden="true" hidden>
                 <span class="mos-loupe" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
                          stroke-linecap="round" stroke-linejoin="round">
@@ -8733,7 +8739,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v978</span>
+    <span class="subtitle-version">v979</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -46140,7 +46146,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 978;
+const APP_VERSION = 979;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -49129,6 +49135,38 @@ const imagesMosaique = {};
 // blanche au retour d'une scene (v844, repeindreApresScene) ; meme remede : une
 // opacite a peine differente puis rendue, un defilement d'un pixel aller-retour.
 // Et on MESURE, comme la : le journal dit si l'image est tombee.
+// v979 : LE TABLEAU S'AFFICHE EN IMAGE, PLUS EN CANEVAS. Jacques, iPhone, 27 oct.
+// 2026, troisieme fois (apres v925 et v926) : le cadre de l'accueil vide, le
+// tableau present en plein ecran, toujours absent au retour. Le journal du
+// « Test2 » a tranche : « retour au premier plan, toile VIDE », puis « dessine
+// apres 61 ms, toile 900x633, a l'ecran 363x255, ecran home », « 1re image apres
+// 61 ms ». iOS libere le contenu des canevas quand l'app passe en arriere-plan ;
+// le code redessine bien, a la bonne taille, mais WebKit continue d'afficher la
+// couche videe -- les secousses de repeindreToileMosaique() n'y font rien. Une
+// IMAGE n'a pas ce defaut : iOS ne la vide pas, et la redecode s'il le faut. On
+// copie donc le canevas dans #mosaiqueImage apres chaque dessin (PNG : les
+// carreaux pas encore gagnes sont transparents, le JPEG les rendrait noirs) et
+// c'est elle qu'on montre. Si la copie echoue (toile « teintee » par une image
+// sans CORS), le canevas reste affiche, comme avant.
+function toileEnImage(canvas){
+    const img = document.getElementById("mosaiqueImage");
+    const cadre = canvas && canvas.parentElement;
+    if(!img || !cadre) return false;
+    let url;
+    try{ url = canvas.toDataURL("image/png"); }
+    catch(e){ try{ noterAudio("mosaique", "MOSAIQUE", "copie en image refusee : " + e.name); }catch(_){} return false; }
+    img.style.transform = canvas.style.transform;
+    img.onload = () => {
+        img.hidden = false;
+        cadre.classList.add("en-image");
+        try{
+            const r = img.getBoundingClientRect();
+            noterAudio("mosaique", "MOSAIQUE", "image posee, " + Math.round(url.length / 1024) + " ko, a l'ecran " + Math.round(r.width) + "x" + Math.round(r.height));
+        }catch(e){}
+    };
+    img.src = url;
+    return true;
+}
 function repeindreToileMosaique(canvas){
     const t0 = Date.now();
     let dessine = false;
@@ -49282,11 +49320,13 @@ function majMosaiqueAccueil(){
                 // des que le rang est entre dans la galerie, juste en dessous.
                 if(vientDeGagner){
                     dessinerMosaique(canvas, img, total - 1, total, false);
+                    toileEnImage(canvas);
                     setTimeout(() => {
-                        try{ dessinerMosaique(canvas, img, total, total, true); }catch(e){}
+                        try{ dessinerMosaique(canvas, img, total, total, true); toileEnImage(canvas); }catch(e){}
                     }, MOSAIQUE_RESOLUTION_MS);
                 } else {
                     dessinerMosaique(canvas, img, v.c, total, fini);
+                    toileEnImage(canvas);
                 }
                 // ⚠️ LA JAUGE EST ECRITE ICI DEPUIS LA v597, ET ELLE NE L'ETAIT
                 // PLUS DU TOUT DEPUIS LA v588. Ses deux lignes vivaient dans
