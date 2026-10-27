@@ -3317,7 +3317,7 @@ html[data-apprendre="ja"] #episodeLigne,
 html[data-apprendre="ja"] .search-launch,
 html[data-apprendre="ja"] [data-seulement-de],
 html[data-apprendre="ja"] [data-seulement-es],
-html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]){ display:none !important; }
+html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]){ display:none !important; }
 /* Les kanji et les kana dans le texte courant (fiches, exercices, tableaux) :
    une police japonaise en repli, sinon un kanji partage avec le chinois peut
    prendre sa forme chinoise. */
@@ -54171,7 +54171,7 @@ async function ouvrirSeanceDuJour(sansScene){
     // v867 (essai feuilles_conj) : la feuille de conjugaison du jour, a l'A2 et
     // au B1 -- avant la grammaire, dont elle choisit la serie de conjugaison.
     let fc = null;
-    try{ fc = seanceJaponaise() ? null : await preparerFeuille(niveau); }catch(e){ fc = null; }
+    try{ fc = await preparerFeuille(niveau); }catch(e){ fc = null; }
     let seance = aRevoir ? cartesDeSeanceRevoir(tout, aRevoir) : cartesDeSeance(tout, av ? av.pool : pool);
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
     // v902 (Jacques : « au premier clic il y a encore un petit delai, puis plus
