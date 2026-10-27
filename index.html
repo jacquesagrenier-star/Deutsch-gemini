@@ -8706,7 +8706,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v967</span>
+    <span class="subtitle-version">v968</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -28971,7 +28971,8 @@ async function confirmerSuppressionCompte(){
         // Les deux langues (fusion, etape 6) : chacune a sa progression et son
         // resume. Un document absent ou une regle pas encore posee ne doit pas
         // bloquer la suppression du compte.
-        for(const coll of ["usuariosEs", "resumenesEs", "resumes"]){
+        // 26 oct. 2026 : le japonais (v961) a les siennes, oubliees jusque-la.
+        for(const coll of ["usuariosEs", "resumenesEs", "usersJa", "resumesJa", "resumes"]){
             if(coll === RESUMES_COLL) continue;   // efface juste en dessous
             try{ await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, coll, user.uid)); }catch(e){}
         }
@@ -28982,6 +28983,10 @@ async function confirmerSuppressionCompte(){
         }catch(e){}
 
         await window.authDeleteUser(user);
+
+        // La seance hors ligne et les reponses en attente (v967) vivent dans
+        // les fichiers de l'app, que localStorage.clear() ne touche pas.
+        try{ await effacerHorsLigneDuCompte(user.uid); }catch(e){}
 
         // L'appareil en dernier : si quelque chose avait echoue plus haut, la
         // personne retrouve son compte intact plutot qu'un telephone vide.
@@ -29639,6 +29644,28 @@ async function recollerHorsLigne(){
         await F.writeFile({ path: HL_JOURNAL, data: JSON.stringify({ entrees: restantes }), directory: "DATA", encoding: "utf8" });
     }catch(e){}
     if(poses){ try{ majMosaiqueAccueil(); }catch(e){} try{ majPiluleSeance(); }catch(e){} }
+}
+
+// « Supprimer mon compte » (26 oct. 2026) : la seance mise de cote est celle du
+// compte qui s'en va, elle part entiere ; dans le journal, seules ses reponses
+// partent -- celles d'un autre compte du meme appareil attendent leur
+// proprietaire. Promis par confidentialite.html et supprimer-compte.html.
+async function effacerHorsLigneDuCompte(uid){
+    const F = pluginNatif("Filesystem");
+    if(!F) return;
+    for(const dossier of [HL_DOSSIER, HL_DOSSIER_NEUF]){
+        try{ await F.rmdir({ path: dossier, directory: "CACHE", recursive: true }); }catch(e){}
+    }
+    let entrees = [];
+    try{
+        const r = await F.readFile({ path: HL_JOURNAL, directory: "DATA", encoding: "utf8" });
+        entrees = (JSON.parse(r.data) || {}).entrees || [];
+    }catch(e){ return; }
+    const restantes = entrees.filter(e => !(e && e.uid === uid));
+    try{
+        if(restantes.length) await F.writeFile({ path: HL_JOURNAL, data: JSON.stringify({ entrees: restantes }), directory: "DATA", encoding: "utf8" });
+        else await F.deleteFile({ path: HL_JOURNAL, directory: "DATA" });
+    }catch(e){}
 }
 
 // Apres le rechargement du cloud : recoller, puis ranger la seance suivante.
@@ -45536,7 +45563,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 967;
+const APP_VERSION = 968;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");

@@ -44,3 +44,7 @@ les autres sessions lui rendent compte et n'en lancent pas d'autres (voir CLAUDE
 | 2026-10-26 | Organisation | Un seul Claude PC « chef d'orchestre » ; les autres sessions lui rendent compte | « que ça soit redirigé vers un Claude PC chef » |
 | 2026-10-24 | Voix | Enregistrer (ElevenLabs v2) tous les mots des tuiles de « Construis la phrase », espagnol (deux voix) et allemand, jusqu'au plus haut niveau ; puis « pour tout » ce que l'app lit sans fichier | « je veux qu'on les fasse tous. Jusqu'à C1 » ; « autant pour l'espagnol que pour l'allemand. Pour tout. » |
 | 2026-10-24 | Voix | Dans le quota Pro seulement (solde ~306 000), réserve de 40 000 ; A1 et A2 maintenant (faits), B1-C1 au renouvellement du 4 nov. ; rien acheter sans son accord pour le montant | |
+| 2026-10-26 | Mon cours | Pas de voix ElevenLabs à générer pour Mon cours | « J'aurais pas besoin d'ajouter de voix pour mon cours » |
+| 2026-10-26 | App iPhone | D'accord pour ajouter le module de fichiers du hors-ligne (compilations déjà lancées sans lui) | « Ouais, on peut ajouter module » |
+| 2026-10-26 | Hors-ligne | Plan validé ; pour tout le monde (pas réservé à l'abonnement), sans étape « admin seul » ; Jacques valide lui-même | « on peut lancer [le hors-]ligne pour tout le monde [...] Puis moi, je le validerai » |
+| 2026-10-26 | Firebase | Hébergement : ne garder que les 5 dernières versions (stockage gratuit plein) ; réglé par Jacques dans la console | « ne garder que les 5 dernières versions » |

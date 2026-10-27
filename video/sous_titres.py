@@ -391,8 +391,19 @@ def main():
     num = a.scene.split("-")[0]
     base = os.path.splitext(os.path.basename(a.clip))[0] if a.clip else "EPISODE-%s-avatar" % num
     dst = os.path.join(ep, "%s.%s.ass" % (base, a.langue))
+    entete = ENTETE
+    # ⚠️ PERSAN ET ARABE : LE SENS D'ECRITURE (26 oct. 2026). Avec Encoding 1,
+    # libass pose chaque ligne de gauche a droite : une ligne qui melange un mot
+    # latin (« لأنّ الـBerliner بشر. ») sortait ses morceaux dans le desordre,
+    # le point en tete -- en ligne depuis l'episode 4, vu a la relecture.
+    # Encoding -1 laisse libass choisir le sens, et la marque droite-a-gauche
+    # (U+200F) en tete de ligne le fixe meme quand la ligne commence par un mot
+    # latin (« Schrippe إذن »). Verifie contre le rendu de Chrome, a l'identique.
+    if a.langue in ("fa", "ar"):
+        entete = entete.replace("45,45,110,1\n", "45,45,110,-1\n")
+        lignes = [l.replace(",FR,,0,0,0,,", ",FR,,0,0,0,,‏", 1) for l in lignes]
     io.open(dst, "w", encoding="utf-8-sig", newline="\r\n").write(
-        ENTETE + "\n".join(lignes) + "\n")
+        entete + "\n".join(lignes) + "\n")
     print("  %s   %d lignes" % (os.path.relpath(dst, RACINE), len(lignes)))
 
     if not a.incruster:

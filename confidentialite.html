@@ -54,7 +54,7 @@
 
 <!-- ============================ FRANÇAIS ============================ -->
 <h1 id="fr">Politique de confidentialité</h1>
-<p class="date">Dernière mise à jour : 13 octobre 2026</p>
+<p class="date">Dernière mise à jour : 26 octobre 2026</p>
 
 <div class="resume">
   <p><strong>En bref.</strong> Wortando conserve votre adresse courriel, votre
@@ -84,6 +84,7 @@ fait sur invitation.</p>
   <tr><td>Type d'appareil, en un seul mot (Android, iPhone, iPad ou ordinateur), sans modèle ni version du système ; et un court journal technique des mises à jour (version de l'application et date de ses vingt dernières ouvertures)</td><td>Savoir sur quels appareils l'application est testée, et vérifier qu'elle se met bien à jour</td></tr>
   <tr><td>Code d'invitation utilisé</td><td>Vérifier que chaque code ne sert qu'une fois</td></tr>
   <tr><td>Date de création du compte</td><td>Administration du service</td></tr>
+  <tr><td>Votre façon d'apprendre, si vous répondez aux deux questions facultatives de l'inscription (pourquoi vous apprenez ; ce qui vous ressemble : images, écoute, règles ou un peu de tout)</td><td>Choisir les scènes et le dosage de la séance du jour</td></tr>
 </table>
 <p><strong>Votre mot de passe n'est jamais visible par l'application.</strong>
 Il est géré par Firebase Authentication (Google), qui n'en conserve qu'une
@@ -98,13 +99,21 @@ progression est enregistrée dans le nuage :</p>
   <li>la série de jours consécutifs, les points d'expérience, l'objectif
       quotidien et l'activité du jour ;</li>
   <li>les mots que vous avez cherchés puis mis de côté, et ceux que vous avez
-      ajoutés à votre vocabulaire — au plus 150 de chaque, les plus récents.</li>
+      ajoutés à votre vocabulaire — au plus 150 de chaque, les plus récents ;</li>
+  <li>les jours travaillés et le nombre d'exercices de chacun, les séances du
+      jour (cartes passées sur prévues), les phrases à revoir, les badges, les
+      tableaux de la mosaïque et l'avancement des parcours (dont la date de
+      départ en voyage, si vous l'indiquez) ;</li>
+  <li>le niveau choisi, la langue de l'interface et les réponses faites hors
+      ligne, une fois le réseau revenu.</li>
 </ul>
 
-<h3>2.3 Notifications</h3>
-<p>Uniquement si vous les activez, un identifiant technique d'appareil (jeton
-Firebase Cloud Messaging) est conservé pour vous envoyer un rappel quotidien.
-Il est effacé dès que vous désactivez les notifications.</p>
+<h3>2.3 Notifications et rappel quotidien</h3>
+<p>Dans l'application installée, le rappel quotidien est programmé <strong>sur
+votre appareil</strong> : rien n'est envoyé pour cela. Dans le navigateur, et
+uniquement si vous activez les notifications, un identifiant technique
+d'appareil (jeton Firebase Cloud Messaging) est conservé pour vous envoyer le
+rappel ; il est effacé dès que vous désactivez les notifications.</p>
 
 <h3>2.4 Mesure d'usage</h3>
 <p>L'application utilise <strong>Google Analytics pour Firebase</strong>, qui
@@ -115,11 +124,33 @@ ou région, jamais une adresse précise). Ces données servent à comprendre que
 parties du cours sont utilisées et à les améliorer. Elles ne servent
 <strong>pas</strong> à la publicité.</p>
 
+<h3>2.5 Vos messages « Signaler un problème ou une idée »</h3>
+<p>Quand vous utilisez ce bouton, votre message est enregistré avec votre
+compte. Il est accompagné d'un court journal technique de l'appareil (version
+de l'application, dernières actions techniques comme la lecture d'un son ou
+l'affichage d'un écran), qui sert uniquement à reproduire et corriger le
+problème signalé. Rien n'est envoyé tant que vous ne touchez pas le bouton.</p>
+
+<h3>2.6 Micro et reconnaissance vocale</h3>
+<p>Le micro ne sert qu'aux exercices où vous répétez une phrase à voix haute,
+et seulement si vous l'autorisez. <strong>L'enregistrement de votre voix reste
+sur votre appareil</strong>, pour que vous puissiez le réécouter ; Wortando ne
+le reçoit pas et ne le conserve pas. Pour vérifier si la phrase répétée se
+comprend, l'application utilise le service de reconnaissance vocale de votre
+appareil : celui d'Apple sur iPhone et iPad, celui de Google sur Android et
+dans Chrome. Selon l'appareil, ce service traite le son sur l'appareil ou sur
+les serveurs d'Apple ou de Google, selon leurs propres règles de
+confidentialité. Seul le résultat (phrase comprise ou non) sert à
+l'exercice.</p>
+
 <h2>3. Ce qui reste sur votre appareil</h2>
 <p>Certains réglages ne quittent jamais votre téléphone : langue d'interface,
-thème clair ou sombre, voix choisie, niveau affiché. Ils sont conservés dans le
-stockage local du navigateur et disparaissent si vous effacez les données du
-site ou désinstallez l'application.</p>
+thème clair ou sombre, voix choisie, niveau affiché. Restent aussi sur
+l'appareil : le journal de vos réponses des quatorze derniers jours, qui sert au
+bilan de la semaine, et, dans l'application installée, la prochaine séance du
+jour (ses cartes et leurs voix), gardée pour fonctionner sans réseau. Ces
+données sont conservées dans le stockage de l'application et disparaissent si
+vous effacez les données du site ou désinstallez l'application.</p>
 
 <h2>4. Qui peut voir vos données</h2>
 <ul>
@@ -130,6 +161,10 @@ site ou désinstallez l'application.</p>
   <li><strong>Google (Firebase)</strong>, en qualité de sous-traitant
   technique : authentification, base de données, notifications et mesure
   d'usage. Les données sont hébergées sur l'infrastructure Google Cloud.</li>
+  <li><strong>Cloudflare</strong>, qui héberge le site wortando.com : comme tout
+  hébergeur, il voit l'adresse IP de l'appareil qui charge la page.</li>
+  <li><strong>Apple ou Google</strong>, pour la reconnaissance vocale, seulement
+  pendant les exercices oraux (voir 2.6).</li>
 </ul>
 <p><strong>Aucune donnée n'est vendue, louée, échangée ni transmise à un tiers
 à des fins commerciales ou publicitaires.</strong> Il n'y a aucun réseau
@@ -147,6 +182,13 @@ et définitive : elle efface le compte d'authentification, l'enregistrement de
 progression, le résumé affiché au tableau de bord et les données gardées sur
 l'appareil. Aucune demande écrite n'est nécessaire, et rien ne peut être
 récupéré ensuite.</p>
+
+<p><strong>Sans accès à l'application</strong> (téléphone perdu, application
+désinstallée) : écrivez à l'adresse du point 1, depuis l'adresse courriel de
+votre compte, avec l'objet « Supprimer mon compte ». La suppression est faite
+dans les sept jours, avec les mêmes effets, et une confirmation vous est
+envoyée. Tous les détails : <a href="supprimer-compte.html">supprimer son
+compte Wortando</a>.</p>
 
 <p><strong>Vous pouvez aussi faire effacer une partie de vos données sans
 supprimer votre compte</strong> : votre progression (pour une langue ou pour
@@ -176,7 +218,7 @@ l'application.</p>
 
 <!-- ============================ ENGLISH ============================ -->
 <h1 id="en" style="margin-top:52px">Privacy Policy</h1>
-<p class="date">Last updated: 13 October 2026</p>
+<p class="date">Last updated: 26 October 2026</p>
 
 <div class="resume">
   <p><strong>In short.</strong> Wortando stores your email address, first name
@@ -204,6 +246,7 @@ question about this policy, or to exercise your rights:
   <tr><td>Device type, as a single word (Android, iPhone, iPad or computer), with no model or system version; and a short technical update log (app version and time of its last twenty openings)</td><td>Know which devices the app is tested on, and check that it updates properly</td></tr>
   <tr><td>Invitation code used</td><td>Ensure each code is used only once</td></tr>
   <tr><td>Account creation date</td><td>Service administration</td></tr>
+  <tr><td>How you like to learn, if you answer the two optional sign-up questions (why you are learning; what suits you: pictures, listening, rules, or a bit of everything)</td><td>Choose the scenes and the mix of the daily session</td></tr>
 </table>
 <p><strong>Your password is never visible to the app.</strong> It is handled by
 Firebase Authentication (Google), which stores only a hashed form of it.</p>
@@ -213,12 +256,18 @@ Firebase Authentication (Google), which stores only a hashed form of it.</p>
 cloud: the state of each word you have practised (seen, correct, mastered);
 mastered and total counts; day streak, experience points, daily goal and
 today's activity; and the words you searched and saved, or added to your
-vocabulary — at most 150 of each, the most recent.</p>
+vocabulary — at most 150 of each, the most recent; the days you practised and
+the number of exercises on each, daily sessions (cards done out of planned),
+sentences to review, badges, mosaic paintings and path progress (including your
+travel departure date, if you enter it); your chosen level, interface language,
+and answers given offline, once the network is back.</p>
 
-<h3>2.3 Notifications</h3>
-<p>Only if you enable them, a technical device identifier (Firebase Cloud
-Messaging token) is stored so a daily reminder can be sent. It is erased as
-soon as you turn notifications off.</p>
+<h3>2.3 Notifications and daily reminder</h3>
+<p>In the installed app, the daily reminder is scheduled <strong>on your
+device</strong>: nothing is sent for it. In the browser, and only if you enable
+notifications, a technical device identifier (Firebase Cloud Messaging token)
+is stored so the reminder can be sent; it is erased as soon as you turn
+notifications off.</p>
 
 <h3>2.4 Usage measurement</h3>
 <p>The app uses <strong>Google Analytics for Firebase</strong>, which collects
@@ -228,10 +277,29 @@ from the IP address (country or region, never a precise address). This is used
 to understand which parts of the course are used, and to improve them. It is
 <strong>not</strong> used for advertising.</p>
 
+<h3>2.5 Your "Report a problem or an idea" messages</h3>
+<p>When you use this button, your message is stored with your account, together
+with a short technical log from the device (app version, recent technical
+events such as playing a sound or drawing a screen), used only to reproduce and
+fix the reported problem. Nothing is sent until you tap the button.</p>
+
+<h3>2.6 Microphone and speech recognition</h3>
+<p>The microphone is used only in exercises where you repeat a sentence aloud,
+and only if you allow it. <strong>The recording of your voice stays on your
+device</strong> so you can play it back; Wortando does not receive or keep it.
+To check whether the repeated sentence can be understood, the app uses your
+device's speech recognition service: Apple's on iPhone and iPad, Google's on
+Android and in Chrome. Depending on the device, that service processes the
+sound on the device or on Apple's or Google's servers, under their own privacy
+terms. Only the result (understood or not) is used by the exercise.</p>
+
 <h2>3. What stays on your device</h2>
 <p>Some settings never leave your phone: interface language, light or dark
-theme, chosen voice, displayed level. They live in the browser's local storage
-and disappear if you clear site data or uninstall the app.</p>
+theme, chosen voice, displayed level. Also kept on the device: the log of your
+answers over the last fourteen days, used for the weekly summary, and, in the
+installed app, the next daily session (its cards and their audio), kept so it
+works without a network. This data lives in the app's storage and disappears if
+you clear site data or uninstall the app.</p>
 
 <h2>4. Who can see your data</h2>
 <ul>
@@ -242,6 +310,10 @@ and disappear if you clear site data or uninstall the app.</p>
   <li><strong>Google (Firebase)</strong>, as a technical processor:
   authentication, database, notifications and usage measurement. Data is hosted
   on Google Cloud infrastructure.</li>
+  <li><strong>Cloudflare</strong>, which hosts the wortando.com website: like
+  any host, it sees the IP address of the device loading the page.</li>
+  <li><strong>Apple or Google</strong>, for speech recognition, only during
+  speaking exercises (see 2.6).</li>
 </ul>
 <p><strong>No data is sold, rented, traded or passed to any third party for
 commercial or advertising purposes.</strong> There is no advertising network in
@@ -257,6 +329,12 @@ Settings → Account → Delete my account.</strong> Deletion is immediate and
 permanent: it erases the authentication record, the progress record, the summary
 shown on the dashboard and the data kept on the device. No written request is
 needed, and nothing can be recovered afterwards.</p>
+
+<p><strong>Without access to the app</strong> (lost phone, app uninstalled):
+write to the address in section 1, from your account's email address, with the
+subject "Delete my account". Deletion is carried out within seven days, with
+the same effects, and you receive a confirmation. Full details:
+<a href="supprimer-compte.html#en">deleting your Wortando account</a>.</p>
 
 <p><strong>You can also have part of your data erased without deleting your
 account</strong>: your progress (for one language or all of them), the words
