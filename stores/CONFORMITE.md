@@ -52,7 +52,7 @@ Voyages ; description, texte promotionnel, mots-clés, URL d'assistance et de
 marketing (wortando.com), copyright « 2026 Jacques Grenier » (fiche anglaise
 de `Wortando-médias/app-store/fiche-app-store.md`). iPad : la compilation est
 déjà **iPhone seulement** (`TARGETED_DEVICE_FAMILY = 1`), pas de captures iPad.
-**Reste à Jacques** : captures 6,9 pouces (prises sur l'iPhone, voir
+**27 oct., plus tard : SOUMIS À L'EXAMEN D'APPLE** (Submit for Review). Fait entre-temps : captures (6, prises sur l'iPhone, 1179 × 2556 — case « iPhone with Dynamic Island (medium display) »), App Review Information (compte de démo, contact@wortando.com, notes de NOTES-REVISEUR §3), Content Rights, Age Ratings (13+ : références à l'alcool dans le vocabulaire), statut de commerçant DSA (pièces justificatives envoyées), prix Free, 175 pays, Mac et Vision Pro décochés, sortie MANUELLE. Nom « Wortando: Learn Languages », sous-titre « German & Spanish, step by step ». L'ancien plan suivait : captures 6,9 pouces (prises sur l'iPhone, voir
 NOTES-REVISEUR §4) ; App Review Information (compte de démo, contact, et les
 notes du §3 de NOTES-REVISEUR, refusées par Apple tant que le contact manque) ;
 Content Rights (attestation des droits) ; Age Ratings (la page affichait une
