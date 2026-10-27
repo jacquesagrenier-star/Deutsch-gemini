@@ -3317,10 +3317,13 @@ html[data-apprendre="ja"] #episodeLigne,
 html[data-apprendre="ja"] .search-launch,
 html[data-apprendre="ja"] [data-seulement-de],
 html[data-apprendre="ja"] [data-seulement-es],
-html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]){ display:none !important; }
+html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="kana"]):not([data-orbid="ja-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]){ display:none !important; }
+/* Les kanji et les kana dans le texte courant (fiches, exercices, tableaux) :
+   une police japonaise en repli, sinon un kanji partage avec le chinois peut
+   prendre sa forme chinoise. */
+html[data-apprendre="ja"] body{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Noto Sans CJK JP", sans-serif; }
 html:not([data-apprendre="ja"]) [data-seulement-ja]{ display:none !important; }
 /* « Tout le contenu » : les sections dont toutes les tuiles sont cachees. */
-html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_phrase"]),
 html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_pratique"]),
 html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_parcours"]){ display:none !important; }
 /* Les exercices allemands des ecrans de niveau (Präsens, cas regi, articles). */
@@ -3329,7 +3332,7 @@ html[data-apprendre="ja"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="ja"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
 /* Dans les panneaux des mots : parcourir, rien d'autre. Dictees, quiz d'article,
    declinaisons, temps allemands, nuances : tous allemands ou espagnols. */
-html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="Kana"]){ display:none !important; }
+html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="Kana"]):not([onclick*="abrirGramatica"]){ display:none !important; }
 /* Le mot japonais : police du systeme d'abord (Hiragino sur iPhone, Noto sur
    Android), et lang="ja" sur l'element, sans quoi un kanji partage avec le
    chinois prend la forme chinoise. Les furigana au-dessus, petits et lisibles. */
@@ -3338,7 +3341,7 @@ html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclic
 .lecture-ja{ margin-top: 6px; font-size: 0.95rem; color: inherit; opacity: .72; text-align: center; }
 .lecture-ja .lj-kana{ margin-right: .5em; }
 .lecture-ja .lj-romaji{ font-style: italic; }
-.note-ja{ margin-top: 8px; font-size: 0.85rem; color: inherit; opacity: .72; text-align: center; }
+.note-ja{ margin-top: 8px; font-size: 0.85rem; color: inherit; opacity: .72; text-align: center; white-space: pre-line; }
 .forme-ja{ margin: 4px 0 8px; }
 /* Un kana seul au recto : grand, comme on le voit sur une affiche. */
 .word.kana-ja{ font-size: 4.4rem !important; line-height: 1.15; }
@@ -8327,7 +8330,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         </div>
         <div class="orb" data-orbid="kana" data-seulement-ja onclick="ouvrirKana()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><text x="12" y="17" text-anchor="middle" font-size="14" stroke="none" style="fill:var(--wt-icone)">あ</text></svg></div>
-            <div><strong>Kana</strong></div>
+            <div><strong>Kana · 漢字</strong></div>
         </div>
         <div class="orb orb-de" data-orbid="nomen" onclick="openOrbPanel('nomen')">
             <div id="badge-nomen" class="orb-badge hidden"></div>
@@ -8399,6 +8402,12 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         </h2>
         <!-- LES FICHES PROPRES A L'ESPAGNOL (v747) : en allemand, data-seulement-es
              les cache. Elles ouvrent leur fiche directement (abrirGramatica). -->
+        <div class="orb" data-seulement-ja data-orbid="ja-grammaire" onclick="abrirIndiceGramatica()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
+            <div>
+                <strong data-i18n="orb_es_indice">Toutes les fiches</strong>
+            </div>
+        </div>
         <div class="orb" data-seulement-es data-orbid="es-indice" onclick="abrirIndiceGramatica()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
             <div>
@@ -8706,7 +8715,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v969</span>
+    <span class="subtitle-version">v970</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11937,28 +11946,41 @@ const LANGUE_ENSEIGNEE = LANGUE_APPRISE === "es" ? LANGUE_ESPAGNOL
 // Ce que la carte japonaise montre en plus du mot : sa lecture en kana, le
 // romaji, les furigana (paires [kanji, lecture], lecture nulle sur un kana) et
 // la note d'usage. null hors du japonais ou sur une entree sans lecture.
+// mot -> lecture en kana, de toutes les cartes chargees : l'oral accepte la
+// lecture quand la reconnaissance ecrit en kana ce qu'on attend en kanji.
+const LECTURES_MOTS_JA = new Map();
 function lectureJaponaise(e){
     if(!e || Array.isArray(e) || !e.lecture) return null;
+    if(e.mot && e.mot !== e.lecture) LECTURES_MOTS_JA.set(e.mot, e.lecture);
     return {
         lecture: e.lecture,
         romaji: e.romaji || "",
         furigana: Array.isArray(e.furigana) ? e.furigana : null,
         note: e.note || "",
         note_en: e.note_en || "",
-        // Un kana : son trace (KanjiVG, ordre des traits numerote).
+        // Un kana ou un kanji : son trace (KanjiVG, ordre des traits numerote).
         svg: e.svg || "",
-        kana: e.classe === "kana"
+        kana: e.classe === "kana",
+        // Un kanji : son sens, montre au verso sous le signe.
+        kanji: e.classe === "kanji",
+        sens: e.traduction || "",
+        sens_en: e.traduction_en || ""
     };
 }
 
-// Les kana, en themes de cartes (fichier derive : japonais/kana/outils/vers_themes.py).
+// Les kana, puis les kanji N5, en themes de cartes (fichiers derives :
+// japonais/kana/outils/vers_themes.py et japonais/kanji/vers_themes.py).
 async function chargerKanaJaponais(){
-    try{
-        const r = await fetch(cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + "datos/kana.json"), { cache: "no-cache" });
-        if(!r.ok) return [];
-        const d = await r.json();
-        return Array.isArray(d.themes) ? d.themes : [];
-    }catch(e){ return []; }
+    const themes = async fichier => {
+        try{
+            const r = await fetch(cacheBustedUrl(LANGUE_ENSEIGNEE.donnees + "datos/" + fichier), { cache: "no-cache" });
+            if(!r.ok) return [];
+            const d = await r.json();
+            return Array.isArray(d.themes) ? d.themes : [];
+        }catch(e){ return []; }
+    };
+    const [kana, kanji] = await Promise.all([themes("kana.json"), themes("kanji.json")]);
+    return kana.concat(kanji);
 }
 
 // La tuile « Kana » : la liste des themes, ou les six themes de kana viennent
@@ -11970,12 +11992,19 @@ function ouvrirKana(){
 // La seance japonaise apprend les kana AVANT les mots : un debutant ne lit ni
 // les furigana ni les phrases sans eux. Les mots neufs des themes de kana
 // passent devant, dans leur ordre (あいうえお d'abord) ; les autres suivent.
+// Les kanji, eux, viennent au compte-gouttes parmi les mots (un pour quatre) :
+// un kanji s'apprend mieux quand on vient de le croiser dans un mot.
 function kanaDabord(neufs){
     if(LANGUE_APPRISE !== "ja") return null;
     const kana = neufs.filter(it => /^kana_/.test(it.themeId || ""));
-    if(!kana.length) return null;
-    const autres = neufs.filter(it => !/^kana_/.test(it.themeId || ""));
-    return kana.concat(ordonnerParFrequence(autres));
+    const kanji = neufs.filter(it => /^kanji_/.test(it.themeId || ""));
+    const mots = ordonnerParFrequence(neufs.filter(it => !/^kan[aj]/.test(it.themeId || "")));
+    const suite = [];
+    while(mots.length || kanji.length){
+        suite.push(...mots.splice(0, 4));
+        if(kanji.length) suite.push(kanji.shift());
+    }
+    return kana.concat(suite);
 }
 
 // Le mot avec ses furigana, en HTML : <ruby>漢<rt>かん</rt></ruby> pour chaque
@@ -12018,23 +12047,28 @@ function habillerCarteJaponaise(card){
     // Un kana se RECONNAIT avant de s'ecrire : le recto montre toujours le
     // signe, quel que soit le sens choisi pour les mots ; le verso donne le
     // romaji, le trace et le mnemonique.
-    if(ja && ja.kana){
+    if(ja && (ja.kana || ja.kanji)){
         const recto = document.getElementById("flashWord");
         if(recto){
             recto.textContent = mot;
             recto.classList.add("mot-ja", "kana-ja");
             recto.setAttribute("lang", "ja");
         }
+        // Un kanji se reconnait de meme, mais il a un SENS : au verso, sous le
+        // signe, comme la traduction d'un mot.
         const tr = document.getElementById("flashTranslation");
-        if(tr) tr.classList.add("hidden");
+        if(tr && ja.kanji){
+            tr.textContent = libJa(ja.sens, ja.sens_en || ja.sens);
+            tr.classList.remove("hidden");
+        } else if(tr) tr.classList.add("hidden");
     }
     const lect = document.getElementById("flashLectureJa");
     if(lect){
         lect.textContent = "";
         if(ja && ja.lecture){
             // Un kana : sa lecture, c'est lui-meme -- seul le romaji apprend
-            // quelque chose.
-            if(!ja.kana){
+            // quelque chose. De meme pour un mot ecrit tout en kana.
+            if(!ja.kana && ja.lecture !== mot){
                 const k = document.createElement("span");
                 k.className = "lj-kana";
                 k.setAttribute("lang", "ja");
@@ -32403,6 +32437,17 @@ function startSerEstarUebung(){
     startExerciseSetMelange("serEstarExercises", "kicker_ser_estar",
                      () => abrirGramatica("ser-estar"), startSerEstarUebung);
 }
+// LES SERIES DU JAPONAIS (essai, 27 oct. 2026) : une par fiche, qui y ramene.
+function serieJa(jeuNom, kicker, fiche, relancer){
+    startExerciseSetMelange(jeuNom, kicker, () => abrirGramatica(fiche), relancer);
+}
+function exercicesParticulesJa(){ serieJa("particulesJaExercises", "kicker_particules_ja", "particules", exercicesParticulesJa); }
+function exercicesMasuJa(){ serieJa("masuJaExercises", "kicker_masu_ja", "masu", exercicesMasuJa); }
+function exercicesTeJa(){ serieJa("teJaExercises", "kicker_te_ja", "groupes-te", exercicesTeJa); }
+function exercicesAdjectifsJa(){ serieJa("adjectifsJaExercises", "kicker_adjectifs_ja", "adjectifs", exercicesAdjectifsJa); }
+function exercicesKosoadoJa(){ serieJa("kosoadoJaExercises", "kicker_kosoado_ja", "kosoado", exercicesKosoadoJa); }
+function exercicesQuestionsJa(){ serieJa("questionsJaExercises", "kicker_questions_ja", "questions", exercicesQuestionsJa); }
+function exercicesAruIruJa(){ serieJa("aruIruJaExercises", "kicker_aru_iru_ja", "aru-iru", exercicesAruIruJa); }
 function startPorParaUebung(){
     startExerciseSetMelange("porParaExercises", "kicker_por_para",
                      () => abrirGramatica("por-para"), startPorParaUebung);
@@ -36130,7 +36175,7 @@ function ouvrirBilanSemaine(ev, retour){
         b.mots.forEach(e => {
             const li = creer("li");
             const w = creer("b", "", e.w);
-            w.setAttribute("lang", LANGUE_APPRISE === "es" ? "es" : "de");
+            w.setAttribute("lang", LANGUE_ENSEIGNEE.code);
             li.appendChild(w);
             if(e.s) li.appendChild(creer("span", "", e.s));
             if(e.n > 1) li.appendChild(creer("i", "", "×" + e.n));
@@ -40964,7 +41009,7 @@ function afficherEssais(){
         const champ = document.createElement("input");
         champ.type = "text";
         champ.className = "essai-oral-champ";
-        champ.setAttribute("lang", LANGUE_APPRISE === "es" ? "es" : "de");
+        champ.setAttribute("lang", LANGUE_ENSEIGNEE.code);
         champ.value = LANGUE_APPRISE === "es" ? "Son tres euros con cincuenta." : "Das macht drei Euro fünfzig.";
         const o = document.createElement("button");
         o.className = "secondary";
@@ -45895,7 +45940,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 969;
+const APP_VERSION = 970;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -51219,6 +51264,7 @@ function chiffresEnMots(texte){
 }
 
 function scoreOral(attendu, entendus, chiffres){
+    if(LANGUE_APPRISE === "ja") return scoreOralJaponais(attendu, entendus);
     const mots = s => normaliserSaisie(s).split(" ").filter(Boolean);
     // v879 (les reperes) : dire « einundzwanzig », la reconnaissance ecrit
     // souvent « 21 » (ou « 1.000 », « 1 000 »). Le nombre en chiffres vaut le
@@ -51244,6 +51290,91 @@ function scoreOral(attendu, entendus, chiffres){
         if(ratio > meilleur.ratio || (!meilleur.texte && tx)) meilleur = { ratio: ratio, manques: manques, texte: tx };
     });
     meilleur.niveau = meilleur.ratio >= ORAL_SEUIL_BON ? "bon" : meilleur.ratio >= ORAL_SEUIL_PRESQUE ? "presque" : "rien";
+    return meilleur;
+}
+
+// LE JAPONAIS NE SEPARE PAS SES MOTS : on compare des caracteres, pas des mots.
+// Les deux cotes passent par la meme moulinette -- ponctuation et espaces
+// retires, katakana en hiragana, nombres en chiffres (la reconnaissance ecrit
+// « 21 » ou « 二十一 », « 1人 » ou « 一人 ») -- puis on mesure la plus longue
+// sous-suite commune. Un « presque » redemande la phrase entiere : il n'y a pas
+// de mot manquant a isoler.
+function kanjiEnChiffres(s){
+    const V = { "〇": 0, "零": 0, "一": 1, "二": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8, "九": 9 };
+    const U = { "十": 10, "百": 100, "千": 1000 };
+    return String(s || "").replace(/[〇零一二三四五六七八九十百千万]+/g, bloc => {
+        let total = 0, section = 0, chiffre = null;
+        for(const c of bloc){
+            if(c in V) chiffre = V[c];
+            else if(c in U){ section += (chiffre === null ? 1 : chiffre) * U[c]; chiffre = null; }
+            else if(c === "万"){ total += (section + (chiffre || 0) || 1) * 10000; section = 0; chiffre = null; }
+        }
+        return String(total + section + (chiffre || 0));
+    });
+}
+function normaliserJaponais(s){
+    return kanjiEnChiffres(String(s || "")
+        .replace(/[\s、。！？!?,.・「」『』（）()〜~ー－-]/g, "")
+        .replace(/[ァ-ヶ]/g, c => String.fromCharCode(c.charCodeAt(0) - 0x60)));
+}
+// Ce qu'on a entendu, avec les mots connus remis en kana : la reconnaissance
+// ecrit 分かりません quand la carte attend わかりません. Les verbes et les
+// adjectifs se conjuguent : leur radical (分か -> わか) est remplace aussi.
+let REMPLACEMENTS_KANA_JA = null;
+function enKanaJaponais(texte){
+    if(!REMPLACEMENTS_KANA_JA || REMPLACEMENTS_KANA_JA.n !== LECTURES_MOTS_JA.size){
+        const paires = [];
+        LECTURES_MOTS_JA.forEach((lect, mot) => {
+            if(!/[\u4e00-\u9fff]/.test(mot)) return;
+            paires.push([mot, lect]);
+            const fin = mot.slice(-1);
+            if(mot.length >= 2 && /[\u3041-\u309f]/.test(fin) && lect.slice(-1) === fin)
+                paires.push([mot.slice(0, -1), lect.slice(0, -1)]);
+        });
+        paires.sort((a, b) => b[0].length - a[0].length);
+        REMPLACEMENTS_KANA_JA = { n: LECTURES_MOTS_JA.size, paires: paires };
+    }
+    let s = String(texte || "");
+    if(!/[\u4e00-\u9fff]/.test(s)) return s;
+    for(const [mot, lect] of REMPLACEMENTS_KANA_JA.paires){
+        if(s.indexOf(mot) >= 0) s = s.split(mot).join(lect);
+        if(!/[\u4e00-\u9fff]/.test(s)) break;
+    }
+    return s;
+}
+function scoreOralJaponais(attendu, entendus){
+    // Chaque reponse entendue compte aussi remise en kana.
+    entendus = (entendus || []).reduce((l, tx) => {
+        l.push(tx);
+        const k = enKanaJaponais(tx);
+        if(k !== tx) l.push(k);
+        return l;
+    }, []);
+    // La cible ecrite (二十一, 月曜日), et sa lecture en kana si on la connait :
+    // la reconnaissance rend l'une ou l'autre.
+    const cibles = [normaliserJaponais(attendu)];
+    const lect = (lectureRepereJa(attendu).split(" · ")[0]) || LECTURES_MOTS_JA.get(attendu) || "";
+    if(lect) cibles.push(normaliserJaponais(lect));
+    let meilleur = { ratio: 0, manques: [attendu], texte: "" };
+    (entendus || []).forEach(tx => cibles.forEach(a => {
+        const b = normaliserJaponais(tx);
+        // Plus longue sous-suite commune (les phrases sont courtes).
+        const lg = Array(b.length + 1).fill(0);
+        for(let i = 1; i <= a.length; i++){
+            let diag = 0;
+            for(let j = 1; j <= b.length; j++){
+                const haut = lg[j];
+                lg[j] = a[i - 1] === b[j - 1] ? diag + 1 : Math.max(lg[j], lg[j - 1]);
+                diag = haut;
+            }
+        }
+        const commun = lg[b.length];
+        // Trop dit compte aussi : « 二十一 » n'est pas « 二十一時 ».
+        const ratio = a.length ? commun / Math.max(a.length, b.length) : 0;
+        if(ratio > meilleur.ratio || (!meilleur.texte && tx)) meilleur = { ratio: ratio, manques: [], texte: tx };
+    }));
+    meilleur.niveau = meilleur.ratio >= ORAL_SEUIL_BON ? "bon" : meilleur.ratio >= ORAL_SEUIL_PRESQUE ? "presque" : "rien";
+    if(meilleur.niveau !== "bon") meilleur.manques = [attendu];
     return meilleur;
 }
 
@@ -51295,7 +51426,7 @@ function montrerCartePhrase(item){
     majCompteurCarte();
     const fait = { repondu: false };
     if(item.phrase) PHRASES_POSEES.add(item.phrase.de);
-    const langueDe = LANGUE_APPRISE === "es" ? "es" : "de";
+    const langueDe = LANGUE_ENSEIGNEE.code;
     const creer = (tag, cls, texte) => {
         const n = document.createElement(tag);
         if(cls) n.className = cls;
@@ -51777,18 +51908,26 @@ function montrerCartePhrase(item){
             const q = creer("p", "cp-phrase rp-suite-q", item.avant + " → ?");
             q.setAttribute("lang", langueDe);
             el.appendChild(q);
+            if(lectureRepereJa(item.avant)) el.appendChild(creer("p", "cp-sens", lectureRepereJa(item.avant)));
         }
         const choix = creer("div", "cp-choix");
         (item.choix || []).forEach(o => {
             const b = creer("button", "", o);
             b.type = "button";
             b.setAttribute("lang", langueDe);
+            // Le japonais : la lecture sous les kanji (la valeur reste dans data-v).
+            if(lectureRepereJa(o)){
+                b.dataset.v = o;
+                const sous = creer("small", "", lectureRepereJa(o));
+                sous.style.display = "block";
+                b.appendChild(sous);
+            }
             b.addEventListener("click", () => {
                 if(fait.repondu) return;
                 const juste = o === item.phrase.de;
                 Array.from(choix.children).forEach(x => {
                     x.disabled = true;
-                    if(x.textContent === item.phrase.de) x.classList.add("bon");
+                    if((x.dataset.v || x.textContent) === item.phrase.de) x.classList.add("bon");
                 });
                 if(!juste) b.classList.add("faux");
                 conclure(juste, (item.teinte ? "" : item.avant + " → ") + item.phrase.de + " (" + item.phrase.sens + ")");
@@ -51980,6 +52119,7 @@ function montrerCartePhrase(item){
         const phrase = creer("p", "cp-phrase", item.phrase.de);
         phrase.setAttribute("lang", langueDe);
         el.appendChild(phrase);
+        if(lectureRepereJa(item.phrase.de)) el.appendChild(creer("p", "cp-sens", lectureRepereJa(item.phrase.de)));
         el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const modele = creer("button", "cp-or-modele"); modele.append(iconeHP(), " " + t("cp_modele"));
         modele.type = "button";
@@ -52056,7 +52196,8 @@ function montrerCartePhrase(item){
         suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
         const journal = (etape, detail) => { try{ noterAudio(etape, "ORAL", detail || ""); }catch(e){} };
         const Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
-        const langueReco = LANGUE_APPRISE === "es" ? (VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES") : "de-DE";
+        const langueReco = LANGUE_APPRISE === "es" ? (VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES")
+                         : LANGUE_APPRISE === "ja" ? "ja-JP" : "de-DE";
         // v836 : DANS LES APPS, LE MODULE NATIF (@capgo/capacitor-speech-recognition,
         // ajoute au projet wortando-ios le 16 oct. 2026). Les vues web des apps n'ont
         // pas la reconnaissance du navigateur. Le module donne le texte et le niveau
@@ -52436,6 +52577,7 @@ function montrerCartePhrase(item){
         const p = creer("p", "cp-phrase", item.phrase.de);
         p.setAttribute("lang", langueDe);
         el.appendChild(p);
+        if(lectureRepereJa(item.phrase.de)) el.appendChild(creer("p", "cp-sens", lectureRepereJa(item.phrase.de)));
         el.appendChild(creer("p", "cp-sens", item.phrase.sens));
         const oral = creer("div", "cp-oral");
         const modele = creer("button", ""); modele.append(iconeHP(), " " + t("cp_modele"));
@@ -52728,9 +52870,11 @@ function ecrirePremiersPas(v){
 }
 function premiersPasEnCours(){
     try{
-        // Le japonais n'a pas encore ses Premiers pas (ils seront les kana).
-        if(LANGUE_APPRISE === "ja") return false;
         if(!essaiActif("premiers_pas")) return false;
+        // Le japonais : les Premiers pas (six etapes de voyage) ne s'ouvrent que
+        // par 🌱 -- par defaut la seance japonaise apprend les kana d'abord,
+        // sans quoi rien ne se lit.
+        if(LANGUE_APPRISE === "ja"){ const s = lirePremiersPas(); return s.a === true && !s.fini; }
         const s = lirePremiersPas();
         if(s.fini) return false;
         if(s.a === undefined) return declareZero();
@@ -52766,7 +52910,7 @@ function joursPremiersPas(){
     }));
 }
 // v837 : un theme neuf -- les 40 cartes des v829-v836 avaient d'autres numeros.
-function themePremiersPas(){ return "premiers_pas2_" + (LANGUE_APPRISE === "es" ? "es" : "de"); }
+function themePremiersPas(){ return "premiers_pas2_" + (LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "ja" ? "ja" : "de"); }
 // Les flashcards, au format d'une carte d'expression (RANGS_CARTE.expression) :
 // le sens et l'exemple dans les neuf langues, la situation comme categorie.
 const RANGS_PP = { fr: [1, 4, 2], en: [5, 6, 7], tr: [10, 11, 12], uk: [15, 16, 17], fa: [18, 19, 20],
@@ -52783,6 +52927,9 @@ function toutesCartesPremiersPas(){
             w[r[1]] = (c[3] && c[3][l]) || "";
             w[r[2]] = (jour.s && jour.s[l]) || "";
         });
+        // Le japonais : la lecture et le romaji, en 5e position de la carte.
+        const ja = c[4] && c[4].ja;
+        if(ja) w.ja = { lecture: ja.lecture, romaji: ja.romaji || "", furigana: null, note: "", note_en: "", svg: "", kana: false, kanji: false };
         out.push({ mode: "redewendungen", themeId: themePremiersPas(), index: k++, ppJour: d, word: w });
     }));
     return out;
@@ -52820,7 +52967,9 @@ function sequencePremiersPas(){
         if(d === jours.length - 1){
             seq.push({ mode: "phrase", forme: "pp_fin", pp: true, cible: null, themeId: theme + "_fin", index: 0, jourPP: d, phrase: null, word: "" });
         }
-        seq.push({ mode: "phrase", forme: "pp_scene", pp: true, cible: null, themeId: theme + "_scene", index: d,
+        // Une etape sans scene (le japonais, tant que ses scenes ne sont pas
+        // jouables) se ferme sur sa derniere carte.
+        if(jour.scene) seq.push({ mode: "phrase", forme: "pp_scene", pp: true, cible: null, themeId: theme + "_scene", index: d,
                    scene: jour.scene, jourPP: d, phrase: null, word: "" });
     });
     seq.forEach((it, i) => { it.ppPos = i; });
@@ -53237,7 +53386,7 @@ async function ouvrirCarnetPhrases(){
                 const tx = document.createElement("span");
                 const de = document.createElement("b");
                 de.textContent = b.ex;
-                de.setAttribute("lang", LANGUE_APPRISE === "es" ? "es" : "de");
+                de.setAttribute("lang", LANGUE_ENSEIGNEE.code);
                 const sens = document.createElement("small");
                 sens.textContent = sensPremiersPas(b.exs);
                 tx.appendChild(de); tx.appendChild(sens);
@@ -53451,12 +53600,24 @@ function insererFeuille(seance, fc, tout){
 // jours, couleurs (v904), mois, alphabet, genre, pluriel (reperes.json, construit par tests/reperes_construire.py). Pour qui
 // est en Premiers pas ou au niveau A1 ; un compte plus avance ne les voit pas.
 let REPERES_DONNEES = null, chargementReperes = null;
+// Le japonais : la lecture (kana · romaji) de chaque forme des reperes, pour
+// l'ecrire sous les kanji dans les exercices -- un debutant ne lit pas 月曜日.
+const LECTURES_REPERES_JA = new Map();
+function lectureRepereJa(forme){ return LANGUE_APPRISE === "ja" ? (LECTURES_REPERES_JA.get(forme) || "") : ""; }
+function noterLecturesReperes(R){
+    if(LANGUE_APPRISE !== "ja" || !Array.isArray(R)) return;
+    const pr = x => (x && typeof x === "object" && !Array.isArray(x)) ? (x.fr || x.en || "") : "";
+    R.forEach(r => ["l", "x", "p"].forEach(k => (r[k] || []).forEach(l => {
+        const t = pr(l[2]) || pr(l[3]);
+        if(t && l[0]) LECTURES_REPERES_JA.set(l[0], t);
+    })));
+}
 function chargerReperes(){
     if(REPERES_DONNEES) return Promise.resolve(REPERES_DONNEES);
     if(!chargementReperes){
         chargementReperes = fetch(urlDonnees("reperes.json"), { cache: "no-cache" })
             .then(r => r.ok ? r.json() : null)
-            .then(d => { REPERES_DONNEES = (d && Array.isArray(d.reperes) && d.reperes.length) ? d.reperes : null; return REPERES_DONNEES; })
+            .then(d => { REPERES_DONNEES = (d && Array.isArray(d.reperes) && d.reperes.length) ? d.reperes : null; noterLecturesReperes(REPERES_DONNEES); return REPERES_DONNEES; })
             .catch(() => null)
             .finally(() => { if(!REPERES_DONNEES) chargementReperes = null; });
     }
@@ -53792,7 +53953,7 @@ function construireTableau(tab){
         if(texte !== undefined) n.textContent = texte;
         return n;
     };
-    const langueDe = LANGUE_APPRISE === "es" ? "es" : "de";
+    const langueDe = LANGUE_ENSEIGNEE.code;
     const out = [creer("p", "cp-tableau-titre", sensPremiersPas(tab.t))];
     const table = creer("div", "cp-tableau");
     (tab.l || []).forEach(l => {
@@ -53819,7 +53980,8 @@ function construireTableau(tab){
         // v882 : la prononciation sous le mot, si la ligne en porte une pour la
         // langue de l'interface (les nombres espagnols : « once » -> ON-sé).
         // θ = c/z : « s » en Amerique latine, « th » en Espagne.
-        const pr = (l[2] && typeof l[2] === "object" && !Array.isArray(l[2])) ? l[2][getUiLang()] : "";
+        const objPr = x => (x && typeof x === "object" && !Array.isArray(x)) ? x : null;
+        const pr = (objPr(l[2]) || objPr(l[3]) || {})[getUiLang()] || "";
         if(pr){
             const th = (LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL !== "latam") ? "th" : "s";
             // Dans une syllabe forte (en capitales), le son s'ecrit en capitales :
@@ -54380,7 +54542,7 @@ async function ouvrirSeanceDuJour(sansScene){
     // v867 (essai feuilles_conj) : la feuille de conjugaison du jour, a l'A2 et
     // au B1 -- avant la grammaire, dont elle choisit la serie de conjugaison.
     let fc = null;
-    try{ fc = seanceJaponaise() ? null : await preparerFeuille(niveau); }catch(e){ fc = null; }
+    try{ fc = await preparerFeuille(niveau); }catch(e){ fc = null; }
     let seance = aRevoir ? cartesDeSeanceRevoir(tout, aRevoir) : cartesDeSeance(tout, av ? av.pool : pool);
     // LES CARTES-PHRASES (essai v810) : une carte sur cinq devient une phrase.
     // v902 (Jacques : « au premier clic il y a encore un petit delai, puis plus
@@ -54402,9 +54564,9 @@ async function ouvrirSeanceDuJour(sansScene){
     try{ if(av) seance = insererA1Voyage(seance, av); }catch(e){}
     try{ if(fc && seance.length) seance = insererFeuille(seance, fc, tout); }catch(e){}
     // v879 : les reperes (jours, mois, nombres), tot dans l'A1.
-    try{ const rp = seanceJaponaise() ? null : await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
+    try{ const rp = await preparerReperes(); if(rp && seance.length) seance = insererReperes(seance, rp); }catch(e){}
     // v880 : le son du jour, une fois par jour, au milieu.
-    try{ const sd = seanceJaponaise() ? null : await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
+    try{ const sd = await preparerSonDuJour(); if(sd && seance.length > 2) seance = insererSonDuJour(seance, sd); }catch(e){}
     try{ seance = premiereCarteFacile(seance); }catch(e){}
     if(!seance.length){
         if(!complet){ seanceGratuiteVide(tout); return; }
@@ -57612,9 +57774,9 @@ let JEUX_EXOS = null;
 let chargementJeuxExos = null;
 
 async function jeu(nom){
-    // Le japonais n'a pas encore d'exercices.json : pas de requete, pas de
-    // « Exercices indisponibles » a l'ouverture de la seance.
-    if(LANGUE_APPRISE === "ja") return [];
+    // Le japonais a son exercices.json (japonais/datos/exercices_construire.py) :
+    // les series de ses fiches de grammaire. La seance japonaise n'en tire pas
+    // de cartes-phrases (seanceJaponaise) : ses phrases n'ont pas d'espaces.
     if(!JEUX_EXOS){
         if(!chargementJeuxExos){
             chargementJeuxExos = fetch(urlDonnees('exercices.json'), { cache: 'no-cache' })

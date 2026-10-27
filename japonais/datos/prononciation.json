@@ -1,0 +1,435 @@
+{
+ "_note": "Derive de japonais/datos/prononciation_construire.py : ne pas modifier a la main. Brouillon.",
+ "groupes": [
+  {
+   "id": "voyelles",
+   "regles": [
+    {
+     "id": "voyelles",
+     "graphie": "あ · い · う · え · お",
+     "api": "[a i ɯ e o]",
+     "court": {
+      "fr": "cinq voyelles, courtes et nettes",
+      "en": "five short, clean vowels"
+     },
+     "explication": {
+      "fr": "a, i, u, e (« é »), o : toujours la même valeur, jamais nasales, jamais muettes. Le u se dit lèvres détendues, entre « ou » et « eu » : pas le « ou » arrondi du français.",
+      "en": "a, i, u, e (“eh”), o: always the same sound, never reduced to “uh”. u is said with relaxed, unrounded lips: not the rounded “oo” of “food”."
+     },
+     "exemples": [
+      {
+       "mot": "いえ",
+       "traduction": "maison",
+       "traduction_en": "house"
+      },
+      {
+       "mot": "うえ",
+       "traduction": "dessus",
+       "traduction_en": "above"
+      },
+      {
+       "mot": "あおい",
+       "traduction": "bleu",
+       "traduction_en": "blue"
+      },
+      {
+       "mot": "おおい",
+       "traduction": "nombreux",
+       "traduction_en": "many"
+      }
+     ]
+    },
+    {
+     "id": "longues",
+     "graphie": "ー · あ · い · う",
+     "api": "[aː iː ɯː eː oː]",
+     "court": {
+      "fr": "une voyelle longue change le mot",
+      "en": "a long vowel changes the word"
+     },
+     "explication": {
+      "fr": "Une voyelle longue dure deux temps, et c'est un autre mot : おばさん (tante) et おばあさん (grand-mère). えい se dit « é » long (せんせい = sen-sée), おう se dit « o » long (とうきょう = too-kyoo). En katakana, la longueur s'écrit avec un trait : コーヒー.",
+      "en": "A long vowel lasts two beats, and it's a different word: おばさん (aunt) and おばあさん (grandmother). えい is a long “eh” (せんせい = sen-sei), おう a long “o” (とうきょう = too-kyoo). In katakana, length is written with a dash: コーヒー."
+     },
+     "exemples": [
+      {
+       "mot": "おばさん",
+       "traduction": "tante (voyelle courte)",
+       "traduction_en": "aunt (short vowel)"
+      },
+      {
+       "mot": "おばあさん",
+       "traduction": "grand-mère",
+       "traduction_en": "grandmother"
+      },
+      {
+       "mot": "せんせい",
+       "traduction": "professeur",
+       "traduction_en": "teacher"
+      },
+      {
+       "mot": "コーヒー",
+       "traduction": "café",
+       "traduction_en": "coffee"
+      },
+      {
+       "mot": "とうきょう",
+       "traduction": "Tokyo",
+       "traduction_en": "Tokyo"
+      }
+     ]
+    },
+    {
+     "id": "devoisement",
+     "graphie": "す · し · く",
+     "api": "[s̥ ɕ̥ k̥]",
+     "court": {
+      "fr": "i et u qui s'effacent",
+      "en": "i and u that fade out"
+     },
+     "explication": {
+      "fr": "Entre deux consonnes sourdes, ou en fin de phrase, le i et le u se chuchotent presque : です = « dess », ～ます = « mass », すき = « ski », した = « shta ». Le mot garde son rythme.",
+      "en": "Between two voiceless consonants, or at the end of a sentence, i and u are almost whispered: です = “dess”, ～ます = “mass”, すき = “ski”, した = “shta”. The word keeps its rhythm."
+     },
+     "exemples": [
+      {
+       "mot": "です",
+       "traduction": "c'est",
+       "traduction_en": "it is"
+      },
+      {
+       "mot": "すき",
+       "traduction": "aimer",
+       "traduction_en": "to like"
+      },
+      {
+       "mot": "すこし",
+       "traduction": "un peu",
+       "traduction_en": "a little"
+      },
+      {
+       "mot": "つくえ",
+       "traduction": "bureau (meuble)",
+       "traduction_en": "desk"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "consonnes",
+   "regles": [
+    {
+     "id": "r",
+     "graphie": "ら · り · る · れ · ろ",
+     "api": "[ɾ]",
+     "court": {
+      "fr": "un r battu, presque un l",
+      "en": "a tapped r, close to l"
+     },
+     "explication": {
+      "fr": "La langue touche une seule fois, très vite, derrière les dents du haut : entre r, l et d. Jamais le r de gorge du français. Pense au d rapide de « madame » dit vite.",
+      "en": "The tongue taps once, very quickly, behind the upper teeth: between r, l and d. Like the quick t in American “water” or “better”."
+     },
+     "exemples": [
+      {
+       "mot": "りんご",
+       "traduction": "pomme",
+       "traduction_en": "apple"
+      },
+      {
+       "mot": "くるま",
+       "traduction": "voiture",
+       "traduction_en": "car"
+      },
+      {
+       "mot": "これ",
+       "traduction": "ceci",
+       "traduction_en": "this"
+      },
+      {
+       "mot": "しろ",
+       "traduction": "blanc",
+       "traduction_en": "white"
+      }
+     ]
+    },
+    {
+     "id": "shi-chi-tsu",
+     "graphie": "し · ち · つ",
+     "api": "[ɕi tɕi tsɯ]",
+     "court": {
+      "fr": "shi, tchi, tsou",
+      "en": "shi, chi, tsu"
+     },
+     "explication": {
+      "fr": "Dans la ligne de さ, le i donne し (« chi » de « chiffon », écrit shi) ; dans celle de た, ち (« tchi ») et つ (« tsou », comme dans « tsé-tsé »). Il n'y a pas de « si » ni de « ti » en japonais ancien.",
+      "en": "In the さ row, i gives し (“shee”, written shi); in the た row, ち (“chee”) and つ (“tsu”, like “cats”). Traditional Japanese has no “si” or “ti”."
+     },
+     "exemples": [
+      {
+       "mot": "すし",
+       "traduction": "sushi",
+       "traduction_en": "sushi"
+      },
+      {
+       "mot": "ちず",
+       "traduction": "carte (plan)",
+       "traduction_en": "map"
+      },
+      {
+       "mot": "くつ",
+       "traduction": "chaussures",
+       "traduction_en": "shoes"
+      },
+      {
+       "mot": "つくえ",
+       "traduction": "bureau (meuble)",
+       "traduction_en": "desk"
+      }
+     ]
+    },
+    {
+     "id": "fu",
+     "graphie": "ふ",
+     "api": "[ɸɯ]",
+     "court": {
+      "fr": "un souffle entre f et h",
+      "en": "a breath between f and h"
+     },
+     "explication": {
+      "fr": "Les lèvres ne touchent pas les dents : on souffle doucement, comme pour refroidir une soupe. Ni le f de « fou », ni un h aspiré.",
+      "en": "The lips don't touch the teeth: blow gently, as if cooling soup. Neither the f of “food” nor a plain h."
+     },
+     "exemples": [
+      {
+       "mot": "ふゆ",
+       "traduction": "hiver",
+       "traduction_en": "winter"
+      },
+      {
+       "mot": "ふたつ",
+       "traduction": "deux (choses)",
+       "traduction_en": "two (things)"
+      },
+      {
+       "mot": "ふく",
+       "traduction": "vêtement",
+       "traduction_en": "clothes"
+      }
+     ]
+    },
+    {
+     "id": "ji-zu",
+     "graphie": "じ · ず",
+     "api": "[dʑi dzɯ]",
+     "court": {
+      "fr": "dji, dzou",
+      "en": "ji, zu"
+     },
+     "explication": {
+      "fr": "じ se dit « dji » (comme « jeans » à l'anglaise), ず « dzou » en début de mot, plus doux au milieu. ぢ et づ, rares, se disent pareil.",
+      "en": "じ is “jee” (as in “jeans”), ず is “dzu” at the start of a word, softer in the middle. The rare ぢ and づ sound the same."
+     },
+     "exemples": [
+      {
+       "mot": "じかん",
+       "traduction": "temps (durée)",
+       "traduction_en": "time"
+      },
+      {
+       "mot": "みず",
+       "traduction": "eau",
+       "traduction_en": "water"
+      },
+      {
+       "mot": "ちず",
+       "traduction": "carte (plan)",
+       "traduction_en": "map"
+      }
+     ]
+    },
+    {
+     "id": "yoon",
+     "graphie": "ゃ · ゅ · ょ",
+     "api": "[ʲa ʲɯ ʲo]",
+     "court": {
+      "fr": "petit ゃ ゅ ょ : une seule syllabe",
+      "en": "small ゃ ゅ ょ: one single syllable"
+     },
+     "explication": {
+      "fr": "Un petit ゃ, ゅ ou ょ se fond dans le kana d'avant : きゃ = « kya », une syllabe. En grand, ce sont deux syllabes, et un autre mot : びょういん (hôpital) et びよういん (salon de coiffure).",
+      "en": "A small ゃ, ゅ or ょ merges with the kana before it: きゃ = “kya”, one syllable. Written full-size, it's two syllables and another word: びょういん (hospital) and びよういん (hair salon)."
+     },
+     "exemples": [
+      {
+       "mot": "おちゃ",
+       "traduction": "thé",
+       "traduction_en": "tea"
+      },
+      {
+       "mot": "しゃしん",
+       "traduction": "photo",
+       "traduction_en": "photo"
+      },
+      {
+       "mot": "りょこう",
+       "traduction": "voyage",
+       "traduction_en": "trip"
+      },
+      {
+       "mot": "びょういん",
+       "traduction": "hôpital",
+       "traduction_en": "hospital"
+      }
+     ]
+    },
+    {
+     "id": "particules",
+     "graphie": "は · へ · を",
+     "api": "[wa e o]",
+     "court": {
+      "fr": "は, へ, を : wa, é, o quand ce sont des particules",
+      "en": "は, へ, を: wa, e, o as particles"
+     },
+     "explication": {
+      "fr": "Trois kana gardent une vieille orthographe : la particule は se dit « wa », へ se dit « é », を se dit « o ». Dans un mot ordinaire, は reste « ha » : はな (fleur).",
+      "en": "Three kana keep an old spelling: the particle は is said “wa”, へ is “e”, を is “o”. Inside an ordinary word, は stays “ha”: はな (flower)."
+     },
+     "exemples": [
+      {
+       "mot": "こんにちは",
+       "traduction": "bonjour",
+       "traduction_en": "hello"
+      },
+      {
+       "mot": "こんばんは",
+       "traduction": "bonsoir",
+       "traduction_en": "good evening"
+      },
+      {
+       "mot": "はな",
+       "traduction": "fleur",
+       "traduction_en": "flower"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "fins",
+   "regles": [
+    {
+     "id": "tsu-petit",
+     "graphie": "っ · ッ",
+     "api": "[ː]",
+     "court": {
+      "fr": "petit っ : un temps de silence",
+      "en": "small っ: a beat of silence"
+     },
+     "explication": {
+      "fr": "Le petit っ ne se prononce pas : il bloque la consonne suivante un temps entier, comme « petit-t-tour ». きて (viens) et きって (timbre) sont deux mots ; おと (son) et おっと (mari) aussi.",
+      "en": "The small っ isn't pronounced: it holds the next consonant for a full beat, like “bookcase” said slowly. きて (come) and きって (stamp) are two words; so are おと (sound) and おっと (husband)."
+     },
+     "exemples": [
+      {
+       "mot": "きって",
+       "traduction": "timbre",
+       "traduction_en": "stamp"
+      },
+      {
+       "mot": "がっこう",
+       "traduction": "école",
+       "traduction_en": "school"
+      },
+      {
+       "mot": "きっぷ",
+       "traduction": "billet",
+       "traduction_en": "ticket"
+      },
+      {
+       "mot": "ちょっと",
+       "traduction": "un peu",
+       "traduction_en": "a little"
+      }
+     ]
+    },
+    {
+     "id": "n",
+     "graphie": "ん",
+     "api": "[ɴ m ŋ]",
+     "court": {
+      "fr": "ん : un temps à lui seul",
+      "en": "ん: a beat of its own"
+     },
+     "explication": {
+      "fr": "ん compte pour une syllabe entière et ne nasalise pas la voyelle d'avant : ほん = « ho-n », pas « hon ». Devant b, p, m il devient m : しんぶん = « shimboun », さんぽ = « sampo ».",
+      "en": "ん counts as a whole beat: ほん = “ho-n”, two beats. Before b, p, m it becomes m: しんぶん = “shimbun”, さんぽ = “sampo”."
+     },
+     "exemples": [
+      {
+       "mot": "ほん",
+       "traduction": "livre",
+       "traduction_en": "book"
+      },
+      {
+       "mot": "しんぶん",
+       "traduction": "journal",
+       "traduction_en": "newspaper"
+      },
+      {
+       "mot": "さんぽ",
+       "traduction": "promenade",
+       "traduction_en": "walk"
+      },
+      {
+       "mot": "せんせい",
+       "traduction": "professeur",
+       "traduction_en": "teacher"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accent",
+   "regles": [
+    {
+     "id": "hauteur",
+     "graphie": "",
+     "api": "[ꜛ ꜜ]",
+     "court": {
+      "fr": "pas d'accent fort : des notes hautes et basses",
+      "en": "no stress: high and low notes"
+     },
+     "explication": {
+      "fr": "Le japonais n'appuie pas sur une syllabe : il monte ou descend d'une note. Chaque syllabe garde la même durée. La hauteur distingue parfois deux mots : あめ (pluie, haut-bas) et あめ (bonbon, bas-haut). Imite la voix plutôt qu'une règle : touche les mots et répète la mélodie.",
+      "en": "Japanese doesn't stress a syllable: it goes up or down a note. Every syllable keeps the same length. Pitch sometimes tells two words apart: 雨 (rain, high-low) and 飴 (candy, low-high). Copy the voice rather than a rule: tap the words and repeat the melody."
+     },
+     "exemples": [
+      {
+       "mot": "雨",
+       "traduction": "pluie (a-me : haut-bas)",
+       "traduction_en": "rain (a-me: high-low)"
+      },
+      {
+       "mot": "飴",
+       "traduction": "bonbon (a-me : bas-haut)",
+       "traduction_en": "candy (a-me: low-high)"
+      },
+      {
+       "mot": "箸",
+       "traduction": "baguettes (ha-shi : haut-bas)",
+       "traduction_en": "chopsticks (ha-shi: high-low)"
+      },
+      {
+       "mot": "橋",
+       "traduction": "pont (ha-shi : bas-haut)",
+       "traduction_en": "bridge (ha-shi: low-high)"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
