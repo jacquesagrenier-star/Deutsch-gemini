@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#CDDDDE">
+<meta name="theme-color" content="#DCE6EC">
 
 <title>Wortando</title>
 
@@ -926,7 +926,7 @@ window.LIEN_REINIT = (function(){
 body{
     margin:0;
     min-height:100vh;
-    background:#CDDDDE; /* v975 : le fond « pétrole pâle », choisi par Jacques le 27 oct. 2026 (planche de 13 fonds, option K) : le bleu complémentaire de l ambre fait ressortir la séance du jour et les cartes ; avant #F7F3EC, où les cartes blanches se distinguaient peu */
+    background:#DCE6EC; /* v976 : le « J bleuté », choisi par Jacques le soir même : la clarté du J (#DEE8E8) mais une teinte poussée vers le bleu -- le pétrole (vert = bleu) lui paraissait « un peu vert » à côté de l ambre. v975 : le K #CDDDDE ; v975 : choisi le 27 oct. 2026 sur une planche de 13 fonds : le bleu complémentaire de l ambre fait ressortir la séance du jour et les cartes ; avant #F7F3EC, où les cartes blanches se distinguaient peu */
     color:#1e2433;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
@@ -6592,7 +6592,7 @@ body.en-decouverte header{display:none;}
     display:flex; align-items:center; gap:12px;
     margin:0 -20px 14px; padding:10px 20px;
     padding-top:max(10px, env(safe-area-inset-top, 0px));
-    background:#CDDDDE;
+    background:#DCE6EC;
 }
 body[data-theme="dark"] .dec-haut{background:#000000;}
 .dec-progres{flex:1 1 auto; display:flex; gap:6px; min-width:0;}
@@ -6957,7 +6957,7 @@ body[data-theme="dark"] .dec-projection{color:#E8A23A;}
 #decouverte > button.primary{
     position:sticky; z-index:5;
     bottom:max(12px, env(safe-area-inset-bottom, 0px));
-    box-shadow:0 0 0 10px rgba(205,221,222,.82), 0 8px 20px rgba(var(--wt-action-rgb),.25);
+    box-shadow:0 0 0 10px rgba(220,230,236,.82), 0 8px 20px rgba(var(--wt-action-rgb),.25);
 }
 body[data-theme="dark"] #decouverte > button.primary{
     box-shadow:0 0 0 10px rgba(0,0,0,.78), 0 8px 20px rgba(0,0,0,.4);
@@ -7095,7 +7095,7 @@ body[data-theme="dark"] .ela-choix button.on{background:#E8A23A; border-color:#E
    marque, l'action principale), Ecouter en bleu-vert (une autre activite). */
 .pilule-accueil{--pa:#E8A23A; --pa-rgb:232,162,58; grid-column:1 / -1; position:relative; display:flex; align-items:center; gap:11px;
     background:#1C2430; color:#fff; border-radius:999px; padding:9px 12px 9px 9px; padding-inline:9px 12px; text-align:start;}
-.pilule-accueil.pa-ecoute{--pa:#9BBCC0; --pa-rgb:155,188,192;} /* v975 : le bleu pétrole du fond d accueil (#CDDDDE), un cran plus foncé -- Jacques, 27 oct. 2026 ; avant #4fb3a9, vert-bleu */
+.pilule-accueil.pa-ecoute{--pa:#9BB6C6; --pa-rgb:155,182,198;} /* v976 : le bleu du fond d accueil (#DCE6EC), un cran plus foncé (v975 : #9BBCC0, plus vert) -- Jacques, 27 oct. 2026 ; avant #4fb3a9, vert-bleu */
 body[data-theme="dark"] .pilule-accueil.pa-ecoute{--pa:#4fb3a9; --pa-rgb:79,179,169;}
 /* v882 : le bouton ▶ A DROITE (Jacques : « on est porte a cliquer a droite » --
    le pouce). L'anneau et l'onde passent a gauche, dans la meme case de 46 px,
@@ -7200,9 +7200,9 @@ body[data-theme="dark"] .cp-annonce{background:rgba(232,162,58,.15); color:#f0b4
 .seance-pilule.atteint .pa-entrer{background:transparent; box-shadow:inset 0 0 0 2.5px var(--pa);}
 .seance-pilule.atteint .pa-entrer svg{stroke:var(--pa);}
 .pilule-accueil.pa-ecoute{background:transparent; color:#1C2430; box-shadow:inset 0 0 0 1.5px var(--pa); padding-block:8px;}
-.pilule-accueil.pa-ecoute .pa-kick{color:#2E5F66;}
+.pilule-accueil.pa-ecoute .pa-kick{color:#2E5770;}
 .pilule-accueil.pa-ecoute .pa-titre strong{color:#1C2430;}
-.pilule-accueil.pa-ecoute .pa-niv{background:transparent; box-shadow:inset 0 0 0 1.5px var(--pa); color:#2E5F66;}
+.pilule-accueil.pa-ecoute .pa-niv{background:transparent; box-shadow:inset 0 0 0 1.5px var(--pa); color:#2E5770;}
 .pilule-accueil.pa-ecoute .pa-sens, .pilule-accueil.pa-ecoute .pa-sens::before{color:#576177;}
 .pilule-accueil.pa-ecoute .pa-play{width:40px; height:40px; box-shadow:none;}
 /* v908 : Jacques, 21 oct. 2026 : « je mettrais Écouter, répéter dans le titre »
@@ -7304,8 +7304,8 @@ body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
    Le texte passe a l'encre (contraste 7,2 sur l'ambre). Ecouter ne change pas.
    Pas d'overflow:hidden ici : la liste du niveau (.pa-liste) sort de la pilule. */
 @property --vx{syntax:"<percentage>"; inherits:true; initial-value:28%;}
-/* v975 : l encre de la pilule passe au pétrole foncé #163E46 (Jacques, 27 oct. 2026 : « tout ce qui est en noir [...] en bleu pétrole foncé ») : la séance se dessine dans la famille du fond pétrole, l ambre reste la seule couleur chaude. 7:1 sur la pilule ambre. */
-#seancePilule{--vx:28%; color:#163E46;
+/* v975 : l encre de la pilule passe au pétrole foncé #173A4E (Jacques, 27 oct. 2026 : « tout ce qui est en noir [...] en bleu pétrole foncé ») : la séance se dessine dans la famille du fond pétrole, l ambre reste la seule couleur chaude. 7:1 sur la pilule ambre. */
+#seancePilule{--vx:28%; color:#173A4E;
     background:linear-gradient(180deg, rgba(240,170,60,.72), rgba(232,162,58,.66));
     -webkit-backdrop-filter:blur(8px) saturate(1.6); backdrop-filter:blur(8px) saturate(1.6);
     box-shadow:inset 0 0 0 4px rgba(255,255,255,.14), inset 0 0 8px 3px rgba(255,255,255,.32),
@@ -7319,8 +7319,8 @@ body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
             mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);}
 #seancePilule::after{content:""; position:absolute; top:3px; height:7px; width:34%; left:calc(6% + (var(--vx) - 14%) * .75); border-radius:999px;
     pointer-events:none; z-index:2; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.85) 50%, rgba(255,255,255,0)); filter:blur(1.2px);}
-#seancePilule .pa-kick{color:#163E46;}
-#seancePilule .pa-titre strong, #seancePilule .pa-sens{color:#163E46; text-overflow:clip;}
+#seancePilule .pa-kick{color:#173A4E;}
+#seancePilule .pa-titre strong, #seancePilule .pa-sens{color:#173A4E; text-overflow:clip;}
 /* v902 : « Ma seance du jour » en titre, seul, sans les deux points du trema
    devant (Jacques : « enleve les deux petits points »). ajusterTitrePilule()
    veille a ce qu'il tienne. */
@@ -7335,14 +7335,14 @@ body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
 #seancePilule.pa-etape .pa-sous{margin-top:3px;}
 /* v945 : le titre et son etape un peu plus loin de l'anneau -- « trop entasses » (Jacques). */
 #seancePilule .pa-txt{margin-inline-start:6px;}
-#seancePilule .pa-niv{background:rgba(255,255,255,.3); box-shadow:inset 0 0 0 1px rgba(22,62,70,.45); color:#163E46;}
-#seancePilule .pa-sens, #seancePilule .pa-sens::before{color:rgba(22,62,70,.92);}
+#seancePilule .pa-niv{background:rgba(255,255,255,.3); box-shadow:inset 0 0 0 1px rgba(23,58,78,.45); color:#173A4E;}
+#seancePilule .pa-sens, #seancePilule .pa-sens::before{color:rgba(23,58,78,.92);}
 /* L'anneau : plus de trou peint en encre, un masque -- la vitre se voit au centre. */
 #seancePilule .pa-anneau{background:none;}
-#seancePilule .pa-anneau::before{inset:0; background:conic-gradient(#163E46 0 calc(var(--p) * 1%), rgba(22,62,70,.18) calc(var(--p) * 1%) 100%);
+#seancePilule .pa-anneau::before{inset:0; background:conic-gradient(#173A4E 0 calc(var(--p) * 1%), rgba(23,58,78,.18) calc(var(--p) * 1%) 100%);
     -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));
             mask:radial-gradient(farthest-side, transparent calc(100% - 3.5px), #000 calc(100% - 3px));}
-#seancePilule .pa-anneau small{color:rgba(22,62,70,.92);}
+#seancePilule .pa-anneau small{color:rgba(23,58,78,.92);}
 /* v944 : L'OBJECTIF ATTEINT S'ALLUME. Jacques, 24 oct. 2026 : « moi j'ai 83 sur
    30 : mettre le 83 en vert aussitot qu'on atteint le 30, ou illumine » ; et
    « une facon de montrer qu'on est deux fois, trois fois plus que prevu ». Le
@@ -7372,7 +7372,7 @@ body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
     box-shadow:inset 0 0 0 1px rgba(255,255,255,.75), inset 0 1.5px 0 #fff, inset 0 -6px 10px -6px rgba(120,70,10,.35), 0 3px 8px -2px rgba(120,60,0,.35);}
 #seancePilule .pa-entrer::before{content:""; position:absolute; left:24%; top:8%; width:44%; height:24%; border-radius:50%; pointer-events:none;
     background:radial-gradient(closest-side, rgba(255,255,255,.95), rgba(255,255,255,0));}
-#seancePilule .pa-entrer svg{position:relative; stroke:#163E46;}
+#seancePilule .pa-entrer svg{position:relative; stroke:#173A4E;}
 /* v906 : la bille ne change plus quand l'objectif est atteint. La v900 la
    remplacait alors par un anneau d'encre -- « un cercle noir autour du bouton »,
    Jacques, 21 oct. 2026 : « c'etait mieux sans ». L'anneau du compte dit deja
@@ -7381,8 +7381,8 @@ body[data-theme="dark"] .entete-contenu h2{color:#F2F2F6;}
 body[data-theme="dark"] #seancePilule{background:linear-gradient(180deg, rgba(246,178,66,.9), rgba(232,162,58,.86)) #CC8F33;
     box-shadow:inset 0 0 0 4px rgba(255,255,255,.14), inset 0 0 8px 3px rgba(255,255,255,.32),
         inset 0 -10px 14px -10px rgba(160,90,10,.45), 0 8px 22px -8px rgba(232,162,58,.45);}
-body[data-theme="dark"] #seancePilule .pa-anneau::before{background:conic-gradient(#163E46 0 calc(var(--p) * 1%), rgba(22,62,70,.18) calc(var(--p) * 1%) 100%);}
-body[data-theme="dark"] #seancePilule .pa-anneau small, body[data-theme="dark"] #seancePilule .pa-sens{color:rgba(22,62,70,.92);}
+body[data-theme="dark"] #seancePilule .pa-anneau::before{background:conic-gradient(#173A4E 0 calc(var(--p) * 1%), rgba(23,58,78,.18) calc(var(--p) * 1%) 100%);}
+body[data-theme="dark"] #seancePilule .pa-anneau small, body[data-theme="dark"] #seancePilule .pa-sens{color:rgba(23,58,78,.92);}
 @media (prefers-reduced-motion: reduce){ #seancePilule{animation:none;} }
 .explorer-v.verrou::after{content:"🔒"; position:absolute; top:4px; inset-inline-end:4px; font-size:12px;}
 body[data-theme="dark"] .explorer-scenes{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.14);}
@@ -8721,7 +8721,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v975</span>
+    <span class="subtitle-version">v976</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -11787,7 +11787,7 @@ const THEME_STORAGE_KEY = PREFIXE_STOCKAGE + "theme";
 function applyAppTheme(theme){
     document.body.setAttribute("data-theme", theme);
     const meta = document.querySelector('meta[name="theme-color"]');
-    if(meta) meta.setAttribute("content", theme === "dark" ? "#000000" : "#CDDDDE");
+    if(meta) meta.setAttribute("content", theme === "dark" ? "#000000" : "#DCE6EC");
 
     const icon = document.getElementById("themeToggleIcon");
     if(icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
@@ -46128,7 +46128,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 975;
+const APP_VERSION = 976;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
