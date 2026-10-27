@@ -7540,11 +7540,11 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
             <span id="uiLangToggleLabel">🇫🇷</span>
         </button>
-        <button id="settingsToggleBtn" class="theme-icon-btn" style="font-size:13px;" onclick="openSettings()" title="Réglages / Settings" aria-label="Réglages">⚙️</button>
-        <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" title="Changer de thème" aria-label="Changer de thème">
+        <button id="settingsToggleBtn" class="theme-icon-btn" style="font-size:13px;" onclick="openSettings()" data-i18n-title="settings_title" data-i18n-aria-label="settings_title" title="Réglages" aria-label="Réglages">⚙️</button>
+        <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" data-i18n-title="theme_changer" data-i18n-aria-label="theme_changer" title="Changer de thème" aria-label="Changer de thème">
             <span id="themeToggleIcon" class="switch-icon">🌙</span>
         </button>
-        <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openSettings()" title="Compte">CM</div>
+        <div id="userProfile" class="avatar" style="cursor:pointer;" onclick="openSettings()" data-i18n-title="settings_account_title" title="Compte">CM</div>
     </div>
 </header>
 
@@ -7588,7 +7588,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
             <input id="authEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
             <div class="password-field-wrap" style="margin-bottom:20px;">
                 <input id="authPassword" class="answer" type="password" placeholder="Mot de passe" data-i18n-placeholder="auth_password_placeholder">
-                <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('authPassword', this)" title="Afficher/masquer le mot de passe">👁</button>
+                <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('authPassword', this)" data-i18n-title="mdp_afficher" title="Afficher/masquer le mot de passe">👁</button>
             </div>
             <button id="authLoginBtn" class="primary" onclick="handleEmailLogin()" data-i18n="auth_login">SE CONNECTER</button>
             <!-- ⚠️ SOUS LE BOUTON, DISCRET, ET SANS CHAMP A LUI. Il reprend
@@ -7612,11 +7612,11 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <input id="authSignupEmail" class="answer" type="email" placeholder="E-mail" style="margin-bottom:12px;" data-i18n-placeholder="auth_email_placeholder">
         <div class="password-field-wrap" style="margin-bottom:10px;">
             <input id="authSignupPassword" class="answer" type="password" placeholder="Mot de passe (au moins 6 caractères)" oninput="checkSignupPasswordMatch()" data-i18n-placeholder="auth_signup_password_placeholder">
-            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('authSignupPassword', this)" title="Afficher/masquer le mot de passe">👁</button>
+            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('authSignupPassword', this)" data-i18n-title="mdp_afficher" title="Afficher/masquer le mot de passe">👁</button>
         </div>
         <div class="password-field-wrap" style="margin-bottom:6px;">
             <input id="authSignupPasswordConfirm" class="answer" type="password" placeholder="Confirme le mot de passe" oninput="checkSignupPasswordMatch()" data-i18n-placeholder="auth_signup_password_confirm_placeholder">
-            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('authSignupPasswordConfirm', this)" title="Afficher/masquer le mot de passe">👁</button>
+            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('authSignupPasswordConfirm', this)" data-i18n-title="mdp_afficher" title="Afficher/masquer le mot de passe">👁</button>
         </div>
         <div id="authSignupPasswordMatchHint" class="auth-password-match-hint hidden"></div>
         <div class="spacer"></div>
@@ -7650,11 +7650,11 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <div class="spacer"></div>
         <div class="password-field-wrap" style="margin-bottom:10px;">
             <input id="resetPasswordA" class="answer" type="password" placeholder="Mot de passe (au moins 6 caractères)" oninput="verifierAccordReinit()" data-i18n-placeholder="auth_signup_password_placeholder">
-            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('resetPasswordA', this)" title="Afficher/masquer le mot de passe">👁</button>
+            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('resetPasswordA', this)" data-i18n-title="mdp_afficher" title="Afficher/masquer le mot de passe">👁</button>
         </div>
         <div class="password-field-wrap" style="margin-bottom:6px;">
             <input id="resetPasswordB" class="answer" type="password" placeholder="Confirme le mot de passe" oninput="verifierAccordReinit()" data-i18n-placeholder="auth_signup_password_confirm_placeholder">
-            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('resetPasswordB', this)" title="Afficher/masquer le mot de passe">👁</button>
+            <button type="button" class="password-toggle-btn" onclick="togglePasswordVisibility('resetPasswordB', this)" data-i18n-title="mdp_afficher" title="Afficher/masquer le mot de passe">👁</button>
         </div>
         <div id="resetMatchHint" class="auth-password-match-hint hidden"></div>
         <div class="spacer"></div>
@@ -8176,7 +8176,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
             <div class="seance-bas">
                 <span class="seance-etiq" data-i18n="seance_ton_niveau">Ton niveau</span>
                 <span class="seance-niveaux" id="seanceNiveaux" role="group"
-                      aria-label="Ton niveau"></span>
+                      data-i18n-aria-label="seance_ton_niveau" aria-label="Ton niveau"></span>
             </div>
             <!-- v816 : le niveau en clair -- « B1 » ne dit rien a qui n'a pas
                  suivi de cours (Jacques). Rempli par majTuileSeance(). Sur sa
@@ -8720,7 +8720,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v973</span>
+    <span class="subtitle-version">v974</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10393,7 +10393,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
      en haut, revient au choix ; « Continuer avec mes cartes » lance les
      cartes (message « fini »). -->
 <section id="sceneSeance" class="screen">
-    <iframe id="sceneCadre" class="scene-cadre" title="La scène du jour" allow="autoplay"></iframe>
+    <iframe id="sceneCadre" class="scene-cadre" data-i18n-title="seance_scene_cadre" title="La scène du jour" allow="autoplay"></iframe>
 </section>
 
 <!-- v862 (essai a1_voyage) : le carnet de phrases -- les phrases toutes faites
@@ -10460,7 +10460,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <div id="flashArticle" class="article hidden"></div>
                 <div class="word-audio-row" id="flashMotRow">
                     <div id="flashBackWord" class="back-word">Tisch</div>
-                    <button id="audioBtn" class="icon-audio-btn" onclick="event.stopPropagation(); speakWord();" aria-label="Écouter">
+                    <button id="audioBtn" class="icon-audio-btn" onclick="event.stopPropagation(); speakWord();" data-i18n-aria-label="cp_ecouter" aria-label="Écouter">
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
                     <!-- LA VITESSE, SUR LA CARTE (v757, Jacques : « ajoute le bouton
@@ -10473,7 +10473,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 </div>
                 <div id="flashPlural" class="plural hidden">
                     <span id="flashPluralText"></span>
-                    <button id="pluralAudioBtn" class="icon-audio-btn icon-audio-btn--petit" onclick="event.stopPropagation(); speakPlural();" aria-label="Écouter le pluriel">
+                    <button id="pluralAudioBtn" class="icon-audio-btn icon-audio-btn--petit" onclick="event.stopPropagation(); speakPlural();" data-i18n-aria-label="ecouter_pluriel" aria-label="Écouter le pluriel">
                         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
                     </button>
                 </div>
@@ -10807,13 +10807,13 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
     </div>
 
     <div class="ecoute-controles">
-        <button class="ecoute-btn" onclick="ecoutePrecedent()" aria-label="Précédent">
+        <button class="ecoute-btn" onclick="ecoutePrecedent()" data-i18n-aria-label="ecoute_precedent" aria-label="Précédent">
             <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
         </button>
-        <button class="ecoute-btn principal" id="ecoutePlayBtn" onclick="ecouteBasculer()" aria-label="Lecture">
+        <button class="ecoute-btn principal" id="ecoutePlayBtn" onclick="ecouteBasculer()" data-i18n-aria-label="ecoute_lecture" aria-label="Lecture">
             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         </button>
-        <button class="ecoute-btn" onclick="ecouteSuivant()" aria-label="Suivant">
+        <button class="ecoute-btn" onclick="ecouteSuivant()" data-i18n-aria-label="ecoute_suivant" aria-label="Suivant">
             <svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg>
         </button>
     </div>
@@ -11221,7 +11221,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                            data-i18n-placeholder="delete_account_pwd_ph" placeholder="Ton mot de passe">
                     <button type="button" class="password-toggle-btn"
                             onclick="togglePasswordVisibility('suppressionMdp', this)"
-                            title="Afficher/masquer le mot de passe">👁</button>
+                            data-i18n-title="mdp_afficher" title="Afficher/masquer le mot de passe">👁</button>
                 </div>
                 <button id="suppressionCompteGo" class="secondary danger"
                         onclick="confirmerSuppressionCompte()"
@@ -13051,6 +13051,21 @@ const I18N = {
 
         kicker_progress: "Ton app",
         settings_account_title: "Compte",
+        titre_determinants: "Déterminants",
+        theme_changer: "Changer de thème",
+        mdp_afficher: "Afficher/masquer le mot de passe",
+        ecouter_pluriel: "Écouter le pluriel",
+        ecouter_phrase: "Écouter la phrase",
+        ecoute_precedent: "Précédent",
+        ecoute_lecture: "Lecture",
+        ecoute_suivant: "Suivant",
+        radar_noms: "Noms",
+        radar_verbes: "Verbes",
+        radar_adjectifs: "Adjectifs",
+        radar_cas: "Cas",
+        radar_preps: "Préps.",
+        radar_particules: "Particules",
+        radar_marqueurs: "Marqueurs",
         voice_title: "Voix de lecture",
         voice_desc: "Ton appareil propose parfois plusieurs voix pour la m\u00eame langue : une voix compacte, m\u00e9canique, et une voix am\u00e9lior\u00e9e beaucoup plus naturelle. L'\u00e9toile signale les meilleures.",
         voice_lang_de: "Allemand",
@@ -14439,10 +14454,10 @@ const I18N = {
         // Ce bouton bascule le sens des données de vocabulaire (encore FR/DE
         // uniquement — la Phase 2 n'a pas encore ajouté l'anglais aux données),
         // donc il reste "FR → DE" même quand l'interface est en anglais.
-        flip_direction_fr: "🔁 Sens : FR → DE",
-        flip_direction_de: "🔁 Sens : DE → FR",
-        flip_direction_de_to_en: "🔁 Sens : DE → EN",
-        flip_direction_en_to_de: "🔁 Sens : EN → DE",
+        flip_direction_fr: "🔁 Direction: EN → DE",
+        flip_direction_de: "🔁 Direction: DE → EN",
+        flip_direction_de_to_en: "🔁 Direction: DE → EN",
+        flip_direction_en_to_de: "🔁 Direction: EN → DE",
 
         kicker_grammar_vocab: "Grammar & Vocabulary",
         verbenniveau_title: "Verbs by level",
@@ -14519,6 +14534,21 @@ const I18N = {
 
         kicker_progress: "Your app",
         settings_account_title: "Account",
+        titre_determinants: "Determiners",
+        theme_changer: "Change theme",
+        mdp_afficher: "Show/hide password",
+        ecouter_pluriel: "Listen to the plural",
+        ecouter_phrase: "Listen to the sentence",
+        ecoute_precedent: "Previous",
+        ecoute_lecture: "Play",
+        ecoute_suivant: "Next",
+        radar_noms: "Nouns",
+        radar_verbes: "Verbs",
+        radar_adjectifs: "Adjectives",
+        radar_cas: "Cases",
+        radar_preps: "Preps.",
+        radar_particules: "Particles",
+        radar_marqueurs: "Markers",
         voice_title: "Reading voice",
         voice_desc: "Your device often offers several voices for the same language: a compact, mechanical one and a much more natural enhanced one. The star marks the best ones.",
         voice_lang_de: "German",
@@ -15991,6 +16021,21 @@ const I18N = {
 
         kicker_progress: "Uygulaman",
         settings_account_title: "Hesap",
+        titre_determinants: "Belirteçler",
+        theme_changer: "Temayı değiştir",
+        mdp_afficher: "Şifreyi göster/gizle",
+        ecouter_pluriel: "Çoğulu dinle",
+        ecouter_phrase: "Cümleyi dinle",
+        ecoute_precedent: "Önceki",
+        ecoute_lecture: "Oynat",
+        ecoute_suivant: "Sonraki",
+        radar_noms: "İsimler",
+        radar_verbes: "Fiiller",
+        radar_adjectifs: "Sıfatlar",
+        radar_cas: "Haller",
+        radar_preps: "Edatlar",
+        radar_particules: "Parçacıklar",
+        radar_marqueurs: "İşaretleyiciler",
         voice_title: "Okuma sesi",
         voice_desc: "Cihazın aynı dil için çoğu zaman birkaç ses sunar: sıkıştırılmış, mekanik bir ses ve çok daha doğal, gelişmiş bir ses. Yıldız, en iyilerini işaretler.",
         voice_lang_de: "Almanca",
@@ -18230,6 +18275,21 @@ const I18N = {
         label_english_pitfall: "Пастка",
         label_english_forms: "Форми",
         settings_account_title: "Обліковий запис",
+        titre_determinants: "Означники",
+        theme_changer: "Змінити тему",
+        mdp_afficher: "Показати/сховати пароль",
+        ecouter_pluriel: "Послухати множину",
+        ecouter_phrase: "Послухати речення",
+        ecoute_precedent: "Попереднє",
+        ecoute_lecture: "Відтворити",
+        ecoute_suivant: "Наступне",
+        radar_noms: "Іменники",
+        radar_verbes: "Дієслова",
+        radar_adjectifs: "Прикметники",
+        radar_cas: "Відмінки",
+        radar_preps: "Прийм.",
+        radar_particules: "Частки",
+        radar_marqueurs: "Маркери",
         settings_title: "Параметри",
         settings_global_progress: "Загальний поступ",
         settings_zero_title: "Почати спочатку",
@@ -19145,6 +19205,21 @@ const I18N = {
         dashboard_button: "خانه",
         kicker_progress: "اپ تو",
         settings_account_title: "حساب کاربری",
+        titre_determinants: "تعیین‌کننده‌ها",
+        theme_changer: "تغییر پوسته",
+        mdp_afficher: "نمایش/پنهان کردن رمز عبور",
+        ecouter_pluriel: "شنیدن جمع",
+        ecouter_phrase: "شنیدن جمله",
+        ecoute_precedent: "قبلی",
+        ecoute_lecture: "پخش",
+        ecoute_suivant: "بعدی",
+        radar_noms: "اسم‌ها",
+        radar_verbes: "فعل‌ها",
+        radar_adjectifs: "صفت‌ها",
+        radar_cas: "حالت‌ها",
+        radar_preps: "حروف اضافه",
+        radar_particules: "ادات",
+        radar_marqueurs: "نشانه‌ها",
         voice_title: "صدای خواندن",
         voice_desc: "دستگاه تو گاهی برای یک زبان چند صدا دارد: یک صدای فشرده و ماشینی، و یک صدای بهبودیافته که بسیار طبیعی‌تر است. ستاره بهترین‌ها را نشان می‌دهد.",
         voice_lang_de: "آلمانی",
@@ -20665,8 +20740,8 @@ const I18N = {
         orb_revision_title: "المراجعة",
         orb_revision_sub: "التقدّم · إعادة الضبط",
         back_button: "‹ رجوع",
-        flip_direction_fr: "🔁 الاتجاه: FR ← DE",
-        flip_direction_de: "🔁 الاتجاه: DE ← FR",
+        flip_direction_fr: "🔁 الاتجاه: AR → DE",
+        flip_direction_de: "🔁 الاتجاه: DE → AR",
         flip_direction_de_to_en: "🔁 الاتجاه: DE ← EN",
         flip_direction_en_to_de: "🔁 الاتجاه: EN ← DE",
         kicker_grammar_vocab: "القواعد والمفردات",
@@ -20739,6 +20814,21 @@ const I18N = {
         dashboard_button: "الرئيسية",
         kicker_progress: "تطبيقك",
         settings_account_title: "الحساب",
+        titre_determinants: "المحدِّدات",
+        theme_changer: "تغيير المظهر",
+        mdp_afficher: "إظهار/إخفاء كلمة المرور",
+        ecouter_pluriel: "استمع إلى الجمع",
+        ecouter_phrase: "استمع إلى الجملة",
+        ecoute_precedent: "السابق",
+        ecoute_lecture: "تشغيل",
+        ecoute_suivant: "التالي",
+        radar_noms: "الأسماء",
+        radar_verbes: "الأفعال",
+        radar_adjectifs: "الصفات",
+        radar_cas: "الحالات",
+        radar_preps: "حروف الجر",
+        radar_particules: "الأدوات",
+        radar_marqueurs: "الروابط",
         voice_title: "صوت القراءة",
         voice_desc: "يقدّم جهازك أحياناً أكثر من صوت للغة الواحدة: صوت مضغوط آليّ الطابع، وصوت محسَّن أقرب إلى الطبيعي بكثير. والنجمة تشير إلى الأفضل.",
         voice_lang_de: "الألمانية",
@@ -22038,6 +22128,21 @@ const I18N = {
         dashboard_button: "INÍCIO",
         kicker_progress: "Seu app",
         settings_account_title: "Conta",
+        titre_determinants: "Determinantes",
+        theme_changer: "Mudar o tema",
+        mdp_afficher: "Mostrar/ocultar a senha",
+        ecouter_pluriel: "Ouvir o plural",
+        ecouter_phrase: "Ouvir a frase",
+        ecoute_precedent: "Anterior",
+        ecoute_lecture: "Reproduzir",
+        ecoute_suivant: "Próximo",
+        radar_noms: "Substantivos",
+        radar_verbes: "Verbos",
+        radar_adjectifs: "Adjetivos",
+        radar_cas: "Casos",
+        radar_preps: "Prep.",
+        radar_particules: "Partículas",
+        radar_marqueurs: "Marcadores",
         voice_title: "Voz de leitura",
         voice_desc: "Seu aparelho às vezes oferece várias vozes para a mesma língua: uma voz compacta, mecânica, e uma voz aprimorada muito mais natural. A estrela marca as melhores.",
         voice_lang_de: "Alemão",
@@ -23572,6 +23677,23 @@ const I18N = {
         dashboard_button: "START",
         kicker_progress: "Twoja aplikacja",
         settings_account_title: "Konto",
+        titre_determinants: "Określniki",
+        passage_vers_es: "Przechodzę na hiszpański…",
+        passage_vers_de: "Przechodzę na niemiecki…",
+        theme_changer: "Zmień motyw",
+        mdp_afficher: "Pokaż/ukryj hasło",
+        ecouter_pluriel: "Posłuchaj liczby mnogiej",
+        ecouter_phrase: "Posłuchaj zdania",
+        ecoute_precedent: "Poprzednie",
+        ecoute_lecture: "Odtwórz",
+        ecoute_suivant: "Następne",
+        radar_noms: "Rzeczowniki",
+        radar_verbes: "Czasowniki",
+        radar_adjectifs: "Przymiotniki",
+        radar_cas: "Przypadki",
+        radar_preps: "Przyim.",
+        radar_particules: "Partykuły",
+        radar_marqueurs: "Wskaźniki",
         voice_title: "Głos lektora",
         voice_desc: "Twoje urządzenie często ma kilka głosów dla tego samego języka: kompaktowy, mechaniczny, i ulepszony, o wiele bardziej naturalny. Gwiazdka oznacza najlepsze.",
         voice_lang_de: "Niemiecki",
@@ -25107,6 +25229,21 @@ const I18N = {
         dashboard_button: "ГЛАВНАЯ",
         kicker_progress: "Твоё приложение",
         settings_account_title: "Аккаунт",
+        titre_determinants: "Определители",
+        theme_changer: "Сменить тему",
+        mdp_afficher: "Показать/скрыть пароль",
+        ecouter_pluriel: "Послушать множественное число",
+        ecouter_phrase: "Послушать предложение",
+        ecoute_precedent: "Предыдущее",
+        ecoute_lecture: "Воспроизвести",
+        ecoute_suivant: "Следующее",
+        radar_noms: "Существительные",
+        radar_verbes: "Глаголы",
+        radar_adjectifs: "Прилагательные",
+        radar_cas: "Падежи",
+        radar_preps: "Предл.",
+        radar_particules: "Частицы",
+        radar_marqueurs: "Маркеры",
         voice_title: "Голос для чтения",
         voice_desc: "Твоё устройство часто предлагает несколько голосов для одного языка: компактный, механический, и улучшенный, гораздо более естественный. Звёздочкой отмечены лучшие.",
         voice_lang_de: "Немецкий",
@@ -26957,6 +27094,17 @@ function applyUiLang(){
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));
     });
+    // v974 : LES ATTRIBUTS LUS PAR UN LECTEUR D'ECRAN, ET LES BULLES. Douze
+    // elements portaient data-i18n-aria-label depuis longtemps, sans que rien
+    // ne le lise : VoiceOver annoncait « Écouter », « Revenir au recto de la
+    // carte » en francais dans les huit autres langues (relevé du 27 oct. 2026,
+    // tests/francais_ailleurs.py).
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+        el.setAttribute('aria-label', t(el.getAttribute('data-i18n-aria-label')));
+    });
+    document.querySelectorAll('[data-i18n-title]').forEach(el => {
+        el.setAttribute('title', t(el.getAttribute('data-i18n-title')));
+    });
     const label = document.getElementById('uiLangToggleLabel');
     // La pastille affiche la langue vers laquelle on va basculer en cliquant
     // (pas la langue actuelle) : en FR, on voit "EN" pour passer à l'anglais ;
@@ -28550,6 +28698,28 @@ function refreshDynamicUiLang(){
             renderAdminUsersList();
         }
     }catch(e){}
+    redessinerApresLangue();
+}
+
+// v974 : TOUT CE QUI EST CONSTRUIT EN JS ET RESTE A L'ECRAN APRES LA BASCULE.
+// La langue se change dans les reglages : ce qu'ils affichent (voix, badges,
+// radar, reglages de la carte, musique, objectif) etait construit a leur
+// ouverture et gardait l'ancienne langue jusqu'a la suivante ; l'accueil, au
+// retour, gardait le ruban des scenes, la ligne « Écouter » et la pilule de la
+// seance. Mesure par tests/francais_ailleurs.py (mode « a chaud »), 27 oct. 2026.
+function redessinerApresLangue(){
+    for(const f of [majExplorerScenes, majLigneEcoute, majBoutonsVitesse, renderBadgesGrid,
+                     renderProgressRadar, updateHomeGreeting]){
+        try{ f(); }catch(e){}
+    }
+    const reglages = document.getElementById("settings");
+    if(reglages && reglages.classList.contains("active")){
+        for(const f of [renderVoiceSettings, renderDailyGoalSetting, updateNotificationsUi,
+                         renderVibrationsSetting, renderCartePhraseSetting, renderMusiqueSetting,
+                         afficherLangueActuelle]){
+            try{ f(); }catch(e){}
+        }
+    }
 }
 
 function initUiLang(){
@@ -36642,15 +36812,17 @@ function renderProgressRadar(){
     if(!svg) return;
 
     const categories = [
-        { label: "Noms", percent: getNomenMasteryPercent() },
-        { label: "Verbes", percent: getVerbenMasteryPercent() },
-        { label: "Adjectifs", percent: getAdjektiveMasteryPercent() },
-        { label: "Cas", percent: getKasusMasteryPercent() },
-        { label: "Préps.", percent: getPraepMasteryPercent() },
-        { label: "Particules", percent: getPartikelnMasteryPercent() }
-    ].filter(c => LANGUE_APPRISE !== "es" || c.label !== "Cas")
+        // v974 : les libelles passent par t() (ils etaient en francais dans
+        // toutes les langues) ; le tri de l'espagnol se fait donc sur l'id.
+        { id: "noms", label: t("radar_noms"), percent: getNomenMasteryPercent() },
+        { id: "verbes", label: t("radar_verbes"), percent: getVerbenMasteryPercent() },
+        { id: "adjectifs", label: t("radar_adjectifs"), percent: getAdjektiveMasteryPercent() },
+        { id: "cas", label: t("radar_cas"), percent: getKasusMasteryPercent() },
+        { id: "preps", label: t("radar_preps"), percent: getPraepMasteryPercent() },
+        { id: "particules", label: t("radar_particules"), percent: getPartikelnMasteryPercent() }
+    ].filter(c => LANGUE_APPRISE !== "es" || c.id !== "cas")
      // L'espagnol n'a pas de declinaison : la branche des cas resterait a zero.
-     .map(c => (LANGUE_APPRISE === "es" && c.label === "Particules") ? { label: "Marqueurs", percent: c.percent } : c);
+     .map(c => (LANGUE_APPRISE === "es" && c.id === "particules") ? { label: t("radar_marqueurs"), percent: c.percent } : c);
     const n = categories.length;
     const cx = 110, cy = 110, maxR = 75;
     const angleFor = i => -Math.PI / 2 + i * (2 * Math.PI / n);
@@ -42142,7 +42314,7 @@ function startPronomenVokabular(){
     currentCards = cartesDeSession(items);
     if(!currentCards.length) currentCards = plafonnerSeance(items);
     currentFlashcard = 0;
-    setFlashHeader('kicker_pronomen_vokabular', null);
+    setFlashHeader('kicker_pronomen_vokabular', 'orb_pronomen_title');   // v974 : pas le nom du theme, ecrit en francais
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -42156,7 +42328,7 @@ function startArtikelwoerterVokabular(){
     currentCards = cartesDeSession(items);
     if(!currentCards.length) currentCards = plafonnerSeance(items);
     currentFlashcard = 0;
-    setFlashHeader('kicker_artikelwoerter_vokabular', null);
+    setFlashHeader('kicker_artikelwoerter_vokabular', 'titre_determinants');
     showScreen("flashcards");
     loadFlashcard();
 }
@@ -45955,7 +46127,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 973;
+const APP_VERSION = 974;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47652,6 +47824,10 @@ function buildDictationExercises(cartes, mode){
             topic: "dictation",
             question: I18N.fr.dictation_instruction,
             question_en: I18N.en.dictation_instruction,
+            // v974 : la consigne dans les sept autres langues aussi -- sans
+            // elles, texteTraduit() s'arretait a l'anglais.
+            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru"].map(c =>
+                ["question" + SUFFIXE_LANGUE[c], I18N[c] && I18N[c].dictation_instruction])),
             translation: knownWord,
             translation_en: knownWord,
             // « Pas besoin d'ecrire l'article » ne vaut que pour les noms. Sur
@@ -47660,6 +47836,8 @@ function buildDictationExercises(cartes, mode){
             // ecrire.
             hint: nomsSeuls ? I18N.fr.dictation_hint : "",
             hint_en: nomsSeuls ? I18N.en.dictation_hint : "",
+            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru"].map(c =>
+                ["hint" + SUFFIXE_LANGUE[c], nomsSeuls ? (I18N[c] && I18N[c].dictation_hint) : ""])),
             answers: [targetWord],
             correct: targetWord,
             correctEn: targetWord,
@@ -47697,7 +47875,7 @@ function sentenceSpeakBtnHtml(text, lang){
     if(!text) return "";
     const idx = sentenceRegistry.length;
     sentenceRegistry.push({text, lang});
-    return `<button class="icon-audio-btn icon-audio-btn-sm" onclick="event.stopPropagation(); speakRegisteredSentence(${idx});" aria-label="Écouter la phrase"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>`;
+    return `<button class="icon-audio-btn icon-audio-btn-sm" onclick="event.stopPropagation(); speakRegisteredSentence(${idx});" aria-label="${t("ecouter_phrase")}"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button>`;
 }
 
 // Prononce la phrase enregistrée à cet index (voir sentenceSpeakBtnHtml) --
@@ -52070,7 +52248,7 @@ function montrerCartePhrase(item){
         // Une question d'une serie du cours, comme dans l'ecran d'exercices :
         // les memes reponses acceptees, la meme explication.
         const ex = item.ex;
-        const q = creer("p", "cp-phrase", ex.question);
+        const q = creer("p", "cp-phrase", texteTraduit(ex, "question"));
         q.setAttribute("lang", langueDe);
         el.appendChild(q);
         const sens = texteTraduit(ex, "translation");
@@ -58598,7 +58776,10 @@ function majCartesRevision(){
         // L'enonce allemand, pas le sujet : c'est la phrase qu'on a ratee qu'on
         // veut reconnaitre, et le sujet est deja dans le titre de l'ecran.
         texte.textContent = rates.slice(0, 5)
-            .map(x => (x.question || "").replace(/\s+/g, " ").trim())
+            // v974 : texteTraduit, comme l'ecran d'exercice. Pour « Ecrire »,
+            // l'enonce est la phrase a traduire : x.question, c'etait le
+            // francais servi aux huit autres langues.
+            .map(x => (texteTraduit(x, "question") || "").replace(/\s+/g, " ").trim())
             .filter(Boolean).join("\n")
             + (rates.length > 5 ? "\n…" : "");
     }

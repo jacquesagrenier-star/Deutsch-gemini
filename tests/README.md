@@ -26,6 +26,32 @@ dégradée : plus une seule fonction définie. Seul le navigateur le disait.
 s'arrête là. Il signale aussi tout **octet de contrôle** dans le fichier —
 c'était la première des deux fautes, un NUL au milieu d'une déclaration CSS.
 
+## Et le français servi aux autres langues
+
+```bash
+node tests/cles_manquantes.js            # le dictionnaire, en une seconde
+python tests/francais_ailleurs.py --app de   # l'écran, langue par langue (Playwright)
+python tests/francais_ailleurs.py --app es
+```
+
+À lancer quand on touche à l'interface ou à `I18N`. Le 27 oct. 2026, des
+captures App Store en anglais montraient « maîtrisé », « en cours » en
+français ; le relevé a ensuite trouvé 70 lignes françaises en interface
+anglaise, que ni le vérificateur ni `francais_en_dur.py` ne voyaient.
+
+- `cles_manquantes.js` mesure, pour l'allemand **et** l'espagnol, les clés
+  qui retombent sur le français (le repli de `REPLI_LANGUE`), les surcharges
+  d'`I18N_ESPAGNOL` absentes d'une langue (qui y laisseraient le texte de
+  l'allemand), et les valeurs **recopiées** du français (« 🔁 Sens : FR → DE »
+  en anglais).
+- `francais_ailleurs.py` ouvre l'app dans chaque langue **à froid**, puis
+  **à chaud** : en français, chaque écran visité, la langue changée dans les
+  réglages, les écrans revisités. Le second mode est le seul à voir un écran
+  construit avant la bascule et resté dans l'ancienne langue. Il compare chaque
+  ligne visible (et les `aria-label`, `title`, `placeholder`) au relevé
+  français. `--complet` ajoute chaque option des panneaux (une heure pour les
+  neuf langues ; `--port` permet d'en lancer plusieurs à la fois).
+
 ## Ce qu'il vérifie
 
 **Données** — les 5 fichiers JSON : champs obligatoires présents et non vides,
