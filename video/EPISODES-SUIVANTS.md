@@ -115,7 +115,7 @@ fabrication, devis) dans `video/episode-*/` ; les prompts des répliques dans
   **es-04 :** le directeur ne reprend PAS le cycliste allemand -- visage neuf à décrire.
   **05 :** le cycliste en voisin du Späti reste possible (même série, même Kiez).
   ⚠️ **es-02, déjà publié :** la voisine mexicaine reprend le visage de la dame du feu rouge de
-  l'épisode 3 allemand -- le même défaut. À décider : la laisser, ou refaire ses six répliques.
+  l'épisode 3 allemand -- le même défaut. DÉCIDÉ par Jacques (26 oct. : « on avait tout décidé »).
 
 ## Décidé le 24 oct. 2026 -- la suite de la série allemande
 - **04 « Schrippe » : nouvelle fin.** Jacques : « il n'y a rien qui nous dit qu'ils vont se revoir ». Au plan 18 Mark se demande s'il l'attend et n'ose pas (« Soll ich auf sie warten? … Nein. Das ist komisch. ») ; plan 19 neuf : Anna sort et part à gauche, Mark s'éloigne à droite, dos tourné ; le narrateur : « Wird Mark sie wiedersehen? ». Le spectateur voit ce que Mark ne voit pas.
