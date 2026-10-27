@@ -16,6 +16,7 @@ Les fichiers de ce dossier combinent des données de trois sources. Les textes d
 - **Licence** : Creative Commons Attribution-ShareAlike 3.0 (CC BY-SA 3.0) — https://creativecommons.org/licenses/by-sa/3.0/
 - **Attribution** : « Décompositions des kanji : KanjiVG, © Ulrich Apel, CC BY-SA 3.0 (https://kanjivg.tagaini.net/). »
 - La CC BY-SA 3.0 permet de rediffuser une adaptation sous une version ultérieure de la même licence, d'où la CC BY-SA 4.0 de l'ensemble.
+- **Les tracés de `traits/`** (27 oct. 2026) : les 79 fichiers SVG des kanji N5, copiés **tels quels** du dossier `kanji/` du dépôt KanjiVG (branche `master`), en-tête de copyright compris, et montrés sur les cartes de kanji de l'app (ordre des traits). Aucun n'est modifié : la clause de partage à l'identique ne s'étend pas au reste de l'app. L'attribution est dans la carte « Crédits » de l'app en japonais.
 
 ## 3. Listes JLPT — Jonathan Waller
 
