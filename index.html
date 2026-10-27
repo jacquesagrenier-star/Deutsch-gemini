@@ -5605,6 +5605,40 @@ body[data-theme="dark"] .mos-cadre{
 /* v979 : quand l'image a pris le relais, le canevas reste dessine mais ne se voit plus. */
 .mos-toile-image{pointer-events:none;}
 .mos-cadre.en-image > canvas.mos-toile{visibility:hidden;}
+/* v981 : LE MODE TRANSIT -- l'icone du casque dans la barre des cartes, son menu,
+   les liens « je ne peux pas parler / ecouter » et la pastille « version silencieuse ». */
+.title-row-pills{position:relative;}
+.transit-btn{display:inline-grid; place-items:center; width:34px; height:34px; padding:0; border-radius:50%; border:1.5px solid #B9C7D1; background:#FBFAF6; cursor:pointer; flex:none;}
+.transit-btn svg{width:17px; height:17px; fill:none; stroke:#173A4E; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; display:none;}
+.transit-btn .tr-ic-normal{display:block;}
+.transit-btn.actif{background:#173A4E; border-color:#173A4E;}
+.transit-btn.actif .tr-ic-normal{display:none;}
+.transit-btn.actif.micro .tr-ic-micro, .transit-btn.actif.son .tr-ic-son{display:block; stroke:#F0B456;}
+.transit-btn:focus-visible{outline:3px solid #E8A23A; outline-offset:2px;}
+body[data-theme="dark"] .transit-btn{background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.22);}
+body[data-theme="dark"] .transit-btn svg{stroke:#C9D6DE;}
+body[data-theme="dark"] .transit-btn.actif{background:#F0B456; border-color:#F0B456;}
+body[data-theme="dark"] .transit-btn.actif.micro .tr-ic-micro, body[data-theme="dark"] .transit-btn.actif.son .tr-ic-son{stroke:#0B2230;}
+.menu-transit{position:absolute; z-index:60; inset-inline-start:0; top:calc(100% + 6px); width:min(290px, 86vw); background:#FBFAF6; border:1px solid #D7CFBE; border-radius:16px; padding:10px; display:grid; gap:7px; box-shadow:0 14px 30px rgba(23,58,78,.22); text-align:start;}
+.menu-transit.hidden{display:none;}
+.menu-transit .mt-titre{font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:#566070;}
+.menu-transit button{display:flex; gap:10px; align-items:flex-start; width:100%; padding:9px 10px; border-radius:12px; border:1.5px solid #C9D6DE; background:#fff; font:inherit; text-align:start; cursor:pointer; color:#4C566B; font-size:12.5px; line-height:1.3;}
+.menu-transit button b{display:block; color:#173A4E; font-size:14px;}
+.menu-transit button.choisi{border-color:#173A4E; box-shadow:inset 0 0 0 1.5px #173A4E;}
+.menu-transit svg{width:20px; height:20px; flex:none; fill:none; stroke:#173A4E; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; margin-top:1px;}
+.menu-transit .mt-pied{font-size:11.5px; color:#566070; text-align:center;}
+.menu-transit .mt-eteindre{justify-content:center; font-weight:800; color:#173A4E;}
+.menu-transit .mt-eteindre.hidden{display:none;}
+body[data-theme="dark"] .menu-transit{background:#1B2A35; border-color:#2E3E4A;}
+body[data-theme="dark"] .menu-transit button{background:rgba(255,255,255,.05); border-color:rgba(255,255,255,.18); color:#A4ABBC;}
+body[data-theme="dark"] .menu-transit button b, body[data-theme="dark"] .menu-transit .mt-eteindre{color:#EEF2F5;}
+body[data-theme="dark"] .menu-transit button.choisi{border-color:#F0B456; box-shadow:inset 0 0 0 1.5px #F0B456;}
+body[data-theme="dark"] .menu-transit svg{stroke:#C9D6DE;}
+body[data-theme="dark"] .menu-transit .mt-titre, body[data-theme="dark"] .menu-transit .mt-pied{color:#A4ABBC;}
+.cp-transit-lien{display:block; margin:10px auto 0; background:none; border:0; padding:6px 4px; font:inherit; font-size:13px; font-weight:700; color:#173A4E; text-decoration:underline; text-underline-offset:3px; cursor:pointer;}
+body[data-theme="dark"] .cp-transit-lien{color:#9CC3DD;}
+.cp-transit-badge{display:inline-block; font-size:11px; font-weight:800; color:#2E5770; background:#E4EDF2; border-radius:6px; padding:3px 7px; margin-inline-start:8px; vertical-align:middle;}
+body[data-theme="dark"] .cp-transit-badge{background:rgba(156,195,221,.16); color:#9CC3DD;}
 .mos-cartouche{text-align:start; line-height:1.35;}
 /* L'EN-TETE : le rang a gauche, les actions a droite, sur la meme ligne que
    celle que le rang occupait deja. */
@@ -8739,7 +8773,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v980</span>
+    <span class="subtitle-version">v981</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -10454,6 +10488,17 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         </div>
         <div class="title-row-pills">
             <div class="pill combo-pill hidden" id="comboPillFlash">🔥 x<span id="comboCountFlash">0</span></div>
+            <!-- v981 : LE MODE TRANSIT. Voir choisirTransit(). -->
+            <button type="button" class="transit-btn" id="transitBtn" onclick="basculerMenuTransit(event)"
+                    aria-haspopup="true" aria-expanded="false"
+                    data-i18n-aria-label="tr_bouton" aria-label="Transports : sans micro ou sans son"><svg class="tr-ic-normal" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></svg><svg class="tr-ic-micro" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M3 3l18 18"/></svg><svg class="tr-ic-son" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16 9l5 6M21 9l-5 6"/></svg></button>
+            <div class="menu-transit hidden" id="menuTransit" onclick="event.stopPropagation()">
+                <div class="mt-titre" data-i18n="tr_titre">Pour cette séance</div>
+                <button type="button" id="mtMicro" onclick="choisirTransit('micro')"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M3 3l18 18"/></svg><span><b data-i18n="tr_micro">Sans micro</b><span data-i18n="tr_micro_d">J'ai mes écouteurs, je ne peux pas parler</span></span></button>
+                <button type="button" id="mtSon" onclick="choisirTransit('son')"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4zM16 9l5 6M21 9l-5 6"/></svg><span><b data-i18n="tr_son">Sans son</b><span data-i18n="tr_son_d">Pas d'écouteurs : aucun son</span></span></button>
+                <button type="button" class="mt-eteindre hidden" id="mtEteindre" onclick="choisirTransit(null)" data-i18n="tr_eteindre">Rétablir le son et le micro</button>
+                <div class="mt-pied" data-i18n="tr_pied">S'éteint à la fin de la séance</div>
+            </div>
             <div class="pill" id="flashCounter">1 / 10</div>
         </div>
     </div>
@@ -12457,6 +12502,22 @@ const I18N = {
         cp_q_ordre: "Construis la phrase",
         cp_ecouter: "Écouter",
         cp_lent: "Plus lentement",
+        tr_bouton: "Transports : sans micro ou sans son",
+        tr_titre: "Pour cette séance",
+        tr_micro: "Sans micro",
+        tr_micro_d: "J'ai mes écouteurs, je ne peux pas parler",
+        tr_son: "Sans son",
+        tr_son_d: "Pas d'écouteurs : aucun son",
+        tr_pied: "S'éteint à la fin de la séance",
+        tr_eteindre: "Rétablir le son et le micro",
+        tr_lien_parler: "Je ne peux pas parler maintenant",
+        tr_lien_ecouter: "Je ne peux pas écouter maintenant",
+        tr_actif_micro: "Sans micro jusqu'à la fin de la séance : l'oral devient une phrase à reconstruire.",
+        tr_actif_son: "Sans son jusqu'à la fin de la séance : les écoutes deviennent de la lecture.",
+        tr_eteint: "Le son et le micro sont rétablis.",
+        tr_q_lis: "Lis et choisis le sens",
+        tr_q_lire: "Lis la phrase",
+        tr_remplace: "Version silencieuse",
         cp_bravo: "Bravo !",
         cp_reponse: "La bonne réponse :",
         cp_tu_as_ecrit: "Tu as écrit :",
@@ -13943,6 +14004,22 @@ const I18N = {
         cp_q_ordre: "Build the sentence",
         cp_ecouter: "Listen",
         cp_lent: "Slower",
+        tr_bouton: "On the go: no mic or no sound",
+        tr_titre: "For this session",
+        tr_micro: "No mic",
+        tr_micro_d: "I have earphones but can't speak",
+        tr_son: "No sound",
+        tr_son_d: "No earphones: no sound at all",
+        tr_pied: "Turns off at the end of the session",
+        tr_eteindre: "Turn sound and mic back on",
+        tr_lien_parler: "I can't speak right now",
+        tr_lien_ecouter: "I can't listen right now",
+        tr_actif_micro: "No mic until the end of the session: speaking becomes building the sentence.",
+        tr_actif_son: "No sound until the end of the session: listening becomes reading.",
+        tr_eteint: "Sound and mic are back on.",
+        tr_q_lis: "Read and choose the meaning",
+        tr_q_lire: "Read the sentence",
+        tr_remplace: "Silent version",
         cp_bravo: "Well done!",
         cp_reponse: "The right answer:",
         cp_tu_as_ecrit: "You wrote:",
@@ -15430,6 +15507,22 @@ const I18N = {
         cp_q_ordre: "Cümleyi kur",
         cp_ecouter: "Dinle",
         cp_lent: "Daha yavaş",
+        tr_bouton: "Yolda: mikrofonsuz ya da sessiz",
+        tr_titre: "Bu oturum için",
+        tr_micro: "Mikrofonsuz",
+        tr_micro_d: "Kulaklığım var ama konuşamıyorum",
+        tr_son: "Sessiz",
+        tr_son_d: "Kulaklık yok: hiç ses yok",
+        tr_pied: "Oturum bitince kapanır",
+        tr_eteindre: "Sesi ve mikrofonu geri aç",
+        tr_lien_parler: "Şu an konuşamıyorum",
+        tr_lien_ecouter: "Şu an dinleyemiyorum",
+        tr_actif_micro: "Oturum sonuna kadar mikrofonsuz: konuşma alıştırmaları cümle kurmaya dönüşür.",
+        tr_actif_son: "Oturum sonuna kadar sessiz: dinleme alıştırmaları okumaya dönüşür.",
+        tr_eteint: "Ses ve mikrofon geri açıldı.",
+        tr_q_lis: "Oku ve anlamı seç",
+        tr_q_lire: "Cümleyi oku",
+        tr_remplace: "Sessiz sürüm",
         cp_bravo: "Aferin!",
         cp_reponse: "Doğru cevap:",
         cp_tu_as_ecrit: "Senin yazdığın:",
@@ -17328,6 +17421,22 @@ const I18N = {
         cp_q_ordre: "Склади речення",
         cp_ecouter: "Слухати",
         cp_lent: "Повільніше",
+        tr_bouton: "У дорозі: без мікрофона або без звуку",
+        tr_titre: "Для цього заняття",
+        tr_micro: "Без мікрофона",
+        tr_micro_d: "Маю навушники, але не можу говорити",
+        tr_son: "Без звуку",
+        tr_son_d: "Без навушників: жодного звуку",
+        tr_pied: "Вимикається наприкінці заняття",
+        tr_eteindre: "Повернути звук і мікрофон",
+        tr_lien_parler: "Зараз не можу говорити",
+        tr_lien_ecouter: "Зараз не можу слухати",
+        tr_actif_micro: "Без мікрофона до кінця заняття: усні вправи стають складанням речення.",
+        tr_actif_son: "Без звуку до кінця заняття: аудіювання стає читанням.",
+        tr_eteint: "Звук і мікрофон повернуто.",
+        tr_q_lis: "Прочитай і вибери значення",
+        tr_q_lire: "Прочитай речення",
+        tr_remplace: "Беззвучна версія",
         cp_bravo: "Браво!",
         cp_reponse: "Правильна відповідь:",
         cp_tu_as_ecrit: "Ти написав(-ла):",
@@ -19539,6 +19648,22 @@ const I18N = {
         cp_q_ordre: "جمله را بساز",
         cp_ecouter: "گوش بده",
         cp_lent: "آهسته‌تر",
+        tr_bouton: "در راه: بدون میکروفون یا بدون صدا",
+        tr_titre: "برای این جلسه",
+        tr_micro: "بدون میکروفون",
+        tr_micro_d: "هدفون دارم ولی نمی‌توانم حرف بزنم",
+        tr_son: "بدون صدا",
+        tr_son_d: "هدفون ندارم: هیچ صدایی پخش نشود",
+        tr_pied: "در پایان جلسه خاموش می‌شود",
+        tr_eteindre: "برگرداندن صدا و میکروفون",
+        tr_lien_parler: "الان نمی‌توانم حرف بزنم",
+        tr_lien_ecouter: "الان نمی‌توانم گوش بدهم",
+        tr_actif_micro: "تا پایان جلسه بدون میکروفون: تمرین‌های گفتاری به ساختن جمله تبدیل می‌شوند.",
+        tr_actif_son: "تا پایان جلسه بدون صدا: تمرین‌های شنیداری به خواندن تبدیل می‌شوند.",
+        tr_eteint: "صدا و میکروفون برگشتند.",
+        tr_q_lis: "بخوان و معنی را انتخاب کن",
+        tr_q_lire: "جمله را بخوان",
+        tr_remplace: "نسخهٔ بی‌صدا",
         cp_bravo: "آفرین!",
         cp_reponse: "پاسخ درست:",
         cp_tu_as_ecrit: "نوشتهٔ تو:",
@@ -21198,6 +21323,22 @@ const I18N = {
         cp_q_ordre: "كوِّن الجملة",
         cp_ecouter: "استمع",
         cp_lent: "أبطأ",
+        tr_bouton: "في الطريق: بلا ميكروفون أو بلا صوت",
+        tr_titre: "لهذه الجلسة",
+        tr_micro: "بلا ميكروفون",
+        tr_micro_d: "معي سماعات لكن لا أستطيع الكلام",
+        tr_son: "بلا صوت",
+        tr_son_d: "بلا سماعات: لا صوت إطلاقًا",
+        tr_pied: "يتوقف في نهاية الجلسة",
+        tr_eteindre: "إعادة الصوت والميكروفون",
+        tr_lien_parler: "لا أستطيع الكلام الآن",
+        tr_lien_ecouter: "لا أستطيع الاستماع الآن",
+        tr_actif_micro: "بلا ميكروفون حتى نهاية الجلسة: تمارين النطق تصبح ترتيب الجملة.",
+        tr_actif_son: "بلا صوت حتى نهاية الجلسة: تمارين الاستماع تصبح قراءة.",
+        tr_eteint: "عاد الصوت والميكروفون.",
+        tr_q_lis: "اقرأ واختر المعنى",
+        tr_q_lire: "اقرأ الجملة",
+        tr_remplace: "نسخة صامتة",
         cp_bravo: "أحسنت!",
         cp_reponse: "الإجابة الصحيحة:",
         cp_tu_as_ecrit: "ما كتبته:",
@@ -21546,6 +21687,22 @@ const I18N = {
         cp_q_ordre: "Monte a frase",
         cp_ecouter: "Ouvir",
         cp_lent: "Mais devagar",
+        tr_bouton: "Em trânsito: sem microfone ou sem som",
+        tr_titre: "Para esta sessão",
+        tr_micro: "Sem microfone",
+        tr_micro_d: "Estou de fone, mas não posso falar",
+        tr_son: "Sem som",
+        tr_son_d: "Sem fone: nenhum som",
+        tr_pied: "Desliga no fim da sessão",
+        tr_eteindre: "Reativar som e microfone",
+        tr_lien_parler: "Não posso falar agora",
+        tr_lien_ecouter: "Não posso ouvir agora",
+        tr_actif_micro: "Sem microfone até o fim da sessão: a fala vira montar a frase.",
+        tr_actif_son: "Sem som até o fim da sessão: a escuta vira leitura.",
+        tr_eteint: "Som e microfone reativados.",
+        tr_q_lis: "Leia e escolha o sentido",
+        tr_q_lire: "Leia a frase",
+        tr_remplace: "Versão silenciosa",
         cp_bravo: "Muito bem!",
         cp_reponse: "A resposta certa:",
         cp_tu_as_ecrit: "Você escreveu:",
@@ -23095,6 +23252,22 @@ const I18N = {
         cp_q_ordre: "Ułóż zdanie",
         cp_ecouter: "Posłuchaj",
         cp_lent: "Wolniej",
+        tr_bouton: "W drodze: bez mikrofonu lub bez dźwięku",
+        tr_titre: "Na tę sesję",
+        tr_micro: "Bez mikrofonu",
+        tr_micro_d: "Mam słuchawki, ale nie mogę mówić",
+        tr_son: "Bez dźwięku",
+        tr_son_d: "Bez słuchawek: żadnego dźwięku",
+        tr_pied: "Wyłącza się na koniec sesji",
+        tr_eteindre: "Przywróć dźwięk i mikrofon",
+        tr_lien_parler: "Nie mogę teraz mówić",
+        tr_lien_ecouter: "Nie mogę teraz słuchać",
+        tr_actif_micro: "Bez mikrofonu do końca sesji: mówienie zamienia się w układanie zdania.",
+        tr_actif_son: "Bez dźwięku do końca sesji: słuchanie zamienia się w czytanie.",
+        tr_eteint: "Dźwięk i mikrofon przywrócone.",
+        tr_q_lis: "Przeczytaj i wybierz znaczenie",
+        tr_q_lire: "Przeczytaj zdanie",
+        tr_remplace: "Wersja bez dźwięku",
         cp_bravo: "Brawo!",
         cp_reponse: "Prawidłowa odpowiedź:",
         cp_tu_as_ecrit: "Napisałeś(-aś):",
@@ -24644,6 +24817,22 @@ const I18N = {
         cp_q_ordre: "Составь предложение",
         cp_ecouter: "Слушать",
         cp_lent: "Медленнее",
+        tr_bouton: "В дороге: без микрофона или без звука",
+        tr_titre: "На это занятие",
+        tr_micro: "Без микрофона",
+        tr_micro_d: "Есть наушники, но говорить не могу",
+        tr_son: "Без звука",
+        tr_son_d: "Без наушников: никакого звука",
+        tr_pied: "Выключается в конце занятия",
+        tr_eteindre: "Вернуть звук и микрофон",
+        tr_lien_parler: "Сейчас не могу говорить",
+        tr_lien_ecouter: "Сейчас не могу слушать",
+        tr_actif_micro: "Без микрофона до конца занятия: устные задания становятся составлением фразы.",
+        tr_actif_son: "Без звука до конца занятия: аудирование становится чтением.",
+        tr_eteint: "Звук и микрофон возвращены.",
+        tr_q_lis: "Прочитай и выбери значение",
+        tr_q_lire: "Прочитай фразу",
+        tr_remplace: "Беззвучная версия",
         cp_bravo: "Молодец!",
         cp_reponse: "Правильный ответ:",
         cp_tu_as_ecrit: "Ты написал(а):",
@@ -40168,6 +40357,7 @@ var accueilDejaOuvert = false;
 // Et pas de restauration automatique de la position par le navigateur au rechargement.
 try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }catch(e){}
 function showScreen(id){
+    try{ eteindreTransitHorsSeance(id); }catch(e){}
     // Le panneau d'information de l'accueil ne survit pas a un changement
     // d'ecran : voir fermerInfoProgression().
     fermerInfoProgression();
@@ -46159,7 +46349,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 980;
+const APP_VERSION = 981;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47115,6 +47305,8 @@ function testerLeSon(){
 // l'appel a play(), il ne doit y avoir aucune attente. Voir sha1Hex().
 function direAllemand(texte, opts){
     opts = opts || {};
+    // v981 : Sans son (mode transit) -- rien ne se dit ; la suite s'enchaine.
+    if(transitSansSon()){ if(opts.onEnd){ try{ opts.onEnd(); }catch(e){} } return; }
     const rate = (opts.rate || 0.9) * (opts.vitesseFixe ? 1 : facteurVitesse);
     const onEnd = opts.onEnd || null;
 
@@ -47458,6 +47650,7 @@ function etapesChaineCarte(){
 
 function direChaineCarte(){
     if(!currentCards.length) return;
+    if(transitSansSon()) return;   // v981 : mode transit
     // Direction anglaise : la cible est l'anglais, qui n'a aucun fichier
     // pre-genere et passe par la synthese. direAllemand() n'irait pas y
     // chercher la bonne voix -- on garde le chemin d'origine, inchange.
@@ -47713,6 +47906,7 @@ function texteCarteAPrononcer(){
 // n'est donc plus condamne pour la session par un creux de reseau.
 
 function speakWord(){
+    if(transitSansSon()) return;   // v981 : mode transit
     // v889 : PLUS DE GARDE speechSynthesis ICI. L'app Android (WebView) n'a pas
     // de synthese : la garde coupait le haut-parleur du mot AVANT le vrai
     // fichier, alors que le retournement et la phrase, qui ne l'avaient pas,
@@ -51702,7 +51896,121 @@ function cacherCartePhrase(){
     if(el){ el.classList.add("hidden"); el.textContent = ""; }
 }
 
+// ============ LE MODE TRANSIT (v981, 27 oct. 2026) ============
+// Le fils de Jacques : dans le transport en commun, pouvoir faire la seance sans
+// parler a voix haute, ou sans son du tout. Jacques : « si on saute les
+// exercices d'ecoute, on en saute plusieurs ». D'ou :
+// - ON REMPLACE, ON NE SAUTE PAS. Chaque exercice oral ou d'ecoute a sa version
+//   silencieuse, fabriquee ICI, a l'affichage, avec le texte que l'item porte
+//   deja (phrase, sens, mots) : rien a telecharger, la seance hors ligne garde
+//   sa longueur. « parler » -> « ordre » (reconstruire la meme phrase) ; en Sans
+//   son, « dictee » -> « ordre », « dictee_mot » -> « trou » sur le meme mot,
+//   « ecoute » -> la phrase LUE avec les memes choix ; « rp_chiffres » et
+//   « rp_epeler » montrent l'ecrit au lieu de le dire.
+// - « Sans micro » : pas d'oral. « Sans son » : ni oral ni son -- direAllemand(),
+//   la lecture des cartes et les sons de reussite se taisent.
+// - DEUX ENTREES, RIEN SUR L'ACCUEIL (Jacques : « il ne faudrait pas trop
+//   surcharger la pilule ») : un lien sur l'exercice meme, et l'icone du casque
+//   dans la barre des cartes.
+// - IL S'ETEINT TOUT SEUL en quittant la seance (showScreen), pour qu'on ne perde
+//   jamais l'oral par oubli. Jamais memorise : une variable, pas un reglage.
+var MODE_TRANSIT = null;            // null | "micro" | "son"
+var CARTE_PHRASE_AFFICHEE = null;   // l'item d'origine de la carte-phrase a l'ecran
+function transitSansSon(){ return MODE_TRANSIT === "son"; }
+function majBoutonTransit(){
+    const b = document.getElementById("transitBtn");
+    if(b){
+        b.classList.toggle("actif", !!MODE_TRANSIT);
+        b.classList.toggle("micro", MODE_TRANSIT === "micro");
+        b.classList.toggle("son", MODE_TRANSIT === "son");
+    }
+    const m = document.getElementById("mtMicro"), s = document.getElementById("mtSon"), e = document.getElementById("mtEteindre");
+    if(m) m.classList.toggle("choisi", MODE_TRANSIT === "micro");
+    if(s) s.classList.toggle("choisi", MODE_TRANSIT === "son");
+    if(e) e.classList.toggle("hidden", !MODE_TRANSIT);
+}
+function fermerMenuTransit(){
+    const m = document.getElementById("menuTransit");
+    if(m) m.classList.add("hidden");
+    const b = document.getElementById("transitBtn");
+    if(b) b.setAttribute("aria-expanded", "false");
+}
+function basculerMenuTransit(ev){
+    if(ev) ev.stopPropagation();
+    const m = document.getElementById("menuTransit");
+    if(!m) return;
+    const ouvrir = m.classList.contains("hidden");
+    m.classList.toggle("hidden", !ouvrir);
+    const b = document.getElementById("transitBtn");
+    if(b) b.setAttribute("aria-expanded", ouvrir ? "true" : "false");
+    majBoutonTransit();
+    // Ramene le menu dans l'ecran : en arabe et en persan le bouton n'est pas
+    // au bord, et le menu ancre sur lui sortait de 170 px a gauche.
+    m.style.transform = "";
+    if(ouvrir){
+        const r = m.getBoundingClientRect(), marge = 12, larg = window.innerWidth;
+        let dx = 0;
+        if(r.left < marge) dx = marge - r.left;
+        else if(r.right > larg - marge) dx = (larg - marge) - r.right;
+        if(dx) m.style.transform = "translateX(" + Math.round(dx) + "px)";
+    }
+}
+document.addEventListener("click", () => { try{ fermerMenuTransit(); }catch(e){} });
+function choisirTransit(mode){
+    const avant = MODE_TRANSIT;
+    MODE_TRANSIT = mode || null;
+    fermerMenuTransit();
+    majBoutonTransit();
+    if(MODE_TRANSIT === "son"){
+        try{ if("speechSynthesis" in window) speechSynthesis.cancel(); }catch(e){}
+        try{ arreterAudioPregenere(); }catch(e){}
+    }
+    try{ noterAudio("transit", "TRANSIT", "mode " + (MODE_TRANSIT || "eteint")); }catch(e){}
+    try{ showInfoToast(t(MODE_TRANSIT === "micro" ? "tr_actif_micro" : MODE_TRANSIT === "son" ? "tr_actif_son" : "tr_eteint")); }catch(e){}
+    if(avant !== MODE_TRANSIT) rafraichirCarteTransit();
+}
+// La carte-phrase affichee se refait dans le nouveau mode, si on n'y a pas encore repondu.
+function rafraichirCarteTransit(){
+    const el = document.getElementById("cartePhrase");
+    if(!el || el.classList.contains("hidden") || !CARTE_PHRASE_AFFICHEE) return;
+    if(el.querySelector(".cp-retour:not(.hidden)")) return;
+    montrerCartePhrase(CARTE_PHRASE_AFFICHEE);
+}
+// En quittant la seance (tout ecran autre que les cartes et la scene), le mode s'eteint.
+function eteindreTransitHorsSeance(id){
+    if(!MODE_TRANSIT || id === "flashcards" || id === "sceneSeance") return;
+    MODE_TRANSIT = null;
+    fermerMenuTransit();
+    majBoutonTransit();
+    try{ noterAudio("transit", "TRANSIT", "eteint en quittant la seance (" + id + ")"); }catch(e){}
+}
+// La version silencieuse d'un item, ou null s'il reste tel quel.
+function substitutTransit(item){
+    if(!MODE_TRANSIT || !item || !item.phrase || item.transitDe) return null;
+    const f = item.forme;
+    const mots = Array.isArray(item.phrase.mots) ? item.phrase.mots : null;
+    const copie = (plus) => Object.assign({}, item, { transitDe: f, prepa: false, prepaDictee: false, intrus: null }, plus);
+    const ordre = () => (mots && mots.length >= 2) ? copie({ forme: "ordre", q: "cp_q_ordre" }) : null;
+    if(f === "parler") return ordre() || copie({ forme: "transit_lire", q: "tr_q_lire" });
+    if(!transitSansSon()) return null;
+    if(f === "ecoute") return copie({ transitLu: true, q: "tr_q_lis" });
+    if(f === "rp_chiffres" || f === "rp_epeler") return copie({ transitLu: true });
+    if(f === "dictee") return ordre();
+    if(f === "dictee_mot"){
+        let vise = -1;
+        try{
+            const cible = nuPhrase(String(motDictee(item.cible) || "").split(" ").pop());
+            if(mots && cible) vise = mots.findIndex(m => nuPhrase(String(m).replace(/[.,!?;:]+$/, "")) === cible);
+        }catch(e){}
+        if(vise >= 0 && item.cible) return copie({ forme: "trou", vise: vise, q: "cp_q_trou" });
+        return ordre();
+    }
+    return null;
+}
 function montrerCartePhrase(item){
+    // v981 : le mode transit remplace l'exercice par sa version silencieuse.
+    CARTE_PHRASE_AFFICHEE = item;
+    try{ const remplace = substitutTransit(item); if(remplace) item = remplace; }catch(e){}
     const zone = document.getElementById("flashcards");
     const el = document.getElementById("cartePhrase");
     if(!zone || !el){ nextFlashcard(); return; }
@@ -51746,6 +52054,7 @@ function montrerCartePhrase(item){
                    : (QUESTIONS[item.forme] || "cp_q_ecoute");
     const sansConsigne = ["pp_fin", "pp_scene", "scene_arret", "av_jalon", "av_escale_fin", "av_fin_a1"];
     if(sansConsigne.indexOf(item.forme) < 0) type.appendChild(document.createTextNode(t(question)));
+    if(item.transitDe) type.appendChild(creer("span", "cp-transit-badge", t("tr_remplace")));
     if(sansConsigne.indexOf(item.forme) < 0 || item.forme === "pp_fin" || item.forme === "pp_scene") el.appendChild(type);
     // Le dialogue : la replique d'en face, au-dessus de la phrase a dire.
     if(item.contexte){
@@ -52039,7 +52348,11 @@ function montrerCartePhrase(item){
         ouvrirScenePremiersPas(item.scene, (item.jourPP || 0) >= joursPremiersPas().length - 1);
         return;
     } else if(item.forme === "ecoute"){
-        el.appendChild(rangeeEcoute);
+        if(item.transitLu){
+            const lue = creer("p", "cp-phrase", item.phrase.de);
+            lue.setAttribute("lang", langueDe);
+            el.appendChild(lue);
+        } else el.appendChild(rangeeEcoute);
         const choix = creer("div", "cp-choix");
         const options = melangerPhrase([item.phrase.sens].concat(leurresPhrase(item, 2)));
         options.forEach(o => {
@@ -52058,11 +52371,13 @@ function montrerCartePhrase(item){
             choix.appendChild(b);
         });
         el.appendChild(choix);
-        direPhrase(item);
+        if(!item.transitLu) direPhrase(item);
     } else if(item.forme === "rp_chiffres"){
         // v879 : LE NOMBRE ENTENDU, ECRIT EN CHIFFRES. On juge l'oreille : la
         // reponse ne demande pas de savoir ecrire « siebenundvierzig ».
-        el.appendChild(rangeeEcoute);
+        // v981 : en Sans son, le nombre est ecrit en lettres au lieu d'etre dit.
+        if(item.transitLu){ const lu = creer("p", "cp-phrase", item.phrase.de); lu.setAttribute("lang", langueDe); el.appendChild(lu); }
+        else el.appendChild(rangeeEcoute);
         const champ = saisie();
         champ.setAttribute("inputmode", "numeric");
         champ.removeAttribute("lang");
@@ -52137,7 +52452,9 @@ function montrerCartePhrase(item){
     } else if(item.forme === "rp_epeler"){
         // v880 : LE MOT EPELE (« Hah, Oh, Teh, Eh, Ell »), a ecrire. Casse et
         // accents ne comptent pas (normaliserSaisie) : on juge l'oreille.
-        el.appendChild(rangeeEcoute);
+        // v981 : en Sans son, l'epellation est ecrite au lieu d'etre dite.
+        if(item.transitLu){ const lu = creer("p", "cp-phrase", item.phrase.de); lu.setAttribute("lang", langueDe); el.appendChild(lu); }
+        else el.appendChild(rangeeEcoute);
         const champ = saisie();
         el.appendChild(champ);
         const verif = boutonVerifier(() => {
@@ -52397,6 +52714,16 @@ function montrerCartePhrase(item){
         champ.addEventListener("keydown", e => { if(e.key === "Enter") verif.click(); });
         actions.appendChild(verif);
         if(motSeul) direMotPhrase(item); else direPhrase(item);
+    } else if(item.forme === "transit_lire"){
+        // v981 : un oral sans mots a reconstruire, en mode transit : la phrase a
+        // lire, son sens, et CONTINUER. Ne compte ni juste ni faux.
+        const lue = creer("p", "cp-phrase", item.phrase.de);
+        lue.setAttribute("lang", langueDe);
+        el.appendChild(lue);
+        el.appendChild(creer("p", "cp-sens", item.phrase.sens));
+        fait.repondu = true;
+        suite.classList.remove("hidden");
+        suite.addEventListener("click", () => palierApresPhrase(repondrePhrase(item, null)), { once: true, capture: true });
     } else if(item.forme === "parler" && essaiActif("oral_verdict")){
         // v835 : LA CARTE D'ORAL A VERDICT. Un seul rond : le toucher enregistre
         // (il devient rouge et grossit avec la voix), le toucher encore arrete.
@@ -53052,6 +53379,17 @@ function montrerCartePhrase(item){
         b.appendChild(creer("small", "", item.apres.sens));
         b.addEventListener("click", () => { try{ direAllemand(item.apres.p, { rate: 0.9 }); }catch(e){} });
         el.appendChild(b);
+    }
+    // v981 : « je ne peux pas parler / ecouter maintenant », sur l'exercice meme.
+    if(!item.transitDe){
+        const ecoute = ["ecoute", "dictee", "dictee_mot", "rp_chiffres", "rp_epeler"].indexOf(item.forme) >= 0;
+        if(item.forme === "parler" || (ecoute && !transitSansSon())){
+            const parler = item.forme === "parler";
+            const lien = creer("button", "cp-transit-lien", t(parler ? "tr_lien_parler" : "tr_lien_ecouter"));
+            lien.type = "button";
+            lien.addEventListener("click", (ev) => { ev.stopPropagation(); choisirTransit(parler ? "micro" : "son"); });
+            el.appendChild(lien);
+        }
     }
     el.appendChild(retour);
     actions.appendChild(suite);
@@ -56472,6 +56810,7 @@ function playToneFallback(notes, noteGap, noteDuration, peakGain){
 // v956 : le secours joue aussi la kalimba (voir construireBravoKalimba), en
 // oscillateurs directs -- meme coupure iOS en silencieux que l'ancien chemin.
 function playMasteredSoundFallback(){
+    if(transitSansSon()) return;   // v981 : mode transit
     try{
         const ctx = getAudioCtx();
         if(!ctx) return;
@@ -56815,6 +57154,7 @@ function construireNotePlusUn(){
 // Le carreau d'une carte reussie arrive juste apres les confettis : la note ne
 // part que si aucun son de reussite (ni piece de palier) n'a joue a l'instant.
 function jouerNotePlusUn(){
+    if(transitSansSon()) return;   // v981 : mode transit
     if(!notePlusUnEl || Date.now() - dernierBravo < 900 || sonPalierEnCours) return;
     try{
         notePlusUnEl.currentTime = 0;
@@ -56850,6 +57190,7 @@ function preparerSonsPalier(){
 }
 // Rend true si la piece est partie ; false, et l'appelant garde l'ancienne fanfare.
 function jouerSonPalier(m){
+    if(transitSansSon()) return true;   // v981 : mode transit (true : pas de son de repli)
     const el = sonsPalierEls[Math.max(1, Math.min(3, m))];
     if(!el) return false;
     try{
@@ -56867,6 +57208,7 @@ function couperSonPalier(){
 }
 
 function playMasteredSound(){
+    if(transitSansSon()) return;   // v981 : mode transit
     // v950 : filet -- si la connexion n'a pas encore prepare la kalimba, la
     // premiere carte la prepare pour les suivantes.
     try{ preparerSonsEssai(); }catch(e){}
@@ -56901,6 +57243,7 @@ const CELEBRATION_CHEER_VARIANTS = [
 ];
 
 function playCelebrationCheerSound(){
+    if(transitSansSon()) return;   // v981 : mode transit
     try{
         const ctx = getAudioCtx();
         if(!ctx) return;
