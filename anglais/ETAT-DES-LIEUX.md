@@ -5,6 +5,30 @@ version pour apprendre l'anglais ». Rien n'a été supprimé, payé ni publié 
 document. Chaque chiffre a été compté dans les fichiers ; une estimation est signalée
 comme telle.
 
+## Où on en est (mis à jour le 27 oct. 2026, au soir)
+
+**Décidé par Jacques le 27 oct.** : anglais **américain par défaut, britannique en
+variante** ; même moteur et même structure que l'allemand, l'espagnol et le japonais ;
+mêmes images de scènes ; l'anglais se situe à **Boston**.
+
+**Construit (branche `anglais`, essai admin)** :
+- le **socle** : `?apprendre=en`, porte « ENGLISH — ESSAI ANGLAIS » dans l'Administration,
+  garde (tout autre compte repart en allemand), liste blanche CSS, stockage `wortandoEn_`,
+  Firestore `usersEn` / `resumesEn` (règles écrites dans `firestore.rules`, **à coller**),
+  interface en français, choix « Quel anglais ? » (américain / britannique) dans les réglages ;
+- le **corpus A1**, en deux jeux complets (`anglais/datos/` et `anglais/datos-gb/`) :
+  **553 noms en 19 thèmes, 133 verbes** (formes calculées, irréguliers listés), **91
+  adjectifs** (comparatif, superlatif), **41 adverbes, 55 expressions, 73 mots-outils** ;
+  chaque mot a sa phrase d'exemple anglaise et sa traduction française ;
+- la **grammaire A1** en français : **13 fiches** (to be, a / an / the, pluriel, présent
+  simple, présent en -ing, pronoms et possessifs, there is, can, questions, in / on / at,
+  adjectifs, prétérit, faux amis) et **126 questions** en 13 séries « M'entraîner » ;
+- la **séance du jour** en anglais (mots seulement, comme le japonais à ses débuts).
+
+**Reste à faire pour l'A1 complet** : prononciation et son du jour, repères (nombres,
+jours, mois, heure), Premiers pas, feuilles de conjugaison, cartes-phrases dans la séance,
+scènes (mots anglais des scènes, à Boston), mosaïque, puis relecture par un anglophone.
+
 ## En bref
 
 - **Un ancien module anglais dort dans `index.html`.** Il a été construit en août pour
@@ -155,22 +179,24 @@ Chacune s'ajoute à la carte « Crédits » le jour où elle entre dans l'app.
 
 ## 5. La variante : américain ou britannique ?
 
-**Recommandation du chef, en attente de ta confirmation : américain par défaut,
-britannique en variante.** Comme Espagne / Amérique latine (`espanol/datos/variantes.json`) :
+**Décidé par Jacques le 27 oct. 2026 : américain par défaut, britannique en variante**
+(« Va pour l'anglais américain par défaut, avec le britannique en variante »). Comme
+Espagne / Amérique latine :
 
 - **Base américaine** : c'est l'anglais du plus grand nombre (Amérique du Nord, médias,
   internet), et celui que des Québécois entendent tous les jours.
 - **Variante britannique** dans les réglages, qui change :
-  - le **vocabulaire** (`apartment` → `flat`, `elevator` → `lift`, `fall` → `autumn`) : 57
-    paires déjà écrites dans `english_britam.json` ;
+  - le **vocabulaire** (`apartment` → `flat`, `elevator` → `lift`, `fall` → `autumn`) : 44
+    noms et 2 adjectifs de l'A1 ont leur mot britannique (`noms_a1.py`, drapeau `gb=`) ; les
+    57 paires de `english_britam.json` (A2-B1) serviront au palier suivant ;
   - l'**orthographe** (`color` → `colour`, `center` → `centre`, `traveled` → `travelled`),
     par une liste de mots, pas par une règle (« -or → -our » casserait *doctor*) ;
   - la **voix** du téléphone (`en-GB` au lieu de `en-US`).
 - Dans chaque mode, la carte cite l'autre forme en note (« 🇬🇧 flat »), comme la carte
   espagnole cite le mot d'Amérique latine.
 
-Les données sont faites pour que l'un ou l'autre soit la base : si tu choisis le
-britannique, on inverse la table, sans rien réécrire.
+Construit ainsi : deux jeux de données complets (`anglais/datos/`, `anglais/datos-gb/`),
+mêmes mots dans le même ordre, pour que la progression suive quand on change de variante.
 
 ---
 
@@ -178,12 +204,12 @@ britannique, on inverse la table, sans rien réécrire.
 
 | Étape | Contenu | Dépense | Ce qui la prouve |
 |---|---|---|---|
-| 0 | Ce document | 0 | — |
-| 1 | **Socle**, en essai admin : `?apprendre=en`, garde, liste blanche, stockage et Firestore à part, `LANGUE_ANGLAIS`, `I18N_ANGLAIS`, porte dans l'Administration | 0 | Parcours `de` et `es` à **0 écart**. `?apprendre=en` ouvre un accueil sans un mot d'allemand |
-| 2 | **Corpus A1** dérivé et relu (`anglais/outils/construire.py` → `anglais/datos/`), variante US / GB | 0 | La séance du jour en anglais, cartes avec exemple et traduction |
-| 3 | Grammaire A1 en français, faux amis, séries d'exercices, feuilles de conjugaison | 0 | Tuile Grammaire, séries jouables |
+| 0 | Ce document | 0 | — **fait** |
+| 1 | **Socle** (**fait**), en essai admin : `?apprendre=en`, garde, liste blanche, stockage et Firestore à part, `LANGUE_ANGLAIS`, `I18N_ANGLAIS`, porte dans l'Administration | 0 | Parcours `de` et `es` à **0 écart**. `?apprendre=en` ouvre un accueil sans un mot d'allemand |
+| 2 | **Corpus A1** (**fait**, à relire) dérivé et relu (`anglais/outils/construire.py` → `anglais/datos/`), variante US / GB | 0 | La séance du jour en anglais, cartes avec exemple et traduction |
+| 3 | Grammaire A1 en français, faux amis, séries d'exercices (**fait**), feuilles de conjugaison (à faire) | 0 | Tuile Grammaire, séries jouables |
 | 4 | Prononciation, son du jour, repères, Premiers pas | 0 | Le 🌱 d'un compte neuf en anglais |
-| 5 | Scènes (mots anglais de chaque scène) | 0 | Scènes jouables en anglais |
+| 5 | Scènes (mots anglais de chaque scène, à Boston) | 0 | Scènes jouables en anglais |
 | 6 | Relecture par un anglophone, puis ouverture aux testeurs | relecteur, à chiffrer | Retours |
 | 7 | Mosaïque (ton choix), voix ElevenLabs (ton accord), fiche des stores, A2 | voix à chiffrer | — |
 
@@ -192,7 +218,7 @@ en essai admin après les deux parcours à 0 écart.
 
 ## 7. Ce qui t'attend
 
-1. **Américain ou britannique comme base** (recommandé : américain, britannique en variante).
+1. ~~Américain ou britannique comme base~~ : **décidé**, américain par défaut.
 2. **Le sort de l'ancien module** : d'accord pour retirer ses tuiles et son code une fois
    l'A1 du moteur en place ? (Les données, elles, sont gardées.)
 3. **Les règles Firestore `usersEn` / `resumesEn`** à coller dans la console, le jour où

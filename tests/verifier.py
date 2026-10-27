@@ -354,11 +354,20 @@ def verifier_langue_enseignee(r, source):
     codes = [c for _, c in tables]
     if "de" not in codes:
         r.echec("langue", "aucune table de langue pour l'allemand")
+    # L'anglais du moteur (essai, 27 oct. 2026) a le droit d'exister, a deux
+    # conditions qui ecartent la collision : un prefixe de progression ECRIT
+    # dans sa table (prefixeLangue() ne derive alors pas "en__"), et son propre
+    # prefixe de STOCKAGE (wortandoEn_), qui le separe du module de toute facon.
     for nom, code in tables:
         if code == "en":
-            r.echec("langue", '%s.code = "en" : son prefixe de progression '
-                              'entrerait en collision avec le "en__" du module '
-                              'anglais' % nom)
+            corps = re.search(r'const %s = \{(.*?)\n\};' % nom, source, re.S)
+            pp = re.search(r'prefixeProgression:\s*"([^"]*)"', corps.group(1)) if corps else None
+            stockage = re.search(r'LANGUE_APPRISE === "en" \? "(\w+_)"', source)
+            if not pp or pp.group(1) == "en__" or not stockage or stockage.group(1) == "deutschAI_":
+                r.echec("langue", '%s.code = "en" : son prefixe de progression '
+                                  'entrerait en collision avec le "en__" du module '
+                                  'anglais (il faut prefixeProgression ecrit dans la '
+                                  'table et un prefixe de stockage a lui)' % nom)
     if len(set(codes)) != len(codes):
         r.echec("langue", "deux tables de langue portent le meme code : %s" % codes)
     r.controle(len(tables))

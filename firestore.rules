@@ -106,5 +106,18 @@ service cloud.firestore {
       allow get, list: if isAdmin();
       allow write: if request.auth != null && (request.auth.uid == uid || isAdmin());
     }
+
+    // AJOUTE LE 27 OCTOBRE 2026 (essai anglais, branche `anglais`). A COLLER
+    // dans la console par Jacques -- pas encore publie. Meme raison et meme
+    // regle que le japonais, juste au-dessus.
+    match /usersEn/{uid} {
+      allow get: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow list: if isAdmin();
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /resumesEn/{uid} {
+      allow get, list: if isAdmin();
+      allow write: if request.auth != null && (request.auth.uid == uid || isAdmin());
+    }
   }
 }

@@ -86,7 +86,8 @@ def serveur():
 def releve(app, page_app=None):
     from playwright.sync_api import sync_playwright
     chemin_app = {"de": "index.html", "es": "espanol/index.html",
-                  "es-moteur": "index.html?apprendre=es"}[app]
+                  "es-moteur": "index.html?apprendre=es",
+                  "en": "index.html?apprendre=en"}[app]
     if page_app:
         # Une autre copie de la page (une ancienne version, pour prendre une
         # reference), servie depuis le meme dossier que les donnees.
@@ -246,7 +247,9 @@ def main():
     ap = argparse.ArgumentParser()
     # es = l'app espagnole actuelle (le fork, espanol/) ; es-moteur = le moteur
     # commun regle sur l'espagnol (?apprendre=es), qui doit la rattraper.
-    ap.add_argument("--app", choices=["de", "es", "es-moteur"])
+    # en = l'anglais en essai admin (27 oct. 2026) : pas encore de reference,
+    # le releve sert a voir ce que l'essai montre et ses erreurs.
+    ap.add_argument("--app", choices=["de", "es", "es-moteur", "en"])
     ap.add_argument("--sortie")
     ap.add_argument("--page", help="autre fichier que index.html, a la racine du depot")
     ap.add_argument("--comparer", nargs=2)

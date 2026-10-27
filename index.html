@@ -14,10 +14,10 @@
 (function(){
     var a = null;
     try{ a = new URLSearchParams(location.search).get("apprendre"); }catch(e){}
-    if(a !== "es" && a !== "de" && a !== "ja"){
+    if(a !== "es" && a !== "de" && a !== "ja" && a !== "en"){
         try{
             a = localStorage.getItem("wortando_langueApprise");
-            if(a !== "es" && a !== "ja") a = "de";
+            if(a !== "es" && a !== "ja" && a !== "en") a = "de";
         }catch(e){ a = "de"; }
     }
     try{ document.documentElement.setAttribute("data-apprendre", a); }catch(e){}
@@ -3355,6 +3355,35 @@ html[data-apprendre="ja"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclic
 body[data-theme="dark"] .trace-ja{ filter: invert(1); background: #000; }
 .forme-ja small{ opacity: .72; }
 .forme-ja .lj-kana{ opacity: .72; }
+/* ============ L'ANGLAIS (essai admin, 27 oct. 2026) ============
+   Une liste blanche, comme le japonais : tout ce qui n'a pas encore son
+   contenu anglais retomberait sur l'allemand. On ne montre que la seance, les
+   mots (noms, verbes, adjectifs, adverbes) et « Mis de cote ». Le tableau, les
+   scenes, l'ecoute et les episodes reviendront avec leur contenu anglais. */
+html[data-apprendre="en"] [data-i18n="credits_voix"],
+html[data-apprendre="en"] [data-i18n="credits_degres"],
+html[data-apprendre="en"] [data-i18n="credits_freq"],
+html[data-apprendre="en"] [data-i18n="credits_examens"],
+html[data-apprendre="en"] #carteMosaique,
+html[data-apprendre="en"] #explorerScenes,
+html[data-apprendre="en"] .explorer-tout,
+html[data-apprendre="en"] #ecouteLigneAccueil,
+html[data-apprendre="en"] #episodeLigne,
+html[data-apprendre="en"] .search-launch,
+html[data-apprendre="en"] [data-seulement-de],
+html[data-apprendre="en"] [data-seulement-es],
+html[data-apprendre="en"] [data-seulement-ja],
+html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]){ display:none !important; }
+html:not([data-apprendre="en"]) [data-seulement-en]{ display:none !important; }
+html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_pratique"]),
+html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_parcours"]),
+html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:none !important; }
+html[data-apprendre="en"] button[onclick*="startExercises"],
+html[data-apprendre="en"] button[onclick*="startVerbRektionExercise"],
+html[data-apprendre="en"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
+html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]){ display:none !important; }
+.forme-en{ margin: 4px 0 8px; }
+.forme-en small{ opacity: .72; }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
    Repris de fork.py. Les regles « display:none » sont prefixees par
    html[data-apprendre="es"] : en allemand, rien n'est cache. Les classes
@@ -8453,6 +8482,13 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <strong data-i18n="orb_es_indice">Toutes les fiches</strong>
             </div>
         </div>
+        <!-- L'anglais (essai, 27 oct. 2026) : ses fiches A1, en francais. -->
+        <div class="orb" data-seulement-en data-orbid="en-grammaire" onclick="abrirIndiceGramatica()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
+            <div>
+                <strong data-i18n="orb_es_indice">Toutes les fiches</strong>
+            </div>
+        </div>
         <div class="orb" data-seulement-es data-orbid="es-indice" onclick="abrirIndiceGramatica()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
             <div>
@@ -11035,6 +11071,22 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 </button>
             </div>
         </div>
+        <!-- L'anglais (essai, 27 oct. 2026) : americain ou britannique. Un
+             attribut a part (data-variante-en) : data-variante est celui de
+             l'espagnol, que adapterChoixALaLangueApprise allume. -->
+        <div class="setup-choice-group" data-seulement-en>
+            <div class="setup-choice-label">Quel anglais ?</div>
+            <div class="setup-choice-row">
+                <button class="setup-choice" onclick="choisirVarianteAnglais('us')" data-variante-en="us">
+                    <span class="setup-choice-flag">🇺🇸</span>
+                    <span>Américain</span>
+                </button>
+                <button class="setup-choice" onclick="choisirVarianteAnglais('gb')" data-variante-en="gb">
+                    <span class="setup-choice-flag">🇬🇧</span>
+                    <span>Britannique</span>
+                </button>
+            </div>
+        </div>
         <div class="setup-choice-group" id="settingsUiLangGroup">
                 <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue veux-tu les explications ?</div>
                 <div class="setup-choice-row">
@@ -11416,6 +11468,9 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              vers l'allemand. -->
         <div class="spacer"></div>
         <button class="secondary" onclick="ouvrirEssaiJaponais()">日本語 — ESSAI JAPONAIS →</button>
+        <!-- L'anglais (essai, 27 oct. 2026) : meme garde que le japonais. -->
+        <div class="spacer"></div>
+        <button class="secondary" onclick="ouvrirEssaiAnglais()">ENGLISH — ESSAI ANGLAIS →</button>
     </div>
 </section>
 
@@ -11787,13 +11842,17 @@ const LANGUE_APPRISE = (() => {
     // LE JAPONAIS (essai admin, 25 oct. 2026) : meme moteur, ?apprendre=ja.
     // Un compte qui n'est pas l'admin est renvoye vers l'allemand des que son
     // identite est connue (voir gardeEssaiJaponais).
-    if(a === "es" || a === "de" || a === "ja"){
+    // L'ANGLAIS (essai admin, 27 oct. 2026) : ?apprendre=en, meme garde.
+    // ⚠️ Rien a voir avec data-learning-dir="en" (l'ancien module anglais,
+    // masque depuis la v727 par ANGLAIS_EN_RETRAIT) : le code neuf ne teste
+    // que LANGUE_APPRISE, jamais getLearningDirection().
+    if(a === "es" || a === "de" || a === "ja" || a === "en"){
         try{ localStorage.setItem(CLE_LANGUE_APPRISE, a); }catch(e){}
         return a;
     }
     try{
         const r = localStorage.getItem(CLE_LANGUE_APPRISE);
-        return (r === "es" || r === "ja") ? r : "de";
+        return (r === "es" || r === "ja" || r === "en") ? r : "de";
     }
     catch(e){ return "de"; }
 })();
@@ -11801,9 +11860,24 @@ const LANGUE_APPRISE = (() => {
 // progression des testeurs est rangee dessous. L'espagnol reprend celui de
 // l'app espagnole actuelle (le fork renommait « deutschAI_ » en « wortandoEs_ ») :
 // ses testeurs retrouveront leur progression le jour de la bascule.
-// Le japonais a le sien, neuf : il ne doit rien lire de l'allemand.
+// Le japonais a le sien, neuf : il ne doit rien lire de l'allemand. L'anglais aussi.
 const PREFIXE_STOCKAGE = LANGUE_APPRISE === "es" ? "wortandoEs_"
-                       : LANGUE_APPRISE === "ja" ? "wortandoJa_" : "deutschAI_";
+                       : LANGUE_APPRISE === "ja" ? "wortandoJa_"
+                       : LANGUE_APPRISE === "en" ? "wortandoEn_" : "deutschAI_";
+// LA VARIANTE DE L'ANGLAIS (decide par Jacques le 27 oct. 2026) : "us" =
+// americain, la base ; "gb" = britannique, la variante. Deux jeux de
+// donnees complets, anglais/datos et anglais/datos-gb (construire.py), avec
+// les memes mots dans le meme ordre : la progression suit le changement.
+const VARIANTE_ANGLAIS = (() => {
+    if(LANGUE_APPRISE !== "en") return "us";
+    try{ return localStorage.getItem(PREFIXE_STOCKAGE + "variante") === "gb" ? "gb" : "us"; }
+    catch(e){ return "us"; }
+})();
+function choisirVarianteAnglais(v){
+    if(v !== "us" && v !== "gb") return;
+    try{ localStorage.setItem(PREFIXE_STOCKAGE + "variante", v); }catch(e){}
+    if(v !== VARIANTE_ANGLAIS) location.reload();
+}
 // LA VARIANTE DE L'ESPAGNOL (fusion, etape 3 ; decide par Jacques le 10 oct.
 // 2026 : les deux des le lancement). "es" = Espagne, la base du cours ;
 // "latam" = Amerique latine, qui cache vosotros et remplace les mots de
@@ -11876,6 +11950,9 @@ const UI_LANG_KEY = PREFIXE_STOCKAGE + "uiLang";
 // Le japonais : francais et anglais seulement (decide le 4 oct. 2026).
 const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en", "pt", "ar"]
                : LANGUE_APPRISE === "ja" ? ["fr", "en"]
+               // L'anglais : francais seulement. Une interface anglaise pour
+               // apprendre l'anglais donnerait le mot pour sa propre traduction.
+               : LANGUE_APPRISE === "en" ? ["fr"]
                : ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"];
 const DEFAULT_UI_LANG = "fr";
 
@@ -11990,8 +12067,86 @@ const LANGUE_JAPONAIS = {
     prefixeProgression: ""
 };
 
+// L'ANGLAIS (essai admin, 27 oct. 2026). Ses donnees ont la forme de
+// l'espagnol (anglais/datos, construites par anglais/outils/construire.py),
+// en deux jeux : americain (datos) et britannique (datos-gb). Pas de voix
+// enregistree : celle du telephone, en-US ou en-GB.
+const DOSSIER_ANGLAIS = VARIANTE_ANGLAIS === "gb" ? "datos-gb/" : "datos/";
+const LANGUE_ANGLAIS = {
+    code:    "en",
+    nom:     "English",
+    voix:    VARIANTE_ANGLAIS === "gb" ? "en-GB" : "en-US",
+    donnees: RACINE_DEPOT + "anglais/",
+    audio:   "",
+    fichiers: {
+        "verbe.json":         DOSSIER_ANGLAIS + "verbes.json",
+        "adjectif.json":      DOSSIER_ANGLAIS + "adjectifs.json",
+        "redewendung.json":   DOSSIER_ANGLAIS + "expressions.json",
+        "adverbe.json":       DOSSIER_ANGLAIS + "adverbes.json",
+        "themes.json":        DOSSIER_ANGLAIS + "themes.json",
+        "funktionswort.json": DOSSIER_ANGLAIS + "fonctionnels.json"
+    },
+    prefixeProgression: ""
+};
+
 const LANGUE_ENSEIGNEE = LANGUE_APPRISE === "es" ? LANGUE_ESPAGNOL
-                       : LANGUE_APPRISE === "ja" ? LANGUE_JAPONAIS : LANGUE_ALLEMAND;
+                       : LANGUE_APPRISE === "ja" ? LANGUE_JAPONAIS
+                       : LANGUE_APPRISE === "en" ? LANGUE_ANGLAIS : LANGUE_ALLEMAND;
+
+// LES CARTES ANGLAISES, posees par-dessus le rendu commun de loadFlashcard()
+// comme la carte japonaise. Le nom passe tel quel (pas d'article, le pluriel
+// en clair) ; le verbe et l'adjectif ont leur bloc, leurs formes etant
+// calculees par construire.py (works, worked, working ; bigger, the biggest).
+function echapperAnglais(s){
+    return String(s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+}
+function ligneFormeAnglaise(forme, libelle){
+    if(!forme) return "";
+    return `<div class="forme-en"><span lang="en">${echapperAnglais(forme)}</span>${sentenceSpeakBtnHtml(forme, "de")}<br><small>${echapperAnglais(libelle)}</small></div>`;
+}
+// Le present d'abord, avec son seul piege (le -s de la 3e personne) ; puis le
+// preterit, le participe (have worked) et la forme en -ing.
+function carteVerbeAnglais(card, exampleTr){
+    const f = card.formesEn || {};
+    const base = card.infinitif || "";
+    const etre = base === "be";
+    const present = etre ? "I am · you are · he is" : `I ${base} · he ${f.troisieme || base}`;
+    const lignes = [
+        ligneFormeAnglaise(present, "présent"),
+        ligneFormeAnglaise(f.preterit, card.irregulierEn ? "prétérit (irrégulier)" : "prétérit"),
+        ligneFormeAnglaise(f.participe ? (etre ? "I have been" : "I have " + f.participe) : "", "present perfect (participe)"),
+        ligneFormeAnglaise(f.ing ? (etre ? "I am being" : "I am " + f.ing) : "", "forme en -ing (en ce moment)")
+    ].join("");
+    const ex = card.exemple
+        ? `<div class="verb-sep"></div><span lang="en">${echapperAnglais(card.exemple)}</span>${sentenceSpeakBtnHtml(card.exemple, "de")}${exampleTr ? `<br>(${echapperAnglais(exampleTr)})` : ""}`
+        : "";
+    return `<div class="verb-core">${lignes}${ex}</div>`;
+}
+function formesAdjectifAnglais(card){
+    const f = card.formesEn;
+    if(!f || !f.comparatif) return "";
+    return `<div class="verb-core">${ligneFormeAnglaise(f.comparatif, "comparatif (plus…)")}${ligneFormeAnglaise(f.superlatif, "superlatif (le plus…)")}</div><div class="verb-sep"></div>`;
+}
+function habillerCarteAnglaise(card){
+    ["flashWord", "flashBackWord"].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.setAttribute("lang", "en");
+    });
+    const det = document.getElementById("flashVerbDetails");
+    if(det) det.setAttribute("lang", "en");
+    if(det && card && card.formesEn && !card.infinitif){
+        det.insertAdjacentHTML("afterbegin", formesAdjectifAnglais(card));
+        det.classList.remove("hidden");
+    }
+}
+// L'entree de l'essai, dans la carte Administration des reglages. En anglais,
+// le meme bouton ramene a l'allemand.
+function ouvrirEssaiAnglais(){
+    const cible = LANGUE_APPRISE === "en" ? "de" : "en";
+    try{ localStorage.setItem(CLE_LANGUE_APPRISE, cible); }catch(e){}
+    try{ location.href = new URL("./?apprendre=" + cible, location.href).href; }
+    catch(e){ location.href = "./?apprendre=" + cible; }
+}
 
 // Ce que la carte japonaise montre en plus du mot : sa lecture en kana, le
 // romaji, les furigana (paires [kanji, lecture], lecture nulle sur un kana) et
@@ -12237,8 +12392,10 @@ function ouvrirEssaiJaponais(){
 // natif, seul l'admin l'ouvre : un autre compte arrive en allemand, et la
 // langue retenue sur l'appareil redevient l'allemand. Appelee par
 // onAuthStateChanged des que le compte est connu ; rend true si elle recharge.
+// L'anglais (27 oct. 2026) passe par la meme garde, tant qu'un anglophone ne
+// l'a pas relu.
 function gardeEssaiJaponais(user){
-    if(LANGUE_APPRISE !== "ja") return false;
+    if(LANGUE_APPRISE !== "ja" && LANGUE_APPRISE !== "en") return false;
     const email = (user && user.email || "").toLowerCase();
     if(email && email === ADMIN_EMAIL.toLowerCase()) return false;
     try{ localStorage.setItem(CLE_LANGUE_APPRISE, "de"); }catch(e){}
@@ -12253,6 +12410,8 @@ function gardeEssaiJaponais(user){
 // el libro -> los libros.
 const ARTICLES_GENRE = LANGUE_APPRISE === "es" ? { m: "el", f: "la" } : { m: "der", f: "die" };
 function articlePluriel(articleSingulier){
+    // L'anglais n'a pas d'article au pluriel : « houses ».
+    if(LANGUE_APPRISE === "en") return "";
     if(LANGUE_APPRISE !== "es") return "die ";
     const a = String(articleSingulier || "").trim().toLowerCase();
     if(a === "el") return "los ";
@@ -12264,6 +12423,7 @@ function articlePluriel(articleSingulier){
 const PERSONNES_CONJUGAISON = LANGUE_APPRISE === "es"
     ? ["yo", "t\u00fa", "\u00e9l/ella", "nosotros", "vosotros",
        VARIANTE_ESPAGNOL === "latam" ? "ellos/ustedes" : "ellos"]
+    : LANGUE_APPRISE === "en" ? ["I", "you", "he/she/it", "we", "you", "they"]
     : ["ich", "du", "er/sie/es", "wir", "ihr", "sie/Sie"];
 // La personne cachee : vosotros, en Amerique latine (ustedes prend les
 // formes de ellos). Rien n'est cache en allemand ni en Espagne.
@@ -26921,6 +27081,45 @@ if(LANGUE_APPRISE === "ja"){
     document.title = "Wortando 日本語";
 }
 
+// L'ANGLAIS (essai, 27 oct. 2026) : verse par-dessus I18N comme le japonais,
+// en francais seulement (sa seule langue d'interface pour l'instant).
+const I18N_ANGLAIS = {
+    "fr": {
+        "home_title_1": "Apprends l'anglais",
+        "home_subtitle": "Ton tuteur personnel pour le vocabulaire et la grammaire anglaise.",
+        "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de ses cours d'allemand et d'espagnol (brouillon, à relire par un anglophone).",
+        "auth_title": "Apprends l'anglais, un mot à la fois",
+        "setup_niveau_label": "Tu connais déjà un peu d'anglais ?",
+        "profil_q1": "Pourquoi tu apprends l'anglais ?",
+        "abo_titre": "Apprends l'anglais sans limite",
+        "abo_av_voix": "La voix anglaise sur chaque carte",
+        "flip_direction_fr": "🔁 Sens : FR → EN",
+        "flip_direction_de": "🔁 Sens : EN → FR",
+        "voice_lang_de": "Anglais",
+        "carte_dire_desc": "Au verso d'une carte, l'anglais se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours.",
+        "settings_invite_desc": "Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre l'anglais.",
+        "invite_share_text": "J'apprends l'anglais avec Wortando — demande-moi un code d'invitation pour essayer !",
+        "auth_value_1": "Vocabulaire anglais organisé par thème et par niveau, en anglais américain ou britannique.",
+        "setup_learning_de": "Anglais",
+        "setup_learning_autre": "Allemand",
+        "seance_choix_allemand": "Anglais",
+        "title_adjektive_allemands": "Adjectifs anglais",
+        "orb_adjektive_sub": "big · bigger · the biggest",
+        "op_adjektive_sub": "big · bigger · the biggest",
+        "orb_adverbien_sub": "always · often · never",
+        "op_adverbien_sub": "always · often · never",
+        "accueil_tout_sous": "Mots et expressions",
+        "auth_apprendre_de": "Tu apprends l'anglais · passer à l'allemand ›",
+        "kicker_verben_praesens": "Verbes · Formes",
+        "variante_gb": "🇬🇧 en Grande-Bretagne : {mot}",
+        "variante_us": "🇺🇸 aux États-Unis : {mot}"
+    }
+};
+if(LANGUE_APPRISE === "en"){
+    for(const l of Object.keys(I18N_ANGLAIS)) Object.assign(I18N[l], I18N_ANGLAIS[l]);
+    document.title = "Wortando English";
+}
+
 
 function getUiLang(){
     let lang;
@@ -27195,6 +27394,7 @@ function chargerCours(){
             .then(d => {
                 const textes = d.textes || {};
                 FICHES_GRAMMAIRE = Array.isArray(d.fiches) ? d.fiches : [];
+                if(LANGUE_APPRISE === "en") brancherSeriesAnglaises();
                 Object.keys(textes).forEach(code => {
                     if(I18N[code]) Object.assign(I18N[code], textes[code]);
                 });
@@ -27454,6 +27654,17 @@ function markSetupDone(){
 // espagnol, celui de l'autre langue le drapeau allemand ; et les langues
 // d'interface absentes de UI_LANGS sont cachees. En allemand, rien ne change.
 function adapterChoixALaLangueApprise(){
+    // L'anglais (essai) : son drapeau sur le premier bouton, et sa variante.
+    if(LANGUE_APPRISE === "en"){
+        document.querySelectorAll('.setup-choice[data-variante-en]').forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.varianteEn === VARIANTE_ANGLAIS);
+        });
+        document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice(\'de\')"] .setup-choice-flag')
+            .forEach(el => { el.textContent = VARIANTE_ANGLAIS === "gb" ? "\u{1F1EC}\u{1F1E7}" : "\u{1F1FA}\u{1F1F8}"; });
+        document.querySelectorAll('.setup-choice-flag[data-autre]')
+            .forEach(el => { el.textContent = "\u{1F1E9}\u{1F1EA}"; });
+        return;
+    }
     if(LANGUE_APPRISE !== "es") return;
     document.title = "Wortando Español";
     document.querySelectorAll('.setup-choice[data-variante]').forEach(btn => {
@@ -29335,7 +29546,8 @@ async function confirmerSuppressionCompte(){
         // resume. Un document absent ou une regle pas encore posee ne doit pas
         // bloquer la suppression du compte.
         // 26 oct. 2026 : le japonais (v961) a les siennes, oubliees jusque-la.
-        for(const coll of ["usuariosEs", "resumenesEs", "usersJa", "resumesJa", "resumes"]){
+        // 27 oct. 2026 : l'anglais (essai) aussi.
+        for(const coll of ["usuariosEs", "resumenesEs", "usersJa", "resumesJa", "usersEn", "resumesEn", "resumes"]){
             if(coll === RESUMES_COLL) continue;   // efface juste en dessous
             try{ await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, coll, user.uid)); }catch(e){}
         }
@@ -29762,7 +29974,7 @@ function uidCourant(){
     return u ? u.uid : null;
 }
 function horsLignePossible(){
-    return !!pluginNatif("Filesystem") && LANGUE_APPRISE !== "ja" && getLearningDirection() !== "en";
+    return !!pluginNatif("Filesystem") && LANGUE_APPRISE !== "ja" && LANGUE_APPRISE !== "en" && getLearningDirection() !== "en";
 }
 
 // Les echues jusqu'a DEMAIN (la seance A VENIR : celle d'aujourd'hui si elle
@@ -30617,6 +30829,9 @@ async function loadVerbeJson() {
                     // Le japonais : lecture et furigana, puis les formes calculees
                     // par japonais/conjugaison (masu, te, nai...).
                     ja: lectureJaponaise(v), formesJa: v.formes || null,
+                    // L'anglais : les formes calculees par anglais/outils/construire.py.
+                    // (Aucune cle ajoutee hors de l'anglais : l'objet allemand reste le meme.)
+                    ...(LANGUE_APPRISE === "en" ? { formesEn: v.formes || null, irregulierEn: !!v.irregulier } : {}),
                     traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "", traduction_uk: v.traduction_uk || "", traduction_fa: v.traduction_fa || "", traduction_pt: v.traduction_pt || "", traduction_ar: v.traduction_ar || "", traduction_pl: v.traduction_pl || "", traduction_ru: v.traduction_ru || "",
                     praesens: v.praesens || {},
                     exemple: phraseVariante(v.exemple || "", phrasesLatam), exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "", exemple_uk: v.exemple_uk || "", exemple_fa: v.exemple_fa || "", exemple_pt: v.exemple_pt || "", exemple_ar: v.exemple_ar || "", exemple_pl: v.exemple_pl || "", exemple_ru: v.exemple_ru || "",
@@ -30743,6 +30958,8 @@ async function loadAdjektiveJson() {
                     c.formesJa = w.formes || null;
                     c.typeJa = w.type || "";
                 }
+                // L'anglais : comparatif et superlatif (bigger, the biggest).
+                if(LANGUE_APPRISE === "en") words[words.length - 1].formesEn = w.formes || null;
             });
         });
         adjektiveTheme.words = words;
@@ -32765,6 +32982,21 @@ function startAberSondernUebung(){
 function startSerEstarUebung(){
     startExerciseSetMelange("serEstarExercises", "kicker_ser_estar",
                      () => abrirGramatica("ser-estar"), startSerEstarUebung);
+}
+// LES SERIES DE L'ANGLAIS (essai, 27 oct. 2026) : une par fiche, qui y ramene.
+// Les fiches nomment leur serie (anglais/datos/grammaire.json, champ
+// « serie ») et le nom de leur bouton (« exercice ») : la fonction est creee
+// ici, a l'arrivee des fiches, plutot qu'ecrite treize fois en dur.
+function exercicesFicheEn(id){
+    const g = (FICHES_GRAMMAIRE || []).find(x => x.id === id);
+    if(!g || !g.serie) return;
+    startExerciseSetMelange(g.serie, "kicker_" + g.serie, () => abrirGramatica(id), () => exercicesFicheEn(id));
+}
+function brancherSeriesAnglaises(){
+    (FICHES_GRAMMAIRE || []).forEach(g => {
+        if(g.exercice && g.serie && /^exercicesFicheEn_\w+$/.test(g.exercice))
+            window[g.exercice] = () => exercicesFicheEn(g.id);
+    });
 }
 // LES SERIES DU JAPONAIS (essai, 27 oct. 2026) : une par fiche, qui y ramene.
 function serieJa(jeuNom, kicker, fiche, relancer){
@@ -43575,6 +43807,8 @@ function loadFlashcard(){
             verbDetailsEl.innerHTML = `<div class="verb-core"><strong>${translatedWord}</strong><div class="verb-sep"></div>${exHtml}${perfHtml}</div>`;
         } else if(LANGUE_APPRISE === "ja"){
             verbDetailsEl.innerHTML = carteVerbeJaponais(card, exampleTr);
+        } else if(LANGUE_APPRISE === "en"){
+            verbDetailsEl.innerHTML = carteVerbeAnglais(card, exampleTr);
         } else if(!card.praesens){
             // Verbe de chapitre VHS pas encore enrichi (conjugaison et temps à
             // venir) : on n'affiche que la phrase d'exemple, plutôt qu'un tableau
@@ -44054,6 +44288,7 @@ function loadFlashcard(){
 
     // Le japonais, par-dessus le rendu commun : furigana, lecture, romaji.
     if(LANGUE_APPRISE === "ja"){ try{ habillerCarteJaponaise(card); }catch(e){} }
+    if(LANGUE_APPRISE === "en"){ try{ habillerCarteAnglaise(card); }catch(e){} }
 
     // Le trophee suit l'etat du mot : il est la des la maitrise, et encore la
     // quand la carte revient se faire verifier seize jours apres. La classe de
@@ -44524,8 +44759,11 @@ function restaurerBrouillonRetour(){
 // Le japonais (essai, 25 oct. 2026) suit la meme regle : `usersJa`, `resumesJa`
 // (regles a ajouter dans firestore.rules ; sans elles, la progression reste sur
 // l'appareil et l'ecriture echoue sans bruit).
-const COLL_PROGRESSION = LANGUE_APPRISE === "es" ? "usuariosEs" : LANGUE_APPRISE === "ja" ? "usersJa" : "users";
-const RESUMES_COLL = LANGUE_APPRISE === "es" ? "resumenesEs" : LANGUE_APPRISE === "ja" ? "resumesJa" : "resumes";
+// L'anglais (essai, 27 oct. 2026) : `usersEn`, `resumesEn`, regles a coller aussi.
+const COLL_PROGRESSION = LANGUE_APPRISE === "es" ? "usuariosEs" : LANGUE_APPRISE === "ja" ? "usersJa"
+                       : LANGUE_APPRISE === "en" ? "usersEn" : "users";
+const RESUMES_COLL = LANGUE_APPRISE === "es" ? "resumenesEs" : LANGUE_APPRISE === "ja" ? "resumesJa"
+                   : LANGUE_APPRISE === "en" ? "resumesEn" : "resumes";
 
 const CARTE_MOT_KEY = PREFIXE_STOCKAGE + "carteDitMot";
 const CARTE_PLURIEL_KEY = PREFIXE_STOCKAGE + "carteDitPluriel";
@@ -44957,7 +45195,8 @@ function appliquerVarianteEspagnol(carte, variantes, phrases){
 function usageMarkText(registre, vergleich){
     // L'autre espagnol, avant tout le reste : `vergleich` y porte le mot de
     // l'autre variante, pas un mot plus courant.
-    if(registre === "variante_espagne" || registre === "variante_amerique")
+    if(registre === "variante_espagne" || registre === "variante_amerique"
+       || registre === "variante_gb" || registre === "variante_us")
         return tf(registre, { mot: vergleich });
     if(vergleich){
         return tf(registre === "umgangssprachlich" ? "usage_plus_familier" : "usage_plus_formel",
@@ -50363,6 +50602,8 @@ function majExplorerScenes(){
     const ruban = document.getElementById("explorerRuban");
     if(!ruban) return;
     if(LANGUE_APPRISE === "ja") return majExplorerScenesJa(ruban);
+    // L'anglais n'a pas encore ses scenes : rien a charger (le ruban est cache).
+    if(LANGUE_APPRISE === "en") return;
     const nb = document.getElementById("explorerNb");
     if(nb) nb.textContent = SCENES_SEANCE.length;
     // v800 : CINQ vignettes, qui changent chaque jour (Jacques : « qu'on ne voie
@@ -52725,7 +52966,8 @@ function montrerCartePhrase(item){
         const journal = (etape, detail) => { try{ noterAudio(etape, "ORAL", detail || ""); }catch(e){} };
         const Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
         const langueReco = LANGUE_APPRISE === "es" ? (VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES")
-                         : LANGUE_APPRISE === "ja" ? "ja-JP" : "de-DE";
+                         : LANGUE_APPRISE === "ja" ? "ja-JP"
+                         : LANGUE_APPRISE === "en" ? LANGUE_ANGLAIS.voix : "de-DE";
         // v836 : DANS LES APPS, LE MODULE NATIF (@capgo/capacitor-speech-recognition,
         // ajoute au projet wortando-ios le 16 oct. 2026). Les vues web des apps n'ont
         // pas la reconnaissance du navigateur. Le module donne le texte et le niveau
@@ -53414,6 +53656,8 @@ function premiersPasEnCours(){
         // par 🌱 -- par defaut la seance japonaise apprend les kana d'abord,
         // sans quoi rien ne se lit.
         if(LANGUE_APPRISE === "ja"){ const s = lirePremiersPas(); return s.a === true && !s.fini; }
+        // L'anglais n'a pas encore ses Premiers pas.
+        if(LANGUE_APPRISE === "en") return false;
         const s = lirePremiersPas();
         if(s.fini) return false;
         if(s.a === undefined) return declareZero();
@@ -55037,7 +55281,9 @@ function majAujourdhuiScene(on){
 // d'A1 voyage, les feuilles de conjugaison, les reperes, le son du jour et les
 // cartes-phrases n'existent qu'en allemand et en espagnol ; inseres ici, ils
 // montreraient de l'allemand. Chacun s'ouvrira quand il aura son japonais.
-function seanceJaponaise(){ return LANGUE_APPRISE === "ja"; }
+// L'anglais (essai, 27 oct. 2026) suit la meme regle, tant que ses Premiers
+// pas, son A1 voyage, ses exercices et ses scenes n'existent pas.
+function seanceJaponaise(){ return LANGUE_APPRISE === "ja" || LANGUE_APPRISE === "en"; }
 async function ouvrirSeanceDuJour(sansScene){
     // v828 : en Premiers pas, la porte des mots mene au parcours des 50 mots.
     if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }
