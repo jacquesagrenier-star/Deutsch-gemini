@@ -8739,7 +8739,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v979</span>
+    <span class="subtitle-version">v980</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -40163,6 +40163,10 @@ function revenirALaBaseHistorique(suite){
     });
 })();
 
+// v980 : la premiere arrivee sur l'accueil depuis le chargement (voir showScreen).
+var accueilDejaOuvert = false;
+// Et pas de restauration automatique de la position par le navigateur au rechargement.
+try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }catch(e){}
 function showScreen(id){
     // Le panneau d'information de l'accueil ne survit pas a un changement
     // d'ecran : voir fermerInfoProgression().
@@ -40265,6 +40269,15 @@ function showScreen(id){
         // Les carreaux poses pendant la seance se posent VRAIMENT maintenant :
         // l'etat etait deja ecrit a chaque carte, seul le dessin attendait.
         if(mosaiqueEnRetard){ try{ majMosaiqueAccueil(); }catch(e){} }
+        // v980 : L'APP S'OUVRE EN HAUT. Jacques, iPhone, 27 oct. 2026 : « quand on
+        // ouvre l'application, qu'on soit en haut, a Wortando ; j'etais oblige de
+        // remonter ». Le scrollTo(0,0) ci-dessus ne tient pas a l'ouverture :
+        // l'accueil se remplit en plusieurs temps (tableau, seance, scenes) et
+        // WebKit peut restaurer l'ancienne position. Meme remede que le tableau de
+        // bord (13 oct.) : on garde l'ecran en haut un court moment, sauf si la
+        // personne touche l'ecran. Seulement a la PREMIERE arrivee depuis le
+        // chargement de la page.
+        if(!accueilDejaOuvert){ accueilDejaOuvert = true; try{ garderEcranEnHaut("home", 2500); }catch(e){} }
     }
     // Le bouton Retour du telephone : voir synchroniserHistorique().
     synchroniserHistorique();
@@ -46146,7 +46159,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 979;
+const APP_VERSION = 980;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
