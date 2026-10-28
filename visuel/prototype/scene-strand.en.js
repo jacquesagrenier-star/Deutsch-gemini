@@ -567,6 +567,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "beach umbrellas",
    "niveau": "A2",
+   "theme": "travel_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,

@@ -494,6 +494,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "globes",
    "niveau": "A2",
+   "theme": "education_a2",
    "personne": null,
    "aussi": [],
    "sur": null,

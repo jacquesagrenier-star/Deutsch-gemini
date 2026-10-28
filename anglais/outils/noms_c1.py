@@ -79,6 +79,10 @@ renewal | le renouvellement | ex=Your passport is due for renewal. # Ton passepo
 saving | l'économie (réalisée)
 staff turnover | la rotation du personnel | u
 waiting time | le temps d'attente
+work environment | l'ambiance de travail, le cadre de travail | ex=We have a friendly work environment. # Nous avons une ambiance de travail sympathique.
+on call | l'astreinte | u
+freight costs | les frais de transport
+package tracking | le suivi de colis | u | ex=Package tracking shows it's still in Ohio. # Le suivi du colis indique qu'il est encore dans l'Ohio.
 """,
 "food_c1": """
 consistency | la consistance, texture
@@ -133,6 +137,7 @@ wall anchor | la cheville | gb=wall plug | ex=You'll need wall anchors to hang t
 wear | l'usure | u
 workbench | l'établi
 workmanship | la qualité d'exécution, la finition | u
+pest infestation | l'infestation
 """,
 "health_c1": """
 addictive behavior | les conduites addictives | u
@@ -164,6 +169,7 @@ stretching | les étirements | u
 torn ligament | la rupture du ligament | ex=He's out for the season with a torn ligament. # Il est forfait pour la saison à cause d'une rupture du ligament.
 training plan | le plan d'entraînement
 warm-up | l'échauffement
+torn tendon | la rupture de tendon
 """,
 "clothes_c1": """
 crease | le pli
@@ -225,6 +231,15 @@ thaw | le dégel
 tides | les marées | plt
 tree line | la limite des arbres
 wind direction | la direction du vent
+shortage of raw materials | la pénurie de matières premières
+species extinction | l'extinction des espèces
+circular economy | l'économie circulaire
+edge of the woods | la lisière de la forêt | pl=edges of the woods | ex=Deer often graze at the edge of the woods. # Les cerfs broutent souvent à la lisière de la forêt.
+scree | l'éboulis
+livestock farming | l'élevage
+direct marketing | la vente directe | u | ex=The farm relies on direct marketing to local families. # La ferme mise sur la vente directe aux familles du coin.
+land price | le prix du foncier
+storm front | le front orageux
 """,
 "travel_c1": """
 border crossing | le passage de frontière
@@ -235,10 +250,16 @@ package tour | le voyage organisé | gb=package holiday | ex=We booked a package
 right of way | la priorité
 road safety | la sécurité routière | u | ex=The campaign is about road safety. # La campagne porte sur la sécurité routière.
 round trip | l'aller-retour | ex=A round trip to New York costs about fifty dollars. # Un aller-retour pour New York coûte une cinquantaine de dollars.
+passenger numbers | le nombre de voyageurs
+driving ban | l'interdiction de circuler | ex=There's a driving ban in the city center during the storm. # Il y a une interdiction de circuler au centre-ville pendant la tempête.
+entry requirement | la condition d'entrée
+trip cancellation | l'annulation de voyage | ex=Our insurance covers trip cancellation. # Notre assurance couvre l'annulation de voyage.
 """,
 "city_c1": """
 green space | l'espace vert
 local residents | les riverains | plt
+traffic calming | l'apaisement de la circulation
+open space | l'espace libre
 """,
 "education_c1": """
 absence | l'absence
@@ -293,6 +314,17 @@ time signature | la mesure (rythmique)
 usability | la facilité d'utilisation
 world premiere | la création (première mondiale)
 zeitgeist | l'esprit du temps | u | ex=The song captured the zeitgeist of the sixties. # La chanson a saisi l'esprit des années soixante.
+use case | le cas d'usage
+maintenance | la maintenance, l'entretien | u
+mode of operation | le mode d'action, fonctionnement
+conducting | la direction (d'orchestre)
+reverberation | la réverbération
+focal length | la focale
+backlight | le contre-jour
+image editing | la retouche d'image | u | ex=She's good at image editing. # Elle est douée pour la retouche d'image.
+image rights | les droits d'image
+youth development | la formation des jeunes
+patronage | le haut patronage
 """,
 "sports_c1": """
 fair play | le fair-play
@@ -302,6 +334,7 @@ relegation | la relégation
 stoppage time | le temps additionnel
 substitution | le remplacement
 training camp | le stage de préparation
+rule violation | l'infraction aux règles
 """,
 "media_c1": """
 accuracy | la précision, exactitude
@@ -334,6 +367,10 @@ understatement | la litote, euphémisme
 user account | le compte utilisateur
 user interface | l'interface utilisateur
 wording | la formulation
+utterance | le propos, la déclaration | ex=Every utterance of the senator was recorded. # Chaque propos du sénateur a été enregistré.
+freedom of the press | la liberté de la presse
+access right | le droit d'accès
+log file | le fichier journal
 """,
 "money_c1": """
 assets | les actifs, le patrimoine | plt | ex=The company sold some of its assets. # L'entreprise a vendu une partie de ses actifs.
@@ -367,6 +404,11 @@ takeover | le rachat (d'une entreprise)
 tax return | la déclaration d'impôts
 tender | l'appel d'offres
 yield | le rendement
+indebtedness | l'endettement | u
+economic climate | la conjoncture | u
+value creation | la création de valeur
+customer retention | la fidélisation de la clientèle | u | ex=Customer retention is cheaper than finding new customers. # Fidéliser ses clients coûte moins cher qu'en trouver de nouveaux.
+liability insurance | l'assurance responsabilité civile | u | ex=Every driver needs liability insurance. # Chaque conducteur a besoin d'une assurance responsabilité civile.
 """,
 "feelings_c1": """
 absent-mindedness | la distraction, étourderie | u
@@ -395,6 +437,8 @@ vigilance | la vigilance
 way of thinking | le mode de pensée
 willpower | la force de volonté
 wishful thinking | le vœu pieux, pensée illusoire
+transition | la transition, passage
+transience | le caractère éphémère
 """,
 "society_c1": """
 balance of power | l'équilibre des pouvoirs | u | ex=The election changed the balance of power in Congress. # L'élection a changé l'équilibre des pouvoirs au Congrès.
@@ -409,6 +453,7 @@ taboo | le tabou
 upheaval | le bouleversement
 vote of confidence | la question de confiance
 voter turnout | le taux de participation
+social stratum | la couche sociale
 """,
 "law_c1": """
 appeal | l'appel (recours)
@@ -443,6 +488,14 @@ threat | la menace
 withdrawal | le retrait
 witness protection | la protection des témoins
 witness statement | le témoignage
+dissolution | la dissolution | u | ex=The dissolution of the band surprised the fans. # La dissolution du groupe a surpris les fans.
+legal remedy | la voie de recours
+hot spot | le point chaud, le foyer de crise | ex=The region is a hot spot of conflict. # La région est un foyer de conflit.
+party to the conflict | la partie au conflit | pl=parties to the conflict | ex=Both parties to the conflict agreed to talk. # Les deux parties au conflit ont accepté de discuter.
+civilian population | la population civile
+civil protection | la protection civile
+identity check | le contrôle d'identité
+criminal complaint | la plainte pénale
 """,
 "ideas_c1": """
 acceleration | l'accélération | u | ex=This car has impressive acceleration. # Cette voiture a une accélération impressionnante.
@@ -516,6 +569,12 @@ ultimatum | l'ultimatum
 upturn | l'essor, la reprise
 viability | la viabilité | u
 worldview | la conception du monde
+weighting | la pondération
+caesura | la césure, la rupture | ex=The war marked a caesura in her life. # La guerre a marqué une rupture dans sa vie.
+selflessness | le désintéressement | u | ex=Her selflessness inspired the whole team. # Son désintéressement a inspiré toute l'équipe.
+feeling of guilt | le sentiment de culpabilité | ex=He couldn't shake off a feeling of guilt. # Il n'arrivait pas à se défaire d'un sentiment de culpabilité.
+arbitrariness | l'arbitraire | u
+piety | la piété
 """,
 # Ajoutes a la main (27 oct. 2026) : le vocabulaire savant le plus courant
 # de l'anglais C1, que nos corpus n'ont pas (ils viennent de l'allemand).

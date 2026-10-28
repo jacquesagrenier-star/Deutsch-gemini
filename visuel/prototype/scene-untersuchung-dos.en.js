@@ -254,6 +254,7 @@ window.SCENE = {
      "mot": "underpants",
      "genre": "",
      "niveau": "A2",
+     "theme": "clothes_a2",
      "fr": "caleçon, slip"
     }
    ],
@@ -444,7 +445,9 @@ window.SCENE = {
    "id": "kniekehle",
    "mot": "back of the knee",
    "genre": "",
+   "pluriel": "back of the knees",
    "niveau": "B2",
+   "theme": "health_b2",
    "personne": null,
    "aussi": [],
    "sur": "mark",

@@ -167,6 +167,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "alarm clocks",
    "niveau": "B1",
+   "theme": "home_b1_2",
    "personne": null,
    "aussi": [],
    "sur": null,

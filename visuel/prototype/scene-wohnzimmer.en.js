@@ -256,6 +256,7 @@ window.SCENE = {
      "mot": "string lights",
      "genre": "",
      "niveau": "B1",
+     "theme": "home_b1_2",
      "fr": "guirlande lumineuse",
      "gb": {
       "mot": "fairy lights",
@@ -357,8 +358,9 @@ window.SCENE = {
    "id": "goldfisch",
    "mot": "goldfish",
    "genre": "",
-   "pluriel": "goldfish",
+   "pluriel": "goldfishes",
    "niveau": "A2",
+   "theme": "nature_a2_2",
    "personne": null,
    "aussi": [
     {

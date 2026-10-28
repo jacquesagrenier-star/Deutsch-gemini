@@ -49,6 +49,7 @@ relatives | les proches, la famille | plt
 sister-in-law | la belle-sœur | pl=sisters-in-law
 stepfather | le beau-père
 stepmother | la belle-mère
+brother-in-law | le beau-frère | pl=brothers-in-law
 """,
 "work_b2": """
 accountability | l'obligation de rendre des comptes | u
@@ -83,6 +84,8 @@ tax advisor | le conseiller fiscal
 template | le modèle
 vision | la vision
 work-life balance | l'équilibre vie-travail
+shift worker | le travailleur posté
+temporary worker | l'intérimaire, l'extra | ex=The store hires temporary workers for the holidays. # Le magasin embauche des extras pour les fêtes.
 """,
 "food_b2": """
 artichoke | l'artichaut
@@ -112,6 +115,10 @@ sweet potato | la patate douce | pl=sweet potatoes
 tasting | la dégustation
 vegan | le végétalien
 vegetarian | le végétarien
+spice blend | le mélange d'épices
+culinary arts | les arts culinaires | plt | ex=She studied culinary arts in New York. # Elle a étudié les arts culinaires à New York.
+organic food | les produits bio | u | ex=Organic food is more expensive. # Les produits bio coûtent plus cher.
+snack bar | le snack, casse-croûte
 """,
 "home_b2": """
 attic | le grenier | ex=We keep old toys in the attic. # Nous gardons de vieux jouets au grenier.
@@ -125,6 +132,10 @@ lease | le bail
 mattress | le matelas
 sideboard | le buffet (meuble)
 utilities | les charges (eau, électricité) | plt | ex=Is the rent including utilities? # Le loyer inclut-il les charges ?
+rent control | l'encadrement des loyers | u | ex=Boston debated rent control for years. # Boston a débattu de l'encadrement des loyers pendant des années.
+property management | la syndic, gérance | u
+heating costs | les frais de chauffage
+display case | la vitrine (meuble) | ex=The jewelry is in a locked display case. # Les bijoux sont dans une vitrine fermée à clé.
 """,
 "health_b2": """
 bladder | la vessie | ex=Drinking water is good for your bladder. # Boire de l'eau est bon pour la vessie.
@@ -146,6 +157,9 @@ doctor's note | le certificat médical | gb=sick note | ex=You need a doctor's n
 spine | la colonne vertébrale
 tendon | le tendon
 waiting room | la salle d'attente
+back of the knee | le creux du genou | ex=I have a rash on the back of my knee. # J'ai une éruption au creux du genou.
+preventive checkup | l'examen préventif
+corpse | le cadavre | ex=The detective examined the corpse. # L'inspecteur a examiné le cadavre.
 """,
 "clothes_b2": """
 blazer | le blazer
@@ -195,12 +209,25 @@ swamp | le marais | ex=Alligators live in the swamp. # Des alligators vivent dan
 water pollution | la pollution de l'eau | u
 wild animal | l'animal sauvage
 wind power | l'énergie éolienne | u
+wildlife protection | la protection de la faune | u | ex=The park is dedicated to wildlife protection. # Le parc est consacré à la protection de la faune.
+bird migration | la migration des oiseaux
+paw | la patte
+extreme weather | le phénomène météo extrême | u
+CO2 emissions | l'émission de CO2
+environmental policy | la politique environnementale
+carbon neutrality | la neutralité climatique
+environmental damage | le dommage environnemental
+energy transition | la transition énergétique
 """,
 "travel_b2": """
 parking garage | le parking couvert | gb=multi-storey car park | ex=We left the car in the parking garage. # Nous avons laissé la voiture au parking.
 tour guide | le, la guide
 traffic rule | la règle de circulation
 travel insurance | l'assurance voyage | u
+transportation infrastructure | les infrastructures de transport | u | ex=The city is investing in transportation infrastructure. # La ville investit dans les infrastructures de transport.
+vehicle registration | la carte grise, l'immatriculation | ex=Keep your vehicle registration in the glove compartment. # Garde ta carte grise dans la boîte à gants.
+sustainable tourism | le tourisme durable
+overnight stay | la nuitée
 """,
 "city_b2": """
 backyard | le jardin derrière la maison | gb=back garden
@@ -209,6 +236,10 @@ city wall | le rempart
 dam | le barrage
 gentrification | la gentrification | u
 urban planning | l'urbanisme
+urban development | le développement urbain
+market square | la place du marché | ex=The market square is busy on Saturdays. # La place du marché est animée le samedi.
+facade | la façade | ex=The building has a beautiful brick facade. # Le bâtiment a une belle façade de brique.
+business park | la zone d'activité | ex=Our office is in a business park outside the city. # Notre bureau est dans une zone d'activité en dehors de la ville.
 """,
 "education_b2": """
 dissertation | la thèse (de doctorat)
@@ -229,6 +260,8 @@ schoolyard | la cour de récréation | gb=playground | ex=The kids are playing i
 scientific paper | l'article scientifique
 thesis | la thèse | pl=theses
 variable | la variable
+test anxiety | la peur des examens | u | ex=Many students suffer from test anxiety. # Beaucoup d'élèves souffrent de la peur des examens.
+doctoral studies | doctorat
 """,
 "culture_b2": """
 act | l'acte (de théâtre)
@@ -271,6 +304,9 @@ sociology | la sociologie
 stereotype | le stéréotype
 symbolism | le symbolisme
 volunteer work | le bénévolat | u
+admission ticket | le billet d'entrée | ex=Children under five don't need an admission ticket. # Les moins de cinq ans n'ont pas besoin de billet d'entrée.
+reading material | de quoi lire | u | ex=Bring some reading material for the flight. # Apporte de quoi lire pour le vol.
+leisure | le loisir, temps libre
 """,
 "sports_b2": """
 competitive sport | le sport de haut niveau
@@ -297,6 +333,8 @@ press conference | la conférence de presse
 reliability | la fiabilité
 rhetoric | la rhétorique
 scoop | le scoop
+editorial team | la rédaction
+backup | la copie de sauvegarde
 """,
 "money_b2": """
 bank statement | le relevé de compte
@@ -311,6 +349,8 @@ purchasing power | le pouvoir d'achat
 recession | la récession
 stimulus | la relance, le stimulus | pl=stimuli
 coupon | le bon de réduction | gb=voucher | ex=I have a coupon for twenty percent off. # J'ai un bon de réduction de vingt pour cent.
+consumer behavior | le comportement de consommation | u
+price comparison | la comparaison des prix | ex=A quick price comparison online can save you money. # Une rapide comparaison des prix en ligne peut te faire économiser.
 """,
 "feelings_b2": """
 affection | l'affection
@@ -370,6 +410,9 @@ sovereignty | la souveraineté
 supply chain | la chaîne d'approvisionnement
 tariff | le droit de douane
 term of office | le mandat | pl=terms of office
+federalism | le fédéralisme
+chancellor | le chancelier
+officeholder | le, la titulaire d'une fonction publique | ex=Every officeholder must declare their income. # Chaque élu doit déclarer ses revenus.
 """,
 "ideas_b2": """
 ambiguity | l'ambiguïté
@@ -432,6 +475,7 @@ transparency | la transparence
 backlog | le retard accumulé
 leap year | l'année bissextile
 time zone | le fuseau horaire
+lead time | le temps de préparation
 """,
 "everyday_b2": """
 calculation | le calcul
@@ -447,5 +491,6 @@ perspective | la perspective, le point de vue | ex=Living abroad gave me a new p
 quota | le quota | ex=There's a quota on fishing in these waters. # La pêche est soumise à un quota dans ces eaux.
 section | la section, le passage
 width | la largeur | ex=Measure the width of the window. # Mesure la largeur de la fenêtre.
+stripe | la rayure
 """,
 }

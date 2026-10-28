@@ -791,6 +791,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "sandals",
    "niveau": "A2",
+   "theme": "clothes_a2",
    "personne": null,
    "aussi": [],
    "sur": "regal",

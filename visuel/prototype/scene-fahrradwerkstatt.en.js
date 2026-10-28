@@ -1002,6 +1002,7 @@ window.SCENE = {
      "mot": "store window",
      "genre": "",
      "niveau": "B1",
+     "theme": "money_b1",
      "fr": "vitrine",
      "gb": {
       "mot": "shop window",

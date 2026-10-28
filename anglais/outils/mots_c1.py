@@ -178,6 +178,16 @@ bank on | compter sur | ex=Don't bank on getting a raise this year. # Ne compte 
 root out | éradiquer, débusquer | ex=The new director wants to root out corruption. # Le nouveau directeur veut éradiquer la corruption.
 scrape by | s'en sortir de justesse | ex=They scrape by on one salary. # Ils s'en sortent tout juste avec un seul salaire.
 stave off | repousser, éviter | ex=They took out a loan to stave off bankruptcy. # Ils ont pris un prêt pour éviter la faillite.
+go hand in hand with | aller de pair avec
+blow out of proportion | exagérer, monter en épingle | ex=The media blew the story out of proportion. # Les médias ont monté l'histoire en épingle.
+subdivide | subdiviser, structurer
+take its toll on | éprouver, mettre à mal
+admonish | réprimander, rappeler à l'ordre | ex=The judge admonished the lawyer. # Le juge a rappelé l'avocat à l'ordre.
+misappropriate | détourner (des fonds) | ex=The treasurer misappropriated club funds. # Le trésorier a détourné les fonds du club.
+be entitled to | avoir droit à
+feel out | sonder, tâter le terrain | ex=Let me feel out the boss before we ask. # Laisse-moi sonder le patron avant qu'on demande.
+have a say in | avoir son mot à dire sur | ex=Employees want to have a say in the decision. # Les employés veulent avoir leur mot à dire sur la décision.
+spread oneself too thin | s'éparpiller | ex=Don't spread yourself too thin this semester. # Ne t'éparpille pas ce semestre.
 """
 
 # « adjectif | traduction | drapeaux » (gb=, ex=).
@@ -282,7 +292,7 @@ proper | correct, convenable | ex=You need proper shoes for hiking. # Il te faut
 proven | prouvé, éprouvé | ex=It's a proven method. # C'est une méthode éprouvée.
 rapid | rapide | ex=The city went through rapid growth. # La ville a connu une croissance rapide.
 resolute | résolu, déterminé | ex=She remained resolute in her decision. # Elle est restée ferme dans sa décision.
-restrained | retenu, mesuré
+restrained | retenu, sobre | ex=Her reaction was surprisingly restrained. # Sa réaction a été étonnamment mesurée.
 revealing | instructif, révélateur
 seamless | sans faille, complet
 selective | sélectif | ex=The college is very selective. # L'université est très sélective.
@@ -308,7 +318,7 @@ tireless | infatigable | ex=She's a tireless volunteer. # C'est une bénévole i
 tortuous | tortueux, sinueux (raisonnement)
 touching | touchant, attendrissant
 transferable | transférable | ex=Communication skills are transferable to any job. # Les compétences en communication sont utiles dans n'importe quel emploi.
-trivial | insignifiant, sans importance
+trivial | insignifiant, banal | ex=Don't worry about such trivial details. # Ne t'inquiète pas pour des détails aussi insignifiants.
 unbearable | insupportable
 unchallenged | incontesté, sans rival
 uncommon | peu usité
@@ -385,6 +395,17 @@ candid | franc | ex=Thank you for your candid answer. # Merci pour ta réponse f
 cogent | convaincant | ex=She made a cogent argument. # Elle a avancé un argument convaincant.
 compulsive | compulsif | ex=He's a compulsive liar. # C'est un menteur compulsif.
 far-reaching | de grande portée | ex=The reform will have far-reaching consequences. # La réforme aura des conséquences de grande portée.
+unreserved | sans réserve | ex=You have my unreserved support. # Tu as mon soutien sans réserve.
+out of touch with reality | déconnecté du réel | ex=Some politicians seem out of touch with reality. # Certains politiciens semblent déconnectés du réel.
+presumed | présumé | ex=He is presumed innocent until proven guilty. # Il est présumé innocent jusqu'à preuve du contraire.
+well thought out | bien pensé | ex=It's a well thought out plan. # C'est un plan bien pensé.
+condensed | condensé | ex=Here's a condensed version of the report. # Voici une version condensée du rapport.
+bombastic | pompeux, grandiloquent | ex=His speech was long and bombastic. # Son discours était long et pompeux.
+quantifiable | quantifiable | ex=The results are clear and quantifiable. # Les résultats sont clairs et quantifiables.
+reproducible | reproductible
+persevering | persévérant | ex=She's a persevering student. # C'est une élève persévérante.
+shattering | bouleversant, accablant | ex=The news was a shattering blow. # La nouvelle a été un coup terrible.
+error-free | sans faute
 """
 
 # « adverbe | traduction | categorie | drapeaux ».
@@ -429,6 +450,14 @@ predominantly | principalement | Quantité | ex=The neighborhood is predominantl
 seemingly | apparemment | Doute | ex=The task was seemingly simple. # La tâche était apparemment simple.
 subsequently | par la suite | Temps | ex=He was arrested and subsequently released. # Il a été arrêté puis relâché.
 candidly | franchement | Manière | ex=Candidly, I think it's a bad idea. # Franchement, je pense que c'est une mauvaise idée.
+especially since | d'autant plus que | Cause et conséquence | ex=Let's stay in, especially since it's raining. # Restons à la maison, d'autant plus qu'il pleut.
+on top of that | par-dessus le marché | Liaison
+at the time | à l'époque | Temps
+under no circumstances | en aucun cas | Nuance
+of all things | justement, entre toutes choses | Nuance | ex=He forgot his passport, of all things. # Il a oublié son passeport, justement.
+which is why | raison pour laquelle | Liaison
+as it were | pour ainsi dire | Liaison
+after the fact | après coup | Temps
 """
 
 # « expression | traduction | categorie | exemple anglais | exemple francais ».
@@ -535,4 +564,13 @@ to touch base | faire le point, reprendre contact | Au quotidien | Let's touch b
 in the same boat | dans la même galère | Réagir | Don't worry, we're all in the same boat. | Ne t'inquiète pas, nous sommes tous dans la même galère.
 to break the ice | briser la glace | Bavarder | He told a joke to break the ice. | Il a raconté une blague pour briser la glace.
 to call it quits | arrêter les frais | Au quotidien | After ten years, they decided to call it quits. | Au bout de dix ans, ils ont décidé d'arrêter.
+to speak up | demander la parole | Discuter | At the end of the debate the mayor spoke up. | À la fin du débat, le maire a demandé la parole.
+to lose one's temper | s'emporter, perdre son sang-froid | Réagir | If he's late again, I'll lose my temper. | S'il arrive encore en retard, je vais m'emporter.
+to be beside oneself | être hors de soi | Réagir | She was beside herself with joy. | Elle était hors d'elle de joie.
+to have reservations | avoir des réticences | Tournures | She has reservations about the new schedule. | Elle a des réticences envers le nouveau calendrier.
+to take a risk | prendre un risque | Tournures | With this investment the company is taking a risk. | Avec cet investissement, l'entreprise prend un risque.
+to get a hearing | trouver une oreille attentive | Tournures | Her warning finally got a hearing. | Son avertissement a enfin trouvé une oreille attentive.
+to come to light | apparaître au grand jour | Tournures | During the renovation old frescoes came to light. | Lors des travaux, de vieilles fresques sont apparues au grand jour.
+to grind to a halt | s'enliser | Tournures | The negotiations have ground to a halt. | Les négociations se sont enlisées.
+to make arrangements | prendre des dispositions | Au quotidien | We've made arrangements for the winter. | Nous avons pris des dispositions pour l'hiver.
 """

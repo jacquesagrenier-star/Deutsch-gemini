@@ -189,6 +189,11 @@ validate | valider
 vary | varier
 waste | gaspiller
 yield | produire, céder
+prove oneself | faire ses preuves | ex=The new player has to prove himself. # Le nouveau joueur doit faire ses preuves.
+come to terms with | se résigner (à qch)
+put a number on | chiffrer | ex=It's hard to put a number on the damage. # Il est difficile de chiffrer les dégâts.
+revise | réviser, remanier | ex=She revised her essay three times. # Elle a remanié sa dissertation trois fois.
+call upon | inviter (à faire), sommer
 """
 
 # « adjectif | traduction | drapeaux » (gb=, ex=).
@@ -315,6 +320,8 @@ viable | viable
 vindictive | vindicatif
 vivid | vif, frappant | ex=I have vivid memories of that summer. # J'ai des souvenirs très vifs de cet été-là.
 well-founded | bien fondé, solide
+consequential | lourd de conséquences | ex=It was a consequential decision. # C'était une décision lourde de conséquences.
+slanted | penché, oblique ; partial | ex=The article gave a slanted view of the events. # L'article donnait une vision partiale des événements.
 """
 
 # « adverbe | traduction | categorie | drapeaux ».
@@ -374,6 +381,35 @@ unambiguously | sans ambiguïté | Manière
 unavoidably | immanquablement | Cause et conséquence
 upwards | vers le haut | Lieu
 utterly | tout à fait, complètement | Quantité
+from then on | désormais | Temps
+in the interim | dans l'intervalle | Temps
+not long ago | il y a peu | Temps
+for the time being | pour l'instant | Temps
+up to now | jusqu'ici | Temps
+from now on | à partir de maintenant | Temps
+for decades | pendant des décennies | Temps
+during the day | pendant la journée | Temps
+on weekdays | en semaine | Temps
+in this country | dans ce pays, chez nous | Lieu
+downwards | vers le bas | Lieu
+in between | entre les deux | Lieu
+every now and then | de temps en temps | Fréquence
+inconspicuously | discrètement | Manière
+without further ado | sans plus de façons | Manière
+out of necessity | par nécessité, faute de mieux | Manière
+word for word | mot pour mot | Manière
+step by step | par étapes | Manière
+in that respect | à cet égard | Cause et conséquence
+for this purpose | à cette fin | Cause et conséquence
+to be on the safe side | par sécurité | Cause et conséquence
+as a precaution | par précaution | Cause et conséquence
+for this reason | pour cette raison | Cause et conséquence
+by no means | nullement | Nuance
+not at all | point du tout | Liaison
+to a certain extent | en quelque sorte | Liaison
+so to speak | pour ainsi dire | Liaison
+from experience | d'expérience | Liaison
+to what extent | dans quelle mesure | Question
 """
 
 # « expression | traduction | categorie | exemple anglais | exemple francais ».
@@ -511,4 +547,17 @@ to turn things around | redresser la barre | Au quotidien | In the last quarter 
 to work hand in hand | travailler main dans la main | Tournures | The two departments work hand in hand. | Les deux services travaillent main dans la main.
 up to a point | jusqu'à un certain point | Nuance | You're right up to a point. | Tu as raison jusqu'à un certain point.
 with all due respect | avec tout le respect que je vous dois | Discuter | With all due respect, I see it differently. | Avec tout le respect que je vous dois, je vois cela autrement.
+primarily | en premier lieu | Discuter | It's primarily about safety. | Il s'agit en premier lieu de la sécurité.
+to do someone a disservice | rendre un mauvais service | Tournures | With that he did her a disservice. | Il lui a ainsi rendu un mauvais service.
+to lose the thread | perdre le fil | Réagir | During the presentation she lost the thread. | Pendant la présentation, elle a perdu le fil.
+to take measures | prendre des mesures | Tournures | The city quickly took measures. | La ville a rapidement pris des mesures.
+to lay the foundation | poser la première pierre | Tournures | That laid the foundation for the success. | C'est ainsi qu'a été posée la première pierre du succès.
+How may I help you? | en quoi puis-je vous aider ? | Bavarder | Good day, how may I help you? | Bonjour, en quoi puis-je vous aider ?
+to come clean | dire la vérité toute crue | Réagir | He finally came clean with us. | Il nous a enfin dit la vérité toute crue.
+to lose one's nerve | perdre son calme | Réagir | Just before the end he lost his nerve. | Juste avant la fin, il a perdu son calme.
+single-handedly | en solitaire | Au quotidien | He saved the project single-handedly. | Il a sauvé le projet en solitaire.
+evidently | manifestement | Discuter | Evidently nobody read the email. | Manifestement, personne n'a lu le courriel.
+considering | eu égard à | Discuter | Considering the circumstances that's good. | Eu égard aux circonstances, c'est bien.
+paradoxically | paradoxalement | Discuter | Paradoxically it became more expensive as a result. | Paradoxalement, cela est devenu plus cher.
+to hold accountable | demander des comptes à | Tournures | Those responsible were held accountable. | Les responsables ont eu à rendre des comptes.
 """

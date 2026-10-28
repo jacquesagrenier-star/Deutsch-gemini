@@ -1,5 +1,32 @@
 # L'anglais A2 à C1 : le plan
 
+## 28 oct. 2026 : « tous les mots » — la couverture face à l'allemand
+
+Consigne de Jacques (27 oct.) : « Et tous les mots. Le compléter et de faire entièrement. »
+Chaque mot allemand A2-C1 a été cherché en anglais (`python anglais/outils/manques_allemand.py`,
+en cumulé : un mot allemand B1 est couvert s'il est en anglais au B1 ou plus bas). Les
+absents ont été versés dans les listes (`ajouter_manques.py`), sauf ceux qui ne passent pas
+en anglais, écartés **mot par mot avec leur raison** dans `anglais/outils/ecartes/<niveau>.txt`.
+
+| Noms allemands couverts | A2 | B1 | B2 | C1 |
+|---|---|---|---|---|
+| Avant (v987) | 91 % | 88 % | 80 % | 64 % |
+| Maintenant | 97 % | 92 % | 88 % | 69 % |
+
+| Écartés, par raison | A2 | B1 | B2 | C1 |
+|---|---|---|---|---|
+| Déjà là sous une autre forme (« vegetables » → vegetable, « crime story » → crime novel) | 15 | 56 | 18 | 14 |
+| Propre à l'Allemagne ou à l'Europe (Brezel, Bürgeramt, Gymnasium, Kripo, Wohngeld, TVA, IBAN) | 3 | 32 | 12 | — |
+| Tournure ou composé sans équivalent anglais d'un mot (Zielvereinbarung, Betreuungsschlüssel…) | 6 | 62 | 46 | 367 |
+| Britannique (l'anglais de base est américain : fetch, revision, overtake…) | 3 | 4 | 6 | — |
+| Autre classe ou autre place (jours et nombres dans les repères, « be + adjectif », prépositions) | 25 | 43 | 21 | — |
+
+Les verbes, adjectifs, adverbes et expressions suivent la même règle (ils sont dans les mêmes
+fichiers). Au C1, presque tout l'écart restant vient des composés administratifs allemands
+(Kommissionierung, Notendurchschnitt, Vorsorgeuntersuchung…) : un mot anglais n'existe pas,
+seulement une glose. Ce sont ces listes, à montrer à Jacques, qui décident s'il faut en
+reprendre certains malgré tout.
+
 ## État au 27 oct. 2026, au soir : les quatre niveaux sont construits (essai admin)
 
 Mesuré par `python anglais/outils/couverture_comptes.py` (référence : l'espagnol, sur les 37
