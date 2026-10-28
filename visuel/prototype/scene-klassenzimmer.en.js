@@ -69,7 +69,8 @@ window.SCENE = {
     {
      "mot": "beard",
      "genre": "",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "clothes_a2",
      "fr": "barbe"
     },
     {
@@ -123,7 +124,8 @@ window.SCENE = {
    "mot": "beard",
    "genre": "",
    "pluriel": "beards",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "clothes_a2",
    "personne": null,
    "aussi": [],
    "sur": "lehrer",
@@ -184,6 +186,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "hooks",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "tuer",
@@ -350,7 +353,8 @@ window.SCENE = {
    "mot": "participant",
    "genre": "",
    "pluriel": "participants",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "education_a2",
    "personne": "Mark",
    "aussi": [
     {
@@ -440,7 +444,8 @@ window.SCENE = {
    "mot": "participant",
    "genre": "",
    "pluriel": "participants",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "education_a2",
    "personne": "Anna",
    "aussi": [
     {
@@ -834,13 +839,15 @@ window.SCENE = {
     {
      "mot": "participant",
      "genre": "",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "education_a2",
      "fr": "participant"
     },
     {
      "mot": "beard",
      "genre": "",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "clothes_a2",
      "fr": "barbe"
     },
     {
@@ -895,7 +902,8 @@ window.SCENE = {
     {
      "mot": "participant",
      "genre": "",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "education_a2",
      "fr": "participante"
     },
     {
@@ -934,7 +942,8 @@ window.SCENE = {
     {
      "mot": "participant",
      "genre": "",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "education_a2",
      "fr": "participante"
     },
     {
@@ -1105,7 +1114,8 @@ window.SCENE = {
    "mot": "cable",
    "genre": "",
    "pluriel": "cables",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -1224,6 +1234,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the backpack?",
+     "c": [
+      "under the table",
+      "on the table",
+      "next to the door"
+     ],
+     "f": "rucksack",
+     "r": "tisch",
+     "phrase": "The backpack is under the table.",
+     "sens": "Le sac à dos est sous la table.",
+     "n": "<b>under</b> = sous."
+    },
+    {
+     "q": "The clock is ___ the board.",
+     "c": [
+      "above",
+      "under",
+      "next to"
+     ],
+     "f": "uhr",
+     "r": "tafel",
+     "phrase": "The clock is above the board.",
+     "sens": "L'horloge est accrochée au-dessus du tableau.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "Where is the plant?",
+     "c": [
+      "on the shelf",
+      "under the shelf",
+      "on the table"
+     ],
+     "f": "pflanze",
+     "r": "regal",
+     "phrase": "The plant is on the shelf.",
+     "sens": "La plante est sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The coat is ___ the door.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "mantel",
+     "r": "tuer",
+     "phrase": "The coat is on the door.",
+     "sens": "Le manteau est accroché à la porte.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the teacher?",
+     "c": [
+      "in front of the board",
+      "behind the board",
+      "next to the window"
+     ],
+     "f": "lehrer",
+     "r": "tafel",
+     "phrase": "The teacher is in front of the board.",
+     "sens": "Le professeur est debout devant le tableau.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "The cell phone is ___ the laptop.",
+     "c": [
+      "next to",
+      "under",
+      "on"
+     ],
+     "f": "handy",
+     "r": "laptop",
+     "phrase": "The cell phone is next to the laptop.",
+     "sens": "Le téléphone est à côté de l'ordinateur portable.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is Anna?",
+     "c": [
+      "next to Mark",
+      "behind Mark",
+      "in front of the door"
+     ],
+     "f": "anna",
+     "r": "mark",
+     "phrase": "Anna is next to Mark.",
+     "sens": "Anna est assise à côté de Mark.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the picture?",
+     "c": [
+      "between the door and the window",
+      "above the board",
+      "on the door"
+     ],
+     "f": "bild",
+     "r": "tuer",
+     "phrase": "The picture is between the door and the window.",
+     "sens": "Le tableau est accroché entre la porte et la fenêtre.",
+     "n": "<b>between</b> = entre (deux choses)."
+    }
+   ]
   }
  },
  "traductions": {}

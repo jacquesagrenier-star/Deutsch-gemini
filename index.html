@@ -3379,7 +3379,7 @@ html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:
 html[data-apprendre="en"] button[onclick*="startExercises"],
 html[data-apprendre="en"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="en"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
-html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]){ display:none !important; }
+html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]){ display:none !important; }
 .forme-en{ margin: 4px 0 8px; }
 .forme-en small{ opacity: .72; }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
@@ -38186,12 +38186,24 @@ async function abrirIndiceGramatica(){
     if(!COURS_CHARGE) await chargerCours();
     const liste = document.getElementById("gramIndiceListe");
     if(liste){
-        liste.innerHTML = FICHES_GRAMMAIRE.map(g =>
-            '<div class="orb-opt" onclick="abrirGramatica(\'' + g.id + '\', \'indice\')">'
+        // L'anglais A2-C1 (27 oct. 2026) : ses fiches portent leur niveau, et la
+        // liste prend un intertitre a chaque palier. Les fiches sans niveau
+        // (l'allemand, l'espagnol, l'A1 anglais d'avant) n'en ont pas, sauf
+        // quand une autre fiche en porte un : elles sont alors l'A1.
+        const parNiveau = FICHES_GRAMMAIRE.some(g => g.niveau);
+        let palier = null;
+        liste.innerHTML = FICHES_GRAMMAIRE.map(g => {
+            const niv = parNiveau ? (g.niveau || "A1") : null;
+            const titre = (niv && niv !== palier)
+                ? '<div class="gram-palier" style="margin:18px 4px 6px; font-size:12px; font-weight:800; letter-spacing:.08em; color:#64748B;">' + niv + '</div>'
+                : "";
+            palier = niv;
+            return titre + '<div class="orb-opt" onclick="abrirGramatica(\'' + g.id + '\', \'indice\')">'
             + '<div class="orb-opt-left"><div class="orb-opt-icon">' + ORB_ICONS.dossier + '</div><div>'
             + '<div class="orb-opt-title">' + echapperFiche(texteDeFiche(g.titre)) + '</div>'
             + '<div class="orb-opt-desc">' + echapperFiche(texteDeFiche(g.resume)) + '</div></div></div>'
-            + '<div class="orb-opt-arrow">›</div></div>').join("");
+            + '<div class="orb-opt-arrow">›</div></div>';
+        }).join("");
     }
     showScreen("gramaticaIndice");
 }

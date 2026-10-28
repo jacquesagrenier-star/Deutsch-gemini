@@ -135,6 +135,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "street lamps",
    "niveau": "A2",
+   "theme": "city_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -328,6 +329,7 @@ window.SCENE = {
    "mot": "flour",
    "genre": "",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -1005,6 +1007,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "sticks",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1162,7 +1165,8 @@ window.SCENE = {
    "mot": "scale",
    "genre": "",
    "pluriel": "scales",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -1178,7 +1182,7 @@ window.SCENE = {
    "fr": "balance",
    "gb": {
     "mot": "scales",
-    "pluriel": "scaleses"
+    "pluriel": "scales"
    }
   },
   {
@@ -1208,6 +1212,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -1228,6 +1233,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "baskets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1383,6 +1389,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "counters",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1466,6 +1473,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the clock?",
+     "c": [
+      "on the wall",
+      "on the window",
+      "above the door"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "The clock is on the wall.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The milk is ___ the shelf.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "milch",
+     "r": "regal",
+     "phrase": "The milk is on the shelf.",
+     "sens": "Le lait est sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the dog?",
+     "c": [
+      "on the floor",
+      "on the chair",
+      "in the basket"
+     ],
+     "f": "hund",
+     "r": "boden",
+     "phrase": "The dog is on the floor.",
+     "sens": "Le chien est couché par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The bike is ___ the window.",
+     "c": [
+      "in front of",
+      "behind",
+      "on"
+     ],
+     "f": "fahrrad",
+     "r": "fenster",
+     "phrase": "The bike is in front of the window.",
+     "sens": "Le vélo est devant la fenêtre.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "Where is the cash register?",
+     "c": [
+      "on the counter",
+      "on the shelf",
+      "on the table"
+     ],
+     "f": "kasse",
+     "r": "schalter",
+     "phrase": "The cash register is on the counter.",
+     "sens": "La caisse est sur le comptoir.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The cake is ___ the plate.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "kuchen-4",
+     "r": "teller",
+     "phrase": "The cake is on the plate.",
+     "sens": "Le gâteau est sur l'assiette.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the neighbor?",
+     "c": [
+      "at the table",
+      "in the oven",
+      "on the counter"
+     ],
+     "f": "nachbar",
+     "r": "tisch",
+     "phrase": "The neighbor is at the table.",
+     "sens": "Le voisin est assis à la table.",
+     "n": "<b>at</b> = à, près de, pour un point précis (at the table, at the counter)."
+    },
+    {
+     "q": "The plant is ___ the window.",
+     "c": [
+      "by",
+      "on",
+      "in"
+     ],
+     "f": "pflanze-2",
+     "r": "fenster",
+     "phrase": "The plant is by the window.",
+     "sens": "La plante est près de la fenêtre.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    }
+   ]
   }
  },
  "traductions": {}

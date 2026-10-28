@@ -7,7 +7,8 @@ window.SCENE = {
    "mot": "patient",
    "genre": "",
    "pluriel": "patients",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": "Mark",
    "aussi": [
     {
@@ -124,6 +125,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "chests",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -163,7 +165,8 @@ window.SCENE = {
    "mot": "belly button",
    "genre": "",
    "pluriel": "belly buttons",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -237,7 +240,8 @@ window.SCENE = {
    "mot": "elbow",
    "genre": "",
    "pluriel": "elbows",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -331,7 +335,8 @@ window.SCENE = {
    "mot": "thigh",
    "genre": "",
    "pluriel": "thighs",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -614,7 +619,8 @@ window.SCENE = {
    "mot": "scale",
    "genre": "",
    "pluriel": "scales",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -642,7 +648,7 @@ window.SCENE = {
    "fr": "balance",
    "gb": {
     "mot": "scales",
-    "pluriel": "scaleses"
+    "pluriel": "scales"
    }
   },
   {
@@ -756,7 +762,8 @@ window.SCENE = {
    "mot": "forehead",
    "genre": "",
    "pluriel": "foreheads",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -778,6 +785,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "eyebrows",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -799,6 +807,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "eyebrows",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -908,6 +917,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cheeks",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -929,6 +939,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cheeks",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -993,7 +1004,8 @@ window.SCENE = {
    "mot": "lip",
    "genre": "",
    "pluriel": "lips",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1015,6 +1027,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "chins",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1080,6 +1093,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "nails",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1101,6 +1115,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ankles",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1122,6 +1137,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ankles",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1143,6 +1159,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "toes",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1164,6 +1181,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "toes",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1185,6 +1203,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "nails",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1206,6 +1225,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "nails",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1479,6 +1499,89 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the scale?",
+     "c": [
+      "against the wall",
+      "on the wall",
+      "under the wall"
+     ],
+     "f": "waage",
+     "r": "wand",
+     "phrase": "The scale is against the wall.",
+     "sens": "La balance est contre le mur.",
+     "n": "<b>against</b> = contre (appuyé contre le mur)."
+    },
+    {
+     "q": "The doctor is ___ the patient.",
+     "c": [
+      "next to",
+      "behind",
+      "on"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "The doctor is next to the patient.",
+     "sens": "La médecin est debout à côté du patient.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is Mark?",
+     "c": [
+      "in front of the scale",
+      "on the scale",
+      "under the scale"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "Mark is in front of the scale.",
+     "sens": "Mark est debout devant la balance.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "The stethoscope is ___ his chest.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "stethoskop",
+     "r": "brust",
+     "phrase": "The stethoscope is on his chest.",
+     "sens": "La médecin tient le stéthoscope sur sa poitrine.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where are the hands?",
+     "c": [
+      "by his thighs",
+      "on his head",
+      "on his belly"
+     ],
+     "f": "hand-l",
+     "r": "oberschenkel",
+     "phrase": "The hands are by his thighs.",
+     "sens": "Ses mains sont le long de ses cuisses.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "The feet are ___ the floor.",
+     "c": [
+      "on",
+      "under",
+      "in"
+     ],
+     "f": "fuss-l",
+     "r": "boden",
+     "phrase": "The feet are on the floor.",
+     "sens": "Ses pieds sont sur le sol.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "corps": "mark",

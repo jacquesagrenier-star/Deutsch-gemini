@@ -1023,6 +1023,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "coffee machines",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1043,6 +1044,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "counters",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1068,6 +1070,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the cell phone?",
+     "c": [
+      "on the table",
+      "under the table",
+      "next to the backpack"
+     ],
+     "f": "handy",
+     "r": "tisch",
+     "phrase": "The cell phone is on the table.",
+     "sens": "Le téléphone est sur la table.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The jacket is ___ the chair.",
+     "c": [
+      "over",
+      "under",
+      "on"
+     ],
+     "f": "jacke",
+     "r": "stuhl",
+     "phrase": "The jacket is over the chair.",
+     "sens": "La veste est posée sur le dossier de la chaise.",
+     "n": "<b>over</b> = par-dessus, posé en travers (over the chair). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "Where is the scarf?",
+     "c": [
+      "next to the door",
+      "above the table",
+      "on the window"
+     ],
+     "f": "schal",
+     "r": "tuer",
+     "phrase": "The scarf is next to the door.",
+     "sens": "L'écharpe est accrochée à côté de la porte.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The plant is ___ the window.",
+     "c": [
+      "by",
+      "on",
+      "next to"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "The plant is by the window.",
+     "sens": "La plante est près de la fenêtre.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "Where is the backpack?",
+     "c": [
+      "next to the table",
+      "on the table",
+      "under the chair"
+     ],
+     "f": "rucksack",
+     "r": "tisch",
+     "phrase": "The backpack is next to the table.",
+     "sens": "Le sac à dos est à côté de la table.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The roll is ___ the plate.",
+     "c": [
+      "on",
+      "next to",
+      "under"
+     ],
+     "f": "broetchen",
+     "r": "teller",
+     "phrase": "The roll is on the plate.",
+     "sens": "Le petit pain est sur l'assiette.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the fork?",
+     "c": [
+      "in front of the plate",
+      "on the plate",
+      "behind the plate"
+     ],
+     "f": "gabel",
+     "r": "teller",
+     "phrase": "The fork is in front of the plate.",
+     "sens": "La fourchette est devant l'assiette.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "The juice is ___ the egg.",
+     "c": [
+      "next to",
+      "on",
+      "under"
+     ],
+     "f": "saft",
+     "r": "ei",
+     "phrase": "The juice is next to the egg.",
+     "sens": "Le jus est à côté de l'œuf.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

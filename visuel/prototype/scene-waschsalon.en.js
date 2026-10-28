@@ -159,7 +159,8 @@ window.SCENE = {
    "mot": "radiator",
    "genre": "",
    "pluriel": "radiators",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -233,6 +234,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "signs",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -259,7 +261,8 @@ window.SCENE = {
    "mot": "pedestrian",
    "genre": "",
    "pluriel": "pedestrians",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "travel_a2",
    "personne": null,
    "aussi": [
     {
@@ -639,6 +642,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "baskets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -752,8 +756,8 @@ window.SCENE = {
    "id": "buegeleisen",
    "mot": "iron",
    "genre": "",
-   "pluriel": "irons",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "nature_a2",
    "personne": null,
    "aussi": [],
    "sur": "tisch",
@@ -847,6 +851,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "trash cans",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1146,6 +1151,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the clock?",
+     "c": [
+      "on the wall",
+      "on the window",
+      "above the door"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "The clock is on the wall.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The sweater is ___ the table.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "pullover-2",
+     "r": "tisch",
+     "phrase": "The sweater is on the table.",
+     "sens": "Le pull vert est sur la table.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the girl?",
+     "c": [
+      "on the bench",
+      "on the table",
+      "on the floor"
+     ],
+     "f": "maedchen",
+     "r": "bank",
+     "phrase": "The girl is on the bench.",
+     "sens": "La fille est assise sur le banc.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The jeans are ___ the basket.",
+     "c": [
+      "in",
+      "on",
+      "under"
+     ],
+     "f": "jeans",
+     "r": "korb",
+     "phrase": "The jeans are in the basket.",
+     "sens": "Le jean est dans le panier.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "Where is the laundry detergent?",
+     "c": [
+      "on the washing machine",
+      "on the shelf",
+      "on the table"
+     ],
+     "f": "waschmittel",
+     "r": "waschmaschine-2",
+     "phrase": "The laundry detergent is on the washing machine.",
+     "sens": "La lessive est sur la machine à laver.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The mirror is ___ the radiator.",
+     "c": [
+      "above",
+      "next to",
+      "on"
+     ],
+     "f": "spiegel",
+     "r": "heizkoerper",
+     "phrase": "The mirror is above the radiator.",
+     "sens": "Le miroir est accroché au-dessus du radiateur.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "Where is the bike?",
+     "c": [
+      "on the street",
+      "in the laundromat",
+      "next to the bench"
+     ],
+     "f": "fahrrad",
+     "r": "strasse",
+     "phrase": "The bike is on the street.",
+     "sens": "Le vélo est dans la rue.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The towels are ___ the shelf.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "handtuch",
+     "r": "regal",
+     "phrase": "The towels are on the shelf.",
+     "sens": "Les serviettes sont sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "traductions": {}

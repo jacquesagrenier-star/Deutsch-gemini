@@ -182,6 +182,13 @@ def construire_scene(nom, idx):
     # pas d'article a apprendre avec le nom.
     a1 = dict(de.get("couches", {}).get("A1", {}), titre="Les noms")
     scene["couches"] = {"A1": a1}
+    # Les couches A2-C1 ECRITES pour l'anglais (anglais/scenes/<nom>.json,
+    # session A2-C1) ; « _de » y rappelle le fait allemand, on ne le copie pas.
+    p_en = os.path.join(RACINE, "anglais", "scenes", nom + ".json")
+    if os.path.exists(p_en):
+        for niv, couche in json.load(io.open(p_en, encoding="utf-8")).get("couches", {}).items():
+            scene["couches"][niv] = dict(couche, qs=[{k: v for k, v in q.items() if not k.startswith("_")}
+                                                    for q in couche.get("qs", [])])
     # L'interface de l'anglais est en francais : pas de traductions d'interface.
     scene["traductions"] = {}
     js = ("// GENERE par anglais/outils/scenes.py (depuis scene-%s.js) -- ne pas modifier a la main.\n" % nom

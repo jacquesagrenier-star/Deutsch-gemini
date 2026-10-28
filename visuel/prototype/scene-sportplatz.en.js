@@ -103,6 +103,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "nets",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -600,6 +601,7 @@ window.SCENE = {
      "mot": "soccer field",
      "genre": "",
      "niveau": "A2",
+     "theme": "sports_a2",
      "fr": "terrain de sport",
      "gb": {
       "mot": "football pitch",
@@ -634,6 +636,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the ball?",
+     "c": [
+      "in the net",
+      "on the bench",
+      "in the bag"
+     ],
+     "f": "ball",
+     "r": "netz",
+     "phrase": "The ball is in the net.",
+     "sens": "Le ballon est dans le filet.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The player is ___ the net.",
+     "c": [
+      "in front of",
+      "on",
+      "behind"
+     ],
+     "f": "torwart",
+     "r": "netz",
+     "phrase": "The player is in front of the net.",
+     "sens": "Le joueur au maillot jaune est assis devant le filet.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "Where is the man?",
+     "c": [
+      "on the bench",
+      "in the grass",
+      "next to the ball"
+     ],
+     "f": "mann",
+     "r": "bank",
+     "phrase": "The man is on the bench.",
+     "sens": "Le vieux monsieur est assis sur le banc.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The towel is ___ the bag.",
+     "c": [
+      "in",
+      "on",
+      "under"
+     ],
+     "f": "handtuch",
+     "r": "tasche",
+     "phrase": "The towel is in the bag.",
+     "sens": "La serviette est dans le sac.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "Where is the ball?",
+     "c": [
+      "next to the bag",
+      "in the net",
+      "under the bench"
+     ],
+     "f": "ball-2",
+     "r": "tasche",
+     "phrase": "The ball is next to the bag.",
+     "sens": "Le ballon est à côté du sac.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The bike is ___ the net.",
+     "c": [
+      "behind",
+      "on",
+      "next to"
+     ],
+     "f": "fahrrad",
+     "r": "netz",
+     "phrase": "The bike is behind the net.",
+     "sens": "Le vélo est derrière le filet.",
+     "n": "<b>behind</b> = derrière."
+    },
+    {
+     "q": "Where is the bottle?",
+     "c": [
+      "in the bag",
+      "in the net",
+      "on the bench"
+     ],
+     "f": "flasche",
+     "r": "tasche",
+     "phrase": "The bottle is in the bag.",
+     "sens": "La bouteille est dans le sac.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The cloud is ___ the sky.",
+     "c": [
+      "in",
+      "above",
+      "on"
+     ],
+     "f": "wolke",
+     "r": "himmel",
+     "phrase": "The cloud is in the sky.",
+     "sens": "Le nuage est dans le ciel.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    }
+   ]
   }
  },
  "traductions": {}

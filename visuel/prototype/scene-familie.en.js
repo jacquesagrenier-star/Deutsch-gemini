@@ -487,6 +487,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "baskets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -727,6 +728,114 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the cat?",
+     "c": [
+      "on the chair",
+      "under the table",
+      "on the closet"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "The cat is on the chair.",
+     "sens": "Le chat dort sur la chaise.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "The picture is ___ the closet.",
+     "c": [
+      "above",
+      "on",
+      "next to"
+     ],
+     "f": "bild",
+     "r": "schrank",
+     "phrase": "The picture is above the closet.",
+     "sens": "Le tableau est accroché au-dessus de l'armoire.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "Where is the clock?",
+     "c": [
+      "on the wall",
+      "on the window",
+      "above the closet"
+     ],
+     "f": "uhr",
+     "phrase": "The clock is on the wall.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The baby is ___ the mother.",
+     "c": [
+      "with",
+      "on",
+      "in"
+     ],
+     "f": "baby",
+     "r": "mutter",
+     "phrase": "The baby is with the mother.",
+     "sens": "Le bébé est avec la mère.",
+     "n": "<b>with</b> = avec."
+    },
+    {
+     "q": "Where is the soup?",
+     "c": [
+      "on the table",
+      "in the closet",
+      "by the window"
+     ],
+     "f": "suppe",
+     "r": "tisch",
+     "phrase": "The soup is on the table.",
+     "sens": "La soupe est sur la table.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The bread is ___ the basket.",
+     "c": [
+      "in",
+      "on",
+      "next to"
+     ],
+     "f": "brot",
+     "r": "korb",
+     "phrase": "The bread is in the basket.",
+     "sens": "Le pain est dans la corbeille.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "Where is the fork?",
+     "c": [
+      "next to the plate",
+      "on the napkin",
+      "in the glass"
+     ],
+     "f": "gabel",
+     "r": "teller-2",
+     "phrase": "The fork is next to the plate.",
+     "sens": "La fourchette est à côté de l'assiette.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The juice is ___ the glass.",
+     "c": [
+      "next to",
+      "in",
+      "on"
+     ],
+     "f": "saft",
+     "r": "glas",
+     "phrase": "The juice is next to the glass.",
+     "sens": "Le jus est à côté du verre.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

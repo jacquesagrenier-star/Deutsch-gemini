@@ -502,6 +502,10 @@ def construire():
     # Le parcours debutant : reperes, prononciation, feuilles, Premiers pas.
     parcours_debutant.construire(us, gb, vers_gb)
 
+    # Les niveaux A2-C1 (niveaux.py), apres l'A1, qu'ils ne touchent pas.
+    import niveaux
+    niveaux.construire(us, gb, ch, vers_gb)
+
     # Pas de cle « _lisez_moi » dans les fichiers : le chargeur des verbes
     # prend chaque cle pour un niveau (il retombait sur sa liste de secours
     # allemande). La notice vit dans anglais/datos/LISEZ-MOI.md.

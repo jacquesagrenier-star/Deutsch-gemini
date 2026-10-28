@@ -359,7 +359,8 @@ window.SCENE = {
    "mot": "sculpture",
    "genre": "",
    "pluriel": "sculptures",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "culture_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -408,7 +409,8 @@ window.SCENE = {
    "mot": "tie",
    "genre": "",
    "pluriel": "ties",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "clothes_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -523,6 +525,7 @@ window.SCENE = {
    "mot": "headphones",
    "genre": "",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -608,7 +611,8 @@ window.SCENE = {
    "mot": "radiator",
    "genre": "",
    "pluriel": "radiators",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -873,6 +877,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the painting?",
+     "c": [
+      "above the door",
+      "next to the window",
+      "on the ceiling"
+     ],
+     "f": "gemaelde",
+     "r": "tuer",
+     "phrase": "The painting is above the door.",
+     "sens": "Le tableau du bateau est accroché au-dessus de la porte.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "Anna is ___ the bench.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "anna",
+     "r": "bank",
+     "phrase": "Anna is on the bench.",
+     "sens": "Anna est assise sur le banc.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the coat?",
+     "c": [
+      "on the bench",
+      "on the floor",
+      "on the chair"
+     ],
+     "f": "mantel",
+     "r": "bank",
+     "phrase": "The coat is on the bench.",
+     "sens": "Le manteau est posé sur le banc.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The backpack is ___ the floor.",
+     "c": [
+      "on",
+      "next to",
+      "in"
+     ],
+     "f": "rucksack",
+     "r": "boden",
+     "phrase": "The backpack is on the floor.",
+     "sens": "Le sac à dos est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the man?",
+     "c": [
+      "next to the door",
+      "by the window",
+      "on the bench"
+     ],
+     "f": "mann",
+     "r": "tuer",
+     "phrase": "The man is next to the door.",
+     "sens": "L'homme est assis à côté de la porte.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The student is ___ the window.",
+     "c": [
+      "by",
+      "on",
+      "in"
+     ],
+     "f": "student",
+     "r": "fenster",
+     "phrase": "The student is by the window.",
+     "sens": "L'étudiant est près de la fenêtre.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "Where is the lamp?",
+     "c": [
+      "on the ceiling",
+      "on the wall",
+      "on the window"
+     ],
+     "f": "lampe",
+     "r": "decke",
+     "phrase": "The lamp is on the ceiling.",
+     "sens": "La lampe est accrochée au plafond.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The plant is ___ the radiator.",
+     "c": [
+      "next to",
+      "on",
+      "in front of"
+     ],
+     "f": "pflanze",
+     "r": "heizkoerper",
+     "phrase": "The plant is next to the radiator.",
+     "sens": "La plante est à côté du radiateur.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

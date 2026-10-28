@@ -71,6 +71,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "fountains",
    "niveau": "A2",
+   "theme": "city_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -175,6 +176,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "street lamps",
    "niveau": "A2",
+   "theme": "city_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -199,6 +201,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "trash cans",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -307,6 +310,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "helmets",
    "niveau": "A2",
+   "theme": "travel_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -493,6 +497,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "baskets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "decke",
@@ -746,7 +751,8 @@ window.SCENE = {
    "mot": "lawn",
    "genre": "",
    "pluriel": "lawns",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "nature_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -788,6 +794,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the man?",
+     "c": [
+      "on the bench",
+      "under the tree",
+      "in the boat"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "The man is on the bench.",
+     "sens": "L'homme est assis sur le banc.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The boat is ___ the lake.",
+     "c": [
+      "on",
+      "under",
+      "next to"
+     ],
+     "f": "boot",
+     "r": "see",
+     "phrase": "The boat is on the lake.",
+     "sens": "La barque est sur le lac.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the boy?",
+     "c": [
+      "on the path",
+      "in the lake",
+      "on the blanket"
+     ],
+     "f": "junge",
+     "r": "weg",
+     "phrase": "The boy is on the path.",
+     "sens": "Le garçon roule sur le chemin.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The basket is ___ the blanket.",
+     "c": [
+      "on",
+      "under",
+      "next to"
+     ],
+     "f": "korb",
+     "r": "decke",
+     "phrase": "The basket is on the blanket.",
+     "sens": "Le panier est sur la couverture.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the cell phone?",
+     "c": [
+      "next to the backpack",
+      "in the basket",
+      "under the book"
+     ],
+     "f": "handy",
+     "r": "rucksack",
+     "phrase": "The cell phone is next to the backpack.",
+     "sens": "Le téléphone est à côté du sac à dos.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The ball is ___ the grass.",
+     "c": [
+      "above",
+      "in",
+      "under"
+     ],
+     "f": "ball",
+     "r": "gras",
+     "phrase": "The ball is above the grass.",
+     "sens": "Le ballon est au-dessus de l'herbe.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "Where is the street lamp?",
+     "c": [
+      "next to the trash can",
+      "on the bridge",
+      "in the lake"
+     ],
+     "f": "laterne",
+     "r": "muelleimer",
+     "phrase": "The street lamp is next to the trash can.",
+     "sens": "Le lampadaire est à côté de la poubelle.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The bird is ___ the bench.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "vogel",
+     "r": "bank",
+     "phrase": "The bird is on the bench.",
+     "sens": "L'oiseau est perché sur le banc.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "traductions": {}

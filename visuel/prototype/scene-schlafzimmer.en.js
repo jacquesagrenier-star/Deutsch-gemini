@@ -99,6 +99,7 @@ window.SCENE = {
      "mot": "poster",
      "genre": "",
      "niveau": "A2",
+     "theme": "home_a2_2",
      "fr": "poster"
     }
    ],
@@ -356,7 +357,8 @@ window.SCENE = {
    "mot": "wallet",
    "genre": "",
    "pluriel": "wallets",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "money_a2",
    "personne": null,
    "aussi": [],
    "sur": "bett",
@@ -398,6 +400,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "chargers",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "bett",
@@ -577,6 +580,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "nightstands",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -606,6 +610,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the hat?",
+     "c": [
+      "on the bed",
+      "in the closet",
+      "under the bed"
+     ],
+     "f": "hut",
+     "r": "bett",
+     "phrase": "The hat is on the bed.",
+     "sens": "Le chapeau est sur le lit.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The alarm clock is ___ the lamp.",
+     "c": [
+      "next to",
+      "on",
+      "in"
+     ],
+     "f": "wecker",
+     "r": "lampe",
+     "phrase": "The alarm clock is next to the lamp.",
+     "sens": "Le réveil est à côté de la lampe.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the picture?",
+     "c": [
+      "above the bed",
+      "next to the window",
+      "in the closet"
+     ],
+     "f": "bild",
+     "r": "bett",
+     "phrase": "The picture is above the bed.",
+     "sens": "Le tableau est accroché au-dessus du lit.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "The laptop is ___ the desk.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "laptop",
+     "r": "schreibtisch",
+     "phrase": "The laptop is on the desk.",
+     "sens": "L'ordinateur portable est sur le bureau.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is Anna?",
+     "c": [
+      "on the carpet",
+      "on the bed",
+      "in the closet"
+     ],
+     "f": "anna",
+     "r": "teppich",
+     "phrase": "Anna is on the carpet.",
+     "sens": "Anna est debout sur le tapis.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The passport is ___ the wallet.",
+     "c": [
+      "next to",
+      "in",
+      "under"
+     ],
+     "f": "pass",
+     "r": "portemonnaie",
+     "phrase": "The passport is next to the wallet.",
+     "sens": "Le passeport est à côté du porte-monnaie.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the charger?",
+     "c": [
+      "next to the map",
+      "in the closet",
+      "on the cushion"
+     ],
+     "f": "ladegeraet",
+     "r": "landkarte",
+     "phrase": "The charger is next to the map.",
+     "sens": "Le chargeur est à côté de la carte.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The curtain is ___ the window.",
+     "c": [
+      "on",
+      "above",
+      "in"
+     ],
+     "f": "vorhang",
+     "r": "fenster",
+     "phrase": "The curtain is on the window.",
+     "sens": "Le rideau est accroché à la fenêtre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "traductions": {}

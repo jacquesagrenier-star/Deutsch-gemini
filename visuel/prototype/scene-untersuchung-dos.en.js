@@ -7,7 +7,8 @@ window.SCENE = {
    "mot": "patient",
    "genre": "",
    "pluriel": "patients",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": "Mark",
    "aussi": [
     {
@@ -244,6 +245,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "bottoms",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [
     {
@@ -324,7 +326,8 @@ window.SCENE = {
    "mot": "elbow",
    "genre": "",
    "pluriel": "elbows",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -393,6 +396,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "palms",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "hand-r",
@@ -412,7 +416,8 @@ window.SCENE = {
    "mot": "thigh",
    "genre": "",
    "pluriel": "thighs",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -532,6 +537,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "heels",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -708,7 +714,8 @@ window.SCENE = {
    "mot": "scale",
    "genre": "",
    "pluriel": "scales",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -736,7 +743,7 @@ window.SCENE = {
    "fr": "balance",
    "gb": {
     "mot": "scales",
-    "pluriel": "scaleses"
+    "pluriel": "scales"
    }
   },
   {
@@ -787,6 +794,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "palms",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -872,6 +880,89 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the stethoscope?",
+     "c": [
+      "on his back",
+      "on his chest",
+      "on his head"
+     ],
+     "f": "stethoskop",
+     "r": "ruecken",
+     "phrase": "The stethoscope is on his back.",
+     "sens": "La médecin tient le stéthoscope sur son dos.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The doctor is ___ the patient.",
+     "c": [
+      "next to",
+      "in front of",
+      "on"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "The doctor is next to the patient.",
+     "sens": "La médecin est debout à côté du patient.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where are the hands?",
+     "c": [
+      "next to his bottom",
+      "on his head",
+      "on his back"
+     ],
+     "f": "hand-l",
+     "r": "po",
+     "phrase": "The hands are next to his bottom.",
+     "sens": "Ses mains sont à côté de ses fesses.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the spine?",
+     "c": [
+      "between the shoulder blades",
+      "above the head",
+      "under the feet"
+     ],
+     "f": "wirbelsaeule",
+     "r": "schulterblatt",
+     "phrase": "The spine is between the shoulder blades.",
+     "sens": "La colonne vertébrale est entre les omoplates.",
+     "n": "<b>between</b> = entre (deux choses)."
+    },
+    {
+     "q": "Where are the calves?",
+     "c": [
+      "under the back of the knee",
+      "above the back of the knee",
+      "next to the shoulders"
+     ],
+     "f": "wade",
+     "r": "kniekehle",
+     "phrase": "The calves are under the back of the knee.",
+     "sens": "Les mollets sont sous les creux des genoux.",
+     "n": "<b>under</b> = sous."
+    },
+    {
+     "q": "The scale is ___ the wall.",
+     "c": [
+      "against",
+      "on",
+      "in"
+     ],
+     "f": "waage",
+     "r": "wand",
+     "phrase": "The scale is against the wall.",
+     "sens": "La balance est contre le mur.",
+     "n": "<b>against</b> = contre (appuyé contre le mur)."
+    }
+   ]
   }
  },
  "corps": "mark",

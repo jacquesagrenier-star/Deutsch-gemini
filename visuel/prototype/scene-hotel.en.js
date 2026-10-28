@@ -344,6 +344,7 @@ window.SCENE = {
      "mot": "floor lamp",
      "genre": "",
      "niveau": "A2",
+     "theme": "home_a2",
      "fr": "lampadaire"
     }
    ],
@@ -433,7 +434,8 @@ window.SCENE = {
    "mot": "tie",
    "genre": "",
    "pluriel": "ties",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "clothes_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -504,6 +506,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "keyboards",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "rezeption",
@@ -965,6 +968,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "coffee tables",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [
     {
@@ -992,7 +996,8 @@ window.SCENE = {
    "mot": "doorbell",
    "genre": "",
    "pluriel": "doorbells",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "rezeption",
@@ -1034,6 +1039,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "brochures",
    "niveau": "A2",
+   "theme": "money_a2",
    "personne": null,
    "aussi": [],
    "sur": "rezeption",
@@ -1059,7 +1065,8 @@ window.SCENE = {
     {
      "mot": "form",
      "genre": "",
-     "niveau": "B2",
+     "niveau": "A2",
+     "theme": "city_a2",
      "fr": "formulaire"
     }
    ],
@@ -1183,6 +1190,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the clock?",
+     "c": [
+      "on the wall",
+      "on the window",
+      "above the door"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "The clock is on the wall.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The keys are ___ the shelf.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "schluessel",
+     "r": "regal",
+     "phrase": "The keys are on the shelf.",
+     "sens": "Les clés sont accrochées dans le casier.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the suitcase?",
+     "c": [
+      "on the floor",
+      "on the sofa",
+      "on the stairs"
+     ],
+     "f": "koffer",
+     "r": "boden",
+     "phrase": "The suitcase is on the floor.",
+     "sens": "La valise est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The woman is ___ the sofa.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "frau",
+     "r": "sofa",
+     "phrase": "The woman is on the sofa.",
+     "sens": "La femme est assise sur le canapé.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the cup?",
+     "c": [
+      "on the coffee table",
+      "on the front desk",
+      "on the shelf"
+     ],
+     "f": "tasse",
+     "r": "couchtisch",
+     "phrase": "The cup is on the coffee table.",
+     "sens": "La tasse est sur la table basse.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The doorbell is ___ the front desk.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "klingel",
+     "r": "rezeption",
+     "phrase": "The doorbell is on the front desk.",
+     "sens": "La sonnette est sur le comptoir de la réception.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the picture?",
+     "c": [
+      "above the sofa",
+      "next to the clock",
+      "in the elevator"
+     ],
+     "f": "bild",
+     "r": "sofa",
+     "phrase": "The picture is above the sofa.",
+     "sens": "Le tableau est accroché au-dessus du canapé.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "The lamp is ___ the mirror.",
+     "c": [
+      "next to",
+      "on",
+      "in front of"
+     ],
+     "f": "lampe",
+     "r": "spiegel",
+     "phrase": "The lamp is next to the mirror.",
+     "sens": "La lampe est à côté du miroir.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

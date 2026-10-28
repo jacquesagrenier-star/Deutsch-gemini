@@ -134,6 +134,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "tents",
    "niveau": "A2",
+   "theme": "travel_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -299,7 +300,9 @@ window.SCENE = {
    "id": "feuer",
    "mot": "fire",
    "genre": "",
-   "niveau": "B1",
+   "pluriel": "fires",
+   "niveau": "A2",
+   "theme": "nature_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -452,7 +455,8 @@ window.SCENE = {
    "mot": "sleeping pad",
    "genre": "",
    "pluriel": "sleeping pads",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "travel_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -480,6 +484,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the moon?",
+     "c": [
+      "in the sky",
+      "in the lake",
+      "above the tent"
+     ],
+     "f": "mond",
+     "r": "himmel",
+     "phrase": "The moon is in the sky.",
+     "sens": "La lune est dans le ciel.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The boat is ___ the lake.",
+     "c": [
+      "by",
+      "in",
+      "in front of"
+     ],
+     "f": "boot",
+     "r": "see",
+     "phrase": "The boat is by the lake.",
+     "sens": "La barque est au bord du lac.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "Where is the pot?",
+     "c": [
+      "above the fire",
+      "in the tent",
+      "next to the backpack"
+     ],
+     "f": "topf",
+     "r": "feuer",
+     "phrase": "The pot is above the fire.",
+     "sens": "La marmite est suspendue au-dessus du feu.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "The backpack is ___ the tent.",
+     "c": [
+      "in front of",
+      "in",
+      "by"
+     ],
+     "f": "rucksack",
+     "r": "zelt",
+     "phrase": "The backpack is in front of the tent.",
+     "sens": "Le sac à dos est devant la tente.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "Where is the mushroom?",
+     "c": [
+      "next to the tent",
+      "in the lake",
+      "on the stone"
+     ],
+     "f": "pilz",
+     "r": "zelt",
+     "phrase": "The mushroom is next to the tent.",
+     "sens": "Le champignon pousse à côté de la tente.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The cup is ___ the stone.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "tasse",
+     "r": "stein",
+     "phrase": "The cup is on the stone.",
+     "sens": "La tasse est sur la pierre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the lamp?",
+     "c": [
+      "next to the wood",
+      "in the pot",
+      "in the tent"
+     ],
+     "f": "lampe",
+     "r": "holz",
+     "phrase": "The lamp is next to the wood.",
+     "sens": "La lampe est à côté du bois.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The tent is ___ the lake.",
+     "c": [
+      "by",
+      "in",
+      "on"
+     ],
+     "f": "zelt",
+     "r": "see",
+     "phrase": "The tent is by the lake.",
+     "sens": "La tente est au bord du lac.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    }
+   ]
   }
  },
  "traductions": {}

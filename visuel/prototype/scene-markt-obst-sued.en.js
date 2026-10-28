@@ -8,6 +8,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "watermelons",
    "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -42,6 +43,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "pineapples",
    "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -75,7 +77,8 @@ window.SCENE = {
    "mot": "coconut",
    "genre": "",
    "pluriel": "coconuts",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -110,6 +113,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "melons",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -179,6 +183,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "avocados",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -282,6 +287,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "kiwis",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -316,6 +322,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "tangerines",
    "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -383,7 +390,8 @@ window.SCENE = {
    "mot": "lime",
    "genre": "",
    "pluriel": "limes",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -417,7 +425,8 @@ window.SCENE = {
    "mot": "grapefruit",
    "genre": "",
    "pluriel": "grapefruits",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -452,6 +461,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "mangoes",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -585,6 +595,75 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where are the avocados?",
+     "c": [
+      "between the oranges and the papaya",
+      "next to the bananas",
+      "next to the kiwi"
+     ],
+     "f": "avocado",
+     "r": "papaya",
+     "phrase": "The avocados are between the oranges and the papaya.",
+     "sens": "Les avocats sont entre les oranges et les papayes.",
+     "n": "<b>between</b> = entre (deux choses)."
+    },
+    {
+     "q": "What is Anna taking?",
+     "c": [
+      "a few bananas",
+      "a mango",
+      "a pomegranate"
+     ],
+     "f": "banane",
+     "r": "anna",
+     "phrase": "Anna is taking a few bananas.",
+     "sens": "Anna prend quelques bananes.",
+     "n": "<b>a few</b> = quelques, devant un nom au pluriel qu'on peut compter."
+    },
+    {
+     "q": "Where are the limes?",
+     "c": [
+      "next to the figs",
+      "next to the melons",
+      "next to the mango"
+     ],
+     "f": "limette",
+     "r": "feige",
+     "phrase": "The limes are next to the figs.",
+     "sens": "Les citrons verts sont à côté des figues.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where are the mangoes?",
+     "c": [
+      "between the grapefruit and the bananas",
+      "next to the lemons",
+      "next to the coconuts"
+     ],
+     "f": "mango",
+     "r": "banane",
+     "phrase": "The mangoes are between the grapefruit and the bananas.",
+     "sens": "Les mangues sont entre les pamplemousses et les bananes.",
+     "n": "<b>between</b> = entre (deux choses)."
+    },
+    {
+     "q": "Where is the watermelon?",
+     "c": [
+      "on the watermelons",
+      "under the pineapple",
+      "next to the kiwi"
+     ],
+     "f": "wassermelone",
+     "phrase": "The watermelon is on the watermelons.",
+     "sens": "La demi-pastèque est sur les autres pastèques.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "autre_vue": {

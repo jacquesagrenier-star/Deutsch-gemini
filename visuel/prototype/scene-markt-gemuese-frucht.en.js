@@ -8,6 +8,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "peas",
    "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -104,7 +105,8 @@ window.SCENE = {
    "mot": "pumpkin",
    "genre": "",
    "pluriel": "pumpkins",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -174,6 +176,7 @@ window.SCENE = {
    "mot": "corn",
    "genre": "",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -245,6 +248,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "beans",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -342,7 +346,8 @@ window.SCENE = {
    "mot": "eggplant",
    "genre": "",
    "pluriel": "eggplants",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -413,7 +418,8 @@ window.SCENE = {
    "mot": "zucchini",
    "genre": "",
    "pluriel": "zucchinis",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -484,6 +490,7 @@ window.SCENE = {
    "mot": "spinach",
    "genre": "",
    "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -574,6 +581,76 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where are the mushrooms?",
+     "c": [
+      "between the corn and the beans",
+      "next to the tomatoes",
+      "next to the pumpkins"
+     ],
+     "f": "pilz",
+     "r": "bohne",
+     "phrase": "The mushrooms are between the corn and the beans.",
+     "sens": "Les champignons sont entre le maïs et les haricots.",
+     "n": "<b>between</b> = entre (deux choses)."
+    },
+    {
+     "q": "What is Anna taking?",
+     "c": [
+      "a few tomatoes",
+      "a pumpkin",
+      "a cucumber"
+     ],
+     "f": "tomate-main",
+     "r": "anna",
+     "phrase": "Anna is taking a few tomatoes.",
+     "sens": "Anna prend quelques tomates.",
+     "n": "<b>a few</b> = quelques, devant un nom au pluriel qu'on peut compter."
+    },
+    {
+     "q": "Where are the eggplants?",
+     "c": [
+      "next to the cucumbers",
+      "next to the peas",
+      "next to the zucchini"
+     ],
+     "f": "aubergine",
+     "r": "gurke",
+     "phrase": "The eggplants are next to the cucumbers.",
+     "sens": "Les aubergines sont à côté des concombres.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the asparagus?",
+     "c": [
+      "between the lettuce and the pumpkins",
+      "next to the tomatoes",
+      "next to the mushrooms"
+     ],
+     "f": "spargel",
+     "r": "salat",
+     "phrase": "The asparagus is between the lettuce and the pumpkins.",
+     "sens": "Les asperges sont entre la salade et les citrouilles.",
+     "n": "<b>between</b> = entre (deux choses). <b>Asparagus</b> se dit au singulier, comme un tout."
+    },
+    {
+     "q": "Where are the zucchinis?",
+     "c": [
+      "next to the tomatoes",
+      "next to the asparagus",
+      "next to the mushrooms"
+     ],
+     "f": "zucchini",
+     "r": "tomate",
+     "phrase": "The zucchinis are next to the tomatoes.",
+     "sens": "Les courgettes sont à côté des tomates.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "autre_vue": {

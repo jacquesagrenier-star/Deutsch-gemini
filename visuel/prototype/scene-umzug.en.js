@@ -49,7 +49,8 @@ window.SCENE = {
    "mot": "light bulb",
    "genre": "",
    "pluriel": "light bulbs",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -356,6 +357,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -632,7 +634,8 @@ window.SCENE = {
    "mot": "radiator",
    "genre": "",
    "pluriel": "radiators",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -744,7 +747,8 @@ window.SCENE = {
    "mot": "tool",
    "genre": "",
    "pluriel": "tools",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -765,6 +769,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "hammers",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "werkzeug",
@@ -784,7 +789,8 @@ window.SCENE = {
    "mot": "drill",
    "genre": "",
    "pluriel": "drills",
-   "niveau": "C1",
+   "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "werkzeug",
@@ -826,6 +832,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -846,6 +853,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -872,6 +880,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -936,6 +945,7 @@ window.SCENE = {
    "mot": "scissors",
    "genre": "",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1028,6 +1038,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the brother?",
+     "c": [
+      "on the ladder",
+      "on the table",
+      "on the sofa"
+     ],
+     "f": "bruder",
+     "r": "leiter",
+     "phrase": "The brother is on the ladder.",
+     "sens": "Le frère est debout sur l'escabeau.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The cushions are ___ the sofa.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "kissen",
+     "r": "sofa",
+     "phrase": "The cushions are on the sofa.",
+     "sens": "Les coussins sont sur le canapé.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the chair?",
+     "c": [
+      "on the table",
+      "next to the sofa",
+      "in front of the window"
+     ],
+     "f": "stuhl",
+     "r": "tisch",
+     "phrase": "The chair is on the table.",
+     "sens": "La chaise est sur la table.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "The pizza is ___ the cardboard box.",
+     "c": [
+      "in",
+      "on",
+      "under"
+     ],
+     "f": "pizza",
+     "r": "karton-3",
+     "phrase": "The pizza is in the cardboard box.",
+     "sens": "La pizza est dans le carton.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "Where is the clock?",
+     "c": [
+      "on the floor",
+      "on the table",
+      "on the shelf"
+     ],
+     "f": "uhr",
+     "r": "boden",
+     "phrase": "The clock is on the floor.",
+     "sens": "L'horloge est posée par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The radiator is ___ the window.",
+     "c": [
+      "under",
+      "next to",
+      "above"
+     ],
+     "f": "heizkoerper",
+     "r": "fenster",
+     "phrase": "The radiator is under the window.",
+     "sens": "Le radiateur est sous la fenêtre.",
+     "n": "<b>under</b> = sous."
+    },
+    {
+     "q": "Where is the guitar?",
+     "c": [
+      "next to the sofa",
+      "on the table",
+      "on the shelf"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "The guitar is next to the sofa.",
+     "sens": "La guitare est à côté du canapé.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The lamp is ___ the ceiling.",
+     "c": [
+      "on",
+      "above",
+      "in"
+     ],
+     "f": "lampe",
+     "r": "decke",
+     "phrase": "The lamp is on the ceiling.",
+     "sens": "La lampe est accrochée au plafond.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "traductions": {}

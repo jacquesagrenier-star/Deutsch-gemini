@@ -28,6 +28,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "posters",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": "wand",
@@ -131,7 +132,8 @@ window.SCENE = {
    "mot": "patient",
    "genre": "",
    "pluriel": "patients",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": "Mark",
    "aussi": [
     {
@@ -294,7 +296,8 @@ window.SCENE = {
    "mot": "elbow",
    "genre": "",
    "pluriel": "elbows",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -321,6 +324,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "chests",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -632,7 +636,8 @@ window.SCENE = {
    "mot": "bandage",
    "genre": "",
    "pluriel": "bandages",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "aerztin",
@@ -726,7 +731,8 @@ window.SCENE = {
    "mot": "stool",
    "genre": "",
    "pluriel": "stools",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -929,6 +935,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "keyboards",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -1060,6 +1067,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "trash cans",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1090,7 +1098,8 @@ window.SCENE = {
     {
      "mot": "sports bag",
      "genre": "",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "sports_a2",
      "fr": "sac de sport"
     }
    ],
@@ -1227,7 +1236,8 @@ window.SCENE = {
    "mot": "exam table",
    "genre": "",
    "pluriel": "exam tables",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1418,6 +1428,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the ball?",
+     "c": [
+      "on the bag",
+      "under the bag",
+      "next to the trash can"
+     ],
+     "f": "ball",
+     "r": "tasche",
+     "phrase": "The ball is on the bag.",
+     "sens": "Le ballon est sur le sac.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The clock is ___ the poster.",
+     "c": [
+      "above",
+      "under",
+      "next to"
+     ],
+     "f": "uhr",
+     "r": "poster",
+     "phrase": "The clock is above the poster.",
+     "sens": "L'horloge est accrochée au-dessus de l'affiche.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "Where is the plant?",
+     "c": [
+      "by the window",
+      "on the desk",
+      "next to the door"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "The plant is by the window.",
+     "sens": "La plante est près de la fenêtre.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "The doctor is ___ the patient.",
+     "c": [
+      "next to",
+      "behind",
+      "in front of"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "The doctor is next to the patient.",
+     "sens": "La médecin est assise à côté du patient.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the jacket?",
+     "c": [
+      "next to the door",
+      "on the door",
+      "above the door"
+     ],
+     "f": "jacke",
+     "r": "tuer",
+     "phrase": "The jacket is next to the door.",
+     "sens": "La veste est accrochée à côté de la porte.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The socks are ___ the shoes.",
+     "c": [
+      "on",
+      "under",
+      "in"
+     ],
+     "f": "socke",
+     "r": "schuh",
+     "phrase": "The socks are on the shoes.",
+     "sens": "Les chaussettes sont sur les chaussures.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the Band-Aid?",
+     "c": [
+      "on the knee",
+      "under the knee",
+      "on the hand"
+     ],
+     "f": "pflaster",
+     "r": "knie",
+     "phrase": "The Band-Aid is on the knee.",
+     "sens": "Le pansement est sur le genou.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The poster is ___ the patient.",
+     "c": [
+      "behind",
+      "in front of",
+      "above"
+     ],
+     "f": "poster",
+     "r": "mark",
+     "phrase": "The poster is behind the patient.",
+     "sens": "L'affiche est accrochée derrière le patient.",
+     "n": "<b>behind</b> = derrière."
+    }
+   ]
   }
  },
  "corps": "mark",

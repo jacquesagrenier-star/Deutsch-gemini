@@ -83,6 +83,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -149,7 +150,8 @@ window.SCENE = {
    "mot": "cable",
    "genre": "",
    "pluriel": "cables",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -232,6 +234,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "baskets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -298,6 +301,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "posters",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -339,6 +343,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "posters",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -358,7 +363,8 @@ window.SCENE = {
    "mot": "outlet",
    "genre": "",
    "pluriel": "outlets",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -409,7 +415,8 @@ window.SCENE = {
    "mot": "stool",
    "genre": "",
    "pluriel": "stools",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -618,6 +625,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "chains",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -636,7 +644,8 @@ window.SCENE = {
    "id": "zange",
    "mot": "pliers",
    "genre": "",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -799,7 +808,8 @@ window.SCENE = {
    "mot": "radiator",
    "genre": "",
    "pluriel": "radiators",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -891,6 +901,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "helmets",
    "niveau": "A2",
+   "theme": "travel_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1058,6 +1069,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "counters",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1135,7 +1147,8 @@ window.SCENE = {
    "mot": "doorbell",
    "genre": "",
    "pluriel": "doorbells",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "tisch",
@@ -1238,6 +1251,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1283,7 +1297,8 @@ window.SCENE = {
    "mot": "tool",
    "genre": "",
    "pluriel": "tools",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1304,6 +1319,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "hammers",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "werkzeug",
@@ -1344,6 +1360,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "buckets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1394,6 +1411,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the clock?",
+     "c": [
+      "on the wall",
+      "on the window",
+      "above the door"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "The clock is on the wall.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The bottle is ___ the table.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "flasche",
+     "r": "tisch",
+     "phrase": "The bottle is on the table.",
+     "sens": "La bouteille est sur la table.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where are the cardboard boxes?",
+     "c": [
+      "on the shelf",
+      "on the table",
+      "in front of the door"
+     ],
+     "f": "karton",
+     "r": "regal",
+     "phrase": "The cardboard boxes are on the shelf.",
+     "sens": "Les cartons sont sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The bucket is ___ the floor.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "eimer",
+     "r": "boden",
+     "phrase": "The bucket is on the floor.",
+     "sens": "Le seau est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the dog?",
+     "c": [
+      "by the window",
+      "by the door",
+      "on the shelf"
+     ],
+     "f": "hund",
+     "r": "fenster",
+     "phrase": "The dog is by the window.",
+     "sens": "Le chien est couché à la fenêtre.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "The car is ___ the street.",
+     "c": [
+      "on",
+      "in",
+      "in front of"
+     ],
+     "f": "auto",
+     "r": "strasse",
+     "phrase": "The car is on the street.",
+     "sens": "La voiture est dans la rue.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the poster?",
+     "c": [
+      "next to the door",
+      "on the window",
+      "above the table"
+     ],
+     "f": "plakat",
+     "r": "tuer",
+     "phrase": "The poster is next to the door.",
+     "sens": "L'affiche est accrochée à côté de la porte.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The stool is ___ the bike.",
+     "c": [
+      "behind",
+      "in front of",
+      "on"
+     ],
+     "f": "hocker",
+     "r": "fahrrad",
+     "phrase": "The stool is behind the bike.",
+     "sens": "Le tabouret est derrière le vélo.",
+     "n": "<b>behind</b> = derrière."
+    }
+   ]
   }
  },
  "traductions": {}

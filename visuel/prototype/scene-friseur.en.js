@@ -111,6 +111,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "hooks",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -275,6 +276,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "brooms",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -452,6 +454,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "counters",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -493,6 +496,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "street lamps",
    "niveau": "A2",
+   "theme": "city_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -637,6 +641,7 @@ window.SCENE = {
    "mot": "scissors",
    "genre": "",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1140,6 +1145,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the clock?",
+     "c": [
+      "on the wall",
+      "on the window",
+      "above the sofa"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "The clock is on the wall.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The coat is ___ the hook.",
+     "c": [
+      "on",
+      "over",
+      "in"
+     ],
+     "f": "mantel",
+     "r": "haken",
+     "phrase": "The coat is on the hook.",
+     "sens": "Le manteau est accroché au crochet.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where are the towels?",
+     "c": [
+      "on the shelf",
+      "on the table",
+      "on the floor"
+     ],
+     "f": "handtuch",
+     "r": "regal",
+     "phrase": "The towels are on the shelf.",
+     "sens": "Les serviettes sont sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The cash register is ___ the counter.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "kasse",
+     "r": "theke",
+     "phrase": "The cash register is on the counter.",
+     "sens": "La caisse est sur le comptoir.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the hair?",
+     "c": [
+      "on the floor",
+      "on the table",
+      "on the shelf"
+     ],
+     "f": "haar-2",
+     "r": "boden",
+     "phrase": "The hair is on the floor.",
+     "sens": "Les cheveux sont par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "The glass is ___ the table.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "glas",
+     "r": "tisch",
+     "phrase": "The glass is on the table.",
+     "sens": "Le verre est sur la table.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the woman?",
+     "c": [
+      "on the sofa",
+      "on the floor",
+      "at the counter"
+     ],
+     "f": "frau",
+     "r": "sofa",
+     "phrase": "The woman is on the sofa.",
+     "sens": "La dame est assise sur le canapé.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The man is ___ the chair.",
+     "c": [
+      "behind",
+      "next to",
+      "on"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "The man is behind the chair.",
+     "sens": "L'homme est debout derrière le fauteuil.",
+     "n": "<b>behind</b> = derrière. <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    }
+   ]
   }
  },
  "traductions": {}

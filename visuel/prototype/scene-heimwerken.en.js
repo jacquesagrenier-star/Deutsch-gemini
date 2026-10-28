@@ -116,7 +116,8 @@ window.SCENE = {
    "mot": "outlet",
    "genre": "",
    "pluriel": "outlets",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -140,7 +141,8 @@ window.SCENE = {
    "mot": "cable",
    "genre": "",
    "pluriel": "cables",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -186,6 +188,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -259,6 +262,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "buckets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -425,7 +429,8 @@ window.SCENE = {
    "mot": "tool",
    "genre": "",
    "pluriel": "tools",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -446,6 +451,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "hammers",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": "werkzeug",
@@ -486,6 +492,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "nails",
    "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -545,6 +552,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -585,7 +593,8 @@ window.SCENE = {
    "mot": "drill",
    "genre": "",
    "pluriel": "drills",
-   "niveau": "C1",
+   "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -604,7 +613,8 @@ window.SCENE = {
    "id": "zange",
    "mot": "pliers",
    "genre": "",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -628,6 +638,114 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the cat?",
+     "c": [
+      "by the window",
+      "on the closet",
+      "in the cardboard box"
+     ],
+     "f": "katze",
+     "r": "fenster",
+     "phrase": "The cat is by the window.",
+     "sens": "Le chat est assis à la fenêtre.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "The bucket is ___ the floor.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "eimer",
+     "r": "boden",
+     "phrase": "The bucket is on the floor.",
+     "sens": "Le seau est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the paintbrush?",
+     "c": [
+      "on the bucket",
+      "in the cardboard box",
+      "next to the cat"
+     ],
+     "f": "pinsel",
+     "r": "eimer",
+     "phrase": "The paintbrush is on the bucket.",
+     "sens": "Le pinceau est sur le seau.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The ladder is ___ the shelf.",
+     "c": [
+      "next to",
+      "in front of",
+      "on"
+     ],
+     "f": "leiter",
+     "r": "regal",
+     "phrase": "The ladder is next to the shelf.",
+     "sens": "L'échelle est à côté de l'étagère.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the lamp?",
+     "c": [
+      "on the ceiling",
+      "on the wall",
+      "on the window"
+     ],
+     "f": "lampe",
+     "phrase": "The lamp is on the ceiling.",
+     "sens": "La lampe est suspendue au plafond.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The cardboard boxes are ___ the closet.",
+     "c": [
+      "next to",
+      "on",
+      "in"
+     ],
+     "f": "karton",
+     "r": "schrank",
+     "phrase": "The cardboard boxes are next to the closet.",
+     "sens": "Les cartons sont à côté de l'armoire.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where are the gloves?",
+     "c": [
+      "next to the cardboard box",
+      "in the bucket",
+      "on the closet"
+     ],
+     "f": "handschuh",
+     "r": "karton-2",
+     "phrase": "The gloves are next to the cardboard box.",
+     "sens": "Les gants sont à côté du carton.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The wood is ___ the cardboard box.",
+     "c": [
+      "in",
+      "on",
+      "under"
+     ],
+     "f": "holz-2",
+     "r": "karton-2",
+     "phrase": "The wood is in the cardboard box.",
+     "sens": "Le bois est dans le carton.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    }
+   ]
   }
  },
  "traductions": {}

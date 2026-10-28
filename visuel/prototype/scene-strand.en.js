@@ -259,6 +259,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "waves",
    "niveau": "A2",
+   "theme": "nature_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -341,6 +342,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "buckets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -382,6 +384,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "baskets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -533,7 +536,8 @@ window.SCENE = {
    "id": "sand",
    "mot": "sand",
    "genre": "",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "travel_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -586,6 +590,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "shells",
    "niveau": "A2",
+   "theme": "travel_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -617,7 +622,8 @@ window.SCENE = {
    "mot": "shovel",
    "genre": "",
    "pluriel": "shovels",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "travel_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -641,6 +647,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the book?",
+     "c": [
+      "on the towel",
+      "in the basket",
+      "under the hat"
+     ],
+     "f": "buch",
+     "r": "handtuch",
+     "phrase": "The book is on the towel.",
+     "sens": "Le livre est sur la serviette.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The dog is ___ the basket.",
+     "c": [
+      "behind",
+      "in",
+      "on"
+     ],
+     "f": "hund",
+     "r": "korb",
+     "phrase": "The dog is behind the basket.",
+     "sens": "Le chien est couché derrière le panier.",
+     "n": "<b>behind</b> = derrière."
+    },
+    {
+     "q": "Where is the boy?",
+     "c": [
+      "by the sea",
+      "in the basket",
+      "on the towel"
+     ],
+     "f": "junge",
+     "r": "meer",
+     "phrase": "The boy is by the sea.",
+     "sens": "Le garçon joue au bord de la mer.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "The lighthouse is ___ the island.",
+     "c": [
+      "on",
+      "in",
+      "next to"
+     ],
+     "f": "leuchtturm",
+     "r": "insel",
+     "phrase": "The lighthouse is on the island.",
+     "sens": "Le phare est sur l'île.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the bucket?",
+     "c": [
+      "next to the basket",
+      "on the hat",
+      "in the sea"
+     ],
+     "f": "eimer",
+     "r": "korb",
+     "phrase": "The bucket is next to the basket.",
+     "sens": "Le seau est à côté du panier.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The boat is ___ the sea.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "boot",
+     "r": "meer",
+     "phrase": "The boat is on the sea.",
+     "sens": "Le bateau est sur la mer.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the bird?",
+     "c": [
+      "on the stone",
+      "on the boat",
+      "in the sand"
+     ],
+     "f": "vogel",
+     "r": "stein",
+     "phrase": "The bird is on the stone.",
+     "sens": "L'oiseau est perché sur le rocher.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The sun is ___ the sky.",
+     "c": [
+      "in",
+      "behind",
+      "on"
+     ],
+     "f": "sonne",
+     "r": "himmel",
+     "phrase": "The sun is in the sky.",
+     "sens": "Le soleil est dans le ciel.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    }
+   ]
   }
  },
  "traductions": {}

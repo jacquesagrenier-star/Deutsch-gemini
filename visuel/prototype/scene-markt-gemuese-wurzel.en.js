@@ -43,8 +43,8 @@ window.SCENE = {
    "id": "blumenkohl",
    "mot": "cauliflower",
    "genre": "",
-   "pluriel": "cauliflowers",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -208,8 +208,8 @@ window.SCENE = {
    "id": "kohl",
    "mot": "cabbage",
    "genre": "",
-   "pluriel": "cabbages",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -243,6 +243,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "leeks",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -374,6 +375,7 @@ window.SCENE = {
    "mot": "broccoli",
    "genre": "",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -562,6 +564,76 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where are the onions?",
+     "c": [
+      "between the kohlrabi and the cabbage",
+      "next to the garlic",
+      "next to the carrots"
+     ],
+     "f": "zwiebel",
+     "r": "kohl",
+     "phrase": "The onions are between the kohlrabi and the cabbage.",
+     "sens": "Les oignons sont entre le chou-rave et le chou.",
+     "n": "<b>between</b> = entre (deux choses)."
+    },
+    {
+     "q": "What is Anna holding?",
+     "c": [
+      "a bunch of radishes",
+      "a cabbage",
+      "an onion"
+     ],
+     "f": "radieschen-main",
+     "r": "anna",
+     "phrase": "Anna is holding a bunch of radishes.",
+     "sens": "Anna tient une botte de radis à la main.",
+     "n": "<b>a bunch of</b> = une botte de, un bouquet de. Et <b>an</b> onion : son voyelle."
+    },
+    {
+     "q": "Where is the garlic?",
+     "c": [
+      "next to the radishes",
+      "next to the leek",
+      "next to the potatoes"
+     ],
+     "f": "knoblauch",
+     "r": "radieschen",
+     "phrase": "The garlic is next to the radishes.",
+     "sens": "L'ail est à côté des radis.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The potatoes are ___ the celery.",
+     "c": [
+      "next to",
+      "in",
+      "on"
+     ],
+     "f": "kartoffel",
+     "r": "sellerie",
+     "phrase": "The potatoes are next to the celery.",
+     "sens": "Les pommes de terre sont à côté du céleri.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the leek?",
+     "c": [
+      "to the right of the cabbage",
+      "to the left of the cabbage",
+      "next to the garlic"
+     ],
+     "f": "lauch",
+     "r": "kohl",
+     "phrase": "The leek is to the right of the cabbage.",
+     "sens": "Le poireau est à droite du chou.",
+     "n": "<b>to the right of</b> = à droite de."
+    }
+   ]
   }
  },
  "autre_vue": {

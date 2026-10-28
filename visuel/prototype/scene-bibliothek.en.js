@@ -408,6 +408,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "notes",
    "niveau": "A2",
+   "theme": "education_a2",
    "personne": null,
    "aussi": [],
    "sur": "tisch",
@@ -510,6 +511,7 @@ window.SCENE = {
    "mot": "headphones",
    "genre": "",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -529,6 +531,7 @@ window.SCENE = {
    "mot": "heating",
    "genre": "",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -600,6 +603,114 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the pencil?",
+     "c": [
+      "on the notebook",
+      "under the laptop",
+      "in the backpack"
+     ],
+     "f": "bleistift",
+     "r": "heft",
+     "phrase": "The pencil is on the notebook.",
+     "sens": "Le crayon est sur le cahier.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The glasses are ___ the book.",
+     "c": [
+      "on",
+      "next to",
+      "in"
+     ],
+     "f": "brille",
+     "r": "buch-3",
+     "phrase": "The glasses are on the book.",
+     "sens": "Les lunettes sont sur le livre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the backpack?",
+     "c": [
+      "on the chair",
+      "on the window",
+      "on the lamp"
+     ],
+     "f": "rucksack",
+     "r": "stuhl",
+     "phrase": "The backpack is on the chair.",
+     "sens": "Le sac à dos est accroché à la chaise.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "Where is the lamp?",
+     "c": [
+      "next to the books",
+      "on the chair",
+      "on the shelf"
+     ],
+     "f": "lampe",
+     "r": "buch-2",
+     "phrase": "The lamp is next to the books.",
+     "sens": "La lampe est à côté des livres.",
+     "n": "<b>next to</b> = à côté de. Au pluriel, rien ne change : next to the books."
+    },
+    {
+     "q": "Where is the plant?",
+     "c": [
+      "in front of the shelf",
+      "on the table",
+      "under the stairs"
+     ],
+     "f": "pflanze",
+     "r": "regal",
+     "phrase": "The plant is in front of the shelf.",
+     "sens": "La plante est devant l'étagère.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "The clock is ___ the wall.",
+     "c": [
+      "on",
+      "above",
+      "in"
+     ],
+     "f": "uhr",
+     "phrase": "The clock is on the wall.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the ladder?",
+     "c": [
+      "by the shelf",
+      "by the window",
+      "by the stairs"
+     ],
+     "f": "leiter",
+     "r": "regal",
+     "phrase": "The ladder is by the shelf.",
+     "sens": "L'échelle est contre l'étagère.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "The note is ___ the notebook.",
+     "c": [
+      "next to",
+      "under",
+      "on"
+     ],
+     "f": "zettel",
+     "r": "heft",
+     "phrase": "The note is next to the notebook.",
+     "sens": "Le bout de papier est à côté du cahier.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

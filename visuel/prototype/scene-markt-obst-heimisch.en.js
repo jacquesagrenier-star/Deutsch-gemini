@@ -8,6 +8,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "raspberries",
    "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -42,6 +43,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "blueberries",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -110,7 +112,8 @@ window.SCENE = {
    "mot": "plum",
    "genre": "",
    "pluriel": "plums",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -315,6 +318,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cherries",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -348,7 +352,8 @@ window.SCENE = {
    "mot": "blackberry",
    "genre": "",
    "pluriel": "blackberries",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -383,6 +388,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "apricots",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [
     {
@@ -452,6 +458,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "peaches",
    "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [
     {
@@ -598,6 +605,75 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where are the cherries?",
+     "c": [
+      "between the gooseberries and the blackberries",
+      "next to the apples",
+      "next to the plums"
+     ],
+     "f": "kirsche",
+     "r": "brombeere",
+     "phrase": "The cherries are between the gooseberries and the blackberries.",
+     "sens": "Les cerises sont entre les groseilles à maquereau et les mûres.",
+     "n": "<b>between</b> = entre (deux choses)."
+    },
+    {
+     "q": "What is Anna picking up?",
+     "c": [
+      "an apple",
+      "a pear",
+      "a peach"
+     ],
+     "f": "apfel-main",
+     "r": "anna",
+     "phrase": "Anna is picking up an apple.",
+     "sens": "Anna prend une pomme dans la main.",
+     "n": "<b>an</b> apple : <b>an</b> devant un son voyelle, <b>a</b> devant une consonne (a pear)."
+    },
+    {
+     "q": "Where are the pears?",
+     "c": [
+      "next to the nuts",
+      "next to the strawberries",
+      "next to the cherries"
+     ],
+     "f": "birne",
+     "r": "nuss",
+     "phrase": "The pears are next to the nuts.",
+     "sens": "Les poires sont à côté des noix.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The blueberries are ___ the raspberries.",
+     "c": [
+      "to the right of",
+      "to the left of",
+      "in"
+     ],
+     "f": "heidelbeere",
+     "r": "himbeere",
+     "phrase": "The blueberries are to the right of the raspberries.",
+     "sens": "Les myrtilles sont à droite des framboises.",
+     "n": "<b>to the right of</b> = à droite de."
+    },
+    {
+     "q": "Where is Anna?",
+     "c": [
+      "in front of the stand",
+      "behind the stand",
+      "on the stand"
+     ],
+     "f": "anna",
+     "phrase": "Anna is in front of the stand.",
+     "sens": "Anna est devant l'étal.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    }
+   ]
   }
  },
  "autre_vue": {

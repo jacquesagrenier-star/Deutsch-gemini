@@ -534,7 +534,8 @@ window.SCENE = {
    "mot": "stool",
    "genre": "",
    "pluriel": "stools",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -575,7 +576,8 @@ window.SCENE = {
    "mot": "tie",
    "genre": "",
    "pluriel": "ties",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "clothes_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -884,6 +886,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "baskets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1038,6 +1041,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "counters",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1063,6 +1067,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the hat?",
+     "c": [
+      "on the shelf",
+      "under the shelf",
+      "next to the mirror"
+     ],
+     "f": "hut",
+     "r": "regal",
+     "phrase": "The hat is on the shelf.",
+     "sens": "Le chapeau est sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The man is ___ the bench.",
+     "c": [
+      "on",
+      "next to",
+      "in"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "The man is on the bench.",
+     "sens": "L'homme est assis sur le banc.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the stool?",
+     "c": [
+      "in front of the mirror",
+      "on the shelf",
+      "under the bench"
+     ],
+     "f": "hocker",
+     "r": "spiegel",
+     "phrase": "The stool is in front of the mirror.",
+     "sens": "Le tabouret est devant le miroir.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "The belt is ___ the tie.",
+     "c": [
+      "next to",
+      "above",
+      "in"
+     ],
+     "f": "guertel",
+     "r": "krawatte",
+     "phrase": "The belt is next to the tie.",
+     "sens": "La ceinture est accrochée à côté de la cravate.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where are the socks?",
+     "c": [
+      "in the basket",
+      "under the basket",
+      "on the bench"
+     ],
+     "f": "socken",
+     "r": "korb",
+     "phrase": "The socks are in the basket.",
+     "sens": "Les chaussettes sont dans le panier.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "Anna is ___ the fitting room.",
+     "c": [
+      "in front of",
+      "in",
+      "behind"
+     ],
+     "f": "anna",
+     "r": "kabine",
+     "phrase": "Anna is in front of the fitting room.",
+     "sens": "Anna est devant la cabine d'essayage.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "Where is the shoe?",
+     "c": [
+      "on the floor",
+      "on the bench",
+      "in the basket"
+     ],
+     "f": "schuh-sol",
+     "r": "boden",
+     "phrase": "The shoe is on the floor.",
+     "sens": "La deuxième chaussure est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The dress is ___ the skirt.",
+     "c": [
+      "next to",
+      "above",
+      "on"
+     ],
+     "f": "kleid",
+     "r": "rock",
+     "phrase": "The dress is next to the skirt.",
+     "sens": "La robe est accrochée à côté de la jupe.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

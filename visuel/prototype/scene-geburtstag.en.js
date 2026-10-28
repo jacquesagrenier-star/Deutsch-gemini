@@ -134,6 +134,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "balloons",
    "niveau": "A2",
+   "theme": "culture_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -645,6 +646,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the cake?",
+     "c": [
+      "on the table",
+      "on the sofa",
+      "next to the window"
+     ],
+     "f": "torte",
+     "r": "tisch",
+     "phrase": "The cake is on the table.",
+     "sens": "Le gâteau est sur la table.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The balloons are ___ the window.",
+     "c": [
+      "in front of",
+      "under",
+      "on"
+     ],
+     "f": "luftballon",
+     "r": "fenster",
+     "phrase": "The balloons are in front of the window.",
+     "sens": "Les ballons sont devant la fenêtre.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "Where is Mark?",
+     "c": [
+      "on the sofa",
+      "on the table",
+      "next to the shelf"
+     ],
+     "f": "mark",
+     "r": "sofa",
+     "phrase": "Mark is on the sofa.",
+     "sens": "Mark est assis sur le canapé.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The guitar is ___ the sofa.",
+     "c": [
+      "next to",
+      "on",
+      "in"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "The guitar is next to the sofa.",
+     "sens": "La guitare est à côté du canapé.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the picture?",
+     "c": [
+      "on the wall",
+      "on the sofa",
+      "under the window"
+     ],
+     "f": "bild",
+     "r": "wand",
+     "phrase": "The picture is on the wall.",
+     "sens": "Le tableau est accroché au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The card is ___ the gift.",
+     "c": [
+      "in front of",
+      "in",
+      "under"
+     ],
+     "f": "karte",
+     "r": "geschenk-2",
+     "phrase": "The card is in front of the gift.",
+     "sens": "La carte est devant le cadeau.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "Where are the books?",
+     "c": [
+      "on the shelf",
+      "on the sofa",
+      "under the table"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "The books are on the shelf.",
+     "sens": "Les livres sont sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The lamp is ___ the shelf.",
+     "c": [
+      "next to",
+      "on",
+      "above"
+     ],
+     "f": "lampe",
+     "r": "regal",
+     "phrase": "The lamp is next to the shelf.",
+     "sens": "La lampe est à côté de l'étagère.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

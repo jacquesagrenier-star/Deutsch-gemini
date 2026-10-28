@@ -117,7 +117,8 @@ window.SCENE = {
    "mot": "folder",
    "genre": "",
    "pluriel": "folders",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -137,7 +138,8 @@ window.SCENE = {
    "mot": "folder",
    "genre": "",
    "pluriel": "folders",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -305,6 +307,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "keyboards",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -427,6 +430,7 @@ window.SCENE = {
    "mot": "scissors",
    "genre": "",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -489,6 +493,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "trash cans",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -644,6 +649,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the cup?",
+     "c": [
+      "next to the keyboard",
+      "on the printer",
+      "on the shelf"
+     ],
+     "f": "tasse",
+     "r": "tastatur",
+     "phrase": "The cup is next to the keyboard.",
+     "sens": "La tasse est à côté du clavier.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The clock is ___ the board.",
+     "c": [
+      "above",
+      "under",
+      "next to"
+     ],
+     "f": "uhr",
+     "r": "tafel",
+     "phrase": "The clock is above the board.",
+     "sens": "L'horloge est accrochée au-dessus du tableau.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "Where is the printer?",
+     "c": [
+      "next to the shelf",
+      "on the desk",
+      "under the window"
+     ],
+     "f": "drucker",
+     "r": "regal",
+     "phrase": "The printer is next to the shelf.",
+     "sens": "L'imprimante est à côté de l'étagère.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The ballpoint pen is ___ the paper.",
+     "c": [
+      "on",
+      "under",
+      "in"
+     ],
+     "f": "kugelschreiber",
+     "r": "papier",
+     "phrase": "The ballpoint pen is on the paper.",
+     "sens": "Le stylo est sur le papier.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the plant?",
+     "c": [
+      "by the window",
+      "on the printer",
+      "on the shelf"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "The plant is by the window.",
+     "sens": "La grande plante est près de la fenêtre.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "The folders are ___ the shelf.",
+     "c": [
+      "on",
+      "under",
+      "in"
+     ],
+     "f": "ordner",
+     "r": "regal",
+     "phrase": "The folders are on the shelf.",
+     "sens": "Les classeurs sont sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the notebook?",
+     "c": [
+      "on the desk",
+      "on the shelf",
+      "under the phone"
+     ],
+     "f": "heft",
+     "r": "schreibtisch",
+     "phrase": "The notebook is on the desk.",
+     "sens": "Le cahier est sur le bureau.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The trash can is ___ the desk.",
+     "c": [
+      "behind",
+      "on",
+      "under"
+     ],
+     "f": "muelleimer",
+     "r": "schreibtisch",
+     "phrase": "The trash can is behind the desk.",
+     "sens": "La poubelle est derrière le bureau.",
+     "n": "<b>behind</b> = derrière."
+    }
+   ]
   }
  },
  "traductions": {}

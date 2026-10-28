@@ -103,6 +103,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "signs",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -233,6 +234,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "pilots",
    "niveau": "A2",
+   "theme": "work_a2",
    "personne": null,
    "aussi": [
     {
@@ -303,6 +305,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "trash cans",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -503,6 +506,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "keyboards",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -809,7 +813,8 @@ window.SCENE = {
    "mot": "scale",
    "genre": "",
    "pluriel": "scales",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -825,7 +830,7 @@ window.SCENE = {
    "fr": "balance",
    "gb": {
     "mot": "scales",
-    "pluriel": "scaleses"
+    "pluriel": "scales"
    }
   },
   {
@@ -834,6 +839,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "counters",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -928,6 +934,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the suitcase?",
+     "c": [
+      "on the scale",
+      "in the plane",
+      "under the chair"
+     ],
+     "f": "koffer-3",
+     "r": "waage",
+     "phrase": "The suitcase is on the scale.",
+     "sens": "La grande valise est sur la balance.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The clock is ___ the wall.",
+     "c": [
+      "on",
+      "above",
+      "in"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "The clock is on the wall.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the plane?",
+     "c": [
+      "behind the window",
+      "in front of the door",
+      "on the stairs"
+     ],
+     "f": "flugzeug",
+     "r": "fenster",
+     "phrase": "The plane is behind the window.",
+     "sens": "L'avion est derrière la fenêtre.",
+     "n": "<b>behind</b> = derrière."
+    },
+    {
+     "q": "The newspaper is ___ the chair.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "zeitung",
+     "r": "stuhl-2",
+     "phrase": "The newspaper is on the chair.",
+     "sens": "Le journal est sur la chaise.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "Where is the bottle?",
+     "c": [
+      "on the floor",
+      "on the counter",
+      "in the backpack"
+     ],
+     "f": "flasche",
+     "r": "boden",
+     "phrase": "The bottle is on the floor.",
+     "sens": "La bouteille est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The trash can is ___ the door.",
+     "c": [
+      "next to",
+      "in front of",
+      "behind"
+     ],
+     "f": "muelleimer",
+     "r": "tuer",
+     "phrase": "The trash can is next to the door.",
+     "sens": "La poubelle est à côté de la porte.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the ticket?",
+     "c": [
+      "on the counter",
+      "in the bag",
+      "on the scale"
+     ],
+     "f": "ticket",
+     "r": "schalter",
+     "phrase": "The ticket is on the counter.",
+     "sens": "Le billet est sur le comptoir.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The sign is ___ the ceiling.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "schild",
+     "r": "decke",
+     "phrase": "The sign is on the ceiling.",
+     "sens": "Le panneau est suspendu au plafond.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "traductions": {}

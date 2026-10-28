@@ -348,7 +348,8 @@ window.SCENE = {
    "mot": "pumpkin",
    "genre": "",
    "pluriel": "pumpkins",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -431,6 +432,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "fountains",
    "niveau": "A2",
+   "theme": "city_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -451,6 +453,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "buckets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1017,6 +1020,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "baskets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1178,6 +1182,113 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the cat?",
+     "c": [
+      "on the stone wall",
+      "on the roof",
+      "in the basket"
+     ],
+     "f": "katze",
+     "r": "mauer",
+     "phrase": "The cat is on the stone wall.",
+     "sens": "Le chat est assis sur le muret.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The dog is ___ the floor.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "hund",
+     "r": "boden",
+     "phrase": "The dog is on the floor.",
+     "sens": "Le chien est couché par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where are the eggs?",
+     "c": [
+      "in the basket",
+      "in the crate",
+      "on the stone wall"
+     ],
+     "f": "ei",
+     "r": "korb",
+     "phrase": "The eggs are in the basket.",
+     "sens": "Les œufs sont dans le panier.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The ladder is ___ the wood.",
+     "c": [
+      "next to",
+      "on",
+      "in"
+     ],
+     "f": "leiter",
+     "r": "holz",
+     "phrase": "The ladder is next to the wood.",
+     "sens": "L'échelle est à côté du bois.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where is the bird?",
+     "c": [
+      "on the roof",
+      "in the basket",
+      "on the bench"
+     ],
+     "f": "vogel",
+     "phrase": "The bird is on the roof.",
+     "sens": "L'oiseau est perché sur le toit.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The apples are ___ the crate.",
+     "c": [
+      "in",
+      "on",
+      "under"
+     ],
+     "f": "apfel-3",
+     "r": "kiste",
+     "phrase": "The apples are in the crate.",
+     "sens": "Les pommes sont dans la caisse.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "Where is the cow?",
+     "c": [
+      "in the meadow",
+      "in the house",
+      "behind the tree"
+     ],
+     "f": "kuh",
+     "phrase": "The cow is in the meadow.",
+     "sens": "La vache est dans le pré.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The bucket is ___ the fountain.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "eimer",
+     "r": "brunnen",
+     "phrase": "The bucket is on the fountain.",
+     "sens": "Le seau est accroché au puits.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "traductions": {}

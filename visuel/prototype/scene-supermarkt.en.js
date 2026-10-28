@@ -482,6 +482,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "baskets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -585,6 +586,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "shopping carts",
    "niveau": "A2",
+   "theme": "money_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -599,8 +601,8 @@ window.SCENE = {
    ],
    "fr": "caddie",
    "gb": {
-    "mot": "trolley",
-    "pluriel": "trolleys"
+    "mot": "shopping trolley",
+    "pluriel": "shopping trolleys"
    }
   }
  ],
@@ -612,6 +614,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the bread?",
+     "c": [
+      "in the basket",
+      "in the fridge",
+      "at the cash register"
+     ],
+     "f": "brot",
+     "r": "korb",
+     "phrase": "The bread is in the basket.",
+     "sens": "Le pain est dans le panier.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The basket is ___ the floor.",
+     "c": [
+      "on",
+      "at",
+      "in"
+     ],
+     "f": "korb",
+     "r": "boden",
+     "phrase": "The basket is on the floor.",
+     "sens": "Le panier est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the butter?",
+     "c": [
+      "in the fridge",
+      "in the basket",
+      "next to the bread"
+     ],
+     "f": "butter",
+     "r": "kuehlschrank",
+     "phrase": "The butter is in the fridge.",
+     "sens": "Le beurre est dans le réfrigérateur.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The man is ___ the cash register.",
+     "c": [
+      "at",
+      "in",
+      "in front of"
+     ],
+     "f": "mann",
+     "r": "kasse",
+     "phrase": "The man is at the cash register.",
+     "sens": "L'homme est assis à la caisse.",
+     "n": "<b>at</b> = à, près de, pour un point précis (at the table, at the counter)."
+    },
+    {
+     "q": "Where is the bike?",
+     "c": [
+      "behind the window",
+      "on the shelf",
+      "next to the cash register"
+     ],
+     "f": "fahrrad",
+     "r": "fenster",
+     "phrase": "The bike is behind the window.",
+     "sens": "Le vélo est derrière la fenêtre.",
+     "n": "<b>behind</b> = derrière."
+    },
+    {
+     "q": "The bottle is ___ the paper bag.",
+     "c": [
+      "next to",
+      "in",
+      "on"
+     ],
+     "f": "flasche",
+     "r": "tuete",
+     "phrase": "The bottle is next to the paper bag.",
+     "sens": "La bouteille d'eau est à côté du sac.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "Where are the eggs?",
+     "c": [
+      "in the basket",
+      "in the fridge",
+      "at the cash register"
+     ],
+     "f": "ei",
+     "r": "korb",
+     "phrase": "The eggs are in the basket.",
+     "sens": "Les œufs sont dans le panier.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The girl is ___ the shelf.",
+     "c": [
+      "next to",
+      "behind",
+      "in"
+     ],
+     "f": "maedchen",
+     "r": "regal",
+     "phrase": "The girl is next to the shelf.",
+     "sens": "La fille est debout à côté du rayon.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

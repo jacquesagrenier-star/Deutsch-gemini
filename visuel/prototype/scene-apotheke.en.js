@@ -171,7 +171,8 @@ window.SCENE = {
    "mot": "bandage",
    "genre": "",
    "pluriel": "bandages",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -777,6 +778,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "keyboards",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -966,6 +968,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "counters",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -986,6 +989,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1027,6 +1031,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "trash cans",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1212,6 +1217,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "sticks",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1297,7 +1303,8 @@ window.SCENE = {
    "mot": "scale",
    "genre": "",
    "pluriel": "scales",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "health_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1313,7 +1320,7 @@ window.SCENE = {
    "fr": "balance",
    "gb": {
     "mot": "scales",
-    "pluriel": "scaleses"
+    "pluriel": "scales"
    }
   },
   {
@@ -1346,6 +1353,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the clock?",
+     "c": [
+      "on the wall",
+      "on the window",
+      "above the door"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "The clock is on the wall.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The medicines are ___ the shelf.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "medikament",
+     "r": "regal",
+     "phrase": "The medicines are on the shelf.",
+     "sens": "Les médicaments sont sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the plant?",
+     "c": [
+      "on the counter",
+      "on the shelf",
+      "on the chair"
+     ],
+     "f": "pflanze",
+     "r": "schalter",
+     "phrase": "The plant is on the counter.",
+     "sens": "La plante est sur le comptoir.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The man is ___ the chair.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "The man is on the chair.",
+     "sens": "Le vieux monsieur est assis sur la chaise.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "Where is the scale?",
+     "c": [
+      "next to the chair",
+      "on the counter",
+      "on the shelf"
+     ],
+     "f": "waage",
+     "r": "stuhl",
+     "phrase": "The scale is next to the chair.",
+     "sens": "La balance est à côté de la chaise.",
+     "n": "<b>next to</b> = à côté de. <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "The car is ___ the street.",
+     "c": [
+      "on",
+      "in",
+      "in front of"
+     ],
+     "f": "auto",
+     "r": "strasse",
+     "phrase": "The car is on the street.",
+     "sens": "La voiture est dans la rue.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the trash can?",
+     "c": [
+      "next to the door",
+      "on the counter",
+      "on the shelf"
+     ],
+     "f": "muelleimer",
+     "r": "tuer",
+     "phrase": "The trash can is next to the door.",
+     "sens": "La poubelle est à côté de la porte.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The cardboard box is ___ the floor.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "karton",
+     "r": "boden",
+     "phrase": "The cardboard box is on the floor.",
+     "sens": "Le carton est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "traductions": {}

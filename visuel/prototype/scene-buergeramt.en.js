@@ -215,7 +215,8 @@ window.SCENE = {
    "mot": "radiator",
    "genre": "",
    "pluriel": "radiators",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -277,7 +278,8 @@ window.SCENE = {
    "mot": "folder",
    "genre": "",
    "pluriel": "folders",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -579,6 +581,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "keyboards",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -661,7 +664,8 @@ window.SCENE = {
    "mot": "form",
    "genre": "",
    "pluriel": "forms",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "city_a2",
    "personne": null,
    "aussi": [
     {
@@ -730,7 +734,8 @@ window.SCENE = {
    "mot": "stamp",
    "genre": "",
    "pluriel": "stamps",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "city_a2",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -1093,6 +1098,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "trash cans",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1154,6 +1160,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the picture?",
+     "c": [
+      "next to the window",
+      "above the door",
+      "on the ceiling"
+     ],
+     "f": "bild",
+     "r": "fenster",
+     "phrase": "The picture is next to the window.",
+     "sens": "Le tableau est accroché à côté de la fenêtre.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The folders are ___ the shelf.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "ordner",
+     "r": "regal",
+     "phrase": "The folders are on the shelf.",
+     "sens": "Les classeurs sont sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the passport?",
+     "c": [
+      "on the desk",
+      "in the backpack",
+      "on the chair"
+     ],
+     "f": "pass",
+     "r": "schreibtisch",
+     "phrase": "The passport is on the desk.",
+     "sens": "Le passeport est sur le bureau.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The backpack is ___ the floor.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "rucksack",
+     "r": "boden",
+     "phrase": "The backpack is on the floor.",
+     "sens": "Le sac à dos est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the woman?",
+     "c": [
+      "on the chair",
+      "by the desk",
+      "on the floor"
+     ],
+     "f": "frau-2",
+     "r": "stuhl",
+     "phrase": "The woman is on the chair.",
+     "sens": "La jeune femme est assise sur la chaise.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "The baby is ___ the woman.",
+     "c": [
+      "with",
+      "on",
+      "in"
+     ],
+     "f": "baby",
+     "r": "frau-2",
+     "phrase": "The baby is with the woman.",
+     "sens": "Le bébé est avec la femme.",
+     "n": "<b>with</b> = avec."
+    },
+    {
+     "q": "Where is the trash can?",
+     "c": [
+      "next to the door",
+      "on the desk",
+      "on the shelf"
+     ],
+     "f": "muelleimer",
+     "r": "tuer",
+     "phrase": "The trash can is next to the door.",
+     "sens": "La poubelle est à côté de la porte.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The printer is ___ the closet.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "drucker",
+     "r": "schrank",
+     "phrase": "The printer is on the closet.",
+     "sens": "L'imprimante est sur l'armoire.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "traductions": {}

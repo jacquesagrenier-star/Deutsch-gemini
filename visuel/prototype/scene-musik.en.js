@@ -197,6 +197,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "violins",
    "niveau": "A2",
+   "theme": "culture_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -538,6 +539,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "drums",
    "niveau": "A2",
+   "theme": "culture_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -557,6 +559,7 @@ window.SCENE = {
    "mot": "heating",
    "genre": "",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -577,6 +580,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "speakers",
    "niveau": "A2",
+   "theme": "media_a2",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -597,6 +601,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "guitar cases",
    "niveau": "A2",
+   "theme": "culture_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -620,6 +625,114 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the lamp?",
+     "c": [
+      "on the piano",
+      "next to the window",
+      "on the shelf"
+     ],
+     "f": "lampe",
+     "r": "klavier",
+     "phrase": "The lamp is on the piano.",
+     "sens": "La petite lampe est sur le piano.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The violin is ___ the closet.",
+     "c": [
+      "on",
+      "under",
+      "in"
+     ],
+     "f": "geige",
+     "r": "schrank",
+     "phrase": "The violin is on the closet.",
+     "sens": "Le violon est sur l'armoire.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the picture?",
+     "c": [
+      "on the wall",
+      "on the window",
+      "on the chair"
+     ],
+     "f": "bild",
+     "phrase": "The picture is on the wall.",
+     "sens": "Le tableau est accroché au mur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The books are ___ the shelf.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "The books are on the shelf.",
+     "sens": "Les livres sont sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the plant?",
+     "c": [
+      "next to the window",
+      "on the piano",
+      "in front of the door"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "The plant is next to the window.",
+     "sens": "La plante est à côté de la fenêtre.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The bottle is ___ the floor.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "flasche",
+     "r": "boden",
+     "phrase": "The bottle is on the floor.",
+     "sens": "La bouteille est par terre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is Mark?",
+     "c": [
+      "on the chair",
+      "by the piano",
+      "on the floor"
+     ],
+     "f": "mark",
+     "r": "stuhl",
+     "phrase": "Mark is on the chair.",
+     "sens": "Mark est assis sur la chaise.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "The lamp is ___ the window.",
+     "c": [
+      "next to",
+      "on",
+      "behind"
+     ],
+     "f": "lampe-2",
+     "r": "fenster",
+     "phrase": "The lamp is next to the window.",
+     "sens": "La grande lampe est à côté de la fenêtre.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

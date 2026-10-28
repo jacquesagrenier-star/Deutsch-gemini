@@ -279,7 +279,8 @@ window.SCENE = {
    "mot": "lid",
    "genre": "",
    "pluriel": "lids",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -772,6 +773,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "trash cans",
    "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -968,6 +970,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "aprons",
    "niveau": "A2",
+   "theme": "food_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -986,7 +989,8 @@ window.SCENE = {
    "id": "dampf",
    "mot": "steam",
    "genre": "",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "food_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1033,6 +1037,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the pot?",
+     "c": [
+      "next to the pan",
+      "in the fridge",
+      "under the table"
+     ],
+     "f": "topf",
+     "r": "pfanne",
+     "phrase": "The pot is next to the pan.",
+     "sens": "La casserole est à côté de la poêle.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The clock is ___ the shelf.",
+     "c": [
+      "above",
+      "under",
+      "next to"
+     ],
+     "f": "uhr",
+     "r": "regal",
+     "phrase": "The clock is above the shelf.",
+     "sens": "L'horloge est accrochée au-dessus de l'étagère.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "Where is the plant?",
+     "c": [
+      "on the fridge",
+      "in the oven",
+      "under the table"
+     ],
+     "f": "pflanze",
+     "r": "kuehlschrank",
+     "phrase": "The plant is on the fridge.",
+     "sens": "La plante est sur le réfrigérateur.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The cat is ___ the chair.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "The cat is on the chair.",
+     "sens": "Le chat est assis sur la chaise.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall). <b>Hair</b> (les cheveux) est indénombrable : the hair <b>is</b>."
+    },
+    {
+     "q": "Where are the potatoes?",
+     "c": [
+      "on the table",
+      "in the pot",
+      "in the fridge"
+     ],
+     "f": "kartoffel",
+     "r": "tisch",
+     "phrase": "The potatoes are on the table.",
+     "sens": "Les pommes de terre sont sur la table.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The towel is ___ the oven.",
+     "c": [
+      "on",
+      "above",
+      "in"
+     ],
+     "f": "handtuch",
+     "r": "backofen",
+     "phrase": "The towel is on the oven.",
+     "sens": "Le torchon est accroché au four.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the trash can?",
+     "c": [
+      "next to the fridge",
+      "on the shelf",
+      "under the window"
+     ],
+     "f": "muelleimer",
+     "r": "kuehlschrank",
+     "phrase": "The trash can is next to the fridge.",
+     "sens": "La poubelle est à côté du réfrigérateur.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The milk is ___ the bread.",
+     "c": [
+      "next to",
+      "in",
+      "on"
+     ],
+     "f": "milch",
+     "r": "brot",
+     "phrase": "The milk is next to the bread.",
+     "sens": "Le lait est à côté du pain.",
+     "n": "<b>next to</b> = à côté de."
+    }
+   ]
   }
  },
  "traductions": {}

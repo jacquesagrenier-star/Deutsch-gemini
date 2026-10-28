@@ -77,7 +77,8 @@ window.SCENE = {
     {
      "mot": "lampshade",
      "genre": "",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "home_a2",
      "fr": "abat-jour"
     }
    ],
@@ -226,7 +227,8 @@ window.SCENE = {
    "mot": "radiator",
    "genre": "",
    "pluriel": "radiators",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "home_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -279,6 +281,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "floor lamps",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [
     {
@@ -291,7 +294,8 @@ window.SCENE = {
     {
      "mot": "lampshade",
      "genre": "",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "home_a2",
      "fr": "abat-jour"
     }
    ],
@@ -571,6 +575,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "coffee tables",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [
     {
@@ -620,6 +625,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [
     {
@@ -669,6 +675,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "buckets",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -710,6 +717,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cardboard boxes",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -751,6 +759,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "balloons",
    "niveau": "A2",
+   "theme": "culture_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -771,6 +780,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "balloons",
    "niveau": "A2",
+   "theme": "culture_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -817,6 +827,141 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the ball?",
+     "c": [
+      "on the closet",
+      "under the closet",
+      "next to the window"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "The ball is on the closet.",
+     "sens": "Le ballon est sur l'armoire.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The dog is ___ the coffee table.",
+     "c": [
+      "under",
+      "on",
+      "next to"
+     ],
+     "f": "hund",
+     "r": "couchtisch",
+     "phrase": "The dog is under the coffee table.",
+     "sens": "Le chien est couché sous la table basse.",
+     "n": "<b>under</b> = sous."
+    },
+    {
+     "q": "Where is the cat?",
+     "c": [
+      "in the cardboard box",
+      "on the cardboard box",
+      "behind the cardboard box"
+     ],
+     "f": "katze",
+     "r": "karton",
+     "phrase": "The cat is in the cardboard box.",
+     "sens": "Le chat est assis dans le carton.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The umbrella is ___ the lamp.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "The umbrella is on the lamp.",
+     "sens": "Le parapluie est accroché à la lampe.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the bike?",
+     "c": [
+      "in front of the shelf",
+      "behind the shelf",
+      "on the shelf"
+     ],
+     "f": "fahrrad",
+     "r": "regal",
+     "phrase": "The bike is in front of the shelf.",
+     "sens": "Le vélo est devant l'étagère.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "Where is the guitar?",
+     "c": [
+      "between the closet and the sofa",
+      "on the sofa",
+      "under the sofa"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "The guitar is between the closet and the sofa.",
+     "sens": "La guitare est entre l'armoire et le canapé.",
+     "n": "<b>between</b> = entre (deux choses)."
+    },
+    {
+     "q": "Where are the sneakers?",
+     "c": [
+      "under the sofa",
+      "on the sofa",
+      "next to the television"
+     ],
+     "f": "turnschuh",
+     "r": "sofa",
+     "phrase": "The sneakers are under the sofa.",
+     "sens": "Les baskets sont sous le canapé.",
+     "n": "<b>under</b> = sous."
+    },
+    {
+     "q": "The goldfish is ___ the shelf.",
+     "c": [
+      "on",
+      "under",
+      "next to"
+     ],
+     "f": "goldfisch",
+     "r": "regal",
+     "phrase": "The goldfish is on the shelf.",
+     "sens": "Le bocal avec le poisson rouge est sur l'étagère.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the sock?",
+     "c": [
+      "on the floor lamp",
+      "on the window",
+      "on the door"
+     ],
+     "f": "socke",
+     "r": "stehlampe",
+     "phrase": "The sock is on the floor lamp.",
+     "sens": "La chaussette est accrochée au lampadaire.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "The radiator is ___ the window.",
+     "c": [
+      "under",
+      "above",
+      "next to"
+     ],
+     "f": "heizkoerper",
+     "r": "fenster",
+     "phrase": "The radiator is under the window.",
+     "sens": "Le radiateur est sous la fenêtre.",
+     "n": "<b>under</b> = sous."
+    }
+   ]
   }
  },
  "traductions": {}

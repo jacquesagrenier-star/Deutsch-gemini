@@ -27,7 +27,9 @@ window.SCENE = {
    "id": "rauch",
    "mot": "smoke",
    "genre": "",
+   "pluriel": "smokes",
    "niveau": "A2",
+   "theme": "nature_a2_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -257,6 +259,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "street lamps",
    "niveau": "A2",
+   "theme": "city_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -406,7 +409,8 @@ window.SCENE = {
    "mot": "button",
    "genre": "",
    "pluriel": "buttons",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "clothes_a2",
    "personne": null,
    "aussi": [],
    "sur": "schneemann",
@@ -447,6 +451,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "brooms",
    "niveau": "A2",
+   "theme": "home_a2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -646,6 +651,115 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Les noms"
+  },
+  "A2": {
+   "titre": "Where is it? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Where is the bike?",
+     "c": [
+      "by the street lamp",
+      "on the car",
+      "in the house"
+     ],
+     "f": "fahrrad",
+     "r": "laterne",
+     "phrase": "The bike is by the street lamp.",
+     "sens": "Le vélo est contre le lampadaire.",
+     "n": "<b>by</b> = près de, au bord de (by the window)."
+    },
+    {
+     "q": "The candle is ___ the window.",
+     "c": [
+      "in",
+      "on",
+      "under"
+     ],
+     "f": "kerze",
+     "r": "fenster-2",
+     "phrase": "The candle is in the window.",
+     "sens": "La bougie est à la fenêtre.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "Where is the car?",
+     "c": [
+      "in front of the house",
+      "on the roof",
+      "behind the bench"
+     ],
+     "f": "auto",
+     "r": "haus",
+     "phrase": "The car is in front of the house.",
+     "sens": "La voiture est devant la maison.",
+     "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    },
+    {
+     "q": "The bird is ___ the tree.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "vogel",
+     "r": "baum",
+     "phrase": "The bird is on the tree.",
+     "sens": "L'oiseau est perché sur l'arbre.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    },
+    {
+     "q": "Where is the dog?",
+     "c": [
+      "in the snow",
+      "on the bench",
+      "in the house"
+     ],
+     "f": "hund",
+     "r": "schnee",
+     "phrase": "The dog is in the snow.",
+     "sens": "Le chien est dans la neige.",
+     "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    },
+    {
+     "q": "The smoke is ___ the roof.",
+     "c": [
+      "above",
+      "in",
+      "under"
+     ],
+     "f": "rauch",
+     "r": "dach",
+     "phrase": "The smoke is above the roof.",
+     "sens": "La fumée est au-dessus du toit.",
+     "n": "<b>above</b> = au-dessus de, sans toucher. Posé dessus, ce serait <b>on</b>."
+    },
+    {
+     "q": "Where is the bench?",
+     "c": [
+      "next to the bike",
+      "on the roof",
+      "in the house"
+     ],
+     "f": "bank",
+     "r": "fahrrad",
+     "phrase": "The bench is next to the bike.",
+     "sens": "Le banc est à côté du vélo.",
+     "n": "<b>next to</b> = à côté de."
+    },
+    {
+     "q": "The hat is ___ the snowman.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "hut",
+     "r": "schneemann",
+     "phrase": "The hat is on the snowman.",
+     "sens": "Le chapeau est sur le bonhomme de neige.",
+     "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
   }
  },
  "traductions": {}
