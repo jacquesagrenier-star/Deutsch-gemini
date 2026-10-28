@@ -21,10 +21,13 @@
   dire autrement), Ordre des mots 6 options (la négation, l'ordre des adjectifs), nombres A2
   dans les mots-outils (ordinaux, centaines, fractions). `tuiles_series_d.py`. Grammaire :
   100 séries, 3 284 questions.
-- **Pas fait, faute d'accord** : la fréquence (Leipzig, corpus anglais à télécharger) et
-  les mots voisins (l'allemand les calcule avec deux langues de traduction ; l'anglais
-  n'en garde qu'une, il faudrait une source comme WordNet). Les deux demandent un
-  téléchargement, donc l'accord de Jacques.
+- **Fréquence et mots voisins (v993, accord de Jacques « Oui, les deux »)** :
+  `anglais/outils/frequence.py` classe les 6 758 entrées par catégorie (trois corpus
+  Leipzig ; les mots de deux mots par les cooccurrences voisines ; homographes traités
+  par la forme : pluriel pour le nom « can », masse partagée pour « work » ou « even »,
+  casse exacte pour « May ») ; `anglais/outils/voisins.py` donne 502 mots avec au moins un
+  voisin (WordNet ET traduction française commune ; les « mots confondus » des fiches
+  Pièges et 4 paires relues à la main sont écartés).
 
 ## 28 oct. 2026 : « S'entraîner par temps » et des séries plus longues
 
