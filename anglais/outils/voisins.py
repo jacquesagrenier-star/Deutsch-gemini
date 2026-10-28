@@ -98,13 +98,13 @@ def norme(m):
 
 def charger_wordnet():
     lemmes = {}
-    for f in glob.glob(os.path.join(WORDNET, "entries-*.json")):
+    for f in sorted(glob.glob(os.path.join(WORDNET, "entries-*.json"))):
         for lemme, par_pos in json.load(io.open(f, encoding="utf-8")).items():
             for pos, d in par_pos.items():
                 for s in d.get("sense", []):
                     lemmes.setdefault((norme(lemme), pos[0]), set()).add(s["synset"])
     membres = {}
-    for f in glob.glob(os.path.join(WORDNET, "*.*.json")):
+    for f in sorted(glob.glob(os.path.join(WORDNET, "*.*.json"))):
         if os.path.basename(f).startswith("entries-"):
             continue
         for sid, s in json.load(io.open(f, encoding="utf-8")).items():
@@ -134,7 +134,9 @@ def main():
             for p in POS[cat]:
                 synsets |= lemmes.get((norme(m), p), set())
             fr = sens_fr(tr)
-            for sid in synsets:
+            # Trie : l'ordre d'un set de chaines change d'un passage a l'autre
+            # (graine de hachage), et avec lui l'ordre des voisins ecrits.
+            for sid in sorted(synsets):
                 for autre in membres.get(sid, []):
                     for j in index.get(autre, []):
                         m2, tr2 = liste[j]
