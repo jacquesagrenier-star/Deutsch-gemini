@@ -45127,6 +45127,8 @@ function voiceQualityScore(v){
     // Allemand et anglais standard avant les variantes regionales.
     const lang = ((v && v.lang) || "").toLowerCase();
     if(lang === LANGUE_ENSEIGNEE.voix.toLowerCase() || lang === "en-gb" || lang === "en-us") score += 2;
+    // Les voix fantaisie et Eloquence d'Apple : a defaut seulement (VOIX_A_FUIR).
+    if(voixAFuir(v)) score -= 50;
     return score;
 }
 
@@ -45139,8 +45141,11 @@ function voiceQualityScore(v){
 // Ici : la seule variante choisie (en-US, ou en-GB en britannique), et les
 // meilleures voix connues d'abord. Premium/Enhanced (iOS, voiceURI ou nom)
 // avant tout ; puis les voix nommees, dans l'ordre de la liste ; une voix
-// « compacte » ne passe qu'a defaut. Ne touche ni l'allemand, ni l'espagnol,
-// ni la lecture des traductions anglaises de l'ancien module (prefixe "en").
+// « compacte » ne passe qu'a defaut. Ce classement-ci ne touche ni l'allemand,
+// ni l'espagnol, ni la lecture des traductions anglaises (prefixe "en") ; seule
+// l'exclusion des voix fantaisie et Eloquence (VOIX_A_FUIR) vaut pour tous.
+// Avant (voix simulees) : iPhone -> Albert en US ET en GB ; Android -> la voix
+// indienne (en_IN : le soulignement privait en_US de son bonus) ; Windows -> David.
 // ⚠️ Meme liste dans visuel/prototype/index.html (chargerVoix) : les garder
 // d'accord.
 const VOIX_ANGLAISES = {
@@ -45149,10 +45154,24 @@ const VOIX_ANGLAISES = {
     "en-gb": ["serena", "kate", "daniel", "arthur", "martha", "stephanie", "oliver",
               "libby", "sonia", "ryan", "hazel", "george", "susan"]
 };
-const VOIX_ANGLAISES_A_FUIR = ["albert", "bad news", "bahh", "bells", "boing", "bubbles", "cellos",
+// LES VOIX A FUIR, TOUTES LANGUES (28 oct. 2026). Sur iPhone (iOS 17 et plus)
+// et sur Mac, getVoices() rend aussi les voix fantaisie d'Apple (Albert, Bad
+// News, Zarvox...) et les voix Eloquence (Eddy, Flo, Grandma...) -- celles-ci en
+// de-DE et es-ES aussi. A score egal, le tri par nom faisait gagner « Albert »,
+// une voix d'homme robotique (Jacques : « une voix d'homme, epouvantable »), et
+// en espagnol « Eddy » passait devant Monica. Elles ne passent plus qu'a defaut
+// de toute autre voix. Meme liste dans visuel/prototype/index.html.
+const VOIX_A_FUIR = ["albert", "bad news", "bahh", "bells", "boing", "bubbles", "cellos",
     "good news", "jester", "organ", "pipe organ", "superstar", "trinoids", "whisper", "wobble", "zarvox",
     "deranged", "hysterical", "junior", "ralph", "kathy", "fred", "princess", "bruce", "agnes", "vicki",
     "eddy", "flo", "grandma", "grandpa", "reed", "rocko", "sandy", "shelley"];
+function voixAFuir(v){
+    const nom = ((v && v.name) || "").toLowerCase();
+    const uri = ((v && v.voiceURI) || "").toLowerCase();
+    const prenom = nom.replace(/^(microsoft|google|apple)\s+/, "").split(/[\s(]/)[0];
+    return uri.indexOf("eloquence") !== -1
+        || VOIX_A_FUIR.indexOf(prenom) !== -1 || VOIX_A_FUIR.indexOf(nom.split(" (")[0]) !== -1;
+}
 function langueDeVoix(v){ return ((v && v.lang) || "").replace("_", "-").toLowerCase(); }
 function scoreVoixAnglaise(v){
     const nom = ((v && v.name) || "").toLowerCase();
@@ -45163,8 +45182,7 @@ function scoreVoixAnglaise(v){
     if(nom.indexOf("premium") !== -1 || uri.indexOf("premium") !== -1) score += 40;
     else if(nom.indexOf("enhanced") !== -1 || uri.indexOf("enhanced") !== -1) score += 30;
     if(nom.indexOf("compact") !== -1 || uri.indexOf("compact") !== -1) score -= 10;
-    if(uri.indexOf("eloquence") !== -1 || VOIX_ANGLAISES_A_FUIR.indexOf(prenom) !== -1
-       || VOIX_ANGLAISES_A_FUIR.indexOf(nom.split(" (")[0]) !== -1) score -= 50;
+    if(voixAFuir(v)) score -= 50;
     const liste = VOIX_ANGLAISES[langueDeVoix(v)] || [];
     const rang = liste.indexOf(prenom);
     if(rang !== -1) score += 20 + (liste.length - rang) / 100;
@@ -45215,10 +45233,17 @@ const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [], uk: [], fa: [],
 // mettre a jour les tables qui la lisent.
 const LANGUE_TAG = { de: LANGUE_ENSEIGNEE.voix, en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar-SA", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU" };
 
+// Le choix fait dans les reglages est memorise PAR VARIANTE en anglais appris
+// (28 oct. 2026) : choisir une voix britannique ne doit pas effacer la voix
+// americaine choisie avant, ni l'imposer a la variante qui ne l'a pas.
+function cleChoixVoix(prefix){
+    return prefix === "de" && LANGUE_APPRISE === "en" ? "de-" + VARIANTE_ANGLAIS : prefix;
+}
+
 function pickVoice(prefix){
     const dispo = voicesForLang(prefix);
     if(!dispo.length) return null;
-    const choisi = storedVoiceChoice()[prefix];
+    const choisi = storedVoiceChoice()[cleChoixVoix(prefix)];
     if(choisi){
         const trouve = dispo.find(v => v.name === choisi);
         if(trouve) return trouve;
@@ -45238,7 +45263,7 @@ function findEnglishVoice(){ return pickVoice('en'); }
 
 function setVoiceChoice(prefix, nom){
     const choix = storedVoiceChoice();
-    choix[prefix] = nom;
+    choix[cleChoixVoix(prefix)] = nom;
     try{ localStorage.setItem(VOICE_CHOICE_KEY, JSON.stringify(choix)); }catch(e){}
     cachedGermanVoice = findGermanVoice();
     cachedEnglishVoice = findEnglishVoice();

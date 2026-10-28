@@ -603,17 +603,25 @@ function chargerVoix(){
      voix fantaisie d'Apple (Albert, Bad News...) ou Eloquence (Eddy, Flo...).
      Meme classement que l'app (index.html, scoreVoixAnglaise) : les garder
      d'accord. */
+  /* Les voix fantaisie et Eloquence d'Apple (28 oct. 2026), en toutes langues :
+     en es-ES, l'ordre de l'iPhone met Eddy (Eloquence) devant Monica. Meme liste
+     que l'app (index.html, VOIX_A_FUIR). */
+  const FUIR = ["albert", "bad news", "bahh", "bells", "boing", "bubbles", "cellos", "good news", "jester", "organ", "pipe organ", "superstar", "trinoids", "whisper", "wobble", "zarvox", "deranged", "hysterical", "junior", "ralph", "kathy", "fred", "princess", "bruce", "agnes", "vicki", "eddy", "flo", "grandma", "grandpa", "reed", "rocko", "sandy", "shelley"];
+  const aFuir = x => {
+    const nom = (x.name || "").toLowerCase(), uri = (x.voiceURI || "").toLowerCase();
+    const prenom = nom.replace(/^(microsoft|google|apple)\s+/, "").split(/[\s(]/)[0];
+    return /eloquence/.test(uri) || FUIR.indexOf(prenom) !== -1 || FUIR.indexOf(nom.split(" (")[0]) !== -1;
+  };
   if (EST_EN){
     const PREF = GB ? ["serena", "kate", "daniel", "arthur", "martha", "stephanie", "oliver", "libby", "sonia", "ryan", "hazel", "george", "susan"]
                     : ["ava", "samantha", "allison", "zoe", "evan", "nathan", "susan", "tom", "joelle", "noelle", "aria", "jenny", "guy", "zira", "david", "mark"];
-    const FUIR = ["albert", "bad news", "bahh", "bells", "boing", "bubbles", "cellos", "good news", "jester", "organ", "pipe organ", "superstar", "trinoids", "whisper", "wobble", "zarvox", "deranged", "hysterical", "junior", "ralph", "kathy", "fred", "princess", "bruce", "agnes", "vicki", "eddy", "flo", "grandma", "grandpa", "reed", "rocko", "sandy", "shelley"];
     const score = x => {
       const nom = (x.name || "").toLowerCase(), uri = (x.voiceURI || "").toLowerCase();
       const prenom = nom.replace(/^(microsoft|google|apple)\s+/, "").split(/[\s(]/)[0];
       let s = x.localService === false ? -100 : 0;
       if (/premium/.test(nom + uri)) s += 40; else if (/enhanced/.test(nom + uri)) s += 30;
       if (/compact/.test(nom + uri)) s -= 10;
-      if (/eloquence/.test(uri) || FUIR.indexOf(prenom) !== -1 || FUIR.indexOf(nom.split(" (")[0]) !== -1) s -= 50;
+      if (aFuir(x)) s -= 50;
       const r = PREF.indexOf(prenom); if (r !== -1) s += 20 + (PREF.length - r) / 100;
       ["natural", "neural", "google", "siri", "wavenet"].forEach(h => { if (nom.indexOf(h) !== -1) s += 10; });
       return s;
@@ -624,7 +632,9 @@ function chargerVoix(){
     voixDe = choix[0] || null;
     return;
   }
-  voixDe = v.find(x => pays.test(x.lang) && /google|natural|online/i.test(x.name))
+  const bonnes = v.filter(x => !aFuir(x));
+  voixDe = bonnes.find(x => pays.test(x.lang) && /google|natural|online/i.test(x.name))
+        || bonnes.find(x => pays.test(x.lang)) || bonnes.find(x => langue.test(x.lang))
         || v.find(x => pays.test(x.lang)) || v.find(x => langue.test(x.lang)) || null;
 }
 if ("speechSynthesis" in window){ chargerVoix(); speechSynthesis.onvoiceschanged = chargerVoix; }
