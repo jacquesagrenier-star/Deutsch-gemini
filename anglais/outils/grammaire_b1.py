@@ -290,7 +290,7 @@ Don't put ___ your homework until Sunday night. | off | out / on | Ne remets pas
 I get ___ well with my sister. | along | up / over | Je m'entends bien avec ma sœur. | Get along with = bien s'entendre avec.
 The lights are on. Can you turn ___ off? | them | off them / they | Les lumières sont allumées. Tu peux les éteindre ? | Pronom au milieu : turn them off.
 We ran ___ of milk. | out | off / down | On n'a plus de lait. | Run out of = ne plus avoir de.
-She turned ___ the job offer. | down | off / out | Elle a refusé l'offre d'emploi. | Turn down = refuser.
+He turned ___ the invitation to the wedding. | down | off / out | Il a refusé l'invitation au mariage. | Turn down = refuser.
 Please fill ___ this form. | out | up / on | Remplissez ce formulaire, s'il vous plaît. | Fill out (américain) = remplir un formulaire.
 I'll call you ___ in five minutes. | back | up / again | Je te rappelle dans cinq minutes. | Call back = rappeler.
 Can you pick ___ up at the station? | me | I / my | Tu peux venir me chercher à la gare ? | Pronom complément au milieu : pick me up.

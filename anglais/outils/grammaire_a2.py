@@ -159,7 +159,7 @@ I'll wait here until you ___ back. | come | will come / are going to come | J'at
 "serie": "comparatifsEnExercises", "kicker": "Comparatifs et superlatifs",
 "questions": """
 This hotel is ___ than the other one. | cheaper | more cheap / cheapest | Cet hôtel est moins cher que l'autre. | Cheap est court → cheaper.
-It's the ___ day of the year. | hottest | most hot / hotter | C'est le jour le plus chaud de l'année. | Hot → hottest, la consonne double.
+July was the ___ month of the summer. | hottest | most hot / hotter | Juillet a été le mois le plus chaud de l'été. | Hot → hottest, la consonne double.
 This book is ___ interesting than the movie. | more | most / -er | Ce livre est plus intéressant que le film. | Interesting est long → more.
 She's the ___ student in the class. | best | goodest / better | C'est la meilleure élève de la classe. | Good → better → the best.
 My cold is ___ today than yesterday. | worse | badder / worst | Mon rhume est pire aujourd'hui qu'hier. | Bad → worse → the worst.
