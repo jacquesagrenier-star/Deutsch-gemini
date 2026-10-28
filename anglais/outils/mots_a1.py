@@ -142,6 +142,18 @@ snow | neiger
 shop | faire les courses
 relax | se détendre
 kiss | embrasser
+pack | faire (sa valise), emballer
+save | économiser, sauvegarder
+earn | gagner (de l'argent)
+smell | sentir
+taste | goûter, avoir un goût
+sit | être assis
+lie down | s'allonger
+hang | accrocher, pendre
+pick up | aller chercher (quelqu'un), ramasser
+prepare | préparer
+clean up | ranger
+smoke | fumer
 """
 
 # base : (preterit, participe) -- et la forme britannique si elle differe,
@@ -169,6 +181,8 @@ IRREGULIERS = {
     "choose": ("chose", "chosen"), "become": ("became", "become"), "keep": ("kept", "kept"),
     "let": ("let", "let"), "mean": ("meant", "meant"), "hurt": ("hurt", "hurt"),
     "learn": ("learned", "learned", ("learned / learnt", "learned / learnt")),
+    "smell": ("smelled", "smelled", ("smelled / smelt", "smelled / smelt")),
+    "hang": ("hung", "hung"), "lie": ("lay", "lain"),
     "spell": ("spelled", "spelled", ("spelled / spelt", "spelled / spelt")),
     "dream": ("dreamed", "dreamed", ("dreamed / dreamt", "dreamed / dreamt")),
 }
@@ -273,11 +287,41 @@ brown | marron, brun
 orange | orange
 pink | rose
 purple | violet
+wide | large
+narrow | étroit
+healthy | en bonne santé, sain
+colorful | coloré | gb=colourful
+thick | épais
+thin | mince, fin
+round | rond
+flat | plat
+deep | profond
+broken | cassé
+sour | acide
+bitter | amer
+salty | salé
+spicy | épicé
+awake | éveillé
+serious | sérieux
+in love | amoureux
+athletic | sportif
+soft | doux, mou
+smooth | lisse
+straight | droit
+huge | énorme
+tiny | minuscule
+tight | serré
+American | américain
+Canadian | canadien
+French | français
+English | anglais
+German | allemand
+Spanish | espagnol
 """
 # Pas de comparatif : on n'est pas « plus marie » ni « plus rouge » (pour les
 # couleurs, on peut, mais ce n'est pas ce que l'A1 doit en retenir).
 SANS_COMPARATIF = {"married", "single", "closed", "free", "ready", "wrong", "right", "true",
-                   "favorite", "afraid", "red", "blue", "green", "yellow", "black", "white",
+                   "favorite", "afraid", "broken", "awake", "in love", "American", "Canadian", "French", "English", "German", "Spanish", "round", "flat", "red", "blue", "green", "yellow", "black", "white",
                    "gray", "brown", "orange", "pink", "purple", "delicious", "important"}
 COMPARATIFS_IRREGULIERS = {"good": ("better", "the best"), "bad": ("worse", "the worst"),
                            "little": ("smaller", "the smallest")}
@@ -329,4 +373,16 @@ upstairs | en haut (à l'étage) | Lieu
 downstairs | en bas | Lieu
 everywhere | partout | Lieu
 far | loin | Lieu
+after that | ensuite, après ça | Temps
+over there | là-bas | Lieu
+on the left | à gauche | Lieu
+on the right | à droite | Lieu
+straight ahead | tout droit | Lieu
+rarely | rarement | Fréquence
+hardly ever | presque jamais | Fréquence
+loudly | fort, bruyamment | Manière
+quietly | doucement, sans bruit | Manière
+right away | tout de suite | Temps
+luckily | heureusement | Manière
+unfortunately | malheureusement | Manière
 """

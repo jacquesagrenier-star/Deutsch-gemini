@@ -1,0 +1,4209 @@
+{
+ "_lisez_moi": [
+  "Derive de anglais/outils/a1_voyage_a1.py (construire.py) : ne pas modifier a la main.",
+  "L'A1 voyage de l'anglais, a Boston : 12 escales, 2 etapes « installe », la suite en 8 etapes. Brouillon."
+ ],
+ "escales": [
+  {
+   "id": "arriver",
+   "pour": "tous",
+   "icone": "🛬",
+   "s": {
+    "fr": "Arriver à Boston et s'installer à l'hôtel"
+   },
+   "scenes": [
+    "flughafen",
+    "hotel"
+   ],
+   "mots": [
+    "airport",
+    "plane",
+    "flight",
+    "suitcase",
+    "luggage",
+    "passport",
+    "ticket",
+    "passenger",
+    "hotel",
+    "room",
+    "key",
+    "lift",
+    "reservation",
+    "name",
+    "surname",
+    "country",
+    "nationality",
+    "taxi",
+    "bed",
+    "towel",
+    "shower",
+    "pillow",
+    "night",
+    "arrive",
+    "book",
+    "stay",
+    "Welcome!",
+    "Hello!",
+    "Good evening!"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Arriver : to arrive"
+    },
+    "l": [
+     [
+      "I arrive in Boston",
+      {
+       "fr": "j'arrive à Boston"
+      }
+     ],
+     [
+      "you arrive late",
+      {
+       "fr": "tu arrives en retard"
+      }
+     ],
+     [
+      "he · she arrives today",
+      {
+       "fr": "il · elle arrive aujourd'hui"
+      }
+     ],
+     [
+      "we arrive at the airport",
+      {
+       "fr": "nous arrivons à l'aéroport"
+      }
+     ],
+     [
+      "they arrive by plane",
+      {
+       "fr": "ils arrivent en avion"
+      }
+     ],
+     [
+      "my flight arrives at six",
+      {
+       "fr": "mon vol arrive à six heures"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Arrive in pour une ville ou un pays (arrive in Boston), arrive at pour un lieu précis (arrive at the hotel). Le -s de la 3ᵉ personne : she arrives."
+    }
+   },
+   "blocs": [
+    {
+     "p": "I have a reservation under the name ….",
+     "s": {
+      "fr": "J'ai une réservation au nom de …."
+     },
+     "v": [
+      "Smith",
+      "Garcia",
+      "Tremblay"
+     ],
+     "ex": "I have a reservation under the name Tremblay.",
+     "exs": {
+      "fr": "J'ai une réservation au nom de Tremblay."
+     },
+     "vs": [
+      {
+       "fr": "J'ai une réservation au nom de Smith."
+      },
+      {
+       "fr": "J'ai une réservation au nom de Garcia."
+      },
+      {
+       "fr": "J'ai une réservation au nom de Tremblay."
+      }
+     ]
+    },
+    {
+     "p": "I'd like a room for ….",
+     "s": {
+      "fr": "Je voudrais une chambre pour …."
+     },
+     "v": [
+      "one night",
+      "two nights",
+      "a week"
+     ],
+     "ex": "I'd like a room for a week.",
+     "exs": {
+      "fr": "Je voudrais une chambre pour une semaine."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais une chambre pour une nuit."
+      },
+      {
+       "fr": "Je voudrais une chambre pour deux nuits."
+      },
+      {
+       "fr": "Je voudrais une chambre pour une semaine."
+      }
+     ]
+    },
+    {
+     "p": "Where is the …, please?",
+     "s": {
+      "fr": "Où est …, s'il vous plaît ?"
+     },
+     "v": [
+      "lift",
+      "taxi stand",
+      "exit"
+     ],
+     "ex": "Where is the exit, please?",
+     "exs": {
+      "fr": "Où est la sortie, s'il vous plaît ?"
+     },
+     "vs": [
+      {
+       "fr": "Où est l'ascenseur, s'il vous plaît ?"
+      },
+      {
+       "fr": "Où est la station de taxis, s'il vous plaît ?"
+      },
+      {
+       "fr": "Où est la sortie, s'il vous plaît ?"
+      }
+     ]
+    },
+    {
+     "p": "Can I have …, please?",
+     "s": {
+      "fr": "Est-ce que je peux avoir …, s'il vous plaît ?"
+     },
+     "v": [
+      "a towel",
+      "another pillow",
+      "the Wi-Fi password"
+     ],
+     "ex": "Can I have the Wi-Fi password, please?",
+     "exs": {
+      "fr": "Est-ce que je peux avoir le mot de passe du wifi, s'il vous plaît ?"
+     },
+     "vs": [
+      {
+       "fr": "Est-ce que je peux avoir une serviette, s'il vous plaît ?"
+      },
+      {
+       "fr": "Est-ce que je peux avoir un autre oreiller, s'il vous plaît ?"
+      },
+      {
+       "fr": "Est-ce que je peux avoir le mot de passe du wifi, s'il vous plaît ?"
+      }
+     ]
+    },
+    {
+     "p": "I'm here for ….",
+     "s": {
+      "fr": "Je suis ici pour …."
+     },
+     "v": [
+      "work",
+      "a holiday",
+      "a week"
+     ],
+     "ex": "I'm here for a week.",
+     "exs": {
+      "fr": "Je suis ici pour une semaine."
+     },
+     "vs": [
+      {
+       "fr": "Je suis ici pour le travail."
+      },
+      {
+       "fr": "Je suis ici pour des vacances."
+      },
+      {
+       "fr": "Je suis ici pour une semaine."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "À la réception de l'hôtel"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Good evening, welcome! Do you have a reservation?",
+      "s": {
+       "fr": "Bonsoir, bienvenue ! Vous avez une réservation ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Yes, I have a reservation under the name Tremblay.",
+      "s": {
+       "fr": "Oui, j'ai une réservation au nom de Tremblay."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Perfect. Can I see your passport, please?",
+      "s": {
+       "fr": "Parfait. Je peux voir votre passeport, s'il vous plaît ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Here you go. What time is breakfast?",
+      "s": {
+       "fr": "Voilà. À quelle heure est le petit-déjeuner ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "From seven to ten. Here is your key, room 412.",
+      "s": {
+       "fr": "De sept à dix heures. Voici votre clé, chambre 412."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Thank you very much!",
+      "s": {
+       "fr": "Merci beaucoup !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "manger",
+   "pour": "tous",
+   "icone": "🍽️",
+   "s": {
+    "fr": "Manger : le café, le restaurant"
+   },
+   "scenes": [
+    "fruehstueck",
+    "restaurant"
+   ],
+   "mots": [
+    "breakfast",
+    "lunch",
+    "dinner",
+    "coffee",
+    "tea",
+    "water",
+    "juice",
+    "milk",
+    "bread",
+    "egg",
+    "sandwich",
+    "soup",
+    "salad",
+    "pizza",
+    "cake",
+    "dessert",
+    "menu",
+    "bill",
+    "tip",
+    "waiter",
+    "waitress",
+    "table",
+    "glass",
+    "cup",
+    "plate",
+    "order",
+    "eat",
+    "drink",
+    "The bill, please.",
+    "I'd like…",
+    "Enjoy your meal!"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Vouloir poliment : I'd like"
+    },
+    "l": [
+     [
+      "I'd like a coffee",
+      {
+       "fr": "je voudrais un café"
+      }
+     ],
+     [
+      "would you like some water?",
+      {
+       "fr": "voulez-vous de l'eau ?"
+      }
+     ],
+     [
+      "he'd like the soup",
+      {
+       "fr": "il voudrait la soupe"
+      }
+     ],
+     [
+      "we'd like a table for two",
+      {
+       "fr": "nous voudrions une table pour deux"
+      }
+     ],
+     [
+      "they'd like the bill",
+      {
+       "fr": "ils voudraient l'addition"
+      }
+     ],
+     [
+      "I don't want dessert",
+      {
+       "fr": "je ne veux pas de dessert"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "I'd like est la forme polie (I would like). I want est direct : on le garde pour les amis. Pour commander : I'll have the soup (je vais prendre la soupe)."
+    }
+   },
+   "blocs": [
+    {
+     "p": "I'd like …, please.",
+     "s": {
+      "fr": "Je voudrais …, s'il vous plaît."
+     },
+     "v": [
+      "a coffee",
+      "an orange juice",
+      "a glass of water"
+     ],
+     "ex": "I'd like a glass of water, please.",
+     "exs": {
+      "fr": "Je voudrais un verre d'eau, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais un café, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais un jus d'orange, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais un verre d'eau, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "A table for …, please.",
+     "s": {
+      "fr": "Une table pour …, s'il vous plaît."
+     },
+     "v": [
+      "two",
+      "four",
+      "one"
+     ],
+     "ex": "A table for one, please.",
+     "exs": {
+      "fr": "Une table pour une personne, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Une table pour deux, s'il vous plaît."
+      },
+      {
+       "fr": "Une table pour quatre, s'il vous plaît."
+      },
+      {
+       "fr": "Une table pour une personne, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "I'll have the ….",
+     "s": {
+      "fr": "Je vais prendre …."
+     },
+     "v": [
+      "soup",
+      "salad",
+      "chicken"
+     ],
+     "ex": "I'll have the chicken.",
+     "exs": {
+      "fr": "Je vais prendre le poulet."
+     },
+     "vs": [
+      {
+       "fr": "Je vais prendre la soupe."
+      },
+      {
+       "fr": "Je vais prendre la salade."
+      },
+      {
+       "fr": "Je vais prendre le poulet."
+      }
+     ]
+    },
+    {
+     "p": "Can I have …?",
+     "s": {
+      "fr": "Je peux avoir … ?"
+     },
+     "v": [
+      "the menu",
+      "the bill",
+      "some bread"
+     ],
+     "ex": "Can I have some bread?",
+     "exs": {
+      "fr": "Je peux avoir du pain ?"
+     },
+     "vs": [
+      {
+       "fr": "Je peux avoir la carte ?"
+      },
+      {
+       "fr": "Je peux avoir l'addition ?"
+      },
+      {
+       "fr": "Je peux avoir du pain ?"
+      }
+     ]
+    },
+    {
+     "p": "Is the … included?",
+     "s": {
+      "fr": "Le … est compris ?"
+     },
+     "v": [
+      "tip",
+      "service",
+      "dessert"
+     ],
+     "ex": "Is the dessert included?",
+     "exs": {
+      "fr": "Le dessert est compris ?"
+     },
+     "vs": [
+      {
+       "fr": "Le pourboire est compris ?"
+      },
+      {
+       "fr": "Le service est compris ?"
+      },
+      {
+       "fr": "Le dessert est compris ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Au restaurant"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Hi! Are you ready to order?",
+      "s": {
+       "fr": "Bonjour ! Vous êtes prêts à commander ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Yes. I'll have the soup and a salad, please.",
+      "s": {
+       "fr": "Oui. Je vais prendre la soupe et une salade, s'il vous plaît."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Great. Anything to drink?",
+      "s": {
+       "fr": "Très bien. Quelque chose à boire ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "A glass of water, please.",
+      "s": {
+       "fr": "Un verre d'eau, s'il vous plaît."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Here you go. Enjoy your meal!",
+      "s": {
+       "fr": "Voilà. Bon appétit !"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Thanks! Can I have the bill, please?",
+      "s": {
+       "fr": "Merci ! Je peux avoir l'addition, s'il vous plaît ?"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "marche",
+   "pour": "tous",
+   "icone": "🍎",
+   "s": {
+    "fr": "Le marché et la boulangerie"
+   },
+   "scenes": [
+    "markt-obst-heimisch",
+    "baeckerei"
+   ],
+   "mots": [
+    "market",
+    "fruit",
+    "apple",
+    "banana",
+    "orange",
+    "lemon",
+    "strawberry",
+    "grape",
+    "pear",
+    "vegetable",
+    "potato",
+    "tomato",
+    "carrot",
+    "onion",
+    "bread",
+    "cake",
+    "biscuit",
+    "bakery",
+    "bag",
+    "price",
+    "dollar",
+    "cash",
+    "cheap",
+    "expensive",
+    "fresh",
+    "buy",
+    "pay",
+    "How much is it?"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Acheter : to buy, to pay"
+    },
+    "l": [
+     [
+      "I buy apples",
+      {
+       "fr": "j'achète des pommes"
+      }
+     ],
+     [
+      "you pay in cash",
+      {
+       "fr": "tu paies en espèces"
+      }
+     ],
+     [
+      "she buys bread every day",
+      {
+       "fr": "elle achète du pain tous les jours"
+      }
+     ],
+     [
+      "we pay by card",
+      {
+       "fr": "nous payons par carte"
+      }
+     ],
+     [
+      "how much is it?",
+      {
+       "fr": "combien ça coûte ?"
+      }
+     ],
+     [
+      "how much are they?",
+      {
+       "fr": "combien coûtent-ils ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "How much is it? pour une chose, How much are they? pour plusieurs. Le prix : $3.50 se dit three fifty."
+    }
+   },
+   "blocs": [
+    {
+     "p": "I'd like …, please.",
+     "s": {
+      "fr": "Je voudrais …, s'il vous plaît."
+     },
+     "v": [
+      "a pound of apples",
+      "six eggs",
+      "a loaf of bread"
+     ],
+     "ex": "I'd like a loaf of bread, please.",
+     "exs": {
+      "fr": "Je voudrais une miche de pain, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais une livre de pommes, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais six œufs, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais une miche de pain, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "How much are the …?",
+     "s": {
+      "fr": "Combien coûtent les … ?"
+     },
+     "v": [
+      "strawberries",
+      "tomatoes",
+      "bananas"
+     ],
+     "ex": "How much are the bananas?",
+     "exs": {
+      "fr": "Combien coûtent les bananes ?"
+     },
+     "vs": [
+      {
+       "fr": "Combien coûtent les fraises ?"
+      },
+      {
+       "fr": "Combien coûtent les tomates ?"
+      },
+      {
+       "fr": "Combien coûtent les bananes ?"
+      }
+     ]
+    },
+    {
+     "p": "Are they …?",
+     "s": {
+      "fr": "Elles sont … ?"
+     },
+     "v": [
+      "fresh",
+      "ripe",
+      "local"
+     ],
+     "ex": "Are they local?",
+     "exs": {
+      "fr": "Elles sont d'ici ?"
+     },
+     "vs": [
+      {
+       "fr": "Elles sont fraîches ?"
+      },
+      {
+       "fr": "Elles sont mûres ?"
+      },
+      {
+       "fr": "Elles sont d'ici ?"
+      }
+     ]
+    },
+    {
+     "p": "Can I pay …?",
+     "s": {
+      "fr": "Je peux payer … ?"
+     },
+     "v": [
+      "by card",
+      "in cash",
+      "with my phone"
+     ],
+     "ex": "Can I pay with my phone?",
+     "exs": {
+      "fr": "Je peux payer avec mon téléphone ?"
+     },
+     "vs": [
+      {
+       "fr": "Je peux payer par carte ?"
+      },
+      {
+       "fr": "Je peux payer en espèces ?"
+      },
+      {
+       "fr": "Je peux payer avec mon téléphone ?"
+      }
+     ]
+    },
+    {
+     "p": "That's all, ….",
+     "s": {
+      "fr": "C'est tout, …."
+     },
+     "v": [
+      "thanks",
+      "thank you",
+      "thanks a lot"
+     ],
+     "ex": "That's all, thanks a lot.",
+     "exs": {
+      "fr": "C'est tout, merci beaucoup."
+     },
+     "vs": [
+      {
+       "fr": "C'est tout, merci."
+      },
+      {
+       "fr": "C'est tout, merci."
+      },
+      {
+       "fr": "C'est tout, merci beaucoup."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Au marché"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Good morning! What can I get you?",
+      "s": {
+       "fr": "Bonjour ! Qu'est-ce que je vous sers ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Hi! How much are the strawberries?",
+      "s": {
+       "fr": "Bonjour ! Combien coûtent les fraises ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Four dollars a box. They're very fresh.",
+      "s": {
+       "fr": "Quatre dollars la barquette. Elles sont très fraîches."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Great, I'll take two boxes.",
+      "s": {
+       "fr": "Super, j'en prends deux barquettes."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "That's eight dollars. Anything else?",
+      "s": {
+       "fr": "Ça fait huit dollars. Autre chose ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "No, that's all, thanks.",
+      "s": {
+       "fr": "Non, c'est tout, merci."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "ville",
+   "pour": "tous",
+   "icone": "🗺️",
+   "s": {
+    "fr": "En ville : trouver son chemin"
+   },
+   "scenes": [
+    "park",
+    "museum"
+   ],
+   "mots": [
+    "city",
+    "street",
+    "road",
+    "square",
+    "corner",
+    "bridge",
+    "building",
+    "park",
+    "museum",
+    "library",
+    "bank",
+    "church",
+    "map",
+    "way",
+    "traffic light",
+    "pavement",
+    "far",
+    "here",
+    "there",
+    "turn",
+    "walk",
+    "find",
+    "look for",
+    "Where is…?",
+    "Excuse me."
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Où est… ? Il y a…"
+    },
+    "l": [
+     [
+      "where is the museum?",
+      {
+       "fr": "où est le musée ?"
+      }
+     ],
+     [
+      "is there a bank near here?",
+      {
+       "fr": "y a-t-il une banque près d'ici ?"
+      }
+     ],
+     [
+      "there is a park on the left",
+      {
+       "fr": "il y a un parc à gauche"
+      }
+     ],
+     [
+      "there are two cafés",
+      {
+       "fr": "il y a deux cafés"
+      }
+     ],
+     [
+      "turn right at the corner",
+      {
+       "fr": "tournez à droite au coin"
+      }
+     ],
+     [
+      "go straight ahead",
+      {
+       "fr": "allez tout droit"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "There is devant un singulier, there are devant un pluriel. Pour un lieu précis : Where is…? ; pour savoir s'il y en a un : Is there… near here?"
+    }
+   },
+   "blocs": [
+    {
+     "p": "Excuse me, where is …?",
+     "s": {
+      "fr": "Excusez-moi, où est … ?"
+     },
+     "v": [
+      "the museum",
+      "the underground station",
+      "Boston Common"
+     ],
+     "ex": "Excuse me, where is Boston Common?",
+     "exs": {
+      "fr": "Excusez-moi, où est Boston Common ?"
+     },
+     "vs": [
+      {
+       "fr": "Excusez-moi, où est le musée ?"
+      },
+      {
+       "fr": "Excusez-moi, où est la station de métro ?"
+      },
+      {
+       "fr": "Excusez-moi, où est Boston Common ?"
+      }
+     ]
+    },
+    {
+     "p": "Is there … near here?",
+     "s": {
+      "fr": "Y a-t-il … près d'ici ?"
+     },
+     "v": [
+      "a bank",
+      "a pharmacy",
+      "a restroom"
+     ],
+     "ex": "Is there a restroom near here?",
+     "exs": {
+      "fr": "Y a-t-il des toilettes près d'ici ?"
+     },
+     "vs": [
+      {
+       "fr": "Y a-t-il une banque près d'ici ?"
+      },
+      {
+       "fr": "Y a-t-il une pharmacie près d'ici ?"
+      },
+      {
+       "fr": "Y a-t-il des toilettes près d'ici ?"
+      }
+     ]
+    },
+    {
+     "p": "Is it …?",
+     "s": {
+      "fr": "C'est … ?"
+     },
+     "v": [
+      "far",
+      "near",
+      "on the left"
+     ],
+     "ex": "Is it on the left?",
+     "exs": {
+      "fr": "C'est à gauche ?"
+     },
+     "vs": [
+      {
+       "fr": "C'est loin ?"
+      },
+      {
+       "fr": "C'est près ?"
+      },
+      {
+       "fr": "C'est à gauche ?"
+      }
+     ]
+    },
+    {
+     "p": "I'm looking for ….",
+     "s": {
+      "fr": "Je cherche …."
+     },
+     "v": [
+      "Newbury Street",
+      "the library",
+      "my hotel"
+     ],
+     "ex": "I'm looking for my hotel.",
+     "exs": {
+      "fr": "Je cherche mon hôtel."
+     },
+     "vs": [
+      {
+       "fr": "Je cherche Newbury Street."
+      },
+      {
+       "fr": "Je cherche la bibliothèque."
+      },
+      {
+       "fr": "Je cherche mon hôtel."
+      }
+     ]
+    },
+    {
+     "p": "Can you show me on …?",
+     "s": {
+      "fr": "Pouvez-vous me montrer sur … ?"
+     },
+     "v": [
+      "the map",
+      "my phone",
+      "this map"
+     ],
+     "ex": "Can you show me on this map?",
+     "exs": {
+      "fr": "Pouvez-vous me montrer sur ce plan ?"
+     },
+     "vs": [
+      {
+       "fr": "Pouvez-vous me montrer sur le plan ?"
+      },
+      {
+       "fr": "Pouvez-vous me montrer sur mon téléphone ?"
+      },
+      {
+       "fr": "Pouvez-vous me montrer sur ce plan ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Demander son chemin"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Excuse me, where is the museum?",
+      "s": {
+       "fr": "Excusez-moi, où est le musée ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Go straight ahead and turn left at the park.",
+      "s": {
+       "fr": "Allez tout droit et tournez à gauche au parc."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Is it far?",
+      "s": {
+       "fr": "C'est loin ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "No, it's about ten minutes on foot.",
+      "s": {
+       "fr": "Non, c'est à environ dix minutes à pied."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Thank you very much!",
+      "s": {
+       "fr": "Merci beaucoup !"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "You're welcome. Have a nice day!",
+      "s": {
+       "fr": "De rien. Bonne journée !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "transports",
+   "pour": "tous",
+   "icone": "🚇",
+   "s": {
+    "fr": "Se déplacer : le T, le bus, le vélo"
+   },
+   "scenes": [
+    "fahrradwerkstatt",
+    "park"
+   ],
+   "mots": [
+    "bus",
+    "underground",
+    "train",
+    "taxi",
+    "bike",
+    "car",
+    "bus stop",
+    "railway station",
+    "platform",
+    "ticket",
+    "trip",
+    "driver",
+    "traffic",
+    "delay",
+    "map",
+    "go",
+    "take",
+    "leave",
+    "arrive",
+    "wait",
+    "ride",
+    "drive",
+    "today",
+    "tomorrow",
+    "late",
+    "early"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Aller et prendre : to go, to take"
+    },
+    "l": [
+     [
+      "I go downtown",
+      {
+       "fr": "je vais au centre-ville"
+      }
+     ],
+     [
+      "you take the underground",
+      {
+       "fr": "tu prends le métro"
+      }
+     ],
+     [
+      "she goes to work by bus",
+      {
+       "fr": "elle va au travail en bus"
+      }
+     ],
+     [
+      "we take a taxi",
+      {
+       "fr": "nous prenons un taxi"
+      }
+     ],
+     [
+      "the train leaves at ten",
+      {
+       "fr": "le train part à dix heures"
+      }
+     ],
+     [
+      "when does the bus come?",
+      {
+       "fr": "quand vient le bus ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "On prend un moyen de transport avec take (take the bus) ; « en bus » se dit by bus, mais « à pied » on foot. Le métro de Boston s'appelle « the T »."
+    }
+   },
+   "blocs": [
+    {
+     "p": "A ticket to …, please.",
+     "s": {
+      "fr": "Un billet pour …, s'il vous plaît."
+     },
+     "v": [
+      "Harvard",
+      "the airport",
+      "Cambridge"
+     ],
+     "ex": "A ticket to Cambridge, please.",
+     "exs": {
+      "fr": "Un billet pour Cambridge, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Un billet pour Harvard, s'il vous plaît."
+      },
+      {
+       "fr": "Un billet pour l'aéroport, s'il vous plaît."
+      },
+      {
+       "fr": "Un billet pour Cambridge, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "Does this bus go to …?",
+     "s": {
+      "fr": "Ce bus va à … ?"
+     },
+     "v": [
+      "downtown",
+      "the airport",
+      "Harvard Square"
+     ],
+     "ex": "Does this bus go to Harvard Square?",
+     "exs": {
+      "fr": "Ce bus va à à Harvard Square ?"
+     },
+     "vs": [
+      {
+       "fr": "Ce bus va à au centre-ville ?"
+      },
+      {
+       "fr": "Ce bus va à à l'aéroport ?"
+      },
+      {
+       "fr": "Ce bus va à à Harvard Square ?"
+      }
+     ]
+    },
+    {
+     "p": "When does the next … leave?",
+     "s": {
+      "fr": "Quand part le prochain … ?"
+     },
+     "v": [
+      "train",
+      "bus",
+      "boat"
+     ],
+     "ex": "When does the next boat leave?",
+     "exs": {
+      "fr": "Quand part le prochain bateau ?"
+     },
+     "vs": [
+      {
+       "fr": "Quand part le prochain train ?"
+      },
+      {
+       "fr": "Quand part le prochain bus ?"
+      },
+      {
+       "fr": "Quand part le prochain bateau ?"
+      }
+     ]
+    },
+    {
+     "p": "Where can I rent …?",
+     "s": {
+      "fr": "Où puis-je louer … ?"
+     },
+     "v": [
+      "a bike",
+      "a car",
+      "a locker"
+     ],
+     "ex": "Where can I rent a locker?",
+     "exs": {
+      "fr": "Où puis-je louer un casier ?"
+     },
+     "vs": [
+      {
+       "fr": "Où puis-je louer un vélo ?"
+      },
+      {
+       "fr": "Où puis-je louer une voiture ?"
+      },
+      {
+       "fr": "Où puis-je louer un casier ?"
+      }
+     ]
+    },
+    {
+     "p": "Is this the stop for …?",
+     "s": {
+      "fr": "C'est l'arrêt pour … ?"
+     },
+     "v": [
+      "the museum",
+      "the park",
+      "Fenway"
+     ],
+     "ex": "Is this the stop for Fenway?",
+     "exs": {
+      "fr": "C'est l'arrêt pour Fenway ?"
+     },
+     "vs": [
+      {
+       "fr": "C'est l'arrêt pour le musée ?"
+      },
+      {
+       "fr": "C'est l'arrêt pour le parc ?"
+      },
+      {
+       "fr": "C'est l'arrêt pour Fenway ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "À l'arrêt de bus"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Excuse me, does this bus go downtown?",
+      "s": {
+       "fr": "Excusez-moi, ce bus va au centre-ville ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Yes, take the 39. It comes every ten minutes.",
+      "s": {
+       "fr": "Oui, prenez le 39. Il passe toutes les dix minutes."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "How much is a ticket?",
+      "s": {
+       "fr": "Combien coûte un billet ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "It's two dollars and forty cents.",
+      "s": {
+       "fr": "Deux dollars quarante."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Can I pay by card?",
+      "s": {
+       "fr": "Je peux payer par carte ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Yes, you can tap your card on the bus.",
+      "s": {
+       "fr": "Oui, vous pouvez passer votre carte dans le bus."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "achats",
+   "pour": "tous",
+   "icone": "🛍️",
+   "s": {
+    "fr": "Les achats : vêtements, tailles, prix"
+   },
+   "scenes": [
+    "kleidergeschaeft",
+    "supermarkt"
+   ],
+   "mots": [
+    "shop",
+    "supermarket",
+    "shopping",
+    "clothes",
+    "shirt",
+    "T-shirt",
+    "jumper",
+    "trousers",
+    "jeans",
+    "dress",
+    "shoe",
+    "jacket",
+    "size",
+    "colour",
+    "fitting room",
+    "checkout",
+    "receipt",
+    "sale",
+    "trolley",
+    "price",
+    "cheap",
+    "expensive",
+    "big",
+    "small",
+    "try",
+    "sell",
+    "How much is it?"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Ce, ces : this, these"
+    },
+    "l": [
+     [
+      "this shirt is nice",
+      {
+       "fr": "cette chemise est jolie"
+      }
+     ],
+     [
+      "these shoes are too small",
+      {
+       "fr": "ces chaussures sont trop petites"
+      }
+     ],
+     [
+      "that jacket over there",
+      {
+       "fr": "cette veste là-bas"
+      }
+     ],
+     [
+      "those jeans are on sale",
+      {
+       "fr": "ces jeans-là sont en solde"
+      }
+     ],
+     [
+      "I'll take this one",
+      {
+       "fr": "je prends celui-ci"
+      }
+     ],
+     [
+      "do you have it in blue?",
+      {
+       "fr": "vous l'avez en bleu ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "This / these pour ce qui est près de moi, that / those pour ce qui est plus loin. Les tailles américaines : small, medium, large (S, M, L)."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Do you have this in …?",
+     "s": {
+      "fr": "Vous avez ceci en … ?"
+     },
+     "v": [
+      "medium",
+      "blue",
+      "a bigger size"
+     ],
+     "ex": "Do you have this in a bigger size?",
+     "exs": {
+      "fr": "Vous avez ceci en une taille au-dessus ?"
+     },
+     "vs": [
+      {
+       "fr": "Vous avez ceci en taille M ?"
+      },
+      {
+       "fr": "Vous avez ceci en bleu ?"
+      },
+      {
+       "fr": "Vous avez ceci en une taille au-dessus ?"
+      }
+     ]
+    },
+    {
+     "p": "Can I try on …?",
+     "s": {
+      "fr": "Je peux essayer … ?"
+     },
+     "v": [
+      "this jumper",
+      "these jeans",
+      "this dress"
+     ],
+     "ex": "Can I try on this dress?",
+     "exs": {
+      "fr": "Je peux essayer cette robe ?"
+     },
+     "vs": [
+      {
+       "fr": "Je peux essayer ce pull ?"
+      },
+      {
+       "fr": "Je peux essayer ce jean ?"
+      },
+      {
+       "fr": "Je peux essayer cette robe ?"
+      }
+     ]
+    },
+    {
+     "p": "It's too ….",
+     "s": {
+      "fr": "C'est trop …."
+     },
+     "v": [
+      "big",
+      "small",
+      "expensive"
+     ],
+     "ex": "It's too expensive.",
+     "exs": {
+      "fr": "C'est trop cher."
+     },
+     "vs": [
+      {
+       "fr": "C'est trop grand."
+      },
+      {
+       "fr": "C'est trop petit."
+      },
+      {
+       "fr": "C'est trop cher."
+      }
+     ]
+    },
+    {
+     "p": "I'll take ….",
+     "s": {
+      "fr": "Je prends …."
+     },
+     "v": [
+      "this one",
+      "these shoes",
+      "the blue one"
+     ],
+     "ex": "I'll take the blue one.",
+     "exs": {
+      "fr": "Je prends le bleu."
+     },
+     "vs": [
+      {
+       "fr": "Je prends celui-ci."
+      },
+      {
+       "fr": "Je prends ces chaussures."
+      },
+      {
+       "fr": "Je prends le bleu."
+      }
+     ]
+    },
+    {
+     "p": "Where is …?",
+     "s": {
+      "fr": "Où est … ?"
+     },
+     "v": [
+      "the fitting room",
+      "the checkout",
+      "the shoe department"
+     ],
+     "ex": "Where is the shoe department?",
+     "exs": {
+      "fr": "Où est le rayon des chaussures ?"
+     },
+     "vs": [
+      {
+       "fr": "Où est la cabine d'essayage ?"
+      },
+      {
+       "fr": "Où est la caisse ?"
+      },
+      {
+       "fr": "Où est le rayon des chaussures ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Dans un magasin de vêtements"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Hi there! Can I help you?",
+      "s": {
+       "fr": "Bonjour ! Je peux vous aider ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Yes, do you have this jumper in medium?",
+      "s": {
+       "fr": "Oui, vous avez ce pull en taille M ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Sure, here you go. The fitting room is over there.",
+      "s": {
+       "fr": "Bien sûr, voilà. La cabine d'essayage est là-bas."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Thanks. How much is it?",
+      "s": {
+       "fr": "Merci. Combien coûte-t-il ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "It's forty dollars, but it's on sale today: thirty.",
+      "s": {
+       "fr": "Quarante dollars, mais il est en solde aujourd'hui : trente."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Great, I'll take it.",
+      "s": {
+       "fr": "Super, je le prends."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "sante",
+   "pour": "tous",
+   "icone": "💊",
+   "s": {
+    "fr": "La santé : pharmacie, médecin"
+   },
+   "scenes": [
+    "apotheke",
+    "arztpraxis"
+   ],
+   "mots": [
+    "chemist's",
+    "doctor",
+    "nurse",
+    "hospital",
+    "medicine",
+    "pill",
+    "prescription",
+    "appointment",
+    "pain",
+    "headache",
+    "fever",
+    "cold",
+    "cough",
+    "flu",
+    "head",
+    "stomach",
+    "back",
+    "health",
+    "ill",
+    "tired",
+    "hurt",
+    "feel",
+    "help",
+    "need"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Avoir mal : to hurt, to have"
+    },
+    "l": [
+     [
+      "my head hurts",
+      {
+       "fr": "j'ai mal à la tête"
+      }
+     ],
+     [
+      "I have a headache",
+      {
+       "fr": "j'ai mal à la tête"
+      }
+     ],
+     [
+      "she has a fever",
+      {
+       "fr": "elle a de la fièvre"
+      }
+     ],
+     [
+      "I have a cold",
+      {
+       "fr": "j'ai un rhume"
+      }
+     ],
+     [
+      "I feel sick",
+      {
+       "fr": "je me sens malade"
+      }
+     ],
+     [
+      "do you have something for a cough?",
+      {
+       "fr": "avez-vous quelque chose contre la toux ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Deux façons de dire « j'ai mal » : My back hurts (le dos fait mal) ou I have a backache. En cas d'urgence aux États-Unis : 911."
+    }
+   },
+   "blocs": [
+    {
+     "p": "I have ….",
+     "s": {
+      "fr": "J'ai …."
+     },
+     "v": [
+      "a headache",
+      "a fever",
+      "a sore throat"
+     ],
+     "ex": "I have a sore throat.",
+     "exs": {
+      "fr": "J'ai mal à la gorge."
+     },
+     "vs": [
+      {
+       "fr": "J'ai mal à la tête."
+      },
+      {
+       "fr": "J'ai de la fièvre."
+      },
+      {
+       "fr": "J'ai mal à la gorge."
+      }
+     ]
+    },
+    {
+     "p": "My … hurts.",
+     "s": {
+      "fr": "J'ai mal …."
+     },
+     "v": [
+      "back",
+      "stomach",
+      "foot"
+     ],
+     "ex": "My foot hurts.",
+     "exs": {
+      "fr": "J'ai mal au pied."
+     },
+     "vs": [
+      {
+       "fr": "J'ai mal au dos."
+      },
+      {
+       "fr": "J'ai mal au ventre."
+      },
+      {
+       "fr": "J'ai mal au pied."
+      }
+     ]
+    },
+    {
+     "p": "Do you have something for …?",
+     "s": {
+      "fr": "Avez-vous quelque chose contre … ?"
+     },
+     "v": [
+      "a cold",
+      "a cough",
+      "the flu"
+     ],
+     "ex": "Do you have something for the flu?",
+     "exs": {
+      "fr": "Avez-vous quelque chose contre la grippe ?"
+     },
+     "vs": [
+      {
+       "fr": "Avez-vous quelque chose contre le rhume ?"
+      },
+      {
+       "fr": "Avez-vous quelque chose contre la toux ?"
+      },
+      {
+       "fr": "Avez-vous quelque chose contre la grippe ?"
+      }
+     ]
+    },
+    {
+     "p": "I need ….",
+     "s": {
+      "fr": "J'ai besoin …."
+     },
+     "v": [
+      "a doctor",
+      "an appointment",
+      "a pharmacy"
+     ],
+     "ex": "I need a pharmacy.",
+     "exs": {
+      "fr": "J'ai besoin d'une pharmacie."
+     },
+     "vs": [
+      {
+       "fr": "J'ai besoin d'un médecin."
+      },
+      {
+       "fr": "J'ai besoin d'un rendez-vous."
+      },
+      {
+       "fr": "J'ai besoin d'une pharmacie."
+      }
+     ]
+    },
+    {
+     "p": "I'm allergic to ….",
+     "s": {
+      "fr": "Je suis allergique …."
+     },
+     "v": [
+      "penicillin",
+      "nuts",
+      "cats"
+     ],
+     "ex": "I'm allergic to cats.",
+     "exs": {
+      "fr": "Je suis allergique aux chats."
+     },
+     "vs": [
+      {
+       "fr": "Je suis allergique à la pénicilline."
+      },
+      {
+       "fr": "Je suis allergique aux noix."
+      },
+      {
+       "fr": "Je suis allergique aux chats."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "À la pharmacie"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Hi, how can I help you?",
+      "s": {
+       "fr": "Bonjour, que puis-je faire pour vous ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "I have a bad cold and a sore throat.",
+      "s": {
+       "fr": "J'ai un gros rhume et mal à la gorge."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Do you have a fever?",
+      "s": {
+       "fr": "Vous avez de la fièvre ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "No, but I feel very tired.",
+      "s": {
+       "fr": "Non, mais je me sens très fatigué."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Take this, twice a day, after meals.",
+      "s": {
+       "fr": "Prenez ceci, deux fois par jour, après les repas."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Thank you. How much is it?",
+      "s": {
+       "fr": "Merci. Combien ça coûte ?"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "imprevus",
+   "pour": "tous",
+   "icone": "🧳",
+   "s": {
+    "fr": "Les imprévus : perdre, attendre, réparer"
+   },
+   "scenes": [
+    "hotel",
+    "flughafen"
+   ],
+   "mots": [
+    "problem",
+    "key",
+    "passport",
+    "phone",
+    "bag",
+    "luggage",
+    "delay",
+    "mistake",
+    "help",
+    "lose",
+    "find",
+    "wait",
+    "call",
+    "fix",
+    "open",
+    "close",
+    "change",
+    "Excuse me.",
+    "I'm sorry.",
+    "No problem.",
+    "I don't understand."
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Hier : le prétérit (was, lost, found)"
+    },
+    "l": [
+     [
+      "I lost my key",
+      {
+       "fr": "j'ai perdu ma clé"
+      }
+     ],
+     [
+      "my flight was late",
+      {
+       "fr": "mon vol était en retard"
+      }
+     ],
+     [
+      "the room was cold",
+      {
+       "fr": "la chambre était froide"
+      }
+     ],
+     [
+      "I found my phone",
+      {
+       "fr": "j'ai retrouvé mon téléphone"
+      }
+     ],
+     [
+      "we waited an hour",
+      {
+       "fr": "nous avons attendu une heure"
+      }
+     ],
+     [
+      "someone called me",
+      {
+       "fr": "quelqu'un m'a appelé"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le prétérit raconte ce qui est arrivé : lose → lost, find → found, be → was / were. Les réguliers prennent -ed : waited, called."
+    }
+   },
+   "blocs": [
+    {
+     "p": "I lost ….",
+     "s": {
+      "fr": "J'ai perdu …."
+     },
+     "v": [
+      "my key",
+      "my passport",
+      "my phone"
+     ],
+     "ex": "I lost my phone.",
+     "exs": {
+      "fr": "J'ai perdu mon téléphone."
+     },
+     "vs": [
+      {
+       "fr": "J'ai perdu ma clé."
+      },
+      {
+       "fr": "J'ai perdu mon passeport."
+      },
+      {
+       "fr": "J'ai perdu mon téléphone."
+      }
+     ]
+    },
+    {
+     "p": "The … doesn't work.",
+     "s": {
+      "fr": "Le … ne marche pas."
+     },
+     "v": [
+      "shower",
+      "Wi-Fi",
+      "heating"
+     ],
+     "ex": "The heating doesn't work.",
+     "exs": {
+      "fr": "Le le chauffage ne marche pas."
+     },
+     "vs": [
+      {
+       "fr": "Le la douche ne marche pas."
+      },
+      {
+       "fr": "Le le wifi ne marche pas."
+      },
+      {
+       "fr": "Le le chauffage ne marche pas."
+      }
+     ]
+    },
+    {
+     "p": "My … was cancelled.",
+     "s": {
+      "fr": "Mon … a été annulé."
+     },
+     "v": [
+      "flight",
+      "train",
+      "reservation"
+     ],
+     "ex": "My reservation was cancelled.",
+     "exs": {
+      "fr": "Mon ma réservation a été annulé."
+     },
+     "vs": [
+      {
+       "fr": "Mon vol a été annulé."
+      },
+      {
+       "fr": "Mon train a été annulé."
+      },
+      {
+       "fr": "Mon ma réservation a été annulé."
+      }
+     ]
+    },
+    {
+     "p": "Can you …, please?",
+     "s": {
+      "fr": "Pouvez-vous …, s'il vous plaît ?"
+     },
+     "v": [
+      "help me",
+      "call a taxi",
+      "repeat that"
+     ],
+     "ex": "Can you repeat that, please?",
+     "exs": {
+      "fr": "Pouvez-vous répéter, s'il vous plaît ?"
+     },
+     "vs": [
+      {
+       "fr": "Pouvez-vous m'aider, s'il vous plaît ?"
+      },
+      {
+       "fr": "Pouvez-vous appeler un taxi, s'il vous plaît ?"
+      },
+      {
+       "fr": "Pouvez-vous répéter, s'il vous plaît ?"
+      }
+     ]
+    },
+    {
+     "p": "I'm sorry, I ….",
+     "s": {
+      "fr": "Désolé, je …."
+     },
+     "v": [
+      "don't understand",
+      "am late",
+      "forgot"
+     ],
+     "ex": "I'm sorry, I forgot.",
+     "exs": {
+      "fr": "Désolé, je ai oublié."
+     },
+     "vs": [
+      {
+       "fr": "Désolé, je ne comprends pas."
+      },
+      {
+       "fr": "Désolé, je suis en retard."
+      },
+      {
+       "fr": "Désolé, je ai oublié."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Un problème à l'hôtel"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Excuse me, I lost my room key.",
+      "s": {
+       "fr": "Excusez-moi, j'ai perdu la clé de ma chambre."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "No problem. What's your room number?",
+      "s": {
+       "fr": "Pas de problème. Quel est votre numéro de chambre ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Room 412. And the shower doesn't work.",
+      "s": {
+       "fr": "La 412. Et la douche ne marche pas."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "I'm sorry. I'll send someone right away.",
+      "s": {
+       "fr": "Désolé. J'envoie quelqu'un tout de suite."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Thank you so much.",
+      "s": {
+       "fr": "Merci beaucoup."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Here is a new key.",
+      "s": {
+       "fr": "Voici une nouvelle clé."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "services",
+   "pour": "tous",
+   "icone": "🧺",
+   "s": {
+    "fr": "Les services : laverie, coiffeur, banque"
+   },
+   "scenes": [
+    "waschsalon",
+    "friseur"
+   ],
+   "mots": [
+    "washing machine",
+    "money",
+    "coin",
+    "cash",
+    "credit card",
+    "bank",
+    "hairdresser",
+    "hair",
+    "towel",
+    "clothes",
+    "appointment",
+    "minute",
+    "hour",
+    "wash",
+    "cut",
+    "pay",
+    "open",
+    "close",
+    "wait",
+    "change"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Pouvoir : can, can't"
+    },
+    "l": [
+     [
+      "can I use this machine?",
+      {
+       "fr": "je peux utiliser cette machine ?"
+      }
+     ],
+     [
+      "you can pay by card",
+      {
+       "fr": "vous pouvez payer par carte"
+      }
+     ],
+     [
+      "she can't come today",
+      {
+       "fr": "elle ne peut pas venir aujourd'hui"
+      }
+     ],
+     [
+      "can you cut my hair?",
+      {
+       "fr": "pouvez-vous me couper les cheveux ?"
+      }
+     ],
+     [
+      "we can wait",
+      {
+       "fr": "nous pouvons attendre"
+      }
+     ],
+     [
+      "they can't change money",
+      {
+       "fr": "ils ne peuvent pas changer d'argent"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Can ne change jamais (she can) et le verbe qui suit reste nu. Pour une demande polie : Could you…? (pourriez-vous…?)."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Can I … here?",
+     "s": {
+      "fr": "Je peux … ici ?"
+     },
+     "v": [
+      "pay by card",
+      "wait",
+      "leave my bag"
+     ],
+     "ex": "Can I leave my bag here?",
+     "exs": {
+      "fr": "Je peux laisser mon sac ici ?"
+     },
+     "vs": [
+      {
+       "fr": "Je peux payer par carte ici ?"
+      },
+      {
+       "fr": "Je peux attendre ici ?"
+      },
+      {
+       "fr": "Je peux laisser mon sac ici ?"
+      }
+     ]
+    },
+    {
+     "p": "I need ….",
+     "s": {
+      "fr": "J'ai besoin …."
+     },
+     "v": [
+      "change",
+      "quarters",
+      "a receipt"
+     ],
+     "ex": "I need a receipt.",
+     "exs": {
+      "fr": "J'ai besoin d'un reçu."
+     },
+     "vs": [
+      {
+       "fr": "J'ai besoin de monnaie."
+      },
+      {
+       "fr": "J'ai besoin de pièces de 25 cents."
+      },
+      {
+       "fr": "J'ai besoin d'un reçu."
+      }
+     ]
+    },
+    {
+     "p": "How long does … take?",
+     "s": {
+      "fr": "Combien de temps dure … ?"
+     },
+     "v": [
+      "the wash",
+      "the dryer",
+      "a haircut"
+     ],
+     "ex": "How long does a haircut take?",
+     "exs": {
+      "fr": "Combien de temps dure une coupe ?"
+     },
+     "vs": [
+      {
+       "fr": "Combien de temps dure le lavage ?"
+      },
+      {
+       "fr": "Combien de temps dure le séchage ?"
+      },
+      {
+       "fr": "Combien de temps dure une coupe ?"
+      }
+     ]
+    },
+    {
+     "p": "I'd like ….",
+     "s": {
+      "fr": "Je voudrais …."
+     },
+     "v": [
+      "a haircut",
+      "an appointment",
+      "a shorter cut"
+     ],
+     "ex": "I'd like a shorter cut.",
+     "exs": {
+      "fr": "Je voudrais une coupe plus courte."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais une coupe."
+      },
+      {
+       "fr": "Je voudrais un rendez-vous."
+      },
+      {
+       "fr": "Je voudrais une coupe plus courte."
+      }
+     ]
+    },
+    {
+     "p": "What time do you …?",
+     "s": {
+      "fr": "À quelle heure … ?"
+     },
+     "v": [
+      "open",
+      "close",
+      "start"
+     ],
+     "ex": "What time do you start?",
+     "exs": {
+      "fr": "À quelle heure commencez-vous ?"
+     },
+     "vs": [
+      {
+       "fr": "À quelle heure ouvrez-vous ?"
+      },
+      {
+       "fr": "À quelle heure fermez-vous ?"
+      },
+      {
+       "fr": "À quelle heure commencez-vous ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Chez le coiffeur"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Hi! Can I have a haircut today?",
+      "s": {
+       "fr": "Bonjour ! Est-ce que je peux avoir une coupe aujourd'hui ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Sure, in about twenty minutes. Can you wait?",
+      "s": {
+       "fr": "Bien sûr, dans une vingtaine de minutes. Vous pouvez attendre ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Yes, no problem.",
+      "s": {
+       "fr": "Oui, pas de problème."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "How would you like it?",
+      "s": {
+       "fr": "Comment la voulez-vous ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "A little shorter, please.",
+      "s": {
+       "fr": "Un peu plus courte, s'il vous plaît."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Perfect. Have a seat.",
+      "s": {
+       "fr": "Parfait. Asseyez-vous."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "rencontrer",
+   "pour": "tous",
+   "icone": "🤝",
+   "s": {
+    "fr": "Rencontrer des gens, être invité"
+   },
+   "scenes": [
+    "geburtstag",
+    "familie"
+   ],
+   "mots": [
+    "friend",
+    "family",
+    "guest",
+    "party",
+    "birthday",
+    "gift",
+    "name",
+    "age",
+    "country",
+    "language",
+    "job",
+    "Hello!",
+    "Nice to meet you.",
+    "What's your name?",
+    "Where are you from?",
+    "How old are you?",
+    "Happy birthday!",
+    "Cheers!",
+    "like",
+    "love",
+    "meet",
+    "invite",
+    "celebrate",
+    "speak"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Parler de soi : I'm, I'm from, I like"
+    },
+    "l": [
+     [
+      "I'm Marie, I'm French",
+      {
+       "fr": "je suis Marie, je suis française"
+      }
+     ],
+     [
+      "I'm from Montreal",
+      {
+       "fr": "je viens de Montréal"
+      }
+     ],
+     [
+      "I'm thirty",
+      {
+       "fr": "j'ai trente ans"
+      }
+     ],
+     [
+      "I work in a bank",
+      {
+       "fr": "je travaille dans une banque"
+      }
+     ],
+     [
+      "I like music",
+      {
+       "fr": "j'aime la musique"
+      }
+     ],
+     [
+      "I speak a little English",
+      {
+       "fr": "je parle un peu anglais"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Pour l'âge, on EST : I'm thirty. Pour le métier, un article : I'm a nurse. Les nationalités prennent une majuscule : French, Canadian."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Nice to meet you, I'm ….",
+     "s": {
+      "fr": "Enchanté, je suis …."
+     },
+     "v": [
+      "Marie",
+      "Paul",
+      "Anna"
+     ],
+     "ex": "Nice to meet you, I'm Anna.",
+     "exs": {
+      "fr": "Enchanté, je suis Anna."
+     },
+     "vs": [
+      {
+       "fr": "Enchanté, je suis Marie."
+      },
+      {
+       "fr": "Enchanté, je suis Paul."
+      },
+      {
+       "fr": "Enchanté, je suis Anna."
+      }
+     ]
+    },
+    {
+     "p": "I'm from ….",
+     "s": {
+      "fr": "Je viens …."
+     },
+     "v": [
+      "France",
+      "Quebec",
+      "Belgium"
+     ],
+     "ex": "I'm from Belgium.",
+     "exs": {
+      "fr": "Je viens de Belgique."
+     },
+     "vs": [
+      {
+       "fr": "Je viens de France."
+      },
+      {
+       "fr": "Je viens du Québec."
+      },
+      {
+       "fr": "Je viens de Belgique."
+      }
+     ]
+    },
+    {
+     "p": "I work as ….",
+     "s": {
+      "fr": "Je travaille comme …."
+     },
+     "v": [
+      "a nurse",
+      "a teacher",
+      "an engineer"
+     ],
+     "ex": "I work as an engineer.",
+     "exs": {
+      "fr": "Je travaille comme ingénieur."
+     },
+     "vs": [
+      {
+       "fr": "Je travaille comme infirmière."
+      },
+      {
+       "fr": "Je travaille comme professeur."
+      },
+      {
+       "fr": "Je travaille comme ingénieur."
+      }
+     ]
+    },
+    {
+     "p": "I really like ….",
+     "s": {
+      "fr": "J'aime beaucoup …."
+     },
+     "v": [
+      "Boston",
+      "this song",
+      "your house"
+     ],
+     "ex": "I really like your house.",
+     "exs": {
+      "fr": "J'aime beaucoup ta maison."
+     },
+     "vs": [
+      {
+       "fr": "J'aime beaucoup Boston."
+      },
+      {
+       "fr": "J'aime beaucoup cette chanson."
+      },
+      {
+       "fr": "J'aime beaucoup ta maison."
+      }
+     ]
+    },
+    {
+     "p": "Thank you for ….",
+     "s": {
+      "fr": "Merci pour …."
+     },
+     "v": [
+      "the invitation",
+      "the gift",
+      "dinner"
+     ],
+     "ex": "Thank you for dinner.",
+     "exs": {
+      "fr": "Merci pour le dîner."
+     },
+     "vs": [
+      {
+       "fr": "Merci pour l'invitation."
+      },
+      {
+       "fr": "Merci pour le cadeau."
+      },
+      {
+       "fr": "Merci pour le dîner."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "À une fête d'anniversaire"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Hi! I'm Jake. Are you a friend of Emma's?",
+      "s": {
+       "fr": "Salut ! Je suis Jake. Tu es une amie d'Emma ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Yes! Nice to meet you, I'm Marie.",
+      "s": {
+       "fr": "Oui ! Enchantée, je suis Marie."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Where are you from, Marie?",
+      "s": {
+       "fr": "Tu viens d'où, Marie ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "I'm from Montreal. I'm here for a month.",
+      "s": {
+       "fr": "Je viens de Montréal. Je suis ici pour un mois."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Cool! Do you like Boston?",
+      "s": {
+       "fr": "Génial ! Tu aimes Boston ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "I love it. Cheers!",
+      "s": {
+       "fr": "J'adore. Santé !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "plage",
+   "pour": "voyage",
+   "icone": "🏖️",
+   "s": {
+    "fr": "La plage et le temps qu'il fait"
+   },
+   "scenes": [
+    "strand",
+    "park",
+    "winter"
+   ],
+   "mots": [
+    "beach",
+    "sea",
+    "sun",
+    "sky",
+    "cloud",
+    "rain",
+    "snow",
+    "wind",
+    "weather",
+    "temperature",
+    "island",
+    "boat",
+    "hat",
+    "sunglasses",
+    "umbrella",
+    "towel",
+    "hot",
+    "cold",
+    "warm",
+    "sunny",
+    "rainy",
+    "windy",
+    "cloudy",
+    "swim",
+    "play"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Le temps qu'il fait : it's…"
+    },
+    "l": [
+     [
+      "it's sunny",
+      {
+       "fr": "il fait beau, il y a du soleil"
+      }
+     ],
+     [
+      "it's raining",
+      {
+       "fr": "il pleut"
+      }
+     ],
+     [
+      "it's snowing",
+      {
+       "fr": "il neige"
+      }
+     ],
+     [
+      "it's cold today",
+      {
+       "fr": "il fait froid aujourd'hui"
+      }
+     ],
+     [
+      "it's 75 degrees",
+      {
+       "fr": "il fait 24 °C (75 °F)"
+      }
+     ],
+     [
+      "what's the weather like?",
+      {
+       "fr": "quel temps fait-il ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le temps passe toujours par it : it's hot, it's raining. Aux États-Unis, la température est en Fahrenheit : 32 °F = 0 °C, 75 °F ≈ 24 °C."
+    }
+   },
+   "blocs": [
+    {
+     "p": "It's … today.",
+     "s": {
+      "fr": "Il fait … aujourd'hui."
+     },
+     "v": [
+      "sunny",
+      "cold",
+      "windy"
+     ],
+     "ex": "It's windy today.",
+     "exs": {
+      "fr": "Il fait du vent aujourd'hui."
+     },
+     "vs": [
+      {
+       "fr": "Il fait beau aujourd'hui."
+      },
+      {
+       "fr": "Il fait froid aujourd'hui."
+      },
+      {
+       "fr": "Il fait du vent aujourd'hui."
+      }
+     ]
+    },
+    {
+     "p": "Let's go to ….",
+     "s": {
+      "fr": "Allons …."
+     },
+     "v": [
+      "the beach",
+      "the park",
+      "the island"
+     ],
+     "ex": "Let's go to the island.",
+     "exs": {
+      "fr": "Allons sur l'île."
+     },
+     "vs": [
+      {
+       "fr": "Allons à la plage."
+      },
+      {
+       "fr": "Allons au parc."
+      },
+      {
+       "fr": "Allons sur l'île."
+      }
+     ]
+    },
+    {
+     "p": "Don't forget …!",
+     "s": {
+      "fr": "N'oublie pas … !"
+     },
+     "v": [
+      "your hat",
+      "your sunglasses",
+      "the umbrella"
+     ],
+     "ex": "Don't forget the umbrella!",
+     "exs": {
+      "fr": "N'oublie pas le parapluie !"
+     },
+     "vs": [
+      {
+       "fr": "N'oublie pas ton chapeau !"
+      },
+      {
+       "fr": "N'oublie pas tes lunettes de soleil !"
+      },
+      {
+       "fr": "N'oublie pas le parapluie !"
+      }
+     ]
+    },
+    {
+     "p": "Is the water …?",
+     "s": {
+      "fr": "L'eau est … ?"
+     },
+     "v": [
+      "cold",
+      "warm",
+      "clean"
+     ],
+     "ex": "Is the water clean?",
+     "exs": {
+      "fr": "L'eau est propre ?"
+     },
+     "vs": [
+      {
+       "fr": "L'eau est froide ?"
+      },
+      {
+       "fr": "L'eau est chaude ?"
+      },
+      {
+       "fr": "L'eau est propre ?"
+      }
+     ]
+    },
+    {
+     "p": "Can we rent …?",
+     "s": {
+      "fr": "Peut-on louer … ?"
+     },
+     "v": [
+      "a boat",
+      "an umbrella",
+      "two chairs"
+     ],
+     "ex": "Can we rent two chairs?",
+     "exs": {
+      "fr": "Peut-on louer deux chaises ?"
+     },
+     "vs": [
+      {
+       "fr": "Peut-on louer un bateau ?"
+      },
+      {
+       "fr": "Peut-on louer un parasol ?"
+      },
+      {
+       "fr": "Peut-on louer deux chaises ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Une journée à la plage"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "What's the weather like tomorrow?",
+      "s": {
+       "fr": "Quel temps fait-il demain ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "It's sunny and warm, about eighty degrees.",
+      "s": {
+       "fr": "Il fait beau et chaud, environ vingt-sept degrés."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Perfect! Let's go to the beach.",
+      "s": {
+       "fr": "Parfait ! Allons à la plage."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Great idea. Is the water cold?",
+      "s": {
+       "fr": "Bonne idée. L'eau est froide ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "A little. But you can swim.",
+      "s": {
+       "fr": "Un peu. Mais on peut se baigner."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Don't forget the sunglasses!",
+      "s": {
+       "fr": "N'oublie pas les lunettes de soleil !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "visiter",
+   "pour": "voyage",
+   "icone": "🏛️",
+   "s": {
+    "fr": "Visiter : musées, bibliothèques, horaires"
+   },
+   "scenes": [
+    "museum",
+    "bibliothek"
+   ],
+   "mots": [
+    "museum",
+    "library",
+    "ticket",
+    "painting",
+    "picture",
+    "art",
+    "photo",
+    "tourist",
+    "hour",
+    "morning",
+    "afternoon",
+    "Monday",
+    "Saturday",
+    "Sunday",
+    "open",
+    "close",
+    "visit",
+    "see",
+    "look",
+    "free",
+    "closed",
+    "What time is it?"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Les horaires : at, on, from… to"
+    },
+    "l": [
+     [
+      "it opens at ten",
+      {
+       "fr": "ça ouvre à dix heures"
+      }
+     ],
+     [
+      "it closes at five",
+      {
+       "fr": "ça ferme à dix-sept heures"
+      }
+     ],
+     [
+      "it's closed on Mondays",
+      {
+       "fr": "c'est fermé le lundi"
+      }
+     ],
+     [
+      "it's open from nine to six",
+      {
+       "fr": "c'est ouvert de neuf à dix-huit heures"
+      }
+     ],
+     [
+      "is it free on Sundays?",
+      {
+       "fr": "c'est gratuit le dimanche ?"
+      }
+     ],
+     [
+      "what time does it open?",
+      {
+       "fr": "à quelle heure ça ouvre ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "At + heure (at ten), on + jour (on Monday), from… to… pour une durée. Les Américains comptent sur 12 heures : 5 p.m. = 17 h."
+    }
+   },
+   "blocs": [
+    {
+     "p": "What time does the … open?",
+     "s": {
+      "fr": "À quelle heure ouvre … ?"
+     },
+     "v": [
+      "museum",
+      "library",
+      "store"
+     ],
+     "ex": "What time does the store open?",
+     "exs": {
+      "fr": "À quelle heure ouvre le magasin ?"
+     },
+     "vs": [
+      {
+       "fr": "À quelle heure ouvre le musée ?"
+      },
+      {
+       "fr": "À quelle heure ouvre la bibliothèque ?"
+      },
+      {
+       "fr": "À quelle heure ouvre le magasin ?"
+      }
+     ]
+    },
+    {
+     "p": "Two tickets for …, please.",
+     "s": {
+      "fr": "Deux billets pour …, s'il vous plaît."
+     },
+     "v": [
+      "adults",
+      "students",
+      "the exhibition"
+     ],
+     "ex": "Two tickets for the exhibition, please.",
+     "exs": {
+      "fr": "Deux billets pour l'exposition, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Deux billets pour adultes, s'il vous plaît."
+      },
+      {
+       "fr": "Deux billets pour étudiants, s'il vous plaît."
+      },
+      {
+       "fr": "Deux billets pour l'exposition, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "Can I take …?",
+     "s": {
+      "fr": "Est-ce que je peux prendre … ?"
+     },
+     "v": [
+      "photos",
+      "a map",
+      "a guide"
+     ],
+     "ex": "Can I take a guide?",
+     "exs": {
+      "fr": "Est-ce que je peux prendre un guide ?"
+     },
+     "vs": [
+      {
+       "fr": "Est-ce que je peux prendre des photos ?"
+      },
+      {
+       "fr": "Est-ce que je peux prendre un plan ?"
+      },
+      {
+       "fr": "Est-ce que je peux prendre un guide ?"
+      }
+     ]
+    },
+    {
+     "p": "Is it free on …?",
+     "s": {
+      "fr": "C'est gratuit le … ?"
+     },
+     "v": [
+      "Sundays",
+      "Wednesdays",
+      "weekends"
+     ],
+     "ex": "Is it free on weekends?",
+     "exs": {
+      "fr": "C'est gratuit le week-end ?"
+     },
+     "vs": [
+      {
+       "fr": "C'est gratuit le dimanche ?"
+      },
+      {
+       "fr": "C'est gratuit le mercredi ?"
+      },
+      {
+       "fr": "C'est gratuit le week-end ?"
+      }
+     ]
+    },
+    {
+     "p": "Where is …?",
+     "s": {
+      "fr": "Où est … ?"
+     },
+     "v": [
+      "the gift shop",
+      "the café",
+      "the exit"
+     ],
+     "ex": "Where is the exit?",
+     "exs": {
+      "fr": "Où est la sortie ?"
+     },
+     "vs": [
+      {
+       "fr": "Où est la boutique ?"
+      },
+      {
+       "fr": "Où est le café ?"
+      },
+      {
+       "fr": "Où est la sortie ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "À l'entrée du musée"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Hi! Two tickets, please.",
+      "s": {
+       "fr": "Bonjour ! Deux billets, s'il vous plaît."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Are you students?",
+      "s": {
+       "fr": "Vous êtes étudiants ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "No. How much is it?",
+      "s": {
+       "fr": "Non. Combien ça coûte ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Twenty-five dollars each.",
+      "s": {
+       "fr": "Vingt-cinq dollars chacun."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Can I take photos inside?",
+      "s": {
+       "fr": "On peut prendre des photos à l'intérieur ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Yes, but no flash, please.",
+      "s": {
+       "fr": "Oui, mais sans flash, s'il vous plaît."
+      }
+     }
+    ]
+   }
+  }
+ ],
+ "installe": [
+  {
+   "id": "logement",
+   "pour": "installe",
+   "icone": "🏠",
+   "s": {
+    "fr": "Le logement : chercher, louer, les voisins"
+   },
+   "scenes": [
+    "umzug",
+    "wohnzimmer"
+   ],
+   "mots": [
+    "house",
+    "flat",
+    "room",
+    "bedroom",
+    "kitchen",
+    "bathroom",
+    "living room",
+    "door",
+    "window",
+    "wall",
+    "floor",
+    "stairs",
+    "balcony",
+    "garden",
+    "table",
+    "chair",
+    "sofa",
+    "wardrobe",
+    "lamp",
+    "rug",
+    "mirror",
+    "fridge",
+    "cooker",
+    "rent",
+    "furniture",
+    "neighbour",
+    "live",
+    "move"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Habiter : to live"
+    },
+    "l": [
+     [
+      "I live in a flat",
+      {
+       "fr": "j'habite dans un appartement"
+      }
+     ],
+     [
+      "you live near downtown",
+      {
+       "fr": "tu habites près du centre-ville"
+      }
+     ],
+     [
+      "she lives on the third floor",
+      {
+       "fr": "elle habite au troisième étage"
+      }
+     ],
+     [
+      "we live with a roommate",
+      {
+       "fr": "nous habitons avec un colocataire"
+      }
+     ],
+     [
+      "they live in Cambridge",
+      {
+       "fr": "ils habitent à Cambridge"
+      }
+     ],
+     [
+      "where do you live?",
+      {
+       "fr": "où habites-tu ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Live in + ville ou quartier, live on + rue ou étage. Attention : le premier étage américain est le rez-de-chaussée (first floor = ground floor en Grande-Bretagne)."
+    }
+   },
+   "blocs": [
+    {
+     "p": "I'm looking for ….",
+     "s": {
+      "fr": "Je cherche …."
+     },
+     "v": [
+      "a flat",
+      "a room",
+      "a roommate"
+     ],
+     "ex": "I'm looking for a roommate.",
+     "exs": {
+      "fr": "Je cherche un colocataire."
+     },
+     "vs": [
+      {
+       "fr": "Je cherche un appartement."
+      },
+      {
+       "fr": "Je cherche une chambre."
+      },
+      {
+       "fr": "Je cherche un colocataire."
+      }
+     ]
+    },
+    {
+     "p": "How much is …?",
+     "s": {
+      "fr": "Combien coûte … ?"
+     },
+     "v": [
+      "the rent",
+      "the deposit",
+      "heating"
+     ],
+     "ex": "How much is heating?",
+     "exs": {
+      "fr": "Combien coûte le chauffage ?"
+     },
+     "vs": [
+      {
+       "fr": "Combien coûte le loyer ?"
+      },
+      {
+       "fr": "Combien coûte la caution ?"
+      },
+      {
+       "fr": "Combien coûte le chauffage ?"
+      }
+     ]
+    },
+    {
+     "p": "Is … included?",
+     "s": {
+      "fr": "Est-ce que … est compris ?"
+     },
+     "v": [
+      "heating",
+      "Wi-Fi",
+      "electricity"
+     ],
+     "ex": "Is electricity included?",
+     "exs": {
+      "fr": "Est-ce que l'électricité est compris ?"
+     },
+     "vs": [
+      {
+       "fr": "Est-ce que le chauffage est compris ?"
+      },
+      {
+       "fr": "Est-ce que le wifi est compris ?"
+      },
+      {
+       "fr": "Est-ce que l'électricité est compris ?"
+      }
+     ]
+    },
+    {
+     "p": "The … is broken.",
+     "s": {
+      "fr": "Le … est cassé."
+     },
+     "v": [
+      "fridge",
+      "cooker",
+      "lamp"
+     ],
+     "ex": "The lamp is broken.",
+     "exs": {
+      "fr": "Le la lampe est cassé."
+     },
+     "vs": [
+      {
+       "fr": "Le frigo est cassé."
+      },
+      {
+       "fr": "Le la cuisinière est cassé."
+      },
+      {
+       "fr": "Le la lampe est cassé."
+      }
+     ]
+    },
+    {
+     "p": "Hi, I'm your new ….",
+     "s": {
+      "fr": "Bonjour, je suis votre nouveau …."
+     },
+     "v": [
+      "neighbour",
+      "tenant",
+      "roommate"
+     ],
+     "ex": "Hi, I'm your new roommate.",
+     "exs": {
+      "fr": "Bonjour, je suis votre nouveau colocataire."
+     },
+     "vs": [
+      {
+       "fr": "Bonjour, je suis votre nouveau voisin."
+      },
+      {
+       "fr": "Bonjour, je suis votre nouveau locataire."
+      },
+      {
+       "fr": "Bonjour, je suis votre nouveau colocataire."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Visiter un appartement"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Hi! Come in. This is the living room.",
+      "s": {
+       "fr": "Bonjour ! Entrez. Voici le salon."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "It's very bright. How many bedrooms are there?",
+      "s": {
+       "fr": "Il est très lumineux. Combien y a-t-il de chambres ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Two bedrooms and one bathroom.",
+      "s": {
+       "fr": "Deux chambres et une salle de bain."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "How much is the rent?",
+      "s": {
+       "fr": "Combien est le loyer ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Two thousand dollars a month, heating included.",
+      "s": {
+       "fr": "Deux mille dollars par mois, chauffage compris."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Can I move in next month?",
+      "s": {
+       "fr": "Je peux emménager le mois prochain ?"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "demarches",
+   "pour": "installe",
+   "icone": "🏛️",
+   "s": {
+    "fr": "Les démarches : City Hall, formulaires"
+   },
+   "scenes": [
+    "buergeramt",
+    "buero"
+   ],
+   "mots": [
+    "address",
+    "name",
+    "first name",
+    "surname",
+    "age",
+    "nationality",
+    "country",
+    "passport",
+    "contract",
+    "office",
+    "desk",
+    "paper",
+    "pen",
+    "appointment",
+    "question",
+    "answer",
+    "help",
+    "need",
+    "write",
+    "spell",
+    "explain",
+    "understand",
+    "repeat",
+    "How do you spell that?",
+    "Can you repeat that, please?"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Remplir un formulaire"
+    },
+    "l": [
+     [
+      "first name · surname",
+      {
+       "fr": "prénom · nom de famille"
+      }
+     ],
+     [
+      "date of birth",
+      {
+       "fr": "date de naissance"
+      }
+     ],
+     [
+      "address · zip code",
+      {
+       "fr": "adresse · code postal"
+      }
+     ],
+     [
+      "phone number",
+      {
+       "fr": "numéro de téléphone"
+      }
+     ],
+     [
+      "sign here, please",
+      {
+       "fr": "signez ici, s'il vous plaît"
+      }
+     ],
+     [
+      "how do you spell that?",
+      {
+       "fr": "comment ça s'écrit ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Les dates américaines mettent le mois d'abord : 07/04/1995 = le 4 juillet 1995. Pour épeler son nom, l'alphabet est dans les repères."
+    }
+   },
+   "blocs": [
+    {
+     "p": "I need ….",
+     "s": {
+      "fr": "J'ai besoin …."
+     },
+     "v": [
+      "a form",
+      "an appointment",
+      "a copy"
+     ],
+     "ex": "I need a copy.",
+     "exs": {
+      "fr": "J'ai besoin d'une copie."
+     },
+     "vs": [
+      {
+       "fr": "J'ai besoin d'un formulaire."
+      },
+      {
+       "fr": "J'ai besoin d'un rendez-vous."
+      },
+      {
+       "fr": "J'ai besoin d'une copie."
+      }
+     ]
+    },
+    {
+     "p": "My … is ….",
+     "s": {
+      "fr": "Mon … est …."
+     },
+     "v": [
+      "address",
+      "surname",
+      "phone number"
+     ],
+     "ex": "My phone number is phone number.",
+     "exs": {
+      "fr": "Mon numéro de téléphone est numéro de téléphone."
+     },
+     "vs": [
+      {
+       "fr": "Mon adresse est adresse."
+      },
+      {
+       "fr": "Mon nom de famille est nom de famille."
+      },
+      {
+       "fr": "Mon numéro de téléphone est numéro de téléphone."
+      }
+     ]
+    },
+    {
+     "p": "Can you help me with …?",
+     "s": {
+      "fr": "Pouvez-vous m'aider avec … ?"
+     },
+     "v": [
+      "this form",
+      "my application",
+      "this letter"
+     ],
+     "ex": "Can you help me with this letter?",
+     "exs": {
+      "fr": "Pouvez-vous m'aider avec cette lettre ?"
+     },
+     "vs": [
+      {
+       "fr": "Pouvez-vous m'aider avec ce formulaire ?"
+      },
+      {
+       "fr": "Pouvez-vous m'aider avec ma demande ?"
+      },
+      {
+       "fr": "Pouvez-vous m'aider avec cette lettre ?"
+      }
+     ]
+    },
+    {
+     "p": "Do I need …?",
+     "s": {
+      "fr": "Ai-je besoin … ?"
+     },
+     "v": [
+      "my passport",
+      "a photo",
+      "my contract"
+     ],
+     "ex": "Do I need my contract?",
+     "exs": {
+      "fr": "Ai-je besoin de mon contrat ?"
+     },
+     "vs": [
+      {
+       "fr": "Ai-je besoin de mon passeport ?"
+      },
+      {
+       "fr": "Ai-je besoin d'une photo ?"
+      },
+      {
+       "fr": "Ai-je besoin de mon contrat ?"
+      }
+     ]
+    },
+    {
+     "p": "Sorry, can you …?",
+     "s": {
+      "fr": "Désolé, pouvez-vous … ?"
+     },
+     "v": [
+      "repeat that",
+      "speak slowly",
+      "spell it"
+     ],
+     "ex": "Sorry, can you spell it?",
+     "exs": {
+      "fr": "Désolé, pouvez-vous l'épeler ?"
+     },
+     "vs": [
+      {
+       "fr": "Désolé, pouvez-vous répéter ?"
+      },
+      {
+       "fr": "Désolé, pouvez-vous parler lentement ?"
+      },
+      {
+       "fr": "Désolé, pouvez-vous l'épeler ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Au guichet de City Hall"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Good morning. How can I help you?",
+      "s": {
+       "fr": "Bonjour. Que puis-je faire pour vous ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Hi, I need a form for a parking permit.",
+      "s": {
+       "fr": "Bonjour, j'ai besoin d'un formulaire pour un permis de stationnement."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Sure. What's your address?",
+      "s": {
+       "fr": "Bien sûr. Quelle est votre adresse ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "25 Beacon Street, flat 3.",
+      "s": {
+       "fr": "25 Beacon Street, appartement 3."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "And your surname? How do you spell it?",
+      "s": {
+       "fr": "Et votre nom de famille ? Comment ça s'écrit ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "T-R-E-M-B-L-A-Y.",
+      "s": {
+       "fr": "T-R-E-M-B-L-A-Y."
+      }
+     }
+    ]
+   }
+  }
+ ],
+ "suite": [
+  {
+   "id": "famille",
+   "icone": "👨‍👩‍👧",
+   "s": {
+    "fr": "La famille et les proches"
+   },
+   "scene": "familie",
+   "themes": [
+    "family_a1",
+    "people_a1"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Avoir : to have, has"
+    },
+    "l": [
+     [
+      "I have a brother",
+      {
+       "fr": "j'ai un frère"
+      }
+     ],
+     [
+      "you have two kids",
+      {
+       "fr": "tu as deux enfants"
+      }
+     ],
+     [
+      "she has a big family",
+      {
+       "fr": "elle a une grande famille"
+      }
+     ],
+     [
+      "we have a dog",
+      {
+       "fr": "nous avons un chien"
+      }
+     ],
+     [
+      "they have three cousins",
+      {
+       "fr": "ils ont trois cousins"
+      }
+     ],
+     [
+      "do you have brothers or sisters?",
+      {
+       "fr": "as-tu des frères et sœurs ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Have devient has avec he, she, it. Question et négation avec do / does : Does she have a car? I don't have a car."
+    }
+   }
+  },
+  {
+   "id": "maison",
+   "icone": "🛏️",
+   "s": {
+    "fr": "La maison et la chambre"
+   },
+   "scene": "schlafzimmer",
+   "themes": [
+    "home_a1"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Où sont les choses : in, on, under"
+    },
+    "l": [
+     [
+      "the keys are on the table",
+      {
+       "fr": "les clés sont sur la table"
+      }
+     ],
+     [
+      "the cat is under the bed",
+      {
+       "fr": "le chat est sous le lit"
+      }
+     ],
+     [
+      "my clothes are in the wardrobe",
+      {
+       "fr": "mes vêtements sont dans le placard"
+      }
+     ],
+     [
+      "the lamp is next to the sofa",
+      {
+       "fr": "la lampe est à côté du canapé"
+      }
+     ],
+     [
+      "the garden is behind the house",
+      {
+       "fr": "le jardin est derrière la maison"
+      }
+     ],
+     [
+      "there's a picture on the wall",
+      {
+       "fr": "il y a un tableau au mur"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "On pour une surface (on the table, on the wall), in pour l'intérieur (in the closet), under pour dessous."
+    }
+   }
+  },
+  {
+   "id": "cuisine",
+   "icone": "🍳",
+   "s": {
+    "fr": "Manger et cuisiner"
+   },
+   "scene": "kueche",
+   "themes": [
+    "food_a1",
+    "eatingout_a1"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Du, de la : some, any"
+    },
+    "l": [
+     [
+      "I'd like some bread",
+      {
+       "fr": "je voudrais du pain"
+      }
+     ],
+     [
+      "is there any milk?",
+      {
+       "fr": "y a-t-il du lait ?"
+      }
+     ],
+     [
+      "there isn't any sugar",
+      {
+       "fr": "il n'y a pas de sucre"
+      }
+     ],
+     [
+      "we need some eggs",
+      {
+       "fr": "il nous faut des œufs"
+      }
+     ],
+     [
+      "I don't eat meat",
+      {
+       "fr": "je ne mange pas de viande"
+      }
+     ],
+     [
+      "how much water? how many eggs?",
+      {
+       "fr": "combien d'eau ? combien d'œufs ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Some dans les phrases affirmatives, any dans les questions et les négations. How much pour ce qui ne se compte pas (water), how many pour ce qui se compte (eggs)."
+    }
+   }
+  },
+  {
+   "id": "travail",
+   "icone": "💼",
+   "s": {
+    "fr": "Le travail et le bureau"
+   },
+   "scene": "buero",
+   "themes": [
+    "work_a1"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Le présent simple : I work, she works"
+    },
+    "l": [
+     [
+      "I work in an office",
+      {
+       "fr": "je travaille dans un bureau"
+      }
+     ],
+     [
+      "she works from home",
+      {
+       "fr": "elle travaille de chez elle"
+      }
+     ],
+     [
+      "we start at nine",
+      {
+       "fr": "nous commençons à neuf heures"
+      }
+     ],
+     [
+      "he doesn't work on Fridays",
+      {
+       "fr": "il ne travaille pas le vendredi"
+      }
+     ],
+     [
+      "what do you do?",
+      {
+       "fr": "que fais-tu dans la vie ?"
+      }
+     ],
+     [
+      "I'm a nurse",
+      {
+       "fr": "je suis infirmière"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le présent simple dit l'habitude ; -s à la 3ᵉ personne. « Que fais-tu dans la vie ? » : What do you do?"
+    }
+   }
+  },
+  {
+   "id": "ecole",
+   "icone": "📚",
+   "s": {
+    "fr": "L'école et les études"
+   },
+   "scene": "klassenzimmer",
+   "themes": [
+    "school_a1"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Les questions : what, when, where"
+    },
+    "l": [
+     [
+      "what do you study?",
+      {
+       "fr": "qu'est-ce que tu étudies ?"
+      }
+     ],
+     [
+      "when is the exam?",
+      {
+       "fr": "quand est l'examen ?"
+      }
+     ],
+     [
+      "where is the classroom?",
+      {
+       "fr": "où est la salle de classe ?"
+      }
+     ],
+     [
+      "who is your teacher?",
+      {
+       "fr": "qui est ton professeur ?"
+      }
+     ],
+     [
+      "why are you late?",
+      {
+       "fr": "pourquoi es-tu en retard ?"
+      }
+     ],
+     [
+      "how do you spell it?",
+      {
+       "fr": "comment ça s'écrit ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le mot interrogatif d'abord, puis do / does pour les verbes ordinaires ; avec be, on inverse simplement : Where is it?"
+    }
+   }
+  },
+  {
+   "id": "loisirs",
+   "icone": "⚽",
+   "s": {
+    "fr": "Les loisirs et le sport"
+   },
+   "scene": "sportplatz",
+   "themes": [
+    "freetime_a1",
+    "animals_a1"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Aimer faire : I like + -ing"
+    },
+    "l": [
+     [
+      "I like swimming",
+      {
+       "fr": "j'aime nager"
+      }
+     ],
+     [
+      "she loves dancing",
+      {
+       "fr": "elle adore danser"
+      }
+     ],
+     [
+      "we don't like running",
+      {
+       "fr": "nous n'aimons pas courir"
+      }
+     ],
+     [
+      "do you like playing football?",
+      {
+       "fr": "aimes-tu jouer au foot ?"
+      }
+     ],
+     [
+      "I play the guitar",
+      {
+       "fr": "je joue de la guitare"
+      }
+     ],
+     [
+      "he plays tennis",
+      {
+       "fr": "il joue au tennis"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Après like, love, hate : le verbe en -ing (I like reading). Play the + instrument, play + sport, sans article."
+    }
+   }
+  },
+  {
+   "id": "corps",
+   "icone": "🩺",
+   "s": {
+    "fr": "Le corps et la santé"
+   },
+   "scene": "untersuchung",
+   "themes": [
+    "body_a1",
+    "clothes_a1"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "En ce moment : I'm -ing"
+    },
+    "l": [
+     [
+      "I'm wearing a jumper",
+      {
+       "fr": "je porte un pull"
+      }
+     ],
+     [
+      "she's taking a pill",
+      {
+       "fr": "elle prend un comprimé"
+      }
+     ],
+     [
+      "we're waiting for the doctor",
+      {
+       "fr": "nous attendons le médecin"
+      }
+     ],
+     [
+      "they're sleeping",
+      {
+       "fr": "ils dorment"
+      }
+     ],
+     [
+      "what are you doing?",
+      {
+       "fr": "que fais-tu ?"
+      }
+     ],
+     [
+      "my leg is hurting",
+      {
+       "fr": "ma jambe me fait mal"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Be + -ing pour ce qui se passe maintenant. Le présent simple (I wear) dit l'habitude, le présent en -ing (I'm wearing) le moment présent."
+    }
+   }
+  },
+  {
+   "id": "societe",
+   "icone": "📱",
+   "s": {
+    "fr": "La ville, la technologie, les sentiments"
+   },
+   "scene": "musik",
+   "themes": [
+    "city_a1",
+    "tech_a1",
+    "feelings_a1",
+    "everyday_a1",
+    "time_a1",
+    "weather_a1",
+    "shopping_a1",
+    "travel_a1"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Comparer : bigger, more expensive"
+    },
+    "l": [
+     [
+      "Boston is smaller than New York",
+      {
+       "fr": "Boston est plus petite que New York"
+      }
+     ],
+     [
+      "my phone is newer",
+      {
+       "fr": "mon téléphone est plus récent"
+      }
+     ],
+     [
+      "this app is more useful",
+      {
+       "fr": "cette application est plus utile"
+      }
+     ],
+     [
+      "it's the best café in town",
+      {
+       "fr": "c'est le meilleur café de la ville"
+      }
+     ],
+     [
+      "winter is colder here",
+      {
+       "fr": "l'hiver est plus froid ici"
+      }
+     ],
+     [
+      "I'm happier now",
+      {
+       "fr": "je suis plus heureux maintenant"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Adjectif court : -er et the -est (bigger, the biggest). Adjectif long : more et the most. « Que » se dit than."
+    }
+   }
+  }
+ ]
+}

@@ -69,7 +69,17 @@ IMPOSES = {
                                "The railway station is not far from here."),
     ("nom", "pharmacy"): ("I'm going to the pharmacy.", "Je vais à la pharmacie.",
                           "I'm going to the chemist's."),
+    # Ajouts du 27 oct. au soir (couverture de l'A1 allemand).
+    ("nom", "cash register"): ("The cashier is at the cash register.", "La caissière est à la caisse.",
+                               "The cashier is at the till."),
+    ("nom", "streetcar"): ("The streetcar goes downtown.", "Le tramway va au centre-ville.",
+                           "The tram goes to the city centre."),
     # ---- verbes
+    ("verbe", "clean up"): ("Let's clean up the kitchen.", "Rangeons la cuisine."),
+    ("verbe", "pick up"): ("I pick up my son at school.", "Je vais chercher mon fils à l'école."),
+    ("adj", "French"): ("Marie is French.", "Marie est française."),
+    # « Over there stands an old house » : l'ordre des mots allemand, pas l'anglais.
+    ("adv", "over there"): ("The bus stop is over there.", "L'arrêt de bus est là-bas."),
     ("verbe", "make"): ("I make breakfast every morning.", "Je prépare le petit-déjeuner tous les matins."),
     ("verbe", "say"): ("What did you say?", "Qu'est-ce que tu as dit ?"),
     ("verbe", "hear"): ("I can't hear you.", "Je ne t'entends pas."),
@@ -85,7 +95,11 @@ IMPOSES = {
     ("adj", "high"): ("The mountain is very high.", "La montagne est très haute."),
     ("adj", "rainy"): ("It's a rainy day.", "C'est un jour de pluie."),
     ("adj", "blue"): ("The sky is blue.", "Le ciel est bleu."),
+    ("adj", "flat"): ("The road is long and flat.", "La route est longue et plate."),
+    ("adj", "Canadian"): ("My friend is Canadian.", "Mon amie est canadienne."),
     # ---- adverbes
+    ("adv", "after that"): ("We eat, and after that we go for a walk.", "Nous mangeons, et ensuite nous allons nous promener."),
+    ("adv", "hardly ever"): ("I hardly ever drink coffee.", "Je ne bois presque jamais de café."),
     ("adv", "a lot"): ("I like this city a lot.", "J'aime beaucoup cette ville."),
     ("adv", "a little"): ("I speak a little English.", "Je parle un peu anglais."),
     ("adv", "also"): ("I also speak Spanish.", "Je parle aussi espagnol."),

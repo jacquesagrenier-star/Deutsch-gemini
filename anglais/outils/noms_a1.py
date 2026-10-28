@@ -141,6 +141,13 @@ dishwasher | le lave-vaisselle
 washing machine | la machine à laver
 furniture | les meubles | u
 rent | le loyer
+basement | la cave, le sous-sol | gb=cellar
+elevator | l'ascenseur | gb=lift
+carpet | la moquette, le tapis
+cushion | le coussin
+clock | l'horloge, la pendule
+candle | la bougie
+trash | les ordures, la poubelle | u | gb=rubbish
 """,
 "food_a1": """
 food | la nourriture | u
@@ -205,6 +212,8 @@ spoon | la cuillère
 napkin | la serviette (de table)
 pan | la poêle
 pot | la casserole
+bell pepper | le poivron
+can | la boîte de conserve
 """,
 "eatingout_a1": """
 restaurant | le restaurant
@@ -257,6 +266,8 @@ cold | le rhume
 cough | la toux
 flu | la grippe | u
 appointment | le rendez-vous
+illness | la maladie
+Band-Aid | le pansement | gb=plaster
 """,
 "clothes_a1": """
 clothes | les vêtements | plt
@@ -325,6 +336,11 @@ bench | le banc | pl=benches
 tower | la tour
 factory | l'usine | pl=factories
 map | le plan, la carte
+government | le gouvernement
+president | le président, la présidente
+law | la loi
+state | l'État
+citizen | le citoyen, la citoyenne
 """,
 "time_a1": """
 time | le temps, l'heure | u
@@ -373,6 +389,11 @@ Christmas | Noël | u
 party | la fête | pl=parties
 moment | le moment
 century | le siècle | pl=centuries
+celebration | la célébration, la fête
+Easter | Pâques | u
+New Year | le Nouvel An | u
+festival | le festival, la fête
+fireworks | le feu d'artifice | plt
 """,
 "animals_a1": """
 animal | l'animal
@@ -433,6 +454,14 @@ moon | la lune
 star | l'étoile
 air | l'air | u
 world | le monde
+meadow | la prairie
+earth | la terre | u
+wood | le bois | u
+thunderstorm | l'orage
+lightning | l'éclair | u
+thunder | le tonnerre | u
+environment | l'environnement | u
+recycling | le recyclage | u
 """,
 "shopping_a1": """
 store | le magasin | gb=shop
@@ -454,6 +483,8 @@ bakery | la boulangerie | pl=bakeries
 gift | le cadeau
 cart | le chariot | gb=trolley
 fitting room | la cabine d'essayage
+cash register | la caisse | gb=till
+offer | l'offre
 """,
 "travel_a1": """
 car | la voiture
@@ -486,6 +517,9 @@ gas | l'essence | u | gb=petrol
 tourist | le, la touriste
 way | le chemin
 delay | le retard
+streetcar | le tramway | gb=tram
+travel agency | l'agence de voyages | pl=travel agencies
+souvenir | le souvenir (objet)
 """,
 "school_a1": """
 school | l'école
@@ -519,6 +553,12 @@ board | le tableau
 paper | le papier | u
 mistake | la faute, l'erreur
 example | l'exemple
+professor | le professeur (d'université)
+campus | le campus | pl=campuses
+semester | le semestre
+lecture | le cours magistral
+schedule | l'emploi du temps, l'horaire | gb=timetable
+task | la tâche
 """,
 "work_a1": """
 work | le travail | u
@@ -569,6 +609,11 @@ camera | l'appareil photo
 walk | la promenade
 art | l'art | u
 painting | la peinture, le tableau
+bar | le bar
+goal | le but
+competition | la compétition
+instrument | l'instrument
+painter | le peintre
 """,
 "tech_a1": """
 phone | le téléphone
@@ -607,6 +652,8 @@ kiss | le bisou, le baiser | pl=kisses
 luck | la chance | u
 fun | l'amusement, le plaisir | u
 help | l'aide | u
+joy | la joie | u
+courage | le courage | u
 """,
 "everyday_a1": """
 thing | la chose
@@ -630,5 +677,7 @@ box | la boîte | pl=boxes
 light | la lumière
 plan | le projet, le plan
 habit | l'habitude
+line | la ligne
+point | le point
 """,
 }

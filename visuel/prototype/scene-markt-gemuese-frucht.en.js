@@ -141,6 +141,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "bell peppers",
    "niveau": "A1",
+   "theme": "food_a1",
    "personne": null,
    "aussi": [
     {

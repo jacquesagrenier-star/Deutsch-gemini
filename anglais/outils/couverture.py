@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
-"""La couverture de l'anglais, niveau par niveau, contre l'espagnol et l'allemand.
+"""L'A1 anglais couvre-t-il l'A1 allemand ? (consigne de Jacques, 27 oct. 2026 :
+« tous les mots » ; l'anglais au moins aussi large que l'allemand a chaque niveau.)
 
-    python anglais/outils/couverture.py
+    python anglais/outils/couverture.py [NIVEAU]
 
-Compte dans les donnees DERIVEES (anglais/datos, espanol/datos, la racine pour
-l'allemand) et dans les scenes construites (visuel/prototype/scene-*.js) :
-noms, verbes, adjectifs, adverbes, expressions, mots-outils, fiches de grammaire,
-questions de leurs series, feuilles de conjugaison, questions de scenes.
-
-L'espagnol n'a ni vocabulaire C1 ni fiches par niveau (ses 17 fiches et 24
-series sont communes a tous les niveaux) : le C1 se compare a l'allemand, et la
-grammaire au total. Un niveau n'est dit « complet » que lorsque chaque ligne
-atteint l'espagnol (l'allemand pour le C1), ou que l'ecart est explique.
+Pour chaque categorie, chaque entree allemande du niveau est cherchee dans
+l'anglais par sa traduction anglaise (toutes les variantes : « wife, woman »),
+apres avoir retire l'article et « to ». Ce qui manque est liste avec son sens
+francais : c'est la liste de travail, a juger mot par mot (un mot propre a
+l'Allemagne -- Pfand, Bürgeramt -- n'a pas a etre copie).
 """
-import glob, io, json, os, sys
+import io, json, os, re, sys
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
@@ -22,126 +19,60 @@ try:
 except Exception:
     pass
 
-NIVEAUX = ["A1", "A2", "B1", "B2", "C1"]
-SCENES_ECARTEES = {"kreuzung", "ubahn", "zug", "stadtplatz", "weihnachtsmarkt", "post"}
 
-
-def charger(p):
+def lire(p):
     with io.open(os.path.join(RACINE, p), encoding="utf-8") as f:
         return json.load(f)
 
 
-def par_niveau(d):
-    return {n: len(d.get(n, [])) for n in NIVEAUX}
+def tetes(en):
+    en = re.sub(r"\(.*?\)", "", en or "")
+    out = []
+    for p in re.split(r"[,;/]", en):
+        p = re.sub(r"^\s*(the|a|an|to)\s+", "", p.strip(), flags=re.I).strip().lower()
+        p = re.sub(r"[.!?]+$", "", p)
+        if p:
+            out.append(p)
+    return out
 
 
-def noms(fichier):
-    c = {n: 0 for n in NIVEAUX}
-    for t in charger(fichier)["themes"]:
-        n = (t.get("niveau") or "").upper()
-        if n in c:
-            c[n] += len(t.get("mots", []))
-    return c
+def anglais(niveau):
+    d = {}
+    th = lire("anglais/datos/themes.json")["themes"]
+    d["noms"] = {m["mot"].lower() for t in th if t["niveau"] == niveau for m in t["mots"]}
+    for cat, f in (("verbes", "verbes"), ("adjectifs", "adjectifs"), ("adverbes", "adverbes"), ("expressions", "expressions")):
+        d[cat] = {re.sub(r"[.!?]+$", "", e["mot"].lower()) for e in lire("anglais/datos/%s.json" % f).get(niveau, [])}
+    tous = set().union(*d.values())
+    fw = lire("anglais/datos/fonctionnels.json")
+    tous |= {e["mot"].lower() for v in fw.values() for e in v if e.get("niveau", "A1") == niveau}
+    return d, tous
 
 
-def fonctionnels(fichier):
-    d = charger(fichier)
-    c = {n: 0 for n in NIVEAUX}
-    if all(k in NIVEAUX for k in d):            # espagnol : par niveau
-        return {n: len(d.get(n, [])) for n in NIVEAUX}
-    for liste in d.values():                    # allemand, anglais : par categorie
-        for e in liste:
-            n = (e.get("niveau") or "").upper()
-            if n in c:
-                c[n] += 1
-    return c
-
-
-def feuilles(fichier):
-    d = charger(fichier).get("niveaux", {})
-    return {n: len(d.get(n, [])) for n in NIVEAUX}
-
-
-def scenes(suffixe, exclues=()):
-    c = {n: 0 for n in NIVEAUX}
-    for f in glob.glob(os.path.join(RACINE, "visuel", "prototype", "scene-*%s.js" % suffixe)):
-        nom = os.path.basename(f)[len("scene-"):-len(suffixe + ".js")]
-        if "." in nom or nom in exclues:
-            continue
-        t = io.open(f, encoding="utf-8").read()
-        s = json.loads(t[t.index("{"):t.rindex("}") + 1])
-        for n, couche in (s.get("couches") or {}).items():
-            if n in c:
-                c[n] += len(couche.get("qs", []))
-    return c
-
-
-def grammaire_en():
-    g = charger("anglais/datos/grammaire.json")["fiches"]
-    jeux = charger("anglais/datos/exercices.json")["jeux"]
-    f = {n: 0 for n in NIVEAUX}
-    q = {n: 0 for n in NIVEAUX}
-    for fiche in g:
-        n = fiche.get("niveau") or "A1"
-        f[n] += 1
-        q[n] += len(jeux.get(fiche.get("serie"), []))
-    return f, q
+def allemand(niveau):
+    d = {}
+    th = lire("themes.json")["themes"]
+    d["noms"] = [m for t in th if t["niveau"].upper() == niveau for m in t["mots"]]
+    for cat, f in (("verbes", "verbe.json"), ("adjectifs", "adjectif.json"), ("adverbes", "adverbe.json"),
+                   ("expressions", "redewendung.json")):
+        d[cat] = lire(f).get(niveau, [])
+    return d
 
 
 def main():
-    en = {
-        "Noms": noms("anglais/datos/themes.json"),
-        "Verbes": par_niveau(charger("anglais/datos/verbes.json")),
-        "Adjectifs": par_niveau(charger("anglais/datos/adjectifs.json")),
-        "Adverbes": par_niveau(charger("anglais/datos/adverbes.json")),
-        "Expressions": par_niveau(charger("anglais/datos/expressions.json")),
-        "Mots-outils": fonctionnels("anglais/datos/fonctionnels.json"),
-        "Feuilles de conjugaison": feuilles("anglais/datos/conjugaison.json"),
-        "Questions de scenes": scenes(".en"),
-    }
-    es = {
-        "Noms": noms("espanol/datos/temas.json"),
-        "Verbes": par_niveau(charger("espanol/datos/verbos.json")),
-        "Adjectifs": par_niveau(charger("espanol/datos/adjetivos.json")),
-        "Adverbes": par_niveau(charger("espanol/datos/adverbios.json")),
-        "Expressions": par_niveau(charger("espanol/datos/expresiones.json")),
-        "Mots-outils": fonctionnels("espanol/datos/funcionales.json"),
-        "Feuilles de conjugaison": feuilles("espanol/datos/conjugaison.json"),
-        # Les memes 37 scenes que l'anglais : les six ecartees de Boston ne comptent pas.
-        "Questions de scenes": scenes(".es", SCENES_ECARTEES),
-    }
-    de = {
-        "Noms": noms("themes.json"),
-        "Verbes": par_niveau(charger("verbe.json")),
-        "Adjectifs": par_niveau(charger("adjectif.json")),
-        "Adverbes": par_niveau(charger("adverbe.json")),
-        "Expressions": par_niveau(charger("redewendung.json")),
-        "Mots-outils": fonctionnels("funktionswort.json"),
-        "Feuilles de conjugaison": feuilles("conjugaison.json") if os.path.exists(os.path.join(RACINE, "conjugaison.json")) else {n: 0 for n in NIVEAUX},
-        "Questions de scenes": scenes("", SCENES_ECARTEES),
-    }
-    f_en, q_en = grammaire_en()
-    en["Fiches de grammaire"], en["Questions de grammaire"] = f_en, q_en
-
-    g_es = charger("espanol/datos/grammaire.json")["fiches"]
-    j_es = charger("espanol/datos/ejercicios.json")["jeux"]
-    print("Grammaire espagnole (tous niveaux confondus) : %d fiches, %d series, %d questions"
-          % (len(g_es), len(j_es), sum(len(v) for v in j_es.values())))
-    print("Grammaire anglaise : %d fiches, %d questions\n" % (sum(f_en.values()), sum(q_en.values())))
-
-    for niv in NIVEAUX:
-        ref, nom_ref = (de, "allemand") if niv == "C1" else (es, "espagnol")
-        print("== %s (reference : %s)" % (niv, nom_ref))
-        for cle in en:
-            a = en[cle][niv]
-            r = ref.get(cle, {}).get(niv)
-            if r is None:
-                print("   %-26s %6d" % (cle, a))
+    niveau = (sys.argv[1] if len(sys.argv) > 1 else "A1").upper()
+    en, tous = anglais(niveau)
+    de = allemand(niveau)
+    print("Niveau %s : anglais / allemand" % niveau)
+    for cat in ("noms", "verbes", "adjectifs", "adverbes", "expressions"):
+        manque = []
+        for e in de[cat]:
+            t = tetes(e.get("traduction_en"))
+            if not t or any(x in en[cat] or x in tous for x in t):
                 continue
-            pct = ("%4d %%" % round(100 * a / r)) if r else "   —"
-            marque = "" if (r == 0 or a >= r) else "  < " + nom_ref
-            print("   %-26s %6d  /%6d  %s%s" % (cle, a, r, pct, marque))
-        print()
+            manque.append("%s (%s = %s)" % (t[0], e.get("mot") or e.get("infinitif"), e.get("traduction")))
+        print("== %-11s %4d / %4d   non couverts : %d" % (cat, len(en[cat]), len(de[cat]), len(manque)))
+        for m in manque:
+            print("     " + m)
 
 
 if __name__ == "__main__":

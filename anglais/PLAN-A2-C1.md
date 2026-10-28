@@ -2,7 +2,7 @@
 
 ## État au 27 oct. 2026, au soir : les quatre niveaux sont construits (essai admin)
 
-Mesuré par `python anglais/outils/couverture.py` (référence : l'espagnol, sur les 37
+Mesuré par `python anglais/outils/couverture_comptes.py` (référence : l'espagnol, sur les 37
 scènes gardées ; l'allemand pour le C1, que l'espagnol n'a pas) :
 
 | | A2 | B1 | B2 | C1 |
@@ -56,7 +56,7 @@ pas se marcher dessus, tout l'A2-C1 vit dans des fichiers à part :
 | `conjugaison_a2c1.py` | les feuilles de conjugaison A2-C1 |
 | `niveaux.py` | le constructeur des niveaux, appelé par `construire.py` |
 | `extraire_niveaux.py` | l'outil (à usage unique, documenté) qui a tiré les listes de nos corpus |
-| `couverture.py` | la mesure de chaque niveau contre l'espagnol et l'allemand |
+| `couverture_comptes.py` | la mesure de chaque niveau contre l'espagnol et l'allemand |
 | `anglais/scenes/<scène>.json` | les couches A2-C1 de chaque scène, **écrites pour l'anglais** |
 
 Trois fichiers communs sont touchés, chacun d'une ligne ou d'un bloc court, annoncés au
@@ -160,7 +160,7 @@ Visé : ≈ 7 questions par couche A2, 5 à 6 en B1-B2, 4 en C1, soit ≈ 800 qu
 
 ## 5. La mesure de la couverture
 
-`python anglais/outils/couverture.py` compte, niveau par niveau, l'anglais contre
+`python anglais/outils/couverture_comptes.py` compte, niveau par niveau, l'anglais contre
 l'espagnol (et contre l'allemand pour le C1, que l'espagnol n'a pas) : noms, verbes,
 adjectifs, adverbes, expressions, mots-outils, fiches, questions, feuilles, questions de
 scènes. Un niveau n'est dit « complet » que lorsque chaque ligne atteint l'espagnol, ou

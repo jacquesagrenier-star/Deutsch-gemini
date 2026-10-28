@@ -62,6 +62,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "clocks",
    "niveau": "A1",
+   "theme": "home_a1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -142,6 +143,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "elevators",
    "niveau": "A1",
+   "theme": "home_a1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -154,7 +156,11 @@ window.SCENE = {
      27
     ]
    ],
-   "fr": "ascenseur"
+   "fr": "ascenseur",
+   "gb": {
+    "mot": "lift",
+    "pluriel": "lifts"
+   }
   },
   {
    "id": "fenster",
@@ -794,6 +800,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cushions",
    "niveau": "A1",
+   "theme": "home_a1",
    "personne": null,
    "aussi": [],
    "sur": "sofa",
@@ -1161,6 +1168,7 @@ window.SCENE = {
      "mot": "carpet",
      "genre": "",
      "niveau": "A1",
+     "theme": "home_a1",
      "fr": "tapis"
     }
    ],

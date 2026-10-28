@@ -8,6 +8,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "clocks",
    "niveau": "A1",
+   "theme": "home_a1",
    "personne": null,
    "aussi": [],
    "sur": "wand",
