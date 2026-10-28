@@ -62,6 +62,31 @@ Good luck! | Bonne chance ! | Vœux | You have an exam today? Good luck! | Tu as
 Cheers! | Santé ! | Vœux | Cheers! To our new home! | Santé ! À notre nouvelle maison !
 Enjoy your meal! | Bon appétit ! | Vœux | Here is your pizza. Enjoy your meal! | Voici votre pizza. Bon appétit !
 Welcome! | Bienvenue ! | Vœux | Welcome to our house! | Bienvenue chez nous !
+See you soon! | À bientôt ! | Saluer | Bye, see you soon! | Salut, à bientôt !
+Congratulations! | Félicitations ! | Vœux | You passed your exam? Congratulations! | Tu as réussi ton examen ? Félicitations !
+No idea. | Aucune idée. | Réagir | Where are my keys? — No idea. | Où sont mes clés ? — Aucune idée.
+Never mind. | Ce n'est pas grave. Laisse tomber. | Réagir | Sorry, I forgot the milk. — Never mind. | Désolé, j'ai oublié le lait. — Ce n'est pas grave.
+What a pity! | Dommage ! | Réagir | The museum is closed today. — What a pity! | Le musée est fermé aujourd'hui. — Dommage !
+I think so. | Je crois que oui. | Réagir | Is the store open? — I think so. | Le magasin est ouvert ? — Je crois que oui.
+I don't think so. | Je ne crois pas. | Réagir | Is it going to rain? — I don't think so. | Il va pleuvoir ? — Je ne crois pas.
+Exactly! | Exactement ! | Réagir | So we meet at six? — Exactly! | Donc on se voit à six heures ? — Exactement !
+Good idea! | Bonne idée ! | Réagir | Let's go to the beach. — Good idea! | Allons à la plage. — Bonne idée !
+Why not? | Pourquoi pas ? | Réagir | Do you want to come with us? — Why not? | Tu veux venir avec nous ? — Pourquoi pas ?
+Deal! | Marché conclu ! D'accord ! | Réagir | You cook, I do the dishes. — Deal! | Tu cuisines, je fais la vaisselle. — D'accord !
+I'm in! | Je suis partant ! | Réagir | Pizza tonight? — I'm in! | Pizza ce soir ? — Je suis partant !
+I'd rather not. | Plutôt pas. Je préfère pas. | Réagir | Do you want to dance? — I'd rather not. | Tu veux danser ? — Je préfère pas.
+How nice! | Que c'est beau ! Comme c'est gentil ! | Réagir | I brought you flowers. — How nice! | Je t'ai apporté des fleurs. — Comme c'est gentil !
+I'm glad. | Ça me fait plaisir. | Réagir | I passed the test! — I'm glad. | J'ai réussi le contrôle ! — Ça me fait plaisir.
+I feel like… | J'ai envie de… | Au quotidien | I feel like a pizza tonight. | J'ai envie d'une pizza ce soir.
+I don't have time. | Je n'ai pas le temps. | Au quotidien | Sorry, I don't have time today. | Désolé, je n'ai pas le temps aujourd'hui.
+At what time? | À quelle heure ? | Au quotidien | Let's meet tomorrow. — At what time? | Retrouvons-nous demain. — À quelle heure ?
+I'm hungry. | J'ai faim. | Au quotidien | I'm hungry. Let's eat! | J'ai faim. Mangeons !
+I'm thirsty. | J'ai soif. | Au quotidien | I'm thirsty. Is there any water? | J'ai soif. Il y a de l'eau ?
+I'm right. | J'ai raison. | Réagir | You see? I'm right! | Tu vois ? J'ai raison !
+I'm afraid. | J'ai peur. | Réagir | Don't be afraid, the dog is friendly. | N'aie pas peur, le chien est gentil.
+I need help. | J'ai besoin d'aide. | Au quotidien | Excuse me, I need help. | Excusez-moi, j'ai besoin d'aide.
+Let's take a break. | Faisons une pause. | Au quotidien | We worked a lot. Let's take a break. | Nous avons beaucoup travaillé. Faisons une pause.
+It's fun! | C'est amusant ! | Réagir | Try it, it's fun! | Essaie, c'est amusant !
 """
 
 # Les mots-outils, sous les cles du fichier allemand (funktionswort.json) :

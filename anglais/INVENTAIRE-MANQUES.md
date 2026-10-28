@@ -15,7 +15,7 @@ anglophone.
 
 | Contenu | Allemand | Espagnol | Anglais (mesuré) | Qui |
 |---|---|---|---|---|
-| Noms | 465 · 607 · 1 806 · 449 · 948 (197 thèmes) | 506 · 539 · 515 · 236 (141 thèmes) | **A1 553** (19 thèmes) | A2-C1 pour le reste |
+| Noms | 465 · 607 · 1 806 · 449 · 948 (197 thèmes) | 506 · 539 · 515 · 236 (141 thèmes) | **A1 602** (19 thèmes) | A2-C1 pour le reste |
 | Verbes | 111 · 236 · 515 · 180 · 272 | 123 · 274 · 314 · 162 | **A1 133** | A2-C1 |
 | Adjectifs | 104 · 145 · 337 · 104 · 291 | 88 · 154 · 261 · 101 | **A1 91** | A2-C1 |
 | Adverbes | 52 · 99 · 147 · 120 · 52 | 28 · 51 · 119 · 30 | **A1 41** | A2-C1 |
@@ -23,6 +23,20 @@ anglophone.
 | Mots-outils | 161 | 152 | 73 (A1) | A2-C1 pour les niveaux suivants |
 | Synonymes, fréquence | oui, oui | non, non | non, non | plus tard (la fréquence : Leipzig anglais, CC BY) |
 | Variante régionale | — | Espagne / Amérique latine | **US / GB, deux jeux complets** | fait |
+
+**L'A1 face à l'A1 allemand** (consigne de Jacques : « tous les mots », l'anglais au moins aussi
+large que l'allemand à chaque niveau ; mesuré par `python anglais/outils/couverture.py A1`) :
+
+| A1 | Allemand | Anglais | Sens allemands sans équivalent anglais |
+|---|---|---|---|
+| Noms | 465 | **602** | 27, tous couverts autrement (*bike* pour *Fahrrad*, *movie theater* pour *Kino*) ou propres à l'Allemagne (*Volk*) |
+| Verbes | 111 | **145** | 9 : les modaux (*müssen*, *sollen* : fiche « can », A2 pour *must*, *should*) et des tournures (*fernsehen* = *watch TV*) |
+| Adjectifs | 104 | **121** | 12, rares en A1 anglais (*eckig*, *krumm*, *geräumig*) ou couverts (*thin* pour *schlank*) |
+| Adverbes | 52 | **53** | 6, couverts (*after that*, *usually*, *a lot*) |
+| Expressions | 68 | **80** | 34 : les collocations allemandes (*Rad fahren*, *Hunger haben*), que l'anglais dit avec un verbe ou une expression déjà présents (*ride*, *I'm hungry.*) |
+
+Ajoutés le 27 oct. au soir pour y arriver : 49 noms, 12 verbes, 30 adjectifs (dont les
+nationalités), 12 adverbes, 25 expressions.
 
 ## 2. La grammaire et les exercices
 
