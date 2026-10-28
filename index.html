@@ -8801,7 +8801,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v985</span>
+    <span class="subtitle-version">v986</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -37858,10 +37858,10 @@ function orbPanelData(id){
             icon:"exercice", title:t("op_schreiben_title"), sub:t("op_schreiben_sub"),
             options: [{ icon:"carte", title:t("op_tuiles_t"), desc:t("op_tuiles_d"),
                         primary:true, action:"ouvrirTuilesMenu", section:"ailleurs" },
-                      { icon:"exercice", title:t("op_schreiben_all_t"), desc:t("op_schreiben_all_d"),
+                      { icon:"exercice", title:t("op_schreiben_all_t"), desc:tf("op_schreiben_all_d", { t: SCHREIBEN_TAILLE_SERIE }),
                         action:"startSchreibenALL", section:"pratique" }]
                 .concat(niveaux.map(n => ({
-                    icon:"exercice", title:n, desc:tf("op_schreiben_level_d", { n: n }),
+                    icon:"exercice", title:n, desc:tf("op_schreiben_level_d", { n: n, t: SCHREIBEN_TAILLE_SERIE }),
                     action:"startSchreiben" + n, section:"pratique"
                 })))
                 .concat(LANGUE_APPRISE === "es" ? [
@@ -46576,7 +46576,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 985;
+const APP_VERSION = 986;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
