@@ -12,9 +12,10 @@ SOURCE : on corrige ici, puis python anglais/outils/construire.py.
 import tuiles_series_a as A
 import tuiles_series_b as B
 import tuiles_series_c as C
+import tuiles_series_d as D
 
 FICHES = C.FICHES
-Q = dict(A.Q, **B.Q, **C.Q)
+Q = dict(A.Q, **B.Q, **C.Q, **D.Q)
 
 
 def serie(nom, id, titre, desc, niveau, kicker):
@@ -52,6 +53,10 @@ TUILES = {
     serie("soButEnExercises", "so-but", "so, but, however, therefore", "conséquence ou contraste · A2", "A2", "so, but, however"),
     serie("whenWhileEnExercises", "when-while", "when, while, until, as soon as", "les liens du temps · B1", "B1", "when, while, until"),
     serie("ifWhetherEnExercises", "if-whether", "if, whether, unless, in case", "la condition · B1", "B1", "if, whether, unless"),
+    serie("sinceAsForEnExercises", "since-as-for", "since, as, for : temps ou cause ?", "since 2015 ou since you're here · B1", "B1", "since, as, for"),
+    serie("asLikeEnExercises", "as-like", "as ou like ?", "like an angel, as a nurse, as if · B1", "B1", "as ou like"),
+    serie("relierPhrasesEnExercises", "relier-phrases", "Relier deux phrases", "Il pleuvait. Nous sommes sortis. → although · B1", "B1", "Relier deux phrases"),
+    serie("direAutrementEnExercises", "dire-autrement", "Dire la même chose autrement", "although → despite, because → because of · B2", "B2", "Dire autrement"),
     {"vocab": "startKonjunktionenVokabular", "titre": "Vocabulaire · connecteurs", "desc": "Les cartes des conjonctions"},
     {"vocab": "startPartikelnVokabular", "titre": "Vocabulaire · mots de l'oral", "desc": "you know, I mean, kind of, though"},
 ]},
@@ -59,6 +64,8 @@ TUILES = {
     {"fiche": "ordre-des-mots", "titre": "Comprendre l'ordre des mots", "desc": "La fiche A2"},
     serie("placeAdverbesEnExercises", "place-adverbes", "La place de always, never, already", "avant le verbe, après be · A2", "A2", "La place des adverbes"),
     serie("questionsIndirectesEnExercises", "questions-indirectes", "Questions directes et indirectes", "Where is it? — Do you know where it is? · B1", "B1", "Les questions indirectes"),
+    serie("placeNotEnExercises", "place-not", "La négation : not, no, none", "don't, isn't, no money, nothing · A2", "A2", "La négation"),
+    serie("ordreAdjectifsEnExercises", "ordre-adjectifs", "L'ordre des adjectifs", "a beautiful old wooden table · B1", "B1", "L'ordre des adjectifs"),
     {"fiche": "questions", "titre": "Poser une question", "desc": "do, does, did — la fiche A1"},
 ]},
 "adverbien": {"sous_titre": "always, often, never", "options": [

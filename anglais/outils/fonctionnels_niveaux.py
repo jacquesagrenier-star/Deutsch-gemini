@@ -65,6 +65,19 @@ both | les deux | Quantité | Both my parents are teachers. | Mes deux parents s
 each | chaque | Quantité | Each room has its own bathroom. | Chaque chambre a sa propre salle de bain.
 another | un autre | Quantité | Can I have another cookie? | Je peux avoir un autre biscuit ?
 """,
+# Les nombres A2 (28 oct. 2026) : l'A1 compte dans les repères ; l'A2 passe aux
+# ordinaux, aux centaines et aux fractions simples.
+"zahlen": """
+fifth | 5e, cinquième | Ordinaux | My office is on the fifth floor. | Mon bureau est au cinquième étage.
+eighth | 8e, huitième | Ordinaux | Today is the eighth of June. | Aujourd'hui, c'est le 8 juin.
+ninth | 9e, neuvième | Ordinaux | She finished ninth in the race. | Elle a fini neuvième de la course.
+twelfth | 12e, douzième | Ordinaux | It's our twelfth wedding anniversary. | C'est notre douzième anniversaire de mariage.
+twentieth | 20e, vingtième | Ordinaux | He was born in the twentieth century. | Il est né au vingtième siècle.
+a hundred and fifty | 150 (cent cinquante) | Centaines | The ticket costs a hundred and fifty dollars. | Le billet coûte cent cinquante dollars.
+two thousand | 2 000 (deux mille) | Milliers | The town has two thousand people. | La ville compte deux mille habitants.
+one and a half | 1,5 (un et demi) | Fractions | The movie lasts one and a half hours. | Le film dure une heure et demie.
+a couple of | deux, quelques | Quantités | I'll be back in a couple of minutes. | Je reviens dans deux minutes.
+""",
 },
 "B1": {
 "konjunktionen": """

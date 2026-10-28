@@ -17,6 +17,10 @@
   arrivent dans `grammaire.json` (clé `tuiles`) et `panneauTuileAnglaise()` dessine le
   panneau. 16 tuiles visibles en anglais (11 avant).
 - **Grammaire** : 94 séries, 3 179 questions (l'allemand : 48 séries, 2 721).
+- **Puis (v992)** : Connecteurs 11 options (since/as/for, as ou like, relier deux phrases,
+  dire autrement), Ordre des mots 6 options (la négation, l'ordre des adjectifs), nombres A2
+  dans les mots-outils (ordinaux, centaines, fractions). `tuiles_series_d.py`. Grammaire :
+  100 séries, 3 284 questions.
 - **Pas fait, faute d'accord** : la fréquence (Leipzig, corpus anglais à télécharger) et
   les mots voisins (l'allemand les calcule avec deux langues de traduction ; l'anglais
   n'en garde qu'une, il faudrait une source comme WordNet). Les deux demandent un
