@@ -3365,13 +3365,20 @@ html[data-apprendre="en"] [data-i18n="credits_degres"],
 html[data-apprendre="en"] [data-i18n="credits_freq"],
 html[data-apprendre="en"] [data-i18n="credits_examens"],
 html[data-apprendre="en"] #carteMosaique,
-html[data-apprendre="en"] #ecouteLigneAccueil,
 html[data-apprendre="en"] #episodeLigne,
-html[data-apprendre="en"] .search-launch,
 html[data-apprendre="en"] [data-seulement-de],
 html[data-apprendre="en"] [data-seulement-es],
 html[data-apprendre="en"] [data-seulement-ja],
-html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]){ display:none !important; }
+html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]){ display:none !important; }
+/* Les options des panneaux qui marchent avec l'anglais (27 oct. 2026) : les
+   dictees, Ecrire, Construire la phrase, les familles d'expressions, les faux
+   amis. Une regle a part, ancree sur #orbPanel pour passer devant la liste
+   blanche sans la reecrire. */
+html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="startDictee"],
+html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="startSchreiben"],
+html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="ouvrirTuilesMenu"],
+html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="ausdrueckeEn"],
+html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="exercicesFicheEn"]{ display:flex !important; }
 html:not([data-apprendre="en"]) [data-seulement-en]{ display:none !important; }
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_pratique"]),
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_parcours"]),
@@ -12086,7 +12093,8 @@ const LANGUE_ANGLAIS = {
         "reperes.json":       DOSSIER_ANGLAIS + "reperes.json",
         "prononciation.json": DOSSIER_ANGLAIS + "prononciation.json",
         "conjugaison.json":   DOSSIER_ANGLAIS + "conjugaison.json",
-        "premiers-pas.json":  DOSSIER_ANGLAIS + "premiers-pas.json"
+        "premiers-pas.json":  DOSSIER_ANGLAIS + "premiers-pas.json",
+        "a1-voyage.json":     DOSSIER_ANGLAIS + "a1-voyage.json"
     },
     prefixeProgression: ""
 };
@@ -27113,6 +27121,21 @@ const I18N_ANGLAIS = {
         "accueil_tout_sous": "Mots et expressions",
         "auth_apprendre_de": "Tu apprends l'anglais · passer à l'allemand ›",
         "kicker_verben_praesens": "Verbes · Formes",
+        "search_title": "Chercher un mot anglais ou français",
+        "search_placeholder": "Anglais ou français…",
+        "search_hint": "Tape au moins deux lettres, <strong>en anglais ou en français</strong> — les deux marchent. La recherche interroge tes {n} cartes.",
+        "carte_phrase_desc": "Au verso d'une carte, l'anglais se dit tout seul : le mot, puis son pluriel. Avec ce réglage, la phrase d'exemple est lue à la suite. Elle apprend le mot en contexte, mais elle allonge chaque carte de quelques secondes.",
+        "dictation_hint": "Écris le mot anglais, sans article.",
+        "op_schreiben_title": "Écrire en anglais",
+        "op_schreiben_all_d": "Des phrases tirées de tout le vocabulaire",
+        "op_schreiben_level_d": "Les phrases du niveau {n}",
+        "schreiben_hint": "Écris la phrase en anglais. La ponctuation ne compte pas.",
+        "ecoute_sens_connu_cible_d": "tu produis l'anglais de mémoire",
+        "ecoute_sens_cible_connu": "Anglais d'abord",
+        "tuiles_menu_desc": "On te donne la phrase en français et les mots anglais en vrac. Touche-les dans le bon ordre — pas de clavier. Le banc contient un ou deux mots en trop, choisis dans la même famille que ceux de la phrase.",
+        "orb_redewendungen_sub": "hello · thank you · of course",
+        "orb_ausdruecke_sub": "par situation",
+        "op_nomen_o5_d": "Écouter et écrire — {n} mots",
         "variante_gb": "🇬🇧 en Grande-Bretagne : {mot}",
         "variante_us": "🇺🇸 aux États-Unis : {mot}"
     }
@@ -32989,11 +33012,13 @@ function startSerEstarUebung(){
 // Les fiches nomment leur serie (anglais/datos/grammaire.json, champ
 // « serie ») et le nom de leur bouton (« exercice ») : la fonction est creee
 // ici, a l'arrivee des fiches, plutot qu'ecrite treize fois en dur.
-function exercicesFicheEn(id){
+async function exercicesFicheEn(id){
+    if(!COURS_CHARGE) await chargerCours();
     const g = (FICHES_GRAMMAIRE || []).find(x => x.id === id);
     if(!g || !g.serie) return;
     startExerciseSetMelange(g.serie, "kicker_" + g.serie, () => abrirGramatica(id), () => exercicesFicheEn(id));
 }
+function exercicesFicheEnFauxAmis(){ exercicesFicheEn("faux-amis"); }
 function brancherSeriesAnglaises(){
     (FICHES_GRAMMAIRE || []).forEach(g => {
         if(g.exercice && g.serie && /^exercicesFicheEn_\w+$/.test(g.exercice))
@@ -37772,6 +37797,9 @@ function orbPanelData(id){
                   count:String(REGLE_QUIZ_TAILLE), action:"startQuizTerminaisons", section:"pratique" }
             ].concat(LANGUE_APPRISE === "es" ? [
                 { icon:"exercice", title:t("op_es_falsos_t"), desc:t("op_es_falsos_d"), action:"startFalsosAmigosUebung", section:"pratique" }
+            ] : LANGUE_APPRISE === "en" ? [
+                // L'anglais (essai) : la serie de la fiche « Les faux amis ».
+                { icon:"exercice", title:"Les faux amis", desc:"library ≠ librairie · actually ≠ actuellement", action:"exercicesFicheEnFauxAmis", section:"pratique" }
             ] : [])
         };
     }
@@ -37893,7 +37921,11 @@ function orbPanelData(id){
     if(id === "ausdruecke"){
         return {
             icon:"dossier", title:t("orb_ausdruecke_title"), sub:t("orb_ausdruecke_sub"),
-            options: LANGUE_APPRISE === "es"
+            options: LANGUE_APPRISE === "en"
+            // L'anglais (essai, 27 oct. 2026) : ses familles (anglais/outils/phrases_a1.py).
+            ? EXPRESSIONS_ANGLAISES.map(([cat, ex, fn], i) => ({ icon:"carte", title: cat, desc: ex, primary: i === 0,
+                action: fn, section:"mots" }))
+            : LANGUE_APPRISE === "es"
             // L'espagnol : les groupes de fork.py et leurs exemples.
             ? [
                 { icon:"carte", title:t("grp_meinung"), desc:"por lo visto · la verdad es que", primary:true, action:"ausdrueckeMeinung", section:"mots" },
@@ -42416,6 +42448,24 @@ function startRedewendungenVokabular(level, kategorie){
 //
 // Chaque groupe est une fonction SANS ARGUMENT : orbAction() appelle
 // window[nom]() et ne sait pas transmettre de parametre.
+// L'anglais (essai, 27 oct. 2026) : une famille par option du panneau, filtree
+// sur la categorie ecrite dans anglais/datos/expressions.json.
+const EXPRESSIONS_ANGLAISES = [
+    ["Saluer", "hello · good morning · see you later", "ausdrueckeEnSaluer"],
+    ["Se présenter", "my name is… · nice to meet you", "ausdrueckeEnPresenter"],
+    ["Politesse", "please · thank you · excuse me", "ausdrueckeEnPolitesse"],
+    ["Réagir", "of course · me too · really?", "ausdrueckeEnReagir"],
+    ["En classe", "I don't understand · how do you spell…?", "ausdrueckeEnClasse"],
+    ["Au quotidien", "how much is it? · I'd like…", "ausdrueckeEnQuotidien"],
+    ["Vœux", "happy birthday · good luck · cheers", "ausdrueckeEnVoeux"]
+];
+function ausdrueckeEnSaluer(){ startRedewendungenVokabular("ALL", ["Saluer"]); }
+function ausdrueckeEnPresenter(){ startRedewendungenVokabular("ALL", ["Se présenter"]); }
+function ausdrueckeEnPolitesse(){ startRedewendungenVokabular("ALL", ["Politesse"]); }
+function ausdrueckeEnReagir(){ startRedewendungenVokabular("ALL", ["Réagir"]); }
+function ausdrueckeEnClasse(){ startRedewendungenVokabular("ALL", ["En classe"]); }
+function ausdrueckeEnQuotidien(){ startRedewendungenVokabular("ALL", ["Au quotidien"]); }
+function ausdrueckeEnVoeux(){ startRedewendungenVokabular("ALL", ["Vœux"]); }
 function ausdrueckeSmalltalk(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["saludo", "cortesia"] : "Begr\u00fc\u00dfung/Small Talk"); }
 function ausdrueckeAlltag(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["cotidiano"] : "Alltag/Organisation"); }
 function ausdrueckeMeinung(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["matiz"] : "Meinung/Zustimmung"); }
@@ -51236,7 +51286,8 @@ const COURS_GRAMMAIRE_PAR_LANGUE = {
     // l'ordre ou un debutant les rencontre (anglais/outils/grammaire_a1.py).
     en: ["beEnExercises", "articlesEnExercises", "plurielEnExercises", "presentEnExercises", "pronomsEnExercises",
          "thereEnExercises", "canEnExercises", "questionsEnExercises", "continuEnExercises", "prepositionsEnExercises",
-         "adjectifsEnExercises", "passeEnExercises", "fauxAmisEnExercises"],
+         "adjectifsEnExercises", "passeEnExercises", "fauxAmisEnExercises", "nombresEnExercises",
+         "demonstratifsEnExercises"],
     de: [
         // A1 -- v840 : le present (« Ich ___ jeden Tag Deutsch ») en tete ; il
         // existait dans l'etude, jamais dans la seance.
@@ -55304,9 +55355,9 @@ function majAujourdhuiScene(on){
 // d'A1 voyage, les feuilles de conjugaison, les reperes, le son du jour et les
 // cartes-phrases n'existent qu'en allemand et en espagnol ; inseres ici, ils
 // montreraient de l'allemand. Chacun s'ouvrira quand il aura son japonais.
-// L'anglais (essai, 27 oct. 2026) suit la meme regle, tant que ses Premiers
-// pas, son A1 voyage, ses exercices et ses scenes n'existent pas.
-function seanceJaponaise(){ return LANGUE_APPRISE === "ja" || LANGUE_APPRISE === "en"; }
+// L'anglais (essai) a eu la meme regle du 27 oct. (v983) jusqu'a ce que ses
+// Premiers pas, son A1 voyage, ses exercices et ses scenes existent (v986).
+function seanceJaponaise(){ return LANGUE_APPRISE === "ja"; }
 async function ouvrirSeanceDuJour(sansScene){
     // v828 : en Premiers pas, la porte des mots mene au parcours des 50 mots.
     if(premiersPasEnCours()){ ouvrirPremiersPas(); return; }

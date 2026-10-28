@@ -399,6 +399,64 @@ Can you ___ with the kids tonight? | stay | rest / remain at | Tu peux rester av
 The bank is on the ___. | corner | coin / angle | La banque est au coin de la rue. | Le coin de la rue = the corner.
 """
 },
+{
+"id": "nombres", "titre": "Les nombres, l'âge, l'heure, les prix", "resume": "thirteen ≠ thirty, half past, $4.50",
+"regle": "De 13 à 19, on ajoute <b>-teen</b>, accentué : <b>thirTEEN</b>. Les dizaines finissent en <b>-ty</b>, accentuées au début : <b>THIRty</b>. L'âge se dit avec be : <b>I'm twenty</b>. L'heure : <b>It's three o'clock</b>, <b>half past three</b> (3 h 30), <b>a quarter past three</b> (3 h 15), <b>a quarter to four</b> (3 h 45). Les prix : <b>$4.50</b> se dit <b>four fifty</b> ; le point sépare les cents.",
+"tableau": [
+ ["thirteen · thirty", "13 · 30 : écoute l'accent", "I'm thirteen. She's thirty."],
+ ["It's … o'clock", "l'heure pile", "It's seven o'clock."],
+ ["half past", "et demie", "It's half past six."],
+ ["a quarter past · to", "et quart · moins le quart", "It's a quarter to nine."],
+ ["a.m. · p.m.", "le matin · l'après-midi et le soir", "The store opens at 9 a.m."],
+ ["$4.50 · four fifty", "les prix", "That's twelve ninety-nine."],
+],
+"exemples": [
+ ["How old are you? — I'm twenty-five.", "Quel âge as-tu ? — J'ai vingt-cinq ans."],
+ ["What time is it? — It's half past two.", "Quelle heure est-il ? — Il est deux heures et demie."],
+ ["How much is it? — Ten dollars.", "Combien ça coûte ? — Dix dollars."],
+],
+"attention": "Pas de s à <b>hundred</b> ni à <b>thousand</b> après un nombre : <b>two hundred dollars</b>. Et on compte les heures sur 12 : <b>5 p.m.</b> = 17 h.",
+"serie": "nombresEnExercises", "kicker": "Les nombres et l'heure",
+"questions": """
+My sister is ___ (13). | thirteen | thirty / three | Ma sœur a treize ans. | 13 = thirteen, l'accent sur -teen.
+The bus leaves at ___ (6:30). | half past six | half six / six half | Le bus part à six heures et demie. | 6 h 30 = half past six.
+It's a quarter ___ nine (8:45). | to | past / before | Il est neuf heures moins le quart. | Moins le quart = a quarter to.
+It's a quarter ___ ten (10:15). | past | to / after the | Il est dix heures et quart. | Et quart = a quarter past.
+I'm ___ years old. | twenty | twentieth / twenty's | J'ai vingt ans. | L'âge : un nombre, avec be.
+This car costs two ___ dollars. | thousand | thousands / thousand of | Cette voiture coûte deux mille dollars. | Pas de s après un nombre.
+The store opens at 9 ___. | a.m. | p.m. / o'clock | Le magasin ouvre à 9 h du matin. | Le matin : a.m.
+We have dinner at 7 ___. | p.m. | a.m. / hour | Nous dînons à 19 h. | Le soir : p.m.
+There are ___ days in a week. | seven | seventh / seventeen | Il y a sept jours dans une semaine. | 7 = seven.
+I live at number ___ (40). | forty | fourty / fourteen | J'habite au numéro quarante. | 40 = forty, sans u.
+"""
+},
+{
+"id": "this-that", "titre": "This, that, these, those", "resume": "Ce, cette, ces — près ou loin",
+"regle": "<b>This</b> (ce, cette, ceci) montre ce qui est <b>près</b> de moi, <b>that</b> ce qui est <b>plus loin</b>. Au pluriel : <b>these</b> (près) et <b>those</b> (loin). Ils s'emploient devant un nom (<b>this book</b>) ou seuls (<b>I like this</b>). Pour présenter quelqu'un : <b>This is my brother</b>.",
+"tableau": [
+ ["this", "ce, cette (près)", "This bag is heavy."],
+ ["that", "ce, cette (loin)", "Who is that man?"],
+ ["these", "ces (près)", "These shoes are new."],
+ ["those", "ces (loin)", "Those apples look good."],
+ ["This is…", "je vous présente…", "This is my friend Anna."],
+],
+"exemples": [
+ ["I'll take this one.", "Je prends celui-ci."],
+ ["What's that?", "Qu'est-ce que c'est que ça ?"],
+ ["These are my kids.", "Ce sont mes enfants."],
+],
+"attention": "Le nom suit le nombre : <b>this book</b> mais <b>these books</b>, jamais <i>this books</i>.",
+"serie": "demonstratifsEnExercises", "kicker": "This, that, these, those",
+"questions": """
+___ bag here is mine. | This | These / Those | Ce sac-ci est à moi. | Singulier, près : this.
+Look at ___ house over there! | that | this / these | Regarde cette maison là-bas ! | Singulier, loin : that.
+___ shoes are too small. | These | This / That | Ces chaussures sont trop petites. | Pluriel, près : these.
+Who are ___ people over there? | those | that / this | Qui sont ces gens là-bas ? | Pluriel, loin : those.
+___ is my friend Paul. | This | These / Those | Je te présente mon ami Paul. | Pour présenter : This is…
+I like ___ apples. | these | this / that | J'aime ces pommes. | Apples est pluriel : these.
+Is ___ your car over there? | that | this / these | C'est ta voiture, là-bas ? | Loin, singulier : that.
+"""
+},
 ]
 
 # Les textes d'interface de la grammaire anglaise, verses dans I18N (fr).

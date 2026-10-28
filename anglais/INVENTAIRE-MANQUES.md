@@ -77,6 +77,18 @@ anglophone.
 
 ## 6. Ce que je construis maintenant (A1 et transversal, sans dépense)
 
+**Fait dans la v986 (27 oct., au soir)** : Écouter (accueil et tuile), Écrire et Construire la
+phrase, les dictées des quatre panneaux, la recherche et « Mots du dictionnaire » ouverts en
+anglais avec leurs libellés ; le panneau Expressions par familles anglaises ; « Les faux amis »
+dans le panneau des noms ; **l'A1 voyage** (12 escales à Boston, 301 mots, 70 phrases toutes
+faites, 12 dialogues ; 2 étapes « installé » ; la suite en 8 étapes) ; deux fiches et séries de
+plus (les nombres et l'heure ; this / that), soit 15 fiches et 143 questions.
+**Reporté, avec sa raison** : l'alphabet (la voix du téléphone lit mal une lettre isolée : à
+faire avec la voix enregistrée) ; la visite guidée (elle repose sur le tableau de la mosaïque :
+avec la mosaïque, après le choix de Jacques).
+
+Le plan d'origine :
+
 1. **Ouvrir ce qui marche déjà** et corriger ses libellés : Écouter (accueil et tuile),
    Écrire et Construire la phrase, les dictées des quatre panneaux, la recherche.
 2. **Expressions & tournures** : le panneau par familles anglaises (Saluer, Se présenter,
