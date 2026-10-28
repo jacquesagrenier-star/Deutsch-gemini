@@ -1,5 +1,27 @@
 # L'anglais A2 à C1 : le plan
 
+## 28 oct. 2026 : ce qui manquait face à l'allemand (bilan mesuré, puis comblé)
+
+- **Expressions** : 324 expressions A2-C1 n'avaient aucune famille dans le panneau
+  (Bavarder, Donner son avis, Discuter, Nuancer, Tournures) ; elles en ont maintenant
+  (`EXPRESSIONS_ANGLAISES`, 12 familles).
+- **Feuilles de conjugaison** : 42, comme l'allemand (A2 12, B1 12, B2 10, C1 8) ;
+  `conjugaison_niveaux.py`.
+- **Mots-outils B1** : 52 (l'allemand 46), dont deux catégories neuves pour l'anglais :
+  les mots de l'oral (`partikeln` : you know, I mean, kind of…) et les nombres (`zahlen`).
+- **Tuiles de grammaire** : Pronoms, Nombres, Prépositions, Connecteurs, Ordre des mots
+  et Adverbes ont leur panneau anglais, comme l'allemand : la fiche, le vocabulaire des
+  mots-outils et des séries dédiées (16 séries, 405 questions). Sources :
+  `tuiles_niveaux.py` (ce que propose chaque panneau) et `tuiles_series_a/b/c.py` (les
+  questions, et deux fiches neuves : « L'ordre des mots », « Les adverbes ») ; elles
+  arrivent dans `grammaire.json` (clé `tuiles`) et `panneauTuileAnglaise()` dessine le
+  panneau. 16 tuiles visibles en anglais (11 avant).
+- **Grammaire** : 94 séries, 3 179 questions (l'allemand : 48 séries, 2 721).
+- **Pas fait, faute d'accord** : la fréquence (Leipzig, corpus anglais à télécharger) et
+  les mots voisins (l'allemand les calcule avec deux langues de traduction ; l'anglais
+  n'en garde qu'une, il faudrait une source comme WordNet). Les deux demandent un
+  téléchargement, donc l'accord de Jacques.
+
 ## 28 oct. 2026 : « S'entraîner par temps » et des séries plus longues
 
 Demande du chef d'orchestre : l'écran des verbes « S'entraîner par temps » était allemand

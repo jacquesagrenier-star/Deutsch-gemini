@@ -344,6 +344,49 @@ def temps(us):
     return len(liste), nq
 
 
+def tuiles(us):
+    """Les tuiles de grammaire de l'anglais (28 oct. 2026) : pronoms, nombres,
+    prepositions, connecteurs, ordre des mots, adverbes. L'allemand les a en
+    ecrans ecrits dans la page ; l'anglais les decrit dans tuiles_*.py, et
+    index.html dessine le panneau a partir de grammaire.json (cle « tuiles »).
+    Une option ouvre une fiche, lance un vocabulaire existant (mots-outils) ou
+    lance une serie dediee."""
+    import tuiles_niveaux as T
+    fiches = us["grammaire.json"]["fiches"]
+    jeux = us["exercices.json"]["jeux"]
+    textes = us["grammaire.json"]["textes"]["fr"]
+    ids = {f["id"] for f in fiches}
+    for f in T.FICHES:
+        assert f["id"] not in ids and f["serie"] not in jeux, "fiche en double : " + f["id"]
+        fiche = {k: f[k] for k in ("id", "titre", "resume", "regle", "tableau", "exemples", "attention")}
+        fiche.update(exercice="exercicesFicheEn_" + f["id"].replace("-", "_"), serie=f["serie"],
+                     niveau=f["niveau"], statut="brouillon")
+        fiches.append(fiche)
+        jeux[f["serie"]] = questions(f["id"], f["questions"])
+        textes["kicker_" + f["serie"]] = f["kicker"]
+        ids.add(f["id"])
+    sortie, ns, nq = {}, 0, 0
+    for tuile, d in T.TUILES.items():
+        opts = []
+        for o in d["options"]:
+            if "fiche" in o:
+                assert o["fiche"] in ids, "fiche inconnue : " + o["fiche"]
+                opts.append({"id": "fiche-" + o["fiche"], "type": "fiche", "cible": o["fiche"], "titre": o["titre"], "desc": o["desc"]})
+            elif "vocab" in o:
+                opts.append({"id": "vocab-" + o["vocab"], "type": "vocab", "cible": o["vocab"], "titre": o["titre"], "desc": o["desc"]})
+            else:
+                assert o["serie"] not in jeux, "serie en double : " + o["serie"]
+                jeux[o["serie"]] = questions(o["id"], o["questions"])
+                textes["kicker_" + o["serie"]] = o["kicker"]
+                opts.append({"id": o["id"], "type": "serie", "cible": o["serie"], "titre": o["titre"],
+                             "desc": o["desc"], "niveau": o["niveau"]})
+                ns += 1
+                nq += len(jeux[o["serie"]])
+        sortie[tuile] = {"sous_titre": d["sous_titre"], "options": opts}
+    us["grammaire.json"]["tuiles"] = sortie
+    return ns, nq
+
+
 def conjugaison(us, gb, vers_gb):
     src = module("conjugaison_niveaux")
     if not src:
@@ -390,6 +433,8 @@ def construire(us, gb, ch, vers_gb):
     nfo = fonctionnels(us, gb, vers_gb)
     nco = conjugaison(us, gb, vers_gb)
     nte, qte = temps(us)
+    ntu, qtu = tuiles(us)
+    print("Niveaux -- tuiles de grammaire : %d series dediees (%d questions)" % (ntu, qtu))
     import ancien_module
     nan, qan = ancien_module.construire(us, question, en_us)
     for l in bilan:

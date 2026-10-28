@@ -3369,7 +3369,7 @@ html[data-apprendre="en"] #episodeLigne,
 html[data-apprendre="en"] [data-seulement-de],
 html[data-apprendre="en"] [data-seulement-es],
 html[data-apprendre="en"] [data-seulement-ja],
-html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]){ display:none !important; }
+html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]){ display:none !important; }
 /* Les options des panneaux qui marchent avec l'anglais (27 oct. 2026) : les
    dictees, Ecrire, Construire la phrase, les familles d'expressions, les faux
    amis. Une regle a part, ancree sur #orbPanel pour passer devant la liste
@@ -3386,7 +3386,7 @@ html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:
 html[data-apprendre="en"] button[onclick*="startExercises"],
 html[data-apprendre="en"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="en"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
-html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]){ display:none !important; }
+html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]):not([onclick*="tuileEn_"]){ display:none !important; }
 /* « S'entrainer par temps » (28 oct. 2026) : les cartes allemandes (Prasens,
    Prateritum, Perfekt) cedent la place a la liste anglaise, rangee par niveau
    et remplie depuis grammaire.json (#tempsEnCartes). */
@@ -27420,6 +27420,10 @@ let FICHES_GRAMMAIRE = [];
 // Les series par temps de l'anglais (28 oct. 2026), pour « S'entrainer par
 // temps » : l'allemand et l'espagnol ont leurs cartes dans la page.
 let TEMPS_ANGLAIS = [];
+// Les tuiles de grammaire de l'anglais (28 oct. 2026) : pronoms, nombres,
+// prepositions, connecteurs, ordre des mots, adverbes. Leurs panneaux viennent
+// de grammaire.json (cle « tuiles ») ; voir panneauTuileAnglaise().
+let TUILES_ANGLAISES = {};
 
 function chargerCours(){
     if(COURS_CHARGE) return Promise.resolve(true);
@@ -27430,6 +27434,7 @@ function chargerCours(){
                 const textes = d.textes || {};
                 FICHES_GRAMMAIRE = Array.isArray(d.fiches) ? d.fiches : [];
                 TEMPS_ANGLAIS = Array.isArray(d.temps) ? d.temps : [];
+                TUILES_ANGLAISES = (d.tuiles && typeof d.tuiles === "object") ? d.tuiles : {};
                 if(LANGUE_APPRISE === "en") brancherSeriesAnglaises();
                 Object.keys(textes).forEach(code => {
                     if(I18N[code]) Object.assign(I18N[code], textes[code]);
@@ -33035,6 +33040,33 @@ function brancherSeriesAnglaises(){
         if(g.exercice && g.serie && /^exercicesFicheEn_\w+$/.test(g.exercice))
             window[g.exercice] = () => exercicesFicheEn(g.id);
     });
+    // Les tuiles (28 oct. 2026) : une fonction par option, nommee d'apres la
+    // tuile et le rang (tuileEn_praep_2) -- le panneau appelle orbAction(nom).
+    Object.keys(TUILES_ANGLAISES || {}).forEach(tuile => {
+        (TUILES_ANGLAISES[tuile].options || []).forEach((o, i) => {
+            const nom = nomOptionTuileEn(tuile, i);
+            if(o.type === "fiche") window[nom] = () => abrirGramatica(o.cible);
+            else if(o.type === "vocab") window[nom] = () => { if(typeof window[o.cible] === "function") window[o.cible](); };
+            else window[nom] = () => startExerciseSetMelange(o.cible, "kicker_" + o.cible, () => openOrbPanel(tuile), window[nom]);
+        });
+    });
+}
+// Le nom de la fonction d'une option (tuileEn_praep_2), cree a l'arrivee des
+// tuiles par brancherSeriesAnglaises().
+function nomOptionTuileEn(tuile, i){
+    return "tuileEn_" + tuile + "_" + i;
+}
+function panneauTuileAnglaise(id){
+    const d = TUILES_ANGLAISES[id];
+    const sections = { fiche: "comprendre", serie: "pratique", vocab: "mots" };
+    return {
+        icon:"dossier", title:t("orb_" + id + "_title"), sub:d.sous_titre,
+        options:(d.options || []).map((o, i) => ({
+            icon: o.type === "serie" ? "exercice" : (o.type === "vocab" ? "carte" : "dossier"),
+            title: o.titre, desc: o.desc, primary: i === 0,
+            action: nomOptionTuileEn(id, i), section: sections[o.type] || "pratique"
+        }))
+    };
 }
 // LES SERIES DU JAPONAIS (essai, 27 oct. 2026) : une par fiche, qui y ramene.
 function serieJa(jeuNom, kicker, fiche, relancer){
@@ -37705,6 +37737,7 @@ function texteDus(dus, total){
 }
 
 function orbPanelData(id){
+    if(LANGUE_APPRISE === "en" && TUILES_ANGLAISES[id]) return panneauTuileAnglaise(id);
     if(id === "scenes"){
         return {
             icon:"carte", title:t("op_scenes_title"), sub:t("op_scenes_sub"),
@@ -42480,7 +42513,14 @@ const EXPRESSIONS_ANGLAISES = [
     ["Réagir", "of course · me too · really?", "ausdrueckeEnReagir"],
     ["En classe", "I don't understand · how do you spell…?", "ausdrueckeEnClasse"],
     ["Au quotidien", "how much is it? · I'd like…", "ausdrueckeEnQuotidien"],
-    ["Vœux", "happy birthday · good luck · cheers", "ausdrueckeEnVoeux"]
+    ["Vœux", "happy birthday · good luck · cheers", "ausdrueckeEnVoeux"],
+    // Les familles A2-C1 (28 oct. 2026) : 324 expressions n'avaient aucune
+    // famille dans ce panneau, donc aucun chemin pour y arriver.
+    ["Bavarder", "long time no see · how was your day?", "ausdrueckeEnBavarder"],
+    ["Donner son avis", "in my opinion · I see it differently", "ausdrueckeEnAvis"],
+    ["Discuter", "on the one hand · for example · in short", "ausdrueckeEnDiscuter"],
+    ["Nuancer", "up to a point · that said · in theory", "ausdrueckeEnNuance"],
+    ["Tournures", "to be lucky · to make sense · to bear in mind", "ausdrueckeEnTournures"]
 ];
 function ausdrueckeEnSaluer(){ startRedewendungenVokabular("ALL", ["Saluer"]); }
 function ausdrueckeEnPresenter(){ startRedewendungenVokabular("ALL", ["Se présenter"]); }
@@ -42489,6 +42529,11 @@ function ausdrueckeEnReagir(){ startRedewendungenVokabular("ALL", ["Réagir"]); 
 function ausdrueckeEnClasse(){ startRedewendungenVokabular("ALL", ["En classe"]); }
 function ausdrueckeEnQuotidien(){ startRedewendungenVokabular("ALL", ["Au quotidien"]); }
 function ausdrueckeEnVoeux(){ startRedewendungenVokabular("ALL", ["Vœux"]); }
+function ausdrueckeEnBavarder(){ startRedewendungenVokabular("ALL", ["Bavarder"]); }
+function ausdrueckeEnAvis(){ startRedewendungenVokabular("ALL", ["Donner son avis"]); }
+function ausdrueckeEnDiscuter(){ startRedewendungenVokabular("ALL", ["Discuter"]); }
+function ausdrueckeEnNuance(){ startRedewendungenVokabular("ALL", ["Nuance"]); }
+function ausdrueckeEnTournures(){ startRedewendungenVokabular("ALL", ["Tournures"]); }
 function ausdrueckeSmalltalk(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["saludo", "cortesia"] : "Begr\u00fc\u00dfung/Small Talk"); }
 function ausdrueckeAlltag(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["cotidiano"] : "Alltag/Organisation"); }
 function ausdrueckeMeinung(){ startRedewendungenVokabular("ALL", LANGUE_APPRISE === "es" ? ["matiz"] : "Meinung/Zustimmung"); }

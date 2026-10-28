@@ -76,9 +76,37 @@ since | puisque | Cause | Since you're here, you can help me. | Puisque tu es l�
 as | comme, puisque | Cause | As it was late, we took a taxi. | Comme il était tard, nous avons pris un taxi.
 whether | si (alternative) | Liaison | I don't know whether he's coming. | Je ne sais pas s'il vient.
 once | une fois que | Temps | Once you finish, call me. | Une fois que tu as fini, appelle-moi.
+by (+ -ing) | en (+ participe présent) | Manière | You learn by making mistakes. | On apprend en faisant des erreurs.
+as far as | autant que | Liaison | As far as I know, the store is open. | Autant que je sache, le magasin est ouvert.
+now that | maintenant que | Cause | Now that you're here, we can start. | Maintenant que tu es là, nous pouvons commencer.
+the more…, the more… | plus…, plus… | Comparaison | The more you read, the more you learn. | Plus tu lis, plus tu apprends.
+whenever | chaque fois que | Temps | Call me whenever you need help. | Appelle-moi chaque fois que tu as besoin d'aide.
+""",
+"partikeln": """
+you know | tu sais, tu vois | Oral | It's, you know, a bit expensive. | C'est, tu sais, un peu cher.
+I mean | enfin, je veux dire | Oral | He's nice. I mean, he's not my best friend. | Il est gentil. Enfin, ce n'est pas mon meilleur ami.
+kind of | un peu, plutôt | Oral | I'm kind of tired today. | Je suis un peu fatigué aujourd'hui.
+sort of | en quelque sorte, à peu près | Oral | It's sort of a café and a bookstore. | C'est une sorte de café-librairie.
+just | juste, simplement (pour adoucir) | Oral | I just wanted to say thank you. | Je voulais simplement te dire merci.
+though | pourtant, quand même (en fin de phrase) | Oral | It's expensive. It's really good, though. | C'est cher. C'est vraiment bon, quand même.
+""",
+"zahlen": """
+twenty-five thousand | 25 000 (vingt-cinq mille) | Grands nombres | The stadium holds twenty-five thousand people. | Le stade accueille vingt-cinq mille personnes.
+a hundred thousand | 100 000 (cent mille) | Grands nombres | The town has a hundred thousand inhabitants. | La ville compte cent mille habitants.
+a million | 1 000 000 (un million) | Grands nombres | The house costs a million dollars. | La maison coûte un million de dollars.
+a billion | 1 000 000 000 (un milliard) — faux ami de « billion » | Grands nombres | The company is worth a billion dollars. | L'entreprise vaut un milliard de dollars.
+nineteen eighty-four | 1984 — les années se lisent par paires | Années | She was born in nineteen eighty-four. | Elle est née en 1984.
+twenty-first | 21e, vingt et unième | Ordinaux | We live in the twenty-first century. | Nous vivons au vingt et unième siècle.
+thirtieth | 30e, trentième | Ordinaux | Today is my parents' thirtieth anniversary. | C'est aujourd'hui le trentième anniversaire de mariage de mes parents.
+hundredth | 100e, centième | Ordinaux | It's the town's hundredth birthday. | C'est le centième anniversaire de la ville.
 """,
 "praepositionen": """
 despite | malgré | Opposition | Despite the rain, we went for a walk. | Malgré la pluie, nous sommes allés nous promener.
+unlike | contrairement à | Opposition | Unlike his brother, he loves sports. | Contrairement à son frère, il adore le sport.
+among | parmi | Lieu | She's among the best students. | Elle est parmi les meilleures élèves.
+beside | à côté de | Lieu | Come and sit beside me. | Viens t'asseoir à côté de moi.
+as for | quant à | Liaison | As for me, I'm staying home. | Quant à moi, je reste à la maison.
+except for | à l'exception de | Liaison | Everyone came except for Tom. | Tout le monde est venu à l'exception de Tom.
 in spite of | en dépit de | Opposition | In spite of his age, he still runs every day. | Malgré son âge, il court encore tous les jours.
 due to | en raison de | Cause | The flight was canceled due to fog. | Le vol a été annulé en raison du brouillard.
 instead of | au lieu de | Manière | Let's walk instead of taking the bus. | Marchons au lieu de prendre le bus.
