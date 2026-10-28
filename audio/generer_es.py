@@ -33,6 +33,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(RACINE, "audio"))
 import generer                      # noqa : cle, format, reglages, modeles
+import lectures                     # noqa : les nombres en lettres (28 oct. 2026)
 import manifest_es                  # noqa : l'inventaire espagnol
 from recouper import recouper, Refus  # noqa
 
@@ -175,7 +176,8 @@ def main():
         # Les prises brutes portent la porteuse dans leur dossier : une autre
         # porteuse ne doit pas reprendre l'ancienne prise.
         bruts = os.path.join(bruts, "".join(c if c.isalnum() else "_" for c in a.porteuse))
-    texte_de = lambda e: (a.porteuse % e["texte"]) if " " not in e["texte"] else e["texte"]
+    dit = lambda e: lectures.lecture("es", e["texte"])
+    texte_de = lambda e: (a.porteuse % dit(e)) if " " not in e["texte"] else dit(e)
     cout = int(sum(len(texte_de(e)) for e in a_faire) * taux)
     print("voix %s -> audio/mp3/%s/   modele %s" % (voix, dossier, modele))
     print("%d fichiers a produire (%d mots seuls en porteuse), environ %d credits"
@@ -199,7 +201,7 @@ def main():
                 break
             cible = os.path.join(sortie, e["id"] + ".mp3")
             try:
-                if texte is e["texte"]:
+                if " " in e["texte"]:
                     son = appeler(voix, texte, generer.REGLAGES, modele, cle)
                     open(cible + ".part", "wb").write(son)
                     os.replace(cible + ".part", cible)

@@ -1,5 +1,34 @@
 # L'anglais A2 à C1 : le plan
 
+## 28 oct. 2026 : ce qui manquait face à l'allemand (bilan mesuré, puis comblé)
+
+- **Expressions** : 324 expressions A2-C1 n'avaient aucune famille dans le panneau
+  (Bavarder, Donner son avis, Discuter, Nuancer, Tournures) ; elles en ont maintenant
+  (`EXPRESSIONS_ANGLAISES`, 12 familles).
+- **Feuilles de conjugaison** : 42, comme l'allemand (A2 12, B1 12, B2 10, C1 8) ;
+  `conjugaison_niveaux.py`.
+- **Mots-outils B1** : 52 (l'allemand 46), dont deux catégories neuves pour l'anglais :
+  les mots de l'oral (`partikeln` : you know, I mean, kind of…) et les nombres (`zahlen`).
+- **Tuiles de grammaire** : Pronoms, Nombres, Prépositions, Connecteurs, Ordre des mots
+  et Adverbes ont leur panneau anglais, comme l'allemand : la fiche, le vocabulaire des
+  mots-outils et des séries dédiées (16 séries, 405 questions). Sources :
+  `tuiles_niveaux.py` (ce que propose chaque panneau) et `tuiles_series_a/b/c.py` (les
+  questions, et deux fiches neuves : « L'ordre des mots », « Les adverbes ») ; elles
+  arrivent dans `grammaire.json` (clé `tuiles`) et `panneauTuileAnglaise()` dessine le
+  panneau. 16 tuiles visibles en anglais (11 avant).
+- **Grammaire** : 94 séries, 3 179 questions (l'allemand : 48 séries, 2 721).
+- **Puis (v992)** : Connecteurs 11 options (since/as/for, as ou like, relier deux phrases,
+  dire autrement), Ordre des mots 6 options (la négation, l'ordre des adjectifs), nombres A2
+  dans les mots-outils (ordinaux, centaines, fractions). `tuiles_series_d.py`. Grammaire :
+  100 séries, 3 284 questions.
+- **Fréquence et mots voisins (v993, accord de Jacques « Oui, les deux »)** :
+  `anglais/outils/frequence.py` classe les 6 758 entrées par catégorie (trois corpus
+  Leipzig ; les mots de deux mots par les cooccurrences voisines ; homographes traités
+  par la forme : pluriel pour le nom « can », masse partagée pour « work » ou « even »,
+  casse exacte pour « May ») ; `anglais/outils/voisins.py` donne 502 mots avec au moins un
+  voisin (WordNet ET traduction française commune ; les « mots confondus » des fiches
+  Pièges et 4 paires relues à la main sont écartés).
+
 ## 28 oct. 2026 : « S'entraîner par temps » et des séries plus longues
 
 Demande du chef d'orchestre : l'écran des verbes « S'entraîner par temps » était allemand

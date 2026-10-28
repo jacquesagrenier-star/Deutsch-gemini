@@ -10,32 +10,34 @@ ajoute a fonctionnels.json avec leur niveau. Anglais americain.
 FONCTIONNELS = {
 "A2": {
 "konjunktionen": """
-because | parce que | Cause | I stayed home because I was sick. | Je suis resté à la maison parce que j'étais malade.
-so | donc, alors | Conséquence | It was late, so we took a taxi. | Il était tard, alors nous avons pris un taxi.
-if | si | Condition | If you're hungry, there's pizza in the fridge. | Si tu as faim, il y a de la pizza dans le frigo.
-when | quand | Temps | Call me when you get home. | Appelle-moi quand tu rentres.
 while | pendant que | Temps | She read while I cooked. | Elle lisait pendant que je cuisinais.
 before | avant que, avant de | Temps | Wash your hands before you eat. | Lave-toi les mains avant de manger.
 after | après que, après | Temps | We went for a walk after we had lunch. | Nous sommes allés nous promener après le déjeuner.
 until | jusqu'à ce que | Temps | Wait here until I come back. | Attends ici jusqu'à ce que je revienne.
 as soon as | dès que | Temps | I'll call you as soon as I arrive. | Je t'appellerai dès que j'arriverai.
 although | bien que | Opposition | Although it was raining, we went out. | Bien qu'il ait plu, nous sommes sortis.
-or | ou | Choix | Do you want tea or coffee? | Tu veux du thé ou du café ?
 that | que | Liaison | I think that he's right. | Je pense qu'il a raison.
+both … and | à la fois … et | Addition | She speaks both French and English. | Elle parle à la fois français et anglais.
+either … or | soit … soit, ou … ou | Choix | We can either walk or take the bus. | On peut soit marcher, soit prendre l'autobus.
+neither … nor | ni … ni | Choix | He drinks neither tea nor coffee. | Il ne boit ni thé ni café.
+so … that | si … que | Conséquence | It was so cold that we stayed inside. | Il faisait si froid que nous sommes restés à l'intérieur.
+as … as | aussi … que | Comparaison | She's as tall as her brother. | Elle est aussi grande que son frère.
 """,
 "praepositionen": """
-during | pendant | Temps | I fell asleep during the movie. | Je me suis endormi pendant le film.
 since | depuis (un moment) | Temps | I've been here since Monday. | Je suis ici depuis lundi.
-for | depuis, pendant (une durée) | Temps | We waited for two hours. | Nous avons attendu deux heures.
-until | jusqu'à | Temps | The store is open until 9 p.m. | Le magasin est ouvert jusqu'à 21 h.
+for (+ durée) | depuis, pendant (une durée) | Temps | We waited for two hours. | Nous avons attendu deux heures.
 ago | il y a | Temps | I moved here three years ago. | J'ai emménagé ici il y a trois ans.
 through | à travers, par | Lieu | We drove through the city. | Nous avons traversé la ville en voiture.
 across | de l'autre côté de, à travers | Lieu | The bank is across the street. | La banque est de l'autre côté de la rue.
 along | le long de | Lieu | We walked along the river. | Nous avons marché le long de la rivière.
 towards | vers | Lieu | She ran towards the door. | Elle a couru vers la porte.
-without | sans | Manière | I can't live without coffee. | Je ne peux pas vivre sans café.
 like | comme | Manière | She sings like a professional. | Elle chante comme une professionnelle.
 except | sauf | Manière | Everyone came except Tom. | Tout le monde est venu sauf Tom.
+against | contre | Lieu | Lean the bike against the wall. | Appuie le vélo contre le mur.
+above | au-dessus de | Lieu | There's a shelf above the sink. | Il y a une étagère au-dessus de l'évier.
+below | en dessous de | Lieu | It's ten degrees below zero. | Il fait dix degrés sous zéro.
+into | dans (avec mouvement) | Lieu | She walked into the room. | Elle est entrée dans la pièce.
+out of | hors de, de (en sortant) | Lieu | He took his keys out of his pocket. | Il a sorti ses clés de sa poche.
 """,
 "pronomen": """
 myself | moi-même, me | Réfléchis | I cut myself while cooking. | Je me suis coupé en cuisinant.
@@ -63,6 +65,19 @@ both | les deux | Quantité | Both my parents are teachers. | Mes deux parents s
 each | chaque | Quantité | Each room has its own bathroom. | Chaque chambre a sa propre salle de bain.
 another | un autre | Quantité | Can I have another cookie? | Je peux avoir un autre biscuit ?
 """,
+# Les nombres A2 (28 oct. 2026) : l'A1 compte dans les repères ; l'A2 passe aux
+# ordinaux, aux centaines et aux fractions simples.
+"zahlen": """
+fifth | 5e, cinquième | Ordinaux | My office is on the fifth floor. | Mon bureau est au cinquième étage.
+eighth | 8e, huitième | Ordinaux | Today is the eighth of June. | Aujourd'hui, c'est le 8 juin.
+ninth | 9e, neuvième | Ordinaux | She finished ninth in the race. | Elle a fini neuvième de la course.
+twelfth | 12e, douzième | Ordinaux | It's our twelfth wedding anniversary. | C'est notre douzième anniversaire de mariage.
+twentieth | 20e, vingtième | Ordinaux | He was born in the twentieth century. | Il est né au vingtième siècle.
+a hundred and fifty | 150 (cent cinquante) | Centaines | The ticket costs a hundred and fifty dollars. | Le billet coûte cent cinquante dollars.
+two thousand | 2 000 (deux mille) | Milliers | The town has two thousand people. | La ville compte deux mille habitants.
+one and a half | 1,5 (un et demi) | Fractions | The movie lasts one and a half hours. | Le film dure une heure et demie.
+a couple of | deux, quelques | Quantités | I'll be back in a couple of minutes. | Je reviens dans deux minutes.
+""",
 },
 "B1": {
 "konjunktionen": """
@@ -76,9 +91,37 @@ since | puisque | Cause | Since you're here, you can help me. | Puisque tu es l�
 as | comme, puisque | Cause | As it was late, we took a taxi. | Comme il était tard, nous avons pris un taxi.
 whether | si (alternative) | Liaison | I don't know whether he's coming. | Je ne sais pas s'il vient.
 once | une fois que | Temps | Once you finish, call me. | Une fois que tu as fini, appelle-moi.
+by (+ -ing) | en (+ participe présent) | Manière | You learn by making mistakes. | On apprend en faisant des erreurs.
+as far as | autant que | Liaison | As far as I know, the store is open. | Autant que je sache, le magasin est ouvert.
+now that | maintenant que | Cause | Now that you're here, we can start. | Maintenant que tu es là, nous pouvons commencer.
+the more…, the more… | plus…, plus… | Comparaison | The more you read, the more you learn. | Plus tu lis, plus tu apprends.
+whenever | chaque fois que | Temps | Call me whenever you need help. | Appelle-moi chaque fois que tu as besoin d'aide.
+""",
+"partikeln": """
+you know | tu sais, tu vois | Oral | It's, you know, a bit expensive. | C'est, tu sais, un peu cher.
+I mean | enfin, je veux dire | Oral | He's nice. I mean, he's not my best friend. | Il est gentil. Enfin, ce n'est pas mon meilleur ami.
+kind of | un peu, plutôt | Oral | I'm kind of tired today. | Je suis un peu fatigué aujourd'hui.
+sort of | en quelque sorte, à peu près | Oral | It's sort of a café and a bookstore. | C'est une sorte de café-librairie.
+just | juste, simplement (pour adoucir) | Oral | I just wanted to say thank you. | Je voulais simplement te dire merci.
+though | pourtant, quand même (en fin de phrase) | Oral | It's expensive. It's really good, though. | C'est cher. C'est vraiment bon, quand même.
+""",
+"zahlen": """
+twenty-five thousand | 25 000 (vingt-cinq mille) | Grands nombres | The stadium holds twenty-five thousand people. | Le stade accueille vingt-cinq mille personnes.
+a hundred thousand | 100 000 (cent mille) | Grands nombres | The town has a hundred thousand inhabitants. | La ville compte cent mille habitants.
+a million | 1 000 000 (un million) | Grands nombres | The house costs a million dollars. | La maison coûte un million de dollars.
+a billion | 1 000 000 000 (un milliard) — faux ami de « billion » | Grands nombres | The company is worth a billion dollars. | L'entreprise vaut un milliard de dollars.
+nineteen eighty-four | 1984 — les années se lisent par paires | Années | She was born in nineteen eighty-four. | Elle est née en 1984.
+twenty-first | 21e, vingt et unième | Ordinaux | We live in the twenty-first century. | Nous vivons au vingt et unième siècle.
+thirtieth | 30e, trentième | Ordinaux | Today is my parents' thirtieth anniversary. | C'est aujourd'hui le trentième anniversaire de mariage de mes parents.
+hundredth | 100e, centième | Ordinaux | It's the town's hundredth birthday. | C'est le centième anniversaire de la ville.
 """,
 "praepositionen": """
 despite | malgré | Opposition | Despite the rain, we went for a walk. | Malgré la pluie, nous sommes allés nous promener.
+unlike | contrairement à | Opposition | Unlike his brother, he loves sports. | Contrairement à son frère, il adore le sport.
+among | parmi | Lieu | She's among the best students. | Elle est parmi les meilleures élèves.
+beside | à côté de | Lieu | Come and sit beside me. | Viens t'asseoir à côté de moi.
+as for | quant à | Liaison | As for me, I'm staying home. | Quant à moi, je reste à la maison.
+except for | à l'exception de | Liaison | Everyone came except for Tom. | Tout le monde est venu à l'exception de Tom.
 in spite of | en dépit de | Opposition | In spite of his age, he still runs every day. | Malgré son âge, il court encore tous les jours.
 due to | en raison de | Cause | The flight was canceled due to fog. | Le vol a été annulé en raison du brouillard.
 instead of | au lieu de | Manière | Let's walk instead of taking the bus. | Marchons au lieu de prendre le bus.
@@ -132,7 +175,6 @@ a number of | un certain nombre de | Quantité | A number of students complained
 "konjunktionen": """
 inasmuch as | dans la mesure où | Cause | The plan failed, inasmuch as nobody followed it. | Le projet a échoué, dans la mesure où personne ne l'a suivi.
 lest | de peur que | But | He wrote it down lest he forget. | Il l'a noté de peur de l'oublier.
-whereas | attendu que (juridique), alors que | Opposition | Whereas the parties agree, the contract is valid. | Attendu que les parties sont d'accord, le contrat est valide.
 no sooner… than | à peine… que | Temps | No sooner had I sat down than the phone rang. | À peine étais-je assis que le téléphone a sonné.
 not only… but also | non seulement… mais aussi | Ajout | She speaks not only French but also Japanese. | Elle parle non seulement français, mais aussi japonais.
 hence | d'où | Conséquence | The bridge was closed, hence the delay. | Le pont était fermé, d'où le retard.

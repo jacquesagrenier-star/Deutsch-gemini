@@ -46,6 +46,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from generer import VOIX, FORMAT, REGLAGES, SEED, MODELES, cle_api  # noqa: E402
 from essai_prononciation import appeler                            # noqa: E402
 from recouper import recouper, Refus                               # noqa: E402
+import lectures                                                    # noqa: E402
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORIGINAUX = os.path.join(RACINE, "audio", "mp3_original")
@@ -163,7 +164,7 @@ def main():
     debut = time.time()
     try:
         for e in mots:
-            texte = a.porteuse % e["texte"]
+            texte = a.porteuse % lectures.lecture("de", e["texte"])
             prix = len(texte)
             if depense + prix > a.plafond:
                 print("\n  plafond atteint. Relance : la reprise est automatique.")
