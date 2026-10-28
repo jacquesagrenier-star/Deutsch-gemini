@@ -962,6 +962,141 @@ window.SCENE = {
      "n": "<b>under</b> = sous."
     }
    ]
+  },
+  "B1": {
+   "titre": "Put, hang : ranger, en mouvement",
+   "qs": [
+    {
+     "q": "The ball is ___ on the closet.",
+     "c": [
+      "still",
+      "yet",
+      "already"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "The ball is still on the closet.",
+     "sens": "Le ballon est encore sur l'armoire.",
+     "n": "Encore (toujours) = <b>still</b>."
+    },
+    {
+     "q": "Mark is putting the ball ___ the closet.",
+     "c": [
+      "in",
+      "at",
+      "to"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "Mark is putting the ball in the closet.",
+     "sens": "Mark met le ballon dans l'armoire.",
+     "n": "Dans → <b>in</b> (into)."
+    },
+    {
+     "q": "The cup is ___ the coffee table.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "tasse",
+     "r": "couchtisch",
+     "phrase": "The cup is on the coffee table.",
+     "sens": "La tasse est sur la table basse.",
+     "n": "<b>on</b>."
+    },
+    {
+     "q": "Mark is putting the cup ___ the shelf.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "tasse",
+     "r": "regal",
+     "phrase": "Mark is putting the cup on the shelf.",
+     "sens": "Mark pose la tasse sur l'étagère.",
+     "n": "Sur une étagère : <b>on</b>."
+    },
+    {
+     "q": "The umbrella is still hanging ___ the lamp.",
+     "c": [
+      "on",
+      "at",
+      "to"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "The umbrella is still hanging on the lamp.",
+     "sens": "Le parapluie est encore accroché à la lampe.",
+     "n": "Accroché à → <b>on</b>."
+    },
+    {
+     "q": "Mark is hanging the umbrella ___ the door.",
+     "c": [
+      "on",
+      "at",
+      "to"
+     ],
+     "f": "regenschirm",
+     "r": "tuer",
+     "phrase": "Mark is hanging the umbrella on the door.",
+     "sens": "Mark accroche le parapluie à la porte.",
+     "n": "<b>on</b> the door."
+    },
+    {
+     "q": "Mark ___ the book on the shelf.",
+     "c": [
+      "puts",
+      "put on",
+      "is put"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "Mark puts the book on the shelf.",
+     "sens": "Mark met le livre sur l'étagère.",
+     "n": "3e personne → <b>puts</b>."
+    },
+    {
+     "q": "The bottles are ___ the bucket.",
+     "c": [
+      "in",
+      "on",
+      "at"
+     ],
+     "f": "flasche",
+     "r": "eimer",
+     "phrase": "The bottles are in the bucket.",
+     "sens": "Les bouteilles sont dans le seau.",
+     "n": "Dans → <b>in</b>."
+    },
+    {
+     "q": "The cat is going to jump ___ the sofa.",
+     "c": [
+      "onto",
+      "on to",
+      "into"
+     ],
+     "f": "katze",
+     "r": "sofa",
+     "phrase": "The cat is going to jump onto the sofa.",
+     "sens": "Le chat va sauter sur le canapé.",
+     "n": "Un mouvement vers une surface → <b>onto</b>."
+    },
+    {
+     "q": "The balloons are ___ the floor.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "luftballon",
+     "r": "boden",
+     "phrase": "The balloons are on the floor.",
+     "sens": "Les ballons sont par terre.",
+     "n": "Par terre = <b>on the floor</b>."
+    }
+   ]
   }
  },
  "traductions": {}

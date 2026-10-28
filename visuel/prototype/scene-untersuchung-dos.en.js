@@ -469,6 +469,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "calves",
    "niveau": "B1",
+   "theme": "health_b1",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -689,6 +690,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "stethoscopes",
    "niveau": "B1",
+   "theme": "health_b1_2",
    "personne": null,
    "aussi": [],
    "sur": "aerztin",
@@ -961,6 +963,85 @@ window.SCENE = {
      "phrase": "The scale is against the wall.",
      "sens": "La balance est contre le mur.",
      "n": "<b>against</b> = contre (appuyé contre le mur)."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les consignes : please + impératif",
+   "qs": [
+    {
+     "q": "Please turn ___!",
+     "c": [
+      "around",
+      "back around",
+      "over to"
+     ],
+     "f": "mark",
+     "phrase": "Please turn around!",
+     "sens": "Retournez-vous, s'il vous plaît !",
+     "n": "Se retourner = turn <b>around</b>."
+    },
+    {
+     "q": "Mark turned around ___ she could listen to his back.",
+     "c": [
+      "so that",
+      "for that",
+      "to"
+     ],
+     "f": "mark",
+     "r": "ruecken",
+     "phrase": "Mark turned around so that she could listen to his back.",
+     "sens": "Mark s'est retourné pour qu'elle puisse ausculter son dos.",
+     "n": "Pour que = <b>so that</b>."
+    },
+    {
+     "q": "The doctor puts the stethoscope ___ his back.",
+     "c": [
+      "on",
+      "at",
+      "in"
+     ],
+     "f": "stethoskop",
+     "r": "ruecken",
+     "phrase": "The doctor puts the stethoscope on his back.",
+     "sens": "La médecin pose le stéthoscope sur son dos.",
+     "n": "<b>on</b> his back."
+    },
+    {
+     "q": "He lets his arms hang ___.",
+     "c": [
+      "loosely",
+      "loose of",
+      "loosly"
+     ],
+     "f": "arm-l",
+     "phrase": "He lets his arms hang loosely.",
+     "sens": "Il laisse pendre ses bras, détendus.",
+     "n": "L'adverbe : <b>loosely</b>."
+    },
+    {
+     "q": "He holds his hands so you can see his ___.",
+     "c": [
+      "palms",
+      "palm",
+      "palmes"
+     ],
+     "f": "handflaeche-r",
+     "phrase": "He holds his hands so you can see his palms.",
+     "sens": "Il tient les mains de façon à ce qu'on voie les paumes.",
+     "n": "Pluriel : <b>palms</b>."
+    },
+    {
+     "q": "Breathe out and ___ in slowly, please!",
+     "c": [
+      "breathe",
+      "breath",
+      "breathing"
+     ],
+     "f": "ruecken",
+     "phrase": "Breathe out and breathe in slowly, please!",
+     "sens": "Expirez et inspirez calmement, s'il vous plaît !",
+     "n": "Le verbe : <b>breathe</b> (le nom : breath)."
     }
    ]
   }

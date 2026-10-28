@@ -129,6 +129,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ladders",
    "niveau": "B1",
+   "theme": "work_b1_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -709,6 +710,109 @@ window.SCENE = {
      "phrase": "The note is next to the notebook.",
      "sens": "Le bout de papier est à côté du cahier.",
      "n": "<b>next to</b> = à côté de."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les verbes à préposition",
+   "qs": [
+    {
+     "q": "Anna is interested ___ history.",
+     "c": [
+      "in",
+      "for",
+      "by"
+     ],
+     "f": "anna",
+     "r": "buch",
+     "phrase": "Anna is interested in history.",
+     "sens": "Anna s'intéresse à l'histoire.",
+     "n": "Interested <b>in</b>."
+    },
+    {
+     "q": "She is thinking ___ her exam.",
+     "c": [
+      "about",
+      "to",
+      "at"
+     ],
+     "f": "anna",
+     "phrase": "She is thinking about her exam.",
+     "sens": "Elle pense à son examen.",
+     "n": "Penser à = think <b>about</b> (ou think of)."
+    },
+    {
+     "q": "She is waiting ___ her friend.",
+     "c": [
+      "for",
+      "—",
+      "after"
+     ],
+     "f": "anna",
+     "phrase": "She is waiting for her friend.",
+     "sens": "Elle attend son amie.",
+     "n": "Attendre = wait <b>for</b>."
+    },
+    {
+     "q": "The student is dreaming ___ his vacation.",
+     "c": [
+      "about",
+      "of the",
+      "to"
+     ],
+     "f": "student",
+     "phrase": "The student is dreaming about his vacation.",
+     "sens": "L'étudiant rêve des vacances.",
+     "n": "Rêver de = dream <b>about</b> (ou of)."
+    },
+    {
+     "q": "Anna is writing a paper ___ the Boston Tea Party.",
+     "c": [
+      "on",
+      "over",
+      "of"
+     ],
+     "f": "heft",
+     "r": "anna",
+     "phrase": "Anna is writing a paper on the Boston Tea Party.",
+     "sens": "Anna écrit un travail sur la Boston Tea Party.",
+     "n": "Un travail sur un sujet = a paper <b>on</b> (ou about)."
+    },
+    {
+     "q": "She's looking forward ___ the weekend.",
+     "c": [
+      "to",
+      "for",
+      "at"
+     ],
+     "f": "anna",
+     "phrase": "She's looking forward to the weekend.",
+     "sens": "Elle se réjouit déjà du week-end.",
+     "n": "Look forward <b>to</b>."
+    },
+    {
+     "q": "What are you waiting ___? — My friend.",
+     "c": [
+      "for",
+      "—",
+      "to"
+     ],
+     "f": "student",
+     "phrase": "What are you waiting for? — My friend.",
+     "sens": "Qu'est-ce que tu attends ? — Mon amie.",
+     "n": "La préposition va à la fin de la question."
+    },
+    {
+     "q": "The student is concentrating ___ his book.",
+     "c": [
+      "on",
+      "at",
+      "to"
+     ],
+     "f": "student",
+     "phrase": "The student is concentrating on his book.",
+     "sens": "L'étudiant se concentre sur son livre.",
+     "n": "Concentrate <b>on</b>."
     }
    ]
   }

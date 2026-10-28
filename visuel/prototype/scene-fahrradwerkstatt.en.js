@@ -193,6 +193,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ladders",
    "niveau": "B1",
+   "theme": "work_b1_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -922,6 +923,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "cyclists",
    "niveau": "B1",
+   "theme": "travel_b1",
    "personne": null,
    "aussi": [
     {
@@ -1518,6 +1520,110 @@ window.SCENE = {
      "phrase": "The stool is behind the bike.",
      "sens": "Le tabouret est derrière le vélo.",
      "n": "<b>behind</b> = derrière."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Someone, anything, nothing, nobody",
+   "qs": [
+    {
+     "q": "« Can ___ help me? » Mark asks.",
+     "c": [
+      "someone",
+      "anyone not",
+      "nobody"
+     ],
+     "f": "mark",
+     "r": "mann",
+     "phrase": "« Can someone help me? » Mark asks.",
+     "sens": "« Quelqu'un peut-il m'aider ? », demande Mark.",
+     "n": "Une demande d'aide → <b>someone</b> (ou anyone)."
+    },
+    {
+     "q": "You need ___ pliers for the chain.",
+     "c": [
+      "—",
+      "a",
+      "some of"
+     ],
+     "f": "zange",
+     "r": "kette",
+     "phrase": "You need pliers for the chain.",
+     "sens": "Il faut une pince pour la chaîne.",
+     "n": "<b>Pliers</b> est toujours au pluriel : pas de « a »."
+    },
+    {
+     "q": "___ is broken: the chain!",
+     "c": [
+      "Something",
+      "Anything",
+      "Nothing"
+     ],
+     "f": "kette",
+     "phrase": "Something is broken: the chain!",
+     "sens": "Quelque chose est cassé : la chaîne !",
+     "n": "Affirmation → <b>something</b>."
+    },
+    {
+     "q": "The wheel is fine; ___ is missing.",
+     "c": [
+      "nothing",
+      "anything",
+      "something"
+     ],
+     "f": "rad",
+     "phrase": "The wheel is fine; nothing is missing.",
+     "sens": "La roue est en bon état, il ne manque rien.",
+     "n": "Ne… rien, en sujet = <b>nothing</b>."
+    },
+    {
+     "q": "There's ___ in the shop except Mark and the mechanic.",
+     "c": [
+      "nobody",
+      "anybody",
+      "somebody"
+     ],
+     "f": "tuer",
+     "phrase": "There's nobody in the shop except Mark and the mechanic.",
+     "sens": "Il n'y a personne dans l'atelier à part Mark et le mécanicien.",
+     "n": "Personne = <b>nobody</b> (verbe affirmatif)."
+    },
+    {
+     "q": "In Boston, ___ love to ride their bikes.",
+     "c": [
+      "people",
+      "one",
+      "they people"
+     ],
+     "f": "fahrrad-3",
+     "phrase": "In Boston, people love to ride their bikes.",
+     "sens": "À Boston, on aime faire du vélo.",
+     "n": "« On » en général = <b>people</b> (ou you)."
+    },
+    {
+     "q": "« Has ___ seen my tools? » the mechanic asks.",
+     "c": [
+      "anyone",
+      "someone not",
+      "no one"
+     ],
+     "f": "werkzeug",
+     "r": "mann",
+     "phrase": "« Has anyone seen my tools? » the mechanic asks.",
+     "sens": "« Quelqu'un a-t-il vu mes outils ? », demande le mécanicien.",
+     "n": "Question ouverte → <b>anyone</b>."
+    },
+    {
+     "q": "Would you like ___ to drink? There's coffee.",
+     "c": [
+      "something",
+      "anything not",
+      "nothing"
+     ],
+     "f": "tasse",
+     "phrase": "Would you like something to drink? There's coffee.",
+     "sens": "Tu veux boire quelque chose ? Il y a du café.",
+     "n": "Une offre → <b>something</b>, même dans une question."
     }
    ]
   }

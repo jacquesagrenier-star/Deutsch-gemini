@@ -1582,6 +1582,112 @@ window.SCENE = {
      "n": "<b>by</b> = près de, au bord de (by the window)."
     }
    ]
+  },
+  "B1": {
+   "titre": "Le présent simple et le -s de la 3e personne",
+   "qs": [
+    {
+     "q": "Anna ___ hello to her neighbor.",
+     "c": [
+      "says",
+      "say",
+      "saying"
+     ],
+     "f": "anna",
+     "r": "nachbar",
+     "phrase": "Anna says hello to her neighbor.",
+     "sens": "Anna salue son voisin.",
+     "n": "He, she, it → <b>-s</b> : says."
+    },
+    {
+     "q": "The neighbor ___ the newspaper.",
+     "c": [
+      "is reading",
+      "read",
+      "reads now"
+     ],
+     "f": "nachbar",
+     "r": "zeitung",
+     "phrase": "The neighbor is reading the newspaper.",
+     "sens": "Le voisin lit le journal.",
+     "n": "En ce moment → <b>is reading</b>."
+    },
+    {
+     "q": "The saleswoman ___ every customer in the neighborhood.",
+     "c": [
+      "knows",
+      "is knowing",
+      "know"
+     ],
+     "f": "frau",
+     "phrase": "The saleswoman knows every customer in the neighborhood.",
+     "sens": "La vendeuse connaît chaque client du quartier.",
+     "n": "Know ne prend pas -ing : <b>knows</b>."
+    },
+    {
+     "q": "The dog belongs to the man ___ the table.",
+     "c": [
+      "at",
+      "in",
+      "on"
+     ],
+     "f": "hund",
+     "r": "nachbar",
+     "phrase": "The dog belongs to the man at the table.",
+     "sens": "Le chien appartient au monsieur à la table.",
+     "n": "À une table = <b>at</b> the table."
+    },
+    {
+     "q": "Anna ___ rolls for her coworker.",
+     "c": [
+      "buys",
+      "buy",
+      "is buy"
+     ],
+     "f": "broetchen",
+     "r": "anna",
+     "phrase": "Anna buys rolls for her coworker.",
+     "sens": "Anna achète des petits pains pour son collègue.",
+     "n": "Habitude, 3e personne → <b>buys</b>."
+    },
+    {
+     "q": "Do you know the saleswoman's ___?",
+     "c": [
+      "name",
+      "names",
+      "the name"
+     ],
+     "f": "frau",
+     "phrase": "Do you know the saleswoman's name?",
+     "sens": "Tu connais le nom de la vendeuse ?",
+     "n": "Le nom de la vendeuse = <b>the saleswoman's name</b>."
+    },
+    {
+     "q": "The dog is waiting ___ its owner.",
+     "c": [
+      "for",
+      "—",
+      "at"
+     ],
+     "f": "hund",
+     "r": "nachbar",
+     "phrase": "The dog is waiting for its owner.",
+     "sens": "Le chien attend son maître.",
+     "n": "Attendre quelqu'un = <b>wait for</b>."
+    },
+    {
+     "q": "All the neighbors ___ the bakery.",
+     "c": [
+      "love",
+      "loves",
+      "loving"
+     ],
+     "f": "schalter",
+     "phrase": "All the neighbors love the bakery.",
+     "sens": "La boulangerie est appréciée de tous les voisins.",
+     "n": "Sujet pluriel : pas de -s."
+    }
+   ]
   }
  },
  "traductions": {}

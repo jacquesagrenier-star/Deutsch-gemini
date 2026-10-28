@@ -694,6 +694,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ballpoint pens",
    "niveau": "B1",
+   "theme": "education_b1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1267,6 +1268,110 @@ window.SCENE = {
      "phrase": "The printer is on the closet.",
      "sens": "L'imprimante est sur l'armoire.",
      "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "With, for, without, from, for (durée)",
+   "qs": [
+    {
+     "q": "Mark comes ___ Canada.",
+     "c": [
+      "from",
+      "of",
+      "out"
+     ],
+     "f": "mark",
+     "phrase": "Mark comes from Canada.",
+     "sens": "Mark vient du Canada.",
+     "n": "Venir de = come <b>from</b>."
+    },
+    {
+     "q": "He has been in Boston ___ a month.",
+     "c": [
+      "for",
+      "since",
+      "during"
+     ],
+     "f": "mark",
+     "phrase": "He has been in Boston for a month.",
+     "sens": "Il est à Boston depuis un mois.",
+     "n": "Une durée → <b>for</b>, avec le present perfect."
+    },
+    {
+     "q": "Mark fills out the form ___ a pen.",
+     "c": [
+      "with",
+      "by",
+      "from"
+     ],
+     "f": "kugelschreiber",
+     "r": "formular",
+     "phrase": "Mark fills out the form with a pen.",
+     "sens": "Mark remplit le formulaire avec un stylo.",
+     "n": "Avec un outil → <b>with</b>."
+    },
+    {
+     "q": "The form is ___ the change of address.",
+     "c": [
+      "for",
+      "to",
+      "of"
+     ],
+     "f": "formular",
+     "phrase": "The form is for the change of address.",
+     "sens": "Le formulaire est pour le changement d'adresse.",
+     "n": "Le but → <b>for</b>."
+    },
+    {
+     "q": "Mark is going ___ City Hall.",
+     "c": [
+      "to",
+      "at",
+      "in"
+     ],
+     "f": "tuer",
+     "phrase": "Mark is going to City Hall.",
+     "sens": "Mark va à la mairie.",
+     "n": "Aller à = go <b>to</b>."
+    },
+    {
+     "q": "The woman works ___ City Hall.",
+     "c": [
+      "at",
+      "to",
+      "by"
+     ],
+     "f": "frau",
+     "phrase": "The woman works at City Hall.",
+     "sens": "La femme travaille à la mairie.",
+     "n": "Un lieu de travail → <b>at</b>."
+    },
+    {
+     "q": "Mark never goes there ___ his passport.",
+     "c": [
+      "without",
+      "with",
+      "except"
+     ],
+     "f": "pass",
+     "r": "mark",
+     "phrase": "Mark never goes there without his passport.",
+     "sens": "Mark n'y va jamais sans son passeport.",
+     "n": "Sans = <b>without</b>."
+    },
+    {
+     "q": "The young woman is waiting ___ her baby.",
+     "c": [
+      "with",
+      "by",
+      "at"
+     ],
+     "f": "frau-2",
+     "r": "baby",
+     "phrase": "The young woman is waiting with her baby.",
+     "sens": "La jeune femme attend avec son bébé.",
+     "n": "Avec quelqu'un → <b>with</b>."
     }
    ]
   }

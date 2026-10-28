@@ -664,6 +664,72 @@ window.SCENE = {
      "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
     }
    ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "How much ___ a pineapple?",
+     "c": [
+      "is",
+      "are",
+      "costs it"
+     ],
+     "f": "ananas",
+     "phrase": "How much is a pineapple?",
+     "sens": "Combien coûte un ananas ?",
+     "n": "Singulier → <b>is</b>."
+    },
+    {
+     "q": "I'll take a ___ of watermelon, please.",
+     "c": [
+      "slice",
+      "slide",
+      "part"
+     ],
+     "f": "wassermelone",
+     "phrase": "I'll take a slice of watermelon, please.",
+     "sens": "Je prends une tranche de pastèque, s'il vous plaît.",
+     "n": "Une tranche = <b>a slice of</b>."
+    },
+    {
+     "q": "The watermelon is ___ than the melon.",
+     "c": [
+      "bigger",
+      "more bigger",
+      "biggest"
+     ],
+     "f": "wassermelone",
+     "r": "melone",
+     "phrase": "The watermelon is bigger than the melon.",
+     "sens": "La pastèque est plus grosse que le melon.",
+     "n": "Pas de double comparatif : <b>bigger</b>."
+    },
+    {
+     "q": "Are the mangoes ripe ___?",
+     "c": [
+      "yet",
+      "already yet",
+      "still"
+     ],
+     "f": "mango",
+     "phrase": "Are the mangoes ripe yet?",
+     "sens": "Les mangues sont-elles déjà mûres ?",
+     "n": "Déjà, dans une question → <b>yet</b>."
+    },
+    {
+     "q": "I'd like three ___.",
+     "c": [
+      "lemons",
+      "lemon",
+      "lemones"
+     ],
+     "f": "zitrone",
+     "phrase": "I'd like three lemons.",
+     "sens": "Je voudrais trois citrons.",
+     "n": "Pluriel régulier : <b>-s</b>."
+    }
+   ]
   }
  },
  "autre_vue": {

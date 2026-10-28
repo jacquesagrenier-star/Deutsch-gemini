@@ -723,6 +723,113 @@ window.SCENE = {
      "n": "<b>next to</b> = à côté de."
     }
    ]
+  },
+  "B1": {
+   "titre": "Le comparatif et le superlatif",
+   "qs": [
+    {
+     "q": "The paper bag is ___ than the purse.",
+     "c": [
+      "bigger",
+      "more big",
+      "biggest"
+     ],
+     "f": "tuete",
+     "r": "tasche",
+     "phrase": "The paper bag is bigger than the purse.",
+     "sens": "Le sac en papier est plus grand que le sac à main.",
+     "n": "big → <b>bigger</b>."
+    },
+    {
+     "q": "The girl is ___ than Anna.",
+     "c": [
+      "shorter",
+      "more short",
+      "shortest"
+     ],
+     "f": "maedchen",
+     "r": "anna",
+     "phrase": "The girl is shorter than Anna.",
+     "sens": "La fille est plus petite qu'Anna.",
+     "n": "Petit de taille = <b>short</b> → shorter."
+    },
+    {
+     "q": "The man at the register is ___ than Anna.",
+     "c": [
+      "older",
+      "more old",
+      "elder"
+     ],
+     "f": "mann",
+     "r": "anna",
+     "phrase": "The man at the register is older than Anna.",
+     "sens": "L'homme à la caisse est plus âgé qu'Anna.",
+     "n": "old → <b>older</b>."
+    },
+    {
+     "q": "The bananas are ___ yellow as the girl's jacket.",
+     "c": [
+      "as",
+      "so",
+      "than"
+     ],
+     "f": "banane",
+     "r": "maedchen",
+     "phrase": "The bananas are as yellow as the girl's jacket.",
+     "sens": "Les bananes sont aussi jaunes que la veste de la fille.",
+     "n": "Aussi… que = <b>as… as</b>."
+    },
+    {
+     "q": "The juice is ___ than the cans.",
+     "c": [
+      "higher up",
+      "more high",
+      "highest"
+     ],
+     "f": "saft",
+     "r": "dose",
+     "phrase": "The juice is higher up than the cans.",
+     "sens": "Le jus est placé plus haut que les boîtes de conserve.",
+     "n": "high → <b>higher</b>."
+    },
+    {
+     "q": "Anna likes milk, but she likes cheese ___.",
+     "c": [
+      "better",
+      "more good",
+      "best"
+     ],
+     "f": "kaese",
+     "r": "anna",
+     "phrase": "Anna likes milk, but she likes cheese better.",
+     "sens": "Anna aime le lait, mais elle préfère le fromage.",
+     "n": "Préférer = like <b>better</b>."
+    },
+    {
+     "q": "What the girl likes ___ is chocolate.",
+     "c": [
+      "best",
+      "better",
+      "most good"
+     ],
+     "f": "maedchen",
+     "phrase": "What the girl likes best is chocolate.",
+     "sens": "Ce que la fille préfère, c'est le chocolat.",
+     "n": "Le plus = <b>best</b>."
+    },
+    {
+     "q": "It's the ___ bread in the store.",
+     "c": [
+      "freshest",
+      "most fresh",
+      "fresher"
+     ],
+     "f": "brot",
+     "phrase": "It's the freshest bread in the store.",
+     "sens": "C'est le pain le plus frais du magasin.",
+     "n": "fresh → <b>the freshest</b>."
+    }
+   ]
   }
  },
  "traductions": {}

@@ -1146,6 +1146,113 @@ window.SCENE = {
      "n": "<b>next to</b> = à côté de."
     }
    ]
+  },
+  "B1": {
+   "titre": "Le present perfect et le prétérit",
+   "qs": [
+    {
+     "q": "Mark has ___ the carrot.",
+     "c": [
+      "cut",
+      "cutted",
+      "cuts"
+     ],
+     "f": "karotte",
+     "r": "mark",
+     "phrase": "Mark has cut the carrot.",
+     "sens": "Mark a coupé la carotte.",
+     "n": "<b>cut → cut → cut</b>."
+    },
+    {
+     "q": "He has ___ two eggs.",
+     "c": [
+      "fried",
+      "fryed",
+      "fry"
+     ],
+     "f": "ei",
+     "r": "pfanne",
+     "phrase": "He has fried two eggs.",
+     "sens": "Il a fait frire deux œufs.",
+     "n": "Consonne + y → <b>-ied</b> : fried."
+    },
+    {
+     "q": "The soup ___ been cooking for an hour.",
+     "c": [
+      "has",
+      "is",
+      "was"
+     ],
+     "f": "topf",
+     "phrase": "The soup has been cooking for an hour.",
+     "sens": "La soupe cuit depuis une heure.",
+     "n": "Depuis une heure → <b>has been</b> + -ing."
+    },
+    {
+     "q": "Mark ___ the bread on the table ten minutes ago.",
+     "c": [
+      "put",
+      "has put",
+      "puts"
+     ],
+     "f": "brot",
+     "r": "tisch",
+     "phrase": "Mark put the bread on the table ten minutes ago.",
+     "sens": "Mark a posé le pain sur la table il y a dix minutes.",
+     "n": "« Ago » → prétérit."
+    },
+    {
+     "q": "The cat has ___ onto the chair.",
+     "c": [
+      "jumped",
+      "jump",
+      "jumping"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "The cat has jumped onto the chair.",
+     "sens": "Le chat a sauté sur la chaise.",
+     "n": "Régulier : <b>-ed</b>."
+    },
+    {
+     "q": "Mark ___ the milk on the table.",
+     "c": [
+      "has put",
+      "has putted",
+      "have put"
+     ],
+     "f": "milch",
+     "r": "tisch",
+     "phrase": "Mark has put the milk on the table.",
+     "sens": "Mark a mis le lait sur la table.",
+     "n": "He → <b>has</b> + put."
+    },
+    {
+     "q": "Mark has ___ the towel on the oven.",
+     "c": [
+      "hung",
+      "hanged",
+      "hang"
+     ],
+     "f": "handtuch",
+     "r": "backofen",
+     "phrase": "Mark has hung the towel on the oven.",
+     "sens": "Mark a accroché le torchon au four.",
+     "n": "<b>hang → hung → hung</b>."
+    },
+    {
+     "q": "Tonight Mark ___ for his roommates.",
+     "c": [
+      "cooked",
+      "has cooked yesterday",
+      "cooks yesterday"
+     ],
+     "f": "mark",
+     "phrase": "Tonight Mark cooked for his roommates.",
+     "sens": "Ce soir, Mark a cuisiné pour ses colocataires.",
+     "n": "Un moment passé précis → prétérit."
+    }
+   ]
   }
  },
  "traductions": {}

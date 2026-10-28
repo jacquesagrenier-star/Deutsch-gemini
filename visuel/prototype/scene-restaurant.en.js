@@ -1030,6 +1030,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ballpoint pens",
    "niveau": "B1",
+   "theme": "education_b1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1775,6 +1776,115 @@ window.SCENE = {
      "phrase": "The cake is on the counter.",
      "sens": "Le gâteau est sur le comptoir.",
      "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "A glass of, a bowl of, a piece of",
+   "qs": [
+    {
+     "q": "Mark orders a ___ of water.",
+     "c": [
+      "glass",
+      "cup",
+      "piece"
+     ],
+     "f": "glas",
+     "r": "mark",
+     "phrase": "Mark orders a glass of water.",
+     "sens": "Mark commande un verre d'eau.",
+     "n": "<b>a glass of</b>."
+    },
+    {
+     "q": "The lady is eating a ___ of soup.",
+     "c": [
+      "bowl",
+      "plate",
+      "glass"
+     ],
+     "f": "suppe",
+     "r": "frau",
+     "phrase": "The lady is eating a bowl of soup.",
+     "sens": "La dame mange un bol de soupe.",
+     "n": "La soupe se sert en <b>bowl</b>."
+    },
+    {
+     "q": "There's a bottle ___ water on the table.",
+     "c": [
+      "of",
+      "—",
+      "with"
+     ],
+     "f": "flasche",
+     "r": "tisch",
+     "phrase": "There's a bottle of water on the table.",
+     "sens": "Il y a une bouteille d'eau sur la table.",
+     "n": "Contenant + <b>of</b>."
+    },
+    {
+     "q": "Mark would like a ___ of cake.",
+     "c": [
+      "piece",
+      "bit of",
+      "slice of a"
+     ],
+     "f": "kuchen",
+     "r": "mark",
+     "phrase": "Mark would like a piece of cake.",
+     "sens": "Mark voudrait un morceau de gâteau.",
+     "n": "<b>a piece of</b>."
+    },
+    {
+     "q": "The waitress brings a ___ of rolls.",
+     "c": [
+      "basket",
+      "glass",
+      "bowl of a"
+     ],
+     "f": "korb",
+     "r": "kellnerin",
+     "phrase": "The waitress brings a basket of rolls.",
+     "sens": "La serveuse apporte une corbeille de petits pains.",
+     "n": "<b>a basket of</b>."
+    },
+    {
+     "q": "Mark also orders a ___ of coffee.",
+     "c": [
+      "cup",
+      "glass",
+      "bowl"
+     ],
+     "f": "tasse",
+     "r": "mark",
+     "phrase": "Mark also orders a cup of coffee.",
+     "sens": "Mark commande aussi une tasse de café.",
+     "n": "<b>a cup of</b>."
+    },
+    {
+     "q": "There are ___ wine bottles on the shelf.",
+     "c": [
+      "a lot of",
+      "much",
+      "a lot"
+     ],
+     "f": "flasche-2",
+     "r": "regal",
+     "phrase": "There are a lot of wine bottles on the shelf.",
+     "sens": "Sur l'étagère, il y a beaucoup de bouteilles de vin.",
+     "n": "Beaucoup de = <b>a lot of</b>."
+    },
+    {
+     "q": "The man is eating a ___ of meat.",
+     "c": [
+      "piece",
+      "glass",
+      "cup"
+     ],
+     "f": "fleisch",
+     "r": "mann",
+     "phrase": "The man is eating a piece of meat.",
+     "sens": "Le monsieur mange un morceau de viande.",
+     "n": "<b>a piece of</b>."
     }
    ]
   }

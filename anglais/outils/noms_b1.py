@@ -52,7 +52,7 @@ adult | l'adulte
 break-up | la rupture
 childcare | la garde d'enfants
 custody | la garde d'enfant (droit)
-daycare center | la crèche, la garderie
+daycare center | la crèche, la garderie | ex=We drop the kids off at the daycare center at eight. # Nous déposons les enfants à la garderie à huit heures.
 envy | l'envie, la jalousie
 grandma | la mamie, grand-mère
 grandpa | le papi, grand-père
@@ -62,7 +62,7 @@ life partner | le compagnon (de vie)
 loyalty | la fidélité
 married couple | le couple marié
 nursery | la crèche (pour bébés)
-offspring | la progéniture, les enfants | pl=offspring
+offspring | la progéniture, les enfants | pl=offspring | ex=The bird feeds its offspring every hour. # L'oiseau nourrit ses petits toutes les heures.
 orphan | l'orphelin, l'orpheline
 parental allowance | l'allocation parentale
 parental leave | le congé parental
@@ -70,7 +70,7 @@ rapport | la complicité
 reconciliation | la réconciliation
 senior citizen | la personne âgée, le senior
 separation | la séparation
-stroller | la poussette, landau | gb=pram
+stroller | la poussette | gb=pram | ex=She pushed the stroller through the park. # Elle a poussé la poussette dans le parc.
 upbringing | l'éducation (parentale)
 widow | la veuve
 """,
@@ -87,14 +87,13 @@ attachment | la pièce jointe
 balance sheet | le bilan
 business card | la carte de visite
 business letter | la lettre commerciale
-butcher | le boucher
+butcher | le boucher, la bouchère | ex=The butcher cut the meat into thin slices. # Le boucher a coupé la viande en fines tranches.
 calling | la vocation
 canteen | la cantine
-career choice | le choix professionnel
 career opportunity | l'opportunité de carrière
 caregiver | l'aidant, le soignant | gb=carer
 caretaker | le concierge, gardien
-catering | la restauration (secteur)
+catering | le traiteur, la restauration | u | ex=Who is doing the catering for the wedding? # Qui s'occupe du traiteur pour le mariage ?
 challenge | le défi
 childminder | l'assistante maternelle
 competitor | le concurrent
@@ -105,9 +104,9 @@ continuing education | la formation continue | u
 cooperation | la collaboration, participation
 copy | la copie
 cover letter | la lettre de motivation
-craftsman | l'artisan | pl=craftsmen
+craftsman | l'artisan | pl=craftsmen | ex=This table was made by a local craftsman. # Cette table a été faite par un artisan du coin.
 deal | l'accord, l'affaire
-dealer | le marchand, le revendeur
+dealer | le marchand, le revendeur | ex=He bought his car from a dealer in Quincy. # Il a acheté sa voiture chez un concessionnaire de Quincy.
 detail | le détail
 """,
 "work_b1_2": """
@@ -122,7 +121,6 @@ headquarters | le siège | pl=headquarters
 housewife | la femme au foyer
 industry | l'industrie
 initiative | l'initiative
-innkeeper | l'aubergiste, le patron
 intern | le stagiaire
 judge | le juge
 ladder | l'échelle
@@ -135,11 +133,11 @@ merger | la fusion
 merit | le mérite
 midwife | la sage-femme
 negotiation | la négociation
-nutritionist | le, la nutritionniste
+nutritionist | le, la nutritionniste | ex=My nutritionist told me to eat more vegetables. # Ma nutritionniste m'a dit de manger plus de légumes.
 objective | l'objectif
 pension | la retraite (pension)
 photocopier | la photocopieuse
-physical therapist | le, la physiothérapeute | gb=physiotherapist
+physical therapist | le, la physiothérapeute | gb=physiotherapist | ex=I see a physical therapist for my back. # Je vois un physiothérapeute pour mon dos.
 planning | la planification
 PO box | la boîte postale
 prerequisite | la condition préalable
@@ -151,7 +149,7 @@ production | la production
 """,
 "work_b1_3": """
 proposal | la proposition
-realtor | l'agent immobilier | gb=estate agent
+realtor | l'agent immobilier | gb=estate agent | ex=The realtor showed us three houses. # L'agent immobilier nous a montré trois maisons.
 registered letter | la lettre recommandée
 remote work | le télétravail
 reporter | le, la journaliste, le reporter
@@ -160,7 +158,7 @@ responsibility | la responsabilité
 role | le rôle
 scientist | le scientifique
 shareholder | l'actionnaire
-shift work | le travail posté | u
+shift work | le travail posté | u | ex=Nurses often do shift work. # Les infirmières font souvent du travail posté.
 skilled worker | le travailleur qualifié
 social worker | le travailleur social
 soldier | le soldat
@@ -173,11 +171,11 @@ subsidiary | la filiale
 substitute | le, la remplaçant(e)
 supervisor | le, la responsable
 temporary work | le travail intérimaire
-trade fair | le salon, la foire
+trade fair | le salon professionnel | ex=Our company has a booth at the trade fair. # Notre entreprise a un stand au salon.
 translator | le traducteur
 unemployment | le chômage | u
 union | le syndicat
-vocational training | la formation professionnelle
+vocational training | la formation professionnelle | u | ex=He chose vocational training instead of college. # Il a choisi une formation professionnelle plutôt que l'université.
 wage | le salaire
 warehouse | l'entrepôt
 work permit | le permis de travail
@@ -188,11 +186,11 @@ working conditions | les conditions de travail
 """,
 "food_b1": """
 additive | l'additif
-afternoon snack | le goûter
+afternoon snack | le goûter | ex=The kids have an afternoon snack after school. # Les enfants prennent un goûter après l'école.
 aperitif | l'apéritif
 appetite | l'appétit
 appetizer | l'entrée | gb=starter
-aroma | l'arôme
+aroma | l'arôme | ex=The aroma of fresh coffee filled the kitchen. # L'arôme du café frais remplissait la cuisine.
 asparagus | l'asperge | u
 baking pan | le moule à gâteau
 barbecue | le barbecue, gril
@@ -208,10 +206,10 @@ cooking pot | la marmite
 cuisine | la cuisine (gastronomie)
 dumpling | la boulette, le ravioli
 eating habit | l'habitude alimentaire
-enjoyment | le plaisir (savourer)
+enjoyment | le plaisir | u | ex=She reads for enjoyment, not for work. # Elle lit pour le plaisir, pas pour le travail.
 fat | la graisse, matière grasse
 favorite dish | le plat préféré
-fiber | la fibre
+fiber | la fibre | u | ex=Beans are high in fiber. # Les haricots sont riches en fibres.
 foodstuff | la denrée alimentaire
 hamburger | le hamburger
 inn | l'auberge
@@ -220,7 +218,7 @@ liquid | le liquide
 main course | le plat principal
 margarine | la margarine
 mayonnaise | la mayonnaise
-ground beef | le bœuf haché | u | gb=mince
+ground beef | le bœuf haché | u | gb=mince | ex=I need a pound of ground beef for the burgers. # Il me faut une livre de bœuf haché pour les hamburgers.
 """,
 "food_b1_2": """
 mineral water | l'eau minérale | u
@@ -236,17 +234,17 @@ rhubarb | la rhubarbe
 roast | le rôti
 sauce | la sauce
 snack | la collation, en-cas
-specialty | la spécialité | gb=speciality
+specialty | la spécialité | gb=speciality | ex=Clam chowder is the specialty of the house. # La chaudrée de palourdes est la spécialité de la maison.
 steak | le steak
 stew | le ragoût
 texture | la texture
-canned food | les conserves | u | gb=tinned food
+canned food | les conserves | u | gb=tinned food | ex=We keep some canned food for emergencies. # Nous gardons des conserves pour les urgences.
 whipped cream | la crème fouettée, la chantilly | u
 """,
 "home_b1": """
-antenna | l'antenne | gb=aerial
+antenna | l'antenne | gb=aerial | ex=The antenna is on the roof. # L'antenne est sur le toit.
 air conditioning | la climatisation
-ax | la hache
+ax | la hache | ex=He split the wood with an ax. # Il a fendu le bois avec une hache.
 beam | la poutre
 blade | la lame
 cleaning | le nettoyage
@@ -258,11 +256,10 @@ dirt | la saleté | u
 disturbance | le dérangement
 dresser | la commode
 firewood | le bois de chauffage
-furnishings | l'ameublement | plt
-grille | la grille
+furnishings | l'ameublement | plt | ex=The apartment comes with all the furnishings. # L'appartement est loué avec tout l'ameublement.
 handle | la poignée
-hardware store | la quincaillerie | gb=hardware shop
-household appliance | l'appareil ménager
+hardware store | la quincaillerie | gb=hardware shop | ex=I bought some nails at the hardware store. # J'ai acheté des clous à la quincaillerie.
+household appliance | l'appareil ménager | ex=The washing machine is our most useful household appliance. # La machine à laver est notre appareil ménager le plus utile.
 hut | la cabane, refuge
 landlord | le propriétaire (bailleur)
 laundry detergent | la lessive, détergent
@@ -270,8 +267,8 @@ lever | le levier
 living space | la surface habitable
 mailbox | la boîte aux lettres
 needle | l'aiguille
-paintbrush | le pinceau
-clothespin | la pince à linge | gb=clothes peg
+paintbrush | le pinceau | ex=Clean the paintbrush with water. # Nettoie le pinceau à l'eau.
+clothespin | la pince à linge | gb=clothes peg | ex=I need more clothespins to hang the laundry. # Il me faut plus de pinces à linge pour étendre le linge.
 pipe | le tuyau
 plug | la fiche, prise (mâle)
 repair | la réparation
@@ -283,11 +280,11 @@ shared apartment | la colocation
 shoelace | le lacet
 stairwell | la cage d'escalier
 storage | le rangement
-studio apartment | le studio | gb=studio flat
+studio apartment | le studio | gb=studio flat | ex=She rents a small studio apartment downtown. # Elle loue un petit studio au centre-ville.
 thread | le fil
-flashlight | la lampe de poche | gb=torch
+flashlight | la lampe de poche | gb=torch | ex=Take a flashlight, it's dark outside. # Prends une lampe de poche, il fait noir dehors.
 trap | le piège
-tube | le tube, le tuyau
+tube | le tube | ex=There's a tube of toothpaste in the drawer. # Il y a un tube de dentifrice dans le tiroir.
 vase | le vase
 whistle | le sifflet
 wick | la mèche
@@ -310,7 +307,6 @@ clinic | la clinique
 contact lens | la lentille de contact
 diagnosis | le diagnostic | pl=diagnoses
 disability | le handicap
-discharge | la sortie (d'hôpital)
 doctor's office | le cabinet médical
 donation | le don
 dose | la dose
@@ -332,13 +328,13 @@ liver | le foie
 lung | le poumon
 maternity ward | la maternité (service)
 medical examination | l'examen médical
-medical record | le dossier médical
+medical record | le dossier médical | ex=The doctor checked my medical record. # Le médecin a consulté mon dossier médical.
 muscle | le muscle
 nerve | le nerf
-non-smoker | le non-fumeur
+non-smoker | le non-fumeur | ex=He's been a non-smoker for ten years. # Il ne fume plus depuis dix ans.
 nursing home | la maison de retraite
 ointment | la pommade
-operating room | le bloc opératoire | gb=operating theatre
+operating room | le bloc opératoire | gb=operating theatre | ex=The patient is already in the operating room. # Le patient est déjà au bloc opératoire.
 organ | l'organe
 painkiller | l'antidouleur
 pregnancy | la grossesse
@@ -360,14 +356,14 @@ vaccination | la vaccination
 vein | la veine
 virus | le virus
 vitamin | la vitamine
-cane | la canne | gb=walking stick
+cane | la canne | gb=walking stick | ex=My grandfather walks with a cane. # Mon grand-père marche avec une canne.
 wheelchair | le fauteuil roulant
 wing | l'aile
 wrist | le poignet
 """,
 "clothes_b1": """
 jewelry | les bijoux | u
-stocking | le bas
+stocking | le bas | ex=We hang stockings by the fireplace at Christmas. # À Noël, nous accrochons des chaussettes près de la cheminée.
 sweatpants | le pantalon de jogging
 top | le haut
 uniform | l'uniforme
@@ -429,10 +425,10 @@ irrigation | l'irrigation
 jungle | la jungle
 lighthouse | le phare
 livestock | le bétail | u
-mill | le moulin
+mill | le moulin | ex=There's an old mill by the river. # Il y a un vieux moulin au bord de la rivière.
 mole | la taupe
 mosquito | le moustique | pl=mosquitoes
-mountain range | le massif montagneux
+mountain range | la chaîne de montagnes | ex=The White Mountains are a mountain range in New Hampshire. # Les White Mountains sont une chaîne de montagnes du New Hampshire.
 nature reserve | la réserve naturelle
 newsstand | le kiosque
 ocean | l'océan
@@ -443,14 +439,14 @@ peninsula | la péninsule
 plain | la plaine
 plateau | le plateau
 poison | le poison
-power outage | la coupure de courant | gb=power cut
-power plant | la centrale électrique | gb=power station
+power outage | la coupure de courant | gb=power cut | ex=The storm caused a power outage. # La tempête a provoqué une coupure de courant.
+power plant | la centrale électrique | gb=power station | ex=The old power plant is now a museum. # L'ancienne centrale électrique est devenue un musée.
 predator | le prédateur
 """,
 "nature_b1_3": """
 puddle | la flaque
 quay | le quai
-garbage collection | le ramassage des ordures | u | gb=rubbish collection
+garbage collection | le ramassage des ordures | u | gb=rubbish collection | ex=Garbage collection is on Tuesdays. # Le ramassage des ordures a lieu le mardi.
 resource | la ressource
 root | la racine
 satellite | le satellite
@@ -479,7 +475,7 @@ adventure | l'aventure
 anchor | l'ancre
 announcement | l'annonce (haut-parleur)
 bend | le virage
-bike pump | la pompe à vélo
+bike pump | la pompe à vélo | ex=Can I borrow your bike pump? # Je peux emprunter ta pompe à vélo ?
 bike rack | le support à vélos
 brake | le frein
 bus shelter | l'abribus
@@ -503,10 +499,10 @@ handlebar | le guidon
 hostel | l'auberge de jeunesse
 journey | le trajet
 lane | la voie
-flyer | le prospectus | gb=leaflet
+flyer | le prospectus | gb=leaflet | ex=Someone left a flyer in our mailbox. # Quelqu'un a laissé un prospectus dans notre boîte aux lettres.
 license plate | la plaque d'immatriculation | gb=number plate
 local | l'habitant du coin
-means of transportation | le moyen de transport | pl=means of transportation | gb=means of transport | plgb=means of transport
+means of transportation | le moyen de transport | pl=means of transportation | gb=means of transport | plgb=means of transport | ex=The subway is the fastest means of transportation in Boston. # Le métro est le moyen de transport le plus rapide à Boston.
 mobility | la mobilité | u
 motor vehicle | le véhicule à moteur
 one-way street | la rue à sens unique
@@ -515,17 +511,17 @@ parking meter | le parcmètre
 parking ticket | la contravention
 """,
 "travel_b1_2": """
-railroad | le chemin de fer | gb=railway
-taillight | le feu arrière | gb=rear light
+railroad | le chemin de fer | gb=railway | ex=The railroad runs along the coast. # Le chemin de fer longe la côte.
+taillight | le feu arrière | gb=rear light | ex=One of your taillights is broken. # Un de tes feux arrière est cassé.
 return | le retour
 road sign | le panneau de signalisation
 ruins | les ruines | plt
 shelter | le refuge
-sightseeing tour | la visite touristique
+sightseeing tour | la visite touristique | ex=We took a sightseeing tour of the city. # Nous avons fait une visite touristique de la ville.
 spare part | la pièce de rechange
 speed | la vitesse
 speed limit | la limitation de vitesse
-commuter train | le train de banlieue
+commuter train | le train de banlieue | ex=She takes the commuter train to work. # Elle prend le train de banlieue pour aller travailler.
 surcharge | le supplément
 toll | le péage
 tour operator | le voyagiste
@@ -533,9 +529,9 @@ tourism | le tourisme
 tourist attraction | le site touristique
 traffic accident | l'accident de la route
 trail | le sentier
-train platform | le quai
+train platform | le quai | ex=The train platform was full of people. # Le quai était plein de monde.
 transfer | la correspondance
-transportation | le transport | u | gb=transport
+transportation | le transport | u | gb=transport | ex=Public transportation is cheap in this city. # Les transports en commun sont bon marché dans cette ville.
 travel guide | le guide de voyage
 vehicle | le véhicule
 viewpoint | le belvédère
@@ -544,9 +540,9 @@ zone | la zone
 """,
 "city_b1": """
 architecture | l'architecture
-bookstore | la librairie | gb=bookshop
+bookstore | la librairie | gb=bookshop | ex=There's a great bookstore near Harvard. # Il y a une super librairie près de Harvard.
 city center | le centre-ville
-coat check | le vestiaire | gb=cloakroom
+coat check | le vestiaire | gb=cloakroom | ex=You can leave your coat at the coat check. # Vous pouvez laisser votre manteau au vestiaire.
 column | la colonne
 concrete | le béton
 construction | la construction, le chantier
@@ -559,7 +555,7 @@ growth | la croissance
 housing development | le lotissement
 industrial area | la zone industrielle
 infrastructure | l'infrastructure
-lost and found | les objets trouvés | u | gb=lost property office
+lost and found | les objets trouvés | u | gb=lost property office | ex=Did you check the lost and found? # Tu as regardé aux objets trouvés ?
 metropolis | la métropole
 monument | le monument
 mosque | la mosquée
@@ -575,7 +571,7 @@ side street | la petite rue
 space | l'espace
 suburb | la banlieue
 town planning | l'urbanisme
-vicinity | les environs, le voisinage
+vicinity | les environs | ex=There are three schools in the vicinity. # Il y a trois écoles dans les environs.
 """,
 "education_b1": """
 alphabet | l'alphabet
@@ -592,11 +588,11 @@ content | le contenu
 definition | la définition
 description | la description
 dialect | le dialecte
-dialog | le dialogue
+dialog | le dialogue | ex=Listen to the dialog and answer the questions. # Écoute le dialogue et réponds aux questions.
 diploma | le diplôme
 discovery | la découverte
 education | l'éducation, formation | u
-encyclopedia | l'encyclopédie
+encyclopedia | l'encyclopédie | ex=I looked it up in an encyclopedia. # Je l'ai cherché dans une encyclopédie.
 exchange program | le programme d'échange
 exercise | l'exercice
 experiment | l'expérience
@@ -605,7 +601,7 @@ failure | l'échec
 feedback | le retour, les commentaires | u
 foreign language | la langue étrangère
 foreword | la préface, avant-propos
-geography | la géographie | u
+geography | la géographie | u | ex=Geography was my favorite subject in school. # La géographie était ma matière préférée à l'école.
 heading | le titre (d'un texte)
 hypothesis | l'hypothèse | pl=hypotheses
 institute | l'institut
@@ -629,7 +625,7 @@ physics | la physique | u
 primary school | l'école primaire
 pronunciation | la prononciation | u
 report card | le bulletin scolaire
-requirement | l'exigence
+requirement | l'exigence, la condition requise | ex=A driver's license is a requirement for this job. # Le permis de conduire est exigé pour ce poste.
 reward | la récompense
 sample | l'échantillon
 schooling | la scolarité | u
@@ -642,7 +638,6 @@ study | l'étude (recherche)
 success | le succès
 tuition | les frais de scolarité | u | gb=tuition fees
 tutorial | le tutoriel, les travaux dirigés
-umbrella term | le terme générique
 written exam | l'examen écrit
 """,
 "culture_b1": """
@@ -651,7 +646,7 @@ artistic style | le courant artistique
 ballet | le ballet
 belief | la croyance | pl=beliefs
 biography | la biographie
-civilization | la civilisation
+civilization | la civilisation | ex=The Maya built an advanced civilization. # Les Mayas ont bâti une civilisation avancée.
 collector's item | la pièce de collection
 composer | le compositeur
 congratulations | les félicitations | plt
@@ -667,13 +662,13 @@ doll | la poupée
 entertainment | le divertissement | u
 essay | l'essai
 fairy tale | le conte
-feast | le repas de fête
+feast | le festin | ex=Thanksgiving dinner is a real feast. # Le repas de Thanksgiving est un vrai festin.
 flute | la flûte
 folklore | le folklore
 fool | l'idiot, l'imbécile
 ghost | le fantôme
 heritage | le patrimoine
-hero | le héros | pl=heroes
+hero | le héros | pl=heroes | ex=Firefighters are real heroes. # Les pompiers sont de vrais héros.
 hit | le tube, le succès
 housewarming party | la pendaison de crémaillère
 identity | l'identité
@@ -685,11 +680,11 @@ lighter | le briquet
 """,
 "culture_b1_2": """
 literature | la littérature | u
-meeting point | le point de rencontre
+meeting point | le point de rendez-vous | ex=The meeting point is in front of the museum. # Le point de rendez-vous est devant le musée.
 melody | la mélodie
 music school | l'école de musique
 myth | le mythe
-national holiday | la fête nationale
+national holiday | la fête nationale | ex=The Fourth of July is a national holiday. # Le 4 Juillet est la fête nationale.
 nightclub | la boîte de nuit
 opera | l'opéra
 original | l'original
@@ -701,23 +696,22 @@ picnic | le pique-nique
 pleasure | le plaisir
 plot | l'intrigue, l'action
 poetry | la poésie | u
-postage stamp | le timbre (poste)
 review | la critique
-short story | la nouvelle
+short story | la nouvelle | ex=She wrote a short story about her grandmother. # Elle a écrit une nouvelle sur sa grand-mère.
 sound | le son
 spirit | l'esprit
 story | l'histoire, le récit
 symbol | le symbole
 toy | le jouet
 trumpet | la trompette
-verse | le vers
+verse | le vers, le couplet | ex=We only know the first verse of the song. # Nous ne connaissons que le premier couplet de la chanson.
 wedding ceremony | la cérémonie de mariage
 """,
 "sports_b1": """
 athlete | le sportif, athlète
 blow | le coup
 bow | l'arc
-cabin | la cabine, le chalet
+cabin | la cabane, le chalet | ex=We rented a cabin in the woods. # Nous avons loué un chalet dans les bois.
 defeat | la défaite
 defender | le défenseur
 discipline | la discipline
@@ -737,9 +731,9 @@ professional | le, la professionnel(le)
 professional athlete | le sportif professionnel
 race | la course
 round | le tour, la manche
-run | la course
+run | la course (à pied) | ex=I go for a run every morning. # Je vais courir tous les matins.
 runner | le coureur
-ski | le ski
+ski | le ski | ex=I need new skis this winter. # Il me faut de nouveaux skis cet hiver.
 soccer team | l'équipe de football | gb=football team
 spectator | le spectateur
 stadium | le stade
@@ -766,14 +760,14 @@ classified ad | la petite annonce
 click | le clic
 comment | le commentaire
 communication | la communication
-area code | l'indicatif téléphonique | gb=dialling code
+area code | l'indicatif téléphonique | gb=dialling code | ex=The area code for Boston is 617. # L'indicatif de Boston est le 617.
 drive | le lecteur, le disque
 expression | l'expression
 follower | l'abonné
 forum | le forum
-hard drive | le disque dur
+hard drive | le disque dur | ex=My hard drive is almost full. # Mon disque dur est presque plein.
 hoax | le canular
-homepage | la page d'accueil
+homepage | la page d'accueil | ex=You'll find the link on our homepage. # Vous trouverez le lien sur notre page d'accueil.
 illustration | l'illustration
 image | l'image
 index | l'index | pl=indexes
@@ -788,7 +782,7 @@ listener | l'auditeur
 logo | le logo | pl=logos
 monitor | l'écran, moniteur
 phone number | le numéro de téléphone
-post | la publication
+post | la publication (en ligne) | ex=Her last post got a thousand likes. # Sa dernière publication a eu mille mentions « j'aime ».
 privacy | la vie privée
 profile | le profil
 proportion | la proportion
@@ -814,24 +808,23 @@ title | le titre
 trend | la tendance
 update | la mise à jour
 voicemail | la messagerie vocale
-writing | l'écriture
+writing | l'écriture | u | ex=Her writing is hard to read. # Son écriture est difficile à lire.
 """,
 "money_b1": """
 bank transfer | le virement bancaire
-banknote | le billet (de banque)
 bond | l'obligation, le bon
-butcher shop | la boucherie | gb=butcher's
+butcher shop | la boucherie | gb=butcher's | ex=The butcher shop on the corner sells great sausages. # La boucherie du coin vend de très bonnes saucisses.
 buyer | l'acheteur
 capital | le capital
 catalog | le catalogue
 consumer | le consommateur
 consumption | la consommation
-contribution | la cotisation, la contribution
+contribution | la cotisation, la contribution | ex=Thank you for your contribution to the project. # Merci pour ta contribution au projet.
 currency | la monnaie, la devise
 customer service | le service client
 debit card | la carte de débit
 demand | la demande (marché)
-expiration date | la date d'expiration | gb=expiry date
+expiration date | la date d'expiration | gb=expiry date | ex=Check the expiration date on the milk. # Vérifie la date de péremption du lait.
 fund | le fonds
 goods | les marchandises | plt
 guarantee | la garantie
@@ -844,7 +837,7 @@ investment | l'investissement
 label | l'étiquette
 machinery | les machines | u
 manufacturer | le fabricant
-need | le besoin
+need | le besoin | ex=There's no need to hurry. # Inutile de se presser.
 packaging | l'emballage
 payment | le paiement
 pocket money | l'argent de poche | u
@@ -872,7 +865,7 @@ enthusiasm | l'enthousiasme
 excuse | l'excuse, le prétexte
 fright | la frayeur
 heartbreak | le chagrin d'amour
-homesickness | le mal du pays | u
+homesickness | le mal du pays | u | ex=During her first year abroad, she suffered from homesickness. # Pendant sa première année à l'étranger, elle a eu le mal du pays.
 honor | l'honneur
 hope | l'espoir
 imagination | l'imagination
@@ -881,7 +874,7 @@ intention | l'intention
 jealousy | la jalousie | u
 memory | le souvenir
 mind | l'esprit
-misfortune | le malheur
+misfortune | le malheur | ex=He had the misfortune to lose his job. # Il a eu le malheur de perdre son emploi.
 motivation | la motivation
 panic | la panique | u
 perception | la perception
@@ -895,7 +888,7 @@ talent | le talent
 thought | la pensée
 understanding | la compréhension
 weakness | la faiblesse | u
-will | la volonté
+will | la volonté | ex=She has a strong will. # Elle a une forte volonté.
 wish | le souhait
 """,
 "society_b1": """
@@ -926,7 +919,7 @@ crime | le crime, la criminalité
 criminal | le criminel
 crisis | la crise | pl=crises
 crown | la couronne
-current affairs | l'actualité | plt
+current affairs | l'actualité | plt | ex=He reads a lot about current affairs. # Il lit beaucoup sur l'actualité.
 damage | le dommage, dégât
 deed | l'acte
 development | le développement, évolution
@@ -947,7 +940,7 @@ fight | le combat, la lutte
 freedom | la liberté | u
 funding | le financement | u
 gap | le fossé
-hardship | la détresse, misère
+hardship | les difficultés, la misère | ex=The family went through years of hardship. # La famille a traversé des années difficiles.
 immigrant | l'immigrant
 immigration | l'immigration
 impact | l'impact
@@ -955,7 +948,7 @@ inequality | l'inégalité
 influence | l'influence
 inhabitant | l'habitant
 integration | l'intégration
-judgment | le jugement, verdict
+judgment | le jugement | ex=I trust your judgment. # Je fais confiance à ton jugement.
 killer | le tueur
 loneliness | la solitude | u
 mayor | le maire
@@ -971,7 +964,7 @@ organization | l'organisation
 origin | l'origine
 pay gap | l'écart de salaire
 peace | la paix | u
-penalty | la sanction, l'amende
+penalty | la sanction, l'amende | ex=The penalty for parking here is fifty dollars. # L'amende pour stationner ici est de cinquante dollars.
 """,
 "society_b1_3": """
 permit | l'autorisation
@@ -997,7 +990,6 @@ request | la demande, requête
 residency | la résidence
 right to vote | le droit de vote
 safety | la sécurité | u
-sex | le sexe
 social welfare | l'aide sociale | u
 society | la société
 solidarity | la solidarité
@@ -1011,7 +1003,7 @@ volunteering | le bénévolat
 """,
 "law_b1": """
 justice | la justice | u
-offense | le délit
+offense | le délit, l'infraction | ex=Driving without a license is an offense. # Conduire sans permis est une infraction.
 ruling | le jugement
 trial | le procès
 """,
@@ -1038,12 +1030,11 @@ treaty | le traité
 """,
 "time_b1": """
 daily routine | la routine quotidienne
-duration | la durée
+duration | la durée | ex=The duration of the course is six weeks. # La durée du cours est de six semaines.
 everyday life | la vie quotidienne | u
 hurry | la hâte | u
 millennium | le millénaire
 period | la période
-public holiday | le jour férié
 weekday | le jour de la semaine
 """,
 "everyday_b1": """
@@ -1052,8 +1043,8 @@ angle | l'angle
 average | la moyenne
 basis | la base | pl=bases
 cause | la cause
-caution | la prudence
-coincidence | la coïncidence, le hasard
+caution | la prudence | u | ex=Drive with caution, the roads are icy. # Conduis avec prudence, les routes sont verglacées.
+coincidence | la coïncidence, le hasard | ex=What a coincidence to see you here! # Quelle coïncidence de te voir ici !
 comparison | la comparaison
 consequence | la conséquence
 construction site | le chantier
@@ -1074,18 +1065,17 @@ maiden name | le nom de jeune fille
 majority | la majorité
 material | le matériau
 meaning | la signification
-means | le moyen | pl=means
+means | le moyen | pl=means | ex=The bike is my main means of getting around. # Le vélo est mon principal moyen de me déplacer.
 milligram | le milligramme
 nutrition | la nutrition | u
 object | l'objet
 opportunity | l'occasion
 opposite | le contraire
-pardon | le pardon
 pattern | le motif
 percentage | le pourcentage
 """,
 "everyday_b1_2": """
-piece of advice | un conseil | pl=pieces of advice
+piece of advice | un conseil | pl=pieces of advice | ex=Let me give you a piece of advice. # Laisse-moi te donner un conseil.
 possibility | la possibilité
 reaction | la réaction
 reality | la réalité
@@ -1102,6 +1092,6 @@ taste | le goût
 truth | la vérité
 type | le type, genre
 work of art | l'œuvre d'art | pl=works of art
-zip code | le code postal | gb=postcode
+zip code | le code postal | gb=postcode | ex=What's your zip code? # Quel est ton code postal ?
 """,
 }

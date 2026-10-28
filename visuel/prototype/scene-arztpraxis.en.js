@@ -658,6 +658,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "stethoscopes",
    "niveau": "B1",
+   "theme": "health_b1_2",
    "personne": null,
    "aussi": [],
    "sur": "aerztin",
@@ -753,6 +754,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "injections",
    "niveau": "B1",
+   "theme": "health_b1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1324,7 +1326,8 @@ window.SCENE = {
    "mot": "lung",
    "genre": "",
    "pluriel": "lungs",
-   "niveau": "B2",
+   "niveau": "B1",
+   "theme": "health_b1_2",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1346,6 +1349,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "bones",
    "niveau": "B1",
+   "theme": "health_b1",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1535,6 +1539,115 @@ window.SCENE = {
      "phrase": "The poster is behind the patient.",
      "sens": "L'affiche est accrochée derrière le patient.",
      "n": "<b>behind</b> = derrière."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Put, hang, sit : le geste et le résultat",
+   "qs": [
+    {
+     "q": "The ball ___ on the bag.",
+     "c": [
+      "is",
+      "puts",
+      "lies down"
+     ],
+     "f": "ball",
+     "r": "tasche",
+     "phrase": "The ball is on the bag.",
+     "sens": "Le ballon est sur le sac.",
+     "n": "Le résultat, l'état : <b>is</b>."
+    },
+    {
+     "q": "Mark ___ the ball on the bag.",
+     "c": [
+      "put",
+      "putted",
+      "puts on"
+     ],
+     "f": "ball",
+     "r": "tasche",
+     "phrase": "Mark put the ball on the bag.",
+     "sens": "Mark a posé le ballon sur le sac.",
+     "n": "<b>put → put → put</b> : irrégulier, la même forme partout."
+    },
+    {
+     "q": "The doctor is ___ on a stool.",
+     "c": [
+      "sitting",
+      "sat",
+      "sit"
+     ],
+     "f": "aerztin",
+     "r": "hocker",
+     "phrase": "The doctor is sitting on a stool.",
+     "sens": "La médecin est assise sur un tabouret.",
+     "n": "« Être assis » = <b>be sitting</b> (ou be seated)."
+    },
+    {
+     "q": "Mark ___ his shoes next to the bag.",
+     "c": [
+      "put",
+      "has put on",
+      "puts up"
+     ],
+     "f": "schuh",
+     "r": "tasche",
+     "phrase": "Mark put his shoes next to the bag.",
+     "sens": "Mark a mis ses chaussures à côté du sac.",
+     "n": "Poser = <b>put</b>. <b>Put on</b>, c'est enfiler."
+    },
+    {
+     "q": "The shoes ___ next to the bag.",
+     "c": [
+      "are",
+      "were put on",
+      "is"
+     ],
+     "f": "schuh",
+     "r": "tasche",
+     "phrase": "The shoes are next to the bag.",
+     "sens": "Les chaussures sont à côté du sac.",
+     "n": "Pluriel → <b>are</b>."
+    },
+    {
+     "q": "Mark ___ his jacket next to the door.",
+     "c": [
+      "hung",
+      "hanged",
+      "hang"
+     ],
+     "f": "jacke",
+     "r": "tuer",
+     "phrase": "Mark hung his jacket next to the door.",
+     "sens": "Mark a accroché sa veste à côté de la porte.",
+     "n": "<b>hang → hung → hung</b> (hanged = pendu)."
+    },
+    {
+     "q": "The glass is ___ the desk.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "glas",
+     "r": "schreibtisch",
+     "phrase": "The glass is on the desk.",
+     "sens": "Le verre est sur le bureau.",
+     "n": "Posé sur → <b>on</b>."
+    },
+    {
+     "q": "The doctor ___ the insurance card on the desk.",
+     "c": [
+      "has put",
+      "has putted",
+      "have put"
+     ],
+     "f": "karte",
+     "r": "schreibtisch",
+     "phrase": "The doctor has put the insurance card on the desk.",
+     "sens": "La médecin a posé la carte d'assurance sur le bureau.",
+     "n": "Present perfect : has + <b>put</b>."
     }
    ]
   }

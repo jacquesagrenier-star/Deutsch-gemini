@@ -146,7 +146,9 @@ window.SCENE = {
    "id": "rhabarber",
    "mot": "rhubarb",
    "genre": "",
+   "pluriel": "rhubarbs",
    "niveau": "B1",
+   "theme": "food_b1_2",
    "personne": null,
    "aussi": [
     {
@@ -181,6 +183,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "nuts",
    "niveau": "B1",
+   "theme": "food_b1_2",
    "personne": null,
    "aussi": [
     {
@@ -672,6 +675,72 @@ window.SCENE = {
      "phrase": "Anna is in front of the stand.",
      "sens": "Anna est devant l'étal.",
      "n": "<b>in front of</b> = devant. Attention : <b>front</b> seul n'est pas une préposition."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "I'd like a ___ of strawberries.",
+     "c": [
+      "box",
+      "can",
+      "glass"
+     ],
+     "f": "erdbeere",
+     "phrase": "I'd like a box of strawberries.",
+     "sens": "Je voudrais une barquette de fraises.",
+     "n": "Une barquette = <b>a box</b> (ou a basket) of."
+    },
+    {
+     "q": "Two pounds of apples, ___.",
+     "c": [
+      "please",
+      "thank you",
+      "please you"
+     ],
+     "f": "apfel",
+     "phrase": "Two pounds of apples, please.",
+     "sens": "Deux livres de pommes, s'il vous plaît.",
+     "n": "S'il vous plaît = <b>please</b>."
+    },
+    {
+     "q": "The peaches are ___ than the apricots.",
+     "c": [
+      "bigger",
+      "more big",
+      "biggest"
+     ],
+     "f": "pfirsich",
+     "r": "aprikose",
+     "phrase": "The peaches are bigger than the apricots.",
+     "sens": "Les pêches sont plus grosses que les abricots.",
+     "n": "<b>bigger than</b>."
+    },
+    {
+     "q": "How much ___ the raspberries?",
+     "c": [
+      "are",
+      "is",
+      "costs"
+     ],
+     "f": "himbeere",
+     "phrase": "How much are the raspberries?",
+     "sens": "Combien coûtent les framboises ?",
+     "n": "Pluriel → <b>are</b>."
+    },
+    {
+     "q": "I'll take a pound ___ plums.",
+     "c": [
+      "of",
+      "—",
+      "with"
+     ],
+     "f": "pflaume",
+     "phrase": "I'll take a pound of plums.",
+     "sens": "Je prends une livre de prunes.",
+     "n": "Quantité + <b>of</b>."
     }
    ]
   }

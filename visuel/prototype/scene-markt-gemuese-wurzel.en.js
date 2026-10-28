@@ -8,6 +8,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "beets",
    "niveau": "B1",
+   "theme": "food_b1",
    "personne": null,
    "aussi": [
     {
@@ -311,6 +312,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "Brussels sprouts",
    "niveau": "B1",
+   "theme": "food_b1",
    "personne": null,
    "aussi": [
     {
@@ -442,6 +444,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "radishes",
    "niveau": "B1",
+   "theme": "food_b1_2",
    "personne": null,
    "aussi": [
     {
@@ -541,6 +544,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "radishes",
    "niveau": "B1",
+   "theme": "food_b1_2",
    "personne": null,
    "aussi": [],
    "sur": "anna",
@@ -632,6 +636,72 @@ window.SCENE = {
      "phrase": "The leek is to the right of the cabbage.",
      "sens": "Le poireau est à droite du chou.",
      "n": "<b>to the right of</b> = à droite de."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "I'd like a ___ of carrots.",
+     "c": [
+      "bunch",
+      "bundle",
+      "bouquet"
+     ],
+     "f": "karotte",
+     "phrase": "I'd like a bunch of carrots.",
+     "sens": "Je voudrais une botte de carottes.",
+     "n": "Une botte = <b>a bunch of</b>."
+    },
+    {
+     "q": "Two ___ of potatoes, please.",
+     "c": [
+      "pounds",
+      "pound",
+      "poundes"
+     ],
+     "f": "kartoffel",
+     "phrase": "Two pounds of potatoes, please.",
+     "sens": "Deux livres de pommes de terre, s'il vous plaît.",
+     "n": "Le poids américain : <b>pounds</b>, au pluriel après two."
+    },
+    {
+     "q": "How much ___ the cauliflower?",
+     "c": [
+      "is",
+      "are",
+      "does"
+     ],
+     "f": "blumenkohl",
+     "phrase": "How much is the cauliflower?",
+     "sens": "Combien coûte le chou-fleur ?",
+     "n": "Singulier → How much <b>is</b>…?"
+    },
+    {
+     "q": "The cabbage is ___ than the Brussels sprouts.",
+     "c": [
+      "bigger",
+      "more big",
+      "biger"
+     ],
+     "f": "kohl",
+     "r": "rosenkohl",
+     "phrase": "The cabbage is bigger than the Brussels sprouts.",
+     "sens": "Le chou est plus gros que les choux de Bruxelles.",
+     "n": "big → <b>bigger</b> : la consonne double."
+    },
+    {
+     "q": "I still need a ___ of garlic for the sauce.",
+     "c": [
+      "head",
+      "piece",
+      "ball"
+     ],
+     "f": "knoblauch",
+     "phrase": "I still need a head of garlic for the sauce.",
+     "sens": "Il me faut encore une tête d'ail pour la sauce.",
+     "n": "Une tête d'ail = <b>a head of garlic</b>."
     }
    ]
   }

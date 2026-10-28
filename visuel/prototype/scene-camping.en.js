@@ -593,6 +593,109 @@ window.SCENE = {
      "n": "<b>by</b> = près de, au bord de (by the window)."
     }
    ]
+  },
+  "B1": {
+   "titre": "Le futur : will et going to",
+   "qs": [
+    {
+     "q": "Tomorrow Anna ___ swim in the lake.",
+     "c": [
+      "will",
+      "is",
+      "does"
+     ],
+     "f": "see",
+     "r": "anna",
+     "phrase": "Tomorrow Anna will swim in the lake.",
+     "sens": "Demain, Anna nagera dans le lac.",
+     "n": "Futur → <b>will</b> + verbe."
+    },
+    {
+     "q": "Tonight they're going to ___ in the tent.",
+     "c": [
+      "sleep",
+      "sleeping",
+      "slept"
+     ],
+     "f": "zelt",
+     "phrase": "Tonight they're going to sleep in the tent.",
+     "sens": "Cette nuit, ils dormiront dans la tente.",
+     "n": "Going to + verbe nu."
+    },
+    {
+     "q": "I'll ___ you a song.",
+     "c": [
+      "play",
+      "playing",
+      "to play"
+     ],
+     "f": "gitarre",
+     "r": "anna",
+     "phrase": "I'll play you a song.",
+     "sens": "Je vais te jouer une chanson.",
+     "n": "Décision sur le moment → <b>I'll</b> + verbe."
+    },
+    {
+     "q": "The soup ___ be ready soon.",
+     "c": [
+      "will",
+      "is going",
+      "shall to"
+     ],
+     "f": "topf",
+     "phrase": "The soup will be ready soon.",
+     "sens": "La soupe sera bientôt prête.",
+     "n": "Prédiction → <b>will be</b>."
+    },
+    {
+     "q": "Tomorrow morning we're ___ out in the boat.",
+     "c": [
+      "going",
+      "go",
+      "will"
+     ],
+     "f": "boot",
+     "phrase": "Tomorrow morning we're going out in the boat.",
+     "sens": "Demain matin, nous irons en barque.",
+     "n": "Projet prévu → présent en <b>-ing</b>."
+    },
+    {
+     "q": "___ you put out the fire later?",
+     "c": [
+      "Will",
+      "Do",
+      "Are"
+     ],
+     "f": "feuer",
+     "phrase": "Will you put out the fire later?",
+     "sens": "Tu éteindras le feu plus tard ?",
+     "n": "Question au futur : <b>Will</b> + sujet + verbe."
+    },
+    {
+     "q": "It's going to ___ cold tonight.",
+     "c": [
+      "be",
+      "being",
+      "is"
+     ],
+     "f": "himmel",
+     "phrase": "It's going to be cold tonight.",
+     "sens": "Il va faire froid cette nuit.",
+     "n": "Going to + <b>be</b>."
+    },
+    {
+     "q": "The man is going to eat his sausage right ___.",
+     "c": [
+      "away",
+      "now away",
+      "soon"
+     ],
+     "f": "mann",
+     "phrase": "The man is going to eat his sausage right away.",
+     "sens": "L'homme va manger sa saucisse tout de suite.",
+     "n": "Tout de suite = <b>right away</b>."
+    }
+   ]
   }
  },
  "traductions": {}

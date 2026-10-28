@@ -241,6 +241,7 @@ window.SCENE = {
      "mot": "road sign",
      "genre": "",
      "niveau": "B1",
+     "theme": "travel_b1_2",
      "fr": "panneau de signalisation"
     }
    ],
@@ -373,7 +374,9 @@ window.SCENE = {
    "id": "waschmittel",
    "mot": "laundry detergent",
    "genre": "",
+   "pluriel": "laundry detergents",
    "niveau": "B1",
+   "theme": "home_b1",
    "personne": null,
    "aussi": [
     {
@@ -1258,6 +1261,111 @@ window.SCENE = {
      "phrase": "The towels are on the shelf.",
      "sens": "Les serviettes sont sur l'étagère.",
      "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Let, leave, have something done",
+   "qs": [
+    {
+     "q": "Anna ___ the washing machine.",
+     "c": [
+      "starts",
+      "lets run",
+      "makes go"
+     ],
+     "f": "anna",
+     "r": "waschmaschine",
+     "phrase": "Anna starts the washing machine.",
+     "sens": "Anna fait tourner la machine à laver.",
+     "n": "Faire tourner = <b>start</b> (la machine)."
+    },
+    {
+     "q": "She ___ the basket on the floor.",
+     "c": [
+      "leaves",
+      "lets",
+      "lets stand"
+     ],
+     "f": "korb",
+     "r": "boden",
+     "phrase": "She leaves the basket on the floor.",
+     "sens": "Elle laisse le panier par terre.",
+     "n": "Laisser (quelque part) = <b>leave</b>."
+    },
+    {
+     "q": "The woman ___ the girl play with the phone.",
+     "c": [
+      "lets",
+      "leaves",
+      "lets to"
+     ],
+     "f": "frau",
+     "r": "maedchen",
+     "phrase": "The woman lets the girl play with the phone.",
+     "sens": "La femme laisse la fille jouer avec le téléphone.",
+     "n": "Permettre = <b>let</b> + personne + verbe nu."
+    },
+    {
+     "q": "___ me help you!",
+     "c": [
+      "Let",
+      "Leave",
+      "Lets"
+     ],
+     "f": "anna",
+     "phrase": "Let me help you!",
+     "sens": "Laisse-moi t'aider !",
+     "n": "<b>Let me</b> + verbe."
+    },
+    {
+     "q": "I'm ___ my jacket at home.",
+     "c": [
+      "leaving",
+      "letting",
+      "lefting"
+     ],
+     "f": "jacke",
+     "phrase": "I'm leaving my jacket at home.",
+     "sens": "Je laisse ma veste à la maison.",
+     "n": "Laisser quelque part = <b>leave</b>."
+    },
+    {
+     "q": "Anna ___ the jeans in the basket.",
+     "c": [
+      "left",
+      "leaved",
+      "let"
+     ],
+     "f": "jeans",
+     "r": "korb",
+     "phrase": "Anna left the jeans in the basket.",
+     "sens": "Anna a laissé le jean dans le panier.",
+     "n": "<b>leave → left → left</b>."
+    },
+    {
+     "q": "She had the laundry ___.",
+     "c": [
+      "washed",
+      "wash",
+      "to wash"
+     ],
+     "f": "waschmaschine",
+     "phrase": "She had the laundry washed.",
+     "sens": "Elle a fait laver le linge.",
+     "n": "Faire faire = <b>have</b> + chose + participe."
+    },
+    {
+     "q": "Let's go ___!",
+     "c": [
+      "home",
+      "to home",
+      "at home"
+     ],
+     "f": "tuer",
+     "phrase": "Let's go home!",
+     "sens": "Rentrons à la maison !",
+     "n": "<b>go home</b>, sans « to »."
     }
    ]
   }

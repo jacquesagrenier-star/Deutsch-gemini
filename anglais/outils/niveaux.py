@@ -26,7 +26,7 @@ import variante_niveaux as VN
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 # Les niveaux branches : un niveau entre ici quand ses listes ont ete relues.
-NIVEAUX = ["A2"]
+NIVEAUX = ["A2", "B1"]
 
 ORTHO_US = [(b, a) for a, b in VN.ORTHOGRAPHE if a not in VN.PAS_DANS_LES_PHRASES]
 ORTHO_GB = [(a, b) for a, b in VN.ORTHOGRAPHE if a not in VN.PAS_DANS_LES_PHRASES]

@@ -1043,6 +1043,114 @@ window.SCENE = {
      "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
     }
    ]
+  },
+  "B1": {
+   "titre": "Verbe + to : plan to, forget to, try to",
+   "qs": [
+    {
+     "q": "Anna is planning ___ to Florida.",
+     "c": [
+      "to fly",
+      "flying",
+      "fly"
+     ],
+     "f": "anna",
+     "r": "flugzeug",
+     "phrase": "Anna is planning to fly to Florida.",
+     "sens": "Anna a l'intention de prendre l'avion pour la Floride.",
+     "n": "Plan + <b>to</b>."
+    },
+    {
+     "q": "She doesn't forget ___ her passport to the woman.",
+     "c": [
+      "to show",
+      "showing",
+      "show"
+     ],
+     "f": "pass",
+     "r": "frau",
+     "phrase": "She doesn't forget to show her passport to the woman.",
+     "sens": "Elle n'oublie pas de montrer son passeport à la femme.",
+     "n": "Forget + <b>to</b> : ne pas oublier de faire."
+    },
+    {
+     "q": "It's important ___ on time at the airport.",
+     "c": [
+      "to be",
+      "being",
+      "be"
+     ],
+     "f": "uhr",
+     "phrase": "It's important to be on time at the airport.",
+     "sens": "Il est important d'être à l'heure à l'aéroport.",
+     "n": "It's important + <b>to</b>."
+    },
+    {
+     "q": "The woman asks Anna ___ the suitcase on the scale.",
+     "c": [
+      "to put",
+      "put",
+      "putting"
+     ],
+     "f": "koffer-3",
+     "r": "waage",
+     "phrase": "The woman asks Anna to put the suitcase on the scale.",
+     "sens": "La femme demande à Anna de mettre la valise sur la balance.",
+     "n": "Ask someone + <b>to</b>."
+    },
+    {
+     "q": "The pilot has no time ___ the newspaper.",
+     "c": [
+      "to read",
+      "reading",
+      "for read"
+     ],
+     "f": "pilot",
+     "r": "zeitung",
+     "phrase": "The pilot has no time to read the newspaper.",
+     "sens": "Le pilote n'a pas le temps de lire le journal.",
+     "n": "Time + <b>to</b>."
+    },
+    {
+     "q": "Anna tries not ___ her backpack.",
+     "c": [
+      "to forget",
+      "forgetting",
+      "forget"
+     ],
+     "f": "rucksack",
+     "r": "anna",
+     "phrase": "Anna tries not to forget her backpack.",
+     "sens": "Anna essaie de ne pas oublier son sac à dos.",
+     "n": "La négation se place avant to : <b>not to</b>."
+    },
+    {
+     "q": "Anna hopes ___ on time.",
+     "c": [
+      "to arrive",
+      "arriving",
+      "arrive"
+     ],
+     "f": "flugzeug",
+     "r": "anna",
+     "phrase": "Anna hopes to arrive on time.",
+     "sens": "Anna espère arriver à l'heure.",
+     "n": "Hope + <b>to</b>."
+    },
+    {
+     "q": "Anna ___ show her passport to the woman.",
+     "c": [
+      "has to",
+      "must to",
+      "have to"
+     ],
+     "f": "pass",
+     "r": "frau",
+     "phrase": "Anna has to show her passport to the woman.",
+     "sens": "Anna doit montrer son passeport à la femme.",
+     "n": "She → <b>has to</b>."
+    }
+   ]
   }
  },
  "traductions": {}

@@ -209,6 +209,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ladders",
    "niveau": "B1",
+   "theme": "work_b1_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -282,7 +283,8 @@ window.SCENE = {
    "mot": "paintbrush",
    "genre": "",
    "pluriel": "paintbrushes",
-   "niveau": "B2",
+   "niveau": "B1",
+   "theme": "home_b1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -744,6 +746,110 @@ window.SCENE = {
      "phrase": "The wood is in the cardboard box.",
      "sens": "Le bois est dans le carton.",
      "n": "<b>in</b> = dans : à l'intérieur de quelque chose."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "L'impératif",
+   "qs": [
+    {
+     "q": "Mark, ___ me the hammer, please!",
+     "c": [
+      "give",
+      "gives",
+      "to give"
+     ],
+     "f": "hammer",
+     "r": "mark",
+     "phrase": "Mark, give me the hammer, please!",
+     "sens": "Mark, donne-moi le marteau, s'il te plaît !",
+     "n": "Impératif : le verbe nu, sans sujet."
+    },
+    {
+     "q": "___ the instructions carefully!",
+     "c": [
+      "Read",
+      "Reads",
+      "You read"
+     ],
+     "f": "papier",
+     "phrase": "Read the instructions carefully!",
+     "sens": "Lis bien la notice !",
+     "n": "Impératif : <b>Read</b>."
+    },
+    {
+     "q": "Put the brush ___ the bucket!",
+     "c": [
+      "on",
+      "in on",
+      "at"
+     ],
+     "f": "pinsel",
+     "r": "eimer",
+     "phrase": "Put the brush on the bucket!",
+     "sens": "Pose le pinceau sur le seau !",
+     "n": "Posé dessus → <b>on</b>."
+    },
+    {
+     "q": "Put ___ the gloves!",
+     "c": [
+      "on",
+      "in",
+      "up"
+     ],
+     "f": "handschuh",
+     "phrase": "Put on the gloves!",
+     "sens": "Mets les gants !",
+     "n": "Mettre (un vêtement) = put <b>on</b>."
+    },
+    {
+     "q": "Mark, ___ fall off the ladder!",
+     "c": [
+      "don't",
+      "not",
+      "no"
+     ],
+     "f": "leiter",
+     "phrase": "Mark, don't fall off the ladder!",
+     "sens": "Mark, ne tombe pas de l'échelle !",
+     "n": "Impératif négatif : <b>don't</b> + verbe."
+    },
+    {
+     "q": "___ take a break!",
+     "c": [
+      "Let's",
+      "Let",
+      "Lets"
+     ],
+     "f": "mark",
+     "phrase": "Let's take a break!",
+     "sens": "Faisons une pause !",
+     "n": "« Faisons » = <b>Let's</b> + verbe."
+    },
+    {
+     "q": "Kitty, get ___ from the window!",
+     "c": [
+      "down",
+      "off down",
+      "under"
+     ],
+     "f": "katze",
+     "r": "fenster",
+     "phrase": "Kitty, get down from the window!",
+     "sens": "Minou, descends de la fenêtre !",
+     "n": "Descendre = get <b>down</b>."
+    },
+    {
+     "q": "Could you hold the ladder for me, ___?",
+     "c": [
+      "please",
+      "pleased",
+      "to please"
+     ],
+     "f": "leiter",
+     "phrase": "Could you hold the ladder for me, please?",
+     "sens": "Pourriez-vous me tenir l'échelle, s'il vous plaît ?",
+     "n": "Poli : <b>Could you…, please?</b> plutôt qu'un impératif."
     }
    ]
   }

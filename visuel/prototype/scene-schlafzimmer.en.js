@@ -719,6 +719,113 @@ window.SCENE = {
      "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
     }
    ]
+  },
+  "B1": {
+   "titre": "Into, on : le mouvement et le lieu",
+   "qs": [
+    {
+     "q": "Anna is putting the sweater ___ the suitcase.",
+     "c": [
+      "in",
+      "at",
+      "on top"
+     ],
+     "f": "pullover",
+     "r": "koffer",
+     "phrase": "Anna is putting the sweater in the suitcase.",
+     "sens": "Anna met le pull dans la valise.",
+     "n": "Dans → <b>in</b> (ou into)."
+    },
+    {
+     "q": "In a moment, the sweater ___ in the suitcase.",
+     "c": [
+      "will be",
+      "is going",
+      "will"
+     ],
+     "f": "pullover",
+     "r": "koffer",
+     "phrase": "In a moment, the sweater will be in the suitcase.",
+     "sens": "Dans un instant, le pull sera dans la valise.",
+     "n": "Futur de be → <b>will be</b>."
+    },
+    {
+     "q": "Anna has put the hat ___ the bed.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "hut",
+     "r": "bett",
+     "phrase": "Anna has put the hat on the bed.",
+     "sens": "Anna a posé le chapeau sur le lit.",
+     "n": "Sur → <b>on</b>."
+    },
+    {
+     "q": "The camera is ___ the bed.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "kamera",
+     "r": "bett",
+     "phrase": "The camera is on the bed.",
+     "sens": "L'appareil photo est sur le lit.",
+     "n": "<b>on</b> the bed."
+    },
+    {
+     "q": "Anna ___ forgot the charger.",
+     "c": [
+      "almost",
+      "near",
+      "nearly to"
+     ],
+     "f": "ladegeraet",
+     "phrase": "Anna almost forgot the charger.",
+     "sens": "Anna a failli oublier le chargeur.",
+     "n": "Faillir = <b>almost</b> + verbe."
+    },
+    {
+     "q": "The alarm clock is ___ the nightstand.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "wecker",
+     "phrase": "The alarm clock is on the nightstand.",
+     "sens": "Le réveil est sur la table de nuit.",
+     "n": "<b>on</b>."
+    },
+    {
+     "q": "Anna is standing ___ the bed.",
+     "c": [
+      "next to",
+      "beside of",
+      "near of"
+     ],
+     "f": "anna",
+     "r": "bett",
+     "phrase": "Anna is standing next to the bed.",
+     "sens": "Anna est debout à côté du lit.",
+     "n": "<b>next to</b>."
+    },
+    {
+     "q": "Tomorrow Anna ___ flying south.",
+     "c": [
+      "is",
+      "will",
+      "goes"
+     ],
+     "f": "koffer",
+     "r": "anna",
+     "phrase": "Tomorrow Anna is flying south.",
+     "sens": "Demain, Anna part en avion vers le sud.",
+     "n": "Projet prévu → présent en <b>-ing</b>."
+    }
+   ]
   }
  },
  "traductions": {}

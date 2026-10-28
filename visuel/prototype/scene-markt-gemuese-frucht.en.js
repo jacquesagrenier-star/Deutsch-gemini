@@ -73,6 +73,7 @@ window.SCENE = {
    "mot": "asparagus",
    "genre": "",
    "niveau": "B1",
+   "theme": "food_b1",
    "personne": null,
    "aussi": [
     {
@@ -649,6 +650,72 @@ window.SCENE = {
      "phrase": "The zucchinis are next to the tomatoes.",
      "sens": "Les courgettes sont à côté des tomates.",
      "n": "<b>next to</b> = à côté de."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "I'd like a pound ___ tomatoes.",
+     "c": [
+      "of",
+      "—",
+      "from"
+     ],
+     "f": "tomate",
+     "phrase": "I'd like a pound of tomatoes.",
+     "sens": "Je voudrais une livre de tomates.",
+     "n": "Une quantité + <b>of</b>."
+    },
+    {
+     "q": "How much ___ the mushrooms?",
+     "c": [
+      "are",
+      "is",
+      "do"
+     ],
+     "f": "pilz",
+     "phrase": "How much are the mushrooms?",
+     "sens": "Combien coûtent les champignons ?",
+     "n": "Pluriel → How much <b>are</b>…?"
+    },
+    {
+     "q": "The cucumber is ___ than the zucchini.",
+     "c": [
+      "longer",
+      "more long",
+      "longest"
+     ],
+     "f": "gurke",
+     "r": "zucchini",
+     "phrase": "The cucumber is longer than the zucchini.",
+     "sens": "Le concombre est plus long que la courgette.",
+     "n": "Court → <b>-er than</b>."
+    },
+    {
+     "q": "I'll take a ___ of lettuce.",
+     "c": [
+      "head",
+      "piece",
+      "ball"
+     ],
+     "f": "salat",
+     "phrase": "I'll take a head of lettuce.",
+     "sens": "Je prends une salade.",
+     "n": "Une salade (entière) = <b>a head of</b> lettuce."
+    },
+    {
+     "q": "Is the asparagus ___?",
+     "c": [
+      "local",
+      "from here region",
+      "locally"
+     ],
+     "f": "spargel",
+     "phrase": "Is the asparagus local?",
+     "sens": "Les asperges sont-elles d'ici ?",
+     "n": "D'ici, de la région = <b>local</b>."
     }
    ]
   }

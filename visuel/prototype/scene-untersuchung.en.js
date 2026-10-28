@@ -268,6 +268,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "wrists",
    "niveau": "B1",
+   "theme": "health_b1_2",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -594,6 +595,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "stethoscopes",
    "niveau": "B1",
+   "theme": "health_b1_2",
    "personne": null,
    "aussi": [],
    "sur": "aerztin",
@@ -1580,6 +1582,88 @@ window.SCENE = {
      "phrase": "The feet are on the floor.",
      "sens": "Ses pieds sont sur le sol.",
      "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les consignes de la médecin",
+   "qs": [
+    {
+     "q": "The doctor is listening ___ his lungs.",
+     "c": [
+      "to",
+      "—",
+      "at"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "The doctor is listening to his lungs.",
+     "sens": "La médecin ausculte ses poumons.",
+     "n": "Écouter = listen <b>to</b>."
+    },
+    {
+     "q": "Please take a deep ___!",
+     "c": [
+      "breath",
+      "breathe",
+      "breathing"
+     ],
+     "f": "mark",
+     "phrase": "Please take a deep breath!",
+     "sens": "Inspirez profondément, s'il vous plaît !",
+     "n": "Le nom : <b>breath</b>."
+    },
+    {
+     "q": "Mark has undressed down ___ his underwear.",
+     "c": [
+      "to",
+      "at",
+      "until"
+     ],
+     "f": "mark",
+     "r": "unterhose",
+     "phrase": "Mark has undressed down to his underwear.",
+     "sens": "Mark s'est déshabillé jusqu'au caleçon.",
+     "n": "Jusqu'à = <b>down to</b>."
+    },
+    {
+     "q": "The doctor puts the stethoscope ___ his chest.",
+     "c": [
+      "on",
+      "at",
+      "in"
+     ],
+     "f": "stethoskop",
+     "r": "brust",
+     "phrase": "The doctor puts the stethoscope on his chest.",
+     "sens": "La médecin pose le stéthoscope sur sa poitrine.",
+     "n": "<b>on</b> his chest."
+    },
+    {
+     "q": "Mark ___ step on the scale in a minute.",
+     "c": [
+      "will",
+      "is",
+      "does"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "Mark will step on the scale in a minute.",
+     "sens": "Mark va monter sur la balance dans une minute.",
+     "n": "Futur → <b>will</b>."
+    },
+    {
+     "q": "Then he stands ___ on the scale.",
+     "c": [
+      "still",
+      "quiet still",
+      "stilly"
+     ],
+     "f": "waage",
+     "r": "mark",
+     "phrase": "Then he stands still on the scale.",
+     "sens": "Ensuite, il reste immobile sur la balance.",
+     "n": "Immobile = <b>still</b>."
     }
    ]
   }

@@ -329,6 +329,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ladders",
    "niveau": "B1",
+   "theme": "work_b1_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1287,6 +1288,110 @@ window.SCENE = {
      "phrase": "The bucket is on the fountain.",
      "sens": "Le seau est accroché au puits.",
      "n": "<b>on</b> = sur, posé ou accroché (on the table, on the wall)."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Pas toujours de réfléchi : sit down, lie down",
+   "qs": [
+    {
+     "q": "Anna ___ happy to see the horse.",
+     "c": [
+      "is",
+      "has",
+      "does"
+     ],
+     "f": "anna",
+     "r": "pferd",
+     "phrase": "Anna is happy to see the horse.",
+     "sens": "Anna est contente de voir le cheval.",
+     "n": "Être content = <b>be happy</b>."
+    },
+    {
+     "q": "The dog ___ down on the ground.",
+     "c": [
+      "lies",
+      "lies itself",
+      "lays"
+     ],
+     "f": "hund",
+     "r": "boden",
+     "phrase": "The dog lies down on the ground.",
+     "sens": "Le chien se couche par terre.",
+     "n": "Se coucher = <b>lie down</b>, sans pronom réfléchi."
+    },
+    {
+     "q": "The cat ___ on the wall.",
+     "c": [
+      "sits",
+      "sits itself",
+      "seats"
+     ],
+     "f": "katze",
+     "r": "mauer",
+     "phrase": "The cat sits on the wall.",
+     "sens": "Le chat s'assied sur le muret.",
+     "n": "S'asseoir = <b>sit (down)</b>, sans réfléchi."
+    },
+    {
+     "q": "I ___ after work.",
+     "c": [
+      "wash up",
+      "wash me",
+      "wash myself up"
+     ],
+     "f": "onkel",
+     "phrase": "I wash up after work.",
+     "sens": "Je me lave après le travail.",
+     "n": "Se laver (les mains, le visage) = <b>wash up</b> en américain."
+    },
+    {
+     "q": "We ___ on the bench.",
+     "c": [
+      "sit down",
+      "sit us",
+      "sit ourselves"
+     ],
+     "f": "bank",
+     "phrase": "We sit down on the bench.",
+     "sens": "Nous nous asseyons sur le banc.",
+     "n": "Pas de « nous » en anglais : <b>we sit down</b>."
+    },
+    {
+     "q": "Do you ___ the farm?",
+     "c": [
+      "remember",
+      "remember you",
+      "remind"
+     ],
+     "f": "haus",
+     "phrase": "Do you remember the farm?",
+     "sens": "Tu te souviens de la ferme ?",
+     "n": "Se souvenir de = <b>remember</b>, sans réfléchi ni préposition."
+    },
+    {
+     "q": "Anna's cousin is washing ___ hands.",
+     "c": [
+      "his",
+      "the",
+      "himself"
+     ],
+     "f": "cousin",
+     "phrase": "Anna's cousin is washing his hands.",
+     "sens": "Le cousin d'Anna se lave les mains.",
+     "n": "Les parties du corps prennent le possessif : <b>his hands</b>."
+    },
+    {
+     "q": "The chickens ___ quickly.",
+     "c": [
+      "move",
+      "move themselves",
+      "moves"
+     ],
+     "f": "huhn-2",
+     "phrase": "The chickens move quickly.",
+     "sens": "Les poules bougent vite.",
+     "n": "Bouger = <b>move</b>, sans réfléchi."
     }
    ]
   }
