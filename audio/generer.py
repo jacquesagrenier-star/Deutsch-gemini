@@ -32,6 +32,8 @@ import time
 import urllib.error
 import urllib.request
 
+import lectures   # 28 oct. 2026 : les nombres se disent en lettres (audio/lectures.py)
+
 sys.stdout.reconfigure(encoding="utf-8")
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -310,7 +312,7 @@ def main():
                       " automatique.")
                 break
             try:
-                octets = synthetiser(e["texte"], modele, cle)
+                octets = synthetiser(lectures.lecture("de", e["texte"]), modele, cle)
             except TexteBloque:
                 # Le mot restera a la voix du telephone. C'est un repli deja
                 # prevu par l'application, et infiniment preferable a un lot

@@ -999,6 +999,33 @@ def verifier_prononciation(r):
     r.controle(total or 1)
 
 
+def verifier_lectures(r):
+    """LES NOMBRES SE DISENT EN LETTRES (28 oct. 2026). Une germanophone a
+    entendu des prix et des heures « haches » : on envoyait « 3,90 € » a la
+    voix. Tout texte prononce qui contient un chiffre doit avoir sa lecture
+    dans audio/lectures/<langue>.json, et une lecture ne doit plus en
+    contenir. Voir audio/lectures.py."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("lectures", os.path.join(RACINE, "audio", "lectures.py"))
+    L = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(L)
+    n = 0
+    for langue, source in (("de", L.textes_de), ("es", L.textes_es)):
+        try:
+            textes = source()
+        except Exception as e:
+            r.echec("lectures", "%s : inventaire illisible (%s)" % (langue, e))
+            continue
+        sans, chiffrees = L.controler(langue, textes)
+        for x in sans:
+            r.echec("lectures", "%s : texte a chiffres sans lecture (audio/lectures/%s.json) : %s" % (langue, langue, " / ".join(x.splitlines())[:90]))
+        for x in chiffrees:
+            r.echec("lectures", "%s : lecture encore chiffree : %s" % (langue, " / ".join(x.splitlines())[:90]))
+        n += len(L.table(langue))
+    print("   lectures        : %d textes a chiffres dits en lettres (de, es)" % n)
+    r.controle(n or 1)
+
+
 def verifier_trous_de_liste(r, source):
     """Une ligne de liste qui finit par `],,` laisse un TROU dans le tableau.
 
@@ -1682,6 +1709,7 @@ def main():
     verifier_retours_flashcards(r, source)
     verifier_notices_peintres(r)
     verifier_prononciation(r)
+    verifier_lectures(r)
     verifier_trous_de_liste(r, source)
     verifier_octets_de_controle(r, INDEX)
     verifier_zoom_involontaire(r, source)

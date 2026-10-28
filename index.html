@@ -8804,7 +8804,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v993</span>
+    <span class="subtitle-version">v994</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -46646,7 +46646,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 993;
+const APP_VERSION = 994;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -46871,7 +46871,10 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //      seuls ; « pues », « minutos » en porteuse. audio/controler_sons.py.
 //  13  « minutos » (Monica, a son debit) et 99 expressions courtes de deux mots
 //      (« a veces », « de nada »...) refaites en porteuse, deux voix (v951, 24 oct.).
-const AUDIO_REVISION = "13";
+//  14  Les nombres dits en lettres (v994, 28 oct.) : 82 sons allemands (prix,
+//      heures, dates de l'examen surtout) et 62 x 2 espagnols (annees). La voix
+//      recevait « 3,90 € » et le hachait. audio/lectures/, audio/refaire_lectures.py.
+const AUDIO_REVISION = "14";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
