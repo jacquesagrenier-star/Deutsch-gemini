@@ -11482,6 +11482,17 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <div class="spacer"></div>
         <button class="secondary" onclick="ouvrirEssaiAnglais()">ENGLISH — ESSAI ANGLAIS →</button>
     </div>
+
+    <!-- L'anglais ouvert a UN compte (28 oct. 2026, demande de Jacques pour
+         son beau-frere) : l'admin l'accorde depuis son tableau de bord
+         (basculerEssaiCompte), majEntreeEssaiAnglais montre cette carte au
+         compte concerne. Aucune adresse ici : le depot est public. -->
+    <div class="card hidden" id="carteEssaiAnglais">
+        <strong>English</strong>
+        <div class="info-box">L'anglais, de A1 à C1, ouvert à ton compte. C'est encore un brouillon, lu par la voix de ton téléphone.</div>
+        <div class="spacer"></div>
+        <button class="secondary" id="boutonEssaiAnglais" onclick="ouvrirEssaiAnglais()">ENGLISH — APPRENDRE L'ANGLAIS →</button>
+    </div>
 </section>
 
 <!-- ================= ABONNEMENT (v690) =================
@@ -12154,10 +12165,60 @@ function habillerCarteAnglaise(card){
         det.classList.remove("hidden");
     }
 }
-// L'entree de l'essai, dans la carte Administration des reglages. En anglais,
+// LES ESSAIS OUVERTS A UN COMPTE (28 oct. 2026). Jacques : « Est-ce qu'on
+// pourrait rendre disponible l'application pour apprendre l'anglais pour mon
+// beau-frere ? » L'admin pose `essais: ["anglais"]` dans users/{uid} depuis son
+// tableau de bord (basculerEssaiCompte) ; jamais d'adresse dans ce fichier, le
+// depot est public. L'app lit ce champ avec le document du compte
+// (loadVhsKapitelAccessFlag) et le retient sur l'appareil, avec l'uid :
+//   - SANS prefixe de langue, parce que la garde le lit en anglais comme en
+//     allemand, et avant que Firestore reponde ;
+//   - avec l'uid, pour qu'un autre compte sur le meme telephone n'en profite pas.
+// Retirer l'acces : la lecture suivante efface la memoire et renvoie vers
+// l'allemand (voir loadVhsKapitelAccessFlag).
+const CLE_ESSAIS_COMPTE = "wortando_essaisCompte";
+function essaisDuCompte(uid){
+    try{
+        const o = JSON.parse(localStorage.getItem(CLE_ESSAIS_COMPTE) || "null");
+        if(o && uid && o.uid === uid && Array.isArray(o.essais)) return o.essais;
+    }catch(e){}
+    return [];
+}
+function retenirEssaisDuCompte(uid, essais){
+    try{ localStorage.setItem(CLE_ESSAIS_COMPTE, JSON.stringify({ uid: uid, essais: essais })); }catch(e){}
+}
+// La carte « English » des reglages : pour le compte a qui l'anglais est
+// ouvert, pas pour l'admin (il a son bouton dans Administration). En anglais,
 // le meme bouton ramene a l'allemand.
+function majEntreeEssaiAnglais(){
+    const carte = document.getElementById("carteEssaiAnglais");
+    if(!carte) return;
+    const user = window.firebaseAuth && window.firebaseAuth.currentUser;
+    const permis = !!user && !isAdminUser() && essaisDuCompte(user.uid).includes("anglais");
+    carte.classList.toggle("hidden", !permis);
+    const bouton = document.getElementById("boutonEssaiAnglais");
+    if(bouton) bouton.textContent = LANGUE_APPRISE !== "en" ? "ENGLISH — APPRENDRE L'ANGLAIS →"
+        : langueAvantAnglais() === "es" ? "ESPAÑOL — REVENIR À L'ESPAGNOL →"
+        : "DEUTSCH — REVENIR À L'ALLEMAND →";
+}
+
+// D'ou l'on vient quand on ouvre l'anglais : l'allemand ou l'espagnol. Le
+// bouton du retour y ramene, et la garde aussi quand l'acces est retire -- un
+// compte espagnol ne doit pas atterrir en allemand (28 oct. 2026).
+const CLE_AVANT_ANGLAIS = "wortando_avantAnglais";
+function langueAvantAnglais(){
+    let a = null;
+    try{ a = localStorage.getItem(CLE_AVANT_ANGLAIS); }catch(e){}
+    return a === "es" ? "es" : "de";
+}
+
+// L'entree de l'essai, dans la carte Administration des reglages. En anglais,
+// le meme bouton ramene a la langue d'avant.
 function ouvrirEssaiAnglais(){
-    const cible = LANGUE_APPRISE === "en" ? "de" : "en";
+    if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de"){
+        try{ localStorage.setItem(CLE_AVANT_ANGLAIS, LANGUE_APPRISE); }catch(e){}
+    }
+    const cible = LANGUE_APPRISE === "en" ? langueAvantAnglais() : "en";
     try{ localStorage.setItem(CLE_LANGUE_APPRISE, cible); }catch(e){}
     try{ location.href = new URL("./?apprendre=" + cible, location.href).href; }
     catch(e){ location.href = "./?apprendre=" + cible; }
@@ -12413,9 +12474,12 @@ function gardeEssaiJaponais(user){
     if(LANGUE_APPRISE !== "ja" && LANGUE_APPRISE !== "en") return false;
     const email = (user && user.email || "").toLowerCase();
     if(email && email === ADMIN_EMAIL.toLowerCase()) return false;
-    try{ localStorage.setItem(CLE_LANGUE_APPRISE, "de"); }catch(e){}
-    try{ location.replace(new URL("./?apprendre=de", location.href).href); }
-    catch(e){ location.replace("./?apprendre=de"); }
+    // Un compte a qui l'admin a ouvert l'anglais passe (28 oct. 2026).
+    if(LANGUE_APPRISE === "en" && user && essaisDuCompte(user.uid).includes("anglais")) return false;
+    const retour = LANGUE_APPRISE === "en" ? langueAvantAnglais() : "de";
+    try{ localStorage.setItem(CLE_LANGUE_APPRISE, retour); }catch(e){}
+    try{ location.replace(new URL("./?apprendre=" + retour, location.href).href); }
+    catch(e){ location.replace("./?apprendre=" + retour); }
     return true;
 }
 
@@ -35285,7 +35349,11 @@ async function accorderLangueAuCompte(){
     let parAdresse = null, surAppareil = null;
     try{ parAdresse = new URLSearchParams(location.search).get("apprendre"); }catch(e){}
     try{ surAppareil = localStorage.getItem(CLE_LANGUE_APPRISE); }catch(e){}
-    const choisieIci = ["es", "de"].includes(parAdresse) || ["es", "de"].includes(surAppareil);
+    // L'anglais et le japonais comptent comme un choix fait ici (28 oct. 2026) :
+    // sans eux, un compte ouvert en ?apprendre=en dont le document dit « de »
+    // repartait aussitot en allemand. Leur garde (gardeEssaiJaponais) a deja
+    // renvoye vers l'allemand un compte qui n'y a pas droit.
+    const choisieIci = ["es", "de", "en", "ja"].includes(parAdresse) || ["es", "de", "en", "ja"].includes(surAppareil);
     let duCompte = null;
     try{
         const s = await window.fsGetDoc(ref);
@@ -35296,7 +35364,10 @@ async function accorderLangueAuCompte(){
         catch(e){ location.href = "./?apprendre=" + duCompte; }
         return true;
     }
-    if(duCompte !== LANGUE_APPRISE){
+    // Un essai (anglais, japonais) ne remplace pas la langue du compte : un
+    // compte espagnol qui passe a l'anglais doit retrouver l'espagnol sur un
+    // appareil neuf, pas l'allemand (28 oct. 2026).
+    if(duCompte !== LANGUE_APPRISE && ["es", "de"].includes(LANGUE_APPRISE)){
         try{ await window.fsSetDoc(ref, { langueApprise: LANGUE_APPRISE }, { merge: true }); }catch(e){}
     }
     return false;
@@ -35340,6 +35411,13 @@ async function loadVhsKapitelAccessFlag(){
         // Testeur arrive apres la sortie : gratuit a vie, pose a la main (v691).
         accesAVieFirestore = !!(snap.exists() && snap.data().accesAVie === true);
         if(snap.exists()) appliquerLangueImposee(snap.data().langueImposee);
+        // Les essais ouverts a ce compte (28 oct. 2026) : retenus sur
+        // l'appareil pour la garde, et l'anglais referme s'il a ete retire.
+        const essais = (snap.exists() && Array.isArray(snap.data().essais))
+            ? snap.data().essais.filter(x => typeof x === "string") : [];
+        retenirEssaisDuCompte(user.uid, essais);
+        majEntreeEssaiAnglais();
+        if(LANGUE_APPRISE === "en" && gardeEssaiJaponais(user)) return;
     }catch(e){
         vhsKapitelAccess = false;
     }
@@ -40831,6 +40909,7 @@ function openSettings(){
     refreshSetupChoiceActiveStates();
     const adminCard = document.getElementById("adminDashboardCard");
     if(adminCard) adminCard.classList.toggle("hidden", !isAdminUser());
+    majEntreeEssaiAnglais();
     // "Inviter un ami" reste reserve a l'administrateur : l'inscription passe
     // par un code d'invitation, et lui seul peut en generer. Propose a un
     // testeur, ce bouton ne pouvait produire qu'une demande qu'il etait
@@ -42164,6 +42243,14 @@ async function renderAdminUsersList(){
                     ${u._coll === RESUMES_COLL ? `<button class="secondary admin-vhs" onclick="toggleUserVhsAccess('${u.id}', ${!vhsOn})">
                         ${vhsOn ? t('admin_vhs_access_on') : t('admin_vhs_access_off')}
                     </button>` : ""}
+                    ${(() => {
+                        // Sur TOUTES les lignes, allemandes et espagnoles : le
+                        // compte a qui Jacques ouvre l'anglais pratique l'espagnol.
+                        const anglaisOn = Array.isArray(u.essais) && u.essais.includes("anglais");
+                        return `<button class="secondary admin-vhs" onclick="basculerEssaiCompte('${u.id}', 'anglais', ${!anglaisOn}, '${u._coll}')">
+                        ${anglaisOn ? "ANGLAIS OUVERT ✓ — RETIRER" : "OUVRIR L'ANGLAIS"}
+                    </button>`;
+                    })()}
                 </div>
             </details>
         `;}).join("");
@@ -42220,6 +42307,7 @@ async function reconstruireResumes(){
                 vocabDemandes: u.vocabDemandes || [],
                 synonymesEcartes: u.synonymesEcartes || "",
                 vhsChaptersEnabled: !!u.vhsChaptersEnabled,
+                essais: Array.isArray(u.essais) ? u.essais : [],
                 langueInterface: u.langueInterface || "",
                 appareil: u.appareil || "",
                 // La date du document complet, PAS l'heure de la
@@ -42260,6 +42348,34 @@ async function toggleUserVhsAccess(uid, enable){
         renderAdminUsersList();
     }catch(e){
         showInfoToast(t('admin_action_failed'));
+    }
+}
+
+// OUVRIR OU REFERMER UN ESSAI POUR UN COMPTE (28 oct. 2026, l'anglais pour le
+// beau-frere de Jacques). Meme chemin que toggleUserVhsAccess : le document
+// complet fait autorite (`users/{uid}`, commun a toutes les langues), le
+// resume de la ligne cliquee suit (`resumes` ou `resumenesEs`) pour que le
+// bouton ne revienne pas en arriere au rechargement. On relit la liste avant
+// de l'ecrire : un essai deja ouvert pour autre chose ne doit pas disparaitre.
+// ⚠️ Les regles Firestore doivent permettre a l'admin d'ecrire `essais` chez
+// autrui (firestore.rules) : sans elles, le refus est annonce tel quel.
+async function basculerEssaiCompte(uid, nom, ouvrir, collResume){
+    if(!isAdminUser()) return;
+    try{
+        const ref = window.fsDoc(window.firestoreDb, 'users', uid);
+        const snap = await window.fsGetDoc(ref);
+        const avant = (snap.exists() && Array.isArray(snap.data().essais)) ? snap.data().essais : [];
+        const essais = avant.filter(x => x !== nom).concat(ouvrir ? [nom] : []);
+        await window.fsUpdateDoc(ref, { essais: essais });
+        await window.fsSetDoc(window.fsDoc(window.firestoreDb, collResume || RESUMES_COLL, uid),
+                              { essais: essais }, { merge: true });
+        renderAdminUsersList();
+    }catch(e){
+        const code = String((e && (e.code || e.message)) || "?");
+        showInfoToast(code.indexOf("permission") !== -1
+            ? "Refusé par Firestore : colle d'abord les nouvelles règles (firestore.rules)."
+            : t('admin_action_failed'));
+        console.warn("basculerEssaiCompte", e);
     }
 }
 
