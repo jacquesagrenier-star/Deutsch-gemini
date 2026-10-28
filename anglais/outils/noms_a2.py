@@ -72,6 +72,7 @@ teenager | l'adolescent, l'adolescente
 twin | le jumeau
 visit | la visite | ex=Thanks for your visit! # Merci de ta visite !
 youth | la jeunesse | u
+father-in-law | le beau-père | pl=fathers-in-law
 """,
 "work_a2": """
 actor | l'acteur
@@ -175,6 +176,8 @@ whisk | le fouet
 wooden spoon | la cuillère en bois
 yogurt | le yaourt | u
 zucchini | la courgette | gb=courgette
+hunger | la faim | u | ex=After the hike, we were dying of hunger. # Après la randonnée, nous mourions de faim.
+thirst | la soif | u | ex=Water is the best drink for thirst. # L'eau est la meilleure boisson contre la soif.
 """,
 "home_a2": """
 armchair | le fauteuil
@@ -257,6 +260,8 @@ tray | le plateau
 vacuum cleaner | l'aspirateur
 wastebasket | la corbeille à papier | gb=wastepaper bin | ex=Throw it in the wastebasket. # Jette-le dans la corbeille.
 wool | la laine | u
+terrace | la terrasse
+piece of furniture | le meuble | pl=pieces of furniture | ex=This old chair is my favorite piece of furniture. # Cette vieille chaise est mon meuble préféré.
 """,
 "health_a2": """
 allergy | l'allergie
@@ -306,6 +311,7 @@ vaccine | le vaccin
 weight | le poids
 well-being | le bien-être | u
 wound | la blessure
+belly | le ventre
 """,
 "clothes_a2": """
 appearance | l'allure, l'apparence
@@ -333,6 +339,8 @@ underwear | les sous-vêtements | u
 wrinkle | la ride
 wristwatch | la montre
 zipper | la fermeture éclair | gb=zip
+sandal | la sandale
+underpants | le caleçon, le slip | plt
 """,
 "nature_a2": """
 ant | la fourmi
@@ -398,6 +406,11 @@ west | l'ouest
 whale | la baleine
 wind energy | l'énergie éolienne | u
 wolf | le loup | pl=wolves
+dragon | le dragon
+dwarf | le nain | pl=dwarfs | ex=Snow White lives with seven dwarfs. # Blanche-Neige vit avec sept nains.
+goldfish | le poisson rouge
+climate | le climat | u
+snowman | le bonhomme de neige | pl=snowmen
 """,
 "travel_a2": """
 accident | l'accident
@@ -465,6 +478,8 @@ traffic circle | le rond-point | gb=roundabout | ex=Turn right at the traffic ci
 vacation rental | la location de vacances | gb=holiday let
 view | la vue
 visa | le visa
+airplane | l'avion | gb=aeroplane | ex=The airplane landed on time. # L'avion a atterri à l'heure.
+beach umbrella | le parasol | ex=We sat under a beach umbrella all afternoon. # Nous sommes restés sous un parasol tout l'après-midi.
 """,
 "city_a2": """
 block | le pâté de maisons
@@ -488,6 +503,8 @@ skyscraper | le gratte-ciel
 stamp | le timbre
 street lamp | le réverbère
 tax | l'impôt | u
+port | le port
+center | le centre | gb=centre
 """,
 "education_a2": """
 admission | l'admission
@@ -513,6 +530,11 @@ textbook | le manuel scolaire
 theory | la théorie
 topic | le sujet, thème
 university cafeteria | la cafétéria universitaire
+pupil | l'élève
+chalk | la craie
+globe | le globe
+seminar | le séminaire
+lecture notes | les notes de cours | plt
 """,
 "culture_a2": """
 angel | l'ange
@@ -573,6 +595,7 @@ tradition | la tradition
 violin | le violon
 witch | la sorcière
 writer | l'écrivain
+excursion | l'excursion
 """,
 "sports_a2": """
 championship | le championnat
@@ -587,6 +610,9 @@ sports bag | le sac de sport
 step | le pas
 tournament | le tournoi
 volleyball | le volley-ball
+training | l'entraînement
+hall | la salle, le hall
+sports field | le terrain de sport | ex=The new sports field is behind the high school. # Le nouveau terrain de sport est derrière le lycée.
 """,
 "media_a2": """
 accent | l'accent
@@ -654,6 +680,8 @@ shopping cart | le caddie, le chariot | gb=shopping trolley | ex=The shopping ca
 silver | l'argent (métal) | u
 vending machine | le distributeur automatique | ex=The vending machine only takes coins. # Le distributeur n'accepte que les pièces.
 wallet | le portefeuille
+discount | la réduction, le rabais
+quality | la qualité
 """,
 "feelings_a2": """
 attitude | l'attitude
@@ -695,6 +723,10 @@ political party | le parti politique | ex=Which political party do you vote for?
 queen | la reine
 vote | le vote
 war | la guerre
+signature | la signature
+Switzerland | la Suisse
+Austrian | l'Autrichien
+European | l'Européen
 """,
 "law_a2": """
 alarm | l'alarme
@@ -710,6 +742,8 @@ witness | le témoin | pl=witnesses
 "time_a2": """
 future | l'avenir
 past | le passé
+quarter of an hour | le quart d'heure
+present | le cadeau ; le présent | ex=I'm looking for a present for my mother. # Je cherche un cadeau pour ma mère.
 """,
 "everyday_a2": """
 amount | la quantité
@@ -744,5 +778,8 @@ solution | la solution
 sphere | la sphère
 sum | la somme
 thanks | les remerciements | plt
+third | le tiers | ex=A third of the students live on campus. # Un tiers des étudiants habitent sur le campus.
+remainder | le reste | ex=I'll pay the remainder next month. # Je paierai le reste le mois prochain.
+greeting | la salutation
 """,
 }

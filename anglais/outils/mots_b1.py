@@ -372,6 +372,37 @@ work out | s'entraîner, marcher, trouver
 worsen | aggraver
 wrap | enrouler, emballer
 state | déclarer, indiquer
+affect | affecter, avoir un effet sur | ex=The weather affects my mood. # Le temps influe sur mon humeur.
+find one's way | s'orienter, trouver son chemin | ex=I found my way without a map. # J'ai trouvé mon chemin sans carte.
+fail | échouer
+brood | ruminer | ex=Stop brooding and talk to him. # Arrête de ruminer et parle-lui.
+take to heart | prendre à cœur | ex=She took his advice to heart. # Elle a pris son conseil à cœur.
+play dice | jouer aux dés | ex=The kids played dice all evening. # Les enfants ont joué aux dés toute la soirée.
+draw lots | tirer au sort
+greet | saluer
+X-ray | radiographier, faire une radio
+wish for | souhaiter | ex=What did you wish for on your birthday? # Qu'est-ce que tu as souhaité pour ton anniversaire ?
+afford | se permettre (financièrement) | ex=We can't afford a new car. # Nous n'avons pas les moyens d'acheter une nouvelle voiture.
+go on a trip | partir en voyage
+do the dishes | faire la vaisselle | ex=I'll cook if you do the dishes. # Je cuisine si tu fais la vaisselle.
+stay together | rester ensemble
+come to mind | venir à l'esprit
+know one's way around | s'y connaître, se repérer | ex=He knows his way around Boston. # Il connaît bien Boston.
+keep to oneself | rester dans son coin | ex=Our neighbor keeps to himself. # Notre voisin reste dans son coin.
+naturalize | naturaliser
+think over | réfléchir à qch
+get along with | bien s'entendre avec | ex=Do you get along with your boss? # Tu t'entends bien avec ton patron ?
+write down | noter, écrire
+hinder | gêner, entraver | ex=The snow hindered the rescue efforts. # La neige a gêné les secours.
+do odd jobs | faire des petits boulots | ex=He did odd jobs to pay for college. # Il a fait des petits boulots pour payer ses études.
+stay overnight | passer la nuit, loger
+serve | servir (à)
+laze around | paresser | ex=On Sundays I just laze around. # Le dimanche, je paresse.
+google | chercher sur Internet
+put on makeup | se maquiller | ex=She puts on makeup before work. # Elle se maquille avant d'aller travailler.
+tweet | publier sur les réseaux
+buckle up | attacher sa ceinture | ex=Buckle up, we're leaving. # Attache ta ceinture, on part.
+shave | raser
 """
 
 # « adjectif | traduction | drapeaux » (gb=, ex=).
@@ -762,6 +793,15 @@ worthless | sans valeur
 written | écrit
 yearly | annuel
 youthful | juvénile, jeune
+simultaneous | simultané | ex=The meeting has simultaneous translation. # La réunion bénéficie d'une traduction simultanée.
+above-average | au-dessus de la moyenne
+musical | musical, doué pour la musique | ex=The whole family is very musical. # Toute la famille est très musicale.
+crooked | de travers, penché
+cheerful | joyeux, gai
+statistical | statistique | ex=There's no statistical difference between the groups. # Il n'y a pas de différence statistique entre les groupes.
+damp | humide
+other | autre, divers
+mobile | mobile | ex=Mobile apps make banking easy. # Les applications mobiles facilitent les opérations bancaires.
 """
 
 # « adverbe | traduction | categorie | drapeaux ».
@@ -889,6 +929,28 @@ hardly ever | presque jamais | Fréquence | ex=We hardly ever eat out. # Nous ne
 meanwhile | pendant ce temps | Temps | ex=I'll cook. Meanwhile, you can set the table. # Je cuisine. Pendant ce temps, tu peux mettre la table.
 afterwards | ensuite, après | Temps | ex=We had dinner and went for a walk afterwards. # Nous avons dîné, puis nous sommes allés nous promener.
 nearly | presque | Quantité | ex=It's nearly midnight. # Il est presque minuit.
+a little while ago | tout à l'heure (passé) | Temps
+in the future | à l'avenir | Temps | ex=In the future, please call before you come. # À l'avenir, appelle avant de venir.
+in the end | finalement | Temps
+at any time | à tout moment | Temps
+in the morning | le matin | Temps
+for weeks | pendant des semaines | Temps
+for years | pendant des années | Temps
+all the time | sans arrêt | Fréquence
+again and again | sans cesse, à répétition | Fréquence
+without any problems | sans problème | Manière | ex=The surgery went without any problems. # L'opération s'est déroulée sans problème.
+substantially | nettement, considérablement | Quantité | ex=Prices have risen substantially. # Les prix ont nettement augmenté.
+as a result | en conséquence de quoi | Cause et conséquence
+apart from that | à part ça, sinon | Cause et conséquence
+if need be | au besoin | Cause et conséquence
+at any rate | du moins | Liaison
+on the other hand | en revanche | Liaison
+including | y compris | Quantité | ex=Ten people came, including my parents. # Dix personnes sont venues, y compris mes parents.
+as far as i'm concerned | pour moi, si tu veux | Nuance
+with each other | ensemble, l'un avec l'autre | Manière
+at the latest | au plus tard | Temps
+in the middle | au milieu | Lieu
+by the way | au fait, d'ailleurs | Nuance
 """
 
 # « expression | traduction | categorie | exemple anglais | exemple francais ».
@@ -1009,4 +1071,18 @@ to work overtime | faire des heures supplémentaires | Au quotidien | This week 
 to worry about | se faire du souci pour | Réagir | Don't worry about the exam. | Ne te fais pas de souci pour l'examen.
 up to date | à jour | Au quotidien | The software is up to date. | Le logiciel est à jour.
 what's new | quoi de neuf ? | Bavarder | Long time no talk, what's new? | Ça fait longtemps, quoi de neuf ?
+it's about | il s'agit de | Discuter | The meeting is about the new budget. | Lors de la réunion, il s'agit du nouveau budget.
+to play a role | jouer un rôle | Tournures | Luck played a big role in his success. | La chance a joué un grand rôle dans son succès.
+to take responsibility | assumer la responsabilité | Tournures | She took responsibility for the project. | Elle a assumé la responsabilité du projet.
+to make use of | faire appel à, mobiliser | Tournures | She made use of legal advice. | Elle a fait appel à un conseil juridique.
+to come up | être abordé (sujet) | Discuter | The topic came up yesterday. | Le sujet a été abordé hier.
+depending on | selon les cas | Discuter | Depending on the weather, we'll go. | Selon le temps qu'il fera, nous partirons.
+to find a compromise | trouver un compromis | Tournures | In the end we found a compromise. | Finalement, nous avons trouvé un compromis.
+Take care | Porte-toi bien | Bavarder | I have to go. Take care! | Je dois y aller. Porte-toi bien !
+for one thing ... for another | d'une part ... d'autre part | Discuter | For one thing there's no money, for another no time. | D'une part il manque de l'argent, d'autre part du temps.
+as far as … is concerned | en ce qui concerne | Discuter | As far as money is concerned, I'm careful. | En ce qui concerne l'argent, je suis prudent.
+to assert oneself | s'imposer | Tournures | She asserted herself against the competition. | Elle s'est imposée face à la concurrence.
+to make a name for oneself | se faire un nom | Tournures | He has made a name for himself as an architect. | Il s'est fait un nom comme architecte.
+to lend a hand | mettre la main à la pâte | Au quotidien | Everyone lent a hand. | Tout le monde a mis la main à la pâte.
+to take the floor | prendre la parole | Tournures | After him the director took the floor. | Après lui, la directrice a pris la parole.
 """

@@ -308,6 +308,22 @@ fill up | remplir, faire le plein | ex=We need to fill up the car. # Il faut fai
 warm up | s'échauffer, réchauffer | ex=Warm up before you run. # Échauffe-toi avant de courir.
 stay up | veiller, rester debout | ex=We stayed up until two in the morning. # Nous avons veillé jusqu'à deux heures du matin.
 check out | quitter (l'hôtel), régler la note | ex=We have to check out by eleven. # Nous devons quitter la chambre avant onze heures.
+own | posséder
+pass | réussir (un examen), passer
+apply | postuler
+last | durer
+recommend | recommander
+receive | recevoir
+formulate | formuler | ex=Try to formulate your question clearly. # Essaie de formuler clairement ta question.
+enjoy | profiter de, savourer
+talk on the phone | téléphoner
+think about | réfléchir
+introduce | présenter (qn, qch)
+get dressed | s'habiller
+look at | regarder
+have breakfast | prendre le petit-déjeuner
+listen to | écouter
+do crafts | bricoler, faire des travaux manuels | ex=The kids love to do crafts on rainy days. # Les enfants adorent bricoler les jours de pluie.
 """
 
 # « adjectif | traduction | drapeaux » (gb=, ex=).
@@ -501,6 +517,12 @@ well-behaved | sage, obéissant
 wild | sauvage
 wireless | sans fil
 wonderful | merveilleux
+necessary | nécessaire
+possible | possible
+unlikable | antipathique
+fat | gras, gros
+free of charge | gratuit | ex=Delivery is free of charge. # La livraison est gratuite.
+Swiss | suisse
 """
 
 # « adverbe | traduction | categorie | drapeaux ».
@@ -583,6 +605,23 @@ unfortunately | malheureusement | Liaison
 up | vers le haut | Lieu
 weekly | chaque semaine | Fréquence
 wrongly | de travers, incorrectement | Manière
+in a moment | tout de suite | Temps
+afterwards | ensuite, après | Temps
+the other day | l'autre jour | Temps
+in the meantime | entre-temps | Temps
+the day before yesterday | avant-hier | Temps
+the day after tomorrow | après-demain | Temps
+in the evening | le soir | Temps
+at the front | devant | Lieu
+at the back | derrière, au fond | Lieu
+now and then | de temps en temps | Fréquence
+quite | tout à fait, entièrement | Quantité
+that's why | c'est pour ça | Cause et conséquence
+for that reason | pour cette raison | Cause et conséquence
+next to it | à côté | Lieu | ex=There's a bakery and a café next to it. # Il y a une boulangerie et un café à côté.
+per | par | Quantité
+for a long time | longtemps | Temps
+abroad | à l'étranger | Lieu | ex=She studied abroad for a year. # Elle a étudié un an à l'étranger.
 """
 
 # « expression | traduction | categorie | exemple anglais | exemple francais ».
@@ -705,4 +744,12 @@ would it be possible | serait-il possible… ? | Politesse | Would it be possibl
 Would you like to leave a message | Voulez-vous laisser un message ? | Au quotidien | He isn't in at the moment. Would you like to leave a message? | Il n'est pas là pour le moment. Voulez-vous laisser un message ?
 you're right about that | tu as raison là-dessus | Donner son avis | That's too expensive. — You're right about that. | C'est trop cher. — Tu as raison là-dessus.
 you've got the wrong number | vous vous êtes trompé de numéro | Au quotidien | Sorry, you've got the wrong number. | Désolé, vous vous êtes trompé de numéro.
+definitely | En tout cas, absolument | Donner son avis | Are you coming? – Definitely! | Tu viens ? – Absolument !
+to be in the know | être au courant | Tournures | The boss already knows about it. | Le patron est déjà au courant.
+hi there | salut | Bavarder | Hi there, glad you're coming! | Salut, content que tu viennes !
+many thanks | merci beaucoup | Bavarder | Many thanks for your help. | Merci beaucoup pour votre aide.
+to have a headache | avoir mal à la tête | Réagir | I've had a headache since this morning. | J'ai mal à la tête depuis ce matin.
+to have a cold | être enrhumé | Réagir | She has a cold and is staying home. | Elle est enrhumée et reste à la maison.
+to withdraw money | retirer de l'argent | Au quotidien | I still need to withdraw money. | Je dois encore retirer de l'argent.
+to take the train | prendre le train | Au quotidien | We're taking the train to Hamburg. | Nous prenons le train pour Hambourg.
 """

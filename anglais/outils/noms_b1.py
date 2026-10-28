@@ -183,6 +183,9 @@ reference | la référence, la recommandation
 worker | l'ouvrier
 workforce | l'effectif
 working conditions | les conditions de travail
+businesspeople | les gens d'affaires | plt | ex=The hotel is full of businesspeople during the week. # En semaine, l'hôtel est plein de gens d'affaires.
+career | la carrière
+labor union | le syndicat | gb=trade union | ex=The nurses joined a labor union. # Les infirmières ont adhéré à un syndicat.
 """,
 "food_b1": """
 additive | l'additif
@@ -240,6 +243,11 @@ stew | le ragoût
 texture | la texture
 canned food | les conserves | u | gb=tinned food | ex=We keep some canned food for emergencies. # Nous gardons des conserves pour les urgences.
 whipped cream | la crème fouettée, la chantilly | u
+portion | la portion
+microchip | la puce (électronique) | ex=Every phone contains dozens of microchips. # Chaque téléphone contient des dizaines de puces.
+coffee house | le café
+beer garden | la brasserie en plein air
+refrigerator | le réfrigérateur | ex=Keep the medicine in the refrigerator. # Conserve le médicament au réfrigérateur.
 """,
 "home_b1": """
 antenna | l'antenne | gb=aerial | ex=The antenna is on the roof. # L'antenne est sur le toit.
@@ -288,6 +296,11 @@ tube | le tube | ex=There's a tube of toothpaste in the drawer. # Il y a un tube
 vase | le vase
 whistle | le sifflet
 wick | la mèche
+house rules | le règlement intérieur
+soap | le savon
+place of residence | le lieu de résidence
+alarm clock | le réveil
+string lights | la guirlande lumineuse | plt | gb=fairy lights | ex=We hung string lights on the porch. # Nous avons accroché une guirlande lumineuse sur la véranda.
 """,
 "health_b1": """
 accessibility | l'accessibilité
@@ -360,6 +373,13 @@ cane | la canne | gb=walking stick | ex=My grandfather walks with a cane. # Mon 
 wheelchair | le fauteuil roulant
 wing | l'aile
 wrist | le poignet
+emergency call | l'appel d'urgence | ex=The emergency call came in at midnight. # L'appel d'urgence est arrivé à minuit.
+vaccination record | le carnet de vaccination
+health insurance card | la carte d'assurance maladie
+elderly care | les soins aux personnes âgées
+nursing care | les soins infirmiers
+retirement home | la maison de retraite
+office hours | les heures de consultation, de bureau | plt | ex=The professor's office hours are on Tuesday. # Les heures de permanence du professeur sont le mardi.
 """,
 "clothes_b1": """
 jewelry | les bijoux | u
@@ -469,6 +489,10 @@ vegetation | la végétation
 vest | le gilet | gb=waistcoat
 vineyard | le vignoble
 well | le puits
+North Sea | la mer du Nord
+climate protection | la protection du climat
+environmental awareness | la conscience environnementale | u
+environmental pollution | la pollution de l'environnement | u
 """,
 "travel_b1": """
 adventure | l'aventure
@@ -537,6 +561,12 @@ vehicle | le véhicule
 viewpoint | le belvédère
 youth hostel | l'auberge de jeunesse
 zone | la zone
+main train station | la gare centrale | ex=The bus stops right in front of the main train station. # Le bus s'arrête juste devant la gare centrale.
+seat | le siège, la place
+annual pass | l'abonnement annuel
+luggage rack | le porte-bagages
+booking | la réservation
+return trip | le trajet de retour | ex=On the return trip, we stopped in Maine. # Au retour, nous nous sommes arrêtés dans le Maine.
 """,
 "city_b1": """
 architecture | l'architecture
@@ -572,6 +602,8 @@ space | l'espace
 suburb | la banlieue
 town planning | l'urbanisme
 vicinity | les environs | ex=There are three schools in the vicinity. # Il y a trois écoles dans les environs.
+big city | la grande ville
+drugstore | la pharmacie-droguerie | gb=chemist's
 """,
 "education_b1": """
 alphabet | l'alphabet
@@ -639,6 +671,13 @@ success | le succès
 tuition | les frais de scolarité | u | gb=tuition fees
 tutorial | le tutoriel, les travaux dirigés
 written exam | l'examen écrit
+main focus | la priorité, l'axe principal
+fact sheet | la fiche d'information | ex=Read the fact sheet before the meeting. # Lis la fiche d'information avant la réunion.
+umbrella term | le terme générique | ex=“Fruit” is an umbrella term for apples, pears and so on. # « Fruit » est un terme générique pour les pommes, les poires, etc.
+Turkish | le turc (la langue)
+Ukrainian | l'ukrainien (la langue)
+degree program | la filière d'études
+bachelor's thesis | le mémoire de licence | pl=bachelor's theses
 """,
 "culture_b1": """
 amusement park | le parc d'attractions
@@ -809,6 +848,12 @@ trend | la tendance
 update | la mise à jour
 voicemail | la messagerie vocale
 writing | l'écriture | u | ex=Her writing is hard to read. # Son écriture est difficile à lire.
+computer program | le logiciel
+computer skills | les compétences en informatique | plt | ex=Basic computer skills are required. # Des compétences de base en informatique sont exigées.
+fax | le fax
+CD player | le lecteur de CD
+DVD | le DVD | ex=We watched an old movie on DVD. # Nous avons regardé un vieux film en DVD.
+broadcasting | la radiodiffusion
 """,
 "money_b1": """
 bank transfer | le virement bancaire
@@ -850,6 +895,12 @@ supplier | le fournisseur
 trade | le commerce
 value | la valeur
 warranty | la garantie
+special offer | l'offre spéciale
+customer number | le numéro de client
+store window | la vitrine | gb=shop window | ex=The dress in the store window caught my eye. # La robe en vitrine a attiré mon regard.
+brand | la marque
+banknote | le billet (de banque) | ex=The machine doesn't accept old banknotes. # La machine n'accepte pas les vieux billets.
+deposit | le dépôt, la caution
 """,
 "feelings_b1": """
 bad luck | la malchance | u
@@ -864,7 +915,7 @@ emotion | l'émotion
 enthusiasm | l'enthousiasme
 excuse | l'excuse, le prétexte
 fright | la frayeur
-heartbreak | le chagrin d'amour
+heartbreak | le chagrin d'amour | u | ex=She's still getting over the heartbreak. # Elle se remet encore de son chagrin d'amour.
 homesickness | le mal du pays | u | ex=During her first year abroad, she suffered from homesickness. # Pendant sa première année à l'étranger, elle a eu le mal du pays.
 honor | l'honneur
 hope | l'espoir
@@ -1000,6 +1051,13 @@ victim | la victime
 violence | la violence | u
 volunteer | le bénévole
 volunteering | le bénévolat
+member of parliament | le député
+social order | l'ordre social
+sex | le sexe | ex=Please indicate your sex on the form. # Veuillez indiquer votre sexe sur le formulaire.
+formal request | la demande officielle
+Turk | le Turc, la Turque | ex=Her husband is a Turk from Istanbul. # Son mari est un Turc d'Istanbul.
+Turkey | la Turquie
+Ukraine | l'Ukraine
 """,
 "law_b1": """
 justice | la justice | u
@@ -1036,6 +1094,7 @@ hurry | la hâte | u
 millennium | le millénaire
 period | la période
 weekday | le jour de la semaine
+public holiday | le jour férié | ex=Monday is a public holiday, so the banks are closed. # Lundi est férié, les banques sont donc fermées.
 """,
 "everyday_b1": """
 alternative | l'alternative
@@ -1093,5 +1152,8 @@ truth | la vérité
 type | le type, genre
 work of art | l'œuvre d'art | pl=works of art
 zip code | le code postal | gb=postcode | ex=What's your zip code? # Quel est ton code postal ?
+multiple | le multiple
+waste | le déchet | u
+stuff | les affaires, les trucs | u
 """,
 }
