@@ -3386,7 +3386,11 @@ html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:
 html[data-apprendre="en"] button[onclick*="startExercises"],
 html[data-apprendre="en"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="en"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
-html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]){ display:none !important; }
+html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]){ display:none !important; }
+/* « S'entrainer par temps » (28 oct. 2026) : les cartes allemandes (Prasens,
+   Prateritum, Perfekt) cedent la place a la liste anglaise, rangee par niveau
+   et remplie depuis grammaire.json (#tempsEnCartes). */
+html[data-apprendre="en"] #verbenTempsInfo > .card{ display:none !important; }
 .forme-en{ margin: 4px 0 8px; }
 .forme-en small{ opacity: .72; }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
@@ -10189,6 +10193,8 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
             <h2 data-i18n="verbentemps_info_title">S'entraîner par temps</h2>
         </div>
     </div>
+
+    <div id="tempsEnCartes" data-seulement-en></div>
 
     <div class="card">
         <strong data-i18n="verbentemps_praesens_title">Präsens — le présent</strong>
@@ -27137,7 +27143,8 @@ const I18N_ANGLAIS = {
         "orb_ausdruecke_sub": "par situation",
         "op_nomen_o5_d": "Écouter et écrire — {n} mots",
         "variante_gb": "🇬🇧 en Grande-Bretagne : {mot}",
-        "variante_us": "🇺🇸 aux États-Unis : {mot}"
+        "variante_us": "🇺🇸 aux États-Unis : {mot}",
+        "op_verben_o4_d": "Present simple · Past simple · Present perfect · Futur · Conditionnel"
     }
 };
 if(LANGUE_APPRISE === "en"){
@@ -27410,6 +27417,9 @@ let chargementCours = null;
 // Les fiches de grammaire de la langue apprise (l'espagnol en a sept ; la
 // grammaire allemande n'en porte pas : ses ecrans sont dans la page).
 let FICHES_GRAMMAIRE = [];
+// Les series par temps de l'anglais (28 oct. 2026), pour « S'entrainer par
+// temps » : l'allemand et l'espagnol ont leurs cartes dans la page.
+let TEMPS_ANGLAIS = [];
 
 function chargerCours(){
     if(COURS_CHARGE) return Promise.resolve(true);
@@ -27419,6 +27429,7 @@ function chargerCours(){
             .then(d => {
                 const textes = d.textes || {};
                 FICHES_GRAMMAIRE = Array.isArray(d.fiches) ? d.fiches : [];
+                TEMPS_ANGLAIS = Array.isArray(d.temps) ? d.temps : [];
                 if(LANGUE_APPRISE === "en") brancherSeriesAnglaises();
                 Object.keys(textes).forEach(code => {
                     if(I18N[code]) Object.assign(I18N[code], textes[code]);
@@ -58009,7 +58020,34 @@ function resetAllConfirm(){
 }
 
 function openVerbenTempsInfo(){
+    if(LANGUE_APPRISE === "en") return ouvrirTempsAnglais();
     showScreen("verbenTempsInfo");
+}
+
+// L'ANGLAIS PAR TEMPS (28 oct. 2026) : Prasens, Prateritum, Perfekt n'ont pas
+// d'equivalent terme a terme. La liste vient de grammaire.json (« temps »),
+// une carte par temps, un intertitre par niveau comme la liste des fiches.
+async function ouvrirTempsAnglais(){
+    if(!COURS_CHARGE) await chargerCours();
+    const boite = document.getElementById("tempsEnCartes");
+    if(boite){
+        let palier = null;
+        boite.innerHTML = TEMPS_ANGLAIS.map(x => {
+            const titre = x.niveau !== palier
+                ? '<div class="gram-palier" style="margin:18px 4px 6px; font-size:12px; font-weight:800; letter-spacing:.08em; color:#64748B;">' + x.niveau + '</div>'
+                : "";
+            palier = x.niveau;
+            return titre + '<div class="card"><strong>' + echapperFiche(x.titre) + '</strong>'
+                + '<div class="info-box">' + x.texte + '</div><div class="spacer"></div>'
+                + '<button class="secondary" onclick="serieTempsEn(\'' + x.id + '\')">' + t("fiche_entrainer") + '</button></div>';
+        }).join("");
+    }
+    showScreen("verbenTempsInfo");
+}
+function serieTempsEn(id){
+    const x = TEMPS_ANGLAIS.find(e => e.id === id);
+    if(!x) return;
+    startExerciseSetMelange(x.serie, "kicker_" + x.serie, openVerbenTempsInfo, () => serieTempsEn(id));
 }
 
 // Chaque session mélange sa liste avant de la lancer (shuffleArray modifie le

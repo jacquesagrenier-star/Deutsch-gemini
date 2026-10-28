@@ -277,6 +277,12 @@ def grammaire(niv, src, us):
     jeux = us["exercices.json"]["jeux"]
     textes = us["grammaire.json"]["textes"]["fr"]
     nq = 0
+    # Les series allongees (28 oct. 2026) : series_<niv>.py ajoute des questions
+    # a la suite des douze de la fiche, sans toucher a celles-ci.
+    sup = module("series_" + niv.lower())
+    sup = sup.SUPPLEMENTS if sup else {}
+    inconnues = set(sup) - {f["serie"] for f in src.FICHES}
+    assert not inconnues, "series_%s.py : series inconnues %s" % (niv.lower(), sorted(inconnues))
     for f in src.FICHES:
         fiche = {k: f[k] for k in ("id", "titre", "resume", "regle", "tableau", "exemples", "attention")}
         fiche["exercice"] = "exercicesFicheEn_" + f["id"].replace("-", "_")
@@ -285,20 +291,57 @@ def grammaire(niv, src, us):
         fiche["statut"] = "brouillon"
         assert f["serie"] not in jeux, "serie en double : " + f["serie"]
         fiches.append(fiche)
-        qs = []
-        for cols in C.lignes(f["questions"]):
-            question, bonne, fausses, trad, expl = cols[:5]
-            options = [bonne] + [x.strip() for x in fausses.split("/")]
-            random.Random(question).shuffle(options)
-            qs.append({"topic": f["id"], "question": question, "question_en": question,
-                       "translation": trad, "translation_en": trad,
-                       "answers": [bonne], "correct": bonne, "correctEn": bonne,
-                       "explanation": expl, "explanation_en": expl,
-                       "options": options, "optionsEn": options})
+        qs = questions(f["id"], f["questions"] + "\n" + sup.get(f["serie"], ""))
         jeux[f["serie"]] = qs
         textes["kicker_" + f["serie"]] = f["kicker"]
         nq += len(qs)
     return len(src.FICHES), nq
+
+
+def question(topic, q, bonne, fausses, trad, expl):
+    """Une question a choix, au format des series (options melangees, mais
+    toujours de la meme facon pour une meme question)."""
+    options = [bonne] + [x for x in fausses if x != bonne]
+    random.Random(q).shuffle(options)
+    return {"topic": topic, "question": q, "question_en": q,
+            "translation": trad, "translation_en": trad,
+            "answers": [bonne], "correct": bonne, "correctEn": bonne,
+            "explanation": expl, "explanation_en": expl,
+            "options": options, "optionsEn": options}
+
+
+def questions(topic, bloc):
+    """Les lignes « question | bonne | fausse / fausse | traduction | explication »."""
+    vues, qs = set(), []
+    for cols in C.lignes(bloc):
+        q, bonne, fausses, trad, expl = cols[:5]
+        assert q not in vues, "question en double : " + q
+        vues.add(q)
+        fausses = [x.strip() for x in fausses.split("/")]
+        assert bonne not in fausses, "bonne reponse parmi les fausses : " + q
+        qs.append(question(topic, q, bonne, fausses, trad, expl))
+    return qs
+
+
+def temps(us):
+    """L'ecran « S'entrainer par temps » de l'anglais (28 oct. 2026) : une serie
+    par temps, rangee par niveau (temps_<niv>.py). L'ecran allemand -- Prasens,
+    Prateritum, Perfekt -- n'a pas d'equivalent terme a terme en anglais."""
+    liste = us["grammaire.json"].setdefault("temps", [])
+    jeux = us["exercices.json"]["jeux"]
+    textes = us["grammaire.json"]["textes"]["fr"]
+    nq = 0
+    for niv in ["A1"] + NIVEAUX:
+        src = module("temps_" + niv.lower())
+        if not src:
+            continue
+        for t in src.TEMPS:
+            assert t["serie"] not in jeux, "serie en double : " + t["serie"]
+            liste.append({"id": t["id"], "niveau": niv, "titre": t["titre"], "texte": t["texte"], "serie": t["serie"]})
+            jeux[t["serie"]] = questions(t["id"], t["questions"])
+            textes["kicker_" + t["serie"]] = t["kicker"]
+            nq += len(jeux[t["serie"]])
+    return len(liste), nq
 
 
 def conjugaison(us, gb, vers_gb):
@@ -346,6 +389,10 @@ def construire(us, gb, ch, vers_gb):
             len(us["adverbes.json"].get(niv, [])), len(us["expressions.json"].get(niv, [])), nf, nq))
     nfo = fonctionnels(us, gb, vers_gb)
     nco = conjugaison(us, gb, vers_gb)
+    nte, qte = temps(us)
+    import ancien_module
+    nan, qan = ancien_module.construire(us, question, en_us)
     for l in bilan:
         print("Niveaux -- " + l)
     print("Niveaux -- %d mots-outils, %d feuilles de conjugaison" % (nfo, nco))
+    print("Niveaux -- %d series par temps (%d questions), %d fiches de l'ancien module (%d questions)" % (nte, qte, nan, qan))

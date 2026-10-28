@@ -1,5 +1,37 @@
 # L'anglais A2 à C1 : le plan
 
+## 28 oct. 2026 : « S'entraîner par temps » et des séries plus longues
+
+Demande du chef d'orchestre : l'écran des verbes « S'entraîner par temps » était allemand
+(Präsens, Präteritum, Perfekt) et caché en anglais ; et les séries de grammaire devaient
+atteindre le volume de l'espagnol (24 séries, 1 343 questions), puis celui de l'allemand
+(48 séries, 2 721 questions), avec les listes de l'ancien module.
+
+- **L'écran par temps** est anglais : 12 séries rangées par niveau (A1 present simple et
+  continuous ; A2 past simple, past continuous, futur, forme de base ; B1 present perfect,
+  past perfect, conditionnel ; B2 parfaits continus, futurs avancés ; C1 tous les temps),
+  474 questions écrites à la main. Sources : `anglais/outils/temps_<niveau>.py` ; elles
+  arrivent dans `grammaire.json` (clé `temps`) et `index.html` en fait les cartes
+  (`ouvrirTempsAnglais()`). Les cartes allemandes sont cachées en anglais, rien ne change
+  en allemand ni en espagnol.
+- **L'ancien module** (phrasal verbs, pièges, expressions de conversation, américain /
+  britannique) donne 11 fiches de plus, A2-B2, 500 questions. Ses listes sont recopiées
+  dans `anglais/outils/ancien/` et deviennent des sources (quelques retouches américaines :
+  *trash*, *anymore*, *middle school* ; *petrol* retiré des pièges). Les questions des
+  pièges sont écrites à la main (`pieges_niveaux.py`), les autres tirées des listes
+  (`ancien_module.py`) : particule à trouver, sens à reconnaître, mot américain ↔ britannique.
+
+| Séries de grammaire | Séries | Questions |
+|---|---|---|
+| Anglais avant (v988) | 53 | 599 |
+| Anglais maintenant | 76 | 1 805 |
+| Espagnol | 24 | 1 343 |
+| Allemand | 48 | 2 721 |
+
+Les séries des fiches s'allongent aussi : `series_<niveau>.py` ajoute des questions à la
+suite des douze de chaque fiche (A2 fait : 9 fiches passent de 12 à 35-42 questions).
+Reste, pour atteindre l'allemand : la même chose pour B1, B2 et C1.
+
 ## 28 oct. 2026 : « tous les mots » — la couverture face à l'allemand
 
 Consigne de Jacques (27 oct.) : « Et tous les mots. Le compléter et de faire entièrement. »
