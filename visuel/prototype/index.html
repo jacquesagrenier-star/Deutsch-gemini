@@ -599,6 +599,31 @@ function chargerVoix(){
   const pays = EST_ES ? (LATAM ? /^es(-|_)(MX|US|419)/i : /^es(-|_)ES/i) : EST_JA ? /^ja(-|_)JP/i
              : EST_EN ? (GB ? /^en(-|_)GB/i : /^en(-|_)US/i) : /^de(-|_)DE/i;
   const langue = EST_ES ? /^es/i : EST_JA ? /^ja/i : EST_EN ? /^en/i : /^de/i;
+  /* L'anglais (28 oct. 2026) : prendre la premiere voix en-US tombait sur les
+     voix fantaisie d'Apple (Albert, Bad News...) ou Eloquence (Eddy, Flo...).
+     Meme classement que l'app (index.html, scoreVoixAnglaise) : les garder
+     d'accord. */
+  if (EST_EN){
+    const PREF = GB ? ["serena", "kate", "daniel", "arthur", "martha", "stephanie", "oliver", "libby", "sonia", "ryan", "hazel", "george", "susan"]
+                    : ["ava", "samantha", "allison", "zoe", "evan", "nathan", "susan", "tom", "joelle", "noelle", "aria", "jenny", "guy", "zira", "david", "mark"];
+    const FUIR = ["albert", "bad news", "bahh", "bells", "boing", "bubbles", "cellos", "good news", "jester", "organ", "pipe organ", "superstar", "trinoids", "whisper", "wobble", "zarvox", "deranged", "hysterical", "junior", "ralph", "kathy", "fred", "princess", "bruce", "agnes", "vicki", "eddy", "flo", "grandma", "grandpa", "reed", "rocko", "sandy", "shelley"];
+    const score = x => {
+      const nom = (x.name || "").toLowerCase(), uri = (x.voiceURI || "").toLowerCase();
+      const prenom = nom.replace(/^(microsoft|google|apple)\s+/, "").split(/[\s(]/)[0];
+      let s = x.localService === false ? -100 : 0;
+      if (/premium/.test(nom + uri)) s += 40; else if (/enhanced/.test(nom + uri)) s += 30;
+      if (/compact/.test(nom + uri)) s -= 10;
+      if (/eloquence/.test(uri) || FUIR.indexOf(prenom) !== -1 || FUIR.indexOf(nom.split(" (")[0]) !== -1) s -= 50;
+      const r = PREF.indexOf(prenom); if (r !== -1) s += 20 + (PREF.length - r) / 100;
+      ["natural", "neural", "google", "siri", "wavenet"].forEach(h => { if (nom.indexOf(h) !== -1) s += 10; });
+      return s;
+    };
+    const variante = v.filter(x => pays.test(x.lang));
+    const choix = (variante.length ? variante : v.filter(x => langue.test(x.lang)))
+      .sort((a, b) => score(b) - score(a) || a.name.localeCompare(b.name));
+    voixDe = choix[0] || null;
+    return;
+  }
   voixDe = v.find(x => pays.test(x.lang) && /google|natural|online/i.test(x.name))
         || v.find(x => pays.test(x.lang)) || v.find(x => langue.test(x.lang)) || null;
 }

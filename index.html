@@ -27284,7 +27284,10 @@ function langueDuTelephone(){
         if(code === "prs") return "fa";
         if(UI_LANGS.includes(code)) return code;
     }
-    return liste.length ? "en" : DEFAULT_UI_LANG;
+    // Le repli anglais seulement la ou l'interface anglaise existe : l'anglais
+    // appris (UI_LANGS = ["fr"]) s'ouvrait sinon en anglais sur un telephone
+    // regle en anglais ou dans une langue que l'app ne parle pas (28 oct. 2026).
+    return liste.length && UI_LANGS.includes("en") ? "en" : DEFAULT_UI_LANG;
 }
 
 function setUiLang(lang){
@@ -45127,7 +45130,58 @@ function voiceQualityScore(v){
     return score;
 }
 
+// LA VOIX DE L'ANGLAIS APPRIS (28 oct. 2026). Jacques : « la voix pour
+// apprendre l'anglais est epouvantable ». L'anglais appris prenait toutes les
+// voix en-* (irlandaise, indienne, sud-africaine...) et departageait les
+// egalites PAR L'ALPHABET : sur iPhone et Mac, la liste anglaise contient les
+// voix fantaisie (Albert, Bad News, Bubbles...) et les voix Eloquence (Eddy,
+// Flo, Grandma...), toutes en-US -- elles passaient devant Samantha ou Ava.
+// Ici : la seule variante choisie (en-US, ou en-GB en britannique), et les
+// meilleures voix connues d'abord. Premium/Enhanced (iOS, voiceURI ou nom)
+// avant tout ; puis les voix nommees, dans l'ordre de la liste ; une voix
+// « compacte » ne passe qu'a defaut. Ne touche ni l'allemand, ni l'espagnol,
+// ni la lecture des traductions anglaises de l'ancien module (prefixe "en").
+// ⚠️ Meme liste dans visuel/prototype/index.html (chargerVoix) : les garder
+// d'accord.
+const VOIX_ANGLAISES = {
+    "en-us": ["ava", "samantha", "allison", "zoe", "evan", "nathan", "susan", "tom", "joelle", "noelle",
+              "aria", "jenny", "guy", "zira", "david", "mark"],
+    "en-gb": ["serena", "kate", "daniel", "arthur", "martha", "stephanie", "oliver",
+              "libby", "sonia", "ryan", "hazel", "george", "susan"]
+};
+const VOIX_ANGLAISES_A_FUIR = ["albert", "bad news", "bahh", "bells", "boing", "bubbles", "cellos",
+    "good news", "jester", "organ", "pipe organ", "superstar", "trinoids", "whisper", "wobble", "zarvox",
+    "deranged", "hysterical", "junior", "ralph", "kathy", "fred", "princess", "bruce", "agnes", "vicki",
+    "eddy", "flo", "grandma", "grandpa", "reed", "rocko", "sandy", "shelley"];
+function langueDeVoix(v){ return ((v && v.lang) || "").replace("_", "-").toLowerCase(); }
+function scoreVoixAnglaise(v){
+    const nom = ((v && v.name) || "").toLowerCase();
+    const uri = ((v && v.voiceURI) || "").toLowerCase();
+    const prenom = nom.replace(/^(microsoft|google|apple)\s+/, "").split(/[\s(]/)[0];
+    let score = 0;
+    if(v && v.localService === false) score -= 100;
+    if(nom.indexOf("premium") !== -1 || uri.indexOf("premium") !== -1) score += 40;
+    else if(nom.indexOf("enhanced") !== -1 || uri.indexOf("enhanced") !== -1) score += 30;
+    if(nom.indexOf("compact") !== -1 || uri.indexOf("compact") !== -1) score -= 10;
+    if(uri.indexOf("eloquence") !== -1 || VOIX_ANGLAISES_A_FUIR.indexOf(prenom) !== -1
+       || VOIX_ANGLAISES_A_FUIR.indexOf(nom.split(" (")[0]) !== -1) score -= 50;
+    const liste = VOIX_ANGLAISES[langueDeVoix(v)] || [];
+    const rang = liste.indexOf(prenom);
+    if(rang !== -1) score += 20 + (liste.length - rang) / 100;
+    ["natural", "neural", "google", "siri", "wavenet"].forEach(h => { if(nom.indexOf(h) !== -1) score += 10; });
+    return score;
+}
+
 function voicesForLang(prefix){
+    // L'anglais appris (28 oct. 2026) : sa variante seule, les meilleures
+    // voix d'abord. A defaut d'une voix de la variante, toute voix anglaise.
+    if(prefix === "de" && LANGUE_APPRISE === "en"){
+        if(!('speechSynthesis' in window)) return [];
+        const toutes = window.speechSynthesis.getVoices().filter(v => langueDeVoix(v).startsWith("en"));
+        const variante = toutes.filter(v => langueDeVoix(v) === LANGUE_ENSEIGNEE.voix.toLowerCase());
+        return (variante.length ? variante : toutes)
+            .sort((a, b) => scoreVoixAnglaise(b) - scoreVoixAnglaise(a) || a.name.localeCompare(b.name));
+    }
     // "de" = la langue apprise (fusion, etape 3) : en espagnol, les voix es-*.
     if(prefix === "de") prefix = LANGUE_ENSEIGNEE.voix.slice(0, 2).toLowerCase();
     if(!('speechSynthesis' in window)) return [];
@@ -45253,7 +45307,10 @@ function renderVoiceSettings(){
     // (La cle voice_lang_fr garde son nom d'origine ; sa valeur, elle, est
     // traduite dans chaque langue.)
     const connu = getUiLang();
-    const langues = [['de', t('voice_lang_de')], ['en', t('voice_lang_en')]];
+    // En anglais appris, la ligne « Anglais » de l'ancien module (lecture des
+    // traductions) doublait la premiere sous le meme nom : elle est retiree.
+    const langues = LANGUE_APPRISE === "en" ? [['de', t('voice_lang_de')]]
+                  : [['de', t('voice_lang_de')], ['en', t('voice_lang_en')]];
     if(connu !== 'de' && connu !== 'en') langues.push([connu, t('voice_lang_fr')]);
     box.innerHTML = langues.map(([prefix, libelle]) => {
         const dispo = voicesForLang(prefix);
