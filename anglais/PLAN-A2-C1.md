@@ -24,13 +24,15 @@ atteindre le volume de l'espagnol (24 séries, 1 343 questions), puis celui de l
 | Séries de grammaire | Séries | Questions |
 |---|---|---|
 | Anglais avant (v988) | 53 | 599 |
-| Anglais maintenant | 76 | 1 805 |
+| Anglais v989 | 76 | 1 805 |
+| Anglais maintenant | 76 | 2 724 |
 | Espagnol | 24 | 1 343 |
 | Allemand | 48 | 2 721 |
 
-Les séries des fiches s'allongent aussi : `series_<niveau>.py` ajoute des questions à la
-suite des douze de chaque fiche (A2 fait : 9 fiches passent de 12 à 35-42 questions).
-Reste, pour atteindre l'allemand : la même chose pour B1, B2 et C1.
+Les séries des fiches s'allongent aussi : `series_<niveau>.py` (et `series_c1_suite.py`)
+ajoute des questions à la suite des douze de chaque fiche, sans toucher à celles-ci. Les
+38 fiches A2-C1 passent de 12 questions à 35-55 (A2 340, B1 403, B2 402, C1 462 questions).
+Le volume de l'allemand est atteint. Reste, pour Jacques : la relecture par un anglophone.
 
 ## 28 oct. 2026 : « tous les mots » — la couverture face à l'allemand
 
