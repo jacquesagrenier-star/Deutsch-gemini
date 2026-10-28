@@ -119,13 +119,12 @@ we | nous | Sujet | We have a big family. | Nous avons une grande famille.
 they | ils, elles | Sujet | They live next door. | Ils habitent à côté.
 me | me, moi | Complément | Can you help me? | Tu peux m'aider ?
 him | le, lui (homme) | Complément | I see him every day. | Je le vois tous les jours.
-her | la, lui (femme) | Complément | I called her yesterday. | Je l'ai appelée hier.
+her | la, lui (femme) ; son, sa, ses (à elle) | Complément | Her brother called her yesterday. | Son frère l'a appelée hier.
 us | nous | Complément | Come with us! | Viens avec nous !
 them | les, leur | Complément | I love them. | Je les aime.
 my | mon, ma, mes | Possessifs | My car is red. | Ma voiture est rouge.
 your | ton, ta, tes, votre, vos | Possessifs | Is this your phone? | C'est ton téléphone ?
 his | son, sa, ses (à lui) | Possessifs | His mother is a doctor. | Sa mère est médecin.
-her | son, sa, ses (à elle) | Possessifs | Her brother lives in London. | Son frère habite à Londres.
 its | son, sa, ses (chose, animal) | Possessifs | The dog is in its bed. | Le chien est dans son panier.
 our | notre, nos | Possessifs | Our house is near the park. | Notre maison est près du parc.
 their | leur, leurs | Possessifs | Their children are at school. | Leurs enfants sont à l'école.
