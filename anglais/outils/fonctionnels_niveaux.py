@@ -10,32 +10,34 @@ ajoute a fonctionnels.json avec leur niveau. Anglais americain.
 FONCTIONNELS = {
 "A2": {
 "konjunktionen": """
-because | parce que | Cause | I stayed home because I was sick. | Je suis resté à la maison parce que j'étais malade.
-so | donc, alors | Conséquence | It was late, so we took a taxi. | Il était tard, alors nous avons pris un taxi.
-if | si | Condition | If you're hungry, there's pizza in the fridge. | Si tu as faim, il y a de la pizza dans le frigo.
-when | quand | Temps | Call me when you get home. | Appelle-moi quand tu rentres.
 while | pendant que | Temps | She read while I cooked. | Elle lisait pendant que je cuisinais.
 before | avant que, avant de | Temps | Wash your hands before you eat. | Lave-toi les mains avant de manger.
 after | après que, après | Temps | We went for a walk after we had lunch. | Nous sommes allés nous promener après le déjeuner.
 until | jusqu'à ce que | Temps | Wait here until I come back. | Attends ici jusqu'à ce que je revienne.
 as soon as | dès que | Temps | I'll call you as soon as I arrive. | Je t'appellerai dès que j'arriverai.
 although | bien que | Opposition | Although it was raining, we went out. | Bien qu'il ait plu, nous sommes sortis.
-or | ou | Choix | Do you want tea or coffee? | Tu veux du thé ou du café ?
 that | que | Liaison | I think that he's right. | Je pense qu'il a raison.
+both … and | à la fois … et | Addition | She speaks both French and English. | Elle parle à la fois français et anglais.
+either … or | soit … soit, ou … ou | Choix | We can either walk or take the bus. | On peut soit marcher, soit prendre l'autobus.
+neither … nor | ni … ni | Choix | He drinks neither tea nor coffee. | Il ne boit ni thé ni café.
+so … that | si … que | Conséquence | It was so cold that we stayed inside. | Il faisait si froid que nous sommes restés à l'intérieur.
+as … as | aussi … que | Comparaison | She's as tall as her brother. | Elle est aussi grande que son frère.
 """,
 "praepositionen": """
-during | pendant | Temps | I fell asleep during the movie. | Je me suis endormi pendant le film.
 since | depuis (un moment) | Temps | I've been here since Monday. | Je suis ici depuis lundi.
-for | depuis, pendant (une durée) | Temps | We waited for two hours. | Nous avons attendu deux heures.
-until | jusqu'à | Temps | The store is open until 9 p.m. | Le magasin est ouvert jusqu'à 21 h.
+for (+ durée) | depuis, pendant (une durée) | Temps | We waited for two hours. | Nous avons attendu deux heures.
 ago | il y a | Temps | I moved here three years ago. | J'ai emménagé ici il y a trois ans.
 through | à travers, par | Lieu | We drove through the city. | Nous avons traversé la ville en voiture.
 across | de l'autre côté de, à travers | Lieu | The bank is across the street. | La banque est de l'autre côté de la rue.
 along | le long de | Lieu | We walked along the river. | Nous avons marché le long de la rivière.
 towards | vers | Lieu | She ran towards the door. | Elle a couru vers la porte.
-without | sans | Manière | I can't live without coffee. | Je ne peux pas vivre sans café.
 like | comme | Manière | She sings like a professional. | Elle chante comme une professionnelle.
 except | sauf | Manière | Everyone came except Tom. | Tout le monde est venu sauf Tom.
+against | contre | Lieu | Lean the bike against the wall. | Appuie le vélo contre le mur.
+above | au-dessus de | Lieu | There's a shelf above the sink. | Il y a une étagère au-dessus de l'évier.
+below | en dessous de | Lieu | It's ten degrees below zero. | Il fait dix degrés sous zéro.
+into | dans (avec mouvement) | Lieu | She walked into the room. | Elle est entrée dans la pièce.
+out of | hors de, de (en sortant) | Lieu | He took his keys out of his pocket. | Il a sorti ses clés de sa poche.
 """,
 "pronomen": """
 myself | moi-même, me | Réfléchis | I cut myself while cooking. | Je me suis coupé en cuisinant.
@@ -160,7 +162,6 @@ a number of | un certain nombre de | Quantité | A number of students complained
 "konjunktionen": """
 inasmuch as | dans la mesure où | Cause | The plan failed, inasmuch as nobody followed it. | Le projet a échoué, dans la mesure où personne ne l'a suivi.
 lest | de peur que | But | He wrote it down lest he forget. | Il l'a noté de peur de l'oublier.
-whereas | attendu que (juridique), alors que | Opposition | Whereas the parties agree, the contract is valid. | Attendu que les parties sont d'accord, le contrat est valide.
 no sooner… than | à peine… que | Temps | No sooner had I sat down than the phone rang. | À peine étais-je assis que le téléphone a sonné.
 not only… but also | non seulement… mais aussi | Ajout | She speaks not only French but also Japanese. | Elle parle non seulement français, mais aussi japonais.
 hence | d'où | Conséquence | The bridge was closed, hence the delay. | Le pont était fermé, d'où le retard.

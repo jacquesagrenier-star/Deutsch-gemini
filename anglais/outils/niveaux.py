@@ -256,12 +256,19 @@ def fonctionnels(us, gb, vers_gb):
     if not src:
         return 0
     n = 0
+    # Un mot n'apparait qu'a UN niveau dans une categorie, comme en allemand
+    # (28 oct. 2026 : « without », « because »... etaient en A1 et en A2). Le
+    # controle couvre l'A1 et tous les niveaux deja verses, et arrete tout.
+    # Un autre sens, a un autre niveau, prend un autre libelle : « for (+ duree) ».
+    vus = {(cle, e["mot"].lower()) for cle, l in us["fonctionnels.json"].items() for e in l}
     for niv, blocs in src.FONCTIONNELS.items():
         if niv not in NIVEAUX:
             continue
         for cle, bloc in blocs.items():
             for cols in C.lignes(bloc):
                 mot, fr, cat, en, efr = cols[:5]
+                assert (cle, mot.lower()) not in vus, "mot-outil deja present (%s, %s) : %s" % (cle, niv, mot)
+                vus.add((cle, mot.lower()))
                 e = {"mot": mot, "traduction": fr, "kategorie": cat, "exemple": en,
                      "exemple_fr": efr, "niveau": niv}
                 us["fonctionnels.json"].setdefault(cle, []).append(e)
