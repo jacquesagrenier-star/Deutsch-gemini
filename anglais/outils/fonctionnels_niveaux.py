@@ -128,4 +128,26 @@ hardly any | presque pas de | Quantité | There's hardly any milk left. | Il ne 
 a number of | un certain nombre de | Quantité | A number of students complained. | Un certain nombre d'élèves se sont plaints.
 """,
 },
+"C1": {
+"konjunktionen": """
+inasmuch as | dans la mesure où | Cause | The plan failed, inasmuch as nobody followed it. | Le projet a échoué, dans la mesure où personne ne l'a suivi.
+lest | de peur que | But | He wrote it down lest he forget. | Il l'a noté de peur de l'oublier.
+whereas | attendu que (juridique), alors que | Opposition | Whereas the parties agree, the contract is valid. | Attendu que les parties sont d'accord, le contrat est valide.
+no sooner… than | à peine… que | Temps | No sooner had I sat down than the phone rang. | À peine étais-je assis que le téléphone a sonné.
+not only… but also | non seulement… mais aussi | Ajout | She speaks not only French but also Japanese. | Elle parle non seulement français, mais aussi japonais.
+hence | d'où | Conséquence | The bridge was closed, hence the delay. | Le pont était fermé, d'où le retard.
+""",
+"praepositionen": """
+notwithstanding | nonobstant, malgré | Opposition | Notwithstanding the rain, the parade went ahead. | Malgré la pluie, le défilé a eu lieu.
+in light of | à la lumière de | Liaison | In light of the new facts, we changed our minds. | À la lumière des nouveaux faits, nous avons changé d'avis.
+pursuant to | conformément à | Liaison | Pursuant to the contract, payment is due in May. | Conformément au contrat, le paiement est dû en mai.
+by virtue of | en vertu de | Cause | He got the job by virtue of his experience. | Il a obtenu le poste en raison de son expérience.
+in the wake of | à la suite de | Temps | Prices rose in the wake of the storm. | Les prix ont augmenté à la suite de la tempête.
+with regard to | en ce qui concerne | Liaison | With regard to your question, the answer is yes. | En ce qui concerne votre question, la réponse est oui.
+""",
+"pronomen": """
+whereby | par lequel | Relatifs | It's a system whereby everyone pays the same. | C'est un système selon lequel tout le monde paie la même chose.
+whichever | quel que soit celui qui | Indéfinis | Take whichever seat you like. | Prends la place que tu veux.
+""",
+},
 }

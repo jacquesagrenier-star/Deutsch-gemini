@@ -907,6 +907,60 @@ window.SCENE = {
      "n": "Préposition + <b>which</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "She ___ be looking forward to the trip.",
+     "c": [
+      "must",
+      "can't",
+      "mustn't"
+     ],
+     "f": "anna",
+     "r": "koffer",
+     "phrase": "She must be looking forward to the trip.",
+     "sens": "Elle doit se réjouir du voyage.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The sweater ___ be too warm for the south.",
+     "c": [
+      "might",
+      "must to",
+      "can"
+     ],
+     "f": "pullover",
+     "phrase": "The sweater might be too warm for the south.",
+     "sens": "Le pull est peut-être trop chaud pour le sud.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "She's ___ flying out tomorrow morning.",
+     "c": [
+      "probably",
+      "must",
+      "might"
+     ],
+     "f": "koffer",
+     "phrase": "She's probably flying out tomorrow morning.",
+     "sens": "Elle décolle sans doute demain matin.",
+     "n": "<b>probably</b>."
+    },
+    {
+     "q": "It's said ___ warm all year round at that beach.",
+     "c": [
+      "to be",
+      "being",
+      "is"
+     ],
+     "f": "bild",
+     "phrase": "It's said to be warm all year round at that beach.",
+     "sens": "Il paraît qu'à cette plage il fait chaud toute l'année.",
+     "n": "<b>is said to be</b>."
+    }
+   ]
   }
  },
  "traductions": {}

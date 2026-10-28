@@ -944,6 +944,61 @@ window.SCENE = {
      "n": "« On » = <b>people</b> (pluriel)."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "She ___ feel great on vacation.",
+     "c": [
+      "must",
+      "can't",
+      "mustn't"
+     ],
+     "f": "anna",
+     "phrase": "She must feel great on vacation.",
+     "sens": "Elle doit se sentir très bien en vacances.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The dog ___ belong to the boy.",
+     "c": [
+      "might",
+      "must to",
+      "can"
+     ],
+     "f": "hund",
+     "r": "junge",
+     "phrase": "The dog might belong to the boy.",
+     "sens": "Le chien appartient peut-être au garçon.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The water is ___ quite warm already.",
+     "c": [
+      "probably",
+      "must",
+      "might"
+     ],
+     "f": "meer",
+     "r": "junge",
+     "phrase": "The water is probably quite warm already.",
+     "sens": "L'eau doit déjà être assez chaude.",
+     "n": "<b>probably</b>."
+    },
+    {
+     "q": "From the lighthouse, you can supposedly see ___ the islands.",
+     "c": [
+      "all the way to",
+      "until",
+      "up"
+     ],
+     "f": "leuchtturm",
+     "phrase": "From the lighthouse, you can supposedly see all the way to the islands.",
+     "sens": "Il paraît que du phare, on peut voir jusqu'aux îles.",
+     "n": "Jusqu'à (distance) = <b>all the way to</b>."
+    }
+   ]
   }
  },
  "traductions": {}

@@ -1770,6 +1770,61 @@ window.SCENE = {
      "n": "<b>pay → paid</b> (pas payed)."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses : must, might, probably, supposedly",
+   "qs": [
+    {
+     "q": "The rolls ___ be fresh.",
+     "c": [
+      "must",
+      "can't",
+      "mustn't"
+     ],
+     "f": "broetchen",
+     "r": "anna",
+     "phrase": "The rolls must be fresh.",
+     "sens": "Les petits pains doivent être frais.",
+     "n": "Déduction → <b>must</b>."
+    },
+    {
+     "q": "The dog ___ belong to the neighbor.",
+     "c": [
+      "might",
+      "must to",
+      "should to"
+     ],
+     "f": "hund",
+     "r": "nachbar",
+     "phrase": "The dog might belong to the neighbor.",
+     "sens": "Le chien appartient peut-être au voisin.",
+     "n": "<b>might</b> + verbe nu."
+    },
+    {
+     "q": "The bread was ___ baked this morning.",
+     "c": [
+      "probably",
+      "must",
+      "might be"
+     ],
+     "f": "brot",
+     "phrase": "The bread was probably baked this morning.",
+     "sens": "Le pain date sans doute de ce matin.",
+     "n": "<b>probably</b> se place après be."
+    },
+    {
+     "q": "This bakery is ___ the best in the neighborhood.",
+     "c": [
+      "supposedly",
+      "supposed",
+      "suppose"
+     ],
+     "f": "schalter",
+     "phrase": "This bakery is supposedly the best in the neighborhood.",
+     "sens": "Cette boulangerie serait la meilleure du quartier.",
+     "n": "Il paraît que → <b>supposedly</b>."
+    }
+   ]
   }
  },
  "traductions": {}

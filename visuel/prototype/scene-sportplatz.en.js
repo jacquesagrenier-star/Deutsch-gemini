@@ -930,6 +930,59 @@ window.SCENE = {
      "n": "But → <b>to</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "It ___ be his first goal.",
+     "c": [
+      "must",
+      "can",
+      "ought"
+     ],
+     "f": "mark",
+     "phrase": "It must be his first goal.",
+     "sens": "Ce doit être son premier but.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The old man ___ be Mark's neighbor.",
+     "c": [
+      "might",
+      "must to",
+      "can"
+     ],
+     "f": "mann",
+     "phrase": "The old man might be Mark's neighbor.",
+     "sens": "Le vieux monsieur est peut-être le voisin de Mark.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The game ___ be over soon.",
+     "c": [
+      "should",
+      "must have",
+      "can't"
+     ],
+     "f": "uhr",
+     "phrase": "The game should be over soon.",
+     "sens": "Le match devrait bientôt être fini.",
+     "n": "<b>should</b>."
+    },
+    {
+     "q": "The coach is said to ___ a professional player.",
+     "c": [
+      "have been",
+      "be",
+      "being"
+     ],
+     "f": "trainerin",
+     "phrase": "The coach is said to have been a professional player.",
+     "sens": "Il paraît que l'entraîneuse était joueuse professionnelle autrefois.",
+     "n": "<b>is said to have been</b>."
+    }
+   ]
   }
  },
  "traductions": {}

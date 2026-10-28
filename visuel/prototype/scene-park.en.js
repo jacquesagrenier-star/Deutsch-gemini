@@ -1095,6 +1095,62 @@ window.SCENE = {
      "n": "<b>spread</b> ne change pas."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "She ___ know the dog.",
+     "c": [
+      "must",
+      "can't",
+      "mustn't"
+     ],
+     "f": "anna",
+     "r": "hund",
+     "phrase": "She must know the dog.",
+     "sens": "Elle doit connaître le chien.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The dog ___ catch the ball any second.",
+     "c": [
+      "might",
+      "must",
+      "should have"
+     ],
+     "f": "hund",
+     "r": "ball",
+     "phrase": "The dog might catch the ball any second.",
+     "sens": "Le chien va peut-être attraper le ballon d'une seconde à l'autre.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The man ___ comes here every Sunday.",
+     "c": [
+      "probably",
+      "must",
+      "might be"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "The man probably comes here every Sunday.",
+     "sens": "L'homme vient sans doute ici chaque dimanche.",
+     "n": "<b>probably</b>."
+    },
+    {
+     "q": "There are said ___ huge fish in the pond.",
+     "c": [
+      "to be",
+      "being",
+      "are"
+     ],
+     "f": "see",
+     "phrase": "There are said to be huge fish in the pond.",
+     "sens": "Il paraît qu'il y a d'énormes poissons dans l'étang.",
+     "n": "<b>There are said to be</b>."
+    }
+   ]
   }
  },
  "traductions": {}

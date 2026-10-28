@@ -1177,6 +1177,60 @@ window.SCENE = {
      "n": "L'état → participe passé."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses et irréel",
+   "qs": [
+    {
+     "q": "The party ___ have been very long.",
+     "c": [
+      "must",
+      "can",
+      "should to"
+     ],
+     "f": "luftballon",
+     "phrase": "The party must have been very long.",
+     "sens": "La fête a dû être très longue.",
+     "n": "<b>must have been</b>."
+    },
+    {
+     "q": "It was ___ one of the guests.",
+     "c": [
+      "probably",
+      "must",
+      "might"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "It was probably one of the guests.",
+     "sens": "C'était sans doute l'un des invités.",
+     "n": "<b>probably</b>."
+    },
+    {
+     "q": "It ___ belong to a guest.",
+     "c": [
+      "might",
+      "must to",
+      "can"
+     ],
+     "f": "socke",
+     "phrase": "It might belong to a guest.",
+     "sens": "Elle appartient peut-être à un invité.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "If Mark hadn't missed the party, he ___ be tired now too.",
+     "c": [
+      "would",
+      "will",
+      "had"
+     ],
+     "f": "koffer",
+     "phrase": "If Mark hadn't missed the party, he would be tired now too.",
+     "sens": "Si Mark n'avait pas raté la fête, il serait lui aussi fatigué maintenant.",
+     "n": "Mixte (passé → présent) → <b>would be</b>."
+    }
+   ]
   }
  },
  "traductions": {}

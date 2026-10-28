@@ -776,6 +776,71 @@ window.SCENE = {
      "n": "Should <b>be</b> + participe."
     }
    ]
+  },
+  "C1": {
+   "titre": "Because of, the more…, l'irréel du passé",
+   "qs": [
+    {
+     "q": "___ the season, there's a lot of cabbage in October.",
+     "c": [
+      "Because of",
+      "Because",
+      "Due"
+     ],
+     "f": "kohl",
+     "phrase": "Because of the season, there's a lot of cabbage in October.",
+     "sens": "En raison de la saison, il y a beaucoup de chou en octobre.",
+     "n": "Avant un nom → <b>because of</b>."
+    },
+    {
+     "q": "The fresher the vegetables, the ___ vitamins they contain.",
+     "c": [
+      "more",
+      "most",
+      "much"
+     ],
+     "f": "brokkoli",
+     "phrase": "The fresher the vegetables, the more vitamins they contain.",
+     "sens": "Plus les légumes sont frais, plus ils contiennent de vitamines.",
+     "n": "<b>the more</b>."
+    },
+    {
+     "q": "If I had known, I ___ have bought garlic at the supermarket.",
+     "c": [
+      "wouldn't",
+      "won't",
+      "didn't"
+     ],
+     "f": "knoblauch",
+     "phrase": "If I had known, I wouldn't have bought garlic at the supermarket.",
+     "sens": "Si j'avais su, je n'aurais pas acheté d'ail au supermarché.",
+     "n": "Irréel du passé → <b>wouldn't have</b>."
+    },
+    {
+     "q": "The carrots seem to have been ___ recently.",
+     "c": [
+      "harvested",
+      "harvest",
+      "harvesting"
+     ],
+     "f": "karotte",
+     "phrase": "The carrots seem to have been harvested recently.",
+     "sens": "Les carottes semblent avoir été récoltées récemment.",
+     "n": "to have been + <b>participe</b>."
+    },
+    {
+     "q": "Anna ___ bought the radishes for a salad.",
+     "c": [
+      "probably",
+      "must",
+      "might"
+     ],
+     "f": "radieschen-main",
+     "phrase": "Anna probably bought the radishes for a salad.",
+     "sens": "Anna a sans doute acheté les radis pour une salade.",
+     "n": "<b>probably</b>."
+    }
+   ]
   }
  },
  "autre_vue": {

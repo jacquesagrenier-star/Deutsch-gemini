@@ -1,5 +1,41 @@
 # L'anglais A2 à C1 : le plan
 
+## État au 27 oct. 2026, au soir : les quatre niveaux sont construits (essai admin)
+
+Mesuré par `python anglais/outils/couverture.py` (référence : l'espagnol, sur les 37
+scènes gardées ; l'allemand pour le C1, que l'espagnol n'a pas) :
+
+| | A2 | B1 | B2 | C1 |
+|---|---|---|---|---|
+| Noms | 657 (es 539) | 974 (515) | 374 (236) | 489 (de 948) |
+| Verbes | 298 (274) | 354 (314) | 178 (162) | 166 (de 272) |
+| Adjectifs | 189 (154) | 386 (261) | 122 (101) | 202 (de 291) |
+| Adverbes | 78 (51) | 123 (119) | 53 (30) | 36 (de 52) |
+| Expressions | 118 (82) | 116 (55) | 133 (69) | 102 (de 100) |
+| Mots-outils | 46 (27) | 28 (20) | 18 (16) | 14 (de 0) |
+| Fiches de grammaire | 9 | 10 | 10 | 9 |
+| Questions de grammaire | 108 | 120 | 120 | 108 |
+| Feuilles de conjugaison | 10 (10) | 10 (10) | 8 (8) | 8 (de 8) |
+| Questions de scènes | 282 (282) | 281 (267) | 218 (218) | 156 (de 156) |
+
+- A2, B1, B2 : chaque ligne atteint ou dépasse l'espagnol.
+- **C1 : l'écart de vocabulaire avec l'allemand est voulu.** Le C1 allemand compte
+  ~330 noms composés administratifs (« Betreuungsschlüssel », « Kommissionierung »…)
+  sans équivalent anglais d'un mot : ils ont été écartés, et remplacés en partie par
+  ~250 mots savants anglais écrits à la main (verbes, adjectifs, adverbes, idiomes, thème
+  « Academic English »).
+- Grammaire : 51 fiches en tout (A1-C1), 582 questions ; l'espagnol a 17 fiches et 1 343
+  questions, mais sans niveau (24 séries d'environ 55 questions). Allonger les séries
+  anglaises est la suite naturelle.
+- Chaque mot a sa phrase d'exemple anglaise et sa traduction française ; 164 phrases sur
+  ~4 000 viennent d'un autre mot que celui de la carte (liste dans `rapport.txt`).
+- L'A1 n'a pas bougé (vérifié à l'octet près à chaque construction).
+
+**Attend Jacques** : une relecture par un anglophone (tout est « brouillon ») ; la voix
+(ElevenLabs, sur son accord ; la voix du téléphone en attendant).
+
+## Le plan d'origine (27 oct. 2026, au matin)
+
 27 octobre 2026. Mandat de Jacques, transmis par le chef d'orchestre : développer les
 niveaux A2, B1, B2 et C1 de l'anglais (essai admin, même moteur). Session « anglais
 A2-C1 », branche `claude/anglais-a2-c1-d6b41b`. Rien n'est payé : ni voix, ni génération,

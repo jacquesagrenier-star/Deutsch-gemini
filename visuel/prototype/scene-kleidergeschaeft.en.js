@@ -1366,6 +1366,62 @@ window.SCENE = {
      "n": "L'auteur → <b>by</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "She ___ like the sweater.",
+     "c": [
+      "must",
+      "can",
+      "should to"
+     ],
+     "f": "pullover",
+     "r": "anna",
+     "phrase": "She must like the sweater.",
+     "sens": "Le pull doit lui plaire.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "She ___ try it on in the fitting room.",
+     "c": [
+      "might",
+      "must to",
+      "can't"
+     ],
+     "f": "kabine",
+     "r": "anna",
+     "phrase": "She might try it on in the fitting room.",
+     "sens": "Elle va peut-être l'essayer dans la cabine.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The man will ___ buy the shoes.",
+     "c": [
+      "probably",
+      "must",
+      "maybe"
+     ],
+     "f": "schuh-main",
+     "r": "monsieur",
+     "phrase": "The man will probably buy the shoes.",
+     "sens": "L'homme va sans doute acheter les chaussures.",
+     "n": "will <b>probably</b> + verbe."
+    },
+    {
+     "q": "The saleswoman is said to ___ here for thirty years.",
+     "c": [
+      "have worked",
+      "work",
+      "worked"
+     ],
+     "f": "verkaeuferin",
+     "phrase": "The saleswoman is said to have worked here for thirty years.",
+     "sens": "Il paraît que la vendeuse travaille ici depuis trente ans.",
+     "n": "<b>is said to have</b> + participe."
+    }
+   ]
   }
  },
  "traductions": {}

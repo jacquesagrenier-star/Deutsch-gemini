@@ -29,7 +29,7 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 # seconde copie. Le rapport ecrit sur le disque est celui de __main__.
 RAPPORT = getattr(sys.modules.get("__main__"), "RAPPORT", C.RAPPORT)
 # Les niveaux branches : un niveau entre ici quand ses listes ont ete relues.
-NIVEAUX = ["A2", "B1", "B2"]
+NIVEAUX = ["A2", "B1", "B2", "C1"]
 
 ORTHO_US = [(b, a) for a, b in VN.ORTHOGRAPHE if a not in VN.PAS_DANS_LES_PHRASES]
 ORTHO_GB = [(a, b) for a, b in VN.ORTHOGRAPHE if a not in VN.PAS_DANS_LES_PHRASES]

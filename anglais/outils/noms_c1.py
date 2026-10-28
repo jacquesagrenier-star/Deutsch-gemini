@@ -33,6 +33,7 @@ THEMES = [
     ('ideas_c1', 'Ideas and debate 1', 'ursache_wirkung_c1'),
     ('ideas_c1_2', 'Ideas and debate 2', 'ursache_wirkung_c1'),
     ('ideas_c1_3', 'Ideas and debate 3', 'ursache_wirkung_c1'),
+    ('academic_c1', 'Academic English', 'argumentation_c1'),
 ]
 
 NOMS = {
@@ -41,195 +42,113 @@ advance directive | les directives anticipées
 attachment figure | la figure de référence
 care home | la EHPAD, maison de soins
 care worker | l'auxiliaire de vie
-caring nature | la attention bienveillante | u
-class group | le groupe classe
 compulsory schooling | l'obligation scolaire
 condolences | les condoléances
-defiant phase | la période d'opposition
-developmental step | l'étape de développement
 discretion | la discrétion
-duty of supervision | l'obligation de surveillance
-estate settlement | le règlement de la succession
 estrangement | l'éloignement, aliénation
-falling-out | la brouille profonde
-familiarity | la familiarité, intimité
+falling-out | la brouille | ex=The two brothers had a falling-out over money. # Les deux frères se sont brouillés pour une histoire d'argent.
+familiarity | la familiarité, la connaissance | u | ex=Familiarity with the software is an advantage. # Une bonne connaissance du logiciel est un atout.
 frailty | la fragilité (grand âge)
 funeral service | la cérémonie funéraire
-generational change | le changement de génération
-homework supervision | l'aide aux devoirs
-isolation | l'isolement, solitude subie
-learning environment | l'environnement d'apprentissage
+isolation | l'isolement | u | ex=Many elderly people suffer from isolation. # Beaucoup de personnes âgées souffrent de l'isolement.
 obituary | la nécrologie, hommage
 parenting style | le style éducatif
-pension entitlement | le droit à la retraite
 rapprochement | le rapprochement
-resentment | la envie, malveillance
+resentment | le ressentiment | u
 retirement | la retraite | u
-role-model function | la fonction d'exemple
-sense of security | le sentiment de sécurité affective | u
-setting boundaries | la pose de limites
-special educational need | le besoin de soutien scolaire
-staff-to-child ratio | le taux d'encadrement
-twilight years | les fin de vie, vieux jours
+twilight years | les vieux jours | plt
 """,
 "work_c1": """
 adaptation | l'adaptation, ajustement
-additional service | la prestation supplémentaire
-appointment booking | la prise de rendez-vous
 appreciation | la reconnaissance, estime
-availability | la joignabilité, accessibilité
-background | le parcours, itinéraire
+availability | la disponibilité | u
+background | le parcours, les antécédents
 burden | la charge, contrainte
 cancellation | l'annulation
-capacity utilization | le taux de charge, occupation
-career path | la carrière, parcours professionnel
-complaints handling | la gestion des réclamations
-contract term | la durée du contrat
-cost estimate | le devis
+career path | le parcours professionnel | ex=She's thinking about changing her career path. # Elle pense à changer de voie professionnelle.
+cost estimate | le devis | ex=Can you give me a cost estimate for the repairs? # Pouvez-vous me faire un devis pour les réparations ?
 customs clearance | le dédouanement
 cycle | le cycle, circuit
-everyday working life | le quotidien professionnel | pl=everyday working lives
-excess | la franchise (assurance)
-finiteness | la caractère fini, finitude | u
-freight costs | les frais de transport
-goodwill | le geste commercial
-interim storage | l'entrepôt intermédiaire
-inventory management | la gestion des stocks | u
-manager | le cadre dirigeant
+excess | l'excès
+goodwill | la bonne volonté | u
+manager | le, la responsable, le gérant
 notice period | le délai de préavis
-on-call duty | l'astreinte, disponibilité
-onboarding | la période de formation initiale
-order picking | la préparation de commandes
-order situation | le carnet de commandes
-packaging unit | l'unité de conditionnement
+onboarding | l'intégration (d'un nouvel employé) | u | ex=Onboarding takes about two weeks. # L'intégration dure environ deux semaines.
 pallet | la palette
-parcel tracking | le suivi de colis
-pressure to perform | la pression de la performance
-processing | le traitement, exécution (d'un dossier)
-rectification | la reprise, mise en conformité
-renewal | le renouvellement, rénovation
-resupply | le réapprovisionnement
+renewal | le renouvellement | ex=Your passport is due for renewal. # Ton passeport doit être renouvelé.
 saving | l'économie (réalisée)
-service provided | la prestation de service
-specialist advice | le conseil spécialisé | u
-staff turnover | la rotation du personnel
-supply bottleneck | la rupture d'approvisionnement
-transhipment hub | la plateforme de transbordement
-transit time | le durée (d'acheminement, de contrat)
-transport damage | l'avarie de transport
-unreasonable demand | l'exigence excessive, affront
+staff turnover | la rotation du personnel | u
 waiting time | le temps d'attente
-working atmosphere | l'ambiance de travail
 """,
 "food_c1": """
-abstaining from consumption | le renoncement à consommer
-bottling | la mise en conserve, stérilisation
-browning | le coloration, brunissement
 consistency | la consistance, texture
 cooking time | le temps de cuisson
-cutting technique | la manière de couper
-daily rhythm | le rythme journalier
-digital break | la pause numérique
-dough handling | la conduite de la pâte
 fermentation | la fermentation
 infusion | l'infusion
 intolerance | l'intolérance
-lack of exercise | le manque d'activité physique
 marinade | la marinade
 maturation | l'affinage, maturation
-mindfulness exercise | l'exercice de pleine conscience
 nutritional value | la valeur nutritive
 portion size | la taille des portions
 preserving | la conservation (procédé)
-recovery phase | la phase de récupération
-roasted aroma | l'arôme de torréfaction
 seasoning | l'assaisonnement
-sequence of courses | l'ordre des plats
-side dish | l'garniture, accompagnement
-stimulant | le produit de plaisir (café, alcool…)
-stock | le bouillon de cuisson, court-bouillon
-way of eating | le régime alimentaire
-way of life | la conduite de vie | pl=way of lives
+side dish | l'accompagnement (plat)
+stimulant | le stimulant | ex=Caffeine is a mild stimulant. # La caféine est un léger stimulant.
+stock | le bouillon (de cuisson)
+way of life | le mode de vie | pl=ways of life
 well-being | le bien-être
 """,
 "home_c1": """
 alloy | l'alliage
 assembly instructions | la notice de montage
-blank | l'ébauche, pièce brute
-bracket | la fixation, support
-building fabric | la structure du bâti
+bracket | le support, l'équerre
 clamp | le serre-joint
 coating | le revêtement
 compost | le compost
-custom work | le travail sur mesure
 cutting | la bouture
-densification | la densification
 filler | l'enduit de rebouchage
-final polish | la finition, dernière main
-flowering period | la période de floraison
 folding ruler | le mètre pliant
-glut of produce | la surproduction de récolte
-hardiness | la rusticité | u
-heritage protection | la protection du patrimoine
 housing shortage | la crise du logement
-installation | la montage, pose
-instructions | le mode d'emploi
+installation | l'installation, la pose
+instructions | le mode d'emploi | plt
 insulation | l'isolation
-interim use | l'occupation temporaire
-local development plan | le plan local d'urbanisme
-location | l'emplacement, exposition
+location | l'emplacement
 manufacturing | la fabrication
 modernization | la modernisation
 mulch | le paillis
-partial shade | la mi-ombre
-post-processing | la reprise, retouche
-precision of fit | la précision d'ajustement
+partial shade | la mi-ombre | u
 primer | la sous-couche
 pruning | la taille (des végétaux)
 raised bed | le carré surélevé
-rent index | le barème des loyers | pl=rent indexes
 root system | le système racinaire
 sandpaper | le papier de verre
-saw blade | la lame de scie
 seedling | le plant, jeune pousse
 silicone | le silicone
 sowing | le semis
-spare parts list | la liste de pièces détachées
 spirit level | le niveau à bulle
-sublet | la sous-location
-upkeep | l'entretien courant
-vacancy | la vacance (de logements)
-wall plug | la cheville
-watering routine | le rythme d'arrosage
-wear | l'usure
+sublet | la sous-location | ex=I found a cheap sublet for the summer. # J'ai trouvé une sous-location bon marché pour l'été.
+upkeep | l'entretien | u
+vacancy | le logement vacant, le poste vacant
+wall anchor | la cheville | gb=wall plug | ex=You'll need wall anchors to hang the shelf. # Il te faudra des chevilles pour accrocher l'étagère.
+wear | l'usure | u
 workbench | l'établi
-workmanship | la façonnage, finition
+workmanship | la qualité d'exécution, la finition | u
 """,
 "health_c1": """
-addictive behaviour | la conduite addictive | u
+addictive behavior | les conduites addictives | u
 aftercare | le suivi post-thérapeutique
 bed rest | le repos au lit
 breathing technique | la technique respiratoire
-care contract | le contrat de prise en charge
-care level | le niveau de dépendance
-chance of recovery | la chance de guérison
-clinical picture | le tableau clinique
-competitive pressure | la pression de la compétition
-core tension | le gainage, tonus corporel
-day care | l'accueil de jour
+day care | l'accueil de jour | u
 dependency | la dépendance
-duty of documentation | l'obligation de traçabilité
 exhaustion | l'épuisement
-fine motor skills | la motricité fine
+fine motor skills | la motricité fine | plt
 flexibility | la souplesse, mobilité
-freedom from symptoms | l'absence de symptômes
-handover | la transmission (dossier de soins)
+handover | la passation, la transmission
 home visit | la visite à domicile
 hospice | l'unité de soins palliatifs
-limit of endurance | la limite de résistance
-medication administration | l'administration des médicaments
-muscle soreness | les courbatures | u
-overload | la surmenage, surcharge
+muscle soreness | les courbatures | u | ex=Muscle soreness usually disappears after two days. # Les courbatures disparaissent généralement au bout de deux jours.
+overload | la surcharge, le surmenage
 package insert | la notice (de médicament)
 pain management | le traitement de la douleur | u
 pain threshold | le seuil de douleur
@@ -237,431 +156,240 @@ palliative care | les soins palliatifs
 peak performance | la performance maximale
 poor posture | la mauvaise posture
 pre-existing condition | l'antécédent médical
-qualified nurse | l'infirmier diplômé
-reaction time | la capacité de réaction
-recovery process | le processus de guérison
-respite service | l'offre de répit
-self-healing powers | les capacités d'auto-guérison
+registered nurse | l'infirmier diplômé, l'infirmière diplômée | ex=She works as a registered nurse at Mass General. # Elle travaille comme infirmière diplômée au Mass General.
+reaction time | le temps de réaction | ex=Alcohol slows down your reaction time. # L'alcool ralentit le temps de réaction.
 sense of balance | le sens de l'équilibre
-short-term care | l'hébergement temporaire
-side-effect profile | le profil d'effets secondaires
 sleep disorder | le trouble du sommeil
-stretching | l'étirement
-torn ligament | la rupture ligamentaire
-torn tendon | la rupture de tendon
+stretching | les étirements | u
+torn ligament | la rupture du ligament | ex=He's out for the season with a torn ligament. # Il est forfait pour la saison à cause d'une rupture du ligament.
 training plan | le plan d'entraînement
-vaccine protection | la protection vaccinale
 warm-up | l'échauffement
-work with relatives | l'accompagnement des proches
 """,
 "clothes_c1": """
-colourfastness | la solidité des couleurs | u
-comfort to wear | le confort de port
-crease | le faux pli
-cuff | le bord-côte, poignet
-demeanour | la prestance, manière de se présenter
+crease | le pli
+cuff | le poignet, le revers
+demeanor | l'allure, l'attitude | u | ex=Despite the bad news, she kept a calm demeanor. # Malgré la mauvaise nouvelle, elle a gardé une attitude calme.
 dress code | le code vestimentaire
-fad | le phénomène de mode
-fibre material | la matière fibreuse
-fit | la coupe, tombé
-handwork | le travail à la main
+fad | la mode passagère
+fit | la coupe, le tombé
 hem | l'ourlet
 lining | la doublure
-made-to-measure | le confection sur mesure
-quality of workmanship | la qualité de fabrication
-seam | la couture (ligne)
-sewing pattern | le patron (couture)
+seam | la couture
 """,
 "nature_c1": """
-animal keeping | la élevage, détention d'animaux
 animal welfare | le bien-être animal | u
-area under cultivation | la surface cultivée
-bog | la tourbière, marais
+bog | la tourbière
 breeding season | la période de nidification
-bright spell | l'éclaircie
-cargo | la cargaison, chargement
+cargo | la cargaison | u | ex=The ship was carrying a cargo of grain. # Le navire transportait une cargaison de céréales.
 clearing | la clairière
 cloud cover | la nébulosité
 coastline | le littoral, trait de côte
-conservation of resources | la préservation des ressources
-conspecific | le congénère
-crop rotation | la rotation des cultures
-crop yield | le rendement de la récolte
-direct marketing | la vente directe
-disposal | l'élimination (des déchets)
-distress at sea | la détresse en mer
-drinking water supply | l'approvisionnement en eau potable
-environmental compatibility | la compatibilité environnementale
-environmental requirement | la contrainte environnementale
-farm succession | la reprise de la ferme
+crop rotation | la rotation des cultures | u | ex=Crop rotation keeps the soil healthy. # La rotation des cultures garde le sol en bonne santé.
+crop yield | le rendement des cultures | ex=The drought reduced crop yields. # La sécheresse a réduit le rendement des cultures.
+disposal | l'élimination (des déchets) | u
 fertilizer | l'engrais
-fishing industry | la pêche (activité)
-flight distance | la distance de fuite
+fishing industry | l'industrie de la pêche | ex=Gloucester depends on the fishing industry. # Gloucester dépend de l'industrie de la pêche.
 fog bank | le banc de brouillard
 food chain | la chaîne alimentaire
-force of nature | la force de la nature | u
+force of nature | la force de la nature | ex=My grandmother is a real force of nature. # Ma grand-mère est une vraie force de la nature.
 freighter | le cargo
-frost line | la limite de gel
 global warming | le réchauffement de la planète
 greenhouse gas | le gaz à effet de serre | u
 gust | la rafale
 hail shower | l'averse de grêle
-harbour basin | le bassin portuaire
-harvest worker | le saisonnier agricole
 heath | la lande
 hibernation | l'hibernation
 high-pressure system | l'anticyclone
-land price | le prix du foncier
-landing stage | l'embarcadère
 """,
 "nature_c1_2": """
-landscape appearance | le paysage (aspect général)
 litter | la portée (petits) | u
 low tide | la marée basse
 low-pressure system | la dépression
-migratory behaviour | le comportement migratoire | u
-milk yield | la production laitière
-mineral resource | la ressource du sous-sol
-muggy heat | la lourdeur, air moite | u
 noise pollution | la nuisance sonore | u
-outdoor run | l'espace de sortie, parcours
 overfishing | la surpêche
-pack | la meute, harde
+pack | la meute
 particulate matter | les particules fines
-pasture farming | l'économie pastorale
-pest | le nuisible, ravageur
+pest | le nuisible
 pollutant | le polluant
-population figure | l'effectif (population animale)
-prey animal | la proie
+prey | la proie | u
 reforestation | le reboisement
-renaturation | la renaturation
-riparian zone | la zone riveraine
-scree | l'éboulis
 sea level | le niveau de la mer
-severe weather warning | l'alerte météo
-shallows | le haut-fond
+weather warning | l'alerte météo
+shallows | le haut-fond | plt | ex=The children played in the shallows. # Les enfants jouaient là où l'eau était peu profonde.
 snowmelt | la fonte des neiges
-soil condition | la nature du sol
 soil erosion | l'érosion des sols
-soil fertility | la fertilité du sol
-species extinction | l'extinction des espèces
-steep slope | la pente raide
-storm front | le front orageux
-surf | le ressac, brisants
-swarm | le banc, essaim, nuée
-swell | la état de la mer, houle
-temperature fluctuation | la variation de température
-territorial behaviour | le comportement territorial | u
+surf | les vagues, le ressac | u
+swarm | l'essaim, la nuée | ex=A swarm of bees flew over the garden. # Un essaim d'abeilles a survolé le jardin.
+swell | la houle | u
 thaw | le dégel
-tides | les marées
+tides | les marées | plt
 tree line | la limite des arbres
-Wadden Sea | la mer des Wadden, estran
-wildlife population | la population de gibier
 wind direction | la direction du vent
-wind force | la force du vent
 """,
 "travel_c1": """
-alternative route | l'itinéraire de contournement
-baggage drop-off | l'enregistrement des bagages
 border crossing | le passage de frontière
-charging infrastructure | l'infrastructure de recharge
-commuting | le fait de faire la navette
+commuting | les trajets domicile-travail | u | ex=Commuting takes up two hours of my day. # Les trajets me prennent deux heures par jour.
 detour | la déviation | gb=diversion
-driving ban | l'interdiction de circuler
-entry requirement | la condition d'entrée
-expansion stage | la phase d'aménagement
-frequency of service | le cadencement
-length of stay | la durée de séjour
-local public transport | le transport de proximité | u
-long-distance transport | le transport longue distance | u
-package holiday | le voyage à forfait
-passenger numbers | le nombre de voyageurs
-rebooking | le changement de réservation
+public transit | les transports en commun | u | gb=public transport | ex=Boston has good public transit. # Boston a de bons transports en commun.
+package tour | le voyage organisé | gb=package holiday | ex=We booked a package tour to Mexico. # Nous avons réservé un voyage organisé au Mexique.
 right of way | la priorité
-road safety | la sécurité routière | u
-round trip | le circuit
-route network | le réseau de lignes
-traffic volume | le trafic, volume de circulation
-transport transition | la transition des mobilités
-travel health insurance | l'assurance maladie à l'étranger | u
-trip cancellation | l'annulation de voyage
+road safety | la sécurité routière | u | ex=The campaign is about road safety. # La campagne porte sur la sécurité routière.
+round trip | l'aller-retour | ex=A round trip to New York costs about fifty dollars. # Un aller-retour pour New York coûte une cinquantaine de dollars.
 """,
 "city_c1": """
 green space | l'espace vert
-local residents | les riverains
-open space | l'espace libre
-outlying district | le quartier périphérique
-row of streets | l'enfilade de rues, îlot
-sight line | la perspective visuelle
-traffic calming | l'apaisement de la circulation
-upgrading | la revalorisation, gentrification
+local residents | les riverains | plt
 """,
 "education_c1": """
 absence | l'absence
-analysis | l'analyse, dépouillement | pl=analyses
+analysis | l'analyse | pl=analyses
 approximation | l'approximation
 basic research | la recherche fondamentale | u
 breakthrough | la percée
-change of school | le changement d'école
-clarification | l'information, éclaircissement
+clarification | la clarification, la précision | ex=I'd like some clarification on this point. # J'aimerais une précision sur ce point.
 comparability | la comparabilité
-experts | le milieu spécialisé, les spécialistes
-gain in knowledge | le gain de connaissance | u
-grade conference | le conseil de classe
-incidental finding | la découverte fortuite (examen)
 life expectancy | l'espérance de vie
-measurement accuracy | la précision de mesure
 medical error | l'erreur médicale
-note excusing absence | le justificatif d'absence
-pathogen | l'agent pathogène
-playground duty | la surveillance de récréation
+pathogen | l'agent pathogène | ex=The virus is a dangerous pathogen. # Le virus est un agent pathogène dangereux.
 progress | le progrès | u
-re-examination | la vérification, contrôle
-registration procedure | la procédure d'inscription
 relapse | la rechute
-report grade | la note du bulletin
-reproducibility | la reproductibilité
-school rules | le règlement intérieur
+school rules | le règlement intérieur | plt
 """,
 "culture_c1": """
 accompaniment | l'accompagnement
-aftermath | les suite, conséquences
-annual general meeting | l'assemblée générale annuelle
-appeal for donations | l'appel aux dons
-archive picture | la photo d'archive
-audience reaction | la réaction du public
-backlight | le contre-jour
-balance of volume | l'équilibre des volumes
+aftermath | les suites, les conséquences | u
 board meeting | la réunion du comité
-bowing | la conduite d'archet
 caption | la légende
-characterization | la caractérisation des personnages
-charitable status | l'utilité publique
-chorus | le refrain
+chorus | le refrain, le chœur
 clubhouse | le local du club
-colour cast | la dominante colorée
-computing power | la puissance de calcul
-conducting | la direction (d'orchestre)
-declining membership | la perte d'adhérents
 depth of field | la profondeur de champ
 encryption | le chiffrement
 ensemble | la formation, ensemble
 exposure | l'exposition (photo)
-figure of speech | l'image, figure de style
-fingering | le doigté
-focal length | la focale
-framing | le cadrage
-image editing | la retouche d'image
-image rights | les droits d'image
+figure of speech | la figure de style, la façon de parler | pl=figures of speech | ex=Don't worry, it was just a figure of speech. # Ne t'inquiète pas, c'était une façon de parler.
 imitation | l'imitation
 improvisation | l'improvisation
 instructor | le moniteur, encadrant
 interface | l'interface
-make | la facture, manière dont c'est fait
 masterpiece | le chef-d'œuvre
-melodic line | la conduite mélodique
 membership fee | la cotisation
-meter | le mètre (poésie)
-mode of operation | le mode d'action, fonctionnement
-narrative perspective | le point de vue narratif
 """,
 "culture_c1_2": """
-networking | la mise en réseau
-outage | la panne, défaillance
-patronage | le haut patronage
-performance rights | le droit de représentation
-pitch | le registre (voix), ton
-plot strand | le fil narratif
-reading | la lecture, interprétation
-register of associations | le registre des associations
+networking | le réseautage | u | ex=Networking is important in this industry. # Le réseautage est important dans ce secteur.
+outage | la panne
+pitch | la hauteur (d'un son), le ton | ex=Her voice rose in pitch when she got nervous. # Sa voix devenait plus aiguë quand elle était nerveuse.
+reading | la lecture, l'interprétation
 reproduction | la restitution, reproduction
-reverberation | la réverbération
-role model | le modèle, exemple à suivre
+role model | le modèle, l'exemple à suivre
 scale | la gamme
-score | la partition (d'orchestre)
-sheet of music | la feuille de musique | u
-shot | la prise de vue, enregistrement
+score | la partition
+sheet music | la partition | u | ex=She can play without sheet music. # Elle sait jouer sans partition.
+shot | la prise de vue
 stage direction | la didascalie
-stage set | le décor de scène
-staging | la mise en scène
-statutes | les statuts
-stylistic break | la rupture de style
-surveillance | la surveillance
-susceptibility to failure | la vulnérabilité aux pannes
+staging | la mise en scène | ex=The staging of the play was very modern. # La mise en scène de la pièce était très moderne.
+surveillance | la surveillance | u | ex=The building is under video surveillance. # Le bâtiment est sous vidéosurveillance.
 timbre | le timbre
 time signature | la mesure (rythmique)
-treasurer's report | le rapport financier
-upbeat | l'anacrouse ; coup d'envoi
 usability | la facilité d'utilisation
-use case | le cas d'usage
 world premiere | la création (première mondiale)
-youth development | la formation des jeunes
-zeitgeist | l'esprit du temps
+zeitgeist | l'esprit du temps | u | ex=The song captured the zeitgeist of the sixties. # La chanson a saisi l'esprit des années soixante.
 """,
 "sports_c1": """
-defensive line | la ligne défensive
 fair play | le fair-play
-goalscoring chance | l'occasion de but
-league position | la place au classement
 line-up | la composition d'équipe
-play | l'action de jeu, combinaison
 playmaker | le meneur de jeu
-referee's decision | la décision arbitrale
 relegation | la relégation
-rule violation | l'infraction aux règles
 stoppage time | le temps additionnel
 substitution | le remplacement
 training camp | le stage de préparation
 """,
 "media_c1": """
-ability to retain | la capacité de mémorisation
-access right | le droit d'accès
 accuracy | la précision, exactitude
-allusion | l'allusion (souvent moqueuse)
-analysis report | le rapport d'analyse
-buzzword | le slogan, mot-clé
-casualness | la désinvolture, ton anodin | u
+allusion | l'allusion | ex=The title is an allusion to an old poem. # Le titre est une allusion à un vieux poème.
+buzzword | le mot à la mode
 choice of words | le choix des mots
 clipboard | le presse-papiers
 compatibility | la compatibilité
 correction | le rectificatif, démenti
 credibility | la crédibilité
 curriculum | le programme scolaire | pl=curricula
-educational path | le parcours scolaire
-empty phrase | la formule creuse
 error message | le message d'erreur
-exact wording | la teneur exacte, texte littéral
 exaggeration | l'exagération
-examination regulations | le règlement des examens
-false report | la fausse nouvelle
 field of study | la spécialité, filière
 file format | le format de fichier
-filter function | la fonction de filtrage
-flaw in reasoning | l'erreur de raisonnement
 general knowledge | la culture générale | u
 generalization | la généralisation
-half-knowledge | le demi-savoir, connaissances superficielles
-hint | l'allusion, sous-entendu
+hint | l'allusion, l'indice
 idiom | l'expression idiomatique
 interpretation | l'interprétation (d'un texte)
-learning progress | le progrès d'apprentissage | u
-log file | le fichier journal
 login | la connexion, inscription
 outrage | l'indignation
-professional training | le perfectionnement professionnel
 public | l'opinion publique, sphère publique | u
-quickness of grasp | la faculté de compréhension
 reporting | la couverture médiatique
-rights management | la gestion des droits | u
 search query | la requête de recherche
-specialist knowledge | la compétence technique | u
-talkativeness | la loquacité | u
 technical term | le terme technique
-tone of voice | le ton, intonation
-transfer rate | le débit de transmission
-tutoring | le cours particuliers, soutien scolaire
+tone of voice | le ton | ex=I didn't like his tone of voice. # Je n'ai pas aimé son ton.
+tutoring | le soutien scolaire, les cours particuliers | u
 understatement | la litote, euphémisme
 user account | le compte utilisateur
 user interface | l'interface utilisateur
-utterance | le propos, déclaration
 wording | la formulation
 """,
 "money_c1": """
-accident insurance | l'assurance accidents | u
-advertising impact | l'impact publicitaire
-area of responsibility | le domaine de compétence
-assets | le patrimoine, fortune
-bottleneck | le goulot d'étranglement, pénurie
+assets | les actifs, le patrimoine | plt | ex=The company sold some of its assets. # L'entreprise a vendu une partie de ses actifs.
+bottleneck | le goulot d'étranglement
 brand awareness | la conscience de marque | u
-building up reserves | la constitution de réserves
-buying behaviour | le comportement d'achat | u
-claim notification | la déclaration de sinistre
 component | la composante, élément constitutif
 consumer protection | la protection du consommateur
-contribution rate | le taux de cotisation
-cover limit | le plafond de garantie
 creditworthiness | la solvabilité | u
-customer retention | la fidélisation de la clientèle
-default | le retard de paiement
-depreciation | l'amortissement
-dispute between experts | le litige d'expertise
+default | le défaut de paiement
+depreciation | l'amortissement, la dépréciation | u | ex=A new car loses value through depreciation. # Une voiture neuve perd de la valeur avec la dépréciation.
 diversification | la diversification, dispersion
-economic climate | la conjoncture | u
-execution | la exécution, réalisation
+execution | l'exécution | ex=The idea was good, but the execution was poor. # L'idée était bonne, mais l'exécution laissait à désirer.
 feature | la caractéristique, trait distinctif
 implementation | la mise en œuvre
-indebtedness | l'endettement | u
-indication of origin | l'indication d'origine
-insurance cover | la couverture d'assurance
-insured event | le cas de prise en charge
+insurance coverage | la couverture d'assurance | u | gb=insurance cover | ex=Check your insurance coverage before you travel. # Vérifie ta couverture d'assurance avant de voyager.
 interest rate | le taux d'intérêt
-legal expenses cover | la protection juridique
-levy | le prélèvement, taxe
-loss of value | la perte de valeur
-mass-produced goods | le produit de masse | plt
-occupational disability | l'invalidité professionnelle
-official decision | la décision administrative, notification
-overdraft | le découvert
+levy | la taxe, le prélèvement
+overdraft | le découvert | ex=I have an overdraft of two hundred dollars. # J'ai un découvert de deux cents dollars.
 packaging waste | les déchets d'emballage | u
-policyholder | le preneur d'assurance
-premium payment | le paiement des cotisations
+policyholder | l'assuré | ex=The policyholder must report the damage within a week. # L'assuré doit déclarer le sinistre dans la semaine.
 pricing | la politique de prix
-quality seal | le label de qualité
 """,
 "money_c1_2": """
-regional sourcing | la caractère régional
-repayment | le amortissement (d'une dette)
+repayment | le remboursement
 reserve | la réserve, provision
-retirement provision | la prévoyance vieillesse
-returned direct debit | le rejet de prélèvement
-right of termination | le droit de résiliation
-risk surcharge | la surprime
-settlement | le règlement (d'un sinistre)
+settlement | le règlement, l'accord
 shelf life | la durée de conservation | pl=shelf lives
-standard | le critère, étalon
-statutory warranty | la garantie légale
+standard | la norme, le niveau
 subsidy | la subvention, aide financière
-takeover | le rachat, reprise
+takeover | le rachat (d'une entreprise)
 tax return | la déclaration d'impôts
-tax-free allowance | l'abattement fiscal
 tender | l'appel d'offres
-third-party liability | la responsabilité civile
-throwaway goods | le produit jetable | plt
-value creation | la création de valeur
 yield | le rendement
 """,
 "feelings_c1": """
 absent-mindedness | la distraction, étourderie | u
 assessment | l'appréciation, estimation
-carelessness | l'légèreté, imprudence | u
+carelessness | la négligence | u
 character trait | le trait de caractère
-consideration for others | les égards, considération
-constancy | la constance, durabilité
-delusion | l'aveuglement
+delusion | l'illusion
 design | la conception, mise en forme
-expressiveness | la force expressive | u
-food for thought | l'élément de réflexion
-handwriting | la écriture ; patte, style personnel
-high spirits | la témérité, exubérance
-imaginative power | la faculté d'imagination
-leniency | l'indulgence
-mindfulness | la attention, pleine conscience | u
-pensiveness | la gravité pensive | u
+food for thought | matière à réflexion | u
+handwriting | l'écriture | u
+high spirits | la bonne humeur | plt | ex=The team was in high spirits after the win. # L'équipe était de très bonne humeur après la victoire.
+leniency | l'indulgence | u | ex=The judge showed leniency because of his age. # Le juge a fait preuve d'indulgence en raison de son âge.
+mindfulness | la pleine conscience | u
 persistence | la persévérance, ténacité
-postponement | le sursis, report
-presumption | la présomption, arrogance
+postponement | le report | ex=The rain caused a postponement of the game. # La pluie a provoqué le report du match.
 recurrence | le retour, récurrence
-repression | le refoulement
-self-conception | la conception de soi, image de son rôle
+repression | la répression, le refoulement | u | ex=The regime was known for its brutal repression. # Le régime était connu pour sa répression brutale.
 self-control | la maîtrise de soi
-sense of entitlement | l'attitude d'attente
 sequence | la succession, enchaînement
-simultaneity | la simultanéité
 sincerity | la sincérité
-stubbornness | l'entêtement, caractère buté | u
+stubbornness | l'entêtement | u | ex=His stubbornness drives me crazy. # Son entêtement me rend fou.
 tenacity | la ténacité, opiniâtreté
 train of thought | le cheminement de pensée
-transience | le caractère éphémère
 urgency | l'urgence
 vigilance | la vigilance
 way of thinking | le mode de pensée
@@ -669,25 +397,14 @@ willpower | la force de volonté
 wishful thinking | le vœu pieux, pensée illusoire
 """,
 "society_c1": """
-balance of power | le rapport de majorité
-ballot paper | le bulletin de vote | u
-belonging | l'appartenance
-budget debate | le débat budgétaire
-chance of advancement | la chance de promotion sociale
-change of power | l'alternance
-claim to power | la prétention au pouvoir
-conduct in office | l'exercice des fonctions
+balance of power | l'équilibre des pouvoirs | u | ex=The election changed the balance of power in Congress. # L'élection a changé l'équilibre des pouvoirs au Congrès.
+ballot | le bulletin de vote | gb=ballot paper
+belonging | l'appartenance | u
 division | la division, clivage
-draft bill | le projet de loi
-formative influence | l'empreinte, marque formatrice
 guiding principle | le modèle directeur, idéal affiché
 lobbying | le lobbying
-marginalized group | le groupe marginalisé
-outflow | l'exode, départ (d'une région)
-patronizing | la mise sous tutelle, paternalisme
-population ageing | le vieillissement (de la population)
+aging population | le vieillissement de la population | u | gb=ageing population | ex=An aging population puts pressure on the health system. # Le vieillissement de la population pèse sur le système de santé.
 prosperity | la prospérité
-social stratum | la couche sociale
 taboo | le tabou
 upheaval | le bouleversement
 vote of confidence | la question de confiance
@@ -695,152 +412,173 @@ voter turnout | le taux de participation
 """,
 "law_c1": """
 appeal | l'appel (recours)
-arms build-up | le réarmement
 arrest | l'arrestation
 burden of proof | la charge de la preuve | pl=burden of proofs
 case law | la jurisprudence
 ceasefire | le cessez-le-feu
-civil protection | la protection civile
-civilian population | la population civile
-compensation | l'indemnisation, dédommagement
-contravention | l'infraction, contravention
+compensation | l'indemnisation | u
 crime scene | le lieu du crime
-criminal complaint | la plainte pénale
 deterrence | la dissuasion
 disarmament | le désarmement
-dissolution | la dissolution, résiliation
-emergency services | les forces d'intervention
-estate | la succession, héritage
-evacuation | l'évacuation
-expert opinion | l'expertise, rapport d'expert
-forensics | la police scientifique, relevé d'indices | u
-identity check | le contrôle d'identité
-investigation | l'enquête (judiciaire)
-legal remedy | la voie de recours
-liability | la responsabilité juridique
-manhunt | la recherche, avis de recherche
+emergency services | les services d'urgence | plt
+estate | la succession, le domaine
+evacuation | l'évacuation | ex=The fire alarm led to the evacuation of the building. # L'alarme incendie a entraîné l'évacuation du bâtiment.
+forensics | la police scientifique | u
+investigation | l'enquête
+liability | la responsabilité (juridique) | u
+manhunt | la chasse à l'homme | ex=Police launched a manhunt for the escaped prisoner. # La police a lancé une chasse à l'homme pour retrouver le détenu évadé.
 obligation | l'obligation, engagement
-operational command | le commandement des opérations
 patrol car | la voiture de patrouille
 peace treaty | le traité de paix
-people seeking protection | les personnes en quête de protection
-place of refuge | le lieu de refuge
 power of attorney | la procuration
-precautionary measure | la mesure de précaution
-probation | le sursis (avec mise à l'épreuve)
+precautionary measure | la mesure de précaution | ex=As a precautionary measure, the school was closed. # Par mesure de précaution, l'école a été fermée.
+probation | la mise à l'épreuve, le sursis | u
 probation officer | l'agent de probation
-questioning | l'audition, interrogatoire
-reconstruction aid | l'aide à la reconstruction
-regulatory offence | la contravention
-requirement of consent | l'obligation d'accord préalable
-search | la perquisition
+questioning | l'interrogatoire | u
+search | la perquisition, la fouille
 security flaw | la faille de sécurité
 seizure | la saisie
-state of alert | l'état d'alerte
-statute of limitations | la prescription
+statute of limitations | la prescription | u | ex=The statute of limitations for this crime is five years. # La prescription pour ce délit est de cinq ans.
 threat | la menace
-trouble spot | le foyer de crise
-withdrawal | la rétractation, révocation
+withdrawal | le retrait
 witness protection | la protection des témoins
 witness statement | le témoignage
 """,
 "ideas_c1": """
-acceleration | l'accélération
-accompanying phenomenon | le phénomène concomitant | pl=accompanying phenomena
+acceleration | l'accélération | u | ex=This car has impressive acceleration. # Cette voiture a une accélération impressionnante.
 accusation | le reproche, accusation
 approval | l'approbation, accord
-arbitrariness | l'arbitraire | u
 arbitration | la conciliation, arbitrage
 arrangement | l'arrangement, entente préalable
 blessing | la bénédiction
-caesura | la césure, rupture
-charity | l'amour du prochain
+charity | l'association caritative, la charité | ex=She gives money to charity every month. # Elle donne de l'argent à des œuvres caritatives tous les mois.
 chronicle | la chronique
 clergy | le clergé
-cluster | la multiplication, accumulation
+cluster | le groupe, la grappe | ex=A cluster of houses stood near the river. # Un groupe de maisons se dressait près de la rivière.
 compromise | le compromis
-confession | la confession, aveu de foi
+confession | la confession, l'aveu
 conscience | la conscience (morale)
-contemporary witness | le témoin de l'époque
 conviction | la conviction
-devotion | l'office, recueillement
-double standard | la deux poids deux mesures
+devotion | le dévouement | u | ex=Her devotion to her patients is remarkable. # Son dévouement envers ses patients est remarquable.
+double standard | le deux poids, deux mesures
 downside | le revers, envers
 driving force | la force motrice
-easing | la détente, apaisement
-equal treatment | l'égalité de traitement
+equal treatment | l'égalité de traitement | u | ex=All employees are entitled to equal treatment. # Tous les employés ont droit à l'égalité de traitement.
 escalation | l'exacerbation
 expulsion | l'expulsion, déplacement forcé
 extent | l'ampleur
-faith community | la communauté religieuse
 feedback loop | la rétroaction
-feeling of guilt | le sentiment de culpabilité
-forced labour | le travail forcé
+forced labor | le travail forcé | u
 forgiveness | le pardon | u
 friction | la friction, frottement
-given circumstance | la donnée, circonstance
-giving in | le fait de céder
-holiday custom | la coutume de fête
 house of worship | l'édifice religieux
 human dignity | la dignité humaine
 hypocrisy | l'hypocrisie
 impairment | l'altération, gêne
 """,
 "ideas_c1_2": """
-inherited burden | le fardeau hérité
-insight | le constat, connaissance acquise
+insight | la compréhension, l'éclairage
 insinuation | l'insinuation, procès d'intention
 insistence | l'obstination, refus de céder
 interaction | l'interaction réciproque
 interplay | l'interaction, jeu combiné
 justification | la justification
-leverage | le moyen de pression
+leverage | le moyen de pression | u | ex=We have no leverage in these negotiations. # Nous n'avons aucun moyen de pression dans ces négociations.
 memorial | le mémorial (d'avertissement)
 mercy | la miséricorde
-monastery complex | l'ensemble monastique
-occupation | l'occupation (militaire)
-pastoral care | l'accompagnement spirituel
+occupation | l'occupation (militaire), la profession
 piece of evidence | la pièce justificative, preuve | u
-piety | la piété
 pilgrimage | le pèlerinage
 point of contention | le point de désaccord
-post-war period | l'après-guerre
-power imbalance | le rapport de force inégal
+post-war period | l'après-guerre | ex=The city grew quickly in the post-war period. # La ville a grandi rapidement dans l'après-guerre.
 pretext | le prétexte
 provocation | la provocation
-quid pro quo | la contrepartie
-reasonableness | le caractère raisonnablement exigible | u
+quid pro quo | la contrepartie | ex=There's no quid pro quo; I'm helping you for free. # Il n'y a pas de contrepartie ; je t'aide gratuitement.
 reconstruction | la reconstruction
 rejection | le refus, rejet
-relativization | la relativisation
 remembrance | la commémoration
 reunification | la réunification
-search for meaning | la quête de sens
-selflessness | le désintéressement | u
 sense of duty | le sens du devoir
 sense of justice | le sens de la justice | u
 sense of responsibility | le sens des responsabilités
 sermon | le sermon, prêche
 side effect | l'effet secondaire
 significance | la portée
-source of error | la source d'erreur
 stagnation | la stagnation
 superstition | la superstition
-tightening | l'aggravation, durcissement
 """,
 "ideas_c1_3": """
 tolerance | la tolérance
 trigger | le déclencheur
-turnaround | le revirement
+turnaround | le redressement, le revirement | ex=The new CEO achieved a remarkable turnaround. # Le nouveau PDG a réussi un redressement remarquable.
 turning point | le tournant
 ultimatum | l'ultimatum
-unreservedness | l'absence de réserve | u
-uprightness | la probité | u
-upturn | l'essor, reprise
-viability | la viabilité, solidité
-weakening | l'atténuation
-weighing up | la pesée du pour et du contre
-weighting | la pondération
+upturn | l'essor, la reprise
+viability | la viabilité | u
 worldview | la conception du monde
+""",
+# Ajoutes a la main (27 oct. 2026) : le vocabulaire savant le plus courant
+# de l'anglais C1, que nos corpus n'ont pas (ils viennent de l'allemand).
+"academic_c1": """
+abundance | l'abondance | u | ex=The region has an abundance of fresh seafood. # La région regorge de fruits de mer frais.
+adversity | l'adversité | u | ex=She showed great courage in the face of adversity. # Elle a fait preuve d'un grand courage face à l'adversité.
+anomaly | l'anomalie | ex=The scientists noticed an anomaly in the data. # Les scientifiques ont remarqué une anomalie dans les données.
+aptitude | l'aptitude | ex=He has a natural aptitude for languages. # Il a un don naturel pour les langues.
+autonomy | l'autonomie | u | ex=Teenagers want more autonomy. # Les adolescents veulent plus d'autonomie.
+benchmark | le point de référence | ex=This test is the benchmark for the industry. # Ce test est la référence du secteur.
+catalyst | le catalyseur | ex=The protest was a catalyst for change. # La manifestation a été un catalyseur du changement.
+constraint | la contrainte | ex=We have to work within budget constraints. # Nous devons travailler avec des contraintes budgétaires.
+contingency | l'imprévu, l'éventualité | pl=contingencies | ex=We have a plan for every contingency. # Nous avons un plan pour chaque éventualité.
+deficiency | la carence | pl=deficiencies | ex=Vitamin D deficiency is common in winter. # La carence en vitamine D est fréquente en hiver.
+dichotomy | la dichotomie | pl=dichotomies | ex=The book explores the dichotomy between city and country. # Le livre explore l'opposition entre ville et campagne.
+discrepancy | l'écart, la divergence | pl=discrepancies | ex=There's a discrepancy between the two reports. # Il y a un écart entre les deux rapports.
+disparity | la disparité | pl=disparities | ex=The disparity between rich and poor is growing. # L'écart entre riches et pauvres se creuse.
+endeavor | l'entreprise, l'effort | gb=endeavour | ex=Starting a business is a risky endeavor. # Créer une entreprise est une aventure risquée.
+entity | l'entité | pl=entities | ex=The two companies are separate legal entities. # Les deux sociétés sont des entités juridiques distinctes.
+facet | la facette | ex=The book covers every facet of his life. # Le livre couvre toutes les facettes de sa vie.
+hierarchy | la hiérarchie | pl=hierarchies | ex=The company has a strict hierarchy. # L'entreprise a une hiérarchie stricte.
+impetus | l'élan, l'impulsion | u | ex=The new law gave impetus to the reforms. # La nouvelle loi a donné de l'élan aux réformes.
+incentive | la motivation, l'incitation | ex=The bonus is an incentive to work harder. # La prime incite à travailler davantage.
+inception | la création, les débuts | u | ex=She has worked here since its inception. # Elle travaille ici depuis sa création.
+jurisdiction | la compétence (juridique) | u | ex=The case is outside the court's jurisdiction. # L'affaire ne relève pas de la compétence du tribunal.
+juxtaposition | la juxtaposition | ex=The juxtaposition of old and new buildings is striking. # La juxtaposition de bâtiments anciens et modernes est frappante.
+magnitude | l'ampleur | u | ex=Nobody understood the magnitude of the problem. # Personne n'a compris l'ampleur du problème.
+mandate | le mandat | ex=The government has a mandate to reform taxes. # Le gouvernement a reçu mandat de réformer les impôts.
+misconception | l'idée fausse | ex=It's a common misconception that bats are blind. # C'est une idée reçue de croire que les chauves-souris sont aveugles.
+momentum | l'élan, la dynamique | u | ex=The campaign is gaining momentum. # La campagne prend de l'ampleur.
+notion | la notion, l'idée | ex=I have no notion of what he means. # Je n'ai aucune idée de ce qu'il veut dire.
+outcome | le résultat, l'issue | ex=We're waiting for the outcome of the election. # Nous attendons l'issue de l'élection.
+outset | le début | u | ex=I told you at the outset that it would be difficult. # Je t'ai dit dès le début que ce serait difficile.
+paradigm | le paradigme | ex=The discovery led to a paradigm shift. # La découverte a entraîné un changement de paradigme.
+pitfall | le piège, l'écueil | ex=The guide explains the pitfalls of buying a house. # Le guide explique les pièges de l'achat d'une maison.
+prevalence | la fréquence, la prévalence | u | ex=The prevalence of obesity has increased. # La prévalence de l'obésité a augmenté.
+proponent | le, la partisan(e) | ex=She's a strong proponent of public transit. # C'est une fervente partisane des transports en commun.
+proximity | la proximité | u | ex=The hotel's main advantage is its proximity to the beach. # Le principal avantage de l'hôtel, c'est sa proximité avec la plage.
+rationale | la raison d'être, la justification | ex=What's the rationale behind this decision? # Quelle est la logique de cette décision ?
+remnant | le vestige, le reste | ex=These walls are remnants of the old fort. # Ces murs sont des vestiges de l'ancien fort.
+repercussion | la répercussion | ex=The scandal had serious repercussions. # Le scandale a eu de graves répercussions.
+scrutiny | l'examen minutieux | u | ex=The plan came under close scrutiny. # Le projet a été examiné de près.
+setback | le revers, le contretemps | ex=The injury was a major setback for the team. # La blessure a été un sérieux revers pour l'équipe.
+spectrum | le spectre, l'éventail | pl=spectrums | ex=The party attracts voters across the political spectrum. # Le parti attire des électeurs de tout l'éventail politique.
+stance | la position | ex=What's your stance on this issue? # Quelle est ta position sur cette question ?
+stigma | la stigmatisation, l'opprobre | u | ex=There's still a stigma attached to mental illness. # Les maladies mentales restent stigmatisées.
+surplus | l'excédent | ex=The city has a budget surplus this year. # La ville a un excédent budgétaire cette année.
+threshold | le seuil | ex=We are on the threshold of a new era. # Nous sommes au seuil d'une nouvelle ère.
+trajectory | la trajectoire | pl=trajectories | ex=Her career has followed an upward trajectory. # Sa carrière a suivi une trajectoire ascendante.
+trait | le trait (de caractère) | ex=Patience is her best trait. # La patience est sa meilleure qualité.
+venture | l'entreprise (risquée) | ex=The new venture failed after a year. # La nouvelle entreprise a échoué au bout d'un an.
+verdict | le verdict | ex=The jury reached a verdict after two days. # Le jury a rendu son verdict au bout de deux jours.
+caveat | la réserve, la mise en garde | ex=There's one caveat: the offer ends Friday. # Une réserve : l'offre se termine vendredi.
+cornerstone | la pierre angulaire | ex=Trust is the cornerstone of any relationship. # La confiance est la pierre angulaire de toute relation.
+drawback | l'inconvénient | ex=The main drawback is the price. # Le principal inconvénient, c'est le prix.
+foresight | la clairvoyance, la prévoyance | u | ex=Thanks to her foresight, we had enough food. # Grâce à sa prévoyance, nous avions assez de nourriture.
+hindsight | le recul | u | ex=With hindsight, it was a bad decision. # Avec le recul, c'était une mauvaise décision.
+loophole | la faille (juridique) | ex=They found a loophole in the law. # Ils ont trouvé une faille dans la loi.
+milestone | l'étape importante, le jalon | ex=Graduating was a major milestone. # Obtenir son diplôme a été une étape importante.
+nuisance | la nuisance, le désagrément | ex=The noise is a real nuisance. # Le bruit est une vraie nuisance.
+overview | la vue d'ensemble | ex=Here's a quick overview of the project. # Voici un bref aperçu du projet.
+shortcoming | le défaut, la lacune | ex=The report points out several shortcomings. # Le rapport souligne plusieurs lacunes.
+tradeoff | le compromis | ex=There's always a tradeoff between speed and quality. # Il y a toujours un compromis entre vitesse et qualité.
+underdog | l'outsider | ex=Everyone loves to cheer for the underdog. # Tout le monde aime encourager l'outsider.
 """,
 }

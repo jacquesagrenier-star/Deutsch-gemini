@@ -945,6 +945,60 @@ window.SCENE = {
      "n": "<b>light → lit</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "She ___ really like the snowman.",
+     "c": [
+      "must",
+      "can",
+      "ought"
+     ],
+     "f": "schneemann",
+     "r": "anna",
+     "phrase": "She must really like the snowman.",
+     "sens": "Le bonhomme de neige doit beaucoup lui plaire.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The bike ___ have been there since last night.",
+     "c": [
+      "might",
+      "must to",
+      "should to"
+     ],
+     "f": "fahrrad",
+     "phrase": "The bike might have been there since last night.",
+     "sens": "Le vélo est peut-être là depuis hier soir.",
+     "n": "<b>might have been</b>."
+    },
+    {
+     "q": "The snow ___ last until tomorrow.",
+     "c": [
+      "should",
+      "must have",
+      "can't"
+     ],
+     "f": "schnee",
+     "phrase": "The snow should last until tomorrow.",
+     "sens": "La neige devrait tenir jusqu'à demain.",
+     "n": "<b>should</b>."
+    },
+    {
+     "q": "It's said to be the coldest winter ___ ten years.",
+     "c": [
+      "in",
+      "since",
+      "for"
+     ],
+     "f": "himmel",
+     "phrase": "It's said to be the coldest winter in ten years.",
+     "sens": "Il paraît que ce sera l'hiver le plus froid depuis dix ans.",
+     "n": "Superlatif + <b>in</b> + durée."
+    }
+   ]
   }
  },
  "traductions": {}

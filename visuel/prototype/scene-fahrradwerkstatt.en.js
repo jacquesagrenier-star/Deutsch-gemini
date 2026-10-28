@@ -1171,6 +1171,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "folding rulers",
    "niveau": "C1",
+   "theme": "home_c1",
    "personne": null,
    "aussi": [],
    "sur": "tisch",
@@ -1212,6 +1213,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "folding rulers",
    "niveau": "C1",
+   "theme": "home_c1",
    "personne": null,
    "aussi": [],
    "sur": "tisch",
@@ -1702,6 +1704,61 @@ window.SCENE = {
      "phrase": "The shop closes at six p.m.",
      "sens": "On ferme l'atelier à dix-huit heures.",
      "n": "Un horaire → présent simple."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "It ___ be broken.",
+     "c": [
+      "must",
+      "can",
+      "ought"
+     ],
+     "f": "rad",
+     "r": "mark",
+     "phrase": "It must be broken.",
+     "sens": "Elle doit être cassée.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The dog ___ belong to the mechanic.",
+     "c": [
+      "might",
+      "must to",
+      "shall"
+     ],
+     "f": "hund",
+     "r": "mann",
+     "phrase": "The dog might belong to the mechanic.",
+     "sens": "Le chien appartient peut-être au mécanicien.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The repair ___ take about an hour.",
+     "c": [
+      "should",
+      "must have",
+      "can't"
+     ],
+     "f": "werkzeug",
+     "phrase": "The repair should take about an hour.",
+     "sens": "La réparation devrait durer une heure.",
+     "n": "<b>should</b>."
+    },
+    {
+     "q": "This shop is said ___ the best in the neighborhood.",
+     "c": [
+      "to be",
+      "being",
+      "is"
+     ],
+     "f": "tuer",
+     "phrase": "This shop is said to be the best in the neighborhood.",
+     "sens": "Cet atelier serait le meilleur du quartier.",
+     "n": "<b>is said to be</b>."
     }
    ]
   }

@@ -1649,6 +1649,61 @@ window.SCENE = {
      "n": "Sans complément de personne → <b>said</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses : must, might, should, is said to",
+   "qs": [
+    {
+     "q": "He ___ have a cold.",
+     "c": [
+      "must",
+      "can't",
+      "should to"
+     ],
+     "f": "mark",
+     "r": "taschentuch",
+     "phrase": "He must have a cold.",
+     "sens": "Il doit être enrhumé.",
+     "n": "Presque sûr → <b>must</b>."
+    },
+    {
+     "q": "The old man ___ be waiting for his medicine.",
+     "c": [
+      "might",
+      "must not",
+      "can"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "The old man might be waiting for his medicine.",
+     "sens": "Le vieux monsieur attend peut-être son médicament.",
+     "n": "Peut-être → <b>might</b>."
+    },
+    {
+     "q": "Mark ___ be better in two days.",
+     "c": [
+      "should",
+      "must",
+      "can't"
+     ],
+     "f": "mark",
+     "phrase": "Mark should be better in two days.",
+     "sens": "Mark devrait être rétabli dans deux jours.",
+     "n": "Probable, attendu → <b>should</b>."
+    },
+    {
+     "q": "This pharmacy is said ___ the oldest in the neighborhood.",
+     "c": [
+      "to be",
+      "being",
+      "is"
+     ],
+     "f": "schalter",
+     "phrase": "This pharmacy is said to be the oldest in the neighborhood.",
+     "sens": "Cette pharmacie serait la plus ancienne du quartier.",
+     "n": "On dit que… → <b>is said to be</b>."
+    }
+   ]
   }
  },
  "traductions": {}

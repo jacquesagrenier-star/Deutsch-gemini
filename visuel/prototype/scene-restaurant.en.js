@@ -1965,6 +1965,62 @@ window.SCENE = {
      "n": "<b>anything new</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "He ___ be hungry.",
+     "c": [
+      "must",
+      "can",
+      "ought"
+     ],
+     "f": "mark",
+     "r": "speisekarte",
+     "phrase": "He must be hungry.",
+     "sens": "Il doit avoir faim.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The couple ___ eat here every night.",
+     "c": [
+      "might",
+      "must to",
+      "can't to"
+     ],
+     "f": "mann",
+     "r": "frau",
+     "phrase": "The couple might eat here every night.",
+     "sens": "Le couple dîne peut-être ici tous les soirs.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The pizza is ___ for the table by the window.",
+     "c": [
+      "probably",
+      "must",
+      "might"
+     ],
+     "f": "pizza",
+     "r": "fenster",
+     "phrase": "The pizza is probably for the table by the window.",
+     "sens": "La pizza est sans doute pour la table près de la fenêtre.",
+     "n": "<b>probably</b>."
+    },
+    {
+     "q": "This restaurant is said to have ___ food in the neighborhood.",
+     "c": [
+      "the best",
+      "the better",
+      "best"
+     ],
+     "f": "theke",
+     "phrase": "This restaurant is said to have the best food in the neighborhood.",
+     "sens": "Ce restaurant aurait la meilleure cuisine du quartier.",
+     "n": "Superlatif : <b>the best</b>."
+    }
+   ]
   }
  },
  "traductions": {}

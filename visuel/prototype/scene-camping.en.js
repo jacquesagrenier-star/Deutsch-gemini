@@ -774,6 +774,60 @@ window.SCENE = {
      "n": "Regret passé → <b>had</b> + participe."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "She ___ be enjoying the evening.",
+     "c": [
+      "must",
+      "can't",
+      "should to"
+     ],
+     "f": "anna",
+     "phrase": "She must be enjoying the evening.",
+     "sens": "Elle doit beaucoup apprécier la soirée.",
+     "n": "<b>must be</b> + -ing."
+    },
+    {
+     "q": "The man ___ be Anna's cousin.",
+     "c": [
+      "might",
+      "must not",
+      "can"
+     ],
+     "f": "mann",
+     "r": "anna",
+     "phrase": "The man might be Anna's cousin.",
+     "sens": "L'homme est peut-être le cousin d'Anna.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "It ___ be almost ten o'clock.",
+     "c": [
+      "must",
+      "can",
+      "should to"
+     ],
+     "f": "mond",
+     "phrase": "It must be almost ten o'clock.",
+     "sens": "Il doit être presque dix heures.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "There are said ___ wolves in the forest.",
+     "c": [
+      "to be",
+      "being",
+      "are"
+     ],
+     "f": "wald",
+     "phrase": "There are said to be wolves in the forest.",
+     "sens": "Il paraît qu'il y a des loups dans la forêt.",
+     "n": "<b>There are said to be</b>."
+    }
+   ]
   }
  },
  "traductions": {}

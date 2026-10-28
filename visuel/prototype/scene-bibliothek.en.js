@@ -895,6 +895,59 @@ window.SCENE = {
      "n": "Une lampe allumée = a lamp that's <b>on</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "She ___ have an exam soon.",
+     "c": [
+      "must",
+      "can't",
+      "should to"
+     ],
+     "f": "anna",
+     "phrase": "She must have an exam soon.",
+     "sens": "Elle doit avoir un examen bientôt.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The student ___ be in Anna's class.",
+     "c": [
+      "might",
+      "must not",
+      "can"
+     ],
+     "f": "student",
+     "phrase": "The student might be in Anna's class.",
+     "sens": "L'étudiant est peut-être dans le cours d'Anna.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "It's ___ fairly cold outside.",
+     "c": [
+      "probably",
+      "must",
+      "can"
+     ],
+     "f": "fenster",
+     "phrase": "It's probably fairly cold outside.",
+     "sens": "Dehors, il doit faire plutôt froid.",
+     "n": "<b>probably</b>."
+    },
+    {
+     "q": "This library is said ___ more than a million books.",
+     "c": [
+      "to have",
+      "having",
+      "has"
+     ],
+     "f": "regal",
+     "phrase": "This library is said to have more than a million books.",
+     "sens": "Cette bibliothèque aurait plus d'un million de livres.",
+     "n": "<b>is said to have</b>."
+    }
+   ]
   }
  },
  "traductions": {}

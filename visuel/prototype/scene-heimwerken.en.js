@@ -515,6 +515,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "folding rulers",
    "niveau": "C1",
+   "theme": "home_c1",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -929,6 +930,60 @@ window.SCENE = {
      "phrase": "You can't put up a shelf without reading the instructions.",
      "sens": "On ne monte pas d'étagère sans lire la notice.",
      "n": "Without + <b>-ing</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "The instructions ___ be hard to understand.",
+     "c": [
+      "must",
+      "can't",
+      "ought"
+     ],
+     "f": "papier",
+     "r": "mark",
+     "phrase": "The instructions must be hard to understand.",
+     "sens": "La notice doit être difficile à comprendre.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The cat ___ belong to the neighbor.",
+     "c": [
+      "might",
+      "must to",
+      "can"
+     ],
+     "f": "katze",
+     "phrase": "The cat might belong to the neighbor.",
+     "sens": "Le chat appartient peut-être au voisin.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The shelf ___ be finished by tonight.",
+     "c": [
+      "should",
+      "must have",
+      "can't"
+     ],
+     "f": "regal",
+     "phrase": "The shelf should be finished by tonight.",
+     "sens": "L'étagère devrait être finie ce soir.",
+     "n": "<b>should</b>."
+    },
+    {
+     "q": "A painter is said to ___ lived in the apartment.",
+     "c": [
+      "have",
+      "had",
+      "has"
+     ],
+     "f": "farbe",
+     "phrase": "A painter is said to have lived in the apartment.",
+     "sens": "Il paraît qu'un peintre habitait autrefois dans l'appartement.",
+     "n": "<b>is said to have</b> + participe."
     }
    ]
   }

@@ -1233,6 +1233,61 @@ window.SCENE = {
      "n": "À qui = <b>whose</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "She ___ be looking forward to the trip.",
+     "c": [
+      "must",
+      "can't",
+      "should to"
+     ],
+     "f": "anna",
+     "phrase": "She must be looking forward to the trip.",
+     "sens": "Elle doit se réjouir du voyage.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The pilot ___ be flying that plane.",
+     "c": [
+      "might",
+      "must to",
+      "can't to"
+     ],
+     "f": "pilot",
+     "r": "flugzeug",
+     "phrase": "The pilot might be flying that plane.",
+     "sens": "Le pilote pilote peut-être cet avion.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The big suitcase is ___ too heavy.",
+     "c": [
+      "probably",
+      "must",
+      "might be"
+     ],
+     "f": "koffer-3",
+     "r": "waage",
+     "phrase": "The big suitcase is probably too heavy.",
+     "sens": "La grande valise est sans doute trop lourde.",
+     "n": "<b>probably</b>."
+    },
+    {
+     "q": "Logan is said to be one of the busiest airports ___ the country.",
+     "c": [
+      "in",
+      "of",
+      "at"
+     ],
+     "f": "fenster",
+     "phrase": "Logan is said to be one of the busiest airports in the country.",
+     "sens": "Logan serait l'un des aéroports les plus fréquentés du pays.",
+     "n": "Superlatif + <b>in</b> + lieu."
+    }
+   ]
   }
  },
  "traductions": {}

@@ -1454,6 +1454,60 @@ window.SCENE = {
      "n": "Opposition → <b>but</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "The form ___ be important.",
+     "c": [
+      "must",
+      "can't",
+      "need"
+     ],
+     "f": "formular",
+     "r": "mark",
+     "phrase": "The form must be important.",
+     "sens": "Le formulaire doit être important.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The young woman ___ be new to Boston too.",
+     "c": [
+      "might",
+      "must not",
+      "can"
+     ],
+     "f": "frau-2",
+     "phrase": "The young woman might be new to Boston too.",
+     "sens": "La jeune femme est peut-être aussi nouvelle à Boston.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The appointment ___ be over in ten minutes.",
+     "c": [
+      "should",
+      "must have",
+      "can't"
+     ],
+     "f": "uhr",
+     "phrase": "The appointment should be over in ten minutes.",
+     "sens": "Le rendez-vous devrait être fini dans dix minutes.",
+     "n": "Attendu → <b>should</b>."
+    },
+    {
+     "q": "Apparently, you have to wait a long time ___ City Hall.",
+     "c": [
+      "at",
+      "to",
+      "in the"
+     ],
+     "f": "stuhl",
+     "phrase": "Apparently, you have to wait a long time at City Hall.",
+     "sens": "Il paraît qu'on doit attendre longtemps à la mairie.",
+     "n": "Il paraît que → <b>apparently</b>."
+    }
+   ]
   }
  },
  "traductions": {}

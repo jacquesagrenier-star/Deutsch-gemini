@@ -916,6 +916,61 @@ window.SCENE = {
      "n": "Couleur avant le nom."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "The chord ___ be difficult.",
+     "c": [
+      "must",
+      "can",
+      "ought"
+     ],
+     "f": "mark",
+     "phrase": "The chord must be difficult.",
+     "sens": "L'accord doit être difficile.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The violin ___ belong to the teacher.",
+     "c": [
+      "might",
+      "must to",
+      "can"
+     ],
+     "f": "geige",
+     "r": "frau",
+     "phrase": "The violin might belong to the teacher.",
+     "sens": "Le violon appartient peut-être à la professeure.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "Mark ___ be playing well in a few months.",
+     "c": [
+      "should",
+      "must have",
+      "can't"
+     ],
+     "f": "gitarre",
+     "r": "mark",
+     "phrase": "Mark should be playing well in a few months.",
+     "sens": "Mark devrait bien jouer dans quelques mois.",
+     "n": "<b>should</b>."
+    },
+    {
+     "q": "The teacher is said to ___ in an orchestra.",
+     "c": [
+      "have played",
+      "play",
+      "played"
+     ],
+     "f": "frau",
+     "phrase": "The teacher is said to have played in an orchestra.",
+     "sens": "Il paraît que la professeure jouait autrefois dans un orchestre.",
+     "n": "<b>is said to have</b> + participe."
+    }
+   ]
   }
  },
  "traductions": {}

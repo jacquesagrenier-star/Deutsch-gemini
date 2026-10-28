@@ -812,6 +812,71 @@ window.SCENE = {
      "n": "Passif : is + <b>used</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "The more…, given, l'irréel, although",
+   "qs": [
+    {
+     "q": "The riper the strawberries, the ___ they are.",
+     "c": [
+      "sweeter",
+      "sweetest",
+      "more sweet"
+     ],
+     "f": "erdbeere",
+     "phrase": "The riper the strawberries, the sweeter they are.",
+     "sens": "Plus les fraises sont mûres, plus elles sont sucrées.",
+     "n": "<b>the sweeter</b>."
+    },
+    {
+     "q": "___ the long shipping distances, I prefer local fruit.",
+     "c": [
+      "Given",
+      "Giving",
+      "Despite of"
+     ],
+     "f": "apfel",
+     "phrase": "Given the long shipping distances, I prefer local fruit.",
+     "sens": "Vu les longs trajets de transport, je préfère acheter des fruits d'ici.",
+     "n": "Vu, étant donné → <b>given</b>."
+    },
+    {
+     "q": "If cherries were cheaper, I ___ buy two pounds.",
+     "c": [
+      "would",
+      "will",
+      "did"
+     ],
+     "f": "kirsche",
+     "phrase": "If cherries were cheaper, I would buy two pounds.",
+     "sens": "Si les cerises étaient moins chères, j'en prendrais deux livres.",
+     "n": "Irréel → <b>would</b>."
+    },
+    {
+     "q": "___ rhubarb is sour, Anna likes baking with it.",
+     "c": [
+      "Although",
+      "Despite",
+      "However"
+     ],
+     "f": "rhabarber",
+     "phrase": "Although rhubarb is sour, Anna likes baking with it.",
+     "sens": "Bien que la rhubarbe soit acide, Anna aime faire des gâteaux avec.",
+     "n": "Avant une phrase → <b>although</b>."
+    },
+    {
+     "q": "The raspberries were ___ picked this morning.",
+     "c": [
+      "probably",
+      "must",
+      "might"
+     ],
+     "f": "himbeere",
+     "phrase": "The raspberries were probably picked this morning.",
+     "sens": "Les framboises ont sans doute été cueillies ce matin.",
+     "n": "<b>probably</b>."
+    }
+   ]
   }
  },
  "autre_vue": {

@@ -1474,6 +1474,62 @@ window.SCENE = {
      "n": "Jusqu'à ce que → <b>until</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses : must, might, is said to have",
+   "qs": [
+    {
+     "q": "The horse ___ be very gentle.",
+     "c": [
+      "must",
+      "can't",
+      "mustn't"
+     ],
+     "f": "pferd",
+     "r": "anna",
+     "phrase": "The horse must be very gentle.",
+     "sens": "Le cheval doit être très gentil.",
+     "n": "<b>must</b> + be."
+    },
+    {
+     "q": "The dog ___ belong to Anna's cousin.",
+     "c": [
+      "could",
+      "must to",
+      "can't"
+     ],
+     "f": "hund",
+     "r": "cousin",
+     "phrase": "The dog could belong to Anna's cousin.",
+     "sens": "Le chien appartient peut-être au cousin d'Anna.",
+     "n": "Possibilité → <b>could</b>."
+    },
+    {
+     "q": "The eggs were ___ laid this morning.",
+     "c": [
+      "probably",
+      "must",
+      "ought"
+     ],
+     "f": "ei",
+     "r": "korb",
+     "phrase": "The eggs were probably laid this morning.",
+     "sens": "Les œufs datent sans doute de ce matin.",
+     "n": "<b>probably</b>."
+    },
+    {
+     "q": "The farm is said ___ over a hundred years old.",
+     "c": [
+      "to be",
+      "being",
+      "it is"
+     ],
+     "f": "haus",
+     "phrase": "The farm is said to be over a hundred years old.",
+     "sens": "La ferme aurait plus de cent ans.",
+     "n": "<b>is said to be</b>."
+    }
+   ]
   }
  },
  "traductions": {}

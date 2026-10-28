@@ -1023,6 +1023,60 @@ window.SCENE = {
      "n": "Nom + nom : <b>dining room window</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "Grandpa ___ be telling a funny story.",
+     "c": [
+      "must",
+      "can't",
+      "mustn't"
+     ],
+     "f": "opa",
+     "phrase": "Grandpa must be telling a funny story.",
+     "sens": "Le grand-père doit raconter une histoire drôle.",
+     "n": "<b>must be</b> + -ing."
+    },
+    {
+     "q": "The cat ___ belong to Grandma.",
+     "c": [
+      "might",
+      "must to",
+      "can't to"
+     ],
+     "f": "katze",
+     "r": "oma",
+     "phrase": "The cat might belong to Grandma.",
+     "sens": "Le chat appartient peut-être à la grand-mère.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "There ___ still be some cake after the meal.",
+     "c": [
+      "should",
+      "must have",
+      "can't"
+     ],
+     "f": "tisch",
+     "phrase": "There should still be some cake after the meal.",
+     "sens": "Après le repas, il devrait encore y avoir du gâteau.",
+     "n": "<b>should</b>."
+    },
+    {
+     "q": "Grandpa is said to ___ a cook in his youth.",
+     "c": [
+      "have been",
+      "be",
+      "being"
+     ],
+     "f": "opa",
+     "phrase": "Grandpa is said to have been a cook in his youth.",
+     "sens": "Il paraît que le grand-père était cuisinier autrefois.",
+     "n": "Rumeur sur le passé → <b>is said to have been</b>."
+    }
+   ]
   }
  },
  "traductions": {}

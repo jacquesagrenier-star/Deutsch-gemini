@@ -942,6 +942,61 @@ window.SCENE = {
      "n": "« Aux cheveux… » = <b>with</b>."
     }
    ]
+  },
+  "C1": {
+   "titre": "Hypothèses",
+   "qs": [
+    {
+     "q": "The present ___ be a surprise.",
+     "c": [
+      "must",
+      "can",
+      "shall"
+     ],
+     "f": "geschenk",
+     "r": "mark",
+     "phrase": "The present must be a surprise.",
+     "sens": "Le cadeau doit être une surprise.",
+     "n": "<b>must</b>."
+    },
+    {
+     "q": "The red present ___ be from his parents.",
+     "c": [
+      "might",
+      "must to",
+      "can't to"
+     ],
+     "f": "geschenk-2",
+     "phrase": "The red present might be from his parents.",
+     "sens": "Le cadeau rouge vient peut-être de ses parents.",
+     "n": "<b>might</b>."
+    },
+    {
+     "q": "The pizza ___ be gone soon.",
+     "c": [
+      "should",
+      "must have",
+      "can't"
+     ],
+     "f": "pizza",
+     "phrase": "The pizza should be gone soon.",
+     "sens": "La pizza devrait être bientôt finie.",
+     "n": "<b>should</b>."
+    },
+    {
+     "q": "Anna is said to ___ the cake herself.",
+     "c": [
+      "have made",
+      "make",
+      "made"
+     ],
+     "f": "torte",
+     "r": "anna",
+     "phrase": "Anna is said to have made the cake herself.",
+     "sens": "Il paraît qu'Anna a fait le gâteau elle-même.",
+     "n": "<b>is said to have</b> + participe."
+    }
+   ]
   }
  },
  "traductions": {}
