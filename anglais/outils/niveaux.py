@@ -237,9 +237,10 @@ def expressions(niv, src, us, gb, vers_gb, deja):
         if not mot.lower().startswith("to "):
             mot = mot[:1].upper() + mot[1:]
             fr = fr[:1].upper() + fr[1:]
+        mot = C.vers_us(en_us(mot))
         if not deja.prendre("expr", mot, niv):
             continue
-        en = en_us(en)
+        en, efr = en_amerique(C.vers_us(en_us(en)), efr)
         e = {"mot": mot, "traduction": fr, "kategorie": cat, "exemple": en, "exemple_fr": efr}
         ex_us.append(e)
         ex_gb.append(dict(e, mot=en_gb(mot, vers_gb), exemple=en_gb(en, vers_gb)))
@@ -253,6 +254,8 @@ def fonctionnels(us, gb, vers_gb):
         return 0
     n = 0
     for niv, blocs in src.FONCTIONNELS.items():
+        if niv not in NIVEAUX:
+            continue
         for cle, bloc in blocs.items():
             for cols in C.lignes(bloc):
                 mot, fr, cat, en, efr = cols[:5]
@@ -303,6 +306,8 @@ def conjugaison(us, gb, vers_gb):
     for jeu, est_gb in ((us, False), (gb, True)):
         conv = (lambda s: en_gb(s, vers_gb)) if est_gb else (lambda s: s)
         for niv, feuilles in src.FEUILLES.items():
+            if niv not in NIVEAUX:
+                continue
             out = []
             for f in feuilles:
                 out.append({"id": f["id"], "serie": f["serie"], "temps": None, "t": {"fr": f["t"]},

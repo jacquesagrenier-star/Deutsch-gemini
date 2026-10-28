@@ -33,7 +33,7 @@ ORTHOGRAPHE = [
     ("analyze", "analyse"), ("analyzed", "analysed"), ("analyzes", "analyses"), ("analyzing", "analysing"),
     ("paralyze", "paralyse"), ("paralyzed", "paralysed"),
     ("behaviors", "behaviours"), ("neighboring", "neighbouring"), ("honors", "honours"),
-    ("humorous", "humourous"), ("favorable", "favourable"), ("favor", "favour"), ("favors", "favours"),
+("favorable", "favourable"), ("favor", "favour"), ("favors", "favours"),
     ("rumor", "rumour"), ("rumors", "rumours"), ("vapor", "vapour"), ("odor", "odour"),
     ("endeavor", "endeavour"), ("armor", "armour"), ("savor", "savour"), ("vigor", "vigour"),
     ("glamor", "glamour"), ("tumor", "tumour"), ("colored", "coloured"),

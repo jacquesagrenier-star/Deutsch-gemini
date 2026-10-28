@@ -52,25 +52,23 @@ adult | l'adulte
 break-up | la rupture
 childcare | la garde d'enfants
 custody | la garde d'enfant (droit)
-daycare center | la crèche, garderie
+daycare center | la crèche, la garderie
 envy | l'envie, la jalousie
 grandma | la mamie, grand-mère
 grandpa | le papi, grand-père
 grudge | la rancune
 guardianship | la tutelle
 life partner | le compagnon (de vie)
-living together | la vie commune
 loyalty | la fidélité
 married couple | le couple marié
-maternity protection | le congé de maternité (protection)
 nursery | la crèche (pour bébés)
-offspring | relève, jeunes talents | pl=offspring
+offspring | la progéniture, les enfants | pl=offspring
 orphan | l'orphelin, l'orpheline
 parental allowance | l'allocation parentale
 parental leave | le congé parental
 rapport | la complicité
 reconciliation | la réconciliation
-senior citizen | le senior, personne âgée
+senior citizen | la personne âgée, le senior
 separation | la séparation
 stroller | la poussette, landau | gb=pram
 upbringing | l'éducation (parentale)
@@ -83,27 +81,22 @@ activity | l'activité
 actress | l'actrice
 ad | l'annonce
 advertising agency | l'agence de publicité
-advice session | la conseil, consultation
 apprenticeship | l'apprentissage (formation)
-apprenticeship place | la place d'apprentissage
 architect | l'architecte
-attachment | la pièce jointe ; installation
+attachment | la pièce jointe
 balance sheet | le bilan
 business card | la carte de visite
 business letter | la lettre commerciale
-business people | les gens d'affaires
 butcher | le boucher
 calling | la vocation
 canteen | la cantine
 career choice | le choix professionnel
 career opportunity | l'opportunité de carrière
-carer | le soignant, aide-soignant
+caregiver | l'aidant, le soignant | gb=carer
 caretaker | le concierge, gardien
 catering | la restauration (secteur)
 challenge | le défi
 childminder | l'assistante maternelle
-city guide | la guide touristique (personne ou livre)
-collective agreement | la convention collective
 competitor | le concurrent
 conference | la conférence, réunion
 confirmation | la confirmation, attestation
@@ -111,53 +104,49 @@ consultant | le consultant
 continuing education | la formation continue | u
 cooperation | la collaboration, participation
 copy | la copie
-course leader | l'animateur de cours, formateur
 cover letter | la lettre de motivation
 craftsman | l'artisan | pl=craftsmen
-deal | l'accord, la façon de traiter
-dealer | le commerçant, marchand
-detail | l'indication, renseignement
+deal | l'accord, l'affaire
+dealer | le marchand, le revendeur
+detail | le détail
 """,
 "work_b1_2": """
-dismissal | licenciement
-elderly caregiver | soignant pour personnes âgées
+dismissal | le licenciement
 electrician | l'électricien
 employer | l'employeur
 employment | l'emploi, occupation | u
 expert | l'expert
 fitness trainer | l'entraîneur sportif
 follow-up | le suivi
-form of address | la formule d'appel
 headquarters | le siège | pl=headquarters
 housewife | la femme au foyer
 industry | l'industrie
 initiative | l'initiative
 innkeeper | l'aubergiste, le patron
-integration course | le cours d'intégration
 intern | le stagiaire
 judge | le juge
 ladder | l'échelle
-leadership | la direction, la visite guidée | u
+leadership | la direction, le leadership | u
 mailman | le facteur | gb=postman
 management | la direction, gestion | u
-master | le maître, le champion
+master | le maître
 medical assistant | l'assistant médical
 merger | la fusion
 merit | le mérite
 midwife | la sage-femme
 negotiation | la négociation
-nutrition counselor | le conseiller en nutrition
+nutritionist | le, la nutritionniste
 objective | l'objectif
 pension | la retraite (pension)
 photocopier | la photocopieuse
-physiotherapist | physiothérapeute
+physical therapist | le, la physiothérapeute | gb=physiotherapist
 planning | la planification
 PO box | la boîte postale
 prerequisite | la condition préalable
 presentation | la présentation, exposé
 priority | la priorité
 probationary period | la période d'essai
-process | le déroulement, procédure
+process | le processus, la procédure
 production | la production
 """,
 "work_b1_3": """
@@ -165,15 +154,14 @@ proposal | la proposition
 realtor | l'agent immobilier | gb=estate agent
 registered letter | la lettre recommandée
 remote work | le télétravail
-reporter | journaliste, reporter
+reporter | le, la journaliste, le reporter
 representative | le représentant
 responsibility | la responsabilité
 role | le rôle
 scientist | le scientifique
-service employee | l'employé de service
 shareholder | l'actionnaire
-shift work | le travail posté, service par équipes
-skilled worker | la travailleur qualifié
+shift work | le travail posté | u
+skilled worker | le travailleur qualifié
 social worker | le travailleur social
 soldier | le soldat
 specialist | le spécialiste
@@ -182,28 +170,24 @@ steward | le steward
 strategy | la stratégie
 strike | la grève
 subsidiary | la filiale
-substitute | le remplacement, représentation
-supervisor | l'encadrante, animatrice
+substitute | le, la remplaçant(e)
+supervisor | le, la responsable
 temporary work | le travail intérimaire
 trade fair | le salon, la foire
-trade union | le syndicat
-training place | la place de formation
 translator | le traducteur
 unemployment | le chômage | u
 union | le syndicat
 vocational training | la formation professionnelle
 wage | le salaire
-warehouse | l'entrepôt, stock
+warehouse | l'entrepôt
 work permit | le permis de travail
-work reference | certificat de travail
+reference | la référence, la recommandation
 worker | l'ouvrier
 workforce | l'effectif
 working conditions | les conditions de travail
-working world | le monde du travail
 """,
 "food_b1": """
 additive | l'additif
-after-meal chat | le moment après le repas
 afternoon snack | le goûter
 aperitif | l'apéritif
 appetite | l'appétit
@@ -212,22 +196,17 @@ aroma | l'arôme
 asparagus | l'asperge | u
 baking pan | le moule à gâteau
 barbecue | le barbecue, gril
-beet | la betterave
-beetroot | la betterave
+beet | la betterave | gb=beetroot
 broth | le bouillon
 Brussels sprout | le chou de Bruxelles
 buffet | le buffet
 calorie | la calorie
 chewing gum | le chewing-gum
-chip | la puce (électronique)
 cinnamon | la cannelle
-cocoa | le cacao, chocolat chaud
-coffee house | le café (viennois)
+cocoa | le cacao | u
 cooking pot | la marmite
-cuisine | la gastronomie
-cut | la coupe, la moyenne
-dumpling | la boulette (de pomme de terre)
-eating behavior | le comportement alimentaire | u
+cuisine | la cuisine (gastronomie)
+dumpling | la boulette, le ravioli
 eating habit | l'habitude alimentaire
 enjoyment | le plaisir (savourer)
 fat | la graisse, matière grasse
@@ -237,90 +216,78 @@ foodstuff | la denrée alimentaire
 hamburger | le hamburger
 inn | l'auberge
 ketchup | le ketchup
-liquid | liquide
+liquid | le liquide
 main course | le plat principal
 margarine | la margarine
 mayonnaise | la mayonnaise
-minced meat | la viande hachée | u
+ground beef | le bœuf haché | u | gb=mince
 """,
 "food_b1_2": """
 mineral water | l'eau minérale | u
 muesli | le muesli
-nut | noix
-pancake | la crêpe, beignet
-pastries | la petits gâteaux, pâtisserie
+nut | la noix, le fruit à coque
+pancake | la crêpe épaisse, le pancake
+pastry | la pâtisserie
 preparation | la préparation (cuisine)
 protein | la protéine
-quark | le fromage blanc
 radish | le radis
-ready meal | le plat préparé
 recipe | la recette
 rhubarb | la rhubarbe
 roast | le rôti
 sauce | la sauce
 snack | la collation, en-cas
-speciality | la spécialité
+specialty | la spécialité | gb=speciality
 steak | le steak
 stew | le ragoût
 texture | la texture
-tinned food | la conserve
-whipped cream | la crème fouettée (autrichien) | u
+canned food | les conserves | u | gb=tinned food
+whipped cream | la crème fouettée, la chantilly | u
 """,
 "home_b1": """
-aerial | l'antenne
+antenna | l'antenne | gb=aerial
 air conditioning | la climatisation
 ax | la hache
 beam | la poutre
 blade | la lame
 cleaning | le nettoyage
 cleaning product | le produit de nettoyage
-cloth | le chiffon, foulard
-corridor | le couloir ; plat (d'un repas)
+cloth | le chiffon
+corridor | le couloir
 couch | le canapé
 dirt | la saleté | u
-disturbance | dérangement, perturbation
+disturbance | le dérangement
 dresser | la commode
-electrical outlet | la prise électrique (murale)
 firewood | le bois de chauffage
-furnishing | l'aménagement, mobilier
+furnishings | l'ameublement | plt
 grille | la grille
 handle | la poignée
-hardware shop | la quincaillerie
-house rules | le règlement intérieur
+hardware store | la quincaillerie | gb=hardware shop
 household appliance | l'appareil ménager
-housing benefit | l'allocation logement
 hut | la cabane, refuge
-landlord | le bailleur
+landlord | le propriétaire (bailleur)
 laundry detergent | la lessive, détergent
 lever | le levier
 living space | la surface habitable
 mailbox | la boîte aux lettres
 needle | l'aiguille
 paintbrush | le pinceau
-peg | la pince
-pipe | la pipe, le sifflet
-place of residence | le lieu de résidence
+clothespin | la pince à linge | gb=clothes peg
+pipe | le tuyau
 plug | la fiche, prise (mâle)
-printing works | l'imprimerie
-real estate agent | l'agent immobilier | gb=estate agent
-rental price | le prix du loyer
 repair | la réparation
 resident | l'habitant, résident
 sack | le sac (grand)
 """,
 "home_b1_2": """
 shared apartment | la colocation
-shared flat | la colocation
 shoelace | le lacet
 stairwell | la cage d'escalier
 storage | le rangement
-studio flat | le studio, petit appartement
+studio apartment | le studio | gb=studio flat
 thread | le fil
-torch | la lampe de poche
+flashlight | la lampe de poche | gb=torch
 trap | le piège
-trash bin | la poubelle
 tube | le tube, le tuyau
-upper floor | l'étage supérieur
 vase | le vase
 whistle | le sifflet
 wick | la mèche
@@ -336,11 +303,10 @@ bone | l'os
 brain | le cerveau
 breath | le souffle, respiration
 calf | le mollet | pl=calves
-care | la prise en charge, garde
+care | les soins, la prise en charge | u
 cast | le plâtre
 cigarette | la cigarette
 clinic | la clinique
-consultation hours | les heures de consultation
 contact lens | la lentille de contact
 diagnosis | le diagnostic | pl=diagnoses
 disability | le handicap
@@ -348,48 +314,38 @@ discharge | la sortie (d'hôpital)
 doctor's office | le cabinet médical
 donation | le don
 dose | la dose
-drug | la drogue
+drug | la drogue, le médicament
 effect | l'effet
-elderly care | les soins aux personnes âgées
-emergency call | l'appel d'urgence
 emergency room | les urgences (service) | gb=A&E
 epidemic | l'épidémie
-figure | la silhouette ; personnage
-health card | la carte d'assurance maladie
-health insurance card | la carte d'assurance maladie
+figure | la silhouette, le chiffre
 healthcare | la santé publique | u
 heartbeat | le battement de cœur
 infection | l'infection
 inflammation | l'inflammation
-injection | la piqûre, seringue
-intake | la prise (de médicaments)
+injection | la piqûre, l'injection
 joint | l'articulation
 kidney | le rein
 liver | le foie
 """,
 "health_b1_2": """
-look | le regard ; vue
 lung | le poumon
 maternity ward | la maternité (service)
 medical examination | l'examen médical
 medical record | le dossier médical
-mortal danger | le danger de mort
 muscle | le muscle
 nerve | le nerf
 non-smoker | le non-fumeur
-nursing care | les soins infirmiers
 nursing home | la maison de retraite
 ointment | la pommade
-operating theatre | le bloc opératoire
+operating room | le bloc opératoire | gb=operating theatre
 organ | l'organe
 painkiller | l'antidouleur
 pregnancy | la grossesse
 prevention | la prévention
 ramp | la rampe
-recovery | le rétablissement, amélioration
-rehabilitation | rééducation
-retirement home | la maison de retraite
-sick person | le malade (personne)
+recovery | le rétablissement
+rehabilitation | la rééducation, la réadaptation | u
 sleeping pill | le somnifère
 smoker | le fumeur
 stethoscope | le stéthoscope
@@ -401,20 +357,19 @@ toothbrush | la brosse à dents
 toothpaste | le dentifrice
 transplant | la greffe
 vaccination | la vaccination
-vaccination record | carnet de vaccination
 vein | la veine
 virus | le virus
 vitamin | la vitamine
-walking stick | la canne
+cane | la canne | gb=walking stick
 wheelchair | le fauteuil roulant
 wing | l'aile
 wrist | le poignet
 """,
 "clothes_b1": """
 jewelry | les bijoux | u
-stocking | le bas, chaussette
+stocking | le bas
 sweatpants | le pantalon de jogging
-top | le débardeur, haut
+top | le haut
 uniform | l'uniforme
 zipper | la fermeture éclair
 """,
@@ -424,24 +379,21 @@ altitude | l'altitude
 animal species | l'espèce animale | pl=animal species
 area | la région, coin
 astronomy | l'astronomie
-atmosphere | l'ambiance
+atmosphere | l'atmosphère, l'ambiance
 atmospheric pressure | la pression atmosphérique
 bark | l'écorce
 bell | la cloche
 biodiversity | la biodiversité
 breeze | la brise
-bulky waste | les encombrants | u
 cage | la cage
 canal | le canal
-carriage | le wagon
 cattle | le bovin, bœuf | u
 cliff | la falaise | pl=cliffs
-climate protection | la protection du climat
 coal | le charbon
 comet | la comète
 continent | le continent
-crop | la culture
-current | le courant, l'électricité
+crop | la culture, la récolte
+current | le courant
 deer | le cerf | pl=deer
 deforestation | la déforestation
 disaster | la catastrophe
@@ -450,18 +402,16 @@ eclipse | l'éclipse
 ecosystem | l'écosystème
 electricity | l'électricité | u
 emission | l'émission
-environmental awareness | la conscience environnementale | u
-environmental pollution | la pollution de l'environnement | u
 environmental protection | la protection de l'environnement
-exhaust fumes | le gaz d'échappement
-farm | la cour, ferme
+exhaust fumes | les gaz d'échappement | plt
+farm | la ferme
 farming | l'agriculture
 feather | la plume
-fertiliser | l'engrais
+fertilizer | l'engrais
 firefly | la luciole
 """,
 "nature_b1_2": """
-flood | la marée haute, l'inondation
+flood | l'inondation
 footprint | l'empreinte
 forecast | la prévision
 frost | le gel
@@ -476,51 +426,44 @@ horn | la corne
 humidity | l'humidité | u
 insect | l'insecte
 irrigation | l'irrigation
-jungle | la forêt tropicale
+jungle | la jungle
 lighthouse | le phare
 livestock | le bétail | u
-livestock farming | l'élevage
-membrane | la membrane
 mill | le moulin
 mole | la taupe
 mosquito | le moustique | pl=mosquitoes
 mountain range | le massif montagneux
 nature reserve | la réserve naturelle
 newsstand | le kiosque
-North Sea | la mer du Nord
 ocean | l'océan
 orbit | l'orbite
 panel | le panneau
 penguin | le manchot, pingouin
 peninsula | la péninsule
-pest infestation | le fléau, l'infestation
 plain | la plaine
 plateau | le plateau
 poison | le poison
-power cut | la coupure de courant
-power output | la puissance
-power station | la centrale électrique
+power outage | la coupure de courant | gb=power cut
+power plant | la centrale électrique | gb=power station
 predator | le prédateur
 """,
 "nature_b1_3": """
 puddle | la flaque
 quay | le quai
-refuse collection | le ramassage des ordures
+garbage collection | le ramassage des ordures | u | gb=rubbish collection
 resource | la ressource
 root | la racine
 satellite | le satellite
-severe weather | l'intempérie | u
 shade | l'ombre
 shepherd | le berger
 shortcut | le raccourci
-slab | la dalle
 smog | le smog
 summit | le sommet
 surroundings | les environs, alentours | plt
 sustainability | la durabilité
 telescope | le télescope
 tide | la marée
-track | la piste
+track | la piste, le chemin
 tractor | le tracteur
 tunnel | le tunnel
 turbine | la turbine
@@ -535,8 +478,7 @@ well | le puits
 adventure | l'aventure
 anchor | l'ancre
 announcement | l'annonce (haut-parleur)
-annual pass | l'abonnement annuel
-bend | le virage, courbe
+bend | le virage
 bike pump | la pompe à vélo
 bike rack | le support à vélos
 brake | le frein
@@ -552,53 +494,49 @@ dining car | le wagon-restaurant
 direction | la direction
 driving school | l'auto-école
 e-bike | le vélo électrique
-exit | la sortie (d'autoroute)
+exit | la sortie
 fare | le tarif
 ferry | le ferry, bac
-guest house | la pension (hébergement) ; retraite
+guest house | la maison d'hôtes
 half board | la demi-pension
 handlebar | le guidon
-hostel | l'auberge
+hostel | l'auberge de jeunesse
 journey | le trajet
-lane | la voie ; trace
-leaflet | la brochure
-licence plate | la plaque d'immatriculation
-local | l'habitant local, autochtone
-main station | la gare centrale
-means of transport | le moyen de transport | u
-mobility | mobilité
+lane | la voie
+flyer | le prospectus | gb=leaflet
+license plate | la plaque d'immatriculation | gb=number plate
+local | l'habitant du coin
+means of transportation | le moyen de transport | pl=means of transportation | gb=means of transport | plgb=means of transport
+mobility | la mobilité | u
 motor vehicle | le véhicule à moteur
 one-way street | la rue à sens unique
 pace | le rythme, vitesse
 parking meter | le parcmètre
-parking ticket | la contravention, PV
+parking ticket | la contravention
 """,
 "travel_b1_2": """
-queue of traffic | la file de voitures | u
 railroad | le chemin de fer | gb=railway
-rear light | le feu arrière
+taillight | le feu arrière | gb=rear light
 return | le retour
-return journey | le trajet de retour
 road sign | le panneau de signalisation
-roadway | la chaussée, voie
-ruins | la ruine
+ruins | les ruines | plt
 shelter | le refuge
-sightseeing tour | le circuit, tour
+sightseeing tour | la visite touristique
 spare part | la pièce de rechange
 speed | la vitesse
 speed limit | la limitation de vitesse
-suburban train | le train de banlieue
+commuter train | le train de banlieue
 surcharge | le supplément
 toll | le péage
-tour operator | voyagiste
+tour operator | le voyagiste
 tourism | le tourisme
 tourist attraction | le site touristique
 traffic accident | l'accident de la route
 trail | le sentier
-train platform | le quai (de gare)
+train platform | le quai
 transfer | la correspondance
-transport | le transport | u
-travel guide | la guide de voyage
+transportation | le transport | u | gb=transport
+travel guide | le guide de voyage
 vehicle | le véhicule
 viewpoint | le belvédère
 youth hostel | l'auberge de jeunesse
@@ -606,28 +544,22 @@ zone | la zone
 """,
 "city_b1": """
 architecture | l'architecture
-big city | grande ville
-bookshop | la librairie
-building authority | le service de l'urbanisme
-building plot | le terrain à bâtir
+bookstore | la librairie | gb=bookshop
 city center | le centre-ville
-cloakroom | le vestiaire
+coat check | le vestiaire | gb=cloakroom
 column | la colonne
 concrete | le béton
-construction | la construction, chantier
+construction | la construction, le chantier
 density | la densité
 district | le quartier
 dome | la coupole
 emergency exit | la sortie de secours
 fire department | les pompiers | gb=fire brigade
-global city | la métropole mondiale
 growth | la croissance
 housing development | le lotissement
 industrial area | la zone industrielle
-industrial building | le bâtiment industriel
 infrastructure | l'infrastructure
-lost property item | l'objet trouvé
-lost property office | le bureau des objets trouvés
+lost and found | les objets trouvés | u | gb=lost property office
 metropolis | la métropole
 monument | le monument
 mosque | la mosquée
@@ -637,20 +569,17 @@ playground | l'aire de jeux
 port city | la ville portuaire
 region | la région
 restoration | la restauration
-salon | le salon (coiffure)
+salon | le salon (de coiffure, de beauté)
 scaffolding | l'échafaudage
-side street | la rue transversale
+side street | la petite rue
 space | l'espace
 suburb | la banlieue
 town planning | l'urbanisme
-vault | la voûte
-vicinity | la proximité
+vicinity | les environs, le voisinage
 """,
 "education_b1": """
-aid | l'outil, moyen auxiliaire
 alphabet | l'alphabet
 answer sheet | la feuille de réponses
-bachelor's thesis | le mémoire de licence | pl=bachelor's theses
 ballpoint pen | le stylo à bille
 biology | la biologie | u
 cafeteria | la cafétéria
@@ -658,33 +587,27 @@ cell | la cellule
 certificate | le diplôme, certificat
 chapter | le chapitre
 chemistry | la chimie | u
-class test | le devoir sur table
-classmate | camarade de classe
-comprehensive school | l'école polyvalente
+classmate | le, la camarade de classe
 content | le contenu
-day-care centre | la crèche, garderie
-definition | définition
-degree program | la filière d'études
+definition | la définition
 description | la description
 dialect | le dialecte
 dialog | le dialogue
 diploma | le diplôme
 discovery | la découverte
 education | l'éducation, formation | u
-encyclopedia | l'encyclopédie, lexique
+encyclopedia | l'encyclopédie
 exchange program | le programme d'échange
 exercise | l'exercice
 experiment | l'expérience
 faculty | la faculté
 failure | l'échec
-feedback | le retour, réponse | u
+feedback | le retour, les commentaires | u
 foreign language | la langue étrangère
 foreword | la préface, avant-propos
 geography | la géographie | u
-grammar school | le lycée
 heading | le titre (d'un texte)
 hypothesis | l'hypothèse | pl=hypotheses
-information sheet | la fiche d'information
 institute | l'institut
 intelligence | l'intelligence
 """,
@@ -692,32 +615,24 @@ intelligence | l'intelligence
 intensive course | le cours intensif
 introduction | l'introduction
 laboratory | le laboratoire
-language diploma | le diplôme de langue
-language skills | les connaissances linguistiques
-language support | le soutien linguistique | u
+language skills | les compétences linguistiques | plt
 learner | l'apprenant
 level | le niveau
-main focus | le point fort, priorité
 mathematics | les mathématiques | u
 method | la méthode
 module | le module
 mother tongue | la langue maternelle
-parents' council | le conseil des parents d'élèves
 participation | la participation
 performance | la performance, prestation
 philosophy | la philosophie | u
 physics | la physique | u
 primary school | l'école primaire
 pronunciation | la prononciation | u
-repeating a grade | redoublement
-report card | bulletin
+report card | le bulletin scolaire
 requirement | l'exigence
-revision | la révision, répétition
 reward | la récompense
 sample | l'échantillon
-school notebook | le cahier d'école
-school-leaving exam | le baccalauréat
-schooling | scolarité, instruction
+schooling | la scolarité | u
 science | la science
 second language | la langue seconde
 secondary school | l'école secondaire
@@ -725,10 +640,8 @@ skill | l'aptitude
 species | l'espèce | pl=species
 study | l'étude (recherche)
 success | le succès
-tuition fee | le frais de scolarité
-Turkish | le turc (la langue)
-tutorial | le suivi, le tutorat
-Ukrainian | l'ukrainien (la langue)
+tuition | les frais de scolarité | u | gb=tuition fees
+tutorial | le tutoriel, les travaux dirigés
 umbrella term | le terme générique
 written exam | l'examen écrit
 """,
@@ -741,32 +654,28 @@ biography | la biographie
 civilization | la civilisation
 collector's item | la pièce de collection
 composer | le compositeur
-congratulation | la félicitation
 congratulations | les félicitations | plt
 criticism | la critique
 cross | la croix
 culture | la culture
 custom | la coutume
-demonstration | démonstration, représentation
+demonstration | la démonstration, la manifestation
 depiction | la représentation
 devil | le diable
 diversity | la diversité
 doll | la poupée
-entertainment | le divertissement ; conversation
+entertainment | le divertissement | u
 essay | l'essai
-exhibition opening | vernissage
 fairy tale | le conte
-favorite pastime | l'occupation préférée
 feast | le repas de fête
 flute | la flûte
 folklore | le folklore
-fool | le fou (du carnaval)
+fool | l'idiot, l'imbécile
 ghost | le fantôme
 heritage | le patrimoine
 hero | le héros | pl=heroes
-hit | le tube, succès (musique)
-holiday calendar | le calendrier des fêtes
-housewarming party | la fête de crémaillère
+hit | le tube, le succès
+housewarming party | la pendaison de crémaillère
 identity | l'identité
 jazz | le jazz
 joke | la blague
@@ -781,7 +690,7 @@ melody | la mélodie
 music school | l'école de musique
 myth | le mythe
 national holiday | la fête nationale
-nightclub | la discothèque
+nightclub | la boîte de nuit
 opera | l'opéra
 original | l'original
 pastime | le passe-temps
@@ -794,27 +703,24 @@ plot | l'intrigue, l'action
 poetry | la poésie | u
 postage stamp | le timbre (poste)
 review | la critique
-short story | le conte
-sound | la sonorité, le son
-spirit | l'esprit, le fantôme
-stage appearance | l'apparition, prestation (scène)
-story | le récit, nouvelle
+short story | la nouvelle
+sound | le son
+spirit | l'esprit
+story | l'histoire, le récit
 symbol | le symbole
 toy | le jouet
 trumpet | la trompette
 verse | le vers
 wedding ceremony | la cérémonie de mariage
-Whitsun | la Pentecôte
 """,
 "sports_b1": """
 athlete | le sportif, athlète
 blow | le coup
 bow | l'arc
-cabin | la cabine, vestiaire
+cabin | la cabine, le chalet
 defeat | la défaite
 defender | le défenseur
 discipline | la discipline
-favorite club | le club préféré
 fitness | la forme physique | u
 goalkeeper | le gardien de but
 golf | le golf
@@ -827,14 +733,14 @@ loser | le perdant
 motorsport | le sport automobile
 mountain bike | le vélo tout-terrain
 organizer | l'organisateur
-professional | un professionnel, un pro
+professional | le, la professionnel(le)
 professional athlete | le sportif professionnel
 race | la course
-round | le tour, manche
+round | le tour, la manche
 run | la course
 runner | le coureur
 ski | le ski
-soccer team | l'équipe de football
+soccer team | l'équipe de football | gb=football team
 spectator | le spectateur
 stadium | le stade
 stamina | l'endurance
@@ -847,77 +753,63 @@ world champion | le champion du monde
 world championship | le championnat du monde
 """,
 "media_b1": """
-advance | l'avancée
-advertisement | petite annonce
+advance | l'avancée, le progrès
+advertisement | la publicité, l'annonce
 algorithm | l'algorithme
 answering machine | le répondeur
 application | l'application (logiciel)
-audience figures | l'audience
 backup | la sauvegarde, le soutien
-blog | le blogue
-broadcasting | la radiodiffusion
-cassette | la cassette
-CD player | le lecteur de CD
-CD-ROM | le cédérom
+blog | le blog
 chart | le graphique
-chat | le clavardage, discussion en ligne
-classified ad | petite annonce
+chat | la discussion en ligne
+classified ad | la petite annonce
 click | le clic
 comment | le commentaire
 communication | la communication
-computer program | le logiciel
-continuation | la suite (continuation)
-data traffic | le trafic de données | u
-dialling code | l'indicatif téléphonique
-drive | le lecteur (informatique)
-DVD | le DVD
+area code | l'indicatif téléphonique | gb=dialling code
+drive | le lecteur, le disque
 expression | l'expression
-fax | le fax, télécopie
 follower | l'abonné
 forum | le forum
-hard disk | le disque dur
-hoax | la fausse nouvelle
-homepage | le site web, page d'accueil
-illustration | l'illustration, image
+hard drive | le disque dur
+hoax | le canular
+homepage | la page d'accueil
+illustration | l'illustration
 image | l'image
-index | l'indice | pl=indexes
+index | l'index | pl=indexes
 innovation | l'innovation
 instruction manual | le mode d'emploi
-instructions for use | la notice d'utilisation
 internet connection | la connexion internet
 invention | l'invention
-IT skills | les connaissances en informatique
 """,
 "media_b1_2": """
 landline | la ligne fixe
 listener | l'auditeur
 logo | le logo | pl=logos
-mobile voicemail | la messagerie mobile
 monitor | l'écran, moniteur
 phone number | le numéro de téléphone
 post | la publication
 privacy | la vie privée
 profile | le profil
 proportion | la proportion
-publisher | l'éditeur (responsable)
+publisher | l'éditeur
 publishing house | la maison d'édition
 reach | la portée
 reader | le lecteur
-sampling | l'échantillonnage
 search engine | le moteur de recherche
 sender | l'expéditeur
 series | la série | pl=series
 server | le serveur
-show | le spectacle, émission
+show | le spectacle, l'émission
 slogan | le slogan
-smartphone | le téléphone intelligent
+smartphone | le smartphone
 software | le logiciel | u
 sponsorship | le parrainage
 statistic | la statistique
 studio | le studio | pl=studios
 subscription | l'abonnement
-talent show | le télécrochet
-technology | la technique, technologie
+talent show | le concours de talents
+technology | la technologie
 title | le titre
 trend | la tendance
 update | la mise à jour
@@ -925,69 +817,59 @@ voicemail | la messagerie vocale
 writing | l'écriture
 """,
 "money_b1": """
-assembly | l'assemblage
-bank card | la carte bancaire
-bank sort code | le code banque
-bank transfer | virement
+bank transfer | le virement bancaire
 banknote | le billet (de banque)
 bond | l'obligation, le bon
-butcher's shop | la boucherie
+butcher shop | la boucherie | gb=butcher's
 buyer | l'acheteur
 capital | le capital
 catalog | le catalogue
 consumer | le consommateur
 consumption | la consommation
-contribution | la cotisation, contribution
-currency | la devise
-customer number | le numéro de client
+contribution | la cotisation, la contribution
+currency | la monnaie, la devise
 customer service | le service client
 debit card | la carte de débit
 demand | la demande (marché)
-expiry date | la date de péremption
+expiration date | la date d'expiration | gb=expiry date
 fund | le fonds
-goods | la marchandise | plt
+goods | les marchandises | plt
 guarantee | la garantie
-hair salon | salon de coiffure
-IBAN | l'IBAN
+hair salon | le salon de coiffure
 import | l'importation
-increase | l'augmentation, hausse
+increase | l'augmentation
 inflation | l'inflation | u
-installment payment | le paiement échelonné
+installment | le versement échelonné | gb=instalment
 investment | l'investissement
 label | l'étiquette
 machinery | les machines | u
 manufacturer | le fabricant
-need | le besoin, demande
-opening | l'ouverture (d'un compte)
+need | le besoin
 packaging | l'emballage
-packing | l'emballage
 payment | le paiement
 pocket money | l'argent de poche | u
 provider | le fournisseur, prestataire
 rate | le tarif
-reminder | rappel (de paiement)
+reminder | le rappel
 sector | le secteur
-share | l'action
-small parcel | le petit paquet
-standing order | virement automatique
+share | l'action (en bourse), la part
 supplier | le fournisseur
 trade | le commerce
 value | la valeur
-VAT | la TVA
 warranty | la garantie
 """,
 "feelings_b1": """
 bad luck | la malchance | u
 beauty | la beauté
 behavior | le comportement | u
-calmness | le calme/sérénité | u
+calmness | le calme | u
 compassion | la compassion
-confidence | la confiance/optimisme
-consideration | les égards, considération
+confidence | la confiance
+consideration | les égards
 disappointment | la déception
 emotion | l'émotion
 enthusiasm | l'enthousiasme
-excuse | l'excuse, prétexte
+excuse | l'excuse, le prétexte
 fright | la frayeur
 heartbreak | le chagrin d'amour
 homesickness | le mal du pays | u
@@ -999,9 +881,9 @@ intention | l'intention
 jealousy | la jalousie | u
 memory | le souvenir
 mind | l'esprit
-misfortune | le malheur, accident
+misfortune | le malheur
 motivation | la motivation
-panic | panique
+panic | la panique | u
 perception | la perception
 pressure | la pression
 respect | le respect
@@ -1028,48 +910,42 @@ ban | l'interdiction
 beneficiary | le bénéficiaire
 birth certificate | l'acte de naissance
 bureaucracy | la bureaucratie
-burglar | cambrioleur
+burglar | le cambrioleur
 burglary | le cambriolage
 campaign | la campagne
 citizenship | la nationalité, citoyenneté
-claim | le droit, prétention
+claim | la revendication, la demande
 coalition | la coalition
-collection drive | la collecte
 commitment | l'engagement
 consent | l'accord, consentement
 constitution | la constitution
 consulate | le consulat
 corruption | la corruption
 country of origin | le pays d'origine
-crime | la délinquance | u
+crime | le crime, la criminalité
 criminal | le criminel
-criminal investigation department | la police criminelle
 crisis | la crise | pl=crises
 crown | la couronne
-current affairs | l'actualité
+current affairs | l'actualité | plt
 damage | le dommage, dégât
-dead person | le mort, victime
-deed | l'acte, action
+deed | l'acte
 development | le développement, évolution
 discrimination | la discrimination
 discussion | la discussion, débat
 distrust | la méfiance
 duty | le devoir, obligation
 economy | l'économie
-embassy | l'ambassade ; message
+embassy | l'ambassade
 """,
 "society_b1_2": """
 emigration | l'émigration
 equal rights | l'égalité des droits
 equality | l'égalité
-EU citizen | le citoyen de l'UE
 exclusion | l'exclusion
 export | l'exportation
-federal president | le président fédéral
 fight | le combat, la lutte
-formal request | l'injonction, mise en demeure
 freedom | la liberté | u
-funding | la aide, subvention
+funding | le financement | u
 gap | le fossé
 hardship | la détresse, misère
 immigrant | l'immigrant
@@ -1085,26 +961,23 @@ loneliness | la solitude | u
 mayor | le maire
 measure | la mesure (décision)
 member | le membre
-member of parliament | le député
 migrant | le migrant
 migration | la migration
-migration background | l'origine migratoire
 minority | la minorité
 nation | la nation
-naturalization certificate | certificat de naturalisation
 neglect | l'abandon
 opposition | l'opposition
 organization | l'organisation
 origin | l'origine
 pay gap | l'écart de salaire
 peace | la paix | u
-penalty | la punition, amende
+penalty | la sanction, l'amende
 """,
 "society_b1_3": """
 permit | l'autorisation
 perpetrator | l'auteur (d'un délit), coupable
-personal details | les état civil, identité
-politician | l'homme politique
+personal details | les coordonnées | plt
+politician | l'homme, la femme politique
 politics | la politique | u
 population | la population
 poverty | la pauvreté | u
@@ -1115,10 +988,8 @@ privilege | le privilège
 proof | la preuve | pl=proofs
 protection | la protection
 protest | la protestation
-public office | l'administration, bureau officiel
 reform | la réforme
 refugee | le réfugié
-registry office | le bureau de l'état civil
 regulation | le règlement, consigne
 religion | la religion
 representation | la représentation
@@ -1126,24 +997,17 @@ request | la demande, requête
 residency | la résidence
 right to vote | le droit de vote
 safety | la sécurité | u
-sex | le sexe, le genre
-social order | l'ordre social
+sex | le sexe
 social welfare | l'aide sociale | u
-social welfare office | le service social
 society | la société
 solidarity | la solidarité
 speech | le discours (allocution)
 statement | la déclaration, affirmation
 survey | le sondage, enquête
-Turk | le Turc
-Turkey | la Turquie
-Ukraine | l'Ukraine
-victim | la victime, le sacrifice
+victim | la victime
 violence | la violence | u
 volunteer | le bénévole
 volunteering | le bénévolat
-welcome | l'accueil
-youth welfare office | le service de la jeunesse
 """,
 "law_b1": """
 justice | la justice | u
@@ -1173,14 +1037,13 @@ temple | le temple
 treaty | le traité
 """,
 "time_b1": """
-daily routine | le déroulement de la journée
+daily routine | la routine quotidienne
 duration | la durée
-everyday life | le quotidien, vie de tous les jours | pl=everyday lives
-hurry | l'hâte, urgence
+everyday life | la vie quotidienne | u
+hurry | la hâte | u
 millennium | le millénaire
-period | la période | gb=full stop
+period | la période
 public holiday | le jour férié
-retrospective | le bilan/rétrospective
 weekday | le jour de la semaine
 """,
 "everyday_b1": """
@@ -1190,34 +1053,30 @@ average | la moyenne
 basis | la base | pl=bases
 cause | la cause
 caution | la prudence
-coincidence | le hasard, coïncidence
+coincidence | la coïncidence, le hasard
 comparison | la comparaison
-consequence | la conséquence ; épisode
+consequence | la conséquence
 construction site | le chantier
-contrast | contraste, opposé
+contrast | le contraste
 decade | la décennie
 difficulty | la difficulté
-edge | le bord, marge
+edge | le bord
 event | l'événement
 exception | l'exception
 fact | le fait
 factor | le facteur (élément)
-frame | cadre
-further education | la formation continue | u
-gymnasium | le gymnase
+frame | le cadre
 hole | le trou
-individual part | la pièce détachée
 kilogram | le kilogramme
-kind | la sorte, type
-landmark | le symbole, emblème (d'une ville)
+kind | la sorte, le genre
+landmark | le monument emblématique, le point de repère
 maiden name | le nom de jeune fille
 majority | la majorité
 material | le matériau
 meaning | la signification
 means | le moyen | pl=means
-milligram | milligramme
-multiple | le multiple
-nutrition | l'alimentation
+milligram | le milligramme
+nutrition | la nutrition | u
 object | l'objet
 opportunity | l'occasion
 opposite | le contraire
@@ -1226,7 +1085,7 @@ pattern | le motif
 percentage | le pourcentage
 """,
 "everyday_b1_2": """
-piece of advice | le conseil | u
+piece of advice | un conseil | pl=pieces of advice
 possibility | la possibilité
 reaction | la réaction
 reality | la réalité
@@ -1240,11 +1099,9 @@ suggestion | la proposition, suggestion
 symmetry | la symétrie
 system | le système
 taste | le goût
-termination | la résiliation, licenciement
 truth | la vérité
 type | le type, genre
-volunteer position | la fonction bénévole
-work of art | l'œuvre d'art | u
+work of art | l'œuvre d'art | pl=works of art
 zip code | le code postal | gb=postcode
 """,
 }
