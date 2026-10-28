@@ -1374,6 +1374,86 @@ window.SCENE = {
      "n": "Avec quelqu'un → <b>with</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Not only… but also, both… and, neither… nor",
+   "qs": [
+    {
+     "q": "Mark needs not only his passport ___ also the form.",
+     "c": [
+      "but",
+      "and",
+      "or"
+     ],
+     "f": "pass",
+     "r": "formular",
+     "phrase": "Mark needs not only his passport but also the form.",
+     "sens": "Mark a besoin non seulement de son passeport, mais aussi du formulaire.",
+     "n": "Not only… <b>but also</b>."
+    },
+    {
+     "q": "The woman speaks ___ English and Spanish.",
+     "c": [
+      "both",
+      "either",
+      "as"
+     ],
+     "f": "frau",
+     "phrase": "The woman speaks both English and Spanish.",
+     "sens": "La femme parle aussi bien anglais qu'espagnol.",
+     "n": "<b>both… and</b>."
+    },
+    {
+     "q": "The young woman has ___ a book nor a newspaper with her.",
+     "c": [
+      "neither",
+      "either",
+      "not"
+     ],
+     "f": "frau-2",
+     "phrase": "The young woman has neither a book nor a newspaper with her.",
+     "sens": "La jeune femme n'a ni livre ni journal avec elle.",
+     "n": "<b>neither… nor</b>."
+    },
+    {
+     "q": "___ Mark signs today, or he comes back next week.",
+     "c": [
+      "Either",
+      "Neither",
+      "Whether"
+     ],
+     "f": "mark",
+     "r": "formular",
+     "phrase": "Either Mark signs today, or he comes back next week.",
+     "sens": "Soit Mark signe aujourd'hui, soit il revient la semaine prochaine.",
+     "n": "<b>either… or</b>."
+    },
+    {
+     "q": "The faster Mark writes, the ___ he finishes.",
+     "c": [
+      "sooner",
+      "soonest",
+      "more soon"
+     ],
+     "f": "kugelschreiber",
+     "r": "mark",
+     "phrase": "The faster Mark writes, the sooner he finishes.",
+     "sens": "Plus Mark écrit vite, plus tôt il a fini.",
+     "n": "<b>The</b> + comparatif, <b>the</b> + comparatif."
+    },
+    {
+     "q": "The office is small, ___ it's bright.",
+     "c": [
+      "but",
+      "so",
+      "or"
+     ],
+     "f": "fenster",
+     "phrase": "The office is small, but it's bright.",
+     "sens": "Le bureau est petit, mais lumineux.",
+     "n": "Opposition → <b>but</b>."
+    }
+   ]
   }
  },
  "traductions": {}

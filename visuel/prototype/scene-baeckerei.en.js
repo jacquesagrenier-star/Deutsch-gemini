@@ -1688,6 +1688,88 @@ window.SCENE = {
      "n": "Sujet pluriel : pas de -s."
     }
    ]
+  },
+  "B2": {
+   "titre": "Le past perfect : ce qui s'était passé avant",
+   "qs": [
+    {
+     "q": "Before Anna arrived, the saleswoman ___ baked the bread.",
+     "c": [
+      "had",
+      "has",
+      "was"
+     ],
+     "f": "frau",
+     "r": "brot",
+     "phrase": "Before Anna arrived, the saleswoman had baked the bread.",
+     "sens": "Avant qu'Anna arrive, la vendeuse avait cuit le pain.",
+     "n": "Action antérieure → <b>had</b> + participe."
+    },
+    {
+     "q": "When Anna came in, the neighbor had already ___ down.",
+     "c": [
+      "sat",
+      "sit",
+      "seated"
+     ],
+     "f": "nachbar",
+     "r": "anna",
+     "phrase": "When Anna came in, the neighbor had already sat down.",
+     "sens": "Quand Anna est entrée, le voisin s'était déjà assis.",
+     "n": "<b>sit → sat → sat</b>."
+    },
+    {
+     "q": "After he ___ his coffee, he read the newspaper.",
+     "c": [
+      "had drunk",
+      "has drunk",
+      "drank had"
+     ],
+     "f": "tasse-2",
+     "r": "zeitung",
+     "phrase": "After he had drunk his coffee, he read the newspaper.",
+     "sens": "Après avoir bu son café, il a lu le journal.",
+     "n": "<b>drink → drank → drunk</b>."
+    },
+    {
+     "q": "The dog ___ fallen asleep before the coffee came.",
+     "c": [
+      "had",
+      "has",
+      "was"
+     ],
+     "f": "hund",
+     "r": "tasse-2",
+     "phrase": "The dog had fallen asleep before the coffee came.",
+     "sens": "Le chien s'était endormi avant que le café arrive.",
+     "n": "Had + participe."
+    },
+    {
+     "q": "When the store opened, she had already ___ for three hours.",
+     "c": [
+      "worked",
+      "work",
+      "working"
+     ],
+     "f": "frau",
+     "phrase": "When the store opened, she had already worked for three hours.",
+     "sens": "Quand le magasin a ouvert, elle avait déjà travaillé trois heures.",
+     "n": "Past perfect : had + <b>worked</b>."
+    },
+    {
+     "q": "Anna had already ___ for the rolls when her phone rang.",
+     "c": [
+      "paid",
+      "payed",
+      "pay"
+     ],
+     "f": "muenze",
+     "r": "broetchen",
+     "phrase": "Anna had already paid for the rolls when her phone rang.",
+     "sens": "Anna avait déjà payé les petits pains quand son téléphone a sonné.",
+     "n": "<b>pay → paid</b> (pas payed)."
+    }
+   ]
   }
  },
  "traductions": {}

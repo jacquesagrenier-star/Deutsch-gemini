@@ -16,7 +16,7 @@ Les sources, par niveau (on corrige la, jamais dans anglais/datos) :
 Un mot deja present a un niveau plus bas (A1 compris) est saute et signale :
 un mot n'a qu'une carte.
 """
-import importlib, os, random, re
+import importlib, os, random, re, sys
 
 import construire as C
 import mots_a1
@@ -25,8 +25,11 @@ import variante
 import variante_niveaux as VN
 
 ICI = os.path.dirname(os.path.abspath(__file__))
+# construire.py tourne en __main__ : « import construire » en fait une
+# seconde copie. Le rapport ecrit sur le disque est celui de __main__.
+RAPPORT = getattr(sys.modules.get("__main__"), "RAPPORT", C.RAPPORT)
 # Les niveaux branches : un niveau entre ici quand ses listes ont ete relues.
-NIVEAUX = ["A2", "B1"]
+NIVEAUX = ["A2", "B1", "B2"]
 
 ORTHO_US = [(b, a) for a, b in VN.ORTHOGRAPHE if a not in VN.PAS_DANS_LES_PHRASES]
 ORTHO_GB = [(a, b) for a, b in VN.ORTHOGRAPHE if a not in VN.PAS_DANS_LES_PHRASES]
@@ -99,7 +102,7 @@ class Deja:
     def prendre(self, cl, mot, niv):
         cle = mot.lower().strip("!?.")
         if cle in self.vus[cl]:
-            C.RAPPORT.append("  %-22s DEJA A UN NIVEAU PLUS BAS (%s, saute)" % (mot, niv))
+            RAPPORT.append("  %-22s DEJA A UN NIVEAU PLUS BAS (%s, saute)" % (mot, niv))
             return False
         self.vus[cl].add(cle)
         return True
@@ -136,7 +139,7 @@ def phrase_gb(ex, vers_gb, paires=()):
 
 # ---------------------------------------------------------------- vocabulaire
 def noms(niv, src, us, gb, ch, vers_gb, deja, ic):
-    C.RAPPORT.append("== NOMS " + niv)
+    RAPPORT.append("== NOMS " + niv)
     for tid, nom, source in src.THEMES:
         m_us, m_gb = [], []
         for cols in C.lignes(src.NOMS[tid]):
@@ -168,7 +171,7 @@ def noms(niv, src, us, gb, ch, vers_gb, deja, ic):
 
 
 def verbes(niv, src, us, gb, ch, vers_gb, deja):
-    C.RAPPORT.append("== VERBES " + niv)
+    RAPPORT.append("== VERBES " + niv)
     v_us, v_gb = [], []
     for cols in C.lignes(src.VERBES):
         verbe, fr, d = cols[0], cols[1], C.drapeaux(cols[2:])
@@ -188,7 +191,7 @@ def verbes(niv, src, us, gb, ch, vers_gb, deja):
 
 
 def adjectifs(niv, src, us, gb, ch, vers_gb, deja):
-    C.RAPPORT.append("== ADJECTIFS " + niv)
+    RAPPORT.append("== ADJECTIFS " + niv)
     a_us, a_gb = [], []
     for cols in C.lignes(src.ADJECTIFS):
         adj, fr, d = cols[0], cols[1], C.drapeaux(cols[2:])
@@ -215,7 +218,7 @@ def adjectifs(niv, src, us, gb, ch, vers_gb, deja):
 
 
 def adverbes(niv, src, us, gb, ch, vers_gb, deja):
-    C.RAPPORT.append("== ADVERBES " + niv)
+    RAPPORT.append("== ADVERBES " + niv)
     ad_us, ad_gb = [], []
     for cols in C.lignes(src.ADVERBES):
         adv, fr, cat = cols[0], cols[1], cols[2]

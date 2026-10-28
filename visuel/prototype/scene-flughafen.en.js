@@ -1151,6 +1151,88 @@ window.SCENE = {
      "n": "She → <b>has to</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Les questions indirectes",
+   "qs": [
+    {
+     "q": "Anna asks the woman ___ the plane is on time.",
+     "c": [
+      "if",
+      "that",
+      "is"
+     ],
+     "f": "anna",
+     "r": "flugzeug",
+     "phrase": "Anna asks the woman if the plane is on time.",
+     "sens": "Anna demande à la femme si l'avion est à l'heure.",
+     "n": "Question oui / non → <b>if</b> (ou whether)."
+    },
+    {
+     "q": "She doesn't know how much the suitcase ___.",
+     "c": [
+      "weighs",
+      "does weigh",
+      "weigh"
+     ],
+     "f": "koffer-3",
+     "r": "waage",
+     "phrase": "She doesn't know how much the suitcase weighs.",
+     "sens": "Elle ne sait pas combien pèse la valise.",
+     "n": "Ordre affirmatif : sujet + <b>verbe</b>, sans does."
+    },
+    {
+     "q": "The pilot knows where the plane ___.",
+     "c": [
+      "is",
+      "is it",
+      "it is"
+     ],
+     "f": "pilot",
+     "r": "flugzeug",
+     "phrase": "The pilot knows where the plane is.",
+     "sens": "Le pilote sait où est l'avion.",
+     "n": "Sujet + verbe : where the plane <b>is</b>."
+    },
+    {
+     "q": "The woman asks ___ Anna has carry-on luggage.",
+     "c": [
+      "whether",
+      "that",
+      "does"
+     ],
+     "f": "frau",
+     "r": "koffer",
+     "phrase": "The woman asks whether Anna has carry-on luggage.",
+     "sens": "La femme demande si Anna a un bagage à main.",
+     "n": "<b>whether</b> = if."
+    },
+    {
+     "q": "Anna wants to know when the plane ___ off.",
+     "c": [
+      "takes",
+      "does take",
+      "take"
+     ],
+     "f": "uhr",
+     "r": "flugzeug",
+     "phrase": "Anna wants to know when the plane takes off.",
+     "sens": "Anna veut savoir quand l'avion décolle.",
+     "n": "Pas de does dans une question indirecte."
+    },
+    {
+     "q": "Do you know ___ newspaper this is?",
+     "c": [
+      "whose",
+      "who",
+      "who's"
+     ],
+     "f": "zeitung",
+     "phrase": "Do you know whose newspaper this is?",
+     "sens": "Tu sais à qui est le journal ?",
+     "n": "À qui = <b>whose</b>."
+    }
+   ]
   }
  },
  "traductions": {}

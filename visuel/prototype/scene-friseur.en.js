@@ -1357,6 +1357,85 @@ window.SCENE = {
      "n": "Moi-même = <b>myself</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "The more…, the more…",
+   "qs": [
+    {
+     "q": "The shorter the hair, the ___ it dries.",
+     "c": [
+      "faster",
+      "fastest",
+      "more fast"
+     ],
+     "f": "haar",
+     "phrase": "The shorter the hair, the faster it dries.",
+     "sens": "Plus les cheveux sont courts, plus ils sèchent vite.",
+     "n": "<b>The</b> + comparatif, <b>the</b> + comparatif."
+    },
+    {
+     "q": "The longer the lady waits, the ___ she reads.",
+     "c": [
+      "more",
+      "most",
+      "much"
+     ],
+     "f": "frau",
+     "r": "zeitschrift",
+     "phrase": "The longer the lady waits, the more she reads.",
+     "sens": "Plus la dame attend, plus elle lit.",
+     "n": "<b>the more</b>."
+    },
+    {
+     "q": "The more often you wash your hair, the ___ it gets.",
+     "c": [
+      "drier",
+      "dryest",
+      "more dry"
+     ],
+     "f": "haar",
+     "phrase": "The more often you wash your hair, the drier it gets.",
+     "sens": "Plus on se lave souvent les cheveux, plus ils deviennent secs.",
+     "n": "dry → <b>drier</b>."
+    },
+    {
+     "q": "The ___ the haircut, the happier Anna is.",
+     "c": [
+      "better",
+      "best",
+      "more good"
+     ],
+     "f": "anna",
+     "phrase": "The better the haircut, the happier Anna is.",
+     "sens": "Meilleure est la coupe, plus Anna est contente.",
+     "n": "good → <b>better</b>."
+    },
+    {
+     "q": "The more customers come, the more money the man ___.",
+     "c": [
+      "makes",
+      "does",
+      "wins"
+     ],
+     "f": "kasse",
+     "r": "mann",
+     "phrase": "The more customers come, the more money the man makes.",
+     "sens": "Plus il vient de clients, plus l'homme gagne d'argent.",
+     "n": "Gagner de l'argent = <b>make money</b>."
+    },
+    {
+     "q": "The longer the hair, the ___ the haircut takes.",
+     "c": [
+      "longer",
+      "longest",
+      "more long"
+     ],
+     "f": "haar",
+     "phrase": "The longer the hair, the longer the haircut takes.",
+     "sens": "Plus les cheveux sont longs, plus la coupe dure longtemps.",
+     "n": "<b>the longer</b>."
+    }
+   ]
   }
  },
  "traductions": {}

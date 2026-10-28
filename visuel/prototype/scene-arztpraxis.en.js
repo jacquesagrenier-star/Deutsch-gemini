@@ -1264,6 +1264,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ribs",
    "niveau": "B2",
+   "theme": "health_b2",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1285,6 +1286,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "ribs",
    "niveau": "B2",
+   "theme": "health_b2",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1306,6 +1308,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "spines",
    "niveau": "B2",
+   "theme": "health_b2",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1648,6 +1651,88 @@ window.SCENE = {
      "phrase": "The doctor has put the insurance card on the desk.",
      "sens": "La médecin a posé la carte d'assurance sur le bureau.",
      "n": "Present perfect : has + <b>put</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Les relatives et le passif d'état",
+   "qs": [
+    {
+     "q": "The patient ___ knee is injured is called Mark.",
+     "c": [
+      "whose",
+      "who",
+      "which"
+     ],
+     "f": "mark",
+     "r": "knie",
+     "phrase": "The patient whose knee is injured is called Mark.",
+     "sens": "Le patient dont le genou est blessé s'appelle Mark.",
+     "n": "Possession → <b>whose</b>."
+    },
+    {
+     "q": "The doctor, ___ is holding a bandage, is smiling.",
+     "c": [
+      "who",
+      "which",
+      "that"
+     ],
+     "f": "aerztin",
+     "r": "verband",
+     "phrase": "The doctor, who is holding a bandage, is smiling.",
+     "sens": "La médecin, qui tient un bandage, sourit.",
+     "n": "Entre virgules → <b>who</b>, jamais that."
+    },
+    {
+     "q": "The patient the doctor is smiling ___ is Mark.",
+     "c": [
+      "at",
+      "to",
+      "for"
+     ],
+     "f": "mark",
+     "r": "aerztin",
+     "phrase": "The patient the doctor is smiling at is Mark.",
+     "sens": "Le patient à qui la médecin sourit s'appelle Mark.",
+     "n": "Smile <b>at</b> : la préposition reste à la fin."
+    },
+    {
+     "q": "The bag ___ which the ball is lying belongs to Mark.",
+     "c": [
+      "on",
+      "in",
+      "under"
+     ],
+     "f": "tasche",
+     "r": "ball",
+     "phrase": "The bag on which the ball is lying belongs to Mark.",
+     "sens": "Le sac sur lequel est posé le ballon appartient à Mark.",
+     "n": "Préposition + <b>which</b> (registre soigné)."
+    },
+    {
+     "q": "The window ___ closed.",
+     "c": [
+      "is",
+      "has",
+      "is being"
+     ],
+     "f": "fenster",
+     "phrase": "The window is closed.",
+     "sens": "La fenêtre est fermée.",
+     "n": "L'état : <b>is</b> + participe."
+    },
+    {
+     "q": "The bandage has already been ___.",
+     "c": [
+      "put on",
+      "putting",
+      "put in"
+     ],
+     "f": "pflaster",
+     "r": "knie",
+     "phrase": "The bandage has already been put on.",
+     "sens": "Le pansement est déjà posé.",
+     "n": "Passif : has been + <b>put on</b>."
     }
    ]
   }

@@ -696,6 +696,84 @@ window.SCENE = {
      "n": "Tout de suite = <b>right away</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "L'irréel : if + prétérit, wish",
+   "qs": [
+    {
+     "q": "If it weren't so dark, they ___ go swimming.",
+     "c": [
+      "would",
+      "will",
+      "had"
+     ],
+     "f": "see",
+     "phrase": "If it weren't so dark, they would go swimming.",
+     "sens": "S'il ne faisait pas si sombre, ils iraient nager.",
+     "n": "Irréel présent → <b>would</b>."
+    },
+    {
+     "q": "If they ___ time, they would stay another week.",
+     "c": [
+      "had",
+      "have",
+      "would have"
+     ],
+     "f": "zelt",
+     "phrase": "If they had time, they would stay another week.",
+     "sens": "S'ils avaient le temps, ils resteraient une semaine de plus.",
+     "n": "If + prétérit."
+    },
+    {
+     "q": "If the man ___ hungry, he would eat the sausage.",
+     "c": [
+      "were",
+      "is",
+      "would be"
+     ],
+     "f": "mann",
+     "phrase": "If the man were hungry, he would eat the sausage.",
+     "sens": "Si l'homme avait faim, il mangerait la saucisse.",
+     "n": "If + <b>were</b> (ou was, plus familier)."
+    },
+    {
+     "q": "I wish I ___ play the guitar as well as Anna.",
+     "c": [
+      "could",
+      "can",
+      "would"
+     ],
+     "f": "gitarre",
+     "r": "anna",
+     "phrase": "I wish I could play the guitar as well as Anna.",
+     "sens": "J'aimerais savoir jouer de la guitare aussi bien qu'Anna.",
+     "n": "Wish + <b>could</b>."
+    },
+    {
+     "q": "If the boat were bigger, everyone ___ get in.",
+     "c": [
+      "could",
+      "can",
+      "will"
+     ],
+     "f": "boot",
+     "phrase": "If the boat were bigger, everyone could get in.",
+     "sens": "Si la barque était plus grande, tout le monde pourrait monter.",
+     "n": "Irréel → <b>could</b>."
+    },
+    {
+     "q": "If only they ___ brought more wood!",
+     "c": [
+      "had",
+      "have",
+      "would"
+     ],
+     "f": "holz",
+     "phrase": "If only they had brought more wood!",
+     "sens": "Si seulement ils avaient apporté plus de bois !",
+     "n": "Regret passé → <b>had</b> + participe."
+    }
+   ]
   }
  },
  "traductions": {}

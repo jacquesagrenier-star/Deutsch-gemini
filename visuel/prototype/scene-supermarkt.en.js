@@ -830,6 +830,86 @@ window.SCENE = {
      "n": "fresh → <b>the freshest</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "La politesse : could, would, may",
+   "qs": [
+    {
+     "q": "___ you give me a bag, please?",
+     "c": [
+      "Could",
+      "Can't",
+      "Do"
+     ],
+     "f": "tuete",
+     "r": "mann",
+     "phrase": "Could you give me a bag, please?",
+     "sens": "Pourriez-vous me donner un sac, s'il vous plaît ?",
+     "n": "Demande polie → <b>Could you…?</b>"
+    },
+    {
+     "q": "I'd like a piece ___ cheese.",
+     "c": [
+      "of",
+      "—",
+      "from"
+     ],
+     "f": "kaese",
+     "r": "anna",
+     "phrase": "I'd like a piece of cheese.",
+     "sens": "Je voudrais un morceau de fromage.",
+     "n": "<b>a piece of</b>."
+    },
+    {
+     "q": "Would you ___ helping me with the basket?",
+     "c": [
+      "mind",
+      "like",
+      "want"
+     ],
+     "f": "korb",
+     "phrase": "Would you mind helping me with the basket?",
+     "sens": "Auriez-vous la gentillesse de m'aider avec le panier ?",
+     "n": "<b>Would you mind</b> + -ing?"
+    },
+    {
+     "q": "I'd like to pay ___ card.",
+     "c": [
+      "by",
+      "with the",
+      "in"
+     ],
+     "f": "kasse",
+     "r": "anna",
+     "phrase": "I'd like to pay by card.",
+     "sens": "Je voudrais payer par carte.",
+     "n": "Payer par carte = <b>by card</b>."
+    },
+    {
+     "q": "___ I ask you a question?",
+     "c": [
+      "May",
+      "Must",
+      "Shall to"
+     ],
+     "f": "mann",
+     "phrase": "May I ask you a question?",
+     "sens": "Puis-je vous poser une question ?",
+     "n": "Permission polie → <b>May I…?</b>"
+    },
+    {
+     "q": "If I were you, I ___ take the fresh milk.",
+     "c": [
+      "would",
+      "will",
+      "am"
+     ],
+     "f": "milch",
+     "phrase": "If I were you, I would take the fresh milk.",
+     "sens": "À votre place, je prendrais le lait frais.",
+     "n": "<b>If I were you, I would</b>…"
+    }
+   ]
   }
  },
  "traductions": {}

@@ -1452,6 +1452,86 @@ window.SCENE = {
      "n": "L'état : <b>is hanging</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Relatives et passif d'état",
+   "qs": [
+    {
+     "q": "The woman ___ is carrying a book under her arm is still standing.",
+     "c": [
+      "who",
+      "which",
+      "what"
+     ],
+     "f": "frau",
+     "phrase": "The woman who is carrying a book under her arm is still standing.",
+     "sens": "La femme qui porte un livre sous le bras est encore debout.",
+     "n": "Personne sujet → <b>who</b>."
+    },
+    {
+     "q": "The man standing ___ the board is the teacher.",
+     "c": [
+      "in front of",
+      "before",
+      "front of"
+     ],
+     "f": "lehrer",
+     "phrase": "The man standing in front of the board is the teacher.",
+     "sens": "L'homme qui est devant le tableau est le professeur.",
+     "n": "Relative réduite : <b>standing</b> = who is standing."
+    },
+    {
+     "q": "The man ___ glasses are on his nose is the teacher.",
+     "c": [
+      "whose",
+      "who",
+      "which"
+     ],
+     "f": "lehrer",
+     "r": "brille",
+     "phrase": "The man whose glasses are on his nose is the teacher.",
+     "sens": "L'homme dont les lunettes sont sur le nez est le professeur.",
+     "n": "Possession → <b>whose</b>."
+    },
+    {
+     "q": "The participant ___ notebook is open is Anna.",
+     "c": [
+      "whose",
+      "who's",
+      "that"
+     ],
+     "f": "anna",
+     "r": "heft",
+     "phrase": "The participant whose notebook is open is Anna.",
+     "sens": "La participante dont le cahier est ouvert s'appelle Anna.",
+     "n": "<b>whose</b> (who's = who is)."
+    },
+    {
+     "q": "The table ___ which the backpack is lying is wooden.",
+     "c": [
+      "under",
+      "below of",
+      "in"
+     ],
+     "f": "tisch",
+     "r": "rucksack",
+     "phrase": "The table under which the backpack is lying is wooden.",
+     "sens": "La table sous laquelle est le sac à dos est en bois.",
+     "n": "Préposition + <b>which</b>."
+    },
+    {
+     "q": "The board has already been ___.",
+     "c": [
+      "erased",
+      "erase",
+      "erasing"
+     ],
+     "f": "tafel",
+     "phrase": "The board has already been erased.",
+     "sens": "Le tableau est déjà effacé.",
+     "n": "Passif : has been + participe."
+    }
+   ]
   }
  },
  "traductions": {}

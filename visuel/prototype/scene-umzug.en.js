@@ -1242,6 +1242,87 @@ window.SCENE = {
      "n": "À côté d'eux = <b>next to them</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Le futur antérieur et la déduction",
+   "qs": [
+    {
+     "q": "By tonight, Anna will have ___ all the boxes.",
+     "c": [
+      "unpacked",
+      "unpack",
+      "unpacking"
+     ],
+     "f": "karton-2",
+     "r": "anna",
+     "phrase": "By tonight, Anna will have unpacked all the boxes.",
+     "sens": "D'ici ce soir, Anna aura déballé tous les cartons.",
+     "n": "Will have + participe."
+    },
+    {
+     "q": "In a minute, her brother will have ___ in the light bulb.",
+     "c": [
+      "screwed",
+      "screw",
+      "screwing"
+     ],
+     "f": "gluehbirne",
+     "r": "bruder",
+     "phrase": "In a minute, her brother will have screwed in the light bulb.",
+     "sens": "Dans un instant, le frère aura vissé l'ampoule.",
+     "n": "Will have + participe."
+    },
+    {
+     "q": "In an hour, her brother ___ have gone home.",
+     "c": [
+      "will",
+      "would",
+      "has"
+     ],
+     "f": "bruder",
+     "phrase": "In an hour, her brother will have gone home.",
+     "sens": "Dans une heure, le frère sera déjà rentré chez lui.",
+     "n": "<b>will have</b> gone."
+    },
+    {
+     "q": "Anna is tired. She ___ have carried a lot.",
+     "c": [
+      "must",
+      "should",
+      "can't"
+     ],
+     "f": "anna",
+     "r": "karton",
+     "phrase": "Anna is tired. She must have carried a lot.",
+     "sens": "Anna est fatiguée. Elle a dû beaucoup porter.",
+     "n": "Déduction sur le passé → <b>must have</b>."
+    },
+    {
+     "q": "Who ordered the pizza? It ___ have been her brother.",
+     "c": [
+      "must",
+      "can't",
+      "should"
+     ],
+     "f": "pizza",
+     "r": "bruder",
+     "phrase": "Who ordered the pizza? It must have been her brother.",
+     "sens": "Qui a commandé la pizza ? C'est sans doute le frère.",
+     "n": "Presque sûr → <b>must have been</b>."
+    },
+    {
+     "q": "By next week, Anna will have gotten ___ to the new apartment.",
+     "c": [
+      "used",
+      "use",
+      "using"
+     ],
+     "f": "anna",
+     "phrase": "By next week, Anna will have gotten used to the new apartment.",
+     "sens": "La semaine prochaine, Anna se sera habituée au nouvel appartement.",
+     "n": "Get <b>used</b> to."
+    }
+   ]
   }
  },
  "traductions": {}

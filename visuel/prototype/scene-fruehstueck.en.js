@@ -1287,6 +1287,87 @@ window.SCENE = {
      "n": "Remercier pour = thank <b>for</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Relatives et passif d'état",
+   "qs": [
+    {
+     "q": "The customer the waitress is bringing the cake ___ is Mark.",
+     "c": [
+      "to",
+      "for",
+      "at"
+     ],
+     "f": "mark",
+     "r": "kuchen-mark",
+     "phrase": "The customer the waitress is bringing the cake to is Mark.",
+     "sens": "Le client à qui la serveuse apporte le gâteau s'appelle Mark.",
+     "n": "Bring to : la préposition à la fin."
+    },
+    {
+     "q": "The waitress, ___ wears glasses, is bringing the cake.",
+     "c": [
+      "who",
+      "that",
+      "which"
+     ],
+     "f": "serveuse",
+     "r": "kuchen-mark",
+     "phrase": "The waitress, who wears glasses, is bringing the cake.",
+     "sens": "La serveuse, qui porte des lunettes, apporte le gâteau.",
+     "n": "Entre virgules → <b>who</b>."
+    },
+    {
+     "q": "The table ___ Mark is sitting is by the window.",
+     "c": [
+      "where",
+      "which",
+      "that"
+     ],
+     "f": "tisch",
+     "r": "mark",
+     "phrase": "The table where Mark is sitting is by the window.",
+     "sens": "La table à laquelle Mark est assis est près de la fenêtre.",
+     "n": "Un lieu → <b>where</b> (ou at which)."
+    },
+    {
+     "q": "The table is already ___.",
+     "c": [
+      "set",
+      "setted",
+      "setting"
+     ],
+     "f": "tisch",
+     "phrase": "The table is already set.",
+     "sens": "La table est déjà mise.",
+     "n": "<b>set → set → set</b>."
+    },
+    {
+     "q": "The roll has already been ___.",
+     "c": [
+      "cut",
+      "cutted",
+      "cutting"
+     ],
+     "f": "broetchen",
+     "r": "teller",
+     "phrase": "The roll has already been cut.",
+     "sens": "Le petit pain est déjà coupé.",
+     "n": "<b>cut</b> ne change pas."
+    },
+    {
+     "q": "The door ___ open.",
+     "c": [
+      "is",
+      "is opened",
+      "has"
+     ],
+     "f": "tuer",
+     "phrase": "The door is open.",
+     "sens": "La porte est ouverte.",
+     "n": "L'état : is <b>open</b> (adjectif)."
+    }
+   ]
   }
  },
  "traductions": {}

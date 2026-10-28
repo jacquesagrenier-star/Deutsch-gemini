@@ -865,6 +865,85 @@ window.SCENE = {
      "n": "Raccrocher = hang <b>up</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Relatives et passif en cours",
+   "qs": [
+    {
+     "q": "The man ___ is on the phone is Mark.",
+     "c": [
+      "who",
+      "which",
+      "whom"
+     ],
+     "f": "mark",
+     "r": "telefon",
+     "phrase": "The man who is on the phone is Mark.",
+     "sens": "L'homme qui est au téléphone s'appelle Mark.",
+     "n": "Personne sujet → <b>who</b>."
+    },
+    {
+     "q": "The coworker ___ gray hair is reading a letter.",
+     "c": [
+      "with",
+      "who",
+      "whose has"
+     ],
+     "f": "frau",
+     "phrase": "The coworker with gray hair is reading a letter.",
+     "sens": "La collègue aux cheveux gris lit une lettre.",
+     "n": "« Aux cheveux… » = <b>with</b>."
+    },
+    {
+     "q": "The shelf ___ the binders are is made of metal.",
+     "c": [
+      "where",
+      "which",
+      "when"
+     ],
+     "f": "regal",
+     "r": "ordner",
+     "phrase": "The shelf where the binders are is made of metal.",
+     "sens": "L'étagère où sont les classeurs est en métal.",
+     "n": "Un lieu → <b>where</b>."
+    },
+    {
+     "q": "The letter is ___ printed.",
+     "c": [
+      "being",
+      "been",
+      "be"
+     ],
+     "f": "drucker",
+     "phrase": "The letter is being printed.",
+     "sens": "La lettre est en train d'être imprimée.",
+     "n": "En cours → is <b>being</b> + participe."
+    },
+    {
+     "q": "The notebook is already half ___.",
+     "c": [
+      "full",
+      "filled up of",
+      "fulling"
+     ],
+     "f": "heft",
+     "phrase": "The notebook is already half full.",
+     "sens": "Le cahier est déjà à moitié rempli.",
+     "n": "À moitié rempli = <b>half full</b>."
+    },
+    {
+     "q": "The board ___ which arrows are drawn hangs on the wall.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "tafel",
+     "phrase": "The board on which arrows are drawn hangs on the wall.",
+     "sens": "Le tableau sur lequel sont dessinées des flèches est accroché au mur.",
+     "n": "Préposition + <b>which</b>."
+    }
+   ]
   }
  },
  "traductions": {}

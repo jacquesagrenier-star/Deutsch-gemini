@@ -1887,6 +1887,84 @@ window.SCENE = {
      "n": "<b>a piece of</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Something warm, nothing sweet",
+   "qs": [
+    {
+     "q": "Mark would like ___ to eat.",
+     "c": [
+      "something warm",
+      "warm something",
+      "something of warm"
+     ],
+     "f": "speisekarte",
+     "r": "mark",
+     "phrase": "Mark would like something warm to eat.",
+     "sens": "Mark voudrait manger quelque chose de chaud.",
+     "n": "L'adjectif <b>après</b> something."
+    },
+    {
+     "q": "The lady doesn't eat ___ sweet.",
+     "c": [
+      "anything",
+      "something",
+      "nothing"
+     ],
+     "f": "frau",
+     "phrase": "The lady doesn't eat anything sweet.",
+     "sens": "La dame ne mange rien de sucré.",
+     "n": "Négation → <b>anything</b> + adjectif."
+    },
+    {
+     "q": "Is there ___ new on the menu today?",
+     "c": [
+      "anything",
+      "something of",
+      "nothing"
+     ],
+     "f": "speisekarte",
+     "phrase": "Is there anything new on the menu today?",
+     "sens": "Y a-t-il quelque chose de nouveau sur la carte aujourd'hui ?",
+     "n": "Question → <b>anything new</b>."
+    },
+    {
+     "q": "There are lots of ___ things on the menu.",
+     "c": [
+      "good",
+      "goods",
+      "well"
+     ],
+     "f": "speisekarte",
+     "phrase": "There are lots of good things on the menu.",
+     "sens": "Sur la carte, il y a beaucoup de bonnes choses.",
+     "n": "<b>good</b> things."
+    },
+    {
+     "q": "The best ___ about this restaurant is the food.",
+     "c": [
+      "thing",
+      "—",
+      "of"
+     ],
+     "f": "theke",
+     "phrase": "The best thing about this restaurant is the food.",
+     "sens": "Le meilleur de ce restaurant, c'est la cuisine.",
+     "n": "« Le meilleur » = <b>the best thing</b>."
+    },
+    {
+     "q": "Mark likes to try anything ___.",
+     "c": [
+      "new",
+      "news",
+      "newly"
+     ],
+     "f": "mark",
+     "phrase": "Mark likes to try anything new.",
+     "sens": "Mark aime goûter tout ce qui est nouveau.",
+     "n": "<b>anything new</b>."
+    }
+   ]
   }
  },
  "traductions": {}

@@ -835,6 +835,87 @@ window.SCENE = {
      "n": "Demander la permission → <b>May I…?</b> (ou Can I…?)."
     }
    ]
+  },
+  "B2": {
+   "titre": "L'ordre des adjectifs",
+   "qs": [
+    {
+     "q": "Mark is playing a ___ guitar.",
+     "c": [
+      "new",
+      "news",
+      "newly"
+     ],
+     "f": "gitarre",
+     "r": "mark",
+     "phrase": "Mark is playing a new guitar.",
+     "sens": "Mark joue sur une nouvelle guitare.",
+     "n": "Adjectif avant le nom."
+    },
+    {
+     "q": "The woman is wearing a ___ scarf.",
+     "c": [
+      "purple",
+      "purples",
+      "scarf purple"
+     ],
+     "f": "schal",
+     "r": "frau",
+     "phrase": "The woman is wearing a purple scarf.",
+     "sens": "La femme porte une écharpe violette.",
+     "n": "Pas d'accord, avant le nom."
+    },
+    {
+     "q": "The ___ piano is against the wall.",
+     "c": [
+      "black",
+      "black-colored",
+      "blacky"
+     ],
+     "f": "klavier",
+     "phrase": "The black piano is against the wall.",
+     "sens": "Le piano noir est contre le mur.",
+     "n": "<b>black</b> piano."
+    },
+    {
+     "q": "There's an ___ violin on the closet.",
+     "c": [
+      "old",
+      "olden",
+      "ancients"
+     ],
+     "f": "geige",
+     "r": "schrank",
+     "phrase": "There's an old violin on the closet.",
+     "sens": "Sur l'armoire, il y a un vieux violon.",
+     "n": "<b>an old</b> : an devant une voyelle."
+    },
+    {
+     "q": "There's a lamp next to the ___ window.",
+     "c": [
+      "big",
+      "bigger",
+      "bigly"
+     ],
+     "f": "lampe-2",
+     "r": "fenster",
+     "phrase": "There's a lamp next to the big window.",
+     "sens": "À côté de la grande fenêtre, il y a une lampe.",
+     "n": "<b>big</b> window."
+    },
+    {
+     "q": "Mark is wearing a ___ T-shirt.",
+     "c": [
+      "green",
+      "greens",
+      "green-colored"
+     ],
+     "f": "mark",
+     "phrase": "Mark is wearing a green T-shirt.",
+     "sens": "Mark porte un t-shirt vert.",
+     "n": "Couleur avant le nom."
+    }
+   ]
   }
  },
  "traductions": {}

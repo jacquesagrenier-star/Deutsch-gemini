@@ -218,6 +218,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "papayas",
    "niveau": "B2",
+   "theme": "food_b2",
    "personne": null,
    "aussi": [
     {
@@ -357,6 +358,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "figs",
    "niveau": "B2",
+   "theme": "food_b2",
    "personne": null,
    "aussi": [
     {
@@ -531,6 +533,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "pomegranates",
    "niveau": "B2",
+   "theme": "food_b2",
    "personne": null,
    "aussi": [
     {
@@ -728,6 +731,72 @@ window.SCENE = {
      "phrase": "I'd like three lemons.",
      "sens": "Je voudrais trois citrons.",
      "n": "Pluriel régulier : <b>-s</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif, relatives et adjectifs",
+   "qs": [
+    {
+     "q": "Tropical fruit is usually ___ by ship.",
+     "c": [
+      "imported",
+      "import",
+      "importing"
+     ],
+     "f": "banane",
+     "phrase": "Tropical fruit is usually imported by ship.",
+     "sens": "Les fruits exotiques sont généralement importés par bateau.",
+     "n": "Passif : is + participe."
+    },
+    {
+     "q": "The mango ___ red and green skin is already ripe.",
+     "c": [
+      "with",
+      "whose",
+      "who"
+     ],
+     "f": "mango",
+     "phrase": "The mango with red and green skin is already ripe.",
+     "sens": "La mangue à la peau rouge et verte est déjà mûre.",
+     "n": "<b>with</b>."
+    },
+    {
+     "q": "A papaya that has been cut in half ___ on top of the others.",
+     "c": [
+      "is lying",
+      "lie",
+      "lying"
+     ],
+     "f": "papaya",
+     "phrase": "A papaya that has been cut in half is lying on top of the others.",
+     "sens": "Une papaye coupée en deux est posée sur les autres.",
+     "n": "Sujet singulier : <b>is lying</b>."
+    },
+    {
+     "q": "The bananas ___ Anna is taking come from Ecuador.",
+     "c": [
+      "that",
+      "who",
+      "what"
+     ],
+     "f": "banane",
+     "r": "anna",
+     "phrase": "The bananas that Anna is taking come from Ecuador.",
+     "sens": "Les bananes qu'Anna prend viennent d'Équateur.",
+     "n": "<b>that</b>."
+    },
+    {
+     "q": "The coconut has already been ___.",
+     "c": [
+      "opened",
+      "open",
+      "opening"
+     ],
+     "f": "kokosnuss",
+     "phrase": "The coconut has already been opened.",
+     "sens": "La noix de coco est déjà ouverte.",
+     "n": "Passif : has been + participe."
     }
    ]
   }

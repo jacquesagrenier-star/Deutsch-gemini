@@ -1012,6 +1012,89 @@ window.SCENE = {
      "n": "Sur l'eau → <b>on</b> the lake."
     }
    ]
+  },
+  "B2": {
+   "titre": "Relatives et participes",
+   "qs": [
+    {
+     "q": "The woman ___ is throwing the ball to the dog is Anna.",
+     "c": [
+      "who",
+      "which",
+      "whose"
+     ],
+     "f": "anna",
+     "r": "ball",
+     "phrase": "The woman who is throwing the ball to the dog is Anna.",
+     "sens": "La femme qui lance le ballon au chien s'appelle Anna.",
+     "n": "<b>who</b>."
+    },
+    {
+     "q": "The boy ___ the blue helmet is riding a bike.",
+     "c": [
+      "with",
+      "who",
+      "whose"
+     ],
+     "f": "junge",
+     "r": "helm",
+     "phrase": "The boy with the blue helmet is riding a bike.",
+     "sens": "Le garçon au casque bleu fait du vélo.",
+     "n": "<b>with</b>."
+    },
+    {
+     "q": "The bench the man is sitting ___ is green.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "bank",
+     "r": "monsieur",
+     "phrase": "The bench the man is sitting on is green.",
+     "sens": "Le banc sur lequel l'homme est assis est vert.",
+     "n": "La préposition à la fin."
+    },
+    {
+     "q": "The dog ___ is running wants to catch the ball.",
+     "c": [
+      "that",
+      "who",
+      "what"
+     ],
+     "f": "hund",
+     "r": "ball",
+     "phrase": "The dog that is running wants to catch the ball.",
+     "sens": "Le chien qui court veut attraper le ballon.",
+     "n": "Un animal → <b>that</b> (ou which)."
+    },
+    {
+     "q": "There's an ___ book on the blanket.",
+     "c": [
+      "open",
+      "opened up",
+      "opening"
+     ],
+     "f": "buch",
+     "r": "decke",
+     "phrase": "There's an open book on the blanket.",
+     "sens": "Sur la couverture, il y a un livre ouvert.",
+     "n": "Ouvert (état) = <b>open</b>."
+    },
+    {
+     "q": "The blanket is ___ out on the grass.",
+     "c": [
+      "spread",
+      "spreaded",
+      "spreading"
+     ],
+     "f": "decke",
+     "r": "gras",
+     "phrase": "The blanket is spread out on the grass.",
+     "sens": "La couverture est étalée sur l'herbe.",
+     "n": "<b>spread</b> ne change pas."
+    }
+   ]
   }
  },
  "traductions": {}

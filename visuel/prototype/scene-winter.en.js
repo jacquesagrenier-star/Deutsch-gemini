@@ -865,6 +865,86 @@ window.SCENE = {
      "n": "Un outil → <b>with</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "The woman ___ is building a snowman is Anna.",
+     "c": [
+      "who",
+      "which",
+      "whose"
+     ],
+     "f": "anna",
+     "r": "schneemann",
+     "phrase": "The woman who is building a snowman is Anna.",
+     "sens": "La femme qui fait un bonhomme de neige s'appelle Anna.",
+     "n": "<b>who</b>."
+    },
+    {
+     "q": "The dog ___ the red coat is sniffing the snow.",
+     "c": [
+      "in",
+      "with on",
+      "who"
+     ],
+     "f": "hund",
+     "phrase": "The dog in the red coat is sniffing the snow.",
+     "sens": "Le chien au manteau rouge renifle la neige.",
+     "n": "Habillé de → <b>in</b>."
+    },
+    {
+     "q": "The house ___ front of which the car is parked is yellow.",
+     "c": [
+      "in",
+      "at",
+      "on"
+     ],
+     "f": "haus",
+     "r": "auto",
+     "phrase": "The house in front of which the car is parked is yellow.",
+     "sens": "La maison devant laquelle est garée la voiture est jaune.",
+     "n": "<b>in front of which</b>."
+    },
+    {
+     "q": "The car is covered ___ snow.",
+     "c": [
+      "with",
+      "of",
+      "by"
+     ],
+     "f": "auto",
+     "phrase": "The car is covered with snow.",
+     "sens": "La voiture est couverte de neige.",
+     "n": "Covered <b>with</b> (ou in)."
+    },
+    {
+     "q": "The path still has to be ___.",
+     "c": [
+      "swept",
+      "sweeped",
+      "sweeping"
+     ],
+     "f": "besen",
+     "phrase": "The path still has to be swept.",
+     "sens": "Le chemin doit encore être balayé.",
+     "n": "<b>sweep → swept</b>."
+    },
+    {
+     "q": "The ___ candle is in the window.",
+     "c": [
+      "lit",
+      "lighted up",
+      "lighting"
+     ],
+     "f": "kerze",
+     "r": "fenster-2",
+     "phrase": "The lit candle is in the window.",
+     "sens": "La bougie allumée est à la fenêtre.",
+     "n": "<b>light → lit</b>."
+    }
+   ]
   }
  },
  "traductions": {}

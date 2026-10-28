@@ -852,6 +852,85 @@ window.SCENE = {
      "n": "Poli : <b>Could you…, please?</b> plutôt qu'un impératif."
     }
    ]
+  },
+  "B2": {
+   "titre": "Le but : to, in order to, so that",
+   "qs": [
+    {
+     "q": "Mark bought paint ___ paint the wall blue.",
+     "c": [
+      "to",
+      "for",
+      "for to"
+     ],
+     "f": "farbe",
+     "phrase": "Mark bought paint to paint the wall blue.",
+     "sens": "Mark a acheté de la peinture pour peindre le mur en bleu.",
+     "n": "Le but → <b>to</b> + verbe (jamais for to)."
+    },
+    {
+     "q": "He's reading the instructions so that the shelf ___ fall down.",
+     "c": [
+      "doesn't",
+      "won't to",
+      "not"
+     ],
+     "f": "regal",
+     "r": "papier",
+     "phrase": "He's reading the instructions so that the shelf doesn't fall down.",
+     "sens": "Il lit la notice pour que l'étagère ne tombe pas.",
+     "n": "<b>so that</b> + sujet + verbe."
+    },
+    {
+     "q": "He forgot ___ on the gloves.",
+     "c": [
+      "to put",
+      "putting",
+      "put"
+     ],
+     "f": "handschuh",
+     "phrase": "He forgot to put on the gloves.",
+     "sens": "Il a oublié de mettre les gants.",
+     "n": "Forget + <b>to</b>."
+    },
+    {
+     "q": "It isn't easy ___ a shelf by yourself.",
+     "c": [
+      "to put up",
+      "putting up to",
+      "put up"
+     ],
+     "f": "regal",
+     "r": "mark",
+     "phrase": "It isn't easy to put up a shelf by yourself.",
+     "sens": "Ce n'est pas facile de monter une étagère tout seul.",
+     "n": "It's easy / hard + <b>to</b>."
+    },
+    {
+     "q": "The wall is already half ___.",
+     "c": [
+      "painted",
+      "paint",
+      "painting"
+     ],
+     "f": "farbe",
+     "phrase": "The wall is already half painted.",
+     "sens": "Le mur est déjà à moitié peint.",
+     "n": "État → participe passé."
+    },
+    {
+     "q": "You can't put up a shelf without ___ the instructions.",
+     "c": [
+      "reading",
+      "read",
+      "to read"
+     ],
+     "f": "papier",
+     "phrase": "You can't put up a shelf without reading the instructions.",
+     "sens": "On ne monte pas d'étagère sans lire la notice.",
+     "n": "Without + <b>-ing</b>."
+    }
+   ]
   }
  },
  "traductions": {}

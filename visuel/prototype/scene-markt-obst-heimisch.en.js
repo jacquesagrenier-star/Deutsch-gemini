@@ -253,6 +253,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "currants",
    "niveau": "B2",
+   "theme": "food_b2",
    "personne": null,
    "aussi": [
     {
@@ -287,6 +288,7 @@ window.SCENE = {
    "genre": "",
    "pluriel": "gooseberries",
    "niveau": "B2",
+   "theme": "food_b2",
    "personne": null,
    "aussi": [
     {
@@ -741,6 +743,73 @@ window.SCENE = {
      "phrase": "I'll take a pound of plums.",
      "sens": "Je prends une livre de prunes.",
      "n": "Quantité + <b>of</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif, relatives et adjectifs",
+   "qs": [
+    {
+     "q": "These strawberries are fresh ___ local farms.",
+     "c": [
+      "from",
+      "of",
+      "by"
+     ],
+     "f": "erdbeere",
+     "phrase": "These strawberries are fresh from local farms.",
+     "sens": "Ce sont des fraises fraîches des fermes de la région.",
+     "n": "Provenance → <b>from</b>."
+    },
+    {
+     "q": "The apples ___ grown here in Massachusetts.",
+     "c": [
+      "are",
+      "is",
+      "have"
+     ],
+     "f": "apfel",
+     "phrase": "The apples are grown here in Massachusetts.",
+     "sens": "Les pommes sont cultivées ici, dans le Massachusetts.",
+     "n": "Passif présent : <b>are</b> + participe."
+    },
+    {
+     "q": "The woman ___ is choosing an apple is Anna.",
+     "c": [
+      "who",
+      "which",
+      "what"
+     ],
+     "f": "anna",
+     "r": "apfel-main",
+     "phrase": "The woman who is choosing an apple is Anna.",
+     "sens": "La femme qui choisit une pomme s'appelle Anna.",
+     "n": "<b>who</b>."
+    },
+    {
+     "q": "The crate ___ the blackberries are is next to the cherries.",
+     "c": [
+      "where",
+      "which",
+      "when"
+     ],
+     "f": "brombeere",
+     "r": "kirsche",
+     "phrase": "The crate where the blackberries are is next to the cherries.",
+     "sens": "La caisse où sont les mûres est à côté des cerises.",
+     "n": "<b>where</b>."
+    },
+    {
+     "q": "Rhubarb is often ___ to make pies.",
+     "c": [
+      "used",
+      "using",
+      "use"
+     ],
+     "f": "rhabarber",
+     "phrase": "Rhubarb is often used to make pies.",
+     "sens": "La rhubarbe sert souvent à faire des tartes.",
+     "n": "Passif : is + <b>used</b>."
     }
    ]
   }

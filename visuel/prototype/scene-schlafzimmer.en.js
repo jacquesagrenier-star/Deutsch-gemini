@@ -826,6 +826,87 @@ window.SCENE = {
      "n": "Projet prévu → présent en <b>-ing</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "The suitcase ___ is on the bed is blue.",
+     "c": [
+      "that",
+      "who",
+      "what"
+     ],
+     "f": "koffer",
+     "r": "bett",
+     "phrase": "The suitcase that is on the bed is blue.",
+     "sens": "La valise qui est sur le lit est bleue.",
+     "n": "Chose sujet → <b>that</b>."
+    },
+    {
+     "q": "The passport, without ___ Anna can't travel, is on the bed.",
+     "c": [
+      "which",
+      "that",
+      "it"
+     ],
+     "f": "pass",
+     "r": "bett",
+     "phrase": "The passport, without which Anna can't travel, is on the bed.",
+     "sens": "Le passeport, sans lequel Anna ne peut pas voyager, est sur le lit.",
+     "n": "Préposition + <b>which</b>."
+    },
+    {
+     "q": "The woman ___ the green sweater is thinking.",
+     "c": [
+      "in",
+      "with on",
+      "who"
+     ],
+     "f": "anna",
+     "r": "pullover",
+     "phrase": "The woman in the green sweater is thinking.",
+     "sens": "La femme au pull vert réfléchit.",
+     "n": "Habillé de = <b>in</b>."
+    },
+    {
+     "q": "The suitcase is already half ___.",
+     "c": [
+      "packed",
+      "pack",
+      "packing"
+     ],
+     "f": "koffer",
+     "phrase": "The suitcase is already half packed.",
+     "sens": "La valise est déjà à moitié faite.",
+     "n": "État → <b>packed</b>."
+    },
+    {
+     "q": "Everything still has to ___ packed today.",
+     "c": [
+      "be",
+      "being",
+      "been"
+     ],
+     "f": "koffer",
+     "phrase": "Everything still has to be packed today.",
+     "sens": "Tout doit encore être emballé aujourd'hui.",
+     "n": "Has to <b>be</b> + participe."
+    },
+    {
+     "q": "The camera ___ Anna wants to take pictures is on the bed.",
+     "c": [
+      "with which",
+      "which",
+      "with that"
+     ],
+     "f": "kamera",
+     "r": "bett",
+     "phrase": "The camera with which Anna wants to take pictures is on the bed.",
+     "sens": "L'appareil photo avec lequel Anna veut prendre des photos est sur le lit.",
+     "n": "Préposition + <b>which</b>."
+    }
+   ]
   }
  },
  "traductions": {}

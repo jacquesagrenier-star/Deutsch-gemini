@@ -1403,6 +1403,87 @@ window.SCENE = {
      "n": "Le soir = <b>in the evening</b> (mais at night)."
     }
    ]
+  },
+  "B2": {
+   "titre": "While, as soon as, as long as",
+   "qs": [
+    {
+     "q": "___ Mark waits for the key, the woman reads the paper.",
+     "c": [
+      "While",
+      "During",
+      "As soon"
+     ],
+     "f": "mark",
+     "r": "frau",
+     "phrase": "While Mark waits for the key, the woman reads the paper.",
+     "sens": "Pendant que Mark attend la clé, la femme lit le journal.",
+     "n": "Pendant que → <b>while</b> + phrase (during + nom)."
+    },
+    {
+     "q": "As soon as Mark ___ the key, he goes up to his room.",
+     "c": [
+      "gets",
+      "will get",
+      "got"
+     ],
+     "f": "schluessel-2",
+     "r": "mark",
+     "phrase": "As soon as Mark gets the key, he goes up to his room.",
+     "sens": "Dès que Mark a la clé, il monte dans sa chambre.",
+     "n": "Après as soon as : le présent."
+    },
+    {
+     "q": "The woman stays at the hotel ___ it rains.",
+     "c": [
+      "as long as",
+      "as soon as",
+      "until that"
+     ],
+     "f": "frau",
+     "phrase": "The woman stays at the hotel as long as it rains.",
+     "sens": "La femme reste à l'hôtel tant qu'il pleut.",
+     "n": "Tant que → <b>as long as</b>."
+    },
+    {
+     "q": "The man smiles ___ he gives Mark the key.",
+     "c": [
+      "as",
+      "during",
+      "while that"
+     ],
+     "f": "mann",
+     "r": "schluessel-2",
+     "phrase": "The man smiles as he gives Mark the key.",
+     "sens": "L'homme sourit en donnant la clé à Mark.",
+     "n": "Au moment où → <b>as</b>."
+    },
+    {
+     "q": "As soon as the room ___ ready, the front desk will call.",
+     "c": [
+      "is",
+      "will be",
+      "was"
+     ],
+     "f": "telefon",
+     "phrase": "As soon as the room is ready, the front desk will call.",
+     "sens": "Dès que la chambre sera prête, la réception appellera.",
+     "n": "As soon as + présent, même pour l'avenir."
+    },
+    {
+     "q": "As long as the elevator is broken, guests ___ the stairs.",
+     "c": [
+      "take",
+      "will taking",
+      "took"
+     ],
+     "f": "treppe",
+     "r": "aufzug",
+     "phrase": "As long as the elevator is broken, guests take the stairs.",
+     "sens": "Tant que l'ascenseur est en panne, les clients prennent l'escalier.",
+     "n": "Présent dans les deux parties."
+    }
+   ]
   }
  },
  "traductions": {}

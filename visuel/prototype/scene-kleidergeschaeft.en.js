@@ -1283,6 +1283,89 @@ window.SCENE = {
      "n": "À côté de = <b>next to</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "The woman ___ is holding the yellow sweater is Anna.",
+     "c": [
+      "who",
+      "which",
+      "whom"
+     ],
+     "f": "anna",
+     "r": "pullover",
+     "phrase": "The woman who is holding the yellow sweater is Anna.",
+     "sens": "La femme qui tient le pull jaune s'appelle Anna.",
+     "n": "<b>who</b>."
+    },
+    {
+     "q": "The man ___ shoe is still on the floor is trying on the other one.",
+     "c": [
+      "whose",
+      "who",
+      "which"
+     ],
+     "f": "monsieur",
+     "r": "schuh-sol",
+     "phrase": "The man whose shoe is still on the floor is trying on the other one.",
+     "sens": "L'homme dont la chaussure est encore par terre essaie l'autre.",
+     "n": "<b>whose</b>."
+    },
+    {
+     "q": "The mirror ___ front of which the stool stands has a wooden frame.",
+     "c": [
+      "in",
+      "at",
+      "on"
+     ],
+     "f": "spiegel",
+     "r": "hocker",
+     "phrase": "The mirror in front of which the stool stands has a wooden frame.",
+     "sens": "Le miroir devant lequel est le tabouret a un cadre en bois.",
+     "n": "<b>in front of which</b>."
+    },
+    {
+     "q": "The socks ___ in the basket are very colorful.",
+     "c": [
+      "that are",
+      "who are",
+      "which is"
+     ],
+     "f": "socken",
+     "r": "korb",
+     "phrase": "The socks that are in the basket are very colorful.",
+     "sens": "Les chaussettes qui sont dans le panier sont multicolores.",
+     "n": "Pluriel : that <b>are</b>."
+    },
+    {
+     "q": "The sweaters on the shelf are neatly ___.",
+     "c": [
+      "folded",
+      "folding",
+      "fold"
+     ],
+     "f": "pullover-stapel",
+     "r": "regal",
+     "phrase": "The sweaters on the shelf are neatly folded.",
+     "sens": "Les pulls sur l'étagère sont soigneusement pliés.",
+     "n": "L'état : participe passé."
+    },
+    {
+     "q": "The scarf is being folded ___ the saleswoman.",
+     "c": [
+      "by",
+      "from",
+      "of"
+     ],
+     "f": "schal",
+     "r": "verkaeuferin",
+     "phrase": "The scarf is being folded by the saleswoman.",
+     "sens": "L'écharpe est en train d'être pliée par la vendeuse.",
+     "n": "L'auteur → <b>by</b>."
+    }
+   ]
   }
  },
  "traductions": {}

@@ -102,4 +102,30 @@ plenty of | plein de, largement | Quantité | We have plenty of time. | Nous avo
 most | la plupart des | Quantité | Most people like music. | La plupart des gens aiment la musique.
 """,
 },
+"B2": {
+"konjunktionen": """
+provided that | à condition que | Condition | You can borrow the car provided that you fill it up. | Tu peux emprunter la voiture à condition de faire le plein.
+as though | comme si | Manière | He talks as though he knew everything. | Il parle comme s'il savait tout.
+even if | même si | Opposition | I'll go even if it rains. | J'irai même s'il pleut.
+so as to | afin de | But | Leave early so as to avoid the traffic. | Pars tôt afin d'éviter la circulation.
+nevertheless | néanmoins | Opposition | It was risky; nevertheless, they did it. | C'était risqué ; néanmoins, ils l'ont fait.
+therefore | par conséquent | Conséquence | The road was closed; therefore, we took the highway. | La route était fermée ; nous avons donc pris l'autoroute.
+moreover | de plus | Ajout | The apartment is cheap. Moreover, it's near the subway. | L'appartement est bon marché. De plus, il est près du métro.
+whereby | par lequel | Liaison | They signed an agreement whereby both sides share the costs. | Ils ont signé un accord par lequel les deux parties partagent les frais.
+""",
+"praepositionen": """
+regarding | concernant | Liaison | I'm calling regarding your application. | J'appelle au sujet de votre candidature.
+throughout | tout au long de, partout dans | Temps | It rained throughout the night. | Il a plu toute la nuit.
+alongside | aux côtés de, le long de | Lieu | She worked alongside the best scientists. | Elle a travaillé aux côtés des meilleurs scientifiques.
+via | par, via | Manière | We flew to Rome via London. | Nous sommes allés à Rome en passant par Londres.
+amid | au milieu de, sur fond de | Lieu | The store closed amid rumors of bankruptcy. | Le magasin a fermé sur fond de rumeurs de faillite.
+on behalf of | au nom de, de la part de | Liaison | I'm writing on behalf of my client. | J'écris au nom de mon client.
+""",
+"artikelwoerter": """
+a great deal of | énormément de | Quantité | It took a great deal of effort. | Cela a demandé énormément d'efforts.
+quite a few | pas mal de | Quantité | Quite a few people came to the meeting. | Pas mal de gens sont venus à la réunion.
+hardly any | presque pas de | Quantité | There's hardly any milk left. | Il ne reste presque plus de lait.
+a number of | un certain nombre de | Quantité | A number of students complained. | Un certain nombre d'élèves se sont plaints.
+""",
+},
 }

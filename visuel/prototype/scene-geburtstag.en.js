@@ -861,6 +861,87 @@ window.SCENE = {
      "n": "Du (affirmation, offre) → <b>some</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Relatives et passif",
+   "qs": [
+    {
+     "q": "The present ___ Anna is holding is green.",
+     "c": [
+      "that",
+      "who",
+      "what"
+     ],
+     "f": "geschenk",
+     "r": "anna",
+     "phrase": "The present that Anna is holding is green.",
+     "sens": "Le cadeau qu'Anna tient à la main est vert.",
+     "n": "Une chose, complément → <b>that</b> (ou rien)."
+    },
+    {
+     "q": "The friend ___ is taking Mark's picture is on the couch.",
+     "c": [
+      "who",
+      "which",
+      "whose"
+     ],
+     "f": "freund",
+     "r": "mark",
+     "phrase": "The friend who is taking Mark's picture is on the couch.",
+     "sens": "L'ami qui photographie Mark est assis sur le canapé.",
+     "n": "Personne sujet → <b>who</b>."
+    },
+    {
+     "q": "The cake ___ which five candles are burning is chocolate.",
+     "c": [
+      "on",
+      "in",
+      "at"
+     ],
+     "f": "torte",
+     "r": "kerze",
+     "phrase": "The cake on which five candles are burning is chocolate.",
+     "sens": "Le gâteau sur lequel brûlent cinq bougies est au chocolat.",
+     "n": "Préposition + <b>which</b>."
+    },
+    {
+     "q": "The candles are about to be ___ out.",
+     "c": [
+      "blown",
+      "blowed",
+      "blew"
+     ],
+     "f": "kerze",
+     "r": "torte",
+     "phrase": "The candles are about to be blown out.",
+     "sens": "Les bougies vont être soufflées tout de suite.",
+     "n": "<b>blow → blew → blown</b>."
+    },
+    {
+     "q": "The red present is nicely ___.",
+     "c": [
+      "wrapped",
+      "wraped",
+      "wrapping"
+     ],
+     "f": "geschenk-2",
+     "phrase": "The red present is nicely wrapped.",
+     "sens": "Le cadeau rouge est joliment emballé.",
+     "n": "wrap → <b>wrapped</b>."
+    },
+    {
+     "q": "The friend ___ red hair is clapping.",
+     "c": [
+      "with",
+      "who",
+      "whose"
+     ],
+     "f": "freundin",
+     "phrase": "The friend with red hair is clapping.",
+     "sens": "L'amie aux cheveux roux applaudit.",
+     "n": "« Aux cheveux… » = <b>with</b>."
+    }
+   ]
   }
  },
  "traductions": {}

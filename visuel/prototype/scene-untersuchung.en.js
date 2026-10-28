@@ -1666,6 +1666,87 @@ window.SCENE = {
      "n": "Immobile = <b>still</b>."
     }
    ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "His lungs are being ___.",
+     "c": [
+      "listened to",
+      "listen to",
+      "listening"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "His lungs are being listened to.",
+     "sens": "On est en train d'ausculter ses poumons.",
+     "n": "Le passif garde la préposition : <b>listened to</b>."
+    },
+    {
+     "q": "The patient ___ chest is being examined is Mark.",
+     "c": [
+      "whose",
+      "who",
+      "which"
+     ],
+     "f": "mark",
+     "r": "brust",
+     "phrase": "The patient whose chest is being examined is Mark.",
+     "sens": "Le patient dont on ausculte la poitrine s'appelle Mark.",
+     "n": "<b>whose</b>."
+    },
+    {
+     "q": "The doctor ___ is examining him is his family doctor.",
+     "c": [
+      "who",
+      "which",
+      "whose"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "The doctor who is examining him is his family doctor.",
+     "sens": "La médecin qui l'examine est sa médecin de famille.",
+     "n": "<b>who</b>."
+    },
+    {
+     "q": "The scale ___ he's going to step on is against the wall.",
+     "c": [
+      "that",
+      "who",
+      "where"
+     ],
+     "f": "waage",
+     "r": "mark",
+     "phrase": "The scale that he's going to step on is against the wall.",
+     "sens": "La balance sur laquelle il va monter est contre le mur.",
+     "n": "<b>that</b>… on (préposition à la fin)."
+    },
+    {
+     "q": "In a minute, his height will also ___ measured.",
+     "c": [
+      "be",
+      "being",
+      "been"
+     ],
+     "f": "waage",
+     "phrase": "In a minute, his height will also be measured.",
+     "sens": "Dans un instant, on mesurera aussi sa taille.",
+     "n": "Futur passif : will <b>be</b> + participe."
+    },
+    {
+     "q": "Mark keeps still ___ he's being examined.",
+     "c": [
+      "while",
+      "during",
+      "until"
+     ],
+     "f": "mark",
+     "phrase": "Mark keeps still while he's being examined.",
+     "sens": "Mark reste tranquille pendant qu'on l'examine.",
+     "n": "<b>while</b> + phrase."
+    }
+   ]
   }
  },
  "corps": "mark",

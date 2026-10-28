@@ -43,134 +43,106 @@ foster child | l'enfant placé
 half-brother | le demi-frère
 half-sister | la demi-sœur
 legal guardian | le tuteur légal
-maintenance | la pension alimentaire
-parents-in-law | les beaux-parents
-relatives | la parenté
+child support | la pension alimentaire | u | ex=He pays child support every month. # Il verse une pension alimentaire tous les mois.
+parents-in-law | les beaux-parents | plt
+relatives | les proches, la famille | plt
 sister-in-law | la belle-sœur | pl=sisters-in-law
-stepfather | le beau-père (remariage)
-stepmother | la belle-mère (remariage)
+stepfather | le beau-père
+stepmother | la belle-mère
 """,
 "work_b2": """
-accountability | la reddition de comptes
+accountability | l'obligation de rendre des comptes | u
 agenda | l'ordre du jour
-agreed objectives | les objectifs convenus
 apprentice | l'apprenti(e)
-burnout | l'usure
+burnout | l'épuisement professionnel | u
 business trip | le voyage professionnel
-career changer | le reconverti professionnel
 charisma | le charisme
 civil servant | le fonctionnaire
 corporate culture | la culture d'entreprise
-delegation | la délégation
+delegation | la délégation | ex=A delegation from Canada visited the factory. # Une délégation canadienne a visité l'usine.
 digital nomad | le nomade numérique
 employment contract | le contrat de travail
 entrepreneur | l'entrepreneur
-filing | le classement
-flexitime | les horaires flexibles
-freelancer | le profession libérale
+flextime | les horaires flexibles | u | gb=flexitime | ex=Our company offers flextime. # Notre entreprise propose des horaires flexibles.
+freelancer | le, la freelance, l'indépendant(e)
 head of department | le chef de service
 human resources | les ressources humaines
 indicator | l'indicateur
-job automation | l'automatisation de l'emploi
-labour flexibility | la flexibilité du travail
 managing director | la directrice générale
 mentor | le mentor
-minutes | le procès-verbal
+minutes | le compte rendu (de réunion) | plt
 obsolescence | l'obsolescence
-operational risk | le risque opérationnel
 professional experience | l'expérience professionnelle
 reference | le rapport, la référence
 reputation | la réputation
 retraining | la reconversion
 salary negotiation | la négociation salariale
-self-employed person | l'travailleur indépendant
-shift worker | le travailleur posté
-skilled labor shortage | la pénurie de main-d'œuvre
-superior | le supérieur hiérarchique
+labor shortage | la pénurie de main-d'œuvre | u | gb=labour shortage
+superior | le, la supérieur(e) hiérarchique | ex=You should discuss it with your superior. # Tu devrais en parler à ton supérieur.
 tax advisor | le conseiller fiscal
-team motivation | la motivation de l'équipe
-template | le modèle, gabarit
-temporary help | l'renfort, extra | u
+template | le modèle
 vision | la vision
 work-life balance | l'équilibre vie-travail
-works council | le comité d'entreprise
 """,
 "food_b2": """
 artichoke | l'artichaut
-best-before date | la date de péremption
-blender | mixeur
+best-by date | la date limite de consommation | gb=best-before date | ex=The yogurt is past its best-by date. # Le yaourt a dépassé sa date limite.
+blender | le mixeur
 celery | le céleri | u
 chard | la blette
-culinary art | l'art culinaire | u
-cultivation | la culture (agriculture)
 currant | la groseille
 cutting board | la planche à découper
-digestibility | digestibilité
-extractor hood | la hotte aspirante
+range hood | la hotte | gb=cooker hood | ex=Turn on the range hood when you cook. # Allume la hotte quand tu cuisines.
 fennel | le fenouil
 fig | la figue
 food processor | le robot de cuisine
-food supplement | le complément alimentaire
-frozen food | les surgelés
+food supplement | le complément alimentaire | ex=She takes a vitamin D food supplement in winter. # Elle prend un complément de vitamine D en hiver.
+frozen food | les surgelés | u
 gooseberry | la groseille à maquereau
 grater | la râpe
-hob | la plaque de cuisson
-kitchen hygiene | l'hygiène en cuisine
+stovetop | la plaque de cuisson | gb=hob | ex=The pot is still hot on the stovetop. # La casserole est encore chaude sur la plaque.
 kohlrabi | le chou-rave
-measuring jug | le verre doseur
-organic product | le produit bio
-pantry cupboard | le garde-manger
+measuring cup | le verre doseur | gb=measuring jug | ex=Use a measuring cup for the flour. # Utilise un verre doseur pour la farine.
+pantry | le garde-manger
 papaya | la papaye
 pomegranate | la grenade
-redcurrant | la groseille
-snack bar | le snack, casse-croûte
-spice blend | le mélange d'épices
 spice rack | l'étagère à épices
-supply | la réserve, provisions
-sweet potato | patate douce | pl=sweet potatoes
-tasting | dégustation
+supply | la réserve, l'approvisionnement
+sweet potato | la patate douce | pl=sweet potatoes
+tasting | la dégustation
 vegan | le végétalien
 vegetarian | le végétarien
 """,
 "home_b2": """
-attic | le grenier
+attic | le grenier | ex=We keep old toys in the attic. # Nous gardons de vieux jouets au grenier.
 bed linen | le linge de lit
-clothes dryer | sèche-linge
+clothes dryer | le sèche-linge
 condominium | l'appartement en copropriété
-display cabinet | la vitrine
-electricity contract | le contrat d'électricité
 energy efficiency | l'efficacité énergétique
-fitted carpet | la moquette
-fitted kitchen | la cuisine équipée
-heating costs | les frais de chauffage
+wall-to-wall carpet | la moquette | gb=fitted carpet | ex=The bedroom has wall-to-wall carpet. # La chambre est recouverte de moquette.
 housing market | le marché immobilier
-lease agreement | le contrat de location
+lease | le bail
 mattress | le matelas
-property management | la syndic, gérance | u
-rent cap | le plafonnement des loyers
-sideboard | le buffet/vaisselier
-utility costs | les charges locatives
+sideboard | le buffet (meuble)
+utilities | les charges (eau, électricité) | plt | ex=Is the rent including utilities? # Le loyer inclut-il les charges ?
 """,
 "health_b2": """
-bladder | la vessie ; ampoule
+bladder | la vessie | ex=Drinking water is good for your bladder. # Boire de l'eau est bon pour la vessie.
 blood pressure | la tension artérielle
-buttocks | les fesses, postérieur
+buttocks | les fesses | plt
 collarbone | la clavicule
-corpse | le cadavre
-family doctor | le médecin traitant
-health insurance fund | la caisse d'assurance maladie
+family doctor | le médecin de famille | ex=I've had the same family doctor for twenty years. # J'ai le même médecin de famille depuis vingt ans.
 healthcare system | le système de santé
 immune system | le système immunitaire
-intestine | l'intestin
+intestine | l'intestin | ex=Fiber is good for the intestines. # Les fibres sont bonnes pour l'intestin.
 kneecap | la rotule
 metabolism | le métabolisme
 nervous system | le système nerveux
-physiotherapy | la kinésithérapie
-preventive checkup | l'examen préventif
+physical therapy | la kinésithérapie | u | gb=physiotherapy | ex=After the accident, he needed months of physical therapy. # Après l'accident, il a eu besoin de mois de kinésithérapie.
 pulse | le pouls
 rib | la côte
 shoulder blade | l'omoplate
-sick note | l'arrêt de travail
+doctor's note | le certificat médical | gb=sick note | ex=You need a doctor's note if you miss more than two days. # Il faut un certificat médical si tu manques plus de deux jours.
 spine | la colonne vertébrale
 tendon | le tendon
 waiting room | la salle d'attente
@@ -179,47 +151,36 @@ waiting room | la salle d'attente
 blazer | le blazer
 collar | le col
 fashion trend | la tendance mode
-fitting | l'essayage
 linen | le lin
 sole | la semelle
-sustainability label | label de durabilité
-tights | le collant
+pantyhose | le collant | u | gb=tights | ex=She wore black pantyhose with her dress. # Elle portait un collant noir avec sa robe.
 undershirt | le maillot de corps | gb=vest
 """,
 "nature_b2": """
 air quality | la qualité de l'air
 amphibian | l'amphibien
-antlers | les bois (de cerf)
+antlers | les bois (de cerf) | plt
 bat | la chauve-souris
 beak | le bec
-bird migration | la migration des oiseaux
 black ice | le verglas | u
-circular economy | l'économie circulaire
 claw | la griffe
 climate change | le changement climatique
-climate neutrality | la neutralité climatique
-cold snap | le coup de froid
+cold snap | la vague de froid | ex=A sudden cold snap killed the flowers. # Une brusque vague de froid a tué les fleurs.
 crack | la fissure
 eagle | l'aigle
-ecological footprint | le bilan écologique
-energy transition | la transition énergétique
-environmental damage | le dommage environnemental
-environmental policy | la politique environnementale
+carbon footprint | l'empreinte carbone | ex=Flying less reduces your carbon footprint. # Prendre moins l'avion réduit ton empreinte carbone.
 erosion | l'érosion
-extreme weather | le phénomène météo extrême | u
 fox | le renard
-fur | le pelage, fourrure
+fur | la fourrure | u | ex=The cat's fur is very soft. # Le pelage du chat est très doux.
 habitat | l'habitat
 heatwave | la canicule
 hydrogen | l'hydrogène
-lead | le plomb
+lead | le plomb | u
 mammal | le mammifère
 natural disaster | la catastrophe naturelle
-neutrality | la neutralité
-offset | la compensation
-pasture | le pâturage ; saule
+pasture | le pâturage
 precipitation | la précipitation
-rain shower | l'averse
+rain shower | l'averse | ex=There may be a few rain showers this afternoon. # Il pourrait y avoir quelques averses cet après-midi.
 reptile | le reptile
 resilience | la résilience
 rock | le rocher
@@ -227,75 +188,54 @@ rodent | le rongeur
 ruminant | le ruminant
 single-use plastic | le plastique à usage unique | u
 snowfall | la chute de neige
-solar system | l'installation solaire
-species protection | la protection des espèces
+solar system | le système solaire
 stream | le ruisseau
 sustainable development | le développement durable
-swamp | le marais
-transition | la transition
+swamp | le marais | ex=Alligators live in the swamp. # Des alligators vivent dans le marais.
 water pollution | la pollution de l'eau | u
-weather situation | la situation météorologique
 wild animal | l'animal sauvage
-wind power | l'énergie éolienne
+wind power | l'énergie éolienne | u
 """,
 "travel_b2": """
-changing trains | la correspondance
-ferry connection | la liaison par ferry
-multi-storey car park | le parking couvert
-overnight stay | la nuitée
-sustainable tourism | le tourisme durable
-tour guide | le accompagnateur, guide
+parking garage | le parking couvert | gb=multi-storey car park | ex=We left the car in the parking garage. # Nous avons laissé la voiture au parking.
+tour guide | le, la guide
 traffic rule | la règle de circulation
-transport infrastructure | l'infrastructure routière
 travel insurance | l'assurance voyage | u
-vehicle registration document | la carte grise
 """,
 "city_b2": """
-backyard | l'arrière-cour
+backyard | le jardin derrière la maison | gb=back garden
 church tower | le clocher
 city wall | le rempart
-commercial estate | la zone d'activité
-dam | la digue, le barrage
-gentrification | gentrification
-market square | la place du marché
-urban development | le développement urbain
+dam | le barrage
+gentrification | la gentrification | u
 urban planning | l'urbanisme
 """,
 "education_b2": """
-dissertation | la thèse
-doctoral studies | doctorat
+dissertation | la thèse (de doctorat)
 education system | le système éducatif
 equal opportunity | l'égalité des chances
-exam anxiety | la peur des examens
-examinations office | le service des examens
-final examination | l'examen final
-finding | la découverte
-form teacher | le professeur principal
-grade average | la moyenne générale
-habilitation | l'habilitation
-hall of residence | la résidence universitaire
-high school diploma | le baccalauréat
+final exam | l'examen final | ex=The final exam is on Friday. # L'examen final a lieu vendredi.
+finding | le résultat (d'une étude)
+homeroom teacher | le professeur principal | gb=form teacher | ex=My homeroom teacher called my parents. # Mon professeur principal a appelé mes parents.
+GPA | la moyenne générale | ex=She graduated with a 3.9 GPA. # Elle a obtenu son diplôme avec une moyenne de 3,9 sur 4.
+dorm | la résidence universitaire | gb=hall of residence | ex=Freshmen usually live in a dorm. # Les étudiants de première année vivent souvent en résidence.
+high school diploma | le diplôme de fin d'études secondaires
 master's thesis | le mémoire de master | pl=master's theses
 methodology | la méthodologie
-packed snack | le casse-croûte de la récréation
-parents' evening | la journée de rencontre parents-professeurs
-replication | la réplication
+parent-teacher conference | la réunion parents-professeurs | gb=parents' evening | ex=The parent-teacher conference is next Thursday. # La réunion parents-professeurs a lieu jeudi prochain.
 research grant | la bourse de recherche
 school trip | le voyage scolaire
-school yard | la cour de récréation
-scientific paper | la publication scientifique | u
+schoolyard | la cour de récréation | gb=playground | ex=The kids are playing in the schoolyard. # Les enfants jouent dans la cour de récréation.
+scientific paper | l'article scientifique
 thesis | la thèse | pl=theses
-university place | la place à l'université
 variable | la variable
 """,
 "culture_b2": """
-act | l'acte
-admission ticket | le billet d'entrée
+act | l'acte (de théâtre)
 aesthetics | l'esthétique | u
 ambivalence | l'ambivalence
 applause | les applaudissements | u
 artistic movement | le courant artistique
-bewilderment | le désarroi
 birthday party | la fête d'anniversaire
 ceremony | la cérémonie
 christening | le baptême
@@ -303,91 +243,74 @@ cohesion | la cohésion
 collection | la collection
 community | la communauté
 composition | la composition
-draft | le projet, esquisse
+draft | le brouillon, l'ébauche
 ending | le dénouement
-festivity | festivité
+festivity | la festivité
 funeral | l'enterrement
 gardening | le jardinage
 harmony | l'harmonie
 hiking trail | le sentier de randonnée
 host | l'hôte (qui reçoit)
 literary criticism | la critique littéraire
-lost generation | la génération perdue
 melancholy | la mélancolie
 membership | l'adhésion
 narrative style | le style narratif
 narrator | le narrateur
-nostalgia | la nostalgie
+nostalgia | la nostalgie | u | ex=He looks at old photos with nostalgia. # Il regarde ses vieilles photos avec nostalgie.
 passion | la passion
 point of view | le point de vue
-reading matter | la lecture, de quoi lire
 rehearsal | la répétition
 remorse | le remords
 resignation | la résignation
 ritual | le rituel
-rootlessness | le déracinement | u
-self-fulfillment | l'épanouissement personnel
+self-fulfillment | l'épanouissement personnel | u
 social class | la classe sociale
 social mobility | la mobilité sociale
 social norm | la norme sociale
 sociology | la sociologie
 stereotype | le stéréotype
 symbolism | le symbolisme
-visual texture | la texture visuelle
-volunteer role | la fonction bénévole
-volunteer work | bénévolat
+volunteer work | le bénévolat | u
 """,
 "sports_b2": """
 competitive sport | le sport de haut niveau
 endurance sport | le sport d'endurance
 opponent | l'adversaire
-sport discipline | la discipline sportive
-training session | la séance d'entraînement
+workout | la séance d'entraînement | ex=I do a short workout every morning. # Je fais une courte séance de sport tous les matins.
 """,
 "media_b2": """
-algorithmic bias | le biais algorithmique
-algorithmic transparency | la transparence algorithmique
 artificial intelligence | l'intelligence artificielle
 automation | l'automatisation
-backup copy | la copie de sauvegarde
 browser | le navigateur
 correspondent | le correspondant
 cybersecurity | la cybersécurité
 data protection | la protection des données
 digitalization | la numérisation
 disinformation | la désinformation
-editorial bias | le biais éditorial
-editorial team | la rédaction
 irony | l'ironie
 journalism | le journalisme
 metaphor | la métaphore
 newsroom | la rédaction
-oversight | la supervision
+oversight | la surveillance, l'oubli
 persuasion | la persuasion
 press conference | la conférence de presse
 reliability | la fiabilité
-retort | la réplique
 rhetoric | la rhétorique
-rhetorical emphasis | l'emphase rhétorique | pl=rhetorical emphases
 scoop | le scoop
-truthfulness | la véracité | u
 """,
 "money_b2": """
 bank statement | le relevé de compte
 bargain | la bonne affaire
-consumer behavior | le comportement de consommation | u
 deficit | le déficit
-direct debit | le prélèvement automatique
+automatic payment | le prélèvement automatique | gb=direct debit | ex=I pay my phone bill by automatic payment. # Je paie ma facture de téléphone par prélèvement automatique.
 gross domestic product | le produit intérieur brut
 macroeconomics | la macroéconomie | u
-price comparison | la comparaison de prix
 productivity | la productivité
 public debt | la dette publique
 purchasing power | le pouvoir d'achat
 recession | la récession
-savings book | le livret d'épargne
-stimulus | la relance | pl=stimuli
-voucher | le bon d'achat
+stimulus | la relance, le stimulus | pl=stimuli
+coupon | le bon de réduction | gb=voucher | ex=I have a coupon for twenty percent off. # J'ai un bon de réduction de vingt pour cent.
 """,
 "feelings_b2": """
 affection | l'affection
@@ -395,19 +318,18 @@ amazement | l'étonnement
 ambition | l'ambition
 anguish | l'angoisse
 assumption | la supposition
-bedside table | la table de nuit
 consolation | la consolation
 despair | le désespoir
-determination | l'acharnement
+determination | la détermination | u
 empathy | l'empathie
 fate | le destin
-gossip | le bavardage, les racontars
+gossip | les ragots | u
 impatience | l'impatience
 impulse | l'impulsion
 instinct | l'instinct
 likelihood | la probabilité
 modesty | la modestie
-pity | la pitié, le dommage
+pity | la pitié
 remedy | le remède
 self-reflection | l'introspection
 serenity | la sérénité
@@ -418,49 +340,36 @@ unease | l'inquiétude
 """,
 "society_b2": """
 abstention | l'abstention
-administrative act | l'acte administratif
 alliance | l'alliance
 anthropology | l'anthropologie
-authority | l'administration, service public
-Basic Law | la Loi fondamentale
+authority | l'autorité
 censorship | la censure
-citizen participation | la participation citoyenne
 competitiveness | la compétitivité | u
 consensus | le consensus
 constituency | la circonscription
-cultural mixing | le métissage
 dignity | la dignité
 diplomacy | la diplomatie
-diplomatic tension | la tension diplomatique
-displaced person | la personne déplacée
 election campaign | la campagne électorale
 ethnic group | l'ethnie
-federalism | le fédéralisme
-federation | la fédération, l'alliance
+federation | la fédération | ex=The national soccer federation chose a new coach. # La fédération nationale de football a choisi un nouvel entraîneur.
 geopolitics | la géopolitique | u
-globalization | la mondialisation
+globalization | la mondialisation | u | ex=Globalization has changed the job market. # La mondialisation a changé le marché du travail.
 guide | le guide
 impunity | l'impunité
 interdependence | l'interdépendance
-legacy | l'héritage culturel
-legal protection | la protection légale
+legacy | l'héritage
 legislation | la législation
 mediation | la médiation
 ministry | le ministère
 multinational | la multinationale
-office holder | le titulaire d'une charge publique
 offshoring | la délocalisation
-parliamentary group | le groupe parlementaire
 referendum | le référendum
 sanction | la sanction
 separation of powers | la séparation des pouvoirs
-social criticism | la critique sociale
 sovereignty | la souveraineté
 supply chain | la chaîne d'approvisionnement
-symbolic kinship | la parenté symbolique
 tariff | le droit de douane
-term of office | le mandat
-universal declaration | la déclaration universelle
+term of office | le mandat | pl=terms of office
 """,
 "ideas_b2": """
 ambiguity | l'ambiguïté
@@ -472,7 +381,7 @@ coherence | la cohérence
 commemoration | la commémoration
 concept | le concept
 concession | la concession
-consciousness | la conscience | u
+consciousness | la conscience | u | ex=He lost consciousness after the fall. # Il a perdu connaissance après la chute.
 contradiction | la contradiction
 controversy | la polémique
 counterargument | le contre-argument
@@ -481,24 +390,21 @@ criterion | le critère | pl=criteria
 data privacy | la confidentialité des données
 deadlock | l'impasse
 dilemma | le dilemme
-emphasis | l'emphase | pl=emphases
+emphasis | l'accent (mis sur) | pl=emphases
 ethics | l'éthique | u
 euphemism | l'euphémisme
 evidence | la preuve | u
-exhumation | l'exhumation
 existence | l'existence
 fallacy | le sophisme
 gene | le gène
 genetics | la génétique | u
-grave | la fosse
-historical memory | la mémoire historique
+grave | la tombe
 integrity | l'intégrité
 jargon | le jargon
 limit | la limite
 margin | la marge
 moderator | le modérateur
 morality | la morale
-mutual commitment | l'engagement mutuel
 nuance | la nuance
 objection | l'objection
 objectivity | l'objectivité
@@ -511,42 +417,35 @@ premise | la prémisse
 principle | le principe
 reasoning | le raisonnement
 redress | la réparation
-register | le registre
-scepticism | le scepticisme
-speaking turn | le tour de parole
+register | le registre (de langue)
+skepticism | le scepticisme | u | ex=The plan was met with skepticism. # Le projet a été accueilli avec scepticisme.
 subtlety | la subtilité
 synonym | le synonyme
 tact | le tact
 testimony | le témoignage
 thinker | le penseur
 tone | le ton
-trade-off | la contrepartie
+trade-off | le compromis
 transparency | la transparence
 """,
 "time_b2": """
 backlog | le retard accumulé
-half-year | le semestre
-lead time | le temps de préparation
 leap year | l'année bissextile
-period of time | le laps de temps
 time zone | le fuseau horaire
-transition phase | la phase de transition
 """,
 "everyday_b2": """
 calculation | le calcul
-colour gradient | le dégradé de couleurs
 condition | la condition
-difference | la différence, écart
+difference | la différence
 disadvantage | l'inconvénient
 element | l'élément
 estimate | l'estimation
-fraction | la fraction ; fracture
+fraction | la fraction
 length | la longueur
 outline | le contour
-perspective | la perspective
-quota | le quota/taux
+perspective | la perspective, le point de vue | ex=Living abroad gave me a new perspective. # Vivre à l'étranger m'a donné un nouveau regard.
+quota | le quota | ex=There's a quota on fishing in these waters. # La pêche est soumise à un quota dans ces eaux.
 section | la section, le passage
-shading | la nuance, dégradé
-width | la largeur
+width | la largeur | ex=Measure the width of the window. # Mesure la largeur de la fenêtre.
 """,
 }
