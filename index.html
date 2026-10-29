@@ -8109,6 +8109,110 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
 .judge-good::before{content:""; position:absolute; inset:2px; border-radius:inherit; z-index:-1; pointer-events:none;
     background:linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.08) 40%, rgba(255,255,255,0) 52%);}
 .judge-good .judge-continuer, .judge-good .srs-ladder-text{color:#fff !important;}
+
+/* v1017 : LA FLAMME, VRAIE FLAMME DANS UNE PASTILLE DE VERRE (proposition 2 retenue par Jacques,
+   29 oct. 2026 : « la petite flamme aussi a cote du 2 [...] proposer autre chose »). Une flamme en
+   degrade rouge-orange-or, coeur clair, qui vacille doucement ; la pastille passe au verre de l'app. */
+#serieAccueil.serie-salut{padding:4px 12px 4px 8px; gap:4px; font-size:17px; color:#1C2430 !important;
+    background:rgba(255,255,255,.72) !important; -webkit-backdrop-filter:none; backdrop-filter:none;
+    box-shadow:inset 1.5px 1.5px 0 #fff, 0 4px 12px rgba(20,40,60,.12) !important;}
+#serieAccueil.serie-salut::after{display:none;}
+body[data-theme="dark"] #serieAccueil.serie-salut{color:#F2F2F6 !important; background:rgba(20,36,50,.72) !important;
+    box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.16), 0 4px 12px rgba(0,0,0,.35) !important;}
+#serieAccueil svg, .cal-serie-titre svg{fill:none !important; stroke:none !important; transform-origin:50% 90%; animation:flammeVacille 2.2s ease-in-out infinite;}
+#serieAccueil svg{width:18px !important; height:22px !important;}
+@keyframes flammeVacille{0%,100%{transform:scale(1) rotate(0)} 30%{transform:scale(1.04,.97) rotate(-2deg)} 60%{transform:scale(.97,1.05) rotate(2deg)}}
+@media (prefers-reduced-motion: reduce){ #serieAccueil svg, .cal-serie-titre svg{animation:none;} }
+/* La fenetre : la grande flamme, le grand chiffre, et les jours qui se suivent relies. */
+.cal-serie-titre{gap:12px !important; margin-bottom:4px !important;}
+.cal-serie-titre svg{width:40px !important; height:50px !important; flex:0 0 auto;}
+.cal-serie-nombre{display:block; font-size:38px; font-weight:900; line-height:1; font-variant-numeric:tabular-nums;}
+.cal-serie-unite{display:block; font-size:14px; font-weight:700; color:#4C566B; margin-top:2px;}
+body[data-theme="dark"] .cal-serie-unite{color:#a9b2c0;}
+.cal-serie-case{position:relative;}
+.cal-serie-case.lie::before{content:""; position:absolute; z-index:-1; right:calc(100% - 4px); top:10px; width:22px; height:10px; background:#F3C47A; pointer-events:none;}
+body[data-theme="dark"] .cal-serie-case.lie::before{background:#C9953F;}
+
+/* v1017 : LE TABLEAU, VERRE EPAIS, BISEAU DORE ET OMBRE PORTEE (proposition F retenue par Jacques,
+   29 oct. 2026 : « il manque un petit quelque chose [...] dans le meme genre »). Le verre plus large,
+   le biseau dore plus epais et bombe, une ombre qui detache le tableau de la page. */
+#home #accueilRaccourcis #tuileTableau{padding:16px !important; border-radius:30px !important; background:rgba(255,255,255,.66) !important;
+    box-shadow:inset 2px 2px 0 #fff, inset -1px -2px 0 rgba(20,40,60,.08), 0 22px 40px rgba(20,40,60,.22), 0 3px 8px rgba(20,40,60,.10) !important;}
+body[data-theme="dark"] #home #accueilRaccourcis #tuileTableau{background:rgba(20,36,50,.72) !important;
+    box-shadow:inset 2px 2px 0 rgba(255,255,255,.16), 0 22px 40px rgba(0,0,0,.45) !important;}
+#home #accueilRaccourcis #tuileTableau .vignette-tableau{padding:5px; border-radius:18px !important;
+    box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7), inset 0 -2px 3px rgba(110,70,10,.4), 0 8px 18px rgba(80,50,10,.30);}
+#home #accueilRaccourcis #tuileTableau .vignette-pct{bottom:18px !important; inset-inline-start:18px !important;}
+.mos-plein-toile{padding:5px; border-radius:18px;
+    box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7), inset 0 -2px 3px rgba(110,70,10,.4), 0 0 0 16px rgba(255,255,255,.66),
+        0 0 0 17.5px rgba(255,255,255,.95), 0 26px 50px rgba(20,40,60,.30) !important;}
+body[data-theme="dark"] .mos-plein-toile{box-shadow:inset 0 1.5px 0 rgba(255,255,255,.5), inset 0 -2px 3px rgba(0,0,0,.4), 0 0 0 16px rgba(20,36,50,.66),
+        0 0 0 17.5px rgba(255,255,255,.16), 0 26px 50px rgba(0,0,0,.55) !important;}
+.mos-plein-legende, .mos-plein-intro{margin-top:22px;}
+
+/* v1017 : LA FENETRE DES BADGES (depuis la ligne du prochain badge de l'accueil). Le verre de la
+   fenetre de la flamme ; le badge en train de se debloquer cerne d'ambre, a demi colore, avec sa barre. */
+.badges-voile{position:fixed; inset:0; z-index:9000; display:flex; align-items:center; justify-content:center;
+    padding:16px; background:rgba(14,28,38,.28); animation:badgesVoile .18s ease-out;}
+@keyframes badgesVoile{from{opacity:0}}
+.badges-fen{position:relative; width:min(360px, 100%); max-height:calc(100vh - 32px); overflow:auto; box-sizing:border-box;
+    padding:16px 16px 18px; border-radius:22px; color:#1C2430; background:#FFFFFF;
+    box-shadow:inset 1.5px 1.5px 0 #fff, 0 18px 40px rgba(20,40,60,.25);}
+body[data-theme="dark"] .badges-fen{background:#13222F; color:#EEF2F5; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.14), 0 18px 40px rgba(0,0,0,.5);}
+.badges-fen-titre{margin:2px 0 0; font-weight:900; font-size:18px; padding-inline-end:34px;}
+
+/* v1017 : L'ANNEAU DU PALIER COMME CELUI DE L'ACCUEIL (voir anneauDuPalier). */
+.mp-anneau{background:#F3F6F9 !important; box-shadow:0 6px 14px rgba(20,40,60,.22), 0 0 0 1.5px rgba(255,255,255,.9) !important; gap:0;}
+.mp-anneau::after{display:none;}
+.mp-anneau b{font-size:17px; color:#1F7A55; text-shadow:none; animation:none;}
+.mp-anneau small{font-size:8.5px; color:#5B6470; margin-top:0;}
+.mpa-fois{position:relative; top:auto; right:auto; margin-top:1px; padding:0 5px; font-size:8.5px; line-height:1.35; color:#fff;
+    background:linear-gradient(180deg, rgba(120,200,150,.98), rgba(40,128,82,.98)); box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 1px 3px rgba(30,90,60,.3);}
+.mpa-fois:not(.vu){position:absolute;}
+body[data-theme="dark"] .mp-anneau{background:#14283A !important; box-shadow:0 6px 14px rgba(0,0,0,.4), 0 0 0 1.5px rgba(255,255,255,.14) !important;}
+body[data-theme="dark"] .mp-anneau b{color:#8ED3AA; text-shadow:0 0 8px rgba(80,190,130,.5);}
+body[data-theme="dark"] .mp-anneau small{color:#A9B8C4;}
+body[data-theme="dark"] .mpa-piste{stroke:rgba(255,255,255,.10);}
+
+/* v1017 : LA MOSAIQUE DU PALIER DANS LE CADRE F, PLUS GRANDE (Jacques, 29 oct. 2026 : « la mosaique
+   aussi devrait avoir le meme encadrement. On peut mettre ca peut-etre un peu plus gros »). Le biseau
+   dore est un ::before derriere la toile : les carreaux qui poppent restent places sur la toile. */
+.mos-palier:not(.mp-seul){padding:17px 17px 13px; border-radius:30px; background:rgba(255,255,255,.92);
+    box-shadow:inset 2px 2px 0 #fff, inset -1px -2px 0 rgba(20,40,60,.08), 0 22px 40px rgba(20,40,60,.26), 0 3px 8px rgba(20,40,60,.10);}
+body[data-theme="dark"] .mos-palier:not(.mp-seul){background:rgba(20,36,50,.94); box-shadow:inset 2px 2px 0 rgba(255,255,255,.16), 0 22px 40px rgba(0,0,0,.5);}
+.mos-palier .mp-toile::before{content:""; position:absolute; inset:-5px; z-index:-1; border-radius:18px;
+    background:linear-gradient(135deg, #F6DC95, #C08E2E 45%, #F8E6B0 60%, #B07E22);
+    box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7), inset 0 -2px 3px rgba(110,70,10,.4), 0 8px 18px rgba(80,50,10,.30);}
+.mos-palier .mp-toile canvas{border-radius:13px;}
+.mos-palier .mp-bas{margin-top:12px;}
+
+/* v1017 : LA GALERIE, UN TABLEAU PAR RANGEE, DANS LE CADRE F (Jacques, 29 oct. 2026 : « l'encadre
+   autour des mosaiques qui sont deja la » ; « juste une par rangee pour qu'il soit plus gros et qu'on
+   puisse les defiler »). Le tableau entier, sans recadrage, dans le verre et le biseau dore de l'accueil. */
+#galerieMosaiques.galerie-grille{grid-template-columns:minmax(0, 1fr); gap:22px;}
+#galerieMosaiques .galerie-item{padding:16px 16px 12px; border-radius:30px; background:rgba(255,255,255,.66);
+    box-shadow:inset 2px 2px 0 #fff, inset -1px -2px 0 rgba(20,40,60,.08), 0 22px 40px rgba(20,40,60,.18), 0 3px 8px rgba(20,40,60,.08);}
+body[data-theme="dark"] #galerieMosaiques .galerie-item{background:rgba(20,36,50,.72); box-shadow:inset 2px 2px 0 rgba(255,255,255,.16), 0 22px 40px rgba(0,0,0,.45);}
+#galerieMosaiques .galerie-item img{width:100%; height:auto; max-height:70vh; object-fit:contain; box-sizing:border-box; border:0; padding:5px; border-radius:18px;
+    background:linear-gradient(135deg, #F6DC95, #C08E2E 45%, #F8E6B0 60%, #B07E22);
+    box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7), inset 0 -2px 3px rgba(110,70,10,.4), 0 8px 18px rgba(80,50,10,.30);}
+#galerieMosaiques .galerie-en-cours img{height:220px; object-fit:cover;}
+#galerieMosaiques .galerie-item figcaption{font-size:13px; margin-top:10px; padding:0 4px; text-align:center;}
+#galerieMosaiques .galerie-item figcaption b{font-size:15px;}
+body[data-theme="dark"] #galerieMosaiques .galerie-item figcaption{color:#A9B2C0;}
+.badges-fen .badges-grid{grid-template-columns:repeat(3, minmax(0, 1fr));}
+.badge-item.en-cours{border:2px solid #E8A23A; background:rgba(232,162,58,.12); box-shadow:0 0 0 4px rgba(232,162,58,.18), 0 6px 16px rgba(200,130,30,.22);
+    animation:badgeEnCours 2.4s ease-in-out infinite;}
+@keyframes badgeEnCours{0%,100%{box-shadow:0 0 0 4px rgba(232,162,58,.18), 0 6px 16px rgba(200,130,30,.22)} 50%{box-shadow:0 0 0 7px rgba(232,162,58,.10), 0 6px 16px rgba(200,130,30,.22)}}
+@media (prefers-reduced-motion: reduce){ .badge-item.en-cours{animation:none;} }
+.badge-item.en-cours .badge-icon{filter:grayscale(.35); opacity:.85;}
+.badge-item.en-cours .badge-label{font-weight:800; color:#1C2430;}
+body[data-theme="dark"] .badge-item.en-cours .badge-label{color:#EEF2F5;}
+.badge-item.en-cours .badge-need{color:#7A4A06; font-weight:700;}
+body[data-theme="dark"] .badge-item.en-cours .badge-need{color:#F0C27A;}
+.badge-barre{display:block; width:80%; height:5px; border-radius:3px; background:rgba(28,36,48,.10); overflow:hidden;}
+.badge-barre i{display:block; height:100%; border-radius:3px; background:linear-gradient(90deg, #F0B456, #D08A1C);}
+body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
 </style>
 
 <!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
@@ -8163,7 +8267,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1016</span>
+        <span class="subtitle-version">v1017</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -8548,7 +8652,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
              grosse pour qu'on la voie bien » ; « si on clique dessus, la personne
              pourrait voir, pendant les deux dernieres semaines, ou elle a eu des
              seances ». L'unite reste pour les lecteurs d'ecran, et dans la bulle. -->
-        <button type="button" id="serieAccueil" class="serie-salut hidden" onclick="ouvrirCalendrierSerie(event)" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.7 2.2-4.8.2 1.6 1 2.6 2 3 0-3.1-.4-5.6.3-8.2z"/></svg><span id="streakCount">0</span><span id="serieUnite" class="serie-unite">jours</span></button>
+        <button type="button" id="serieAccueil" class="serie-salut hidden" onclick="ouvrirCalendrierSerie(event)" aria-haspopup="dialog"><svg viewBox="0 0 24 30" aria-hidden="true"><defs><linearGradient id="flammeFeu" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#E2481B"/><stop offset=".55" stop-color="#F49A1F"/><stop offset="1" stop-color="#FFD866"/></linearGradient><linearGradient id="flammeCoeur" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FFE9A6"/><stop offset="1" stop-color="#FFF7DA"/></linearGradient></defs><path fill="url(#flammeFeu)" d="M12 1c1.2 5.2 8.8 8 8.8 16.4A8.8 8.8 0 0 1 3.2 17.4c0-4.3 2.6-6.9 4.4-8.6.2 2.9 1.5 4.5 3 4.9C10.4 9 10.2 5 12 1z"/><path fill="url(#flammeCoeur)" d="M12 15c.6 2.6 4.3 3.8 4.3 7.6a4.3 4.3 0 0 1-8.6 0c0-2 1.2-3.2 2-4 .2 1.3.7 2 1.4 2.2-.4-1.7-.1-3.8.9-5.8z"/></svg><span id="streakCount">0</span><span id="serieUnite" class="serie-unite">jours</span></button>
         <!-- v1000 : LA LOUPE, A DROITE DE LA FLAMME (Jacques, 29 oct. 2026 : « on gagnerait
              de la place »). Un vrai champ, invisible, couvre la loupe : c'est en le
              touchant lui-meme que iOS ouvre le clavier du premier coup. -->
@@ -36695,11 +36799,26 @@ function exigenceBadge(def){
 }
 
 function renderBadgesGrid(){
-    const unlocked = getUnlockedBadges();
     const grid = document.getElementById("badgesGrid");
-    if(grid){
-        grid.innerHTML = BADGE_DEFINITIONS.map(def => {
+    if(grid) grid.innerHTML = htmlBadges(null);
+    renderNextBadgeBox();
+}
+
+// v1017 : `enCours` (le badge en train de se debloquer, getNextBadgeToUnlock())
+// est mis en evidence : couleurs a demi, cerne ambre, sa barre et son compte.
+function htmlBadges(enCours){
+    const unlocked = getUnlockedBadges();
+    return BADGE_DEFINITIONS.map(def => {
             const isUnlocked = unlocked.includes(def.id);
+            if(enCours && enCours.def.id === def.id && !isUnlocked){
+                const unite = def.metric === "streak" ? t("next_badge_unit_days") : t("next_badge_unit_xp");
+                return `<div class="badge-item en-cours" onclick="showBadgeDetail('${def.id}')" role="button" tabindex="0">
+                <span class="badge-icon">${def.icon}</span>
+                <span class="badge-label">${t(def.titleKey)}</span>
+                <span class="badge-barre"><i style="width:${Math.round(enCours.ratio * 100)}%"></i></span>
+                <span class="badge-need">${tf("next_badge_progress", { current: enCours.current, threshold: enCours.threshold, unit: unite })}</span>
+            </div>`;
+            }
             const title = t(def.titleKey);
             const exigence = exigenceBadge(def);
             // ⚠️ L'EXIGENCE S'AFFICHE, ELLE NE SE TOUCHE PAS. Une grille de
@@ -36715,8 +36834,6 @@ function renderBadgesGrid(){
                 ${isUnlocked ? "" : `<span class="badge-need">${exigence}</span>`}
             </div>`;
         }).join("");
-    }
-    renderNextBadgeBox();
 }
 
 function showBadgeDetail(id){
@@ -37650,7 +37767,10 @@ function ouvrirCalendrierSerie(ev){
     b.appendChild(fermer);
     const titre = creer("p", "cal-serie-titre");
     titre.innerHTML = ancre.querySelector("svg").outerHTML;
-    titre.appendChild(document.createTextNode(n + " " + uniteSerie(n) + " " + t("home_serie_suffixe")));
+    // v1017 : la grande flamme, le grand chiffre, l'unite dessous (Jacques : « une touche un peu plus speciale »).
+    const tete = creer("span");
+    tete.append(creer("span", "cal-serie-nombre", String(n)), creer("span", "cal-serie-unite", uniteSerie(n) + " " + t("home_serie_suffixe")));
+    titre.appendChild(tete);
     b.appendChild(titre);
     b.appendChild(creer("p", "cal-serie-sous", t("serie_deux_semaines")));
     const grille = creer("div", "cal-serie-grille");
@@ -37675,7 +37795,9 @@ function ouvrirCalendrierSerie(ev){
     };
     jours.forEach((d, i) => {
         const cle = getTodayStr(d);
-        const c = creer("button", "cal-serie-case" + (actifs[cle] ? " fait" : "") + (i === 13 ? " auj" : ""), String(d.getDate()));
+        // v1017 : deux jours faits qui se suivent sur une meme ligne sont relies.
+        const lie = actifs[cle] && i % 7 && actifs[getTodayStr(jours[i - 1])];
+        const c = creer("button", "cal-serie-case" + (actifs[cle] ? " fait" : "") + (lie ? " lie" : "") + (i === 13 ? " auj" : ""), String(d.getDate()));
         c.type = "button";
         c.setAttribute("aria-label", d.toLocaleDateString(getUiLang(), { weekday: "long", day: "numeric", month: "long" })
                 + " · " + t(actifs[cle] ? "serie_jour_fait" : "serie_jour_vide"));
@@ -41638,9 +41760,33 @@ function ouvrirGroupeReglages(id){
 
 // Le badge de l'accueil menait aux reglages, ou les badges sont maintenant
 // dans « Ma progression », replie : on ouvre ce groupe directement.
+// v1017 : PLUS DE DETOUR PAR LES REGLAGES. Jacques, 29 oct. 2026 : « quand on clique
+// sur Polyglotte en herbe [...] juste voir le tableau des badges qui s'ouvre, puis
+// mettre en evidence celui qu'on est en train de debloquer ». Une fenetre de verre
+// par-dessus l'accueil ; toucher a cote ou le ✕ la ferme.
+let fenBadges = null;
+function fermerBadges(){ if(fenBadges){ fenBadges.remove(); fenBadges = null; } }
 function ouvrirBadges(){
-    openSettings();
-    ouvrirGroupeReglages("groupeProgression");
+    fermerBadges();
+    const voile = document.createElement("div");
+    voile.className = "badges-voile";
+    voile.addEventListener("click", e => { if(e.target === voile) fermerBadges(); });
+    const b = document.createElement("div");
+    b.className = "badges-fen";
+    b.setAttribute("role", "dialog");
+    const fermer = document.createElement("button");
+    fermer.type = "button"; fermer.className = "cal-serie-fermer"; fermer.textContent = "✕";
+    fermer.setAttribute("aria-label", t("abo_fermer"));
+    fermer.addEventListener("click", fermerBadges);
+    const titre = document.createElement("p");
+    titre.className = "badges-fen-titre"; titre.textContent = t("settings_badges_title");
+    const grille = document.createElement("div");
+    grille.className = "badges-grid";
+    grille.innerHTML = htmlBadges(getNextBadgeToUnlock());
+    b.append(fermer, titre, grille);
+    voile.appendChild(b);
+    document.body.appendChild(voile);
+    fenBadges = voile;
 }
 
 // ============ L'ABONNEMENT (v690) ============
@@ -47518,7 +47664,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1016;
+const APP_VERSION = 1017;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -50289,7 +50435,7 @@ function tessellesMosaique(rang, c0, r0, eclats){
 // rien. Le fichier a dit << treize >> de la v543 a la v631, sans qu'aucune
 // constante ait jamais bouge : il est ne faux. C'est le chiffre ECRIT A LA
 // MAIN qui derive, jamais celui que pose {j} dans ip_tableau_plafond.
-function poserCarreau(){
+function poserCarreau(sansSon){
     const v = etatMosaique();
     const jour = getTodayStr();
     if(v.j !== jour){ v.j = jour; v.n = 0; }
@@ -50325,7 +50471,8 @@ function poserCarreau(){
     // la carte sue (v543). Il se montre donc la ou le carreau se pose.
     try{ montrerPlusUn(); }catch(e){}
     // v951 : sa note, s'il n'y a pas eu de « bravo » (essai anneau_palier).
-    try{ jouerNotePlusUn(); }catch(e){}
+    // v1017 : sans sa note pour une reponse fausse dans une scene (voir le message « exercice »).
+    if(!sansSon){ try{ jouerNotePlusUn(); }catch(e){} }
     return true;
 }
 
@@ -51845,7 +51992,7 @@ function montrerMosaiquePalier(multiple){
     if(!m || !conteneur){ if(multiple) anneauPalierSeul(multiple); return; }
     imageMosaique(m).then(img => {
         try{
-            const LARGEUR = 200;
+            const LARGEUR = 250;   // v1017 : 200 -> 250, et le cadre F (Jacques : « un peu plus gros »)
             const toile = document.createElement("canvas");
             toile.width = 240;
             toile.height = Math.round(240 * (m.h || 1) / (m.l || 1));
@@ -51959,12 +52106,17 @@ function anneauDuPalier(bloc, multiple){
     let fait = 0, cible = 30;
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
-    const R = 23, C = 2 * Math.PI * R;
+    // v1017 : L'ANNEAU DE L'ACCUEIL (Jacques, 29 oct. 2026 : « la petite roue de progression qu'on a
+    // lorsqu'on atteint notre objectif devrait ressembler a celle qu'on a sur la page d'accueil »).
+    // Centre pale, piste grise, arc ambre en degrade, chiffre vert, « ×2 » en pastille verte dessous.
+    const R = 24, C = 2 * Math.PI * R;
     const a = document.createElement("div");
     a.className = "mp-anneau";
     a.innerHTML = '<svg viewBox="0 0 54 54" aria-hidden="true">'
-        + '<circle cx="27" cy="27" r="' + R + '" fill="none" stroke="rgba(28,36,48,.18)" stroke-width="3.5"/>'
-        + '<circle class="mpa-arc" cx="27" cy="27" r="' + R + '" fill="none" stroke="#1C2430" stroke-width="3.5" stroke-linecap="round"'
+        + '<defs><linearGradient id="mpaDegrade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F6CF8C"/>'
+        + '<stop offset=".55" stop-color="#E8A23A"/><stop offset="1" stop-color="#A86A0E"/></linearGradient></defs>'
+        + '<circle class="mpa-piste" cx="27" cy="27" r="' + R + '" fill="none" stroke="rgba(28,36,48,.10)" stroke-width="5"/>'
+        + '<circle class="mpa-arc" cx="27" cy="27" r="' + R + '" fill="none" stroke="url(#mpaDegrade)" stroke-width="5" stroke-linecap="round"'
         + ' transform="rotate(-90 27 27)" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + C.toFixed(1) + '"/></svg>'
         + '<b>' + fait + '</b><small>/' + cible + '</small><span class="mpa-fois">×' + multiple + '</span>';
     bloc.appendChild(a);
@@ -52112,6 +52264,11 @@ window.addEventListener("message", (e) => {
     if(d.type === "exercice"){
         sceneCompteExercices = true;
         if(sceneOuverteDepuis !== "admin") exerciceDeScene();
+        // v1017 : UNE REPONSE FAUSSE DANS UNE SCENE COMPTE AUSSI +1, SANS LE SON. Jacques,
+        // 29 oct. 2026 : « quand on touche pas la bonne image, on devrait quand meme avoir un
+        // plus 1. Mais sans le son. » Comme « Encore » sur une carte (v857) : le carreau
+        // recompense la question traversee, pas la question sue. La bonne passe par « bonne ».
+        if(d.juste === false && sceneOuverteDepuis !== "admin"){ try{ if(essaiActif("carreau_partout")) poserCarreau(true); }catch(err){} }
         return;
     }
     if(d.type === "reponse"){

@@ -266,8 +266,9 @@ html.nuit #fondMonde div{background-image:url("../fond/carte-langues-nuit.svg")}
 html,body{background-color:#DCE6EC}
 /* ⚠️ PAS de backdrop-filter sur .haut : il ferait de la barre le cadre des elements
    « fixed » qu'elle contient, et « Continuer » resterait en haut au lieu du bas de l'ecran. */
-.haut{background:rgba(130,175,219,.80)}
-html.nuit .haut{background:rgba(14,28,38,.78)}
+/* v1017 : plus de bande bleue derriere « Retour », les niveaux et la question (Jacques : « un fond
+   bleu qui est trop, qu'on peut enlever ») : le fond de la page passe dessous. */
+.haut,html.nuit .haut{background:transparent}
 .titre,.niveaux{background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.9),0 4px 12px rgba(20,40,60,.08)}
 .carte{background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:18px;
@@ -1287,6 +1288,10 @@ function demarrer(){
 
 /* ---------- A1 ---------- */
 function entete(consigne, question, avecModes){
+  // v1017 : le niveau est deja dans les pastilles du haut (A1 en surbrillance) : on ne le repete pas
+  // devant le titre (Jacques : « on n'a pas a mettre A1 a cote de Noms et articles »). En seance,
+  // les pastilles sont cachees : le niveau reste.
+  if (!EN_SEANCE) consigne = String(consigne).replace(/^(A1|A2|B1|B2|C1) · /, "");
   $("carte").innerHTML = `<div class="consigne">${consigne}</div><div class="question">${question}</div>`
     + (avecModes ? `<div class="modes"><button data-m="decouvrir">${T("decouvrir")}</button><button data-m="trouver">${T("trouve")}</button></div>` : "");
   $("carte").querySelectorAll(".modes button").forEach(b => {
