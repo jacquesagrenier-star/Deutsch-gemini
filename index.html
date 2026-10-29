@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#A9CBE9">
+<meta name="theme-color" content="#82AFDB">
 
 <title>Wortando</title>
 
@@ -7710,7 +7710,7 @@ html, body{overscroll-behavior:none;}
    ciel en haut qui s'eclaircit vers le bas ; la carte et les caracteres restent gris-bleu. Pose sur
    le calque fixe (et pas sur body) : iOS ignore background-attachment:fixed, le degrade s'etalerait
    sur toute la hauteur de la page. La nuit, le bleu nuit uni ne change pas. */
-body:not([data-theme="dark"]) #fondMonde{background:linear-gradient(180deg, #A9CBE9 0%, #C3DBEF 55%, #D6E4F0 100%);}
+body:not([data-theme="dark"]) #fondMonde{background:linear-gradient(180deg, #82AFDB 0%, #A4C6E7 55%, #C0D6EA 100%);}
 #fondMonde .fm-carte{position:absolute; left:0; right:0; top:24px; height:378px; opacity:.38; transition:opacity .4s;}
 #fondMonde .fm-piste{position:absolute; top:0; left:0; width:2880px; height:378px; transform:translateX(-338px);
     background:url("visuel/fond/carte-langues-jour.svg") repeat-x 0 0 / 960px 378px; will-change:transform;}
@@ -8062,7 +8062,7 @@ body[data-theme="dark"] #home #accueilRaccourcis #tuileTableau .vignette-tableau
 /* v1008 : LE TABLEAU EN PLEIN ECRAN, MEME CADRE ET NOUVEAU FOND (Jacques : « quand on va ouvrir le
    tableau en plein ecran, la meme cadre, puis le nouveau fond »). Le fond de l'app (carte du monde),
    et autour de la toile le verre et le biseau dore de l'accueil. Le texte suit le fond. */
-.mos-plein{background:url("visuel/fond/carte-langues-jour.svg") repeat-x -338px 24px / 960px 378px, linear-gradient(180deg, #A9CBE9 0%, #C3DBEF 55%, #D6E4F0 100%) !important;}
+.mos-plein{background:url("visuel/fond/carte-langues-jour.svg") repeat-x -338px 24px / 960px 378px, linear-gradient(180deg, #82AFDB 0%, #A4C6E7 55%, #C0D6EA 100%) !important;}
 body[data-theme="dark"] .mos-plein{background:#0E1C26 url("visuel/fond/carte-langues-nuit.svg") repeat-x -338px 24px / 960px 378px !important;}
 .mos-plein-toile{border:0 !important; padding:3px; border-radius:16px; box-sizing:border-box; max-width:calc(100% - 30px) !important; max-height:70vh !important;
     background:linear-gradient(135deg, #F6DC95, #C08E2E 45%, #F8E6B0 60%, #B07E22);
@@ -8163,7 +8163,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1014</span>
+        <span class="subtitle-version">v1015</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -12495,7 +12495,7 @@ const THEME_STORAGE_KEY = PREFIXE_STOCKAGE + "theme";
 function applyAppTheme(theme){
     document.body.setAttribute("data-theme", theme);
     const meta = document.querySelector('meta[name="theme-color"]');
-    if(meta) meta.setAttribute("content", theme === "dark" ? "#0E1C26" : "#A9CBE9");   // v1009 : le haut du degrade ciel
+    if(meta) meta.setAttribute("content", theme === "dark" ? "#0E1C26" : "#82AFDB");   // v1009 : le haut du degrade ciel
 
     const icon = document.getElementById("themeToggleIcon");
     if(icon) icon.textContent = theme === "dark" ? "☀️" : "🌙";
@@ -47518,7 +47518,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1014;
+const APP_VERSION = 1015;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
