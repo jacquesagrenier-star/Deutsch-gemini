@@ -7816,6 +7816,16 @@ body[data-theme="dark"] #home .pa-ecoute .pa-play svg{fill:#2A1A05 !important;}
 #home #carteVocab .vocab-ligne-niv{white-space:nowrap; min-width:96px; text-align:start;}
 /* Dans « Tout le contenu », la progression reste cachee, comme avant (elle vit sous la seance). */
 #home.vue-contenu #carteVocab{display:none !important;}
+/* v1006 : UN REFLET QUI GLISSE sur « Continuer la seance » (Jacques : « un petit reflet qui circule
+   de gauche vers la droite doucement, qui revient vers la gauche »). Une lueur douce sur le haut du
+   verre, qui va et vient ; immobile si le telephone demande moins d'animations. */
+#home #seancePilule .pa-lueur{position:absolute; top:3px; left:-30%; width:30%; height:46%; border-radius:999px; pointer-events:none; z-index:0;
+    background:radial-gradient(closest-side, rgba(255,255,255,.55), rgba(255,255,255,0)); filter:blur(1px);
+    animation:paLueur 7s ease-in-out infinite alternate;}
+body[data-theme="dark"] #home #seancePilule .pa-lueur{background:radial-gradient(closest-side, rgba(255,255,255,.75), rgba(255,255,255,0));}
+@keyframes paLueur{0%{left:-30%;} 100%{left:100%;}}
+@media (prefers-reduced-motion: reduce){ #home #seancePilule .pa-lueur{animation:none; left:8%;} }
+
 /* v1004 : PLUS DE FLOU GEANT DERRIERE L'ACCUEIL. La carte de stats gardait le blur(22px) de
    l'ancienne carte : un grand rectangle laiteux derriere tout (Jacques : « un fond opaque,
    presque la meme couleur »). */
@@ -7892,6 +7902,51 @@ body[data-theme="dark"] #home #accueilRaccourcis .orb + .orb{border-top-color:rg
     -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); box-shadow:inset 1px 1px 0 rgba(255,255,255,.9);}
 body[data-theme="dark"] #home #accueilRaccourcis #tuileTableau .vignette-pct{background:rgba(20,36,50,.7) !important; color:#EEF2F5 !important;}
 
+/* v1006 : LE BAS EN TROIS CARTES SEPAREES (Jacques : « un peu d'espace entre ton tableau, mis de cote
+   et tout le contenu -- on dirait que tout est ensemble » ; « le meme genre de pastille qu'Ecouter et
+   Mes episodes »). Chacune sa carte de verre ; a droite, le meme bouton rond en verre. */
+#home #accueilRaccourcis{gap:12px !important; background:transparent !important; box-shadow:none !important; border-radius:0 !important; overflow:visible !important;
+    -webkit-backdrop-filter:none !important; backdrop-filter:none !important;}
+#home #accueilRaccourcis .orb{background:var(--v-fond) !important; border-radius:22px !important; padding:12px 12px 12px 14px !important;
+    -webkit-backdrop-filter:blur(6px) saturate(1.4) !important; backdrop-filter:blur(6px) saturate(1.4) !important;
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre) !important;}
+#home #accueilRaccourcis .orb + .orb{border-top:0 !important;}
+#home #accueilRaccourcis #tuileTableau{overflow:hidden; padding:0 !important;}
+#home #accueilRaccourcis .orb:not(#tuileTableau)::after{content:"›"; flex:0 0 46px; width:46px; height:46px; margin-inline-start:auto; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:26px; font-weight:600; line-height:1; padding-bottom:3px; box-sizing:border-box; color:#fff;
+    background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%);
+    box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 8px 18px rgba(20,16,10,.25);}
+html[dir="rtl"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{content:"‹";}
+body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{color:#2A1A05;
+    background:linear-gradient(180deg, rgba(250,206,128,.86) 0%, rgba(237,169,60,.80) 52%, rgba(208,138,28,.88) 100%);
+    box-shadow:inset 0 0 0 2px rgba(150,90,10,.28), inset 0 0 14px rgba(255,255,255,.35), inset 0 1.5px 0 rgba(255,255,255,.8), 0 8px 20px rgba(237,169,60,.28);}
+#home #accueilRaccourcis .raccourci-sous::after{content:none !important;}
+
+/* v1006 : UNE LUEUR QUI FAIT LE TOUR des boutons ▶ d'Ecouter et de Mes episodes (Jacques : « une
+   circulation autour du cercle »). Fine et lente (un tour en 6 s), les deux boutons decales pour ne
+   pas battre ensemble ; elle s'ajoute au liseré lumineux, sur le meme anneau. */
+@property --tour{syntax:"<angle>"; initial-value:0deg; inherits:false;}
+#home .pa-ecoute .pa-play::after{
+    background:conic-gradient(from var(--tour), rgba(255,255,255,0) 0deg 290deg, rgba(255,255,255,.95) 335deg, rgba(255,255,255,0) 360deg),
+               linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%) !important;
+    padding:2.4px !important; animation:tourLueur 6s linear infinite;}
+#home .pa-episodes .pa-play::after{animation-delay:-3s;}
+@keyframes tourLueur{to{--tour:360deg;}}
+@media (prefers-reduced-motion: reduce){ #home .pa-ecoute .pa-play::after{animation:none;} }
+
+/* v1006 : LE CLAP S'ANIME (Jacques : « le clap, monter puis descendre tranquillement, comme pour
+   qu'on commence la video »). Le bras se leve doucement, marque un temps, puis se rabat sur
+   l'ardoise ; charniere au coin gauche. Immobile si le telephone demande moins d'animations. */
+.ep-ligne-ico .clap-bras{transform-box:view-box; transform-origin:2px 10px; animation:clapBras 4.2s ease-in-out infinite;}
+@keyframes clapBras{
+    0%, 22%{transform:rotate(0deg);}
+    55%{transform:rotate(-16deg);}
+    68%{transform:rotate(-16deg);}
+    80%{transform:rotate(11deg);}
+    86%{transform:rotate(9deg);}
+    100%{transform:rotate(0deg);}}
+@media (prefers-reduced-motion: reduce){ .ep-ligne-ico .clap-bras{animation:none;} }
+
 /* --- Les cartes (flashcards) : en verre --- */
 .flashcard-face{background:rgba(255,255,255,.80) !important; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.95), 0 12px 30px rgba(20,40,60,.12) !important; border-color:transparent !important;}
 body[data-theme="dark"] .flashcard-face, body[data-theme="dark"] .flashcard-front{background:rgba(18,34,48,.84) !important; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.12), 0 12px 30px rgba(0,0,0,.35) !important;}
@@ -7965,7 +8020,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1005</span>
+        <span class="subtitle-version">v1006</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -8570,6 +8625,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
                 <span class="pa-aujourdhui" data-i18n="accueil_aujourdhui">Aujourd'hui</span>
                 <div class="pa-niveaux" id="spNiveauxCarte"></div>
                 <button type="button" class="pa-play pa-entrer" onclick="entrerSeanceDuJour()" data-i18n-aria-label="seance_commencer" aria-label="Commencer">
+                    <span class="pa-lueur" aria-hidden="true"></span>
                     <span class="pa-play-txt" id="spPlayTxt" data-i18n="seance_commencer_long">Commencer la séance</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
                 </button>
@@ -8719,7 +8775,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
                     <span class="pa-sens" id="episodeLigneSous"></span>
                 </div>
             </div>
-            <div class="ep-ligne-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
+            <div class="ep-ligne-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path class="clap-bras" d="M20.84 2.18L16.91 2.96L19.65 6.5L21.62 6.1L20.84 2.18M13.97 3.54L12 3.93L14.75 7.46L16.71 7.07L13.97 3.54M9.07 4.5L7.1 4.91L9.85 8.44L11.81 8.05L9.07 4.5M4.16 5.5L3.18 5.69A2 2 0 0 0 1.61 8.04L2 10L6.9 9.03L4.16 5.5"/><path d="M2 10V20C2 21.11 2.9 22 4 22H20C21.11 22 22 21.11 22 20V10H2Z"/></svg></div>
         </div>
         <!-- « Mis de cote » reste a l'accueil (Jacques), a cote de la porte de tout le
              reste. Il ne se cache pas quand il est vide : voir majBoutonGardes(). -->
@@ -47299,7 +47355,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1005;
+const APP_VERSION = 1006;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
