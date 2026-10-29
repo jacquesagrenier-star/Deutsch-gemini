@@ -424,8 +424,8 @@ It's a quarter ___ nine (8:45). | to | past / before | Il est neuf heures moins 
 It's a quarter ___ ten (10:15). | past | to / after the | Il est dix heures et quart. | Et quart = a quarter past.
 I'm ___ years old. | twenty | twentieth / twenty's | J'ai vingt ans. | L'âge : un nombre, avec be.
 This car costs two ___ dollars. | thousand | thousands / thousand of | Cette voiture coûte deux mille dollars. | Pas de s après un nombre.
-The store opens at 9 ___. | a.m. | p.m. / o'clock | Le magasin ouvre à 9 h du matin. | Le matin : a.m.
-We have dinner at 7 ___. | p.m. | a.m. / hour | Nous dînons à 19 h. | Le soir : p.m.
+The store opens at 9 ___ | a.m. | p.m. / o'clock | Le magasin ouvre à 9 h du matin. | Le matin : a.m.
+We have dinner at 7 ___ | p.m. | a.m. / hour | Nous dînons à 19 h. | Le soir : p.m.
 There are ___ days in a week. | seven | seventh / seventeen | Il y a sept jours dans une semaine. | 7 = seven.
 I live at number ___ (40). | forty | fourty / fourteen | J'habite au numéro quarante. | 40 = forty, sans u.
 """
