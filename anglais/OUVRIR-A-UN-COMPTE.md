@@ -5,11 +5,11 @@ Décidé le 28 oct. 2026 : Jacques veut ouvrir l'anglais à un proche. L'anglais
 ## Comment ça marche
 
 - Dans le tableau de bord de l'admin, chaque ligne de compte porte un bouton **« OUVRIR L'ANGLAIS »**, sur les lignes allemandes (DE) comme sur les espagnoles (ES). Il écrit `essais: ["anglais"]` dans le document `users/<uid>`, commun à toutes les langues, puis le recopie dans le résumé de la ligne (`resumes` ou `resumenesEs`). Une fois l'anglais ouvert, le bouton devient **« ANGLAIS OUVERT ✓ — RETIRER »**.
-- Le compte peut entrer en anglais depuis l'allemand comme depuis l'espagnol. Le retour se fait toujours vers la langue de départ (`wortando_avantAnglais`) : **« ESPAÑOL — REVENIR À L'ESPAGNOL → »** ou **« DEUTSCH — REVENIR À L'ALLEMAND → »**. Un accès retiré renvoie aussi vers cette langue.
+- **Depuis le 29 oct. 2026, l'anglais se choisit au même endroit que l'allemand et l'espagnol** (demande de Jacques, pour lui, Daniel et Nicole) : Réglages → Langue → « Qu'est-ce que tu apprends ? ». Un troisième bouton, **« Anglais »**, n'y apparaît que pour l'admin et les comptes à qui l'anglais est ouvert. En anglais, ce bouton devient **« Espagnol »**, et celui de l'autre langue mène à l'allemand. La carte « English » de la v995 a disparu. Un accès retiré renvoie vers la langue d'où l'on venait (`wortando_avantAnglais`).
 - L'anglais range sa progression à part : `wortandoEn_` sur l'appareil, `usersEn` / `resumesEn` dans Firestore. La progression espagnole (`wortandoEs_`, `usuariosEs`) et l'allemande ne sont pas touchées. Le champ `langueApprise` du compte n'est jamais écrit à « en » : sur un appareil neuf, un compte espagnol retrouve l'espagnol.
 - Le code de l'app ne contient aucune adresse ni aucun nom (le dépôt est public). C'est le champ du compte qui décide.
 - L'app du compte lit ce champ avec son document (`loadVhsKapitelAccessFlag`) et le retient sur l'appareil sous `wortando_essaisCompte`. La valeur est stockée avec l'uid et sans préfixe de langue, pour que la garde puisse la lire avant la réponse de Firestore.
-- Si l'anglais est ouvert au compte, ses réglages montrent une carte **« English »** avec le bouton **« ENGLISH — APPRENDRE L'ANGLAIS → »**. En anglais, ce même bouton devient **« DEUTSCH — REVENIR À L'ALLEMAND → »**. L'admin, lui, garde son bouton dans Administration.
+- Les autres comptes ne voient aucun changement : le bouton reste caché (`majEntreeEssaiAnglais()`). L'admin garde aussi son bouton dans Administration.
 - `gardeEssaiJaponais()` laisse passer ce compte en `?apprendre=en`.
 - Si l'admin retire l'accès, la lecture suivante du document vide cette mémoire et renvoie le compte vers l'allemand.
 - `accorderLangueAuCompte()` compte désormais `en` et `ja` comme un choix fait sur l'appareil. Avant ce changement, un compte ouvert en `?apprendre=en` dont le document disait « de » repartait aussitôt en allemand.
@@ -28,6 +28,10 @@ Ces règles permettent deux choses : écrire le nouveau champ `essais`, et garde
 3. Cliquer **Publier**.
 
 ## Vérifié
+
+Le 29 oct. 2026, le choix à trois langues passe 18 vérifications sur 18, avec des comptes simulés : pas d'anglais pour un compte sans accès, en allemand comme en espagnol ; « Anglais » pour l'admin et pour un compte ouvert, en allemand comme en espagnol, avec l'ouverture de l'anglais et la mémoire de la langue de départ ; « Espagnol » en anglais. Les cas de la garde, de l'accès retiré et du bouton de l'admin passent toujours.
+
+Avant (28 oct.) :
 
 Les essais ont été faits avec un compte **simulé**, sans aucun appel à Firebase : impossible de créer un vrai compte de test sans code d'invitation, sur la vraie base.
 

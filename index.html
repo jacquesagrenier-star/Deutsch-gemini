@@ -11637,6 +11637,14 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
                         <span class="setup-choice-flag" data-autre>🇪🇸</span>
                         <span data-i18n="setup_learning_autre">Espagnol</span>
                     </button>
+                    <!-- La troisieme langue (29 oct. 2026, demande de Jacques pour
+                         Daniel et Nicole) : l'anglais, pour l'admin et les comptes
+                         a qui l'admin l'a ouvert ; en anglais, l'espagnol. Cache
+                         pour tous les autres : voir majEntreeEssaiAnglais(). -->
+                    <button class="setup-choice hidden" id="choixLangueEssai" onclick="ouvrirLangueEssai()">
+                        <span class="setup-choice-flag" id="choixLangueEssaiDrapeau">🇺🇸</span>
+                        <span id="choixLangueEssaiNom">Anglais</span>
+                    </button>
                 </div>
             </div>
             <div class="setup-choice-group" data-seulement-es>
@@ -12054,16 +12062,6 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
         <button class="secondary" onclick="ouvrirEssaiAnglais()">ENGLISH — ESSAI ANGLAIS →</button>
     </div>
 
-    <!-- L'anglais ouvert a UN compte (28 oct. 2026, demande de Jacques pour
-         son beau-frere) : l'admin l'accorde depuis son tableau de bord
-         (basculerEssaiCompte), majEntreeEssaiAnglais montre cette carte au
-         compte concerne. Aucune adresse ici : le depot est public. -->
-    <div class="card hidden" id="carteEssaiAnglais">
-        <strong>English</strong>
-        <div class="info-box">L'anglais, de A1 à C1, ouvert à ton compte. C'est encore un brouillon, lu par la voix de ton téléphone.</div>
-        <div class="spacer"></div>
-        <button class="secondary" id="boutonEssaiAnglais" onclick="ouvrirEssaiAnglais()">ENGLISH — APPRENDRE L'ANGLAIS →</button>
-    </div>
 </section>
 
 <!-- ================= ABONNEMENT (v690) =================
@@ -12758,19 +12756,26 @@ function essaisDuCompte(uid){
 function retenirEssaisDuCompte(uid, essais){
     try{ localStorage.setItem(CLE_ESSAIS_COMPTE, JSON.stringify({ uid: uid, essais: essais })); }catch(e){}
 }
-// La carte « English » des reglages : pour le compte a qui l'anglais est
-// ouvert, pas pour l'admin (il a son bouton dans Administration). En anglais,
-// le meme bouton ramene a l'allemand.
+// LA TROISIEME LANGUE DU CHOIX « Qu'est-ce que tu apprends ? » (29 oct. 2026).
+// Jacques : « avoir la selection de l'anglais au meme endroit ou on selectionne
+// actuellement notre espagnol et notre allemand », pour lui, Daniel et Nicole.
+// Elle remplace la carte « English » de la v995. Pour l'admin et les comptes
+// a qui l'anglais est ouvert ; en allemand ou en espagnol, c'est l'anglais ;
+// en anglais, c'est l'espagnol (le bouton de l'autre langue y mene a l'allemand).
 function majEntreeEssaiAnglais(){
-    const carte = document.getElementById("carteEssaiAnglais");
-    if(!carte) return;
+    const bouton = document.getElementById("choixLangueEssai");
+    if(!bouton) return;
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
-    const permis = !!user && !isAdminUser() && essaisDuCompte(user.uid).includes("anglais");
-    carte.classList.toggle("hidden", !permis);
-    const bouton = document.getElementById("boutonEssaiAnglais");
-    if(bouton) bouton.textContent = LANGUE_APPRISE !== "en" ? "ENGLISH — APPRENDRE L'ANGLAIS →"
-        : langueAvantAnglais() === "es" ? "ESPAÑOL — REVENIR À L'ESPAGNOL →"
-        : "DEUTSCH — REVENIR À L'ALLEMAND →";
+    const permis = !!user && (isAdminUser() || essaisDuCompte(user.uid).includes("anglais"));
+    bouton.classList.toggle("hidden", !permis || LANGUE_APPRISE === "ja");
+    const enAnglais = LANGUE_APPRISE === "en";
+    document.getElementById("choixLangueEssaiDrapeau").textContent = enAnglais ? "\u{1F1EA}\u{1F1F8}" : "\u{1F1FA}\u{1F1F8}";
+    document.getElementById("choixLangueEssaiNom").textContent = enAnglais ? "Espagnol" : "Anglais";
+}
+function ouvrirLangueEssai(){
+    if(LANGUE_APPRISE === "en") return ouvrirLangueApprise("es");
+    try{ localStorage.setItem(CLE_AVANT_ANGLAIS, LANGUE_APPRISE); }catch(e){}
+    ouvrirLangueApprise("en");
 }
 
 // D'ou l'on vient quand on ouvre l'anglais : l'allemand ou l'espagnol. Le
@@ -14113,6 +14118,7 @@ const I18N = {
         setup_learning_autre: "Espagnol",
         passage_vers_es: "Passage à l'espagnol…",
         passage_vers_de: "Passage à l'allemand…",
+        passage_vers_en: "Passage à l'anglais…",
         setup_uilang_label: "Dans quelle langue veux-tu les explications ?",
         setup_continue: "CONTINUER",
         setup_niveau_label: "Tu connais déjà un peu d'allemand ?",
@@ -15616,6 +15622,7 @@ const I18N = {
         setup_learning_autre: "Spanish",
         passage_vers_es: "Switching to Spanish…",
         passage_vers_de: "Switching to German…",
+        passage_vers_en: "Switching to English…",
         setup_uilang_label: "Which language for the instructions?",
         setup_continue: "CONTINUE",
         setup_niveau_label: "Do you already know some German?",
@@ -28258,14 +28265,9 @@ function toggleUiLang(){
 // anglais n'est pas supprime, seulement masque : il etait deja reserve a
 // l'admin, aucun testeur ne l'a vu. Remettre false le fait revenir tel quel.
 const ANGLAIS_EN_RETRAIT = true;
-// L'autre langue apprise vit dans son propre dossier, a cote de la page :
-// l'app espagnole (espanol/), generee depuis celle-ci par fork.py. Le meme
-// lien marche sur le web et dans les apps iPhone et Android, qui chargent
-// ce site. Le fork le remplace par « ../ » pour revenir a l'allemand.
 // L'autre langue : la meme page, avec la langue dans l'adresse -- elle y est
 // retenue (bascule, v736). Avant, « Espagnol » ouvrait l'app generee par
-// fork.py, dans espanol/.
-const AUTRE_LANGUE_APPRISE_URL = LANGUE_APPRISE === "de" ? "./?apprendre=es" : "./?apprendre=de";
+// fork.py, dans espanol/. L'adresse est faite par ouvrirLangueApprise().
 // L'ESPAGNOL N'EST PROPOSE QUE DANS LES LANGUES OU SON CONTENU EST TRADUIT
 // (13 oct. 2026, decide par Jacques). Les themes, verbes, exercices
 // (espanol/datos) et I18N_ESPAGNOL n'existent qu'en francais et en anglais :
@@ -28309,6 +28311,12 @@ const CLE_ROUVRIR_REGLAGES = "wortando_rouvrirReglages";
 // la visite. On rouvre donc la bienvenue, dans la nouvelle langue.
 const CLE_ROUVRIR_BIENVENUE = "wortando_rouvrirBienvenue";
 function ouvrirAutreLangueApprise(){
+    ouvrirLangueApprise(LANGUE_APPRISE === "de" ? "es" : "de");
+}
+// N'importe quelle langue apprise (29 oct. 2026) : l'anglais passe par ici depuis
+// le meme choix des reglages, avec le meme retour aux reglages et la meme phrase.
+function ouvrirLangueApprise(cible){
+    const adresse = "./?apprendre=" + cible;
     try{
         const ecran = document.querySelector(".screen.active");
         if(ecran && ecran.id === "settings") sessionStorage.setItem(CLE_ROUVRIR_REGLAGES, "1");
@@ -28317,7 +28325,7 @@ function ouvrirAutreLangueApprise(){
     // « Passage a l'espagnol... » (v774) : lu par l'ecran d'ouverture de la page
     // suivante, et montre des maintenant sur celle-ci, le temps qu'elle parte.
     try{
-        const phrase = t(LANGUE_APPRISE !== "de" ? "passage_vers_de" : "passage_vers_es");
+        const phrase = t("passage_vers_" + cible);
         sessionStorage.setItem("wortando_passage", phrase);
         const ouverture = document.getElementById("splashOuverture");
         const texte = document.getElementById("splashPassageTexte");
@@ -28327,8 +28335,8 @@ function ouvrirAutreLangueApprise(){
             if(typeof window.ouvertureCouvrir === "function") window.ouvertureCouvrir();
         }
     }catch(e){}
-    try{ location.href = new URL(AUTRE_LANGUE_APPRISE_URL, location.href).href; }
-    catch(e){ location.href = AUTRE_LANGUE_APPRISE_URL; }
+    try{ location.href = new URL(adresse, location.href).href; }
+    catch(e){ location.href = adresse; }
 }
 // Appelee par le rappel d'authentification (personne connectee) : vrai si la
 // bienvenue a ete rouverte.
