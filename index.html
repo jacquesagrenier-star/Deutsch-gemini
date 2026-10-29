@@ -6599,6 +6599,12 @@ body[data-theme="dark"] .ep-prochain{color:#f3c985;}
    la video ne couvre pas tout l'ecran, d'ou « une bande noire en haut, une bande noire en
    bas » -- le bleu pale de l'accueil, comme les scenes ; bleu nuit en mode nuit. */
 .ep-voile.plein{padding:0; background:#DCE6EC;}
+/* v1004 : AUTOUR DE LA VIDEO, LE FOND DE L'APP (Jacques : « une barre noire en haut, une barre noire
+   en bas -- on devrait la mettre avec le fond qu'on a developpe »). La carte du monde pale, en
+   haut et en bas de l'image, au lieu d'un aplat. */
+.ep-voile.plein, .ep-voile.plein .ep-boite.ep-lecteur, .ep-voile.plein .ep-lecteur video{background:transparent !important;}
+.ep-voile.plein{background:#DCE6EC url("visuel/fond/carte-langues-jour.svg") repeat-x -338px 24px / 960px 378px !important;}
+body[data-theme="dark"] .ep-voile.plein{background:#0E1C26 url("visuel/fond/carte-langues-nuit.svg") repeat-x -338px 24px / 960px 378px !important;}
 body[data-theme="dark"] .ep-voile.plein, body[data-theme="dark"] .ep-boite.ep-lecteur,
 body[data-theme="dark"] .ep-lecteur video{background:#0E1C26;}
 .ep-voile.plein .ep-boite.ep-lecteur{width:100vw; height:100vh; height:100dvh; max-height:none; border-radius:0; display:flex; align-items:center;}
@@ -7699,8 +7705,12 @@ body[data-theme="dark"] #fondMonde .fm-lettres span{color:#41586B; opacity:.55;}
 /* Sur l'accueil : la carte vive, et tout defile doucement de droite a gauche. */
 body:not([data-ecran]) #fondMonde .fm-carte, body[data-ecran="home"] #fondMonde .fm-carte{opacity:1;}
 body:not([data-ecran]) #fondMonde .fm-lettres, body[data-ecran="home"] #fondMonde .fm-lettres{opacity:1;}
-body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 95s linear infinite;}
-body:not([data-ecran]) #fondMonde .fm-lettres-piste, body[data-ecran="home"] #fondMonde .fm-lettres-piste{animation:fmLettres 70s linear infinite;}
+/* v1004 : sur l'accueil, les caracteres se voient (Jacques : « je ne vois plus vraiment les caracteres ») --
+   derriere le verre, a .34 ils disparaissaient. */
+body:not([data-ecran]) #fondMonde .fm-lettres span, body[data-ecran="home"] #fondMonde .fm-lettres span{opacity:.62; color:#8DA3B4;}
+body[data-theme="dark"]:not([data-ecran]) #fondMonde .fm-lettres span, body[data-theme="dark"][data-ecran="home"] #fondMonde .fm-lettres span{opacity:.75; color:#4A6378;}
+body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 170s linear infinite;}   /* v1004 : plus lent (Jacques) */
+body:not([data-ecran]) #fondMonde .fm-lettres-piste, body[data-ecran="home"] #fondMonde .fm-lettres-piste{animation:fmLettres 130s linear infinite;}
 @keyframes fmDefile{from{transform:translateX(-338px);} to{transform:translateX(-1298px);}}
 @keyframes fmLettres{from{transform:translateX(0);} to{transform:translateX(-390px);}}
 @media (prefers-reduced-motion: reduce){ #fondMonde .fm-piste, #fondMonde .fm-lettres-piste{animation:none !important;} }
@@ -7708,9 +7718,10 @@ body:not([data-ecran]) #fondMonde .fm-lettres-piste, body[data-ecran="home"] #fo
 body[data-ecran="sceneSeance"] #fondMonde{display:none;}
 
 /* --- Le verre, une seule recette --- */
-:root{--v-fond:rgba(255,255,255,.52); --v-liser:rgba(255,255,255,.85); --v-ombre:0 12px 30px rgba(20,40,60,.10);
+/* v1004 : ombres resserrees -- larges, elles dessinaient une bande grise derriere la colonne des cartes. */
+:root{--v-fond:rgba(255,255,255,.52); --v-liser:rgba(255,255,255,.85); --v-ombre:0 6px 14px rgba(20,40,60,.07);
       --encre-v:#1C2430; --gris-v:#5B6470; --ambre-v:#A86A0E;}
-body[data-theme="dark"]{--v-fond:rgba(20,36,50,.50); --v-liser:rgba(255,255,255,.14); --v-ombre:0 12px 30px rgba(0,0,0,.35);
+body[data-theme="dark"]{--v-fond:rgba(20,36,50,.50); --v-liser:rgba(255,255,255,.14); --v-ombre:0 6px 14px rgba(0,0,0,.28);
       --encre-v:#EEF2F5; --gris-v:#A9B8C4; --ambre-v:#F0A93C;}
 
 /* --- L'en-tete : les boutons ronds en verre --- */
@@ -7719,7 +7730,14 @@ header .theme-icon-btn, header .avatar{background:var(--v-fond) !important; -web
 
 /* --- L'accueil --- */
 #home .home-greeting-row{flex-wrap:wrap; row-gap:0;}
-#home .home-greeting{font-size:30px !important; font-weight:800 !important; letter-spacing:-.02em; color:var(--encre-v) !important;}
+/* v1004 : le salut plus petit (Jacques : « Bonjour Jacques devrait etre plus petit »), sur UNE ligne
+   avec la flamme et la loupe a sa droite ; « Ta seance t'attend. » dessous. */
+#home .home-greeting{font-size:22px !important; font-weight:800 !important; letter-spacing:-.01em; color:var(--encre-v) !important;
+    flex:0 1 auto !important; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+#home .home-greeting-row{flex-wrap:wrap; align-items:center;}
+#home .home-greeting-row .serie-salut{order:5; margin-inline-start:auto !important;}
+#home .home-greeting-row .search-launch{order:6; margin-inline-start:6px !important;}
+#home .home-greeting-row .serie-salut.hidden ~ .search-launch{margin-inline-start:auto !important;}
 #home .salut-sous{order:20; flex-basis:100%; font-size:13.5px; color:var(--gris-v); margin:-2px 0 4px;}
 #home .home-stats-card{background:transparent !important; box-shadow:none !important; border:0 !important; padding:0 !important;}
 
@@ -7732,7 +7750,10 @@ header .theme-icon-btn, header .avatar{background:var(--v-fond) !important; -web
 #home #seancePilule > .pa-anneau{order:1; width:136px !important; height:136px !important;
     background:conic-gradient(from 0deg, #F6CF8C 0, #E8A23A calc(var(--p) * .6%), #A86A0E calc(var(--p) * 1%), rgba(28,36,48,.10) calc(var(--p) * 1%) 100%) !important;}
 body[data-theme="dark"] #home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #FBE0A8 0, #F2B24A calc(var(--p) * .6%), #D98E1E calc(var(--p) * 1%), rgba(255,255,255,.10) calc(var(--p) * 1%) 100%) !important;}
-#home #seancePilule > .pa-anneau::before{inset:12px !important; background:rgba(255,255,255,.82) !important;}
+#home #seancePilule > .pa-anneau::before{inset:12px !important; background:#F3F6F9 !important; -webkit-mask:none !important; mask:none !important;}
+/* L'objectif atteint : le chiffre en vert ; la nuit, un halo vert au lieu du halo blanc (illisible sur le bleu nuit). */
+#home #seancePilule .pa-anneau.atteint b{color:#1F7A55 !important;}
+body[data-theme="dark"] #home #seancePilule .pa-anneau.atteint b{color:#8ED3AA !important; animation:none; text-shadow:0 0 10px rgba(80,190,130,.55), 0 0 22px rgba(80,190,130,.3) !important;}
 body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:#14283A !important;}
 #home #seancePilule .pa-anneau b{font-size:40px !important; color:var(--encre-v) !important;}
 #home #seancePilule .pa-anneau small{font-size:14px !important; color:var(--gris-v) !important;}
@@ -7773,7 +7794,7 @@ html[dir="rtl"] #home #seancePilule .pa-liste{transform:translateX(50%);}
     background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%) !important;
     box-shadow:inset 0 0 0 3px rgba(0,0,0,.35), inset 0 0 18px rgba(255,255,255,.16), inset 0 -8px 14px -8px rgba(0,0,0,.6),
                0 12px 28px rgba(20,16,10,.30), 0 2px 5px rgba(0,0,0,.15) !important;}
-#home #seancePilule > .pa-play::before, #home .pa-ecoute .pa-play::before{content:""; position:absolute; inset:2px; border-radius:inherit; z-index:-1; pointer-events:none;
+#home #seancePilule > .pa-play::before, #home .pa-ecoute .pa-play::before{content:""; position:absolute; inset:2px; left:2px !important; top:2px !important; width:auto !important; height:auto !important; border-radius:inherit; z-index:-1; pointer-events:none;
     background:linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
                radial-gradient(75% 55% at 55% 125%, rgba(255,200,120,.30), rgba(255,255,255,0) 65%);}
 #home #seancePilule > .pa-play::after, #home .pa-ecoute .pa-play::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; padding:2.2px;
@@ -7795,6 +7816,29 @@ body[data-theme="dark"] #home .pa-ecoute .pa-play svg{fill:#2A1A05 !important;}
 #home #carteVocab .vocab-ligne-niv{white-space:nowrap; min-width:96px; text-align:start;}
 /* Dans « Tout le contenu », la progression reste cachee, comme avant (elle vit sous la seance). */
 #home.vue-contenu #carteVocab{display:none !important;}
+/* v1004 : PLUS DE FLOU GEANT DERRIERE L'ACCUEIL. La carte de stats gardait le blur(22px) de
+   l'ancienne carte : un grand rectangle laiteux derriere tout (Jacques : « un fond opaque,
+   presque la meme couleur »). */
+#home .home-stats-card{-webkit-backdrop-filter:none !important; backdrop-filter:none !important;}
+/* v1004 : « TOUT LE CONTENU » EN VERRE. Les titres de section deviennent des pastilles
+   arrondies en verre (plus de bandeau rectangulaire), les tuiles du verre clair. */
+#home .orb-section{background:var(--v-fond) !important; border-radius:16px !important; padding:9px 14px !important;
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), 0 6px 16px rgba(20,40,60,.08);
+    color:var(--encre-v) !important;}
+#home .orb-section .sec-trait{border-radius:3px;}
+#home #orbGrid > .orb:not(.orb-seance){background:var(--v-fond) !important; border:0 !important;
+    -webkit-backdrop-filter:blur(6px) saturate(1.4) !important; backdrop-filter:blur(6px) saturate(1.4) !important;
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset -1px -1px 0 rgba(255,255,255,.25), 0 4px 12px rgba(20,40,60,.06) !important;}
+/* v1004 : la pousse 🌱 plus grosse (Jacques). */
+#home #seancePilule .seance-pp{font-size:20px !important; min-width:44px;}
+/* v1004 : LE « ×4 » SOUS LE CHIFFRE, plus gros, en vert (proposition C retenue par Jacques :
+   « en dessous de l'objectif du jour, je trouve que c'est bien »). */
+#home #seancePilule .pa-anneau{flex-direction:column;}
+#home #seancePilule .pa-fois{position:relative !important; top:auto !important; right:auto !important; left:auto !important; order:3; margin-top:4px;
+    font-size:15px !important; font-weight:900 !important; padding:2px 10px !important; line-height:1.2 !important; color:#fff !important;
+    border-radius:999px !important; background:linear-gradient(180deg, rgba(120,200,150,.98), rgba(40,128,82,.98)) !important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 3px 8px rgba(30,90,60,.3) !important;}
+#home #seancePilule .pa-anneau.atteint b{font-size:34px !important;}
 #home #carteVocab .carte-vocab-part.sus, #home #carteVocab .carte-vocab-part.cours{background-image:none;}
 
 /* Les scenes : trois par page, en cartes de verre. */
@@ -7921,7 +7965,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1003</span>
+        <span class="subtitle-version">v1004</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -47255,7 +47299,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1003;
+const APP_VERSION = 1004;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
