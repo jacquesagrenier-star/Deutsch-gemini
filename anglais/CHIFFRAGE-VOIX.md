@@ -1,5 +1,11 @@
 # Vraies voix pour l'anglais : chiffrage (28 oct. 2026)
 
+> **29 oct. 2026 : accordé pour A1-A2, en américain.** Jacques : « J'ai ajouté des crédits, donc fais les voix pour A1. Et A2. »
+> - Le comparatif à l'aveugle est produit (1 350 crédits) : `audio/a_ecouter_voix/anglais_us/ECOUTER.html`.
+> - Les 43 lectures en toutes lettres sont faites (`audio/lectures/en.json`, américain et britannique), contrôlées par `audio/lectures.py` et le vérificateur.
+> - Le script est `audio/generer_en.py` : v2 seulement, A1-A2 seulement, et il refuse de tourner tant que la voix n'est pas choisie.
+> - Pas de britannique ni de B1-C1 sans une nouvelle demande de Jacques.
+
 Jacques : « la voix pour apprendre l'anglais est épouvantable ». Deux réponses :
 
 1. **Tout de suite, sans dépense** : la voix du téléphone est mieux choisie. Elle ne prend plus que la variante choisie (en-US ou en-GB) et les meilleures voix de l'appareil, et ne prend jamais les voix fantaisie d'Apple ni les voix Eloquence (voir `scoreVoixAnglaise` dans `index.html`).

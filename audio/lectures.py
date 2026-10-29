@@ -17,12 +17,13 @@ lecture en toutes lettres, ecrite et relue a la main (« drei Euro neunzig »,
 l'app ne sait rien de la lecture.
 
 UN FICHIER PAR LANGUE APPRISE : audio/lectures/<langue>.json, { ecrit: dit }.
-Toute langue future (anglais, japonais...) en a un des sa premiere voix.
+Toute langue future (japonais...) en a un des sa premiere voix ; l'anglais
+a le sien depuis le 29 oct. 2026 (en.json, americain et britannique ensemble).
 
 LA REGLE QUI EMPECHE LE RETOUR DU DEFAUT. Un texte prononce qui contient un
 chiffre DOIT avoir sa lecture, et une lecture ne doit plus contenir de
 chiffre. controler() le dit ; tests/verifier.py l'appelle avant chaque push,
-et generer.py / generer_es.py passent par lecture() avant d'appeler la voix.
+et generer.py / generer_es.py / generer_en.py passent par lecture() avant d'appeler la voix.
 """
 import io
 import json
@@ -81,10 +82,31 @@ def textes_es():
     return sorted(out)
 
 
+def textes_en():
+    """L'anglais (29 oct. 2026) : seulement ce qui a une VRAIE voix -- les
+    niveaux de generer_en.NIVEAUX_AVEC_VOIX (A1-A2 au depart), dans les deux
+    variantes : le britannique coute quatre lectures de plus et sera pret le
+    jour ou Jacques le demande. Le reste de l'anglais passe par la voix du
+    telephone, qui lit les chiffres sans les hacher."""
+    sys.path.insert(0, os.path.join(RACINE, "anglais", "outils"))
+    sys.path.insert(0, os.path.join(RACINE, "audio"))
+    import manifest_voix
+    import generer_en
+    out = set()
+    for v in ("us", "gb"):
+        for e in manifest_voix.entrees(v):
+            if e["niveau"] in generer_en.NIVEAUX_AVEC_VOIX:
+                out.add(e["texte"])
+    return sorted(out)
+
+
+SOURCES = (("de", textes_de), ("es", textes_es), ("en", textes_en))
+
+
 def main():
     sys.stdout.reconfigure(encoding="utf-8")
     probleme = False
-    for langue, source in (("de", textes_de), ("es", textes_es)):
+    for langue, source in SOURCES:
         sans, chiffrees = controler(langue, source())
         print("%s : %d lectures, %d textes a chiffres sans lecture, %d lectures encore chiffrees"
               % (langue, len(table(langue)), len(sans), len(chiffrees)))

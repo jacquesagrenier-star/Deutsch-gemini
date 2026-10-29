@@ -46,9 +46,10 @@ BORD_MAX = -20.0        # dB sous le maximum, aux 5 premieres / dernieres ms ; u
 # Mot seul : parole <= socle + pente x lettres. « ¿Hay…? » de Monica (0,97 s
 # pour 3 lettres) depasse ; les mots sains du corpus restent dessous.
 TRAINE_SOCLE, TRAINE_PENTE = 0.40, 0.10
-ARTICLES = {"el", "la", "los", "las", "un", "una", "unos", "unas"}
+ARTICLES = {"el", "la", "los", "las", "un", "una", "unos", "unas",
+            "the", "a", "an"}      # l'anglais (29 oct. 2026)
 
-DOSSIERS = {"es": ["es-es", "es-419"], "de": [""]}
+DOSSIERS = {"es": ["es-es", "es-419"], "de": [""], "en": ["en-us"]}
 
 
 def pcm(chemin):
@@ -112,13 +113,19 @@ def textes_es():
     return out
 
 
+def textes_en():
+    sys.path.insert(0, os.path.join(RACINE, "anglais", "outils"))
+    import manifest_voix
+    return {"en-us": {e["id"]: e for e in manifest_voix.entrees("us")}}
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--dossiers", default="es", choices=sorted(DOSSIERS))
     p.add_argument("--json", default="")
     p.add_argument("--travailleurs", type=int, default=8)
     a = p.parse_args()
-    textes = textes_es() if a.dossiers == "es" else {}
+    textes = textes_es() if a.dossiers == "es" else textes_en() if a.dossiers == "en" else {}
     suspects = []
     for dossier in DOSSIERS[a.dossiers]:
         base = os.path.join(RACINE, "audio", "mp3", dossier)
