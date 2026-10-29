@@ -7720,6 +7720,14 @@ body[data-theme="dark"] #fondMonde .fm-piste{background-image:url("visuel/fond/c
 #fondMonde .fm-lettres span{position:absolute; font-family:Georgia, "Noto Serif", "Yu Mincho", "Hiragino Mincho ProN", serif;
     font-weight:600; font-size:104px; line-height:1; color:#9FB3C2; opacity:.34;}
 body[data-theme="dark"] #fondMonde .fm-lettres span{color:#41586B; opacity:.55;}
+/* v1021 : AILLEURS, PRESQUE COMME L'ACCUEIL (Jacques, 29 oct. 2026 : « dans les exercices [...] le meme fond
+   que lorsqu'on est a la page d'accueil [...] peut-etre entre les deux, [...] mais pas tres loin » ; « la map
+   monde [...] pas aussi lumineuse, mais plus que ce qu'on a actuellement » ; « la meme chose pour les
+   lettres »). La carte de .38 a .78, les lettres de .34 (sous un voile de .5) a .5 ; toujours immobiles. */
+#fondMonde .fm-carte{opacity:.78;}
+#fondMonde .fm-lettres{opacity:1;}
+#fondMonde .fm-lettres span{opacity:.5;}
+body[data-theme="dark"] #fondMonde .fm-lettres span{opacity:.62;}
 /* Sur l'accueil : la carte vive, et tout defile doucement de droite a gauche. */
 body:not([data-ecran]) #fondMonde .fm-carte, body[data-ecran="home"] #fondMonde .fm-carte{opacity:1;}
 body:not([data-ecran]) #fondMonde .fm-lettres, body[data-ecran="home"] #fondMonde .fm-lettres{opacity:1;}
@@ -8330,7 +8338,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1020</span>
+        <span class="subtitle-version">v1021</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -13638,6 +13646,7 @@ const I18N = {
         rp_q_pluriel: "Quel est le pluriel ?",
         rp_q_dire_mot: "Dis-le à voix haute, avec l'article",
         rp_exception: "⚠️ Exception",
+        art_exception_es: "⚠️ Exception : « {mot} » finit par -{fin}, mais on dit {art} {mot}.",
         son_badge: "Le son du jour",
         son_q: "Écoute chaque mot et regarde les lettres",
         son_q_dire: "À toi : dis ce mot",
@@ -15144,6 +15153,7 @@ const I18N = {
         rp_q_pluriel: "What's the plural?",
         rp_q_dire_mot: "Say it out loud, with the article",
         rp_exception: "⚠️ Exception",
+        art_exception_es: "⚠️ Exception: “{mot}” ends in -{fin}, but it's {art} {mot}.",
         son_badge: "Sound of the day",
         son_q: "Listen to each word and look at the letters",
         son_q_dire: "Your turn: say this word",
@@ -16652,6 +16662,7 @@ const I18N = {
         rp_q_pluriel: "Çoğulu hangisi?",
         rp_q_dire_mot: "Artikeliyle birlikte yüksek sesle söyle",
         rp_exception: "⚠️ İstisna",
+        art_exception_es: "⚠️ İstisna: “{mot}” -{fin} ile bitiyor ama {art} {mot} denir.",
         son_badge: "Günün sesi",
         son_q: "Her kelimeyi dinle ve harflere bak",
         son_q_dire: "Sıra sende: bu kelimeyi söyle",
@@ -18571,6 +18582,7 @@ const I18N = {
         rp_q_pluriel: "Яка форма множини?",
         rp_q_dire_mot: "Скажи вголос, з артиклем",
         rp_exception: "⚠️ Виняток",
+        art_exception_es: "⚠️ Виняток: «{mot}» закінчується на -{fin}, але кажуть {art} {mot}.",
         son_badge: "Звук дня",
         son_q: "Послухай кожне слово й подивись на літери",
         son_q_dire: "Твоя черга: скажи це слово",
@@ -20805,6 +20817,7 @@ const I18N = {
         rp_q_pluriel: "جمعش کدام است؟",
         rp_q_dire_mot: "آن را با حرف تعریف بلند بگو",
         rp_exception: "⚠️ استثنا",
+        art_exception_es: "⚠️ استثنا: «{mot}» به ‎-{fin} ختم می‌شود، اما می‌گوییم {art} {mot}.",
         son_badge: "صدای امروز",
         son_q: "هر واژه را بشنو و به حروف نگاه کن",
         son_q_dire: "نوبت توست: این واژه را بگو",
@@ -22484,6 +22497,7 @@ const I18N = {
         rp_q_pluriel: "ما صيغة الجمع؟",
         rp_q_dire_mot: "قلها بصوت عالٍ مع أداة التعريف",
         rp_exception: "⚠️ استثناء",
+        art_exception_es: "⚠️ استثناء: «{mot}» تنتهي بـ ‎-{fin}، لكن نقول {art} {mot}.",
         son_badge: "صوت اليوم",
         son_q: "استمع إلى كل كلمة وانظر إلى الحروف",
         son_q_dire: "دورك: قل هذه الكلمة",
@@ -22848,6 +22862,7 @@ const I18N = {
         rp_q_pluriel: "Qual é o plural?",
         rp_q_dire_mot: "Diga em voz alta, com o artigo",
         rp_exception: "⚠️ Exceção",
+        art_exception_es: "⚠️ Exceção: “{mot}” termina em -{fin}, mas se diz {art} {mot}.",
         son_badge: "O som do dia",
         son_q: "Ouça cada palavra e olhe as letras",
         son_q_dire: "Sua vez: diga esta palavra",
@@ -24417,6 +24432,7 @@ const I18N = {
         rp_q_pluriel: "Jaka jest liczba mnoga?",
         rp_q_dire_mot: "Powiedz na głos, z rodzajnikiem",
         rp_exception: "⚠️ Wyjątek",
+        art_exception_es: "⚠️ Wyjątek: „{mot}” kończy się na -{fin}, ale mówimy {art} {mot}.",
         son_badge: "Dźwięk dnia",
         son_q: "Posłuchaj każdego słowa i spójrz na litery",
         son_q_dire: "Twoja kolej: powiedz to słowo",
@@ -25986,6 +26002,7 @@ const I18N = {
         rp_q_pluriel: "Какое множественное число?",
         rp_q_dire_mot: "Скажи вслух, с артиклем",
         rp_exception: "⚠️ Исключение",
+        art_exception_es: "⚠️ Исключение: «{mot}» оканчивается на -{fin}, но говорят {art} {mot}.",
         son_badge: "Звук дня",
         son_q: "Послушай каждое слово и посмотри на буквы",
         son_q_dire: "Твоя очередь: скажи это слово",
@@ -39811,12 +39828,26 @@ function tfDans(code, key, vars){
 // Une carte de nom est un TABLEAU : [0] le mot, [1] l'article, [2] le pluriel,
 // et les traductions aux rangs de RANGS_CARTE.nomen. Lire ces rangs ici serait
 // la quatrieme copie de cette connaissance : on passe par texteCarte().
+// v1021 : L'EXCEPTION SE DIT (Jacques, 29 oct. 2026 : « idioma ? La bonne reponse, c'est el idioma. Donc,
+// c'est une exception parce que ca finit par A. [...] on devrait l'indiquer »). En espagnol, -o est
+// masculin et -a feminin : el idioma, el problema, el dia, la mano, la foto disent le contraire. Renvoie
+// la terminaison trompeuse (« a » ou « o »), ou null. Les -ista (el/la artista) ne sont pas des exceptions :
+// ils ont les deux genres selon la personne.
+function exceptionGenreEspagnol(mot, article){
+    if(LANGUE_APPRISE !== "es" || !mot || /\s/.test(mot.trim())) return null;
+    const m = mot.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if(/ista$/.test(m)) return null;
+    if(article === "el" && /a$/.test(m)) return "a";
+    if(article === "la" && /o$/.test(m)) return "o";
+    return null;
+}
 function construireQuizArticle(cartes){
     return cartes.map(item => {
         const carte = item.word;
         const mot = carte[0], article = carte[1];
         const pluriel = (carte[2] || "").trim();
         const aUnPluriel = pluriel && pluriel !== "—" && pluriel !== "-";
+        const exception = exceptionGenreEspagnol(mot, article);
         const ex = {
             // La voix lit « der Tisch », pas « ___ Tisch » : l'enonce porte un
             // blanc, et un blanc ne se prononce pas. Meme raison qu'en v526
@@ -39834,7 +39865,8 @@ function construireQuizArticle(cartes){
             // AUCUN INDICE : le seul indice possible serait le genre, c'est-a-dire
             // la reponse. Un champ vide vaut mieux qu'une ligne qui meuble.
             ex["hint" + suff] = "";
-            ex["explanation" + suff] = article + " " + mot + " · " + labelPluriel
+            ex["explanation" + suff] = (exception ? tfDans(code, "art_exception_es", { mot, art: article, fin: exception })
+                                                  : article + " " + mot) + " · " + labelPluriel
                 + " " + (aUnPluriel ? articlePluriel(article) + pluriel : "—");
         });
         return ex;
@@ -39858,6 +39890,10 @@ function startQuizArticle(){
                 // sur 4 209, et une question sans reponse juste coute plus cher
                 // que six mots absents.
                 if(QUIZ_ARTICLE_GENRES.indexOf(word[1]) < 0) return;
+                // v1021 : en espagnol, les -ista (artista, turista, periodista) ont les deux genres selon
+                // la personne -- « la artista » est juste aussi. Hors du quiz, comme les genres doubles
+                // allemands (Jacques : « Oui, retire-les »).
+                if(LANGUE_APPRISE === "es" && /ista$/i.test(String(word[0] || "").trim())) return;
                 pool.push({ word, index, themeId: levelData.id });
             });
         });
@@ -47739,7 +47775,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1020;
+const APP_VERSION = 1021;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -54881,17 +54917,9 @@ function montrerCartePhrase(item){
         b.addEventListener("click", () => { try{ direAllemand(item.apres.p, { rate: 0.9 }); }catch(e){} });
         el.appendChild(b);
     }
-    // v981 : « je ne peux pas parler / ecouter maintenant », sur l'exercice meme.
-    if(!item.transitDe){
-        const ecoute = ["ecoute", "dictee", "dictee_mot", "rp_chiffres", "rp_epeler"].indexOf(item.forme) >= 0;
-        if((item.forme === "parler" && !MICRO_COUPE) || (ecoute && !SON_COUPE)){
-            const parler = item.forme === "parler";
-            const lien = creer("button", "cp-transit-lien", t(parler ? "tr_lien_parler" : "tr_lien_ecouter"));
-            lien.type = "button";
-            lien.addEventListener("click", (ev) => { ev.stopPropagation(); basculerTransit(parler ? "micro" : "son", true); });
-            el.appendChild(lien);
-        }
-    }
+    // v1021 : plus de liens « je ne peux pas parler / ecouter maintenant » sous l'exercice (Jacques, 29 oct.
+    // 2026 : « on a les deux facons de couper ca ») -- les boutons micro et haut-parleur de la barre des
+    // cartes le font deja (basculerTransit). Les cles tr_lien_* restent, sans emploi.
     el.appendChild(retour);
     actions.appendChild(suite);
     el.appendChild(actions);
