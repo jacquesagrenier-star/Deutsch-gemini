@@ -1010,7 +1010,7 @@ def verifier_lectures(r):
     L = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(L)
     n = 0
-    for langue, source in (("de", L.textes_de), ("es", L.textes_es)):
+    for langue, source in L.SOURCES:
         try:
             textes = source()
         except Exception as e:
@@ -1022,7 +1022,7 @@ def verifier_lectures(r):
         for x in chiffrees:
             r.echec("lectures", "%s : lecture encore chiffree : %s" % (langue, " / ".join(x.splitlines())[:90]))
         n += len(L.table(langue))
-    print("   lectures        : %d textes a chiffres dits en lettres (de, es)" % n)
+    print("   lectures        : %d textes a chiffres dits en lettres (de, es, en)" % n)
     r.controle(n or 1)
 
 

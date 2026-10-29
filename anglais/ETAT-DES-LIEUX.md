@@ -196,7 +196,7 @@ en espagnol :
 | Premiers pas | 8 étapes, 190 éléments | 8, 191 | **À écrire** sur le modèle espagnol |
 | Scènes | 43 | 43 (mêmes images, `mots.json`) | **Les mêmes images et zones**, avec le mot anglais de chaque mot allemand (≈ 480 mots, dérivables de `traduction_en`, à relire). `construire.py` fera `scene-<scène>.en.js` |
 | Mosaïque | 65 tableaux | 66 | **67 tableaux de peintres américains**, choisis par toi le 29 oct. (v1013) : `anglais/mosaique/` |
-| Voix | Aurora (ElevenLabs) | Lolita / Monica | **Celle du téléphone** (`en-US`, `en-GB`). ElevenLabs plus tard, sur ton accord |
+| Voix | Aurora (ElevenLabs) | Lolita / Monica | **ElevenLabs en américain, A1-A2** (accordé le 29 oct., `audio/generer_en.py`, `audio/mp3/en-us/`) ; le téléphone pour B1-C1 et pour le britannique |
 
 Paliers suivants : A2 (les fichiers de l'ancien module sont surtout A2-B1 : phrasal verbs,
 GB/US, expressions), puis B1-C1, sur le même modèle.
