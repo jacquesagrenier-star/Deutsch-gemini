@@ -12842,7 +12842,11 @@ const LANGUE_ANGLAIS = {
     nom:     "English",
     voix:    VARIANTE_ANGLAIS === "gb" ? "en-GB" : "en-US",
     donnees: RACINE_DEPOT + "anglais/",
-    audio:   "",
+    // LA VOIX ENREGISTREE (29 oct. 2026, audio/generer_en.py) : l'americain,
+    // A1-A2 seulement, accorde par Jacques. Un fichier absent (B1 et au-dela)
+    // fait parler la voix du telephone, comme pour l'espagnol ; le britannique
+    // n'a pas encore de voix enregistree : telephone pour tout.
+    audio:   VARIANTE_ANGLAIS === "gb" ? "" : "https://deutschai-b6fbb.web.app/en-us/",
     fichiers: {
         "verbe.json":         DOSSIER_ANGLAIS + "verbes.json",
         "adjectif.json":      DOSSIER_ANGLAIS + "adjectifs.json",
@@ -54154,6 +54158,10 @@ function montrerCartePhrase(item){
                     // majuscule, qui distingue le nom (« Essen » / « essen »).
                     let dit = x.m.replace(/^[¿¡«"(]+|[.,;:!?»")]+$/g, "");
                     if(LANGUE_APPRISE === "es") dit = dit.toLowerCase();
+                    // L'anglais aussi (29 oct. 2026, anglais/outils/manifest_voix.py) :
+                    // « Here » en tete de phrase est le fichier de « here » ; seul
+                    // « I » (et I'm, I've...) garde sa capitale, qui ne tombe jamais.
+                    if(LANGUE_APPRISE === "en" && !/^I(\b|')/.test(dit)) dit = dit.toLowerCase();
                     if(dit && /[\p{L}\p{N}]/u.test(dit)) try{ direAllemand(dit, { rate: 0.9 }); }catch(e){}
                 }
                 else banque.appendChild(tuile);

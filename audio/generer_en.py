@@ -11,9 +11,9 @@ seulement A1-A2 : le britannique et B1-C1 se feront sur sa demande. Le reste
 de l'anglais garde la voix du telephone -- l'app la prend des qu'un fichier
 manque (voir LANGUE_ANGLAIS.audio dans index.html).
 
-LA VOIX est celle que Jacques choisit au comparatif a l'aveugle
-(anglais/outils/echantillons_voix.py, audio/a_ecouter_voix/anglais_us/). Tant
-qu'elle n'est pas choisie, VOIX["us"] est vide et le script refuse de tourner.
+LA VOIX : SARAH (EXAVITQu4vr4xnSDxMaL), choisie par Jacques le 29 oct. 2026 au
+comparatif a l'aveugle (VOIX-E ; audio/a_ecouter_voix/anglais_us/, cle dans
+CLE-du-comparatif-anglais_us.json) : « La derniere voix feminine. » puis « e ».
 
 MULTILINGUAL V2 SEULEMENT. Flash est interdit depuis le 12 oct. 2026 (voix
 « metallique ») : --modele n'existe pas ici, a dessein.
@@ -50,7 +50,7 @@ from recouper import recouper, Refus         # noqa
 # (https://deutschai-b6fbb.web.app/en-us/<id>.mp3). Le britannique aura le sien
 # (en-gb) le jour ou il le demandera.
 VOIX = {
-    "us": ("", "en-us"),
+    "us": ("EXAVITQu4vr4xnSDxMaL", "en-us"),     # Sarah
 }
 NIVEAUX_AVEC_VOIX = ("A1", "A2")
 PORTEUSE = "Word: %s."
@@ -68,6 +68,15 @@ def main():
     p.add_argument("--reprendre-refus", action="store_true",
                    help="ne refaire que les refus, avec la porteuse de --porteuse")
     p.add_argument("--porteuse", default=PORTEUSE)
+    # LE DERNIER RECOURS DES REFUS (29 oct. 2026). Sarah enchaine « Word » et
+    # le mot sans pause sur 70 mots sur 3 613, avec « Word: » comme avec
+    # « Word. » : recouper.py ne sait ou couper. La porteuse sert a dire la
+    # LANGUE au modele ; en anglais, sa langue par defaut, un mot seul suivi
+    # d'un point se lit juste. On le genere donc tel quel, sans decoupage.
+    p.add_argument("--sans-porteuse", action="store_true",
+                   help="avec --reprendre-refus : le mot seul (« bottle. »), sans decoupage")
+    p.add_argument("--travailleurs", type=int, default=4,
+                   help="appels en parallele (10 180 appels un par un : quatre heures)")
     p.add_argument("--sources", default="",
                    help="ne produire que ces sources (prefixes, ex. noms,verbes)")
     a = p.parse_args()
@@ -97,7 +106,8 @@ def main():
             del refus[e["id"]]
         bruts = os.path.join(bruts, "".join(c if c.isalnum() else "_" for c in a.porteuse))
     dit = lambda e: lectures.lecture("en", e["texte"])
-    texte_de = lambda e: (a.porteuse % dit(e)) if " " not in e["texte"] else dit(e)
+    seul = lambda e: dit(e) if dit(e).endswith((".", "?", "!")) else dit(e) + "."
+    texte_de = lambda e: (seul(e) if a.sans_porteuse else a.porteuse % dit(e)) if " " not in e["texte"] else dit(e)
     sans, _ = lectures.controler("en", [e["texte"] for e in a_faire])
     if sans:
         sys.exit("%d textes a chiffres sans lecture (audio/lectures/en.json), dont : %s"
@@ -114,46 +124,66 @@ def main():
     os.makedirs(sortie, exist_ok=True)
     os.makedirs(bruts, exist_ok=True)
     cle = generer.cle_api()
-    depense = faits = 0
+    # EN PARALLELE (29 oct. 2026) : chaque appel attend la voix ~1,5 s ; un a
+    # un, l'A1-A2 prenait quatre heures. Le plafond est RESERVE avant l'appel,
+    # sous verrou : il ne peut pas etre depasse par des fils concurrents.
+    import threading
+    from concurrent.futures import ThreadPoolExecutor
+    verrou = threading.Lock()
+    etat = {"depense": 0, "faits": 0, "plafond": False}
     debut = time.time()
-    try:
-        for e in a_faire:
-            if e["id"] in refus:
-                continue
-            texte = texte_de(e)
-            prix = int(len(texte) * taux)
-            if depense + prix > a.plafond:
-                print("plafond atteint (%d credits). Relancer reprend la suite." % depense)
-                break
-            cible = os.path.join(sortie, e["id"] + ".mp3")
-            try:
-                if " " in e["texte"]:
-                    son = appeler(voix, texte, generer.REGLAGES, modele, cle)
-                    open(cible + ".part", "wb").write(son)
+
+    def un(e):
+        if e["id"] in refus or etat["plafond"]:
+            return
+        texte = texte_de(e)
+        prix = int(len(texte) * taux)
+        with verrou:
+            if etat["depense"] + prix > a.plafond:
+                etat["plafond"] = True
+                return
+            etat["depense"] += prix
+        cible = os.path.join(sortie, e["id"] + ".mp3")
+        try:
+            if " " in e["texte"] or a.sans_porteuse:
+                son = appeler(voix, texte, generer.REGLAGES, modele, cle)
+                open(cible + ".part", "wb").write(son)
+                os.replace(cible + ".part", cible)
+            else:
+                brut = os.path.join(bruts, e["id"] + ".mp3")
+                if not os.path.exists(brut):
+                    son = appeler(voix, texte, dict(generer.REGLAGES, speed=VITESSE_PORTEUSE), modele, cle)
+                    open(brut, "wb").write(son)
+                try:
+                    recouper(brut, cible + ".part", texte=e["texte"])
                     os.replace(cible + ".part", cible)
-                else:
-                    brut = os.path.join(bruts, e["id"] + ".mp3")
-                    if not os.path.exists(brut):
-                        son = appeler(voix, texte, dict(generer.REGLAGES, speed=VITESSE_PORTEUSE), modele, cle)
-                        open(brut, "wb").write(son)
-                    try:
-                        recouper(brut, cible + ".part", texte=e["texte"])
-                        os.replace(cible + ".part", cible)
-                    except Refus as err:
+                except Refus as err:
+                    with verrou:
                         refus[e["id"]] = {"texte": e["texte"], "raison": str(err)}
-                        if os.path.exists(cible + ".part"):
-                            os.remove(cible + ".part")
-            except generer.TexteBloque:
+                    if os.path.exists(cible + ".part"):
+                        os.remove(cible + ".part")
+        except generer.TexteBloque:
+            with verrou:
                 refus[e["id"]] = {"texte": e["texte"], "raison": "refuse par ElevenLabs"}
-            depense += prix
-            faits += 1
-            if faits % 100 == 0:
+        except Exception as err:          # une panne passagere : le fichier manque, relancer le refera
+            print("  ECHEC %s : %s" % (e["texte"][:40], str(err)[:120]), flush=True)
+            return
+        with verrou:
+            etat["faits"] += 1
+            if etat["faits"] % 200 == 0:
                 ecoule = time.time() - debut
-                print("  %5d/%d  %7d credits  reste ~%d min" % (faits, len(a_faire), depense,
-                      int((len(a_faire) - faits) * ecoule / faits / 60)), flush=True)
+                print("  %5d/%d  %7d credits  reste ~%d min" % (etat["faits"], len(a_faire), etat["depense"],
+                      int((len(a_faire) - etat["faits"]) * ecoule / etat["faits"] / 60)), flush=True)
                 json.dump(refus, io.open(refus_chemin, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+
+    try:
+        with ThreadPoolExecutor(max_workers=a.travailleurs) as ex:
+            list(ex.map(un, a_faire))
     except KeyboardInterrupt:
         print("interrompu -- ce qui est fait est garde.")
+    if etat["plafond"]:
+        print("plafond atteint (%d credits). Relancer reprend la suite." % etat["depense"])
+    depense, faits = etat["depense"], etat["faits"]
     json.dump(refus, io.open(refus_chemin, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("fait : %d appels, %d credits, %d refus au total" % (faits, depense, len(refus)))
 

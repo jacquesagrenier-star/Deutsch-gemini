@@ -5,6 +5,14 @@
 > - Les 43 lectures en toutes lettres sont faites (`audio/lectures/en.json`, américain et britannique), contrôlées par `audio/lectures.py` et le vérificateur.
 > - Le script est `audio/generer_en.py` : v2 seulement, A1-A2 seulement, et il refuse de tourner tant que la voix n'est pas choisie.
 > - Pas de britannique ni de B1-C1 sans une nouvelle demande de Jacques.
+> - **Fait le même jour.** Jacques retient VOIX-E, **Sarah** (« La dernière voix féminine. » puis « e ») ; le doublon (Brian, C = D) n'a pas été noté. Il y a 10 180 fichiers A1-A2 américains.
+>   - **Crédits dépensés : 210 411 au total.**
+>     - comparatif : 1 350 ;
+>     - essai : 1 999 ;
+>     - génération : 205 291 ;
+>     - reprises : 1 274 + 492 + 5.
+>   - **Les reprises.** 95 mots sur 3 613 ne se laissaient pas découper derrière « Word: ». 70 l'étaient encore derrière « Word. » : Sarah enchaîne la porteuse et le mot sans pause. Ces 70 sont dits seuls, avec un point (`--sans-porteuse`), ce qui est sans risque pour une voix anglaise. « girl » était coupé trop court : refait seul.
+>   - **Le contrôle.** `controler_sons.py` ne trouve ni SATURE ni CLIC. Les 12 TRAINE sont des sifflantes finales (bus, six, box) et des sigles épelés (ATM, Wi-Fi) : plus de 90 % de l'énergie au-dessus de 4 kHz, donc aucune voyelle tenue.
 
 Jacques : « la voix pour apprendre l'anglais est épouvantable ». Deux réponses :
 
