@@ -313,6 +313,14 @@ html,body{margin:0}
     <div id="splashPassage"><div class="passage-points"><i></i><i></i></div><p id="splashPassageTexte"></p></div>
 </div>
 <script>
+// v1008 : A L'OUVERTURE, TOUJOURS EN HAUT (Jacques, 29 oct. 2026 : « quand on ouvre l'application,
+// on soit toujours en haut completement, pas scrolle en bas »). Le navigateur et le WebView
+// restaurent sinon la derniere position de defilement.
+try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }catch(e){}
+addEventListener("load", () => { try{ scrollTo(0, 0); }catch(e){} });
+addEventListener("pageshow", () => { try{ scrollTo(0, 0); }catch(e){} });
+</script>
+<script>
 // ⚠️ LU AVANT L'OUVERTURE, PAS APRES. Ce qui suit decide si la page est une
 // page d'app ou une page de reinitialisation, et cette reponse est attendue par
 // trois endroits qui s'executent tot : l'ecran d'ouverture (qui ne doit pas
@@ -7962,6 +7970,55 @@ body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
     100%{transform:rotate(0deg);}}
 @media (prefers-reduced-motion: reduce){ .ep-ligne-ico .clap-bras{animation:none;} }
 
+/* v1008 : RETOUCHES DES ANIMATIONS (Jacques, 29 oct. 2026).
+   - Le salut encore plus petit (« Bonjour Jacques, c'est trop gros »).
+   - Plus de lueur qui tourne sur les ▶ d'Ecouter et des episodes (« c'est trop »).
+   - « Continuer la seance » : le haut tout noir -- plus de reflet ni de coin pale en haut a gauche
+     (« c'est bizarre que ca soit plus pale ») ; la lueur qui fait le tour reste, un peu plus vite. */
+#home .home-greeting{font-size:18px !important;}
+#home .pa-ecoute .pa-play::after{animation:none !important;
+    background:linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%) !important;}
+#home #seancePilule > .pa-play::before{content:none !important;}
+/* Jacques : « la bande du haut noire uniforme, mais plus foncee que l'interieur ; puis le reste,
+   un plus pale autour ». Une bande du haut d'un noir profond, un interieur un cran plus clair, et un
+   anneau pale tout autour (uniforme, sans coin plus clair), ou passe la lueur. */
+#home #seancePilule > .pa-play{background:linear-gradient(180deg, rgba(3,3,3,.99) 0%, rgba(5,5,5,.99) 40%, rgba(34,32,30,.95) 100%) !important;}
+body[data-theme="dark"] #home #seancePilule > .pa-play{background:linear-gradient(180deg, rgba(190,120,20,.96) 0%, rgba(196,126,24,.95) 40%, rgba(236,168,66,.90) 100%) !important;}
+#home #seancePilule > .pa-play::after{animation-duration:10s !important;
+    background:conic-gradient(from var(--tour), rgba(255,255,255,0) 0deg 300deg, rgba(255,255,255,.95) 338deg, rgba(255,255,255,0) 360deg),
+               linear-gradient(rgba(255,255,255,.45), rgba(255,255,255,.45)) !important;}
+
+/* v1008 : LE TABLEAU DANS UN CADRE -- « verre et biseau dore » (proposition 4 retenue par Jacques,
+   29 oct. 2026 : « un cadre pour la peinture [...] un melange de moderne et d'ancien »). Le verre de
+   l'app autour, un biseau dore, des coins arrondis. */
+#home #accueilRaccourcis #tuileTableau{padding:12px !important; border-radius:26px !important; overflow:visible !important;}
+#home #accueilRaccourcis #tuileTableau .vignette-tableau{position:relative; height:auto !important; padding:3px; border-radius:16px !important; box-sizing:border-box;
+    background:linear-gradient(135deg, #F6DC95, #C08E2E 45%, #F8E6B0 60%, #B07E22) !important;
+    box-shadow:0 4px 12px rgba(120,80,20,.18);}
+#home #accueilRaccourcis #tuileTableau .vignette-tableau img{display:block; width:100%; height:176px !important; object-fit:cover; border-radius:13px;}
+#home #accueilRaccourcis #tuileTableau .vignette-pct{bottom:14px !important; inset-inline-start:14px !important;}
+body[data-theme="dark"] #home #accueilRaccourcis #tuileTableau .vignette-tableau{
+    background:linear-gradient(135deg, #E9C878, #A87A22 45%, #F0D79A 60%, #8E6418) !important; box-shadow:0 4px 14px rgba(0,0,0,.35);}
+
+/* v1008 : LE TABLEAU EN PLEIN ECRAN, MEME CADRE ET NOUVEAU FOND (Jacques : « quand on va ouvrir le
+   tableau en plein ecran, la meme cadre, puis le nouveau fond »). Le fond de l'app (carte du monde),
+   et autour de la toile le verre et le biseau dore de l'accueil. Le texte suit le fond. */
+.mos-plein{background:#DCE6EC url("visuel/fond/carte-langues-jour.svg") repeat-x -338px 24px / 960px 378px !important;}
+body[data-theme="dark"] .mos-plein{background:#0E1C26 url("visuel/fond/carte-langues-nuit.svg") repeat-x -338px 24px / 960px 378px !important;}
+.mos-plein-toile{border:0 !important; padding:3px; border-radius:16px; box-sizing:border-box; max-width:calc(100% - 30px) !important; max-height:70vh !important;
+    background:linear-gradient(135deg, #F6DC95, #C08E2E 45%, #F8E6B0 60%, #B07E22);
+    box-shadow:0 0 0 12px rgba(255,255,255,.55), 0 0 0 13.5px rgba(255,255,255,.95), 0 20px 44px rgba(20,40,60,.25) !important;}
+body[data-theme="dark"] .mos-plein-toile{background:linear-gradient(135deg, #E9C878, #A87A22 45%, #F0D79A 60%, #8E6418);
+    box-shadow:0 0 0 12px rgba(20,36,50,.6), 0 0 0 13.5px rgba(255,255,255,.16), 0 20px 44px rgba(0,0,0,.5) !important;}
+.mos-plein-legende, .mos-plein-intro{margin-top:14px;}
+body:not([data-theme="dark"]) .mos-plein-legende{color:#1C2430;}
+body:not([data-theme="dark"]) .mos-plein-legende .mos-peintre{color:#1C2430;}
+body:not([data-theme="dark"]) .mos-plein-legende .mos-titre{color:#4C566B;}
+body:not([data-theme="dark"]) .mos-plein-legende .mos-annee{color:#5B6470;}
+body:not([data-theme="dark"]) .mos-plein-notice, body:not([data-theme="dark"]) .mos-plein-reste{color:#4C566B;}
+body:not([data-theme="dark"]) .mos-plein-intro{color:#4C566B;}
+body:not([data-theme="dark"]) .mos-plein-intro strong{color:#1C2430;}
+
 /* --- Les cartes (flashcards) : en verre --- */
 .flashcard-face{background:rgba(255,255,255,.80) !important; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.95), 0 12px 30px rgba(20,40,60,.12) !important; border-color:transparent !important;}
 body[data-theme="dark"] .flashcard-face, body[data-theme="dark"] .flashcard-front{background:rgba(18,34,48,.84) !important; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.12), 0 12px 30px rgba(0,0,0,.35) !important;}
@@ -8035,7 +8092,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1007</span>
+        <span class="subtitle-version">v1008</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -15881,7 +15938,7 @@ const I18N = {
         ecoute_sens_cible_connu: "German first",
         ecoute_sens_cible_connu_d: "you recognise, then you check",
         ecoute_level_title: "Choose a level",
-        ecoute_phrase_title: "Understand by ear",
+        ecoute_phrase_title: "Listening comprehension",   // v1008 : « Understand by ear » calquait le français (relecture de Marina, germanophone)
         ecoute_phrase_desc: "A sentence is spoken, never written: choose what it means. It appears afterwards, to reread while playing it again. This one does count towards your progress.",
         ecoute_phrase_topic: "Listening",
         ecoute_phrase_question: "What did you just hear?",
@@ -47378,7 +47435,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1007;
+const APP_VERSION = 1008;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
