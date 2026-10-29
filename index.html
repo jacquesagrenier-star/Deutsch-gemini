@@ -8169,21 +8169,42 @@ body[data-theme="dark"] #nextBadgeBox .next-badge-track{background:rgba(255,255,
    2026 : « quand je clique sur mes 5 jours, le background, c'est pas la meme chose [...] le meme
    background que j'ai ailleurs » ; « la meme chose pour le background d'une video »). Le degrade E et
    la carte du monde pale ; les cases et les encadres en verre blanc par-dessus. */
-.cal-serie, .bilan-carte{background:url("visuel/fond/carte-langues-jour.svg") repeat-x -120px 30px / 640px 252px,
+.bilan-carte{background:url("visuel/fond/carte-langues-jour.svg") repeat-x -120px 30px / 640px 252px,
     linear-gradient(180deg, #82AFDB 0%, #A4C6E7 55%, #C0D6EA 100%) !important;}
-body[data-theme="dark"] .cal-serie, body[data-theme="dark"] .bilan-carte{background:url("visuel/fond/carte-langues-nuit.svg") repeat-x -120px 30px / 640px 252px, #0E1C26 !important;}
+body[data-theme="dark"] .bilan-carte{background:url("visuel/fond/carte-langues-nuit.svg") repeat-x -120px 30px / 640px 252px, #0E1C26 !important;}
 .ep-voile.plein{background:url("visuel/fond/carte-langues-jour.svg") repeat-x -338px 24px / 960px 378px, linear-gradient(180deg, #82AFDB 0%, #A4C6E7 55%, #C0D6EA 100%) !important;}
-.cal-serie-case:not(.fait){background:rgba(255,255,255,.62) !important;}
-body[data-theme="dark"] .cal-serie-case:not(.fait){background:rgba(255,255,255,.10) !important;}
-.cal-serie-detail, .bilan-chiffre, .cal-serie-bilan{background:rgba(255,255,255,.66) !important;}
-.cal-serie-enc, .bilan-notion, .bilan-fin{background:rgba(255,255,255,.66) !important;}
-body[data-theme="dark"] .bilan-notion, body[data-theme="dark"] .bilan-fin{background:rgba(20,36,50,.72) !important;}
-body[data-theme="dark"] .cal-serie-detail, body[data-theme="dark"] .bilan-chiffre, body[data-theme="dark"] .cal-serie-bilan,
-body[data-theme="dark"] .cal-serie-enc{background:rgba(20,36,50,.72) !important;}
-.cal-serie-sous, .cal-serie-unite, .cal-serie-legende, .cal-serie-jour{color:#2E3B4E !important;}
-body[data-theme="dark"] .cal-serie-jour{color:#C3CDD8 !important;}
-body[data-theme="dark"] .cal-serie-sous, body[data-theme="dark"] .cal-serie-unite, body[data-theme="dark"] .cal-serie-legende{color:#C3CDD8 !important;}
+.bilan-chiffre, .bilan-notion, .bilan-fin{background:rgba(255,255,255,.66) !important;}
+body[data-theme="dark"] .bilan-chiffre, body[data-theme="dark"] .bilan-notion, body[data-theme="dark"] .bilan-fin{background:rgba(20,36,50,.72) !important;}
 .bilan-carte .bilan-dates{color:#2E3B4E;}
+
+/* v1019 : LA FENETRE DE LA FLAMME REVIENT AU BLANC, AVEC UN HALO DE FEU QUI BRULE (Jacques, 29 oct. 2026 :
+   la carte du monde, « c'est pas bon » ; proposition 2 retenue : « Halo de feu derriere la flamme. Est-ce
+   que tu peux le faire bouger aussi ? [...] comme si c'est un feu qui brule »). Deux lueurs derriere la
+   flamme, orange et or, qui respirent et vacillent a des rythmes differents, pour qu'on ne voie jamais
+   la boucle. Immobiles si le telephone demande moins de mouvement. */
+.cal-serie::before, .cal-serie::after{content:""; position:absolute; z-index:-1; pointer-events:none; border-radius:50%;}
+.cal-serie::before{left:-40px; top:-46px; width:220px; height:190px;
+    background:radial-gradient(closest-side, rgba(255,170,70,.55), rgba(255,140,40,.22) 55%, rgba(255,140,40,0));
+    animation:haloFeu 1.9s linear infinite;}
+.cal-serie::after{left:4px; top:-6px; width:120px; height:110px;
+    background:radial-gradient(closest-side, rgba(255,222,120,.65), rgba(255,190,80,.25) 60%, rgba(255,190,80,0));
+    animation:haloCoeur 1.1s linear infinite;}
+/* « Comme un feu qui crepite » : des sautes breves et irregulieres plutot qu'une respiration lente. */
+@keyframes haloFeu{0%,100%{opacity:.78; transform:scale(1)} 9%{opacity:.95; transform:scale(1.06) translateY(-2px)} 14%{opacity:.72; transform:scale(.98)}
+    31%{opacity:1; transform:scale(1.1) translateY(-4px)} 37%{opacity:.8; transform:scale(1.01)} 52%{opacity:.9; transform:scale(1.05) translateY(-2px)}
+    58%{opacity:.68; transform:scale(.96)} 74%{opacity:1; transform:scale(1.12) translateY(-5px)} 81%{opacity:.82; transform:scale(1.02)}}
+@keyframes haloCoeur{0%,100%{opacity:.8; transform:scale(1)} 12%{opacity:1; transform:scale(1.12) translateY(-3px)} 20%{opacity:.7; transform:scale(.95)}
+    43%{opacity:.95; transform:scale(1.07) translateY(-2px)} 49%{opacity:.62; transform:scale(.92)} 68%{opacity:1; transform:scale(1.14) translateY(-4px)} 76%{opacity:.78; transform:scale(1)}}
+/* Les braises : de petites etincelles qui montent de la flamme et s'eteignent (voir ouvrirCalendrierSerie). */
+.cal-braises{position:absolute; left:14px; top:8px; width:48px; height:50px; z-index:0; pointer-events:none;}
+.cal-braises i{position:absolute; bottom:0; width:4px; height:4px; border-radius:50%; background:#FFC24A;
+    box-shadow:0 0 6px 2px rgba(255,150,40,.75); opacity:0; animation:braise 1.6s ease-out infinite;}
+@keyframes braise{0%{opacity:0; transform:translate(0,0) scale(1)} 12%{opacity:1} 100%{opacity:0; transform:translate(var(--dx),-44px) scale(.3)}}
+@media (prefers-reduced-motion: reduce){ .cal-braises{display:none;} }
+body[data-theme="dark"] .cal-serie::before{background:radial-gradient(closest-side, rgba(255,150,50,.42), rgba(255,120,30,.16) 55%, rgba(255,120,30,0));}
+body[data-theme="dark"] .cal-serie::after{background:radial-gradient(closest-side, rgba(255,205,100,.45), rgba(255,170,60,.16) 60%, rgba(255,170,60,0));}
+.cal-serie{overflow:hidden;}
+@media (prefers-reduced-motion: reduce){ .cal-serie::before, .cal-serie::after{animation:none;} }
 
 /* v1017 : LA FENETRE DES BADGES (depuis la ligne du prochain badge de l'accueil). Le verre de la
    fenetre de la flamme ; le badge en train de se debloquer cerne d'ambre, a demi colore, avec sa barre. */
@@ -8224,7 +8245,7 @@ body[data-theme="dark"] .mos-palier:not(.mp-seul){background:rgba(20,36,50,.94);
 /* v1017 : LA GALERIE, UN TABLEAU PAR RANGEE, DANS LE CADRE F (Jacques, 29 oct. 2026 : « l'encadre
    autour des mosaiques qui sont deja la » ; « juste une par rangee pour qu'il soit plus gros et qu'on
    puisse les defiler »). Le tableau entier, sans recadrage, dans le verre et le biseau dore de l'accueil. */
-#galerieMosaiques.galerie-grille{grid-template-columns:minmax(0, 1fr); gap:22px;}
+#galerieMosaiques.galerie-grille{grid-template-columns:minmax(0, 1fr); gap:22px; margin-top:22px;} /* v1019 : de l'air sous « Ta galerie » (Jacques) */
 #galerieMosaiques .galerie-item{padding:16px 16px 12px; border-radius:30px; background:rgba(255,255,255,.66);
     box-shadow:inset 2px 2px 0 #fff, inset -1px -2px 0 rgba(20,40,60,.08), 0 22px 40px rgba(20,40,60,.18), 0 3px 8px rgba(20,40,60,.08);}
 body[data-theme="dark"] #galerieMosaiques .galerie-item{background:rgba(20,36,50,.72); box-shadow:inset 2px 2px 0 rgba(255,255,255,.16), 0 22px 40px rgba(0,0,0,.45);}
@@ -8302,7 +8323,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1018</span>
+        <span class="subtitle-version">v1019</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9703,7 +9724,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
 
 <section id="galerieMosaique" class="screen">
     <button class="back" onclick="goHome()"><span data-i18n="back_button">‹ Retour</span></button>
-    <p class="kicker" data-i18n="mosaique_galerie_kicker">Tes tableaux</p>
+    <!-- v1019 : plus de surtitre « Tes tableaux » (Jacques : « redondant, Ta galerie, c'est suffisant »). -->
     <h2 data-i18n="mosaique_galerie">Ta galerie</h2>
     <div id="galerieMosaiques" class="galerie-grille"></div>
 </section>
@@ -37806,6 +37827,17 @@ function ouvrirCalendrierSerie(ev){
     const tete = creer("span");
     tete.append(creer("span", "cal-serie-nombre", String(n)), creer("span", "cal-serie-unite", uniteSerie(n) + " " + t("home_serie_suffixe")));
     titre.appendChild(tete);
+    // v1019 : des braises qui montent de la flamme, « comme un feu qui crepite » (Jacques).
+    const braises = creer("span", "cal-braises");
+    for(let i = 0; i < 7; i++){
+        const e = creer("i");
+        e.style.left = (14 + Math.random() * 24) + "px";
+        e.style.setProperty("--dx", Math.round(Math.random() * 24 - 12) + "px");
+        e.style.animationDelay = (Math.random() * 1.6).toFixed(2) + "s";
+        e.style.animationDuration = (1.2 + Math.random() * 0.9).toFixed(2) + "s";
+        braises.appendChild(e);
+    }
+    b.appendChild(braises);
     b.appendChild(titre);
     b.appendChild(creer("p", "cal-serie-sous", t("serie_deux_semaines")));
     const grille = creer("div", "cal-serie-grille");
@@ -47699,7 +47731,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1018;
+const APP_VERSION = 1019;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
