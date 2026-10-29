@@ -7934,6 +7934,21 @@ body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
 @keyframes tourLueur{to{--tour:360deg;}}
 @media (prefers-reduced-motion: reduce){ #home .pa-ecoute .pa-play::after{animation:none;} }
 
+/* v1007 : « TA SEANCE T'ATTEND » RETIRE, la seance remonte (Jacques, 29 oct. 2026 : « je ne
+   mettrai pas ta seance t'attend [...] je remonterai ma seance du jour plus haut »). */
+#home .salut-sous{display:none !important;}
+#home .home-greeting-row{margin-bottom:4px !important;}
+#home #orbGrid{margin-top:6px !important;}
+/* v1007 : SUR « CONTINUER LA SEANCE », LA LUEUR QUI FAIT LE TOUR, comme sur les ▶ d'Ecouter et des
+   episodes, mais beaucoup plus lente (Jacques : « au lieu d'avoir le reflet, je mettrais le contour
+   [...] je ferais tourner ca beaucoup plus lentement »). Le reflet qui glissait (v1006) s'en va. */
+#home #seancePilule .pa-lueur{display:none !important;}
+#home #seancePilule > .pa-play::after{
+    background:conic-gradient(from var(--tour), rgba(255,255,255,0) 0deg 300deg, rgba(255,255,255,.95) 338deg, rgba(255,255,255,0) 360deg),
+               linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%) !important;
+    padding:2.4px !important; animation:tourLueur 16s linear infinite;}
+@media (prefers-reduced-motion: reduce){ #home #seancePilule > .pa-play::after{animation:none;} }
+
 /* v1006 : LE CLAP S'ANIME (Jacques : « le clap, monter puis descendre tranquillement, comme pour
    qu'on commence la video »). Le bras se leve doucement, marque un temps, puis se rabat sur
    l'ardoise ; charniere au coin gauche. Immobile si le telephone demande moins d'animations. */
@@ -8020,7 +8035,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1006</span>
+        <span class="subtitle-version">v1007</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -30381,7 +30396,15 @@ async function programmerRappels(){
             id: RAPPEL_ID0 + liste.length,
             title: t("rappel_notif_titre"),
             body: t("rappel_notif_texte"),
-            schedule: { at: quand }
+            schedule: { at: quand },
+            // v1007 : ⚠️ PAS D'ALARME EXACTE. Par defaut, le module en demande une
+            // (isExactNotification: true) : sur Android 12 et plus, chaque appel ouvrait la
+            // page systeme « Alarmes et rappels » -- ou le bouton est GRISE, puisque
+            // l'app retire cette permission (AndroidManifest, wortando-ios) -- et, comme
+            // on reprogramme a chaque retour dans l'app, la page revenait en boucle :
+            // une testeuse n'avait plus acces a l'app (29 oct. 2026). Un rappel de seance
+            // n'a pas besoin de tomber a la seconde : une alarme ordinaire suffit.
+            isExactNotification: false
         });
     }
     try{ await LN.schedule({ notifications: liste }); }catch(e){}
@@ -47355,7 +47378,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1006;
+const APP_VERSION = 1007;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
