@@ -5088,20 +5088,8 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
    ⚠️ LE CHAMP RESTE, INVISIBLE, PAR-DESSUS LA PASTILLE : c'est en le touchant
    lui-meme que iOS ouvre le clavier du premier coup (voir .search-launch input).
    Et il garde ses 16 px, sinon Safari zoome. */
-.ligne-recherche{order:2; margin:0 0 12px;}
 .search-launch .sl-texte{display:none;}
-.ligne-recherche .search-launch{
-    position:relative; max-width:none; width:100%; margin:0; box-sizing:border-box;
-    gap:8px; padding:8px 14px; cursor:pointer;
-    border:1px solid rgba(var(--wt-action-rgb),.45); background:rgba(255,255,255,.6);
-}
-.ligne-recherche .search-launch .sl-texte{display:inline; font-size:14px; font-weight:600; color:#3b4a5a; white-space:nowrap;}
-.ligne-recherche .search-launch svg{width:18px; height:18px;}
-.ligne-recherche .search-launch input{position:absolute; inset:0; width:100%; height:100%; opacity:0; padding:0; margin:0; cursor:pointer;}
-body[data-theme="dark"] .ligne-recherche .search-launch{background:rgba(255,255,255,.06); border-color:rgba(156,195,221,.4);}
-body[data-theme="dark"] .ligne-recherche .search-launch .sl-texte{color:#CFE3F0;}
-html[data-apprendre="ja"] .ligne-recherche{display:none;}
-/* Le pied vide comptait comme un element de la rangee de « Ta galerie ». */
+body[data-theme="dark"] body[data-theme="dark"] /* Le pied vide comptait comme un element de la rangee de « Ta galerie ». */
 .mos-plaque > .mos-pied:empty{display:none;}
 /* v998 : LE TABLEAU EN VIGNETTE. Pendant qu'il se forme, il quitte le haut de
    l'accueil (« il prend de la place ») pour une vignette « Ton tableau · 62 % »
@@ -5114,6 +5102,33 @@ html[data-apprendre="ja"] .ligne-recherche{display:none;}
 .vignette-tableau img{display:block; width:100%; height:100%; object-fit:cover;}
 body[data-theme="dark"] .vignette-tableau{background:#2a3038;}
 html[data-apprendre="en"] #tuileTableau{display:none !important;}
+/* v1000 : TOUT L'ACCUEIL SANS DEFILER. Jacques, 29 oct. 2026 : « que tout serait
+   present » sans faire de scroll. La recherche mincit ; les trois tuiles du bas
+   perdent leur sous-titre (le nombre mis de cote passe en pastille sur l'icone,
+   le pourcentage du tableau dans le coin de sa vignette, « Mots, grammaire,
+   pratique » s'en va) ; la version rapetisse. */
+#accueilRaccourcis .raccourci-sous{display:none;}
+/* La loupe ronde, au bout de la ligne du salut : la flamme et elle poussees a
+   droite ensemble ; sans flamme (zero jour), la loupe seule. */
+.home-greeting-row .search-launch{order:10; flex:0 0 auto; position:relative; max-width:none; width:34px; height:34px;
+    padding:0; margin-inline-start:auto !important; justify-content:center; border-radius:50%;
+    border:1px solid rgba(30,41,59,.22); background:rgba(255,255,255,.72); cursor:pointer;}
+.home-greeting-row button.serie-salut:not(.hidden){margin-inline-start:auto;}
+.home-greeting-row button.serie-salut:not(.hidden) ~ .search-launch{margin-inline-start:6px !important;}
+.home-greeting-row .search-launch svg{width:18px; height:18px;}
+.home-greeting-row .search-launch input{position:absolute; inset:0; width:100%; height:100%; opacity:0; padding:0; margin:0; cursor:pointer;}
+body[data-theme="dark"] .home-greeting-row .search-launch{background:rgba(255,255,255,.08); border-color:rgba(255,255,255,.22);}
+.accueil-raccourcis .orb{padding:9px 10px; gap:6px;}
+.accueil-raccourcis .orb .orb-icon{position:relative; margin-bottom:0;}
+.vignette-tableau{position:relative; aspect-ratio:auto; height:30px;}
+.vignette-pct{position:absolute; top:2px; inset-inline-end:2px; background:rgba(28,36,48,.8); color:#fff;
+    font-size:10.5px; font-weight:700; line-height:1.35; padding:0 5px; border-radius:6px;}
+.vignette-pct:empty{display:none;}
+.gardes-nb{position:absolute; top:-6px; inset-inline-end:-8px; min-width:18px; height:18px; box-sizing:border-box;
+    padding:0 5px; border-radius:9px; background:#E8A23A; color:#1C2430; font-size:11px; font-weight:800;
+    line-height:18px; text-align:center;}
+.gardes-nb[hidden]{display:none;}
+#home .subtitle-version{margin:6px 0 0; font-size:10px;}
 .galerie-en-cours figcaption b{color:#7D4A08;}
 /* Le message « ta premiere mosaique... » passe SOUS le tableau en cours, pas a cote. */
 .galerie-en-cours + .galerie-vide{grid-column:1 / -1; padding-top:4px;}
@@ -7170,6 +7185,24 @@ body[data-theme="dark"] #sceneSeance.active, body[data-theme="dark"] .scene-cadr
 .explorer-v img{width:66px; height:100px; object-fit:cover; border-radius:10px; display:block; background:#e6dcc8;}
 .explorer-v span{display:block; font-size:11px; font-weight:600; text-align:center; margin-top:3px; line-height:1.2;}
 .explorer-v.verrou img{filter:grayscale(.6) brightness(.85);}
+/* v1000 : LE COMPTEUR VIDE SE CACHE. Avant deux lettres, la pastille des resultats
+   n'a rien a dire (renderWordSearch la vide) et restait un ovale blanc sous le titre :
+   « comme un rond blanc qui apparait » (Jacques, 29 oct. 2026). */
+#wordSearchCount:empty{display:none;}
+/* v1000 : PAR PAGES DE QUATRE. Jacques, 29 oct. 2026 : « en poussant vers la
+   gauche, voir les quatre suivantes, puis les quatre autres, et ainsi de
+   suite ». Quatre vignettes remplissent la largeur ; le glissement s'arrete
+   toujours au debut d'une page (une vignette sur quatre est un point
+   d'accroche, et scroll-snap-stop interdit d'en sauter deux d'un coup). */
+.explorer-ruban{scroll-snap-type:x mandatory; overscroll-behavior-x:contain;}
+.explorer-v{flex:0 0 calc((100% - 21px) / 4); width:auto;}
+.explorer-v:nth-child(4n+1){scroll-snap-align:start; scroll-snap-stop:always;}
+.explorer-v img{width:100%; height:auto; aspect-ratio:3 / 4;}
+.explorer-pages{display:flex; justify-content:center; gap:5px; margin-top:6px; min-height:6px;}
+.explorer-pages span{width:6px; height:6px; border-radius:3px; background:rgba(30,41,59,.22); transition:width .2s, background .2s;}
+.explorer-pages span.actif{width:14px; background:#E8A23A;}
+body[data-theme="dark"] .explorer-pages span{background:rgba(255,255,255,.22);}
+body[data-theme="dark"] .explorer-pages span.actif{background:#E8A23A;}
 /* v880 : le son du jour -- les lettres en cause, soulignees dans le mot. */
 .son-lettres{text-decoration:underline; text-decoration-color:#E8A23A; text-decoration-thickness:3px; text-underline-offset:3px;}
 .rp-articles button{font-size:18px; font-weight:800;}
@@ -8044,13 +8077,11 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              pourrait voir, pendant les deux dernieres semaines, ou elle a eu des
              seances ». L'unite reste pour les lecteurs d'ecran, et dans la bulle. -->
         <button type="button" id="serieAccueil" class="serie-salut hidden" onclick="ouvrirCalendrierSerie(event)" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.7 2.2-4.8.2 1.6 1 2.6 2 3 0-3.1-.4-5.6.3-8.2z"/></svg><span id="streakCount">0</span><span id="serieUnite" class="serie-unite">jours</span></button>
-    </div>
-    <!-- v998 : LA RECHERCHE A SA LIGNE, sous le salut et la flamme (maquette n° 1).
-         Le tableau quitte le haut pendant qu'il se forme : elle ne peut plus vivre
-         dans la ligne de « Ta galerie » (v996). -->
-    <div class="ligne-recherche" id="ligneRecherche">
+        <!-- v1000 : LA LOUPE, A DROITE DE LA FLAMME (Jacques, 29 oct. 2026 : « on gagnerait
+             de la place »). Un vrai champ, invisible, couvre la loupe : c'est en le
+             touchant lui-meme que iOS ouvre le clavier du premier coup. -->
     <label class="search-launch" for="homeSearchInput">
-        <svg viewBox="0 0 24 24"><path d="M10.5 7.4C9.2 6.2 7.5 5.6 5.2 5.6c-.9 0-1.7.1-2.4.2v9.8c.7-.1 1.5-.2 2.4-.2 2.3 0 4 .6 5.3 1.8"/><path d="M10.5 7.4c1.3-1.2 3-1.8 5.3-1.8.9 0 1.7.1 2.4.2v4.4"/><path d="M10.5 7.4v9.8"/><circle cx="16.6" cy="15.4" r="3.1"/><path d="M18.9 17.7 21.4 20.2"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5l5 5"/></svg>
         <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
                autocorrect="off" spellcheck="false"
                placeholder=""
@@ -8351,6 +8382,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
             </div>
             <p class="explorer-desc" data-i18n="explorer_desc">Touche les objets, écoute leur nom. Librement, sans questions.</p>
             <div class="explorer-ruban" id="explorerRuban"></div>
+            <div class="explorer-pages" id="explorerPages" aria-hidden="true"></div>
         </div>
 
         <!-- v878 : LA LIGNE « ECOUTER ». Jacques, 19 oct. 2026 : le mode Ecoute
@@ -8426,7 +8458,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                  trois jours du trophee. Elle ouvre la galerie, ou le tableau en cours est
                  en tete. Cachee sans tableau (anglais) et pendant le trophee. -->
             <div class="orb tuile-tableau hidden" id="tuileTableau" onclick="ouvrirGalerieMosaiques()" role="button" tabindex="0">
-                <div class="vignette-tableau"><img id="vignetteTableau" alt="" hidden></div>
+                <div class="vignette-tableau"><img id="vignetteTableau" alt="" hidden><span class="vignette-pct" id="vignettePct"></span></div>
                 <div>
                     <strong data-i18n="tableau_tuile">Ton tableau</strong>
                     <span class="raccourci-sous" id="tableauSous"></span>
@@ -8872,7 +8904,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v999</span>
+    <span class="subtitle-version">v1000</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -13730,6 +13762,7 @@ const I18N = {
         accueil_gardes_0: "Vide pour l'instant",
         accueil_gardes_1: "1 mot à revoir",
         accueil_gardes_n: "{n} mots à revoir",
+        gardes_compteur: "{n} mis de côté",
         ep_ligne_episode: "Ép. {n} · {titre}",
         ep_ligne_prochain_1: "Prochain : dans 1 jour de pratique",
         ep_ligne_prochain_n: "Prochain : dans {n} jours de pratique",
@@ -15227,6 +15260,7 @@ const I18N = {
         accueil_gardes_0: "Empty for now",
         accueil_gardes_1: "1 word to review",
         accueil_gardes_n: "{n} words to review",
+        gardes_compteur: "{n} set aside",
         ep_ligne_episode: "Ep. {n} · {titre}",
         ep_ligne_prochain_1: "Next: in 1 day of practice",
         ep_ligne_prochain_n: "Next: in {n} days of practice",
@@ -16727,6 +16761,7 @@ const I18N = {
         accueil_gardes_0: "Şimdilik boş",
         accueil_gardes_1: "Tekrar edilecek 1 kelime",
         accueil_gardes_n: "Tekrar edilecek {n} kelime",
+        gardes_compteur: "{n} kenarda",
         ep_ligne_episode: "{n}. bölüm · {titre}",
         ep_ligne_prochain_1: "Sonraki: 1 pratik gününde",
         ep_ligne_prochain_n: "Sonraki: {n} pratik gününde",
@@ -17595,6 +17630,7 @@ const I18N = {
         accueil_gardes_0: "Поки що порожньо",
         accueil_gardes_1: "1 слово до повторення",
         accueil_gardes_n: "Слів до повторення: {n}",
+        gardes_compteur: "відкладено: {n}",
         ep_ligne_episode: "Еп. {n} · {titre}",
         ep_ligne_prochain_1: "Наступний: через 1 день практики",
         ep_ligne_prochain_n: "Наступний: через {n} днів практики",
@@ -19510,6 +19546,7 @@ const I18N = {
         accueil_gardes_0: "فعلاً خالی است",
         accueil_gardes_1: "۱ واژه برای مرور",
         accueil_gardes_n: "{n} واژه برای مرور",
+        gardes_compteur: "{n} کنار گذاشته",
         ep_ligne_episode: "قسمت {n} · {titre}",
         ep_ligne_prochain_1: "بعدی: پس از ۱ روز تمرین",
         ep_ligne_prochain_n: "بعدی: پس از {n} روز تمرین",
@@ -20891,6 +20928,7 @@ const I18N = {
         accueil_gardes_0: "فارغ حاليًا",
         accueil_gardes_1: "كلمة واحدة للمراجعة",
         accueil_gardes_n: "كلمات للمراجعة: {n}",
+        gardes_compteur: "مؤجَّلة: {n}",
         ep_ligne_episode: "الحلقة {n} · {titre}",
         ep_ligne_prochain_1: "التالية: بعد يوم تدريب واحد",
         ep_ligne_prochain_n: "التالية: بعد {n} أيام تدريب",
@@ -22889,6 +22927,7 @@ const I18N = {
         accueil_gardes_0: "Vazio por enquanto",
         accueil_gardes_1: "1 palavra para rever",
         accueil_gardes_n: "{n} palavras para rever",
+        gardes_compteur: "{n} guardados",
         ep_ligne_episode: "Ep. {n} · {titre}",
         ep_ligne_prochain_1: "Próximo: em 1 dia de prática",
         ep_ligne_prochain_n: "Próximo: em {n} dias de prática",
@@ -24452,6 +24491,7 @@ const I18N = {
         accueil_gardes_0: "Na razie pusto",
         accueil_gardes_1: "1 słowo do powtórki",
         accueil_gardes_n: "Słów do powtórki: {n}",
+        gardes_compteur: "odłożone: {n}",
         ep_ligne_episode: "Odc. {n} · {titre}",
         ep_ligne_prochain_1: "Następny: za 1 dzień ćwiczeń",
         ep_ligne_prochain_n: "Następny: za {n} dni ćwiczeń",
@@ -26018,6 +26058,7 @@ const I18N = {
         accueil_gardes_0: "Пока пусто",
         accueil_gardes_1: "1 слово на повторение",
         accueil_gardes_n: "Слов на повторение: {n}",
+        gardes_compteur: "отложено: {n}",
         ep_ligne_episode: "Эп. {n} · {titre}",
         ep_ligne_prochain_1: "Следующий: через 1 день практики",
         ep_ligne_prochain_n: "Следующий: через {n} дней практики",
@@ -46939,7 +46980,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 999;
+const APP_VERSION = 1000;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -50034,13 +50075,13 @@ function imageMosaique(m){
 
 
 
-// v998 : LA RECHERCHE A SA LIGNE, sous le salut (#ligneRecherche). Elle suivait
+// v1000 : LA RECHERCHE EST UNE LOUPE, au bout de la ligne du salut. Elle suivait
 // le tableau en v996 ; le tableau ne s'affiche plus en haut que pendant le
 // trophee, elle ne bouge donc plus. On DEPLACE le meme element si un ancien
 // HTML en cache l'avait laisse ailleurs : un seul champ, un seul id.
 function placerRecherche(){
     const l = document.querySelector(".search-launch");
-    const ligne = document.getElementById("ligneRecherche");
+    const ligne = document.querySelector(".home-greeting-row");
     if(l && ligne && l.parentElement !== ligne) ligne.appendChild(l);
 }
 // v998 : LA VIGNETTE « TON TABLEAU · 62 % ». La meme toile que le grand tableau,
@@ -50054,7 +50095,11 @@ function majVignetteTableau(canvas, faits, total, fini){
     const img = document.getElementById("vignetteTableau");
     try{ if(img){ img.src = canvas.toDataURL("image/jpeg", 0.75); img.hidden = false; } }catch(e){}
     const sous = document.getElementById("tableauSous");
-    if(sous) sous.textContent = tf("tableau_pct", { p: Math.round(Math.min(1, faits / Math.max(1, total)) * 100) });
+    const pct = tf("tableau_pct", { p: Math.round(Math.min(1, faits / Math.max(1, total)) * 100) });
+    if(sous) sous.textContent = pct;
+    // v1000 : dans le coin de la vignette, plus sur une ligne a lui (« gagner de l'espace »).
+    const coin = document.getElementById("vignettePct");
+    if(coin) coin.textContent = pct;
 }
 function majMosaiqueAccueil(){
     const bloc = document.getElementById("carteMosaique");
@@ -51070,8 +51115,11 @@ function majExplorerScenes(){
     const jour = sceneDuJour();
     const autres = SCENES_SEANCE.filter(s => s.nom !== jour.nom);
     const decalage = autres.length ? (Math.floor(Date.now() / 86400000) * 4) % autres.length : 0;
-    const tournees = autres.slice(decalage).concat(autres.slice(0, decalage)).slice(0, 4);
-    const liste = [jour].concat(tournees);
+    // v1000 : TOUTES les scenes, par pages de quatre qu'on fait glisser (Jacques :
+    // « voir les quatre suivantes, puis les quatre autres »). L'ordre de la v800
+    // reste : la scene du jour, puis les autres a tour de role -- la premiere
+    // page change donc chaque jour.
+    const liste = [jour].concat(autres.slice(decalage).concat(autres.slice(0, decalage)));
     const complet = accesComplet();
     ruban.innerHTML = "";
     liste.forEach(s => {
@@ -51088,6 +51136,21 @@ function majExplorerScenes(){
         b.addEventListener("click", () => { if(ouverte) ouvrirSceneDepuisAccueil(s.nom); else ouvrirAbonnement(); });
         ruban.appendChild(b);
     });
+    ruban.scrollLeft = 0;
+    pagesExplorer(ruban, Math.ceil(liste.length / 4));
+}
+// v1000 : les points sous le ruban -- un par page de quatre, celui de la page
+// a l'ecran allonge en ambre. En arabe et en persan, scrollLeft est negatif.
+function pagesExplorer(ruban, n){
+    const zone = document.getElementById("explorerPages");
+    if(!zone) return;
+    zone.innerHTML = n > 1 ? new Array(n).fill('<span></span>').join("") : "";
+    const maj = () => {
+        const page = Math.round(Math.abs(ruban.scrollLeft) / Math.max(1, ruban.clientWidth));
+        zone.querySelectorAll("span").forEach((p, i) => p.classList.toggle("actif", i === page));
+    };
+    ruban.onscroll = maj;
+    maj();
 }
 function ouvrirSceneDepuisAccueil(nom){
     ouvrirSceneLibre(nom);
@@ -55916,6 +55979,13 @@ function glisserPhrasesPlusTard(paquet, tout){
 function majCompteurCarte(){
     const el = document.getElementById("flashCounter");
     if(!el) return;
+    // v1000 : DANS « MIS DE COTE », le nombre de mots mis de cote, pas l'objectif
+    // (Jacques : « au lieu de voir comment je suis par rapport a mon objectif, je
+    // pourrais voir que j'ai 3 mots mis de cote »).
+    if(currentTheme && currentTheme.id === "gardes"){
+        el.textContent = tf("gardes_compteur", { n: nombreGardes() });
+        return;
+    }
     let fait = 0, cible = DEFAULT_DAILY_GOAL_TARGET;
     try{ fait = getDailyActivityCount() || 0; }catch(e){}
     try{ cible = getDailyGoalTarget() || cible; }catch(e){}
@@ -57251,6 +57321,16 @@ function majBoutonGardes(){
     if(sous){
         const n = nombreGardes();
         sous.textContent = n === 0 ? t("accueil_gardes_0") : n === 1 ? t("accueil_gardes_1") : tf("accueil_gardes_n", { n: n });
+    }
+    // v1000 : le sous-titre se tait (Jacques : « on n'est pas oblige de mettre
+    // 3 mots a revoir ») ; le nombre passe en pastille sur l'icone.
+    const ico = b && b.querySelector(".orb-icon");
+    if(ico){
+        let nb = ico.querySelector(".gardes-nb");
+        const n = nombreGardes();
+        if(!nb){ nb = document.createElement("span"); nb.className = "gardes-nb"; ico.appendChild(nb); }
+        nb.textContent = n > 99 ? "99+" : String(n);
+        nb.hidden = n === 0;
     }
 }
 
