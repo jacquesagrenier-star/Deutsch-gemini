@@ -7125,9 +7125,12 @@ body[data-theme="dark"] .essai-oral-champ{background:#1d232c; border-color:#2c33
    n'y a ni encoche ni heure. Le retour et les niveaux A1-C1 passaient donc
    sous l'heure de l'iPhone, intouchables (Jacques, 10 oct.). C'est la page
    qui connait l'encoche : c'est elle qui descend le cadre. */
-#sceneSeance.active{position:fixed; inset:0; z-index:3000; margin:0; background:#11151b;
+/* 28 oct. 2026 : le fond de l'accueil, plus le noir (« on dirait une publicite ») ;
+   bleu nuit en mode nuit. La scene elle-meme recoit ?nuit=1 (langueDeScene). */
+#sceneSeance.active{position:fixed; inset:0; z-index:3000; margin:0; background:#DCE6EC;
     padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);}
-.scene-cadre{display:block; width:100%; height:100%; border:0; background:#11151b;}
+.scene-cadre{display:block; width:100%; height:100%; border:0; background:#DCE6EC;}
+body[data-theme="dark"] #sceneSeance.active, body[data-theme="dark"] .scene-cadre{background:#0E1C26;}
 
 .explorer-haut strong + .pt-decouverte{margin-inline-start:8px; margin-inline-end:auto;}
 .orb-seance .seance-niveaux + .pt-decouverte{margin-inline-start:4px;}
@@ -8869,7 +8872,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v998</span>
+    <span class="subtitle-version">v999</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -46936,7 +46939,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 998;
+const APP_VERSION = 999;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -51438,7 +51441,13 @@ function ouvrirSceneSeance(){
 // LA SCENE SUIT LA LANGUE APPRISE (10 oct. 2026). La meme page, la meme image,
 // les memes zones ; en espagnol, elle charge les mots espagnols de la scene
 // (construire.py, visuel/prototype/espanol/) et la voix de la variante.
+// 28 oct. 2026 : la scene suit aussi le mode nuit de l'app (?nuit=1) -- elle a
+// quitte le fond noir pour le bleu pale de l'accueil. Toutes les adresses de
+// scene passent par ici : c'est le seul endroit a toucher.
 function langueDeScene(){
+    return langueSeuleDeScene() + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "");
+}
+function langueSeuleDeScene(){
     if(LANGUE_APPRISE === "ja") return "&apprendre=ja";
     // L'anglais (essai) : scene-<nom>.en.js, americain ou britannique.
     if(LANGUE_APPRISE === "en") return "&apprendre=en&variante=" + VARIANTE_ANGLAIS;

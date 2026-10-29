@@ -25,7 +25,7 @@
   --ok:#15803D; --faux:#B91C1C;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:#11151b;color:var(--encre);
+html,body{margin:0;background:#DCE6EC;color:var(--encre);
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 .cadre{max-width:430px;margin:0 auto;position:relative}
 .scene{position:relative;width:100%;aspect-ratio:1080/1935;overflow:hidden;
@@ -50,7 +50,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .voir-zones .zone{outline:1.5px solid rgba(232,162,58,.85);background:rgba(232,162,58,.10)}
 
 /* le haut : AU-DESSUS de l'image -- pose sur le plafond, il cachait l'horloge et la lampe */
-.haut{position:sticky;top:0;padding:calc(8px + env(safe-area-inset-top, 0px)) 8px 8px;z-index:2000;background:#11151b;
+.haut{position:sticky;top:0;padding:calc(8px + env(safe-area-inset-top, 0px)) 8px 8px;z-index:2000;background:#DCE6EC;
   display:flex;flex-direction:column;gap:6px}
 .barre{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 /* flex-wrap (9 oct.) : avec « Retourner Mark » et cinq pastilles, la barre
@@ -173,7 +173,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .gros-plan .fermer:focus-visible{outline:2px solid var(--ambre);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){.gros-plan{transition:none}}
 
-.pied{max-width:430px;margin:10px auto 30px;padding:0 12px;color:#c9ced8;font-size:12px;line-height:1.5}
+.pied{max-width:430px;margin:10px auto 30px;padding:0 12px;color:#4C566B;font-size:12px;line-height:1.5}
 /* Dans la seance : ni pastilles (le niveau est celui de la seance), ni modes
    (on cherche), ni pied de controle. */
 .en-seance .niveaux,.en-seance .modes,.en-seance .pied{display:none}
@@ -213,7 +213,7 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 .en-cadre .choix{padding:8px 10px;font-size:14px}
 .en-cadre .explication{padding:8px 10px;font-size:13.5px}
 .en-cadre .suite{padding:9px}
-.pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#fff}
+.pied label{display:flex;gap:6px;align-items:center;margin-bottom:6px;color:#1C2430}
 
 /* DE DROITE A GAUCHE (fa, ar ; 10 oct. 2026). Comme l'app : dir="rtl" sur
    <html> (appliquerLangue), et la mise en page suit par les proprietes
@@ -229,7 +229,39 @@ html,body{margin:0;background:#11151b;color:var(--encre);
 [dir=rtl] .score{direction:ltr;text-align:left}
 /* Le bouton du gros plan reste a gauche (place en px par placerFermer) ;
    son texte, lui, suit la langue. */
+
+/* 28 oct. 2026 : LA SCENE NE DOIT PAS RESSEMBLER A UNE PUBLICITE. Le fils de
+   Jacques : en arrivant, « on a l'impression que c'est une publicite » -- Anna
+   dans la boutique, comme une annonce de vetements. Les codes d'une pub y
+   etaient tous : une photo bord a bord, sur fond noir, une personne qui pose,
+   et rien qui dise que l'image se touche. D'ou :
+   - le fond de l'accueil (bleu pale ; bleu nuit en mode nuit, ?nuit=1 pose par
+     l'app), pour que la scene appartienne visiblement a l'app ;
+   - la photo DANS UN CADRE arrondi, comme une image de lecon ;
+   - a l'arrivee en « Decouvrir » : des points qui pulsent sur quelques objets,
+     une etiquette deja posee, une bulle « Touche un objet » -- une pub ne met
+     jamais de mots allemands sur ses objets ;
+   - un compteur « N / M mots » : on avance dans quelque chose. */
+.cadre{padding:0 10px 10px}
+.scene{border-radius:14px;border:1px solid rgba(28,36,48,.16)}
+html.nuit,html.nuit body,html.nuit .haut{background:#0E1C26}
+html.nuit .scene{border-color:rgba(255,255,255,.16)}
+html.nuit .pied{color:#A4ABBC}
+html.nuit .pied label{color:#EEF2F5}
+.indice-pt{position:absolute;z-index:1700;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;
+  background:#E8A23A;border:2px solid #fff;pointer-events:none;animation:indice-pul 1.4s ease-out infinite}
+@keyframes indice-pul{0%{box-shadow:0 0 0 0 rgba(232,162,58,.75)}70%{box-shadow:0 0 0 12px rgba(232,162,58,0)}100%{box-shadow:0 0 0 0 rgba(232,162,58,0)}}
+@media (prefers-reduced-motion: reduce){.indice-pt{animation:none}}
+.bulle-arrivee{position:absolute;left:8%;right:8%;top:12px;z-index:1900;background:rgba(28,36,48,.9);color:#fff;
+  font-size:14px;line-height:1.35;padding:8px 12px;border-radius:10px;text-align:center;pointer-events:none;transition:opacity .5s}
+.bulle-arrivee.parti{opacity:0}
+.decouverts{width:100%;display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:#4C566B}
+.decouverts .jauge{flex:1;height:5px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.decouverts .jauge span{display:block;height:100%;background:#E8A23A;border-radius:3px}
+html.nuit .decouverts{color:#A4ABBC}
+html.nuit .decouverts .jauge{background:rgba(255,255,255,.14)}
 </style>
+<script>if (new URLSearchParams(location.search).get("nuit") === "1") document.documentElement.classList.add("nuit");</script>
 </head>
 <body>
 <div class="cadre">
@@ -428,6 +460,8 @@ const TEXTES = {
   scene:       {fr: "Scène", en: "Scene", tr: "Sahne", uk: "Сцена", fa: "صحنه", ar: "مشهد", pt: "Cena", pl: "Scena", ru: "Сцена"},
   nomsArticles:{fr: "Noms et articles", en: "Nouns and articles", tr: "İsimler ve artikeller", uk: "Іменники й артиклі", fa: "اسم‌ها و حرف‌های تعریف", ar: "الأسماء وأدوات التعريف", pt: "Substantivos e artigos", pl: "Rzeczowniki i rodzajniki", ru: "Существительные и артикли"},
   pluriel:     {fr: "pl.", en: "pl.", tr: "çoğ.", uk: "мн.", fa: "جمع:", ar: "الجمع:", pt: "pl.", pl: "l. mn.", ru: "мн."},
+  indice:      {fr: "Touche un objet : tu entends son nom.", en: "Tap an object to hear its name.", tr: "Bir nesneye dokun, adını duy.", uk: "Торкнися предмета — почуєш його назву.", fa: "روی یک شیء بزن تا نامش را بشنوی.", ar: "المس شيئًا لتسمع اسمه.", pt: "Toque num objeto para ouvir o nome.", pl: "Dotknij przedmiotu, by usłyszeć jego nazwę.", ru: "Нажми на предмет — услышишь его название."},
+  decouverts:  {fr: "{a} mots", en: "{a} words", tr: "{a} kelime", uk: "слова: {a}", fa: "{a} واژه", ar: "{a} كلمة", pt: "{a} palavras", pl: "słowa: {a}", ru: "слова: {a}"},
   piedZones:   {fr: "Montrer les zones à toucher (contrôle)", en: "Show the tap zones (check)", tr: "Dokunma alanlarını göster (kontrol)", uk: "Показати зони дотику (перевірка)", fa: "نشان دادن ناحیه‌های لمسی (بررسی)", ar: "إظهار مناطق اللمس (للتحقق)", pt: "Mostrar as áreas de toque (verificação)", pl: "Pokaż strefy dotyku (kontrola)", ru: "Показать зоны для нажатия (проверка)"},
   piedTexte:   {fr: "Prototype — rien n'est enregistré. Image générée (fal), voix du navigateur.", en: "Prototype — nothing is saved. Generated image (fal), browser voice.", tr: "Prototip — hiçbir şey kaydedilmez. Üretilmiş görsel (fal), tarayıcı sesi.", uk: "Прототип — нічого не зберігається. Згенероване зображення (fal), голос браузера.", fa: "نمونهٔ آزمایشی — چیزی ذخیره نمی‌شود. تصویر ساخته‌شده (fal)، صدای مرورگر.", ar: "نموذج تجريبي — لا يُحفظ شيء. صورة مولَّدة (fal)، صوت المتصفح.", pt: "Protótipo — nada é salvo. Imagem gerada (fal), voz do navegador.", pl: "Prototyp — nic nie jest zapisywane. Obraz wygenerowany (fal), głos przeglądarki.", ru: "Прототип — ничего не сохраняется. Изображение сгенерировано (fal), голос браузера."}
 };
@@ -1144,7 +1178,7 @@ if (window.parent !== window)
 function ajusterSeance(){
   if (window.parent === window) return;
   const dispo = innerHeight - document.querySelector(".haut").offsetHeight;
-  const largeur = Math.min(document.querySelector(".cadre").clientWidth, dispo * MASQUES.W / MASQUES.H);
+  const largeur = Math.min(document.querySelector(".cadre").clientWidth - 20, dispo * MASQUES.W / MASQUES.H);
   scene.style.width = Math.max(200, Math.floor(largeur)) + "px";
   placerFermer();
 }
@@ -1213,6 +1247,75 @@ function decouvrir(){
   $("bas").classList.remove("en-haut");
   entete("A1 · " + COUCHES.A1.titre, S.consigne || T("consigne"), true);
   $("bas").innerHTML = "";
+  majDecouverts();
+  // Les signes d'exercice, UNE fois par ouverture, hors visite guidee.
+  if (!indicesVus && PARAMS.get("visite") !== "1"){ indicesVus = true; montrerIndices(); }
+}
+/* 28 oct. 2026 : LE COMPTEUR « N / M MOTS » et LES SIGNES D'ARRIVEE (voir la
+   note .indice-pt dans le style). Les points choisissent des objets de taille
+   moyenne, ecartes les uns des autres ; le premier recoit son etiquette. Tout
+   s'efface au premier toucher, ou de soi-meme au bout de quelques secondes. */
+const DECOUVERTS = new Set();
+let indicesVus = false, indicesMinuterie = null;
+function majDecouverts(){
+  if (!(niveau === "A1" && modeA1 === "decouvrir")) return;
+  const total = new Set(ZONES.map(z => z.mot)).size || 1;
+  const n = [...DECOUVERTS].filter(m => ZONES.some(z => z.mot === m)).length;
+  $("bas").innerHTML = '<div class="decouverts"><span>' + T("decouverts", {a: compte(n, total)}) + '</span>'
+    + '<div class="jauge"><span style="width:' + Math.round(100 * n / total) + '%"></span></div></div>';
+}
+function montrerIndices(){
+  const aire = MW * MH;
+  // LE POINT SE POSE SUR L'OBJET, pas au centre de son rectangle : celui du jean
+  // d'Anna tombait sur Anna. On prend le pixel du masque le plus proche de son
+  // barycentre (un objet creux, comme une chaise, n'a rien en son milieu).
+  const sur = new Map();
+  const centre = z => {
+    if (sur.has(z.id)) return sur.get(z.id);
+    let sx = 0, sy = 0, n = 0;
+    for (let y = 0; y < MH; y++) for (let x = 0; x < MW; x++) if (z.masque[y * MW + x]){ sx += x; sy += y; n++; }
+    let mieux = [z.cadre[0] + z.cadre[2] / 2, z.cadre[1] + z.cadre[3] / 2];
+    if (n){
+      const gx = sx / n, gy = sy / n;
+      let d = Infinity;
+      for (let y = 0; y < MH; y++) for (let x = 0; x < MW; x++) if (z.masque[y * MW + x]){
+        const e = (x - gx) * (x - gx) + (y - gy) * (y - gy);
+        if (e < d){ d = e; mieux = [(x + .5) / MW * 100, (y + .5) / MH * 100]; }
+      }
+    }
+    sur.set(z.id, mieux);
+    return mieux;
+  };
+  const choisis = [];
+  // DES OBJETS, PAS DES GENS : une personne fait 3 a 4 % de l'image (« die Frau »
+  // etiquetee d'avance sur Anna, c'etait encore le mannequin de la pub). Les
+  // objets POSES (sur une etagere, dans un panier) passent devant.
+  ZONES.filter(z => !z.personne && z.pixels > aire * 0.0015 && z.pixels < aire * 0.016)
+    .sort((a, b) => (b.sur ? 1 : 0) - (a.sur ? 1 : 0) || b.pixels - a.pixels)
+    .forEach(z => {
+      if (choisis.length >= 4) return;
+      const [x, y] = centre(z);
+      if (y < 12 || y > 92) return;
+      if (choisis.every(c => { const [cx, cy] = centre(c); return Math.hypot(cx - x, cy - y) > 22; })) choisis.push(z);
+    });
+  choisis.forEach(z => {
+    const [x, y] = centre(z);
+    const pt = document.createElement("span");
+    pt.className = "indice-pt";
+    pt.style.left = x + "%"; pt.style.top = y + "%";
+    calquePlan.appendChild(pt);
+  });
+  if (choisis[0]) etiquette(choisis[0].id);
+  const bulle = document.createElement("div");
+  bulle.className = "bulle-arrivee";
+  bulle.textContent = T("indice");
+  scene.appendChild(bulle);
+  indicesMinuterie = setTimeout(retirerIndices, 6000);
+}
+function retirerIndices(){
+  clearTimeout(indicesMinuterie);
+  calquePlan.querySelectorAll(".indice-pt").forEach(n => n.remove());
+  scene.querySelectorAll(".bulle-arrivee").forEach(b => { b.classList.add("parti"); setTimeout(() => b.remove(), 500); });
 }
 /* Une cible est un MOT, pas une zone : « die Frau » est juste sur Anna comme
    sur la dame en rouge (remarque de Jacques, 6 oct.). porte() dit si une
@@ -1293,8 +1396,9 @@ function trouver(){
 function toucher(id, pt){
   const p = P[id];
   if (niveau === "A1" && modeA1 === "decouvrir"){
-    effacer(); anneau(id); etiquette(id);
+    retirerIndices(); effacer(); anneau(id); etiquette(id);
     dire((p.personne ? p.personne + ". " : "") + motDit(p));
+    DECOUVERTS.add(p.mot); majDecouverts();
     return;
   }
   if ((niveau === "A1" || etapeTrouve) && attenteToucher && !verrou){
