@@ -27,6 +27,27 @@ tête** (titre en bleu), puis les plus lumineux.
   écartées à l'œil, la liste est dans `recolter.py`).
 - Les vignettes restent hors de OneDrive : `C:/Users/jacqu/.wortando/anglais-mosaique-brut`.
 
+## La deuxième récolte, plus colorée (29 oct. 2026)
+
+Jacques, devant les planches : « tu n'as rien trouvé de plus coloré ? ». La première
+tenait en 9 peintres, avec beaucoup de marines tonalistes et sombres.
+`python anglais/mosaique/recolter.py --couleur` → `candidats-couleur.json`,
+`recolte-couleur.txt`, `planche-couleur-1.jpg` à `-4.jpg`.
+
+- **120 tableaux nouveaux** (aucun n'est déjà dans `candidats.json`), de 19 peintres :
+  Prendergast 16, Glackens 12, Chase 12, Hassam 12, Lawson 10, Metcalf 10, Bellows 10,
+  Cooper 9, Twachtman 5, Henri 5, Potthast 4, DeCamp 3, Frieseke 3, Vonnoh 2,
+  Wendel 2, Rose 2, Benson 1, Miller 1, Robinson 1.
+- **Triés par éclat mesuré sur l'image brute** (`eclat_brut`, saturation × luminosité,
+  avant le rehaussement des planches) plus un quart de la luminosité (`luminosite`) ;
+  la Nouvelle-Angleterre n'est plus qu'un bonus de 4 points (10 tableaux). Éclat brut
+  médian : 15,5 pour la première récolte, 19,5 pour celle-ci.
+- Mêmes règles de droit et de sujet ; licence lue fichier par fichier : 113 domaine
+  public, 7 CC0. Écartés à l'œil (`EXCLUS_ID_COULEUR`) : quatre photos avec le cadre,
+  un nu, deux doublons, le Carpathia après le Titanic.
+- Peu de Frieseke, de Guy Rose et de Lilla Cabot Perry : Wikidata en recense peu, et
+  la plupart sont en hauteur ou sans licence lisible.
+
 ## Ensuite (après le choix de Jacques)
 
 Comme l'espagnol : `selection.json`, les originaux en haute définition (hors OneDrive),

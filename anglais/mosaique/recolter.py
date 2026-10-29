@@ -19,6 +19,16 @@ Boston et la Nouvelle-Angleterre passent devant (titre qui les nomme).
 
 Relancer : python anglais/mosaique/recolter.py  ->  candidats.json + planche-*.jpg
 Les vignettes restent hors de OneDrive (C:/Users/jacqu/.wortando/anglais-mosaique-brut).
+
+DEUXIEME RECOLTE, PLUS COLOREE (29 oct. 2026). Jacques, devant les planches :
+« tu n'as rien trouve de plus colore ? ». La premiere tenait en 9 peintres,
+avec beaucoup de marines tonalistes et sombres (Lane, Homer, Eakins).
+  python anglais/mosaique/recolter.py --couleur  ->  candidats-couleur.json + planche-couleur-*.jpg
+Les impressionnistes americains les plus colores (PEINTRES_COULEUR), memes
+regles de droit et de sujet, rien de ce qui est deja dans candidats.json. Tri
+par eclat MESURE SUR L'IMAGE BRUTE (avant « vif », qui rehausse tout le monde
+et efface la difference entre une marine tonaliste et un Prendergast) ; la
+Nouvelle-Angleterre n'est plus qu'un petit bonus.
 """
 import json, math, os, re, sys, time, urllib.parse, urllib.request
 from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
@@ -43,6 +53,45 @@ PEINTRES = [
     ("Thomas Eakins", 6),
 ]
 
+# La recolte « couleur » : (nom, combien au plus avant le tri commun).
+PEINTRES_COULEUR = [
+    ("Maurice Prendergast", 16),
+    ("Frederick Carl Frieseke", 14),
+    ("Childe Hassam", 12),
+    ("Willard Metcalf", 10),
+    ("William Merritt Chase", 12),
+    ("Edward Henry Potthast", 12),
+    ("William Glackens", 12),
+    ("Ernest Lawson", 10),
+    ("George Bellows", 10),
+    ("Guy Rose", 10),
+    ("Colin Campbell Cooper", 10),
+    ("Lilla Cabot Perry", 8),
+    ("Theodore Robinson", 10),
+    ("John Henry Twachtman", 8),
+    ("Theodore Wendel", 8),
+    ("Robert Henri", 8),
+    ("Joseph DeCamp", 6),
+    ("Mary Cassatt", 8),
+    ("Frank Weston Benson", 8),
+    ("Richard E. Miller", 8),
+    ("Robert Vonnoh", 6),
+    ("Edmund Greacen", 6),
+]
+CIBLE_COULEUR = 120
+# Les identifiants deja trouves (29 oct.) : la recherche Wikidata rate parfois
+# un nom au hasard d'une reponse lente, et le peintre sortait de la recolte.
+QID_CONNUS = {
+    "Maurice Prendergast": "Q248707", "Frederick Carl Frieseke": "Q537002", "Childe Hassam": "Q737635",
+    "Willard Metcalf": "Q736843", "William Merritt Chase": "Q265820", "Edward Henry Potthast": "Q1252045",
+    "William Glackens": "Q1339934", "Ernest Lawson": "Q1185478", "George Bellows": "Q167132",
+    "Guy Rose": "Q1366671", "Colin Campbell Cooper": "Q1871464", "Lilla Cabot Perry": "Q431705",
+    "Theodore Robinson": "Q1384543", "John Henry Twachtman": "Q1342683", "Theodore Wendel": "Q21795264",
+    "Robert Henri": "Q724860", "Joseph DeCamp": "Q151149", "Mary Cassatt": "Q173223",
+    "Frank Weston Benson": "Q956055", "Richard E. Miller": "Q7325393", "Robert Vonnoh": "Q1856567",
+    "Edmund Greacen": "Q5339509",
+}
+
 # Boston et la Nouvelle-Angleterre dans le titre : ces tableaux passent devant.
 NOUVELLE_ANGLETERRE = re.compile(
     r"boston|gloucester|massachusetts|cape ann|marblehead|salem|nahant|beverly|newburyport|rockport|"
@@ -57,6 +106,7 @@ EXCLUS = re.compile(r"nude|naked|bath(?!ing)|bather|martyr|crucif|death|dead|dyi
                     r"galilee|jerusalem|bethlehem|nazareth|olives|"
                     r"virgin|madonna|christ|jesus|\bsaint|holy|angel|apostle|annunciation|nativity|"
                     r"church|chapel|cathedral|prayer|religio|biblic|prophet|crucifix|gassed|"
+                    r"boxer|boxing|prize ?fight|sharkey|dempsey|club night|lynch|titanic|survivors|"
                     r"study for|sketch|drawing|cartoon", re.I)
 # Ecartes a l'oeil sur la premiere recolte (27 oct.) : ce que le titre ne disait pas.
 EXCLUS_ID = {
@@ -72,6 +122,18 @@ EXCLUS_ID = {
     'Q57458229',   # 101 photo avec le cadre
     'Q104445859',   # 106 enfant nu
     'Q117662765',   # 123 portrait sombre
+}
+# Ecartes a l'oeil sur la recolte « couleur » (29 oct.).
+EXCLUS_ID_COULEUR = {
+    'Q20540918',   # The Purple Dress : photo avec le cadre
+    'Q19924391',   # Golden Afternoon : photo avec le cadre
+    'Q20891779',   # Farm Among Hills, Giverny : photo avec le cadre
+    'Q106857521',  # Nurses in the Park : photo avec le cadre
+    'Q20170301',   # Beach No. 3 (1913) : nus
+    'Q108699715',  # Early Spring, Washington Square : doublon (Q117264381, plus grand)
+    'Q110322221',  # Quay St. Michel : doublon (Q29418394, plus grand)
+    'Q19967972',   # Carpathia apres le naufrage du Titanic
+    'Q20489345',   # Spring, Navesink Highlands : photo avec le cadre
 }
 
 
@@ -178,6 +240,15 @@ def eclat(im):
     return round(sum(sat * val for _, sat, val in px) / len(px) / 650.25, 1)
 
 
+def eclat_brut(im):
+    """La meme mesure sur l'image telle qu'elle est (sans « vif »), et sa luminosite
+    moyenne : ce qui separe vraiment un tableau colore d'une marine tonaliste."""
+    im = im.convert("RGB").resize((200, max(1, round(200 * im.height / im.width)))).convert("HSV")
+    px = list(im.getdata())
+    return (round(sum(sat * val for _, sat, val in px) / len(px) / 650.25, 1),
+            round(sum(val for _, _, val in px) / len(px) / 2.55, 1))
+
+
 def vignette(url, cle):
     f = os.path.join(BRUT, "v-" + cle + ".jpg")
     if not (os.path.exists(f) and os.path.getsize(f) > 2000):
@@ -244,7 +315,65 @@ def main():
     planches(tous)
 
 
-def planches(tous):
+def main_couleur():
+    os.makedirs(BRUT, exist_ok=True)
+    deja = {t["wikidata"] for t in json.load(open(os.path.join(ICI, "candidats.json"), encoding="utf-8"))}
+    tous, rapport = [], []
+    for nom, plafond in PEINTRES_COULEUR:
+        q = QID_CONNUS.get(nom) or qid(nom)
+        m = mort(q) if q else None
+        if not q or not m or m >= MORT_AVANT:
+            rapport.append("%-24s ECARTE (wikidata %s, mort %s)" % (nom, q, m))
+            print(rapport[-1])
+            continue
+        liste = tableaux(q)
+        infos = infos_commons([t["fichier"] for t in liste])
+        gardes = []
+        for t in liste:
+            if t["wikidata"] in EXCLUS_ID | EXCLUS_ID_COULEUR or t["wikidata"] in deja:
+                continue
+            an = int(t["annee"]) if t["annee"][:4].isdigit() else None
+            if (an is None and m >= OEUVRE_AVANT) or (an is not None and an >= OEUVRE_AVANT):
+                continue
+            i = infos.get(t["fichier"])
+            if not i or not libre(i["licence"]) or not i["vignette"] or not i["l"]:
+                continue
+            if not (RMIN <= i["l"] / i["h"] <= RMAX):
+                continue
+            if EXCLUS.search(t["titre"] + " " + t["titre_fr"]) or not t["titre"]:
+                continue
+            im = vignette(i["vignette"], t["wikidata"])
+            if im is None:
+                continue
+            brut, lum = eclat_brut(im)
+            t.update(i, peintre=nom, wikidata_peintre=q, mort=m, eclat=eclat(im), eclat_brut=brut,
+                     luminosite=lum, cle=t["wikidata"],
+                     nouvelle_angleterre=bool(NOUVELLE_ANGLETERRE.search(t["titre"])))
+            # L'eclat brut d'abord ; un peu de lumiere ; la Nouvelle-Angleterre en bonus.
+            t["score"] = round(brut + 0.25 * lum + (4 if t["nouvelle_angleterre"] else 0), 1)
+            gardes.append(t)
+        gardes.sort(key=lambda t: -t["score"])
+        tous.extend(gardes[:plafond])
+        rapport.append("%-24s %s +%d  %3d tableaux, %3d gardes apres filtres, %2d retenus avant le tri commun"
+                       % (nom, q, m, len(liste), len(gardes), min(plafond, len(gardes))))
+        print(rapport[-1])
+    tous.sort(key=lambda t: -t["score"])
+    tous = tous[:CIBLE_COULEUR]
+    for n, t in enumerate(tous, 1):
+        t["num"] = n
+    par = {}
+    for t in tous:
+        par[t["peintre"]] = par.get(t["peintre"], 0) + 1
+    rapport.append("\nSur les planches (%d) : %s" % (len(tous), ", ".join(
+        "%s %d" % (p.split()[-1], k) for p, k in sorted(par.items(), key=lambda x: -x[1]))))
+    print(rapport[-1])
+    json.dump(tous, open(os.path.join(ICI, "candidats-couleur.json"), "w", encoding="utf-8"),
+              ensure_ascii=False, indent=1)
+    open(os.path.join(ICI, "recolte-couleur.txt"), "w", encoding="utf-8").write("\n".join(rapport) + "\n")
+    planches(tous, "planche-couleur")
+
+
+def planches(tous, prefixe="planche"):
     try:
         f = ImageFont.truetype("arialbd.ttf", 17)
         p = ImageFont.truetype("arial.ttf", 13)
@@ -265,8 +394,8 @@ def planches(tous):
             d.text((x + 48, y + 6), t["peintre"][:28], fill=(90, 90, 90), font=p)
             d.text((x + 6, y + CEL - 16), (t["titre"][:30] + (" · " + t["annee"] if t["annee"] else "")),
                    fill=(30, 70, 140) if t["nouvelle_angleterre"] else (110, 110, 110), font=p)
-        im.save(os.path.join(ICI, "planche-%d.jpg" % (k // PARPL + 1)), quality=82)
+        im.save(os.path.join(ICI, "%s-%d.jpg" % (prefixe, k // PARPL + 1)), quality=82)
 
 
 if __name__ == "__main__":
-    main()
+    main_couleur() if "--couleur" in sys.argv else main()
