@@ -7993,6 +7993,55 @@ body[data-theme="dark"] #home #seancePilule > .pa-play{background:linear-gradien
     background:conic-gradient(from var(--tour), rgba(255,255,255,0) 0deg 300deg, rgba(255,255,255,.95) 338deg, rgba(255,255,255,0) 360deg),
                linear-gradient(rgba(255,255,255,.45), rgba(255,255,255,.45)) !important;}
 
+/* v1010 : LES QUATRE BOUTONS RONDS AVEC L'ANNEAU BLANC (Jacques, capture a l'appui : « je prefere ce
+   signe, pour les quatre ») -- le disque sombre (ambre la nuit) cerne d'un anneau blanc net, sur
+   les ▶ d'Ecouter et des episodes comme sur les « › » de Mis de cote et Tout le contenu. */
+#home .pa-ecoute .pa-play, #home #accueilRaccourcis .orb:not(#tuileTableau)::after{border:2.5px solid rgba(255,255,255,.96) !important;
+    background-clip:padding-box !important; background-origin:padding-box !important;}
+#home .pa-ecoute .pa-play{
+    background:linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
+               radial-gradient(75% 55% at 55% 125%, rgba(255,200,120,.30), rgba(255,255,255,0) 65%),
+               linear-gradient(180deg, rgba(52,48,44,.96) 0%, rgba(18,16,14,.98) 50%, rgba(6,5,4,1) 100%) !important;}
+#home #accueilRaccourcis .orb:not(#tuileTableau)::after{
+    background:linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
+               radial-gradient(75% 55% at 55% 125%, rgba(255,200,120,.30), rgba(255,255,255,0) 65%),
+               linear-gradient(180deg, rgba(52,48,44,.96) 0%, rgba(18,16,14,.98) 50%, rgba(6,5,4,1) 100%) !important;}
+body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
+    border-color:rgba(255,246,230,.92) !important;
+    background:linear-gradient(180deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
+               radial-gradient(75% 55% at 55% 125%, rgba(255,255,255,.45), rgba(255,255,255,0) 65%),
+               linear-gradient(180deg, rgba(250,206,128,.96) 0%, rgba(237,169,60,.94) 52%, rgba(208,138,28,.97) 100%) !important;}
+
+/* v1010 : LA FENETRE DE LA FLAMME (le calendrier des jours) HARMONISEE (Jacques : « le tableau qui
+   apparait lorsqu'on clique sur la flamme [...] harmonise avec le reste »). Verre, coins arrondis,
+   liseré lumineux ; les jours faits en ambre bombe, le jour en cours cerne d'encre. */
+.cal-serie{background:rgba(255,255,255,.94) !important; border:0 !important; border-radius:22px !important; padding:14px 16px 12px !important;
+    -webkit-backdrop-filter:blur(16px) saturate(1.5); backdrop-filter:blur(16px) saturate(1.5);
+    box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.95), inset -1px -1px 0 rgba(255,255,255,.4), 0 18px 40px rgba(20,40,60,.22) !important;}
+body[data-theme="dark"] .cal-serie{background:rgba(18,34,48,.96) !important; color:#EEF2F5 !important;
+    box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.14), 0 18px 40px rgba(0,0,0,.5) !important;}
+.cal-serie-case{transition:transform .15s;}
+.cal-serie-case.fait{background:linear-gradient(180deg, #F8D58E 0%, #EDA93C 60%, #D08A1C 100%) !important; color:#2A1A05 !important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.7), inset 0 -3px 5px -2px rgba(140,80,0,.4), 0 2px 6px rgba(200,130,30,.3) !important;}
+.cal-serie-case.auj{box-shadow:inset 0 0 0 2px #1C2430 !important;}
+.cal-serie-case.fait.auj{box-shadow:inset 0 0 0 2px #1C2430, 0 2px 6px rgba(200,130,30,.3) !important;}
+body[data-theme="dark"] .cal-serie-case.auj, body[data-theme="dark"] .cal-serie-case.fait.auj{box-shadow:inset 0 0 0 2px #EEF2F5 !important;}
+.cal-serie-bilan{border-radius:16px !important; background:rgba(232,162,58,.18) !important;}
+.cal-serie-detail, .cal-serie-enc{border-radius:14px !important;}
+
+/* v1010 : UN SEUL STYLE POUR LES QUATRE BOUTONS RONDS (Jacques, capture a l'appui : « applique ce
+   style pour les quatre » -- celui des « › » de la v1006). Disque sombre en degrade, bord interieur
+   sombre, lueur interne, filet clair en haut ; ambre la nuit. Le ▶ reste sur Ecouter et Mes episodes,
+   le « › » sur Mis de cote et Tout le contenu. */
+#home .pa-ecoute .pa-play, #home #accueilRaccourcis .orb:not(#tuileTableau)::after{border:0 !important;
+    background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%) !important;
+    box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 8px 18px rgba(20,16,10,.25) !important;}
+body[data-theme="dark"] #home .pa-ecoute .pa-play, body[data-theme="dark"] #home #accueilRaccourcis .orb:not(#tuileTableau)::after{
+    background:linear-gradient(180deg, rgba(250,206,128,.86) 0%, rgba(237,169,60,.80) 52%, rgba(208,138,28,.88) 100%) !important;
+    box-shadow:inset 0 0 0 2px rgba(150,90,10,.28), inset 0 0 14px rgba(255,255,255,.35), inset 0 1.5px 0 rgba(255,255,255,.8), 0 8px 20px rgba(237,169,60,.28) !important;}
+#home .pa-ecoute .pa-play::before, #home .pa-ecoute .pa-play::after{content:none !important;}
+#home .pa-ecoute .pa-play svg{width:17px; height:17px;}
+
 /* v1008 : LE TABLEAU DANS UN CADRE -- « verre et biseau dore » (proposition 4 retenue par Jacques,
    29 oct. 2026 : « un cadre pour la peinture [...] un melange de moderne et d'ancien »). Le verre de
    l'app autour, un biseau dore, des coins arrondis. */
@@ -8097,7 +8146,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1009</span>
+        <span class="subtitle-version">v1010</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -47440,7 +47489,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1009;
+const APP_VERSION = 1010;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -56980,9 +57029,12 @@ function lireEpisode(ep){
     // donc la FENETRE de l'episode qui passe en plein ecran, ✕ compris : les barres
     // disparaissent et le bouton reste la.
     try{
-        if(AUDIO_LECTEUR_UNIQUE && vid.webkitEnterFullscreen)
-            vid.addEventListener("loadedmetadata", () => { try{ vid.webkitEnterFullscreen(); }catch(e){} }, { once: true });
-        else {
+        // v1010 : PLUS DE LECTEUR PLEIN ECRAN D'APPLE SUR IPHONE. Il pose la video sur du NOIR, avec
+        // une bande en haut et en bas, et ne se laisse pas habiller (Jacques, 29 oct. 2026 : « les
+        // videos, on a une bande noire en haut puis une bande noire en bas -- le fond commun pour la
+        // video egalement »). La video reste dans NOTRE fenetre, qui couvre deja tout l'ecran avec
+        // son ✕ et le fond de l'app ; le bouton plein ecran des commandes reste la pour qui le veut.
+        {
             const voile = b.parentNode;
             if(voile && voile.requestFullscreen){
                 const f = voile.requestFullscreen({ navigationUI: "hide" });
