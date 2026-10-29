@@ -8151,7 +8151,7 @@ body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gra
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1011</span>
+        <span class="subtitle-version">v1012</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -47498,7 +47498,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1011;
+const APP_VERSION = 1012;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -47619,14 +47619,27 @@ async function verifierNouvelleVersion(){
         // jamais deux fois le meme numero -- et un onglet ancien rattrape une
         // version PLUS RECENTE, ce qu'il ne savait pas faire.
         const dejaTentee = sessionStorage.getItem(VERSION_RECHARGE_FAITE);
+        // v1012 : LA VERSION LA PLUS RECENTE DEJA CHARGEE DANS CETTE SESSION. Jacques, iPhone,
+        // 29 oct. 2026 : bloque en v1010 alors que la v1011 s'etait chargee. Son journal :
+        // v1011 ouverte a 16:42:08, puis a 16:42:38 « nav=back_forward ?v=1010 » et « deja
+        // tentee » -- un retour arriere avait ramene l'ancienne page (laissee dans
+        // l'historique quand le popstate de revenirALaBaseHistorique n'etait pas venu), et
+        // le verrou l'empechait de repartir. Si la version publiee a deja tourne dans cette
+        // session, cette page-ci est un fantome de l'historique : on la remplace, sans risque
+        // de boucle (la page recente, elle, est a jour et ne recharge rien).
+        let dejaVue = 0;
+        try{ dejaVue = parseInt(sessionStorage.getItem(VERSION_RECHARGE_FAITE + "Vue") || "0", 10) || 0; }catch(e){}
         const r = await fetch("version.json?t=" + Date.now(), { cache: "no-store" });
         if(!r.ok){ noterVersion("verif", { resultat: "http " + r.status }); return; }
         const publiee = parseInt((await r.json()).version, 10);
+        if(Number.isFinite(publiee) && publiee <= APP_VERSION){
+            try{ sessionStorage.setItem(VERSION_RECHARGE_FAITE + "Vue", String(APP_VERSION)); }catch(e){}
+        }
         if(!Number.isFinite(publiee) || publiee <= APP_VERSION){
             noterVersion("verif", { publiee: publiee, resultat: "a jour" });
             return;
         }
-        if(dejaTentee && parseInt(dejaTentee, 10) === publiee){
+        if(dejaTentee && parseInt(dejaTentee, 10) === publiee && dejaVue < publiee){
             noterVersion("verif", { publiee: publiee, resultat: "deja tentee" });
             return;
         }
