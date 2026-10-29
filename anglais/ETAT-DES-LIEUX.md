@@ -40,7 +40,7 @@ mêmes images de scènes ; l'anglais se situe à **Boston**.
 - **cartes-phrases** dans la séance : écoute, oral, ordre, dictée et questions de grammaire
   anglaise, comme en allemand et en espagnol.
 
-**Reste** : la mosaïque (à choisir par Jacques), les couches A2-C1 des scènes (questions
+**Reste** (la mosaïque est faite, v1013) : les couches A2-C1 des scènes (questions
 écrites pour l'anglais), l'A1 voyage, la voix (ElevenLabs, sur accord), puis la relecture
 par un anglophone avant toute ouverture aux testeurs.
 
@@ -195,7 +195,7 @@ en espagnol :
 | Repères | 11 | 10 | Nombres, jours, mois, heure, couleurs, alphabet (épeler son nom) |
 | Premiers pas | 8 étapes, 190 éléments | 8, 191 | **À écrire** sur le modèle espagnol |
 | Scènes | 43 | 43 (mêmes images, `mots.json`) | **Les mêmes images et zones**, avec le mot anglais de chaque mot allemand (≈ 480 mots, dérivables de `traduction_en`, à relire). `construire.py` fera `scene-<scène>.en.js` |
-| Mosaïque | 65 tableaux | 66 | **À choisir par toi**, comme l'espagnol : peintres britanniques et américains morts avant 1926 (Turner, Constable, Gainsborough, Homer, Sargent, Cassatt, Whistler…). Cachée en attendant |
+| Mosaïque | 65 tableaux | 66 | **67 tableaux de peintres américains**, choisis par toi le 29 oct. (v1013) : `anglais/mosaique/` |
 | Voix | Aurora (ElevenLabs) | Lolita / Monica | **Celle du téléphone** (`en-US`, `en-GB`). ElevenLabs plus tard, sur ton accord |
 
 Paliers suivants : A2 (les fichiers de l'ancien module sont surtout A2-B1 : phrasal verbs,
@@ -249,7 +249,7 @@ mêmes mots dans le même ordre, pour que la progression suive quand on change d
 | 4 | Prononciation, son du jour, repères, Premiers pas | 0 | Le 🌱 d'un compte neuf en anglais |
 | 5 | Scènes (mots anglais de chaque scène, à Boston) | 0 | Scènes jouables en anglais |
 | 6 | Relecture par un anglophone, puis ouverture aux testeurs | relecteur, à chiffrer | Retours |
-| 7 | Mosaïque (ton choix), voix ElevenLabs (ton accord), fiche des stores, A2 | voix à chiffrer | — |
+| 7 | Mosaïque (faite, v1013), voix ElevenLabs (ton accord), fiche des stores, A2 | voix à chiffrer | — |
 
 Les étapes 1 à 5 se font sans dépense, une version à la fois, chacune poussée sur `main`
 en essai admin après les deux parcours à 0 écart.
@@ -261,5 +261,5 @@ en essai admin après les deux parcours à 0 écart.
    l'A1 du moteur en place ? (Les données, elles, sont gardées.)
 3. **Les règles Firestore `usersEn` / `resumesEn`** à coller dans la console, le jour où
    tu veux que la progression de l'essai suive d'un appareil à l'autre.
-4. Plus tard : les autres interfaces (turc, ukrainien, arabe…), la mosaïque, la voix, un
+4. Plus tard : les autres interfaces (turc, ukrainien, arabe…), la voix, un
    relecteur anglophone.

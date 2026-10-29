@@ -48,8 +48,32 @@ tenait en 9 peintres, avec beaucoup de marines tonalistes et sombres.
 - Peu de Frieseke, de Guy Rose et de Lilla Cabot Perry : Wikidata en recense peu, et
   la plupart sont en hauteur ou sans licence lisible.
 
-## Ensuite (après le choix de Jacques)
+## Le choix de Jacques et le branchement (29 oct. 2026, v1013)
 
-Comme l'espagnol : `selection.json`, les originaux en haute définition (hors OneDrive),
-`construire.py` → `mosaiques.json` et `peintres.json` (notices en français), puis le
-branchement dans l'app (`MOSAIQUE_BASE` pour `LANGUE_APPRISE === "en"`).
+67 tableaux, dans l'ordre de son choix (page à cocher du chef d'orchestre, recopiée dans
+`decisions/DECISIONS.md`) : 36 de la récolte « couleur » (C…), 31 de la première.
+
+1. `python anglais/mosaique/selection_depuis_choix.py` → `selection.json` (rang = ordre
+   d'apparition).
+2. `python anglais/mosaique/construire.py` → `app/img/a01.jpg` … `a67.jpg`, `app/img/info.jpg`
+   (copie du dernier, pour l'écran « Comment ça marche ») et `app/mosaiques.json`. Les images
+   de 1800 px de Commons restent hors de OneDrive (`anglais-mosaique-brut/hd`). Même
+   traitement « vif » que l'espagnol ; recadrage au centre au-delà de 1,6 (7 tableaux).
+   `FICHIER_HD` prend un fichier Commons plus grand du même tableau (Shinnecock, de Chase).
+3. `app/peintres.json` : une notice par peintre (19), en français seulement — l'interface
+   de l'anglais n'a que le français. Écrites d'après `sources_peintres.json`
+   (`python anglais/mosaique/sources_peintres.py`, résumés Wikipedia anglais et français).
+4. Dans `index.html` : `MOSAIQUE_BASE` vaut `anglais/mosaique/app/` pour l'anglais ;
+   `#carteMosaique` et `#tuileTableau` ne sont plus dans la liste blanche ; les textes
+   « un peintre américain » (`mosaique_reste`, `mosaique_intro_texte`, `ip_tableau_1`)
+   sont dans `I18N_ANGLAIS`.
+
+À savoir :
+- **Images petites** : *Iris and Lilies* de Benson (n° 47) n'existe sur Commons qu'en
+  282 × 200 px ; *Bowlers, La Ciotat* (n° 1, 608 px) et *The Garden Parasol* (n° 9, 640 px)
+  sont modestes. L'espagnol avait remplacé ses images de moins de 450 px, avec l'accord
+  de Jacques.
+- *The Sunken Road, Ransart* (n° 35, Sargent, 1918, Imperial War Museum) est une scène de
+  tranchée de 1914-1918 que le titre ne disait pas ; Jacques l'a choisie.
+- Le tableau de la démonstration (visite « Découvrir ») n'a pas d'équivalent anglais :
+  `DEMO_TABLEAU` ne trouve pas son peintre et l'étape montre le vrai tableau.
