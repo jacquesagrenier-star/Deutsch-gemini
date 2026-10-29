@@ -5080,29 +5080,44 @@ body[data-theme="dark"] .synonymes .syn-mot{background:rgba(255,255,255,.08); co
    saisie gardait sa largeur par defaut et poussait le texte hors de l'ecran. */
 .home-greeting-row .search-launch{margin-inline-start:auto !important; min-width:0;}
 .home-greeting-row .search-launch input{min-width:0; width:100%;}
-/* v996 : LA RECHERCHE DANS LA LIGNE DE « TA GALERIE ». Le fils de Jacques la
-   trouvait « tres, tres pratique » mais introuvable : une icone de 38 px sans
-   un mot, au bout du salut. La ligne de la galerie, sous le tableau, ne portait
-   qu'un bouton : la recherche y prend la gauche, EN TOUTES LETTRES, sans
-   ajouter un pixel de hauteur (une carte « Dictionnaire » etait plus claire,
-   mais Jacques : « ca prend de la place »). placerRecherche() l'y deplace quand
-   le tableau est a l'ecran, et la rend au salut sinon (anglais, aucun tableau).
+/* v998 : LA RECHERCHE A SA PROPRE LIGNE, SOUS LE SALUT. En v996 elle vivait dans
+   la ligne de « Ta galerie » ; le tableau ne s'affiche plus en haut que pendant
+   les trois jours du trophee (maquette n° 1 de Jacques, 28 oct. 2026), elle prend
+   donc la ligne qui suit le salut et la flamme. En toutes lettres, sur toute la
+   largeur : le fils de Jacques la trouvait « tres, tres pratique » mais introuvable.
    ⚠️ LE CHAMP RESTE, INVISIBLE, PAR-DESSUS LA PASTILLE : c'est en le touchant
    lui-meme que iOS ouvre le clavier du premier coup (voir .search-launch input).
    Et il garde ses 16 px, sinon Safari zoome. */
+.ligne-recherche{order:2; margin:0 0 12px;}
 .search-launch .sl-texte{display:none;}
-.mos-plaque{flex-wrap:wrap; row-gap:6px;}
-/* Le pied vide comptait comme un element de la rangee : 10 px d'ecart devant la
-   pastille, qui ne s'alignait plus sur le bord oppose de « Ta galerie ». */
+.ligne-recherche .search-launch{
+    position:relative; max-width:none; width:100%; margin:0; box-sizing:border-box;
+    gap:8px; padding:8px 14px; cursor:pointer;
+    border:1px solid rgba(var(--wt-action-rgb),.45); background:rgba(255,255,255,.6);
+}
+.ligne-recherche .search-launch .sl-texte{display:inline; font-size:14px; font-weight:600; color:#3b4a5a; white-space:nowrap;}
+.ligne-recherche .search-launch svg{width:18px; height:18px;}
+.ligne-recherche .search-launch input{position:absolute; inset:0; width:100%; height:100%; opacity:0; padding:0; margin:0; cursor:pointer;}
+body[data-theme="dark"] .ligne-recherche .search-launch{background:rgba(255,255,255,.06); border-color:rgba(156,195,221,.4);}
+body[data-theme="dark"] .ligne-recherche .search-launch .sl-texte{color:#CFE3F0;}
+html[data-apprendre="ja"] .ligne-recherche{display:none;}
+/* Le pied vide comptait comme un element de la rangee de « Ta galerie ». */
 .mos-plaque > .mos-pied:empty{display:none;}
-/* Les jours du trophee, « Ta galerie » reste EN FACE DU PEINTRE (v632) : c'est la
-   recherche qui passe a la ligne, pas la galerie. */
-.mos-plaque:has(> .mos-cartouche-carte:not(.hidden)) > .mos-cartouche-carte{flex:1 1 0; min-width:0;}
-.mos-plaque:has(> .mos-cartouche-carte:not(.hidden)) > .mos-galerie{order:1;}
-.mos-plaque:has(> .mos-cartouche-carte:not(.hidden)) > .search-launch{order:2; margin-top:-6px;}
-/* Le saut de ligne force : sans lui, un cartouche a base nulle laisse la
-   recherche tenir sur la premiere ligne, par-dessus le titre. */
-.mos-plaque:has(> .mos-cartouche-carte:not(.hidden))::after{content:""; flex-basis:100%; order:1; height:0;}
+/* v998 : LE TABLEAU EN VIGNETTE. Pendant qu'il se forme, il quitte le haut de
+   l'accueil (« il prend de la place ») pour une vignette « Ton tableau · 62 % »
+   entre « Mis de cote » et « Tout le contenu ». Il revient en grand, en haut,
+   pendant les trois jours du trophee : majMosaiqueAccueil() pose .replie. */
+#carteMosaique.replie{display:none;}
+.accueil-raccourcis:has(> #tuileTableau:not(.hidden)){grid-template-columns:repeat(3, minmax(0, 1fr)); gap:8px;}
+.accueil-raccourcis:has(> #tuileTableau:not(.hidden)) .orb{padding:10px; gap:6px;}
+.vignette-tableau{width:100%; aspect-ratio:3 / 2; border-radius:8px; overflow:hidden; background:#E7E2D6;}
+.vignette-tableau img{display:block; width:100%; height:100%; object-fit:cover;}
+body[data-theme="dark"] .vignette-tableau{background:#2a3038;}
+html[data-apprendre="en"] #tuileTableau{display:none !important;}
+.galerie-en-cours figcaption b{color:#7D4A08;}
+/* Le message « ta premiere mosaique... » passe SOUS le tableau en cours, pas a cote. */
+.galerie-en-cours + .galerie-vide{grid-column:1 / -1; padding-top:4px;}
+body[data-theme="dark"] .galerie-en-cours figcaption b{color:#F0B456;}
 .mos-plaque > .search-launch{
     position:relative; flex:0 0 auto; max-width:none; margin:0; margin-inline-end:auto;
     gap:5px; padding:4px 11px 4px 9px; cursor:pointer;
@@ -8019,6 +8034,18 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              Le nombre seul a l'ecran, l'unite pour les lecteurs d'ecran : sur
              une ligne deja partagee, « 12 jours » en toutes lettres ne tiendrait
              pas dans toutes les langues. -->
+        <!-- v911 : LA FLAMME TOUT AU BOUT, ET ELLE S'OUVRE. Jacques, 21 oct. 2026 :
+             « mets la flamme, mets le chiffre, puis place ca le plus a droite
+             possible », pour ne plus couper « Bon apres-midi Jacq… » ; « assez
+             grosse pour qu'on la voie bien » ; « si on clique dessus, la personne
+             pourrait voir, pendant les deux dernieres semaines, ou elle a eu des
+             seances ». L'unite reste pour les lecteurs d'ecran, et dans la bulle. -->
+        <button type="button" id="serieAccueil" class="serie-salut hidden" onclick="ouvrirCalendrierSerie(event)" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.7 2.2-4.8.2 1.6 1 2.6 2 3 0-3.1-.4-5.6.3-8.2z"/></svg><span id="streakCount">0</span><span id="serieUnite" class="serie-unite">jours</span></button>
+    </div>
+    <!-- v998 : LA RECHERCHE A SA LIGNE, sous le salut et la flamme (maquette n° 1).
+         Le tableau quitte le haut pendant qu'il se forme : elle ne peut plus vivre
+         dans la ligne de « Ta galerie » (v996). -->
+    <div class="ligne-recherche" id="ligneRecherche">
     <label class="search-launch" for="homeSearchInput">
         <svg viewBox="0 0 24 24"><path d="M10.5 7.4C9.2 6.2 7.5 5.6 5.2 5.6c-.9 0-1.7.1-2.4.2v9.8c.7-.1 1.5-.2 2.4-.2 2.3 0 4 .6 5.3 1.8"/><path d="M10.5 7.4c1.3-1.2 3-1.8 5.3-1.8.9 0 1.7.1 2.4.2v4.4"/><path d="M10.5 7.4v9.8"/><circle cx="16.6" cy="15.4" r="3.1"/><path d="M18.9 17.7 21.4 20.2"/></svg>
         <input id="homeSearchInput" type="search" autocomplete="off" autocapitalize="none"
@@ -8029,13 +8056,6 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                oninput="ouvrirRechercheDepuisAccueil(this.value)">
         <span class="sl-texte" data-i18n="search_pill">Chercher un mot</span>
     </label>
-        <!-- v911 : LA FLAMME TOUT AU BOUT, ET ELLE S'OUVRE. Jacques, 21 oct. 2026 :
-             « mets la flamme, mets le chiffre, puis place ca le plus a droite
-             possible », pour ne plus couper « Bon apres-midi Jacq… » ; « assez
-             grosse pour qu'on la voie bien » ; « si on clique dessus, la personne
-             pourrait voir, pendant les deux dernieres semaines, ou elle a eu des
-             seances ». L'unite reste pour les lecteurs d'ecran, et dans la bulle. -->
-        <button type="button" id="serieAccueil" class="serie-salut hidden" onclick="ouvrirCalendrierSerie(event)" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c.5 3.2 4.5 5.4 4.5 10a4.5 4.5 0 0 1-9 0c0-2.2 1-3.7 2.2-4.8.2 1.6 1 2.6 2 3 0-3.1-.4-5.6.3-8.2z"/></svg><span id="streakCount">0</span><span id="serieUnite" class="serie-unite">jours</span></button>
     </div>
 
     <h1>
@@ -8396,6 +8416,17 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <div>
                     <strong data-i18n="gardes_titre">Mis de côté</strong>
                     <span class="raccourci-sous" id="gardesSous"></span>
+                </div>
+            </div>
+            <!-- v998 : LE TABLEAU EN VIGNETTE pendant qu'il se forme (maquette n° 1 de
+                 Jacques, 28 oct. 2026). Il ne revient en grand, en haut, que pendant les
+                 trois jours du trophee. Elle ouvre la galerie, ou le tableau en cours est
+                 en tete. Cachee sans tableau (anglais) et pendant le trophee. -->
+            <div class="orb tuile-tableau hidden" id="tuileTableau" onclick="ouvrirGalerieMosaiques()" role="button" tabindex="0">
+                <div class="vignette-tableau"><img id="vignetteTableau" alt="" hidden></div>
+                <div>
+                    <strong data-i18n="tableau_tuile">Ton tableau</strong>
+                    <span class="raccourci-sous" id="tableauSous"></span>
                 </div>
             </div>
             <div class="orb" id="tuileToutContenu" onclick="ouvrirToutLeContenu()" role="button" tabindex="0">
@@ -8838,7 +8869,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          retrouvee PAR-DESSUS le tableau. Signale par Jacques. En pied de page
          elle reste consultable d'un coup d'oeil -- c'est tout ce qu'on lui
          demande -- sans rien recouvrir. -->
-    <span class="subtitle-version">v997</span>
+    <span class="subtitle-version">v998</span>
 </section>
 
 <!-- ================= PANNEAU D'OPTIONS PAR PASTILLE ================= -->
@@ -13211,6 +13242,8 @@ const I18N = {
         // --- Recherche dans les flashcards (v188) ---
         search_launch: "Dictionnaire — chercher un mot",
         search_pill: "Chercher un mot",
+        tableau_tuile: "Ton tableau",
+        tableau_pct: "{p} %",
         search_kicker: "Flashcards et dictionnaire",
         search_title: "Chercher un mot allemand ou français",
         search_placeholder: "Allemand ou français…",
@@ -14708,6 +14741,8 @@ const I18N = {
         // --- Flashcard search (v188) ---
         search_launch: "Dictionary — look up a word",
         search_pill: "Find a word",
+        tableau_tuile: "Your painting",
+        tableau_pct: "{p}%",
         search_kicker: "Flashcards and dictionary",
         search_title: "Search a German or English word",
         search_placeholder: "German or English…",
@@ -16207,6 +16242,8 @@ const I18N = {
         // --- Flashcard search (v188) ---
         search_launch: "Sözlük — bir kelime ara",
         search_pill: "Kelime ara",
+        tableau_tuile: "Tablon",
+        tableau_pct: "%{p}",
         search_kicker: "Kartlar ve sözlük",
         search_title: "Almanca veya Türkçe kelime ara",
         search_placeholder: "Almanca veya Türkçe…",
@@ -18521,6 +18558,8 @@ const I18N = {
         home_week_positive: "+{n} цього тижня",
         search_launch: "Словник — шукати слово",
         search_pill: "Знайти слово",
+        tableau_tuile: "Твоя картина",
+        tableau_pct: "{p}%",
         search_kicker: "Картки та словник",
         search_title: "Шукати німецьке або українське слово",
         search_placeholder: "Німецькою або українською…",
@@ -19696,6 +19735,8 @@ const I18N = {
         qual_100: "تسلط کامل!",
         search_launch: "واژه‌نامه — جست‌وجوی یک واژه",
         search_pill: "جستجوی واژه",
+        tableau_tuile: "تابلوی تو",
+        tableau_pct: "{p}٪",
         search_kicker: "کارت‌ها و فرهنگ واژگان",
         search_title: "جست‌وجوی واژهٔ آلمانی یا فارسی",
         search_placeholder: "آلمانی یا فارسی…",
@@ -21251,6 +21292,8 @@ const I18N = {
         progress_info_apres: "«لم أكن أعرفها» يسحب منها الإتقان، فتنزل النسبة.\n\nوالكلمة المتقَنة تعود بعد 16 يوماً للتحقّق، ثم على فترات أطول فأطول، دون أن تخرج من الحساب.",
         search_launch: "القاموس — ابحث عن كلمة",
         search_pill: "ابحث عن كلمة",
+        tableau_tuile: "لوحتك",
+        tableau_pct: "{p}٪",
         search_kicker: "البطاقات والقاموس",
         search_title: "ابحث عن كلمة ألمانية أو عربية",
         search_placeholder: "بالألمانية أو العربية…",
@@ -22372,6 +22415,8 @@ const I18N = {
         progress_info_apres: "“Eu não sabia” tira o domínio dela, e a porcentagem cai.\n\nUma palavra dominada volta depois de 16 dias para conferir, depois cada vez mais raramente, sem deixar de ser contada.",
         search_launch: "Dicionário — buscar uma palavra",
         search_pill: "Buscar palavra",
+        tableau_tuile: "Seu quadro",
+        tableau_pct: "{p}%",
         search_kicker: "Flashcards e dicionário",
         search_title: "Buscar uma palavra em alemão ou em português",
         search_placeholder: "Alemão ou português…",
@@ -23933,6 +23978,8 @@ const I18N = {
         progress_info_apres: "„Nie pamiętam” odbiera mu status opanowanego i procent spada.\n\nOpanowane słowo wraca po 16 dniach na sprawdzenie, potem coraz rzadziej, i cały czas jest liczone.",
         search_launch: "Słownik — wyszukaj słowo",
         search_pill: "Szukaj słowa",
+        tableau_tuile: "Twój obraz",
+        tableau_pct: "{p}%",
         search_kicker: "Fiszki i słownik",
         search_title: "Wyszukaj słowo po niemiecku lub po polsku",
         search_placeholder: "Po niemiecku lub po polsku…",
@@ -25494,6 +25541,8 @@ const I18N = {
         progress_info_apres: "«Не знал(а)» отнимает у слова статус выученного, и процент снова уменьшается.\n\nВыученное слово возвращается через 16 дней для проверки, потом всё реже и реже, но продолжает учитываться.",
         search_launch: "Словарь — найти слово",
         search_pill: "Найти слово",
+        tableau_tuile: "Твоя картина",
+        tableau_pct: "{p}%",
         search_kicker: "Карточки и словарь",
         search_title: "Найти немецкое или русское слово",
         search_placeholder: "По-немецки или по-русски…",
@@ -46887,7 +46936,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 997;
+const APP_VERSION = 998;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -49982,23 +50031,27 @@ function imageMosaique(m){
 
 
 
-// v996 : LA RECHERCHE SUIT LE TABLEAU. Dans la ligne de « Ta galerie » quand
-// le tableau est a l'ecran ; sur la ligne du salut sinon -- l'anglais cache le
-// tableau (liste blanche), et un compte sans tableau courant n'a pas de ligne.
-// On DEPLACE le meme element : un seul champ, un seul id, et le geste qui ouvre
-// le clavier iOS ne change pas.
+// v998 : LA RECHERCHE A SA LIGNE, sous le salut (#ligneRecherche). Elle suivait
+// le tableau en v996 ; le tableau ne s'affiche plus en haut que pendant le
+// trophee, elle ne bouge donc plus. On DEPLACE le meme element si un ancien
+// HTML en cache l'avait laisse ailleurs : un seul champ, un seul id.
 function placerRecherche(){
     const l = document.querySelector(".search-launch");
-    const bloc = document.getElementById("carteMosaique");
-    const plaque = bloc && bloc.querySelector(".mos-plaque");
-    const salut = document.querySelector(".home-greeting-row");
-    if(!l || !plaque || !salut) return;
-    const visible = !bloc.classList.contains("hidden") && getComputedStyle(bloc).display !== "none";
-    if(visible){
-        if(l.parentElement !== plaque) plaque.insertBefore(l, plaque.querySelector(".mos-galerie"));
-    } else if(l.parentElement !== salut){
-        salut.insertBefore(l, document.getElementById("serieAccueil"));
-    }
+    const ligne = document.getElementById("ligneRecherche");
+    if(l && ligne && l.parentElement !== ligne) ligne.appendChild(l);
+}
+// v998 : LA VIGNETTE « TON TABLEAU · 62 % ». La meme toile que le grand tableau,
+// copiee en image (iOS vide les canevas en arriere-plan, v979). Cachee pendant le
+// trophee : le grand tableau est alors en haut.
+function majVignetteTableau(canvas, faits, total, fini){
+    const tuile = document.getElementById("tuileTableau");
+    if(!tuile) return;
+    tuile.classList.toggle("hidden", !!fini || !canvas);
+    if(fini || !canvas) return;
+    const img = document.getElementById("vignetteTableau");
+    try{ if(img){ img.src = canvas.toDataURL("image/jpeg", 0.75); img.hidden = false; } }catch(e){}
+    const sous = document.getElementById("tableauSous");
+    if(sous) sous.textContent = tf("tableau_pct", { p: Math.round(Math.min(1, faits / Math.max(1, total)) * 100) });
 }
 function majMosaiqueAccueil(){
     const bloc = document.getElementById("carteMosaique");
@@ -50016,7 +50069,7 @@ function majMosaiqueAccueil(){
     chargerPeintres();
     chargerMosaiques().then(() => {
         const m = mosaiqueCourante();
-        if(!m){ bloc.classList.add("hidden"); placerRecherche(); try{ noterAudio("mosaique", "MOSAIQUE", "aucun tableau courant"); }catch(e){} return; }
+        if(!m){ bloc.classList.add("hidden"); placerRecherche(); majVignetteTableau(null); try{ noterAudio("mosaique", "MOSAIQUE", "aucun tableau courant"); }catch(e){} return; }
         bloc.classList.remove("hidden");
         placerRecherche();
         const v = etatMosaique();
@@ -50043,6 +50096,8 @@ function majMosaiqueAccueil(){
         // c'est ce bloc qui le rendra faux, et c'est ainsi que la resolution ne
         // se joue qu'une fois.
         const vientDeGagner = fini && v.t === 0 && v.g.indexOf(v.r) < 0;
+        // v998 : en haut seulement pendant le trophee ; sinon, la vignette du bas.
+        bloc.classList.toggle("replie", !fini);
         const canvas = document.getElementById("mosaiqueToile");
         imageMosaique(m).then(img => {
             // MARQUE : c'est le travail le plus lourd de l'accueil, et il etait
@@ -50095,6 +50150,7 @@ function majMosaiqueAccueil(){
                     dessinerMosaique(canvas, img, v.c, total, fini);
                     toileEnImage(canvas);
                 }
+                majVignetteTableau(canvas, v.c, total, fini);
                 // ⚠️ LA JAUGE EST ECRITE ICI DEPUIS LA v597, ET ELLE NE L'ETAIT
                 // PLUS DU TOUT DEPUIS LA v588. Ses deux lignes vivaient dans
                 // cartoucheMosaique() -- une fonction dont le nom ne promet
@@ -50124,7 +50180,7 @@ function majMosaiqueAccueil(){
                         + ", ecran " + ((document.querySelector(".screen.active") || {}).id || "?"));
                 }catch(e){}
             }finally{ marquerGel(null); }
-        }, () => { bloc.classList.add("hidden"); try{ noterAudio("mosaique", "MOSAIQUE", "image REFUSEE : bloc cache"); }catch(e){} });
+        }, () => { bloc.classList.add("hidden"); majVignetteTableau(null); try{ noterAudio("mosaique", "MOSAIQUE", "image REFUSEE : bloc cache"); }catch(e){} });
 
         // L'image vient d'etre terminee : on ouvre le compte des trois jours
         // et on la range dans la galerie. Une seule fois.
@@ -50318,10 +50374,21 @@ function ouvrirGalerieMosaiques(){
         const zone = document.getElementById("galerieMosaiques");
         if(!zone) return;
         const v = etatMosaique();
+        // v998 : LE TABLEAU EN COURS EN TETE. La vignette de l'accueil mene ici, et
+        // la galerie ne montrait que les tableaux finis : celui qu'on peint
+        // manquait. Un toucher l'ouvre en grand, comme le tableau d'accueil.
+        const tuile = document.getElementById("tuileTableau");
+        const vig = document.getElementById("vignetteTableau");
+        const enCours = (tuile && !tuile.classList.contains("hidden") && vig && vig.getAttribute("src"))
+            ? '<figure class="galerie-item galerie-en-cours" onclick="ouvrirMosaiquePleinEcran()">'
+              + '<img src="' + vig.getAttribute("src") + '" alt="">'
+              + '<figcaption><b>' + t("tableau_tuile") + '</b><br>'
+              + ((document.getElementById("tableauSous") || {}).textContent || "") + '</figcaption></figure>'
+            : "";
         if(!v.g.length){
-            zone.innerHTML = '<p class="galerie-vide">' + t("mosaique_galerie_vide") + '</p>';
+            zone.innerHTML = enCours + '<p class="galerie-vide">' + t("mosaique_galerie_vide") + '</p>';
         } else {
-            zone.innerHTML = v.g.map(r => {
+            zone.innerHTML = enCours + v.g.map(r => {
                 const m = MOSAIQUES[(r - 1) % MOSAIQUES.length];
                 if(!m) return "";
                 return '<figure class="galerie-item" onclick="ouvrirMosaiquePleinEcran(' + r + ')">'
