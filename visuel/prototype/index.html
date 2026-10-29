@@ -287,6 +287,16 @@ html.nuit .choix{background:rgba(30,46,60,.86);color:#EEF2F5}
 .suite::before{content:"";position:absolute;inset:2px;border-radius:inherit;z-index:-1;pointer-events:none;
   background:linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.08) 40%, rgba(255,255,255,0) 52%)}
 html.nuit .suite{background:linear-gradient(180deg, rgba(110,200,145,.62), rgba(40,120,80,.80)) !important}
+/* v1005 : L'IMAGE PLUS GRANDE EN SEANCE (Jacques, 29 oct. 2026 : « on n'utilise pas suffisamment
+   l'espace pour l'image [...] le texte en haut prend trop de place »). Le retour devient un rond
+   « ‹ » A COTE de la question (une ligne de gagnee), et « Continuer » flotte sur le bas de
+   l'image -- il n'apparait qu'apres la reponse, quand il n'y a plus rien a toucher. */
+.en-seance .haut{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:8px;align-items:start}
+.en-seance .haut > .barre{grid-column:1;grid-row:1}
+.en-seance .haut > .carte{grid-column:2;grid-row:1}
+.en-seance .haut > .bas{grid-column:1 / -1}
+.en-seance .retour-choix{display:flex;align-items:center;justify-content:center;width:40px;height:40px;padding:0;
+  border-radius:50%;font-size:22px;line-height:1;overflow:hidden}
 
 .bulle-arrivee{position:absolute;left:8%;right:8%;top:12px;z-index:1900;background:rgba(28,36,48,.9);color:#fff;
   font-size:14px;line-height:1.35;padding:8px 12px;border-radius:10px;text-align:center;pointer-events:none;transition:opacity .5s}
@@ -527,7 +537,7 @@ const compte = (a, b) => `<span class="compte">${a} / ${b}</span>`;
    et menait ailleurs (Jacques, 6 oct.). Hors seance, il garde le titre. */
 /* « ‹ Retour » PARTOUT (Jacques, 9 oct.) : le titre de la scene (« Auf dem
    Markt », « Im Spanischkurs ») ressemblait a un titre, pas a une sortie. */
-$("retourChoix").textContent = T("retour");
+$("retourChoix").textContent = new URLSearchParams(location.search).get("seance") === "1" ? "‹" : T("retour");   // v1005 : un rond « ‹ » en seance (EN_SEANCE n'est pas encore declare ici)
 scene.style.aspectRatio = MASQUES.W + " / " + MASQUES.H;
 /* Le retour a l'ecran de choix de la seance (la maquette) : a cote dans le
    depot, choix-seance.html ; publiee, la maquette est la page d'accueil et
@@ -1215,7 +1225,8 @@ if (window.parent !== window)
 function ajusterSeance(){
   if (window.parent === window) return;
   // v1003 : 72 px reserves pour « Continuer », en bas de l'ecran -- il ne couvre jamais l'image.
-  const dispo = innerHeight - document.querySelector(".haut").offsetHeight - 72;
+  // v1005 : plus de place reservee pour « Continuer » : il flotte sur le bas de l'image.
+  const dispo = innerHeight - document.querySelector(".haut").offsetHeight - 6;
   const largeur = Math.min(document.querySelector(".cadre").clientWidth - 20, dispo * MASQUES.W / MASQUES.H);
   scene.style.width = Math.max(200, Math.floor(largeur)) + "px";
   placerFermer();
