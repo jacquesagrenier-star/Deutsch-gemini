@@ -7676,8 +7676,214 @@ body[data-theme="dark"] .pf-sous, body[data-theme="dark"] .pf-pied, body[data-th
 body[data-theme="dark"] .pf-raison, body[data-theme="dark"] .pf-facon{background:#1d232c; border-color:#2c333d; color:#eef1f5;}
 body[data-theme="dark"] .pf-raison.on, body[data-theme="dark"] .pf-facon.on{background:#2a2418; border-color:#E8A23A;}
 body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
+
+/* ============ v1003 : LE NOUVEAU STYLE (Jacques, 29 oct. 2026) ============
+   Maquettes retenues une a une le 29 oct. (decisions/DECISIONS.md) : fond commun
+   (carte du monde par langue, gris-bleu, et caracteres du monde), verre partout,
+   l'ambre comme seule couleur d'accent, boutons en verre NOIRS le jour et AMBRES
+   la nuit (« garde les memes couleurs qu'on avait »), et sur les cartes un
+   « Continuer » VERT (le vert = « je savais »), « Encore » et « Mettre de cote »
+   en verre neutre. Ce bloc vient en dernier : il l'emporte sur l'ancien style. */
+
+/* --- Le fond commun --- */
+#fondMonde{position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden;}
+#fondMonde .fm-carte{position:absolute; left:0; right:0; top:24px; height:378px; opacity:.38; transition:opacity .4s;}
+#fondMonde .fm-piste{position:absolute; top:0; left:0; width:2880px; height:378px; transform:translateX(-338px);
+    background:url("visuel/fond/carte-langues-jour.svg") repeat-x 0 0 / 960px 378px; will-change:transform;}
+body[data-theme="dark"] #fondMonde .fm-piste{background-image:url("visuel/fond/carte-langues-nuit.svg");}
+#fondMonde .fm-lettres{position:absolute; left:0; right:0; top:520px; height:460px; opacity:.5; transition:opacity .4s;}
+#fondMonde .fm-lettres-piste{position:absolute; top:0; left:0; width:780px; height:100%;}
+#fondMonde .fm-lettres span{position:absolute; font-family:Georgia, "Noto Serif", "Yu Mincho", "Hiragino Mincho ProN", serif;
+    font-weight:600; font-size:104px; line-height:1; color:#9FB3C2; opacity:.34;}
+body[data-theme="dark"] #fondMonde .fm-lettres span{color:#41586B; opacity:.55;}
+/* Sur l'accueil : la carte vive, et tout defile doucement de droite a gauche. */
+body:not([data-ecran]) #fondMonde .fm-carte, body[data-ecran="home"] #fondMonde .fm-carte{opacity:1;}
+body:not([data-ecran]) #fondMonde .fm-lettres, body[data-ecran="home"] #fondMonde .fm-lettres{opacity:1;}
+body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 95s linear infinite;}
+body:not([data-ecran]) #fondMonde .fm-lettres-piste, body[data-ecran="home"] #fondMonde .fm-lettres-piste{animation:fmLettres 70s linear infinite;}
+@keyframes fmDefile{from{transform:translateX(-338px);} to{transform:translateX(-1298px);}}
+@keyframes fmLettres{from{transform:translateX(0);} to{transform:translateX(-390px);}}
+@media (prefers-reduced-motion: reduce){ #fondMonde .fm-piste, #fondMonde .fm-lettres-piste{animation:none !important;} }
+/* La scene plein ecran et l'ouverture ont leur propre fond : rien a montrer dessous. */
+body[data-ecran="sceneSeance"] #fondMonde{display:none;}
+
+/* --- Le verre, une seule recette --- */
+:root{--v-fond:rgba(255,255,255,.52); --v-liser:rgba(255,255,255,.85); --v-ombre:0 12px 30px rgba(20,40,60,.10);
+      --encre-v:#1C2430; --gris-v:#5B6470; --ambre-v:#A86A0E;}
+body[data-theme="dark"]{--v-fond:rgba(20,36,50,.50); --v-liser:rgba(255,255,255,.14); --v-ombre:0 12px 30px rgba(0,0,0,.35);
+      --encre-v:#EEF2F5; --gris-v:#A9B8C4; --ambre-v:#F0A93C;}
+
+/* --- L'en-tete : les boutons ronds en verre --- */
+header .theme-icon-btn, header .avatar{background:var(--v-fond) !important; -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), 0 4px 12px rgba(20,40,60,.08) !important; border:0 !important;}
+
+/* --- L'accueil --- */
+#home .home-greeting-row{flex-wrap:wrap; row-gap:0;}
+#home .home-greeting{font-size:30px !important; font-weight:800 !important; letter-spacing:-.02em; color:var(--encre-v) !important;}
+#home .salut-sous{order:20; flex-basis:100%; font-size:13.5px; color:var(--gris-v); margin:-2px 0 4px;}
+#home .home-stats-card{background:transparent !important; box-shadow:none !important; border:0 !important; padding:0 !important;}
+
+/* La seance : une grande carte en verre, centree. */
+#home #seancePilule{display:grid !important; grid-template-columns:1fr; justify-items:center; text-align:center; gap:10px;
+    background:var(--v-fond) !important; color:var(--encre-v) !important; border-radius:30px !important; padding:20px 18px 18px !important;
+    -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), inset -1px -1px 0 rgba(255,255,255,.25), var(--v-ombre) !important;}
+#home #seancePilule > .pa-aujourdhui{order:0; font-size:12px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--ambre-v);}
+#home #seancePilule > .pa-anneau{order:1; width:136px !important; height:136px !important;
+    background:conic-gradient(from 0deg, #F6CF8C 0, #E8A23A calc(var(--p) * .6%), #A86A0E calc(var(--p) * 1%), rgba(28,36,48,.10) calc(var(--p) * 1%) 100%) !important;}
+body[data-theme="dark"] #home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #FBE0A8 0, #F2B24A calc(var(--p) * .6%), #D98E1E calc(var(--p) * 1%), rgba(255,255,255,.10) calc(var(--p) * 1%) 100%) !important;}
+#home #seancePilule > .pa-anneau::before{inset:12px !important; background:rgba(255,255,255,.82) !important;}
+body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:#14283A !important;}
+#home #seancePilule .pa-anneau b{font-size:40px !important; color:var(--encre-v) !important;}
+#home #seancePilule .pa-anneau small{font-size:14px !important; color:var(--gris-v) !important;}
+#home #seancePilule .pa-anneau b[data-l="3"]{font-size:32px !important;}
+#home #seancePilule .pa-fois{z-index:1;}
+#home #seancePilule > .pa-txt{order:2; width:100%;}
+#home #seancePilule .pa-titre{text-align:center !important;}
+#home #seancePilule .pa-kick{font-size:23px !important; font-weight:800 !important; letter-spacing:-.02em !important; text-transform:none !important; color:var(--encre-v) !important; line-height:1.15;}
+#home #seancePilule .pa-titre strong{color:var(--encre-v) !important; font-size:23px !important; font-weight:800 !important; letter-spacing:-.02em; text-align:center; white-space:normal; line-height:1.15;}
+#home #seancePilule.pa-etape .pa-kick{font-size:13px !important; font-weight:700 !important; color:var(--gris-v) !important;}
+#home #seancePilule .pa-sous{justify-content:center; flex-wrap:wrap; margin-top:4px;}
+#home #seancePilule .pa-niv{display:none !important;}
+#home #seancePilule .pa-sens{flex:0 1 auto; color:var(--gris-v) !important; font-size:13px !important; font-weight:600;}
+#home #seancePilule .pa-sens::before{content:none !important;}
+#home #seancePilule .pa-sens::after{content:" ·"; color:var(--gris-v);}
+#home #seancePilule .pa-sens:empty::after{content:none;}
+#home #seancePilule .pa-contenu{font-size:13px; color:var(--gris-v);}
+#home #seancePilule .pa-horsligne{flex-basis:100%;}
+#home #seancePilule > .pa-niveaux{order:3; display:flex; justify-content:center; width:100%;}
+#home #seancePilule .seance-niveaux{display:inline-flex !important; gap:3px; padding:4px; border-radius:999px; flex-wrap:nowrap;
+    background:rgba(255,255,255,.55); box-shadow:inset 0 0 0 1px rgba(30,41,59,.10);}
+body[data-theme="dark"] #home #seancePilule .seance-niveaux{background:rgba(255,255,255,.06); box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);}
+#home #seancePilule .seance-niveau{border:0 !important; background:none !important; color:var(--gris-v) !important; font:inherit; font-size:13.5px; font-weight:700;
+    min-width:40px; height:34px; padding:0 8px; border-radius:999px; box-shadow:none !important; cursor:pointer;}
+#home #seancePilule .seance-niveau.on{position:relative; overflow:hidden; isolation:isolate; color:#2A1A05 !important;
+    background:linear-gradient(180deg, #F6CF8C, #E8A23A) !important;
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.75), inset 0 -4px 8px -4px rgba(150,90,10,.4), 0 3px 10px rgba(200,130,30,.35) !important;}
+#home #seancePilule .seance-niveau.on::before{content:""; position:absolute; inset:2px; border-radius:inherit; z-index:-1;
+    background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,0) 55%);}
+#home #seancePilule > .pa-play{order:4; width:100% !important; height:54px !important; border-radius:28px !important; gap:8px;}
+#home #seancePilule .pa-play-txt{position:relative; font-size:16.5px; font-weight:700; letter-spacing:-.01em;}
+#home #seancePilule > .pa-play svg{display:none;}
+#home #seancePilule .pa-liste{inset-inline-start:50% !important; transform:translateX(-50%); top:calc(100% - 40px) !important;}
+html[dir="rtl"] #home #seancePilule .pa-liste{transform:translateX(50%);}
+
+/* Les boutons en verre : NOIRS le jour, AMBRES la nuit (couleurs de la video du 29 oct.). */
+#home #seancePilule > .pa-play, #home .pa-ecoute .pa-play{position:relative; overflow:hidden; isolation:isolate; border:0 !important; color:#fff !important;
+    background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%) !important;
+    box-shadow:inset 0 0 0 3px rgba(0,0,0,.35), inset 0 0 18px rgba(255,255,255,.16), inset 0 -8px 14px -8px rgba(0,0,0,.6),
+               0 12px 28px rgba(20,16,10,.30), 0 2px 5px rgba(0,0,0,.15) !important;}
+#home #seancePilule > .pa-play::before, #home .pa-ecoute .pa-play::before{content:""; position:absolute; inset:2px; border-radius:inherit; z-index:-1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(255,255,255,.42) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
+               radial-gradient(75% 55% at 55% 125%, rgba(255,200,120,.30), rgba(255,255,255,0) 65%);}
+#home #seancePilule > .pa-play::after, #home .pa-ecoute .pa-play::after{content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; padding:2.2px;
+    background:linear-gradient(140deg, #fff 0%, rgba(255,255,255,.55) 22%, rgba(255,255,255,.06) 48%, rgba(255,255,255,.25) 74%, rgba(255,255,255,.95) 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;}
+#home .pa-ecoute .pa-play svg{position:relative; fill:#fff !important;}
+body[data-theme="dark"] #home #seancePilule > .pa-play, body[data-theme="dark"] #home .pa-ecoute .pa-play{color:#2A1A05 !important;
+    background:linear-gradient(180deg, rgba(250,206,128,.80) 0%, rgba(237,169,60,.74) 52%, rgba(208,138,28,.84) 100%) !important;
+    box-shadow:inset 0 0 0 3px rgba(150,90,10,.28), inset 0 0 18px rgba(255,255,255,.35), inset 0 -10px 16px -8px rgba(140,80,0,.5), 0 10px 26px rgba(237,169,60,.30) !important;}
+body[data-theme="dark"] #home #seancePilule > .pa-play::before, body[data-theme="dark"] #home .pa-ecoute .pa-play::before{
+    background:linear-gradient(180deg, rgba(255,255,255,.78) 0%, rgba(255,255,255,.18) 38%, rgba(255,255,255,0) 52%),
+               radial-gradient(75% 55% at 55% 125%, rgba(255,255,255,.45), rgba(255,255,255,0) 65%);}
+body[data-theme="dark"] #home .pa-ecoute .pa-play svg{fill:#2A1A05 !important;}
+
+/* Ma progression : une carte en verre, sous la seance, depliee. */
+#home #carteVocab{grid-column:1 / -1; background:var(--v-fond) !important; border-radius:24px !important; border:0 !important; padding:16px 18px !important;
+    -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre) !important; color:var(--encre-v);}
+#home #carteVocab .vocab-ligne-niv{white-space:nowrap; min-width:96px; text-align:start;}
+/* Dans « Tout le contenu », la progression reste cachee, comme avant (elle vit sous la seance). */
+#home.vue-contenu #carteVocab{display:none !important;}
+#home #carteVocab .carte-vocab-part.sus, #home #carteVocab .carte-vocab-part.cours{background-image:none;}
+
+/* Les scenes : trois par page, en cartes de verre. */
+#home .explorer-scenes{background:transparent !important; border:0 !important; box-shadow:none !important; padding:0 !important;}
+#home .explorer-haut strong{font-size:19px !important; font-weight:800; letter-spacing:-.01em;}
+#home .explorer-tout{color:var(--ambre-v) !important;}
+#home .explorer-desc{display:none;}
+#home .explorer-ruban{gap:10px !important;}
+#home .explorer-v{flex:0 0 calc((100% - 20px) / 3) !important; background:var(--v-fond); border-radius:20px; overflow:hidden; padding:0 0 8px !important;
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre); scroll-snap-align:none !important;}
+#home .explorer-v:nth-child(3n+1){scroll-snap-align:start !important;}
+#home .explorer-v img{border-radius:0 !important; aspect-ratio:4 / 3.4 !important;}
+#home .explorer-v span{margin-top:7px !important; padding:0 8px; font-weight:700 !important; font-size:min(13px, calc(178cqw / var(--n, 10))) !important; height:16px !important; line-height:16px !important;}
+
+/* Ecouter et Mes episodes : des cartes de verre claires, le bouton a droite. */
+#home .pilule-accueil.pa-ecoute{border:0 !important; background:var(--v-fond) !important; color:var(--encre-v) !important; border-radius:22px !important; padding:12px 12px 12px 14px !important;
+    -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);
+    box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre) !important;}
+#home .pilule-accueil.pa-ecoute .pa-titre strong{color:var(--encre-v) !important; font-size:16px !important;}
+#home .pilule-accueil.pa-ecoute .pa-kick{color:var(--encre-v) !important;}
+#home .pilule-accueil.pa-ecoute .pa-sens{color:var(--gris-v) !important;}
+#home .pilule-accueil.pa-ecoute .pa-sens::before{color:var(--gris-v) !important;}
+#home .pilule-accueil.pa-ecoute .pa-niv{color:var(--encre-v) !important; background:rgba(30,41,59,.06) !important; box-shadow:inset 0 0 0 1.5px rgba(30,41,59,.18) !important;}
+body[data-theme="dark"] #home .pilule-accueil.pa-ecoute .pa-niv{background:rgba(255,255,255,.08) !important; box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25) !important;}
+#home .pilule-accueil.pa-ecoute .ela-onde i{background:#B07A1E !important;}
+#home .pilule-accueil.pa-ecoute .ela-onde i:nth-child(3n){background:#E8A23A !important;}
+#home .pilule-accueil.pa-ecoute .pa-play{width:46px !important; height:46px !important;}
+
+/* Le bas : le tableau en bandeau, puis « Mis de cote » et « Tout le contenu » ECRITS. */
+#home #accueilRaccourcis{display:grid !important; grid-template-columns:1fr !important; gap:0 !important; border-radius:22px; overflow:hidden;
+    background:var(--v-fond); box-shadow:inset 1.5px 1.5px 0 var(--v-liser), var(--v-ombre);
+    -webkit-backdrop-filter:blur(6px) saturate(1.4); backdrop-filter:blur(6px) saturate(1.4);}
+#home #accueilRaccourcis .orb{flex-direction:row !important; justify-content:flex-start !important; align-items:center !important; gap:12px !important;
+    background:transparent !important; border:0 !important; box-shadow:none !important; border-radius:0 !important; padding:13px 16px !important; min-height:0 !important; text-align:start;}
+#home #accueilRaccourcis .orb + .orb{border-top:1px solid rgba(30,41,59,.08) !important;}
+body[data-theme="dark"] #home #accueilRaccourcis .orb + .orb{border-top-color:rgba(255,255,255,.08) !important;}
+#home #accueilRaccourcis .orb > div:not([class]){display:flex !important; flex-direction:column; gap:1px; flex:1 1 auto;}
+#home #accueilRaccourcis .orb > div:not([class]) strong{display:block; font-size:16px; color:var(--encre-v); margin:0;}
+#home #accueilRaccourcis .orb > div:not([class]) > *{margin:0 !important;}
+#home #accueilRaccourcis .orb .orb-icon{margin:0 !important;}
+#home #accueilRaccourcis .raccourci-sous{display:block !important; font-size:12.5px; color:var(--gris-v);}
+#home #accueilRaccourcis .orb .orb-icon{width:36px !important; height:36px !important;}
+#home #accueilRaccourcis #tuileTableau{order:-1; display:block !important; position:relative; padding:0 !important;}
+#home #accueilRaccourcis #tuileTableau.hidden{display:none !important;}
+#home #accueilRaccourcis #tuileTableau::after{content:none;}
+#home #accueilRaccourcis #tuileTableau .vignette-tableau{width:100% !important; height:180px !important; border-radius:0 !important; display:block;}
+#home #accueilRaccourcis #tuileTableau .vignette-tableau img{width:100%; height:100%; object-fit:cover; display:block;}
+#home #accueilRaccourcis #tuileTableau > div:not([class]){display:none !important;}
+#home #accueilRaccourcis #tuileTableau .vignette-pct{top:auto !important; bottom:12px; inset-inline-start:12px; inset-inline-end:auto !important; font-size:13px !important;
+    padding:5px 11px !important; border-radius:14px !important; background:rgba(255,255,255,.72) !important; color:#1C2430 !important;
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); box-shadow:inset 1px 1px 0 rgba(255,255,255,.9);}
+body[data-theme="dark"] #home #accueilRaccourcis #tuileTableau .vignette-pct{background:rgba(20,36,50,.7) !important; color:#EEF2F5 !important;}
+
+/* --- Les cartes (flashcards) : en verre --- */
+.flashcard-face{background:rgba(255,255,255,.80) !important; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.95), 0 12px 30px rgba(20,40,60,.12) !important; border-color:transparent !important;}
+body[data-theme="dark"] .flashcard-face, body[data-theme="dark"] .flashcard-front{background:rgba(18,34,48,.84) !important; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.12), 0 12px 30px rgba(0,0,0,.35) !important;}
+.judge-again, .judge-garde, .judge-known, .judge-suivante, .judge-sortir{position:relative; overflow:hidden; isolation:isolate;
+    background:rgba(255,255,255,.62) !important; color:#1C2430 !important; border-color:transparent !important;
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
+    box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.95), inset -1px -1px 0 rgba(255,255,255,.4), 0 8px 20px rgba(20,40,60,.10) !important;}
+body[data-theme="dark"] .judge-again, body[data-theme="dark"] .judge-garde, body[data-theme="dark"] .judge-known,
+body[data-theme="dark"] .judge-suivante, body[data-theme="dark"] .judge-sortir{
+    background:linear-gradient(180deg, rgba(70,80,92,.72), rgba(30,38,48,.82)) !important; color:#EEF2F5 !important;
+    box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.18), 0 8px 20px rgba(0,0,0,.3) !important;}
+.judge-again .judge-echeance, .judge-garde .judge-echeance{color:inherit !important; opacity:.7;}
+.judge-good{position:relative; overflow:hidden; isolation:isolate; color:#fff !important; border-color:transparent !important;
+    background:linear-gradient(180deg, rgba(120,200,150,.92), rgba(52,140,90,.94)) !important;
+    box-shadow:inset 0 0 0 3px rgba(0,0,0,.10), inset 0 -8px 14px -8px rgba(0,0,0,.30), 0 10px 24px rgba(30,90,60,.25) !important;}
+body[data-theme="dark"] .judge-good{color:#fff !important; background:linear-gradient(180deg, rgba(110,200,145,.55), rgba(40,120,80,.70)) !important;}
+.judge-good::before{content:""; position:absolute; inset:2px; border-radius:inherit; z-index:-1; pointer-events:none;
+    background:linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.08) 40%, rgba(255,255,255,0) 52%);}
+.judge-good .judge-continuer, .judge-good .srs-ladder-text{color:#fff !important;}
 </style>
 
+<!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
+     (la langue principale de chaque pays -- « les langues, c'est par pays, pas par continent »),
+     en nuances d'un seul gris-bleu pour eviter « l'effet bonbon », et quelques caracteres de
+     grandes langues. Sur l'accueil elle defile lentement de droite a gauche ; ailleurs elle
+     reste immobile et pale, pour ne pas attirer l'attention. Derriere tout (z-index -1), sans
+     jamais intercepter un toucher. Fichiers : visuel/fond/ (Natural Earth, domaine public). -->
+<div id="fondMonde" aria-hidden="true">
+    <div class="fm-carte"><div class="fm-piste"></div></div>
+    <div class="fm-lettres"><div class="fm-lettres-piste">
+        <span style="left:22px; top:0;">語</span><span style="left:262px; top:30px;">ع</span><span style="left:150px; top:170px;">Ж</span>
+        <span style="left:40px; top:330px;">ß</span><span style="left:270px; top:320px;">ñ</span>
+        <span style="left:412px; top:0;">語</span><span style="left:652px; top:30px;">ع</span><span style="left:540px; top:170px;">Ж</span>
+        <span style="left:430px; top:330px;">ß</span><span style="left:660px; top:320px;">ñ</span>
+    </div></div>
+</div>
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
 <div id="badgeToast" class="badge-toast"></div>
 <div id="globalLoadingBar" class="global-loading-bar hidden"></div>
@@ -7715,7 +7921,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1002</span>
+        <span class="subtitle-version">v1003</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -8085,6 +8291,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
          premier coup (voir la note de .search-launch input). -->
     <div class="home-greeting-row">
         <p id="homeGreeting" class="home-greeting"></p>
+        <span class="salut-sous" data-i18n="accueil_salut_sous">Ta séance t'attend.</span>
         <!-- LA SERIE SUR LA LIGNE DU SALUT (v668). Au milieu de la carte, elle
              prenait une ligne entiere pour une pastille, et laissait de part et
              d'autre un vide que Jacques a refuse ; a cote du logo, il n'en
@@ -8237,7 +8444,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              7 704 : rien n'est cache, c'est la mise en avant qui change. -->
         <div id="carteVocab" class="carte-vocab hidden">
             <button type="button" id="vocabTete" class="carte-vocab-tete"
-                    onclick="basculerVocabNiveaux()" aria-expanded="false" aria-controls="vocabNiveaux">
+                    onclick="basculerVocabNiveaux()" aria-expanded="true" aria-controls="vocabNiveaux">
                 <span class="carte-vocab-nom"><span data-i18n="vocab_titre">Progression du vocabulaire</span>
                     <span id="vocabNiveauCourant" class="carte-vocab-niveau"></span></span>
                 <span id="vocabCompte" class="carte-vocab-compte">0 / 0</span>
@@ -8248,7 +8455,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                 <div id="vocabCours" class="carte-vocab-part cours" style="width:0%"></div>
             </div>
             <div id="vocabDetail" class="vocab-legende vocab-detail"></div>
-            <div id="vocabNiveaux" class="carte-vocab-niveaux hidden"></div>
+            <div id="vocabNiveaux" class="carte-vocab-niveaux"></div>
         </div>
 
         <!-- LE ⓘ DE LA CARTE, APRES TOUT CE QU'IL EXPLIQUE (v584).
@@ -8316,7 +8523,10 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
              en tuiles ; la date de depart, dans la pastille du niveau. -->
         <div class="orb orb-seance pilule-mode" data-orbid="seance">
             <div class="seance-pilule pilule-accueil" id="seancePilule">
+                <span class="pa-aujourdhui" data-i18n="accueil_aujourdhui">Aujourd'hui</span>
+                <div class="pa-niveaux" id="spNiveauxCarte"></div>
                 <button type="button" class="pa-play pa-entrer" onclick="entrerSeanceDuJour()" data-i18n-aria-label="seance_commencer" aria-label="Commencer">
+                    <span class="pa-play-txt" id="spPlayTxt" data-i18n="seance_commencer_long">Commencer la séance</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
                 </button>
                 <div class="pa-txt">
@@ -8327,6 +8537,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
                     <div class="pa-sous">
                         <button type="button" class="pa-niv" id="spNiv" onclick="basculerListeSeance(event)">A1</button>
                         <button type="button" class="pa-sens" id="spSens" onclick="basculerListeSeance(event)"></button>
+                        <span class="pa-contenu" data-i18n="seance_contenu">mots, grammaire et scènes</span>
                         <span class="pa-horsligne hidden" id="spHorsLigne" data-i18n="hl_dispo">✓ disponible hors ligne</span>
                     </div>
                 </div>
@@ -13026,6 +13237,11 @@ const I18N = {
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
+        accueil_salut_sous: "Ta séance t'attend.",
+        accueil_aujourdhui: "Aujourd'hui",
+        seance_continuer_long: "Continuer la séance",
+        seance_commencer_long: "Commencer la séance",
+        seance_contenu: "mots, grammaire et scènes",
         garder_sous: "pour le retravailler",
         garder_fait: "Mis de côté",
         gardes_titre: "Mis de côté",
@@ -14526,6 +14742,11 @@ const I18N = {
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
+        accueil_salut_sous: "Your session is waiting.",
+        accueil_aujourdhui: "Today",
+        seance_continuer_long: "Continue the session",
+        seance_commencer_long: "Start the session",
+        seance_contenu: "words, grammar and scenes",
         garder_sous: "to work on it",
         garder_fait: "Set aside",
         gardes_titre: "Set aside",
@@ -16028,6 +16249,11 @@ const I18N = {
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
+        accueil_salut_sous: "Seansın seni bekliyor.",
+        accueil_aujourdhui: "Bugün",
+        seance_continuer_long: "Seansa devam et",
+        seance_commencer_long: "Seansı başlat",
+        seance_contenu: "kelimeler, dilbilgisi ve sahneler",
         garder_sous: "üzerinde çalışmak için",
         garder_fait: "Kenara ayrıldı",
         gardes_titre: "Kenara ayrılanlar",
@@ -17942,6 +18168,11 @@ const I18N = {
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
+        accueil_salut_sous: "Твоє заняття чекає.",
+        accueil_aujourdhui: "Сьогодні",
+        seance_continuer_long: "Продовжити заняття",
+        seance_commencer_long: "Почати заняття",
+        seance_contenu: "слова, граматика і сцени",
         garder_sous: "щоб попрацювати над ним",
         garder_fait: "Відкладено",
         gardes_titre: "Відкладені",
@@ -20171,6 +20402,11 @@ const I18N = {
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
+        accueil_salut_sous: "جلسه‌ات منتظر توست.",
+        accueil_aujourdhui: "امروز",
+        seance_continuer_long: "ادامهٔ جلسه",
+        seance_commencer_long: "شروع جلسه",
+        seance_contenu: "واژه‌ها، دستور زبان و صحنه‌ها",
         garder_sous: "برای تمرین بیشتر",
         garder_fait: "کنار گذاشته شد",
         gardes_titre: "کنارگذاشته‌ها",
@@ -21845,6 +22081,11 @@ const I18N = {
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
+        accueil_salut_sous: "جلستك بانتظارك.",
+        accueil_aujourdhui: "اليوم",
+        seance_continuer_long: "متابعة الجلسة",
+        seance_commencer_long: "ابدأ الجلسة",
+        seance_contenu: "كلمات وقواعد ومشاهد",
         garder_sous: "لتتمرّن عليها",
         garder_fait: "وُضعت جانبًا",
         gardes_titre: "الموضوعة جانبًا",
@@ -22204,6 +22445,11 @@ const I18N = {
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
+        accueil_salut_sous: "Sua sessão está esperando.",
+        accueil_aujourdhui: "Hoje",
+        seance_continuer_long: "Continuar a sessão",
+        seance_commencer_long: "Começar a sessão",
+        seance_contenu: "palavras, gramática e cenas",
         garder_sous: "para revisar depois",
         garder_fait: "Separada",
         gardes_titre: "Separadas",
@@ -23768,6 +24014,11 @@ const I18N = {
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
+        accueil_salut_sous: "Twoja sesja czeka.",
+        accueil_aujourdhui: "Dzisiaj",
+        seance_continuer_long: "Kontynuuj sesję",
+        seance_commencer_long: "Zacznij sesję",
+        seance_contenu: "słowa, gramatyka i sceny",
         garder_sous: "żeby nad nim popracować",
         garder_fait: "Odłożone",
         gardes_titre: "Odłożone",
@@ -25332,6 +25583,11 @@ const I18N = {
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
+        accueil_salut_sous: "Твоё занятие ждёт.",
+        accueil_aujourdhui: "Сегодня",
+        seance_continuer_long: "Продолжить занятие",
+        seance_commencer_long: "Начать занятие",
+        seance_contenu: "слова, грамматика и сцены",
         garder_sous: "чтобы поработать над ним",
         garder_fait: "Отложено",
         gardes_titre: "Отложенные",
@@ -40851,6 +41107,8 @@ var accueilDejaOuvert = false;
 // Et pas de restauration automatique de la position par le navigateur au rechargement.
 try{ if("scrollRestoration" in history) history.scrollRestoration = "manual"; }catch(e){}
 function showScreen(id){
+    // v1003 : le fond commun se regle sur l'ecran (vif et anime sur l'accueil, pale ailleurs).
+    try{ document.body.dataset.ecran = id; }catch(e){}
     try{ eteindreTransitHorsSeance(id); }catch(e){}
     // Le panneau d'information de l'accueil ne survit pas a un changement
     // d'ecran : voir fermerInfoProgression().
@@ -46997,7 +47255,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1002;
+const APP_VERSION = 1003;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -50122,7 +50380,7 @@ function majVignetteTableau(canvas, faits, total, fini){
     if(sous) sous.textContent = pct;
     // v1000 : dans le coin de la vignette, plus sur une ligne a lui (« gagner de l'espace »).
     const coin = document.getElementById("vignettePct");
-    if(coin) coin.textContent = pct;
+    if(coin) coin.textContent = t("tableau_tuile") + " · " + pct;   // v1003 : « Ton tableau · 55 % » sur le bandeau
 }
 function majMosaiqueAccueil(){
     const bloc = document.getElementById("carteMosaique");
@@ -50485,7 +50743,7 @@ function ouvrirGalerieMosaiques(){
 // avant le 11e jour. « En cours » bouge des la premiere carte, et c'est lui qui
 // dit qu'il se passe quelque chose.
 const NIVEAUX_VOCAB = ["A1", "A2", "B1", "B2", "C1"];
-let vocabDeplie = false;
+let vocabDeplie = true;   // v1003 : depliee par defaut (Jacques : voir Premiers pas, A1, A2...)
 let vocabVue = null;   // v945 : la ligne montree par la carte ("PP", "A1"...), null = ce qu'on travaille
 
 function etatsDuNiveau(niveau){
@@ -50534,6 +50792,9 @@ function basculerVocabNiveaux(){
 function majCarteVocab(){
     const bloc = document.getElementById("carteVocab");
     if(!bloc) return;
+    // v1003 : LA PROGRESSION SOUS LA SEANCE, comme sur la maquette retenue.
+    const sea = document.querySelector("#orbGrid .orb-seance");
+    if(sea && bloc.previousElementSibling !== sea) sea.after(bloc);
     const courant = niveauSeance();
     let ppEnCours = false, ppFait = false;
     try{ ppEnCours = premiersPasEnCours(); const s = lirePremiersPas(); ppFait = !!(s.fini || s.a); }catch(e){}
@@ -50582,7 +50843,7 @@ function majCarteVocab(){
                  + '" data-niv="' + niv + '" onclick="choisirNiveauVocab(this.dataset.niv)"'
                  + ' aria-pressed="' + (ici ? 'true' : 'false') + '"'
                  + (niv === "PP" ? ' title="' + t("pp_badge") + '" aria-label="' + t("pp_badge") + '"' : '') + '>'
-                 + '<span class="vocab-ligne-niv">' + (niv === "PP" ? "🌱" : niv) + '</span>'
+                 + '<span class="vocab-ligne-niv">' + (niv === "PP" ? "🌱 " + t("pp_badge") : niv) + '</span>'
                  + '<span class="vocab-ligne-piste">'
                  +   '<span class="carte-vocab-part sus" style="width:' + (n.sus * 100 / n.total) + '%"></span>'
                  +   '<span class="carte-vocab-part cours" style="width:' + (n.cours * 100 / n.total) + '%"></span>'
@@ -51161,7 +51422,7 @@ function majExplorerScenes(){
         ruban.appendChild(b);
     });
     ruban.scrollLeft = 0;
-    pagesExplorer(ruban, Math.ceil(liste.length / 4));
+    pagesExplorer(ruban, Math.ceil(liste.length / 3));   // v1003 : trois par page
 }
 // v1000 : les points sous le ruban -- un par page de quatre, celui de la page
 // a l'ecran allonge en ambre. En arabe et en persan, scrollLeft est negatif.
@@ -56244,7 +56505,12 @@ function majPiluleSeance(){
     // Les boutons de niveau vivent dans la liste de la pastille.
     const place = document.getElementById("spNiveauxPlace");
     const box = document.getElementById("seanceNiveaux");
-    if(place && box && box.parentElement !== place) place.appendChild(box);
+    // v1003 : LES NIVEAUX DANS LA CARTE, en rangee (Jacques : « une facon elegante de pouvoir
+    // choisir mes premiers pas, A1 »). La liste qui s'ouvre garde le reste (revoir un niveau,
+    // date de depart, ma facon d'apprendre, comment lire ta progression).
+    const placeCarte = document.getElementById("spNiveauxCarte");
+    if(placeCarte && box && box.parentElement !== placeCarte) placeCarte.appendChild(box);
+    else if(!placeCarte && place && box && box.parentElement !== place) place.appendChild(box);
     // La ligne grise : le nom du niveau -- la partie avant les deux-points, le
     // reste dans la liste.
     // v906 : LE DEPART QUITTE LA PILULE. Jacques, 21 oct. 2026 : « Escale 1 sur
@@ -56315,6 +56581,9 @@ function majAnneauSeance(){
     const pil = document.getElementById("seancePilule");
     if(pil) pil.classList.toggle("atteint", fait >= cible);
     a.title = fait + " / " + cible;
+    // v1003 : le bouton dit ce qu'il fait -- commencer, ou continuer la seance entamee.
+    const pt = document.getElementById("spPlayTxt");
+    if(pt) pt.textContent = t(fait > 0 ? "seance_continuer_long" : "seance_commencer_long");
     try{ preparerSonsEssai(); }catch(e){}
 }
 function majTuilesCarnetFeuilles(){

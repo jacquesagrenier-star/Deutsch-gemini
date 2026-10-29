@@ -252,6 +252,42 @@ html.nuit .pied label{color:#EEF2F5}
   background:#E8A23A;border:2px solid #fff;pointer-events:none;animation:indice-pul 1.4s ease-out infinite}
 @keyframes indice-pul{0%{box-shadow:0 0 0 0 rgba(232,162,58,.75)}70%{box-shadow:0 0 0 12px rgba(232,162,58,0)}100%{box-shadow:0 0 0 0 rgba(232,162,58,0)}}
 @media (prefers-reduced-motion: reduce){.indice-pt{animation:none}}
+/* ============ v1003 : LE NOUVEAU STYLE (Jacques, 29 oct. 2026) ============
+   Le fond des cartes de l'app (carte du monde par langue, pale et immobile),
+   la barre et la question en verre, et « Continuer » EN BAS de l'ecran, en
+   verre vert comme sur les cartes. La place du bouton est reservee sous
+   l'image (ajusterSeance) : il ne cache jamais un objet a toucher. */
+#fondMonde{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+#fondMonde div{position:absolute;left:0;right:0;top:24px;height:378px;opacity:.38;
+  background:url("../fond/carte-langues-jour.svg") repeat-x -338px 0 / 960px 378px}
+html.nuit #fondMonde div{background-image:url("../fond/carte-langues-nuit.svg")}
+html,body{background-color:#DCE6EC}
+/* ⚠️ PAS de backdrop-filter sur .haut : il ferait de la barre le cadre des elements
+   « fixed » qu'elle contient, et « Continuer » resterait en haut au lieu du bas de l'ecran. */
+.haut{background:rgba(220,230,236,.78)}
+html.nuit .haut{background:rgba(14,28,38,.78)}
+.titre,.niveaux{background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.9),0 4px 12px rgba(20,40,60,.08)}
+.carte{background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:18px;
+  box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.95),0 10px 26px rgba(20,40,60,.14)}
+.choix{background:rgba(255,255,255,.80);border-radius:14px;
+  box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.95),0 4px 14px rgba(20,40,60,.14)}
+html.nuit .titre,html.nuit .niveaux{background:rgba(20,36,50,.6);color:#EEF2F5;box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.14)}
+html.nuit .titre{color:#EEF2F5}
+html.nuit .niveaux button{color:#EEF2F5}
+html.nuit .carte{background:rgba(18,34,48,.80);color:#EEF2F5;box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.12),0 10px 26px rgba(0,0,0,.35)}
+html.nuit .carte .consigne{color:#F0A93C}
+html.nuit .choix{background:rgba(30,46,60,.86);color:#EEF2F5}
+/* « Continuer », en bas de l'ecran, en verre vert. */
+.suite{position:fixed !important;left:max(16px, calc(50% - 199px));right:max(16px, calc(50% - 199px));
+  bottom:calc(12px + env(safe-area-inset-bottom, 0px));z-index:5000;height:54px;padding:0 !important;
+  border-radius:27px !important;overflow:hidden;isolation:isolate;color:#fff !important;font-family:inherit !important;font-size:17px !important;font-weight:700 !important;letter-spacing:-.01em;
+  background:linear-gradient(180deg, rgba(120,200,150,.94), rgba(52,140,90,.96)) !important;
+  box-shadow:inset 0 0 0 3px rgba(0,0,0,.10), inset 0 -8px 14px -8px rgba(0,0,0,.30), 0 10px 24px rgba(30,90,60,.28)}
+.suite::before{content:"";position:absolute;inset:2px;border-radius:inherit;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg, rgba(255,255,255,.45), rgba(255,255,255,.08) 40%, rgba(255,255,255,0) 52%)}
+html.nuit .suite{background:linear-gradient(180deg, rgba(110,200,145,.62), rgba(40,120,80,.80)) !important}
+
 .bulle-arrivee{position:absolute;left:8%;right:8%;top:12px;z-index:1900;background:rgba(28,36,48,.9);color:#fff;
   font-size:14px;line-height:1.35;padding:8px 12px;border-radius:10px;text-align:center;pointer-events:none;transition:opacity .5s}
 .bulle-arrivee.parti{opacity:0}
@@ -264,6 +300,7 @@ html.nuit .decouverts .jauge{background:rgba(255,255,255,.14)}
 <script>if (new URLSearchParams(location.search).get("nuit") === "1") document.documentElement.classList.add("nuit");</script>
 </head>
 <body>
+<div id="fondMonde" aria-hidden="true"><div></div></div>
 <div class="cadre">
   <div class="haut">
     <div class="barre">
@@ -1177,7 +1214,8 @@ if (window.parent !== window)
    longue) et quand l'ecran tourne. */
 function ajusterSeance(){
   if (window.parent === window) return;
-  const dispo = innerHeight - document.querySelector(".haut").offsetHeight;
+  // v1003 : 72 px reserves pour « Continuer », en bas de l'ecran -- il ne couvre jamais l'image.
+  const dispo = innerHeight - document.querySelector(".haut").offsetHeight - 72;
   const largeur = Math.min(document.querySelector(".cadre").clientWidth - 20, dispo * MASQUES.W / MASQUES.H);
   scene.style.width = Math.max(200, Math.floor(largeur)) + "px";
   placerFermer();
