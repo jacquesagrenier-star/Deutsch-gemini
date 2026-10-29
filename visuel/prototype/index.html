@@ -258,13 +258,14 @@ html.nuit .pied label{color:#EEF2F5}
    verre vert comme sur les cartes. La place du bouton est reservee sous
    l'image (ajusterSeance) : il ne cache jamais un objet a toucher. */
 #fondMonde{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+html:not(.nuit) #fondMonde{background:linear-gradient(180deg, #C8DEF1 0%, #DCE8F2 55%, #EAF0F5 100%)}
 #fondMonde div{position:absolute;left:0;right:0;top:24px;height:378px;opacity:.38;
   background:url("../fond/carte-langues-jour.svg") repeat-x -338px 0 / 960px 378px}
 html.nuit #fondMonde div{background-image:url("../fond/carte-langues-nuit.svg")}
 html,body{background-color:#DCE6EC}
 /* ⚠️ PAS de backdrop-filter sur .haut : il ferait de la barre le cadre des elements
    « fixed » qu'elle contient, et « Continuer » resterait en haut au lieu du bas de l'ecran. */
-.haut{background:rgba(220,230,236,.78)}
+.haut{background:rgba(200,222,241,.80)}
 html.nuit .haut{background:rgba(14,28,38,.78)}
 .titre,.niveaux{background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.9),0 4px 12px rgba(20,40,60,.08)}
