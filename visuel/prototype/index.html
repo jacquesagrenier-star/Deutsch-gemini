@@ -260,10 +260,21 @@ html.nuit .pied label{color:#EEF2F5}
 html,body{overscroll-behavior:none}
 #fondMonde{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
 html:not(.nuit) #fondMonde{background:linear-gradient(180deg, #82AFDB 0%, #A4C6E7 55%, #C0D6EA 100%)}
-#fondMonde div{position:absolute;left:0;right:0;top:24px;height:378px;opacity:.38;
+#fondMonde .fm-carte{position:absolute;left:0;right:0;top:24px;height:378px;opacity:.7;
   background:url("../fond/carte-langues-jour.svg") repeat-x -338px 0 / 960px 378px}
-html.nuit #fondMonde div{background-image:url("../fond/carte-langues-nuit.svg")}
+html.nuit #fondMonde .fm-carte{background-image:url("../fond/carte-langues-nuit.svg")}
+/* v1022 : LE MEME FOND QUE LES EXERCICES DE L'APP (Jacques, 29 oct. 2026 : « quand on est dans des
+   exercices puis qu'on va dans une scene, il n'y a pas le meme fond ») -- la carte a .78 comme en v1021,
+   et les caracteres du monde, immobiles. */
+#fondMonde .fm-lettres{position:absolute;left:0;top:520px;width:780px;height:460px}
+#fondMonde .fm-lettres span{position:absolute;font-family:Georgia,"Noto Serif","Yu Mincho","Hiragino Mincho ProN",serif;
+  font-weight:600;font-size:104px;line-height:1;color:#9FB3C2;opacity:.45}
+html.nuit #fondMonde .fm-lettres span{color:#41586B;opacity:.62}
 html,body{background-color:#DCE6EC}
+/* v1022 : LE CORPS TRANSPARENT. html ET body portaient chacun un fond : celui du body se peignait PAR-DESSUS
+   #fondMonde (z-index -1), et la carte du monde ne se voyait jamais dans les scenes (Jacques : « il n'y a pas
+   le meme fond »). Le fond de secours reste sur html. */
+body,html.nuit body{background:transparent !important}
 /* ⚠️ PAS de backdrop-filter sur .haut : il ferait de la barre le cadre des elements
    « fixed » qu'elle contient, et « Continuer » resterait en haut au lieu du bas de l'ecran. */
 /* v1017 : plus de bande bleue derriere « Retour », les niveaux et la question (Jacques : « un fond
@@ -313,7 +324,7 @@ html.nuit .decouverts .jauge{background:rgba(255,255,255,.14)}
 <script>if (new URLSearchParams(location.search).get("nuit") === "1") document.documentElement.classList.add("nuit");</script>
 </head>
 <body>
-<div id="fondMonde" aria-hidden="true"><div></div></div>
+<div id="fondMonde" aria-hidden="true"><div class="fm-carte"></div><div class="fm-lettres"><span style="left:22px;top:0">語</span><span style="left:262px;top:30px">ع</span><span style="left:150px;top:170px">Ж</span><span style="left:40px;top:330px">ß</span><span style="left:270px;top:320px">ñ</span></div></div>
 <div class="cadre">
   <div class="haut">
     <div class="barre">

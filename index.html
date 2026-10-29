@@ -7724,9 +7724,9 @@ body[data-theme="dark"] #fondMonde .fm-lettres span{color:#41586B; opacity:.55;}
    que lorsqu'on est a la page d'accueil [...] peut-etre entre les deux, [...] mais pas tres loin » ; « la map
    monde [...] pas aussi lumineuse, mais plus que ce qu'on a actuellement » ; « la meme chose pour les
    lettres »). La carte de .38 a .78, les lettres de .34 (sous un voile de .5) a .5 ; toujours immobiles. */
-#fondMonde .fm-carte{opacity:.78;}
+#fondMonde .fm-carte{opacity:.7;}   /* v1022 : .78 -> .6 (« un petit peu trop intense »), puis .7 (« un petit peu plus presente ») */
 #fondMonde .fm-lettres{opacity:1;}
-#fondMonde .fm-lettres span{opacity:.5;}
+#fondMonde .fm-lettres span{opacity:.45;}
 body[data-theme="dark"] #fondMonde .fm-lettres span{opacity:.62;}
 /* Sur l'accueil : la carte vive, et tout defile doucement de droite a gauche. */
 body:not([data-ecran]) #fondMonde .fm-carte, body[data-ecran="home"] #fondMonde .fm-carte{opacity:1;}
@@ -7870,7 +7870,7 @@ body[data-theme="dark"] #home #seancePilule .pa-lueur{background:radial-gradient
 /* v1004 : LE « ×4 » SOUS LE CHIFFRE, plus gros, en vert (proposition C retenue par Jacques :
    « en dessous de l'objectif du jour, je trouve que c'est bien »). */
 #home #seancePilule .pa-anneau{flex-direction:column;}
-#home #seancePilule .pa-fois{position:relative !important; top:auto !important; right:auto !important; left:auto !important; order:3; margin-top:4px;
+#home #seancePilule .pa-fois{position:relative !important; top:auto !important; right:auto !important; left:auto !important; order:3; margin-top:9px; /* v1022 : 4 -> 9 px, moins colle (Jacques) */
     font-size:15px !important; font-weight:900 !important; padding:2px 10px !important; line-height:1.2 !important; color:#fff !important;
     border-radius:999px !important; background:linear-gradient(180deg, rgba(120,200,150,.98), rgba(40,128,82,.98)) !important;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.5), 0 3px 8px rgba(30,90,60,.3) !important;}
@@ -8338,7 +8338,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1021</span>
+        <span class="subtitle-version">v1022</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -47775,7 +47775,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1021;
+const APP_VERSION = 1022;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
