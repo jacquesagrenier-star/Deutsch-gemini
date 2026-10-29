@@ -7210,6 +7210,13 @@ body[data-theme="dark"] #sceneSeance.active, body[data-theme="dark"] .scene-cadr
 .explorer-v{flex:0 0 calc((100% - 21px) / 4); width:auto;}
 .explorer-v:nth-child(4n+1){scroll-snap-align:start; scroll-snap-stop:always;}
 .explorer-v img{width:100%; height:auto; aspect-ratio:3 / 4;}
+/* v1002 : UN TITRE, UNE LIGNE, MEME HAUTEUR PARTOUT. « Le demenagement » et
+   « Bibliotheque » passaient sur deux lignes et grandissaient tout le ruban (Jacques,
+   29 oct. 2026). La police se regle sur la LONGUEUR du titre (--n, pose par
+   majExplorerScenes) et la largeur de la vignette (cqw) : une lettre fait environ
+   0,57 em (mesure du 29 oct. : à 196cqw, « Le déménagement » et « The pharmacy » se coupaient ; 178cqw tient partout) ; jamais plus que 11 px. */
+.explorer-v{container-type:inline-size;}
+.explorer-v span{white-space:nowrap; overflow:hidden; text-overflow:ellipsis; line-height:14px; height:14px; font-size:min(11px, calc(178cqw / var(--n, 10)));}
 .explorer-pages{display:flex; justify-content:center; gap:5px; margin-top:6px; min-height:6px;}
 .explorer-pages span{width:6px; height:6px; border-radius:3px; background:rgba(30,41,59,.22); transition:width .2s, background .2s;}
 .explorer-pages span.actif{width:14px; background:#E8A23A;}
@@ -7708,7 +7715,7 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1001</span>
+        <span class="subtitle-version">v1002</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -46990,7 +46997,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1001;
+const APP_VERSION = 1002;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -51147,6 +51154,7 @@ function majExplorerScenes(){
         img.loading = "lazy"; img.alt = ""; img.src = vignetteScene(s.nom);
         const sp = document.createElement("span");
         sp.textContent = titreCourtScene(s);
+        sp.style.setProperty("--n", Math.max(8, sp.textContent.length));
         b.appendChild(img); b.appendChild(sp);
         b.setAttribute("aria-label", t(s.titre));
         b.addEventListener("click", () => { if(ouverte) ouvrirSceneDepuisAccueil(s.nom); else ouvrirAbonnement(); });
