@@ -521,6 +521,266 @@ gitarre | mark | Daqui a uns meses, o Mark ___ tocar bem. | deverá | deveria-se
 frau |  | A professora ___ tocado numa orquestra. | teria | terá-se / tenha | A professora teria tocado numa orquestra. | Il paraît que la professeure jouait autrefois dans un orchestre. | La rumeur sur le passé : <b>teria</b> + participe.
 """),
 },
+"familie": {
+"B1": ("Les possessifs : o pai dela, o seu copo", """
+vater | anna | O pai ___ serve batatas. | dela | seu / dele | O pai dela serve batatas. | Son père sert des pommes de terre. | Pour dire « à elle » sans doute possible : <b>dela</b>, après le nom.
+bruder | wasser | O irmão deita água no ___ copo. | seu | sua / seus | O irmão deita água no seu copo. | Le frère verse de l'eau dans son verre. | <b>o seu</b> + copo (masculin) ; <b>deitar</b> = verser, au Portugal.
+mutter | baby | A mãe segura o ___ bebé. | seu | sua / dele | A mãe segura o seu bebé. | La mère tient son bébé. | <b>o seu bebé</b> (ou <b>o bebé dela</b>).
+opa |  | O avô fala da ___ juventude. | sua | seu / dele | O avô fala da sua juventude. | Le grand-père raconte sa jeunesse. | <b>a juventude</b> → <b>a sua</b> ; de + a sua = <b>da sua</b>.
+oma | opa | A avó ouve o ___. | marido | seu marido dela / marido seu | A avó ouve o marido. | La grand-mère écoute son mari. | Pour la famille proche, le portugais se passe souvent du possessif : <b>o marido</b>.
+anna | bruder | A Anna e o irmão adoram os ___ avós. | seus | suas / deles seus | A Anna e o irmão adoram os seus avós. | Anna et son frère aiment leurs grands-parents. | <b>os seus</b> + avós (masculin pluriel).
+opa |  | Almoçamos todos os domingos em casa dos ___ avós. | nossos | nossas / nosso | Almoçamos todos os domingos em casa dos nossos avós. | Nous mangeons chaque dimanche chez nos grands-parents. | <b>em casa de</b> = chez ; de + os nossos = <b>dos nossos</b>.
+katze | stuhl | O gato dorme na ___ cadeira. | sua | seu / dele | O gato dorme na sua cadeira. | Le chat dort sur sa chaise. | <b>a cadeira</b> → <b>a sua</b> ; em + a sua = <b>na sua</b>.
+"""),
+"B2": ("De : l'appartenance et la matière", """
+vater |  | Este é o prato ___ pai. | do | de o / ao | Este é o prato do pai. | C'est l'assiette du père. | L'appartenance : de + o = <b>do</b>.
+baby | mutter | O bebé está sentado ao colo ___ mãe. | da | de a / à | O bebé está sentado ao colo da mãe. | Le bébé est assis sur les genoux de la mère. | <b>ao colo de</b> = sur les genoux de.
+opa |  | A história ___ avô tem muita graça. | do | de o / ao | A história do avô tem muita graça. | L'histoire du grand-père est drôle. | <b>ter graça</b> = être drôle.
+fenster |  | Apesar ___ sol, comem lá dentro. | do | de o / o | Apesar do sol, comem lá dentro. | Malgré le soleil, ils mangent à l'intérieur. | <b>apesar de</b> + o = <b>apesar do</b>.
+blume |  | A cor ___ túlipas é amarela. | das | de as / às | A cor das túlipas é amarela. | La couleur des tulipes est jaune. | de + as = <b>das</b>.
+fenster |  | A janela ___ sala de jantar é grande. | da | de a / na | A janela da sala de jantar é grande. | La fenêtre de la salle à manger est grande. | de + a = <b>da</b>.
+"""),
+"C1": (T_HYPO, """
+opa |  | O avô ___ estar a contar uma história engraçada. | deve | pode-se / tem | O avô deve estar a contar uma história engraçada. | Le grand-père doit raconter une histoire drôle. | Déduction : <b>dever</b> + estar a.
+katze | oma | ___ que o gato seja da avó. | Pode ser | Deve ser / Se calhar | Pode ser que o gato seja da avó. | Le chat appartient peut-être à la grand-mère. | <b>pode ser que</b> + conjuntivo.
+tisch |  | Depois do almoço ainda ___ haver bolo. | deve | pode-se / tem | Depois do almoço ainda deve haver bolo. | Après le repas, il devrait encore y avoir du gâteau. | Probable : <b>dever haver</b>.
+opa |  | ___ que o avô foi cozinheiro. | Dizem | Diz-se-lhe / Digam | Dizem que o avô foi cozinheiro. | Il paraît que le grand-père était cuisinier autrefois. | Le ouï-dire : <b>dizem que</b>.
+"""),
+},
+"friseur": {
+"B1": ("Le corps : lavo o cabelo, penteio-me", """
+haar | anna | A Anna vai ___ o cabelo. | cortar | cortar-se / fazer cortar | A Anna vai cortar o cabelo. | Anna se fait couper les cheveux. | Au Portugal, <b>cortar o cabelo</b> veut aussi dire « se faire couper les cheveux ».
+haar |  | Lavo ___ cabelo todas as manhãs. | o | meu / o meu-me | Lavo o cabelo todas as manhãs. | Je me lave les cheveux tous les matins. | Avec une partie du corps : l'article, pas le possessif.
+buerste |  | ___ depressa. | Penteio-me | Me penteio / Penteio | Penteio-me depressa. | Je me coiffe vite. | <b>pentear-se</b> : pronom après le verbe.
+mann |  | Depois do trabalho, o homem lava ___ mãos. | as | suas / as suas-se | Depois do trabalho, o homem lava as mãos. | Après le travail, l'homme se lave les mains. | L'article : <b>lava as mãos</b>.
+mantel |  | ___ o sobretudo. | Vestes | Vestes-te / Te vestes | Vestes o sobretudo. | Tu mets ton manteau. | <b>vestir</b> un vêtement : sans pronom réfléchi.
+spiegel | anna | A Anna ___ ao espelho. | olha-se | se olha / olha-lhe | A Anna olha-se ao espelho. | Anna se regarde dans le miroir. | <b>olhar-se ao espelho</b> (au Portugal : <b>ao</b> espelho).
+sofa |  | ___ no sofá. | Sentamo-nos | Sentamos-nos / Nos sentamos | Sentamo-nos no sofá. | Nous nous asseyons sur le canapé. | Devant <b>-nos</b>, le s tombe : <b>sentamo-nos</b>.
+schere |  | Nunca ___ o cabelo a mim mesmo. | corto | me corto / corto-me | Nunca corto o cabelo a mim mesmo. | Je ne me coupe jamais les cheveux moi-même. | <b>a mim mesmo</b> = moi-même.
+"""),
+"B2": ("Quanto mais…, mais…", """
+haar |  | Quanto mais curto é o cabelo, ___ depressa seca. | mais | o mais / tanto | Quanto mais curto é o cabelo, mais depressa seca. | Plus les cheveux sont courts, plus ils sèchent vite. | <b>quanto mais…, mais…</b>.
+frau | zeitschrift | Quanto mais a senhora espera, mais ___. | lê | leia / ler | Quanto mais a senhora espera, mais lê. | Plus la dame attend, plus elle lit. | Indicatif dans les deux parties.
+haar |  | ___ mais se lava o cabelo, mais seco fica. | Quanto | Tanto / Como | Quanto mais se lava o cabelo, mais seco fica. | Plus on se lave souvent les cheveux, plus ils deviennent secs. | <b>quanto mais</b>.
+anna |  | Quanto ___ é o corte, mais contente fica a Anna. | melhor | mais bom / mais melhor | Quanto melhor é o corte, mais contente fica a Anna. | Meilleure est la coupe, plus Anna est contente. | <b>bom</b> → <b>melhor</b> : <b>quanto melhor</b>.
+kasse | mann | Quanto mais clientes vêm, mais o homem ___. | ganha | ganhe / ganhar | Quanto mais clientes vêm, mais o homem ganha. | Plus il vient de clients, plus l'homme gagne d'argent. | Indicatif.
+haar |  | Quanto mais comprido é o cabelo, ___ demora o corte. | mais | menos mais / tanto | Quanto mais comprido é o cabelo, mais demora o corte. | Plus les cheveux sont longs, plus la coupe dure longtemps. | <b>comprido</b> = long (cheveux, objet).
+"""),
+"C1": (T_HYPO, """
+anna |  | Ela ___ estar contente com o corte. | deve | pode-se / tem | Ela deve estar contente com o corte. | Elle doit être contente de la coupe. | Déduction : <b>dever</b>.
+frau | sofa | A senhora no sofá ___ ser a próxima cliente. | pode | deve de / há | A senhora no sofá pode ser a próxima cliente. | La dame sur le canapé est peut-être la prochaine cliente. | Possibilité : <b>poder</b>.
+mantel | anna | O sobretudo ___ da Anna. | será | seja / foi-se | O sobretudo será da Anna. | Le manteau est sans doute à Anna. | Futur de supposition : <b>será</b>.
+mann |  | Este cabeleireiro ___ o melhor do bairro. | seria | será-se / seja | Este cabeleireiro seria o melhor do bairro. | Ce coiffeur serait le meilleur du quartier. | Le conditionnel de la rumeur.
+"""),
+},
+"camping": {
+"B1": ("Le futur : vou nadar, nadarei", """
+see | anna | Amanhã a Anna ___ nadar no lago. | vai | irá a / vá | Amanhã a Anna vai nadar no lago. | Demain, Anna nagera dans le lac. | Le futur de l'oral : <b>ir</b> + infinitif.
+zelt |  | Esta noite ___ na tenda. | dormirão | dormiram / dormem-se | Esta noite dormirão na tenda. | Cette nuit, ils dormiront dans la tente. | Futuro simples : <b>dormirão</b> (≠ dormiram, passé).
+gitarre | anna | Vou ___ uma canção. | tocar-te | te tocar / tocar-te-ei | Vou tocar-te uma canção. | Je vais te jouer une chanson. | <b>vou</b> + infinitif-pronom.
+topf |  | A sopa ___ pronta daqui a nada. | vai estar | estará-se / vai a estar | A sopa vai estar pronta daqui a nada. | La soupe sera bientôt prête. | <b>vai estar</b>.
+boot |  | Amanhã de manhã ___ de barco. | vamos | iremos a / vamos a ir | Amanhã de manhã vamos de barco. | Demain matin, nous irons en barque. | <b>ir de barco</b> ; vamos.
+feuer |  | ___ a fogueira mais tarde? | Apagas | Apagarás-te / Apagues | Apagas a fogueira mais tarde? | Tu éteindras le feu plus tard ? | À l'oral, le présent sert souvent de futur.
+himmel |  | Esta noite ___ frio. | vai estar | vai a estar / estará-se | Esta noite vai estar frio. | Il va faire froid cette nuit. | Le temps qu'il fera : <b>vai estar</b> frio.
+mann |  | O homem vai ___ a salsicha já. | comer | comer-se / come | O homem vai comer a salsicha já. | L'homme va manger sa saucisse tout de suite. | <b>vai</b> + infinitif.
+"""),
+"B2": ("L'irréel : se fosse…, iam", """
+see |  | Se não ___ tão escuro, iam nadar. | estivesse | estiver / está | Se não estivesse tão escuro, iam nadar. | S'il ne faisait pas si sombre, ils iraient nager. | <b>se</b> + imperfeito do conjuntivo ; principale à l'imperfeito (oral).
+zelt |  | Se ___ tempo, ficavam mais uma semana. | tivessem | tiverem / têm | Se tivessem tempo, ficavam mais uma semana. | S'ils avaient le temps, ils resteraient une semaine de plus. | <b>tivessem</b>.
+mann |  | Se o homem tivesse fome, ___ a salsicha. | comia | coma / comer | Se o homem tivesse fome, comia a salsicha. | Si l'homme avait faim, il mangerait la saucisse. | Principale : imperfeito (ou <b>comeria</b>).
+gitarre | anna | Quem me dera tocar guitarra tão bem ___ a Anna. | como | do que / que | Quem me dera tocar guitarra tão bem como a Anna. | J'aimerais savoir jouer de la guitare aussi bien qu'Anna. | <b>quem me dera</b> + infinitif ; <b>tão bem como</b>.
+boot |  | Se o barco ___ maior, todos podiam ir. | fosse | for / era | Se o barco fosse maior, todos podiam ir. | Si la barque était plus grande, tout le monde pourrait monter. | <b>ser</b> → <b>fosse</b>.
+holz |  | Se ao menos ___ trazido mais lenha! | tivessem | tiverem / tinham-se | Se ao menos tivessem trazido mais lenha! | Si seulement ils avaient apporté plus de bois ! | Le regret : <b>se ao menos</b> + tivesse + participe.
+"""),
+"C1": (T_HYPO, """
+anna |  | Ela ___ estar a gostar muito da noite. | deve | pode-se / tem | Ela deve estar a gostar muito da noite. | Elle doit beaucoup apprécier la soirée. | Déduction : <b>dever</b>.
+mann | anna | O homem ___ ser primo da Anna. | pode | deve de / há | O homem pode ser primo da Anna. | L'homme est peut-être le cousin d'Anna. | Possibilité : <b>poder</b>.
+mond |  | ___ quase dez horas. | Serão | Sejam / Foram-se | Serão quase dez horas. | Il doit être presque dix heures. | L'heure supposée : futur <b>serão</b>.
+wald |  | ___ que há lobos na floresta. | Dizem | Diz / Digam | Dizem que há lobos na floresta. | Il paraît qu'il y a des loups dans la forêt. | Le ouï-dire : <b>dizem que</b>.
+"""),
+},
+"strand": {
+"B1": (T_PERFEITO, """
+anna |  | A Anna ___ de avião para Espanha. | foi | ia / vai | A Anna foi de avião para Espanha. | Anna a pris l'avion pour l'Espagne. | Le portugais n'hésite pas entre deux auxiliaires : un seul perfeito, <b>foi</b>.
+meer | anna | Hoje de manhã ela ___ no mar. | nadou | nadava / nada | Hoje de manhã ela nadou no mar. | Ce matin, elle a nagé dans la mer. | <b>nadar</b> → <b>nadou</b>.
+eis | anna | Ela ___ um gelado. | comprou | comprava / compra | Ela comprou um gelado. | Elle a acheté une glace. | <b>comprar</b> → <b>comprou</b> ; la glace = <b>o gelado</b>.
+ball | junge | O rapaz ___ a bola para a água. | atirou | atirava / atira | O rapaz atirou a bola para a água. | Le garçon a lancé le ballon dans l'eau. | <b>atirar</b> → <b>atirou</b>.
+hund |  | O cão ___ à sombra. | adormeceu | adormecia / adormece | O cão adormeceu à sombra. | Le chien s'est endormi à l'ombre. | <b>adormecer</b> → <b>adormeceu</b>.
+buch | handtuch | A Anna ___ o livro em cima da toalha. | pôs | punha / põe | A Anna pôs o livro em cima da toalha. | Anna a posé son livre sur la serviette. | <b>pôr</b> → <b>pôs</b>.
+boot | meer | O barco ___ para o mar hoje de manhã. | saiu | saía / sai | O barco saiu para o mar hoje de manhã. | Le bateau a pris la mer ce matin. | <b>sair</b> → <b>saiu</b>.
+anna | sonne | A Anna ___ o dia todo ao sol. | esteve | estava / está | A Anna esteve o dia todo ao sol. | Anna est restée toute la journée au soleil. | Une période finie : <b>esteve</b>.
+"""),
+"B2": ("Relatives et participes", """
+anna | eis | A mulher ___ come um gelado chama-se Anna. | que | quem / qual | A mulher que come um gelado chama-se Anna. | La femme qui mange une glace s'appelle Anna. | Sujet : <b>que</b>.
+junge | ball | O rapaz, ___ bola é colorida, brinca na água. | cuja | cujo / que a | O rapaz, cuja bola é colorida, brinca na água. | Le garçon au ballon multicolore joue dans l'eau. | <b>cuja</b> + bola.
+insel | leuchtturm | A ilha na ___ se ergue um farol é pequena. | qual | que / onde | A ilha na qual se ergue um farol é pequena. | L'île sur laquelle se dresse un phare est petite. | <b>na qual</b> (ou <b>onde</b>).
+hund |  | O cão ___ está deitado à sombra. | adormecido | adormecida / adormecer | O cão adormecido está deitado à sombra. | Le chien endormi est couché à l'ombre. | Participe adjectif : <b>adormecido</b>.
+eis |  | O gelado já está meio ___. | comido | comida / comer | O gelado já está meio comido. | La glace est déjà à moitié mangée. | <b>o gelado</b> → <b>comido</b>.
+meer |  | Aqui, no verão, ___ muito. | nada-se | nadam-se / se nada | Aqui, no verão, nada-se muito. | Ici, on nage beaucoup en été. | Le se impersonnel : <b>nada-se</b>.
+"""),
+"C1": (T_HYPO, """
+anna |  | Ela ___ estar a sentir-se muito bem de férias. | deve | pode-se / tem | Ela deve estar a sentir-se muito bem de férias. | Elle doit se sentir très bien en vacances. | Déduction : <b>dever</b>.
+hund | junge | ___ que o cão seja do rapaz. | Pode ser | Deve ser / Se calhar | Pode ser que o cão seja do rapaz. | Le chien appartient peut-être au garçon. | <b>pode ser que</b> + conjuntivo.
+meer | junge | A água já ___ bastante quente. | estará | esteja / estava-se | A água já estará bastante quente. | L'eau doit déjà être assez chaude. | Futur de supposition : <b>estará</b>.
+leuchtturm |  | ___ que do farol se vê até África. | Dizem | Diz / Digam | Dizem que do farol se vê até África. | Il paraît que du phare, on peut voir jusqu'en Afrique. | Le ouï-dire : <b>dizem que</b>.
+"""),
+},
+"winter": {
+"B1": ("Ter frio, ficar bem : le portugais sans datif", """
+anna |  | Ela ___ frio. | tem | está / é | Ela tem frio. | Elle a froid. | Avoir froid : <b>ter frio</b>.
+muetze | anna | O gorro ___ bem. | fica-lhe | fica-a / lhe fica-se | O gorro fica-lhe bem. | Le bonnet lui va bien. | <b>ficar bem a alguém</b> : <b>fica-lhe bem</b>.
+schal | schneemann | A Anna pôs um cachecol ___ boneco de neve. | ao | o / no | A Anna pôs um cachecol ao boneco de neve. | Anna a noué une écharpe au bonhomme de neige. | <b>pôr algo a alguém</b> : a + o = <b>ao</b>.
+handschuh |  | Ela ___ as luvas. | calçou | vestiu-se / pôs-se | Ela calçou as luvas. | Elle a mis les gants. | Gants, chaussures : <b>calçar</b>.
+hund |  | O cão usa um casaco para não ___ frio. | ter | estar / ter-se | O cão usa um casaco para não ter frio. | Le chien porte un manteau pour ne pas avoir froid. | <b>para não ter frio</b>.
+stiefel | anna | As botas são ___. | dela | suas dela / delas | As botas são dela. | Les bottes sont à elle. | <b>são dela</b> : à elle.
+karotte | schneemann | A Anna dá uma cenoura ___ boneco de neve para o nariz. | ao | o / do | A Anna dá uma cenoura ao boneco de neve para o nariz. | Anna donne une carotte au bonhomme de neige comme nez. | <b>dar algo a</b> : <b>ao</b>.
+besen |  | Com a vassoura, ela ___ o caminho. | limpa | limpe / limpou-se | Com a vassoura, ela limpa o caminho. | Avec le balai, elle dégage le chemin. | <b>limpar</b> au présent.
+"""),
+"B2": (T_PASSIF, """
+anna | schneemann | A mulher ___ faz um boneco de neve chama-se Anna. | que | quem / qual | A mulher que faz um boneco de neve chama-se Anna. | La femme qui fait un bonhomme de neige s'appelle Anna. | Sujet : <b>que</b>.
+hund |  | O cão, ___ casaco é vermelho, fareja a neve. | cujo | cuja / que o | O cão, cujo casaco é vermelho, fareja a neve. | Le chien au manteau rouge renifle la neige. | <b>cujo</b> + casaco.
+haus | auto | A casa em frente da ___ está o carro é amarela. | qual | que / quem | A casa em frente da qual está o carro é amarela. | La maison devant laquelle est la voiture est jaune. | <b>em frente da qual</b>.
+auto |  | O carro está ___ de neve. | coberto | coberta / cobrido | O carro está coberto de neve. | La voiture est couverte de neige. | <b>cobrir</b> → <b>coberto</b>.
+besen |  | O caminho ainda tem de ser ___. | varrido | varrida / varrer | O caminho ainda tem de ser varrido. | Le chemin doit encore être balayé. | Passif : <b>ter de ser</b> + participe.
+kerze | fenster-2 | A vela ___ está na janela. | acesa | aceso / acendida | A vela acesa está na janela. | La bougie allumée est à la fenêtre. | Participe court accordé : <b>acesa</b>.
+"""),
+"C1": (T_HYPO, """
+schneemann | anna | O boneco de neve ___ agradar-lhe muito. | deve | pode-se / tem | O boneco de neve deve agradar-lhe muito. | Le bonhomme de neige doit beaucoup lui plaire. | Déduction : <b>dever</b>.
+fahrrad |  | A bicicleta ___ estar ali desde ontem à noite. | pode | deve de / há | A bicicleta pode estar ali desde ontem à noite. | Le vélo est peut-être là depuis hier soir. | Possibilité : <b>poder</b>.
+schnee |  | A neve ___ ficar até amanhã. | deverá | deveria-se / deva | A neve deverá ficar até amanhã. | La neige devrait tenir jusqu'à demain. | Probable : <b>deverá</b>.
+himmel |  | ___ que vai ser o inverno mais frio dos últimos dez anos. | Dizem | Diz-se-lhe / Digam | Dizem que vai ser o inverno mais frio dos últimos dez anos. | Il paraît que ce sera l'hiver le plus froid depuis dix ans. | Le ouï-dire : <b>dizem que</b>.
+"""),
+},
+"bauernhof": {
+"B1": ("Les verbes pronominaux : deita-se, lembras-te", """
+anna | pferd | A Anna ___ com o cavalo. | alegra-se | se alegra / alegra | A Anna alegra-se com o cavalo. | Anna est contente de voir le cheval. | <b>alegrar-se com</b> ; pronom après le verbe.
+hund | boden | O cão ___ no chão. | deita-se | se deita / deita | O cão deita-se no chão. | Le chien se couche par terre. | <b>deitar-se</b>.
+katze | mauer | O gato ___ no muro. | senta-se | se senta / senta | O gato senta-se no muro. | Le chat s'assied sur le muret. | <b>sentar-se</b>.
+onkel |  | ___ depois do trabalho. | Lavo-me | Me lavo / Lavo | Lavo-me depois do trabalho. | Je me lave après le travail. | En tête de phrase : jamais le pronom devant.
+bank |  | ___ no banco. | Sentamo-nos | Nos sentamos / Sentamos-nos | Sentamo-nos no banco. | Nous nous asseyons sur le banc. | <b>sentamo-nos</b> : le s tombe devant nos.
+haus |  | ___ da quinta? | Lembras-te | Te lembras / Lembras | Lembras-te da quinta? | Tu te souviens de la ferme ? | <b>lembrar-se de</b> ; la ferme = <b>a quinta</b>, au Portugal.
+cousin |  | O primo da Anna lava ___ mãos. | as | suas / se as | O primo da Anna lava as mãos. | Le cousin d'Anna se lave les mains. | Le corps : l'article, pas de pronom (<b>lava as mãos</b>).
+huhn-2 |  | As galinhas ___ depressa. | mexem-se | se mexem / mexem-nas | As galinhas mexem-se depressa. | Les poules bougent vite. | <b>mexer-se</b> = bouger.
+"""),
+"B2": ("Antes de, depois de, desde que, até", """
+anna | pferd | Antes de ___ ao cavalo, a Anna lava as maçãs. | dar de comer | dá de comer / desse de comer | Antes de dar de comer ao cavalo, a Anna lava as maçãs. | Avant de nourrir le cheval, Anna lave les pommes. | <b>antes de</b> + infinitif (même sujet).
+onkel | schwein | Depois de ___ a palha, o tio dá de comer ao porco. | ir buscar | foi buscar / vai buscar | Depois de ir buscar a palha, o tio dá de comer ao porco. | Après avoir été chercher la paille, son oncle nourrit le cochon. | <b>depois de</b> + infinitif ; <b>ir buscar</b> = aller chercher.
+hund |  | O cão vive na quinta ___ um ano. | há | desde / faz-se | O cão vive na quinta há um ano. | Le chien vit à la ferme depuis un an. | Depuis + durée : <b>há</b> + durée.
+katze |  | O gato dorme depois de ___. | comer | comeu / coma | O gato dorme depois de comer. | Le chat dort après avoir mangé. | <b>depois de</b> + infinitif.
+anna |  | ___ que trabalha na quinta, a Anna levanta-se cedo. | Desde | Há / Depois | Desde que trabalha na quinta, a Anna levanta-se cedo. | Depuis qu'Anna travaille à la ferme, elle se lève tôt. | <b>desde que</b> (depuis que) + indicatif.
+hund | anna | O cão espera até a Anna o ___. | chamar | chama / chamou | O cão espera até a Anna o chamar. | Le chien attend qu'Anna l'appelle. | <b>até</b> + infinitif personnel (sujet différent).
+"""),
+"C1": (T_HYPO, """
+pferd | anna | O cavalo ___ ser muito meigo. | deve | pode-se / tem | O cavalo deve ser muito meigo. | Le cheval doit être très gentil. | Déduction : <b>dever</b> ; <b>meigo</b> = doux, gentil.
+hund | cousin | O cão ___ ser do primo da Anna. | pode | deve de / há | O cão pode ser do primo da Anna. | Le chien appartient peut-être au cousin d'Anna. | Possibilité : <b>poder</b>.
+ei | korb | Os ovos ___ de hoje de manhã. | serão | sejam / foram-se | Os ovos serão de hoje de manhã. | Les œufs datent sans doute de ce matin. | Futur de supposition : <b>serão</b>.
+haus |  | A quinta ___ mais de cem anos. | teria | terá-se / tenha | A quinta teria mais de cem anos. | La ferme aurait plus de cent ans. | Le conditionnel de la rumeur.
+"""),
+},
+"buergeramt": {
+"B1": ("Les prépositions : de, há, com, para, a, sem", """
+mark |  | O Mark é ___ Canadá. | do | de / no | O Mark é do Canadá. | Mark vient du Canada. | L'origine : <b>ser de</b> ; le Canada prend l'article : <b>do</b>.
+mark |  | Ele está em Lisboa ___ um mês. | há | desde / por | Ele está em Lisboa há um mês. | Il est à Lisbonne depuis un mois. | Depuis + durée : <b>há</b>.
+kugelschreiber | formular | O Mark preenche o impresso ___ uma esferográfica. | com | de / por | O Mark preenche o impresso com uma esferográfica. | Mark remplit le formulaire avec un stylo. | L'instrument : <b>com</b> ; le stylo = <b>a esferográfica</b>, au Portugal.
+formular |  | O impresso é ___ o registo da morada. | para | por / a | O impresso é para o registo da morada. | Le formulaire est pour la déclaration de domicile. | La destination : <b>para</b>.
+tuer |  | O Mark vai ___ Loja do Cidadão. | à | na / para a de | O Mark vai à Loja do Cidadão. | Mark va à l'espace citoyen. | <b>ir a</b> : a + a = <b>à</b> ; la Loja do Cidadão réunit les services publics au Portugal.
+frau |  | A senhora trabalha ___ Loja do Cidadão. | na | à / pela | A senhora trabalha na Loja do Cidadão. | La femme travaille à l'espace citoyen. | Où l'on est : <b>em</b> + a = <b>na</b>.
+pass | mark | O Mark não vem ___ o passaporte. | sem | com / nem | O Mark não vem sem o passaporte. | Mark ne vient pas sans son passeport. | <b>sem</b>.
+frau-2 | baby | A jovem espera com o ___ bebé. | seu | sua / dele | A jovem espera com o seu bebé. | La jeune femme attend avec son bébé. | <b>o seu bebé</b>.
+"""),
+"B2": ("Não só… mas também, tanto… como, nem… nem", """
+pass | formular | O Mark precisa não só do passaporte, ___ também do impresso. | mas | e / como | O Mark precisa não só do passaporte, mas também do impresso. | Mark a besoin non seulement de son passeport, mais aussi du formulaire. | <b>não só… mas também</b>.
+frau |  | A senhora fala tanto português ___ inglês. | como | que / e | A senhora fala tanto português como inglês. | La femme parle aussi bien portugais qu'anglais. | <b>tanto… como</b>.
+frau-2 |  | A jovem não traz ___ livro nem jornal. | nem | ou / não | A jovem não traz nem livro nem jornal. | La jeune femme n'a ni livre ni journal avec elle. | <b>nem… nem</b>.
+mark | formular | ___ o Mark assina hoje, ou volta na próxima semana. | Ou | Nem / Quer | Ou o Mark assina hoje, ou volta na próxima semana. | Soit Mark signe aujourd'hui, soit il revient la semaine prochaine. | <b>ou… ou</b> : soit… soit.
+kugelschreiber | mark | Quanto mais depressa o Mark escreve, mais cedo ___. | acaba | acabe / acabar | Quanto mais depressa o Mark escreve, mais cedo acaba. | Plus Mark écrit vite, plus tôt il a fini. | <b>quanto mais…, mais…</b>.
+fenster |  | O gabinete é pequeno, ___ é luminoso. | mas | pois / porém que | O gabinete é pequeno, mas é luminoso. | Le bureau est certes petit, mais lumineux. | L'opposition : <b>mas</b>.
+"""),
+"C1": (T_HYPO, """
+formular | mark | O impresso ___ ser importante. | deve | pode-se / tem | O impresso deve ser importante. | Le formulaire doit être important. | Déduction : <b>dever</b>.
+frau-2 |  | A jovem também ___ ser nova em Lisboa. | pode | deve de / há | A jovem também pode ser nova em Lisboa. | La jeune femme est peut-être aussi nouvelle à Lisbonne. | Possibilité : <b>poder</b>.
+uhr |  | A marcação ___ terminar daqui a dez minutos. | deverá | deveria-se / deva | A marcação deverá terminar daqui a dez minutos. | Le rendez-vous devrait être fini dans dix minutes. | Probable : <b>deverá</b> ; un rendez-vous administratif = <b>uma marcação</b>.
+stuhl |  | ___ que na Loja do Cidadão se espera muito. | Dizem | Diz-se-lhe / Digam | Dizem que na Loja do Cidadão se espera muito. | Il paraît qu'on attend longtemps à l'espace citoyen. | Le ouï-dire ; après <b>que</b>, le se passe devant.
+"""),
+},
+"fahrradwerkstatt": {
+"B1": ("Alguém, ninguém, algo, nada, se", """
+mark | mann | ___ me pode ajudar? | Alguém | Ninguém / Algo | Alguém me pode ajudar? | Quelqu'un peut-il m'aider ? | <b>alguém</b> = quelqu'un ; il attire le pronom devant.
+zange | kette | ___ de um alicate para a corrente. | Precisa-se | Precisam-se / Se precisa | Precisa-se de um alicate para a corrente. | Il faut une pince pour la chaîne. | <b>precisa-se de</b> = on a besoin de.
+kette |  | ___ está avariado: a corrente! | Algo | Nada / Alguém | Algo está avariado: a corrente! | Quelque chose est cassé : la chaîne ! | <b>algo</b> = quelque chose.
+rad |  | A roda está em ordem, não falta ___. | nada | algo / ninguém | A roda está em ordem, não falta nada. | La roue est en bon état, il ne manque rien. | Après <b>não</b> : <b>nada</b>.
+tuer |  | Na oficina não está ___ além do Mark e do mecânico. | ninguém | alguém / nada | Na oficina não está ninguém além do Mark e do mecânico. | Dans l'atelier, il n'y a personne à part Mark et le mécanicien. | Après <b>não</b> : <b>ninguém</b>.
+fahrrad-3 |  | Em Lisboa ___ cada vez mais de bicicleta. | anda-se | andam-se / se anda | Em Lisboa anda-se cada vez mais de bicicleta. | À Lisbonne, on fait de plus en plus de vélo. | Le se impersonnel : <b>anda-se</b>.
+werkzeug | mann | ___ viu as minhas ferramentas? | Alguém | Ninguém / Algo | Alguém viu as minhas ferramentas? | Quelqu'un a-t-il vu mes outils ? | <b>alguém</b>.
+tasse |  | Queres beber ___? Há café. | alguma coisa | nada / alguém | Queres beber alguma coisa? Há café. | Veux-tu boire quelque chose ? Il y a du café. | <b>alguma coisa</b> = quelque chose (courant).
+"""),
+"B2": ("Le passif sans ser : se, ficar, a + infinitif", """
+kette |  | A corrente ___ facilmente. | arranja-se | arranjam-se / se arranja | A corrente arranja-se facilmente. | La chaîne se répare facilement. | Le se passif : <b>arranja-se</b>.
+rad |  | A roda está ___ arranjar ainda hoje. | por | para ser / de | A roda está por arranjar ainda hoje. | La roue est à réparer aujourd'hui même. | <b>estar por</b> + infinitif : reste à faire.
+werkzeug |  | Aqui ___ bicicletas. | arranjam-se | arranja-se / se arranjam | Aqui arranjam-se bicicletas. | Ici, on répare des vélos. | Accord avec <b>bicicletas</b>.
+oel | kette | A corrente tem de ser ___. | oleada | oleado / olear | A corrente tem de ser oleada. | La chaîne doit être huilée. | Passif : <b>ter de ser</b> + participe accordé.
+fahrrad-2 |  | A bicicleta vermelha já não se ___ vender. | consegue | conseguem / pode-se | A bicicleta vermelha já não se consegue vender. | Le vélo rouge ne peut plus se vendre. | <b>já não se consegue</b> + infinitif.
+tuer |  | A oficina ___ às dezoito horas. | fecha | é fechada-se / fecha-se a | A oficina fecha às dezoito horas. | On ferme l'atelier à dix-huit heures. | Le portugais dit simplement : <b>a oficina fecha</b>.
+"""),
+"C1": (T_HYPO, """
+rad | mark | ___ estar estragada. | Deve | Pode-se / Tem | Deve estar estragada. | Elle doit être cassée. | Déduction : <b>dever</b> (la roue → <b>estragada</b>).
+hund | mann | O cão ___ ser do mecânico. | pode | deve de / há | O cão pode ser do mecânico. | Le chien appartient peut-être au mécanicien. | Possibilité : <b>poder</b>.
+werkzeug |  | O arranjo ___ demorar uma hora. | deverá | deveria-se / deva | O arranjo deverá demorar uma hora. | La réparation devrait durer une heure. | Probable : <b>deverá</b>.
+tuer |  | Esta oficina ___ a melhor do bairro. | seria | será-se / seja | Esta oficina seria a melhor do bairro. | Cet atelier serait le meilleur du quartier. | Le conditionnel de la rumeur.
+"""),
+},
+"heimwerken": {
+"B1": ("L'impératif : dá-me, não caias", """
+hammer | mark | Mark, ___-me o martelo, por favor! | dá | dás / dê | Mark, dá-me o martelo, por favor! | Mark, donne-moi le marteau, s'il te plaît ! | Tu : la forme de ele (<b>dá</b>) ; pronom après.
+papier |  | ___ bem as instruções! | Lê | Lês / Leia-te | Lê bem as instruções! | Lis bien la notice ! | <b>ler</b>, tu : <b>lê</b>.
+pinsel | eimer | ___ o pincel em cima do balde! | Põe | Pões / Ponha-te | Põe o pincel em cima do balde! | Pose le pinceau sur le seau ! | <b>pôr</b>, tu : <b>põe</b>.
+handschuh |  | ___ as luvas! | Calça | Calças / Calce-te | Calça as luvas! | Mets les gants ! | <b>calçar</b> les gants ; tu : <b>calça</b>.
+leiter |  | Mark, não ___ da escada! | caias | cais / cai | Mark, não caias da escada! | Mark, ne tombe pas de l'échelle ! | Négatif : le subjonctif (<b>não caias</b>).
+mark |  | ___ uma pausa! | Façamos | Fazemos-nos / Faz | Façamos uma pausa! | Faisons une pause ! | Nós : le subjonctif (<b>façamos</b>) ; à l'oral, <b>Vamos fazer uma pausa!</b>
+katze | fenster | Bichano, ___ da janela! | desce | desças / desce-te | Bichano, desce da janela! | Minou, descends de la fenêtre ! | Tu : <b>desce</b>.
+leiter |  | Senhor vizinho, ___-me a escada, por favor! | segure | segura / seguras | Senhor vizinho, segure-me a escada, por favor! | Monsieur le voisin, tenez-moi l'échelle, s'il vous plaît ! | O senhor : le subjonctif (<b>segure</b>).
+"""),
+"B2": ("Le but : para, para que", """
+farbe |  | O Mark comprou tinta ___ pintar a parede de azul. | para | para que / a fim que | O Mark comprou tinta para pintar a parede de azul. | Mark a acheté de la peinture pour peindre le mur en bleu. | Même sujet : <b>para</b> + infinitif.
+regal | papier | Ele lê as instruções para que a estante não ___. | caia | cai / cair-se | Ele lê as instruções para que a estante não caia. | Il lit la notice pour que l'étagère ne tombe pas. | Sujet différent : <b>para que</b> + conjuntivo.
+handschuh |  | Ele esqueceu-se ___ calçar as luvas. | de | a / em | Ele esqueceu-se de calçar as luvas. | Il a oublié de mettre les gants. | <b>esquecer-se de</b>.
+regal | mark | Não é fácil ___ uma estante sozinho. | montar | de montar / a montar | Não é fácil montar uma estante sozinho. | Ce n'est pas facile de monter une étagère tout seul. | <b>é fácil</b> + infinitif, sans « de ».
+farbe |  | A parede já está meio ___. | pintada | pintado / pintar | A parede já está meio pintada. | Le mur est déjà à moitié peint. | État : <b>a parede</b> → <b>pintada</b>.
+papier |  | Sem ___ as instruções, não se monta uma estante. | ler | lê / leres-se | Sem ler as instruções, não se monta uma estante. | Sans lire la notice, on ne monte pas d'étagère. | <b>sem</b> + infinitif.
+"""),
+"C1": (T_HYPO, """
+papier | mark | As instruções ___ ser difíceis de perceber. | devem | deve / podem-se | As instruções devem ser difíceis de perceber. | La notice doit être difficile à comprendre. | Déduction, au pluriel : <b>devem</b> (as instruções).
+katze |  | ___ que o gato seja do vizinho. | Pode ser | Deve ser / Se calhar | Pode ser que o gato seja do vizinho. | Le chat appartient peut-être au voisin. | <b>pode ser que</b> + conjuntivo.
+regal |  | A estante ___ estar pronta hoje à noite. | deverá | deveria-se / deva | A estante deverá estar pronta hoje à noite. | L'étagère devrait être finie ce soir. | Probable : <b>deverá</b>.
+farbe |  | ___ que antigamente vivia um pintor neste apartamento. | Consta | Constam / Conste | Consta que antigamente vivia um pintor neste apartamento. | Il paraît qu'un peintre habitait autrefois dans l'appartement. | Le ouï-dire, soutenu : <b>consta que</b>.
+"""),
+},
+"sportplatz": {
+"B1": ("Raconter : le perfeito et l'imperfeito", """
+mark | ball | O Mark ___ a bola para a baliza. | rematou | rematava / remata | O Mark rematou a bola para a baliza. | Mark a tiré le ballon dans le but. | <b>rematar</b> = tirer ; le but = <b>a baliza</b>, au Portugal.
+torwart |  | O guarda-redes ___ na relva. | caiu | caía / cai | O guarda-redes caiu na relva. | Le gardien est tombé dans l'herbe. | <b>cair</b> → <b>caiu</b> ; le gardien = <b>o guarda-redes</b>.
+mannschaft | mark | Os jogadores ___ para o Mark. | correram | corriam / correm | Os jogadores correram para o Mark. | Les joueurs ont couru vers Mark. | <b>correr</b> → <b>correram</b>.
+trainerin |  | A treinadora ___ palmas. | bateu | batia / bate | A treinadora bateu palmas. | L'entraîneuse a applaudi. | <b>bater palmas</b> = applaudir.
+mark |  | O Mark ___ de alegria. | gritou | gritava / grita | O Mark gritou de alegria. | Mark a crié de joie. | <b>gritar</b> → <b>gritou</b>.
+uhr |  | O jogo ___ às dez horas. | começou | começava / começa | O jogo começou às dez horas. | Le match a commencé à dix heures. | <b>começar</b> → <b>começou</b>.
+bank | mann | Os espectadores ___ sentados no banco. | estavam | estiveram-se / estão | Os espectadores estavam sentados no banco. | Les spectateurs étaient assis sur le banc. | Le décor : imperfeito (<b>estavam</b>).
+mark |  | No fim, a equipa do Mark ___. | ganhou | ganhava / ganha | No fim, a equipa do Mark ganhou. | À la fin, l'équipe de Mark a gagné. | <b>ganhar</b> → <b>ganhou</b> ; l'équipe = <b>a equipa</b>.
+"""),
+"B2": ("Porque, embora, quando, assim que", """
+mark |  | O Mark festeja porque ___ um golo. | marcou | marcasse / marque | O Mark festeja porque marcou um golo. | Mark exulte parce qu'il a marqué un but. | <b>porque</b> + indicatif ; le but marqué = <b>o golo</b>.
+torwart |  | O guarda-redes ri-se, embora não ___ defendido a bola. | tenha | tem / tinha | O guarda-redes ri-se, embora não tenha defendido a bola. | Le gardien rit, bien qu'il n'ait pas arrêté le ballon. | <b>embora</b> + conjuntivo composé.
+trainerin | mark | Quando o Mark ___ o golo, a treinadora bateu palmas. | marcou | marcava / marcar | Quando o Mark marcou o golo, a treinadora bateu palmas. | Quand Mark a marqué le but, l'entraîneuse a applaudi. | <b>quando</b> au passé : indicatif.
+flasche | mark | O Mark bebe água assim que o jogo ___. | acabar | acaba / acabe | O Mark bebe água assim que o jogo acabar. | Mark boit de l'eau dès que le match est fini. | <b>assim que</b> + futur : futuro do conjuntivo.
+bank |  | Os espectadores estão sentados ___ os jogadores correm. | enquanto | assim que / embora | Os espectadores estão sentados enquanto os jogadores correm. | Les spectateurs sont assis pendant que les joueurs courent. | <b>enquanto</b>.
+trainerin |  | Treinam todos os sábados para ___ em forma. | se manterem | manterem-se-em / se mantêm | Treinam todos os sábados para se manterem em forma. | Ils s'entraînent chaque samedi pour rester en forme. | <b>para</b> + infinitif personnel (<b>se manterem</b>).
+"""),
+"C1": (T_HYPO, """
+mark |  | ___ ser o primeiro golo dele. | Deve | Pode-se / Tem | Deve ser o primeiro golo dele. | Ce doit être son premier but. | Déduction : <b>dever</b>.
+mann |  | O senhor idoso ___ ser vizinho do Mark. | pode | deve de / há | O senhor idoso pode ser vizinho do Mark. | Le vieux monsieur est peut-être le voisin de Mark. | Possibilité : <b>poder</b>.
+uhr |  | O jogo ___ estar a acabar. | deve | pode-se / tem | O jogo deve estar a acabar. | Le match devrait bientôt être fini. | <b>dever</b> + estar a : sans doute en train de.
+trainerin |  | A treinadora ___ sido profissional. | teria | terá-se / tenha | A treinadora teria sido profissional. | Il paraît que l'entraîneuse était professionnelle autrefois. | La rumeur sur le passé : <b>teria sido</b>.
+"""),
+},
 }
 
 
