@@ -51,7 +51,7 @@ BR_PT_VOCAB = [
     ("cadarço", "atacador"), ("cadarços", "atacadores"), ("camiseta", "t-shirt"), ("camisetas", "t-shirts"),
     ("terno", "fato"), ("ternos", "fatos"), ("tênis", "ténis"), ("calcinha", "cuecas"),
     ("xampu", "champô"), ("aeromoça", "hospedeira de bordo"), ("comissária de bordo", "hospedeira de bordo"),
-    ("gramado", "relvado"),
+    ("gramado", "relvado"), ("abobrinha", "curgete"), ("abobrinhas", "curgetes"),
     ("mouse", "rato"), ("usuário", "utilizador"), ("usuários", "utilizadores"), ("usuária", "utilizadora"),
     ("aluguel", "renda"), ("aluguéis", "rendas"), ("inquilino", "inquilino"),
     ("geléia", "compota"), ("geleia", "compota"), ("presunto", "fiambre"),
