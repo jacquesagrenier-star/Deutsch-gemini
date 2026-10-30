@@ -577,6 +577,20 @@ scene.style.aspectRatio = MASQUES.W + " / " + MASQUES.H;
    depot, choix-seance.html ; publiee, la maquette est la page d'accueil et
    la classe s'appelle classe.html. */
 if (/classe\.html$/.test(location.pathname)) $("retourChoix").href = "index.html";
+/* v1030 : « CONTINUER » SUR LE BAS DE L'IMAGE, PAS DU CADRE. Jacques, iPhone, 30 oct. 2026 :
+   « continuer devrait arriver en bas de l'image ». Colle au bas de l'ecran (v1005), il tombait
+   sous l'image des que celle-ci finissait plus haut que l'ecran. On le pose a 12 px au-dessus
+   du bas de l'image -- ou du bas de l'ecran, si l'image descend plus bas. */
+function placerSuite(){
+  const sc = $("scene");
+  if (!sc) return;
+  const r = sc.getBoundingClientRect();
+  const b = Math.max(12, Math.round(innerHeight - r.bottom + 12));
+  document.querySelectorAll(".suite").forEach(el => el.style.setProperty("bottom", b + "px", "important"));
+}
+new MutationObserver(placerSuite).observe($("bas"), {childList: true, subtree: true});
+addEventListener("resize", placerSuite);
+addEventListener("scroll", placerSuite, {passive: true});
 /* L'AUTRE VUE de la meme scene (9 oct.) : Mark de face, puis de dos ; l'etal
    suivant au marche. Hors seance, ce bouton sert a FLANER d'une vue a
    l'autre. Dans la seance il disparait : c'est l'app qui change de vue quand
