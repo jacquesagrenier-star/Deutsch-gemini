@@ -3429,7 +3429,11 @@ html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:
 html[data-apprendre="pt"] button[onclick*="startExercises"],
 html[data-apprendre="pt"] button[onclick*="startVerbRektionExercise"],
 html[data-apprendre="pt"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
-html[data-apprendre="pt"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]){ display:none !important; }
+html[data-apprendre="pt"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]){ display:none !important; }
+/* « S'entrainer par temps » (A2-C1, 30 oct. 2026) : la liste portugaise
+   (grammaire.json, cle « temps ») a la place des cartes allemandes. */
+html[data-apprendre="pt"] #verbenTempsInfo > .card{ display:none !important; }
+html[data-apprendre="pt"] #tempsEnCartes{ display:block !important; }
 /* L'article portugais : o (couleur de der), a (couleur de die). */
 html[data-apprendre="pt"] .article.o{ color: var(--g-der); }
 html[data-apprendre="pt"] .article.a{ color: var(--g-die); }
@@ -13106,13 +13110,21 @@ function formesAdjectifPortugais(card){
 // l'imparfait, le futur, le conditionnel, le subjonctif et l'imperatif, vos
 // cache (personneCachee). Libelles en francais, la seule langue d'interface
 // du portugais pour l'instant.
-function lignePersonnesPortugais(formes){
+// Les subjonctifs se lisent avec leur conjonction DEVANT la personne : « que eu
+// fale », « se ele se levantasse », « quando tu chegares ». Les formes de l'A1
+// n'en portent pas, celles de l'A2-C1 la portent (« que me abaixe ») : on la
+// retire de la forme et on la place en tete, dans les deux cas.
+function lignePersonnesPortugais(formes, conj){
     if(!Array.isArray(formes) || !formes.length) return "";
-    return formes.map((f, i) => (personneCachee(i) || f === "—") ? null : PERSONNES_CONJUGAISON[i] + " " + echapperPortugais(f))
-        .filter(x => x !== null).join(" · ");
+    return formes.map((f, i) => {
+        if(personneCachee(i) || f === "—") return null;
+        let forme = String(f || "");
+        if(conj && forme.indexOf(conj + " ") === 0) forme = forme.slice(conj.length + 1);
+        return (conj ? conj + " " : "") + PERSONNES_CONJUGAISON[i] + " " + echapperPortugais(forme);
+    }).filter(x => x !== null).join(" · ");
 }
-function blocTempsPortugais(titre, aide, formes){
-    const ligne = lignePersonnesPortugais(formes);
+function blocTempsPortugais(titre, aide, formes, conj){
+    const ligne = lignePersonnesPortugais(formes, conj);
     if(!ligne) return "";
     return '<div class="verb-sep"></div><strong>' + titre + '</strong> '
         + '<span style="font-weight:400; color:#566070;">&mdash; ' + aide + '</span><br>' + ligne;
@@ -13134,12 +13146,12 @@ function carteVerbePortugais(card, exampleTr){
         + blocTempsPortugais("IMPERFEITO", "un décor, une habitude &mdash; <em>antes, sempre, quando era pequeno</em>", card.imperfeitoPt)
         + blocTempsPortugais("FUTURO", "l'avenir, écrit ou solennel &mdash; à l'oral : <em>vou + infinitif</em>", card.futuroPt)
         + blocTempsPortugais("CONDICIONAL", "politesse, hypothèse &mdash; <em>gostaria, podia</em>", card.condicionalPt)
-        + blocTempsPortugais("CONJUNTIVO", "après <em>quero que</em>, <em>espero que</em>, <em>talvez</em>", card.conjuntivoPt)
+        + blocTempsPortugais("CONJUNTIVO", "après <em>quero que</em>, <em>espero que</em>, <em>talvez</em>", card.conjuntivoPt, "que")
         // A2-C1 : rien sur une carte de l'A1, qui n'a pas ces champs.
         + blocTempsPortugais("PRETÉRITO PERFEITO COMPOSTO", "ce qui se répète jusqu'à maintenant &mdash; <em>tenho trabalhado muito</em>", card.perfeitoCompostoPt)
         + blocTempsPortugais("MAIS-QUE-PERFEITO", "le passé du passé &mdash; <em>já tinha saído</em>", card.maisQuePerfeitoPt)
-        + blocTempsPortugais("CONJUNTIVO IMPERFEITO", "après <em>se</em>, <em>queria que</em> &mdash; <em>se eu pudesse</em>", card.conjImperfeitoPt)
-        + blocTempsPortugais("CONJUNTIVO FUTURO", "après <em>quando</em>, <em>se</em> pour l'avenir &mdash; <em>quando chegares</em>", card.conjFuturoPt)
+        + blocTempsPortugais("CONJUNTIVO IMPERFEITO", "après <em>se</em>, <em>queria que</em> &mdash; <em>se eu pudesse</em>", card.conjImperfeitoPt, "se")
+        + blocTempsPortugais("CONJUNTIVO FUTURO", "après <em>quando</em>, <em>se</em> pour l'avenir &mdash; <em>quando chegares</em>", card.conjFuturoPt, "quando")
         + ((card.participioPt || card.gerundioPt)
             ? '<div class="verb-sep"></div><strong>PARTICÍPIO · GERÚNDIO</strong><br>' + [card.participioPt, card.gerundioPt].filter(Boolean).map(echapperPortugais).join(" · ")
             : "")
@@ -52895,7 +52907,18 @@ const COURS_GRAMMAIRE_PAR_LANGUE = {
     pt: ["serEstarPtExercises", "artigosPtExercises", "presentePtExercises", "pluralPtExercises", "pronomesPtExercises",
          "irregularesPtExercises", "contracoesPtExercises", "possessivosPtExercises", "perguntasPtExercises",
          "haPtExercises", "estarAPtExercises", "gostarPtExercises", "adjetivosPtExercises", "irFuturoPtExercises",
-         "atonosPtExercises", "perfeitoPtExercises", "falsosAmigosPtExercises"],
+         "atonosPtExercises", "perfeitoPtExercises", "falsosAmigosPtExercises",
+         // A2-C1 (session « Portugais A2-C1 », portugais/outils/grammaire_<niv>.py), dans l'ordre des fiches.
+         "imperfeitoPtExercises", "perfeitoImperfeitoPtExercises", "comparativosPtExercises", "pronomesComplementoPtExercises",
+         "imperativoPtExercises", "obrigacaoPtExercises", "porParaPtExercises", "jaAindaPtExercises",
+         "demonstrativosPtExercises", "perifrasesA2PtExercises", "conjuntivoPresentePtExercises", "conjuntivoExpressoesPtExercises",
+         "futuroConjuntivoPtExercises", "condicionalPtExercises", "maisQuePerfeitoPtExercises", "passivaPtExercises",
+         "relativosPtExercises", "discursoIndiretoPtExercises", "infinitivoPessoalPtExercises", "colocacaoPronominalPtExercises",
+         "conjuntivoImperfeitoPtExercises", "condicionaisIrreaisPtExercises", "temposCompostosPtExercises", "conjuntivoCompostoPtExercises",
+         "concessivasPtExercises", "conectoresPtExercises", "perifrasesB2PtExercises", "pronomesContraidosPtExercises",
+         "seImpessoalPtExercises", "falsosAmigosB2PtExercises", "mesoclisePtExercises", "infinitivoPessoalC1PtExercises",
+         "participiosDuplosPtExercises", "realcePtExercises", "registoPtExercises", "conjuncoesC1PtExercises",
+         "maisQuePerfeitoSimplesPtExercises", "portugalBrasilPtExercises", "expressoesIdiomaticasPtExercises"],
     // L'anglais (essai, 27 oct. 2026) : les series de ses fiches A1, dans
     // l'ordre ou un debutant les rencontre (anglais/outils/grammaire_a1.py).
     en: ["beEnExercises", "articlesEnExercises", "plurielEnExercises", "presentEnExercises", "pronomsEnExercises",
@@ -59639,7 +59662,8 @@ function resetAllConfirm(){
 }
 
 function openVerbenTempsInfo(){
-    if(LANGUE_APPRISE === "en") return ouvrirTempsAnglais();
+    // Le portugais (A2-C1, 30 oct. 2026) : ses series par temps, comme l'anglais.
+    if(LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") return ouvrirTempsAnglais();
     showScreen("verbenTempsInfo");
 }
 

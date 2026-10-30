@@ -133,6 +133,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as vitaminas",
    "niveau": "B1",
+   "theme": "comida_b1_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -242,6 +243,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -312,6 +314,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -340,6 +343,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -389,6 +393,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -417,6 +422,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -758,6 +764,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os teclados",
    "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -834,6 +841,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -1179,6 +1187,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as bengalas",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1260,7 +1269,8 @@ window.SCENE = {
    "mot": "balança",
    "genre": "a",
    "pluriel": "as balanças",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1305,6 +1315,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o relógio?",
+     "c": [
+      "na parede",
+      "na janela",
+      "por cima da porta"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "O relógio está na parede.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>em</b> + a = <b>na</b> : na parede."
+    },
+    {
+     "q": "Onde estão os medicamentos?",
+     "c": [
+      "na estante",
+      "no chão",
+      "na caixa de cartão"
+     ],
+     "f": "medikament",
+     "r": "regal",
+     "phrase": "Os medicamentos estão na estante.",
+     "sens": "Les médicaments sont sur l'étagère.",
+     "n": "<b>em</b> + a = <b>na</b> : na estante."
+    },
+    {
+     "q": "Onde está a planta?",
+     "c": [
+      "em cima do guiché",
+      "na estante",
+      "na cadeira"
+     ],
+     "f": "pflanze",
+     "r": "schalter",
+     "phrase": "A planta está em cima do guiché.",
+     "sens": "La plante est sur le comptoir.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché."
+    },
+    {
+     "q": "Onde está o homem?",
+     "c": [
+      "na cadeira",
+      "no chão",
+      "em cima da balança"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "O homem está na cadeira.",
+     "sens": "Le vieux monsieur est assis sur la chaise.",
+     "n": "<b>em</b> + a = <b>na</b> : na cadeira."
+    },
+    {
+     "q": "Onde está a balança?",
+     "c": [
+      "ao lado da cadeira",
+      "em cima do guiché",
+      "na estante"
+     ],
+     "f": "waage",
+     "r": "stuhl",
+     "phrase": "A balança está ao lado da cadeira.",
+     "sens": "La balance est à côté de la chaise.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a cadeira = <b>ao lado da</b> cadeira."
+    },
+    {
+     "q": "Onde está o carro?",
+     "c": [
+      "na rua",
+      "na farmácia",
+      "à frente da estante"
+     ],
+     "f": "auto",
+     "r": "strasse",
+     "phrase": "O carro está na rua.",
+     "sens": "La voiture est dans la rue.",
+     "n": "<b>em</b> + a = <b>na</b> : na rua."
+    },
+    {
+     "q": "Onde está o caixote do lixo?",
+     "c": [
+      "ao lado da porta",
+      "em cima do guiché",
+      "na estante"
+     ],
+     "f": "muelleimer",
+     "r": "tuer",
+     "phrase": "O caixote do lixo está ao lado da porta.",
+     "sens": "La poubelle est à côté de la porte.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta."
+    },
+    {
+     "q": "Onde está a caixa de cartão?",
+     "c": [
+      "no chão",
+      "em cima do guiché",
+      "na estante"
+     ],
+     "f": "karton",
+     "r": "boden",
+     "phrase": "A caixa de cartão está no chão.",
+     "sens": "Le carton est par terre.",
+     "n": "<b>em</b> + o = <b>no</b> : no chão."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "La négation : não, nem, nenhum, já não",
+   "qs": [
+    {
+     "q": "O Mark não tem febre, ___ uma constipação.",
+     "c": [
+      "só",
+      "nem",
+      "nenhuma"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark não tem febre, só uma constipação.",
+     "sens": "Mark n'a pas de fièvre, juste un rhume.",
+     "n": "Le portugais dit <b>não tem febre</b> : pas d'article ; <b>só</b> = seulement."
+    },
+    {
+     "q": "Os comprimidos ___ são caros.",
+     "c": [
+      "não",
+      "nem",
+      "nenhum"
+     ],
+     "f": "medikament-6",
+     "r": null,
+     "phrase": "Os comprimidos não são caros.",
+     "sens": "Les comprimés ne sont pas chers.",
+     "n": "<b>não</b> devant le verbe."
+    },
+    {
+     "q": "O Mark não tem tempo ___ ir ao médico.",
+     "c": [
+      "para",
+      "de",
+      "a"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark não tem tempo para ir ao médico.",
+     "sens": "Mark n'a pas le temps d'aller chez le médecin.",
+     "n": "<b>ter tempo para</b>."
+    },
+    {
+     "q": "O senhor idoso não espera ___.",
+     "c": [
+      "muito",
+      "nada",
+      "nenhum"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "O senhor idoso não espera muito.",
+     "sens": "Le vieux monsieur n'attend pas longtemps.",
+     "n": "Pas longtemps : <b>não … muito</b>."
+    },
+    {
+     "q": "O Mark não toma os comprimidos ___ café.",
+     "c": [
+      "com",
+      "sem",
+      "nem"
+     ],
+     "f": "medikament-6",
+     "r": null,
+     "phrase": "O Mark não toma os comprimidos com café.",
+     "sens": "Mark ne prend pas les comprimés avec du café.",
+     "n": "<b>com café</b>, sans article."
+    },
+    {
+     "q": "A farmacêutica ___ tem pensos.",
+     "c": [
+      "já não",
+      "ainda não",
+      "não já"
+     ],
+     "f": "pflaster",
+     "r": "frau",
+     "phrase": "A farmacêutica já não tem pensos.",
+     "sens": "La pharmacienne n'a plus de pansements.",
+     "n": "Ne… plus : <b>já não</b>."
+    },
+    {
+     "q": "Esta ___ é a minha receita!",
+     "c": [
+      "não",
+      "nem",
+      "nenhuma"
+     ],
+     "f": "rezept",
+     "r": null,
+     "phrase": "Esta não é a minha receita!",
+     "sens": "Ce n'est pas mon ordonnance !",
+     "n": "<b>não</b> avant le verbe ; <b>a receita</b> = l'ordonnance."
+    },
+    {
+     "q": "O Mark não comprou ___ xarope para a tosse.",
+     "c": [
+      "nenhum",
+      "nada",
+      "nem"
+     ],
+     "f": "flasche-5",
+     "r": null,
+     "phrase": "O Mark não comprou nenhum xarope para a tosse.",
+     "sens": "Mark n'a pas acheté de sirop contre la toux.",
+     "n": "<b>nenhum</b> renforce la négation (ou simplement : <b>não comprou xarope</b>)."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le discours rapporté",
+   "qs": [
+    {
+     "q": "A farmacêutica diz que o Mark ___ uma constipação forte.",
+     "c": [
+      "tem",
+      "tenha",
+      "tivesse"
+     ],
+     "f": "frau",
+     "r": "mark",
+     "phrase": "A farmacêutica diz que o Mark tem uma constipação forte.",
+     "sens": "La pharmacienne dit que Mark a un gros rhume.",
+     "n": "Verbe introducteur au présent : l'indicatif ne change pas."
+    },
+    {
+     "q": "Ela diz-lhe que ___ os comprimidos três vezes por dia.",
+     "c": [
+      "tome",
+      "toma",
+      "tomasse"
+     ],
+     "f": "medikament-6",
+     "r": "frau",
+     "phrase": "Ela diz-lhe que tome os comprimidos três vezes por dia.",
+     "sens": "Elle dit qu'il doit prendre les comprimés trois fois par jour.",
+     "n": "Une consigne rapportée : <b>dizer que</b> + conjuntivo."
+    },
+    {
+     "q": "O médico disse que o Mark não ___ contagioso.",
+     "c": [
+      "era",
+      "é-se",
+      "seja"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O médico disse que o Mark não era contagioso.",
+     "sens": "Le médecin a dit que Mark n'est pas contagieux.",
+     "n": "Verbe introducteur au passé : présent → imperfeito."
+    },
+    {
+     "q": "O Mark diz que ___ tosse há três dias.",
+     "c": [
+      "tem",
+      "tenha",
+      "tinha-se"
+     ],
+     "f": "taschentuch",
+     "r": "mark",
+     "phrase": "O Mark diz que tem tosse há três dias.",
+     "sens": "Mark dit qu'il tousse depuis trois jours.",
+     "n": "<b>ter tosse</b> = tousser ; <b>há três dias</b> = depuis trois jours."
+    },
+    {
+     "q": "A farmacêutica explica que o xarope ___ a tosse.",
+     "c": [
+      "alivia",
+      "alivie",
+      "aliviasse"
+     ],
+     "f": "flasche-5",
+     "r": "frau",
+     "phrase": "A farmacêutica explica que o xarope alivia a tosse.",
+     "sens": "La pharmacienne explique que le sirop aide contre la toux.",
+     "n": "Un fait rapporté au présent : indicatif."
+    },
+    {
+     "q": "O senhor idoso disse que ___ há muito tempo.",
+     "c": [
+      "estava à espera",
+      "está à espera",
+      "esteja à espera"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "O senhor idoso disse que estava à espera há muito tempo.",
+     "sens": "Le vieux monsieur a dit qu'il attendait depuis longtemps.",
+     "n": "Au passé : <b>estava à espera</b> (estar à espera = attendre)."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "Ele ___ estar constipado.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "mark",
+     "r": "taschentuch",
+     "phrase": "Ele deve estar constipado.",
+     "sens": "Il doit être enrhumé.",
+     "n": "Déduction : <b>dever</b> ; <b>constipado</b> = enrhumé."
+    },
+    {
+     "q": "___ o senhor esteja à espera do medicamento.",
+     "c": [
+      "Talvez",
+      "Deve",
+      "Se calhar"
+     ],
+     "f": "mann",
+     "r": "stuhl",
+     "phrase": "Talvez o senhor esteja à espera do medicamento.",
+     "sens": "Le vieux monsieur attend peut-être son médicament.",
+     "n": "<b>talvez</b> + conjuntivo."
+    },
+    {
+     "q": "O Mark ___ estar bom daqui a dois dias.",
+     "c": [
+      "deverá",
+      "deveria-se",
+      "deva"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark deverá estar bom daqui a dois dias.",
+     "sens": "Mark devrait être rétabli dans deux jours.",
+     "n": "Probable : <b>deverá</b>."
+    },
+    {
+     "q": "Esta farmácia ___ a mais antiga do bairro.",
+     "c": [
+      "seria",
+      "será-se",
+      "seja"
+     ],
+     "f": "schalter",
+     "r": null,
+     "phrase": "Esta farmácia seria a mais antiga do bairro.",
+     "sens": "Cette pharmacie serait la plus ancienne du quartier.",
+     "n": "Le conditionnel de la rumeur : <b>seria</b>."
+    }
+   ]
   }
  },
  "traductions": {}

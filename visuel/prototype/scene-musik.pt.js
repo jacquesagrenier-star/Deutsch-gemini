@@ -194,6 +194,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os violinos",
    "niveau": "A2",
+   "theme": "cultura_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -525,6 +526,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os tambores",
    "niveau": "A2",
+   "theme": "cultura_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -545,6 +547,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os aquecimentos",
    "niveau": "A2",
+   "theme": "viagens_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -564,7 +567,8 @@ window.SCENE = {
    "mot": "coluna",
    "genre": "a",
    "pluriel": "as colunas",
-   "niveau": "A2",
+   "niveau": "B1",
+   "theme": "cidade_b1_pt",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -608,6 +612,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o candeeiro?",
+     "c": [
+      "em cima do piano",
+      "ao lado da janela",
+      "na estante"
+     ],
+     "f": "lampe",
+     "r": "klavier",
+     "phrase": "O candeeiro está em cima do piano.",
+     "sens": "La petite lampe est sur le piano.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o piano = <b>em cima do</b> piano."
+    },
+    {
+     "q": "Onde está o violino?",
+     "c": [
+      "em cima do armário",
+      "em cima do piano",
+      "debaixo da cadeira"
+     ],
+     "f": "geige",
+     "r": "schrank",
+     "phrase": "O violino está em cima do armário.",
+     "sens": "Le violon est sur l'armoire.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o armário = <b>em cima do</b> armário."
+    },
+    {
+     "q": "Onde está o quadro?",
+     "c": [
+      "na parede",
+      "na janela",
+      "na cadeira"
+     ],
+     "f": "bild",
+     "r": null,
+     "phrase": "O quadro está na parede.",
+     "sens": "Le tableau est accroché au mur.",
+     "n": "<b>em</b> + a = <b>na</b> : na parede."
+    },
+    {
+     "q": "Onde estão os livros?",
+     "c": [
+      "em cima da estante",
+      "em cima do piano",
+      "no chão"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "Os livros estão em cima da estante.",
+     "sens": "Les livres sont sur l'étagère.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a estante = <b>em cima da</b> estante."
+    },
+    {
+     "q": "Onde está a planta?",
+     "c": [
+      "ao lado da janela",
+      "em cima do piano",
+      "à frente da porta"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "A planta está ao lado da janela.",
+     "sens": "La plante est à côté de la fenêtre.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a janela = <b>ao lado da</b> janela."
+    },
+    {
+     "q": "Onde está a garrafa?",
+     "c": [
+      "no chão",
+      "em cima do piano",
+      "na estante"
+     ],
+     "f": "flasche",
+     "r": "boden",
+     "phrase": "A garrafa está no chão.",
+     "sens": "La bouteille est par terre.",
+     "n": "<b>em</b> + o = <b>no</b> : no chão."
+    },
+    {
+     "q": "Onde está o Mark?",
+     "c": [
+      "na cadeira",
+      "junto do piano",
+      "no chão"
+     ],
+     "f": "mark",
+     "r": "stuhl",
+     "phrase": "O Mark está na cadeira.",
+     "sens": "Mark est assis sur la chaise.",
+     "n": "<b>em</b> + a = <b>na</b> : na cadeira."
+    },
+    {
+     "q": "Onde está o candeeiro?",
+     "c": [
+      "ao lado da janela",
+      "em cima do armário",
+      "atrás da porta"
+     ],
+     "f": "lampe-2",
+     "r": "fenster",
+     "phrase": "O candeeiro está ao lado da janela.",
+     "sens": "La grande lampe est à côté de la fenêtre.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a janela = <b>ao lado da</b> janela."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Saber, poder, ter de, querer",
+   "qs": [
+    {
+     "q": "O Mark já ___ tocar três acordes.",
+     "c": [
+      "sabe",
+      "pode",
+      "conhece"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark já sabe tocar três acordes.",
+     "sens": "Mark sait déjà jouer trois accords.",
+     "n": "Une compétence apprise : <b>saber</b> + infinitif."
+    },
+    {
+     "q": "Ele ___ de praticar todos os dias.",
+     "c": [
+      "tem",
+      "deve",
+      "precisa"
+     ],
+     "f": "gitarre",
+     "r": null,
+     "phrase": "Ele tem de praticar todos os dias.",
+     "sens": "Il doit s'exercer tous les jours.",
+     "n": "L'obligation : <b>ter de</b>."
+    },
+    {
+     "q": "Na aula não se ___ falar ao telemóvel.",
+     "c": [
+      "pode",
+      "sabe",
+      "deve-se"
+     ],
+     "f": "frau",
+     "r": null,
+     "phrase": "Na aula não se pode falar ao telemóvel.",
+     "sens": "En cours, on n'a pas le droit de téléphoner.",
+     "n": "La permission : <b>poder</b>."
+    },
+    {
+     "q": "Mais tarde, o Mark ___ tocar numa banda.",
+     "c": [
+      "quer",
+      "sabe",
+      "pode-se"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "Mais tarde, o Mark quer tocar numa banda.",
+     "sens": "Mark veut plus tard jouer dans un groupe.",
+     "n": "La volonté : <b>querer</b>."
+    },
+    {
+     "q": "A senhora gostava que o Mark ___ mais devagar.",
+     "c": [
+      "tocasse",
+      "toque",
+      "toca"
+     ],
+     "f": "frau",
+     "r": "mark",
+     "phrase": "A senhora gostava que o Mark tocasse mais devagar.",
+     "sens": "La femme voudrait que Mark joue plus lentement.",
+     "n": "<b>gostava que</b> + conjuntivo imperfeito."
+    },
+    {
+     "q": "Não ___ segurar a guitarra com tanta força.",
+     "c": [
+      "deves",
+      "tens",
+      "sabes"
+     ],
+     "f": "gitarre",
+     "r": null,
+     "phrase": "Não deves segurar a guitarra com tanta força.",
+     "sens": "Tu ne dois pas tenir la guitare aussi fort.",
+     "n": "Un conseil : <b>dever</b>."
+    },
+    {
+     "q": "O Mark ainda não ___ ler bem as notas.",
+     "c": [
+      "sabe",
+      "pode",
+      "conhece"
+     ],
+     "f": "note",
+     "r": null,
+     "phrase": "O Mark ainda não sabe ler bem as notas.",
+     "sens": "Mark ne sait pas encore bien lire les notes.",
+     "n": "<b>saber</b> + infinitif."
+    },
+    {
+     "q": "___ abrir a janela?",
+     "c": [
+      "Posso",
+      "Sei",
+      "Tenho"
+     ],
+     "f": "fenster",
+     "r": null,
+     "phrase": "Posso abrir a janela?",
+     "sens": "Puis-je ouvrir la fenêtre ?",
+     "n": "Demander la permission : <b>posso</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "L'adjectif : accord et place",
+   "qs": [
+    {
+     "q": "O Mark toca numa guitarra ___.",
+     "c": [
+      "nova",
+      "novo",
+      "novas"
+     ],
+     "f": "gitarre",
+     "r": "mark",
+     "phrase": "O Mark toca numa guitarra nova.",
+     "sens": "Mark joue sur une nouvelle guitare.",
+     "n": "<b>a guitarra</b> → <b>nova</b>, après le nom."
+    },
+    {
+     "q": "A senhora usa um cachecol ___.",
+     "c": [
+      "roxo",
+      "roxa",
+      "roxos"
+     ],
+     "f": "schal",
+     "r": "frau",
+     "phrase": "A senhora usa um cachecol roxo.",
+     "sens": "La femme porte une écharpe violette.",
+     "n": "<b>o cachecol</b> est masculin : <b>roxo</b>."
+    },
+    {
+     "q": "O piano ___ está encostado à parede.",
+     "c": [
+      "preto",
+      "preta",
+      "pretos"
+     ],
+     "f": "klavier",
+     "r": null,
+     "phrase": "O piano preto está encostado à parede.",
+     "sens": "Le piano noir est contre le mur.",
+     "n": "<b>o piano</b> → <b>preto</b>."
+    },
+    {
+     "q": "Em cima do armário está um violino ___.",
+     "c": [
+      "antigo",
+      "antiga",
+      "velhos"
+     ],
+     "f": "geige",
+     "r": "schrank",
+     "phrase": "Em cima do armário está um violino antigo.",
+     "sens": "Sur l'armoire, il y a un vieux violon.",
+     "n": "<b>antigo</b> (ancien, de valeur) ; <b>velho</b> (vieux, usé)."
+    },
+    {
+     "q": "Ao lado da janela ___ está um candeeiro.",
+     "c": [
+      "grande",
+      "grando",
+      "grandes"
+     ],
+     "f": "lampe-2",
+     "r": "fenster",
+     "phrase": "Ao lado da janela grande está um candeeiro.",
+     "sens": "À côté de la grande fenêtre, il y a une lampe.",
+     "n": "<b>grande</b> ne change pas au féminin."
+    },
+    {
+     "q": "O Mark veste uma t-shirt ___.",
+     "c": [
+      "verde",
+      "verda",
+      "verdes"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark veste uma t-shirt verde.",
+     "sens": "Mark porte un t-shirt vert.",
+     "n": "<b>verde</b> : même forme au masculin et au féminin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "O acorde ___ ser difícil.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O acorde deve ser difícil.",
+     "sens": "L'accord doit être difficile.",
+     "n": "Déduction : <b>dever</b>."
+    },
+    {
+     "q": "___ que o violino seja da professora.",
+     "c": [
+      "Pode ser",
+      "Deve ser",
+      "Se calhar"
+     ],
+     "f": "geige",
+     "r": "frau",
+     "phrase": "Pode ser que o violino seja da professora.",
+     "sens": "Le violon appartient peut-être à la professeure.",
+     "n": "<b>pode ser que</b> + conjuntivo."
+    },
+    {
+     "q": "Daqui a uns meses, o Mark ___ tocar bem.",
+     "c": [
+      "deverá",
+      "deveria-se",
+      "deva"
+     ],
+     "f": "gitarre",
+     "r": "mark",
+     "phrase": "Daqui a uns meses, o Mark deverá tocar bem.",
+     "sens": "Mark devrait bien jouer dans quelques mois.",
+     "n": "Probable : <b>deverá</b>."
+    },
+    {
+     "q": "A professora ___ tocado numa orquestra.",
+     "c": [
+      "teria",
+      "terá-se",
+      "tenha"
+     ],
+     "f": "frau",
+     "r": null,
+     "phrase": "A professora teria tocado numa orquestra.",
+     "sens": "Il paraît que la professeure jouait autrefois dans un orchestre.",
+     "n": "La rumeur sur le passé : <b>teria</b> + participe."
+    }
+   ]
   }
  },
  "traductions": {}

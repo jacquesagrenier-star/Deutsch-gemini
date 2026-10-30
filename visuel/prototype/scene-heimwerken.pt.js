@@ -28,7 +28,8 @@ window.SCENE = {
    "mot": "tinta",
    "genre": "a",
    "pluriel": "as tintas",
-   "niveau": "A1",
+   "niveau": "A2",
+   "theme": "trabalho_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -111,7 +112,8 @@ window.SCENE = {
    "mot": "tomada",
    "genre": "a",
    "pluriel": "as tomadas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -131,7 +133,8 @@ window.SCENE = {
    "mot": "cabo",
    "genre": "o",
    "pluriel": "os cabos",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -246,6 +249,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os baldes",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -265,7 +269,8 @@ window.SCENE = {
    "mot": "pincel",
    "genre": "o",
    "pluriel": "os pincéis",
-   "niveau": "B2",
+   "niveau": "B1",
+   "theme": "casa_b1_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -409,7 +414,8 @@ window.SCENE = {
    "mot": "ferramenta",
    "genre": "a",
    "pluriel": "as ferramentas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -430,6 +436,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os martelos",
    "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "werkzeug",
@@ -470,6 +477,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as unhas",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -590,7 +598,8 @@ window.SCENE = {
    "mot": "alicate",
    "genre": "o",
    "pluriel": "os alicates",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -614,6 +623,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o gato?",
+     "c": [
+      "à janela",
+      "em cima do armário",
+      "na caixa de cartão"
+     ],
+     "f": "katze",
+     "r": "fenster",
+     "phrase": "O gato está à janela.",
+     "sens": "Le chat est assis à la fenêtre.",
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela."
+    },
+    {
+     "q": "Onde está o balde?",
+     "c": [
+      "no chão",
+      "em cima do armário",
+      "na estante"
+     ],
+     "f": "eimer",
+     "r": "boden",
+     "phrase": "O balde está no chão.",
+     "sens": "Le seau est par terre.",
+     "n": "<b>em</b> + o = <b>no</b> : no chão."
+    },
+    {
+     "q": "Onde está o pincel?",
+     "c": [
+      "no balde",
+      "na caixa de cartão",
+      "ao lado do gato"
+     ],
+     "f": "pinsel",
+     "r": "eimer",
+     "phrase": "O pincel está no balde.",
+     "sens": "Le pinceau est sur le seau.",
+     "n": "<b>em</b> + o = <b>no</b> : no balde."
+    },
+    {
+     "q": "Onde está o escadote?",
+     "c": [
+      "ao lado da estante",
+      "à frente da janela",
+      "em cima do armário"
+     ],
+     "f": "leiter",
+     "r": "regal",
+     "phrase": "O escadote está ao lado da estante.",
+     "sens": "L'échelle est à côté de l'étagère.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a estante = <b>ao lado da</b> estante."
+    },
+    {
+     "q": "Onde está o candeeiro?",
+     "c": [
+      "no teto",
+      "na parede",
+      "na janela"
+     ],
+     "f": "lampe",
+     "r": null,
+     "phrase": "O candeeiro está no teto.",
+     "sens": "La lampe est suspendue au plafond.",
+     "n": "em + o teto = <b>no</b> teto."
+    },
+    {
+     "q": "Onde estão as caixas de cartão?",
+     "c": [
+      "ao lado do armário",
+      "na estante",
+      "no escadote"
+     ],
+     "f": "karton",
+     "r": "schrank",
+     "phrase": "As caixas de cartão estão ao lado do armário.",
+     "sens": "Les cartons sont à côté de l'armoire.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o armário = <b>ao lado do</b> armário."
+    },
+    {
+     "q": "Onde estão as luvas?",
+     "c": [
+      "ao lado da caixa de cartão",
+      "no balde",
+      "em cima do armário"
+     ],
+     "f": "handschuh",
+     "r": "karton-2",
+     "phrase": "As luvas estão ao lado da caixa de cartão.",
+     "sens": "Les gants sont à côté du carton.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a caixa de cartão = <b>ao lado da</b> caixa de cartão."
+    },
+    {
+     "q": "Onde está a madeira?",
+     "c": [
+      "na caixa de cartão",
+      "no armário",
+      "no escadote"
+     ],
+     "f": "holz-2",
+     "r": "karton-2",
+     "phrase": "A madeira está na caixa de cartão.",
+     "sens": "Le bois est dans le carton.",
+     "n": "<b>em</b> + a = <b>na</b> : na caixa de cartão."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "L'impératif : dá-me, não caias",
+   "qs": [
+    {
+     "q": "Mark, ___-me o martelo, por favor!",
+     "c": [
+      "dá",
+      "dás",
+      "dê"
+     ],
+     "f": "hammer",
+     "r": "mark",
+     "phrase": "Mark, dá-me o martelo, por favor!",
+     "sens": "Mark, donne-moi le marteau, s'il te plaît !",
+     "n": "Tu : la forme de ele (<b>dá</b>) ; pronom après."
+    },
+    {
+     "q": "___ bem as instruções!",
+     "c": [
+      "Lê",
+      "Lês",
+      "Leia-te"
+     ],
+     "f": "papier",
+     "r": null,
+     "phrase": "Lê bem as instruções!",
+     "sens": "Lis bien la notice !",
+     "n": "<b>ler</b>, tu : <b>lê</b>."
+    },
+    {
+     "q": "___ o pincel em cima do balde!",
+     "c": [
+      "Põe",
+      "Pões",
+      "Ponha-te"
+     ],
+     "f": "pinsel",
+     "r": "eimer",
+     "phrase": "Põe o pincel em cima do balde!",
+     "sens": "Pose le pinceau sur le seau !",
+     "n": "<b>pôr</b>, tu : <b>põe</b>."
+    },
+    {
+     "q": "___ as luvas!",
+     "c": [
+      "Calça",
+      "Calças",
+      "Calce-te"
+     ],
+     "f": "handschuh",
+     "r": null,
+     "phrase": "Calça as luvas!",
+     "sens": "Mets les gants !",
+     "n": "<b>calçar</b> les gants ; tu : <b>calça</b>."
+    },
+    {
+     "q": "Mark, não ___ da escada!",
+     "c": [
+      "caias",
+      "cais",
+      "cai"
+     ],
+     "f": "leiter",
+     "r": null,
+     "phrase": "Mark, não caias da escada!",
+     "sens": "Mark, ne tombe pas de l'échelle !",
+     "n": "Négatif : le subjonctif (<b>não caias</b>)."
+    },
+    {
+     "q": "___ uma pausa!",
+     "c": [
+      "Façamos",
+      "Fazemos-nos",
+      "Faz"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "Façamos uma pausa!",
+     "sens": "Faisons une pause !",
+     "n": "Nós : le subjonctif (<b>façamos</b>) ; à l'oral, <b>Vamos fazer uma pausa!</b>"
+    },
+    {
+     "q": "Bichano, ___ da janela!",
+     "c": [
+      "desce",
+      "desças",
+      "desce-te"
+     ],
+     "f": "katze",
+     "r": "fenster",
+     "phrase": "Bichano, desce da janela!",
+     "sens": "Minou, descends de la fenêtre !",
+     "n": "Tu : <b>desce</b>."
+    },
+    {
+     "q": "Senhor vizinho, ___-me a escada, por favor!",
+     "c": [
+      "segure",
+      "segura",
+      "seguras"
+     ],
+     "f": "leiter",
+     "r": null,
+     "phrase": "Senhor vizinho, segure-me a escada, por favor!",
+     "sens": "Monsieur le voisin, tenez-moi l'échelle, s'il vous plaît !",
+     "n": "O senhor : le subjonctif (<b>segure</b>)."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le but : para, para que",
+   "qs": [
+    {
+     "q": "O Mark comprou tinta ___ pintar a parede de azul.",
+     "c": [
+      "para",
+      "para que",
+      "a fim que"
+     ],
+     "f": "farbe",
+     "r": null,
+     "phrase": "O Mark comprou tinta para pintar a parede de azul.",
+     "sens": "Mark a acheté de la peinture pour peindre le mur en bleu.",
+     "n": "Même sujet : <b>para</b> + infinitif."
+    },
+    {
+     "q": "Ele lê as instruções para que a estante não ___.",
+     "c": [
+      "caia",
+      "cai",
+      "cair-se"
+     ],
+     "f": "regal",
+     "r": "papier",
+     "phrase": "Ele lê as instruções para que a estante não caia.",
+     "sens": "Il lit la notice pour que l'étagère ne tombe pas.",
+     "n": "Sujet différent : <b>para que</b> + conjuntivo."
+    },
+    {
+     "q": "Ele esqueceu-se ___ calçar as luvas.",
+     "c": [
+      "de",
+      "a",
+      "em"
+     ],
+     "f": "handschuh",
+     "r": null,
+     "phrase": "Ele esqueceu-se de calçar as luvas.",
+     "sens": "Il a oublié de mettre les gants.",
+     "n": "<b>esquecer-se de</b>."
+    },
+    {
+     "q": "Não é fácil ___ uma estante sozinho.",
+     "c": [
+      "montar",
+      "de montar",
+      "a montar"
+     ],
+     "f": "regal",
+     "r": "mark",
+     "phrase": "Não é fácil montar uma estante sozinho.",
+     "sens": "Ce n'est pas facile de monter une étagère tout seul.",
+     "n": "<b>é fácil</b> + infinitif, sans « de »."
+    },
+    {
+     "q": "A parede já está meio ___.",
+     "c": [
+      "pintada",
+      "pintado",
+      "pintar"
+     ],
+     "f": "farbe",
+     "r": null,
+     "phrase": "A parede já está meio pintada.",
+     "sens": "Le mur est déjà à moitié peint.",
+     "n": "État : <b>a parede</b> → <b>pintada</b>."
+    },
+    {
+     "q": "Sem ___ as instruções, não se monta uma estante.",
+     "c": [
+      "ler",
+      "lê",
+      "leres-se"
+     ],
+     "f": "papier",
+     "r": null,
+     "phrase": "Sem ler as instruções, não se monta uma estante.",
+     "sens": "Sans lire la notice, on ne monte pas d'étagère.",
+     "n": "<b>sem</b> + infinitif."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "As instruções ___ ser difíceis de perceber.",
+     "c": [
+      "devem",
+      "deve",
+      "podem-se"
+     ],
+     "f": "papier",
+     "r": "mark",
+     "phrase": "As instruções devem ser difíceis de perceber.",
+     "sens": "La notice doit être difficile à comprendre.",
+     "n": "Déduction, au pluriel : <b>devem</b> (as instruções)."
+    },
+    {
+     "q": "___ que o gato seja do vizinho.",
+     "c": [
+      "Pode ser",
+      "Deve ser",
+      "Se calhar"
+     ],
+     "f": "katze",
+     "r": null,
+     "phrase": "Pode ser que o gato seja do vizinho.",
+     "sens": "Le chat appartient peut-être au voisin.",
+     "n": "<b>pode ser que</b> + conjuntivo."
+    },
+    {
+     "q": "A estante ___ estar pronta hoje à noite.",
+     "c": [
+      "deverá",
+      "deveria-se",
+      "deva"
+     ],
+     "f": "regal",
+     "r": null,
+     "phrase": "A estante deverá estar pronta hoje à noite.",
+     "sens": "L'étagère devrait être finie ce soir.",
+     "n": "Probable : <b>deverá</b>."
+    },
+    {
+     "q": "___ que antigamente vivia um pintor neste apartamento.",
+     "c": [
+      "Consta",
+      "Constam",
+      "Conste"
+     ],
+     "f": "farbe",
+     "r": null,
+     "phrase": "Consta que antigamente vivia um pintor neste apartamento.",
+     "sens": "Il paraît qu'un peintre habitait autrefois dans l'appartement.",
+     "n": "Le ouï-dire, soutenu : <b>consta que</b>."
+    }
+   ]
   }
  },
  "traductions": {}

@@ -246,11 +246,6 @@ def construire():
         f[cle] = [dict(e, niveau="A1") for e in simples(bloc)]
     jeu["fonctionnels.json"] = f
     jeu["grammaire.json"], jeu["exercices.json"] = grammaire()
-    # Les scenes lisent le corpus (themes.json) et Premiers pas lit les scenes :
-    # les noms d'abord, puis les scenes, puis le parcours debutant.
-    ecrire(DOSSIER + "/themes.json", jeu["themes.json"])
-    import scenes
-    scenes.main()
     parcours_debutant.construire(jeu)
     # Les niveaux A2-C1 (portugais/outils/niveaux.py, session « Portugais A2-C1 »),
     # apres l'A1, qu'ils ne touchent pas : ils ajoutent leurs cles (« A2 »...) aux
@@ -259,6 +254,11 @@ def construire():
     if importlib.util.find_spec("niveaux"):
         import niveaux
         niveaux.construire(jeu, variantes)
+    # Les scenes lisent le corpus entier (A1 et niveaux) pour relier chaque zone
+    # a sa carte ; Premiers pas, lui, ne lit que la liste des scenes deja faites.
+    ecrire(DOSSIER + "/themes.json", jeu["themes.json"])
+    import scenes
+    scenes.main()
     jeu["variantes-br.json"] = variantes
     # Pas encore de mots voisins (l'anglais a les siens, WordNet) : un fichier
     # vide plutot qu'une adresse qui repond 404 a chaque carte.

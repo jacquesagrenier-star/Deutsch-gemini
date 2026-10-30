@@ -346,7 +346,8 @@ window.SCENE = {
    "mot": "abóbora",
    "genre": "a",
    "pluriel": "as abóboras",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -388,6 +389,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os muros",
    "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -449,6 +451,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os baldes",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -952,6 +955,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os caixotes",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1001,6 +1005,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os cestos",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1162,6 +1167,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o gato?",
+     "c": [
+      "em cima do muro",
+      "em cima do telhado",
+      "no cesto"
+     ],
+     "f": "katze",
+     "r": "mauer",
+     "phrase": "O gato está em cima do muro.",
+     "sens": "Le chat est assis sur le muret.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o muro = <b>em cima do</b> muro."
+    },
+    {
+     "q": "Onde está o cão?",
+     "c": [
+      "no chão",
+      "na casa",
+      "no banco"
+     ],
+     "f": "hund",
+     "r": "boden",
+     "phrase": "O cão está no chão.",
+     "sens": "Le chien est couché par terre.",
+     "n": "<b>em</b> + o = <b>no</b> : no chão."
+    },
+    {
+     "q": "Onde estão os ovos?",
+     "c": [
+      "no cesto",
+      "no caixote",
+      "em cima do muro"
+     ],
+     "f": "ei",
+     "r": "korb",
+     "phrase": "Os ovos estão no cesto.",
+     "sens": "Les œufs sont dans le panier.",
+     "n": "<b>em</b> + o = <b>no</b> : no cesto."
+    },
+    {
+     "q": "Onde está o escadote?",
+     "c": [
+      "ao lado da madeira",
+      "em cima do telhado",
+      "na casa"
+     ],
+     "f": "leiter",
+     "r": "holz",
+     "phrase": "O escadote está ao lado da madeira.",
+     "sens": "L'échelle est à côté du bois.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a madeira = <b>ao lado da</b> madeira."
+    },
+    {
+     "q": "Onde está o pássaro?",
+     "c": [
+      "em cima do telhado",
+      "no cesto",
+      "no banco"
+     ],
+     "f": "vogel",
+     "r": null,
+     "phrase": "O pássaro está em cima do telhado.",
+     "sens": "L'oiseau est perché sur le toit.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o telhado = <b>em cima do</b> telhado."
+    },
+    {
+     "q": "Onde estão as maçãs?",
+     "c": [
+      "no caixote",
+      "no cesto",
+      "no banco"
+     ],
+     "f": "apfel-3",
+     "r": "kiste",
+     "phrase": "As maçãs estão no caixote.",
+     "sens": "Les pommes sont dans la caisse.",
+     "n": "<b>em</b> + o = <b>no</b> : no caixote."
+    },
+    {
+     "q": "Onde está a vaca?",
+     "c": [
+      "no prado",
+      "na casa",
+      "atrás da árvore"
+     ],
+     "f": "kuh",
+     "r": null,
+     "phrase": "A vaca está no prado.",
+     "sens": "La vache est dans le pré.",
+     "n": "<b>em</b> + o = <b>no</b> : no prado."
+    },
+    {
+     "q": "Onde está o balde?",
+     "c": [
+      "no chafariz",
+      "no escadote",
+      "na árvore"
+     ],
+     "f": "eimer",
+     "r": "brunnen",
+     "phrase": "O balde está no chafariz.",
+     "sens": "Le seau est accroché au puits.",
+     "n": "<b>em</b> + o = <b>no</b> : no chafariz."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les verbes pronominaux : deita-se, lembras-te",
+   "qs": [
+    {
+     "q": "A Anna ___ com o cavalo.",
+     "c": [
+      "alegra-se",
+      "se alegra",
+      "alegra"
+     ],
+     "f": "anna",
+     "r": "pferd",
+     "phrase": "A Anna alegra-se com o cavalo.",
+     "sens": "Anna est contente de voir le cheval.",
+     "n": "<b>alegrar-se com</b> ; pronom après le verbe."
+    },
+    {
+     "q": "O cão ___ no chão.",
+     "c": [
+      "deita-se",
+      "se deita",
+      "deita"
+     ],
+     "f": "hund",
+     "r": "boden",
+     "phrase": "O cão deita-se no chão.",
+     "sens": "Le chien se couche par terre.",
+     "n": "<b>deitar-se</b>."
+    },
+    {
+     "q": "O gato ___ no muro.",
+     "c": [
+      "senta-se",
+      "se senta",
+      "senta"
+     ],
+     "f": "katze",
+     "r": "mauer",
+     "phrase": "O gato senta-se no muro.",
+     "sens": "Le chat s'assied sur le muret.",
+     "n": "<b>sentar-se</b>."
+    },
+    {
+     "q": "___ depois do trabalho.",
+     "c": [
+      "Lavo-me",
+      "Me lavo",
+      "Lavo"
+     ],
+     "f": "onkel",
+     "r": null,
+     "phrase": "Lavo-me depois do trabalho.",
+     "sens": "Je me lave après le travail.",
+     "n": "En tête de phrase : jamais le pronom devant."
+    },
+    {
+     "q": "___ no banco.",
+     "c": [
+      "Sentamo-nos",
+      "Nos sentamos",
+      "Sentamos-nos"
+     ],
+     "f": "bank",
+     "r": null,
+     "phrase": "Sentamo-nos no banco.",
+     "sens": "Nous nous asseyons sur le banc.",
+     "n": "<b>sentamo-nos</b> : le s tombe devant nos."
+    },
+    {
+     "q": "___ da quinta?",
+     "c": [
+      "Lembras-te",
+      "Te lembras",
+      "Lembras"
+     ],
+     "f": "haus",
+     "r": null,
+     "phrase": "Lembras-te da quinta?",
+     "sens": "Tu te souviens de la ferme ?",
+     "n": "<b>lembrar-se de</b> ; la ferme = <b>a quinta</b>, au Portugal."
+    },
+    {
+     "q": "O primo da Anna lava ___ mãos.",
+     "c": [
+      "as",
+      "suas",
+      "se as"
+     ],
+     "f": "cousin",
+     "r": null,
+     "phrase": "O primo da Anna lava as mãos.",
+     "sens": "Le cousin d'Anna se lave les mains.",
+     "n": "Le corps : l'article, pas de pronom (<b>lava as mãos</b>)."
+    },
+    {
+     "q": "As galinhas ___ depressa.",
+     "c": [
+      "mexem-se",
+      "se mexem",
+      "mexem-nas"
+     ],
+     "f": "huhn-2",
+     "r": null,
+     "phrase": "As galinhas mexem-se depressa.",
+     "sens": "Les poules bougent vite.",
+     "n": "<b>mexer-se</b> = bouger."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Antes de, depois de, desde que, até",
+   "qs": [
+    {
+     "q": "Antes de ___ ao cavalo, a Anna lava as maçãs.",
+     "c": [
+      "dar de comer",
+      "dá de comer",
+      "desse de comer"
+     ],
+     "f": "anna",
+     "r": "pferd",
+     "phrase": "Antes de dar de comer ao cavalo, a Anna lava as maçãs.",
+     "sens": "Avant de nourrir le cheval, Anna lave les pommes.",
+     "n": "<b>antes de</b> + infinitif (même sujet)."
+    },
+    {
+     "q": "Depois de ___ a palha, o tio dá de comer ao porco.",
+     "c": [
+      "ir buscar",
+      "foi buscar",
+      "vai buscar"
+     ],
+     "f": "onkel",
+     "r": "schwein",
+     "phrase": "Depois de ir buscar a palha, o tio dá de comer ao porco.",
+     "sens": "Après avoir été chercher la paille, son oncle nourrit le cochon.",
+     "n": "<b>depois de</b> + infinitif ; <b>ir buscar</b> = aller chercher."
+    },
+    {
+     "q": "O cão vive na quinta ___ um ano.",
+     "c": [
+      "há",
+      "desde",
+      "faz-se"
+     ],
+     "f": "hund",
+     "r": null,
+     "phrase": "O cão vive na quinta há um ano.",
+     "sens": "Le chien vit à la ferme depuis un an.",
+     "n": "Depuis + durée : <b>há</b> + durée."
+    },
+    {
+     "q": "O gato dorme depois de ___.",
+     "c": [
+      "comer",
+      "comeu",
+      "coma"
+     ],
+     "f": "katze",
+     "r": null,
+     "phrase": "O gato dorme depois de comer.",
+     "sens": "Le chat dort après avoir mangé.",
+     "n": "<b>depois de</b> + infinitif."
+    },
+    {
+     "q": "___ que trabalha na quinta, a Anna levanta-se cedo.",
+     "c": [
+      "Desde",
+      "Há",
+      "Depois"
+     ],
+     "f": "anna",
+     "r": null,
+     "phrase": "Desde que trabalha na quinta, a Anna levanta-se cedo.",
+     "sens": "Depuis qu'Anna travaille à la ferme, elle se lève tôt.",
+     "n": "<b>desde que</b> (depuis que) + indicatif."
+    },
+    {
+     "q": "O cão espera até a Anna o ___.",
+     "c": [
+      "chamar",
+      "chama",
+      "chamou"
+     ],
+     "f": "hund",
+     "r": "anna",
+     "phrase": "O cão espera até a Anna o chamar.",
+     "sens": "Le chien attend qu'Anna l'appelle.",
+     "n": "<b>até</b> + infinitif personnel (sujet différent)."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "O cavalo ___ ser muito meigo.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "pferd",
+     "r": "anna",
+     "phrase": "O cavalo deve ser muito meigo.",
+     "sens": "Le cheval doit être très gentil.",
+     "n": "Déduction : <b>dever</b> ; <b>meigo</b> = doux, gentil."
+    },
+    {
+     "q": "O cão ___ ser do primo da Anna.",
+     "c": [
+      "pode",
+      "deve de",
+      "há"
+     ],
+     "f": "hund",
+     "r": "cousin",
+     "phrase": "O cão pode ser do primo da Anna.",
+     "sens": "Le chien appartient peut-être au cousin d'Anna.",
+     "n": "Possibilité : <b>poder</b>."
+    },
+    {
+     "q": "Os ovos ___ de hoje de manhã.",
+     "c": [
+      "serão",
+      "sejam",
+      "foram-se"
+     ],
+     "f": "ei",
+     "r": "korb",
+     "phrase": "Os ovos serão de hoje de manhã.",
+     "sens": "Les œufs datent sans doute de ce matin.",
+     "n": "Futur de supposition : <b>serão</b>."
+    },
+    {
+     "q": "A quinta ___ mais de cem anos.",
+     "c": [
+      "teria",
+      "terá-se",
+      "tenha"
+     ],
+     "f": "haus",
+     "r": null,
+     "phrase": "A quinta teria mais de cem anos.",
+     "sens": "La ferme aurait plus de cent ans.",
+     "n": "Le conditionnel de la rumeur."
+    }
+   ]
   }
  },
  "traductions": {}

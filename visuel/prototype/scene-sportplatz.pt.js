@@ -104,6 +104,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as redes",
    "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -406,6 +407,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os apitos",
    "niveau": "B1",
+   "theme": "casa_b1_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -615,6 +617,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está a bola?",
+     "c": [
+      "na rede",
+      "no banco",
+      "na mala"
+     ],
+     "f": "ball",
+     "r": "netz",
+     "phrase": "A bola está na rede.",
+     "sens": "Le ballon est dans le filet.",
+     "n": "<b>em</b> + a = <b>na</b> : na rede."
+    },
+    {
+     "q": "Onde está o jogador?",
+     "c": [
+      "à frente da rede",
+      "no banco",
+      "atrás da árvore"
+     ],
+     "f": "torwart",
+     "r": "netz",
+     "phrase": "O jogador está à frente da rede.",
+     "sens": "Le joueur au maillot jaune est assis devant le filet.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + a rede = <b>à frente da</b> rede."
+    },
+    {
+     "q": "Onde está o homem?",
+     "c": [
+      "no banco",
+      "na erva",
+      "ao lado da bola"
+     ],
+     "f": "mann",
+     "r": "bank",
+     "phrase": "O homem está no banco.",
+     "sens": "Le vieux monsieur est assis sur le banc.",
+     "n": "<b>em</b> + o = <b>no</b> : no banco."
+    },
+    {
+     "q": "Onde está a toalha?",
+     "c": [
+      "na mala",
+      "na rede",
+      "no banco"
+     ],
+     "f": "handtuch",
+     "r": "tasche",
+     "phrase": "A toalha está na mala.",
+     "sens": "La serviette est dans le sac.",
+     "n": "<b>em</b> + a = <b>na</b> : na mala."
+    },
+    {
+     "q": "Onde está a bola?",
+     "c": [
+      "ao lado da mala",
+      "na rede",
+      "debaixo do banco"
+     ],
+     "f": "ball-2",
+     "r": "tasche",
+     "phrase": "A bola está ao lado da mala.",
+     "sens": "Le ballon est à côté du sac.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a mala = <b>ao lado da</b> mala."
+    },
+    {
+     "q": "Onde está a bicicleta?",
+     "c": [
+      "atrás da rede",
+      "no banco",
+      "ao lado da bola"
+     ],
+     "f": "fahrrad",
+     "r": "netz",
+     "phrase": "A bicicleta está atrás da rede.",
+     "sens": "Le vélo est derrière le filet.",
+     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + a rede = <b>atrás da</b> rede."
+    },
+    {
+     "q": "Onde está a garrafa?",
+     "c": [
+      "na mala",
+      "na rede",
+      "no banco"
+     ],
+     "f": "flasche",
+     "r": "tasche",
+     "phrase": "A garrafa está na mala.",
+     "sens": "La bouteille est dans le sac.",
+     "n": "<b>em</b> + a = <b>na</b> : na mala."
+    },
+    {
+     "q": "Onde está a nuvem?",
+     "c": [
+      "junto do céu",
+      "na árvore",
+      "por cima da rede"
+     ],
+     "f": "wolke",
+     "r": "himmel",
+     "phrase": "A nuvem está junto do céu.",
+     "sens": "Le nuage est dans le ciel.",
+     "n": "<b>junto de</b> = près de, contre. <b>junto de</b> + o céu = <b>junto do</b> céu."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Raconter : le perfeito et l'imperfeito",
+   "qs": [
+    {
+     "q": "O Mark ___ a bola para a baliza.",
+     "c": [
+      "rematou",
+      "rematava",
+      "remata"
+     ],
+     "f": "mark",
+     "r": "ball",
+     "phrase": "O Mark rematou a bola para a baliza.",
+     "sens": "Mark a tiré le ballon dans le but.",
+     "n": "<b>rematar</b> = tirer ; le but = <b>a baliza</b>, au Portugal."
+    },
+    {
+     "q": "O guarda-redes ___ na relva.",
+     "c": [
+      "caiu",
+      "caía",
+      "cai"
+     ],
+     "f": "torwart",
+     "r": null,
+     "phrase": "O guarda-redes caiu na relva.",
+     "sens": "Le gardien est tombé dans l'herbe.",
+     "n": "<b>cair</b> → <b>caiu</b> ; le gardien = <b>o guarda-redes</b>."
+    },
+    {
+     "q": "Os jogadores ___ para o Mark.",
+     "c": [
+      "correram",
+      "corriam",
+      "correm"
+     ],
+     "f": "mannschaft",
+     "r": "mark",
+     "phrase": "Os jogadores correram para o Mark.",
+     "sens": "Les joueurs ont couru vers Mark.",
+     "n": "<b>correr</b> → <b>correram</b>."
+    },
+    {
+     "q": "A treinadora ___ palmas.",
+     "c": [
+      "bateu",
+      "batia",
+      "bate"
+     ],
+     "f": "trainerin",
+     "r": null,
+     "phrase": "A treinadora bateu palmas.",
+     "sens": "L'entraîneuse a applaudi.",
+     "n": "<b>bater palmas</b> = applaudir."
+    },
+    {
+     "q": "O Mark ___ de alegria.",
+     "c": [
+      "gritou",
+      "gritava",
+      "grita"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark gritou de alegria.",
+     "sens": "Mark a crié de joie.",
+     "n": "<b>gritar</b> → <b>gritou</b>."
+    },
+    {
+     "q": "O jogo ___ às dez horas.",
+     "c": [
+      "começou",
+      "começava",
+      "começa"
+     ],
+     "f": "uhr",
+     "r": null,
+     "phrase": "O jogo começou às dez horas.",
+     "sens": "Le match a commencé à dix heures.",
+     "n": "<b>começar</b> → <b>começou</b>."
+    },
+    {
+     "q": "Os espectadores ___ sentados no banco.",
+     "c": [
+      "estavam",
+      "estiveram-se",
+      "estão"
+     ],
+     "f": "bank",
+     "r": "mann",
+     "phrase": "Os espectadores estavam sentados no banco.",
+     "sens": "Les spectateurs étaient assis sur le banc.",
+     "n": "Le décor : imperfeito (<b>estavam</b>)."
+    },
+    {
+     "q": "No fim, a equipa do Mark ___.",
+     "c": [
+      "ganhou",
+      "ganhava",
+      "ganha"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "No fim, a equipa do Mark ganhou.",
+     "sens": "À la fin, l'équipe de Mark a gagné.",
+     "n": "<b>ganhar</b> → <b>ganhou</b> ; l'équipe = <b>a equipa</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Porque, embora, quando, assim que",
+   "qs": [
+    {
+     "q": "O Mark festeja porque ___ um golo.",
+     "c": [
+      "marcou",
+      "marcasse",
+      "marque"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark festeja porque marcou um golo.",
+     "sens": "Mark exulte parce qu'il a marqué un but.",
+     "n": "<b>porque</b> + indicatif ; le but marqué = <b>o golo</b>."
+    },
+    {
+     "q": "O guarda-redes ri-se, embora não ___ defendido a bola.",
+     "c": [
+      "tenha",
+      "tem",
+      "tinha"
+     ],
+     "f": "torwart",
+     "r": null,
+     "phrase": "O guarda-redes ri-se, embora não tenha defendido a bola.",
+     "sens": "Le gardien rit, bien qu'il n'ait pas arrêté le ballon.",
+     "n": "<b>embora</b> + conjuntivo composé."
+    },
+    {
+     "q": "Quando o Mark ___ o golo, a treinadora bateu palmas.",
+     "c": [
+      "marcou",
+      "marcava",
+      "marcar"
+     ],
+     "f": "trainerin",
+     "r": "mark",
+     "phrase": "Quando o Mark marcou o golo, a treinadora bateu palmas.",
+     "sens": "Quand Mark a marqué le but, l'entraîneuse a applaudi.",
+     "n": "<b>quando</b> au passé : indicatif."
+    },
+    {
+     "q": "O Mark bebe água assim que o jogo ___.",
+     "c": [
+      "acabar",
+      "acaba",
+      "acabe"
+     ],
+     "f": "flasche",
+     "r": "mark",
+     "phrase": "O Mark bebe água assim que o jogo acabar.",
+     "sens": "Mark boit de l'eau dès que le match est fini.",
+     "n": "<b>assim que</b> + futur : futuro do conjuntivo."
+    },
+    {
+     "q": "Os espectadores estão sentados ___ os jogadores correm.",
+     "c": [
+      "enquanto",
+      "assim que",
+      "embora"
+     ],
+     "f": "bank",
+     "r": null,
+     "phrase": "Os espectadores estão sentados enquanto os jogadores correm.",
+     "sens": "Les spectateurs sont assis pendant que les joueurs courent.",
+     "n": "<b>enquanto</b>."
+    },
+    {
+     "q": "Treinam todos os sábados para ___ em forma.",
+     "c": [
+      "se manterem",
+      "manterem-se-em",
+      "se mantêm"
+     ],
+     "f": "trainerin",
+     "r": null,
+     "phrase": "Treinam todos os sábados para se manterem em forma.",
+     "sens": "Ils s'entraînent chaque samedi pour rester en forme.",
+     "n": "<b>para</b> + infinitif personnel (<b>se manterem</b>)."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "___ ser o primeiro golo dele.",
+     "c": [
+      "Deve",
+      "Pode-se",
+      "Tem"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "Deve ser o primeiro golo dele.",
+     "sens": "Ce doit être son premier but.",
+     "n": "Déduction : <b>dever</b>."
+    },
+    {
+     "q": "O senhor idoso ___ ser vizinho do Mark.",
+     "c": [
+      "pode",
+      "deve de",
+      "há"
+     ],
+     "f": "mann",
+     "r": null,
+     "phrase": "O senhor idoso pode ser vizinho do Mark.",
+     "sens": "Le vieux monsieur est peut-être le voisin de Mark.",
+     "n": "Possibilité : <b>poder</b>."
+    },
+    {
+     "q": "O jogo ___ estar a acabar.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "uhr",
+     "r": null,
+     "phrase": "O jogo deve estar a acabar.",
+     "sens": "Le match devrait bientôt être fini.",
+     "n": "<b>dever</b> + estar a : sans doute en train de."
+    },
+    {
+     "q": "A treinadora ___ sido profissional.",
+     "c": [
+      "teria",
+      "terá-se",
+      "tenha"
+     ],
+     "f": "trainerin",
+     "r": null,
+     "phrase": "A treinadora teria sido profissional.",
+     "sens": "Il paraît que l'entraîneuse était professionnelle autrefois.",
+     "n": "La rumeur sur le passé : <b>teria sido</b>."
+    }
+   ]
   }
  },
  "traductions": {}

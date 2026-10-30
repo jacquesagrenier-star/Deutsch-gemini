@@ -8,18 +8,21 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as beterrabas",
    "niveau": "B1",
+   "theme": "comida_b1_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -39,20 +42,23 @@ window.SCENE = {
    "id": "blumenkohl",
    "mot": "couve-flor",
    "genre": "a",
-   "pluriel": "as couves-flor",
+   "pluriel": "as couves-flores",
    "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -74,18 +80,21 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os aipos",
    "niveau": "B2",
+   "theme": "comida_b2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -114,12 +123,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -138,21 +149,24 @@ window.SCENE = {
   {
    "id": "kohlrabi",
    "mot": "couve-rábano",
-   "genre": "a",
-   "pluriel": "as couves-rábano",
+   "genre": "o",
+   "pluriel": "os couves-rábanos",
    "niveau": "B2",
+   "theme": "comida_b2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -181,12 +195,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -214,12 +230,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -247,12 +265,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -280,12 +300,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -305,20 +327,23 @@ window.SCENE = {
    "id": "rosenkohl",
    "mot": "couve-de-bruxelas",
    "genre": "a",
-   "pluriel": "as couves-de-bruxelas",
+   "pluriel": "as couves-des-bruxelas",
    "niveau": "B1",
+   "theme": "comida_b1_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -340,18 +365,21 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os funchos",
    "niveau": "B2",
+   "theme": "comida_b2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -378,12 +406,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -411,12 +441,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -438,18 +470,21 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os rabanetes",
    "niveau": "B1",
+   "theme": "comida_b1_pt_2",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -471,18 +506,21 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as batatas-doces",
    "niveau": "B2",
+   "theme": "comida_b2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -537,6 +575,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os rabanetes",
    "niveau": "B1",
+   "theme": "comida_b1_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "anna",
@@ -560,6 +599,260 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde estão as cebolas?",
+     "c": [
+      "entre a couve-rábano e a couve",
+      "ao lado do alho",
+      "ao lado das cenouras"
+     ],
+     "f": "zwiebel",
+     "r": "kohl",
+     "phrase": "As cebolas estão entre a couve-rábano e a couve.",
+     "sens": "Les oignons sont entre le chou-rave et le chou.",
+     "n": "<b>entre</b> … <b>e</b> … = entre … et …"
+    },
+    {
+     "q": "Onde está o alho?",
+     "c": [
+      "ao lado dos rabanetes",
+      "ao lado do alho-francês",
+      "ao lado das batatas"
+     ],
+     "f": "knoblauch",
+     "r": "radieschen",
+     "phrase": "O alho está ao lado dos rabanetes.",
+     "sens": "L'ail est à côté des radis.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + os rabanetes = <b>ao lado dos</b> rabanetes."
+    },
+    {
+     "q": "Onde estão as batatas?",
+     "c": [
+      "ao lado do aipo",
+      "ao lado do alho",
+      "ao lado das cenouras"
+     ],
+     "f": "kartoffel",
+     "r": "sellerie",
+     "phrase": "As batatas estão ao lado do aipo.",
+     "sens": "Les pommes de terre sont à côté du céleri.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o aipo = <b>ao lado do</b> aipo."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Faire ses courses : quantités et prix",
+   "qs": [
+    {
+     "q": "Queria um molho ___ cenouras.",
+     "c": [
+      "de",
+      "das",
+      "com"
+     ],
+     "f": "karotte",
+     "r": null,
+     "phrase": "Queria um molho de cenouras.",
+     "sens": "Je voudrais une botte de carottes.",
+     "n": "Une botte : <b>um molho de</b>."
+    },
+    {
+     "q": "Dois quilos de ___, por favor.",
+     "c": [
+      "batatas",
+      "batata",
+      "as batatas"
+     ],
+     "f": "kartoffel",
+     "r": null,
+     "phrase": "Dois quilos de batatas, por favor.",
+     "sens": "Deux kilos de pommes de terre, s'il vous plaît.",
+     "n": "Quantité + <b>de</b> + nom pluriel."
+    },
+    {
+     "q": "Quanto ___ a couve-flor?",
+     "c": [
+      "custa",
+      "custam",
+      "custe"
+     ],
+     "f": "blumenkohl",
+     "r": null,
+     "phrase": "Quanto custa a couve-flor?",
+     "sens": "Combien coûte le chou-fleur ?",
+     "n": "Singulier : <b>custa</b>."
+    },
+    {
+     "q": "A couve é ___ do que as couves-de-bruxelas.",
+     "c": [
+      "maior",
+      "mais grande",
+      "tão grande"
+     ],
+     "f": "kohl",
+     "r": "rosenkohl",
+     "phrase": "A couve é maior do que as couves-de-bruxelas.",
+     "sens": "Le chou est plus gros que les choux de Bruxelles.",
+     "n": "<b>maior</b>."
+    },
+    {
+     "q": "Ainda preciso de uma cabeça ___ alho para o molho.",
+     "c": [
+      "de",
+      "do",
+      "com"
+     ],
+     "f": "knoblauch",
+     "r": null,
+     "phrase": "Ainda preciso de uma cabeça de alho para o molho.",
+     "sens": "Il me faut encore une tête d'ail pour la sauce.",
+     "n": "<b>uma cabeça de alho</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "As batatas ___ colhidas na semana passada.",
+     "c": [
+      "foram",
+      "eram",
+      "estiveram"
+     ],
+     "f": "kartoffel",
+     "r": null,
+     "phrase": "As batatas foram colhidas na semana passada.",
+     "sens": "Les pommes de terre ont été récoltées la semaine dernière.",
+     "n": "Passif au passé : <b>foram</b> + participe."
+    },
+    {
+     "q": "O alho-francês, ___ folhas são verde-escuras, está ao lado da couve.",
+     "c": [
+      "cujas",
+      "cujos",
+      "que as"
+     ],
+     "f": "lauch",
+     "r": "kohl",
+     "phrase": "O alho-francês, cujas folhas são verde-escuras, está ao lado da couve.",
+     "sens": "Le poireau aux feuilles vert foncé est à côté du chou.",
+     "n": "<b>cujas</b> + folhas."
+    },
+    {
+     "q": "A Anna compra rabanetes ___.",
+     "c": [
+      "frescos",
+      "frescas",
+      "fresco"
+     ],
+     "f": "radieschen-main",
+     "r": null,
+     "phrase": "A Anna compra rabanetes frescos.",
+     "sens": "Anna achète des radis frais.",
+     "n": "<b>os rabanetes</b> → <b>frescos</b>."
+    },
+    {
+     "q": "Os legumes ___ se vendem aqui são da região.",
+     "c": [
+      "que",
+      "quem",
+      "onde"
+     ],
+     "f": "kohl",
+     "r": null,
+     "phrase": "Os legumes que se vendem aqui são da região.",
+     "sens": "Les légumes vendus ici viennent de la région.",
+     "n": "Après <b>que</b>, le se devant."
+    },
+    {
+     "q": "As cebolas devem ser ___ em lugar seco.",
+     "c": [
+      "guardadas",
+      "guardados",
+      "guardar"
+     ],
+     "f": "zwiebel",
+     "r": null,
+     "phrase": "As cebolas devem ser guardadas em lugar seco.",
+     "sens": "Les oignons doivent être conservés au sec.",
+     "n": "<b>devem ser</b> + participe accordé."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses, devido a, quanto mais",
+   "qs": [
+    {
+     "q": "___ à época, em outubro há muita couve.",
+     "c": [
+      "Devido",
+      "Por causa",
+      "Graças"
+     ],
+     "f": "kohl",
+     "r": null,
+     "phrase": "Devido à época, em outubro há muita couve.",
+     "sens": "En raison de la saison, il y a beaucoup de chou en octobre.",
+     "n": "<b>devido a</b> = en raison de."
+    },
+    {
+     "q": "Quanto mais frescos são os legumes, ___ vitaminas têm.",
+     "c": [
+      "mais",
+      "o mais",
+      "tantas"
+     ],
+     "f": "brokkoli",
+     "r": null,
+     "phrase": "Quanto mais frescos são os legumes, mais vitaminas têm.",
+     "sens": "Plus les légumes sont frais, plus ils contiennent de vitamines.",
+     "n": "<b>quanto mais…, mais…</b>."
+    },
+    {
+     "q": "Se ___ sabido, não tinha comprado alho no supermercado.",
+     "c": [
+      "tivesse",
+      "tiver",
+      "tinha"
+     ],
+     "f": "knoblauch",
+     "r": null,
+     "phrase": "Se tivesse sabido, não tinha comprado alho no supermercado.",
+     "sens": "Si j'avais su, je n'aurais pas acheté d'ail au supermarché.",
+     "n": "Irréel du passé."
+    },
+    {
+     "q": "As cenouras parecem ter sido ___ há pouco.",
+     "c": [
+      "colhidas",
+      "colhidos",
+      "colher"
+     ],
+     "f": "karotte",
+     "r": null,
+     "phrase": "As cenouras parecem ter sido colhidas há pouco.",
+     "sens": "Les carottes semblent avoir été récoltées fraîchement.",
+     "n": "<b>parecer ter sido</b> + participe."
+    },
+    {
+     "q": "A Anna ___ comprado os rabanetes para uma salada.",
+     "c": [
+      "terá",
+      "teria-se",
+      "tenha"
+     ],
+     "f": "radieschen-main",
+     "r": null,
+     "phrase": "A Anna terá comprado os rabanetes para uma salada.",
+     "sens": "Anna a sans doute acheté les radis pour une salade.",
+     "n": "Supposition : <b>terá</b> + participe."
+    }
+   ]
   }
  },
  "autre_vue": {

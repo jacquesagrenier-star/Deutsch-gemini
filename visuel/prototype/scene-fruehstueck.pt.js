@@ -372,6 +372,7 @@ window.SCENE = {
      "mot": "convidado",
      "genre": "o",
      "niveau": "A2",
+     "theme": "cultura_a2_pt",
      "fr": "invité"
     }
    ],
@@ -456,6 +457,7 @@ window.SCENE = {
      "mot": "convidado",
      "genre": "o",
      "niveau": "A2",
+     "theme": "cultura_a2_pt",
      "fr": "invité"
     }
    ],
@@ -1011,6 +1013,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as máquinas de café",
    "niveau": "A2",
+   "theme": "comida_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1058,6 +1061,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o telemóvel?",
+     "c": [
+      "em cima da mesa",
+      "debaixo da mesa",
+      "ao lado da mochila"
+     ],
+     "f": "handy",
+     "r": "tisch",
+     "phrase": "O telemóvel está em cima da mesa.",
+     "sens": "Le téléphone est sur la table.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa."
+    },
+    {
+     "q": "Onde está o casaco?",
+     "c": [
+      "por cima da cadeira",
+      "debaixo da cadeira",
+      "na porta"
+     ],
+     "f": "jacke",
+     "r": "stuhl",
+     "phrase": "O casaco está por cima da cadeira.",
+     "sens": "La veste est posée sur le dossier de la chaise.",
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + a cadeira = <b>por cima da</b> cadeira."
+    },
+    {
+     "q": "Onde está o cachecol?",
+     "c": [
+      "ao lado da porta",
+      "por cima da mesa",
+      "na janela"
+     ],
+     "f": "schal",
+     "r": "tuer",
+     "phrase": "O cachecol está ao lado da porta.",
+     "sens": "L'écharpe est accrochée à côté de la porte.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta."
+    },
+    {
+     "q": "Onde está a planta?",
+     "c": [
+      "à janela",
+      "em cima da mesa",
+      "ao lado da porta"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "A planta está à janela.",
+     "sens": "La plante est près de la fenêtre.",
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela."
+    },
+    {
+     "q": "Onde está a mochila?",
+     "c": [
+      "ao lado da mesa",
+      "em cima da mesa",
+      "debaixo da cadeira"
+     ],
+     "f": "rucksack",
+     "r": "tisch",
+     "phrase": "A mochila está ao lado da mesa.",
+     "sens": "Le sac à dos est à côté de la table.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a mesa = <b>ao lado da</b> mesa."
+    },
+    {
+     "q": "Onde está o papo-seco?",
+     "c": [
+      "no prato",
+      "ao lado do prato",
+      "debaixo do guardanapo"
+     ],
+     "f": "broetchen",
+     "r": "teller",
+     "phrase": "O papo-seco está no prato.",
+     "sens": "Le petit pain est sur l'assiette.",
+     "n": "<b>em</b> + o = <b>no</b> : no prato."
+    },
+    {
+     "q": "Onde está o garfo?",
+     "c": [
+      "à frente do prato",
+      "no prato",
+      "atrás do prato"
+     ],
+     "f": "gabel",
+     "r": "teller",
+     "phrase": "O garfo está à frente do prato.",
+     "sens": "La fourchette est devant l'assiette.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o prato = <b>à frente do</b> prato."
+    },
+    {
+     "q": "Onde está o sumo?",
+     "c": [
+      "ao lado do ovo",
+      "no prato",
+      "debaixo da mesa"
+     ],
+     "f": "saft",
+     "r": "ei",
+     "phrase": "O sumo está ao lado do ovo.",
+     "sens": "Le jus est à côté de l'œuf.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o ovo = <b>ao lado do</b> ovo."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le pronom complément : lhe, o, a",
+   "qs": [
+    {
+     "q": "A empregada traz-___ um bolo.",
+     "c": [
+      "lhe",
+      "o",
+      "se"
+     ],
+     "f": "kuchen-mark",
+     "r": "mark",
+     "phrase": "A empregada traz-lhe um bolo.",
+     "sens": "La serveuse lui apporte un gâteau.",
+     "n": "À qui ? complément indirect : <b>lhe</b>, après le verbe."
+    },
+    {
+     "q": "O café sabe-___ bem.",
+     "c": [
+      "lhe",
+      "o",
+      "a"
+     ],
+     "f": "tasse",
+     "r": "mark",
+     "phrase": "O café sabe-lhe bem.",
+     "sens": "Il trouve le café bon.",
+     "n": "<b>saber bem a alguém</b> : être bon pour quelqu'un ; <b>lhe</b>."
+    },
+    {
+     "q": "O Mark pediu um bolo ___ empregada.",
+     "c": [
+      "à",
+      "a",
+      "da"
+     ],
+     "f": "serveuse",
+     "r": "kuchen-mark",
+     "phrase": "O Mark pediu um bolo à empregada.",
+     "sens": "Mark a commandé un gâteau à la serveuse.",
+     "n": "<b>pedir algo a alguém</b> : a + a = <b>à</b>."
+    },
+    {
+     "q": "Podes passar-___ o sal, por favor?",
+     "c": [
+      "me",
+      "mim",
+      "eu"
+     ],
+     "f": "salz",
+     "r": null,
+     "phrase": "Podes passar-me o sal, por favor?",
+     "sens": "Tu peux me passer le sel, s'il te plaît ?",
+     "n": "Complément indirect : <b>me</b>, après l'infinitif."
+    },
+    {
+     "q": "O casaco é ___ homem ali ao fundo?",
+     "c": [
+      "do",
+      "o",
+      "ao"
+     ],
+     "f": "jacke",
+     "r": "monsieur",
+     "phrase": "O casaco é do homem ali ao fundo?",
+     "sens": "La veste appartient-elle à l'homme là-bas au fond ?",
+     "n": "L'appartenance : <b>ser de</b> (de + o = <b>do</b>)."
+    },
+    {
+     "q": "A empregada dá o prato ___ cliente.",
+     "c": [
+      "ao",
+      "o",
+      "do"
+     ],
+     "f": "teller",
+     "r": "mark",
+     "phrase": "A empregada dá o prato ao cliente.",
+     "sens": "La serveuse tend l'assiette au client.",
+     "n": "<b>dar algo a alguém</b> : a + o = <b>ao</b>."
+    },
+    {
+     "q": "O Mark corta o papo-seco ___ a faca.",
+     "c": [
+      "com",
+      "de",
+      "por"
+     ],
+     "f": "messer",
+     "r": "broetchen",
+     "phrase": "O Mark corta o papo-seco com a faca.",
+     "sens": "Mark coupe le petit pain avec le couteau.",
+     "n": "L'instrument : <b>com</b>."
+    },
+    {
+     "q": "O Mark agradece-___ o bolo.",
+     "c": [
+      "lhe",
+      "a",
+      "o"
+     ],
+     "f": "serveuse",
+     "r": "mark",
+     "phrase": "O Mark agradece-lhe o bolo.",
+     "sens": "Mark la remercie pour le gâteau.",
+     "n": "<b>agradecer algo a alguém</b> : <b>lhe</b> (alors que le français dit « la »)."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif d'état",
+   "qs": [
+    {
+     "q": "O cliente a ___ a empregada traz o bolo chama-se Mark.",
+     "c": [
+      "quem",
+      "que",
+      "qual"
+     ],
+     "f": "mark",
+     "r": "kuchen-mark",
+     "phrase": "O cliente a quem a empregada traz o bolo chama-se Mark.",
+     "sens": "Le client à qui la serveuse apporte le gâteau s'appelle Mark.",
+     "n": "Une personne, après une préposition : <b>a quem</b>."
+    },
+    {
+     "q": "A empregada, ___ usa óculos, traz o bolo.",
+     "c": [
+      "que",
+      "quem",
+      "cuja"
+     ],
+     "f": "serveuse",
+     "r": "kuchen-mark",
+     "phrase": "A empregada, que usa óculos, traz o bolo.",
+     "sens": "La serveuse, qui porte des lunettes, apporte le gâteau.",
+     "n": "Sujet : <b>que</b>."
+    },
+    {
+     "q": "A mesa ___ o Mark está sentado fica junto à janela.",
+     "c": [
+      "a que",
+      "que",
+      "onde que"
+     ],
+     "f": "tisch",
+     "r": "mark",
+     "phrase": "A mesa a que o Mark está sentado fica junto à janela.",
+     "sens": "La table à laquelle Mark est assis est près de la fenêtre.",
+     "n": "<b>sentar-se à mesa</b> : la préposition passe devant le relatif (<b>a que</b>, ou <b>à qual</b>)."
+    },
+    {
+     "q": "A mesa já está ___.",
+     "c": [
+      "posta",
+      "posto",
+      "pôs"
+     ],
+     "f": "tisch",
+     "r": null,
+     "phrase": "A mesa já está posta.",
+     "sens": "La table est déjà mise.",
+     "n": "<b>pôr a mesa</b> → <b>a mesa está posta</b> (accord au féminin)."
+    },
+    {
+     "q": "O papo-seco já está ___.",
+     "c": [
+      "cortado",
+      "cortada",
+      "corta"
+     ],
+     "f": "broetchen",
+     "r": "teller",
+     "phrase": "O papo-seco já está cortado.",
+     "sens": "Le petit pain est déjà coupé.",
+     "n": "Un état : <b>estar</b> + participe accordé."
+    },
+    {
+     "q": "A porta está ___.",
+     "c": [
+      "aberta",
+      "aberto",
+      "abrida"
+     ],
+     "f": "tuer",
+     "r": null,
+     "phrase": "A porta está aberta.",
+     "sens": "La porte est ouverte.",
+     "n": "<b>abrir</b> → <b>aberto</b>, ici au féminin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "O Mark ___ ter muita fome.",
+     "c": [
+      "deve",
+      "pode",
+      "há de"
+     ],
+     "f": "kuchen-mark",
+     "r": "mark",
+     "phrase": "O Mark deve ter muita fome.",
+     "sens": "Mark doit avoir très faim.",
+     "n": "<b>dever</b> : la déduction."
+    },
+    {
+     "q": "___ que o casaco seja do homem ali ao fundo.",
+     "c": [
+      "Pode ser",
+      "Deve ser",
+      "É"
+     ],
+     "f": "jacke",
+     "r": "monsieur",
+     "phrase": "Pode ser que o casaco seja do homem ali ao fundo.",
+     "sens": "La veste appartient peut-être à l'homme là-bas au fond.",
+     "n": "<b>pode ser que</b> + conjuntivo (<b>seja</b>)."
+    },
+    {
+     "q": "O Mark ___ cliente habitual aqui.",
+     "c": [
+      "será",
+      "seja",
+      "foi"
+     ],
+     "f": "mark",
+     "r": "serveuse",
+     "phrase": "O Mark será cliente habitual aqui.",
+     "sens": "Mark est sans doute un habitué ici.",
+     "n": "Futur de supposition : <b>será</b>."
+    },
+    {
+     "q": "___ que a tarte de maçã daqui é a melhor de Lisboa.",
+     "c": [
+      "Diz-se",
+      "Dizem-se",
+      "Diga-se"
+     ],
+     "f": "kuchen",
+     "r": null,
+     "phrase": "Diz-se que a tarte de maçã daqui é a melhor de Lisboa.",
+     "sens": "Il paraît que la tarte aux pommes d'ici est la meilleure de Lisbonne.",
+     "n": "Le ouï-dire : <b>diz-se que</b>."
+    }
+   ]
   }
  },
  "traductions": {}

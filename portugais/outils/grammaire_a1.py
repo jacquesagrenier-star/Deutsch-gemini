@@ -515,6 +515,9 @@ TEXTES = {
     "fiche_entrainer": "M'ENTRAÎNER →",
     "gram_attention": "Attention",
     "orb_es_indice": "Grammaire",
-    "gram_indice_kicker": "Grammaire · A1",
+    "gram_indice_kicker": "Grammaire",
     "gram_indice_titre": "Toutes les fiches",
+    # Le titre de « S'entrainer par temps » vit dans le grammaire.json allemand,
+    # que le portugais ne charge pas : sans lui, la cle brute s'affichait.
+    "verbentemps_info_title": "S'entraîner par temps",
 }

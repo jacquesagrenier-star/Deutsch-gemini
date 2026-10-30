@@ -347,7 +347,8 @@ window.SCENE = {
    "mot": "portátil",
    "genre": "o",
    "pluriel": "os portáteis",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "tisch",
@@ -619,6 +620,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o portátil?",
+     "c": [
+      "em cima da mesa",
+      "debaixo do assento",
+      "na mala de viagem"
+     ],
+     "f": "laptop",
+     "r": "tisch",
+     "phrase": "O portátil está em cima da mesa.",
+     "sens": "L'ordinateur portable est sur la table.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa."
+    },
+    {
+     "q": "Onde está a mala de viagem?",
+     "c": [
+      "por cima da janela",
+      "debaixo da mesa",
+      "ao lado do assento"
+     ],
+     "f": "koffer",
+     "r": "fenster",
+     "phrase": "A mala de viagem está por cima da janela.",
+     "sens": "La valise bleue est au-dessus de la fenêtre.",
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + a janela = <b>por cima da</b> janela."
+    },
+    {
+     "q": "Onde está o cachecol?",
+     "c": [
+      "no assento",
+      "na mala de viagem",
+      "debaixo da mesa"
+     ],
+     "f": "schal",
+     "r": "sitz-2",
+     "phrase": "O cachecol está no assento.",
+     "sens": "L'écharpe est sur le siège.",
+     "n": "<b>em</b> + o = <b>no</b> : no assento."
+    },
+    {
+     "q": "Onde estão as vacas?",
+     "c": [
+      "no prado",
+      "no rio",
+      "na aldeia"
+     ],
+     "f": "kuh",
+     "r": "wiese",
+     "phrase": "As vacas estão no prado.",
+     "sens": "Les vaches sont dans le pré.",
+     "n": "<b>em</b> + o = <b>no</b> : no prado."
+    },
+    {
+     "q": "Onde está a igreja?",
+     "c": [
+      "na aldeia",
+      "na montanha",
+      "junto do rio"
+     ],
+     "f": "kirche",
+     "r": "dorf",
+     "phrase": "A igreja está na aldeia.",
+     "sens": "L'église est dans le village.",
+     "n": "<b>em</b> + a = <b>na</b> : na aldeia."
+    },
+    {
+     "q": "Onde está o telemóvel?",
+     "c": [
+      "ao lado do papo-seco",
+      "debaixo do jornal",
+      "na mochila"
+     ],
+     "f": "handy",
+     "r": "broetchen",
+     "phrase": "O telemóvel está ao lado do papo-seco.",
+     "sens": "Le téléphone est à côté du petit pain.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o papo-seco = <b>ao lado do</b> papo-seco."
+    },
+    {
+     "q": "Onde está a mochila?",
+     "c": [
+      "ao lado da mala de viagem",
+      "debaixo da mesa",
+      "à janela"
+     ],
+     "f": "rucksack",
+     "r": "koffer",
+     "phrase": "A mochila está ao lado da mala de viagem.",
+     "sens": "Le sac à dos est à côté de la valise.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a mala de viagem = <b>ao lado da</b> mala de viagem."
+    },
+    {
+     "q": "Onde está a mala de viagem?",
+     "c": [
+      "ao lado do assento",
+      "em cima da mesa",
+      "por cima da janela"
+     ],
+     "f": "koffer-2",
+     "r": "sitz",
+     "phrase": "A mala de viagem está ao lado do assento.",
+     "sens": "La valise grise est à côté du siège.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o assento = <b>ao lado do</b> assento."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "En voyage : de, para, por, em",
+   "qs": [
+    {
+     "q": "O Mark viaja ___ comboio.",
+     "c": [
+      "de",
+      "no",
+      "em o"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark viaja de comboio.",
+     "sens": "Mark voyage en train.",
+     "n": "Le moyen : <b>de comboio</b>."
+    },
+    {
+     "q": "Ele vai ___ a serra.",
+     "c": [
+      "para",
+      "à",
+      "na"
+     ],
+     "f": "berg",
+     "r": "mark",
+     "phrase": "Ele vai para a serra.",
+     "sens": "Il va à la montagne.",
+     "n": "<b>ir para</b> ; la montagne (région) = <b>a serra</b>."
+    },
+    {
+     "q": "Ele olha ___ janela.",
+     "c": [
+      "pela",
+      "para a",
+      "da"
+     ],
+     "f": "fenster",
+     "r": "mark",
+     "phrase": "Ele olha pela janela.",
+     "sens": "Il regarde par la fenêtre.",
+     "n": "À travers : <b>por</b> + a = <b>pela</b>."
+    },
+    {
+     "q": "Ele ___ a mala no porta-bagagens.",
+     "c": [
+      "pôs",
+      "punha",
+      "põe"
+     ],
+     "f": "koffer",
+     "r": "mark",
+     "phrase": "Ele pôs a mala no porta-bagagens.",
+     "sens": "Il a posé sa valise sur le porte-bagages.",
+     "n": "<b>pôr</b> → <b>pôs</b>."
+    },
+    {
+     "q": "Agora a mala está ___ porta-bagagens.",
+     "c": [
+      "no",
+      "ao",
+      "para o"
+     ],
+     "f": "koffer",
+     "r": null,
+     "phrase": "Agora a mala está no porta-bagagens.",
+     "sens": "Maintenant, la valise est sur le porte-bagages.",
+     "n": "Position : <b>no</b>."
+    },
+    {
+     "q": "As vacas estão ___ prado.",
+     "c": [
+      "no",
+      "ao",
+      "para o"
+     ],
+     "f": "kuh",
+     "r": "wiese",
+     "phrase": "As vacas estão no prado.",
+     "sens": "Les vaches sont dans le pré.",
+     "n": "<b>no prado</b>."
+    },
+    {
+     "q": "O comboio passa ___ cima do rio.",
+     "c": [
+      "por",
+      "em",
+      "de"
+     ],
+     "f": "fluss",
+     "r": "bruecke",
+     "phrase": "O comboio passa por cima do rio.",
+     "sens": "Le train traverse la rivière.",
+     "n": "<b>passar por cima de</b> : passer au-dessus."
+    },
+    {
+     "q": "O Mark ___ o bilhete em cima da mesa.",
+     "c": [
+      "pousou",
+      "pousava",
+      "pousa"
+     ],
+     "f": "fahrkarte",
+     "r": "tisch",
+     "phrase": "O Mark pousou o bilhete em cima da mesa.",
+     "sens": "Mark a posé le billet sur la table.",
+     "n": "<b>pousar</b> → <b>pousou</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "O homem ___ olha pela janela chama-se Mark.",
+     "c": [
+      "que",
+      "quem",
+      "qual"
+     ],
+     "f": "mark",
+     "r": "fenster",
+     "phrase": "O homem que olha pela janela chama-se Mark.",
+     "sens": "L'homme qui regarde par la fenêtre s'appelle Mark.",
+     "n": "Sujet : <b>que</b>."
+    },
+    {
+     "q": "A aldeia, ___ igreja tem uma torre pontiaguda, fica no vale.",
+     "c": [
+      "cuja",
+      "cujo",
+      "que a"
+     ],
+     "f": "dorf",
+     "r": "kirche",
+     "phrase": "A aldeia, cuja igreja tem uma torre pontiaguda, fica no vale.",
+     "sens": "Le village dont l'église a un clocher pointu est dans la vallée.",
+     "n": "<b>cuja</b> + igreja."
+    },
+    {
+     "q": "A mesa em ___ está o portátil é cinzenta.",
+     "c": [
+      "que",
+      "qual",
+      "quem"
+     ],
+     "f": "tisch",
+     "r": "laptop",
+     "phrase": "A mesa em que está o portátil é cinzenta.",
+     "sens": "La table sur laquelle est l'ordinateur portable est grise.",
+     "n": "<b>em que</b> (ou <b>na qual</b>)."
+    },
+    {
+     "q": "O bilhete tem de ser ___ no comboio.",
+     "c": [
+      "validado",
+      "validada",
+      "validar"
+     ],
+     "f": "fahrkarte",
+     "r": null,
+     "phrase": "O bilhete tem de ser validado no comboio.",
+     "sens": "Le billet doit être contrôlé dans le train.",
+     "n": "Passif : <b>tem de ser</b> + participe."
+    },
+    {
+     "q": "O café ainda não foi ___.",
+     "c": [
+      "bebido",
+      "bebida",
+      "beber"
+     ],
+     "f": "kaffee",
+     "r": null,
+     "phrase": "O café ainda não foi bebido.",
+     "sens": "Le café n'est pas encore bu.",
+     "n": "Passif : <b>foi bebido</b>."
+    },
+    {
+     "q": "O jornal, ___ fotografias mostram florestas, está em cima da mesa.",
+     "c": [
+      "cujas",
+      "cujos",
+      "que as"
+     ],
+     "f": "zeitung",
+     "r": "tisch",
+     "phrase": "O jornal, cujas fotografias mostram florestas, está em cima da mesa.",
+     "sens": "Le journal dont les photos montrent des forêts est sur la table.",
+     "n": "<b>cujas</b> + fotografias."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "A paisagem ___ agradar-lhe.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "fenster",
+     "r": "mark",
+     "phrase": "A paisagem deve agradar-lhe.",
+     "sens": "Le paysage doit lui plaire.",
+     "n": "Déduction : <b>dever</b>."
+    },
+    {
+     "q": "O cachecol vermelho ___ ser de alguém que volta já.",
+     "c": [
+      "pode",
+      "deve de",
+      "há"
+     ],
+     "f": "schal",
+     "r": null,
+     "phrase": "O cachecol vermelho pode ser de alguém que volta já.",
+     "sens": "L'écharpe rouge appartient peut-être à quelqu'un qui va revenir.",
+     "n": "Possibilité : <b>poder</b>."
+    },
+    {
+     "q": "O comboio ___ chegar ao Porto daqui a uma hora.",
+     "c": [
+      "deverá",
+      "deveria-se",
+      "deva"
+     ],
+     "f": "uhr",
+     "r": null,
+     "phrase": "O comboio deverá chegar ao Porto daqui a uma hora.",
+     "sens": "Le train devrait arriver à Porto dans une heure.",
+     "n": "Probable : <b>deverá</b>."
+    },
+    {
+     "q": "___ que nesta aldeia se faz o melhor queijo da região.",
+     "c": [
+      "Dizem",
+      "Diz-se-lhe",
+      "Digam"
+     ],
+     "f": "dorf",
+     "r": null,
+     "phrase": "Dizem que nesta aldeia se faz o melhor queijo da região.",
+     "sens": "Il paraît que dans ce village, on trouve le meilleur fromage de la région.",
+     "n": "Le ouï-dire ; après <b>que</b>, le se devant."
+    }
+   ]
   }
  },
  "traductions": {}

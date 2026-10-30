@@ -35,6 +35,7 @@ window.SCENE = {
      "mot": "cartaz",
      "genre": "o",
      "niveau": "A2",
+     "theme": "cultura_a2_pt",
      "fr": "affiche"
     }
    ],
@@ -138,7 +139,8 @@ window.SCENE = {
    "mot": "paciente",
    "genre": "o",
    "pluriel": "os pacientes",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": "Mark",
    "aussi": [
     {
@@ -293,7 +295,8 @@ window.SCENE = {
    "mot": "cotovelo",
    "genre": "o",
    "pluriel": "os cotovelos",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -320,6 +323,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os peitos",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -649,6 +653,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os estetoscópios",
    "niveau": "B1",
+   "theme": "saude_b1_pt",
    "personne": null,
    "aussi": [],
    "sur": "aerztin",
@@ -722,7 +727,8 @@ window.SCENE = {
    "mot": "banquinho",
    "genre": "o",
    "pluriel": "os banquinhos",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -742,7 +748,8 @@ window.SCENE = {
    "mot": "seringa",
    "genre": "a",
    "pluriel": "as seringas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -784,6 +791,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as caixinhas",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -824,7 +832,8 @@ window.SCENE = {
    "mot": "secretária",
    "genre": "a",
    "pluriel": "as secretárias",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "trabalho_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -922,6 +931,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os teclados",
    "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -1233,6 +1243,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as costelas",
    "niveau": "B2",
+   "theme": "saude_b2_pt",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1254,6 +1265,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as costelas",
    "niveau": "B2",
+   "theme": "saude_b2_pt",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1275,6 +1287,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as colunas vertebrais",
    "niveau": "B2",
+   "theme": "saude_b2_pt",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1295,7 +1308,8 @@ window.SCENE = {
    "mot": "pulmão",
    "genre": "o",
    "pluriel": "os pulmões",
-   "niveau": "B2",
+   "niveau": "B1",
+   "theme": "saude_b1_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1317,6 +1331,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os ossos",
    "niveau": "B1",
+   "theme": "saude_b1_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "poster",
@@ -1407,6 +1422,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está a bola?",
+     "c": [
+      "na mala",
+      "debaixo da mala",
+      "ao lado do caixote do lixo"
+     ],
+     "f": "ball",
+     "r": "tasche",
+     "phrase": "A bola está na mala.",
+     "sens": "Le ballon est sur le sac.",
+     "n": "<b>em</b> + a = <b>na</b> : na mala."
+    },
+    {
+     "q": "Onde está o relógio?",
+     "c": [
+      "por cima do póster",
+      "debaixo do póster",
+      "ao lado da porta"
+     ],
+     "f": "uhr",
+     "r": "poster",
+     "phrase": "O relógio está por cima do póster.",
+     "sens": "L'horloge est accrochée au-dessus de l'affiche.",
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + o póster = <b>por cima do</b> póster."
+    },
+    {
+     "q": "Onde está a planta?",
+     "c": [
+      "à janela",
+      "em cima da secretária",
+      "ao lado da porta"
+     ],
+     "f": "pflanze",
+     "r": "fenster",
+     "phrase": "A planta está à janela.",
+     "sens": "La plante est près de la fenêtre.",
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela."
+    },
+    {
+     "q": "Onde está a médica?",
+     "c": [
+      "ao lado do paciente",
+      "atrás do paciente",
+      "à frente da porta"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "A médica está ao lado do paciente.",
+     "sens": "La médecin est assise à côté du patient.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o paciente = <b>ao lado do</b> paciente."
+    },
+    {
+     "q": "Onde está o casaco?",
+     "c": [
+      "ao lado da porta",
+      "na porta",
+      "por cima da porta"
+     ],
+     "f": "jacke",
+     "r": "tuer",
+     "phrase": "O casaco está ao lado da porta.",
+     "sens": "La veste est accrochée à côté de la porte.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta."
+    },
+    {
+     "q": "Onde estão as meias?",
+     "c": [
+      "nos sapatos",
+      "debaixo dos sapatos",
+      "na mala"
+     ],
+     "f": "socke",
+     "r": "schuh",
+     "phrase": "As meias estão nos sapatos.",
+     "sens": "Les chaussettes sont sur les chaussures.",
+     "n": "<b>em</b> + os = <b>nos</b> : nos sapatos."
+    },
+    {
+     "q": "Onde está o penso rápido?",
+     "c": [
+      "no joelho",
+      "debaixo do joelho",
+      "na mão"
+     ],
+     "f": "pflaster",
+     "r": "knie",
+     "phrase": "O penso rápido está no joelho.",
+     "sens": "Le pansement est sur le genou.",
+     "n": "<b>em</b> + o = <b>no</b> : no joelho."
+    },
+    {
+     "q": "Onde está o póster?",
+     "c": [
+      "atrás do paciente",
+      "à frente do paciente",
+      "por cima da porta"
+     ],
+     "f": "poster",
+     "r": "mark",
+     "phrase": "O póster está atrás do paciente.",
+     "sens": "L'affiche est accrochée derrière le patient.",
+     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + o paciente = <b>atrás do</b> paciente."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Pôr, estar, deixar : la position et le geste",
+   "qs": [
+    {
+     "q": "A bola ___ em cima da mala.",
+     "c": [
+      "está",
+      "pôs",
+      "põe"
+     ],
+     "f": "ball",
+     "r": "tasche",
+     "phrase": "A bola está em cima da mala.",
+     "sens": "Le ballon est sur le sac.",
+     "n": "La position : <b>estar</b>."
+    },
+    {
+     "q": "O Mark ___ a bola em cima da mala.",
+     "c": [
+      "pôs",
+      "está",
+      "estava"
+     ],
+     "f": "ball",
+     "r": "tasche",
+     "phrase": "O Mark pôs a bola em cima da mala.",
+     "sens": "Mark a posé le ballon sur le sac.",
+     "n": "Le geste : <b>pôr</b> (perfeito : <b>pôs</b>)."
+    },
+    {
+     "q": "A médica está ___ num banquinho.",
+     "c": [
+      "sentada",
+      "sentado",
+      "sentar"
+     ],
+     "f": "aerztin",
+     "r": "hocker",
+     "phrase": "A médica está sentada num banquinho.",
+     "sens": "La médecin est assise sur un tabouret.",
+     "n": "<b>estar sentado</b>, accordé (a médica → <b>sentada</b>)."
+    },
+    {
+     "q": "O Mark ___ os sapatos ao lado da mala.",
+     "c": [
+      "deixou",
+      "ficou",
+      "esteve"
+     ],
+     "f": "schuh",
+     "r": "tasche",
+     "phrase": "O Mark deixou os sapatos ao lado da mala.",
+     "sens": "Mark a mis ses chaussures à côté du sac.",
+     "n": "<b>deixar</b> : poser et laisser."
+    },
+    {
+     "q": "Os sapatos ___ ao lado da mala.",
+     "c": [
+      "estão",
+      "põem",
+      "deixam"
+     ],
+     "f": "schuh",
+     "r": "tasche",
+     "phrase": "Os sapatos estão ao lado da mala.",
+     "sens": "Les chaussures sont à côté du sac.",
+     "n": "La position : <b>estar</b>."
+    },
+    {
+     "q": "O Mark ___ o casaco ao lado da porta.",
+     "c": [
+      "pendurou",
+      "pendurava",
+      "pendura"
+     ],
+     "f": "jacke",
+     "r": "tuer",
+     "phrase": "O Mark pendurou o casaco ao lado da porta.",
+     "sens": "Mark a accroché sa veste à côté de la porte.",
+     "n": "<b>pendurar</b> → <b>pendurou</b>."
+    },
+    {
+     "q": "O copo está ___ secretária.",
+     "c": [
+      "em cima da",
+      "em cima a",
+      "na cima da"
+     ],
+     "f": "glas",
+     "r": "schreibtisch",
+     "phrase": "O copo está em cima da secretária.",
+     "sens": "Le verre est sur le bureau.",
+     "n": "<b>em cima de</b> + a = <b>em cima da</b> ; <b>a secretária</b> = le bureau (meuble)."
+    },
+    {
+     "q": "A médica ___ o cartão de utente em cima da secretária.",
+     "c": [
+      "pousou",
+      "pousava",
+      "pousa"
+     ],
+     "f": "karte",
+     "r": "schreibtisch",
+     "phrase": "A médica pousou o cartão de utente em cima da secretária.",
+     "sens": "La médecin a posé la carte de santé sur le bureau.",
+     "n": "<b>pousar</b> : poser doucement ; <b>o cartão de utente</b>, la carte du système de santé portugais."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif d'état",
+   "qs": [
+    {
+     "q": "O doente, ___ joelho está ferido, chama-se Mark.",
+     "c": [
+      "cujo",
+      "cuja",
+      "que o"
+     ],
+     "f": "mark",
+     "r": "knie",
+     "phrase": "O doente, cujo joelho está ferido, chama-se Mark.",
+     "sens": "Le patient dont le genou est blessé s'appelle Mark.",
+     "n": "<b>cujo</b> + nom masculin (joelho)."
+    },
+    {
+     "q": "A médica, ___ segura uma ligadura, sorri.",
+     "c": [
+      "que",
+      "quem",
+      "cuja"
+     ],
+     "f": "aerztin",
+     "r": "verband",
+     "phrase": "A médica, que segura uma ligadura, sorri.",
+     "sens": "La médecin, qui tient un bandage à la main, sourit.",
+     "n": "Sujet : <b>que</b>."
+    },
+    {
+     "q": "O doente a ___ a médica sorri chama-se Mark.",
+     "c": [
+      "quem",
+      "que",
+      "qual"
+     ],
+     "f": "mark",
+     "r": "aerztin",
+     "phrase": "O doente a quem a médica sorri chama-se Mark.",
+     "sens": "Le patient à qui la médecin sourit s'appelle Mark.",
+     "n": "<b>sorrir a alguém</b> → <b>a quem</b>."
+    },
+    {
+     "q": "A mala em cima da ___ está a bola é do Mark.",
+     "c": [
+      "qual",
+      "que",
+      "quem"
+     ],
+     "f": "tasche",
+     "r": "ball",
+     "phrase": "A mala em cima da qual está a bola é do Mark.",
+     "sens": "Le sac sur lequel est posé le ballon appartient à Mark.",
+     "n": "Après une préposition longue : <b>da qual</b>."
+    },
+    {
+     "q": "A janela está ___.",
+     "c": [
+      "fechada",
+      "fechado",
+      "fecha"
+     ],
+     "f": "fenster",
+     "r": null,
+     "phrase": "A janela está fechada.",
+     "sens": "La fenêtre est fermée.",
+     "n": "État : <b>estar</b> + participe accordé."
+    },
+    {
+     "q": "O penso já está ___.",
+     "c": [
+      "posto",
+      "posta",
+      "pôs"
+     ],
+     "f": "pflaster",
+     "r": "knie",
+     "phrase": "O penso já está posto.",
+     "sens": "Le pansement est déjà posé.",
+     "n": "<b>pôr</b> → <b>posto</b> ; o penso, masculin."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "O Mark ___ ter caído a jogar futebol.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem de"
+     ],
+     "f": "mark",
+     "r": "ball",
+     "phrase": "O Mark deve ter caído a jogar futebol.",
+     "sens": "Mark a dû tomber en jouant au foot.",
+     "n": "Déduction sur le passé : <b>deve ter</b> + participe."
+    },
+    {
+     "q": "Se calhar a médica ___ uma ligadura daqui a pouco.",
+     "c": [
+      "põe-lhe",
+      "ponha-lhe",
+      "lhe põe"
+     ],
+     "f": "verband",
+     "r": "aerztin",
+     "phrase": "Se calhar a médica põe-lhe uma ligadura daqui a pouco.",
+     "sens": "La médecin va peut-être lui mettre un bandage tout de suite.",
+     "n": "<b>se calhar</b> + indicatif ; pronom après le verbe."
+    },
+    {
+     "q": "___ não deve ser nada de grave.",
+     "c": [
+      "Não",
+      "Nem",
+      "Nunca"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "Não deve ser nada de grave.",
+     "sens": "Ce n'est sans doute rien de grave.",
+     "n": "<b>não deve ser</b> = ce n'est sans doute pas."
+    },
+    {
+     "q": "___ que a médica é muito boa.",
+     "c": [
+      "Dizem",
+      "Diz-se-lhe",
+      "Digam"
+     ],
+     "f": "aerztin",
+     "r": null,
+     "phrase": "Dizem que a médica é muito boa.",
+     "sens": "On dit que la médecin est très bonne.",
+     "n": "Le ouï-dire : <b>dizem que</b>."
+    }
+   ]
   }
  },
  "corps": "mark",

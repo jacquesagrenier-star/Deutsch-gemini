@@ -7,7 +7,8 @@ window.SCENE = {
    "mot": "paciente",
    "genre": "o",
    "pluriel": "os pacientes",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": "Mark",
    "aussi": [
     {
@@ -124,6 +125,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os peitos",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -164,7 +166,8 @@ window.SCENE = {
    "mot": "umbigo",
    "genre": "o",
    "pluriel": "os umbigos",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -238,7 +241,8 @@ window.SCENE = {
    "mot": "cotovelo",
    "genre": "o",
    "pluriel": "os cotovelos",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -265,6 +269,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os pulsos",
    "niveau": "B1",
+   "theme": "natureza_b1_pt_3",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -332,7 +337,8 @@ window.SCENE = {
    "mot": "coxa",
    "genre": "a",
    "pluriel": "as coxas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -591,6 +597,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os estetoscópios",
    "niveau": "B1",
+   "theme": "saude_b1_pt",
    "personne": null,
    "aussi": [],
    "sur": "aerztin",
@@ -616,7 +623,8 @@ window.SCENE = {
    "mot": "balança",
    "genre": "a",
    "pluriel": "as balanças",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -756,7 +764,8 @@ window.SCENE = {
    "mot": "testa",
    "genre": "a",
    "pluriel": "as testas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -778,6 +787,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as sobrancelhas",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -799,6 +809,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as sobrancelhas",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -908,6 +919,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as bochechas",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -929,6 +941,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as bochechas",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -993,7 +1006,8 @@ window.SCENE = {
    "mot": "lábio",
    "genre": "o",
    "pluriel": "os lábios",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1015,6 +1029,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os queixos",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1080,6 +1095,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as unhas",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1101,6 +1117,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os tornozelos",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1122,6 +1139,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os tornozelos",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1143,6 +1161,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os dedos do pé",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1164,6 +1183,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os dedos do pé",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1185,6 +1205,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as unhas",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1206,6 +1227,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as unhas",
    "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "mark",
@@ -1480,6 +1502,299 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está a médica?",
+     "c": [
+      "ao lado do paciente",
+      "atrás do paciente",
+      "em cima da balança"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "A médica está ao lado do paciente.",
+     "sens": "La médecin est debout à côté du patient.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o paciente = <b>ao lado do</b> paciente."
+    },
+    {
+     "q": "Onde está o Mark?",
+     "c": [
+      "à frente da balança",
+      "em cima da balança",
+      "debaixo da balança"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "O Mark está à frente da balança.",
+     "sens": "Mark est debout devant la balance.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + a balança = <b>à frente da</b> balança."
+    },
+    {
+     "q": "Onde estão os pés?",
+     "c": [
+      "no chão",
+      "em cima da balança",
+      "debaixo do chão"
+     ],
+     "f": "fuss-l",
+     "r": "boden",
+     "phrase": "Os pés estão no chão.",
+     "sens": "Ses pieds sont sur le sol.",
+     "n": "<b>em</b> + o = <b>no</b> : no chão."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les consignes du médecin : respire fundo, por favor",
+   "qs": [
+    {
+     "q": "A médica ___ os pulmões dele.",
+     "c": [
+      "ausculta",
+      "escuta-se",
+      "ouve-lhe"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "A médica ausculta os pulmões dele.",
+     "sens": "La médecin ausculte ses poumons.",
+     "n": "<b>auscultar</b>."
+    },
+    {
+     "q": "___ fundo, por favor!",
+     "c": [
+      "Inspire",
+      "Inspira-se",
+      "Inspiras"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "Inspire fundo, por favor!",
+     "sens": "Inspirez profondément, s'il vous plaît !",
+     "n": "Consigne polie : le subjonctif (<b>inspire</b>)."
+    },
+    {
+     "q": "O Mark ___ até às cuecas.",
+     "c": [
+      "despiu-se",
+      "se despiu",
+      "despiu"
+     ],
+     "f": "mark",
+     "r": "unterhose",
+     "phrase": "O Mark despiu-se até às cuecas.",
+     "sens": "Mark s'est déshabillé jusqu'au caleçon.",
+     "n": "<b>despir-se</b> → <b>despiu-se</b>."
+    },
+    {
+     "q": "A médica põe-___ o estetoscópio no peito.",
+     "c": [
+      "lhe",
+      "o",
+      "se"
+     ],
+     "f": "stethoskop",
+     "r": "brust",
+     "phrase": "A médica põe-lhe o estetoscópio no peito.",
+     "sens": "La médecin pose le stéthoscope sur sa poitrine.",
+     "n": "<b>lhe</b> : à lui (sur lui)."
+    },
+    {
+     "q": "O Mark vai ___ para a balança.",
+     "c": [
+      "subir",
+      "subir-se",
+      "sobe"
+     ],
+     "f": "mark",
+     "r": "waage",
+     "phrase": "O Mark vai subir para a balança.",
+     "sens": "Mark va tout de suite monter sur la balance.",
+     "n": "<b>subir para</b> : monter sur."
+    },
+    {
+     "q": "Depois fica ___ na balança.",
+     "c": [
+      "quieto",
+      "quieta",
+      "quietamente"
+     ],
+     "f": "waage",
+     "r": "mark",
+     "phrase": "Depois fica quieto na balança.",
+     "sens": "Ensuite, il reste immobile sur la balance.",
+     "n": "<b>ficar quieto</b> = rester immobile."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "Os pulmões dele estão a ser ___.",
+     "c": [
+      "auscultados",
+      "auscultadas",
+      "auscultar"
+     ],
+     "f": "brust",
+     "r": "hand-aerztin-haut",
+     "phrase": "Os pulmões dele estão a ser auscultados.",
+     "sens": "Ses poumons sont en train d'être auscultés.",
+     "n": "<b>estar a ser</b> + participe accordé (os pulmões)."
+    },
+    {
+     "q": "O doente, ___ peito está a ser auscultado, chama-se Mark.",
+     "c": [
+      "cujo",
+      "cuja",
+      "que o"
+     ],
+     "f": "mark",
+     "r": "brust",
+     "phrase": "O doente, cujo peito está a ser auscultado, chama-se Mark.",
+     "sens": "Le patient dont on ausculte la poitrine s'appelle Mark.",
+     "n": "<b>cujo</b> + peito."
+    },
+    {
+     "q": "A médica ___ o examina é a médica de família dele.",
+     "c": [
+      "que",
+      "quem",
+      "qual"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "A médica que o examina é a médica de família dele.",
+     "sens": "La médecin qui l'examine est sa médecin de famille.",
+     "n": "Après <b>que</b>, le pronom devant : <b>que o examina</b>."
+    },
+    {
+     "q": "A balança para a ___ ele vai subir está encostada à parede.",
+     "c": [
+      "qual",
+      "que",
+      "quem"
+     ],
+     "f": "waage",
+     "r": "mark",
+     "phrase": "A balança para a qual ele vai subir está encostada à parede.",
+     "sens": "La balance sur laquelle il va monter est contre le mur.",
+     "n": "<b>para a qual</b>."
+    },
+    {
+     "q": "Daqui a pouco, a altura dele também vai ser ___.",
+     "c": [
+      "medida",
+      "medido",
+      "medir"
+     ],
+     "f": "waage",
+     "r": null,
+     "phrase": "Daqui a pouco, a altura dele também vai ser medida.",
+     "sens": "Dans un instant, on mesurera aussi sa taille.",
+     "n": "Passif : <b>vai ser</b> + participe accordé."
+    },
+    {
+     "q": "O Mark fica quieto enquanto ___ examinado.",
+     "c": [
+      "é",
+      "está-se",
+      "seja"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark fica quieto enquanto é examinado.",
+     "sens": "Mark reste tranquille pendant qu'on l'examine.",
+     "n": "Passif au présent : <b>é examinado</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses et irréel",
+   "qs": [
+    {
+     "q": "Ele ___ fazer muito desporto.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "arm-l",
+     "r": null,
+     "phrase": "Ele deve fazer muito desporto.",
+     "sens": "Il doit faire beaucoup de sport.",
+     "n": "Déduction : <b>dever</b> ; le sport = <b>o desporto</b>."
+    },
+    {
+     "q": "Ele ___ ser saudável.",
+     "c": [
+      "deverá",
+      "deveria-se",
+      "deva"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "Ele deverá ser saudável.",
+     "sens": "Il est sans doute en bonne santé.",
+     "n": "Probable : <b>deverá</b>."
+    },
+    {
+     "q": "___ que esta médica é muito minuciosa.",
+     "c": [
+      "Dizem",
+      "Diz-se-lhe",
+      "Digam"
+     ],
+     "f": "aerztin",
+     "r": null,
+     "phrase": "Dizem que esta médica é muito minuciosa.",
+     "sens": "Il paraît que cette médecin est très minutieuse.",
+     "n": "Le ouï-dire."
+    },
+    {
+     "q": "Se o ritmo cardíaco ___ irregular, ela mandava-o ao cardiologista.",
+     "c": [
+      "fosse",
+      "for",
+      "era"
+     ],
+     "f": "aerztin",
+     "r": "brust",
+     "phrase": "Se o ritmo cardíaco fosse irregular, ela mandava-o ao cardiologista.",
+     "sens": "Si son rythme cardiaque était irrégulier, elle l'enverrait chez le cardiologue.",
+     "n": "Irréel du présent : <b>se fosse</b>."
+    },
+    {
+     "q": "Se ele não se ___ despido, ela não o teria podido auscultar.",
+     "c": [
+      "tivesse",
+      "tiver",
+      "tinha"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "Se ele não se tivesse despido, ela não o teria podido auscultar.",
+     "sens": "S'il ne s'était pas déshabillé, elle n'aurait pas pu l'ausculter.",
+     "n": "Irréel du passé : <b>se tivesse</b> + participe."
+    },
+    {
+     "q": "Sem exame, não ___ saber ao certo.",
+     "c": [
+      "se podia",
+      "podia-se-se",
+      "se pode-se"
+     ],
+     "f": "aerztin",
+     "r": "mark",
+     "phrase": "Sem exame, não se podia saber ao certo.",
+     "sens": "Sans examen, on ne pourrait pas le savoir exactement.",
+     "n": "Après <b>não</b>, le se devant : <b>não se podia</b>."
+    }
+   ]
   }
  },
  "corps": "mark",

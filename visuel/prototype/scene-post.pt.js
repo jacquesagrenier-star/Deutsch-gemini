@@ -198,7 +198,8 @@ window.SCENE = {
    "mot": "balança",
    "genre": "a",
    "pluriel": "as balanças",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -225,6 +226,7 @@ window.SCENE = {
      "mot": "envelope",
      "genre": "o",
      "niveau": "A2",
+     "theme": "cidade_a2_pt",
      "fr": "l'enveloppe"
     }
    ],
@@ -349,6 +351,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os envelopes",
    "niveau": "A2",
+   "theme": "cidade_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -368,7 +371,8 @@ window.SCENE = {
    "mot": "selo",
    "genre": "o",
    "pluriel": "os selos",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "cidade_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -469,6 +473,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os cestos",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -597,6 +602,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está a encomenda?",
+     "c": [
+      "em cima da balança",
+      "no cesto",
+      "debaixo do guiché"
+     ],
+     "f": "paket",
+     "r": "waage",
+     "phrase": "A encomenda está em cima da balança.",
+     "sens": "Le colis est sur la balance.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a balança = <b>em cima da</b> balança."
+    },
+    {
+     "q": "Onde está a caixa do correio?",
+     "c": [
+      "atrás da janela",
+      "em cima do guiché",
+      "no cesto"
+     ],
+     "f": "briefkasten",
+     "r": "fenster",
+     "phrase": "A caixa do correio está atrás da janela.",
+     "sens": "La boîte aux lettres est derrière la fenêtre.",
+     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + a janela = <b>atrás da</b> janela."
+    },
+    {
+     "q": "Onde está o relógio?",
+     "c": [
+      "na parede",
+      "na janela",
+      "por cima do banco"
+     ],
+     "f": "uhr",
+     "r": null,
+     "phrase": "O relógio está na parede.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>em</b> + a = <b>na</b> : na parede."
+    },
+    {
+     "q": "Onde estão os selos?",
+     "c": [
+      "em cima do guiché",
+      "no cesto",
+      "em cima da balança"
+     ],
+     "f": "briefmarke",
+     "r": "schalter",
+     "phrase": "Os selos estão em cima do guiché.",
+     "sens": "Les timbres sont sur le comptoir.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché."
+    },
+    {
+     "q": "Onde estão as cartas?",
+     "c": [
+      "no cesto",
+      "no banco",
+      "na caixa do correio"
+     ],
+     "f": "brief-2",
+     "r": "korb",
+     "phrase": "As cartas estão no cesto.",
+     "sens": "Les lettres sont dans la corbeille.",
+     "n": "<b>em</b> + o = <b>no</b> : no cesto."
+    },
+    {
+     "q": "Onde está a planta?",
+     "c": [
+      "em cima do guiché",
+      "em cima da balança",
+      "à janela"
+     ],
+     "f": "pflanze",
+     "r": "schalter",
+     "phrase": "A planta está em cima do guiché.",
+     "sens": "La plante est sur le comptoir.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché."
+    },
+    {
+     "q": "Onde está o guarda-chuva?",
+     "c": [
+      "ao lado do banco",
+      "no cesto",
+      "atrás do guiché"
+     ],
+     "f": "regenschirm",
+     "r": "bank",
+     "phrase": "O guarda-chuva está ao lado do banco.",
+     "sens": "Le parapluie est à côté du banc.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o banco = <b>ao lado do</b> banco."
+    },
+    {
+     "q": "Onde está a encomenda?",
+     "c": [
+      "à frente do guiché",
+      "em cima da balança",
+      "na estante"
+     ],
+     "f": "paket-4",
+     "r": "schalter",
+     "phrase": "A encomenda está à frente do guiché.",
+     "sens": "Le grand colis est devant le guichet.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o guiché = <b>à frente do</b> guiché."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le pronom complément : lhe, lha, -lhe",
+   "qs": [
+    {
+     "q": "A Anna envia uma carta ___ mãe.",
+     "c": [
+      "à",
+      "a",
+      "da"
+     ],
+     "f": "brief",
+     "r": "anna",
+     "phrase": "A Anna envia uma carta à mãe.",
+     "sens": "Anna envoie une lettre à sa mère.",
+     "n": "<b>enviar algo a alguém</b> : a + a = <b>à</b>."
+    },
+    {
+     "q": "O homem dá-___ um recibo.",
+     "c": [
+      "lhe",
+      "a",
+      "se"
+     ],
+     "f": "mann",
+     "r": "anna",
+     "phrase": "O homem dá-lhe um recibo.",
+     "sens": "L'homme lui donne un reçu.",
+     "n": "À elle : <b>lhe</b>."
+    },
+    {
+     "q": "A Anna dá-___ a carta.",
+     "c": [
+      "lhe",
+      "o",
+      "se"
+     ],
+     "f": "brief",
+     "r": "mann",
+     "phrase": "A Anna dá-lhe a carta.",
+     "sens": "Anna lui donne la lettre.",
+     "n": "À lui : <b>lhe</b>."
+    },
+    {
+     "q": "A carta? Ela dá-___.",
+     "c": [
+      "lha",
+      "lhe a",
+      "a"
+     ],
+     "f": "brief",
+     "r": "mann",
+     "phrase": "A carta? Ela dá-lha.",
+     "sens": "La lettre ? Elle la lui donne.",
+     "n": "lhe + a = <b>lha</b>."
+    },
+    {
+     "q": "A senhora quer enviar uma encomenda ___ neto.",
+     "c": [
+      "ao",
+      "o",
+      "do"
+     ],
+     "f": "paket-3",
+     "r": "frau",
+     "phrase": "A senhora quer enviar uma encomenda ao neto.",
+     "sens": "La femme veut envoyer un colis à son petit-fils.",
+     "n": "a + o = <b>ao</b> ; le colis = <b>a encomenda</b>."
+    },
+    {
+     "q": "Podes comprar-___ um selo?",
+     "c": [
+      "me",
+      "mim",
+      "eu"
+     ],
+     "f": "briefmarke",
+     "r": null,
+     "phrase": "Podes comprar-me um selo?",
+     "sens": "Tu peux m'acheter un timbre ?",
+     "n": "<b>me</b>, après l'infinitif."
+    },
+    {
+     "q": "A Anna mostra o cartão de cidadão ___ homem.",
+     "c": [
+      "ao",
+      "o",
+      "do"
+     ],
+     "f": "anna",
+     "r": "mann",
+     "phrase": "A Anna mostra o cartão de cidadão ao homem.",
+     "sens": "Anna montre sa carte d'identité à l'homme.",
+     "n": "La carte d'identité portugaise : <b>o cartão de cidadão</b>."
+    },
+    {
+     "q": "O homem explica o preço ___ senhora.",
+     "c": [
+      "à",
+      "a",
+      "da"
+     ],
+     "f": "mann",
+     "r": "frau",
+     "phrase": "O homem explica o preço à senhora.",
+     "sens": "L'homme explique le prix à la femme.",
+     "n": "a + a = <b>à</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le passif",
+   "qs": [
+    {
+     "q": "A encomenda está a ser ___.",
+     "c": [
+      "pesada",
+      "pesado",
+      "pesar"
+     ],
+     "f": "paket",
+     "r": "waage",
+     "phrase": "A encomenda está a ser pesada.",
+     "sens": "Le colis est en train d'être pesé.",
+     "n": "<b>a encomenda</b> → <b>pesada</b>."
+    },
+    {
+     "q": "A carta vai ser ___ amanhã.",
+     "c": [
+      "entregue",
+      "entregada",
+      "entregar"
+     ],
+     "f": "brief",
+     "r": null,
+     "phrase": "A carta vai ser entregue amanhã.",
+     "sens": "La lettre sera distribuée demain.",
+     "n": "<b>entregar</b> → <b>entregue</b> (participe court, partout)."
+    },
+    {
+     "q": "A encomenda ___ enviada ontem.",
+     "c": [
+      "foi",
+      "era",
+      "esteve"
+     ],
+     "f": "paket-2",
+     "r": null,
+     "phrase": "A encomenda foi enviada ontem.",
+     "sens": "Le colis a été envoyé hier.",
+     "n": "Passif au passé : <b>foi</b>."
+    },
+    {
+     "q": "As cartas já estão ___.",
+     "c": [
+      "separadas",
+      "separados",
+      "separar"
+     ],
+     "f": "brief-2",
+     "r": "korb",
+     "phrase": "As cartas já estão separadas.",
+     "sens": "Les lettres sont déjà triées.",
+     "n": "État : <b>estar</b> + participe accordé."
+    },
+    {
+     "q": "Aqui também se ___ encomendas.",
+     "c": [
+      "enviam",
+      "envia",
+      "enviem"
+     ],
+     "f": "paket-4",
+     "r": null,
+     "phrase": "Aqui também se enviam encomendas.",
+     "sens": "Ici, on envoie aussi des colis.",
+     "n": "Le se passif s'accorde : <b>enviam</b> ; après também, devant."
+    },
+    {
+     "q": "O selo tem de ser ___ no envelope.",
+     "c": [
+      "colado",
+      "colada",
+      "colar"
+     ],
+     "f": "briefmarke",
+     "r": "umschlag",
+     "phrase": "O selo tem de ser colado no envelope.",
+     "sens": "Le timbre doit être collé sur l'enveloppe.",
+     "n": "<b>tem de ser</b> + participe."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "A carta ___ ser para alguém importante.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "brief",
+     "r": "anna",
+     "phrase": "A carta deve ser para alguém importante.",
+     "sens": "La lettre doit être pour quelqu'un d'important.",
+     "n": "Déduction : <b>dever</b>."
+    },
+    {
+     "q": "A encomenda da senhora idosa ___ ser um presente.",
+     "c": [
+      "pode",
+      "deve de",
+      "há"
+     ],
+     "f": "paket-3",
+     "r": "frau",
+     "phrase": "A encomenda da senhora idosa pode ser um presente.",
+     "sens": "Le colis de la vieille dame est peut-être un cadeau.",
+     "n": "Possibilité : <b>poder</b>."
+    },
+    {
+     "q": "A carta ___ chegar daqui a dois dias.",
+     "c": [
+      "deverá",
+      "deveria-se",
+      "deva"
+     ],
+     "f": "brief",
+     "r": null,
+     "phrase": "A carta deverá chegar daqui a dois dias.",
+     "sens": "La lettre devrait arriver dans deux jours.",
+     "n": "Probable : <b>deverá</b>."
+    },
+    {
+     "q": "___ que esta estação dos correios vai fechar em breve.",
+     "c": [
+      "Dizem",
+      "Diz-se-lhe",
+      "Digam"
+     ],
+     "f": "schalter",
+     "r": null,
+     "phrase": "Dizem que esta estação dos correios vai fechar em breve.",
+     "sens": "Il paraît que cette poste va bientôt fermer.",
+     "n": "Le ouï-dire ; la poste = <b>os correios</b>."
+    }
+   ]
   }
  },
  "traductions": {}
