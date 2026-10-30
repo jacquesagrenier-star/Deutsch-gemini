@@ -7757,6 +7757,18 @@ body[data-theme="dark"] .pf-etapes i{background:rgba(255,255,255,.14);}
    le calque fixe (et pas sur body) : iOS ignore background-attachment:fixed, le degrade s'etalerait
    sur toute la hauteur de la page. La nuit, le bleu nuit uni ne change pas. */
 body:not([data-theme="dark"]) #fondMonde{background:linear-gradient(180deg, #82AFDB 0%, #A4C6E7 55%, #C0D6EA 100%);}
+/* v1034 : LA COULEUR DU FOND AU-DELA DE SES BORDS. Jacques, iPhone, 30 oct. 2026 : apres un
+   defilement de l'accueil, une bande reste en bas (et en haut) -- bleu fonce dans l'app, BLANCHE dans
+   Safari. La v1032 (le rebond rendu) n'a pas suffi, et la page ne se voit pas decalee (mesure de la
+   v1032 : rien). C'est le fond fixe qui ne couvre plus tout l'ecran : apres un defilement, l'iPhone
+   agrandit la zone visible, pas le calque fixe ; dessous, le blanc de la page (Safari) ou le fond natif
+   de l'app (#82AFDB). Un calque fixe, sous le fond commun, deborde d'une demi-hauteur d'ecran en haut
+   (bleu du haut du degrade) et en bas (bleu du bas). La nuit, le bleu nuit de la page. */
+body::before{content:""; position:fixed; left:0; right:0; top:-60vh; bottom:-60vh; z-index:-2; pointer-events:none;
+    background:linear-gradient(180deg, #82AFDB 0, #82AFDB 50%, #C0D6EA 50%, #C0D6EA 100%);}
+body[data-theme="dark"]::before{background:#0E1C26;}
+/* Et le fond commun lui-meme sur la plus grande hauteur d'ecran possible (lvh), pas la plus petite. */
+#fondMonde{bottom:auto; height:100vh; height:100lvh;}
 #fondMonde .fm-carte{position:absolute; left:0; right:0; top:24px; height:378px; opacity:.38; transition:opacity .4s;}
 #fondMonde .fm-piste{position:absolute; top:0; left:0; width:2880px; height:378px; transform:translateX(-338px);
     background:url("visuel/fond/carte-langues-jour.svg") repeat-x 0 0 / 960px 378px; will-change:transform;}
@@ -8395,7 +8407,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1033</span>
+        <span class="subtitle-version">v1034</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -48187,7 +48199,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1033;
+const APP_VERSION = 1034;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
