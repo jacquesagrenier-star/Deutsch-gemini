@@ -8286,6 +8286,17 @@ body[data-theme="dark"] .mp-anneau{background:#14283A !important; box-shadow:0 6
 body[data-theme="dark"] .mp-anneau b{color:#8ED3AA; text-shadow:0 0 8px rgba(80,190,130,.5);}
 body[data-theme="dark"] .mp-anneau small{color:#A9B8C4;}
 body[data-theme="dark"] .mpa-piste{stroke:rgba(255,255,255,.10);}
+/* v1031 : L'ANNEAU DU PALIER PLUS GROS (58 -> 78 px). Jacques, 30 oct. 2026 : « je suis rendu a 100.
+   Sur objectif de 20 [...] tout deborde un peu [...] grossir la pastille lorsqu'on atteint l'objectif ».
+   « 100 », « /20 » et « ×5 » s'entassaient dans 58 px. Le SVG suit par sa largeur (viewBox inchange). */
+.mp-anneau{width:78px !important; height:78px !important; top:-26px !important; right:-26px !important;}
+.mp-anneau svg{inset:2px; width:74px; height:74px;}
+.mp-anneau b{font-size:22px;}
+.mp-anneau b.long{font-size:19px; letter-spacing:-.03em;}
+.mp-anneau small{font-size:10.5px;}
+.mpa-fois{font-size:10.5px; padding:0 7px; margin-top:2px;}
+.mos-palier.mp-seul{width:78px; height:78px;}
+.mp-seul .mp-anneau{top:0 !important; right:0 !important; transform:scale(1.25);}
 
 /* v1017 : LA MOSAIQUE DU PALIER DANS LE CADRE F, PLUS GRANDE (Jacques, 29 oct. 2026 : « la mosaique
    aussi devrait avoir le meme encadrement. On peut mettre ca peut-etre un peu plus gros »). Le biseau
@@ -8380,7 +8391,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1030</span>
+        <span class="subtitle-version">v1031</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -40143,6 +40154,7 @@ function startQuizTerminaisons(){
 // redescend a 33 %, le hasard reel d'un choix a trois, et le score redevient
 // une mesure. Ne pas « simplifier » ce tirage.
 const QUIZ_ARTICLE_TAILLE = 30;              // 10 par genre
+const QUIZ_ARTICLE_EXCEPTIONS_MAX = 2;       // v1031 : espagnol, el idioma / la mano, rares (voir startQuizArticle)
 const QUIZ_ARTICLE_GENRES = LANGUE_APPRISE === "es" ? ["el", "la"]
                           : LANGUE_APPRISE === "pt" ? ["o", "a"] : ["der", "die", "das"];
 
@@ -40232,9 +40244,16 @@ function startQuizArticle(){
     });
     let ordre = cartesDeSession(sansDoublons(pool));
     if(!ordre.length) ordre = pool;
+    // v1031 : LES EXCEPTIONS ESPAGNOLES, RARES. Jacques, 30 oct. 2026 : « ne pas en mettre 3
+    // consecutifs [...] vu que c'est exceptionnel, ca devrait etre mis tres sporadiquement ».
+    // Deux au plus par serie de 30 (el idioma, la mano), jamais cote a cote : voir plus bas.
+    let exceptionsPrises = 0;
+    const exceptionDe = item => !!exceptionGenreEspagnol(item.word[0], item.word[1]);
+    const admis = item => !exceptionDe(item) || exceptionsPrises < QUIZ_ARTICLE_EXCEPTIONS_MAX;
+    const prendre = (g, item) => { if(exceptionDe(item)) exceptionsPrises++; parGenre[g].push(item); };
     ordre.forEach(item => {
         const g = item.word[1];
-        if(parGenre[g] && parGenre[g].length < QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) parGenre[g].push(item);
+        if(parGenre[g] && parGenre[g].length < QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length && admis(item)) prendre(g, item);
     });
     // Le reservoir peut manquer d'un genre (« das » est le plus rare) : on
     // complete depuis le pool entier plutot que de servir une serie desequilibree
@@ -40243,10 +40262,22 @@ function startQuizArticle(){
         if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) return;
         for(const item of pool){
             if(parGenre[g].length >= QUIZ_ARTICLE_TAILLE / QUIZ_ARTICLE_GENRES.length) break;
-            if(item.word[1] === g && parGenre[g].indexOf(item) < 0) parGenre[g].push(item);
+            if(item.word[1] === g && parGenre[g].indexOf(item) < 0 && admis(item)) prendre(g, item);
         }
     });
-    const choix = shuffleArray([].concat(...QUIZ_ARTICLE_GENRES.map(g => parGenre[g])));
+    let choix = shuffleArray([].concat(...QUIZ_ARTICLE_GENRES.map(g => parGenre[g])));
+    // Les exceptions retenues, espacees : la premiere dans le premier tiers, la seconde dans
+    // le dernier, jamais deux de suite.
+    const rares = choix.filter(exceptionDe);
+    if(rares.length){
+        choix = choix.filter(item => !exceptionDe(item));
+        const tiers = Math.max(1, Math.floor(choix.length / 3));
+        rares.forEach((item, k) => {
+            const debut = k === 0 ? 2 : choix.length - tiers;
+            const pos = Math.min(choix.length, debut + Math.floor(Math.random() * tiers));
+            choix.splice(pos, 0, item);
+        });
+    }
     const liste = construireQuizArticle(choix);
     if(!liste.length){ showInfoToast(t('alert_no_words_available')); return; }
     startExerciseSet(liste, "kicker_quiz_article",
@@ -48152,7 +48183,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1030;
+const APP_VERSION = 1031;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -52634,7 +52665,7 @@ function anneauDuPalier(bloc, multiple){
         + '<circle class="mpa-piste" cx="27" cy="27" r="' + R + '" fill="none" stroke="rgba(28,36,48,.10)" stroke-width="5"/>'
         + '<circle class="mpa-arc" cx="27" cy="27" r="' + R + '" fill="none" stroke="url(#mpaDegrade)" stroke-width="5" stroke-linecap="round"'
         + ' transform="rotate(-90 27 27)" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + C.toFixed(1) + '"/></svg>'
-        + '<b>' + fait + '</b><small>/' + cible + '</small><span class="mpa-fois">×' + multiple + '</span>';
+        + '<b' + (String(fait).length >= 3 ? ' class="long"' : '') + '>' + fait + '</b><small>/' + cible + '</small><span class="mpa-fois">×' + multiple + '</span>';
     bloc.appendChild(a);
     const arc = a.querySelector(".mpa-arc"), fois = a.querySelector(".mpa-fois");
     const poser = p => arc.setAttribute("stroke-dashoffset", (C * (1 - Math.min(1, p))).toFixed(1));
