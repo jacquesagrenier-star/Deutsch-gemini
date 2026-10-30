@@ -504,7 +504,7 @@ def construire(jeu, variantes=None):
     for l in bilan:
         print("Niveaux -- " + l)
     print("Niveaux -- %d mots-outils, %d feuilles de conjugaison, %d series par temps (%d questions)" % (nfo, nco, nte, qte))
-    print("Niveaux -- %d questions de temps tirees des phrases des cartes (series_temps.py)" % nsup)
+    print("Niveaux -- %d questions ajoutees aux series (series_<niv>.py, et series_temps.py qui les tire des phrases des cartes)" % nsup)
     p = os.path.join(ICI, "rapport_niveaux.txt")
     with io.open(p, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(RAPPORT) + "\n")
