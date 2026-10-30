@@ -1799,6 +1799,7 @@ body[data-theme="dark"] .xp-pill{
     border-color:rgba(232,162,58,.55);
 }
 
+.combo-pill[role="button"]{cursor:pointer;}   /* v1039 : il s'explique au toucher (expliquerCombo) */
 body[data-theme="dark"] .combo-pill{
     color:#ffb27a;
     background:rgba(234,88,12,.2);
@@ -7962,7 +7963,13 @@ body[data-theme="dark"] button.back{background:rgba(20,36,50,.6) !important; col
    boutons de l'accueil (v1010) : disque sombre en degrade, texte blanc ; ambre la nuit, texte encre
    (Jacques : « il devrait etre selon les standards » ; « noir avec l'interieur blanc, comme toutes les
    choses qu'on peut activer dans la page d'accueil »). */
-#home .explorer-tout{color:#fff !important; border-radius:999px !important; padding:5px 13px !important; font-size:14px; align-self:center;
+/* v1039 : plus petit, aligne sur le bord droit des ▶ d'Ecouter et de Mes episodes (12 px en retrait),
+   et decolle des vignettes (Jacques : « trop gros [...] colle sur un des medaillons [...] il devrait etre
+   aligne avec les boutons de play »). Centre en hauteur sur le titre « Explorer les scenes » (« il faut
+   que ce soit aligne ») : la rangee se centre, et l'air avant les vignettes est pris sous la rangee. */
+#home .explorer-haut{align-items:center !important; padding-bottom:8px;}
+#home .explorer-tout{color:#fff !important; border-radius:999px !important; padding:3px 10px 4px !important; font-size:12.5px; line-height:1.2;
+    align-self:center; margin-inline-end:12px;
     background:linear-gradient(180deg, rgba(52,48,44,.86) 0%, rgba(18,16,14,.92) 50%, rgba(6,5,4,.96) 100%) !important;
     box-shadow:inset 0 0 0 2px rgba(0,0,0,.35), inset 0 0 14px rgba(255,255,255,.16), inset 0 1.5px 0 rgba(255,255,255,.55), 0 6px 14px rgba(20,16,10,.22) !important;}
 body[data-theme="dark"] #home .explorer-tout{color:#2A1A05 !important;
@@ -8436,7 +8443,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1038</span>
+        <span class="subtitle-version">v1039</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -11371,7 +11378,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
             <h2 id="flashThemeTitle">Cartes</h2>
         </div>
         <div class="title-row-pills">
-            <div class="pill combo-pill hidden" id="comboPillFlash">🔥 x<span id="comboCountFlash">0</span></div>
+            <div class="pill combo-pill hidden" id="comboPillFlash" role="button" tabindex="0" onclick="expliquerCombo()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); expliquerCombo();}" data-i18n-aria-label="combo_info" aria-label="Bonnes réponses de suite">⚡ ×<span id="comboCountFlash">0</span></div>
             <!-- v982 : LE MODE TRANSIT, deux boutons. Voir basculerTransit(). -->
             <button type="button" class="tr-btn" id="trMicroBtn" onclick="basculerTransit('micro')" aria-pressed="false"
                     data-i18n-aria-label="tr_btn_micro" aria-label="Couper ou rétablir le micro"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/><path class="tr-coupe" d="M3 3l18 18"/></svg></button>
@@ -11807,7 +11814,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
             <h2 id="exerciseKicker" style="white-space:pre-line">Verbes · Präsens</h2>
         </div>
         <div class="title-row-pills">
-            <div class="pill combo-pill hidden" id="comboPillExercise">🔥 x<span id="comboCountExercise">0</span></div>
+            <div class="pill combo-pill hidden" id="comboPillExercise" role="button" tabindex="0" onclick="expliquerCombo()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault(); expliquerCombo();}" data-i18n-aria-label="combo_info" aria-label="Bonnes réponses de suite">⚡ ×<span id="comboCountExercise">0</span></div>
             <div class="pill" id="counter">1 / 5</div>
         </div>
     </div>
@@ -14218,6 +14225,7 @@ const I18N = {
         legende_mosaique: "Le tableau — il commence en gros carreaux de couleur, et chaque carte en affine un, révision comprise. Le peintre, l'année et le titre apparaissent à mesure. Touche-le pour l'agrandir.",
         legende_jours: "Jours travaillés — le total des journées où tu as fait quelque chose. Il ne redescend jamais, même après des vacances.",
         legende_serie: "🔥 jours — le nombre de jours d'affilée où tu as travaillé, vocabulaire ou grammaire. Un jour sauté le ramène à zéro.",
+        combo_info: "⚡ Bonnes réponses de suite, dans cette séance. Une réponse fausse remet le compteur à zéro. (La 🔥 de l'accueil, elle, compte les jours d'affilée.)",
         legende_cercle: "◯ le cercle ci-dessus — où tu en es d'un niveau entier. Il avance d'une fraction de pour cent par mot et ne bouge pas avant le 11ᵉ jour : c'est normal, et c'est pour ça qu'il est rangé ici plutôt qu'à l'accueil. Touche-le pour changer de niveau.",
         legende_semaine: "📈 cette semaine — les mots devenus maîtrisés dans les sept derniers jours. C'est ta vitesse récente, pas un total.",
         legende_objectif: "La barre « Aujourd'hui » — les cartes faites depuis ce matin, sur ton objectif. Elle repart à zéro chaque jour. Le nombre visé se change dans les réglages, et il donne aussi la taille de ta séance.",
@@ -15725,6 +15733,7 @@ const I18N = {
         legende_mosaique: "The painting — it starts as large squares of colour, and every card makes one of them finer, reviews included. Painter, year and title appear as you go. Tap it to enlarge.",
         legende_jours: "Days worked — the total number of days you did something. It never goes down, not even after a holiday.",
         legende_serie: "🔥 days — days in a row you have worked, vocabulary or grammar. Miss a day and it goes back to zero.",
+        combo_info: "⚡ Correct answers in a row, in this session. A wrong answer resets the count. (The 🔥 on the home screen counts days in a row.)",
         legende_cercle: "◯ the circle above — how far you are through a whole level. It moves by a fraction of a percent per word and doesn't budge before day 11: that's normal, and that's why it lives here rather than on the home screen. Tap it to change level.",
         legende_semaine: "📈 this week — the words you have mastered in the last seven days. It is your recent speed, not a total.",
         legende_objectif: "The “Today” bar — cards done since this morning, out of your goal. It resets every day. The target is set in the settings, and it also sets the size of your session.",
@@ -17234,6 +17243,7 @@ const I18N = {
         legende_mosaique: "Tablo — iri renk kareleriyle başlar, her kart bunlardan birini inceltir, tekrarlar dahil. Ressam, yıl ve başlık yavaşça belirir. Büyütmek için dokun.",
         legende_jours: "Çalışılan gün — bir şeyler yaptığın günlerin toplamı. Tatilden sonra bile hiç azalmaz.",
         legende_serie: "🔥 gün — kelime ya da dilbilgisi, üst üste çalıştığın gün sayısı. Bir gün atlarsan sıfırlanır.",
+        combo_info: "⚡ Bu oturumda art arda doğru cevaplar. Yanlış bir cevap sayacı sıfırlar. (Ana ekrandaki 🔥 ise üst üste günleri sayar.)",
         legende_cercle: "◯ yukarıdaki halka — bütün bir seviyede nerede olduğun. Kelime başına yüzdenin küçük bir kesri kadar ilerler ve 11. günden önce kıpırdamaz: bu normaldir, zaten bu yüzden ana ekranda değil burada. Seviye değiştirmek için dokun.",
         legende_semaine: "📈 bu hafta — son yedi günde öğrendiğin kelimeler. Bu, toplam değil, son hızındır.",
         legende_objectif: "“Bugün” çubuğu — bu sabahtan beri yapılan kartlar, hedefine oranla. Her gün sıfırlanır. Hedef ayarlardan değişir ve oturumunun boyutunu da belirler.",
@@ -19513,6 +19523,7 @@ const I18N = {
         legende_mosaique: "Картина — вона починається з великих кольорових квадратів, і кожна картка робить один із них дрібнішим, разом із повтореннями. Художник, рік і назва з'являються поступово. Торкнися, щоб збільшити.",
         legende_jours: "Днів праці — загальна кількість днів, коли ти щось робив. Воно ніколи не зменшується, навіть після відпустки.",
         legende_serie: "🔥 днів — скільки днів поспіль ти працював, лексика чи граматика. Пропущений день повертає до нуля.",
+        combo_info: "⚡ Правильні відповіді поспіль у цьому сеансі. Неправильна відповідь обнуляє лічильник. (🔥 на головному екрані рахує дні поспіль.)",
         legende_cercle: "◯ коло вище — де ти на цілому рівні. Воно рухається на частку відсотка за слово і не зрушить до 11-го дня: це нормально, тому воно тут, а не на головній. Торкнись, щоб змінити рівень.",
         legende_semaine: "📈 цього тижня — слова, які ти засвоїв за останні сім днів. Це твоя нинішня швидкість, а не загальна сума.",
         legende_objectif: "Смужка «Сьогодні» — картки, зроблені від ранку, з твоєї цілі. Щодня обнуляється. Ціль змінюється в налаштуваннях і водночас задає розмір сеансу.",
@@ -20729,6 +20740,7 @@ const I18N = {
         legende_mosaique: "تابلو — با مربع‌های بزرگ رنگی آغاز می‌شود و هر کارت یکی از آن‌ها را ریزتر می‌کند، مرور هم حساب است. نام نقاش، سال و عنوان کم‌کم پدیدار می‌شوند. برای بزرگ‌نمایی روی آن بزن.",
         legende_jours: "روز کار — مجموع روزهایی که کاری کرده‌ای. هرگز کم نمی‌شود، حتی پس از تعطیلات.",
         legende_serie: "🔥 روز — چند روز پیاپی کار کرده‌ای، واژگان یا دستور. یک روز غیبت آن را به صفر برمی‌گرداند.",
+        combo_info: "⚡ پاسخ‌های درستِ پشت سر هم در این جلسه. یک پاسخ نادرست شمارنده را صفر می‌کند. (🔥 صفحهٔ اصلی روزهای پیاپی را می‌شمارد.)",
         legende_cercle: "◯ دایرهٔ بالا — جای تو در یک سطح کامل. به ازای هر واژه کسری از درصد پیش می‌رود و پیش از روز یازدهم تکان نمی‌خورد: طبیعی است، و به همین دلیل اینجاست نه در صفحهٔ خانه. برای تغییر سطح لمسش کن.",
         legende_semaine: "📈 این هفته — واژه‌هایی که در هفت روز گذشته آموخته‌ای. این سرعت کنونی توست، نه یک جمع کل.",
         legende_objectif: "نوار «امروز» — کارت‌هایی که از صبح انجام داده‌ای، از هدف تو. هر روز صفر می‌شود. هدف در تنظیمات تغییر می‌کند و اندازهٔ جلسه را هم تعیین می‌کند.",
@@ -22302,6 +22314,7 @@ const I18N = {
         legende_mosaique: "اللوحة — تبدأ بمربّعات لونية كبيرة، وكل بطاقة تجعل واحداً منها أدقّ، بما فيها المراجعات. ويظهر الرسّام والسنة والعنوان تباعاً. المسها لتكبيرها.",
         legende_jours: "أيام العمل — مجموع الأيام التي فعلت فيها شيئاً. لا ينزل أبداً، ولو بعد إجازة.",
         legende_serie: "🔥 أيام — عدد الأيام المتتالية التي عملت فيها، مفردات أو قواعد. ويوم واحد فائت يعيده إلى الصفر.",
+        combo_info: "⚡ إجابات صحيحة متتالية في هذه الجلسة. أي إجابة خاطئة تعيد العدّاد إلى الصفر. (أما 🔥 في الصفحة الرئيسية فتعدّ الأيام المتتالية.)",
         legende_cercle: "◯ الدائرة أعلاه — أين أنت من مستوى كامل. تتقدّم بجزء من المئة عن كل كلمة ولا تتحرّك قبل اليوم الحادي عشر: هذا طبيعي، ولهذا وُضعت هنا لا في الصفحة الرئيسية. المسها لتغيير المستوى.",
         legende_semaine: "📈 هذا الأسبوع — الكلمات التي صارت متقَنة في الأيام السبعة الأخيرة. هذه سرعتك الأخيرة، لا مجموع.",
         legende_objectif: "شريط «اليوم» — البطاقات المنجزة منذ الصباح، من أصل هدفك. يعود إلى الصفر كل يوم. ويُغيَّر العدد المنشود في الإعدادات، وهو أيضاً ما يحدّد حجم جلستك.",
@@ -23437,6 +23450,7 @@ const I18N = {
         legende_mosaique: "O quadro — ele começa em grandes quadrados de cor, e cada carta deixa um deles mais fino, revisões incluídas. O pintor, o ano e o título aparecem aos poucos. Toque nele para ampliar.",
         legende_jours: "Dias de estudo — o total de dias em que você fez alguma coisa. Ele nunca diminui, nem depois das férias.",
         legende_serie: "🔥 dias — o número de dias seguidos em que você estudou, vocabulário ou gramática. Um dia pulado o leva de volta a zero.",
+        combo_info: "⚡ Respostas certas seguidas nesta sessão. Uma resposta errada zera o contador. (A 🔥 da tela inicial conta os dias seguidos.)",
         legende_cercle: "◯ o círculo acima — onde você está num nível inteiro. Ele avança uma fração de por cento por palavra e não se mexe antes do 11º dia: é normal, e é por isso que ele fica aqui e não na tela inicial. Toque nele para mudar de nível.",
         legende_semaine: "📈 esta semana — as palavras que você dominou nos últimos sete dias. É a sua velocidade recente, não um total.",
         legende_objectif: "A barra “Hoje” — as cartas feitas desde a manhã, em relação à sua meta. Ela volta a zero todo dia. O número desejado se muda nas configurações, e ele também define o tamanho da sua sessão.",
@@ -25007,6 +25021,7 @@ const I18N = {
         legende_mosaique: "Obraz — zaczyna się od dużych kolorowych kwadratów, a każda karta jeden z nich wyostrza, powtórki też. Malarz, rok i tytuł pojawiają się stopniowo. Dotknij, żeby powiększyć.",
         legende_jours: "Dni nauki — łączna liczba dni, w których coś zrobiłeś(-aś). Nigdy nie spada, nawet po wakacjach.",
         legende_serie: "🔥 dni — liczba dni z rzędu, w których się uczyłeś(-aś), słownictwa albo gramatyki. Jeden opuszczony dzień i licznik wraca do zera.",
+        combo_info: "⚡ Poprawne odpowiedzi z rzędu w tej sesji. Błędna odpowiedź zeruje licznik. (🔥 na ekranie głównym liczy dni z rzędu.)",
         legende_cercle: "◯ koło powyżej — w którym miejscu całego poziomu jesteś. Posuwa się o ułamek procenta na słowo i nie drgnie przed 11. dniem: to normalne i dlatego jest tutaj, a nie na ekranie głównym. Dotknij go, żeby zmienić poziom.",
         legende_semaine: "📈 w tym tygodniu — słowa opanowane w ciągu ostatnich siedmiu dni. To twoje ostatnie tempo, nie suma.",
         legende_objectif: "Pasek „Dziś” — karty zrobione od rana, względem twojego celu. Codziennie wraca do zera. Docelową liczbę zmienisz w ustawieniach; wyznacza ona też wielkość twojej sesji.",
@@ -26577,6 +26592,7 @@ const I18N = {
         legende_mosaique: "Картина — она начинается с крупных цветных квадратов, и каждая карточка делает один из них мельче, повторения тоже. Художник, год и название появляются постепенно. Нажми на неё, чтобы увеличить.",
         legende_jours: "Дни занятий — общее число дней, когда ты что-то делал(а). Оно никогда не уменьшается, даже после отпуска.",
         legende_serie: "🔥 дн. — сколько дней подряд ты занимаешься, словами или грамматикой. Пропущенный день обнуляет счёт.",
+        combo_info: "⚡ Правильные ответы подряд в этом занятии. Неверный ответ обнуляет счётчик. (🔥 на главном экране считает дни подряд.)",
         legende_cercle: "◯ круг выше — где ты сейчас на целом уровне. Он сдвигается на доли процента за слово и не двигается до 11-го дня: это нормально, и поэтому он здесь, а не на главном экране. Нажми на него, чтобы сменить уровень.",
         legende_semaine: "📈 на этой неделе — слова, выученные за последние семь дней. Это твоя скорость в последнее время, а не общий итог.",
         legende_objectif: "Полоска «Сегодня» — карточки, сделанные с утра, относительно твоей цели. Каждый день она начинается с нуля. Число меняется в настройках, и оно же задаёт размер твоего занятия.",
@@ -37110,6 +37126,14 @@ function resetCombo(){
 // Le XP lui-même n'est plus affiché nulle part (v130) -- il reste calculé en
 // coulisses uniquement pour alimenter les badges (voir checkAndUnlockBadges),
 // jugé redondant avec "Cette semaine" qui compte déjà les bonnes réponses.
+// v1039 : LE COMPTEUR S'EXPLIQUE AU TOUCHER, ET PREND UN ECLAIR. Jacques, 30 oct. 2026 : « qu'est-ce que
+// veut dire la petite flamme x2 parce que moi, j'ai 14 jours en ligne » -- la meme 🔥 disait deux choses.
+// La flamme reste aux jours d'affilee ; ici, un eclair (« Ok pour l'eclair »), et « quand on pose le
+// doigt dessus, que ca nous indique ce que ca veut dire ».
+function expliquerCombo(){
+    try{ showInfoToast(t("combo_info")); }catch(e){}
+}
+
 function updateXpComboDisplay(){
     [
         { pill: "comboPillFlash", num: "comboCountFlash" },
@@ -48234,7 +48258,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1038;
+const APP_VERSION = 1039;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
