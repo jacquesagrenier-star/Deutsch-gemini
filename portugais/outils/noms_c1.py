@@ -339,7 +339,7 @@ a venda direta | la vente directe | A venda direta rende mais do que o atacado. 
 a zona de alta pressão | l'anticyclone | Uma zona de alta pressão traz duas semanas tranquilas. | Un anticyclone apporte deux semaines calmes. | pl=zonas de alta pressão
 a zona de baixa pressão | la dépression | A zona de baixa pressão está a passar pelo Mar do Norte. | La dépression passe au-dessus de la mer du Nord. | g? | pl=zonas de baixa pressão
 a área cultivada | la surface cultivée | A área cultivada de trigo encolheu. | La surface cultivée en blé a diminué. | g? | pl=áreas cultivadas
-a área livre | l'espace de sortie, parcours | As galinhas ficam soltas todo dia. | Les poules ont un parcours extérieur chaque jour. | g? | pl=áreas livres | ex?
+a área livre | l'espace de sortie, parcours | As galinhas ficam soltas todos os dias. | Les poules ont un parcours extérieur chaque jour. | g? | pl=áreas livres | ex?
 a época de reprodução | la période de nidification | Na época de reprodução o caminho fica fechado. | Pendant la nidification, le chemin reste fermé. | pl=épocas de reprodução
 """,
 "viagens_c1_pt": """
@@ -347,7 +347,7 @@ o cancelamento da viagem | l'annulation de voyage | O seguro só cobre o cancela
 o circuito | le circuit | O circuito passa por quatro países. | Le circuit traverse quatre pays.
 o despacho de bagagem | l'enregistrement des bagages | O despacho de bagagem fecha quarenta minutos antes do voo. | L'enregistrement des bagages ferme quarante minutes avant le départ. | pl=despachos de bagagem
 o desvio | la déviation | O desvio passa por três vilarejos. | La déviation passe par trois villages.
-o estreitamento | le goulet, passage étroit | No estreitamento engarrafa toda manhã. | Au goulet, ça bouchonne chaque matin.
+o estreitamento | le goulet, passage étroit | No estreitamento engarrafa todas as manhãs. | Au goulet, ça bouchonne chaque matin.
 a etapa de expansão | la phase d'aménagement | A segunda etapa de expansão ainda não tem financiamento. | La deuxième phase d'aménagement n'est pas encore financée. | g? | pl=etapas de expansão
 a frequência | le cadencement | Uma frequência maior ajudaria mais do que comboios novos. | Un cadencement plus serré apporterait plus que de nouveaux trains.
 a infraestrutura de recarga | l'infrastructure de recharge | Sem infraestrutura de recarga o melhor carro não serve para nada. | Sans infrastructure de recharge, la meilleure voiture ne sert à rien. | pl=infraestruturas de recarga
@@ -357,7 +357,7 @@ o número de passageiros | le nombre de voyageurs | O número de passageiros vol
 o pacote de viagem | le voyage à forfait | Num pacote de viagem a operadora responde por tudo. | Dans un voyage à forfait, l'organisateur répond de tout. | pl=pacotes de viagem
 a preferência | la priorité | Quem vem da direita tem a preferência, mesmo sem placa. | La priorité vient de droite, même sans panneau. | g?
 a proibição de circular | l'interdiction de circuler | Para carros a diesel antigos vale uma proibição de circular. | Une interdiction de circuler s'applique aux vieux diesels. | pl=proibições de circular
-a regra de entrada | la condition d'entrée | As regras de entrada mudam quase todo mês. | Les conditions d'entrée changent presque tous les mois. | pl=regras de entrada
+a regra de entrada | la condition d'entrée | As regras de entrada mudam quase todos os meses. | Les conditions d'entrée changent presque tous les mois. | pl=regras de entrada
 a remarcação | le changement de réservation | Uma remarcação custa mais do que o voo. | Un changement de réservation coûte plus cher que le vol. | pl=remarcações
 a rota alternativa | l'itinéraire de contournement | A rota alternativa é mais longa, mas mais confiável. | L'itinéraire de contournement est plus long, mais plus fiable. | g? | pl=rotas alternativas
 a segurança no trânsito | la sécurité routière | A segurança no trânsito melhorou muito desde os anos oitenta. | La sécurité routière s'est fortement améliorée depuis les années quatre-vingt. | g? | pl=seguranças nos trânsitos
@@ -406,7 +406,7 @@ a recaída | la rechute | Depois de dois anos houve uma recaída. | Au bout de d
 o regimento escolar | le règlement intérieur | O regimento da escola fica pendurado ao lado da entrada. | Le règlement intérieur est affiché près de l'entrée. | pl=regimentos escolares | ex?
 a reprodutibilidade | la reproductibilité | A reprodutibilidade do experimento nunca foi verificada. | La reproductibilité de l'expérience n'a jamais été vérifiée. | g?
 a verificação | la vérification, contrôle | O resultado indicava uma segunda verificação. | Le résultat suggérait un second contrôle. | pl=verificações
-a vigilância do recreio | la surveillance de récréation | A vigilância do recreio muda toda semana. | La surveillance de récréation change chaque semaine. | g? | pl=vigilâncias do recreio
+a vigilância do recreio | la surveillance de récréation | A vigilância do recreio muda todas as semanas. | La surveillance de récréation change chaque semaine. | g? | pl=vigilâncias do recreio
 """,
 "cultura_c1_pt": """
 a anacruse | l'anacrouse ; coup d'envoi | A anacruse já dá o andamento inteiro. | L'anacrouse donne déjà tout le tempo. | g?
@@ -527,7 +527,7 @@ a naturalidade | la désinvolture, ton anodin | Ele mencionou a demissão com um
 o opinião pública | l'opinion publique, sphère publique | O relatório nunca foi apresentado ao público. | Le rapport n'a jamais été présenté au public. | pl=opiniões públicas | ex?
 o progresso no aprendizado | le progrès d'apprentissage | O progresso no aprendizado é difícil de traduzir em notas. | Le progrès d'apprentissage se laisse difficilement traduire en notes. | pl=progressos nos aprendizados
 o regulamento de provas | le règlement des examens | O regulamento só permite refazer a prova duas vezes. | Le règlement des examens ne prévoit que deux redoublements. | pl=regulamentos de provas | ex?
-o relatório de análise | le rapport d'analyse | O relatório de análise chega toda segunda. | Le rapport d'analyse arrive chaque lundi. | pl=relatórios de análise
+o relatório de análise | le rapport d'analyse | O relatório de análise chega todas as segundas. | Le rapport d'analyse arrive chaque lundi. | pl=relatórios de análise
 a tagarelice | la loquacité | A tagarelice dele cansou todo mundo na mesa. | Sa loquacité a fatigué toute la tablée. | g?
 a taxa de transferência | le débit de transmission | A taxa de transferência despenca à noite. | Le débit s'effondre le soir. | g? | pl=taxas de transferência
 o termo técnico | le terme technique | O texto está cheio de termos técnicos que ninguém explica. | Le texte est plein de termes techniques que personne n'explique. | pl=termos técnicos
@@ -660,7 +660,7 @@ o voto de confiança | la question de confiance | Ele pediu um voto de confianç
 o êxodo | l'exode, départ (d'une région) | O êxodo dos jovens esvazia vilarejos inteiros. | L'exode des jeunes vide des villages entiers.
 """,
 "lei_c1_pt": """
-o agente de liberdade condicional | l'agent de probation | O agente de liberdade condicional faz contacto todo mês. | L'agent de probation prend contact chaque mois. | pl=agentes de liberdade condicional
+o agente de liberdade condicional | l'agent de probation | O agente de liberdade condicional faz contacto todos os meses. | L'agent de probation prend contact chaque mois. | pl=agentes de liberdade condicional
 a ajuda para a reconstrução | l'aide à la reconstruction | A ajuda para a reconstrução chegou tarde e em parcelas. | L'aide à la reconstruction est venue tard et par tranches. | g? | pl=ajudas paras as reconstruções
 a ameaça | la menace | A ameaça foi subestimada por muito tempo. | La menace a longtemps été sous-estimée. | g?
 a apelação | l'appel (recours) | Foi interposta apelação contra a sentença. | Un appel a été interjeté contre le jugement. | pl=apelações

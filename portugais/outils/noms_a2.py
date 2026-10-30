@@ -107,7 +107,7 @@ a hora extra | l'heure supplémentaire | Ele fez muitas horas extras. | Il a fai
 o mecânico | le mécanicien | O mecânico conserta o meu carro. | Le mécanicien répare ma voiture.
 o meio período | le temps partiel | Ela trabalha meio período desde o ano passado. | Elle travaille à temps partiel depuis l'année dernière. | pl=meios períodos
 o modelo | le mannequin | Ela trabalha como modelo em Milão. | Elle travaille comme mannequin à Milan.
-o músico | le musicien | O músico ensaia todo dia. | Le musicien s'exerce tous les jours.
+o músico | le musicien | O músico ensaia todos os dias. | Le musicien s'exerce tous les jours.
 a oficina | l'atelier (formation) | Deixei o carro na oficina. | J'ai laissé la voiture au garage. | g?
 o orçamento | le budget, le devis | O orçamento está alto demais. | Le devis est trop élevé.
 o pedido | la commande | O seu pedido chega amanhã. | Votre commande arrive demain.
@@ -139,7 +139,7 @@ o brócolis | le brocoli | A minha filha come brócolis sem reclamar. | Ma fille
 a cafeteira | la machine à café | De manhã, ligo a cafeteira. | Le matin, j'allume la machine à café.
 a cereja | la cerise | As cerejas são minha fruta favorita. | Les cerises sont mon fruit préféré.
 o champignon | le champignon de Paris | Faço uma omelete com champignons. | Je fais une omelette aux champignons.
-o chocolate | le chocolat | Eu como um pedaço de chocolate todo dia. | Je mange un carré de chocolat chaque jour. | g?
+o chocolate | le chocolat | Eu como um pedaço de chocolate todos os dias. | Je mange un carré de chocolat chaque jour. | g?
 o coco | la noix de coco | É difícil abrir um coco. | C'est difficile d'ouvrir une noix de coco.
 a colher de pau | la cuillère en bois | Eu mexo com a colher de pau. | Je remue avec la cuillère en bois. | g? | pl=colheres de pau
 a compota | la confiture | A compota tem gosto de morango. | La confiture a un goût de fraises. | g?
@@ -225,7 +225,7 @@ a estante de livros | la bibliothèque (meuble) | A estante de livros está chei
 a fechadura | la serrure | Trocaram a fechadura na semana passada. | Ils ont changé la serrure la semaine dernière.
 a ferramenta | l'outil | Ele guarda as ferramentas na garagem. | Il range les outils dans le garage.
 o ferro | le fer | A grade é de ferro. | La grille est en fer.
-o financiamento imobiliário | le prêt immobilier | Pagamos o financiamento todo mês. | Nous payons le prêt chaque mois. | pl=financiamentos imobiliários | ex?
+o financiamento imobiliário | le prêt immobilier | Pagamos o financiamento todos os meses. | Nous payons le prêt chaque mois. | pl=financiamentos imobiliários | ex?
 a fita adesiva | le ruban adhésif | Cole o papel com fita adesiva. | Colle le papier avec du ruban adhésif. | pl=fitas adesivas
 a furadeira | la perceuse | Preciso da furadeira para pendurar a estante. | J'ai besoin de la perceuse pour fixer l'étagère.
 """,
@@ -262,7 +262,7 @@ o pôster | le poster | No meu quarto há um pôster da minha banda favorita. | 
 o radiador | le radiateur | O radiador fica embaixo da janela. | Le radiateur est sous la fenêtre.
 a reforma | les travaux | O apartamento está em reforma. | L'appartement est en travaux.
 o sabão | la lessive | O sabão acabou. | La lessive est finie. | pl=sabões
-a sala | le salon, séjour | Na sala tem um sofá grande. | Il y a un grand canapé dans le salon.
+a sala | le salon, séjour | Na sala há um sofá grande. | Il y a un grand canapé dans le salon.
 a tarefas domésticas | le ménage, tâches ménagères | Nas tarefas de casa todo mundo ajuda. | Tout le monde aide aux tâches ménagères. | pl=tarefas domésticas | ex?
 o tecido | le tissu | É um tecido muito macio. | C'est un tissu très doux.
 a tesoura | les ciseaux | Passa-me a tesoura, por favor. | Donne-moi les ciseaux, s'il te plaît. | g?
@@ -303,7 +303,7 @@ o hábito | l'habitude | É um bom hábito. | C'est une bonne habitude.
 o lenço | le mouchoir |  |  | ex=?
 o lábio | la lèvre | Com o frio os meus lábios racham. | Avec le froid, j'ai les lèvres gercées.
 a maca | la table d'examen | A médica pede que ele deite-se na maca. | La médecin lui demande de s'allonger sur la table d'examen.
-a meditação | la méditation | Ele pratica meditação toda manhã. | Il pratique la méditation chaque matin. | pl=meditações
+a meditação | la méditation | Ele pratica meditação todas as manhãs. | Il pratique la méditation chaque matin. | pl=meditações
 a morte | la mort | Depois da morte do pai ele mudou-se. | Après la mort de son père, il a déménagé.
 a nuca | la nuque | Estou com frio na nuca: onde está o meu cachecol? | J'ai froid à la nuque : où est mon écharpe ?
 a operação | l'opération | A operação correu bem. | L'opération s'est bien passée. | pl=operações
@@ -361,7 +361,7 @@ a tatuagem | le tatouage | O meu irmão tem uma tatuagem no braço. | Mon frère
 o zíper | la fermeture éclair | O zíper está quebrado. | La fermeture éclair est cassée.
 """,
 "natureza_a2_pt": """
-o anão | le nain | No jardim tem um anãozinho. | Il y a un petit nain dans le jardin. | pl=anões | ex?
+o anão | le nain | No jardim há um anãozinho. | Il y a un petit nain dans le jardin. | pl=anões | ex?
 o arco-íris | l'arc-en-ciel | O arco-íris é colorido. | L'arc-en-ciel est coloré. | g? | pl=arcos-íris
 a baleia | la baleine | A baleia é o maior animal do mar. | La baleine est le plus grand animal de la mer. | g?
 a borboleta | le papillon | A borboleta voa de flor em flor. | Le papillon vole de fleur en fleur. | g?
@@ -391,7 +391,7 @@ o incêndio | l'incendie | Houve um incêndio na floresta. | Il y a eu un incend
 o lobo | le loup | Os lobos voltaram a viver nesta floresta. | Des loups vivent de nouveau dans cette forêt.
 a margem | la rive | Na margem há muitos pássaros. | Beaucoup d'oiseaux sont assis sur la rive.
 o monte | le mont, la colline | Há um monte de trabalho. | Il y a un tas de travail.
-o ninho | le nid | Na árvore tem um ninho com quatro ovos. | Il y a un nid avec quatre œufs dans l'arbre.
+o ninho | le nid | Na árvore há um ninho com quatro ovos. | Il y a un nid avec quatre œufs dans l'arbre.
 o orvalho | la rosée | De manhã tem orvalho na grama. | La rosée est sur l'herbe le matin.
 o ouriço | l'hérisson | O ouriço enrola-se. | Le hérisson se met en boule.
 a paisagem | le paysage | A paisagem daqui é linda. | Le paysage d'ici est magnifique.
@@ -471,7 +471,7 @@ o leste | l'est | O sol nasce no leste. | Le soleil se lève à l'est.
 a mapa da cidade | le plan de la ville | Sem mapa da cidade eu não acho o caminho. | Sans plan de la ville, je ne trouve pas le chemin. | g? | pl=mapas da cidade
 o motor | le moteur | O motor está a fazer um barulho estranho. | Le moteur fait un bruit étrange.
 a máquina de bilhetes | le distributeur de billets | A máquina de bilhetes fica embaixo, no saguão. | Le distributeur de billets se trouve en bas dans le hall. | g? | pl=máquinas de bilhetes
-o navio | le bateau, le navire | O navio parte toda manhã. | Le bateau part tous les matins.
+o navio | le bateau, le navire | O navio parte todas as manhãs. | Le bateau part tous les matins.
 o norte | le nord | Moramos no norte do país. | Nous habitons dans le nord du pays.
 o oeste | l'ouest | A costa oeste é muito bonita. | La côte ouest est très belle.
 a onda | la vague | Hoje tem ondas grandes. | Aujourd'hui il y a de grandes vagues.
@@ -518,7 +518,7 @@ o envelope | l'enveloppe | Coloque a carta no envelope. | Mets la lettre dans l'
 o envio | l'envoi | O envio leva três dias. | L'envoi prend trois jours.
 o formulário | le formulaire | Preencha o formulário, por favor. | Remplissez le formulaire, s'il vous plaît.
 o guichê | le guichet | Vá ao guichê número quatro. | Allez au guichet numéro quatre.
-o imposto | l'impôt | Os impostos sobem todo ano. | Les impôts augmentent chaque année.
+o imposto | l'impôt | Os impostos sobem todos os anos. | Les impôts augmentent chaque année.
 o juro | l'intérêt | O juro é muito baixo. | L'intérêt est très bas.
 a loja de departamentos | le grand magasin | A loja de departamentos tem cinco andares. | Le grand magasin a cinq étages. | g? | pl=lojas de departamentos
 o lugar | le lieu, l'endroit | É um lugar tranquilo para ler. | C'est un endroit tranquille pour lire.
@@ -526,7 +526,7 @@ o meio | le milieu, centre | O hotel fica no meio da cidade. | L'hôtel se trouv
 o multibanco | le distributeur | Saco dinheiro no multibanco. | Je retire de l'argent au distributeur.
 o pacote | le colis | A operadora oferece pacotes de viagem baratos. | Le voyagiste propose des voyages organisés à prix abordable.
 a parada | l'arrêt, l'appui | O Autocarro não faz parada aqui. | L'autobus ne s'arrête pas ici. | g?
-a poupança | l'épargne | Todo mês ponho dinheiro na poupança. | Je mets de l'argent sur mon compte épargne chaque mois.
+a poupança | l'épargne | Todos os meses ponho dinheiro na poupança. | Je mets de l'argent sur mon compte épargne chaque mois.
 o prazo | le délai, l'échéance | O prazo termina em trinta de junho. | Le délai se termine le trente juin.
 o selo | le timbre | Preciso de dois selos para o Canadá. | J'ai besoin de deux timbres pour le Canada.
 a taxa | les frais | O banco cobra uma taxa. | La banque prélève des frais.
@@ -564,7 +564,7 @@ a teoria | la théorie | A teoria é mais fácil que a prática. | La théorie e
 o texto | le texte | Lê o texto mais uma vez. | Relis le texte.
 """,
 "cultura_a2_pt": """
-o anjo | l'ange | Na árvore tem um anjinho. | Un petit ange est posé sur l'arbre. | ex?
+o anjo | l'ange | Na árvore há um anjinho. | Un petit ange est posé sur l'arbre. | ex?
 o ator | l'acteur | O ator fala cinco idiomas. | L'acteur parle cinq langues.
 o balão | le ballon de baudruche | Depois da festa há balões por toda parte. | Après la fête, il y a des ballons partout. | pl=balões
 a banda | le groupe (de musique) | A banda dela toca no sábado. | Son groupe joue samedi. | g?
@@ -600,7 +600,7 @@ o estresse | le stress | O estresse tira-me o sono. | Le stress m'empêche de do
 a exposição | l'exposition | A exposição fecha em junho. | L'exposition ferme en juin. | pl=exposições
 a fantasia | le déguisement | Estou a usar uma fantasia de pirata. | Je porte un déguisement de pirate.
 a feira | la foire | A feira dura uma semana. | La foire dure une semaine.
-o festival | le festival | Em julho tem um festival grande. | En juillet, il y a un grand festival.
+o festival | le festival | Em julho há um festival grande. | En juillet, il y a un grand festival.
 o filme ou livro policial | le polar |  |  | pl=filmes ous livros policiais | ex=?
 a galeria | la galerie | Visitamos uma galeria pequena. | Nous visitons une petite galerie.
 o género | le genre | O meu género favorito é a comédia. | Mon genre préféré est la comédie.
@@ -712,14 +712,14 @@ o carrinho de compras | le caddie | Para o carrinho de compras, preciso de uma m
 o centavo | le centime | Custa noventa centavos. | Ça coûte quatre-vingt-dix centimes.
 o cheque | le chèque | Pagaram-me com um cheque. | On m'a payé par chèque.
 a conta bancária | le compte bancaire | O dinheiro já está na minha conta. | L'argent est déjà sur mon compte. | pl=contas bancárias | ex?
-a conta poupança | le compte épargne | Todo mês ponho dinheiro na poupança. | Je mets de l'argent sur mon compte épargne chaque mois. | g? | pl=contas poupanças | ex?
+a conta poupança | le compte épargne | Todos os meses ponho dinheiro na poupança. | Je mets de l'argent sur mon compte épargne chaque mois. | g? | pl=contas poupanças | ex?
 a conta à ordem | le compte courant | O meu salário cai na conta à ordem. | Mon salaire est versé sur le compte courant. | pl=contas às ordens
 o cupom fiscal | le ticket de caisse | Guarda bem a nota. | Garde bien le ticket de caisse. | g? | pl=cupons fiscais | ex?
 a dívida | la dette | Ele pagou toda a dívida. | Il a payé toute la dette.
 a feira de antiguidades | le marché aux puces |  |  | pl=feiras de antiguidades | ex=?
 o folheto | le prospectus, brochure | No folheto estão todas as ofertas. | Toutes les offres sont dans le prospectus.
 o ganho | le gain, le bénéfice | Ganho vinte por cento de desconto. | J'obtiens vingt pour cent de rabais.
-o gasto | la dépense | Os gastos sobem todo mês. | Les dépenses augmentent chaque mois.
+o gasto | la dépense | Os gastos sobem todos os meses. | Les dépenses augmentent chaque mois.
 o holerite | la fiche de paie | O holerite chega no dia trinta. | La fiche de paie arrive le trente.
 a máquina automática | le distributeur automatique | Compro o bilhete na máquina. | J'achète le billet au distributeur. | pl=máquinas automáticas | ex?
 o ouro | l'or | O anel é de ouro. | La bague est en or.
@@ -801,7 +801,7 @@ a chance | la chance, l'occasion | Eu daria outra chance a ele. | Moi, je lui do
 o cilindro | le cylindre | O cilindro rola da mesa. | Le cylindre roule et tombe de la table.
 o cubo | le cube | O cubo tem seis lados. | Le cube a six faces.
 a culpa | la faute | A culpa não é tua. | Ce n'est pas de ta faute.
-o cumprimento | la salutation | Cumprimento os meus vizinhos toda manhã. | Je salue mes voisins chaque matin.
+o cumprimento | la salutation | Cumprimento os meus vizinhos todas as manhãs. | Je salue mes voisins chaque matin.
 a dica | l'astuce, conseil | Obrigado pela boa dica! | Merci pour ce bon conseil ! | g?
 a dúzia | la douzaine | Uma dúzia de ovos. | Une douzaine d'œufs.
 a esfera | la sphère | A esfera é perfeitamente redonda. | La sphère est parfaitement ronde. | g?

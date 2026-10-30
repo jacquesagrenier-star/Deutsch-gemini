@@ -46,7 +46,7 @@ aplicar | appliquer | Aplique o creme duas vezes por dia. | Applique la crème d
 apontar | signaler | O relatório aponta três riscos. | Le rapport signale trois risques.
 apostar | parier | Eles apostaram no vencedor. | Ils ont parié sur le vainqueur.
 apresentar-se | se présenter, se comporter | Ontem ele apresentou-me à família dele. | Hier, il m'a présenté à sa famille. | pron
-apropriar-se de | s'approprier, acquérir | No vilarejo as pessoas cruzar-se-iam todo dia. | Au village, on se rencontrerait tous les jours.
+apropriar-se de | s'approprier, acquérir | Com mais cursos as pessoas integrar-se-iam melhor. | Avec plus de cours, on intégrerait mieux les gens.
 aprovar | adopter (une loi, une décision) | O parlamento aprova a lei. | Le parlement adopte la loi.
 aproximar-se de | s'approcher de ; se fermer | Ele aproximou-se da janela para ver a rua. | Il s'est approché de la fenêtre pour voir la rue.
 arar | labourer | Eles aram a terra antes de semear. | Ils labourent la terre avant de semer.
@@ -66,14 +66,14 @@ assistir a | assister | Ele assistiu à palestra inteira. | Il a assisté à tou
 associar | classer, associer | Eu associaria esta cor ao outono. | J'associerais cette couleur à l'automne.
 atacar | attaquer | O cão ataca o carteiro. | Le chien attaque le facteur.
 atender | s'occuper de | Já estão a atender o senhor? | On s'occupe de vous ?
-ater-se a | s'en tenir à, respecter | Com mais cursos as pessoas integrar-se-iam melhor. | Avec plus de cours, on intégrerait mieux les gens.
+ater-se a | s'en tenir à, respecter | Com esse guarda-redes eles classificar-se-iam com certeza. | Avec ce gardien, ils se qualifieraient à coup sûr.
 atrair | attirer | A feira atrai milhares de visitantes. | La foire attire des milliers de visiteurs.
 atrapalhar | gêner, entraver | O carro atrapalha o trânsito. | La voiture gêne la circulation.
 atrasar | retarder | Atrasaram o relógio uma hora. | Ils ont retardé l'horloge d'une heure.
 atropelar | écraser ; brûler (un feu) | Cuidado para não furar o sinal vermelho. | Fais attention à ne pas brûler le feu rouge. | ex?
 atualizar | mettre à jour | Atualizo o telemóvel à noite. | Je mets à jour le portable la nuit.
 automatizar | automatiser | Eles automatizam o processo de entrega. | Ils automatisent le processus de livraison.
-barbear | raser | Ele barbeia-se toda manhã. | Il se rase chaque matin.
+barbear | raser | Ele barbeia-se todas as manhãs. | Il se rase chaque matin.
 bater papo | bavarder | Batemos papo um pouco no terraço. | Nous avons bavardé un moment en terrasse.
 bloquear | bloquer | O sistema bloqueia as mensagens estranhas. | Le système bloque les messages étranges.
 buzinar | klaxonner | Na cidade é proibido buzinar à noite. | En ville, on ne peut pas klaxonner la nuit.
@@ -97,7 +97,7 @@ colaborar | collaborer | Colaboramos com outra empresa. | Nous collaborons avec 
 colecionar | collectionner, collecter | Eu coleciono selos. | Je collectionne les timbres.
 colher | récolter | Eles colhem a uva em setembro. | Ils récoltent le raisin en septembre.
 comercializar | commercialiser | A empresa comercializa o novo produto. | L'entreprise commercialise le nouveau produit.
-comparecer | se rendre, venir | Cem pessoas comparecem todo domingo. | Cent personnes viennent chaque dimanche.
+comparecer | se rendre, venir | Cem pessoas comparecem todos os domingos. | Cent personnes viennent chaque dimanche.
 compor-se | se composer (de qch), s'asseoir ensemble | A equipa é composta de dez pessoas. | L'équipe se compose de dix personnes. | pron
 compreender | comprendre | Compreendi o problema ao ler o relatório. | J'ai compris le problème en lisant le rapport.
 comprometer-se | s'engager | Ele comprometeu-se a nos ajudar. | Il s'est engagé à nous aider. | pron
@@ -133,13 +133,13 @@ cultivar | cultiver | Eles cultivam tomates o ano todo. | Ils cultivent des toma
 cumprir | accomplir, respecter | Ele cumpre a lei ao pé da letra. | Il respecte la loi à la lettre.
 danificar | abîmer | A humidade danificou os livros. | L'humidité a abîmé les livres.
 dar aula | enseigner | Ela dá aula de alemão numa escola para adultos. | Elle enseigne l'allemand à l'université populaire.
-dar comida | nourrir (un animal) | Ele dá comida para o gato toda manhã às sete. | Il nourrit le chat tous les matins à sept heures.
+dar comida | nourrir (un animal) | Ele dá comida para o gato todas as manhãs às sete. | Il nourrit le chat tous les matins à sept heures.
 dar conta de | surmonter, gérer (une tâche) | Ele deu conta da tarefa sozinho. | Il gérait la tâche seul.
 dar notícias | donner de ses nouvelles, se manifester | Ele não dá notícias há semanas. | Il n'a pas donné de nouvelles depuis des semaines.
 dar-se bem | bien s'entendre avec | Eu dou-me bem com os meus colegas. | Je m'entends bien avec mes collègues.
 debruçar-se sobre | se confronter à, examiner (mit) | Eu debruço-me sobre o tema. | Je me penche sur le sujet.
 decepcionar | décevoir | O resultado decepciona-me. | Le résultat me déçoit.
-declarar | déclarer, témoigner | Todo ano ele declarava a renda em maio. | Chaque année, il déclarait ses revenus en mai.
+declarar | déclarer, témoigner | Vão declarar estado de emergência amanhã. | Ils déclareront l'état d'urgence demain.
 decorar | décorer | Decoraram a sala com flores. | Ils ont décoré la salle de fleurs.
 decorrer | se dérouler ; s'égarer | A noite transcorre bem tranquila. | La soirée se déroule très calmement. | ex?
 dedicar | consacrer | Ele dedica duas horas por dia ao piano. | Il consacre deux heures par jour au piano.
@@ -292,7 +292,7 @@ lamentar | regretter, être désolé | Eu lamentaria muito ter de recusar. | Un 
 lavar a louça | laver la vaisselle | Depois de comer ele lava a louça. | Après le repas, il fait la vaisselle.
 legislar | légiférer | O governo vai legislar sobre inteligência artificial. | Le gouvernement légiférera sur l'intelligence artificielle.
 lesionar-se | se blesser | Ele lesionou-se aos vinte minutos. | Il s'est blessé à la vingtième minute. | pron
-levar | apporter, amener | Ele leva as crianças para a creche toda manhã. | Il amène les enfants à la crèche tous les matins.
+levar | apporter, amener | Ele leva as crianças para a creche todas as manhãs. | Il amène les enfants à la crèche tous les matins.
 levar a | mener à, conduire (zu) | O caminho leva à estação. | Le chemin mène à la gare.
 levar a sério | prendre à cœur | Eu levo o teu conselho a sério. | Je prends ton conseil à cœur.
 libertar | libérer | Libertaram os reféns ao amanhecer. | Ils ont libéré les otages à l'aube.
@@ -302,7 +302,7 @@ lutar | lutter | Eles lutam contra a exclusão desde 2010. | Ils luttent contre 
 mandar por e-mail | envoyer par courriel | Eu mando-te o endereço por e-mail. | Je t'envoie l'adresse par courriel.
 manejar | manier | O meu avô manejava o trator como ninguém. | Mon grand-père maniait le tracteur comme personne.
 manifestar-se | s'exprimer | Ele manifestou-se de forma crítica sobre a proposta. | Il s'est exprimé de façon critique sur la proposition. | pron
-maquiar | maquiller | Ela maquia-se toda manhã. | Elle se maquille chaque matin.
+maquiar | maquiller | Ela maquia-se todas as manhãs. | Elle se maquille chaque matin.
 marginalizar | marginaliser | O sistema marginaliza os mais pobres. | Le système marginalise les plus pauvres.
 massagear | masser | O fisioterapeuta massageia as costas dela. | Le physiothérapeute lui masse le dos.
 matar | tuer | A geada matou as plantas. | Le gel a tué les plantes.
@@ -350,7 +350,7 @@ pesar | peser | A mala pesa vinte quilos. | La valise pèse vingt kilos.
 pesquisar no google | chercher sur Internet | Vou pesquisar a palavra rapidinho no Google. | Je cherche vite ce mot sur Internet.
 picar | piquer | Os mosquitos picam mais à noite. | Les moustiques piquent surtout le soir.
 pisar | marcher sur, donner un coup de pied | Não pisa nas flores, por favor. | Ne marche pas sur les fleurs, s'il te plaît.
-postar | publier sur les réseaux | O político posta todo dia. | L'homme politique publie chaque jour.
+postar | publier sur les réseaux | O político posta todos os dias. | L'homme politique publie chaque jour.
 poupar | ménager, préserver | Ele poupava a bateria sempre que podia. | Il ménageait la batterie autant qu'il le pouvait.
 praticar desporto | faire du sport | Ela pratica desporto regularmente no clube. | Elle fait régulièrement du sport dans un club.
 prender | arrêter (police) | A polícia prende o criminoso. | La police arrête le coupable.
@@ -388,7 +388,7 @@ relacionar | relier | Relacione cada palavra com a sua definição. | Relie chaq
 relampejar | faire des éclairs | Lá fora já está a relampejar. | Dehors, il y a déjà des éclairs.
 relatar | rapporter, raconter | O relato foi muito floreado. | Le récit a été largement enjolivé.
 remoer | ruminer, se creuser la tête | Eu quebro a cabeça com a resposta. | Je me creuse la tête sur la réponse. | ex?
-render-se | abandonner | Com esse guarda-redes eles classificar-se-iam com certeza. | Avec ce gardien, ils se qualifieraient à coup sûr. | pron
+render-se | abandonner | Com um palhaço as crianças divertir-se-iam mais. | Avec un clown, les enfants s'amuseraient plus. | pron
 renovar | rénover | A câmara municipal renovava uma rua por ano. | La mairie rénovait une rue chaque année.
 renunciar | démissionner | Ele renunciou depois do escândalo. | Il a démissionné après le scandale.
 repreender | réprimander | O chefe repreende os atrasos. | Le patron réprimande les retards.
@@ -399,9 +399,9 @@ respeitar | respecter | Respeitamos as opiniões dos outros. | Nous respectons l
 restaurar | restaurer | Eles restauram a fachada neste verão. | Ils restaurent la façade cet été.
 resultar | s'avérer | O erro resultou da falta de tempo. | L'erreur résultait de la pression du temps.
 reunir | réunir | Ele reuniu toda a equipa na segunda. | Il a réuni toute l'équipe lundi.
-reunir-se | se réunir | Os voluntários reuniram-se toda segunda. | Les bénévoles se sont réunis chaque lundi. | pron
+reunir-se | se réunir | Os voluntários reuniram-se todas as segundas. | Les bénévoles se sont réunis chaque lundi. | pron
 revelar | révéler ; trahir | Eu nunca revelaria um segredo. | Je ne révélerais jamais un secret.
-rezar | prier | Ele reza toda noite antes de dormir. | Il prie chaque soir avant de dormir.
+rezar | prier | Ele reza todas as noites antes de dormir. | Il prie chaque soir avant de dormir.
 rodear | entourer | As montanhas rodeiam o vilarejo. | Les montagnes entourent le village.
 rogar | prier, supplier | Roguei a ele que esperasse um minuto. | Je l'ai supplié d'attendre une minute.
 romper | rompre | Eu romperia esse contrato agora mesmo. | Moi, je romprais ce contrat tout de suite.
@@ -626,7 +626,7 @@ fascinante | fascinante | fascinant | A história da região é fascinante. | L'
 favorável | favorável | favorable | O relatório é favorável ao projeto. | Le rapport est favorable au projet.
 feminino | feminina | féminin, de sexe féminin | A equipa tem três mulheres. | L'équipe compte trois membres féminins. | ex?
 financeiro | financeira | financier | É um problema financeiro grave. | C'est un problème financier grave.
-fixo | fixa | fixe, ferme | Agora ela tem um emprego fixo. | Elle a maintenant un poste fixe.
+fixo | fixa | fixe, ferme | Agora ela há um emprego fixo. | Elle a maintenant un poste fixe.
 fluente | fluente | courant (langue) | Ela fala alemão fluentemente. | Elle parle couramment l'allemand. | ex?
 formado | formada | formé, qualifié | Ela é enfermeira formada. | Elle est infirmière diplômée.
 formal | formal | formel | É uma carta formal. | C'est une lettre formelle.
@@ -896,7 +896,7 @@ caso contrário | faute de quoi | Cause et conséquence | Por favor, pague até 
 cerca de | environ | Quantité | A viagem dura cerca de duas horas. | Le trajet dure environ deux heures.
 com atenção | attentivement | Manière | Ela ouviu com atenção. | Elle a écouté attentivement.
 com dificuldade | péniblement | Manière | Ele abaixava-se com dificuldade por causa das costas. | Il se baissait difficilement à cause de son dos.
-com isso | par ce biais | Cause et conséquence | Com isso economizamos muita energia todo ano. | Par ce biais, nous économisons beaucoup d'énergie chaque année.
+com isso | par ce biais | Cause et conséquence | Com isso economizamos muita energia todos os anos. | Par ce biais, nous économisons beaucoup d'énergie chaque année.
 com paciência | patiemment | Manière | O professor explica tudo com paciência. | Le professeur explique tout patiemment.
 com quê | avec quoi | Question | Em que posso ajudar o senhor? | En quoi puis-je vous aider ? | ex?
 completamente | complètement | Quantité | O livro é completamente diferente. | Le livre est complètement différent.

@@ -86,7 +86,7 @@ desaconselhar | déconseiller | O médico desaconselha viagens longas. | Le méd
 desafiar | défier | Ele desafiou as conclusões do relatório. | Il a défié les conclusions du rapport.
 desempenhar | exercer | Ele desempenhou o cargo durante dez anos. | Il a exercé la fonction pendant dix ans.
 deslocar | déplacer | A enchente deslocava as pedras do caminho. | La crue déplaçait les pierres du chemin.
-desmanchar-se | se disloquer, se briser en deux | Com um palhaço as crianças divertir-se-iam mais. | Avec un clown, les enfants s'amuseraient plus. | pron
+desmanchar-se | se disloquer, se briser en deux | No vilarejo as pessoas cruzar-se-iam todos os dias. | Au village, on se rencontrerait tous les jours. | pron
 desmentir | démentir | Eles desmentiram a notícia em uma hora. | Ils ont démenti la nouvelle en une heure.
 desmontar | démonter ; réduire ; extraire | Depois da festa desmontamos as barracas. | Après la fête, nous démontons les tentes.
 despedaçar | briser, fracasser | Uma queda despedaçaria o vaso na hora. | Une chute fracasserait le vase aussitôt.
@@ -147,7 +147,7 @@ nomear | nommer, désigner | Ele nomeia o problema com muita precisão. | Il nom
 nuançar | nuancer | Ele sempre nuança as suas opiniões. | Il nuance toujours ses opinions.
 objetar | objecter | Ele objetou que faltava informação. | Il a objecté qu'il manquait de l'information.
 otimizar | optimiser | Eles otimizam o processo a cada trimestre. | Ils optimisent le processus chaque trimestre.
-outorgar | accorder, décerner | A cidade outorgava uma bolsa todo ano. | La ville accordait une bourse chaque année.
+outorgar | accorder, décerner | Eu outorgaria o prémio à jovem pianista. | Moi, je décernerais le prix à la jeune pianiste.
 pactuar | convenir, pactiser | Os partidos pactuavam o orçamento todo outono. | Les partis négociaient le budget chaque automne.
 persuadir com dados | persuader par les chiffres | Ele persuade com dados, não com adjetivos. | Il persuade par les chiffres, pas par les adjectifs.
 ponderar | peser (le pour et le contre) | É preciso de ponderar as vantagens e as desvantagens. | Il faut peser le pour et le contre.

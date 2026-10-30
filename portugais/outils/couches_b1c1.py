@@ -23,6 +23,7 @@ SORTIE = os.path.join(RACINE, "portugais", "scenes")
 T_PERFEITO = "Le perfeito : ce qui s'est passé"
 T_PASSIF = "Passif et relatives"
 T_HYPO = "Hypothèses : deve, talvez, dizem que"
+T_MARCHE = "Faire ses courses : quantités et prix"
 
 COUCHES = {
 "kueche": {
@@ -910,6 +911,228 @@ anna |  | Ela ___ ter-se perdido. | deve | pode-se / tem | Ela deve ter-se perdi
 strasse |  | ___ ter chovido há pouco. | Deve | Pode-se / Tem | Deve ter chovido há pouco. | Il a dû pleuvoir tout à l'heure. | <b>deve ter</b> + participe.
 ampel-vorne | anna | Se o semáforo ___ verde, a Anna já teria atravessado. | estivesse | estiver / está | Se o semáforo estivesse verde, a Anna já teria atravessado. | Si le feu était vert, Anna aurait déjà traversé la rue. | Irréel : <b>se estivesse</b>.
 lieferwagen | cafe | ___ estar a trazer mercadoria para o café. | Pode | Deve de / Há | Pode estar a trazer mercadoria para o café. | Il apporte peut-être des marchandises pour le café. | Possibilité : <b>poder</b> + estar a.
+"""),
+},
+"markt-gemuese-frucht": {
+"B1": (T_MARCHE, """
+tomate |  | Queria meio quilo ___ tomates. | de | dos / com | Queria meio quilo de tomates. | Je voudrais une livre de tomates. | Au Portugal, on compte en <b>quilos</b> : <b>meio quilo de</b>.
+pilz |  | Quanto ___ os cogumelos? | custam | custa / custem | Quanto custam os cogumelos? | Combien coûtent les champignons ? | Pluriel : <b>custam</b>.
+gurke | zucchini | O pepino é mais ___ do que a curgete. | comprido | comprida / longo de | O pepino é mais comprido do que a curgete. | Le concombre est plus long que la courgette. | Long (objet) : <b>comprido</b>.
+salat |  | Levo ___ alface. | uma | um / umas | Levo uma alface. | Je prends une salade. | <b>a alface</b> est féminin.
+spargel |  | Os espargos são ___ região? | da | de a / na | Os espargos são da região? | Les asperges viennent-elles de la région ? | <b>ser de</b> : de + a = <b>da</b>.
+"""),
+"B2": (T_PASSIF, """
+spargel |  | Os espargos são ___ frescos todas as manhãs. | colhidos | colhidas / colher | Os espargos são colhidos frescos todas as manhãs. | Les asperges sont récoltées fraîches chaque matin. | Passif : <b>são colhidos</b>.
+tomate-main | anna | Os tomates ___ a Anna tem na mão estão muito maduros. | que | quem / cujos | Os tomates que a Anna tem na mão estão muito maduros. | Les tomates qu'Anna tient à la main sont très mûres. | Objet : <b>que</b>.
+paprika | mais | Ao lado dos pimentos ___ e amarelos está o milho. | vermelhos | vermelhas / vermelho | Ao lado dos pimentos vermelhos e amarelos está o milho. | À côté des poivrons rouges et jaunes, il y a le maïs. | <b>os pimentos</b> → <b>vermelhos</b>.
+kuerbis |  | As abóboras já estão ___. | colhidas | colhidos / colheram | As abóboras já estão colhidas. | Les citrouilles sont déjà récoltées. | État : <b>estar</b> + participe accordé.
+mangold |  | A acelga, ___ talos são vermelhos e amarelos, é muito saudável. | cujos | cujas / que os | A acelga, cujos talos são vermelhos e amarelos, é muito saudável. | Les blettes aux tiges rouges et jaunes sont très saines. | <b>cujos</b> + talos (masculin pluriel).
+"""),
+"C1": ("Hypothèses, apesar de, quanto mais", """
+tomate-main |  | Apesar ___ preço alto, a Anna leva os tomates de cacho. | do | de o / ao | Apesar do preço alto, a Anna leva os tomates de cacho. | Malgré le prix élevé, Anna prend les tomates en grappe. | <b>apesar do</b>.
+tomate |  | Quanto mais maduros estão os tomates, mais intenso é o ___. | sabor | gosto de / sabores | Quanto mais maduros estão os tomates, mais intenso é o sabor. | Plus les tomates sont mûres, plus leur goût est intense. | <b>quanto mais…, mais…</b>.
+kuerbis |  | Se a abóbora não ___ tão pesada, a Anna levava-a. | fosse | for / era | Se a abóbora não fosse tão pesada, a Anna levava-a. | Si la citrouille n'était pas si lourde, Anna l'emporterait. | Irréel : <b>se fosse</b>.
+pilz |  | Os cogumelos ___ sido apanhados no bosque. | terão | teriam-se / tenham | Os cogumelos terão sido apanhados no bosque. | Les champignons ont sans doute été cueillis en forêt. | Supposition sur le passé : <b>terão sido</b>.
+artischocke |  | As alcachofras devem ser bem ___ antes de cozinhar. | lavadas | lavados / lavar | As alcachofras devem ser bem lavadas antes de cozinhar. | Il faut bien laver les artichauts avant de les cuire. | Passif : <b>devem ser</b> + participe accordé.
+"""),
+},
+"markt-gemuese-wurzel": {
+"B1": (T_MARCHE, """
+karotte |  | Queria um molho ___ cenouras. | de | das / com | Queria um molho de cenouras. | Je voudrais une botte de carottes. | Une botte : <b>um molho de</b>.
+kartoffel |  | Dois quilos de ___, por favor. | batatas | batata / as batatas | Dois quilos de batatas, por favor. | Deux kilos de pommes de terre, s'il vous plaît. | Quantité + <b>de</b> + nom pluriel.
+blumenkohl |  | Quanto ___ a couve-flor? | custa | custam / custe | Quanto custa a couve-flor? | Combien coûte le chou-fleur ? | Singulier : <b>custa</b>.
+kohl | rosenkohl | A couve é ___ do que as couves-de-bruxelas. | maior | mais grande / tão grande | A couve é maior do que as couves-de-bruxelas. | Le chou est plus gros que les choux de Bruxelles. | <b>maior</b>.
+knoblauch |  | Ainda preciso de uma cabeça ___ alho para o molho. | de | do / com | Ainda preciso de uma cabeça de alho para o molho. | Il me faut encore une tête d'ail pour la sauce. | <b>uma cabeça de alho</b>.
+"""),
+"B2": (T_PASSIF, """
+kartoffel |  | As batatas ___ colhidas na semana passada. | foram | eram / estiveram | As batatas foram colhidas na semana passada. | Les pommes de terre ont été récoltées la semaine dernière. | Passif au passé : <b>foram</b> + participe.
+lauch | kohl | O alho-francês, ___ folhas são verde-escuras, está ao lado da couve. | cujas | cujos / que as | O alho-francês, cujas folhas são verde-escuras, está ao lado da couve. | Le poireau aux feuilles vert foncé est à côté du chou. | <b>cujas</b> + folhas.
+radieschen-main |  | A Anna compra rabanetes ___. | frescos | frescas / fresco | A Anna compra rabanetes frescos. | Anna achète des radis frais. | <b>os rabanetes</b> → <b>frescos</b>.
+kohl |  | Os legumes ___ se vendem aqui são da região. | que | quem / onde | Os legumes que se vendem aqui são da região. | Les légumes vendus ici viennent de la région. | Après <b>que</b>, le se devant.
+zwiebel |  | As cebolas devem ser ___ em lugar seco. | guardadas | guardados / guardar | As cebolas devem ser guardadas em lugar seco. | Les oignons doivent être conservés au sec. | <b>devem ser</b> + participe accordé.
+"""),
+"C1": ("Hypothèses, devido a, quanto mais", """
+kohl |  | ___ à época, em outubro há muita couve. | Devido | Por causa / Graças | Devido à época, em outubro há muita couve. | En raison de la saison, il y a beaucoup de chou en octobre. | <b>devido a</b> = en raison de.
+brokkoli |  | Quanto mais frescos são os legumes, ___ vitaminas têm. | mais | o mais / tantas | Quanto mais frescos são os legumes, mais vitaminas têm. | Plus les légumes sont frais, plus ils contiennent de vitamines. | <b>quanto mais…, mais…</b>.
+knoblauch |  | Se ___ sabido, não tinha comprado alho no supermercado. | tivesse | tiver / tinha | Se tivesse sabido, não tinha comprado alho no supermercado. | Si j'avais su, je n'aurais pas acheté d'ail au supermarché. | Irréel du passé.
+karotte |  | As cenouras parecem ter sido ___ há pouco. | colhidas | colhidos / colher | As cenouras parecem ter sido colhidas há pouco. | Les carottes semblent avoir été récoltées fraîchement. | <b>parecer ter sido</b> + participe.
+radieschen-main |  | A Anna ___ comprado os rabanetes para uma salada. | terá | teria-se / tenha | A Anna terá comprado os rabanetes para uma salada. | Anna a sans doute acheté les radis pour une salade. | Supposition : <b>terá</b> + participe.
+"""),
+},
+"markt-obst-heimisch": {
+"B1": (T_MARCHE, """
+erdbeere |  | Queria uma caixinha ___ morangos. | de | dos / com | Queria uma caixinha de morangos. | Je voudrais une barquette de fraises. | <b>uma caixinha de</b>.
+apfel |  | Um quilo de ___, por favor. | maçãs | maçã / as maçãs | Um quilo de maçãs, por favor. | Un kilo de pommes, s'il vous plaît. | <b>um quilo de</b> + pluriel.
+pfirsich | aprikose | Os pêssegos são ___ do que os alperces. | maiores | mais grandes / maior | Os pêssegos são maiores do que os alperces. | Les pêches sont plus grosses que les abricots. | <b>maiores</b> (pluriel) ; l'abricot = <b>o alperce</b>.
+himbeere |  | Quanto ___ as framboesas? | custam | custa / custem | Quanto custam as framboesas? | Combien coûtent les framboises ? | <b>custam</b>.
+pflaume |  | Levo meio quilo ___ ameixas. | de | das / com | Levo meio quilo de ameixas. | Je prends une livre de prunes. | <b>meio quilo de</b>.
+"""),
+"B2": (T_PASSIF, """
+erdbeere |  | São morangos ___ da região. | frescos | frescas / fresco | São morangos frescos da região. | Ce sont des fraises fraîches de la région. | <b>os morangos</b> (masc.) → <b>frescos</b>.
+apfel |  | As maçãs são ___ aqui, no Oeste. | cultivadas | cultivados / cultivar | As maçãs são cultivadas aqui, no Oeste. | Les pommes sont cultivées ici, dans l'Ouest. | Passif accordé ; l'Oeste, région de vergers au nord de Lisbonne.
+anna | apfel-main | A mulher ___ escolhe uma maçã chama-se Anna. | que | quem / qual | A mulher que escolhe uma maçã chama-se Anna. | La femme qui choisit une pomme s'appelle Anna. | Sujet : <b>que</b>.
+brombeere | kirsche | A caixa ___ estão as amoras está ao lado das cerejas. | onde | que / cuja | A caixa onde estão as amoras está ao lado das cerejas. | La caisse où sont les mûres est à côté des cerises. | <b>onde</b>.
+rhabarber |  | O ruibarbo é muitas vezes ___ para fazer bolos. | usado | usada / usar | O ruibarbo é muitas vezes usado para fazer bolos. | La rhubarbe est souvent utilisée pour faire des gâteaux. | Passif : <b>é usado</b>.
+"""),
+"C1": ("Hypothèses, tendo em conta, quanto mais", """
+erdbeere |  | Quanto mais maduros estão os morangos, mais ___ são. | doces | doce / dulces | Quanto mais maduros estão os morangos, mais doces são. | Plus les fraises sont mûres, plus elles sont sucrées. | <b>quanto mais…, mais…</b>.
+apfel |  | ___ em conta as longas viagens, prefiro fruta da terra. | Tendo | Tendo-se / Tenho | Tendo em conta as longas viagens, prefiro fruta da terra. | Vu les longs trajets de transport, je préfère acheter des fruits d'ici. | <b>tendo em conta</b> = vu, compte tenu de.
+kirsche |  | Se as cerejas ___ mais baratas, levava dois quilos. | fossem | forem / são | Se as cerejas fossem mais baratas, levava dois quilos. | Si les cerises étaient moins chères, j'en prendrais deux kilos. | Irréel : <b>se fossem</b>.
+rhabarber |  | Embora o ruibarbo ___ ácido, a Anna gosta de fazer bolos com ele. | seja | é / for | Embora o ruibarbo seja ácido, a Anna gosta de fazer bolos com ele. | Bien que la rhubarbe soit acide, Anna aime faire des gâteaux avec. | <b>embora</b> + conjuntivo.
+himbeere |  | As framboesas ___ sido apanhadas hoje de manhã. | terão | teriam-se / tenham | As framboesas terão sido apanhadas hoje de manhã. | Les framboises ont sans doute été cueillies ce matin. | <b>terão sido</b>.
+"""),
+},
+"markt-obst-sued": {
+"B1": (T_MARCHE, """
+ananas |  | Quanto custa ___ ananás? | um | uma / uns | Quanto custa um ananás? | Combien coûte un ananas ? | <b>o ananás</b> : masculin (et le mot du Portugal ; au Brésil, abacaxi).
+wassermelone |  | Levo uma fatia ___ melancia, por favor. | de | da / com | Levo uma fatia de melancia, por favor. | Je prends un morceau de pastèque, s'il vous plaît. | <b>uma fatia de</b>.
+wassermelone | melone | A melancia é ___ do que o melão. | maior | mais grande / maiora | A melancia é maior do que o melão. | La pastèque est plus grosse que le melon. | <b>maior</b>.
+mango |  | As mangas já estão ___? | maduras | maduros / madura | As mangas já estão maduras? | Les mangues sont-elles déjà mûres ? | <b>as mangas</b> → <b>maduras</b>.
+zitrone |  | Queria três ___. | limões | limãos / limães | Queria três limões. | Je voudrais trois citrons. | <b>o limão</b> → <b>os limões</b>.
+"""),
+"B2": (T_PASSIF, """
+banane |  | A fruta tropical é quase sempre ___ de barco. | importada | importado / importar | A fruta tropical é quase sempre importada de barco. | Les fruits exotiques sont généralement importés par bateau. | <b>a fruta</b> (collectif) → <b>importada</b>.
+mango |  | A manga, ___ casca é vermelha e verde, já está madura. | cuja | cujo / que a | A manga, cuja casca é vermelha e verde, já está madura. | La mangue à la peau rouge et verte est déjà mûre. | <b>cuja</b> + casca.
+papaya |  | Há uma papaia ___ em cima das outras. | cortada | cortado / cortar | Há uma papaia cortada em cima das outras. | Une papaye coupée est posée sur les autres. | Participe accordé.
+banane | anna | As bananas ___ a Anna leva vêm da Madeira. | que | quem / cujas | As bananas que a Anna leva vêm da Madeira. | Les bananes qu'Anna prend viennent de Madère. | Objet : <b>que</b> ; la banane de Madère, fierté portugaise.
+kokosnuss |  | O coco já está ___. | aberto | aberta / abrido | O coco já está aberto. | La noix de coco est déjà ouverte. | <b>o coco</b> → <b>aberto</b>.
+"""),
+"C1": ("Hypothèses, apesar de, quanto mais", """
+mango |  | Apesar ___ longa viagem, as mangas aqui são bastante baratas. | da | de a / à | Apesar da longa viagem, as mangas aqui são bastante baratas. | Malgré leur long trajet, les mangues sont assez bon marché ici. | <b>apesar da</b>.
+feige |  | Quanto mais escuros são os figos, mais ___ são. | doces | doce / dulces | Quanto mais escuros são os figos, mais doces são. | Plus les figues sont foncées, plus elles sont sucrées. | <b>quanto mais…, mais…</b>.
+ananas |  | Se a Anna ___ mais tempo, comprava um ananás e descascava-o. | tivesse | tiver / tem | Se a Anna tivesse mais tempo, comprava um ananás e descascava-o. | Si Anna avait plus de temps, elle achèterait un ananas et l'éplucherait. | Irréel : <b>se tivesse</b>.
+avocado |  | Os abacates não ___ guardar no frigorífico. | se devem | devem-se-se / se deve | Os abacates não se devem guardar no frigorífico. | Il ne faut pas conserver les avocats au réfrigérateur. | Après <b>não</b>, le se devant ; accord avec abacates.
+kokosnuss |  | O coco ___ ter sido aberto com um martelo. | deve | pode-se / tem | O coco deve ter sido aberto com um martelo. | La noix de coco a dû être ouverte avec un marteau. | Déduction sur le passé : <b>deve ter sido</b>.
+"""),
+},
+"post": {
+"B1": ("Le pronom complément : lhe, lha, -lhe", """
+brief | anna | A Anna envia uma carta ___ mãe. | à | a / da | A Anna envia uma carta à mãe. | Anna envoie une lettre à sa mère. | <b>enviar algo a alguém</b> : a + a = <b>à</b>.
+mann | anna | O homem dá-___ um recibo. | lhe | a / se | O homem dá-lhe um recibo. | L'homme lui donne un reçu. | À elle : <b>lhe</b>.
+brief | mann | A Anna dá-___ a carta. | lhe | o / se | A Anna dá-lhe a carta. | Anna lui donne la lettre. | À lui : <b>lhe</b>.
+brief | mann | A carta? Ela dá-___. | lha | lhe a / a | A carta? Ela dá-lha. | La lettre ? Elle la lui donne. | lhe + a = <b>lha</b>.
+paket-3 | frau | A senhora quer enviar uma encomenda ___ neto. | ao | o / do | A senhora quer enviar uma encomenda ao neto. | La femme veut envoyer un colis à son petit-fils. | a + o = <b>ao</b> ; le colis = <b>a encomenda</b>.
+briefmarke |  | Podes comprar-___ um selo? | me | mim / eu | Podes comprar-me um selo? | Tu peux m'acheter un timbre ? | <b>me</b>, après l'infinitif.
+anna | mann | A Anna mostra o cartão de cidadão ___ homem. | ao | o / do | A Anna mostra o cartão de cidadão ao homem. | Anna montre sa carte d'identité à l'homme. | La carte d'identité portugaise : <b>o cartão de cidadão</b>.
+mann | frau | O homem explica o preço ___ senhora. | à | a / da | O homem explica o preço à senhora. | L'homme explique le prix à la femme. | a + a = <b>à</b>.
+"""),
+"B2": ("Le passif", """
+paket | waage | A encomenda está a ser ___. | pesada | pesado / pesar | A encomenda está a ser pesada. | Le colis est en train d'être pesé. | <b>a encomenda</b> → <b>pesada</b>.
+brief |  | A carta vai ser ___ amanhã. | entregue | entregada / entregar | A carta vai ser entregue amanhã. | La lettre sera distribuée demain. | <b>entregar</b> → <b>entregue</b> (participe court, partout).
+paket-2 |  | A encomenda ___ enviada ontem. | foi | era / esteve | A encomenda foi enviada ontem. | Le colis a été envoyé hier. | Passif au passé : <b>foi</b>.
+brief-2 | korb | As cartas já estão ___. | separadas | separados / separar | As cartas já estão separadas. | Les lettres sont déjà triées. | État : <b>estar</b> + participe accordé.
+paket-4 |  | Aqui também se ___ encomendas. | enviam | envia / enviem | Aqui também se enviam encomendas. | Ici, on envoie aussi des colis. | Le se passif s'accorde : <b>enviam</b> ; après também, devant.
+briefmarke | umschlag | O selo tem de ser ___ no envelope. | colado | colada / colar | O selo tem de ser colado no envelope. | Le timbre doit être collé sur l'enveloppe. | <b>tem de ser</b> + participe.
+"""),
+"C1": (T_HYPO, """
+brief | anna | A carta ___ ser para alguém importante. | deve | pode-se / tem | A carta deve ser para alguém importante. | La lettre doit être pour quelqu'un d'important. | Déduction : <b>dever</b>.
+paket-3 | frau | A encomenda da senhora idosa ___ ser um presente. | pode | deve de / há | A encomenda da senhora idosa pode ser um presente. | Le colis de la vieille dame est peut-être un cadeau. | Possibilité : <b>poder</b>.
+brief |  | A carta ___ chegar daqui a dois dias. | deverá | deveria-se / deva | A carta deverá chegar daqui a dois dias. | La lettre devrait arriver dans deux jours. | Probable : <b>deverá</b>.
+schalter |  | ___ que esta estação dos correios vai fechar em breve. | Dizem | Diz-se-lhe / Digam | Dizem que esta estação dos correios vai fechar em breve. | Il paraît que cette poste va bientôt fermer. | Le ouï-dire ; la poste = <b>os correios</b>.
+"""),
+},
+"stadtplatz": {
+"B1": ("Há, está, fica : situer sur la place", """
+eis | anna | Hoje a Anna ___ um gelado. | come | coma / comendo | Hoje a Anna come um gelado. | Aujourd'hui, Anna mange une glace. | Le portugais garde l'ordre sujet-verbe après <b>hoje</b>.
+anna | brunnen | A Anna está ___ junto ao chafariz. | sentada | sentado / sentar | A Anna está sentada junto ao chafariz. | C'est au bord de la fontaine qu'Anna est assise. | <b>a Anna</b> → <b>sentada</b> ; la fontaine = <b>o chafariz</b>.
+hund | anna | À frente da Anna ___ um cão sentado. | está | há-se / é | À frente da Anna está um cão sentado. | Devant Anna, il y a un chien assis. | Un être précis à un endroit : <b>está</b>.
+mann | zeitung | Debaixo do guarda-sol, um homem ___ o jornal. | lê | lê-se / leia | Debaixo do guarda-sol, um homem lê o jornal. | Sous le parasol, un homme lit le journal. | <b>ler</b> → <b>lê</b>.
+platz |  | Ao sábado ___ muita gente à praça. | vem | vêm-se / há | Ao sábado vem muita gente à praça. | Le samedi, beaucoup de gens viennent sur la place. | <b>muita gente</b> est singulier : <b>vem</b> ; le samedi = <b>ao sábado</b>.
+denkmal |  | Em cima do monumento ___ um homem de bronze. | há | têm / estão | Em cima do monumento há um homem de bronze. | Sur le monument se dresse un homme en bronze. | Il y a : <b>há</b>.
+kaffee | anna | Depois, a Anna ___ um café. | toma | tome / tomando | Depois, a Anna toma um café. | Ensuite, Anna boit un café. | Boire un café : <b>tomar um café</b>.
+strassenbahn |  | Atrás da praça ___ um elétrico. | passa | passa-se / passe | Atrás da praça passa um elétrico. | Derrière la place passe un tram. | Le tram de Lisbonne : <b>o elétrico</b>.
+"""),
+"B2": ("Como se + conjuntivo imparfait", """
+hund |  | O cão olha como se ___ fome. | tivesse | tem / tenha | O cão olha como se tivesse fome. | Le chien regarde comme s'il avait faim. | <b>como se</b> + imperfeito do conjuntivo.
+anna | hund | A Anna ri-se como se o cão lhe ___ contado uma anedota. | tivesse | tinha / tiver | A Anna ri-se como se o cão lhe tivesse contado uma anedota. | Anna rit comme si le chien lui avait raconté une blague. | Pour le passé : <b>como se tivesse</b> + participe.
+mann |  | O senhor lê como se ___ sozinho na praça. | estivesse | está / esteja | O senhor lê como se estivesse sozinho na praça. | Le monsieur lit comme s'il était seul sur la place. | <b>estivesse</b>.
+denkmal |  | A estátua parece que ___ começar a andar. | vai | vá / ia-se | A estátua parece que vai começar a andar. | La statue a l'air de vouloir se mettre en marche. | <b>parece que vai</b> : on dirait qu'elle va.
+himmel |  | Está tanto calor como se já ___ verão. | fosse | for / é | Está tanto calor como se já fosse verão. | Il fait aussi chaud que si c'était déjà l'été. | <b>como se fosse</b>.
+vogel-2 | platz | Os pombos andam por ali como se a praça ___ deles. | fosse | for / é | Os pombos andam por ali como se a praça fosse deles. | Les pigeons se promènent comme si la place leur appartenait. | <b>como se fosse deles</b>.
+"""),
+"C1": (T_HYPO, """
+anna | hund | Ela ___ achar o cão engraçado. | deve | pode-se / tem | Ela deve achar o cão engraçado. | Elle doit trouver le chien drôle. | Déduction : <b>dever</b>.
+hund | eis | ___ o cão ganhe um bocado de gelado. | Talvez | Se calhar / Deve | Talvez o cão ganhe um bocado de gelado. | Le chien aura peut-être un morceau de glace. | <b>talvez</b> + conjuntivo.
+mann | tisch | O senhor ___ sentar-se aqui todos os sábados. | deve | pode-se / tem | O senhor deve sentar-se aqui todos os sábados. | Le monsieur est sans doute assis ici tous les samedis. | Probable : <b>dever</b>.
+brunnen |  | O chafariz ___ mais de cem anos. | teria | terá-se / tenha | O chafariz teria mais de cem anos. | La fontaine aurait plus de cent ans. | Le conditionnel de la rumeur.
+"""),
+},
+"ubahn": {
+"B1": ("E, mas, ou, porque, mas sim", """
+fahrkarte | mark | O Mark tem um bilhete ___ um café. | e | mas / ou | O Mark tem um bilhete e um café. | Mark a un billet et un café. | <b>e</b> = et.
+mark | ubahn | O Mark despacha-se ___ o metro vai partir. | porque | mas / ou | O Mark despacha-se porque o metro vai partir. | Mark se dépêche, car le métro va partir. | La cause : <b>porque</b> (ou <b>pois</b>).
+mann | gitarre | O homem não canta, ___ toca guitarra. | mas sim | mas também / senão que | O homem não canta, mas sim toca guitarra. | L'homme ne chante pas, il joue de la guitare. | Après une négation, la rectification : <b>mas sim</b>.
+brezel | zeitung | Queres um pastel ___ um jornal? | ou | e / mas | Queres um pastel ou um jornal? | Tu veux une pâtisserie ou un journal ? | <b>ou</b> = ou.
+kiosk | brezel | O quiosque é pequeno, ___ tem muitos pastéis. | mas | ou / porque | O quiosque é pequeno, mas tem muitos pastéis. | Le kiosque est petit, mais il a beaucoup de pâtisseries. | <b>mas</b> = mais.
+regenschirm | frau | A senhora tem um guarda-chuva, ___ lá fora está a chover. | pois | mas / ou | A senhora tem um guarda-chuva, pois lá fora está a chover. | La dame a un parapluie, car il pleut dehors. | <b>pois</b> = car.
+hund | bank | O cão não ladra, ___ está sentado ao lado do banco. | mas sim | ou / e não | O cão não ladra, mas sim está sentado ao lado do banco. | Le chien n'aboie pas, il est assis tranquillement à côté du banc. | <b>mas sim</b>.
+kaffee | mark | O Mark bebe o café ___ entra no metro. | e | mas / ou | O Mark bebe o café e entra no metro. | Mark boit du café et monte dans le métro. | <b>e</b>.
+"""),
+"B2": ("Se, caso : la condition", """
+ubahn | mark | Caso o metro ___ atrasado, o Mark apanha o autocarro. | venha | vem / vier | Caso o metro venha atrasado, o Mark apanha o autocarro. | Si jamais le métro a du retard, Mark prend le bus. | <b>caso</b> + conjuntivo présent.
+mark | tuer | Se o Mark não ___ depressa, perde o metro. | entrar | entra / entre | Se o Mark não entrar depressa, perde o metro. | Si Mark ne monte pas vite, il rate le métro. | <b>se</b> + futur : futuro do conjuntivo.
+regenschirm | frau | Quando ___, a senhora leva o guarda-chuva. | chove | chova / chover-se | Quando chove, a senhora leva o guarda-chuva. | Quand il pleut, la dame prend son parapluie. | Une habitude : <b>quando</b> + indicatif.
+brezel |  | Se ___ fome, compra um pastel! | tiveres | tens / tenhas | Se tiveres fome, compra um pastel! | Si tu as faim, achète-toi une pâtisserie ! | <b>se tiveres</b>.
+kaffee | mark | Se o Mark ___ lugar sentado, bebe o café. | arranjar | arranja / arranje | Se o Mark arranjar lugar sentado, bebe o café. | Si Mark trouve une place assise, il boit son café. | <b>arranjar lugar</b> = trouver une place.
+fahrkarte |  | Só se pode entrar se se ___ bilhete. | tiver | tem / tenha | Só se pode entrar se se tiver bilhete. | On n'a le droit de monter que si l'on a un billet. | <b>se se tiver</b> : « si on a ».
+"""),
+"C1": (T_HYPO, """
+mark |  | Ele ___ estar bem-disposto. | deve | pode-se / tem | Ele deve estar bem-disposto. | Il doit être de bonne humeur. | <b>bem-disposto</b> = de bonne humeur.
+frau | koffer | A senhora ___ ir para o aeroporto. | pode | deve de / há | A senhora pode ir para o aeroporto. | La dame part peut-être à l'aéroport. | Possibilité : <b>poder</b>.
+hund | frau | O cão ___ da senhora. | será | seja / foi-se | O cão será da senhora. | Le chien appartient sans doute à la dame. | Futur de supposition.
+treppe |  | Esta estação de metro ___ mais de cem anos. | teria | terá-se / tenha | Esta estação de metro teria mais de cem anos. | Cette station de métro aurait plus de cent ans. | Le conditionnel de la rumeur.
+"""),
+},
+"weihnachtsmarkt": {
+"B1": ("Le pronom complément : compra-a, dá-lhe", """
+stern | mark | A estrela? O Mark ___. | compra-a | compra-la / a compra | A estrela? O Mark compra-a. | L'étoile ? Mark l'achète. | <b>a</b> après le verbe : <b>compra-a</b>.
+mann | mark | O homem dá-___ a estrela. | lhe | o / a | O homem dá-lhe a estrela. | L'homme lui donne l'étoile. | À lui : <b>lhe</b>.
+tasse | handschuh | A caneca? O Mark segura-___ com luvas. | a | la / lhe | A caneca? O Mark segura-a com luvas. | La tasse ? Mark la tient avec des gants. | <b>a</b> (la caneca).
+brezel-2 | kind | Os pastéis? Foi a mãe que os ___. | comprou | comprou-os / comprava | Os pastéis? Foi a mãe que os comprou. | Les pâtisseries ? C'est la mère qui les a achetées. | Après <b>que</b>, le pronom devant : <b>que os comprou</b>.
+kind | frau | Ela dá-___ a mão. | lhe | o / se | Ela dá-lhe a mão. | Elle lui donne la main. | <b>dar a mão a alguém</b> : <b>lhe</b>.
+hund | mark | O cão olha para ___. | ele | o / lhe | O cão olha para ele. | Le chien le regarde. | <b>olhar para</b> + pronom tonique : <b>para ele</b>.
+frau | brezel-2 | Ela gosta dos ___. | pastéis | pastels / pastelões | Ela gosta dos pastéis. | Elle aime les pâtisseries. | <b>o pastel</b> → <b>os pastéis</b>.
+kerze | mark | As velas? O Mark compra-___ para a mãe. | as | las / lhes | As velas? O Mark compra-as para a mãe. | Les bougies ? Mark les achète pour sa mère. | <b>as</b> : compra-as.
+"""),
+"B2": ("Les noms composés : nom + de + nom", """
+stand |  | O mercado ___ Natal é muito bonito. | de | do / da | O mercado de Natal é muito bonito. | Le marché de Noël est très joli. | Le portugais relie par <b>de</b> : <b>mercado de Natal</b>.
+lichterkette |  | As luzes ___ Natal brilham. | de | do / das | As luzes de Natal brilham. | Les guirlandes lumineuses de Noël brillent. | <b>as luzes de Natal</b>.
+stern |  | É uma estrela ___ madeira. | de | da / em | É uma estrela de madeira. | C'est une étoile en bois. | La matière : <b>de</b>.
+baum |  | A árvore ___ Natal está na praça. | de | do / da | A árvore de Natal está na praça. | Le sapin de Noël est sur la place. | <b>a árvore de Natal</b>.
+handschuh |  | Comprei umas luvas ___ inverno. | de | do / para o | Comprei umas luvas de inverno. | J'ai acheté des gants d'hiver. | <b>luvas de inverno</b>.
+uhr | turm | O relógio ___ torre marca as seis. | da | de / na | O relógio da torre marca as seis. | L'horloge du clocher indique six heures. | Une tour précise : <b>da torre</b>.
+"""),
+"C1": (T_HYPO, """
+mark |  | Ele ___ gostar do mercado de Natal. | deve | pode-se / tem | Ele deve gostar do mercado de Natal. | Il doit aimer le marché de Noël. | Déduction : <b>dever</b>.
+stern | mark | A estrela ___ ser um presente para a mãe dele. | pode | deve de / há | A estrela pode ser um presente para a mãe dele. | L'étoile est peut-être un cadeau pour sa mère. | Possibilité : <b>poder</b>.
+hund | mann | O cão ___ do homem da banca. | será | seja / foi-se | O cão será do homem da banca. | Le chien appartient sans doute à l'homme de l'étal. | Futur de supposition ; l'étal = <b>a banca</b>.
+kirche |  | Este mercado de Natal ___ o mais antigo da cidade. | seria | será-se / seja | Este mercado de Natal seria o mais antigo da cidade. | Ce marché de Noël serait le plus ancien de la ville. | Le conditionnel de la rumeur.
+"""),
+},
+"zug": {
+"B1": ("En voyage : de, para, por, em", """
+mark |  | O Mark viaja ___ comboio. | de | no / em o | O Mark viaja de comboio. | Mark voyage en train. | Le moyen : <b>de comboio</b>.
+berg | mark | Ele vai ___ a serra. | para | à / na | Ele vai para a serra. | Il va à la montagne. | <b>ir para</b> ; la montagne (région) = <b>a serra</b>.
+fenster | mark | Ele olha ___ janela. | pela | para a / da | Ele olha pela janela. | Il regarde par la fenêtre. | À travers : <b>por</b> + a = <b>pela</b>.
+koffer | mark | Ele ___ a mala no porta-bagagens. | pôs | punha / põe | Ele pôs a mala no porta-bagagens. | Il a posé sa valise sur le porte-bagages. | <b>pôr</b> → <b>pôs</b>.
+koffer |  | Agora a mala está ___ porta-bagagens. | no | ao / para o | Agora a mala está no porta-bagagens. | Maintenant, la valise est sur le porte-bagages. | Position : <b>no</b>.
+kuh | wiese | As vacas estão ___ prado. | no | ao / para o | As vacas estão no prado. | Les vaches sont dans le pré. | <b>no prado</b>.
+fluss | bruecke | O comboio passa ___ cima do rio. | por | em / de | O comboio passa por cima do rio. | Le train traverse la rivière. | <b>passar por cima de</b> : passer au-dessus.
+fahrkarte | tisch | O Mark ___ o bilhete em cima da mesa. | pousou | pousava / pousa | O Mark pousou o bilhete em cima da mesa. | Mark a posé le billet sur la table. | <b>pousar</b> → <b>pousou</b>.
+"""),
+"B2": (T_PASSIF, """
+mark | fenster | O homem ___ olha pela janela chama-se Mark. | que | quem / qual | O homem que olha pela janela chama-se Mark. | L'homme qui regarde par la fenêtre s'appelle Mark. | Sujet : <b>que</b>.
+dorf | kirche | A aldeia, ___ igreja tem uma torre pontiaguda, fica no vale. | cuja | cujo / que a | A aldeia, cuja igreja tem uma torre pontiaguda, fica no vale. | Le village dont l'église a un clocher pointu est dans la vallée. | <b>cuja</b> + igreja.
+tisch | laptop | A mesa em ___ está o portátil é cinzenta. | que | qual / quem | A mesa em que está o portátil é cinzenta. | La table sur laquelle est l'ordinateur portable est grise. | <b>em que</b> (ou <b>na qual</b>).
+fahrkarte |  | O bilhete tem de ser ___ no comboio. | validado | validada / validar | O bilhete tem de ser validado no comboio. | Le billet doit être contrôlé dans le train. | Passif : <b>tem de ser</b> + participe.
+kaffee |  | O café ainda não foi ___. | bebido | bebida / beber | O café ainda não foi bebido. | Le café n'est pas encore bu. | Passif : <b>foi bebido</b>.
+zeitung | tisch | O jornal, ___ fotografias mostram florestas, está em cima da mesa. | cujas | cujos / que as | O jornal, cujas fotografias mostram florestas, está em cima da mesa. | Le journal dont les photos montrent des forêts est sur la table. | <b>cujas</b> + fotografias.
+"""),
+"C1": (T_HYPO, """
+fenster | mark | A paisagem ___ agradar-lhe. | deve | pode-se / tem | A paisagem deve agradar-lhe. | Le paysage doit lui plaire. | Déduction : <b>dever</b>.
+schal |  | O cachecol vermelho ___ ser de alguém que volta já. | pode | deve de / há | O cachecol vermelho pode ser de alguém que volta já. | L'écharpe rouge appartient peut-être à quelqu'un qui va revenir. | Possibilité : <b>poder</b>.
+uhr |  | O comboio ___ chegar ao Porto daqui a uma hora. | deverá | deveria-se / deva | O comboio deverá chegar ao Porto daqui a uma hora. | Le train devrait arriver à Porto dans une heure. | Probable : <b>deverá</b>.
+dorf |  | ___ que nesta aldeia se faz o melhor queijo da região. | Dizem | Diz-se-lhe / Digam | Dizem que nesta aldeia se faz o melhor queijo da região. | Il paraît que dans ce village, on trouve le meilleur fromage de la région. | Le ouï-dire ; après <b>que</b>, le se devant.
 """),
 },
 }

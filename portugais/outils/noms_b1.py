@@ -86,7 +86,7 @@ o vovô | le papi, grand-père | O vovô gosta de contar histórias antigas. | P
 o órfão | l'orphelin, l'orpheline | Ele ficou órfão aos dez anos. | Il est devenu orphelin à dix ans. | pl=órfãos
 """,
 "trabalho_b1_pt": """
-o acompanhamento | le suivi | Fazemos um acompanhamento todo mês. | Nous faisons un suivi chaque mois.
+o acompanhamento | le suivi | Fazemos um acompanhamento todos os meses. | Nous faisons un suivi chaque mois.
 o acordo coletivo | la convention collective | O acordo coletivo fixa o salário mínimo. | La convention fixe le salaire minimum. | pl=acordos coletivos
 a advogada | l'avocate | A advogada defende os meus interesses no tribunal. | L'avocate représente mes intérêts devant le tribunal. | g?
 a agricultora | l'agricultrice | A agricultora cuida das vacas. | L'agricultrice s'occupe des vaches. | g?
@@ -110,7 +110,7 @@ a carta comercial | la lettre commerciale |  |  | pl=cartas comerciais | ex=?
 a carta de apresentação | la lettre de motivation | A carta de apresentação não deve ter mais de uma página. | La lettre de motivation ne devrait pas dépasser une page. | g? | pl=cartas de apresentação
 a carta de referência | certificat de travail | O meu antigo empregador escreveu-me uma boa carta de referência. | Mon ancien employeur m'a rédigé un bon certificat de travail. | g? | pl=cartas de referência
 a carta registrada | la lettre recommandée | Mande o pedido de demissão por carta registrada. | Envoyez la résiliation en recommandé. | g? | pl=cartas registradas
-o carteiro | le facteur | O carteiro vem toda manhã às dez. | Le facteur passe chaque matin à dix heures.
+o carteiro | le facteur | O carteiro vem todas as manhãs às dez. | Le facteur passe chaque matin à dix heures.
 o cartão de visita | la carte de visite | Aqui está o meu cartão de visita. | Voici ma carte de visite. | pl=cartões de visita
 a colaboração | la collaboration, participation | A colaboração dos voluntários foi decisiva para o projeto. | La collaboration des bénévoles a été décisive pour le projet. | g? | pl=colaborações
 o comissário de bordo | le steward | O comissário nos mostra os lugares. | Le steward nous montre nos places. | pl=comissários de bordo | ex?
@@ -125,7 +125,7 @@ o contador | le comptable | O contador confere o balanço anual. | Le comptable 
 a copiadora | la photocopieuse | A copiadora do escritório quebrou de novo. | La photocopieuse du bureau est encore en panne. | g?
 o corretor de imóveis | l'agent immobilier | O corretor de imóveis nos mostra o apartamento. | L'agent immobilier nous fait visiter l'appartement. | pl=corretores de imóveis
 a cozinheira | la cuisinière | A cozinheira experimentou uma receita nova. | La cuisinière a essayé une nouvelle recette. | g?
-o cuidador | le soignant, aide-soignant | O cuidador vem toda manhã. | L'aide-soignant vient chaque matin.
+o cuidador | le soignant, aide-soignant | O cuidador vem todas as manhãs. | L'aide-soignant vient chaque matin.
 """,
 "trabalho_b1_pt_2": """
 o cuidador de idosos | soignant pour personnes âgées | O meu tio trabalha como cuidador de idosos. | Mon oncle travaille comme soignant pour personnes âgées. | pl=cuidadores de idosos
@@ -240,7 +240,7 @@ o ensopado | le ragoût | O ensopado cozinha em fogo baixo. | Le ragoût cuit à
 a especialidade | la spécialité | A especialidade da casa é o cordeiro. | La spécialité de la maison est l'agneau.
 a fibra | la fibre | O pão integral fornece fibras. | Le pain complet apporte des fibres.
 o fogão | la cuisinière | O fogão tem quatro bocas. | La cuisinière a quatre plaques de cuisson. | pl=fogões
-os frutas | les fruits | Coma frutas e legumes todo dia. | Mange des fruits et des légumes tous les jours. | g?
+os frutas | les fruits | Coma frutas e legumes todos os dias. | Mange des fruits et des légumes tous les jours. | g?
 o fósforo | l'allumette | Ele acende a vela com um fósforo. | Il allume la bougie avec une allumette.
 a fôrma | le moule à gâteau | A fôrma está untada com manteiga. | Le moule à gâteau est beurré. | g?
 a gastronomia | la gastronomie | A gastronomia do norte é substanciosa. | La gastronomie du nord est copieuse.
@@ -495,7 +495,7 @@ a pecuária | l'élevage | A pecuária é a atividade principal. | L'élevage es
 a pegada | l'empreinte | Reduzimos a pegada de carbono. | Nous réduisons l'empreinte carbone.
 o penhasco | la falaise | A trilha margeia o penhasco. | Le sentier longe la falaise.
 a península | la péninsule | A península tem três climas. | La péninsule a trois climats.
-o petróleo | le pétrole | O preço do petróleo muda todo dia. | Le prix du pétrole change chaque jour.
+o petróleo | le pétrole | O preço do petróleo muda todos os dias. | Le prix du pétrole change chaque jour.
 o pinguim | le manchot, pingouin | No zoológico há seis pinguins. | Au zoo, il y a six manchots. | g?
 a pista | la piste | A pista está molhada. | La piste est mouillée.
 o planalto | le plateau | O planalto é seco e frio no inverno. | Le plateau est sec et froid en hiver.
@@ -640,7 +640,7 @@ a livraria | la librairie | Na livraria também há cartões. | À la librairie,
 a mesquita | la mosquée | A nova mesquita foi inaugurada no ano passado. | La nouvelle mosquée a été inaugurée l'année dernière.
 a metrópole | la métropole | Tóquio é uma das maiores metrópoles do mundo. | Tokyo est l'une des plus grandes métropoles du monde. | g?
 a metrópole mundial | la métropole mondiale | Paris é considerada uma verdadeira metrópole mundial. | Paris est considérée comme une véritable métropole mondiale. | g? | pl=metrópoles mundiais
-o município | la commune, municipalité | O município organiza uma festa de verão todo ano. | La commune organise une fête d'été chaque année.
+o município | la commune, municipalité | O município organiza uma festa de verão todos os anos. | La commune organise une fête d'été chaque année.
 o objeto achado | l'objet trouvé | Os objetos achados estão no escritório ao lado. | Les objets trouvés sont dans le bureau d'à côté. | pl=objetos achados
 o parquinho | l'aire de jeux | O parquinho fica logo ali na esquina. | L'aire de jeux est juste au coin.
 a periferia | la périphérie | Ele mora na periferia de Aveiro. | Il habite la périphérie de Aveiro.
@@ -709,7 +709,7 @@ a Hauptschule | l'école secondaire (filière générale) | Ele terminou a Haupt
 a hipótese | l'hypothèse | A hipótese não se confirmou. | L'hypothèse ne s'est pas confirmée.
 o instituto | l'institut | Ela faz pesquisa num instituto em Porto. | Elle fait de la recherche dans un institut à Porto.
 a inteligência | l'intelligence | Só inteligência não basta. | L'intelligence seule ne suffit pas. | g?
-a introdução | l'introduction | No primeiro dia tem uma breve introdução. | Le premier jour, il y a une courte introduction. | g? | pl=introduções
+a introdução | l'introduction | No primeiro dia há uma breve introdução. | Le premier jour, il y a une courte introduction. | g? | pl=introduções
 o laboratório | le laboratoire | Ele trabalha em um laboratório de Aveiro. | Il travaille dans un laboratoire de Aveiro.
 a língua estrangeira | la langue étrangère | O alemão é a minha segunda língua estrangeira. | L'allemand est ma deuxième langue étrangère. | g? | pl=línguas estrangeiras
 a língua materna | la langue maternelle | A minha língua materna é o turco. | Ma langue maternelle est le turc. | pl=línguas maternas
@@ -734,7 +734,7 @@ o retorno | le retour, réponse | Ainda estou a esperar um retorno da repartiç�
 a revisão | la révision, répétition | A revisão por pares levou um ano. | La relecture par les pairs a pris un an. | g? | pl=revisões
 a segunda língua | la langue seconde |  |  | pl=segundas línguas | ex=?
 o sistema | le système | O sistema educacional mudou em 2020. | Le système éducatif a changé en 2020.
-o snack-bar | la cafétéria | Na estação tem uma snack-bar boa. | Il y a un bon snack à la gare. | g? | pl=snacks-bares
+o snack-bar | la cafétéria | Na estação há uma snack-bar boa. | Il y a un bon snack à la gare. | g? | pl=snacks-bares
 o sucesso | le succès | O projeto foi um sucesso. | Le projet a été un succès.
 a tabela | le tableau, tableur | Os números estão na tabela abaixo. | Les chiffres figurent dans le tableau ci-dessous.
 o termo genérico | le terme générique | «Móveis» é um termo genérico para mesa, cadeira e armário. | «Meuble» est un terme générique pour table, chaise et armoire. | pl=termos genéricos
@@ -749,7 +749,7 @@ a Volkshochschule | l'université populaire | Eu aprendo alemão na Volkshochsch
 a abertura da exposição | vernissage | A abertura da exposição teve muito público. | Le vernissage a attiré beaucoup de monde. | g? | pl=aberturas da exposição
 a atividade de lazer | l'activité de loisir | Pintar é a minha atividade de lazer favorita. | La peinture est mon activité de loisir préférée. | pl=atividades de lazer
 o balé | le ballet | A minha filha dança balé há cinco anos. | Ma fille fait du ballet depuis cinq ans. | g?
-o banquete | le repas de fête | No Natal lá em casa tem uma grande ceia. | À Noël, nous avons un grand repas de fête. | g? | ex?
+o banquete | le repas de fête | No Natal lá em casa há uma grande ceia. | À Noël, nous avons un grand repas de fête. | g? | ex?
 a biografia | la biographie | A biografia tem seiscentas páginas. | La biographie fait six cents pages.
 a boneca | la poupée | A minha filha dorme com a boneca. | Ma fille dort avec sa poupée. | g?
 o calendário de feriados | le calendrier des fêtes | O calendário de feriados está pendurado na cozinha. | Le calendrier des fêtes est accroché dans la cuisine. | pl=calendários de feriados
@@ -759,7 +759,7 @@ a civilização | la civilisation | Ele estuda as civilizações antigas. | Il �
 o compasso | la mesure (musique) | Toca os primeiros oito compassos de novo. | Rejoue les huit premières mesures.
 o compositor | le compositeur | Beethoven é um compositor famoso. | Beethoven est un compositeur célèbre.
 a compositora | la compositrice | A compositora está a escrever a trilha do filme novo. | La compositrice écrit la musique du nouveau film. | g?
-o conto | le conte | Ela lia-nos um conto toda noite. | Elle nous lisait un conte chaque soir.
+o conto | le conte | Ela lia-nos um conto todas as noites. | Elle nous lisait un conte chaque soir.
 o conto de fadas | le conte | À noite eu leio um conto de fadas para as crianças. | Le soir, je lis un conte aux enfants. | pl=contos de fadas
 a crença | la croyance | Ele respeita as crenças dos outros. | Il respecte les croyances des autres.
 a cruz | la croix | No alto da montanha há uma cruz. | Il y a une croix sur la montagne.
@@ -818,8 +818,8 @@ a ópera | l'opéra | No sábado vamos à ópera. | Samedi, nous allons à l'op�
 "desporto_b1_pt": """
 o adepto | le supporter | Os adeptos lotaram o estádio. | Les supporters ont rempli le stade.
 o arco | l'arc | Ele atira com arco e flecha. | Il tire à l'arc.
-o atleta | le sportif, athlète | Os atletas treinam todo dia. | Les sportifs s'entraînent tous les jours.
-o atleta profissional | le sportif professionnel | Um atleta profissional treina todo dia. | Un sportif professionnel s'entraîne tous les jours. | pl=atletas profissionais
+o atleta | le sportif, athlète | Os atletas treinam todos os dias. | Les sportifs s'entraînent tous les jours.
+o atleta profissional | le sportif professionnel | Um atleta profissional treina todos os dias. | Un sportif professionnel s'entraîne tous les jours. | pl=atletas profissionais
 o atletismo | l'athlétisme | O atletismo é um dos desportos mais antigos. | L'athlétisme est l'un des plus anciens sports.
 o automobilismo | le sport automobile | Ele interessa-se muito por automobilismo. | Il s'intéresse beaucoup au sport automobile.
 a bolsa de academia | le sac de sport | Esqueci a minha bolsa de academia no carro. | J'ai oublié mon sac de sport dans la voiture. | pl=bolsas de academia
@@ -867,7 +867,7 @@ o aparelho de cd | le lecteur de CD | No carro ainda tenho um aparelho de CD. | 
 a atualização | la mise à jour | A atualização leva dez minutos. | La mise à jour prend dix minutes. | pl=atualizações
 a audiência | l'audience | A audiência do programa cresceu. | L'audience de l'émission a augmenté.
 o avanço | l'avancée | É um avanço importante na medicina. | C'est une avancée importante en médecine.
-o backup | la sauvegarde, le soutien | O backup é salvo toda noite. | La sauvegarde se fait chaque nuit.
+o backup | la sauvegarde, le soutien | O backup é salvo todas as noites. | La sauvegarde se fait chaque nuit.
 o blog | le blogue | Ela escreve um blog sobre culinária. | Elle tient un blogue sur la cuisine.
 o buscador | le moteur de recherche | Digito a pergunta no buscador. | J'écris la question dans le moteur de recherche.
 a caixa postal do telemóvel | la messagerie mobile | A caixa postal está cheia. | La messagerie est pleine. | g? | pl=caixas postais do telemóvel | ex?
@@ -934,7 +934,7 @@ a tecla | la touche | Aperte a tecla verde. | Appuyez sur la touche verte. | g?
 o telefone fixo | la ligne fixe | Prefiro que o senhor ligue-me no fixo. | Appelez-moi plutôt sur la ligne fixe. | g? | pl=telefones fixos | ex?
 o telefone telemóvel | le téléphone portable | Por favor, desligue o seu telemóvel. | Veuillez éteindre votre téléphone portable. | g? | pl=telefones telemóveis | ex?
 o telefonema | l'appel téléphonique | Acabei de ter um telefonema importante com o meu chefe. | Je viens d'avoir un appel téléphonique important avec mon patron.
-o tráfego de dados | le trafic de données | O tráfego de dados aumenta muito todo ano. | Le trafic de données augmente fortement chaque année. | pl=tráfegos de dados
+o tráfego de dados | le trafic de données | O tráfego de dados aumenta muito todos os anos. | Le trafic de données augmente fortement chaque année. | pl=tráfegos de dados
 a técnica | la technique, technologie | No peixe, a técnica de corte decide tudo. | Pour le poisson, la manière de couper décide de tout. | g?
 a unidade de disco | le lecteur (informatique) | O computador não há mais drive. | L'ordinateur n'a plus de lecteur. | pl=unidades de disco | ex?
 o vício | l'addiction | Fumar é um vício. | Fumer est une dépendance.
@@ -989,7 +989,7 @@ o juros | l'intérêt (bancaire) | Pelo empréstimo pagam-se juros. | Pour le cr
 o lucro | le bénéfice ; gain | A empresa está a ter lucro este ano. | L'entreprise fait des bénéfices cette année.
 o maquinário | les machines | O maquinário é dos anos noventa. | Les machines datent des années quatre-vingt-dix.
 a mercadoria | la marchandise | A mercadoria será entregue amanhã. | La marchandise sera livrée demain. | g?
-a mesada | l'argent de poche | A minha filha recebe mesada toda semana. | Ma fille reçoit de l'argent de poche chaque semaine. | g?
+a mesada | l'argent de poche | A minha filha recebe mesada todas as semanas. | Ma fille reçoit de l'argent de poche chaque semaine. | g?
 a montagem | l'assemblage | A montagem leva duas horas. | L'assemblage prend deux heures.
 a necessidade | le besoin, demande | Em caso de necessidade, ligue para nós, por favor. | En cas de besoin, appelez-nous.
 o número de cliente | le numéro de client | Por favor, informe o seu número de cliente. | Veuillez indiquer votre numéro de client. | pl=números de cliente
@@ -1063,7 +1063,7 @@ a assistência social | l'aide sociale | A família recebe assistência social. 
 a associação | l'association | A associação organiza a festa do bairro. | L'association organise la fête du quartier. | pl=associações
 o atestado | l'attestation, certificat | A repartição emite um atestado para o senhor. | L'administration vous délivre une attestation.
 o ato | l'acte, action | O terceiro ato é o melhor. | Le troisième acte est le meilleur.
-a atualidade | l'actualité | Ele acompanha a atualidade toda manhã. | Il suit l'actualité chaque matin.
+a atualidade | l'actualité | Ele acompanha a atualidade todas as manhãs. | Il suit l'actualité chaque matin.
 a autorização | l'autorisation | Sem autorização não se pode estacionar aqui. | Sans autorisation, on n'a pas le droit de se garer ici. | pl=autorizações
 o beneficiário | le bénéficiaire | Há trezentos beneficiários. | Il y a trois cents bénéficiaires.
 a burocracia | la bureaucratie | A burocracia de algumas repartições é muito complicada. | La bureaucratie dans certains bureaux est très compliquée. | g?

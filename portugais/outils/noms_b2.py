@@ -66,7 +66,7 @@ o carisma | le charisme | O carisma dele abre portas. | Son charisme ouvre des p
 o chefe de departamento | le chef de service | O chefe de departamento decide sozinho. | Le chef de service décide seul. | pl=chefes de departamento
 a comissão de funcionários | le comité d'entreprise | A comissão de funcionários precisa de aprovar. | Le comité d'entreprise doit donner son accord. | g? | pl=comissões de funcionários
 o contrato de trabalho | le contrat de travail | O contrato de trabalho é por tempo indeterminado. | Le contrat de travail est à durée indéterminée. | pl=contratos de trabalho
-o corpo docente | le équipe, corps enseignant | Os professores reúnem-se toda segunda. | L'équipe se réunit tous les lundis. | pl=corpos docentes | ex?
+o corpo docente | le équipe, corps enseignant | Os professores reúnem-se todas as segundas. | L'équipe se réunit tous les lundis. | pl=corpos docentes | ex?
 o cronograma | le calendrier de projet | O cronograma atrasou um mês. | Le calendrier a pris un mois de retard.
 a cultura empresarial | la culture d'entreprise | A cultura da empresa incentiva a colaboração e a abertura. | La culture d'entreprise favorise la collaboration et l'ouverture. | g? | pl=culturas empresariais | ex?
 a delegação | la délégation | O clube enviou uma delegação. | L'association dépêcha une délégation. | pl=delegações
@@ -97,7 +97,7 @@ a reconversão | la reconversion | A reconversão do setor levará anos. | La re
 o recurso humano | les ressources humaines | O recurso humano é o mais valioso. | La ressource humaine est la plus précieuse. | pl=recursos humanos
 a referência | le rapport, la référence | A gastronomia francesa é referência no mundo inteiro. | L'art culinaire français est considéré comme une référence mondiale. | g?
 a reputação | la réputation | A empresa tem boa reputação. | L'entreprise a une bonne réputation. | pl=reputações
-o risco operacional | le risque opérationnel | Avaliam o risco operacional todo mês. | Ils évaluent le risque opérationnel chaque mois. | pl=riscos operacionais
+o risco operacional | le risque opérationnel | Avaliam o risco operacional todos os meses. | Ils évaluent le risque opérationnel chaque mois. | pl=riscos operacionais
 o superior | le supérieur hiérarchique | Ele fez um curso superior de três anos. | Il a fait des études de trois ans.
 o trabalhador autónomo | l'travailleur indépendant | Os autónomos não têm renda fixa. | Les indépendants n'ont pas de revenu fixe. | pl=trabalhadores autónomos | ex?
 o trabalhador de turno | le travailleur posté | Quem trabalha em turnos muitas vezes dorme mal. | Les travailleurs postés dorment souvent mal. | pl=trabalhadores de turno | ex?
@@ -153,7 +153,7 @@ o contrato de renda | le contrat de location |  |  | pl=contratos de renda | ex=
 a cozinha planeada | la cuisine équipée | O apartamento tem cozinha planeada. | L'appartement a une cuisine équipée. | g? | pl=cozinhas planeadas
 a cristaleira | la vitrine | Na cristaleira fica a louça boa. | La belle vaisselle est dans la vitrine.
 o custo do aquecimento | les frais de chauffage | O custo do aquecimento dobrou. | Les frais de chauffage ont doublé. | pl=custos do aquecimento
-as despesas extras | les charges locatives | As despesas extras sobem todo ano. | Les charges locatives continuent d'augmenter chaque année.
+as despesas extras | les charges locatives | As despesas extras sobem todos os anos. | Les charges locatives continuent d'augmenter chaque année.
 a eficiência energética | l'efficacité énergétique | A eficiência energética deste aparelho é excelente. | L'efficacité énergétique de cet appareil est excellente. | g? | pl=eficiências energéticas
 o mercado imobiliário | le marché immobilier | O mercado imobiliário nesta cidade está muito apertado. | Le marché immobilier est très tendu dans cette ville. | pl=mercados imobiliários
 a roupa de cama | le linge de lit | A roupa de cama é trocada a cada duas semanas. | Le linge de lit se change toutes les deux semaines. | g? | pl=roupas de cama
@@ -197,7 +197,7 @@ o anfíbio | l'amphibien | Os anfíbios precisam de água para desovar. | Les am
 o animal selvagem | l'animal sauvage | Este animal selvagem deve ser observado de longe. | Il faut observer cet animal sauvage de loin. | pl=animais selvagens
 o balanço ecológico | le bilan écologique | O balanço ecológico deste produto é surpreendentemente bom. | Le bilan écologique de ce produit est étonnamment bon. | pl=balanços ecológicos
 a catástrofe natural | la catastrophe naturelle | A catástrofe natural atingiu a região em cheio. | La catastrophe naturelle a durement touché la région. | g? | pl=catástrofes naturais
-os chifres | les bois (de cerf) | O cervo perde os chifres todo ano. | Le cerf perd ses bois chaque année.
+os chifres | les bois (de cerf) | O cervo perde os chifres todos os anos. | Le cerf perd ses bois chaque année.
 o chumbo | le plomb | O chumbo é tóxico para o corpo. | Le plomb est toxique pour le corps.
 a compensação | la compensation | A compensação não basta por si só. | La compensation ne suffit pas à elle seule. | pl=compensações
 a condições do tempo | la situation météorologique | As condições do tempo seguem estáveis próximo-nos dias. | La situation météorologique reste stable dans les prochains jours. | pl=condições do tempo
@@ -233,7 +233,7 @@ a qualidade do ar | la qualité de l'air | A qualidade do ar melhorou desde 2015
 a rachadura | la fissure | Há uma rachadura funda na parede. | Il y a une fissure profonde dans le mur.
 a raposa | le renard | À noite a raposa aproxima-se das galinhas de mansinho. | Le renard s'approche des poules la nuit. | g?
 a resiliência | la résilience | A resiliência do sistema é baixa. | La résilience du système est faible.
-o riacho | le ruisseau | No verão o riacho tem pouca água. | Le ruisseau a peu d'eau en été.
+o riacho | le ruisseau | No verão o riacho há pouca água. | Le ruisseau a peu d'eau en été.
 o rochedo | le rocher | No rochedo há uma ruína. | Une ruine se dresse sur le rocher.
 o roedor | le rongeur | Camundongos e ratos são roedores. | Souris et rats sont des rongeurs.
 o ruminante | le ruminant | As vacas são ruminantes com quatro estômagos. | Les vaches sont des ruminants à quatre estomacs. | g?
@@ -391,7 +391,7 @@ o troco | la monnaie (rendue) | Ela deu-me troco a menos. | Elle m'a rendu trop 
 o vale-presente | le bon d'achat | O vale ainda vale até o fim de maio. | Le bon est valable jusqu'à fin mai. | g? | pl=vales-presentes | ex?
 """,
 "sentimentos_b2_pt": """
-a ambição | l'ambition | A ambição dele o motiva todo dia. | Son ambition le pousse chaque jour. | pl=ambições
+a ambição | l'ambition | A ambição dele o motiva todos os dias. | Son ambition le pousse chaque jour. | pl=ambições
 a angústia | l'angoisse | Ele sentiu uma angústia difícil de explicar. | Il a ressenti une angoisse difficile à expliquer.
 a autorreflexão | l'introspection | A autorreflexão ajuda a aprender com os erros. | L'introspection aide à apprendre de ses erreurs. | g? | pl=autorreflexões
 o carinho | l'affection | Ele diz isso com carinho. | Il le dit avec affection.
@@ -524,9 +524,9 @@ a ética | l'éthique | A ética profissional é pouco ensinada. | L'éthique pr
 a ênfase | l'emphase | Ele pôs ênfase na última palavra. | Il a mis l'emphase sur le dernier mot.
 """,
 "tempo_b2_pt": """
-o ano bissexto | l'année bissextile | No ano bissexto fevereiro tem 29 dias. | En année bissextile, février a 29 jours. | pl=anos bissextos
+o ano bissexto | l'année bissextile | No ano bissexto fevereiro há 29 dias. | En année bissextile, février a 29 jours. | pl=anos bissextos
 a antecedência | le temps de préparation | Precisamos de duas semanas de antecedência. | Il nous faut deux semaines de préparation. | g?
-o atraso acumulado | le retard accumulé | As pendências aumentam toda semana. | Le retard s'accumule chaque semaine. | pl=atrasos acumulados | ex?
+o atraso acumulado | le retard accumulé | As pendências aumentam todas as semanas. | Le retard s'accumule chaque semaine. | pl=atrasos acumulados | ex?
 a fase de transição | la phase de transition | A fase de transição foi muito exigente para todos. | La phase de transition a été très exigeante pour tous. | g? | pl=fases de transição
 o fuso horário | le fuseau horaire | Há seis fusos horários entre nós. | Six fuseaux horaires nous séparent. | pl=fusos horários
 o intervalo de tempo | le laps de temps | Nesse intervalo de tempo muita coisa mudou. | Dans ce laps de temps, beaucoup a changé. | pl=intervalos de tempo

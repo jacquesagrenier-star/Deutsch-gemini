@@ -26,7 +26,7 @@ acontecer | se passer, arriver | Isso acontece com frequência. | Ça arrive sou
 acostumar-se | s'habituer | Eu acostumei-me rápido com o horário. | Je me suis vite habitué à l'horaire. | pron
 acrescentar | ajouter | Acrescente um pouco de sal. | Ajoute un peu de sel.
 admirar | admirer | Admiro a paciência dela. | J'admire sa patience.
-adoecer | tomber malade | Ele adoeceu bem antes das férias. | Il est tombé malade juste avant les vacances.
+adoecer | tomber malade | Em criança, ele adoecia todos os invernos. | Enfant, il tombait malade chaque hiver.
 adorar | adorer | Ela adora os domingos no campo. | Elle adore les dimanches à la campagne.
 adormecer | s'endormir | Adormeço na hora. | Je m'endors tout de suite.
 afastar | éloigner | Afaste a cadeira do radiador. | Éloigne la chaise du radiateur.
@@ -40,7 +40,7 @@ alegrar-se | se réjouir | Eu cantaria uma música mais alegre. | Moi, je chante
 alimentar | nourrir | Alimente o cão de manhã. | Nourris le chien le matin.
 alugar | louer | Alugamos um apartamento no centro. | Nous louons un appartement au centre.
 amadurecer | mûrir | Os tomates amadurecem em agosto. | Les tomates mûrissent en août.
-andar a cavalo | monter à cheval | A minha irmã anda a cavalo todo sábado. | Ma sœur monte à cheval tous les samedis.
+andar a cavalo | monter à cheval | A minha irmã anda a cavalo todos os sábados. | Ma sœur monte à cheval tous les samedis.
 anunciar | annoncer | Anunciam o voo pelo alto-falante. | Ils annoncent le vol au haut-parleur.
 apaixonar-se | tomber amoureux | Ele apaixonou-se no verão. | Il est tombé amoureux l'été. | pron
 aparecer | apparaître, paraître | Ele apareceu de repente. | Il est apparu soudainement.
@@ -168,7 +168,7 @@ espantar | étonner | A memória dele espantou-nos. | Sa mémoire nous a étonn�
 estar certo | être exact, voter | Isso está certinho. | C'est exactement ça.
 estender | étendre (le linge) | Estendi a roupa lavada hoje de manhã. | J'ai étendu la lessive ce matin.
 esticar | étirer | Estiquei as pernas depois da viagem. | J'ai étiré mes jambes après le voyage.
-estrear | sortir (un film) | Todo ano ela estreava um vestido na feira. | Chaque année, elle portait une nouvelle robe à la foire.
+estrear | sortir (un film) | Vão estrear a peça em outubro. | Ils créeront la pièce en octobre.
 esvaziar | vider | Eu esvaziaria a gaveta antes de mover. | Moi, je viderais le tiroir avant de le déplacer.
 evitar | éviter | Evito usar o carro na cidade. | J'évite d'utiliser la voiture en ville.
 examinar | examiner | A médica examina o paciente. | La médecin examine le patient.
@@ -219,7 +219,6 @@ interessar-se | s'intéresser | Eu interesso-me por música. | Je m'intéresse �
 interpretar | interpréter | Ele interpreta uma peça de Falla. | Il interprète une pièce de Falla.
 inventar | inventer | Ele inventa boas desculpas. | Il invente de bonnes excuses.
 investir | investir | Ele investe as economias em um apartamento. | Il investit ses économies dans un appartement.
-ir buscar | aller chercher | Vou rapidinho buscar o pão. | Je vais vite chercher le pain.
 irritar | fâcher | O comentário dele irritou a equipa toda. | Son commentaire a fâché toute l'équipe.
 irritar-se | s'énerver | Fico irritado com o engarrafamento. | Je m'énerve à cause des embouteillages. | pron
 juntar | réunir | Juntamos as mesas para o jantar. | Nous avons réuni les tables pour le dîner.
@@ -267,7 +266,7 @@ pertencer | appartenir | Ele pertence a uma associação de bairro. | Il apparti
 pesquisar | faire des recherches | Ele pesquisa sobre energias limpas. | Il fait des recherches sur les énergies propres.
 piorar | empirer | A dor piora à noite. | La douleur empire la nuit.
 planear | planifier | Planeamos a viagem com antecedência. | Nous planifions le voyage à l'avance.
-plantar | planter | Plantamos uma árvore todo ano. | Nous plantons un arbre chaque année.
+plantar | planter | Plantamos uma árvore todos os anos. | Nous plantons un arbre chaque année.
 poluir | polluer | Os carros poluem muito. | Les voitures polluent beaucoup.
 possibilitar | permettre | A bolsa possibilita os estudos dele. | La bourse lui permet de faire des études.
 possuir | posséder | Eu tenho um carro velho. | Je possède une vieille voiture. | ex?
@@ -339,7 +338,7 @@ trocar de roupa | se changer (de vêtements) | Depois do trabalho eu troco de ro
 ultrapassar | dépasser | Não ultrapasse na curva. | Ne double pas dans le virage.
 utilizar | utiliser | Utilizei o dicionário para traduzir a carta. | J'ai utilisé le dictionnaire pour traduire la lettre.
 valer a pena | valoir la peine | Isso vale muito a pena. | Ça vaut vraiment la peine.
-varrer | balayer | Varro a cozinha toda manhã. | Je balaie la cuisine chaque matin.
+varrer | balayer | Varro a cozinha todas as manhãs. | Je balaie la cuisine chaque matin.
 verificar | vérifier, examiner | Eu verifico a conta. | Je vérifie la facture.
 zangar-se | se fâcher | Sem os comprimidos, as costas doer-me-iam muito. | Sans les comprimés, j'aurais très mal au dos. | pron
 """
