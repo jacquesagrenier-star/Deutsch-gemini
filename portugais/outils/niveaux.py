@@ -155,7 +155,30 @@ def icones():
     return ic
 
 
+def charger_phrases():
+    """Les phrases ecrites apres coup (phrases_niveaux.py) : elles remplacent
+    celle de la liste ; « — » ecarte le mot (il n'a pas sa place en carte)."""
+    src = module("phrases_niveaux")
+    out = {}
+    if src:
+        for cols in lignes(src.PHRASES):
+            cl, mot = cols[0], cols[1]
+            assert (cl, mot) not in out, "phrase ajoutee en double : %s %s" % (cl, mot)
+            out[(cl, mot)] = (cols[2], cols[3] if len(cols) > 3 else "")
+    return out
+
+
+PHRASES = charger_phrases()
+
+
+def phrase_ajoutee(cl, mot, ex, exfr):
+    return PHRASES.get((cl, mot), (ex, exfr))
+
+
 def sans_phrase(cl, mot, niv, ex, exfr):
+    if ex == "—":
+        RAPPORT.append("  %-26s ECARTE (%s %s, phrases_niveaux.py)" % (mot, cl, niv))
+        return True
     if ex and exfr:
         return False
     RAPPORT.append("  %-26s SANS PHRASE (%s %s, saute)" % (mot, cl, niv))
@@ -173,11 +196,12 @@ def noms(niv, src, jeu, deja, ic, variantes):
             d = drapeaux(cols[4:])
             art, _, mot = tete.partition(" ") if tete.split(" ", 1)[0] in ("o", "a", "os", "as") else ("", "", tete)
             mot = mot.strip()
+            ex, exfr = phrase_ajoutee("nom", mot, ex, exfr)
             if sans_phrase("nom", mot, niv, ex, exfr) or not deja.prendre("nom", mot, niv):
                 continue
             sans = d.get("u") or art in ("os", "as")
             pl = "—" if sans else d.get("pl", pluriel(mot))
-            formes = {mot, pl, mot.split(" ")[0], pl.split(" ")[0]}
+            formes = {mot, pl, mot + "s", mot.split(" ")[0], pl.split(" ")[0]}
             if not re.search(r"(?<![\wÀ-ú])(" + "|".join(re.escape(x) for x in formes if x and x != "—") + r")(?![\wÀ-ú])", ex, re.I):
                 RAPPORT.append("  %-26s NOM ABSENT DE SA PHRASE : %s" % (mot, ex))
                 if not GARDER_SANS_MOT:
@@ -230,6 +254,7 @@ def verbes(niv, src, jeu, deja, variantes):
         inf, fr = cols[0], cols[1]
         ex, exfr = (cols[2], cols[3]) if len(cols) > 3 else ("", "")
         d = drapeaux(cols[4:])
+        ex, exfr = phrase_ajoutee("verbe", inf, ex, exfr)
         if sans_phrase("verbe", inf, niv, ex, exfr) or not deja.prendre("verbe", inf, niv):
             continue
         if not any(re.search(r"(?<![\wÀ-ú])" + re.escape(f) + r"(?![\wÀ-ú])", ex, re.I) for f in formes_verbe(inf)):
@@ -259,6 +284,7 @@ def adjectifs(niv, src, jeu, deja, variantes):
         m, f, fr = cols[0], cols[1], cols[2]
         ex, exfr = (cols[3], cols[4]) if len(cols) > 4 else ("", "")
         d = drapeaux(cols[5:])
+        ex, exfr = phrase_ajoutee("adj", m, ex, exfr)
         if sans_phrase("adj", m, niv, ex, exfr) or not deja.prendre("adj", m, niv):
             continue
         pl = d.get("pl", pluriel(m))
@@ -270,7 +296,9 @@ def adjectifs(niv, src, jeu, deja, variantes):
         if gradue or m in COMPARATIFS or d.get("comp"):
             c = COMPARATIFS.get(m, "mais " + m)
             formes["comparatif"], formes["superlatif"] = c, "o " + c
-        if not re.search(r"(?<![\wÀ-ú])(" + "|".join(re.escape(x) for x in {m, f, pl, fpl}) + r")(?![\wÀ-ú])", ex, re.I):
+        # « pouco claro » -> « pouco clara » : chaque mot en -o peut s'accorder.
+        accordees = {re.sub(r"o$", "a", m), re.sub(r"os$", "as", pl), re.sub(r"^(\S+)o( |$)", r"\1a\2", m)}
+        if not re.search(r"(?<![\wÀ-ú])(" + "|".join(re.escape(x) for x in {m, f, pl, fpl} | accordees) + r")(?![\wÀ-ú])", ex, re.I):
             RAPPORT.append("  %-26s ADJECTIF ABSENT DE SA PHRASE : %s" % (m, ex))
             if not GARDER_SANS_MOT:
                 continue
@@ -288,6 +316,7 @@ def simples(niv, bloc, cl, deja):
             RAPPORT.append("  %-26s LIGNE INCOMPLETE (%s %s)" % (cols[0], cl, niv))
             continue
         m, fr, cat, ex, exfr = cols[:5]
+        ex, exfr = phrase_ajoutee(cl, m, ex, exfr)
         if sans_phrase(cl, m, niv, ex, exfr) or not deja.prendre(cl, m, niv):
             continue
         out.append({"mot": m, "traduction": fr, "kategorie": cat, "exemple": ex, "exemple_fr": exfr})
