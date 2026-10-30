@@ -132,7 +132,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "compras_pt",
-     "fr": "vitrine"
+     "fr": "vitrine",
+     "br": {
+      "mot": "vitrine"
+     }
     }
    ],
    "sur": "baeckerei",
@@ -284,7 +287,11 @@ window.SCENE = {
      12.6
     ]
    ],
-   "fr": "bus"
+   "fr": "bus",
+   "br": {
+    "mot": "ônibus",
+    "pluriel": "os ônibus"
+   }
   },
   {
    "id": "wartehaeuschen",
@@ -333,7 +340,12 @@ window.SCENE = {
      13.3
     ]
    ],
-   "fr": "arrêt"
+   "fr": "arrêt",
+   "br": {
+    "mot": "ponto",
+    "genre": "o",
+    "pluriel": "os pontos"
+   }
   },
   {
    "id": "frau-rot",
@@ -547,7 +559,10 @@ window.SCENE = {
      "genre": "o",
      "niveau": "A1",
      "theme": "transportes_pt",
-     "fr": "poids lourd, camion"
+     "fr": "poids lourd, camion",
+     "br": {
+      "mot": "caminhão"
+     }
     }
    ],
    "sur": null,
@@ -560,7 +575,11 @@ window.SCENE = {
      12.8
     ]
    ],
-   "fr": "camionnette de livraison"
+   "fr": "camionnette de livraison",
+   "br": {
+    "mot": "van",
+    "pluriel": "as vans"
+   }
   },
   {
    "id": "zebrastreifen",
@@ -581,7 +600,11 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "passage piéton"
+   "fr": "passage piéton",
+   "br": {
+    "mot": "faixa de pedestres",
+    "pluriel": "as faixas de pedestres"
+   }
   },
   {
    "id": "zebrastreifen-2",
@@ -602,7 +625,11 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "passage piéton"
+   "fr": "passage piéton",
+   "br": {
+    "mot": "faixa de pedestres",
+    "pluriel": "as faixas de pedestres"
+   }
   },
   {
    "id": "fussgaenger",
@@ -638,7 +665,11 @@ window.SCENE = {
      8.3
     ]
    ],
-   "fr": "piéton"
+   "fr": "piéton",
+   "br": {
+    "mot": "pedestre",
+    "pluriel": "os pedestres"
+   }
   },
   {
    "id": "frau-tasche",
@@ -717,7 +748,11 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "tramway"
+   "fr": "tramway",
+   "br": {
+    "mot": "bonde",
+    "pluriel": "os bondes"
+   }
   },
   {
    "id": "motorrad",
@@ -738,7 +773,11 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "moto"
+   "fr": "moto",
+   "br": {
+    "mot": "moto",
+    "pluriel": "as motos"
+   }
   },
   {
    "id": "radweg",
@@ -897,7 +936,11 @@ window.SCENE = {
      37.6
     ]
    ],
-   "fr": "réverbère"
+   "fr": "réverbère",
+   "br": {
+    "mot": "poste de luz",
+    "pluriel": "os postes de luz"
+   }
   },
   {
    "id": "anna",
@@ -913,7 +956,10 @@ window.SCENE = {
      "genre": "o",
      "niveau": "A1",
      "theme": "casa_pt",
-     "fr": "téléphone portable"
+     "fr": "téléphone portable",
+     "br": {
+      "mot": "celular"
+     }
     },
     {
      "mot": "casaco",
@@ -1042,7 +1088,14 @@ window.SCENE = {
      "r": "post",
      "phrase": "A caixa do correio está à frente dos correios.",
      "sens": "La petite boîte aux lettres est devant la poste.",
-     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + os correios = <b>à frente dos</b> correios."
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + os correios = <b>à frente dos</b> correios.",
+     "br": {
+      "c": [
+       "à frente dos correios",
+       "à frente da padaria",
+       "ao lado do ônibus"
+      ]
+     }
     },
     {
      "q": "Onde está a mulher?",
@@ -1055,7 +1108,15 @@ window.SCENE = {
      "r": "haltestelle",
      "phrase": "A mulher está na paragem.",
      "sens": "La femme au manteau rouge attend à l'arrêt.",
-     "n": "<b>em</b> + a = <b>na</b> : na paragem."
+     "n": "<b>em</b> + a = <b>na</b> : na paragem.",
+     "br": {
+      "c": [
+       "no ponto",
+       "à frente da farmácia",
+       "na ciclovia"
+      ],
+      "phrase": "A mulher está no ponto."
+     }
     },
     {
      "q": "Onde está o ciclista?",
@@ -1068,7 +1129,14 @@ window.SCENE = {
      "r": "radweg",
      "phrase": "O ciclista está na ciclovia.",
      "sens": "Le cycliste roule sur la piste cyclable.",
-     "n": "<b>em</b> + a = <b>na</b> : na ciclovia."
+     "n": "<b>em</b> + a = <b>na</b> : na ciclovia.",
+     "br": {
+      "c": [
+       "na ciclovia",
+       "no passeio",
+       "no ônibus"
+      ]
+     }
     },
     {
      "q": "Onde está a Anna?",
@@ -1081,7 +1149,15 @@ window.SCENE = {
      "r": "ampel-vorne",
      "phrase": "A Anna está entre o candeeiro de rua e o semáforo.",
      "sens": "Anna est entre le lampadaire et le feu.",
-     "n": "<b>entre</b> … <b>e</b> … = entre … et …"
+     "n": "<b>entre</b> … <b>e</b> … = entre … et …",
+     "br": {
+      "c": [
+       "entre o poste de luz e o semáforo",
+       "à frente da padaria",
+       "no ponto"
+      ],
+      "phrase": "A Anna está entre o poste de luz e o semáforo."
+     }
     },
     {
      "q": "Onde estão os suportes de bicicletas?",
@@ -1094,7 +1170,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Os suportes de bicicletas estão junto do suporte de bicicletas.",
      "sens": "Les vélos sont au porte-vélos.",
-     "n": "<b>junto de</b> = près de, contre. <b>junto de</b> + o suporte de bicicletas = <b>junto do</b> suporte de bicicletas."
+     "n": "<b>junto de</b> = près de, contre. <b>junto de</b> + o suporte de bicicletas = <b>junto do</b> suporte de bicicletas.",
+     "br": {
+      "c": [
+       "junto do suporte de bicicletas",
+       "no ponto",
+       "à frente dos correios"
+      ]
+     }
     },
     {
      "q": "Onde estão os peões?",
@@ -1107,7 +1190,16 @@ window.SCENE = {
      "r": "zebrastreifen",
      "phrase": "Os peões estão na passadeira.",
      "sens": "Les piétons sont sur le passage piéton.",
-     "n": "<b>em</b> + a = <b>na</b> : na passadeira."
+     "n": "<b>em</b> + a = <b>na</b> : na passadeira.",
+     "br": {
+      "q": "Onde estão os pedestres?",
+      "c": [
+       "na faixa de pedestres",
+       "na ciclovia",
+       "na pastelaria"
+      ],
+      "phrase": "Os pedestres estão na faixa de pedestres."
+     }
     },
     {
      "q": "Onde está o quiosque?",
@@ -1138,7 +1230,10 @@ window.SCENE = {
      "r": "apotheke",
      "phrase": "Desculpe, como é que se vai à farmácia?",
      "sens": "Excusez-moi, comment aller à la pharmacie ?",
-     "n": "Après <b>como é que</b>, le se devant : <b>se vai</b>."
+     "n": "Après <b>como é que</b>, le se devant : <b>se vai</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "___ a rua, ali na passadeira.",
@@ -1151,7 +1246,17 @@ window.SCENE = {
      "r": null,
      "phrase": "Atravesse a rua, ali na passadeira.",
      "sens": "Traversez la rue, là, au passage piéton.",
-     "n": "Vouvoiement : <b>atravesse</b> ; le passage piéton = <b>a passadeira</b>."
+     "n": "Vouvoiement : <b>atravesse</b> ; le passage piéton = <b>a passadeira</b>.",
+     "br": {
+      "q": "___ a rua, ali na faixa de pedestres.",
+      "c": [
+       "Atravesse",
+       "Se atravessa",
+       "Atravesses"
+      ],
+      "phrase": "Atravesse a rua, ali na faixa de pedestres.",
+      "n": "Vouvoiement : <b>atravesse</b> ; le passage piéton = <b>a faixa de pedestres</b>."
+     }
     },
     {
      "q": "Espere até o semáforo ___ verde.",
@@ -1164,7 +1269,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Espere até o semáforo ficar verde.",
      "sens": "Attendez que le feu passe au vert.",
-     "n": "<b>até</b> + infinitif personnel."
+     "n": "<b>até</b> + infinitif personnel.",
+     "br": {
+      "c": [
+       "ficar",
+       "fica",
+       "se fique"
+      ]
+     }
     },
     {
      "q": "Depois, a farmácia fica mesmo à ___ frente.",
@@ -1190,7 +1302,14 @@ window.SCENE = {
      "r": "apotheke",
      "phrase": "Passe pela farmácia e já lá está.",
      "sens": "Passez devant la pharmacie, et vous y êtes.",
-     "n": "<b>passar por</b> : passer devant."
+     "n": "<b>passar por</b> : passer devant.",
+     "br": {
+      "c": [
+       "Passe",
+       "Se passa",
+       "Passas"
+      ]
+     }
     },
     {
      "q": "A carrinha ___ da rua lateral.",
@@ -1203,7 +1322,17 @@ window.SCENE = {
      "r": null,
      "phrase": "A carrinha sai da rua lateral.",
      "sens": "La camionnette sort de la rue latérale.",
-     "n": "<b>sair</b> → <b>sai</b> ; la camionnette = <b>a carrinha</b>."
+     "n": "<b>sair</b> → <b>sai</b> ; la camionnette = <b>a carrinha</b>.",
+     "br": {
+      "q": "A van ___ da rua lateral.",
+      "c": [
+       "sai",
+       "sae",
+       "se saia"
+      ],
+      "phrase": "A van sai da rua lateral.",
+      "n": "<b>sair</b> → <b>sai</b> ; la camionnette = <b>a van</b>."
+     }
     },
     {
      "q": "Os peões atravessam ___ passadeira.",
@@ -1216,7 +1345,12 @@ window.SCENE = {
      "r": "zebrastreifen",
      "phrase": "Os peões atravessam na passadeira.",
      "sens": "Les piétons traversent sur le passage piéton.",
-     "n": "Les piétons = <b>os peões</b>, au Portugal."
+     "n": "Les piétons = <b>os peões</b>, au Portugal.",
+     "br": {
+      "q": "Os pedestres atravessam ___ faixa de pedestres.",
+      "phrase": "Os pedestres atravessam na faixa de pedestres.",
+      "n": "Les piétons = <b>os pedestres</b>, au Portugal."
+     }
     },
     {
      "q": "A Anna vai já entrar ___ padaria.",
@@ -1242,7 +1376,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Não atravesse com o sinal vermelho, por favor!",
      "sens": "Ne traversez pas au rouge, s'il vous plaît !",
-     "n": "<b>o sinal</b> → <b>vermelho</b>."
+     "n": "<b>o sinal</b> → <b>vermelho</b>.",
+     "br": {
+      "c": [
+       "vermelho",
+       "vermelha",
+       "se encarnado"
+      ]
+     }
     },
     {
      "q": "O café fica na ___, mesmo ao lado da rua lateral.",
@@ -1312,7 +1453,11 @@ window.SCENE = {
      "r": "haltestelle",
      "phrase": "A mulher, cujo casaco é vermelho, espera pelo autocarro.",
      "sens": "La femme au manteau rouge attend le bus.",
-     "n": "<b>cujo</b> + casaco."
+     "n": "<b>cujo</b> + casaco.",
+     "br": {
+      "q": "A mulher, ___ casaco é vermelho, espera pelo ônibus.",
+      "phrase": "A mulher, cujo casaco é vermelho, espera pelo ônibus."
+     }
     },
     {
      "q": "O homem ___ leva uma mochila atravessa na passadeira.",
@@ -1325,7 +1470,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O homem que leva uma mochila atravessa na passadeira.",
      "sens": "L'homme qui porte un sac à dos traverse sur le passage piéton.",
-     "n": "Sujet : <b>que</b>."
+     "n": "Sujet : <b>que</b>.",
+     "br": {
+      "q": "O homem ___ leva uma mochila atravessa na faixa de pedestres.",
+      "phrase": "O homem que leva uma mochila atravessa na faixa de pedestres."
+     }
     },
     {
      "q": "O café em frente do ___ há mesas tem um toldo vermelho.",
@@ -1356,7 +1505,17 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela deve ter-se perdido.",
      "sens": "Elle s'est sans doute perdue.",
-     "n": "Déduction sur le passé : <b>deve ter-se perdido</b>."
+     "n": "Déduction sur le passé : <b>deve ter-se perdido</b>.",
+     "br": {
+      "q": "Ela ___ se ter perdido.",
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ],
+      "phrase": "Ela deve se ter perdido.",
+      "n": "Déduction sur le passé : <b>deve se ter perdido</b>."
+     }
     },
     {
      "q": "___ ter chovido há pouco.",
@@ -1369,7 +1528,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Deve ter chovido há pouco.",
      "sens": "Il a dû pleuvoir tout à l'heure.",
-     "n": "<b>deve ter</b> + participe."
+     "n": "<b>deve ter</b> + participe.",
+     "br": {
+      "c": [
+       "Deve",
+       "Se pode",
+       "Tem"
+      ]
+     }
     },
     {
      "q": "Se o semáforo ___ verde, a Anna já teria atravessado.",
@@ -1395,10 +1561,15 @@ window.SCENE = {
      "r": "cafe",
      "phrase": "Pode estar a trazer mercadoria para o café.",
      "sens": "Il apporte peut-être des marchandises pour le café.",
-     "n": "Possibilité : <b>poder</b> + estar a."
+     "n": "Possibilité : <b>poder</b> + estar a.",
+     "br": {
+      "q": "___ estar trazendo mercadoria para o café.",
+      "phrase": "Pode estar trazendo mercadoria para o café."
+     }
     }
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "No cruzamento"
 };

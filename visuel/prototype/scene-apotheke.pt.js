@@ -33,7 +33,11 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "decke",
@@ -187,7 +191,11 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "pansement ; fédération"
+   "fr": "pansement ; fédération",
+   "br": {
+    "mot": "atadura",
+    "pluriel": "as ataduras"
+   }
   },
   {
    "id": "pflaster",
@@ -207,7 +215,11 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "sparadrap"
+   "fr": "sparadrap",
+   "br": {
+    "mot": "curativo",
+    "pluriel": "os curativos"
+   }
   },
   {
    "id": "regal",
@@ -672,7 +684,12 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "hose",
@@ -687,7 +704,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -716,7 +737,10 @@ window.SCENE = {
      "genre": "os",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "basket"
+     "fr": "basket",
+     "br": {
+      "mot": "tênis"
+     }
     }
    ],
    "sur": null,
@@ -757,7 +781,12 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "br": {
+    "mot": "tela",
+    "genre": "a",
+    "pluriel": "as telas"
+   }
   },
   {
    "id": "tastatur",
@@ -820,7 +849,12 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "le sac (en papier, en plastique)"
+   "fr": "le sac (en papier, en plastique)",
+   "br": {
+    "mot": "sacola",
+    "genre": "a",
+    "pluriel": "as sacolas"
+   }
   },
   {
    "id": "medikament-6",
@@ -913,7 +947,10 @@ window.SCENE = {
      "mot": "cartão de utente",
      "genre": "o",
      "niveau": "B1",
-     "fr": "carte d'assurance maladie"
+     "fr": "carte d'assurance maladie",
+     "br": {
+      "mot": "cartão do SUS"
+     }
     }
    ],
    "sur": "schalter",
@@ -966,7 +1003,11 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "guichet ; interrupteur"
+   "fr": "guichet ; interrupteur",
+   "br": {
+    "mot": "guichê",
+    "pluriel": "os guichês"
+   }
   },
   {
    "id": "karton",
@@ -1028,7 +1069,12 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "fenster",
@@ -1044,7 +1090,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "compras_pt",
-     "fr": "vitrine"
+     "fr": "vitrine",
+     "br": {
+      "mot": "vitrine"
+     }
     }
    ],
    "sur": null,
@@ -1359,7 +1408,15 @@ window.SCENE = {
      "r": "schalter",
      "phrase": "A planta está em cima do guiché.",
      "sens": "La plante est sur le comptoir.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché.",
+     "br": {
+      "c": [
+       "em cima do guichê",
+       "na estante",
+       "na cadeira"
+      ],
+      "phrase": "A planta está em cima do guichê."
+     }
     },
     {
      "q": "Onde está o homem?",
@@ -1385,7 +1442,14 @@ window.SCENE = {
      "r": "stuhl",
      "phrase": "A balança está ao lado da cadeira.",
      "sens": "La balance est à côté de la chaise.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a cadeira = <b>ao lado da</b> cadeira."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a cadeira = <b>ao lado da</b> cadeira.",
+     "br": {
+      "c": [
+       "ao lado da cadeira",
+       "em cima do guichê",
+       "na estante"
+      ]
+     }
     },
     {
      "q": "Onde está o carro?",
@@ -1411,7 +1475,16 @@ window.SCENE = {
      "r": "tuer",
      "phrase": "O caixote do lixo está ao lado da porta.",
      "sens": "La poubelle est à côté de la porte.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta.",
+     "br": {
+      "q": "Onde está a lixeira?",
+      "c": [
+       "ao lado da porta",
+       "em cima do guichê",
+       "na estante"
+      ],
+      "phrase": "A lixeira está ao lado da porta."
+     }
     },
     {
      "q": "Onde está a caixa de cartão?",
@@ -1424,7 +1497,14 @@ window.SCENE = {
      "r": "boden",
      "phrase": "A caixa de cartão está no chão.",
      "sens": "Le carton est par terre.",
-     "n": "<b>em</b> + o = <b>no</b> : no chão."
+     "n": "<b>em</b> + o = <b>no</b> : no chão.",
+     "br": {
+      "c": [
+       "no chão",
+       "em cima do guichê",
+       "na estante"
+      ]
+     }
     }
    ]
   },
@@ -1442,7 +1522,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O Mark não tem febre, só uma constipação.",
      "sens": "Mark n'a pas de fièvre, juste un rhume.",
-     "n": "Le portugais dit <b>não tem febre</b> : pas d'article ; <b>só</b> = seulement."
+     "n": "Le portugais dit <b>não tem febre</b> : pas d'article ; <b>só</b> = seulement.",
+     "br": {
+      "q": "O Mark não tem febre, ___ um resfriado.",
+      "phrase": "O Mark não tem febre, só um resfriado."
+     }
     },
     {
      "q": "Os comprimidos ___ são caros.",
@@ -1551,7 +1635,11 @@ window.SCENE = {
      "r": "mark",
      "phrase": "A farmacêutica diz que o Mark tem uma constipação forte.",
      "sens": "La pharmacienne dit que Mark a un gros rhume.",
-     "n": "Verbe introducteur au présent : l'indicatif ne change pas."
+     "n": "Verbe introducteur au présent : l'indicatif ne change pas.",
+     "br": {
+      "q": "A farmacêutica diz que o Mark ___ um resfriado forte.",
+      "phrase": "A farmacêutica diz que o Mark tem um resfriado forte."
+     }
     },
     {
      "q": "Ela diz-lhe que ___ os comprimidos três vezes por dia.",
@@ -1564,7 +1652,11 @@ window.SCENE = {
      "r": "frau",
      "phrase": "Ela diz-lhe que tome os comprimidos três vezes por dia.",
      "sens": "Elle dit qu'il doit prendre les comprimés trois fois par jour.",
-     "n": "Une consigne rapportée : <b>dizer que</b> + conjuntivo."
+     "n": "Une consigne rapportée : <b>dizer que</b> + conjuntivo.",
+     "br": {
+      "q": "Ela lhe diz que ___ os comprimidos três vezes por dia.",
+      "phrase": "Ela lhe diz que tome os comprimidos três vezes por dia."
+     }
     },
     {
      "q": "O médico disse que o Mark não ___ contagioso.",
@@ -1577,7 +1669,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O médico disse que o Mark não era contagioso.",
      "sens": "Le médecin a dit que Mark n'est pas contagieux.",
-     "n": "Verbe introducteur au passé : présent → imperfeito."
+     "n": "Verbe introducteur au passé : présent → imperfeito.",
+     "br": {
+      "c": [
+       "era",
+       "se é",
+       "seja"
+      ]
+     }
     },
     {
      "q": "O Mark diz que ___ tosse há três dias.",
@@ -1590,7 +1689,14 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O Mark diz que tem tosse há três dias.",
      "sens": "Mark dit qu'il tousse depuis trois jours.",
-     "n": "<b>ter tosse</b> = tousser ; <b>há três dias</b> = depuis trois jours."
+     "n": "<b>ter tosse</b> = tousser ; <b>há três dias</b> = depuis trois jours.",
+     "br": {
+      "c": [
+       "tem",
+       "tenha",
+       "se tinha"
+      ]
+     }
     },
     {
      "q": "A farmacêutica explica que o xarope ___ a tosse.",
@@ -1634,7 +1740,17 @@ window.SCENE = {
      "r": "taschentuch",
      "phrase": "Ele deve estar constipado.",
      "sens": "Il doit être enrhumé.",
-     "n": "Déduction : <b>dever</b> ; <b>constipado</b> = enrhumé."
+     "n": "Déduction : <b>dever</b> ; <b>constipado</b> = enrhumé.",
+     "br": {
+      "q": "Ele ___ estar resfriado.",
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ],
+      "phrase": "Ele deve estar resfriado.",
+      "n": "Déduction : <b>dever</b> ; <b>resfriado</b> = enrhumé."
+     }
     },
     {
      "q": "___ o senhor esteja à espera do medicamento.",
@@ -1660,7 +1776,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O Mark deverá estar bom daqui a dois dias.",
      "sens": "Mark devrait être rétabli dans deux jours.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "Esta farmácia ___ a mais antiga do bairro.",
@@ -1673,7 +1796,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Esta farmácia seria a mais antiga do bairro.",
      "sens": "Cette pharmacie serait la plus ancienne du quartier.",
-     "n": "Le conditionnel de la rumeur : <b>seria</b>."
+     "n": "Le conditionnel de la rumeur : <b>seria</b>.",
+     "br": {
+      "c": [
+       "seria",
+       "se será",
+       "seja"
+      ]
+     }
     }
    ]
   }

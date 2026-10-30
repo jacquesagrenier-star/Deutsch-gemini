@@ -33,7 +33,11 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "decke",
@@ -320,7 +324,12 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "tuer",
@@ -473,7 +482,12 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "br": {
+    "mot": "tela",
+    "genre": "a",
+    "pluriel": "as telas"
+   }
   },
   {
    "id": "pflanze-2",
@@ -556,7 +570,12 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "billet"
+   "fr": "billet",
+   "br": {
+    "mot": "passagem",
+    "genre": "a",
+    "pluriel": "as passagens"
+   }
   },
   {
    "id": "pass",
@@ -659,7 +678,12 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "tasche",
@@ -695,7 +719,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -724,7 +752,10 @@ window.SCENE = {
      "genre": "os",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "basket"
+     "fr": "basket",
+     "br": {
+      "mot": "tênis"
+     }
     }
    ],
    "sur": null,
@@ -828,7 +859,11 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "guichet ; interrupteur"
+   "fr": "guichet ; interrupteur",
+   "br": {
+    "mot": "guichê",
+    "pluriel": "os guichês"
+   }
   },
   {
    "id": "rucksack",
@@ -964,7 +999,14 @@ window.SCENE = {
      "r": "stuhl-2",
      "phrase": "O jornal está na cadeira.",
      "sens": "Le journal est sur la chaise.",
-     "n": "<b>em</b> + a = <b>na</b> : na cadeira."
+     "n": "<b>em</b> + a = <b>na</b> : na cadeira.",
+     "br": {
+      "c": [
+       "na cadeira",
+       "na mala de viagem",
+       "em cima do guichê"
+      ]
+     }
     },
     {
      "q": "Onde está a garrafa?",
@@ -977,7 +1019,14 @@ window.SCENE = {
      "r": "boden",
      "phrase": "A garrafa está no chão.",
      "sens": "La bouteille est par terre.",
-     "n": "<b>em</b> + o = <b>no</b> : no chão."
+     "n": "<b>em</b> + o = <b>no</b> : no chão.",
+     "br": {
+      "c": [
+       "no chão",
+       "em cima do guichê",
+       "na mochila"
+      ]
+     }
     },
     {
      "q": "Onde está o caixote do lixo?",
@@ -990,7 +1039,16 @@ window.SCENE = {
      "r": "tuer",
      "phrase": "O caixote do lixo está ao lado da porta.",
      "sens": "La poubelle est à côté de la porte.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta.",
+     "br": {
+      "q": "Onde está a lixeira?",
+      "c": [
+       "ao lado da porta",
+       "à frente do guichê",
+       "atrás da escada"
+      ],
+      "phrase": "A lixeira está ao lado da porta."
+     }
     },
     {
      "q": "Onde está o bilhete?",
@@ -1003,7 +1061,15 @@ window.SCENE = {
      "r": "schalter",
      "phrase": "O bilhete está em cima do guiché.",
      "sens": "Le billet est sur le comptoir.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché.",
+     "br": {
+      "c": [
+       "em cima do guichê",
+       "na mala",
+       "em cima da balança"
+      ],
+      "phrase": "O bilhete está em cima do guichê."
+     }
     },
     {
      "q": "Onde está a placa?",
@@ -1047,7 +1113,10 @@ window.SCENE = {
      "r": "frau",
      "phrase": "Ela não se esquece de mostrar o passaporte à senhora.",
      "sens": "Elle n'oublie pas de montrer son passeport à la femme.",
-     "n": "<b>esquecer-se de</b> + infinitif."
+     "n": "<b>esquecer-se de</b> + infinitif.",
+     "br": {
+      "n": "<b>se esquecer de</b> + infinitif."
+     }
     },
     {
      "q": "É importante ___ a horas no aeroporto.",
@@ -1099,7 +1168,14 @@ window.SCENE = {
      "r": "anna",
      "phrase": "A Anna tenta não se esquecer da mochila.",
      "sens": "Anna essaie de ne pas oublier le sac à dos.",
-     "n": "<b>tentar</b> + infinitif ; après <b>não</b>, le pronom devant."
+     "n": "<b>tentar</b> + infinitif ; après <b>não</b>, le pronom devant.",
+     "br": {
+      "c": [
+       "esquecer",
+       "se esquecer",
+       "esquece"
+      ]
+     }
     },
     {
      "q": "A Anna espera ___ a horas.",
@@ -1125,7 +1201,10 @@ window.SCENE = {
      "r": "frau",
      "phrase": "A Anna tem de mostrar o passaporte à senhora.",
      "sens": "Anna doit montrer son passeport à la femme.",
-     "n": "<b>ter de</b> + infinitif."
+     "n": "<b>ter de</b> + infinitif.",
+     "br": {
+      "omettre": true
+     }
     }
    ]
   },
@@ -1226,7 +1305,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela deve estar ansiosa pela viagem.",
      "sens": "Elle doit se réjouir du voyage.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem que ser"
+      ]
+     }
     },
     {
      "q": "___ ser o piloto do avião dela.",
@@ -1252,7 +1338,14 @@ window.SCENE = {
      "r": "waage",
      "phrase": "A mala grande estará pesada demais.",
      "sens": "La grande valise est sans doute trop lourde.",
-     "n": "Futur de supposition : <b>estará</b>."
+     "n": "Futur de supposition : <b>estará</b>.",
+     "br": {
+      "c": [
+       "estará",
+       "esteja",
+       "se estava"
+      ]
+     }
     },
     {
      "q": "Este aeroporto ___ o mais moderno do país.",
@@ -1265,7 +1358,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Este aeroporto seria o mais moderno do país.",
      "sens": "Cet aéroport serait le plus moderne du pays.",
-     "n": "Le conditionnel de la rumeur : <b>seria</b>."
+     "n": "Le conditionnel de la rumeur : <b>seria</b>.",
+     "br": {
+      "c": [
+       "seria",
+       "se será",
+       "seja"
+      ]
+     }
     }
    ]
   }

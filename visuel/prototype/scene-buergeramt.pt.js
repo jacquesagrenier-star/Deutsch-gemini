@@ -21,7 +21,11 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "decke",
@@ -127,7 +131,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "lazer_pt",
-     "fr": "photo"
+     "fr": "photo",
+     "br": {
+      "mot": "foto"
+     }
     }
    ],
    "sur": null,
@@ -566,7 +573,12 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "br": {
+    "mot": "tela",
+    "genre": "a",
+    "pluriel": "as telas"
+   }
   },
   {
    "id": "tastatur",
@@ -697,7 +709,11 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "stylo à bille"
+   "fr": "stylo à bille",
+   "br": {
+    "mot": "caneta",
+    "pluriel": "as canetas"
+   }
   },
   {
    "id": "pass",
@@ -787,7 +803,11 @@ window.SCENE = {
      27
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "br": {
+    "mot": "escrivaninha",
+    "pluriel": "as escrivaninhas"
+   }
   },
   {
    "id": "lampe-2",
@@ -808,7 +828,11 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "schreibtisch-2",
@@ -837,7 +861,11 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "br": {
+    "mot": "escrivaninha",
+    "pluriel": "as escrivaninhas"
+   }
   },
   {
    "id": "mark",
@@ -915,7 +943,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -1053,7 +1085,11 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "bébé"
+   "fr": "bébé",
+   "br": {
+    "mot": "bebê",
+    "pluriel": "os bebês"
+   }
   },
   {
    "id": "stuhl",
@@ -1095,7 +1131,12 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "boden",
@@ -1221,7 +1262,11 @@ window.SCENE = {
      "r": "frau-2",
      "phrase": "O bebé está ao pé da mulher.",
      "sens": "Le bébé est avec la femme.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao pé de</b> + a mulher = <b>ao pé da</b> mulher."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao pé de</b> + a mulher = <b>ao pé da</b> mulher.",
+     "br": {
+      "q": "Onde está o bebê?",
+      "phrase": "O bebê está ao pé da mulher."
+     }
     },
     {
      "q": "Onde está o caixote do lixo?",
@@ -1234,7 +1279,11 @@ window.SCENE = {
      "r": "tuer",
      "phrase": "O caixote do lixo está ao lado da porta.",
      "sens": "La poubelle est à côté de la porte.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta.",
+     "br": {
+      "q": "Onde está a lixeira?",
+      "phrase": "A lixeira está ao lado da porta."
+     }
     },
     {
      "q": "Onde está a impressora?",
@@ -1291,7 +1340,12 @@ window.SCENE = {
      "r": "formular",
      "phrase": "O Mark preenche o impresso com uma esferográfica.",
      "sens": "Mark remplit le formulaire avec un stylo.",
-     "n": "L'instrument : <b>com</b> ; le stylo = <b>a esferográfica</b>, au Portugal."
+     "n": "L'instrument : <b>com</b> ; le stylo = <b>a esferográfica</b>, au Portugal.",
+     "br": {
+      "q": "O Mark preenche o impresso ___ uma caneta.",
+      "phrase": "O Mark preenche o impresso com uma caneta.",
+      "n": "L'instrument : <b>com</b> ; le stylo = <b>a caneta</b>, au Portugal."
+     }
     },
     {
      "q": "O impresso é ___ o registo da morada.",
@@ -1304,7 +1358,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O impresso é para o registo da morada.",
      "sens": "Le formulaire est pour la déclaration de domicile.",
-     "n": "La destination : <b>para</b>."
+     "n": "La destination : <b>para</b>.",
+     "br": {
+      "q": "O impresso é ___ o registro do endereço.",
+      "phrase": "O impresso é para o registro do endereço."
+     }
     },
     {
      "q": "O Mark vai ___ Loja do Cidadão.",
@@ -1356,7 +1414,12 @@ window.SCENE = {
      "r": "baby",
      "phrase": "A jovem espera com o seu bebé.",
      "sens": "La jeune femme attend avec son bébé.",
-     "n": "<b>o seu bebé</b>."
+     "n": "<b>o seu bebé</b>.",
+     "br": {
+      "q": "A jovem espera com o ___ bebê.",
+      "phrase": "A jovem espera com o seu bebê.",
+      "n": "<b>o seu bebê</b>."
+     }
     }
    ]
   },
@@ -1457,7 +1520,14 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O impresso deve ser importante.",
      "sens": "Le formulaire doit être important.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "A jovem também ___ ser nova em Lisboa.",
@@ -1483,7 +1553,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A marcação deverá terminar daqui a dez minutos.",
      "sens": "Le rendez-vous devrait être fini dans dix minutes.",
-     "n": "Probable : <b>deverá</b> ; un rendez-vous administratif = <b>uma marcação</b>."
+     "n": "Probable : <b>deverá</b> ; un rendez-vous administratif = <b>uma marcação</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "___ que na Loja do Cidadão se espera muito.",
@@ -1501,5 +1578,6 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "Na repartição"
 };

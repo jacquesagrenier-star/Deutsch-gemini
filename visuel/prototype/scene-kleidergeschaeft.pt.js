@@ -84,7 +84,11 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "lampe-2",
@@ -105,7 +109,11 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "hut",
@@ -267,7 +275,12 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "hosen-stapel",
@@ -295,7 +308,11 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "jean"
+   "fr": "jean",
+   "br": {
+    "mot": "calça jeans",
+    "genre": "a"
+   }
   },
   {
    "id": "kleid",
@@ -399,7 +416,11 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "costume"
+   "fr": "costume",
+   "br": {
+    "mot": "terno",
+    "pluriel": "os ternos"
+   }
   },
   {
    "id": "anzug-hose",
@@ -635,7 +656,12 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "tasche-anna",
@@ -684,7 +710,11 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "jean"
+   "fr": "jean",
+   "br": {
+    "mot": "calça jeans",
+    "genre": "a"
+   }
   },
   {
    "id": "schuhe-anna",
@@ -752,7 +782,10 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "basket"
+   "fr": "basket",
+   "br": {
+    "mot": "tênis"
+   }
   },
   {
    "id": "sandale",
@@ -810,7 +843,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "compras_pt",
-     "fr": "vendeuse"
+     "fr": "vendeuse",
+     "br": {
+      "mot": "vendedora"
+     }
     }
    ],
    "sur": null,
@@ -1236,7 +1272,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O homem de cabelo grisalho experimenta sapatos.",
      "sens": "L'homme aux cheveux gris essaie des chaussures.",
-     "n": "Les cheveux gris : <b>cabelo grisalho</b> (au singulier en portugais)."
+     "n": "Les cheveux gris : <b>cabelo grisalho</b> (au singulier en portugais).",
+     "br": {
+      "c": [
+       "grisalho",
+       "grisalha",
+       "cinza"
+      ]
+     }
     },
     {
      "q": "Um sobretudo ___ está ao lado do fato.",
@@ -1249,7 +1292,12 @@ window.SCENE = {
      "r": "anzug",
      "phrase": "Um sobretudo castanho está ao lado do fato.",
      "sens": "Un manteau marron est accroché à côté du costume.",
-     "n": "<b>o sobretudo</b> → <b>castanho</b> ; et <b>o fato</b> = le costume, au Portugal."
+     "n": "<b>o sobretudo</b> → <b>castanho</b> ; et <b>o fato</b> = le costume, au Portugal.",
+     "br": {
+      "q": "Um sobretudo ___ está ao lado do terno.",
+      "phrase": "Um sobretudo castanho está ao lado do terno.",
+      "n": "<b>o sobretudo</b> → <b>castanho</b> ; et <b>o terno</b> = le costume, au Portugal."
+     }
     }
    ]
   },
@@ -1267,7 +1315,11 @@ window.SCENE = {
      "r": "pullover",
      "phrase": "A mulher que segura a camisola amarela chama-se Anna.",
      "sens": "La femme qui tient le pull jaune s'appelle Anna.",
-     "n": "Sujet de la relative : <b>que</b>."
+     "n": "Sujet de la relative : <b>que</b>.",
+     "br": {
+      "q": "A mulher ___ segura a camisola amarela se chama Anna.",
+      "phrase": "A mulher que segura a camisola amarela se chama Anna."
+     }
     },
     {
      "q": "O homem, ___ sapato ainda está no chão, experimenta o outro.",
@@ -1332,7 +1384,11 @@ window.SCENE = {
      "r": "verkaeuferin",
      "phrase": "O cachecol está a ser dobrado pela empregada.",
      "sens": "L'écharpe est en train d'être pliée par la vendeuse.",
-     "n": "L'agent du passif : <b>por</b> + a = <b>pela</b>."
+     "n": "L'agent du passif : <b>por</b> + a = <b>pela</b>.",
+     "br": {
+      "q": "O cachecol está sendo dobrado ___ empregada.",
+      "phrase": "O cachecol está sendo dobrado pela empregada."
+     }
     }
    ]
   },
@@ -1350,7 +1406,11 @@ window.SCENE = {
      "r": "anna",
      "phrase": "A camisola deve agradar-lhe.",
      "sens": "Le pull doit lui plaire.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "q": "A camisola ___ lhe agradar.",
+      "phrase": "A camisola deve lhe agradar."
+     }
     },
     {
      "q": "___ ela vai experimentá-la já no provador.",
@@ -1376,7 +1436,14 @@ window.SCENE = {
      "r": "monsieur",
      "phrase": "O homem deverá comprar os sapatos.",
      "sens": "L'homme va sans doute acheter les chaussures.",
-     "n": "<b>deverá</b> + infinitif : probable."
+     "n": "<b>deverá</b> + infinitif : probable.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "___ que a empregada trabalha aqui há trinta anos.",

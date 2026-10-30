@@ -204,7 +204,12 @@ window.SCENE = {
      12.5
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "br": {
+    "mot": "violão",
+    "genre": "o",
+    "pluriel": "os violões"
+   }
   },
   {
    "id": "anna",
@@ -287,7 +292,12 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "casserole"
+   "fr": "casserole",
+   "br": {
+    "mot": "panela",
+    "genre": "a",
+    "pluriel": "as panelas"
+   }
   },
   {
    "id": "feuer",
@@ -395,7 +405,11 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "tasse",
@@ -416,7 +430,11 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "gras",
@@ -515,7 +533,11 @@ window.SCENE = {
      "r": "feuer",
      "phrase": "O tacho está por cima do fogo.",
      "sens": "La marmite est suspendue au-dessus du feu.",
-     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + o fogo = <b>por cima do</b> fogo."
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + o fogo = <b>por cima do</b> fogo.",
+     "br": {
+      "q": "Onde está a panela?",
+      "phrase": "A panela está por cima do fogo."
+     }
     },
     {
      "q": "Onde está a mochila?",
@@ -554,7 +576,11 @@ window.SCENE = {
      "r": "stein",
      "phrase": "A chávena está na pedra.",
      "sens": "La tasse est sur la pierre.",
-     "n": "<b>em</b> + a = <b>na</b> : na pedra."
+     "n": "<b>em</b> + a = <b>na</b> : na pedra.",
+     "br": {
+      "q": "Onde está a xícara?",
+      "phrase": "A xícara está na pedra."
+     }
     },
     {
      "q": "Onde está o candeeiro?",
@@ -567,7 +593,16 @@ window.SCENE = {
      "r": "holz",
      "phrase": "O candeeiro está ao lado da madeira.",
      "sens": "La lampe est à côté du bois.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a madeira = <b>ao lado da</b> madeira."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a madeira = <b>ao lado da</b> madeira.",
+     "br": {
+      "q": "Onde está o abajur?",
+      "c": [
+       "ao lado da madeira",
+       "na panela",
+       "na tenda"
+      ],
+      "phrase": "O abajur está ao lado da madeira."
+     }
     },
     {
      "q": "Onde está a tenda?",
@@ -611,7 +646,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Esta noite dormirão na tenda.",
      "sens": "Cette nuit, ils dormiront dans la tente.",
-     "n": "Futuro simples : <b>dormirão</b> (≠ dormiram, passé)."
+     "n": "Futuro simples : <b>dormirão</b> (≠ dormiram, passé).",
+     "br": {
+      "c": [
+       "dormirão",
+       "dormiram",
+       "se dormem"
+      ]
+     }
     },
     {
      "q": "Vou ___ uma canção.",
@@ -624,7 +666,10 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Vou tocar-te uma canção.",
      "sens": "Je vais te jouer une chanson.",
-     "n": "<b>vou</b> + infinitif-pronom."
+     "n": "<b>vou</b> + infinitif-pronom.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A sopa ___ pronta daqui a nada.",
@@ -637,7 +682,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A sopa vai estar pronta daqui a nada.",
      "sens": "La soupe sera bientôt prête.",
-     "n": "<b>vai estar</b>."
+     "n": "<b>vai estar</b>.",
+     "br": {
+      "c": [
+       "vai estar",
+       "se estará",
+       "vai a estar"
+      ]
+     }
     },
     {
      "q": "Amanhã de manhã ___ de barco.",
@@ -663,7 +715,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Apagas a fogueira mais tarde?",
      "sens": "Tu éteindras le feu plus tard ?",
-     "n": "À l'oral, le présent sert souvent de futur."
+     "n": "À l'oral, le présent sert souvent de futur.",
+     "br": {
+      "c": [
+       "Apagas",
+       "Te apagarás",
+       "Apagues"
+      ]
+     }
     },
     {
      "q": "Esta noite ___ frio.",
@@ -676,7 +735,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Esta noite vai estar frio.",
      "sens": "Il va faire froid cette nuit.",
-     "n": "Le temps qu'il fera : <b>vai estar</b> frio."
+     "n": "Le temps qu'il fera : <b>vai estar</b> frio.",
+     "br": {
+      "c": [
+       "vai estar",
+       "vai a estar",
+       "se estará"
+      ]
+     }
     },
     {
      "q": "O homem vai ___ a salsicha já.",
@@ -689,7 +755,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O homem vai comer a salsicha já.",
      "sens": "L'homme va manger sa saucisse tout de suite.",
-     "n": "<b>vai</b> + infinitif."
+     "n": "<b>vai</b> + infinitif.",
+     "br": {
+      "c": [
+       "comer",
+       "se comer",
+       "come"
+      ]
+     }
     }
    ]
   },
@@ -746,7 +819,11 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Quem me dera tocar guitarra tão bem como a Anna.",
      "sens": "J'aimerais savoir jouer de la guitare aussi bien qu'Anna.",
-     "n": "<b>quem me dera</b> + infinitif ; <b>tão bem como</b>."
+     "n": "<b>quem me dera</b> + infinitif ; <b>tão bem como</b>.",
+     "br": {
+      "q": "Quem me dera tocar violão tão bem ___ a Anna.",
+      "phrase": "Quem me dera tocar violão tão bem como a Anna."
+     }
     },
     {
      "q": "Se o barco ___ maior, todos podiam ir.",
@@ -772,7 +849,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Se ao menos tivessem trazido mais lenha!",
      "sens": "Si seulement ils avaient apporté plus de bois !",
-     "n": "Le regret : <b>se ao menos</b> + tivesse + participe."
+     "n": "Le regret : <b>se ao menos</b> + tivesse + participe.",
+     "br": {
+      "c": [
+       "tivessem",
+       "tiverem",
+       "se tinham"
+      ]
+     }
     }
    ]
   },
@@ -790,7 +874,16 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela deve estar a gostar muito da noite.",
      "sens": "Elle doit beaucoup apprécier la soirée.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "q": "Ela ___ estar gostando muito da noite.",
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ],
+      "phrase": "Ela deve estar gostando muito da noite."
+     }
     },
     {
      "q": "O homem ___ ser primo da Anna.",
@@ -816,7 +909,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Serão quase dez horas.",
      "sens": "Il doit être presque dix heures.",
-     "n": "L'heure supposée : futur <b>serão</b>."
+     "n": "L'heure supposée : futur <b>serão</b>.",
+     "br": {
+      "c": [
+       "Serão",
+       "Sejam",
+       "Se foram"
+      ]
+     }
     },
     {
      "q": "___ que há lobos na floresta.",
@@ -834,5 +934,6 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "Acampamento no lago"
 };

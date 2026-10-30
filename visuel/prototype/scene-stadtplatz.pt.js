@@ -315,7 +315,11 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "tramway"
+   "fr": "tramway",
+   "br": {
+    "mot": "bonde",
+    "pluriel": "os bondes"
+   }
   },
   {
    "id": "schild",
@@ -377,7 +381,11 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "réverbère"
+   "fr": "réverbère",
+   "br": {
+    "mot": "poste de luz",
+    "pluriel": "os postes de luz"
+   }
   },
   {
    "id": "fahrrad",
@@ -667,7 +675,11 @@ window.SCENE = {
      2.3
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "tisch",
@@ -803,7 +815,11 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "la glace"
+   "fr": "la glace",
+   "br": {
+    "mot": "sorvete",
+    "pluriel": "os sorvetes"
+   }
   },
   {
    "id": "t-shirt",
@@ -824,7 +840,11 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "br": {
+    "mot": "camiseta",
+    "pluriel": "as camisetas"
+   }
   },
   {
    "id": "mantel",
@@ -919,7 +939,10 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "basket"
+   "fr": "basket",
+   "br": {
+    "mot": "tênis"
+   }
   },
   {
    "id": "kaffee",
@@ -961,7 +984,11 @@ window.SCENE = {
      12.4
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "br": {
+    "mot": "cachorro",
+    "pluriel": "os cachorros"
+   }
   },
   {
    "id": "vogel-2",
@@ -1003,7 +1030,12 @@ window.SCENE = {
      15.8
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "bank",
@@ -1084,7 +1116,11 @@ window.SCENE = {
      "r": "brunnen",
      "phrase": "O caixote do lixo está ao lado do chafariz.",
      "sens": "La poubelle est à côté de la fontaine.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o chafariz = <b>ao lado do</b> chafariz."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o chafariz = <b>ao lado do</b> chafariz.",
+     "br": {
+      "q": "Onde está a lixeira?",
+      "phrase": "A lixeira está ao lado do chafariz."
+     }
     },
     {
      "q": "Onde está o homem?",
@@ -1110,7 +1146,11 @@ window.SCENE = {
      "r": "tisch",
      "phrase": "A chávena está em cima da mesa.",
      "sens": "La tasse est sur la table.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa.",
+     "br": {
+      "q": "Onde está a xícara?",
+      "phrase": "A xícara está em cima da mesa."
+     }
     },
     {
      "q": "Onde está o relógio?",
@@ -1123,7 +1163,14 @@ window.SCENE = {
      "r": "turm",
      "phrase": "O relógio está na torre.",
      "sens": "L'horloge est sur la tour.",
-     "n": "<b>em</b> + a = <b>na</b> : na torre."
+     "n": "<b>em</b> + a = <b>na</b> : na torre.",
+     "br": {
+      "c": [
+       "na torre",
+       "junto do bonde",
+       "na árvore"
+      ]
+     }
     },
     {
      "q": "Onde está o elétrico?",
@@ -1136,7 +1183,11 @@ window.SCENE = {
      "r": "strasse",
      "phrase": "O elétrico está na rua.",
      "sens": "Le tram roule dans la rue.",
-     "n": "<b>em</b> + a = <b>na</b> : na rua."
+     "n": "<b>em</b> + a = <b>na</b> : na rua.",
+     "br": {
+      "q": "Onde está o bonde?",
+      "phrase": "O bonde está na rua."
+     }
     },
     {
      "q": "Onde está a caixa do correio?",
@@ -1162,7 +1213,11 @@ window.SCENE = {
      "r": "brunnen",
      "phrase": "O cão está à frente do chafariz.",
      "sens": "Le chien est assis devant la fontaine.",
-     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o chafariz = <b>à frente do</b> chafariz."
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o chafariz = <b>à frente do</b> chafariz.",
+     "br": {
+      "q": "Onde está o cachorro?",
+      "phrase": "O cachorro está à frente do chafariz."
+     }
     }
    ]
   },
@@ -1180,7 +1235,11 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Hoje a Anna come um gelado.",
      "sens": "Aujourd'hui, Anna mange une glace.",
-     "n": "Le portugais garde l'ordre sujet-verbe après <b>hoje</b>."
+     "n": "Le portugais garde l'ordre sujet-verbe après <b>hoje</b>.",
+     "br": {
+      "q": "Hoje a Anna ___ um sorvete.",
+      "phrase": "Hoje a Anna come um sorvete."
+     }
     },
     {
      "q": "A Anna está ___ junto ao chafariz.",
@@ -1206,7 +1265,16 @@ window.SCENE = {
      "r": "anna",
      "phrase": "À frente da Anna está um cão sentado.",
      "sens": "Devant Anna, il y a un chien assis.",
-     "n": "Un être précis à un endroit : <b>está</b>."
+     "n": "Un être précis à un endroit : <b>está</b>.",
+     "br": {
+      "q": "À frente da Anna ___ um cachorro sentado.",
+      "c": [
+       "está",
+       "se há",
+       "é"
+      ],
+      "phrase": "À frente da Anna está um cachorro sentado."
+     }
     },
     {
      "q": "Debaixo do guarda-sol, um homem ___ o jornal.",
@@ -1219,7 +1287,14 @@ window.SCENE = {
      "r": "zeitung",
      "phrase": "Debaixo do guarda-sol, um homem lê o jornal.",
      "sens": "Sous le parasol, un homme lit le journal.",
-     "n": "<b>ler</b> → <b>lê</b>."
+     "n": "<b>ler</b> → <b>lê</b>.",
+     "br": {
+      "c": [
+       "lê",
+       "se lê",
+       "leia"
+      ]
+     }
     },
     {
      "q": "Ao sábado ___ muita gente à praça.",
@@ -1232,7 +1307,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ao sábado vem muita gente à praça.",
      "sens": "Le samedi, beaucoup de gens viennent sur la place.",
-     "n": "<b>muita gente</b> est singulier : <b>vem</b> ; le samedi = <b>ao sábado</b>."
+     "n": "<b>muita gente</b> est singulier : <b>vem</b> ; le samedi = <b>ao sábado</b>.",
+     "br": {
+      "c": [
+       "vem",
+       "se vêm",
+       "há"
+      ]
+     }
     },
     {
      "q": "Em cima do monumento ___ um homem de bronze.",
@@ -1271,7 +1353,17 @@ window.SCENE = {
      "r": null,
      "phrase": "Atrás da praça passa um elétrico.",
      "sens": "Derrière la place passe un tram.",
-     "n": "Le tram de Lisbonne : <b>o elétrico</b>."
+     "n": "Le tram de Lisbonne : <b>o elétrico</b>.",
+     "br": {
+      "q": "Atrás da praça ___ um bonde.",
+      "c": [
+       "passa",
+       "se passa",
+       "passe"
+      ],
+      "phrase": "Atrás da praça passa um bonde.",
+      "n": "Le tram de Lisbonne : <b>o bonde</b>."
+     }
     }
    ]
   },
@@ -1289,7 +1381,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O cão olha como se tivesse fome.",
      "sens": "Le chien regarde comme s'il avait faim.",
-     "n": "<b>como se</b> + imperfeito do conjuntivo."
+     "n": "<b>como se</b> + imperfeito do conjuntivo.",
+     "br": {
+      "q": "O cachorro olha como se ___ fome.",
+      "phrase": "O cachorro olha como se tivesse fome."
+     }
     },
     {
      "q": "A Anna ri-se como se o cão lhe ___ contado uma anedota.",
@@ -1302,7 +1398,11 @@ window.SCENE = {
      "r": "hund",
      "phrase": "A Anna ri-se como se o cão lhe tivesse contado uma anedota.",
      "sens": "Anna rit comme si le chien lui avait raconté une blague.",
-     "n": "Pour le passé : <b>como se tivesse</b> + participe."
+     "n": "Pour le passé : <b>como se tivesse</b> + participe.",
+     "br": {
+      "q": "A Anna se ri como se o cachorro lhe ___ contado uma anedota.",
+      "phrase": "A Anna se ri como se o cachorro lhe tivesse contado uma anedota."
+     }
     },
     {
      "q": "O senhor lê como se ___ sozinho na praça.",
@@ -1328,7 +1428,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A estátua parece que vai começar a andar.",
      "sens": "La statue a l'air de vouloir se mettre en marche.",
-     "n": "<b>parece que vai</b> : on dirait qu'elle va."
+     "n": "<b>parece que vai</b> : on dirait qu'elle va.",
+     "br": {
+      "c": [
+       "vai",
+       "vá",
+       "se ia"
+      ]
+     }
     },
     {
      "q": "Está tanto calor como se já ___ verão.",
@@ -1372,7 +1479,16 @@ window.SCENE = {
      "r": "hund",
      "phrase": "Ela deve achar o cão engraçado.",
      "sens": "Elle doit trouver le chien drôle.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "q": "Ela ___ achar o cachorro engraçado.",
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ],
+      "phrase": "Ela deve achar o cachorro engraçado."
+     }
     },
     {
      "q": "___ o cão ganhe um bocado de gelado.",
@@ -1385,7 +1501,11 @@ window.SCENE = {
      "r": "eis",
      "phrase": "Talvez o cão ganhe um bocado de gelado.",
      "sens": "Le chien aura peut-être un morceau de glace.",
-     "n": "<b>talvez</b> + conjuntivo."
+     "n": "<b>talvez</b> + conjuntivo.",
+     "br": {
+      "q": "___ o cachorro ganhe um bocado de gelado.",
+      "phrase": "Talvez o cachorro ganhe um bocado de gelado."
+     }
     },
     {
      "q": "O senhor ___ sentar-se aqui todos os sábados.",
@@ -1398,7 +1518,16 @@ window.SCENE = {
      "r": "tisch",
      "phrase": "O senhor deve sentar-se aqui todos os sábados.",
      "sens": "Le monsieur est sans doute assis ici tous les samedis.",
-     "n": "Probable : <b>dever</b>."
+     "n": "Probable : <b>dever</b>.",
+     "br": {
+      "q": "O senhor ___ se sentar aqui todos os sábados.",
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ],
+      "phrase": "O senhor deve se sentar aqui todos os sábados."
+     }
     },
     {
      "q": "O chafariz ___ mais de cem anos.",
@@ -1411,7 +1540,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O chafariz teria mais de cem anos.",
      "sens": "La fontaine aurait plus de cent ans.",
-     "n": "Le conditionnel de la rumeur."
+     "n": "Le conditionnel de la rumeur.",
+     "br": {
+      "c": [
+       "teria",
+       "se terá",
+       "tenha"
+      ]
+     }
     }
    ]
   }

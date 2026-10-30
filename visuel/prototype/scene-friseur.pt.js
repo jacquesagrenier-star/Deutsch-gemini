@@ -54,7 +54,11 @@ window.SCENE = {
      7.6
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "uhr",
@@ -442,7 +446,11 @@ window.SCENE = {
      2.3
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "theke",
@@ -503,7 +511,11 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "réverbère"
+   "fr": "réverbère",
+   "br": {
+    "mot": "poste de luz",
+    "pluriel": "os postes de luz"
+   }
   },
   {
    "id": "baum",
@@ -561,7 +573,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "compras_pt",
-     "fr": "vitrine"
+     "fr": "vitrine",
+     "br": {
+      "mot": "vitrine"
+     }
     }
    ],
    "sur": null,
@@ -754,7 +769,12 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "zeitschrift",
@@ -1247,7 +1267,14 @@ window.SCENE = {
      "r": "anna",
      "phrase": "A Anna vai cortar o cabelo.",
      "sens": "Anna se fait couper les cheveux.",
-     "n": "Au Portugal, <b>cortar o cabelo</b> veut aussi dire « se faire couper les cheveux »."
+     "n": "Au Portugal, <b>cortar o cabelo</b> veut aussi dire « se faire couper les cheveux ».",
+     "br": {
+      "c": [
+       "cortar",
+       "se cortar",
+       "fazer cortar"
+      ]
+     }
     },
     {
      "q": "Lavo ___ cabelo todas as manhãs.",
@@ -1260,7 +1287,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Lavo o cabelo todas as manhãs.",
      "sens": "Je me lave les cheveux tous les matins.",
-     "n": "Avec une partie du corps : l'article, pas le possessif."
+     "n": "Avec une partie du corps : l'article, pas le possessif.",
+     "br": {
+      "c": [
+       "o",
+       "meu",
+       "o me meu"
+      ]
+     }
     },
     {
      "q": "___ depressa.",
@@ -1273,7 +1307,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Penteio-me depressa.",
      "sens": "Je me coiffe vite.",
-     "n": "<b>pentear-se</b> : pronom après le verbe."
+     "n": "<b>pentear-se</b> : pronom après le verbe.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "Depois do trabalho, o homem lava ___ mãos.",
@@ -1286,7 +1323,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Depois do trabalho, o homem lava as mãos.",
      "sens": "Après le travail, l'homme se lave les mains.",
-     "n": "L'article : <b>lava as mãos</b>."
+     "n": "L'article : <b>lava as mãos</b>.",
+     "br": {
+      "c": [
+       "as",
+       "suas",
+       "as se suas"
+      ]
+     }
     },
     {
      "q": "___ o sobretudo.",
@@ -1299,7 +1343,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Vestes o sobretudo.",
      "sens": "Tu mets ton manteau.",
-     "n": "<b>vestir</b> un vêtement : sans pronom réfléchi."
+     "n": "<b>vestir</b> un vêtement : sans pronom réfléchi.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A Anna ___ ao espelho.",
@@ -1312,7 +1359,10 @@ window.SCENE = {
      "r": "anna",
      "phrase": "A Anna olha-se ao espelho.",
      "sens": "Anna se regarde dans le miroir.",
-     "n": "<b>olhar-se ao espelho</b> (au Portugal : <b>ao</b> espelho)."
+     "n": "<b>olhar-se ao espelho</b> (au Portugal : <b>ao</b> espelho).",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "___ no sofá.",
@@ -1325,7 +1375,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Sentamo-nos no sofá.",
      "sens": "Nous nous asseyons sur le canapé.",
-     "n": "Devant <b>-nos</b>, le s tombe : <b>sentamo-nos</b>."
+     "n": "Devant <b>-nos</b>, le s tombe : <b>sentamo-nos</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "Nunca ___ o cabelo a mim mesmo.",
@@ -1338,7 +1391,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Nunca corto o cabelo a mim mesmo.",
      "sens": "Je ne me coupe jamais les cheveux moi-même.",
-     "n": "<b>a mim mesmo</b> = moi-même."
+     "n": "<b>a mim mesmo</b> = moi-même.",
+     "br": {
+      "omettre": true
+     }
     }
    ]
   },
@@ -1439,7 +1495,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela deve estar contente com o corte.",
      "sens": "Elle doit être contente de la coupe.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "A senhora no sofá ___ ser a próxima cliente.",
@@ -1465,7 +1528,14 @@ window.SCENE = {
      "r": "anna",
      "phrase": "O sobretudo será da Anna.",
      "sens": "Le manteau est sans doute à Anna.",
-     "n": "Futur de supposition : <b>será</b>."
+     "n": "Futur de supposition : <b>será</b>.",
+     "br": {
+      "c": [
+       "será",
+       "seja",
+       "se foi"
+      ]
+     }
     },
     {
      "q": "Este cabeleireiro ___ o melhor do bairro.",
@@ -1478,7 +1548,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Este cabeleireiro seria o melhor do bairro.",
      "sens": "Ce coiffeur serait le meilleur du quartier.",
-     "n": "Le conditionnel de la rumeur."
+     "n": "Le conditionnel de la rumeur.",
+     "br": {
+      "c": [
+       "seria",
+       "se será",
+       "seja"
+      ]
+     }
     }
    ]
   }

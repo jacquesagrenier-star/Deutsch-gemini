@@ -231,6 +231,25 @@ def grammaire():
     return {"textes": {"fr": textes}, "fiches": fiches}, {"jeux": jeux}
 
 
+def ecrire_rapport_bresil(rap):
+    p = os.path.join(RACINE, "portugais", "outils", "rapport_bresil.txt")
+    with open(p, "w", encoding="utf-8", newline="\n") as f:
+        f.write("Variante du Bresil (portugais/datos-br), derivee par bresil.py -- fichier derive.\n\n")
+        for k, v in sorted(rap.compte.items()):
+            f.write("%-40s %d\n" % (k, v))
+        f.write("\nQuestions ecartees (elles enseignent un usage du Portugal, ou la conversion\n"
+                "traverse le trou) : %d\n" % len(rap.ecartees))
+        f.writelines("  " + e + "\n" for e in rap.ecartees)
+        f.write("\nExplications qui parlent encore du Portugal sans reecriture : %d\n" % len(rap.non_reecrits))
+        f.writelines("  " + e + "\n" for e in rap.non_reecrits)
+        f.write("\nPhrases ou un nom a change de genre (l'adjectif qui suit n'est pas accorde) : %d\n" % len(rap.a_relire))
+        f.writelines("  " + e + "\n" for e in rap.a_relire)
+    print("Bresil : %s ; %d questions ecartees ; %d explications non reecrites ; rapport_bresil.txt"
+          % (rap.compte.get("textes portugais convertis", 0), len(rap.ecartees), len(rap.non_reecrits)))
+    for e in rap.non_reecrits:
+        ALERTES.append("Bresil : " + e)
+
+
 def construire():
     variantes = {"_lisez_moi": ["Le mot du Bresil quand il differe du Portugal (drapeau br= des listes de portugais/outils).",
                                 "Prepare pour une future variante bresilienne ; le moteur ne le lit pas encore."],
@@ -266,6 +285,15 @@ def construire():
                              "voisins": {}}
     for nom, donnees in jeu.items():
         ecrire(DOSSIER + "/" + nom, donnees)
+    # LA VARIANTE DU BRESIL (30 oct. 2026) : le meme jeu, converti par
+    # bresil.py, dans portugais/datos-br (memes mots, meme ordre). Le rapport
+    # (ce qui est ecarte, ce qui reste a relire) va a cote des outils.
+    import bresil
+    jeu_br, rap = bresil.construire(jeu)
+    jeu_br["synonymes.json"] = jeu["synonymes.json"]
+    for nom, donnees in jeu_br.items():
+        ecrire(DOSSIER + "-br/" + nom, donnees)
+    ecrire_rapport_bresil(rap)
     n = {k: (sum(len(t["mots"]) for t in v["themes"]) if k == "themes.json"
              else sum(len(x) for x in v.values() if isinstance(x, list))) for k, v in jeu.items()
          if k in ("themes.json", "verbes.json", "adjectifs.json", "adverbes.json", "expressions.json", "fonctionnels.json")}

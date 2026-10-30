@@ -83,7 +83,11 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "lampe-2",
@@ -104,7 +108,11 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "buch",
@@ -269,7 +277,12 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "br": {
+    "mot": "violão",
+    "genre": "o",
+    "pluriel": "os violões"
+   }
   },
   {
    "id": "gitarre-2",
@@ -289,7 +302,12 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "br": {
+    "mot": "violão",
+    "genre": "o",
+    "pluriel": "os violões"
+   }
   },
   {
    "id": "note",
@@ -601,7 +619,11 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "étui à guitare"
+   "fr": "étui à guitare",
+   "br": {
+    "mot": "estojo do violão",
+    "pluriel": "os estojos do violão"
+   }
   }
  ],
  "grosPlans": [],
@@ -627,7 +649,11 @@ window.SCENE = {
      "r": "klavier",
      "phrase": "O candeeiro está em cima do piano.",
      "sens": "La petite lampe est sur le piano.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o piano = <b>em cima do</b> piano."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o piano = <b>em cima do</b> piano.",
+     "br": {
+      "q": "Onde está o abajur?",
+      "phrase": "O abajur está em cima do piano."
+     }
     },
     {
      "q": "Onde está o violino?",
@@ -718,7 +744,11 @@ window.SCENE = {
      "r": "fenster",
      "phrase": "O candeeiro está ao lado da janela.",
      "sens": "La grande lampe est à côté de la fenêtre.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a janela = <b>ao lado da</b> janela."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a janela = <b>ao lado da</b> janela.",
+     "br": {
+      "q": "Onde está o abajur?",
+      "phrase": "O abajur está ao lado da janela."
+     }
     }
    ]
   },
@@ -749,7 +779,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Ele tem de praticar todos os dias.",
      "sens": "Il doit s'exercer tous les jours.",
-     "n": "L'obligation : <b>ter de</b>."
+     "n": "L'obligation : <b>ter de</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "Na aula não se ___ falar ao telemóvel.",
@@ -762,7 +795,16 @@ window.SCENE = {
      "r": null,
      "phrase": "Na aula não se pode falar ao telemóvel.",
      "sens": "En cours, on n'a pas le droit de téléphoner.",
-     "n": "La permission : <b>poder</b>."
+     "n": "La permission : <b>poder</b>.",
+     "br": {
+      "q": "Na aula não se ___ falar ao celular.",
+      "c": [
+       "pode",
+       "sabe",
+       "se deve"
+      ],
+      "phrase": "Na aula não se pode falar ao celular."
+     }
     },
     {
      "q": "Mais tarde, o Mark ___ tocar numa banda.",
@@ -775,7 +817,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Mais tarde, o Mark quer tocar numa banda.",
      "sens": "Mark veut plus tard jouer dans un groupe.",
-     "n": "La volonté : <b>querer</b>."
+     "n": "La volonté : <b>querer</b>.",
+     "br": {
+      "c": [
+       "quer",
+       "sabe",
+       "se pode"
+      ]
+     }
     },
     {
      "q": "A senhora gostava que o Mark ___ mais devagar.",
@@ -801,7 +850,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Não deves segurar a guitarra com tanta força.",
      "sens": "Tu ne dois pas tenir la guitare aussi fort.",
-     "n": "Un conseil : <b>dever</b>."
+     "n": "Un conseil : <b>dever</b>.",
+     "br": {
+      "q": "Não ___ segurar o violão com tanta força.",
+      "phrase": "Não deves segurar o violão com tanta força."
+     }
     },
     {
      "q": "O Mark ainda não ___ ler bem as notas.",
@@ -845,7 +898,12 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O Mark toca numa guitarra nova.",
      "sens": "Mark joue sur une nouvelle guitare.",
-     "n": "<b>a guitarra</b> → <b>nova</b>, après le nom."
+     "n": "<b>a guitarra</b> → <b>nova</b>, après le nom.",
+     "br": {
+      "q": "O Mark toca num violão ___.",
+      "phrase": "O Mark toca num violão nova.",
+      "n": "<b>o violão</b> → <b>nova</b>, après le nom."
+     }
     },
     {
      "q": "A senhora usa um cachecol ___.",
@@ -897,7 +955,11 @@ window.SCENE = {
      "r": "fenster",
      "phrase": "Ao lado da janela grande está um candeeiro.",
      "sens": "À côté de la grande fenêtre, il y a une lampe.",
-     "n": "<b>grande</b> ne change pas au féminin."
+     "n": "<b>grande</b> ne change pas au féminin.",
+     "br": {
+      "q": "Ao lado da janela ___ está um abajur.",
+      "phrase": "Ao lado da janela grande está um abajur."
+     }
     },
     {
      "q": "O Mark veste uma t-shirt ___.",
@@ -910,7 +972,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O Mark veste uma t-shirt verde.",
      "sens": "Mark porte un t-shirt vert.",
-     "n": "<b>verde</b> : même forme au masculin et au féminin."
+     "n": "<b>verde</b> : même forme au masculin et au féminin.",
+     "br": {
+      "q": "O Mark veste uma camiseta ___.",
+      "phrase": "O Mark veste uma camiseta verde."
+     }
     }
    ]
   },
@@ -928,7 +994,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O acorde deve ser difícil.",
      "sens": "L'accord doit être difficile.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "___ que o violino seja da professora.",
@@ -954,7 +1027,14 @@ window.SCENE = {
      "r": "mark",
      "phrase": "Daqui a uns meses, o Mark deverá tocar bem.",
      "sens": "Mark devrait bien jouer dans quelques mois.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "A professora ___ tocado numa orquestra.",
@@ -967,7 +1047,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A professora teria tocado numa orquestra.",
      "sens": "Il paraît que la professeure jouait autrefois dans un orchestre.",
-     "n": "La rumeur sur le passé : <b>teria</b> + participe."
+     "n": "La rumeur sur le passé : <b>teria</b> + participe.",
+     "br": {
+      "c": [
+       "teria",
+       "se terá",
+       "tenha"
+      ]
+     }
     }
    ]
   }

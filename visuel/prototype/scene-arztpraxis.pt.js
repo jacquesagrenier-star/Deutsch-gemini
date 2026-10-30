@@ -194,7 +194,11 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "br": {
+    "mot": "camiseta",
+    "pluriel": "as camisetas"
+   }
   },
   {
    "id": "hose",
@@ -234,7 +238,11 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "sparadrap"
+   "fr": "sparadrap",
+   "br": {
+    "mot": "curativo",
+    "pluriel": "os curativos"
+   }
   },
   {
    "id": "knie",
@@ -645,7 +653,11 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "pansement ; fédération"
+   "fr": "pansement ; fédération",
+   "br": {
+    "mot": "atadura",
+    "pluriel": "as ataduras"
+   }
   },
   {
    "id": "stethoskop",
@@ -846,7 +858,11 @@ window.SCENE = {
      37.5
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "br": {
+    "mot": "escrivaninha",
+    "pluriel": "as escrivaninhas"
+   }
   },
   {
    "id": "bildschirm",
@@ -874,7 +890,12 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "br": {
+    "mot": "tela",
+    "genre": "a",
+    "pluriel": "as telas"
+   }
   },
   {
    "id": "taschentuch",
@@ -1057,7 +1078,11 @@ window.SCENE = {
      1.3
     ]
    ],
-   "fr": "carte d'assurance maladie"
+   "fr": "carte d'assurance maladie",
+   "br": {
+    "mot": "cartão do SUS",
+    "pluriel": "os cartões do SUS"
+   }
   },
   {
    "id": "muelleimer",
@@ -1078,7 +1103,12 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "tasche",
@@ -1093,7 +1123,10 @@ window.SCENE = {
      "mot": "saco de desporto",
      "genre": "o",
      "niveau": "B1",
-     "fr": "sac de sport"
+     "fr": "sac de sport",
+     "br": {
+      "mot": "saco de esporte"
+     }
     }
    ],
    "sur": null,
@@ -1439,7 +1472,14 @@ window.SCENE = {
      "r": "tasche",
      "phrase": "A bola está na mala.",
      "sens": "Le ballon est sur le sac.",
-     "n": "<b>em</b> + a = <b>na</b> : na mala."
+     "n": "<b>em</b> + a = <b>na</b> : na mala.",
+     "br": {
+      "c": [
+       "na mala",
+       "debaixo da mala",
+       "ao lado da lixeira"
+      ]
+     }
     },
     {
      "q": "Onde está o relógio?",
@@ -1517,7 +1557,11 @@ window.SCENE = {
      "r": "knie",
      "phrase": "O penso rápido está no joelho.",
      "sens": "Le pansement est sur le genou.",
-     "n": "<b>em</b> + o = <b>no</b> : no joelho."
+     "n": "<b>em</b> + o = <b>no</b> : no joelho.",
+     "br": {
+      "q": "Onde está o curativo?",
+      "phrase": "O curativo está no joelho."
+     }
     },
     {
      "q": "Onde está o póster?",
@@ -1639,7 +1683,12 @@ window.SCENE = {
      "r": "schreibtisch",
      "phrase": "A médica pousou o cartão de utente em cima da secretária.",
      "sens": "La médecin a posé la carte de santé sur le bureau.",
-     "n": "<b>pousar</b> : poser doucement ; <b>o cartão de utente</b>, la carte du système de santé portugais."
+     "n": "<b>pousar</b> : poser doucement ; <b>o cartão de utente</b>, la carte du système de santé portugais.",
+     "br": {
+      "q": "A médica ___ o cartão do SUS em cima da secretária.",
+      "phrase": "A médica pousou o cartão do SUS em cima da secretária.",
+      "n": "<b>pousar</b> : poser doucement ; <b>o cartão do SUS</b>, la carte du système de santé portugais."
+     }
     }
    ]
   },
@@ -1657,7 +1706,11 @@ window.SCENE = {
      "r": "knie",
      "phrase": "O doente, cujo joelho está ferido, chama-se Mark.",
      "sens": "Le patient dont le genou est blessé s'appelle Mark.",
-     "n": "<b>cujo</b> + nom masculin (joelho)."
+     "n": "<b>cujo</b> + nom masculin (joelho).",
+     "br": {
+      "q": "O doente, ___ joelho está ferido, se chama Mark.",
+      "phrase": "O doente, cujo joelho está ferido, se chama Mark."
+     }
     },
     {
      "q": "A médica, ___ segura uma ligadura, sorri.",
@@ -1670,7 +1723,11 @@ window.SCENE = {
      "r": "verband",
      "phrase": "A médica, que segura uma ligadura, sorri.",
      "sens": "La médecin, qui tient un bandage à la main, sourit.",
-     "n": "Sujet : <b>que</b>."
+     "n": "Sujet : <b>que</b>.",
+     "br": {
+      "q": "A médica, ___ segura uma atadura, sorri.",
+      "phrase": "A médica, que segura uma atadura, sorri."
+     }
     },
     {
      "q": "O doente a ___ a médica sorri chama-se Mark.",
@@ -1683,7 +1740,11 @@ window.SCENE = {
      "r": "aerztin",
      "phrase": "O doente a quem a médica sorri chama-se Mark.",
      "sens": "Le patient à qui la médecin sourit s'appelle Mark.",
-     "n": "<b>sorrir a alguém</b> → <b>a quem</b>."
+     "n": "<b>sorrir a alguém</b> → <b>a quem</b>.",
+     "br": {
+      "q": "O doente a ___ a médica sorri se chama Mark.",
+      "phrase": "O doente a quem a médica sorri se chama Mark."
+     }
     },
     {
      "q": "A mala em cima da ___ está a bola é do Mark.",
@@ -1722,7 +1783,11 @@ window.SCENE = {
      "r": "knie",
      "phrase": "O penso já está posto.",
      "sens": "Le pansement est déjà posé.",
-     "n": "<b>pôr</b> → <b>posto</b> ; o penso, masculin."
+     "n": "<b>pôr</b> → <b>posto</b> ; o penso, masculin.",
+     "br": {
+      "q": "O curativo já está ___.",
+      "phrase": "O curativo já está posto."
+     }
     }
    ]
   },
@@ -1740,7 +1805,14 @@ window.SCENE = {
      "r": "ball",
      "phrase": "O Mark deve ter caído a jogar futebol.",
      "sens": "Mark a dû tomber en jouant au foot.",
-     "n": "Déduction sur le passé : <b>deve ter</b> + participe."
+     "n": "Déduction sur le passé : <b>deve ter</b> + participe.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem de"
+      ]
+     }
     },
     {
      "q": "Se calhar a médica ___ uma ligadura daqui a pouco.",
@@ -1753,7 +1825,10 @@ window.SCENE = {
      "r": "aerztin",
      "phrase": "Se calhar a médica põe-lhe uma ligadura daqui a pouco.",
      "sens": "La médecin va peut-être lui mettre un bandage tout de suite.",
-     "n": "<b>se calhar</b> + indicatif ; pronom après le verbe."
+     "n": "<b>se calhar</b> + indicatif ; pronom après le verbe.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "___ não deve ser nada de grave.",

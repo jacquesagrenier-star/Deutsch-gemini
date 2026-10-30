@@ -41,7 +41,12 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "br": {
+    "mot": "lousa",
+    "genre": "a",
+    "pluriel": "as lousas"
+   }
   },
   {
    "id": "lehrer",
@@ -283,7 +288,11 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "fenster",
@@ -368,7 +377,11 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "pull"
+     "fr": "pull",
+     "br": {
+      "mot": "suéter",
+      "genre": "o"
+     }
     },
     {
      "mot": "estudante",
@@ -428,7 +441,12 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "anna",
@@ -451,7 +469,11 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "pull"
+     "fr": "pull",
+     "br": {
+      "mot": "suéter",
+      "genre": "o"
+     }
     },
     {
      "mot": "saia",
@@ -898,7 +920,11 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "pull"
+     "fr": "pull",
+     "br": {
+      "mot": "suéter",
+      "genre": "o"
+     }
     }
    ],
    "sur": null,
@@ -1065,7 +1091,11 @@ window.SCENE = {
      3.4
     ]
    ],
-   "fr": "téléphone portable"
+   "fr": "téléphone portable",
+   "br": {
+    "mot": "celular",
+    "pluriel": "os celulares"
+   }
   },
   {
    "id": "tasse",
@@ -1086,7 +1116,11 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "kabel",
@@ -1128,7 +1162,11 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "br": {
+    "mot": "escrivaninha",
+    "pluriel": "as escrivaninhas"
+   }
   },
   {
    "id": "wand",
@@ -1242,7 +1280,15 @@ window.SCENE = {
      "r": "tafel",
      "phrase": "O relógio está por cima do quadro de giz.",
      "sens": "L'horloge est accrochée au-dessus du tableau.",
-     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + o quadro de giz = <b>por cima do</b> quadro de giz."
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + o quadro de giz = <b>por cima do</b> quadro de giz.",
+     "br": {
+      "c": [
+       "por cima da lousa",
+       "debaixo da lousa",
+       "ao lado da janela"
+      ],
+      "phrase": "O relógio está por cima da lousa."
+     }
     },
     {
      "q": "Onde está a planta?",
@@ -1268,7 +1314,14 @@ window.SCENE = {
      "r": "tuer",
      "phrase": "O sobretudo está na porta.",
      "sens": "Le manteau est accroché à la porte.",
-     "n": "<b>em</b> + a = <b>na</b> : na porta."
+     "n": "<b>em</b> + a = <b>na</b> : na porta.",
+     "br": {
+      "c": [
+       "na porta",
+       "na lousa",
+       "na janela"
+      ]
+     }
     },
     {
      "q": "Onde está o professor?",
@@ -1281,7 +1334,15 @@ window.SCENE = {
      "r": "tafel",
      "phrase": "O professor está à frente do quadro de giz.",
      "sens": "Le professeur est debout devant le tableau.",
-     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o quadro de giz = <b>à frente do</b> quadro de giz."
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o quadro de giz = <b>à frente do</b> quadro de giz.",
+     "br": {
+      "c": [
+       "à frente da lousa",
+       "atrás da lousa",
+       "ao lado da janela"
+      ],
+      "phrase": "O professor está à frente da lousa."
+     }
     },
     {
      "q": "Onde está o telemóvel?",
@@ -1294,7 +1355,11 @@ window.SCENE = {
      "r": "laptop",
      "phrase": "O telemóvel está ao lado do portátil.",
      "sens": "Le téléphone est à côté de l'ordinateur portable.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o portátil = <b>ao lado do</b> portátil."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o portátil = <b>ao lado do</b> portátil.",
+     "br": {
+      "q": "Onde está o celular?",
+      "phrase": "O celular está ao lado do portátil."
+     }
     },
     {
      "q": "Onde está o quadro?",
@@ -1307,7 +1372,14 @@ window.SCENE = {
      "r": "tuer",
      "phrase": "O quadro está entre a porta e a janela.",
      "sens": "Le tableau est accroché entre la porte et la fenêtre.",
-     "n": "<b>entre</b> … <b>e</b> … = entre … et …"
+     "n": "<b>entre</b> … <b>e</b> … = entre … et …",
+     "br": {
+      "c": [
+       "entre a porta e a janela",
+       "por cima da lousa",
+       "na porta"
+      ]
+     }
     }
    ]
   },
@@ -1351,7 +1423,11 @@ window.SCENE = {
      "r": "schreibtisch",
      "phrase": "O telemóvel está em cima da secretária.",
      "sens": "Le téléphone est sur le bureau.",
-     "n": "<b>em cima de</b> + a = <b>em cima da</b>."
+     "n": "<b>em cima de</b> + a = <b>em cima da</b>.",
+     "br": {
+      "q": "O celular está ___ secretária.",
+      "phrase": "O celular está em cima da secretária."
+     }
     },
     {
      "q": "O professor ___ o telemóvel em cima da secretária.",
@@ -1364,7 +1440,11 @@ window.SCENE = {
      "r": "lehrer",
      "phrase": "O professor pousou o telemóvel em cima da secretária.",
      "sens": "Le professeur a posé son téléphone sur le bureau.",
-     "n": "<b>pousar</b> → <b>pousou</b>."
+     "n": "<b>pousar</b> → <b>pousou</b>.",
+     "br": {
+      "q": "O professor ___ o celular em cima da secretária.",
+      "phrase": "O professor pousou o celular em cima da secretária."
+     }
     },
     {
      "q": "A Anna está sentada ao lado ___ Mark.",
@@ -1403,7 +1483,14 @@ window.SCENE = {
      "r": "tuer",
      "phrase": "O Mark pendura o casaco na porta.",
      "sens": "Mark accroche sa veste à la porte.",
-     "n": "Présent : <b>pendura</b>."
+     "n": "Présent : <b>pendura</b>.",
+     "br": {
+      "c": [
+       "pendura",
+       "se pendurou",
+       "pendure"
+      ]
+     }
     },
     {
      "q": "Agora o casaco está ___ na porta.",
@@ -1473,7 +1560,11 @@ window.SCENE = {
      "r": "heft",
      "phrase": "A aluna, cujo caderno está aberto na mesa, chama-se Anna.",
      "sens": "La participante dont le cahier est ouvert sur la table s'appelle Anna.",
-     "n": "<b>cujo</b> + caderno (masculin)."
+     "n": "<b>cujo</b> + caderno (masculin).",
+     "br": {
+      "q": "A aluna, ___ caderno está aberto na mesa, se chama Anna.",
+      "phrase": "A aluna, cujo caderno está aberto na mesa, se chama Anna."
+     }
     },
     {
      "q": "A mesa debaixo da ___ está a mochila é de madeira.",
@@ -1517,7 +1608,16 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O Mark e a Anna devem conhecer-se.",
      "sens": "Mark et Anna doivent se connaître.",
-     "n": "Déduction : <b>devem</b>, au pluriel."
+     "n": "Déduction : <b>devem</b>, au pluriel.",
+     "br": {
+      "q": "O Mark e a Anna ___ se conhecer.",
+      "c": [
+       "devem",
+       "deve",
+       "se podem"
+      ],
+      "phrase": "O Mark e a Anna devem se conhecer."
+     }
     },
     {
      "q": "A mulher de vestido ___ ter chegado atrasada.",
@@ -1530,7 +1630,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A mulher de vestido pode ter chegado atrasada.",
      "sens": "La femme en robe est peut-être arrivée en retard.",
-     "n": "Possibilité sur le passé : <b>pode ter</b> + participe."
+     "n": "Possibilité sur le passé : <b>pode ter</b> + participe.",
+     "br": {
+      "c": [
+       "pode",
+       "se pode",
+       "há"
+      ]
+     }
     },
     {
      "q": "O professor ___ português há muito tempo.",
@@ -1543,7 +1650,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O professor ensinará português há muito tempo.",
      "sens": "Le professeur enseigne sans doute le portugais depuis longtemps.",
-     "n": "Futur de supposition : <b>ensinará</b>."
+     "n": "Futur de supposition : <b>ensinará</b>.",
+     "br": {
+      "c": [
+       "ensinará",
+       "ensine",
+       "se ensinou"
+      ]
+     }
     },
     {
      "q": "___ que o professor é do Porto.",

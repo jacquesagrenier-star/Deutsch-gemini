@@ -91,7 +91,11 @@ window.SCENE = {
      9.6
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "regenschirm",
@@ -273,7 +277,10 @@ window.SCENE = {
      "genre": "o",
      "niveau": "A1",
      "theme": "casa_pt",
-     "fr": "lampe"
+     "fr": "lampe",
+     "br": {
+      "mot": "abajur"
+     }
     },
     {
      "mot": "abajur",
@@ -292,7 +299,12 @@ window.SCENE = {
      24
     ]
    ],
-   "fr": "lampadaire"
+   "fr": "lampadaire",
+   "br": {
+    "mot": "luminária de chão",
+    "genre": "a",
+    "pluriel": "as luminárias de chão"
+   }
   },
   {
    "id": "socke",
@@ -467,7 +479,12 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "br": {
+    "mot": "violão",
+    "genre": "o",
+    "pluriel": "os violões"
+   }
   },
   {
    "id": "turnschuh",
@@ -495,7 +512,10 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "basket"
+   "fr": "basket",
+   "br": {
+    "mot": "tênis"
+   }
   },
   {
    "id": "fernseher",
@@ -595,7 +615,11 @@ window.SCENE = {
      2.3
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "pizzakarton",
@@ -644,7 +668,11 @@ window.SCENE = {
      7.4
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "br": {
+    "mot": "cachorro",
+    "pluriel": "os cachorros"
+   }
   },
   {
    "id": "eimer",
@@ -833,7 +861,11 @@ window.SCENE = {
      "r": "couchtisch",
      "phrase": "O cão está debaixo da mesa de centro.",
      "sens": "Le chien est couché sous la table basse.",
-     "n": "<b>debaixo de</b> = sous. <b>debaixo de</b> + a mesa de centro = <b>debaixo da</b> mesa de centro."
+     "n": "<b>debaixo de</b> = sous. <b>debaixo de</b> + a mesa de centro = <b>debaixo da</b> mesa de centro.",
+     "br": {
+      "q": "Onde está o cachorro?",
+      "phrase": "O cachorro está debaixo da mesa de centro."
+     }
     },
     {
      "q": "Onde está o gato?",
@@ -859,7 +891,15 @@ window.SCENE = {
      "r": "lampe",
      "phrase": "O guarda-chuva está no candeeiro.",
      "sens": "Le parapluie est accroché à la lampe.",
-     "n": "<b>em</b> + o = <b>no</b> : no candeeiro."
+     "n": "<b>em</b> + o = <b>no</b> : no candeeiro.",
+     "br": {
+      "c": [
+       "no abajur",
+       "na janela",
+       "na porta"
+      ],
+      "phrase": "O guarda-chuva está no abajur."
+     }
     },
     {
      "q": "Onde está a bicicleta?",
@@ -885,7 +925,11 @@ window.SCENE = {
      "r": "sofa",
      "phrase": "A guitarra está entre o armário e o sofá.",
      "sens": "La guitare est entre l'armoire et le canapé.",
-     "n": "<b>entre</b> … <b>e</b> … = entre … et …"
+     "n": "<b>entre</b> … <b>e</b> … = entre … et …",
+     "br": {
+      "q": "Onde está o violão?",
+      "phrase": "O violão está entre o armário e o sofá."
+     }
     },
     {
      "q": "Onde estão os ténis?",
@@ -898,7 +942,11 @@ window.SCENE = {
      "r": "sofa",
      "phrase": "Os ténis estão debaixo do sofá.",
      "sens": "Les baskets sont sous le canapé.",
-     "n": "<b>debaixo de</b> = sous. <b>debaixo de</b> + o sofá = <b>debaixo do</b> sofá."
+     "n": "<b>debaixo de</b> = sous. <b>debaixo de</b> + o sofá = <b>debaixo do</b> sofá.",
+     "br": {
+      "q": "Onde estão os tênis?",
+      "phrase": "Os tênis estão debaixo do sofá."
+     }
     },
     {
      "q": "Onde está o peixinho-dourado?",
@@ -924,7 +972,15 @@ window.SCENE = {
      "r": "stehlampe",
      "phrase": "A meia está no candeeiro de pé.",
      "sens": "La chaussette est accrochée au lampadaire.",
-     "n": "<b>em</b> + o = <b>no</b> : no candeeiro de pé."
+     "n": "<b>em</b> + o = <b>no</b> : no candeeiro de pé.",
+     "br": {
+      "c": [
+       "na luminária de chão",
+       "na janela",
+       "na porta"
+      ],
+      "phrase": "A meia está na luminária de chão."
+     }
     },
     {
      "q": "Onde está o radiador?",
@@ -981,7 +1037,11 @@ window.SCENE = {
      "r": "couchtisch",
      "phrase": "A chávena está na mesa de centro.",
      "sens": "La tasse est sur la table basse.",
-     "n": "Position : em + a = <b>na</b>."
+     "n": "Position : em + a = <b>na</b>.",
+     "br": {
+      "q": "A xícara está ___ mesa de centro.",
+      "phrase": "A xícara está na mesa de centro."
+     }
     },
     {
      "q": "O Mark põe a chávena ___ estante.",
@@ -994,7 +1054,11 @@ window.SCENE = {
      "r": "regal",
      "phrase": "O Mark põe a chávena na estante.",
      "sens": "Mark pose la tasse sur l'étagère.",
-     "n": "<b>pôr na estante</b>."
+     "n": "<b>pôr na estante</b>.",
+     "br": {
+      "q": "O Mark põe a xícara ___ estante.",
+      "phrase": "O Mark põe a xícara na estante."
+     }
     },
     {
      "q": "O guarda-chuva ainda está pendurado ___ candeeiro.",
@@ -1007,7 +1071,11 @@ window.SCENE = {
      "r": "lampe",
      "phrase": "O guarda-chuva ainda está pendurado no candeeiro.",
      "sens": "Le parapluie est encore accroché à la lampe.",
-     "n": "<b>pendurado em</b> : no candeeiro."
+     "n": "<b>pendurado em</b> : no candeeiro.",
+     "br": {
+      "q": "O guarda-chuva ainda está pendurado ___ abajur.",
+      "phrase": "O guarda-chuva ainda está pendurado no abajur."
+     }
     },
     {
      "q": "O Mark pendura o guarda-chuva ___ porta.",
@@ -1090,7 +1158,11 @@ window.SCENE = {
      "r": "regenschirm",
      "phrase": "O candeeiro no qual está pendurado um guarda-chuva é redondo.",
      "sens": "La lampe à laquelle est accroché un parapluie est ronde.",
-     "n": "<b>pendurado em</b> + o qual = <b>no qual</b>."
+     "n": "<b>pendurado em</b> + o qual = <b>no qual</b>.",
+     "br": {
+      "q": "O abajur ___ qual está pendurado um guarda-chuva é redondo.",
+      "phrase": "O abajur no qual está pendurado um guarda-chuva é redondo."
+     }
     },
     {
      "q": "O cão ___ dorme debaixo da mesa perdeu a festa.",
@@ -1103,7 +1175,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O cão que dorme debaixo da mesa perdeu a festa.",
      "sens": "Le chien qui dort sous la table a raté la fête.",
-     "n": "Sujet : <b>que</b>."
+     "n": "Sujet : <b>que</b>.",
+     "br": {
+      "q": "O cachorro ___ dorme debaixo da mesa perdeu a festa.",
+      "phrase": "O cachorro que dorme debaixo da mesa perdeu a festa."
+     }
     },
     {
      "q": "O gato, ___ cabeça sai da caixa de cartão, parece calmo.",
@@ -1173,7 +1249,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A festa deve ter sido muito longa.",
      "sens": "La fête a dû être très longue.",
-     "n": "Déduction sur le passé : <b>deve ter sido</b>."
+     "n": "Déduction sur le passé : <b>deve ter sido</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem de"
+      ]
+     }
     },
     {
      "q": "___ sido um dos convidados.",
@@ -1186,7 +1269,14 @@ window.SCENE = {
      "r": "lampe",
      "phrase": "Terá sido um dos convidados.",
      "sens": "C'était sans doute l'un des invités.",
-     "n": "Supposition sur le passé : <b>terá sido</b>."
+     "n": "Supposition sur le passé : <b>terá sido</b>.",
+     "br": {
+      "c": [
+       "Terá",
+       "Se teria",
+       "Tenha"
+      ]
+     }
     },
     {
      "q": "___ ser de um convidado.",
@@ -1212,7 +1302,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Se o Mark não tivesse perdido a festa, agora também estaria cansado.",
      "sens": "Si Mark n'avait pas raté la fête, il serait lui aussi fatigué maintenant.",
-     "n": "Irréel du passé : <b>se tivesse</b> + participe."
+     "n": "Irréel du passé : <b>se tivesse</b> + participe.",
+     "br": {
+      "c": [
+       "tivesse",
+       "tiver",
+       "se tinha"
+      ]
+     }
     }
    ]
   }

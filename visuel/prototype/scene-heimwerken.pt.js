@@ -21,7 +21,11 @@ window.SCENE = {
      12.3
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "farbe",
@@ -304,7 +308,11 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "br": {
+    "mot": "camiseta",
+    "pluriel": "as camisetas"
+   }
   },
   {
    "id": "hose",
@@ -690,7 +698,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O candeeiro está no teto.",
      "sens": "La lampe est suspendue au plafond.",
-     "n": "em + o teto = <b>no</b> teto."
+     "n": "em + o teto = <b>no</b> teto.",
+     "br": {
+      "q": "Onde está o abajur?",
+      "phrase": "O abajur está no teto."
+     }
     },
     {
      "q": "Onde estão as caixas de cartão?",
@@ -747,7 +759,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "Mark, dá-me o martelo, por favor!",
      "sens": "Mark, donne-moi le marteau, s'il te plaît !",
-     "n": "Tu : la forme de ele (<b>dá</b>) ; pronom après."
+     "n": "Tu : la forme de ele (<b>dá</b>) ; pronom après.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "___ bem as instruções!",
@@ -760,7 +775,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Lê bem as instruções!",
      "sens": "Lis bien la notice !",
-     "n": "<b>ler</b>, tu : <b>lê</b>."
+     "n": "<b>ler</b>, tu : <b>lê</b>.",
+     "br": {
+      "c": [
+       "Lê",
+       "Lês",
+       "Te leia"
+      ]
+     }
     },
     {
      "q": "___ o pincel em cima do balde!",
@@ -773,7 +795,14 @@ window.SCENE = {
      "r": "eimer",
      "phrase": "Põe o pincel em cima do balde!",
      "sens": "Pose le pinceau sur le seau !",
-     "n": "<b>pôr</b>, tu : <b>põe</b>."
+     "n": "<b>pôr</b>, tu : <b>põe</b>.",
+     "br": {
+      "c": [
+       "Põe",
+       "Pões",
+       "Te ponha"
+      ]
+     }
     },
     {
      "q": "___ as luvas!",
@@ -786,7 +815,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Calça as luvas!",
      "sens": "Mets les gants !",
-     "n": "<b>calçar</b> les gants ; tu : <b>calça</b>."
+     "n": "<b>calçar</b> les gants ; tu : <b>calça</b>.",
+     "br": {
+      "c": [
+       "Calça",
+       "Calças",
+       "Te calce"
+      ]
+     }
     },
     {
      "q": "Mark, não ___ da escada!",
@@ -812,7 +848,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Façamos uma pausa!",
      "sens": "Faisons une pause !",
-     "n": "Nós : le subjonctif (<b>façamos</b>) ; à l'oral, <b>Vamos fazer uma pausa!</b>"
+     "n": "Nós : le subjonctif (<b>façamos</b>) ; à l'oral, <b>Vamos fazer uma pausa!</b>",
+     "br": {
+      "c": [
+       "Façamos",
+       "Nos fazemos",
+       "Faz"
+      ]
+     }
     },
     {
      "q": "Bichano, ___ da janela!",
@@ -825,7 +868,14 @@ window.SCENE = {
      "r": "fenster",
      "phrase": "Bichano, desce da janela!",
      "sens": "Minou, descends de la fenêtre !",
-     "n": "Tu : <b>desce</b>."
+     "n": "Tu : <b>desce</b>.",
+     "br": {
+      "c": [
+       "desce",
+       "desças",
+       "te desce"
+      ]
+     }
     },
     {
      "q": "Senhor vizinho, ___-me a escada, por favor!",
@@ -838,7 +888,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Senhor vizinho, segure-me a escada, por favor!",
      "sens": "Monsieur le voisin, tenez-moi l'échelle, s'il vous plaît !",
-     "n": "O senhor : le subjonctif (<b>segure</b>)."
+     "n": "O senhor : le subjonctif (<b>segure</b>).",
+     "br": {
+      "omettre": true
+     }
     }
    ]
   },
@@ -869,7 +922,14 @@ window.SCENE = {
      "r": "papier",
      "phrase": "Ele lê as instruções para que a estante não caia.",
      "sens": "Il lit la notice pour que l'étagère ne tombe pas.",
-     "n": "Sujet différent : <b>para que</b> + conjuntivo."
+     "n": "Sujet différent : <b>para que</b> + conjuntivo.",
+     "br": {
+      "c": [
+       "caia",
+       "cai",
+       "se cair"
+      ]
+     }
     },
     {
      "q": "Ele esqueceu-se ___ calçar as luvas.",
@@ -882,7 +942,12 @@ window.SCENE = {
      "r": null,
      "phrase": "Ele esqueceu-se de calçar as luvas.",
      "sens": "Il a oublié de mettre les gants.",
-     "n": "<b>esquecer-se de</b>."
+     "n": "<b>esquecer-se de</b>.",
+     "br": {
+      "q": "Ele se esqueceu ___ calçar as luvas.",
+      "phrase": "Ele se esqueceu de calçar as luvas.",
+      "n": "<b>se esquecer de</b>."
+     }
     },
     {
      "q": "Não é fácil ___ uma estante sozinho.",
@@ -921,7 +986,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Sem ler as instruções, não se monta uma estante.",
      "sens": "Sans lire la notice, on ne monte pas d'étagère.",
-     "n": "<b>sem</b> + infinitif."
+     "n": "<b>sem</b> + infinitif.",
+     "br": {
+      "c": [
+       "ler",
+       "lê",
+       "se leres"
+      ]
+     }
     }
    ]
   },
@@ -939,7 +1011,16 @@ window.SCENE = {
      "r": "mark",
      "phrase": "As instruções devem ser difíceis de perceber.",
      "sens": "La notice doit être difficile à comprendre.",
-     "n": "Déduction, au pluriel : <b>devem</b> (as instruções)."
+     "n": "Déduction, au pluriel : <b>devem</b> (as instruções).",
+     "br": {
+      "q": "As instruções ___ ser difíceis de entender.",
+      "c": [
+       "devem",
+       "deve",
+       "se podem"
+      ],
+      "phrase": "As instruções devem ser difíceis de entender."
+     }
     },
     {
      "q": "___ que o gato seja do vizinho.",
@@ -965,7 +1046,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A estante deverá estar pronta hoje à noite.",
      "sens": "L'étagère devrait être finie ce soir.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "___ que antigamente vivia um pintor neste apartamento.",
@@ -983,5 +1071,6 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "Consertos em casa"
 };

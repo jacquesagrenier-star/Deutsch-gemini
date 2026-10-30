@@ -309,7 +309,12 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "maillot (sportif)"
+   "fr": "maillot (sportif)",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "hose",
@@ -462,7 +467,11 @@ window.SCENE = {
      24
     ]
    ],
-   "fr": "équipe"
+   "fr": "équipe",
+   "br": {
+    "mot": "equipe",
+    "pluriel": "as equipes"
+   }
   },
   {
    "id": "ball-2",
@@ -573,7 +582,10 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "basket"
+   "fr": "basket",
+   "br": {
+    "mot": "tênis"
+   }
   },
   {
    "id": "gras",
@@ -754,7 +766,12 @@ window.SCENE = {
      "r": null,
      "phrase": "O guarda-redes caiu na relva.",
      "sens": "Le gardien est tombé dans l'herbe.",
-     "n": "<b>cair</b> → <b>caiu</b> ; le gardien = <b>o guarda-redes</b>."
+     "n": "<b>cair</b> → <b>caiu</b> ; le gardien = <b>o guarda-redes</b>.",
+     "br": {
+      "q": "O goleiro ___ na grama.",
+      "phrase": "O goleiro caiu na grama.",
+      "n": "<b>cair</b> → <b>caiu</b> ; le gardien = <b>o goleiro</b>."
+     }
     },
     {
      "q": "Os jogadores ___ para o Mark.",
@@ -819,7 +836,14 @@ window.SCENE = {
      "r": "mann",
      "phrase": "Os espectadores estavam sentados no banco.",
      "sens": "Les spectateurs étaient assis sur le banc.",
-     "n": "Le décor : imperfeito (<b>estavam</b>)."
+     "n": "Le décor : imperfeito (<b>estavam</b>).",
+     "br": {
+      "c": [
+       "estavam",
+       "se estiveram",
+       "estão"
+      ]
+     }
     },
     {
      "q": "No fim, a equipa do Mark ___.",
@@ -832,7 +856,12 @@ window.SCENE = {
      "r": null,
      "phrase": "No fim, a equipa do Mark ganhou.",
      "sens": "À la fin, l'équipe de Mark a gagné.",
-     "n": "<b>ganhar</b> → <b>ganhou</b> ; l'équipe = <b>a equipa</b>."
+     "n": "<b>ganhar</b> → <b>ganhou</b> ; l'équipe = <b>a equipa</b>.",
+     "br": {
+      "q": "No fim, a equipe do Mark ___.",
+      "phrase": "No fim, a equipe do Mark ganhou.",
+      "n": "<b>ganhar</b> → <b>ganhou</b> ; l'équipe = <b>a equipe</b>."
+     }
     }
    ]
   },
@@ -850,7 +879,12 @@ window.SCENE = {
      "r": null,
      "phrase": "O Mark festeja porque marcou um golo.",
      "sens": "Mark exulte parce qu'il a marqué un but.",
-     "n": "<b>porque</b> + indicatif ; le but marqué = <b>o golo</b>."
+     "n": "<b>porque</b> + indicatif ; le but marqué = <b>o golo</b>.",
+     "br": {
+      "q": "O Mark festeja porque ___ um gol.",
+      "phrase": "O Mark festeja porque marcou um gol.",
+      "n": "<b>porque</b> + indicatif ; le but marqué = <b>o gol</b>."
+     }
     },
     {
      "q": "O guarda-redes ri-se, embora não ___ defendido a bola.",
@@ -863,7 +897,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O guarda-redes ri-se, embora não tenha defendido a bola.",
      "sens": "Le gardien rit, bien qu'il n'ait pas arrêté le ballon.",
-     "n": "<b>embora</b> + conjuntivo composé."
+     "n": "<b>embora</b> + conjuntivo composé.",
+     "br": {
+      "q": "O goleiro se ri, embora não ___ defendido a bola.",
+      "phrase": "O goleiro se ri, embora não tenha defendido a bola."
+     }
     },
     {
      "q": "Quando o Mark ___ o golo, a treinadora bateu palmas.",
@@ -876,7 +914,11 @@ window.SCENE = {
      "r": "mark",
      "phrase": "Quando o Mark marcou o golo, a treinadora bateu palmas.",
      "sens": "Quand Mark a marqué le but, l'entraîneuse a applaudi.",
-     "n": "<b>quando</b> au passé : indicatif."
+     "n": "<b>quando</b> au passé : indicatif.",
+     "br": {
+      "q": "Quando o Mark ___ o gol, a treinadora bateu palmas.",
+      "phrase": "Quando o Mark marcou o gol, a treinadora bateu palmas."
+     }
     },
     {
      "q": "O Mark bebe água assim que o jogo ___.",
@@ -933,7 +975,16 @@ window.SCENE = {
      "r": null,
      "phrase": "Deve ser o primeiro golo dele.",
      "sens": "Ce doit être son premier but.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "q": "___ ser o primeiro gol dele.",
+      "c": [
+       "Deve",
+       "Se pode",
+       "Tem"
+      ],
+      "phrase": "Deve ser o primeiro gol dele."
+     }
     },
     {
      "q": "O senhor idoso ___ ser vizinho do Mark.",
@@ -959,7 +1010,16 @@ window.SCENE = {
      "r": null,
      "phrase": "O jogo deve estar a acabar.",
      "sens": "Le match devrait bientôt être fini.",
-     "n": "<b>dever</b> + estar a : sans doute en train de."
+     "n": "<b>dever</b> + estar a : sans doute en train de.",
+     "br": {
+      "q": "O jogo ___ estar acabando.",
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ],
+      "phrase": "O jogo deve estar acabando."
+     }
     },
     {
      "q": "A treinadora ___ sido profissional.",
@@ -972,10 +1032,18 @@ window.SCENE = {
      "r": null,
      "phrase": "A treinadora teria sido profissional.",
      "sens": "Il paraît que l'entraîneuse était professionnelle autrefois.",
-     "n": "La rumeur sur le passé : <b>teria sido</b>."
+     "n": "La rumeur sur le passé : <b>teria sido</b>.",
+     "br": {
+      "c": [
+       "teria",
+       "se terá",
+       "tenha"
+      ]
+     }
     }
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "No campo de futebol"
 };

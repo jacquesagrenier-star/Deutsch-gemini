@@ -345,7 +345,11 @@ window.SCENE = {
      "mot": "candeeiro de pé",
      "genre": "o",
      "niveau": "A2",
-     "fr": "lampadaire"
+     "fr": "lampadaire",
+     "br": {
+      "mot": "luminária de chão",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -364,7 +368,11 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "regenschirm",
@@ -468,7 +476,11 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "costume"
+   "fr": "costume",
+   "br": {
+    "mot": "terno",
+    "pluriel": "os ternos"
+   }
   },
   {
    "id": "bildschirm",
@@ -496,7 +508,12 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "br": {
+    "mot": "tela",
+    "genre": "a",
+    "pluriel": "as telas"
+   }
   },
   {
    "id": "tastatur",
@@ -601,7 +618,12 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "mantel",
@@ -656,7 +678,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -795,7 +821,12 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "coussin"
+   "fr": "coussin",
+   "br": {
+    "mot": "travesseiro",
+    "genre": "o",
+    "pluriel": "os travesseiros"
+   }
   },
   {
    "id": "frau",
@@ -948,7 +979,11 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "couchtisch",
@@ -1088,7 +1123,11 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "stylo à bille"
+   "fr": "stylo à bille",
+   "br": {
+    "mot": "caneta",
+    "pluriel": "as canetas"
+   }
   },
   {
    "id": "pflanze-3",
@@ -1129,7 +1168,11 @@ window.SCENE = {
      50
     ]
    ],
-   "fr": "réception (hôtel)"
+   "fr": "réception (hôtel)",
+   "br": {
+    "mot": "recepção",
+    "pluriel": "as recepções"
+   }
   },
   {
    "id": "boden",
@@ -1242,7 +1285,16 @@ window.SCENE = {
      "r": "couchtisch",
      "phrase": "A chávena está em cima da mesa de centro.",
      "sens": "La tasse est sur la table basse.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa de centro = <b>em cima da</b> mesa de centro."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa de centro = <b>em cima da</b> mesa de centro.",
+     "br": {
+      "q": "Onde está a xícara?",
+      "c": [
+       "em cima da mesa de centro",
+       "na recepção",
+       "na estante"
+      ],
+      "phrase": "A xícara está em cima da mesa de centro."
+     }
     },
     {
      "q": "Onde está a campainha?",
@@ -1255,7 +1307,15 @@ window.SCENE = {
      "r": "rezeption",
      "phrase": "A campainha está na receção.",
      "sens": "La sonnette est sur le comptoir de la réception.",
-     "n": "<b>em</b> + a = <b>na</b> : na receção."
+     "n": "<b>em</b> + a = <b>na</b> : na receção.",
+     "br": {
+      "c": [
+       "na recepção",
+       "na estante",
+       "no sofá"
+      ],
+      "phrase": "A campainha está na recepção."
+     }
     },
     {
      "q": "Onde está o quadro?",
@@ -1281,7 +1341,11 @@ window.SCENE = {
      "r": "spiegel",
      "phrase": "O candeeiro está ao lado do espelho.",
      "sens": "La lampe est à côté du miroir.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o espelho = <b>ao lado do</b> espelho."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o espelho = <b>ao lado do</b> espelho.",
+     "br": {
+      "q": "Onde está o abajur?",
+      "phrase": "O abajur está ao lado do espelho."
+     }
     }
    ]
   },
@@ -1299,7 +1363,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O pequeno-almoço é servido a partir das sete.",
      "sens": "Le petit-déjeuner est servi à partir de sept heures.",
-     "n": "<b>a partir de</b> + as = <b>a partir das</b> sete."
+     "n": "<b>a partir de</b> + as = <b>a partir das</b> sete.",
+     "br": {
+      "q": "O café da manhã é servido ___ das sete.",
+      "phrase": "O café da manhã é servido a partir das sete."
+     }
     },
     {
      "q": "O Mark chega ___ sexta-feira à noite.",
@@ -1364,7 +1432,11 @@ window.SCENE = {
      "r": null,
      "phrase": "A receção está aberta das sete às vinte e três.",
      "sens": "La réception est ouverte de sept heures à vingt-trois heures.",
-     "n": "De… à… : <b>das</b> … <b>às</b>."
+     "n": "De… à… : <b>das</b> … <b>às</b>.",
+     "br": {
+      "q": "A recepção está aberta ___ sete às vinte e três.",
+      "phrase": "A recepção está aberta das sete às vinte e três."
+     }
     },
     {
      "q": "___ do pequeno-almoço, o Mark vai à cidade.",
@@ -1377,7 +1449,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Depois do pequeno-almoço, o Mark vai à cidade.",
      "sens": "Après le petit-déjeuner, Mark va en ville.",
-     "n": "<b>depois de</b> + o = <b>depois do</b>."
+     "n": "<b>depois de</b> + o = <b>depois do</b>.",
+     "br": {
+      "q": "___ do café da manhã, o Mark vai à cidade.",
+      "phrase": "Depois do café da manhã, o Mark vai à cidade."
+     }
     },
     {
      "q": "A senhora lê o jornal ___ noite.",
@@ -1460,7 +1536,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Logo que o quarto estiver pronto, a receção telefona.",
      "sens": "Dès que la chambre est prête, la réception appelle.",
-     "n": "<b>logo que</b> + futuro do conjuntivo."
+     "n": "<b>logo que</b> + futuro do conjuntivo.",
+     "br": {
+      "q": "Logo que o quarto ___ pronto, a recepção telefona.",
+      "phrase": "Logo que o quarto estiver pronto, a recepção telefona."
+     }
     },
     {
      "q": "Enquanto o elevador ___ avariado, os hóspedes usam a escada.",
@@ -1473,7 +1553,14 @@ window.SCENE = {
      "r": "aufzug",
      "phrase": "Enquanto o elevador estiver avariado, os hóspedes usam a escada.",
      "sens": "Tant que l'ascenseur est en panne, les clients prennent l'escalier.",
-     "n": "<b>avariado</b> = en panne (au Portugal)."
+     "n": "<b>avariado</b> = en panne (au Portugal).",
+     "br": {
+      "c": [
+       "estiver",
+       "se está",
+       "estivesse"
+      ]
+     }
     }
    ]
   },
@@ -1491,7 +1578,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ele deve estar ansioso pelo fim de semana.",
      "sens": "Il doit se réjouir du week-end.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "A senhora idosa ___ ser cliente habitual.",
@@ -1517,7 +1611,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O quarto ficará no segundo andar.",
      "sens": "La chambre doit être au deuxième étage.",
-     "n": "Futur de supposition : <b>ficará</b>."
+     "n": "Futur de supposition : <b>ficará</b>.",
+     "br": {
+      "c": [
+       "ficará",
+       "fique",
+       "se ficou"
+      ]
+     }
     },
     {
      "q": "Este hotel ___ o mais antigo de Lisboa.",
@@ -1530,7 +1631,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Este hotel seria o mais antigo de Lisboa.",
      "sens": "Cet hôtel serait le plus ancien de Lisbonne.",
-     "n": "Le conditionnel de la rumeur : <b>seria</b>."
+     "n": "Le conditionnel de la rumeur : <b>seria</b>.",
+     "br": {
+      "c": [
+       "seria",
+       "se será",
+       "seja"
+      ]
+     }
     }
    ]
   }

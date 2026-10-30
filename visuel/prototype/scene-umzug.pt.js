@@ -42,7 +42,11 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "gluehbirne",
@@ -208,7 +212,12 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "hose-2",
@@ -422,7 +431,11 @@ window.SCENE = {
      2.7
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "br": {
+    "mot": "camiseta",
+    "pluriel": "as camisetas"
+   }
   },
   {
    "id": "schluessel",
@@ -497,7 +510,10 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "basket"
+   "fr": "basket",
+   "br": {
+    "mot": "tênis"
+   }
   },
   {
    "id": "spiegel",
@@ -539,7 +555,11 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "gitarre",
@@ -559,7 +579,12 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "br": {
+    "mot": "violão",
+    "genre": "o",
+    "pluriel": "os violões"
+   }
   },
   {
    "id": "kissen",
@@ -586,7 +611,12 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "coussin"
+   "fr": "coussin",
+   "br": {
+    "mot": "travesseiro",
+    "genre": "o",
+    "pluriel": "os travesseiros"
+   }
   },
   {
    "id": "sofa",
@@ -913,7 +943,11 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "ruban adhésif"
+   "fr": "ruban adhésif",
+   "br": {
+    "mot": "fita adesiva",
+    "pluriel": null
+   }
   },
   {
    "id": "schere",
@@ -1107,7 +1141,11 @@ window.SCENE = {
      "r": "sofa",
      "phrase": "A guitarra está ao lado do sofá.",
      "sens": "La guitare est à côté du canapé.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o sofá = <b>ao lado do</b> sofá."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o sofá = <b>ao lado do</b> sofá.",
+     "br": {
+      "q": "Onde está o violão?",
+      "phrase": "O violão está ao lado do sofá."
+     }
     },
     {
      "q": "Onde está o candeeiro?",
@@ -1120,7 +1158,11 @@ window.SCENE = {
      "r": "decke",
      "phrase": "O candeeiro está no teto.",
      "sens": "La lampe est accrochée au plafond.",
-     "n": "em + o teto = <b>no</b> teto."
+     "n": "em + o teto = <b>no</b> teto.",
+     "br": {
+      "q": "Onde está o abajur?",
+      "phrase": "O abajur está no teto."
+     }
     }
    ]
   },
@@ -1273,7 +1315,14 @@ window.SCENE = {
      "r": "karton",
      "phrase": "A Anna está cansada. Terá carregado muito.",
      "sens": "Anna est fatiguée. Elle a sans doute beaucoup porté.",
-     "n": "Supposition sur le passé : <b>terá</b> + participe."
+     "n": "Supposition sur le passé : <b>terá</b> + participe.",
+     "br": {
+      "c": [
+       "Terá",
+       "Teria",
+       "Se tinha"
+      ]
+     }
     },
     {
      "q": "Quem pediu a pizza? ___ sido o irmão.",
@@ -1299,7 +1348,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Na próxima semana, a Anna já se terá habituado à casa nova.",
      "sens": "La semaine prochaine, Anna se sera habituée au nouvel appartement.",
-     "n": "Après <b>já</b>, le pronom devant : <b>se terá habituado</b>."
+     "n": "Après <b>já</b>, le pronom devant : <b>se terá habituado</b>.",
+     "br": {
+      "c": [
+       "terá",
+       "tinha",
+       "se teria"
+      ]
+     }
     }
    ]
   },
@@ -1317,7 +1373,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela deve estar ansiosa pela casa nova.",
      "sens": "Elle doit se réjouir de son nouvel appartement.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "___ os livros vão para a estante branca.",
@@ -1343,7 +1406,14 @@ window.SCENE = {
      "r": "bruder",
      "phrase": "A pizza será para a Anna e o irmão.",
      "sens": "La pizza est sans doute pour Anna et son frère.",
-     "n": "Futur de supposition."
+     "n": "Futur de supposition.",
+     "br": {
+      "c": [
+       "será",
+       "seja",
+       "se foi"
+      ]
+     }
     },
     {
      "q": "A casa ___ muito sossegada.",
@@ -1356,7 +1426,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A casa seria muito sossegada.",
      "sens": "L'appartement serait très calme.",
-     "n": "Le conditionnel de la rumeur ; <b>sossegado</b> = calme."
+     "n": "Le conditionnel de la rumeur ; <b>sossegado</b> = calme.",
+     "br": {
+      "c": [
+       "seria",
+       "se será",
+       "seja"
+      ]
+     }
     }
    ]
   }

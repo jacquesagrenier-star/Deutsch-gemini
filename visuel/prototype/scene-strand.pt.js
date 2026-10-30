@@ -289,7 +289,11 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "br": {
+    "mot": "cachorro",
+    "pluriel": "os cachorros"
+   }
   },
   {
    "id": "anna",
@@ -331,7 +335,11 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "la glace"
+   "fr": "la glace",
+   "br": {
+    "mot": "sorvete",
+    "pluriel": "os sorvetes"
+   }
   },
   {
    "id": "eimer",
@@ -669,7 +677,11 @@ window.SCENE = {
      "r": "korb",
      "phrase": "O cão está atrás do cesto.",
      "sens": "Le chien est couché derrière le panier.",
-     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + o cesto = <b>atrás do</b> cesto."
+     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + o cesto = <b>atrás do</b> cesto.",
+     "br": {
+      "q": "Onde está o cachorro?",
+      "phrase": "O cachorro está atrás do cesto."
+     }
     },
     {
      "q": "Onde está o rapaz?",
@@ -791,7 +803,12 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Ela comprou um gelado.",
      "sens": "Elle a acheté une glace.",
-     "n": "<b>comprar</b> → <b>comprou</b> ; la glace = <b>o gelado</b>."
+     "n": "<b>comprar</b> → <b>comprou</b> ; la glace = <b>o gelado</b>.",
+     "br": {
+      "q": "Ela ___ um sorvete.",
+      "phrase": "Ela comprou um sorvete.",
+      "n": "<b>comprar</b> → <b>comprou</b> ; la glace = <b>o sorvete</b>."
+     }
     },
     {
      "q": "O rapaz ___ a bola para a água.",
@@ -817,7 +834,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O cão adormeceu à sombra.",
      "sens": "Le chien s'est endormi à l'ombre.",
-     "n": "<b>adormecer</b> → <b>adormeceu</b>."
+     "n": "<b>adormecer</b> → <b>adormeceu</b>.",
+     "br": {
+      "q": "O cachorro ___ à sombra.",
+      "phrase": "O cachorro adormeceu à sombra."
+     }
     },
     {
      "q": "A Anna ___ o livro em cima da toalha.",
@@ -874,7 +895,11 @@ window.SCENE = {
      "r": "eis",
      "phrase": "A mulher que come um gelado chama-se Anna.",
      "sens": "La femme qui mange une glace s'appelle Anna.",
-     "n": "Sujet : <b>que</b>."
+     "n": "Sujet : <b>que</b>.",
+     "br": {
+      "q": "A mulher ___ come um sorvete se chama Anna.",
+      "phrase": "A mulher que come um sorvete se chama Anna."
+     }
     },
     {
      "q": "O rapaz, ___ bola é colorida, brinca na água.",
@@ -913,7 +938,11 @@ window.SCENE = {
      "r": null,
      "phrase": "O cão adormecido está deitado à sombra.",
      "sens": "Le chien endormi est couché à l'ombre.",
-     "n": "Participe adjectif : <b>adormecido</b>."
+     "n": "Participe adjectif : <b>adormecido</b>.",
+     "br": {
+      "q": "O cachorro ___ está deitado à sombra.",
+      "phrase": "O cachorro adormecido está deitado à sombra."
+     }
     },
     {
      "q": "O gelado já está meio ___.",
@@ -926,7 +955,12 @@ window.SCENE = {
      "r": null,
      "phrase": "O gelado já está meio comido.",
      "sens": "La glace est déjà à moitié mangée.",
-     "n": "<b>o gelado</b> → <b>comido</b>."
+     "n": "<b>o gelado</b> → <b>comido</b>.",
+     "br": {
+      "q": "O sorvete já está meio ___.",
+      "phrase": "O sorvete já está meio comido.",
+      "n": "<b>o sorvete</b> → <b>comido</b>."
+     }
     },
     {
      "q": "Aqui, no verão, ___ muito.",
@@ -939,7 +973,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Aqui, no verão, nada-se muito.",
      "sens": "Ici, on nage beaucoup en été.",
-     "n": "Le se impersonnel : <b>nada-se</b>."
+     "n": "Le se impersonnel : <b>nada-se</b>.",
+     "br": {
+      "omettre": true
+     }
     }
    ]
   },
@@ -957,7 +994,16 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela deve estar a sentir-se muito bem de férias.",
      "sens": "Elle doit se sentir très bien en vacances.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "q": "Ela ___ estar se sentindo muito bem de férias.",
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ],
+      "phrase": "Ela deve estar se sentindo muito bem de férias."
+     }
     },
     {
      "q": "___ que o cão seja do rapaz.",
@@ -970,7 +1016,11 @@ window.SCENE = {
      "r": "junge",
      "phrase": "Pode ser que o cão seja do rapaz.",
      "sens": "Le chien appartient peut-être au garçon.",
-     "n": "<b>pode ser que</b> + conjuntivo."
+     "n": "<b>pode ser que</b> + conjuntivo.",
+     "br": {
+      "q": "___ que o cachorro seja do rapaz.",
+      "phrase": "Pode ser que o cachorro seja do rapaz."
+     }
     },
     {
      "q": "A água já ___ bastante quente.",
@@ -983,7 +1033,14 @@ window.SCENE = {
      "r": "junge",
      "phrase": "A água já estará bastante quente.",
      "sens": "L'eau doit déjà être assez chaude.",
-     "n": "Futur de supposition : <b>estará</b>."
+     "n": "Futur de supposition : <b>estará</b>.",
+     "br": {
+      "c": [
+       "estará",
+       "esteja",
+       "se estava"
+      ]
+     }
     },
     {
      "q": "___ que do farol se vê até África.",

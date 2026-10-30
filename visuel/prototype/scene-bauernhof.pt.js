@@ -550,7 +550,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -835,7 +839,11 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "br": {
+    "mot": "camiseta",
+    "pluriel": "as camisetas"
+   }
   },
   {
    "id": "hose",
@@ -850,7 +858,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -1123,7 +1135,11 @@ window.SCENE = {
      14.6
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "br": {
+    "mot": "cachorro",
+    "pluriel": "os cachorros"
+   }
   },
   {
    "id": "boden",
@@ -1195,7 +1211,11 @@ window.SCENE = {
      "r": "boden",
      "phrase": "O cão está no chão.",
      "sens": "Le chien est couché par terre.",
-     "n": "<b>em</b> + o = <b>no</b> : no chão."
+     "n": "<b>em</b> + o = <b>no</b> : no chão.",
+     "br": {
+      "q": "Onde está o cachorro?",
+      "phrase": "O cachorro está no chão."
+     }
     },
     {
      "q": "Onde estão os ovos?",
@@ -1291,7 +1311,10 @@ window.SCENE = {
      "r": "pferd",
      "phrase": "A Anna alegra-se com o cavalo.",
      "sens": "Anna est contente de voir le cheval.",
-     "n": "<b>alegrar-se com</b> ; pronom après le verbe."
+     "n": "<b>alegrar-se com</b> ; pronom après le verbe.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O cão ___ no chão.",
@@ -1304,7 +1327,10 @@ window.SCENE = {
      "r": "boden",
      "phrase": "O cão deita-se no chão.",
      "sens": "Le chien se couche par terre.",
-     "n": "<b>deitar-se</b>."
+     "n": "<b>deitar-se</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O gato ___ no muro.",
@@ -1317,7 +1343,10 @@ window.SCENE = {
      "r": "mauer",
      "phrase": "O gato senta-se no muro.",
      "sens": "Le chat s'assied sur le muret.",
-     "n": "<b>sentar-se</b>."
+     "n": "<b>sentar-se</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "___ depois do trabalho.",
@@ -1330,7 +1359,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Lavo-me depois do trabalho.",
      "sens": "Je me lave après le travail.",
-     "n": "En tête de phrase : jamais le pronom devant."
+     "n": "En tête de phrase : jamais le pronom devant.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "___ no banco.",
@@ -1343,7 +1375,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Sentamo-nos no banco.",
      "sens": "Nous nous asseyons sur le banc.",
-     "n": "<b>sentamo-nos</b> : le s tombe devant nos."
+     "n": "<b>sentamo-nos</b> : le s tombe devant nos.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "___ da quinta?",
@@ -1356,7 +1391,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Lembras-te da quinta?",
      "sens": "Tu te souviens de la ferme ?",
-     "n": "<b>lembrar-se de</b> ; la ferme = <b>a quinta</b>, au Portugal."
+     "n": "<b>lembrar-se de</b> ; la ferme = <b>a quinta</b>, au Portugal.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O primo da Anna lava ___ mãos.",
@@ -1382,7 +1420,10 @@ window.SCENE = {
      "r": null,
      "phrase": "As galinhas mexem-se depressa.",
      "sens": "Les poules bougent vite.",
-     "n": "<b>mexer-se</b> = bouger."
+     "n": "<b>mexer-se</b> = bouger.",
+     "br": {
+      "omettre": true
+     }
     }
    ]
   },
@@ -1426,7 +1467,16 @@ window.SCENE = {
      "r": null,
      "phrase": "O cão vive na quinta há um ano.",
      "sens": "Le chien vit à la ferme depuis un an.",
-     "n": "Depuis + durée : <b>há</b> + durée."
+     "n": "Depuis + durée : <b>há</b> + durée.",
+     "br": {
+      "q": "O cachorro vive na quinta ___ um ano.",
+      "c": [
+       "há",
+       "desde",
+       "se faz"
+      ],
+      "phrase": "O cachorro vive na quinta há um ano."
+     }
     },
     {
      "q": "O gato dorme depois de ___.",
@@ -1452,7 +1502,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Desde que trabalha na quinta, a Anna levanta-se cedo.",
      "sens": "Depuis qu'Anna travaille à la ferme, elle se lève tôt.",
-     "n": "<b>desde que</b> (depuis que) + indicatif."
+     "n": "<b>desde que</b> (depuis que) + indicatif.",
+     "br": {
+      "q": "___ que trabalha na quinta, a Anna se levanta cedo.",
+      "phrase": "Desde que trabalha na quinta, a Anna se levanta cedo."
+     }
     },
     {
      "q": "O cão espera até a Anna o ___.",
@@ -1465,7 +1519,11 @@ window.SCENE = {
      "r": "anna",
      "phrase": "O cão espera até a Anna o chamar.",
      "sens": "Le chien attend qu'Anna l'appelle.",
-     "n": "<b>até</b> + infinitif personnel (sujet différent)."
+     "n": "<b>até</b> + infinitif personnel (sujet différent).",
+     "br": {
+      "q": "O cachorro espera até a Anna o ___.",
+      "phrase": "O cachorro espera até a Anna o chamar."
+     }
     }
    ]
   },
@@ -1483,7 +1541,14 @@ window.SCENE = {
      "r": "anna",
      "phrase": "O cavalo deve ser muito meigo.",
      "sens": "Le cheval doit être très gentil.",
-     "n": "Déduction : <b>dever</b> ; <b>meigo</b> = doux, gentil."
+     "n": "Déduction : <b>dever</b> ; <b>meigo</b> = doux, gentil.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "O cão ___ ser do primo da Anna.",
@@ -1496,7 +1561,11 @@ window.SCENE = {
      "r": "cousin",
      "phrase": "O cão pode ser do primo da Anna.",
      "sens": "Le chien appartient peut-être au cousin d'Anna.",
-     "n": "Possibilité : <b>poder</b>."
+     "n": "Possibilité : <b>poder</b>.",
+     "br": {
+      "q": "O cachorro ___ ser do primo da Anna.",
+      "phrase": "O cachorro pode ser do primo da Anna."
+     }
     },
     {
      "q": "Os ovos ___ de hoje de manhã.",
@@ -1509,7 +1578,14 @@ window.SCENE = {
      "r": "korb",
      "phrase": "Os ovos serão de hoje de manhã.",
      "sens": "Les œufs datent sans doute de ce matin.",
-     "n": "Futur de supposition : <b>serão</b>."
+     "n": "Futur de supposition : <b>serão</b>.",
+     "br": {
+      "c": [
+       "serão",
+       "sejam",
+       "se foram"
+      ]
+     }
     },
     {
      "q": "A quinta ___ mais de cem anos.",
@@ -1522,10 +1598,18 @@ window.SCENE = {
      "r": null,
      "phrase": "A quinta teria mais de cem anos.",
      "sens": "La ferme aurait plus de cent ans.",
-     "n": "Le conditionnel de la rumeur."
+     "n": "Le conditionnel de la rumeur.",
+     "br": {
+      "c": [
+       "teria",
+       "se terá",
+       "tenha"
+      ]
+     }
     }
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "Na fazenda"
 };

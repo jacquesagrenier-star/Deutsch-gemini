@@ -200,13 +200,13 @@ a catástrofe natural | la catastrophe naturelle | A catástrofe natural atingiu
 os chifres | les bois (de cerf) | O cervo perde os chifres todos os anos. | Le cerf perd ses bois chaque année.
 o chumbo | le plomb | O chumbo é tóxico para o corpo. | Le plomb est toxique pour le corps.
 a compensação | la compensation | A compensação não basta por si só. | La compensation ne suffit pas à elle seule. | pl=compensações
-a condições do tempo | la situation météorologique | As condições do tempo seguem estáveis próximo-nos dias. | La situation météorologique reste stable dans les prochains jours. | pl=condições do tempo
+as condições do tempo | la situation météorologique | As condições do tempo seguem estáveis nos próximos dias. | La situation météorologique reste stable dans les prochains jours. | pl=condições do tempo
 a corça | le chevreuil | O veado esconde-se entre as árvores. | Le chevreuil se cache entre les arbres. | g? | ex?
 o dano ambiental | le dommage environnemental | O dano ambiental quase não pode ser revertido. | Le dommage environnemental peut difficilement être réparé. | pl=danos ambientais
 o desenvolvimento sustentável | le développement durable | O desenvolvimento sustentável exige tempo. | Le développement durable exige du temps. | pl=desenvolvimentos sustentáveis
 a economia circular | l'économie circulaire | A economia circular reduz o resíduo. | L'économie circulaire réduit le déchet. | pl=economias circulares
 a erosão | l'érosion | A erosão está a destruir o litoral aos poucos. | L'érosion détruit lentement la côte. | g? | pl=erosões
-o evento climático extremo | le phénomène météo extrême | Eventos climáticos extremos estão mais frequentes último-nos anos. | Les phénomènes météo extrêmes se multiplient ces dernières années. | pl=eventos climáticos extremos
+o evento climático extremo | le phénomène météo extrême | Eventos climáticos extremos estão mais frequentes nos últimos anos. | Les phénomènes météo extrêmes se multiplient ces dernières années. | pl=eventos climáticos extremos
 a garra | la griffe | O gato recolheu as unhas. | Le chat a rentré ses griffes. | g? | ex?
 o hidrogénio | l'hydrogène | O comboio anda a hidrogénio. | Le train roule à l'hydrogène.
 o hábitat | l'habitat | Esta floresta é o hábitat de muitas espécies. | Cette forêt est l'habitat de nombreuses espèces animales.
@@ -441,7 +441,7 @@ a globalização | la mondialisation | A globalização mudou o comércio. | La 
 a impunidade | l'impunité | Denunciam a impunidade dos crimes. | Ils dénoncent l'impunité des délits.
 a interdependência | l'interdépendance | A interdependência entre os países cresceu. | L'interdépendance entre pays a crû.
 o legado | l'héritage culturel | O legado indígena continua vivo. | L'héritage indigène reste vivant.
-a legislação | la législation | A legislação ficou mais rígida último-nos anos. | La législation a été durcie ces dernières années. | g? | pl=legislações
+a legislação | la législation | A legislação ficou mais rígida nos últimos anos. | La législation a été durcie ces dernières années. | g? | pl=legislações
 a Lei Fundamental | la Loi fondamentale | Isso está no primeiro artigo da Lei Fundamental. | C'est écrit au premier article de la Loi fondamentale. | pl=Leis Fundamentais
 o mandato | le mandat | O mandato dura quatro anos. | Le mandat dure quatre ans.
 a mediação | la médiation | A mediação durou seis meses. | La médiation a duré six mois. | pl=mediações

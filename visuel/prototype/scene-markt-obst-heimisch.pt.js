@@ -429,7 +429,11 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "abricot"
+   "fr": "abricot",
+   "br": {
+    "mot": "damasco",
+    "pluriel": "os damascos"
+   }
   },
   {
    "id": "erdbeere",
@@ -682,7 +686,12 @@ window.SCENE = {
      "r": "aprikose",
      "phrase": "Os pêssegos são maiores do que os alperces.",
      "sens": "Les pêches sont plus grosses que les abricots.",
-     "n": "<b>maiores</b> (pluriel) ; l'abricot = <b>o alperce</b>."
+     "n": "<b>maiores</b> (pluriel) ; l'abricot = <b>o alperce</b>.",
+     "br": {
+      "q": "Os pêssegos são ___ do que os damascos.",
+      "phrase": "Os pêssegos são maiores do que os damascos.",
+      "n": "<b>maiores</b> (pluriel) ; l'abricot = <b>o damasco</b>."
+     }
     },
     {
      "q": "Quanto ___ as framboesas?",
@@ -752,7 +761,11 @@ window.SCENE = {
      "r": "apfel-main",
      "phrase": "A mulher que escolhe uma maçã chama-se Anna.",
      "sens": "La femme qui choisit une pomme s'appelle Anna.",
-     "n": "Sujet : <b>que</b>."
+     "n": "Sujet : <b>que</b>.",
+     "br": {
+      "q": "A mulher ___ escolhe uma maçã se chama Anna.",
+      "phrase": "A mulher que escolhe uma maçã se chama Anna."
+     }
     },
     {
      "q": "A caixa ___ estão as amoras está ao lado das cerejas.",
@@ -809,7 +822,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Tendo em conta as longas viagens, prefiro fruta da terra.",
      "sens": "Vu les longs trajets de transport, je préfère acheter des fruits d'ici.",
-     "n": "<b>tendo em conta</b> = vu, compte tenu de."
+     "n": "<b>tendo em conta</b> = vu, compte tenu de.",
+     "br": {
+      "c": [
+       "Tendo",
+       "Se tendo",
+       "Tenho"
+      ]
+     }
     },
     {
      "q": "Se as cerejas ___ mais baratas, levava dois quilos.",
@@ -848,7 +868,14 @@ window.SCENE = {
      "r": null,
      "phrase": "As framboesas terão sido apanhadas hoje de manhã.",
      "sens": "Les framboises ont sans doute été cueillies ce matin.",
-     "n": "<b>terão sido</b>."
+     "n": "<b>terão sido</b>.",
+     "br": {
+      "c": [
+       "terão",
+       "se teriam",
+       "tenham"
+      ]
+     }
     }
    ]
   }

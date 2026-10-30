@@ -761,7 +761,7 @@ o europeu | l'Européen | Como europeu, eu não preciso de visto. | En tant qu'E
 a guerra | la guerre | A guerra durou quatro anos. | La guerre a duré quatre ans. | g?
 o luxemburguês | le Luxembourgeois | Muitos luxemburgueses falam três línguas. | Beaucoup de Luxembourgeois parlent trois langues. | g? | pl=luxemburgueses
 o ministro | le ministre | O ministro faz um discurso importante. | Le ministre prononce un discours important.
-o ordem | l'ordre | Ele recusou-se a cumprir a ordem. | Il a refusé d'obéir à l'ordre. | g?
+a ordem | l'ordre | Ele recusou-se a cumprir a ordem. | Il a refusé d'obéir à l'ordre.
 o parlamento | le parlement | O parlamento discute a lei nova. | Le parlement discute de la nouvelle loi.
 o partido | le parti politique | Este partido ganha muitos votos. | Ce parti gagne beaucoup de voix.
 a permissão | l'autorisation, permission | Sem permissão de trabalho ele não pode trabalhar. | Sans permis de travail, il n'a pas le droit de travailler. | g? | pl=permissões

@@ -60,7 +60,11 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "wand",
@@ -185,7 +189,12 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "br": {
+    "mot": "lousa",
+    "genre": "a",
+    "pluriel": "as lousas"
+   }
   },
   {
    "id": "tasse",
@@ -206,7 +215,11 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "kaffeemaschine",
@@ -333,7 +346,11 @@ window.SCENE = {
      19.5
     ]
    ],
-   "fr": "serveur"
+   "fr": "serveur",
+   "br": {
+    "mot": "garçom",
+    "pluriel": "os garçons"
+   }
   },
   {
    "id": "hemd-2",
@@ -437,7 +454,11 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "réverbère"
+   "fr": "réverbère",
+   "br": {
+    "mot": "poste de luz",
+    "pluriel": "os postes de luz"
+   }
   },
   {
    "id": "vorhang",
@@ -709,7 +730,12 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "teller-3",
@@ -963,7 +989,11 @@ window.SCENE = {
      55
     ]
    ],
-   "fr": "serveuse"
+   "fr": "serveuse",
+   "br": {
+    "mot": "garçonete",
+    "pluriel": "as garçonetes"
+   }
   },
   {
    "id": "hemd-4",
@@ -1031,7 +1061,11 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "stylo à bille"
+   "fr": "stylo à bille",
+   "br": {
+    "mot": "caneta",
+    "pluriel": "as canetas"
+   }
   },
   {
    "id": "schuh-2",
@@ -1115,7 +1149,12 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "hose",
@@ -1245,7 +1284,12 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "menu (carte)"
+   "fr": "menu (carte)",
+   "br": {
+    "mot": "cardápio",
+    "genre": "o",
+    "pluriel": "os cardápios"
+   }
   },
   {
    "id": "serviette",
@@ -1836,7 +1880,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O Mark também pede uma chávena de café.",
      "sens": "Mark commande aussi une tasse de café.",
-     "n": "Au Portugal : <b>a chávena</b> (au Brésil, xícara)."
+     "n": "Au Portugal : <b>a chávena</b> (au Brésil, xícara).",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "Na estante há muitas garrafas ___ vinho.",
@@ -1906,7 +1953,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Hoje há alguma coisa nova na ementa?",
      "sens": "Y a-t-il quelque chose de nouveau sur la carte aujourd'hui ?",
-     "n": "<b>alguma coisa</b> est féminin : <b>nova</b>."
+     "n": "<b>alguma coisa</b> est féminin : <b>nova</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "Na ementa há muita coisa ___.",
@@ -1919,7 +1969,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Na ementa há muita coisa boa.",
      "sens": "Sur la carte, il y a beaucoup de bonnes choses.",
-     "n": "<b>muita coisa</b> + adjectif féminin."
+     "n": "<b>muita coisa</b> + adjectif féminin.",
+     "br": {
+      "q": "No cardápio há muita coisa ___.",
+      "phrase": "No cardápio há muita coisa boa."
+     }
     },
     {
      "q": "O ___ deste restaurante é a cozinha.",
@@ -2002,7 +2056,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Este restaurante teria a melhor cozinha do bairro.",
      "sens": "Ce restaurant aurait la meilleure cuisine du quartier.",
-     "n": "Le conditionnel de la rumeur : <b>teria</b>."
+     "n": "Le conditionnel de la rumeur : <b>teria</b>.",
+     "br": {
+      "c": [
+       "teria",
+       "se terá",
+       "tenha"
+      ]
+     }
     }
    ]
   }

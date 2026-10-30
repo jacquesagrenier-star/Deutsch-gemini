@@ -111,7 +111,11 @@ window.SCENE = {
      7.4
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "lampe-haut",
@@ -132,7 +136,11 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "lampe-bas",
@@ -153,7 +161,11 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "tuer",
@@ -307,7 +319,11 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "tasse-devant",
@@ -336,7 +352,11 @@ window.SCENE = {
      7.2
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "tasses-machine",
@@ -357,7 +377,11 @@ window.SCENE = {
      3.1
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "mark",
@@ -407,7 +431,12 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "serveuse",
@@ -423,7 +452,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "comida_pt",
-     "fr": "serveuse"
+     "fr": "serveuse",
+     "br": {
+      "mot": "garçonete"
+     }
     }
    ],
    "sur": null,
@@ -574,7 +606,11 @@ window.SCENE = {
      3.1
     ]
    ],
-   "fr": "téléphone portable"
+   "fr": "téléphone portable",
+   "br": {
+    "mot": "celular",
+    "pluriel": "os celulares"
+   }
   },
   {
    "id": "glas",
@@ -681,7 +717,11 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "br": {
+    "mot": "suco",
+    "pluriel": "os sucos"
+   }
   },
   {
    "id": "ei",
@@ -909,7 +949,12 @@ window.SCENE = {
      8.6
     ]
    ],
-   "fr": "menu (carte)"
+   "fr": "menu (carte)",
+   "br": {
+    "mot": "cardápio",
+    "genre": "o",
+    "pluriel": "os cardápios"
+   }
   },
   {
    "id": "tisch",
@@ -1076,7 +1121,11 @@ window.SCENE = {
      "r": "tisch",
      "phrase": "O telemóvel está em cima da mesa.",
      "sens": "Le téléphone est sur la table.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa.",
+     "br": {
+      "q": "Onde está o celular?",
+      "phrase": "O celular está em cima da mesa."
+     }
     },
     {
      "q": "Onde está o casaco?",
@@ -1167,7 +1216,11 @@ window.SCENE = {
      "r": "ei",
      "phrase": "O sumo está ao lado do ovo.",
      "sens": "Le jus est à côté de l'œuf.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o ovo = <b>ao lado do</b> ovo."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o ovo = <b>ao lado do</b> ovo.",
+     "br": {
+      "q": "Onde está o suco?",
+      "phrase": "O suco está ao lado do ovo."
+     }
     }
    ]
   },
@@ -1185,7 +1238,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "A empregada traz-lhe um bolo.",
      "sens": "La serveuse lui apporte un gâteau.",
-     "n": "À qui ? complément indirect : <b>lhe</b>, après le verbe."
+     "n": "À qui ? complément indirect : <b>lhe</b>, après le verbe.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O café sabe-___ bem.",
@@ -1198,7 +1254,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O café sabe-lhe bem.",
      "sens": "Il trouve le café bon.",
-     "n": "<b>saber bem a alguém</b> : être bon pour quelqu'un ; <b>lhe</b>."
+     "n": "<b>saber bem a alguém</b> : être bon pour quelqu'un ; <b>lhe</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O Mark pediu um bolo ___ empregada.",
@@ -1224,7 +1283,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Podes passar-me o sal, por favor?",
      "sens": "Tu peux me passer le sel, s'il te plaît ?",
-     "n": "Complément indirect : <b>me</b>, après l'infinitif."
+     "n": "Complément indirect : <b>me</b>, après l'infinitif.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O casaco é ___ homem ali ao fundo?",
@@ -1276,7 +1338,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O Mark agradece-lhe o bolo.",
      "sens": "Mark la remercie pour le gâteau.",
-     "n": "<b>agradecer algo a alguém</b> : <b>lhe</b> (alors que le français dit « la »)."
+     "n": "<b>agradecer algo a alguém</b> : <b>lhe</b> (alors que le français dit « la »).",
+     "br": {
+      "omettre": true
+     }
     }
    ]
   },
@@ -1294,7 +1359,11 @@ window.SCENE = {
      "r": "kuchen-mark",
      "phrase": "O cliente a quem a empregada traz o bolo chama-se Mark.",
      "sens": "Le client à qui la serveuse apporte le gâteau s'appelle Mark.",
-     "n": "Une personne, après une préposition : <b>a quem</b>."
+     "n": "Une personne, après une préposition : <b>a quem</b>.",
+     "br": {
+      "q": "O cliente a ___ a empregada traz o bolo se chama Mark.",
+      "phrase": "O cliente a quem a empregada traz o bolo se chama Mark."
+     }
     },
     {
      "q": "A empregada, ___ usa óculos, traz o bolo.",
@@ -1320,7 +1389,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "A mesa a que o Mark está sentado fica junto à janela.",
      "sens": "La table à laquelle Mark est assis est près de la fenêtre.",
-     "n": "<b>sentar-se à mesa</b> : la préposition passe devant le relatif (<b>a que</b>, ou <b>à qual</b>)."
+     "n": "<b>sentar-se à mesa</b> : la préposition passe devant le relatif (<b>a que</b>, ou <b>à qual</b>).",
+     "br": {
+      "n": "<b>se sentar à mesa</b> : la préposition passe devant le relatif (<b>a que</b>, ou <b>à qual</b>)."
+     }
     },
     {
      "q": "A mesa já está ___.",
@@ -1416,10 +1488,20 @@ window.SCENE = {
      "r": null,
      "phrase": "Diz-se que a tarte de maçã daqui é a melhor de Lisboa.",
      "sens": "Il paraît que la tarte aux pommes d'ici est la meilleure de Lisbonne.",
-     "n": "Le ouï-dire : <b>diz-se que</b>."
+     "n": "Le ouï-dire : <b>diz-se que</b>.",
+     "br": {
+      "c": [
+       "Se diz",
+       "Se dizem",
+       "Se diga"
+      ],
+      "phrase": "Se diz que a tarte de maçã daqui é a melhor de Lisboa.",
+      "n": "Le ouï-dire : <b>se diz que</b>."
+     }
     }
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "O café da manhã na padaria"
 };

@@ -11895,6 +11895,20 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
                 </button>
             </div>
         </div>
+        <!-- Le portugais (essai, 30 oct. 2026) : Portugal ou Bresil. -->
+        <div class="setup-choice-group" data-seulement-pt>
+            <div class="setup-choice-label">Quel portugais ?</div>
+            <div class="setup-choice-row">
+                <button class="setup-choice" onclick="choisirVariantePortugais('pt')" data-variante-pt="pt">
+                    <span class="setup-choice-flag">🇵🇹</span>
+                    <span>Portugal</span>
+                </button>
+                <button class="setup-choice" onclick="choisirVariantePortugais('br')" data-variante-pt="br">
+                    <span class="setup-choice-flag">🇧🇷</span>
+                    <span>Brésil</span>
+                </button>
+            </div>
+        </div>
         <div class="setup-choice-group" id="settingsUiLangGroup">
                 <div class="setup-choice-label" data-i18n="setup_uilang_label">Dans quelle langue veux-tu les explications ?</div>
                 <div class="setup-choice-row">
@@ -12693,6 +12707,21 @@ function choisirVarianteAnglais(v){
     try{ localStorage.setItem(PREFIXE_STOCKAGE + "variante", v); }catch(e){}
     if(v !== VARIANTE_ANGLAIS) location.reload();
 }
+// LA VARIANTE DU PORTUGAIS (decide par Jacques le 30 oct. 2026 : « J'aimerais
+// qu'on entre aussi l'aspect portugais-Bresil. En apprentissage. ») : "pt" =
+// Portugal, la base ; "br" = Bresil, la variante. Comme l'anglais : deux jeux
+// de donnees complets, portugais/datos et portugais/datos-br (derive par
+// portugais/outils/bresil.py), memes mots dans le meme ordre.
+const VARIANTE_PORTUGAIS = (() => {
+    if(LANGUE_APPRISE !== "pt") return "pt";
+    try{ return localStorage.getItem(PREFIXE_STOCKAGE + "variante") === "br" ? "br" : "pt"; }
+    catch(e){ return "pt"; }
+})();
+function choisirVariantePortugais(v){
+    if(v !== "pt" && v !== "br") return;
+    try{ localStorage.setItem(PREFIXE_STOCKAGE + "variante", v); }catch(e){}
+    if(v !== VARIANTE_PORTUGAIS) location.reload();
+}
 // LA VARIANTE DE L'ESPAGNOL (fusion, etape 3 ; decide par Jacques le 10 oct.
 // 2026 : les deux des le lancement). "es" = Espagne, la base du cours ;
 // "latam" = Amerique latine, qui cache vosotros et remplace les mots de
@@ -12920,25 +12949,31 @@ const LANGUE_ANGLAIS = {
 // ont la forme de l'espagnol (portugais/datos, construites par
 // portugais/outils/construire.py) : genre o / a, six personnes dont vos,
 // cachee comme vosotros en Amerique latine. Pas de voix enregistree : celle
-// du telephone, pt-PT (jamais pt-BR par defaut).
+// du telephone, pt-PT (jamais pt-BR par defaut). La variante du Bresil
+// (30 oct. 2026) lit portugais/datos-br, grammaire et exercices compris, et
+// parle pt-BR.
+const DOSSIER_PORTUGAIS = VARIANTE_PORTUGAIS === "br" ? "datos-br/" : "datos/";
 const LANGUE_PORTUGAIS = {
     code:    "pt",
     nom:     "Português",
-    voix:    "pt-PT",
+    voix:    VARIANTE_PORTUGAIS === "br" ? "pt-BR" : "pt-PT",
     donnees: RACINE_DEPOT + "portugais/",
     audio:   "",
     fichiers: {
-        "verbe.json":         "datos/verbes.json",
-        "adjectif.json":      "datos/adjectifs.json",
-        "redewendung.json":   "datos/expressions.json",
-        "adverbe.json":       "datos/adverbes.json",
-        "themes.json":        "datos/themes.json",
-        "funktionswort.json": "datos/fonctionnels.json",
-        "reperes.json":       "datos/reperes.json",
-        "prononciation.json": "datos/prononciation.json",
-        "conjugaison.json":   "datos/conjugaison.json",
-        "premiers-pas.json":  "datos/premiers-pas.json",
-        "a1-voyage.json":     "datos/a1-voyage.json"
+        "verbe.json":         DOSSIER_PORTUGAIS + "verbes.json",
+        "adjectif.json":      DOSSIER_PORTUGAIS + "adjectifs.json",
+        "redewendung.json":   DOSSIER_PORTUGAIS + "expressions.json",
+        "adverbe.json":       DOSSIER_PORTUGAIS + "adverbes.json",
+        "themes.json":        DOSSIER_PORTUGAIS + "themes.json",
+        "funktionswort.json": DOSSIER_PORTUGAIS + "fonctionnels.json",
+        "reperes.json":       DOSSIER_PORTUGAIS + "reperes.json",
+        "prononciation.json": DOSSIER_PORTUGAIS + "prononciation.json",
+        "conjugaison.json":   DOSSIER_PORTUGAIS + "conjugaison.json",
+        "premiers-pas.json":  DOSSIER_PORTUGAIS + "premiers-pas.json",
+        "a1-voyage.json":     DOSSIER_PORTUGAIS + "a1-voyage.json",
+        "grammaire.json":     DOSSIER_PORTUGAIS + "grammaire.json",
+        "exercices.json":     DOSSIER_PORTUGAIS + "exercices.json",
+        "synonymes.json":     DOSSIER_PORTUGAIS + "synonymes.json"
     },
     prefixeProgression: ""
 };
@@ -13085,7 +13120,7 @@ function ouvrirEssaiPortugais(){
 function habillerCartePortugaise(card){
     ["flashWord", "flashBackWord", "flashVerbDetails"].forEach(id => {
         const el = document.getElementById(id);
-        if(el) el.setAttribute("lang", "pt-PT");
+        if(el) el.setAttribute("lang", LANGUE_PORTUGAIS.voix);
     });
     // Un adjectif : feminin, pluriels et comparatif, au-dessus de l'exemple.
     const det = document.getElementById("flashVerbDetails");
@@ -13102,7 +13137,7 @@ function formesAdjectifPortugais(card){
     const mot = card[0] || card.mot || "";
     const genres = [mot, f.feminin, f.pluriel, f.feminin_pluriel].filter((x, i, a) => x && a.indexOf(x) === i).join(" · ");
     const ligne = (forme, libelle) => forme
-        ? `<div class="forme-en"><span lang="pt-PT">${echapperPortugais(forme)}</span>${sentenceSpeakBtnHtml(forme, "de")}<br><small>${echapperPortugais(libelle)}</small></div>` : "";
+        ? `<div class="forme-en"><span lang="${LANGUE_PORTUGAIS.voix}">${echapperPortugais(forme)}</span>${sentenceSpeakBtnHtml(forme, "de")}<br><small>${echapperPortugais(libelle)}</small></div>` : "";
     return `<div class="verb-core">${ligne(genres, "masculin · féminin · pluriels")}${ligne(f.comparatif, "comparatif (plus…)")}${ligne(f.superlatif, "superlatif (le plus…)")}</div><div class="verb-sep"></div>`;
 }
 // LA CARTE DE VERBE PORTUGAISE (29 oct. 2026), sur le modele de l'espagnole :
@@ -13133,7 +13168,7 @@ function carteVerbePortugais(card, exampleTr){
     const p = card.praesens || {};
     const present = lignePersonnesPortugais([p.ich, p.du, p.er_sie_es, p.wir, p.ihr, p.sie_Sie]);
     const ex = card.exemple
-        ? `<div class="verb-sep"></div><strong>En contexte :</strong> <span lang="pt-PT">${echapperPortugais(card.exemple)}</span>${sentenceSpeakBtnHtml(card.exemple, "de")}<br>(${echapperPortugais(exampleTr || "")})`
+        ? `<div class="verb-sep"></div><strong>En contexte :</strong> <span lang="${LANGUE_PORTUGAIS.voix}">${echapperPortugais(card.exemple)}</span>${sentenceSpeakBtnHtml(card.exemple, "de")}<br>(${echapperPortugais(exampleTr || "")})`
         : "";
     const core = `<strong>PRESENTE</strong>${card.irregulierPt ? ' <span style="font-weight:400; color:#566070;">&mdash; irrégulier</span>' : ""}<br>${present}${ex}`;
     const imp = card.imperativoPt;
@@ -28318,8 +28353,20 @@ const I18N_PORTUGAIS = {
         "dec_t1_texte_peu": "Rappel : le petit mot devant le nom, l'article, dit son genre : o (masculin) ou a (féminin). La couleur le montre. Écoute le mot, puis dis si tu le savais."
     }
 };
+// La variante du Bresil (30 oct. 2026) : ce qui nomme le Portugal.
+const I18N_PORTUGAIS_BRESIL = {
+    "fr": {
+        "home_subtitle": "Ton tuteur personnel pour le vocabulaire et la grammaire du portugais du Brésil.",
+        "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de son cours d'espagnol, en portugais du Portugal, puis convertis en portugais du Brésil (brouillon, à relire par un lusophone).",
+        "profil_r_vivre": "Pour vivre au Brésil",
+        "auth_value_1": "Vocabulaire et grammaire du portugais du Brésil, organisés par thème et par niveau.",
+        "orb_redewendungen_sub": "olá · obrigado · por favor"
+    }
+};
 if(LANGUE_APPRISE === "pt"){
     for(const l of Object.keys(I18N_PORTUGAIS)) Object.assign(I18N[l], I18N_PORTUGAIS[l]);
+    if(VARIANTE_PORTUGAIS === "br")
+        for(const l of Object.keys(I18N_PORTUGAIS_BRESIL)) Object.assign(I18N[l], I18N_PORTUGAIS_BRESIL[l]);
     document.title = "Wortando Português";
 }
 
@@ -28883,8 +28930,11 @@ function adapterChoixALaLangueApprise(){
     }
     // Le portugais (essai, 29 oct. 2026) : le drapeau du Portugal.
     if(LANGUE_APPRISE === "pt"){
+        document.querySelectorAll('.setup-choice[data-variante-pt]').forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.variantePt === VARIANTE_PORTUGAIS);
+        });
         document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice(\'de\')"] .setup-choice-flag')
-            .forEach(el => { el.textContent = "\u{1F1F5}\u{1F1F9}"; });
+            .forEach(el => { el.textContent = VARIANTE_PORTUGAIS === "br" ? "\u{1F1E7}\u{1F1F7}" : "\u{1F1F5}\u{1F1F9}"; });
         document.querySelectorAll('.setup-choice-flag[data-autre]')
             .forEach(el => { el.textContent = "\u{1F1E9}\u{1F1EA}"; });
         return;
@@ -39026,7 +39076,8 @@ function orbPanelData(id){
                 { icon:"carte", title:t("seance_scene_stadtplatz"), desc:t("op_scenes_place_d"), action:"ouvrirScenePlace", section:"pratique" },
                 { icon:"carte", title:t("seance_scene_museum"), desc:t("op_scenes_musee_d"), action:"ouvrirSceneMusee", section:"pratique" },
                 { icon:"carte", title:t("seance_scene_ubahn"), desc:t("op_scenes_metro_d"), action:"ouvrirSceneMetro", section:"pratique" }
-            ]
+            // Le portugais retire ici aussi ses scenes ecartees (l'hiver).
+            ].filter(o => LANGUE_APPRISE !== "pt" || !SCENES_TOUTES.some(s => s.ouvrir === o.action && sceneEcartee(s.nom)))
         };
     }
     if(id === "verben"){
@@ -46393,12 +46444,13 @@ function voicesForLang(prefix){
         return (variante.length ? variante : toutes)
             .sort((a, b) => scoreVoixAnglaise(b) - scoreVoixAnglaise(a) || a.name.localeCompare(b.name));
     }
-    // Le portugais appris (29 oct. 2026) : pt-PT seul, le Bresil a defaut.
+    // Le portugais appris (29 oct. 2026) : pt-PT seul, le Bresil a defaut ;
+    // la variante du Bresil (30 oct.) : pt-BR seul, le Portugal a defaut.
     if(prefix === "de" && LANGUE_APPRISE === "pt"){
         if(!('speechSynthesis' in window)) return [];
         const toutes = window.speechSynthesis.getVoices().filter(v => langueDeVoix(v).startsWith("pt"));
-        const portugal = toutes.filter(v => langueDeVoix(v) === "pt-pt");
-        return (portugal.length ? portugal : toutes)
+        const variante = toutes.filter(v => langueDeVoix(v) === LANGUE_PORTUGAIS.voix.toLowerCase());
+        return (variante.length ? variante : toutes)
             .sort((a, b) => scoreVoixAnglaise(b) - scoreVoixAnglaise(a) || a.name.localeCompare(b.name));
     }
     // "de" = la langue apprise (fusion, etape 3) : en espagnol, les voix es-*.
@@ -51981,7 +52033,16 @@ function majLiensRevoir(){
 // premiere ; la seance va d'elle-meme a la vue de chaque question.
 // Le titre de chaque scene est une cle de traduction (seance_scene_<nom>).
 const SCENES_ECARTEES_ANGLAIS = ["kreuzung", "ubahn", "zug", "stadtplatz", "weihnachtsmarkt", "post"];
-const SCENES_SEANCE = [
+// LE PORTUGAIS (essai, 30 oct. 2026) : Lisbonne n'a pas de neige -- l'hiver et
+// son bonhomme de neige sortent (Jacques : « C'est sûr que les bonhommes de
+// neige, et l'hiver, on doit l'enlever »). Les autres attendent sa decision.
+const SCENES_ECARTEES_PORTUGAIS = ["winter"];
+function sceneEcartee(nom){
+    const liste = LANGUE_APPRISE === "en" ? SCENES_ECARTEES_ANGLAIS
+                : LANGUE_APPRISE === "pt" ? SCENES_ECARTEES_PORTUGAIS : [];
+    return liste.indexOf(nom) >= 0;
+}
+const SCENES_TOUTES = [
     { nom: "klassenzimmer", titre: "seance_scene_klassenzimmer", desc: "op_scenes_classe_d", ouvrir: "ouvrirSceneClasse" },
     { nom: "untersuchung", titre: "seance_scene_untersuchung", desc: "op_scenes_examen_d", ouvrir: "ouvrirSceneExamen" },
     { nom: "markt-obst-heimisch", titre: "seance_scene_markt", desc: "op_scenes_marche_d", ouvrir: "ouvrirSceneMarche" },
@@ -52043,7 +52104,8 @@ const SCENES_SEANCE = [
 // L'ANGLAIS (essai, 27 oct. 2026) : ces six scenes montrent trop l'Europe pour
 // passer a Boston -- ecartees par Jacques (« Ecarte ces six scenes de l'anglais
 // pour l'instant ; on garde les 37 autres »). Ailleurs, la liste est entiere.
-].filter(s => LANGUE_APPRISE !== "en" || SCENES_ECARTEES_ANGLAIS.indexOf(s.nom) < 0);
+];
+const SCENES_SEANCE = SCENES_TOUTES.filter(s => !sceneEcartee(s.nom));
 const SCENE_FAITE_KEY = PREFIXE_STOCKAGE + "sceneFaite";
 
 function baseScenes(){
@@ -52656,7 +52718,7 @@ function langueSeuleDeScene(){
     // L'anglais (essai) : scene-<nom>.en.js, americain ou britannique.
     if(LANGUE_APPRISE === "en") return "&apprendre=en&variante=" + VARIANTE_ANGLAIS;
     // Le portugais (essai) : scene-<nom>.pt.js, a Lisbonne.
-    if(LANGUE_APPRISE === "pt") return "&apprendre=pt";
+    if(LANGUE_APPRISE === "pt") return "&apprendre=pt" + (VARIANTE_PORTUGAIS === "br" ? "&variante=br" : "");
     if(LANGUE_APPRISE !== "es") return "";
     return "&apprendre=es&variante=" + (VARIANTE_ESPAGNOL === "latam" ? "latam" : "es");
 }
@@ -54698,7 +54760,7 @@ function montrerCartePhrase(item){
         const langueReco = LANGUE_APPRISE === "es" ? (VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES")
                          : LANGUE_APPRISE === "ja" ? "ja-JP"
                          : LANGUE_APPRISE === "en" ? LANGUE_ANGLAIS.voix
-                         : LANGUE_APPRISE === "pt" ? "pt-PT" : "de-DE";
+                         : LANGUE_APPRISE === "pt" ? LANGUE_PORTUGAIS.voix : "de-DE";
         // v836 : DANS LES APPS, LE MODULE NATIF (@capgo/capacitor-speech-recognition,
         // ajoute au projet wortando-ios le 16 oct. 2026). Les vues web des apps n'ont
         // pas la reconnaissance du navigateur. Le module donne le texte et le niveau

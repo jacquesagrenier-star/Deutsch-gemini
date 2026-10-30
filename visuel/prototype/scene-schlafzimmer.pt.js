@@ -154,7 +154,11 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "wecker",
@@ -217,7 +221,11 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "br": {
+    "mot": "escrivaninha",
+    "pluriel": "as escrivaninhas"
+   }
   },
   {
    "id": "kissen",
@@ -238,7 +246,12 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "coussin"
+   "fr": "coussin",
+   "br": {
+    "mot": "travesseiro",
+    "genre": "o",
+    "pluriel": "os travesseiros"
+   }
   },
   {
    "id": "koffer",
@@ -322,7 +335,11 @@ window.SCENE = {
      1.9
     ]
    ],
-   "fr": "téléphone portable"
+   "fr": "téléphone portable",
+   "br": {
+    "mot": "celular",
+    "pluriel": "os celulares"
+   }
   },
   {
    "id": "pass",
@@ -468,7 +485,12 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "hose",
@@ -620,7 +642,15 @@ window.SCENE = {
      "r": "lampe",
      "phrase": "O despertador está ao lado do candeeiro.",
      "sens": "Le réveil est à côté de la lampe.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o candeeiro = <b>ao lado do</b> candeeiro."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o candeeiro = <b>ao lado do</b> candeeiro.",
+     "br": {
+      "c": [
+       "ao lado do abajur",
+       "na cama",
+       "na mala de viagem"
+      ],
+      "phrase": "O despertador está ao lado do abajur."
+     }
     },
     {
      "q": "Onde está o quadro?",
@@ -729,7 +759,14 @@ window.SCENE = {
      "r": "koffer",
      "phrase": "Daqui a pouco, a camisola vai estar na mala.",
      "sens": "Dans un instant, le pull sera dans la valise.",
-     "n": "Le futur proche : <b>vai estar</b>."
+     "n": "Le futur proche : <b>vai estar</b>.",
+     "br": {
+      "c": [
+       "vai estar",
+       "vai a estar",
+       "está indo"
+      ]
+     }
     },
     {
      "q": "A Anna ___ o chapéu em cima da cama.",
@@ -768,7 +805,10 @@ window.SCENE = {
      "r": null,
      "phrase": "A Anna quase se esqueceu do carregador.",
      "sens": "Anna a failli oublier le chargeur.",
-     "n": "<b>esquecer-se de</b> ; après <b>quase</b>, le pronom passe devant."
+     "n": "<b>esquecer-se de</b> ; après <b>quase</b>, le pronom passe devant.",
+     "br": {
+      "n": "<b>se esquecer de</b> ; après <b>quase</b>, le pronom passe devant."
+     }
     },
     {
      "q": "O despertador está ___ mesa de cabeceira.",
@@ -877,7 +917,12 @@ window.SCENE = {
      "r": null,
      "phrase": "Tudo ainda tem de ser arrumado hoje.",
      "sens": "Tout doit encore être emballé aujourd'hui.",
-     "n": "Passif avec <b>ter de ser</b> + participe ; <b>tudo</b> → masculin."
+     "n": "Passif avec <b>ter de ser</b> + participe ; <b>tudo</b> → masculin.",
+     "br": {
+      "q": "Tudo ainda tem que ser ___ hoje.",
+      "phrase": "Tudo ainda tem que ser arrumado hoje.",
+      "n": "Passif avec <b>ter que ser</b> + participe ; <b>tudo</b> → masculin."
+     }
     },
     {
      "q": "A máquina com a ___ a Anna quer tirar fotografias está na cama.",
@@ -908,7 +953,14 @@ window.SCENE = {
      "r": "koffer",
      "phrase": "Ela deve estar ansiosa pela viagem.",
      "sens": "Elle doit se réjouir du voyage.",
-     "n": "Déduction : <b>dever</b> ; <b>estar ansioso por</b> = avoir hâte de."
+     "n": "Déduction : <b>dever</b> ; <b>estar ansioso por</b> = avoir hâte de.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "___ a camisola seja quente demais para o sul.",
@@ -934,7 +986,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela deverá partir amanhã de manhã.",
      "sens": "Elle décolle sans doute demain matin.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "___ que naquela praia faz calor o ano inteiro.",

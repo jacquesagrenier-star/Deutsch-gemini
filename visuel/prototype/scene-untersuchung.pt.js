@@ -1561,7 +1561,14 @@ window.SCENE = {
      "r": "hand-aerztin-haut",
      "phrase": "A médica ausculta os pulmões dele.",
      "sens": "La médecin ausculte ses poumons.",
-     "n": "<b>auscultar</b>."
+     "n": "<b>auscultar</b>.",
+     "br": {
+      "c": [
+       "ausculta",
+       "se escuta",
+       "lhe ouve"
+      ]
+     }
     },
     {
      "q": "___ fundo, por favor!",
@@ -1574,7 +1581,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Inspire fundo, por favor!",
      "sens": "Inspirez profondément, s'il vous plaît !",
-     "n": "Consigne polie : le subjonctif (<b>inspire</b>)."
+     "n": "Consigne polie : le subjonctif (<b>inspire</b>).",
+     "br": {
+      "c": [
+       "Inspire",
+       "Se inspira",
+       "Inspiras"
+      ]
+     }
     },
     {
      "q": "O Mark ___ até às cuecas.",
@@ -1587,7 +1601,10 @@ window.SCENE = {
      "r": "unterhose",
      "phrase": "O Mark despiu-se até às cuecas.",
      "sens": "Mark s'est déshabillé jusqu'au caleçon.",
-     "n": "<b>despir-se</b> → <b>despiu-se</b>."
+     "n": "<b>despir-se</b> → <b>despiu-se</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A médica põe-___ o estetoscópio no peito.",
@@ -1600,7 +1617,10 @@ window.SCENE = {
      "r": "brust",
      "phrase": "A médica põe-lhe o estetoscópio no peito.",
      "sens": "La médecin pose le stéthoscope sur sa poitrine.",
-     "n": "<b>lhe</b> : à lui (sur lui)."
+     "n": "<b>lhe</b> : à lui (sur lui).",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O Mark vai ___ para a balança.",
@@ -1613,7 +1633,14 @@ window.SCENE = {
      "r": "waage",
      "phrase": "O Mark vai subir para a balança.",
      "sens": "Mark va tout de suite monter sur la balance.",
-     "n": "<b>subir para</b> : monter sur."
+     "n": "<b>subir para</b> : monter sur.",
+     "br": {
+      "c": [
+       "subir",
+       "se subir",
+       "sobe"
+      ]
+     }
     },
     {
      "q": "Depois fica ___ na balança.",
@@ -1644,7 +1671,12 @@ window.SCENE = {
      "r": "hand-aerztin-haut",
      "phrase": "Os pulmões dele estão a ser auscultados.",
      "sens": "Ses poumons sont en train d'être auscultés.",
-     "n": "<b>estar a ser</b> + participe accordé (os pulmões)."
+     "n": "<b>estar a ser</b> + participe accordé (os pulmões).",
+     "br": {
+      "q": "Os pulmões dele estão sendo ___.",
+      "phrase": "Os pulmões dele estão sendo auscultados.",
+      "n": "<b>estar sendo</b> + participe accordé (os pulmões)."
+     }
     },
     {
      "q": "O doente, ___ peito está a ser auscultado, chama-se Mark.",
@@ -1657,7 +1689,11 @@ window.SCENE = {
      "r": "brust",
      "phrase": "O doente, cujo peito está a ser auscultado, chama-se Mark.",
      "sens": "Le patient dont on ausculte la poitrine s'appelle Mark.",
-     "n": "<b>cujo</b> + peito."
+     "n": "<b>cujo</b> + peito.",
+     "br": {
+      "q": "O doente, ___ peito está sendo auscultado, se chama Mark.",
+      "phrase": "O doente, cujo peito está sendo auscultado, se chama Mark."
+     }
     },
     {
      "q": "A médica ___ o examina é a médica de família dele.",
@@ -1709,7 +1745,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O Mark fica quieto enquanto é examinado.",
      "sens": "Mark reste tranquille pendant qu'on l'examine.",
-     "n": "Passif au présent : <b>é examinado</b>."
+     "n": "Passif au présent : <b>é examinado</b>.",
+     "br": {
+      "c": [
+       "é",
+       "se está",
+       "seja"
+      ]
+     }
     }
    ]
   },
@@ -1727,7 +1770,17 @@ window.SCENE = {
      "r": null,
      "phrase": "Ele deve fazer muito desporto.",
      "sens": "Il doit faire beaucoup de sport.",
-     "n": "Déduction : <b>dever</b> ; le sport = <b>o desporto</b>."
+     "n": "Déduction : <b>dever</b> ; le sport = <b>o desporto</b>.",
+     "br": {
+      "q": "Ele ___ fazer muito esporte.",
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ],
+      "phrase": "Ele deve fazer muito esporte.",
+      "n": "Déduction : <b>dever</b> ; le sport = <b>o esporte</b>."
+     }
     },
     {
      "q": "Ele ___ ser saudável.",
@@ -1740,7 +1793,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ele deverá ser saudável.",
      "sens": "Il est sans doute en bonne santé.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "___ que esta médica é muito minuciosa.",
@@ -1792,7 +1852,14 @@ window.SCENE = {
      "r": "mark",
      "phrase": "Sem exame, não se podia saber ao certo.",
      "sens": "Sans examen, on ne pourrait pas le savoir exactement.",
-     "n": "Après <b>não</b>, le se devant : <b>não se podia</b>."
+     "n": "Après <b>não</b>, le se devant : <b>não se podia</b>.",
+     "br": {
+      "c": [
+       "se podia",
+       "podia-se-se",
+       "se se pode"
+      ]
+     }
     }
    ]
   }

@@ -72,7 +72,11 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "ananas"
+   "fr": "ananas",
+   "br": {
+    "mot": "abacaxi",
+    "pluriel": "os abacaxis"
+   }
   },
   {
    "id": "kokosnuss",
@@ -252,7 +256,12 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "papaye"
+   "fr": "papaye",
+   "br": {
+    "mot": "mamão",
+    "genre": "o",
+    "pluriel": "os mamões"
+   }
   },
   {
    "id": "zitrone",
@@ -628,7 +637,15 @@ window.SCENE = {
      "r": "papaya",
      "phrase": "Os abacates estão entre a laranja e a papaia.",
      "sens": "Les avocats sont entre les oranges et les papayes.",
-     "n": "<b>entre</b> … <b>e</b> … = entre … et …"
+     "n": "<b>entre</b> … <b>e</b> … = entre … et …",
+     "br": {
+      "c": [
+       "entre a laranja e o mamão",
+       "ao lado das bananas",
+       "ao lado do kiwi"
+      ],
+      "phrase": "Os abacates estão entre a laranja e o mamão."
+     }
     },
     {
      "q": "Onde estão as limas?",
@@ -659,7 +676,12 @@ window.SCENE = {
      "r": null,
      "phrase": "Quanto custa um ananás?",
      "sens": "Combien coûte un ananas ?",
-     "n": "<b>o ananás</b> : masculin (et le mot du Portugal ; au Brésil, abacaxi)."
+     "n": "<b>o ananás</b> : masculin (et le mot du Portugal ; au Brésil, abacaxi).",
+     "br": {
+      "q": "Quanto custa ___ abacaxi?",
+      "phrase": "Quanto custa um abacaxi?",
+      "n": "<b>o abacaxi</b> : masculin (et le mot du Portugal ; au Brésil, abacaxi)."
+     }
     },
     {
      "q": "Levo uma fatia ___ melancia, por favor.",
@@ -755,7 +777,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Há uma papaia cortada em cima das outras.",
      "sens": "Une papaye coupée est posée sur les autres.",
-     "n": "Participe accordé."
+     "n": "Participe accordé.",
+     "br": {
+      "q": "Há um mamão ___ em cima das outras.",
+      "phrase": "Há um mamão cortada em cima das outras."
+     }
     },
     {
      "q": "As bananas ___ a Anna leva vêm da Madeira.",
@@ -825,7 +851,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Se a Anna tivesse mais tempo, comprava um ananás e descascava-o.",
      "sens": "Si Anna avait plus de temps, elle achèterait un ananas et l'éplucherait.",
-     "n": "Irréel : <b>se tivesse</b>."
+     "n": "Irréel : <b>se tivesse</b>.",
+     "br": {
+      "q": "Se a Anna ___ mais tempo, comprava um abacaxi e descascava-o.",
+      "phrase": "Se a Anna tivesse mais tempo, comprava um abacaxi e descascava-o."
+     }
     },
     {
      "q": "Os abacates não ___ guardar no frigorífico.",
@@ -838,7 +868,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Os abacates não se devem guardar no frigorífico.",
      "sens": "Il ne faut pas conserver les avocats au réfrigérateur.",
-     "n": "Après <b>não</b>, le se devant ; accord avec abacates."
+     "n": "Après <b>não</b>, le se devant ; accord avec abacates.",
+     "br": {
+      "q": "Os abacates não ___ guardar na geladeira.",
+      "phrase": "Os abacates não se devem guardar na geladeira."
+     }
     },
     {
      "q": "O coco ___ ter sido aberto com um martelo.",
@@ -851,7 +885,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O coco deve ter sido aberto com um martelo.",
      "sens": "La noix de coco a dû être ouverte avec un marteau.",
-     "n": "Déduction sur le passé : <b>deve ter sido</b>."
+     "n": "Déduction sur le passé : <b>deve ter sido</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     }
    ]
   }

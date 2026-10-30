@@ -402,7 +402,11 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "téléphone portable"
+   "fr": "téléphone portable",
+   "br": {
+    "mot": "celular",
+    "pluriel": "os celulares"
+   }
   },
   {
    "id": "zeitung",
@@ -444,7 +448,12 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "titre de transport"
+   "fr": "titre de transport",
+   "br": {
+    "mot": "passagem",
+    "genre": "a",
+    "pluriel": "as passagens"
+   }
   },
   {
    "id": "tisch",
@@ -700,7 +709,11 @@ window.SCENE = {
      "r": "broetchen",
      "phrase": "O telemóvel está ao lado do papo-seco.",
      "sens": "Le téléphone est à côté du petit pain.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o papo-seco = <b>ao lado do</b> papo-seco."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o papo-seco = <b>ao lado do</b> papo-seco.",
+     "br": {
+      "q": "Onde está o celular?",
+      "phrase": "O celular está ao lado do papo-seco."
+     }
     },
     {
      "q": "Onde está a mochila?",
@@ -744,7 +757,12 @@ window.SCENE = {
      "r": null,
      "phrase": "O Mark viaja de comboio.",
      "sens": "Mark voyage en train.",
-     "n": "Le moyen : <b>de comboio</b>."
+     "n": "Le moyen : <b>de comboio</b>.",
+     "br": {
+      "q": "O Mark viaja ___ trem.",
+      "phrase": "O Mark viaja de trem.",
+      "n": "Le moyen : <b>de trem</b>."
+     }
     },
     {
      "q": "Ele vai ___ a serra.",
@@ -822,7 +840,11 @@ window.SCENE = {
      "r": "bruecke",
      "phrase": "O comboio passa por cima do rio.",
      "sens": "Le train traverse la rivière.",
-     "n": "<b>passar por cima de</b> : passer au-dessus."
+     "n": "<b>passar por cima de</b> : passer au-dessus.",
+     "br": {
+      "q": "O trem passa ___ cima do rio.",
+      "phrase": "O trem passa por cima do rio."
+     }
     },
     {
      "q": "O Mark ___ o bilhete em cima da mesa.",
@@ -853,7 +875,11 @@ window.SCENE = {
      "r": "fenster",
      "phrase": "O homem que olha pela janela chama-se Mark.",
      "sens": "L'homme qui regarde par la fenêtre s'appelle Mark.",
-     "n": "Sujet : <b>que</b>."
+     "n": "Sujet : <b>que</b>.",
+     "br": {
+      "q": "O homem ___ olha pela janela se chama Mark.",
+      "phrase": "O homem que olha pela janela se chama Mark."
+     }
     },
     {
      "q": "A aldeia, ___ igreja tem uma torre pontiaguda, fica no vale.",
@@ -879,7 +905,11 @@ window.SCENE = {
      "r": "laptop",
      "phrase": "A mesa em que está o portátil é cinzenta.",
      "sens": "La table sur laquelle est l'ordinateur portable est grise.",
-     "n": "<b>em que</b> (ou <b>na qual</b>)."
+     "n": "<b>em que</b> (ou <b>na qual</b>).",
+     "br": {
+      "q": "A mesa em ___ está o portátil é cinza.",
+      "phrase": "A mesa em que está o portátil é cinza."
+     }
     },
     {
      "q": "O bilhete tem de ser ___ no comboio.",
@@ -892,7 +922,12 @@ window.SCENE = {
      "r": null,
      "phrase": "O bilhete tem de ser validado no comboio.",
      "sens": "Le billet doit être contrôlé dans le train.",
-     "n": "Passif : <b>tem de ser</b> + participe."
+     "n": "Passif : <b>tem de ser</b> + participe.",
+     "br": {
+      "q": "O bilhete tem que ser ___ no trem.",
+      "phrase": "O bilhete tem que ser validado no trem.",
+      "n": "Passif : <b>tem que ser</b> + participe."
+     }
     },
     {
      "q": "O café ainda não foi ___.",
@@ -936,7 +971,16 @@ window.SCENE = {
      "r": "mark",
      "phrase": "A paisagem deve agradar-lhe.",
      "sens": "Le paysage doit lui plaire.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "q": "A paisagem ___ lhe agradar.",
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ],
+      "phrase": "A paisagem deve lhe agradar."
+     }
     },
     {
      "q": "O cachecol vermelho ___ ser de alguém que volta já.",
@@ -962,7 +1006,16 @@ window.SCENE = {
      "r": null,
      "phrase": "O comboio deverá chegar ao Porto daqui a uma hora.",
      "sens": "Le train devrait arriver à Porto dans une heure.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "q": "O trem ___ chegar ao Porto daqui a uma hora.",
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ],
+      "phrase": "O trem deverá chegar ao Porto daqui a uma hora."
+     }
     },
     {
      "q": "___ que nesta aldeia se faz o melhor queijo da região.",
@@ -980,5 +1033,6 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "No trem"
 };

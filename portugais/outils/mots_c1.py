@@ -169,7 +169,7 @@ anacrónico | anacrónica | anachronique, d'un autre temps | O tom parece anacr�
 angustiante | angustiante | oppressant, angoissant | Um silêncio angustiante. | Un silence oppressant.
 aos saltos | aos saltos | par à-coups, versatile | A procura evolui aos saltos. | La demande évolue par à-coups.
 aparentemente | aparentemente | apparemment, de toute évidence | Aparentemente, está tudo em ordem. | Apparemment, tout est en ordre.
-bem pensado | bem pensado | bien pensé, réfléchi | O projeto é pensado mínimo-nos detalhes. | Le projet est réfléchi jusque dans le détail. | ex?
+bem pensado | bem pensado | bien pensé, réfléchi | O projeto é pensado nos mínimos detalhes. | Le projet est réfléchi jusque dans le détail. | ex?
 caduco | caduca | caduc, sans objet | Com a nova lei a regra perde o efeito. | Avec la nouvelle loi, la règle devient caduque. | ex?
 característico | característica | significatif, caractéristique | O significativo é o que não foi dito. | Ce qui est significatif, c'est ce qui n'a pas été dit. | ex?
 chocante | chocante | bouleversant, accablant | Os números são chocantes. | Les chiffres sont accablants.

@@ -929,7 +929,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Vire-se, por favor!",
      "sens": "Retournez-vous, s'il vous plaît !",
-     "n": "Le vouvoiement : <b>vire-se</b>."
+     "n": "Le vouvoiement : <b>vire-se</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O Mark virou-se para ela poder ___ as costas.",
@@ -942,7 +945,10 @@ window.SCENE = {
      "r": "ruecken",
      "phrase": "O Mark virou-se para ela poder auscultar-lhe as costas.",
      "sens": "Mark s'est retourné pour qu'elle puisse ausculter son dos.",
-     "n": "<b>auscultar-lhe as costas</b> : le pronom remplace le possessif."
+     "n": "<b>auscultar-lhe as costas</b> : le pronom remplace le possessif.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A médica põe o estetoscópio ___ costas dele.",
@@ -968,7 +974,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ele deixa os braços caídos.",
      "sens": "Il laisse pendre ses bras, détendus.",
-     "n": "<b>deixar</b> + participe accordé."
+     "n": "<b>deixar</b> + participe accordé.",
+     "br": {
+      "c": [
+       "caídos",
+       "caída",
+       "se cair"
+      ]
+     }
     },
     {
      "q": "Ele segura as mãos de modo a ___ as palmas.",
@@ -981,7 +994,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ele segura as mãos de modo a mostrar as palmas.",
      "sens": "Il tient les mains de façon à ce qu'on voie les paumes.",
-     "n": "<b>de modo a</b> + infinitif."
+     "n": "<b>de modo a</b> + infinitif.",
+     "br": {
+      "c": [
+       "mostrar",
+       "mostre",
+       "se mostrando"
+      ]
+     }
     },
     {
      "q": "___ e inspire com calma, por favor!",
@@ -994,7 +1014,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Expire e inspire com calma, por favor!",
      "sens": "Expirez et inspirez calmement, s'il vous plaît !",
-     "n": "Le vouvoiement : <b>expire</b>."
+     "n": "Le vouvoiement : <b>expire</b>.",
+     "br": {
+      "c": [
+       "Expire",
+       "Se expira",
+       "Expiras"
+      ]
+     }
     }
    ]
   },
@@ -1012,7 +1039,11 @@ window.SCENE = {
      "r": "hand-aerztin-haut",
      "phrase": "As costas dele estão a ser auscultadas.",
      "sens": "Son dos est en train d'être ausculté.",
-     "n": "<b>as costas</b> (fém. pluriel) → <b>auscultadas</b>."
+     "n": "<b>as costas</b> (fém. pluriel) → <b>auscultadas</b>.",
+     "br": {
+      "q": "As costas dele estão sendo ___.",
+      "phrase": "As costas dele estão sendo auscultadas."
+     }
     },
     {
      "q": "É o doente ___ costas a médica ausculta.",
@@ -1051,7 +1082,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Depois de ele se ter virado, ela auscultou-lhe as costas.",
      "sens": "Après qu'il s'est retourné, elle a ausculté son dos.",
-     "n": "<b>depois de</b> + <b>ter</b> + participe."
+     "n": "<b>depois de</b> + <b>ter</b> + participe.",
+     "br": {
+      "q": "Depois de ele se ___ virado, ela lhe auscultou as costas.",
+      "phrase": "Depois de ele se ter virado, ela lhe auscultou as costas."
+     }
     },
     {
      "q": "Antes de as costas ___ auscultadas, ele tem de inspirar fundo.",
@@ -1064,7 +1099,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Antes de as costas serem auscultadas, ele tem de inspirar fundo.",
      "sens": "Avant que le dos puisse être ausculté, il doit inspirer profondément.",
-     "n": "Infinitif personnel passif : <b>serem</b> + participe."
+     "n": "Infinitif personnel passif : <b>serem</b> + participe.",
+     "br": {
+      "q": "Antes de as costas ___ auscultadas, ele tem que inspirar fundo.",
+      "phrase": "Antes de as costas serem auscultadas, ele tem que inspirar fundo."
+     }
     },
     {
      "q": "As omoplatas, entre as ___ fica a coluna, veem-se bem.",
@@ -1077,7 +1116,11 @@ window.SCENE = {
      "r": "wirbelsaeule",
      "phrase": "As omoplatas, entre as quais fica a coluna, veem-se bem.",
      "sens": "Les omoplates, entre lesquelles se trouve la colonne, se voient bien.",
-     "n": "<b>entre as quais</b>."
+     "n": "<b>entre as quais</b>.",
+     "br": {
+      "q": "As omoplatas, entre as ___ fica a coluna, se veem bem.",
+      "phrase": "As omoplatas, entre as quais fica a coluna, se veem bem."
+     }
     }
    ]
   },
@@ -1108,7 +1151,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Se tivesse dores nas costas, já o teria dito à médica.",
      "sens": "S'il avait mal au dos, il l'aurait dit à la médecin.",
-     "n": "<b>se tivesse</b> + conditionnel passé."
+     "n": "<b>se tivesse</b> + conditionnel passé.",
+     "br": {
+      "c": [
+       "tivesse",
+       "tiver",
+       "se tinha"
+      ]
+     }
     },
     {
      "q": "Caso ela ___ algum ruído, mandava-o fazer um raio-X.",
@@ -1147,7 +1197,16 @@ window.SCENE = {
      "r": null,
      "phrase": "A postura direita dele virá do muito desporto que faz.",
      "sens": "Sa posture droite vient sans doute de tout le sport qu'il fait.",
-     "n": "Futur de supposition : <b>virá</b>."
+     "n": "Futur de supposition : <b>virá</b>.",
+     "br": {
+      "q": "A postura direita dele ___ do muito esporte que faz.",
+      "c": [
+       "virá",
+       "venha",
+       "se veio"
+      ],
+      "phrase": "A postura direita dele virá do muito esporte que faz."
+     }
     },
     {
      "q": "Se não ___ ouvido nada, já teria parado.",

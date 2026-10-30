@@ -106,7 +106,11 @@ window.SCENE = {
      13.3
     ]
    ],
-   "fr": "asperge"
+   "fr": "asperge",
+   "br": {
+    "mot": "aspargo",
+    "pluriel": "os aspargos"
+   }
   },
   {
    "id": "kuerbis",
@@ -177,7 +181,11 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "poivron"
+   "fr": "poivron",
+   "br": {
+    "mot": "pimentão",
+    "pluriel": "os pimentões"
+   }
   },
   {
    "id": "mais",
@@ -283,7 +291,12 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "haricot"
+   "fr": "haricot",
+   "br": {
+    "mot": "vagem",
+    "genre": "a",
+    "pluriel": "as vagens"
+   }
   },
   {
    "id": "mangold",
@@ -390,7 +403,11 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "aubergine"
+   "fr": "aubergine",
+   "br": {
+    "mot": "berinjela",
+    "pluriel": "as berinjelas"
+   }
   },
   {
    "id": "gurke",
@@ -461,7 +478,11 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "courgette"
+   "fr": "courgette",
+   "br": {
+    "mot": "abobrinha",
+    "pluriel": "as abobrinhas"
+   }
   },
   {
    "id": "tomate",
@@ -613,7 +634,16 @@ window.SCENE = {
      "r": "gurke",
      "phrase": "As beringelas estão ao lado dos pepinos.",
      "sens": "Les aubergines sont à côté des concombres.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + os pepinos = <b>ao lado dos</b> pepinos."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + os pepinos = <b>ao lado dos</b> pepinos.",
+     "br": {
+      "q": "Onde estão as berinjelas?",
+      "c": [
+       "ao lado dos pepinos",
+       "ao lado das ervilhas",
+       "ao lado da abobrinha"
+      ],
+      "phrase": "As berinjelas estão ao lado dos pepinos."
+     }
     },
     {
      "q": "Onde estão as curgetes?",
@@ -626,7 +656,16 @@ window.SCENE = {
      "r": "tomate",
      "phrase": "As curgetes estão ao lado dos tomates.",
      "sens": "Les courgettes sont à côté des tomates.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + os tomates = <b>ao lado dos</b> tomates."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + os tomates = <b>ao lado dos</b> tomates.",
+     "br": {
+      "q": "Onde estão as abobrinhas?",
+      "c": [
+       "ao lado dos tomates",
+       "ao lado do aspargo",
+       "ao lado dos cogumelos"
+      ],
+      "phrase": "As abobrinhas estão ao lado dos tomates."
+     }
     }
    ]
   },
@@ -670,7 +709,11 @@ window.SCENE = {
      "r": "zucchini",
      "phrase": "O pepino é mais comprido do que a curgete.",
      "sens": "Le concombre est plus long que la courgette.",
-     "n": "Long (objet) : <b>comprido</b>."
+     "n": "Long (objet) : <b>comprido</b>.",
+     "br": {
+      "q": "O pepino é mais ___ do que a abobrinha.",
+      "phrase": "O pepino é mais comprido do que a abobrinha."
+     }
     },
     {
      "q": "Levo ___ alface.",
@@ -696,7 +739,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Os espargos são da região?",
      "sens": "Les asperges viennent-elles de la région ?",
-     "n": "<b>ser de</b> : de + a = <b>da</b>."
+     "n": "<b>ser de</b> : de + a = <b>da</b>.",
+     "br": {
+      "q": "Os aspargos são ___ região?",
+      "phrase": "Os aspargos são da região?"
+     }
     }
    ]
   },
@@ -714,7 +761,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Os espargos são colhidos frescos todas as manhãs.",
      "sens": "Les asperges sont récoltées fraîches chaque matin.",
-     "n": "Passif : <b>são colhidos</b>."
+     "n": "Passif : <b>são colhidos</b>.",
+     "br": {
+      "q": "Os aspargos são ___ frescos todas as manhãs.",
+      "phrase": "Os aspargos são colhidos frescos todas as manhãs."
+     }
     },
     {
      "q": "Os tomates ___ a Anna tem na mão estão muito maduros.",
@@ -740,7 +791,12 @@ window.SCENE = {
      "r": "mais",
      "phrase": "Ao lado dos pimentos vermelhos e amarelos está o milho.",
      "sens": "À côté des poivrons rouges et jaunes, il y a le maïs.",
-     "n": "<b>os pimentos</b> → <b>vermelhos</b>."
+     "n": "<b>os pimentos</b> → <b>vermelhos</b>.",
+     "br": {
+      "q": "Ao lado dos pimentões ___ e amarelos está o milho.",
+      "phrase": "Ao lado dos pimentões vermelhos e amarelos está o milho.",
+      "n": "<b>os pimentões</b> → <b>vermelhos</b>."
+     }
     },
     {
      "q": "As abóboras já estão ___.",
@@ -823,7 +879,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Os cogumelos terão sido apanhados no bosque.",
      "sens": "Les champignons ont sans doute été cueillis en forêt.",
-     "n": "Supposition sur le passé : <b>terão sido</b>."
+     "n": "Supposition sur le passé : <b>terão sido</b>.",
+     "br": {
+      "c": [
+       "terão",
+       "se teriam",
+       "tenham"
+      ]
+     }
     },
     {
      "q": "As alcachofras devem ser bem ___ antes de cozinhar.",

@@ -260,7 +260,11 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "bébé"
+   "fr": "bébé",
+   "br": {
+    "mot": "bebê",
+    "pluriel": "os bebês"
+   }
   },
   {
    "id": "anna",
@@ -514,7 +518,11 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "br": {
+    "mot": "suco",
+    "pluriel": "os sucos"
+   }
   },
   {
    "id": "glas",
@@ -768,7 +776,11 @@ window.SCENE = {
      "r": "mutter",
      "phrase": "O bebé está ao pé da mãe.",
      "sens": "Le bébé est avec la mère.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao pé de</b> + a mãe = <b>ao pé da</b> mãe."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao pé de</b> + a mãe = <b>ao pé da</b> mãe.",
+     "br": {
+      "q": "Onde está o bebê?",
+      "phrase": "O bebê está ao pé da mãe."
+     }
     },
     {
      "q": "Onde está a sopa?",
@@ -820,7 +832,11 @@ window.SCENE = {
      "r": "glas",
      "phrase": "O sumo está ao lado do copo.",
      "sens": "Le jus est à côté du verre.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o copo = <b>ao lado do</b> copo."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o copo = <b>ao lado do</b> copo.",
+     "br": {
+      "q": "Onde está o suco?",
+      "phrase": "O suco está ao lado do copo."
+     }
     }
    ]
   },
@@ -864,7 +880,12 @@ window.SCENE = {
      "r": "baby",
      "phrase": "A mãe segura o seu bebé.",
      "sens": "La mère tient son bébé.",
-     "n": "<b>o seu bebé</b> (ou <b>o bebé dela</b>)."
+     "n": "<b>o seu bebé</b> (ou <b>o bebé dela</b>).",
+     "br": {
+      "q": "A mãe segura o ___ bebê.",
+      "phrase": "A mãe segura o seu bebê.",
+      "n": "<b>o seu bebê</b> (ou <b>o bebê dela</b>)."
+     }
     },
     {
      "q": "O avô fala da ___ juventude.",
@@ -916,7 +937,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Almoçamos todos os domingos em casa dos nossos avós.",
      "sens": "Nous mangeons chaque dimanche chez nos grands-parents.",
-     "n": "<b>em casa de</b> = chez ; de + os nossos = <b>dos nossos</b>."
+     "n": "<b>em casa de</b> = chez ; de + os nossos = <b>dos nossos</b>.",
+     "br": {
+      "n": "<b>na casa de</b> = chez ; de + os nossos = <b>dos nossos</b>."
+     }
     },
     {
      "q": "O gato dorme na ___ cadeira.",
@@ -960,7 +984,11 @@ window.SCENE = {
      "r": "mutter",
      "phrase": "O bebé está sentado ao colo da mãe.",
      "sens": "Le bébé est assis sur les genoux de la mère.",
-     "n": "<b>ao colo de</b> = sur les genoux de."
+     "n": "<b>ao colo de</b> = sur les genoux de.",
+     "br": {
+      "q": "O bebê está sentado ao colo ___ mãe.",
+      "phrase": "O bebê está sentado ao colo da mãe."
+     }
     },
     {
      "q": "A história ___ avô tem muita graça.",
@@ -1030,7 +1058,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O avô deve estar a contar uma história engraçada.",
      "sens": "Le grand-père doit raconter une histoire drôle.",
-     "n": "Déduction : <b>dever</b> + estar a."
+     "n": "Déduction : <b>dever</b> + estar a.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "___ que o gato seja da avó.",
@@ -1056,7 +1091,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Depois do almoço ainda deve haver bolo.",
      "sens": "Après le repas, il devrait encore y avoir du gâteau.",
-     "n": "Probable : <b>dever haver</b>."
+     "n": "Probable : <b>dever haver</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "___ que o avô foi cozinheiro.",

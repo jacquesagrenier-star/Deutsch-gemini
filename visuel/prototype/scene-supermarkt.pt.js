@@ -27,7 +27,11 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "saft",
@@ -56,7 +60,11 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "br": {
+    "mot": "suco",
+    "pluriel": "os sucos"
+   }
   },
   {
    "id": "fenster",
@@ -394,7 +402,12 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "réfrigérateur"
+   "fr": "réfrigérateur",
+   "br": {
+    "mot": "geladeira",
+    "genre": "a",
+    "pluriel": "as geladeiras"
+   }
   },
   {
    "id": "regal",
@@ -436,7 +449,12 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "le sac (en papier, en plastique)"
+   "fr": "le sac (en papier, en plastique)",
+   "br": {
+    "mot": "sacola",
+    "genre": "a",
+    "pluriel": "as sacolas"
+   }
   },
   {
    "id": "flasche",
@@ -617,7 +635,14 @@ window.SCENE = {
      "r": "korb",
      "phrase": "O pão está no cesto.",
      "sens": "Le pain est dans le panier.",
-     "n": "<b>em</b> + o = <b>no</b> : no cesto."
+     "n": "<b>em</b> + o = <b>no</b> : no cesto.",
+     "br": {
+      "c": [
+       "no cesto",
+       "na geladeira",
+       "na caixa"
+      ]
+     }
     },
     {
      "q": "Onde está o cesto?",
@@ -643,7 +668,15 @@ window.SCENE = {
      "r": "kuehlschrank",
      "phrase": "A manteiga está no frigorífico.",
      "sens": "Le beurre est dans le réfrigérateur.",
-     "n": "<b>em</b> + o = <b>no</b> : no frigorífico."
+     "n": "<b>em</b> + o = <b>no</b> : no frigorífico.",
+     "br": {
+      "c": [
+       "na geladeira",
+       "no cesto",
+       "ao lado do pão"
+      ],
+      "phrase": "A manteiga está na geladeira."
+     }
     },
     {
      "q": "Onde está o homem?",
@@ -682,7 +715,14 @@ window.SCENE = {
      "r": "tuete",
      "phrase": "A garrafa está ao lado do saco.",
      "sens": "La bouteille d'eau est à côté du sac.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o saco = <b>ao lado do</b> saco."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o saco = <b>ao lado do</b> saco.",
+     "br": {
+      "c": [
+       "ao lado do saco",
+       "no cesto",
+       "na geladeira"
+      ]
+     }
     },
     {
      "q": "Onde estão os ovos?",
@@ -695,7 +735,14 @@ window.SCENE = {
      "r": "korb",
      "phrase": "Os ovos estão no cesto.",
      "sens": "Les œufs sont dans le panier.",
-     "n": "<b>em</b> + o = <b>no</b> : no cesto."
+     "n": "<b>em</b> + o = <b>no</b> : no cesto.",
+     "br": {
+      "c": [
+       "no cesto",
+       "na geladeira",
+       "na caixa"
+      ]
+     }
     },
     {
      "q": "Onde está a menina?",
@@ -739,7 +786,10 @@ window.SCENE = {
      "r": "anna",
      "phrase": "A menina é mais pequena do que a Anna.",
      "sens": "La fille est plus petite qu'Anna.",
-     "n": "Au Portugal : <b>mais pequeno</b> (ou <b>menor</b>), accordé."
+     "n": "Au Portugal : <b>mais pequeno</b> (ou <b>menor</b>), accordé.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O homem na caixa é mais ___ do que a Anna.",
@@ -778,7 +828,11 @@ window.SCENE = {
      "r": "dose",
      "phrase": "O sumo está mais alto do que as latas.",
      "sens": "Le jus est placé plus haut que les boîtes de conserve.",
-     "n": "<b>mais alto</b> (le sumo, masculin)."
+     "n": "<b>mais alto</b> (le sumo, masculin).",
+     "br": {
+      "q": "O suco está mais ___ do que as latas.",
+      "phrase": "O suco está mais alto do que as latas."
+     }
     },
     {
      "q": "A Anna gosta de leite, mas de queijo gosta ___.",
@@ -835,7 +889,16 @@ window.SCENE = {
      "r": "mann",
      "phrase": "Podia dar-me um saco, por favor?",
      "sens": "Pourriez-vous me donner un sac, s'il vous plaît ?",
-     "n": "Au Portugal, la politesse orale passe par l'imperfeito : <b>podia</b>."
+     "n": "Au Portugal, la politesse orale passe par l'imperfeito : <b>podia</b>.",
+     "br": {
+      "q": "___ me dar um saco, por favor?",
+      "c": [
+       "Podia",
+       "Se pode",
+       "Poderei"
+      ],
+      "phrase": "Podia me dar um saco, por favor?"
+     }
     },
     {
      "q": "___ um bocado de queijo, se faz favor.",
@@ -848,7 +911,17 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Queria um bocado de queijo, se faz favor.",
      "sens": "Je voudrais un morceau de fromage.",
-     "n": "<b>queria</b> : je voudrais ; <b>se faz favor</b> : s'il vous plaît, très portugais."
+     "n": "<b>queria</b> : je voudrais ; <b>se faz favor</b> : s'il vous plaît, très portugais.",
+     "br": {
+      "q": "___ um bocado de queijo, por favor.",
+      "c": [
+       "Queria",
+       "Me quero",
+       "Quis"
+      ],
+      "phrase": "Queria um bocado de queijo, por favor.",
+      "n": "<b>queria</b> : je voudrais ; <b>por favor</b> : s'il vous plaît, très portugais."
+     }
     },
     {
      "q": "___ a amabilidade de me ajudar com o cesto?",
@@ -861,7 +934,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Teria a amabilidade de me ajudar com o cesto?",
      "sens": "Auriez-vous la gentillesse de m'aider avec le panier ?",
-     "n": "Une formule soignée : <b>teria a amabilidade de</b>."
+     "n": "Une formule soignée : <b>teria a amabilidade de</b>.",
+     "br": {
+      "c": [
+       "Teria",
+       "Se terá",
+       "Se tem"
+      ]
+     }
     },
     {
      "q": "___ de pagar com cartão.",
@@ -887,7 +967,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Importa-se que lhe faça uma pergunta?",
      "sens": "Puis-je vous poser une question ?",
-     "n": "<b>Importa-se que</b> + conjuntivo : « cela vous dérange-t-il que… »."
+     "n": "<b>Importa-se que</b> + conjuntivo : « cela vous dérange-t-il que… ».",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "No seu lugar, eu ___ o leite fresco.",
@@ -944,7 +1027,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A loja deve fechar daqui a pouco.",
      "sens": "Le magasin devrait bientôt fermer.",
-     "n": "Probable : <b>dever</b>."
+     "n": "Probable : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "há"
+      ]
+     }
     },
     {
      "q": "___ que o pão daqui é o melhor do bairro.",

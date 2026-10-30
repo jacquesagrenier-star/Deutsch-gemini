@@ -84,7 +84,11 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "uhr",
@@ -166,7 +170,12 @@ window.SCENE = {
      39
     ]
    ],
-   "fr": "réfrigérateur"
+   "fr": "réfrigérateur",
+   "br": {
+    "mot": "geladeira",
+    "genre": "a",
+    "pluriel": "as geladeiras"
+   }
   },
   {
    "id": "teller",
@@ -229,7 +238,11 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "regal",
@@ -270,7 +283,12 @@ window.SCENE = {
      4.4
     ]
    ],
-   "fr": "casserole"
+   "fr": "casserole",
+   "br": {
+    "mot": "panela",
+    "genre": "a",
+    "pluriel": "as panelas"
+   }
   },
   {
    "id": "deckel",
@@ -395,7 +413,11 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "lave-vaisselle"
+   "fr": "lave-vaisselle",
+   "br": {
+    "mot": "lava-louças",
+    "pluriel": "as lava-louças"
+   }
   },
   {
    "id": "mark",
@@ -783,7 +805,12 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "katze",
@@ -930,7 +957,12 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "évier"
+   "fr": "évier",
+   "br": {
+    "mot": "pia",
+    "genre": "a",
+    "pluriel": "as pias"
+   }
   },
   {
    "id": "wasserhahn",
@@ -1043,7 +1075,16 @@ window.SCENE = {
      "r": "pfanne",
      "phrase": "O tacho está ao lado da frigideira.",
      "sens": "La casserole est à côté de la poêle.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a frigideira = <b>ao lado da</b> frigideira."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a frigideira = <b>ao lado da</b> frigideira.",
+     "br": {
+      "q": "Onde está a panela?",
+      "c": [
+       "ao lado da frigideira",
+       "na geladeira",
+       "debaixo da mesa"
+      ],
+      "phrase": "A panela está ao lado da frigideira."
+     }
     },
     {
      "q": "Onde está o relógio?",
@@ -1069,7 +1110,15 @@ window.SCENE = {
      "r": "kuehlschrank",
      "phrase": "A planta está em cima do frigorífico.",
      "sens": "La plante est sur le réfrigérateur.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o frigorífico = <b>em cima do</b> frigorífico."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o frigorífico = <b>em cima do</b> frigorífico.",
+     "br": {
+      "c": [
+       "em cima da geladeira",
+       "no forno",
+       "debaixo da mesa"
+      ],
+      "phrase": "A planta está em cima da geladeira."
+     }
     },
     {
      "q": "Onde está o gato?",
@@ -1095,7 +1144,14 @@ window.SCENE = {
      "r": "tisch",
      "phrase": "As batatas estão em cima da mesa.",
      "sens": "Les pommes de terre sont sur la table.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa.",
+     "br": {
+      "c": [
+       "em cima da mesa",
+       "na panela",
+       "na geladeira"
+      ]
+     }
     },
     {
      "q": "Onde está a toalha?",
@@ -1121,7 +1177,16 @@ window.SCENE = {
      "r": "kuehlschrank",
      "phrase": "O caixote do lixo está ao lado do frigorífico.",
      "sens": "La poubelle est à côté du réfrigérateur.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o frigorífico = <b>ao lado do</b> frigorífico."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o frigorífico = <b>ao lado do</b> frigorífico.",
+     "br": {
+      "q": "Onde está a lixeira?",
+      "c": [
+       "ao lado da geladeira",
+       "em cima da estante",
+       "debaixo da janela"
+      ],
+      "phrase": "A lixeira está ao lado da geladeira."
+     }
     },
     {
      "q": "Onde está o leite?",
@@ -1134,7 +1199,14 @@ window.SCENE = {
      "r": "brot",
      "phrase": "O leite está ao lado do pão.",
      "sens": "Le lait est à côté du pain.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o pão = <b>ao lado do</b> pão."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o pão = <b>ao lado do</b> pão.",
+     "br": {
+      "c": [
+       "ao lado do pão",
+       "na geladeira",
+       "na panela"
+      ]
+     }
     }
    ]
   },
@@ -1261,7 +1333,12 @@ window.SCENE = {
      "r": "messer",
      "phrase": "A cenoura está a ser cortada.",
      "sens": "La carotte est en train d'être coupée.",
-     "n": "L'action en cours au passif : <b>estar a ser</b> + participe accordé (a cenoura → <b>cortada</b>)."
+     "n": "L'action en cours au passif : <b>estar a ser</b> + participe accordé (a cenoura → <b>cortada</b>).",
+     "br": {
+      "q": "A cenoura está sendo ___.",
+      "phrase": "A cenoura está sendo cortada.",
+      "n": "L'action en cours au passif : <b>estar sendo</b> + participe accordé (a cenoura → <b>cortada</b>)."
+     }
     },
     {
      "q": "A mesa ___ estão os legumes é de madeira.",
@@ -1370,7 +1447,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O Mark estará à espera de convidados.",
      "sens": "Mark attend sans doute des invités.",
-     "n": "Le futur de supposition : <b>estará</b> = il est sans doute."
+     "n": "Le futur de supposition : <b>estará</b> = il est sans doute.",
+     "br": {
+      "q": "A panela é enorme: o Mark ___ à espera de convidados."
+     }
     },
     {
      "q": "___ que o Mark faz a melhor sopa da casa.",
@@ -1383,7 +1463,15 @@ window.SCENE = {
      "r": null,
      "phrase": "Dizem que o Mark faz a melhor sopa da casa.",
      "sens": "Il paraît que Mark fait la meilleure soupe de la colocation.",
-     "n": "Le ouï-dire : <b>dizem que</b>, <b>diz-se que</b>."
+     "n": "Le ouï-dire : <b>dizem que</b>, <b>diz-se que</b>.",
+     "br": {
+      "c": [
+       "Dizem",
+       "Se dizem",
+       "Diga"
+      ],
+      "n": "Le ouï-dire : <b>dizem que</b>, <b>se diz que</b>."
+     }
     }
    ]
   }

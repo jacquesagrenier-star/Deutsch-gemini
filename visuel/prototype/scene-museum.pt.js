@@ -21,7 +21,11 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "decke",
@@ -81,7 +85,11 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "gemaelde",
@@ -368,7 +376,10 @@ window.SCENE = {
      "genre": "o",
      "niveau": "A1",
      "theme": "animais_pt",
-     "fr": "chien"
+     "fr": "chien",
+     "br": {
+      "mot": "cachorro"
+     }
     }
    ],
    "sur": null,
@@ -680,7 +691,12 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "rock",
@@ -957,7 +973,11 @@ window.SCENE = {
      "r": "decke",
      "phrase": "O candeeiro está no teto.",
      "sens": "La lampe est accrochée au plafond.",
-     "n": "em + o teto = <b>no</b> teto."
+     "n": "em + o teto = <b>no</b> teto.",
+     "br": {
+      "q": "Onde está o abajur?",
+      "phrase": "O abajur está no teto."
+     }
     },
     {
      "q": "Onde está a planta?",
@@ -988,7 +1008,12 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Que escultura desenha a Anna? — A do cão.",
      "sens": "Quelle sculpture Anna dessine-t-elle ? — Celle du chien.",
-     "n": "Devant un nom : <b>que</b> (ou <b>qual</b> + de) ; <b>a do cão</b> = celle du chien."
+     "n": "Devant un nom : <b>que</b> (ou <b>qual</b> + de) ; <b>a do cão</b> = celle du chien.",
+     "br": {
+      "q": "___ escultura desenha a Anna? — A do cachorro.",
+      "phrase": "Que escultura desenha a Anna? — A do cachorro.",
+      "n": "Devant un nom : <b>que</b> (ou <b>qual</b> + de) ; <b>a do cachorro</b> = celle du chien."
+     }
     },
     {
      "q": "___ é o quadro de que mais gostas? — O do barco.",
@@ -1027,7 +1052,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Que tipo de quadro é este? — Um retrato.",
      "sens": "Quel genre de tableau est-ce ? — Un portrait.",
-     "n": "<b>que tipo de</b> = quel genre de."
+     "n": "<b>que tipo de</b> = quel genre de.",
+     "br": {
+      "c": [
+       "tipo",
+       "gênero de",
+       "qual"
+      ]
+     }
     },
     {
      "q": "Que casaco ___ o estudante? — Um casaco castanho.",
@@ -1040,7 +1072,14 @@ window.SCENE = {
      "r": "student",
      "phrase": "Que casaco veste o estudante? — Um casaco castanho.",
      "sens": "Quel genre de veste porte l'étudiant ? — Une veste marron.",
-     "n": "Après un interrogatif, le sujet suit souvent le verbe."
+     "n": "Après un interrogatif, le sujet suit souvent le verbe.",
+     "br": {
+      "c": [
+       "veste",
+       "se traz",
+       "se veste"
+      ]
+     }
     },
     {
      "q": "Com ___ desenha a Anna? — Com um lápis.",
@@ -1079,7 +1118,12 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Qual é o sobretudo da Anna? — O cinzento, no banco.",
      "sens": "Quel manteau est à Anna ? — Le manteau gris sur le banc.",
-     "n": "<b>qual é</b> ; « gris » au Portugal : <b>cinzento</b>."
+     "n": "<b>qual é</b> ; « gris » au Portugal : <b>cinzento</b>.",
+     "br": {
+      "q": "___ é o sobretudo da Anna? — O cinza, no banco.",
+      "phrase": "Qual é o sobretudo da Anna? — O cinza, no banco.",
+      "n": "<b>qual é</b> ; « gris » au Portugal : <b>cinza</b>."
+     }
     }
    ]
   },
@@ -1097,7 +1141,14 @@ window.SCENE = {
      "r": "skulptur",
      "phrase": "A Anna aprende desenhando a escultura.",
      "sens": "Anna apprend en dessinant la sculpture.",
-     "n": "La manière : le gérondif (<b>desenhando</b>), vivant au Portugal dans cet emploi."
+     "n": "La manière : le gérondif (<b>desenhando</b>), vivant au Portugal dans cet emploi.",
+     "br": {
+      "c": [
+       "desenhando",
+       "a se desenhar",
+       "desenhada"
+      ]
+     }
     },
     {
      "q": "O estudante aprende mais sobre o quadro ___ os auscultadores.",
@@ -1110,7 +1161,14 @@ window.SCENE = {
      "r": "student",
      "phrase": "O estudante aprende mais sobre o quadro usando os auscultadores.",
      "sens": "L'étudiant en apprend plus sur le tableau en utilisant son casque.",
-     "n": "Gérondif de manière : <b>usando</b>."
+     "n": "Gérondif de manière : <b>usando</b>.",
+     "br": {
+      "c": [
+       "usando",
+       "a se usar",
+       "usado"
+      ]
+     }
     },
     {
      "q": "Protegem-se os quadros não ___ tocando.",
@@ -1123,7 +1181,11 @@ window.SCENE = {
      "r": null,
      "phrase": "Protegem-se os quadros não lhes tocando.",
      "sens": "On protège les tableaux en ne les touchant pas.",
-     "n": "<b>tocar em</b> / <b>tocar a</b> : <b>lhes</b> ; après não, devant."
+     "n": "<b>tocar em</b> / <b>tocar a</b> : <b>lhes</b> ; après não, devant.",
+     "br": {
+      "q": "Se protegem os quadros não ___ tocando.",
+      "phrase": "Se protegem os quadros não lhes tocando."
+     }
     },
     {
      "q": "O homem vigia a sala ___ todos os visitantes.",
@@ -1136,7 +1198,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O homem vigia a sala observando todos os visitantes.",
      "sens": "L'homme surveille la salle en observant tous les visiteurs.",
-     "n": "Gérondif : <b>observando</b>."
+     "n": "Gérondif : <b>observando</b>.",
+     "br": {
+      "c": [
+       "observando",
+       "a se observar",
+       "observado"
+      ]
+     }
     },
     {
      "q": "A Anna memoriza a escultura ___ desenhá-la.",
@@ -1162,7 +1231,16 @@ window.SCENE = {
      "r": null,
      "phrase": "Poupa-se dinheiro indo ao museu ao domingo.",
      "sens": "On économise de l'argent en allant au musée le dimanche.",
-     "n": "Gérondif : <b>indo</b>."
+     "n": "Gérondif : <b>indo</b>.",
+     "br": {
+      "q": "Se poupa dinheiro ___ ao museu ao domingo.",
+      "c": [
+       "indo",
+       "ir",
+       "a se ir"
+      ],
+      "phrase": "Se poupa dinheiro indo ao museu ao domingo."
+     }
     }
    ]
   },
@@ -1180,7 +1258,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela deve adorar arte.",
      "sens": "Elle doit aimer l'art.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "O rapaz ___ estudar Belas-Artes.",
@@ -1206,7 +1291,14 @@ window.SCENE = {
      "r": "tuer",
      "phrase": "O homem junto à porta estará sentado aqui todos os dias.",
      "sens": "L'homme près de la porte est sans doute assis ici tous les jours.",
-     "n": "Futur de supposition : <b>estará</b>."
+     "n": "Futur de supposition : <b>estará</b>.",
+     "br": {
+      "c": [
+       "estará",
+       "esteja",
+       "se estava"
+      ]
+     }
     },
     {
      "q": "O quadro do barco ___ muito valioso.",
@@ -1219,7 +1311,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O quadro do barco seria muito valioso.",
      "sens": "Le tableau du bateau aurait beaucoup de valeur.",
-     "n": "Le conditionnel de la rumeur."
+     "n": "Le conditionnel de la rumeur.",
+     "br": {
+      "c": [
+       "seria",
+       "se será",
+       "seja"
+      ]
+     }
     }
    ]
   }

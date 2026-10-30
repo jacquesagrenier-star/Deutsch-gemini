@@ -163,7 +163,11 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "lampe-2",
@@ -184,7 +188,11 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "student",
@@ -647,7 +655,14 @@ window.SCENE = {
      "r": "stuhl",
      "phrase": "A mochila está na cadeira.",
      "sens": "Le sac à dos est accroché à la chaise.",
-     "n": "<b>em</b> + a = <b>na</b> : na cadeira."
+     "n": "<b>em</b> + a = <b>na</b> : na cadeira.",
+     "br": {
+      "c": [
+       "na cadeira",
+       "na janela",
+       "no abajur"
+      ]
+     }
     },
     {
      "q": "Onde está a planta?",
@@ -717,7 +732,12 @@ window.SCENE = {
      "r": "buch",
      "phrase": "A Anna interessa-se pela história.",
      "sens": "Anna s'intéresse à l'histoire.",
-     "n": "<b>interessar-se por</b> : por + a = <b>pela</b>."
+     "n": "<b>interessar-se por</b> : por + a = <b>pela</b>.",
+     "br": {
+      "q": "A Anna se interessa ___ história.",
+      "phrase": "A Anna se interessa pela história.",
+      "n": "<b>se interessar por</b> : por + a = <b>pela</b>."
+     }
     },
     {
      "q": "Ela pensa ___ exame.",
@@ -808,7 +828,12 @@ window.SCENE = {
      "r": null,
      "phrase": "O estudante concentra-se no livro.",
      "sens": "L'étudiant se concentre sur son livre.",
-     "n": "<b>concentrar-se em</b>."
+     "n": "<b>concentrar-se em</b>.",
+     "br": {
+      "q": "O estudante se concentra ___ livro.",
+      "phrase": "O estudante se concentra no livro.",
+      "n": "<b>se concentrar em</b>."
+     }
     }
    ]
   },
@@ -826,7 +851,11 @@ window.SCENE = {
      "r": "buch",
      "phrase": "A estudante que lê o livro chama-se Anna.",
      "sens": "L'étudiante qui lit le livre s'appelle Anna.",
-     "n": "Sujet : <b>que</b>."
+     "n": "Sujet : <b>que</b>.",
+     "br": {
+      "q": "A estudante ___ lê o livro se chama Anna.",
+      "phrase": "A estudante que lê o livro se chama Anna."
+     }
     },
     {
      "q": "O estudante, ___ cabelo é encaracolado, lê na outra mesa.",
@@ -865,7 +894,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Aqui não se fala alto.",
      "sens": "Ici, on ne parle pas fort.",
-     "n": "Le se impersonnel ; après <b>não</b>, devant."
+     "n": "Le se impersonnel ; après <b>não</b>, devant.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O livro já está lido ___ metade.",
@@ -891,7 +923,11 @@ window.SCENE = {
      "r": "buch-2",
      "phrase": "O candeeiro aceso está ao lado dos livros.",
      "sens": "La lampe allumée est à côté des livres.",
-     "n": "Participe court comme adjectif : <b>aceso</b> (o candeeiro)."
+     "n": "Participe court comme adjectif : <b>aceso</b> (o candeeiro).",
+     "br": {
+      "q": "O abajur ___ está ao lado dos livros.",
+      "phrase": "O abajur aceso está ao lado dos livros."
+     }
     }
    ]
   },
@@ -909,7 +945,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela deve ter um exame em breve.",
      "sens": "Elle doit avoir un examen bientôt.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "___ que o estudante seja do curso da Anna.",
@@ -935,7 +978,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Lá fora deve estar bastante frio.",
      "sens": "Dehors, il doit faire plutôt froid.",
-     "n": "<b>dever</b> : probable."
+     "n": "<b>dever</b> : probable.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "Esta biblioteca ___ mais de um milhão de livros.",
@@ -948,7 +998,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Esta biblioteca teria mais de um milhão de livros.",
      "sens": "Cette bibliothèque aurait plus d'un million de livres.",
-     "n": "Le conditionnel de la rumeur."
+     "n": "Le conditionnel de la rumeur.",
+     "br": {
+      "c": [
+       "teria",
+       "se terá",
+       "tenha"
+      ]
+     }
     }
    ]
   }

@@ -27,7 +27,11 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "fenster",
@@ -405,7 +409,11 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "stylo à bille"
+   "fr": "stylo à bille",
+   "br": {
+    "mot": "caneta",
+    "pluriel": "as canetas"
+   }
   },
   {
    "id": "schalter",
@@ -425,7 +433,11 @@ window.SCENE = {
      33
     ]
    ],
-   "fr": "guichet ; interrupteur"
+   "fr": "guichet ; interrupteur",
+   "br": {
+    "mot": "guichê",
+    "pluriel": "os guichês"
+   }
   },
   {
    "id": "paket-4",
@@ -617,7 +629,14 @@ window.SCENE = {
      "r": "waage",
      "phrase": "A encomenda está em cima da balança.",
      "sens": "Le colis est sur la balance.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a balança = <b>em cima da</b> balança."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a balança = <b>em cima da</b> balança.",
+     "br": {
+      "c": [
+       "em cima da balança",
+       "no cesto",
+       "debaixo do guichê"
+      ]
+     }
     },
     {
      "q": "Onde está a caixa do correio?",
@@ -630,7 +649,14 @@ window.SCENE = {
      "r": "fenster",
      "phrase": "A caixa do correio está atrás da janela.",
      "sens": "La boîte aux lettres est derrière la fenêtre.",
-     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + a janela = <b>atrás da</b> janela."
+     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + a janela = <b>atrás da</b> janela.",
+     "br": {
+      "c": [
+       "atrás da janela",
+       "em cima do guichê",
+       "no cesto"
+      ]
+     }
     },
     {
      "q": "Onde está o relógio?",
@@ -656,7 +682,15 @@ window.SCENE = {
      "r": "schalter",
      "phrase": "Os selos estão em cima do guiché.",
      "sens": "Les timbres sont sur le comptoir.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché.",
+     "br": {
+      "c": [
+       "em cima do guichê",
+       "no cesto",
+       "em cima da balança"
+      ],
+      "phrase": "Os selos estão em cima do guichê."
+     }
     },
     {
      "q": "Onde estão as cartas?",
@@ -682,7 +716,15 @@ window.SCENE = {
      "r": "schalter",
      "phrase": "A planta está em cima do guiché.",
      "sens": "La plante est sur le comptoir.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché.",
+     "br": {
+      "c": [
+       "em cima do guichê",
+       "em cima da balança",
+       "à janela"
+      ],
+      "phrase": "A planta está em cima do guichê."
+     }
     },
     {
      "q": "Onde está o guarda-chuva?",
@@ -695,7 +737,14 @@ window.SCENE = {
      "r": "bank",
      "phrase": "O guarda-chuva está ao lado do banco.",
      "sens": "Le parapluie est à côté du banc.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o banco = <b>ao lado do</b> banco."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o banco = <b>ao lado do</b> banco.",
+     "br": {
+      "c": [
+       "ao lado do banco",
+       "no cesto",
+       "atrás do guichê"
+      ]
+     }
     },
     {
      "q": "Onde está a encomenda?",
@@ -708,7 +757,15 @@ window.SCENE = {
      "r": "schalter",
      "phrase": "A encomenda está à frente do guiché.",
      "sens": "Le grand colis est devant le guichet.",
-     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o guiché = <b>à frente do</b> guiché."
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o guiché = <b>à frente do</b> guiché.",
+     "br": {
+      "c": [
+       "à frente do guichê",
+       "em cima da balança",
+       "na estante"
+      ],
+      "phrase": "A encomenda está à frente do guichê."
+     }
     }
    ]
   },
@@ -739,7 +796,10 @@ window.SCENE = {
      "r": "anna",
      "phrase": "O homem dá-lhe um recibo.",
      "sens": "L'homme lui donne un reçu.",
-     "n": "À elle : <b>lhe</b>."
+     "n": "À elle : <b>lhe</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A Anna dá-___ a carta.",
@@ -752,7 +812,10 @@ window.SCENE = {
      "r": "mann",
      "phrase": "A Anna dá-lhe a carta.",
      "sens": "Anna lui donne la lettre.",
-     "n": "À lui : <b>lhe</b>."
+     "n": "À lui : <b>lhe</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A carta? Ela dá-___.",
@@ -791,7 +854,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Podes comprar-me um selo?",
      "sens": "Tu peux m'acheter un timbre ?",
-     "n": "<b>me</b>, après l'infinitif."
+     "n": "<b>me</b>, après l'infinitif.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A Anna mostra o cartão de cidadão ___ homem.",
@@ -804,7 +870,12 @@ window.SCENE = {
      "r": "mann",
      "phrase": "A Anna mostra o cartão de cidadão ao homem.",
      "sens": "Anna montre sa carte d'identité à l'homme.",
-     "n": "La carte d'identité portugaise : <b>o cartão de cidadão</b>."
+     "n": "La carte d'identité portugaise : <b>o cartão de cidadão</b>.",
+     "br": {
+      "q": "A Anna mostra a carteira de identidade ___ homem.",
+      "phrase": "A Anna mostra a carteira de identidade ao homem.",
+      "n": "La carte d'identité portugaise : <b>a carteira de identidade</b>."
+     }
     },
     {
      "q": "O homem explica o preço ___ senhora.",
@@ -835,7 +906,11 @@ window.SCENE = {
      "r": "waage",
      "phrase": "A encomenda está a ser pesada.",
      "sens": "Le colis est en train d'être pesé.",
-     "n": "<b>a encomenda</b> → <b>pesada</b>."
+     "n": "<b>a encomenda</b> → <b>pesada</b>.",
+     "br": {
+      "q": "A encomenda está sendo ___.",
+      "phrase": "A encomenda está sendo pesada."
+     }
     },
     {
      "q": "A carta vai ser ___ amanhã.",
@@ -900,7 +975,12 @@ window.SCENE = {
      "r": "umschlag",
      "phrase": "O selo tem de ser colado no envelope.",
      "sens": "Le timbre doit être collé sur l'enveloppe.",
-     "n": "<b>tem de ser</b> + participe."
+     "n": "<b>tem de ser</b> + participe.",
+     "br": {
+      "q": "O selo tem que ser ___ no envelope.",
+      "phrase": "O selo tem que ser colado no envelope.",
+      "n": "<b>tem que ser</b> + participe."
+     }
     }
    ]
   },
@@ -918,7 +998,14 @@ window.SCENE = {
      "r": "anna",
      "phrase": "A carta deve ser para alguém importante.",
      "sens": "La lettre doit être pour quelqu'un d'important.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "A encomenda da senhora idosa ___ ser um presente.",
@@ -944,7 +1031,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A carta deverá chegar daqui a dois dias.",
      "sens": "La lettre devrait arriver dans deux jours.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "___ que esta estação dos correios vai fechar em breve.",

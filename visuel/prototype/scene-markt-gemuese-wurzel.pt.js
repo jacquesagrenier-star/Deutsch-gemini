@@ -850,7 +850,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A Anna terá comprado os rabanetes para uma salada.",
      "sens": "Anna a sans doute acheté les radis pour une salade.",
-     "n": "Supposition : <b>terá</b> + participe."
+     "n": "Supposition : <b>terá</b> + participe.",
+     "br": {
+      "c": [
+       "terá",
+       "se teria",
+       "tenha"
+      ]
+     }
     }
    ]
   }

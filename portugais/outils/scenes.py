@@ -18,10 +18,9 @@ Pluriel, niveau, theme et sens viennent du corpus portugais (portugais/datos)
 quand le mot y est ; sinon la zone garde le sens francais et le niveau de
 l'allemand, et n'a pas de theme (pas de carte a reviser).
 
-L'action se situe a LISBONNE (proposition du 29 oct. 2026, a trancher par
-Jacques). Aucune scene n'est ecartee pour l'instant : le tram jaune de la
-Kreuzung et de la Stadtplatz est meme tres lisboete. Voir ETAT-DES-LIEUX.md pour
-celles dont l'image trahit l'Allemagne (Zug, Weihnachtsmarkt, Post).
+L'action se situe a LISBONNE (decide par Jacques le 30 oct. 2026). L'hiver
+est ecarte (EXCLUES) ; les autres scenes passees a l'oeil d'un Portugais, et
+la liste « garder / ecarter / a demander », sont dans ETAT-DES-LIEUX.md.
 
 Comme l'anglais, seule la couche A1 (« Noms et articles » : decouvrir, trouver) :
 les couches A2-C1 allemandes enseignent l'allemand.
@@ -37,7 +36,10 @@ try:
 except Exception:
     pass
 
-EXCLUES = set()
+# L'hiver et son bonhomme de neige sortent du portugais : Lisbonne n'a pas de
+# neige (Jacques, 30 oct. 2026 : « C'est sûr que les bonhommes de neige, et
+# l'hiver, on doit l'enlever »). Les autres scenes attendent sa decision.
+EXCLUES = {"winter"}
 
 TITRES = {
     "apotheke": "Na farmácia", "arztpraxis": "No consultório", "baeckerei": "Na padaria",
@@ -231,6 +233,50 @@ def nettoyer(d):
     return {k: v for k, v in d.items() if v is not None}
 
 
+# LA VARIANTE DU BRESIL (30 oct. 2026) : comme le britannique de l'anglais, la
+# zone porte un champ « br » quand le Bresil dit autrement (o comboio -> o trem) ;
+# la page de la scene le prend avec variante=br. Les questions A2-C1 aussi, ou
+# « br: {omettre: true} » quand la conversion ne sait pas les faire.
+def bresil_de(r):
+    import bresil
+    n = bresil.NOM_PAR_MOT.get(r["mot"])
+    if n and (n["pt"] not in bresil.CARTE_SI or bresil.CARTE_SI[n["pt"]] in (r.get("fr") or "")):
+        br = {"mot": n["br"], "genre": n["brg"]}
+        if r.get("pluriel"):
+            br["pluriel"] = None if n["brpl"] == "—" else (("os " if n["brg"] == "o" else "as ") + n["brpl"])
+    else:
+        mot = bresil.brasileiro(r["mot"])
+        br = {"mot": mot, "genre": r["genre"]}
+        if r.get("pluriel"):
+            br["pluriel"] = bresil.brasileiro(r["pluriel"])
+    br = {k: v for k, v in br.items() if v != r.get(k)}
+    return br or None
+
+
+def question_bresil(q):
+    """La question A2-C1 en portugais du Bresil, ou {omettre: True}."""
+    import bresil
+    al = set()
+    trou = "XQX"
+    texte = q.get("q", "")
+    choix = q.get("c") or []
+    conv_q = bresil.brasileiro(texte.replace("___", trou), al)
+    conv_c = [bresil.brasileiro(c, al) for c in choix]
+    if choix and "___" in texte:
+        pleine = bresil.brasileiro(texte.replace("___", choix[0]), al)
+        if conv_q.replace(trou, conv_c[0]) != pleine or len(set(c.lower() for c in conv_c)) < len(conv_c):
+            return {"omettre": True}
+    br = {"q": conv_q.replace(trou, "___"), "c": conv_c}
+    for k in ("phrase",):
+        if isinstance(q.get(k), str):
+            br[k] = bresil.brasileiro(q[k], al)
+    for k in ("n", "sens"):
+        if isinstance(q.get(k), str):
+            br[k] = bresil.dans_balises(q[k], al)
+    br = {k: v for k, v in br.items() if v != q.get(k)}
+    return br or None
+
+
 def construire_scene(nom, idx):
     de = charger_scene(nom)
     points = []
@@ -247,6 +293,13 @@ def construire_scene(nom, idx):
         for k in ("theme", "pluriel"):
             if not r.get(k):
                 q.pop(k, None)
+        br = bresil_de(r)
+        if br:
+            q["br"] = br
+        for a in aussi:
+            ba = bresil_de(dict(a, pluriel=None))
+            if ba:
+                a["br"] = ba
         q["aussi"] = aussi
         points.append(q)
     # Deux mots allemands DIFFERENTS sur le meme mot portugais : la question
@@ -276,8 +329,17 @@ def construire_scene(nom, idx):
     p_pt = os.path.join(RACINE, "portugais", "scenes", nom + ".json")
     if os.path.exists(p_pt):
         for niv, couche in json.load(io.open(p_pt, encoding="utf-8")).get("couches", {}).items():
-            scene["couches"][niv] = dict(couche, qs=[{k: v for k, v in q.items() if not k.startswith("_")}
-                                                    for q in couche.get("qs", [])])
+            qs = []
+            for q in couche.get("qs", []):
+                q = {k: v for k, v in q.items() if not k.startswith("_")}
+                br = question_bresil(q)
+                if br:
+                    q["br"] = br
+                qs.append(q)
+            scene["couches"][niv] = dict(couche, qs=qs)
+    import bresil_textes
+    if nom in bresil_textes.TITRES_SCENES:
+        scene["titreBr"] = bresil_textes.TITRES_SCENES[nom]
     # L'interface du portugais est en francais : pas de traductions d'interface.
     scene["traductions"] = {}
     js = ("// GENERE par portugais/outils/scenes.py (depuis scene-%s.js) -- ne pas modifier a la main.\n" % nom
@@ -294,6 +356,13 @@ def toutes():
 
 def main():
     idx = corpus()
+    import bresil
+    bresil.connaitre_infinitifs(json.load(io.open(os.path.join(RACINE, "portugais", "datos", "verbes.json"), encoding="utf-8")))
+    for nom in EXCLUES:
+        vieux = os.path.join(PROTO, "scene-%s.pt.js" % nom)
+        if os.path.exists(vieux):
+            os.remove(vieux)
+            print("  %s : ecartee du portugais, scene-%s.pt.js retire" % (nom, nom))
     noms = [a for a in sys.argv[1:] if not a.startswith("--") and not a.endswith(".py")] or [n for n in toutes() if n not in EXCLUES]
     total = carte = 0
     for nom in noms:

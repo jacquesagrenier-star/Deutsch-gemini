@@ -48,7 +48,11 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "lampe-2",
@@ -69,7 +73,11 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "uhr",
@@ -110,7 +118,12 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "br": {
+    "mot": "lousa",
+    "genre": "a",
+    "pluriel": "as lousas"
+   }
   },
   {
    "id": "ordner",
@@ -296,7 +309,12 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "br": {
+    "mot": "tela",
+    "genre": "a",
+    "pluriel": "as telas"
+   }
   },
   {
    "id": "tastatur",
@@ -359,7 +377,11 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "kugelschreiber",
@@ -379,7 +401,11 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "stylo à bille"
+   "fr": "stylo à bille",
+   "br": {
+    "mot": "caneta",
+    "pluriel": "as canetas"
+   }
   },
   {
    "id": "papier",
@@ -482,7 +508,11 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "muelleimer",
@@ -503,7 +533,12 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "schreibtisch",
@@ -524,7 +559,11 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "br": {
+    "mot": "escrivaninha",
+    "pluriel": "as escrivaninhas"
+   }
   },
   {
    "id": "wand",
@@ -607,7 +646,11 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "ruban adhésif"
+   "fr": "ruban adhésif",
+   "br": {
+    "mot": "fita adesiva",
+    "pluriel": null
+   }
   },
   {
    "id": "tuer",
@@ -654,7 +697,11 @@ window.SCENE = {
      "r": "tastatur",
      "phrase": "A chávena está ao lado do teclado.",
      "sens": "La tasse est à côté du clavier.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o teclado = <b>ao lado do</b> teclado."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o teclado = <b>ao lado do</b> teclado.",
+     "br": {
+      "q": "Onde está a xícara?",
+      "phrase": "A xícara está ao lado do teclado."
+     }
     },
     {
      "q": "Onde está o relógio?",
@@ -667,7 +714,15 @@ window.SCENE = {
      "r": "tafel",
      "phrase": "O relógio está por cima do quadro de giz.",
      "sens": "L'horloge est accrochée au-dessus du tableau.",
-     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + o quadro de giz = <b>por cima do</b> quadro de giz."
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + o quadro de giz = <b>por cima do</b> quadro de giz.",
+     "br": {
+      "c": [
+       "por cima da lousa",
+       "debaixo da secretária",
+       "ao lado da impressora"
+      ],
+      "phrase": "O relógio está por cima da lousa."
+     }
     },
     {
      "q": "Onde está a impressora?",
@@ -693,7 +748,11 @@ window.SCENE = {
      "r": "papier",
      "phrase": "A esferográfica está no papel.",
      "sens": "Le stylo est sur le papier.",
-     "n": "<b>em</b> + o = <b>no</b> : no papel."
+     "n": "<b>em</b> + o = <b>no</b> : no papel.",
+     "br": {
+      "q": "Onde está a caneta?",
+      "phrase": "A caneta está no papel."
+     }
     },
     {
      "q": "Onde está a planta?",
@@ -745,7 +804,11 @@ window.SCENE = {
      "r": "schreibtisch",
      "phrase": "O caixote do lixo está atrás da secretária.",
      "sens": "La poubelle est derrière le bureau.",
-     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + a secretária = <b>atrás da</b> secretária."
+     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + a secretária = <b>atrás da</b> secretária.",
+     "br": {
+      "q": "Onde está a lixeira?",
+      "phrase": "A lixeira está atrás da secretária."
+     }
     }
    ]
   },
@@ -763,7 +826,14 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O Mark liga a um cliente.",
      "sens": "Mark appelle un client.",
-     "n": "Téléphoner : <b>ligar a alguém</b> (ou telefonar a)."
+     "n": "Téléphoner : <b>ligar a alguém</b> (ou telefonar a).",
+     "br": {
+      "c": [
+       "liga",
+       "chama",
+       "se telefona"
+      ]
+     }
     },
     {
      "q": "Ele ___ nota do número.",
@@ -789,7 +859,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O Mark ligou ao cliente.",
      "sens": "Mark a appelé le client.",
-     "n": "Perfeito : <b>ligou</b>."
+     "n": "Perfeito : <b>ligou</b>.",
+     "br": {
+      "c": [
+       "ligou",
+       "ligava",
+       "se liga"
+      ]
+     }
     },
     {
      "q": "A colega ___ uma carta.",
@@ -802,7 +879,14 @@ window.SCENE = {
      "r": "frau",
      "phrase": "A colega imprime uma carta.",
      "sens": "La collègue imprime une lettre.",
-     "n": "<b>imprimir</b>."
+     "n": "<b>imprimir</b>.",
+     "br": {
+      "c": [
+       "imprime",
+       "imprima",
+       "se imprimiu"
+      ]
+     }
     },
     {
      "q": "Podes ___ amanhã, por favor?",
@@ -815,7 +899,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Podes ligar-me de volta amanhã, por favor?",
      "sens": "Tu peux me rappeler demain, s'il te plaît ?",
-     "n": "Rappeler : <b>ligar de volta</b> (ou <b>voltar a ligar</b>) ; pronom après l'infinitif."
+     "n": "Rappeler : <b>ligar de volta</b> (ou <b>voltar a ligar</b>) ; pronom après l'infinitif.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "Às cinco, o Mark ___ de trabalhar.",
@@ -828,7 +915,14 @@ window.SCENE = {
      "r": "mark",
      "phrase": "Às cinco, o Mark para de trabalhar.",
      "sens": "À cinq heures, Mark arrête de travailler.",
-     "n": "<b>parar de</b> + infinitif (sans accent depuis 1990 : para)."
+     "n": "<b>parar de</b> + infinitif (sans accent depuis 1990 : para).",
+     "br": {
+      "c": [
+       "para",
+       "se deixa",
+       "se acaba"
+      ]
+     }
     },
     {
      "q": "A colega ___ uma reunião.",
@@ -841,7 +935,14 @@ window.SCENE = {
      "r": "tafel",
      "phrase": "A colega prepara uma reunião.",
      "sens": "La collègue prépare une réunion.",
-     "n": "<b>preparar</b>."
+     "n": "<b>preparar</b>.",
+     "br": {
+      "c": [
+       "prepara",
+       "prepare",
+       "se preparou"
+      ]
+     }
     },
     {
      "q": "O Mark vai ___ o telefone já.",
@@ -854,7 +955,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O Mark vai desligar o telefone já.",
      "sens": "Mark va raccrocher tout de suite.",
-     "n": "Raccrocher : <b>desligar</b>."
+     "n": "Raccrocher : <b>desligar</b>.",
+     "br": {
+      "c": [
+       "desligar",
+       "ligar",
+       "se desligar"
+      ]
+     }
     }
    ]
   },
@@ -872,7 +980,11 @@ window.SCENE = {
      "r": "telefon",
      "phrase": "O homem que está ao telefone chama-se Mark.",
      "sens": "L'homme qui est au téléphone s'appelle Mark.",
-     "n": "Sujet : <b>que</b>."
+     "n": "Sujet : <b>que</b>.",
+     "br": {
+      "q": "O homem ___ está ao telefone se chama Mark.",
+      "phrase": "O homem que está ao telefone se chama Mark."
+     }
     },
     {
      "q": "A colega, ___ cabelo é grisalho, lê uma carta.",
@@ -911,7 +1023,11 @@ window.SCENE = {
      "r": null,
      "phrase": "A carta está a ser impressa.",
      "sens": "La lettre est en train d'être imprimée.",
-     "n": "<b>imprimir</b> : participe court <b>impresso</b> avec ser / estar, accordé."
+     "n": "<b>imprimir</b> : participe court <b>impresso</b> avec ser / estar, accordé.",
+     "br": {
+      "q": "A carta está sendo ___.",
+      "phrase": "A carta está sendo impressa."
+     }
     },
     {
      "q": "O caderno já está meio ___.",
@@ -955,7 +1071,14 @@ window.SCENE = {
      "r": "mark",
      "phrase": "A conversa deve ser importante.",
      "sens": "La conversation doit être importante.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "A colega ___ ser a chefe dele.",
@@ -981,7 +1104,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O Mark deverá conseguir um lugar depois do estágio.",
      "sens": "Mark devrait obtenir un poste après le stage.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "___ que a empresa vai mudar de instalações em breve.",

@@ -63,7 +63,11 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "bild",
@@ -167,7 +171,12 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "br": {
+    "mot": "violão",
+    "genre": "o",
+    "pluriel": "os violões"
+   }
   },
   {
    "id": "mark",
@@ -280,7 +289,11 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "téléphone portable"
+   "fr": "téléphone portable",
+   "br": {
+    "mot": "celular",
+    "pluriel": "os celulares"
+   }
   },
   {
    "id": "freundin",
@@ -378,7 +391,11 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "br": {
+    "mot": "suco",
+    "pluriel": "os sucos"
+   }
   },
   {
    "id": "glas",
@@ -695,7 +712,11 @@ window.SCENE = {
      "r": "sofa",
      "phrase": "A guitarra está ao lado do sofá.",
      "sens": "La guitare est à côté du canapé.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o sofá = <b>ao lado do</b> sofá."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o sofá = <b>ao lado do</b> sofá.",
+     "br": {
+      "q": "Onde está o violão?",
+      "phrase": "O violão está ao lado do sofá."
+     }
     },
     {
      "q": "Onde está o quadro?",
@@ -747,7 +768,11 @@ window.SCENE = {
      "r": "regal",
      "phrase": "O candeeiro está ao lado da estante.",
      "sens": "La lampe est à côté de l'étagère.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a estante = <b>ao lado da</b> estante."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a estante = <b>ao lado da</b> estante.",
+     "br": {
+      "q": "Onde está o abajur?",
+      "phrase": "O abajur está ao lado da estante."
+     }
     }
    ]
   },
@@ -765,7 +790,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "A Anna dá-lhe um presente.",
      "sens": "Anna lui donne un cadeau.",
-     "n": "À qui ? <b>lhe</b>, après le verbe."
+     "n": "À qui ? <b>lhe</b>, après le verbe.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "Todos lhe dão os ___.",
@@ -778,7 +806,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Todos lhe dão os parabéns.",
      "sens": "Tout le monde lui souhaite un bon anniversaire.",
-     "n": "<b>dar os parabéns a alguém</b> ; après <b>todos</b>, le pronom passe devant."
+     "n": "<b>dar os parabéns a alguém</b> ; après <b>todos</b>, le pronom passe devant.",
+     "br": {
+      "c": [
+       "parabéns",
+       "lhe felicidades",
+       "parabém"
+      ]
+     }
     },
     {
      "q": "O presente agrada-___.",
@@ -791,7 +826,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O presente agrada-lhe.",
      "sens": "Le cadeau lui plaît.",
-     "n": "<b>agradar a alguém</b> : <b>lhe</b>."
+     "n": "<b>agradar a alguém</b> : <b>lhe</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A Anna oferece uma lembrança ___ namorado.",
@@ -856,7 +894,11 @@ window.SCENE = {
      "r": null,
      "phrase": "A Anna vai já levar sumo aos convidados.",
      "sens": "Anna va tout de suite apporter du jus aux invités.",
-     "n": "a + os = <b>aos</b>."
+     "n": "a + os = <b>aos</b>.",
+     "br": {
+      "q": "A Anna vai já levar suco ___ convidados.",
+      "phrase": "A Anna vai já levar suco aos convidados."
+     }
     }
    ]
   },
@@ -957,7 +999,14 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O presente deve ser uma surpresa.",
      "sens": "Le cadeau doit être une surprise.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "há"
+      ]
+     }
     },
     {
      "q": "O presente vermelho ___ dos pais dele.",
@@ -983,7 +1032,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A pizza deve acabar daqui a nada.",
      "sens": "La pizza devrait être bientôt finie.",
-     "n": "Probable : <b>dever</b>."
+     "n": "Probable : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "___ que foi a Anna que fez o bolo.",
@@ -1001,5 +1057,6 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "Uma festa de aniversário"
 };

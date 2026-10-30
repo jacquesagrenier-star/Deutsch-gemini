@@ -1,16 +1,16 @@
-# Les règles Firestore du portugais (à coller)
+# Les règles Firestore du portugais
 
-Sans ces deux blocs, l'essai portugais marche quand même, mais la progression
-reste sur l'appareil (elle ne suit pas d'un téléphone à l'autre).
+**Publiées le 30 oct. 2026** par le chef d'orchestre, à la demande de Jacques
+(« Coller des règles Firestone pour que la progression j'aimerais qu'on le
+fasse. »). Les règles qui étaient en ligne avant ont été sauvegardées dans
+`~/.wortando/regles-console-2026-10-30.txt`. La progression portugaise suit
+donc d'un appareil à l'autre ; la variante du Brésil utilise les mêmes
+collections (mêmes mots, même ordre que le Portugal).
 
-**Où** : console Firebase → projet `deutschai-b6fbb` → Firestore Database →
-Règles. **Sauvegarder d'abord** les règles en place (copier-coller dans un
-fichier), puis ajouter ces deux blocs juste après ceux de l'anglais
-(`usersEn`, `resumesEn`), avant les deux accolades de fin, et Publier.
-
-Ce sont exactement les règles du japonais et de l'anglais, avec le nom des
-collections du portugais. Le même texte est déjà dans `firestore.rules` du
-dépôt.
+Pour mémoire, les deux blocs publiés (projet `deutschai-b6fbb`, Firestore
+Database → Règles), placés juste après ceux de l'anglais (`usersEn`,
+`resumesEn`). Ce sont les règles du japonais et de l'anglais, avec le nom des
+collections du portugais. Le même texte est dans `firestore.rules` du dépôt.
 
 ```
     match /usersPt/{uid} {

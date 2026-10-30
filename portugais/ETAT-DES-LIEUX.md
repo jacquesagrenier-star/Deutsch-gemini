@@ -1,6 +1,6 @@
 # Le portugais dans Wortando : état des lieux
 
-29 octobre 2026. **Publié en v1026** (essai admin, A1) ; **A2 à C1 en v1027** (30 oct.), complété en **v1029** (cartes reprises, séries allongées, brésilianismes corrigés). Mandat de Jacques, transmis par le chef d'orchestre : « une
+29 octobre 2026. **Publié en v1026** (essai admin, A1) ; **A2 à C1 en v1027** (30 oct.), complété en **v1029** (cartes reprises, séries allongées, brésilianismes corrigés) ; **v1031** (30 oct.) : Lisbonne confirmée, l'hiver écarté, la **variante du Brésil** (Réglages → « Quel portugais ? »). Mandat de Jacques, transmis par le chef d'orchestre : « une
 version pour apprendre le portugais », et la base : « On va commencer par le
 portugais du Portugal. » Rien n'a été payé ni généré. Chaque chiffre a été
 compté dans les fichiers.
@@ -16,8 +16,14 @@ compté dans les fichiers.
   et non « estou lendo » ; le pronom après le verbe (chamo-me, levanto-me) ;
   falámos avec l'accent au passé ; orthographe de l'Accord de 1990 (atual,
   receção, elétrico). Le mot brésilien est noté à part, pour plus tard.
-- **L'action se situe à Lisbonne** (proposition, voir les questions) : Premiers
-  pas, A1 voyage, consignes des scènes.
+- **L'action se situe à Lisbonne** (décidé par Jacques le 30 oct. : « On prend
+  la ville de Lisbonne comme ville d'action. ») : Premiers pas, A1 voyage,
+  consignes des scènes, phrases des cartes. Vérifié : aucune autre ville ne
+  prend sa place (Berlin ne reste que dans « o Muro de Berlim »).
+- **La variante du Brésil** (décidée le 30 oct.) : Réglages → « Quel portugais ? »
+  → Portugal 🇵🇹 (la base) ou Brésil 🇧🇷. Deux jeux de données, mêmes mots dans
+  le même ordre, comme l'américain et le britannique de l'anglais. Brouillon ;
+  liste de relecture : `portugais/RELECTURE-BRESIL.md`.
 - **La voix** est celle du téléphone, en **pt-PT** (Joana, Catarina, Raquel,
   Duarte… ; une voix brésilienne seulement si l'appareil n'a aucune voix du
   Portugal), sans les voix fantaisie d'Apple. Aucune voix ElevenLabs : chiffrage
@@ -40,7 +46,8 @@ Sur le modèle de l'anglais, ligne à ligne :
 | Table de langue | `LANGUE_PORTUGAIS` (voix `pt-PT`, données `portugais/`) |
 | Libellés propres | `I18N_PORTUGAIS`, en français seulement (`UI_LANGS = ["fr"]`) |
 | Stockage local | `wortandoPt_` |
-| Firestore | `usersPt` / `resumesPt` — **règles à coller par Jacques** (`portugais/REGLES-FIRESTORE.md`) |
+| Firestore | `usersPt` / `resumesPt` — **règles publiées le 30 oct.** par le chef d'orchestre (`portugais/REGLES-FIRESTORE.md`) ; la variante du Brésil partage ces collections |
+| Variante | `VARIANTE_PORTUGAIS` (`pt` ou `br`, sous `wortandoPt_variante`), `choisirVariantePortugais()` ; `DOSSIER_PORTUGAIS` = `datos/` ou `datos-br/` (grammaire et exercices compris) ; voix pt-PT ou pt-BR ; scènes avec `variante=br` |
 | Grammaire de la langue | celle de l'espagnol : articles `o / a`, pluriel `os / as`, six personnes avec **vós caché** (comme vosotros en Amérique latine), couleurs de der / die |
 | Carte de verbe | `carteVerbePortugais` : présent et sa phrase ; déplié : perfeito, imperfeito, futuro, condicional, conjuntivo, imperativo (tu, você, vocês) |
 | Carte d'adjectif | masculin · féminin · pluriels, comparatif, superlatif |
@@ -71,7 +78,7 @@ française reprise ou ajustée.
 | Feuilles de conjugaison A1 | **6** |
 | Premiers pas : 8 étapes à Lisbonne | **162** cartes, 64 phrases, un tableau par étape |
 | A1 voyage : 12 escales, 2 étapes « installé », 8 de suite | 215 mots, 38 phrases toutes faites, 14 dialogues |
-| Scènes `.pt.js` | **43** scènes, 1 644 zones, dont 1 129 reliées à une carte du corpus |
+| Scènes `.pt.js` | **42** scènes (l'hiver écarté le 30 oct.), 1 614 zones, dont 1 363 reliées à une carte du corpus |
 | Mots brésiliens notés (`variantes-br.json`) | 68 noms, 3 verbes, 7 adjectifs |
 
 Les 17 fiches : ser / estar · o, a, um, uma · le pluriel · le présent ·
@@ -153,16 +160,16 @@ corrigées à la source en v1029.
    l'essai montre le tableau par défaut (allemand). Je vois une session
    « portugais-la-mosa-que-de » ouverte par le chef : à raccorder.
 3. **La voix enregistrée** : chiffrage ci-dessous, rien de généré.
-4. **La variante brésilienne** : les mots sont notés (`variantes-br.json`, la
-   table des remplacements Portugal → Brésil qui servira de source),
-   mais il manque les phrases, la conjugaison (você partout, gerúndio), la voix
-   pt-BR et le choix dans les réglages, comme « Quel anglais ? ».
+4. ~~La variante brésilienne~~ : **faite en brouillon** (v1031, voir « La
+   variante du Brésil » plus bas). Reste la relecture par un Brésilien, et
+   « você » à la place de « tu » si le relecteur le demande.
 5. **Les à-côtés de l'anglais** : fréquence d'usage (Leipzig), mots voisins
    (un `synonymes.json` vide évite seulement une erreur 404), tuiles de grammaire
    (pronoms, prépositions…), « S'entraîner par temps », épisodes, dictionnaire
    intégré.
-6. **L'ouverture à un compte** (comme « OUVRIR L'ANGLAIS » pour Daniel et
-   Nicole) : pas faite ; l'admin seul entre.
+6. **L'ouverture à un compte** : non voulue pour l'instant (Jacques, 30 oct. :
+   « on n'ouvre pas l'essai à quelqu'un pour le moment ») ; le bouton n'est pas
+   construit, l'admin seul entre.
 7. **La relecture par un lusophone du Portugal** avant toute ouverture aux
    testeurs : tout est en brouillon (`statut: brouillon` sur les fiches).
 
@@ -186,34 +193,98 @@ modèle de `generer_en.py`. **Rien ne se fait sans l'accord de Jacques.**
 
 ## Les scènes à Lisbonne
 
-Les 43 scènes ont leur version portugaise ; aucune n'est écartée. Lisbonne s'y
-prête mieux que Boston : le **tram jaune** de la `kreuzung` et de la
-`stadtplatz` est l'emblème même de Lisbonne (l'elétrico 28). Ce qui trahit
-l'Allemagne, à regarder par Jacques :
+L'**hiver** (`winter`, le bonhomme de neige d'Anna) est **écarté** du portugais
+(décision de Jacques, 30 oct.) : `SCENES_ECARTEES_PORTUGAIS` dans le moteur,
+`EXCLUES` dans `scenes.py`. Il reste 42 scènes (38 dans le ruban et le panneau,
+les marchés et l'examen ayant plusieurs vues). Les autres, passées une à une à
+l'œil d'un Portugais :
 
-| Scène | Ce qui trahit l'Allemagne |
-|---|---|
-| `zug` (le train) | Alpes et église à bulbe par la fenêtre |
-| `weihnachtsmarkt` (marché de Noël) | marché de Noël allemand, bretzels, église de brique |
-| `post` et `kreuzung` | boîtes aux lettres jaunes de la Deutsche Post (au Portugal, les CTT sont rouges) |
-| `stadtplatz` | église de brique gothique, boîte aux lettres jaune (le tram, lui, passe) |
-| `buergeramt` | rebaptisé « Na Loja do Cidadão », l'équivalent portugais |
+| Scène | Avis | Pourquoi |
+|---|---|---|
+| `winter` (l'hiver) | **écartée** | neige et bonhomme de neige : Lisbonne n'en a pas |
+| `weihnachtsmarkt` (marché de Noël) | **à demander** (je penche pour écarter) | neige au sol, vin chaud, chalets de bois, église de brique : un marché allemand |
+| `zug` (le train) | **à demander** (je penche pour écarter) | par la fenêtre, les Alpes et une église à bulbe bavaroise ; l'intérieur passerait |
+| `ubahn` (le métro) | **à demander** | rame jaune et carrelage vert : le métro de Berlin (celui de Lisbonne est blanc et bleu, avec des azulejos) |
+| `kreuzung` (le carrefour) | **à demander** (je penche pour garder) | le tram jaune est lisboète ; la colonne Morris, la boîte aux lettres jaune et les façades, berlinoises |
+| `stadtplatz` (la place) | **à demander** (je penche pour garder) | église gothique de brique (Allemagne du Nord) ; le tram jaune et les pavés passent |
+| `post` (la poste) | garder | seul détail : la boîte jaune à l'extérieur (celles des CTT sont rouges) |
+| `bauernhof` (la ferme) | garder | maison de brique et pins, plutôt du Nord, mais plausible dans le Minho |
+| `camping` | garder | un lac et des pins : l'Alqueva ou la serra |
+| `strand` (la plage) | garder | falaises et phare : l'Algarve |
+| `markt-*` (les quatre étals) | garder | un marché ; la rhubarbe et les groseilles de `markt-obst-heimisch` sont rares au Portugal, sans gêner |
+| `sportplatz` (le foot) | garder | le football est roi au Portugal |
+| `park` (le parc) | garder | tulipes et lac : un jardin de Lisbonne (Estrela) |
+| `buergeramt` | garder | bureau neutre, rebaptisé « Na Loja do Cidadão » |
+| `fahrradwerkstatt` (l'atelier vélo) | garder | Lisbonne pédale moins (les collines), mais l'atelier existe |
+| `waschsalon` (la laverie) | garder | les lavandarias self-service sont courantes à Lisbonne |
+| `flughafen` | garder | titré « No aeroporto de Lisboa » |
+| les intérieurs (cuisine, chambre, salon, classe, bureau, hôtel, musée, restaurant, café, boulangerie, boutique, coiffeur, pharmacie, médecin, examen, famille, fête, musique, bibliothèque, bricolage, déménagement, supermarché) | garder | aucun signe de pays |
 
-Les consignes et textes des images disent « Lisbonne » là où l'allemand dit
-« Berlin » (et « Porto » pour Hambourg).
+**Pour le Brésil** (questions pour Jacques, rien de tranché) : la **ville** (les
+phrases disent encore Lisbonne, avec des euros) et les **scènes à écarter** (la
+neige est déjà partie ; le marché de Noël, le train des Alpes et le métro de
+Berlin y sont aussi peu crédibles).
+
+## La variante du Brésil (30 oct. 2026)
+
+Les sources du cours sont écrites en portugais d'Europe. La variante est donc
+**dérivée** de `portugais/datos/` par `portugais/outils/bresil.py`, appelé par
+`construire.py`, vers `portugais/datos-br/` (14 fichiers, mêmes mots dans le même
+ordre). Ce que fait la conversion, en une passe :
+
+- **le vocabulaire** : 86 cartes de noms changées (comboio → trem, autocarro →
+  ônibus, pequeno-almoço → café da manhã, casa de banho → banheiro, telemóvel →
+  celular, paragem → ponto…), l'article accordé quand le genre change (a paragem
+  → o ponto) ; les verbes perceber → entender, conduzir → dirigir, apanhar (un
+  transport) → pegar, registar → registrar, planear → planejar, magoar →
+  machucar ;
+- **l'orthographe** : econômico, tênis, Antônio, bebê, fato, contato, recepção,
+  registro, úmido, dezesseis… ; falamos (passé) sans accent ; aceito ;
+- **la syntaxe** : estar a + infinitif → gérondif (estou lendo), le pronom devant
+  le verbe (me chamo, vou me deitar, te darei), « Minha mãe » en tête de phrase,
+  ter que ;
+- **ce qui ne se convertit pas, écrit à la main** (`bresil_textes.py`) : 72
+  explications qui opposaient le Portugal au Brésil, 15 fiches (titre, résumé,
+  tableau), 4 séries d'exercices (estar + gérondif, le pronom, le se
+  impersonnel, « Brésil ou Portugal ? »), la prononciation (11 règles : te / de
+  en « tchi / dji », l final en « ou »…), la prononciation figurée des nombres,
+  les titres de 12 scènes ;
+- **ce qui ne passe pas** : 145 questions qui enseignent un usage du Portugal ou
+  que la conversion casserait (liste dans `portugais/outils/rapport_bresil.txt`).
+
+Dans le moteur : `VARIANTE_PORTUGAIS`, le choix dans les réglages, la voix
+pt-BR (le Portugal à défaut), `lang="pt-BR"` sur les cartes, la reconnaissance
+vocale pt-BR, les scènes avec `variante=br` (le champ `br` de chaque zone et
+des questions A2-C1, ou `omettre` quand la conversion ne sait pas faire).
+
+**Signalé, pas corrigé** : « tu » et sa conjugaison restent (77 phrases) ; les
+pronoms o / a après le verbe (« comprá-lo », correct à l'écrit) ; 60 phrases où
+le nom a changé de genre et dont l'adjectif n'est pas vérifié.
+
+**Corrigé au passage dans le portugais du Portugal** : quatre phrases A2-C1
+où la conversion de la nuit avait collé « nos » au mot d'avant (« último-nos
+anos », « próximo-nos dias », « mínimo-nos detalhes ») et « o ordem » (a ordem).
 
 ## Les questions pour Jacques
 
-Mises à jour le 30 oct. 2026 (le portugais va maintenant de l'A1 au C1, en v1027).
+Mises à jour le 30 oct. 2026, après ses réponses (Lisbonne, l'hiver, le Brésil,
+les règles publiées, pas d'ouverture de l'essai).
 
-1. **Lisbonne** comme ville de l'action (Premiers pas, A1 voyage, scènes) : d'accord ?
-2. **Les scènes** : garder les 43, ou écarter `zug`, `weihnachtsmarkt`, `post` comme pour l'anglais ?
-3. **Les règles Firestore** `usersPt` / `resumesPt` : à coller (`portugais/REGLES-FIRESTORE.md`), le jour où tu veux que la progression suive d'un appareil à l'autre. Sans elles, l'essai marche, mais la progression reste sur l'appareil.
-4. **La voix ElevenLabs** pour l'A1 (≈ 81 000 crédits, plus un comparatif à l'aveugle d'environ 1 500) : quand tu le voudras. L'A2 doublerait à peu près la somme.
-5. **Un relecteur du Portugal** : en connais-tu un ? Tout est en brouillon, de l'A1 au C1.
-6. **« Tu » ou « o senhor »** : les cartes tutoient entre proches et vouvoient (o senhor / a senhora) au guichet, comme on le fait au Portugal ; « você », délicat là-bas, n'est enseigné qu'en passant. D'accord ?
-7. **Ouvrir l'essai à quelqu'un** (comme l'anglais pour Daniel et Nicole) : à qui, et quand ? Le bouton n'existe pas encore pour le portugais.
-8. **La mosaïque portugaise** (des peintres du Portugal) : préparée par une autre session ; en attendant, l'essai montre le tableau par défaut.
+1. **Les scènes à demander** pour le Portugal : `weihnachtsmarkt` et `zug` (je
+   penche pour les écarter), `ubahn`, `kreuzung`, `stadtplatz` (voir le tableau
+   des scènes).
+2. **La ville du Brésil** : garder Lisbonne (un Brésilien en voyage) ou en
+   choisir une (São Paulo, Rio) ? Aujourd'hui, les phrases disent Lisbonne et
+   les prix sont en euros.
+3. **Les scènes à écarter pour le Brésil**, au-delà de l'hiver.
+4. **Tu ou você au Brésil** : la conversion garde « tu » ; le relecteur dira s'il
+   faut tout passer à « você ».
+5. **La voix ElevenLabs** pour l'A1 du Portugal (≈ 81 000 crédits, plus un
+   comparatif à l'aveugle d'environ 1 500) ; le Brésil en demanderait autant.
+6. **Un relecteur du Portugal** : tout le portugais d'Europe est en brouillon, de
+   l'A1 au C1. (Pour le Brésil, l'ancien étudiant de Jacques : liste prête,
+   `portugais/RELECTURE-BRESIL.md`.)
+7. **La mosaïque portugaise** : préparée par une autre session.
 
 ## Commandes
 

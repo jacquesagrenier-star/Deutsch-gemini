@@ -401,10 +401,13 @@ const EST_JA = APPRENDRE === "ja";
    l'app passe variante=gb (le mot « gb » de la zone remplace alors le sien). */
 const EST_EN = APPRENDRE === "en";
 const GB = EST_EN && new URLSearchParams(location.search).get("variante") === "gb";
-/* Le portugais : o / a comme l'espagnol, la voix pt-PT du telephone. */
+/* Le portugais : o / a comme l'espagnol, la voix pt-PT du telephone ; le
+   Bresil si l'app passe variante=br (le champ « br » de la zone remplace alors
+   le sien, comme « gb » en anglais). */
 const EST_PT = APPRENDRE === "pt";
+const BR = EST_PT && new URLSearchParams(location.search).get("variante") === "br";
 const LATAM = EST_ES && new URLSearchParams(location.search).get("variante") === "latam";
-const LANG_CIBLE = EST_ES ? "es" : EST_JA ? "ja" : EST_EN ? "en" : EST_PT ? "pt-PT" : "de";
+const LANG_CIBLE = EST_ES ? "es" : EST_JA ? "ja" : EST_EN ? "en" : EST_PT ? (BR ? "pt-BR" : "pt-PT") : "de";
 /* Ce que la voix dit d'un mot : l'article et le nom, ou la lecture japonaise. */
 const motDit = p => EST_JA ? (p.lecture || p.mot) : EST_EN ? p.mot : p.genre + " " + p.mot;
 /* Le mot de la langue apprise que la page dit elle-meme. v830 : le bouton
@@ -432,6 +435,16 @@ if (GB)
   for (const s of Object.values(window.SCENES))
     for (const p of s.points)
       for (const m of [p, ...p.aussi]) if (m.gb) Object.assign(m, m.gb);
+/* Le Bresil : la zone dit o trem, pas o comboio ; les questions A2-C1 aussi, et
+   celles que la conversion ne sait pas faire (br.omettre) ne sont pas posees. */
+if (BR)
+  for (const s of Object.values(window.SCENES)){
+    if (s.titreBr) s.titre = s.titreBr;
+    for (const p of s.points)
+      for (const m of [p, ...p.aussi]) if (m.br) Object.assign(m, m.br);
+    for (const c of Object.values(s.couches || {}))
+      if (c.qs) c.qs = c.qs.filter(q => !(q.br && q.br.omettre)).map(q => q.br ? Object.assign(q, q.br) : q);
+  }
 /* Les questions qui citent un mot a variante portent leur version d'ici
    (construire.py l'exige) : la question dit ce que l'image nomme. */
 if (LATAM)
@@ -699,7 +712,7 @@ let voixDe = null;
 function chargerVoix(){
   const v = speechSynthesis.getVoices();
   const pays = EST_ES ? (LATAM ? /^es(-|_)(MX|US|419)/i : /^es(-|_)ES/i) : EST_JA ? /^ja(-|_)JP/i
-             : EST_EN ? (GB ? /^en(-|_)GB/i : /^en(-|_)US/i) : EST_PT ? /^pt(-|_)PT/i : /^de(-|_)DE/i;
+             : EST_EN ? (GB ? /^en(-|_)GB/i : /^en(-|_)US/i) : EST_PT ? (BR ? /^pt(-|_)BR/i : /^pt(-|_)PT/i) : /^de(-|_)DE/i;
   const langue = EST_ES ? /^es/i : EST_JA ? /^ja/i : EST_EN ? /^en/i : EST_PT ? /^pt/i : /^de/i;
   /* L'anglais (28 oct. 2026) : prendre la premiere voix en-US tombait sur les
      voix fantaisie d'Apple (Albert, Bad News...) ou Eloquence (Eddy, Flo...).
@@ -717,7 +730,8 @@ function chargerVoix(){
   /* Le portugais (29 oct. 2026) : pt-PT d'abord, le Bresil a defaut ; meme
      classement que l'app (index.html, VOIX_PORTUGAISES). */
   if (EST_EN || EST_PT){
-    const PREF = EST_PT ? ["joana", "catarina", "raquel", "duarte", "fernanda", "helia"]
+    const PREF = EST_PT ? (BR ? ["luciana", "felipe", "francisca", "antonio", "maria", "daniel"]
+                              : ["joana", "catarina", "raquel", "duarte", "fernanda", "helia"])
                : GB ? ["serena", "kate", "daniel", "arthur", "martha", "stephanie", "oliver", "libby", "sonia", "ryan", "hazel", "george", "susan"]
                     : ["ava", "samantha", "allison", "zoe", "evan", "nathan", "susan", "tom", "joelle", "noelle", "aria", "jenny", "guy", "zira", "david", "mark"];
     const score = x => {
@@ -753,7 +767,7 @@ function direTelephone(t){
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(t);
-  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : EST_JA ? "ja-JP" : EST_EN ? (GB ? "en-GB" : "en-US") : EST_PT ? "pt-PT" : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92 * VITESSE_VOIX;
+  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : EST_JA ? "ja-JP" : EST_EN ? (GB ? "en-GB" : "en-US") : EST_PT ? (BR ? "pt-BR" : "pt-PT") : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92 * VITESSE_VOIX;
   speechSynthesis.speak(u);
 }
 /* LA VOIX D'AURORA, comme dans l'app (Jacques, 9 oct. : « on n'a pas la voix

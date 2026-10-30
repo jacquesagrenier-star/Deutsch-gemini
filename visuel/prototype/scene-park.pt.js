@@ -185,7 +185,11 @@ window.SCENE = {
      32.5
     ]
    ],
-   "fr": "réverbère"
+   "fr": "réverbère",
+   "br": {
+    "mot": "poste de luz",
+    "pluriel": "os postes de luz"
+   }
   },
   {
    "id": "muelleimer",
@@ -206,7 +210,12 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "bank",
@@ -435,7 +444,11 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "br": {
+    "mot": "cachorro",
+    "pluriel": "os cachorros"
+   }
   },
   {
    "id": "ball",
@@ -673,7 +686,11 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "téléphone portable"
+   "fr": "téléphone portable",
+   "br": {
+    "mot": "celular",
+    "pluriel": "os celulares"
+   }
   },
   {
    "id": "schuhe-anna",
@@ -766,7 +783,11 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "pelouse, gazon"
+   "fr": "pelouse, gazon",
+   "br": {
+    "mot": "grama",
+    "pluriel": "as gramas"
+   }
   }
  ],
  "grosPlans": [],
@@ -844,7 +865,11 @@ window.SCENE = {
      "r": "rucksack",
      "phrase": "O telemóvel está ao lado da mochila.",
      "sens": "Le téléphone est à côté du sac à dos.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a mochila = <b>ao lado da</b> mochila."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a mochila = <b>ao lado da</b> mochila.",
+     "br": {
+      "q": "Onde está o celular?",
+      "phrase": "O celular está ao lado da mochila."
+     }
     },
     {
      "q": "Onde está a bola?",
@@ -870,7 +895,16 @@ window.SCENE = {
      "r": "muelleimer",
      "phrase": "O candeeiro de rua está ao lado do caixote do lixo.",
      "sens": "Le lampadaire est à côté de la poubelle.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o caixote do lixo = <b>ao lado do</b> caixote do lixo."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o caixote do lixo = <b>ao lado do</b> caixote do lixo.",
+     "br": {
+      "q": "Onde está o poste de luz?",
+      "c": [
+       "ao lado da lixeira",
+       "na ponte",
+       "no lago"
+      ],
+      "phrase": "O poste de luz está ao lado da lixeira."
+     }
     },
     {
      "q": "Onde está o pássaro?",
@@ -901,7 +935,11 @@ window.SCENE = {
      "r": "hund",
      "phrase": "A Anna atira a bola ao cão.",
      "sens": "Anna lance le ballon au chien.",
-     "n": "<b>atirar algo a alguém</b> : a + o = <b>ao</b>."
+     "n": "<b>atirar algo a alguém</b> : a + o = <b>ao</b>.",
+     "br": {
+      "q": "A Anna atira a bola ___ cachorro.",
+      "phrase": "A Anna atira a bola ao cachorro."
+     }
     },
     {
      "q": "O cão corre ___ relva.",
@@ -914,7 +952,11 @@ window.SCENE = {
      "r": "gras",
      "phrase": "O cão corre pela relva.",
      "sens": "Le chien court sur l'herbe.",
-     "n": "Parcourir un espace : <b>por</b> + a = <b>pela</b>."
+     "n": "Parcourir un espace : <b>por</b> + a = <b>pela</b>.",
+     "br": {
+      "q": "O cachorro corre ___ grama.",
+      "phrase": "O cachorro corre pela grama."
+     }
     },
     {
      "q": "O rapaz anda ___ bicicleta.",
@@ -1010,7 +1052,11 @@ window.SCENE = {
      "r": "ball",
      "phrase": "A mulher que atira a bola ao cão chama-se Anna.",
      "sens": "La femme qui lance le ballon au chien s'appelle Anna.",
-     "n": "Sujet : <b>que</b>."
+     "n": "Sujet : <b>que</b>.",
+     "br": {
+      "q": "A mulher ___ atira a bola ao cachorro se chama Anna.",
+      "phrase": "A mulher que atira a bola ao cachorro se chama Anna."
+     }
     },
     {
      "q": "O rapaz, ___ capacete é azul, anda de bicicleta.",
@@ -1049,7 +1095,11 @@ window.SCENE = {
      "r": "ball",
      "phrase": "O cão, sempre a correr, quer apanhar a bola.",
      "sens": "Le chien qui court veut attraper le ballon.",
-     "n": "Le portugais dit l'action en cours avec <b>a</b> + infinitif, même sans verbe : <b>sempre a correr</b>."
+     "n": "Le portugais dit l'action en cours avec <b>a</b> + infinitif, même sans verbe : <b>sempre a correr</b>.",
+     "br": {
+      "q": "O cachorro, ___ a correr, quer apanhar a bola.",
+      "phrase": "O cachorro, sempre a correr, quer apanhar a bola."
+     }
     },
     {
      "q": "Na manta há um livro ___.",
@@ -1075,7 +1125,11 @@ window.SCENE = {
      "r": "gras",
      "phrase": "A manta está estendida na relva.",
      "sens": "La couverture est étalée sur l'herbe.",
-     "n": "État : <b>estar</b> + participe accordé."
+     "n": "État : <b>estar</b> + participe accordé.",
+     "br": {
+      "q": "A manta está ___ na grama.",
+      "phrase": "A manta está estendida na grama."
+     }
     }
    ]
   },
@@ -1093,7 +1147,11 @@ window.SCENE = {
      "r": "hund",
      "phrase": "Ela deve conhecer o cão.",
      "sens": "Elle doit connaître le chien.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "q": "Ela ___ conhecer o cachorro.",
+      "phrase": "Ela deve conhecer o cachorro."
+     }
     },
     {
      "q": "Se calhar o cão ___ a bola já a seguir.",
@@ -1106,7 +1164,16 @@ window.SCENE = {
      "r": "ball",
      "phrase": "Se calhar o cão apanha a bola já a seguir.",
      "sens": "Le chien va peut-être attraper le ballon tout de suite.",
-     "n": "<b>se calhar</b> + indicatif présent."
+     "n": "<b>se calhar</b> + indicatif présent.",
+     "br": {
+      "q": "Se calhar o cachorro ___ a bola já a seguir.",
+      "c": [
+       "apanha",
+       "apanhe",
+       "se apanhará"
+      ],
+      "phrase": "Se calhar o cachorro apanha a bola já a seguir."
+     }
     },
     {
      "q": "O homem ___ vir cá todos os domingos.",
@@ -1119,7 +1186,14 @@ window.SCENE = {
      "r": "bank",
      "phrase": "O homem deve vir cá todos os domingos.",
      "sens": "L'homme vient sans doute ici chaque dimanche.",
-     "n": "Probable : <b>dever</b>."
+     "n": "Probable : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "há"
+      ]
+     }
     },
     {
      "q": "___ que no lago há peixes enormes.",
@@ -1132,10 +1206,18 @@ window.SCENE = {
      "r": null,
      "phrase": "Dizem que no lago há peixes enormes.",
      "sens": "Il paraît qu'il y a d'énormes poissons dans le lac.",
-     "n": "Le ouï-dire : <b>dizem que</b>."
+     "n": "Le ouï-dire : <b>dizem que</b>.",
+     "br": {
+      "c": [
+       "Dizem",
+       "Se dizem",
+       "Digam"
+      ]
+     }
     }
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "No parque"
 };

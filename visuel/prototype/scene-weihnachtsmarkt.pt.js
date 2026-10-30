@@ -123,7 +123,11 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "réverbère"
+   "fr": "réverbère",
+   "br": {
+    "mot": "poste de luz",
+    "pluriel": "os postes de luz"
+   }
   },
   {
    "id": "dach",
@@ -400,7 +404,12 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "stern",
@@ -481,7 +490,12 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "casserole"
+   "fr": "casserole",
+   "br": {
+    "mot": "panela",
+    "genre": "a",
+    "pluriel": "as panelas"
+   }
   },
   {
    "id": "geschenk",
@@ -523,7 +537,11 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "muenze",
@@ -870,7 +888,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -1009,7 +1031,12 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "handschuh",
@@ -1057,7 +1084,11 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "hose",
@@ -1072,7 +1103,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -1133,7 +1168,11 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "br": {
+    "mot": "cachorro",
+    "pluriel": "os cachorros"
+   }
   },
   {
    "id": "feuer",
@@ -1273,7 +1312,11 @@ window.SCENE = {
      "r": "schnee",
      "phrase": "O cão está na neve.",
      "sens": "Le chien est assis dans la neige.",
-     "n": "<b>em</b> + a = <b>na</b> : na neve."
+     "n": "<b>em</b> + a = <b>na</b> : na neve.",
+     "br": {
+      "q": "Onde está o cachorro?",
+      "phrase": "O cachorro está na neve."
+     }
     },
     {
      "q": "Onde está o relógio?",
@@ -1299,7 +1342,14 @@ window.SCENE = {
      "r": "stand",
      "phrase": "O homem está atrás da banca.",
      "sens": "L'homme est derrière l'étal.",
-     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + a banca = <b>atrás da</b> banca."
+     "n": "<b>atrás de</b> = derrière. <b>atrás de</b> + a banca = <b>atrás da</b> banca.",
+     "br": {
+      "c": [
+       "atrás da banca",
+       "à frente da igreja",
+       "ao lado do cachorro"
+      ]
+     }
     },
     {
      "q": "Onde está a lua?",
@@ -1325,7 +1375,14 @@ window.SCENE = {
      "r": "kirche",
      "phrase": "A árvore está à frente da igreja.",
      "sens": "Le sapin est devant l'église.",
-     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + a igreja = <b>à frente da</b> igreja."
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + a igreja = <b>à frente da</b> igreja.",
+     "br": {
+      "c": [
+       "à frente da igreja",
+       "atrás da banca",
+       "ao lado do cachorro"
+      ]
+     }
     }
    ]
   },
@@ -1356,7 +1413,10 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O homem dá-lhe a estrela.",
      "sens": "L'homme lui donne l'étoile.",
-     "n": "À lui : <b>lhe</b>."
+     "n": "À lui : <b>lhe</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A caneca? O Mark segura-___ com luvas.",
@@ -1395,7 +1455,10 @@ window.SCENE = {
      "r": "frau",
      "phrase": "Ela dá-lhe a mão.",
      "sens": "Elle lui donne la main.",
-     "n": "<b>dar a mão a alguém</b> : <b>lhe</b>."
+     "n": "<b>dar a mão a alguém</b> : <b>lhe</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "O cão olha para ___.",
@@ -1408,7 +1471,11 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O cão olha para ele.",
      "sens": "Le chien le regarde.",
-     "n": "<b>olhar para</b> + pronom tonique : <b>para ele</b>."
+     "n": "<b>olhar para</b> + pronom tonique : <b>para ele</b>.",
+     "br": {
+      "q": "O cachorro olha para ___.",
+      "phrase": "O cachorro olha para ele."
+     }
     },
     {
      "q": "Ela gosta dos ___.",
@@ -1535,7 +1602,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ele deve gostar do mercado de Natal.",
      "sens": "Il doit aimer le marché de Noël.",
-     "n": "Déduction : <b>dever</b>."
+     "n": "Déduction : <b>dever</b>.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "A estrela ___ ser um presente para a mãe dele.",
@@ -1561,7 +1635,16 @@ window.SCENE = {
      "r": "mann",
      "phrase": "O cão será do homem da banca.",
      "sens": "Le chien appartient sans doute à l'homme de l'étal.",
-     "n": "Futur de supposition ; l'étal = <b>a banca</b>."
+     "n": "Futur de supposition ; l'étal = <b>a banca</b>.",
+     "br": {
+      "q": "O cachorro ___ do homem da banca.",
+      "c": [
+       "será",
+       "seja",
+       "se foi"
+      ],
+      "phrase": "O cachorro será do homem da banca."
+     }
     },
     {
      "q": "Este mercado de Natal ___ o mais antigo da cidade.",
@@ -1574,7 +1657,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Este mercado de Natal seria o mais antigo da cidade.",
      "sens": "Ce marché de Noël serait le plus ancien de la ville.",
-     "n": "Le conditionnel de la rumeur."
+     "n": "Le conditionnel de la rumeur.",
+     "br": {
+      "c": [
+       "seria",
+       "se será",
+       "seja"
+      ]
+     }
     }
    ]
   }

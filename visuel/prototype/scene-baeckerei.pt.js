@@ -27,7 +27,11 @@ window.SCENE = {
      6.9
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "wand",
@@ -112,7 +116,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "compras_pt",
-     "fr": "vitrine"
+     "fr": "vitrine",
+     "br": {
+      "mot": "vitrine"
+     }
     }
    ],
    "sur": null,
@@ -145,7 +152,11 @@ window.SCENE = {
      28.5
     ]
    ],
-   "fr": "réverbère"
+   "fr": "réverbère",
+   "br": {
+    "mot": "poste de luz",
+    "pluriel": "os postes de luz"
+   }
   },
   {
    "id": "fahrrad",
@@ -288,7 +299,11 @@ window.SCENE = {
      5.6
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "br": {
+    "mot": "suco",
+    "pluriel": "os sucos"
+   }
   },
   {
    "id": "milch",
@@ -419,7 +434,11 @@ window.SCENE = {
      1.7
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "brot",
@@ -468,7 +487,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "compras_pt",
-     "fr": "vendeuse"
+     "fr": "vendeuse",
+     "br": {
+      "mot": "vendedora"
+     }
     }
    ],
    "sur": null,
@@ -564,7 +586,12 @@ window.SCENE = {
      7.2
     ]
    ],
-   "fr": "le sac (en papier, en plastique)"
+   "fr": "le sac (en papier, en plastique)",
+   "br": {
+    "mot": "sacola",
+    "genre": "a",
+    "pluriel": "as sacolas"
+   }
   },
   {
    "id": "muenze",
@@ -655,7 +682,12 @@ window.SCENE = {
      15.8
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "tasche",
@@ -691,7 +723,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -879,7 +915,11 @@ window.SCENE = {
      2.7
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "teller",
@@ -1103,7 +1143,11 @@ window.SCENE = {
      7.8
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "br": {
+    "mot": "cachorro",
+    "pluriel": "os cachorros"
+   }
   },
   {
    "id": "kasse",
@@ -1370,7 +1414,11 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "guichet ; interrupteur"
+   "fr": "guichet ; interrupteur",
+   "br": {
+    "mot": "guichê",
+    "pluriel": "os guichês"
+   }
   },
   {
    "id": "pflanze",
@@ -1456,7 +1504,14 @@ window.SCENE = {
      "r": "regal",
      "phrase": "O leite está na estante.",
      "sens": "Le lait est sur l'étagère.",
-     "n": "<b>em</b> + a = <b>na</b> : na estante."
+     "n": "<b>em</b> + a = <b>na</b> : na estante.",
+     "br": {
+      "c": [
+       "na estante",
+       "em cima do guichê",
+       "no forno"
+      ]
+     }
     },
     {
      "q": "Onde está o cão?",
@@ -1469,7 +1524,11 @@ window.SCENE = {
      "r": "boden",
      "phrase": "O cão está no chão.",
      "sens": "Le chien est couché par terre.",
-     "n": "<b>em</b> + o = <b>no</b> : no chão."
+     "n": "<b>em</b> + o = <b>no</b> : no chão.",
+     "br": {
+      "q": "Onde está o cachorro?",
+      "phrase": "O cachorro está no chão."
+     }
     },
     {
      "q": "Onde está a bicicleta?",
@@ -1495,7 +1554,15 @@ window.SCENE = {
      "r": "schalter",
      "phrase": "A caixa está em cima do guiché.",
      "sens": "La caisse est sur le comptoir.",
-     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché."
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché.",
+     "br": {
+      "c": [
+       "em cima do guichê",
+       "na estante",
+       "em cima da mesa"
+      ],
+      "phrase": "A caixa está em cima do guichê."
+     }
     },
     {
      "q": "Onde está o bolo?",
@@ -1521,7 +1588,14 @@ window.SCENE = {
      "r": "tisch",
      "phrase": "O vizinho está à mesa.",
      "sens": "Le voisin est assis à la table.",
-     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à mesa."
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à mesa.",
+     "br": {
+      "c": [
+       "à mesa",
+       "no forno",
+       "em cima do guichê"
+      ]
+     }
     },
     {
      "q": "Onde está a planta?",
@@ -1534,7 +1608,14 @@ window.SCENE = {
      "r": "fenster",
      "phrase": "A planta está à janela.",
      "sens": "La plante est près de la fenêtre.",
-     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela."
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela.",
+     "br": {
+      "c": [
+       "à janela",
+       "na estante",
+       "em cima do guichê"
+      ]
+     }
     }
    ]
   },
@@ -1591,7 +1672,11 @@ window.SCENE = {
      "r": "nachbar",
      "phrase": "O cão é do senhor que está à mesa.",
      "sens": "Le chien appartient au monsieur à la table.",
-     "n": "L'appartenance : <b>ser de</b> (de + o = <b>do</b>)."
+     "n": "L'appartenance : <b>ser de</b> (de + o = <b>do</b>).",
+     "br": {
+      "q": "O cachorro é ___ senhor que está à mesa.",
+      "phrase": "O cachorro é do senhor que está à mesa."
+     }
     },
     {
      "q": "A Anna compra papos-secos para o ___ colega.",
@@ -1630,7 +1715,11 @@ window.SCENE = {
      "r": "nachbar",
      "phrase": "O cão espera pelo seu dono.",
      "sens": "Le chien attend son maître.",
-     "n": "<b>esperar por</b> + o seu = <b>pelo seu</b>."
+     "n": "<b>esperar por</b> + o seu = <b>pelo seu</b>.",
+     "br": {
+      "q": "O cachorro espera pelo ___ dono.",
+      "phrase": "O cachorro espera pelo seu dono."
+     }
     },
     {
      "q": "A padaria é muito querida por todos ___ vizinhos.",
@@ -1674,7 +1763,10 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Quando a Anna entrou, o vizinho já se tinha sentado.",
      "sens": "Quand Anna est entrée, le voisin s'était déjà assis.",
-     "n": "<b>sentar-se</b> → <b>tinha-se sentado</b> ; après <b>já</b>, <b>se tinha sentado</b>."
+     "n": "<b>sentar-se</b> → <b>tinha-se sentado</b> ; après <b>já</b>, <b>se tinha sentado</b>.",
+     "br": {
+      "n": "<b>se sentar</b> → <b>se tinha sentado</b> ; après <b>já</b>, <b>se tinha sentado</b>."
+     }
     },
     {
      "q": "Depois de ___ o café, leu o jornal.",
@@ -1687,7 +1779,14 @@ window.SCENE = {
      "r": "zeitung",
      "phrase": "Depois de ter bebido o café, leu o jornal.",
      "sens": "Après avoir bu le café, il a lu le journal.",
-     "n": "Après une préposition : <b>ter</b> + participe."
+     "n": "Après une préposition : <b>ter</b> + participe.",
+     "br": {
+      "c": [
+       "ter bebido",
+       "tinha bebido",
+       "se beber"
+      ]
+     }
     },
     {
      "q": "O cão já ___ adormecido antes de o café chegar.",
@@ -1700,7 +1799,11 @@ window.SCENE = {
      "r": "tasse-2",
      "phrase": "O cão já tinha adormecido antes de o café chegar.",
      "sens": "Le chien s'était déjà endormi avant que le café arrive.",
-     "n": "Toujours <b>ter</b>, jamais ser."
+     "n": "Toujours <b>ter</b>, jamais ser.",
+     "br": {
+      "q": "O cachorro já ___ adormecido antes de o café chegar.",
+      "phrase": "O cachorro já tinha adormecido antes de o café chegar."
+     }
     },
     {
      "q": "Quando a loja abriu, a empregada já tinha ___ três horas.",
@@ -1726,7 +1829,11 @@ window.SCENE = {
      "r": "broetchen",
      "phrase": "A Anna já tinha pago os papos-secos quando o telemóvel tocou.",
      "sens": "Anna avait déjà payé les petits pains quand son téléphone a sonné.",
-     "n": "<b>pagar</b> → <b>pago</b>."
+     "n": "<b>pagar</b> → <b>pago</b>.",
+     "br": {
+      "q": "A Anna já tinha ___ os papos-secos quando o celular tocou.",
+      "phrase": "A Anna já tinha pago os papos-secos quando o celular tocou."
+     }
     }
    ]
   },
@@ -1744,7 +1851,14 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Os papos-secos devem estar fresquinhos.",
      "sens": "Les petits pains doivent être frais.",
-     "n": "Déduction : <b>dever</b>, accordé au pluriel."
+     "n": "Déduction : <b>dever</b>, accordé au pluriel.",
+     "br": {
+      "c": [
+       "devem",
+       "se podem",
+       "têm"
+      ]
+     }
     },
     {
      "q": "___ que o cão seja do vizinho.",
@@ -1757,7 +1871,11 @@ window.SCENE = {
      "r": "nachbar",
      "phrase": "Pode ser que o cão seja do vizinho.",
      "sens": "Le chien appartient peut-être au voisin.",
-     "n": "<b>pode ser que</b> + conjuntivo."
+     "n": "<b>pode ser que</b> + conjuntivo.",
+     "br": {
+      "q": "___ que o cachorro seja do vizinho.",
+      "phrase": "Pode ser que o cachorro seja do vizinho."
+     }
     },
     {
      "q": "O pão ___ de hoje de manhã.",
@@ -1770,7 +1888,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O pão será de hoje de manhã.",
      "sens": "Le pain date sans doute de ce matin.",
-     "n": "Futur de supposition : <b>será</b>."
+     "n": "Futur de supposition : <b>será</b>.",
+     "br": {
+      "c": [
+       "será",
+       "seja",
+       "se foi"
+      ]
+     }
     },
     {
      "q": "Esta padaria ___ a melhor do bairro.",
@@ -1783,7 +1908,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Esta padaria seria a melhor do bairro.",
      "sens": "Cette boulangerie serait la meilleure du quartier.",
-     "n": "Le conditionnel de la rumeur : <b>seria</b>."
+     "n": "Le conditionnel de la rumeur : <b>seria</b>.",
+     "br": {
+      "c": [
+       "seria",
+       "se será",
+       "seja"
+      ]
+     }
     }
    ]
   }

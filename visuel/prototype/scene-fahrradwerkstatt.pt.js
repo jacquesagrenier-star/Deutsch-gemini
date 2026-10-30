@@ -42,7 +42,11 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "wand",
@@ -185,7 +189,11 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "leiter",
@@ -503,7 +511,11 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "br": {
+    "mot": "camiseta",
+    "pluriel": "as camisetas"
+   }
   },
   {
    "id": "hose",
@@ -539,7 +551,10 @@ window.SCENE = {
      "genre": "os",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "basket"
+     "fr": "basket",
+     "br": {
+      "mot": "tênis"
+     }
     }
    ],
    "sur": null,
@@ -997,7 +1012,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "compras_pt",
-     "fr": "vitrine"
+     "fr": "vitrine",
+     "br": {
+      "mot": "vitrine"
+     }
     }
    ],
    "sur": null,
@@ -1031,7 +1049,11 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "br": {
+    "mot": "cachorro",
+    "pluriel": "os cachorros"
+   }
   },
   {
    "id": "kasse",
@@ -1131,7 +1153,11 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "klingel",
@@ -1468,7 +1494,11 @@ window.SCENE = {
      "r": "fenster",
      "phrase": "O cão está à janela.",
      "sens": "Le chien est couché à la fenêtre.",
-     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela."
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela.",
+     "br": {
+      "q": "Onde está o cachorro?",
+      "phrase": "O cachorro está à janela."
+     }
     },
     {
      "q": "Onde está o cartaz?",
@@ -1525,7 +1555,10 @@ window.SCENE = {
      "r": "kette",
      "phrase": "Precisa-se de um alicate para a corrente.",
      "sens": "Il faut une pince pour la chaîne.",
-     "n": "<b>precisa-se de</b> = on a besoin de."
+     "n": "<b>precisa-se de</b> = on a besoin de.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "___ está avariado: a corrente!",
@@ -1577,7 +1610,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Em Lisboa anda-se cada vez mais de bicicleta.",
      "sens": "À Lisbonne, on fait de plus en plus de vélo.",
-     "n": "Le se impersonnel : <b>anda-se</b>."
+     "n": "Le se impersonnel : <b>anda-se</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "___ viu as minhas ferramentas?",
@@ -1621,7 +1657,10 @@ window.SCENE = {
      "r": null,
      "phrase": "A corrente arranja-se facilmente.",
      "sens": "La chaîne se répare facilement.",
-     "n": "Le se passif : <b>arranja-se</b>."
+     "n": "Le se passif : <b>arranja-se</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A roda está ___ arranjar ainda hoje.",
@@ -1647,7 +1686,10 @@ window.SCENE = {
      "r": null,
      "phrase": "Aqui arranjam-se bicicletas.",
      "sens": "Ici, on répare des vélos.",
-     "n": "Accord avec <b>bicicletas</b>."
+     "n": "Accord avec <b>bicicletas</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A corrente tem de ser ___.",
@@ -1660,7 +1702,12 @@ window.SCENE = {
      "r": "kette",
      "phrase": "A corrente tem de ser oleada.",
      "sens": "La chaîne doit être huilée.",
-     "n": "Passif : <b>ter de ser</b> + participe accordé."
+     "n": "Passif : <b>ter de ser</b> + participe accordé.",
+     "br": {
+      "q": "A corrente tem que ser ___.",
+      "phrase": "A corrente tem que ser oleada.",
+      "n": "Passif : <b>ter que ser</b> + participe accordé."
+     }
     },
     {
      "q": "A bicicleta vermelha já não se ___ vender.",
@@ -1673,7 +1720,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A bicicleta vermelha já não se consegue vender.",
      "sens": "Le vélo rouge ne peut plus se vendre.",
-     "n": "<b>já não se consegue</b> + infinitif."
+     "n": "<b>já não se consegue</b> + infinitif.",
+     "br": {
+      "c": [
+       "consegue",
+       "conseguem",
+       "se pode"
+      ]
+     }
     },
     {
      "q": "A oficina ___ às dezoito horas.",
@@ -1686,7 +1740,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A oficina fecha às dezoito horas.",
      "sens": "On ferme l'atelier à dix-huit heures.",
-     "n": "Le portugais dit simplement : <b>a oficina fecha</b>."
+     "n": "Le portugais dit simplement : <b>a oficina fecha</b>.",
+     "br": {
+      "c": [
+       "fecha",
+       "é se fechada",
+       "se fecha a"
+      ]
+     }
     }
    ]
   },
@@ -1704,7 +1765,14 @@ window.SCENE = {
      "r": "mark",
      "phrase": "Deve estar estragada.",
      "sens": "Elle doit être cassée.",
-     "n": "Déduction : <b>dever</b> (la roue → <b>estragada</b>)."
+     "n": "Déduction : <b>dever</b> (la roue → <b>estragada</b>).",
+     "br": {
+      "c": [
+       "Deve",
+       "Se pode",
+       "Tem"
+      ]
+     }
     },
     {
      "q": "O cão ___ ser do mecânico.",
@@ -1717,7 +1785,11 @@ window.SCENE = {
      "r": "mann",
      "phrase": "O cão pode ser do mecânico.",
      "sens": "Le chien appartient peut-être au mécanicien.",
-     "n": "Possibilité : <b>poder</b>."
+     "n": "Possibilité : <b>poder</b>.",
+     "br": {
+      "q": "O cachorro ___ ser do mecânico.",
+      "phrase": "O cachorro pode ser do mecânico."
+     }
     },
     {
      "q": "O arranjo ___ demorar uma hora.",
@@ -1730,7 +1802,14 @@ window.SCENE = {
      "r": null,
      "phrase": "O arranjo deverá demorar uma hora.",
      "sens": "La réparation devrait durer une heure.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "Esta oficina ___ a melhor do bairro.",
@@ -1743,10 +1822,18 @@ window.SCENE = {
      "r": null,
      "phrase": "Esta oficina seria a melhor do bairro.",
      "sens": "Cet atelier serait le meilleur du quartier.",
-     "n": "Le conditionnel de la rumeur."
+     "n": "Le conditionnel de la rumeur.",
+     "br": {
+      "c": [
+       "seria",
+       "se será",
+       "seja"
+      ]
+     }
     }
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "Na bicicletaria"
 };

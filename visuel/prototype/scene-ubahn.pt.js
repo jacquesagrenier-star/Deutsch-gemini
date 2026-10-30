@@ -48,7 +48,11 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "uhr",
@@ -89,7 +93,12 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "br": {
+    "mot": "tela",
+    "genre": "a",
+    "pluriel": "as telas"
+   }
   },
   {
    "id": "wand",
@@ -281,7 +290,12 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "br": {
+    "mot": "violão",
+    "genre": "o",
+    "pluriel": "os violões"
+   }
   },
   {
    "id": "hocker",
@@ -477,7 +491,11 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "br": {
+    "mot": "cachorro",
+    "pluriel": "os cachorros"
+   }
   },
   {
    "id": "muelleimer",
@@ -498,7 +516,12 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "ubahn",
@@ -514,7 +537,10 @@ window.SCENE = {
      "genre": "o",
      "niveau": "A1",
      "theme": "cidade_pt",
-     "fr": "train"
+     "fr": "train",
+     "br": {
+      "mot": "trem"
+     }
     }
    ],
    "sur": null,
@@ -533,7 +559,11 @@ window.SCENE = {
      82
     ]
    ],
-   "fr": "métro"
+   "fr": "métro",
+   "br": {
+    "mot": "metrô",
+    "pluriel": "os metrôs"
+   }
   },
   {
    "id": "tuer",
@@ -617,7 +647,12 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "schal",
@@ -722,7 +757,12 @@ window.SCENE = {
      2.3
     ]
    ],
-   "fr": "titre de transport"
+   "fr": "titre de transport",
+   "br": {
+    "mot": "passagem",
+    "genre": "a",
+    "pluriel": "as passagens"
+   }
   },
   {
    "id": "hose",
@@ -776,7 +816,10 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "basket"
+   "fr": "basket",
+   "br": {
+    "mot": "tênis"
+   }
   },
   {
    "id": "bahnsteig",
@@ -894,7 +937,11 @@ window.SCENE = {
      "r": "bank",
      "phrase": "O cão está ao lado do banco.",
      "sens": "Le chien est assis à côté du banc.",
-     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o banco = <b>ao lado do</b> banco."
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o banco = <b>ao lado do</b> banco.",
+     "br": {
+      "q": "Onde está o cachorro?",
+      "phrase": "O cachorro está ao lado do banco."
+     }
     },
     {
      "q": "Onde está o metro?",
@@ -907,7 +954,10 @@ window.SCENE = {
      "r": "bahnsteig",
      "phrase": "O metro está junto do cais.",
      "sens": "Le métro est à quai.",
-     "n": "<b>junto de</b> = près de, contre. <b>junto de</b> + o cais = <b>junto do</b> cais."
+     "n": "<b>junto de</b> = près de, contre. <b>junto de</b> + o cais = <b>junto do</b> cais.",
+     "br": {
+      "q": "Onde está o metrô?"
+     }
     },
     {
      "q": "Onde estão os passageiros?",
@@ -920,7 +970,15 @@ window.SCENE = {
      "r": "ubahn",
      "phrase": "Os passageiros estão no metro.",
      "sens": "Les voyageurs sont assis dans le métro.",
-     "n": "<b>em</b> + o = <b>no</b> : no metro."
+     "n": "<b>em</b> + o = <b>no</b> : no metro.",
+     "br": {
+      "c": [
+       "no metrô",
+       "junto do quiosque",
+       "na escada"
+      ],
+      "phrase": "Os passageiros estão no metrô."
+     }
     }
    ]
   },
@@ -951,7 +1009,11 @@ window.SCENE = {
      "r": "ubahn",
      "phrase": "O Mark despacha-se porque o metro vai partir.",
      "sens": "Mark se dépêche, car le métro va partir.",
-     "n": "La cause : <b>porque</b> (ou <b>pois</b>)."
+     "n": "La cause : <b>porque</b> (ou <b>pois</b>).",
+     "br": {
+      "q": "O Mark se despacha ___ o metrô vai partir.",
+      "phrase": "O Mark se despacha porque o metrô vai partir."
+     }
     },
     {
      "q": "O homem não canta, ___ toca guitarra.",
@@ -964,7 +1026,11 @@ window.SCENE = {
      "r": "gitarre",
      "phrase": "O homem não canta, mas sim toca guitarra.",
      "sens": "L'homme ne chante pas, il joue de la guitare.",
-     "n": "Après une négation, la rectification : <b>mas sim</b>."
+     "n": "Après une négation, la rectification : <b>mas sim</b>.",
+     "br": {
+      "q": "O homem não canta, ___ toca violão.",
+      "phrase": "O homem não canta, mas sim toca violão."
+     }
     },
     {
      "q": "Queres um pastel ___ um jornal?",
@@ -1003,7 +1069,11 @@ window.SCENE = {
      "r": "frau",
      "phrase": "A senhora tem um guarda-chuva, pois lá fora está a chover.",
      "sens": "La dame a un parapluie, car il pleut dehors.",
-     "n": "<b>pois</b> = car."
+     "n": "<b>pois</b> = car.",
+     "br": {
+      "q": "A senhora tem um guarda-chuva, ___ lá fora está chovendo.",
+      "phrase": "A senhora tem um guarda-chuva, pois lá fora está chovendo."
+     }
     },
     {
      "q": "O cão não ladra, ___ está sentado ao lado do banco.",
@@ -1016,7 +1086,11 @@ window.SCENE = {
      "r": "bank",
      "phrase": "O cão não ladra, mas sim está sentado ao lado do banco.",
      "sens": "Le chien n'aboie pas, il est assis tranquillement à côté du banc.",
-     "n": "<b>mas sim</b>."
+     "n": "<b>mas sim</b>.",
+     "br": {
+      "q": "O cachorro não ladra, ___ está sentado ao lado do banco.",
+      "phrase": "O cachorro não ladra, mas sim está sentado ao lado do banco."
+     }
     },
     {
      "q": "O Mark bebe o café ___ entra no metro.",
@@ -1029,7 +1103,11 @@ window.SCENE = {
      "r": "mark",
      "phrase": "O Mark bebe o café e entra no metro.",
      "sens": "Mark boit du café et monte dans le métro.",
-     "n": "<b>e</b>."
+     "n": "<b>e</b>.",
+     "br": {
+      "q": "O Mark bebe o café ___ entra no metrô.",
+      "phrase": "O Mark bebe o café e entra no metrô."
+     }
     }
    ]
   },
@@ -1047,7 +1125,11 @@ window.SCENE = {
      "r": "mark",
      "phrase": "Caso o metro venha atrasado, o Mark apanha o autocarro.",
      "sens": "Si jamais le métro a du retard, Mark prend le bus.",
-     "n": "<b>caso</b> + conjuntivo présent."
+     "n": "<b>caso</b> + conjuntivo présent.",
+     "br": {
+      "q": "Caso o metrô ___ atrasado, o Mark pega o ônibus.",
+      "phrase": "Caso o metrô venha atrasado, o Mark pega o ônibus."
+     }
     },
     {
      "q": "Se o Mark não ___ depressa, perde o metro.",
@@ -1060,7 +1142,11 @@ window.SCENE = {
      "r": "tuer",
      "phrase": "Se o Mark não entrar depressa, perde o metro.",
      "sens": "Si Mark ne monte pas vite, il rate le métro.",
-     "n": "<b>se</b> + futur : futuro do conjuntivo."
+     "n": "<b>se</b> + futur : futuro do conjuntivo.",
+     "br": {
+      "q": "Se o Mark não ___ depressa, perde o metrô.",
+      "phrase": "Se o Mark não entrar depressa, perde o metrô."
+     }
     },
     {
      "q": "Quando ___, a senhora leva o guarda-chuva.",
@@ -1073,7 +1159,14 @@ window.SCENE = {
      "r": "frau",
      "phrase": "Quando chove, a senhora leva o guarda-chuva.",
      "sens": "Quand il pleut, la dame prend son parapluie.",
-     "n": "Une habitude : <b>quando</b> + indicatif."
+     "n": "Une habitude : <b>quando</b> + indicatif.",
+     "br": {
+      "c": [
+       "chove",
+       "chova",
+       "se chover"
+      ]
+     }
     },
     {
      "q": "Se ___ fome, compra um pastel!",
@@ -1130,7 +1223,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ele deve estar bem-disposto.",
      "sens": "Il doit être de bonne humeur.",
-     "n": "<b>bem-disposto</b> = de bonne humeur."
+     "n": "<b>bem-disposto</b> = de bonne humeur.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "A senhora ___ ir para o aeroporto.",
@@ -1156,7 +1256,16 @@ window.SCENE = {
      "r": "frau",
      "phrase": "O cão será da senhora.",
      "sens": "Le chien appartient sans doute à la dame.",
-     "n": "Futur de supposition."
+     "n": "Futur de supposition.",
+     "br": {
+      "q": "O cachorro ___ da senhora.",
+      "c": [
+       "será",
+       "seja",
+       "se foi"
+      ],
+      "phrase": "O cachorro será da senhora."
+     }
     },
     {
      "q": "Esta estação de metro ___ mais de cem anos.",
@@ -1169,10 +1278,20 @@ window.SCENE = {
      "r": null,
      "phrase": "Esta estação de metro teria mais de cem anos.",
      "sens": "Cette station de métro aurait plus de cent ans.",
-     "n": "Le conditionnel de la rumeur."
+     "n": "Le conditionnel de la rumeur.",
+     "br": {
+      "q": "Esta estação de metrô ___ mais de cem anos.",
+      "c": [
+       "teria",
+       "se terá",
+       "tenha"
+      ],
+      "phrase": "Esta estação de metrô teria mais de cem anos."
+     }
     }
    ]
   }
  },
- "traductions": {}
+ "traductions": {},
+ "titreBr": "No metrô"
 };

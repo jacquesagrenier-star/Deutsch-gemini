@@ -27,7 +27,11 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "br": {
+    "mot": "abajur",
+    "pluriel": "os abajures"
+   }
   },
   {
    "id": "wand",
@@ -211,7 +215,10 @@ window.SCENE = {
      "genre": "a",
      "niveau": "A1",
      "theme": "compras_pt",
-     "fr": "vitrine"
+     "fr": "vitrine",
+     "br": {
+      "mot": "vitrine"
+     }
     }
    ],
    "sur": null,
@@ -281,7 +288,11 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "piéton"
+   "fr": "piéton",
+   "br": {
+    "mot": "pedestre",
+    "pluriel": "os pedestres"
+   }
   },
   {
    "id": "fahrrad",
@@ -547,7 +558,12 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "handtuch-2",
@@ -604,7 +620,10 @@ window.SCENE = {
      "genre": "os",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "basket"
+     "fr": "basket",
+     "br": {
+      "mot": "tênis"
+     }
     }
    ],
    "sur": null,
@@ -666,7 +685,11 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "jean"
+   "fr": "jean",
+   "br": {
+    "mot": "calça jeans",
+    "genre": "a"
+   }
   },
   {
    "id": "t-shirt",
@@ -687,7 +710,11 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "br": {
+    "mot": "camiseta",
+    "pluriel": "as camisetas"
+   }
   },
   {
    "id": "kleid",
@@ -791,7 +818,12 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "tisch",
@@ -839,7 +871,12 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "poubelle"
+   "fr": "poubelle",
+   "br": {
+    "mot": "lixeira",
+    "genre": "a",
+    "pluriel": "as lixeiras"
+   }
   },
   {
    "id": "frau",
@@ -931,7 +968,11 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "br": {
+    "mot": "xícara",
+    "pluriel": "as xícaras"
+   }
   },
   {
    "id": "maedchen",
@@ -980,7 +1021,12 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "pull"
+   "fr": "pull",
+   "br": {
+    "mot": "suéter",
+    "genre": "o",
+    "pluriel": "os suéteres"
+   }
   },
   {
    "id": "handy",
@@ -1001,7 +1047,11 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "téléphone portable"
+   "fr": "téléphone portable",
+   "br": {
+    "mot": "celular",
+    "pluriel": "os celulares"
+   }
   },
   {
    "id": "hose-2",
@@ -1016,7 +1066,11 @@ window.SCENE = {
      "genre": "as",
      "niveau": "A1",
      "theme": "roupa_pt",
-     "fr": "jean"
+     "fr": "jean",
+     "br": {
+      "mot": "calça jeans",
+      "genre": "a"
+     }
     }
    ],
    "sur": null,
@@ -1163,7 +1217,11 @@ window.SCENE = {
      "r": "korb",
      "phrase": "As calças de ganga estão no cesto.",
      "sens": "Le jean est dans le panier.",
-     "n": "<b>em</b> + o = <b>no</b> : no cesto."
+     "n": "<b>em</b> + o = <b>no</b> : no cesto.",
+     "br": {
+      "q": "Onde estão as calças jeans?",
+      "phrase": "As calças jeans estão no cesto."
+     }
     },
     {
      "q": "Onde está o detergente?",
@@ -1220,7 +1278,14 @@ window.SCENE = {
      "r": "waschmaschine",
      "phrase": "A Anna deixa a máquina a trabalhar.",
      "sens": "Anna fait tourner la machine à laver.",
-     "n": "<b>deixar</b> + a + infinitif : laisser tourner."
+     "n": "<b>deixar</b> + a + infinitif : laisser tourner.",
+     "br": {
+      "c": [
+       "deixa",
+       "faz",
+       "se põe"
+      ]
+     }
     },
     {
      "q": "Ela deixa o cesto ___ chão.",
@@ -1246,7 +1311,16 @@ window.SCENE = {
      "r": "maedchen",
      "phrase": "A senhora deixa a menina brincar com o telemóvel.",
      "sens": "La femme laisse la fille jouer avec le téléphone.",
-     "n": "<b>deixar alguém</b> + infinitif."
+     "n": "<b>deixar alguém</b> + infinitif.",
+     "br": {
+      "q": "A senhora deixa a menina ___ com o celular.",
+      "c": [
+       "brincar",
+       "brinca",
+       "a se brincar"
+      ],
+      "phrase": "A senhora deixa a menina brincar com o celular."
+     }
     },
     {
      "q": "___-me ajudar-te!",
@@ -1259,7 +1333,17 @@ window.SCENE = {
      "r": null,
      "phrase": "Deixa-me ajudar-te!",
      "sens": "Laisse-moi t'aider !",
-     "n": "Impératif, tu : <b>deixa-me</b>."
+     "n": "Impératif, tu : <b>deixa-me</b>.",
+     "br": {
+      "q": "___ me ajudar-te!",
+      "c": [
+       "Deixa",
+       "Deixas",
+       "Te deixe"
+      ],
+      "phrase": "Deixa me ajudar-te!",
+      "n": "Impératif, tu : <b>me deixa</b>."
+     }
     },
     {
      "q": "Deixo o casaco ___ casa.",
@@ -1285,7 +1369,17 @@ window.SCENE = {
      "r": "korb",
      "phrase": "A Anna deixou as calças de ganga no cesto.",
      "sens": "Anna a laissé le jean dans le panier.",
-     "n": "Le jean = <b>as calças de ganga</b>, au Portugal."
+     "n": "Le jean = <b>as calças de ganga</b>, au Portugal.",
+     "br": {
+      "q": "A Anna ___ as calças jeans no cesto.",
+      "c": [
+       "deixou",
+       "deixava",
+       "se deixa"
+      ],
+      "phrase": "A Anna deixou as calças jeans no cesto.",
+      "n": "Le jean = <b>as calças jeans</b>, au Portugal."
+     }
     },
     {
      "q": "Ela ___ lavar a roupa.",
@@ -1298,7 +1392,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Ela mandou lavar a roupa.",
      "sens": "Elle a fait laver le linge.",
-     "n": "Faire faire : <b>mandar</b> + infinitif."
+     "n": "Faire faire : <b>mandar</b> + infinitif.",
+     "br": {
+      "c": [
+       "mandou",
+       "se deixou",
+       "se fez"
+      ]
+     }
     },
     {
      "q": "___ para casa!",
@@ -1311,7 +1412,14 @@ window.SCENE = {
      "r": null,
      "phrase": "Vamos para casa!",
      "sens": "Rentrons à la maison !",
-     "n": "<b>vamos</b> = allons, rentrons."
+     "n": "<b>vamos</b> = allons, rentrons.",
+     "br": {
+      "c": [
+       "Vamos",
+       "Deixemos",
+       "Nos vamos"
+      ]
+     }
     }
    ]
   },
@@ -1355,7 +1463,10 @@ window.SCENE = {
      "r": "bank",
      "phrase": "A senhora que está a ler está sentada no banco.",
      "sens": "La femme qui lit est assise sur le banc.",
-     "n": "<b>estar a ler</b>."
+     "n": "<b>estar a ler</b>.",
+     "br": {
+      "omettre": true
+     }
     },
     {
      "q": "A menina segura um telemóvel ___.",
@@ -1368,7 +1479,12 @@ window.SCENE = {
      "r": "maedchen",
      "phrase": "A menina segura um telemóvel desligado.",
      "sens": "La fille tient un téléphone éteint.",
-     "n": "<b>o telemóvel</b> → <b>desligado</b>."
+     "n": "<b>o telemóvel</b> → <b>desligado</b>.",
+     "br": {
+      "q": "A menina segura um celular ___.",
+      "phrase": "A menina segura um celular desligado.",
+      "n": "<b>o celular</b> → <b>desligado</b>."
+     }
     },
     {
      "q": "A porta ___ continua fechada.",
@@ -1394,7 +1510,14 @@ window.SCENE = {
      "r": "anna",
      "phrase": "A Anna segura uma camisa ainda por lavar.",
      "sens": "Anna tient une chemise pas encore lavée.",
-     "n": "<b>por</b> + infinitif : pas encore fait."
+     "n": "<b>por</b> + infinitif : pas encore fait.",
+     "br": {
+      "c": [
+       "lavar",
+       "lavada",
+       "se lavar"
+      ]
+     }
     }
    ]
   },
@@ -1412,7 +1535,14 @@ window.SCENE = {
      "r": "anna",
      "phrase": "Ela não deve ter lavado roupa há muito tempo.",
      "sens": "Elle n'a pas dû faire de lessive depuis longtemps.",
-     "n": "Déduction sur le passé : <b>deve ter</b> + participe."
+     "n": "Déduction sur le passé : <b>deve ter</b> + participe.",
+     "br": {
+      "c": [
+       "deve",
+       "se pode",
+       "tem"
+      ]
+     }
     },
     {
      "q": "A menina ___ ser neta da senhora.",
@@ -1438,7 +1568,14 @@ window.SCENE = {
      "r": null,
      "phrase": "A roupa deverá estar pronta daqui a uma hora.",
      "sens": "Le linge devrait être prêt dans une heure.",
-     "n": "Probable : <b>deverá</b>."
+     "n": "Probable : <b>deverá</b>.",
+     "br": {
+      "c": [
+       "deverá",
+       "se deveria",
+       "deva"
+      ]
+     }
     },
     {
      "q": "___ que a lavandaria vai fechar em breve.",
