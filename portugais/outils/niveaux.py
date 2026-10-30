@@ -394,10 +394,13 @@ def conjugaison(jeu):
 
 
 # ---------------------------------------------------------------- tout
-def construire(jeu):
+def construire(jeu, variantes=None):
+    """`variantes` : le dictionnaire des mots bresiliens de construire.py (il
+    l'ecrit dans variantes-br.json) ; sans lui, celui du jeu."""
     deja = Deja(jeu)
     ic = icones()
-    variantes = jeu.setdefault("variantes-br.json", {"noms": {}, "verbes": {}, "adjectifs": {}})
+    if variantes is None:
+        variantes = jeu.setdefault("variantes-br.json", {"noms": {}, "verbes": {}, "adjectifs": {}})
     for k in ("noms", "verbes", "adjectifs"):
         variantes.setdefault(k, {})
     for k in ("verbes.json", "adjectifs.json", "adverbes.json", "expressions.json"):
