@@ -199,12 +199,16 @@ Les consignes et textes des images disent « Lisbonne » là où l'allemand dit
 
 ## Les questions pour Jacques
 
+Mises à jour le 30 oct. 2026 (le portugais va maintenant de l'A1 au C1, en v1027).
+
 1. **Lisbonne** comme ville de l'action (Premiers pas, A1 voyage, scènes) : d'accord ?
 2. **Les scènes** : garder les 43, ou écarter `zug`, `weihnachtsmarkt`, `post` comme pour l'anglais ?
-3. **Les règles Firestore** `usersPt` / `resumesPt` : à coller (`portugais/REGLES-FIRESTORE.md`), le jour où tu veux que la progression suive d'un appareil à l'autre.
-4. **La voix ElevenLabs** pour l'A1 (≈ 81 000 crédits, plus le comparatif à l'aveugle) : quand tu le voudras.
-5. **Un relecteur lusophone du Portugal** : en connais-tu un ? Tout est en brouillon.
+3. **Les règles Firestore** `usersPt` / `resumesPt` : à coller (`portugais/REGLES-FIRESTORE.md`), le jour où tu veux que la progression suive d'un appareil à l'autre. Sans elles, l'essai marche, mais la progression reste sur l'appareil.
+4. **La voix ElevenLabs** pour l'A1 (≈ 81 000 crédits, plus un comparatif à l'aveugle d'environ 1 500) : quand tu le voudras. L'A2 doublerait à peu près la somme.
+5. **Un relecteur du Portugal** : en connais-tu un ? Tout est en brouillon, de l'A1 au C1.
 6. **« Tu » ou « o senhor »** : les cartes tutoient entre proches et vouvoient (o senhor / a senhora) au guichet, comme on le fait au Portugal ; « você », délicat là-bas, n'est enseigné qu'en passant. D'accord ?
+7. **Ouvrir l'essai à quelqu'un** (comme l'anglais pour Daniel et Nicole) : à qui, et quand ? Le bouton n'existe pas encore pour le portugais.
+8. **La mosaïque portugaise** (des peintres du Portugal) : préparée par une autre session ; en attendant, l'essai montre le tableau par défaut.
 
 ## Commandes
 
