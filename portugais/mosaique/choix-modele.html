@@ -1,0 +1,162 @@
+<title>Tableaux portugais</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Le meme mur de musee que la page des tableaux americains (29 oct. 2026) :
+   une grille de toiles avec leur cartel, la selection numerotee dans l'ordre
+   du toucher, une barre de choix en bas. Deux groupes : libres partout
+   (peintres morts avant 1926) et libres en Europe (1926-1955), a decider. */
+:root{
+  --fond:#DCE6EC; --carte:#F7FAFC; --encre:#1C2430; --doux:#55606E; --ambre:#E8A23A; --ambre-encre:#7A4A06;
+  --ligne:rgba(28,36,48,.14); --choisi:#1C2430; --sur-choisi:#FFFFFF; --europe:#2F5E8C;
+  --f-titre:"Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --f-texte:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --fond:#0E1C26; --carte:#152A39; --encre:#EEF2F5; --doux:#A9B8C4; --ambre:#F0A93C; --ambre-encre:#F6C46A;
+  --ligne:rgba(255,255,255,.14); --choisi:#F0A93C; --sur-choisi:#1A1206; --europe:#8DB8E6; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --fond:#0E1C26; --carte:#152A39; --encre:#EEF2F5; --doux:#A9B8C4; --ambre:#F0A93C; --ambre-encre:#F6C46A;
+  --ligne:rgba(255,255,255,.14); --choisi:#F0A93C; --sur-choisi:#1A1206; --europe:#8DB8E6; color-scheme:dark }
+*{box-sizing:border-box}
+body{margin:0; background:var(--fond); color:var(--encre); font-family:var(--f-texte); font-size:15px; line-height:1.45;
+  padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:20px 140px}
+.page{max-width:1100px; margin:0 auto; display:flex; flex-direction:column; gap:22px}
+header h1{font-family:var(--f-titre); font-weight:700; font-size:clamp(26px, 5vw, 36px); margin:0; text-wrap:balance}
+header p{margin:6px 0 0; color:var(--doux); max-width:64ch}
+.outils{display:flex; flex-wrap:wrap; gap:8px}
+button{font:inherit; cursor:pointer}
+.bouton{border:1px solid var(--ligne); background:var(--carte); color:var(--encre); border-radius:999px; padding:8px 14px; font-weight:600; font-size:14px}
+.bouton:focus-visible, .toile:focus-visible, .envoyer:focus-visible{outline:3px solid var(--ambre); outline-offset:2px}
+section h2{font-family:var(--f-titre); font-size:21px; margin:0 0 4px}
+section .sous{margin:0 0 12px; color:var(--doux); font-size:14px; max-width:72ch}
+.grille{display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap:14px}
+.toile{position:relative; display:flex; flex-direction:column; text-align:left; border:2px solid transparent; border-radius:14px; background:var(--carte);
+  padding:0; overflow:hidden; color:inherit; transition:transform .12s, border-color .12s}
+.toile:active{transform:scale(.985)}
+.toile img{display:block; width:100%; aspect-ratio:4 / 3; object-fit:cover; background:var(--ligne)}
+.cartel{padding:9px 11px 11px; display:flex; flex-direction:column; gap:2px; min-width:0}
+.cartel .titre{font-family:var(--f-titre); font-style:italic; font-size:14px; line-height:1.3}
+.cartel .fr{font-size:12.5px; color:var(--doux); line-height:1.3}
+.cartel .qui{font-size:12.5px; color:var(--doux)}
+.num{position:absolute; top:8px; left:8px; min-width:30px; height:26px; padding:0 8px; border-radius:13px; display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:13px; background:rgba(255,255,255,.88); color:#1C2430; font-variant-numeric:tabular-nums}
+.ne{position:absolute; top:8px; right:8px; height:22px; padding:0 8px; border-radius:11px; display:flex; align-items:center; font-size:11px; font-weight:700;
+  letter-spacing:.03em; background:rgba(28,36,48,.72); color:#fff}
+.toile.on{border-color:var(--choisi)}
+.toile.on .num{background:var(--choisi); color:var(--sur-choisi)}
+.europe .sous b{color:var(--europe)}
+.barre{position:fixed; left:0; right:0; bottom:0; background:var(--carte); border-top:1px solid var(--ligne);
+  padding:12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; justify-content:space-between; z-index:5}
+.compte{font-weight:700; font-variant-numeric:tabular-nums}
+.compte span{color:var(--doux); font-weight:500}
+.envoyer{background:var(--choisi); color:var(--sur-choisi); border:0; border-radius:999px; padding:11px 18px; font-weight:700}
+.texte{width:100%; font:inherit; font-size:13px; border:1px solid var(--ligne); border-radius:10px; padding:8px 10px; background:var(--fond); color:var(--encre); resize:vertical}
+.aide{font-size:13px; color:var(--ambre-encre); font-weight:600}
+@media (prefers-reduced-motion: reduce){ .toile{transition:none} }
+</style>
+<div class="page">
+  <header>
+    <h1>Tableaux portugais pour la mosaïque du portugais</h1>
+    <p>Touche les tableaux que tu gardes, dans l'ordre où tu veux qu'ils apparaissent : chaque toile choisie prend son numéro de passage. Touche-la de nouveau pour la retirer. Quand c'est fait, copie ton choix et colle-le-moi dans la conversation.</p>
+    <p>Tous à l'horizontale, du domaine public (licence lue fichier par fichier sur Wikimedia Commons), sans nu, guerre ni sujet religieux ; dans chaque groupe, du plus coloré au moins coloré.</p>
+  </header>
+  <div class="outils" id="outils"></div>
+  <div id="groupes"></div>
+</div>
+
+<div class="barre" role="region" aria-label="Mon choix">
+  <div class="compte" id="compte">0 tableau choisi <span>· l'espagnol en a 66, l'anglais 67</span></div>
+  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+    <span class="aide" id="aide" aria-live="polite"></span>
+    <button class="envoyer" id="copier" type="button">Copier mon choix</button>
+  </div>
+  <textarea class="texte" id="texteChoix" rows="2" readonly hidden aria-label="Mon choix, à copier"></textarea>
+</div>
+
+<script>
+const GROUPES = /*GROUPES*/[];
+const T = /*DONNEES*/[];
+(function(){
+  const CLE = "choixMosaiquePortugaise1";
+  let choix = [];
+  try{ choix = JSON.parse(localStorage.getItem(CLE) || "[]"); }catch(e){ choix = []; }
+  const connus = new Set(T.map(d => d.n));
+  choix = Array.isArray(choix) ? choix.filter(n => connus.has(n)) : [];
+  const sauver = () => { try{ localStorage.setItem(CLE, JSON.stringify(choix)); }catch(e){} };
+
+  function carte(d){
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "toile"; b.dataset.n = d.n;
+    const img = document.createElement("img"); img.loading = "lazy"; img.decoding = "async"; img.alt = ""; img.src = d.i;
+    const num = document.createElement("span"); num.className = "num"; num.textContent = d.n;
+    const cartel = document.createElement("span"); cartel.className = "cartel";
+    const titre = document.createElement("span"); titre.className = "titre"; titre.textContent = d.t;
+    cartel.appendChild(titre);
+    if(d.f){ const fr = document.createElement("span"); fr.className = "fr"; fr.textContent = d.f; cartel.appendChild(fr); }
+    const qui = document.createElement("span"); qui.className = "qui";
+    qui.textContent = d.p + " († " + d.m + ")" + (d.a ? " · " + d.a : "") + (d.c ? " · " + d.c : "");
+    cartel.appendChild(qui);
+    b.append(img, num, cartel);
+    if(d.s){ const ne = document.createElement("span"); ne.className = "ne"; ne.textContent = "petite · " + d.s + " px"; b.appendChild(ne); }
+    b.setAttribute("aria-label", "Tableau " + d.n + ", " + d.p + ", " + d.t);
+    b.addEventListener("click", () => {
+      const i = choix.indexOf(d.n);
+      if(i >= 0) choix.splice(i, 1); else choix.push(d.n);
+      sauver(); peindre();
+    });
+    return b;
+  }
+
+  function peindre(){
+    document.querySelectorAll(".toile").forEach(b => {
+      const n = b.dataset.n, i = choix.indexOf(n), num = b.querySelector(".num");
+      b.classList.toggle("on", i >= 0);
+      b.setAttribute("aria-pressed", i >= 0 ? "true" : "false");
+      num.textContent = i >= 0 ? "n° " + n + " · " + (i + 1) + "ᵉ" : n;
+    });
+    const k = choix.length;
+    document.getElementById("compte").innerHTML = k + (k > 1 ? " tableaux choisis" : " tableau choisi")
+      + " <span>· l'espagnol en a 66, l'anglais 67</span>";
+    document.getElementById("texteChoix").hidden = true;
+    document.getElementById("aide").textContent = "";
+  }
+
+  const outils = document.getElementById("outils"), conteneur = document.getElementById("groupes");
+  GROUPES.forEach(g => {
+    const lot = T.filter(d => d.g === g.id);
+    if(!lot.length) return;
+    const s = document.createElement("section"); s.className = g.id; s.setAttribute("aria-labelledby", "t-" + g.id);
+    const h = document.createElement("h2"); h.id = "t-" + g.id; h.textContent = g.titre;
+    const p = document.createElement("p"); p.className = "sous"; p.innerHTML = g.sous;
+    const grille = document.createElement("div"); grille.className = "grille";
+    lot.forEach(d => grille.appendChild(carte(d)));
+    s.append(h, p, grille); conteneur.appendChild(s);
+    const b = document.createElement("button"); b.type = "button"; b.className = "bouton";
+    b.textContent = g.bouton;
+    b.addEventListener("click", () => { lot.forEach(d => { if(choix.indexOf(d.n) < 0) choix.push(d.n); }); sauver(); peindre(); });
+    outils.appendChild(b);
+  });
+  const tout = document.createElement("button"); tout.type = "button"; tout.className = "bouton"; tout.textContent = "Tout retirer";
+  tout.addEventListener("click", () => {
+    if(tout.dataset.sur !== "1"){ tout.dataset.sur = "1"; tout.textContent = "Tout retirer ?"; setTimeout(() => { tout.dataset.sur = ""; tout.textContent = "Tout retirer"; }, 4000); return; }
+    tout.dataset.sur = ""; tout.textContent = "Tout retirer"; choix = []; sauver(); peindre();
+  });
+  outils.appendChild(tout);
+
+  function texte(){ return "Mosaïque portugaise, dans cet ordre : n° " + choix.join(", "); }
+  document.getElementById("copier").addEventListener("click", () => {
+    const aide = document.getElementById("aide"), zone = document.getElementById("texteChoix");
+    if(!choix.length){ aide.textContent = "Choisis au moins un tableau d'abord."; return; }
+    const t = texte(); zone.value = t;
+    const repli = () => { zone.hidden = false; zone.focus(); zone.select(); aide.textContent = "Sélectionne le texte ci-dessous et copie-le."; };
+    try{
+      navigator.clipboard.writeText(t).then(() => { aide.textContent = "Copié : colle-le dans la conversation."; }, repli);
+    }catch(e){ repli(); }
+  });
+  peindre();
+})();
+</script>
