@@ -124,7 +124,7 @@ o veterinário | le vétérinaire | O veterinário trata animais doentes. | Le v
 """,
 "comida_a2_pt": """
 o abacate | l'avocat (fruit) | Ponho abacate na salada. | Je mets de l'avocat dans la salade.
-a abobrinha | la courgette | Faço a abobrinha grelhada. | Je fais griller la courgette.
+a curgete | la courgette | Faço a curgete grelhada. | Je fais griller la courgette. | br=abobrinha
 o abridor de latas | l'ouvre-boîte | O abridor de latas está na gaveta. | L'ouvre-boîte est dans le tiroir. | pl=abridores de latas
 a abóbora | la citrouille, la courge | Fazemos sopa de abóbora no outono. | En automne, on fait de la soupe à la citrouille.
 o alho-poró | le poireau | O alho-poró tem um sabor suave. | Le poireau a un goût doux. | g? | pl=alhos-porós
@@ -385,14 +385,14 @@ o galho | la branche | Um pássaro pousa no galho. | Un oiseau se pose sur la br
 o ganso | l'oie | No Natal tem ganso. | À Noël, il y a une oie.
 a geleira | le glacier | A geleira está a derreter aos poucos. | Le glacier fond lentement. | g?
 o golfinho | le dauphin | O golfinho pula para fora da água. | Le dauphin bondit hors de l'eau.
-a grama | l'herbe | As crianças brincam na grama. | Les enfants jouent dans l'herbe.
+a relva | l'herbe, la pelouse | As crianças brincam na relva. | Les enfants jouent dans l'herbe. | br=grama
 o granizo | la grêle | O granizo danificou o carro. | La grêle a endommagé la voiture.
 o incêndio | l'incendie | Houve um incêndio na floresta. | Il y a eu un incendie dans la forêt.
 o lobo | le loup | Os lobos voltaram a viver nesta floresta. | Des loups vivent de nouveau dans cette forêt.
 a margem | la rive | Na margem há muitos pássaros. | Beaucoup d'oiseaux sont assis sur la rive.
 o monte | le mont, la colline | Há um monte de trabalho. | Il y a un tas de travail.
 o ninho | le nid | Na árvore há um ninho com quatro ovos. | Il y a un nid avec quatre œufs dans l'arbre.
-o orvalho | la rosée | De manhã tem orvalho na grama. | La rosée est sur l'herbe le matin.
+o orvalho | la rosée | De manhã há orvalho na relva. | La rosée est sur l'herbe le matin.
 o ouriço | l'hérisson | O ouriço enrola-se. | Le hérisson se met en boule.
 a paisagem | le paysage | A paisagem daqui é linda. | Le paysage d'ici est magnifique.
 o papagaio | le perroquet | O papagaio sabe repetir palavras. | Le perroquet peut répéter des mots.

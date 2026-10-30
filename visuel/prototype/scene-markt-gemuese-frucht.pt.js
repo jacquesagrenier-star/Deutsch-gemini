@@ -432,7 +432,8 @@ window.SCENE = {
    "mot": "curgete",
    "genre": "a",
    "pluriel": "as curgetes",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {

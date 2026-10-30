@@ -150,7 +150,7 @@ a cobertura morta | le paillis | A cobertura morta mantém a humidade do solo. |
 o composto | le compost | O composto precisa de ar, não só de tempo. | Le compost a besoin d'air, pas seulement de temps.
 a estaca | la bouture | De uma estaca nasce um arbusto em dois anos. | D'une bouture naît un arbuste en deux ans.
 a estrutura do imóvel | la structure du bâti | A estrutura do imóvel é melhor do que a primeira impressão. | La structure du bâti est meilleure que la première impression. | g? | pl=estruturas do imóvel
-o excesso de colheita | la surproduction de récolte | Em agosto há o excesso de abobrinha de sempre. | En août règne l'habituelle surabondance de courgettes. | pl=excessos de colheita | ex?
+o excesso de colheita | la surproduction de récolte | Em agosto há o excesso de curgete de sempre. | En août règne l'habituelle surabondance de courgettes. | pl=excessos de colheita | ex?
 a fabricação | la fabrication | A produção funciona em dois turnos. | La fabrication tourne en deux équipes. | pl=fabricações | ex?
 a falta de moradia | la crise du logement | Na cidade há falta de moradia há anos. | La ville connaît une crise du logement depuis des années. | g? | pl=faltas de moradia
 a frequência de rega | le rythme d'arrosage | Mais importante do que a quantidade é a frequência da rega. | Plus important que la quantité est le rythme d'arrosage. | g? | pl=frequências de rega | ex?

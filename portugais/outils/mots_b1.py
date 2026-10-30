@@ -299,7 +299,7 @@ libertar | libérer | Libertaram os reféns ao amanhecer. | Ils ont libéré les
 limitar | limiter | Limitaram a lotação a cem pessoas. | Ils ont limité la jauge à cent personnes.
 limitar-se | se limiter (à qch) | A visita limita-se ao centro histórico. | La visite se limite au centre historique. | pron
 lutar | lutter | Eles lutam contra a exclusão desde 2010. | Ils luttent contre l'exclusion depuis 2010.
-mandar por e-mail | envoyer par courriel | Eu mando-te o endereço por e-mail. | Je t'envoie l'adresse par courriel.
+mandar por e-mail | envoyer par courriel | Eu mando-te a morada por e-mail. | Je t'envoie l'adresse par courriel.
 manejar | manier | O meu avô manejava o trator como ninguém. | Mon grand-père maniait le tracteur comme personne.
 manifestar-se | s'exprimer | Ele manifestou-se de forma crítica sobre a proposta. | Il s'est exprimé de façon critique sur la proposition. | pron
 maquiar | maquiller | Ela maquia-se todas as manhãs. | Elle se maquille chaque matin.
