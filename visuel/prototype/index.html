@@ -135,6 +135,8 @@ html,body{margin:0;background:#DCE6EC;color:var(--encre);
 .etiquette .fr{display:block;font-size:12px;color:#556}
 .g-der{color:var(--der)} .g-die{color:var(--die)} .g-das{color:var(--das)}
 .g-el,.g-los{color:var(--der)} .g-la,.g-las{color:var(--die)}
+/* Le portugais (29 oct. 2026) : o, os ; a, as. */
+.g-o,.g-os{color:var(--der)} .g-a,.g-as{color:var(--die)}
 .secoue{animation:secoue .35s}
 @keyframes secoue{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 
@@ -359,8 +361,10 @@ const NOM_SCENE = (new URLSearchParams(location.search).get("scene") || "")
    eki, genkan), scene-<nom>.ja.js, faites par japonais/scenes/construire_scenes.py. */
 /* L'anglais (essai admin, 27 oct. 2026) : les memes scenes, a Boston,
    scene-<nom>.en.js, faites par anglais/outils/scenes.py. */
-const APPRENDRE = (a => a === "es" || a === "ja" || a === "en" ? a : "de")(new URLSearchParams(location.search).get("apprendre"));
-const SUFFIXE_LANGUE = APPRENDRE === "es" ? ".es" : APPRENDRE === "ja" ? ".ja" : APPRENDRE === "en" ? ".en" : "";
+/* Le portugais du Portugal (essai admin, 29 oct. 2026) : les memes scenes, a
+   Lisbonne, scene-<nom>.pt.js, faites par portugais/outils/scenes.py. */
+const APPRENDRE = (a => a === "es" || a === "ja" || a === "en" || a === "pt" ? a : "de")(new URLSearchParams(location.search).get("apprendre"));
+const SUFFIXE_LANGUE = APPRENDRE === "es" ? ".es" : APPRENDRE === "ja" ? ".ja" : APPRENDRE === "en" ? ".en" : APPRENDRE === "pt" ? ".pt" : "";
 /* ?t= : jamais la version en cache. Le telephone de Jacques a melange une
    ancienne image et de nouvelles coordonnees (6 oct.) ; un prototype qu'on
    corrige toutes les dix minutes ne doit rien garder. */
@@ -397,17 +401,20 @@ const EST_JA = APPRENDRE === "ja";
    l'app passe variante=gb (le mot « gb » de la zone remplace alors le sien). */
 const EST_EN = APPRENDRE === "en";
 const GB = EST_EN && new URLSearchParams(location.search).get("variante") === "gb";
+/* Le portugais : o / a comme l'espagnol, la voix pt-PT du telephone. */
+const EST_PT = APPRENDRE === "pt";
 const LATAM = EST_ES && new URLSearchParams(location.search).get("variante") === "latam";
-const LANG_CIBLE = EST_ES ? "es" : EST_JA ? "ja" : EST_EN ? "en" : "de";
+const LANG_CIBLE = EST_ES ? "es" : EST_JA ? "ja" : EST_EN ? "en" : EST_PT ? "pt-PT" : "de";
 /* Ce que la voix dit d'un mot : l'article et le nom, ou la lecture japonaise. */
 const motDit = p => EST_JA ? (p.lecture || p.mot) : EST_EN ? p.mot : p.genre + " " + p.mot;
 /* Le mot de la langue apprise que la page dit elle-meme. v830 : le bouton
    « Continuer », lui, est dans la langue de l'interface -- « Seguir » ne disait
    rien a une debutante (Jacques, 16 oct. 2026). */
-const MOTS_CIBLE = EST_ES ? {juste: "¡Correcto!"} : EST_JA ? {juste: "せいかい！"} : EST_EN ? {juste: "Correct!"} : {juste: "Richtig!"};
+const MOTS_CIBLE = EST_ES ? {juste: "¡Correcto!"} : EST_JA ? {juste: "せいかい！"} : EST_EN ? {juste: "Correct!"}
+                 : EST_PT ? {juste: "Certo!"} : {juste: "Richtig!"};
 /* Le pluriel : l'allemand dit toujours « die », l'espagnol porte son article
    (los / las) dans le fichier de la scene. */
-const plurielDe = n => EST_ES || EST_EN ? n.pluriel : "die " + n.pluriel;
+const plurielDe = n => EST_ES || EST_EN || EST_PT ? n.pluriel : "die " + n.pluriel;
 /* La carte de l'app garde le mot d'Espagne (movil) et ne fait que MONTRER
    celui d'ici (celular) : une revision envoyee a l'app doit donc porter le
    mot d'Espagne, sinon elle ne trouve pas sa carte. */
@@ -692,8 +699,8 @@ let voixDe = null;
 function chargerVoix(){
   const v = speechSynthesis.getVoices();
   const pays = EST_ES ? (LATAM ? /^es(-|_)(MX|US|419)/i : /^es(-|_)ES/i) : EST_JA ? /^ja(-|_)JP/i
-             : EST_EN ? (GB ? /^en(-|_)GB/i : /^en(-|_)US/i) : /^de(-|_)DE/i;
-  const langue = EST_ES ? /^es/i : EST_JA ? /^ja/i : EST_EN ? /^en/i : /^de/i;
+             : EST_EN ? (GB ? /^en(-|_)GB/i : /^en(-|_)US/i) : EST_PT ? /^pt(-|_)PT/i : /^de(-|_)DE/i;
+  const langue = EST_ES ? /^es/i : EST_JA ? /^ja/i : EST_EN ? /^en/i : EST_PT ? /^pt/i : /^de/i;
   /* L'anglais (28 oct. 2026) : prendre la premiere voix en-US tombait sur les
      voix fantaisie d'Apple (Albert, Bad News...) ou Eloquence (Eddy, Flo...).
      Meme classement que l'app (index.html, scoreVoixAnglaise) : les garder
@@ -707,8 +714,11 @@ function chargerVoix(){
     const prenom = nom.replace(/^(microsoft|google|apple)\s+/, "").split(/[\s(]/)[0];
     return /eloquence/.test(uri) || FUIR.indexOf(prenom) !== -1 || FUIR.indexOf(nom.split(" (")[0]) !== -1;
   };
-  if (EST_EN){
-    const PREF = GB ? ["serena", "kate", "daniel", "arthur", "martha", "stephanie", "oliver", "libby", "sonia", "ryan", "hazel", "george", "susan"]
+  /* Le portugais (29 oct. 2026) : pt-PT d'abord, le Bresil a defaut ; meme
+     classement que l'app (index.html, VOIX_PORTUGAISES). */
+  if (EST_EN || EST_PT){
+    const PREF = EST_PT ? ["joana", "catarina", "raquel", "duarte", "fernanda", "helia"]
+               : GB ? ["serena", "kate", "daniel", "arthur", "martha", "stephanie", "oliver", "libby", "sonia", "ryan", "hazel", "george", "susan"]
                     : ["ava", "samantha", "allison", "zoe", "evan", "nathan", "susan", "tom", "joelle", "noelle", "aria", "jenny", "guy", "zira", "david", "mark"];
     const score = x => {
       const nom = (x.name || "").toLowerCase(), uri = (x.voiceURI || "").toLowerCase();
@@ -743,7 +753,7 @@ function direTelephone(t){
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(t);
-  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : EST_JA ? "ja-JP" : EST_EN ? (GB ? "en-GB" : "en-US") : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92 * VITESSE_VOIX;
+  u.lang = EST_ES ? (LATAM ? "es-MX" : "es-ES") : EST_JA ? "ja-JP" : EST_EN ? (GB ? "en-GB" : "en-US") : EST_PT ? "pt-PT" : "de-DE"; if (voixDe) u.voice = voixDe; u.rate = .92 * VITESSE_VOIX;
   speechSynthesis.speak(u);
 }
 /* LA VOIX D'AURORA, comme dans l'app (Jacques, 9 oct. : « on n'a pas la voix
@@ -803,7 +813,8 @@ function dire(t){
   if ("speechSynthesis" in window) speechSynthesis.cancel();
   // Le japonais n'a pas de voix enregistree (decide le 25 oct. 2026), ni
   // l'anglais pour l'instant (27 oct.) : la voix du telephone.
-  if (EST_JA || EST_EN || audioAbsents.has(t)) return direTelephone(t);
+  // Le portugais non plus (29 oct. 2026) : pas de voix enregistree.
+  if (EST_JA || EST_EN || EST_PT || audioAbsents.has(t)) return direTelephone(t);
   try {
     const a = new Audio(AUDIO_BASE + empreinte(t) + ".mp3?r=" + AUDIO_REVISION);
     a.playbackRate = VITESSE_VOIX;

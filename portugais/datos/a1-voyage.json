@@ -1,0 +1,3215 @@
+{
+ "_lisez_moi": [
+  "Derive de portugais/outils/a1_voyage_a1.py (construire.py) : ne pas modifier a la main.",
+  "L'A1 voyage du portugais, a Lisbonne : 12 escales, 2 etapes « installe », la suite en 8 etapes. Brouillon."
+ ],
+ "escales": [
+  {
+   "id": "arriver",
+   "pour": "tous",
+   "icone": "🛬",
+   "s": {
+    "fr": "Arriver à Lisbonne et s'installer à l'hôtel"
+   },
+   "scenes": [
+    "flughafen",
+    "hotel"
+   ],
+   "mots": [
+    "aeroporto",
+    "avião",
+    "voo",
+    "mala de viagem",
+    "bagagem",
+    "bilhete",
+    "passageiro",
+    "hotel",
+    "quarto",
+    "chave",
+    "elevador",
+    "reserva",
+    "nome",
+    "apelido",
+    "país",
+    "nacionalidade",
+    "táxi",
+    "cama",
+    "toalha",
+    "duche",
+    "almofada",
+    "noite",
+    "chegar",
+    "reservar",
+    "ficar",
+    "Olá!",
+    "Boa noite!"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Arriver : chegar"
+    },
+    "l": [
+     [
+      "eu chego a Lisboa",
+      {
+       "fr": "j'arrive à Lisbonne"
+      }
+     ],
+     [
+      "tu chegas tarde",
+      {
+       "fr": "tu arrives tard"
+      }
+     ],
+     [
+      "ele · ela chega hoje",
+      {
+       "fr": "il · elle arrive aujourd'hui"
+      }
+     ],
+     [
+      "nós chegamos ao aeroporto",
+      {
+       "fr": "nous arrivons à l'aéroport"
+      }
+     ],
+     [
+      "eles chegam de avião",
+      {
+       "fr": "ils arrivent en avion"
+      }
+     ],
+     [
+      "o meu voo chega às seis",
+      {
+       "fr": "mon vol arrive à six heures"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Chegar a : arriver à (chegar a Lisboa, chegar ao hotel). Le portugais n'a qu'une préposition là où le français hésite entre à et en."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Tenho uma reserva em nome de ….",
+     "s": {
+      "fr": "J'ai une réservation au nom de …."
+     },
+     "v": [
+      "Silva",
+      "Martin",
+      "Tremblay"
+     ],
+     "ex": "Tenho uma reserva em nome de Tremblay.",
+     "exs": {
+      "fr": "J'ai une réservation au nom de Tremblay."
+     },
+     "vs": [
+      {
+       "fr": "J'ai une réservation au nom de Silva."
+      },
+      {
+       "fr": "J'ai une réservation au nom de Martin."
+      },
+      {
+       "fr": "J'ai une réservation au nom de Tremblay."
+      }
+     ]
+    },
+    {
+     "p": "Queria um quarto para ….",
+     "s": {
+      "fr": "Je voudrais une chambre pour …."
+     },
+     "v": [
+      "uma noite",
+      "duas noites",
+      "uma semana"
+     ],
+     "ex": "Queria um quarto para uma semana.",
+     "exs": {
+      "fr": "Je voudrais une chambre pour une semaine."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais une chambre pour une nuit."
+      },
+      {
+       "fr": "Je voudrais une chambre pour deux nuits."
+      },
+      {
+       "fr": "Je voudrais une chambre pour une semaine."
+      }
+     ]
+    },
+    {
+     "p": "Onde é …, por favor?",
+     "s": {
+      "fr": "Où est …, s'il vous plaît ?"
+     },
+     "v": [
+      "o elevador",
+      "a saída",
+      "a paragem de táxis"
+     ],
+     "ex": "Onde é a paragem de táxis, por favor?",
+     "exs": {
+      "fr": "Où est la station de taxis, s'il vous plaît ?"
+     },
+     "vs": [
+      {
+       "fr": "Où est l'ascenseur, s'il vous plaît ?"
+      },
+      {
+       "fr": "Où est la sortie, s'il vous plaît ?"
+      },
+      {
+       "fr": "Où est la station de taxis, s'il vous plaît ?"
+      }
+     ]
+    },
+    {
+     "p": "Pode dar-me …?",
+     "s": {
+      "fr": "Pouvez-vous me donner … ?"
+     },
+     "v": [
+      "uma toalha",
+      "outra almofada",
+      "a palavra-passe do wi-fi"
+     ],
+     "ex": "Pode dar-me a palavra-passe do wi-fi?",
+     "exs": {
+      "fr": "Pouvez-vous me donner le mot de passe du wifi ?"
+     },
+     "vs": [
+      {
+       "fr": "Pouvez-vous me donner une serviette ?"
+      },
+      {
+       "fr": "Pouvez-vous me donner un autre oreiller ?"
+      },
+      {
+       "fr": "Pouvez-vous me donner le mot de passe du wifi ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "À la réception de l'hôtel"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Boa noite, bem-vindo! Tem reserva?",
+      "s": {
+       "fr": "Bonsoir, bienvenue ! Vous avez une réservation ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Sim, tenho uma reserva em nome de Tremblay.",
+      "s": {
+       "fr": "Oui, j'ai une réservation au nom de Tremblay."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Muito bem. Pode mostrar-me o passaporte?",
+      "s": {
+       "fr": "Très bien. Pouvez-vous me montrer votre passeport ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Aqui está. A que horas é o pequeno-almoço?",
+      "s": {
+       "fr": "Voici. À quelle heure est le petit-déjeuner ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Das sete às dez. Aqui está a chave, quarto 412.",
+      "s": {
+       "fr": "De sept à dix heures. Voici la clé, chambre 412."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Muito obrigado!",
+      "s": {
+       "fr": "Merci beaucoup !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "manger",
+   "pour": "tous",
+   "icone": "🍽️",
+   "s": {
+    "fr": "Manger : la pastelaria, le restaurant"
+   },
+   "scenes": [
+    "fruehstueck",
+    "restaurant"
+   ],
+   "mots": [
+    "pequeno-almoço",
+    "almoço",
+    "jantar",
+    "café",
+    "bica",
+    "galão",
+    "chá",
+    "água",
+    "sumo",
+    "leite",
+    "pão",
+    "ovo",
+    "sandes",
+    "sopa",
+    "salada",
+    "bacalhau",
+    "sardinha",
+    "pastel de nata",
+    "sobremesa",
+    "ementa",
+    "conta",
+    "gorjeta",
+    "empregado de mesa",
+    "mesa",
+    "copo",
+    "prato",
+    "comer",
+    "beber",
+    "pedir",
+    "Queria…",
+    "Bom apetite!"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Vouloir poliment : queria"
+    },
+    "l": [
+     [
+      "queria um café",
+      {
+       "fr": "je voudrais un café"
+      }
+     ],
+     [
+      "queres água?",
+      {
+       "fr": "tu veux de l'eau ?"
+      }
+     ],
+     [
+      "ele queria a sopa",
+      {
+       "fr": "il voudrait la soupe"
+      }
+     ],
+     [
+      "queríamos uma mesa para dois",
+      {
+       "fr": "nous voudrions une table pour deux"
+      }
+     ],
+     [
+      "eles queriam a conta",
+      {
+       "fr": "ils voudraient l'addition"
+      }
+     ],
+     [
+      "não quero sobremesa",
+      {
+       "fr": "je ne veux pas de dessert"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Queria (imparfait de querer) est la forme polie de tous les jours. Pour commander : Para mim, o bacalhau (pour moi, la morue). Le pain et les olives posés sur la table se paient s'ils sont entamés."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Queria …, se faz favor.",
+     "s": {
+      "fr": "Je voudrais …, s'il vous plaît."
+     },
+     "v": [
+      "uma bica",
+      "um sumo de laranja",
+      "um copo de água"
+     ],
+     "ex": "Queria um copo de água, se faz favor.",
+     "exs": {
+      "fr": "Je voudrais un verre d'eau, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais un expresso, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais un jus d'orange, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais un verre d'eau, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "Uma mesa para …, por favor.",
+     "s": {
+      "fr": "Une table pour …, s'il vous plaît."
+     },
+     "v": [
+      "dois",
+      "quatro",
+      "uma pessoa"
+     ],
+     "ex": "Uma mesa para uma pessoa, por favor.",
+     "exs": {
+      "fr": "Une table pour une personne, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Une table pour deux, s'il vous plaît."
+      },
+      {
+       "fr": "Une table pour quatre, s'il vous plaît."
+      },
+      {
+       "fr": "Une table pour une personne, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "Para mim, ….",
+     "s": {
+      "fr": "Pour moi, …."
+     },
+     "v": [
+      "a sopa",
+      "a salada",
+      "o bacalhau"
+     ],
+     "ex": "Para mim, o bacalhau.",
+     "exs": {
+      "fr": "Pour moi, la morue."
+     },
+     "vs": [
+      {
+       "fr": "Pour moi, la soupe."
+      },
+      {
+       "fr": "Pour moi, la salade."
+      },
+      {
+       "fr": "Pour moi, la morue."
+      }
+     ]
+    },
+    {
+     "p": "Pode trazer …?",
+     "s": {
+      "fr": "Pouvez-vous apporter … ?"
+     },
+     "v": [
+      "a ementa",
+      "a conta",
+      "mais pão"
+     ],
+     "ex": "Pode trazer mais pão?",
+     "exs": {
+      "fr": "Pouvez-vous apporter encore du pain ?"
+     },
+     "vs": [
+      {
+       "fr": "Pouvez-vous apporter la carte ?"
+      },
+      {
+       "fr": "Pouvez-vous apporter l'addition ?"
+      },
+      {
+       "fr": "Pouvez-vous apporter encore du pain ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Au restaurant"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Boa tarde! Já escolheram?",
+      "s": {
+       "fr": "Bonjour ! Vous avez choisi ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Sim. Para mim, a sopa e o bacalhau, por favor.",
+      "s": {
+       "fr": "Oui. Pour moi, la soupe et la morue, s'il vous plaît."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Muito bem. E para beber?",
+      "s": {
+       "fr": "Très bien. Et comme boisson ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Um copo de vinho branco, se faz favor.",
+      "s": {
+       "fr": "Un verre de vin blanc, s'il vous plaît."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Aqui está. Bom apetite!",
+      "s": {
+       "fr": "Voilà. Bon appétit !"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Obrigado! A conta, se faz favor.",
+      "s": {
+       "fr": "Merci ! L'addition, s'il vous plaît."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "marche",
+   "pour": "tous",
+   "icone": "🍎",
+   "s": {
+    "fr": "Le marché et la boulangerie"
+   },
+   "scenes": [
+    "markt-obst-heimisch",
+    "baeckerei"
+   ],
+   "mots": [
+    "mercado",
+    "fruta",
+    "maçã",
+    "banana",
+    "laranja",
+    "limão",
+    "morango",
+    "legume",
+    "batata",
+    "tomate",
+    "cebola",
+    "pão",
+    "bolo",
+    "padaria",
+    "saco",
+    "preço",
+    "dinheiro",
+    "comprar",
+    "pagar",
+    "Quanto custa?"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Acheter : comprar, pagar"
+    },
+    "l": [
+     [
+      "eu compro maçãs",
+      {
+       "fr": "j'achète des pommes"
+      }
+     ],
+     [
+      "tu pagas em dinheiro",
+      {
+       "fr": "tu paies en espèces"
+      }
+     ],
+     [
+      "ela compra pão todos os dias",
+      {
+       "fr": "elle achète du pain tous les jours"
+      }
+     ],
+     [
+      "nós pagamos com cartão",
+      {
+       "fr": "nous payons par carte"
+      }
+     ],
+     [
+      "quanto custa?",
+      {
+       "fr": "combien ça coûte ?"
+      }
+     ],
+     [
+      "quanto custam?",
+      {
+       "fr": "combien coûtent-ils ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Quanto custa? pour une chose, Quanto custam? pour plusieurs. Au marché, on achète au kilo (um quilo) ou à la pièce. Le prix : 2,50 € se dit dois euros e cinquenta."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Queria …, por favor.",
+     "s": {
+      "fr": "Je voudrais …, s'il vous plaît."
+     },
+     "v": [
+      "um quilo de maçãs",
+      "seis ovos",
+      "um pão"
+     ],
+     "ex": "Queria um pão, por favor.",
+     "exs": {
+      "fr": "Je voudrais un pain, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais un kilo de pommes, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais six œufs, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais un pain, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "Quanto custam …?",
+     "s": {
+      "fr": "Combien coûtent … ?"
+     },
+     "v": [
+      "os morangos",
+      "os tomates",
+      "as laranjas"
+     ],
+     "ex": "Quanto custam as laranjas?",
+     "exs": {
+      "fr": "Combien coûtent les oranges ?"
+     },
+     "vs": [
+      {
+       "fr": "Combien coûtent les fraises ?"
+      },
+      {
+       "fr": "Combien coûtent les tomates ?"
+      },
+      {
+       "fr": "Combien coûtent les oranges ?"
+      }
+     ]
+    },
+    {
+     "p": "Posso pagar …?",
+     "s": {
+      "fr": "Je peux payer … ?"
+     },
+     "v": [
+      "com cartão",
+      "em dinheiro",
+      "com o telemóvel"
+     ],
+     "ex": "Posso pagar com o telemóvel?",
+     "exs": {
+      "fr": "Je peux payer avec mon portable ?"
+     },
+     "vs": [
+      {
+       "fr": "Je peux payer par carte ?"
+      },
+      {
+       "fr": "Je peux payer en espèces ?"
+      },
+      {
+       "fr": "Je peux payer avec mon portable ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Au marché"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Bom dia! O que vai ser?",
+      "s": {
+       "fr": "Bonjour ! Qu'est-ce que ce sera ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Bom dia! Quanto custam os morangos?",
+      "s": {
+       "fr": "Bonjour ! Combien coûtent les fraises ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Três euros a caixa. Estão muito doces.",
+      "s": {
+       "fr": "Trois euros la barquette. Elles sont très sucrées."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Então levo duas caixas.",
+      "s": {
+       "fr": "Alors j'en prends deux barquettes."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "São seis euros. Mais alguma coisa?",
+      "s": {
+       "fr": "Ça fait six euros. Autre chose ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Não, é tudo, obrigado.",
+      "s": {
+       "fr": "Non, c'est tout, merci."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "ville",
+   "pour": "tous",
+   "icone": "🗺️",
+   "s": {
+    "fr": "En ville : trouver son chemin"
+   },
+   "scenes": [
+    "stadtplatz",
+    "park"
+   ],
+   "mots": [
+    "cidade",
+    "rua",
+    "praça",
+    "avenida",
+    "bairro",
+    "esquina",
+    "ponte",
+    "castelo",
+    "rio",
+    "museu",
+    "igreja",
+    "banco",
+    "mapa",
+    "semáforo",
+    "passadeira",
+    "virar",
+    "atravessar",
+    "procurar",
+    "encontrar",
+    "Desculpe."
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Où se trouve… ? : ficar, haver"
+    },
+    "l": [
+     [
+      "onde fica o castelo?",
+      {
+       "fr": "où se trouve le château ?"
+      }
+     ],
+     [
+      "há um banco aqui perto?",
+      {
+       "fr": "y a-t-il une banque près d'ici ?"
+      }
+     ],
+     [
+      "há um parque à esquerda",
+      {
+       "fr": "il y a un parc à gauche"
+      }
+     ],
+     [
+      "vire à direita na esquina",
+      {
+       "fr": "tournez à droite au coin"
+      }
+     ],
+     [
+      "siga sempre em frente",
+      {
+       "fr": "continuez tout droit"
+      }
+     ],
+     [
+      "fica a dez minutos",
+      {
+       "fr": "c'est à dix minutes"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Ficar pour situer un lieu (fica ali), haver pour dire qu'il y en a un (há uma farmácia). Lisbonne monte et descend : a subir (en montant), a descer (en descendant)."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Desculpe, onde fica …?",
+     "s": {
+      "fr": "Excusez-moi, où se trouve … ?"
+     },
+     "v": [
+      "o castelo",
+      "a estação de metro",
+      "a Praça do Comércio"
+     ],
+     "ex": "Desculpe, onde fica a Praça do Comércio?",
+     "exs": {
+      "fr": "Excusez-moi, où se trouve la place du Commerce ?"
+     },
+     "vs": [
+      {
+       "fr": "Excusez-moi, où se trouve le château ?"
+      },
+      {
+       "fr": "Excusez-moi, où se trouve la station de métro ?"
+      },
+      {
+       "fr": "Excusez-moi, où se trouve la place du Commerce ?"
+      }
+     ]
+    },
+    {
+     "p": "Há … aqui perto?",
+     "s": {
+      "fr": "Y a-t-il … près d'ici ?"
+     },
+     "v": [
+      "um banco",
+      "uma farmácia",
+      "uma casa de banho"
+     ],
+     "ex": "Há uma casa de banho aqui perto?",
+     "exs": {
+      "fr": "Y a-t-il des toilettes près d'ici ?"
+     },
+     "vs": [
+      {
+       "fr": "Y a-t-il une banque près d'ici ?"
+      },
+      {
+       "fr": "Y a-t-il une pharmacie près d'ici ?"
+      },
+      {
+       "fr": "Y a-t-il des toilettes près d'ici ?"
+      }
+     ]
+    },
+    {
+     "p": "É …?",
+     "s": {
+      "fr": "C'est … ?"
+     },
+     "v": [
+      "longe",
+      "perto",
+      "à esquerda"
+     ],
+     "ex": "É à esquerda?",
+     "exs": {
+      "fr": "C'est à gauche ?"
+     },
+     "vs": [
+      {
+       "fr": "C'est loin ?"
+      },
+      {
+       "fr": "C'est près ?"
+      },
+      {
+       "fr": "C'est à gauche ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Demander son chemin"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Desculpe, onde fica o castelo?",
+      "s": {
+       "fr": "Excusez-moi, où se trouve le château ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Siga sempre em frente e vire à esquerda na igreja.",
+      "s": {
+       "fr": "Continuez tout droit et tournez à gauche à l'église."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "É longe?",
+      "s": {
+       "fr": "C'est loin ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Não, são dez minutos a pé, mas é sempre a subir.",
+      "s": {
+       "fr": "Non, c'est à dix minutes à pied, mais ça monte tout le temps."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Muito obrigada!",
+      "s": {
+       "fr": "Merci beaucoup !"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "De nada. Bom passeio!",
+      "s": {
+       "fr": "De rien. Bonne promenade !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "transports",
+   "pour": "tous",
+   "icone": "🚋",
+   "s": {
+    "fr": "Se déplacer : le métro, l'elétrico, le comboio"
+   },
+   "scenes": [
+    "kreuzung",
+    "ubahn"
+   ],
+   "mots": [
+    "metro",
+    "autocarro",
+    "elétrico",
+    "comboio",
+    "táxi",
+    "barco",
+    "estação",
+    "paragem",
+    "bilhete",
+    "viagem",
+    "atraso",
+    "apanhar",
+    "sair",
+    "ir",
+    "voltar",
+    "chegar"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Prendre : apanhar"
+    },
+    "l": [
+     [
+      "apanho o metro",
+      {
+       "fr": "je prends le métro"
+      }
+     ],
+     [
+      "apanhas o elétrico?",
+      {
+       "fr": "tu prends le tram ?"
+      }
+     ],
+     [
+      "ela apanha o comboio às oito",
+      {
+       "fr": "elle prend le train à huit heures"
+      }
+     ],
+     [
+      "nós apanhamos o barco",
+      {
+       "fr": "nous prenons le bateau"
+      }
+     ],
+     [
+      "eles apanham um táxi",
+      {
+       "fr": "ils prennent un taxi"
+      }
+     ],
+     [
+      "saio na próxima paragem",
+      {
+       "fr": "je descends au prochain arrêt"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Au Portugal, apanhar (attraper) un transport ; au Brésil, pegar. Ir de : ir de metro, ir de comboio ; mais ir a pé, à pied."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Um bilhete para …, por favor.",
+     "s": {
+      "fr": "Un billet pour …, s'il vous plaît."
+     },
+     "v": [
+      "Sintra",
+      "Cascais",
+      "o Porto"
+     ],
+     "ex": "Um bilhete para o Porto, por favor.",
+     "exs": {
+      "fr": "Un billet pour Porto, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Un billet pour Sintra, s'il vous plaît."
+      },
+      {
+       "fr": "Un billet pour Cascais, s'il vous plaît."
+      },
+      {
+       "fr": "Un billet pour Porto, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "Este autocarro vai para …?",
+     "s": {
+      "fr": "Ce bus va à … ?"
+     },
+     "v": [
+      "Belém",
+      "o aeroporto",
+      "o centro"
+     ],
+     "ex": "Este autocarro vai para o centro?",
+     "exs": {
+      "fr": "Ce bus va à le centre ?"
+     },
+     "vs": [
+      {
+       "fr": "Ce bus va à Belém ?"
+      },
+      {
+       "fr": "Ce bus va à l'aéroport ?"
+      },
+      {
+       "fr": "Ce bus va à le centre ?"
+      }
+     ]
+    },
+    {
+     "p": "A que horas parte …?",
+     "s": {
+      "fr": "À quelle heure part … ?"
+     },
+     "v": [
+      "o comboio",
+      "o barco",
+      "o último metro"
+     ],
+     "ex": "A que horas parte o último metro?",
+     "exs": {
+      "fr": "À quelle heure part le dernier métro ?"
+     },
+     "vs": [
+      {
+       "fr": "À quelle heure part le train ?"
+      },
+      {
+       "fr": "À quelle heure part le bateau ?"
+      },
+      {
+       "fr": "À quelle heure part le dernier métro ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Au guichet de la gare"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Bom dia. Um bilhete para Sintra, por favor.",
+      "s": {
+       "fr": "Bonjour. Un billet pour Sintra, s'il vous plaît."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Só ida ou ida e volta?",
+      "s": {
+       "fr": "Aller simple ou aller-retour ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Ida e volta. A que horas parte o próximo comboio?",
+      "s": {
+       "fr": "Aller-retour. À quelle heure part le prochain train ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Às dez e um quarto, na linha três.",
+      "s": {
+       "fr": "À dix heures et quart, voie trois."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Obrigado!",
+      "s": {
+       "fr": "Merci !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "achats",
+   "pour": "tous",
+   "icone": "🛍️",
+   "s": {
+    "fr": "Les achats : vêtements, tailles, prix"
+   },
+   "scenes": [
+    "kleidergeschaeft",
+    "supermarkt"
+   ],
+   "mots": [
+    "loja",
+    "roupa",
+    "camisa",
+    "t-shirt",
+    "calças",
+    "saia",
+    "vestido",
+    "casaco",
+    "camisola",
+    "sapato",
+    "tamanho",
+    "cor",
+    "preço",
+    "saldos",
+    "provador",
+    "saco",
+    "cartão",
+    "caro",
+    "barato",
+    "comprar",
+    "trocar",
+    "Quanto custa?"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Ce, cette : este, esta, esse"
+    },
+    "l": [
+     [
+      "este casaco é bonito",
+      {
+       "fr": "cette veste est jolie"
+      }
+     ],
+     [
+      "esta camisa é cara",
+      {
+       "fr": "cette chemise est chère"
+      }
+     ],
+     [
+      "estes sapatos são confortáveis",
+      {
+       "fr": "ces chaussures sont confortables"
+      }
+     ],
+     [
+      "essa saia fica-te bem",
+      {
+       "fr": "cette jupe te va bien"
+      }
+     ],
+     [
+      "posso experimentar?",
+      {
+       "fr": "je peux essayer ?"
+      }
+     ],
+     [
+      "levo esta",
+      {
+       "fr": "je prends celle-ci"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Este pour ce qui est près de moi, esse pour ce qui est près de toi, aquele pour ce qui est loin des deux. Ficar bem : aller bien (un vêtement)."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Posso experimentar …?",
+     "s": {
+      "fr": "Je peux essayer … ?"
+     },
+     "v": [
+      "este casaco",
+      "estas calças",
+      "aquela camisa"
+     ],
+     "ex": "Posso experimentar aquela camisa?",
+     "exs": {
+      "fr": "Je peux essayer cette chemise-là ?"
+     },
+     "vs": [
+      {
+       "fr": "Je peux essayer cette veste ?"
+      },
+      {
+       "fr": "Je peux essayer ce pantalon ?"
+      },
+      {
+       "fr": "Je peux essayer cette chemise-là ?"
+      }
+     ]
+    },
+    {
+     "p": "Tem …?",
+     "s": {
+      "fr": "Vous l'avez … ?"
+     },
+     "v": [
+      "noutra cor",
+      "num tamanho maior",
+      "em azul"
+     ],
+     "ex": "Tem em azul?",
+     "exs": {
+      "fr": "Vous l'avez en bleu ?"
+     },
+     "vs": [
+      {
+       "fr": "Vous l'avez dans une autre couleur ?"
+      },
+      {
+       "fr": "Vous l'avez en plus grand ?"
+      },
+      {
+       "fr": "Vous l'avez en bleu ?"
+      }
+     ]
+    },
+    {
+     "p": "É … demais.",
+     "s": {
+      "fr": "C'est trop …."
+     },
+     "v": [
+      "grande",
+      "pequeno",
+      "caro"
+     ],
+     "ex": "É caro demais.",
+     "exs": {
+      "fr": "C'est trop cher."
+     },
+     "vs": [
+      {
+       "fr": "C'est trop grand."
+      },
+      {
+       "fr": "C'est trop petit."
+      },
+      {
+       "fr": "C'est trop cher."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Dans un magasin de vêtements"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Boa tarde. Posso ajudar?",
+      "s": {
+       "fr": "Bonjour. Je peux vous aider ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Sim, quanto custa este casaco?",
+      "s": {
+       "fr": "Oui, combien coûte cette veste ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Sessenta euros. Está em saldos.",
+      "s": {
+       "fr": "Soixante euros. Elle est en soldes."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Posso experimentar?",
+      "s": {
+       "fr": "Je peux l'essayer ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Claro, o provador é ali.",
+      "s": {
+       "fr": "Bien sûr, la cabine est là-bas."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Fica-me bem. Levo este!",
+      "s": {
+       "fr": "Elle me va bien. Je la prends !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "sante",
+   "pour": "tous",
+   "icone": "💊",
+   "s": {
+    "fr": "La santé : pharmacie, médecin"
+   },
+   "scenes": [
+    "apotheke",
+    "arztpraxis"
+   ],
+   "mots": [
+    "farmácia",
+    "médico",
+    "hospital",
+    "centro de saúde",
+    "cabeça",
+    "barriga",
+    "costas",
+    "febre",
+    "constipação",
+    "gripe",
+    "dor",
+    "medicamento",
+    "comprimido",
+    "receita",
+    "consulta",
+    "doente",
+    "doer"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Avoir mal : doer"
+    },
+    "l": [
+     [
+      "dói-me a cabeça",
+      {
+       "fr": "j'ai mal à la tête"
+      }
+     ],
+     [
+      "dói-te a barriga?",
+      {
+       "fr": "tu as mal au ventre ?"
+      }
+     ],
+     [
+      "dói-lhe o pé",
+      {
+       "fr": "il a mal au pied"
+      }
+     ],
+     [
+      "doem-me as costas",
+      {
+       "fr": "j'ai mal au dos"
+      }
+     ],
+     [
+      "tenho febre",
+      {
+       "fr": "j'ai de la fièvre"
+      }
+     ],
+     [
+      "estou constipado",
+      {
+       "fr": "je suis enrhumé"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Doer se construit comme gostar en français familier : la partie du corps est le sujet, et le verbe s'accorde avec elle (dói-me o pé, doem-me os pés)."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Dói-me ….",
+     "s": {
+      "fr": "J'ai mal …."
+     },
+     "v": [
+      "a cabeça",
+      "a garganta",
+      "o estômago"
+     ],
+     "ex": "Dói-me o estômago.",
+     "exs": {
+      "fr": "J'ai mal à l'estomac."
+     },
+     "vs": [
+      {
+       "fr": "J'ai mal à la tête."
+      },
+      {
+       "fr": "J'ai mal à la gorge."
+      },
+      {
+       "fr": "J'ai mal à l'estomac."
+      }
+     ]
+    },
+    {
+     "p": "Tem alguma coisa para …?",
+     "s": {
+      "fr": "Vous avez quelque chose pour … ?"
+     },
+     "v": [
+      "a tosse",
+      "a febre",
+      "as dores de cabeça"
+     ],
+     "ex": "Tem alguma coisa para as dores de cabeça?",
+     "exs": {
+      "fr": "Vous avez quelque chose pour les maux de tête ?"
+     },
+     "vs": [
+      {
+       "fr": "Vous avez quelque chose pour la toux ?"
+      },
+      {
+       "fr": "Vous avez quelque chose pour la fièvre ?"
+      },
+      {
+       "fr": "Vous avez quelque chose pour les maux de tête ?"
+      }
+     ]
+    },
+    {
+     "p": "Queria marcar ….",
+     "s": {
+      "fr": "Je voudrais prendre …."
+     },
+     "v": [
+      "uma consulta",
+      "uma consulta para hoje",
+      "uma consulta com a médica"
+     ],
+     "ex": "Queria marcar uma consulta com a médica.",
+     "exs": {
+      "fr": "Je voudrais prendre un rendez-vous avec la médecin."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais prendre un rendez-vous."
+      },
+      {
+       "fr": "Je voudrais prendre un rendez-vous pour aujourd'hui."
+      },
+      {
+       "fr": "Je voudrais prendre un rendez-vous avec la médecin."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "À la pharmacie"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Bom dia, diga.",
+      "s": {
+       "fr": "Bonjour, je vous écoute."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Bom dia. Estou constipada e dói-me a garganta.",
+      "s": {
+       "fr": "Bonjour. Je suis enrhumée et j'ai mal à la gorge."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Tem febre?",
+      "s": {
+       "fr": "Vous avez de la fièvre ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Não, só tosse.",
+      "s": {
+       "fr": "Non, juste de la toux."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Tome isto, um comprimido três vezes por dia.",
+      "s": {
+       "fr": "Prenez ceci, un comprimé trois fois par jour."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Precisa de receita?",
+      "s": {
+       "fr": "Il faut une ordonnance ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Não, não precisa.",
+      "s": {
+       "fr": "Non, ce n'est pas nécessaire."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "imprevus",
+   "pour": "tous",
+   "icone": "🧳",
+   "s": {
+    "fr": "Les imprévus : perdre, attendre, réparer"
+   },
+   "scenes": [
+    "fahrradwerkstatt",
+    "buergeramt"
+   ],
+   "mots": [
+    "mala de viagem",
+    "chave",
+    "telemóvel",
+    "dinheiro",
+    "cartão",
+    "atraso",
+    "bicicleta",
+    "perder",
+    "esperar",
+    "procurar",
+    "encontrar",
+    "ajudar",
+    "Peço desculpa."
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Le passé : perdi, esqueci"
+    },
+    "l": [
+     [
+      "perdi a chave",
+      {
+       "fr": "j'ai perdu la clé"
+      }
+     ],
+     [
+      "esqueci-me do telemóvel",
+      {
+       "fr": "j'ai oublié mon portable"
+      }
+     ],
+     [
+      "alguém encontrou uma mala?",
+      {
+       "fr": "quelqu'un a trouvé une valise ?"
+      }
+     ],
+     [
+      "o comboio chegou atrasado",
+      {
+       "fr": "le train est arrivé en retard"
+      }
+     ],
+     [
+      "esperei uma hora",
+      {
+       "fr": "j'ai attendu une heure"
+      }
+     ],
+     [
+      "pode ajudar-me?",
+      {
+       "fr": "pouvez-vous m'aider ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le perfeito pour ce qui vient d'arriver : perdi (j'ai perdu), esqueci-me (j'ai oublié, avec le pronom après le verbe)."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Perdi ….",
+     "s": {
+      "fr": "J'ai perdu …."
+     },
+     "v": [
+      "a chave",
+      "o passaporte",
+      "o cartão"
+     ],
+     "ex": "Perdi o cartão.",
+     "exs": {
+      "fr": "J'ai perdu la carte."
+     },
+     "vs": [
+      {
+       "fr": "J'ai perdu la clé."
+      },
+      {
+       "fr": "J'ai perdu le passeport."
+      },
+      {
+       "fr": "J'ai perdu la carte."
+      }
+     ]
+    },
+    {
+     "p": "Esqueci-me ….",
+     "s": {
+      "fr": "J'ai oublié …."
+     },
+     "v": [
+      "do telemóvel",
+      "da mala",
+      "do guarda-chuva"
+     ],
+     "ex": "Esqueci-me do guarda-chuva.",
+     "exs": {
+      "fr": "J'ai oublié mon parapluie."
+     },
+     "vs": [
+      {
+       "fr": "J'ai oublié mon portable."
+      },
+      {
+       "fr": "J'ai oublié mon sac."
+      },
+      {
+       "fr": "J'ai oublié mon parapluie."
+      }
+     ]
+    },
+    {
+     "p": "Pode …, por favor?",
+     "s": {
+      "fr": "Pouvez-vous …, s'il vous plaît ?"
+     },
+     "v": [
+      "ajudar-me",
+      "telefonar",
+      "esperar"
+     ],
+     "ex": "Pode esperar, por favor?",
+     "exs": {
+      "fr": "Pouvez-vous attendre, s'il vous plaît ?"
+     },
+     "vs": [
+      {
+       "fr": "Pouvez-vous m'aider, s'il vous plaît ?"
+      },
+      {
+       "fr": "Pouvez-vous téléphoner, s'il vous plaît ?"
+      },
+      {
+       "fr": "Pouvez-vous attendre, s'il vous plaît ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Aux objets trouvés"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Boa tarde. Perdi a minha mala no elétrico.",
+      "s": {
+       "fr": "Bonjour. J'ai perdu mon sac dans le tram."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "De que cor é?",
+      "s": {
+       "fr": "De quelle couleur est-il ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "É preta, pequena.",
+      "s": {
+       "fr": "Il est noir, petit."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Um momento… É esta?",
+      "s": {
+       "fr": "Un instant… C'est celui-ci ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Sim! Muito obrigada!",
+      "s": {
+       "fr": "Oui ! Merci beaucoup !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "services",
+   "pour": "tous",
+   "icone": "🧺",
+   "s": {
+    "fr": "Les services : laverie, coiffeur, banque"
+   },
+   "scenes": [
+    "waschsalon",
+    "friseur"
+   ],
+   "mots": [
+    "roupa",
+    "banco",
+    "dinheiro",
+    "moeda",
+    "cartão",
+    "cabelo",
+    "lavar",
+    "pagar",
+    "mudar",
+    "esperar"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Pouvoir : poder"
+    },
+    "l": [
+     [
+      "posso pagar com cartão?",
+      {
+       "fr": "je peux payer par carte ?"
+      }
+     ],
+     [
+      "podes ajudar-me?",
+      {
+       "fr": "tu peux m'aider ?"
+      }
+     ],
+     [
+      "pode cortar curto",
+      {
+       "fr": "vous pouvez couper court"
+      }
+     ],
+     [
+      "podemos esperar",
+      {
+       "fr": "nous pouvons attendre"
+      }
+     ],
+     [
+      "não podem entrar",
+      {
+       "fr": "ils ne peuvent pas entrer"
+      }
+     ],
+     [
+      "onde posso lavar a roupa?",
+      {
+       "fr": "où puis-je laver mes vêtements ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Poder : posso, podes, pode. Pode… ? (avec o senhor, a senhora sous-entendus) est la façon polie de demander un service."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Queria …, por favor.",
+     "s": {
+      "fr": "Je voudrais …, s'il vous plaît."
+     },
+     "v": [
+      "cortar o cabelo",
+      "lavar a roupa",
+      "trocar dinheiro"
+     ],
+     "ex": "Queria trocar dinheiro, por favor.",
+     "exs": {
+      "fr": "Je voudrais changer de l'argent, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais me faire couper les cheveux, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais laver mon linge, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais changer de l'argent, s'il vous plaît."
+      }
+     ]
+    },
+    {
+     "p": "Pode …?",
+     "s": {
+      "fr": "Vous pouvez … ?"
+     },
+     "v": [
+      "cortar um pouco",
+      "esperar um momento",
+      "dar-me moedas"
+     ],
+     "ex": "Pode dar-me moedas?",
+     "exs": {
+      "fr": "Vous pouvez me donner des pièces ?"
+     },
+     "vs": [
+      {
+       "fr": "Vous pouvez couper un peu ?"
+      },
+      {
+       "fr": "Vous pouvez attendre un instant ?"
+      },
+      {
+       "fr": "Vous pouvez me donner des pièces ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Chez le coiffeur"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Bom dia! Tem marcação?",
+      "s": {
+       "fr": "Bonjour ! Vous avez un rendez-vous ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Não. Pode cortar-me o cabelo agora?",
+      "s": {
+       "fr": "Non. Pouvez-vous me couper les cheveux maintenant ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Pode esperar dez minutos?",
+      "s": {
+       "fr": "Vous pouvez attendre dix minutes ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Posso, claro.",
+      "s": {
+       "fr": "Oui, bien sûr."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Como quer?",
+      "s": {
+       "fr": "Comment le voulez-vous ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Só um pouco mais curto, por favor.",
+      "s": {
+       "fr": "Juste un peu plus court, s'il vous plaît."
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "rencontrer",
+   "pour": "tous",
+   "icone": "🤝",
+   "s": {
+    "fr": "Rencontrer des gens, être invité"
+   },
+   "scenes": [
+    "familie",
+    "geburtstag"
+   ],
+   "mots": [
+    "amigo",
+    "vizinho",
+    "família",
+    "nome",
+    "idade",
+    "profissão",
+    "país",
+    "festa",
+    "aniversário",
+    "presente",
+    "falar",
+    "conhecer",
+    "apresentar",
+    "Muito prazer.",
+    "Parabéns!"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Se présenter : ser, ter, morar"
+    },
+    "l": [
+     [
+      "sou canadiano",
+      {
+       "fr": "je suis canadien"
+      }
+     ],
+     [
+      "tenho trinta anos",
+      {
+       "fr": "j'ai trente ans"
+      }
+     ],
+     [
+      "moro em Lisboa há um ano",
+      {
+       "fr": "j'habite à Lisbonne depuis un an"
+      }
+     ],
+     [
+      "trabalho num banco",
+      {
+       "fr": "je travaille dans une banque"
+      }
+     ],
+     [
+      "falo francês e um pouco de português",
+      {
+       "fr": "je parle français et un peu portugais"
+      }
+     ],
+     [
+      "apresento-te a minha mulher",
+      {
+       "fr": "je te présente ma femme"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "L'âge se dit avec ter : tenho trinta anos. Há + durée : depuis (moro aqui há um ano). Entre jeunes et amis, on passe vite au tu."
+    }
+   },
+   "blocs": [
+    {
+     "p": "Apresento-te ….",
+     "s": {
+      "fr": "Je te présente …."
+     },
+     "v": [
+      "a minha mulher",
+      "o meu irmão",
+      "a minha colega"
+     ],
+     "ex": "Apresento-te a minha colega.",
+     "exs": {
+      "fr": "Je te présente ma collègue."
+     },
+     "vs": [
+      {
+       "fr": "Je te présente ma femme."
+      },
+      {
+       "fr": "Je te présente mon frère."
+      },
+      {
+       "fr": "Je te présente ma collègue."
+      }
+     ]
+    },
+    {
+     "p": "Moro em Lisboa há ….",
+     "s": {
+      "fr": "J'habite à Lisbonne depuis …."
+     },
+     "v": [
+      "um ano",
+      "seis meses",
+      "duas semanas"
+     ],
+     "ex": "Moro em Lisboa há duas semanas.",
+     "exs": {
+      "fr": "J'habite à Lisbonne depuis deux semaines."
+     },
+     "vs": [
+      {
+       "fr": "J'habite à Lisbonne depuis un an."
+      },
+      {
+       "fr": "J'habite à Lisbonne depuis six mois."
+      },
+      {
+       "fr": "J'habite à Lisbonne depuis deux semaines."
+      }
+     ]
+    },
+    {
+     "p": "Obrigado pelo …!",
+     "s": {
+      "fr": "Merci pour le … !"
+     },
+     "v": [
+      "jantar",
+      "convite",
+      "presente"
+     ],
+     "ex": "Obrigado pelo presente!",
+     "exs": {
+      "fr": "Merci pour le le cadeau !"
+     },
+     "vs": [
+      {
+       "fr": "Merci pour le dîner !"
+      },
+      {
+       "fr": "Merci pour le l'invitation !"
+      },
+      {
+       "fr": "Merci pour le le cadeau !"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Chez des amis"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Olá! Entra, entra. Esta é a minha mulher, a Teresa.",
+      "s": {
+       "fr": "Salut ! Entre, entre. Voici ma femme, Teresa."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Muito prazer, Teresa.",
+      "s": {
+       "fr": "Enchanté, Teresa."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "O prazer é meu. De onde és?",
+      "s": {
+       "fr": "Tout le plaisir est pour moi. D'où viens-tu ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Sou de Montreal, mas moro em Lisboa há um ano.",
+      "s": {
+       "fr": "Je suis de Montréal, mais j'habite à Lisbonne depuis un an."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "E gostas de Lisboa?",
+      "s": {
+       "fr": "Et tu aimes Lisbonne ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Adoro!",
+      "s": {
+       "fr": "J'adore !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "plage",
+   "pour": "voyage",
+   "icone": "🏖️",
+   "s": {
+    "fr": "La plage et le temps qu'il fait"
+   },
+   "scenes": [
+    "strand",
+    "camping"
+   ],
+   "mots": [
+    "praia",
+    "sol",
+    "calor",
+    "chuva",
+    "vento",
+    "nuvem",
+    "tempo",
+    "verão",
+    "temperatura",
+    "óculos de sol",
+    "nadar",
+    "Está bem."
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Il fait… : estar, fazer"
+    },
+    "l": [
+     [
+      "está sol",
+      {
+       "fr": "il fait soleil"
+      }
+     ],
+     [
+      "está calor · está frio",
+      {
+       "fr": "il fait chaud · il fait froid"
+      }
+     ],
+     [
+      "está vento",
+      {
+       "fr": "il y a du vent"
+      }
+     ],
+     [
+      "está a chover",
+      {
+       "fr": "il pleut"
+      }
+     ],
+     [
+      "faz bom tempo",
+      {
+       "fr": "il fait beau"
+      }
+     ],
+     [
+      "estão trinta graus",
+      {
+       "fr": "il fait trente degrés"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Estar pour le temps qu'il fait en ce moment (está calor), fazer dans quelques tournures (faz bom tempo). L'Atlantique est froid, même en été : a água está fria !"
+    }
+   },
+   "blocs": [
+    {
+     "p": "Hoje está ….",
+     "s": {
+      "fr": "Aujourd'hui, il fait …."
+     },
+     "v": [
+      "calor",
+      "sol",
+      "vento"
+     ],
+     "ex": "Hoje está vento.",
+     "exs": {
+      "fr": "Aujourd'hui, il fait du vent."
+     },
+     "vs": [
+      {
+       "fr": "Aujourd'hui, il fait chaud."
+      },
+      {
+       "fr": "Aujourd'hui, il fait soleil."
+      },
+      {
+       "fr": "Aujourd'hui, il fait du vent."
+      }
+     ]
+    },
+    {
+     "p": "Vamos …?",
+     "s": {
+      "fr": "On va … ?"
+     },
+     "v": [
+      "à praia",
+      "nadar",
+      "apanhar sol"
+     ],
+     "ex": "Vamos apanhar sol?",
+     "exs": {
+      "fr": "On va bronzer ?"
+     },
+     "vs": [
+      {
+       "fr": "On va à la plage ?"
+      },
+      {
+       "fr": "On va nager ?"
+      },
+      {
+       "fr": "On va bronzer ?"
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "À la plage de Cascais"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Que calor! A água está boa?",
+      "s": {
+       "fr": "Quelle chaleur ! L'eau est bonne ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Está fria, é o Atlântico!",
+      "s": {
+       "fr": "Elle est froide, c'est l'Atlantique !"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Vamos nadar na mesma?",
+      "s": {
+       "fr": "On va nager quand même ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Vamos!",
+      "s": {
+       "fr": "Allons-y !"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "visiter",
+   "pour": "voyage",
+   "icone": "🏛️",
+   "s": {
+    "fr": "Visiter : musées, belvédères, horaires"
+   },
+   "scenes": [
+    "museum",
+    "bibliothek"
+   ],
+   "mots": [
+    "museu",
+    "castelo",
+    "igreja",
+    "bilhete",
+    "hora",
+    "horário",
+    "segunda-feira",
+    "domingo",
+    "abrir",
+    "fechar",
+    "visitar",
+    "Que horas são?"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Ouvrir, fermer : abrir, fechar"
+    },
+    "l": [
+     [
+      "o museu abre às dez",
+      {
+       "fr": "le musée ouvre à dix heures"
+      }
+     ],
+     [
+      "fecha às seis",
+      {
+       "fr": "il ferme à six heures"
+      }
+     ],
+     [
+      "está fechado à segunda-feira",
+      {
+       "fr": "il est fermé le lundi"
+      }
+     ],
+     [
+      "o bilhete custa dez euros",
+      {
+       "fr": "le billet coûte dix euros"
+      }
+     ],
+     [
+      "há desconto para estudantes?",
+      {
+       "fr": "y a-t-il une réduction pour les étudiants ?"
+      }
+     ],
+     [
+      "a entrada é grátis ao domingo",
+      {
+       "fr": "l'entrée est gratuite le dimanche"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "À + heure : às dez (a + as). À segunda-feira : le lundi (chaque lundi). Beaucoup de musées de Lisbonne ferment le lundi."
+    }
+   },
+   "blocs": [
+    {
+     "p": "A que horas …?",
+     "s": {
+      "fr": "À quelle heure … ?"
+     },
+     "v": [
+      "abre o museu",
+      "fecha o castelo",
+      "começa a visita"
+     ],
+     "ex": "A que horas começa a visita?",
+     "exs": {
+      "fr": "À quelle heure commence la visite ?"
+     },
+     "vs": [
+      {
+       "fr": "À quelle heure ouvre le musée ?"
+      },
+      {
+       "fr": "À quelle heure ferme le château ?"
+      },
+      {
+       "fr": "À quelle heure commence la visite ?"
+      }
+     ]
+    },
+    {
+     "p": "Queria … bilhetes, por favor.",
+     "s": {
+      "fr": "Je voudrais … billets, s'il vous plaît."
+     },
+     "v": [
+      "dois",
+      "três",
+      "quatro"
+     ],
+     "ex": "Queria quatro bilhetes, por favor.",
+     "exs": {
+      "fr": "Je voudrais quatre billets, s'il vous plaît."
+     },
+     "vs": [
+      {
+       "fr": "Je voudrais deux billets, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais trois billets, s'il vous plaît."
+      },
+      {
+       "fr": "Je voudrais quatre billets, s'il vous plaît."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "À l'entrée du musée"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Boa tarde. Dois bilhetes, por favor.",
+      "s": {
+       "fr": "Bonjour. Deux billets, s'il vous plaît."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "São vinte euros. Há desconto para estudantes.",
+      "s": {
+       "fr": "Ça fait vingt euros. Il y a une réduction pour les étudiants."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Sou estudante! A que horas fecha?",
+      "s": {
+       "fr": "Je suis étudiant ! À quelle heure fermez-vous ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Às seis. Boa visita!",
+      "s": {
+       "fr": "À six heures. Bonne visite !"
+      }
+     }
+    ]
+   }
+  }
+ ],
+ "installe": [
+  {
+   "id": "logement",
+   "pour": "installe",
+   "icone": "🏠",
+   "s": {
+    "fr": "Le logement : chercher, louer, les voisins"
+   },
+   "scenes": [
+    "umzug",
+    "wohnzimmer"
+   ],
+   "mots": [
+    "casa",
+    "apartamento",
+    "quarto",
+    "cozinha",
+    "sala",
+    "casa de banho",
+    "varanda",
+    "andar",
+    "elevador",
+    "vizinho",
+    "chave",
+    "contrato",
+    "morar",
+    "mudar"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Il y a, il n'y a pas : há, não há"
+    },
+    "l": [
+     [
+      "há duas divisões",
+      {
+       "fr": "il y a deux pièces"
+      }
+     ],
+     [
+      "há varanda?",
+      {
+       "fr": "il y a un balcon ?"
+      }
+     ],
+     [
+      "não há elevador",
+      {
+       "fr": "il n'y a pas d'ascenseur"
+      }
+     ],
+     [
+      "o apartamento tem cozinha",
+      {
+       "fr": "l'appartement a une cuisine"
+      }
+     ],
+     [
+      "fica no terceiro andar",
+      {
+       "fr": "c'est au troisième étage"
+      }
+     ],
+     [
+      "quanto é a renda?",
+      {
+       "fr": "combien est le loyer ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Au Portugal, on décrit un logement par le nombre de chambres : um T2 = deux chambres et un salon. Le loyer : a renda."
+    }
+   },
+   "blocs": [
+    {
+     "p": "O apartamento tem …?",
+     "s": {
+      "fr": "L'appartement a … ?"
+     },
+     "v": [
+      "varanda",
+      "elevador",
+      "garagem"
+     ],
+     "ex": "O apartamento tem garagem?",
+     "exs": {
+      "fr": "L'appartement a un garage ?"
+     },
+     "vs": [
+      {
+       "fr": "L'appartement a un balcon ?"
+      },
+      {
+       "fr": "L'appartement a un ascenseur ?"
+      },
+      {
+       "fr": "L'appartement a un garage ?"
+      }
+     ]
+    },
+    {
+     "p": "Fica no … andar.",
+     "s": {
+      "fr": "C'est au … étage."
+     },
+     "v": [
+      "primeiro",
+      "segundo",
+      "último"
+     ],
+     "ex": "Fica no último andar.",
+     "exs": {
+      "fr": "C'est au dernier étage."
+     },
+     "vs": [
+      {
+       "fr": "C'est au premier étage."
+      },
+      {
+       "fr": "C'est au deuxième étage."
+      },
+      {
+       "fr": "C'est au dernier étage."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Visiter un appartement"
+    },
+    "l": [
+     {
+      "q": "moi",
+      "p": "Bom dia. Venho ver o apartamento.",
+      "s": {
+       "fr": "Bonjour. Je viens voir l'appartement."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Entre. Tem dois quartos e uma varanda.",
+      "s": {
+       "fr": "Entrez. Il a deux chambres et un balcon."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Há elevador?",
+      "s": {
+       "fr": "Il y a un ascenseur ?"
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Não há, mas é só o segundo andar.",
+      "s": {
+       "fr": "Non, mais ce n'est que le deuxième étage."
+      }
+     },
+     {
+      "q": "moi",
+      "p": "E quanto é a renda?",
+      "s": {
+       "fr": "Et combien est le loyer ?"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "demarches",
+   "pour": "installe",
+   "icone": "🏛️",
+   "s": {
+    "fr": "Les démarches : mairie, formulaires"
+   },
+   "scenes": [
+    "buergeramt",
+    "buero"
+   ],
+   "mots": [
+    "nome",
+    "apelido",
+    "morada",
+    "telefone",
+    "e-mail",
+    "assinatura",
+    "nacionalidade",
+    "data",
+    "pergunta",
+    "resposta",
+    "escrever",
+    "assinar",
+    "soletrar",
+    "Pode repetir?"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Les questions du guichet"
+    },
+    "l": [
+     [
+      "qual é o seu nome?",
+      {
+       "fr": "quel est votre nom ?"
+      }
+     ],
+     [
+      "qual é o seu apelido?",
+      {
+       "fr": "quel est votre nom de famille ?"
+      }
+     ],
+     [
+      "qual é a sua morada?",
+      {
+       "fr": "quelle est votre adresse ?"
+      }
+     ],
+     [
+      "pode soletrar?",
+      {
+       "fr": "pouvez-vous épeler ?"
+      }
+     ],
+     [
+      "assine aqui, por favor",
+      {
+       "fr": "signez ici, s'il vous plaît"
+      }
+     ],
+     [
+      "tem o número de contribuinte?",
+      {
+       "fr": "vous avez votre numéro fiscal ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Au guichet, on vous dit o senhor, a senhora, et le possessif devient o seu, a sua (votre). Le número de contribuinte (NIF) est demandé partout au Portugal."
+    }
+   },
+   "blocs": [
+    {
+     "p": "O meu … é ….",
+     "s": {
+      "fr": "Mon … est …."
+     },
+     "v": [
+      "apelido é Martin",
+      "nome é Paul",
+      "e-mail é paul@exemplo.pt"
+     ],
+     "ex": "O meu e-mail é paul@exemplo.pt é e-mail é paul@exemplo.pt.",
+     "exs": {
+      "fr": "Mon courriel est paul@exemplo.pt est courriel est paul@exemplo.pt."
+     },
+     "vs": [
+      {
+       "fr": "Mon nom de famille est Martin est nom de famille est Martin."
+      },
+      {
+       "fr": "Mon prénom est Paul est prénom est Paul."
+      },
+      {
+       "fr": "Mon courriel est paul@exemplo.pt est courriel est paul@exemplo.pt."
+      }
+     ]
+    }
+   ],
+   "dialogue": {
+    "t": {
+     "fr": "Au guichet de la mairie"
+    },
+    "l": [
+     {
+      "q": "eux",
+      "p": "Bom dia. Qual é o seu apelido?",
+      "s": {
+       "fr": "Bonjour. Quel est votre nom de famille ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "Tremblay.",
+      "s": {
+       "fr": "Tremblay."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Pode soletrar, por favor?",
+      "s": {
+       "fr": "Pouvez-vous épeler, s'il vous plaît ?"
+      }
+     },
+     {
+      "q": "moi",
+      "p": "T-R-E-M-B-L-A-Y.",
+      "s": {
+       "fr": "T-R-E-M-B-L-A-Y."
+      }
+     },
+     {
+      "q": "eux",
+      "p": "Obrigado. Assine aqui, por favor.",
+      "s": {
+       "fr": "Merci. Signez ici, s'il vous plaît."
+      }
+     }
+    ]
+   }
+  }
+ ],
+ "suite": [
+  {
+   "id": "famille",
+   "icone": "👨‍👩‍👧",
+   "s": {
+    "fr": "La famille et les proches"
+   },
+   "scene": "familie",
+   "themes": [
+    "familia_pt",
+    "apresentar_pt"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Avoir : ter"
+    },
+    "l": [
+     [
+      "tenho um irmão",
+      {
+       "fr": "j'ai un frère"
+      }
+     ],
+     [
+      "tens filhos?",
+      {
+       "fr": "tu as des enfants ?"
+      }
+     ],
+     [
+      "ela tem uma família grande",
+      {
+       "fr": "elle a une grande famille"
+      }
+     ],
+     [
+      "temos um cão",
+      {
+       "fr": "nous avons un chien"
+      }
+     ],
+     [
+      "eles têm três netos",
+      {
+       "fr": "ils ont trois petits-enfants"
+      }
+     ],
+     [
+      "não tenho irmãs",
+      {
+       "fr": "je n'ai pas de sœurs"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Têm (ils ont) prend un accent ; tem (il a) n'en a pas. La négation se place devant le verbe : não tenho."
+    }
+   }
+  },
+  {
+   "id": "maison",
+   "icone": "🛏️",
+   "s": {
+    "fr": "La maison et la chambre"
+   },
+   "scene": "schlafzimmer",
+   "themes": [
+    "casa_pt"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Où sont les choses : em cima de, debaixo de"
+    },
+    "l": [
+     [
+      "as chaves estão em cima da mesa",
+      {
+       "fr": "les clés sont sur la table"
+      }
+     ],
+     [
+      "o gato está debaixo da cama",
+      {
+       "fr": "le chat est sous le lit"
+      }
+     ],
+     [
+      "a roupa está no armário",
+      {
+       "fr": "les vêtements sont dans l'armoire"
+      }
+     ],
+     [
+      "o candeeiro está ao lado do sofá",
+      {
+       "fr": "la lampe est à côté du canapé"
+      }
+     ],
+     [
+      "o jardim fica atrás da casa",
+      {
+       "fr": "le jardin est derrière la maison"
+      }
+     ],
+     [
+      "há um quadro na parede",
+      {
+       "fr": "il y a un tableau au mur"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "De se soude à l'article : em cima da mesa (de + a), ao lado do sofá (de + o). Em aussi : no armário, na parede."
+    }
+   }
+  },
+  {
+   "id": "cuisine",
+   "icone": "🍳",
+   "s": {
+    "fr": "Manger et cuisiner"
+   },
+   "scene": "kueche",
+   "themes": [
+    "comida_pt",
+    "cafe_pt"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Du, de la : pas d'article"
+    },
+    "l": [
+     [
+      "como pão ao pequeno-almoço",
+      {
+       "fr": "je mange du pain au petit-déjeuner"
+      }
+     ],
+     [
+      "há leite?",
+      {
+       "fr": "il y a du lait ?"
+      }
+     ],
+     [
+      "não há açúcar",
+      {
+       "fr": "il n'y a pas de sucre"
+      }
+     ],
+     [
+      "precisamos de ovos",
+      {
+       "fr": "il nous faut des œufs"
+      }
+     ],
+     [
+      "não como carne",
+      {
+       "fr": "je ne mange pas de viande"
+      }
+     ],
+     [
+      "quanto açúcar? quantos ovos?",
+      {
+       "fr": "combien de sucre ? combien d'œufs ?"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le portugais n'a pas de partitif : comer pão, beber água. Quanto pour ce qui ne se compte pas, quantos (quantas) pour ce qui se compte."
+    }
+   }
+  },
+  {
+   "id": "travail",
+   "icone": "💼",
+   "s": {
+    "fr": "Le travail et le bureau"
+   },
+   "scene": "buero",
+   "themes": [
+    "trabalho_pt"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Ce que je fais : trabalhar, ser"
+    },
+    "l": [
+     [
+      "trabalho num escritório",
+      {
+       "fr": "je travaille dans un bureau"
+      }
+     ],
+     [
+      "sou professor",
+      {
+       "fr": "je suis professeur"
+      }
+     ],
+     [
+      "ela é enfermeira",
+      {
+       "fr": "elle est infirmière"
+      }
+     ],
+     [
+      "começo às nove",
+      {
+       "fr": "je commence à neuf heures"
+      }
+     ],
+     [
+      "acabo às seis",
+      {
+       "fr": "je finis à six heures"
+      }
+     ],
+     [
+      "tenho uma reunião",
+      {
+       "fr": "j'ai une réunion"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Le métier sans article après ser : sou professor (je suis professeur). Num, numa : dans un, dans une (em + um)."
+    }
+   }
+  },
+  {
+   "id": "ecole",
+   "icone": "📚",
+   "s": {
+    "fr": "L'école et les études"
+   },
+   "scene": "klassenzimmer",
+   "themes": [
+    "escola_pt"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Étudier, apprendre : estudar, aprender"
+    },
+    "l": [
+     [
+      "estudo português",
+      {
+       "fr": "j'étudie le portugais"
+      }
+     ],
+     [
+      "aprendes depressa",
+      {
+       "fr": "tu apprends vite"
+      }
+     ],
+     [
+      "o professor explica bem",
+      {
+       "fr": "le professeur explique bien"
+      }
+     ],
+     [
+      "não percebo esta palavra",
+      {
+       "fr": "je ne comprends pas ce mot"
+      }
+     ],
+     [
+      "temos exame na sexta",
+      {
+       "fr": "nous avons un examen vendredi"
+      }
+     ],
+     [
+      "escreve no caderno",
+      {
+       "fr": "écris dans le cahier"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Perceber : comprendre (au Portugal) ; entender existe aussi. Escreve ! (écris !) : l'impératif de tu a la forme de ele."
+    }
+   }
+  },
+  {
+   "id": "loisirs",
+   "icone": "⚽",
+   "s": {
+    "fr": "Les loisirs et le sport"
+   },
+   "scene": "sportplatz",
+   "themes": [
+    "lazer_pt",
+    "animais_pt"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Aimer : gostar de"
+    },
+    "l": [
+     [
+      "gosto de futebol",
+      {
+       "fr": "j'aime le football"
+      }
+     ],
+     [
+      "gostas de nadar?",
+      {
+       "fr": "tu aimes nager ?"
+      }
+     ],
+     [
+      "ela gosta muito de fado",
+      {
+       "fr": "elle aime beaucoup le fado"
+      }
+     ],
+     [
+      "não gostamos de correr",
+      {
+       "fr": "nous n'aimons pas courir"
+      }
+     ],
+     [
+      "eles adoram o mar",
+      {
+       "fr": "ils adorent la mer"
+      }
+     ],
+     [
+      "jogo ténis ao sábado",
+      {
+       "fr": "je joue au tennis le samedi"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Gostar se construit toujours avec de : gosto de música, gosto do Benfica (de + o). Jogar pour un sport, brincar pour les jeux d'enfants."
+    }
+   }
+  },
+  {
+   "id": "corps",
+   "icone": "🩺",
+   "s": {
+    "fr": "Le corps et la santé"
+   },
+   "scene": "untersuchung",
+   "themes": [
+    "corpo_pt",
+    "roupa_pt"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Avoir mal : doer"
+    },
+    "l": [
+     [
+      "dói-me a cabeça",
+      {
+       "fr": "j'ai mal à la tête"
+      }
+     ],
+     [
+      "doem-me os pés",
+      {
+       "fr": "j'ai mal aux pieds"
+      }
+     ],
+     [
+      "tenho febre",
+      {
+       "fr": "j'ai de la fièvre"
+      }
+     ],
+     [
+      "estou constipado",
+      {
+       "fr": "je suis enrhumé"
+      }
+     ],
+     [
+      "sinto-me melhor",
+      {
+       "fr": "je me sens mieux"
+      }
+     ],
+     [
+      "visto o casaco",
+      {
+       "fr": "je mets ma veste"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Doer s'accorde avec la partie du corps : dói-me o braço, doem-me os braços. Vestir : mettre, porter un vêtement."
+    }
+   }
+  },
+  {
+   "id": "societe",
+   "icone": "📱",
+   "s": {
+    "fr": "La ville, le temps, le quotidien"
+   },
+   "scene": "musik",
+   "themes": [
+    "cidade_pt",
+    "tempo_pt",
+    "clima_pt",
+    "compras_pt",
+    "transportes_pt",
+    "dia_pt",
+    "numeros_pt",
+    "formas_pt"
+   ],
+   "tableau": {
+    "t": {
+     "fr": "Le futur proche : ir + infinitif"
+    },
+    "l": [
+     [
+      "vou trabalhar amanhã",
+      {
+       "fr": "je vais travailler demain"
+      }
+     ],
+     [
+      "vais sair hoje?",
+      {
+       "fr": "tu vas sortir aujourd'hui ?"
+      }
+     ],
+     [
+      "vai chover",
+      {
+       "fr": "il va pleuvoir"
+      }
+     ],
+     [
+      "vamos jantar fora",
+      {
+       "fr": "nous allons dîner dehors"
+      }
+     ],
+     [
+      "vão chegar tarde",
+      {
+       "fr": "ils vont arriver tard"
+      }
+     ],
+     [
+      "no sábado vou a Sintra",
+      {
+       "fr": "samedi, je vais à Sintra"
+      }
+     ]
+    ],
+    "a": {
+     "fr": "Ir + infinitif est le futur de la conversation. Le futur simple (trabalharei) sonne écrit."
+    }
+   }
+  }
+ ]
+}
