@@ -20,9 +20,11 @@ lusophone du Portugal.
 - **Portugais d'Europe** : chaque phrase vient de nos corpus (où elle était
   brésilienne) et passe par un convertisseur qui la refuse plutôt que de la
   laisser brésilienne.
-- **Pas encore dans l'app** : la session socle branche `niveaux.construire(jeu,
-  variantes)` (son `construire.py` l'appelle déjà) et la fusion des couches des
-  scènes. Rien n'est poussé sur `main` d'ici.
+- **Construit avec l'A1 du socle** (branche à jour avec `main`, v1026) : son
+  `construire.py` appelle `niveaux.construire(jeu, variantes)` et son `scenes.py`
+  fusionne les couches ; `portugais/datos` et les scènes `.pt.js` contiennent
+  l'A2-C1. L'affichage (temps en plus, séries par temps, feuilles par niveau) est
+  à brancher dans `index.html` par le socle.
 
 ## Les chiffres (mesurés par `python portugais/outils/couverture_comptes.py`)
 
@@ -30,11 +32,11 @@ Entre parenthèses : l'espagnol et l'anglais (A2-B2), l'allemand et l'anglais (C
 
 | | A2 | B1 | B2 | C1 |
 |---|---|---|---|---|
-| Noms | **717** (es 539 · en 692) | **1083** (es 515 · en 1036) | **431** (es 236 · en 418) | **612** (de 948 · en 548) |
-| Verbes | **326** (es 274 · en 309) | **436** (es 314 · en 385) | **189** (es 162 · en 182) | **127** (de 272 · en 175) |
-| Adjectifs | **207** (es 154 · en 194) | **342** (es 261 · en 395) | **114** (es 101 · en 124) | **110** (de 291 · en 213) |
-| Adverbes | **102** (es 51 · en 92) | **162** (es 119 · en 143) | **87** (es 30 · en 82) | **25** (de 52 · en 44) |
-| Expressions | **80** (es 82 · en 126) | **95** (es 55 · en 129) | **118** (es 69 · en 146) | **53** (de 100 · en 111) |
+| Noms | **708** (es 539 · en 692) | **1074** (es 515 · en 1036) | **431** (es 236 · en 418) | **612** (de 948 · en 548) |
+| Verbes | **321** (es 274 · en 309) | **436** (es 314 · en 385) | **189** (es 162 · en 182) | **127** (de 272 · en 175) |
+| Adjectifs | **204** (es 154 · en 194) | **342** (es 261 · en 395) | **114** (es 101 · en 124) | **110** (de 291 · en 213) |
+| Adverbes | **99** (es 51 · en 92) | **162** (es 119 · en 143) | **86** (es 30 · en 82) | **25** (de 52 · en 44) |
+| Expressions | **79** (es 82 · en 126) | **94** (es 55 · en 129) | **118** (es 69 · en 146) | **53** (de 100 · en 111) |
 | Mots-outils | **59** (es 27 · en 57) | **35** (es 20 · en 52) | **20** (es 16 · en 18) | **13** (de 0 · en 13) |
 | Fiches de grammaire | **10** (en 15) | **10** (en 14) | **10** (en 13) | **9** (en 9) |
 | Questions de grammaire (fiches + temps) | **198** (en 748) | **189** (en 753) | **152** (en 534) | **142** (en 502) |
@@ -56,7 +58,8 @@ Ce qui reste en dessous, et pourquoi :
   `portugais/outils/rapport_niveaux.txt` ; il suffit d'écrire leur phrase dans la
   source (colonnes 3 et 4) pour qu'elles entrent. L'anglais, lui, en avait gardé
   164.
-- **Les expressions A2** : 80 contre 82 en espagnol.
+- **Les expressions A2** : 79 contre 82 en espagnol.
+- **32 mots déjà dans l'A1 du socle** sont sautés (un mot n'a qu'une carte).
 
 ## Comment c'est fait
 
@@ -136,10 +139,8 @@ en plus de celles de l'A1 : `conj_imperfeito`, `conj_futuro`,
 
 ## Le branchement (pour la session socle)
 
-1. `construire.py` appelle déjà `niveaux.construire(jeu, variantes)` quand
-   `niveaux.py` est là : rien à faire, sinon ajouter les fichiers de cette branche.
-2. `scenes.py` doit fusionner `portugais/scenes/<scène>.json` comme
-   `anglais/outils/scenes.py` le fait (sans les clés qui commencent par « _ »).
+1. `construire.py` appelle `niveaux.construire(jeu, variantes)` : fait (socle, v1026).
+2. `scenes.py` fusionne `portugais/scenes/<scène>.json` : fait (socle, v1026).
 3. `index.html` : lire pour le portugais la clé `temps` de grammaire.json,
    `niveaux` de conjugaison.json, le niveau des fiches, et (si voulu) les temps
    en plus dans la carte de verbe.

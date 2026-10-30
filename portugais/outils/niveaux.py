@@ -467,6 +467,24 @@ def charger_a1():
             jeu[k] = {n: v for n, v in jeu[k].items() if n not in NIVEAUX}
     if "themes.json" in jeu:
         jeu["themes.json"]["themes"] = [t for t in jeu["themes.json"]["themes"] if t.get("niveau") not in NIVEAUX]
+    # portugais/datos contient deja l'A2-C1 une fois construit : on le retire
+    # (fiches, series, temps, feuilles, mots-outils) pour repartir de l'A1.
+    g, ex = jeu.get("grammaire.json"), jeu.get("exercices.json")
+    if g and ex:
+        hors = {f["serie"] for f in g.get("fiches", []) if f.get("niveau") in NIVEAUX}
+        hors |= {t["serie"] for t in g.pop("temps", [])}
+        hors |= {f["serie"] for niv, l in jeu.get("conjugaison.json", {}).get("niveaux", {}).items()
+                 if niv in NIVEAUX for f in l} & {s for s in hors}
+        g["fiches"] = [f for f in g.get("fiches", []) if f.get("niveau") not in NIVEAUX]
+        for s in hors:
+            ex["jeux"].pop(s, None)
+            g.get("textes", {}).get("fr", {}).pop("kicker_" + s, None)
+    if "conjugaison.json" in jeu:
+        for niv in NIVEAUX:
+            jeu["conjugaison.json"].get("niveaux", {}).pop(niv, None)
+    if "fonctionnels.json" in jeu:
+        jeu["fonctionnels.json"] = {k: [e for e in l if e.get("niveau") not in NIVEAUX]
+                                    for k, l in jeu["fonctionnels.json"].items()}
     return jeu
 
 
