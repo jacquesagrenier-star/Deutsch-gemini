@@ -14,10 +14,10 @@
 (function(){
     var a = null;
     try{ a = new URLSearchParams(location.search).get("apprendre"); }catch(e){}
-    if(a !== "es" && a !== "de" && a !== "ja" && a !== "en"){
+    if(a !== "es" && a !== "de" && a !== "ja" && a !== "en" && a !== "pt"){
         try{
             a = localStorage.getItem("wortando_langueApprise");
-            if(a !== "es" && a !== "ja" && a !== "en") a = "de";
+            if(a !== "es" && a !== "ja" && a !== "en" && a !== "pt") a = "de";
         }catch(e){ a = "de"; }
     }
     try{ document.documentElement.setAttribute("data-apprendre", a); }catch(e){}
@@ -3400,6 +3400,43 @@ html[data-apprendre="en"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclic
 html[data-apprendre="en"] #verbenTempsInfo > .card{ display:none !important; }
 .forme-en{ margin: 4px 0 8px; }
 .forme-en small{ opacity: .72; }
+/* ============ LE PORTUGAIS (essai admin, 29 oct. 2026) ============
+   La liste blanche de l'anglais, pour le portugais du Portugal : la seance,
+   les mots, « Mis de cote », les fiches de grammaire A1, les feuilles de
+   conjugaison, la prononciation, Ecouter et Ecrire. Pas encore : les tuiles
+   de grammaire, « S'entrainer par temps », les episodes, le tableau (la
+   mosaique portugaise est un autre chantier). */
+html[data-apprendre="pt"] [data-i18n="credits_voix"],
+html[data-apprendre="pt"] [data-i18n="credits_degres"],
+html[data-apprendre="pt"] [data-i18n="credits_freq"],
+html[data-apprendre="pt"] [data-i18n="credits_examens"],
+html[data-apprendre="pt"] #episodeLigne,
+html[data-apprendre="pt"] [data-seulement-de],
+html[data-apprendre="pt"] [data-seulement-es],
+html[data-apprendre="pt"] [data-seulement-ja],
+html[data-apprendre="pt"] [data-seulement-en],
+html[data-apprendre="pt"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="pt-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]){ display:none !important; }
+html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startDictee"],
+html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startSchreiben"],
+html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="ouvrirTuilesMenu"],
+html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startQuizArticle"],
+html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startRandomMixAll"],
+html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startDueReview"]{ display:flex !important; }
+html:not([data-apprendre="pt"]) [data-seulement-pt]{ display:none !important; }
+html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_pratique"]),
+html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_parcours"]),
+html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:none !important; }
+html[data-apprendre="pt"] button[onclick*="startExercises"],
+html[data-apprendre="pt"] button[onclick*="startVerbRektionExercise"],
+html[data-apprendre="pt"] p[data-i18n="verbenniveau_rektion_desc"]{ display:none !important; }
+html[data-apprendre="pt"] .orb-opt:not([onclick*="openNomenNiveau"]):not([onclick*="'openNomen'"]):not([onclick*="openVerbenNiveau"]):not([onclick*="'openAdjektive'"]):not([onclick*="openAdverbienVokabular"]):not([onclick*="abrirGramatica"]):not([onclick*="openVerbenTempsInfo"]){ display:none !important; }
+/* « S'entrainer par temps » (A2-C1, 30 oct. 2026) : la liste portugaise
+   (grammaire.json, cle « temps ») a la place des cartes allemandes. */
+html[data-apprendre="pt"] #verbenTempsInfo > .card{ display:none !important; }
+html[data-apprendre="pt"] #tempsEnCartes{ display:block !important; }
+/* L'article portugais : o (couleur de der), a (couleur de die). */
+html[data-apprendre="pt"] .article.o{ color: var(--g-der); }
+html[data-apprendre="pt"] .article.a{ color: var(--g-die); }
 /* ============ L'ESPAGNOL (fusion, etape 3) ============
    Repris de fork.py. Les regles « display:none » sont prefixees par
    html[data-apprendre="es"] : en allemand, rien n'est cache. Les classes
@@ -7167,9 +7204,14 @@ body[data-theme="dark"] .essai-oral-champ{background:#1d232c; border-color:#2c33
    qui connait l'encoche : c'est elle qui descend le cadre. */
 /* 28 oct. 2026 : le fond de l'accueil, plus le noir (« on dirait une publicite ») ;
    bleu nuit en mode nuit. La scene elle-meme recoit ?nuit=1 (langueDeScene). */
-#sceneSeance.active{position:fixed; inset:0; z-index:3000; margin:0; background:#DCE6EC;
+/* v1030 : LE DEGRADE E DANS LES MARGES DE L'ENCOCHE, PLUS LE GRIS PALE. Jacques, iPhone,
+   30 oct. 2026 : « il y a une bande blanche en haut, puis une bande blanche en bas » -- le
+   #DCE6EC de ces marges, autour d'une scene au fond bleu. Le haut prend le bleu du haut du
+   degrade, le bas celui du bas : la scene se prolonge jusqu'aux bords. */
+#sceneSeance.active{position:fixed; inset:0; z-index:3000; margin:0;
+    background:linear-gradient(180deg, #82AFDB 0%, #A4C6E7 55%, #C0D6EA 100%);
     padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);}
-.scene-cadre{display:block; width:100%; height:100%; border:0; background:#DCE6EC;}
+.scene-cadre{display:block; width:100%; height:100%; border:0; background:transparent;}
 body[data-theme="dark"] #sceneSeance.active, body[data-theme="dark"] .scene-cadre{background:#0E1C26;}
 
 .explorer-haut strong + .pt-decouverte{margin-inline-start:8px; margin-inline-end:auto;}
@@ -8338,7 +8380,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1025</span>
+        <span class="subtitle-version">v1030</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9237,6 +9279,13 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LES FICHES PROPRES A L'ESPAGNOL (v747) : en allemand, data-seulement-es
              les cache. Elles ouvrent leur fiche directement (abrirGramatica). -->
         <div class="orb" data-seulement-ja data-orbid="ja-grammaire" onclick="abrirIndiceGramatica()">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
+            <div>
+                <strong data-i18n="orb_es_indice">Toutes les fiches</strong>
+            </div>
+        </div>
+        <!-- Le portugais (essai, 29 oct. 2026) : ses fiches A1, en francais. -->
+        <div class="orb" data-seulement-pt data-orbid="pt-grammaire" onclick="abrirIndiceGramatica()">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><circle cx="4" cy="6" r="1"/><circle cx="4" cy="12" r="1"/><circle cx="4" cy="18" r="1"/></svg></div>
             <div>
                 <strong data-i18n="orb_es_indice">Toutes les fiches</strong>
@@ -11781,7 +11830,6 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
 
     <div class="title-row">
         <div>
-            <div class="kicker" data-i18n="kicker_progress">Ton app</div>
             <h2 data-i18n="settings_title">Réglages</h2>
         </div>
     </div>
@@ -12235,6 +12283,9 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- L'anglais (essai, 27 oct. 2026) : meme garde que le japonais. -->
         <div class="spacer"></div>
         <button class="secondary" onclick="ouvrirEssaiAnglais()">ENGLISH — ESSAI ANGLAIS →</button>
+        <!-- Le portugais du Portugal (essai, 29 oct. 2026) : meme garde. -->
+        <div class="spacer"></div>
+        <button class="secondary" onclick="ouvrirEssaiPortugais()">PORTUGUÊS — ESSAI PORTUGAIS →</button>
     </div>
 
 </section>
@@ -12611,13 +12662,15 @@ const LANGUE_APPRISE = (() => {
     // ⚠️ Rien a voir avec data-learning-dir="en" (l'ancien module anglais,
     // masque depuis la v727 par ANGLAIS_EN_RETRAIT) : le code neuf ne teste
     // que LANGUE_APPRISE, jamais getLearningDirection().
-    if(a === "es" || a === "de" || a === "ja" || a === "en"){
+    // LE PORTUGAIS (essai admin, 29 oct. 2026) : ?apprendre=pt, meme garde.
+    // Le portugais du Portugal (decide par Jacques le 29 oct.).
+    if(a === "es" || a === "de" || a === "ja" || a === "en" || a === "pt"){
         try{ localStorage.setItem(CLE_LANGUE_APPRISE, a); }catch(e){}
         return a;
     }
     try{
         const r = localStorage.getItem(CLE_LANGUE_APPRISE);
-        return (r === "es" || r === "ja" || r === "en") ? r : "de";
+        return (r === "es" || r === "ja" || r === "en" || r === "pt") ? r : "de";
     }
     catch(e){ return "de"; }
 })();
@@ -12628,7 +12681,8 @@ const LANGUE_APPRISE = (() => {
 // Le japonais a le sien, neuf : il ne doit rien lire de l'allemand. L'anglais aussi.
 const PREFIXE_STOCKAGE = LANGUE_APPRISE === "es" ? "wortandoEs_"
                        : LANGUE_APPRISE === "ja" ? "wortandoJa_"
-                       : LANGUE_APPRISE === "en" ? "wortandoEn_" : "deutschAI_";
+                       : LANGUE_APPRISE === "en" ? "wortandoEn_"
+                       : LANGUE_APPRISE === "pt" ? "wortandoPt_" : "deutschAI_";
 // LA VARIANTE DE L'ANGLAIS (decide par Jacques le 27 oct. 2026) : "us" =
 // americain, la base ; "gb" = britannique, la variante. Deux jeux de
 // donnees complets, anglais/datos et anglais/datos-gb (construire.py), avec
@@ -12718,6 +12772,8 @@ const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en", "pt", "ar"]
                // L'anglais : francais seulement. Une interface anglaise pour
                // apprendre l'anglais donnerait le mot pour sa propre traduction.
                : LANGUE_APPRISE === "en" ? ["fr"]
+               // Le portugais (essai, 29 oct. 2026) : francais seulement, comme l'anglais.
+               : LANGUE_APPRISE === "pt" ? ["fr"]
                : ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"];
 const DEFAULT_UI_LANG = "fr";
 
@@ -12863,9 +12919,38 @@ const LANGUE_ANGLAIS = {
     prefixeProgression: ""
 };
 
+// LE PORTUGAIS (essai admin, 29 oct. 2026). Le portugais du PORTUGAL, decide
+// par Jacques (« On va commencer par le portugais du Portugal. »). Ses donnees
+// ont la forme de l'espagnol (portugais/datos, construites par
+// portugais/outils/construire.py) : genre o / a, six personnes dont vos,
+// cachee comme vosotros en Amerique latine. Pas de voix enregistree : celle
+// du telephone, pt-PT (jamais pt-BR par defaut).
+const LANGUE_PORTUGAIS = {
+    code:    "pt",
+    nom:     "Português",
+    voix:    "pt-PT",
+    donnees: RACINE_DEPOT + "portugais/",
+    audio:   "",
+    fichiers: {
+        "verbe.json":         "datos/verbes.json",
+        "adjectif.json":      "datos/adjectifs.json",
+        "redewendung.json":   "datos/expressions.json",
+        "adverbe.json":       "datos/adverbes.json",
+        "themes.json":        "datos/themes.json",
+        "funktionswort.json": "datos/fonctionnels.json",
+        "reperes.json":       "datos/reperes.json",
+        "prononciation.json": "datos/prononciation.json",
+        "conjugaison.json":   "datos/conjugaison.json",
+        "premiers-pas.json":  "datos/premiers-pas.json",
+        "a1-voyage.json":     "datos/a1-voyage.json"
+    },
+    prefixeProgression: ""
+};
+
 const LANGUE_ENSEIGNEE = LANGUE_APPRISE === "es" ? LANGUE_ESPAGNOL
                        : LANGUE_APPRISE === "ja" ? LANGUE_JAPONAIS
-                       : LANGUE_APPRISE === "en" ? LANGUE_ANGLAIS : LANGUE_ALLEMAND;
+                       : LANGUE_APPRISE === "en" ? LANGUE_ANGLAIS
+                       : LANGUE_APPRISE === "pt" ? LANGUE_PORTUGAIS : LANGUE_ALLEMAND;
 
 // LES CARTES ANGLAISES, posees par-dessus le rendu commun de loadFlashcard()
 // comme la carte japonaise. Le nom passe tel quel (pas d'article, le pluriel
@@ -12946,7 +13031,7 @@ function majEntreeEssaiAnglais(){
     if(!bouton) return;
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
     const permis = !!user && (isAdminUser() || essaisDuCompte(user.uid).includes("anglais"));
-    bouton.classList.toggle("hidden", !permis || LANGUE_APPRISE === "ja");
+    bouton.classList.toggle("hidden", !permis || LANGUE_APPRISE === "ja" || LANGUE_APPRISE === "pt");
     const enAnglais = LANGUE_APPRISE === "en";
     document.getElementById("choixLangueEssaiDrapeau").textContent = enAnglais ? "\u{1F1EA}\u{1F1F8}" : "\u{1F1FA}\u{1F1F8}";
     document.getElementById("choixLangueEssaiNom").textContent = enAnglais ? "Espagnol" : "Anglais";
@@ -12977,6 +13062,107 @@ function ouvrirEssaiAnglais(){
     try{ localStorage.setItem(CLE_LANGUE_APPRISE, cible); }catch(e){}
     try{ location.href = new URL("./?apprendre=" + cible, location.href).href; }
     catch(e){ location.href = "./?apprendre=" + cible; }
+}
+
+// L'entree de l'essai portugais (29 oct. 2026), dans la carte Administration
+// des reglages, sur le modele de l'anglais : en portugais, le meme bouton
+// ramene a la langue d'avant (l'allemand ou l'espagnol).
+const CLE_AVANT_PORTUGAIS = "wortando_avantPortugais";
+function langueAvantPortugais(){
+    let a = null;
+    try{ a = localStorage.getItem(CLE_AVANT_PORTUGAIS); }catch(e){}
+    return a === "es" ? "es" : "de";
+}
+function ouvrirEssaiPortugais(){
+    if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de"){
+        try{ localStorage.setItem(CLE_AVANT_PORTUGAIS, LANGUE_APPRISE); }catch(e){}
+    }
+    const cible = LANGUE_APPRISE === "pt" ? langueAvantPortugais() : "pt";
+    try{ localStorage.setItem(CLE_LANGUE_APPRISE, cible); }catch(e){}
+    try{ location.href = new URL("./?apprendre=" + cible, location.href).href; }
+    catch(e){ location.href = "./?apprendre=" + cible; }
+}
+
+// LA CARTE PORTUGAISE, posee par-dessus le rendu commun de loadFlashcard() :
+// lang="pt-PT" sur le mot et la phrase, pour que le telephone ne lise pas le
+// portugais avec une voix francaise ou bresilienne.
+function habillerCartePortugaise(card){
+    ["flashWord", "flashBackWord", "flashVerbDetails"].forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.setAttribute("lang", "pt-PT");
+    });
+    // Un adjectif : feminin, pluriels et comparatif, au-dessus de l'exemple.
+    const det = document.getElementById("flashVerbDetails");
+    if(det && card && card.formesPt && !card.infinitif){
+        det.insertAdjacentHTML("afterbegin", formesAdjectifPortugais(card));
+        det.classList.remove("hidden");
+    }
+}
+function echapperPortugais(s){
+    return String(s || "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+}
+function formesAdjectifPortugais(card){
+    const f = card.formesPt || {};
+    const mot = card[0] || card.mot || "";
+    const genres = [mot, f.feminin, f.pluriel, f.feminin_pluriel].filter((x, i, a) => x && a.indexOf(x) === i).join(" · ");
+    const ligne = (forme, libelle) => forme
+        ? `<div class="forme-en"><span lang="pt-PT">${echapperPortugais(forme)}</span>${sentenceSpeakBtnHtml(forme, "de")}<br><small>${echapperPortugais(libelle)}</small></div>` : "";
+    return `<div class="verb-core">${ligne(genres, "masculin · féminin · pluriels")}${ligne(f.comparatif, "comparatif (plus…)")}${ligne(f.superlatif, "superlatif (le plus…)")}</div><div class="verb-sep"></div>`;
+}
+// LA CARTE DE VERBE PORTUGAISE (29 oct. 2026), sur le modele de l'espagnole :
+// le present et sa phrase au recto du bloc ; deplie, le passe (perfeito),
+// l'imparfait, le futur, le conditionnel, le subjonctif et l'imperatif, vos
+// cache (personneCachee). Libelles en francais, la seule langue d'interface
+// du portugais pour l'instant.
+// Les subjonctifs se lisent avec leur conjonction DEVANT la personne : « que eu
+// fale », « se ele se levantasse », « quando tu chegares ». Les formes de l'A1
+// n'en portent pas, celles de l'A2-C1 la portent (« que me abaixe ») : on la
+// retire de la forme et on la place en tete, dans les deux cas.
+function lignePersonnesPortugais(formes, conj){
+    if(!Array.isArray(formes) || !formes.length) return "";
+    return formes.map((f, i) => {
+        if(personneCachee(i) || f === "—") return null;
+        let forme = String(f || "");
+        if(conj && forme.indexOf(conj + " ") === 0) forme = forme.slice(conj.length + 1);
+        return (conj ? conj + " " : "") + PERSONNES_CONJUGAISON[i] + " " + echapperPortugais(forme);
+    }).filter(x => x !== null).join(" · ");
+}
+function blocTempsPortugais(titre, aide, formes, conj){
+    const ligne = lignePersonnesPortugais(formes, conj);
+    if(!ligne) return "";
+    return '<div class="verb-sep"></div><strong>' + titre + '</strong> '
+        + '<span style="font-weight:400; color:#566070;">&mdash; ' + aide + '</span><br>' + ligne;
+}
+function carteVerbePortugais(card, exampleTr){
+    const p = card.praesens || {};
+    const present = lignePersonnesPortugais([p.ich, p.du, p.er_sie_es, p.wir, p.ihr, p.sie_Sie]);
+    const ex = card.exemple
+        ? `<div class="verb-sep"></div><strong>En contexte :</strong> <span lang="pt-PT">${echapperPortugais(card.exemple)}</span>${sentenceSpeakBtnHtml(card.exemple, "de")}<br>(${echapperPortugais(exampleTr || "")})`
+        : "";
+    const core = `<strong>PRESENTE</strong>${card.irregulierPt ? ' <span style="font-weight:400; color:#566070;">&mdash; irrégulier</span>' : ""}<br>${present}${ex}`;
+    const imp = card.imperativoPt;
+    const impHtml = imp
+        ? '<div class="verb-sep"></div><strong>IMPERATIVO</strong> <span style="font-weight:400; color:#566070;">&mdash; tu : la forme de ele ; você, vocês : le subjonctif</span><br>'
+          + [["tu", imp.tu], ["você", imp.voce], ["vocês", imp.voces]].filter(x => x[1]).map(x => x[0] + " &rarr; " + echapperPortugais(x[1])).join(" · ")
+          + sentenceSpeakBtnHtml([imp.tu, imp.voce, imp.voces].filter(Boolean).join(", "), "de")
+        : "";
+    const extra = blocTempsPortugais("PRETÉRITO PERFEITO", "une action finie &mdash; <em>ontem, já, no sábado</em>", card.perfeitoPt)
+        + blocTempsPortugais("IMPERFEITO", "un décor, une habitude &mdash; <em>antes, sempre, quando era pequeno</em>", card.imperfeitoPt)
+        + blocTempsPortugais("FUTURO", "l'avenir, écrit ou solennel &mdash; à l'oral : <em>vou + infinitif</em>", card.futuroPt)
+        + blocTempsPortugais("CONDICIONAL", "politesse, hypothèse &mdash; <em>gostaria, podia</em>", card.condicionalPt)
+        + blocTempsPortugais("CONJUNTIVO", "après <em>quero que</em>, <em>espero que</em>, <em>talvez</em>", card.conjuntivoPt, "que")
+        // A2-C1 : rien sur une carte de l'A1, qui n'a pas ces champs.
+        + blocTempsPortugais("PRETÉRITO PERFEITO COMPOSTO", "ce qui se répète jusqu'à maintenant &mdash; <em>tenho trabalhado muito</em>", card.perfeitoCompostoPt)
+        + blocTempsPortugais("MAIS-QUE-PERFEITO", "le passé du passé &mdash; <em>já tinha saído</em>", card.maisQuePerfeitoPt)
+        + blocTempsPortugais("CONJUNTIVO IMPERFEITO", "après <em>se</em>, <em>queria que</em> &mdash; <em>se eu pudesse</em>", card.conjImperfeitoPt, "se")
+        + blocTempsPortugais("CONJUNTIVO FUTURO", "après <em>quando</em>, <em>se</em> pour l'avenir &mdash; <em>quando chegares</em>", card.conjFuturoPt, "quando")
+        + ((card.participioPt || card.gerundioPt)
+            ? '<div class="verb-sep"></div><strong>PARTICÍPIO · GERÚNDIO</strong><br>' + [card.participioPt, card.gerundioPt].filter(Boolean).map(echapperPortugais).join(" · ")
+            : "")
+        + impHtml;
+    return `<div class="verb-core">${core}</div>` + (extra
+        ? `<button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extra}</div>`
+        : "");
 }
 
 // Ce que la carte japonaise montre en plus du mot : sa lecture en kana, le
@@ -13225,13 +13411,16 @@ function ouvrirEssaiJaponais(){
 // onAuthStateChanged des que le compte est connu ; rend true si elle recharge.
 // L'anglais (27 oct. 2026) passe par la meme garde, tant qu'un anglophone ne
 // l'a pas relu.
+// Le portugais (29 oct. 2026) aussi, pour l'admin seul : aucun compte ne
+// l'ouvre encore (pas d'equivalent de « OUVRIR L'ANGLAIS »).
 function gardeEssaiJaponais(user){
-    if(LANGUE_APPRISE !== "ja" && LANGUE_APPRISE !== "en") return false;
+    if(LANGUE_APPRISE !== "ja" && LANGUE_APPRISE !== "en" && LANGUE_APPRISE !== "pt") return false;
     const email = (user && user.email || "").toLowerCase();
     if(email && email === ADMIN_EMAIL.toLowerCase()) return false;
     // Un compte a qui l'admin a ouvert l'anglais passe (28 oct. 2026).
     if(LANGUE_APPRISE === "en" && user && essaisDuCompte(user.uid).includes("anglais")) return false;
-    const retour = LANGUE_APPRISE === "en" ? langueAvantAnglais() : "de";
+    const retour = LANGUE_APPRISE === "en" ? langueAvantAnglais()
+                 : LANGUE_APPRISE === "pt" ? langueAvantPortugais() : "de";
     try{ localStorage.setItem(CLE_LANGUE_APPRISE, retour); }catch(e){}
     try{ location.replace(new URL("./?apprendre=" + retour, location.href).href); }
     catch(e){ location.replace("./?apprendre=" + retour); }
@@ -13242,10 +13431,16 @@ function gardeEssaiJaponais(user){
 // en dur pour tout pluriel -- juste chez lui, puisqu'il n'a qu'un article
 // pluriel. L'espagnol en a deux, qui suivent le genre : la casa -> las casas,
 // el libro -> los libros.
-const ARTICLES_GENRE = LANGUE_APPRISE === "es" ? { m: "el", f: "la" } : { m: "der", f: "die" };
+// Le portugais (29 oct. 2026) : o / a, os / as -- o livro -> os livros.
+const ARTICLES_GENRE = LANGUE_APPRISE === "es" ? { m: "el", f: "la" }
+                     : LANGUE_APPRISE === "pt" ? { m: "o", f: "a" } : { m: "der", f: "die" };
 function articlePluriel(articleSingulier){
     // L'anglais n'a pas d'article au pluriel : « houses ».
     if(LANGUE_APPRISE === "en") return "";
+    if(LANGUE_APPRISE === "pt"){
+        const a = String(articleSingulier || "").trim().toLowerCase();
+        return a === "o" ? "os " : a === "a" ? "as " : "";
+    }
     if(LANGUE_APPRISE !== "es") return "die ";
     const a = String(articleSingulier || "").trim().toLowerCase();
     if(a === "el") return "los ";
@@ -13258,10 +13453,15 @@ const PERSONNES_CONJUGAISON = LANGUE_APPRISE === "es"
     ? ["yo", "t\u00fa", "\u00e9l/ella", "nosotros", "vosotros",
        VARIANTE_ESPAGNOL === "latam" ? "ellos/ustedes" : "ellos"]
     : LANGUE_APPRISE === "en" ? ["I", "you", "he/she/it", "we", "you", "they"]
+    // Le portugais d'Europe : « você » prend la forme de ele, « vocês » celle
+    // de eles ; vos (5e) est sorti de l'usage, il est cache comme vosotros.
+    : LANGUE_APPRISE === "pt" ? ["eu", "tu", "ele/ela/você", "nós", "vós", "eles/elas/vocês"]
     : ["ich", "du", "er/sie/es", "wir", "ihr", "sie/Sie"];
 // La personne cachee : vosotros, en Amerique latine (ustedes prend les
-// formes de ellos). Rien n'est cache en allemand ni en Espagne.
+// formes de ellos). Rien n'est cache en allemand ni en Espagne. En
+// portugais, vos (29 oct. 2026).
 function personneCachee(i){
+    if(LANGUE_APPRISE === "pt") return i === 4;
     return LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL === "latam" && i === 4;
 }
 // Les temps espagnols arrivent en LISTE ordonnee (yo ... ellos), pas en objet
@@ -28069,6 +28269,64 @@ if(LANGUE_APPRISE === "en"){
     document.title = "Wortando English";
 }
 
+// LE PORTUGAIS DU PORTUGAL (essai, 29 oct. 2026) : verse par-dessus I18N comme
+// l'anglais, en francais seulement.
+const I18N_PORTUGAIS = {
+    "fr": {
+        "home_title_1": "Apprends le portugais",
+        "home_subtitle": "Ton tuteur personnel pour le vocabulaire et la grammaire du portugais du Portugal.",
+        "credits_dict": "Mots, traductions et phrases d'exemple : choisis et écrits par Wortando à partir de son cours d'espagnol, en portugais du Portugal (brouillon, à relire par un lusophone).",
+        "auth_title": "Apprends le portugais, un mot à la fois",
+        "setup_niveau_label": "Tu connais déjà un peu de portugais ?",
+        "profil_q1": "Pourquoi tu apprends le portugais ?",
+        "profil_r_vivre": "Pour vivre au Portugal",
+        "abo_titre": "Apprends le portugais sans limite",
+        "abo_av_voix": "La voix portugaise sur chaque carte",
+        "flip_direction_fr": "🔁 Sens : FR → PT",
+        "flip_direction_de": "🔁 Sens : PT → FR",
+        "voice_lang_de": "Portugais",
+        "carte_dire_desc": "Au verso d'une carte, le portugais se dit tout seul. Choisis ce que tu veux entendre. Ce que tu retires reste affiché, et son haut-parleur fonctionne toujours.",
+        "carte_phrase_desc": "Au verso d'une carte, le portugais se dit tout seul : le mot avec son article, puis son pluriel. Avec ce réglage, la phrase d'exemple est lue à la suite. Elle apprend le mot en contexte, mais elle allonge chaque carte de quelques secondes.",
+        "settings_invite_desc": "Tu apprends avec Wortando ? Partage-le avec quelqu'un qui voudrait apprendre le portugais.",
+        "invite_share_text": "J'apprends le portugais avec Wortando — demande-moi un code d'invitation pour essayer !",
+        "auth_value_1": "Vocabulaire et grammaire du portugais du Portugal, organisés par thème et par niveau.",
+        "setup_learning_de": "Portugais",
+        "setup_learning_autre": "Allemand",
+        "seance_choix_allemand": "Portugais",
+        "title_adjektive_allemands": "Adjectifs portugais",
+        "orb_adjektive_sub": "alto · alta · altos",
+        "op_adjektive_sub": "alto · alta · altos",
+        "orb_adverbien_sub": "hoje · aqui · muito",
+        "op_adverbien_sub": "hoje · aqui · muito",
+        "orb_redewendungen_sub": "olá · obrigado · se faz favor",
+        "accueil_tout_sous": "Mots et expressions",
+        "auth_apprendre_de": "Tu apprends le portugais · passer à l'allemand ›",
+        "kicker_verben_praesens": "Verbes · Presente",
+        "search_title": "Chercher un mot portugais ou français",
+        "search_placeholder": "Portugais ou français…",
+        "search_hint": "Tape au moins deux lettres, <strong>en portugais ou en français</strong> — les deux marchent. La recherche interroge tes {n} cartes.",
+        "dictation_hint": "Pas besoin d'écrire l'article (o/a).",
+        "op_nomen_o6_d": "o · a — deux genres",
+        "op_schreiben_title": "Écrire en portugais",
+        "op_schreiben_all_d": "Des phrases tirées de tout le vocabulaire",
+        "op_schreiben_level_d": "Les phrases du niveau {n}",
+        "schreiben_hint": "Écris la phrase en portugais. Les accents et la ponctuation ne comptent pas.",
+        "ecoute_sens_connu_cible_d": "tu produis le portugais de mémoire",
+        "ecoute_sens_cible_connu": "Portugais d'abord",
+        "tuiles_menu_desc": "On te donne la phrase en français et les mots portugais en vrac. Touche-les dans le bon ordre — pas de clavier. Le banc contient un ou deux mots en trop, choisis dans la même famille que ceux de la phrase.",
+        "op_nomen_o5_d": "Écouter et écrire — {n} mots",
+        "op_verben_o4_d": "Presente, perfeito, imperfeito, futuro, conjuntivo",
+        "reflexiv_badge_label": "pronominal (-se)",
+        "verbe_es_exemple": "En contexte :",
+        "dec_t1_texte_plusieurs": "En portugais, chaque nom est masculin ou féminin, et son article le dit : o ou a. Pas toujours comme en français : o leite, le lait ; a viagem, le voyage.",
+        "dec_t1_texte_peu": "Rappel : le petit mot devant le nom, l'article, dit son genre : o (masculin) ou a (féminin). La couleur le montre. Écoute le mot, puis dis si tu le savais."
+    }
+};
+if(LANGUE_APPRISE === "pt"){
+    for(const l of Object.keys(I18N_PORTUGAIS)) Object.assign(I18N[l], I18N_PORTUGAIS[l]);
+    document.title = "Wortando Português";
+}
+
 
 function getUiLang(){
     let lang;
@@ -28355,7 +28613,7 @@ function chargerCours(){
                 FICHES_GRAMMAIRE = Array.isArray(d.fiches) ? d.fiches : [];
                 TEMPS_ANGLAIS = Array.isArray(d.temps) ? d.temps : [];
                 TUILES_ANGLAISES = (d.tuiles && typeof d.tuiles === "object") ? d.tuiles : {};
-                if(LANGUE_APPRISE === "en") brancherSeriesAnglaises();
+                if(LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") brancherSeriesAnglaises();
                 Object.keys(textes).forEach(code => {
                     if(I18N[code]) Object.assign(I18N[code], textes[code]);
                 });
@@ -28623,6 +28881,14 @@ function adapterChoixALaLangueApprise(){
         });
         document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice(\'de\')"] .setup-choice-flag')
             .forEach(el => { el.textContent = VARIANTE_ANGLAIS === "gb" ? "\u{1F1EC}\u{1F1E7}" : "\u{1F1FA}\u{1F1F8}"; });
+        document.querySelectorAll('.setup-choice-flag[data-autre]')
+            .forEach(el => { el.textContent = "\u{1F1E9}\u{1F1EA}"; });
+        return;
+    }
+    // Le portugais (essai, 29 oct. 2026) : le drapeau du Portugal.
+    if(LANGUE_APPRISE === "pt"){
+        document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice(\'de\')"] .setup-choice-flag')
+            .forEach(el => { el.textContent = "\u{1F1F5}\u{1F1F9}"; });
         document.querySelectorAll('.setup-choice-flag[data-autre]')
             .forEach(el => { el.textContent = "\u{1F1E9}\u{1F1EA}"; });
         return;
@@ -30508,8 +30774,8 @@ async function confirmerSuppressionCompte(){
         // resume. Un document absent ou une regle pas encore posee ne doit pas
         // bloquer la suppression du compte.
         // 26 oct. 2026 : le japonais (v961) a les siennes, oubliees jusque-la.
-        // 27 oct. 2026 : l'anglais (essai) aussi.
-        for(const coll of ["usuariosEs", "resumenesEs", "usersJa", "resumesJa", "usersEn", "resumesEn", "resumes"]){
+        // 27 oct. 2026 : l'anglais (essai) aussi ; 29 oct. : le portugais.
+        for(const coll of ["usuariosEs", "resumenesEs", "usersJa", "resumesJa", "usersEn", "resumesEn", "usersPt", "resumesPt", "resumes"]){
             if(coll === RESUMES_COLL) continue;   // efface juste en dessous
             try{ await window.fsDeleteDoc(window.fsDoc(window.firestoreDb, coll, user.uid)); }catch(e){}
         }
@@ -30944,7 +31210,7 @@ function uidCourant(){
     return u ? u.uid : null;
 }
 function horsLignePossible(){
-    return !!pluginNatif("Filesystem") && LANGUE_APPRISE !== "ja" && LANGUE_APPRISE !== "en" && getLearningDirection() !== "en";
+    return !!pluginNatif("Filesystem") && LANGUE_APPRISE !== "ja" && LANGUE_APPRISE !== "en" && LANGUE_APPRISE !== "pt" && getLearningDirection() !== "en";
 }
 
 // Les echues jusqu'a DEMAIN (la seance A VENIR : celle d'aujourd'hui si elle
@@ -31802,6 +32068,14 @@ async function loadVerbeJson() {
                     // L'anglais : les formes calculees par anglais/outils/construire.py.
                     // (Aucune cle ajoutee hors de l'anglais : l'objet allemand reste le meme.)
                     ...(LANGUE_APPRISE === "en" ? { formesEn: v.formes || null, irregulierEn: !!v.irregulier } : {}),
+                    // Le portugais (29 oct. 2026) : ses temps, calcules par portugais/outils/conjugaison.py.
+                    ...(LANGUE_APPRISE === "pt" ? { perfeitoPt: v.perfeito || null, imperfeitoPt: v.imperfeito || null,
+                        futuroPt: v.futuro || null, condicionalPt: v.condicional || null, conjuntivoPt: v.conjuntivo || null,
+                        imperativoPt: v.imperativo || null, irregulierPt: !!v.irregulier,
+                        // Les temps de l'A2 au C1 (session « Portugais A2-C1 »), absents de l'A1.
+                        perfeitoCompostoPt: v.perfeito_composto || null, maisQuePerfeitoPt: v.mais_que_perfeito || null,
+                        conjImperfeitoPt: v.conj_imperfeito || null, conjFuturoPt: v.conj_futuro || null,
+                        participioPt: v.participio || "", gerundioPt: v.gerundio || "" } : {}),
                     traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "", traduction_uk: v.traduction_uk || "", traduction_fa: v.traduction_fa || "", traduction_pt: v.traduction_pt || "", traduction_ar: v.traduction_ar || "", traduction_pl: v.traduction_pl || "", traduction_ru: v.traduction_ru || "",
                     praesens: v.praesens || {},
                     exemple: phraseVariante(v.exemple || "", phrasesLatam), exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "", exemple_uk: v.exemple_uk || "", exemple_fa: v.exemple_fa || "", exemple_pt: v.exemple_pt || "", exemple_ar: v.exemple_ar || "", exemple_pl: v.exemple_pl || "", exemple_ru: v.exemple_ru || "",
@@ -31930,6 +32204,8 @@ async function loadAdjektiveJson() {
                 }
                 // L'anglais : comparatif et superlatif (bigger, the biggest).
                 if(LANGUE_APPRISE === "en") words[words.length - 1].formesEn = w.formes || null;
+                // Le portugais : feminin, pluriels, comparatif (alta, altos, mais alto).
+                if(LANGUE_APPRISE === "pt") words[words.length - 1].formesPt = w.formes || null;
             });
         });
         adjektiveTheme.words = words;
@@ -36216,7 +36492,7 @@ async function accorderLangueAuCompte(){
     // sans eux, un compte ouvert en ?apprendre=en dont le document dit « de »
     // repartait aussitot en allemand. Leur garde (gardeEssaiJaponais) a deja
     // renvoye vers l'allemand un compte qui n'y a pas droit.
-    const choisieIci = ["es", "de", "en", "ja"].includes(parAdresse) || ["es", "de", "en", "ja"].includes(surAppareil);
+    const choisieIci = ["es", "de", "en", "ja", "pt"].includes(parAdresse) || ["es", "de", "en", "ja", "pt"].includes(surAppareil);
     let duCompte = null;
     try{
         const s = await window.fsGetDoc(ref);
@@ -39816,7 +40092,8 @@ function startQuizTerminaisons(){
 // redescend a 33 %, le hasard reel d'un choix a trois, et le score redevient
 // une mesure. Ne pas « simplifier » ce tirage.
 const QUIZ_ARTICLE_TAILLE = 30;              // 10 par genre
-const QUIZ_ARTICLE_GENRES = LANGUE_APPRISE === "es" ? ["el", "la"] : ["der", "die", "das"];
+const QUIZ_ARTICLE_GENRES = LANGUE_APPRISE === "es" ? ["el", "la"]
+                          : LANGUE_APPRISE === "pt" ? ["o", "a"] : ["der", "die", "das"];
 
 // Compose un texte dans UNE langue precise, sans passer par la langue active.
 // tf() sert l'affichage immediat ; ici on fabrique un exercice qui range ses
@@ -41030,6 +41307,14 @@ function dictNormalize(str){
 // aurait donne 900 fichiers pour la meme chose -- ici il y en a 88.
 async function dictLoadIndex(pair){
     if(dictIndexes[pair]) return dictIndexes[pair];
+    // Le portugais (essai, 29 oct. 2026) n'a pas encore de dictionnaire : la
+    // section s'efface, sans aller chercher celui de l'allemand (deux 404 par
+    // recherche).
+    if(LANGUE_APPRISE === "pt"){
+        dictIndexes[pair] = [];
+        dictIndexes[pair].introuvable = true;
+        return dictIndexes[pair];
+    }
     try{
         const r = await fetch(DICT_BASE_URL + pair + "/index.json");
         if(!r.ok) throw new Error("index " + pair);
@@ -41693,6 +41978,14 @@ function showScreen(id){
     // defilement d'un pixel aller-retour. Et la mesure au journal.
     if(target && id !== "sceneSeance" && (depuisScene || (ecranQuitte === "flashcards" && id === "home")))
         repeindreApresScene(target, depuisScene ? "retour de scene" : "retour des cartes");
+    // v1030 : LA MESURE DU DECALAGE. Jacques, iPhone, 30 oct. 2026 : apres une scene,
+    // « tout est decale vers le bas », l'accueil compris. Pas reproduit hors de l'iPhone
+    // (WebKit emule n'a pas d'encoche) : on note ou est l'en-tete a l'entree d'une scene,
+    // a sa sortie et une seconde apres, pour le Journal audio.
+    if(id === "sceneSeance" || depuisScene){
+        mesurerEnTete(id, depuisScene ? "sortie de scene" : "entree en scene");
+        setTimeout(() => mesurerEnTete(id, (depuisScene ? "sortie de scene" : "entree en scene") + " +1 s"), 1000);
+    }
     window.scrollTo(0,0);
     updateGlobalProgress();
     updateOrbBadges();
@@ -44985,6 +45278,8 @@ function loadFlashcard(){
             verbDetailsEl.innerHTML = carteVerbeJaponais(card, exampleTr);
         } else if(LANGUE_APPRISE === "en"){
             verbDetailsEl.innerHTML = carteVerbeAnglais(card, exampleTr);
+        } else if(LANGUE_APPRISE === "pt"){
+            verbDetailsEl.innerHTML = carteVerbePortugais(card, exampleTr);
         } else if(!card.praesens){
             // Verbe de chapitre VHS pas encore enrichi (conjugaison et temps à
             // venir) : on n'affiche que la phrase d'exemple, plutôt qu'un tableau
@@ -45365,8 +45660,10 @@ function loadFlashcard(){
             translationEl.classList.remove("hidden");
         }
         const articleText = (card[1] || "").toLowerCase().trim();
-        if(articleText === "der" || articleText === "el") flashcardEl.classList.add("border-der");
-        else if(articleText === "die" || articleText === "la") flashcardEl.classList.add("border-die");
+        // Le portugais (29 oct. 2026) : o / a, aux couleurs de der / die.
+        const artPt = LANGUE_APPRISE === "pt";
+        if(articleText === "der" || articleText === "el" || (artPt && articleText === "o")) flashcardEl.classList.add("border-der");
+        else if(articleText === "die" || articleText === "la" || (artPt && articleText === "a")) flashcardEl.classList.add("border-die");
         else if(articleText === "das") flashcardEl.classList.add("border-das");
 
         // L'article (der/die/das) et le pluriel allemand n'ont pas de sens à côté
@@ -45385,6 +45682,10 @@ function loadFlashcard(){
             if(genreCarteEl && ['der','die','das','el','la'].includes(articleText)){
                 genreCarteEl.textContent = t('carte_genre_' + articleText);
                 genreCarteEl.className = 'carte-genre ' + articleText;
+            } else if(genreCarteEl && artPt && (articleText === "o" || articleText === "a")){
+                // Les classes .el / .la portent deja les deux couleurs.
+                genreCarteEl.textContent = t('carte_genre_' + (articleText === "o" ? "der" : "die"));
+                genreCarteEl.className = 'carte-genre ' + (articleText === "o" ? "el" : "la");
             }
             // Article "die" ecrit en toutes lettres devant le pluriel : il est le
             // meme pour les trois genres, mais l'afficher evite d'avoir a le
@@ -45465,6 +45766,7 @@ function loadFlashcard(){
     // Le japonais, par-dessus le rendu commun : furigana, lecture, romaji.
     if(LANGUE_APPRISE === "ja"){ try{ habillerCarteJaponaise(card); }catch(e){} }
     if(LANGUE_APPRISE === "en"){ try{ habillerCarteAnglaise(card); }catch(e){} }
+    if(LANGUE_APPRISE === "pt"){ try{ habillerCartePortugaise(card); }catch(e){} }
 
     // Le trophee suit l'etat du mot : il est la des la maitrise, et encore la
     // quand la carte revient se faire verifier seize jours apres. La classe de
@@ -45937,9 +46239,11 @@ function restaurerBrouillonRetour(){
 // l'appareil et l'ecriture echoue sans bruit).
 // L'anglais (essai, 27 oct. 2026) : `usersEn`, `resumesEn`, regles a coller aussi.
 const COLL_PROGRESSION = LANGUE_APPRISE === "es" ? "usuariosEs" : LANGUE_APPRISE === "ja" ? "usersJa"
-                       : LANGUE_APPRISE === "en" ? "usersEn" : "users";
+                       : LANGUE_APPRISE === "en" ? "usersEn"
+                       : LANGUE_APPRISE === "pt" ? "usersPt" : "users";
 const RESUMES_COLL = LANGUE_APPRISE === "es" ? "resumenesEs" : LANGUE_APPRISE === "ja" ? "resumesJa"
-                   : LANGUE_APPRISE === "en" ? "resumesEn" : "resumes";
+                   : LANGUE_APPRISE === "en" ? "resumesEn"
+                   : LANGUE_APPRISE === "pt" ? "resumesPt" : "resumes";
 
 const CARTE_MOT_KEY = PREFIXE_STOCKAGE + "carteDitMot";
 const CARTE_PLURIEL_KEY = PREFIXE_STOCKAGE + "carteDitPluriel";
@@ -46046,6 +46350,15 @@ const VOIX_ANGLAISES = {
     "en-gb": ["serena", "kate", "daniel", "arthur", "martha", "stephanie", "oliver",
               "libby", "sonia", "ryan", "hazel", "george", "susan"]
 };
+// LA VOIX DU PORTUGAIS APPRIS (29 oct. 2026) : le portugais du Portugal, donc
+// pt-PT d'abord ; une voix bresilienne ne parle qu'a defaut de toute voix
+// pt-PT sur l'appareil. Meme classement que l'anglais (Premium, Enhanced, puis
+// ces prenoms), memes voix a fuir. Joana et Catarina : Apple ; Raquel, Duarte,
+// Fernanda, Helia : Microsoft.
+const VOIX_PORTUGAISES = {
+    "pt-pt": ["joana", "catarina", "raquel", "duarte", "fernanda", "helia"],
+    "pt-br": ["luciana", "felipe", "francisca", "antonio", "maria", "daniel"]
+};
 // LES VOIX A FUIR, TOUTES LANGUES (28 oct. 2026). Sur iPhone (iOS 17 et plus)
 // et sur Mac, getVoices() rend aussi les voix fantaisie d'Apple (Albert, Bad
 // News, Zarvox...) et les voix Eloquence (Eddy, Flo, Grandma...) -- celles-ci en
@@ -46075,7 +46388,7 @@ function scoreVoixAnglaise(v){
     else if(nom.indexOf("enhanced") !== -1 || uri.indexOf("enhanced") !== -1) score += 30;
     if(nom.indexOf("compact") !== -1 || uri.indexOf("compact") !== -1) score -= 10;
     if(voixAFuir(v)) score -= 50;
-    const liste = VOIX_ANGLAISES[langueDeVoix(v)] || [];
+    const liste = VOIX_ANGLAISES[langueDeVoix(v)] || VOIX_PORTUGAISES[langueDeVoix(v)] || [];
     const rang = liste.indexOf(prenom);
     if(rang !== -1) score += 20 + (liste.length - rang) / 100;
     ["natural", "neural", "google", "siri", "wavenet"].forEach(h => { if(nom.indexOf(h) !== -1) score += 10; });
@@ -46090,6 +46403,14 @@ function voicesForLang(prefix){
         const toutes = window.speechSynthesis.getVoices().filter(v => langueDeVoix(v).startsWith("en"));
         const variante = toutes.filter(v => langueDeVoix(v) === LANGUE_ENSEIGNEE.voix.toLowerCase());
         return (variante.length ? variante : toutes)
+            .sort((a, b) => scoreVoixAnglaise(b) - scoreVoixAnglaise(a) || a.name.localeCompare(b.name));
+    }
+    // Le portugais appris (29 oct. 2026) : pt-PT seul, le Bresil a defaut.
+    if(prefix === "de" && LANGUE_APPRISE === "pt"){
+        if(!('speechSynthesis' in window)) return [];
+        const toutes = window.speechSynthesis.getVoices().filter(v => langueDeVoix(v).startsWith("pt"));
+        const portugal = toutes.filter(v => langueDeVoix(v) === "pt-pt");
+        return (portugal.length ? portugal : toutes)
             .sort((a, b) => scoreVoixAnglaise(b) - scoreVoixAnglaise(a) || a.name.localeCompare(b.name));
     }
     // "de" = la langue apprise (fusion, etape 3) : en espagnol, les voix es-*.
@@ -46226,7 +46547,7 @@ function renderVoiceSettings(){
     const connu = getUiLang();
     // En anglais appris, la ligne « Anglais » de l'ancien module (lecture des
     // traductions) doublait la premiere sous le meme nom : elle est retiree.
-    const langues = LANGUE_APPRISE === "en" ? [['de', t('voice_lang_de')]]
+    const langues = (LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") ? [['de', t('voice_lang_de')]]
                   : [['de', t('voice_lang_de')], ['en', t('voice_lang_en')]];
     if(connu !== 'de' && connu !== 'en') langues.push([connu, t('voice_lang_fr')]);
     box.innerHTML = langues.map(([prefix, libelle]) => {
@@ -47779,7 +48100,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1025;
+const APP_VERSION = 1030;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -52032,6 +52353,20 @@ function ouvrirScenePremiersPas(nom, dernier){
 // millisecondes la premiere image est vraiment dessinee -- « aucune image
 // apres 400 ms » veut dire que WebKit s'est fige, et ce sera vu au prochain
 // « Signaler un probleme ».
+function mesurerEnTete(ecran, quoi){
+    try{
+        const h = document.querySelector("body > header") || document.querySelector("header");
+        const app = document.querySelector(".app");
+        const vv = window.visualViewport;
+        noterAudio(ecran, "ECRAN", quoi + " : en-tete " + Math.round(h ? h.getBoundingClientRect().top : -1)
+            + " px, app " + Math.round(app ? app.getBoundingClientRect().top : -1)
+            + ", marge " + (app ? getComputedStyle(app).paddingTop : "?")
+            + ", defilement " + Math.round(window.scrollY)
+            + ", vue " + (vv ? Math.round(vv.offsetTop) + "/" + Math.round(vv.pageTop) + " h " + Math.round(vv.height) : "?")
+            + ", fenetre " + innerHeight + ", ecran " + screen.height);
+    }catch(e){}
+}
+
 function repeindreApresScene(ecran, quoi){
     quoi = quoi || "retour de scene";
     const t0 = Date.now();
@@ -52346,6 +52681,8 @@ function langueSeuleDeScene(){
     if(LANGUE_APPRISE === "ja") return "&apprendre=ja";
     // L'anglais (essai) : scene-<nom>.en.js, americain ou britannique.
     if(LANGUE_APPRISE === "en") return "&apprendre=en&variante=" + VARIANTE_ANGLAIS;
+    // Le portugais (essai) : scene-<nom>.pt.js, a Lisbonne.
+    if(LANGUE_APPRISE === "pt") return "&apprendre=pt";
     if(LANGUE_APPRISE !== "es") return "";
     return "&apprendre=es&variante=" + (VARIANTE_ESPAGNOL === "latam" ? "latam" : "es");
 }
@@ -52591,6 +52928,23 @@ const PALIERS_SEANCE = [
 // L'espagnol (memes noms de jeux, contenu espagnol : exercises = Presente,
 // perfektExercises = Imperfecto, konjunktiv2Exercises = Subjuntivo...) a le sien.
 const COURS_GRAMMAIRE_PAR_LANGUE = {
+    // Le portugais (essai, 29 oct. 2026) : les series de ses fiches A1
+    // (portugais/outils/grammaire_a1.py), dans l'ordre d'un debutant.
+    pt: ["serEstarPtExercises", "artigosPtExercises", "presentePtExercises", "pluralPtExercises", "pronomesPtExercises",
+         "irregularesPtExercises", "contracoesPtExercises", "possessivosPtExercises", "perguntasPtExercises",
+         "haPtExercises", "estarAPtExercises", "gostarPtExercises", "adjetivosPtExercises", "irFuturoPtExercises",
+         "atonosPtExercises", "perfeitoPtExercises", "falsosAmigosPtExercises",
+         // A2-C1 (session « Portugais A2-C1 », portugais/outils/grammaire_<niv>.py), dans l'ordre des fiches.
+         "imperfeitoPtExercises", "perfeitoImperfeitoPtExercises", "comparativosPtExercises", "pronomesComplementoPtExercises",
+         "imperativoPtExercises", "obrigacaoPtExercises", "porParaPtExercises", "jaAindaPtExercises",
+         "demonstrativosPtExercises", "perifrasesA2PtExercises", "conjuntivoPresentePtExercises", "conjuntivoExpressoesPtExercises",
+         "futuroConjuntivoPtExercises", "condicionalPtExercises", "maisQuePerfeitoPtExercises", "passivaPtExercises",
+         "relativosPtExercises", "discursoIndiretoPtExercises", "infinitivoPessoalPtExercises", "colocacaoPronominalPtExercises",
+         "conjuntivoImperfeitoPtExercises", "condicionaisIrreaisPtExercises", "temposCompostosPtExercises", "conjuntivoCompostoPtExercises",
+         "concessivasPtExercises", "conectoresPtExercises", "perifrasesB2PtExercises", "pronomesContraidosPtExercises",
+         "seImpessoalPtExercises", "falsosAmigosB2PtExercises", "mesoclisePtExercises", "infinitivoPessoalC1PtExercises",
+         "participiosDuplosPtExercises", "realcePtExercises", "registoPtExercises", "conjuncoesC1PtExercises",
+         "maisQuePerfeitoSimplesPtExercises", "portugalBrasilPtExercises", "expressoesIdiomaticasPtExercises"],
     // L'anglais (essai, 27 oct. 2026) : les series de ses fiches A1, dans
     // l'ordre ou un debutant les rencontre (anglais/outils/grammaire_a1.py).
     en: ["beEnExercises", "articlesEnExercises", "plurielEnExercises", "presentEnExercises", "pronomsEnExercises",
@@ -52681,13 +53035,21 @@ const MOTS_DE_BASE_PHRASES = {
          "is am are was were i'm you're he's she's it's we're they're isn't aren't don't doesn't didn't can can't " +
          "do does did have has had go goes not no yes and or but also very too here there now today tomorrow " +
          "in on at to from with for of by about what who where when why how one two three good new old big small " +
-         "please thanks some any every all").split(" ")
+         "please thanks some any every all").split(" "),
+    // Le portugais (essai, 29 oct. 2026), contractions comprises.
+    pt: ("eu tu ele ela você nós vocês eles elas me te se nos lhe o a os as um uma uns umas meu minha meus minhas teu tua " +
+         "seu sua nosso nossa dele dela não sim e ou mas também muito muita muitos bem hoje amanhã aqui ali agora sempre " +
+         "em no na nos nas de do da dos das a ao à aos às com para por pelo pela sem num numa é sou és somos são está " +
+         "estou estás estamos estão há tenho tens tem temos têm vou vais vai vamos vão que o que quem onde como quando " +
+         "este esta isto esse essa isso dois duas três").split(" ")
 };
 const SOCLE_PHRASES = {
     de: ["ich", "du", "wir", "bin", "bist", "ist", "habe", "hast", "hat", "gehe", "geht", "gehen"],
     es: ["yo", "tú", "soy", "es", "tengo", "tiene", "voy", "va"],
     // L'anglais (essai, 27 oct. 2026).
-    en: ["i", "you", "i'm", "it's", "is", "have", "has", "go", "goes"]
+    en: ["i", "you", "i'm", "it's", "is", "have", "has", "go", "goes"],
+    // Le portugais (essai, 29 oct. 2026).
+    pt: ["eu", "tu", "sou", "é", "estou", "está", "tenho", "tem", "vou", "vai"]
 };
 // La serie de grammaire en cours, chargee a l'ouverture de la seance (jeu() est
 // asynchrone, la composition de la seance ne l'est pas).
@@ -52807,10 +53169,11 @@ const PREPOSITIONS_PAR_NIVEAU = {
           A2: ["preposicionesViajeExercises", "porParaExercises"],
           B1: ["verbosConPreposicionExercises", "porParaExercises"],
           B2: ["verbosConPreposicionExercises"] },
-    en: { A1: ["prepositionsEnExercises"] }
+    en: { A1: ["prepositionsEnExercises"] },
+    pt: { A1: ["contracoesPtExercises"] }
 };
 async function prechargerGrammaireSeance(){
-    const langue = LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : "de";
+    const langue = LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : LANGUE_APPRISE === "pt" ? "pt" : "de";
     const cours = COURS_GRAMMAIRE_PAR_LANGUE[langue] || [];
     const g = lireGrammaire(), s = lireGrammaireSeance();
     let melange = false, niveau = "A1";
@@ -52961,7 +53324,7 @@ function formesSelonProfil(formes){
     return formes;
 }
 function insererCartesPhrases(seance, tout){
-    const langue = LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : "de";
+    const langue = LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : LANGUE_APPRISE === "pt" ? "pt" : "de";
     const base = new Set(MOTS_DE_BASE_PHRASES[langue]);
     const socle = SOCLE_PHRASES[langue];
     const connus = new Set();
@@ -53189,7 +53552,10 @@ const FAMILLES_ARTICLES = {
     es: [["el", "la", "los", "las"], ["un", "una", "unos", "unas"], ["mi", "mis"], ["este", "esta", "estos", "estas"]],
     // L'anglais (essai) : les intrus des phrases a remettre en ordre.
     en: [["a", "an", "the"], ["this", "that", "these", "those"], ["is", "are", "am"],
-         ["my", "your", "his", "her", "our", "their"], ["in", "on", "at"], ["do", "does", "did"]]
+         ["my", "your", "his", "her", "our", "their"], ["in", "on", "at"], ["do", "does", "did"]],
+    // Le portugais (essai, 29 oct. 2026).
+    pt: [["o", "a", "os", "as"], ["um", "uma", "uns", "umas"], ["meu", "minha", "meus", "minhas"],
+         ["este", "esta", "estes", "estas"], ["no", "na", "nos", "nas"], ["é", "está", "são", "estão"]]
 };
 function intrusOrdre(item){
     const mots = item.phrase.mots;
@@ -53204,7 +53570,7 @@ function intrusOrdre(item){
         if(dans.has(nuPhrase(x)) || out.some(o => nuPhrase(o) === nuPhrase(x))) return;
         out.push(x);
     };
-    const familles = FAMILLES_ARTICLES[LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : "de"];
+    const familles = FAMILLES_ARTICLES[LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : LANGUE_APPRISE === "pt" ? "pt" : "de"];
     melangerPhrase(mots).forEach(m => {
         const n = nuPhrase(m);
         const f = familles.find(fa => fa.indexOf(n) >= 0);
@@ -53228,6 +53594,7 @@ function intrusOrdre(item){
 function classeGenrePhrase(g){
     const n = String(g || "").toLowerCase();
     if(n === "die" || n === "la") return "rg-die";
+    if(LANGUE_APPRISE === "pt") return n === "a" ? "rg-die" : "rg-der";
     if(n === "das") return "rg-das";
     return "rg-der";
 }
@@ -54018,7 +54385,7 @@ function montrerCartePhrase(item){
         const q = creer("p", "cp-phrase rp-suite-q", nom);
         q.setAttribute("lang", langueDe);
         el.appendChild(q);
-        const options = article ? (LANGUE_APPRISE === "es" ? ["el", "la"] : ["der", "die", "das"]) : (item.choix || []);
+        const options = article ? (LANGUE_APPRISE === "es" ? ["el", "la"] : LANGUE_APPRISE === "pt" ? ["o", "a"] : ["der", "die", "das"]) : (item.choix || []);
         const juste = article ? item.phrase.de.slice(0, espace) : item.phrase.de;
         const choix = creer("div", "cp-choix" + (article ? " rp-articles" : ""));
         options.forEach(o => {
@@ -54157,7 +54524,7 @@ function montrerCartePhrase(item){
                     // phrase et « es » sont le meme son. L'allemand garde sa
                     // majuscule, qui distingue le nom (« Essen » / « essen »).
                     let dit = x.m.replace(/^[¿¡«"(]+|[.,;:!?»")]+$/g, "");
-                    if(LANGUE_APPRISE === "es") dit = dit.toLowerCase();
+                    if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "pt") dit = dit.toLowerCase();
                     // L'anglais aussi (29 oct. 2026, anglais/outils/manifest_voix.py) :
                     // « Here » en tete de phrase est le fichier de « here » ; seul
                     // « I » (et I'm, I've...) garde sa capitale, qui ne tombe jamais.
@@ -54356,7 +54723,8 @@ function montrerCartePhrase(item){
         const Reco = window.SpeechRecognition || window.webkitSpeechRecognition;
         const langueReco = LANGUE_APPRISE === "es" ? (VARIANTE_ESPAGNOL === "latam" ? "es-MX" : "es-ES")
                          : LANGUE_APPRISE === "ja" ? "ja-JP"
-                         : LANGUE_APPRISE === "en" ? LANGUE_ANGLAIS.voix : "de-DE";
+                         : LANGUE_APPRISE === "en" ? LANGUE_ANGLAIS.voix
+                         : LANGUE_APPRISE === "pt" ? "pt-PT" : "de-DE";
         // v836 : DANS LES APPS, LE MODULE NATIF (@capgo/capacitor-speech-recognition,
         // ajoute au projet wortando-ios le 16 oct. 2026). Les vues web des apps n'ont
         // pas la reconnaissance du navigateur. Le module donne le texte et le niveau
@@ -56483,7 +56851,7 @@ function arretSceneActif(){
 // seance. Seule la scene est gardee ; les mots vus se recalculent a chaque fois.
 const SCENES_LUES = new Map();
 async function motsVusDeScene(nom){
-    const url = baseScenes() + "scene-" + nom + (LANGUE_APPRISE === "es" ? ".es" : "") + ".js";
+    const url = baseScenes() + "scene-" + nom + (LANGUE_APPRISE === "es" ? ".es" : LANGUE_APPRISE === "pt" ? ".pt" : "") + ".js";
     if(!SCENES_LUES.has(url)){
         SCENES_LUES.set(url, fetch(url, { cache: "no-cache" }).then(r => r.text())
             .then(texte => JSON.parse(texte.slice(texte.indexOf("{"), texte.lastIndexOf("}") + 1))));
@@ -59320,7 +59688,8 @@ function resetAllConfirm(){
 }
 
 function openVerbenTempsInfo(){
-    if(LANGUE_APPRISE === "en") return ouvrirTempsAnglais();
+    // Le portugais (A2-C1, 30 oct. 2026) : ses series par temps, comme l'anglais.
+    if(LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") return ouvrirTempsAnglais();
     showScreen("verbenTempsInfo");
 }
 

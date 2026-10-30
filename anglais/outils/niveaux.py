@@ -337,6 +337,9 @@ def temps(us):
     liste = us["grammaire.json"].setdefault("temps", [])
     jeux = us["exercices.json"]["jeux"]
     textes = us["grammaire.json"]["textes"]["fr"]
+    # Le titre de l'ecran vit dans le grammaire.json ALLEMAND : sans lui, l'anglais
+    # affichait la cle brute (releve par la session portugaise, 29 oct. 2026).
+    textes["verbentemps_info_title"] = "S'entraîner par temps"
     nq = 0
     for niv in ["A1"] + NIVEAUX:
         src = module("temps_" + niv.lower())

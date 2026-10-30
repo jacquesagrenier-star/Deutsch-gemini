@@ -1,0 +1,523 @@
+# -*- coding: utf-8 -*-
+"""Les fiches de grammaire A1 du portugais (du Portugal), en francais, et leurs
+series. SOURCE : on corrige ici, puis python portugais/outils/construire.py
+ecrit portugais/datos/grammaire.json et portugais/datos/exercices.json.
+
+Meme format que l'anglais (anglais/outils/grammaire_a1.py). Une fiche : id,
+titre, resume, regle (HTML : <b> et <i> seulement), tableau (forme,
+explication, exemple), exemples (portugais, francais), attention, et sa serie.
+Une question : « phrase avec ___ | bonne reponse | mauvaise 1 / mauvaise 2 |
+traduction | explication ».
+"""
+
+FICHES = [
+{
+"id": "ser-estar", "titre": "Ser et estar : être", "resume": "sou, és, é · estou, estás, está",
+"regle": "Le portugais a deux verbes pour « être ». <b>Ser</b> dit ce qu'on est : l'identité, l'origine, le métier, le caractère, l'heure (<b>Sou canadiano</b>, <b>É professora</b>). <b>Estar</b> dit comment on est ou où l'on est en ce moment : un état passager, un lieu (<b>Estou cansado</b>, <b>Estou em casa</b>). Pour situer un lieu fixe (un bâtiment, une ville), le Portugal dit volontiers <b>ficar</b> : <b>O museu fica ali</b>.",
+"tableau": [
+ ["eu sou · eu estou", "je suis", "Sou da Bélgica. Estou em Lisboa."],
+ ["tu és · tu estás", "tu es", "És simpático! Estás bem?"],
+ ["ele / ela / você é · está", "il, elle est", "Ela é médica. Está no hospital."],
+ ["nós somos · estamos", "nous sommes", "Somos amigos. Estamos atrasados."],
+ ["eles / elas / vocês são · estão", "ils, elles sont", "São portugueses. Estão cansados."],
+ ["ficar", "se trouver (lieu fixe)", "A estação fica perto."],
+],
+"exemples": [
+ ["Sou o Pierre e sou de Montreal.", "Je suis Pierre et je suis de Montréal."],
+ ["Hoje estou muito cansada.", "Aujourd'hui, je suis très fatiguée."],
+ ["São três horas.", "Il est trois heures."],
+],
+"attention": "<b>Estar</b> sert aussi au temps qu'il fait (<b>Está frio</b>, <b>Está sol</b>) et à l'action en cours : <b>estou a ler</b>, je suis en train de lire.",
+"serie": "serEstarPtExercises", "kicker": "Ser ou estar ?",
+"questions": """
+Eu ___ canadiano. | sou | estou / é | Je suis canadien. | L'origine, la nationalité : ser.
+A Ana ___ em casa. | está | é / fica | Ana est à la maison. | Où l'on est en ce moment : estar.
+Nós ___ muito cansados hoje. | estamos | somos / são | Nous sommes très fatigués aujourd'hui. | Un état passager : estar.
+O meu pai ___ médico. | é | está / sou | Mon père est médecin. | Le métier : ser.
+Hoje ___ frio. | está | é / fica | Aujourd'hui, il fait froid. | Le temps qu'il fait : estar.
+___ três horas. | São | Estão / É | Il est trois heures. | L'heure : ser, au pluriel dès deux heures.
+A estação ___ perto do hotel. | fica | está / é | La gare est près de l'hôtel. | Un lieu fixe : ficar (au Portugal).
+Tu ___ muito simpático! | és | estás / é | Tu es très sympathique ! | Le caractère : ser.
+Eles ___ portugueses. | são | estão / somos | Ils sont portugais. | L'origine : ser.
+Como ___? — Estou bem, obrigado. | estás | és / está | Comment vas-tu ? — Je vais bien, merci. | Comment on va : estar.
+"""
+},
+{
+"id": "artigos", "titre": "O, a, os, as · um, uma", "resume": "Le, la, les · un, une — et l'article devant les noms propres",
+"regle": "L'article défini est <b>o</b> (masculin), <b>a</b> (féminin), <b>os</b>, <b>as</b> au pluriel. L'indéfini : <b>um</b>, <b>uma</b>, <b>uns</b>, <b>umas</b>. La plupart des noms en <b>-o</b> sont masculins, en <b>-a</b> féminins ; mais il y a des surprises : <b>o dia</b>, <b>o mapa</b>, <b>o problema</b>, <b>a mão</b>. Au Portugal, on met souvent l'article devant un prénom : <b>a Ana</b>, <b>o Rui</b>.",
+"tableau": [
+ ["o · os", "le · les (masc.)", "o livro, os livros"],
+ ["a · as", "la · les (fém.)", "a casa, as casas"],
+ ["um · uns", "un · des (masc.)", "um café, uns amigos"],
+ ["uma · umas", "une · des (fém.)", "uma mesa, umas cadeiras"],
+ ["o Rui, a Ana", "devant un prénom", "A Ana chega amanhã."],
+ ["o dia, a mão", "les surprises", "o problema, o mapa, a foto"],
+],
+"exemples": [
+ ["O comboio parte às oito.", "Le train part à huit heures."],
+ ["Tenho uma irmã e um irmão.", "J'ai une sœur et un frère."],
+ ["O Pedro mora em Sintra.", "Pedro habite à Sintra."],
+],
+"attention": "Pas de « des » partitif : <b>Como pão</b>, je mange du pain ; <b>Bebo água</b>, je bois de l'eau.",
+"serie": "artigosPtExercises", "kicker": "O, a, um, uma",
+"questions": """
+___ livro está na mesa. | O | A / Os | Le livre est sur la table. | Livro, en -o : masculin.
+___ casa é muito bonita. | A | O / As | La maison est très jolie. | Casa, en -a : féminin.
+Tenho ___ pergunta. | uma | um / umas | J'ai une question. | Pergunta est féminin : uma.
+___ dia está bonito. | O | A / Um | La journée est belle. | Dia finit en -a, mais il est masculin.
+Lava ___ mãos. | as | os / a | Lave-toi les mains. | Mão est féminin : as mãos.
+___ Ana chega amanhã. | A | O / — | Ana arrive demain. | Au Portugal, l'article se met devant le prénom.
+Comprei ___ livros usados. | uns | umas / um | J'ai acheté des livres d'occasion. | Uns : des, au masculin.
+___ problema é sério. | O | A / Uma | Le problème est sérieux. | Problema : masculin, comme sistema, mapa.
+Quero ___ café. | um | uma / o | Je veux un café. | Café est masculin : um.
+As crianças comem ___. | pão | o pão / um pão | Les enfants mangent du pain. | Pas de partitif : comer pão.
+"""
+},
+{
+"id": "plural", "titre": "Le pluriel", "resume": "-s, -ns, -es, -is, et les trois pluriels de -ão",
+"regle": "On ajoute <b>-s</b> après une voyelle : <b>casa → casas</b>, <b>café → cafés</b>. Un <b>-m</b> devient <b>-ns</b> : <b>homem → homens</b>. Après <b>-r</b>, <b>-z</b> et <b>-s</b> accentué : <b>-es</b> (<b>flor → flores</b>, <b>luz → luzes</b>, <b>país → países</b>). Un <b>-l</b> devient <b>-is</b> : <b>hotel → hotéis</b>, <b>animal → animais</b>, <b>azul → azuis</b>. Et les noms en <b>-ão</b> ont trois pluriels, à apprendre avec le mot : <b>-ões</b> (le plus courant), <b>-ães</b>, <b>-ãos</b>.",
+"tableau": [
+ ["+s", "après une voyelle", "o carro → os carros"],
+ ["-m → -ns", "", "o jardim → os jardins"],
+ ["+es", "après -r, -z, -s", "a flor → as flores, o mês → os meses"],
+ ["-l → -is", "", "o jornal → os jornais, o papel → os papéis"],
+ ["-ão → -ões", "le plus fréquent", "a estação → as estações"],
+ ["-ão → -ães · -ãos", "à apprendre", "o pão → os pães, a mão → as mãos"],
+],
+"exemples": [
+ ["Os hotéis do centro são caros.", "Les hôtels du centre sont chers."],
+ ["Compro dois pães.", "J'achète deux pains."],
+ ["As estações de metro estão cheias.", "Les stations de métro sont pleines."],
+],
+"attention": "Le lápis, os lápis : un mot en <b>-s</b> non accentué ne change pas. Et l'adjectif s'accorde aussi : <b>os carros azuis</b>.",
+"serie": "pluralPtExercises", "kicker": "Le pluriel",
+"questions": """
+um carro, dois ___ | carros | carroes / carrões | une voiture, deux voitures | Après une voyelle : +s.
+um homem, dois ___ | homens | homems / homenes | un homme, deux hommes | -m devient -ns.
+uma flor, duas ___ | flores | flors / floris | une fleur, deux fleurs | Après -r : +es.
+um hotel, dois ___ | hotéis | hoteles / hotels | un hôtel, deux hôtels | -el devient -éis.
+um jornal, dois ___ | jornais | jornals / jornales | un journal, deux journaux | -al devient -ais.
+uma estação, duas ___ | estações | estaçãos / estaçães | une gare, deux gares | La plupart des -ão : -ões.
+um pão, dois ___ | pães | pãos / pões | un pain, deux pains | Pão fait pães : à apprendre.
+uma mão, duas ___ | mãos | mães / mões | une main, deux mains | Mão fait mãos : à apprendre.
+um mês, dois ___ | meses | mêss / mês | un mois, deux mois | -s accentué : +es, et l'accent tombe.
+um lápis, dois ___ | lápis | lápises / lápiss | un crayon, deux crayons | -s non accentué : invariable.
+"""
+},
+{
+"id": "presente", "titre": "Le présent", "resume": "falo, como, parto",
+"regle": "Trois groupes, reconnaissables à l'infinitif : <b>-ar</b> (falar), <b>-er</b> (comer), <b>-ir</b> (partir). On enlève la terminaison et on ajoute celle de la personne. La terminaison suffit à dire qui parle : on omet souvent le pronom (<b>Falo português</b>, je parle portugais). <b>Você</b>, <b>o senhor</b>, <b>a senhora</b> prennent la forme de <b>ele</b> ; <b>vocês</b> celle de <b>eles</b>.",
+"tableau": [
+ ["eu falo · como · parto", "je", "Falo pouco."],
+ ["tu falas · comes · partes", "tu", "Comes peixe?"],
+ ["ele / você fala · come · parte", "il, elle, vous", "O comboio parte às oito."],
+ ["nós falamos · comemos · partimos", "nous", "Comemos às duas."],
+ ["eles / vocês falam · comem · partem", "ils, vous", "Eles falam inglês."],
+],
+"exemples": [
+ ["Moro em Lisboa e trabalho no centro.", "J'habite à Lisbonne et je travaille dans le centre."],
+ ["A que horas abre a farmácia?", "À quelle heure ouvre la pharmacie ?"],
+ ["Vocês falam francês?", "Vous parlez français ?"],
+],
+"attention": "<b>Vós</b> (vous, pluriel) existe dans les livres mais presque plus dans la bouche des Portugais : on dit <b>vocês</b>, avec la forme de eles.",
+"serie": "presentePtExercises", "kicker": "Le présent",
+"questions": """
+Eu ___ português. (falar) | falo | fala / falas | Je parle portugais. | Eu : -o.
+Tu ___ peixe? (comer) | comes | come / comem | Tu manges du poisson ? | Tu : -es pour -er.
+O comboio ___ às oito. (partir) | parte | partes / parto | Le train part à huit heures. | Ele : -e pour -er et -ir.
+Nós ___ num escritório. (trabalhar) | trabalhamos | trabalham / trabalhemos | Nous travaillons dans un bureau. | Nós : -amos pour -ar.
+Eles ___ em Faro. (morar) | moram | moramos / mora | Ils habitent à Faro. | Eles : -am pour -ar.
+Vocês ___ café? (beber) | bebem | bebeis / bebemos | Vous buvez du café ? | Vocês prend la forme de eles.
+A loja ___ às dez. (abrir) | abre | abri / abres | Le magasin ouvre à dix heures. | Ele : abre.
+O senhor ___ aqui? (morar) | mora | moras / moro | Vous habitez ici, monsieur ? | O senhor prend la forme de ele.
+Eu ___ uma carta. (escrever) | escrevo | escreve / escreves | J'écris une lettre. | Eu : -o pour tous les groupes.
+Nós ___ às sete. (partir) | partimos | partemos / partem | Nous partons à sept heures. | Nós : -imos pour -ir.
+"""
+},
+{
+"id": "irregulares", "titre": "Les verbes irréguliers du quotidien", "resume": "tenho, vou, faço, posso, quero",
+"regle": "Les verbes qu'on emploie le plus sont irréguliers, surtout à la première personne : <b>ter</b> (tenho, tens, tem), <b>ir</b> (vou, vais, vai), <b>fazer</b> (faço, fazes, faz), <b>poder</b> (posso, podes, pode), <b>querer</b> (quero, queres, quer), <b>dizer</b> (digo), <b>ver</b> (vejo), <b>vir</b> (venho), <b>dar</b> (dou), <b>saber</b> (sei), <b>pôr</b> (ponho), <b>sair</b> (saio). Ils s'apprennent par cœur, mais vite : ils reviennent dans chaque phrase.",
+"tableau": [
+ ["ter : tenho, tens, tem, temos, têm", "avoir", "Tenho fome."],
+ ["ir : vou, vais, vai, vamos, vão", "aller", "Vamos à praia?"],
+ ["fazer : faço, fazes, faz, fazemos, fazem", "faire", "O que fazes?"],
+ ["poder : posso, podes, pode, podemos, podem", "pouvoir", "Posso entrar?"],
+ ["querer : quero, queres, quer, queremos, querem", "vouloir", "Queres um café?"],
+ ["ver · vir · dar · saber", "vejo · venho · dou · sei", "Não sei."],
+],
+"exemples": [
+ ["Tenho vinte anos.", "J'ai vingt ans."],
+ ["Vou ao mercado. Vens comigo?", "Je vais au marché. Tu viens avec moi ?"],
+ ["Não posso, tenho uma reunião.", "Je ne peux pas, j'ai une réunion."],
+],
+"attention": "Pour demander poliment, on dit <b>queria</b> (je voudrais) plutôt que <b>quero</b> : <b>Queria um café, se faz favor</b>.",
+"serie": "irregularesPtExercises", "kicker": "Les irréguliers",
+"questions": """
+Eu ___ dois irmãos. (ter) | tenho | tem / teno | J'ai deux frères. | Ter : eu tenho.
+Nós ___ à praia amanhã. (ir) | vamos | imos / vão | Nous allons à la plage demain. | Ir : nós vamos.
+O que ___ ao domingo? (tu, fazer) | fazes | faz / faço | Que fais-tu le dimanche ? | Fazer : tu fazes.
+Eu não ___ sair hoje. (poder) | posso | podo / pode | Je ne peux pas sortir aujourd'hui. | Poder : eu posso.
+Eu ___ um café, se faz favor. (querer, poli) | queria | quero-o / quer | Je voudrais un café, s'il vous plaît. | La politesse : queria.
+Eles ___ amanhã. (vir) | vêm | vem / venham | Ils viennent demain. | Vir : eles vêm, avec l'accent.
+Não ___ onde está a chave. (eu, saber) | sei | sabo / sabe | Je ne sais pas où est la clé. | Saber : eu sei.
+Eu ___ televisão à noite. (ver) | vejo | vo / vê | Je regarde la télévision le soir. | Ver : eu vejo.
+Eu ___ o prato na mesa. (pôr) | ponho | pono / põe | Je mets l'assiette sur la table. | Pôr : eu ponho.
+Eu ___ de casa às oito. (sair) | saio | sao / sai | Je sors de chez moi à huit heures. | Sair : eu saio.
+"""
+},
+{
+"id": "pronomes", "titre": "Tu, você, o senhor : à qui l'on parle", "resume": "eu, tu, ele, ela, nós, vocês, eles",
+"regle": "Au Portugal, <b>tu</b> s'emploie entre amis, en famille, entre jeunes. Avec un inconnu, une personne âgée, au guichet, on dit <b>o senhor</b> ou <b>a senhora</b>, avec le verbe à la forme de <b>ele</b> : <b>O senhor fala inglês?</b> <b>Você</b> existe, mais il peut paraître sec au Portugal ; le plus simple est souvent de ne mettre aucun pronom : <b>Fala inglês?</b> Au pluriel, <b>vocês</b> sert pour tout le monde.",
+"tableau": [
+ ["eu · tu", "je · tu", "Eu sou a Inês. E tu?"],
+ ["ele · ela", "il · elle", "Ela é de Braga."],
+ ["o senhor · a senhora", "vous (poli)", "A senhora precisa de ajuda?"],
+ ["nós · a gente", "nous · on (familier)", "A gente vê-se amanhã."],
+ ["vocês", "vous (pluriel)", "Vocês são irmãos?"],
+ ["eles · elas", "ils · elles", "Elas moram juntas."],
+],
+"exemples": [
+ ["Desculpe, o senhor sabe onde fica a estação?", "Excusez-moi, monsieur, savez-vous où est la gare ?"],
+ ["Rui, tu vens jantar?", "Rui, tu viens dîner ?"],
+ ["Fala francês?", "Vous parlez français ?"],
+],
+"attention": "<b>A gente</b> veut dire « on, nous » (familier), avec le verbe au singulier : <b>a gente vai</b>. Pour « les gens », on dit <b>as pessoas</b>.",
+"serie": "pronomesPtExercises", "kicker": "Tu, você, o senhor",
+"questions": """
+(à un ami) ___ vens ao cinema? | Tu | O senhor / Vocês | Tu viens au cinéma ? | Entre amis : tu.
+(à un monsieur âgé) ___ precisa de ajuda? | O senhor | Tu / Eles | Vous avez besoin d'aide, monsieur ? | Avec un inconnu : o senhor.
+(à deux amis) ___ são irmãos? | Vocês | Vós / Tu | Vous êtes frère et sœur ? | Au pluriel : vocês.
+A senhora ___ de Lisboa? | é | és / são | Vous êtes de Lisbonne, madame ? | A senhora prend la forme de ele.
+A gente ___ amanhã. | vê-se | vemo-nos / vês-te | On se voit demain. | A gente : verbe au singulier.
+Há muitas ___ na praça. | pessoas | gentes / gente | Il y a beaucoup de monde sur la place. | Les gens : as pessoas.
+___ é a minha irmã. | Ela | Ele / Elas | C'est ma sœur. | Une femme : ela.
+Os meus pais? ___ moram no Porto. | Eles | Elas / Nós | Mes parents ? Ils habitent à Porto. | Un groupe mixte : eles.
+"""
+},
+{
+"id": "contracoes", "titre": "No, na, do, da, ao, à", "resume": "em + o = no, de + a = da, a + o = ao",
+"regle": "Les petites prépositions <b>em</b> (dans, à, sur), <b>de</b> (de) et <b>a</b> (à) se soudent à l'article qui suit. C'est obligatoire : on n'écrit jamais <i>em o</i>. <b>em</b> + o, a, os, as → <b>no, na, nos, nas</b> ; <b>de</b> → <b>do, da, dos, das</b> ; <b>a</b> → <b>ao, à, aos, às</b> ; <b>por</b> → <b>pelo, pela</b>. Avec l'indéfini : <b>em um</b> → <b>num</b>, <b>em uma</b> → <b>numa</b>.",
+"tableau": [
+ ["em + o / a → no / na", "dans le, au", "Estou no escritório. Moro na Baixa."],
+ ["de + o / a → do / da", "du, de la", "Sou do Canadá. A chave da casa."],
+ ["a + o / a → ao / à", "au, à la", "Vou ao mercado. Vou à praia."],
+ ["a + as → às", "à (heure)", "às oito, às duas"],
+ ["por + o / a → pelo / pela", "par le, par la", "Passo pela praça."],
+ ["em + um / uma → num / numa", "dans un, dans une", "Trabalho num banco."],
+],
+"exemples": [
+ ["O gato está na cozinha.", "Le chat est dans la cuisine."],
+ ["Vamos ao cinema às nove.", "Nous allons au cinéma à neuf heures."],
+ ["Sou de Lisboa, mas a minha mulher é do Porto.", "Je suis de Lisbonne, mais ma femme est de Porto."],
+],
+"attention": "Les villes n'ont souvent pas d'article (<b>em Lisboa</b>, <b>de Lisboa</b>), mais certaines en ont un : <b>no Porto</b>, <b>do Porto</b>. De même pour les pays : <b>em Portugal</b>, mais <b>no Canadá</b>, <b>na França</b>.",
+"serie": "contracoesPtExercises", "kicker": "No, na, do, da",
+"questions": """
+Estou ___ escritório. | no | em o / na | Je suis au bureau. | Em + o = no.
+Moro ___ Baixa. | na | no / em a | J'habite dans la Baixa. | Em + a = na.
+Vou ___ mercado. | ao | à / a o | Je vais au marché. | A + o = ao.
+Vamos ___ praia. | à | ao / a a | Nous allons à la plage. | A + a = à.
+A aula começa ___ oito. | às | as / aos | Le cours commence à huit heures. | Les heures : a + as = às.
+Sou ___ Canadá. | do | de o / da | Je suis du Canada. | De + o = do.
+A porta ___ casa está aberta. | da | do / de a | La porte de la maison est ouverte. | De + a = da.
+Trabalho ___ banco. | num | em um / numa | Je travaille dans une banque. | Em + um = num.
+Passamos ___ praça. | pela | pelo / por a | Nous passons par la place. | Por + a = pela.
+O meu tio mora ___ Porto. | no | em / na | Mon oncle habite à Porto. | O Porto a un article : no Porto.
+"""
+},
+{
+"id": "possessivos", "titre": "O meu, a minha : les possessifs", "resume": "l'article devant le possessif",
+"regle": "Le possessif s'accorde avec la chose possédée, comme en français : <b>o meu livro</b>, <b>a minha casa</b>, <b>os meus amigos</b>, <b>as minhas chaves</b>. Au Portugal, on met presque toujours l'<b>article</b> devant : <b>a minha mãe</b> (et non <i>minha mãe</i>, plus brésilien). Pour « son, sa » quand ce n'est pas clair, on préfère <b>dele</b> (à lui) et <b>dela</b> (à elle), placés après le nom : <b>o carro dele</b>.",
+"tableau": [
+ ["o meu · a minha · os meus · as minhas", "mon, ma, mes", "a minha família"],
+ ["o teu · a tua · os teus · as tuas", "ton, ta, tes", "o teu telemóvel"],
+ ["o seu · a sua", "son, sa ; votre (poli)", "O senhor esqueceu-se do seu casaco."],
+ ["o nosso · a nossa", "notre", "a nossa casa"],
+ ["dele · dela · deles", "à lui, à elle, à eux", "a casa deles"],
+],
+"exemples": [
+ ["O meu pai e a minha mãe moram em Coimbra.", "Mon père et ma mère habitent à Coimbra."],
+ ["Este casaco é teu?", "Cette veste est à toi ?"],
+ ["Conheces a irmã dele?", "Tu connais sa sœur (à lui) ?"],
+],
+"attention": "Après le verbe <b>ser</b>, l'article tombe souvent : <b>Este livro é meu</b>, ce livre est à moi.",
+"serie": "possessivosPtExercises", "kicker": "O meu, a minha",
+"questions": """
+___ mãe é professora. | A minha | O meu / Minha a | Ma mère est professeure. | Mãe est féminin, et l'article se met devant.
+___ amigos chegam amanhã. | Os meus | As minhas / O meu | Mes amis arrivent demain. | Amigos : masculin pluriel.
+Onde estão ___ chaves? | as minhas | os meus / a minha | Où sont mes clés ? | Chaves : féminin pluriel.
+___ telemóvel está na mesa. | O teu | A tua / Os teus | Ton portable est sur la table. | Telemóvel : masculin.
+Esta é a casa ___. (de Rui) | dele | dela / seu | C'est sa maison (à Rui). | À lui : dele.
+O carro ___ é vermelho. (de Ana) | dela | dele / sua | Sa voiture (à Ana) est rouge. | À elle : dela.
+___ casa é pequena. | A nossa | O nosso / Nossa a | Notre maison est petite. | Casa : féminin.
+Este livro é ___. | meu | o meu-o / minha | Ce livre est à moi. | Après ser, sans article.
+"""
+},
+{
+"id": "perguntas", "titre": "Poser une question", "resume": "o que, quem, onde, quando, como, quanto, porquê",
+"regle": "Une question oui / non garde l'ordre de la phrase ; seule l'intonation monte : <b>Falas português?</b> Pour les autres, le mot interrogatif vient en tête : <b>Onde moras?</b>, <b>Quando chega o comboio?</b> À l'oral, les Portugais ajoutent très souvent <b>é que</b> : <b>Onde é que moras?</b>, <b>O que é que queres?</b> — c'est naturel, pas fautif.",
+"tableau": [
+ ["o que", "que, quoi", "O que é isto?"],
+ ["quem", "qui", "Quem é?"],
+ ["onde", "où", "Onde fica o metro?"],
+ ["quando · a que horas", "quand · à quelle heure", "A que horas abre?"],
+ ["como", "comment", "Como te chamas?"],
+ ["quanto · quantos", "combien", "Quanto custa? Quantos anos tens?"],
+ ["porque · porquê", "pourquoi (porquê en fin)", "Porque não vens? Porquê?"],
+],
+"exemples": [
+ ["Onde é que fica a casa de banho?", "Où sont les toilettes ?"],
+ ["A que horas parte o autocarro?", "À quelle heure part le bus ?"],
+ ["Quantos irmãos tens?", "Combien de frères et sœurs as-tu ?"],
+],
+"attention": "La réponse courte reprend le verbe, pas « sim » seul : <b>Falas inglês? — Falo.</b> (Tu parles anglais ? — Oui.)",
+"serie": "perguntasPtExercises", "kicker": "Les questions",
+"questions": """
+___ moras? — Em Lisboa. | Onde | Quando / Quem | Où habites-tu ? — À Lisbonne. | Un lieu : onde.
+___ te chamas? — Chamo-me Rui. | Como | Qual / O que | Comment tu t'appelles ? — Rui. | Le nom : como te chamas.
+___ custa este livro? | Quanto | Quantos / Como | Combien coûte ce livre ? | Le prix : quanto.
+___ anos tens? | Quantos | Quanto / Quais | Quel âge as-tu ? | Les années se comptent : quantos.
+___ é aquele senhor? | Quem | O que / Qual | Qui est ce monsieur ? | Une personne : quem.
+___ é que queres? — Um café. | O que | Quem / Onde | Qu'est-ce que tu veux ? — Un café. | Une chose : o que.
+A que ___ abre a farmácia? | horas | hora / tempo | À quelle heure ouvre la pharmacie ? | A que horas, au pluriel.
+Não vens? ___? | Porquê | Porque / Quê | Tu ne viens pas ? Pourquoi ? | En fin de phrase : porquê.
+Falas inglês? — ___. | Falo | Sim, eu fala / Fala | Tu parles anglais ? — Oui. | On répond en reprenant le verbe.
+"""
+},
+{
+"id": "estar-a", "titre": "Estar a + infinitif : en train de", "resume": "estou a ler — et non estou lendo",
+"regle": "Pour dire ce qui se passe en ce moment, le Portugal emploie <b>estar a</b> + l'infinitif : <b>Estou a ler</b> (je suis en train de lire), <b>Está a chover</b> (il pleut). La forme en <b>-ndo</b> (<i>estou lendo</i>) est celle du Brésil et de certaines régions du sud du Portugal : on la comprend, mais à Lisbonne on dit <b>estou a ler</b>.",
+"tableau": [
+ ["estou a + infinitif", "je suis en train de", "Estou a trabalhar."],
+ ["estás a + infinitif", "tu es en train de", "Estás a ouvir?"],
+ ["está a chover", "il pleut (en ce moment)", "Leva o guarda-chuva, está a chover."],
+ ["estamos a + infinitif", "nous sommes en train de", "Estamos a jantar."],
+ ["estão a + infinitif", "ils sont en train de", "As crianças estão a dormir."],
+],
+"exemples": [
+ ["O que estás a fazer? — Estou a cozinhar.", "Qu'est-ce que tu fais ? — Je cuisine."],
+ ["Não posso falar, estou a conduzir.", "Je ne peux pas parler, je conduis."],
+ ["Está a nevar na Serra da Estrela.", "Il neige dans la Serra da Estrela."],
+],
+"attention": "Pour une habitude, le présent simple suffit : <b>Trabalho em Lisboa</b> (je travaille à Lisbonne, en général) ≠ <b>Estou a trabalhar</b> (là, maintenant).",
+"serie": "estarAPtExercises", "kicker": "Estar a + infinitif",
+"questions": """
+Estou ___ ler um livro. | a | de / em | Je suis en train de lire un livre. | Estar a + infinitif.
+O que ___ a fazer? (tu) | estás | és / está | Qu'est-ce que tu es en train de faire ? | Tu : estás.
+Leva o guarda-chuva, está a ___. | chover | chovendo / chove | Prends le parapluie, il pleut. | Après a : l'infinitif.
+As crianças estão a ___. | dormir | dormindo / dormem | Les enfants dorment. | Le Portugal : estar a dormir.
+Nós ___ a jantar. | estamos | somos / estão | Nous sommes en train de dîner. | Nós : estamos.
+Não posso falar, estou a ___. | conduzir | conduzo / conduzindo | Je ne peux pas parler, je conduis. | Estar a + infinitif.
+(en général) ___ em Lisboa. | Trabalho | Estou a trabalhar / Estou trabalhando | Je travaille à Lisbonne. | Une habitude : le présent simple.
+Ela está ___ telefone. | ao | a / no a | Elle est au téléphone. | Estar ao telefone : une expression.
+"""
+},
+{
+"id": "ir-futuro", "titre": "Ir + infinitif : le futur proche", "resume": "vou trabalhar, vamos jantar",
+"regle": "Pour parler de l'avenir, on dit presque toujours <b>ir</b> au présent + l'infinitif : <b>Vou trabalhar amanhã</b>, <b>Vamos jantar fora</b>. C'est le futur de la conversation. Le futur simple (<b>trabalharei</b>) existe, mais il sonne écrit ou solennel. Le présent sert aussi pour un avenir proche et sûr : <b>Amanhã vou a Sintra</b>.",
+"tableau": [
+ ["vou + infinitif", "je vais…", "Vou estudar."],
+ ["vais + infinitif", "tu vas…", "Vais sair hoje?"],
+ ["vai + infinitif", "il, elle va…", "Vai chover."],
+ ["vamos + infinitif", "nous allons…", "Vamos jantar fora."],
+ ["vão + infinitif", "ils vont…", "Eles vão chegar tarde."],
+],
+"exemples": [
+ ["No sábado vou visitar os meus avós.", "Samedi, je vais rendre visite à mes grands-parents."],
+ ["Vai chover esta tarde.", "Il va pleuvoir cet après-midi."],
+ ["Vamos apanhar o elétrico?", "On prend le tram ?"],
+],
+"attention": "« Je vais aller » se dit simplement <b>vou</b> : <b>Vou a Sintra amanhã</b> (pas <i>vou ir</i>, qu'on entend pourtant).",
+"serie": "irFuturoPtExercises", "kicker": "Le futur proche",
+"questions": """
+Amanhã ___ trabalhar cedo. (eu) | vou | vai / vamos | Demain, je vais travailler tôt. | Eu : vou.
+Nós ___ jantar fora. | vamos | vão / vou | Nous allons dîner dehors. | Nós : vamos.
+Esta tarde ___ chover. | vai | vão / vou | Cet après-midi, il va pleuvoir. | Ele : vai.
+Tu ___ sair hoje? | vais | vai / vás | Tu vas sortir aujourd'hui ? | Tu : vais.
+Eles ___ chegar tarde. | vão | vai / vamos | Ils vont arriver tard. | Eles : vão.
+Vou ___ os meus avós. | visitar | visito / visitando | Je vais rendre visite à mes grands-parents. | Ir + infinitif.
+Amanhã vou ___ Sintra. | a | ir a / para ir | Demain, je vais à Sintra. | Pas besoin de « ir ir ».
+Vamos ___ o elétrico? | apanhar | apanhamos / apanhando | On prend le tram ? | Vamos + infinitif.
+"""
+},
+{
+"id": "pronomes-atonos", "titre": "Chamo-me, levanto-me : le pronom après le verbe", "resume": "chamo-me, mas não me chamo",
+"regle": "Au Portugal, le petit pronom (<b>me, te, se, nos, lhe, o, a</b>) se place <b>après</b> le verbe, avec un trait d'union : <b>Chamo-me Ana</b>, <b>Levanto-me às sete</b>, <b>Dou-te o meu número</b>. Il passe <b>devant</b> le verbe après une négation (<b>não me lembro</b>), un mot interrogatif (<b>Como te chamas?</b>), <b>que</b>, et des adverbes comme <b>já</b>, <b>também</b>, <b>sempre</b>, <b>ainda</b>. Le Brésil, lui, le met presque toujours devant : <i>me chamo</i>.",
+"tableau": [
+ ["verbe-pronom", "dans une phrase simple", "Chamo-me Rui. Levanto-me cedo."],
+ ["não + pronom + verbe", "après une négation", "Não me lembro."],
+ ["mot interrogatif + pronom", "dans une question", "Como te chamas?"],
+ ["já · também · sempre + pronom", "après ces adverbes", "Já te disse."],
+ ["levantamo-nos", "le s tombe devant nos", "Deitamo-nos às onze."],
+],
+"exemples": [
+ ["Chamo-me Paulo e sou de Montreal.", "Je m'appelle Paulo et je suis de Montréal."],
+ ["Não me lembro do nome dele.", "Je ne me souviens pas de son nom."],
+ ["Ajudas-me com a mala?", "Tu m'aides avec la valise ?"],
+],
+"attention": "Une phrase portugaise ne commence jamais par le pronom : <b>Dá-me um café</b>, et non <i>Me dá um café</i> (brésilien).",
+"serie": "atonosPtExercises", "kicker": "Le pronom après le verbe",
+"questions": """
+___ Ana. | Chamo-me | Me chamo / Chamo me | Je m'appelle Ana. | Phrase simple : le pronom après, avec un trait d'union.
+Não ___ do nome dele. | me lembro | lembro-me / lembro me | Je ne me souviens pas de son nom. | Après não : le pronom devant.
+Como ___? | te chamas | chamas-te / chamas te | Comment tu t'appelles ? | Après un mot interrogatif : devant.
+___ às sete. (nós, deitar-se) | Deitamo-nos | Deitamos-nos / Nos deitamos | Nous nous couchons à sept heures. | Devant nos, le s tombe.
+___ o meu número. | Dou-te | Te dou / Dou te | Je te donne mon numéro. | Le pronom après le verbe.
+Já ___ disse! | te | -te / ti | Je te l'ai déjà dit ! | Après já : le pronom devant.
+___ às sete. (eu, levantar-se) | Levanto-me | Me levanto / Levanto-se | Je me lève à sept heures. | Eu : levanto-me.
+Ela ___ em frente ao espelho. | penteia-se | se penteia / penteia-me | Elle se coiffe devant le miroir. | Ela : -se, après le verbe.
+"""
+},
+{
+"id": "gostar-de", "titre": "Gostar de : aimer", "resume": "gosto de café, gosto muito de ti",
+"regle": "<b>Gostar</b> (aimer, apprécier) se construit toujours avec <b>de</b> : <b>Gosto de café</b>, <b>Gostas de futebol?</b> Devant un article, <b>de</b> se soude : <b>Gosto do Porto</b>, <b>Gosto da praia</b>. Devant un infinitif aussi : <b>Gosto de ler</b>. Pour « adorer », <b>adorar</b>, sans de : <b>Adoro fado</b>.",
+"tableau": [
+ ["gostar de + nom", "aimer quelque chose", "Gosto de chocolate."],
+ ["gostar do / da", "de + article", "Gostas da minha casa?"],
+ ["gostar de + infinitif", "aimer faire", "Gosto de nadar."],
+ ["gostar muito de", "aimer beaucoup", "Gosto muito de ti."],
+ ["adorar (sans de)", "adorer", "Adoro Lisboa."],
+],
+"exemples": [
+ ["Gostas de peixe? — Gosto muito.", "Tu aimes le poisson ? — Beaucoup."],
+ ["Não gosto de acordar cedo.", "Je n'aime pas me réveiller tôt."],
+ ["Gostei muito do jantar.", "J'ai beaucoup aimé le dîner."],
+],
+"attention": "<b>Gostaria de</b> = je voudrais bien : <b>Gostaria de reservar uma mesa</b>. Et « aimer » quelqu'un d'amour : <b>amar</b> ou <b>gostar muito de</b>.",
+"serie": "gostarPtExercises", "kicker": "Gostar de",
+"questions": """
+Gosto ___ café. | de | — / do | J'aime le café. | Gostar de, sans article devant une chose en général.
+Gostas ___ praia? | da | de a / do | Tu aimes la plage ? | De + a = da.
+Ela gosta ___ Porto. | do | de o / da | Elle aime Porto. | De + o = do.
+Não gosto de ___ cedo. | acordar | acordo / acordando | Je n'aime pas me réveiller tôt. | Gostar de + infinitif.
+___ Lisboa! | Adoro | Adoro de / Gosto Lisboa | J'adore Lisbonne ! | Adorar, sans de.
+Nós gostamos muito ___ ti. | de | da / — | Nous t'aimons beaucoup. | Gostar de ti.
+___ de reservar uma mesa. | Gostaria | Gosto / Gostar | Je voudrais réserver une table. | La politesse : gostaria de.
+"""
+},
+{
+"id": "adjetivos", "titre": "L'adjectif : accord et place", "resume": "um carro novo, uma casa nova",
+"regle": "L'adjectif s'accorde en genre et en nombre : <b>o carro novo</b>, <b>a casa nova</b>, <b>os carros novos</b>, <b>as casas novas</b>. Ceux en <b>-e</b> ou en consonne ne changent souvent pas au féminin : <b>um homem feliz</b>, <b>uma mulher feliz</b> ; mais <b>português → portuguesa</b>. Il se place en général <b>après</b> le nom. Quelques-uns, courts, vont devant : <b>um bom restaurante</b>, <b>uma grande cidade</b>.",
+"tableau": [
+ ["-o / -a / -os / -as", "accord régulier", "alto, alta, altos, altas"],
+ ["-e · consonne", "souvent invariable en genre", "grande, feliz, azul"],
+ ["-ês → -esa", "nationalités", "francês, francesa"],
+ ["nom + adjectif", "la place habituelle", "um vinho tinto"],
+ ["bom, grande + nom", "devant, pour juger", "um bom amigo"],
+ ["mais … do que", "plus … que", "O comboio é mais rápido do que o autocarro."],
+],
+"exemples": [
+ ["A minha irmã é alta e loura.", "Ma sœur est grande et blonde."],
+ ["Os elétricos de Lisboa são amarelos.", "Les trams de Lisbonne sont jaunes."],
+ ["É um bom restaurante.", "C'est un bon restaurant."],
+],
+"attention": "<b>Bom → melhor</b>, <b>mau → pior</b>, <b>grande → maior</b> : jamais <i>mais bom</i>. Mais au Portugal on dit bien <b>mais pequeno</b> (plus petit).",
+"serie": "adjetivosPtExercises", "kicker": "L'accord de l'adjectif",
+"questions": """
+A casa é ___. (novo) | nova | novo / novas | La maison est neuve. | Casa est féminin : nova.
+Os carros são ___. (vermelho) | vermelhos | vermelhas / vermelho | Les voitures sont rouges. | Carros : masculin pluriel.
+Ela é ___. (francês) | francesa | francês / francêsa | Elle est française. | -ês devient -esa.
+Uma mulher ___. (feliz) | feliz | feliza / felizes | Une femme heureuse. | Feliz ne change pas au féminin.
+As calças são ___. (azul) | azuis | azules / azul | Le pantalon est bleu. | -l devient -is au pluriel.
+Este restaurante é ___ do que aquele. (bom) | melhor | mais bom / bem | Ce restaurant est meilleur que celui-là. | Bom fait melhor.
+O comboio é mais rápido ___ o autocarro. | do que | que de / como | Le train est plus rapide que le bus. | Mais … do que.
+O meu quarto é ___ do que o teu. (pequeno) | mais pequeno | menor de / mais pequena | Ma chambre est plus petite que la tienne. | Au Portugal : mais pequeno.
+"""
+},
+{
+"id": "perfeito", "titre": "Le passé : le pretérito perfeito", "resume": "falei, comi, parti · fui, tive, fiz",
+"regle": "Pour une action terminée, le portugais emploie un seul temps, le <b>pretérito perfeito</b>, là où le français dit « j'ai parlé » : <b>Ontem falei com a Ana</b>. Terminaisons : <b>-ar</b> → falei, falaste, falou, falámos, falaram ; <b>-er</b> → comi, comeste, comeu, comemos, comeram ; <b>-ir</b> → parti, partiste, partiu, partimos, partiram. Les grands irréguliers : <b>ser / ir → fui</b>, <b>ter → tive</b>, <b>estar → estive</b>, <b>fazer → fiz</b>.",
+"tableau": [
+ ["falei · comi · parti", "j'ai parlé, mangé, je suis parti", "Ontem comi bacalhau."],
+ ["falaste · comeste · partiste", "tu as…", "Gostaste do filme?"],
+ ["falou · comeu · partiu", "il, elle a…", "O comboio já partiu."],
+ ["falámos · comemos · partimos", "nous avons…", "Falámos muito."],
+ ["fui · tive · estive · fiz", "irréguliers", "Fui a Sintra. Tive sorte."],
+],
+"exemples": [
+ ["No sábado fomos à praia.", "Samedi, nous sommes allés à la plage."],
+ ["Já almoçaste?", "Tu as déjà déjeuné ?"],
+ ["Ontem estive em casa todo o dia.", "Hier, je suis resté à la maison toute la journée."],
+],
+"attention": "Au Portugal, <b>falámos</b> (passé) porte un accent qui le distingue de <b>falamos</b> (présent). Et <b>fui</b> veut dire à la fois « je suis allé » et « j'ai été » : le contexte tranche.",
+"serie": "perfeitoPtExercises", "kicker": "Le passé (perfeito)",
+"questions": """
+Ontem ___ com a Ana. (eu, falar) | falei | falo / falou | Hier, j'ai parlé avec Ana. | Eu, -ar : -ei.
+Tu ___ o bolo? (comer) | comeste | comiste / comeu | Tu as mangé le gâteau ? | Tu, -er : -este.
+O comboio já ___. (partir) | partiu | parteu / partiste | Le train est déjà parti. | Ele, -ir : -iu.
+No sábado nós ___ à praia. (ir) | fomos | vamos / fumos | Samedi, nous sommes allés à la plage. | Ir : fomos.
+Ontem ___ em casa. (eu, estar) | estive | estou / esteve | Hier, je suis resté à la maison. | Estar : estive.
+O que ___ no fim de semana? (tu, fazer) | fizeste | fazeste / fez | Qu'as-tu fait le week-end ? | Fazer : fizeste.
+Nós ___ muito ontem. (falar) | falámos | falamos / falemos | Nous avons beaucoup parlé hier. | Au passé : falámos, avec l'accent.
+Eu ___ sorte. (ter) | tive | tenhi / teve | J'ai eu de la chance. | Ter : tive.
+Eles ___ tarde. (chegar) | chegaram | chegaram-se / chegam | Ils sont arrivés tard. | Eles, -ar : -aram.
+Eu ___ ao Porto em maio. (ir) | fui | foi / vou | Je suis allé à Porto en mai. | Ir : fui.
+"""
+},
+{
+"id": "ha", "titre": "Há : il y a", "resume": "há um café, há dois anos",
+"regle": "<b>Há</b> (du verbe haver) veut dire « il y a » et ne change jamais, au singulier comme au pluriel : <b>Há um café na esquina</b>, <b>Há muitas pessoas</b>. Il sert aussi au temps écoulé : <b>Moro aqui há dois anos</b> (depuis deux ans), <b>Cheguei há uma hora</b> (il y a une heure). Le Brésil dit souvent <i>tem</i> à la place ; au Portugal, <b>há</b>.",
+"tableau": [
+ ["há + singulier", "il y a un", "Há uma farmácia aqui perto?"],
+ ["há + pluriel", "il y a des", "Há muitos turistas em agosto."],
+ ["não há", "il n'y a pas", "Não há pão."],
+ ["há + durée", "il y a, depuis", "Moro aqui há três anos."],
+ ["havia", "il y avait", "Havia muita gente."],
+],
+"exemples": [
+ ["Há uma casa de banho aqui?", "Il y a des toilettes ici ?"],
+ ["Não há problema.", "Il n'y a pas de problème."],
+ ["Estudo português há seis meses.", "J'étudie le portugais depuis six mois."],
+],
+"attention": "À ne pas confondre avec <b>à</b> (a + a, « à la ») : <b>Vou à praia</b>. Le h ne se prononce pas : <b>há</b> et <b>à</b> se disent pareil.",
+"serie": "haPtExercises", "kicker": "Há : il y a",
+"questions": """
+___ uma farmácia aqui perto? | Há | Tem / É | Il y a une pharmacie près d'ici ? | Il y a : há.
+Em agosto ___ muitos turistas. | há | hão / têm | En août, il y a beaucoup de touristes. | Há ne prend pas de pluriel.
+Não ___ pão. | há | é / está | Il n'y a pas de pain. | Il n'y a pas : não há.
+Moro aqui ___ dois anos. | há | desde / à | J'habite ici depuis deux ans. | Une durée qui dure encore : há.
+Cheguei ___ uma hora. | há | à / desde | Je suis arrivé il y a une heure. | Il y a (dans le passé) : há.
+Vou ___ praia. | à | há / a a | Je vais à la plage. | Ici, c'est a + a = à, pas le verbe.
+Ontem ___ muita gente na festa. | havia | há / houve-se | Hier, il y avait beaucoup de monde à la fête. | Il y avait : havia.
+"""
+},
+{
+"id": "falsos-amigos", "titre": "Les faux amis", "resume": "o apelido, a casa de banho, constipado…",
+"regle": "Beaucoup de mots portugais ressemblent au français et veulent dire autre chose. <b>Apelido</b> est le nom de famille (pas le surnom). <b>Constipado</b> veut dire enrhumé. <b>A casa de banho</b> est la salle de bain, et aussi les toilettes. <b>Esquisito</b> : bizarre. <b>Puxar</b> : tirer (sur une porte !) et <b>empurrar</b> : pousser. <b>Rapariga</b> est un mot neutre au Portugal (une jeune fille), mais grossier au Brésil.",
+"tableau": [
+ ["o apelido", "le nom de famille", "Qual é o seu apelido?"],
+ ["constipado", "enrhumé", "Estou constipado."],
+ ["puxar · empurrar", "tirer · pousser", "PUXE (sur une porte) = tirez"],
+ ["esquisito", "bizarre (pas exquis)", "Que sabor esquisito!"],
+ ["a propina", "les frais de scolarité (pas le pourboire)", "As propinas da universidade."],
+ ["o talho", "la boucherie (pas la taille)", "Compro carne no talho."],
+],
+"exemples": [
+ ["Estou constipada, tenho o nariz entupido.", "Je suis enrhumée, j'ai le nez bouché."],
+ ["Puxe a porta, não empurre!", "Tirez la porte, ne poussez pas !"],
+ ["O meu apelido é Martins.", "Mon nom de famille est Martins."],
+],
+"attention": "Le pourboire se dit <b>a gorjeta</b>. Et <b>a gare</b> se dit <b>a estação</b>.",
+"serie": "falsosAmigosPtExercises", "kicker": "Les faux amis",
+"questions": """
+Nom de famille : o ___ | apelido | sobrenome / nome | Le nom de famille. | Au Portugal : o apelido.
+Enrhumé : estou ___ | constipado | resfriado-me / gripe | Je suis enrhumé. | Constipado = enrhumé.
+Sur une porte, PUXE veut dire… | tirez | poussez / fermez | Tirez. | Puxar = tirer ; empurrar = pousser.
+Que sabor ___! (bizarre) | esquisito | requintado / delicioso | Quel goût bizarre ! | Esquisito = bizarre.
+O pourboire : a ___ | gorjeta | propina / gorda | Le pourboire. | Gorjeta ; a propina = les frais de scolarité.
+La boucherie : o ___ | talho | açougue / corte | La boucherie. | Au Portugal : o talho.
+Les toilettes : a ___ | casa de banho | toalete / banheiro | Les toilettes. | Au Portugal : a casa de banho.
+"""
+},
+]
+
+TEXTES = {
+    "fiche_entrainer": "M'ENTRAÎNER →",
+    "gram_attention": "Attention",
+    "orb_es_indice": "Grammaire",
+    "gram_indice_kicker": "Grammaire",
+    "gram_indice_titre": "Toutes les fiches",
+    # Le titre de « S'entrainer par temps » vit dans le grammaire.json allemand,
+    # que le portugais ne charge pas : sans lui, la cle brute s'affichait.
+    "verbentemps_info_title": "S'entraîner par temps",
+}
