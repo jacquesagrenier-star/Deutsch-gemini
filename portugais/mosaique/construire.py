@@ -27,6 +27,15 @@ APP = os.path.join(ICI, "app")
 # d'inventaire : on corrige ici, cle = identifiant Wikidata ou cle Commons « c... ».
 # Valeur : (titre, annee) ; annee None = garder celle de selection.json.
 TITRES = {
+    "Q60392628": ("Sem título", None),                       # n° 1, « (1913) » dans le titre
+    "Q60386887": ("Sem título", None),                       # n° 12
+    "Q141593803": ("Cavaleiros", None),                      # n° 36, entre parentheses
+    "Q109374469": ("Caminho da Pena", None),                 # n° 40, sans titre (nom du fichier)
+    "Q109367039": ("A Boca do Inferno", None),               # n° 74, point final
+    "c34634e54cd57": ("Visita régia aos Açores", None),      # E20, titre de 112 caracteres
+    "Q60254236": ("Gerês", None),                            # E31, l'annee dans le titre
+    "c398f1e2d04b6": ("Regresso do campo", None),            # E50, titre anglais
+    "ce469cc870d91": ("Carlos Relvas monta o cavalo Pérola", None),  # E53, lieu retire
 }
 # Un fichier Commons plus grand du MEME tableau, quand celui de Wikidata est
 # petit (verifie a l'oeil ; domaine public lu sur sa fiche).

@@ -13,7 +13,7 @@ import json, os, sys
 ICI = os.path.dirname(os.path.abspath(__file__))
 
 # A remplir avec le choix de Jacques, tel qu'il le colle (« n° 3, 12, E4 ... »).
-CHOIX = ""
+CHOIX = "n° 1, 2, 5, 6, 7, 9, 10, 12, 15, 17, 21, 22, 30, 31, 35, 36, 37, 40, 41, 50, 47, 52, 53, 57, 59, 60, 62, 66, 69, 74, E3, E4, E5, E6, E7, E8, E11, E13, E14, E15, E16, E20, E22, E23, E25, E27, E28, E31, E32, E33, E36, E37, E41, E43, E48, E46, E47, E50, E49, E53, E57, E65, E68, E72, E77, E79"
 
 
 def main():

@@ -2,19 +2,28 @@
 
 Demandé par Jacques le 29 oct. 2026 : une version de Wortando pour apprendre le portugais
 du Portugal. Chaque langue a sa collection de tableaux. Pour le portugais, ce sont des
-peintres **portugais**. **Rien n'est branché dans l'app** : Jacques choisit et ordonne sur
-la page de choix, comme pour l'anglais (`anglais/mosaique/`) et l'espagnol (`espanol/mosaique/`).
+peintres **portugais**, choisis et ordonnés par Jacques sur la page de choix, comme pour
+l'anglais (`anglais/mosaique/`) et l'espagnol (`espanol/mosaique/`).
+
+**État au 30 oct. 2026 : la collection du Portugal est construite**, `app/` est prêt à brancher
+(pas encore branché : c'est la session du socle portugais, voir l'étape 4 plus bas).
+Jacques a choisi **66 tableaux** : 30 libres partout et 36 du groupe « à décider », qu'il prend
+donc (libres en Europe et aux États-Unis, pas encore au Mexique). Son choix est dans
+`decisions/DECISIONS.md` et dans `CHOIX` de `selection_depuis_choix.py`. 18 peintres, 66 images
+(`app/img/p01.jpg` à `p66.jpg`, plus `info.jpg`), 8 Mo. Les tableaux **brésiliens** restent à choisir.
 
 ## La page de choix
 
 **https://claude.ai/artifact/2WobnZrCYSuz5TpGavMwR3** (« Tableaux portugais »), construite par
 `python portugais/mosaique/construire_choix.py <dossier>` à partir de `choix-modele.html`
-et de `candidats.json`. Elle n'est pas versionnée (les vignettes pèsent 4,7 Mo).
+et de `candidats.json` + `candidats-bresil.json`. Elle n'est pas versionnée (les vignettes pèsent 9,5 Mo).
 Même page que celle des tableaux américains : on touche les toiles dans l'ordre voulu,
 chacune prend son rang, et « Copier mon choix » donne une ligne du genre
 « Mosaïque portugaise, dans cet ordre : n° 3, 12, E4… » à coller dans la conversation.
 
-159 tableaux, en deux groupes, chacun du plus coloré au moins coloré :
+314 tableaux depuis le 30 oct. : 159 du Portugal en deux groupes (ci-dessous) et 155 du Brésil
+(72 libres partout, B1 à B72 ; 83 à décider, BE1 à BE83 ; voir « Le Brésil »), chaque groupe
+du plus coloré au moins coloré. Les toiles à décider sont en bleu, cadre en pointillé.
 
 - **N° 1 à 74 : libres partout.** Peintres morts **avant 1926**, la règle de l'espagnol
   (le Mexique protège 100 ans après la mort ; l'app se diffuse partout).
@@ -83,4 +92,11 @@ son filtre (il ajoute exécution, fusillade, naufrage, suicide, châtiment) et s
    Wikipédia fr, pt, en), puis `app/peintres.json` écrit à la main d'après ces résumés,
    une notice par peintre, en français (comme l'anglais).
 4. Le branchement dans `index.html` revient à la session du socle portugais : `MOSAIQUE_BASE`
-   vaut `portugais/mosaique/app/` pour le portugais, comme l'anglais.
+   vaut `portugais/mosaique/app/` pour le portugais, comme l'anglais (`anglais/mosaique/app/`,
+   même forme de fichiers : `mosaiques.json` avec `images`, `peintres.json` avec `peintres`).
+
+Si Jacques choisit aussi des tableaux brésiliens (numéros B et BE) : soit il les ajoute au même
+`CHOIX` (une seule collection pour le portugais, comme l'espagnol mêle l'Espagne et l'Amérique
+latine ; `pays` dit d'où vient chaque tableau), soit c'est une collection à part pour la variante
+brésilienne, à décider avec lui. Les notices des peintres brésiliens seraient à écrire dans
+`peintres.json` de la même façon (`sources_peintres.py` les lit déjà depuis `selection.json`).
