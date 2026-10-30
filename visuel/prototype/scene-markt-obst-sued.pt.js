@@ -224,6 +224,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as papaias",
    "niveau": "B2",
+   "theme": "comida_b2_pt",
    "personne": null,
    "aussi": [
     {

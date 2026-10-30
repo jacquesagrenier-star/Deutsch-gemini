@@ -307,6 +307,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os caixotes do lixo",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

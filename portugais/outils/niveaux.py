@@ -155,7 +155,30 @@ def icones():
     return ic
 
 
+def charger_phrases():
+    """Les phrases ecrites apres coup (phrases_niveaux.py) : elles remplacent
+    celle de la liste ; « — » ecarte le mot (il n'a pas sa place en carte)."""
+    src = module("phrases_niveaux")
+    out = {}
+    if src:
+        for cols in lignes(src.PHRASES):
+            cl, mot = cols[0], cols[1]
+            assert (cl, mot) not in out, "phrase ajoutee en double : %s %s" % (cl, mot)
+            out[(cl, mot)] = (cols[2], cols[3] if len(cols) > 3 else "")
+    return out
+
+
+PHRASES = charger_phrases()
+
+
+def phrase_ajoutee(cl, mot, ex, exfr):
+    return PHRASES.get((cl, mot), (ex, exfr))
+
+
 def sans_phrase(cl, mot, niv, ex, exfr):
+    if ex == "—":
+        RAPPORT.append("  %-26s ECARTE (%s %s, phrases_niveaux.py)" % (mot, cl, niv))
+        return True
     if ex and exfr:
         return False
     RAPPORT.append("  %-26s SANS PHRASE (%s %s, saute)" % (mot, cl, niv))
@@ -173,11 +196,12 @@ def noms(niv, src, jeu, deja, ic, variantes):
             d = drapeaux(cols[4:])
             art, _, mot = tete.partition(" ") if tete.split(" ", 1)[0] in ("o", "a", "os", "as") else ("", "", tete)
             mot = mot.strip()
+            ex, exfr = phrase_ajoutee("nom", mot, ex, exfr)
             if sans_phrase("nom", mot, niv, ex, exfr) or not deja.prendre("nom", mot, niv):
                 continue
             sans = d.get("u") or art in ("os", "as")
             pl = "—" if sans else d.get("pl", pluriel(mot))
-            formes = {mot, pl, mot.split(" ")[0], pl.split(" ")[0]}
+            formes = {mot, pl, mot + "s", mot.split(" ")[0], pl.split(" ")[0]}
             if not re.search(r"(?<![\wÀ-ú])(" + "|".join(re.escape(x) for x in formes if x and x != "—") + r")(?![\wÀ-ú])", ex, re.I):
                 RAPPORT.append("  %-26s NOM ABSENT DE SA PHRASE : %s" % (mot, ex))
                 if not GARDER_SANS_MOT:
@@ -230,6 +254,7 @@ def verbes(niv, src, jeu, deja, variantes):
         inf, fr = cols[0], cols[1]
         ex, exfr = (cols[2], cols[3]) if len(cols) > 3 else ("", "")
         d = drapeaux(cols[4:])
+        ex, exfr = phrase_ajoutee("verbe", inf, ex, exfr)
         if sans_phrase("verbe", inf, niv, ex, exfr) or not deja.prendre("verbe", inf, niv):
             continue
         if not any(re.search(r"(?<![\wÀ-ú])" + re.escape(f) + r"(?![\wÀ-ú])", ex, re.I) for f in formes_verbe(inf)):
@@ -259,6 +284,7 @@ def adjectifs(niv, src, jeu, deja, variantes):
         m, f, fr = cols[0], cols[1], cols[2]
         ex, exfr = (cols[3], cols[4]) if len(cols) > 4 else ("", "")
         d = drapeaux(cols[5:])
+        ex, exfr = phrase_ajoutee("adj", m, ex, exfr)
         if sans_phrase("adj", m, niv, ex, exfr) or not deja.prendre("adj", m, niv):
             continue
         pl = d.get("pl", pluriel(m))
@@ -270,7 +296,9 @@ def adjectifs(niv, src, jeu, deja, variantes):
         if gradue or m in COMPARATIFS or d.get("comp"):
             c = COMPARATIFS.get(m, "mais " + m)
             formes["comparatif"], formes["superlatif"] = c, "o " + c
-        if not re.search(r"(?<![\wÀ-ú])(" + "|".join(re.escape(x) for x in {m, f, pl, fpl}) + r")(?![\wÀ-ú])", ex, re.I):
+        # « pouco claro » -> « pouco clara » : chaque mot en -o peut s'accorder.
+        accordees = {re.sub(r"o$", "a", m), re.sub(r"os$", "as", pl), re.sub(r"^(\S+)o( |$)", r"\1a\2", m)}
+        if not re.search(r"(?<![\wÀ-ú])(" + "|".join(re.escape(x) for x in {m, f, pl, fpl} | accordees) + r")(?![\wÀ-ú])", ex, re.I):
             RAPPORT.append("  %-26s ADJECTIF ABSENT DE SA PHRASE : %s" % (m, ex))
             if not GARDER_SANS_MOT:
                 continue
@@ -288,6 +316,7 @@ def simples(niv, bloc, cl, deja):
             RAPPORT.append("  %-26s LIGNE INCOMPLETE (%s %s)" % (cols[0], cl, niv))
             continue
         m, fr, cat, ex, exfr = cols[:5]
+        ex, exfr = phrase_ajoutee(cl, m, ex, exfr)
         if sans_phrase(cl, m, niv, ex, exfr) or not deja.prendre(cl, m, niv):
             continue
         out.append({"mot": m, "traduction": fr, "kategorie": cat, "exemple": ex, "exemple_fr": exfr})
@@ -382,6 +411,36 @@ def temps(jeu):
     return len(liste), nq
 
 
+def allonger_series(jeu):
+    """Les series ecrites a la main (series_<niv>.py, comme l'anglais), puis les
+    questions de temps tirees des phrases des cartes (series_temps.py)."""
+    jeux = jeu["exercices.json"]["jeux"]
+    n = 0
+    for niv in NIVEAUX:
+        src = module("series_" + niv.lower())
+        if not src:
+            continue
+        for serie, bloc in src.SUPPLEMENTS.items():
+            assert serie in jeux, "series_%s.py : serie inconnue %s" % (niv.lower(), serie)
+            topic = jeux[serie][0]["topic"] if jeux[serie] else serie
+            vues = {q["question"] for q in jeux[serie]}
+            for q in questions(topic, bloc):
+                assert q["question"] not in vues, "question en double : " + q["question"]
+                vues.add(q["question"])
+                jeux[serie].append(q)
+                n += 1
+    import series_temps
+    vues = {s: {q["question"] for q in l} for s, l in jeux.items()}
+    for serie, qs in series_temps.supplements(jeu, NIVEAUX, vues).items():
+        if serie not in jeux:
+            continue
+        topic = jeux[serie][0]["topic"] if jeux[serie] else serie
+        for q, bonne, fausses, trad, expl in qs:
+            jeux[serie].append(question(topic, q, bonne, fausses, trad, expl))
+            n += 1
+    return n
+
+
 def conjugaison(jeu):
     """Les feuilles de conjugaison A2-C1 (format de l'anglais : t, l, a)."""
     src = module("conjugaison_niveaux")
@@ -439,11 +498,13 @@ def construire(jeu, variantes=None):
         bilan.append("%s : %d noms, %d verbes, %d adjectifs, %d adverbes, %d expressions, %d fiches (%d questions)"
                      % (niv, nn, nv, na, nad, nex, nf, nq))
     nte, qte = temps(jeu)
+    nsup = allonger_series(jeu)
     nfo = fonctionnels(jeu)
     nco = conjugaison(jeu)
     for l in bilan:
         print("Niveaux -- " + l)
     print("Niveaux -- %d mots-outils, %d feuilles de conjugaison, %d series par temps (%d questions)" % (nfo, nco, nte, qte))
+    print("Niveaux -- %d questions ajoutees aux series (series_<niv>.py, et series_temps.py qui les tire des phrases des cartes)" % nsup)
     p = os.path.join(ICI, "rapport_niveaux.txt")
     with io.open(p, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(RAPPORT) + "\n")
@@ -467,6 +528,24 @@ def charger_a1():
             jeu[k] = {n: v for n, v in jeu[k].items() if n not in NIVEAUX}
     if "themes.json" in jeu:
         jeu["themes.json"]["themes"] = [t for t in jeu["themes.json"]["themes"] if t.get("niveau") not in NIVEAUX]
+    # portugais/datos contient deja l'A2-C1 une fois construit : on le retire
+    # (fiches, series, temps, feuilles, mots-outils) pour repartir de l'A1.
+    g, ex = jeu.get("grammaire.json"), jeu.get("exercices.json")
+    if g and ex:
+        hors = {f["serie"] for f in g.get("fiches", []) if f.get("niveau") in NIVEAUX}
+        hors |= {t["serie"] for t in g.pop("temps", [])}
+        hors |= {f["serie"] for niv, l in jeu.get("conjugaison.json", {}).get("niveaux", {}).items()
+                 if niv in NIVEAUX for f in l} & {s for s in hors}
+        g["fiches"] = [f for f in g.get("fiches", []) if f.get("niveau") not in NIVEAUX]
+        for s in hors:
+            ex["jeux"].pop(s, None)
+            g.get("textes", {}).get("fr", {}).pop("kicker_" + s, None)
+    if "conjugaison.json" in jeu:
+        for niv in NIVEAUX:
+            jeu["conjugaison.json"].get("niveaux", {}).pop(niv, None)
+    if "fonctionnels.json" in jeu:
+        jeu["fonctionnels.json"] = {k: [e for e in l if e.get("niveau") not in NIVEAUX]
+                                    for k, l in jeu["fonctionnels.json"].items()}
     return jeu
 
 

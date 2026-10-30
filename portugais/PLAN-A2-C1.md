@@ -20,9 +20,10 @@ lusophone du Portugal.
 - **Portugais d'Europe** : chaque phrase vient de nos corpus (où elle était
   brésilienne) et passe par un convertisseur qui la refuse plutôt que de la
   laisser brésilienne.
-- **Pas encore dans l'app** : la session socle branche `niveaux.construire(jeu,
-  variantes)` (son `construire.py` l'appelle déjà) et la fusion des couches des
-  scènes. Rien n'est poussé sur `main` d'ici.
+- **En ligne en v1027** (essai admin), construit avec l'A1 du socle et affiché par
+  lui. Depuis (30 oct., nuit) : les cartes mises de côté ont leur phrase
+  (`phrases_niveaux.py`) et les séries sont allongées (`series_<niveau>.py`,
+  `series_temps.py`) — à publier dans une version suivante.
 
 ## Les chiffres (mesurés par `python portugais/outils/couverture_comptes.py`)
 
@@ -30,33 +31,38 @@ Entre parenthèses : l'espagnol et l'anglais (A2-B2), l'allemand et l'anglais (C
 
 | | A2 | B1 | B2 | C1 |
 |---|---|---|---|---|
-| Noms | **717** (es 539 · en 692) | **1083** (es 515 · en 1036) | **431** (es 236 · en 418) | **612** (de 948 · en 548) |
-| Verbes | **326** (es 274 · en 309) | **436** (es 314 · en 385) | **189** (es 162 · en 182) | **127** (de 272 · en 175) |
-| Adjectifs | **207** (es 154 · en 194) | **342** (es 261 · en 395) | **114** (es 101 · en 124) | **110** (de 291 · en 213) |
-| Adverbes | **102** (es 51 · en 92) | **162** (es 119 · en 143) | **87** (es 30 · en 82) | **25** (de 52 · en 44) |
-| Expressions | **80** (es 82 · en 126) | **95** (es 55 · en 129) | **118** (es 69 · en 146) | **53** (de 100 · en 111) |
+| Noms | **730** (es 539 · en 692) | **1134** (es 515 · en 1036) | **462** (es 236 · en 418) | **686** (de 948 · en 548) |
+| Verbes | **322** (es 274 · en 309) | **443** (es 314 · en 385) | **191** (es 162 · en 182) | **138** (de 272 · en 175) |
+| Adjectifs | **221** (es 154 · en 194) | **396** (es 261 · en 395) | **130** (es 101 · en 124) | **152** (de 291 · en 213) |
+| Adverbes | **104** (es 51 · en 92) | **171** (es 119 · en 143) | **87** (es 30 · en 82) | **26** (de 52 · en 44) |
+| Expressions | **79** (es 82 · en 126) | **94** (es 55 · en 129) | **118** (es 69 · en 146) | **53** (de 100 · en 111) |
 | Mots-outils | **59** (es 27 · en 57) | **35** (es 20 · en 52) | **20** (es 16 · en 18) | **13** (de 0 · en 13) |
 | Fiches de grammaire | **10** (en 15) | **10** (en 14) | **10** (en 13) | **9** (en 9) |
-| Questions de grammaire (fiches + temps) | **198** (en 748) | **189** (en 753) | **152** (en 534) | **142** (en 502) |
+| Questions de grammaire (fiches + temps) | **474** (en 748) | **447** (en 753) | **228** (en 534) | **214** (en 502) |
 | Feuilles de conjugaison | **10** (es 10 · en 12) | **10** (es 10 · en 12) | **8** (es 8 · en 10) | **8** (de 8 · en 8) |
 | Questions de scènes | **307** (es 332 · en 282) | **331** (es 312 · en 281) | **254** (es 254 · en 218) | **180** (de 180 · en 156) |
 
 Ce qui reste en dessous, et pourquoi :
 
-- **Les questions de grammaire** : 681 en A2-C1 (39 fiches, 12 séries par temps),
-  quand l'anglais a allongé ses séries à 35-55 questions chacune. L'espagnol, lui,
-  en a 1 343 en tout, sans niveau. Allonger les séries (une source
-  `series_<niveau>.py`, comme l'anglais) est la suite naturelle.
+- **Les questions de grammaire** : 1 363 en A2-C1 (1 511 avec l'A1 du socle ;
+  l'espagnol en a 1 343 en tout, l'anglais environ 2 500 en A2-C1). Les séries
+  ont été allongées de deux façons : 287 questions écrites à la main pour les
+  fiches qui ne sont pas des temps (`series_a2.py` … `series_c1.py`), et 395
+  questions de temps **tirées de nos phrases d'exemple** par `series_temps.py` :
+  le conjugueur y reconnaît un verbe dont la forme n'appartient qu'à un temps,
+  le remplace par un trou, et propose les formes voisines du même verbe (garde-
+  fous : pas après un article, pas un mot qui est aussi un nom ou un adjectif de
+  nos listes, pas de « vós »). Le B2 et le C1 restent les plus courts.
 - **Le C1** : comme pour l'anglais, les ~330 composés administratifs allemands
   (Betreuungsschlüssel, Kommissionierung…) n'ont pas de mot portugais ; leur
   traduction est une glose, écartée par l'extracteur.
-- **Les cartes mises de côté** : 329 mots dont la phrase ne contient pas le mot
-  (181 noms, 20 verbes, 128 adjectifs) et 108 sans phrase du tout. Plutôt que de
-  publier des cartes bancales, `niveaux.py` les saute et les liste dans
-  `portugais/outils/rapport_niveaux.txt` ; il suffit d'écrire leur phrase dans la
-  source (colonnes 3 et 4) pour qu'elles entrent. L'anglais, lui, en avait gardé
-  164.
-- **Les expressions A2** : 80 contre 82 en espagnol.
+- **Les cartes mises de côté** sont reprises : 351 phrases écrites à la main dans
+  `phrases_niveaux.py` (elles remplacent celle de la liste), et 83 mots écartés
+  (« — ») parce qu'ils étaient brésiliens sans équivalent simple (atendente,
+  quitinete, Copa do Mundo…), des gloses plutôt que des mots (« que trabalha »),
+  ou mal formés dans la liste (« o mamãe »). Plus aucune carte sans son mot.
+- **Les expressions A2** : 79 contre 82 en espagnol.
+- **32 mots déjà dans l'A1 du socle** sont sautés (un mot n'a qu'une carte).
 
 ## Comment c'est fait
 
@@ -80,6 +86,9 @@ touché par les deux sessions.
 | `niveaux.py` | **le constructeur**, appelé par `construire.py` du socle après l'A1 |
 | `couches_a2.py` | outil à usage unique : la couche A2 des scènes, tirée des faits de l'image |
 | `couches_b1c1.py` | **source** des couches B1, B2, C1 des 43 scènes, écrites à la main |
+| `phrases_niveaux.py` | **source** des phrases écrites pour les cartes mises de côté, et des mots écartés |
+| `series_a2.py` … `series_c1.py` | **source** des questions ajoutées aux fiches (comme l'anglais) |
+| `series_temps.py` | les questions de temps tirées des phrases des cartes |
 | `couverture_comptes.py` | la mesure ci-dessus |
 | `portugais/scenes/<scène>.json` | les couches A2-C1 de chaque scène (format de `anglais/scenes/`) |
 
@@ -136,10 +145,8 @@ en plus de celles de l'A1 : `conj_imperfeito`, `conj_futuro`,
 
 ## Le branchement (pour la session socle)
 
-1. `construire.py` appelle déjà `niveaux.construire(jeu, variantes)` quand
-   `niveaux.py` est là : rien à faire, sinon ajouter les fichiers de cette branche.
-2. `scenes.py` doit fusionner `portugais/scenes/<scène>.json` comme
-   `anglais/outils/scenes.py` le fait (sans les clés qui commencent par « _ »).
+1. `construire.py` appelle `niveaux.construire(jeu, variantes)` : fait (socle, v1026).
+2. `scenes.py` fusionne `portugais/scenes/<scène>.json` : fait (socle, v1026).
 3. `index.html` : lire pour le portugais la clé `temps` de grammaire.json,
    `niveaux` de conjugaison.json, le niveau des fiches, et (si voulu) les temps
    en plus dans la carte de verbe.
@@ -179,8 +186,8 @@ brésiliennes, sont toujours dans nos corpus (champs `exemple_pt`).
 
 ## La suite possible
 
-- Écrire les phrases des 437 cartes mises de côté (liste dans `rapport_niveaux.txt`).
-- Allonger les séries de grammaire (`series_<niveau>.py`, comme l'anglais).
+- Allonger encore les séries B2 et C1 vers le volume de l'anglais.
+- Relire les genres devinés (drapeau « g? » dans `noms_*.py`).
 - Les tuiles de grammaire portugaises (pronoms, prépositions, connecteurs…),
   comme `tuiles_niveaux.py` de l'anglais.
 - La fréquence et les mots voisins (Leipzig portugais), comme l'anglais.
