@@ -453,7 +453,7 @@ fresco | fresca | frais | Compramos peixe fresco. | Nous achetons du poisson fra
 frágil | frágil | fragile | Cuidado, o pacote é frágil. | Attention, le colis est fragile.
 furioso | furiosa | furieux | Ele ficou furioso ao saber. | Il est devenu furieux en l'apprenant.
 generoso | generosa | généreux | Ele é muito generoso com os amigos. | Il est très généreux avec ses amis.
-gigante | gigante | géant | Havia uma tela gigante na praça. | Il y avait un écran géant sur la place.
+gigante | gigante | géant | Havia um ecrã gigante na praça. | Il y avait un écran géant sur la place.
 gorduroso | gordurosa | gras, gros | Este molho é gorduroso demais para mim. | Cette sauce est trop grasse pour moi.
 gratuito | gratuita | gratuit | O serviço é gratuito. | Le service est gratuit.
 grave | grave | grave | Não é nada grave. | Ce n'est rien de grave.
@@ -618,7 +618,7 @@ em frente | en face | Lieu | A farmácia fica em frente. | La pharmacie est en f
 embora | parti, absent | Lieu | Ela foi embora sem dizer uma palavra. | Elle est partie sans un mot.
 enquanto | pendant que | Temps | Leio enquanto espero o comboio. | Je lis pendant que j'attends le train.
 enquanto isso | entre-temps | Temps | Enquanto isso, prepare os documentos. | Entre-temps, prépare les documents.
-errado | de travers, incorrectement | Manière | Escrevi o endereço errado. | J'ai écrit l'adresse de travers.
+errado | de travers, incorrectement | Manière | Escrevi a morada errada. | J'ai écrit la mauvaise adresse.
 especialmente | particulièrement | Quantité | Hoje está especialmente frio. | Aujourd'hui, il fait particulièrement froid.
 eventualmente | éventuellement | Temps | Eventualmente pode haver atrasos. | Il peut éventuellement y avoir des retards.
 exatamente | exactement, précisément | Manière | É exatamente isso que eu disse. | C'est exactement ce que j'ai dit.
@@ -693,7 +693,7 @@ arrumar a cama | faire le lit | Tournures | Arrumo a cama antes de sair. | Je fa
 Boa sorte | Bonne chance (réussite) | Bavarder | Boa sorte na prova! | Bonne chance pour l'examen !
 boa viagem | bon voyage | Bavarder | Boa viagem e dá notícias! | Bon voyage et donne des nouvelles !
 boas festas | bonnes fêtes | Politesse | Boas festas a todos. | Bonnes fêtes à tous.
-Bom descanso | Bonne fin de journée (après le travail) | Bavarder | Estou indo – bom descanso! | J'y vais – bonne soirée !
+Bom descanso | Bonne fin de journée (après le travail) | Bavarder | Vou-me embora – bom descanso! | J'y vais – bonne soirée !
 com atraso | en retard | Au quotidien | O comboio chegou com atraso. | Le train est arrivé en retard.
 com muito prazer | avec plaisir | Politesse | Acompanho o senhor com muito prazer. | Je vous accompagne avec plaisir.
 combinar de se encontrar | prendre rendez-vous (avec un ami) | Au quotidien | Combinamos de nos encontrar na sexta. | Nous avons convenu de nous voir vendredi.

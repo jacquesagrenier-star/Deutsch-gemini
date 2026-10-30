@@ -442,7 +442,7 @@ a casca | l'écorce | A casca destas árvores é bem lisa. | L'écorce de ces ar
 a catástrofe | la catastrophe | A enchente foi uma catástrofe. | L'inondation a été une catastrophe.
 o cervo | le cerf | Havia um cervo na beira da floresta. | Un cerf se tenait à la lisière de la forêt.
 o chifre | la corne | O touro perdeu um chifre. | Le taureau a perdu une corne.
-a cobra | le serpent | A cobra move-se sem barulho pela grama. | Le serpent se déplace silencieusement dans l'herbe. | g?
+a cobra | le serpent | A cobra move-se sem barulho pela relva. | Le serpent se déplace silencieusement dans l'herbe. | g?
 a coleta de lixo | le ramassage des ordures | A coleta de lixo passa na terça. | Le ramassage des ordures a lieu le mardi. | g? | pl=coletas de lixo
 o colete | le gilet | Ele sempre usa um colete refletivo. | Il porte toujours un gilet réfléchissant.
 a colheita | la récolte | A colheita foi boa este ano. | La récolte a été bonne cette année.
