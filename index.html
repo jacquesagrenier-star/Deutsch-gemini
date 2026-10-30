@@ -13135,6 +13135,14 @@ function carteVerbePortugais(card, exampleTr){
         + blocTempsPortugais("FUTURO", "l'avenir, écrit ou solennel &mdash; à l'oral : <em>vou + infinitif</em>", card.futuroPt)
         + blocTempsPortugais("CONDICIONAL", "politesse, hypothèse &mdash; <em>gostaria, podia</em>", card.condicionalPt)
         + blocTempsPortugais("CONJUNTIVO", "après <em>quero que</em>, <em>espero que</em>, <em>talvez</em>", card.conjuntivoPt)
+        // A2-C1 : rien sur une carte de l'A1, qui n'a pas ces champs.
+        + blocTempsPortugais("PRETÉRITO PERFEITO COMPOSTO", "ce qui se répète jusqu'à maintenant &mdash; <em>tenho trabalhado muito</em>", card.perfeitoCompostoPt)
+        + blocTempsPortugais("MAIS-QUE-PERFEITO", "le passé du passé &mdash; <em>já tinha saído</em>", card.maisQuePerfeitoPt)
+        + blocTempsPortugais("CONJUNTIVO IMPERFEITO", "après <em>se</em>, <em>queria que</em> &mdash; <em>se eu pudesse</em>", card.conjImperfeitoPt)
+        + blocTempsPortugais("CONJUNTIVO FUTURO", "après <em>quando</em>, <em>se</em> pour l'avenir &mdash; <em>quando chegares</em>", card.conjFuturoPt)
+        + ((card.participioPt || card.gerundioPt)
+            ? '<div class="verb-sep"></div><strong>PARTICÍPIO · GERÚNDIO</strong><br>' + [card.participioPt, card.gerundioPt].filter(Boolean).map(echapperPortugais).join(" · ")
+            : "")
         + impHtml;
     return `<div class="verb-core">${core}</div>` + (extra
         ? `<button class="verb-toggle-btn" onclick="event.stopPropagation(); toggleVerbExtra();">▾</button><div class="verb-extra hidden">${extra}</div>`
@@ -32047,7 +32055,11 @@ async function loadVerbeJson() {
                     // Le portugais (29 oct. 2026) : ses temps, calcules par portugais/outils/conjugaison.py.
                     ...(LANGUE_APPRISE === "pt" ? { perfeitoPt: v.perfeito || null, imperfeitoPt: v.imperfeito || null,
                         futuroPt: v.futuro || null, condicionalPt: v.condicional || null, conjuntivoPt: v.conjuntivo || null,
-                        imperativoPt: v.imperativo || null, irregulierPt: !!v.irregulier } : {}),
+                        imperativoPt: v.imperativo || null, irregulierPt: !!v.irregulier,
+                        // Les temps de l'A2 au C1 (session « Portugais A2-C1 »), absents de l'A1.
+                        perfeitoCompostoPt: v.perfeito_composto || null, maisQuePerfeitoPt: v.mais_que_perfeito || null,
+                        conjImperfeitoPt: v.conj_imperfeito || null, conjFuturoPt: v.conj_futuro || null,
+                        participioPt: v.participio || "", gerundioPt: v.gerundio || "" } : {}),
                     traduction: v.traduction || "", traduction_en: v.traduction_en || "", traduction_tr: v.traduction_tr || "", traduction_uk: v.traduction_uk || "", traduction_fa: v.traduction_fa || "", traduction_pt: v.traduction_pt || "", traduction_ar: v.traduction_ar || "", traduction_pl: v.traduction_pl || "", traduction_ru: v.traduction_ru || "",
                     praesens: v.praesens || {},
                     exemple: phraseVariante(v.exemple || "", phrasesLatam), exemple_fr: v.exemple_fr || "", exemple_en: v.exemple_en || "", exemple_tr: v.exemple_tr || "", exemple_uk: v.exemple_uk || "", exemple_fa: v.exemple_fa || "", exemple_pt: v.exemple_pt || "", exemple_ar: v.exemple_ar || "", exemple_pl: v.exemple_pl || "", exemple_ru: v.exemple_ru || "",
@@ -41279,6 +41291,14 @@ function dictNormalize(str){
 // aurait donne 900 fichiers pour la meme chose -- ici il y en a 88.
 async function dictLoadIndex(pair){
     if(dictIndexes[pair]) return dictIndexes[pair];
+    // Le portugais (essai, 29 oct. 2026) n'a pas encore de dictionnaire : la
+    // section s'efface, sans aller chercher celui de l'allemand (deux 404 par
+    // recherche).
+    if(LANGUE_APPRISE === "pt"){
+        dictIndexes[pair] = [];
+        dictIndexes[pair].introuvable = true;
+        return dictIndexes[pair];
+    }
     try{
         const r = await fetch(DICT_BASE_URL + pair + "/index.json");
         if(!r.ok) throw new Error("index " + pair);

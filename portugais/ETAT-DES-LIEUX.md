@@ -93,6 +93,16 @@ gostar de · l'adjectif · le passé (perfeito) · há · les faux amis.
   les sept temps sans vós, « Quel article ? » propose o / a, la séance du jour
   sert « o quarto · os quartos », trois scènes s'ouvrent en portugais sans
   erreur.
+- **Essai « apprenant » (nuit du 29 au 30 oct.)**, chaque carte composée affichée
+  recto et verso : la séance d'un compte neuf (mots, feuille de conjugaison,
+  escale 1 de l'A1 voyage et ses phrases toutes faites, questions de grammaire,
+  scène, oral) ; la séance à l'escale 6 (phrases à trou, écoute, verbes,
+  adjectifs) ; Premiers pas étape 1 et étape des transports (cartes, tableau,
+  écoute, scène, phrase à construire) ; Écouter, dictée, « Mes feuilles »,
+  recherche (casa, maison, comboio, Tisch), mode nuit, scène ouverte depuis le
+  ruban (`apprendre=pt`). **Aucun texte allemand, aucune erreur JavaScript.**
+  Corrigé : la recherche allait chercher le dictionnaire allemand (deux 404 par
+  recherche) ; elle s'en passe désormais en portugais.
 - **Pas vérifié** : sur un vrai téléphone (voix pt-PT réelle, iPhone), et le
   parcours connecté de l'admin (la garde et Firestore) — à faire par Jacques.
 
