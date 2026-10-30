@@ -1031,6 +1031,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o chapéu?",
+     "c": [
+      "em cima da estante",
+      "debaixo da estante",
+      "ao lado do espelho"
+     ],
+     "f": "hut",
+     "r": "regal",
+     "phrase": "O chapéu está em cima da estante.",
+     "sens": "Le chapeau est sur l'étagère.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a estante = <b>em cima da</b> estante."
+    },
+    {
+     "q": "Onde está o homem?",
+     "c": [
+      "no banco",
+      "em cima do banquinho",
+      "ao lado do cesto"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "O homem está no banco.",
+     "sens": "L'homme est assis sur le banc.",
+     "n": "<b>em</b> + o = <b>no</b> : no banco."
+    },
+    {
+     "q": "Onde está o banquinho?",
+     "c": [
+      "à frente do espelho",
+      "em cima da estante",
+      "debaixo do banco"
+     ],
+     "f": "hocker",
+     "r": "spiegel",
+     "phrase": "O banquinho está à frente do espelho.",
+     "sens": "Le tabouret est devant le miroir.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o espelho = <b>à frente do</b> espelho."
+    },
+    {
+     "q": "Onde está o cinto?",
+     "c": [
+      "ao lado da gravata",
+      "por cima do chapéu",
+      "no cesto"
+     ],
+     "f": "guertel",
+     "r": "krawatte",
+     "phrase": "O cinto está ao lado da gravata.",
+     "sens": "La ceinture est accrochée à côté de la cravate.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a gravata = <b>ao lado da</b> gravata."
+    },
+    {
+     "q": "Onde estão as meias?",
+     "c": [
+      "no cesto",
+      "debaixo do cesto",
+      "no banco"
+     ],
+     "f": "socken",
+     "r": "korb",
+     "phrase": "As meias estão no cesto.",
+     "sens": "Les chaussettes sont dans le panier.",
+     "n": "<b>em</b> + o = <b>no</b> : no cesto."
+    },
+    {
+     "q": "Onde está a Anna?",
+     "c": [
+      "à frente do provador",
+      "no provador",
+      "atrás do espelho"
+     ],
+     "f": "anna",
+     "r": "kabine",
+     "phrase": "A Anna está à frente do provador.",
+     "sens": "Anna est devant la cabine d'essayage.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o provador = <b>à frente do</b> provador."
+    },
+    {
+     "q": "Onde está o sapato?",
+     "c": [
+      "no chão",
+      "no banco",
+      "no cesto"
+     ],
+     "f": "schuh-sol",
+     "r": "boden",
+     "phrase": "O sapato está no chão.",
+     "sens": "La deuxième chaussure est par terre.",
+     "n": "<b>em</b> + o = <b>no</b> : no chão."
+    },
+    {
+     "q": "Onde está o vestido?",
+     "c": [
+      "ao lado da saia",
+      "por cima da estante",
+      "na parede"
+     ],
+     "f": "kleid",
+     "r": "rock",
+     "phrase": "O vestido está ao lado da saia.",
+     "sens": "La robe est accrochée à côté de la jupe.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a saia = <b>ao lado da</b> saia."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "L'accord de l'adjectif",
+   "qs": [
+    {
+     "q": "A Anna segura uma camisola ___.",
+     "c": [
+      "amarela",
+      "amarelo",
+      "amarelas"
+     ],
+     "f": "pullover",
+     "r": "anna",
+     "phrase": "A Anna segura uma camisola amarela.",
+     "sens": "Anna tient un pull jaune.",
+     "n": "<b>a camisola</b> est féminin : <b>amarela</b>."
+    },
+    {
+     "q": "O vestido ___ está pendurado à esquerda.",
+     "c": [
+      "vermelho",
+      "vermelha",
+      "vermelhos"
+     ],
+     "f": "kleid",
+     "r": null,
+     "phrase": "O vestido vermelho está pendurado à esquerda.",
+     "sens": "La robe rouge est accrochée tout à gauche.",
+     "n": "<b>o vestido</b> : masculin en portugais."
+    },
+    {
+     "q": "O homem experimenta um sapato ___.",
+     "c": [
+      "castanho",
+      "castanha",
+      "castanhos"
+     ],
+     "f": "schuh-main",
+     "r": "monsieur",
+     "phrase": "O homem experimenta um sapato castanho.",
+     "sens": "L'homme essaie une chaussure marron.",
+     "n": "« Marron » au Portugal : <b>castanho</b> (qui s'accorde)."
+    },
+    {
+     "q": "A empregada dobra um cachecol ___.",
+     "c": [
+      "às riscas",
+      "riscada",
+      "riscados"
+     ],
+     "f": "schal",
+     "r": "verkaeuferin",
+     "phrase": "A empregada dobra um cachecol às riscas.",
+     "sens": "La vendeuse plie une écharpe rayée.",
+     "n": "Rayé : <b>às riscas</b>, invariable."
+    },
+    {
+     "q": "Na estante há uma mala ___.",
+     "c": [
+      "preta",
+      "preto",
+      "pretas"
+     ],
+     "f": "tasche-noire",
+     "r": "regal",
+     "phrase": "Na estante há uma mala preta.",
+     "sens": "Sur l'étagère, il y a un sac noir.",
+     "n": "<b>a mala</b> → <b>preta</b>."
+    },
+    {
+     "q": "A Anna veste umas calças azul-___.",
+     "c": [
+      "claras",
+      "claro",
+      "clara"
+     ],
+     "f": "hose-anna",
+     "r": "anna",
+     "phrase": "A Anna veste umas calças azul-claras.",
+     "sens": "Anna porte un pantalon bleu clair.",
+     "n": "<b>as calças</b> est pluriel ; dans <b>azul-claro</b>, seul le second mot s'accorde."
+    },
+    {
+     "q": "O homem de cabelo ___ experimenta sapatos.",
+     "c": [
+      "grisalho",
+      "grisalha",
+      "cinzentos"
+     ],
+     "f": "monsieur",
+     "r": null,
+     "phrase": "O homem de cabelo grisalho experimenta sapatos.",
+     "sens": "L'homme aux cheveux gris essaie des chaussures.",
+     "n": "Les cheveux gris : <b>cabelo grisalho</b> (au singulier en portugais)."
+    },
+    {
+     "q": "Um sobretudo ___ está ao lado do fato.",
+     "c": [
+      "castanho",
+      "castanha",
+      "castanhos"
+     ],
+     "f": "mantel",
+     "r": "anzug",
+     "phrase": "Um sobretudo castanho está ao lado do fato.",
+     "sens": "Un manteau marron est accroché à côté du costume.",
+     "n": "<b>o sobretudo</b> → <b>castanho</b> ; et <b>o fato</b> = le costume, au Portugal."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "A mulher ___ segura a camisola amarela chama-se Anna.",
+     "c": [
+      "que",
+      "quem",
+      "qual"
+     ],
+     "f": "anna",
+     "r": "pullover",
+     "phrase": "A mulher que segura a camisola amarela chama-se Anna.",
+     "sens": "La femme qui tient le pull jaune s'appelle Anna.",
+     "n": "Sujet de la relative : <b>que</b>."
+    },
+    {
+     "q": "O homem, ___ sapato ainda está no chão, experimenta o outro.",
+     "c": [
+      "cujo",
+      "cuja",
+      "que o"
+     ],
+     "f": "monsieur",
+     "r": "schuh-sol",
+     "phrase": "O homem, cujo sapato ainda está no chão, experimenta o outro.",
+     "sens": "L'homme dont la chaussure est encore par terre essaie l'autre.",
+     "n": "<b>cujo</b> + nom masculin (sapato)."
+    },
+    {
+     "q": "O espelho em frente ___ qual está o banquinho tem moldura de madeira.",
+     "c": [
+      "do",
+      "o",
+      "ao"
+     ],
+     "f": "spiegel",
+     "r": "hocker",
+     "phrase": "O espelho em frente do qual está o banquinho tem moldura de madeira.",
+     "sens": "Le miroir devant lequel est le tabouret a un cadre en bois.",
+     "n": "<b>em frente de</b> + <b>o qual</b> = <b>em frente do qual</b>."
+    },
+    {
+     "q": "As meias ___ estão no cesto são coloridas.",
+     "c": [
+      "que",
+      "onde",
+      "cujas"
+     ],
+     "f": "korb",
+     "r": null,
+     "phrase": "As meias que estão no cesto são coloridas.",
+     "sens": "Les chaussettes qui sont dans le panier sont multicolores.",
+     "n": "Sujet : <b>que</b>."
+    },
+    {
+     "q": "As camisolas na estante estão bem ___.",
+     "c": [
+      "dobradas",
+      "dobrados",
+      "dobrar"
+     ],
+     "f": "pullover-stapel",
+     "r": "regal",
+     "phrase": "As camisolas na estante estão bem dobradas.",
+     "sens": "Les pulls sur l'étagère sont soigneusement pliés.",
+     "n": "Un état : <b>estar</b> + participe accordé (as camisolas → <b>dobradas</b>)."
+    },
+    {
+     "q": "O cachecol está a ser dobrado ___ empregada.",
+     "c": [
+      "pela",
+      "por",
+      "pelo"
+     ],
+     "f": "schal",
+     "r": "verkaeuferin",
+     "phrase": "O cachecol está a ser dobrado pela empregada.",
+     "sens": "L'écharpe est en train d'être pliée par la vendeuse.",
+     "n": "L'agent du passif : <b>por</b> + a = <b>pela</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "A camisola ___ agradar-lhe.",
+     "c": [
+      "deve",
+      "pode",
+      "há de"
+     ],
+     "f": "pullover",
+     "r": "anna",
+     "phrase": "A camisola deve agradar-lhe.",
+     "sens": "Le pull doit lui plaire.",
+     "n": "Déduction : <b>dever</b>."
+    },
+    {
+     "q": "___ ela vai experimentá-la já no provador.",
+     "c": [
+      "Se calhar",
+      "Talvez que",
+      "Deve"
+     ],
+     "f": "kabine",
+     "r": "anna",
+     "phrase": "Se calhar ela vai experimentá-la já no provador.",
+     "sens": "Elle va peut-être l'essayer tout de suite dans la cabine.",
+     "n": "<b>se calhar</b> (peut-être, très portugais) + indicatif."
+    },
+    {
+     "q": "O homem ___ comprar os sapatos.",
+     "c": [
+      "deverá",
+      "deveria-se",
+      "deva"
+     ],
+     "f": "schuh-main",
+     "r": "monsieur",
+     "phrase": "O homem deverá comprar os sapatos.",
+     "sens": "L'homme va sans doute acheter les chaussures.",
+     "n": "<b>deverá</b> + infinitif : probable."
+    },
+    {
+     "q": "___ que a empregada trabalha aqui há trinta anos.",
+     "c": [
+      "Parece",
+      "Parecem",
+      "Pareça"
+     ],
+     "f": "verkaeuferin",
+     "r": null,
+     "phrase": "Parece que a empregada trabalha aqui há trinta anos.",
+     "sens": "Il paraît que la vendeuse travaille ici depuis trente ans.",
+     "n": "Le ouï-dire : <b>parece que</b>."
+    }
+   ]
   }
  },
  "traductions": {}

@@ -811,6 +811,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o relógio?",
+     "c": [
+      "no teto",
+      "na parede",
+      "por cima da escada"
+     ],
+     "f": "uhr",
+     "r": "decke",
+     "phrase": "O relógio está no teto.",
+     "sens": "L'horloge est accrochée au plafond.",
+     "n": "em + o teto = <b>no</b> teto."
+    },
+    {
+     "q": "Onde está a mulher?",
+     "c": [
+      "no banco",
+      "em cima da mala de viagem",
+      "na escada"
+     ],
+     "f": "frau",
+     "r": "bank",
+     "phrase": "A mulher está no banco.",
+     "sens": "La dame est assise sur le banc.",
+     "n": "<b>em</b> + o = <b>no</b> : no banco."
+    },
+    {
+     "q": "Onde está a mala de viagem?",
+     "c": [
+      "à frente do banco",
+      "no banco",
+      "na escada"
+     ],
+     "f": "koffer",
+     "r": "bank",
+     "phrase": "A mala de viagem está à frente do banco.",
+     "sens": "La valise est devant le banc.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o banco = <b>à frente do</b> banco."
+    },
+    {
+     "q": "Onde estão os pretzéis?",
+     "c": [
+      "no quiosque",
+      "no banco",
+      "na mala de viagem"
+     ],
+     "f": "brezel",
+     "r": "kiosk",
+     "phrase": "Os pretzéis estão no quiosque.",
+     "sens": "Les bretzels sont dans le kiosque.",
+     "n": "<b>em</b> + o = <b>no</b> : no quiosque."
+    },
+    {
+     "q": "Onde estão as moedas?",
+     "c": [
+      "na mala de viagem",
+      "no quiosque",
+      "no banco"
+     ],
+     "f": "muenze",
+     "r": "koffer-2",
+     "phrase": "As moedas estão na mala de viagem.",
+     "sens": "Les pièces sont dans l'étui.",
+     "n": "<b>em</b> + a = <b>na</b> : na mala de viagem."
+    },
+    {
+     "q": "Onde está o cão?",
+     "c": [
+      "ao lado do banco",
+      "na escada",
+      "no quiosque"
+     ],
+     "f": "hund",
+     "r": "bank",
+     "phrase": "O cão está ao lado do banco.",
+     "sens": "Le chien est assis à côté du banc.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o banco = <b>ao lado do</b> banco."
+    },
+    {
+     "q": "Onde está o metro?",
+     "c": [
+      "junto do cais",
+      "na escada",
+      "no quiosque"
+     ],
+     "f": "ubahn",
+     "r": "bahnsteig",
+     "phrase": "O metro está junto do cais.",
+     "sens": "Le métro est à quai.",
+     "n": "<b>junto de</b> = près de, contre. <b>junto de</b> + o cais = <b>junto do</b> cais."
+    },
+    {
+     "q": "Onde estão os passageiros?",
+     "c": [
+      "no metro",
+      "junto do quiosque",
+      "na escada"
+     ],
+     "f": "fahrgast",
+     "r": "ubahn",
+     "phrase": "Os passageiros estão no metro.",
+     "sens": "Les voyageurs sont assis dans le métro.",
+     "n": "<b>em</b> + o = <b>no</b> : no metro."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "E, mas, ou, porque, mas sim",
+   "qs": [
+    {
+     "q": "O Mark tem um bilhete ___ um café.",
+     "c": [
+      "e",
+      "mas",
+      "ou"
+     ],
+     "f": "fahrkarte",
+     "r": "mark",
+     "phrase": "O Mark tem um bilhete e um café.",
+     "sens": "Mark a un billet et un café.",
+     "n": "<b>e</b> = et."
+    },
+    {
+     "q": "O Mark despacha-se ___ o metro vai partir.",
+     "c": [
+      "porque",
+      "mas",
+      "ou"
+     ],
+     "f": "mark",
+     "r": "ubahn",
+     "phrase": "O Mark despacha-se porque o metro vai partir.",
+     "sens": "Mark se dépêche, car le métro va partir.",
+     "n": "La cause : <b>porque</b> (ou <b>pois</b>)."
+    },
+    {
+     "q": "O homem não canta, ___ toca guitarra.",
+     "c": [
+      "mas sim",
+      "mas também",
+      "senão que"
+     ],
+     "f": "mann",
+     "r": "gitarre",
+     "phrase": "O homem não canta, mas sim toca guitarra.",
+     "sens": "L'homme ne chante pas, il joue de la guitare.",
+     "n": "Après une négation, la rectification : <b>mas sim</b>."
+    },
+    {
+     "q": "Queres um pastel ___ um jornal?",
+     "c": [
+      "ou",
+      "e",
+      "mas"
+     ],
+     "f": "brezel",
+     "r": "zeitung",
+     "phrase": "Queres um pastel ou um jornal?",
+     "sens": "Tu veux une pâtisserie ou un journal ?",
+     "n": "<b>ou</b> = ou."
+    },
+    {
+     "q": "O quiosque é pequeno, ___ tem muitos pastéis.",
+     "c": [
+      "mas",
+      "ou",
+      "porque"
+     ],
+     "f": "kiosk",
+     "r": "brezel",
+     "phrase": "O quiosque é pequeno, mas tem muitos pastéis.",
+     "sens": "Le kiosque est petit, mais il a beaucoup de pâtisseries.",
+     "n": "<b>mas</b> = mais."
+    },
+    {
+     "q": "A senhora tem um guarda-chuva, ___ lá fora está a chover.",
+     "c": [
+      "pois",
+      "mas",
+      "ou"
+     ],
+     "f": "regenschirm",
+     "r": "frau",
+     "phrase": "A senhora tem um guarda-chuva, pois lá fora está a chover.",
+     "sens": "La dame a un parapluie, car il pleut dehors.",
+     "n": "<b>pois</b> = car."
+    },
+    {
+     "q": "O cão não ladra, ___ está sentado ao lado do banco.",
+     "c": [
+      "mas sim",
+      "ou",
+      "e não"
+     ],
+     "f": "hund",
+     "r": "bank",
+     "phrase": "O cão não ladra, mas sim está sentado ao lado do banco.",
+     "sens": "Le chien n'aboie pas, il est assis tranquillement à côté du banc.",
+     "n": "<b>mas sim</b>."
+    },
+    {
+     "q": "O Mark bebe o café ___ entra no metro.",
+     "c": [
+      "e",
+      "mas",
+      "ou"
+     ],
+     "f": "kaffee",
+     "r": "mark",
+     "phrase": "O Mark bebe o café e entra no metro.",
+     "sens": "Mark boit du café et monte dans le métro.",
+     "n": "<b>e</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Se, caso : la condition",
+   "qs": [
+    {
+     "q": "Caso o metro ___ atrasado, o Mark apanha o autocarro.",
+     "c": [
+      "venha",
+      "vem",
+      "vier"
+     ],
+     "f": "ubahn",
+     "r": "mark",
+     "phrase": "Caso o metro venha atrasado, o Mark apanha o autocarro.",
+     "sens": "Si jamais le métro a du retard, Mark prend le bus.",
+     "n": "<b>caso</b> + conjuntivo présent."
+    },
+    {
+     "q": "Se o Mark não ___ depressa, perde o metro.",
+     "c": [
+      "entrar",
+      "entra",
+      "entre"
+     ],
+     "f": "mark",
+     "r": "tuer",
+     "phrase": "Se o Mark não entrar depressa, perde o metro.",
+     "sens": "Si Mark ne monte pas vite, il rate le métro.",
+     "n": "<b>se</b> + futur : futuro do conjuntivo."
+    },
+    {
+     "q": "Quando ___, a senhora leva o guarda-chuva.",
+     "c": [
+      "chove",
+      "chova",
+      "chover-se"
+     ],
+     "f": "regenschirm",
+     "r": "frau",
+     "phrase": "Quando chove, a senhora leva o guarda-chuva.",
+     "sens": "Quand il pleut, la dame prend son parapluie.",
+     "n": "Une habitude : <b>quando</b> + indicatif."
+    },
+    {
+     "q": "Se ___ fome, compra um pastel!",
+     "c": [
+      "tiveres",
+      "tens",
+      "tenhas"
+     ],
+     "f": "brezel",
+     "r": null,
+     "phrase": "Se tiveres fome, compra um pastel!",
+     "sens": "Si tu as faim, achète-toi une pâtisserie !",
+     "n": "<b>se tiveres</b>."
+    },
+    {
+     "q": "Se o Mark ___ lugar sentado, bebe o café.",
+     "c": [
+      "arranjar",
+      "arranja",
+      "arranje"
+     ],
+     "f": "kaffee",
+     "r": "mark",
+     "phrase": "Se o Mark arranjar lugar sentado, bebe o café.",
+     "sens": "Si Mark trouve une place assise, il boit son café.",
+     "n": "<b>arranjar lugar</b> = trouver une place."
+    },
+    {
+     "q": "Só se pode entrar se se ___ bilhete.",
+     "c": [
+      "tiver",
+      "tem",
+      "tenha"
+     ],
+     "f": "fahrkarte",
+     "r": null,
+     "phrase": "Só se pode entrar se se tiver bilhete.",
+     "sens": "On n'a le droit de monter que si l'on a un billet.",
+     "n": "<b>se se tiver</b> : « si on a »."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "Ele ___ estar bem-disposto.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "Ele deve estar bem-disposto.",
+     "sens": "Il doit être de bonne humeur.",
+     "n": "<b>bem-disposto</b> = de bonne humeur."
+    },
+    {
+     "q": "A senhora ___ ir para o aeroporto.",
+     "c": [
+      "pode",
+      "deve de",
+      "há"
+     ],
+     "f": "frau",
+     "r": "koffer",
+     "phrase": "A senhora pode ir para o aeroporto.",
+     "sens": "La dame part peut-être à l'aéroport.",
+     "n": "Possibilité : <b>poder</b>."
+    },
+    {
+     "q": "O cão ___ da senhora.",
+     "c": [
+      "será",
+      "seja",
+      "foi-se"
+     ],
+     "f": "hund",
+     "r": "frau",
+     "phrase": "O cão será da senhora.",
+     "sens": "Le chien appartient sans doute à la dame.",
+     "n": "Futur de supposition."
+    },
+    {
+     "q": "Esta estação de metro ___ mais de cem anos.",
+     "c": [
+      "teria",
+      "terá-se",
+      "tenha"
+     ],
+     "f": "treppe",
+     "r": null,
+     "phrase": "Esta estação de metro teria mais de cem anos.",
+     "sens": "Cette station de métro aurait plus de cent ans.",
+     "n": "Le conditionnel de la rumeur."
+    }
+   ]
   }
  },
  "traductions": {}

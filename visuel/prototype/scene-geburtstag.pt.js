@@ -640,6 +640,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o bolo de aniversário?",
+     "c": [
+      "em cima da mesa",
+      "no sofá",
+      "ao lado da janela"
+     ],
+     "f": "torte",
+     "r": "tisch",
+     "phrase": "O bolo de aniversário está em cima da mesa.",
+     "sens": "Le gâteau est sur la table.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa."
+    },
+    {
+     "q": "Onde estão os balões?",
+     "c": [
+      "à frente da janela",
+      "debaixo da mesa",
+      "na estante"
+     ],
+     "f": "luftballon",
+     "r": "fenster",
+     "phrase": "Os balões estão à frente da janela.",
+     "sens": "Les ballons sont devant la fenêtre.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + a janela = <b>à frente da</b> janela."
+    },
+    {
+     "q": "Onde está o Mark?",
+     "c": [
+      "no sofá",
+      "em cima da mesa",
+      "ao lado da estante"
+     ],
+     "f": "mark",
+     "r": "sofa",
+     "phrase": "O Mark está no sofá.",
+     "sens": "Mark est assis sur le canapé.",
+     "n": "<b>em</b> + o = <b>no</b> : no sofá."
+    },
+    {
+     "q": "Onde está a guitarra?",
+     "c": [
+      "ao lado do sofá",
+      "em cima da mesa",
+      "na estante"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "A guitarra está ao lado do sofá.",
+     "sens": "La guitare est à côté du canapé.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o sofá = <b>ao lado do</b> sofá."
+    },
+    {
+     "q": "Onde está o quadro?",
+     "c": [
+      "na parede",
+      "no sofá",
+      "debaixo da janela"
+     ],
+     "f": "bild",
+     "r": "wand",
+     "phrase": "O quadro está na parede.",
+     "sens": "Le tableau est accroché au mur.",
+     "n": "<b>em</b> + a = <b>na</b> : na parede."
+    },
+    {
+     "q": "Onde está o cartão?",
+     "c": [
+      "à frente do presente",
+      "no presente",
+      "debaixo do sofá"
+     ],
+     "f": "karte",
+     "r": "geschenk-2",
+     "phrase": "O cartão está à frente do presente.",
+     "sens": "La carte est devant le cadeau.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + o presente = <b>à frente do</b> presente."
+    },
+    {
+     "q": "Onde estão os livros?",
+     "c": [
+      "na estante",
+      "no sofá",
+      "debaixo da mesa"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "Os livros estão na estante.",
+     "sens": "Les livres sont sur l'étagère.",
+     "n": "<b>em</b> + a = <b>na</b> : na estante."
+    },
+    {
+     "q": "Onde está o candeeiro?",
+     "c": [
+      "ao lado da estante",
+      "em cima da mesa",
+      "por cima do sofá"
+     ],
+     "f": "lampe",
+     "r": "regal",
+     "phrase": "O candeeiro está ao lado da estante.",
+     "sens": "La lampe est à côté de l'étagère.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a estante = <b>ao lado da</b> estante."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Lhe, lhes : donner, offrir, féliciter",
+   "qs": [
+    {
+     "q": "A Anna dá-___ um presente.",
+     "c": [
+      "lhe",
+      "o",
+      "se"
+     ],
+     "f": "geschenk",
+     "r": "mark",
+     "phrase": "A Anna dá-lhe um presente.",
+     "sens": "Anna lui donne un cadeau.",
+     "n": "À qui ? <b>lhe</b>, après le verbe."
+    },
+    {
+     "q": "Todos lhe dão os ___.",
+     "c": [
+      "parabéns",
+      "felicidades-lhe",
+      "parabém"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "Todos lhe dão os parabéns.",
+     "sens": "Tout le monde lui souhaite un bon anniversaire.",
+     "n": "<b>dar os parabéns a alguém</b> ; après <b>todos</b>, le pronom passe devant."
+    },
+    {
+     "q": "O presente agrada-___.",
+     "c": [
+      "lhe",
+      "o",
+      "se"
+     ],
+     "f": "geschenk",
+     "r": "mark",
+     "phrase": "O presente agrada-lhe.",
+     "sens": "Le cadeau lui plaît.",
+     "n": "<b>agradar a alguém</b> : <b>lhe</b>."
+    },
+    {
+     "q": "A Anna oferece uma lembrança ___ namorado.",
+     "c": [
+      "ao",
+      "o",
+      "do"
+     ],
+     "f": "geschenk",
+     "r": "mark",
+     "phrase": "A Anna oferece uma lembrança ao namorado.",
+     "sens": "Anna offre un petit quelque chose à son ami.",
+     "n": "<b>oferecer algo a alguém</b> : a + o = <b>ao</b>."
+    },
+    {
+     "q": "O amigo tira uma fotografia ___ Mark.",
+     "c": [
+      "ao",
+      "do",
+      "o"
+     ],
+     "f": "handy",
+     "r": "mark",
+     "phrase": "O amigo tira uma fotografia ao Mark.",
+     "sens": "L'ami prend une photo de Mark.",
+     "n": "Au Portugal : <b>tirar uma fotografia a alguém</b>."
+    },
+    {
+     "q": "O Mark agradece ___ amigos a festa.",
+     "c": [
+      "aos",
+      "os",
+      "dos"
+     ],
+     "f": "mark",
+     "r": null,
+     "phrase": "O Mark agradece aos amigos a festa.",
+     "sens": "Mark remercie ses amis pour la fête.",
+     "n": "<b>agradecer algo a alguém</b> : a + os = <b>aos</b>."
+    },
+    {
+     "q": "As velas estão ___ bolo.",
+     "c": [
+      "no",
+      "ao",
+      "pelo"
+     ],
+     "f": "kerze",
+     "r": "torte",
+     "phrase": "As velas estão no bolo.",
+     "sens": "Les bougies sont sur le gâteau.",
+     "n": "em + o = <b>no</b>."
+    },
+    {
+     "q": "A Anna vai já levar sumo ___ convidados.",
+     "c": [
+      "aos",
+      "os",
+      "dos"
+     ],
+     "f": "saft",
+     "r": null,
+     "phrase": "A Anna vai já levar sumo aos convidados.",
+     "sens": "Anna va tout de suite apporter du jus aux invités.",
+     "n": "a + os = <b>aos</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Passif et relatives",
+   "qs": [
+    {
+     "q": "O presente ___ a Anna tem na mão é verde.",
+     "c": [
+      "que",
+      "quem",
+      "cujo"
+     ],
+     "f": "geschenk",
+     "r": "anna",
+     "phrase": "O presente que a Anna tem na mão é verde.",
+     "sens": "Le cadeau qu'Anna tient à la main est vert.",
+     "n": "Objet de la relative : <b>que</b>."
+    },
+    {
+     "q": "O amigo ___ fotografa o Mark está sentado no sofá.",
+     "c": [
+      "que",
+      "quem",
+      "qual"
+     ],
+     "f": "freund",
+     "r": "mark",
+     "phrase": "O amigo que fotografa o Mark está sentado no sofá.",
+     "sens": "L'ami qui photographie Mark est assis sur le canapé.",
+     "n": "Sujet : <b>que</b>."
+    },
+    {
+     "q": "O bolo no ___ ardem cinco velas é de chocolate.",
+     "c": [
+      "qual",
+      "que",
+      "quem"
+     ],
+     "f": "torte",
+     "r": "kerze",
+     "phrase": "O bolo no qual ardem cinco velas é de chocolate.",
+     "sens": "Le gâteau sur lequel brûlent cinq bougies est au chocolat.",
+     "n": "<b>no qual</b> (em + o qual)."
+    },
+    {
+     "q": "As velas vão ser ___ daqui a pouco.",
+     "c": [
+      "apagadas",
+      "apagados",
+      "apagar"
+     ],
+     "f": "kerze",
+     "r": "torte",
+     "phrase": "As velas vão ser apagadas daqui a pouco.",
+     "sens": "Les bougies vont être soufflées tout de suite.",
+     "n": "Passif au futur proche : <b>vão ser</b> + participe accordé."
+    },
+    {
+     "q": "O presente vermelho está bem ___.",
+     "c": [
+      "embrulhado",
+      "embrulhada",
+      "embrulhar"
+     ],
+     "f": "geschenk-2",
+     "r": null,
+     "phrase": "O presente vermelho está bem embrulhado.",
+     "sens": "Le cadeau rouge est joliment emballé.",
+     "n": "État : <b>estar</b> + participe (o presente → <b>embrulhado</b>)."
+    },
+    {
+     "q": "A amiga, ___ cabelo é ruivo, bate palmas.",
+     "c": [
+      "cujo",
+      "cuja",
+      "que o"
+     ],
+     "f": "freundin",
+     "r": null,
+     "phrase": "A amiga, cujo cabelo é ruivo, bate palmas.",
+     "sens": "L'amie aux cheveux roux applaudit.",
+     "n": "<b>cujo</b> s'accorde avec <b>cabelo</b>, pas avec amiga."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "O presente ___ ser uma surpresa.",
+     "c": [
+      "deve",
+      "pode-se",
+      "há"
+     ],
+     "f": "geschenk",
+     "r": "mark",
+     "phrase": "O presente deve ser uma surpresa.",
+     "sens": "Le cadeau doit être une surprise.",
+     "n": "Déduction : <b>dever</b>."
+    },
+    {
+     "q": "O presente vermelho ___ dos pais dele.",
+     "c": [
+      "será",
+      "seja",
+      "foi"
+     ],
+     "f": "geschenk-2",
+     "r": null,
+     "phrase": "O presente vermelho será dos pais dele.",
+     "sens": "Le cadeau rouge vient peut-être de ses parents.",
+     "n": "Futur de supposition : <b>será</b>."
+    },
+    {
+     "q": "A pizza ___ acabar daqui a nada.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "pizza",
+     "r": null,
+     "phrase": "A pizza deve acabar daqui a nada.",
+     "sens": "La pizza devrait être bientôt finie.",
+     "n": "Probable : <b>dever</b>."
+    },
+    {
+     "q": "___ que foi a Anna que fez o bolo.",
+     "c": [
+      "Parece",
+      "Parecem",
+      "Pareça"
+     ],
+     "f": "torte",
+     "r": "anna",
+     "phrase": "Parece que foi a Anna que fez o bolo.",
+     "sens": "Il paraît qu'Anna a fait le gâteau elle-même.",
+     "n": "Le ouï-dire : <b>parece que</b>."
+    }
+   ]
   }
  },
  "traductions": {}

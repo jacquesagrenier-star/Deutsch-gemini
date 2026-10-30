@@ -773,6 +773,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o homem?",
+     "c": [
+      "no banco",
+      "debaixo da árvore",
+      "no barco"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "O homem está no banco.",
+     "sens": "L'homme est assis sur le banc.",
+     "n": "<b>em</b> + o = <b>no</b> : no banco."
+    },
+    {
+     "q": "Onde está o barco?",
+     "c": [
+      "no lago",
+      "debaixo da ponte",
+      "ao lado do chafariz"
+     ],
+     "f": "boot",
+     "r": "see",
+     "phrase": "O barco está no lago.",
+     "sens": "La barque est sur le lac.",
+     "n": "<b>em</b> + o = <b>no</b> : no lago."
+    },
+    {
+     "q": "Onde está o rapaz?",
+     "c": [
+      "no caminho",
+      "no lago",
+      "no cobertor"
+     ],
+     "f": "junge",
+     "r": "weg",
+     "phrase": "O rapaz está no caminho.",
+     "sens": "Le garçon roule sur le chemin.",
+     "n": "<b>em</b> + o = <b>no</b> : no caminho."
+    },
+    {
+     "q": "Onde está o cesto?",
+     "c": [
+      "no cobertor",
+      "debaixo do banco",
+      "ao lado do chafariz"
+     ],
+     "f": "korb",
+     "r": "decke",
+     "phrase": "O cesto está no cobertor.",
+     "sens": "Le panier est sur la couverture.",
+     "n": "<b>em</b> + o = <b>no</b> : no cobertor."
+    },
+    {
+     "q": "Onde está o telemóvel?",
+     "c": [
+      "ao lado da mochila",
+      "no cesto",
+      "debaixo do livro"
+     ],
+     "f": "handy",
+     "r": "rucksack",
+     "phrase": "O telemóvel está ao lado da mochila.",
+     "sens": "Le téléphone est à côté du sac à dos.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a mochila = <b>ao lado da</b> mochila."
+    },
+    {
+     "q": "Onde está a bola?",
+     "c": [
+      "por cima da erva",
+      "no cesto",
+      "debaixo do cobertor"
+     ],
+     "f": "ball",
+     "r": "gras",
+     "phrase": "A bola está por cima da erva.",
+     "sens": "Le ballon est au-dessus de l'herbe.",
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + a erva = <b>por cima da</b> erva."
+    },
+    {
+     "q": "Onde está o candeeiro de rua?",
+     "c": [
+      "ao lado do caixote do lixo",
+      "na ponte",
+      "no lago"
+     ],
+     "f": "laterne",
+     "r": "muelleimer",
+     "phrase": "O candeeiro de rua está ao lado do caixote do lixo.",
+     "sens": "Le lampadaire est à côté de la poubelle.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o caixote do lixo = <b>ao lado do</b> caixote do lixo."
+    },
+    {
+     "q": "Onde está o pássaro?",
+     "c": [
+      "no banco",
+      "no barco",
+      "no cesto"
+     ],
+     "f": "vogel",
+     "r": "bank",
+     "phrase": "O pássaro está no banco.",
+     "sens": "L'oiseau est perché sur le banc.",
+     "n": "<b>em</b> + o = <b>no</b> : no banco."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Onde ? Para onde ? — a, para, por, em",
+   "qs": [
+    {
+     "q": "A Anna atira a bola ___ cão.",
+     "c": [
+      "ao",
+      "o",
+      "no"
+     ],
+     "f": "ball",
+     "r": "hund",
+     "phrase": "A Anna atira a bola ao cão.",
+     "sens": "Anna lance le ballon au chien.",
+     "n": "<b>atirar algo a alguém</b> : a + o = <b>ao</b>."
+    },
+    {
+     "q": "O cão corre ___ relva.",
+     "c": [
+      "pela",
+      "para a",
+      "à"
+     ],
+     "f": "hund",
+     "r": "gras",
+     "phrase": "O cão corre pela relva.",
+     "sens": "Le chien court sur l'herbe.",
+     "n": "Parcourir un espace : <b>por</b> + a = <b>pela</b>."
+    },
+    {
+     "q": "O rapaz anda ___ bicicleta.",
+     "c": [
+      "de",
+      "na",
+      "com a"
+     ],
+     "f": "fahrrad",
+     "r": "junge",
+     "phrase": "O rapaz anda de bicicleta.",
+     "sens": "Le garçon fait du vélo.",
+     "n": "Le moyen de transport : <b>andar de</b> bicicleta."
+    },
+    {
+     "q": "A Anna pôs o livro ___ manta.",
+     "c": [
+      "na",
+      "para a",
+      "à"
+     ],
+     "f": "buch",
+     "r": "decke",
+     "phrase": "A Anna pôs o livro na manta.",
+     "sens": "Anna a posé son livre sur la couverture.",
+     "n": "<b>pôr em</b> : na manta."
+    },
+    {
+     "q": "Agora o livro está ___ manta.",
+     "c": [
+      "na",
+      "para a",
+      "pela"
+     ],
+     "f": "buch",
+     "r": "decke",
+     "phrase": "Agora o livro está na manta.",
+     "sens": "Maintenant, le livre est sur la couverture.",
+     "n": "Position : em + a = <b>na</b>."
+    },
+    {
+     "q": "O pássaro ___ no banco.",
+     "c": [
+      "pousou",
+      "pousava",
+      "pousa"
+     ],
+     "f": "vogel",
+     "r": "bank",
+     "phrase": "O pássaro pousou no banco.",
+     "sens": "L'oiseau s'est posé sur le banc.",
+     "n": "<b>pousar</b> (un oiseau) → perfeito <b>pousou</b>."
+    },
+    {
+     "q": "O homem está sentado ___ banco a ler.",
+     "c": [
+      "no",
+      "ao",
+      "para o"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "O homem está sentado no banco a ler.",
+     "sens": "L'homme est assis sur le banc et lit.",
+     "n": "<b>sentado no banco</b> ; <b>a ler</b> = en train de lire."
+    },
+    {
+     "q": "Duas pessoas remam ___ lago.",
+     "c": [
+      "no",
+      "ao",
+      "pelo do"
+     ],
+     "f": "boot",
+     "r": "see",
+     "phrase": "Duas pessoas remam no lago.",
+     "sens": "Deux personnes rament sur le lac.",
+     "n": "em + o = <b>no</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et participes",
+   "qs": [
+    {
+     "q": "A mulher ___ atira a bola ao cão chama-se Anna.",
+     "c": [
+      "que",
+      "quem",
+      "qual"
+     ],
+     "f": "anna",
+     "r": "ball",
+     "phrase": "A mulher que atira a bola ao cão chama-se Anna.",
+     "sens": "La femme qui lance le ballon au chien s'appelle Anna.",
+     "n": "Sujet : <b>que</b>."
+    },
+    {
+     "q": "O rapaz, ___ capacete é azul, anda de bicicleta.",
+     "c": [
+      "cujo",
+      "cuja",
+      "que o"
+     ],
+     "f": "junge",
+     "r": "helm",
+     "phrase": "O rapaz, cujo capacete é azul, anda de bicicleta.",
+     "sens": "Le garçon au casque bleu fait du vélo.",
+     "n": "<b>cujo</b> + capacete (masculin)."
+    },
+    {
+     "q": "O banco ___ qual o homem está sentado é verde.",
+     "c": [
+      "no",
+      "ao",
+      "do"
+     ],
+     "f": "bank",
+     "r": "monsieur",
+     "phrase": "O banco no qual o homem está sentado é verde.",
+     "sens": "Le banc sur lequel l'homme est assis est vert.",
+     "n": "<b>sentado em</b> + o qual = <b>no qual</b>."
+    },
+    {
+     "q": "O cão, ___ a correr, quer apanhar a bola.",
+     "c": [
+      "sempre",
+      "que",
+      "onde"
+     ],
+     "f": "hund",
+     "r": "ball",
+     "phrase": "O cão, sempre a correr, quer apanhar a bola.",
+     "sens": "Le chien qui court veut attraper le ballon.",
+     "n": "Le portugais dit l'action en cours avec <b>a</b> + infinitif, même sans verbe : <b>sempre a correr</b>."
+    },
+    {
+     "q": "Na manta há um livro ___.",
+     "c": [
+      "aberto",
+      "aberta",
+      "abrido"
+     ],
+     "f": "buch",
+     "r": "decke",
+     "phrase": "Na manta há um livro aberto.",
+     "sens": "Sur la couverture, il y a un livre ouvert.",
+     "n": "Participe employé comme adjectif : <b>aberto</b>."
+    },
+    {
+     "q": "A manta está ___ na relva.",
+     "c": [
+      "estendida",
+      "estendido",
+      "estender"
+     ],
+     "f": "decke",
+     "r": "gras",
+     "phrase": "A manta está estendida na relva.",
+     "sens": "La couverture est étalée sur l'herbe.",
+     "n": "État : <b>estar</b> + participe accordé."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "Ela ___ conhecer o cão.",
+     "c": [
+      "deve",
+      "pode",
+      "tem de"
+     ],
+     "f": "anna",
+     "r": "hund",
+     "phrase": "Ela deve conhecer o cão.",
+     "sens": "Elle doit connaître le chien.",
+     "n": "Déduction : <b>dever</b>."
+    },
+    {
+     "q": "Se calhar o cão ___ a bola já a seguir.",
+     "c": [
+      "apanha",
+      "apanhe",
+      "apanhará-se"
+     ],
+     "f": "hund",
+     "r": "ball",
+     "phrase": "Se calhar o cão apanha a bola já a seguir.",
+     "sens": "Le chien va peut-être attraper le ballon tout de suite.",
+     "n": "<b>se calhar</b> + indicatif présent."
+    },
+    {
+     "q": "O homem ___ vir cá todos os domingos.",
+     "c": [
+      "deve",
+      "pode-se",
+      "há"
+     ],
+     "f": "monsieur",
+     "r": "bank",
+     "phrase": "O homem deve vir cá todos os domingos.",
+     "sens": "L'homme vient sans doute ici chaque dimanche.",
+     "n": "Probable : <b>dever</b>."
+    },
+    {
+     "q": "___ que no lago há peixes enormes.",
+     "c": [
+      "Dizem",
+      "Dizem-se",
+      "Digam"
+     ],
+     "f": "see",
+     "r": null,
+     "phrase": "Dizem que no lago há peixes enormes.",
+     "sens": "Il paraît qu'il y a d'énormes poissons dans le lac.",
+     "n": "Le ouï-dire : <b>dizem que</b>."
+    }
+   ]
   }
  },
  "traductions": {}

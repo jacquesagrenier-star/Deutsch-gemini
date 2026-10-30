@@ -1104,6 +1104,351 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o relógio?",
+     "c": [
+      "na parede",
+      "na janela",
+      "por cima da porta"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "O relógio está na parede.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>em</b> + a = <b>na</b> : na parede."
+    },
+    {
+     "q": "Onde está a camisola?",
+     "c": [
+      "em cima da mesa",
+      "no cesto",
+      "no banco"
+     ],
+     "f": "pullover-2",
+     "r": "tisch",
+     "phrase": "A camisola está em cima da mesa.",
+     "sens": "Le pull vert est sur la table.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa."
+    },
+    {
+     "q": "Onde está a menina?",
+     "c": [
+      "no banco",
+      "em cima da mesa",
+      "no chão"
+     ],
+     "f": "maedchen",
+     "r": "bank",
+     "phrase": "A menina está no banco.",
+     "sens": "La fille est assise sur le banc.",
+     "n": "<b>em</b> + o = <b>no</b> : no banco."
+    },
+    {
+     "q": "Onde estão as calças de ganga?",
+     "c": [
+      "no cesto",
+      "em cima da mesa",
+      "na máquina de lavar"
+     ],
+     "f": "jeans",
+     "r": "korb",
+     "phrase": "As calças de ganga estão no cesto.",
+     "sens": "Le jean est dans le panier.",
+     "n": "<b>em</b> + o = <b>no</b> : no cesto."
+    },
+    {
+     "q": "Onde está o detergente?",
+     "c": [
+      "em cima da máquina de lavar",
+      "na estante",
+      "em cima da mesa"
+     ],
+     "f": "waschmittel",
+     "r": "waschmaschine-2",
+     "phrase": "O detergente está em cima da máquina de lavar.",
+     "sens": "La lessive est sur la machine à laver.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a máquina de lavar = <b>em cima da</b> máquina de lavar."
+    },
+    {
+     "q": "Onde está o espelho?",
+     "c": [
+      "por cima do radiador",
+      "ao lado do relógio",
+      "na porta"
+     ],
+     "f": "spiegel",
+     "r": "heizkoerper",
+     "phrase": "O espelho está por cima do radiador.",
+     "sens": "Le miroir est accroché au-dessus du radiateur.",
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + o radiador = <b>por cima do</b> radiador."
+    },
+    {
+     "q": "Onde estão as toalhas?",
+     "c": [
+      "na estante",
+      "no cesto",
+      "no banco"
+     ],
+     "f": "handtuch",
+     "r": "regal",
+     "phrase": "As toalhas estão na estante.",
+     "sens": "Les serviettes sont sur l'étagère.",
+     "n": "<b>em</b> + a = <b>na</b> : na estante."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Deixar : laisser, laisser faire",
+   "qs": [
+    {
+     "q": "A Anna ___ a máquina a trabalhar.",
+     "c": [
+      "deixa",
+      "faz",
+      "põe-se"
+     ],
+     "f": "anna",
+     "r": "waschmaschine",
+     "phrase": "A Anna deixa a máquina a trabalhar.",
+     "sens": "Anna fait tourner la machine à laver.",
+     "n": "<b>deixar</b> + a + infinitif : laisser tourner."
+    },
+    {
+     "q": "Ela deixa o cesto ___ chão.",
+     "c": [
+      "no",
+      "ao",
+      "para o"
+     ],
+     "f": "korb",
+     "r": "boden",
+     "phrase": "Ela deixa o cesto no chão.",
+     "sens": "Elle laisse le panier par terre.",
+     "n": "<b>no chão</b>."
+    },
+    {
+     "q": "A senhora deixa a menina ___ com o telemóvel.",
+     "c": [
+      "brincar",
+      "brinca",
+      "a brincar-se"
+     ],
+     "f": "frau",
+     "r": "maedchen",
+     "phrase": "A senhora deixa a menina brincar com o telemóvel.",
+     "sens": "La femme laisse la fille jouer avec le téléphone.",
+     "n": "<b>deixar alguém</b> + infinitif."
+    },
+    {
+     "q": "___-me ajudar-te!",
+     "c": [
+      "Deixa",
+      "Deixas",
+      "Deixe-te"
+     ],
+     "f": "anna",
+     "r": null,
+     "phrase": "Deixa-me ajudar-te!",
+     "sens": "Laisse-moi t'aider !",
+     "n": "Impératif, tu : <b>deixa-me</b>."
+    },
+    {
+     "q": "Deixo o casaco ___ casa.",
+     "c": [
+      "em",
+      "na",
+      "à"
+     ],
+     "f": "jacke",
+     "r": null,
+     "phrase": "Deixo o casaco em casa.",
+     "sens": "Je laisse ma veste à la maison.",
+     "n": "À la maison : <b>em casa</b>, sans article."
+    },
+    {
+     "q": "A Anna ___ as calças de ganga no cesto.",
+     "c": [
+      "deixou",
+      "deixava",
+      "deixa-se"
+     ],
+     "f": "jeans",
+     "r": "korb",
+     "phrase": "A Anna deixou as calças de ganga no cesto.",
+     "sens": "Anna a laissé le jean dans le panier.",
+     "n": "Le jean = <b>as calças de ganga</b>, au Portugal."
+    },
+    {
+     "q": "Ela ___ lavar a roupa.",
+     "c": [
+      "mandou",
+      "deixou-se",
+      "fez-se"
+     ],
+     "f": "waschmaschine",
+     "r": null,
+     "phrase": "Ela mandou lavar a roupa.",
+     "sens": "Elle a fait laver le linge.",
+     "n": "Faire faire : <b>mandar</b> + infinitif."
+    },
+    {
+     "q": "___ para casa!",
+     "c": [
+      "Vamos",
+      "Deixemos",
+      "Vamos-nos"
+     ],
+     "f": "tuer",
+     "r": null,
+     "phrase": "Vamos para casa!",
+     "sens": "Rentrons à la maison !",
+     "n": "<b>vamos</b> = allons, rentrons."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le participe comme adjectif",
+   "qs": [
+    {
+     "q": "A máquina a ___ faz barulho.",
+     "c": [
+      "trabalhar",
+      "trabalhada",
+      "trabalha"
+     ],
+     "f": "waschmaschine-3",
+     "r": null,
+     "phrase": "A máquina a trabalhar faz barulho.",
+     "sens": "La machine à laver en marche est bruyante.",
+     "n": "Le portugais dit « en train de » avec <b>a</b> + infinitif."
+    },
+    {
+     "q": "A camisola ___ está em cima da mesa.",
+     "c": [
+      "dobrada",
+      "dobrado",
+      "dobrar"
+     ],
+     "f": "pullover-2",
+     "r": "tisch",
+     "phrase": "A camisola dobrada está em cima da mesa.",
+     "sens": "Le pull plié est sur la table.",
+     "n": "Participe accordé : <b>dobrada</b>."
+    },
+    {
+     "q": "A senhora que está a ___ está sentada no banco.",
+     "c": [
+      "ler",
+      "lida",
+      "lendo-se"
+     ],
+     "f": "frau",
+     "r": "bank",
+     "phrase": "A senhora que está a ler está sentada no banco.",
+     "sens": "La femme qui lit est assise sur le banc.",
+     "n": "<b>estar a ler</b>."
+    },
+    {
+     "q": "A menina segura um telemóvel ___.",
+     "c": [
+      "desligado",
+      "desligada",
+      "desligar"
+     ],
+     "f": "handy",
+     "r": "maedchen",
+     "phrase": "A menina segura um telemóvel desligado.",
+     "sens": "La fille tient un téléphone éteint.",
+     "n": "<b>o telemóvel</b> → <b>desligado</b>."
+    },
+    {
+     "q": "A porta ___ continua fechada.",
+     "c": [
+      "fechada",
+      "fechado",
+      "fechar"
+     ],
+     "f": "tuer",
+     "r": null,
+     "phrase": "A porta fechada continua fechada.",
+     "sens": "La porte fermée reste fermée.",
+     "n": "<b>a porta</b> → <b>fechada</b>."
+    },
+    {
+     "q": "A Anna segura uma camisa ainda por ___.",
+     "c": [
+      "lavar",
+      "lavada",
+      "lavar-se"
+     ],
+     "f": "hemd",
+     "r": "anna",
+     "phrase": "A Anna segura uma camisa ainda por lavar.",
+     "sens": "Anna tient une chemise pas encore lavée.",
+     "n": "<b>por</b> + infinitif : pas encore fait."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "Ela não ___ ter lavado roupa há muito tempo.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "korb",
+     "r": "anna",
+     "phrase": "Ela não deve ter lavado roupa há muito tempo.",
+     "sens": "Elle n'a pas dû faire de lessive depuis longtemps.",
+     "n": "Déduction sur le passé : <b>deve ter</b> + participe."
+    },
+    {
+     "q": "A menina ___ ser neta da senhora.",
+     "c": [
+      "pode",
+      "deve de",
+      "há"
+     ],
+     "f": "maedchen",
+     "r": "frau",
+     "phrase": "A menina pode ser neta da senhora.",
+     "sens": "La fille est peut-être la petite-fille de la femme.",
+     "n": "Possibilité : <b>poder</b>."
+    },
+    {
+     "q": "A roupa ___ estar pronta daqui a uma hora.",
+     "c": [
+      "deverá",
+      "deveria-se",
+      "deva"
+     ],
+     "f": "waschmaschine",
+     "r": null,
+     "phrase": "A roupa deverá estar pronta daqui a uma hora.",
+     "sens": "Le linge devrait être prêt dans une heure.",
+     "n": "Probable : <b>deverá</b>."
+    },
+    {
+     "q": "___ que a lavandaria vai fechar em breve.",
+     "c": [
+      "Dizem",
+      "Diz-se-lhe",
+      "Digam"
+     ],
+     "f": "tuer",
+     "r": null,
+     "phrase": "Dizem que a lavandaria vai fechar em breve.",
+     "sens": "Il paraît que la laverie va bientôt fermer.",
+     "n": "Le ouï-dire ; la laverie = <b>a lavandaria</b>."
+    }
+   ]
   }
  },
  "traductions": {}

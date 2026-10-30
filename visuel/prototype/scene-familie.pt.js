@@ -713,6 +713,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o gato?",
+     "c": [
+      "na cadeira",
+      "debaixo da mesa",
+      "em cima do armário"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "O gato está na cadeira.",
+     "sens": "Le chat dort sur la chaise.",
+     "n": "<b>em</b> + a = <b>na</b> : na cadeira."
+    },
+    {
+     "q": "Onde está o quadro?",
+     "c": [
+      "por cima do armário",
+      "na janela",
+      "ao lado do relógio"
+     ],
+     "f": "bild",
+     "r": "schrank",
+     "phrase": "O quadro está por cima do armário.",
+     "sens": "Le tableau est accroché au-dessus de l'armoire.",
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + o armário = <b>por cima do</b> armário."
+    },
+    {
+     "q": "Onde está o relógio?",
+     "c": [
+      "na parede",
+      "na janela",
+      "por cima do armário"
+     ],
+     "f": "uhr",
+     "r": null,
+     "phrase": "O relógio está na parede.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>em</b> + a = <b>na</b> : na parede."
+    },
+    {
+     "q": "Onde está o bebé?",
+     "c": [
+      "ao pé da mãe",
+      "ao pé do avô",
+      "em cima da mesa"
+     ],
+     "f": "baby",
+     "r": "mutter",
+     "phrase": "O bebé está ao pé da mãe.",
+     "sens": "Le bébé est avec la mère.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao pé de</b> + a mãe = <b>ao pé da</b> mãe."
+    },
+    {
+     "q": "Onde está a sopa?",
+     "c": [
+      "em cima da mesa",
+      "no armário",
+      "à janela"
+     ],
+     "f": "suppe",
+     "r": "tisch",
+     "phrase": "A sopa está em cima da mesa.",
+     "sens": "La soupe est sur la table.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a mesa = <b>em cima da</b> mesa."
+    },
+    {
+     "q": "Onde está o pão?",
+     "c": [
+      "no cesto",
+      "no prato",
+      "ao lado da sopa"
+     ],
+     "f": "brot",
+     "r": "korb",
+     "phrase": "O pão está no cesto.",
+     "sens": "Le pain est dans la corbeille.",
+     "n": "<b>em</b> + o = <b>no</b> : no cesto."
+    },
+    {
+     "q": "Onde está o garfo?",
+     "c": [
+      "ao lado do prato",
+      "no guardanapo",
+      "no copo"
+     ],
+     "f": "gabel",
+     "r": "teller-2",
+     "phrase": "O garfo está ao lado do prato.",
+     "sens": "La fourchette est à côté de l'assiette.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o prato = <b>ao lado do</b> prato."
+    },
+    {
+     "q": "Onde está o sumo?",
+     "c": [
+      "ao lado do copo",
+      "no armário",
+      "no prato"
+     ],
+     "f": "saft",
+     "r": "glas",
+     "phrase": "O sumo está ao lado do copo.",
+     "sens": "Le jus est à côté du verre.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o copo = <b>ao lado do</b> copo."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Les possessifs : o pai dela, o seu copo",
+   "qs": [
+    {
+     "q": "O pai ___ serve batatas.",
+     "c": [
+      "dela",
+      "seu",
+      "dele"
+     ],
+     "f": "vater",
+     "r": "anna",
+     "phrase": "O pai dela serve batatas.",
+     "sens": "Son père sert des pommes de terre.",
+     "n": "Pour dire « à elle » sans doute possible : <b>dela</b>, après le nom."
+    },
+    {
+     "q": "O irmão deita água no ___ copo.",
+     "c": [
+      "seu",
+      "sua",
+      "seus"
+     ],
+     "f": "bruder",
+     "r": "wasser",
+     "phrase": "O irmão deita água no seu copo.",
+     "sens": "Le frère verse de l'eau dans son verre.",
+     "n": "<b>o seu</b> + copo (masculin) ; <b>deitar</b> = verser, au Portugal."
+    },
+    {
+     "q": "A mãe segura o ___ bebé.",
+     "c": [
+      "seu",
+      "sua",
+      "dele"
+     ],
+     "f": "mutter",
+     "r": "baby",
+     "phrase": "A mãe segura o seu bebé.",
+     "sens": "La mère tient son bébé.",
+     "n": "<b>o seu bebé</b> (ou <b>o bebé dela</b>)."
+    },
+    {
+     "q": "O avô fala da ___ juventude.",
+     "c": [
+      "sua",
+      "seu",
+      "dele"
+     ],
+     "f": "opa",
+     "r": null,
+     "phrase": "O avô fala da sua juventude.",
+     "sens": "Le grand-père raconte sa jeunesse.",
+     "n": "<b>a juventude</b> → <b>a sua</b> ; de + a sua = <b>da sua</b>."
+    },
+    {
+     "q": "A avó ouve o ___.",
+     "c": [
+      "marido",
+      "seu marido dela",
+      "marido seu"
+     ],
+     "f": "oma",
+     "r": "opa",
+     "phrase": "A avó ouve o marido.",
+     "sens": "La grand-mère écoute son mari.",
+     "n": "Pour la famille proche, le portugais se passe souvent du possessif : <b>o marido</b>."
+    },
+    {
+     "q": "A Anna e o irmão adoram os ___ avós.",
+     "c": [
+      "seus",
+      "suas",
+      "deles seus"
+     ],
+     "f": "anna",
+     "r": "bruder",
+     "phrase": "A Anna e o irmão adoram os seus avós.",
+     "sens": "Anna et son frère aiment leurs grands-parents.",
+     "n": "<b>os seus</b> + avós (masculin pluriel)."
+    },
+    {
+     "q": "Almoçamos todos os domingos em casa dos ___ avós.",
+     "c": [
+      "nossos",
+      "nossas",
+      "nosso"
+     ],
+     "f": "opa",
+     "r": null,
+     "phrase": "Almoçamos todos os domingos em casa dos nossos avós.",
+     "sens": "Nous mangeons chaque dimanche chez nos grands-parents.",
+     "n": "<b>em casa de</b> = chez ; de + os nossos = <b>dos nossos</b>."
+    },
+    {
+     "q": "O gato dorme na ___ cadeira.",
+     "c": [
+      "sua",
+      "seu",
+      "dele"
+     ],
+     "f": "katze",
+     "r": "stuhl",
+     "phrase": "O gato dorme na sua cadeira.",
+     "sens": "Le chat dort sur sa chaise.",
+     "n": "<b>a cadeira</b> → <b>a sua</b> ; em + a sua = <b>na sua</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "De : l'appartenance et la matière",
+   "qs": [
+    {
+     "q": "Este é o prato ___ pai.",
+     "c": [
+      "do",
+      "de o",
+      "ao"
+     ],
+     "f": "vater",
+     "r": null,
+     "phrase": "Este é o prato do pai.",
+     "sens": "C'est l'assiette du père.",
+     "n": "L'appartenance : de + o = <b>do</b>."
+    },
+    {
+     "q": "O bebé está sentado ao colo ___ mãe.",
+     "c": [
+      "da",
+      "de a",
+      "à"
+     ],
+     "f": "baby",
+     "r": "mutter",
+     "phrase": "O bebé está sentado ao colo da mãe.",
+     "sens": "Le bébé est assis sur les genoux de la mère.",
+     "n": "<b>ao colo de</b> = sur les genoux de."
+    },
+    {
+     "q": "A história ___ avô tem muita graça.",
+     "c": [
+      "do",
+      "de o",
+      "ao"
+     ],
+     "f": "opa",
+     "r": null,
+     "phrase": "A história do avô tem muita graça.",
+     "sens": "L'histoire du grand-père est drôle.",
+     "n": "<b>ter graça</b> = être drôle."
+    },
+    {
+     "q": "Apesar ___ sol, comem lá dentro.",
+     "c": [
+      "do",
+      "de o",
+      "o"
+     ],
+     "f": "fenster",
+     "r": null,
+     "phrase": "Apesar do sol, comem lá dentro.",
+     "sens": "Malgré le soleil, ils mangent à l'intérieur.",
+     "n": "<b>apesar de</b> + o = <b>apesar do</b>."
+    },
+    {
+     "q": "A cor ___ túlipas é amarela.",
+     "c": [
+      "das",
+      "de as",
+      "às"
+     ],
+     "f": "blume",
+     "r": null,
+     "phrase": "A cor das túlipas é amarela.",
+     "sens": "La couleur des tulipes est jaune.",
+     "n": "de + as = <b>das</b>."
+    },
+    {
+     "q": "A janela ___ sala de jantar é grande.",
+     "c": [
+      "da",
+      "de a",
+      "na"
+     ],
+     "f": "fenster",
+     "r": null,
+     "phrase": "A janela da sala de jantar é grande.",
+     "sens": "La fenêtre de la salle à manger est grande.",
+     "n": "de + a = <b>da</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "O avô ___ estar a contar uma história engraçada.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "opa",
+     "r": null,
+     "phrase": "O avô deve estar a contar uma história engraçada.",
+     "sens": "Le grand-père doit raconter une histoire drôle.",
+     "n": "Déduction : <b>dever</b> + estar a."
+    },
+    {
+     "q": "___ que o gato seja da avó.",
+     "c": [
+      "Pode ser",
+      "Deve ser",
+      "Se calhar"
+     ],
+     "f": "katze",
+     "r": "oma",
+     "phrase": "Pode ser que o gato seja da avó.",
+     "sens": "Le chat appartient peut-être à la grand-mère.",
+     "n": "<b>pode ser que</b> + conjuntivo."
+    },
+    {
+     "q": "Depois do almoço ainda ___ haver bolo.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "tisch",
+     "r": null,
+     "phrase": "Depois do almoço ainda deve haver bolo.",
+     "sens": "Après le repas, il devrait encore y avoir du gâteau.",
+     "n": "Probable : <b>dever haver</b>."
+    },
+    {
+     "q": "___ que o avô foi cozinheiro.",
+     "c": [
+      "Dizem",
+      "Diz-se-lhe",
+      "Digam"
+     ],
+     "f": "opa",
+     "r": null,
+     "phrase": "Dizem que o avô foi cozinheiro.",
+     "sens": "Il paraît que le grand-père était cuisinier autrefois.",
+     "n": "Le ouï-dire : <b>dizem que</b>."
+    }
+   ]
   }
  },
  "traductions": {}

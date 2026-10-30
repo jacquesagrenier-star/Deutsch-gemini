@@ -853,6 +853,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está a pintura?",
+     "c": [
+      "por cima da porta",
+      "ao lado da janela",
+      "no teto"
+     ],
+     "f": "gemaelde",
+     "r": "tuer",
+     "phrase": "A pintura está por cima da porta.",
+     "sens": "Le tableau du bateau est accroché au-dessus de la porte.",
+     "n": "<b>por cima de</b> = au-dessus de. <b>por cima de</b> + a porta = <b>por cima da</b> porta."
+    },
+    {
+     "q": "Onde está a Anna?",
+     "c": [
+      "no banco",
+      "na cadeira",
+      "no chão"
+     ],
+     "f": "anna",
+     "r": "bank",
+     "phrase": "A Anna está no banco.",
+     "sens": "Anna est assise sur le banc.",
+     "n": "<b>em</b> + o = <b>no</b> : no banco."
+    },
+    {
+     "q": "Onde está o sobretudo?",
+     "c": [
+      "no banco",
+      "no chão",
+      "na cadeira"
+     ],
+     "f": "mantel",
+     "r": "bank",
+     "phrase": "O sobretudo está no banco.",
+     "sens": "Le manteau est posé sur le banc.",
+     "n": "<b>em</b> + o = <b>no</b> : no banco."
+    },
+    {
+     "q": "Onde está a mochila?",
+     "c": [
+      "no chão",
+      "no banco",
+      "ao lado da porta"
+     ],
+     "f": "rucksack",
+     "r": "boden",
+     "phrase": "A mochila está no chão.",
+     "sens": "Le sac à dos est par terre.",
+     "n": "<b>em</b> + o = <b>no</b> : no chão."
+    },
+    {
+     "q": "Onde está o homem?",
+     "c": [
+      "ao lado da porta",
+      "à janela",
+      "no banco"
+     ],
+     "f": "mann",
+     "r": "tuer",
+     "phrase": "O homem está ao lado da porta.",
+     "sens": "L'homme est assis à côté de la porte.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + a porta = <b>ao lado da</b> porta."
+    },
+    {
+     "q": "Onde está o estudante?",
+     "c": [
+      "à janela",
+      "na porta",
+      "no banco"
+     ],
+     "f": "student",
+     "r": "fenster",
+     "phrase": "O estudante está à janela.",
+     "sens": "L'étudiant est près de la fenêtre.",
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela."
+    },
+    {
+     "q": "Onde está o candeeiro?",
+     "c": [
+      "no teto",
+      "na parede",
+      "na janela"
+     ],
+     "f": "lampe",
+     "r": "decke",
+     "phrase": "O candeeiro está no teto.",
+     "sens": "La lampe est accrochée au plafond.",
+     "n": "em + o teto = <b>no</b> teto."
+    },
+    {
+     "q": "Onde está a planta?",
+     "c": [
+      "ao lado do radiador",
+      "no banco",
+      "à frente da porta"
+     ],
+     "f": "pflanze",
+     "r": "heizkoerper",
+     "phrase": "A planta está ao lado do radiador.",
+     "sens": "La plante est à côté du radiateur.",
+     "n": "<b>ao lado de</b> = à côté de. <b>ao lado de</b> + o radiador = <b>ao lado do</b> radiador."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Qual ? Que tipo de ? — les interrogatifs",
+   "qs": [
+    {
+     "q": "___ escultura desenha a Anna? — A do cão.",
+     "c": [
+      "Que",
+      "Qual de",
+      "Quanta"
+     ],
+     "f": "skulptur",
+     "r": "anna",
+     "phrase": "Que escultura desenha a Anna? — A do cão.",
+     "sens": "Quelle sculpture Anna dessine-t-elle ? — Celle du chien.",
+     "n": "Devant un nom : <b>que</b> (ou <b>qual</b> + de) ; <b>a do cão</b> = celle du chien."
+    },
+    {
+     "q": "___ é o quadro de que mais gostas? — O do barco.",
+     "c": [
+      "Qual",
+      "Que",
+      "Quem"
+     ],
+     "f": "gemaelde",
+     "r": null,
+     "phrase": "Qual é o quadro de que mais gostas? — O do barco.",
+     "sens": "Quel tableau te plaît le plus ? — Celui avec le bateau.",
+     "n": "Devant <b>é</b> : <b>qual</b>."
+    },
+    {
+     "q": "Em ___ sala está o cavalo? — Na primeira sala.",
+     "c": [
+      "que",
+      "qual",
+      "quê"
+     ],
+     "f": "gemaelde-6",
+     "r": null,
+     "phrase": "Em que sala está o cavalo? — Na primeira sala.",
+     "sens": "Dans quelle salle est le cheval ? — Dans la première salle.",
+     "n": "Préposition + <b>que</b> + nom."
+    },
+    {
+     "q": "Que ___ de quadro é este? — Um retrato.",
+     "c": [
+      "tipo",
+      "género de",
+      "qual"
+     ],
+     "f": "gemaelde-3",
+     "r": null,
+     "phrase": "Que tipo de quadro é este? — Um retrato.",
+     "sens": "Quel genre de tableau est-ce ? — Un portrait.",
+     "n": "<b>que tipo de</b> = quel genre de."
+    },
+    {
+     "q": "Que casaco ___ o estudante? — Um casaco castanho.",
+     "c": [
+      "veste",
+      "traz-se",
+      "veste-se"
+     ],
+     "f": "jacke-2",
+     "r": "student",
+     "phrase": "Que casaco veste o estudante? — Um casaco castanho.",
+     "sens": "Quel genre de veste porte l'étudiant ? — Une veste marron.",
+     "n": "Après un interrogatif, le sujet suit souvent le verbe."
+    },
+    {
+     "q": "Com ___ desenha a Anna? — Com um lápis.",
+     "c": [
+      "que",
+      "qual",
+      "quê de"
+     ],
+     "f": "bleistift",
+     "r": "anna",
+     "phrase": "Com que desenha a Anna? — Com um lápis.",
+     "sens": "Avec quoi Anna dessine-t-elle ? — Avec un crayon à papier.",
+     "n": "Préposition + <b>que</b>."
+    },
+    {
+     "q": "___ homem está sentado junto à porta? — O de farda.",
+     "c": [
+      "Que",
+      "Qual de",
+      "Quem"
+     ],
+     "f": "mann",
+     "r": "tuer",
+     "phrase": "Que homem está sentado junto à porta? — O de farda.",
+     "sens": "Quel homme est assis près de la porte ? — L'homme en uniforme.",
+     "n": "<b>que</b> + nom ; <b>a farda</b> = l'uniforme."
+    },
+    {
+     "q": "___ é o sobretudo da Anna? — O cinzento, no banco.",
+     "c": [
+      "Qual",
+      "Que",
+      "Quem"
+     ],
+     "f": "mantel",
+     "r": "anna",
+     "phrase": "Qual é o sobretudo da Anna? — O cinzento, no banco.",
+     "sens": "Quel manteau est à Anna ? — Le manteau gris sur le banc.",
+     "n": "<b>qual é</b> ; « gris » au Portugal : <b>cinzento</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "La manière : a + infinitif, ao + infinitif, gerúndio",
+   "qs": [
+    {
+     "q": "A Anna aprende ___ a escultura.",
+     "c": [
+      "desenhando",
+      "a desenhar-se",
+      "desenhada"
+     ],
+     "f": "anna",
+     "r": "skulptur",
+     "phrase": "A Anna aprende desenhando a escultura.",
+     "sens": "Anna apprend en dessinant la sculpture.",
+     "n": "La manière : le gérondif (<b>desenhando</b>), vivant au Portugal dans cet emploi."
+    },
+    {
+     "q": "O estudante aprende mais sobre o quadro ___ os auscultadores.",
+     "c": [
+      "usando",
+      "a usar-se",
+      "usado"
+     ],
+     "f": "kopfhoerer",
+     "r": "student",
+     "phrase": "O estudante aprende mais sobre o quadro usando os auscultadores.",
+     "sens": "L'étudiant en apprend plus sur le tableau en utilisant son casque.",
+     "n": "Gérondif de manière : <b>usando</b>."
+    },
+    {
+     "q": "Protegem-se os quadros não ___ tocando.",
+     "c": [
+      "lhes",
+      "os",
+      "nos"
+     ],
+     "f": "gemaelde-2",
+     "r": null,
+     "phrase": "Protegem-se os quadros não lhes tocando.",
+     "sens": "On protège les tableaux en ne les touchant pas.",
+     "n": "<b>tocar em</b> / <b>tocar a</b> : <b>lhes</b> ; après não, devant."
+    },
+    {
+     "q": "O homem vigia a sala ___ todos os visitantes.",
+     "c": [
+      "observando",
+      "a observar-se",
+      "observado"
+     ],
+     "f": "mann",
+     "r": null,
+     "phrase": "O homem vigia a sala observando todos os visitantes.",
+     "sens": "L'homme surveille la salle en observant tous les visiteurs.",
+     "n": "Gérondif : <b>observando</b>."
+    },
+    {
+     "q": "A Anna memoriza a escultura ___ desenhá-la.",
+     "c": [
+      "ao",
+      "a",
+      "por"
+     ],
+     "f": "skulptur",
+     "r": "anna",
+     "phrase": "A Anna memoriza a escultura ao desenhá-la.",
+     "sens": "Anna retient la sculpture en la dessinant.",
+     "n": "<b>ao</b> + infinitif : en (au moment où)."
+    },
+    {
+     "q": "Poupa-se dinheiro ___ ao museu ao domingo.",
+     "c": [
+      "indo",
+      "ir",
+      "a ir-se"
+     ],
+     "f": "tuer",
+     "r": null,
+     "phrase": "Poupa-se dinheiro indo ao museu ao domingo.",
+     "sens": "On économise de l'argent en allant au musée le dimanche.",
+     "n": "Gérondif : <b>indo</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "Ela ___ adorar arte.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem"
+     ],
+     "f": "anna",
+     "r": null,
+     "phrase": "Ela deve adorar arte.",
+     "sens": "Elle doit aimer l'art.",
+     "n": "Déduction : <b>dever</b>."
+    },
+    {
+     "q": "O rapaz ___ estudar Belas-Artes.",
+     "c": [
+      "pode",
+      "deve de",
+      "há"
+     ],
+     "f": "student",
+     "r": null,
+     "phrase": "O rapaz pode estudar Belas-Artes.",
+     "sens": "Le jeune homme étudie peut-être l'art.",
+     "n": "Possibilité : <b>poder</b>."
+    },
+    {
+     "q": "O homem junto à porta ___ sentado aqui todos os dias.",
+     "c": [
+      "estará",
+      "esteja",
+      "estava-se"
+     ],
+     "f": "mann",
+     "r": "tuer",
+     "phrase": "O homem junto à porta estará sentado aqui todos os dias.",
+     "sens": "L'homme près de la porte est sans doute assis ici tous les jours.",
+     "n": "Futur de supposition : <b>estará</b>."
+    },
+    {
+     "q": "O quadro do barco ___ muito valioso.",
+     "c": [
+      "seria",
+      "será-se",
+      "seja"
+     ],
+     "f": "gemaelde",
+     "r": null,
+     "phrase": "O quadro do barco seria muito valioso.",
+     "sens": "Le tableau du bateau aurait beaucoup de valeur.",
+     "n": "Le conditionnel de la rumeur."
+    }
+   ]
   }
  },
  "traductions": {}

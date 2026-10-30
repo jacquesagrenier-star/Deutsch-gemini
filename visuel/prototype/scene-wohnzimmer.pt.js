@@ -799,6 +799,416 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está a bola?",
+     "c": [
+      "em cima do armário",
+      "debaixo do armário",
+      "ao lado da janela"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "A bola está em cima do armário.",
+     "sens": "Le ballon est sur l'armoire.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o armário = <b>em cima do</b> armário."
+    },
+    {
+     "q": "Onde está o cão?",
+     "c": [
+      "debaixo da mesa de centro",
+      "em cima da mesa de centro",
+      "ao lado do sofá"
+     ],
+     "f": "hund",
+     "r": "couchtisch",
+     "phrase": "O cão está debaixo da mesa de centro.",
+     "sens": "Le chien est couché sous la table basse.",
+     "n": "<b>debaixo de</b> = sous. <b>debaixo de</b> + a mesa de centro = <b>debaixo da</b> mesa de centro."
+    },
+    {
+     "q": "Onde está o gato?",
+     "c": [
+      "na caixa de cartão",
+      "em cima da caixa de cartão",
+      "atrás da caixa de cartão"
+     ],
+     "f": "katze",
+     "r": "karton",
+     "phrase": "O gato está na caixa de cartão.",
+     "sens": "Le chat est assis dans le carton.",
+     "n": "<b>em</b> + a = <b>na</b> : na caixa de cartão."
+    },
+    {
+     "q": "Onde está o guarda-chuva?",
+     "c": [
+      "no candeeiro",
+      "na janela",
+      "na porta"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "O guarda-chuva está no candeeiro.",
+     "sens": "Le parapluie est accroché à la lampe.",
+     "n": "<b>em</b> + o = <b>no</b> : no candeeiro."
+    },
+    {
+     "q": "Onde está a bicicleta?",
+     "c": [
+      "à frente da estante",
+      "atrás da estante",
+      "em cima da estante"
+     ],
+     "f": "fahrrad",
+     "r": "regal",
+     "phrase": "A bicicleta está à frente da estante.",
+     "sens": "Le vélo est devant l'étagère.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + a estante = <b>à frente da</b> estante."
+    },
+    {
+     "q": "Onde está a guitarra?",
+     "c": [
+      "entre o armário e o sofá",
+      "no sofá",
+      "debaixo do sofá"
+     ],
+     "f": "gitarre",
+     "r": "sofa",
+     "phrase": "A guitarra está entre o armário e o sofá.",
+     "sens": "La guitare est entre l'armoire et le canapé.",
+     "n": "<b>entre</b> … <b>e</b> … = entre … et …"
+    },
+    {
+     "q": "Onde estão os ténis?",
+     "c": [
+      "debaixo do sofá",
+      "no sofá",
+      "ao lado da televisão"
+     ],
+     "f": "turnschuh",
+     "r": "sofa",
+     "phrase": "Os ténis estão debaixo do sofá.",
+     "sens": "Les baskets sont sous le canapé.",
+     "n": "<b>debaixo de</b> = sous. <b>debaixo de</b> + o sofá = <b>debaixo do</b> sofá."
+    },
+    {
+     "q": "Onde está o peixinho-dourado?",
+     "c": [
+      "em cima da estante",
+      "debaixo da estante",
+      "ao lado da bicicleta"
+     ],
+     "f": "goldfisch",
+     "r": "regal",
+     "phrase": "O peixinho-dourado está em cima da estante.",
+     "sens": "Le bocal avec le poisson rouge est sur l'étagère.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + a estante = <b>em cima da</b> estante."
+    },
+    {
+     "q": "Onde está a meia?",
+     "c": [
+      "no candeeiro de pé",
+      "na janela",
+      "na porta"
+     ],
+     "f": "socke",
+     "r": "stehlampe",
+     "phrase": "A meia está no candeeiro de pé.",
+     "sens": "La chaussette est accrochée au lampadaire.",
+     "n": "<b>em</b> + o = <b>no</b> : no candeeiro de pé."
+    },
+    {
+     "q": "Onde está o radiador?",
+     "c": [
+      "debaixo da janela",
+      "por cima da janela",
+      "ao lado da porta"
+     ],
+     "f": "heizkoerper",
+     "r": "fenster",
+     "phrase": "O radiador está debaixo da janela.",
+     "sens": "Le radiateur est sous la fenêtre.",
+     "n": "<b>debaixo de</b> = sous. <b>debaixo de</b> + a janela = <b>debaixo da</b> janela."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Onde ? Para onde ? — em et para",
+   "qs": [
+    {
+     "q": "A bola ainda está ___ armário.",
+     "c": [
+      "em cima do",
+      "para o",
+      "ao"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "A bola ainda está em cima do armário.",
+     "sens": "Le ballon est encore sur l'armoire.",
+     "n": "La position : <b>em cima de</b>."
+    },
+    {
+     "q": "O Mark põe a bola ___ armário.",
+     "c": [
+      "no",
+      "para o",
+      "ao"
+     ],
+     "f": "ball",
+     "r": "schrank",
+     "phrase": "O Mark põe a bola no armário.",
+     "sens": "Mark met le ballon dans l'armoire.",
+     "n": "<b>pôr em</b> : là où la chose se retrouve (<b>no</b> armário)."
+    },
+    {
+     "q": "A chávena está ___ mesa de centro.",
+     "c": [
+      "na",
+      "para a",
+      "à"
+     ],
+     "f": "tasse",
+     "r": "couchtisch",
+     "phrase": "A chávena está na mesa de centro.",
+     "sens": "La tasse est sur la table basse.",
+     "n": "Position : em + a = <b>na</b>."
+    },
+    {
+     "q": "O Mark põe a chávena ___ estante.",
+     "c": [
+      "na",
+      "para a",
+      "à"
+     ],
+     "f": "tasse",
+     "r": "regal",
+     "phrase": "O Mark põe a chávena na estante.",
+     "sens": "Mark pose la tasse sur l'étagère.",
+     "n": "<b>pôr na estante</b>."
+    },
+    {
+     "q": "O guarda-chuva ainda está pendurado ___ candeeiro.",
+     "c": [
+      "no",
+      "ao",
+      "para o"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "O guarda-chuva ainda está pendurado no candeeiro.",
+     "sens": "Le parapluie est encore accroché à la lampe.",
+     "n": "<b>pendurado em</b> : no candeeiro."
+    },
+    {
+     "q": "O Mark pendura o guarda-chuva ___ porta.",
+     "c": [
+      "na",
+      "para a",
+      "à"
+     ],
+     "f": "regenschirm",
+     "r": "tuer",
+     "phrase": "O Mark pendura o guarda-chuva na porta.",
+     "sens": "Mark accroche le parapluie à la porte.",
+     "n": "<b>pendurar em</b> : na porta."
+    },
+    {
+     "q": "O Mark arruma o livro ___ estante.",
+     "c": [
+      "na",
+      "para a",
+      "à"
+     ],
+     "f": "buch",
+     "r": "regal",
+     "phrase": "O Mark arruma o livro na estante.",
+     "sens": "Mark range le livre sur l'étagère.",
+     "n": "<b>arrumar em</b>."
+    },
+    {
+     "q": "As garrafas estão ___ balde.",
+     "c": [
+      "no",
+      "ao",
+      "para o"
+     ],
+     "f": "flasche",
+     "r": "eimer",
+     "phrase": "As garrafas estão no balde.",
+     "sens": "Les bouteilles sont dans le seau.",
+     "n": "em + o = <b>no</b>."
+    },
+    {
+     "q": "O gato vai saltar ___ o sofá.",
+     "c": [
+      "para",
+      "em",
+      "no"
+     ],
+     "f": "katze",
+     "r": "sofa",
+     "phrase": "O gato vai saltar para o sofá.",
+     "sens": "Le chat va sauter sur le canapé tout de suite.",
+     "n": "Un mouvement vers : <b>saltar para</b>."
+    },
+    {
+     "q": "Os balões estão ___ chão.",
+     "c": [
+      "no",
+      "ao",
+      "para o"
+     ],
+     "f": "luftballon",
+     "r": "boden",
+     "phrase": "Os balões estão no chão.",
+     "sens": "Les ballons sont par terre.",
+     "n": "Par terre : <b>no chão</b>."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Relatives et passif d'état",
+   "qs": [
+    {
+     "q": "O candeeiro ___ qual está pendurado um guarda-chuva é redondo.",
+     "c": [
+      "no",
+      "ao",
+      "do"
+     ],
+     "f": "lampe",
+     "r": "regenschirm",
+     "phrase": "O candeeiro no qual está pendurado um guarda-chuva é redondo.",
+     "sens": "La lampe à laquelle est accroché un parapluie est ronde.",
+     "n": "<b>pendurado em</b> + o qual = <b>no qual</b>."
+    },
+    {
+     "q": "O cão ___ dorme debaixo da mesa perdeu a festa.",
+     "c": [
+      "que",
+      "quem",
+      "qual"
+     ],
+     "f": "hund",
+     "r": null,
+     "phrase": "O cão que dorme debaixo da mesa perdeu a festa.",
+     "sens": "Le chien qui dort sous la table a raté la fête.",
+     "n": "Sujet : <b>que</b>."
+    },
+    {
+     "q": "O gato, ___ cabeça sai da caixa de cartão, parece calmo.",
+     "c": [
+      "cuja",
+      "cujo",
+      "que a"
+     ],
+     "f": "katze",
+     "r": "karton",
+     "phrase": "O gato, cuja cabeça sai da caixa de cartão, parece calmo.",
+     "sens": "Le chat dont la tête dépasse du carton a l'air tout calme.",
+     "n": "<b>cujo</b> s'accorde avec <b>cabeça</b> : <b>cuja</b>."
+    },
+    {
+     "q": "A estante em frente da ___ está a bicicleta está cheia de livros.",
+     "c": [
+      "qual",
+      "que",
+      "quem"
+     ],
+     "f": "regal",
+     "r": "fahrrad",
+     "phrase": "A estante em frente da qual está a bicicleta está cheia de livros.",
+     "sens": "L'étagère devant laquelle est le vélo est pleine de livres.",
+     "n": "<b>em frente da qual</b>."
+    },
+    {
+     "q": "A porta está ___.",
+     "c": [
+      "aberta",
+      "aberto",
+      "abrida"
+     ],
+     "f": "tuer",
+     "r": null,
+     "phrase": "A porta está aberta.",
+     "sens": "La porte est ouverte.",
+     "n": "<b>abrir</b> → <b>aberto</b>, ici au féminin."
+    },
+    {
+     "q": "As luzinhas estão ___ à volta da planta.",
+     "c": [
+      "enroladas",
+      "enrolados",
+      "enrolar"
+     ],
+     "f": "pflanze",
+     "r": null,
+     "phrase": "As luzinhas estão enroladas à volta da planta.",
+     "sens": "La guirlande lumineuse est enroulée autour de la plante.",
+     "n": "État : <b>estar</b> + participe accordé (as luzinhas → <b>enroladas</b>)."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "A festa ___ ter sido muito longa.",
+     "c": [
+      "deve",
+      "pode-se",
+      "tem de"
+     ],
+     "f": "luftballon",
+     "r": null,
+     "phrase": "A festa deve ter sido muito longa.",
+     "sens": "La fête a dû être très longue.",
+     "n": "Déduction sur le passé : <b>deve ter sido</b>."
+    },
+    {
+     "q": "___ sido um dos convidados.",
+     "c": [
+      "Terá",
+      "Teria-se",
+      "Tenha"
+     ],
+     "f": "regenschirm",
+     "r": "lampe",
+     "phrase": "Terá sido um dos convidados.",
+     "sens": "C'était sans doute l'un des invités.",
+     "n": "Supposition sur le passé : <b>terá sido</b>."
+    },
+    {
+     "q": "___ ser de um convidado.",
+     "c": [
+      "Pode",
+      "Deve de",
+      "Há"
+     ],
+     "f": "socke",
+     "r": null,
+     "phrase": "Pode ser de um convidado.",
+     "sens": "Elle appartient peut-être à un invité.",
+     "n": "Une possibilité : <b>pode ser</b>."
+    },
+    {
+     "q": "Se o Mark não ___ perdido a festa, agora também estaria cansado.",
+     "c": [
+      "tivesse",
+      "tiver",
+      "tinha-se"
+     ],
+     "f": "koffer",
+     "r": null,
+     "phrase": "Se o Mark não tivesse perdido a festa, agora também estaria cansado.",
+     "sens": "Si Mark n'avait pas raté la fête, il serait lui aussi fatigué maintenant.",
+     "n": "Irréel du passé : <b>se tivesse</b> + participe."
+    }
+   ]
   }
  },
  "traductions": {}

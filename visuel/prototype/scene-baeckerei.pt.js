@@ -1424,6 +1424,364 @@ window.SCENE = {
  "couches": {
   "A1": {
    "titre": "Noms et articles"
+  },
+  "A2": {
+   "titre": "Onde está? — les prépositions de lieu",
+   "qs": [
+    {
+     "q": "Onde está o relógio?",
+     "c": [
+      "na parede",
+      "na janela",
+      "por cima da porta"
+     ],
+     "f": "uhr",
+     "r": "wand",
+     "phrase": "O relógio está na parede.",
+     "sens": "L'horloge est accrochée au mur.",
+     "n": "<b>em</b> + a = <b>na</b> : na parede."
+    },
+    {
+     "q": "Onde está o leite?",
+     "c": [
+      "na estante",
+      "em cima do guiché",
+      "no forno"
+     ],
+     "f": "milch",
+     "r": "regal",
+     "phrase": "O leite está na estante.",
+     "sens": "Le lait est sur l'étagère.",
+     "n": "<b>em</b> + a = <b>na</b> : na estante."
+    },
+    {
+     "q": "Onde está o cão?",
+     "c": [
+      "no chão",
+      "na cadeira",
+      "no cesto"
+     ],
+     "f": "hund",
+     "r": "boden",
+     "phrase": "O cão está no chão.",
+     "sens": "Le chien est couché par terre.",
+     "n": "<b>em</b> + o = <b>no</b> : no chão."
+    },
+    {
+     "q": "Onde está a bicicleta?",
+     "c": [
+      "à frente da janela",
+      "atrás da porta",
+      "na estante"
+     ],
+     "f": "fahrrad",
+     "r": "fenster",
+     "phrase": "A bicicleta está à frente da janela.",
+     "sens": "Le vélo est devant la fenêtre.",
+     "n": "<b>à frente de</b> = devant. <b>à frente de</b> + a janela = <b>à frente da</b> janela."
+    },
+    {
+     "q": "Onde está a caixa?",
+     "c": [
+      "em cima do guiché",
+      "na estante",
+      "em cima da mesa"
+     ],
+     "f": "kasse",
+     "r": "schalter",
+     "phrase": "A caixa está em cima do guiché.",
+     "sens": "La caisse est sur le comptoir.",
+     "n": "<b>em frente de</b> = en face de. <b>em cima de</b> + o guiché = <b>em cima do</b> guiché."
+    },
+    {
+     "q": "Onde está o bolo?",
+     "c": [
+      "no prato",
+      "no cesto",
+      "no forno"
+     ],
+     "f": "kuchen-4",
+     "r": "teller",
+     "phrase": "O bolo está no prato.",
+     "sens": "Le gâteau est sur l'assiette.",
+     "n": "<b>em</b> + o = <b>no</b> : no prato."
+    },
+    {
+     "q": "Onde está o vizinho?",
+     "c": [
+      "à mesa",
+      "no forno",
+      "em cima do guiché"
+     ],
+     "f": "nachbar",
+     "r": "tisch",
+     "phrase": "O vizinho está à mesa.",
+     "sens": "Le voisin est assis à la table.",
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à mesa."
+    },
+    {
+     "q": "Onde está a planta?",
+     "c": [
+      "à janela",
+      "na estante",
+      "em cima do guiché"
+     ],
+     "f": "pflanze-2",
+     "r": "fenster",
+     "phrase": "A planta está à janela.",
+     "sens": "La plante est près de la fenêtre.",
+     "n": "<b>à frente de</b> = devant. <b>a</b> + a = <b>à</b> : à janela."
+    }
+   ]
+  },
+  "B1": {
+   "titre": "Le possessif : o seu, dele, dela",
+   "qs": [
+    {
+     "q": "A Anna cumprimenta o ___ vizinho.",
+     "c": [
+      "seu",
+      "sua",
+      "dele"
+     ],
+     "f": "anna",
+     "r": "nachbar",
+     "phrase": "A Anna cumprimenta o seu vizinho.",
+     "sens": "Anna salue son voisin.",
+     "n": "<b>o seu</b> + nom masculin : son (à elle) ; plus clair : <b>o vizinho dela</b>."
+    },
+    {
+     "q": "O vizinho lê o jornal. O jornal é ___.",
+     "c": [
+      "dele",
+      "seu dele",
+      "dela"
+     ],
+     "f": "nachbar",
+     "r": "zeitung",
+     "phrase": "O jornal é dele.",
+     "sens": "Le journal est à lui.",
+     "n": "Pour lever le doute : <b>dele</b> (à lui), <b>dela</b> (à elle)."
+    },
+    {
+     "q": "A empregada conhece ___ os clientes do bairro.",
+     "c": [
+      "todos",
+      "toda",
+      "tudo"
+     ],
+     "f": "frau",
+     "r": null,
+     "phrase": "A empregada conhece todos os clientes do bairro.",
+     "sens": "La vendeuse connaît chaque client du quartier.",
+     "n": "<b>todos os</b> + nom pluriel."
+    },
+    {
+     "q": "O cão é ___ senhor que está à mesa.",
+     "c": [
+      "do",
+      "o",
+      "ao"
+     ],
+     "f": "hund",
+     "r": "nachbar",
+     "phrase": "O cão é do senhor que está à mesa.",
+     "sens": "Le chien appartient au monsieur à la table.",
+     "n": "L'appartenance : <b>ser de</b> (de + o = <b>do</b>)."
+    },
+    {
+     "q": "A Anna compra papos-secos para o ___ colega.",
+     "c": [
+      "seu",
+      "sua",
+      "dela"
+     ],
+     "f": "broetchen",
+     "r": "anna",
+     "phrase": "A Anna compra papos-secos para o seu colega.",
+     "sens": "Anna achète des petits pains pour son collègue.",
+     "n": "<b>o seu colega</b> (ou <b>o colega dela</b>)."
+    },
+    {
+     "q": "Sabes o nome ___ empregada?",
+     "c": [
+      "da",
+      "de a",
+      "à"
+     ],
+     "f": "frau",
+     "r": null,
+     "phrase": "Sabes o nome da empregada?",
+     "sens": "Tu connais le nom de la vendeuse ?",
+     "n": "de + a = <b>da</b>."
+    },
+    {
+     "q": "O cão espera pelo ___ dono.",
+     "c": [
+      "seu",
+      "sua",
+      "deles"
+     ],
+     "f": "hund",
+     "r": "nachbar",
+     "phrase": "O cão espera pelo seu dono.",
+     "sens": "Le chien attend son maître.",
+     "n": "<b>esperar por</b> + o seu = <b>pelo seu</b>."
+    },
+    {
+     "q": "A padaria é muito querida por todos ___ vizinhos.",
+     "c": [
+      "os",
+      "dos",
+      "aos"
+     ],
+     "f": "schalter",
+     "r": null,
+     "phrase": "A padaria é muito querida por todos os vizinhos.",
+     "sens": "La boulangerie est appréciée de tous les voisins.",
+     "n": "<b>todos os</b> vizinhos."
+    }
+   ]
+  },
+  "B2": {
+   "titre": "Le mais-que-perfeito : tinha feito",
+   "qs": [
+    {
+     "q": "Antes de a Anna chegar, a empregada já ___ cozido o pão.",
+     "c": [
+      "tinha",
+      "tem",
+      "teve"
+     ],
+     "f": "frau",
+     "r": "brot",
+     "phrase": "Antes de a Anna chegar, a empregada já tinha cozido o pão.",
+     "sens": "Avant qu'Anna arrive, la vendeuse avait cuit le pain.",
+     "n": "Le passé avant le passé : <b>tinha</b> + participe."
+    },
+    {
+     "q": "Quando a Anna entrou, o vizinho já se tinha ___.",
+     "c": [
+      "sentado",
+      "sentada",
+      "sentou"
+     ],
+     "f": "nachbar",
+     "r": "anna",
+     "phrase": "Quando a Anna entrou, o vizinho já se tinha sentado.",
+     "sens": "Quand Anna est entrée, le voisin s'était déjà assis.",
+     "n": "<b>sentar-se</b> → <b>tinha-se sentado</b> ; après <b>já</b>, <b>se tinha sentado</b>."
+    },
+    {
+     "q": "Depois de ___ o café, leu o jornal.",
+     "c": [
+      "ter bebido",
+      "tinha bebido",
+      "beber-se"
+     ],
+     "f": "tasse-2",
+     "r": "zeitung",
+     "phrase": "Depois de ter bebido o café, leu o jornal.",
+     "sens": "Après avoir bu le café, il a lu le journal.",
+     "n": "Après une préposition : <b>ter</b> + participe."
+    },
+    {
+     "q": "O cão já ___ adormecido antes de o café chegar.",
+     "c": [
+      "tinha",
+      "tem",
+      "era"
+     ],
+     "f": "hund",
+     "r": "tasse-2",
+     "phrase": "O cão já tinha adormecido antes de o café chegar.",
+     "sens": "Le chien s'était déjà endormi avant que le café arrive.",
+     "n": "Toujours <b>ter</b>, jamais ser."
+    },
+    {
+     "q": "Quando a loja abriu, a empregada já tinha ___ três horas.",
+     "c": [
+      "trabalhado",
+      "trabalhada",
+      "trabalhou"
+     ],
+     "f": "frau",
+     "r": null,
+     "phrase": "Quando a loja abriu, a empregada já tinha trabalhado três horas.",
+     "sens": "Quand le magasin a ouvert, la vendeuse avait déjà travaillé trois heures.",
+     "n": "Le participe ne s'accorde pas avec ter."
+    },
+    {
+     "q": "A Anna já tinha ___ os papos-secos quando o telemóvel tocou.",
+     "c": [
+      "pago",
+      "pagado",
+      "pagos"
+     ],
+     "f": "muenze",
+     "r": "broetchen",
+     "phrase": "A Anna já tinha pago os papos-secos quando o telemóvel tocou.",
+     "sens": "Anna avait déjà payé les petits pains quand son téléphone a sonné.",
+     "n": "<b>pagar</b> → <b>pago</b>."
+    }
+   ]
+  },
+  "C1": {
+   "titre": "Hypothèses : deve, talvez, dizem que",
+   "qs": [
+    {
+     "q": "Os papos-secos ___ estar fresquinhos.",
+     "c": [
+      "devem",
+      "podem-se",
+      "têm"
+     ],
+     "f": "broetchen",
+     "r": "anna",
+     "phrase": "Os papos-secos devem estar fresquinhos.",
+     "sens": "Les petits pains doivent être frais.",
+     "n": "Déduction : <b>dever</b>, accordé au pluriel."
+    },
+    {
+     "q": "___ que o cão seja do vizinho.",
+     "c": [
+      "Pode ser",
+      "Deve ser",
+      "Se calhar"
+     ],
+     "f": "hund",
+     "r": "nachbar",
+     "phrase": "Pode ser que o cão seja do vizinho.",
+     "sens": "Le chien appartient peut-être au voisin.",
+     "n": "<b>pode ser que</b> + conjuntivo."
+    },
+    {
+     "q": "O pão ___ de hoje de manhã.",
+     "c": [
+      "será",
+      "seja",
+      "foi-se"
+     ],
+     "f": "brot",
+     "r": null,
+     "phrase": "O pão será de hoje de manhã.",
+     "sens": "Le pain date sans doute de ce matin.",
+     "n": "Futur de supposition : <b>será</b>."
+    },
+    {
+     "q": "Esta padaria ___ a melhor do bairro.",
+     "c": [
+      "seria",
+      "será-se",
+      "seja"
+     ],
+     "f": "schalter",
+     "r": null,
+     "phrase": "Esta padaria seria a melhor do bairro.",
+     "sens": "Cette boulangerie serait la meilleure du quartier.",
+     "n": "Le conditionnel de la rumeur : <b>seria</b>."
+    }
+   ]
   }
  },
  "traductions": {}
