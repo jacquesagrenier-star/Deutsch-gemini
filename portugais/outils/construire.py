@@ -252,6 +252,13 @@ def construire():
     import scenes
     scenes.main()
     parcours_debutant.construire(jeu)
+    # Les niveaux A2-C1 (portugais/outils/niveaux.py, session « Portugais A2-C1 »),
+    # apres l'A1, qu'ils ne touchent pas : ils ajoutent leurs cles (« A2 »...) aux
+    # fichiers de `jeu` et leurs mots bresiliens a `variantes`. Absent : rien.
+    import importlib.util
+    if importlib.util.find_spec("niveaux"):
+        import niveaux
+        niveaux.construire(jeu, variantes)
     jeu["variantes-br.json"] = variantes
     # Pas encore de mots voisins (l'anglais a les siens, WordNet) : un fichier
     # vide plutot qu'une adresse qui repond 404 a chaque carte.
