@@ -316,10 +316,18 @@ html.nuit .suite{background:linear-gradient(180deg, rgba(110,200,145,.62), rgba(
 /* v1039 : LE MEME ROND QUE DANS L'APP, AU POINT PRES (Jacques, 30 oct. 2026 : « le crochet pas la meme
    grosseur qu'ailleurs, assure-toi que c'est exactement la meme chose partout »). Copie de button.back
    et de son ::before dans index.html : chevron de 27 px, graisse 600, remonte de 3 px, meme ombre. */
-.retour-choix{box-sizing:border-box;padding:0 0 6px;font-size:27px;font-weight:600;color:#1C2430;
+/* v1041 : PAR L'IDENTIFIANT, POUR GAGNER SUR TOUT. Dans l'app la scene est dans un cadre (.en-cadre),
+   et « .en-cadre .titre » (14 px, marges) l'emportait sur « .retour-choix » : le chevron restait petit
+   dans l'app alors qu'il etait juste sur la page seule (Jacques : « j'ai encore pour le retour le petit
+   crochet qui n'est pas [...] de la meme grosseur que les autres »). */
+#retourChoix{display:flex;align-items:center;justify-content:center;width:40px;height:40px;
+  box-sizing:border-box;padding:0 0 6px;border-radius:50%;line-height:1;
+  font-size:27px;font-weight:600;color:#1C2430;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
   box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.9),0 4px 12px rgba(20,40,60,.10)}
-html.nuit .retour-choix{color:#EEF2F5;box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.14),0 4px 12px rgba(0,0,0,.3)}
+html.nuit #retourChoix{color:#EEF2F5;background:rgba(20,36,50,.6);
+  box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.14),0 4px 12px rgba(0,0,0,.3)}
 
 .bulle-arrivee{position:absolute;left:8%;right:8%;top:12px;z-index:1900;background:rgba(28,36,48,.9);color:#fff;
   font-size:14px;line-height:1.35;padding:8px 12px;border-radius:10px;text-align:center;pointer-events:none;transition:opacity .5s}
