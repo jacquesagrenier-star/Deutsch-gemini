@@ -411,6 +411,36 @@ def temps(jeu):
     return len(liste), nq
 
 
+def allonger_series(jeu):
+    """Les series ecrites a la main (series_<niv>.py, comme l'anglais), puis les
+    questions de temps tirees des phrases des cartes (series_temps.py)."""
+    jeux = jeu["exercices.json"]["jeux"]
+    n = 0
+    for niv in NIVEAUX:
+        src = module("series_" + niv.lower())
+        if not src:
+            continue
+        for serie, bloc in src.SUPPLEMENTS.items():
+            assert serie in jeux, "series_%s.py : serie inconnue %s" % (niv.lower(), serie)
+            topic = jeux[serie][0]["topic"] if jeux[serie] else serie
+            vues = {q["question"] for q in jeux[serie]}
+            for q in questions(topic, bloc):
+                assert q["question"] not in vues, "question en double : " + q["question"]
+                vues.add(q["question"])
+                jeux[serie].append(q)
+                n += 1
+    import series_temps
+    vues = {s: {q["question"] for q in l} for s, l in jeux.items()}
+    for serie, qs in series_temps.supplements(jeu, NIVEAUX, vues).items():
+        if serie not in jeux:
+            continue
+        topic = jeux[serie][0]["topic"] if jeux[serie] else serie
+        for q, bonne, fausses, trad, expl in qs:
+            jeux[serie].append(question(topic, q, bonne, fausses, trad, expl))
+            n += 1
+    return n
+
+
 def conjugaison(jeu):
     """Les feuilles de conjugaison A2-C1 (format de l'anglais : t, l, a)."""
     src = module("conjugaison_niveaux")
@@ -468,11 +498,13 @@ def construire(jeu, variantes=None):
         bilan.append("%s : %d noms, %d verbes, %d adjectifs, %d adverbes, %d expressions, %d fiches (%d questions)"
                      % (niv, nn, nv, na, nad, nex, nf, nq))
     nte, qte = temps(jeu)
+    nsup = allonger_series(jeu)
     nfo = fonctionnels(jeu)
     nco = conjugaison(jeu)
     for l in bilan:
         print("Niveaux -- " + l)
     print("Niveaux -- %d mots-outils, %d feuilles de conjugaison, %d series par temps (%d questions)" % (nfo, nco, nte, qte))
+    print("Niveaux -- %d questions de temps tirees des phrases des cartes (series_temps.py)" % nsup)
     p = os.path.join(ICI, "rapport_niveaux.txt")
     with io.open(p, "w", encoding="utf-8", newline="\n") as f:
         f.write("\n".join(RAPPORT) + "\n")
