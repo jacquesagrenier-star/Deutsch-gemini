@@ -1,6 +1,6 @@
 # Le portugais dans Wortando : état des lieux
 
-29 octobre 2026. **Publié en v1026** (essai admin, A1) ; **A2 à C1 en v1027** (30 oct.), complété en **v1029** (cartes reprises, séries allongées, brésilianismes corrigés) ; **v1032** (30 oct.) : Lisbonne confirmée, l'hiver écarté, la **variante du Brésil** (Réglages → « Quel portugais ? »), la **mosaïque portugaise** (66 tableaux). Mandat de Jacques, transmis par le chef d'orchestre : « une
+29 octobre 2026. **Publié en v1026** (essai admin, A1) ; **A2 à C1 en v1027** (30 oct.), complété en **v1029** (cartes reprises, séries allongées, brésilianismes corrigés) ; **v1033** (30 oct.) : Lisbonne confirmée, l'hiver écarté, la **variante du Brésil** (Réglages → « Quel portugais ? »), la **mosaïque portugaise** (66 tableaux). Mandat de Jacques, transmis par le chef d'orchestre : « une
 version pour apprendre le portugais », et la base : « On va commencer par le
 portugais du Portugal. » Rien n'a été payé ni généré. Chaque chiffre a été
 compté dans les fichiers.
@@ -156,14 +156,14 @@ corrigées à la source en v1029.
 
 1. ~~A2 à C1~~ : **fait** (nuit du 29 au 30 oct.) par la session « Portugais : les
    niveaux A2 à C1 », branché ici (voir « A2 à C1 » plus haut), complété en v1029.
-2. ~~La mosaïque~~ : **branchée en v1032** — les 66 tableaux choisis par
+2. ~~La mosaïque~~ : **branchée en v1033** — les 66 tableaux choisis par
    Jacques (`portugais/mosaique/app/`, session « portugais-la-mosa-que-de »),
    `MOSAIQUE_BASE` du portugais ; les mêmes pour le Portugal et le Brésil. Les
    tableaux brésiliens attendent le choix de Jacques sur sa page ; le code
    de la session mosaïque (commit aaaa318 : `mosaiques-bresil.json`, images
    `brNN.jpg`) sera branché sur la variante Brésil une fois la liste cochée.
 3. **La voix enregistrée** : chiffrage ci-dessous, rien de généré.
-4. ~~La variante brésilienne~~ : **faite en brouillon** (v1032, voir « La
+4. ~~La variante brésilienne~~ : **faite en brouillon** (v1033, voir « La
    variante du Brésil » plus bas). Reste la relecture par un Brésilien, et
    « você » à la place de « tu » si le relecteur le demande.
 5. **Les à-côtés de l'anglais** : fréquence d'usage (Leipzig), mots voisins
