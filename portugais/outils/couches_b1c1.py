@@ -781,6 +781,137 @@ uhr |  | O jogo ___ estar a acabar. | deve | pode-se / tem | O jogo deve estar a
 trainerin |  | A treinadora ___ sido profissional. | teria | terá-se / tenha | A treinadora teria sido profissional. | Il paraît que l'entraîneuse était professionnelle autrefois. | La rumeur sur le passé : <b>teria sido</b>.
 """),
 },
+"umzug": {
+"B1": ("Em cima, lá dentro, com ele : dire où sans répéter", """
+stuhl | tisch | Ali está a mesa. ___ dela está uma cadeira. | Em cima | Dentro / Debaixo | Ali está a mesa. Em cima dela está uma cadeira. | Voilà la table. Il y a une chaise dessus. | <b>em cima dela</b> = dessus (de la table).
+pflanze | karton | Esta é a caixa da Anna. Lá ___ está uma planta. | dentro | em cima / fora | Esta é a caixa da Anna. Lá dentro está uma planta. | Voici le carton d'Anna. Dedans, il y a une plante. | Dedans : <b>lá dentro</b>.
+hammer | bruder | O irmão tem um martelo. Vai trabalhar com ___ mais tarde. | ele | o / lhe | O irmão tem um martelo. Vai trabalhar com ele mais tarde. | Le frère a un marteau. Il s'en servira plus tard. | Après une préposition, un objet se dit <b>ele, ela</b>.
+anna |  | ___ é que a Anna está ansiosa? Pela casa nova. | Por que | De que / O que | Por que é que a Anna está ansiosa? Pela casa nova. | De quoi Anna se réjouit-elle ? De son nouvel appartement. | <b>estar ansioso por</b> → <b>por que</b>.
+anna |  | A Anna gosta da casa. Gosta de falar ___. | dela | dele / a ela | A Anna gosta da casa. Gosta de falar dela. | Anna aime l'appartement. Elle aime en parler. | <b>falar de</b> + ela = <b>dela</b>.
+bruder | pizza | ___ que pensa o irmão? Na pizza! | Em | De / A | Em que pensa o irmão? Na pizza! | À quoi pense le frère ? À la pizza ! | <b>pensar em</b> → <b>em que</b>.
+koffer | buch | Os livros estão no chão. A mala está ao ___. | lado | lado deles / pé de | Os livros estão no chão. A mala está ao lado. | Les livres sont par terre. La valise est à côté. | À côté : <b>ao lado</b>.
+"""),
+"B2": ("Le futur antérieur : terá feito", """
+karton-2 | anna | Até à noite, a Anna ___ desempacotado todas as caixas. | terá | tinha / teria | Até à noite, a Anna terá desempacotado todas as caixas. | D'ici ce soir, Anna aura déballé tous les cartons. | Futur antérieur : <b>terá</b> + participe.
+gluehbirne | bruder | Daqui a nada, o irmão ___ enroscado a lâmpada. | terá | tem / teve | Daqui a nada, o irmão terá enroscado a lâmpada. | Dans un instant, le frère aura vissé l'ampoule. | <b>terá enroscado</b>.
+bruder |  | Daqui a uma hora, o irmão já ___ ido para casa. | terá | tinha / tenha | Daqui a uma hora, o irmão já terá ido para casa. | Dans une heure, le frère sera déjà rentré chez lui. | Toujours <b>ter</b> : <b>terá ido</b>.
+anna | karton | A Anna está cansada. ___ carregado muito. | Terá | Teria / Tinha-se | A Anna está cansada. Terá carregado muito. | Anna est fatiguée. Elle a sans doute beaucoup porté. | Supposition sur le passé : <b>terá</b> + participe.
+pizza | bruder | Quem pediu a pizza? ___ sido o irmão. | Terá | Será / Tenha | Quem pediu a pizza? Terá sido o irmão. | Qui a commandé la pizza ? C'est sans doute le frère. | <b>terá sido</b>.
+anna |  | Na próxima semana, a Anna já se ___ habituado à casa nova. | terá | tinha / teria-se | Na próxima semana, a Anna já se terá habituado à casa nova. | La semaine prochaine, Anna se sera habituée au nouvel appartement. | Après <b>já</b>, le pronom devant : <b>se terá habituado</b>.
+"""),
+"C1": (T_HYPO, """
+anna |  | Ela ___ estar ansiosa pela casa nova. | deve | pode-se / tem | Ela deve estar ansiosa pela casa nova. | Elle doit se réjouir de son nouvel appartement. | Déduction : <b>dever</b>.
+buch | regal | ___ os livros vão para a estante branca. | Se calhar | Talvez que / Deve | Se calhar os livros vão para a estante branca. | Les livres iront peut-être dans l'étagère blanche. | <b>se calhar</b> + indicatif.
+pizza | bruder | A pizza ___ para a Anna e o irmão. | será | seja / foi-se | A pizza será para a Anna e o irmão. | La pizza est sans doute pour Anna et son frère. | Futur de supposition.
+fenster |  | A casa ___ muito sossegada. | seria | será-se / seja | A casa seria muito sossegada. | L'appartement serait très calme. | Le conditionnel de la rumeur ; <b>sossegado</b> = calme.
+"""),
+},
+"untersuchung": {
+"B1": ("Les consignes du médecin : respire fundo, por favor", """
+brust | hand-aerztin-haut | A médica ___ os pulmões dele. | ausculta | escuta-se / ouve-lhe | A médica ausculta os pulmões dele. | La médecin ausculte ses poumons. | <b>auscultar</b>.
+mark |  | ___ fundo, por favor! | Inspire | Inspira-se / Inspiras | Inspire fundo, por favor! | Inspirez profondément, s'il vous plaît ! | Consigne polie : le subjonctif (<b>inspire</b>).
+mark | unterhose | O Mark ___ até às cuecas. | despiu-se | se despiu / despiu | O Mark despiu-se até às cuecas. | Mark s'est déshabillé jusqu'au caleçon. | <b>despir-se</b> → <b>despiu-se</b>.
+stethoskop | brust | A médica põe-___ o estetoscópio no peito. | lhe | o / se | A médica põe-lhe o estetoscópio no peito. | La médecin pose le stéthoscope sur sa poitrine. | <b>lhe</b> : à lui (sur lui).
+mark | waage | O Mark vai ___ para a balança. | subir | subir-se / sobe | O Mark vai subir para a balança. | Mark va tout de suite monter sur la balance. | <b>subir para</b> : monter sur.
+waage | mark | Depois fica ___ na balança. | quieto | quieta / quietamente | Depois fica quieto na balança. | Ensuite, il reste immobile sur la balance. | <b>ficar quieto</b> = rester immobile.
+"""),
+"B2": (T_PASSIF, """
+brust | hand-aerztin-haut | Os pulmões dele estão a ser ___. | auscultados | auscultadas / auscultar | Os pulmões dele estão a ser auscultados. | Ses poumons sont en train d'être auscultés. | <b>estar a ser</b> + participe accordé (os pulmões).
+mark | brust | O doente, ___ peito está a ser auscultado, chama-se Mark. | cujo | cuja / que o | O doente, cujo peito está a ser auscultado, chama-se Mark. | Le patient dont on ausculte la poitrine s'appelle Mark. | <b>cujo</b> + peito.
+aerztin | mark | A médica ___ o examina é a médica de família dele. | que | quem / qual | A médica que o examina é a médica de família dele. | La médecin qui l'examine est sa médecin de famille. | Après <b>que</b>, le pronom devant : <b>que o examina</b>.
+waage | mark | A balança para a ___ ele vai subir está encostada à parede. | qual | que / quem | A balança para a qual ele vai subir está encostada à parede. | La balance sur laquelle il va monter est contre le mur. | <b>para a qual</b>.
+waage |  | Daqui a pouco, a altura dele também vai ser ___. | medida | medido / medir | Daqui a pouco, a altura dele também vai ser medida. | Dans un instant, on mesurera aussi sa taille. | Passif : <b>vai ser</b> + participe accordé.
+mark |  | O Mark fica quieto enquanto ___ examinado. | é | está-se / seja | O Mark fica quieto enquanto é examinado. | Mark reste tranquille pendant qu'on l'examine. | Passif au présent : <b>é examinado</b>.
+"""),
+"C1": ("Hypothèses et irréel", """
+arm-l |  | Ele ___ fazer muito desporto. | deve | pode-se / tem | Ele deve fazer muito desporto. | Il doit faire beaucoup de sport. | Déduction : <b>dever</b> ; le sport = <b>o desporto</b>.
+mark |  | Ele ___ ser saudável. | deverá | deveria-se / deva | Ele deverá ser saudável. | Il est sans doute en bonne santé. | Probable : <b>deverá</b>.
+aerztin |  | ___ que esta médica é muito minuciosa. | Dizem | Diz-se-lhe / Digam | Dizem que esta médica é muito minuciosa. | Il paraît que cette médecin est très minutieuse. | Le ouï-dire.
+aerztin | brust | Se o ritmo cardíaco ___ irregular, ela mandava-o ao cardiologista. | fosse | for / era | Se o ritmo cardíaco fosse irregular, ela mandava-o ao cardiologista. | Si son rythme cardiaque était irrégulier, elle l'enverrait chez le cardiologue. | Irréel du présent : <b>se fosse</b>.
+mark |  | Se ele não se ___ despido, ela não o teria podido auscultar. | tivesse | tiver / tinha | Se ele não se tivesse despido, ela não o teria podido auscultar. | S'il ne s'était pas déshabillé, elle n'aurait pas pu l'ausculter. | Irréel du passé : <b>se tivesse</b> + participe.
+aerztin | mark | Sem exame, não ___ saber ao certo. | se podia | podia-se-se / se pode-se | Sem exame, não se podia saber ao certo. | Sans examen, on ne pourrait pas le savoir exactement. | Après <b>não</b>, le se devant : <b>não se podia</b>.
+"""),
+},
+"untersuchung-dos": {
+"B1": ("Les consignes du médecin : vire-se, respire", """
+mark |  | ___-se, por favor! | Vire | Vira / Viras | Vire-se, por favor! | Retournez-vous, s'il vous plaît ! | Le vouvoiement : <b>vire-se</b>.
+mark | ruecken | O Mark virou-se para ela poder ___ as costas. | auscultar-lhe | lhe auscultar / auscultar-se | O Mark virou-se para ela poder auscultar-lhe as costas. | Mark s'est retourné pour qu'elle puisse ausculter son dos. | <b>auscultar-lhe as costas</b> : le pronom remplace le possessif.
+stethoskop | ruecken | A médica põe o estetoscópio ___ costas dele. | nas | na / às | A médica põe o estetoscópio nas costas dele. | La médecin pose le stéthoscope sur son dos. | Le dos = <b>as costas</b> (pluriel) : em + as = <b>nas</b>.
+arm-l |  | Ele deixa os braços ___. | caídos | caída / cair-se | Ele deixa os braços caídos. | Il laisse pendre ses bras, détendus. | <b>deixar</b> + participe accordé.
+handflaeche-r |  | Ele segura as mãos de modo a ___ as palmas. | mostrar | mostre / mostrando-se | Ele segura as mãos de modo a mostrar as palmas. | Il tient les mains de façon à ce qu'on voie les paumes. | <b>de modo a</b> + infinitif.
+ruecken |  | ___ e inspire com calma, por favor! | Expire | Expira-se / Expiras | Expire e inspire com calma, por favor! | Expirez et inspirez calmement, s'il vous plaît ! | Le vouvoiement : <b>expire</b>.
+"""),
+"B2": (T_PASSIF, """
+ruecken | hand-aerztin-haut | As costas dele estão a ser ___. | auscultadas | auscultados / auscultar | As costas dele estão a ser auscultadas. | Son dos est en train d'être ausculté. | <b>as costas</b> (fém. pluriel) → <b>auscultadas</b>.
+mark | ruecken | É o doente ___ costas a médica ausculta. | cujas | cujos / que as | É o doente cujas costas a médica ausculta. | C'est le patient dont la médecin ausculte le dos. | <b>cujas</b> + costas.
+aerztin | ruecken | A médica, ___ estetoscópio está nas costas dele, ouve com atenção. | cujo | cuja / que o | A médica, cujo estetoscópio está nas costas dele, ouve com atenção. | La médecin, dont le stéthoscope est posé sur son dos, écoute attentivement. | <b>cujo</b> + estetoscópio.
+mark |  | Depois de ele se ___ virado, ela auscultou-lhe as costas. | ter | tinha / tivesse | Depois de ele se ter virado, ela auscultou-lhe as costas. | Après qu'il s'est retourné, elle a ausculté son dos. | <b>depois de</b> + <b>ter</b> + participe.
+ruecken |  | Antes de as costas ___ auscultadas, ele tem de inspirar fundo. | serem | sejam / são | Antes de as costas serem auscultadas, ele tem de inspirar fundo. | Avant que le dos puisse être ausculté, il doit inspirer profondément. | Infinitif personnel passif : <b>serem</b> + participe.
+schulterblatt | wirbelsaeule | As omoplatas, entre as ___ fica a coluna, veem-se bem. | quais | que / quem | As omoplatas, entre as quais fica a coluna, veem-se bem. | Les omoplates, entre lesquelles se trouve la colonne, se voient bien. | <b>entre as quais</b>.
+"""),
+"C1": ("Hypothèses et irréel", """
+mark |  | Ele já ___ sido auscultado muitas vezes. | terá | teria / tenha | Ele já terá sido auscultado muitas vezes. | Il a sans doute déjà été ausculté souvent. | Supposition sur le passé : <b>terá sido</b>.
+ruecken |  | Se ___ dores nas costas, já o teria dito à médica. | tivesse | tiver / tinha-se | Se tivesse dores nas costas, já o teria dito à médica. | S'il avait mal au dos, il l'aurait dit à la médecin. | <b>se tivesse</b> + conditionnel passé.
+aerztin | ruecken | Caso ela ___ algum ruído, mandava-o fazer um raio-X. | ouvisse | ouça / ouvir | Caso ela ouvisse algum ruído, mandava-o fazer um raio-X. | À supposer qu'elle entende un bruit, elle lui ferait passer une radio. | <b>caso</b> + conjuntivo imparfait pour l'hypothèse.
+mark |  | ___ que o Mark nunca esteve gravemente doente. | Consta | Constam / Conste | Consta que o Mark nunca esteve gravemente doente. | Il paraît que Mark n'a jamais été gravement malade. | Le ouï-dire, soutenu : <b>consta que</b>.
+wirbelsaeule |  | A postura direita dele ___ do muito desporto que faz. | virá | venha / veio-se | A postura direita dele virá do muito desporto que faz. | Sa posture droite vient sans doute de tout le sport qu'il fait. | Futur de supposition : <b>virá</b>.
+aerztin |  | Se não ___ ouvido nada, já teria parado. | tivesse | tiver / teria | Se não tivesse ouvido nada, já teria parado. | Si elle n'avait rien entendu, elle aurait arrêté depuis longtemps. | Irréel du passé.
+"""),
+},
+"waschsalon": {
+"B1": ("Deixar : laisser, laisser faire", """
+anna | waschmaschine | A Anna ___ a máquina a trabalhar. | deixa | faz / põe-se | A Anna deixa a máquina a trabalhar. | Anna fait tourner la machine à laver. | <b>deixar</b> + a + infinitif : laisser tourner.
+korb | boden | Ela deixa o cesto ___ chão. | no | ao / para o | Ela deixa o cesto no chão. | Elle laisse le panier par terre. | <b>no chão</b>.
+frau | maedchen | A senhora deixa a menina ___ com o telemóvel. | brincar | brinca / a brincar-se | A senhora deixa a menina brincar com o telemóvel. | La femme laisse la fille jouer avec le téléphone. | <b>deixar alguém</b> + infinitif.
+anna |  | ___-me ajudar-te! | Deixa | Deixas / Deixe-te | Deixa-me ajudar-te! | Laisse-moi t'aider ! | Impératif, tu : <b>deixa-me</b>.
+jacke |  | Deixo o casaco ___ casa. | em | na / à | Deixo o casaco em casa. | Je laisse ma veste à la maison. | À la maison : <b>em casa</b>, sans article.
+jeans | korb | A Anna ___ as calças de ganga no cesto. | deixou | deixava / deixa-se | A Anna deixou as calças de ganga no cesto. | Anna a laissé le jean dans le panier. | Le jean = <b>as calças de ganga</b>, au Portugal.
+waschmaschine |  | Ela ___ lavar a roupa. | mandou | deixou-se / fez-se | Ela mandou lavar a roupa. | Elle a fait laver le linge. | Faire faire : <b>mandar</b> + infinitif.
+tuer |  | ___ para casa! | Vamos | Deixemos / Vamos-nos | Vamos para casa! | Rentrons à la maison ! | <b>vamos</b> = allons, rentrons.
+"""),
+"B2": ("Le participe comme adjectif", """
+waschmaschine-3 |  | A máquina a ___ faz barulho. | trabalhar | trabalhada / trabalha | A máquina a trabalhar faz barulho. | La machine à laver en marche est bruyante. | Le portugais dit « en train de » avec <b>a</b> + infinitif.
+pullover-2 | tisch | A camisola ___ está em cima da mesa. | dobrada | dobrado / dobrar | A camisola dobrada está em cima da mesa. | Le pull plié est sur la table. | Participe accordé : <b>dobrada</b>.
+frau | bank | A senhora que está a ___ está sentada no banco. | ler | lida / lendo-se | A senhora que está a ler está sentada no banco. | La femme qui lit est assise sur le banc. | <b>estar a ler</b>.
+handy | maedchen | A menina segura um telemóvel ___. | desligado | desligada / desligar | A menina segura um telemóvel desligado. | La fille tient un téléphone éteint. | <b>o telemóvel</b> → <b>desligado</b>.
+tuer |  | A porta ___ continua fechada. | fechada | fechado / fechar | A porta fechada continua fechada. | La porte fermée reste fermée. | <b>a porta</b> → <b>fechada</b>.
+hemd | anna | A Anna segura uma camisa ainda por ___. | lavar | lavada / lavar-se | A Anna segura uma camisa ainda por lavar. | Anna tient une chemise pas encore lavée. | <b>por</b> + infinitif : pas encore fait.
+"""),
+"C1": (T_HYPO, """
+korb | anna | Ela não ___ ter lavado roupa há muito tempo. | deve | pode-se / tem | Ela não deve ter lavado roupa há muito tempo. | Elle n'a pas dû faire de lessive depuis longtemps. | Déduction sur le passé : <b>deve ter</b> + participe.
+maedchen | frau | A menina ___ ser neta da senhora. | pode | deve de / há | A menina pode ser neta da senhora. | La fille est peut-être la petite-fille de la femme. | Possibilité : <b>poder</b>.
+waschmaschine |  | A roupa ___ estar pronta daqui a uma hora. | deverá | deveria-se / deva | A roupa deverá estar pronta daqui a uma hora. | Le linge devrait être prêt dans une heure. | Probable : <b>deverá</b>.
+tuer |  | ___ que a lavandaria vai fechar em breve. | Dizem | Diz-se-lhe / Digam | Dizem que a lavandaria vai fechar em breve. | Il paraît que la laverie va bientôt fermer. | Le ouï-dire ; la laverie = <b>a lavandaria</b>.
+"""),
+},
+"kreuzung": {
+"B1": ("Indiquer le chemin", """
+anna | apotheke | Desculpe, como é que ___ à farmácia? | se vai | vai-se / se vá | Desculpe, como é que se vai à farmácia? | Excusez-moi, comment aller à la pharmacie ? | Après <b>como é que</b>, le se devant : <b>se vai</b>.
+zebrastreifen |  | ___ a rua, ali na passadeira. | Atravesse | Atravessa-se / Atravesses | Atravesse a rua, ali na passadeira. | Traversez la rue, là, au passage piéton. | Vouvoiement : <b>atravesse</b> ; le passage piéton = <b>a passadeira</b>.
+ampel-vorne |  | Espere até o semáforo ___ verde. | ficar | fica / fique-se | Espere até o semáforo ficar verde. | Attendez que le feu passe au vert. | <b>até</b> + infinitif personnel.
+apotheke | baeckerei | Depois, a farmácia fica mesmo à ___ frente. | sua | seu / dela | Depois, a farmácia fica mesmo à sua frente. | La pharmacie est alors juste devant vous. | <b>à sua frente</b> = devant vous.
+post | apotheke | ___ pela farmácia e já lá está. | Passe | Passa-se / Passas | Passe pela farmácia e já lá está. | Passez devant la pharmacie, et vous y êtes. | <b>passar por</b> : passer devant.
+lieferwagen |  | A carrinha ___ da rua lateral. | sai | sae / saia-se | A carrinha sai da rua lateral. | La camionnette sort de la rue latérale. | <b>sair</b> → <b>sai</b> ; la camionnette = <b>a carrinha</b>.
+fussgaenger | zebrastreifen | Os peões atravessam ___ passadeira. | na | à / pela de | Os peões atravessam na passadeira. | Les piétons traversent sur le passage piéton. | Les piétons = <b>os peões</b>, au Portugal.
+baeckerei | anna | A Anna vai já entrar ___ padaria. | na | à / para a de | A Anna vai já entrar na padaria. | Anna va tout de suite entrer dans la boulangerie. | <b>entrar em</b> : na padaria.
+ampel-vorne |  | Não atravesse com o sinal ___, por favor! | vermelho | vermelha / encarnado-se | Não atravesse com o sinal vermelho, por favor! | Ne traversez pas au rouge, s'il vous plaît ! | <b>o sinal</b> → <b>vermelho</b>.
+cafe |  | O café fica na ___, mesmo ao lado da rua lateral. | esquina | canto / curva | O café fica na esquina, mesmo ao lado da rua lateral. | Le café est au coin, juste à côté de la rue latérale. | Le coin de rue : <b>a esquina</b>.
+"""),
+"B2": ("De, apesar de et les relatives", """
+radweg | buergersteig | Ao longo ___ passeio há uma ciclovia vermelha. | do | de o / ao | Ao longo do passeio há uma ciclovia vermelha. | Le long du trottoir court une piste cyclable rouge. | <b>ao longo de</b> + o = <b>ao longo do</b>.
+briefkasten | kiosk | Perto ___ quiosque há um marco do correio amarelo. | do | de o / ao | Perto do quiosque há um marco do correio amarelo. | Non loin du kiosque, il y a une boîte aux lettres jaune. | La boîte aux lettres de rue = <b>o marco do correio</b>.
+radfahrer |  | Apesar ___ rua molhada, o ciclista anda depressa. | da | de a / à | Apesar da rua molhada, o ciclista anda depressa. | Malgré la rue mouillée, le cycliste roule vite. | <b>apesar de</b> + a = <b>da</b>.
+frau-rot | haltestelle | A mulher, ___ casaco é vermelho, espera pelo autocarro. | cujo | cuja / que o | A mulher, cujo casaco é vermelho, espera pelo autocarro. | La femme au manteau rouge attend le bus. | <b>cujo</b> + casaco.
+fussgaenger |  | O homem ___ leva uma mochila atravessa na passadeira. | que | quem / qual | O homem que leva uma mochila atravessa na passadeira. | L'homme qui porte un sac à dos traverse sur le passage piéton. | Sujet : <b>que</b>.
+cafe | markise | O café em frente do ___ há mesas tem um toldo vermelho. | qual | que / quem | O café em frente do qual há mesas tem um toldo vermelho. | Le café devant lequel il y a des tables a un store rouge. | <b>em frente do qual</b> ; le store = <b>o toldo</b>.
+"""),
+"C1": (T_HYPO, """
+anna |  | Ela ___ ter-se perdido. | deve | pode-se / tem | Ela deve ter-se perdido. | Elle s'est sans doute perdue. | Déduction sur le passé : <b>deve ter-se perdido</b>.
+strasse |  | ___ ter chovido há pouco. | Deve | Pode-se / Tem | Deve ter chovido há pouco. | Il a dû pleuvoir tout à l'heure. | <b>deve ter</b> + participe.
+ampel-vorne | anna | Se o semáforo ___ verde, a Anna já teria atravessado. | estivesse | estiver / está | Se o semáforo estivesse verde, a Anna já teria atravessado. | Si le feu était vert, Anna aurait déjà traversé la rue. | Irréel : <b>se estivesse</b>.
+lieferwagen | cafe | ___ estar a trazer mercadoria para o café. | Pode | Deve de / Há | Pode estar a trazer mercadoria para o café. | Il apporte peut-être des marchandises pour le café. | Possibilité : <b>poder</b> + estar a.
+"""),
+},
 }
 
 
