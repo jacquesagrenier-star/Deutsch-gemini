@@ -473,6 +473,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os cestos",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

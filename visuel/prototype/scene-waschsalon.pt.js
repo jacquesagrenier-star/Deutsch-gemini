@@ -160,7 +160,8 @@ window.SCENE = {
    "mot": "radiador",
    "genre": "o",
    "pluriel": "os radiadores",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -231,6 +232,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as placas",
    "niveau": "A2",
+   "theme": "viagens_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -257,7 +259,8 @@ window.SCENE = {
    "mot": "peão",
    "genre": "o",
    "pluriel": "os peões",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "viagens_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -622,6 +625,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os cestos",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -822,6 +826,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os caixotes do lixo",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

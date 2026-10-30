@@ -216,7 +216,8 @@ window.SCENE = {
    "mot": "radiador",
    "genre": "o",
    "pluriel": "os radiadores",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -277,7 +278,8 @@ window.SCENE = {
    "mot": "pasta",
    "genre": "a",
    "pluriel": "as pastas",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -572,6 +574,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os teclados",
    "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -653,7 +656,8 @@ window.SCENE = {
    "mot": "formulário",
    "genre": "o",
    "pluriel": "os formulários",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "cidade_a2_pt",
    "personne": null,
    "aussi": [
     {
@@ -721,6 +725,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os carimbos",
    "niveau": "B1",
+   "theme": "trabalho_b1_pt",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -760,7 +765,8 @@ window.SCENE = {
    "mot": "secretária",
    "genre": "a",
    "pluriel": "as secretárias",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "trabalho_a2_pt",
    "personne": null,
    "aussi": [
     {
@@ -809,7 +815,8 @@ window.SCENE = {
    "mot": "secretária",
    "genre": "a",
    "pluriel": "as secretárias",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "trabalho_a2_pt",
    "personne": null,
    "aussi": [
     {
@@ -1075,6 +1082,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os caixotes do lixo",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

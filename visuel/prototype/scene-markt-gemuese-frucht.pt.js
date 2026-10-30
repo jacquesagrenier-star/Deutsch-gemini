@@ -8,18 +8,21 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as ervilhas",
    "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -47,12 +50,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -80,12 +85,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -106,19 +113,22 @@ window.SCENE = {
    "mot": "abóbora",
    "genre": "a",
    "pluriel": "as abóboras",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -146,12 +156,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -173,18 +185,21 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os milhos",
    "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -212,12 +227,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -245,12 +262,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -272,18 +291,21 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as acelgas",
    "niveau": "B2",
+   "theme": "comida_b2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -305,18 +327,21 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as alcachofras",
    "niveau": "B2",
+   "theme": "comida_b2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -344,12 +369,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -377,12 +404,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -410,12 +439,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -444,12 +475,14 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],
@@ -471,18 +504,21 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os espinafres",
    "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
      "mot": "legumes",
-     "genre": "os",
+     "genre": "o",
      "niveau": "A2",
+     "theme": "comida_a2_pt",
      "fr": "légumes"
     }
    ],

@@ -133,6 +133,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as vitaminas",
    "niveau": "B1",
+   "theme": "comida_b1_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "regal",
@@ -242,6 +243,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -312,6 +314,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -340,6 +343,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -389,6 +393,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -417,6 +422,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -604,7 +610,8 @@ window.SCENE = {
    "mot": "lenço",
    "genre": "o",
    "pluriel": "os lenços",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -758,6 +765,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os teclados",
    "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -834,6 +842,7 @@ window.SCENE = {
      "mot": "caixinha",
      "genre": "a",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la boîte"
     }
    ],
@@ -875,7 +884,8 @@ window.SCENE = {
    "mot": "lenço",
    "genre": "o",
    "pluriel": "os lenços",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "schalter",
@@ -1005,6 +1015,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os caixotes do lixo",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1179,6 +1190,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as bengalas",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -1260,7 +1272,8 @@ window.SCENE = {
    "mot": "balança",
    "genre": "a",
    "pluriel": "as balanças",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "saude_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

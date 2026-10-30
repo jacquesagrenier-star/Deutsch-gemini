@@ -175,6 +175,7 @@ window.SCENE = {
      "mot": "pintura",
      "genre": "a",
      "niveau": "A2",
+     "theme": "cultura_a2_pt_2",
      "fr": "peinture/tableau"
     }
    ],
@@ -216,7 +217,8 @@ window.SCENE = {
    "mot": "radiador",
    "genre": "o",
    "pluriel": "os radiadores",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -551,6 +553,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as mesas de centro",
    "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -649,6 +652,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os baldes",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -731,6 +735,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os balões",
    "niveau": "A2",
+   "theme": "cultura_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -751,6 +756,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os balões",
    "niveau": "A2",
+   "theme": "cultura_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

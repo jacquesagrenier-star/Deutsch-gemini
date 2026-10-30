@@ -89,6 +89,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as pinturas",
    "niveau": "A2",
+   "theme": "cultura_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -117,6 +118,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as pinturas",
    "niveau": "A2",
+   "theme": "cultura_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -145,6 +147,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as pinturas",
    "niveau": "A2",
+   "theme": "cultura_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -173,6 +176,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as pinturas",
    "niveau": "A2",
+   "theme": "cultura_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -201,6 +205,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as pinturas",
    "niveau": "A2",
+   "theme": "cultura_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -229,6 +234,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as pinturas",
    "niveau": "A2",
+   "theme": "cultura_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -353,7 +359,8 @@ window.SCENE = {
    "mot": "escultura",
    "genre": "a",
    "pluriel": "as esculturas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "cultura_a2_pt",
    "personne": null,
    "aussi": [
     {
@@ -402,7 +409,8 @@ window.SCENE = {
    "mot": "gravata",
    "genre": "a",
    "pluriel": "as gravatas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "roupa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -511,8 +519,10 @@ window.SCENE = {
   {
    "id": "kopfhoerer",
    "mot": "auscultadores",
-   "genre": "os",
+   "genre": "o",
+   "pluriel": "os auscultadores",
    "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -594,7 +604,8 @@ window.SCENE = {
    "mot": "radiador",
    "genre": "o",
    "pluriel": "os radiadores",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,

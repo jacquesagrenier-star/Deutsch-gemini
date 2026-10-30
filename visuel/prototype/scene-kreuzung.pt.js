@@ -42,7 +42,8 @@ window.SCENE = {
     {
      "mot": "cruzamento",
      "genre": "o",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "viagens_a2_pt",
      "fr": "carrefour"
     }
    ],
@@ -248,7 +249,8 @@ window.SCENE = {
    "mot": "toldo",
    "genre": "o",
    "pluriel": "os toldos",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "cafe",
@@ -317,6 +319,7 @@ window.SCENE = {
      "mot": "placa",
      "genre": "a",
      "niveau": "A2",
+     "theme": "viagens_a2_pt_2",
      "fr": "le panneau"
     }
    ],
@@ -417,6 +420,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os parquímetros",
    "niveau": "B1",
+   "theme": "viagens_b1_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -443,6 +447,7 @@ window.SCENE = {
      "mot": "placa",
      "genre": "a",
      "niveau": "A2",
+     "theme": "viagens_a2_pt_2",
      "fr": "le panneau"
     }
    ],
@@ -470,6 +475,7 @@ window.SCENE = {
      "mot": "placa",
      "genre": "a",
      "niveau": "A2",
+     "theme": "viagens_a2_pt_2",
      "fr": "le panneau"
     }
    ],
@@ -603,7 +609,8 @@ window.SCENE = {
    "mot": "peão",
    "genre": "o",
    "pluriel": "os peões",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "viagens_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -739,6 +746,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as ciclovias",
    "niveau": "A2",
+   "theme": "viagens_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -756,9 +764,10 @@ window.SCENE = {
   {
    "id": "radfahrer",
    "mot": "ciclista",
-   "genre": "o",
-   "pluriel": "os ciclistas",
+   "genre": "a",
+   "pluriel": "as ciclistas",
    "niveau": "B1",
+   "theme": "viagens_b1_pt",
    "personne": null,
    "aussi": [
     {
@@ -794,6 +803,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os capacetes",
    "niveau": "A2",
+   "theme": "lei_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "radfahrer",

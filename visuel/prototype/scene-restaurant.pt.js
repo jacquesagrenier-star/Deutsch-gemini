@@ -214,6 +214,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as máquinas de café",
    "niveau": "A2",
+   "theme": "comida_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -493,6 +494,7 @@ window.SCENE = {
      "mot": "pintura",
      "genre": "a",
      "niveau": "A2",
+     "theme": "cultura_a2_pt_2",
      "fr": "peinture/tableau"
     }
    ],
@@ -1363,6 +1365,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os cestos",
    "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "tisch",

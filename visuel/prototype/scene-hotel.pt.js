@@ -295,6 +295,7 @@ window.SCENE = {
      "mot": "pintura",
      "genre": "a",
      "niveau": "A2",
+     "theme": "cultura_a2_pt_2",
      "fr": "peinture/tableau"
     }
    ],
@@ -433,7 +434,8 @@ window.SCENE = {
    "mot": "gravata",
    "genre": "a",
    "pluriel": "as gravatas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "roupa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -502,6 +504,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os teclados",
    "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "rezeption",
@@ -953,6 +956,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as mesas de centro",
    "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [
     {
@@ -980,7 +984,8 @@ window.SCENE = {
    "mot": "campainha",
    "genre": "a",
    "pluriel": "as campainhas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "casa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "rezeption",
@@ -1022,6 +1027,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os folhetos",
    "niveau": "A2",
+   "theme": "dinheiro_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "rezeption",
@@ -1047,7 +1053,8 @@ window.SCENE = {
     {
      "mot": "formulário",
      "genre": "o",
-     "niveau": "B2",
+     "niveau": "A2",
+     "theme": "cidade_a2_pt",
      "fr": "formulaire"
     }
    ],
@@ -1108,7 +1115,8 @@ window.SCENE = {
    "mot": "receção",
    "genre": "a",
    "pluriel": "as receções",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "viagens_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,

@@ -134,6 +134,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os balões",
    "niveau": "A2",
+   "theme": "cultura_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

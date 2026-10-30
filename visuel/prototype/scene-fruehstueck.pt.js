@@ -372,6 +372,7 @@ window.SCENE = {
      "mot": "convidado",
      "genre": "o",
      "niveau": "A2",
+     "theme": "cultura_a2_pt",
      "fr": "invité"
     }
    ],
@@ -456,6 +457,7 @@ window.SCENE = {
      "mot": "convidado",
      "genre": "o",
      "niveau": "A2",
+     "theme": "cultura_a2_pt",
      "fr": "invité"
     }
    ],
@@ -1011,6 +1013,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as máquinas de café",
    "niveau": "A2",
+   "theme": "comida_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,

@@ -69,7 +69,8 @@ window.SCENE = {
     {
      "mot": "barba",
      "genre": "a",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "roupa_a2_pt",
      "fr": "barbe"
     },
     {
@@ -123,7 +124,8 @@ window.SCENE = {
    "mot": "barba",
    "genre": "a",
    "pluriel": "as barbas",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "roupa_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "lehrer",
@@ -185,6 +187,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os ganchos",
    "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": "tuer",
@@ -350,6 +353,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os participantes",
    "niveau": "B1",
+   "theme": "escola_b1_pt_2",
    "personne": "Mark",
    "aussi": [
     {
@@ -429,9 +433,10 @@ window.SCENE = {
   {
    "id": "anna",
    "mot": "participante",
-   "genre": "a",
-   "pluriel": "as participantes",
+   "genre": "o",
+   "pluriel": "os participantes",
    "niveau": "B1",
+   "theme": "escola_b1_pt_2",
    "personne": "Anna",
    "aussi": [
     {
@@ -822,12 +827,14 @@ window.SCENE = {
      "mot": "participante",
      "genre": "o",
      "niveau": "B1",
+     "theme": "escola_b1_pt_2",
      "fr": "participant"
     },
     {
      "mot": "barba",
      "genre": "a",
-     "niveau": "B1",
+     "niveau": "A2",
+     "theme": "roupa_a2_pt",
      "fr": "barbe"
     },
     {
@@ -881,8 +888,9 @@ window.SCENE = {
     },
     {
      "mot": "participante",
-     "genre": "a",
+     "genre": "o",
      "niveau": "B1",
+     "theme": "escola_b1_pt_2",
      "fr": "participante"
     },
     {
@@ -916,8 +924,9 @@ window.SCENE = {
    "aussi": [
     {
      "mot": "participante",
-     "genre": "a",
+     "genre": "o",
      "niveau": "B1",
+     "theme": "escola_b1_pt_2",
      "fr": "participante"
     },
     {
@@ -1021,7 +1030,8 @@ window.SCENE = {
    "mot": "portátil",
    "genre": "o",
    "pluriel": "os portáteis",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -1083,7 +1093,8 @@ window.SCENE = {
    "mot": "cabo",
    "genre": "o",
    "pluriel": "os cabos",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "media_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": "schreibtisch",
@@ -1103,7 +1114,8 @@ window.SCENE = {
    "mot": "secretária",
    "genre": "a",
    "pluriel": "as secretárias",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "trabalho_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

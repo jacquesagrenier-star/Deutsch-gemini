@@ -1,6 +1,6 @@
 # Le portugais dans Wortando : état des lieux
 
-29 octobre 2026. **Publié en v1026** (essai admin). Mandat de Jacques, transmis par le chef d'orchestre : « une
+29 octobre 2026. **Publié en v1026** (essai admin, A1) ; **A2 à C1 en v1027** (30 oct.). Mandat de Jacques, transmis par le chef d'orchestre : « une
 version pour apprendre le portugais », et la base : « On va commencer par le
 portugais du Portugal. » Rien n'a été payé ni généré. Chaque chiffre a été
 compté dans les fichiers.
@@ -79,6 +79,38 @@ les irréguliers du quotidien · tu, você, o senhor · no, na, do, da · o meu,
 les questions · estar a + infinitif · ir + infinitif · le pronom après le verbe ·
 gostar de · l'adjectif · le passé (perfeito) · há · les faux amis.
 
+### A2 à C1 (30 oct. 2026)
+
+Écrits par la session « Portugais : les niveaux A2 à C1 »
+(`portugais/outils/niveaux.py` et ses listes `noms_<niv>.py`, `mots_<niv>.py`,
+`grammaire_<niv>.py`, `temps_<niv>.py`… ; plan : `portugais/PLAN-A2-C1.md`),
+appelés par `construire.py` après l'A1, qu'ils ne touchent pas.
+
+| | A2 | B1 | B2 | C1 |
+|---|---:|---:|---:|---:|
+| Noms | 708 | 1 074 | 431 | 612 |
+| Verbes | 321 | 436 | 189 | 127 |
+| Adjectifs | 204 | 342 | 114 | 110 |
+| Adverbes | 99 | 162 | 86 | 25 |
+| Expressions | 79 | 94 | 118 | 53 |
+| Fiches (questions) | 10 (130) | 10 (126) | 10 (122) | 9 (110) |
+
+Plus 127 mots-outils, 36 feuilles de conjugaison, « S'entraîner par temps »
+(12 séries, 193 questions) et les couches A2, B1, B2, C1 des 43 scènes
+(`portugais/scenes/<scène>.json`, fusionnées par `scenes.py`). **Total : 3 335
+noms, 1 193 verbes, 862 adjectifs, 56 fiches, 829 questions.**
+
+Dans le moteur : les 39 séries A2-C1 dans l'ordre du cours de la séance,
+« S'entraîner par temps » (comme l'anglais), et la carte de verbe montre, quand
+ils existent, le perfeito composto, le mais-que-perfeito, les conjuntivos
+imperfeito et futuro, le particípio et le gerúndio ; les subjonctifs se lisent
+avec leur conjonction devant la personne (« que eu fale », « se ele se
+levantasse », « quando tu chegares »). Essayé dans l'app : séances A2 et B1 carte par
+carte, fiche B1 et sa série, par temps, verbe A2, couche A2 de la cuisine —
+sans allemand ni erreur. Une passe anti-brésilianismes y a trouvé 9 entrées
+(grama, abobrinha, tela, endereço, « tem » pour « há », « estou indo »),
+signalées à la session A2-C1 pour correction à la source.
+
 ### Vérifié (29 oct. 2026)
 
 - `python tests/verifier.py` : aucun problème (lancé avec `audio/mp3` relié au
@@ -93,14 +125,25 @@ gostar de · l'adjectif · le passé (perfeito) · há · les faux amis.
   les sept temps sans vós, « Quel article ? » propose o / a, la séance du jour
   sert « o quarto · os quartos », trois scènes s'ouvrent en portugais sans
   erreur.
+- **Essai « apprenant » (nuit du 29 au 30 oct.)**, chaque carte composée affichée
+  recto et verso : la séance d'un compte neuf (mots, feuille de conjugaison,
+  escale 1 de l'A1 voyage et ses phrases toutes faites, questions de grammaire,
+  scène, oral) ; la séance à l'escale 6 (phrases à trou, écoute, verbes,
+  adjectifs) ; Premiers pas étape 1 et étape des transports (cartes, tableau,
+  écoute, scène, phrase à construire) ; Écouter, dictée, « Mes feuilles »,
+  recherche (casa, maison, comboio, Tisch), mode nuit, scène ouverte depuis le
+  ruban (`apprendre=pt`). **Aucun texte allemand, aucune erreur JavaScript.**
+  Corrigé : la recherche allait chercher le dictionnaire allemand (deux 404 par
+  recherche) ; elle s'en passe désormais en portugais.
 - **Pas vérifié** : sur un vrai téléphone (voix pt-PT réelle, iPhone), et le
   parcours connecté de l'admin (la garde et Firestore) — à faire par Jacques.
 
 ## Ce qui manque
 
-1. **A2 à C1** : confié à la session « Portugais : les niveaux A2 à C1 »
-   (`portugais/outils/niveaux.py`, appelé par `construire.py` après l'A1 dès
-   qu'il existe ; plan dans `portugais/PLAN-A2-C1.md`).
+1. ~~A2 à C1~~ : **fait** (nuit du 29 au 30 oct.) par la session « Portugais : les
+   niveaux A2 à C1 », branché ici (voir « A2 à C1 » plus haut). Reste sa liste
+   de cartes écartées faute d'avoir leur mot dans la phrase
+   (`portugais/outils/rapport_niveaux.txt`, 437 cartes).
 2. **La mosaïque** (des peintres portugais) : pas faite ici. Aujourd'hui,
    l'essai montre le tableau par défaut (allemand). Je vois une session
    « portugais-la-mosa-que-de » ouverte par le chef : à raccorder.

@@ -8,12 +8,14 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as framboesas",
    "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -42,12 +44,14 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os mirtilos",
    "niveau": "A2",
+   "theme": "comida_a2_pt_2",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -82,6 +86,7 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -109,13 +114,15 @@ window.SCENE = {
    "mot": "ameixa",
    "genre": "a",
    "pluriel": "as ameixas",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -144,12 +151,14 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os ruibarbos",
    "niveau": "B1",
+   "theme": "comida_b1_pt_2",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -177,13 +186,15 @@ window.SCENE = {
    "mot": "noz",
    "genre": "a",
    "pluriel": "as nozes",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "comida_a2_pt_2",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -218,6 +229,7 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -246,12 +258,14 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as groselhas",
    "niveau": "B2",
+   "theme": "comida_b2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -280,12 +294,14 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as groselhas-espinhosas",
    "niveau": "B2",
+   "theme": "comida_b2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -314,12 +330,14 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as cerejas",
    "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -347,13 +365,15 @@ window.SCENE = {
    "mot": "amora",
    "genre": "a",
    "pluriel": "as amoras",
-   "niveau": "B1",
+   "niveau": "A2",
+   "theme": "comida_a2_pt",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -388,6 +408,7 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -423,6 +444,7 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -451,12 +473,14 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os pêssegos",
    "niveau": "A2",
+   "theme": "comida_a2_pt_2",
    "personne": null,
    "aussi": [
     {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -492,6 +516,7 @@ window.SCENE = {
      "mot": "caixote",
      "genre": "o",
      "niveau": "A2",
+     "theme": "casa_a2_pt",
      "fr": "la caisse"
     },
     {
@@ -567,7 +592,8 @@ window.SCENE = {
    "mot": "banca",
    "genre": "a",
    "pluriel": "as bancas",
-   "niveau": "B2",
+   "niveau": "A2",
+   "theme": "cidade_a2_pt",
    "personne": null,
    "aussi": [],
    "sur": null,

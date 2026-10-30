@@ -90,6 +90,7 @@ window.SCENE = {
      "mot": "pintura",
      "genre": "a",
      "niveau": "A2",
+     "theme": "cultura_a2_pt_2",
      "fr": "peinture/tableau"
     }
    ],
@@ -111,6 +112,7 @@ window.SCENE = {
    "genre": "o",
    "pluriel": "os ganchos",
    "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -274,6 +276,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as vassouras",
    "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
@@ -626,6 +629,7 @@ window.SCENE = {
    "genre": "a",
    "pluriel": "as tesouras",
    "niveau": "A2",
+   "theme": "casa_a2_pt_2",
    "personne": null,
    "aussi": [],
    "sur": null,
