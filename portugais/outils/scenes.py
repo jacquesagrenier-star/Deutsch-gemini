@@ -270,6 +270,14 @@ def construire_scene(nom, idx):
             scene[cle] = t
     scene["exclus"] = sorted({portugais_de({"mot": m}, idx)["mot"] for m in de.get("exclus", [])})
     scene["couches"] = {"A1": dict(de.get("couches", {}).get("A1", {}), titre="Noms et articles")}
+    # Les couches A2-C1 ECRITES pour le portugais (portugais/scenes/<nom>.json,
+    # session « Portugais A2-C1 ») ; les cles « _... » (« _de » rappelle le fait
+    # allemand) ne sont pas copiees.
+    p_pt = os.path.join(RACINE, "portugais", "scenes", nom + ".json")
+    if os.path.exists(p_pt):
+        for niv, couche in json.load(io.open(p_pt, encoding="utf-8")).get("couches", {}).items():
+            scene["couches"][niv] = dict(couche, qs=[{k: v for k, v in q.items() if not k.startswith("_")}
+                                                    for q in couche.get("qs", [])])
     # L'interface du portugais est en francais : pas de traductions d'interface.
     scene["traductions"] = {}
     js = ("// GENERE par portugais/outils/scenes.py (depuis scene-%s.js) -- ne pas modifier a la main.\n" % nom

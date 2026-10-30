@@ -1,6 +1,6 @@
 # Le portugais dans Wortando : état des lieux
 
-29 octobre 2026. Mandat de Jacques, transmis par le chef d'orchestre : « une
+29 octobre 2026. **Publié en v1026** (essai admin). Mandat de Jacques, transmis par le chef d'orchestre : « une
 version pour apprendre le portugais », et la base : « On va commencer par le
 portugais du Portugal. » Rien n'a été payé ni généré. Chaque chiffre a été
 compté dans les fichiers.
@@ -84,9 +84,9 @@ gostar de · l'adjectif · le passé (perfeito) · há · les faux amis.
 - `python tests/verifier.py` : aucun problème (lancé avec `audio/mp3` relié au
   dépôt principal, comme l'exige un worktree).
 - `node tests/syntaxe.js` : les 8 blocs `<script>` s'analysent.
-- `parcours.py --app de` contre `de-v1007` et `--app es-moteur` contre
-  `es-v1007` : voir le rapport de la session au chef d'orchestre (0 écart exigé
-  avant tout push).
+- `parcours.py --app de` contre `de-v1007` : 128 chemins, **0 écart** ;
+  `--app es-moteur` contre `es-v1007` : 77 chemins, **0 écart** (avant et après
+  la mise à jour avec `main` et le passage en v1026).
 - `parcours.py --app pt` : 42 chemins, aucune erreur JavaScript.
 - Essai ciblé dans Chromium (Playwright, sans connexion) : Premiers pas s'ouvre
   sur « olá », les fiches et leurs séries se jouent, la carte de verbe montre
@@ -98,13 +98,15 @@ gostar de · l'adjectif · le passé (perfeito) · há · les faux amis.
 
 ## Ce qui manque
 
-1. **A2 à C1** : rien encore (corpus, fiches, couches A2-C1 des scènes écrites
-   pour le portugais). Le chemin est celui de l'anglais (`anglais/PLAN-A2-C1.md`).
+1. **A2 à C1** : confié à la session « Portugais : les niveaux A2 à C1 »
+   (`portugais/outils/niveaux.py`, appelé par `construire.py` après l'A1 dès
+   qu'il existe ; plan dans `portugais/PLAN-A2-C1.md`).
 2. **La mosaïque** (des peintres portugais) : pas faite ici. Aujourd'hui,
    l'essai montre le tableau par défaut (allemand). Je vois une session
    « portugais-la-mosa-que-de » ouverte par le chef : à raccorder.
 3. **La voix enregistrée** : chiffrage ci-dessous, rien de généré.
-4. **La variante brésilienne** : les mots sont notés (`variantes-br.json`),
+4. **La variante brésilienne** : les mots sont notés (`variantes-br.json`, la
+   table des remplacements Portugal → Brésil qui servira de source),
    mais il manque les phrases, la conjugaison (você partout, gerúndio), la voix
    pt-BR et le choix dans les réglages, comme « Quel anglais ? ».
 5. **Les à-côtés de l'anglais** : fréquence d'usage (Leipzig), mots voisins
