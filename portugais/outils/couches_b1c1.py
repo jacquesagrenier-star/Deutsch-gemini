@@ -261,6 +261,266 @@ pizza |  | A pizza ___ acabar daqui a nada. | deve | pode-se / tem | A pizza dev
 torte | anna | ___ que foi a Anna que fez o bolo. | Parece | Parecem / Pareça | Parece que foi a Anna que fez o bolo. | Il paraît qu'Anna a fait le gâteau elle-même. | Le ouï-dire : <b>parece que</b>.
 """),
 },
+"schlafzimmer": {
+"B1": ("Onde ? Para onde ? — et le perfeito", """
+pullover | koffer | A Anna põe a camisola ___ mala de viagem. | na | para a / à | A Anna põe a camisola na mala de viagem. | Anna met le pull dans la valise. | <b>pôr em</b> : là où la chose se retrouve.
+pullover | koffer | Daqui a pouco, a camisola ___ na mala. | vai estar | vai a estar / está a ir | Daqui a pouco, a camisola vai estar na mala. | Dans un instant, le pull sera dans la valise. | Le futur proche : <b>vai estar</b>.
+hut | bett | A Anna ___ o chapéu em cima da cama. | pôs | punha / põe | A Anna pôs o chapéu em cima da cama. | Anna a posé le chapeau sur le lit. | <b>pôr</b> au perfeito : <b>pôs</b>.
+kamera | bett | A máquina fotográfica ___ em cima da cama. | está | põe / vai | A máquina fotográfica está em cima da cama. | L'appareil photo est sur le lit. | La position : <b>estar</b>.
+ladegeraet |  | A Anna quase se ___ do carregador. | esqueceu | esquecia / esquece | A Anna quase se esqueceu do carregador. | Anna a failli oublier le chargeur. | <b>esquecer-se de</b> ; après <b>quase</b>, le pronom passe devant.
+wecker |  | O despertador está ___ mesa de cabeceira. | na | à / para a | O despertador está na mesa de cabeceira. | Le réveil est sur la table de nuit. | em + a = <b>na</b>.
+anna | bett | A Anna está de pé ao lado ___ cama. | da | de a / à | A Anna está de pé ao lado da cama. | Anna est debout à côté du lit. | <b>ao lado de</b> + a = <b>ao lado da</b>.
+koffer | anna | Amanhã a Anna vai de avião ___ o sul. | para | ao / no | Amanhã a Anna vai de avião para o sul. | Demain, Anna part en avion vers le sud. | La destination : <b>para</b>.
+"""),
+"B2": (T_PASSIF, """
+koffer | bett | A mala ___ está em cima da cama é azul. | que | quem / onde | A mala que está em cima da cama é azul. | La valise qui est sur le lit est bleue. | Sujet : <b>que</b>.
+pass | bett | O passaporte, sem o ___ a Anna não pode viajar, está na cama. | qual | que / quem | O passaporte, sem o qual a Anna não pode viajar, está na cama. | Le passeport, sans lequel Anna ne peut pas voyager, est sur le lit. | Après une préposition : <b>o qual</b>.
+anna | pullover | A mulher, ___ camisola é verde, está a pensar. | cuja | cujo / que a | A mulher, cuja camisola é verde, está a pensar. | La femme au pull vert réfléchit. | <b>cuja</b> + camisola (féminin).
+koffer |  | A mala já está meio ___. | feita | feito / fazida | A mala já está meio feita. | La valise est déjà à moitié faite. | <b>fazer a mala</b> → <b>a mala está feita</b>.
+koffer |  | Tudo ainda tem de ser ___ hoje. | arrumado | arrumada / arrumar | Tudo ainda tem de ser arrumado hoje. | Tout doit encore être emballé aujourd'hui. | Passif avec <b>ter de ser</b> + participe ; <b>tudo</b> → masculin.
+kamera | bett | A máquina com a ___ a Anna quer tirar fotografias está na cama. | qual | que / quem | A máquina com a qual a Anna quer tirar fotografias está na cama. | L'appareil photo avec lequel Anna veut faire des photos est sur le lit. | <b>com a qual</b> (ou <b>com que</b>).
+"""),
+"C1": (T_HYPO, """
+anna | koffer | Ela ___ estar ansiosa pela viagem. | deve | pode-se / tem | Ela deve estar ansiosa pela viagem. | Elle doit se réjouir du voyage. | Déduction : <b>dever</b> ; <b>estar ansioso por</b> = avoir hâte de.
+pullover |  | ___ a camisola seja quente demais para o sul. | Talvez | Se calhar / Deve | Talvez a camisola seja quente demais para o sul. | Le pull est peut-être trop chaud pour le sud. | <b>talvez</b> + conjuntivo (<b>seja</b>).
+koffer |  | Ela ___ partir amanhã de manhã. | deverá | deveria-se / deva | Ela deverá partir amanhã de manhã. | Elle décolle sans doute demain matin. | Probable : <b>deverá</b>.
+bild |  | ___ que naquela praia faz calor o ano inteiro. | Dizem | Diz-se-lhe / Digam | Dizem que naquela praia faz calor o ano inteiro. | Il paraît qu'à cette plage il fait chaud toute l'année. | Le ouï-dire : <b>dizem que</b>.
+"""),
+},
+"hotel": {
+"B1": ("Les prépositions de temps : às, a partir de, até, de… a", """
+tasse |  | O pequeno-almoço é servido ___ das sete. | a partir | desde / até | O pequeno-almoço é servido a partir das sete. | Le petit-déjeuner est servi à partir de sept heures. | <b>a partir de</b> + as = <b>a partir das</b> sete.
+mark |  | O Mark chega ___ sexta-feira à noite. | na | à / em a | O Mark chega na sexta-feira à noite. | Mark arrive vendredi soir. | Un jour : <b>na</b> sexta-feira (ou sans article : <b>sexta-feira</b>).
+koffer | mark | Ele fica ___ domingo. | até | a / para | Ele fica até domingo. | Il reste jusqu'à dimanche. | Jusqu'à : <b>até</b>.
+schluessel-2 |  | O quarto está pronto ___ três horas. | às | as / nas | O quarto está pronto às três horas. | La chambre est prête à trois heures. | L'heure : a + as = <b>às</b>.
+fenster |  | ___ inverno, o hotel é calmo. | No | Em o / Ao | No inverno, o hotel é calmo. | En hiver, l'hôtel est calme. | Une saison : em + o = <b>no</b> inverno.
+rezeption |  | A receção está aberta ___ sete às vinte e três. | das | de / desde as | A receção está aberta das sete às vinte e três. | La réception est ouverte de sept heures à vingt-trois heures. | De… à… : <b>das</b> … <b>às</b>.
+mark |  | ___ do pequeno-almoço, o Mark vai à cidade. | Depois | Após de / Antes | Depois do pequeno-almoço, o Mark vai à cidade. | Après le petit-déjeuner, Mark va en ville. | <b>depois de</b> + o = <b>depois do</b>.
+zeitung | frau | A senhora lê o jornal ___ noite. | à | na / de | A senhora lê o jornal à noite. | Le soir, la femme lit le journal. | Le moment de la journée : <b>de manhã</b>, <b>à tarde</b>, <b>à noite</b>.
+"""),
+"B2": ("Enquanto, assim que, enquanto não", """
+mark | frau | ___ o Mark espera pela chave, a senhora lê o jornal. | Enquanto | Assim que / Logo que | Enquanto o Mark espera pela chave, a senhora lê o jornal. | Pendant que Mark attend la clé, la femme lit le journal. | Simultané : <b>enquanto</b> + indicatif.
+schluessel-2 | mark | Assim que o Mark ___ a chave, sobe ao quarto. | tiver | tem / tenha | Assim que o Mark tiver a chave, sobe ao quarto. | Dès que Mark a la clé, il monte dans sa chambre. | <b>assim que</b> + action future : futuro do conjuntivo.
+frau |  | A senhora fica no hotel enquanto ___. | chover | chove / chova | A senhora fica no hotel enquanto chover. | La femme reste à l'hôtel tant qu'il pleut. | <b>enquanto</b> (tant que), pour l'avenir : futuro do conjuntivo.
+mann | schluessel-2 | O homem sorri ___ dá a chave ao Mark. | enquanto | assim que / quando que | O homem sorri enquanto dá a chave ao Mark. | L'homme sourit en donnant la clé à Mark. | En même temps : <b>enquanto</b>.
+telefon |  | Logo que o quarto ___ pronto, a receção telefona. | estiver | está / esteja | Logo que o quarto estiver pronto, a receção telefona. | Dès que la chambre est prête, la réception appelle. | <b>logo que</b> + futuro do conjuntivo.
+treppe | aufzug | Enquanto o elevador ___ avariado, os hóspedes usam a escada. | estiver | está-se / estivesse | Enquanto o elevador estiver avariado, os hóspedes usam a escada. | Tant que l'ascenseur est en panne, les clients prennent l'escalier. | <b>avariado</b> = en panne (au Portugal).
+"""),
+"C1": (T_HYPO, """
+mark |  | Ele ___ estar ansioso pelo fim de semana. | deve | pode-se / tem | Ele deve estar ansioso pelo fim de semana. | Il doit se réjouir du week-end. | Déduction : <b>dever</b>.
+frau | sofa | A senhora idosa ___ ser cliente habitual. | pode | deve de / há de | A senhora idosa pode ser cliente habitual. | La vieille dame est peut-être une habituée. | Possibilité : <b>poder</b>.
+treppe |  | O quarto ___ no segundo andar. | ficará | fique / ficou-se | O quarto ficará no segundo andar. | La chambre doit être au deuxième étage. | Futur de supposition : <b>ficará</b>.
+rezeption |  | Este hotel ___ o mais antigo de Lisboa. | seria | será-se / seja | Este hotel seria o mais antigo de Lisboa. | Cet hôtel serait le plus ancien de Lisbonne. | Le conditionnel de la rumeur : <b>seria</b>.
+"""),
+},
+"flughafen": {
+"B1": ("Verbe + préposition + infinitif", """
+anna | flugzeug | A Anna tenciona ___ para Espanha. | voar | de voar / a voar | A Anna tenciona voar para Espanha. | Anna a l'intention de prendre l'avion pour l'Espagne. | <b>tencionar</b> + infinitif, sans préposition.
+pass | frau | Ela não se esquece ___ mostrar o passaporte à senhora. | de | a / em | Ela não se esquece de mostrar o passaporte à senhora. | Elle n'oublie pas de montrer son passeport à la femme. | <b>esquecer-se de</b> + infinitif.
+uhr |  | É importante ___ a horas no aeroporto. | estar | de estar / a estar | É importante estar a horas no aeroporto. | Il est important d'être à l'heure à l'aéroport. | <b>é importante</b> + infinitif, sans « de » ; <b>a horas</b> = à l'heure (au Portugal).
+koffer-3 | waage | A senhora pede à Anna ___ pôr a mala na balança. | para | de / a | A senhora pede à Anna para pôr a mala na balança. | La femme demande à Anna de mettre la valise sur la balance. | <b>pedir para</b> + infinitif (ou <b>pedir que</b> + conjuntivo).
+pilot | zeitung | O piloto não tem tempo ___ ler o jornal. | para | de / a | O piloto não tem tempo para ler o jornal. | Le pilote n'a pas le temps de lire le journal. | <b>ter tempo para</b> + infinitif.
+rucksack | anna | A Anna tenta não se ___ da mochila. | esquecer | esquecer-se / esquece | A Anna tenta não se esquecer da mochila. | Anna essaie de ne pas oublier le sac à dos. | <b>tentar</b> + infinitif ; après <b>não</b>, le pronom devant.
+flugzeug | anna | A Anna espera ___ a horas. | chegar | de chegar / que chegar | A Anna espera chegar a horas. | Anna espère arriver à l'heure. | <b>esperar</b> + infinitif (même sujet).
+pass | frau | A Anna tem ___ mostrar o passaporte à senhora. | de | que de / a | A Anna tem de mostrar o passaporte à senhora. | Anna doit montrer son passeport à la femme. | <b>ter de</b> + infinitif.
+"""),
+"B2": ("Les questions indirectes : se, onde, quando, quanto", """
+anna | flugzeug | A Anna pergunta à senhora ___ o avião está a horas. | se | que / quando se | A Anna pergunta à senhora se o avião está a horas. | Anna demande à la femme si l'avion est à l'heure. | Question oui / non rapportée : <b>se</b>.
+koffer-3 | waage | Ela não sabe ___ pesa a mala. | quanto | quanta / o quanto que | Ela não sabe quanto pesa a mala. | Elle ne sait pas combien pèse la valise. | <b>quanto</b> ; le sujet se place souvent après le verbe.
+pilot | flugzeug | O piloto sabe ___ está o avião. | onde | aonde que / se | O piloto sabe onde está o avião. | Le pilote sait où est l'avion. | <b>onde</b> (lieu où l'on est).
+frau | koffer | A senhora pergunta ___ a Anna tem bagagem de mão. | se | que / quem | A senhora pergunta se a Anna tem bagagem de mão. | La femme demande si Anna a un bagage à main. | <b>perguntar se</b>.
+uhr | flugzeug | A Anna quer saber ___ o avião parte. | quando | se quando / que | A Anna quer saber quando o avião parte. | Anna veut savoir quand l'avion décolle. | <b>quando</b>.
+zeitung |  | Sabes ___ é o jornal? | de quem | quem / cujo | Sabes de quem é o jornal? | Tu sais à qui est le journal ? | L'appartenance : <b>de quem é</b>.
+"""),
+"C1": (T_HYPO, """
+anna |  | Ela ___ estar ansiosa pela viagem. | deve | pode-se / tem de ser | Ela deve estar ansiosa pela viagem. | Elle doit se réjouir du voyage. | Déduction : <b>dever</b>.
+pilot | flugzeug | ___ ser o piloto do avião dela. | Pode | Deve de / Há | Pode ser o piloto do avião dela. | Le pilote pilote peut-être son avion. | Possibilité : <b>pode ser</b>.
+koffer-3 | waage | A mala grande ___ pesada demais. | estará | esteja / estava-se | A mala grande estará pesada demais. | La grande valise est sans doute trop lourde. | Futur de supposition : <b>estará</b>.
+fenster |  | Este aeroporto ___ o mais moderno do país. | seria | será-se / seja | Este aeroporto seria o mais moderno do país. | Cet aéroport serait le plus moderne du pays. | Le conditionnel de la rumeur : <b>seria</b>.
+"""),
+},
+"baeckerei": {
+"B1": ("Le possessif : o seu, dele, dela", """
+anna | nachbar | A Anna cumprimenta o ___ vizinho. | seu | sua / dele | A Anna cumprimenta o seu vizinho. | Anna salue son voisin. | <b>o seu</b> + nom masculin : son (à elle) ; plus clair : <b>o vizinho dela</b>.
+nachbar | zeitung | O vizinho lê o jornal. O jornal é ___. | dele | seu dele / dela | O jornal é dele. | Le journal est à lui. | Pour lever le doute : <b>dele</b> (à lui), <b>dela</b> (à elle).
+frau |  | A empregada conhece ___ os clientes do bairro. | todos | toda / tudo | A empregada conhece todos os clientes do bairro. | La vendeuse connaît chaque client du quartier. | <b>todos os</b> + nom pluriel.
+hund | nachbar | O cão é ___ senhor que está à mesa. | do | o / ao | O cão é do senhor que está à mesa. | Le chien appartient au monsieur à la table. | L'appartenance : <b>ser de</b> (de + o = <b>do</b>).
+broetchen | anna | A Anna compra papos-secos para o ___ colega. | seu | sua / dela | A Anna compra papos-secos para o seu colega. | Anna achète des petits pains pour son collègue. | <b>o seu colega</b> (ou <b>o colega dela</b>).
+frau |  | Sabes o nome ___ empregada? | da | de a / à | Sabes o nome da empregada? | Tu connais le nom de la vendeuse ? | de + a = <b>da</b>.
+hund | nachbar | O cão espera pelo ___ dono. | seu | sua / deles | O cão espera pelo seu dono. | Le chien attend son maître. | <b>esperar por</b> + o seu = <b>pelo seu</b>.
+schalter |  | A padaria é muito querida por todos ___ vizinhos. | os | dos / aos | A padaria é muito querida por todos os vizinhos. | La boulangerie est appréciée de tous les voisins. | <b>todos os</b> vizinhos.
+"""),
+"B2": ("Le mais-que-perfeito : tinha feito", """
+frau | brot | Antes de a Anna chegar, a empregada já ___ cozido o pão. | tinha | tem / teve | Antes de a Anna chegar, a empregada já tinha cozido o pão. | Avant qu'Anna arrive, la vendeuse avait cuit le pain. | Le passé avant le passé : <b>tinha</b> + participe.
+nachbar | anna | Quando a Anna entrou, o vizinho já se tinha ___. | sentado | sentada / sentou | Quando a Anna entrou, o vizinho já se tinha sentado. | Quand Anna est entrée, le voisin s'était déjà assis. | <b>sentar-se</b> → <b>tinha-se sentado</b> ; après <b>já</b>, <b>se tinha sentado</b>.
+tasse-2 | zeitung | Depois de ___ o café, leu o jornal. | ter bebido | tinha bebido / beber-se | Depois de ter bebido o café, leu o jornal. | Après avoir bu le café, il a lu le journal. | Après une préposition : <b>ter</b> + participe.
+hund | tasse-2 | O cão já ___ adormecido antes de o café chegar. | tinha | tem / era | O cão já tinha adormecido antes de o café chegar. | Le chien s'était déjà endormi avant que le café arrive. | Toujours <b>ter</b>, jamais ser.
+frau |  | Quando a loja abriu, a empregada já tinha ___ três horas. | trabalhado | trabalhada / trabalhou | Quando a loja abriu, a empregada já tinha trabalhado três horas. | Quand le magasin a ouvert, la vendeuse avait déjà travaillé trois heures. | Le participe ne s'accorde pas avec ter.
+muenze | broetchen | A Anna já tinha ___ os papos-secos quando o telemóvel tocou. | pago | pagado / pagos | A Anna já tinha pago os papos-secos quando o telemóvel tocou. | Anna avait déjà payé les petits pains quand son téléphone a sonné. | <b>pagar</b> → <b>pago</b>.
+"""),
+"C1": (T_HYPO, """
+broetchen | anna | Os papos-secos ___ estar fresquinhos. | devem | podem-se / têm | Os papos-secos devem estar fresquinhos. | Les petits pains doivent être frais. | Déduction : <b>dever</b>, accordé au pluriel.
+hund | nachbar | ___ que o cão seja do vizinho. | Pode ser | Deve ser / Se calhar | Pode ser que o cão seja do vizinho. | Le chien appartient peut-être au voisin. | <b>pode ser que</b> + conjuntivo.
+brot |  | O pão ___ de hoje de manhã. | será | seja / foi-se | O pão será de hoje de manhã. | Le pain date sans doute de ce matin. | Futur de supposition : <b>será</b>.
+schalter |  | Esta padaria ___ a melhor do bairro. | seria | será-se / seja | Esta padaria seria a melhor do bairro. | Cette boulangerie serait la meilleure du quartier. | Le conditionnel de la rumeur : <b>seria</b>.
+"""),
+},
+"apotheke": {
+"B1": ("La négation : não, nem, nenhum, já não", """
+mark |  | O Mark não tem febre, ___ uma constipação. | só | nem / nenhuma | O Mark não tem febre, só uma constipação. | Mark n'a pas de fièvre, juste un rhume. | Le portugais dit <b>não tem febre</b> : pas d'article ; <b>só</b> = seulement.
+medikament-6 |  | Os comprimidos ___ são caros. | não | nem / nenhum | Os comprimidos não são caros. | Les comprimés ne sont pas chers. | <b>não</b> devant le verbe.
+mark |  | O Mark não tem tempo ___ ir ao médico. | para | de / a | O Mark não tem tempo para ir ao médico. | Mark n'a pas le temps d'aller chez le médecin. | <b>ter tempo para</b>.
+mann | stuhl | O senhor idoso não espera ___. | muito | nada / nenhum | O senhor idoso não espera muito. | Le vieux monsieur n'attend pas longtemps. | Pas longtemps : <b>não … muito</b>.
+medikament-6 |  | O Mark não toma os comprimidos ___ café. | com | sem / nem | O Mark não toma os comprimidos com café. | Mark ne prend pas les comprimés avec du café. | <b>com café</b>, sans article.
+pflaster | frau | A farmacêutica ___ tem pensos. | já não | ainda não / não já | A farmacêutica já não tem pensos. | La pharmacienne n'a plus de pansements. | Ne… plus : <b>já não</b>.
+rezept |  | Esta ___ é a minha receita! | não | nem / nenhuma | Esta não é a minha receita! | Ce n'est pas mon ordonnance ! | <b>não</b> avant le verbe ; <b>a receita</b> = l'ordonnance.
+flasche-5 |  | O Mark não comprou ___ xarope para a tosse. | nenhum | nada / nem | O Mark não comprou nenhum xarope para a tosse. | Mark n'a pas acheté de sirop contre la toux. | <b>nenhum</b> renforce la négation (ou simplement : <b>não comprou xarope</b>).
+"""),
+"B2": ("Le discours rapporté", """
+frau | mark | A farmacêutica diz que o Mark ___ uma constipação forte. | tem | tenha / tivesse | A farmacêutica diz que o Mark tem uma constipação forte. | La pharmacienne dit que Mark a un gros rhume. | Verbe introducteur au présent : l'indicatif ne change pas.
+medikament-6 | frau | Ela diz-lhe que ___ os comprimidos três vezes por dia. | tome | toma / tomasse | Ela diz-lhe que tome os comprimidos três vezes por dia. | Elle dit qu'il doit prendre les comprimés trois fois par jour. | Une consigne rapportée : <b>dizer que</b> + conjuntivo.
+mark |  | O médico disse que o Mark não ___ contagioso. | era | é-se / seja | O médico disse que o Mark não era contagioso. | Le médecin a dit que Mark n'est pas contagieux. | Verbe introducteur au passé : présent → imperfeito.
+taschentuch | mark | O Mark diz que ___ tosse há três dias. | tem | tenha / tinha-se | O Mark diz que tem tosse há três dias. | Mark dit qu'il tousse depuis trois jours. | <b>ter tosse</b> = tousser ; <b>há três dias</b> = depuis trois jours.
+flasche-5 | frau | A farmacêutica explica que o xarope ___ a tosse. | alivia | alivie / aliviasse | A farmacêutica explica que o xarope alivia a tosse. | La pharmacienne explique que le sirop aide contre la toux. | Un fait rapporté au présent : indicatif.
+mann | stuhl | O senhor idoso disse que ___ há muito tempo. | estava à espera | está à espera / esteja à espera | O senhor idoso disse que estava à espera há muito tempo. | Le vieux monsieur a dit qu'il attendait depuis longtemps. | Au passé : <b>estava à espera</b> (estar à espera = attendre).
+"""),
+"C1": (T_HYPO, """
+mark | taschentuch | Ele ___ estar constipado. | deve | pode-se / tem | Ele deve estar constipado. | Il doit être enrhumé. | Déduction : <b>dever</b> ; <b>constipado</b> = enrhumé.
+mann | stuhl | ___ o senhor esteja à espera do medicamento. | Talvez | Deve / Se calhar | Talvez o senhor esteja à espera do medicamento. | Le vieux monsieur attend peut-être son médicament. | <b>talvez</b> + conjuntivo.
+mark |  | O Mark ___ estar bom daqui a dois dias. | deverá | deveria-se / deva | O Mark deverá estar bom daqui a dois dias. | Mark devrait être rétabli dans deux jours. | Probable : <b>deverá</b>.
+schalter |  | Esta farmácia ___ a mais antiga do bairro. | seria | será-se / seja | Esta farmácia seria a mais antiga do bairro. | Cette pharmacie serait la plus ancienne du quartier. | Le conditionnel de la rumeur : <b>seria</b>.
+"""),
+},
+"klassenzimmer": {
+"B1": ("Pôr, estar, pendurar : le geste et la position", """
+rucksack | tisch | A mochila ___ debaixo da mesa. | está | pôs / põe | A mochila está debaixo da mesa. | Le sac à dos est sous la table. | La position : <b>estar</b>.
+rucksack | anna | A Anna ___ a mochila debaixo da mesa. | pôs | está / estava | A Anna pôs a mochila debaixo da mesa. | Anna a mis son sac à dos sous la table. | Le geste : <b>pôr</b> → <b>pôs</b>.
+handy | schreibtisch | O telemóvel está ___ secretária. | em cima da | em cima a / por cima a | O telemóvel está em cima da secretária. | Le téléphone est sur le bureau. | <b>em cima de</b> + a = <b>em cima da</b>.
+handy | lehrer | O professor ___ o telemóvel em cima da secretária. | pousou | pousava / pousa | O professor pousou o telemóvel em cima da secretária. | Le professeur a posé son téléphone sur le bureau. | <b>pousar</b> → <b>pousou</b>.
+anna | mark | A Anna está sentada ao lado ___ Mark. | do | de / ao | A Anna está sentada ao lado do Mark. | Anna est assise à côté de Mark. | Devant un prénom, l'article : <b>do</b> Mark.
+jacke | tuer | O Mark ___ o casaco na porta. | pendurou | pendurava / pendura | O Mark pendurou o casaco na porta. | Mark a accroché sa veste à la porte. | Perfeito : <b>pendurou</b>.
+jacke | tuer | O Mark ___ o casaco na porta. | pendura | pendurou-se / pendure | O Mark pendura o casaco na porta. | Mark accroche sa veste à la porte. | Présent : <b>pendura</b>.
+jacke | tuer | Agora o casaco está ___ na porta. | pendurado | pendurada / pendurar | Agora o casaco está pendurado na porta. | La veste est maintenant accrochée à la porte. | <b>estar pendurado</b>, accordé (o casaco).
+"""),
+"B2": ("Relatives et passif d'état", """
+frau |  | A mulher ___ leva um livro debaixo do braço ainda está de pé. | que | quem / cuja | A mulher que leva um livro debaixo do braço ainda está de pé. | La femme qui porte un livre sous le bras est encore debout. | Sujet : <b>que</b>.
+lehrer |  | O homem ___ está em frente do quadro é o professor. | que | quem / onde | O homem que está em frente do quadro é o professor. | L'homme qui est devant le tableau est le professeur. | Sujet : <b>que</b>.
+lehrer | brille | O homem, ___ óculos estão na ponta do nariz, é o professor. | cujos | cujas / que os | O homem, cujos óculos estão na ponta do nariz, é o professor. | L'homme dont les lunettes sont sur le nez est le professeur. | <b>os óculos</b> (masc. pluriel) → <b>cujos</b>.
+anna | heft | A aluna, ___ caderno está aberto na mesa, chama-se Anna. | cujo | cuja / que o | A aluna, cujo caderno está aberto na mesa, chama-se Anna. | La participante dont le cahier est ouvert sur la table s'appelle Anna. | <b>cujo</b> + caderno (masculin).
+tisch | rucksack | A mesa debaixo da ___ está a mochila é de madeira. | qual | que / quem | A mesa debaixo da qual está a mochila é de madeira. | La table sous laquelle est le sac à dos est en bois. | <b>debaixo da qual</b>.
+tafel |  | O quadro já está ___. | apagado | apagada / apagou | O quadro já está apagado. | Le tableau est déjà effacé. | État : <b>estar</b> + participe accordé (o quadro).
+"""),
+"C1": (T_HYPO, """
+anna | mark | O Mark e a Anna ___ conhecer-se. | devem | deve / podem-se | O Mark e a Anna devem conhecer-se. | Mark et Anna doivent se connaître. | Déduction : <b>devem</b>, au pluriel.
+frau |  | A mulher de vestido ___ ter chegado atrasada. | pode | pode-se / há | A mulher de vestido pode ter chegado atrasada. | La femme en robe est peut-être arrivée en retard. | Possibilité sur le passé : <b>pode ter</b> + participe.
+lehrer |  | O professor ___ português há muito tempo. | ensinará | ensine / ensinou-se | O professor ensinará português há muito tempo. | Le professeur enseigne sans doute le portugais depuis longtemps. | Futur de supposition : <b>ensinará</b>.
+lehrer |  | ___ que o professor é do Porto. | Dizem | Diz-se-lhe / Digam | Dizem que o professor é do Porto. | Il paraît que le professeur vient de Porto. | Le ouï-dire : <b>dizem que</b>.
+"""),
+},
+"buero": {
+"B1": ("Les verbes du bureau : ligar, desligar, tomar nota", """
+telefon | mark | O Mark ___ a um cliente. | liga | chama / telefona-se | O Mark liga a um cliente. | Mark appelle un client. | Téléphoner : <b>ligar a alguém</b> (ou telefonar a).
+heft | mark | Ele ___ nota do número. | toma | faz / tira | Ele toma nota do número. | Il note le numéro. | Noter : <b>tomar nota de</b>.
+telefon |  | O Mark ___ ao cliente. | ligou | ligava / liga-se | O Mark ligou ao cliente. | Mark a appelé le client. | Perfeito : <b>ligou</b>.
+drucker | frau | A colega ___ uma carta. | imprime | imprima / imprimiu-se | A colega imprime uma carta. | La collègue imprime une lettre. | <b>imprimir</b>.
+telefon |  | Podes ___ amanhã, por favor? | ligar-me de volta | me ligar de volta / ligar-me-volta | Podes ligar-me de volta amanhã, por favor? | Tu peux me rappeler demain, s'il te plaît ? | Rappeler : <b>ligar de volta</b> (ou <b>voltar a ligar</b>) ; pronom après l'infinitif.
+uhr | mark | Às cinco, o Mark ___ de trabalhar. | para | deixa-se / acaba-se | Às cinco, o Mark para de trabalhar. | À cinq heures, Mark arrête de travailler. | <b>parar de</b> + infinitif (sans accent depuis 1990 : para).
+frau | tafel | A colega ___ uma reunião. | prepara | prepare / preparou-se | A colega prepara uma reunião. | La collègue prépare une réunion. | <b>preparar</b>.
+telefon |  | O Mark vai ___ o telefone já. | desligar | ligar / desligar-se | O Mark vai desligar o telefone já. | Mark va raccrocher tout de suite. | Raccrocher : <b>desligar</b>.
+"""),
+"B2": (T_PASSIF, """
+mark | telefon | O homem ___ está ao telefone chama-se Mark. | que | quem / qual | O homem que está ao telefone chama-se Mark. | L'homme qui est au téléphone s'appelle Mark. | Sujet : <b>que</b>.
+frau |  | A colega, ___ cabelo é grisalho, lê uma carta. | cujo | cuja / que o | A colega, cujo cabelo é grisalho, lê uma carta. | La collègue aux cheveux gris lit une lettre. | <b>cujo</b> s'accorde avec <b>cabelo</b>.
+regal | ordner | A estante ___ estão as pastas é de metal. | onde | que / cuja | A estante onde estão as pastas é de metal. | L'étagère où sont les classeurs est en métal. | Le lieu : <b>onde</b>.
+drucker |  | A carta está a ser ___. | impressa | imprimida / impresso | A carta está a ser impressa. | La lettre est en train d'être imprimée. | <b>imprimir</b> : participe court <b>impresso</b> avec ser / estar, accordé.
+heft |  | O caderno já está meio ___. | preenchido | preenchida / preencher | O caderno já está meio preenchido. | Le cahier est déjà à moitié rempli. | État : <b>estar</b> + participe accordé.
+tafel |  | O quadro no ___ estão desenhadas setas está pendurado na parede. | qual | que / onde que | O quadro no qual estão desenhadas setas está pendurado na parede. | Le tableau sur lequel sont dessinées des flèches est accroché au mur. | <b>no qual</b>.
+"""),
+"C1": (T_HYPO, """
+heft | mark | A conversa ___ ser importante. | deve | pode-se / tem | A conversa deve ser importante. | La conversation doit être importante. | Déduction : <b>dever</b>.
+frau |  | A colega ___ ser a chefe dele. | pode | deve de / há | A colega pode ser a chefe dele. | La collègue est peut-être sa cheffe. | Possibilité : <b>poder</b>.
+mark |  | O Mark ___ conseguir um lugar depois do estágio. | deverá | deveria-se / deva | O Mark deverá conseguir um lugar depois do estágio. | Mark devrait obtenir un poste après le stage. | Probable : <b>deverá</b>.
+fenster |  | ___ que a empresa vai mudar de instalações em breve. | Consta | Constam / Conste | Consta que a empresa vai mudar de instalações em breve. | Il paraît que l'entreprise va bientôt déménager. | Le ouï-dire, soutenu : <b>consta que</b>.
+"""),
+},
+"bibliothek": {
+"B1": ("Les verbes à préposition", """
+anna | buch | A Anna interessa-se ___ história. | pela | na / à | A Anna interessa-se pela história. | Anna s'intéresse à l'histoire. | <b>interessar-se por</b> : por + a = <b>pela</b>.
+anna |  | Ela pensa ___ exame. | no | ao / do | Ela pensa no exame. | Elle pense à son examen. | <b>pensar em</b> : em + o = <b>no</b>.
+anna |  | Ela está à espera ___ amiga. | da | pela / à | Ela está à espera da amiga. | Elle attend son amie. | <b>estar à espera de</b> (ou <b>esperar por</b>).
+student |  | O estudante sonha ___ as férias. | com | de / em | O estudante sonha com as férias. | L'étudiant rêve des vacances. | <b>sonhar com</b>.
+heft | anna | A Anna escreve um trabalho ___ o Muro de Berlim. | sobre | de / em | A Anna escreve um trabalho sobre o Muro de Berlim. | Anna écrit un travail sur le mur de Berlin. | <b>sobre</b> = au sujet de.
+anna |  | Ela já está ansiosa ___ fim de semana. | pelo | do / ao | Ela já está ansiosa pelo fim de semana. | Elle se réjouit déjà du week-end. | <b>estar ansioso por</b> = avoir hâte de : <b>pelo</b>.
+student |  | ___ é que estás à espera? — Da minha amiga. | De quem | Quem / Por que | De quem é que estás à espera? — Da minha amiga. | Qui attends-tu ? — Mon amie. | La préposition passe devant l'interrogatif : <b>de quem</b>.
+student |  | O estudante concentra-se ___ livro. | no | ao / do | O estudante concentra-se no livro. | L'étudiant se concentre sur son livre. | <b>concentrar-se em</b>.
+"""),
+"B2": ("Relatives, passif et participes", """
+anna | buch | A estudante ___ lê o livro chama-se Anna. | que | quem / qual | A estudante que lê o livro chama-se Anna. | L'étudiante qui lit le livre s'appelle Anna. | Sujet : <b>que</b>.
+student |  | O estudante, ___ cabelo é encaracolado, lê na outra mesa. | cujo | cuja / que o | O estudante, cujo cabelo é encaracolado, lê na outra mesa. | L'étudiant aux cheveux bouclés lit à l'autre table. | <b>cujo</b> + cabelo.
+regal | leiter | A estante à ___ está encostada a escada é muito alta. | qual | que / quem | A estante à qual está encostada a escada é muito alta. | L'étagère contre laquelle est l'échelle est très haute. | <b>encostado a</b> + a qual = <b>à qual</b>.
+student |  | Aqui não ___ alto. | se fala | fala-se / se falam | Aqui não se fala alto. | Ici, on ne parle pas fort. | Le se impersonnel ; après <b>não</b>, devant.
+buch |  | O livro já está lido ___ metade. | até meio | a meia / pela metade de | O livro já está lido até meio. | Le livre est déjà lu à moitié. | À moitié : <b>até meio</b>, <b>a meio</b>.
+lampe | buch-2 | O candeeiro ___ está ao lado dos livros. | aceso | acendido / acesa | O candeeiro aceso está ao lado dos livros. | La lampe allumée est à côté des livres. | Participe court comme adjectif : <b>aceso</b> (o candeeiro).
+"""),
+"C1": (T_HYPO, """
+anna |  | Ela ___ ter um exame em breve. | deve | pode-se / tem | Ela deve ter um exame em breve. | Elle doit avoir un examen bientôt. | Déduction : <b>dever</b>.
+student |  | ___ que o estudante seja do curso da Anna. | Pode ser | Deve ser / Se calhar | Pode ser que o estudante seja do curso da Anna. | L'étudiant est peut-être dans le cours d'Anna. | <b>pode ser que</b> + conjuntivo.
+fenster |  | Lá fora ___ estar bastante frio. | deve | pode-se / tem | Lá fora deve estar bastante frio. | Dehors, il doit faire plutôt froid. | <b>dever</b> : probable.
+regal |  | Esta biblioteca ___ mais de um milhão de livros. | teria | terá-se / tenha | Esta biblioteca teria mais de um milhão de livros. | Cette bibliothèque aurait plus d'un million de livres. | Le conditionnel de la rumeur.
+"""),
+},
+"museum": {
+"B1": ("Qual ? Que tipo de ? — les interrogatifs", """
+skulptur | anna | ___ escultura desenha a Anna? — A do cão. | Que | Qual de / Quanta | Que escultura desenha a Anna? — A do cão. | Quelle sculpture Anna dessine-t-elle ? — Celle du chien. | Devant un nom : <b>que</b> (ou <b>qual</b> + de) ; <b>a do cão</b> = celle du chien.
+gemaelde |  | ___ é o quadro de que mais gostas? — O do barco. | Qual | Que / Quem | Qual é o quadro de que mais gostas? — O do barco. | Quel tableau te plaît le plus ? — Celui avec le bateau. | Devant <b>é</b> : <b>qual</b>.
+gemaelde-6 |  | Em ___ sala está o cavalo? — Na primeira sala. | que | qual / quê | Em que sala está o cavalo? — Na primeira sala. | Dans quelle salle est le cheval ? — Dans la première salle. | Préposition + <b>que</b> + nom.
+gemaelde-3 |  | Que ___ de quadro é este? — Um retrato. | tipo | género de / qual | Que tipo de quadro é este? — Um retrato. | Quel genre de tableau est-ce ? — Un portrait. | <b>que tipo de</b> = quel genre de.
+jacke-2 | student | Que casaco ___ o estudante? — Um casaco castanho. | veste | traz-se / veste-se | Que casaco veste o estudante? — Um casaco castanho. | Quel genre de veste porte l'étudiant ? — Une veste marron. | Après un interrogatif, le sujet suit souvent le verbe.
+bleistift | anna | Com ___ desenha a Anna? — Com um lápis. | que | qual / quê de | Com que desenha a Anna? — Com um lápis. | Avec quoi Anna dessine-t-elle ? — Avec un crayon à papier. | Préposition + <b>que</b>.
+mann | tuer | ___ homem está sentado junto à porta? — O de farda. | Que | Qual de / Quem | Que homem está sentado junto à porta? — O de farda. | Quel homme est assis près de la porte ? — L'homme en uniforme. | <b>que</b> + nom ; <b>a farda</b> = l'uniforme.
+mantel | anna | ___ é o sobretudo da Anna? — O cinzento, no banco. | Qual | Que / Quem | Qual é o sobretudo da Anna? — O cinzento, no banco. | Quel manteau est à Anna ? — Le manteau gris sur le banc. | <b>qual é</b> ; « gris » au Portugal : <b>cinzento</b>.
+"""),
+"B2": ("La manière : a + infinitif, ao + infinitif, gerúndio", """
+anna | skulptur | A Anna aprende ___ a escultura. | desenhando | a desenhar-se / desenhada | A Anna aprende desenhando a escultura. | Anna apprend en dessinant la sculpture. | La manière : le gérondif (<b>desenhando</b>), vivant au Portugal dans cet emploi.
+kopfhoerer | student | O estudante aprende mais sobre o quadro ___ os auscultadores. | usando | a usar-se / usado | O estudante aprende mais sobre o quadro usando os auscultadores. | L'étudiant en apprend plus sur le tableau en utilisant son casque. | Gérondif de manière : <b>usando</b>.
+gemaelde-2 |  | Protegem-se os quadros não ___ tocando. | lhes | os / nos | Protegem-se os quadros não lhes tocando. | On protège les tableaux en ne les touchant pas. | <b>tocar em</b> / <b>tocar a</b> : <b>lhes</b> ; après não, devant.
+mann |  | O homem vigia a sala ___ todos os visitantes. | observando | a observar-se / observado | O homem vigia a sala observando todos os visitantes. | L'homme surveille la salle en observant tous les visiteurs. | Gérondif : <b>observando</b>.
+skulptur | anna | A Anna memoriza a escultura ___ desenhá-la. | ao | a / por | A Anna memoriza a escultura ao desenhá-la. | Anna retient la sculpture en la dessinant. | <b>ao</b> + infinitif : en (au moment où).
+tuer |  | Poupa-se dinheiro ___ ao museu ao domingo. | indo | ir / a ir-se | Poupa-se dinheiro indo ao museu ao domingo. | On économise de l'argent en allant au musée le dimanche. | Gérondif : <b>indo</b>.
+"""),
+"C1": (T_HYPO, """
+anna |  | Ela ___ adorar arte. | deve | pode-se / tem | Ela deve adorar arte. | Elle doit aimer l'art. | Déduction : <b>dever</b>.
+student |  | O rapaz ___ estudar Belas-Artes. | pode | deve de / há | O rapaz pode estudar Belas-Artes. | Le jeune homme étudie peut-être l'art. | Possibilité : <b>poder</b>.
+mann | tuer | O homem junto à porta ___ sentado aqui todos os dias. | estará | esteja / estava-se | O homem junto à porta estará sentado aqui todos os dias. | L'homme près de la porte est sans doute assis ici tous les jours. | Futur de supposition : <b>estará</b>.
+gemaelde |  | O quadro do barco ___ muito valioso. | seria | será-se / seja | O quadro do barco seria muito valioso. | Le tableau du bateau aurait beaucoup de valeur. | Le conditionnel de la rumeur.
+"""),
+},
+"musik": {
+"B1": ("Saber, poder, ter de, querer", """
+mark |  | O Mark já ___ tocar três acordes. | sabe | pode / conhece | O Mark já sabe tocar três acordes. | Mark sait déjà jouer trois accords. | Une compétence apprise : <b>saber</b> + infinitif.
+gitarre |  | Ele ___ de praticar todos os dias. | tem | deve / precisa | Ele tem de praticar todos os dias. | Il doit s'exercer tous les jours. | L'obligation : <b>ter de</b>.
+frau |  | Na aula não se ___ falar ao telemóvel. | pode | sabe / deve-se | Na aula não se pode falar ao telemóvel. | En cours, on n'a pas le droit de téléphoner. | La permission : <b>poder</b>.
+mark |  | Mais tarde, o Mark ___ tocar numa banda. | quer | sabe / pode-se | Mais tarde, o Mark quer tocar numa banda. | Mark veut plus tard jouer dans un groupe. | La volonté : <b>querer</b>.
+frau | mark | A senhora gostava que o Mark ___ mais devagar. | tocasse | toque / toca | A senhora gostava que o Mark tocasse mais devagar. | La femme voudrait que Mark joue plus lentement. | <b>gostava que</b> + conjuntivo imperfeito.
+gitarre |  | Não ___ segurar a guitarra com tanta força. | deves | tens / sabes | Não deves segurar a guitarra com tanta força. | Tu ne dois pas tenir la guitare aussi fort. | Un conseil : <b>dever</b>.
+note |  | O Mark ainda não ___ ler bem as notas. | sabe | pode / conhece | O Mark ainda não sabe ler bem as notas. | Mark ne sait pas encore bien lire les notes. | <b>saber</b> + infinitif.
+fenster |  | ___ abrir a janela? | Posso | Sei / Tenho | Posso abrir a janela? | Puis-je ouvrir la fenêtre ? | Demander la permission : <b>posso</b>.
+"""),
+"B2": ("L'adjectif : accord et place", """
+gitarre | mark | O Mark toca numa guitarra ___. | nova | novo / novas | O Mark toca numa guitarra nova. | Mark joue sur une nouvelle guitare. | <b>a guitarra</b> → <b>nova</b>, après le nom.
+schal | frau | A senhora usa um cachecol ___. | roxo | roxa / roxos | A senhora usa um cachecol roxo. | La femme porte une écharpe violette. | <b>o cachecol</b> est masculin : <b>roxo</b>.
+klavier |  | O piano ___ está encostado à parede. | preto | preta / pretos | O piano preto está encostado à parede. | Le piano noir est contre le mur. | <b>o piano</b> → <b>preto</b>.
+geige | schrank | Em cima do armário está um violino ___. | antigo | antiga / velhos | Em cima do armário está um violino antigo. | Sur l'armoire, il y a un vieux violon. | <b>antigo</b> (ancien, de valeur) ; <b>velho</b> (vieux, usé).
+lampe-2 | fenster | Ao lado da janela ___ está um candeeiro. | grande | grando / grandes | Ao lado da janela grande está um candeeiro. | À côté de la grande fenêtre, il y a une lampe. | <b>grande</b> ne change pas au féminin.
+mark |  | O Mark veste uma t-shirt ___. | verde | verda / verdes | O Mark veste uma t-shirt verde. | Mark porte un t-shirt vert. | <b>verde</b> : même forme au masculin et au féminin.
+"""),
+"C1": (T_HYPO, """
+mark |  | O acorde ___ ser difícil. | deve | pode-se / tem | O acorde deve ser difícil. | L'accord doit être difficile. | Déduction : <b>dever</b>.
+geige | frau | ___ que o violino seja da professora. | Pode ser | Deve ser / Se calhar | Pode ser que o violino seja da professora. | Le violon appartient peut-être à la professeure. | <b>pode ser que</b> + conjuntivo.
+gitarre | mark | Daqui a uns meses, o Mark ___ tocar bem. | deverá | deveria-se / deva | Daqui a uns meses, o Mark deverá tocar bem. | Mark devrait bien jouer dans quelques mois. | Probable : <b>deverá</b>.
+frau |  | A professora ___ tocado numa orquestra. | teria | terá-se / tenha | A professora teria tocado numa orquestra. | Il paraît que la professeure jouait autrefois dans un orchestre. | La rumeur sur le passé : <b>teria</b> + participe.
+"""),
+},
 }
 
 

@@ -3,7 +3,7 @@
 
 Appele par construire.py, APRES l'A1 et avant l'ecriture (une ligne) :
 
-    import niveaux; niveaux.construire(jeu)
+    import niveaux; niveaux.construire(jeu, variantes)
 
 `jeu` est le dictionnaire {nom de fichier: donnees} que construire.py ecrit
 dans portugais/datos. L'A1 n'y bouge pas : on ajoute des themes, des niveaux
@@ -39,6 +39,9 @@ import irreguliers as I
 
 NIVEAUX = ["A2", "B1", "B2", "C1"]
 RAPPORT = []
+# Une carte dont la phrase ne contient pas le mot est mise de cote (listee dans
+# le rapport, phrase a ecrire dans la source) plutot que publiee bancale.
+GARDER_SANS_MOT = False
 CLES_PRESENT = ["ich", "du", "er_sie_es", "wir", "ihr", "sie_Sie"]
 
 
@@ -174,6 +177,11 @@ def noms(niv, src, jeu, deja, ic, variantes):
                 continue
             sans = d.get("u") or art in ("os", "as")
             pl = "—" if sans else d.get("pl", pluriel(mot))
+            formes = {mot, pl, mot.split(" ")[0], pl.split(" ")[0]}
+            if not re.search(r"(?<![\wÀ-ú])(" + "|".join(re.escape(x) for x in formes if x and x != "—") + r")(?![\wÀ-ú])", ex, re.I):
+                RAPPORT.append("  %-26s NOM ABSENT DE SA PHRASE : %s" % (mot, ex))
+                if not GARDER_SANS_MOT:
+                    continue
             e = {"mot": mot, "genre": art, "pluriel": pl, "traduction": fr, "exemple": ex, "exemple_fr": exfr}
             if "br" in d:
                 variantes["noms"][mot] = d["br"]
@@ -226,6 +234,8 @@ def verbes(niv, src, jeu, deja, variantes):
             continue
         if not any(re.search(r"(?<![\wÀ-ú])" + re.escape(f) + r"(?![\wÀ-ú])", ex, re.I) for f in formes_verbe(inf)):
             RAPPORT.append("  %-26s VERBE ABSENT DE SA PHRASE : %s" % (inf, ex))
+            if not GARDER_SANS_MOT:
+                continue
         if "br" in d:
             variantes["verbes"][inf] = d["br"]
         out.append(entree_verbe(inf, fr, ex, exfr))
@@ -262,6 +272,8 @@ def adjectifs(niv, src, jeu, deja, variantes):
             formes["comparatif"], formes["superlatif"] = c, "o " + c
         if not re.search(r"(?<![\wÀ-ú])(" + "|".join(re.escape(x) for x in {m, f, pl, fpl}) + r")(?![\wÀ-ú])", ex, re.I):
             RAPPORT.append("  %-26s ADJECTIF ABSENT DE SA PHRASE : %s" % (m, ex))
+            if not GARDER_SANS_MOT:
+                continue
         if "br" in d:
             variantes["adjectifs"][m] = d["br"]
         out.append({"mot": m, "traduction": fr, "exemple": ex, "exemple_fr": exfr, "formes": formes})

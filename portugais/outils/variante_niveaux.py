@@ -360,6 +360,16 @@ EXISTENTIEL = [
     (re.compile(r"\b(não|Não) tem (nada|ninguém|nenhum|nenhuma|mais|muito|muita|muitos|muitas|lugar|vaga|vagas)\b"), r"\1 há \2"),
     (re.compile(r"\b(Aqui|aqui|Lá|lá|Ali|ali) tem\b"), r"\1 há"),
     (re.compile(r"\bTinha (um|uma|muito|muita|muitos|muitas|vários|várias|alguém|pouca|poucos|gente)\b"), r"Havia \1"),
+    # « No jardim tem um anão » : un lieu en tete, puis « tem » existentiel.
+    (re.compile(r"^((?:No|Na|Nos|Nas|Em|Neste|Nesta|Nesse|Nessa|Naquele|Naquela|Aqui|Ali|Lá|Hoje|Agora|Ainda|Também)\b[^,.;?!]*?) "
+                r"tem (um|uma|uns|umas|muito|muita|muitos|muitas|vários|várias|pouco|pouca|poucos|poucas|algum|alguma|alguns|algumas|\d+)\b"),
+     r"\1 há \2"),
+    (re.compile(r"\b(Todo|todo) (mês|dia|ano|domingo|sábado|verão|inverno)\b"),
+     lambda m: ("Todos" if m.group(1)[0] == "T" else "todos") + " os " + {"mês": "meses", "dia": "dias", "ano": "anos",
+               "domingo": "domingos", "sábado": "sábados", "verão": "verões", "inverno": "invernos"}[m.group(2)]),
+    (re.compile(r"\b(Toda|toda) (semana|noite|manhã|tarde|sexta|segunda)\b"),
+     lambda m: ("Todas" if m.group(1)[0] == "T" else "todas") + " as " + {"semana": "semanas", "noite": "noites",
+               "manhã": "manhãs", "tarde": "tardes", "sexta": "sextas", "segunda": "segundas"}[m.group(2)]),
 ]
 TER_QUE = re.compile(r"\b(tenho|tens|tem|temos|têm|tinha|tinhas|tínhamos|tinham|tive|teve|tivemos|tiveram|ter|terá|teria|teremos|tenha|tenhamos|tenham|tivesse) que\b", re.I)
 
