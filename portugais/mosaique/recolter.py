@@ -358,10 +358,13 @@ def vignette(url, cle):
     return Image.open(f)
 
 
-def main():
+def main(peintres=PEINTRES, categories=CATEGORIES, exclus_id=EXCLUS_ID, exclus=EXCLUS,
+         prefixes=(("libre", ""), ("europe", "E")), sortie="candidats.json", recolte="recolte.txt"):
+    """Les arguments servent a la recolte bresilienne (recolter_bresil.py), qui
+    passe ses peintres, ses prefixes (B, BE) et ses fichiers de sortie."""
     os.makedirs(BRUT, exist_ok=True)
     tous, rapport = [], []
-    for nom, q, plafond in PEINTRES:
+    for nom, q, plafond in peintres:
         m = mort(q)
         if not m or m >= EUROPE_AVANT:
             rapport.append("%-28s ECARTE (wikidata %s, mort %s)" % (nom, q, m))
@@ -370,7 +373,7 @@ def main():
         groupe = "libre" if m < LIBRE_AVANT else "europe"
         liste = tableaux(q)
         deja = {t["fichier"] for t in liste}
-        for cat in CATEGORIES.get(nom, []):
+        for cat in categories.get(nom, []):
             for t in fichiers_categorie(cat):
                 if t["fichier"] not in deja:
                     deja.add(t["fichier"])
@@ -380,7 +383,7 @@ def main():
         for t in liste:
             def non(r):
                 raisons[r] = raisons.get(r, 0) + 1
-            if t["wikidata"] in EXCLUS_ID:
+            if t["wikidata"] in exclus_id:
                 non("oeil"); continue
             i = infos.get(t["fichier"])
             if t.get("de_categorie") and i:
@@ -399,7 +402,7 @@ def main():
             if i["l"] < LARGEUR_MIN:
                 non("petite"); continue
             titres = " ".join([t["titre"], t["titre_fr"], t["titre_en"]])
-            if EXCLUS.search(titres) or not titres.strip():
+            if exclus.search(titres) or not titres.strip():
                 non("sujet"); continue
             im = vignette(i["vignette"], t["wikidata"])
             if im is None:
@@ -416,7 +419,7 @@ def main():
                        % (nom, q, m, groupe, len(liste), len(gardes), min(plafond, len(gardes)),
                           ", ".join("%s %d" % kv for kv in sorted(raisons.items())) or "aucun"))
         print(rapport[-1])
-    for g, pref in (("libre", ""), ("europe", "E")):
+    for g, pref in prefixes:
         lot = sorted([t for t in tous if t["groupe"] == g], key=lambda t: -t["score"])
         for n, t in enumerate(lot, 1):
             t["num"] = pref + str(n)
@@ -427,9 +430,9 @@ def main():
             "%s %d" % (p, k) for p, k in sorted(par.items(), key=lambda x: -x[1]))))
         print(rapport[-1])
     tous.sort(key=lambda t: (t["groupe"] != "libre", -t["score"]))
-    json.dump(tous, open(os.path.join(ICI, "candidats.json"), "w", encoding="utf-8"),
+    json.dump(tous, open(os.path.join(ICI, sortie), "w", encoding="utf-8"),
               ensure_ascii=False, indent=1)
-    open(os.path.join(ICI, "recolte.txt"), "w", encoding="utf-8").write("\n".join(rapport) + "\n")
+    open(os.path.join(ICI, recolte), "w", encoding="utf-8").write("\n".join(rapport) + "\n")
 
 
 if __name__ == "__main__":

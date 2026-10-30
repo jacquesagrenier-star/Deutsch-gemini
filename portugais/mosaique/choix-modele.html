@@ -6,20 +6,21 @@
 <style>
 /* Le meme mur de musee que la page des tableaux americains (29 oct. 2026) :
    une grille de toiles avec leur cartel, la selection numerotee dans l'ordre
-   du toucher, une barre de choix en bas. Deux groupes : libres partout
-   (peintres morts avant 1926) et libres en Europe (1926-1955), a decider. */
+   du toucher, une barre de choix en bas. Deux pays depuis le 30 oct. (le
+   Bresil en variante), chacun en deux groupes : libres partout (peintres morts
+   avant 1926) et a decider (1926-1955, pas au Mexique), marques en bleu. */
 :root{
   --fond:#DCE6EC; --carte:#F7FAFC; --encre:#1C2430; --doux:#55606E; --ambre:#E8A23A; --ambre-encre:#7A4A06;
-  --ligne:rgba(28,36,48,.14); --choisi:#1C2430; --sur-choisi:#FFFFFF; --europe:#2F5E8C;
+  --ligne:rgba(28,36,48,.14); --choisi:#1C2430; --sur-choisi:#FFFFFF; --europe:#2F5E8C; --sur-europe:#FFFFFF;
   --f-titre:"Libre Caslon Text", Georgia, "Times New Roman", serif;
   --f-texte:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
   --fond:#0E1C26; --carte:#152A39; --encre:#EEF2F5; --doux:#A9B8C4; --ambre:#F0A93C; --ambre-encre:#F6C46A;
-  --ligne:rgba(255,255,255,.14); --choisi:#F0A93C; --sur-choisi:#1A1206; --europe:#8DB8E6; color-scheme:dark } }
+  --ligne:rgba(255,255,255,.14); --choisi:#F0A93C; --sur-choisi:#1A1206; --europe:#8DB8E6; --sur-europe:#0E1C26; color-scheme:dark } }
 :root[data-theme="dark"]{
   --fond:#0E1C26; --carte:#152A39; --encre:#EEF2F5; --doux:#A9B8C4; --ambre:#F0A93C; --ambre-encre:#F6C46A;
-  --ligne:rgba(255,255,255,.14); --choisi:#F0A93C; --sur-choisi:#1A1206; --europe:#8DB8E6; color-scheme:dark }
+  --ligne:rgba(255,255,255,.14); --choisi:#F0A93C; --sur-choisi:#1A1206; --europe:#8DB8E6; --sur-europe:#0E1C26; color-scheme:dark }
 *{box-sizing:border-box}
 body{margin:0; background:var(--fond); color:var(--encre); font-family:var(--f-texte); font-size:15px; line-height:1.45;
   padding-left:max(16px, env(safe-area-inset-left, 0px)); padding-right:max(16px, env(safe-area-inset-right, 0px)); padding-block:20px 140px}
@@ -30,7 +31,14 @@ header p{margin:6px 0 0; color:var(--doux); max-width:64ch}
 button{font:inherit; cursor:pointer}
 .bouton{border:1px solid var(--ligne); background:var(--carte); color:var(--encre); border-radius:999px; padding:8px 14px; font-weight:600; font-size:14px}
 .bouton:focus-visible, .toile:focus-visible, .envoyer:focus-visible{outline:3px solid var(--ambre); outline-offset:2px}
-section h2{font-family:var(--f-titre); font-size:21px; margin:0 0 4px}
+.pays{font-family:var(--f-titre); font-weight:700; font-size:clamp(23px, 4vw, 29px); margin:14px 0 -6px; padding-top:14px; border-top:2px solid var(--encre); text-wrap:balance}
+.aller{display:flex; flex-wrap:wrap; gap:6px 14px; font-size:14px}
+.aller a{color:var(--encre); font-weight:600; text-decoration-color:var(--ligne); text-underline-offset:3px}
+.aller a.decider{color:var(--europe)}
+section{scroll-margin-top:12px}
+section h3{font-family:var(--f-titre); font-size:21px; margin:0 0 4px}
+section.decider h3{color:var(--europe)}
+section.decider .sous{border-left:4px solid var(--europe); padding-left:10px}
 section .sous{margin:0 0 12px; color:var(--doux); font-size:14px; max-width:72ch}
 .grille{display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap:14px}
 .toile{position:relative; display:flex; flex-direction:column; text-align:left; border:2px solid transparent; border-radius:14px; background:var(--carte);
@@ -45,9 +53,12 @@ section .sous{margin:0 0 12px; color:var(--doux); font-size:14px; max-width:72ch
   font-weight:700; font-size:13px; background:rgba(255,255,255,.88); color:#1C2430; font-variant-numeric:tabular-nums}
 .ne{position:absolute; top:8px; right:8px; height:22px; padding:0 8px; border-radius:11px; display:flex; align-items:center; font-size:11px; font-weight:700;
   letter-spacing:.03em; background:rgba(28,36,48,.72); color:#fff}
-.toile.on{border-color:var(--choisi)}
+.cartel .droits{font-size:11.5px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--europe); margin-top:3px}
+.toile.decider{border-color:color-mix(in srgb, var(--europe) 45%, transparent); border-style:dashed}
+.toile.decider .num{background:var(--europe); color:var(--sur-europe)}
+.toile.on{border-color:var(--choisi); border-style:solid}
 .toile.on .num{background:var(--choisi); color:var(--sur-choisi)}
-.europe .sous b{color:var(--europe)}
+.decider .sous b{color:var(--europe)}
 .barre{position:fixed; left:0; right:0; bottom:0; background:var(--carte); border-top:1px solid var(--ligne);
   padding:12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
   display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; justify-content:space-between; z-index:5}
@@ -60,10 +71,11 @@ section .sous{margin:0 0 12px; color:var(--doux); font-size:14px; max-width:72ch
 </style>
 <div class="page">
   <header>
-    <h1>Tableaux portugais pour la mosaïque du portugais</h1>
+    <h1>Tableaux du Portugal et du Brésil pour la mosaïque du portugais</h1>
     <p>Touche les tableaux que tu gardes, dans l'ordre où tu veux qu'ils apparaissent : chaque toile choisie prend son numéro de passage. Touche-la de nouveau pour la retirer. Quand c'est fait, copie ton choix et colle-le-moi dans la conversation.</p>
-    <p>Tous à l'horizontale, du domaine public (licence lue fichier par fichier sur Wikimedia Commons), sans nu, guerre ni sujet religieux ; dans chaque groupe, du plus coloré au moins coloré.</p>
+    <p>Comme l'espagnol (Espagne et Amérique latine), deux pays sur la même page. Tous à l'horizontale, du domaine public (licence lue fichier par fichier sur Wikimedia Commons), sans nu, guerre ni sujet religieux ; dans chaque groupe, du plus coloré au moins coloré. Les toiles <b style="color:var(--europe)">en bleu, cadre en pointillé</b>, ne sont pas libres partout : c'est à toi de dire si tu les prends.</p>
   </header>
+  <nav class="aller" id="aller" aria-label="Aller à une section"></nav>
   <div class="outils" id="outils"></div>
   <div id="groupes"></div>
 </div>
@@ -88,9 +100,12 @@ const T = /*DONNEES*/[];
   choix = Array.isArray(choix) ? choix.filter(n => connus.has(n)) : [];
   const sauver = () => { try{ localStorage.setItem(CLE, JSON.stringify(choix)); }catch(e){} };
 
+  const decide = new Set(GROUPES.filter(g => g.decider).map(g => g.id));
+  const aDecider = n => { const d = T.find(x => x.n === n); return d && decide.has(d.g); };
+
   function carte(d){
     const b = document.createElement("button");
-    b.type = "button"; b.className = "toile"; b.dataset.n = d.n;
+    b.type = "button"; b.className = "toile" + (decide.has(d.g) ? " decider" : ""); b.dataset.n = d.n;
     const img = document.createElement("img"); img.loading = "lazy"; img.decoding = "async"; img.alt = ""; img.src = d.i;
     const num = document.createElement("span"); num.className = "num"; num.textContent = d.n;
     const cartel = document.createElement("span"); cartel.className = "cartel";
@@ -100,6 +115,7 @@ const T = /*DONNEES*/[];
     const qui = document.createElement("span"); qui.className = "qui";
     qui.textContent = d.p + " († " + d.m + ")" + (d.a ? " · " + d.a : "") + (d.c ? " · " + d.c : "");
     cartel.appendChild(qui);
+    if(decide.has(d.g)){ const dr = document.createElement("span"); dr.className = "droits"; dr.textContent = "À décider · pas libre au Mexique"; cartel.appendChild(dr); }
     b.append(img, num, cartel);
     if(d.s){ const ne = document.createElement("span"); ne.className = "ne"; ne.textContent = "petite · " + d.s + " px"; b.appendChild(ne); }
     b.setAttribute("aria-label", "Tableau " + d.n + ", " + d.p + ", " + d.t);
@@ -118,19 +134,29 @@ const T = /*DONNEES*/[];
       b.setAttribute("aria-pressed", i >= 0 ? "true" : "false");
       num.textContent = i >= 0 ? "n° " + n + " · " + (i + 1) + "ᵉ" : n;
     });
-    const k = choix.length;
+    const k = choix.length, kd = choix.filter(aDecider).length;
     document.getElementById("compte").innerHTML = k + (k > 1 ? " tableaux choisis" : " tableau choisi")
+      + (kd ? " <span>· dont " + kd + " à décider</span>" : "")
       + " <span>· l'espagnol en a 66, l'anglais 67</span>";
     document.getElementById("texteChoix").hidden = true;
     document.getElementById("aide").textContent = "";
   }
 
-  const outils = document.getElementById("outils"), conteneur = document.getElementById("groupes");
+  const outils = document.getElementById("outils"), conteneur = document.getElementById("groupes"),
+        aller = document.getElementById("aller");
+  let paysPrecedent = "";
   GROUPES.forEach(g => {
     const lot = T.filter(d => d.g === g.id);
     if(!lot.length) return;
-    const s = document.createElement("section"); s.className = g.id; s.setAttribute("aria-labelledby", "t-" + g.id);
-    const h = document.createElement("h2"); h.id = "t-" + g.id; h.textContent = g.titre;
+    if(g.pays !== paysPrecedent){
+      const hp = document.createElement("h2"); hp.className = "pays"; hp.textContent = g.pays;
+      conteneur.appendChild(hp); paysPrecedent = g.pays;
+    }
+    const lien = document.createElement("a"); lien.href = "#" + g.id; lien.textContent = g.pays + " · " + g.court + " (" + lot.length + ")";
+    if(g.decider) lien.className = "decider";
+    aller.appendChild(lien);
+    const s = document.createElement("section"); s.id = g.id; s.className = g.decider ? "decider" : ""; s.setAttribute("aria-labelledby", "t-" + g.id);
+    const h = document.createElement("h3"); h.id = "t-" + g.id; h.textContent = g.titre;
     const p = document.createElement("p"); p.className = "sous"; p.innerHTML = g.sous;
     const grille = document.createElement("div"); grille.className = "grille";
     lot.forEach(d => grille.appendChild(carte(d)));

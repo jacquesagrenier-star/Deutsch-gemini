@@ -82,7 +82,7 @@ def main():
         im.save(os.path.join(APP, "img", nom), quality=72, optimize=True)
         titre, annee = TITRES.get(t["wikidata"], (t["titre"], None))
         sortie.append({"rang": t["rang"], "fichier": nom, "l": im.width, "h": im.height,
-                       "peintre": t["peintre"], "mort": t["mort"], "pays": "Portugal",
+                       "peintre": t["peintre"], "mort": t["mort"], "pays": t.get("pays", "Portugal"),
                        "titre": titre, "annee": t["annee"] if annee is None else annee,
                        "source": t["page"], "licence": t["licence"], "recadrage": coupe})
         print(nom, t["peintre"][:28], im.size, coupe or "")

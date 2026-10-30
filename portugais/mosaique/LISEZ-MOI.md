@@ -50,6 +50,25 @@ déjà fait sur cette mesure : pas de deuxième récolte « plus colorée » pou
 
 Relancer `recolter.py` **change la numérotation** : ne pas le relancer avant le choix de Jacques.
 
+## Le Brésil (30 oct. 2026)
+
+Jacques, le 30 oct. : « J'aimerais qu'on entre aussi l'aspect portugais-Brésil. En apprentissage. »
+Le brésilien devient une variante, comme le britannique pour l'anglais, et la mosaïque suit
+l'espagnol (Espagne + Amérique latine) : des peintres **brésiliens** sur la même page, après
+ceux du Portugal. `python portugais/mosaique/recolter_bresil.py` → `candidats-bresil.json` et
+`recolte-bresil.txt`, numérotés **B1…** (libres partout) et **BE1…** (à décider), pour que les
+numéros du Portugal ne bougent pas. Il reprend les fonctions de `recolter.py` avec ses peintres,
+son filtre (il ajoute exécution, fusillade, naufrage, suicide, châtiment) et ses écarts à l'œil.
+
+- **Droit brésilien** : 70 ans après la mort, comptés du 1er janvier suivant (loi 9.610/98,
+  art. 41). Un peintre mort en 1955 ou avant est libre au Brésil en 2026, comme en Europe.
+  D'où les mêmes deux groupes : morts avant 1926 (libres partout, la règle du Mexique) et
+  morts entre 1926 et 1955, œuvres d'avant 1931 (à décider).
+- Peintres nés ailleurs qui ont fait leur œuvre au Brésil (Castagneto, Facchinetti, Taunay,
+  Andersen, Brocos) : gardés. Voyageurs de passage (Debret, Rugendas, Ender) : non.
+- Oscar Pereira da Silva, Henrique Bernardelli, Bertha Worms, Décio Villares, Georg Grimm :
+  aucune toile ne passe (verticales, trop petites ou après 1931).
+
 ## Après le choix de Jacques
 
 1. Recopier son choix dans `decisions/DECISIONS.md`, puis dans `CHOIX` de

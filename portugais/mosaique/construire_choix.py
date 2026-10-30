@@ -1,13 +1,13 @@
-"""Construit la page de choix des tableaux portugais (29 oct. 2026), sur le
+"""Construit la page de choix des tableaux portugais et bresiliens (29-30 oct. 2026), sur le
 modele de la page des tableaux americains : choix-modele.html + les vignettes
-de candidats.json, traitees « vif » (comme dans l'app), en fichiers a cote.
+de candidats.json et candidats-bresil.json, traitees « vif » (comme dans l'app), en fichiers a cote.
 
   python portugais/mosaique/construire_choix.py <dossier de sortie>
       ->  <dossier>/index.html + <dossier>/img/<num>.jpg
 
 La page n'est pas versionnee (plusieurs Mo d'images) : elle se publie comme
 artefact. Jacques touche les tableaux dans l'ordre voulu et colle son choix
-(« n° 3, 12, E4... ») dans la conversation.
+(« n° 3, 12, E4, B7... ») dans la conversation.
 """
 import json, os, sys
 from PIL import Image
@@ -15,16 +15,34 @@ ICI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, ICI)
 import recolter
 
+# Le Bresil s'ajoute le 30 oct. 2026 (variante bresilienne, decision de Jacques) :
+# candidats-bresil.json, numeros B... et BE..., sans toucher a ceux du Portugal.
+FICHIERS = [("pt", "candidats.json"), ("br", "candidats-bresil.json")]
 GROUPES = [
-    {"id": "libre", "titre": "Libres partout",
+    {"id": "pt-libre", "pays": "Portugal", "court": "libres partout", "decider": False,
+     "titre": "Libres partout",
      "sous": "N° 1 à {n} · peintres morts avant 1926, la règle de l'espagnol (le Mexique protège "
              "100 ans) : rien à vérifier, où que l'app soit vue. {peintres}.",
-     "bouton": "Prendre tous les libres partout (1 à {n})"},
-    {"id": "europe", "titre": "À décider : libres en Europe",
+     "bouton": "Prendre tout le Portugal libre (1 à {n})"},
+    {"id": "pt-europe", "pays": "Portugal", "court": "à décider", "decider": True,
+     "titre": "À décider : libres en Europe seulement",
      "sous": "N° E1 à E{n} · peintres morts <b>entre 1926 et 1955</b> (Malhoa, Columbano, Sousa Pinto…), "
-             "œuvres d'avant 1931. Libres au Portugal, en Europe et aux États-Unis, mais pas encore au "
-             "Mexique ni dans les pays qui protègent plus de 70 ans. C'est toi qui décides. {peintres}.",
-     "bouton": "Prendre tous les libres en Europe (E1 à E{n})"},
+             "œuvres d'avant 1931. Libres au Portugal, en Europe et aux États-Unis, mais <b>pas encore au "
+             "Mexique</b> ni dans les pays qui protègent plus de 70 ans. C'est toi qui décides. {peintres}.",
+     "bouton": "Prendre tout le Portugal à décider (E1 à E{n})"},
+    {"id": "br-libre", "pays": "Brésil", "court": "libres partout", "decider": False,
+     "titre": "Libres partout",
+     "sous": "N° B1 à B{n} · peintres morts avant 1926, la même règle : libres partout. Le Brésil protège "
+             "70 ans après la mort ; ces peintres-là sont libres depuis longtemps. Quelques-uns sont nés en "
+             "Italie, en France ou en Allemagne et ont fait leur œuvre au Brésil (Castagneto, Facchinetti, "
+             "Taunay, Grimm). {peintres}.",
+     "bouton": "Prendre tout le Brésil libre (B1 à B{n})"},
+    {"id": "br-europe", "pays": "Brésil", "court": "à décider", "decider": True,
+     "titre": "À décider : libres au Brésil et en Europe seulement",
+     "sous": "N° BE1 à BE{n} · peintres morts <b>entre 1926 et 1955</b> (Visconti, Parreiras, Calixto…), "
+             "œuvres d'avant 1931. Libres au Brésil (70 ans après la mort), au Portugal, en Europe et aux "
+             "États-Unis, mais <b>pas encore au Mexique</b>. C'est toi qui décides. {peintres}.",
+     "bouton": "Prendre tout le Brésil à décider (BE1 à BE{n})"},
 ]
 
 
@@ -32,7 +50,11 @@ def main():
     sys.stdout.reconfigure(encoding="utf-8")
     sortie = sys.argv[1]
     os.makedirs(os.path.join(sortie, "img"), exist_ok=True)
-    c = json.load(open(os.path.join(ICI, "candidats.json"), encoding="utf-8"))
+    c = []
+    for pays, f in FICHIERS:
+        for t in json.load(open(os.path.join(ICI, f), encoding="utf-8")):
+            t["g"] = pays + "-" + t["groupe"]
+            c.append(t)
     donnees = []
     for t in c:
         im = recolter.vif(Image.open(os.path.join(recolter.BRUT, "v-" + t["cle"] + ".jpg")).convert("RGB"))
@@ -42,8 +64,10 @@ def main():
         im.save(os.path.join(sortie, nom), "JPEG", quality=70, optimize=True)
         titre = t["titre"] or t["titre_en"] or t["titre_fr"] or "Sans titre"
         fr = t["titre_fr"] if t["titre_fr"] and t["titre_fr"].lower() != titre.lower() else ""
-        donnees.append({"n": t["num"], "g": t["groupe"], "p": t["peintre"], "m": t["mort"],
-                        "t": titre[:90], "f": fr[:90], "a": t.get("annee") or "",
+        donnees.append({"n": t["num"], "g": t["g"], "p": t["peintre"], "m": t["mort"],
+                        "t": titre[:90], "f": fr[:90],
+                        # une date de Wikidata parfois absurde (« 1500 » pour un peintre ne en 1882)
+                        "a": t.get("annee") if (t.get("annee") or "0") >= "1700" else "",
                         "c": (t["collection"] or [""])[0][:60], "i": nom,
                         "s": t["l"] if t.get("petite") else 0})
     groupes = []
