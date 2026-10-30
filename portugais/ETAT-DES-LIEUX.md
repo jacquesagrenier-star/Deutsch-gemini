@@ -1,6 +1,6 @@
 # Le portugais dans Wortando : état des lieux
 
-29 octobre 2026. **Publié en v1026** (essai admin, A1) ; **A2 à C1 en v1027** (30 oct.). Mandat de Jacques, transmis par le chef d'orchestre : « une
+29 octobre 2026. **Publié en v1026** (essai admin, A1) ; **A2 à C1 en v1027** (30 oct.), complété en **v1029** (cartes reprises, séries allongées, brésilianismes corrigés). Mandat de Jacques, transmis par le chef d'orchestre : « une
 version pour apprendre le portugais », et la base : « On va commencer par le
 portugais du Portugal. » Rien n'a été payé ni généré. Chaque chiffre a été
 compté dans les fichiers.
@@ -97,8 +97,15 @@ appelés par `construire.py` après l'A1, qu'ils ne touchent pas.
 
 Plus 127 mots-outils, 36 feuilles de conjugaison, « S'entraîner par temps »
 (12 séries, 193 questions) et les couches A2, B1, B2, C1 des 43 scènes
-(`portugais/scenes/<scène>.json`, fusionnées par `scenes.py`). **Total : 3 335
-noms, 1 193 verbes, 862 adjectifs, 56 fiches, 829 questions.**
+(`portugais/scenes/<scène>.json`, fusionnées par `scenes.py`). En v1027 : 3 335
+noms, 1 193 verbes, 862 adjectifs, 56 fiches, 829 questions.
+
+**v1029** : les cartes écartées faute de phrase sont reprises (351 phrases
+écrites, `phrases_niveaux.py` ; 83 mots retirés), les séries allongées (287
+questions écrites, 395 tirées des phrases des cartes), les 9 brésilianismes
+corrigés. **Total : 3 522 noms, 1 214 verbes, 991 adjectifs, 425 adverbes, 405
+expressions, 218 mots-outils, 56 fiches, 1 511 questions ; 1 387 zones de
+scènes reliées à une carte.** Plus aucune carte sans son mot dans sa phrase.
 
 Dans le moteur : les 39 séries A2-C1 dans l'ordre du cours de la séance,
 « S'entraîner par temps » (comme l'anglais), et la carte de verbe montre, quand
@@ -109,7 +116,7 @@ levantasse », « quando tu chegares »). Essayé dans l'app : séances A2 et B1
 carte, fiche B1 et sa série, par temps, verbe A2, couche A2 de la cuisine —
 sans allemand ni erreur. Une passe anti-brésilianismes y a trouvé 9 entrées
 (grama, abobrinha, tela, endereço, « tem » pour « há », « estou indo »),
-signalées à la session A2-C1 pour correction à la source.
+corrigées à la source en v1029.
 
 ### Vérifié (29 oct. 2026)
 
@@ -141,9 +148,7 @@ signalées à la session A2-C1 pour correction à la source.
 ## Ce qui manque
 
 1. ~~A2 à C1~~ : **fait** (nuit du 29 au 30 oct.) par la session « Portugais : les
-   niveaux A2 à C1 », branché ici (voir « A2 à C1 » plus haut). Reste sa liste
-   de cartes écartées faute d'avoir leur mot dans la phrase
-   (`portugais/outils/rapport_niveaux.txt`, 437 cartes).
+   niveaux A2 à C1 », branché ici (voir « A2 à C1 » plus haut), complété en v1029.
 2. **La mosaïque** (des peintres portugais) : pas faite ici. Aujourd'hui,
    l'essai montre le tableau par défaut (allemand). Je vois une session
    « portugais-la-mosa-que-de » ouverte par le chef : à raccorder.
