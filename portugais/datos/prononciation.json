@@ -1,0 +1,505 @@
+{
+ "_note": "Derive de portugais/outils/prononciation_a1.py (construire.py) : ne pas modifier a la main. Brouillon.",
+ "groupes": [
+  {
+   "id": "voyelles",
+   "regles": [
+    {
+     "id": "e-avale",
+     "graphie": "e (sans accent)",
+     "api": "[ɨ] · muet",
+     "court": {
+      "fr": "le e sans accent s'avale"
+     },
+     "explication": {
+      "fr": "C'est le trait le plus frappant du Portugal : un e sans accent se réduit à presque rien, un « e » très bref, souvent muet. telefone se dit « t'l'FON' », pequeno « p'KÉ-nou », noite « NOÏT' ». C'est pour cela que le portugais d'Europe semble « manger » les mots."
+     },
+     "exemples": [
+      {
+       "mot": "telefone",
+       "traduction": "le téléphone"
+      },
+      {
+       "mot": "pequeno",
+       "traduction": "petit"
+      },
+      {
+       "mot": "noite",
+       "traduction": "la nuit"
+      },
+      {
+       "mot": "sete",
+       "traduction": "sept"
+      },
+      {
+       "mot": "leite",
+       "traduction": "le lait"
+      },
+      {
+       "mot": "desculpe",
+       "traduction": "excusez-moi"
+      }
+     ]
+    },
+    {
+     "id": "o-final",
+     "graphie": "o (sans accent)",
+     "api": "[u]",
+     "court": {
+      "fr": "le o sans accent se dit « ou »"
+     },
+     "explication": {
+      "fr": "En fin de mot, et souvent ailleurs quand il n'est pas accentué, le o se dit « ou » : obrigado « o-bri-GA-dou », carro « KA-rrou », Porto « POR-tou ». Accentué, il redevient o : avó (o ouvert), avô (o fermé)."
+     },
+     "exemples": [
+      {
+       "mot": "obrigado",
+       "traduction": "merci"
+      },
+      {
+       "mot": "carro",
+       "traduction": "la voiture"
+      },
+      {
+       "mot": "Porto",
+       "traduction": "Porto"
+      },
+      {
+       "mot": "filho",
+       "traduction": "le fils"
+      },
+      {
+       "mot": "como",
+       "traduction": "comment"
+      },
+      {
+       "mot": "pouco",
+       "traduction": "peu"
+      }
+     ]
+    },
+    {
+     "id": "a-ouvert-ferme",
+     "graphie": "a · á · â",
+     "api": "[a] · [ɐ]",
+     "court": {
+      "fr": "deux a : ouvert et sourd"
+     },
+     "explication": {
+      "fr": "Le a accentué est ouvert, comme en français : casa « KA-za », chá. Sans accent, il devient un a sourd, plus fermé, presque un « e » de « le » : a casa, para. L'accent aigu (á) marque le a ouvert, le circonflexe (â) le a fermé : câmara."
+     },
+     "exemples": [
+      {
+       "mot": "casa",
+       "traduction": "la maison"
+      },
+      {
+       "mot": "chá",
+       "traduction": "le thé"
+      },
+      {
+       "mot": "para",
+       "traduction": "pour"
+      },
+      {
+       "mot": "cama",
+       "traduction": "le lit"
+      },
+      {
+       "mot": "más",
+       "traduction": "mauvaises"
+      },
+      {
+       "mot": "câmara",
+       "traduction": "la mairie"
+      }
+     ]
+    },
+    {
+     "id": "nasales",
+     "graphie": "ão · ã · õe · em · im · om · um",
+     "api": "[ɐ̃w̃] · [ɐ̃] · [õj̃]",
+     "court": {
+      "fr": "pão, mãe, põe : les nasales"
+     },
+     "explication": {
+      "fr": "Le tilde (~) rend la voyelle nasale : ã comme « an » bref, ão comme « an » qui glisse vers « ou » (pão, não, mão), õe comme « on » qui glisse vers « i » (põe, lições). Une voyelle devant m ou n en fin de syllabe est nasale aussi : bem « bâïñ », sim, bom, um."
+     },
+     "exemples": [
+      {
+       "mot": "pão",
+       "traduction": "le pain"
+      },
+      {
+       "mot": "não",
+       "traduction": "non"
+      },
+      {
+       "mot": "mãe",
+       "traduction": "la mère"
+      },
+      {
+       "mot": "põe",
+       "traduction": "il met"
+      },
+      {
+       "mot": "bem",
+       "traduction": "bien"
+      },
+      {
+       "mot": "sim",
+       "traduction": "oui"
+      },
+      {
+       "mot": "um",
+       "traduction": "un"
+      }
+     ]
+    },
+    {
+     "id": "ei-ou",
+     "graphie": "ei · ou",
+     "api": "[ɐj] · [o]",
+     "court": {
+      "fr": "leite « lâïte », pouco « pôcou »"
+     },
+     "explication": {
+      "fr": "À Lisbonne, ei se dit presque « âï » : leite « LÂÏT' », primeiro, dinheiro. Et ou se réduit à un o fermé : pouco « PÔ-kou », outro, ouvir."
+     },
+     "exemples": [
+      {
+       "mot": "leite",
+       "traduction": "le lait"
+      },
+      {
+       "mot": "primeiro",
+       "traduction": "premier"
+      },
+      {
+       "mot": "dinheiro",
+       "traduction": "l'argent"
+      },
+      {
+       "mot": "pouco",
+       "traduction": "peu"
+      },
+      {
+       "mot": "outro",
+       "traduction": "autre"
+      },
+      {
+       "mot": "ouvir",
+       "traduction": "écouter"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "consonnes",
+   "regles": [
+    {
+     "id": "s-final",
+     "graphie": "s · z (fin de syllabe)",
+     "api": "[ʃ] · [ʒ]",
+     "court": {
+      "fr": "dois « doïch », Lisboa « lijboa »"
+     },
+     "explication": {
+      "fr": "En fin de mot ou devant une consonne, s (et z final) se dit « ch » : dois « DOÏCH », três, mais, feliz, escola « ch'KOLA ». Devant une consonne sonore (b, d, g, l, m, n, v), il devient « j » : Lisboa « lij-BOA », mesmo. C'est l'accent chuintant du Portugal."
+     },
+     "exemples": [
+      {
+       "mot": "dois",
+       "traduction": "deux"
+      },
+      {
+       "mot": "três",
+       "traduction": "trois"
+      },
+      {
+       "mot": "mais",
+       "traduction": "plus"
+      },
+      {
+       "mot": "escola",
+       "traduction": "l'école"
+      },
+      {
+       "mot": "Lisboa",
+       "traduction": "Lisbonne"
+      },
+      {
+       "mot": "feliz",
+       "traduction": "heureux"
+      }
+     ]
+    },
+    {
+     "id": "s-z",
+     "graphie": "s · ss · z · ç",
+     "api": "[z] · [s]",
+     "court": {
+      "fr": "casa « kaza », massa « massa »"
+     },
+     "explication": {
+      "fr": "Entre deux voyelles, un s seul se dit « z » : casa, mesa, rosa. Pour le son « s » entre voyelles, on double : massa, passar. Le ç (avant a, o, u) et le c (avant e, i) se disent « s » : praça, cidade. Le z en début de syllabe : zero, fazer."
+     },
+     "exemples": [
+      {
+       "mot": "casa",
+       "traduction": "la maison"
+      },
+      {
+       "mot": "mesa",
+       "traduction": "la table"
+      },
+      {
+       "mot": "passar",
+       "traduction": "passer"
+      },
+      {
+       "mot": "praça",
+       "traduction": "la place"
+      },
+      {
+       "mot": "cidade",
+       "traduction": "la ville"
+      },
+      {
+       "mot": "fazer",
+       "traduction": "faire"
+      }
+     ]
+    },
+    {
+     "id": "lh-nh",
+     "graphie": "lh · nh",
+     "api": "[ʎ] · [ɲ]",
+     "court": {
+      "fr": "filho « fillou », vinho « vignou »"
+     },
+     "explication": {
+      "fr": "lh se dit comme le « ill » de famille : filho, trabalho, olhar. nh se dit comme le « gn » de montagne : vinho, amanhã, senhor. Ils ne se séparent jamais en deux sons."
+     },
+     "exemples": [
+      {
+       "mot": "filho",
+       "traduction": "le fils"
+      },
+      {
+       "mot": "trabalho",
+       "traduction": "le travail"
+      },
+      {
+       "mot": "olho",
+       "traduction": "l'œil"
+      },
+      {
+       "mot": "vinho",
+       "traduction": "le vin"
+      },
+      {
+       "mot": "amanhã",
+       "traduction": "demain"
+      },
+      {
+       "mot": "senhor",
+       "traduction": "monsieur"
+      }
+     ]
+    },
+    {
+     "id": "ch-j-x",
+     "graphie": "ch · j · g (e, i) · x",
+     "api": "[ʃ] · [ʒ]",
+     "court": {
+      "fr": "chave, já, gelado : comme en français"
+     },
+     "explication": {
+      "fr": "ch se dit « ch » (chave, chá), j et g devant e ou i se disent « j » (já, gelado, hoje). Le x est capricieux : le plus souvent « ch » (caixa, baixo, peixe), parfois « z » (exame), « ks » (táxi) ou « s » (próximo). Il s'apprend avec le mot."
+     },
+     "exemples": [
+      {
+       "mot": "chave",
+       "traduction": "la clé"
+      },
+      {
+       "mot": "já",
+       "traduction": "déjà"
+      },
+      {
+       "mot": "hoje",
+       "traduction": "aujourd'hui"
+      },
+      {
+       "mot": "gelado",
+       "traduction": "la glace"
+      },
+      {
+       "mot": "caixa",
+       "traduction": "la caisse"
+      },
+      {
+       "mot": "táxi",
+       "traduction": "le taxi"
+      },
+      {
+       "mot": "próximo",
+       "traduction": "prochain"
+      }
+     ]
+    },
+    {
+     "id": "r",
+     "graphie": "r · rr",
+     "api": "[ɾ] · [ʁ]",
+     "court": {
+      "fr": "caro ≠ carro : deux r"
+     },
+     "explication": {
+      "fr": "Entre deux voyelles, un r seul est battu, un petit coup de langue : caro, para, hora. En début de mot, après n ou l, et quand il est doublé (rr), il se dit au fond de la gorge, comme le r français : rua, carro, Henrique. Caro (cher) et carro (voiture) ne se confondent pas."
+     },
+     "exemples": [
+      {
+       "mot": "caro",
+       "traduction": "cher"
+      },
+      {
+       "mot": "carro",
+       "traduction": "la voiture"
+      },
+      {
+       "mot": "hora",
+       "traduction": "l'heure"
+      },
+      {
+       "mot": "rua",
+       "traduction": "la rue"
+      },
+      {
+       "mot": "rio",
+       "traduction": "le fleuve"
+      },
+      {
+       "mot": "terra",
+       "traduction": "la terre"
+      }
+     ]
+    },
+    {
+     "id": "h-muet",
+     "graphie": "h",
+     "api": "—",
+     "court": {
+      "fr": "hoje, hotel : le h ne se dit pas"
+     },
+     "explication": {
+      "fr": "Le h ne se prononce jamais en début de mot : hoje « OJ' », hotel « o-TÈL », homem. Il ne vit que dans ch, lh et nh. Há (il y a) et à (à la) se disent donc pareil."
+     },
+     "exemples": [
+      {
+       "mot": "hoje",
+       "traduction": "aujourd'hui"
+      },
+      {
+       "mot": "hotel",
+       "traduction": "l'hôtel"
+      },
+      {
+       "mot": "homem",
+       "traduction": "l'homme"
+      },
+      {
+       "mot": "hora",
+       "traduction": "l'heure"
+      },
+      {
+       "mot": "há",
+       "traduction": "il y a"
+      }
+     ]
+    },
+    {
+     "id": "l-final",
+     "graphie": "l (fin de syllabe)",
+     "api": "[ɫ]",
+     "court": {
+      "fr": "Portugal, sol : un l sombre"
+     },
+     "explication": {
+      "fr": "En fin de syllabe, le l se dit au fond de la bouche, un l « sombre » proche du l anglais de « ball » : Portugal, sol, azul, mil. Au Brésil, il se change en « ou » ; au Portugal, il reste un l."
+     },
+     "exemples": [
+      {
+       "mot": "Portugal",
+       "traduction": "le Portugal"
+      },
+      {
+       "mot": "sol",
+       "traduction": "le soleil"
+      },
+      {
+       "mot": "azul",
+       "traduction": "bleu"
+      },
+      {
+       "mot": "mil",
+       "traduction": "mille"
+      },
+      {
+       "mot": "hotel",
+       "traduction": "l'hôtel"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "accent",
+   "regles": [
+    {
+     "id": "accent-tonique",
+     "graphie": "´ · ^ · ~",
+     "api": "ˈ",
+     "court": {
+      "fr": "où tombe l'accent"
+     },
+     "explication": {
+      "fr": "Sans accent écrit, un mot qui finit par a, e, o (et leur pluriel en -s) ou par -em, -am est accentué sur l'avant-dernière syllabe : CA-sa, ca-SA-co, FA-lam. Sinon, sur la dernière : ho-TEL, fa-LAR, a-ZUL. Un accent écrit montre la syllabe forte, contre la règle : CÉ-u, a-VÓ, MÚ-si-ca. Le tilde (ã, õ) marque aussi la syllabe forte."
+     },
+     "exemples": [
+      {
+       "mot": "casaco",
+       "traduction": "la veste"
+      },
+      {
+       "mot": "falam",
+       "traduction": "ils parlent"
+      },
+      {
+       "mot": "hotel",
+       "traduction": "l'hôtel"
+      },
+      {
+       "mot": "falar",
+       "traduction": "parler"
+      },
+      {
+       "mot": "música",
+       "traduction": "la musique"
+      },
+      {
+       "mot": "avó",
+       "traduction": "la grand-mère"
+      },
+      {
+       "mot": "avô",
+       "traduction": "le grand-père"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

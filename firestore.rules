@@ -4,7 +4,8 @@
 // dans ce projet : les regles vivent dans la console Firebase, et ce fichier en
 // est la COPIE. Apres toute modification ici, il faut aller les coller dans
 //   https://console.firebase.google.com/project/deutschai-b6fbb/firestore/rules
-// puis cliquer « Publier ». L'inverse est vrai aussi : une regle changee dans la
+// puis cliquer « Publier ». (Le 29 oct. 2026, publie sans la console, par l'API
+// Firebase Rules et le compte de `firebase login` ; meme resultat.) L'inverse est vrai aussi : une regle changee dans la
 // console et pas recopiee ici fait mentir ce fichier.
 //
 // Pourquoi le versionner malgre ca : jusqu'au 9 septembre 2026 ces regles
@@ -43,7 +44,7 @@ service cloud.firestore {
       allow write: if request.auth != null && request.auth.uid == uid;
       // L'admin ne peut modifier QUE deux acces chez autrui : les chapitres VHS
       // et les essais ouverts au compte (`essais`, ajoute le 28 oct. 2026 pour
-      // ouvrir l'anglais au beau-frere de Jacques -- A COLLER dans la console).
+      // ouvrir l'anglais au beau-frere de Jacques -- PUBLIE le 29 oct. 2026).
       // Il n'a aucune raison de toucher a la progression de quelqu'un.
       allow update: if isAdmin()
                     && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['vhsChaptersEnabled', 'essais']);
@@ -91,8 +92,8 @@ service cloud.firestore {
       allow write: if request.auth != null && (request.auth.uid == uid || isAdmin());
     }
 
-    // AJOUTE LE 26 OCTOBRE 2026 (essai japonais, branche `japonais`). A COLLER
-    // dans la console par Jacques -- pas encore publie.
+    // AJOUTE LE 26 OCTOBRE 2026 (essai japonais, branche `japonais`). PUBLIE
+    // le 29 oct. 2026.
     //
     // Meme raison que l'espagnol : la progression japonaise porte les memes noms
     // de champs, elle a donc ses deux collections. Tant que le japonais est un
@@ -109,8 +110,8 @@ service cloud.firestore {
       allow write: if request.auth != null && (request.auth.uid == uid || isAdmin());
     }
 
-    // AJOUTE LE 27 OCTOBRE 2026 (essai anglais, branche `anglais`). A COLLER
-    // dans la console par Jacques -- pas encore publie. Meme raison et meme
+    // AJOUTE LE 27 OCTOBRE 2026 (essai anglais, branche `anglais`). PUBLIE
+    // le 29 oct. 2026. Meme raison et meme
     // regle que le japonais, juste au-dessus.
     match /usersEn/{uid} {
       allow get: if request.auth != null && (request.auth.uid == uid || isAdmin());
@@ -118,6 +119,19 @@ service cloud.firestore {
       allow write: if request.auth != null && request.auth.uid == uid;
     }
     match /resumesEn/{uid} {
+      allow get, list: if isAdmin();
+      allow write: if request.auth != null && (request.auth.uid == uid || isAdmin());
+    }
+
+    // AJOUTE LE 29 OCTOBRE 2026 (essai portugais du Portugal). PAS ENCORE
+    // PUBLIE : a coller dans la console par Jacques (portugais/REGLES-FIRESTORE.md).
+    // Meme raison et meme regle que le japonais et l'anglais, juste au-dessus.
+    match /usersPt/{uid} {
+      allow get: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow list: if isAdmin();
+      allow write: if request.auth != null && request.auth.uid == uid;
+    }
+    match /resumesPt/{uid} {
       allow get, list: if isAdmin();
       allow write: if request.auth != null && (request.auth.uid == uid || isAdmin());
     }
