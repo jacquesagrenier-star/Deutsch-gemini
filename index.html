@@ -8426,6 +8426,34 @@ body[data-theme="dark"] .badge-item.en-cours .badge-need{color:#F0C27A;}
 .badge-barre{display:block; width:80%; height:5px; border-radius:3px; background:rgba(28,36,48,.10); overflow:hidden;}
 .badge-barre i{display:block; height:100%; border-radius:3px; background:linear-gradient(90deg, #F0B456, #D08A1C);}
 body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
+/* v1045 : LA CARTE DE LA SEANCE, DOREE (Jacques, 31 oct. 2026, apres neuf tours de propositions : « je
+   prendrai la premiere a gauche » -- H1 ; « on va prendre le 3 turquoise » ; « la 1 verre blanc net » ;
+   « On implemente. »). Sur un accueil froid (ciel, carte du monde, verre), la seance est la seule chose
+   chaude : un or en diagonale, transparent dans le coin en haut a gauche (la carte du monde s'y devine)
+   et plein en bas a droite. Ce qui marque TA progression est turquoise, la seule couleur froide de la
+   carte : l'anneau et le niveau choisi. Le bouton reste noir. La nuit : le meme or, en cognac sombre. */
+#home #seancePilule{background:linear-gradient(145deg,rgba(250,196,96,.45) 0%,rgba(250,191,91,.47) 8.3%,rgba(249,186,86,.53) 16.7%,rgba(248,181,81,.61) 25%,rgba(248,176,76,.705) 33.3%,rgba(247,170,74,.80) 41.7%,rgba(246,163,71,.89) 50%,rgba(245,156,68,.96) 58.3%,rgba(244,150,66,1) 66.7%,rgba(242,139,63,1) 83.3%,rgba(240,128,60,1) 100%) !important;
+    box-shadow:0 18px 40px rgba(220,120,40,.32), inset 0 1.5px 0 rgba(255,255,255,.55) !important;}
+#home #seancePilule .pa-aujourdhui{color:#8A5208 !important;}
+#home #seancePilule #spTitre, #home #seancePilule .pa-kick{color:#1C2430 !important; text-shadow:none;}   /* titre noir : Jacques, 31 oct. */
+body[data-theme="dark"] #home #seancePilule #spTitre, body[data-theme="dark"] #home #seancePilule .pa-kick{color:#FFFFFF !important; text-shadow:0 1px 10px rgba(0,0,0,.30);}
+#home #seancePilule .pa-sens, #home #seancePilule .pa-contenu{color:rgba(28,36,48,.80) !important;}   /* noir aussi : Jacques, 31 oct. */
+body[data-theme="dark"] #home #seancePilule .pa-sens, body[data-theme="dark"] #home #seancePilule .pa-contenu{color:rgba(255,255,255,.92) !important;}
+#home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #B8F2EC 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), rgba(255,255,255,.35) calc(var(--p) * 1%) 100%) !important;
+    box-shadow:0 0 18px rgba(40,180,170,.35) !important;}
+#home #seancePilule > .pa-anneau::before{background:#F7F9FB !important;}
+#home #seancePilule .seance-niveaux{background:rgba(255,255,255,.82) !important; box-shadow:inset 0 1px 0 #fff, 0 4px 12px rgba(150,80,10,.18) !important;}
+#home #seancePilule .seance-niveau{color:#5B6470 !important;}
+#home #seancePilule .seance-niveau.on{background:linear-gradient(180deg,#4FD1C5,#14807A) !important; color:#FFFFFF !important;
+    box-shadow:0 3px 10px rgba(20,128,122,.40), inset 0 1px 0 rgba(255,255,255,.5) !important;}
+#home #seancePilule .seance-niveau.on::before{display:none;}
+body[data-theme="dark"] #home #seancePilule{background:linear-gradient(145deg,rgba(150,92,30,.40) 0%,rgba(140,80,24,.62) 35%,rgba(120,64,18,.88) 65%,rgba(104,52,14,.96) 100%) !important;
+    box-shadow:0 18px 40px rgba(0,0,0,.40), inset 0 1.5px 0 rgba(255,220,160,.25) !important;}
+body[data-theme="dark"] #home #seancePilule .pa-aujourdhui{color:#F6C46A !important;}
+body[data-theme="dark"] #home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #8FE3DA 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), rgba(255,255,255,.14) calc(var(--p) * 1%) 100%) !important;}
+body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:#14283A !important;}
+body[data-theme="dark"] #home #seancePilule .seance-niveaux{background:rgba(255,255,255,.12) !important; box-shadow:inset 0 1px 0 rgba(255,255,255,.18) !important;}
+body[data-theme="dark"] #home #seancePilule .seance-niveau{color:rgba(255,255,255,.80) !important;}
 </style>
 
 <!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
@@ -8480,7 +8508,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1044</span>
+        <span class="subtitle-version">v1045</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -48295,7 +48323,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1044;
+const APP_VERSION = 1045;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
