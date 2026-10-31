@@ -330,7 +330,20 @@ document.addEventListener("visibilitychange", () => {
         const actif = document.querySelector(".screen.active");
         if(!actif || actif.id === "home") scrollTo(0, 0);
     }catch(e){}
+    recommencerCarteDuMonde();
 });
+// v1044 : LA CARTE REPART DE L'EUROPE ET DE L'AFRIQUE. Jacques, 31 oct. 2026 : « lorsqu'on ouvre la page
+// d'accueil, j'aimerais qu'on commence par le defilement qui commence a l'Afrique et a l'Europe et non en
+// Amerique ». Le defilement (170 s, en boucle) reprenait ou il en etait quand l'app revient de
+// l'arriere-plan : souvent sur l'Amerique. On le remet a son debut a l'ouverture et a chaque retour.
+function recommencerCarteDuMonde(){
+    try{
+        document.querySelectorAll("#fondMonde .fm-piste, #fondMonde .fm-lettres-piste").forEach(el => {
+            (el.getAnimations ? el.getAnimations() : []).forEach(an => { an.currentTime = 0; });
+        });
+    }catch(e){}
+}
+addEventListener("pageshow", recommencerCarteDuMonde);
 </script>
 <script>
 // ⚠️ LU AVANT L'OUVERTURE, PAS APRES. Ce qui suit decide si la page est une
@@ -7273,7 +7286,8 @@ body[data-theme="dark"] #sceneSeance.active, body[data-theme="dark"] .scene-cadr
 .explorer-ruban::-webkit-scrollbar{display:none;}
 .explorer-v{flex:0 0 auto; width:66px; border:0; background:none; padding:0; font:inherit; color:inherit; cursor:pointer; position:relative;}
 .explorer-v img{width:66px; height:100px; object-fit:cover; border-radius:10px; display:block; background:#e6dcc8;}
-#home .explorer-v img{background:transparent;}   /* v1043 : plus de fond beige en attendant l'image, la carte en verre se voit */
+#home .explorer-v img{background:transparent;}
+#flashcards.fin-paquet .flashcard-wrapper{display:none !important;}   /* v1044 : seul « Paquet termine » reste */   /* v1043 : plus de fond beige en attendant l'image, la carte en verre se voit */
 .explorer-v span{display:block; font-size:11px; font-weight:600; text-align:center; margin-top:3px; line-height:1.2;}
 .explorer-v.verrou img{filter:grayscale(.6) brightness(.85);}
 /* v1000 : LE COMPTEUR VIDE SE CACHE. Avant deux lettres, la pastille des resultats
@@ -8466,7 +8480,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1043</span>
+        <span class="subtitle-version">v1044</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -48281,7 +48295,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1043;
+const APP_VERSION = 1044;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -58896,6 +58910,10 @@ function markKnownAlready(){
 }
 
 function showFlashcardEnd(){
+    // v1044 : LA DERNIERE CARTE S'EFFACE. Jacques, 31 oct. 2026 : a la fin des cartes, « il faudra enlever
+    // la carte [...] j'ai le verso, on devrait juste voir paquet termine avec [...] 20 cartes de plus,
+    // revoir les cartes non maitrisees ». Le verso de la derniere carte restait au-dessus des choix.
+    try{ document.getElementById("flashcards").classList.add("fin-paquet"); }catch(e){}
     const actions = document.getElementById("flashcardActions");
     if(actions) actions.classList.add("hidden");
     const fin = document.getElementById("flashcardEnd");
@@ -58966,6 +58984,7 @@ function showFlashcardEnd(){
 function hideFlashcardEnd(){
     const fin = document.getElementById("flashcardEnd");
     if(fin) fin.classList.add("hidden");
+    try{ document.getElementById("flashcards").classList.remove("fin-paquet"); }catch(e){}
 }
 
 let sharedAudioCtx = null;
