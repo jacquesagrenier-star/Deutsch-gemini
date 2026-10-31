@@ -373,8 +373,36 @@ function poserFiligraneSeance(){
         });
     }catch(e){}
 }
-if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", poserFiligraneSeance);
-else poserFiligraneSeance();
+// v1050 : LES GRANDES LETTRES SOUS LA CARTE DE LA SEANCE, quelle que soit sa hauteur (barre d'etat de l'iPhone,
+// ligne « Etape 1 sur 8 »...). Mesuree sur l'accueil seulement : ecran cache = hauteur nulle, on garde la mesure.
+let lettresHautPose = "";
+function placerLettresSousSeance(){
+    try{
+        const pil = document.getElementById("seancePilule");
+        if(!pil) return;
+        const r = pil.getBoundingClientRect();
+        if(!r.height) return;
+        const h = Math.round(r.bottom + (window.scrollY || 0) + 24) + "px";
+        if(h === lettresHautPose) return;
+        lettresHautPose = h;
+        document.documentElement.style.setProperty("--fm-lettres-haut", h);
+    }catch(e){}
+}
+function suivreLettresSousSeance(){
+    placerLettresSousSeance();
+    try{
+        if(window.ResizeObserver){
+            const ro = new ResizeObserver(placerLettresSousSeance);
+            ro.observe(document.body);
+            const pil = document.getElementById("seancePilule");
+            if(pil) ro.observe(pil);
+        }
+    }catch(e){}
+    addEventListener("resize", placerLettresSousSeance);
+    addEventListener("pageshow", placerLettresSousSeance);
+}
+if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => { poserFiligraneSeance(); suivreLettresSousSeance(); });
+else { poserFiligraneSeance(); suivreLettresSousSeance(); }
 </script>
 <script>
 // ⚠️ LU AVANT L'OUVERTURE, PAS APRES. Ce qui suit decide si la page est une
@@ -8541,6 +8569,14 @@ body[data-theme="dark"] .spf-piste{opacity:.32;}
 body:not([data-ecran]) .spf-piste, body[data-ecran="home"] .spf-piste{animation:fmDefile 170s linear infinite;}
 body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-piste{animation:fmLettres 130s linear infinite;}
 @media (prefers-reduced-motion: reduce){ .spf-piste, .spf-lettres-piste{animation:none !important;} }
+/* v1050 : LE FOND SUIT LA BARRE D'ETAT (Jacques, 31 oct. 2026 : « les caracteres sont encore sur ma seance du jour.
+   Je voudrais les descendre. [...] la map du monde, on va la descendre un peu. Elle est trop haute » ; « +80 px »).
+   Sur iPhone, la barre d'etat pousse l'accueil de ~43 px (padding de .app) mais pas le fond, fixe : la carte du
+   monde paraissait trop haute et les lettres mordaient sur la carte de la seance. La carte descend donc de la
+   barre d'etat + 21 px (104 px sur iPhone, 45 px ailleurs) ; les lettres commencent 24 px sous la carte de la
+   seance, mesuree par placerLettresSousSeance() (--fm-lettres-haut). La copie du filigrane suit les deux. */
+#fondMonde .fm-carte, .spf-carte{top:calc(env(safe-area-inset-top, 0px) + 45px);}
+#fondMonde .fm-lettres, .spf-lettres{top:var(--fm-lettres-haut, 520px);}
 </style>
 
 <!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
@@ -8595,7 +8631,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1049</span>
+        <span class="subtitle-version">v1050</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -48410,7 +48446,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1049;
+const APP_VERSION = 1050;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
