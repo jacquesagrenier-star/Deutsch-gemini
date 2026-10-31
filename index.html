@@ -8575,7 +8575,8 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
    monde paraissait trop haute et les lettres mordaient sur la carte de la seance. La carte descend donc de la
    barre d'etat + 21 px (104 px sur iPhone, 45 px ailleurs) ; les lettres commencent 24 px sous la carte de la
    seance, mesuree par placerLettresSousSeance() (--fm-lettres-haut). La copie du filigrane suit les deux. */
-#fondMonde .fm-carte, .spf-carte{top:calc(env(safe-area-inset-top, 0px) + 45px);}
+/* v1051 : 10 px de plus (Jacques : « On peut descendre de 10 px supplementaires pour la carte du monde. ») */
+#fondMonde .fm-carte, .spf-carte{top:calc(env(safe-area-inset-top, 0px) + 55px);}
 #fondMonde .fm-lettres, .spf-lettres{top:var(--fm-lettres-haut, 520px);}
 </style>
 
@@ -8631,7 +8632,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1050</span>
+        <span class="subtitle-version">v1051</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -12119,6 +12120,21 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
                         <span class="setup-choice-flag" id="choixLangueEssaiDrapeau">🇺🇸</span>
                         <span id="choixLangueEssaiNom">Anglais</span>
                     </button>
+                    <!-- Le japonais et le portugais (31 oct. 2026, demande de Jacques) : pour
+                         l'admin seul, les deux essais ne s'ouvrant a aucun compte ; et
+                         l'espagnol depuis l'un d'eux. Voir majEntreeEssaiAnglais(). -->
+                    <button class="setup-choice hidden" id="choixLangueJa" onclick="ouvrirLangueEssaiAdmin('ja')">
+                        <span class="setup-choice-flag">🇯🇵</span>
+                        <span>Japonais</span>
+                    </button>
+                    <button class="setup-choice hidden" id="choixLanguePt" onclick="ouvrirLangueEssaiAdmin('pt')">
+                        <span class="setup-choice-flag">🇵🇹</span>
+                        <span>Portugais</span>
+                    </button>
+                    <button class="setup-choice hidden" id="choixLangueEs" onclick="ouvrirLangueEssaiAdmin('es')">
+                        <span class="setup-choice-flag">🇪🇸</span>
+                        <span>Espagnol</span>
+                    </button>
                 </div>
             </div>
             <div class="setup-choice-group" data-seulement-es>
@@ -13316,11 +13332,27 @@ function majEntreeEssaiAnglais(){
     const bouton = document.getElementById("choixLangueEssai");
     if(!bouton) return;
     const user = window.firebaseAuth && window.firebaseAuth.currentUser;
-    const permis = !!user && (isAdminUser() || essaisDuCompte(user.uid).includes("anglais"));
-    bouton.classList.toggle("hidden", !permis || LANGUE_APPRISE === "ja" || LANGUE_APPRISE === "pt");
+    const admin = !!user && isAdminUser();
+    const permis = !!user && (admin || essaisDuCompte(user.uid).includes("anglais"));
+    const essaiAdmin = LANGUE_APPRISE === "ja" || LANGUE_APPRISE === "pt";
+    bouton.classList.toggle("hidden", !permis || (essaiAdmin && !admin));
+    // Le japonais et le portugais, pour l'admin (31 oct. 2026) ; l'espagnol depuis l'un d'eux, ou le bouton de
+    // l'autre langue mene a l'allemand.
+    [["choixLangueJa", admin && LANGUE_APPRISE !== "ja"],
+     ["choixLanguePt", admin && LANGUE_APPRISE !== "pt"],
+     ["choixLangueEs", admin && essaiAdmin]].forEach(([id, voir]) => {
+        const b = document.getElementById(id);
+        if(b) b.classList.toggle("hidden", !voir);
+    });
     const enAnglais = LANGUE_APPRISE === "en";
     document.getElementById("choixLangueEssaiDrapeau").textContent = enAnglais ? "\u{1F1EA}\u{1F1F8}" : "\u{1F1FA}\u{1F1F8}";
     document.getElementById("choixLangueEssaiNom").textContent = enAnglais ? "Espagnol" : "Anglais";
+}
+function ouvrirLangueEssaiAdmin(cible){
+    if(cible === "pt" && (LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de")){
+        try{ localStorage.setItem(CLE_AVANT_PORTUGAIS, LANGUE_APPRISE); }catch(e){}
+    }
+    ouvrirLangueApprise(cible);
 }
 function ouvrirLangueEssai(){
     if(LANGUE_APPRISE === "en") return ouvrirLangueApprise("es");
@@ -14786,6 +14818,8 @@ const I18N = {
         passage_vers_es: "Passage à l'espagnol…",
         passage_vers_de: "Passage à l'allemand…",
         passage_vers_en: "Passage à l'anglais…",
+        passage_vers_ja: "Passage au japonais…",
+        passage_vers_pt: "Passage au portugais…",
         setup_uilang_label: "Dans quelle langue veux-tu les explications ?",
         setup_continue: "CONTINUER",
         setup_niveau_label: "Tu connais déjà un peu d'allemand ?",
@@ -16292,6 +16326,8 @@ const I18N = {
         passage_vers_es: "Switching to Spanish…",
         passage_vers_de: "Switching to German…",
         passage_vers_en: "Switching to English…",
+        passage_vers_ja: "Switching to Japanese…",
+        passage_vers_pt: "Switching to Portuguese…",
         setup_uilang_label: "Which language for the instructions?",
         setup_continue: "CONTINUE",
         setup_niveau_label: "Do you already know some German?",
@@ -29199,6 +29235,15 @@ function adapterChoixALaLangueApprise(){
         });
         document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice(\'de\')"] .setup-choice-flag')
             .forEach(el => { el.textContent = VARIANTE_PORTUGAIS === "br" ? "\u{1F1E7}\u{1F1F7}" : "\u{1F1F5}\u{1F1F9}"; });
+        document.querySelectorAll('.setup-choice-flag[data-autre]')
+            .forEach(el => { el.textContent = "\u{1F1E9}\u{1F1EA}"; });
+        return;
+    }
+    // Le japonais (essai) : son drapeau sur le premier bouton, l'allemand sur l'autre (31 oct. 2026 -- ils
+    // restaient allemand et espagnol, ce que l'admin voit depuis qu'il y choisit ses langues).
+    if(LANGUE_APPRISE === "ja"){
+        document.querySelectorAll('.setup-choice[onclick*="selectLearningDirectionChoice(\'de\')"] .setup-choice-flag')
+            .forEach(el => { el.textContent = "\u{1F1EF}\u{1F1F5}"; });
         document.querySelectorAll('.setup-choice-flag[data-autre]')
             .forEach(el => { el.textContent = "\u{1F1E9}\u{1F1EA}"; });
         return;
@@ -48446,7 +48491,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1050;
+const APP_VERSION = 1051;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
