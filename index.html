@@ -7273,6 +7273,7 @@ body[data-theme="dark"] #sceneSeance.active, body[data-theme="dark"] .scene-cadr
 .explorer-ruban::-webkit-scrollbar{display:none;}
 .explorer-v{flex:0 0 auto; width:66px; border:0; background:none; padding:0; font:inherit; color:inherit; cursor:pointer; position:relative;}
 .explorer-v img{width:66px; height:100px; object-fit:cover; border-radius:10px; display:block; background:#e6dcc8;}
+#home .explorer-v img{background:transparent;}   /* v1043 : plus de fond beige en attendant l'image, la carte en verre se voit */
 .explorer-v span{display:block; font-size:11px; font-weight:600; text-align:center; margin-top:3px; line-height:1.2;}
 .explorer-v.verrou img{filter:grayscale(.6) brightness(.85);}
 /* v1000 : LE COMPTEUR VIDE SE CACHE. Avant deux lettres, la pastille des resultats
@@ -8465,7 +8466,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1042</span>
+        <span class="subtitle-version">v1043</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -48280,7 +48281,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1042;
+const APP_VERSION = 1043;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -52463,13 +52464,19 @@ function majExplorerScenes(){
     const liste = [jour].concat(autres.slice(decalage).concat(autres.slice(0, decalage)));
     const complet = accesComplet();
     ruban.innerHTML = "";
+    // v1043 : LES VIGNETTES CHARGEES D'AVANCE. Jacques, iPhone, 31 oct. 2026 : « Lorsqu'on glisse les
+    // scenes [...] il y a comme un petit medaillon beige qui apparait [...] a chaque fois que je rentre
+    // dans l'application. Puis [...] quand j'ai glisse quelques fois, ca ne le fait plus ». Chargees
+    // « au besoin » (lazy), les vignettes des pages suivantes arrivaient pendant le glissement, sur leur
+    // fond d'attente beige. Les deux premieres pages se chargent tout de suite, les autres juste apres.
+    let rang = 0;
     liste.forEach(s => {
         const b = document.createElement("button");
         b.type = "button";
         const ouverte = complet || GRATUIT.portesOuvertes.indexOf(s.ouvrir) >= 0;
         b.className = "explorer-v" + (ouverte ? "" : " verrou");
         const img = document.createElement("img");
-        img.loading = "lazy"; img.alt = ""; img.src = vignetteScene(s.nom);
+        img.loading = rang++ < 8 ? "eager" : "lazy"; img.decoding = "async"; img.alt = ""; img.src = vignetteScene(s.nom);
         const sp = document.createElement("span");
         sp.textContent = titreCourtScene(s);
         sp.style.setProperty("--n", Math.max(8, sp.textContent.length));
@@ -52478,6 +52485,14 @@ function majExplorerScenes(){
         b.addEventListener("click", () => { if(ouverte) ouvrirSceneDepuisAccueil(s.nom); else ouvrirAbonnement(); });
         ruban.appendChild(b);
     });
+    // Les autres pages, une seconde plus tard, quand l'accueil est affiche : le cache du navigateur les sert
+    // ensuite sans attente quand on glisse.
+    try{
+        clearTimeout(majExplorerScenes.precharge);
+        majExplorerScenes.precharge = setTimeout(() => {
+            ruban.querySelectorAll("img[loading='lazy']").forEach(im => { im.loading = "eager"; });
+        }, 1200);
+    }catch(e){}
     ruban.scrollLeft = 0;
     pagesExplorer(ruban, Math.ceil(liste.length / 3));   // v1003 : trois par page
 }
