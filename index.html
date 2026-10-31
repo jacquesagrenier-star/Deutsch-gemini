@@ -3691,6 +3691,16 @@ html[data-apprendre="es"] .orb-opt[onclick*="openRelativGenitivInfo"]{ display:n
 }
 
 .icon-audio-btn-sm svg{width:8px; height:8px;}
+/* v1042 : UN SEUL HAUT-PARLEUR (Jacques, 31 oct. 2026 : « L'icone du haut parleur n'est pas le meme
+   partout »). Le mot avait un rond de 30 px, le pluriel 24 px, la phrase 15 px : les trois prennent le
+   meme rond et le meme dessin. La zone tactile (::after) reste celle du grand. */
+/* v1042 : LE CHAMP « SIGNALER UN PROBLEME » SE VOIT LA NUIT (Jacques, 31 oct. 2026 : « on ne voit pas
+   le contour du rectangle [...] C'est dans le reglage »). Son contour encre a 20 % disparaissait sur le
+   bleu nuit. */
+body[data-theme="dark"] #retourTexte{--bord-retour:rgba(238,242,245,.45); background:rgba(255,255,255,.06) !important;}
+.icon-audio-btn--petit, .icon-audio-btn-sm{width:30px !important; height:30px !important;}
+.icon-audio-btn--petit svg, .icon-audio-btn-sm svg{width:14px !important; height:14px !important;}
+.icon-audio-btn-sm{vertical-align:middle; margin-inline-start:6px;}
 
 .audio-btn{
     margin-top:12px;
@@ -8455,7 +8465,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1041</span>
+        <span class="subtitle-version">v1042</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -12174,7 +12184,7 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
             <div class="spacer"></div>
             <textarea id="retourTexte" rows="4" maxlength="600" oninput="sauverBrouillonRetour()"
                       style="width:100%; padding:12px; border-radius:12px; font:inherit; font-size:16px;
-                             border:1px solid rgba(30,41,59,.2); background:transparent; color:inherit;"></textarea>
+                             border:1px solid var(--bord-retour, rgba(30,41,59,.2)); background:transparent; color:inherit;"></textarea>
             <div class="spacer"></div>
             <button class="secondary" id="retourBtn" onclick="envoyerRetour()" data-i18n="retour_envoyer">ENVOYER</button>
         </div>
@@ -48270,7 +48280,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1041;
+const APP_VERSION = 1042;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -56423,6 +56433,27 @@ function leurresNombre(n){
     ajouter(v + 1); ajouter(v - 1); ajouter(v + 2);
     return out.slice(0, 2);
 }
+// v1042 : LA TRADUCTION DU MOT, PRISE DANS LE CORPUS. Jacques, 31 oct. 2026 : « Dans exercice la Edad, on
+// ne voit pas la traduction en francais ». Les reperes « genre » (reperes.json) ne portent que le mot
+// et sa regle (« -dad -> la · 100 % ») ; la traduction vient des themes, dans la langue de l'usager.
+let TRADUCTIONS_NOMS_REPERES = null;
+function traductionNomRepere(motAvecArticle){
+    try{
+        if(!TRADUCTIONS_NOMS_REPERES){
+            TRADUCTIONS_NOMS_REPERES = new Map();
+            themesComptes().forEach(th => Object.keys(th.levels || {}).forEach(niv => {
+                ((th.levels[niv] || {}).words || []).forEach(w => {
+                    const cle = String(w[0] || "").trim().toLowerCase();
+                    if(cle && !TRADUCTIONS_NOMS_REPERES.has(cle)) TRADUCTIONS_NOMS_REPERES.set(cle, w);
+                });
+            }));
+        }
+        const nu = String(motAvecArticle || "").trim().toLowerCase().replace(/^(el|la|los|las|der|die|das|o|a|os|as|the)\s+/, "");
+        const w = TRADUCTIONS_NOMS_REPERES.get(nu);
+        return w ? (traductionDeLaCarte(w, "nomen") || "") : "";
+    }catch(e){ return ""; }
+}
+
 function exercicesRepere(r, n, badge){
     const sens = l => sensPremiersPas(l[1]);
     const carte = (forme, de, s, extra) => Object.assign({ mode: "phrase", forme: forme, cible: null, themeId: "rp_" + r.id,
@@ -56452,8 +56483,10 @@ function exercicesRepere(r, n, badge){
         const formes = ["rp_article", "rp_article", "parler", "rp_article", "rp_article"];
         for(let k = 0; k < n && k < pris.length; k++){
             const l = pris[k], f = formes[k % formes.length];
-            if(f === "parler") out.push(carte("parler", l[0], l[1], { q: "rp_q_dire_mot" }));
-            else out.push(carte("rp_article", l[0], l[1], { q: "rp_q_article" }));
+            const tr = traductionNomRepere(l[0]);
+            const regle = l[1] + (tr ? " \u00b7 " + tr : "");   // v1042 : la regle, puis le sens
+            if(f === "parler") out.push(carte("parler", l[0], regle, { q: "rp_q_dire_mot" }));
+            else out.push(carte("rp_article", l[0], regle, { q: "rp_q_article" }));
         }
         return out;
     }
@@ -58667,6 +58700,10 @@ function basculerGardeCarte(){
     // seance ordinaire -- il se fait dans le paquet des gardes, avec « Sortir
     // du coffre », qui est le seul endroit ou la question se pose vraiment.
     try{ poserCarreauDeLaCarte(it); }catch(e){}   // v853 : pendant le couvercle
+    // v1042 : LE +1 COMPTE DANS L'OBJECTIF. Jacques, 31 oct. 2026 : « Il fait +1 mais ne compte pas dans
+    // la progression ». Le carreau s'affiche (v853) : l'objectif du jour avance avec lui, comme pour
+    // « Encore ». Le calendrier du mot, lui, ne bouge toujours pas (v603).
+    try{ const palierCoffre = recordDailyActivity(); if(palierCoffre > 0) triggerDailyGoalCelebration(palierCoffre); }catch(e){}
     clearTimeout(attentePalier);
     attentePalier = setTimeout(nextFlashcard, ATTENTE_COFFRE_MS);
 }
@@ -58699,6 +58736,10 @@ function sortirDuCoffre(){
     // Le coffre est un lieu de passage, pas un jugement : on y entre, on y
     // tourne, on en sort, et le calendrier du mot n'a pas bouge d'un jour.
     try{ poserCarreauDeLaCarte(it); }catch(e){}   // v853
+    // v1042 : LE +1 COMPTE DANS L'OBJECTIF. Jacques, 31 oct. 2026 : « Il fait +1 mais ne compte pas dans
+    // la progression ». Le carreau s'affiche (v853) : l'objectif du jour avance avec lui, comme pour
+    // « Encore ». Le calendrier du mot, lui, ne bouge toujours pas (v603).
+    try{ const palierCoffre = recordDailyActivity(); if(palierCoffre > 0) triggerDailyGoalCelebration(palierCoffre); }catch(e){}
     // v926 : LE MOT SORTI QUITTE AUSSI LE PAQUET. Jacques : « quand je demande de
     // sortir du coffre, il recule, puis il me remet la meme carte ». Un mot garde
     // est echu ; en fin de paquet, cartesRevenues() reprend les cartes echues de
@@ -58789,7 +58830,29 @@ async function ouvrirGardes(){
         tout.push.apply(tout, toutesCartesPremiersPas());
         sequencePremiersPas().forEach(x => { if(x.phrase && x.themeId) tout.push(x); });
     }catch(e){}
-    const gardes = tout.filter(it => getWordState(it.themeId, it.index).garde);
+    // v1042 : LES CARTES DE COURS AUSSI (chapitres, noms, verbes, adjectifs). Jacques, 31 oct. 2026 :
+    // « Mis de cote indique 2 mais je n'en vois seulement qu'un » -- le compteur (nombreGardes) lit
+    // toute la progression, et l'adjectif garde d'un chapitre de cours (vhs_kapitel..._adjektive) ne
+    // venait d'aucun paquet A1-C1. Meme raison que les cartes de Premiers pas (v916).
+    try{
+        themes.concat(themesCours || []).filter(th => th && String(th.id).indexOf("vhs_kapitel") === 0).forEach(th => {
+            Object.keys(th.levels || {}).forEach(niv => {
+                const lv = th.levels[niv];
+                if(!lv) return;
+                (lv.words || []).forEach((word, index) => tout.push({ word, index, themeId: lv.id, mode: "nomen" }));
+                (lv.verben || []).forEach((word, index) => tout.push({ word, index, themeId: lv.id + "__verben", mode: "vhskapitelverben" }));
+                (lv.adjektive || []).forEach((word, index) => tout.push({ word, index, themeId: lv.id + "__adjektive", mode: "vhskapiteladjektive" }));
+            });
+        });
+    }catch(e){}
+    const vus = new Set();
+    const gardes = tout.filter(it => {
+        if(!getWordState(it.themeId, it.index).garde) return false;
+        const cle = it.themeId + "#" + it.index;
+        if(vus.has(cle)) return false;
+        vus.add(cle);
+        return true;
+    });
     if(!gardes.length){ showInfoToast(t("gardes_vide")); majBoutonGardes(); return; }
     currentCardsFull = gardes;
     currentCards = gardes.slice();

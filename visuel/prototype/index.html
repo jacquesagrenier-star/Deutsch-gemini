@@ -294,6 +294,12 @@ html.nuit .niveaux button{color:#EEF2F5}
 html.nuit .carte{background:rgba(18,34,48,.80);color:#EEF2F5;box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.12),0 10px 26px rgba(0,0,0,.35)}
 html.nuit .carte .consigne{color:#F0A93C}
 html.nuit .choix{background:rgba(30,46,60,.86);color:#EEF2F5}
+/* v1042 : le haut-parleur de « Trouve ! » est celui de l'app (meme dessin, meme rond de 30 px),
+   plus l'emoji 🔈 (Jacques : « L'icone du haut parleur n'est pas le meme partout »). */
+.hp-rond{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;padding:0 !important;
+  border-radius:50% !important;vertical-align:middle;background:rgba(232,162,58,.12) !important;border:1px solid rgba(232,162,58,.3) !important;color:#7D4A08}
+.hp-rond svg{width:14px;height:14px;fill:currentColor}
+html.nuit .hp-rond{color:#F0A93C}
 /* « Continuer », en bas de l'ecran, en verre vert. */
 .suite{position:fixed !important;left:max(16px, calc(50% - 199px));right:max(16px, calc(50% - 199px));
   bottom:calc(12px + env(safe-area-inset-bottom, 0px));z-index:5000;height:54px;padding:0 !important;
@@ -1509,7 +1515,7 @@ function trouver(){
   const chez = proprietaire(p.mot);
   $("bas").classList.remove("en-haut");
   entete("A1 · " + T("trouve") + "  " + compte(i+1, fileTrouver.length),
-         `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""} <button class="choix" style="padding:4px 10px;font-size:13px;margin-left:6px" id="reecouter">🔈</button>`, !EN_SEANCE && !PP);
+         `${T("touche")} ${groupe(p)}${chez ? " — " + T("sur") + " " + nomDe(chez) : ""} <button class="choix hp-rond" style="margin-left:6px" id="reecouter"><svg class="ic-hp" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 0 0 1.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06ZM18.584 5.106a.75.75 0 0 1 1.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 0 1-1.06-1.06 8.25 8.25 0 0 0 0-11.668.75.75 0 0 1 0-1.06Z"/><path d="M15.932 7.757a.75.75 0 0 1 1.061 0 6 6 0 0 1 0 8.486.75.75 0 0 1-1.06-1.061 4.5 4.5 0 0 0 0-6.364.75.75 0 0 1 0-1.06Z"/></svg></button>`, !EN_SEANCE && !PP);
   $("reecouter").addEventListener("click", () => dire(motDit(p)));
   $("bas").innerHTML = `<div class="score">${compte(bons, faits)}</div>`;
   dire(motDit(p));
