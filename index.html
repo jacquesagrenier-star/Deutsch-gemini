@@ -338,12 +338,43 @@ document.addEventListener("visibilitychange", () => {
 // l'arriere-plan : souvent sur l'Amerique. On le remet a son debut a l'ouverture et a chaque retour.
 function recommencerCarteDuMonde(){
     try{
-        document.querySelectorAll("#fondMonde .fm-piste, #fondMonde .fm-lettres-piste").forEach(el => {
+        document.querySelectorAll("#fondMonde .fm-piste, #fondMonde .fm-lettres-piste, .spf-piste, .spf-lettres-piste").forEach(el => {
             (el.getAnimations ? el.getAnimations() : []).forEach(an => { an.currentTime = 0; });
         });
     }catch(e){}
 }
 addEventListener("pageshow", recommencerCarteDuMonde);
+// v1047 : LA COPIE DE LA CARTE DU MONDE, EN FILIGRANE DANS LA CARTE DE LA SEANCE (voir le CSS v1047).
+// Posee une fois ; ses animations prennent le temps de celles de #fondMonde, qui ont commence avant elle.
+function poserFiligraneSeance(){
+    try{
+        const pil = document.getElementById("seancePilule"), fm = document.getElementById("fondMonde");
+        if(!pil || !fm || pil.querySelector(":scope > .sp-fili")) return;
+        const lettres = fm.querySelector(".fm-lettres-piste");
+        const f = document.createElement("div");
+        f.className = "sp-fili";
+        f.setAttribute("aria-hidden", "true");
+        f.innerHTML = '<div class="sp-fili-cadre"><div class="spf-carte"><div class="spf-piste"></div></div>'
+            + '<div class="spf-lettres"><div class="spf-lettres-piste"></div></div></div>';
+        // Les lettres en contenu genere (::before, attribut data-l) : du texte copie entrerait dans le texte de
+        // la page -- lecteurs, recherche, et le parcours, qui les a relevees.
+        const piste = f.querySelector(".spf-lettres-piste");
+        if(lettres) lettres.querySelectorAll("span").forEach(sp => {
+            const n = document.createElement("span");
+            n.setAttribute("style", sp.getAttribute("style") || "");
+            n.setAttribute("data-l", sp.textContent);
+            piste.appendChild(n);
+        });
+        pil.insertBefore(f, pil.firstChild);
+        [[".fm-piste", ".spf-piste"], [".fm-lettres-piste", ".spf-lettres-piste"]].forEach(([o, c]) => {
+            const ao = (fm.querySelector(o).getAnimations ? fm.querySelector(o).getAnimations() : [])[0];
+            const ac = (f.querySelector(c).getAnimations ? f.querySelector(c).getAnimations() : [])[0];
+            if(ao && ac) ac.currentTime = ao.currentTime;
+        });
+    }catch(e){}
+}
+if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", poserFiligraneSeance);
+else poserFiligraneSeance();
 </script>
 <script>
 // ⚠️ LU AVANT L'OUVERTURE, PAS APRES. Ce qui suit decide si la page est une
@@ -8466,6 +8497,50 @@ body[data-theme="dark"] #home #seancePilule > .pa-play{background:linear-gradien
 #home #seancePilule .seance-pp.on{background:#FFFFFF !important; box-shadow:inset 0 0 0 2px #2BB5AA, 0 3px 10px rgba(20,128,122,.35) !important;}
 #home #seancePilule.pa-etape .pa-kick{color:rgba(28,36,48,.80) !important;}
 body[data-theme="dark"] #home #seancePilule.pa-etape .pa-kick{color:rgba(255,255,255,.85) !important;}
+/* v1047 : LE MONDE EN FILIGRANE DANS LA CARTE DE LA SEANCE (proposition 5 ; Jacques, 31 oct. 2026 : « mettre
+   un fond oranger egal mais que lorsque des continents ou des lettres [...] passent en arriere de la tuile [...]
+   qu'on puisse les voir » ; « Le 5 »). Un orange plein, et les continents qui passent derriere s'y dessinent en
+   plus clair. Ce n'est PAS de la transparence : la mer passerait aussi et griserait l'orange (le defaut des fonds
+   en glacis), et un flou (backdrop-filter) faisait geler l'accueil (v1014). C'est une COPIE de #fondMonde
+   (.sp-fili, posee par poserFiligraneSeance) : son cadre est en position FIXE, comme #fondMonde, donc aligne sur
+   lui sans calcul, y compris pendant le defilement ; le clip-path le decoupe a la forme de la carte (overflow
+   ne decoupe pas un element fixe). Memes animations, sous les memes selecteurs : elles repartent ensemble.
+   Les continents viennent du MASQUE du SVG (mer transparente), peints de la couleur --fil-carte. */
+#home #seancePilule{z-index:2; --fil-carte:rgba(255,255,255,.32); --fil-lettres:rgba(255,255,255,.24);
+    background:linear-gradient(145deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,0) 35%),linear-gradient(145deg,#F8B95E,#F0863C) !important;}
+body[data-theme="dark"] #home #seancePilule{--fil-carte:rgba(255,214,160,.16); --fil-lettres:rgba(255,214,160,.12);
+    background:linear-gradient(145deg,rgba(255,220,170,.14) 0%,rgba(255,220,170,0) 35%),#7A4618 !important;}
+.sp-fili{position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none; overflow:hidden;
+    -webkit-clip-path:inset(0 round 30px); clip-path:inset(0 round 30px);}
+.sp-fili-cadre{position:fixed; left:0; top:0; width:100%; height:100vh; height:100lvh;}
+/* ⚠️ Un ancetre avec un flou (backdrop-filter), un transform ou un filter devient le repere de « fixed » : la
+   copie se decalerait de la position de la carte et la suivrait au defilement. L'enveloppe .orb-seance portait
+   un flou de 18 px (regle generale des .orb, oubliee par la v1014) : on l'enleve -- la carte est opaque, il ne
+   se voyait plus, et il coutait des images par seconde. */
+#home #orbGrid > .orb.orb-seance{-webkit-backdrop-filter:none !important; backdrop-filter:none !important;}
+/* v1047 : LE CIEL UN PEU PLUS FONCE (Jacques, 31 oct. : « le bleu derriere [le] fond, un peu plus fonce ») --
+   le degrade de la v1009 descendu d'un cran, et le calque de debordement de la v1034 avec lui. */
+body:not([data-theme="dark"]) #fondMonde{background:linear-gradient(180deg, #6C9BD0 0%, #8DB4DF 55%, #ABC6E4 100%);}
+body::before{background:linear-gradient(180deg, #6C9BD0 0, #6C9BD0 50%, #ABC6E4 50%, #ABC6E4 100%);}
+/* v1047 : LA ROUE DES REGLAGES EN ENCRE (Jacques, 31 oct. : « la roue de reglage [en clair] un peu plus foncee pour
+   qu'il y ait un meilleur contraste »). L'emoji ⚙️ est gris pale sur iPhone et ne prend pas de couleur : on la
+   dessine, comme la loupe, et elle suit l'encre du jour et le clair de la nuit. */
+#settingsToggleBtn{color:#1C2430 !important;}
+body[data-theme="dark"] #settingsToggleBtn{color:#E6ECF2 !important;}
+.spf-carte{position:absolute; left:0; right:0; top:24px; height:378px;}
+/* Les pays : les tons dores de la proposition 4 et les frontieres de la proposition 3 (Jacques : « les tons du 4
+   [...] le decoupage des pays [...] comme le 3 »), dans une carte derivee, visuel/fond/carte-filigrane.svg
+   (fabriquee par visuel/fond/filigrane.py ; ne pas la corriger a la main). La nuit, la meme, en sourdine. */
+.spf-piste{position:absolute; top:0; left:0; width:2880px; height:378px; transform:translateX(-338px); will-change:transform;
+    background:url("visuel/fond/carte-filigrane.svg") repeat-x 0 0 / 960px 378px;}
+body[data-theme="dark"] .spf-piste{opacity:.32;}
+.spf-lettres{position:absolute; left:0; right:0; top:520px; height:460px;}
+.spf-lettres-piste{position:absolute; top:0; left:0; width:780px; height:100%;}
+.spf-lettres span::before{content:attr(data-l);}
+.spf-lettres span{position:absolute; font-family:Georgia, "Noto Serif", "Yu Mincho", "Hiragino Mincho ProN", serif; font-weight:600; font-size:104px; line-height:1; color:var(--fil-lettres);}
+body:not([data-ecran]) .spf-piste, body[data-ecran="home"] .spf-piste{animation:fmDefile 170s linear infinite;}
+body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-piste{animation:fmLettres 130s linear infinite;}
+@media (prefers-reduced-motion: reduce){ .spf-piste, .spf-lettres-piste{animation:none !important;} }
 </style>
 
 <!-- v1003 : LE FOND COMMUN (Jacques, 29 oct. 2026). La carte du monde decoupee PAR LANGUE
@@ -8520,13 +8595,13 @@ body[data-theme="dark"] #home #seancePilule.pa-etape .pa-kick{color:rgba(255,255
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1046</span>
+        <span class="subtitle-version">v1047</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
             <span id="uiLangToggleLabel">🇫🇷</span>
         </button>
-        <button id="settingsToggleBtn" class="theme-icon-btn" style="font-size:13px;" onclick="openSettings()" data-i18n-title="settings_title" data-i18n-aria-label="settings_title" title="Réglages" aria-label="Réglages">⚙️</button>
+        <button id="settingsToggleBtn" class="theme-icon-btn" style="font-size:13px;" onclick="openSettings()" data-i18n-title="settings_title" data-i18n-aria-label="settings_title" title="Réglages" aria-label="Réglages"><svg class="ic-roue" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></button>
         <button id="themeToggleBtn" class="theme-icon-btn" onclick="toggleAppTheme()" data-i18n-title="theme_changer" data-i18n-aria-label="theme_changer" title="Changer de thème" aria-label="Changer de thème">
             <span id="themeToggleIcon" class="switch-icon">🌙</span>
         </button>
@@ -48335,7 +48410,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1046;
+const APP_VERSION = 1047;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
