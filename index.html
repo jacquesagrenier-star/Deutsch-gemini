@@ -362,7 +362,7 @@ function poserFiligraneSeance(){
         if(lettres) lettres.querySelectorAll("span").forEach(sp => {
             const n = document.createElement("span");
             n.setAttribute("style", sp.getAttribute("style") || "");
-            n.setAttribute("data-l", sp.textContent);
+            n.setAttribute("data-l", sp.getAttribute("data-l") || sp.textContent);
             piste.appendChild(n);
         });
         pil.insertBefore(f, pil.firstChild);
@@ -8506,9 +8506,9 @@ body[data-theme="dark"] #home #seancePilule.pa-etape .pa-kick{color:rgba(255,255
    lui sans calcul, y compris pendant le defilement ; le clip-path le decoupe a la forme de la carte (overflow
    ne decoupe pas un element fixe). Memes animations, sous les memes selecteurs : elles repartent ensemble.
    Les continents viennent du MASQUE du SVG (mer transparente), peints de la couleur --fil-carte. */
-#home #seancePilule{z-index:2; --fil-carte:rgba(255,255,255,.32); --fil-lettres:rgba(255,255,255,.24);
+#home #seancePilule{z-index:2; --fil-carte:rgba(255,255,255,.32); --fil-lettres:rgba(225,252,248,.50);
     background:linear-gradient(145deg,rgba(255,255,255,.45) 0%,rgba(255,255,255,0) 35%),linear-gradient(145deg,#F8B95E,#F0863C) !important;}
-body[data-theme="dark"] #home #seancePilule{--fil-carte:rgba(255,214,160,.16); --fil-lettres:rgba(255,214,160,.12);
+body[data-theme="dark"] #home #seancePilule{--fil-carte:rgba(255,214,160,.16); --fil-lettres:rgba(190,240,234,.13);
     background:linear-gradient(145deg,rgba(255,220,170,.14) 0%,rgba(255,220,170,0) 35%),#7A4618 !important;}
 .sp-fili{position:absolute; inset:0; border-radius:inherit; z-index:-1; pointer-events:none; overflow:hidden;
     -webkit-clip-path:inset(0 round 30px); clip-path:inset(0 round 30px);}
@@ -8537,6 +8537,10 @@ body[data-theme="dark"] .spf-piste{opacity:.32;}
 .spf-lettres{position:absolute; left:0; right:0; top:520px; height:460px;}
 .spf-lettres-piste{position:absolute; top:0; left:0; width:780px; height:100%;}
 .spf-lettres span::before{content:attr(data-l);}
+#fondMonde .fm-lettres span[data-l]::before{content:attr(data-l);}
+/* v1048 : les lettres DERRIERE la carte, qui les voile en passant (Jacques, 31 oct. 2026 : « les lettres devraient
+   passer en arriere de la carte. Puis la carte en transparence sur les lettres ») -- elles vont moins vite, donc plus loin. */
+.spf-carte, #fondMonde .fm-carte{z-index:1;} .spf-lettres, #fondMonde .fm-lettres{z-index:0;}
 .spf-lettres span{position:absolute; font-family:Georgia, "Noto Serif", "Yu Mincho", "Hiragino Mincho ProN", serif; font-weight:600; font-size:104px; line-height:1; color:var(--fil-lettres);}
 body:not([data-ecran]) .spf-piste, body[data-ecran="home"] .spf-piste{animation:fmDefile 170s linear infinite;}
 body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-piste{animation:fmLettres 130s linear infinite;}
@@ -8556,6 +8560,10 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <span style="left:40px; top:330px;">ß</span><span style="left:270px; top:320px;">ñ</span>
         <span style="left:412px; top:0;">語</span><span style="left:652px; top:30px;">ع</span><span style="left:540px; top:170px;">Ж</span>
         <span style="left:430px; top:330px;">ß</span><span style="left:660px; top:320px;">ñ</span>
+        <!-- v1048 : les lettres semees, plus petites, entre la carte et les grandes lettres ; elles passent dans la
+             carte de la seance. En data-l + ::before : hors du texte de la page. -->
+        <span data-l="ü" style="left:30px; top:-356px; font-size:60px;"></span><span data-l="あ" style="left:228px; top:-346px; font-size:60px;"></span><span data-l="ش" style="left:130px; top:-236px; font-size:60px;"></span><span data-l="Я" style="left:326px; top:-226px; font-size:60px;"></span><span data-l="ç" style="left:40px; top:-116px; font-size:56px;"></span><span data-l="ã" style="left:236px; top:-106px; font-size:58px;"></span>
+        <span data-l="ü" style="left:420px; top:-356px; font-size:60px;"></span><span data-l="あ" style="left:618px; top:-346px; font-size:60px;"></span><span data-l="ش" style="left:520px; top:-236px; font-size:60px;"></span><span data-l="Я" style="left:716px; top:-226px; font-size:60px;"></span><span data-l="ç" style="left:430px; top:-116px; font-size:56px;"></span><span data-l="ã" style="left:626px; top:-106px; font-size:58px;"></span>
     </div></div>
 </div>
 <div id="confettiContainer" style="position:fixed; inset:0; pointer-events:none; z-index:9999; overflow:hidden;"></div>
@@ -8595,7 +8603,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1047</span>
+        <span class="subtitle-version">v1048</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -48410,7 +48418,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1047;
+const APP_VERSION = 1048;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
