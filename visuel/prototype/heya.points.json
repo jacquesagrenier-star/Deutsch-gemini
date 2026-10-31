@@ -1,0 +1,718 @@
+{
+ "_lisez_moi": [
+  "PROTOTYPE JAPONAIS, PILOTE CAMILLE (31 oct. 2026). Rien n'est branche dans l'app. Voir japonais/scenes/HISTOIRE-CAMILLE.md et RAPPORT-PILOTE.md.",
+  "Memes conventions que konbini.points.json ; « lexique » vient de japonais/scenes/lexique.py (corpus N5-N3).",
+  "Scene 5 : le premier matin dans la petite piece de six tatamis (avril). Image : visuel/scenes/heya.png telle quelle. La photo encadree montre deux visages asiatiques : la mere de Camille est quebecoise (a reprendre si Jacques y tient)."
+ ],
+ "image": "heya.webp",
+ "source": "../scenes/heya.png",
+ "titre": "部屋で",
+ "titre_fr": "Dans la chambre",
+ "alt": "Une petite pièce japonaise de six tatamis, le matin : Camille, assise sur le tatami, déballe sa valise rouge ouverte (pull gris, chemises, chaussettes, sa veste moutarde) ; à gauche le placard ouvert avec le futon plié et un carton ; au milieu une table basse avec l'appareil photo, un carnet rouge, un réveil et une tasse ; à droite le coin cuisine, le petit frigo et un miroir ; au fond la fenêtre, une photo encadrée et une plante.",
+ "consigne": "C'est le premier matin de Camille. Touche ce qu'il y a dans sa chambre.",
+ "exclus": [
+  "畳",
+  "床",
+  "壁",
+  "人",
+  "服"
+ ],
+ "points": [
+  {
+   "id": "dentou",
+   "mot": "電灯",
+   "boite": [
+    44.5,
+    3.8,
+    20,
+    6.2
+   ],
+   "aussi": [
+    "電気"
+   ]
+  },
+  {
+   "id": "oshiire",
+   "mot": "押し入れ",
+   "boites": [
+    [
+     13,
+     17,
+     17,
+     38.5
+    ],
+    [
+     0,
+     2,
+     30.5,
+     15
+    ]
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "to",
+   "mot": "戸",
+   "boite": [
+    0,
+    15,
+    13.5,
+    37.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "futon",
+   "mot": "布団",
+   "boite": [
+    14.5,
+    32.5,
+    14.5,
+    7.5
+   ],
+   "sur": "oshiire"
+  },
+  {
+   "id": "moufu",
+   "mot": "毛布",
+   "boite": [
+    14,
+    30.5,
+    11,
+    3.3
+   ],
+   "sur": "futon"
+  },
+  {
+   "id": "hako",
+   "mot": "箱",
+   "boite": [
+    15.5,
+    46,
+    12.5,
+    8.5
+   ],
+   "sur": "oshiire"
+  },
+  {
+   "id": "kaaten-1",
+   "mot": "カーテン",
+   "boite": [
+    30.5,
+    18.5,
+    9.5,
+    27
+   ]
+  },
+  {
+   "id": "kaaten-2",
+   "mot": "カーテン",
+   "boite": [
+    75.5,
+    18,
+    13,
+    28
+   ]
+  },
+  {
+   "id": "mado",
+   "mot": "窓",
+   "boite": [
+    40,
+    19.5,
+    37,
+    20.5
+   ],
+   "aussi": [
+    "ガラス"
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "yane",
+   "mot": "屋根",
+   "boite": [
+    40.5,
+    22,
+    24.5,
+    16
+   ],
+   "sur": "mado"
+  },
+  {
+   "id": "ki",
+   "mot": "木",
+   "boite": [
+    61,
+    20.5,
+    14,
+    18.5
+   ],
+   "sur": "mado"
+  },
+  {
+   "id": "shashin",
+   "mot": "写真",
+   "boite": [
+    51.5,
+    36.8,
+    7,
+    3.3
+   ]
+  },
+  {
+   "id": "shokubutsu",
+   "mot": "植物",
+   "boite": [
+    61.5,
+    35.5,
+    8.5,
+    4.5
+   ]
+  },
+  {
+   "id": "kagami",
+   "mot": "鏡",
+   "boite": [
+    92.5,
+    22.5,
+    7.5,
+    9
+   ]
+  },
+  {
+   "id": "kabe",
+   "mot": "壁",
+   "boites": [
+    [
+     30,
+     9,
+     58,
+     7
+    ],
+    [
+     40,
+     40.5,
+     35,
+     6
+    ]
+   ],
+   "plein": true
+  },
+  {
+   "id": "daidokoro",
+   "mot": "台所",
+   "boite": [
+    75.5,
+    38.5,
+    24.5,
+    19
+   ],
+   "plein": true
+  },
+  {
+   "id": "gasu",
+   "mot": "ガス",
+   "boite": [
+    77.5,
+    40.5,
+    18.5,
+    5
+   ]
+  },
+  {
+   "id": "nabe",
+   "mot": "鍋",
+   "boite": [
+    84,
+    38.5,
+    11,
+    3.8
+   ],
+   "sur": "gasu"
+  },
+  {
+   "id": "reizouko",
+   "mot": "冷蔵庫",
+   "boite": [
+    77.5,
+    45.5,
+    17.5,
+    11.5
+   ],
+   "rigide": "rectangle"
+  },
+  {
+   "id": "teeburu",
+   "mot": "テーブル",
+   "boite": [
+    49.5,
+    54,
+    30.5,
+    15
+   ]
+  },
+  {
+   "id": "kamera",
+   "mot": "カメラ",
+   "boite": [
+    53.5,
+    52.8,
+    8.5,
+    3
+   ],
+   "sur": "teeburu"
+  },
+  {
+   "id": "tokei",
+   "mot": "時計",
+   "boite": [
+    67.8,
+    53.5,
+    5.2,
+    3
+   ],
+   "sur": "teeburu"
+  },
+  {
+   "id": "kappu",
+   "mot": "カップ",
+   "boite": [
+    70,
+    55.5,
+    4.5,
+    3.3
+   ],
+   "sur": "teeburu"
+  },
+  {
+   "id": "nooto",
+   "mot": "ノート",
+   "boite": [
+    53.5,
+    56,
+    15,
+    3.2
+   ],
+   "aussi": [
+    "ペン"
+   ],
+   "sur": "teeburu"
+  },
+  {
+   "id": "camille",
+   "mot": "女",
+   "boite": [
+    26.5,
+    44,
+    35.5,
+    30
+   ],
+   "aussi": [
+    "人"
+   ]
+  },
+  {
+   "id": "shatsu-ao",
+   "mot": "シャツ",
+   "boite": [
+    46,
+    62.5,
+    17.5,
+    6
+   ],
+   "aussi": [
+    "服"
+   ],
+   "sur": "camille"
+  },
+  {
+   "id": "suutsukeesu",
+   "mot": "スーツケース",
+   "boite": [
+    41,
+    66.5,
+    51,
+    19.5
+   ],
+   "aussi": [
+    "荷物"
+   ]
+  },
+  {
+   "id": "uwagi",
+   "mot": "上着",
+   "boite": [
+    59.5,
+    67,
+    25.5,
+    7.5
+   ],
+   "aussi": [
+    "服"
+   ],
+   "sur": "suutsukeesu"
+  },
+  {
+   "id": "seetaa",
+   "mot": "セーター",
+   "boite": [
+    42,
+    70.8,
+    22,
+    7.7
+   ],
+   "aussi": [
+    "服"
+   ],
+   "sur": "suutsukeesu"
+  },
+  {
+   "id": "shatsu",
+   "mot": "シャツ",
+   "boite": [
+    53,
+    73.5,
+    21.5,
+    7
+   ],
+   "aussi": [
+    "服"
+   ],
+   "sur": "suutsukeesu"
+  },
+  {
+   "id": "kutsushita",
+   "mot": "靴下",
+   "boite": [
+    64,
+    76.8,
+    15,
+    5.7
+   ],
+   "sur": "suutsukeesu"
+  },
+  {
+   "id": "kaban",
+   "mot": "かばん",
+   "boite": [
+    17,
+    72.5,
+    24,
+    15.5
+   ]
+  },
+  {
+   "id": "kasa",
+   "mot": "傘",
+   "boite": [
+    5.5,
+    61,
+    13,
+    26
+   ]
+  },
+  {
+   "id": "tatami",
+   "mot": "畳",
+   "boite": [
+    8,
+    55,
+    90,
+    45
+   ],
+   "aussi": [
+    "床",
+    "部屋"
+   ],
+   "plein": true
+  }
+ ],
+ "lexique": {
+  "上着": {
+   "jmdict": "jmdict:1580340",
+   "niveau": "N5",
+   "mot": "上着",
+   "kana": "うわぎ",
+   "fr": "veste ; manteau"
+  },
+  "女": {
+   "jmdict": "jmdict:1344930",
+   "niveau": "N5",
+   "mot": "女",
+   "kana": "おんな",
+   "fr": "femme"
+  },
+  "傘": {
+   "jmdict": "jmdict:1301940",
+   "niveau": "N5",
+   "mot": "傘",
+   "kana": "かさ",
+   "fr": "parapluie"
+  },
+  "かばん": {
+   "jmdict": "jmdict:1208910",
+   "niveau": "N5",
+   "mot": "かばん",
+   "kana": "かばん",
+   "fr": "sac"
+  },
+  "木": {
+   "jmdict": "jmdict:1534520",
+   "niveau": "N5",
+   "mot": "木",
+   "kana": "き",
+   "fr": "arbre ; bois (matière)"
+  },
+  "靴下": {
+   "jmdict": "jmdict:1246740",
+   "niveau": "N5",
+   "mot": "靴下",
+   "kana": "くつした",
+   "fr": "chaussettes"
+  },
+  "写真": {
+   "jmdict": "jmdict:1321900",
+   "niveau": "N5",
+   "mot": "写真",
+   "kana": "しゃしん",
+   "fr": "photographie"
+  },
+  "台所": {
+   "jmdict": "jmdict:1412640",
+   "niveau": "N5",
+   "mot": "台所",
+   "kana": "だいどころ",
+   "fr": "cuisine"
+  },
+  "電気": {
+   "jmdict": "jmdict:1443000",
+   "niveau": "N5",
+   "mot": "電気",
+   "kana": "でんき",
+   "fr": "électricité ; lumière (électrique)"
+  },
+  "戸": {
+   "jmdict": "jmdict:1266970",
+   "niveau": "N5",
+   "mot": "戸",
+   "kana": "と",
+   "fr": "porte (à la japonaise)"
+  },
+  "時計": {
+   "jmdict": "jmdict:1316140",
+   "niveau": "N5",
+   "mot": "時計",
+   "kana": "とけい",
+   "fr": "montre ; horloge"
+  },
+  "荷物": {
+   "jmdict": "jmdict:1195430",
+   "niveau": "N5",
+   "mot": "荷物",
+   "kana": "にもつ",
+   "fr": "bagages"
+  },
+  "箱": {
+   "jmdict": "jmdict:1585650",
+   "niveau": "N5",
+   "mot": "箱",
+   "kana": "はこ",
+   "fr": "boîte"
+  },
+  "人": {
+   "jmdict": "jmdict:1580640",
+   "niveau": "N5",
+   "mot": "人",
+   "kana": "ひと",
+   "fr": "personne"
+  },
+  "服": {
+   "jmdict": "jmdict:1500940",
+   "niveau": "N5",
+   "mot": "服",
+   "kana": "ふく",
+   "fr": "vêtement"
+  },
+  "部屋": {
+   "jmdict": "jmdict:1499320",
+   "niveau": "N5",
+   "mot": "部屋",
+   "kana": "へや",
+   "fr": "pièce ; chambre"
+  },
+  "窓": {
+   "jmdict": "jmdict:1401400",
+   "niveau": "N5",
+   "mot": "窓",
+   "kana": "まど",
+   "fr": "fenêtre"
+  },
+  "冷蔵庫": {
+   "jmdict": "jmdict:1557110",
+   "niveau": "N5",
+   "mot": "冷蔵庫",
+   "kana": "れいぞうこ",
+   "fr": "réfrigérateur"
+  },
+  "カップ": {
+   "jmdict": "jmdict:1037670",
+   "niveau": "N5",
+   "mot": "カップ",
+   "kana": "カップ",
+   "fr": "tasse"
+  },
+  "カメラ": {
+   "jmdict": "jmdict:1038350",
+   "niveau": "N5",
+   "mot": "カメラ",
+   "kana": "カメラ",
+   "fr": "appareil photo"
+  },
+  "シャツ": {
+   "jmdict": "jmdict:1061520",
+   "niveau": "N5",
+   "mot": "シャツ",
+   "kana": "シャツ",
+   "fr": "chemise"
+  },
+  "セーター": {
+   "jmdict": "jmdict:1074270",
+   "niveau": "N5",
+   "mot": "セーター",
+   "kana": "セーター",
+   "fr": "pull-over"
+  },
+  "テーブル": {
+   "jmdict": "jmdict:1078630",
+   "niveau": "N5",
+   "mot": "テーブル",
+   "kana": "テーブル",
+   "fr": "table"
+  },
+  "ノート": {
+   "jmdict": "jmdict:1093450",
+   "niveau": "N5",
+   "mot": "ノート",
+   "kana": "ノート",
+   "fr": "cahier"
+  },
+  "ペン": {
+   "jmdict": "jmdict:1121380",
+   "niveau": "N5",
+   "mot": "ペン",
+   "kana": "ペン",
+   "fr": "stylo"
+  },
+  "押し入れ": {
+   "jmdict": "jmdict:1589110",
+   "niveau": "N4",
+   "mot": "押し入れ",
+   "kana": "おしいれ",
+   "fr": "placard"
+  },
+  "鏡": {
+   "jmdict": "jmdict:1238550",
+   "niveau": "N4",
+   "mot": "鏡",
+   "kana": "かがみ",
+   "fr": "miroir"
+  },
+  "壁": {
+   "jmdict": "jmdict:1509290",
+   "niveau": "N4",
+   "mot": "壁",
+   "kana": "かべ",
+   "fr": "mur"
+  },
+  "畳": {
+   "jmdict": "jmdict:1356750",
+   "niveau": "N4",
+   "mot": "畳",
+   "kana": "たたみ",
+   "fr": "tatami"
+  },
+  "電灯": {
+   "jmdict": "jmdict:1443660",
+   "niveau": "N4",
+   "mot": "電灯",
+   "kana": "でんとう",
+   "fr": "lumière électrique ; lampe"
+  },
+  "布団": {
+   "jmdict": "jmdict:1496890",
+   "niveau": "N4",
+   "mot": "布団",
+   "kana": "ふとん",
+   "fr": "futon"
+  },
+  "カーテン": {
+   "jmdict": "jmdict:1036290",
+   "niveau": "N4",
+   "mot": "カーテン",
+   "kana": "カーテン",
+   "fr": "rideau"
+  },
+  "ガス": {
+   "jmdict": "jmdict:1040060",
+   "niveau": "N4",
+   "mot": "ガス",
+   "kana": "ガス",
+   "fr": "gaz"
+  },
+  "ガラス": {
+   "jmdict": "jmdict:1040380",
+   "niveau": "N4",
+   "mot": "ガラス",
+   "kana": "ガラス",
+   "fr": "verre"
+  },
+  "スーツケース": {
+   "jmdict": "jmdict:1066690",
+   "niveau": "N4",
+   "mot": "スーツケース",
+   "kana": "スーツケース",
+   "fr": "valise"
+  },
+  "植物": {
+   "jmdict": "jmdict:1357300",
+   "niveau": "N3",
+   "mot": "植物",
+   "kana": "しょくぶつ",
+   "fr": "plante",
+   "fr_source": "manuel"
+  },
+  "鍋": {
+   "jmdict": "jmdict:1459720",
+   "niveau": "N3",
+   "mot": "鍋",
+   "kana": "なべ",
+   "fr": "casserole ; marmite",
+   "fr_source": "manuel"
+  },
+  "毛布": {
+   "jmdict": "jmdict:1533950",
+   "niveau": "N3",
+   "mot": "毛布",
+   "kana": "もうふ",
+   "fr": "couverture",
+   "fr_source": "manuel"
+  },
+  "屋根": {
+   "jmdict": "jmdict:1182700",
+   "niveau": "N3",
+   "mot": "屋根",
+   "kana": "やね",
+   "fr": "toit",
+   "fr_source": "manuel"
+  },
+  "床": {
+   "jmdict": "jmdict:1349380",
+   "niveau": "N3",
+   "mot": "床",
+   "kana": "ゆか",
+   "fr": "sol ; plancher",
+   "fr_source": "manuel"
+  }
+ }
+}
