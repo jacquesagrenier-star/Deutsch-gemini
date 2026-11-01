@@ -602,12 +602,14 @@ if (/classe\.html$/.test(location.pathname)) $("retourChoix").href = "index.html
    « continuer devrait arriver en bas de l'image ». Colle au bas de l'ecran (v1005), il tombait
    sous l'image des que celle-ci finissait plus haut que l'ecran. On le pose a 12 px au-dessus
    du bas de l'image -- ou du bas de l'ecran, si l'image descend plus bas. */
+/* v1059 : RETOUR TOUT EN BAS DE L'ECRAN, PARTOUT. Jacques, 1er nov. 2026 : dans les scenes, « Continuer »
+   « n'etait pas toujours en bas completement ». Pose sur le bas de l'image, il changeait de hauteur d'une
+   scene a l'autre (et d'un iPhone a l'autre) : 65 px plus haut sur la boulangerie d'un ecran de 844 px.
+   Depuis la v1030 les marges autour de l'image ont le degrade de l'app, plus de bande blanche : le bas de
+   l'ecran (regle .suite, sous la barre d'accueil) redevient la seule place. On efface donc toute hauteur
+   posee par une version precedente au lieu d'en calculer une. */
 function placerSuite(){
-  const sc = $("scene");
-  if (!sc) return;
-  const r = sc.getBoundingClientRect();
-  const b = Math.max(12, Math.round(innerHeight - r.bottom + 12));
-  document.querySelectorAll(".suite").forEach(el => el.style.setProperty("bottom", b + "px", "important"));
+  document.querySelectorAll(".suite").forEach(el => el.style.removeProperty("bottom"));
 }
 new MutationObserver(placerSuite).observe($("bas"), {childList: true, subtree: true});
 addEventListener("resize", placerSuite);

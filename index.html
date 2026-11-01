@@ -8421,6 +8421,7 @@ body[data-theme="dark"] .cal-serie::after{background:radial-gradient(closest-sid
     box-shadow:inset 1.5px 1.5px 0 #fff, 0 18px 40px rgba(20,40,60,.25);}
 body[data-theme="dark"] .badges-fen{background:#13222F; color:#EEF2F5; box-shadow:inset 1.5px 1.5px 0 rgba(255,255,255,.14), 0 18px 40px rgba(0,0,0,.5);}
 .badges-fen-titre{margin:2px 0 0; font-weight:900; font-size:18px; padding-inline-end:34px;}
+.badges-fen-points{margin:6px 0 10px; font-size:13.5px; line-height:1.45; opacity:.85;}
 
 /* v1017 : L'ANNEAU DU PALIER COMME CELUI DE L'ACCUEIL (voir anneauDuPalier). */
 .mp-anneau{background:#F3F6F9 !important; box-shadow:0 6px 14px rgba(20,40,60,.22), 0 0 0 1.5px rgba(255,255,255,.9) !important; gap:0;}
@@ -8637,7 +8638,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1058</span>
+        <span class="subtitle-version">v1059</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -14695,6 +14696,7 @@ const I18N = {
         badge_xp_2000_desc: "200 points d'expérience atteints.",
         badge_xp_5000_title: "Polyglotte en herbe",
         badge_xp_5000_desc: "500 points d'expérience atteints.",
+        badges_points_explication: "Tes points : {n}. Tu gagnes 1 point par bonne réponse (carte, exercice, oral) et 5 de plus chaque fois que tu atteins ton objectif du jour. Ce ne sont pas des mots maîtrisés, et ils comptent pour cette langue seulement.",
         badge_streak_3_title: "3 jours de suite",
         badge_streak_3_desc: "Trois jours consécutifs d'activité.",
         badge_streak_7_title: "Une semaine complète",
@@ -16203,6 +16205,7 @@ const I18N = {
         badge_xp_2000_desc: "Reached 200 experience points.",
         badge_xp_5000_title: "Budding polyglot",
         badge_xp_5000_desc: "Reached 500 experience points.",
+        badges_points_explication: "Your points: {n}. You earn 1 point for each correct answer (card, exercise, speaking) and 5 more each time you reach your daily goal. They are not mastered words, and they count for this language only.",
         badge_streak_3_title: "3 days in a row",
         badge_streak_3_desc: "Three consecutive days of activity.",
         badge_streak_7_title: "A full week",
@@ -17715,6 +17718,7 @@ const I18N = {
         badge_xp_2000_desc: "200 deneyim puanına ulaşıldı.",
         badge_xp_5000_title: "Yetişen çok dilli",
         badge_xp_5000_desc: "500 deneyim puanına ulaşıldı.",
+        badges_points_explication: "Puanın: {n}. Her doğru cevap için 1 puan (kart, alıştırma, konuşma), günlük hedefine her ulaştığında 5 puan daha kazanırsın. Bunlar öğrenilmiş kelimeler değildir ve yalnızca bu dil için sayılır.",
         badge_streak_3_title: "Üst üste 3 gün",
         badge_streak_3_desc: "Üç gün üst üste etkinlik.",
         badge_streak_7_title: "Tam bir hafta",
@@ -18648,6 +18652,7 @@ const I18N = {
         badge_xp_2000_desc: "Досягнуто 200 очок досвіду.",
         badge_xp_5000_title: "Майбутній поліглот",
         badge_xp_5000_desc: "Досягнуто 500 очок досвіду.",
+        badges_points_explication: "Твої очки: {n}. За кожну правильну відповідь (картка, вправа, усно) — 1 очко, і ще 5 щоразу, коли досягаєш денної мети. Це не вивчені слова, і вони рахуються лише для цієї мови.",
         badge_streak_3_title: "3 дні поспіль",
         badge_streak_3_desc: "Три дні активності поспіль.",
         badge_streak_7_title: "Цілий тиждень",
@@ -20500,6 +20505,7 @@ const I18N = {
         badge_xp_2000_desc: "200 امتیاز تجربه به دست آمد.",
         badge_xp_5000_title: "چندزبانهٔ نوپا",
         badge_xp_5000_desc: "500 امتیاز تجربه به دست آمد.",
+        badges_points_explication: "امتیازهای تو: {n}. برای هر پاسخ درست (کارت، تمرین، گفتار) ۱ امتیاز می‌گیری و هر بار که به هدف روزانه‌ات برسی ۵ امتیاز دیگر. این‌ها واژه‌های آموخته‌شده نیستند و فقط برای همین زبان حساب می‌شوند.",
         badge_streak_3_title: "3 روز پیاپی",
         badge_streak_3_desc: "سه روز پیاپی فعالیت.",
         badge_streak_7_title: "یک هفتهٔ کامل",
@@ -22314,6 +22320,7 @@ const I18N = {
         badge_xp_2000_desc: "بلغتَ 200 نقطة خبرة.",
         badge_xp_5000_title: "متعدّد اللغات في طور التكوين",
         badge_xp_5000_desc: "بلغتَ 500 نقطة خبرة.",
+        badges_points_explication: "نقاطك: {n}. تكسب نقطة واحدة عن كل إجابة صحيحة (بطاقة، تمرين، نطق) و5 نقاط إضافية كلما بلغت هدفك اليومي. هذه ليست كلمات متقنة، وهي تُحسب لهذه اللغة فقط.",
         badge_streak_3_title: "3 أيام متتالية",
         badge_streak_3_desc: "ثلاثة أيام نشاط متتالية.",
         badge_streak_7_title: "أسبوع كامل",
@@ -23910,6 +23917,7 @@ const I18N = {
         badge_xp_2000_desc: "200 pontos de experiência alcançados.",
         badge_xp_5000_title: "Poliglota em formação",
         badge_xp_5000_desc: "500 pontos de experiência alcançados.",
+        badges_points_explication: "Seus pontos: {n}. Você ganha 1 ponto por resposta certa (cartão, exercício, oral) e mais 5 cada vez que atinge sua meta do dia. Não são palavras dominadas, e contam só para este idioma.",
         badge_streak_3_title: "3 dias seguidos",
         badge_streak_3_desc: "Três dias seguidos de atividade.",
         badge_streak_7_title: "Uma semana completa",
@@ -25483,6 +25491,7 @@ const I18N = {
         badge_xp_2000_desc: "Zdobyto 200 punktów doświadczenia.",
         badge_xp_5000_title: "Początkujący poliglota",
         badge_xp_5000_desc: "Zdobyto 500 punktów doświadczenia.",
+        badges_points_explication: "Twoje punkty: {n}. Za każdą dobrą odpowiedź (karta, ćwiczenie, mówienie) dostajesz 1 punkt, a za każde osiągnięcie dziennego celu jeszcze 5. To nie są opanowane słowa i liczą się tylko dla tego języka.",
         badge_streak_3_title: "3 dni z rzędu",
         badge_streak_3_desc: "Trzy kolejne dni aktywności.",
         badge_streak_7_title: "Pełny tydzień",
@@ -27055,6 +27064,7 @@ const I18N = {
         badge_xp_2000_desc: "Набрано 200 очков опыта.",
         badge_xp_5000_title: "Начинающий полиглот",
         badge_xp_5000_desc: "Набрано 500 очков опыта.",
+        badges_points_explication: "Твои очки: {n}. За каждый правильный ответ (карточка, упражнение, устно) — 1 очко, и ещё 5 каждый раз, когда достигаешь дневной цели. Это не выученные слова, и они считаются только для этого языка.",
         badge_streak_3_title: "3 дня подряд",
         badge_streak_3_desc: "Три дня занятий подряд.",
         badge_streak_7_title: "Целая неделя",
@@ -42623,7 +42633,12 @@ function ouvrirBadges(){
     const grille = document.createElement("div");
     grille.className = "badges-grid";
     grille.innerHTML = htmlBadges(getNextBadgeToUnlock());
-    b.append(fermer, titre, grille);
+    // v1060 : D'OU VIENNENT LES POINTS. Jacques, 1er nov. 2026 : « Polyglotte en herbe, 323 points sur 500
+    // [...] ça ne me dit pas grand-chose » -- ici seulement, pas sur l'accueil (« seulement lorsqu'on clique »).
+    const points = document.createElement("p");
+    points.className = "badges-fen-points";
+    points.textContent = t("badges_points_explication").replace("{n}", String(getXp()));
+    b.append(fermer, titre, points, grille);
     voile.appendChild(b);
     document.body.appendChild(voile);
     fenBadges = voile;
@@ -48544,7 +48559,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1058;
+const APP_VERSION = 1059;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
