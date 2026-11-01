@@ -90,12 +90,15 @@ Aucune romance sans décision de Jacques.
 | **Lucas** et **Linh** (proposé) | deux camarades du cours (brésilien, vietnamienne) | — | 12, 26 |
 | **Mark** | le héros allemand, de Montréal, ami d'enfance de Camille (proposé) — **sans plus** | seulement au téléphone, ou une photo | aucune image prévue |
 
-**Les images de référence qu'il faudra créer** (règle `personne-sans-reference`) :
-Yui, Fumiko, Hiroshi, M. Sakamoto, Mme Kimura. Deux voies : (a) les fabriquer
-comme Camille (`video/camille.py`, quatre vues, ~0,60 $ chacun) ; (b) **les
-découper** dans la première scène où ils sont réussis (comme `medecin.png` vient
-de `arztpraxis.png`). Recommandé : (a) pour Yui et Fumiko, qui reviennent
-souvent ; (b) pour les autres. **À décider par Jacques, et c'est une dépense.**
+**Les images de référence (faites le 1er nov. 2026)**, sur le feu vert de Jacques
+(« Puis crée les autres personnages ») : `personnages/Yui.png`, `Fumiko.png`,
+`Hiroshi.png`, `Sakamoto.png`, `Kimura.png` (dossier OneDrive), faites par
+`video/personnages_japonais.py`, une prise chacun, 0,75 $ en tout. **De face
+seulement** : une scène prend au plus 4 références et Camille en occupe déjà
+deux, donc les vues de côté ne serviraient pas ; l'outil sait les faire si une
+scène en a besoin. Cheveux et âge suivent ce que les prompts annoncent ; la
+tenue est celle de tous les jours, chaque scène dit la sienne. Planche :
+`.claude/planche-personnages-camille.jpg`.
 Mme Ōta et Shō existent déjà : on les découpe dans `genkan.png`.
 
 ---
