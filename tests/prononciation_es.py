@@ -29,7 +29,7 @@ import hashlib, io, json, os, re, sys, unicodedata
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATOS = os.path.join(RACINE, "espanol", "datos")
-LANGUES = ("fr", "en", "pt", "ar")
+LANGUES = ("fr", "en", "pt", "ar", "de")
 
 
 def guillemets(t):
@@ -248,6 +248,14 @@ AR = {
 # AR-FIN
 }
 
+# L'ALLEMAND (1er nov. 2026), ecrit CONTRE l'allemand pour un germanophone : le j
+# comme le ch de « Bach », z et c (e, i) jamais « ts », s toujours sourd, v = b,
+# qu = k (jamais « kw »), sp / st sans « sch », ei / eu / ie dits lettre par lettre.
+# Meme forme que PT ; pose par espanol/de/poser_autres.py, entre les deux bornes.
+DE = {
+# DE-FIN
+}
+
 GROUPES = [("voyelles", VOYELLES), ("consonnes", CONSONNES), ("accent", ACCENT)]
 
 
@@ -297,11 +305,17 @@ def construire():
             if rid in AR:
                 court = dict(court, ar=AR[rid][0])
                 expl = dict(expl, ar=AR[rid][1])
+            # L'allemand vient de DE, ecrit contre l'allemand (1er nov. 2026).
+            if rid in DE:
+                court = dict(court, de=DE[rid][0])
+                expl = dict(expl, de=DE[rid][1])
             if variantes:
                 variantes = {v: {"court": dict(t["court"], pt=PT[rid + "." + v][0],
-                                               **({"ar": AR[rid + "." + v][0]} if rid + "." + v in AR else {})),
+                                               **({"ar": AR[rid + "." + v][0]} if rid + "." + v in AR else {}),
+                                               **({"de": DE[rid + "." + v][0]} if rid + "." + v in DE else {})),
                                  "explication": dict(t["explication"], pt=PT[rid + "." + v][1],
-                                                     **({"ar": AR[rid + "." + v][1]} if rid + "." + v in AR else {}))}
+                                                     **({"ar": AR[rid + "." + v][1]} if rid + "." + v in AR else {}),
+                                                     **({"de": DE[rid + "." + v][1]} if rid + "." + v in DE else {}))}
                              for v, t in variantes.items()}
             if rid in ids:
                 fautes.append("id en double : " + rid)
@@ -326,7 +340,7 @@ def construire():
                 for voix in ("es-es", "es-419"):
                     if not os.path.exists(os.path.join(RACINE, "audio", "mp3", voix, h + ".mp3")):
                         fautes.append("%s : « %s » sans voix %s" % (rid, mot, voix))
-                ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_pt", "traduction_ar") if e.get(c)}})
+                ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_pt", "traduction_ar", "traduction_de") if e.get(c)}})
             # v919 : CHAQUE MORCEAU DE LA GRAPHIE A SON EXEMPLE. La carte du son du
             # jour rend chaque morceau touchable et lui fait dire son mot ; un morceau
             # sans mot resterait muet (Jacques, 22 oct. 2026 : « an en in on un [...]

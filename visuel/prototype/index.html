@@ -492,7 +492,7 @@ const LANGUE = (() => {
   if (!brut) return "fr";
   const l = brut.toLowerCase().split(/[-_]/)[0];
   if (l === "prs") return "fa";   // le dari s'ecrit comme le persan (app)
-  return ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l) ? l : "en";
+  return ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "en";
 })();
 /* Le sens d'ecriture et la langue du document, comme appliquerLangueDocument()
    dans l'app : lang decide des majuscules (le i turc), dir du sens. */
@@ -502,7 +502,9 @@ document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "l
    que l'app (REPLI_LANGUE) : l'arabe n'a pas encore de traductions de mots,
    il prend l'anglais. */
 const REPLI = {fr: ["fr"], en: ["en", "fr"], tr: ["tr", "en", "fr"], uk: ["uk", "en", "fr"],
-               fa: ["fa", "en", "fr"], ar: ["ar", "en", "fr"], pt: ["pt", "en", "fr"], pl: ["pl", "en", "fr"], ru: ["ru", "en", "fr"]}[LANGUE];
+               fa: ["fa", "en", "fr"], ar: ["ar", "en", "fr"], pt: ["pt", "en", "fr"], pl: ["pl", "en", "fr"], ru: ["ru", "en", "fr"],
+               /* l'allemand : interface de l'espagnol seulement (1er nov. 2026) */
+               de: ["de", "en", "fr"]}[LANGUE];
 const sensDe = m => { for (const l of REPLI) if (m && m[l]) return m[l]; return ""; };
 /* Le contenu d'une vue dans la langue de l'usager : une fois par vue, avant
    que la page ne s'en serve. Les questions se reconnaissent a leur couche et

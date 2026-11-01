@@ -8892,6 +8892,12 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
                     <span class="setup-choice-flag">🌐</span>
                     <span>Русский</span>
                 </button>
+                <!-- L'allemand : langue d'interface de l'espagnol seulement (1er nov. 2026) ;
+                     cache ailleurs, montre par adapterChoixALaLangueApprise(). -->
+                <button class="setup-choice hidden" id="setupChoiceLangDe" onclick="selectUiLangChoice('de')">
+                    <span class="setup-choice-flag">🇩🇪</span>
+                    <span>Deutsch</span>
+                </button>
             </div>
         </div>
         <!-- LE NIVEAU DECLARE (v699). Une question, jamais un test : vingt
@@ -12270,6 +12276,10 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
                         <span class="setup-choice-flag">🌐</span>
                         <span>Русский</span>
                     </button>
+                    <button class="setup-choice hidden" onclick="selectUiLangChoice('de')">
+                        <span class="setup-choice-flag">🇩🇪</span>
+                        <span>Deutsch</span>
+                    </button>
                 </div>
             </div>
         </details>
@@ -13114,7 +13124,9 @@ const UI_LANG_KEY = PREFIXE_STOCKAGE + "uiLang";
 // libelles propres n'existent que dans ces deux langues, et une interface
 // turque y parlerait encore d'allemand. L'allemand garde ses six langues.
 // Le japonais : francais et anglais seulement (decide le 4 oct. 2026).
-const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en", "pt", "ar"]
+// L'allemand (1er nov. 2026, decide par Jacques : « on va faire aussi l'allemand ») :
+// pour les germanophones qui apprennent l'espagnol. Jamais pour l'allemand appris.
+const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en", "pt", "ar", "de"]
                : LANGUE_APPRISE === "ja" ? ["fr", "en"]
                // L'anglais : francais seulement. Une interface anglaise pour
                // apprendre l'anglais donnerait le mot pour sa propre traduction.
@@ -28828,10 +28840,17 @@ function appliquerLangueDocument(lang){
 // Une ternaire ne se met pas a trois langues : d'ou ces deux fonctions, seuls
 // endroits qui connaissent les suffixes. Ajouter une langue, c'est desormais
 // l'ajouter a UI_LANGS et a REPLI_LANGUE -- plus une seule ternaire a reecrire.
-const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr", uk: "_uk", fa: "_fa", ar: "_ar", pt: "_pt", pl: "_pl", ru: "_ru" };
+// "de" (1er nov. 2026) : l'allemand comme langue d'INTERFACE, pour l'espagnol
+// seulement. Ne pas confondre avec le "de" de la voix et de l'ecoute, qui
+// designe la langue APPRISE (voir VOIX_ALLEMAND_CONNU).
+const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr", uk: "_uk", fa: "_fa", ar: "_ar", pt: "_pt", pl: "_pl", ru: "_ru", de: "_de" };
+// La voix de l'allemand CONNU (la langue de l'usager, pas celle qu'il apprend) :
+// pickVoice("de") donnerait la voix espagnole. Un code a part, lu par
+// voicesForLang() et LANGUE_TAG.
+const VOIX_ALLEMAND_CONNU = "de-connu";
 
 // Le drapeau affiche dans l'en-tete. Ce sont des emoji, donc rien a heberger.
-const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷", uk: "🇺🇦", fa: "🇮🇷", ar: "🇸🇦", pt: "🇧🇷", pl: "🇵🇱", ru: "🌐" };
+const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷", uk: "🇺🇦", fa: "🇮🇷", ar: "🇸🇦", pt: "🇧🇷", pl: "🇵🇱", ru: "🌐", de: "🇩🇪" };
 
 // Ordre de repli quand la traduction manque. Le turc arrive en dernier et son
 // corpus se remplira progressivement : sans repli, chaque mot pas encore
@@ -28845,7 +28864,9 @@ const REPLI_LANGUE = { fr: ["fr"], en: ["en", "fr"], tr: ["tr", "en", "fr"],
                        // Le polonais : meme repli que les autres langues d'interface.
                        pl: ["pl", "en", "fr"],
                        // Le russe : meme repli que les autres langues.
-                       ru: ["ru", "en", "fr"] };
+                       ru: ["ru", "en", "fr"],
+                       // L'allemand (interface de l'espagnol, 1er nov. 2026).
+                       de: ["de", "en", "fr"] };
 
 function langueEtRepli(lang){
     return REPLI_LANGUE[lang || getUiLang()] || REPLI_LANGUE[DEFAULT_UI_LANG];
@@ -28878,7 +28899,7 @@ function texteTraduit(obj, base, lang){
 // options / optionsEn, correct / correctEn. Meme logique de repli, autre
 // convention -- et ils ne portent pas toujours du texte (options est un
 // tableau), d'ou une fonction distincte de texteTraduit.
-const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr", uk: "Uk", fa: "Fa", pt: "Pt", ar: "Ar", pl: "Pl", ru: "Ru" };
+const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr", uk: "Uk", fa: "Fa", pt: "Pt", ar: "Ar", pl: "Pl", ru: "Ru", de: "De" };
 
 // ============ Ou se trouve chaque langue dans une carte ============
 // Les cartes de vocabulaire sont des TABLEAUX : le rang encode le sens, et il
@@ -28889,12 +28910,14 @@ const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr", uk: "Uk", fa: "Fa", pt: "P
 // donc aucun des lecteurs positionnels du fichier n'est affecte. Ajouter une
 // langue de plus se fera pareil -- une paire de rangs au bout, une ligne ici.
 const RANGS_CARTE = {
-    nomen:         { traduction: { fr:3, en:4, tr:12, uk:15, fa:17, pt:19, ar:21, pl:23, ru:25 }, exemple: { fr:6, en:7, tr:13, uk:16, fa:18, pt:20, ar:22, pl:24, ru:26 } },
-    adjektive:     { traduction: { fr:1, en:5, tr:7,  uk:11, fa:13, pt:17, ar:19, pl:21, ru:23 }, exemple: { fr:4, en:6, tr:8,  uk:12, fa:14, pt:18, ar:20, pl:22, ru:24 } },
-    funktionswort: { traduction: { fr:1, en:5, tr:9,  uk:14, fa:17, pt:20, ar:23, pl:26, ru:29 }, exemple: { fr:4, en:6, tr:10, uk:15, fa:18, pt:21, ar:24, pl:27, ru:30 },
-                     categorie:  { fr:2, en:7, tr:11, uk:16, fa:19, pt:22, ar:25, pl:28, ru:31 } },
-    expression:    { traduction: { fr:1, en:5, tr:10, uk:15, fa:18, pt:21, ar:24, pl:27, ru:30 }, exemple: { fr:4, en:6, tr:11, uk:16, fa:19, pt:22, ar:25, pl:28, ru:31 },
-                     categorie:  { fr:2, en:7, tr:12, uk:17, fa:20, pt:23, ar:26, pl:29, ru:32 } }
+    // de (1er nov. 2026) : l'allemand, langue d'interface de l'espagnol -- ses
+    // rangs n'existent que dans les cartes de l'espagnol.
+    nomen:         { traduction: { fr:3, en:4, tr:12, uk:15, fa:17, pt:19, ar:21, pl:23, ru:25, de:27 }, exemple: { fr:6, en:7, tr:13, uk:16, fa:18, pt:20, ar:22, pl:24, ru:26, de:28 } },
+    adjektive:     { traduction: { fr:1, en:5, tr:7,  uk:11, fa:13, pt:17, ar:19, pl:21, ru:23, de:25 }, exemple: { fr:4, en:6, tr:8,  uk:12, fa:14, pt:18, ar:20, pl:22, ru:24, de:26 } },
+    funktionswort: { traduction: { fr:1, en:5, tr:9,  uk:14, fa:17, pt:20, ar:23, pl:26, ru:29, de:32 }, exemple: { fr:4, en:6, tr:10, uk:15, fa:18, pt:21, ar:24, pl:27, ru:30, de:33 },
+                     categorie:  { fr:2, en:7, tr:11, uk:16, fa:19, pt:22, ar:25, pl:28, ru:31, de:34 } },
+    expression:    { traduction: { fr:1, en:5, tr:10, uk:15, fa:18, pt:21, ar:24, pl:27, ru:30, de:33 }, exemple: { fr:4, en:6, tr:11, uk:16, fa:19, pt:22, ar:25, pl:28, ru:31, de:34 },
+                     categorie:  { fr:2, en:7, tr:12, uk:17, fa:20, pt:23, ar:26, pl:29, ru:32, de:35 } }
 };
 
 // Lit un texte de carte dans la langue voulue, avec le meme repli que
@@ -29143,7 +29166,8 @@ const ANGLAIS_EN_RETRAIT = true;
 // Ajouter ici une langue le jour ou le contenu espagnol y est traduit :
 // le portugais du Bresil (v784, 13 oct. 2026), puis l'arabe (15 oct. 2026).
 // Sans effet pour qui est DEJA en espagnol : il garde le bouton de retour.
-const LANGUES_UI_AVEC_ESPAGNOL = ["fr", "en", "pt", "ar"];
+// et l'allemand (1er nov. 2026) : seule l'app espagnole le propose en interface.
+const LANGUES_UI_AVEC_ESPAGNOL = ["fr", "en", "pt", "ar", "de"];
 // v871 : SUR L'ECRAN DE CONNEXION, LA BASCULE AVANT DE SE CONNECTER. Une
 // testeuse d'espagnol lisait « Apprends l'allemand » en entrant son mot de
 // passe : la langue apprise se decide avant la connexion (l'adresse, ou le
@@ -29338,6 +29362,8 @@ function adapterChoixALaLangueApprise(){
     document.querySelectorAll('.setup-choice[onclick*="selectUiLangChoice"]').forEach(btn => {
         const m = btn.getAttribute("onclick").match(/'([a-z]{2})'/);
         if(m && !UI_LANGS.includes(m[1])) btn.classList.add("hidden");
+        // L'allemand (cache par defaut dans la page) : montre ici seulement.
+        if(m && m[1] === "de" && UI_LANGS.includes("de")) btn.classList.remove("hidden");
     });
 }
 
@@ -32531,6 +32557,12 @@ async function loadVerbeJson() {
                     exemple_futuro: v.exemple_futuro || "", exemple_futuro_fr: v.exemple_futuro_fr || "", exemple_futuro_en: v.exemple_futuro_en || "", exemple_futuro_pt: v.exemple_futuro_pt || "",
                     exemple_condicional: v.exemple_condicional || "", exemple_condicional_fr: v.exemple_condicional_fr || "", exemple_condicional_en: v.exemple_condicional_en || "", exemple_condicional_pt: v.exemple_condicional_pt || "",
                     exemple_subjuntivo: v.exemple_subjuntivo || "", exemple_subjuntivo_fr: v.exemple_subjuntivo_fr || "", exemple_subjuntivo_en: v.exemple_subjuntivo_en || "", exemple_subjuntivo_pt: v.exemple_subjuntivo_pt || "",
+                    // L'allemand, langue d'interface de l'espagnol (1er nov. 2026) :
+                    // seulement en espagnol, l'objet allemand reste le meme.
+                    ...(LANGUE_APPRISE === "es" ? { traduction_de: v.traduction_de || "", exemple_de: v.exemple_de || "",
+                        exemple_preterito_de: v.exemple_preterito_de || "", exemple_imperfecto_de: v.exemple_imperfecto_de || "",
+                        exemple_perfecto_de: v.exemple_perfecto_de || "", exemple_futuro_de: v.exemple_futuro_de || "",
+                        exemple_condicional_de: v.exemple_condicional_de || "", exemple_subjuntivo_de: v.exemple_subjuntivo_de || "" } : {}),
                     praeteritumHighlight: v.praeteritumHighlight || "", konjunktiv2Highlight: v.konjunktiv2Highlight || "",
                     // Les examens ou ce verbe figure, ["a2","b1","dtz"]. Ce
                     // chargeur recopie champ par champ : sans cette ligne, la
@@ -32625,7 +32657,10 @@ async function loadAdjektiveJson() {
                     w.traduction_pl || "",   // rang 21 (polonais)
                     w.exemple_pl || "",      // rang 22
                     w.traduction_ru || "",   // rang 23 (russe)
-                    w.exemple_ru || ""       // rang 24
+                    w.exemple_ru || "",      // rang 24
+                    // Rangs 25-26 : l'allemand, langue d'interface de l'espagnol
+                    // (1er nov. 2026) ; seulement en espagnol.
+                    ...(LANGUE_APPRISE === "es" ? [w.traduction_de || "", w.exemple_de || ""] : [])
                 ]);
                 // Le japonais : lecture, furigana et formes (い / な), en
                 // proprietes nommees comme pour les noms.
@@ -32793,7 +32828,9 @@ async function loadFunktionswoerterJson() {
                 w.traduction_pl || "", w.exemple_pl || "",  // rangs 26 et 27 (polonais)
                 w.kategorie_pl || "",                       // rang 28
                 w.traduction_ru || "", w.exemple_ru || "",  // rangs 29 et 30 (russe)
-                w.kategorie_ru || ""                        // rang 31
+                w.kategorie_ru || "",                       // rang 31
+                // Rangs 32-34 : l'allemand (interface de l'espagnol, 1er nov. 2026).
+                ...(LANGUE_APPRISE === "es" ? [w.traduction_de || "", w.exemple_de || "", w.kategorie_de || ""] : [])
             ]);
         });
     } catch (e) {
@@ -32830,7 +32867,9 @@ async function loadRedewendungenJson() {
                     r.traduction_pl || "", r.exemple_pl || "",  // rangs 27 et 28 (polonais)
                     cat.pl || "",                               // rang 29
                     r.traduction_ru || "", r.exemple_ru || "",  // rangs 30 et 31 (russe)
-                    cat.ru || ""                                // rang 32
+                    cat.ru || "",                               // rang 32
+                    // Rangs 33-35 : l'allemand (interface de l'espagnol, 1er nov. 2026).
+                    ...(LANGUE_APPRISE === "es" ? [r.traduction_de || "", r.exemple_de || "", cat.de || ""] : [])
                 ]);
             });
         });
@@ -32869,7 +32908,9 @@ async function loadAdverbienJson() {
                     a.traduction_pl || "", a.exemple_pl || "",  // rangs 27 et 28 (polonais)
                     cat.pl || "",                               // rang 29
                     a.traduction_ru || "", a.exemple_ru || "",  // rangs 30 et 31 (russe)
-                    cat.ru || ""                                // rang 32
+                    cat.ru || "",                               // rang 32
+                    // Rangs 33-35 : l'allemand (interface de l'espagnol, 1er nov. 2026).
+                    ...(LANGUE_APPRISE === "es" ? [a.traduction_de || "", a.exemple_de || "", cat.de || ""] : [])
                 ]);
                 if(LANGUE_APPRISE === "ja") words[words.length - 1].ja = lectureJaponaise(a);
             });
@@ -33083,7 +33124,9 @@ async function loadThemesJson() {
                     w.traduction_pl || "",   // rang 23 (polonais)
                     w.exemple_pl || "",      // rang 24
                     w.traduction_ru || "",   // rang 25 (russe)
-                    w.exemple_ru || ""       // rang 26
+                    w.exemple_ru || "",      // rang 26
+                    // Rangs 27-28 : l'allemand (interface de l'espagnol, 1er nov. 2026).
+                    ...(LANGUE_APPRISE === "es" ? [w.traduction_de || "", w.exemple_de || ""] : [])
                 ];
             });
             if(variantesEspagnol) words.forEach(w => appliquerVarianteEspagnol(w, variantesEspagnol, phrasesLatam));
@@ -40723,6 +40766,17 @@ function searchSenseTokens(str){
         .filter(Boolean);
 }
 
+// Le sens affiche d'un resultat. ⚠️ L'ALLEMAND CONNU (interface allemande de
+// l'espagnol, 1er nov. 2026) : dans une entree, « de » est le mot APPRIS, et
+// libelle() le renvoyait comme sa propre traduction. On relit donc la carte.
+function tradRecherche(entry){
+    if(getUiLang() !== "de") return libelle(entry);
+    const c = entry.card;
+    if(c && !Array.isArray(c)) return texteTraduit(c, "traduction", "de");
+    const type = TYPE_CARTE_PAR_MODE[entry.mode];
+    return type ? texteCarte(c, type, "traduction", "de") : (entry.en || entry.fr || "");
+}
+
 function pushSearchEntry(list, entry){
     // On ne cherche QUE dans l'allemand et dans la langue de l'interface. Avant
     // la v254 la traduction anglaise etait fouillee aussi : en francais, taper
@@ -40731,7 +40785,7 @@ function pushSearchEntry(list, entry){
     // resultats qui semblaient tires au hasard, puisque le mot qui les avait
     // fait remonter n'etait nulle part a l'ecran. Symetriquement, en anglais on
     // ne fouille plus le francais.
-    const trad = libelle(entry);
+    const trad = tradRecherche(entry);
     entry.haystack = normalizeSearch([entry.de, trad, entry.alt].filter(Boolean).join(" ~ "));
     entry.deNorm = normalizeSearch(entry.de);
     // Traduction affichee, normalisee : c'est elle qui compte pour une
@@ -41405,7 +41459,7 @@ function findSearchSuggestions(q){
 // de progression : sur une liste de resultats, c'est du bruit.
 function searchResultHtml(entry, i, exact){
     const useEn = getUiLang() === 'en';
-    const trad = libelle(entry);
+    const trad = tradRecherche(entry);
     // Mot, traduction et nature sur UNE seule ligne ; la pastille "correspondance
     // exacte" est placee au-dessus plutot qu'a la suite, pour ne pas repousser la
     // nature du mot sur une deuxieme ligne et garder toutes les lignes alignees.
@@ -42619,7 +42673,7 @@ function openSettings(){
 // l'ecran pour un choix qu'on fait une fois : la ligne dit la langue actuelle,
 // les boutons s'ouvrent au toucher. Les noms dans leur propre langue -- c'est
 // sous cette forme qu'on reconnait la sienne.
-const NOM_LANGUE_NATIF = { fr: "Français", en: "English", tr: "Türkçe", uk: "Українська", fa: "فارسی", ar: "العربية", pt: "Português (Brasil)", pl: "Polski", ru: "Русский" };
+const NOM_LANGUE_NATIF = { fr: "Français", en: "English", tr: "Türkçe", uk: "Українська", fa: "فارسی", ar: "العربية", pt: "Português (Brasil)", pl: "Polski", ru: "Русский", de: "Deutsch" };
 function afficherLangueActuelle(){
     const el = document.getElementById("reglageLangueActuelle");
     if(el) el.textContent = NOM_LANGUE_NATIF[getUiLang()] || "";
@@ -42717,7 +42771,7 @@ const ABONNEMENT = { mensuel: 6.99, annuel: 49.99, devise: "EUR", essaiJours: 7 
 let aboPlan = "annuel";
 let ecranAvantAbonnement = "adminDashboard";
 
-const LOCALES_ABO = { fr: "fr-FR", en: "en-IE", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU" };
+const LOCALES_ABO = { fr: "fr-FR", en: "en-IE", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU", de: "de-DE" };
 function prixAbo(v){
     try{
         return new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR",
@@ -43962,7 +44016,7 @@ async function renderAdminUsersList(){
         // Les lignes ouvertes le restent : le bouton VHS redessine la liste,
         // et la refermer sous le doigt donnait l'impression d'un clic perdu.
         const ouverts = new Set(Array.from(container.querySelectorAll("details[data-uid][open]")).map(d => d.dataset.uid));
-        const NOMS_LANGUE = { fr: "français", en: "anglais", tr: "turc", uk: "ukrainien", fa: "persan", ar: "arabe", pt: "portugais (Brésil)", pl: "polonais", ru: "russe" };
+        const NOMS_LANGUE = { fr: "français", en: "anglais", tr: "turc", uk: "ukrainien", fa: "persan", ar: "arabe", pt: "portugais (Brésil)", pl: "polonais", ru: "russe", de: "allemand" };
         const chiffre = (n, libelle) => `<div class="admin-chiffre"><small>${libelle}</small><strong>${n}</strong></div>`;
         container.innerHTML = alerteSync
             + `<div class="admin-chiffres">${chiffre(compte.actif, "Actifs 7 j")}${chiffre(compte.relancer, "À relancer")}${chiffre(compte.jamais, "Jamais commencé")}</div>`
@@ -46918,6 +46972,14 @@ function scoreVoixAnglaise(v){
 }
 
 function voicesForLang(prefix){
+    // L'allemand CONNU (interface allemande de l'espagnol, 1er nov. 2026) : les
+    // voix allemandes, sans passer par la conversion de "de" en langue apprise.
+    if(prefix === VOIX_ALLEMAND_CONNU){
+        if(!('speechSynthesis' in window)) return [];
+        return window.speechSynthesis.getVoices()
+            .filter(v => v.lang && v.lang.toLowerCase().startsWith("de"))
+            .sort((a, b) => voiceQualityScore(b) - voiceQualityScore(a) || a.name.localeCompare(b.name));
+    }
     // L'anglais appris (28 oct. 2026) : sa variante seule, les meilleures
     // voix d'abord. A defaut d'une voix de la variante, toute voix anglaise.
     if(prefix === "de" && LANGUE_APPRISE === "en"){
@@ -46967,7 +47029,8 @@ const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [], uk: [], fa: [],
 // eventuellement fausse chez qui n'a pas de voix ukrainienne installee.
 // C'est exactement le piege deja nomme pour le turc : poser la donnee sans
 // mettre a jour les tables qui la lisent.
-const LANGUE_TAG = { de: LANGUE_ENSEIGNEE.voix, en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar-SA", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU" };
+const LANGUE_TAG = { de: LANGUE_ENSEIGNEE.voix, en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar-SA", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU",
+                     [VOIX_ALLEMAND_CONNU]: "de-DE" };
 
 // Le choix fait dans les reglages est memorise PAR VARIANTE en anglais appris
 // (28 oct. 2026) : choisir une voix britannique ne doit pas effacer la voix
@@ -47073,6 +47136,8 @@ function renderVoiceSettings(){
     const langues = (LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") ? [['de', t('voice_lang_de')]]
                   : [['de', t('voice_lang_de')], ['en', t('voice_lang_en')]];
     if(connu !== 'de' && connu !== 'en') langues.push([connu, t('voice_lang_fr')]);
+    // L'allemand connu (interface allemande de l'espagnol) : sa propre ligne.
+    if(connu === 'de' && LANGUE_APPRISE === "es") langues.push([VOIX_ALLEMAND_CONNU, t('voice_lang_fr')]);
     box.innerHTML = langues.map(([prefix, libelle]) => {
         const dispo = voicesForLang(prefix);
         if(!dispo.length){
@@ -47525,19 +47590,26 @@ function contenuEcoute(item){
         : texteCarte(c, type, "exemple", lang);
     const mot = (lang) => lang === "de" ? de : connu(lang);
     const phrase = (lang) => lang === "de" ? pDe : connuPhrase(lang);
+    // L'ALLEMAND CONNU (1er nov. 2026) : un germanophone qui apprend l'espagnol.
+    // Ici "de" designe la langue APPRISE : cible et connu valent tous deux
+    // "de", et mot("de") rendait le mot espagnol a la place de sa traduction.
+    // Le texte connu passe donc par connu("de") (les champs *_de), et sa voix
+    // par VOIX_ALLEMAND_CONNU (une voix allemande, pas la voix espagnole).
+    const connuAllemand = L.connu === "de" && L.cible === "de";
     // La voix de la langue connue est celle que le repli a servie, pas celle
     // demandee : en turc sans corpus turc, le texte est anglais, donc la voix
     // doit etre anglaise.
     const langServie = (q) => {
-        if(L.connu === "de") return "de";
+        if(L.connu === "de" && !connuAllemand) return "de";
         const code = item.type === "verben"
             ? langueTraduite(c, q === "mot" ? "traduction" : "exemple", L.connu)
             : langueCarte(c, type, q === "mot" ? "traduction" : "exemple", L.connu);
-        return code || L.connu;
+        const servie = code || L.connu;
+        return (connuAllemand && servie === "de") ? VOIX_ALLEMAND_CONNU : servie;
     };
     return {
-        cibleMot: mot(L.cible), connuMot: mot(L.connu),
-        ciblePhrase: phrase(L.cible), connuPhrase: phrase(L.connu),
+        cibleMot: mot(L.cible), connuMot: connuAllemand ? connu("de") : mot(L.connu),
+        ciblePhrase: phrase(L.cible), connuPhrase: connuAllemand ? connuPhrase("de") : phrase(L.connu),
         langCible: L.cible, langConnu: langServie("mot"),
         langConnuPhrase: langServie("phrase")
     };
@@ -50422,7 +50494,7 @@ function buildDictationExercises(cartes, mode){
             question_en: I18N.en.dictation_instruction,
             // v974 : la consigne dans les sept autres langues aussi -- sans
             // elles, texteTraduit() s'arretait a l'anglais.
-            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru"].map(c =>
+            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].map(c =>
                 ["question" + SUFFIXE_LANGUE[c], I18N[c] && I18N[c].dictation_instruction])),
             translation: knownWord,
             translation_en: knownWord,
@@ -50432,7 +50504,7 @@ function buildDictationExercises(cartes, mode){
             // ecrire.
             hint: nomsSeuls ? I18N.fr.dictation_hint : "",
             hint_en: nomsSeuls ? I18N.en.dictation_hint : "",
-            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru"].map(c =>
+            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].map(c =>
                 ["hint" + SUFFIXE_LANGUE[c], nomsSeuls ? (I18N[c] && I18N[c].dictation_hint) : ""])),
             answers: [targetWord],
             correct: targetWord,
@@ -56374,12 +56446,14 @@ function themePremiersPas(){ return "premiers_pas2_" + (LANGUE_APPRISE === "es" 
 // Les flashcards, au format d'une carte d'expression (RANGS_CARTE.expression) :
 // le sens et l'exemple dans les neuf langues, la situation comme categorie.
 const RANGS_PP = { fr: [1, 4, 2], en: [5, 6, 7], tr: [10, 11, 12], uk: [15, 16, 17], fa: [18, 19, 20],
-                   pt: [21, 22, 23], ar: [24, 25, 26], pl: [27, 28, 29], ru: [30, 31, 32] };
+                   pt: [21, 22, 23], ar: [24, 25, 26], pl: [27, 28, 29], ru: [30, 31, 32],
+                   // L'allemand, interface de l'espagnol (1er nov. 2026) : en espagnol seulement.
+                   ...(LANGUE_APPRISE === "es" ? { de: [33, 34, 35] } : {}) };
 function toutesCartesPremiersPas(){
     const out = [];
     let k = 0;
     joursPremiersPas().forEach((jour, d) => (jour.cartes || []).forEach(c => {
-        const w = new Array(33).fill("");
+        const w = new Array(RANGS_PP.de ? 36 : 33).fill("");
         w[0] = c[0]; w[3] = c[2] || ""; w[8] = "A1";
         Object.keys(RANGS_PP).forEach(l => {
             const r = RANGS_PP[l];
@@ -60814,8 +60888,10 @@ function normaliserSaisie(txt){
 // parfait, preterit, subjonctif II), ce qui fait de loin le plus gros vivier.
 function phrasesTraduisibles(niveau){
     const sorties = [];
-    const ajouter = (de, fr, en, source) => {
-        if(de && fr && de.length > 6) sorties.push({ de, fr, en: en || fr, source });
+    // trDe : la phrase en ALLEMAND connu (interface allemande de l'espagnol,
+    // 1er nov. 2026) -- absente ailleurs, ou la consigne reste fr / en.
+    const ajouter = (de, fr, en, source, trDe) => {
+        if(de && fr && de.length > 6) sorties.push({ de, fr, en: en || fr, source, ...(trDe ? { trDe } : {}) });
     };
     const bonNiveau = (n) => niveau === "ALL" || n === niveau;
 
@@ -60823,9 +60899,9 @@ function phrasesTraduisibles(niveau){
         Object.keys(theme.levels || {}).forEach(lvl => {
             if(!bonNiveau(lvl)) return;
             const lv = theme.levels[lvl];
-            (lv.words || []).forEach(w => ajouter(w[5], w[6], w[7], theme.name));
+            (lv.words || []).forEach(w => ajouter(w[5], w[6], w[7], theme.name, w[RANGS_CARTE.nomen.exemple.de]));
             (lv.verben || []).forEach(v => {
-                ajouter(v.exemple, v.exemple_fr, v.exemple_en, theme.name);
+                ajouter(v.exemple, v.exemple_fr, v.exemple_en, theme.name, v.exemple_de);
                 ajouter(v.perfekt, v.perfekt_fr, v.perfekt_en, theme.name);
             });
             (lv.adjektive || []).forEach(a => ajouter(a[3], a[4], a[6], theme.name));
@@ -60835,7 +60911,7 @@ function phrasesTraduisibles(niveau){
     (verbeTheme.words || []).forEach(v => {
         if(!bonNiveau(v.niveau)) return;
         const src = t('orb_verben_title');
-        ajouter(v.exemple, v.exemple_fr, v.exemple_en, src);
+        ajouter(v.exemple, v.exemple_fr, v.exemple_en, src, v.exemple_de);
         ajouter(v.perfekt, v.perfekt_fr, v.perfekt_en, src);
         ajouter(v.praeteritum, v.praeteritum_fr, v.praeteritum_en, src);
         ajouter(v.konjunktiv2, v.konjunktiv2_fr, v.konjunktiv2_en, src);
@@ -60843,14 +60919,14 @@ function phrasesTraduisibles(niveau){
 
     (adjektiveTheme.words || []).forEach(a => {
         if(!bonNiveau(a[3])) return;
-        ajouter(a[2], a[4], a[6], t('orb_adjektive_title'));
+        ajouter(a[2], a[4], a[6], t('orb_adjektive_title'), a[RANGS_CARTE.adjektive.exemple.de]);
     });
 
     [[adverbienTheme, 'orb_adverbien_title'], [redewendungenTheme, 'orb_redewendungen_title']]
         .forEach(pair => {
             (pair[0].words || []).forEach(w => {
                 if(!bonNiveau(w[8])) return;
-                ajouter(w[3], w[4], w[6], t(pair[1]));
+                ajouter(w[3], w[4], w[6], t(pair[1]), w[RANGS_CARTE.expression.exemple.de]);
             });
         });
 
@@ -60900,7 +60976,7 @@ function phrasesEcoutables(niveau){
         sorties.push({ de: de, trad: trad, source: source });
     };
     const bonNiveau = (n) => niveau === "ALL" || n === niveau;
-    const rangs = (w, r) => ({ fr: w[r.fr], en: w[r.en], tr: w[r.tr], uk: w[r.uk], fa: w[r.fa], pt: w[r.pt], ar: w[r.ar], pl: w[r.pl], ru: w[r.ru] });
+    const rangs = (w, r) => ({ fr: w[r.fr], en: w[r.en], tr: w[r.tr], uk: w[r.uk], fa: w[r.fa], pt: w[r.pt], ar: w[r.ar], pl: w[r.pl], ru: w[r.ru], de: w[r.de] });
 
     themesComptes().forEach(theme => {
         Object.keys(theme.levels || {}).forEach(lvl => {
@@ -60910,14 +60986,14 @@ function phrasesEcoutables(niveau){
                 ajouter(w[5], rangs(w, RANGS_CARTE.nomen.exemple), theme.name));
             (lv.verben || []).forEach(v => ajouter(v.exemple, {
                 fr: v.exemple_fr, en: v.exemple_en,
-                tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa, pt: v.exemple_pt, ar: v.exemple_ar, pl: v.exemple_pl, ru: v.exemple_ru }, theme.name));
+                tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa, pt: v.exemple_pt, ar: v.exemple_ar, pl: v.exemple_pl, ru: v.exemple_ru, de: v.exemple_de }, theme.name));
         });
     });
 
     (verbeTheme.words || []).forEach(v => {
         if(!bonNiveau(v.niveau)) return;
         ajouter(v.exemple, { fr: v.exemple_fr, en: v.exemple_en,
-                             tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa, pt: v.exemple_pt, ar: v.exemple_ar, pl: v.exemple_pl, ru: v.exemple_ru },
+                             tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa, pt: v.exemple_pt, ar: v.exemple_ar, pl: v.exemple_pl, ru: v.exemple_ru, de: v.exemple_de },
                 t('orb_verben_title'));
     });
 
@@ -61327,6 +61403,7 @@ function startSchreiben(niveau){
         topic: "\u00c9crire \u00b7 " + ph.source,
         question: ph.fr,
         question_en: ph.en,
+        ...(ph.trDe ? { question_de: ph.trDe } : {}),
         translation: ph.source,
         translation_en: ph.source,
         hint: t('schreiben_hint'),

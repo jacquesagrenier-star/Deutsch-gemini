@@ -410,7 +410,9 @@ def mot_espagnol(valeur, idx, variantes):
               # v782 : le portugais du Bresil, 3e langue d'interface de l'espagnol.
               "pt": m.get("traduction_pt"),
               # 15 oct. 2026 : l'arabe, 4e langue d'interface de l'espagnol.
-              "ar": m.get("traduction_ar")}
+              "ar": m.get("traduction_ar"),
+              # 1er nov. 2026 : l'allemand, 5e langue d'interface de l'espagnol.
+              "de": m.get("traduction_de")}
     v = variantes.get(mot)
     if v and (not art or art == m.get("genre")):
         sortie["latam"] = {"mot": v["mot"], "genre": v["genre"],
@@ -452,7 +454,7 @@ def construire_espagnol(nom, scene_de):
                 aussi.append({k: v for k, v in ra.items() if k != "pluriel"})
         if r:
             points.append(dict(p, aussi=aussi, **{k: r.get(k) for k in
-                          ("mot", "genre", "pluriel", "niveau", "theme", "fr", "en", "pt", "ar", "latam")}))
+                          ("mot", "genre", "pluriel", "niveau", "theme", "fr", "en", "pt", "ar", "de", "latam")}))
     for cle in ("tr", "uk", "fa"):     # le corpus espagnol n'a que fr, en, pt (v782) et ar
         for p in points:
             p.pop(cle, None)
@@ -479,9 +481,12 @@ def construire_espagnol(nom, scene_de):
     trad_en = {"couches": {}, "questions": {}, "sens": {}}
     trad_pt = {"couches": {}, "questions": {}, "sens": {}}
     trad_ar = {"couches": {}, "questions": {}, "sens": {}}
+    # L'allemand (1er nov. 2026) : son titre A1 n'existe pas dans la scene
+    # allemande (l'allemand y est la langue apprise), il s'ecrit ici.
+    trad_de = {"couches": {"A1": es.get("titre_a1_de", "Nomen und Artikel")}, "questions": {}, "sens": {}}
     # Les traductions d'une question (explication « n », sens de la phrase)
     # rangees par langue : {suffixe: (table, groupe)}.
-    PAR_LANGUE = {"en": trad_en, "pt": trad_pt, "ar": trad_ar}
+    PAR_LANGUE = {"en": trad_en, "pt": trad_pt, "ar": trad_ar, "de": trad_de}
     CHAMPS_TRADUITS = ["n_%s" % l for l in PAR_LANGUE] + ["sens_%s" % l for l in PAR_LANGUE]
     connus = {p["id"] for p in points}
     verbes = {e["infinitif"] for n in json.load(io.open(os.path.join(RACINE, "espanol", "datos", "verbos.json"),
@@ -497,6 +502,8 @@ def construire_espagnol(nom, scene_de):
             trad_pt["couches"][niv] = c["titre_pt"]
         if c.get("titre_ar"):
             trad_ar["couches"][niv] = c["titre_ar"]
+        if c.get("titre_de"):
+            trad_de["couches"][niv] = c["titre_de"]
         for q in c.get("qs", []):
             q = dict(q)
             # n_en / n_pt / n_ar et sens_en / sens_pt / sens_ar quittent la
@@ -575,6 +582,11 @@ def construire_espagnol(nom, scene_de):
         t = traductions.setdefault(l, {"champs": {}, "couches": {}, "questions": {}, "sens": {}})
         for groupe in ("couches", "questions", "sens"):
             t.setdefault(groupe, {}).update(table[groupe])
+    # L'allemand : le texte de l'image et la consigne, que la scene allemande
+    # n'a pas, viennent de espanol/<scene>.json (alt_de, consigne_de).
+    for champ in ("alt", "consigne"):
+        if es.get(champ + "_de"):
+            traductions["de"]["champs"][champ] = es[champ + "_de"]
     scene["traductions"] = traductions
     js = ("// GENERE par construire.py (espanol/%s.json) -- ne pas modifier a la main.\n" % nom
           + "window.SCENE = " + json.dumps(scene, ensure_ascii=False, indent=1) + ";\n")

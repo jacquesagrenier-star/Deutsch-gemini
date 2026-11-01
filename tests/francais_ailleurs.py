@@ -5,6 +5,12 @@
     python tests/francais_ailleurs.py --app es --langues en,pt
     python tests/francais_ailleurs.py --app de --complet       # + chaque option des panneaux
     python tests/francais_ailleurs.py --app de --sortie releve.json
+    python tests/francais_ailleurs.py --app es --langues de --reference en   # l'ANGLAIS reste
+
+L'ALLEMAND (1er nov. 2026, interface de l'espagnol) se replie sur l'ANGLAIS, pas
+sur le francais : un texte oublie s'y affiche en anglais, et la mesure francaise
+ne le voit pas. --reference en compare donc au releve anglais, avec des
+marqueurs de l'anglais (the, your, you...) qui ne s'ecrivent pas en allemand.
 
 POURQUOI. Le 27 oct. 2026, les captures App Store en anglais montraient
 « maitrise », « en cours » et « Premiers pas » en francais : l'accueil ne se
@@ -47,7 +53,7 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = 8793
 HEURE_FIGEE = "2026-10-10T09:00:00"
 LANGUES = {"de": ["en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"],
-           "es": ["en", "pt", "ar"]}
+           "es": ["en", "pt", "ar", "de"]}
 
 HASARD_FIGE = r"""
 (() => {
@@ -171,6 +177,22 @@ def marqueur(ligne, app, langue=None):
     if re.search(r"(?<![\w’'-])(?:%s)(?![\w’'-])" %"|".join(map(re.escape, mots)), ligne, re.I):
         return True
     return any(m.lower() in lexique_fr() for m in re.findall(r"[^\W\d_]{3,}", ligne))
+
+
+# Les petits mots de l'anglais qui ne s'ecrivent pas en allemand (« in », « will »,
+# « was », « die », « so » en sont exclus : ils sont aussi allemands).
+MOTS_EN = r"the|and|your|you|of|with|for|is|are|this|my|at|it|be|can|to|from|has|have|not|how|what|when|why|" \
+          r"more|all|see|words|word|cards|card|level|day|days|back|next|learn|practice|review|tap|choose|" \
+          r"listen|repeat|today|done|start|session|settings|lesson|sentence|sentences|translation"
+
+
+def marqueur_en(ligne, app, langue=None):
+    if ligne in ENDONYMES or ligne in ("English",) or re.fullmatch(r"(?:\[[^\]]*\]\s*)+", ligne):
+        return False
+    # Une ligne espagnole ou allemande du contenu ne trahit pas l'anglais.
+    if re.search(r"[¿¡ñáíóúäöüß]|(?<!\w)(?:el|los|las|para|con|que|es|y|del|una|der|die|das|und|ist|nicht|ich|du)(?!\w)", ligne, re.I):
+        return False
+    return bool(re.search(r"(?<![\w’'-])(?:%s)(?![\w’'-])" % MOTS_EN, ligne, re.I))
 
 
 @functools.lru_cache(None)
@@ -332,14 +354,15 @@ class Session:
         self.noter("apres bascule : retour")
 
 
-def signaler(releve_fr, releve, app, langue=None):
+def signaler(releve_fr, releve, app, langue=None, reference="fr"):
     vu_fr = set()
     for r in releve_fr.values():
         vu_fr.update(r["lignes"])
+    juge = marqueur_en if reference == "en" else marqueur
     trouves = {}
     for chemin, r in releve.items():
         for l in r["lignes"]:
-            if l in vu_fr and marqueur(l, app, langue):
+            if l in vu_fr and juge(l, app, langue):
                 trouves.setdefault(l, []).append(chemin)
     return trouves
 
@@ -352,6 +375,8 @@ def main():
     ap.add_argument("--sans-chaud", action="store_true")
     ap.add_argument("--sortie")
     ap.add_argument("--port", type=int, help="pour lancer plusieurs langues en parallele")
+    ap.add_argument("--reference", choices=["fr", "en"], default="fr",
+                    help="en : chercher l'anglais reste (la langue de repli), pas le francais")
     a = ap.parse_args()
     global PORT
     if a.port:
@@ -364,8 +389,8 @@ def main():
     try:
         with sync_playwright() as p:
             nav = p.chromium.launch()
-            print("francais (reference)...")
-            s = Session(nav, a.app, "fr")
+            print("%s (reference)..." % ("anglais" if a.reference == "en" else "francais"))
+            s = Session(nav, a.app, a.reference)
             s.visiter(ECRANS, complet=a.complet)
             ref = s.releve
             s.ctx.close()
@@ -373,7 +398,7 @@ def main():
                 print(lg + " a froid...")
                 s = Session(nav, a.app, lg)
                 s.visiter(ECRANS, complet=a.complet)
-                froid = signaler(ref, s.releve, a.app, lg)
+                froid = signaler(ref, s.releve, a.app, lg, a.reference)
                 erreurs = sorted({e for r in s.releve.values() for e in r["erreurs"]})
                 s.ctx.close()
                 chaud = {}
@@ -384,7 +409,7 @@ def main():
                     s.releve = {}
                     s.basculer(lg)
                     s.visiter(ECRANS, prefixe="chaud : ", tuiles=False)
-                    chaud = {l: c for l, c in signaler(ref, s.releve, a.app, lg).items() if l not in froid}
+                    chaud = {l: c for l, c in signaler(ref, s.releve, a.app, lg, a.reference).items() if l not in froid}
                     s.ctx.close()
                 resultat["langues"][lg] = {"froid": froid, "chaud": chaud, "erreurs": erreurs}
                 total += len(froid) + len(chaud)
@@ -401,7 +426,7 @@ def main():
     if a.sortie:
         with open(a.sortie, "w", encoding="utf-8") as f:
             json.dump(resultat, f, ensure_ascii=False, indent=1)
-    print("\n%d ligne(s) francaise(s) hors du francais." % total)
+    print("\n%d ligne(s) %s hors de cette langue." % (total, "anglaise(s)" if a.reference == "en" else "francaise(s)"))
     sys.exit(1 if total else 0)
 
 
