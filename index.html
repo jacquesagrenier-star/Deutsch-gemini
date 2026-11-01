@@ -8570,6 +8570,29 @@ body[data-theme="dark"] #home #carteMosaique:not(.replie){background:rgba(20,36,
 body[data-theme="dark"] #home #carteMosaique:not(.replie) .mos-cadre{
     background:linear-gradient(135deg, #E9C878, #A87A22 45%, #F0D79A 60%, #8E6418) border-box; box-shadow:0 4px 14px rgba(0,0,0,.35);}
 #home #carteMosaique .mos-jauge{display:none;}
+/* v1062 : LA FETE DU TABLEAU COMPLET (voir feteTableau). Plein ecran, le fond de l'app ; le tableau dans le cadre dore
+   de la vignette ; la pastille puis le titre et l'auteur en ambre fonce n'arrivent qu'une fois BRAVO pose. */
+.fete-tableau{position:fixed; inset:0; z-index:100000; overflow:hidden; cursor:pointer;
+    background:linear-gradient(180deg, #82AFDB, #A4C6E7 55%, #C0D6EA); animation:ftEntre .3s ease-out both;}
+body[data-theme="dark"] .fete-tableau{background:linear-gradient(180deg, #0E1C26, #132634 55%, #18303F);}
+.fete-tableau.ft-part{opacity:0; transition:opacity .35s;}
+@keyframes ftEntre{from{opacity:0}to{opacity:1}}
+.ft-cadre{position:absolute; left:50%; top:55%; width:min(70vw, 340px); transform:translate(-50%, -50%); padding:5px; border-radius:16px;
+    background:linear-gradient(135deg, #F6DC95, #C08E2E 45%, #F8E6B0 60%, #B07E22);
+    box-shadow:0 0 0 12px rgba(255,255,255,.62), 0 0 0 13px #fff, 0 18px 34px rgba(20,40,60,.3);}
+.ft-cadre img{display:block; width:100%; border-radius:12px;}
+.ft-toile{position:absolute; left:5px; top:5px; width:calc(100% - 10px); height:calc(100% - 10px); border-radius:12px; z-index:1;}
+.ft-anim{position:absolute; inset:0; width:100%; height:100%; z-index:5; pointer-events:none;}
+.ft-numero{position:absolute; right:calc(14px + env(safe-area-inset-right, 0px)); top:calc(14px + env(safe-area-inset-top, 0px)); z-index:7;
+    background:#E8A23A; color:#1C2430; font-weight:900; font-size:14px; border-radius:999px; padding:5px 12px; box-shadow:0 3px 0 #A86A0E;
+    opacity:0; transform:scale(.3); transition:opacity .25s, transform .45s cubic-bezier(.2,1.8,.4,1);}
+.fete-tableau.ft-numero-la .ft-numero{opacity:1; transform:scale(1);}
+.ft-titre, .ft-sous{position:absolute; left:16px; right:16px; text-align:center; color:#7A4506; z-index:6;
+    text-shadow:0 1px 0 rgba(255,255,255,.55); opacity:0; transform:translateY(8px); transition:opacity .4s, transform .4s;}
+.ft-titre{bottom:calc(9% + env(safe-area-inset-bottom, 0px)); font-weight:900; font-size:24px;}
+.ft-sous{bottom:calc(5% + env(safe-area-inset-bottom, 0px)); font-weight:800; font-size:14px;}
+body[data-theme="dark"] .ft-titre, body[data-theme="dark"] .ft-sous{color:#F6C46A; text-shadow:none;}
+.fete-tableau.ft-fini .ft-titre, .fete-tableau.ft-fini .ft-sous{opacity:1; transform:none;}
 /* v1061 (suite) : LE CARTEL A COTE DU TABLEAU, PAS DESSOUS (Jacques : « que ca prenne moins de place en [hauteur] »).
    Le tableau a gauche (170 px de haut au plus), la plaque a droite, empilee : annee, peintre, titre, jours, galerie. */
 #home #carteMosaique:not(.replie){display:grid; grid-template-columns:auto minmax(0, 1fr); align-items:center; column-gap:14px; padding:14px;}
@@ -8659,7 +8682,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1061</span>
+        <span class="subtitle-version">v1062</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -14718,6 +14741,8 @@ const I18N = {
         badge_xp_5000_title: "Polyglotte en herbe",
         badge_xp_5000_desc: "500 points d'expérience atteints.",
         badges_points_explication: "Tes points : {n}. Tu gagnes 1 point par bonne réponse (carte, exercice, oral) et 5 de plus chaque fois que tu atteins ton objectif du jour. Ce ne sont pas des mots maîtrisés, et ils comptent pour cette langue seulement.",
+        fete_tableau_titre: "Tableau terminé !",
+        fete_tableau_numero: "Tableau n° {n}",
         badge_streak_3_title: "3 jours de suite",
         badge_streak_3_desc: "Trois jours consécutifs d'activité.",
         badge_streak_7_title: "Une semaine complète",
@@ -16227,6 +16252,8 @@ const I18N = {
         badge_xp_5000_title: "Budding polyglot",
         badge_xp_5000_desc: "Reached 500 experience points.",
         badges_points_explication: "Your points: {n}. You earn 1 point for each correct answer (card, exercise, speaking) and 5 more each time you reach your daily goal. They are not mastered words, and they count for this language only.",
+        fete_tableau_titre: "Painting complete!",
+        fete_tableau_numero: "Painting no. {n}",
         badge_streak_3_title: "3 days in a row",
         badge_streak_3_desc: "Three consecutive days of activity.",
         badge_streak_7_title: "A full week",
@@ -17740,6 +17767,8 @@ const I18N = {
         badge_xp_5000_title: "Yetişen çok dilli",
         badge_xp_5000_desc: "500 deneyim puanına ulaşıldı.",
         badges_points_explication: "Puanın: {n}. Her doğru cevap için 1 puan (kart, alıştırma, konuşma), günlük hedefine her ulaştığında 5 puan daha kazanırsın. Bunlar öğrenilmiş kelimeler değildir ve yalnızca bu dil için sayılır.",
+        fete_tableau_titre: "Tablo tamamlandı!",
+        fete_tableau_numero: "{n}. tablo",
         badge_streak_3_title: "Üst üste 3 gün",
         badge_streak_3_desc: "Üç gün üst üste etkinlik.",
         badge_streak_7_title: "Tam bir hafta",
@@ -18674,6 +18703,8 @@ const I18N = {
         badge_xp_5000_title: "Майбутній поліглот",
         badge_xp_5000_desc: "Досягнуто 500 очок досвіду.",
         badges_points_explication: "Твої очки: {n}. За кожну правильну відповідь (картка, вправа, усно) — 1 очко, і ще 5 щоразу, коли досягаєш денної мети. Це не вивчені слова, і вони рахуються лише для цієї мови.",
+        fete_tableau_titre: "Картину завершено!",
+        fete_tableau_numero: "Картина № {n}",
         badge_streak_3_title: "3 дні поспіль",
         badge_streak_3_desc: "Три дні активності поспіль.",
         badge_streak_7_title: "Цілий тиждень",
@@ -20527,6 +20558,8 @@ const I18N = {
         badge_xp_5000_title: "چندزبانهٔ نوپا",
         badge_xp_5000_desc: "500 امتیاز تجربه به دست آمد.",
         badges_points_explication: "امتیازهای تو: {n}. برای هر پاسخ درست (کارت، تمرین، گفتار) ۱ امتیاز می‌گیری و هر بار که به هدف روزانه‌ات برسی ۵ امتیاز دیگر. این‌ها واژه‌های آموخته‌شده نیستند و فقط برای همین زبان حساب می‌شوند.",
+        fete_tableau_titre: "تابلو کامل شد!",
+        fete_tableau_numero: "تابلوی شمارهٔ {n}",
         badge_streak_3_title: "3 روز پیاپی",
         badge_streak_3_desc: "سه روز پیاپی فعالیت.",
         badge_streak_7_title: "یک هفتهٔ کامل",
@@ -22342,6 +22375,8 @@ const I18N = {
         badge_xp_5000_title: "متعدّد اللغات في طور التكوين",
         badge_xp_5000_desc: "بلغتَ 500 نقطة خبرة.",
         badges_points_explication: "نقاطك: {n}. تكسب نقطة واحدة عن كل إجابة صحيحة (بطاقة، تمرين، نطق) و5 نقاط إضافية كلما بلغت هدفك اليومي. هذه ليست كلمات متقنة، وهي تُحسب لهذه اللغة فقط.",
+        fete_tableau_titre: "اكتملت اللوحة!",
+        fete_tableau_numero: "اللوحة رقم {n}",
         badge_streak_3_title: "3 أيام متتالية",
         badge_streak_3_desc: "ثلاثة أيام نشاط متتالية.",
         badge_streak_7_title: "أسبوع كامل",
@@ -23939,6 +23974,8 @@ const I18N = {
         badge_xp_5000_title: "Poliglota em formação",
         badge_xp_5000_desc: "500 pontos de experiência alcançados.",
         badges_points_explication: "Seus pontos: {n}. Você ganha 1 ponto por resposta certa (cartão, exercício, oral) e mais 5 cada vez que atinge sua meta do dia. Não são palavras dominadas, e contam só para este idioma.",
+        fete_tableau_titre: "Quadro concluído!",
+        fete_tableau_numero: "Quadro nº {n}",
         badge_streak_3_title: "3 dias seguidos",
         badge_streak_3_desc: "Três dias seguidos de atividade.",
         badge_streak_7_title: "Uma semana completa",
@@ -25513,6 +25550,8 @@ const I18N = {
         badge_xp_5000_title: "Początkujący poliglota",
         badge_xp_5000_desc: "Zdobyto 500 punktów doświadczenia.",
         badges_points_explication: "Twoje punkty: {n}. Za każdą dobrą odpowiedź (karta, ćwiczenie, mówienie) dostajesz 1 punkt, a za każde osiągnięcie dziennego celu jeszcze 5. To nie są opanowane słowa i liczą się tylko dla tego języka.",
+        fete_tableau_titre: "Obraz ukończony!",
+        fete_tableau_numero: "Obraz nr {n}",
         badge_streak_3_title: "3 dni z rzędu",
         badge_streak_3_desc: "Trzy kolejne dni aktywności.",
         badge_streak_7_title: "Pełny tydzień",
@@ -27086,6 +27125,8 @@ const I18N = {
         badge_xp_5000_title: "Начинающий полиглот",
         badge_xp_5000_desc: "Набрано 500 очков опыта.",
         badges_points_explication: "Твои очки: {n}. За каждый правильный ответ (карточка, упражнение, устно) — 1 очко, и ещё 5 каждый раз, когда достигаешь дневной цели. Это не выученные слова, и они считаются только для этого языка.",
+        fete_tableau_titre: "Картина готова!",
+        fete_tableau_numero: "Картина № {n}",
         badge_streak_3_title: "3 дня подряд",
         badge_streak_3_desc: "Три дня занятий подряд.",
         badge_streak_7_title: "Целая неделя",
@@ -48582,7 +48623,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1061;
+const APP_VERSION = 1062;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -51470,6 +51511,8 @@ function poserCarreau(sansSon){
     v.n += 1; v.c += 1;
     ecrireMosaique(v);
     majMosaiqueAccueil();
+    // v1062 : LE DERNIER CARREAU LANCE LA FETE, sous les yeux, la ou on est (voir feteTableau).
+    if(v.c === MOSAIQUE_CARREAUX && v.g.indexOf(v.r) < 0){ try{ lancerFeteTableau(v); }catch(e){} }
     // v849-v855 : une petite mosaique se montrait ici, a chaque carreau (essai
     // carreau_partout). RETIREE EN v856. Jacques : « a chaque fois qu'on tourne
     // une carte, ca peut devenir irritant » -- puis « je reviendrais aux
@@ -51497,6 +51540,220 @@ function poserCarreau(sansSon){
 // drapeau de la v852 (item._carreauPose) restait colle a l'objet : une phrase
 // ratee qui revient en fin de seance, ou un mot « Encore », repartait sans
 // carreau la seconde fois.
+
+// ============ LA FETE DU TABLEAU COMPLET (v1062) ============
+// Jacques, 1er nov. 2026, apres son tableau termine sans rien : « il aurait du avoir une fete. J'avais dit
+// qu'on ait une fete speciale ». Choisie avec lui le meme jour (maquette https://claude.ai/artifact/KD8s1LgtpSvjveqsh9yhwW) :
+//   - les deux points ambre du W deviennent des ballons et soulevent le W pendant la montee de la musique ;
+//   - pendant ce temps les carreaux se posent sur le tableau, de plus en plus vite ; il devient net au sommet ;
+//   - le W se change en ballons noirs et orange (« la couleur des points »), qui eclatent et ecrivent BRAVO,
+//     discret (« le numero 2. Le plus discret »), qui reste ;
+//   - une fois BRAVO pose, la pastille « Tableau n° N », puis le titre et l'auteur en ambre fonce.
+// La musique : la melodie des cinq premieres secondes de « The Final Ascent », relevee et rejouee avec
+// l'instrument de la fanfare de l'objectif, une octave plus bas, avec le grand coup (« on va prendre le 3 »).
+// Elle part au dernier carreau (poserCarreau), par-dessus l'ecran en cours ; un toucher la ferme apres 1 s,
+// et elle se ferme seule apres 7,5 s. Le rangement dans la galerie reste l'affaire de l'accueil.
+function lancerFeteTableau(v){
+    const numero = ((v && v.g) || []).length + 1;
+    chargerMosaiques().then(() => {
+        const m = mosaiqueCourante();
+        if(!m) return;
+        imageMosaique(m).then(img => feteTableau(m, img, numero), () => {});
+    }).catch(() => {});
+}
+
+function musiqueFeteTableau(){
+    if(transitSansSon()) return;
+    const c = getAudioCtx();
+    if(!c) return;
+    try{ c.resume(); }catch(e){}
+    const len = Math.floor(c.sampleRate * 1.8), imp = c.createBuffer(2, len, c.sampleRate);
+    for(let ch = 0; ch < 2; ch++){ const d = imp.getChannelData(ch); for(let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 3); }
+    const rev = c.createConvolver(); rev.buffer = imp;
+    const mouille = c.createGain(); mouille.gain.value = .22;
+    const comp = c.createDynamicsCompressor(), bus = c.createGain(); bus.gain.value = .9;
+    bus.connect(comp); bus.connect(rev); rev.connect(mouille).connect(comp); comp.connect(c.destination);
+    const F = m => 440 * Math.pow(2, (m - 69) / 12), base = c.currentTime + .03;
+    // le timbre de la fanfare de l'objectif : triangle, attaque 8 ms, chute exponentielle
+    const note = (m, t, dur, vol) => { const o = c.createOscillator(), g = c.createGain(), t0 = base + t;
+        o.type = "triangle"; o.frequency.value = F(m);
+        g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(vol, t0 + .008); g.gain.exponentialRampToValueAtTime(.001, t0 + dur);
+        o.connect(g).connect(bus); o.start(t0); o.stop(t0 + dur + .05); };
+    const etincelle = (t, dur, vol) => { const n = Math.floor(c.sampleRate * dur), b = c.createBuffer(1, n, c.sampleRate), d = b.getChannelData(0);
+        for(let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+        const s = c.createBufferSource(), f = c.createBiquadFilter(), g = c.createGain(), t0 = base + t; s.buffer = b;
+        f.type = "highpass"; f.frequency.value = 4000; g.gain.setValueAtTime(vol, t0); g.gain.exponentialRampToValueAtTime(.001, t0 + dur);
+        s.connect(f).connect(g).connect(bus); s.start(t0); };
+    const dec = -12;
+    [67, 70, 75, 79, 82].forEach((m, i) => note(m + dec, .65 + i * .08, 1.1, .1));
+    [[75,1.20],[77,1.40],[80,1.50],[79,1.65],[80,1.75],[82,1.90],[84,2.00],[86,2.10],[87,2.20],[89,2.35],[91,2.50],[92,2.65],[94,2.72]]
+        .forEach(([m, t]) => { note(m + dec, t, .45, .2); note(m + dec - 12, t, .45, .12); });
+    [[86,2.95],[89,3.05]].forEach(([m, t]) => { note(m + dec, t, .4, .2); note(m + dec - 12, t, .4, .12); });
+    [[87,3.2],[82,3.2],[94,3.2]].forEach(([m, t]) => note(m + dec, t, 1.1, .16));
+    [[87,3.6],[82,3.6]].forEach(([m, t]) => note(m + dec, t, .7, .1));
+    etincelle(2.72, .35, .1); etincelle(3.2, .5, .12);
+    // le grand coup : une grosse caisse audible sur un telephone (corps 130 -> 62 Hz et ses harmoniques) et l'accord grave
+    const t0 = base + 4.1;
+    [[1, 1], [2, .45], [3, .18]].forEach(([h, k]) => { const o = c.createOscillator(), g = c.createGain(); o.type = "sine";
+        o.frequency.setValueAtTime(130 * h, t0); o.frequency.exponentialRampToValueAtTime(62 * h, t0 + .22);
+        g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(.8 * k, t0 + .004); g.gain.exponentialRampToValueAtTime(.001, t0 + .8);
+        o.connect(g).connect(bus); o.start(t0); o.stop(t0 + .9); });
+    [51, 58, 63].forEach(m => note(m, 4.1, 1.3, .16));
+}
+
+let feteTableauOuverte = null;
+function fermerFeteTableau(){
+    if(!feteTableauOuverte) return;
+    const f = feteTableauOuverte; feteTableauOuverte = null;
+    cancelAnimationFrame(f._raf || 0); clearTimeout(f._fin);
+    f.classList.add("ft-part"); setTimeout(() => f.remove(), 350);
+}
+
+function feteTableau(m, img, numero){
+    fermerFeteTableau();
+    const voile = document.createElement("div");
+    voile.className = "fete-tableau";
+    voile.setAttribute("role", "dialog");
+    voile.setAttribute("aria-label", t("fete_tableau_titre"));
+    const sous = [titreTableau(m), m.peintre].filter(Boolean).join(" · ");
+    voile.innerHTML = '<div class="ft-cadre"><canvas class="ft-toile"></canvas><img alt=""></div>'
+        + '<div class="ft-numero"></div><div class="ft-titre"></div><div class="ft-sous"></div><canvas class="ft-anim"></canvas>';
+    voile.querySelector(".ft-cadre img").src = img.src;
+    voile.querySelector(".ft-numero").textContent = tf("fete_tableau_numero", { n: numero });
+    voile.querySelector(".ft-titre").textContent = t("fete_tableau_titre");
+    voile.querySelector(".ft-sous").textContent = sous;
+    document.body.appendChild(voile);
+    feteTableauOuverte = voile;
+    const ouverte = Date.now();
+    voile.addEventListener("click", () => { if(Date.now() - ouverte > 1000) fermerFeteTableau(); });
+    voile._fin = setTimeout(fermerFeteTableau, 7500);
+    try{ musiqueFeteTableau(); }catch(e){}
+
+    const reduit = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const cv = voile.querySelector(".ft-anim"), x = cv.getContext("2d");
+    const W = cv.width = Math.round(voile.clientWidth * 2), H = cv.height = Math.round(voile.clientHeight * 2);
+    const ENCRE = "#1C2430", AMBRE = "#E8A23A";
+    // le W du logo (branding/wortando-app-icon.png), coordonnees 1024 : trait epais, bouts ronds, et ses deux points
+    const W_PTS = [[170,340],[335,780],[512,400],[690,780],[855,340]], POINTS = [[445,242],[578,242]];
+    const ease = k => k < 0 ? 0 : k > 1 ? 1 : 1 - Math.pow(1 - k, 3);
+    // BRAVO, echantillonne en points : les confettis viennent s'y poser
+    const off = document.createElement("canvas"); off.width = W; off.height = H; const o = off.getContext("2d");
+    const taille = Math.round(Math.min(W * .13, H * .09)), yMot = H * .24;
+    o.font = "900 " + taille + "px Nunito, system-ui, sans-serif"; o.textBaseline = "middle";
+    const x0 = (W - o.measureText("BRAVO").width) / 2; o.fillText("BRAVO", x0, yMot);
+    const dd = o.getImageData(0, 0, W, Math.ceil(H * .4)).data, pas = Math.max(4, Math.round(W / 95)), cibles = [];
+    for(let py = 0; py < H * .4; py += pas) for(let px = 0; px < W; px += pas) if(dd[(py * W + px) * 4 + 3] > 128) cibles.push([px, py]);
+
+    // la toile : les carreaux aux couleurs du tableau, poses de plus en plus vite pendant la montee
+    const toile = voile.querySelector(".ft-toile"), tx = toile.getContext("2d");
+    const rt = toile.getBoundingClientRect(); toile.width = Math.max(2, Math.round(rt.width * 2)); toile.height = Math.max(2, Math.round(rt.height * 2));
+    const C = 28, R = Math.max(2, Math.round(C * toile.height / toile.width)), nT = C * R;
+    let couleurs = null;
+    try{ const p = document.createElement("canvas"); p.width = C; p.height = R; const pc = p.getContext("2d"); pc.drawImage(img, 0, 0, C, R); couleurs = pc.getImageData(0, 0, C, R).data; }catch(e){}
+    const ordre = []; for(let i = 0; i < nT; i++) ordre.push(i);
+    for(let i = nT - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [ordre[i], ordre[j]] = [ordre[j], ordre[i]]; }
+    let poses = 0;
+    tx.fillStyle = "#E7E2D6"; tx.fillRect(0, 0, toile.width, toile.height);
+    if(!couleurs || reduit) toile.style.opacity = 0;
+
+    function poseW(tt){
+        const k = ease((tt - .6) / 2.15), bouge = k > 0 && k < 1 ? 1 : 0;
+        return { ech: Math.min(W * .3, H * .2) / 1024, cx: W / 2 + Math.sin(tt * 2.6) * W * .03 * bouge, cy: H * (.88 - .74 * k), rot: Math.sin(tt * 2.2) * .06 * bouge };
+    }
+    function dessinerW(p, gonfle, alpha){
+        x.save(); x.globalAlpha = alpha; x.translate(p.cx, p.cy); x.rotate(p.rot); x.scale(p.ech, p.ech); x.translate(-512, -560);
+        const r = 52 * (1 + 2.6 * gonfle), lev = 300 * gonfle;
+        POINTS.forEach(([px, py], i) => {
+            const bx = px + (i ? 70 : -70) * gonfle, by = py - lev;
+            if(gonfle > .05){ x.strokeStyle = "rgba(28,36,48,.55)"; x.lineWidth = 6; x.beginPath(); x.moveTo(px, 360); x.quadraticCurveTo(px + (i ? 18 : -18), (360 + by) / 2, bx, by + r * 1.05); x.stroke(); }
+            x.fillStyle = AMBRE; x.beginPath(); x.ellipse(bx, by, r, r * (1 + .18 * gonfle), 0, 0, 6.29); x.fill();
+            if(gonfle > .05){ x.fillStyle = "rgba(255,255,255,.45)"; x.beginPath(); x.ellipse(bx - r * .35, by - r * .4, r * .22, r * .32, -.5, 0, 6.29); x.fill(); }
+        });
+        x.strokeStyle = ENCRE; x.lineWidth = 105; x.lineCap = "round"; x.lineJoin = "round";
+        x.beginPath(); W_PTS.forEach(([a, b], i) => i ? x.lineTo(a, b) : x.moveTo(a, b)); x.stroke();
+        x.restore();
+    }
+    function pointW(p, u, v){ const s = p.ech, a = (u - 512) * s, b = (v - 560) * s;
+        return [p.cx + a * Math.cos(p.rot) - b * Math.sin(p.rot), p.cy + a * Math.sin(p.rot) + b * Math.cos(p.rot)]; }
+    let ballons = [], parts = [];
+    function naitreBallons(p){
+        for(let i = 0; i < 12; i++){
+            const k = i / 11 * 4, s0 = Math.min(3, Math.floor(k)), f = k - s0, [a, b] = W_PTS[s0], [c2, d2] = W_PTS[s0 + 1];
+            const [sx, sy] = pointW(p, a + (c2 - a) * f, b + (d2 - b) * f);
+            ballons.push({ sx, sy, x: sx, y: sy, tx: W * (.08 + .84 * i / 11), ty: H * (.1 + .07 * Math.sin(i * 1.7) + (i % 2 ? .04 : 0)), c: i % 2 ? AMBRE : ENCRE, ph: Math.random() * 6.3 });
+        }
+    }
+    function dessinerBallon(bx, by, r, c){
+        x.strokeStyle = "rgba(28,36,48,.45)"; x.lineWidth = 2; x.beginPath(); x.moveTo(bx, by + r * 1.15); x.quadraticCurveTo(bx + 6, by + r * 2, bx - 2, by + r * 2.8); x.stroke();
+        x.fillStyle = c; x.beginPath(); x.ellipse(bx, by, r, r * 1.18, 0, 0, 6.29); x.fill();
+        x.fillStyle = c === ENCRE ? "rgba(255,255,255,.28)" : "rgba(255,255,255,.45)"; x.beginPath(); x.ellipse(bx - r * .35, by - r * .4, r * .22, r * .32, -.5, 0, 6.29); x.fill();
+    }
+    function eclater(){
+        const cib = cibles.slice().sort(() => Math.random() - .5);
+        cib.forEach((cc, i) => { const b = ballons[i % ballons.length];
+            parts.push({ vers: true, sx: b.x, sy: b.y, tx: cc[0], ty: cc[1], c: b.c, d: Math.random() * .2, ax: (Math.random() - .5) * W * .3, ay: -Math.random() * H * .08 }); });
+        ballons.forEach(b => { for(let k = 0; k < 10; k++){ const a = Math.random() * 6.29, sp = 4 + Math.random() * 9;
+            parts.push({ vers: false, x: b.x, y: b.y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 3, c: b.c === ENCRE ? AMBRE : "#FFE29A", r: Math.random() * 6.29, vr: (Math.random() - .5) * .4 }); } });
+    }
+    function lettresPleines(alpha){
+        x.save(); x.globalAlpha = alpha; x.font = "900 " + taille + "px Nunito, system-ui, sans-serif"; x.textBaseline = "middle"; x.lineJoin = "round";
+        x.shadowColor = "rgba(232,162,58,.9)"; x.shadowOffsetY = taille * .06;
+        x.lineWidth = taille * .1; x.strokeStyle = "#FFFFFF"; x.strokeText("BRAVO", x0, yMot);
+        x.shadowColor = "transparent"; x.fillStyle = ENCRE; x.fillText("BRAVO", x0, yMot);
+        x.restore();
+    }
+    const HAUT = 2.75, ECLAT = 3.45, POSE = 4.1, debut = performance.now();
+    function image(){
+        if(feteTableauOuverte !== voile) return;
+        const tt = reduit ? 9 : (performance.now() - debut) / 1000;
+        // les carreaux
+        if(couleurs && !reduit){
+            if(tt >= 2.72){ toile.style.transition = "opacity .25s"; toile.style.opacity = 0; }
+            else {
+                const k = Math.max(0, Math.min(1, (tt - .55) / (2.72 - .55))), voulu = Math.floor(nT * Math.pow(k, 1.6)), w = toile.width / C, h = toile.height / R;
+                for(; poses < voulu; poses++){ const i = ordre[poses], q = i * 4;
+                    tx.fillStyle = "rgb(" + couleurs[q] + "," + couleurs[q + 1] + "," + couleurs[q + 2] + ")";
+                    tx.fillRect(Math.floor((i % C) * w), Math.floor(Math.floor(i / C) * h), Math.ceil(w) + 1, Math.ceil(h) + 1); }
+            }
+        }
+        x.clearRect(0, 0, W, H);
+        if(tt < HAUT){
+            dessinerW(poseW(tt), ease((tt - .1) / .5), 1);
+        } else if(tt < ECLAT){
+            if(!ballons.length) naitreBallons(poseW(HAUT));
+            const k = ease((tt - HAUT) / .45), r = Math.min(W, H * .7) * .045 * (.4 + .6 * k);
+            if(k < 1) dessinerW(poseW(HAUT), 1, 1 - k);
+            for(const b of ballons){
+                b.x = b.sx + (b.tx - b.sx) * k + Math.sin(tt * 3 + b.ph) * W * .006;
+                b.y = b.sy + (b.ty - b.sy) * k + Math.cos(tt * 2.4 + b.ph) * H * .006;
+                dessinerBallon(b.x, b.y, r, b.c);
+            }
+        } else {
+            if(!ballons.length) naitreBallons(poseW(HAUT));
+            if(!parts.length) eclater();
+            const aL = reduit ? 1 : ease((tt - (POSE - .25)) / .3);
+            if(aL > 0) lettresPleines(aL);
+            for(const p of parts){
+                if(p.vers){
+                    const k = ease((tt - ECLAT - p.d) / (POSE - ECLAT - .2));
+                    const px = p.sx + (p.tx - p.sx) * k + Math.sin(k * Math.PI) * p.ax, py = p.sy + (p.ty - p.sy) * k + Math.sin(k * Math.PI) * p.ay;
+                    if(aL >= 1) continue;
+                    x.globalAlpha = 1 - aL; x.fillStyle = p.c; x.fillRect(px - pas * .55, py - pas * .55, pas * 1.1, pas * 1.1);
+                } else {
+                    p.vy += .3; p.vx *= .985; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+                    const a = Math.max(0, 1 - (tt - ECLAT) / 2.2); if(a <= 0) continue;
+                    x.globalAlpha = a; x.save(); x.translate(p.x, p.y); x.rotate(p.r); x.fillStyle = p.c; x.fillRect(-7, -4, 14, 8); x.restore();
+                }
+            }
+            x.globalAlpha = 1;
+        }
+        voile.classList.toggle("ft-numero-la", tt >= 4.25);
+        voile.classList.toggle("ft-fini", tt >= 4.35);
+        if(tt < 6.5) voile._raf = requestAnimationFrame(image);
+    }
+    image();
+}
+
 let carreauDejaPose = null;
 function poserCarreauDeLaCarte(item){
     if(!item || carreauDejaPose === item) return;
@@ -51985,6 +52242,10 @@ function majMosaiqueAccueil(){
         if(vientDeGagner){
             v.g.push(v.r);
             v.t = MOSAIQUE_SEANCES_TROPHEE;
+            // v1062 : LE JOUR DE LA VICTOIRE EST LE JOUR 1. Jacques, 1er nov. 2026 : « je l'ai reussi aujourd'hui,
+            // ca m'indique deja jour 2 sur 3 ». Sans `tj`, la sortie suivante des cartes (seanceMosaiqueTerminee)
+            // decomptait le jour meme ou le trophee venait de commencer.
+            v.tj = getTodayStr();
             ecrireMosaique(v);
         }
         const pied = document.getElementById("mosaiquePied");
