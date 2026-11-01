@@ -5803,7 +5803,7 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
        c'est lui qui connait m.l et m.h, et le plafond ne peut pas s'ecrire en
        CSS sans connaitre le format de l'oeuvre. */
     display:block; width:100%; max-width:none; position:relative;
-    aspect-ratio:6 / 1;   /* la bande, identique pour tous les tableaux. v1060 : 6/1, deux fois moins haute (Jacques, 1er nov. 2026 : « meme format avec un cadre dore [...] qu'elle soit a moitie [...] on arrive plus directement sur la seance du jour ») */
+    aspect-ratio:3 / 1;   /* repli ; v1061 : le format reel est pose en JavaScript, la moitie du tableau (voir majMosaiqueAccueil) */
 }
 body[data-theme="dark"] .mos-cadre{
     border-color:#C6CCD6;
@@ -8555,6 +8555,27 @@ body::before{background:linear-gradient(180deg, #6C9BD0 0, #6C9BD0 50%, #ABC6E4 
    qu'il y ait un meilleur contraste »). L'emoji ⚙️ est gris pale sur iPhone et ne prend pas de couleur : on la
    dessine, comme la loupe, et elle suit l'encre du jour et le clair de la nuit. */
 #settingsToggleBtn{color:#1C2430 !important;}
+/* v1061 : LE TABLEAU GAGNE, EN HAUT, DANS LE CADRE DE LA VIGNETTE (Jacques, 1er nov. : « le meme encadrement qu'on a
+   lorsque la mosaique est en train de se former », « l'encadrement comme dore », « un contour [...] identique [...]
+   mais seulement a moitie du tableau. Puis avec l'ecriture, c'est bien » ; « j'enleverais le trait vert »).
+   Le cadre de #tuileTableau (v1008 + v1017) : verre epais, biseau dore bombe, ombre portee. Le biseau est une
+   BORDURE transparente sur fond dore : `overflow:hidden` coupe la toile au bord interieur, la ou commence l'or. */
+#home #carteMosaique:not(.replie){padding:16px; border-radius:30px; overflow:visible; margin:0 0 14px; background:rgba(255,255,255,.66);
+    box-shadow:inset 2px 2px 0 #fff, inset -1px -2px 0 rgba(20,40,60,.08), 0 22px 40px rgba(20,40,60,.22), 0 3px 8px rgba(20,40,60,.10);}
+body[data-theme="dark"] #home #carteMosaique:not(.replie){background:rgba(20,36,50,.72);
+    box-shadow:inset 2px 2px 0 rgba(255,255,255,.16), 0 22px 40px rgba(0,0,0,.45);}
+#home #carteMosaique:not(.replie) .mos-cadre{border:5px solid transparent; border-radius:18px;
+    background:linear-gradient(135deg, #F6DC95, #C08E2E 45%, #F8E6B0 60%, #B07E22) border-box;
+    box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7), 0 8px 18px rgba(80,50,10,.30);}
+body[data-theme="dark"] #home #carteMosaique:not(.replie) .mos-cadre{
+    background:linear-gradient(135deg, #E9C878, #A87A22 45%, #F0D79A 60%, #8E6418) border-box; box-shadow:0 4px 14px rgba(0,0,0,.35);}
+#home #carteMosaique .mos-jauge{display:none;}
+/* v1061 (suite) : LE CARTEL A COTE DU TABLEAU, PAS DESSOUS (Jacques : « que ca prenne moins de place en [hauteur] »).
+   Le tableau a gauche (170 px de haut au plus), la plaque a droite, empilee : annee, peintre, titre, jours, galerie. */
+#home #carteMosaique:not(.replie){display:grid; grid-template-columns:auto minmax(0, 1fr); align-items:center; column-gap:14px; padding:14px;}
+#home #carteMosaique:not(.replie) .mos-cadre{margin:0 !important;}
+#home #carteMosaique:not(.replie) .mos-plaque{display:flex; flex-direction:column; align-items:flex-start; gap:8px; margin:0 !important; padding:0 !important; min-width:0;}
+#home #carteMosaique:not(.replie) .mos-plaque .mos-galerie{margin:0 !important;}
 body[data-theme="dark"] #settingsToggleBtn{color:#E6ECF2 !important;}
 /* v1057 : LA PASTILLE DE LA LANGUE APPRISE (Jacques, 1er nov. : « il n'y a rien qui m'indique sur la page d'accueil
    a quelle langue je suis en train d'apprendre »). Le drapeau de la langue ET de sa variante -- l'Amerique latine
@@ -8638,7 +8659,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1060</span>
+        <span class="subtitle-version">v1061</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -36538,7 +36559,7 @@ async function restoreProgressFromCloud(){
                 if(d && typeof d === "object"){
                     const l = etatMosaique();
                     const rd = d.r || 1, cd = d.c || 0;
-                    const distantDevant = rd > l.r || (rd === l.r && cd > l.c);
+                    const distantDevant = rd > l.r || (rd === l.r && cd > l.c) || (rd === l.r && cd === l.c && (d.cn || 0) > (l.cn || 0));
                     const gagnes = Array.from(new Set([...(l.g || []), ...(Array.isArray(d.g) ? d.g : [])]))
                         .sort((a, b) => a - b);
                     // v941 : `b` (le passage au tableau suivant, attendu le lendemain), et
@@ -36549,9 +36570,9 @@ async function restoreProgressFromCloud(){
                         ? { r: rd, c: cd, j: d.j || "", n: d.n || 0, t: d.t || 0, tj: d.tj || "",
                             // un etat distant SANS serie date d'avant la v791 : il doit
                             // etre migre a la lecture, on ne lui prete pas celle d'ici.
-                            b: d.b || "", s: d.s || "", h: Array.isArray(d.h) ? d.h : [] }
+                            b: d.b || "", s: d.s || "", h: Array.isArray(d.h) ? d.h : [], cn: d.cn || 0 }
                         : { r: l.r, c: l.c, j: l.j, n: l.n, t: l.t, tj: l.tj,
-                            b: l.b || "", s: l.s || "", h: l.h || [] };
+                            b: l.b || "", s: l.s || "", h: l.h || [], cn: l.cn || 0 };
                     retenu.g = gagnes;
                     retenu.x = Math.max(l.x || 0, d.x || 0);
                     if(distantDevant || gagnes.length !== (l.g || []).length || retenu.x !== (l.x || 0)){
@@ -48561,7 +48582,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1060;
+const APP_VERSION = 1061;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -51070,8 +51091,6 @@ const MOSAIQUE_SEANCES_TROPHEE = 3; // combien de JOURS D'ACTIVITE l'image finie
 // on croit que la carte a fige.
 const MOSAIQUE_RESOLUTION_MS = 900;
 const MOSAIQUE_CLE = PREFIXE_STOCKAGE + "mosaique";
-// v1060 : le format de la bande du trophee en haut de l'accueil (largeur / hauteur), le meme qu'en CSS (.mos-cadre).
-const BANDE_MOSAIQUE = 6;
 // L'ESPAGNOL A SA PROPRE COLLECTION (v791). Nicole, le 13 oct. : la visite en
 // espagnol parlait d'« Ajaccio, d'Anton Faistauer ». 66 tableaux de peintres
 // d'Espagne et d'Amerique latine morts avant 1926, choisis et ordonnes par
@@ -51186,11 +51205,13 @@ function etatMosaique(){
     // que le LENDEMAIN, a la premiere lecture de l'etat -- voir seanceMosaiqueTerminee().
     const etat = { r: v.r || 1, c: v.c || 0, j: v.j || "", n: v.n || 0,
              g: Array.isArray(v.g) ? v.g : [], t: v.t || 0, tj: v.tj || "", x: v.x || 0,
-             s: v.s || "", h: Array.isArray(v.h) ? v.h : [], b: v.b || "" };
+             s: v.s || "", h: Array.isArray(v.h) ? v.h : [], b: v.b || "", cn: v.cn || 0 };
     if(LANGUE_APPRISE === "es" && etat.s !== "es") return migrerMosaiqueEspagnole(etat, existait);
     if(etat.b && etat.b !== getTodayStr()){
         etat.r = etat.r + 1;
-        etat.c = 0;
+        // v1061 : LE SUIVANT GARDE SON AVANCE. Commence pendant le trophee (`cn`), il arrive deja entame.
+        etat.c = etat.cn || 0;
+        etat.cn = 0;
         etat.tj = "";
         etat.b = "";
         ecrireMosaique(etat);
@@ -51433,7 +51454,19 @@ function poserCarreau(sansSon){
     // jours, on est paye dans une autre monnaie -- le tableau plein a l'ecran.
     // La recompense EST la recompense.
     // v941 : le dernier jour du trophee non plus (`b` pose), jusqu'au lendemain.
-    if(v.t > 0 || v.b) return false;
+    // ⚠️ v1061 : CE N'EST PLUS VRAI. Jacques, 1er nov. 2026 : « n'oublie pas qu'on commence immediatement la
+    // nouvelle mosaique. En bas, completement [...] qu'elle commence deja a se creer ». Le tableau gagne reste en
+    // haut, entier ; les carreaux du trophee vont au tableau SUIVANT (`cn`), qui se construit dans la vignette du
+    // bas. Les deux raisons de la v629 tombent avec ce partage : le tableau gagne n'est plus recouvert, et le
+    // suivant commence a zero (ses premiers etats, les plus beaux, se voient en bas).
+    if(v.t > 0 || v.b){
+        v.n += 1; v.cn = (v.cn || 0) + 1;
+        ecrireMosaique(v);
+        majMosaiqueAccueil();
+        try{ montrerPlusUn(); }catch(e){}
+        if(!sansSon){ try{ jouerNotePlusUn(); }catch(e){} }
+        return true;
+    }
     v.n += 1; v.c += 1;
     ecrireMosaique(v);
     majMosaiqueAccueil();
@@ -51529,7 +51562,7 @@ function mosaiqueCourante(){
     return MOSAIQUES[i];
 }
 
-function dessinerMosaique(canvas, img, poses, total, fini){
+function dessinerMosaique(canvas, img, poses, total, fini, rang){
     const ctx = canvas.getContext("2d");
     const L = canvas.width, H = canvas.height;
     ctx.clearRect(0, 0, L, H);
@@ -51547,7 +51580,7 @@ function dessinerMosaique(canvas, img, poses, total, fini){
     const c0 = MOSAIQUE_COLONNES;
     const r0 = Math.max(2, Math.round(c0 * H / L));
     const py = pyramideMosaique(img, c0, r0);
-    const t = tessellesMosaique(graineMosaique(etatMosaique().r), c0, r0, Math.max(0, poses));
+    const t = tessellesMosaique(graineMosaique(rang || etatMosaique().r), c0, r0, Math.max(0, poses));
     // ⚠️ LISSAGE COUPE, ET C'EST CE QUI REND LA COULEUR PLATE. Avec le lissage,
     // un pixel source etale sur 150 px revient a un degrade entre voisins : on
     // retrouve un flou, pas une mosaique.
@@ -51772,6 +51805,19 @@ function placerRecherche(){
 // v998 : LA VIGNETTE « TON TABLEAU · 62 % ». La meme toile que le grand tableau,
 // copiee en image (iOS vide les canevas en arriere-plan, v979). Cachee pendant le
 // trophee : le grand tableau est alors en haut.
+// v1061 : PENDANT LE TROPHEE, LA VIGNETTE DU BAS EST LE TABLEAU SUIVANT, qui se construit deja (`cn`).
+function majVignetteSuivante(v, total){
+    if(!MOSAIQUES || !MOSAIQUES.length){ majVignetteTableau(null); return; }
+    const rang = v.r + 1;
+    const m = MOSAIQUES[(rang - 1) % MOSAIQUES.length];
+    if(!m){ majVignetteTableau(null); return; }
+    imageMosaique(m).then(img => {
+        const toile = document.createElement("canvas");
+        tailleToileMosaique(toile, m);
+        dessinerMosaique(toile, img, v.cn || 0, total, false, rang);
+        majVignetteTableau(toile, v.cn || 0, total, false);
+    }, () => majVignetteTableau(null));
+}
 function majVignetteTableau(canvas, faits, total, fini){
     const tuile = document.getElementById("tuileTableau");
     if(!tuile) return;
@@ -51849,7 +51895,21 @@ function majMosaiqueAccueil(){
                 // .carte-mosaique : le chiffre vient de trois rendus, pas d'un
                 // raisonnement.
                 const r = (m.l || 1) / (m.h || 1);
-                const chute = Math.max(0, 1 - Math.min(r, BANDE_MOSAIQUE) / BANDE_MOSAIQUE);   // v1060 : la bande fait 6/1
+                // v1061 : LA MOITIE DU TABLEAU. Jacques, 1er nov. 2026 : « la mosaique du haut doit etre la
+                // moitie du tableau, pas la moitie de ce qu'on avait ». La bande prend donc le format du
+                // tableau, deux fois moins haute : on en voit toujours la moitie, quel que soit son format.
+                // v1061 (suite) : LE TABLEAU ENTIER, UN PEU PLUS PETIT. Jacques : « je me demande si on ne
+                // devrait pas avoir plein tableau a ce moment-la. Mais un peu plus petit ». C'est la recompense :
+                // la moitie coupait le sujet. Format du tableau, 210 px de haut au plus, centre dans sa carte.
+                const bande = r;
+                const cadreBande = canvas.closest(".mos-cadre");
+                if(cadreBande){
+                    cadreBande.style.aspectRatio = r.toFixed(4);
+                    // a cote de la plaque : 170 px de haut au plus, et pas plus de 55 % de la carte en largeur
+                    const place = Math.max(140, Math.round(((bloc.clientWidth || 360) - 28) * .55));
+                    cadreBande.style.width = Math.min(place, Math.round(170 * r)) + "px";
+                }
+                const chute = Math.max(0, 1 - Math.min(r, bande) / bande);
                 // v962 : UN ROULEAU VERTICAL A SON CADRAGE. Les Jakuchu du
                 // japonais font 0,58 de large pour 1 de haut : le quart de la
                 // chute tombait sur des feuilles et coupait les tetes. `centre`
@@ -51883,7 +51943,8 @@ function majMosaiqueAccueil(){
                     dessinerMosaique(canvas, img, v.c, total, fini);
                     toileEnImage(canvas);
                 }
-                majVignetteTableau(canvas, v.c, total, fini);
+                if(fini) majVignetteSuivante(v, total);
+                else majVignetteTableau(canvas, v.c, total, fini);
                 // ⚠️ LA JAUGE EST ECRITE ICI DEPUIS LA v597, ET ELLE NE L'ETAIT
                 // PLUS DU TOUT DEPUIS LA v588. Ses deux lignes vivaient dans
                 // cartoucheMosaique() -- une fonction dont le nom ne promet
