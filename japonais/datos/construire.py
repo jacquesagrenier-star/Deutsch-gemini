@@ -135,6 +135,72 @@ def romaji_de():
     return m.romaji
 
 
+def mots_des_scenes():
+    """Les noms des scènes de Camille que les listes JLPT n'ont pas
+    (japonais/cartes/scenes.json, écrit par Wortando le 1er nov. 2026, comme
+    expressions.json). Rend {(jlpt, domaine): [entrées]} ; les furigana sont
+    calculés par l'alignement des fiches, et quand un kanji hors listes manque
+    à l'index, la lecture couvre le mot entier."""
+    chemin = os.path.join(CARTES, "scenes.json")
+    if not os.path.exists(chemin):
+        return {}
+    spec = importlib.util.spec_from_file_location("cartes_construire", os.path.join(CARTES, "outils", "construire.py"))
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    kanji = os.path.join(JAPONAIS, "kanji.json")
+    idx = m.charger_kanji(kanji if os.path.exists(kanji) else None)
+    out = defaultdict(list)
+    for a in lire(chemin)["mots"]:
+        mot, kana = a["mot"], a["lecture"]
+        avec_kanji = not all(m.est_kana(c) for c in mot) and not mot.isascii()
+        if avec_kanji:
+            blocs, statut, _ = m.furigana(mot, kana, idx)
+            if statut != "brouillon" or not blocs:
+                blocs = [[mot, kana]]
+        else:
+            blocs = [[mot, kana if mot.isascii() else None]]    # ATM se lit エーティーエム
+        e = OrderedDict()
+        e["mot"] = mot
+        e["lecture"] = kana
+        e["romaji"] = m.romaji(kana, blocs if avec_kanji else None, "n")
+        e["furigana"] = blocs
+        e["traduction"] = a["fr"]
+        e["traduction_en"] = a["en"]
+        if a.get("note"):
+            e["note"] = a["note"]
+        e["id"] = a["id"]
+        e["jlpt"] = a["jlpt"]
+        e["classe"] = "n"
+        e["kanji"] = [c for c in mot if not m.est_kana(c) and not c.isascii()]
+        e["statut"] = "brouillon"
+        e["source"] = "wortando"
+        e["scenes"] = a["scenes"]
+        out[(a["jlpt"], a["domaine"])].append(e)
+    return out
+
+
+PONCTUATION = {"…": "…", "、": ", ", "。": ". ", "？": "?", "！": "!", "　": " ", " ": " ", "～": "~", "〜": "~"}
+
+
+def romaji_texte(lecture, romaji):
+    """Le romaji d'une expression écrite par Wortando : « …と申します » (« … »
+    marque une place à remplir), « はい、チーズ ». La fonction des fiches ne
+    connaît que les kana : on la passe morceau par morceau (1er nov. 2026 ;
+    sans cela la construction s'arrêtait au premier signe)."""
+    morceaux, kana = [], ""
+    for c in lecture:
+        if c in PONCTUATION:
+            if kana:
+                morceaux.append(romaji(kana))
+                kana = ""
+            morceaux.append(PONCTUATION[c])
+        else:
+            kana += c
+    if kana:
+        morceaux.append(romaji(kana))
+    return "".join(morceaux).strip()
+
+
 def ajouts(catalogue, cle, decisions, candidates, romaji):
     """Les mots écrits par Wortando hors des listes JLPT (particules,
     expressions), avec la phrase Tatoeba choisie pour chacun."""
@@ -154,7 +220,7 @@ def ajouts(catalogue, cle, decisions, candidates, romaji):
         e = OrderedDict()
         e["mot"] = a["mot"]
         e["lecture"] = a["lecture"]
-        e["romaji"] = romaji(a["lecture"])
+        e["romaji"] = romaji_texte(a["lecture"], romaji)
         e["furigana"] = [[a["mot"], None]] if a["mot"] == a["lecture"] else None
         e["traduction"] = a["fr"]
         e["traduction_en"] = a["en"]
@@ -211,6 +277,10 @@ def principal():
         for f in l:
             if nature(f) == "nom":
                 noms_par[(jlpt, f.get("domaine") or "mots_utiles")].append(f)
+    # Les noms des scènes rejoignent le thème de leur domaine, déjà construits (pas de fiche).
+    scenes = mots_des_scenes()
+    for cle, l in scenes.items():
+        noms_par[cle].extend(l)
     for (jlpt, dom), l in list(noms_par.items()):
         if dom != "mots_utiles" and len(l) < TAILLE_MIN_THEME:
             noms_par[(jlpt, "mots_utiles")].extend(l)
@@ -251,8 +321,14 @@ def principal():
         dom = f.get("domaine") or "mots_utiles"
         return "%s_%s" % (dom, NIVEAUX[f["niveau"]].lower())
 
+    def entree_ou_scene(f):
+        if "ecritures" in f:
+            return entree(f, phrases, domaine_theme)
+        f["theme_source"] = theme_de[f["id"]]
+        return f
+
     for t in themes:
-        t["mots"] = [entree(f, phrases, domaine_theme) for f in t["mots"]]
+        t["mots"] = [entree_ou_scene(f) for f in t["mots"]]
 
     par_nature = {n: OrderedDict((c, []) for c in NIVEAUX.values())
                   for n in ("verbe", "adjectif", "adverbe", "expression", "fonctionnel")}

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Les mots prevus de chaque scene japonaise sont-ils dans le corpus N5-N3 ?
+"""Les mots prevus de chaque scene japonaise sont-ils dans le corpus (N5-N1) ?
 
     python japonais/scenes/verifier_mots.py            # toutes les scenes
     python japonais/scenes/verifier_mots.py kuukou     # une scene
@@ -9,8 +9,8 @@ Entree : japonais/scenes/mots-prevus.json -- pour chaque scene, les mots que
          l'ecrit en kanji, sinon kana) ; `hors_corpus` liste ceux qu'on sait
          absents, avec leur lecture et leur traduction, a ajouter au corpus
          avant que la scene soit jouable.
-Corpus : origin/japonais-cartes:japonais/cartes/mots-n5|n4|n3.json, lu par
-         git (rien a copier).
+Corpus : japonais/cartes/mots-n5..n1.json de cette branche (N2 et N1 depuis
+         le 1er nov. 2026 : 43 mots qu'on croyait absents y etaient).
 
 Un mot de `mots` absent du corpus est une FAUTE : soit on le retire du
 prompt, soit on le deplace dans `hors_corpus` en connaissance de cause.
@@ -27,16 +27,26 @@ RACINE = os.path.normpath(os.path.join(ICI, "..", ".."))
 
 
 def corpus():
+    """Le corpus N5-N1 de cette branche (japonais/cartes/mots-n*.json), par
+    forme ECRITE : le kanji quand la fiche en a un, sinon le kana. Jusqu'au
+    1er nov. 2026 on lisait le seul N5-N3 de origin/japonais-cartes, et un mot
+    se trouvait aussi par sa lecture : 銭湯 tombait sur 戦闘 (« combat »), 線香
+    sur 専攻, 炭 sur 隅. Une lecture ne dit pas quel mot c'est."""
     index = {}
-    for n in ("5", "4", "3"):
-        brut = subprocess.run(
-            ["git", "show", "origin/japonais-cartes:japonais/cartes/mots-n%s.json" % n],
-            cwd=RACINE, capture_output=True, check=True).stdout.decode("utf-8")
-        for e in json.loads(brut)["entrees"]:
-            for k in ("kanji", "kana"):
-                v = (e["ecritures"].get(k) or {}).get("v")
-                if v:
-                    index.setdefault(v, e)
+    for n in ("5", "4", "3", "2", "1"):
+        chemin = os.path.join(RACINE, "japonais", "cartes", "mots-n%s.json" % n)
+        for e in json.load(open(chemin, encoding="utf-8"))["entrees"]:
+            ec = e["ecritures"]
+            v = (ec.get("kanji") or {}).get("v") or ec["kana"]["v"]
+            index.setdefault(v, e)
+    # Les mots des scenes hors listes JLPT (japonais/cartes/scenes.json, 1er nov.
+    # 2026), au format d'une fiche pour ce qu'on en lit ici.
+    chemin = os.path.join(RACINE, "japonais", "cartes", "scenes.json")
+    for a in json.load(open(chemin, encoding="utf-8"))["mots"]:
+        index.setdefault(a["mot"], {
+            "id": a["id"], "niveau": "hors JLPT", "jlpt_estime": a["jlpt"],
+            "ecritures": {"kana": {"v": a["lecture"]}},
+            "gloses": {"fr": {"affichee": {"v": a["fr"]}}}})
     return index
 
 
