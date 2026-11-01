@@ -69,11 +69,13 @@ async function main(){
         // Les deux langues : `users` (allemand) et `usuariosEs` (espagnol,
         // depuis la v735). La cle « es: » garde les deux listes de lus a part.
         const db = getFirestore();
-        const de = await db.collection("users").get();
-        const es = await db.collection("usuariosEs").get();
+        // v1054 : et les essais -- un retour ecrit en anglais, en portugais ou
+        // en japonais dormait dans usersEn / usersPt / usersJa sans etre lu.
         snap = [];
-        de.forEach(d => snap.push({ id: d.id, data: () => d.data(), langue: "" }));
-        es.forEach(d => snap.push({ id: "es:" + d.id, data: () => d.data(), langue: " (espagnol)" }));
+        for(const [coll, pre, langue] of [["users", "", ""], ["usuariosEs", "es:", " (espagnol)"],
+                ["usersEn", "en:", " (anglais)"], ["usersPt", "pt:", " (portugais)"], ["usersJa", "ja:", " (japonais)"]]){
+            (await db.collection(coll).get()).forEach(d => snap.push({ id: pre + d.id, data: () => d.data(), langue: langue }));
+        }
     }catch(e){
         // Le defaut le plus probable au premier essai : le compte de service
         // existe mais n'a recu aucun role. On le nomme au lieu de rendre une

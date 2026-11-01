@@ -98,8 +98,12 @@ async function main(){
     initializeApp({ credential: cert(require(path.join(OUTILS, "admin.json"))) });
     // Les deux langues (v735) : la progression espagnole vit dans usuariosEs.
     const db = getFirestore();
-    const docs = (await db.collection("users").get()).docs.map(d => [d, ""])
-        .concat((await db.collection("usuariosEs").get()).docs.map(d => [d, "es "]));
+    // v1054 : et les essais (anglais, portugais, japonais) -- Nicole, passee a
+    // l'anglais, n'apparaissait plus nulle part.
+    let docs = [];
+    for(const [coll, marque] of [["users", ""], ["usuariosEs", "es "], ["usersEn", "en "], ["usersPt", "pt "], ["usersJa", "ja "]]){
+        docs = docs.concat((await db.collection(coll).get()).docs.map(d => [d, marque]));
+    }
     const maintenant = Date.now();
     const lignes = [];
     for(const [d, marque] of docs){

@@ -8632,7 +8632,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1053</span>
+        <span class="subtitle-version">v1054</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -36265,6 +36265,11 @@ async function syncProgressToCloud(){
                 try{ return localStorage.getItem(JOURNAL_VERSION_KEY) || ""; }
                 catch(e){ return ""; }
             })(),
+            // Les pages mortes sans prevenir (v1054), voir surveillerFinsDePage().
+            journalFinsJson: (function(){
+                try{ return localStorage.getItem(JOURNAL_FINS_KEY) || ""; }
+                catch(e){ return ""; }
+            })(),
             // Le jour de la serie, sans quoi un appareil qui la restaure ne
             // saurait pas si elle continue demain ou repart a un.
             streakJour: (function(){
@@ -43769,7 +43774,12 @@ async function renderAdminUsersList(){
         // porte sa langue. Une collection illisible n'empeche pas l'autre.
         const users = [];
         let lues = 0;
-        for(const [coll, langue] of [["resumes", "de"], ["resumenesEs", "es"]]){
+        // v1054 (1er nov. 2026) : ET LES ESSAIS. Jacques : sa soeur Nicole « est
+        // passee a la version pour apprendre l'anglais [...] puis rien de note ».
+        // Le tableau ne lisait que l'allemand et l'espagnol : tout ce qui se fait
+        // en anglais, en portugais ou en japonais (resumesEn, resumesPt,
+        // resumesJa, que les regles laissent lire a l'admin) etait invisible.
+        for(const [coll, langue] of [["resumes", "de"], ["resumenesEs", "es"], ["resumesEn", "en"], ["resumesPt", "pt"], ["resumesJa", "ja"]]){
             try{
                 const snap = await window.fsGetDocs(window.fsCollection(window.firestoreDb, coll));
                 snap.forEach(d => users.push({ id: d.id, ...d.data(), _langue: langue, _coll: coll }));
@@ -43848,7 +43858,7 @@ async function renderAdminUsersList(){
             <details class="admin-user-row" data-uid="${u._langue}-${u.id}"${ouverts.has(u._langue + "-" + u.id) ? " open" : ""}>
                 <summary>
                     <span class="admin-point admin-point-${etat}"></span>
-                    <span class="admin-nom"><span class="admin-langue">${u._langue === "es" ? "ES" : "DE"}</span> ${titre}${u.retoursUsager ? ' <span class="admin-bulle" title="Retour">💬</span>' : ""}</span>
+                    <span class="admin-nom"><span class="admin-langue">${String(u._langue || "de").toUpperCase()}</span> ${titre}${u.retoursUsager ? ' <span class="admin-bulle" title="Retour">💬</span>' : ""}</span>
                     <small>${quand} · ${mots} mot${mots > 1 ? "s" : ""}</small>
                 </summary>
                 <div class="admin-detail">
@@ -48491,7 +48501,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1053;
+const APP_VERSION = 1054;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48592,6 +48602,68 @@ function noterVersion(quoi, detail){
         // Seulement le nom du site, rien d'autre.
         hote: location.host || location.protocol
     });
+})();
+
+// LES FINS DE PAGE QUI N'ONT PAS DIT AU REVOIR (v1054). Jacques, 1er nov. 2026 :
+// « j'etais sur la page d'accueil [...] sans rien faire [...] l'application se
+// recharge, je vois le W ». Son journal de la matinee : onze ouvertures en une
+// heure dans l'app iPhone, toutes en v1052 et toutes « a jour » -- aucune n'est une
+// mise a jour. Soupcon : iOS tue la page (memoire) et l'app la recharge. Rien ne le
+// prouve : on note donc, a chaque ouverture, comment la page PRECEDENTE a fini.
+//
+// La page pose un pouls toutes les 5 s (ecran, langue, premier plan ou non). Un
+// depart normal -- changement de langue, mise a jour, rechargement -- passe par
+// pagehide et marque le pouls « propre ». Si l'ouverture suivante trouve un pouls
+// qui n'est pas propre, la page precedente est morte sans prevenir : au PREMIER
+// PLAN (le W de Jacques) ou en ARRIERE-PLAN (iOS libere une app qu'on a quittee,
+// ce qui est ordinaire). `node tests/versions.js` les lit avec le reste.
+// Cle SANS prefixe de langue : un changement de langue change de prefixe.
+// App native seulement : deux onglets d'ordinateur se marcheraient sur ce pouls.
+// ⚠️ DE L'OBSERVATION SEULEMENT, comme noterVersion().
+const JOURNAL_FINS_KEY = PREFIXE_STOCKAGE + "journalFins";
+(function surveillerFinsDePage(){
+    let natif = false;
+    try{ natif = !!(window.Capacitor && window.Capacitor.isNativePlatform && window.Capacitor.isNativePlatform()); }catch(e){}
+    if(!natif) return;
+    const CLE = "wortando_poulsPage";
+    const debut = Date.now();
+    try{
+        const p = JSON.parse(localStorage.getItem(CLE) || "null");
+        if(p && !p.propre){
+            const l = JSON.parse(localStorage.getItem(JOURNAL_FINS_KEY) || "[]");
+            l.push({ t: new Date().toISOString(), app: APP_VERSION, quoi: "fin",
+                     genre: p.visible ? "premier plan" : "arriere-plan",
+                     dernierPouls: new Date(p.t).toISOString(), appAvant: p.app,
+                     ecran: p.ecran, langue: p.langue,
+                     vie: Math.round((p.t - p.debut) / 1000),          // s de vie de la page morte
+                     silence: Math.round((debut - p.t) / 1000),        // s entre son dernier pouls et cette ouverture
+                     dom: p.dom, tas: p.tas });
+            localStorage.setItem(JOURNAL_FINS_KEY, JSON.stringify(l.slice(-20)));
+        }
+    }catch(e){}
+    // Une fois partie proprement, la page le reste : au rechargement, le
+    // visibilitychange « cachee » arrive APRES pagehide et effacait la marque.
+    let partie = false;
+    function poser(propre){
+        if(propre) partie = true;
+        else if(partie) return;
+        try{
+            const ecran = document.querySelector(".screen.active");
+            const m = performance.memory;   // Chrome seulement ; iOS n'en dit rien
+            localStorage.setItem(CLE, JSON.stringify({
+                t: Date.now(), debut: debut, app: APP_VERSION, propre: !!propre,
+                visible: !document.hidden, ecran: (ecran && ecran.id) || "?", langue: LANGUE_APPRISE,
+                // Faute de mesure de memoire sur iOS, le nombre d'elements de la page.
+                dom: document.getElementsByTagName("*").length,
+                tas: m ? Math.round(m.usedJSHeapSize / 1048576) : null
+            }));
+        }catch(e){}
+    }
+    poser(false);
+    setInterval(() => poser(false), 5000);
+    document.addEventListener("visibilitychange", () => poser(false));
+    window.addEventListener("pagehide", () => poser(true));
+    window.addEventListener("pageshow", ev => { if(ev.persisted){ partie = false; poser(false); } });
 })();
 
 async function verifierNouvelleVersion(){
