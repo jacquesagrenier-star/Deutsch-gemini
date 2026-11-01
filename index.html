@@ -8498,8 +8498,8 @@ body[data-theme="dark"] .badge-barre{background:rgba(255,255,255,.12);}
 body[data-theme="dark"] #home #seancePilule #spTitre, body[data-theme="dark"] #home #seancePilule .pa-kick{color:#FFFFFF !important; text-shadow:0 1px 10px rgba(0,0,0,.30);}
 #home #seancePilule .pa-sens, #home #seancePilule .pa-contenu{color:rgba(28,36,48,.80) !important;}   /* noir aussi : Jacques, 31 oct. */
 body[data-theme="dark"] #home #seancePilule .pa-sens, body[data-theme="dark"] #home #seancePilule .pa-contenu{color:rgba(255,255,255,.92) !important;}
-#home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #B8F2EC 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), rgba(255,255,255,.35) calc(var(--p) * 1%) 100%) !important;
-    box-shadow:0 0 18px rgba(40,180,170,.35) !important;}
+#home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #B8F2EC 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #DCEBEC calc(var(--p) * 1%) 100%) !important;
+    box-shadow:0 0 18px rgba(40,180,170,.35) !important;}   /* v1053 : piste vide opaque (« la bande d'anneau est transparente [...] mieux qu'elle ne le soit pas », Jacques, 1er nov.) */
 #home #seancePilule > .pa-anneau::before{background:#F7F9FB !important;}
 #home #seancePilule .seance-niveaux{background:rgba(255,255,255,.82) !important; box-shadow:inset 0 1px 0 #fff, 0 4px 12px rgba(150,80,10,.18) !important;}
 #home #seancePilule .seance-niveau{color:#5B6470 !important;}
@@ -8509,7 +8509,7 @@ body[data-theme="dark"] #home #seancePilule .pa-sens, body[data-theme="dark"] #h
 body[data-theme="dark"] #home #seancePilule{background:linear-gradient(145deg,rgba(150,92,30,.40) 0%,rgba(140,80,24,.62) 35%,rgba(120,64,18,.88) 65%,rgba(104,52,14,.96) 100%) !important;
     box-shadow:0 18px 40px rgba(0,0,0,.40), inset 0 1.5px 0 rgba(255,220,160,.25) !important;}
 body[data-theme="dark"] #home #seancePilule .pa-aujourdhui{color:#F6C46A !important;}
-body[data-theme="dark"] #home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #8FE3DA 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), rgba(255,255,255,.14) calc(var(--p) * 1%) 100%) !important;}
+body[data-theme="dark"] #home #seancePilule > .pa-anneau{background:conic-gradient(from 0deg, #8FE3DA 0, #2BB5AA calc(var(--p) * .6%), #14807A calc(var(--p) * 1%), #2C4252 calc(var(--p) * 1%) 100%) !important;}
 body[data-theme="dark"] #home #seancePilule > .pa-anneau::before{background:#14283A !important;}
 body[data-theme="dark"] #home #seancePilule .seance-niveaux{background:rgba(255,255,255,.12) !important; box-shadow:inset 0 1px 0 rgba(255,255,255,.18) !important;}
 body[data-theme="dark"] #home #seancePilule .seance-niveau{color:rgba(255,255,255,.80) !important;}
@@ -8632,7 +8632,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1052</span>
+        <span class="subtitle-version">v1053</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -48491,7 +48491,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1052;
+const APP_VERSION = 1053;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
