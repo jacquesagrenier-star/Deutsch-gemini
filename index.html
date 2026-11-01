@@ -30928,11 +30928,24 @@ function majLienAutreLangueAuth(){
     const b = document.getElementById("authAutreLangue");
     if(!b) return;
     b.textContent = t(LANGUE_APPRISE !== "de" ? "auth_apprendre_de" : "auth_apprendre_es");
-    b.classList.toggle("hidden", LANGUE_APPRISE !== "es" && !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang()));
+    b.classList.toggle("hidden", (LANGUE_APPRISE !== "es" && !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang()))
+        || germanophoneEnEspagnol());
+}
+// Un germanophone qui apprend l'espagnol (interface allemande, 1er nov. 2026) :
+// lui proposer « apprendre l'allemand » n'a pas de sens, et l'app allemande ne
+// parle pas allemand -- il y retomberait en anglais.
+function germanophoneEnEspagnol(){
+    return LANGUE_APPRISE === "es" && getUiLang() === "de";
 }
 function masquerEspagnolSelonLangueUi(){
     try{ majLienAutreLangueAuth(); }catch(e){}
-    if(LANGUE_APPRISE === "es") return;
+    if(LANGUE_APPRISE === "es"){
+        document.querySelectorAll('.setup-choice[onclick*="ouvrirAutreLangueApprise"]').forEach(btn => {
+            if(germanophoneEnEspagnol()){ btn.classList.add("hidden"); btn.dataset.cacheDe = "1"; }
+            else if(btn.dataset.cacheDe){ btn.classList.remove("hidden"); delete btn.dataset.cacheDe; }
+        });
+        return;
+    }
     const cache = !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang());
     document.querySelectorAll('.setup-choice[onclick*="ouvrirAutreLangueApprise"]')
         .forEach(btn => btn.classList.toggle("hidden", cache));
