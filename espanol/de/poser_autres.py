@@ -92,7 +92,12 @@ def verifier_texte(nom, id_, fr, en, de, fautes, avis):
         if fr.strip():
             fautes.append("%s %s : vide" % (nom, id_))
         return
-    d = doute_allemand(re.sub(r"<[^>]+>", " ", de), re.sub(r"<[^>]+>", " ", fr), re.sub(r"<[^>]+>", " ", en))
+    # Un texte identique en francais et en anglais n'est fait que d'exemples
+    # (« lo · la · le · se », « Con tener — tener ganas ») : il se recopie.
+    # Pareil pour une liste d'exemples espagnols recopiee du francais.
+    espagnol_seul = de in (fr, en) and re.search(r"[ñáíóú¿¡]|(?<!\w)(?:el|la|los|las|un|una|este|ese|mi|lo|le|se)(?!\w)", de) \
+        and not re.search(r"(?<!\w)(?:et|est|les|des|du|pour|avec|dans)(?!\w)", de)
+    d = None if (de == fr and fr == en) or espagnol_seul else doute_allemand(re.sub(r"<[^>]+>", " ", de), re.sub(r"<[^>]+>", " ", fr), re.sub(r"<[^>]+>", " ", en))
     if d:
         # Un mot court identique au francais (« Info », « Menu ») est permis.
         (fautes if d == "identique au francais ou a l'anglais" else avis).append("%s %s : %s : %s" % (nom, id_, d, de[:70]))
