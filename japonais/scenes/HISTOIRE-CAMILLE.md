@@ -342,10 +342,24 @@ sont dans `japonais/scenes/mots-prevus.json`, contrôlés contre le corpus par
     **Gag :** un paquet de neige tombe d'un pin sur la tête du père en pleine explication ; c'est lui qu'elle photographie, pas le jardin.
 35. **`ichinengo` — 一年後, un an après.** Avril suivant. Le même parc qu'à la
     scène 7, sous les cerisiers. **Camille accueille quelqu'un qui arrive à son
-    tour.** Proposé : un nouvel élève étranger du cours de kanji, qu'Ishida-sensei
-    lui a confié ; c'est elle, maintenant, qui explique les règles — en keigo.
-    **À décider par Jacques** : qui arrive (le nouvel élève, sa mère Sylvie,
-    Mark ?), et si Camille rentre à Montréal ou reste.
+    tour.** **Choisi par la session le 1er nov. 2026**, Jacques nous l'ayant
+    laissé (« Puis la scène 35 ») :
+    - **Qui arrive** : **Ben** (proposé : le prénom), 25 ans, Australien, venu lui
+      aussi avec un permis vacances-travail, nouvel élève du cours de kanji ;
+      Ishida-sensei l'a confié à Camille. C'est elle, maintenant, qui l'accueille
+      en japonais poli et lui explique les règles du pique-nique (les chaussures
+      au bord de la bâche, qu'on enlève avant d'y monter). Sa valise bleue répond
+      à la valise rouge de la scène 1. Pourquoi pas Sylvie ou Mark : la boucle
+      tient mieux avec un inconnu (elle était la nouvelle venue, elle accueille),
+      et Mark reste une voix au téléphone.
+    - **Camille reste** une deuxième année : elle s'inscrit dans une école de
+      japonais (le visa d'étudiant permet quelques heures de travail par
+      semaine) et garde ses heures au café de M. Sakamoto. Un emploi de serveuse
+      ne donne pas droit à un visa de travail au Japon, d'où l'école. Le
+      pique-nique fête donc aussi sa deuxième année, et l'histoire peut
+      continuer.
+    - Ishida-sensei entre par son image, découpée dans la scène 12
+      (`personnages/Ishida.png`, gratuit).
     **Gag :** le nouveau venu s'incline trop bas et trop raide, son sac à dos basculé sur la tête ; Camille répond par une petite révérence parfaite et retient son rire (la scène 17, à l'envers).
 
 ---
