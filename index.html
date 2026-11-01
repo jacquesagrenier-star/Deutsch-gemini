@@ -5803,7 +5803,7 @@ body[data-theme="dark"] .finir-theme{background:rgba(232,162,58,.14); color:#E8A
        c'est lui qui connait m.l et m.h, et le plafond ne peut pas s'ecrire en
        CSS sans connaitre le format de l'oeuvre. */
     display:block; width:100%; max-width:none; position:relative;
-    aspect-ratio:3 / 1;   /* la bande, identique pour les 65 tableaux */
+    aspect-ratio:6 / 1;   /* la bande, identique pour tous les tableaux. v1060 : 6/1, deux fois moins haute (Jacques, 1er nov. 2026 : « meme format avec un cadre dore [...] qu'elle soit a moitie [...] on arrive plus directement sur la seance du jour ») */
 }
 body[data-theme="dark"] .mos-cadre{
     border-color:#C6CCD6;
@@ -8638,7 +8638,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1059</span>
+        <span class="subtitle-version">v1060</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -42403,6 +42403,8 @@ function showScreen(id){
     // qui balaie le corpus entier.
     if(id === "home"){
         try{ appliquerVueContenu(); }catch(e){}
+        // v1060 : la mise a jour reportee pendant un exercice se fait maintenant, a l'accueil.
+        if(versionEnAttente){ versionEnAttente = 0; setTimeout(() => { try{ verifierNouvelleVersion(); }catch(e){} }, 400); }
         try{ majCompteDuJour(); }catch(e){}
         try{ majTitrePorteMots(); }catch(e){}
         try{ majTitrePilule(); }catch(e){}
@@ -48559,7 +48561,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1059;
+const APP_VERSION = 1060;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -48626,6 +48628,8 @@ function enregistrerServiceWorker(){
 }
 
 const VERSION_RECHARGE_FAITE = PREFIXE_STOCKAGE + "rechargeVersion";
+// v1060 : une version trouvee hors de l'accueil attend le retour a l'accueil (voir verifierNouvelleVersion).
+let versionEnAttente = 0;
 
 // LE JOURNAL DES VERSIONS (v684). L'app TestFlight restait en v681 apres
 // fermeture et reouverture, alors que le site servait la v683 (2 octobre
@@ -48764,6 +48768,16 @@ async function verifierNouvelleVersion(){
         }
         if(dejaTentee && parseInt(dejaTentee, 10) === publiee && dejaVue < publiee){
             noterVersion("verif", { publiee: publiee, resultat: "deja tentee" });
+            return;
+        }
+        // v1060 : PAS EN PLEIN EXERCICE. Jacques, 1er nov. 2026 : il termine son tableau, « l'application
+        // a recharge » -- la v1059 venait d'etre publiee, et son retour dans l'app (apres une capture
+        // envoyee) a lance la verification. Le rechargement lui a vole la fin de l'exercice et la fete.
+        // Hors de l'accueil, on note la version et on attend : showScreen("home") relance la verification.
+        const ecranActif = ((document.querySelector(".screen.active") || {}).id) || "";
+        if(ecranActif && ecranActif !== "home" && ecranActif !== "auth"){
+            versionEnAttente = publiee;
+            noterVersion("verif", { publiee: publiee, resultat: "reportee (" + ecranActif + ")" });
             return;
         }
         noterVersion("verif", { publiee: publiee, resultat: "rechargement" });
@@ -51056,6 +51070,8 @@ const MOSAIQUE_SEANCES_TROPHEE = 3; // combien de JOURS D'ACTIVITE l'image finie
 // on croit que la carte a fige.
 const MOSAIQUE_RESOLUTION_MS = 900;
 const MOSAIQUE_CLE = PREFIXE_STOCKAGE + "mosaique";
+// v1060 : le format de la bande du trophee en haut de l'accueil (largeur / hauteur), le meme qu'en CSS (.mos-cadre).
+const BANDE_MOSAIQUE = 6;
 // L'ESPAGNOL A SA PROPRE COLLECTION (v791). Nicole, le 13 oct. : la visite en
 // espagnol parlait d'« Ajaccio, d'Anton Faistauer ». 66 tableaux de peintres
 // d'Espagne et d'Amerique latine morts avant 1926, choisis et ordonnes par
@@ -51833,7 +51849,7 @@ function majMosaiqueAccueil(){
                 // .carte-mosaique : le chiffre vient de trois rendus, pas d'un
                 // raisonnement.
                 const r = (m.l || 1) / (m.h || 1);
-                const chute = Math.max(0, 1 - Math.min(r, 3) / 3);
+                const chute = Math.max(0, 1 - Math.min(r, BANDE_MOSAIQUE) / BANDE_MOSAIQUE);   // v1060 : la bande fait 6/1
                 // v962 : UN ROULEAU VERTICAL A SON CADRAGE. Les Jakuchu du
                 // japonais font 0,58 de large pour 1 de haut : le quart de la
                 // chute tombait sur des feuilles et coupait les tetes. `centre`
@@ -52105,7 +52121,11 @@ function ouvrirGalerieMosaiques(){
         if(!v.g.length){
             zone.innerHTML = enCours + '<p class="galerie-vide">' + t("mosaique_galerie_vide") + '</p>';
         } else {
-            zone.innerHTML = enCours + v.g.map(r => {
+            // v1060 : LE PLUS RECENT D'ABORD. Jacques, 1er nov. 2026 : le tableau qu'il venait de
+            // terminer arrivait en deuxieme ; « quand on va en avoir une trentaine », on veut tomber
+            // dessus en premier. Pendant le trophee (ou son dernier jour), il passe meme devant le
+            // tableau en cours.
+            const gagnes = v.g.slice().reverse().map(r => {
                 const m = MOSAIQUES[(r - 1) % MOSAIQUES.length];
                 if(!m) return "";
                 return '<figure class="galerie-item" onclick="ouvrirMosaiquePleinEcran(' + r + ')">'
@@ -52113,7 +52133,10 @@ function ouvrirGalerieMosaiques(){
                      + '" alt="' + titreTableau(m).replace(/"/g, "") + '">'
                      + '<figcaption><b>' + titreTableau(m) + '</b><br>'
                      + [m.peintre, m.annee].filter(Boolean).join(' · ') + '</figcaption></figure>';
-            }).join("");
+            });
+            zone.innerHTML = (v.t > 0 || v.b)
+                ? gagnes[0] + enCours + gagnes.slice(1).join("")
+                : enCours + gagnes.join("");
         }
         showScreen("galerieMosaique");
     });
