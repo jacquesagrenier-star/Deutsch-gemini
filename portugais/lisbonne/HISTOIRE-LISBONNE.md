@@ -1,6 +1,6 @@
 # Un an à Lisbonne — proposition de scènes portugaises
 
-> **Proposition** (31 oct. 2026), rien de dessiné ni de payé. Décidé par Jacques
+> **Proposition acceptée** le 1er nov. 2026 (« Fais les cinq au complet. ») ; pilote fait, voir `RAPPORT-PILOTE.md`. Proposition du 31 oct. 2026. Décidé par Jacques
 > le 31 oct. : des scènes **neuves, dessinées pour Lisbonne**, comme celles de
 > Camille pour le Japon ; d'abord la liste et un personnage, les images ensuite
 > avec son accord (lignes « Portugais : des scènes à Lisbonne » de
