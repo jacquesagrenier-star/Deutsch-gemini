@@ -17,6 +17,10 @@ ukrainien, ش en persan et en arabe ; ch apres a = х, خ ; et les pieges
 propres a chacun (w n'est PAS le و arabe, j n'est PAS le j turc). Les textes
 tr / uk / fa / ar sont a faire relire par nos testeurs de ces langues.
 
+L'UKRAINIEN DU ü (1er nov. 2026, Daria, testeuse ukrainienne) : « «і» з округленими губами » ne
+lui disait pas le son ; le repere le plus proche pour une Ukrainienne est « ю » apres une consonne
+molle (« люди »). Gardee aussi la methode (« і » + levres arrondies), qui donne le son juste.
+
 LES EXEMPLES SONT DES MOTS DU CORPUS, DEJA ENREGISTRES PAR AURORA : leurs
 traductions viennent du corpus (texteTraduit dans l'app, repli compris pour
 l'arabe), et le script refuse un exemple sans fichier audio/mp3/<sha1>.mp3.
@@ -41,11 +45,11 @@ def L(fr, en, tr, uk, fa, ar):
 # (id, graphie, api, court, explication, exemples)
 VOYELLES = [
  ("u-trema", "ü", "[y]",
-  L("comme le « u » français", "« ee » with rounded lips", "Türkçedeki ü", "«і» з округленими губами", "«ای» با لب‌های گرد", "«ي» بشفتين مستديرتين"),
+  L("comme le « u » français", "« ee » with rounded lips", "Türkçedeki ü", "близько до «ю», як у «люди»", "«ای» با لب‌های گرد", "«ي» بشفتين مستديرتين"),
   L("Le ü se prononce exactement comme le « u » français de « tu » ou « mur ».",
     "English has no ü: say « ee » and round your lips as if to whistle, without moving your tongue.",
     "Almanca ü, Türkçedeki ü ile aynıdır: « gül », « tüy ».",
-    "В українській такого звука немає: скажи «і» і, не рухаючи язиком, витягни губи трубочкою.",
+    "В українській такого звука немає. Найближче до нього — «ю» після м'якого приголосного, як у «люди» чи «тюль». Щоб вийшло точно: скажи «і» і, не рухаючи язиком, витягни губи трубочкою, як для «ю».",
     "در فارسی چنین صدایی نیست: «ای» بگو و بی‌آنکه زبانت را تکان دهی، لب‌هایت را مثل سوت زدن گرد کن.",
     "لا يوجد هذا الصوت في العربية: انطق «ي» (إي) ثم دوّر شفتيك كأنك تصفّر، دون أن تحرّك لسانك."),
   ["müde", "Tür", "Brücke"]),

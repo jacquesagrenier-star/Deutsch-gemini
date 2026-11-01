@@ -180,8 +180,10 @@ PT = {
           "ga, go, gu têm g duro, como em « gato ». Antes de e e i escreve-se gu e o u não se ouve: guerra « gué-rra » — como em português. O trema o faz soar: bilingüe « bi-lin-güe »."),
  "ch": ("« tch »",
         "ch se diz « tch », como o « tch » de « tchau »: noche « nó-tchê », ocho « ó-tcho ». Nunca o ch do português (« chave »)."),
- "ll-y": ("como o « i » de « ioga »",
-          "ll e y se dizem como o i de « ioga »: calle « ca-ie », playa « pla-ia ». Não é o lh do português. Na Argentina e no Uruguai ouve-se « ch » ou « j »: calle « ca-che »."),
+ # Reecrit le 1er nov. 2026 d'apres le francais du 31 oct. (« un « y » appuye, presque « j » ») :
+ # le portugais etait reste sur l'ancienne explication (« comme le y de yeux »).
+ "ll-y": ("um « i » apoiado, quase « j »",
+          "ll e y se dizem com um « i » apoiado, mais apertado que o i de « ioga », quase o « j » de « já »; no começo da palavra, muitas vezes soa quase « dj »: llave « iábe » ou « djábe », calle « ca-ie », playa « pla-ia ». Não é o lh do português. Na Argentina e no Uruguai ouve-se « ch » ou « j »: calle « ca-che »."),
  "n-tilde": ("« nh »",
              "ñ se diz como o nh do português, em « manhã »: niño « ni-nho », mañana « ma-nha-na »."),
  "h": ("mudo, como em português",
@@ -226,8 +228,9 @@ AR = {
       "ga وgo وgu تُلفظ بصوت g القوي، كالجيم القاهرية، أو كغين «غ» بانغلاق تامّ: gato «غاتو». أمام e وi تُكتب gu ولا تُسمع الـ u: guerra «غِرّا». والنقطتان فوق الـ u تجعلانها تُسمع: bilingüe «بيلينغْوِه»."),
  "ch": ("«تش»",
       "ch تُلفظ «تش»، كما في «تشاد»: noche «نوتشِه»، ocho «أوتشو»، chico «تشيكو». ليست شيناً «ش» وحدها."),
- "ll-y": ("كالياء «ي»",
-      "ll وy تُلفظان كالياء «ي»: calle «كايِه»، playa «بلايا»، llave «يابِه». وفي الأرجنتين والأوروغواي تُسمع أقرب إلى الشين «ش»: calle «كاشِه»."),
+ # Reecrit le 1er nov. 2026, meme raison que le portugais.
+ "ll-y": ("ياء مضغوطة، قريبة من «ج»",
+      "ll وy تُلفظان ياءً مضغوطة، أشدّ من الياء العادية، تقترب من «ج» كما تُلفظ في الشام؛ وفي أول الكلمة تميل غالبًا إلى «دج»: llave «يابِه» أو «دجابِه»، calle «كايِه»، playa «بلايا». وفي الأرجنتين والأوروغواي تُسمع أقرب إلى الشين «ش»: calle «كاشِه»."),
  "n-tilde": ("«ني»",
       "ñ تُلفظ نوناً تليها ياء خفيفة «ني»، في مقطع واحد: niño «نينيو»، mañana «مانيانا»، año «أنيو»."),
  "h": ("صامتة دائماً",
