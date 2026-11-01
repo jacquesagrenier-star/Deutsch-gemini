@@ -1,6 +1,7 @@
 # Scènes de Camille — rapport du pilote (31 oct. 2026)
 
 > Pour Jacques. Tout le japonais est un **brouillon** : il attend un natif.
+> **Suite (1er nov. 2026) : les 35 scènes sont faites, voir `RAPPORT-SCENES.md`.**
 > Planche des quatre images : `.claude/planche-scenes-camille-pilote.jpg`
 > (dossier OneDrive du projet).
 

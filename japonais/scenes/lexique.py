@@ -43,7 +43,9 @@ GLOSES_MANUELLES = {
     "肩": "épaule", "氷": "glace (eau gelée)", "布": "tissu", "包み": "paquet",
     "土産": "souvenir (cadeau)", "アルバム": "album", "黒板": "tableau noir",
     "茶": "thé", "灰": "cendre", "スイッチ": "interrupteur", "信号": "feu (de circulation)",
-    "煙": "fumée", "舌": "langue (organe)",
+    "煙": "fumée", "舌": "langue (organe)", "小包": "colis",
+    # Lu おおや au corpus, mais glosé « rich family » (le sens de たいけ) : ici, la propriétaire de Camille.
+    "大家": "propriétaire (du logement)",
     "塀": "mur de clôture", "座席": "siège ; place assise", "両替": "change (de monnaie)",
     # N2 et N1 (1er nov. 2026) : dans le corpus, pas encore traduits en francais.
     "盆": "plateau",
