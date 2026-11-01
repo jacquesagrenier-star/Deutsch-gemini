@@ -34,17 +34,36 @@
    n'a ni « o mar » ni « o lago » ; plus les mots de Lisbonne : o estendal,
    a mola, o cravo, o manjerico, a calçada, o cacilheiro, a bifana…).
 
+## Les 26 autres (1er nov. 2026, « Oui, les 26 »)
+
+Toutes faites, une prise chacune, **sauf le tram (`eletrico-28`), fait trois
+fois** : les deux premières prises sont sorties en plusieurs panneaux (les
+trois bandes du prompt lues comme trois photos). Le gabarit dit maintenant
+« one single continuous view », et le tram regarde l'allée d'un bout à
+l'autre. Rui et Lucas ont été découpés de leur première scène (`albergue`,
+`aula-portugues`) avant les scènes où ils reviennent.
+
+Les gags qui se lisent moins que prévu (les questions les raconteront) :
+le parapluie de la pluie n'est pas retourné, les joues pleines de raisins du
+Nouvel An se voient peu, Léo tient la chaussette au lieu de la laisser tomber
+(`estendal`), le palais de Pena se devine un peu trop dans le brouillard, Léo
+est petit et loin sur sa planche de surf, et au départ le Québécois qu'il
+reprend se tient au fond.
+
+Faux texte effacé en local (gratuit) : le titre du dictionnaire du cours
+(`aula-portugues-propre.png`), deux étiquettes de bouteilles et le sac en
+papier de la pastelaria (`pastelaria-propre.png`). Les autres étiquettes de
+la pastelaria restent : elles touchent le chignon de Beatriz, que la retouche
+abîmait. Les chiffres des horloges et des étiquettes de prix du marché
+restent (une horloge a ses chiffres).
+
 ## Coût
 
-**1,20 $** : Léo 0,60 $ (face + trois vues) et le pilote 0,60 $ (quatre images
-à 0,15 $, aucune reprise). Rien d'autre n'a été payé.
+**5,40 $** en tout, à 0,15 $ l'image : Léo, 4 images (0,60 $) ; les scènes,
+32 images (4,80 $) — le pilote 4, les 26 autres 26, et 2 reprises du tram.
 
-## La suite
+## La suite, sans dépense
 
-1. **Les 26 autres images** : 26 × 0,15 = **3,90 $**, plus 1 à 2 $ de reprises
-   probables. J'ai lu « les cinq » comme les cinq questions, dont la dernière
-   ne parlait que du pilote : elles attendent ton mot.
-2. Puis, sans dépense : effacer le faux texte, poser les zones et les masques
-   (SAM 2, local), ajouter les 88 mots au corpus avec phrase et traduction,
-   faire les `scene-<nom>.pt.js` et brancher les scènes dans l'essai portugais,
-   écrire les couches A2 et B1 pour le portugais.
+Poser les zones et les masques (SAM 2, local), ajouter les 88 mots au corpus
+avec phrase et traduction, faire les `scene-<nom>.pt.js` et brancher les
+scènes dans l'essai portugais, écrire les couches A2 et B1 pour le portugais.

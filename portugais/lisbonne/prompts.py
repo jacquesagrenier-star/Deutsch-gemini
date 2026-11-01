@@ -79,7 +79,9 @@ def paragraphe_refs(refs, tenue_ete=None):
 
 
 def prompt(s):
-    tete = ("A real photograph of %s, in a tall vertical picture, caught as it happens, as %s would take it with a "
+    # « one single continuous view » : la premiere prise du tram (1er nov.) est sortie en TROIS panneaux,
+    # les trois bandes du prompt lues comme trois photos.
+    tete = ("A real photograph of %s, in a tall vertical picture made of one single continuous view, caught as it happens, as %s would take it with a "
             "good phone camera. Taken with a 24 mm lens at %s, everything in sharp focus. %s; the textures of real %s."
             % (s["lieu"], s["qui"], s["camera"], s["lumiere"], s["textures"]))
     plat = ("Every surface in the picture is plain: %s, and the clothes are plain cloth. Each object stands clearly on "
@@ -104,7 +106,7 @@ S = {}
 S["eletrico-28"] = dict(
     n=2, titre="No elétrico 28", titre_fr="Dans le tram 28",
     lieu="the inside of an old yellow Lisbon tram climbing a steep cobbled street on a sunny September afternoon",
-    qui="a passenger", camera="standing eye height from the back of the tram, looking along the aisle towards the driver and the street ahead through the front window",
+    qui="a passenger", camera="standing eye height near the back door of the tram, looking down the whole length of the aisle in one view, from the passengers close by to the driver far away at the front",
     lumiere="Bright afternoon sunlight through the side windows and warm reflections on the varnished wood",
     textures="varnished wood, polished brass, worn leather straps, glass, painted metal, cotton, denim and skin",
     refs=["leo", "leo-cote"],
@@ -118,10 +120,9 @@ S["eletrico-28"] = dict(
         "on the left, wooden seats where a young mother sits with a small boy on her knees; the boy looks at the suitcase, delighted",
         "in the centre, two tourists in sun hats hold a paper map between them",
         "on the right, a man in a grey suit stands holding a folded newspaper",
-    ]), ("THE FRONT OF THE TRAM, across the upper third of the picture", [
-        "the driver in a dark-blue uniform jacket and cap sits at the brass controls, seen from behind",
-        "through the large front window, the steep cobbled street climbs between pale-yellow and white houses with green shutters, and a church tower stands at the top against a blue sky",
-        "a round brass bell hangs above the driver",
+    ]), ("THE FAR END OF THE SAME AISLE, across the upper third of the picture", [
+        "at the far end of the aisle, small in the distance and seen through the same wooden interior, the driver in a dark-blue uniform jacket and cap sits at the brass controls with his back to us",
+        "beyond him, through the front window of the same tram, the steep cobbled street climbs between pale-yellow and white houses, and a church tower stands at the top against a blue sky",
     ])],
     fin="The tram is full but each person stands clearly on their own: between them, the same bare wooden floor and the same bare wooden walls.",
     mots=["elétrico", "mala", "porta", "janela", "banco", "criança", "mapa", "jornal", "cesto", "rua", "igreja", "céu", "condutor", "turista", "chapéu"],
