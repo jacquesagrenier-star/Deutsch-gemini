@@ -66,6 +66,15 @@ n'a été payé.
    que Camille tient de son père, son ancien métier de barista, le carnet
    rouge et l'appareil photo de son père.
 
+## L'humour (ajouté le 31 oct., à ta demande)
+
+Chaque scène a maintenant un gag, montré dans l'image et pas seulement
+raconté, plus six gags qui reviennent au fil de l'année (la révérence,
+l'appareil photo du père, trop grand ou trop petit…) : bible, section
+3 bis, et une ligne **Gag** sous chaque scène. Les 25 prompts qui n'en avaient
+pas l'ont reçu ; les 32 passent toujours le vérificateur à 0 faute. Les quatre
+images du pilote ne changent pas : leur gag passe par les questions. Coût : 0 $.
+
 ## Ce qui reste, une fois tes choix faits
 
 - Générer, mesurer, détourer les scènes restantes (même méthode).
