@@ -1298,6 +1298,7 @@ body[data-theme="dark"] .subtitle-version{
 .orb-section[data-section="phrase"] .sec-trait{background:#0d9488;}
 .orb-section[data-section="pratique"] .sec-trait{background:#d97706;}
 .orb-section[data-section="parcours"] .sec-trait{background:#64748b;}
+.orb-section[data-section="illustres"] .sec-trait{background:#db2777;}
 
 /* Ces trois tuiles n'avaient aucune couleur : elles prenaient le
    gris par defaut, ce qui faisait un trou dans leur famille. */
@@ -3424,6 +3425,7 @@ html[data-apprendre="ja"] [data-orbid]:not([data-orbid="themes"]):not([data-orbi
 html[data-apprendre="ja"] body{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", "Noto Sans CJK JP", sans-serif; }
 html:not([data-apprendre="ja"]) [data-seulement-ja]{ display:none !important; }
 /* « Tout le contenu » : les sections dont toutes les tuiles sont cachees. */
+html[data-apprendre="ja"] h2.orb-section[data-section="illustres"],
 html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_pratique"]),
 html[data-apprendre="ja"] h2.orb-section:has([data-i18n="sec_parcours"]){ display:none !important; }
 /* Les exercices allemands des ecrans de niveau (Präsens, cas regi, articles). */
@@ -3473,6 +3475,7 @@ html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="ouvrirTuilesMenu"],
 html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="ausdrueckeEn"],
 html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="exercicesFicheEn"]{ display:flex !important; }
 html:not([data-apprendre="en"]) [data-seulement-en]{ display:none !important; }
+html[data-apprendre="en"] h2.orb-section[data-section="illustres"],
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_pratique"]),
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_parcours"]),
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:none !important; }
@@ -3509,6 +3512,7 @@ html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startQuizArticle"],
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startRandomMixAll"],
 html[data-apprendre="pt"] #orbPanel .orb-opt[onclick*="startDueReview"]{ display:flex !important; }
 html:not([data-apprendre="pt"]) [data-seulement-pt]{ display:none !important; }
+html[data-apprendre="pt"] h2.orb-section[data-section="illustres"],
 html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_pratique"]),
 html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_parcours"]),
 html[data-apprendre="pt"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:none !important; }
@@ -9533,13 +9537,6 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
                 <strong data-i18n="seance_par_theme">Par thème</strong>
             </div>
         </div>
-        <!-- v1076 : DECRIRE UNE PERSONNE (Jacques, 2 nov. 2026, le theme « Descripcion fisica » de son cours
-             d'espagnol, « pour l'espagnol et l'allemand »). Douze personnes photorealistes et leurs exercices :
-             visuel/prototype/descripcion.html, ouverte dans le cadre des scenes. Visible en es et de seulement. -->
-        <div class="orb hidden" data-orbid="descripcion" id="tuileDescripcion" onclick="ouvrirDescripcion()" role="button" tabindex="0">
-            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3"/><path d="M3.5 20v-1.5a5.5 5.5 0 0 1 11 0V20"/><circle cx="17" cy="9" r="2.3"/><path d="M15.6 14.3a4.3 4.3 0 0 1 5.9 4V20"/></svg></div>
-            <div><strong data-i18n="desc_tuile">Décrire une personne</strong></div>
-        </div>
         <!-- v881 : le carnet de phrases et les feuilles de conjugaison, sortis
              de la porte de seance. Visibles des qu'ils ont du contenu. -->
         <div class="orb hidden" data-orbid="carnet" id="tuileCarnet" onclick="ouvrirCarnetPhrases()">
@@ -9614,6 +9611,28 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div>
                 <strong data-i18n="orb_prononciation">Prononciation</strong>
             </div>
+        </div>
+
+        <!-- Section « Themes illustres » (2 nov. 2026, Jacques : des themes « plus vivants », imagés, « quelque chose
+             de solide. Complet. Autant pour l'allemand que l'espagnol »). Des personnes photorealistes reutilisables
+             et des exercices fabriques depuis l'image : visuel/prototype/<theme>.html, ouverte dans le cadre des
+             scenes par ouvrirThemeIllustre(). Espagnol et allemand seulement ; cachee en japonais, anglais, portugais. -->
+        <h2 class="orb-section orb-de" data-section="illustres">
+            <span class="sec-trait" aria-hidden="true"></span>
+            <span data-i18n="sec_illustres">Thèmes illustrés</span>
+        </h2>
+        <!-- La famille d'Anna (pas celle de Mark, qui est a Montreal) : un arbre de quatorze personnes, les liens,
+             les possessifs, « ¿Quién es…? / Wer ist…? ». Premier theme demande par Jacques. -->
+        <div class="orb hidden" data-orbid="familia" id="tuileFamilia" onclick="ouvrirThemeIllustre('familia')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="4.5" r="2.2"/><circle cx="5.5" cy="18.5" r="2.2"/><circle cx="12" cy="18.5" r="2.2"/><circle cx="18.5" cy="18.5" r="2.2"/><path d="M12 6.7V12M5.5 16.3V12h13v4.3M12 12v4.3"/></svg></div>
+            <div><strong data-i18n="fam_tuile">La famille</strong></div>
+        </div>
+        <!-- v1076 : DECRIRE UNE PERSONNE (Jacques, 2 nov. 2026, le theme « Descripcion fisica » de son cours
+             d'espagnol, « pour l'espagnol et l'allemand »). Douze personnes photorealistes et leurs exercices :
+             visuel/prototype/descripcion.html, ouverte dans le cadre des scenes. Visible en es et de seulement. -->
+        <div class="orb hidden" data-orbid="descripcion" id="tuileDescripcion" onclick="ouvrirThemeIllustre('descripcion')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3"/><path d="M3.5 20v-1.5a5.5 5.5 0 0 1 11 0V20"/><circle cx="17" cy="9" r="2.3"/><path d="M15.6 14.3a4.3 4.3 0 0 1 5.9 4V20"/></svg></div>
+            <div><strong data-i18n="desc_tuile">Décrire une personne</strong></div>
         </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
@@ -14326,6 +14345,8 @@ const I18N = {
         seance_neufs_de: "mots nouveaux en {niv}",
         seance_neufs_etiq: "Nouveau vocabulaire en provenance du niveau :",
         seance_par_theme: "Par thème",
+        sec_illustres: "Thèmes illustrés",
+        fam_tuile: "La famille",
         desc_tuile: "Décrire une personne",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
@@ -15840,6 +15861,8 @@ const I18N = {
         seance_neufs_de: "new words from {niv}",
         seance_neufs_etiq: "New vocabulary from level:",
         seance_par_theme: "By theme",
+        sec_illustres: "Illustrated topics",
+        fam_tuile: "Family",
         desc_tuile: "Describing people",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
@@ -17356,6 +17379,8 @@ const I18N = {
         seance_neufs_de: "{niv} seviyesinden yeni kelimeler",
         seance_neufs_etiq: "Yeni kelime dağarcığı şu seviyeden:",
         seance_par_theme: "Temaya göre",
+        sec_illustres: "Resimli konular",
+        fam_tuile: "Aile",
         desc_tuile: "Birini tarif etmek",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
@@ -19284,6 +19309,8 @@ const I18N = {
         seance_neufs_de: "нові слова з {niv}",
         seance_neufs_etiq: "Нова лексика з рівня:",
         seance_par_theme: "За темою",
+        sec_illustres: "Теми в картинках",
+        fam_tuile: "Родина",
         desc_tuile: "Описати людину",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
@@ -21525,6 +21552,8 @@ const I18N = {
         seance_neufs_de: "واژه‌های تازه از {niv}",
         seance_neufs_etiq: "واژگان تازه از سطح:",
         seance_par_theme: "بر پایهٔ موضوع",
+        sec_illustres: "موضوع‌های مصور",
+        fam_tuile: "خانواده",
         desc_tuile: "توصیف یک نفر",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
@@ -23210,6 +23239,8 @@ const I18N = {
         seance_neufs_de: "كلمات جديدة من {niv}",
         seance_neufs_etiq: "مفردات جديدة من المستوى:",
         seance_par_theme: "حسب الموضوع",
+        sec_illustres: "مواضيع مصوّرة",
+        fam_tuile: "العائلة",
         desc_tuile: "وصف شخص",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
@@ -23576,6 +23607,8 @@ const I18N = {
         seance_neufs_de: "palavras novas do {niv}",
         seance_neufs_etiq: "Vocabulário novo vindo do nível:",
         seance_par_theme: "Por tema",
+        sec_illustres: "Temas ilustrados",
+        fam_tuile: "A família",
         desc_tuile: "Descrever uma pessoa",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
@@ -25151,6 +25184,8 @@ const I18N = {
         seance_neufs_de: "nowe słowa z poziomu {niv}",
         seance_neufs_etiq: "Nowe słownictwo z poziomu:",
         seance_par_theme: "Według tematu",
+        sec_illustres: "Tematy ilustrowane",
+        fam_tuile: "Rodzina",
         desc_tuile: "Opisywanie osób",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
@@ -26726,6 +26761,8 @@ const I18N = {
         seance_neufs_de: "новые слова уровня {niv}",
         seance_neufs_etiq: "Новые слова уровня:",
         seance_par_theme: "По темам",
+        sec_illustres: "Темы в картинках",
+        fam_tuile: "Семья",
         desc_tuile: "Описать человека",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
@@ -28303,6 +28340,8 @@ const I18N = {
         seance_neufs_de: "neue Wörter aus {niv}",
         seance_neufs_etiq: "Neuer Wortschatz aus dem Niveau:",
         seance_par_theme: "Nach Thema",
+        sec_illustres: "Bebilderte Themen",
+        fam_tuile: "Die Familie",
         desc_tuile: "Menschen beschreiben",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
@@ -29915,6 +29954,8 @@ const I18N = {
         seance_neufs_de: "palabras nuevas de {niv}",
         seance_neufs_etiq: "Vocabulario nuevo procedente del nivel:",
         seance_par_theme: "Por tema",
+        sec_illustres: "Temas ilustrados",
+        fam_tuile: "La familia",
         desc_tuile: "Describir a una persona",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
@@ -46758,23 +46799,29 @@ function poserPaysCarte(){
 }
 poserPaysCarte();
 
-// DECRIRE UNE PERSONNE (v1076, 2 nov. 2026) : la page des exercices, dans le cadre des scenes ; elle parle comme une
-// scene (exercice, bonne, fini, fermer -- voir le message « wortando-scene »). Espagnol et allemand seulement.
-function ouvrirDescripcion(){
-    sceneOuverteDepuis = "descripcion";
+// LES THEMES ILLUSTRES (v1076 « Decrire une personne », puis la famille, 2 nov. 2026) : une page d'exercices par
+// theme, dans le cadre des scenes ; elle parle comme une scene (exercice, bonne, fini, fermer -- voir le message
+// « wortando-scene ») et revient a « Tout le contenu ». Espagnol et allemand seulement.
+const THEMES_ILLUSTRES = {descripcion: {page: "descripcion.html", titre: "desc_tuile", tuile: "tuileDescripcion"},
+                          familia: {page: "familia.html", titre: "fam_tuile", tuile: "tuileFamilia"}};
+function ouvrirThemeIllustre(nom){
+    const th = THEMES_ILLUSTRES[nom];
+    if(!th) return;
+    sceneOuverteDepuis = "theme:" + nom;
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
-        cadre.title = t("desc_tuile");
-        cadre.src = baseScenes() + "descripcion.html?apprendre=" + (LANGUE_APPRISE === "es" ? "es" : "de")
+        cadre.title = t(th.titre);
+        cadre.src = baseScenes() + th.page + "?apprendre=" + (LANGUE_APPRISE === "es" ? "es" : "de")
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + "&t=" + Date.now();
     }
     showScreen("sceneSeance");
 }
+function ouvrirDescripcion(){ ouvrirThemeIllustre("descripcion"); }
 try{
-    const tuileDesc = document.getElementById("tuileDescripcion");
-    if(tuileDesc && (LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de")) tuileDesc.classList.remove("hidden");
+    if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de")
+        Object.values(THEMES_ILLUSTRES).forEach(th => { const el = document.getElementById(th.tuile); if(el) el.classList.remove("hidden"); });
 }catch(e){}
 
 // Ouvre un groupe replie des reglages et l'amene a l'ecran : pour les liens
@@ -57812,8 +57859,8 @@ window.addEventListener("message", (e) => {
         if(d.juste === false && sceneOuverteDepuis !== "admin"){ try{ if(essaiActif("carreau_partout")) poserCarreau(true); }catch(err){} }
         return;
     }
-    // v1076 : « Decrire une personne » revient a « Tout le contenu », d'ou on l'a ouverte.
-    if(sceneOuverteDepuis === "descripcion" && (d.type === "fini" || d.type === "fermer")){
+    // Les themes illustres (v1076) reviennent a « Tout le contenu », d'ou on les a ouverts.
+    if(String(sceneOuverteDepuis).indexOf("theme:") === 0 && (d.type === "fini" || d.type === "fermer")){
         try{ ouvrirToutLeContenu(); }catch(err){ goHome(); }
         return;
     }

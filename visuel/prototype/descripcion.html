@@ -30,7 +30,7 @@ body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-att
 .barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
 main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:12px}
 .consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
-.enonce{background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
 .trou{display:inline-block;min-width:70px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
 .rangee{display:flex;align-items:flex-end;justify-content:center;gap:4px;background:var(--carte);border-radius:14px;padding:10px 6px 6px;min-height:0}
 .rangee button{flex:1 1 0;min-width:0;border:3px solid transparent;border-radius:14px;background:none;padding:2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
@@ -61,7 +61,7 @@ button:disabled{cursor:default}
 </style>
 </head>
 <body>
-<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte"></div></div>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
