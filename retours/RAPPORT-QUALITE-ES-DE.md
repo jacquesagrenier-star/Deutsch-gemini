@@ -50,7 +50,9 @@ Tous les signalements ont été vérifiés dans le fichier lui-même avant d'êt
 
 ## À trancher par Jacques
 
-### 1. Huit phrases allemandes qui n'illustrent pas le verbe enseigné
+### 1. Huit phrases allemandes qui n'illustrent pas le verbe enseigné — TRANCHÉ, v1069
+
+> **Décision de Jacques (2 nov.) : « Oui, corrige-les ».** Les six premières sont corrigées dans la **v1069**. Leurs traductions ont été réécrites dans les 9 langues quand le sens changeait (lassen, lügen, blasen). Leurs voix ont été refaites : Aurora, `eleven_multilingual_v2`, **220 crédits**. Les six sons sont sains (`controler_sons`) et en ligne. mitkommen, hinlegen et aufhängen restent tels quels. `AUDIO_REVISION` n'est pas monté : les phrases neuves ont de nouveaux noms de fichiers, il n'y a aucun cache à invalider. Outils : `retours/qualite-es-de/phrases_verbes.py` et `voix_phrases.py`.
 
 Elles ne sont pas fausses en allemand, mais elles enseignent un autre verbe. Les corriger changerait le texte, donc la voix enregistrée (dépense ElevenLabs à approuver). Proposition :
 
@@ -80,6 +82,66 @@ Une phrase changée doit garder ses traductions dans les 9 langues. Pour les qua
 - **Turc, examen** (`pruefung.json`) : une douzaine d'explications Sprechen, Schreiben, Lesen et Hören perdent la citation allemande qui les illustre (« danach FAHRE ICH », « Mit freundlichen Grüßen »…). Les remettre demande d'écrire du turc ; je ne l'ai pas fait.
 - **Fiches espagnoles en anglais, « genre »** : l'encadré ne cite pas les pièges du genre (*el color*, *la leche*…), propres aux francophones. Pour un anglophone, sans genre, c'est défendable.
 - **VHS (cours de Jacques)** : les mots repris dans `vhs_kapitel1_b1` ont un article en anglais et en arabe (« the hair », « الشعر ») là où le corpus n'en met pas. C'est une question de style.
+
+## La passe visuelle (demandée le 2 nov. : « autant le contenu […] que le visuel »)
+
+Tous les écrans ont été passés au téléphone (375 × 812), de jour et de nuit, dans chaque langue d'interface. Ce sont les écrans que `tests/francais_ailleurs.py` sait ouvrir : les écrans directs, puis chaque tuile et chaque option de ses panneaux. Au total, environ 250 écrans par langue pour l'allemand et 130 pour l'espagnol. L'outil `retours/qualite-es-de/visuel.py` mesure au lieu de regarder :
+
+- un texte rogné ou à moitié hors de l'écran ;
+- un texte qui déborde de son bouton ;
+- une page qui défile en largeur ;
+- un écran vide ;
+- en arabe et en persan, un bloc arabe écrit de gauche à droite ;
+- de nuit, le contraste (`tests/audit-contraste.js`).
+
+Le détecteur a été **étalonné** sur trois défauts fabriqués (texte rogné, bouton trop étroit, texte hors de l'écran) avant d'être cru : la première version en ratait deux.
+
+| Passe | Langues | Résultat |
+|---|---|---|
+| Allemand, jour, complet | fr, en, tr, uk, fa, ar, pt, pl, ru | **1 défaut** : le radar des réglages, étiquette rognée en ukrainien (« Прикметники ») et en russe (« Прилагательные ») |
+| Espagnol, jour, complet | fr, en, pt, ar, de | **1 défaut** : le même radar, en français (« Marqueurs ») et en portugais (« Marcadores »). En espagnol il n'a que 5 branches, et l'étiquette de gauche dépasse le cadre de 10 px |
+| Nuit | fr, ar, fa (de) ; fr, ar, de (es) | Aucun texte rogné. Le contraste signale surtout des faux positifs (boutons en dégradé que l'audit ne sait pas mesurer). Restent quelques textes sous 4,5:1 sans être illisibles : « /10 » sous l'anneau (3,8), la rangée A2-C1 (4,3), les points des badges (4,0) |
+| RTL (ar, fa) | — | Aucun bloc arabe écrit de gauche à droite |
+| Écrans vides | — | Aucun. La « scène de la séance » est vue vide parce que son texte vit dans un iframe, que l'outil ne mesure pas |
+| Scènes | de : fr, ar, ru, tr, fa ; es : fr, en, ar, de, pt — 43 scènes, 8 060 zones touchées par app | **1 défaut** : dans le cabinet médical, l'étiquette de la carte d'assurance maladie sort de l'écran à droite, en russe (« карточка медицинского страхования ») et en portugais (« o cartão do plano de saúde… »). La traduction est trop longue et l'étiquette ne passe pas à la ligne. Transmis à la session des scènes, qui tient `visuel/prototype/` |
+
+**Corrigé dans la v1069** : `overflow: visible` sur le radar (`#progressRadar`). Une ligne de style suffit : l'étiquette déborde dans la marge de la carte au lieu d'être coupée.
+
+Les signaux « zone cachée » (au centre de son cadre, le doigt tombe sur un autre objet) ne sont pas des défauts : le centre d'une chaise est souvent sur la table. 122 par app, liste dans le dossier de travail.
+
+## La relecture complète (décision de Jacques : « passer à travers tout au complet »)
+
+Tout le contenu est découpé en **1 309 lots**, soit environ 650 000 textes (`lots_complets.py`, découpage déterministe). Chaque lot est relu en entier par Sonnet, à 3 relecteurs à la fois au plus. Chaque signalement est trié à la main dans `triage.json` (appliquer, écarter ou à trancher), avec sa raison. Il est ensuite appliqué par `verdicts.py --ecrire`, qui vérifie le texte actuel avant de le remplacer. Une même faute recopiée dans un chapitre VHS est corrigée avec l'original, mais seulement si le sens français est le même : Betreuer est directeur de mémoire à l'université, animateur dans une sortie d'enfants.
+
+Ce que la relecture a rapporté de plus, que les contrôles mécaniques ne voyaient pas :
+
+- **une faute systématique en persan**, « روان است » (« fluide ») pour « gilt / läuft » (« est en vigueur, court »), dans 15 phrases, toutes corrigées ;
+- **des traductions d'une autre phrase**, par exemple annehmen au Konjunktiv II en tr, uk et fa (« à ta place, je supposerais le meilleur ») ;
+- **des sens parasites d'homonymes** : Leitung = tuyau, Lager = camp, die Leiter = chef, Einnahme = prise de médicament ;
+- **des faux amis** : solar system, sistema solar, café da manhã ;
+- **des articles français faux** : « la guide », « la vacances », « la pot » ;
+- **un « a » latin caché dans un mot cyrillique**. Il est vérifié mécaniquement : c'est le seul cas du corpus (`homoglyphes.py`).
+
+### Journal d'avancement
+
+| Étape | État |
+|---|---|
+| Lots relus | voir `python retours/qualite-es-de/verdicts.py <dossier> --etat` ; dernier relevé dans la ligne ci-dessous |
+| Relevé au 2 nov., 10 h | 225 lots sur 1 309 (noms allemands A1-C1, chapitres VHS, verbes A1-A2) ; 240 signalements : 214 à appliquer, 16 écartés, 9 à trancher |
+| Ordre restant | verbes B1-C1, adjectifs, adverbes, expressions, mots-outils, exercices, examen, fiches, conjugaison, Premiers pas, A1 voyage, repères, prononciation, scènes allemandes (8 langues) ; puis tout l'espagnol |
+| Reprise après une interruption | refaire les lots (`lots_complets.py <dossier>`, même découpage) ; relancer les relecteurs sur les lots sans `verdict-NNN.json` ; les verdicts et `triage.json` sont gardés |
+
+### Phrases allemandes à trancher (voix à refaire)
+
+| Où | Phrase | Défaut | Proposition |
+|---|---|---|---|
+| politik_gesellschaft_b1 / vhs_kapitel16 — EU-Bürgerin | Die EU-Bürgerin braucht für die Reise **keinen** Visum. | das Visum : faute d'accord | … **kein** Visum. |
+| obst_gemuese_a1 — Zwiebel | Die Zwiebel **macht mich weinen**. | machen + infinitif, calque | Die Zwiebel **bringt mich zum Weinen**. |
+| vhs_kapitel8 — sich vorstellen (KII) | Ohne Handy **würde** ich mir den Alltag kaum vorstellen. | bancal ; les traductions disent « pourrais » | … **könnte** ich mir … |
+| vhs_kapitel16 — besitzen (Perfekt) | Sie hat die Staatsbürgerschaft **seit einem Jahr** besessen. | seit + Perfekt d'un état | … **ein Jahr lang** besessen. (et fr « a eu … pendant un an ») |
+| verbe A2 — decken (Präteritum) | Sie deckte das Kind mit einer Decke **zu**. | zudecken, pas decken | Sie deckte den Tisch für das Kind. |
+| verbe A2 — stecken (Präteritum) | Wir steckten eine Stunde im Aufzug **fest**. | feststecken, pas stecken | Der Schlüssel steckte noch im Schloss. |
+| politik_gesellschaft_b1 — Geburtsurkunde | pluriel « — » | le nom a un pluriel : Geburtsurkunden (sa voix est à faire) | Geburtsurkunden |
 
 ## Contrôles avant publication
 

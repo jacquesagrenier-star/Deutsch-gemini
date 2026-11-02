@@ -39,13 +39,15 @@ AUDIT = io.open(os.path.join(RACINE, "tests", "audit-contraste.js"), encoding="u
 
 MESURE = r"""
 (theme) => {
-  const W = window.innerWidth, out = [];
+  const W = 375, out = [];   // la largeur du telephone : en mode mobile, innerWidth s'elargit au contenu qui deborde
   const actif = document.querySelector('.screen.active');
   const vis = el => { const r = el.getBoundingClientRect(); if(r.width < 1 || r.height < 1) return false;
     const cs = getComputedStyle(el); return cs.visibility !== 'hidden' && cs.display !== 'none' && parseFloat(cs.opacity) > 0.05; };
   // un ancetre qui defile a l'horizontale (ruban des scenes...) : le debordement y est voulu
+  // (un ecran qui defile en VERTICAL a aussi overflow-x « auto » calcule : il ne compte pas)
   const defile = el => { for(let n = el.parentElement; n && n !== document.body; n = n.parentElement){
-      const o = getComputedStyle(n).overflowX; if(o === 'auto' || o === 'scroll') return true; } return false; };
+      const cs = getComputedStyle(n), x = cs.overflowX, y = cs.overflowY;
+      if((x === 'auto' || x === 'scroll') && y !== 'auto' && y !== 'scroll') return true; } return false; };
   const nom = el => (el.id ? '#' + el.id : '') + (typeof el.className === 'string' && el.className ? '.' + el.className.trim().split(/\s+/).slice(0, 2).join('.') : '') || el.tagName.toLowerCase();
   const txt = el => (el.innerText || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 80);
   if(document.documentElement.scrollWidth > W + 1)
@@ -60,8 +62,19 @@ MESURE = r"""
     const cs = getComputedStyle(el);
     const rng = document.createRange(); rng.selectNodeContents(el);
     const rr = rng.getBoundingClientRect(), r = el.getBoundingClientRect();
-    if(!defile(el) && cs.position !== 'fixed' && (rr.right > W + 2 || rr.left < -2) && rr.width < W * 3){
-      const k = 'h' + nom(el) + txt(el); if(!vus.has(k)){ vus.add(k); out.push({code: 'hors_ecran', el: nom(el), texte: txt(el), detail: Math.round(rr.left) + '..' + Math.round(rr.right)}); }
+    // La partie VISIBLE du texte : son cadre, rogne par l'ecran et par chaque ancetre
+    // qui cache ce qui deborde. Tout cache (une page du carrousel des scenes) : voulu.
+    // En partie seulement : le texte est ampute -- c'est le defaut qu'on cherche.
+    if(!defile(el) && cs.position !== 'fixed' && rr.width > 0){
+      let g = 0, d = W;
+      for(let n = el.parentElement; n && n !== document.documentElement; n = n.parentElement){
+        const o = getComputedStyle(n);
+        if(/hidden|clip/.test(o.overflowX + ' ' + o.overflow)){ const nr = n.getBoundingClientRect(); g = Math.max(g, nr.left); d = Math.min(d, nr.right); }
+      }
+      const vu = Math.min(rr.right, d) - Math.max(rr.left, g);
+      if(vu > 0 && vu < rr.width - 2){
+        const k = 'h' + nom(el) + txt(el); if(!vus.has(k)){ vus.add(k); out.push({code: 'hors_ecran', el: nom(el), texte: txt(el), detail: 'visible ' + Math.round(vu) + ' / ' + Math.round(rr.width) + ' px'}); }
+      }
     }
     const cache = /hidden|clip/.test(cs.overflowX + cs.overflow);
     if(cache && el.scrollWidth > el.clientWidth + 2 && !defile(el)){
@@ -95,6 +108,10 @@ MESURE = r"""
 """
 
 
+APERCUS = {"accueil", "seance du jour", "seance du jour [verso]", "verbes A1 [verso]", "reglages",
+           "tout le contenu", "prononciation", "badges", "abonnement"}
+
+
 class Visuel(FA.Session):
     def __init__(self, nav, app, langue, theme, captures):
         self.theme, self.captures, self.mesures = theme, captures, {}
@@ -125,8 +142,9 @@ class Visuel(FA.Session):
             m = {"ecran": ecran, "signalements": [{"code": "erreur", "detail": str(e)[:150]}]}
         m["erreurs_js"] = self.releve[chemin]["erreurs"]
         self.mesures[chemin] = m
-        bruit = [s for s in m["signalements"] if s["code"] != "contraste" or self.theme == "dark"]
-        if self.captures and bruit:
+        bruit = [s for s in m["signalements"] if s["code"] not in ("contraste", "vide")]
+        # quelques ecrans de reference, captures toujours : on les regarde aussi a l'oeil
+        if self.captures and (bruit or chemin in APERCUS):
             nom = re.sub(r"[^\w-]+", "_", "%s-%s-%s-%s" % (self.app, self.langue, self.theme, chemin))[:90]
             f = os.path.join(self.captures, nom + ".png")
             try:
