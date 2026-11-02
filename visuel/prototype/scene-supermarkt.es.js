@@ -33,6 +33,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -52,7 +53,8 @@ window.SCENE = {
      "fr": "la bouteille",
      "en": "bottle",
      "pt": "a garrafa",
-     "ar": "زجاجة"
+     "ar": "زجاجة",
+     "de": "die Flasche"
     }
    ],
    "sur": null,
@@ -71,6 +73,7 @@ window.SCENE = {
    "ar": "عصير",
    "pl": "sok",
    "ru": "сок",
+   "de": "der Saft",
    "latam": {
     "mot": "jugo",
     "genre": "el",
@@ -102,6 +105,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -129,6 +133,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -156,6 +161,7 @@ window.SCENE = {
    "ar": "علبة معدنية",
    "pl": "puszka",
    "ru": "банка (консервная)",
+   "de": "die Dose",
    "latam": null
   },
   {
@@ -183,6 +189,7 @@ window.SCENE = {
    "ar": "أرز",
    "pl": "ryż",
    "ru": "рис",
+   "de": "der Reis",
    "latam": null
   },
   {
@@ -202,7 +209,8 @@ window.SCENE = {
      "fr": "la bouteille",
      "en": "bottle",
      "pt": "a garrafa",
-     "ar": "زجاجة"
+     "ar": "زجاجة",
+     "de": "die Flasche"
     }
    ],
    "sur": null,
@@ -221,6 +229,7 @@ window.SCENE = {
    "ar": "حليب",
    "pl": "mleko",
    "ru": "молоко",
+   "de": "die Milch",
    "latam": null
   },
   {
@@ -248,6 +257,7 @@ window.SCENE = {
    "ar": "جبن",
    "pl": "ser",
    "ru": "сыр",
+   "de": "der Käse",
    "latam": null
   },
   {
@@ -275,6 +285,7 @@ window.SCENE = {
    "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
+   "de": "die Handtasche",
    "latam": null
   },
   {
@@ -302,6 +313,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -329,6 +341,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -356,6 +369,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -383,6 +397,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -410,6 +425,7 @@ window.SCENE = {
    "ar": "بنت، فتاة",
    "pl": "dziewczynka",
    "ru": "девочка",
+   "de": "das Mädchen, die junge Frau",
    "latam": null
   },
   {
@@ -437,6 +453,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -464,6 +481,7 @@ window.SCENE = {
    "ar": "صندوق الدفع",
    "pl": "kasa",
    "ru": "касса",
+   "de": "die Kasse",
    "latam": null
   },
   {
@@ -491,6 +509,7 @@ window.SCENE = {
    "ar": "زبدة",
    "pl": "masło",
    "ru": "сливочное масло",
+   "de": "die Butter",
    "latam": null
   },
   {
@@ -518,6 +537,7 @@ window.SCENE = {
    "ar": "ثلّاجة",
    "pl": "lodówka",
    "ru": "холодильник",
+   "de": "der Kühlschrank",
    "latam": {
     "mot": "refrigerador",
     "genre": "el",
@@ -549,6 +569,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -576,6 +597,7 @@ window.SCENE = {
    "ar": "كيس",
    "pl": "torba, torebka (papierowa, foliowa)",
    "ru": "пакет",
+   "de": "die Tüte, der Beutel",
    "latam": null
   },
   {
@@ -595,7 +617,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": null,
@@ -614,6 +637,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -641,6 +665,7 @@ window.SCENE = {
    "ar": "سلّة",
    "pl": "koszyk, kosz",
    "ru": "корзина",
+   "de": "der Korb",
    "latam": null
   },
   {
@@ -668,6 +693,7 @@ window.SCENE = {
    "ar": "خبز",
    "pl": "chleb",
    "ru": "хлеб",
+   "de": "das Brot",
    "latam": null
   },
   {
@@ -695,6 +721,7 @@ window.SCENE = {
    "ar": "بيضة",
    "pl": "jajko",
    "ru": "яйцо",
+   "de": "das Ei",
    "latam": null
   },
   {
@@ -722,6 +749,7 @@ window.SCENE = {
    "ar": "موزة",
    "pl": "banan",
    "ru": "банан",
+   "de": "die Banane",
    "latam": null
   },
   {
@@ -749,6 +777,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -780,6 +809,7 @@ window.SCENE = {
    "ar": "عربة التسوّق",
    "pl": "wózek sklepowy",
    "ru": "тележка для покупок",
+   "de": "der Einkaufswagen",
    "latam": null
   }
  ],
@@ -1423,6 +1453,75 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna im Supermarkt: Sie zögert zwischen einer Flasche Milch und einem kleinen Käse; in ihrem roten Korb Brot, Eier und Bananen; ein Mädchen in gelber Regenjacke zeigt auf die Schokolade, der Kassierer wartet an der Kasse, ein Einkaufswagen im Vordergrund.",
+    "consigne": "Anna kauft im Supermarkt ein. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Komparativ und Superlativ",
+    "B2": "Höflichkeit: der condicional",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El pan está en la cesta.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La cesta está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La cesta está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El hombre está sentado en la caja.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Hay una bicicleta detrás de la ventana.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | La botella de agua está al lado de la bolsa.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Los huevos están en la cesta.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La chica está al lado de la estantería.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El arroz está en la estantería.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "B1 | La bolsa de papel es más grande que el bolso.": "Komparativ: <b>más</b> + Adjektiv + <b>que</b> — keine Endung wie „-er“, sondern ein Wort davor.",
+    "B1 | La chica es más pequeña que Anna.": "Das Adjektiv passt sich an: la chica → pequeñ<b>a</b>.",
+    "B1 | El hombre de la caja es mayor que Anna.": "Fürs Alter: <b>mayor</b> = älter.",
+    "B1 | Las botellas están más arriba que las latas.": "<b>más</b> … <b>que</b>: Das Vergleichsglied folgt auf <b>que</b>.",
+    "B1 | Para Anna, el queso es mejor que la leche.": "<b>bueno</b> ist unregelmäßig → <b>mejor</b>.",
+    "B1 | Es el pan más fresco de la tienda.": "Superlativ: <b>el</b> + Nomen + <b>más</b> + Adjektiv + <b>de</b>.",
+    "B1 | La chaqueta de Anna es más larga que la de la chica.": "Komparativ: <b>más</b> + Adjektiv + <b>que</b>.",
+    "B2 | ¿Podría darme una bolsa, por favor?": "Höflichkeit: der <b>condicional</b> → podría („könnten Sie“).",
+    "B2 | Me gustaría llevar este queso.": "<b>me gustaría</b> = ich hätte gern, ich möchte (condicional von gustar).",
+    "B2 | ¿Sería tan amable de ayudarme con la cesta?": "<b>¿Sería tan amable de…?</b>: condicional von ser.",
+    "B2 | Yo en tu lugar compraría la leche fresca.": "Ein Rat: <b>yo en tu lugar</b> + condicional.",
+    "B2 | ¿Me podría decir dónde está el arroz?": "Höflichkeit: der <b>condicional</b> → podría.",
+    "B2 | Me gustaría pagar con tarjeta.": "<b>me gustaría</b> = ich möchte gern (condicional von gustar).",
+    "C1 | Debe de querer chocolate.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el hombre de la caja sea el dueño.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Estará a punto de cerrar.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que el pan de aquí es el mejor del barrio.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El pan está en la cesta.": "Das Brot ist im Korb.",
+    "A2 | La cesta está en el piso.": "Der Korb steht auf dem Boden.",
+    "A2 | La cesta está en el suelo.": "Der Korb steht auf dem Boden.",
+    "A2 | El hombre está sentado en la caja.": "Der Mann sitzt an der Kasse.",
+    "A2 | Hay una bicicleta detrás de la ventana.": "Hinter dem Fenster steht ein Fahrrad.",
+    "A2 | La botella de agua está al lado de la bolsa.": "Die Wasserflasche steht neben der Tüte.",
+    "A2 | Los huevos están en la cesta.": "Die Eier sind im Korb.",
+    "A2 | La chica está al lado de la estantería.": "Das Mädchen steht neben dem Regal.",
+    "A2 | El arroz está en la estantería.": "Der Reis steht im Regal.",
+    "B1 | La bolsa de papel es más grande que el bolso.": "Die Papiertüte ist größer als die Handtasche.",
+    "B1 | La chica es más pequeña que Anna.": "Das Mädchen ist kleiner als Anna.",
+    "B1 | El hombre de la caja es mayor que Anna.": "Der Mann an der Kasse ist älter als Anna.",
+    "B1 | Las botellas están más arriba que las latas.": "Die Flaschen stehen höher als die Dosen.",
+    "B1 | Para Anna, el queso es mejor que la leche.": "Für Anna ist Käse besser als Milch.",
+    "B1 | Es el pan más fresco de la tienda.": "Es ist das frischeste Brot im Laden.",
+    "B1 | La chaqueta de Anna es más larga que la de la chica.": "Annas Jacke ist länger als die des Mädchens.",
+    "B2 | ¿Podría darme una bolsa, por favor?": "Könnten Sie mir bitte eine Tüte geben?",
+    "B2 | Me gustaría llevar este queso.": "Ich hätte gern diesen Käse.",
+    "B2 | ¿Sería tan amable de ayudarme con la cesta?": "Wären Sie so freundlich, mir mit dem Korb zu helfen?",
+    "B2 | Yo en tu lugar compraría la leche fresca.": "An deiner Stelle würde ich die frische Milch kaufen.",
+    "B2 | ¿Me podría decir dónde está el arroz?": "Könnten Sie mir sagen, wo der Reis steht?",
+    "B2 | Me gustaría pagar con tarjeta.": "Ich möchte gern mit Karte bezahlen.",
+    "C1 | Debe de querer chocolate.": "Sie muss Schokolade wollen.",
+    "C1 | Puede que el hombre de la caja sea el dueño.": "Vielleicht ist der Mann an der Kasse der Inhaber.",
+    "C1 | Estará a punto de cerrar.": "Er wird wohl gleich schließen.",
+    "C1 | Dicen que el pan de aquí es el mejor del barrio.": "Man sagt, das Brot von hier sei das beste des Viertels."
+   }
   }
  }
 };

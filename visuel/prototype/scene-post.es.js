@@ -33,6 +33,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -60,6 +61,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -87,6 +89,7 @@ window.SCENE = {
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
    "ru": "почтовый ящик",
+   "de": "der Briefkasten",
    "latam": null
   },
   {
@@ -114,6 +117,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -141,6 +145,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -168,6 +173,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -195,6 +201,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -222,6 +229,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -249,6 +257,7 @@ window.SCENE = {
    "ar": "طرد",
    "pl": "paczka",
    "ru": "посылка",
+   "de": "das Paket",
    "latam": null
   },
   {
@@ -276,6 +285,7 @@ window.SCENE = {
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
    "ru": "весы",
+   "de": "die Waage",
    "latam": null
   },
   {
@@ -295,7 +305,8 @@ window.SCENE = {
      "fr": "l'enveloppe",
      "en": "the envelope",
      "pt": "o envelope",
-     "ar": "ظرف"
+     "ar": "ظرف",
+     "de": "der Briefumschlag"
     }
    ],
    "sur": null,
@@ -314,6 +325,7 @@ window.SCENE = {
    "ar": "قائمة الطعام",
    "pl": "list",
    "ru": "письмо",
+   "de": "die Speisekarte",
    "latam": null
   },
   {
@@ -341,6 +353,7 @@ window.SCENE = {
    "ar": "طرد",
    "pl": "paczka",
    "ru": "посылка",
+   "de": "das Paket",
    "latam": null
   },
   {
@@ -368,6 +381,7 @@ window.SCENE = {
    "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
+   "de": "die Handtasche",
    "latam": null
   },
   {
@@ -395,6 +409,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -422,6 +437,7 @@ window.SCENE = {
    "ar": "طرد",
    "pl": "paczka",
    "ru": "посылка",
+   "de": "das Paket",
    "latam": null
   },
   {
@@ -449,6 +465,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -476,6 +493,7 @@ window.SCENE = {
    "ar": "ظرف",
    "pl": "koperta",
    "ru": "конверт",
+   "de": "der Briefumschlag",
    "latam": null
   },
   {
@@ -503,6 +521,7 @@ window.SCENE = {
    "ar": "طابع بريدي",
    "pl": "znaczek pocztowy",
    "ru": "почтовая марка",
+   "de": "die Briefmarke",
    "latam": null
   },
   {
@@ -530,6 +549,7 @@ window.SCENE = {
    "ar": "قلم حبر جاف",
    "pl": "długopis",
    "ru": "шариковая ручка",
+   "de": "der Kugelschreiber",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -561,6 +581,7 @@ window.SCENE = {
    "ar": "شبّاك (الخدمة)",
    "pl": "okienko, kasa; włącznik",
    "ru": "окошко, касса; выключатель",
+   "de": "der Schalter (am Amt)",
    "latam": null
   },
   {
@@ -588,6 +609,7 @@ window.SCENE = {
    "ar": "طرد",
    "pl": "paczka",
    "ru": "посылка",
+   "de": "das Paket",
    "latam": null
   },
   {
@@ -615,6 +637,7 @@ window.SCENE = {
    "ar": "قائمة الطعام",
    "pl": "list",
    "ru": "письмо",
+   "de": "die Speisekarte",
    "latam": null
   },
   {
@@ -642,6 +665,7 @@ window.SCENE = {
    "ar": "سلّة",
    "pl": "koszyk, kosz",
    "ru": "корзина",
+   "de": "der Korb",
    "latam": null
   },
   {
@@ -669,6 +693,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -696,6 +721,7 @@ window.SCENE = {
    "ar": "مظلّة",
    "pl": "parasol",
    "ru": "зонт",
+   "de": "der Regenschirm",
    "latam": null
   },
   {
@@ -723,6 +749,7 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
+   "de": "die Bank",
    "latam": null
   },
   {
@@ -750,6 +777,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -781,6 +809,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   }
  ],
@@ -1427,6 +1456,73 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna auf der Post: Sie reicht dem Schalterbeamten einen Brief, der ihr Paket auf einer Waage wiegt; auf dem Schalter Umschläge, ein Bogen Briefmarken, ein Kartenterminal und ein Stift; eine alte Dame wartet mit einem Paket in der Hand, bis sie an der Reihe ist; draußen ein gelber Briefkasten.",
+    "consigne": "Anna schickt einen Brief und ein Paket ab. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Die Objektpronomen",
+    "B2": "Das Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El paquete está en la báscula.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Hay un buzón detrás de la ventana.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | El reloj está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Los sellos están al lado de los sobres.": "Männlich Plural: <b>de los</b> sobres.",
+    "A2 | Las cartas están en la cesta.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El paraguas está al lado del banco.": "<b>de + el = del</b>, immer.",
+    "A2 | El paquete grande está delante de la ventanilla.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El hombre está detrás de la ventanilla.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "B1 | Anna le envía una carta a su madre.": "Indirektes Objekt (jemandem) → <b>le</b>.",
+    "B1 | El hombre le da el recibo a Anna.": "Indirektes Objekt (jemandem) → <b>le</b>.",
+    "B1 | ¿La carta? Anna se la da al hombre.": "<b>le</b> + <b>la</b> → <b>se la</b>: le wird vor lo, la zu se.",
+    "B1 | ¿El paquete? El hombre lo pesa.": "Direktes Objekt, männlich → <b>lo</b>.",
+    "B1 | La señora quiere enviarle un paquete a su nieto.": "Bei einem Infinitiv hängt sich das Pronomen hinten an: <b>enviarle</b>.",
+    "B1 | ¿Me das un sello, por favor?": "„Mir“ → <b>me</b>, vor dem Verb.",
+    "B1 | Anna le enseña el carné al hombre.": "Indirektes Objekt (jemandem) → <b>le</b>.",
+    "B2 | Aquí se envían paquetes a todo el mundo.": "Passiv mit <b>se</b>: Das Verb richtet sich nach dem Subjekt im Plural (paquetes).",
+    "B2 | La carta fue enviada ayer.": "Vorgangspassiv in der Vergangenheit: <b>ser</b> + Partizip → fue enviada — wie „wurde verschickt“.",
+    "B2 | Las cartas ya están clasificadas.": "<b>estar</b> + Partizip, angepasst: las cartas → clasificad<b>as</b>.",
+    "B2 | En Correos se venden sellos.": "Passiv mit <b>se</b>, Subjekt im Plural → se venden.",
+    "B2 | El paquete es pesado por el empleado.": "Vorgangspassiv: <b>ser</b> + Partizip + <b>por</b> („von“).",
+    "B2 | El sobre está cerrado.": "<b>estar</b> + Partizip, angepasst: el sobre → cerrad<b>o</b>.",
+    "C1 | La carta debe de ser para alguien importante.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el paquete de la señora sea un regalo.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | La oficina estará a punto de cerrar.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que esta oficina de correos cierra pronto.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El paquete está en la báscula.": "Das Paket liegt auf der Waage.",
+    "A2 | Hay un buzón detrás de la ventana.": "Hinter dem Fenster steht ein Briefkasten.",
+    "A2 | El reloj está en la pared.": "Die Uhr hängt an der Wand.",
+    "A2 | Los sellos están al lado de los sobres.": "Die Briefmarken liegen neben den Umschlägen.",
+    "A2 | Las cartas están en la cesta.": "Die Briefe liegen im Korb.",
+    "A2 | El paraguas está al lado del banco.": "Der Regenschirm steht neben der Bank.",
+    "A2 | El paquete grande está delante de la ventanilla.": "Das große Paket steht vor dem Schalter.",
+    "A2 | El hombre está detrás de la ventanilla.": "Der Mann steht hinter dem Schalter.",
+    "B1 | Anna le envía una carta a su madre.": "Anna schickt ihrer Mutter einen Brief.",
+    "B1 | El hombre le da el recibo a Anna.": "Der Mann gibt Anna die Quittung.",
+    "B1 | ¿La carta? Anna se la da al hombre.": "Der Brief? Anna gibt ihn dem Mann.",
+    "B1 | ¿El paquete? El hombre lo pesa.": "Das Paket? Der Mann wiegt es.",
+    "B1 | La señora quiere enviarle un paquete a su nieto.": "Die Dame will ihrem Enkel ein Paket schicken.",
+    "B1 | ¿Me das un sello, por favor?": "Gibst du mir bitte eine Briefmarke?",
+    "B1 | Anna le enseña el carné al hombre.": "Anna zeigt dem Mann ihren Ausweis.",
+    "B2 | Aquí se envían paquetes a todo el mundo.": "Hier werden Pakete in die ganze Welt geschickt.",
+    "B2 | La carta fue enviada ayer.": "Der Brief wurde gestern verschickt.",
+    "B2 | Las cartas ya están clasificadas.": "Die Briefe sind schon sortiert.",
+    "B2 | En Correos se venden sellos.": "Bei der Post werden Briefmarken verkauft.",
+    "B2 | El paquete es pesado por el empleado.": "Das Paket wird vom Angestellten gewogen.",
+    "B2 | El sobre está cerrado.": "Der Umschlag ist zu.",
+    "C1 | La carta debe de ser para alguien importante.": "Der Brief muss für jemand Wichtigen sein.",
+    "C1 | Puede que el paquete de la señora sea un regalo.": "Vielleicht ist das Paket der Dame ein Geschenk.",
+    "C1 | La oficina estará a punto de cerrar.": "Die Post wird wohl gleich schließen.",
+    "C1 | Dicen que esta oficina de correos cierra pronto.": "Man sagt, diese Postfiliale schließe bald."
+   }
   }
  }
 };

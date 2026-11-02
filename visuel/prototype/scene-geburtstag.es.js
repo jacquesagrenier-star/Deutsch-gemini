@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -108,6 +111,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -135,6 +139,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -162,6 +167,7 @@ window.SCENE = {
    "ar": "كتاب",
    "pl": "książka",
    "ru": "книга",
+   "de": "das Buch",
    "latam": null
   },
   {
@@ -189,6 +195,7 @@ window.SCENE = {
    "ar": "بالون",
    "pl": "balon, balonik",
    "ru": "воздушный шарик",
+   "de": "der Luftballon",
    "latam": null
   },
   {
@@ -216,6 +223,7 @@ window.SCENE = {
    "ar": "غيتار",
    "pl": "gitara",
    "ru": "гитара",
+   "de": "die Gitarre",
    "latam": null
   },
   {
@@ -243,6 +251,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -270,6 +279,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -297,6 +307,7 @@ window.SCENE = {
    "ar": "هدية",
    "pl": "prezent",
    "ru": "подарок",
+   "de": "das Geschenk",
    "latam": null
   },
   {
@@ -316,7 +327,8 @@ window.SCENE = {
      "fr": "l'ami",
      "en": "the friend",
      "pt": "o amigo",
-     "ar": "صديق"
+     "ar": "صديق",
+     "de": "der Freund"
     }
    ],
    "sur": null,
@@ -335,6 +347,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -362,6 +375,7 @@ window.SCENE = {
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
    "ru": "мобильный телефон",
+   "de": "das Handy",
    "latam": {
     "mot": "celular",
     "genre": "el",
@@ -393,6 +407,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -420,6 +435,7 @@ window.SCENE = {
    "ar": "أريكة",
    "pl": "kanapa",
    "ru": "диван",
+   "de": "das Sofa",
    "latam": null
   },
   {
@@ -439,7 +455,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": "tisch",
@@ -464,6 +481,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -491,6 +509,7 @@ window.SCENE = {
    "ar": "عصير",
    "pl": "sok",
    "ru": "сок",
+   "de": "der Saft",
    "latam": {
     "mot": "jugo",
     "genre": "el",
@@ -522,6 +541,7 @@ window.SCENE = {
    "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
+   "de": "das Glas (Trinkglas)",
    "latam": null
   },
   {
@@ -549,6 +569,7 @@ window.SCENE = {
    "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
+   "de": "das Glas (Trinkglas)",
    "latam": null
   },
   {
@@ -576,6 +597,7 @@ window.SCENE = {
    "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
+   "de": "das Glas (Trinkglas)",
    "latam": null
   },
   {
@@ -603,6 +625,7 @@ window.SCENE = {
    "ar": "شمعة",
    "pl": "świeczka",
    "ru": "свеча",
+   "de": "die Kerze",
    "latam": null
   },
   {
@@ -630,6 +653,7 @@ window.SCENE = {
    "ar": "كعكة، فطيرة",
    "pl": "tort",
    "ru": "торт",
+   "de": "der Kuchen, die Torte",
    "latam": null
   },
   {
@@ -657,6 +681,7 @@ window.SCENE = {
    "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
+   "de": "der Teller, das Gericht",
    "latam": null
   },
   {
@@ -684,6 +709,7 @@ window.SCENE = {
    "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
+   "de": "der Teller, das Gericht",
    "latam": null
   },
   {
@@ -711,6 +737,7 @@ window.SCENE = {
    "ar": "بيتزا",
    "pl": "pizza",
    "ru": "пицца",
+   "de": "die Pizza",
    "latam": null
   },
   {
@@ -738,6 +765,7 @@ window.SCENE = {
    "ar": "فراولة",
    "pl": "truskawka",
    "ru": "клубника",
+   "de": "die Erdbeere",
    "latam": null
   },
   {
@@ -765,6 +793,7 @@ window.SCENE = {
    "ar": "هدية",
    "pl": "prezent",
    "ru": "подарок",
+   "de": "das Geschenk",
    "latam": null
   },
   {
@@ -792,6 +821,7 @@ window.SCENE = {
    "ar": "بطاقة (مصرفية)",
    "pl": "bilet, karta",
    "ru": "карта, билет",
+   "de": "die Karte (Bankkarte)",
    "latam": null
   },
   {
@@ -819,6 +849,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   }
  ],
@@ -1505,6 +1536,81 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Marks Geburtstag im Wohnzimmer seiner WG: Anna reicht ihm ein Geschenk, ein Freund fotografiert ihn, eine Freundin klatscht; auf dem Tisch ein Schokoladenkuchen mit Kerzen, eine Pizza, Erdbeeren, Orangensaft, ein großes rotes Geschenk und eine Karte.",
+    "consigne": "Mark hat Geburtstag. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Die Pronomen: le, lo, se lo",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La tarta está en la mesa.": "<b>en</b> = auf, in. Der Ort → <b>estar</b>.",
+    "A2 | Los globos están delante de la ventana.": "<b>delante de</b> = vor.",
+    "A2 | Mark está sentado en el sofá.": "<b>el</b> sofá ist männlich → <b>en el</b> sofá.",
+    "A2 | La guitarra está al lado del sofá.": "<b>de + el = del</b>, immer.",
+    "A2 | El cuadro está en la pared.": "An der Wand hängend: Das Spanische sagt einfach <b>en</b> la pared.",
+    "A2 | La tarjeta está delante del regalo rojo.": "<b>delante de</b> = vor. de + el = <b>del</b>.",
+    "A2 | Los libros están en la estantería.": "Im Plural: <b>están</b>; im Regal → <b>en</b>.",
+    "A2 | Hay una lámpara al lado de la estantería.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | Anna le da un regalo a Mark.": "Wem? → indirektes Objekt: <b>le</b>, auch wenn „a Mark“ folgt.",
+    "B1 | Anna se lo da ahora.": "<b>le</b> + <b>lo</b> → <b>se lo</b>: le wird vor lo, la, los, las zu se.",
+    "B1 | A Mark le gusta mucho la fiesta.": "<b>gustar</b>: Die Sache gefällt <b>jemandem</b> → <b>le</b>.",
+    "B1 | Su amigo le toma una foto.": "Jemandem ein Foto machen → <b>le</b>: Das Spanische sieht die Person als <b>indirektes</b> Objekt.",
+    "B1 | Su amigo le hace una foto.": "Jemandem ein Foto machen → <b>le</b>: Das Spanische sieht die Person als <b>indirektes</b> Objekt.",
+    "B1 | Mark las va a apagar enseguida.": "Direktes Objekt, weiblich Plural (las velas) → <b>las</b>.",
+    "B1 | Los amigos la han pedido para la fiesta.": "Direktes Objekt, weiblich (la pizza) → <b>la</b>.",
+    "B1 | La amiga les sirve jugo a todos.": "Wem? Mehrere Personen → <b>les</b>.",
+    "B1 | La amiga les sirve zumo a todos.": "Wem? Mehrere Personen → <b>les</b>.",
+    "B1 | Las he comprado yo.": "Direktes Objekt, weiblich Plural (las fresas) → <b>las</b>.",
+    "B2 | El regalo que Anna tiene en las manos es verde.": "Eine Sache, Objekt → <b>que</b>.",
+    "B2 | El amigo que toma la foto está sentado en el sofá.": "Eine Haltung (sitzend) → <b>estar</b>.",
+    "B2 | El amigo que hace la foto está sentado en el sofá.": "Eine Haltung (sitzend) → <b>estar</b>.",
+    "B2 | La tarta, encima de la cual arden cinco velas, es de chocolate.": "Nach einer zusammengesetzten Präposition: <b>la cual</b>, abgestimmt auf la tarta.",
+    "B2 | Las velas van a ser apagadas enseguida.": "Vorgangspassiv: <b>ser</b> + angepasstes Partizip (apagad<b>as</b>) — wie „werden ausgeblasen“.",
+    "B2 | El regalo rojo está bien envuelto.": "<b>envolver</b> → unregelmäßiges Partizip <b>envuelto</b>.",
+    "B2 | La amiga cuyo pelo es rojo aplaude.": "<b>cuyo</b> richtet sich nach dem Besessenen: el pelo → <b>cuyo</b>, auch wenn die Freundin weiblich ist.",
+    "C1 | El regalo debe de ser una sorpresa.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | La fiesta durará hasta medianoche.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que Anna hizo la tarta ella misma.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | La tarta está en la mesa.": "Der Kuchen steht auf dem Tisch.",
+    "A2 | Los globos están delante de la ventana.": "Die Luftballons sind vor dem Fenster.",
+    "A2 | Mark está sentado en el sofá.": "Mark sitzt auf dem Sofa.",
+    "A2 | La guitarra está al lado del sofá.": "Die Gitarre steht neben dem Sofa.",
+    "A2 | El cuadro está en la pared.": "Das Bild hängt an der Wand.",
+    "A2 | La tarjeta está delante del regalo rojo.": "Die Karte steht vor dem roten Geschenk.",
+    "A2 | Los libros están en la estantería.": "Die Bücher stehen im Regal.",
+    "A2 | Hay una lámpara al lado de la estantería.": "Neben dem Regal steht eine Lampe.",
+    "B1 | Anna le da un regalo a Mark.": "Anna gibt Mark ein Geschenk.",
+    "B1 | Anna se lo da ahora.": "Anna gibt es ihm jetzt.",
+    "B1 | A Mark le gusta mucho la fiesta.": "Mark gefällt die Feier sehr.",
+    "B1 | Su amigo le toma una foto.": "Sein Freund macht ein Foto von ihm.",
+    "B1 | Su amigo le hace una foto.": "Sein Freund macht ein Foto von ihm.",
+    "B1 | Mark las va a apagar enseguida.": "Mark wird sie gleich ausblasen.",
+    "B1 | Los amigos la han pedido para la fiesta.": "Die Freunde haben sie für die Feier bestellt.",
+    "B1 | La amiga les sirve jugo a todos.": "Die Freundin schenkt allen Saft ein.",
+    "B1 | La amiga les sirve zumo a todos.": "Die Freundin schenkt allen Saft ein.",
+    "B1 | Las he comprado yo.": "Die habe ich gekauft.",
+    "B2 | El regalo que Anna tiene en las manos es verde.": "Das Geschenk, das Anna in den Händen hält, ist grün.",
+    "B2 | El amigo que toma la foto está sentado en el sofá.": "Der Freund, der das Foto macht, sitzt auf dem Sofa.",
+    "B2 | El amigo que hace la foto está sentado en el sofá.": "Der Freund, der das Foto macht, sitzt auf dem Sofa.",
+    "B2 | La tarta, encima de la cual arden cinco velas, es de chocolate.": "Der Kuchen, auf dem fünf Kerzen brennen, ist aus Schokolade.",
+    "B2 | Las velas van a ser apagadas enseguida.": "Die Kerzen werden gleich ausgeblasen.",
+    "B2 | El regalo rojo está bien envuelto.": "Das rote Geschenk ist gut eingepackt.",
+    "B2 | La amiga cuyo pelo es rojo aplaude.": "Die Freundin mit den roten Haaren klatscht.",
+    "C1 | El regalo debe de ser una sorpresa.": "Das Geschenk muss eine Überraschung sein.",
+    "C1 | Puede que el regalo rojo sea de sus padres.": "Vielleicht ist das rote Geschenk von seinen Eltern.",
+    "C1 | La fiesta durará hasta medianoche.": "Die Feier wird wohl bis Mitternacht dauern.",
+    "C1 | Dicen que Anna hizo la tarta ella misma.": "Man sagt, Anna habe den Kuchen selbst gebacken."
+   }
   }
  }
 };

@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -46,7 +47,8 @@ window.SCENE = {
      "fr": "le rideau",
      "en": "the curtain",
      "pt": "a cortina",
-     "ar": "ستارة"
+     "ar": "ستارة",
+     "de": "der Vorhang"
     }
    ],
    "sur": null,
@@ -65,6 +67,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -92,6 +95,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -119,6 +123,7 @@ window.SCENE = {
    "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
+   "de": "der Teller, das Gericht",
    "latam": null
   },
   {
@@ -146,6 +151,7 @@ window.SCENE = {
    "ar": "خزانة",
    "pl": "szafa",
    "ru": "шкаф",
+   "de": "der Schrank",
    "latam": {
     "mot": "clóset",
     "genre": "el",
@@ -177,6 +183,7 @@ window.SCENE = {
    "ar": "قطّ",
    "pl": "kot",
    "ru": "кошка",
+   "de": "die Katze",
    "latam": null
   },
   {
@@ -204,6 +211,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -231,6 +239,7 @@ window.SCENE = {
    "ar": "جدّ",
    "pl": "dziadek",
    "ru": "дедушка, дедуля",
+   "de": "der Großvater",
    "latam": null
   },
   {
@@ -258,6 +267,7 @@ window.SCENE = {
    "ar": "جدّة",
    "pl": "babcia",
    "ru": "бабушка, бабуля",
+   "de": "die Großmutter",
    "latam": null
   },
   {
@@ -285,6 +295,7 @@ window.SCENE = {
    "ar": "أب",
    "pl": "ojciec",
    "ru": "отец",
+   "de": "der Vater",
    "latam": null
   },
   {
@@ -312,6 +323,7 @@ window.SCENE = {
    "ar": "أم",
    "pl": "matka",
    "ru": "мать",
+   "de": "die Mutter",
    "latam": null
   },
   {
@@ -339,6 +351,7 @@ window.SCENE = {
    "ar": "رضيع",
    "pl": "niemowlę, dzidziuś",
    "ru": "младенец, малыш",
+   "de": "das Baby",
    "latam": null
   },
   {
@@ -358,7 +371,8 @@ window.SCENE = {
      "fr": "la sœur",
      "en": "the sister",
      "pt": "a irmã",
-     "ar": "أخت"
+     "ar": "أخت",
+     "de": "die Schwester"
     }
    ],
    "sur": null,
@@ -377,6 +391,7 @@ window.SCENE = {
    "ar": "ابنة",
    "pl": "córka",
    "ru": "дочь",
+   "de": "die Tochter",
    "latam": null
   },
   {
@@ -416,6 +431,7 @@ window.SCENE = {
    "ar": "أخ",
    "pl": "brat",
    "ru": "брат",
+   "de": "der Bruder",
    "latam": null
   },
   {
@@ -443,6 +459,7 @@ window.SCENE = {
    "ar": "زهرة",
    "pl": "kwiat",
    "ru": "цветок",
+   "de": "die Blume",
    "latam": null
   },
   {
@@ -476,6 +493,7 @@ window.SCENE = {
    "ar": "بطاطا",
    "pl": "ziemniak",
    "ru": "картофель",
+   "de": "die Kartoffel",
    "latam": {
     "mot": "papa",
     "genre": "la",
@@ -513,6 +531,7 @@ window.SCENE = {
    "ar": "حساء، شوربة",
    "pl": "zupa",
    "ru": "суп",
+   "de": "die Suppe",
    "latam": null
   },
   {
@@ -540,6 +559,7 @@ window.SCENE = {
    "ar": "خسّ",
    "pl": "sałata, sałatka",
    "ru": "салат",
+   "de": "der Kopfsalat, der grüne Salat",
    "latam": null
   },
   {
@@ -573,6 +593,7 @@ window.SCENE = {
    "ar": "ماء",
    "pl": "woda",
    "ru": "вода",
+   "de": "das Wasser",
    "latam": null
   },
   {
@@ -600,6 +621,7 @@ window.SCENE = {
    "ar": "خبز",
    "pl": "chleb",
    "ru": "хлеб",
+   "de": "das Brot",
    "latam": null
   },
   {
@@ -627,6 +649,7 @@ window.SCENE = {
    "ar": "سلّة",
    "pl": "koszyk, kosz",
    "ru": "корзина",
+   "de": "der Korb",
    "latam": null
   },
   {
@@ -646,7 +669,8 @@ window.SCENE = {
      "fr": "la bouteille",
      "en": "bottle",
      "pt": "a garrafa",
-     "ar": "زجاجة"
+     "ar": "زجاجة",
+     "de": "die Flasche"
     }
    ],
    "sur": null,
@@ -665,6 +689,7 @@ window.SCENE = {
    "ar": "عصير",
    "pl": "sok",
    "ru": "сок",
+   "de": "der Saft",
    "latam": {
     "mot": "jugo",
     "genre": "el",
@@ -696,6 +721,7 @@ window.SCENE = {
    "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
+   "de": "das Glas (Trinkglas)",
    "latam": null
   },
   {
@@ -723,6 +749,7 @@ window.SCENE = {
    "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
+   "de": "der Teller, das Gericht",
    "latam": null
   },
   {
@@ -750,6 +777,7 @@ window.SCENE = {
    "ar": "شوكة",
    "pl": "widelec",
    "ru": "вилка",
+   "de": "die Gabel",
    "latam": null
   },
   {
@@ -777,6 +805,7 @@ window.SCENE = {
    "ar": "سكّين",
    "pl": "nóż",
    "ru": "нож",
+   "de": "das Messer",
    "latam": null
   },
   {
@@ -804,6 +833,7 @@ window.SCENE = {
    "ar": "ملعقة",
    "pl": "łyżka",
    "ru": "ложка",
+   "de": "der Löffel",
    "latam": null
   },
   {
@@ -831,6 +861,7 @@ window.SCENE = {
    "ar": "منديل",
    "pl": "serwetka",
    "ru": "салфетка",
+   "de": "die Serviette",
    "latam": null
   },
   {
@@ -858,6 +889,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -885,6 +917,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -912,6 +945,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   }
  ],
@@ -1542,6 +1576,77 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Das Familienessen am Sonntag: Anna lacht, den Löffel in der Hand; ihr Vater verteilt die Kartoffeln, ihr kleiner Bruder schenkt Wasser ein, ihre Mutter hält das Baby, die Großmutter hört zu und der Großvater erzählt eine Geschichte, mit erhobenem Finger; auf dem Tisch eine Suppenschüssel, ein Salat, Brot, Orangensaft und gelbe Tulpen; eine Katze schläft auf einem Stuhl.",
+    "consigne": "Annas ganze Familie sitzt bei Tisch. Tippe auf einen Gegenstand oder eine Person."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Die Possessivbegleiter",
+    "B2": "Ser oder estar?",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El gato duerme en la silla.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Hay un cuadro en la pared.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | La sopa está en la mesa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El pan está en la cesta.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El tenedor está al lado del plato.": "<b>de + el = del</b>, immer.",
+    "A2 | El jugo está al lado del vaso.": "<b>de + el = del</b>, immer.",
+    "A2 | El zumo está al lado del vaso.": "<b>de + el = del</b>, immer.",
+    "A2 | Las flores están delante de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La cuchara está encima de la servilleta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "B1 | Su padre sirve las papas.": "Ein Besitzer, ein Besitz → <b>su</b>. Su gilt für „sein“ und „ihr“ gleichermaßen.",
+    "B1 | Su padre sirve las patatas.": "Ein Besitzer, ein Besitz → <b>su</b>. Su gilt für „sein“ und „ihr“ gleichermaßen.",
+    "B1 | El hermano echa agua en su vaso.": "Ein Besitzer, ein Besitz → <b>su</b>.",
+    "B1 | La madre tiene a su bebé en brazos.": "Ein Besitzer, ein Besitz → <b>su</b>.",
+    "B1 | Anna quiere mucho a sus abuelos.": "Mehrere Besitztümer → <b>sus</b> abuelos. Der Possessivbegleiter richtet sich nach dem Besitz, nicht nach dem Besitzer.",
+    "B1 | Comemos los domingos en casa de nuestros abuelos.": "<b>nuestro</b> passt sich an: los abuelos → nuestr<b>os</b>.",
+    "B1 | El abuelo habla de su juventud.": "Ein Besitzer, ein Besitz → <b>su</b>.",
+    "B1 | Este tenedor es mío.": "Nach <b>ser</b> die lange Form: <b>mío</b> (el tenedor).",
+    "B2 | Anna está muy contenta.": "Ein Zustand im Moment → <b>estar</b>.",
+    "B2 | El abuelo es muy divertido.": "Eine Charaktereigenschaft → <b>ser</b>.",
+    "B2 | La sopa está caliente.": "Ein vorübergehender Zustand → <b>estar</b>.",
+    "B2 | La comida es en casa de los abuelos.": "Ein Ereignis findet statt → <b>ser</b> („la comida es en…“) — die Ausnahme bei Ortsangaben.",
+    "B2 | El bebé está en brazos de su madre.": "Jemanden örtlich einordnen → <b>estar</b>.",
+    "B2 | Los platos son de porcelana.": "Das Material → <b>ser de</b>.",
+    "C1 | El abuelo debe de contar algo gracioso.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el gato sea de la abuela.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Estará muy caliente.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que el abuelo fue cocinero.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El gato duerme en la silla.": "Die Katze schläft auf dem Stuhl.",
+    "A2 | Hay un cuadro en la pared.": "An der Wand hängt ein Bild.",
+    "A2 | La sopa está en la mesa.": "Die Suppe steht auf dem Tisch.",
+    "A2 | El pan está en la cesta.": "Das Brot liegt im Korb.",
+    "A2 | El tenedor está al lado del plato.": "Die Gabel liegt neben dem Teller.",
+    "A2 | El jugo está al lado del vaso.": "Der Saft steht neben dem Glas.",
+    "A2 | El zumo está al lado del vaso.": "Der Saft steht neben dem Glas.",
+    "A2 | Las flores están delante de la ventana.": "Die Blumen stehen vor dem Fenster.",
+    "A2 | La cuchara está encima de la servilleta.": "Der Löffel liegt auf der Serviette.",
+    "B1 | Su padre sirve las papas.": "Ihr Vater verteilt die Kartoffeln.",
+    "B1 | Su padre sirve las patatas.": "Ihr Vater verteilt die Kartoffeln.",
+    "B1 | El hermano echa agua en su vaso.": "Der Bruder gießt Wasser in sein Glas.",
+    "B1 | La madre tiene a su bebé en brazos.": "Die Mutter hält ihr Baby im Arm.",
+    "B1 | Anna quiere mucho a sus abuelos.": "Anna liebt ihre Großeltern sehr.",
+    "B1 | Comemos los domingos en casa de nuestros abuelos.": "Sonntags essen wir bei unseren Großeltern.",
+    "B1 | El abuelo habla de su juventud.": "Der Großvater erzählt von seiner Jugend.",
+    "B1 | Este tenedor es mío.": "Diese Gabel gehört mir.",
+    "B2 | Anna está muy contenta.": "Anna ist sehr zufrieden.",
+    "B2 | El abuelo es muy divertido.": "Der Großvater ist sehr lustig.",
+    "B2 | La sopa está caliente.": "Die Suppe ist heiß.",
+    "B2 | La comida es en casa de los abuelos.": "Das Essen findet bei den Großeltern statt.",
+    "B2 | El bebé está en brazos de su madre.": "Das Baby ist auf dem Arm seiner Mutter.",
+    "B2 | Los platos son de porcelana.": "Die Teller sind aus Porzellan.",
+    "C1 | El abuelo debe de contar algo gracioso.": "Der Großvater muss etwas Lustiges erzählen.",
+    "C1 | Puede que el gato sea de la abuela.": "Vielleicht gehört die Katze der Großmutter.",
+    "C1 | Estará muy caliente.": "Sie wird wohl sehr heiß sein.",
+    "C1 | Dicen que el abuelo fue cocinero.": "Man sagt, der Großvater sei Koch gewesen."
+   }
   }
  }
 };

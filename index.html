@@ -8682,7 +8682,7 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1062</span>
+        <span class="subtitle-version">v1063</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -29556,6 +29556,8 @@ const I18N_ESPAGNOL = {
         "profil_r_vivre": "Pour vivre dans un pays hispanophone",
         "abo_titre": "Apprends l'espagnol sans limite",
         "abo_av_voix": "La voix espagnole sur chaque carte",
+        "abo_av_mots": "3 700 mots du A1 au B2",
+        "abo_av_examens": "L'accent d'Espagne ou d'Amérique latine",
         "search_title": "Chercher un mot espagnol ou français",
         "search_placeholder": "Espagnol ou français…",
         "search_hint": "Tape au moins deux lettres, <strong>en espagnol ou en français</strong> — les deux marchent. La recherche interroge tes {n} cartes, puis le dictionnaire — près de 150 000 mots.",
@@ -29698,6 +29700,8 @@ const I18N_ESPAGNOL = {
         "profil_r_vivre": "To live in a Spanish-speaking country",
         "abo_titre": "Learn Spanish without limits",
         "abo_av_voix": "The Spanish voice on every card",
+        "abo_av_mots": "3,700 words from A1 to B2",
+        "abo_av_examens": "A Spain or Latin American accent",
         "search_title": "Search a Spanish or English word",
         "search_placeholder": "Spanish or English…",
         "search_hint": "Type at least two letters, <strong>in Spanish or in English</strong> — both work. The search looks through your {n} cards, then the dictionary — over 250,000 words.",
@@ -29840,6 +29844,8 @@ const I18N_ESPAGNOL = {
         "profil_r_vivre": "Para morar num país de língua espanhola",
         "abo_titre": "Aprenda espanhol sem limites",
         "abo_av_voix": "A voz espanhola em cada cartão",
+        "abo_av_mots": "3.700 palavras do A1 ao B2",
+        "abo_av_examens": "O sotaque da Espanha ou da América Latina",
         "search_title": "Buscar uma palavra em espanhol ou em português",
         "search_placeholder": "Espanhol ou português…",
         "search_hint": "Digite pelo menos duas letras, <strong>em espanhol ou em português</strong> — os dois funcionam. A busca percorre seus {n} cartões, depois o dicionário — cerca de 150 000 palavras.",
@@ -29982,6 +29988,8 @@ const I18N_ESPAGNOL = {
         "profil_r_vivre": "للعيش في بلد ناطق بالإسبانية",
         "abo_titre": "تعلّم الإسبانية بلا حدود",
         "abo_av_voix": "الصوت الإسباني على كل بطاقة",
+        "abo_av_mots": "3700 كلمة من المستوى A1 إلى B2",
+        "abo_av_examens": "لهجة إسبانيا أو أمريكا اللاتينية",
         "search_title": "ابحث عن كلمة إسبانية أو عربية",
         "search_placeholder": "بالإسبانية أو العربية…",
         "search_hint": "اكتب حرفين على الأقل، <strong>بالإسبانية أو بالعربية</strong> — كلاهما يعمل. يبحث النظام في بطاقاتك الـ{n}، ثم في القاموس — نحو 150 000 كلمة.",
@@ -30114,6 +30122,8 @@ const I18N_ESPAGNOL = {
         "vhs_kapitel_liste_title": "دروسي في الإسبانية"
     },
     "de": {
+        "abo_av_mots": "3 700 Wörter von A1 bis B2",
+        "abo_av_examens": "Der Akzent aus Spanien oder Lateinamerika",
         "carte_genre_el": "maskulin",
         "carte_genre_la": "feminin",
         "home_title_1": "Lerne Spanisch",
@@ -34315,12 +34325,12 @@ async function loadVerbeJson() {
                     // Les temps ajoutes le 13 oct. 2026 (fusion-espagnol/tiempos.py),
                     // et la phrase de chaque temps avec ses trois traductions.
                     perfecto: v.perfecto || null, futuro: v.futuro || null, condicional: v.condicional || null, imperativo: v.imperativo || null,
-                    exemple_preterito: v.exemple_preterito || "", exemple_preterito_fr: v.exemple_preterito_fr || "", exemple_preterito_en: v.exemple_preterito_en || "", exemple_preterito_pt: v.exemple_preterito_pt || "",
-                    exemple_imperfecto: v.exemple_imperfecto || "", exemple_imperfecto_fr: v.exemple_imperfecto_fr || "", exemple_imperfecto_en: v.exemple_imperfecto_en || "", exemple_imperfecto_pt: v.exemple_imperfecto_pt || "",
-                    exemple_perfecto: v.exemple_perfecto || "", exemple_perfecto_fr: v.exemple_perfecto_fr || "", exemple_perfecto_en: v.exemple_perfecto_en || "", exemple_perfecto_pt: v.exemple_perfecto_pt || "",
-                    exemple_futuro: v.exemple_futuro || "", exemple_futuro_fr: v.exemple_futuro_fr || "", exemple_futuro_en: v.exemple_futuro_en || "", exemple_futuro_pt: v.exemple_futuro_pt || "",
-                    exemple_condicional: v.exemple_condicional || "", exemple_condicional_fr: v.exemple_condicional_fr || "", exemple_condicional_en: v.exemple_condicional_en || "", exemple_condicional_pt: v.exemple_condicional_pt || "",
-                    exemple_subjuntivo: v.exemple_subjuntivo || "", exemple_subjuntivo_fr: v.exemple_subjuntivo_fr || "", exemple_subjuntivo_en: v.exemple_subjuntivo_en || "", exemple_subjuntivo_pt: v.exemple_subjuntivo_pt || "",
+                    exemple_preterito: v.exemple_preterito || "", exemple_preterito_fr: v.exemple_preterito_fr || "", exemple_preterito_en: v.exemple_preterito_en || "", exemple_preterito_pt: v.exemple_preterito_pt || "", exemple_preterito_ar: v.exemple_preterito_ar || "",
+                    exemple_imperfecto: v.exemple_imperfecto || "", exemple_imperfecto_fr: v.exemple_imperfecto_fr || "", exemple_imperfecto_en: v.exemple_imperfecto_en || "", exemple_imperfecto_pt: v.exemple_imperfecto_pt || "", exemple_imperfecto_ar: v.exemple_imperfecto_ar || "",
+                    exemple_perfecto: v.exemple_perfecto || "", exemple_perfecto_fr: v.exemple_perfecto_fr || "", exemple_perfecto_en: v.exemple_perfecto_en || "", exemple_perfecto_pt: v.exemple_perfecto_pt || "", exemple_perfecto_ar: v.exemple_perfecto_ar || "",
+                    exemple_futuro: v.exemple_futuro || "", exemple_futuro_fr: v.exemple_futuro_fr || "", exemple_futuro_en: v.exemple_futuro_en || "", exemple_futuro_pt: v.exemple_futuro_pt || "", exemple_futuro_ar: v.exemple_futuro_ar || "",
+                    exemple_condicional: v.exemple_condicional || "", exemple_condicional_fr: v.exemple_condicional_fr || "", exemple_condicional_en: v.exemple_condicional_en || "", exemple_condicional_pt: v.exemple_condicional_pt || "", exemple_condicional_ar: v.exemple_condicional_ar || "",
+                    exemple_subjuntivo: v.exemple_subjuntivo || "", exemple_subjuntivo_fr: v.exemple_subjuntivo_fr || "", exemple_subjuntivo_en: v.exemple_subjuntivo_en || "", exemple_subjuntivo_pt: v.exemple_subjuntivo_pt || "", exemple_subjuntivo_ar: v.exemple_subjuntivo_ar || "",
                     // L'allemand, langue d'interface de l'espagnol (1er nov. 2026) :
                     // seulement en espagnol, l'objet allemand reste le meme.
                     ...(LANGUE_APPRISE === "es" ? { traduction_de: v.traduction_de || "", exemple_de: v.exemple_de || "",
@@ -44757,7 +44767,10 @@ function updateHomeGreeting(){
         name = user.email.split("@")[0].split(/[.\d_+-]/)[0];
         if(name) name = name.charAt(0).toUpperCase() + name.slice(1);
     }
-    el.textContent = name ? `${t(key)}, ${name} !` : `${t(key)} !`;
+    // L'espace avant « ! » est de la typographie francaise : « Good morning! »,
+    // « Bom dia! », « صباح الخير! » n'en ont pas (1er nov. 2026).
+    const fin = getUiLang() === "fr" ? " !" : "!";
+    el.textContent = name ? `${t(key)}, ${name}${fin}` : `${t(key)}${fin}`;
 }
 function openNomen(){
     const learningEnglish = getLearningDirection() === 'en';
@@ -50841,7 +50854,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1062;
+const APP_VERSION = 1063;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -59687,7 +59700,9 @@ function construireTableau(tab){
         const objPr = x => (x && typeof x === "object" && !Array.isArray(x)) ? x : null;
         const pr = (objPr(l[2]) || objPr(l[3]) || {})[getUiLang()] || "";
         if(pr){
-            const th = (LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL !== "latam") ? "th" : "s";
+            // En arabe, la ligne est en lettres arabes : θ devient ث ou س (1er nov. 2026).
+            const enArabe = getUiLang() === "ar";
+            const th = (LANGUE_APPRISE === "es" && VARIANTE_ESPAGNOL !== "latam") ? (enArabe ? "ث" : "th") : (enArabe ? "س" : "s");
             // Dans une syllabe forte (en capitales), le son s'ecrit en capitales :
             // « θIN-ko » -> THIN-ko, « DIÉθ » -> DIÉTH ; ailleurs, « ON-θé » -> ON-thé.
             const maj = c => !!c && c !== c.toLowerCase();
@@ -62530,7 +62545,7 @@ function showDailyGoalText(threshold){
     if(!container) return;
     const el = document.createElement("div");
     el.className = "daily-goal-text";
-    el.textContent = "+" + threshold + " !";
+    el.textContent = "+" + threshold + (getUiLang() === "fr" ? " !" : "!");
     container.appendChild(el);
     el.addEventListener("animationend", () => el.remove());
 }
@@ -63035,22 +63050,29 @@ function normaliserSaisie(txt){
 // parfait, preterit, subjonctif II), ce qui fait de loin le plus gros vivier.
 function phrasesTraduisibles(niveau){
     const sorties = [];
-    // trDe : la phrase en ALLEMAND connu (interface allemande de l'espagnol,
-    // 1er nov. 2026) -- absente ailleurs, ou la consigne reste fr / en.
-    const ajouter = (de, fr, en, source, trDe) => {
-        if(de && fr && de.length > 6) sorties.push({ de, fr, en: en || fr, source, ...(trDe ? { trDe } : {}) });
+    // trad : la phrase dans les AUTRES langues d'interface (1er nov. 2026).
+    // Sans elle, l'ecran « Ecrire » montrait la phrase anglaise a qui lit
+    // l'interface en portugais, en arabe, en turc... Les rangs viennent de
+    // RANGS_CARTE, comme pour phrasesEcoutables().
+    const ajouter = (de, fr, en, source, trad) => {
+        if(de && fr && de.length > 6) sorties.push({ de, fr, en: en || fr, source, trad: trad || null });
     };
     const bonNiveau = (n) => niveau === "ALL" || n === niveau;
+    const rangs = (w, r) => ({ tr: w[r.tr], uk: w[r.uk], fa: w[r.fa], pt: w[r.pt], ar: w[r.ar], pl: w[r.pl], ru: w[r.ru], de: w[r.de] });
+    const champs = (v, base) => ({ tr: v[base + "_tr"], uk: v[base + "_uk"], fa: v[base + "_fa"], pt: v[base + "_pt"],
+                                   ar: v[base + "_ar"], pl: v[base + "_pl"], ru: v[base + "_ru"], de: v[base + "_de"] });
 
     themesComptes().forEach(theme => {
         Object.keys(theme.levels || {}).forEach(lvl => {
             if(!bonNiveau(lvl)) return;
             const lv = theme.levels[lvl];
-            (lv.words || []).forEach(w => ajouter(w[5], w[6], w[7], theme.name, w[RANGS_CARTE.nomen.exemple.de]));
+            (lv.words || []).forEach(w => ajouter(w[5], w[6], w[7], theme.name, rangs(w, RANGS_CARTE.nomen.exemple)));
             (lv.verben || []).forEach(v => {
-                ajouter(v.exemple, v.exemple_fr, v.exemple_en, theme.name, v.exemple_de);
-                ajouter(v.perfekt, v.perfekt_fr, v.perfekt_en, theme.name);
+                ajouter(v.exemple, v.exemple_fr, v.exemple_en, theme.name, champs(v, "exemple"));
+                ajouter(v.perfekt, v.perfekt_fr, v.perfekt_en, theme.name, champs(v, "perfekt"));
             });
+            // Pas de trad pour les adjectifs d'un theme : leur disposition n'est
+            // pas celle de RANGS_CARTE.adjektive (voir phrasesEcoutables).
             (lv.adjektive || []).forEach(a => ajouter(a[3], a[4], a[6], theme.name));
         });
     });
@@ -63058,26 +63080,34 @@ function phrasesTraduisibles(niveau){
     (verbeTheme.words || []).forEach(v => {
         if(!bonNiveau(v.niveau)) return;
         const src = t('orb_verben_title');
-        ajouter(v.exemple, v.exemple_fr, v.exemple_en, src, v.exemple_de);
-        ajouter(v.perfekt, v.perfekt_fr, v.perfekt_en, src);
-        ajouter(v.praeteritum, v.praeteritum_fr, v.praeteritum_en, src);
-        ajouter(v.konjunktiv2, v.konjunktiv2_fr, v.konjunktiv2_en, src);
+        ajouter(v.exemple, v.exemple_fr, v.exemple_en, src, champs(v, "exemple"));
+        ajouter(v.perfekt, v.perfekt_fr, v.perfekt_en, src, champs(v, "perfekt"));
+        ajouter(v.praeteritum, v.praeteritum_fr, v.praeteritum_en, src, champs(v, "praeteritum"));
+        ajouter(v.konjunktiv2, v.konjunktiv2_fr, v.konjunktiv2_en, src, champs(v, "konjunktiv2"));
     });
 
     (adjektiveTheme.words || []).forEach(a => {
         if(!bonNiveau(a[3])) return;
-        ajouter(a[2], a[4], a[6], t('orb_adjektive_title'), a[RANGS_CARTE.adjektive.exemple.de]);
+        ajouter(a[2], a[4], a[6], t('orb_adjektive_title'), rangs(a, RANGS_CARTE.adjektive.exemple));
     });
 
     [[adverbienTheme, 'orb_adverbien_title'], [redewendungenTheme, 'orb_redewendungen_title']]
         .forEach(pair => {
             (pair[0].words || []).forEach(w => {
                 if(!bonNiveau(w[8])) return;
-                ajouter(w[3], w[4], w[6], t(pair[1]), w[RANGS_CARTE.expression.exemple.de]);
+                ajouter(w[3], w[4], w[6], t(pair[1]), rangs(w, RANGS_CARTE.expression.exemple));
             });
         });
 
     return sorties;
+}
+// La phrase d'un vivier dans chaque langue d'interface qui l'a (question_pt,
+// question_ar...), pour « Ecrire » et « Construire la phrase » ; texteTraduit()
+// suit ensuite la chaine de repli (1er nov. 2026).
+function questionsTraduites(ph){
+    const o = {};
+    Object.keys((ph && ph.trad) || {}).forEach(c => { if(ph.trad[c]) o["question" + SUFFIXE_LANGUE[c]] = ph.trad[c]; });
+    return o;
 }
 
 const SCHREIBEN_TAILLE_SERIE = 15;
@@ -63103,9 +63133,9 @@ const SCHREIBEN_TAILLE_SERIE = 15;
 const ECOUTE_PHRASE_TAILLE_SERIE = 10;
 const ECOUTE_PHRASE_CHOIX = 4;
 
-// Le vivier, avec les QUATRE langues. phrasesTraduisibles() n'en porte que deux
-// (fr et en) parce que l'exercice de frappe montre la traduction et attend
-// l'allemand : la langue de la consigne y suffit. Ici les traductions sont les
+// Le vivier, avec les QUATRE langues. phrasesTraduisibles() les porte aussi
+// depuis le 1er nov. 2026 (champ trad), mais seulement pour la consigne de
+// l'exercice de frappe. Ici les traductions sont les
 // REPONSES -- un turcophone qui doit choisir entre quatre phrases francaises ne
 // fait plus l'exercice d'ecoute, il fait un exercice de francais.
 //
@@ -63493,6 +63523,7 @@ function startTuiles(niveau){
         const corps = finale ? brut.slice(0, brut.length - finale.length).trim() : brut;
         const tokens = corps.split(/\s+/);
         return {
+            ...questionsTraduites(ph),
             topic: "Construire \u00b7 " + ph.source,
             question: libelle(ph),
             question_en: ph.en,
@@ -63547,10 +63578,10 @@ function startSchreiben(niveau){
     if(vivier.length < 3){ showInfoToast(t('alert_level_unavailable')); return; }
     shuffleArray(vivier);
     const liste = vivier.slice(0, SCHREIBEN_TAILLE_SERIE).map(ph => ({
+        ...questionsTraduites(ph),
         topic: "\u00c9crire \u00b7 " + ph.source,
         question: ph.fr,
         question_en: ph.en,
-        ...(ph.trDe ? { question_de: ph.trDe } : {}),
         translation: ph.source,
         translation_en: ph.source,
         hint: t('schreiben_hint'),

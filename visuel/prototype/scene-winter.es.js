@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "دخان",
    "pl": "dym",
    "ru": "дым",
+   "de": "der Rauch",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "سطح، سقف",
    "pl": "dach",
    "ru": "крыша",
+   "de": "das Dach",
    "latam": null
   },
   {
@@ -108,6 +111,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -135,6 +139,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -162,6 +167,7 @@ window.SCENE = {
    "ar": "شمعة",
    "pl": "świeczka",
    "ru": "свеча",
+   "de": "die Kerze",
    "latam": null
   },
   {
@@ -189,6 +195,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -216,6 +223,7 @@ window.SCENE = {
    "ar": "بيت",
    "pl": "dom",
    "ru": "дом",
+   "de": "das Haus",
    "latam": null
   },
   {
@@ -243,6 +251,7 @@ window.SCENE = {
    "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
+   "de": "der Vogel",
    "latam": null
   },
   {
@@ -270,6 +279,7 @@ window.SCENE = {
    "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
+   "de": "der Vogel",
    "latam": null
   },
   {
@@ -297,6 +307,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -324,6 +335,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -351,6 +363,7 @@ window.SCENE = {
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
    "ru": "фонарь",
+   "de": "die Straßenlaterne",
    "latam": {
     "mot": "farol",
     "genre": "el",
@@ -382,6 +395,7 @@ window.SCENE = {
    "ar": "سيارة",
    "pl": "samochód",
    "ru": "машина, автомобиль",
+   "de": "das Auto",
    "latam": {
     "mot": "carro",
     "genre": "el",
@@ -413,6 +427,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -440,6 +455,7 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
+   "de": "die Bank",
    "latam": null
   },
   {
@@ -467,6 +483,7 @@ window.SCENE = {
    "ar": "قبّعة",
    "pl": "kapelusz",
    "ru": "шляпа",
+   "de": "der Hut",
    "latam": null
   },
   {
@@ -494,6 +511,7 @@ window.SCENE = {
    "ar": "جزرة",
    "pl": "marchewka",
    "ru": "морковь",
+   "de": "die Karotte, die Möhre",
    "latam": null
   },
   {
@@ -521,6 +539,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -548,6 +567,7 @@ window.SCENE = {
    "ar": "زرّ",
    "pl": "guzik",
    "ru": "пуговица",
+   "de": "der Knopf",
    "latam": null
   },
   {
@@ -575,6 +595,7 @@ window.SCENE = {
    "ar": "رجل الثلج",
    "pl": "bałwan",
    "ru": "снеговик",
+   "de": "der Schneemann",
    "latam": null
   },
   {
@@ -608,6 +629,7 @@ window.SCENE = {
    "ar": "مكنسة",
    "pl": "miotła",
    "ru": "метла",
+   "de": "der Besen",
    "latam": null
   },
   {
@@ -635,6 +657,7 @@ window.SCENE = {
    "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Mütze",
    "latam": null
   },
   {
@@ -662,6 +685,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -689,6 +713,7 @@ window.SCENE = {
    "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
+   "de": "der Handschuh",
    "latam": null
   },
   {
@@ -716,6 +741,7 @@ window.SCENE = {
    "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
+   "de": "der Stiefel",
    "latam": null
   },
   {
@@ -743,6 +769,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -770,6 +797,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -797,6 +825,7 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
+   "de": "der Hund",
    "latam": null
   },
   {
@@ -824,6 +853,7 @@ window.SCENE = {
    "ar": "ثلج",
    "pl": "śnieg",
    "ru": "снег",
+   "de": "der Schnee",
    "latam": null
   }
  ],
@@ -1521,6 +1551,83 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Ein verschneiter Morgen in Berlin: Anna, in Mantel, Mütze, Schal und Handschuhen, stellt vor einem gelben Haus einen Schneemann fertig; ein kleiner Hund im roten Mantel schnüffelt im Schnee; ein Fahrrad, eine Bank und ein rotes Auto sind mit Schnee bedeckt.",
+    "consigne": "Heute Nacht hat es geschneit. Anna baut einen Schneemann. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Die Pronomen: le, la, los",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La bicicleta está al lado del farol.": "<b>de + el = del</b>, immer.",
+    "A2 | La bicicleta está al lado de la farola.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La vela está en la ventana.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El carro está delante de la casa.": "<b>delante de</b> = vor.",
+    "A2 | El coche está delante de la casa.": "<b>delante de</b> = vor.",
+    "A2 | El pájaro está en el árbol.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El perro está en la nieve.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El humo sale del tejado.": "<b>de + el = del</b>, immer.",
+    "A2 | El banco está al lado de la bicicleta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay un sombrero en la cabeza del muñeco.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | Anna tiene frío.": "Frieren → <b>tener</b> frío (wörtlich: Kälte haben), nicht „sein“.",
+    "B1 | El gorro le queda bien.": "<b>quedar bien</b> jemandem → <b>le</b>.",
+    "B1 | Anna le ha puesto una bufanda al muñeco.": "Wem? → <b>le</b>, auch wenn „al muñeco“ folgt.",
+    "B1 | Anna los lleva puestos.": "Direktes Objekt, männlich Plural → <b>los</b>.",
+    "B1 | Al perro le han puesto un abrigo rojo.": "Wem? → <b>le</b>.",
+    "B1 | Son suyas.": "Das alleinstehende Possessivum richtet sich nach der Sache: las botas → <b>suyas</b>.",
+    "B1 | Anna le da una zanahoria al muñeco.": "Wem? → <b>le</b>.",
+    "B1 | Anna la ha dejado junto al muro.": "Direktes Objekt, weiblich (la escoba) → <b>la</b>.",
+    "B2 | La mujer que hace un muñeco de nieve se llama Anna.": "Relativsatz ohne Komma, Subjekt → <b>que</b>.",
+    "B2 | El perro, cuyo abrigo es rojo, olfatea la nieve.": "<b>cuyo</b> richtet sich nach dem Besessenen: el abrigo → <b>cuyo</b>.",
+    "B2 | La casa delante de la cual está el carro es amarilla.": "Nach einer zusammengesetzten Präposition: <b>la cual</b>, abgestimmt auf la casa.",
+    "B2 | La casa delante de la cual está el coche es amarilla.": "Nach einer zusammengesetzten Präposition: <b>la cual</b>, abgestimmt auf la casa.",
+    "B2 | El carro está cubierto de nieve.": "<b>cubrir</b> → unregelmäßiges Partizip <b>cubierto</b>.",
+    "B2 | El coche está cubierto de nieve.": "<b>cubrir</b> → unregelmäßiges Partizip <b>cubierto</b>.",
+    "B2 | El camino tiene que ser barrido.": "Passiv <b>ser</b> + angepasstes Partizip: el camino → barrid<b>o</b>.",
+    "B2 | La vela está encendida en la ventana.": "<b>estar</b> + Partizip, angepasst: la vela → encendid<b>a</b>.",
+    "C1 | El muñeco debe de gustarle mucho.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que la bicicleta esté ahí desde anoche.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | La nieve durará hasta mañana.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen en la radio que será el invierno más frío en diez años.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | La bicicleta está al lado del farol.": "Das Fahrrad steht neben der Straßenlaterne.",
+    "A2 | La bicicleta está al lado de la farola.": "Das Fahrrad steht neben der Straßenlaterne.",
+    "A2 | La vela está en la ventana.": "Die Kerze steht im Fenster.",
+    "A2 | El carro está delante de la casa.": "Das Auto steht vor dem Haus.",
+    "A2 | El coche está delante de la casa.": "Das Auto steht vor dem Haus.",
+    "A2 | El pájaro está en el árbol.": "Der Vogel sitzt auf dem Baum.",
+    "A2 | El perro está en la nieve.": "Der Hund ist im Schnee.",
+    "A2 | El humo sale del tejado.": "Der Rauch steigt aus dem Dach.",
+    "A2 | El banco está al lado de la bicicleta.": "Die Bank steht neben dem Fahrrad.",
+    "A2 | Hay un sombrero en la cabeza del muñeco.": "Auf dem Kopf des Schneemanns sitzt ein Hut.",
+    "B1 | Anna tiene frío.": "Anna ist kalt.",
+    "B1 | El gorro le queda bien.": "Die Mütze steht ihr gut.",
+    "B1 | Anna le ha puesto una bufanda al muñeco.": "Anna hat dem Schneemann einen Schal umgelegt.",
+    "B1 | Anna los lleva puestos.": "Anna hat sie an.",
+    "B1 | Al perro le han puesto un abrigo rojo.": "Dem Hund hat man einen roten Mantel angezogen.",
+    "B1 | Son suyas.": "Sie gehören ihr.",
+    "B1 | Anna le da una zanahoria al muñeco.": "Anna gibt dem Schneemann eine Karotte.",
+    "B1 | Anna la ha dejado junto al muro.": "Anna hat ihn an die Mauer gelehnt.",
+    "B2 | La mujer que hace un muñeco de nieve se llama Anna.": "Die Frau, die einen Schneemann baut, heißt Anna.",
+    "B2 | El perro, cuyo abrigo es rojo, olfatea la nieve.": "Der Hund, dessen Mantel rot ist, schnüffelt im Schnee.",
+    "B2 | La casa delante de la cual está el carro es amarilla.": "Das Haus, vor dem das Auto steht, ist gelb.",
+    "B2 | La casa delante de la cual está el coche es amarilla.": "Das Haus, vor dem das Auto steht, ist gelb.",
+    "B2 | El carro está cubierto de nieve.": "Das Auto ist mit Schnee bedeckt.",
+    "B2 | El coche está cubierto de nieve.": "Das Auto ist mit Schnee bedeckt.",
+    "B2 | El camino tiene que ser barrido.": "Der Weg muss gefegt werden.",
+    "B2 | La vela está encendida en la ventana.": "Die Kerze brennt im Fenster.",
+    "C1 | El muñeco debe de gustarle mucho.": "Der Schneemann muss ihr sehr gefallen.",
+    "C1 | Puede que la bicicleta esté ahí desde anoche.": "Vielleicht steht das Fahrrad seit gestern Abend dort.",
+    "C1 | La nieve durará hasta mañana.": "Der Schnee wird wohl bis morgen liegen bleiben.",
+    "C1 | Dicen en la radio que será el invierno más frío en diez años.": "Im Radio sagt man, es werde der kälteste Winter seit zehn Jahren."
+   }
   }
  }
 };

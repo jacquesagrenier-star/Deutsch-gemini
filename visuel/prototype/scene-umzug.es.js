@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
+   "de": "die Zimmerdecke",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "مصباح كهربائي، لمبة",
    "pl": "żarówka",
    "ru": "лампочка",
+   "de": "die Glühbirne",
    "latam": null
   },
   {
@@ -114,6 +117,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -147,6 +151,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -174,6 +179,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -201,6 +207,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -220,7 +227,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     }
    ],
    "sur": null,
@@ -239,6 +247,7 @@ window.SCENE = {
    "ar": "أخ",
    "pl": "brat",
    "ru": "брат",
+   "de": "der Bruder",
    "latam": null
   },
   {
@@ -266,6 +275,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -297,6 +307,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -324,6 +335,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -351,6 +363,7 @@ window.SCENE = {
    "ar": "سلّم، درج",
    "pl": "drabina",
    "ru": "лестница (стремянка)",
+   "de": "die Treppe",
    "latam": null
   },
   {
@@ -378,6 +391,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -405,6 +419,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -432,6 +447,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -459,6 +475,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -486,6 +503,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -513,6 +531,7 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка",
+   "de": "das Hemd",
    "latam": null
   },
   {
@@ -540,6 +559,7 @@ window.SCENE = {
    "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
+   "de": "das T-Shirt",
    "latam": null
   },
   {
@@ -567,6 +587,7 @@ window.SCENE = {
    "ar": "مفتاح",
    "pl": "klucz",
    "ru": "ключ",
+   "de": "der Schlüssel",
    "latam": null
   },
   {
@@ -594,6 +615,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -613,7 +635,8 @@ window.SCENE = {
      "fr": "la chaussure",
      "en": "the shoe",
      "pt": "o sapato",
-     "ar": "حذاء"
+     "ar": "حذاء",
+     "de": "der Schuh"
     }
    ],
    "sur": null,
@@ -638,6 +661,7 @@ window.SCENE = {
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
    "ru": "кроссовки, кеды",
+   "de": "der Turnschuh",
    "latam": {
     "mot": "tenis",
     "genre": "el",
@@ -669,6 +693,7 @@ window.SCENE = {
    "ar": "مرآة",
    "pl": "lustro",
    "ru": "зеркало",
+   "de": "der Spiegel",
    "latam": null
   },
   {
@@ -696,6 +721,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -723,6 +749,7 @@ window.SCENE = {
    "ar": "غيتار",
    "pl": "gitara",
    "ru": "гитара",
+   "de": "die Gitarre",
    "latam": null
   },
   {
@@ -756,6 +783,7 @@ window.SCENE = {
    "ar": "وسادة زينة",
    "pl": "poduszka",
    "ru": "подушка",
+   "de": "das Kissen (Zierkissen)",
    "latam": null
   },
   {
@@ -783,6 +811,7 @@ window.SCENE = {
    "ar": "أريكة",
    "pl": "kanapa",
    "ru": "диван",
+   "de": "das Sofa",
    "latam": null
   },
   {
@@ -816,6 +845,7 @@ window.SCENE = {
    "ar": "مشعّ تدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
+   "de": "der Heizkörper",
    "latam": null
   },
   {
@@ -843,6 +873,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -870,6 +901,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -897,6 +929,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -924,6 +957,7 @@ window.SCENE = {
    "ar": "علبة معدنية",
    "pl": "puszka",
    "ru": "банка (консервная)",
+   "de": "die Dose",
    "latam": null
   },
   {
@@ -951,6 +985,7 @@ window.SCENE = {
    "ar": "أداة",
    "pl": "narzędzie, narzędzia",
    "ru": "инструмент",
+   "de": "das Werkzeug",
    "latam": null
   },
   {
@@ -978,6 +1013,7 @@ window.SCENE = {
    "ar": "مطرقة",
    "pl": "młotek",
    "ru": "молоток",
+   "de": "der Hammer",
    "latam": null
   },
   {
@@ -1005,6 +1041,7 @@ window.SCENE = {
    "ar": "مثقاب",
    "pl": "wiertarka",
    "ru": "дрель",
+   "de": "die Bohrmaschine",
    "latam": null
   },
   {
@@ -1032,6 +1069,7 @@ window.SCENE = {
    "ar": "بيتزا",
    "pl": "pizza",
    "ru": "пицца",
+   "de": "die Pizza",
    "latam": null
   },
   {
@@ -1059,6 +1097,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -1092,6 +1131,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -1125,6 +1165,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -1152,6 +1193,7 @@ window.SCENE = {
    "ar": "سجّادة",
    "pl": "dywan",
    "ru": "ковёр",
+   "de": "der Teppich",
    "latam": null
   },
   {
@@ -1179,6 +1221,7 @@ window.SCENE = {
    "ar": "شريط لاصق",
    "pl": "taśma klejąca",
    "ru": "скотч",
+   "de": "das Klebeband",
    "latam": null
   },
   {
@@ -1206,6 +1249,7 @@ window.SCENE = {
    "ar": "مقصّ",
    "pl": "nożyczki",
    "ru": "ножницы",
+   "de": "die Schere",
    "latam": null
   },
   {
@@ -1233,6 +1277,7 @@ window.SCENE = {
    "ar": "كتاب",
    "pl": "książka",
    "ru": "книга",
+   "de": "das Buch",
    "latam": null
   },
   {
@@ -1260,6 +1305,7 @@ window.SCENE = {
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
+   "de": "der Koffer",
    "latam": null
   },
   {
@@ -1293,6 +1339,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -2002,6 +2049,83 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna zieht an einem Samstagnachmittag in eine alte Berliner Wohnung ein: Sie trägt einen großen Karton, aus dem eine grüne Pflanze ragt, und lächelt ihrem kleinen Bruder zu, der auf einer Trittleiter steht und eine Glühbirne in die Deckenlampe schraubt; ihre Schlüssel hängen am Gürtel; auf dem Boden ein Stapel Kartons, eine Rolle Klebeband, eine Schere, ein zusammengerollter roter Teppich, ein Stapel Bücher, ein roter Koffer, ein roter Werkzeugkasten mit Hammer und Bohrmaschine, eine Pizza im Karton und zwei rote Dosen; links das noch in Plastik verpackte Sofa mit gelben Kissen, ein großer Spiegel an die Wand gelehnt, eine Gitarre und eine Stehlampe; im Hintergrund ein hohes Bogenfenster mit Blick auf einen Baum, ein Heizkörper, ein leeres weißes Regal mit einem Meeresbild, ein Holztisch mit einem umgedrehten Stuhl darauf und eine Uhr auf dem Boden.",
+    "consigne": "Anna zieht in ihre neue Wohnung ein. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Ya, todavía, todavía no",
+    "B2": "Das futuro perfecto: habrá terminado",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El hermano está en la escalera.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Los cojines están en el sofá.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La silla está en la mesa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La pizza está en la caja.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El reloj está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El reloj está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El radiador está debajo de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La guitarra está al lado del sofá.": "<b>de + el = del</b>, immer.",
+    "A2 | Hay una lámpara en el techo.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | El sofá todavía tiene el plástico.": "<b>todavía</b> = noch: Die Situation dauert an.",
+    "B1 | Anna todavía no ha colgado el cuadro.": "<b>todavía no</b> = noch nicht.",
+    "B1 | El hermano ya ha subido a la escalera.": "<b>ya</b> = schon: Es ist erledigt.",
+    "B1 | Anna ya no vive en su departamento antiguo.": "<b>ya no</b> = nicht mehr — wörtlich „schon nicht“.",
+    "B1 | Anna ya no vive en su piso antiguo.": "<b>ya no</b> = nicht mehr — wörtlich „schon nicht“.",
+    "B1 | ¿Ya has comido? — No, todavía no.": "In einer Frage: <b>ya</b> = schon?",
+    "B1 | El reloj todavía está en el piso.": "<b>todavía</b> + Präsens: Es ist noch so.",
+    "B1 | El reloj todavía está en el suelo.": "<b>todavía</b> + Präsens: Es ist noch so.",
+    "B1 | Anna y su hermano todavía no han terminado: quedan muchas cajas.": "<b>todavía no</b>: Es ist noch nicht zu Ende.",
+    "B2 | Esta noche Anna habrá abierto todas las cajas.": "Futuro perfecto: <b>habrá</b> + Partizip; abrir → <b>abierto</b>.",
+    "B2 | En un minuto el hermano habrá cambiado la bombilla.": "<b>habrá</b> + Partizip = was zu einem künftigen Zeitpunkt erledigt sein wird — das Futur II.",
+    "B2 | Anna está cansada: habrá llevado muchas cajas.": "Das futuro perfecto dient auch der Vermutung über Vergangenes: <b>habrá llevado</b> = sie hat wohl getragen.",
+    "B2 | La habrá pedido el hermano.": "Vermutung über die Vergangenheit: <b>la habrá pedido</b>; das Pronomen steht vor habrá.",
+    "B2 | Para el lunes, Anna ya se habrá acostumbrado a su nuevo departamento.": "Bei einem reflexiven Verb: <b>se habrá</b> + unveränderliches Partizip (acostumbrado).",
+    "B2 | Para el lunes, Anna ya se habrá acostumbrado a su nuevo piso.": "Bei einem reflexiven Verb: <b>se habrá</b> + unveränderliches Partizip (acostumbrado).",
+    "B2 | Cuando lleguen los amigos, ya habremos puesto la mesa.": "poner → unregelmäßiges Partizip <b>puesto</b>: habremos puesto.",
+    "C1 | Debe de estar contenta con su nuevo departamento.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Debe de estar contenta con su nuevo piso.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que los libros vayan en la estantería blanca.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Será para Anna y su hermano.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que el barrio es muy tranquilo.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El hermano está en la escalera.": "Der Bruder steht auf der Leiter.",
+    "A2 | Los cojines están en el sofá.": "Die Kissen liegen auf dem Sofa.",
+    "A2 | La silla está en la mesa.": "Der Stuhl steht auf dem Tisch.",
+    "A2 | La pizza está en la caja.": "Die Pizza ist im Karton.",
+    "A2 | El reloj está en el piso.": "Die Uhr liegt auf dem Boden.",
+    "A2 | El reloj está en el suelo.": "Die Uhr liegt auf dem Boden.",
+    "A2 | El radiador está debajo de la ventana.": "Der Heizkörper ist unter dem Fenster.",
+    "A2 | La guitarra está al lado del sofá.": "Die Gitarre steht neben dem Sofa.",
+    "A2 | Hay una lámpara en el techo.": "An der Decke hängt eine Lampe.",
+    "B1 | El sofá todavía tiene el plástico.": "Das Sofa hat noch die Plastikfolie.",
+    "B1 | Anna todavía no ha colgado el cuadro.": "Anna hat das Bild noch nicht aufgehängt.",
+    "B1 | El hermano ya ha subido a la escalera.": "Der Bruder ist schon auf die Leiter gestiegen.",
+    "B1 | Anna ya no vive en su departamento antiguo.": "Anna wohnt nicht mehr in ihrer alten Wohnung.",
+    "B1 | Anna ya no vive en su piso antiguo.": "Anna wohnt nicht mehr in ihrer alten Wohnung.",
+    "B1 | ¿Ya has comido? — No, todavía no.": "Hast du schon gegessen? — Nein, noch nicht.",
+    "B1 | El reloj todavía está en el piso.": "Die Uhr liegt noch auf dem Boden.",
+    "B1 | El reloj todavía está en el suelo.": "Die Uhr liegt noch auf dem Boden.",
+    "B1 | Anna y su hermano todavía no han terminado: quedan muchas cajas.": "Anna und ihr Bruder sind noch nicht fertig: Es bleiben viele Kartons.",
+    "B2 | Esta noche Anna habrá abierto todas las cajas.": "Heute Abend wird Anna alle Kartons geöffnet haben.",
+    "B2 | En un minuto el hermano habrá cambiado la bombilla.": "In einer Minute wird der Bruder die Glühbirne gewechselt haben.",
+    "B2 | Anna está cansada: habrá llevado muchas cajas.": "Anna ist müde: Sie wird wohl viele Kartons getragen haben.",
+    "B2 | La habrá pedido el hermano.": "Die wird wohl der Bruder bestellt haben.",
+    "B2 | Para el lunes, Anna ya se habrá acostumbrado a su nuevo departamento.": "Bis Montag wird sich Anna an ihre neue Wohnung gewöhnt haben.",
+    "B2 | Para el lunes, Anna ya se habrá acostumbrado a su nuevo piso.": "Bis Montag wird sich Anna an ihre neue Wohnung gewöhnt haben.",
+    "B2 | Cuando lleguen los amigos, ya habremos puesto la mesa.": "Wenn die Freunde kommen, werden wir den Tisch schon gedeckt haben.",
+    "C1 | Debe de estar contenta con su nuevo departamento.": "Sie muss sich über ihre neue Wohnung freuen.",
+    "C1 | Debe de estar contenta con su nuevo piso.": "Sie muss sich über ihre neue Wohnung freuen.",
+    "C1 | Puede que los libros vayan en la estantería blanca.": "Vielleicht kommen die Bücher ins weiße Regal.",
+    "C1 | Será para Anna y su hermano.": "Sie wird wohl für Anna und ihren Bruder sein.",
+    "C1 | Dicen que el barrio es muy tranquilo.": "Man sagt, das Viertel sei sehr ruhig."
+   }
   }
  }
 };

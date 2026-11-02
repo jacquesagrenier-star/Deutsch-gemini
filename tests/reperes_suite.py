@@ -230,6 +230,50 @@ PRONONCIATION_NOMBRES_ES_FR = {
     "novecientos": "no-bé-θIÉN-tos", "mil": "MIL",
 }
 
+# 1er nov. 2026 : la meme ligne pour un anglophone, un Bresilien et un arabophone
+# (l'espagnol pour d'autres langues). Sans elles, ces usagers ne voyaient rien sous
+# le nombre. Anglais : e « eh », i « ee », o « oh », u « oo », ei « ay ».
+# Portugais : la regle de prononciation.json (e ouvert « é », e final « ê » et pas
+# « i », s toujours « ss »). Arabe : en lettres arabes, comme les exemples de
+# prononciation.json, sans syllabe forte (l'arabe n'a pas de capitales) ; θ y
+# devient ث (Espagne) ou س (Amerique latine).
+PRONONCIATION_NOMBRES_ES_EN = {
+    "cero": "θEH-roh", "uno": "OO-noh", "dos": "DOHS", "tres": "TREHS", "cuatro": "KWAH-troh", "cinco": "θEEN-koh",
+    "seis": "SAYS", "siete": "SYEH-teh", "ocho": "OH-choh", "nueve": "NWEH-beh", "diez": "DYEHθ", "once": "OHN-θeh",
+    "doce": "DOH-θeh", "trece": "TREH-θeh", "catorce": "kah-TOR-θeh", "quince": "KEEN-θeh", "dieciséis": "dyeh-θee-SAYS",
+    "diecisiete": "dyeh-θee-SYEH-teh", "dieciocho": "dyeh-θee-OH-choh", "diecinueve": "dyeh-θee-NWEH-beh", "veinte": "BAYN-teh",
+    "veintiuno": "bayn-tee-OO-noh", "veintidós": "bayn-tee-DOHS", "treinta": "TRAYN-tah", "treinta y uno": "TRAYN-tah ee OO-noh",
+    "cuarenta": "kwah-REHN-tah", "cincuenta": "θeen-KWEHN-tah", "sesenta": "seh-SEHN-tah", "setenta": "seh-TEHN-tah",
+    "ochenta": "oh-CHEHN-tah", "noventa": "noh-BEHN-tah", "cien": "θYEHN", "doscientos": "dohs-θYEHN-tohs",
+    "trescientos": "trehs-θYEHN-tohs", "cuatrocientos": "kwah-troh-θYEHN-tohs", "quinientos": "kee-NYEHN-tohs",
+    "seiscientos": "says-θYEHN-tohs", "setecientos": "seh-teh-θYEHN-tohs", "ochocientos": "oh-choh-θYEHN-tohs",
+    "novecientos": "noh-beh-θYEHN-tohs", "mil": "MEEL",
+}
+PRONONCIATION_NOMBRES_ES_PT = {
+    "cero": "θÉ-ro", "uno": "Ú-no", "dos": "DÓS", "tres": "TRÉS", "cuatro": "KUÁ-tro", "cinco": "θIN-ko",
+    "seis": "SÉIS", "siete": "SIÉ-tê", "ocho": "Ó-tcho", "nueve": "NUÉ-bê", "diez": "DIÉθ", "once": "ÓN-θê",
+    "doce": "DÓ-θê", "trece": "TRÉ-θê", "catorce": "ka-TÓR-θê", "quince": "KIN-θê", "dieciséis": "dié-θi-SÉIS",
+    "diecisiete": "dié-θi-SIÉ-tê", "dieciocho": "dié-θi-Ó-tcho", "diecinueve": "dié-θi-NUÉ-bê", "veinte": "BÉIN-tê",
+    "veintiuno": "béin-ti-Ú-no", "veintidós": "béin-ti-DÓS", "treinta": "TRÉIN-ta", "treinta y uno": "TRÉIN-ta i Ú-no",
+    "cuarenta": "kua-RÉN-ta", "cincuenta": "θin-KUÉN-ta", "sesenta": "sé-SSÉN-ta", "setenta": "sé-TÉN-ta",
+    "ochenta": "o-TCHÉN-ta", "noventa": "no-BÉN-ta", "cien": "θIÉN", "doscientos": "dos-θIÉN-tos",
+    "trescientos": "trés-θIÉN-tos", "cuatrocientos": "kua-tro-θIÉN-tos", "quinientos": "ki-NIÉN-tos",
+    "seiscientos": "séis-θIÉN-tos", "setecientos": "sé-tê-θIÉN-tos", "ochocientos": "o-tcho-θIÉN-tos",
+    "novecientos": "no-bê-θIÉN-tos", "mil": "MIL",
+}
+PRONONCIATION_NOMBRES_ES_AR = {
+    "cero": "θِيرو", "uno": "أونو", "dos": "دوس", "tres": "ترِيس", "cuatro": "كواترو", "cinco": "θينكو",
+    "seis": "سِيْس", "siete": "سْيِيتِه", "ocho": "أوتشو", "nueve": "نْوِيبِه", "diez": "دْيِيθ", "once": "أونθِه",
+    "doce": "دوθِه", "trece": "ترِيθِه", "catorce": "كاتورθِه", "quince": "كينθِه", "dieciséis": "دْيِيθيسِيْس",
+    "diecisiete": "دْيِيθيسْيِيتِه", "dieciocho": "دْيِيθيوتشو", "diecinueve": "دْيِيθينْوِيبِه", "veinte": "بِيْنتِه",
+    "veintiuno": "بِيْنتيونو", "veintidós": "بِيْنتيدوس", "treinta": "ترِيْنتا", "treinta y uno": "ترِيْنتا إي أونو",
+    "cuarenta": "كوارِنتا", "cincuenta": "θينكوِنتا", "sesenta": "سِيسِنتا", "setenta": "سِيتِنتا",
+    "ochenta": "أوتشِنتا", "noventa": "نوبِنتا", "cien": "θْيِن", "doscientos": "دوسθْيِنتوس",
+    "trescientos": "ترِيسθْيِنتوس", "cuatrocientos": "كواتروθْيِنتوس", "quinientos": "كينْيِنتوس",
+    "seiscientos": "سِيْسθْيِنتوس", "setecientos": "سِيتِθْيِنتوس", "ochocientos": "أوتشوθْيِنتوس",
+    "novecientos": "نوبِθْيِنتوس", "mil": "ميل",
+}
+
 # Le pluriel : tableau [pluriel, regle] ; exercices [singulier, pluriel, regle, leurre, leurre].
 PLURIEL = {
   "de": (

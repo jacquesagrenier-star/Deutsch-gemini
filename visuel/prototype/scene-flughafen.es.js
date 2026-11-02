@@ -39,6 +39,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -66,6 +67,7 @@ window.SCENE = {
    "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
+   "de": "die Zimmerdecke",
    "latam": null
   },
   {
@@ -93,6 +95,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -120,6 +123,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -147,6 +151,7 @@ window.SCENE = {
    "ar": "لافتة، إشارة",
    "pl": "tabliczka, szyld",
    "ru": "табличка, вывеска",
+   "de": "das Schild (Verkehrsschild), das Zeichen",
    "latam": null
   },
   {
@@ -174,6 +179,7 @@ window.SCENE = {
    "ar": "سلّم، درج",
    "pl": "schody",
    "ru": "лестница",
+   "de": "die Treppe",
    "latam": null
   },
   {
@@ -201,6 +207,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -228,6 +235,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -261,6 +269,7 @@ window.SCENE = {
    "ar": "غيمة، سحابة",
    "pl": "chmura",
    "ru": "облако, туча",
+   "de": "die Wolke",
    "latam": null
   },
   {
@@ -288,6 +297,7 @@ window.SCENE = {
    "ar": "طائرة",
    "pl": "samolot",
    "ru": "самолёт",
+   "de": "das Flugzeug",
    "latam": null
   },
   {
@@ -307,7 +317,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     }
    ],
    "sur": null,
@@ -326,6 +337,7 @@ window.SCENE = {
    "ar": "طيّار",
    "pl": "pilot",
    "ru": "пилот",
+   "de": "der Pilot",
    "latam": null
   },
   {
@@ -353,6 +365,7 @@ window.SCENE = {
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
+   "de": "der Koffer",
    "latam": null
   },
   {
@@ -380,6 +393,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -407,6 +421,7 @@ window.SCENE = {
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
    "ru": "мусорное ведро",
+   "de": "der Papierkorb",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -438,6 +453,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -465,6 +481,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -492,6 +509,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -519,6 +537,7 @@ window.SCENE = {
    "ar": "جريدة",
    "pl": "gazeta",
    "ru": "газета",
+   "de": "die Zeitung",
    "latam": null
   },
   {
@@ -546,6 +565,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -573,6 +593,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -593,6 +614,7 @@ window.SCENE = {
      "en": "the computer",
      "pt": "o computador",
      "ar": "حاسوب",
+     "de": "der Computer",
      "latam": {
       "mot": "computadora",
       "genre": "la",
@@ -616,6 +638,7 @@ window.SCENE = {
    "ar": "شاشة",
    "pl": "ekran",
    "ru": "экран",
+   "de": "der Bildschirm",
    "latam": null
   },
   {
@@ -643,6 +666,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -670,6 +694,7 @@ window.SCENE = {
    "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
+   "de": "die Tastatur",
    "latam": null
   },
   {
@@ -697,6 +722,7 @@ window.SCENE = {
    "ar": "هاتف",
    "pl": "telefon",
    "ru": "телефон",
+   "de": "das Telefon, die Telefonnummer",
    "latam": null
   },
   {
@@ -724,6 +750,7 @@ window.SCENE = {
    "ar": "تذكرة",
    "pl": "bilet",
    "ru": "билет",
+   "de": "die Fahrkarte, das Ticket",
    "latam": {
     "mot": "boleto",
     "genre": "el",
@@ -755,6 +782,7 @@ window.SCENE = {
    "ar": "جواز سفر",
    "pl": "paszport",
    "ru": "паспорт",
+   "de": "der Reisepass",
    "latam": null
   },
   {
@@ -782,6 +810,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -809,6 +838,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -836,6 +866,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -863,6 +894,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -894,6 +926,7 @@ window.SCENE = {
    "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
+   "de": "die Handtasche",
    "latam": null
   },
   {
@@ -914,6 +947,7 @@ window.SCENE = {
      "en": "the jeans",
      "pt": "a calça jeans",
      "ar": "بنطال جينز",
+     "de": "die Jeans",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -937,6 +971,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -957,6 +992,7 @@ window.SCENE = {
      "en": "the trainer",
      "pt": "o tênis",
      "ar": "حذاء رياضي",
+     "de": "der Turnschuh",
      "latam": {
       "mot": "tenis",
       "genre": "el",
@@ -980,6 +1016,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -1007,6 +1044,7 @@ window.SCENE = {
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
+   "de": "der Koffer",
    "latam": null
   },
   {
@@ -1026,7 +1064,8 @@ window.SCENE = {
      "fr": "les bagages",
      "en": "the luggage",
      "pt": "a bagagem",
-     "ar": "أمتعة"
+     "ar": "أمتعة",
+     "de": "das Gepäck"
     }
    ],
    "sur": "waage",
@@ -1045,6 +1084,7 @@ window.SCENE = {
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
+   "de": "der Koffer",
    "latam": null
   },
   {
@@ -1072,6 +1112,7 @@ window.SCENE = {
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
    "ru": "весы",
+   "de": "die Waage",
    "latam": null
   },
   {
@@ -1099,6 +1140,7 @@ window.SCENE = {
    "ar": "مكتب، منضدة",
    "pl": "okienko, kasa; włącznik",
    "ru": "окошко, касса; выключатель",
+   "de": "der Schalter (Theke), die Ladentheke",
    "latam": null
   },
   {
@@ -1126,6 +1168,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -1145,7 +1188,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": null,
@@ -1164,6 +1208,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -1191,6 +1236,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -1920,6 +1966,87 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna am Berliner Flughafen: Sie reicht der Angestellten am Check-in-Schalter ihren Pass; ihr großer grauer Koffer steht auf der Waage, ihr kleiner roter Koffer neben ihr, ihre Handtasche auf der Schulter; auf dem Schalter ein Bildschirm, eine Tastatur, ein Telefon, ein Ticket und eine Pflanze; hinter der Glasfront ein weißes Flugzeug unter blauem Himmel; ein Pilot geht mit seinem Koffer vorbei, nahe einer Treppe, einer Uhr und einer Sitzreihe.",
+    "consigne": "Anna verreist: Sie gibt ihren Koffer am Flughafen auf. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Por oder para?",
+    "B2": "Pretérito perfecto oder indefinido?",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La maleta grande está en la báscula.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El reloj está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El avión está detrás de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El periódico está en la silla.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La botella está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La botella está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El bote de basura está al lado de la puerta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La papelera está al lado de la puerta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay un boleto en el mostrador.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | Hay un billete en el mostrador.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | El piloto está delante de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "B1 | Anna viaja a España por una semana.": "Eine Dauer → <b>por</b>.",
+    "B1 | El avión sale para Madrid.": "Das Ziel → <b>para</b>.",
+    "B1 | Anna va a España para ver a su amiga.": "Der Zweck („um … zu“) → <b>para</b> + Infinitiv.",
+    "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "<b>gracias por</b>: der Grund, der Dank — beide deutschen „für“ sind hier verschieden: gracias por, aber para Anna.",
+    "B1 | Este boleto es para Anna.": "Der Empfänger → <b>para</b>.",
+    "B1 | Este billete es para Anna.": "Der Empfänger → <b>para</b>.",
+    "B1 | Anna pasa por el control de pasaportes.": "Ein Weg durch einen Ort → <b>por</b>.",
+    "B1 | Ha pagado cien euros por el boleto.": "Ein Preis, ein Tausch → <b>por</b>.",
+    "B1 | Ha pagado cien euros por el billete.": "Ein Preis, ein Tausch → <b>por</b>.",
+    "B1 | La maleta tiene que estar lista para las ocho.": "Eine Frist (bis zu einer Uhrzeit) → <b>para</b>.",
+    "B2 | Esta mañana Anna ha facturado la maleta.": "<b>esta mañana</b>: ein noch laufender Zeitraum → pretérito perfecto.",
+    "B2 | Ayer hizo la maleta en casa.": "<b>ayer</b>: ein abgeschlossener Zeitpunkt → indefinido. Das Deutsche sagt in beiden Fällen „hat gepackt“ — das Spanische unterscheidet.",
+    "B2 | El año pasado Anna viajó a Italia.": "<b>el año pasado</b>: ein abgeschlossener Zeitraum → indefinido.",
+    "B2 | Hoy el avión ha llegado con retraso.": "<b>hoy</b> → pretérito perfecto — mit haber, nicht mit „sein“: ha llegado.",
+    "B2 | ¿Ya has comprado el boleto?": "<b>ya</b> (schon): ein Bezug zur Gegenwart → pretérito perfecto.",
+    "B2 | ¿Ya has comprado el billete?": "<b>ya</b> (schon): ein Bezug zur Gegenwart → pretérito perfecto.",
+    "B2 | El piloto ha pilotado ese avión muchas veces.": "Eine Erfahrung bis heute (<b>muchas veces</b>) → pretérito perfecto.",
+    "C1 | Debe de estar contenta de viajar.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el piloto pilote el avión de Anna.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Pesará más de veinte kilos.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que este aeropuerto es el más moderno de Alemania.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | La maleta grande está en la báscula.": "Der große Koffer steht auf der Waage.",
+    "A2 | El reloj está en la pared.": "Die Uhr hängt an der Wand.",
+    "A2 | El avión está detrás de la ventana.": "Das Flugzeug steht hinter dem Fenster.",
+    "A2 | El periódico está en la silla.": "Die Zeitung liegt auf dem Stuhl.",
+    "A2 | La botella está en el piso.": "Die Flasche steht auf dem Boden.",
+    "A2 | La botella está en el suelo.": "Die Flasche steht auf dem Boden.",
+    "A2 | El bote de basura está al lado de la puerta.": "Der Papierkorb steht neben der Tür.",
+    "A2 | La papelera está al lado de la puerta.": "Der Papierkorb steht neben der Tür.",
+    "A2 | Hay un boleto en el mostrador.": "Auf dem Schalter liegt ein Ticket.",
+    "A2 | Hay un billete en el mostrador.": "Auf dem Schalter liegt ein Ticket.",
+    "A2 | El piloto está delante de la ventana.": "Der Pilot steht vor dem Fenster.",
+    "B1 | Anna viaja a España por una semana.": "Anna reist für eine Woche nach Spanien.",
+    "B1 | El avión sale para Madrid.": "Das Flugzeug fliegt nach Madrid.",
+    "B1 | Anna va a España para ver a su amiga.": "Anna fährt nach Spanien, um ihre Freundin zu sehen.",
+    "B1 | «Gracias por su ayuda», le dice Anna a la empleada.": "„Danke für Ihre Hilfe“, sagt Anna zur Angestellten.",
+    "B1 | Este boleto es para Anna.": "Dieses Ticket ist für Anna.",
+    "B1 | Este billete es para Anna.": "Dieses Ticket ist für Anna.",
+    "B1 | Anna pasa por el control de pasaportes.": "Anna geht durch die Passkontrolle.",
+    "B1 | Ha pagado cien euros por el boleto.": "Sie hat hundert Euro für das Ticket bezahlt.",
+    "B1 | Ha pagado cien euros por el billete.": "Sie hat hundert Euro für das Ticket bezahlt.",
+    "B1 | La maleta tiene que estar lista para las ocho.": "Der Koffer muss bis acht Uhr fertig sein.",
+    "B2 | Esta mañana Anna ha facturado la maleta.": "Heute Morgen hat Anna ihren Koffer aufgegeben.",
+    "B2 | Ayer hizo la maleta en casa.": "Gestern hat sie zu Hause ihren Koffer gepackt.",
+    "B2 | El año pasado Anna viajó a Italia.": "Letztes Jahr ist Anna nach Italien gereist.",
+    "B2 | Hoy el avión ha llegado con retraso.": "Heute ist das Flugzeug mit Verspätung angekommen.",
+    "B2 | ¿Ya has comprado el boleto?": "Hast du das Ticket schon gekauft?",
+    "B2 | ¿Ya has comprado el billete?": "Hast du das Ticket schon gekauft?",
+    "B2 | El piloto ha pilotado ese avión muchas veces.": "Der Pilot hat dieses Flugzeug schon viele Male geflogen.",
+    "C1 | Debe de estar contenta de viajar.": "Sie muss sich auf die Reise freuen.",
+    "C1 | Puede que el piloto pilote el avión de Anna.": "Vielleicht fliegt der Pilot Annas Flugzeug.",
+    "C1 | Pesará más de veinte kilos.": "Er wird wohl über zwanzig Kilo wiegen.",
+    "C1 | Dicen que este aeropuerto es el más moderno de Alemania.": "Man sagt, dieser Flughafen sei der modernste Deutschlands."
+   }
   }
  }
 };

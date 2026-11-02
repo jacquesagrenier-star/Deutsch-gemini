@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "قمر",
    "pl": "księżyc",
    "ru": "луна",
+   "de": "der Mond",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -108,6 +111,7 @@ window.SCENE = {
    "ar": "غابة",
    "pl": "las",
    "ru": "лес",
+   "de": "der Wald",
    "latam": null
   },
   {
@@ -135,6 +139,7 @@ window.SCENE = {
    "ar": "بحيرة",
    "pl": "jezioro",
    "ru": "озеро",
+   "de": "der See",
    "latam": null
   },
   {
@@ -162,6 +167,7 @@ window.SCENE = {
    "ar": "سفينة، مركب",
    "pl": "łódź, łódka",
    "ru": "лодка",
+   "de": "das Schiff, das Boot",
    "latam": null
   },
   {
@@ -189,6 +195,7 @@ window.SCENE = {
    "ar": "متجر، دكّان",
    "pl": "namiot",
    "ru": "палатка",
+   "de": "das Geschäft, der Laden",
    "latam": null
   },
   {
@@ -216,6 +223,7 @@ window.SCENE = {
    "ar": "فطر (مزروع)",
    "pl": "grzyb",
    "ru": "гриб",
+   "de": "der Champignon",
    "latam": null
   },
   {
@@ -243,6 +251,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -270,6 +279,7 @@ window.SCENE = {
    "ar": "غيتار",
    "pl": "gitara",
    "ru": "гитара",
+   "de": "die Gitarre",
    "latam": null
   },
   {
@@ -297,6 +307,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -324,6 +335,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -351,6 +363,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -378,6 +391,7 @@ window.SCENE = {
    "ar": "قِدر",
    "pl": "garnek",
    "ru": "кастрюля",
+   "de": "der Kochtopf",
    "latam": null
   },
   {
@@ -405,6 +419,7 @@ window.SCENE = {
    "ar": "نار",
    "pl": "ogień",
    "ru": "огонь, костёр",
+   "de": "das Feuer",
    "latam": null
   },
   {
@@ -438,6 +453,7 @@ window.SCENE = {
    "ar": "حجر",
    "pl": "kamień",
    "ru": "камень",
+   "de": "der Stein",
    "latam": null
   },
   {
@@ -465,6 +481,7 @@ window.SCENE = {
    "ar": "خشب",
    "pl": "drewno",
    "ru": "дерево (материал)",
+   "de": "das Holz",
    "latam": null
   },
   {
@@ -492,6 +509,7 @@ window.SCENE = {
    "ar": "خشب",
    "pl": "drewno",
    "ru": "дерево (материал)",
+   "de": "das Holz",
    "latam": null
   },
   {
@@ -519,6 +537,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -546,6 +565,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -579,6 +599,7 @@ window.SCENE = {
    "ar": "عشب",
    "pl": "trawa",
    "ru": "трава",
+   "de": "das Gras",
    "latam": null
   },
   {
@@ -606,6 +627,7 @@ window.SCENE = {
    "ar": "حصيرة",
    "pl": "karimata",
    "ru": "туристический коврик",
+   "de": "die Isomatte",
    "latam": null
   }
  ],
@@ -1251,6 +1273,73 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Ein Sommerabend am Seeufer im Wald: Anna spielt Gitarre, auf einem Baumstamm am Lagerfeuer sitzend; ein Freund grillt eine Wurst; ein Topf auf dem Feuer, Holz, eine Taschenlampe, eine rote Tasse; hinter ihnen das Zelt, ein Rucksack, ein Ruderboot, der See, die Kiefern und der Mond.",
+    "consigne": "Anna zeltet an einem See. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Das Futur",
+    "B2": "Das Irreale: si + subjuntivo",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La luna está en el cielo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El barco está a la orilla del lago.": "<b>de + el = del</b>, immer.",
+    "A2 | La olla está encima del fuego.": "<b>de + el = del</b>, immer.",
+    "A2 | La mochila está delante de la tienda.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La seta está al lado de la tienda.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La taza está en la piedra.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Hay una lámpara al lado de la madera.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | La tienda está cerca del lago.": "<b>de + el = del</b>, immer.",
+    "B1 | Mañana Anna va a nadar en el lago.": "Nahes Futur: <b>ir a</b> + Infinitiv → va a nadar.",
+    "B1 | Esta noche van a dormir en la tienda.": "Sie (Plural) → <b>van a</b> + Infinitiv.",
+    "B1 | Te tocaré una canción.": "Futur: Infinitiv + <b>-é</b> → tocaré. Eine einzige Endung, kein „werden“.",
+    "B1 | La sopa estará lista enseguida.": "Futur von estar: <b>estará</b>.",
+    "B1 | Mañana saldremos en barco.": "<b>salir</b> → unregelmäßiges Futur: <b>saldr-</b> → saldremos.",
+    "B1 | Esta noche hará frío.": "<b>hacer</b> → unregelmäßiges Futur <b>hará</b>.",
+    "B1 | ¿Vas a apagar el fuego luego?": "Du → <b>vas a</b> + Infinitiv.",
+    "B2 | Si no fuera tan oscuro, irían a nadar.": "Irreal: <b>si</b> + subjuntivo imperfecto → fuera. Wo das Deutsche „wäre“ sagt, nimmt das Spanische den subjuntivo.",
+    "B2 | Si tuvieran tiempo, se quedarían una semana más.": "<b>tener</b> → subjuntivo imperfecto <b>tuvieran</b>.",
+    "B2 | Si el chico tuviera hambre, comería la salchicha.": "Hauptsatz: der <b>condicional</b> → comería („würde essen“).",
+    "B2 | Ojalá pudiera tocar la guitarra como Anna.": "<b>ojalá</b> + subjuntivo imperfecto: ein unerfüllbarer Wunsch.",
+    "B2 | Si el barco fuera más grande, cabrían todos.": "Irreal: <b>si</b> + subjuntivo imperfecto → fuera.",
+    "B2 | Ojalá hubieran traído más madera.": "Bedauern in der Vergangenheit: <b>ojalá</b> + <b>hubiera</b> + Partizip.",
+    "C1 | Debe de estar pasándolo muy bien.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el chico sea el primo de Anna.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Serán las diez.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „es wird wohl …“ im Deutschen.",
+    "C1 | Dicen que en el bosque hay lobos.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | La luna está en el cielo.": "Der Mond steht am Himmel.",
+    "A2 | El barco está a la orilla del lago.": "Das Boot liegt am Seeufer.",
+    "A2 | La olla está encima del fuego.": "Der Topf steht auf dem Feuer.",
+    "A2 | La mochila está delante de la tienda.": "Der Rucksack steht vor dem Zelt.",
+    "A2 | La seta está al lado de la tienda.": "Der Pilz steht neben dem Zelt.",
+    "A2 | La taza está en la piedra.": "Die Tasse steht auf dem Stein.",
+    "A2 | Hay una lámpara al lado de la madera.": "Neben dem Holz liegt eine Lampe.",
+    "A2 | La tienda está cerca del lago.": "Das Zelt steht nahe am See.",
+    "B1 | Mañana Anna va a nadar en el lago.": "Morgen geht Anna im See schwimmen.",
+    "B1 | Esta noche van a dormir en la tienda.": "Heute Nacht schlafen sie im Zelt.",
+    "B1 | Te tocaré una canción.": "Ich spiele dir ein Lied.",
+    "B1 | La sopa estará lista enseguida.": "Die Suppe ist gleich fertig.",
+    "B1 | Mañana saldremos en barco.": "Morgen fahren wir mit dem Boot raus.",
+    "B1 | Esta noche hará frío.": "Heute Nacht wird es kalt.",
+    "B1 | ¿Vas a apagar el fuego luego?": "Machst du nachher das Feuer aus?",
+    "B2 | Si no fuera tan oscuro, irían a nadar.": "Wenn es nicht so dunkel wäre, würden sie schwimmen gehen.",
+    "B2 | Si tuvieran tiempo, se quedarían una semana más.": "Wenn sie Zeit hätten, würden sie noch eine Woche bleiben.",
+    "B2 | Si el chico tuviera hambre, comería la salchicha.": "Wenn der Junge Hunger hätte, würde er die Wurst essen.",
+    "B2 | Ojalá pudiera tocar la guitarra como Anna.": "Könnte ich doch Gitarre spielen wie Anna.",
+    "B2 | Si el barco fuera más grande, cabrían todos.": "Wenn das Boot größer wäre, würden alle hineinpassen.",
+    "B2 | Ojalá hubieran traído más madera.": "Hätten sie doch mehr Holz mitgebracht.",
+    "C1 | Debe de estar pasándolo muy bien.": "Sie muss sich sehr gut amüsieren.",
+    "C1 | Puede que el chico sea el primo de Anna.": "Vielleicht ist der Junge Annas Cousin.",
+    "C1 | Serán las diez.": "Es wird wohl zehn Uhr sein.",
+    "C1 | Dicen que en el bosque hay lobos.": "Man sagt, im Wald gebe es Wölfe."
+   }
   }
  }
 };

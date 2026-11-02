@@ -33,6 +33,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -66,6 +67,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -93,6 +95,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -120,6 +123,7 @@ window.SCENE = {
    "ar": "ستارة",
    "pl": "zasłona",
    "ru": "штора, занавеска",
+   "de": "der Vorhang",
    "latam": null
   },
   {
@@ -140,6 +144,7 @@ window.SCENE = {
      "en": "the shop window",
      "pt": "a vitrine",
      "ar": "واجهة المتجر",
+     "de": "das Schaufenster",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -163,6 +168,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -190,6 +196,7 @@ window.SCENE = {
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
    "ru": "фонарь",
+   "de": "die Straßenlaterne",
    "latam": {
     "mot": "farol",
     "genre": "el",
@@ -221,6 +228,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -248,6 +256,7 @@ window.SCENE = {
    "ar": "شارع",
    "pl": "ulica",
    "ru": "улица",
+   "de": "die Straße",
    "latam": null
   },
   {
@@ -275,6 +284,7 @@ window.SCENE = {
    "ar": "فرن",
    "pl": "piekarnik",
    "ru": "духовка",
+   "de": "der Backofen",
    "latam": null
   },
   {
@@ -332,6 +342,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -351,7 +362,8 @@ window.SCENE = {
      "fr": "la bouteille",
      "en": "bottle",
      "pt": "a garrafa",
-     "ar": "زجاجة"
+     "ar": "زجاجة",
+     "de": "die Flasche"
     }
    ],
    "sur": "regal",
@@ -370,6 +382,7 @@ window.SCENE = {
    "ar": "عصير",
    "pl": "sok",
    "ru": "сок",
+   "de": "der Saft",
    "latam": {
     "mot": "jugo",
     "genre": "el",
@@ -393,7 +406,8 @@ window.SCENE = {
      "fr": "la bouteille",
      "en": "bottle",
      "pt": "a garrafa",
-     "ar": "زجاجة"
+     "ar": "زجاجة",
+     "de": "die Flasche"
     }
    ],
    "sur": "regal",
@@ -412,6 +426,7 @@ window.SCENE = {
    "ar": "حليب",
    "pl": "mleko",
    "ru": "молоко",
+   "de": "die Milch",
    "latam": null
   },
   {
@@ -439,6 +454,7 @@ window.SCENE = {
    "ar": "دقيق، طحين",
    "pl": "mąka",
    "ru": "мука",
+   "de": "das Mehl",
    "latam": null
   },
   {
@@ -458,7 +474,8 @@ window.SCENE = {
      "fr": "le verre",
      "en": "glass",
      "pt": "o copo",
-     "ar": "كوب"
+     "ar": "كوب",
+     "de": "das Glas (Trinkglas)"
     }
    ],
    "sur": "regal",
@@ -477,6 +494,7 @@ window.SCENE = {
    "ar": "سكّر",
    "pl": "cukier",
    "ru": "сахар",
+   "de": "der Zucker",
    "latam": null
   },
   {
@@ -504,6 +522,7 @@ window.SCENE = {
    "ar": "إبريق، دورق",
    "pl": "dzbanek",
    "ru": "кофейник, кувшин",
+   "de": "der Krug, die Karaffe",
    "latam": null
   },
   {
@@ -543,6 +562,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -582,6 +602,7 @@ window.SCENE = {
    "ar": "خبز",
    "pl": "chleb",
    "ru": "хлеб",
+   "de": "das Brot",
    "latam": null
   },
   {
@@ -602,6 +623,7 @@ window.SCENE = {
      "en": "the shop assistant",
      "pt": "a vendedora",
      "ar": "بائعة",
+     "de": "die Verkäuferin",
      "latam": {
       "mot": "vendedora",
       "genre": "la",
@@ -625,6 +647,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -652,6 +675,7 @@ window.SCENE = {
    "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Mütze",
    "latam": null
   },
   {
@@ -679,6 +703,7 @@ window.SCENE = {
    "ar": "بلوزة",
    "pl": "bluzka",
    "ru": "блузка",
+   "de": "die Bluse",
    "latam": null
   },
   {
@@ -706,6 +731,7 @@ window.SCENE = {
    "ar": "خبز",
    "pl": "bułka",
    "ru": "булочка",
+   "de": "das Brot",
    "latam": null
   },
   {
@@ -733,6 +759,7 @@ window.SCENE = {
    "ar": "كيس",
    "pl": "torba, torebka (papierowa, foliowa)",
    "ru": "пакет",
+   "de": "die Tüte, der Beutel",
    "latam": null
   },
   {
@@ -752,7 +779,8 @@ window.SCENE = {
      "fr": "l'argent",
      "en": "the money",
      "pt": "o dinheiro",
-     "ar": "مال، نقود"
+     "ar": "مال، نقود",
+     "de": "das Geld"
     }
    ],
    "sur": null,
@@ -771,6 +799,7 @@ window.SCENE = {
    "ar": "قطعة نقدية، عملة",
    "pl": "moneta",
    "ru": "монета",
+   "de": "die Münze, die Währung",
    "latam": null
   },
   {
@@ -798,6 +827,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -825,6 +855,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -852,6 +883,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -883,6 +915,7 @@ window.SCENE = {
    "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
+   "de": "die Handtasche",
    "latam": null
   },
   {
@@ -903,6 +936,7 @@ window.SCENE = {
      "en": "the jeans",
      "pt": "a calça jeans",
      "ar": "بنطال جينز",
+     "de": "die Jeans",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -926,6 +960,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -945,7 +980,8 @@ window.SCENE = {
      "fr": "la chaussure",
      "en": "the shoe",
      "pt": "o sapato",
-     "ar": "حذاء"
+     "ar": "حذاء",
+     "de": "der Schuh"
     }
    ],
    "sur": null,
@@ -964,6 +1000,7 @@ window.SCENE = {
    "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
+   "de": "der Stiefel",
    "latam": null
   },
   {
@@ -983,7 +1020,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     }
    ],
    "sur": null,
@@ -1002,6 +1040,7 @@ window.SCENE = {
    "ar": "جار",
    "pl": "sąsiad",
    "ru": "сосед",
+   "de": "der Nachbar",
    "latam": null
   },
   {
@@ -1035,6 +1074,7 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
+   "de": "die Brille",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -1066,6 +1106,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -1093,6 +1134,7 @@ window.SCENE = {
    "ar": "جريدة",
    "pl": "gazeta",
    "ru": "газета",
+   "de": "die Zeitung",
    "latam": null
   },
   {
@@ -1120,6 +1162,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1139,7 +1182,8 @@ window.SCENE = {
      "fr": "le café",
      "en": "coffee",
      "pt": "o café",
-     "ar": "قهوة"
+     "ar": "قهوة",
+     "de": "der Kaffee"
     }
    ],
    "sur": "tisch",
@@ -1158,6 +1202,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -1185,6 +1230,7 @@ window.SCENE = {
    "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
+   "de": "der Teller, das Gericht",
    "latam": null
   },
   {
@@ -1212,6 +1258,7 @@ window.SCENE = {
    "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
+   "de": "der Kuchen, die Torte",
    "latam": null
   },
   {
@@ -1239,6 +1286,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -1272,6 +1320,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -1371,6 +1420,7 @@ window.SCENE = {
    "ar": "عصا",
    "pl": "laska, kij",
    "ru": "палка, трость",
+   "de": "der Gehstock",
    "latam": null
   },
   {
@@ -1398,6 +1448,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -1425,6 +1476,7 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
+   "de": "der Hund",
    "latam": null
   },
   {
@@ -1452,6 +1504,7 @@ window.SCENE = {
    "ar": "صندوق الدفع",
    "pl": "kasa",
    "ru": "касса",
+   "de": "die Kasse",
    "latam": null
   },
   {
@@ -1479,6 +1532,7 @@ window.SCENE = {
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
    "ru": "весы",
+   "de": "die Waage",
    "latam": null
   },
   {
@@ -1506,6 +1560,7 @@ window.SCENE = {
    "ar": "سكّين",
    "pl": "nóż",
    "ru": "нож",
+   "de": "das Messer",
    "latam": null
   },
   {
@@ -1533,6 +1588,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -1560,6 +1616,7 @@ window.SCENE = {
    "ar": "سلّة",
    "pl": "koszyk, kosz",
    "ru": "корзина",
+   "de": "der Korb",
    "latam": null
   },
   {
@@ -1587,6 +1644,7 @@ window.SCENE = {
    "ar": "خبز",
    "pl": "bułka",
    "ru": "булочка",
+   "de": "das Brot",
    "latam": null
   },
   {
@@ -1614,6 +1672,7 @@ window.SCENE = {
    "ar": "بريتزل (كعك ألماني مملّح)",
    "pl": "precel",
    "ru": "брецель (крендель)",
+   "de": "die Brezel",
    "latam": null
   },
   {
@@ -1641,6 +1700,7 @@ window.SCENE = {
    "ar": "كعكة، فطيرة",
    "pl": "tort",
    "ru": "торт",
+   "de": "der Kuchen, die Torte",
    "latam": null
   },
   {
@@ -1668,6 +1728,7 @@ window.SCENE = {
    "ar": "فراولة",
    "pl": "truskawka",
    "ru": "клубника",
+   "de": "die Erdbeere",
    "latam": null
   },
   {
@@ -1695,6 +1756,7 @@ window.SCENE = {
    "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
+   "de": "der Kuchen, die Torte",
    "latam": null
   },
   {
@@ -1722,6 +1784,7 @@ window.SCENE = {
    "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
+   "de": "der Kuchen, die Torte",
    "latam": null
   },
   {
@@ -1761,6 +1824,7 @@ window.SCENE = {
    "ar": "مكتب، منضدة",
    "pl": "okienko, kasa; włącznik",
    "ru": "окошко, касса; выключатель",
+   "de": "der Schalter (Theke), die Ladentheke",
    "latam": null
   },
   {
@@ -1788,6 +1852,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -1821,6 +1886,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -2519,6 +2585,77 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna an einem Morgen in der Bäckerei ihres Viertels: Die Verkäuferin mit weißer Haube reicht ihr über den Tresen eine Tüte Brötchen, Anna reicht ihr eine Münze; in der Vitrine eine Erdbeertorte, ein Stück Apfelkuchen und ein Nusskuchen; auf dem Tresen die Kasse, eine Waage, ein Messer, eine Kuchenschachtel, ein Korb Brötchen und Brezeln; auf den Regalen Brote, Flaschen mit Saft und Milch, Mehl, Zucker, eine Kaffeemaschine und Tassen; am kleinen Tisch beim Schaufenster liest ihr Nachbar Zeitung vor einem Kaffee und einem Stück Kuchen, sein Stock lehnt am Tisch, sein Hund liegt zu seinen Füßen; eine Pflanze auf der Fensterbank, eine andere auf dem Boden im Vordergrund, ein Fahrrad auf der Straße.",
+    "consigne": "Anna kauft Brötchen in der Bäckerei ihres Viertels. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Verbalperiphrasen",
+    "B2": "Die indirekte Rede",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El reloj está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La leche está en la estantería.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El perro está al lado del vecino.": "<b>de + el = del</b>, immer.",
+    "A2 | La bicicleta está delante de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay una caja en el mostrador.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | La tarta está en el plato.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El vecino está al lado de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La planta está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La planta está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "B1 | La panadera acaba de sacar el pan del horno.": "<b>acabar de</b> + Infinitiv = gerade etwas getan haben.",
+    "B1 | El vecino sigue leyendo el periódico.": "<b>seguir</b> + gerundio = weiter etwas tun.",
+    "B1 | Anna está pagando los panecillos.": "<b>estar</b> + gerundio = gerade dabei sein — eine Form, die dem Deutschen fehlt.",
+    "B1 | Anna va a comer un panecillo en casa.": "<b>ir a</b> + Infinitiv = das nahe Futur.",
+    "B1 | El vecino vuelve a pedir un café.": "<b>volver a</b> + Infinitiv = etwas noch einmal tun.",
+    "B1 | El perro acaba de dormirse.": "<b>acabar de</b> + Infinitiv = gerade etwas getan haben.",
+    "B1 | La panadera lleva diez años haciendo pan.": "<b>llevar</b> + Dauer + gerundio = seit … etwas tun.",
+    "B1 | Anna tiene que volver a casa antes de las ocho.": "<b>tener que</b> + Infinitiv = müssen.",
+    "B2 | La panadera dice que el pan está recién hecho.": "<b>decir que</b> im Präsens gibt eine Tatsache wieder → Indikativ (kein Konjunktiv wie im Deutschen).",
+    "B2 | Anna pregunta cuánto cuestan los panecillos.": "Indirekte Frage im Präsens → Indikativ.",
+    "B2 | El vecino dijo que el café estaba muy bueno.": "Einleitendes Verb in der Vergangenheit (<b>dijo</b>) → imperfecto.",
+    "B2 | La panadera le pide a Anna que vuelva mañana.": "Eine wiedergegebene Aufforderung (<b>pedir que</b>) → subjuntivo.",
+    "B2 | Anna dijo que volvería al día siguiente.": "Futur, in der Vergangenheit wiedergegeben → <b>condicional</b>.",
+    "B2 | El vecino pregunta si hay tarta de fresa.": "<b>preguntar si</b> → Indikativ.",
+    "C1 | Los panecillos deben de estar recién hechos.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („müssen wohl“).",
+    "C1 | Puede que el perro sea del vecino.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Será de esta mañana.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „es wird wohl …“ im Deutschen.",
+    "C1 | Dicen que esta panadería es la mejor del barrio.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "Die Uhr hängt an der Wand.",
+    "A2 | La leche está en la estantería.": "Die Milch steht im Regal.",
+    "A2 | El perro está al lado del vecino.": "Der Hund liegt neben dem Nachbarn.",
+    "A2 | La bicicleta está delante de la ventana.": "Das Fahrrad steht vor dem Fenster.",
+    "A2 | Hay una caja en el mostrador.": "Auf dem Tresen steht eine Kasse.",
+    "A2 | La tarta está en el plato.": "Der Kuchen liegt auf dem Teller.",
+    "A2 | El vecino está al lado de la ventana.": "Der Nachbar sitzt neben dem Fenster.",
+    "A2 | La planta está en el piso.": "Die Pflanze steht auf dem Boden.",
+    "A2 | La planta está en el suelo.": "Die Pflanze steht auf dem Boden.",
+    "B1 | La panadera acaba de sacar el pan del horno.": "Die Bäckerin hat das Brot gerade aus dem Ofen geholt.",
+    "B1 | El vecino sigue leyendo el periódico.": "Der Nachbar liest weiter Zeitung.",
+    "B1 | Anna está pagando los panecillos.": "Anna bezahlt gerade die Brötchen.",
+    "B1 | Anna va a comer un panecillo en casa.": "Anna wird zu Hause ein Brötchen essen.",
+    "B1 | El vecino vuelve a pedir un café.": "Der Nachbar bestellt noch einen Kaffee.",
+    "B1 | El perro acaba de dormirse.": "Der Hund ist gerade eingeschlafen.",
+    "B1 | La panadera lleva diez años haciendo pan.": "Die Bäckerin backt seit zehn Jahren Brot.",
+    "B1 | Anna tiene que volver a casa antes de las ocho.": "Anna muss vor acht Uhr nach Hause.",
+    "B2 | La panadera dice que el pan está recién hecho.": "Die Bäckerin sagt, das Brot sei frisch gebacken.",
+    "B2 | Anna pregunta cuánto cuestan los panecillos.": "Anna fragt, wie viel die Brötchen kosten.",
+    "B2 | El vecino dijo que el café estaba muy bueno.": "Der Nachbar sagte, der Kaffee sei sehr gut.",
+    "B2 | La panadera le pide a Anna que vuelva mañana.": "Die Bäckerin bittet Anna, morgen wiederzukommen.",
+    "B2 | Anna dijo que volvería al día siguiente.": "Anna sagte, sie werde am nächsten Tag wiederkommen.",
+    "B2 | El vecino pregunta si hay tarta de fresa.": "Der Nachbar fragt, ob es Erdbeertorte gibt.",
+    "C1 | Los panecillos deben de estar recién hechos.": "Die Brötchen müssen ganz frisch sein.",
+    "C1 | Puede que el perro sea del vecino.": "Vielleicht gehört der Hund dem Nachbarn.",
+    "C1 | Será de esta mañana.": "Es wird wohl von heute Morgen sein.",
+    "C1 | Dicen que esta panadería es la mejor del barrio.": "Man sagt, diese Bäckerei sei die beste des Viertels."
+   }
   }
  }
 };

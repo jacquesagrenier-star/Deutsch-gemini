@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
+   "de": "die Zimmerdecke",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -93,6 +95,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -126,6 +129,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -153,6 +157,7 @@ window.SCENE = {
    "ar": "صندوق الدفع",
    "pl": "skrzynia, skrzynka",
    "ru": "ящик",
+   "de": "die Kasse",
    "latam": null
   },
   {
@@ -180,6 +185,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -207,6 +213,7 @@ window.SCENE = {
    "ar": "كابل، سلك",
    "pl": "kabel",
    "ru": "кабель",
+   "de": "das Kabel",
    "latam": null
   },
   {
@@ -234,6 +241,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -261,6 +269,7 @@ window.SCENE = {
    "ar": "سلّم، درج",
    "pl": "drabina",
    "ru": "лестница (стремянка)",
+   "de": "die Treppe",
    "latam": null
   },
   {
@@ -288,6 +297,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -315,6 +325,7 @@ window.SCENE = {
    "ar": "سلّة",
    "pl": "koszyk, kosz",
    "ru": "корзина",
+   "de": "der Korb",
    "latam": null
   },
   {
@@ -348,6 +359,7 @@ window.SCENE = {
    "ar": "عجلة",
    "pl": "rower, koło",
    "ru": "колесо, велосипед",
+   "de": "das Rad, der Reifen",
    "latam": null
   },
   {
@@ -375,6 +387,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -394,7 +407,8 @@ window.SCENE = {
      "fr": "le poster",
      "en": "the poster",
      "pt": "o pôster",
-     "ar": "ملصق، بوستر"
+     "ar": "ملصق، بوستر",
+     "de": "das Poster"
     }
    ],
    "sur": null,
@@ -413,6 +427,7 @@ window.SCENE = {
    "ar": "ملصق إعلاني",
    "pl": "plakat, afisz",
    "ru": "плакат, афиша",
+   "de": "das Plakat",
    "latam": null
   },
   {
@@ -440,6 +455,7 @@ window.SCENE = {
    "ar": "تقويم، رزنامة",
    "pl": "kalendarz",
    "ru": "календарь",
+   "de": "der Kalender",
    "latam": null
   },
   {
@@ -459,7 +475,8 @@ window.SCENE = {
      "fr": "le poster",
      "en": "the poster",
      "pt": "o pôster",
-     "ar": "ملصق، بوستر"
+     "ar": "ملصق، بوستر",
+     "de": "das Poster"
     }
    ],
    "sur": null,
@@ -478,6 +495,7 @@ window.SCENE = {
    "ar": "ملصق إعلاني",
    "pl": "plakat, afisz",
    "ru": "плакат, афиша",
+   "de": "das Plakat",
    "latam": null
   },
   {
@@ -511,6 +529,7 @@ window.SCENE = {
    "ar": "مقبس كهربائي",
    "pl": "gniazdko (elektryczne)",
    "ru": "розетка",
+   "de": "die Steckdose",
    "latam": null
   },
   {
@@ -538,6 +557,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -565,6 +585,7 @@ window.SCENE = {
    "ar": "كرسي بلا ظهر",
    "pl": "taboret",
    "ru": "табурет",
+   "de": "der Hocker",
    "latam": null
   },
   {
@@ -592,6 +613,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -619,6 +641,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -646,6 +669,7 @@ window.SCENE = {
    "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
+   "de": "das T-Shirt",
    "latam": null
   },
   {
@@ -673,6 +697,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -693,6 +718,7 @@ window.SCENE = {
      "en": "the trainer",
      "pt": "o tênis",
      "ar": "حذاء رياضي",
+     "de": "der Turnschuh",
      "latam": {
       "mot": "tenis",
       "genre": "el",
@@ -722,6 +748,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -749,6 +776,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -776,6 +804,7 @@ window.SCENE = {
    "ar": "عجلة",
    "pl": "rower, koło",
    "ru": "колесо, велосипед",
+   "de": "das Rad, der Reifen",
    "latam": null
   },
   {
@@ -803,6 +832,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -830,6 +860,7 @@ window.SCENE = {
    "ar": "سلسلة، خطّ إنتاج",
    "pl": "łańcuch",
    "ru": "цепь, цепочка",
+   "de": "die Kette, das Fließband",
    "latam": null
   },
   {
@@ -857,6 +888,7 @@ window.SCENE = {
    "ar": "كمّاشة",
    "pl": "kombinerki, obcęgi",
    "ru": "плоскогубцы, клещи",
+   "de": "die Zange",
    "latam": {
     "mot": "pinzas",
     "genre": "las",
@@ -888,6 +920,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -915,6 +948,7 @@ window.SCENE = {
    "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Mütze",
    "latam": null
   },
   {
@@ -948,6 +982,7 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
+   "de": "die Brille",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -979,6 +1014,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -1006,6 +1042,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1039,6 +1076,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -1066,6 +1104,7 @@ window.SCENE = {
    "ar": "مشعّ تدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
+   "de": "der Heizkörper",
    "latam": null
   },
   {
@@ -1085,7 +1124,8 @@ window.SCENE = {
      "fr": "l'immeuble, le bâtiment",
      "en": "the building",
      "pt": "o prédio, o edifício",
-     "ar": "عمارة، مبنى"
+     "ar": "عمارة، مبنى",
+     "de": "das Gebäude"
     }
    ],
    "sur": null,
@@ -1104,6 +1144,7 @@ window.SCENE = {
    "ar": "بيت",
    "pl": "dom",
    "ru": "дом",
+   "de": "das Haus",
    "latam": null
   },
   {
@@ -1131,6 +1172,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -1158,6 +1200,7 @@ window.SCENE = {
    "ar": "سيارة",
    "pl": "samochód",
    "ru": "машина, автомобиль",
+   "de": "das Auto",
    "latam": {
     "mot": "carro",
     "genre": "el",
@@ -1189,6 +1232,7 @@ window.SCENE = {
    "ar": "خوذة",
    "pl": "kask",
    "ru": "шлем",
+   "de": "der Helm",
    "latam": null
   },
   {
@@ -1208,7 +1252,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     }
    ],
    "sur": null,
@@ -1227,6 +1272,7 @@ window.SCENE = {
    "ar": "راكب درّاجة",
    "pl": "rowerzysta",
    "ru": "велосипедист",
+   "de": "der Radfahrer",
    "latam": null
   },
   {
@@ -1254,6 +1300,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -1281,6 +1328,7 @@ window.SCENE = {
    "ar": "شارع",
    "pl": "ulica",
    "ru": "улица",
+   "de": "die Straße",
    "latam": null
   },
   {
@@ -1301,6 +1349,7 @@ window.SCENE = {
      "en": "the shop window",
      "pt": "a vitrine",
      "ar": "واجهة المتجر",
+     "de": "das Schaufenster",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -1324,6 +1373,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -1351,6 +1401,7 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
+   "de": "der Hund",
    "latam": null
   },
   {
@@ -1378,6 +1429,7 @@ window.SCENE = {
    "ar": "صندوق الدفع",
    "pl": "kasa",
    "ru": "касса",
+   "de": "die Kasse",
    "latam": null
   },
   {
@@ -1405,6 +1457,7 @@ window.SCENE = {
    "ar": "بار، منضدة المقهى",
    "pl": "lada",
    "ru": "стойка",
+   "de": "die Theke",
    "latam": null
   },
   {
@@ -1424,7 +1477,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": "tisch",
@@ -1443,6 +1497,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -1462,7 +1517,8 @@ window.SCENE = {
      "fr": "le café",
      "en": "coffee",
      "pt": "o café",
-     "ar": "قهوة"
+     "ar": "قهوة",
+     "de": "der Kaffee"
     }
    ],
    "sur": "tisch",
@@ -1481,6 +1537,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -1508,6 +1565,7 @@ window.SCENE = {
    "ar": "جرس الباب",
    "pl": "dzwonek",
    "ru": "звонок",
+   "de": "die Klingel",
    "latam": null
   },
   {
@@ -1535,6 +1593,7 @@ window.SCENE = {
    "ar": "مترو",
    "pl": "miarka składana",
    "ru": "складной метр",
+   "de": "die U-Bahn",
    "latam": null
   },
   {
@@ -1562,6 +1621,7 @@ window.SCENE = {
    "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
+   "de": "der Handschuh",
    "latam": null
   },
   {
@@ -1589,6 +1649,7 @@ window.SCENE = {
    "ar": "مترو",
    "pl": "miarka składana",
    "ru": "складной метр",
+   "de": "die U-Bahn",
    "latam": null
   },
   {
@@ -1616,6 +1677,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -1649,6 +1711,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -1676,6 +1739,7 @@ window.SCENE = {
    "ar": "عجلة",
    "pl": "rower, koło",
    "ru": "колесо, велосипед",
+   "de": "das Rad, der Reifen",
    "latam": null
   },
   {
@@ -1703,6 +1767,7 @@ window.SCENE = {
    "ar": "أداة",
    "pl": "narzędzie, narzędzia",
    "ru": "инструмент",
+   "de": "das Werkzeug",
    "latam": null
   },
   {
@@ -1730,6 +1795,7 @@ window.SCENE = {
    "ar": "مطرقة",
    "pl": "młotek",
    "ru": "молоток",
+   "de": "der Hammer",
    "latam": null
   },
   {
@@ -1757,6 +1823,7 @@ window.SCENE = {
    "ar": "زيت",
    "pl": "olej",
    "ru": "масло (растительное)",
+   "de": "das Öl",
    "latam": null
   },
   {
@@ -1784,6 +1851,7 @@ window.SCENE = {
    "ar": "دلو",
    "pl": "wiadro",
    "ru": "ведро",
+   "de": "der Eimer",
    "latam": {
     "mot": "cubeta",
     "genre": "la",
@@ -1821,6 +1889,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -2519,6 +2588,79 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark an einem Nachmittag in der Fahrradwerkstatt seines Viertels: Er hält das abmontierte Vorderrad seines grünen Fahrrads, das auf dem Sattel steht, und sieht dem hockenden Mechaniker zu, der die Kette mit einer Zange hält; am Boden ein roter Werkzeugkasten mit Hammer, eine Ölkanne und ein Eimer; links die Werkbank mit Arbeitshandschuhen, zwei Zollstöcken, einer Klingel, einer Flasche und einem Kaffee, eine Leiter, ein Regal mit Kartons und eine Kiste, ein Kabel und eine Glühbirne; an der weißen Backsteinwand ein rotes Fahrrad mit Korb, zwei Räder, eine Uhr, ein Fahrradposter, ein Kalender, eine Holztür und ein Hocker; rechts das Schaufenster zur Straße mit einem Radfahrer mit Helm und einem blauen Auto, ein Heizkörper, eine alte Registrierkasse auf dem Tresen und ein Hund, der auf der Fensterbank liegt.",
+    "consigne": "Mark lässt sein Fahrrad in der Werkstatt des Viertels reparieren. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Die Indefinitpronomen: alguien, nadie, algo, nada",
+    "B2": "Die Konnektoren: como, porque, así que, por eso",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El reloj está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La botella está en la mesa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Las cajas están en la estantería.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La cubeta está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El cubo está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El perro está al lado de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El carro está en la calle.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El coche está en la calle.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El cartel está al lado de la puerta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay un taburete detrás de la bicicleta.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | ¿Alguien puede ayudarme?": "<b>alguien</b> = jemand.",
+    "B1 | Nadie sabe arreglar una cadena mejor que el mecánico.": "<b>nadie</b> vor dem Verb: ohne „no“.",
+    "B1 | Algo está roto: la cadena.": "<b>algo</b> = etwas.",
+    "B1 | La rueda no tiene nada.": "<b>nada</b> = nichts; mit „no“ vor dem Verb — die doppelte Verneinung ist hier Pflicht, nicht „nicht nichts“.",
+    "B1 | ¿Tienes alguna herramienta para la cadena?": "<b>alguno</b> passt sich an: alguna herramienta (weiblich).",
+    "B1 | No hay ningún cliente más en el taller.": "<b>ninguno</b> verliert sein -o vor einem männlichen Nomen: ningún cliente.",
+    "B1 | ¿Quieres algo de beber? Hay café.": "<b>algo de</b> + Infinitiv = etwas zu trinken.",
+    "B1 | El perro no molesta a nadie.": "Nach dem Verb behält <b>nadie</b> das „no“: no molesta a nadie.",
+    "B2 | Como la cadena está rota, Mark no puede ir en bici.": "<b>como</b> am Satzanfang = da, weil: der Grund zuerst — und das Verb bleibt an seinem Platz, kein Satzende wie nach „da“.",
+    "B2 | Mark trae la bici al taller porque la rueda hace ruido.": "<b>porque</b> nach dem Hauptsatz = weil. Die Wortstellung danach bleibt Subjekt – Verb.",
+    "B2 | La cadena está seca, así que el mecánico le pone aceite.": "<b>así que</b> = also, deshalb: die Folge.",
+    "B2 | Hace frío fuera; por eso Mark lleva chaqueta.": "<b>por eso</b> = deshalb: die Folge, nach Semikolon oder Punkt. Danach keine Umstellung: por eso Mark lleva.",
+    "B2 | El perro está tranquilo, ya que conoce a todos los clientes.": "<b>ya que</b> = da, zumal.",
+    "B2 | Mark no sabe arreglar la rueda, así que pregunta al mecánico.": "<b>así que</b> leitet die Folge ein.",
+    "C1 | Debe de estar rota.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el perro sea del mecánico.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | La reparación durará una hora.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que este taller es el mejor del barrio.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "Die Uhr hängt an der Wand.",
+    "A2 | La botella está en la mesa.": "Die Flasche steht auf dem Tisch.",
+    "A2 | Las cajas están en la estantería.": "Die Kartons stehen im Regal.",
+    "A2 | La cubeta está en el piso.": "Der Eimer steht auf dem Boden.",
+    "A2 | El cubo está en el suelo.": "Der Eimer steht auf dem Boden.",
+    "A2 | El perro está al lado de la ventana.": "Der Hund liegt neben dem Fenster.",
+    "A2 | El carro está en la calle.": "Das Auto steht auf der Straße.",
+    "A2 | El coche está en la calle.": "Das Auto steht auf der Straße.",
+    "A2 | El cartel está al lado de la puerta.": "Das Poster hängt neben der Tür.",
+    "A2 | Hay un taburete detrás de la bicicleta.": "Hinter dem Fahrrad steht ein Hocker.",
+    "B1 | ¿Alguien puede ayudarme?": "Kann mir jemand helfen?",
+    "B1 | Nadie sabe arreglar una cadena mejor que el mecánico.": "Niemand kann eine Kette besser reparieren als der Mechaniker.",
+    "B1 | Algo está roto: la cadena.": "Etwas ist kaputt: die Kette.",
+    "B1 | La rueda no tiene nada.": "Das Rad hat nichts.",
+    "B1 | ¿Tienes alguna herramienta para la cadena?": "Hast du irgendein Werkzeug für die Kette?",
+    "B1 | No hay ningún cliente más en el taller.": "Es ist kein weiterer Kunde in der Werkstatt.",
+    "B1 | ¿Quieres algo de beber? Hay café.": "Willst du etwas trinken? Es gibt Kaffee.",
+    "B1 | El perro no molesta a nadie.": "Der Hund stört niemanden.",
+    "B2 | Como la cadena está rota, Mark no puede ir en bici.": "Da die Kette kaputt ist, kann Mark nicht Rad fahren.",
+    "B2 | Mark trae la bici al taller porque la rueda hace ruido.": "Mark bringt das Fahrrad in die Werkstatt, weil das Rad Geräusche macht.",
+    "B2 | La cadena está seca, así que el mecánico le pone aceite.": "Die Kette ist trocken, also ölt der Mechaniker sie.",
+    "B2 | Hace frío fuera; por eso Mark lleva chaqueta.": "Draußen ist es kalt; deshalb trägt Mark eine Jacke.",
+    "B2 | El perro está tranquilo, ya que conoce a todos los clientes.": "Der Hund ist ruhig, da er alle Kunden kennt.",
+    "B2 | Mark no sabe arreglar la rueda, así que pregunta al mecánico.": "Mark kann das Rad nicht reparieren, also fragt er den Mechaniker.",
+    "C1 | Debe de estar rota.": "Es muss kaputt sein.",
+    "C1 | Puede que el perro sea del mecánico.": "Vielleicht gehört der Hund dem Mechaniker.",
+    "C1 | La reparación durará una hora.": "Die Reparatur wird wohl eine Stunde dauern.",
+    "C1 | Dicen que este taller es el mejor del barrio.": "Man sagt, diese Werkstatt sei die beste des Viertels."
+   }
   }
  }
 };

@@ -39,6 +39,7 @@ window.SCENE = {
    "ar": "غيمة، سحابة",
    "pl": "chmura",
    "ru": "облако, туча",
+   "de": "die Wolke",
    "latam": null
   },
   {
@@ -72,6 +73,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -105,6 +107,7 @@ window.SCENE = {
    "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
+   "de": "der Vogel",
    "latam": null
   },
   {
@@ -132,6 +135,7 @@ window.SCENE = {
    "ar": "برج",
    "pl": "wieża",
    "ru": "башня",
+   "de": "der Turm",
    "latam": null
   },
   {
@@ -165,6 +169,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -192,6 +197,7 @@ window.SCENE = {
    "ar": "كنيسة",
    "pl": "kościół",
    "ru": "церковь",
+   "de": "die Kirche",
    "latam": null
   },
   {
@@ -219,6 +225,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -288,6 +295,7 @@ window.SCENE = {
    "ar": "زهرة",
    "pl": "kwiat",
    "ru": "цветок",
+   "de": "die Blume",
    "latam": null
   },
   {
@@ -307,7 +315,8 @@ window.SCENE = {
      "fr": "l'immeuble, le bâtiment",
      "en": "the building",
      "pt": "o prédio, o edifício",
-     "ar": "عمارة، مبنى"
+     "ar": "عمارة، مبنى",
+     "de": "das Gebäude"
     }
    ],
    "sur": null,
@@ -332,6 +341,7 @@ window.SCENE = {
    "ar": "بيت",
    "pl": "dom",
    "ru": "дом",
+   "de": "das Haus",
    "latam": null
   },
   {
@@ -359,6 +369,7 @@ window.SCENE = {
    "ar": "نُصب، معلم أثري",
    "pl": "pomnik",
    "ru": "памятник",
+   "de": "das Denkmal",
    "latam": null
   },
   {
@@ -386,6 +397,7 @@ window.SCENE = {
    "ar": "ترام",
    "pl": "tramwaj",
    "ru": "трамвай",
+   "de": "die Straßenbahn",
    "latam": null
   },
   {
@@ -413,6 +425,7 @@ window.SCENE = {
    "ar": "لافتة، إشارة",
    "pl": "tabliczka, szyld",
    "ru": "табличка, вывеска",
+   "de": "das Schild (Verkehrsschild), das Zeichen",
    "latam": null
   },
   {
@@ -440,6 +453,7 @@ window.SCENE = {
    "ar": "إشارة المرور",
    "pl": "sygnalizacja świetlna, światła",
    "ru": "светофор",
+   "de": "die Ampel",
    "latam": null
   },
   {
@@ -467,6 +481,7 @@ window.SCENE = {
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
    "ru": "фонарь",
+   "de": "die Straßenlaterne",
    "latam": {
     "mot": "farol",
     "genre": "el",
@@ -498,6 +513,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -525,6 +541,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -552,6 +569,7 @@ window.SCENE = {
    "ar": "صندوق البريد",
    "pl": "skrzynka pocztowa",
    "ru": "почтовый ящик",
+   "de": "der Briefkasten",
    "latam": null
   },
   {
@@ -579,6 +597,7 @@ window.SCENE = {
    "ar": "شمسية",
    "pl": "parasol",
    "ru": "зонт",
+   "de": "der Sonnenschirm",
    "latam": null
   },
   {
@@ -606,6 +625,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -639,6 +659,7 @@ window.SCENE = {
    "ar": "شارع",
    "pl": "ulica",
    "ru": "улица",
+   "de": "die Straße",
    "latam": null
   },
   {
@@ -666,6 +687,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -693,6 +715,7 @@ window.SCENE = {
    "ar": "قبّعة رياضية، كاسكيت",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Kappe (Schirmmütze)",
    "latam": null
   },
   {
@@ -726,6 +749,7 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
+   "de": "die Brille",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -757,6 +781,7 @@ window.SCENE = {
    "ar": "جريدة",
    "pl": "gazeta",
    "ru": "газета",
+   "de": "die Zeitung",
    "latam": null
   },
   {
@@ -784,6 +809,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -811,6 +837,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -830,7 +857,8 @@ window.SCENE = {
      "fr": "le café",
      "en": "coffee",
      "pt": "o café",
-     "ar": "قهوة"
+     "ar": "قهوة",
+     "de": "der Kaffee"
     }
    ],
    "sur": "tisch",
@@ -849,6 +877,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -876,6 +905,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -903,6 +933,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -936,6 +967,7 @@ window.SCENE = {
    "ar": "ماء",
    "pl": "woda",
    "ru": "вода",
+   "de": "das Wasser",
    "latam": null
   },
   {
@@ -969,6 +1001,7 @@ window.SCENE = {
    "ar": "مصدر، نافورة",
    "pl": "fontanna, studnia",
    "ru": "фонтан, колодец",
+   "de": "die Quelle",
    "latam": null
   },
   {
@@ -996,6 +1029,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -1023,6 +1057,7 @@ window.SCENE = {
    "ar": "مثلّجات، آيس كريم",
    "pl": "lód",
    "ru": "лёд",
+   "de": "das Eis (Speiseeis)",
    "latam": null
   },
   {
@@ -1050,6 +1085,7 @@ window.SCENE = {
    "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
+   "de": "das T-Shirt",
    "latam": null
   },
   {
@@ -1077,6 +1113,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -1104,6 +1141,7 @@ window.SCENE = {
    "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
+   "de": "die Handtasche",
    "latam": null
   },
   {
@@ -1131,6 +1169,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1150,7 +1189,8 @@ window.SCENE = {
      "fr": "la chaussure",
      "en": "the shoe",
      "pt": "o sapato",
-     "ar": "حذاء"
+     "ar": "حذاء",
+     "de": "der Schuh"
     }
    ],
    "sur": null,
@@ -1175,6 +1215,7 @@ window.SCENE = {
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
    "ru": "кроссовки, кеды",
+   "de": "der Turnschuh",
    "latam": {
     "mot": "tenis",
     "genre": "el",
@@ -1206,6 +1247,7 @@ window.SCENE = {
    "ar": "قهوة",
    "pl": "kawa",
    "ru": "кофе",
+   "de": "der Kaffee",
    "latam": null
   },
   {
@@ -1233,6 +1275,7 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
+   "de": "der Hund",
    "latam": null
   },
   {
@@ -1260,6 +1303,7 @@ window.SCENE = {
    "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
+   "de": "der Vogel",
    "latam": null
   },
   {
@@ -1287,6 +1331,7 @@ window.SCENE = {
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
    "ru": "мусорное ведро",
+   "de": "der Papierkorb",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -1318,6 +1363,7 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
+   "de": "die Bank",
    "latam": null
   },
   {
@@ -1345,6 +1391,7 @@ window.SCENE = {
    "ar": "ساحة، ميدان",
    "pl": "plac",
    "ru": "площадь",
+   "de": "der Platz",
    "latam": null
   }
  ],
@@ -2012,6 +2059,75 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna an einem Samstagnachmittag im Frühling auf einem Berliner Platz: Sie sitzt auf dem Rand eines Steinbrunnens, isst ein Eis und lacht über einen kleinen braunen Hund, der sie anschaut; ihr Kaffee zum Mitnehmen steht neben ihr, ihre Ledertasche hängt über der Schulter; eine Taube läuft über das Pflaster, ein grüner Abfalleimer, eine Holzbank; in der Mitte des Platzes die Bronzestatue eines Mannes auf hohem Sockel, eine Straßenlaterne, Fahrräder, die Terrasse eines Cafés unter einem großen weißen Sonnenschirm, wo ein alter Herr mit Schiebermütze vor einer Tasse Zeitung liest; im Hintergrund die Backsteinkirche mit ihrem spitzen Turm und der Uhr, eine Reihe alter Häuser mit roten Geranien, eine gelbe Straßenbahn, eine Ampel, ein Schild, ein gelber Briefkasten und ein junger Baum; am blauen Himmel weiße Wolken und zwei Tauben.",
+    "consigne": "Anna isst ein Eis auf dem Platz. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Die Ortsadverbien: aquí, allí, alrededor, enfrente",
+    "B2": "Como si + subjuntivo imperfecto",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | Anna está sentada en el borde de la fuente.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El bote de basura está al lado de la fuente.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La papelera está al lado de la fuente.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El señor está debajo de la sombrilla.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La taza está en la mesa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El reloj está en la torre.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El tranvía está en la calle.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El perro está delante de la fuente.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay una estatua en la plaza.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | Siéntate aquí, a mi lado.": "<b>aquí</b> = hier, nahe beim Sprecher.",
+    "B1 | La iglesia está allí, al fondo de la plaza.": "<b>allí</b> = dort, weit weg vom Sprecher und vom Zuhörer.",
+    "B1 | El buzón amarillo está enfrente de la plaza.": "<b>enfrente de</b> = gegenüber.",
+    "B1 | Las palomas caminan alrededor de la fuente.": "<b>alrededor de</b> = um … herum.",
+    "B1 | El tranvía pasa detrás de la plaza.": "<b>detrás de</b> = hinter.",
+    "B1 | La estatua está en medio de la plaza.": "<b>en medio de</b> = in der Mitte von.",
+    "B1 | El señor lee debajo de la sombrilla.": "<b>debajo de</b> = unter.",
+    "B2 | El perro mira a Anna como si tuviera hambre.": "<b>como si</b> + <b>subjuntivo imperfecto</b>: como si tuviera — wie „als hätte er“ mit dem Konjunktiv II.",
+    "B2 | Anna se ríe como si el perro le hubiera contado un chiste.": "Für eine vorzeitige Handlung: como si + <b>Plusquamperfekt des subjuntivo</b> (hubiera contado).",
+    "B2 | El señor lee como si estuviera solo en la plaza.": "<b>como si</b> nimmt nie den Indikativ oder den subjuntivo Präsens.",
+    "B2 | La estatua parece como si fuera a caminar.": "„Als ob“ = <b>como si</b>, immer in zwei Wörtern.",
+    "B2 | Hace calor, como si ya fuera verano.": "ser → <b>fuera</b> (subjuntivo imperfecto).",
+    "B2 | Las palomas andan por ahí como si la plaza fuera suya.": "Nach como si <b>fuera</b>, niemals era.",
+    "C1 | Debe de encontrar gracioso al perro.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el perro reciba un poco de helado.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Vendrá aquí todos los sábados.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que la fuente tiene más de cien años.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | Anna está sentada en el borde de la fuente.": "Anna sitzt auf dem Rand des Brunnens.",
+    "A2 | El bote de basura está al lado de la fuente.": "Der Abfalleimer steht neben dem Brunnen.",
+    "A2 | La papelera está al lado de la fuente.": "Der Abfalleimer steht neben dem Brunnen.",
+    "A2 | El señor está debajo de la sombrilla.": "Der Herr sitzt unter dem Sonnenschirm.",
+    "A2 | La taza está en la mesa.": "Die Tasse steht auf dem Tisch.",
+    "A2 | El reloj está en la torre.": "Die Uhr ist am Turm.",
+    "A2 | El tranvía está en la calle.": "Die Straßenbahn ist auf der Straße.",
+    "A2 | El perro está delante de la fuente.": "Der Hund steht vor dem Brunnen.",
+    "A2 | Hay una estatua en la plaza.": "Auf dem Platz steht eine Statue.",
+    "B1 | Siéntate aquí, a mi lado.": "Setz dich hierher, neben mich.",
+    "B1 | La iglesia está allí, al fondo de la plaza.": "Die Kirche ist dort, am Ende des Platzes.",
+    "B1 | El buzón amarillo está enfrente de la plaza.": "Der gelbe Briefkasten ist gegenüber dem Platz.",
+    "B1 | Las palomas caminan alrededor de la fuente.": "Die Tauben laufen um den Brunnen herum.",
+    "B1 | El tranvía pasa detrás de la plaza.": "Die Straßenbahn fährt hinter dem Platz vorbei.",
+    "B1 | La estatua está en medio de la plaza.": "Die Statue steht in der Mitte des Platzes.",
+    "B1 | El señor lee debajo de la sombrilla.": "Der Herr liest unter dem Sonnenschirm.",
+    "B2 | El perro mira a Anna como si tuviera hambre.": "Der Hund schaut Anna an, als hätte er Hunger.",
+    "B2 | Anna se ríe como si el perro le hubiera contado un chiste.": "Anna lacht, als hätte der Hund ihr einen Witz erzählt.",
+    "B2 | El señor lee como si estuviera solo en la plaza.": "Der Herr liest, als wäre er allein auf dem Platz.",
+    "B2 | La estatua parece como si fuera a caminar.": "Die Statue sieht aus, als wollte sie gleich loslaufen.",
+    "B2 | Hace calor, como si ya fuera verano.": "Es ist heiß, als wäre schon Sommer.",
+    "B2 | Las palomas andan por ahí como si la plaza fuera suya.": "Die Tauben laufen herum, als gehörte ihnen der Platz.",
+    "C1 | Debe de encontrar gracioso al perro.": "Sie muss den Hund lustig finden.",
+    "C1 | Puede que el perro reciba un poco de helado.": "Vielleicht bekommt der Hund ein bisschen Eis.",
+    "C1 | Vendrá aquí todos los sábados.": "Er wird wohl jeden Samstag hierherkommen.",
+    "C1 | Dicen que la fuente tiene más de cien años.": "Man sagt, der Brunnen sei über hundert Jahre alt."
+   }
   }
  }
 };

@@ -39,6 +39,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -66,6 +67,7 @@ window.SCENE = {
    "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
+   "de": "die Zimmerdecke",
    "latam": null
   },
   {
@@ -93,6 +95,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -120,6 +123,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -139,7 +143,8 @@ window.SCENE = {
      "fr": "le thé",
      "en": "tea",
      "pt": "o chá",
-     "ar": "شاي"
+     "ar": "شاي",
+     "de": "der Tee"
     }
    ],
    "sur": "regal",
@@ -158,6 +163,7 @@ window.SCENE = {
    "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
+   "de": "das Glas (Trinkglas)",
    "latam": null
   },
   {
@@ -185,6 +191,7 @@ window.SCENE = {
    "ar": "فيتامين",
    "pl": "witamina",
    "ru": "витамин",
+   "de": "das Vitamin",
    "latam": null
   },
   {
@@ -212,6 +219,7 @@ window.SCENE = {
    "ar": "صابون",
    "pl": "mydło",
    "ru": "мыло",
+   "de": "die Seife",
    "latam": null
   },
   {
@@ -239,6 +247,7 @@ window.SCENE = {
    "ar": "ضمادة",
    "pl": "opatrunek, bandaż; związek, stowarzyszenie",
    "ru": "повязка; союз, объединение",
+   "de": "der Verband",
    "latam": null
   },
   {
@@ -266,6 +275,7 @@ window.SCENE = {
    "ar": "لاصق جروح",
    "pl": "plaster",
    "ru": "пластырь",
+   "de": "das Pflaster",
    "latam": {
     "mot": "curita",
     "genre": "la",
@@ -297,6 +307,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -316,7 +327,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     }
    ],
    "sur": "regal",
@@ -335,6 +347,7 @@ window.SCENE = {
    "ar": "دواء",
    "pl": "lek",
    "ru": "лекарство",
+   "de": "das Arzneimittel",
    "latam": null
   },
   {
@@ -362,6 +375,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -389,6 +403,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -408,7 +423,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     }
    ],
    "sur": "regal",
@@ -427,6 +443,7 @@ window.SCENE = {
    "ar": "دواء",
    "pl": "lek",
    "ru": "лекарство",
+   "de": "das Arzneimittel",
    "latam": null
   },
   {
@@ -446,7 +463,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     }
    ],
    "sur": "regal",
@@ -465,6 +483,7 @@ window.SCENE = {
    "ar": "دواء",
    "pl": "lek",
    "ru": "лекарство",
+   "de": "das Arzneimittel",
    "latam": null
   },
   {
@@ -492,6 +511,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -511,7 +531,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     }
    ],
    "sur": "regal",
@@ -530,6 +551,7 @@ window.SCENE = {
    "ar": "دواء",
    "pl": "lek",
    "ru": "лекарство",
+   "de": "das Arzneimittel",
    "latam": null
   },
   {
@@ -549,7 +571,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     }
    ],
    "sur": "regal",
@@ -568,6 +591,7 @@ window.SCENE = {
    "ar": "دواء",
    "pl": "lek",
    "ru": "лекарство",
+   "de": "das Arzneimittel",
    "latam": null
   },
   {
@@ -595,6 +619,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -622,6 +647,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -649,6 +675,7 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
+   "de": "die Brille",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -680,6 +707,7 @@ window.SCENE = {
    "ar": "بلوزة",
    "pl": "bluzka",
    "ru": "блузка",
+   "de": "die Bluse",
    "latam": null
   },
   {
@@ -707,6 +735,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -734,6 +763,7 @@ window.SCENE = {
    "ar": "وصفة طبية",
    "pl": "przepis",
    "ru": "рецепт",
+   "de": "das Rezept (ärztliche Verordnung)",
    "latam": null
   },
   {
@@ -761,6 +791,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -788,6 +819,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -815,6 +847,7 @@ window.SCENE = {
    "ar": "منديل",
    "pl": "chusteczka",
    "ru": "носовой платок",
+   "de": "das Taschentuch",
    "latam": null
   },
   {
@@ -842,6 +875,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -875,6 +909,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -899,6 +934,7 @@ window.SCENE = {
      "en": "the jeans",
      "pt": "a calça jeans",
      "ar": "بنطال جينز",
+     "de": "die Jeans",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -922,6 +958,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -942,6 +979,7 @@ window.SCENE = {
      "en": "the trainer",
      "pt": "o tênis",
      "ar": "حذاء رياضي",
+     "de": "der Turnschuh",
      "latam": {
       "mot": "tenis",
       "genre": "el",
@@ -965,6 +1003,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -985,6 +1024,7 @@ window.SCENE = {
      "en": "the computer",
      "pt": "o computador",
      "ar": "حاسوب",
+     "de": "der Computer",
      "latam": {
       "mot": "computadora",
       "genre": "la",
@@ -1008,6 +1048,7 @@ window.SCENE = {
    "ar": "شاشة",
    "pl": "ekran",
    "ru": "экран",
+   "de": "der Bildschirm",
    "latam": null
   },
   {
@@ -1035,6 +1076,7 @@ window.SCENE = {
    "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
+   "de": "die Tastatur",
    "latam": null
   },
   {
@@ -1062,6 +1104,7 @@ window.SCENE = {
    "ar": "صندوق الدفع",
    "pl": "kasa",
    "ru": "касса",
+   "de": "die Kasse",
    "latam": null
   },
   {
@@ -1089,6 +1132,7 @@ window.SCENE = {
    "ar": "كيس",
    "pl": "torba, torebka (papierowa, foliowa)",
    "ru": "пакет",
+   "de": "die Tüte, der Beutel",
    "latam": null
   },
   {
@@ -1108,7 +1152,8 @@ window.SCENE = {
      "fr": "le comprimé",
      "en": "the pill",
      "pt": "o comprimido",
-     "ar": "قرص، حبّة دواء"
+     "ar": "قرص، حبّة دواء",
+     "de": "die Tablette"
     },
     {
      "mot": "caja",
@@ -1118,7 +1163,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     }
    ],
    "sur": "schalter",
@@ -1137,6 +1183,7 @@ window.SCENE = {
    "ar": "دواء",
    "pl": "lek",
    "ru": "лекарство",
+   "de": "das Arzneimittel",
    "latam": null
   },
   {
@@ -1164,6 +1211,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -1191,6 +1239,7 @@ window.SCENE = {
    "ar": "منديل",
    "pl": "chusteczka",
    "ru": "носовой платок",
+   "de": "das Taschentuch",
    "latam": null
   },
   {
@@ -1210,7 +1259,8 @@ window.SCENE = {
      "fr": "la carte d'assurance maladie",
      "en": "the health card",
      "pt": "o cartão do plano de saúde, o cartão do SUS",
-     "ar": "بطاقة التأمين الصحّي"
+     "ar": "بطاقة التأمين الصحّي",
+     "de": "die Krankenversicherungskarte"
     }
    ],
    "sur": "schalter",
@@ -1229,6 +1279,7 @@ window.SCENE = {
    "ar": "بطاقة (مصرفية)",
    "pl": "bilet, karta",
    "ru": "карта, билет",
+   "de": "die Karte (Bankkarte)",
    "latam": null
   },
   {
@@ -1256,6 +1307,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -1283,6 +1335,7 @@ window.SCENE = {
    "ar": "مكتب، منضدة",
    "pl": "okienko, kasa; włącznik",
    "ru": "окошко, касса; выключатель",
+   "de": "der Schalter (Theke), die Ladentheke",
    "latam": null
   },
   {
@@ -1310,6 +1363,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -1337,6 +1391,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -1364,6 +1419,7 @@ window.SCENE = {
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
    "ru": "мусорное ведро",
+   "de": "der Papierkorb",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -1388,6 +1444,7 @@ window.SCENE = {
      "en": "the shop window",
      "pt": "a vitrine",
      "ar": "واجهة المتجر",
+     "de": "das Schaufenster",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -1411,6 +1468,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -1438,6 +1496,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -1465,6 +1524,7 @@ window.SCENE = {
    "ar": "سيارة",
    "pl": "samochód",
    "ru": "машина, автомобиль",
+   "de": "das Auto",
    "latam": {
     "mot": "carro",
     "genre": "el",
@@ -1496,6 +1556,7 @@ window.SCENE = {
    "ar": "شارع",
    "pl": "ulica",
    "ru": "улица",
+   "de": "die Straße",
    "latam": null
   },
   {
@@ -1523,6 +1584,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -1550,6 +1612,7 @@ window.SCENE = {
    "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Mütze",
    "latam": null
   },
   {
@@ -1577,6 +1640,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -1604,6 +1668,7 @@ window.SCENE = {
    "ar": "عصا",
    "pl": "laska, kij",
    "ru": "палка, трость",
+   "de": "der Gehstock",
    "latam": null
   },
   {
@@ -1631,6 +1696,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1658,6 +1724,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -1685,6 +1752,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -1712,6 +1780,7 @@ window.SCENE = {
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
    "ru": "весы",
+   "de": "die Waage",
    "latam": null
   },
   {
@@ -1739,6 +1808,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -2420,6 +2490,79 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark, erkältet, in der Apotheke seines Viertels: ein Taschentuch an der Nase, reicht er der Apothekerin im weißen Kittel sein rosa Rezept; auf dem Tresen ein Bildschirm, eine Tastatur, die Kasse, eine weiße Tüte, eine Schachtel Tabletten, eine Flasche Hustensaft, Taschentücher, seine Versichertenkarte und eine Pflanze; auf den Regalen Medikamentenschachteln, Fläschchen, ein Glas Kräutertee, eine Dose Vitamine, Seife, Verbände und Pflaster, unter einer Uhr; nahe dem Schaufenster wartet ein alter Herr mit Schiebermütze auf einem Stuhl, die Hände auf seinem Stock, neben einer Waage und einem Papierkorb; draußen ein rotes Auto; im Vordergrund ein Lieferkarton.",
+    "consigne": "Mark ist erkältet: Er geht in die Apotheke seines Viertels. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Häufigkeit und Dosierung",
+    "B2": "Reale Bedingungen: si + Präsens",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El reloj está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Los medicamentos están en la estantería.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La planta está en el mostrador.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El señor está sentado en la silla.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La báscula está al lado de la silla.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay un carro rojo en la calle.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | Hay un coche rojo en la calle.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | El bote de basura está al lado de la puerta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La papelera está al lado de la puerta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La caja de cartón está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La caja de cartón está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "B1 | Mark toma una pastilla cada ocho horas.": "<b>cada</b> + Singular: cada ocho horas — wörtlich „jede acht Stunden“.",
+    "B1 | Toma el jarabe dos veces al día.": "<b>vez</b> im Plural → dos <b>veces</b> (z wird zu c).",
+    "B1 | Nunca tome las pastillas con alcohol.": "<b>nunca</b> vor dem Verb: ohne „no“.",
+    "B1 | La farmacéutica trabaja todos los días.": "<b>todos los días</b> = jeden Tag (wörtlich: alle Tage).",
+    "B1 | Mark nunca ha tenido fiebre.": "<b>nunca</b> = nie; <b>nada</b> = nichts; <b>nadie</b> = niemand.",
+    "B1 | ¿Con qué frecuencia toma el jarabe?": "<b>¿con qué frecuencia?</b> = wie oft?",
+    "B1 | El señor viene a la farmacia una vez a la semana.": "una vez <b>a la</b> semana = einmal pro Woche.",
+    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "Reale Bedingung: <b>si</b> + Präsens Indikativ, wie im Deutschen.",
+    "B2 | Si no mejora, vaya al médico.": "Hauptsatz im Imperativ (usted): <b>vaya</b>.",
+    "B2 | Si el jarabe no funciona, vuelva a la farmacia.": "Nach realem <b>si</b> nie der subjuntivo Präsens: funciona.",
+    "B2 | Si toma las pastillas, estará mejor mañana.": "Hauptsatz im Futur: <b>estará</b> — das Spanische setzt hier das Futur, wo das Deutsche beim Präsens bleibt.",
+    "B2 | Si el señor espera mucho tiempo, se sentará.": "Reale Bedingung: <b>si</b> + Präsens Indikativ, wie im Deutschen.",
+    "B2 | Si tienes tos, toma este jarabe.": "Hauptsatz im Imperativ (tú): <b>toma</b>.",
+    "C1 | Debe de estar resfriado.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el señor esté esperando sus medicamentos.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Mark estará mejor en dos días.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „er wird wohl …“ im Deutschen.",
+    "C1 | Dicen que esta farmacia es la más antigua del barrio.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>, kein Konjunktiv wie im Deutschen."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "Die Uhr hängt an der Wand.",
+    "A2 | Los medicamentos están en la estantería.": "Die Medikamente stehen im Regal.",
+    "A2 | La planta está en el mostrador.": "Die Pflanze steht auf dem Tresen.",
+    "A2 | El señor está sentado en la silla.": "Der Herr sitzt auf dem Stuhl.",
+    "A2 | La báscula está al lado de la silla.": "Die Waage steht neben dem Stuhl.",
+    "A2 | Hay un carro rojo en la calle.": "Auf der Straße steht ein rotes Auto.",
+    "A2 | Hay un coche rojo en la calle.": "Auf der Straße steht ein rotes Auto.",
+    "A2 | El bote de basura está al lado de la puerta.": "Der Papierkorb steht neben der Tür.",
+    "A2 | La papelera está al lado de la puerta.": "Der Papierkorb steht neben der Tür.",
+    "A2 | La caja de cartón está en el piso.": "Der Karton steht auf dem Boden.",
+    "A2 | La caja de cartón está en el suelo.": "Der Karton steht auf dem Boden.",
+    "B1 | Mark toma una pastilla cada ocho horas.": "Mark nimmt alle acht Stunden eine Tablette.",
+    "B1 | Toma el jarabe dos veces al día.": "Er nimmt den Hustensaft zweimal am Tag.",
+    "B1 | Nunca tome las pastillas con alcohol.": "Nehmen Sie die Tabletten nie mit Alkohol.",
+    "B1 | La farmacéutica trabaja todos los días.": "Die Apothekerin arbeitet jeden Tag.",
+    "B1 | Mark nunca ha tenido fiebre.": "Mark hat nie Fieber gehabt.",
+    "B1 | ¿Con qué frecuencia toma el jarabe?": "Wie oft nimmt er den Hustensaft?",
+    "B1 | El señor viene a la farmacia una vez a la semana.": "Der Herr kommt einmal pro Woche in die Apotheke.",
+    "B2 | Si Mark tiene fiebre, tomará una pastilla.": "Wenn Mark Fieber hat, nimmt er eine Tablette.",
+    "B2 | Si no mejora, vaya al médico.": "Wenn es nicht besser wird, gehen Sie zum Arzt.",
+    "B2 | Si el jarabe no funciona, vuelva a la farmacia.": "Wenn der Hustensaft nicht wirkt, kommen Sie wieder in die Apotheke.",
+    "B2 | Si toma las pastillas, estará mejor mañana.": "Wenn er die Tabletten nimmt, geht es ihm morgen besser.",
+    "B2 | Si el señor espera mucho tiempo, se sentará.": "Wenn der Herr lange wartet, setzt er sich.",
+    "B2 | Si tienes tos, toma este jarabe.": "Wenn du Husten hast, nimm diesen Hustensaft.",
+    "C1 | Debe de estar resfriado.": "Er muss erkältet sein.",
+    "C1 | Puede que el señor esté esperando sus medicamentos.": "Vielleicht wartet der Herr auf seine Medikamente.",
+    "C1 | Mark estará mejor en dos días.": "Mark wird in zwei Tagen wohl wieder gesund sein.",
+    "C1 | Dicen que esta farmacia es la más antigua del barrio.": "Man sagt, diese Apotheke sei die älteste des Viertels."
+   }
   }
  }
 };

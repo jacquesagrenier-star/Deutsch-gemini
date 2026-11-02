@@ -33,6 +33,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -60,6 +61,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -87,6 +89,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -114,6 +117,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -141,6 +145,7 @@ window.SCENE = {
    "ar": "منشفة",
    "pl": "ręcznik",
    "ru": "полотенце",
+   "de": "das Handtuch",
    "latam": null
   },
   {
@@ -168,6 +173,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -195,6 +201,7 @@ window.SCENE = {
    "ar": "مرآة",
    "pl": "lustro",
    "ru": "зеркало",
+   "de": "der Spiegel",
    "latam": null
   },
   {
@@ -222,6 +229,7 @@ window.SCENE = {
    "ar": "مشعّ تدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
+   "de": "der Heizkörper",
    "latam": null
   },
   {
@@ -249,6 +257,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -269,6 +278,7 @@ window.SCENE = {
      "en": "the shop window",
      "pt": "a vitrine",
      "ar": "واجهة المتجر",
+     "de": "das Schaufenster",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -292,6 +302,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -319,6 +330,7 @@ window.SCENE = {
    "ar": "لافتة، إشارة",
    "pl": "tabliczka, szyld",
    "ru": "табличка, вывеска",
+   "de": "das Schild (Verkehrsschild), das Zeichen",
    "latam": null
   },
   {
@@ -338,7 +350,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     }
    ],
    "sur": null,
@@ -357,6 +370,7 @@ window.SCENE = {
    "ar": "مُشاة",
    "pl": "pieszy",
    "ru": "пешеход",
+   "de": "der Fußgänger",
    "latam": null
   },
   {
@@ -384,6 +398,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -411,6 +426,7 @@ window.SCENE = {
    "ar": "شارع",
    "pl": "ulica",
    "ru": "улица",
+   "de": "die Straße",
    "latam": null
   },
   {
@@ -438,6 +454,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -465,6 +482,7 @@ window.SCENE = {
    "ar": "غسّالة",
    "pl": "pralka",
    "ru": "стиральная машина",
+   "de": "die Waschmaschine",
    "latam": null
   },
   {
@@ -484,7 +502,8 @@ window.SCENE = {
      "fr": "la bouteille",
      "en": "bottle",
      "pt": "a garrafa",
-     "ar": "زجاجة"
+     "ar": "زجاجة",
+     "de": "die Flasche"
     }
    ],
    "sur": null,
@@ -503,6 +522,7 @@ window.SCENE = {
    "ar": "مسحوق غسيل",
    "pl": "proszek do prania",
    "ru": "стиральный порошок",
+   "de": "das Waschmittel, das Spülmittel",
    "latam": null
   },
   {
@@ -530,6 +550,7 @@ window.SCENE = {
    "ar": "صابون",
    "pl": "mydło",
    "ru": "мыло",
+   "de": "die Seife",
    "latam": null
   },
   {
@@ -549,7 +570,8 @@ window.SCENE = {
      "fr": "l'argent",
      "en": "the money",
      "pt": "o dinheiro",
-     "ar": "مال، نقود"
+     "ar": "مال، نقود",
+     "de": "das Geld"
     }
    ],
    "sur": null,
@@ -568,6 +590,7 @@ window.SCENE = {
    "ar": "قطعة نقدية، عملة",
    "pl": "moneta",
    "ru": "монета",
+   "de": "die Münze, die Währung",
    "latam": null
   },
   {
@@ -595,6 +618,7 @@ window.SCENE = {
    "ar": "غسّالة",
    "pl": "pralka",
    "ru": "стиральная машина",
+   "de": "die Waschmaschine",
    "latam": null
   },
   {
@@ -622,6 +646,7 @@ window.SCENE = {
    "ar": "غسّالة",
    "pl": "pralka",
    "ru": "стиральная машина",
+   "de": "die Waschmaschine",
    "latam": null
   },
   {
@@ -649,6 +674,7 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка",
+   "de": "das Hemd",
    "latam": null
   },
   {
@@ -676,6 +702,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -703,6 +730,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -734,6 +762,7 @@ window.SCENE = {
    "ar": "منشفة",
    "pl": "ręcznik",
    "ru": "полотенце",
+   "de": "das Handtuch",
    "latam": null
   },
   {
@@ -761,6 +790,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -781,6 +811,7 @@ window.SCENE = {
      "en": "the trainer",
      "pt": "o tênis",
      "ar": "حذاء رياضي",
+     "de": "der Turnschuh",
      "latam": {
       "mot": "tenis",
       "genre": "el",
@@ -804,6 +835,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -831,6 +863,7 @@ window.SCENE = {
    "ar": "سلّة",
    "pl": "koszyk, kosz",
    "ru": "корзина",
+   "de": "der Korb",
    "latam": null
   },
   {
@@ -850,7 +883,8 @@ window.SCENE = {
      "fr": "le pantalon",
      "en": "the trousers",
      "pt": "a calça",
-     "ar": "بنطال، سروال"
+     "ar": "بنطال، سروال",
+     "de": "die Hose"
     }
    ],
    "sur": "korb",
@@ -869,6 +903,7 @@ window.SCENE = {
    "ar": "بنطال جينز",
    "pl": "dżinsy",
    "ru": "джинсы",
+   "de": "die Jeans",
    "latam": {
     "mot": "jeans",
     "genre": "los",
@@ -900,6 +935,7 @@ window.SCENE = {
    "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
+   "de": "das T-Shirt",
    "latam": null
   },
   {
@@ -927,6 +963,7 @@ window.SCENE = {
    "ar": "فستان",
    "pl": "sukienka",
    "ru": "платье",
+   "de": "das Kleid",
    "latam": null
   },
   {
@@ -954,6 +991,7 @@ window.SCENE = {
    "ar": "جورب",
    "pl": "skarpetka",
    "ru": "носок",
+   "de": "die Socke",
    "latam": null
   },
   {
@@ -981,6 +1019,7 @@ window.SCENE = {
    "ar": "مكواة",
    "pl": "żelazko",
    "ru": "утюг",
+   "de": "das Bügeleisen",
    "latam": null
   },
   {
@@ -1008,6 +1047,7 @@ window.SCENE = {
    "ar": "بطّانية",
    "pl": "koc",
    "ru": "одеяло, плед",
+   "de": "die Decke (Wolldecke)",
    "latam": null
   },
   {
@@ -1035,6 +1075,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -1072,6 +1113,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -1099,6 +1141,7 @@ window.SCENE = {
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
    "ru": "мусорное ведро",
+   "de": "der Papierkorb",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -1130,6 +1173,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -1157,6 +1201,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -1184,6 +1229,7 @@ window.SCENE = {
    "ar": "جريدة",
    "pl": "gazeta",
    "ru": "газета",
+   "de": "die Zeitung",
    "latam": null
   },
   {
@@ -1203,7 +1249,8 @@ window.SCENE = {
      "fr": "le café",
      "en": "coffee",
      "pt": "o café",
-     "ar": "قهوة"
+     "ar": "قهوة",
+     "de": "der Kaffee"
     }
    ],
    "sur": "bank",
@@ -1222,6 +1269,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -1241,7 +1289,8 @@ window.SCENE = {
      "fr": "l'enfant, le garçon",
      "en": "the child, the boy",
      "pt": "a criança, o menino",
-     "ar": "طفل، ولد"
+     "ar": "طفل، ولد",
+     "de": "das Kind"
     }
    ],
    "sur": null,
@@ -1260,6 +1309,7 @@ window.SCENE = {
    "ar": "بنت، فتاة",
    "pl": "dziewczynka",
    "ru": "девочка",
+   "de": "das Mädchen, die junge Frau",
    "latam": null
   },
   {
@@ -1287,6 +1337,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -1318,6 +1369,7 @@ window.SCENE = {
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
    "ru": "мобильный телефон",
+   "de": "das Handy",
    "latam": {
     "mot": "celular",
     "genre": "el",
@@ -1342,6 +1394,7 @@ window.SCENE = {
      "en": "the jeans",
      "pt": "a calça jeans",
      "ar": "بنطال جينز",
+     "de": "die Jeans",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -1365,6 +1418,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1392,6 +1446,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -1419,6 +1474,7 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
+   "de": "die Bank",
    "latam": null
   },
   {
@@ -1452,6 +1508,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -2137,6 +2194,77 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna im Waschsalon ihres Viertels: Vor der offenen Waschmaschine hockend, schiebt sie ein blaues Hemd hinein, ein weißes Handtuch in der anderen Hand; neben ihr ein roter Korb voller Wäsche (eine Jeans, ein gelbes T-Shirt, ein rotes Kleid, Socken); auf der Maschine eine Flasche Waschmittel, eine Seife und Münzen; auf dem Holztisch ein Bügeleisen, eine blaue Decke und ein grüner Pullover, gefaltet; ein Papierkorb; auf der Bank beim Schaufenster liest eine alte Dame Zeitung vor einer Tasse Kaffee und ein kleines Mädchen spielt mit einem Handy; an der Wand eine Uhr, ein Regal mit Flaschen und Handtüchern, ein Heizkörper und ein Spiegel; draußen ein Passant und ein Fahrrad.",
+    "consigne": "Anna wäscht ihre Wäsche im Waschsalon ihres Viertels. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Der subjuntivo nach dem Zweifel",
+    "B2": "Cuando + subjuntivo: die Zukunft",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El reloj está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El suéter verde está en la mesa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El jersey verde está en la mesa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La niña está sentada en el banco.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Los jeans están en la cesta.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Los vaqueros están en la cesta.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El detergente está encima de la lavadora.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El espejo está encima del radiador.": "<b>de + el = del</b>, immer.",
+    "A2 | Hay una bicicleta en la calle.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | Las toallas están en la estantería.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "B1 | No creo que la lavadora esté rota.": "<b>no creer que</b> → subjuntivo. Das Deutsche sagt „dass sie kaputt ist“ — Indikativ.",
+    "B1 | Dudo que la ropa esté lista en diez minutos.": "<b>dudar que</b> → subjuntivo.",
+    "B1 | Es posible que la señora sea la vecina de Anna.": "<b>es posible que</b> → subjuntivo.",
+    "B1 | No es seguro que la niña viva con la señora.": "<b>no es seguro que</b> → subjuntivo.",
+    "B1 | Quizás Anna use la plancha después.": "<b>quizás</b> + subjuntivo = ein ausgeprägter Zweifel.",
+    "B1 | No pienso que el detergente sea suficiente.": "<b>no pensar que</b> → subjuntivo.",
+    "B1 | Creo que la camisa es de Anna.": "<b>creer que</b> bejaht → Indikativ.",
+    "B2 | Cuando la ropa esté limpia, Anna la doblará.": "<b>cuando</b> + künftige Handlung → subjuntivo. Im Deutschen bleibt „wenn … ist“ im Präsens.",
+    "B2 | Anna se irá cuando termine la lavadora.": "<b>cuando</b> + künftige Handlung → subjuntivo.",
+    "B2 | En cuanto llegue a casa, planchará la camisa.": "<b>en cuanto</b> + künftige Handlung → subjuntivo.",
+    "B2 | La niña jugará hasta que su abuela termine el periódico.": "<b>hasta que</b> + künftige Handlung → subjuntivo.",
+    "B2 | Cuando Anna viene a la lavandería, siempre trae su cesta.": "Eine Gewohnheit (<b>siempre</b>) → Indikativ, kein subjuntivo.",
+    "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "<b>tan pronto como</b> + künftige Handlung → subjuntivo.",
+    "C1 | Debe de llevar tiempo sin lavar.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que la niña sea la nieta de la señora.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Estará lista en una hora.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que esta lavandería cierra pronto.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "Die Uhr hängt an der Wand.",
+    "A2 | El suéter verde está en la mesa.": "Der grüne Pullover liegt auf dem Tisch.",
+    "A2 | El jersey verde está en la mesa.": "Der grüne Pullover liegt auf dem Tisch.",
+    "A2 | La niña está sentada en el banco.": "Das Mädchen sitzt auf der Bank.",
+    "A2 | Los jeans están en la cesta.": "Die Jeans ist im Korb.",
+    "A2 | Los vaqueros están en la cesta.": "Die Jeans ist im Korb.",
+    "A2 | El detergente está encima de la lavadora.": "Das Waschmittel steht auf der Waschmaschine.",
+    "A2 | El espejo está encima del radiador.": "Der Spiegel hängt über dem Heizkörper.",
+    "A2 | Hay una bicicleta en la calle.": "Auf der Straße steht ein Fahrrad.",
+    "A2 | Las toallas están en la estantería.": "Die Handtücher liegen im Regal.",
+    "B1 | No creo que la lavadora esté rota.": "Ich glaube nicht, dass die Waschmaschine kaputt ist.",
+    "B1 | Dudo que la ropa esté lista en diez minutos.": "Ich bezweifle, dass die Wäsche in zehn Minuten fertig ist.",
+    "B1 | Es posible que la señora sea la vecina de Anna.": "Es ist möglich, dass die Dame Annas Nachbarin ist.",
+    "B1 | No es seguro que la niña viva con la señora.": "Es ist nicht sicher, dass das Mädchen bei der Dame wohnt.",
+    "B1 | Quizás Anna use la plancha después.": "Vielleicht benutzt Anna danach das Bügeleisen.",
+    "B1 | No pienso que el detergente sea suficiente.": "Ich denke nicht, dass das Waschmittel reicht.",
+    "B1 | Creo que la camisa es de Anna.": "Ich glaube, das Hemd gehört Anna.",
+    "B2 | Cuando la ropa esté limpia, Anna la doblará.": "Wenn die Wäsche sauber ist, wird Anna sie falten.",
+    "B2 | Anna se irá cuando termine la lavadora.": "Anna wird gehen, wenn die Waschmaschine fertig ist.",
+    "B2 | En cuanto llegue a casa, planchará la camisa.": "Sobald sie zu Hause ankommt, wird sie das Hemd bügeln.",
+    "B2 | La niña jugará hasta que su abuela termine el periódico.": "Das Mädchen wird spielen, bis ihre Großmutter die Zeitung fertig gelesen hat.",
+    "B2 | Cuando Anna viene a la lavandería, siempre trae su cesta.": "Wenn Anna in den Waschsalon kommt, bringt sie immer ihren Korb mit.",
+    "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "Sobald sie die Handtücher gefaltet hat, wird sie sie ins Regal legen.",
+    "C1 | Debe de llevar tiempo sin lavar.": "Sie muss lange nicht gewaschen haben.",
+    "C1 | Puede que la niña sea la nieta de la señora.": "Vielleicht ist das Mädchen die Enkelin der Dame.",
+    "C1 | Estará lista en una hora.": "Sie wird wohl in einer Stunde fertig sein.",
+    "C1 | Dicen que esta lavandería cierra pronto.": "Man sagt, dieser Waschsalon schließe bald."
+   }
   }
  }
 };

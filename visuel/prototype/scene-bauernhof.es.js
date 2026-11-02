@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -60,6 +61,7 @@ window.SCENE = {
    "ar": "غيمة، سحابة",
    "pl": "chmura",
    "ru": "облако, туча",
+   "de": "die Wolke",
    "latam": null
   },
   {
@@ -87,6 +89,7 @@ window.SCENE = {
    "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
+   "de": "der Vogel",
    "latam": null
   },
   {
@@ -114,6 +117,7 @@ window.SCENE = {
    "ar": "غابة",
    "pl": "las",
    "ru": "лес",
+   "de": "der Wald",
    "latam": null
   },
   {
@@ -141,6 +145,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -168,6 +173,7 @@ window.SCENE = {
    "ar": "ريف، حقل",
    "pl": "pole",
    "ru": "поле",
+   "de": "das Land (ländliche Gegend), das Feld",
    "latam": null
   },
   {
@@ -195,6 +201,7 @@ window.SCENE = {
    "ar": "مرج",
    "pl": "łąka",
    "ru": "луг",
+   "de": "die Wiese",
    "latam": null
   },
   {
@@ -240,6 +247,7 @@ window.SCENE = {
    "ar": "خروف، نعجة",
    "pl": "owca",
    "ru": "овца",
+   "de": "das Schaf",
    "latam": null
   },
   {
@@ -267,6 +275,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -294,6 +303,7 @@ window.SCENE = {
    "ar": "سطح، سقف",
    "pl": "dach",
    "ru": "крыша",
+   "de": "das Dach",
    "latam": null
   },
   {
@@ -321,6 +331,7 @@ window.SCENE = {
    "ar": "بيت",
    "pl": "dom",
    "ru": "дом",
+   "de": "das Haus",
    "latam": null
   },
   {
@@ -354,6 +365,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -381,6 +393,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -408,6 +421,7 @@ window.SCENE = {
    "ar": "خشب",
    "pl": "drewno",
    "ru": "дерево (материал)",
+   "de": "das Holz",
    "latam": null
   },
   {
@@ -435,6 +449,7 @@ window.SCENE = {
    "ar": "سلّم، درج",
    "pl": "drabina",
    "ru": "лестница (стремянка)",
+   "de": "die Treppe",
    "latam": null
   },
   {
@@ -462,6 +477,7 @@ window.SCENE = {
    "ar": "يقطين، قرع",
    "pl": "dynia",
    "ru": "тыква",
+   "de": "der Kürbis",
    "latam": null
   },
   {
@@ -489,6 +505,7 @@ window.SCENE = {
    "ar": "قطّ",
    "pl": "kot",
    "ru": "кошка",
+   "de": "die Katze",
    "latam": null
   },
   {
@@ -516,6 +533,7 @@ window.SCENE = {
    "ar": "سور، جدار خارجي",
    "pl": "mur",
    "ru": "стена (каменная)",
+   "de": "die Mauer",
    "latam": null
   },
   {
@@ -543,6 +561,7 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
+   "de": "die Bank",
    "latam": null
   },
   {
@@ -570,6 +589,7 @@ window.SCENE = {
    "ar": "بئر",
    "pl": "fontanna, studnia",
    "ru": "фонтан, колодец",
+   "de": "der Brunnen",
    "latam": null
   },
   {
@@ -597,6 +617,7 @@ window.SCENE = {
    "ar": "دلو",
    "pl": "wiadro",
    "ru": "ведро",
+   "de": "der Eimer",
    "latam": {
     "mot": "cubeta",
     "genre": "la",
@@ -620,7 +641,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     }
    ],
    "sur": null,
@@ -639,6 +661,7 @@ window.SCENE = {
    "ar": "عمّ، خال",
    "pl": "wujek",
    "ru": "дядя",
+   "de": "der Onkel",
    "latam": null
   },
   {
@@ -666,6 +689,7 @@ window.SCENE = {
    "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Mütze",
    "latam": null
   },
   {
@@ -693,6 +717,7 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка",
+   "de": "das Hemd",
    "latam": null
   },
   {
@@ -713,6 +738,7 @@ window.SCENE = {
      "en": "the jeans",
      "pt": "a calça jeans",
      "ar": "بنطال جينز",
+     "de": "die Jeans",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -736,6 +762,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -763,6 +790,7 @@ window.SCENE = {
    "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
+   "de": "der Stiefel",
    "latam": null
   },
   {
@@ -790,6 +818,7 @@ window.SCENE = {
    "ar": "بقرة",
    "pl": "krowa",
    "ru": "корова",
+   "de": "die Kuh",
    "latam": null
   },
   {
@@ -823,6 +852,7 @@ window.SCENE = {
    "ar": "عشب",
    "pl": "trawa",
    "ru": "трава",
+   "de": "das Gras",
    "latam": null
   },
   {
@@ -850,6 +880,7 @@ window.SCENE = {
    "ar": "حصان",
    "pl": "koń",
    "ru": "лошадь",
+   "de": "das Pferd",
    "latam": null
   },
   {
@@ -877,6 +908,7 @@ window.SCENE = {
    "ar": "خنزير",
    "pl": "świnia",
    "ru": "свинья",
+   "de": "das Schwein",
    "latam": null
   },
   {
@@ -896,7 +928,8 @@ window.SCENE = {
      "fr": "l'enfant, le garçon",
      "en": "the child, the boy",
      "pt": "a criança, o menino",
-     "ar": "طفل، ولد"
+     "ar": "طفل، ولد",
+     "de": "das Kind"
     }
    ],
    "sur": null,
@@ -915,6 +948,7 @@ window.SCENE = {
    "ar": "ابن العمّ أو الخال",
    "pl": "kuzyn",
    "ru": "двоюродный брат",
+   "de": "der Cousin",
    "latam": null
   },
   {
@@ -942,6 +976,7 @@ window.SCENE = {
    "ar": "قبّعة",
    "pl": "kapelusz",
    "ru": "шляпа",
+   "de": "der Hut",
    "latam": null
   },
   {
@@ -969,6 +1004,7 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка",
+   "de": "das Hemd",
    "latam": null
   },
   {
@@ -996,6 +1032,7 @@ window.SCENE = {
    "ar": "دجاجة",
    "pl": "kura",
    "ru": "курица",
+   "de": "das Huhn, die Henne",
    "latam": null
   },
   {
@@ -1023,6 +1060,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -1050,6 +1088,7 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка",
+   "de": "das Hemd",
    "latam": null
   },
   {
@@ -1077,6 +1116,7 @@ window.SCENE = {
    "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
+   "de": "das T-Shirt",
    "latam": null
   },
   {
@@ -1097,6 +1137,7 @@ window.SCENE = {
      "en": "the jeans",
      "pt": "a calça jeans",
      "ar": "بنطال جينز",
+     "de": "die Jeans",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -1120,6 +1161,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1147,6 +1189,7 @@ window.SCENE = {
    "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
+   "de": "der Stiefel",
    "latam": null
   },
   {
@@ -1174,6 +1217,7 @@ window.SCENE = {
    "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
+   "de": "der Apfel",
    "latam": null
   },
   {
@@ -1201,6 +1245,7 @@ window.SCENE = {
    "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
+   "de": "der Apfel",
    "latam": null
   },
   {
@@ -1228,6 +1273,7 @@ window.SCENE = {
    "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
+   "de": "der Apfel",
    "latam": null
   },
   {
@@ -1255,6 +1301,7 @@ window.SCENE = {
    "ar": "صندوق الدفع",
    "pl": "skrzynia, skrzynka",
    "ru": "ящик",
+   "de": "die Kasse",
    "latam": null
   },
   {
@@ -1274,7 +1321,8 @@ window.SCENE = {
      "fr": "le lait",
      "en": "milk",
      "pt": "o leite",
-     "ar": "حليب"
+     "ar": "حليب",
+     "de": "die Milch"
     }
    ],
    "sur": null,
@@ -1293,6 +1341,7 @@ window.SCENE = {
    "ar": "إبريق، دورق",
    "pl": "dzbanek",
    "ru": "кофейник, кувшин",
+   "de": "der Krug, die Karaffe",
    "latam": null
   },
   {
@@ -1320,6 +1369,7 @@ window.SCENE = {
    "ar": "سلّة",
    "pl": "koszyk, kosz",
    "ru": "корзина",
+   "de": "der Korb",
    "latam": null
   },
   {
@@ -1347,6 +1397,7 @@ window.SCENE = {
    "ar": "بيضة",
    "pl": "jajko",
    "ru": "яйцо",
+   "de": "das Ei",
    "latam": null
   },
   {
@@ -1374,6 +1425,7 @@ window.SCENE = {
    "ar": "دجاجة",
    "pl": "kura",
    "ru": "курица",
+   "de": "das Huhn, die Henne",
    "latam": null
   },
   {
@@ -1401,6 +1453,7 @@ window.SCENE = {
    "ar": "دجاجة",
    "pl": "kura",
    "ru": "курица",
+   "de": "das Huhn, die Henne",
    "latam": null
   },
   {
@@ -1428,6 +1481,7 @@ window.SCENE = {
    "ar": "دجاجة",
    "pl": "kura",
    "ru": "курица",
+   "de": "das Huhn, die Henne",
    "latam": null
   },
   {
@@ -1455,6 +1509,7 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
+   "de": "der Hund",
    "latam": null
   },
   {
@@ -1494,6 +1549,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -2196,6 +2252,81 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna im Hof des Bauernhofs ihres Onkels an einem Herbstmorgen: Sie reicht dem Pferd über den Zaun einen Apfel und lacht; eine Kuh steht auf der Wiese, ein Schwein in seinem Gehege, Schafe auf dem Hügel, eine Katze auf der Mauer, ein Hund liegt im Hof; ihr Onkel trägt ein Strohbündel, ihr kleiner Cousin mit Strohhut gibt einem Huhn Körner; am Boden ein Korb mit Eiern, eine Kiste Äpfel, eine Milchkanne und Hühner; dahinter das Backsteinhaus, die Scheune mit Leiter und Holz, ein Brunnen und ein Apfelbaum.",
+    "consigne": "Anna verbringt den Vormittag auf dem Bauernhof ihres Onkels in Brandenburg. Tippe auf einen Gegenstand oder ein Tier."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Reflexive Verben",
+    "B2": "Gustar und ähnliche Verben",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El gato está en el muro.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El perro está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El perro está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Los huevos están en la cesta.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La escalera está al lado de la madera.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay un pájaro en el tejado.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | Las manzanas están en la caja.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La vaca está en el prado.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La cubeta cuelga del pozo.": "<b>de + el = del</b>, immer.",
+    "A2 | El cubo cuelga del pozo.": "<b>de + el = del</b>, immer.",
+    "B1 | Anna se ríe con el caballo.": "<b>reírse</b> ist reflexiv, anders als „lachen“: 3. Person → <b>se</b>.",
+    "B1 | El perro se tumba en el piso.": "<b>tumbarse</b> = sich hinlegen; él → <b>se</b>.",
+    "B1 | El perro se tumba en el suelo.": "<b>tumbarse</b> = sich hinlegen; él → <b>se</b>.",
+    "B1 | El gato se sienta en el muro.": "<b>sentarse</b> = sich setzen; él → <b>se</b>.",
+    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "<b>agacharse</b> = sich bücken; él → <b>se</b>.",
+    "B1 | Nosotros nos levantamos temprano en la granja.": "nosotros → <b>nos</b>. Levantarse ist reflexiv, „aufstehen“ nicht.",
+    "B1 | ¿Tú te lavas las manos después?": "tú → <b>te</b>, vor dem Verb.",
+    "B1 | Yo me pongo las botas.": "<b>ponerse</b> + Kleidungsstück: yo → <b>me</b>. Statt „meine Stiefel“ steht der Artikel: las botas.",
+    "B1 | Las gallinas se acercan a la cesta.": "<b>acercarse</b> = sich nähern; ellas → <b>se</b>.",
+    "B2 | A Anna le gustan los caballos.": "Wer etwas mag, ist das Objekt: <b>le</b> (ihm, ihr) — genau wie bei „gefallen“: ihr gefallen die Pferde.",
+    "B2 | Al caballo le encanta la manzana.": "<b>encantar</b> funktioniert wie gustar → <b>le</b>.",
+    "B2 | A los niños les gustan las gallinas.": "Plural (a los niños) → <b>les</b>, ihnen.",
+    "B2 | A mí me gusta la vida en el campo.": "a mí → <b>me</b>; Subjekt des Verbs ist die Sache, die gefällt — wie im Deutschen bei „gefallen“.",
+    "B2 | ¿A ti te gustan los cerdos?": "a ti → <b>te</b>.",
+    "B2 | Al tío de Anna le duele la espalda.": "<b>doler</b> funktioniert wie gustar → <b>le</b> duele: ihm schmerzt der Rücken.",
+    "C1 | El caballo debe de ser muy cariñoso.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el perro sea del primo de Anna.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Serán de esta mañana.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „sie werden wohl …“ im Deutschen.",
+    "C1 | Dicen que la granja tiene más de cien años.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El gato está en el muro.": "Die Katze sitzt auf der Mauer.",
+    "A2 | El perro está en el piso.": "Der Hund liegt auf dem Boden.",
+    "A2 | El perro está en el suelo.": "Der Hund liegt auf dem Boden.",
+    "A2 | Los huevos están en la cesta.": "Die Eier liegen im Korb.",
+    "A2 | La escalera está al lado de la madera.": "Die Leiter steht neben dem Holz.",
+    "A2 | Hay un pájaro en el tejado.": "Auf dem Dach sitzt ein Vogel.",
+    "A2 | Las manzanas están en la caja.": "Die Äpfel liegen in der Kiste.",
+    "A2 | La vaca está en el prado.": "Die Kuh steht auf der Wiese.",
+    "A2 | La cubeta cuelga del pozo.": "Der Eimer hängt am Brunnen.",
+    "A2 | El cubo cuelga del pozo.": "Der Eimer hängt am Brunnen.",
+    "B1 | Anna se ríe con el caballo.": "Anna lacht mit dem Pferd.",
+    "B1 | El perro se tumba en el piso.": "Der Hund legt sich auf den Boden.",
+    "B1 | El perro se tumba en el suelo.": "Der Hund legt sich auf den Boden.",
+    "B1 | El gato se sienta en el muro.": "Die Katze setzt sich auf die Mauer.",
+    "B1 | El primo de Anna se agacha para dar de comer a la gallina.": "Annas Cousin bückt sich, um das Huhn zu füttern.",
+    "B1 | Nosotros nos levantamos temprano en la granja.": "Wir stehen auf dem Bauernhof früh auf.",
+    "B1 | ¿Tú te lavas las manos después?": "Wäschst du dir danach die Hände?",
+    "B1 | Yo me pongo las botas.": "Ich ziehe meine Stiefel an.",
+    "B1 | Las gallinas se acercan a la cesta.": "Die Hühner nähern sich dem Korb.",
+    "B2 | A Anna le gustan los caballos.": "Anna gefallen die Pferde. (Anna mag Pferde.)",
+    "B2 | Al caballo le encanta la manzana.": "Das Pferd liebt den Apfel.",
+    "B2 | A los niños les gustan las gallinas.": "Die Kinder mögen die Hühner.",
+    "B2 | A mí me gusta la vida en el campo.": "Mir gefällt das Leben auf dem Land.",
+    "B2 | ¿A ti te gustan los cerdos?": "Magst du Schweine?",
+    "B2 | Al tío de Anna le duele la espalda.": "Annas Onkel tut der Rücken weh.",
+    "C1 | El caballo debe de ser muy cariñoso.": "Das Pferd muss sehr zutraulich sein.",
+    "C1 | Puede que el perro sea del primo de Anna.": "Vielleicht gehört der Hund Annas Cousin.",
+    "C1 | Serán de esta mañana.": "Sie werden wohl von heute Morgen sein.",
+    "C1 | Dicen que la granja tiene más de cien años.": "Man sagt, der Bauernhof sei über hundert Jahre alt."
+   }
   }
  }
 };

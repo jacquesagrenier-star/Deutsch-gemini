@@ -19,7 +19,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -29,7 +30,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -48,6 +50,7 @@ window.SCENE = {
    "ar": "شمندر",
    "pl": "burak ćwikłowy",
    "ru": "свёкла",
+   "de": "die Rote Bete",
    "latam": {
     "mot": "betabel",
     "genre": "el",
@@ -71,7 +74,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -81,7 +85,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -100,6 +105,7 @@ window.SCENE = {
    "ar": "قرنبيط",
    "pl": "kalafior",
    "ru": "цветная капуста",
+   "de": "der Blumenkohl",
    "latam": null
   },
   {
@@ -119,7 +125,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -129,7 +136,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -148,6 +156,7 @@ window.SCENE = {
    "ar": "كرفس",
    "pl": "seler",
    "ru": "сельдерей",
+   "de": "der Sellerie",
    "latam": null
   },
   {
@@ -167,7 +176,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -177,7 +187,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -196,6 +207,7 @@ window.SCENE = {
    "ar": "بطاطا",
    "pl": "ziemniak",
    "ru": "картофель",
+   "de": "die Kartoffel",
    "latam": {
     "mot": "papa",
     "genre": "la",
@@ -219,7 +231,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -229,7 +242,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -248,6 +262,7 @@ window.SCENE = {
    "ar": "كرنب ساقي، كولرابي",
    "pl": "kalarepa",
    "ru": "кольраби",
+   "de": "der Kohlrabi",
    "latam": null
   },
   {
@@ -267,7 +282,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -277,7 +293,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -296,6 +313,7 @@ window.SCENE = {
    "ar": "بصل",
    "pl": "cebula",
    "ru": "лук",
+   "de": "die Zwiebel",
    "latam": null
   },
   {
@@ -315,7 +333,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -325,7 +344,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -344,6 +364,7 @@ window.SCENE = {
    "ar": "ملفوف، كرنب",
    "pl": "kapusta",
    "ru": "капуста",
+   "de": "der Kohl",
    "latam": null
   },
   {
@@ -363,7 +384,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -373,7 +395,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -392,6 +415,7 @@ window.SCENE = {
    "ar": "كرّاث",
    "pl": "por",
    "ru": "лук-порей",
+   "de": "der Lauch",
    "latam": null
   },
   {
@@ -411,7 +435,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -421,7 +446,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -440,6 +466,7 @@ window.SCENE = {
    "ar": "جزرة",
    "pl": "marchewka",
    "ru": "морковь",
+   "de": "die Karotte, die Möhre",
    "latam": null
   },
   {
@@ -459,7 +486,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -469,7 +497,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -488,6 +517,7 @@ window.SCENE = {
    "ar": "كرنب بروكسل",
    "pl": "brukselka",
    "ru": "брюссельская капуста",
+   "de": "der Rosenkohl",
    "latam": null
   },
   {
@@ -507,7 +537,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -517,7 +548,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -536,6 +568,7 @@ window.SCENE = {
    "ar": "شمر",
    "pl": "koper włoski, fenkuł",
    "ru": "фенхель",
+   "de": "der Fenchel",
    "latam": null
   },
   {
@@ -555,7 +588,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -565,7 +599,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -584,6 +619,7 @@ window.SCENE = {
    "ar": "بروكلي",
    "pl": "brokuł",
    "ru": "брокколи",
+   "de": "der Brokkoli",
    "latam": null
   },
   {
@@ -603,7 +639,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -613,7 +650,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -632,6 +670,7 @@ window.SCENE = {
    "ar": "ثوم",
    "pl": "czosnek",
    "ru": "чеснок",
+   "de": "der Knoblauch",
    "latam": null
   },
   {
@@ -651,7 +690,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -661,7 +701,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -680,6 +721,7 @@ window.SCENE = {
    "ar": "فجل",
    "pl": "rzodkiewka",
    "ru": "редиска",
+   "de": "das Radieschen, der Rettich",
    "latam": null
   },
   {
@@ -699,7 +741,8 @@ window.SCENE = {
      "fr": "la caisse",
      "en": "the checkout",
      "pt": "o caixa",
-     "ar": "صندوق الدفع"
+     "ar": "صندوق الدفع",
+     "de": "die Kasse"
     },
     {
      "mot": "verdura",
@@ -709,7 +752,8 @@ window.SCENE = {
      "fr": "le légume",
      "en": "vegetable",
      "pt": "o legume, a verdura",
-     "ar": "خضار"
+     "ar": "خضار",
+     "de": "das Gemüse"
     }
    ],
    "sur": null,
@@ -728,6 +772,7 @@ window.SCENE = {
    "ar": "بطاطا حلوة",
    "pl": "batat",
    "ru": "батат, сладкий картофель",
+   "de": "die Süßkartoffel",
    "latam": {
     "mot": "camote",
     "genre": "el",
@@ -771,6 +816,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -798,6 +844,7 @@ window.SCENE = {
    "ar": "فجل",
    "pl": "rzodkiewka",
    "ru": "редиска",
+   "de": "das Radieschen, der Rettich",
    "latam": null
   }
  ],
@@ -1398,6 +1445,69 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna nimmt ein Bund Radieschen vom Gemüsestand: Rote Bete, Blumenkohl, Sellerie, Kartoffeln, Kohlrabi, Zwiebeln, Kohl, Lauch, Karotten, Rosenkohl, Fenchel, Brokkoli, Knoblauch, Radieschen und Süßkartoffeln.",
+    "consigne": "Tippe auf ein Obst, ein Gemüse oder eine Kiste."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — auf dem Markt",
+    "B1": "Einkaufen: Mengen und Preise",
+    "B2": "Passiv, Relativsätze und Angleichung",
+    "C1": "Vermutungen, cuanto más, Gründe"
+   },
+   "questions": {
+    "A2 | Las cebollas están entre los colinabos y la col.": "<b>la</b> col: weiblich, wie la coliflor — anders als „der Kohl“.",
+    "A2 | Anna tiene un manojo de rábanos en la mano.": "<b>un manojo</b> = ein Bund (Radieschen, Karotten).",
+    "A2 | El ajo está al lado de los rábanos.": "<b>al lado de</b> = neben.",
+    "A2 | Las papas están al lado del apio.": "<b>el</b> apio → de + el = <b>del</b>.",
+    "A2 | Las patatas están al lado del apio.": "<b>el</b> apio → de + el = <b>del</b>.",
+    "A2 | El puerro está a la derecha de la col.": "<b>a la derecha de</b> = rechts von.",
+    "B1 | Quería un manojo de zanahorias, por favor.": "<b>un manojo</b> = ein Bund.",
+    "B1 | Dos kilos de papas, por favor.": "Nach einer Mengenangabe: <b>de</b> + Plural, ohne Artikel — das „de“ hat im Deutschen keine Entsprechung.",
+    "B1 | Dos kilos de patatas, por favor.": "Nach einer Mengenangabe: <b>de</b> + Plural, ohne Artikel — das „de“ hat im Deutschen keine Entsprechung.",
+    "B1 | ¿Cuánto cuesta la coliflor?": "la coliflor, Singular → <b>cuesta</b>; im Plural cuestan.",
+    "B1 | La col es más grande que las coles de Bruselas.": "<b>más</b> … <b>que</b> = … als.",
+    "B1 | Necesito una cabeza de ajos para la salsa.": "<b>una cabeza de ajos</b> = eine Knoblauchknolle (wörtlich: ein Kopf Knoblauch).",
+    "B2 | Las papas fueron recogidas la semana pasada.": "Der Vorgang, im Passiv: <b>ser</b> + Partizip, in der Vergangenheit → <b>fueron</b> recogidas.",
+    "B2 | Las patatas fueron recogidas la semana pasada.": "Der Vorgang, im Passiv: <b>ser</b> + Partizip, in der Vergangenheit → <b>fueron</b> recogidas.",
+    "B2 | El puerro, cuyas hojas son verde oscuro, está al lado de la col.": "<b>cuyo</b> richtet sich nach las hojas → <b>cuyas</b>.",
+    "B2 | Anna compra rábanos frescos.": "el rábano → rábanos <b>frescos</b>: männlich Plural.",
+    "B2 | La verdura que se vende aquí es de la región.": "Das Passiv mit <b>se</b>: que se vende = das verkauft wird.",
+    "B2 | Las cebollas deben guardarse en un lugar seco.": "Passiv mit <b>se</b>, angehängt an den Infinitiv: deben <b>guardarse</b> = müssen aufbewahrt werden.",
+    "C1 | Debido a la temporada, en octubre hay mucha col.": "<b>debido a</b> = wegen, aufgrund von.",
+    "C1 | Cuanto más fresca está la verdura, más vitaminas tiene.": "<b>cuanto más</b> …, <b>más</b> … = je …, desto ….",
+    "C1 | Si lo hubiera sabido, no habría comprado ajo en el supermercado.": "Bedauern über die Vergangenheit: <b>si</b> + Plusquamperfekt des subjuntivo, dann condicional Perfekt.",
+    "C1 | Las zanahorias parecen haber sido recogidas hoy mismo.": "<b>parecer</b> + Infinitiv Perfekt des Passivs: parecen <b>haber sido</b> recogidas.",
+    "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "<b>deber de</b> + Infinitiv Perfekt = eine Schlussfolgerung über die Vergangenheit."
+   },
+   "sens": {
+    "A2 | Las cebollas están entre los colinabos y la col.": "Die Zwiebeln liegen zwischen den Kohlrabis und dem Kohl.",
+    "A2 | Anna tiene un manojo de rábanos en la mano.": "Anna hat ein Bund Radieschen in der Hand.",
+    "A2 | El ajo está al lado de los rábanos.": "Der Knoblauch liegt neben den Radieschen.",
+    "A2 | Las papas están al lado del apio.": "Die Kartoffeln liegen neben dem Sellerie.",
+    "A2 | Las patatas están al lado del apio.": "Die Kartoffeln liegen neben dem Sellerie.",
+    "A2 | El puerro está a la derecha de la col.": "Der Lauch liegt rechts vom Kohl.",
+    "B1 | Quería un manojo de zanahorias, por favor.": "Ich hätte gern ein Bund Karotten, bitte.",
+    "B1 | Dos kilos de papas, por favor.": "Zwei Kilo Kartoffeln, bitte.",
+    "B1 | Dos kilos de patatas, por favor.": "Zwei Kilo Kartoffeln, bitte.",
+    "B1 | ¿Cuánto cuesta la coliflor?": "Wie viel kostet der Blumenkohl?",
+    "B1 | La col es más grande que las coles de Bruselas.": "Der Kohl ist größer als der Rosenkohl.",
+    "B1 | Necesito una cabeza de ajos para la salsa.": "Ich brauche eine Knoblauchknolle für die Sauce.",
+    "B2 | Las papas fueron recogidas la semana pasada.": "Die Kartoffeln wurden letzte Woche geerntet.",
+    "B2 | Las patatas fueron recogidas la semana pasada.": "Die Kartoffeln wurden letzte Woche geerntet.",
+    "B2 | El puerro, cuyas hojas son verde oscuro, está al lado de la col.": "Der Lauch, dessen Blätter dunkelgrün sind, liegt neben dem Kohl.",
+    "B2 | Anna compra rábanos frescos.": "Anna kauft frische Radieschen.",
+    "B2 | La verdura que se vende aquí es de la región.": "Das Gemüse, das hier verkauft wird, kommt aus der Region.",
+    "B2 | Las cebollas deben guardarse en un lugar seco.": "Zwiebeln müssen an einem trockenen Ort aufbewahrt werden.",
+    "C1 | Debido a la temporada, en octubre hay mucha col.": "Wegen der Saison gibt es im Oktober viel Kohl.",
+    "C1 | Cuanto más fresca está la verdura, más vitaminas tiene.": "Je frischer das Gemüse ist, desto mehr Vitamine hat es.",
+    "C1 | Si lo hubiera sabido, no habría comprado ajo en el supermercado.": "Hätte ich das gewusst, hätte ich keinen Knoblauch im Supermarkt gekauft.",
+    "C1 | Las zanahorias parecen haber sido recogidas hoy mismo.": "Die Karotten scheinen heute erst geerntet worden zu sein.",
+    "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "Anna muss die Radieschen für einen Salat gekauft haben."
+   }
   }
  }
 };

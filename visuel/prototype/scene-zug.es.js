@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
+   "de": "der Koffer",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -108,6 +111,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -135,6 +139,7 @@ window.SCENE = {
    "ar": "جبل",
    "pl": "góra",
    "ru": "гора",
+   "de": "der Berg",
    "latam": null
   },
   {
@@ -162,6 +167,7 @@ window.SCENE = {
    "ar": "كنيسة",
    "pl": "kościół",
    "ru": "церковь",
+   "de": "die Kirche",
    "latam": null
   },
   {
@@ -189,6 +195,7 @@ window.SCENE = {
    "ar": "قرية",
    "pl": "wieś",
    "ru": "деревня",
+   "de": "das Dorf",
    "latam": null
   },
   {
@@ -216,6 +223,7 @@ window.SCENE = {
    "ar": "ريف، حقل",
    "pl": "pole",
    "ru": "поле",
+   "de": "das Land (ländliche Gegend), das Feld",
    "latam": null
   },
   {
@@ -243,6 +251,7 @@ window.SCENE = {
    "ar": "جسر",
    "pl": "most",
    "ru": "мост",
+   "de": "die Brücke",
    "latam": null
   },
   {
@@ -270,6 +279,7 @@ window.SCENE = {
    "ar": "نهر",
    "pl": "rzeka",
    "ru": "река",
+   "de": "der Fluss",
    "latam": null
   },
   {
@@ -303,6 +313,7 @@ window.SCENE = {
    "ar": "بقرة",
    "pl": "krowa",
    "ru": "корова",
+   "de": "die Kuh",
    "latam": null
   },
   {
@@ -330,6 +341,7 @@ window.SCENE = {
    "ar": "حصان",
    "pl": "koń",
    "ru": "лошадь",
+   "de": "das Pferd",
    "latam": null
   },
   {
@@ -357,6 +369,7 @@ window.SCENE = {
    "ar": "مرج",
    "pl": "łąka",
    "ru": "луг",
+   "de": "die Wiese",
    "latam": null
   },
   {
@@ -384,6 +397,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -411,6 +425,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -438,6 +453,7 @@ window.SCENE = {
    "ar": "قهوة",
    "pl": "kawa",
    "ru": "кофе",
+   "de": "der Kaffee",
    "latam": null
   },
   {
@@ -465,6 +481,7 @@ window.SCENE = {
    "ar": "حاسوب محمول",
    "pl": "laptop",
    "ru": "ноутбук",
+   "de": "der Laptop",
    "latam": {
     "mot": "laptop",
     "genre": "la",
@@ -496,6 +513,7 @@ window.SCENE = {
    "ar": "خبز",
    "pl": "bułka",
    "ru": "булочка",
+   "de": "das Brot",
    "latam": null
   },
   {
@@ -523,6 +541,7 @@ window.SCENE = {
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
    "ru": "мобильный телефон",
+   "de": "das Handy",
    "latam": {
     "mot": "celular",
     "genre": "el",
@@ -554,6 +573,7 @@ window.SCENE = {
    "ar": "جريدة",
    "pl": "gazeta",
    "ru": "газета",
+   "de": "die Zeitung",
    "latam": null
   },
   {
@@ -581,6 +601,7 @@ window.SCENE = {
    "ar": "تذكرة",
    "pl": "bilet",
    "ru": "билет (на проезд)",
+   "de": "die Fahrkarte, das Ticket",
    "latam": {
     "mot": "boleto",
     "genre": "el",
@@ -612,6 +633,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -639,6 +661,7 @@ window.SCENE = {
    "ar": "كيس",
    "pl": "torba, torebka",
    "ru": "сумка",
+   "de": "die Tüte, der Beutel",
    "latam": null
   },
   {
@@ -666,6 +689,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -693,6 +717,7 @@ window.SCENE = {
    "ar": "مقعد",
    "pl": "siedzenie, miejsce",
    "ru": "сиденье, место",
+   "de": "der Sitz, der Sitzplatz",
    "latam": null
   },
   {
@@ -720,6 +745,7 @@ window.SCENE = {
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
+   "de": "der Koffer",
    "latam": null
   },
   {
@@ -747,6 +773,7 @@ window.SCENE = {
    "ar": "مقعد",
    "pl": "siedzenie, miejsce",
    "ru": "сиденье, место",
+   "de": "der Sitz, der Sitzplatz",
    "latam": null
   },
   {
@@ -774,6 +801,7 @@ window.SCENE = {
    "ar": "رفّ الأمتعة",
    "pl": "półka na bagaż",
    "ru": "багажная полка",
+   "de": "die Gepäckablage",
    "latam": null
   },
   {
@@ -801,6 +829,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   }
  ],
@@ -1508,6 +1537,83 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark in einem Regionalzug, einen Kaffee in der Hand, schaut aus dem Fenster: Kühe, ein Pferd, ein Rapsfeld, ein Fluss mit Brücke, ein Dorf mit Kirche, die Berge; auf dem Klapptisch ein Laptop, eine Zeitung, ein Brötchen, ein Handy und eine Fahrkarte.",
+    "consigne": "Mark fährt mit dem Zug. Tippe auf einen Gegenstand oder schau aus dem Fenster."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Auf Reisen: en, a, por",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La laptop está en la mesa.": "<b>en</b> = auf, in. Der Ort → <b>estar</b>.",
+    "A2 | El portátil está en la mesa.": "<b>en</b> = auf, in. Der Ort → <b>estar</b>.",
+    "A2 | La maleta azul está encima de la ventana.": "<b>encima de</b> = über.",
+    "A2 | La bufanda está en el asiento.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Las vacas están en el prado.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La iglesia está en el pueblo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El celular está al lado del pan.": "<b>de + el = del</b>, immer.",
+    "A2 | El móvil está al lado del pan.": "<b>de + el = del</b>, immer.",
+    "A2 | La mochila está al lado de la maleta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay un río debajo del puente.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | Mark viaja en tren.": "Das Verkehrsmittel → <b>en</b> tren (aber <b>a</b> pie) — nicht „mit“.",
+    "B1 | Va a las montañas.": "Die Richtung → <b>a</b>.",
+    "B1 | Mira por la ventana.": "Hindurch → <b>por</b>.",
+    "B1 | El tren pasa por el puente.": "Der Weg, die Strecke → <b>por</b>.",
+    "B1 | Ha puesto la maleta en la rejilla.": "Irgendwohin legen → <b>en</b>. Das Spanische unterscheidet nicht „wo“ und „wohin“.",
+    "B1 | Las vacas comen en el prado.": "Der Ort, wo man ist → <b>en</b>.",
+    "B1 | Mark lo ha dejado en la mesa.": "Direktes Objekt, männlich (el billete) → <b>lo</b>.",
+    "B1 | Alguien la ha olvidado en el asiento.": "Direktes Objekt, weiblich (la bufanda) → <b>la</b>.",
+    "B2 | El hombre que mira por la ventana se llama Mark.": "Relativsatz ohne Komma, Subjekt → <b>que</b>.",
+    "B2 | El pueblo, cuya iglesia tiene una torre puntiaguda, está en el valle.": "<b>cuyo</b> richtet sich nach dem Besessenen: la iglesia → <b>cuya</b>.",
+    "B2 | La mesa en la que está la laptop es gris.": "Präposition + Artikel + <b>que</b>, abgestimmt auf la mesa.",
+    "B2 | La mesa en la que está el portátil es gris.": "Präposition + Artikel + <b>que</b>, abgestimmt auf la mesa.",
+    "B2 | El boleto tiene que ser revisado en el tren.": "Passiv <b>ser</b> + angepasstes Partizip: el boleto → revisad<b>o</b>.",
+    "B2 | El billete tiene que ser revisado en el tren.": "Passiv <b>ser</b> + angepasstes Partizip: el billete → revisad<b>o</b>.",
+    "B2 | El periódico está doblado sobre la mesa.": "<b>estar</b> + Partizip, angepasst: el periódico → doblad<b>o</b>.",
+    "B2 | En este tren no se puede fumar.": "Unpersönliches <b>se</b> + Infinitiv → Verb im Singular.",
+    "C1 | El paisaje debe de gustarle.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que la bufanda sea de alguien que vuelve enseguida.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | El tren estará ya cerca de Múnich.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que en ese pueblo hacen el mejor queso de la región.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | La laptop está en la mesa.": "Der Laptop steht auf dem Tisch.",
+    "A2 | El portátil está en la mesa.": "Der Laptop steht auf dem Tisch.",
+    "A2 | La maleta azul está encima de la ventana.": "Der blaue Koffer liegt über dem Fenster.",
+    "A2 | La bufanda está en el asiento.": "Der Schal liegt auf dem Sitz.",
+    "A2 | Las vacas están en el prado.": "Die Kühe stehen auf der Wiese.",
+    "A2 | La iglesia está en el pueblo.": "Die Kirche steht im Dorf.",
+    "A2 | El celular está al lado del pan.": "Das Handy liegt neben dem Brötchen.",
+    "A2 | El móvil está al lado del pan.": "Das Handy liegt neben dem Brötchen.",
+    "A2 | La mochila está al lado de la maleta.": "Der Rucksack liegt neben dem Koffer.",
+    "A2 | Hay un río debajo del puente.": "Unter der Brücke fließt ein Fluss.",
+    "B1 | Mark viaja en tren.": "Mark fährt mit dem Zug.",
+    "B1 | Va a las montañas.": "Er fährt in die Berge.",
+    "B1 | Mira por la ventana.": "Er schaut aus dem Fenster.",
+    "B1 | El tren pasa por el puente.": "Der Zug fährt über die Brücke.",
+    "B1 | Ha puesto la maleta en la rejilla.": "Er hat den Koffer in die Gepäckablage gelegt.",
+    "B1 | Las vacas comen en el prado.": "Die Kühe fressen auf der Wiese.",
+    "B1 | Mark lo ha dejado en la mesa.": "Mark hat sie auf dem Tisch liegen lassen.",
+    "B1 | Alguien la ha olvidado en el asiento.": "Jemand hat ihn auf dem Sitz vergessen.",
+    "B2 | El hombre que mira por la ventana se llama Mark.": "Der Mann, der aus dem Fenster schaut, heißt Mark.",
+    "B2 | El pueblo, cuya iglesia tiene una torre puntiaguda, está en el valle.": "Das Dorf, dessen Kirche einen spitzen Turm hat, liegt im Tal.",
+    "B2 | La mesa en la que está la laptop es gris.": "Der Tisch, auf dem der Laptop steht, ist grau.",
+    "B2 | La mesa en la que está el portátil es gris.": "Der Tisch, auf dem der Laptop steht, ist grau.",
+    "B2 | El boleto tiene que ser revisado en el tren.": "Die Fahrkarte muss im Zug kontrolliert werden.",
+    "B2 | El billete tiene que ser revisado en el tren.": "Die Fahrkarte muss im Zug kontrolliert werden.",
+    "B2 | El periódico está doblado sobre la mesa.": "Die Zeitung liegt gefaltet auf dem Tisch.",
+    "B2 | En este tren no se puede fumar.": "In diesem Zug darf man nicht rauchen.",
+    "C1 | El paisaje debe de gustarle.": "Die Landschaft muss ihm gefallen.",
+    "C1 | Puede que la bufanda sea de alguien que vuelve enseguida.": "Vielleicht gehört der Schal jemandem, der gleich zurückkommt.",
+    "C1 | El tren estará ya cerca de Múnich.": "Der Zug wird wohl schon in der Nähe von München sein.",
+    "C1 | Dicen que en ese pueblo hacen el mejor queso de la región.": "Man sagt, in diesem Dorf mache man den besten Käse der Region."
+   }
   }
  }
 };

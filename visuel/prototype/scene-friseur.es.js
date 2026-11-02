@@ -39,6 +39,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -66,6 +67,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -93,6 +95,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -120,6 +123,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -147,6 +151,7 @@ window.SCENE = {
    "ar": "خطّاف، علّاقة",
    "pl": "wieszak, hak",
    "ru": "крючок",
+   "de": "der Haken",
    "latam": null
   },
   {
@@ -174,6 +179,7 @@ window.SCENE = {
    "ar": "حقيبة يد",
    "pl": "torba, torebka",
    "ru": "сумка",
+   "de": "die Handtasche",
    "latam": null
   },
   {
@@ -201,6 +207,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -228,6 +235,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -255,6 +263,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -294,6 +303,7 @@ window.SCENE = {
    "ar": "منشفة",
    "pl": "ręcznik",
    "ru": "полотенце",
+   "de": "das Handtuch",
    "latam": null
   },
   {
@@ -327,6 +337,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -354,6 +365,7 @@ window.SCENE = {
    "ar": "مكنسة",
    "pl": "miotła",
    "ru": "метла",
+   "de": "der Besen",
    "latam": null
   },
   {
@@ -381,6 +393,7 @@ window.SCENE = {
    "ar": "مرآة",
    "pl": "lustro",
    "ru": "зеркало",
+   "de": "der Spiegel",
    "latam": null
   },
   {
@@ -408,6 +421,7 @@ window.SCENE = {
    "ar": "فرشاة",
    "pl": "szczotka",
    "ru": "щётка",
+   "de": "die Bürste",
    "latam": null
   },
   {
@@ -435,6 +449,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -462,6 +477,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -489,6 +505,7 @@ window.SCENE = {
    "ar": "صندوق الدفع",
    "pl": "kasa",
    "ru": "касса",
+   "de": "die Kasse",
    "latam": null
   },
   {
@@ -516,6 +533,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -535,7 +553,8 @@ window.SCENE = {
      "fr": "le café",
      "en": "coffee",
      "pt": "o café",
-     "ar": "قهوة"
+     "ar": "قهوة",
+     "de": "der Kaffee"
     }
    ],
    "sur": "theke",
@@ -554,6 +573,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -581,6 +601,7 @@ window.SCENE = {
    "ar": "بار، منضدة المقهى",
    "pl": "lada",
    "ru": "стойка",
+   "de": "die Theke",
    "latam": null
   },
   {
@@ -608,6 +629,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -635,6 +657,7 @@ window.SCENE = {
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
    "ru": "фонарь",
+   "de": "die Straßenlaterne",
    "latam": {
     "mot": "farol",
     "genre": "el",
@@ -666,6 +689,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -693,6 +717,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -713,6 +738,7 @@ window.SCENE = {
      "en": "the shop window",
      "pt": "a vitrine",
      "ar": "واجهة المتجر",
+     "de": "das Schaufenster",
      "latam": {
       "mot": "aparador",
       "genre": "el",
@@ -736,6 +762,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -763,6 +790,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -796,6 +824,7 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
+   "de": "die Brille",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -827,6 +856,7 @@ window.SCENE = {
    "ar": "مقصّ",
    "pl": "nożyczki",
    "ru": "ножницы",
+   "de": "die Schere",
    "latam": null
   },
   {
@@ -854,6 +884,7 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка",
+   "de": "das Hemd",
    "latam": null
   },
   {
@@ -881,6 +912,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -908,6 +940,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -935,6 +968,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -954,7 +988,8 @@ window.SCENE = {
      "fr": "la veste",
      "en": "the jacket",
      "pt": "a jaqueta, o casaco",
-     "ar": "سترة، جاكيت"
+     "ar": "سترة، جاكيت",
+     "de": "die Jacke"
     }
    ],
    "sur": null,
@@ -973,6 +1008,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -1004,6 +1040,7 @@ window.SCENE = {
    "ar": "مجلّة",
    "pl": "czasopismo",
    "ru": "журнал",
+   "de": "die Zeitschrift",
    "latam": null
   },
   {
@@ -1031,6 +1068,7 @@ window.SCENE = {
    "ar": "أريكة",
    "pl": "kanapa",
    "ru": "диван",
+   "de": "das Sofa",
    "latam": null
   },
   {
@@ -1050,7 +1088,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": "tisch",
@@ -1069,6 +1108,7 @@ window.SCENE = {
    "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
+   "de": "das Glas (Trinkglas)",
    "latam": null
   },
   {
@@ -1096,6 +1136,7 @@ window.SCENE = {
    "ar": "مجلّة",
    "pl": "czasopismo",
    "ru": "журнал",
+   "de": "die Zeitschrift",
    "latam": null
   },
   {
@@ -1123,6 +1164,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -1150,6 +1192,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -1177,6 +1220,7 @@ window.SCENE = {
    "ar": "شعر",
    "pl": "włos, włosy",
    "ru": "волосы",
+   "de": "das Haar",
    "latam": null
   },
   {
@@ -1204,6 +1248,7 @@ window.SCENE = {
    "ar": "منشفة",
    "pl": "ręcznik",
    "ru": "полотенце",
+   "de": "das Handtuch",
    "latam": null
   },
   {
@@ -1231,6 +1276,7 @@ window.SCENE = {
    "ar": "بلوزة",
    "pl": "bluzka",
    "ru": "блузка",
+   "de": "die Bluse",
    "latam": null
   },
   {
@@ -1258,6 +1304,7 @@ window.SCENE = {
    "ar": "مجلّة",
    "pl": "czasopismo",
    "ru": "журнал",
+   "de": "die Zeitschrift",
    "latam": null
   },
   {
@@ -1285,6 +1332,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1318,6 +1366,7 @@ window.SCENE = {
    "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
+   "de": "der Stiefel",
    "latam": null
   },
   {
@@ -1345,6 +1394,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -1396,6 +1446,7 @@ window.SCENE = {
    "ar": "شعر",
    "pl": "włos, włosy",
    "ru": "волосы",
+   "de": "das Haar",
    "latam": null
   },
   {
@@ -1429,6 +1480,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -2097,6 +2149,75 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna an einem Samstagmorgen beim Friseur in Berlin: Sie sitzt in einem schwarzen Ledersessel, ein weißes Handtuch um die Schultern und eine geschlossene Zeitschrift auf den Knien, und lächelt, während der Friseur mit Brille eine Strähne ihres Haars und die geöffnete Schere hält; auf dem Boden abgeschnittene Haare; links ein großer Spiegel, ein hohes Regal mit Handtüchern und Flaschen, ein Besen und eine Konsole mit einer Rundbürste und drei Flaschen; im Hintergrund ein kleiner Tresen mit einer alten Registrierkasse, einer Tasse Kaffee und einem Topf Basilikum, eine Uhr, ein Sonnenblumenbild, eine Hängelampe und Haken, an denen Annas Mantel, roter Schal und Tasche hängen; rechts liest eine alte Dame eine Zeitschrift auf einem grauen Sofa, vor einem Couchtisch mit einem Stapel Zeitschriften und einem Glas Wasser, eine große Pflanze und das Schaufenster zur Straße, mit einer Straßenlaterne, einem Baum und einem Fahrrad.",
+    "consigne": "Anna lässt sich die Haare schneiden. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Der Artikel beim Körper: se lava el pelo",
+    "B2": "Je … desto: cuanto más…, más…",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El reloj está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Las toallas están en la estantería.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La caja está en la barra.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El pelo está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El pelo está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El vaso está en la mesa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La señora está en el sofá.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El hombre está detrás de la silla.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay un cuadro en la pared.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | Anna se corta el pelo.": "Mit einem reflexiven Verb sagt man <b>el</b> pelo, nicht „su pelo“: Das Pronomen sagt schon, wessen Haar — wie „sich die Haare schneiden“.",
+    "B1 | Me lavo las manos.": "Körperteile nehmen den bestimmten Artikel: me lavo <b>las</b> manos — genau wie „mir die Hände“.",
+    "B1 | Anna se mira en el espejo.": "<b>mirarse</b>: In der 3. Person ist das Reflexivpronomen <b>se</b>.",
+    "B1 | Anna tiene el pelo rubio.": "Um einen Körperteil zu beschreiben: tener <b>el</b> pelo rubio — mit Artikel, wo das Deutsche keinen setzt.",
+    "B1 | Al salir, Anna se pone el abrigo.": "<b>ponerse</b> + Kleidungsstück: der bestimmte Artikel, <b>el</b> abrigo.",
+    "B1 | Por la mañana, Anna se peina con un cepillo.": "<b>peinarse</b>: Man kämmt sich selbst → <b>se</b>.",
+    "B1 | ¿Te lavas el pelo todos los días?": "Mit dem Pronomen (te) der Artikel: <b>el</b> pelo, nicht „tu pelo“.",
+    "B2 | Cuanto más corto es el pelo, más rápido se seca.": "<b>cuanto más</b> …, <b>más</b> … = je …, desto …",
+    "B2 | Cuanto más espera la señora, más revistas lee.": "<b>cuanto</b> + más eröffnet den Vergleich; vor einem Verb bleibt es unverändert.",
+    "B2 | Cuantos más clientes vienen, más dinero gana el peluquero.": "Ein beobachtetes Verhältnis, eine allgemeine Tatsache → <b>Indikativ</b>: gana.",
+    "B2 | Cuanta más agua bebes, mejor te sientes.": "„Desto besser“ heißt <b>mejor</b>: cuanto más…, mejor.",
+    "B2 | Cuanto más pelo tiene Anna, más tarda el corte.": "<b>cuanto más</b> + Nomen: je mehr …",
+    "B2 | Cuantas más toallas hay, mejor.": "<b>cuanto</b> passt sich dem folgenden Nomen an: cuant<b>as</b> más toallas.",
+    "C1 | Debe de estar contenta con el corte.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que la señora sea la próxima clienta.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | El abrigo y la bufanda serán de Anna.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „werden wohl …“ im Deutschen.",
+    "C1 | Dicen que este peluquero es el mejor del barrio.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en la pared.": "Die Uhr hängt an der Wand.",
+    "A2 | Las toallas están en la estantería.": "Die Handtücher liegen im Regal.",
+    "A2 | La caja está en la barra.": "Die Kasse steht auf dem Tresen.",
+    "A2 | El pelo está en el piso.": "Die Haare liegen auf dem Boden.",
+    "A2 | El pelo está en el suelo.": "Die Haare liegen auf dem Boden.",
+    "A2 | El vaso está en la mesa.": "Das Glas steht auf dem Tisch.",
+    "A2 | La señora está en el sofá.": "Die Dame sitzt auf dem Sofa.",
+    "A2 | El hombre está detrás de la silla.": "Der Mann steht hinter dem Sessel.",
+    "A2 | Hay un cuadro en la pared.": "An der Wand hängt ein Bild.",
+    "B1 | Anna se corta el pelo.": "Anna lässt sich die Haare schneiden.",
+    "B1 | Me lavo las manos.": "Ich wasche mir die Hände.",
+    "B1 | Anna se mira en el espejo.": "Anna betrachtet sich im Spiegel.",
+    "B1 | Anna tiene el pelo rubio.": "Anna hat blonde Haare.",
+    "B1 | Al salir, Anna se pone el abrigo.": "Beim Hinausgehen zieht Anna ihren Mantel an.",
+    "B1 | Por la mañana, Anna se peina con un cepillo.": "Morgens kämmt sich Anna mit einer Bürste.",
+    "B1 | ¿Te lavas el pelo todos los días?": "Wäschst du dir jeden Tag die Haare?",
+    "B2 | Cuanto más corto es el pelo, más rápido se seca.": "Je kürzer die Haare, desto schneller trocknen sie.",
+    "B2 | Cuanto más espera la señora, más revistas lee.": "Je länger die Dame wartet, desto mehr Zeitschriften liest sie.",
+    "B2 | Cuantos más clientes vienen, más dinero gana el peluquero.": "Je mehr Kunden kommen, desto mehr Geld verdient der Friseur.",
+    "B2 | Cuanta más agua bebes, mejor te sientes.": "Je mehr Wasser du trinkst, desto besser fühlst du dich.",
+    "B2 | Cuanto más pelo tiene Anna, más tarda el corte.": "Je mehr Haare Anna hat, desto länger dauert der Schnitt.",
+    "B2 | Cuantas más toallas hay, mejor.": "Je mehr Handtücher es gibt, desto besser.",
+    "C1 | Debe de estar contenta con el corte.": "Sie muss mit dem Schnitt zufrieden sein.",
+    "C1 | Puede que la señora sea la próxima clienta.": "Vielleicht ist die Dame die nächste Kundin.",
+    "C1 | El abrigo y la bufanda serán de Anna.": "Der Mantel und der Schal werden wohl Anna gehören.",
+    "C1 | Dicen que este peluquero es el mejor del barrio.": "Man sagt, dieser Friseur sei der beste des Viertels."
+   }
   }
  }
 };

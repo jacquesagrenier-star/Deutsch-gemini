@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "سطح، سقف",
    "pl": "dach",
    "ru": "крыша",
+   "de": "das Dach",
    "latam": null
   },
   {
@@ -108,6 +111,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -135,6 +139,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -162,6 +167,7 @@ window.SCENE = {
    "ar": "كتاب",
    "pl": "książka",
    "ru": "книга",
+   "de": "das Buch",
    "latam": null
   },
   {
@@ -189,6 +195,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -216,6 +223,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -243,6 +251,7 @@ window.SCENE = {
    "ar": "بيانو",
    "pl": "fortepian, pianino",
    "ru": "пианино, фортепиано",
+   "de": "das Klavier",
    "latam": null
   },
   {
@@ -270,6 +279,7 @@ window.SCENE = {
    "ar": "كمان",
    "pl": "skrzypce",
    "ru": "скрипка",
+   "de": "die Geige",
    "latam": null
   },
   {
@@ -297,6 +307,7 @@ window.SCENE = {
    "ar": "خزانة",
    "pl": "szafa",
    "ru": "шкаф",
+   "de": "der Schrank",
    "latam": {
     "mot": "clóset",
     "genre": "el",
@@ -328,6 +339,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -355,6 +367,7 @@ window.SCENE = {
    "ar": "غيتار",
    "pl": "gitara",
    "ru": "гитара",
+   "de": "die Gitarre",
    "latam": null
   },
   {
@@ -382,6 +395,7 @@ window.SCENE = {
    "ar": "غيتار",
    "pl": "gitara",
    "ru": "гитара",
+   "de": "die Gitarre",
    "latam": null
   },
   {
@@ -409,6 +423,7 @@ window.SCENE = {
    "ar": "علامة، درجة",
    "pl": "ocena, stopień",
    "ru": "оценка",
+   "de": "die Note",
    "latam": null
   },
   {
@@ -436,6 +451,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -463,6 +479,7 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
+   "de": "die Brille",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -494,6 +511,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -521,6 +539,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -540,7 +559,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": null,
@@ -559,6 +579,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -592,6 +613,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -625,6 +647,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -652,6 +675,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -683,6 +707,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -710,6 +735,7 @@ window.SCENE = {
    "ar": "طبل",
    "pl": "bęben",
    "ru": "барабан",
+   "de": "die Trommel",
    "latam": null
   },
   {
@@ -737,6 +763,7 @@ window.SCENE = {
    "ar": "تدفئة",
    "pl": "ogrzewanie",
    "ru": "отопление",
+   "de": "die Heizung",
    "latam": null
   },
   {
@@ -764,6 +791,7 @@ window.SCENE = {
    "ar": "مكبّر الصوت",
    "pl": "głośnik",
    "ru": "динамик, колонка",
+   "de": "der Lautsprecher",
    "latam": {
     "mot": "bocina",
     "genre": "la",
@@ -795,6 +823,7 @@ window.SCENE = {
    "ar": "حقيبة الغيتار",
    "pl": "futerał na gitarę",
    "ru": "чехол для гитары",
+   "de": "der Gitarrenkoffer",
    "latam": null
   }
  ],
@@ -1436,6 +1465,73 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Die Gitarrenstunde: In einem kleinen Raum einer Musikschule spielt Mark konzentriert, die Augen auf den Noten; seine Lehrerin mit weißen Haaren und violettem Schal zeigt ihm einen Akkord; um sie herum ein Klavier, eine Geige im Koffer, ein Notenständer, eine Wasserflasche, ein Trompetenposter, eine Lampe und eine große Pflanze; durch das Fenster die Dächer Berlins.",
+    "consigne": "Mark nimmt eine Gitarrenstunde. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Können, müssen, wollen",
+    "B2": "Der subjuntivo: wollen, dass; bitten, dass",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La lámpara está encima del piano.": "<b>de + el = del</b>, immer.",
+    "A2 | Hay un violín al lado del piano.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | El cuadro está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Los libros están en la estantería.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La planta está al lado de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La botella está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La botella está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Mark está sentado en la silla.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La lámpara grande está al lado de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "B1 | Mark ya sabe tocar tres acordes.": "<b>saber</b> + Infinitiv = etwas können (gelernt haben); poder wäre „die Möglichkeit haben“.",
+    "B1 | Mark tiene que practicar cada día.": "Verpflichtung: <b>tener que</b> + Infinitiv.",
+    "B1 | En clase no se puede usar el teléfono.": "Unpersönliches Verbot: <b>no se puede</b> + Infinitiv.",
+    "B1 | Mark quiere tocar en un grupo algún día.": "Ein Plan, ein Wunsch: <b>querer</b> + Infinitiv.",
+    "B1 | No debes apretar tanto la guitarra.": "Ein Rat: <b>deber</b> + Infinitiv.",
+    "B1 | ¿Puedo abrir la ventana?": "Um Erlaubnis bitten: <b>¿Puedo…?</b>",
+    "B2 | La profesora quiere que Mark toque más despacio.": "<b>querer que</b> + anderes Subjekt → subjuntivo. Das Deutsche bleibt beim Indikativ („dass er spielt“).",
+    "B2 | Le pide que practique cada día.": "<b>pedir que</b> → subjuntivo: practi<b>que</b>.",
+    "B2 | Mark espera que la clase salga bien.": "<b>esperar que</b> → subjuntivo.",
+    "B2 | Es importante que lea las notas.": "<b>es importante que</b> → subjuntivo.",
+    "B2 | Mark quiere tocar en un grupo.": "Gleiches Subjekt → <b>querer</b> + Infinitiv, kein subjuntivo.",
+    "B2 | La profesora se alegra de que Mark haga progresos.": "Ein Gefühl (<b>alegrarse de que</b>) → subjuntivo.",
+    "C1 | El acorde debe de ser difícil.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el violín sea de la profesora.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Serán las siete.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „es wird wohl …“ im Deutschen.",
+    "C1 | Dicen que la profesora tocaba en una orquesta.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | La lámpara está encima del piano.": "Die Lampe steht auf dem Klavier.",
+    "A2 | Hay un violín al lado del piano.": "Neben dem Klavier liegt eine Geige.",
+    "A2 | El cuadro está en la pared.": "Das Bild hängt an der Wand.",
+    "A2 | Los libros están en la estantería.": "Die Bücher stehen im Regal.",
+    "A2 | La planta está al lado de la ventana.": "Die Pflanze steht neben dem Fenster.",
+    "A2 | La botella está en el piso.": "Die Flasche steht auf dem Boden.",
+    "A2 | La botella está en el suelo.": "Die Flasche steht auf dem Boden.",
+    "A2 | Mark está sentado en la silla.": "Mark sitzt auf dem Stuhl.",
+    "A2 | La lámpara grande está al lado de la ventana.": "Die große Lampe steht neben dem Fenster.",
+    "B1 | Mark ya sabe tocar tres acordes.": "Mark kann schon drei Akkorde spielen.",
+    "B1 | Mark tiene que practicar cada día.": "Mark muss jeden Tag üben.",
+    "B1 | En clase no se puede usar el teléfono.": "Im Unterricht darf man das Handy nicht benutzen.",
+    "B1 | Mark quiere tocar en un grupo algún día.": "Mark will eines Tages in einer Band spielen.",
+    "B1 | No debes apretar tanto la guitarra.": "Du darfst die Gitarre nicht so fest drücken.",
+    "B1 | ¿Puedo abrir la ventana?": "Darf ich das Fenster öffnen?",
+    "B2 | La profesora quiere que Mark toque más despacio.": "Die Lehrerin will, dass Mark langsamer spielt.",
+    "B2 | Le pide que practique cada día.": "Sie bittet ihn, jeden Tag zu üben.",
+    "B2 | Mark espera que la clase salga bien.": "Mark hofft, dass die Stunde gut läuft.",
+    "B2 | Es importante que lea las notas.": "Es ist wichtig, dass er die Noten liest.",
+    "B2 | Mark quiere tocar en un grupo.": "Mark will in einer Band spielen.",
+    "B2 | La profesora se alegra de que Mark haga progresos.": "Die Lehrerin freut sich, dass Mark Fortschritte macht.",
+    "C1 | El acorde debe de ser difícil.": "Der Akkord muss schwierig sein.",
+    "C1 | Puede que el violín sea de la profesora.": "Vielleicht gehört die Geige der Lehrerin.",
+    "C1 | Serán las siete.": "Es wird wohl sieben Uhr sein.",
+    "C1 | Dicen que la profesora tocaba en una orquesta.": "Man sagt, die Lehrerin habe in einem Orchester gespielt."
+   }
   }
  }
 };

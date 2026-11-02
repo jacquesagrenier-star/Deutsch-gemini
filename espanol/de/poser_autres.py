@@ -321,7 +321,8 @@ def poser_peintres(src, trad):
     chemin = os.path.join(RACINE, "espanol", "mosaique", "peintres.json")
     d, ser = json_reproduit(chemin)
     for e in src:
-        d["peintres"][e["id"]] = apres(d["peintres"][e["id"]], "pt", trad[e["id"]])
+        p = d["peintres"][e["id"]]
+        d["peintres"][e["id"]] = apres(p, "ar" if "ar" in p else "pt", trad[e["id"]])
     ecrire(chemin, ser(d))
     print("  peintres       %d" % len(src))
 

@@ -281,9 +281,10 @@ def construire(langue):
         for r in reperes:
             if r["type"] == "nombre":
                 for l in r["l"]:
-                    pr = rs.PRONONCIATION_NOMBRES_ES_FR.get(l[0])
+                    pr = {lg: tab[l[0]] for lg, tab in (("fr", rs.PRONONCIATION_NOMBRES_ES_FR), ("en", rs.PRONONCIATION_NOMBRES_ES_EN),
+                                                          ("pt", rs.PRONONCIATION_NOMBRES_ES_PT), ("ar", rs.PRONONCIATION_NOMBRES_ES_AR)) if l[0] in tab}
                     if pr:
-                        l.append({"fr": pr})
+                        l.append(pr)
     reperes.append({"id": "alphabet", "type": "lettre", "t": rs.TITRES["alphabet"], "a": rs.ASTUCES[langue]["alphabet"],
                     "l": [[nom, lettre, conf] for lettre, nom, conf in rs.ALPHABET[langue]],
                     "p": [[s, mot] for s, mot in rs.EPELER[langue]]})
