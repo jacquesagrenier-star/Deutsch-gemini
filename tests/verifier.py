@@ -766,6 +766,31 @@ def verifier_allemand_espagnol(r):
     print("   espagnol en allemand : %d fichiers, de partout ou ar existe" % n)
 
 
+def verifier_espagnol_anglais(r, source):
+    """L'anglais enseigne en espagnol (2 nov. 2026, anglais/es/AVANCEMENT.md) :
+    l'interface espagnole se replie sur le FRANCAIS (jamais sur l'anglais, la
+    langue apprise), donc une cle de I18N_ANGLAIS.fr sans son espagnol
+    s'afficherait en francais a un hispanophone. I18N.es, lui, est tenu par
+    verifier_traductions comme toute langue d'interface."""
+    debut = source.index("const I18N_ANGLAIS = {")
+    fin = source.index("\n};", debut)
+    bloc = source[debut:fin]
+    cles = {}
+    for m in re.finditer(r'\n    "([a-z]{2})": \{(.*?)\n    \}', bloc, re.S):
+        cles[m.group(1)] = set(re.findall(r'^\s{8}"([A-Za-z0-9_]+)":', m.group(2), re.M))
+    if "es" not in cles:
+        r.echec("espagnol", "I18N_ANGLAIS n'a pas de bloc es")
+        return set()
+    for k in sorted(cles.get("fr", set()) - cles["es"]):
+        r.echec("espagnol", "I18N_ANGLAIS.es : cle absente -> %s" % k)
+    for k in sorted(cles["es"] - cles.get("fr", set())):
+        r.echec("espagnol", "I18N_ANGLAIS.es : cle inconnue du francais -> %s" % k)
+    r.controle(len(cles["es"]))
+    print("   anglais en espagnol : %d cles de I18N_ANGLAIS (fr %d)" % (len(cles["es"]), len(cles.get("fr", ()))))
+    # Les cles propres a l'anglais (libelles du code, 2 nov. 2026) sont definies ici.
+    return cles.get("fr", set()) | cles["es"]
+
+
 def verifier_scenes_espagnol(r):
     """Les scenes espagnoles suivent les scenes allemandes (10 oct. 2026).
 
@@ -1757,6 +1782,7 @@ def main():
     verifier_scenes_espagnol(r)
     verifier_arabe_espagnol(r)
     verifier_allemand_espagnol(r)
+    cles = cles | verifier_espagnol_anglais(r, source)
     cles = cles | verifier_libelles_espagnol(r, source)
     verifier_cles_utilisees(r, source, cles)
     verifier_comptes_figes(r, source)

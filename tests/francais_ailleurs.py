@@ -6,6 +6,12 @@
     python tests/francais_ailleurs.py --app de --complet       # + chaque option des panneaux
     python tests/francais_ailleurs.py --app de --sortie releve.json
     python tests/francais_ailleurs.py --app es --langues de --reference en   # l'ANGLAIS reste
+    python tests/francais_ailleurs.py --app en                 # l'anglais appris, interface espagnole
+
+L'ESPAGNOL (2 nov. 2026, interface de l'ANGLAIS appris, anglais/es/AVANCEMENT.md) se
+replie sur le francais, jamais sur l'anglais (la langue apprise) : la mesure
+francaise suffit ; ses mots communs avec le francais sont traites comme pour
+l'app espagnole.
 
 L'ALLEMAND (1er nov. 2026, interface de l'espagnol) se replie sur l'ANGLAIS, pas
 sur le francais : un texte oublie s'y affiche en anglais, et la mesure francaise
@@ -53,7 +59,8 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = 8793
 HEURE_FIGEE = "2026-10-10T09:00:00"
 LANGUES = {"de": ["en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"],
-           "es": ["en", "pt", "ar", "de"]}
+           "es": ["en", "pt", "ar", "de"],
+           "en": ["es"]}
 
 HASARD_FIGE = r"""
 (() => {
@@ -159,7 +166,8 @@ def marqueur(ligne, app, langue=None):
         mots = [m for m in mots if m != "ou"]   # « ser ou estar » : le « ou » portugais
     if app == "de":
         mots = [m for m in mots if m not in COMMUNS_DE]
-    if app == "es":
+    espagnol = app == "es" or langue == "es"
+    if espagnol:
         mots = [m for m in mots if m not in COMMUNS_ES]
         accents = ACCENTS_FR
     else:
@@ -168,7 +176,7 @@ def marqueur(ligne, app, langue=None):
         return True
     # Une phrase espagnole du contenu (« Estudio para el examen. ») : ses mots
     # qui s'ecrivent aussi en francais ne trahissent rien.
-    if app == "es" and re.search(r"[¿¡ñáíóú]|(?<!\w)(?:el|los|las|para|con|que|es|y|del|una)(?!\w)", ligne, re.I):
+    if espagnol and re.search(r"[¿¡ñáíóú]|(?<!\w)(?:el|los|las|para|con|que|es|y|del|una)(?!\w)", ligne, re.I):
         return False
     # De meme une ligne allemande (« Nom. der die das die », « das Abonnement »).
     if app == "de" and re.search(r"[äöüß]|(?<!\w)(?:der|die|das|dem|den|ein|eine|einen|ich|und|ist|nicht|mit|Nom|Akk|Dat|Gen)(?!\w)", ligne):
@@ -247,7 +255,7 @@ class Session:
         self.erreurs = []
         self.page.on("pageerror", lambda e: self.erreurs.append(str(e).split("\n")[0]))
         self.page.on("dialog", lambda d: self.erreurs.append("dialogue : " + d.message[:200]) or d.dismiss())
-        adresse = "http://127.0.0.1:%d/index.html%s" % (PORT, "?apprendre=es" if app == "es" else "")
+        adresse = "http://127.0.0.1:%d/index.html%s" % (PORT, "?apprendre=" + app if app in ("es", "en") else "")
         self.page.goto(adresse)
         self.page.wait_for_load_state("networkidle")
         self.page.evaluate("(l) => localStorage.setItem(UI_LANG_KEY, l)", langue)
@@ -369,7 +377,7 @@ def signaler(releve_fr, releve, app, langue=None, reference="fr"):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--app", choices=["de", "es"], required=True)
+    ap.add_argument("--app", choices=["de", "es", "en"], required=True)
     ap.add_argument("--langues", help="liste separee par des virgules (defaut : toutes)")
     ap.add_argument("--complet", action="store_true", help="chaque option des panneaux aussi")
     ap.add_argument("--sans-chaud", action="store_true")

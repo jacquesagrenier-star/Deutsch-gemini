@@ -10,8 +10,38 @@ Modèle : l'interface allemande de l'espagnol (v1065, `espanol/de/AVANCEMENT.md`
 on copie la démarche : extraire les textes, les faire traduire par lots contrôlés, les
 poser par des scripts qui vérifient, puis brancher le code.
 
-Rien n'a été construit, payé ni publié en écrivant ce document. Chaque chiffre a été
-compté dans les fichiers le 2 nov. (scripts de comptage hors du dépôt).
+Rien n'a été payé. Chaque chiffre a été compté dans les fichiers le 2 nov. (scripts de
+comptage hors du dépôt).
+
+## Où on en est
+
+**Palier 1 (2 nov. 2026, fait, en attente de publication)** : « es » est branché pour l'anglais
+appris seulement, et l'interface est traduite en espagnol neutre (1 607 clés d'`I18N` +
+58 d'`I18N_ANGLAIS`, deux agents Fable, `poser_autres.py controle` 0 faute). Le code de
+l'anglais qui écrivait du français en dur passe par `t()` ou une table espagnole : libellés
+des formes sur les cartes de verbes et d'adjectifs, « Quel anglais ? », familles
+d'expressions (`FAMILLES_ANGLAISES_ES`), titres courts des scènes (`SCENES_COURTS.es`).
+Captures jour et nuit au téléphone simulé : accueil, carte de verbe. Parcours `de` et
+`es-moteur` à 0 écart, parcours `en` (interface française) à 0 écart contre le relevé pris
+avant (`~/.wortando/anglais-es/en-avant.json`, étalonné deux fois).
+
+| Outil | Rôle |
+|---|---|
+| `python anglais/es/extraire.py` | sort les textes à traduire → `anglais/es/sources/` |
+| `python anglais/es/poser_autres.py controle \| pose` | contrôle les lots `anglais/es/lots/*.es.json`, puis les pose dans `index.html` |
+| `anglais/es/CONSIGNES.md` | consignes et glossaire des traducteurs (espagnol neutre, « À trancher ») |
+| `python tests/francais_ailleurs.py --app en` | le français resté à l'écran en interface espagnole (étendu le 2 nov.) |
+| `tests/verifier.py`, `verifier_espagnol_anglais` | `I18N_ANGLAIS.es` complet |
+
+**À trancher par Jacques** (Espagne ou Amérique latine) : les doutes relevés par les
+traducteurs sont dans `anglais/es/lots/RAPPORT-interface-1.md` et `-2.md` (22 lignes :
+Ajustes / Configuración, añadir / agregar, altavoz / parlante, ayuntamiento / alcaldía…).
+Provisoire en attendant : drapeau 🌎, prix au format `es-419`, voix `es-MX`.
+
+**Reste au palier 2** (relevé par `francais_ailleurs.py`) : tout ce qui vient des **données**
+anglaises reste en français — traductions des cartes, prononciation, titres et contenu des
+fiches, tuiles, feuilles de conjugaison, Premiers pas, A1 voyage, repères — et la page des
+scènes, qui ne connaît pas encore « es » (elle afficherait l'anglais).
 
 ---
 

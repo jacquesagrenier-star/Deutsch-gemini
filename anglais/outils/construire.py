@@ -506,6 +506,11 @@ def construire():
     import niveaux
     niveaux.construire(us, gb, ch, vers_gb)
 
+    # L'espagnol des cartes (interface des hispanophones, 2 nov. 2026) : pose
+    # depuis la memoire anglais/es/traductions/, apres tout le reste.
+    import espagnol
+    espagnol.poser(us, gb)
+
     # Pas de cle « _lisez_moi » dans les fichiers : le chargeur des verbes
     # prend chaque cle pour un niveau (il retombait sur sa liste de secours
     # allemande). La notice vit dans anglais/datos/LISEZ-MOI.md.
