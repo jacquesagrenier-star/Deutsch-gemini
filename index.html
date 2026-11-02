@@ -52670,6 +52670,10 @@ function buildDictationExercises(cartes, mode){
             correctEn: targetWord,
             explanation: `${I18N.fr.dictation_explanation_prefix} ${targetWord}`,
             explanation_en: `${I18N.en.dictation_explanation_prefix} ${targetWord}`,
+            // 1er nov. 2026 : « Das Wort war: … » -- comme la consigne et l'indice,
+            // la correction dans chaque langue (elle restait en anglais).
+            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].map(c =>
+                ["explanation" + SUFFIXE_LANGUE[c], `${(I18N[c] && I18N[c].dictation_explanation_prefix) || I18N.en.dictation_explanation_prefix} ${targetWord}`])),
             dictation: true,
             dictationText: targetWord,
             dictationLang: learningEnglish ? "en" : "de"
