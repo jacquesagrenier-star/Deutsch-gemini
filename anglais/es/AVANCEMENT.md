@@ -68,11 +68,17 @@ Stockage du choix : `wortandoEn_varianteEs` (« latam » par défaut, « es »).
 | Extraction A1 : `python anglais/es/extraire.py a1-textes a1-exercices a1-corpus-<fichier>` → 1 662 textes, 387 questions, 1 073 cartes | fait |
 | Poseurs : `poser.py` (cartes, colonnes d'Espagne en option → `traduction_esp` / `exemple_esp`), `poser_textes.py` (textes, exercices) → mémoire `anglais/es/traductions/` | fait |
 | `index.html` : `champEs()` (la carte d'Espagne quand elle existe), tuiles et séries par temps par `texteDeFiche` ; page des scènes : `es` dans `LANGUE` / `REPLI` / `TEXTES`, `varianteEs` | fait, non publié |
-| Traduction des cartes A1 (agent Fable) → `lots/corpus-*` | en cours |
-| Traduction des textes A1 (agent Fable) → `lots/textes-*` | en cours |
-| Exercices A1 → `lots/exercices-*` ; textes des scènes (titres, descriptions, consignes) | à lancer |
-| `scenes.py` : le mot espagnol de chaque zone (carte du corpus, sinon `visuel/prototype/espanol/mots.json`) et `traductions.es` | à faire |
-| Pose, `espagnol.py`, contrôle à l'écran, parcours, version (numéro à demander au chef) | à faire |
+| Cartes A1 : 1 073, dont 168 avec une forme d'Espagne (`lots/corpus-*`, `RAPPORT-corpus-a1.md`) | fait |
+| Textes A1 : 1 666 + 75 des scènes (`lots/textes-*`, `RAPPORT-textes-a1.md`) | fait |
+| Exercices A1 : 387 (`lots/exercices-*`, `RAPPORT-exercices-a1.md`) | fait |
+| `scenes.py` : le mot espagnol de chaque zone (1 415 ; 183 viennent encore de `visuel/prototype/espanol/mots.json`, espagnol d'Espagne, faute de carte A2+ traduite) et `traductions.es` (37 scènes) | fait |
+| Pose, captures jour / nuit dans les deux espagnols, parcours de / es-moteur / en à 0 écart, verifier OK | fait (commit 7a357df, en attente de la v1075) |
+| A2 → C1 : `NIVEAUX` dans `anglais/outils/espagnol_textes.py`, puis `extraire.py`, mêmes lots | à faire |
+
+Sources françaises fautives relevées par les traducteurs (à transmettre à la session « anglais ») :
+les patrons à trous de Premiers pas / A1 voyage (« Le la douche », « Ce bus va à à »), « pomme »
+dans la phrase anglaise de *How do you say… in English?*, `work_a1|desk` (un comptoir), l'exercice
+*ago* rangé sous *there* ; détails dans les trois `RAPPORT-*-a1.md`.
 
 Pour reprendre : `python anglais/es/poser.py etat`, `poser_textes.py controle`, `anglais/outils/espagnol.py --etat`.
 Les textes longs sont en espagnol **neutre** (pas de table d'Espagne) ; seules les cartes portent
