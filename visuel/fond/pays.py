@@ -1,6 +1,6 @@
 # Fabrique les calques du PAYS DE LA LANGUE APPRISE, poses sur la carte du monde de l'accueil (v1066, idee de
 # Marc-Antoine, 1er nov. 2026 ; choix de Jacques : teinte pleine ambre, turquoise a travers la carte de la seance).
-#   visuel/fond/pays/<code>.svg       le pays en ambre, sur la carte du fond (#fondMonde .fm-pays)
+#   visuel/fond/pays/<code>.svg       le pays en turquoise, sur la carte du fond (#fondMonde .fm-pays)
 #   visuel/fond/pays/<code>-fili.svg  le meme en turquoise, dans le filigrane de la seance (.spf-pays)
 # Meme projection que carte-langues-jour.svg : equirectangulaire, viewBox 1200 x 473, 180 O a gauche, 84 N en haut
 # (mesure : le 49e parallele entre le Canada et les Etats-Unis tombe a y = 116,6). Les deux pistes la montrent a
@@ -23,7 +23,9 @@ PAYS = {
     "gb": ["826"],
     "ja": ["392"],
 }
-COULEURS = {"": ("#E8A23A", "#FFFFFF", ".7"), "-fili": ("#2BB5AA", "#FFFFFF", ".9")}
+# turquoise partout (Jacques, 1er nov. 2026 : « devrait rester la couleur turquoise, meme lorsqu'ils sortent a
+# l'exterieur du rectangle de ma seance du jour ») ; l'ambre du debut ne vit plus que dans la maquette
+COULEURS = {"": ("#2BB5AA", "#FFFFFF", ".7"), "-fili": ("#2BB5AA", "#FFFFFF", ".9")}
 
 topo = json.load(open(SOURCE, encoding="utf-8"))
 sx, sy = topo["transform"]["scale"]
