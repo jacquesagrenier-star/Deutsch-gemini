@@ -117,11 +117,13 @@ def main():
                     journal.append({"cle": v["cle"], "avant": o.pop(k), "apres": None, "raison": t.get("raison")})
                 continue
             apres = t.get("apres", v.get("propose"))
-            if o.get(k) == apres:
+            # un champ peut viser une case de liste (options_pl[0]) : o est alors la liste
+            actuel = (o[k] if k < len(o) else None) if isinstance(o, list) else o.get(k)
+            if actuel == apres:
                 continue
             avant = t.get("avant", v.get("actuel"))
-            if o.get(k) != avant:
-                print("REFUS %s : actuel %r, cite %r" % (v["cle"], o.get(k), avant))
+            if actuel != avant:
+                print("REFUS %s : actuel %r, cite %r" % (v["cle"], actuel, avant))
                 continue
             o[k] = apres
             journal.append({"cle": v["cle"], "avant": avant, "apres": apres, "raison": t.get("raison", v.get("probleme"))})
