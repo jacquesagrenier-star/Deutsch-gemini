@@ -79,7 +79,8 @@ ist sind bin bist war waren hat habe hast haben hatte wird werden wurde würde w
 können konnte muss müssen musste soll sollte will wollen möchte möchtest
 und oder aber nicht auch noch schon sehr nur gern gerne immer nie heute morgen gestern hier dort
 ich du er sie es wir ihr mich dich sich uns euch mir dir ihm ihnen mein meine meinen dein deine
-sein seine ihre unser unsere euer eure
+sein seine seinen seinem seiner ihre ihren ihrem ihrer meinem meiner deinem unser unsere unseren euer eure
+im am vom beim ins ans zum diese dieser diesen diesem jeder jede jeden alle sehr wird
 mit von zu zum zur für auf bei nach aus über unter vor hinter neben zwischen ohne gegen um bis seit
 wenn weil dass ob als wie was wer wo wohin woher warum wann man jetzt viel viele mehr
 gibt geht kommt macht ja nein bitte danke etwas nichts alles""".split())
@@ -195,7 +196,7 @@ def norm(s):
     return re.sub(r"\s+", " ", (s or "").strip().lower())
 
 
-def doute_allemand(texte, fr="", en="", es=""):
+def doute_allemand(texte, fr="", en="", es="", phrase=True):
     """Pourquoi ce texte n'a pas l'air allemand (None s'il l'a)."""
     if not texte or not texte.strip():
         return "vide"
@@ -204,16 +205,21 @@ def doute_allemand(texte, fr="", en="", es=""):
     if len(mots) >= 4:
         if t in (norm(fr), norm(en)):
             return "identique au francais ou a l'anglais"
-        if not OUTILS.intersection(mots) and t != norm(es):
+        if phrase and not OUTILS.intersection(mots) and t != norm(es):
             return "aucun mot-outil allemand"
     elif fr and t == norm(fr) and t != norm(es) and t != norm(en):
         return "identique au francais"
     return None
 
 
-def exiger_allemand(nom, num, texte, fr="", en="", es=""):
-    d = doute_allemand(texte, fr, en, es)
-    if d:
+def exiger_allemand(nom, num, texte, fr="", en="", es="", phrase=True):
+    d = doute_allemand(texte, fr, en, es, phrase)
+    # Une phrase allemande peut n'avoir aucun mot de la liste (« Leg dieses
+    # Dokument getrennt ab. ») : signalee, pas refusee. Une copie du francais
+    # ou de l'anglais, elle, arrete tout.
+    if d == "aucun mot-outil allemand":
+        print("  avis : %s numero %s : %s : %s" % (nom, num, d, texte), file=sys.stderr)
+    elif d:
         raise SystemExit("%s : %s au numero %s : %s" % (nom, d, num, texte))
 
 
@@ -238,7 +244,7 @@ def poser_corpus(nom, lignes):
             raise SystemExit("%s : champ vide au numero %d" % (nom, num))
         if len(ex) < 6:
             raise SystemExit("%s : phrase trop courte au numero %d : %s" % (nom, num, ex))
-        exiger_allemand(nom, num, trad, e.get("traduction"), e.get("traduction_en"), e.get("mot"))
+        exiger_allemand(nom, num, trad, e.get("traduction"), e.get("traduction_en"), e.get("mot"), phrase=False)
         exiger_allemand(nom, num, ex, e.get("exemple_fr"), e.get("exemple_en"), e.get("exemple"))
         voulus[num] = (trad, ex)
     for num, (trad, ex) in voulus.items():
