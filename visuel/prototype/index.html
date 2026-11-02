@@ -112,9 +112,15 @@ html,body{margin:0;background:#DCE6EC;color:var(--encre);
    etiree sur la scene, avec un halo ambre */
 .voile{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1490;display:block}
 .contours{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1500;display:block;overflow:visible;
-  filter:drop-shadow(0 0 3px rgba(232,162,58,.9))}
+  filter:drop-shadow(0 0 calc(3px / var(--zoom, 1)) rgba(232,162,58,.9))}
 .contours.vivant{animation:lueur 1.4s ease-in-out infinite}
-@keyframes lueur{50%{filter:drop-shadow(0 0 7px rgba(232,162,58,1))}}
+@keyframes lueur{50%{filter:drop-shadow(0 0 calc(7px / var(--zoom, 1)) rgba(232,162,58,1))}}
+/* LE TRAIT GARDE SA FINESSE A L'ECRAN QUAND ON AGRANDIT (Jacques, 2 nov. 2026 : « pour les petits objets, lorsqu'on
+   les selectionne puis qu'on agrandit, le trait est trop grand. Il devrait s'amincir »). vector-effect corrige
+   l'etirement du viewBox, pas le scale() CSS du zoom a deux doigts : a x4 le trait faisait 11 px. On divise donc
+   l'epaisseur, les pointilles et le halo par --zoom (pose par zoomAppliquer). */
+.contours path, .voile path{stroke-width:calc(var(--trait, 0px) / var(--zoom, 1))}
+.contours path.second{stroke-dasharray:calc(6px / var(--zoom, 1)) calc(4px / var(--zoom, 1))}
 @media (prefers-reduced-motion:reduce){.contours.vivant{animation:none}}
 /* (ancien) le cadre lumineux autour d'un objet */
 .anneau{position:absolute;border-radius:10px;pointer-events:none;z-index:1500;
@@ -1031,8 +1037,8 @@ function dessiner(){
   const corps = S.corps && MASQUES.traces[S.corps];
   const projecteur = !principaux.length && corps && MISE === "sombre";
   const traitBleu = corps && MISE === "bleu"
-    ? `<path d="${chemin(S.corps)}" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke="rgba(255,255,255,.75)" stroke-width="4.5"/>`
-    + `<path d="${chemin(S.corps)}" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke="#2F6FE4" stroke-width="2.25"/>`
+    ? `<path d="${chemin(S.corps)}" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke="rgba(255,255,255,.75)" style="--trait:4.5px"/>`
+    + `<path d="${chemin(S.corps)}" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round" stroke="#2F6FE4" style="--trait:2.25px"/>`
     : "";
   voile.innerHTML = (principaux.length
     ? `<path fill="rgba(0,0,0,.30)" fill-rule="evenodd" d="M0 0H${TW}V${TH}H0Z${principaux.map(a => chemin(a.id)).join("")}"/>`
@@ -1040,8 +1046,8 @@ function dessiner(){
   // les references d'abord, la cible par-dessus
   toile.innerHTML = [...allumes.filter(a => a.second), ...principaux].map(a =>
     `<path d="${chemin(a.id)}" fill="none" vector-effect="non-scaling-stroke" stroke-linejoin="round"
-       stroke="${a.second ? "#fff" : "#E8A23A"}" stroke-width="${a.second ? 2 : 2.75}"
-       ${a.second ? 'stroke-dasharray="6 4"' : ""}/>`).join("");
+       stroke="${a.second ? "#fff" : "#E8A23A"}" style="--trait:${a.second ? 2 : 2.75}px"
+       ${a.second ? 'class="second"' : ""}/>`).join("");
   toile.classList.toggle("vivant", principaux.length > 0);
 }
 /* Le gros plan a ses propres etiquettes (etiquetteGros les pose dans zoom.el) :

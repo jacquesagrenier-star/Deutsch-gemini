@@ -8630,8 +8630,9 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
 #fondMonde .fm-carte, .spf-carte{top:calc(env(safe-area-inset-top, 0px) + 80px);}
 #fondMonde .fm-lettres, .spf-lettres{top:var(--fm-lettres-haut, 520px);}
 /* v1066 : LA CARTE DE TA LANGUE (idee de Marc-Antoine, choix de Jacques du 1er nov. 2026 : « j'irais le 2 », « c'est le
-   turquoise qui ressort le plus », « prendre le 3 »). Le pays de la langue apprise en ambre plein sur la carte du
-   monde, en turquoise dans le filigrane de la seance (l'orange avalait l'ambre), et le defilement part de lui
+   turquoise qui ressort le plus », « prendre le 3 »). Le pays de la langue apprise en turquoise sur la carte du
+   monde et dans le filigrane de la seance (« devrait rester la couleur turquoise », 1er nov. ; l'ambre du debut
+   se perdait dans l'orange de la seance), et le defilement part de lui
    (poserPaysCarte). Calques derives : visuel/fond/pays/<code>.svg et <code>-fili.svg (visuel/fond/pays.py), meme
    projection et meme repeat-x que la piste : ils defilent avec elle sans calcul. */
 .fm-pays, .spf-pays{position:absolute; inset:0; pointer-events:none; background-repeat:repeat-x; background-position:0 0; background-size:960px 378px;}
@@ -8705,7 +8706,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1066</span>
+        <span class="subtitle-version">v1067</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -33733,8 +33734,10 @@ function carreauSilencieux(){
     const v = etatMosaique();
     const jour = getTodayStr();
     if(v.j !== jour){ v.j = jour; v.n = 0; }
-    if(v.n >= MOSAIQUE_PLAFOND || v.t > 0 || v.b) return;
-    v.n += 1; v.c += 1;
+    if(v.n >= MOSAIQUE_PLAFOND) return;
+    v.n += 1;
+    // v1067 : pendant le trophee, au tableau suivant (`cn`), comme poserCarreau() depuis la v1061.
+    if(v.t > 0 || v.b) v.cn = (v.cn || 0) + 1; else v.c += 1;
     ecrireMosaique(v);
 }
 
@@ -44899,7 +44902,7 @@ function ouvrirReglageLangue(){
 poserPastilleLangue();
 
 // LA CARTE DE TA LANGUE (v1066, idee de Marc-Antoine, 1er nov. 2026) : le pays de la langue apprise sur la carte du
-// monde (ambre) et dans son filigrane (turquoise), et le defilement qui part de lui -- centre a l'ecran au debut de
+// monde et dans son filigrane (turquoise), et le defilement qui part de lui -- centre a l'ecran au debut de
 // chaque passage sur l'accueil (la v1044 repartait de l'Europe et de l'Afrique pour tous). Un delai negatif place
 // l'animation au bon endroit : recommencerCarteDuMonde() et la synchro du filigrane gardent leur sens.
 const LONGITUDE_PAYS = { de: 10.5, es: -3.7, mx: -80, pt: -8, br: -53, us: -98, gb: -2.5, ja: 138 };
@@ -50905,7 +50908,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1066;
+const APP_VERSION = 1067;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -55646,15 +55649,20 @@ function montrerPlusUn(){
 // +30 aussi. (Pas exactement les cartes de l'objectif -- un « Encore » pose un
 // carreau sans compter -- mais ce que l'oeil voit est juste : trente carreaux
 // de plus sur le tableau.)
+// v1067 : PENDANT LE TROPHEE, LE TABLEAU QUI SE CONSTRUIT EN BAS. Jacques, 2 nov. 2026 : quand l'objectif est
+// atteint (x1, x2...), « il n'apparait pas dans la page avec l'anneau [de] progression au-dessus ». Depuis la v1061
+// les carreaux du trophee vont au tableau suivant (`cn`, rang r + 1) ; le palier, lui, s'effacait encore (v949).
 function montrerMosaiquePalier(multiple){
     const v = etatMosaique();
-    const jusqua = v.c;
+    const trophee = v.t > 0 || !!v.b;
+    const jusqua = trophee ? (v.cn || 0) : v.c;
+    const rang = trophee ? v.r + 1 : v.r;
     let objectif = 30;
     try{ objectif = getDailyGoalTarget() || objectif; }catch(e){}
     const gagnes = Math.min(objectif, jusqua);
     let depuis = jusqua - Math.min(gagnes, 60);
-    if(v.t > 0 || gagnes <= 0){ if(multiple) anneauPalierSeul(multiple); return; }
-    const m = mosaiqueCourante();
+    if(gagnes <= 0){ if(multiple) anneauPalierSeul(multiple); return; }
+    const m = trophee ? (MOSAIQUES && MOSAIQUES.length ? MOSAIQUES[(rang - 1) % MOSAIQUES.length] : null) : mosaiqueCourante();
     const conteneur = document.getElementById("confettiContainer");
     if(!m || !conteneur){ if(multiple) anneauPalierSeul(multiple); return; }
     imageMosaique(m).then(img => {
@@ -55663,7 +55671,7 @@ function montrerMosaiquePalier(multiple){
             const toile = document.createElement("canvas");
             toile.width = 240;
             toile.height = Math.round(240 * (m.h || 1) / (m.l || 1));
-            dessinerMosaique(toile, img, depuis, MOSAIQUE_CARREAUX, false);
+            dessinerMosaique(toile, img, depuis, MOSAIQUE_CARREAUX, false, rang);
             const bloc = document.createElement("div");
             bloc.className = "mos-palier";
             const cadre = document.createElement("div");
@@ -55703,7 +55711,7 @@ function montrerMosaiquePalier(multiple){
                 setTimeout(() => {
                     if(!bloc.isConnected) return;
                     const poses = depuis + i;
-                    const r = dessinerMosaique(toile, img, poses, MOSAIQUE_CARREAUX, false);
+                    const r = dessinerMosaique(toile, img, poses, MOSAIQUE_CARREAUX, false, rang);
                     nombre.textContent = String(poses);
                     jj.style.width = (Math.min(poses, MOSAIQUE_CARREAUX) / MOSAIQUE_CARREAUX * 100) + "%";
                     if(!r) return;
