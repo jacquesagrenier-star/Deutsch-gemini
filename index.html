@@ -8706,7 +8706,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1074</span>
+        <span class="subtitle-version">v1075</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -9532,6 +9532,13 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div>
                 <strong data-i18n="seance_par_theme">Par thème</strong>
             </div>
+        </div>
+        <!-- v1076 : DECRIRE UNE PERSONNE (Jacques, 2 nov. 2026, le theme « Descripcion fisica » de son cours
+             d'espagnol, « pour l'espagnol et l'allemand »). Douze personnes photorealistes et leurs exercices :
+             visuel/prototype/descripcion.html, ouverte dans le cadre des scenes. Visible en es et de seulement. -->
+        <div class="orb hidden" data-orbid="descripcion" id="tuileDescripcion" onclick="ouvrirDescripcion()" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="7.5" r="3"/><path d="M3.5 20v-1.5a5.5 5.5 0 0 1 11 0V20"/><circle cx="17" cy="9" r="2.3"/><path d="M15.6 14.3a4.3 4.3 0 0 1 5.9 4V20"/></svg></div>
+            <div><strong data-i18n="desc_tuile">Décrire une personne</strong></div>
         </div>
         <!-- v881 : le carnet de phrases et les feuilles de conjugaison, sortis
              de la porte de seance. Visibles des qu'ils ont du contenu. -->
@@ -14319,6 +14326,7 @@ const I18N = {
         seance_neufs_de: "mots nouveaux en {niv}",
         seance_neufs_etiq: "Nouveau vocabulaire en provenance du niveau :",
         seance_par_theme: "Par thème",
+        desc_tuile: "Décrire une personne",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -15832,6 +15840,7 @@ const I18N = {
         seance_neufs_de: "new words from {niv}",
         seance_neufs_etiq: "New vocabulary from level:",
         seance_par_theme: "By theme",
+        desc_tuile: "Describing people",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17347,6 +17356,7 @@ const I18N = {
         seance_neufs_de: "{niv} seviyesinden yeni kelimeler",
         seance_neufs_etiq: "Yeni kelime dağarcığı şu seviyeden:",
         seance_par_theme: "Temaya göre",
+        desc_tuile: "Birini tarif etmek",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19274,6 +19284,7 @@ const I18N = {
         seance_neufs_de: "нові слова з {niv}",
         seance_neufs_etiq: "Нова лексика з рівня:",
         seance_par_theme: "За темою",
+        desc_tuile: "Описати людину",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21514,6 +21525,7 @@ const I18N = {
         seance_neufs_de: "واژه‌های تازه از {niv}",
         seance_neufs_etiq: "واژگان تازه از سطح:",
         seance_par_theme: "بر پایهٔ موضوع",
+        desc_tuile: "توصیف یک نفر",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23198,6 +23210,7 @@ const I18N = {
         seance_neufs_de: "كلمات جديدة من {niv}",
         seance_neufs_etiq: "مفردات جديدة من المستوى:",
         seance_par_theme: "حسب الموضوع",
+        desc_tuile: "وصف شخص",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23563,6 +23576,7 @@ const I18N = {
         seance_neufs_de: "palavras novas do {niv}",
         seance_neufs_etiq: "Vocabulário novo vindo do nível:",
         seance_par_theme: "Por tema",
+        desc_tuile: "Descrever uma pessoa",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25137,6 +25151,7 @@ const I18N = {
         seance_neufs_de: "nowe słowa z poziomu {niv}",
         seance_neufs_etiq: "Nowe słownictwo z poziomu:",
         seance_par_theme: "Według tematu",
+        desc_tuile: "Opisywanie osób",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -26711,6 +26726,7 @@ const I18N = {
         seance_neufs_de: "новые слова уровня {niv}",
         seance_neufs_etiq: "Новые слова уровня:",
         seance_par_theme: "По темам",
+        desc_tuile: "Описать человека",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28287,6 +28303,7 @@ const I18N = {
         seance_neufs_de: "neue Wörter aus {niv}",
         seance_neufs_etiq: "Neuer Wortschatz aus dem Niveau:",
         seance_par_theme: "Nach Thema",
+        desc_tuile: "Menschen beschreiben",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -29898,6 +29915,7 @@ const I18N = {
         seance_neufs_de: "palabras nuevas de {niv}",
         seance_neufs_etiq: "Vocabulario nuevo procedente del nivel:",
         seance_par_theme: "Por tema",
+        desc_tuile: "Describir a una persona",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -46740,6 +46758,25 @@ function poserPaysCarte(){
 }
 poserPaysCarte();
 
+// DECRIRE UNE PERSONNE (v1076, 2 nov. 2026) : la page des exercices, dans le cadre des scenes ; elle parle comme une
+// scene (exercice, bonne, fini, fermer -- voir le message « wortando-scene »). Espagnol et allemand seulement.
+function ouvrirDescripcion(){
+    sceneOuverteDepuis = "descripcion";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = t("desc_tuile");
+        cadre.src = baseScenes() + "descripcion.html?apprendre=" + (LANGUE_APPRISE === "es" ? "es" : "de")
+                  + "&lang=" + encodeURIComponent(getUiLang())
+                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
+                  + "&t=" + Date.now();
+    }
+    showScreen("sceneSeance");
+}
+try{
+    const tuileDesc = document.getElementById("tuileDescripcion");
+    if(tuileDesc && (LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de")) tuileDesc.classList.remove("hidden");
+}catch(e){}
+
 // Ouvre un groupe replie des reglages et l'amene a l'ecran : pour les liens
 // qui menent a une carte precise (le badge de l'accueil, un brouillon de
 // retour). Voir la note en tete de <section id="settings">.
@@ -52731,7 +52768,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1074;
+const APP_VERSION = 1075;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -57773,6 +57810,11 @@ window.addEventListener("message", (e) => {
         // plus 1. Mais sans le son. » Comme « Encore » sur une carte (v857) : le carreau
         // recompense la question traversee, pas la question sue. La bonne passe par « bonne ».
         if(d.juste === false && sceneOuverteDepuis !== "admin"){ try{ if(essaiActif("carreau_partout")) poserCarreau(true); }catch(err){} }
+        return;
+    }
+    // v1076 : « Decrire une personne » revient a « Tout le contenu », d'ou on l'a ouverte.
+    if(sceneOuverteDepuis === "descripcion" && (d.type === "fini" || d.type === "fermer")){
+        try{ ouvrirToutLeContenu(); }catch(err){ goHome(); }
         return;
     }
     if(d.type === "reponse"){

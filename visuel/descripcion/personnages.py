@@ -36,7 +36,7 @@ PERSONNAGES = {
     "Anna":   ("f", "mediano", "delgado", "largo", "liso", "castano_claro", None, [], ""),
     "Diego":  ("m", "alto", "delgado", "corto", "rizado", "negro", "castanos", ["gafas"],
                "A tall, thin man of about twenty-five. HAIR: short, tightly curly, black. EYES: brown. Rectangular black-framed glasses. A plain light blue t-shirt, dark blue jeans, white sneakers."),
-    "Elena":  ("f", "bajo", "delgado", "largo", "liso", "rubio", "azules", ["pendiente"],
+    "Elena":  ("f", "bajo", "delgado", "largo", "liso", "rubio", "azules", ["pendientes"],
                "A short, slim woman of about twenty-two, petite. HAIR: long, straight, blond, falling well below the shoulders. EYES: clearly blue. Small round gold earrings. A pink t-shirt, black trousers, white sneakers."),
     "Pablo":  ("m", "mediano", "fuerte", "calvo", "liso", "castano", "verdes", ["barba"],
                "A man of about thirty-five, of average height, strong and muscular with broad shoulders. A completely bald, shaved head. EYES: green. A full, thick dark brown beard. A green t-shirt, beige chinos, brown leather shoes."),

@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Descripción física</title>
+<!--
+  DECRIRE UNE PERSONNE (v1076, 2 nov. 2026). Le theme « Descripcion fisica » du cours d'espagnol de Jacques, pour
+  l'espagnol ET l'allemand (« on pourrait utiliser l'approche pour l'espagnol et l'allemand »). Douze personnes
+  photorealistes (Mark, Anna et dix autres, visuel/descripcion/personnages.py), detourees et rangees a l'echelle de
+  leur taille ; une planche des couleurs d'yeux. Ouverte par l'app dans le cadre des scenes (sceneCadre), elle
+  parle comme une scene : « exercice » et « bonne » a chaque reponse (objectif du jour, carreaux), « fini » et
+  « fermer » a la fin. Parametres : apprendre=es|de, lang=<interface>, nuit=1.
+  Les phrases sont FABRIQUEES depuis les combinaisons (personnages.json) : une image ne dit que ce qu'elle montre.
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(12px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.trou{display:inline-block;min-width:70px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+.rangee{display:flex;align-items:flex-end;justify-content:center;gap:4px;background:var(--carte);border-radius:14px;padding:10px 6px 6px;min-height:0}
+.rangee button{flex:1 1 0;min-width:0;border:3px solid transparent;border-radius:14px;background:none;padding:2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.rangee img{display:block;width:auto;max-width:100%;object-fit:contain}
+.rangee .nom{font-size:12px;font-weight:800;color:var(--gris);margin-top:2px}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.vue{display:grid;grid-template-columns:minmax(90px,130px) 1fr;gap:10px;align-items:center}
+.vue img{width:100%;height:auto;display:block;border-radius:12px;background:var(--carte)}
+.vue .visage{border-radius:12px}
+.photo{width:100%;height:auto;display:block;border-radius:14px}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix button,.liste button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.liste{display:flex;flex-direction:column;gap:8px}
+.liste button{border-radius:14px;text-align:start;font-weight:700;line-height:1.4}
+.choix button.juste,.liste button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux,.liste button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite[hidden]{display:none}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+.fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+const NB = 10;
+
+const TEXTES = {
+  titre:    {fr:"Décrire une personne", en:"Describing people", tr:"Birini tarif etmek", uk:"Описати людину", fa:"توصیف یک نفر", ar:"وصف شخص", pt:"Descrever uma pessoa", pl:"Opisywanie osób", ru:"Описать человека", de:"Menschen beschreiben"},
+  quien:    {fr:"Lis la description et touche la bonne personne.", en:"Read the description and tap the right person.", tr:"Tarifi oku ve doğru kişiye dokun.", uk:"Прочитай опис і торкнися потрібної людини.", fa:"توضیح را بخوان و روی شخص درست بزن.", ar:"اقرأ الوصف والمس الشخص الصحيح.", pt:"Leia a descrição e toque na pessoa certa.", pl:"Przeczytaj opis i dotknij właściwej osoby.", ru:"Прочитай описание и нажми на нужного человека.", de:"Lies die Beschreibung und tippe auf die richtige Person."},
+  completa: {fr:"Regarde l'image et complète la phrase.", en:"Look at the picture and complete the sentence.", tr:"Resme bak ve cümleyi tamamla.", uk:"Подивися на зображення й доповни речення.", fa:"به تصویر نگاه کن و جمله را کامل کن.", ar:"انظر إلى الصورة وأكمل الجملة.", pt:"Olhe a imagem e complete a frase.", pl:"Spójrz na obrazek i uzupełnij zdanie.", ru:"Посмотри на картинку и дополни предложение.", de:"Sieh dir das Bild an und ergänze den Satz."},
+  verbe:    {fr:"Quel verbe va avec ces mots ?", en:"Which verb goes with these words?", tr:"Bu kelimelerle hangi fiil kullanılır?", uk:"Яке дієслово пасує до цих слів?", fa:"کدام فعل با این کلمه‌ها می‌آید؟", ar:"أي فعل يناسب هذه الكلمات؟", pt:"Que verbo combina com estas palavras?", pl:"Który czasownik pasuje do tych słów?", ru:"Какой глагол подходит к этим словам?", de:"Welches Verb passt zu diesen Wörtern?"},
+  accord:   {fr:"Choisis la bonne forme : l'adjectif s'accorde avec la personne.", en:"Choose the right form: the adjective agrees with the person.", tr:"Doğru biçimi seç: sıfat kişiye uyar.", uk:"Обери правильну форму: прикметник узгоджується з людиною.", fa:"شکل درست را انتخاب کن: صفت با شخص هماهنگ می‌شود.", ar:"اختر الصيغة الصحيحة: تتوافق الصفة مع الشخص.", pt:"Escolha a forma certa: o adjetivo concorda com a pessoa.", pl:"Wybierz właściwą formę: przymiotnik zgadza się z osobą.", ru:"Выбери правильную форму: прилагательное согласуется с человеком.", de:"Wähle die richtige Form: Das Adjektiv richtet sich nach der Person."},
+  elige:    {fr:"Quelle description correspond à cette personne ?", en:"Which description matches this person?", tr:"Hangi tarif bu kişiye uyuyor?", uk:"Який опис підходить цій людині?", fa:"کدام توضیح با این شخص جور است؟", ar:"أي وصف يطابق هذا الشخص؟", pt:"Qual descrição corresponde a esta pessoa?", pl:"Który opis pasuje do tej osoby?", ru:"Какое описание подходит этому человеку?", de:"Welche Beschreibung passt zu dieser Person?"},
+  taille:   {fr:"Compare leur taille et touche la bonne personne.", en:"Compare their height and tap the right person.", tr:"Boylarını karşılaştır ve doğru kişiye dokun.", uk:"Порівняй їхній зріст і торкнися потрібної людини.", fa:"قدشان را مقایسه کن و روی شخص درست بزن.", ar:"قارن أطوالهم والمس الشخص الصحيح.", pt:"Compare a altura e toque na pessoa certa.", pl:"Porównaj ich wzrost i dotknij właściwej osoby.", ru:"Сравни их рост и нажми на нужного человека.", de:"Vergleiche ihre Größe und tippe auf die richtige Person."},
+  yeux:     {fr:"De quelle couleur sont ces yeux ?", en:"What colour are these eyes?", tr:"Bu gözler ne renk?", uk:"Якого кольору ці очі?", fa:"این چشم‌ها چه رنگی‌اند؟", ar:"ما لون هاتين العينين؟", pt:"De que cor são estes olhos?", pl:"Jakiego koloru są te oczy?", ru:"Какого цвета эти глаза?", de:"Welche Farbe haben diese Augen?"},
+  suivant:  {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  encore:   {fr:"Encore une fois", en:"Once more", tr:"Bir kez daha", uk:"Ще раз", fa:"یک بار دیگر", ar:"مرة أخرى", pt:"Mais uma vez", pl:"Jeszcze raz", ru:"Ещё раз", de:"Noch einmal"},
+  terminer: {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:    {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:    {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la langue apprise : les phrases, fabriquees depuis les combinaisons ----------
+const NOMS = {Ines:"Inés", Tomas:"Tomás"};
+const nom = id => NOMS[id] || id;
+const ES = {
+  bravo: "¡Muy bien!",
+  verbes: ["es", "tiene", "lleva"],
+  altura: {alto:"alto", mediano:"de estatura mediana", bajo:"bajo"},
+  tam: {delgado:"delgado", gordo:"gordo", fuerte:"fuerte"},
+  largo: {corto:"corto", largo:"largo"}, tipo: {liso:"liso", ondulado:"ondulado", rizado:"rizado"},
+  color: {negro:"negro", castano:"castaño", castano_claro:"castaño claro", rubio:"rubio", rojo:"rojo"},
+  ojos: {verdes:"verdes", azules:"azules", castanos:"castaños", negros:"negros", grises:"grises"},
+  lleva: {gafas:"gafas", gafas_sol:"gafas de sol", barba:"barba", bigote:"bigote", perilla:"perilla", pendiente:"un pendiente", pendientes:"pendientes", tatuaje:"un tatuaje"},
+  acc(p, m){ return p.sexe === "f" && /o$/.test(m) ? m.replace(/o$/, "a") : m; },
+  phrases(p){
+    const alt = p.altura === "mediano" ? "de estatura mediana" : this.acc(p, p.altura), tam = p.tam === "fuerte" ? "fuerte" : this.acc(p, p.tam);
+    const out = ["Es " + alt + " y " + tam + "."];
+    if (p.largo === "calvo") out.push("Es " + this.acc(p, "calvo") + ".");
+    else {
+      out.push("Tiene el pelo " + p.largo + ", " + p.tipo + " y " + this.color[p.color] + ".");
+      if (p.color === "rojo") out.push("Es " + this.acc(p, "pelirrojo") + ".");
+    }
+    if (p.ojos) out.push("Tiene los ojos " + this.ojos[p.ojos] + ".");
+    if (p.lleva.length) out.push("Lleva " + p.lleva.map(k => this.lleva[k]).join(" y ") + ".");
+    return out.join(" ");
+  },
+  // Completa : la phrase a trous, la bonne reponse et les autres choix de la categorie
+  trous(p){
+    const t = [];
+    if (p.largo !== "calvo"){
+      t.push({phrase:"Tiene el pelo ___.", rep:this.color[p.color], opts:Object.values(this.color)});
+      t.push({phrase:"Tiene el pelo ___.", rep:this.tipo[p.tipo], opts:Object.values(this.tipo)});
+      t.push({phrase:"Tiene el pelo ___.", rep:this.largo[p.largo], opts:Object.values(this.largo)});
+    }
+    if (p.ojos) t.push({phrase:"Tiene los ojos ___.", rep:this.ojos[p.ojos], opts:Object.values(this.ojos), visage:true});
+    if (p.lleva.length) t.push({phrase:"Lleva ___.", rep:this.lleva[p.lleva[0]], opts:["gafas", "gafas de sol", "barba", "bigote", "perilla", "pendientes", "un tatuaje"]});
+    t.push({phrase:"Es ___.", rep:p.tam === "fuerte" ? "fuerte" : this.acc(p, p.tam), opts:[this.acc(p, "delgado"), this.acc(p, "gordo"), "fuerte"], corps:true});
+    return t;
+  },
+  mots: [["alto", "es"], ["delgada", "es"], ["calvo", "es"], ["fuerte", "es"], ["pelirroja", "es"], ["de estatura mediana", "es"], ["gordo", "es"],
+         ["el pelo rizado", "tiene"], ["los ojos verdes", "tiene"], ["el pelo largo y liso", "tiene"], ["los ojos azules", "tiene"], ["el pelo corto", "tiene"],
+         ["gafas", "lleva"], ["barba", "lleva"], ["un tatuaje", "lleva"], ["bigote", "lleva"], ["pendientes", "lleva"], ["gafas de sol", "lleva"]],
+  plusGrand: "¿Quién es más alto?", plusPetit: "¿Quién es más bajo?",
+  yeuxQ: "¿De qué color son los ojos?", yeuxRep: c => "Son " + {verdes:"verdes", azules:"azules", castanos:"castaños", negros:"negros", grises:"grises"}[c] + "."
+};
+const DE = {
+  bravo: "Sehr gut!",
+  verbes: ["ist", "hat", "trägt"],
+  altura: {alto:"groß", mediano:"mittelgroß", bajo:"klein"},
+  tam: {delgado:"schlank", gordo:"dick", fuerte:"kräftig"},
+  largo: {corto:"kurze", largo:"lange"}, tipo: {liso:"glatte", ondulado:"wellige", rizado:"lockige"},
+  color: {negro:"schwarze", castano:"braune", castano_claro:"hellbraune", rubio:"blonde", rojo:"rote"},
+  ojos: {verdes:"grüne", azules:"blaue", castanos:"braune", negros:"dunkle", grises:"graue"},
+  lleva: {gafas:"eine Brille", gafas_sol:"eine Sonnenbrille", pendiente:"einen Ohrring", pendientes:"Ohrringe"},
+  hat: {barba:"einen Bart", bigote:"einen Schnurrbart", perilla:"einen Kinnbart", tatuaje:"ein Tattoo"},
+  pron: p => p.sexe === "f" ? "Sie" : "Er",
+  phrases(p){
+    const P = this.pron(p), out = [P + " ist " + this.altura[p.altura] + " und " + this.tam[p.tam] + "."];
+    if (p.largo === "calvo") out.push(P + " hat eine Glatze.");
+    else out.push(P + " hat " + this.largo[p.largo] + ", " + this.tipo[p.tipo] + ", " + this.color[p.color] + " Haare.");
+    if (p.ojos) out.push(P + " hat " + this.ojos[p.ojos] + " Augen.");
+    const tr = p.lleva.filter(k => this.lleva[k]), ha = p.lleva.filter(k => this.hat[k]);
+    if (ha.length) out.push(P + " hat " + ha.map(k => this.hat[k]).join(" und ") + ".");
+    if (tr.length) out.push(P + " trägt " + tr.map(k => this.lleva[k]).join(" und ") + ".");
+    return out.join(" ");
+  },
+  trous(p){
+    const P = this.pron(p), t = [];
+    if (p.largo !== "calvo"){
+      t.push({phrase:P + " hat ___ Haare.", rep:this.color[p.color], opts:Object.values(this.color)});
+      t.push({phrase:P + " hat ___ Haare.", rep:this.tipo[p.tipo], opts:Object.values(this.tipo)});
+      t.push({phrase:P + " hat ___ Haare.", rep:this.largo[p.largo], opts:Object.values(this.largo)});
+    }
+    if (p.ojos) t.push({phrase:P + " hat ___ Augen.", rep:this.ojos[p.ojos], opts:Object.values(this.ojos), visage:true});
+    const tr = p.lleva.filter(k => this.lleva[k]);
+    if (tr.length) t.push({phrase:P + " trägt ___.", rep:this.lleva[tr[0]], opts:["eine Brille", "eine Sonnenbrille", "Ohrringe", "einen Ohrring"]});
+    t.push({phrase:P + " ist ___.", rep:this.tam[p.tam], opts:Object.values(this.tam), corps:true});
+    return t;
+  },
+  // ist / hat / traegt : seulement les mots ou un seul verbe va (Bart se dit avec hat ET traegt)
+  mots: [["groß", "ist"], ["schlank", "ist"], ["klein", "ist"], ["kräftig", "ist"], ["dick", "ist"], ["mittelgroß", "ist"],
+         ["blaue Augen", "hat"], ["lockige Haare", "hat"], ["eine Glatze", "hat"], ["kurze, blonde Haare", "hat"], ["ein Tattoo", "hat"], ["grüne Augen", "hat"],
+         ["eine Brille", "trägt"], ["eine Sonnenbrille", "trägt"], ["Ohrringe", "trägt"]],
+  plusGrand: "Wer ist größer?", plusPetit: "Wer ist kleiner?",
+  yeuxQ: "Welche Farbe haben die Augen?", yeuxRep: c => "Die Augen sind " + {verdes:"grün", azules:"blau", castanos:"braun", negros:"dunkel", grises:"grau"}[c] + "."
+};
+const L = APPRENDRE === "de" ? DE : ES;
+const OPTS_YEUX = APPRENDRE === "de" ? {verdes:"grün", azules:"blau", castanos:"braun", negros:"dunkel", grises:"grau"} : {verdes:"verdes", azules:"azules", castanos:"castaños", negros:"negros", grises:"grises"};
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let P = {}, IDS = [], file = [], rang = 0, bons = 0, repondu = false;
+
+function rangee(ids, h, rappel){
+  // a l'echelle : la plus grande personne prend toute la hauteur, les autres a proportion de leur taille
+  const max = Math.max(...ids.map(id => P[id].metres));
+  const div = document.createElement("div"); div.className = "rangee";
+  ids.forEach(id => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = id;
+    b.innerHTML = '<img alt="' + nom(id) + '" src="descripcion/' + id + '.webp" style="height:' + Math.round(h * P[id].metres / max) + 'px"><span class="nom">' + nom(id) + '</span>';
+    b.addEventListener("click", () => rappel(b, id));
+    div.appendChild(b);
+  });
+  return div;
+}
+function juger(ok, bonneTexte){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  m.innerHTML = ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)});
+  const s = $("suite"); s.textContent = rang + 1 >= NB ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function marquer(conteneur, choisi, bon){
+  conteneur.querySelectorAll("button").forEach(b => { b.disabled = true; if (b === bon) b.classList.add("juste"); });
+  if (choisi !== bon) choisi.classList.add("faux");
+}
+
+// ---------- les exercices ----------
+const EX = {
+  quien(){
+    const c = hasard(IDS), autres = melanger(IDS.filter(i => i !== c)).slice(0, 3), ids = melanger([c, ...autres]);
+    const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("quien") + '</p><div class="enonce">' + cible(L.phrases(P[c])) + '</div>';
+    const r = rangee(ids, 190, (b, id) => { const bon = r.querySelector('[data-id="' + c + '"]'); marquer(r, b, bon); juger(id === c, nom(c)); });
+    z.appendChild(r); z.insertAdjacentHTML("beforeend", '<p class="retourMsg" id="msg"></p>');
+  },
+  completa(){
+    const id = hasard(IDS), tr = hasard(L.trous(P[id]));
+    const opts = melanger([tr.rep, ...melanger([...new Set(tr.opts)].filter(o => o !== tr.rep)).slice(0, 3)]);
+    const img = tr.visage ? '<img class="visage" alt="" src="descripcion/' + id + '-visage.webp">' : '<img alt="" src="descripcion/' + id + '.webp">';
+    const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("completa") + '</p><div class="vue">' + img + '<div class="enonce">' + cible(nom(id) + " — " + tr.phrase.replace("___", '<span class="trou" id="trou">?</span>')) + '</div></div><div class="choix" id="choix"></div><p class="retourMsg" id="msg"></p>';
+    const ch = $("choix"); let bon;
+    opts.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = o; if (o === tr.rep) bon = b;
+      b.addEventListener("click", () => { marquer(ch, b, bon); $("trou").textContent = tr.rep; juger(o === tr.rep, tr.rep); }); ch.appendChild(b); });
+  },
+  verbe(){
+    const [mot, v] = hasard(L.mots);
+    const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("verbe") + '</p><div class="enonce" style="text-align:center;font-size:21px">' + cible('<span class="trou" id="trou">?</span> ' + mot) + '</div><div class="choix" id="choix" style="justify-content:center"></div><p class="retourMsg" id="msg"></p>';
+    const ch = $("choix"); let bon;
+    L.verbes.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = o; if (o === v) bon = b;
+      b.addEventListener("click", () => { marquer(ch, b, bon); $("trou").textContent = v; juger(o === v, v + " " + mot); }); ch.appendChild(b); });
+  },
+  accord(){
+    const adj = [["alto", p => p.altura === "alto"], ["bajo", p => p.altura === "bajo"], ["delgado", p => p.tam === "delgado"], ["gordo", p => p.tam === "gordo"], ["rubio", p => p.color === "rubio" && p.largo !== "calvo"], ["pelirrojo", p => p.color === "rojo"], ["calvo", p => p.largo === "calvo"]];
+    let id, a, n = 0; do { id = hasard(IDS); a = hasard(adj); } while (!a[1](P[id]) && ++n < 200);
+    const masc = a[0], fem = a[0].replace(/o$/, "a"), rep = P[id].sexe === "f" ? fem : masc;
+    const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("accord") + '</p><div class="vue"><img alt="" src="descripcion/' + id + '.webp"><div class="enonce">' + cible(nom(id) + ' es <span class="trou" id="trou">?</span>.') + '</div></div><div class="choix" id="choix"></div><p class="retourMsg" id="msg"></p>';
+    const ch = $("choix"); let bon;
+    [masc, fem].forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = "es"; b.textContent = o; if (o === rep) bon = b;
+      b.addEventListener("click", () => { marquer(ch, b, bon); $("trou").textContent = rep; juger(o === rep, nom(id) + " es " + rep + "."); }); ch.appendChild(b); });
+  },
+  elige(){
+    const id = hasard(IDS), autres = melanger(IDS.filter(i => i !== id)).slice(0, 2), ids = melanger([id, ...autres]);
+    const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("elige") + '</p><div class="vue"><img alt="" src="descripcion/' + id + '.webp"><img class="visage" alt="" src="descripcion/' + id + '-visage.webp"></div><div class="liste" id="choix"></div><p class="retourMsg" id="msg"></p>';
+    const ch = $("choix"); let bon;
+    ids.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = L.phrases(P[o]); if (o === id) bon = b;
+      b.addEventListener("click", () => { marquer(ch, b, bon); juger(o === id, L.phrases(P[id])); }); ch.appendChild(b); });
+  },
+  taille(){
+    // trois personnes de tailles nettement differentes (au moins 8 cm entre chacune)
+    let ids, n = 0;
+    do { ids = melanger(IDS).slice(0, 3); n++; } while (n < 200 && ids.some((a, i) => ids.some((b, j) => i < j && Math.abs(P[a].metres - P[b].metres) < 0.08)));
+    const grand = Math.random() < 0.6, rep = ids.reduce((m, i) => (grand ? P[i].metres > P[m].metres : P[i].metres < P[m].metres) ? i : m, ids[0]);
+    const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("taille") + '</p><div class="enonce" style="text-align:center">' + cible(grand ? L.plusGrand : L.plusPetit) + '</div>';
+    const r = rangee(ids, 240, (b, id) => { const bon = r.querySelector('[data-id="' + rep + '"]'); marquer(r, b, bon); juger(id === rep, nom(rep)); });
+    z.appendChild(r); z.insertAdjacentHTML("beforeend", '<p class="retourMsg" id="msg"></p>');
+  },
+  yeux(){
+    const c = hasard(Object.keys(OPTS_YEUX)), opts = melanger(Object.keys(OPTS_YEUX));
+    const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("yeux") + '</p><img class="photo" alt="" src="descripcion/yeux-' + c + '.webp"><div class="enonce" style="text-align:center">' + cible(L.yeuxQ) + '</div><div class="choix" id="choix" style="justify-content:center"></div><p class="retourMsg" id="msg"></p>';
+    const ch = $("choix"); let bon;
+    opts.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = OPTS_YEUX[o]; if (o === c) bon = b;
+      b.addEventListener("click", () => { marquer(ch, b, bon); juger(o === c, L.yeuxRep(c)); }); ch.appendChild(b); });
+  }
+};
+
+function composer(){
+  const types = APPRENDRE === "es" ? ["quien", "completa", "verbe", "accord", "elige", "taille", "yeux", "quien", "completa", "elige"]
+                                   : ["quien", "completa", "verbe", "elige", "taille", "yeux", "quien", "completa", "verbe", "elige"];
+  return melanger(types).slice(0, NB);
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + NB;
+  $("barre").style.width = (rang / NB * 100) + "%";
+  EX[file[rang]]();
+  window.scrollTo(0, 0);
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = NB + " / " + NB; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: NB}) + '</div><button type="button" id="encore">' + T("encore") + '</button><button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  $("encore").addEventListener("click", demarrer);
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: NB}));
+}
+function demarrer(){ file = composer(); rang = 0; bons = 0; montrer(); }
+$("suite").addEventListener("click", () => { rang++; if (rang >= NB) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("descripcion/personnages.json?v=1").then(r => r.json()).then(d => { P = d; IDS = Object.keys(d); demarrer(); });
+</script>
+</body>
+</html>
