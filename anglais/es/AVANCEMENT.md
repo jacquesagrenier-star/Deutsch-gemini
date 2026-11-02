@@ -33,10 +33,30 @@ avant (`~/.wortando/anglais-es/en-avant.json`, étalonné deux fois).
 | `python tests/francais_ailleurs.py --app en` | le français resté à l'écran en interface espagnole (étendu le 2 nov.) |
 | `tests/verifier.py`, `verifier_espagnol_anglais` | `I18N_ANGLAIS.es` complet |
 
-**À trancher par Jacques** (Espagne ou Amérique latine) : les doutes relevés par les
-traducteurs sont dans `anglais/es/lots/RAPPORT-interface-1.md` et `-2.md` (22 lignes :
-Ajustes / Configuración, añadir / agregar, altavoz / parlante, ayuntamiento / alcaldía…).
-Provisoire en attendant : drapeau 🌎, prix au format `es-419`, voix `es-MX`.
+**Publié en v1070** (2 nov. 2026, essai admin) : Réglages → Administration → « ENGLISH —
+ESSAI ANGLAIS », puis Réglages → Langue → « 🌎 Español ».
+
+### Les deux espagnols (décision de Jacques, 2 nov. 2026)
+
+« On va faire les deux. Pour Amérique latine et Espagne. » L'usager choisit dans Réglages →
+Langue → « ¿Qué español? » (visible quand l'interface est « Español »), comme « Quel portugais ? ».
+
+**La base est l'Amérique latine, l'Espagne en est dérivée.** Pourquoi dans ce sens :
+- c'est le **défaut** : la variante que lisent le plus d'usagers doit être celle qui ne dépend
+  de rien (une table oubliée ne touche que l'Espagne) ;
+- le palier 1 était déjà écrit en **espagnol neutre**, d'où l'Amérique latine se tire par une
+  vingtaine de retouches (agregar, Configuración, alcaldía) ; l'Espagne diffère par peu de
+  chose dans une interface qui tutoie un seul usager (vocabulaire, passé récent) ;
+- c'est le geste du portugais (`I18N_PORTUGAIS_BRESIL` par-dessus le Portugal) : une table de
+  différences, jamais deux traductions complètes.
+
+| Où | Amérique latine (base) | Espagne (différences) |
+|---|---|---|
+| Interface | `I18N.es` + `I18N_ANGLAIS.es` (lots `anglais/es/lots/`) | `I18N_ES_ESPAGNE`, généré par `python anglais/es/espagne.py pose` depuis la table `INTERFACE` de `anglais/es/espagne.py` (28 clés : Ajustes, añadir, coger el tren, la compra, estantería, ayuntamiento, el tiempo, bricolaje, COMPROBAR, « Has escrito », « Enhorabuena ») |
+| Drapeau, prix, voix | 🇲🇽, `es-419`, `es-MX` | 🇪🇸, `es-ES`, `es-ES` |
+| Corpus (palier 2) | `traduction_es` / `exemple_es` | une table de mots (coche, ordenador, móvil, zumo, conducir…) appliquée à la pose, plus les phrases à réécrire (vosotros quand une phrase s'adresse à plusieurs) |
+
+Stockage du choix : `wortandoEn_varianteEs` (« latam » par défaut, « es »).
 
 **Reste au palier 2** (relevé par `francais_ailleurs.py`) : tout ce qui vient des **données**
 anglaises reste en français — traductions des cartes, prononciation, titres et contenu des

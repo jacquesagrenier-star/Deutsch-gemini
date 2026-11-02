@@ -145,7 +145,13 @@ def poser_i18n(src, trad, html):
     deb = html.index("const I18N = {")
     fin = html.index("\n};", deb)
     if re.search(r"\n    es: \{", html[deb:fin]):
-        raise SystemExit("i18n : I18N a deja un bloc es")
+        # --remplacer : le bloc es est le dernier de I18N, pose par ce script avec
+        # son entete ; on le retire tel quel avant de le reposer.
+        tete = html.find("\n    // L'ESPAGNOL, langue d'interface de l'ANGLAIS", deb, fin)
+        if "--remplacer" not in sys.argv or tete < 0 or html.find("\n    es: {", tete, fin) < 0:
+            raise SystemExit("i18n : I18N a deja un bloc es (--remplacer pour le reposer)")
+        html = html[:tete] + html[fin:]
+        fin = html.index("\n};", deb)
     avant = html[:fin].rstrip()
     if not avant.endswith(","):
         avant += ","
@@ -184,7 +190,7 @@ POSEURS = {"i18n": poser_i18n, "surcharge-en": poser_surcharge_en}
 def main():
     if len(sys.argv) < 2 or sys.argv[1] not in ("controle", "pose"):
         raise SystemExit(__doc__)
-    mode, veut = sys.argv[1], sys.argv[2:] or NOMS
+    mode, veut = sys.argv[1], [a for a in sys.argv[2:] if not a.startswith("--")] or NOMS
     resultats, total_fautes = {}, 0
     for nom in veut:
         src, trad, fautes, avis = controler(nom)

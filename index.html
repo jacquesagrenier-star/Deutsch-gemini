@@ -12316,6 +12316,21 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
                     </button>
                 </div>
             </div>
+            <!-- L'espagnol de l'interface (2 nov. 2026) : montre seulement quand l'interface
+                 est « Español » (adapterChoixALaLangueApprise). -->
+            <div class="setup-choice-group hidden" data-seulement-en id="choixVarianteInterfaceEs">
+                <div class="setup-choice-label">¿Qué español?</div>
+                <div class="setup-choice-row">
+                    <button class="setup-choice" onclick="choisirVarianteInterfaceEs('latam')" data-variante-ui-es="latam">
+                        <span class="setup-choice-flag">🇲🇽</span>
+                        <span>Latinoamérica</span>
+                    </button>
+                    <button class="setup-choice" onclick="choisirVarianteInterfaceEs('es')" data-variante-ui-es="es">
+                        <span class="setup-choice-flag">🇪🇸</span>
+                        <span>España</span>
+                    </button>
+                </div>
+            </div>
         </details>
     </div>
 
@@ -13083,6 +13098,24 @@ const VARIANTE_PORTUGAIS = (() => {
     try{ return localStorage.getItem(PREFIXE_STOCKAGE + "variante") === "br" ? "br" : "pt"; }
     catch(e){ return "pt"; }
 })();
+// L'ESPAGNOL D'INTERFACE DE L'ANGLAIS (2 nov. 2026, decision de Jacques : « On va
+// faire les deux. Pour Amerique latine et Espagne ») : "latam" = Amerique latine,
+// la base d'I18N.es ; "es" = Espagne, I18N_ES_ESPAGNE par-dessus (anglais/es/espagne.py).
+// Ne pas confondre avec VARIANTE_ESPAGNOL, la variante de l'espagnol APPRIS.
+const VARIANTE_INTERFACE_ES = (() => {
+    if(LANGUE_APPRISE !== "en") return "latam";
+    try{ return localStorage.getItem(PREFIXE_STOCKAGE + "varianteEs") === "es" ? "es" : "latam"; }
+    catch(e){ return "latam"; }
+})();
+function choisirVarianteInterfaceEs(v){
+    if(v !== "es" && v !== "latam") return;
+    try{ localStorage.setItem(PREFIXE_STOCKAGE + "varianteEs", v); }catch(e){}
+    // Les textes sont verses dans I18N au chargement : on recharge, et on revient aux reglages.
+    if(v !== VARIANTE_INTERFACE_ES){
+        try{ sessionStorage.setItem(CLE_ROUVRIR_REGLAGES, "1"); }catch(e){}
+        location.reload();
+    }
+}
 function choisirVariantePortugais(v){
     if(v !== "pt" && v !== "br") return;
     try{ localStorage.setItem(PREFIXE_STOCKAGE + "variante", v); }catch(e){}
@@ -29658,7 +29691,7 @@ const I18N = {
         seance_scene_apotheke: "Mark en la farmacia",
         seance_scene_baeckerei: "Anna en la panadería",
         seance_scene_bauernhof: "Anna en la granja",
-        seance_scene_buergeramt: "Mark en el ayuntamiento",
+        seance_scene_buergeramt: "Mark en la alcaldía",
         seance_scene_flughafen: "Anna en el aeropuerto",
         seance_scene_hotel: "Mark en el hotel",
         seance_scene_waschsalon: "Anna en la lavandería",
@@ -29804,7 +29837,7 @@ const I18N = {
         cp_reecouter: "Escucharme",
         cp_micro_refuse: "El micrófono no está disponible: escucha el modelo y repítelo para ti.",
         cp_micro_demande: "Abriendo el micrófono…",
-        cp_micro_muet: "El micrófono no responde. Revisa que Wortando tenga permiso para usar el micrófono (Ajustes del teléfono) y vuelve a intentarlo.",
+        cp_micro_muet: "El micrófono no responde. Revisa que Wortando tenga permiso para usar el micrófono (Configuración del teléfono) y vuelve a intentarlo.",
         cp_relecture_impossible: "Tu intento quedó grabado, pero este teléfono no consigue reproducirlo.",
         seance_ton_niveau: "Tu nivel",
         niveau_clair_A1: "Principiante: las primeras palabras y las frases de cada día",
@@ -29852,7 +29885,7 @@ const I18N = {
         son_q: "Escucha cada palabra y mira las letras",
         son_q_dire: "Te toca: di esta palabra",
         reglage_questions_titre: "Preguntas de la escena del día",
-        reglage_questions_desc: "Número de preguntas en la escena del día. Si la escena no tiene suficientes a tu nivel, añade las del nivel anterior, como repaso.",
+        reglage_questions_desc: "Número de preguntas en la escena del día. Si la escena no tiene suficientes a tu nivel, agrega las del nivel anterior, como repaso.",
         seance_sous: "Repasos y palabras nuevas",
         seance_carte: "{n} tarjeta",
         seance_cartes: "{n} tarjetas",
@@ -29883,13 +29916,13 @@ const I18N = {
         myvocab_empty: "Tus palabras apartadas",
         myvocab_count: "{n} palabras apartadas",
         myvocab_count_one: "1 palabra apartada",
-        myvocab_add_title: "Añadir a mis tarjetas",
+        myvocab_add_title: "Agregar a mis tarjetas",
         dict_au_cours_title: "Ya es una tarjeta del curso — abrir la tarjeta",
         myvocab_freq_high: "muy frecuente",
         myvocab_freq_mid: "frecuente",
-        myvocab_added: "«{mot}» añadida a tus tarjetas.",
+        myvocab_added: "«{mot}» agregada a tus tarjetas.",
         myvocab_already: "«{mot}» ya está en tus tarjetas.",
-        myvocab_full: "Llegaste a {n} palabras apartadas. Repásalas antes de añadir más.",
+        myvocab_full: "Llegaste a {n} palabras apartadas. Repásalas antes de agregar más.",
         myvocab_sans_genre: "«{mot}» no tiene artículo en el diccionario. No podemos hacer una tarjeta fiable, pero tu solicitud queda anotada.",
         carte_nouveau_mot: "Palabra nueva",
         carte_type_particule: "partícula",
@@ -29897,7 +29930,7 @@ const I18N = {
         carte_genre_der: "masculino",
         carte_genre_die: "femenino",
         carte_genre_das: "neutro",
-        myvocab_deja_cours: "«{mot}» ya es una tarjeta del curso — no hace falta añadirla.",
+        myvocab_deja_cours: "«{mot}» ya es una tarjeta del curso — no hace falta agregarla.",
         myvocab_diplomes: "{n} de tus palabras entraron en el curso: ahora tienen una ficha completa.",
         myvocab_tout_diplome: "Todas tus palabras entraron en el curso. ¡Busca otras nuevas!",
         myvocab_vide_explication: "<strong>Mi vocabulario aún está vacío.</strong><br>Es tu reserva personal: las palabras que encuentras en otros sitios — en clase, en un texto, en una conversación — y que no están en la app.<br><br>Busca una arriba y luego toca el <strong>+</strong> junto al resultado del diccionario. Se convertirá en una tarjeta para repasar como las demás.",
@@ -29943,7 +29976,7 @@ const I18N = {
         reperes_pratique: "Para usarlo: escuchar, escribir, las expresiones.",
         reperes_explorer: "Explorar las escenas: toca una imagen para entrar en una escena y tocar allí los objetos. Oyes su nombre, libremente, sin preguntas. «›» las muestra todas.",
         reperes_dico: "El diccionario: ¿una palabra desconocida? Búscala aquí.",
-        reperes_reglages: "Los ajustes: tu idioma, tu nivel y todo lo demás.",
+        reperes_reglages: "La configuración: tu idioma, tu nivel y todo lo demás.",
         reperes_titre: "Puntos de descubrimiento",
         reperes_desc: "Los puntos ámbar de la pantalla de inicio, que explican cada zona.",
         reperes_revoir: "VOLVER A VER LOS PUNTOS DE DESCUBRIMIENTO",
@@ -30097,7 +30130,7 @@ const I18N = {
         legende_maitrises: "Palabras dominadas — cuatro respuestas correctas repartidas en once días. Puede bajar una o dos si una palabra se olvida en su comprobación.",
         legende_rencontres: "Palabras vistas — todas las palabras que viste al menos una vez, aunque no las supieras. Este número nunca baja.",
         legende_vocab: "Vocabulario — en qué punto del nivel mostrado estás. Verde: sabida. Azul: en progreso. Gris: por ver. Toca la flecha para ver los cinco niveles.",
-        legende_seance: "Mi práctica de hoy — la cuenta de la izquierda es tu meta diaria, que puedes regular en los ajustes. La práctica te sirve lo que falta de ella: primero los repasos pendientes, luego las palabras nuevas si queda sitio.",
+        legende_seance: "Mi práctica de hoy — la cuenta de la izquierda es tu meta diaria, que puedes regular en la configuración. La práctica te sirve lo que falta de ella: primero los repasos pendientes, luego las palabras nuevas si queda espacio.",
         carte_info_kicker: "Tu progreso",
         info_partie_accueil: "En la pantalla de inicio",
         info_partie_ici: "Guardado aquí",
@@ -30130,7 +30163,7 @@ const I18N = {
         combo_info: "⚡ Respuestas correctas seguidas, en esta práctica. Una respuesta incorrecta pone el contador a cero. (La 🔥 de la pantalla de inicio, en cambio, cuenta los días seguidos.)",
         legende_cercle: "◯ el círculo de arriba — en qué punto de un nivel completo estás. Avanza una fracción de porcentaje por palabra y no se mueve antes del día 11: es normal, y por eso está guardado aquí y no en la pantalla de inicio. Tócalo para cambiar de nivel.",
         legende_semaine: "📈 esta semana — las palabras que pasaron a dominadas en los últimos siete días. Es tu velocidad reciente, no un total.",
-        legende_objectif: "La barra «Hoy» — las tarjetas hechas desde esta mañana, sobre tu meta. Vuelve a cero cada día. El número buscado se cambia en los ajustes, y también da el tamaño de tu práctica.",
+        legende_objectif: "La barra «Hoy» — las tarjetas hechas desde esta mañana, sobre tu meta. Vuelve a cero cada día. El número buscado se cambia en la configuración, y también da el tamaño de tu práctica.",
         progress_info_titre: "Lo que mueve este porcentaje",
         progress_info_compte: "El porcentaje cuenta tus palabras dominadas sobre todas las palabras del nivel mostrado: las palabras de los temas, los verbos y los adjetivos juntos.",
         progress_info_deja: "En una palabra nueva, «Ya lo sé» salta toda la escala y la marca como dominada de inmediato.",
@@ -30149,7 +30182,7 @@ const I18N = {
         search_count_total: "{n} tarjetas",
         search_more: "Solo se muestran los primeros {n} resultados — precisa tu búsqueda.",
         search_none_title: "«{q}» no está entre tus tarjetas.",
-        search_none_scope: "El curso cubre {n} tarjetas, del nivel {debut} al {fin}. Esta palabra está fuera del programa — mira la entrada del diccionario de arriba y toca el + para añadirla a tus tarjetas.",
+        search_none_scope: "El curso cubre {n} tarjetas, del nivel {debut} al {fin}. Esta palabra está fuera del programa — mira la entrada del diccionario de arriba y toca el + para agregarla a tus tarjetas.",
         search_none_suggest: "Quizá buscabas:",
         search_exact: "Coincidencia exacta",
         adverbien_vocab_title: "Vocabulario: tarjetas",
@@ -30317,8 +30350,8 @@ const I18N = {
         voice_lang_de: "Alemán",
         voice_lang_en: "Inglés",
         voice_test: "Escuchar",
-        voice_none: "No hay ninguna voz instalada para este idioma en este dispositivo. Las frases se leerán con la voz predeterminada, es decir, con mal acento. Añádela en los ajustes de tu teléfono (Accesibilidad › Contenido hablado › Voces).",
-        voice_only_one: "Solo hay una voz instalada. Puedes añadir una mejorada en los ajustes de tu teléfono y luego volver a elegirla aquí.",
+        voice_none: "No hay ninguna voz instalada para este idioma en este dispositivo. Las frases se leerán con la voz predeterminada, es decir, con mal acento. Agrégala en la configuración de tu teléfono (Accesibilidad › Contenido hablado › Voces).",
+        voice_only_one: "Solo hay una voz instalada. Puedes agregar una mejorada en la configuración de tu teléfono y luego volver a elegirla aquí.",
         retour_titre: "Dinos qué te ayudaría",
         retour_desc: "Una palabra que suena mal, un botón que no responde, una idea: escríbelo aquí. La versión de la app y la pantalla en la que estabas se adjuntan automáticamente — no tienes que anotar nada.",
         retour_envoyer: "ENVIAR",
@@ -30339,7 +30372,7 @@ const I18N = {
         carte_phrase_oui: "Sí — se lee la frase",
         carte_phrase_non: "No — solo la palabra y el plural",
         voice_unsupported: "Este navegador no ofrece síntesis de voz.",
-        settings_title: "Ajustes",
+        settings_title: "Configuración",
         settings_global_progress: "Progreso global",
         settings_zero_title: "Empezar de cero",
         settings_zero_desc: "Poner contadores a cero, del más suave al más definitivo. Cada uno pide confirmación.",
@@ -30397,17 +30430,17 @@ const I18N = {
         notif_btn_disable: "DESACTIVAR LOS RECORDATORIOS",
         notif_not_configured: "El administrador todavía no ha configurado esta función. Vuelve a intentarlo más tarde.",
         notif_unsupported: "Tu navegador no admite las notificaciones push.",
-        notif_denied: "Permiso denegado. Puedes autorizarlo en los ajustes de tu navegador.",
+        notif_denied: "Permiso denegado. Puedes autorizarlo en la configuración de tu navegador.",
         notif_token_failed: "No se pueden activar los recordatorios por ahora. Vuelve a intentarlo más tarde.",
         notif_enabled_success: "¡Recordatorios activados! Recibirás una notificación si no has alcanzado tu meta del día.",
         notif_disabled_success: "Recordatorios desactivados.",
         rappel_heure: "Hora del recordatorio",
         rappel_regle: "Recordatorio programado: cada día a las {h}, mientras no hayas alcanzado tu meta del día.",
-        rappel_refuse: "Notificaciones rechazadas. Puedes autorizarlas en los ajustes de tu teléfono.",
+        rappel_refuse: "Notificaciones rechazadas. Puedes autorizarlas en la configuración de tu teléfono.",
         rappel_notif_titre: "Tu práctica de hoy te espera",
         rappel_notif_texte: "Con unos minutos basta para mantener tu racha.",
         rappel_propose_titre: "¿Un recordatorio cada día?",
-        rappel_propose_texte: "¡Felicidades por este logro! ¿Quieres que Wortando te recuerde tu práctica cada día a las {h}, solo los días en que todavía no hayas alcanzado tu meta? La hora se cambia en los ajustes.",
+        rappel_propose_texte: "¡Felicidades por este logro! ¿Quieres que Wortando te recuerde tu práctica cada día a las {h}, solo los días en que todavía no hayas alcanzado tu meta? La hora se cambia en la configuración.",
         rappel_propose_oui: "Sí, recuérdamelo",
         vibrations_titre: "Vibraciones",
         vibrations_desc: "Una vibración corta en cada hito de tu meta del día: +30, +60, +90…",
@@ -30588,7 +30621,7 @@ const I18N = {
         abo_jour7: "Día 7",
         abo_jour7_texte: "empieza la suscripción, salvo que canceles",
         abo_bouton: "Empezar mis 7 días gratis",
-        abo_annulation: "Puedes cancelar en cualquier momento desde los ajustes de tu teléfono.",
+        abo_annulation: "Puedes cancelar en cualquier momento desde la configuración de tu teléfono.",
         abo_restaurer: "Restaurar una compra",
         abo_conditions: "Condiciones",
         abo_confidentialite: "Privacidad",
@@ -30984,11 +31017,11 @@ const I18N = {
         parler_en_cours: "Te escucho… toca DETENER cuando termines.",
         parler_pret: "Grabado. Escucha el modelo y luego tu intento.",
         parler_rien_entendu: "No se grabó nada. Vuelve a intentarlo hablando un poco más alto.",
-        parler_micro_refuse: "No se autorizó el micrófono. Puedes permitirlo en los ajustes del navegador.",
+        parler_micro_refuse: "No se autorizó el micrófono. Puedes permitirlo en la configuración del navegador.",
         parler_sans_micro: "Este dispositivo no permite grabar aquí. Escucha el modelo y repite en voz alta.",
         ecoute_level_all: "Todos",
         ecoute_title: "Escuchar y repetir",
-        ecoute_reglages_title: "Ajustes",
+        ecoute_reglages_title: "Configuración",
         ecoute_vitesse_label: "Velocidad de la voz",
         ecoute_pause_label: "Tiempo para repetir",
         ecoute_vitesse_lente: "Lenta",
@@ -31087,7 +31120,7 @@ const I18N = {
         vhs_kapitel_tile_desc: "El vocabulario de cada capítulo de tu curso, agrupado aparte.",
         vhs_kapitel_liste_title: "Capítulos VHS",
         vhs_kapitel_row_label: "Capítulo {n}",
-        vhs_kapitel_none_yet: "Todavía no se ha añadido ningún capítulo.",
+        vhs_kapitel_none_yet: "Todavía no se ha agregado ningún capítulo.",
         vhs_kapitel_pill_noms: "Sustantivos",
         vhs_kapitel_pill_verben: "Verbos",
         vhs_kapitel_pill_adjektive: "Adjetivos",
@@ -32165,8 +32198,41 @@ const I18N_ANGLAIS = {
         "en_variante_gb": "Británico"
     }
 };
+// L'ESPAGNOL D'ESPAGNE (2 nov. 2026) : derive de l'Amerique latine, la base
+// d'I18N.es. Genere par anglais/es/espagne.py -- ne pas modifier a la main.
+const I18N_ES_ESPAGNE = {
+    "settings_title": "Ajustes",
+    "ecoute_reglages_title": "Ajustes",
+    "reperes_reglages": "Los ajustes: tu idioma, tu nivel y todo lo demás.",
+    "cp_micro_muet": "El micrófono no responde. Revisa que Wortando tenga permiso para usar el micrófono (Ajustes del teléfono) y vuelve a intentarlo.",
+    "legende_seance": "Mi práctica de hoy — la cuenta de la izquierda es tu meta diaria, que puedes regular en los ajustes. La práctica te sirve lo que falta de ella: primero los repasos pendientes, luego las palabras nuevas si queda sitio.",
+    "legende_objectif": "La barra «Hoy» — las tarjetas hechas desde esta mañana, sobre tu meta. Vuelve a cero cada día. El número buscado se cambia en los ajustes, y también da el tamaño de tu práctica.",
+    "notif_denied": "Permiso denegado. Puedes autorizarlo en los ajustes de tu navegador.",
+    "rappel_refuse": "Notificaciones rechazadas. Puedes autorizarlas en los ajustes de tu teléfono.",
+    "abo_annulation": "Puedes cancelar en cualquier momento desde los ajustes de tu teléfono.",
+    "parler_micro_refuse": "No se autorizó el micrófono. Puedes permitirlo en los ajustes del navegador.",
+    "voice_none": "No hay ninguna voz instalada para este idioma en este dispositivo. Las frases se leerán con la voz predeterminada, es decir, con mal acento. Añádela en los ajustes de tu teléfono (Accesibilidad › Contenido hablado › Voces).",
+    "voice_only_one": "Solo hay una voz instalada. Puedes añadir una mejorada en los ajustes de tu teléfono y luego volver a elegirla aquí.",
+    "reglage_questions_desc": "Número de preguntas en la escena del día. Si la escena no tiene suficientes a tu nivel, añade las del nivel anterior, como repaso.",
+    "myvocab_add_title": "Añadir a mis tarjetas",
+    "myvocab_added": "«{mot}» añadida a tus tarjetas.",
+    "myvocab_deja_cours": "«{mot}» ya es una tarjeta del curso — no hace falta añadirla.",
+    "search_none_scope": "El curso cubre {n} tarjetas, del nivel {debut} al {fin}. Esta palabra está fuera del programa — mira la entrada del diccionario de arriba y toca el + para añadirla a tus tarjetas.",
+    "vhs_kapitel_none_yet": "Todavía no se ha añadido ningún capítulo.",
+    "seance_scene_buergeramt": "Mark en el ayuntamiento",
+    "seance_scene_zug": "Mark coge el tren",
+    "seance_scene_supermarkt": "Anna hace la compra",
+    "seance_scene_heimwerken": "Mark monta una estantería",
+    "op_scenes_hiver_d": "El invierno y el tiempo",
+    "op_scenes_bricolage_d": "El bricolaje y las herramientas",
+    "verify_button": "COMPROBAR",
+    "cp_tu_as_ecrit": "Has escrito:",
+    "myvocab_full": "Has llegado a {n} palabras apartadas. Repásalas antes de añadir más.",
+    "rappel_propose_texte": "¡Enhorabuena por este logro! ¿Quieres que Wortando te recuerde tu práctica cada día a las {h}, solo los días en que todavía no hayas alcanzado tu meta? La hora se cambia en los ajustes."
+};
 if(LANGUE_APPRISE === "en"){
     for(const l of Object.keys(I18N_ANGLAIS)) Object.assign(I18N[l], I18N_ANGLAIS[l]);
+    if(VARIANTE_INTERFACE_ES === "es") Object.assign(I18N.es, I18N_ES_ESPAGNE);
     document.title = "Wortando English";
 }
 
@@ -32332,9 +32398,9 @@ const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr", uk: "_uk", fa: "_fa", 
 const VOIX_ALLEMAND_CONNU = "de-connu";
 
 // Le drapeau affiche dans l'en-tete. Ce sont des emoji, donc rien a heberger.
-// es : le globe des Ameriques, provisoire tant que Jacques n'a pas choisi
-// l'espagnol de l'interface (Amerique latine ou Espagne).
-const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷", uk: "🇺🇦", fa: "🇮🇷", ar: "🇸🇦", pt: "🇧🇷", pl: "🇵🇱", ru: "🌐", de: "🇩🇪", es: "🌎" };
+// es : le drapeau de la variante d'interface (le Mexique pour l'Amerique latine,
+// comme la pastille de l'espagnol appris, v1057).
+const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷", uk: "🇺🇦", fa: "🇮🇷", ar: "🇸🇦", pt: "🇧🇷", pl: "🇵🇱", ru: "🌐", de: "🇩🇪", es: VARIANTE_INTERFACE_ES === "es" ? "🇪🇸" : "🇲🇽" };
 
 // Ordre de repli quand la traduction manque. Le turc arrive en dernier et son
 // corpus se remplira progressivement : sans repli, chaque mot pas encore
@@ -32836,6 +32902,12 @@ function adapterChoixALaLangueApprise(){
         // « Quel anglais ? » est ecrit dans la page en francais : suivre la langue d'interface.
         document.querySelectorAll('[data-variante-en-titre]').forEach(el => { el.textContent = t("en_variante_titre"); });
         document.querySelectorAll('[data-variante-en-nom]').forEach(el => { el.textContent = t("en_variante_" + el.dataset.varianteEnNom); });
+        // « ¿Qué español? » : seulement quand l'interface est en espagnol.
+        const choixEs = document.getElementById("choixVarianteInterfaceEs");
+        if(choixEs) choixEs.classList.toggle("hidden", getUiLang() !== "es");
+        document.querySelectorAll('.setup-choice[data-variante-ui-es]').forEach(btn => {
+            btn.classList.toggle("active", btn.dataset.varianteUiEs === VARIANTE_INTERFACE_ES);
+        });
         document.querySelectorAll('.setup-choice[data-variante-en]').forEach(btn => {
             btn.classList.toggle("active", btn.dataset.varianteEn === VARIANTE_ANGLAIS);
         });
@@ -46716,7 +46788,7 @@ const ABONNEMENT = { mensuel: 6.99, annuel: 49.99, devise: "EUR", essaiJours: 7 
 let aboPlan = "annuel";
 let ecranAvantAbonnement = "adminDashboard";
 
-const LOCALES_ABO = { fr: "fr-FR", en: "en-IE", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU", de: "de-DE", es: "es-419" };
+const LOCALES_ABO = { fr: "fr-FR", en: "en-IE", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU", de: "de-DE", es: VARIANTE_INTERFACE_ES === "es" ? "es-ES" : "es-419" };
 function prixAbo(v){
     try{
         return new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR",
@@ -50987,7 +51059,7 @@ const LANGUE_TAG = { de: LANGUE_ENSEIGNEE.voix, en: "en-GB", fr: "fr-FR", tr: "t
                      [VOIX_ALLEMAND_CONNU]: "de-DE",
                      // L'espagnol CONNU (interface de l'anglais, 2 nov. 2026) : voicesForLang("es")
                      // donne deja les voix es-* ; l'etiquette sert quand le telephone n'en a pas.
-                     es: "es-MX" };
+                     es: VARIANTE_INTERFACE_ES === "es" ? "es-ES" : "es-MX" };
 
 // Le choix fait dans les reglages est memorise PAR VARIANTE en anglais appris
 // (28 oct. 2026) : choisir une voix britannique ne doit pas effacer la voix
