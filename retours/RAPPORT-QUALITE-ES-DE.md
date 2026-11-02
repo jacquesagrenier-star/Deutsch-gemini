@@ -128,6 +128,8 @@ Ce que la relecture a rapporté de plus, que les contrôles mécaniques ne voyai
 |---|---|
 | Lots relus | voir `python retours/qualite-es-de/verdicts.py <dossier> --etat` ; dernier relevé dans la ligne ci-dessous |
 | Relevé au 2 nov., 10 h | 225 lots sur 1 309 (noms allemands A1-C1, chapitres VHS, verbes A1-A2) ; 240 signalements : 214 à appliquer, 16 écartés, 9 à trancher |
+| Publié, lot 1 (2 nov., ≈ 10 h 15) | 254 champs corrigés dans `themes.json` et `verbe.json`, traductions seulement (une forme féminine fautive retirée : das Zeug → « Zeugin ») ; vérificateur 46 171 OK, parcours de-v1055 0 écart. Détail : `retours/qualite-es-de/corrections-relecture.json` |
+| Défaut systématique trouvé | « Perfekt » au passif Präteritum dans environ 90 verbes C1 (« Die Formel wurde sauber hergeleitet ») : correction mécanique (« ist … worden »), voix à refaire, soumis à Jacques comme un seul groupe |
 | Ordre restant | verbes B1-C1, adjectifs, adverbes, expressions, mots-outils, exercices, examen, fiches, conjugaison, Premiers pas, A1 voyage, repères, prononciation, scènes allemandes (8 langues) ; puis tout l'espagnol |
 | Reprise après une interruption | refaire les lots (`lots_complets.py <dossier>`, même découpage) ; relancer les relecteurs sur les lots sans `verdict-NNN.json` ; les verdicts et `triage.json` sont gardés |
 
