@@ -1607,7 +1607,7 @@ window.SCENE = {
     "A2 | El humo sale del tejado.": "Der Rauch steigt aus dem Dach.",
     "A2 | El banco está al lado de la bicicleta.": "Die Bank steht neben dem Fahrrad.",
     "A2 | Hay un sombrero en la cabeza del muñeco.": "Auf dem Kopf des Schneemanns sitzt ein Hut.",
-    "B1 | Anna tiene frío.": "Anna ist kalt.",
+    "B1 | Anna tiene frío.": "Anna friert.",
     "B1 | El gorro le queda bien.": "Die Mütze steht ihr gut.",
     "B1 | Anna le ha puesto una bufanda al muñeco.": "Anna hat dem Schneemann einen Schal umgelegt.",
     "B1 | Anna los lleva puestos.": "Anna hat sie an.",
