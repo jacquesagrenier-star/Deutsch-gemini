@@ -1049,7 +1049,12 @@ function calque(classe){
   return v;
 }
 const voile = calque("voile"), toile = calque("contours");
+/* Un trace est une liste de sommets (les zones rigides et pleines : des
+   droites) ou, depuis le 2 nov. 2026, un chemin SVG tout fait, avec ses arcs
+   (« Q ») a la place des facettes : agrandi a x4, un objet courbe ne montre
+   plus les cotes de son polygone (detourer.py, adoucir). */
 const chemin = id => (MASQUES.traces[id] || []).map(pts => {
+  if (typeof pts === "string") return pts;
   let d = "";
   for (let k = 0; k < pts.length; k += 2) d += (k ? "L" : "M") + pts[k] + " " + pts[k+1];
   return d + "Z";

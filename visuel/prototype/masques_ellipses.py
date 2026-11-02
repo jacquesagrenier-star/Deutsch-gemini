@@ -13,7 +13,9 @@ POURQUOI
     Pillow, numpy et opencv -- il tourne donc dans une session cloud.
 
     Le jour ou detourer.py est relance sur le PC, il refait ces zones a
-    l'identique (meme code, memes constantes) : rien a defaire.
+    l'identique (meme code, memes constantes, meme trace fin) : rien a
+    defaire. Seule difference : detourer.py arbitre aussi les recouvrements
+    entre vetements (etape 2), que ces zones-la ne connaissent pas.
 """
 import io
 import json
@@ -59,13 +61,7 @@ def main():
         # La suite est celle de detourer.py, zone par zone.
         m8 = cv2.morphologyEx(m * 255, cv2.MORPH_CLOSE, noyau)
         m8 = cv2.morphologyEx(m8, cv2.MORPH_OPEN, noyau)
-        contours, _ = cv2.findContours(m8, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
-        polys = []
-        for c in contours:
-            if cv2.contourArea(c) < D.MIETTE:
-                continue
-            a = cv2.approxPolyDP(c, D.SIMPLIFICATION, True).reshape(-1, 2)
-            polys.append([int(v) for v in a.ravel()])
+        polys = D.tracer(m8, z, cv2, np)
         if not polys:
             sys.exit("  %s : trop petite pour etre tracee (< %d px2) -- agrandir l'ellipse"
                      % (z["id"], D.MIETTE))
