@@ -134,7 +134,13 @@ html,body{margin:0;background:#DCE6EC;color:var(--encre);
 .etiquette{position:absolute;z-index:1800;transform:translate(-50%,-100%);
   background:#fff;border-radius:10px;padding:6px 10px 7px;white-space:nowrap;
   box-shadow:0 4px 14px rgba(0,0,0,.35);font-size:15px;pointer-events:none;
-  text-align:center}
+  text-align:center;
+  /* v1071 : UNE ETIQUETTE PLUS LARGE QUE LA SCENE PASSE A LA LIGNE (controle de qualite du 2 nov. 2026 : au cabinet
+     medical, « die Karte » sortait de l'ecran en russe, portugais, ukrainien et polonais, sa traduction etant trop
+     longue). Sa largeur suit son texte (max-content : la position « left » ne la retrecit plus) jusqu'a la largeur de
+     la scene, puis le texte se coupe ; etiquette() la ramene ensuite dans le cadre. */
+  width:max-content;max-width:calc(100% - 16px);box-sizing:border-box}
+.etiquette .fr{white-space:normal}
 .etiquette.dessous{transform:translate(-50%,0)}
 .etiquette .art{font-weight:800}
 .etiquette .nom{font-weight:700}
