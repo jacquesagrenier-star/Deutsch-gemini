@@ -260,6 +260,39 @@ html.nuit .pied label{color:#EEF2F5}
   background:#E8A23A;border:2px solid #fff;pointer-events:none;animation:indice-pul 1.4s ease-out infinite}
 @keyframes indice-pul{0%{box-shadow:0 0 0 0 rgba(232,162,58,.75)}70%{box-shadow:0 0 0 12px rgba(232,162,58,0)}100%{box-shadow:0 0 0 0 rgba(232,162,58,0)}}
 @media (prefers-reduced-motion: reduce){.indice-pt{animation:none}}
+/* L'INDICE DU ZOOM A DEUX DOIGTS (v1068, Jacques, 2 nov. 2026 : « une icone qui indique qu'on peut agrandir avec les
+   deux doigts » ; dessin B, « deux doigts », maquette https://claude.ai/artifact/LBpQbBUy867S2Szq1ze1FD ; « je le
+   mettrai deux fois », aussi pour ceux qui ont deja l'app). Deux ronds blancs, les bouts des doigts, s'ecartent deux
+   fois en diagonale sous un voile leger, avec la phrase ; il part seul (3,4 s) ou au premier toucher. Voir indicePince(). */
+.pince{position:absolute;inset:0;z-index:1950;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+  background:rgba(10,18,26,.28);pointer-events:none;animation:pince-voile 3.4s ease forwards}
+@keyframes pince-voile{0%{opacity:0}8%{opacity:1}86%{opacity:1}100%{opacity:0}}
+.pince .doigts{position:relative;width:150px;height:150px}
+/* Les bouts des doigts en GLACIS CLAIR, avec une empreinte digitale (Jacques : « comme en vert, mais avec comme une
+   empreinte digitale dedans », puis « la 7 » -- maquette https://claude.ai/artifact/QwXNqGoieCBnKbXNawgFBo) : un verre
+   presque transparent et givre, borde de vert, un reflet en haut ; la phrase en verre aussi. */
+.pince .doigt{position:absolute;left:50%;top:50%;width:42px;height:42px;margin:-21px;border-radius:50%;overflow:hidden;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40' fill='none' stroke='white' stroke-opacity='1' stroke-width='1.7' stroke-linecap='round'%3E%3Cpath d='M8 26C6 16 11 8 20 7c9-1 14 6 14 14'/%3E%3Cpath d='M11 30c-2-7-1-16 9-17c8-1 11 5 10 12'/%3E%3Cpath d='M15 32c-2-6-1-13 5-14c5-1 7 3 6 8c0 3-1 5-2 7'/%3E%3Cpath d='M19 33c-1-4-1-9 1-10c3-1 3 3 2 6'/%3E%3Cpath d='M29 30c1-2 2-4 2-6'/%3E%3C/svg%3E") center/78% no-repeat,
+    rgba(255,255,255,.18);
+  -webkit-backdrop-filter:blur(6px) saturate(1.6);backdrop-filter:blur(6px) saturate(1.6);
+  box-shadow:0 0 0 2px rgba(120,200,150,.95),0 0 0 7px rgba(120,200,150,.25),inset 0 -6px 10px -4px rgba(0,0,0,.25),0 6px 14px rgba(0,0,0,.30)}
+.pince .doigt::before{content:"";position:absolute;left:12%;right:12%;top:5%;height:42%;border-radius:50% 50% 45% 45%;
+  background:linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.08));pointer-events:none}
+.pince .d1{transform:translate(-10px,10px);animation:pince-d1 1.3s ease-in-out .3s 2}
+.pince .d2{transform:translate(10px,-10px);animation:pince-d2 1.3s ease-in-out .3s 2}
+@keyframes pince-d1{0%,100%{transform:translate(-10px,10px)}45%,60%{transform:translate(-46px,46px)}}
+@keyframes pince-d2{0%,100%{transform:translate(10px,-10px)}45%,60%{transform:translate(46px,-46px)}}
+.pince .trace{position:absolute;left:50%;top:50%;width:130px;height:2px;margin-left:-65px;opacity:0;transform:rotate(-45deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);animation:pince-trace 1.3s ease-in-out .3s 2}
+@keyframes pince-trace{0%,100%{opacity:0}40%,65%{opacity:1}}
+.pince .phrase{position:relative;overflow:hidden;color:#fff;font:800 15px Nunito,system-ui,sans-serif;padding:9px 16px;border-radius:999px;max-width:86%;text-align:center;
+  background:linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.12));
+  -webkit-backdrop-filter:blur(10px) saturate(1.5);backdrop-filter:blur(10px) saturate(1.5);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.55), inset 0 1.5px 0 rgba(255,255,255,.7), 0 6px 16px rgba(0,0,0,.25);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.pince .phrase::before{content:"";position:absolute;inset:1px 1px 50% 1px;border-radius:999px 999px 0 0;
+  background:linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,0));pointer-events:none}
+.pince.parti{animation:none;opacity:0;transition:opacity .3s}
+@media (prefers-reduced-motion: reduce){.pince .d1,.pince .d2,.pince .trace{animation:none}.pince .d1{transform:translate(-46px,46px)}.pince .d2{transform:translate(46px,-46px)}.pince .trace{opacity:1}}
 /* ============ v1003 : LE NOUVEAU STYLE (Jacques, 29 oct. 2026) ============
    Le fond des cartes de l'app (carte du monde par langue, pale et immobile),
    la barre et la question en verre, et « Continuer » EN BAS de l'ecran, en
@@ -570,6 +603,7 @@ const TEXTES = {
   scene:       {fr: "Scène", en: "Scene", tr: "Sahne", uk: "Сцена", fa: "صحنه", ar: "مشهد", pt: "Cena", pl: "Scena", ru: "Сцена", de: "Szene"},
   nomsArticles:{fr: "Noms et articles", en: "Nouns and articles", tr: "İsimler ve artikeller", uk: "Іменники й артиклі", fa: "اسم‌ها و حرف‌های تعریف", ar: "الأسماء وأدوات التعريف", pt: "Substantivos e artigos", pl: "Rzeczowniki i rodzajniki", ru: "Существительные и артикли", de: "Nomen und Artikel"},
   pluriel:     {fr: "pl.", en: "pl.", tr: "çoğ.", uk: "мн.", fa: "جمع:", ar: "الجمع:", pt: "pl.", pl: "l. mn.", ru: "мн.", de: "Pl."},
+  pince:       {fr: "Écarte deux doigts pour agrandir", en: "Spread two fingers to zoom in", tr: "Yakınlaştırmak için iki parmağını aç", uk: "Розведи два пальці, щоб збільшити", fa: "برای بزرگ‌نمایی دو انگشتت را از هم باز کن", ar: "باعِد بين إصبعين للتكبير", pt: "Afaste dois dedos para ampliar", pl: "Rozsuń dwa palce, aby powiększyć", ru: "Разведи два пальца, чтобы увеличить", de: "Spreize zwei Finger zum Vergrößern"},
   indice:      {fr: "Touche un objet : tu entends son nom.", en: "Tap an object to hear its name.", tr: "Bir nesneye dokun, adını duy.", uk: "Торкнися предмета — почуєш його назву.", fa: "روی یک شیء بزن تا نامش را بشنوی.", ar: "المس شيئًا لتسمع اسمه.", pt: "Toque num objeto para ouvir o nome.", pl: "Dotknij przedmiotu, by usłyszeć jego nazwę.", ru: "Нажми на предмет — услышишь его название.", de: "Tippe auf einen Gegenstand: Du hörst seinen Namen."},
   decouverts:  {fr: "{a} mots", en: "{a} words", tr: "{a} kelime", uk: "слова: {a}", fa: "{a} واژه", ar: "{a} كلمة", pt: "{a} palavras", pl: "słowa: {a}", ru: "слова: {a}", de: "{a} Wörter"},
   piedZones:   {fr: "Montrer les zones à toucher (contrôle)", en: "Show the tap zones (check)", tr: "Dokunma alanlarını göster (kontrol)", uk: "Показати зони дотику (перевірка)", fa: "نشان دادن ناحیه‌های لمسی (بررسی)", ar: "إظهار مناطق اللمس (للتحقق)", pt: "Mostrar as áreas de toque (verificação)", pl: "Pokaż strefy dotyku (kontrola)", ru: "Показать зоны для нажатия (проверка)", de: "Die Tippzonen anzeigen (Kontrolle)"},
@@ -1731,7 +1765,37 @@ function zoomAppliquer(){
   calquePlan.style.setProperty("--zoom", ZOOM.s);
   scene.classList.toggle("zoome", ZOOM.s > 1);
   const b = $("zoomRetour"); if (b) b.hidden = ZOOM.s === 1;
+  if (ZOOM.s > 1){ try{ localStorage.setItem(PINCE_ZOOME, "1"); }catch(e){} retirerPince(); }
 }
+/* L'indice du zoom (voir le style .pince) : aux DEUX premieres scenes ouvertes, anciens usagers compris (le
+   compteur est neuf pour tout le monde), et plus jamais des qu'on a agrandi une fois. Il attend la fin de la bulle
+   d'arrivee (6 s) pour ne pas parler en meme temps qu'elle. Sans prefixe de langue : le geste est le meme partout. */
+const PINCE_VUS = "wortando_pinceVus", PINCE_ZOOME = "wortando_pinceZoome";
+function indicePince(){
+  let vus = 0, zoome = false;
+  try{ vus = +localStorage.getItem(PINCE_VUS) || 0; zoome = localStorage.getItem(PINCE_ZOOME) === "1"; }catch(e){ return; }
+  if (zoome || vus >= 2) return;
+  setTimeout(() => {
+    if (ZOOM.s > 1 || zoom || scene.querySelector(".pince") || !scene.clientWidth) return;
+    try{ localStorage.setItem(PINCE_VUS, String(vus + 1)); }catch(e){}
+    const el = document.createElement("div");
+    el.className = "pince";
+    el.setAttribute("aria-hidden", "true");
+    el.innerHTML = '<div class="doigts"><div class="trace"></div><div class="doigt d1"></div><div class="doigt d2"></div></div>';
+    const phrase = document.createElement("div");
+    phrase.className = "phrase";
+    phrase.textContent = T("pince");
+    el.appendChild(phrase);
+    scene.appendChild(el);
+    el.addEventListener("animationend", ev => { if (ev.target === el) el.remove(); });
+    const toucher = () => retirerPince();
+    scene.addEventListener("pointerdown", toucher, {once: true});
+  }, 6500);
+}
+function retirerPince(){
+  scene.querySelectorAll(".pince").forEach(el => { el.classList.add("parti"); setTimeout(() => el.remove(), 320); });
+}
+indicePince();
 function zoomRemettre(){ ZOOM.s = 1; ZOOM.x = 0; ZOOM.y = 0; zoomAppliquer(); }
 function zoomPoint(t){ const r = scene.getBoundingClientRect(); return [t.clientX - r.left, t.clientY - r.top]; }
 scene.addEventListener("touchstart", e => {
