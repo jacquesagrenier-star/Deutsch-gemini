@@ -14,7 +14,7 @@ SOURCE = os.path.join(os.path.expanduser("~"), ".wortando", "carte-pays", "count
 W, H, PX = 1200, 473, 1200 / 360
 # les codes de drapeauLangueApprise() ; l'Amerique latine (mx) : les pays hispanophones des Ameriques
 PAYS = {
-    "de": ["276"],
+    "de": ["276", "040"],                        # l'Autriche aussi (Jacques, 1er nov. 2026)
     "es": ["724"],
     "mx": ["484", "320", "340", "222", "558", "188", "591", "192", "214", "630", "170", "862", "218", "604", "068", "152", "032", "858", "600"],
     "pt": ["620"],
