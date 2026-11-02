@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "قمر",
    "pl": "księżyc",
    "ru": "луна",
+   "de": "der Mond",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "برج",
    "pl": "wieża",
    "ru": "башня",
+   "de": "der Turm",
    "latam": null
   },
   {
@@ -108,6 +111,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -135,6 +139,7 @@ window.SCENE = {
    "ar": "كنيسة",
    "pl": "kościół",
    "ru": "церковь",
+   "de": "die Kirche",
    "latam": null
   },
   {
@@ -162,6 +167,7 @@ window.SCENE = {
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
    "ru": "фонарь",
+   "de": "die Straßenlaterne",
    "latam": {
     "mot": "farol",
     "genre": "el",
@@ -199,6 +205,7 @@ window.SCENE = {
    "ar": "سطح، سقف",
    "pl": "dach",
    "ru": "крыша",
+   "de": "das Dach",
    "latam": null
   },
   {
@@ -232,6 +239,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -265,6 +273,7 @@ window.SCENE = {
    "ar": "سلسلة أضواء",
    "pl": "girlanda świetlna, lampki",
    "ru": "гирлянда",
+   "de": "die Lichterkette",
    "latam": null
   },
   {
@@ -284,7 +293,8 @@ window.SCENE = {
      "fr": "le cheval",
      "en": "the horse",
      "pt": "o cavalo",
-     "ar": "حصان"
+     "ar": "حصان",
+     "de": "das Pferd"
     }
    ],
    "sur": null,
@@ -303,6 +313,7 @@ window.SCENE = {
    "ar": "لعبة (دمية)",
    "pl": "zabawka, zabawki",
    "ru": "игрушка",
+   "de": "das Spielzeug",
    "latam": null
   },
   {
@@ -330,6 +341,7 @@ window.SCENE = {
    "ar": "معصم، دمية",
    "pl": "lalka",
    "ru": "кукла",
+   "de": "das Handgelenk, die Puppe",
    "latam": null
   },
   {
@@ -387,6 +399,7 @@ window.SCENE = {
    "ar": "نجم",
    "pl": "gwiazda",
    "ru": "звезда",
+   "de": "der Stern",
    "latam": null
   },
   {
@@ -420,6 +433,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -447,6 +461,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -474,6 +489,7 @@ window.SCENE = {
    "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Mütze",
    "latam": null
   },
   {
@@ -493,7 +509,8 @@ window.SCENE = {
      "fr": "la veste",
      "en": "the jacket",
      "pt": "a jaqueta, o casaco",
-     "ar": "سترة، جاكيت"
+     "ar": "سترة، جاكيت",
+     "de": "die Jacke"
     }
    ],
    "sur": null,
@@ -512,6 +529,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -543,6 +561,7 @@ window.SCENE = {
    "ar": "نجم",
    "pl": "gwiazda",
    "ru": "звезда",
+   "de": "der Stern",
    "latam": null
   },
   {
@@ -570,6 +589,7 @@ window.SCENE = {
    "ar": "شمعة",
    "pl": "świeczka",
    "ru": "свеча",
+   "de": "die Kerze",
    "latam": null
   },
   {
@@ -597,6 +617,7 @@ window.SCENE = {
    "ar": "إبريق، دورق",
    "pl": "dzbanek",
    "ru": "кофейник, кувшин",
+   "de": "der Krug, die Karaffe",
    "latam": null
   },
   {
@@ -624,6 +645,7 @@ window.SCENE = {
    "ar": "قِدر",
    "pl": "garnek",
    "ru": "кастрюля",
+   "de": "der Kochtopf",
    "latam": null
   },
   {
@@ -651,6 +673,7 @@ window.SCENE = {
    "ar": "هدية",
    "pl": "prezent",
    "ru": "подарок",
+   "de": "das Geschenk",
    "latam": null
   },
   {
@@ -678,6 +701,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -697,7 +721,8 @@ window.SCENE = {
      "fr": "l'argent",
      "en": "the money",
      "pt": "o dinheiro",
-     "ar": "مال، نقود"
+     "ar": "مال، نقود",
+     "de": "das Geld"
     }
    ],
    "sur": "stand",
@@ -716,6 +741,7 @@ window.SCENE = {
    "ar": "قطعة نقدية، عملة",
    "pl": "moneta",
    "ru": "монета",
+   "de": "die Münze, die Währung",
    "latam": null
   },
   {
@@ -743,6 +769,7 @@ window.SCENE = {
    "ar": "صندوق الدفع",
    "pl": "skrzynia, skrzynka",
    "ru": "ящик",
+   "de": "die Kasse",
    "latam": null
   },
   {
@@ -770,6 +797,7 @@ window.SCENE = {
    "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
+   "de": "der Apfel",
    "latam": null
   },
   {
@@ -803,6 +831,7 @@ window.SCENE = {
    "ar": "برتقالة",
    "pl": "pomarańcza",
    "ru": "апельсин",
+   "de": "die Orange",
    "latam": null
   },
   {
@@ -830,6 +859,7 @@ window.SCENE = {
    "ar": "جوزة",
    "pl": "orzech",
    "ru": "орех",
+   "de": "die Walnuss, die Nuss",
    "latam": null
   },
   {
@@ -863,6 +893,7 @@ window.SCENE = {
    "ar": "وظيفة، منصب",
    "pl": "stan; stoisko",
    "ru": "состояние; стенд, ларёк",
+   "de": "die Stelle (Arbeitsplatz)",
    "latam": null
   },
   {
@@ -890,6 +921,7 @@ window.SCENE = {
    "ar": "وظيفة، منصب",
    "pl": "stan; stoisko",
    "ru": "состояние; стенд, ларёк",
+   "de": "die Stelle (Arbeitsplatz)",
    "latam": null
   },
   {
@@ -917,6 +949,7 @@ window.SCENE = {
    "ar": "بريتزل (كعك ألماني مملّح)",
    "pl": "precel",
    "ru": "брецель (крендель)",
+   "de": "die Brezel",
    "latam": null
   },
   {
@@ -944,6 +977,7 @@ window.SCENE = {
    "ar": "بريتزل (كعك ألماني مملّح)",
    "pl": "precel",
    "ru": "брецель (крендель)",
+   "de": "die Brezel",
    "latam": null
   },
   {
@@ -971,6 +1005,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -998,6 +1033,7 @@ window.SCENE = {
    "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Mütze",
    "latam": null
   },
   {
@@ -1025,6 +1061,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -1052,6 +1089,7 @@ window.SCENE = {
    "ar": "طفل، ولد",
    "pl": "dziecko",
    "ru": "ребёнок",
+   "de": "das Kind",
    "latam": null
   },
   {
@@ -1079,6 +1117,7 @@ window.SCENE = {
    "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Mütze",
    "latam": null
   },
   {
@@ -1106,6 +1145,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -1126,6 +1166,7 @@ window.SCENE = {
      "en": "the jeans",
      "pt": "a calça jeans",
      "ar": "بنطال جينز",
+     "de": "die Jeans",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -1149,6 +1190,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1176,6 +1218,7 @@ window.SCENE = {
    "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
+   "de": "der Stiefel",
    "latam": null
   },
   {
@@ -1203,6 +1246,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -1230,6 +1274,7 @@ window.SCENE = {
    "ar": "قبّعة صوفية (طاقية)",
    "pl": "czapka",
    "ru": "шапка",
+   "de": "die Mütze",
    "latam": null
   },
   {
@@ -1257,6 +1302,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -1284,6 +1330,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -1311,6 +1358,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -1348,6 +1396,7 @@ window.SCENE = {
    "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
+   "de": "der Handschuh",
    "latam": null
   },
   {
@@ -1375,6 +1424,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -1395,6 +1445,7 @@ window.SCENE = {
      "en": "the jeans",
      "pt": "a calça jeans",
      "ar": "بنطال جينز",
+     "de": "die Jeans",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -1418,6 +1469,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1451,6 +1503,7 @@ window.SCENE = {
    "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
+   "de": "der Stiefel",
    "latam": null
   },
   {
@@ -1478,6 +1531,7 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
+   "de": "der Hund",
    "latam": null
   },
   {
@@ -1505,6 +1559,7 @@ window.SCENE = {
    "ar": "نار",
    "pl": "ogień",
    "ru": "огонь, костёр",
+   "de": "das Feuer",
    "latam": null
   },
   {
@@ -1532,6 +1587,7 @@ window.SCENE = {
    "ar": "خشب",
    "pl": "drewno",
    "ru": "дерево (материал)",
+   "de": "das Holz",
    "latam": null
   },
   {
@@ -1552,6 +1608,7 @@ window.SCENE = {
      "en": "the floor",
      "pt": "o chão, o piso",
      "ar": "أرضية",
+     "de": "der Boden (Fußboden)",
      "latam": {
       "mot": "piso",
       "genre": "el",
@@ -1581,6 +1638,7 @@ window.SCENE = {
    "ar": "ثلج",
    "pl": "śnieg",
    "ru": "снег",
+   "de": "der Schnee",
    "latam": null
   }
  ],
@@ -2255,6 +2313,77 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark an einem Dezemberabend auf einem Weihnachtsmarkt in Berlin: eine dampfende Tasse in der einen Hand, streckt er die andere nach dem Holzstern aus, den ihm der Verkäufer mit roter Mütze über den Stand reicht; auf dem schneebestäubten Holzstand drei rote Kerzen, eine Kanne und ein Kupferkessel, verpackte Geschenke, rote Tassen, zwei Münzen, eine Kiste mit Äpfeln und Orangen und Nüsse; darüber ein Schaukelpferd, eine Stoffpuppe und Holzsterne unter einer Lichterkette; dahinter ein großer beleuchteter Tannenbaum, die Backsteinkirche mit ihrem Turm, eine Straßenlaterne, der Mond und ein Brezelstand, an dem eine Mutter ihr Kind an der Hand hält; davor eine brennende Feuerschale, Holz und ein Hund, der im Schnee sitzt.",
+    "consigne": "Mark entdeckt seinen ersten Weihnachtsmarkt in Berlin. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Das Wetter: hace frío, nieva",
+    "B2": "Die Verben der Veränderung: ponerse, volverse, quedarse",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La muñeca está en el puesto.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La jarra está al lado de la olla.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Las manzanas están en la caja.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El perro está en la nieve.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El reloj está en la torre.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El hombre está detrás del puesto.": "<b>de + el = del</b>, immer.",
+    "A2 | Hay luna en el cielo.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | El árbol está delante de la iglesia.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "B1 | En diciembre hace mucho frío en Berlín.": "Die Temperatur → <b>hacer</b>: hace frío, hace calor — wörtlich „es macht Kälte“.",
+    "B1 | Esta noche hay nieve en el piso.": "Was da ist → <b>hay</b>: hay nieve, hay niebla.",
+    "B1 | Esta noche hay nieve en el suelo.": "Was da ist → <b>hay</b>: hay nieve, hay niebla.",
+    "B1 | Mira, nieva otra vez.": "<b>nevar</b>: unpersönliches Verb, 3. Person, e → ie: nieva.",
+    "B1 | Mark tiene frío en las manos.": "Einer Person ist kalt → <b>tener</b> frío (wörtlich: Kälte haben).",
+    "B1 | La bebida está caliente.": "Die Temperatur einer Sache → <b>estar</b>: está caliente, está frío.",
+    "B1 | Ya es de noche.": "<b>ser de noche / de día</b>: die Tageszeit → ser.",
+    "B1 | El cielo está despejado.": "Der Zustand des Himmels → <b>estar</b>: está despejado, está nublado.",
+    "B1 | En invierno se hace de noche muy pronto.": "<b>hacerse de noche</b> = dunkel werden, Nacht werden.",
+    "B2 | Mark se pone contento al ver el mercado.": "<b>ponerse</b> + Adjektiv = eine vorübergehende Veränderung der Stimmung oder des Zustands. Das Deutsche hat für alles nur „werden“.",
+    "B2 | Las manos se quedan frías sin guantes.": "<b>quedarse</b> + Adjektiv = der Zustand, der sich ergibt und andauert.",
+    "B2 | El niño se queda quieto junto a su madre.": "<b>quedarse</b> quieto = still bleiben, sich nicht bewegen.",
+    "B2 | Con los años, el perro se ha vuelto muy tranquilo.": "<b>volverse</b> + Adjektiv = eine dauerhafte Veränderung des Charakters.",
+    "B2 | El vendedor se ha hecho mayor, pero sigue en el mercado.": "<b>hacerse</b> mayor, viejo: der Lauf der Zeit, eine allmähliche Veränderung.",
+    "B2 | Mark se pone rojo de frío.": "<b>ponerse</b> rojo, pálido, nervioso: eine vorübergehende körperliche Veränderung.",
+    "C1 | Debe de gustarle el mercado.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que la estrella sea un regalo para su madre.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Será del vendedor.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que este mercado es el más antiguo de Berlín.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | La muñeca está en el puesto.": "Die Puppe ist am Stand.",
+    "A2 | La jarra está al lado de la olla.": "Die Kanne steht neben dem Kessel.",
+    "A2 | Las manzanas están en la caja.": "Die Äpfel liegen in der Kiste.",
+    "A2 | El perro está en la nieve.": "Der Hund sitzt im Schnee.",
+    "A2 | El reloj está en la torre.": "Die Uhr ist am Turm.",
+    "A2 | El hombre está detrás del puesto.": "Der Mann steht hinter dem Stand.",
+    "A2 | Hay luna en el cielo.": "Am Himmel steht der Mond.",
+    "A2 | El árbol está delante de la iglesia.": "Der Baum steht vor der Kirche.",
+    "B1 | En diciembre hace mucho frío en Berlín.": "Im Dezember ist es in Berlin sehr kalt.",
+    "B1 | Esta noche hay nieve en el piso.": "Heute Abend liegt Schnee auf dem Boden.",
+    "B1 | Esta noche hay nieve en el suelo.": "Heute Abend liegt Schnee auf dem Boden.",
+    "B1 | Mira, nieva otra vez.": "Schau, es schneit wieder.",
+    "B1 | Mark tiene frío en las manos.": "Mark hat kalte Hände.",
+    "B1 | La bebida está caliente.": "Das Getränk ist heiß.",
+    "B1 | Ya es de noche.": "Es ist schon dunkel.",
+    "B1 | El cielo está despejado.": "Der Himmel ist klar.",
+    "B1 | En invierno se hace de noche muy pronto.": "Im Winter wird es sehr früh dunkel.",
+    "B2 | Mark se pone contento al ver el mercado.": "Mark wird fröhlich, als er den Markt sieht.",
+    "B2 | Las manos se quedan frías sin guantes.": "Die Hände bleiben ohne Handschuhe kalt.",
+    "B2 | El niño se queda quieto junto a su madre.": "Das Kind bleibt ruhig neben seiner Mutter.",
+    "B2 | Con los años, el perro se ha vuelto muy tranquilo.": "Mit den Jahren ist der Hund sehr ruhig geworden.",
+    "B2 | El vendedor se ha hecho mayor, pero sigue en el mercado.": "Der Verkäufer ist alt geworden, aber er ist immer noch auf dem Markt.",
+    "B2 | Mark se pone rojo de frío.": "Mark wird rot vor Kälte.",
+    "C1 | Debe de gustarle el mercado.": "Der Markt muss ihm gefallen.",
+    "C1 | Puede que la estrella sea un regalo para su madre.": "Vielleicht ist der Stern ein Geschenk für seine Mutter.",
+    "C1 | Será del vendedor.": "Er wird wohl dem Verkäufer gehören.",
+    "C1 | Dicen que este mercado es el más antiguo de Berlín.": "Man sagt, dieser Markt sei der älteste Berlins."
+   }
   }
  }
 };

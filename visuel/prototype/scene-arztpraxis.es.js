@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -46,7 +47,8 @@ window.SCENE = {
      "fr": "l'affiche",
      "en": "the poster",
      "pt": "o cartaz",
-     "ar": "ملصق إعلاني"
+     "ar": "ملصق إعلاني",
+     "de": "das Plakat"
     }
    ],
    "sur": "wand",
@@ -65,6 +67,7 @@ window.SCENE = {
    "ar": "ملصق، بوستر",
    "pl": "plakat",
    "ru": "постер, плакат",
+   "de": "das Poster",
    "latam": null
   },
   {
@@ -92,6 +95,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -119,6 +123,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -146,6 +151,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -173,6 +179,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -192,7 +199,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     }
    ],
    "sur": null,
@@ -223,6 +231,7 @@ window.SCENE = {
    "ar": "مريض",
    "pl": "pacjent",
    "ru": "пациент, больной",
+   "de": "der Patient",
    "latam": null
   },
   {
@@ -250,6 +259,7 @@ window.SCENE = {
    "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
+   "de": "das T-Shirt",
    "latam": null
   },
   {
@@ -277,6 +287,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -304,6 +315,7 @@ window.SCENE = {
    "ar": "لاصق جروح",
    "pl": "plaster",
    "ru": "пластырь",
+   "de": "das Pflaster",
    "latam": {
     "mot": "curita",
     "genre": "la",
@@ -341,6 +353,7 @@ window.SCENE = {
    "ar": "ركبة",
    "pl": "kolano",
    "ru": "колено",
+   "de": "das Knie",
    "latam": null
   },
   {
@@ -374,6 +387,7 @@ window.SCENE = {
    "ar": "كتف",
    "pl": "ramię, bark",
    "ru": "плечо",
+   "de": "die Schulter",
    "latam": null
   },
   {
@@ -407,6 +421,7 @@ window.SCENE = {
    "ar": "مرفق، كوع",
    "pl": "łokieć",
    "ru": "локоть",
+   "de": "der Ellbogen",
    "latam": null
   },
   {
@@ -434,6 +449,7 @@ window.SCENE = {
    "ar": "صدر",
    "pl": "klatka piersiowa, pierś",
    "ru": "грудь",
+   "de": "die Brust",
    "latam": null
   },
   {
@@ -461,6 +477,7 @@ window.SCENE = {
    "ar": "بطن",
    "pl": "brzuch",
    "ru": "живот",
+   "de": "der Bauch",
    "latam": null
   },
   {
@@ -494,6 +511,7 @@ window.SCENE = {
    "ar": "ذراع",
    "pl": "ręka, ramię",
    "ru": "рука",
+   "de": "der Arm",
    "latam": null
   },
   {
@@ -527,6 +545,7 @@ window.SCENE = {
    "ar": "ذراع",
    "pl": "ręka, ramię",
    "ru": "рука",
+   "de": "der Arm",
    "latam": null
   },
   {
@@ -554,6 +573,7 @@ window.SCENE = {
    "ar": "يد",
    "pl": "ręka, dłoń",
    "ru": "рука (кисть)",
+   "de": "die Hand",
    "latam": null
   },
   {
@@ -581,6 +601,7 @@ window.SCENE = {
    "ar": "يد",
    "pl": "ręka, dłoń",
    "ru": "рука (кисть)",
+   "de": "die Hand",
    "latam": null
   },
   {
@@ -608,6 +629,7 @@ window.SCENE = {
    "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
+   "de": "das Bein",
    "latam": null
   },
   {
@@ -635,6 +657,7 @@ window.SCENE = {
    "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
+   "de": "das Bein",
    "latam": null
   },
   {
@@ -662,6 +685,7 @@ window.SCENE = {
    "ar": "قدم",
    "pl": "stopa",
    "ru": "нога (ступня)",
+   "de": "der Fuß",
    "latam": null
   },
   {
@@ -689,6 +713,7 @@ window.SCENE = {
    "ar": "قدم",
    "pl": "stopa",
    "ru": "нога (ступня)",
+   "de": "der Fuß",
    "latam": null
   },
   {
@@ -708,7 +733,8 @@ window.SCENE = {
      "fr": "la femme, l'épouse",
      "en": "the wife, the woman",
      "pt": "a mulher, a esposa",
-     "ar": "امرأة، زوجة"
+     "ar": "امرأة، زوجة",
+     "de": "die Frau, die Ehefrau"
     }
    ],
    "sur": null,
@@ -745,6 +771,7 @@ window.SCENE = {
    "ar": "طبيبة",
    "pl": "lekarka",
    "ru": "врач (женщина)",
+   "de": "die Ärztin",
    "latam": null
   },
   {
@@ -772,6 +799,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -799,6 +827,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -826,6 +855,7 @@ window.SCENE = {
    "ar": "ضمادة",
    "pl": "opatrunek, bandaż; związek, stowarzyszenie",
    "ru": "повязка; союз, объединение",
+   "de": "der Verband",
    "latam": null
   },
   {
@@ -865,6 +895,7 @@ window.SCENE = {
    "ar": "سمّاعة طبّية",
    "pl": "stetoskop",
    "ru": "стетоскоп",
+   "de": "das Stethoskop",
    "latam": null
   },
   {
@@ -892,6 +923,7 @@ window.SCENE = {
    "ar": "يد",
    "pl": "ręka, dłoń",
    "ru": "рука (кисть)",
+   "de": "die Hand",
    "latam": null
   },
   {
@@ -919,6 +951,7 @@ window.SCENE = {
    "ar": "يد",
    "pl": "ręka, dłoń",
    "ru": "рука (кисть)",
+   "de": "die Hand",
    "latam": null
   },
   {
@@ -946,6 +979,7 @@ window.SCENE = {
    "ar": "كرسي بلا ظهر",
    "pl": "taboret",
    "ru": "табурет",
+   "de": "der Hocker",
    "latam": null
   },
   {
@@ -973,6 +1007,7 @@ window.SCENE = {
    "ar": "حقنة، محقن",
    "pl": "zastrzyk, strzykawka",
    "ru": "укол; шприц",
+   "de": "die Spritze",
    "latam": null
   },
   {
@@ -1000,6 +1035,7 @@ window.SCENE = {
    "ar": "دواء",
    "pl": "lek",
    "ru": "лекарство",
+   "de": "das Arzneimittel",
    "latam": null
   },
   {
@@ -1027,6 +1063,7 @@ window.SCENE = {
    "ar": "صندوق الدفع",
    "pl": "pudełko",
    "ru": "коробка, коробочка",
+   "de": "die Kasse",
    "latam": null
   },
   {
@@ -1054,6 +1091,7 @@ window.SCENE = {
    "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
+   "de": "der Handschuh",
    "latam": null
   },
   {
@@ -1081,6 +1119,7 @@ window.SCENE = {
    "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
+   "de": "der Schreibtisch",
    "latam": null
   },
   {
@@ -1101,6 +1140,7 @@ window.SCENE = {
      "en": "the computer",
      "pt": "o computador",
      "ar": "حاسوب",
+     "de": "der Computer",
      "latam": {
       "mot": "computadora",
       "genre": "la",
@@ -1124,6 +1164,7 @@ window.SCENE = {
    "ar": "شاشة",
    "pl": "ekran",
    "ru": "экран",
+   "de": "der Bildschirm",
    "latam": null
   },
   {
@@ -1151,6 +1192,7 @@ window.SCENE = {
    "ar": "منديل",
    "pl": "chusteczka",
    "ru": "носовой платок",
+   "de": "das Taschentuch",
    "latam": null
   },
   {
@@ -1170,7 +1212,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": "schreibtisch",
@@ -1189,6 +1232,7 @@ window.SCENE = {
    "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
+   "de": "das Glas (Trinkglas)",
    "latam": null
   },
   {
@@ -1216,6 +1260,7 @@ window.SCENE = {
    "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
+   "de": "die Tastatur",
    "latam": null
   },
   {
@@ -1243,6 +1288,7 @@ window.SCENE = {
    "ar": "فأر",
    "pl": "mysz",
    "ru": "мышь",
+   "de": "die Maus",
    "latam": null
   },
   {
@@ -1270,6 +1316,7 @@ window.SCENE = {
    "ar": "دواء",
    "pl": "lek",
    "ru": "лекарство",
+   "de": "das Arzneimittel",
    "latam": null
   },
   {
@@ -1297,6 +1344,7 @@ window.SCENE = {
    "ar": "قرص، حبّة دواء",
    "pl": "tabletka",
    "ru": "таблетка",
+   "de": "die Tablette",
    "latam": null
   },
   {
@@ -1324,6 +1372,7 @@ window.SCENE = {
    "ar": "قلم حبر جاف",
    "pl": "długopis, ołówek",
    "ru": "ручка, карандаш",
+   "de": "der Kugelschreiber",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -1347,7 +1396,8 @@ window.SCENE = {
      "fr": "la carte (bancaire)",
      "en": "the card",
      "pt": "o cartão",
-     "ar": "بطاقة (مصرفية)"
+     "ar": "بطاقة (مصرفية)",
+     "de": "die Karte (Bankkarte)"
     }
    ],
    "sur": "schreibtisch",
@@ -1366,6 +1416,7 @@ window.SCENE = {
    "ar": "بطاقة التأمين الصحّي",
    "pl": "karta ubezpieczenia zdrowotnego",
    "ru": "карточка медицинского страхования",
+   "de": "die Krankenversicherungskarte",
    "latam": null
   },
   {
@@ -1393,6 +1444,7 @@ window.SCENE = {
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
    "ru": "мусорное ведро",
+   "de": "der Papierkorb",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -1416,7 +1468,8 @@ window.SCENE = {
      "fr": "le sac de sport",
      "en": "the sports bag",
      "pt": "a bolsa de esporte",
-     "ar": "حقيبة رياضية"
+     "ar": "حقيبة رياضية",
+     "de": "die Sporttasche"
     }
    ],
    "sur": null,
@@ -1435,6 +1488,7 @@ window.SCENE = {
    "ar": "كيس",
    "pl": "torba, torebka",
    "ru": "сумка",
+   "de": "die Tüte, der Beutel",
    "latam": null
   },
   {
@@ -1454,7 +1508,8 @@ window.SCENE = {
      "fr": "le ballon",
      "en": "the ball (football)",
      "pt": "a bola (de futebol)",
-     "ar": "كرة"
+     "ar": "كرة",
+     "de": "der Ball (Fußball, großer Ball)"
     }
    ],
    "sur": "tasche",
@@ -1473,6 +1528,7 @@ window.SCENE = {
    "ar": "كرة",
    "pl": "piłka",
    "ru": "мяч",
+   "de": "der Ball",
    "latam": null
   },
   {
@@ -1500,6 +1556,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -1527,6 +1584,7 @@ window.SCENE = {
    "ar": "جورب",
    "pl": "skarpetka",
    "ru": "носок",
+   "de": "die Socke",
    "latam": null
   },
   {
@@ -1554,6 +1612,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -1581,6 +1640,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -1612,6 +1672,7 @@ window.SCENE = {
    "ar": "سرير الفحص",
    "pl": "kozetka",
    "ru": "кушетка",
+   "de": "die Liege (Untersuchungsliege)",
    "latam": null
   },
   {
@@ -1640,6 +1701,7 @@ window.SCENE = {
    "ar": "ضلع",
    "pl": "żebro",
    "ru": "ребро",
+   "de": "die Rippe",
    "latam": null
   },
   {
@@ -1668,6 +1730,7 @@ window.SCENE = {
    "ar": "ضلع",
    "pl": "żebro",
    "ru": "ребро",
+   "de": "die Rippe",
    "latam": null
   },
   {
@@ -1696,6 +1759,7 @@ window.SCENE = {
    "ar": "عمود فقري",
    "pl": "kręgosłup",
    "ru": "позвоночник",
+   "de": "die Wirbelsäule",
    "latam": null
   },
   {
@@ -1724,6 +1788,7 @@ window.SCENE = {
    "ar": "رئة",
    "pl": "płuco",
    "ru": "лёгкое",
+   "de": "die Lunge",
    "latam": null
   },
   {
@@ -1752,6 +1817,7 @@ window.SCENE = {
    "ar": "عظم",
    "pl": "kość",
    "ru": "кость",
+   "de": "der Knochen",
    "latam": null
   }
  ],
@@ -2490,6 +2556,79 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark beim Arzt, barfuß auf der Untersuchungsliege sitzend, ein Pflaster am Knie; die Ärztin sitzt neben ihm und hält eine Binde.",
+    "consigne": "Tippe auf einen Gegenstand, auf Mark oder auf die Ärztin. Tippe auf das Poster, um es aus der Nähe zu sehen."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Pronomen, ser und estar",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La pelota está encima de la bolsa.": "<b>encima de</b> = auf, oben auf. Der Ort → <b>estar</b>.",
+    "A2 | El reloj está encima del póster.": "<b>de + el = del</b>, immer.",
+    "A2 | La planta está junto a la ventana.": "<b>junto a</b> = neben, dicht bei.",
+    "A2 | La médica está sentada al lado del paciente.": "<b>al lado de</b> + el paciente → al lado <b>del</b> paciente.",
+    "A2 | Hay una chaqueta al lado de la puerta.": "Mit <b>una</b> (etwas, das man entdeckt) → <b>hay</b>.",
+    "A2 | Los calcetines están encima de los zapatos.": "Mit <b>los</b> (bestimmte Dinge) → <b>estar</b>, nicht hay.",
+    "A2 | La curita está en la rodilla.": "<b>en</b> = auf, an: en la rodilla.",
+    "A2 | La tirita está en la rodilla.": "<b>en</b> = auf, an: en la rodilla.",
+    "A2 | El póster está detrás del paciente.": "<b>detrás de</b> = hinter.",
+    "B1 | Mark la ha dejado encima de la bolsa.": "Direktes Objekt, weiblich (la pelota) → <b>la</b>. Das Geschlecht folgt dem spanischen Wort, nicht dem deutschen „Ball“.",
+    "B1 | Mark los ha puesto al lado de la bolsa.": "Direktes Objekt, männlich Plural (los zapatos) → <b>los</b>.",
+    "B1 | La médica está sentada en un taburete.": "<b>estar sentado</b>: ein Zustand, eine Haltung.",
+    "B1 | La médica le sonríe a Mark.": "Jemandem zulächeln: indirektes Objekt → <b>le</b>. Das Spanische verdoppelt es gern: <b>le</b> sonríe <b>a Mark</b>.",
+    "B1 | El vaso está encima del escritorio.": "Wo es sich befindet → <b>estar</b>.",
+    "B1 | La médica la ha dejado en el escritorio.": "Direktes Objekt, weiblich (la tarjeta) → <b>la</b>.",
+    "B1 | Mark está herido en la rodilla.": "Eine Verletzung ist ein Zustand → <b>estar</b> herido.",
+    "B1 | Mark se ha quitado los zapatos y los calcetines.": "<b>quitarse</b> = ausziehen (Kleidung); <b>ponerse</b> = anziehen. Er ist barfuß: Er hat sie ausgezogen.",
+    "B2 | El paciente cuya rodilla está herida se llama Mark.": "<b>cuyo</b> richtet sich nach dem Besessenen, nicht nach dem Besitzer: la rodilla → <b>cuya</b>.",
+    "B2 | La médica, que tiene un vendaje en la mano, sonríe.": "Subjekt des Relativsatzes → <b>que</b>. <b>cuya</b> verlangte direkt danach ein besessenes Nomen.",
+    "B2 | El paciente al que sonríe la médica se llama Mark.": "Sonreír <b>a</b> alguien: a + el que → <b>al que</b>. Mit quien hieße es „<b>a</b> quien“, ohne Artikel.",
+    "B2 | La bolsa encima de la cual está la pelota es de Mark.": "Nach <b>encima de</b>: <b>la cual</b> (oder la que), nie que allein.",
+    "B2 | La ventana está cerrada.": "Das Ergebnis (jemand hat es geschlossen) → <b>estar</b> + Partizip.",
+    "B2 | La curita ya está puesta.": "Ein Zustand als Ergebnis → <b>estar</b> puesta. „es puesta“ wäre der Vorgang, im Passiv.",
+    "B2 | La tirita ya está puesta.": "Ein Zustand als Ergebnis → <b>estar</b> puesta. „es puesta“ wäre der Vorgang, im Passiv.",
+    "C1 | Mark debe de haberse caído jugando al fútbol.": "<b>deber de</b> + Infinitiv Perfekt = eine Schlussfolgerung über die Vergangenheit: Er muss hingefallen sein.",
+    "C1 | Puede que la médica le ponga un vendaje enseguida.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "Vermutung über die Vergangenheit: <b>si</b> + Plusquamperfekt des subjuntivo, dann condicional Perfekt — wie „hätte … gespielt, hätte … verletzt“.",
+    "C1 | Dicen que esta médica es muy buena.": "Nach <b>dicen que</b> (man gibt eine Tatsache wieder) → der <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | La pelota está encima de la bolsa.": "Der Ball liegt auf der Tasche.",
+    "A2 | El reloj está encima del póster.": "Die Uhr hängt über dem Poster.",
+    "A2 | La planta está junto a la ventana.": "Die Pflanze steht neben dem Fenster.",
+    "A2 | La médica está sentada al lado del paciente.": "Die Ärztin sitzt neben dem Patienten.",
+    "A2 | Hay una chaqueta al lado de la puerta.": "Neben der Tür hängt eine Jacke.",
+    "A2 | Los calcetines están encima de los zapatos.": "Die Socken liegen auf den Schuhen.",
+    "A2 | La curita está en la rodilla.": "Das Pflaster ist am Knie.",
+    "A2 | La tirita está en la rodilla.": "Das Pflaster ist am Knie.",
+    "A2 | El póster está detrás del paciente.": "Das Poster hängt hinter dem Patienten.",
+    "B1 | Mark la ha dejado encima de la bolsa.": "Mark hat ihn auf der Tasche liegen lassen.",
+    "B1 | Mark los ha puesto al lado de la bolsa.": "Mark hat sie neben die Tasche gestellt.",
+    "B1 | La médica está sentada en un taburete.": "Die Ärztin sitzt auf einem Hocker.",
+    "B1 | La médica le sonríe a Mark.": "Die Ärztin lächelt Mark an.",
+    "B1 | El vaso está encima del escritorio.": "Das Glas steht auf dem Schreibtisch.",
+    "B1 | La médica la ha dejado en el escritorio.": "Die Ärztin hat sie auf dem Schreibtisch liegen lassen.",
+    "B1 | Mark está herido en la rodilla.": "Mark ist am Knie verletzt.",
+    "B1 | Mark se ha quitado los zapatos y los calcetines.": "Mark hat Schuhe und Socken ausgezogen.",
+    "B2 | El paciente cuya rodilla está herida se llama Mark.": "Der Patient, dessen Knie verletzt ist, heißt Mark.",
+    "B2 | La médica, que tiene un vendaje en la mano, sonríe.": "Die Ärztin, die eine Binde in der Hand hat, lächelt.",
+    "B2 | El paciente al que sonríe la médica se llama Mark.": "Der Patient, dem die Ärztin zulächelt, heißt Mark.",
+    "B2 | La bolsa encima de la cual está la pelota es de Mark.": "Die Tasche, auf der der Ball liegt, gehört Mark.",
+    "B2 | La ventana está cerrada.": "Das Fenster ist geschlossen.",
+    "B2 | La curita ya está puesta.": "Das Pflaster ist schon drauf.",
+    "B2 | La tirita ya está puesta.": "Das Pflaster ist schon drauf.",
+    "C1 | Mark debe de haberse caído jugando al fútbol.": "Mark muss beim Fußballspielen hingefallen sein.",
+    "C1 | Puede que la médica le ponga un vendaje enseguida.": "Vielleicht legt ihm die Ärztin gleich einen Verband an.",
+    "C1 | Si Mark no hubiera jugado al fútbol, no se habría hecho daño.": "Wenn Mark nicht Fußball gespielt hätte, hätte er sich nicht verletzt.",
+    "C1 | Dicen que esta médica es muy buena.": "Man sagt, diese Ärztin sei sehr gut."
+   }
   }
  }
 };

@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
+   "de": "die Zimmerdecke",
    "latam": null
   },
   {
@@ -87,6 +89,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -114,6 +117,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -141,6 +145,7 @@ window.SCENE = {
    "ar": "تقويم، رزنامة",
    "pl": "kalendarz",
    "ru": "календарь",
+   "de": "der Kalender",
    "latam": null
   },
   {
@@ -160,7 +165,8 @@ window.SCENE = {
      "fr": "la photo",
      "en": "the photo",
      "pt": "a foto",
-     "ar": "صورة"
+     "ar": "صورة",
+     "de": "das Foto"
     }
    ],
    "sur": null,
@@ -179,6 +185,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -212,6 +219,7 @@ window.SCENE = {
    "ar": "ستارة",
    "pl": "zasłona",
    "ru": "штора, занавеска",
+   "de": "der Vorhang",
    "latam": null
   },
   {
@@ -239,6 +247,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -266,6 +275,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -293,6 +303,7 @@ window.SCENE = {
    "ar": "مشعّ تدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
+   "de": "der Heizkörper",
    "latam": null
   },
   {
@@ -320,6 +331,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -347,6 +359,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -374,6 +387,7 @@ window.SCENE = {
    "ar": "مجلّد",
    "pl": "folder; segregator",
    "ru": "папка",
+   "de": "der Ordner",
    "latam": null
   },
   {
@@ -401,6 +415,7 @@ window.SCENE = {
    "ar": "ورق",
    "pl": "papier",
    "ru": "бумага",
+   "de": "das Papier",
    "latam": null
   },
   {
@@ -428,6 +443,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -455,6 +471,7 @@ window.SCENE = {
    "ar": "ورق",
    "pl": "papier",
    "ru": "бумага",
+   "de": "das Papier",
    "latam": null
   },
   {
@@ -482,6 +499,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -509,6 +527,7 @@ window.SCENE = {
    "ar": "طابعة",
    "pl": "drukarka",
    "ru": "принтер",
+   "de": "der Drucker",
    "latam": null
   },
   {
@@ -536,6 +555,7 @@ window.SCENE = {
    "ar": "خزانة",
    "pl": "szafa",
    "ru": "шкаф",
+   "de": "der Schrank",
    "latam": {
     "mot": "clóset",
     "genre": "el",
@@ -567,6 +587,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -594,6 +615,7 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
+   "de": "die Brille",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -625,6 +647,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -652,6 +675,7 @@ window.SCENE = {
    "ar": "بلوزة",
    "pl": "bluzka",
    "ru": "блузка",
+   "de": "die Bluse",
    "latam": null
   },
   {
@@ -679,6 +703,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -706,6 +731,7 @@ window.SCENE = {
    "ar": "ورق",
    "pl": "papier",
    "ru": "бумага",
+   "de": "das Papier",
    "latam": null
   },
   {
@@ -726,6 +752,7 @@ window.SCENE = {
      "en": "the computer",
      "pt": "o computador",
      "ar": "حاسوب",
+     "de": "der Computer",
      "latam": {
       "mot": "computadora",
       "genre": "la",
@@ -749,6 +776,7 @@ window.SCENE = {
    "ar": "شاشة",
    "pl": "ekran",
    "ru": "экран",
+   "de": "der Bildschirm",
    "latam": null
   },
   {
@@ -776,6 +804,7 @@ window.SCENE = {
    "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
+   "de": "die Tastatur",
    "latam": null
   },
   {
@@ -803,6 +832,7 @@ window.SCENE = {
    "ar": "فأر",
    "pl": "mysz",
    "ru": "мышь",
+   "de": "die Maus",
    "latam": null
   },
   {
@@ -830,6 +860,7 @@ window.SCENE = {
    "ar": "هاتف",
    "pl": "telefon",
    "ru": "телефон",
+   "de": "das Telefon, die Telefonnummer",
    "latam": null
   },
   {
@@ -857,6 +888,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -876,7 +908,8 @@ window.SCENE = {
      "fr": "le papier",
      "en": "the paper",
      "pt": "o papel",
-     "ar": "ورق"
+     "ar": "ورق",
+     "de": "das Papier"
     }
    ],
    "sur": "schreibtisch",
@@ -895,6 +928,7 @@ window.SCENE = {
    "ar": "استمارة",
    "pl": "formularz",
    "ru": "бланк, форма",
+   "de": "das Formular",
    "latam": null
   },
   {
@@ -922,6 +956,7 @@ window.SCENE = {
    "ar": "قلم حبر جاف",
    "pl": "długopis",
    "ru": "шариковая ручка",
+   "de": "der Kugelschreiber",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -953,6 +988,7 @@ window.SCENE = {
    "ar": "جواز سفر",
    "pl": "paszport",
    "ru": "паспорт",
+   "de": "der Reisepass",
    "latam": null
   },
   {
@@ -980,6 +1016,7 @@ window.SCENE = {
    "ar": "طابع بريدي",
    "pl": "pieczątka, stempel",
    "ru": "штамп, печать",
+   "de": "die Briefmarke",
    "latam": null
   },
   {
@@ -1007,6 +1044,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -1026,7 +1064,8 @@ window.SCENE = {
      "fr": "la table",
      "en": "the table",
      "pt": "a mesa",
-     "ar": "طاولة"
+     "ar": "طاولة",
+     "de": "der Tisch"
     }
    ],
    "sur": null,
@@ -1045,6 +1084,7 @@ window.SCENE = {
    "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
+   "de": "der Schreibtisch",
    "latam": null
   },
   {
@@ -1072,6 +1112,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -1091,7 +1132,8 @@ window.SCENE = {
      "fr": "la table",
      "en": "the table",
      "pt": "a mesa",
-     "ar": "طاولة"
+     "ar": "طاولة",
+     "de": "der Tisch"
     }
    ],
    "sur": null,
@@ -1110,6 +1152,7 @@ window.SCENE = {
    "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
+   "de": "der Schreibtisch",
    "latam": null
   },
   {
@@ -1137,6 +1180,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -1164,6 +1208,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -1191,6 +1236,7 @@ window.SCENE = {
    "ar": "قميص",
    "pl": "koszula",
    "ru": "рубашка",
+   "de": "das Hemd",
    "latam": null
   },
   {
@@ -1211,6 +1257,7 @@ window.SCENE = {
      "en": "the jeans",
      "pt": "a calça jeans",
      "ar": "بنطال جينز",
+     "de": "die Jeans",
      "latam": {
       "mot": "jeans",
       "genre": "los",
@@ -1234,6 +1281,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -1261,6 +1309,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -1288,6 +1337,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -1315,6 +1365,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -1342,6 +1393,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -1369,6 +1421,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -1396,6 +1449,7 @@ window.SCENE = {
    "ar": "رضيع",
    "pl": "niemowlę, dzidziuś",
    "ru": "младенец, малыш",
+   "de": "das Baby",
    "latam": null
   },
   {
@@ -1423,6 +1477,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -1450,6 +1505,7 @@ window.SCENE = {
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
    "ru": "мусорное ведро",
+   "de": "der Papierkorb",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -1473,7 +1529,8 @@ window.SCENE = {
      "fr": "le tapis",
      "en": "the rug",
      "pt": "o tapete",
-     "ar": "سجّادة"
+     "ar": "سجّادة",
+     "de": "der Teppich"
     }
    ],
    "sur": null,
@@ -1498,6 +1555,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -2185,6 +2243,81 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark im Bürgeramt seines Bezirks: Er sitzt vor dem Schreibtisch der Sachbearbeiterin und unterschreibt sein Anmeldeformular, sein Pass liegt aufgeschlagen daneben; auf dem Schreibtisch ein Bildschirm, eine Tastatur, eine Maus, ein Telefon, ein Stempel, ein Drucker und eine Pflanze; die Sachbearbeiterin in blauer Weste hält ein Blatt; an der Wand ein Regal mit Ordnern und Papier, ein Kalender, eine Uhr und ein Foto von einem See; ein Fenster mit Jalousie und ein Heizkörper; nahe der Tür wartet eine junge Frau im gelben Mantel mit ihrem Baby auf einem Stuhl, ein Papierkorb daneben; im Vordergrund eine Schreibtischlampe und eine Pflanze, und Marks Rucksack auf dem Boden.",
+    "consigne": "Mark meldet sich im Bürgeramt an: Er unterschreibt das Formular. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Die Ordnungszahlen: primero, segundo, tercero…",
+    "B2": "Das pluscuamperfecto",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El cuadro está al lado de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Las carpetas están en la estantería.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El pasaporte está en el escritorio.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La mochila está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La mochila está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La joven está sentada en la silla.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Hay un bebé en brazos de la joven.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | El bote de basura está al lado de la puerta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La papelera está al lado de la puerta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La impresora está encima del clóset.": "<b>de + el = del</b>, immer.",
+    "A2 | La impresora está encima del armario.": "<b>de + el = del</b>, immer.",
+    "B1 | La oficina de Mark está en la segunda planta.": "Die Ordnungszahl passt sich an: la segund<b>a</b> planta.",
+    "B1 | Es el primer formulario que Mark rellena hoy.": "<b>primero</b> verliert das -o vor einem männlichen Nomen: el <b>primer</b> formulario.",
+    "B1 | Mark es el tercero de la fila.": "Ohne Nomen danach die volle Form: el <b>tercero</b>.",
+    "B1 | La señora del bebé es la última en esperar.": "Weiblich: la <b>última</b>.",
+    "B1 | Hoy es el quinto día de Mark en Berlín.": "<b>quinto</b> = fünfter; cinco = fünf.",
+    "B1 | Es la segunda vez que Mark viene a esta oficina.": "<b>la vez</b> ist weiblich → segund<b>a</b>.",
+    "B1 | Firme en la tercera línea, por favor.": "Weiblich: la tercer<b>a</b> línea.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "Pluscuamperfecto: <b>había</b> + Partizip, die Handlung vor einer vergangenen Handlung — wie das Plusquamperfekt.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "Pluscuamperfecto: <b>había</b> + Partizip, die Handlung vor einer vergangenen Handlung — wie das Plusquamperfekt.",
+    "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "<b>nunca … antes</b> → pluscuamperfecto.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "Vorzeitigkeit (<b>antes que</b>) → pluscuamperfecto.",
+    "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "Pluscuamperfecto: <b>había</b> + Partizip, die Handlung vor einer vergangenen Handlung — wie das Plusquamperfekt.",
+    "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "Pluscuamperfecto: <b>había</b> + Partizip, die Handlung vor einer vergangenen Handlung — wie das Plusquamperfekt.",
+    "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "<b>hasta entonces</b> → pluscuamperfecto. Immer mit haber, auch wo das Deutsche „war gewesen“ sagt.",
+    "C1 | El formulario debe de ser importante.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que la joven también sea nueva en Berlín.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | La cita terminará en diez minutos.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que en esta oficina hay que esperar mucho.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El cuadro está al lado de la ventana.": "Das Bild hängt neben dem Fenster.",
+    "A2 | Las carpetas están en la estantería.": "Die Ordner stehen im Regal.",
+    "A2 | El pasaporte está en el escritorio.": "Der Pass liegt auf dem Schreibtisch.",
+    "A2 | La mochila está en el piso.": "Der Rucksack liegt auf dem Boden.",
+    "A2 | La mochila está en el suelo.": "Der Rucksack liegt auf dem Boden.",
+    "A2 | La joven está sentada en la silla.": "Die junge Frau sitzt auf dem Stuhl.",
+    "A2 | Hay un bebé en brazos de la joven.": "Die junge Frau hat ein Baby auf dem Arm.",
+    "A2 | El bote de basura está al lado de la puerta.": "Der Papierkorb steht neben der Tür.",
+    "A2 | La papelera está al lado de la puerta.": "Der Papierkorb steht neben der Tür.",
+    "A2 | La impresora está encima del clóset.": "Der Drucker steht auf dem Schrank.",
+    "A2 | La impresora está encima del armario.": "Der Drucker steht auf dem Schrank.",
+    "B1 | La oficina de Mark está en la segunda planta.": "Marks Büro ist im zweiten Stock.",
+    "B1 | Es el primer formulario que Mark rellena hoy.": "Es ist das erste Formular, das Mark heute ausfüllt.",
+    "B1 | Mark es el tercero de la fila.": "Mark ist der Dritte in der Schlange.",
+    "B1 | La señora del bebé es la última en esperar.": "Die Frau mit dem Baby wartet als Letzte.",
+    "B1 | Hoy es el quinto día de Mark en Berlín.": "Heute ist Marks fünfter Tag in Berlin.",
+    "B1 | Es la segunda vez que Mark viene a esta oficina.": "Es ist das zweite Mal, dass Mark in dieses Amt kommt.",
+    "B1 | Firme en la tercera línea, por favor.": "Unterschreiben Sie bitte in der dritten Zeile.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "Als Mark ankam, hatte die Sachbearbeiterin den Computer schon eingeschaltet.",
+    "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "Als Mark ankam, hatte die Sachbearbeiterin den Computer schon eingeschaltet.",
+    "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "Mark hatte vor heute noch nie ein deutsches Formular ausgefüllt.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "Die Frau mit dem Baby war vor Mark gekommen.",
+    "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "Mark hatte seinen Pass schon herausgeholt, als die Sachbearbeiterin ihn verlangte.",
+    "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "Als Mark unterschrieb, hatte die Sachbearbeiterin den Stempel schon bereitgelegt.",
+    "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "Bis dahin war Mark noch nie in einer deutschen Behörde gewesen.",
+    "C1 | El formulario debe de ser importante.": "Das Formular muss wichtig sein.",
+    "C1 | Puede que la joven también sea nueva en Berlín.": "Vielleicht ist die junge Frau auch neu in Berlin.",
+    "C1 | La cita terminará en diez minutos.": "Der Termin wird wohl in zehn Minuten vorbei sein.",
+    "C1 | Dicen que en esta oficina hay que esperar mucho.": "Man sagt, in diesem Amt müsse man lange warten."
+   }
   }
  }
 };

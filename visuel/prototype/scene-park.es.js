@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "غيمة، سحابة",
    "pl": "chmura",
    "ru": "облако, туча",
+   "de": "die Wolke",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -108,6 +111,7 @@ window.SCENE = {
    "ar": "مصدر، نافورة",
    "pl": "fontanna, studnia",
    "ru": "фонтан, колодец",
+   "de": "die Quelle",
    "latam": null
   },
   {
@@ -135,6 +139,7 @@ window.SCENE = {
    "ar": "بحيرة",
    "pl": "jezioro",
    "ru": "озеро",
+   "de": "der See",
    "latam": null
   },
   {
@@ -162,6 +167,7 @@ window.SCENE = {
    "ar": "سفينة، مركب",
    "pl": "łódź, łódka",
    "ru": "лодка",
+   "de": "das Schiff, das Boot",
    "latam": null
   },
   {
@@ -189,6 +195,7 @@ window.SCENE = {
    "ar": "جسر",
    "pl": "most",
    "ru": "мост",
+   "de": "die Brücke",
    "latam": null
   },
   {
@@ -216,6 +223,7 @@ window.SCENE = {
    "ar": "حجر",
    "pl": "kamień",
    "ru": "камень",
+   "de": "der Stein",
    "latam": null
   },
   {
@@ -243,6 +251,7 @@ window.SCENE = {
    "ar": "عمود إنارة",
    "pl": "latarnia uliczna",
    "ru": "фонарь",
+   "de": "die Straßenlaterne",
    "latam": {
     "mot": "farol",
     "genre": "el",
@@ -274,6 +283,7 @@ window.SCENE = {
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
    "ru": "мусорное ведро",
+   "de": "der Papierkorb",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -305,6 +315,7 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
+   "de": "die Bank",
    "latam": null
   },
   {
@@ -332,6 +343,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -359,6 +371,7 @@ window.SCENE = {
    "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
+   "de": "der Vogel",
    "latam": null
   },
   {
@@ -386,6 +399,7 @@ window.SCENE = {
    "ar": "طفل، ولد",
    "pl": "chłopiec",
    "ru": "мальчик",
+   "de": "das Kind",
    "latam": null
   },
   {
@@ -413,6 +427,7 @@ window.SCENE = {
    "ar": "خوذة",
    "pl": "kask",
    "ru": "шлем",
+   "de": "der Helm",
    "latam": null
   },
   {
@@ -440,6 +455,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -467,6 +483,7 @@ window.SCENE = {
    "ar": "زهرة",
    "pl": "kwiat",
    "ru": "цветок",
+   "de": "die Blume",
    "latam": null
   },
   {
@@ -494,6 +511,7 @@ window.SCENE = {
    "ar": "زهرة",
    "pl": "kwiat",
    "ru": "цветок",
+   "de": "die Blume",
    "latam": null
   },
   {
@@ -521,6 +539,7 @@ window.SCENE = {
    "ar": "طريق، درب",
    "pl": "droga",
    "ru": "дорога, путь",
+   "de": "der Weg",
    "latam": null
   },
   {
@@ -548,6 +567,7 @@ window.SCENE = {
    "ar": "عشب",
    "pl": "trawa",
    "ru": "трава",
+   "de": "das Gras",
    "latam": null
   },
   {
@@ -575,6 +595,7 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
+   "de": "der Hund",
    "latam": null
   },
   {
@@ -602,6 +623,7 @@ window.SCENE = {
    "ar": "كرة",
    "pl": "piłka",
    "ru": "мяч",
+   "de": "der Ball",
    "latam": null
   },
   {
@@ -629,6 +651,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -656,6 +679,7 @@ window.SCENE = {
    "ar": "سلّة",
    "pl": "koszyk, kosz",
    "ru": "корзина",
+   "de": "der Korb",
    "latam": null
   },
   {
@@ -675,7 +699,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": "decke",
@@ -694,6 +719,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -721,6 +747,7 @@ window.SCENE = {
    "ar": "تفّاحة",
    "pl": "jabłko",
    "ru": "яблоко",
+   "de": "der Apfel",
    "latam": null
   },
   {
@@ -748,6 +775,7 @@ window.SCENE = {
    "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
+   "de": "der Kuchen, die Torte",
    "latam": null
   },
   {
@@ -775,6 +803,7 @@ window.SCENE = {
    "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
+   "de": "der Teller, das Gericht",
    "latam": null
   },
   {
@@ -802,6 +831,7 @@ window.SCENE = {
    "ar": "كتاب",
    "pl": "książka",
    "ru": "книга",
+   "de": "das Buch",
    "latam": null
   },
   {
@@ -829,6 +859,7 @@ window.SCENE = {
    "ar": "بطّانية",
    "pl": "koc",
    "ru": "одеяло, плед",
+   "de": "die Decke (Wolldecke)",
    "latam": null
   },
   {
@@ -856,6 +887,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -883,6 +915,7 @@ window.SCENE = {
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
    "ru": "мобильный телефон",
+   "de": "das Handy",
    "latam": {
     "mot": "celular",
     "genre": "el",
@@ -920,6 +953,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -953,6 +987,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -998,6 +1033,7 @@ window.SCENE = {
    "ar": "العشب، المرجة",
    "pl": "trawnik",
    "ru": "газон",
+   "de": "der Rasen",
    "latam": {
     "mot": "pasto",
     "genre": "el",
@@ -1689,6 +1725,79 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Ein Sonntag im Park in Berlin: Anna sitzt auf einer Picknickdecke und wirft einem Hund einen Ball zu; hinter ihr ein Junge auf dem Fahrrad auf dem Weg, ein Herr, der auf einer Bank liest, ein See mit einem Ruderboot, eine Brücke und ein Springbrunnen.",
+    "consigne": "Anna macht ein Picknick im Park. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Das pretérito indefinido und das imperfecto",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El hombre está sentado en el banco.": "<b>en</b> = auf, in. Der Ort → <b>estar</b>.",
+    "A2 | El barco está en el lago.": "Auf dem Wasser sagt das Spanische einfach <b>en</b>: en el lago.",
+    "A2 | El pájaro está en el banco.": "<b>el</b> banco ist männlich → <b>en el</b> banco.",
+    "A2 | El niño va en bicicleta por el camino.": "<b>por</b> = entlang, durch: por el camino.",
+    "A2 | La cesta está encima de la manta.": "<b>encima de</b> = auf.",
+    "A2 | El celular está al lado de la mochila.": "<b>la</b> mochila ist weiblich: <b>de la</b>, ohne Verschmelzung.",
+    "A2 | El móvil está al lado de la mochila.": "<b>la</b> mochila ist weiblich: <b>de la</b>, ohne Verschmelzung.",
+    "A2 | Hay un farol al lado del bote de basura.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | Hay una farola al lado de la papelera.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | La pelota está por encima de la hierba.": "<b>por encima de</b> = über, ohne zu berühren.",
+    "B1 | Hace un momento, Anna lanzó la pelota.": "Eine punktuelle, abgeschlossene Handlung → <b>indefinido</b>: lanzó.",
+    "B1 | Mientras Anna estaba en la manta, el perro jugaba.": "Der Hintergrund, eine andauernde Situation → <b>imperfecto</b>: estaba. Präteritum und Perfekt unterscheiden das im Deutschen nicht.",
+    "B1 | Ayer Anna leyó un libro entero.": "<b>leer</b> → <b>leyó</b>: Das i zwischen zwei Vokalen wird zu y.",
+    "B1 | El domingo pasado, Anna fue al parque.": "<b>ir</b> → <b>fue</b> (dieselbe Form wie bei ser).",
+    "B1 | Anna se la lanzó al perro.": "<b>le</b> + <b>la</b> → <b>se la</b>: le wird vor la, lo, las, los zu se.",
+    "B1 | Antes, el hombre del banco leía el periódico cada domingo.": "Eine Gewohnheit in der Vergangenheit → <b>imperfecto</b>: leía („früher … immer“).",
+    "B1 | Esta mañana, el hombre de la barca remó hasta el puente.": "Er → <b>-ó</b>, mit Akzent. remé = ich, remo = ich (Präsens).",
+    "B1 | Al llegar, Anna puso la manta en la hierba.": "<b>poner</b> ist unregelmäßig → <b>puso</b>.",
+    "B2 | La mujer que lanza la pelota se llama Anna.": "Relativsatz ohne Komma, Subjekt → <b>que</b>. <b>quien</b> kommt nur nach einem Komma oder einer Präposition.",
+    "B2 | El niño cuyo casco es azul va en bicicleta.": "<b>cuyo</b> richtet sich nach dem Besessenen: el casco → <b>cuyo</b>.",
+    "B2 | El banco en el que está sentado el hombre es verde.": "Präposition + Artikel + <b>que</b>: en el que.",
+    "B2 | El perro va corriendo hacia la pelota.": "<b>ir</b> + gerundio = eine Handlung im Vollzug: va corriendo.",
+    "B2 | El libro está abierto.": "<b>abrir</b> → unregelmäßiges Partizip <b>abierto</b>.",
+    "B2 | La manta está extendida sobre la hierba.": "<b>estar</b> + Partizip, angepasst: la manta → extendid<b>a</b>.",
+    "C1 | Debe de conocer al perro.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el perro atrape la pelota enseguida.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Vendrá aquí todos los domingos.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen en el barrio que en el lago hay peces enormes.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El hombre está sentado en el banco.": "Der Mann sitzt auf der Bank.",
+    "A2 | El barco está en el lago.": "Das Boot ist auf dem See.",
+    "A2 | El pájaro está en el banco.": "Der Vogel sitzt auf der Bank.",
+    "A2 | El niño va en bicicleta por el camino.": "Der Junge fährt mit dem Fahrrad auf dem Weg.",
+    "A2 | La cesta está encima de la manta.": "Der Korb steht auf der Decke.",
+    "A2 | El celular está al lado de la mochila.": "Das Handy liegt neben dem Rucksack.",
+    "A2 | El móvil está al lado de la mochila.": "Das Handy liegt neben dem Rucksack.",
+    "A2 | Hay un farol al lado del bote de basura.": "Neben dem Papierkorb steht eine Straßenlaterne.",
+    "A2 | Hay una farola al lado de la papelera.": "Neben dem Papierkorb steht eine Straßenlaterne.",
+    "A2 | La pelota está por encima de la hierba.": "Der Ball ist über dem Gras.",
+    "B1 | Hace un momento, Anna lanzó la pelota.": "Vor einem Moment hat Anna den Ball geworfen.",
+    "B1 | Mientras Anna estaba en la manta, el perro jugaba.": "Während Anna auf der Decke war, spielte der Hund.",
+    "B1 | Ayer Anna leyó un libro entero.": "Gestern hat Anna ein ganzes Buch gelesen.",
+    "B1 | El domingo pasado, Anna fue al parque.": "Letzten Sonntag ist Anna in den Park gegangen.",
+    "B1 | Anna se la lanzó al perro.": "Anna hat ihn dem Hund zugeworfen.",
+    "B1 | Antes, el hombre del banco leía el periódico cada domingo.": "Früher las der Mann auf der Bank jeden Sonntag die Zeitung.",
+    "B1 | Esta mañana, el hombre de la barca remó hasta el puente.": "Heute Morgen ist der Mann im Boot bis zur Brücke gerudert.",
+    "B1 | Al llegar, Anna puso la manta en la hierba.": "Bei der Ankunft hat Anna die Decke ins Gras gelegt.",
+    "B2 | La mujer que lanza la pelota se llama Anna.": "Die Frau, die den Ball wirft, heißt Anna.",
+    "B2 | El niño cuyo casco es azul va en bicicleta.": "Der Junge, dessen Helm blau ist, fährt Fahrrad.",
+    "B2 | El banco en el que está sentado el hombre es verde.": "Die Bank, auf der der Mann sitzt, ist grün.",
+    "B2 | El perro va corriendo hacia la pelota.": "Der Hund rennt zum Ball.",
+    "B2 | El libro está abierto.": "Das Buch ist aufgeschlagen.",
+    "B2 | La manta está extendida sobre la hierba.": "Die Decke ist auf dem Gras ausgebreitet.",
+    "C1 | Debe de conocer al perro.": "Sie muss den Hund kennen.",
+    "C1 | Puede que el perro atrape la pelota enseguida.": "Vielleicht fängt der Hund den Ball gleich.",
+    "C1 | Vendrá aquí todos los domingos.": "Er wird wohl jeden Sonntag hierherkommen.",
+    "C1 | Dicen en el barrio que en el lago hay peces enormes.": "Im Viertel sagt man, im See gebe es riesige Fische."
+   }
   }
  }
 };

@@ -19,7 +19,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     },
     {
      "mot": "cuerpo",
@@ -29,7 +30,8 @@ window.SCENE = {
      "fr": "le corps",
      "en": "the body",
      "pt": "o corpo",
-     "ar": "جسم"
+     "ar": "جسم",
+     "de": "der Körper"
     }
    ],
    "sur": null,
@@ -60,6 +62,7 @@ window.SCENE = {
    "ar": "مريض",
    "pl": "pacjent",
    "ru": "пациент, больной",
+   "de": "der Patient",
    "latam": null
   },
   {
@@ -87,6 +90,7 @@ window.SCENE = {
    "ar": "رأس",
    "pl": "głowa",
    "ru": "голова",
+   "de": "der Kopf",
    "latam": null
   },
   {
@@ -114,6 +118,7 @@ window.SCENE = {
    "ar": "رقبة، عنق",
    "pl": "szyja, gardło",
    "ru": "шея, горло",
+   "de": "der Hals",
    "latam": null
   },
   {
@@ -147,6 +152,7 @@ window.SCENE = {
    "ar": "كتف",
    "pl": "ramię, bark",
    "ru": "плечо",
+   "de": "die Schulter",
    "latam": null
   },
   {
@@ -174,6 +180,7 @@ window.SCENE = {
    "ar": "صدر",
    "pl": "klatka piersiowa, pierś",
    "ru": "грудь",
+   "de": "die Brust",
    "latam": null
   },
   {
@@ -201,6 +208,7 @@ window.SCENE = {
    "ar": "بطن",
    "pl": "brzuch",
    "ru": "живот",
+   "de": "der Bauch",
    "latam": null
   },
   {
@@ -228,6 +236,7 @@ window.SCENE = {
    "ar": "سُرّة",
    "pl": "pępek",
    "ru": "пупок",
+   "de": "der Bauchnabel",
    "latam": null
   },
   {
@@ -261,6 +270,7 @@ window.SCENE = {
    "ar": "ذراع",
    "pl": "ręka, ramię",
    "ru": "рука",
+   "de": "der Arm",
    "latam": null
   },
   {
@@ -294,6 +304,7 @@ window.SCENE = {
    "ar": "ذراع",
    "pl": "ręka, ramię",
    "ru": "рука",
+   "de": "der Arm",
    "latam": null
   },
   {
@@ -327,6 +338,7 @@ window.SCENE = {
    "ar": "مرفق، كوع",
    "pl": "łokieć",
    "ru": "локоть",
+   "de": "der Ellbogen",
    "latam": null
   },
   {
@@ -360,6 +372,7 @@ window.SCENE = {
    "ar": "معصم، دمية",
    "pl": "nadgarstek",
    "ru": "запястье",
+   "de": "das Handgelenk, die Puppe",
    "latam": null
   },
   {
@@ -387,6 +400,7 @@ window.SCENE = {
    "ar": "يد",
    "pl": "ręka, dłoń",
    "ru": "рука (кисть)",
+   "de": "die Hand",
    "latam": null
   },
   {
@@ -414,6 +428,7 @@ window.SCENE = {
    "ar": "يد",
    "pl": "ręka, dłoń",
    "ru": "рука (кисть)",
+   "de": "die Hand",
    "latam": null
   },
   {
@@ -447,6 +462,7 @@ window.SCENE = {
    "ar": "فخذ",
    "pl": "udo",
    "ru": "бедро",
+   "de": "der Oberschenkel",
    "latam": null
   },
   {
@@ -492,6 +508,7 @@ window.SCENE = {
    "ar": "سروال داخلي",
    "pl": "majtki, slipy",
    "ru": "трусы",
+   "de": "die Unterhose",
    "latam": null
   },
   {
@@ -525,6 +542,7 @@ window.SCENE = {
    "ar": "ركبة",
    "pl": "kolano",
    "ru": "колено",
+   "de": "das Knie",
    "latam": null
   },
   {
@@ -552,6 +570,7 @@ window.SCENE = {
    "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
+   "de": "das Bein",
    "latam": null
   },
   {
@@ -579,6 +598,7 @@ window.SCENE = {
    "ar": "ساق، رجل",
    "pl": "noga",
    "ru": "нога",
+   "de": "das Bein",
    "latam": null
   },
   {
@@ -606,6 +626,7 @@ window.SCENE = {
    "ar": "قدم",
    "pl": "stopa",
    "ru": "нога (ступня)",
+   "de": "der Fuß",
    "latam": null
   },
   {
@@ -633,6 +654,7 @@ window.SCENE = {
    "ar": "قدم",
    "pl": "stopa",
    "ru": "нога (ступня)",
+   "de": "der Fuß",
    "latam": null
   },
   {
@@ -652,7 +674,8 @@ window.SCENE = {
      "fr": "la femme, l'épouse",
      "en": "the wife, the woman",
      "pt": "a mulher, a esposa",
-     "ar": "امرأة، زوجة"
+     "ar": "امرأة، زوجة",
+     "de": "die Frau, die Ehefrau"
     }
    ],
    "sur": null,
@@ -683,6 +706,7 @@ window.SCENE = {
    "ar": "طبيبة",
    "pl": "lekarka",
    "ru": "врач (женщина)",
+   "de": "die Ärztin",
    "latam": null
   },
   {
@@ -710,6 +734,7 @@ window.SCENE = {
    "ar": "يد",
    "pl": "ręka, dłoń",
    "ru": "рука (кисть)",
+   "de": "die Hand",
    "latam": null
   },
   {
@@ -737,6 +762,7 @@ window.SCENE = {
    "ar": "يد",
    "pl": "ręka, dłoń",
    "ru": "рука (кисть)",
+   "de": "die Hand",
    "latam": null
   },
   {
@@ -770,6 +796,7 @@ window.SCENE = {
    "ar": "سمّاعة طبّية",
    "pl": "stetoskop",
    "ru": "стетоскоп",
+   "de": "das Stethoskop",
    "latam": null
   },
   {
@@ -809,6 +836,7 @@ window.SCENE = {
    "ar": "ميزان",
    "pl": "waga (kuchenna)",
    "ru": "весы",
+   "de": "die Waage",
    "latam": null
   },
   {
@@ -836,6 +864,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -863,6 +892,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -895,6 +925,7 @@ window.SCENE = {
    "ar": "شعر",
    "pl": "włos, włosy",
    "ru": "волосы",
+   "de": "das Haar",
    "latam": null
   },
   {
@@ -923,6 +954,7 @@ window.SCENE = {
    "ar": "شعر",
    "pl": "włos, włosy",
    "ru": "волосы",
+   "de": "das Haar",
    "latam": null
   },
   {
@@ -951,6 +983,7 @@ window.SCENE = {
    "ar": "وجه",
    "pl": "twarz",
    "ru": "лицо",
+   "de": "das Gesicht",
    "latam": null
   },
   {
@@ -979,6 +1012,7 @@ window.SCENE = {
    "ar": "جبين",
    "pl": "czoło",
    "ru": "лоб",
+   "de": "die Stirn",
    "latam": null
   },
   {
@@ -1007,6 +1041,7 @@ window.SCENE = {
    "ar": "حاجب",
    "pl": "brew",
    "ru": "бровь",
+   "de": "die Augenbraue",
    "latam": null
   },
   {
@@ -1035,6 +1070,7 @@ window.SCENE = {
    "ar": "حاجب",
    "pl": "brew",
    "ru": "бровь",
+   "de": "die Augenbraue",
    "latam": null
   },
   {
@@ -1063,6 +1099,7 @@ window.SCENE = {
    "ar": "عين",
    "pl": "oko",
    "ru": "глаз",
+   "de": "das Auge",
    "latam": null
   },
   {
@@ -1091,6 +1128,7 @@ window.SCENE = {
    "ar": "عين",
    "pl": "oko",
    "ru": "глаз",
+   "de": "das Auge",
    "latam": null
   },
   {
@@ -1119,6 +1157,7 @@ window.SCENE = {
    "ar": "أذن",
    "pl": "ucho",
    "ru": "ухо",
+   "de": "das Ohr",
    "latam": null
   },
   {
@@ -1147,6 +1186,7 @@ window.SCENE = {
    "ar": "أنف",
    "pl": "nos",
    "ru": "нос",
+   "de": "die Nase",
    "latam": null
   },
   {
@@ -1175,6 +1215,7 @@ window.SCENE = {
    "ar": "خدّ",
    "pl": "policzek",
    "ru": "щека",
+   "de": "die Wange",
    "latam": null
   },
   {
@@ -1203,6 +1244,7 @@ window.SCENE = {
    "ar": "خدّ",
    "pl": "policzek",
    "ru": "щека",
+   "de": "die Wange",
    "latam": null
   },
   {
@@ -1231,6 +1273,7 @@ window.SCENE = {
    "ar": "فم",
    "pl": "usta",
    "ru": "рот",
+   "de": "der Mund",
    "latam": null
   },
   {
@@ -1259,6 +1302,7 @@ window.SCENE = {
    "ar": "سنّ",
    "pl": "ząb",
    "ru": "зуб",
+   "de": "der Zahn",
    "latam": null
   },
   {
@@ -1287,6 +1331,7 @@ window.SCENE = {
    "ar": "شفة",
    "pl": "warga",
    "ru": "губа",
+   "de": "die Lippe",
    "latam": null
   },
   {
@@ -1315,6 +1360,7 @@ window.SCENE = {
    "ar": "ذقن",
    "pl": "podbródek, broda",
    "ru": "подбородок",
+   "de": "das Kinn",
    "latam": null
   },
   {
@@ -1343,6 +1389,7 @@ window.SCENE = {
    "ar": "إصبع",
    "pl": "palec",
    "ru": "палец",
+   "de": "der Finger",
    "latam": null
   },
   {
@@ -1371,6 +1418,7 @@ window.SCENE = {
    "ar": "إصبع",
    "pl": "palec",
    "ru": "палец",
+   "de": "der Finger",
    "latam": null
   },
   {
@@ -1399,6 +1447,7 @@ window.SCENE = {
    "ar": "ظفر",
    "pl": "paznokieć",
    "ru": "ноготь",
+   "de": "der Fingernagel",
    "latam": null
   },
   {
@@ -1427,6 +1476,7 @@ window.SCENE = {
    "ar": "كاحل",
    "pl": "kostka (u nogi)",
    "ru": "лодыжка",
+   "de": "der Knöchel",
    "latam": null
   },
   {
@@ -1455,6 +1505,7 @@ window.SCENE = {
    "ar": "كاحل",
    "pl": "kostka (u nogi)",
    "ru": "лодыжка",
+   "de": "der Knöchel",
    "latam": null
   },
   {
@@ -1483,6 +1534,7 @@ window.SCENE = {
    "ar": "إصبع القدم",
    "pl": "palec u nogi",
    "ru": "палец ноги",
+   "de": "der Zeh",
    "latam": null
   },
   {
@@ -1511,6 +1563,7 @@ window.SCENE = {
    "ar": "إصبع القدم",
    "pl": "palec u nogi",
    "ru": "палец ноги",
+   "de": "der Zeh",
    "latam": null
   },
   {
@@ -1539,6 +1592,7 @@ window.SCENE = {
    "ar": "ظفر",
    "pl": "paznokieć",
    "ru": "ноготь",
+   "de": "der Fingernagel",
    "latam": null
   },
   {
@@ -1567,6 +1621,7 @@ window.SCENE = {
    "ar": "ظفر",
    "pl": "paznokieć",
    "ru": "ноготь",
+   "de": "der Fingernagel",
    "latam": null
   }
  ],
@@ -2456,6 +2511,73 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark steht in dunkelblauer Boxershorts, barfuß, und lässt sich von seiner Ärztin die Brust abhören; eine Personenwaage mit Messlatte an der grünen Wand.",
+    "consigne": "Tippe auf einen Körperteil von Mark. Tippe auf sein Gesicht, seine Hand oder seine Füße, um sie aus der Nähe zu sehen."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — der Körper",
+    "B1": "Die Anweisungen der Ärztin",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La báscula está junto a la pared.": "<b>junto a</b> = an, dicht bei.",
+    "A2 | La médica está al lado del paciente.": "<b>al lado de</b> = neben; de + el = <b>del</b>.",
+    "A2 | Mark está delante de la báscula.": "<b>delante de</b> = vor: Er ist noch nicht draufgestiegen.",
+    "A2 | La médica le pone el estetoscopio en el pecho.": "Bei Körperteilen setzt das Spanische den <b>Artikel</b>, nicht das Possessivum: Das Pronomen <b>le</b> sagt schon, wessen.",
+    "A2 | Mark tiene las manos junto a los muslos.": "<b>junto a</b> = an, entlang.",
+    "A2 | Mark tiene los pies en el piso.": "<b>en</b> el piso = auf dem Boden. „encima“ und „dentro“ verlangen <b>de</b>.",
+    "A2 | Mark tiene los pies en el suelo.": "<b>en</b> el suelo = auf dem Boden. „encima“ und „dentro“ verlangen <b>de</b>.",
+    "B1 | Señor, respire hondo, por favor.": "Man siezt (usted): Imperativ auf <b>-e</b> bei einem Verb auf -ar → <b>respire</b>.",
+    "B1 | La médica le escucha los pulmones.": "Präsens, 3. Person: la médica <b>escucha</b>.",
+    "B1 | Mark se ha quitado la ropa: lleva solo los calzoncillos.": "<b>llevar</b> = tragen (ein Kleidungsstück).",
+    "B1 | Ahora, súbase a la báscula, por favor.": "Imperativ mit usted + angehängtes Pronomen: <b>súbase</b> (der Akzent hält die Betonung fest).",
+    "B1 | No se mueva, por favor.": "Der <b>verneinte</b> Imperativ nimmt den subjuntivo: no se <b>mueva</b>.",
+    "B1 | La médica le ha pedido que respire hondo.": "Jemanden bitten: indirektes Objekt → <b>le</b>. Und <b>pedir que</b> + subjuntivo.",
+    "B2 | Sus pulmones están siendo examinados.": "Passiv im Verlauf: <b>estar siendo</b> + Partizip.",
+    "B2 | El paciente cuyo pecho examina la médica se llama Mark.": "<b>cuyo</b> richtet sich nach el pecho → <b>cuyo</b>.",
+    "B2 | La médica que lo examina es su médica de cabecera.": "Subjekt des Relativsatzes → <b>que</b>. <b>médica de cabecera</b> = Hausärztin.",
+    "B2 | La báscula a la que se va a subir está junto a la pared.": "Subirse <b>a</b> algo: a + la que → <b>a la que</b>. <b>quien</b> bezeichnet nur Personen.",
+    "B2 | Su altura será medida enseguida.": "Die kommende Handlung, im Passiv: <b>ser</b> + Partizip → <b>será</b> medida.",
+    "B2 | Mark no se mueve mientras la médica lo examina.": "<b>mientras</b> + Verb = während (Satz). <b>durante</b> steht vor einem Nomen — im Deutschen beides „während“.",
+    "C1 | Mark debe de hacer mucho deporte: tiene los brazos fuertes.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Es probable que Mark esté sano.": "Eine Wahrscheinlichkeit → <b>subjuntivo</b> (esté). Nach es seguro oder creo wäre es der Indikativ: está.",
+    "C1 | Dicen que esta médica es muy minuciosa.": "Nach <b>dicen que</b> (man gibt wieder) → der <b>Indikativ</b>.",
+    "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "Irreale Annahme: <b>si</b> + subjuntivo imperfecto (latiera), dann condicional.",
+    "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "Annahme über die Vergangenheit: <b>si</b> + Plusquamperfekt des subjuntivo, dann condicional Perfekt.",
+    "C1 | Cuanto más deporte hace Mark, más sano está.": "<b>cuanto más</b> …, <b>más</b> … = je …, desto …."
+   },
+   "sens": {
+    "A2 | La báscula está junto a la pared.": "Die Waage steht an der Wand.",
+    "A2 | La médica está al lado del paciente.": "Die Ärztin steht neben dem Patienten.",
+    "A2 | Mark está delante de la báscula.": "Mark steht vor der Waage.",
+    "A2 | La médica le pone el estetoscopio en el pecho.": "Die Ärztin setzt ihm das Stethoskop auf die Brust.",
+    "A2 | Mark tiene las manos junto a los muslos.": "Mark hat die Hände an den Oberschenkeln.",
+    "A2 | Mark tiene los pies en el piso.": "Mark hat die Füße auf dem Boden.",
+    "A2 | Mark tiene los pies en el suelo.": "Mark hat die Füße auf dem Boden.",
+    "B1 | Señor, respire hondo, por favor.": "Atmen Sie bitte tief ein.",
+    "B1 | La médica le escucha los pulmones.": "Die Ärztin hört seine Lungen ab.",
+    "B1 | Mark se ha quitado la ropa: lleva solo los calzoncillos.": "Mark hat sich ausgezogen: Er trägt nur seine Unterhose.",
+    "B1 | Ahora, súbase a la báscula, por favor.": "Steigen Sie jetzt bitte auf die Waage.",
+    "B1 | No se mueva, por favor.": "Bewegen Sie sich bitte nicht.",
+    "B1 | La médica le ha pedido que respire hondo.": "Die Ärztin hat ihn gebeten, tief einzuatmen.",
+    "B2 | Sus pulmones están siendo examinados.": "Seine Lungen werden gerade untersucht.",
+    "B2 | El paciente cuyo pecho examina la médica se llama Mark.": "Der Patient, dessen Brust die Ärztin untersucht, heißt Mark.",
+    "B2 | La médica que lo examina es su médica de cabecera.": "Die Ärztin, die ihn untersucht, ist seine Hausärztin.",
+    "B2 | La báscula a la que se va a subir está junto a la pared.": "Die Waage, auf die er steigen wird, steht an der Wand.",
+    "B2 | Su altura será medida enseguida.": "Seine Größe wird gleich gemessen.",
+    "B2 | Mark no se mueve mientras la médica lo examina.": "Mark bewegt sich nicht, während die Ärztin ihn untersucht.",
+    "C1 | Mark debe de hacer mucho deporte: tiene los brazos fuertes.": "Mark muss viel Sport machen: Er hat kräftige Arme.",
+    "C1 | Es probable que Mark esté sano.": "Wahrscheinlich ist Mark gesund.",
+    "C1 | Dicen que esta médica es muy minuciosa.": "Man sagt, diese Ärztin sei sehr gründlich.",
+    "C1 | Si el corazón le latiera de forma irregular, lo mandaría al cardiólogo.": "Wenn sein Herz unregelmäßig schlüge, würde sie ihn zum Kardiologen schicken.",
+    "C1 | Si no se hubiera quitado la ropa, no habría podido auscultarlo.": "Wenn er sich nicht ausgezogen hätte, hätte sie ihn nicht abhören können.",
+    "C1 | Cuanto más deporte hace Mark, más sano está.": "Je mehr Sport Mark macht, desto gesünder ist er."
+   }
   }
  }
 };

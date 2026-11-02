@@ -29,7 +29,7 @@ import hashlib, io, json, os, re, sys, unicodedata
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATOS = os.path.join(RACINE, "espanol", "datos")
-LANGUES = ("fr", "en", "pt", "ar")
+LANGUES = ("fr", "en", "pt", "ar", "de")
 
 
 def guillemets(t):
@@ -248,6 +248,54 @@ AR = {
 # AR-FIN
 }
 
+# L'ALLEMAND (1er nov. 2026), ecrit CONTRE l'allemand pour un germanophone : le j
+# comme le ch de « Bach », z et c (e, i) jamais « ts », s toujours sourd, v = b,
+# qu = k (jamais « kw »), sp / st sans « sch », ei / eu / ie dits lettre par lettre.
+# Meme forme que PT ; pose par espanol/de/poser_autres.py, entre les deux bornes.
+DE = {
+ "voyelles": ("fünf Vokale, immer kurz und voll",
+      "Fünf Vokale, immer gleich und immer ganz ausgesprochen: a, e, i, o, u — wie in „Mama“, „Bett“, „Kind“, „Sonne“, „Mutter“, nur nie gedehnt. Es gibt keine langen Vokale wie in „Liebe“ oder „Boot“, kein stummes e und kein Umlaut."),
+ "u": ("immer „u“, nie „ü“",
+      "Das u ist immer ein echtes u wie in „Mutter“: luna klingt wie „luna“, nie wie „lüna“. Auch nach q und g bleibt es stumm oder ein u — ein ü gibt es im Spanischen nicht."),
+ "e-final": ("das e am Ende wird voll gesprochen",
+      "Das e wird immer gesprochen, auch am Wortende, und zwar voll wie in „Bett“: noche klingt wie „notsche“, grande wie „grande“ mit klarem e. Nie das schwache e von „bitte“ oder „Tasche“."),
+ "sans-nasale": ("kein Nasal: der Vokal, dann ein echtes n",
+      "Vor n bleibt der Vokal rein und das n wird ganz gesprochen: pan „pan“, también „tam-bjen“, cinco „zinko“ mit hellem i. Der Vokal bleibt kurz und wird nicht gedehnt, wie in „Mann“, nicht wie in „Bahn“."),
+ "diphtongues": ("zwei Vokale in einem Zug",
+      "Zwei Vokale zusammen werden in einem Zug gesprochen: bueno „bwe-no“, tiempo „tjem-po“, nuevo „nwe-bo“. Vorsicht bei ei und eu: seis ist „se-is“, Europa „e-u-ropa“ — nie „ai“ oder „oi“ wie in „Seite“ und „Europa“ auf Deutsch. Und ie ist i + e (siete), nicht das lange i von „Liebe“."),
+ "c-z": ("je nach Variante",
+      "Vor e oder i wird das c — und das z überall — in Spanien wie das englische „th“ gesprochen, in Lateinamerika wie ein scharfes „s“. Nie „ts“ wie in „Zeit“!"),
+ "c-z.es": ("wie das englische „th“",
+      "In Spanien wird vor e oder i das c — und das z überall — wie das englische „th“ in „think“ gesprochen, die Zunge zwischen den Zähnen: cielo „thjelo“, zapato „thapato“. Nie das deutsche „ts“ von „Zeit“ oder „Zapfen“. Lateinamerika sagt „s“: Beides ist richtig."),
+ "c-z.latam": ("ein scharfes „s“",
+      "In Lateinamerika wird vor e oder i das c — und das z überall — wie ein scharfes „s“ gesprochen: cielo „sjelo“, zapato „sapato“. Nie das deutsche „ts“ von „Zeit“. Spanien sagt „th“: Beides ist richtig."),
+ "c-qu": ("immer „k“ — qu nie „kw“",
+      "ca, co, cu werden „ka, ko, ku“ gesprochen. Vor e und i schreibt man qu, und das u bleibt stumm: queso „keso“, aquí „aki“. Nie „kw“ wie in „Quelle“ oder „Qualität“."),
+ "j": ("der ach-Laut, wie in „Bach“",
+      "Das j — und das g vor e oder i — ist der deutsche ach-Laut von „Bach“, „lachen“, „Buch“: jamón „chamón“, gente „chente“, ojo „ocho“. Nie wie ein deutsches j! In Mexiko ist es weicher, fast ein gehauchtes h."),
+ "g-gu": ("hartes g; in gue, gui ist das u stumm",
+      "ga, go, gu haben ein hartes g wie in „Garten“. Vor e und i schreibt man gu, und das u bleibt stumm: guerra „gerra“, guitarra „gitarra“. Die zwei Punkte machen es hörbar: bilingüe „bi-lin-gwe“."),
+ "ch": ("„tsch“ wie in „Tschüss“",
+      "ch wird „tsch“ gesprochen, wie in „Tschüss“ oder „Matsch“: noche „notsche“, ocho „otscho“. Nie der deutsche ach- oder ich-Laut."),
+ "ll-y": ("ein kräftiges „j“, fast „dsch“",
+      "ll und y klingen wie ein kräftiges deutsches „j“ wie in „ja“, nur fester, auf halbem Weg zu „dsch“; am Wortanfang gleitet es oft zu „dsch“: llave „jabe“ oder „dschabe“, calle „ka-je“, playa „pla-ja“. Nie ein „l“ wie in „alle“. In Argentinien und Uruguay hört man eher „sch“: calle „ka-sche“."),
+ "n-tilde": ("„nj“ wie in „Cognac“",
+      "ñ wird „nj“ gesprochen, wie in „Cognac“ oder „Kastanie“: niño „ninjo“, mañana „manjana“, España „Espanja“."),
+ "h": ("immer stumm",
+      "Das h wird nie gesprochen: hoy klingt wie „oi“, hermano wie „ermano“, hola wie „ola“. Nie hauchen wie in „Haus“."),
+ "r-rr": ("mit der Zungenspitze, nie im Rachen",
+      "Ein r zwischen zwei Vokalen ist ein einziger Schlag der Zungenspitze, fast wie ein ganz kurzes „d“ (caro). Am Wortanfang oder als rr wird es mit der Zungenspitze gerollt (rojo, perro). Nie das deutsche Rachen-r — und nie verschluckt wie in „Vater“: caro und carro sind zwei verschiedene Wörter."),
+ "b-v": ("b und v: derselbe Laut, nie „w“",
+      "b und v werden genau gleich gesprochen: ein „b“ am Wortanfang (vino „bino“), und zwischen zwei Vokalen ein sehr weiches b, die Lippen kaum geschlossen (uva). Nie das deutsche „w“ von „Wein“ — und nie „f“ wie in „Vater“."),
+ "d": ("weich zwischen Vokalen",
+      "Zwischen zwei Vokalen und am Wortende ist das d sehr weich, fast wie das englische „th“ in „this“: cansado, nada, ciudad. Am Ende wird es nicht zu „t“ wie im deutschen „Rad“."),
+ "s": ("immer scharf, nie summend",
+      "Das s ist immer ein scharfes, stimmloses s wie in „Haus“ oder „Wasser“, auch zwischen zwei Vokalen: casa „kassa“, rosa „rossa“. Das summende s von „Rose“ oder „Hase“ gibt es im Spanischen nicht. Und sp, st am Wortanfang bleiben „s-p“, „s-t“: España, estación — nie „schp“, „scht“."),
+ "accent": ("eine betonte Silbe",
+      "Jedes Wort hat eine betonte Silbe. Endet es auf Vokal, n oder s: die vorletzte (casa, hablan). Endet es auf einen anderen Konsonanten: die letzte (ciudad, hablar). Sonst zeigt der Akzent sie an (café, médico, canción). Die Falle: Die Betonung ist fest; nicht wie im Deutschen auf die erste Silbe ziehen — es heißt „ca-FÉ“, nicht „CA-fe“."),
+# DE-FIN
+}
+
 GROUPES = [("voyelles", VOYELLES), ("consonnes", CONSONNES), ("accent", ACCENT)]
 
 
@@ -297,11 +345,17 @@ def construire():
             if rid in AR:
                 court = dict(court, ar=AR[rid][0])
                 expl = dict(expl, ar=AR[rid][1])
+            # L'allemand vient de DE, ecrit contre l'allemand (1er nov. 2026).
+            if rid in DE:
+                court = dict(court, de=DE[rid][0])
+                expl = dict(expl, de=DE[rid][1])
             if variantes:
                 variantes = {v: {"court": dict(t["court"], pt=PT[rid + "." + v][0],
-                                               **({"ar": AR[rid + "." + v][0]} if rid + "." + v in AR else {})),
+                                               **({"ar": AR[rid + "." + v][0]} if rid + "." + v in AR else {}),
+                                               **({"de": DE[rid + "." + v][0]} if rid + "." + v in DE else {})),
                                  "explication": dict(t["explication"], pt=PT[rid + "." + v][1],
-                                                     **({"ar": AR[rid + "." + v][1]} if rid + "." + v in AR else {}))}
+                                                     **({"ar": AR[rid + "." + v][1]} if rid + "." + v in AR else {}),
+                                                     **({"de": DE[rid + "." + v][1]} if rid + "." + v in DE else {}))}
                              for v, t in variantes.items()}
             if rid in ids:
                 fautes.append("id en double : " + rid)
@@ -326,7 +380,7 @@ def construire():
                 for voix in ("es-es", "es-419"):
                     if not os.path.exists(os.path.join(RACINE, "audio", "mp3", voix, h + ".mp3")):
                         fautes.append("%s : « %s » sans voix %s" % (rid, mot, voix))
-                ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_pt", "traduction_ar") if e.get(c)}})
+                ex.append({"mot": mot, **{c: e[c] for c in ("traduction", "traduction_en", "traduction_pt", "traduction_ar", "traduction_de") if e.get(c)}})
             # v919 : CHAQUE MORCEAU DE LA GRAPHIE A SON EXEMPLE. La carte du son du
             # jour rend chaque morceau touchable et lui fait dire son mot ; un morceau
             # sans mot resterait muet (Jacques, 22 oct. 2026 : « an en in on un [...]

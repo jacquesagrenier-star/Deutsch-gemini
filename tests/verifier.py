@@ -653,12 +653,14 @@ def verifier_libelles_espagnol(r, source):
     # L'arabe (15 oct. 2026) : pareil.
     pt = set(couche.get("pt", {}))
     ar = set(couche.get("ar", {}))
-    for nom, autre in (("portugais", pt), ("arabe", ar)):
+    # L'allemand (1er nov. 2026) : pareil.
+    de = set(couche.get("de", {}))
+    for nom, autre in (("portugais", pt), ("arabe", ar), ("allemand", de)):
         for k in sorted(fr ^ autre):
             r.echec("i18n", "I18N_ESPAGNOL : %s %s en %s" % (k, "manque" if k in fr else "en trop", nom))
-    r.controle(len(fr | en | pt | ar))
-    print("   libelles espagnol: %d cles (fr, en, pt et ar)" % len(fr & en & pt & ar))
-    return fr | en | pt | ar
+    r.controle(len(fr | en | pt | ar | de))
+    print("   libelles espagnol: %d cles (fr, en, pt, ar et de)" % len(fr & en & pt & ar & de))
+    return fr | en | pt | ar | de
 
 
 def verifier_arabe_espagnol(r):
@@ -708,6 +710,60 @@ def verifier_arabe_espagnol(r):
             n += 1
     r.controle(n)
     print("   espagnol en arabe : %d fichiers, ar partout ou pt existe" % n)
+
+
+def verifier_allemand_espagnol(r):
+    """L'espagnol enseigne en allemand (1er nov. 2026) : partout ou l'arabe
+    existe, l'allemand aussi -- l'arabe est la derniere langue completee avant
+    lui. Un champ _ar sans son _de s'afficherait en anglais (le repli) a un
+    germanophone. Donnees, fiches, scenes, notices des peintres."""
+    n = 0
+    datos = os.path.join(RACINE, "espanol", "datos")
+    fichiers = [os.path.join(datos, f) for f in sorted(os.listdir(datos)) if f.endswith(".json")]
+    for chemin in fichiers + [os.path.join(RACINE, "espanol", "mosaique", "peintres.json")]:
+        with io.open(chemin, encoding="utf-8") as f:
+            d = json.load(f)
+        manques = []
+        # Les notices des peintres n'ont pas d'arabe : le portugais y sert de modele.
+        modele = "pt" if chemin.endswith("peintres.json") else "ar"
+
+        def marcher(o, chemin_):
+            if isinstance(o, dict):
+                for k, v in o.items():
+                    if k == modele or k.endswith("_" + modele) or k.endswith(modele.capitalize()):
+                        cle = "de" if k == modele else (k[:-3] + "_de" if k.endswith("_" + modele) else k[:-2] + "De")
+                        if v and not o.get(cle):
+                            manques.append(chemin_ + "/" + cle)
+                    marcher(v, chemin_ + "/" + k)
+            elif isinstance(o, list):
+                for i, v in enumerate(o):
+                    marcher(v, chemin_ + "/" + str(i))
+        marcher(d, "")
+        n += 1
+        nom = os.path.relpath(chemin, RACINE).replace(os.sep, "/")
+        for m in manques[:5]:
+            r.echec("allemand", "%s : %s absent" % (nom, m))
+        if len(manques) > 5:
+            r.echec("allemand", "%s : %d champs allemands absents en tout" % (nom, len(manques)))
+    scenes = os.path.join(RACINE, "visuel", "prototype", "espanol")
+    if os.path.isdir(scenes):
+        for fichier in sorted(os.listdir(scenes)):
+            if not fichier.endswith(".json") or fichier == "mots.json":
+                continue
+            with io.open(os.path.join(scenes, fichier), encoding="utf-8") as f:
+                d = json.load(f)
+            if not d.get("alt_de") or not d.get("consigne_de"):
+                r.echec("allemand", "scene %s : alt_de ou consigne_de absent" % fichier)
+            for niv, c in d.get("couches", {}).items():
+                if c.get("titre_ar") and not c.get("titre_de"):
+                    r.echec("allemand", "scene %s %s : titre_de absent" % (fichier, niv))
+                for q in c.get("qs", []) + [q["latam"] for q in c.get("qs", []) if q.get("latam")]:
+                    for k in ("n", "sens"):
+                        if q.get(k + "_ar") and not q.get(k + "_de"):
+                            r.echec("allemand", "scene %s %s : %s_de absent -- %s" % (fichier, niv, k, q.get("q", "")))
+            n += 1
+    r.controle(n)
+    print("   espagnol en allemand : %d fichiers, de partout ou ar existe" % n)
 
 
 def verifier_scenes_espagnol(r):
@@ -967,7 +1023,7 @@ def verifier_prononciation(r):
     total = 0
     for fichier, script, langues in (
             ("prononciation.json", "prononciation.py", ("fr", "en", "tr", "uk", "fa", "ar")),
-            (os.path.join("espanol", "datos", "prononciation.json"), "prononciation_es.py", ("fr", "en", "pt", "ar"))):
+            (os.path.join("espanol", "datos", "prononciation.json"), "prononciation_es.py", ("fr", "en", "pt", "ar", "de"))):
         chemin = os.path.join(RACINE, fichier)
         if not os.path.exists(chemin):
             r.echec("prononciation", fichier + " absent")
@@ -1700,6 +1756,7 @@ def main():
     verifier_langue_enseignee(r, source)
     verifier_scenes_espagnol(r)
     verifier_arabe_espagnol(r)
+    verifier_allemand_espagnol(r)
     cles = cles | verifier_libelles_espagnol(r, source)
     verifier_cles_utilisees(r, source, cles)
     verifier_comptes_figes(r, source)

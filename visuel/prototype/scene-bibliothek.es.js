@@ -33,6 +33,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -60,6 +61,7 @@ window.SCENE = {
    "ar": "سلّم، درج",
    "pl": "schody",
    "ru": "лестница",
+   "de": "die Treppe",
    "latam": null
   },
   {
@@ -87,6 +89,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -126,6 +129,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -153,6 +157,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -180,6 +185,7 @@ window.SCENE = {
    "ar": "سلّم، درج",
    "pl": "drabina",
    "ru": "лестница (стремянка)",
+   "de": "die Treppe",
    "latam": null
   },
   {
@@ -207,6 +213,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -234,6 +241,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -261,6 +269,7 @@ window.SCENE = {
    "ar": "طالب",
    "pl": "student",
    "ru": "студент",
+   "de": "der Student, die Studentin",
    "latam": null
   },
   {
@@ -288,6 +297,7 @@ window.SCENE = {
    "ar": "طالب",
    "pl": "studentka",
    "ru": "студентка",
+   "de": "der Student, die Studentin",
    "latam": null
   },
   {
@@ -315,6 +325,7 @@ window.SCENE = {
    "ar": "كتاب",
    "pl": "książka",
    "ru": "книга",
+   "de": "das Buch",
    "latam": null
   },
   {
@@ -342,6 +353,7 @@ window.SCENE = {
    "ar": "كتاب",
    "pl": "książka",
    "ru": "книга",
+   "de": "das Buch",
    "latam": null
   },
   {
@@ -369,6 +381,7 @@ window.SCENE = {
    "ar": "كتاب",
    "pl": "książka",
    "ru": "книга",
+   "de": "das Buch",
    "latam": null
   },
   {
@@ -396,6 +409,7 @@ window.SCENE = {
    "ar": "حاسوب محمول",
    "pl": "laptop",
    "ru": "ноутбук",
+   "de": "der Laptop",
    "latam": {
     "mot": "laptop",
     "genre": "la",
@@ -427,6 +441,7 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
+   "de": "die Brille",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -450,7 +465,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": "tisch",
@@ -469,6 +485,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -496,6 +513,7 @@ window.SCENE = {
    "ar": "دفتر",
    "pl": "zeszyt",
    "ru": "тетрадь",
+   "de": "das Heft",
    "latam": null
   },
   {
@@ -523,6 +541,7 @@ window.SCENE = {
    "ar": "قلم رصاص",
    "pl": "ołówek",
    "ru": "карандаш",
+   "de": "der Bleistift",
    "latam": null
   },
   {
@@ -550,6 +569,7 @@ window.SCENE = {
    "ar": "علامة، درجة",
    "pl": "karteczka, świstek",
    "ru": "записка, листок",
+   "de": "die Note",
    "latam": null
   },
   {
@@ -577,6 +597,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -604,6 +625,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -631,6 +653,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -658,6 +681,7 @@ window.SCENE = {
    "ar": "كرة أرضية (مجسّم)",
    "pl": "globus",
    "ru": "глобус",
+   "de": "der Globus",
    "latam": null
   },
   {
@@ -685,6 +709,7 @@ window.SCENE = {
    "ar": "سمّاعات رأس",
    "pl": "słuchawki",
    "ru": "наушники",
+   "de": "die Kopfhörer",
    "latam": {
     "mot": "audífonos",
     "genre": "los",
@@ -716,6 +741,7 @@ window.SCENE = {
    "ar": "تدفئة",
    "pl": "ogrzewanie",
    "ru": "отопление",
+   "de": "die Heizung",
    "latam": null
   },
   {
@@ -749,6 +775,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -776,6 +803,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   }
  ],
@@ -1427,6 +1455,75 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna lernt an einem Wintertag im Lesesaal einer Universitätsbibliothek: Sie blättert in einem dicken Buch um, das Kinn in der Hand; auf dem Tisch ein Stapel Bücher, ein Laptop, ein Heft und ein Bleistift, eine Wasserflasche und eine Brille; im Hintergrund liest ein Student, unter einer Uhr und einer Treppe.",
+    "consigne": "Anna lernt in der Universitätsbibliothek. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Verben mit Präposition",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El lápiz está encima del cuaderno.": "<b>de + el = del</b>, immer.",
+    "A2 | La botella está al lado del libro.": "<b>de + el = del</b>, immer.",
+    "A2 | La mochila está en la silla.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La lámpara está al lado de los libros.": "Männlich Plural: <b>de los</b> libros.",
+    "A2 | La planta está delante de la estantería.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El reloj está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Hay una escalera junto a la estantería.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | La laptop está en la mesa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El portátil está en la mesa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "B1 | Anna piensa en su examen.": "<b>pensar en</b> = denken an — nicht „a“.",
+    "B1 | El estudiante sueña con las vacaciones.": "<b>soñar con</b> = träumen von — wörtlich „träumen mit“.",
+    "B1 | Anna se interesa por la historia.": "<b>interesarse por</b> = sich interessieren für.",
+    "B1 | Anna espera a su amiga.": "<b>esperar a</b> + Person: das persönliche <b>a</b> vor einem menschlichen Objekt.",
+    "B1 | Anna se acuerda de la clase de ayer.": "<b>acordarse de</b> = sich erinnern an.",
+    "B1 | El estudiante se concentra en su libro.": "<b>concentrarse en</b> = sich konzentrieren auf.",
+    "B1 | Anna tarda mucho en terminar el capítulo.": "<b>tardar en</b> + Infinitiv = lange brauchen, um … zu.",
+    "B2 | La estudiante que lee el libro se llama Anna.": "Relativsatz ohne Komma, Subjekt → <b>que</b>.",
+    "B2 | El estudiante, cuyo pelo es rizado, lee en la otra mesa.": "<b>cuyo</b> richtet sich nach dem Besessenen: el pelo → <b>cuyo</b>.",
+    "B2 | La estantería en la que se apoya la escalera es muy alta.": "Präposition + Artikel + <b>que</b>, abgestimmt auf la estantería.",
+    "B2 | Aquí no se habla en voz alta.": "Unpersönliches <b>se</b>: „man spricht nicht“, Verb im Singular.",
+    "B2 | El libro ya está medio leído.": "<b>estar</b> + Partizip: leer → <b>leído</b>, mit Akzent.",
+    "B2 | La lámpara está encendida.": "<b>estar</b> + Partizip, angepasst: la lámpara → encendid<b>a</b>. Im Deutschen bleibt „eingeschaltet“ unverändert.",
+    "C1 | Debe de tener un examen pronto.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el estudiante sea compañero de Anna.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Fuera hará mucho frío.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „es wird wohl …“ im Deutschen.",
+    "C1 | Dicen que esta biblioteca tiene más de un millón de libros.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El lápiz está encima del cuaderno.": "Der Bleistift liegt auf dem Heft.",
+    "A2 | La botella está al lado del libro.": "Die Flasche steht neben dem Buch.",
+    "A2 | La mochila está en la silla.": "Der Rucksack liegt auf dem Stuhl.",
+    "A2 | La lámpara está al lado de los libros.": "Die Lampe steht neben den Büchern.",
+    "A2 | La planta está delante de la estantería.": "Die Pflanze steht vor dem Regal.",
+    "A2 | El reloj está en la pared.": "Die Uhr hängt an der Wand.",
+    "A2 | Hay una escalera junto a la estantería.": "Am Regal steht eine Leiter.",
+    "A2 | La laptop está en la mesa.": "Der Laptop steht auf dem Tisch.",
+    "A2 | El portátil está en la mesa.": "Der Laptop steht auf dem Tisch.",
+    "B1 | Anna piensa en su examen.": "Anna denkt an ihre Prüfung.",
+    "B1 | El estudiante sueña con las vacaciones.": "Der Student träumt von den Ferien.",
+    "B1 | Anna se interesa por la historia.": "Anna interessiert sich für Geschichte.",
+    "B1 | Anna espera a su amiga.": "Anna wartet auf ihre Freundin.",
+    "B1 | Anna se acuerda de la clase de ayer.": "Anna erinnert sich an die Stunde von gestern.",
+    "B1 | El estudiante se concentra en su libro.": "Der Student konzentriert sich auf sein Buch.",
+    "B1 | Anna tarda mucho en terminar el capítulo.": "Anna braucht lange, um das Kapitel zu beenden.",
+    "B2 | La estudiante que lee el libro se llama Anna.": "Die Studentin, die das Buch liest, heißt Anna.",
+    "B2 | El estudiante, cuyo pelo es rizado, lee en la otra mesa.": "Der Student, dessen Haar lockig ist, liest am anderen Tisch.",
+    "B2 | La estantería en la que se apoya la escalera es muy alta.": "Das Regal, an dem die Leiter lehnt, ist sehr hoch.",
+    "B2 | Aquí no se habla en voz alta.": "Hier spricht man nicht laut.",
+    "B2 | El libro ya está medio leído.": "Das Buch ist schon halb gelesen.",
+    "B2 | La lámpara está encendida.": "Die Lampe ist an.",
+    "C1 | Debe de tener un examen pronto.": "Sie muss bald eine Prüfung haben.",
+    "C1 | Puede que el estudiante sea compañero de Anna.": "Vielleicht ist der Student ein Kommilitone von Anna.",
+    "C1 | Fuera hará mucho frío.": "Draußen wird es wohl sehr kalt sein.",
+    "C1 | Dicen que esta biblioteca tiene más de un millón de libros.": "Man sagt, diese Bibliothek habe über eine Million Bücher."
+   }
   }
  }
 };

@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
+   "de": "die Zimmerdecke",
    "latam": null
   },
   {
@@ -99,6 +101,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -126,6 +129,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz (malowany)",
    "ru": "картина (живопись)",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -153,6 +157,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz (malowany)",
    "ru": "картина (живопись)",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -180,6 +185,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz (malowany)",
    "ru": "картина (живопись)",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -207,6 +213,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz (malowany)",
    "ru": "картина (живопись)",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -234,6 +241,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz (malowany)",
    "ru": "картина (живопись)",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -253,7 +261,8 @@ window.SCENE = {
      "fr": "le cheval",
      "en": "the horse",
      "pt": "o cavalo",
-     "ar": "حصان"
+     "ar": "حصان",
+     "de": "das Pferd"
     }
    ],
    "sur": null,
@@ -272,6 +281,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz (malowany)",
    "ru": "картина (живопись)",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -305,6 +315,7 @@ window.SCENE = {
    "ar": "ستارة",
    "pl": "zasłona",
    "ru": "штора, занавеска",
+   "de": "der Vorhang",
    "latam": null
   },
   {
@@ -332,6 +343,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -359,6 +371,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -386,6 +399,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -405,7 +419,8 @@ window.SCENE = {
      "fr": "le chien",
      "en": "the dog",
      "pt": "o cachorro, o cão",
-     "ar": "كلب"
+     "ar": "كلب",
+     "de": "der Hund"
     }
    ],
    "sur": null,
@@ -424,6 +439,7 @@ window.SCENE = {
    "ar": "منحوتة، نحت",
    "pl": "rzeźba",
    "ru": "скульптура",
+   "de": "die Skulptur",
    "latam": null
   },
   {
@@ -451,6 +467,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -478,6 +495,7 @@ window.SCENE = {
    "ar": "ربطة عنق",
    "pl": "krawat",
    "ru": "галстук",
+   "de": "die Krawatte",
    "latam": null
   },
   {
@@ -505,6 +523,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -532,6 +551,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -559,6 +579,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -578,7 +599,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     }
    ],
    "sur": null,
@@ -597,6 +619,7 @@ window.SCENE = {
    "ar": "طالب",
    "pl": "student",
    "ru": "студент",
+   "de": "der Student, die Studentin",
    "latam": null
   },
   {
@@ -624,6 +647,7 @@ window.SCENE = {
    "ar": "سمّاعات رأس",
    "pl": "słuchawki",
    "ru": "наушники",
+   "de": "die Kopfhörer",
    "latam": {
     "mot": "audífonos",
     "genre": "los",
@@ -655,6 +679,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -682,6 +707,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -709,6 +735,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -736,6 +763,7 @@ window.SCENE = {
    "ar": "مشعّ تدفئة",
    "pl": "grzejnik, kaloryfer",
    "ru": "батарея (отопления)",
+   "de": "der Heizkörper",
    "latam": null
   },
   {
@@ -763,6 +791,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -790,6 +819,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -817,6 +847,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -848,6 +879,7 @@ window.SCENE = {
    "ar": "تنّورة",
    "pl": "spódnica",
    "ru": "юбка",
+   "de": "der Rock",
    "latam": null
   },
   {
@@ -875,6 +907,7 @@ window.SCENE = {
    "ar": "قلم رصاص",
    "pl": "ołówek",
    "ru": "карандаш",
+   "de": "der Bleistift",
    "latam": null
   },
   {
@@ -902,6 +935,7 @@ window.SCENE = {
    "ar": "دفتر",
    "pl": "zeszyt",
    "ru": "тетрадь",
+   "de": "das Heft",
    "latam": null
   },
   {
@@ -935,6 +969,7 @@ window.SCENE = {
    "ar": "جزمة، حذاء طويل",
    "pl": "kozak, but z cholewą",
    "ru": "сапог",
+   "de": "der Stiefel",
    "latam": null
   },
   {
@@ -962,6 +997,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -989,6 +1025,7 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
+   "de": "die Bank",
    "latam": null
   },
   {
@@ -1016,6 +1053,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -1043,6 +1081,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -1712,6 +1751,75 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna an einem verregneten Sonntag im Berliner Museum: Sie sitzt auf einer langen Bank aus grünem Samt, das Skizzenbuch offen auf den Knien und einen Bleistift in der Hand, und blickt auf zur weißen Marmorskulptur eines Hundes, der auf seinem Sockel sitzt; ihr grauer Mantel liegt gefaltet neben ihr, ihr schwarzer Rucksack auf dem Boden; an den dunkelgrünen Wänden Gemälde in schweren Goldrahmen, jedes unter einer kleinen Lampe: verschneite Berge über einem See, das Porträt einer alten Dame in Schwarz, ein Stillleben mit Äpfeln und gelben Blumen, ein großes Segelschiff im Sturm und ein Pferd; ein alter Wärter in Uniform sitzt auf einem Stuhl nahe der offenen Tür zum nächsten Saal; rechts betrachtet ein junger Mann mit Kopfhörern und Rucksack das Pferd, vor dem hohen Fenster mit roten Vorhängen, einem Heizkörper und einer großen Topfpflanze; an der Decke ein Kronleuchter; auf dem Boden Fischgrätparkett.",
+    "consigne": "Anna zeichnet im Museum eine Skulptur. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Saber oder conocer?",
+    "B2": "Der gerundio der Art und Weise: aprende dibujando",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El cuadro del barco está encima de la puerta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Anna está sentada en el banco.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El abrigo está en el banco.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La mochila está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La mochila está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El vigilante está al lado de la puerta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El estudiante está al lado de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La lámpara está en el techo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Hay una escultura de un perro.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | Anna sabe dibujar muy bien.": "<b>saber</b> + Infinitiv = etwas können (gelernt haben) — hier „können“, nicht „wissen“.",
+    "B1 | Anna conoce este museo desde hace años.": "<b>conocer</b> einen Ort = ihn kennen, schon dort gewesen sein.",
+    "B1 | El vigilante conoce a todos los visitantes del domingo.": "Personen → <b>conocer a</b>.",
+    "B1 | ¿Sabes quién pintó el cuadro del barco?": "<b>saber</b> + Frage (quién, dónde, cuándo) = eine Information wissen.",
+    "B1 | El estudiante no conoce al pintor del caballo.": "Eine Person → <b>conocer a</b> (a + el = al).",
+    "B1 | Anna sabe que el museo cierra a las seis.": "<b>saber que</b> + Satz = wissen, dass …",
+    "B1 | ¿Conoces Berlín? — Sí, vivo aquí.": "Eine Stadt → <b>conocer</b>, ohne „a“.",
+    "B2 | Anna aprende dibujando la escultura.": "Der <b>gerundio</b> sagt, wie: aprende <b>dibujando</b> (indem sie zeichnet) — ein Wort statt eines ganzen „indem“-Satzes.",
+    "B2 | El estudiante descubre el cuadro escuchando la audioguía.": "-ar → <b>-ando</b>: escuchar → escuchando, die Form des gerundio.",
+    "B2 | Se protegen los cuadros manteniendo las ventanas cerradas.": "-er / -ir → <b>-iendo</b>: mantener → manteniendo, die Form des gerundio.",
+    "B2 | El vigilante pasa el día sentado en su silla.": "Ein Zustand, keine Handlung: <b>sentado</b> (Partizip), nicht sentando.",
+    "B2 | Anna sigue dibujando aunque el museo va a cerrar.": "<b>seguir</b> + gerundio = weiter etwas tun.",
+    "B2 | Mirando despacio, se ven más detalles.": "Am Satzanfang heißt der gerundio „wenn man …“: <b>mirando</b> despacio.",
+    "C1 | Debe de gustarle mucho el arte.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el joven sea estudiante de arte.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Trabajará aquí desde hace años.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que el cuadro del barco vale mucho dinero.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El cuadro del barco está encima de la puerta.": "Das Bild mit dem Schiff hängt über der Tür.",
+    "A2 | Anna está sentada en el banco.": "Anna sitzt auf der Bank.",
+    "A2 | El abrigo está en el banco.": "Der Mantel liegt auf der Bank.",
+    "A2 | La mochila está en el piso.": "Der Rucksack liegt auf dem Boden.",
+    "A2 | La mochila está en el suelo.": "Der Rucksack liegt auf dem Boden.",
+    "A2 | El vigilante está al lado de la puerta.": "Der Wärter sitzt neben der Tür.",
+    "A2 | El estudiante está al lado de la ventana.": "Der Student steht neben dem Fenster.",
+    "A2 | La lámpara está en el techo.": "Die Lampe hängt an der Decke.",
+    "A2 | Hay una escultura de un perro.": "Es gibt eine Skulptur von einem Hund.",
+    "B1 | Anna sabe dibujar muy bien.": "Anna kann sehr gut zeichnen.",
+    "B1 | Anna conoce este museo desde hace años.": "Anna kennt dieses Museum seit Jahren.",
+    "B1 | El vigilante conoce a todos los visitantes del domingo.": "Der Wärter kennt alle Sonntagsbesucher.",
+    "B1 | ¿Sabes quién pintó el cuadro del barco?": "Weißt du, wer das Bild mit dem Schiff gemalt hat?",
+    "B1 | El estudiante no conoce al pintor del caballo.": "Der Student kennt den Maler des Pferdes nicht.",
+    "B1 | Anna sabe que el museo cierra a las seis.": "Anna weiß, dass das Museum um sechs schließt.",
+    "B1 | ¿Conoces Berlín? — Sí, vivo aquí.": "Kennst du Berlin? — Ja, ich wohne hier.",
+    "B2 | Anna aprende dibujando la escultura.": "Anna lernt, indem sie die Skulptur zeichnet.",
+    "B2 | El estudiante descubre el cuadro escuchando la audioguía.": "Der Student entdeckt das Bild, indem er den Audioguide hört.",
+    "B2 | Se protegen los cuadros manteniendo las ventanas cerradas.": "Man schützt die Bilder, indem man die Fenster geschlossen hält.",
+    "B2 | El vigilante pasa el día sentado en su silla.": "Der Wärter verbringt den Tag sitzend auf seinem Stuhl.",
+    "B2 | Anna sigue dibujando aunque el museo va a cerrar.": "Anna zeichnet weiter, obwohl das Museum gleich schließt.",
+    "B2 | Mirando despacio, se ven más detalles.": "Wenn man langsam hinschaut, sieht man mehr Details.",
+    "C1 | Debe de gustarle mucho el arte.": "Sie muss Kunst sehr mögen.",
+    "C1 | Puede que el joven sea estudiante de arte.": "Vielleicht ist der junge Mann Kunststudent.",
+    "C1 | Trabajará aquí desde hace años.": "Er wird wohl seit Jahren hier arbeiten.",
+    "C1 | Dicen que el cuadro del barco vale mucho dinero.": "Man sagt, das Bild mit dem Schiff sei viel Geld wert."
+   }
   }
  }
 };

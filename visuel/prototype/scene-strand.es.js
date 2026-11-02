@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "شمس",
    "pl": "słońce",
    "ru": "солнце",
+   "de": "die Sonne",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "غيمة، سحابة",
    "pl": "chmura",
    "ru": "облако, туча",
+   "de": "die Wolke",
    "latam": null
   },
   {
@@ -108,6 +111,7 @@ window.SCENE = {
    "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
+   "de": "der Vogel",
    "latam": null
   },
   {
@@ -135,6 +139,7 @@ window.SCENE = {
    "ar": "طائر، عصفور",
    "pl": "ptak",
    "ru": "птица",
+   "de": "der Vogel",
    "latam": null
   },
   {
@@ -162,6 +167,7 @@ window.SCENE = {
    "ar": "حجر",
    "pl": "kamień",
    "ru": "камень",
+   "de": "der Stein",
    "latam": null
   },
   {
@@ -189,6 +195,7 @@ window.SCENE = {
    "ar": "سفينة، مركب",
    "pl": "łódź, łódka",
    "ru": "лодка",
+   "de": "das Schiff, das Boot",
    "latam": null
   },
   {
@@ -216,6 +223,7 @@ window.SCENE = {
    "ar": "منارة",
    "pl": "latarnia morska",
    "ru": "маяк",
+   "de": "der Leuchtturm",
    "latam": null
   },
   {
@@ -243,6 +251,7 @@ window.SCENE = {
    "ar": "جزيرة",
    "pl": "wyspa",
    "ru": "остров",
+   "de": "die Insel",
    "latam": null
   },
   {
@@ -270,6 +279,7 @@ window.SCENE = {
    "ar": "بحر",
    "pl": "morze",
    "ru": "море",
+   "de": "das Meer",
    "latam": null
   },
   {
@@ -297,6 +307,7 @@ window.SCENE = {
    "ar": "طفل، ولد",
    "pl": "chłopiec",
    "ru": "мальчик",
+   "de": "das Kind",
    "latam": null
   },
   {
@@ -324,6 +335,7 @@ window.SCENE = {
    "ar": "كرة",
    "pl": "piłka",
    "ru": "мяч",
+   "de": "der Ball",
    "latam": null
   },
   {
@@ -351,6 +363,7 @@ window.SCENE = {
    "ar": "موجة",
    "pl": "fala",
    "ru": "волна",
+   "de": "die Welle",
    "latam": null
   },
   {
@@ -378,6 +391,7 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
+   "de": "der Hund",
    "latam": null
   },
   {
@@ -405,6 +419,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -432,6 +447,7 @@ window.SCENE = {
    "ar": "مثلّجات، آيس كريم",
    "pl": "lód",
    "ru": "лёд",
+   "de": "das Eis (Speiseeis)",
    "latam": null
   },
   {
@@ -459,6 +475,7 @@ window.SCENE = {
    "ar": "دلو",
    "pl": "wiadro",
    "ru": "ведро",
+   "de": "der Eimer",
    "latam": {
     "mot": "cubeta",
     "genre": "la",
@@ -490,6 +507,7 @@ window.SCENE = {
    "ar": "منشفة",
    "pl": "ręcznik",
    "ru": "полотенце",
+   "de": "das Handtuch",
    "latam": null
   },
   {
@@ -517,6 +535,7 @@ window.SCENE = {
    "ar": "سلّة",
    "pl": "koszyk, kosz",
    "ru": "корзина",
+   "de": "der Korb",
    "latam": null
   },
   {
@@ -544,6 +563,7 @@ window.SCENE = {
    "ar": "منشفة",
    "pl": "ręcznik",
    "ru": "полотенце",
+   "de": "das Handtuch",
    "latam": null
   },
   {
@@ -571,6 +591,7 @@ window.SCENE = {
    "ar": "كتاب",
    "pl": "książka",
    "ru": "книга",
+   "de": "das Buch",
    "latam": null
   },
   {
@@ -598,6 +619,7 @@ window.SCENE = {
    "ar": "نظّارة",
    "pl": "okulary",
    "ru": "очки",
+   "de": "die Brille",
    "latam": {
     "mot": "lentes",
     "genre": "los",
@@ -621,7 +643,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": "handtuch",
@@ -640,6 +663,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -667,6 +691,7 @@ window.SCENE = {
    "ar": "قبّعة",
    "pl": "kapelusz",
    "ru": "шляпа",
+   "de": "der Hut",
    "latam": null
   },
   {
@@ -694,6 +719,7 @@ window.SCENE = {
    "ar": "حجر",
    "pl": "kamień",
    "ru": "камень",
+   "de": "der Stein",
    "latam": null
   },
   {
@@ -713,7 +739,8 @@ window.SCENE = {
      "fr": "la plage",
      "en": "the beach",
      "pt": "a praia",
-     "ar": "شاطئ"
+     "ar": "شاطئ",
+     "de": "der Strand"
     }
    ],
    "sur": null,
@@ -732,6 +759,7 @@ window.SCENE = {
    "ar": "رمل",
    "pl": "piasek",
    "ru": "песок",
+   "de": "der Sand",
    "latam": null
   },
   {
@@ -759,6 +787,7 @@ window.SCENE = {
    "ar": "شمسية",
    "pl": "parasol",
    "ru": "пляжный зонт",
+   "de": "der Sonnenschirm",
    "latam": null
   },
   {
@@ -798,6 +827,7 @@ window.SCENE = {
    "ar": "صدفة",
    "pl": "muszla",
    "ru": "ракушка",
+   "de": "die Muschel",
    "latam": null
   },
   {
@@ -825,6 +855,7 @@ window.SCENE = {
    "ar": "مجرفة",
    "pl": "łopatka",
    "ru": "лопатка",
+   "de": "die Schaufel",
    "latam": null
   }
  ],
@@ -1500,6 +1531,77 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna am Strand in Spanien: Sie sitzt auf einem großen gestreiften Handtuch und isst ein Eis; ein Junge spielt mit einem Ball in den Wellen, ein Hund schläft im Schatten eines Sonnenschirms; in der Ferne ein Segelboot, eine Insel und ihr Leuchtturm.",
+    "consigne": "Anna macht Urlaub am Meer. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Das pretérito indefinido",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El libro está encima de la toalla.": "<b>encima de</b> = auf.",
+    "A2 | El perro está detrás de la cesta.": "<b>detrás de</b> = hinter.",
+    "A2 | El niño juega en el mar.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El faro está en la isla.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La cubeta está al lado de la cesta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El cubo está al lado de la cesta.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El barco está en el mar.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Hay un pájaro en la piedra.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | El sol está en el cielo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "B1 | Ayer Anna voló a España.": "Eine abgeschlossene Handlung zu einem bestimmten Zeitpunkt (ayer) → <b>indefinido</b>.",
+    "B1 | Esta mañana nadó en el mar.": "Sie → <b>-ó</b>, mit Akzent.",
+    "B1 | Compró un helado en la playa.": "Ein einmaliger Kauf → <b>indefinido</b>: compró.",
+    "B1 | El niño tiró la pelota al agua.": "<b>tirar</b> → tiró.",
+    "B1 | El perro se durmió a la sombra.": "<b>dormir</b> → <b>durmió</b>: Das o wird zu u.",
+    "B1 | Anna puso el libro en la toalla.": "<b>poner</b> ist unregelmäßig → <b>puso</b>.",
+    "B1 | El barco salió del puerto esta mañana.": "<b>salir</b> → salió.",
+    "B1 | Anna estuvo todo el día al sol.": "Eine abgegrenzte Dauer (todo el día) → <b>indefinido</b>: estuvo.",
+    "B2 | La mujer que come un helado se llama Anna.": "Relativsatz ohne Komma, Subjekt → <b>que</b>.",
+    "B2 | El niño cuya pelota es de colores juega en el agua.": "<b>cuyo</b> richtet sich nach dem Besessenen: la pelota → <b>cuya</b>.",
+    "B2 | La isla en la que hay un faro es pequeña.": "Präposition + Artikel + <b>que</b>, abgestimmt auf la isla.",
+    "B2 | El helado ya está medio comido.": "<b>estar</b> + Partizip, angepasst: el helado → comid<b>o</b>.",
+    "B2 | Aquí se nada mucho en verano.": "Unpersönliches <b>se</b>: „man schwimmt“, Verb im Singular.",
+    "B2 | La toalla, cuyas rayas son azules y blancas, es de Anna.": "<b>cuyo</b> richtet sich nach dem Besessenen: las rayas → <b>cuyas</b>.",
+    "C1 | Debe de estar muy a gusto de vacaciones.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el perro sea del niño.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Estará bastante caliente.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que desde el faro se puede ver África.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El libro está encima de la toalla.": "Das Buch liegt auf dem Handtuch.",
+    "A2 | El perro está detrás de la cesta.": "Der Hund liegt hinter dem Korb.",
+    "A2 | El niño juega en el mar.": "Der Junge spielt im Meer.",
+    "A2 | El faro está en la isla.": "Der Leuchtturm steht auf der Insel.",
+    "A2 | La cubeta está al lado de la cesta.": "Der Eimer steht neben dem Korb.",
+    "A2 | El cubo está al lado de la cesta.": "Der Eimer steht neben dem Korb.",
+    "A2 | El barco está en el mar.": "Das Boot ist auf dem Meer.",
+    "A2 | Hay un pájaro en la piedra.": "Auf dem Felsen sitzt ein Vogel.",
+    "A2 | El sol está en el cielo.": "Die Sonne steht am Himmel.",
+    "B1 | Ayer Anna voló a España.": "Gestern ist Anna nach Spanien geflogen.",
+    "B1 | Esta mañana nadó en el mar.": "Heute Morgen ist sie im Meer geschwommen.",
+    "B1 | Compró un helado en la playa.": "Sie hat am Strand ein Eis gekauft.",
+    "B1 | El niño tiró la pelota al agua.": "Der Junge hat den Ball ins Wasser geworfen.",
+    "B1 | El perro se durmió a la sombra.": "Der Hund ist im Schatten eingeschlafen.",
+    "B1 | Anna puso el libro en la toalla.": "Anna hat das Buch auf das Handtuch gelegt.",
+    "B1 | El barco salió del puerto esta mañana.": "Das Schiff hat heute Morgen den Hafen verlassen.",
+    "B1 | Anna estuvo todo el día al sol.": "Anna war den ganzen Tag in der Sonne.",
+    "B2 | La mujer que come un helado se llama Anna.": "Die Frau, die ein Eis isst, heißt Anna.",
+    "B2 | El niño cuya pelota es de colores juega en el agua.": "Der Junge, dessen Ball bunt ist, spielt im Wasser.",
+    "B2 | La isla en la que hay un faro es pequeña.": "Die Insel, auf der ein Leuchtturm steht, ist klein.",
+    "B2 | El helado ya está medio comido.": "Das Eis ist schon halb aufgegessen.",
+    "B2 | Aquí se nada mucho en verano.": "Hier wird im Sommer viel geschwommen.",
+    "B2 | La toalla, cuyas rayas son azules y blancas, es de Anna.": "Das Handtuch, dessen Streifen blau und weiß sind, gehört Anna.",
+    "C1 | Debe de estar muy a gusto de vacaciones.": "Sie muss sich im Urlaub sehr wohlfühlen.",
+    "C1 | Puede que el perro sea del niño.": "Vielleicht gehört der Hund dem Jungen.",
+    "C1 | Estará bastante caliente.": "Es wird wohl ziemlich warm sein.",
+    "C1 | Dicen que desde el faro se puede ver África.": "Man sagt, vom Leuchtturm könne man Afrika sehen."
+   }
   }
  }
 };

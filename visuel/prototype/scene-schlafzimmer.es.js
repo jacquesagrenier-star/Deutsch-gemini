@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -85,6 +87,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -112,6 +115,7 @@ window.SCENE = {
    "ar": "ستارة",
    "pl": "zasłona",
    "ru": "штора, занавеска",
+   "de": "der Vorhang",
    "latam": null
   },
   {
@@ -131,7 +135,8 @@ window.SCENE = {
      "fr": "le poster",
      "en": "the poster",
      "pt": "o pôster",
-     "ar": "ملصق، بوستر"
+     "ar": "ملصق، بوستر",
+     "de": "das Poster"
     }
    ],
    "sur": null,
@@ -150,6 +155,7 @@ window.SCENE = {
    "ar": "لوحة",
    "pl": "obraz",
    "ru": "картина, изображение",
+   "de": "das Bild (Gemälde)",
    "latam": null
   },
   {
@@ -177,6 +183,7 @@ window.SCENE = {
    "ar": "خزانة",
    "pl": "szafa",
    "ru": "шкаф",
+   "de": "der Schrank",
    "latam": {
     "mot": "clóset",
     "genre": "el",
@@ -208,6 +215,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -235,6 +243,7 @@ window.SCENE = {
    "ar": "منبّه",
    "pl": "budzik",
    "ru": "будильник",
+   "de": "der Wecker",
    "latam": null
   },
   {
@@ -262,6 +271,7 @@ window.SCENE = {
    "ar": "حاسوب محمول",
    "pl": "laptop",
    "ru": "ноутбук",
+   "de": "der Laptop",
    "latam": {
     "mot": "laptop",
     "genre": "la",
@@ -293,6 +303,7 @@ window.SCENE = {
    "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
+   "de": "der Schreibtisch",
    "latam": null
   },
   {
@@ -320,6 +331,7 @@ window.SCENE = {
    "ar": "وسادة",
    "pl": "poduszka",
    "ru": "подушка",
+   "de": "das Kopfkissen",
    "latam": null
   },
   {
@@ -347,6 +359,7 @@ window.SCENE = {
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
+   "de": "der Koffer",
    "latam": null
   },
   {
@@ -374,6 +387,7 @@ window.SCENE = {
    "ar": "قبّعة",
    "pl": "kapelusz",
    "ru": "шляпа",
+   "de": "der Hut",
    "latam": null
   },
   {
@@ -401,6 +415,7 @@ window.SCENE = {
    "ar": "كاميرا",
    "pl": "aparat, kamera",
    "ru": "фотоаппарат, камера",
+   "de": "die Kamera",
    "latam": null
   },
   {
@@ -428,6 +443,7 @@ window.SCENE = {
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
    "ru": "мобильный телефон",
+   "de": "das Handy",
    "latam": {
     "mot": "celular",
     "genre": "el",
@@ -459,6 +475,7 @@ window.SCENE = {
    "ar": "جواز سفر",
    "pl": "paszport",
    "ru": "паспорт",
+   "de": "der Reisepass",
    "latam": null
   },
   {
@@ -486,6 +503,7 @@ window.SCENE = {
    "ar": "محفظة",
    "pl": "portmonetka",
    "ru": "кошелёк",
+   "de": "die Brieftasche, das Portemonnaie",
    "latam": null
   },
   {
@@ -513,6 +531,7 @@ window.SCENE = {
    "ar": "خريطة",
    "pl": "mapa",
    "ru": "карта (географическая)",
+   "de": "die Landkarte, der Plan",
    "latam": null
   },
   {
@@ -540,6 +559,7 @@ window.SCENE = {
    "ar": "شاحن",
    "pl": "ładowarka",
    "ru": "зарядное устройство",
+   "de": "das Ladegerät",
    "latam": null
   },
   {
@@ -567,6 +587,7 @@ window.SCENE = {
    "ar": "سرير",
    "pl": "łóżko",
    "ru": "кровать",
+   "de": "das Bett",
    "latam": null
   },
   {
@@ -594,6 +615,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -621,6 +643,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -652,6 +675,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -679,6 +703,7 @@ window.SCENE = {
    "ar": "جورب",
    "pl": "skarpetka",
    "ru": "носок",
+   "de": "die Socke",
    "latam": null
   },
   {
@@ -706,6 +731,7 @@ window.SCENE = {
    "ar": "سجّادة",
    "pl": "dywan",
    "ru": "ковёр",
+   "de": "der Teppich",
    "latam": null
   },
   {
@@ -739,6 +765,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -766,6 +793,7 @@ window.SCENE = {
    "ar": "طاولة السرير (كومودينو)",
    "pl": "szafka nocna",
    "ru": "прикроватная тумбочка",
+   "de": "der Nachttisch",
    "latam": {
     "mot": "buró",
     "genre": "el",
@@ -1489,6 +1517,83 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Anna an einem Morgen in ihrem Zimmer: Sie hält einen grünen Pullover und schaut auf ihren offenen Koffer auf dem Bett; auf dem Bett ein Strohhut, eine Kamera, ein Handy, ein Pass, ein Portemonnaie, eine Karte und ein Ladegerät.",
+    "consigne": "Anna packt ihren Koffer für eine Reise. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Ir a + Infinitiv und die Pronomen",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El sombrero está en la cama.": "<b>en</b> = auf, in. Der Ort → <b>estar</b>.",
+    "A2 | El despertador está al lado de la lámpara.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El cuadro está encima de la cama.": "<b>encima de</b> = über.",
+    "A2 | La laptop está en el escritorio.": "<b>el</b> escritorio ist männlich → <b>en el</b> escritorio.",
+    "A2 | El portátil está en el escritorio.": "<b>el</b> escritorio ist männlich → <b>en el</b> escritorio.",
+    "A2 | Anna está de pie sobre la alfombra.": "<b>sobre</b> = auf. <b>bajo</b> = unter.",
+    "A2 | El pasaporte está al lado de la cartera.": "<b>al lado de</b> = neben.",
+    "A2 | El cargador está al lado del mapa.": "<b>el</b> mapa ist männlich, trotz seines -a: al lado <b>del</b> mapa.",
+    "A2 | Hay un clóset blanco detrás de Anna.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | Hay un armario blanco detrás de Anna.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | Anna va a viajar mañana.": "<b>ir a</b> + Infinitiv = das nahe Futur. Sie → <b>va</b>.",
+    "B1 | Anna lo va a meter en la maleta.": "Nach <b>ir a</b> immer der <b>Infinitiv</b>.",
+    "B1 | Anna la va a llevar.": "Direktes Objekt, weiblich (la cámara) → <b>la</b>.",
+    "B1 | Anna los lleva puestos.": "Direktes Objekt, männlich Plural (los calcetines) → <b>los</b>.",
+    "B1 | Anna no puede viajar sin su pasaporte.": "Ein einziger Pass → <b>su</b>. <b>sus</b> stünde bei einem Plural.",
+    "B1 | Casi lo ha olvidado.": "Perfekt → immer <b>haber</b>: ha olvidado.",
+    "B1 | Anna tiene que hacer la maleta hoy.": "<b>tener que</b> + Infinitiv = müssen. <b>hay que</b> wäre unpersönlich („man muss“).",
+    "B1 | Mañana hará calor en el sur.": "Das Wetter von morgen: <b>hacer</b> im Futur → <b>hará</b>.",
+    "B2 | La maleta que está en la cama es azul.": "Eine Sache, Subjekt → <b>que</b>.",
+    "B2 | El pasaporte, sin el cual Anna no puede viajar, está en la cama.": "Nach einer Präposition: <b>el cual</b>.",
+    "B2 | La mujer, cuyo suéter es verde, piensa.": "<b>cuyo</b> richtet sich nach dem Besessenen: el suéter → <b>cuyo</b>.",
+    "B2 | La mujer, cuyo jersey es verde, piensa.": "<b>cuyo</b> richtet sich nach dem Besessenen: el jersey → <b>cuyo</b>.",
+    "B2 | La maleta ya está medio hecha.": "<b>hacer la maleta</b> = den Koffer packen; unregelmäßiges Partizip, angepasst: hech<b>a</b>.",
+    "B2 | Todo tiene que estar guardado hoy.": "Das erwartete Ergebnis → <b>estar</b> + Partizip.",
+    "B2 | La cámara con la que Anna quiere hacer fotos está en la cama.": "Präposition + Artikel + <b>que</b>, abgestimmt auf la cámara → <b>la que</b>.",
+    "C1 | Debe de estar contenta con el viaje.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el suéter sea demasiado caliente para el sur.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Puede que el jersey sea demasiado caliente para el sur.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Saldrá mañana temprano.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que en esa playa hace calor todo el año.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El sombrero está en la cama.": "Der Hut liegt auf dem Bett.",
+    "A2 | El despertador está al lado de la lámpara.": "Der Wecker steht neben der Lampe.",
+    "A2 | El cuadro está encima de la cama.": "Das Bild hängt über dem Bett.",
+    "A2 | La laptop está en el escritorio.": "Der Laptop steht auf dem Schreibtisch.",
+    "A2 | El portátil está en el escritorio.": "Der Laptop steht auf dem Schreibtisch.",
+    "A2 | Anna está de pie sobre la alfombra.": "Anna steht auf dem Teppich.",
+    "A2 | El pasaporte está al lado de la cartera.": "Der Pass liegt neben dem Portemonnaie.",
+    "A2 | El cargador está al lado del mapa.": "Das Ladegerät liegt neben der Karte.",
+    "A2 | Hay un clóset blanco detrás de Anna.": "Hinter Anna steht ein weißer Schrank.",
+    "A2 | Hay un armario blanco detrás de Anna.": "Hinter Anna steht ein weißer Schrank.",
+    "B1 | Anna va a viajar mañana.": "Anna wird morgen verreisen.",
+    "B1 | Anna lo va a meter en la maleta.": "Anna wird ihn in den Koffer packen.",
+    "B1 | Anna la va a llevar.": "Anna wird sie mitnehmen.",
+    "B1 | Anna los lleva puestos.": "Anna hat sie an.",
+    "B1 | Anna no puede viajar sin su pasaporte.": "Anna kann ohne ihren Pass nicht reisen.",
+    "B1 | Casi lo ha olvidado.": "Sie hat es fast vergessen.",
+    "B1 | Anna tiene que hacer la maleta hoy.": "Anna muss heute ihren Koffer packen.",
+    "B1 | Mañana hará calor en el sur.": "Morgen wird es im Süden heiß.",
+    "B2 | La maleta que está en la cama es azul.": "Der Koffer, der auf dem Bett liegt, ist blau.",
+    "B2 | El pasaporte, sin el cual Anna no puede viajar, está en la cama.": "Der Pass, ohne den Anna nicht reisen kann, liegt auf dem Bett.",
+    "B2 | La mujer, cuyo suéter es verde, piensa.": "Die Frau, deren Pullover grün ist, überlegt.",
+    "B2 | La mujer, cuyo jersey es verde, piensa.": "Die Frau, deren Pullover grün ist, überlegt.",
+    "B2 | La maleta ya está medio hecha.": "Der Koffer ist schon halb gepackt.",
+    "B2 | Todo tiene que estar guardado hoy.": "Alles muss heute verstaut sein.",
+    "B2 | La cámara con la que Anna quiere hacer fotos está en la cama.": "Die Kamera, mit der Anna Fotos machen will, liegt auf dem Bett.",
+    "C1 | Debe de estar contenta con el viaje.": "Sie muss sich auf die Reise freuen.",
+    "C1 | Puede que el suéter sea demasiado caliente para el sur.": "Vielleicht ist der Pullover zu warm für den Süden.",
+    "C1 | Puede que el jersey sea demasiado caliente para el sur.": "Vielleicht ist der Pullover zu warm für den Süden.",
+    "C1 | Saldrá mañana temprano.": "Sie wird wohl morgen früh abreisen.",
+    "C1 | Dicen que en esa playa hace calor todo el año.": "Man sagt, an diesem Strand sei es das ganze Jahr heiß."
+   }
   }
  }
 };

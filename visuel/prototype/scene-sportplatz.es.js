@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سماء",
    "pl": "niebo",
    "ru": "небо",
+   "de": "der Himmel",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "غيمة، سحابة",
    "pl": "chmura",
    "ru": "облако, туча",
+   "de": "die Wolke",
    "latam": null
   },
   {
@@ -93,6 +95,7 @@ window.SCENE = {
    "ar": "شجرة",
    "pl": "drzewo",
    "ru": "дерево",
+   "de": "der Baum",
    "latam": null
   },
   {
@@ -120,6 +123,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -147,6 +151,7 @@ window.SCENE = {
    "ar": "شبكة",
    "pl": "sieć, zasięg",
    "ru": "сеть",
+   "de": "das Netz",
    "latam": null
   },
   {
@@ -174,6 +179,7 @@ window.SCENE = {
    "ar": "كرة",
    "pl": "piłka",
    "ru": "мяч",
+   "de": "der Ball (Fußball, großer Ball)",
    "latam": null
   },
   {
@@ -201,6 +207,7 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
+   "de": "die Bank",
    "latam": null
   },
   {
@@ -228,6 +235,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -255,6 +263,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -282,6 +291,7 @@ window.SCENE = {
    "ar": "درّاجة",
    "pl": "rower",
    "ru": "велосипед",
+   "de": "das Fahrrad",
    "latam": null
   },
   {
@@ -315,6 +325,7 @@ window.SCENE = {
    "ar": "طريق، درب",
    "pl": "droga",
    "ru": "дорога, путь",
+   "de": "der Weg",
    "latam": null
   },
   {
@@ -342,6 +353,7 @@ window.SCENE = {
    "ar": "لاعب",
    "pl": "zawodnik, gracz",
    "ru": "игрок",
+   "de": "der Spieler",
    "latam": null
   },
   {
@@ -369,6 +381,7 @@ window.SCENE = {
    "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
+   "de": "der Handschuh",
    "latam": null
   },
   {
@@ -396,6 +409,7 @@ window.SCENE = {
    "ar": "تي شيرت، قميص قطني",
    "pl": "koszulka (sportowa)",
    "ru": "спортивная форма, майка",
+   "de": "das T-Shirt",
    "latam": null
   },
   {
@@ -423,6 +437,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -450,6 +465,7 @@ window.SCENE = {
    "ar": "جورب",
    "pl": "skarpetka",
    "ru": "носок",
+   "de": "die Socke",
    "latam": null
   },
   {
@@ -477,6 +493,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -496,7 +513,8 @@ window.SCENE = {
      "fr": "l'homme",
      "en": "the man",
      "pt": "o homem",
-     "ar": "رجل"
+     "ar": "رجل",
+     "de": "der Mann"
     }
    ],
    "sur": null,
@@ -515,6 +533,7 @@ window.SCENE = {
    "ar": "لاعب",
    "pl": "zawodnik, gracz",
    "ru": "игрок",
+   "de": "der Spieler",
    "latam": null
   },
   {
@@ -542,6 +561,7 @@ window.SCENE = {
    "ar": "صفّارة",
    "pl": "fajka; gwizdek",
    "ru": "трубка; свисток",
+   "de": "die Trillerpfeife",
    "latam": null
   },
   {
@@ -569,6 +589,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -596,6 +617,7 @@ window.SCENE = {
    "ar": "فريق",
    "pl": "drużyna",
    "ru": "команда",
+   "de": "die Mannschaft, das Team",
    "latam": null
   },
   {
@@ -623,6 +645,7 @@ window.SCENE = {
    "ar": "كرة",
    "pl": "piłka",
    "ru": "мяч",
+   "de": "der Ball (Fußball, großer Ball)",
    "latam": null
   },
   {
@@ -650,6 +673,7 @@ window.SCENE = {
    "ar": "منشفة",
    "pl": "ręcznik",
    "ru": "полотенце",
+   "de": "das Handtuch",
    "latam": null
   },
   {
@@ -669,7 +693,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": "tasche",
@@ -688,6 +713,7 @@ window.SCENE = {
    "ar": "زجاجة",
    "pl": "butelka",
    "ru": "бутылка",
+   "de": "die Flasche",
    "latam": null
   },
   {
@@ -715,6 +741,7 @@ window.SCENE = {
    "ar": "كيس",
    "pl": "torba, torebka",
    "ru": "сумка",
+   "de": "die Tüte, der Beutel",
    "latam": null
   },
   {
@@ -742,6 +769,7 @@ window.SCENE = {
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
    "ru": "кроссовки, кеды",
+   "de": "der Turnschuh",
    "latam": {
     "mot": "tenis",
     "genre": "el",
@@ -765,7 +793,8 @@ window.SCENE = {
      "fr": "la campagne, le champ",
      "en": "the countryside, the field",
      "pt": "o campo",
-     "ar": "ريف، حقل"
+     "ar": "ريف، حقل",
+     "de": "das Land (ländliche Gegend), das Feld"
     }
    ],
    "sur": null,
@@ -790,6 +819,7 @@ window.SCENE = {
    "ar": "عشب",
    "pl": "trawa",
    "ru": "трава",
+   "de": "das Gras",
    "latam": null
   }
  ],
@@ -1460,6 +1490,77 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark auf einem Fußballplatz in einem Berliner Park: Er hat gerade ein Tor geschossen, der Ball liegt im Netz und er dreht sich mit erhobener Faust um; der Torwart lacht, im Gras sitzend, zwei Mitspieler laufen herbei, die Trainerin klatscht; im Hintergrund zwei Zuschauer auf einer Bank und ein Fahrrad; im Vordergrund ein Ball, eine Sporttasche, ein Handtuch, eine Flasche und Turnschuhe.",
+    "consigne": "Mark spielt mit seiner Mannschaft Fußball. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Indefinido oder imperfecto?",
+    "B2": "Indikativ oder subjuntivo nach einer Konjunktion",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El balón está en la red.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El jugador de amarillo está delante de la red.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El hombre mayor está sentado en el banco.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La toalla está en la bolsa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El balón está al lado de la bolsa.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Hay una bicicleta detrás de la red.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | La nube está en el cielo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La botella está en la bolsa.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "B1 | Mark marcó un gol.": "Eine punktuelle Handlung → <b>indefinido</b>: marcó.",
+    "B1 | El jugador de amarillo se cayó al piso.": "<b>caer</b> → <b>cayó</b>: Das i wird zu y.",
+    "B1 | El jugador de amarillo se cayó al suelo.": "<b>caer</b> → <b>cayó</b>: Das i wird zu y.",
+    "B1 | Los compañeros corrieron hacia Mark.": "Sie (Plural) → <b>-ieron</b>: corrieron.",
+    "B1 | La entrenadora aplaudió cuando Mark marcó.": "Zwei punktuelle Handlungen nacheinander → <b>indefinido</b>.",
+    "B1 | Esa mañana hacía mucho sol.": "Der Hintergrund, die Beschreibung → <b>imperfecto</b>: hacía.",
+    "B1 | Los espectadores estaban sentados en el banco.": "Ein Zustand, der in der Erzählung andauert → <b>imperfecto</b>: estaban.",
+    "B1 | El partido empezó a las diez.": "<b>empezar</b> → empezó, zu einem bestimmten Zeitpunkt.",
+    "B1 | Al final, el equipo de Mark ganó.": "Das Endergebnis → <b>indefinido</b>: ganó.",
+    "B2 | Mark grita de alegría porque ha marcado un gol.": "<b>porque</b> + Indikativ: Der Grund ist eine Tatsache.",
+    "B2 | El jugador de amarillo se ríe aunque no ha parado el balón.": "<b>aunque</b> + Indikativ: eine reale Tatsache, die man einräumt.",
+    "B2 | Entrenan cada sábado para que el equipo esté en forma.": "<b>para que</b> → immer der <b>subjuntivo</b>.",
+    "B2 | Mark beberá agua cuando termine el partido.": "<b>cuando</b> + Zukünftiges → <b>subjuntivo</b>: cuando termine. Das Deutsche sagt hier einfach „wenn … ist“.",
+    "B2 | Los espectadores miran mientras los jugadores corren.": "<b>mientras</b> + gleichzeitige Tatsache → Indikativ.",
+    "B2 | Antes de que empezara el partido, todos calentaron.": "<b>antes de que</b> → immer der subjuntivo; in der Vergangenheit: empezara.",
+    "C1 | Debe de ser su primer gol.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | El partido estará a punto de terminar.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que la entrenadora fue profesional.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El balón está en la red.": "Der Ball liegt im Netz.",
+    "A2 | El jugador de amarillo está delante de la red.": "Der Spieler in Gelb steht vor dem Netz.",
+    "A2 | El hombre mayor está sentado en el banco.": "Der alte Herr sitzt auf der Bank.",
+    "A2 | La toalla está en la bolsa.": "Das Handtuch ist in der Tasche.",
+    "A2 | El balón está al lado de la bolsa.": "Der Ball liegt neben der Tasche.",
+    "A2 | Hay una bicicleta detrás de la red.": "Hinter dem Netz steht ein Fahrrad.",
+    "A2 | La nube está en el cielo.": "Die Wolke ist am Himmel.",
+    "A2 | La botella está en la bolsa.": "Die Flasche ist in der Tasche.",
+    "B1 | Mark marcó un gol.": "Mark hat ein Tor geschossen.",
+    "B1 | El jugador de amarillo se cayó al piso.": "Der Spieler in Gelb ist zu Boden gefallen.",
+    "B1 | El jugador de amarillo se cayó al suelo.": "Der Spieler in Gelb ist zu Boden gefallen.",
+    "B1 | Los compañeros corrieron hacia Mark.": "Die Mitspieler sind zu Mark gelaufen.",
+    "B1 | La entrenadora aplaudió cuando Mark marcó.": "Die Trainerin hat geklatscht, als Mark getroffen hat.",
+    "B1 | Esa mañana hacía mucho sol.": "An jenem Morgen schien die Sonne stark.",
+    "B1 | Los espectadores estaban sentados en el banco.": "Die Zuschauer saßen auf der Bank.",
+    "B1 | El partido empezó a las diez.": "Das Spiel hat um zehn Uhr begonnen.",
+    "B1 | Al final, el equipo de Mark ganó.": "Am Ende hat Marks Mannschaft gewonnen.",
+    "B2 | Mark grita de alegría porque ha marcado un gol.": "Mark schreit vor Freude, weil er ein Tor geschossen hat.",
+    "B2 | El jugador de amarillo se ríe aunque no ha parado el balón.": "Der Spieler in Gelb lacht, obwohl er den Ball nicht gehalten hat.",
+    "B2 | Entrenan cada sábado para que el equipo esté en forma.": "Sie trainieren jeden Samstag, damit die Mannschaft in Form ist.",
+    "B2 | Mark beberá agua cuando termine el partido.": "Mark wird Wasser trinken, wenn das Spiel zu Ende ist.",
+    "B2 | Los espectadores miran mientras los jugadores corren.": "Die Zuschauer schauen zu, während die Spieler laufen.",
+    "B2 | Antes de que empezara el partido, todos calentaron.": "Bevor das Spiel begann, haben sich alle aufgewärmt.",
+    "C1 | Debe de ser su primer gol.": "Das muss sein erstes Tor sein.",
+    "C1 | Puede que el hombre mayor sea el vecino de Mark.": "Vielleicht ist der alte Herr Marks Nachbar.",
+    "C1 | El partido estará a punto de terminar.": "Das Spiel wird wohl gleich zu Ende sein.",
+    "C1 | Dicen que la entrenadora fue profesional.": "Man sagt, die Trainerin sei Profi gewesen."
+   }
   }
  }
 };

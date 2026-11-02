@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "سقف",
    "pl": "koc",
    "ru": "одеяло, плед",
+   "de": "die Zimmerdecke",
    "latam": null
   },
   {
@@ -60,6 +61,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -87,6 +89,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -114,6 +117,7 @@ window.SCENE = {
    "ar": "شاشة",
    "pl": "ekran",
    "ru": "экран",
+   "de": "der Bildschirm",
    "latam": null
   },
   {
@@ -147,6 +151,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -174,6 +179,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -201,6 +207,7 @@ window.SCENE = {
    "ar": "لافتة، إشارة",
    "pl": "tabliczka, szyld",
    "ru": "табличка, вывеска",
+   "de": "das Schild (Verkehrsschild), das Zeichen",
    "latam": null
   },
   {
@@ -228,6 +235,7 @@ window.SCENE = {
    "ar": "سلّم، درج",
    "pl": "schody",
    "ru": "лестница",
+   "de": "die Treppe",
    "latam": null
   },
   {
@@ -255,6 +263,7 @@ window.SCENE = {
    "ar": "كشك",
    "pl": "kiosk",
    "ru": "киоск",
+   "de": "der Kiosk",
    "latam": null
   },
   {
@@ -282,6 +291,7 @@ window.SCENE = {
    "ar": "بريتزل (كعك ألماني مملّح)",
    "pl": "precel",
    "ru": "брецель (крендель)",
+   "de": "die Brezel",
    "latam": null
   },
   {
@@ -309,6 +319,7 @@ window.SCENE = {
    "ar": "جريدة",
    "pl": "gazeta",
    "ru": "газета",
+   "de": "die Zeitung",
    "latam": null
   },
   {
@@ -336,6 +347,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -363,6 +375,7 @@ window.SCENE = {
    "ar": "غيتار",
    "pl": "gitara",
    "ru": "гитара",
+   "de": "die Gitarre",
    "latam": null
   },
   {
@@ -390,6 +403,7 @@ window.SCENE = {
    "ar": "كرسي بلا ظهر",
    "pl": "taboret",
    "ru": "табурет",
+   "de": "der Hocker",
    "latam": null
   },
   {
@@ -417,6 +431,7 @@ window.SCENE = {
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
+   "de": "der Koffer",
    "latam": null
   },
   {
@@ -436,7 +451,8 @@ window.SCENE = {
      "fr": "l'argent",
      "en": "the money",
      "pt": "o dinheiro",
-     "ar": "مال، نقود"
+     "ar": "مال، نقود",
+     "de": "das Geld"
     }
    ],
    "sur": "koffer-2",
@@ -455,6 +471,7 @@ window.SCENE = {
    "ar": "قطعة نقدية، عملة",
    "pl": "moneta",
    "ru": "монета",
+   "de": "die Münze, die Währung",
    "latam": null
   },
   {
@@ -482,6 +499,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -509,6 +527,7 @@ window.SCENE = {
    "ar": "معطف",
    "pl": "płaszcz",
    "ru": "пальто",
+   "de": "der Mantel",
    "latam": null
   },
   {
@@ -536,6 +555,7 @@ window.SCENE = {
    "ar": "مظلّة",
    "pl": "parasol",
    "ru": "зонт",
+   "de": "der Regenschirm",
    "latam": null
   },
   {
@@ -563,6 +583,7 @@ window.SCENE = {
    "ar": "حقيبة سفر",
    "pl": "walizka",
    "ru": "чемодан",
+   "de": "der Koffer",
    "latam": null
   },
   {
@@ -590,6 +611,7 @@ window.SCENE = {
    "ar": "بنك، مقعد",
    "pl": "bank",
    "ru": "банк",
+   "de": "die Bank",
    "latam": null
   },
   {
@@ -617,6 +639,7 @@ window.SCENE = {
    "ar": "كلب",
    "pl": "pies",
    "ru": "собака",
+   "de": "der Hund",
    "latam": null
   },
   {
@@ -644,6 +667,7 @@ window.SCENE = {
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
    "ru": "мусорное ведро",
+   "de": "der Papierkorb",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -667,7 +691,8 @@ window.SCENE = {
      "fr": "le train",
      "en": "the train",
      "pt": "o trem",
-     "ar": "قطار"
+     "ar": "قطار",
+     "de": "der Zug"
     }
    ],
    "sur": null,
@@ -692,6 +717,7 @@ window.SCENE = {
    "ar": "مترو",
    "pl": "metro",
    "ru": "метро",
+   "de": "die U-Bahn",
    "latam": null
   },
   {
@@ -719,6 +745,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -746,6 +773,7 @@ window.SCENE = {
    "ar": "راكب",
    "pl": "pasażer",
    "ru": "пассажир",
+   "de": "der Fahrgast, der Passagier",
    "latam": null
   },
   {
@@ -773,6 +801,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -800,6 +829,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -831,6 +861,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -858,6 +889,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -885,6 +917,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -912,6 +945,7 @@ window.SCENE = {
    "ar": "قهوة",
    "pl": "kawa",
    "ru": "кофе",
+   "de": "der Kaffee",
    "latam": null
   },
   {
@@ -939,6 +973,7 @@ window.SCENE = {
    "ar": "تذكرة",
    "pl": "bilet",
    "ru": "билет (на проезд)",
+   "de": "die Fahrkarte, das Ticket",
    "latam": {
     "mot": "boleto",
     "genre": "el",
@@ -970,6 +1005,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -989,7 +1025,8 @@ window.SCENE = {
      "fr": "la chaussure",
      "en": "the shoe",
      "pt": "o sapato",
-     "ar": "حذاء"
+     "ar": "حذاء",
+     "de": "der Schuh"
     }
    ],
    "sur": null,
@@ -1014,6 +1051,7 @@ window.SCENE = {
    "ar": "حذاء رياضي",
    "pl": "trampek, but sportowy",
    "ru": "кроссовки, кеды",
+   "de": "der Turnschuh",
    "latam": {
     "mot": "tenis",
     "genre": "el",
@@ -1051,6 +1089,7 @@ window.SCENE = {
    "ar": "رصيف المحطة",
    "pl": "peron",
    "ru": "перрон, платформа",
+   "de": "der Bahnsteig",
    "latam": null
   }
  ],
@@ -1711,6 +1750,75 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark an einem Werktagmorgen in einer Berliner U-Bahn-Station: Einen Fuß schon zur offenen Tür des gelben Zuges erhoben, einen kleinen weißen Fahrschein in der einen und einen Kaffee zum Mitnehmen in der anderen Hand, dreht er sich lächelnd um; er trägt eine dunkelblaue Daunenjacke über einem grauen Kapuzenpulli, einen grünen Schal, Jeans, weiße Turnschuhe und einen schwarzen Rucksack; im Zug sitzende Fahrgäste; entlang der grün gekachelten Wand ein grüner Abfalleimer, eine Bank, auf der eine alte Dame im beigen Regenmantel mit ihrem Koffer, einem roten Regenschirm und einem kleinen Hund wartet, der Kiosk mit Brezeln und Zeitungen, ein Straßenmusiker, der vor seinem offenen Gitarrenkoffer spielt, in dem ein paar Münzen glänzen, und die Treppe hinauf zur Straße; an der Decke eine Uhr, ein ausgeschalteter Bildschirm und lange Lampen.",
+    "consigne": "Mark fährt mit der U-Bahn. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Die Konjunktionen: y/e, o/u, pero, sino",
+    "B2": "Wünsche: ojalá, que + subjuntivo",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El reloj está en el techo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La señora está sentada en el banco.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La maleta está delante del banco.": "<b>de + el = del</b>, immer.",
+    "A2 | Los pretzels están en el quiosco.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Las monedas están en la funda de la guitarra.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | El perro está al lado del banco.": "<b>de + el = del</b>, immer.",
+    "A2 | El metro está en el andén.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Hay pasajeros en el metro.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "B1 | Mark lleva un boleto y un café.": "<b>y</b> = und.",
+    "B1 | Mark lleva un billete y un café.": "<b>y</b> = und.",
+    "B1 | Mark es simpático e inteligente.": "Vor einem Wort, das mit dem Laut <b>i</b> beginnt, wird y zu <b>e</b>: simpático e inteligente.",
+    "B1 | ¿Quieres un pretzel o un periódico?": "<b>o</b> = oder: eine Wahl.",
+    "B1 | En el andén hay siete u ocho personas.": "Vor einem Wort, das mit dem Laut <b>o</b> beginnt, wird o zu <b>u</b>: siete u ocho.",
+    "B1 | El quiosco es pequeño, pero tiene muchos pretzels.": "<b>pero</b> = aber: ein Gegensatz.",
+    "B1 | El músico no canta, sino que toca la guitarra.": "Nach einer Verneinung, um mit einem Verb zu berichtigen: <b>sino que</b> („sondern“).",
+    "B1 | La maleta no es de Mark, sino de la señora.": "no …, <b>sino</b> …: Man ersetzt eine Sache durch eine andere — das deutsche „sondern“, nicht „aber“.",
+    "B2 | Ojalá el metro no tenga retraso.": "<b>ojalá</b> + subjuntivo Präsens = hoffentlich …",
+    "B2 | ¡Que tengas un buen día, Mark!": "<b>que</b> + subjuntivo = ein Wunsch: ¡que tengas…! (wörtlich: dass du habest).",
+    "B2 | Ojalá haya un asiento libre.": "hay → <b>haya</b> im subjuntivo.",
+    "B2 | Espero que el músico toque más canciones.": "<b>esperar que</b> + subjuntivo.",
+    "B2 | ¡Que tenga buen viaje, señora!": "Mit usted: <b>que tenga</b>.",
+    "B2 | Ojalá Mark haya llegado a tiempo.": "Wunsch über etwas Vergangenes: ojalá + <b>haya</b> + Partizip.",
+    "C1 | Debe de estar de buen humor.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que la señora vaya al aeropuerto.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Será suyo.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que esta estación tiene más de cien años.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El reloj está en el techo.": "Die Uhr hängt an der Decke.",
+    "A2 | La señora está sentada en el banco.": "Die Dame sitzt auf der Bank.",
+    "A2 | La maleta está delante del banco.": "Der Koffer steht vor der Bank.",
+    "A2 | Los pretzels están en el quiosco.": "Die Brezeln sind im Kiosk.",
+    "A2 | Las monedas están en la funda de la guitarra.": "Die Münzen liegen im Gitarrenkoffer.",
+    "A2 | El perro está al lado del banco.": "Der Hund sitzt neben der Bank.",
+    "A2 | El metro está en el andén.": "Die U-Bahn steht am Bahnsteig.",
+    "A2 | Hay pasajeros en el metro.": "In der U-Bahn sind Fahrgäste.",
+    "B1 | Mark lleva un boleto y un café.": "Mark hat einen Fahrschein und einen Kaffee.",
+    "B1 | Mark lleva un billete y un café.": "Mark hat einen Fahrschein und einen Kaffee.",
+    "B1 | Mark es simpático e inteligente.": "Mark ist sympathisch und intelligent.",
+    "B1 | ¿Quieres un pretzel o un periódico?": "Willst du eine Brezel oder eine Zeitung?",
+    "B1 | En el andén hay siete u ocho personas.": "Auf dem Bahnsteig sind sieben oder acht Leute.",
+    "B1 | El quiosco es pequeño, pero tiene muchos pretzels.": "Der Kiosk ist klein, aber er hat viele Brezeln.",
+    "B1 | El músico no canta, sino que toca la guitarra.": "Der Musiker singt nicht, sondern spielt Gitarre.",
+    "B1 | La maleta no es de Mark, sino de la señora.": "Der Koffer gehört nicht Mark, sondern der Dame.",
+    "B2 | Ojalá el metro no tenga retraso.": "Hoffentlich hat die U-Bahn keine Verspätung.",
+    "B2 | ¡Que tengas un buen día, Mark!": "Einen schönen Tag, Mark!",
+    "B2 | Ojalá haya un asiento libre.": "Hoffentlich gibt es einen freien Platz.",
+    "B2 | Espero que el músico toque más canciones.": "Ich hoffe, der Musiker spielt noch mehr Lieder.",
+    "B2 | ¡Que tenga buen viaje, señora!": "Gute Reise, meine Dame!",
+    "B2 | Ojalá Mark haya llegado a tiempo.": "Hoffentlich ist Mark rechtzeitig angekommen.",
+    "C1 | Debe de estar de buen humor.": "Er muss gute Laune haben.",
+    "C1 | Puede que la señora vaya al aeropuerto.": "Vielleicht fährt die Dame zum Flughafen.",
+    "C1 | Será suyo.": "Er wird wohl ihr gehören.",
+    "C1 | Dicen que esta estación tiene más de cien años.": "Man sagt, diese Station sei über hundert Jahre alt."
+   }
   }
  }
 };

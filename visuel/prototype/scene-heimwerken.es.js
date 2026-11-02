@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "لوحة، رسم",
    "pl": "kolor",
    "ru": "цвет, краска",
+   "de": "die Malerei, das Gemälde",
    "latam": null
   },
   {
@@ -81,6 +83,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -108,6 +111,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -135,6 +139,7 @@ window.SCENE = {
    "ar": "قطّ",
    "pl": "kot",
    "ru": "кошка",
+   "de": "die Katze",
    "latam": null
   },
   {
@@ -162,6 +167,7 @@ window.SCENE = {
    "ar": "مقبس كهربائي",
    "pl": "gniazdko (elektryczne)",
    "ru": "розетка",
+   "de": "die Steckdose",
    "latam": null
   },
   {
@@ -189,6 +195,7 @@ window.SCENE = {
    "ar": "كابل، سلك",
    "pl": "kabel",
    "ru": "кабель",
+   "de": "das Kabel",
    "latam": null
   },
   {
@@ -216,6 +223,7 @@ window.SCENE = {
    "ar": "خزانة",
    "pl": "szafa",
    "ru": "шкаф",
+   "de": "der Schrank",
    "latam": {
     "mot": "clóset",
     "genre": "el",
@@ -247,6 +255,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -286,6 +295,7 @@ window.SCENE = {
    "ar": "سلّم، درج",
    "pl": "drabina",
    "ru": "лестница (стремянка)",
+   "de": "die Treppe",
    "latam": null
   },
   {
@@ -313,6 +323,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -340,6 +351,7 @@ window.SCENE = {
    "ar": "دلو",
    "pl": "wiadro",
    "ru": "ведро",
+   "de": "der Eimer",
    "latam": {
     "mot": "cubeta",
     "genre": "la",
@@ -371,6 +383,7 @@ window.SCENE = {
    "ar": "فرشاة رسم",
    "pl": "pędzel",
    "ru": "кисть",
+   "de": "der Pinsel",
    "latam": null
   },
   {
@@ -398,6 +411,7 @@ window.SCENE = {
    "ar": "تي شيرت، قميص قطني",
    "pl": "T-shirt, koszulka",
    "ru": "футболка",
+   "de": "das T-Shirt",
    "latam": null
   },
   {
@@ -425,6 +439,7 @@ window.SCENE = {
    "ar": "بنطال، سروال",
    "pl": "spodnie",
    "ru": "брюки",
+   "de": "die Hose",
    "latam": null
   },
   {
@@ -452,6 +467,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -479,6 +495,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -506,6 +523,7 @@ window.SCENE = {
    "ar": "خشب",
    "pl": "drewno",
    "ru": "дерево (материал)",
+   "de": "das Holz",
    "latam": null
   },
   {
@@ -533,6 +551,7 @@ window.SCENE = {
    "ar": "قفّاز",
    "pl": "rękawiczka",
    "ru": "перчатка",
+   "de": "der Handschuh",
    "latam": null
   },
   {
@@ -560,6 +579,7 @@ window.SCENE = {
    "ar": "أداة",
    "pl": "narzędzie, narzędzia",
    "ru": "инструмент",
+   "de": "das Werkzeug",
    "latam": null
   },
   {
@@ -587,6 +607,7 @@ window.SCENE = {
    "ar": "مطرقة",
    "pl": "młotek",
    "ru": "молоток",
+   "de": "der Hammer",
    "latam": null
   },
   {
@@ -614,6 +635,7 @@ window.SCENE = {
    "ar": "ورق",
    "pl": "papier",
    "ru": "бумага",
+   "de": "das Papier",
    "latam": null
   },
   {
@@ -641,6 +663,7 @@ window.SCENE = {
    "ar": "مسمار",
    "pl": "paznokieć",
    "ru": "ноготь",
+   "de": "der Nagel",
    "latam": null
   },
   {
@@ -668,6 +691,7 @@ window.SCENE = {
    "ar": "مترو",
    "pl": "miarka składana",
    "ru": "складной метр",
+   "de": "die U-Bahn",
    "latam": null
   },
   {
@@ -695,6 +719,7 @@ window.SCENE = {
    "ar": "خشب",
    "pl": "drewno",
    "ru": "дерево (материал)",
+   "de": "das Holz",
    "latam": null
   },
   {
@@ -722,6 +747,7 @@ window.SCENE = {
    "ar": "صندوق كرتون",
    "pl": "karton",
    "ru": "картонная коробка",
+   "de": "der Pappkarton",
    "latam": null
   },
   {
@@ -749,6 +775,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -780,6 +807,7 @@ window.SCENE = {
    "ar": "مثقاب",
    "pl": "wiertarka",
    "ru": "дрель",
+   "de": "die Bohrmaschine",
    "latam": null
   },
   {
@@ -807,6 +835,7 @@ window.SCENE = {
    "ar": "كمّاشة",
    "pl": "kombinerki, obcęgi",
    "ru": "плоскогубцы, клещи",
+   "de": "die Zange",
    "latam": {
     "mot": "pinzas",
     "genre": "las",
@@ -1519,6 +1548,83 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark ist gerade eingezogen: Auf dem Parkett kniend, ein Brett in der einen Hand, einen Schraubenzieher in der anderen, schaut er ratlos auf die Anleitung eines Regals; um ihn herum ein roter Werkzeugkasten, eine Bohrmaschine, Nägel, ein Zollstock, Kartons; eine halb blau gestrichene Wand, eine Leiter, ein Schrank und die Katze auf der Fensterbank.",
+    "consigne": "Mark baut in seiner neuen Wohnung ein Regal auf. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Der Imperativ",
+    "B2": "Der Zweck: para, para que",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El enchufe está en la pared.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | La cubeta está en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | El cubo está en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | La escalera está al lado de la estantería.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La lámpara cuelga del techo.": "<b>de + el = del</b>, immer.",
+    "A2 | Las cajas están al lado de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Los guantes están en el piso.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Los guantes están en el suelo.": "<b>el</b> ist männlich → <b>en el</b>, das nie verschmilzt.",
+    "A2 | Hay un gato en la ventana.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | La madera está en la caja.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "B1 | Mark, pásame el martillo, por favor.": "Imperativ (tú) + angehängtes Pronomen: <b>pásame</b>, mit Akzent — ein Wort, wo das Deutsche „gib mir“ sagt.",
+    "B1 | Lee bien las instrucciones.": "Imperativ (tú) = 3. Person Präsens: <b>lee</b>.",
+    "B1 | Pon el pincel en la cubeta.": "<b>poner</b> → unregelmäßiger Imperativ <b>pon</b>.",
+    "B1 | Pon el pincel en el cubo.": "<b>poner</b> → unregelmäßiger Imperativ <b>pon</b>.",
+    "B1 | Ponte los guantes.": "Reflexives Verb: <b>ponte</b> (pon + te).",
+    "B1 | ¡No te caigas de la escalera!": "Verneinter Imperativ → <b>subjuntivo</b>: no te caigas. Eine andere Form als der bejahte Imperativ — anders als im Deutschen.",
+    "B1 | Ten cuidado, Mark.": "<b>tener</b> → unregelmäßiger Imperativ <b>ten</b>.",
+    "B1 | Gato, baja de la ventana.": "Regelmäßiger Imperativ (tú): <b>baja</b>.",
+    "B1 | Señor vecino, sujete la escalera, por favor.": "Höflicher Imperativ (usted) → <b>sujete</b>.",
+    "B2 | Mark compró pintura para pintar la pared de azul.": "<b>para</b> + Infinitiv: ein Zweck, gleiches Subjekt — wie „um … zu“.",
+    "B2 | Lee las instrucciones para que la estantería no se caiga.": "<b>para que</b> → immer der <b>subjuntivo</b> („damit“).",
+    "B2 | Se le olvidó ponerse los guantes.": "Nach <b>olvidar</b> der Infinitiv; reflexiv → <b>ponerse</b>.",
+    "B2 | No es fácil montar una estantería sin que nadie te ayude.": "<b>sin que</b> → immer der subjuntivo.",
+    "B2 | La pared ya está medio pintada.": "<b>estar</b> + Partizip, angepasst: la pared → pintad<b>a</b>.",
+    "B2 | Sin leer las instrucciones, no se puede montar.": "<b>sin</b> + Infinitiv = ohne … zu.",
+    "C1 | Las instrucciones deben de ser difíciles.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que el gato sea del vecino.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Estará cansado.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Dicen que en este departamento vivía un pintor.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>.",
+    "C1 | Dicen que en este piso vivía un pintor.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | El enchufe está en la pared.": "Die Steckdose ist an der Wand.",
+    "A2 | La cubeta está en el piso.": "Der Eimer steht auf dem Boden.",
+    "A2 | El cubo está en el suelo.": "Der Eimer steht auf dem Boden.",
+    "A2 | La escalera está al lado de la estantería.": "Die Leiter steht neben dem Regal.",
+    "A2 | La lámpara cuelga del techo.": "Die Lampe hängt von der Decke.",
+    "A2 | Las cajas están al lado de la ventana.": "Die Kartons stehen neben dem Fenster.",
+    "A2 | Los guantes están en el piso.": "Die Handschuhe liegen auf dem Boden.",
+    "A2 | Los guantes están en el suelo.": "Die Handschuhe liegen auf dem Boden.",
+    "A2 | Hay un gato en la ventana.": "Am Fenster sitzt eine Katze.",
+    "A2 | La madera está en la caja.": "Das Holz liegt im Karton.",
+    "B1 | Mark, pásame el martillo, por favor.": "Mark, gib mir bitte den Hammer.",
+    "B1 | Lee bien las instrucciones.": "Lies die Anleitung gut durch.",
+    "B1 | Pon el pincel en la cubeta.": "Leg den Pinsel in den Eimer.",
+    "B1 | Pon el pincel en el cubo.": "Leg den Pinsel in den Eimer.",
+    "B1 | Ponte los guantes.": "Zieh die Handschuhe an.",
+    "B1 | ¡No te caigas de la escalera!": "Fall nicht von der Leiter!",
+    "B1 | Ten cuidado, Mark.": "Pass auf, Mark.",
+    "B1 | Gato, baja de la ventana.": "Katze, komm vom Fenster runter.",
+    "B1 | Señor vecino, sujete la escalera, por favor.": "Herr Nachbar, halten Sie bitte die Leiter.",
+    "B2 | Mark compró pintura para pintar la pared de azul.": "Mark hat Farbe gekauft, um die Wand blau zu streichen.",
+    "B2 | Lee las instrucciones para que la estantería no se caiga.": "Er liest die Anleitung, damit das Regal nicht umfällt.",
+    "B2 | Se le olvidó ponerse los guantes.": "Er hat vergessen, die Handschuhe anzuziehen.",
+    "B2 | No es fácil montar una estantería sin que nadie te ayude.": "Es ist nicht leicht, ein Regal aufzubauen, ohne dass dir jemand hilft.",
+    "B2 | La pared ya está medio pintada.": "Die Wand ist schon halb gestrichen.",
+    "B2 | Sin leer las instrucciones, no se puede montar.": "Ohne die Anleitung zu lesen, kann man es nicht aufbauen.",
+    "C1 | Las instrucciones deben de ser difíciles.": "Die Anleitung muss schwierig sein.",
+    "C1 | Puede que el gato sea del vecino.": "Vielleicht gehört die Katze dem Nachbarn.",
+    "C1 | Estará cansado.": "Er wird wohl müde sein.",
+    "C1 | Dicen que en este departamento vivía un pintor.": "Man sagt, in dieser Wohnung habe ein Maler gewohnt.",
+    "C1 | Dicen que en este piso vivía un pintor.": "Man sagt, in dieser Wohnung habe ein Maler gewohnt."
+   }
   }
  }
 };

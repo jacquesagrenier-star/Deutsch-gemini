@@ -27,6 +27,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -54,6 +55,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -91,6 +93,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -118,6 +121,7 @@ window.SCENE = {
    "ar": "ستارة",
    "pl": "zasłona",
    "ru": "штора, занавеска",
+   "de": "der Vorhang",
    "latam": null
   },
   {
@@ -145,6 +149,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -172,6 +177,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -199,6 +205,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -226,6 +233,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   },
   {
@@ -253,6 +261,7 @@ window.SCENE = {
    "ar": "وشاح، لفّاع",
    "pl": "szalik",
    "ru": "шарф",
+   "de": "der Schal",
    "latam": null
   },
   {
@@ -280,6 +289,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -307,6 +317,7 @@ window.SCENE = {
    "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
+   "de": "der Kuchen, die Torte",
    "latam": null
   },
   {
@@ -334,6 +345,7 @@ window.SCENE = {
    "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
+   "de": "der Kuchen, die Torte",
    "latam": null
   },
   {
@@ -361,6 +373,7 @@ window.SCENE = {
    "ar": "كعكة، فطيرة",
    "pl": "ciasto",
    "ru": "пирог, торт",
+   "de": "der Kuchen, die Torte",
    "latam": null
   },
   {
@@ -380,7 +393,8 @@ window.SCENE = {
      "fr": "le café",
      "en": "coffee",
      "pt": "o café",
-     "ar": "قهوة"
+     "ar": "قهوة",
+     "de": "der Kaffee"
     }
    ],
    "sur": null,
@@ -399,6 +413,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -418,7 +433,8 @@ window.SCENE = {
      "fr": "le café",
      "en": "coffee",
      "pt": "o café",
-     "ar": "قهوة"
+     "ar": "قهوة",
+     "de": "der Kaffee"
     }
    ],
    "sur": "tisch",
@@ -437,6 +453,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -464,6 +481,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -483,7 +501,8 @@ window.SCENE = {
      "fr": "le client",
      "en": "the customer",
      "pt": "o cliente",
-     "ar": "زبون"
+     "ar": "زبون",
+     "de": "der Kunde"
     }
    ],
    "sur": null,
@@ -502,6 +521,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -529,6 +549,7 @@ window.SCENE = {
    "ar": "كنزة صوفية",
    "pl": "sweter",
    "ru": "свитер",
+   "de": "der Pullover",
    "latam": {
     "mot": "suéter",
     "genre": "el",
@@ -553,6 +574,7 @@ window.SCENE = {
      "en": "the waitress",
      "pt": "a garçonete",
      "ar": "نادلة",
+     "de": "die Kellnerin",
      "latam": {
       "mot": "mesera",
       "genre": "la",
@@ -582,6 +604,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -601,7 +624,8 @@ window.SCENE = {
      "fr": "le client",
      "en": "the customer",
      "pt": "o cliente",
-     "ar": "زبون"
+     "ar": "زبون",
+     "de": "der Kunde"
     }
    ],
    "sur": null,
@@ -620,6 +644,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -647,6 +672,7 @@ window.SCENE = {
    "ar": "حقيبة ظهر",
    "pl": "plecak",
    "ru": "рюкзак",
+   "de": "der Rucksack",
    "latam": null
   },
   {
@@ -674,6 +700,7 @@ window.SCENE = {
    "ar": "زهرة",
    "pl": "kwiat",
    "ru": "цветок",
+   "de": "die Blume",
    "latam": null
   },
   {
@@ -701,6 +728,7 @@ window.SCENE = {
    "ar": "ملح",
    "pl": "sól",
    "ru": "соль",
+   "de": "das Salz",
    "latam": null
   },
   {
@@ -728,6 +756,7 @@ window.SCENE = {
    "ar": "فلفل أسود",
    "pl": "pieprz",
    "ru": "перец (молотый)",
+   "de": "der Pfeffer",
    "latam": null
   },
   {
@@ -755,6 +784,7 @@ window.SCENE = {
    "ar": "هاتف محمول",
    "pl": "komórka, telefon komórkowy",
    "ru": "мобильный телефон",
+   "de": "das Handy",
    "latam": {
     "mot": "celular",
     "genre": "el",
@@ -778,7 +808,8 @@ window.SCENE = {
      "fr": "l'eau",
      "en": "water",
      "pt": "a água",
-     "ar": "ماء"
+     "ar": "ماء",
+     "de": "das Wasser"
     }
    ],
    "sur": "tisch",
@@ -797,6 +828,7 @@ window.SCENE = {
    "ar": "كوب",
    "pl": "szklanka, szkło",
    "ru": "стакан",
+   "de": "das Glas (Trinkglas)",
    "latam": null
   },
   {
@@ -816,7 +848,8 @@ window.SCENE = {
      "fr": "le lait",
      "en": "milk",
      "pt": "o leite",
-     "ar": "حليب"
+     "ar": "حليب",
+     "de": "die Milch"
     }
    ],
    "sur": "tisch",
@@ -835,6 +868,7 @@ window.SCENE = {
    "ar": "إبريق، دورق",
    "pl": "dzbanek",
    "ru": "кофейник, кувшин",
+   "de": "der Krug, die Karaffe",
    "latam": null
   },
   {
@@ -862,6 +896,7 @@ window.SCENE = {
    "ar": "سكّر",
    "pl": "cukier",
    "ru": "сахар",
+   "de": "der Zucker",
    "latam": null
   },
   {
@@ -881,7 +916,8 @@ window.SCENE = {
      "fr": "le verre",
      "en": "glass",
      "pt": "o copo",
-     "ar": "كوب"
+     "ar": "كوب",
+     "de": "das Glas (Trinkglas)"
     }
    ],
    "sur": "tisch",
@@ -900,6 +936,7 @@ window.SCENE = {
    "ar": "عصير",
    "pl": "sok",
    "ru": "сок",
+   "de": "der Saft",
    "latam": {
     "mot": "jugo",
     "genre": "el",
@@ -931,6 +968,7 @@ window.SCENE = {
    "ar": "بيضة",
    "pl": "jajko",
    "ru": "яйцо",
+   "de": "das Ei",
    "latam": null
   },
   {
@@ -970,6 +1008,7 @@ window.SCENE = {
    "ar": "صحن، طبق",
    "pl": "talerz",
    "ru": "тарелка",
+   "de": "der Teller, das Gericht",
    "latam": null
   },
   {
@@ -997,6 +1036,7 @@ window.SCENE = {
    "ar": "خبز",
    "pl": "bułka",
    "ru": "булочка",
+   "de": "das Brot",
    "latam": null
   },
   {
@@ -1024,6 +1064,7 @@ window.SCENE = {
    "ar": "جبن",
    "pl": "ser",
    "ru": "сыр",
+   "de": "der Käse",
    "latam": null
   },
   {
@@ -1051,6 +1092,7 @@ window.SCENE = {
    "ar": "لحم خنزير مقدّد (خامون)",
    "pl": "szynka",
    "ru": "ветчина",
+   "de": "der Schinken",
    "latam": null
   },
   {
@@ -1078,6 +1120,7 @@ window.SCENE = {
    "ar": "سكّين",
    "pl": "nóż",
    "ru": "нож",
+   "de": "das Messer",
    "latam": null
   },
   {
@@ -1105,6 +1148,7 @@ window.SCENE = {
    "ar": "شوكة",
    "pl": "widelec",
    "ru": "вилка",
+   "de": "die Gabel",
    "latam": null
   },
   {
@@ -1132,6 +1176,7 @@ window.SCENE = {
    "ar": "ملعقة",
    "pl": "łyżka",
    "ru": "ложка",
+   "de": "der Löffel",
    "latam": null
   },
   {
@@ -1159,6 +1204,7 @@ window.SCENE = {
    "ar": "منديل",
    "pl": "serwetka",
    "ru": "салфетка",
+   "de": "die Serviette",
    "latam": null
   },
   {
@@ -1186,6 +1232,7 @@ window.SCENE = {
    "ar": "قائمة الطعام",
    "pl": "karta dań, menu",
    "ru": "меню",
+   "de": "die Speisekarte",
    "latam": null
   },
   {
@@ -1213,6 +1260,7 @@ window.SCENE = {
    "ar": "طاولة",
    "pl": "stół",
    "ru": "стол",
+   "de": "der Tisch",
    "latam": null
   },
   {
@@ -1246,6 +1294,7 @@ window.SCENE = {
    "ar": "كرسي",
    "pl": "krzesło",
    "ru": "стул",
+   "de": "der Stuhl",
    "latam": null
   },
   {
@@ -1273,6 +1322,7 @@ window.SCENE = {
    "ar": "سترة، جاكيت",
    "pl": "kurtka",
    "ru": "куртка",
+   "de": "die Jacke",
    "latam": null
   },
   {
@@ -1306,6 +1356,7 @@ window.SCENE = {
    "ar": "حذاء",
    "pl": "but",
    "ru": "ботинок, туфля",
+   "de": "der Schuh",
    "latam": null
   },
   {
@@ -1333,6 +1384,7 @@ window.SCENE = {
    "ar": "آلة القهوة",
    "pl": "ekspres do kawy",
    "ru": "кофемашина",
+   "de": "die Kaffeemaschine",
    "latam": null
   },
   {
@@ -1360,6 +1412,7 @@ window.SCENE = {
    "ar": "بار، منضدة المقهى",
    "pl": "lada",
    "ru": "стойка",
+   "de": "die Theke",
    "latam": null
   }
  ],
@@ -2138,6 +2191,93 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark frühstückt in einem Kiezcafé in Berlin: auf dem Tisch eine Tasse Kaffee, ein Brötchen, Käse, Schinken, ein Ei, ein Orangensaft, ein Glas Wasser; die Bedienung bringt ihm ein Stück Apfelkuchen.",
+    "consigne": "Mark frühstückt im Café an der Ecke. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "Die Pronomen: le, la, lo",
+    "B2": "Relativsätze und Partizip",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | El celular está encima de la mesa.": "<b>encima de</b> = auf. Der Ort → <b>estar</b>.",
+    "A2 | El móvil está encima de la mesa.": "<b>encima de</b> = auf. Der Ort → <b>estar</b>.",
+    "A2 | La chaqueta está sobre la silla.": "<b>sobre</b> = auf, obendrauf (hier: über der Rückenlehne).",
+    "A2 | La bufanda está al lado de la puerta.": "<b>al lado de</b> = neben.",
+    "A2 | La mochila está al lado de la mesa.": "<b>la</b> mesa ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | El pan está en el plato.": "<b>en</b> = in oder auf. <b>el</b> plato ist männlich, und <b>en el</b> verschmilzt nie.",
+    "A2 | El tenedor está delante del plato.": "<b>delante de</b> = vor. de + el = <b>del</b>.",
+    "A2 | El jugo está al lado del huevo.": "<b>de + el = del</b>, immer.",
+    "A2 | El zumo está al lado del huevo.": "<b>de + el = del</b>, immer.",
+    "A2 | Hay una planta al lado de la ventana.": "<b>hay</b> führt etwas Neues ein („es gibt eine Pflanze“); <b>está</b> sagt, wo etwas schon Bekanntes ist („die Pflanze steht …“).",
+    "B1 | La mesera le trae un pastel a Mark.": "Wem? → indirektes Objekt: <b>le</b>. Das Spanische setzt es auch dann, wenn „a Mark“ folgt.",
+    "B1 | La camarera le trae una tarta a Mark.": "Wem? → indirektes Objekt: <b>le</b>. Das Spanische setzt es auch dann, wenn „a Mark“ folgt.",
+    "B1 | A Mark le gusta el café.": "<b>gustar</b>: Die Sache gefällt jemandem → <b>le</b> (ihm) — wie „<b>ihm</b> schmeckt der Kaffee“.",
+    "B1 | Mark lo ha pedido a la mesera.": "Direktes Objekt, männlich (el pastel) → <b>lo</b>.",
+    "B1 | Mark la ha pedido a la camarera.": "Direktes Objekt, weiblich (la tarta) → <b>la</b>.",
+    "B1 | ¿Me pasas la sal, por favor?": "<b>pasar</b> = reichen (bei Tisch). Unter Freunden <b>tú</b> → pasas; <b>me</b> = mir.",
+    "B1 | Mark lo corta con el cuchillo.": "Direktes Objekt, männlich (el pan) → <b>lo</b>.",
+    "B1 | La mesera le sonríe a Mark.": "Man lächelt <b>jemandem</b> zu → indirektes Objekt: <b>le</b>.",
+    "B1 | La camarera le sonríe a Mark.": "Man lächelt <b>jemandem</b> zu → indirektes Objekt: <b>le</b>.",
+    "B1 | Alguien la ha dejado sobre la silla.": "Direktes Objekt, weiblich (la chaqueta) → <b>la</b>.",
+    "B1 | La mesera le da el plato a Mark.": "Wer empfängt → <b>le</b>; die gegebene Sache (el plato) bleibt das direkte Objekt.",
+    "B1 | La camarera le da el plato a Mark.": "Wer empfängt → <b>le</b>; die gegebene Sache (el plato) bleibt das direkte Objekt.",
+    "B2 | El cliente al que la mesera trae el pastel se llama Mark.": "Man bringt den Kuchen <b>ihm</b>: Die Präposition <b>a</b> rückt vor das Relativpronomen → <b>al que</b>.",
+    "B2 | El cliente al que la camarera trae la tarta se llama Mark.": "Man bringt den Kuchen <b>ihm</b>: Die Präposition <b>a</b> rückt vor das Relativpronomen → <b>al que</b>.",
+    "B2 | La mesera, que lleva lentes, trae el pastel.": "Subjekt des Relativsatzes → <b>que</b>.",
+    "B2 | La camarera, que lleva gafas, trae la tarta.": "Subjekt des Relativsatzes → <b>que</b>.",
+    "B2 | La mesa en la que está sentado Mark está junto a la ventana.": "<b>estar sentado en</b> einem Stuhl, einem Tisch: Die Präposition rückt nach vorn → <b>en la que</b>.",
+    "B2 | La mesa ya está puesta.": "<b>estar</b> + Partizip = das Ergebnis. <b>poner</b> ist unregelmäßig → <b>puesto</b>, angepasst: la mesa → <b>puesta</b>.",
+    "B2 | El pan ya está cortado.": "Das Partizip richtet sich nach dem Nomen: <b>el</b> pan → corta<b>do</b>.",
+    "B2 | La puerta está abierta.": "<b>abrir</b> → unregelmäßiges Partizip <b>abierto</b>, angepasst: la puerta → <b>abierta</b>.",
+    "C1 | Mark debe de tener mucha hambre.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung: Er muss Hunger haben.",
+    "C1 | Puede que la chaqueta sea del señor del fondo.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Será un cliente habitual.": "Das <b>futuro</b> kann eine Vermutung über die Gegenwart ausdrücken: <b>será</b> = er wird wohl sein.",
+    "C1 | Dicen que este pastel de manzana es el mejor de Berlín.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>. Der subjuntivo käme mit „no dicen que“.",
+    "C1 | Dicen que esta tarta de manzana es la mejor de Berlín.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>. Der subjuntivo käme mit „no dicen que“."
+   },
+   "sens": {
+    "A2 | El celular está encima de la mesa.": "Das Handy liegt auf dem Tisch.",
+    "A2 | El móvil está encima de la mesa.": "Das Handy liegt auf dem Tisch.",
+    "A2 | La chaqueta está sobre la silla.": "Die Jacke hängt über dem Stuhl.",
+    "A2 | La bufanda está al lado de la puerta.": "Der Schal hängt neben der Tür.",
+    "A2 | La mochila está al lado de la mesa.": "Der Rucksack steht neben dem Tisch.",
+    "A2 | El pan está en el plato.": "Das Brot liegt auf dem Teller.",
+    "A2 | El tenedor está delante del plato.": "Die Gabel liegt vor dem Teller.",
+    "A2 | El jugo está al lado del huevo.": "Der Saft steht neben dem Ei.",
+    "A2 | El zumo está al lado del huevo.": "Der Saft steht neben dem Ei.",
+    "A2 | Hay una planta al lado de la ventana.": "Neben dem Fenster steht eine Pflanze.",
+    "B1 | La mesera le trae un pastel a Mark.": "Die Bedienung bringt Mark einen Kuchen.",
+    "B1 | La camarera le trae una tarta a Mark.": "Die Bedienung bringt Mark einen Kuchen.",
+    "B1 | A Mark le gusta el café.": "Mark mag Kaffee.",
+    "B1 | Mark lo ha pedido a la mesera.": "Mark hat ihn bei der Bedienung bestellt.",
+    "B1 | Mark la ha pedido a la camarera.": "Mark hat ihn bei der Bedienung bestellt.",
+    "B1 | ¿Me pasas la sal, por favor?": "Gibst du mir bitte das Salz?",
+    "B1 | Mark lo corta con el cuchillo.": "Mark schneidet es mit dem Messer.",
+    "B1 | La mesera le sonríe a Mark.": "Die Bedienung lächelt Mark an.",
+    "B1 | La camarera le sonríe a Mark.": "Die Bedienung lächelt Mark an.",
+    "B1 | Alguien la ha dejado sobre la silla.": "Jemand hat sie über dem Stuhl liegen lassen.",
+    "B1 | La mesera le da el plato a Mark.": "Die Bedienung gibt Mark den Teller.",
+    "B1 | La camarera le da el plato a Mark.": "Die Bedienung gibt Mark den Teller.",
+    "B2 | El cliente al que la mesera trae el pastel se llama Mark.": "Der Gast, dem die Bedienung den Kuchen bringt, heißt Mark.",
+    "B2 | El cliente al que la camarera trae la tarta se llama Mark.": "Der Gast, dem die Bedienung den Kuchen bringt, heißt Mark.",
+    "B2 | La mesera, que lleva lentes, trae el pastel.": "Die Bedienung, die eine Brille trägt, bringt den Kuchen.",
+    "B2 | La camarera, que lleva gafas, trae la tarta.": "Die Bedienung, die eine Brille trägt, bringt den Kuchen.",
+    "B2 | La mesa en la que está sentado Mark está junto a la ventana.": "Der Tisch, an dem Mark sitzt, steht am Fenster.",
+    "B2 | La mesa ya está puesta.": "Der Tisch ist schon gedeckt.",
+    "B2 | El pan ya está cortado.": "Das Brot ist schon geschnitten.",
+    "B2 | La puerta está abierta.": "Die Tür ist offen.",
+    "C1 | Mark debe de tener mucha hambre.": "Mark muss großen Hunger haben.",
+    "C1 | Puede que la chaqueta sea del señor del fondo.": "Vielleicht gehört die Jacke dem Herrn hinten.",
+    "C1 | Será un cliente habitual.": "Er wird wohl Stammgast sein.",
+    "C1 | Dicen que este pastel de manzana es el mejor de Berlín.": "Man sagt, dieser Apfelkuchen sei der beste Berlins.",
+    "C1 | Dicen que esta tarta de manzana es la mejor de Berlín.": "Man sagt, dieser Apfelkuchen sei der beste Berlins."
+   }
   }
  }
 };

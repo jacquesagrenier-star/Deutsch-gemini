@@ -33,6 +33,7 @@ window.SCENE = {
    "ar": "نافذة",
    "pl": "okno",
    "ru": "окно",
+   "de": "das Fenster",
    "latam": null
   },
   {
@@ -60,6 +61,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -87,6 +89,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -114,6 +117,7 @@ window.SCENE = {
    "ar": "ساعة",
    "pl": "zegar",
    "ru": "часы",
+   "de": "die Uhr",
    "latam": null
   },
   {
@@ -141,6 +145,7 @@ window.SCENE = {
    "ar": "سبّورة",
    "pl": "tablica",
    "ru": "доска",
+   "de": "die Tafel",
    "latam": {
     "mot": "pizarrón",
     "genre": "el",
@@ -172,6 +177,7 @@ window.SCENE = {
    "ar": "مجلّد",
    "pl": "folder; segregator",
    "ru": "папка",
+   "de": "der Ordner",
    "latam": null
   },
   {
@@ -199,6 +205,7 @@ window.SCENE = {
    "ar": "مجلّد",
    "pl": "folder; segregator",
    "ru": "папка",
+   "de": "der Ordner",
    "latam": null
   },
   {
@@ -226,6 +233,7 @@ window.SCENE = {
    "ar": "رفّ، مكتبة",
    "pl": "regał, półka",
    "ru": "полка, стеллаж",
+   "de": "das Regal",
    "latam": null
   },
   {
@@ -253,6 +261,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -280,6 +289,7 @@ window.SCENE = {
    "ar": "طابعة",
    "pl": "drukarka",
    "ru": "принтер",
+   "de": "der Drucker",
    "latam": null
   },
   {
@@ -307,6 +317,7 @@ window.SCENE = {
    "ar": "امرأة، زوجة",
    "pl": "kobieta / żona",
    "ru": "женщина, жена",
+   "de": "die Frau, die Ehefrau",
    "latam": null
   },
   {
@@ -334,6 +345,7 @@ window.SCENE = {
    "ar": "رجل",
    "pl": "mężczyzna / mąż",
    "ru": "мужчина, муж",
+   "de": "der Mann",
    "latam": null
   },
   {
@@ -361,6 +373,7 @@ window.SCENE = {
    "ar": "هاتف",
    "pl": "telefon",
    "ru": "телефон",
+   "de": "das Telefon, die Telefonnummer",
    "latam": null
   },
   {
@@ -388,6 +401,7 @@ window.SCENE = {
    "ar": "شاشة",
    "pl": "ekran",
    "ru": "экран",
+   "de": "der Bildschirm",
    "latam": null
   },
   {
@@ -415,6 +429,7 @@ window.SCENE = {
    "ar": "لوحة مفاتيح",
    "pl": "klawiatura",
    "ru": "клавиатура",
+   "de": "die Tastatur",
    "latam": null
   },
   {
@@ -442,6 +457,7 @@ window.SCENE = {
    "ar": "فأر",
    "pl": "mysz",
    "ru": "мышь",
+   "de": "die Maus",
    "latam": null
   },
   {
@@ -469,6 +485,7 @@ window.SCENE = {
    "ar": "فنجان",
    "pl": "filiżanka, kubek",
    "ru": "чашка",
+   "de": "die Tasse",
    "latam": null
   },
   {
@@ -496,6 +513,7 @@ window.SCENE = {
    "ar": "قلم حبر جاف",
    "pl": "długopis",
    "ru": "шариковая ручка",
+   "de": "der Kugelschreiber",
    "latam": {
     "mot": "pluma",
     "genre": "la",
@@ -527,6 +545,7 @@ window.SCENE = {
    "ar": "ورق",
    "pl": "papier",
    "ru": "бумага",
+   "de": "das Papier",
    "latam": null
   },
   {
@@ -554,6 +573,7 @@ window.SCENE = {
    "ar": "دفتر",
    "pl": "zeszyt",
    "ru": "тетрадь",
+   "de": "das Heft",
    "latam": null
   },
   {
@@ -581,6 +601,7 @@ window.SCENE = {
    "ar": "مقصّ",
    "pl": "nożyczki",
    "ru": "ножницы",
+   "de": "die Schere",
    "latam": null
   },
   {
@@ -608,6 +629,7 @@ window.SCENE = {
    "ar": "نبتة",
    "pl": "roślina",
    "ru": "растение",
+   "de": "die Pflanze",
    "latam": null
   },
   {
@@ -635,6 +657,7 @@ window.SCENE = {
    "ar": "مصباح",
    "pl": "lampa",
    "ru": "лампа",
+   "de": "die Lampe",
    "latam": null
   },
   {
@@ -662,6 +685,7 @@ window.SCENE = {
    "ar": "سلّة المهملات",
    "pl": "kosz na śmieci",
    "ru": "мусорное ведро",
+   "de": "der Papierkorb",
    "latam": {
     "mot": "bote de basura",
     "genre": "el",
@@ -693,6 +717,7 @@ window.SCENE = {
    "ar": "مكتب (طاولة)",
    "pl": "biurko",
    "ru": "письменный стол",
+   "de": "der Schreibtisch",
    "latam": null
   },
   {
@@ -720,6 +745,7 @@ window.SCENE = {
    "ar": "جدار",
    "pl": "ściana",
    "ru": "стена",
+   "de": "die Wand",
    "latam": null
   },
   {
@@ -747,6 +773,7 @@ window.SCENE = {
    "ar": "أرضية",
    "pl": "ziemia, podłoże",
    "ru": "почва, пол",
+   "de": "der Boden (Fußboden)",
    "latam": {
     "mot": "piso",
     "genre": "el",
@@ -778,6 +805,7 @@ window.SCENE = {
    "ar": "خزانة",
    "pl": "szafa",
    "ru": "шкаф",
+   "de": "der Schrank",
    "latam": {
     "mot": "clóset",
     "genre": "el",
@@ -809,6 +837,7 @@ window.SCENE = {
    "ar": "شريط لاصق",
    "pl": "taśma klejąca",
    "ru": "скотч",
+   "de": "das Klebeband",
    "latam": null
   },
   {
@@ -836,6 +865,7 @@ window.SCENE = {
    "ar": "باب",
    "pl": "drzwi",
    "ru": "дверь",
+   "de": "die Tür",
    "latam": null
   }
  ],
@@ -1523,6 +1553,81 @@ window.SCENE = {
    },
    "questions": {},
    "sens": {}
+  },
+  "de": {
+   "champs": {
+    "alt": "Mark als Praktikant in einem Berliner Büro: Am Telefon macht er sich Notizen in einem Heft; auf dem Schreibtisch ein Bildschirm, eine Tastatur, eine Maus, eine Tasse, Papier und ein Kugelschreiber; hinter ihm liest eine Kollegin Unterlagen, ein Drucker, Ordner und ein Whiteboard.",
+    "consigne": "Mark macht ein Praktikum in einem Büro. Tippe auf einen Gegenstand."
+   },
+   "couches": {
+    "A1": "Nomen und Artikel",
+    "A2": "¿Dónde está? — estar und die Präpositionen",
+    "B1": "estar + gerundio: gerade dabei sein",
+    "B2": "Relativsätze und Passiv",
+    "C1": "Vermutungen und Wahrscheinlichkeit"
+   },
+   "questions": {
+    "A2 | La taza está al lado del teclado.": "<b>de + el = del</b>, immer.",
+    "A2 | El reloj está encima del pizarrón.": "<b>encima de</b> = über, oberhalb von. de + el = <b>del</b>.",
+    "A2 | El reloj está encima de la pizarra.": "<b>encima de</b> = über, oberhalb von.",
+    "A2 | La impresora está al lado de la estantería.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | La pluma está encima del papel.": "<b>encima de</b> = auf. de + el = <b>del</b>.",
+    "A2 | El bolígrafo está encima del papel.": "<b>encima de</b> = auf. de + el = <b>del</b>.",
+    "A2 | La planta grande está al lado de la ventana.": "<b>la</b> ist weiblich: <b>de la</b>, ohne Verschmelzung. Nur <b>de + el</b> wird zu <b>del</b>.",
+    "A2 | Las carpetas están en la estantería.": "<b>la</b> ist weiblich → <b>en la</b>.",
+    "A2 | Hay un cuaderno en el escritorio.": "<b>hay</b> führt etwas Neues ein („es gibt“); <b>está</b> sagt, wo etwas schon Bekanntes ist.",
+    "A2 | El bote de basura está detrás del escritorio.": "<b>de + el = del</b>, immer.",
+    "A2 | La papelera está detrás del escritorio.": "<b>de + el = del</b>, immer.",
+    "B1 | Mark está hablando por teléfono.": "Gerade dabei sein → <b>estar</b> + gerundio. Das Deutsche sagt einfach „gerade“ oder nichts.",
+    "B1 | Está apuntando el número en el cuaderno.": "Gerundio der Verben auf -ar → <b>-ando</b>.",
+    "B1 | La compañera está leyendo un papel.": "<b>leer</b> → <b>leyendo</b>: Das i zwischen zwei Vokalen wird zu y.",
+    "B1 | Mark lo apunta en el cuaderno.": "Direktes Objekt, männlich (el número) → <b>lo</b>.",
+    "B1 | La impresora está imprimiendo una carta.": "Verben auf -ir → <b>-iendo</b>.",
+    "B1 | ¿Me llamas mañana, por favor?": "Unter Kollegen, die sich duzen: <b>tú</b> → llamas.",
+    "B1 | Mark termina de trabajar a las cinco.": "Er → <b>termina</b>.",
+    "B1 | Mark cuelga el teléfono enseguida.": "<b>colgar</b>: Das o wird zu <b>ue</b> → cuelga.",
+    "B2 | El hombre que habla por teléfono se llama Mark.": "Relativsatz ohne Komma, Subjekt → <b>que</b>.",
+    "B2 | La compañera, cuyo pelo es gris, lee una carta.": "<b>cuyo</b> richtet sich nach dem Besessenen: el pelo → <b>cuyo</b>.",
+    "B2 | La estantería en la que están las carpetas es de metal.": "Präposition + Artikel + <b>que</b>, abgestimmt auf la estantería.",
+    "B2 | Las carpetas están ordenadas por colores.": "<b>estar</b> + Partizip, angepasst: las carpetas → ordenad<b>as</b>.",
+    "B2 | Aquí se trabaja mucho por teléfono.": "Unpersönliches <b>se</b>: „man arbeitet“, Verb im Singular.",
+    "B2 | El cuaderno ya está medio escrito.": "<b>escribir</b> → unregelmäßiges Partizip <b>escrito</b>.",
+    "C1 | La llamada debe de ser importante.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
+    "C1 | Puede que la compañera sea su jefa.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
+    "C1 | Mark ya habrá hecho unas veinte llamadas hoy.": "Das <b>futuro perfecto</b> drückt eine Vermutung über die Vergangenheit aus: Er wird wohl zwanzig gemacht haben.",
+    "C1 | Dicen en la oficina que la empresa se muda pronto.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
+   },
+   "sens": {
+    "A2 | La taza está al lado del teclado.": "Die Tasse steht neben der Tastatur.",
+    "A2 | El reloj está encima del pizarrón.": "Die Uhr hängt über dem Whiteboard.",
+    "A2 | El reloj está encima de la pizarra.": "Die Uhr hängt über dem Whiteboard.",
+    "A2 | La impresora está al lado de la estantería.": "Der Drucker steht neben dem Regal.",
+    "A2 | La pluma está encima del papel.": "Der Kugelschreiber liegt auf dem Papier.",
+    "A2 | El bolígrafo está encima del papel.": "Der Kugelschreiber liegt auf dem Papier.",
+    "A2 | La planta grande está al lado de la ventana.": "Die große Pflanze steht neben dem Fenster.",
+    "A2 | Las carpetas están en la estantería.": "Die Ordner stehen im Regal.",
+    "A2 | Hay un cuaderno en el escritorio.": "Auf dem Schreibtisch liegt ein Heft.",
+    "A2 | El bote de basura está detrás del escritorio.": "Der Papierkorb steht hinter dem Schreibtisch.",
+    "A2 | La papelera está detrás del escritorio.": "Der Papierkorb steht hinter dem Schreibtisch.",
+    "B1 | Mark está hablando por teléfono.": "Mark telefoniert gerade.",
+    "B1 | Está apuntando el número en el cuaderno.": "Er notiert gerade die Nummer im Heft.",
+    "B1 | La compañera está leyendo un papel.": "Die Kollegin liest gerade ein Blatt.",
+    "B1 | Mark lo apunta en el cuaderno.": "Mark notiert sie im Heft.",
+    "B1 | La impresora está imprimiendo una carta.": "Der Drucker druckt gerade einen Brief.",
+    "B1 | ¿Me llamas mañana, por favor?": "Rufst du mich morgen an, bitte?",
+    "B1 | Mark termina de trabajar a las cinco.": "Mark hört um fünf Uhr auf zu arbeiten.",
+    "B1 | Mark cuelga el teléfono enseguida.": "Mark legt sofort auf.",
+    "B2 | El hombre que habla por teléfono se llama Mark.": "Der Mann, der telefoniert, heißt Mark.",
+    "B2 | La compañera, cuyo pelo es gris, lee una carta.": "Die Kollegin, deren Haar grau ist, liest einen Brief.",
+    "B2 | La estantería en la que están las carpetas es de metal.": "Das Regal, in dem die Ordner stehen, ist aus Metall.",
+    "B2 | Las carpetas están ordenadas por colores.": "Die Ordner sind nach Farben geordnet.",
+    "B2 | Aquí se trabaja mucho por teléfono.": "Hier wird viel telefoniert.",
+    "B2 | El cuaderno ya está medio escrito.": "Das Heft ist schon halb vollgeschrieben.",
+    "C1 | La llamada debe de ser importante.": "Der Anruf muss wichtig sein.",
+    "C1 | Puede que la compañera sea su jefa.": "Vielleicht ist die Kollegin seine Chefin.",
+    "C1 | Mark ya habrá hecho unas veinte llamadas hoy.": "Mark wird heute wohl schon etwa zwanzig Anrufe gemacht haben.",
+    "C1 | Dicen en la oficina que la empresa se muda pronto.": "Im Büro sagt man, die Firma ziehe bald um."
+   }
   }
  }
 };

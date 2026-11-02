@@ -8892,6 +8892,12 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
                     <span class="setup-choice-flag">🌐</span>
                     <span>Русский</span>
                 </button>
+                <!-- L'allemand : langue d'interface de l'espagnol seulement (1er nov. 2026) ;
+                     cache ailleurs, montre par adapterChoixALaLangueApprise(). -->
+                <button class="setup-choice hidden" id="setupChoiceLangDe" onclick="selectUiLangChoice('de')">
+                    <span class="setup-choice-flag">🇩🇪</span>
+                    <span>Deutsch</span>
+                </button>
             </div>
         </div>
         <!-- LE NIVEAU DECLARE (v699). Une question, jamais un test : vingt
@@ -12270,6 +12276,10 @@ body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-
                         <span class="setup-choice-flag">🌐</span>
                         <span>Русский</span>
                     </button>
+                    <button class="setup-choice hidden" onclick="selectUiLangChoice('de')">
+                        <span class="setup-choice-flag">🇩🇪</span>
+                        <span>Deutsch</span>
+                    </button>
                 </div>
             </div>
         </details>
@@ -13114,7 +13124,9 @@ const UI_LANG_KEY = PREFIXE_STOCKAGE + "uiLang";
 // libelles propres n'existent que dans ces deux langues, et une interface
 // turque y parlerait encore d'allemand. L'allemand garde ses six langues.
 // Le japonais : francais et anglais seulement (decide le 4 oct. 2026).
-const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en", "pt", "ar"]
+// L'allemand (1er nov. 2026, decide par Jacques : « on va faire aussi l'allemand ») :
+// pour les germanophones qui apprennent l'espagnol. Jamais pour l'allemand appris.
+const UI_LANGS = LANGUE_APPRISE === "es" ? ["fr", "en", "pt", "ar", "de"]
                : LANGUE_APPRISE === "ja" ? ["fr", "en"]
                // L'anglais : francais seulement. Une interface anglaise pour
                // apprendre l'anglais donnerait le mot pour sa propre traduction.
@@ -27913,6 +27925,1615 @@ const I18N = {
         admin_vhs_access_on: "✓ Главы VHS включены",
         admin_vhs_access_off: "Включить главы VHS",
         admin_user_stats: "{vus} слов просмотрено · {mastered} выучено · серия: {streak} дн.",
+    },
+    de: {
+        onboarding_home_button: "Wie fange ich an? (unter einer Minute)",
+        onboarding_close: "VERSTANDEN",
+        alert_data_load_failed: "Die Daten konnten nicht geladen werden. Prüfe deine Verbindung.",
+        kicker_english_module: "Englisch",
+        en_module_count: "{n} Einträge",
+        en_module_level_all: "Alle",
+        en_module_cat_all: "Alles mischen",
+        en_module_level_title: "Niveau wählen",
+        en_module_cat_title: "Nach Familie wiederholen",
+        en_module_phrasal_title: "Phrasal Verbs",
+        en_module_phrasal_level_desc: "Wähle zuerst ein Niveau: Die Verbliste direkt darunter passt sich an.",
+        en_module_phrasal_cat_desc: "Phrasal Verbs lernt man Verb für Verb: alle Wendungen mit GET zusammen, dann die mit TAKE.",
+        en_module_pitfalls_title: "Stolperfallen im Englischen",
+        en_module_pitfalls_level_desc: "Wähle zuerst ein Niveau: Die Liste der Familien direkt darunter passt sich an.",
+        en_module_pitfalls_cat_desc: "Zwei Familien: falsche Freunde (actually ≠ aktuell) und Wörter, die man leicht verwechselt (lend / borrow).",
+        en_module_expressions_title: "Gängige Redewendungen",
+        en_module_expressions_level_desc: "Wähle zuerst ein Niveau: Die Liste der Familien direkt darunter passt sich an.",
+        en_module_expressions_cat_desc: "Was englische Muttersprachler wirklich sagen, geordnet nach Absicht: reagieren, abschwächen, das Gespräch in Gang halten.",
+        label_english_pitfall: "Stolperfalle",
+        label_english_forms: "Formen",
+        myvocab_title: "Wörter aus dem Wörterbuch",
+        home_daily_goal_label_court: "Heute",
+        compte_rencontres: "Wörter gesehen",
+        examen_titre: "Prüfungswortschatz",
+        vocab_titre: "Fortschritt im Wortschatz",
+        jours_travailles: "Lerntage",
+        jour_travaille: "Lerntag",
+        jours_serie: "{n} in Folge",
+        mosaique_compte: "Gemälde {n} von {total}",
+        mosaique_annee: "Gemalt {a}",
+        mosaique_reste: "noch {n} Karten bis zum ganzen Gemälde eines Malers aus dem deutschsprachigen Raum",
+        mosaique_trophee: "Ausgestellt · Tag {i} von {n}, dann ein neues Gemälde",
+        mosaique_galerie: "Deine Galerie",
+        mosaique_agrandir: "Gemälde vergrößern",
+        mosaique_galerie_kicker: "Deine Gemälde",
+        mosaique_galerie_vide: "Dein erstes Mosaik zeigt sich Karte für Karte. Sobald es fertig ist, findet es hier seinen Platz.",
+        mosaique_intro_titre: "Hier versteckt sich ein Gemälde",
+        mosaique_intro_texte: "Jede Karte, die du durchgehst, macht das Bild ein wenig schärfer. Am Ende erscheint das ganze Werk eines Malers aus dem deutschsprachigen Raum, mit Namen und Geschichte, und es kommt in deine Galerie.",
+        vocab_sus: "sicher",
+        vocab_cours: "im Lernen",
+        vocab_reste: "noch neu",
+        examen_pied: "{sus} sicher · {cours} im Lernen · {reste} noch neu",
+        finir_theme_un: "{niveau} abschließen · noch 1 Wort",
+        finir_theme_n: "{niveau} abschließen · noch {n} Wörter",
+        compte_maitrises: "Wörter sicher",
+        compte_grammaire: "Grammatikübungen",
+        seance_titre: "Meine Lerneinheit heute",
+        seance_choix_titre: "Womit fängst du an?",
+        seance_choix_scene: "Die Szene",
+        seance_choix_cartes: "Die Karten",
+        seance_choix_cartes_detail: "Wiederholung, dann neue Wörter",
+        seance_choix_allemand: "Deutsch",
+        seance_choix_langue: "Deutsch",
+        seance_choix_fenetre: "das Fenster",
+        seance_choix_detail: "{titre} · {n} Fragen · {niveau}",
+        seance_scene_cadre: "Die Szene des Tages",
+        seance_scene_klassenzimmer: "Marks und Annas Klasse",
+        seance_scene_untersuchung: "Mark bei seiner Ärztin",
+        seance_scene_markt: "Anna auf dem Markt",
+        seance_scene_arztpraxis: "Mark hat sich am Knie verletzt",
+        seance_scene_wohnzimmer: "Mark kommt von der Reise zurück",
+        seance_scene_kreuzung: "Anna sucht den Weg",
+        seance_scene_fruehstueck: "Marks Frühstück",
+        seance_scene_kleidergeschaeft: "Anna geht shoppen",
+        seance_scene_kueche: "Mark kocht Suppe",
+        seance_scene_park: "Ein Sonntag im Park",
+        seance_scene_geburtstag: "Marks Geburtstag",
+        seance_scene_schlafzimmer: "Anna packt den Koffer",
+        seance_scene_strand: "Anna am Strand",
+        seance_scene_zug: "Mark fährt mit dem Zug",
+        seance_scene_winter: "Annas Schneemann",
+        seance_scene_buero: "Mark im Büro",
+        seance_scene_supermarkt: "Anna kauft ein",
+        seance_scene_bibliothek: "Anna in der Bibliothek",
+        seance_scene_sportplatz: "Marks Tor",
+        seance_scene_heimwerken: "Mark baut ein Regal auf",
+        seance_scene_post: "Anna auf der Post",
+        seance_scene_familie: "Sonntag mit der Familie",
+        seance_scene_camping: "Ein Abend am See",
+        seance_scene_musik: "Die Gitarrenstunde",
+        seance_scene_apotheke: "Mark in der Apotheke",
+        seance_scene_baeckerei: "Anna in der Bäckerei",
+        seance_scene_bauernhof: "Anna auf dem Bauernhof",
+        seance_scene_buergeramt: "Mark im Bürgeramt",
+        seance_scene_flughafen: "Anna am Flughafen",
+        seance_scene_hotel: "Mark im Hotel",
+        seance_scene_waschsalon: "Anna im Waschsalon",
+        seance_scene_restaurant: "Mark im Restaurant",
+        seance_scene_weihnachtsmarkt: "Mark auf dem Weihnachtsmarkt",
+        seance_scene_fahrradwerkstatt: "Mark in der Fahrradwerkstatt",
+        seance_scene_friseur: "Anna beim Friseur",
+        seance_scene_umzug: "Anna zieht um",
+        seance_scene_stadtplatz: "Anna auf dem Platz",
+        seance_scene_museum: "Anna im Museum",
+        seance_scene_ubahn: "Mark in der U-Bahn",
+        cp_type: "Satz",
+        cp_q_ecoute: "Was hörst du?",
+        cp_q_trou: "Welches Wort fehlt?",
+        cp_q_ordre: "Bilde den Satz",
+        cp_ecouter: "Anhören",
+        cp_lent: "Langsamer",
+        tr_micro_retabli: "Mikrofon wieder an.",
+        tr_son_retabli: "Ton wieder an.",
+        tr_btn_micro: "Mikrofon aus- oder einschalten",
+        tr_btn_son: "Ton aus- oder einschalten",
+        tr_lien_parler: "Ich kann gerade nicht sprechen",
+        tr_lien_ecouter: "Ich kann gerade nicht hören",
+        tr_actif_micro: "Ohne Mikrofon bis zum Ende der Lerneinheit: Aus dem Sprechen wird ein Satz zum Zusammensetzen.",
+        tr_actif_son: "Ohne Ton bis zum Ende der Lerneinheit: Aus dem Hören wird Lesen.",
+        tr_q_lis: "Lies und wähle die Bedeutung",
+        tr_q_lire: "Lies den Satz",
+        tr_remplace: "Stumme Version",
+        cp_bravo: "Super!",
+        cp_reponse: "Die richtige Antwort:",
+        cp_tu_as_ecrit: "Du hast geschrieben:",
+        cp_presque: "Ein kleiner Tippfehler: Wir zählen es trotzdem als richtig.",
+        flash_end_a_revoir_un: "1 Satz morgen wiederholen",
+        flash_end_a_revoir_n: "{n} Sätze morgen wiederholen",
+        pp_badge: "Erste Schritte",
+        pp_q_choix: "Hör zu und tippe dann auf die Bedeutung",
+        pp_niveau_clair: "Erste Schritte: die wichtigsten Sätze fürs Reisen, auch ganz ohne Vorkenntnisse.",
+        pp_porte_titre: "Erste Wörter",
+        pp_fin_titre: "Deine ersten Schritte sind gemacht!",
+        pp_fin_texte: "Du hast die Grundsätze, um dich vorzustellen, zu bestellen, nach dem Weg zu fragen, zu reservieren und zu sagen, dass du etwas nicht verstehst. Weiter geht es auf Niveau A1.",
+        av_badge: "✈️ Etappe {n}",
+        av_suite_badge: "A1 · Schritt {n}",
+        av_date_invite: "✈️ Reist du bald? Gib dein Abreisedatum an: Wir sagen dir jeden Tag, in welchem Tempo du rechtzeitig fit bist.",
+        av_date_ajouter: "Mein Datum",
+        av_date_non: "Nein, danke",
+        av_date_label: "Abreisedatum",
+        av_date_ok: "OK",
+        av_date_effacer: "Löschen",
+        av_date_modifier: "Abreisedatum ändern",
+        av_depart_rythme: "✈️ Abreise in {n} Tagen · {e} Etappen pro Woche, um bereit zu sein",
+        av_depart_pret: "✈️ Abreise in {n} Tagen · du bist bereit!",
+        av_bloc_mien: "✏️ Mein eigenes",
+        av_bloc_ecris: "Schreib dein Wort",
+        av_etape_fin_titre: "Schritt {n}: geschafft!",
+        av_etape_fin_texte: "Nächster Schritt: {t}.",
+        av_q_bloc: "Fertiger Satz: Tausche das farbige Wort aus oder setze dein eigenes ein.",
+        av_q_dialogue: "Jetzt du: Antworte laut.",
+        av_escale_fin_titre: "Etappe {n}: geschafft!",
+        av_escale_fin_texte: "Nächste Etappe: {t}.",
+        av_jalon_titre_voyage: "Deine Reise ist vorbereitet!",
+        av_jalon_titre: "12 Etappen: Du kommst auf Reisen zurecht!",
+        av_jalon_texte: "{n} fertige Sätze warten in deinem Heft. Schlag es vor Ort auf.",
+        av_jalon_k: "Und jetzt: Dein A1 ist zu {p} % geschafft",
+        av_jalon_change: "Bis hierher hast du fertige Sätze gelernt. Jetzt lernst du, eigene zu bauen: Familie, Wohnen, Arbeit und die Grammatik, um zu sagen, was du willst.",
+        av_jalon_demain: "Nächster Schritt: {t}",
+        av_fin_a1_titre: "A1 geschafft!",
+        av_fin_a1_texte: "Du hast den ganzen Wortschatz von A1 gesehen. Jetzt kommt A2.",
+        av_fin_a1_bouton: "A2 beginnen",
+        av_porte: "Etappe {n} von {t}",
+        av_porte_suite: "A1 · die Fortsetzung · {n} von {t}",
+        av_en_voyage: "Gute Reise!",
+        av_carnet_n: "📒 Mein Heft · {n} Sätze",
+        av_carnet_1: "📒 Mein Heft · 1 Satz",
+        av_carnet_kicker: "A1 Reise",
+        av_carnet_titre: "Mein Satzheft",
+        av_carnet_sous: "Die fertigen Sätze deiner Etappen, zum Aufschlagen vor Ort. Tippe auf einen Satz, um ihn zu hören.",
+        av_carnet_vide: "Dein Heft füllt sich mit jeder Etappe.",
+        fc_badge: "📄 Blatt {n}/{t} · {niveau}",
+        fc_badge_revoir: "📄 Blatt zum Wiederholen · {niveau}",
+        fc_kicker: "Konjugation",
+        fc_titre: "Meine Blätter",
+        fc_sous: "Die Konjugationsblätter deines Niveaus. Tippe auf ein Blatt, um es zu öffnen, dann auf eine Zeile, um sie zu hören.",
+        fc_vide: "Dein erstes Blatt kommt in deiner Lerneinheit heute.",
+        fc_porte_auj: "Heute das Blatt: {t}",
+        fc_porte_lien: "📄 Meine Blätter · {n}",
+        fc_a_revoir: "Zu wiederholen",
+        fc_vue: "Gesehen",
+        fc_bientot: "Bald",
+        fc_niveau: "{niveau} · {n} / {t}",
+        fc_entrainer: "ÜBEN →",
+        av_pp_suite_k: "Wie es weitergeht",
+        av_pp_suite_t: "Dein A1 beginnt",
+        av_pp_e1: "12 Etappen: essen gehen, der Markt, der Zug, die Gesundheit, Leute kennenlernen …",
+        av_pp_e2: "Reist du bald? Gib dein Abreisedatum an, wir sagen dir das Tempo, um bereit zu sein.",
+        av_pp_e3: "Der Rest von A1: Wohnen, Behördengänge, Familie, Arbeit …",
+        pp_fin_bouton: "Weiter",
+        pp_q_tableau: "Hör dir jede Zeile an. Die Karten kommen danach.",
+        pp_porte_jour: "Schritt {n} von {t}",
+        pp_jour_reussi: "Schritt {n} geschafft",
+        pp_scene_titre: "Tritt in die Szene ein",
+        pp_scene_texte: "Tippe auf die Gegenstände, um ihre Namen zu hören. Einige kennst du schon.",
+        pp_scene_bouton: "In die Szene eintreten",
+        pp_plus_tard: "Später",
+        seance_porte_tout: "Wörter, Grammatik und Szene",
+        seance_aujourdhui: "Heute: {lieu}",
+        seance_aujourdhui_sous: "3 Fragen mitten in der Lerneinheit",
+        arret_badge: "Halt in der Szene",
+        arret_titre: "Tritt in die Szene ein: {lieu}",
+        arret_texte_a1: "Drei Gegenstände sind zu finden. Du hast sie schon auf deinen Karten gesehen:",
+        arret_texte: "Drei Fragen in der Szene, auf deinem Niveau.",
+        arret_entrer: "Eintreten",
+        arret_passer: "Überspringen",
+        or_consigne: "Tippe auf das Mikrofon und sprich den Satz",
+        or_ecoute: "Ich höre zu …",
+        or_arreter: "Der Kreis wächst mit deiner Stimme. Tippe darauf, um aufzuhören.",
+        or_bon: "Das passt!",
+        or_presque: "Fast!",
+        or_rien: "Ich habe dich nicht gut verstanden",
+        or_entendu: "Ich habe gehört:",
+        or_presque_aide: "Die unterstrichenen Wörter habe ich nicht erkannt. Hör dir das Modell an und versuch es noch einmal.",
+        or_rien_aide: "Sprich etwas lauter, mit dem Handy nah am Mund, und versuch es noch einmal.",
+        or_reessayer: "Noch einmal",
+        or_lentement: "Langsam",
+        or_bravo: "Super!",
+        or_eclat: "+1 Splitter für dein Mosaik",
+        or_touche_mots: "Tippe auf ein unterstrichenes Wort, um es einzeln zu hören.",
+        cp_retiens_ecrire: "📝 Merk dir diesen Satz gut: In ein paar Karten schreibst du ihn.",
+        cp_dictee_preparee: "📝 Der Satz, den du vorhin geordnet hast: Schreib ihn aus dem Gedächtnis.",
+        cp_ecrire_court: "📝 Bald zu schreiben",
+        cp_dictee_court: "📝 Jetzt aus dem Gedächtnis",
+        or_dis_le: "Sag es",
+        or_phrase_entiere: "Der ganze Satz",
+        or_a_toi: "Jetzt du! Tippe auf den Kreis.",
+        or_mot_reussi: "✓ Geschafft!",
+        or_passer: "Überspringen",
+        or_sans_verdict: "Aufgenommen. Hör dich noch einmal an und vergleiche mit dem Modell.",
+        cp_q_gram: "Ergänze den Satz",
+        cp_q_dictee: "Schreib, was du hörst",
+        cp_q_parler: "Sprich laut nach",
+        cp_modele: "Modell",
+        cp_enregistrer: "Aufnehmen",
+        cp_arreter: "Stopp",
+        cp_reecouter: "Meine Aufnahme anhören",
+        cp_micro_refuse: "Das Mikrofon ist nicht verfügbar: Hör dir das Modell an und sprich es für dich nach.",
+        cp_micro_demande: "Mikrofon wird geöffnet …",
+        cp_micro_muet: "Das Mikrofon antwortet nicht. Prüfe, ob Wortando das Mikrofon benutzen darf (Einstellungen des Handys), und versuch es dann noch einmal.",
+        cp_relecture_impossible: "Dein Versuch ist aufgenommen, aber dieses Handy kann ihn nicht abspielen.",
+        seance_ton_niveau: "Dein Niveau",
+        niveau_clair_A1: "Einstieg: die ersten Wörter und Sätze für den Alltag",
+        niveau_clair_A2: "Grundstufe: in einfachen Situationen zurechtkommen",
+        niveau_clair_B1: "Mittelstufe: über das eigene Leben, die Arbeit und Pläne sprechen",
+        niveau_clair_B2: "Fortgeschritten: einer Diskussion folgen, die eigene Meinung sagen",
+        niveau_clair_C1: "Erfahren: sich flüssig und nuanciert ausdrücken",
+        seance_porte_mots: "Die Wörter",
+        seance_porte_mots_grammaire: "Wörter und Grammatik",
+        seance_porte_scene: "Die Szene des Tages",
+        seance_porte_cartes: "Karten",
+        seance_n_questions: "{n} Fragen",
+        explorer_titre: "Szenen entdecken",
+        explorer_desc: "Tippe auf die Gegenstände, hör dir ihre Namen an. Frei, ohne Fragen.",
+        ela_titre: "Hören, nachsprechen",
+        ela_niveau_titre: "Niveau zum Hören",
+        ela_niveau_pied: "Zu Beginn das deiner Lerneinheit. Es hier zu ändern, verändert deine Lerneinheit nicht.",
+        av_date_court: "✈️ Reist du bald?",
+        ela_n_mots: "{n} Wörter",
+        rp_badge: "🧭 Orientierung {n}/{t}",
+        rp_badge_revoir: "🧭 Orientierung · Wiederholung",
+        rp_q_nombre: "Hör zu und wähle die Zahl",
+        rp_q_chiffres: "Hör zu und schreib die Zahl in Ziffern",
+        rp_q_dire: "Sag diese Zahl laut",
+        rp_q_dire_couleur: "Sag diese Farbe laut",
+        rp_q_teinte: "Welche Farbe ist das?",
+        revoir_pp_lien: "↺ Erste Schritte wiederholen",
+        recommencer_pp_lien: "↺ Erste Schritte bei Schritt 1 neu beginnen",
+        revoir_niveau_lien: "↺ Niveau {n} wiederholen",
+        revoir_niveau_clair: "Du wiederholst Niveau {n} von Anfang an: {f} / {t} Wörter",
+        revoir_niveau_toast: "Die Lerneinheit nimmt Niveau {n} von Anfang an wieder auf. Nichts wird gelöscht: Deine gelernten Wörter bleiben gelernt.",
+        revoir_pp_toast: "Die ersten Schritte beginnen wieder bei Schritt 1. Nichts wird gelöscht.",
+        revoir_niveau_fini: "Du hast das ganze Niveau {n} wiederholt!",
+        rp_q_sens: "Hör zu und wähle die Bedeutung",
+        rp_q_suite: "Was kommt danach?",
+        rp_q_suite_dire: "Sag laut, wie es weitergeht",
+        rp_q_lettre: "Hör zu und wähle den Buchstaben",
+        rp_q_epeler: "Hör dir die Buchstaben an und schreib das Wort",
+        rp_q_article: "Welcher Artikel?",
+        rp_q_pluriel: "Wie lautet der Plural?",
+        rp_q_dire_mot: "Sag es laut, mit Artikel",
+        rp_exception: "⚠️ Ausnahme",
+        art_exception_es: "⚠️ Ausnahme: „{mot}“ endet auf -{fin}, aber man sagt {art} {mot}.",
+        son_badge: "Der Laut des Tages",
+        son_q: "Hör dir jedes Wort an und schau auf die Buchstaben",
+        son_q_dire: "Jetzt du: Sag dieses Wort",
+        reglage_questions_titre: "Fragen in der Szene des Tages",
+        reglage_questions_desc: "Anzahl der Fragen in der Szene des Tages. Hat die Szene auf deinem Niveau nicht genug, nimmt sie zur Wiederholung die des Niveaus davor dazu.",
+        seance_sous: "Wiederholung und neue Wörter",
+        seance_carte: "{n} Karte",
+        seance_cartes: "{n} Karten",
+        seance_neufs_de: "neue Wörter aus {niv}",
+        seance_neufs_etiq: "Neuer Wortschatz aus dem Niveau:",
+        seance_par_theme: "Nach Thema",
+        seance_commencer: "Starten",
+        seance_ou_theme: "nach Thema",
+        garder_action: "Zurücklegen",
+        accueil_salut_sous: "Deine Lerneinheit wartet.",
+        accueil_aujourdhui: "Heute",
+        seance_continuer_long: "Lerneinheit fortsetzen",
+        seance_commencer_long: "Lerneinheit starten",
+        seance_contenu: "Wörter, Grammatik und Szenen",
+        garder_sous: "um es später zu üben",
+        garder_fait: "Zurückgelegt",
+        gardes_titre: "Zurückgelegt",
+        navint_texte: "Damit Wortando richtig läuft, öffne es in Chrome.",
+        navint_bouton: "In Chrome öffnen",
+        navint_ios: "Damit Wortando richtig läuft, öffne es in Safari: Tippe auf ⋯ und dann auf „In Safari öffnen“.",
+        garde_sortir: "Aus der Ablage nehmen",
+        settings_vider_coffre: "ABLAGE LEEREN",
+        settings_vider_coffre_desc: "Nimmt alle Wörter aus deiner Ablage. Dein Fortschritt bleibt unberührt: Nur die Markierung „zurückgelegt“ verschwindet.",
+        confirm_vider_coffre: "Die {n} Wörter aus deiner Ablage nehmen? Dein Fortschritt, deine Fälligkeiten und dein Prozentsatz ändern sich nicht – nur die Markierung „zurückgelegt“ verschwindet.",
+        vider_coffre_fait: "Ablage geleert: {n} Wörter herausgenommen.",
+        gardes_vide: "Die Ablage ist leer. Unter einer Karte legt „Zurücklegen“ ein Wort zum gesonderten Üben hierher: Es bleibt in deinen Lerneinheiten, und du findest es hier, wann du willst.",
+        gardes_sorti_dernier: "Die Ablage ist leer: Alle deine Wörter sind wieder draußen.",
+        myvocab_empty: "Deine zurückgelegten Wörter",
+        myvocab_count: "{n} Wörter zurückgelegt",
+        myvocab_count_one: "1 Wort zurückgelegt",
+        myvocab_add_title: "Zu meinen Karten hinzufügen",
+        dict_au_cours_title: "Schon eine Karte des Kurses – Karte öffnen",
+        myvocab_freq_high: "sehr häufig",
+        myvocab_freq_mid: "häufig",
+        myvocab_added: "„{mot}“ zu deinen Karten hinzugefügt.",
+        myvocab_already: "„{mot}“ ist schon in deinen Karten.",
+        myvocab_full: "Du hast {n} zurückgelegte Wörter erreicht. Geh sie erst durch, bevor du weitere hinzufügst.",
+        myvocab_sans_genre: "„{mot}“ hat im Wörterbuch keinen Artikel. Daraus lässt sich keine zuverlässige Karte machen, aber deine Anfrage ist notiert.",
+        carte_nouveau_mot: "Neues Wort",
+        carte_type_particule: "Partikel",
+        carte_type_adjectif: "Adjektiv",
+        carte_genre_der: "maskulin",
+        carte_genre_die: "feminin",
+        carte_genre_das: "neutrum",
+        myvocab_deja_cours: "„{mot}“ ist schon eine Karte des Kurses – du brauchst es nicht hinzuzufügen.",
+        myvocab_diplomes: "{n} deiner Wörter sind in den Kurs aufgenommen worden: Sie haben jetzt eine richtige Karte.",
+        myvocab_tout_diplome: "Alle deine Wörter sind in den Kurs aufgenommen worden. Such dir neue!",
+        myvocab_vide_explication: "<strong>Mein Wortschatz ist noch leer.</strong><br>Das ist dein persönlicher Vorrat: Wörter, die dir anderswo begegnen – im Kurs, in einem Text, in einem Gespräch – und die nicht in der App sind.<br><br>Such oben eines und tippe dann auf das <strong>+</strong> neben dem Treffer aus dem Wörterbuch. Es wird eine Karte zum Wiederholen wie alle anderen.",
+        myvocab_how: "Such ein Wort und tippe dann auf das + neben einem Wörterbucheintrag, um es hier abzulegen.",
+        review_again: "Nochmal",
+        review_good: "OK",
+        review_known: "Kenne ich schon",
+        review_continuer: "Weiter",
+        review_continuer_sous: "es kommt später wieder",
+        aide_continuer: "Jeder grüne Punkt ist ein Erfolg: Das Wort kommt in immer größeren Abständen wieder, damit es sich festsetzt. Wenn alle {n} Punkte leuchten, sitzt es und kommt erst in {jours} Tagen wieder.",
+        known_echeance: "nicht vor {n} Tagen",
+        flash_end_title: "Stapel fertig",
+        flash_end_summary: "{vues} Karten gesehen, davon {sues} auf Anhieb gewusst.",
+        flash_end_summary_one: "1 Karte gesehen.",
+        flash_end_done: "FERTIG",
+        encore_neufs: "{n} Karten mehr",
+        dict_section_title: "Wörterbuch",
+        dict_section_note: "Tippe auf das +, um aus einem Wort eine Karte zu machen und es in „Mein Wortschatz“ wiederzufinden. Der Pfeil → führt zur Karte des Kurses, wenn es sie schon gibt.",
+        search_head_cours: "Karten der App",
+        dict_loading: "Suche im Wörterbuch …",
+        dict_none: "Kein Wörterbucheintrag zu diesem Wort.",
+        dict_count: "{n} Einträge",
+        dict_count_one: "1 Eintrag",
+        dict_credit: "Wörterbuch: WikDict, nach dem Wiktionary – Lizenz CC BY-SA 4.0.",
+        credits_title: "Quellen",
+        sec_comprendre: "Verstehen",
+        sec_vocabulaire: "Wortschatz",
+        sec_entrainer: "Üben",
+        sec_ailleurs: "Siehe auch",
+        result_title: "Sehr gut!",
+        table_header_gender_4: "<td style=\"padding:8px 4px;\">mask.</td><td style=\"padding:8px 4px;\">fem.</td><td style=\"padding:8px 4px;\">neutr.</td><td style=\"padding:8px 4px;\">Plural</td>",
+        exo_bloc: "Block {n} / {total}",
+        sec_mots: "An den Wörtern arbeiten",
+        sec_phrase: "Am Satz arbeiten",
+        sec_pratique: "Anwenden",
+        reperes_seance: "Deine Lerneinheit heute: Tippe jeden Tag auf ▶. Ein paar neue Wörter und die Wiederholungen, die genau zur rechten Zeit wiederkommen. So kommst du am einfachsten voran.",
+        reperes_niveau: "Dein Niveau: Die neuen Wörter kommen aus dem hier gewählten Niveau (tippe auf „A1 ▾“), von A1 (Einstieg) bis C1 (fortgeschritten). Du kannst es jederzeit ändern.",
+        reperes_gardes: "Zurückgelegt: Die Wörter, die du zum späteren Üben zurücklegst, warten hier auf dich.",
+        gardes_explication: "„Zurückgelegt“: Wenn dir in deiner Lerneinheit ein Wort Mühe macht, tippe auf seiner Karte auf „{bouton}“. Es landet hier, und du übst es, wann du willst.",
+        reperes_themes: "Nach Thema: Du möchtest lieber ein bestimmtes Gebiet? Familie, Haus, Essen …",
+        reperes_mots: "Jede Kachel öffnet Karten und Übungen: Nomen, Verben, Adjektive … Scroll nach unten, um alles zu sehen.",
+        reperes_phrase: "Die Grammatik des Satzes: Jede Kachel erklärt eine Regel und lässt sie dann üben.",
+        reperes_pratique: "Zum Anwenden: hören, schreiben, Redewendungen.",
+        reperes_explorer: "Szenen entdecken: Tippe auf ein Bild, um in eine Szene einzutreten und dort auf die Gegenstände zu tippen. Du hörst ihre Namen, frei, ohne Fragen. „›“ zeigt alle.",
+        reperes_dico: "Das Wörterbuch: ein unbekanntes Wort? Such es hier.",
+        reperes_reglages: "Die Einstellungen: deine Sprache, dein Niveau und alles Übrige.",
+        reperes_titre: "Entdeckungspunkte",
+        reperes_desc: "Die bernsteinfarbenen Punkte auf der Startseite, die jeden Bereich erklären.",
+        reperes_revoir: "ENTDECKUNGSPUNKTE WIEDER ANZEIGEN",
+        reperes_toast: "Die Entdeckungspunkte sind wieder auf der Startseite.",
+        reperes_aria: "Diesen Bereich entdecken",
+        sec_parcours: "Mein Weg",
+        examen_essentiel: "Grundwortschatz",
+        examen_aide_titre: "Die Wörter, die die offiziellen Lehrpläne zuerst nennen.",
+        examen_aide_1: "Drei Referenzwerke für Deutsch veröffentlichen die Liste des Wortschatzes, den man auf jedem Niveau können soll, und dieses Wort steht darin. Das hilft dir, ob du eine Prüfung vorbereitest oder verreist: Auf diese Wörter haben sich die Leute geeinigt, die Kurse entwerfen.",
+        examen_aide_2: "Die Wörter ohne diese Markierung sind nicht weniger wert – sie erweitern, wo diese hier den Grundstock bilden. Und oberhalb von B1 gibt es keine offizielle Liste mehr: Dort sagt das Fehlen der Markierung nichts mehr aus.",
+        examen_aide_retour: "ZURÜCK ZUR KARTE",
+        examen_rejouer: "Die Lernphase zum Schlüssel noch einmal zeigen",
+        examen_rejouer_fait: "Das Wort „Grundwortschatz“ erscheint wieder auf den nächsten fünf markierten Karten.",
+        op_essentiel_d: "Die Wörter, die die offiziellen Lehrpläne zuerst nennen",
+        op_essentiel_t: "Der Grundwortschatz",
+        op_plusloin_t: "Der Wortschatz für den nächsten Schritt",
+        op_plusloin_d: "Was erweitert, über das hinaus, was die Lehrpläne nennen",
+        portee_tout: "Alles",
+        portee_titre: "Was wiederholen?",
+        portee_essentiel: "Der Grundwortschatz",
+        portee_plusloin: "Der nächste Schritt",
+        credits_voix: "Deutsche Stimme: Aurora, erzeugt mit ElevenLabs.",
+        credits_dict: "Wörterbuch: WikDict, nach dem Wiktionary – Lizenz CC BY-SA 4.0.",
+        credits_degres: "Komparativ und Superlativ der Adjektive: deutsches und englisches Wiktionary (über kaikki.org) – Lizenz CC BY-SA 4.0.",
+        credits_video: "Eröffnungsanimation: Created with Grok.",
+        credits_freq: "Gebrauchshäufigkeit: Leipzig Corpora Collection – © Universität Leipzig / Sächsische Akademie der Wissenschaften / InfAI, CC BY; und OPUS OpenSubtitles (Lison & Tiedemann, 2016), nach opensubtitles.org.",
+        credits_examens: "Prüfungen: Wortando ist weder mit dem Goethe-Institut noch mit telc verbunden und von keinem der beiden anerkannt. Ihre offiziellen Listen dienen nur als Bezugsgröße, um die Abdeckung des Wortschatzes zu messen.",
+        dict_plural: "Pl. {pl}",
+        dict_participle: "Part. {pp}",
+        label_participle: "Partizip",
+        pos_n: "Nomen",
+        pos_v: "Verb",
+        pos_adj: "Adjektiv",
+        pos_adv: "Adverb",
+        coffre_suivante: "Nächste",
+        coffre_suivante_sous: "sie bleibt in der Ablage",
+        echeance_encore: "wieder in {n} Minuten",
+        echeance_10min: "in {n} Minuten",
+        echeance_dans_seance: "wieder in {n} Minuten",
+        echeance_demain: "nicht vor der nächsten Lerneinheit",
+        echeance_quelques_seances: "in ein paar Lerneinheiten",
+        echeance_jours: "nicht vor {n} Tagen",
+        echeance_maitrise: "sicher ✓",
+        mastery_toast: "Sicher! Dieses Wort kommt in {n} Tagen zur Kontrolle wieder – und dann immer seltener.",
+        settings_revoir_maitrises: "SICHERE WÖRTER WIEDERHOLEN",
+        settings_revoir_maitrises_desc: "Bringt die als sicher eingestuften Wörter wieder in Umlauf, ohne deinen Fortschritt oder deinen Prozentsatz zu löschen.",
+        confirm_revoir_maitrises: "Alle deine sicheren Wörter wieder in die Wiederholung nehmen? Dein Fortschritt und dein Prozentsatz bleiben erhalten.",
+        alert_maitrises_revoir: "{n} sichere Wörter kommen wieder in die Wiederholung.",
+        alert_maitrises_aucun: "Noch kein sicheres Wort.",
+        srs_etat_0: "neues Wort",
+        ip_partie_boutons: "Die vier Knöpfe",
+        srs_aide_garder: "Das Wort kommt in deine Ablage und die Karte geht weiter – aber nichts wird bewertet: Sie bleibt fällig und kommt in der nächsten Lerneinheit wieder. Du findest sie auch gesondert unter „Zurückgelegt“, um sie für sich zu üben. In der Ablage ändert das Wiederholen nichts: weder Fälligkeit noch Stufe noch Tagesziel.",
+        srs_aide_intro: "Du antwortest nur auf eines – ob dir das Wort eingefallen ist. Die App leitet daraus das Datum ab.",
+        srs_aide_echelle: "Jedes „✓“ in Folge rückt das Wort ein Stück weiter weg:",
+        srs_aide_minutes: "{n} Min.",
+        srs_aide_jour: "{n} Tag",
+        srs_aide_jours: "{n} Tage",
+        srs_aide_maitrise: "sicher",
+        carte_maitrise_titre: "Sicheres Wort – es kommt in {n} Tagen zur Kontrolle wieder, dann immer seltener",
+        srs_aide_encore: "Das Wort fängt wieder bei null an und kommt {n} Karten später wieder, in dieser Lerneinheit.",
+        srs_aide_pastilles: "Die {n} Punkte zählen diese Erfolge in Folge.",
+        srs_aide_connu: "Das Wort springt direkt auf „sicher“, ohne die vier Stufen zu durchlaufen. Praktisch für ein Wort, das du schon kennst: Es verlässt den Stapel, ohne dass du es viermal bewerten musst.",
+        srs_aide_apres: "Ob durch die vier „✓“ oder durch den Stern: Ein sicheres Wort ist nicht für immer weggeräumt. Es kommt in {n} Tagen zur Kontrolle wieder. Jedes Mal, wenn du es bestätigst, rückt es weiter weg – 35 Tage, dann 3 Monate, dann 6, dann ein Jahr. Ein Wort wie „Hallo“ kommt am Ende gar nicht mehr.",
+        srs_etat_1: "ich fange an",
+        srs_etat_2: "ich komme voran",
+        srs_etat_3: "fast geschafft",
+        srs_etat_4: "ich kann es",
+        home_streak_unit: "Tage",
+        home_streak_unit_one: "Tag",
+        home_serie_suffixe: "in Folge",
+        serie_deux_semaines: "Die letzten zwei Wochen",
+        serie_jour_fait: "Lerneinheit gemacht",
+        serie_jour_vide: "keine Lerneinheit",
+        serie_det_ex_1: "1 Übung",
+        serie_det_ex_n: "{n} Übungen",
+        serie_det_mots_1: "1 gelernt",
+        serie_det_mots_n: "{n} gelernt",
+        serie_det_seance_finie: "Lerneinheit des Tages abgeschlossen",
+        serie_det_seance_p: "Lerneinheit des Tages: {p} von {n} Karten",
+        serie_det_rien: "An diesem Tag keine Aktivität.",
+        serie_det_inconnu: "Lerntag (Einzelheiten wurden damals noch nicht erfasst).",
+        bilan_titre: "Deine Woche",
+        bilan_dates: "Vom {debut} bis {fin}",
+        bilan_exercice: "Übung",
+        bilan_exercices: "Übungen",
+        bilan_jour: "aktiver Tag",
+        bilan_jours: "aktive Tage",
+        bilan_acquis_1: "gelernt",
+        bilan_acquis: "gelernt",
+        bilan_notion_titre: "Das Thema zum Üben",
+        bilan_notions_titre: "Die Themen zum Üben",
+        bilan_fautes: "{f} Fehler bei {n} Antworten",
+        bilan_travailler: "Das üben",
+        bilan_notion_aucune: "Kein Grammatikthema hat dir diese Woche Mühe gemacht. Super!",
+        bilan_mots_titre: "Die Wörter, die sich wehren",
+        bilan_revoir_mots: "Diese Wörter wiederholen",
+        bilan_mots_introuvables: "Diese Wörter sind nicht mehr in deinen Stapeln.",
+        bilan_fin_rien: "Nichts hat dir diese Woche Mühe gemacht: Weiter so!",
+        bilan_fin_regulier: "Fünf Tage oder mehr diese Woche: Regelmäßigkeit ist es, was zum Lernen führt.",
+        bilan_fin_normal: "Was heute noch schwerfällt, sitzt nächste Woche. Eine Lerneinheit nach der anderen.",
+        bilan_ouvrir: "Meine Woche ansehen ›",
+        bilan_compte_depuis: "Übungen gezählt seit dem {date}.",
+        bilan_commencer: "Meine Lerneinheit heute starten",
+        bilan_refaire: "✓ Noch eine Runde",
+        bilan_mots_refaire: "✓ Noch einmal wiederholen",
+        serie_enc_semaine: "Eine Woche ohne einen Tag auszulassen, super! Die Gewohnheit sitzt.",
+        serie_enc_aujourdhui: "Eine Lerneinheit heute, und deine Serie geht weiter.",
+        serie_enc_regulier: "Sehr regelmäßig: So bleiben die Wörter hängen.",
+        serie_enc_rythme: "Schönes Tempo! Ein paar Minuten am Tag reichen.",
+        serie_enc_debut: "Jeder Tag zählt: eine kleine Lerneinheit, und es geht weiter.",
+        home_week_unit: "diese Woche",
+        en_module_mastered_label: "✅ Sicher",
+        en_module_mastered_hint: "{pct} % des Moduls. Dir fehlen noch {reste} Karten bis „sicher“.",
+        en_module_vocabulary_title: "Wortschatz",
+        en_module_vocabulary_level_desc: "Wähle zuerst ein Niveau: Die Themenliste direkt darunter passt sich an.",
+        en_module_vocabulary_cat_desc: "Wörter lernt man nicht einzeln: Jedes kommt mit einem Satz, der zeigt, wie man es wirklich benutzt.",
+        en_module_britam_title: "Britisch oder amerikanisch",
+        en_module_britam_level_desc: "Wähle zuerst ein Niveau: Die Liste der Familien direkt darunter passt sich an.",
+        en_module_britam_cat_desc: "Derselbe Gegenstand hat je nach Seite des Atlantiks oft zwei Namen. Besser wissen, welchen man benutzt, als beide unbewusst zu mischen.",
+        orb_en_britam_title: "GB / US",
+        orb_en_britam_sub: "flat · apartment",
+        en_module_irregular_title: "Unregelmäßige Verben",
+        en_module_irregular_level_desc: "Wähle zuerst ein Niveau: Die Liste der Familien direkt darunter passt sich an.",
+        en_module_irregular_cat_desc: "Unregelmäßige Verben lernt man nach Muster, nicht durcheinander: die mit drei gleichen Formen, die, bei denen Präteritum und Partizip sich ähneln, und die, die dreimal wechseln.",
+        orb_en_irregular_title: "Unregelmäßige Verben",
+        orb_en_irregular_sub: "take → took → taken",
+        orb_en_phrasal_sub: "give up · look after",
+        orb_en_expressions_title: "Redewendungen",
+        orb_en_expressions_sub: "It depends · By the way",
+        orb_en_pitfalls_title: "Stolperfallen",
+        orb_en_pitfalls_sub: "actually ≠ aktuell",
+        home_title_1: "Lerne Deutsch",
+        home_title_2: "Wort für Wort.",
+        home_subtitle: "Dein persönlicher Tutor für deutsche Grammatik und Wortschatz.",
+        home_title_1_en_dir: "Lerne Englisch",
+        home_title_2_en_dir: "Wort für Wort.",
+        home_subtitle_en_dir: "Dein persönlicher Tutor für englische Grammatik und Wortschatz.",
+        admin_resumes_desc: "Die Übersicht liest schlanke Zusammenfassungen. Eine Testperson erscheint ab ihrer ersten Speicherung; die vor dieser Version angemeldeten kommen auf einmal mit dem Knopf unten.",
+        admin_rebuild_btn: "ZUSAMMENFASSUNGEN NEU AUFBAUEN →",
+        admin_rebuild_running: "WIRD NEU AUFGEBAUT …",
+        admin_vider_retours_btn: "MEINE GESENDETEN RÜCKMELDUNGEN LEEREN →",
+        confirm_vider_retours: "Die von diesem Gerät gesendeten Rückmeldungen löschen? Das Feld füllt sich schnell und behält nur das Ende: Es nach der Bearbeitung zu leeren verhindert, dass sie sich gegenseitig überschreiben. Nicht rückgängig zu machen.",
+        admin_vider_retours_done: "Rückmeldungen gelöscht und gespeichert.",
+        admin_rebuild_done: "{n} Zusammenfassung(en) neu aufgebaut.",
+        admin_rebuild_refuse: "Schreiben verweigert ({code}). Die Firestore-Regel für die Sammlung „resumes“ ist noch nicht veröffentlicht – Firestore selbst funktioniert.",
+        admin_rebuild_echec: "Neuaufbau fehlgeschlagen ({code}).",
+        admin_no_resumes: "Keine Zusammenfassungen. Entweder wurden sie noch nicht aufgebaut – tippe auf „Zusammenfassungen neu aufbauen“ – oder Firestore verweigert das Schreiben, und seit dem Anfang wird nichts gespeichert.",
+        home_ring_hint: "Tippe auf den Kreis, um das Niveau zu wechseln",
+        carte_info_titre: "So liest du deinen Fortschritt",
+        legende_grammaire: "Grammatikübungen – von den 40 der App die, die du zweimal ganz ohne Fehler geschafft hast.",
+        legende_maitrises: "Sichere Wörter – vier richtige Antworten, verteilt über elf Tage. Die Zahl kann um ein oder zwei sinken, wenn ein Wort bei seiner Kontrolle vergessen ist.",
+        legende_rencontres: "Gesehene Wörter – alle Wörter, die du mindestens einmal gesehen hast, auch ohne sie zu können. Diese Zahl sinkt nie.",
+        legende_vocab: "Wortschatz – wo du im angezeigten Niveau stehst. Grün: gewusst. Blau: im Lernen. Grau: noch neu. Tippe auf den Pfeil, um die fünf Niveaus zu sehen.",
+        legende_seance: "Meine Lerneinheit heute – die Zahl links ist dein Tagesziel, das du in den Einstellungen festlegen kannst. Die Lerneinheit gibt dir, was davon noch fehlt: zuerst die fälligen Wiederholungen, dann neue Wörter, wenn noch Platz ist.",
+        carte_info_kicker: "Dein Fortschritt",
+        info_partie_accueil: "Auf der Startseite",
+        info_partie_ici: "Hier abgelegt",
+        ip_partie_seance: "Meine Lerneinheit heute",
+        ip_seance_niveaux: "Die Niveaus A1 bis C1 bestimmen, woher die NEUEN Wörter kommen – nicht deine Wiederholungen. Die kommen aus allen Niveaus, die du schon bearbeitet hast, egal welches angezeigt ist.",
+        ip_seance_commencer: "„Starten“ stellt die Lerneinheit für dich zusammen: zuerst die Wörter, die wieder dran sind, dann neue Wörter aus dem gewählten Niveau, höchstens {n} am Tag. Ein Viertel der Lerneinheit ({p} %) bleibt dem Neuen vorbehalten, damit das gewählte Niveau immer etwas bestimmt, auch wenn der Rückstand groß ist.",
+        ip_seance_gardes: "„Zurückgelegt“ öffnet deine Ablage: die Wörter, die du mit „Zurücklegen“ dort abgelegt hast. Du kannst dort so viel üben, wie du willst – nichts davon ändert eine Fälligkeit oder das Tagesziel.",
+        ip_seance_theme: "„nach Thema“ ist die andere Tür: Du wählst selbst ein Thema, statt die App die Lerneinheit zusammenstellen zu lassen.",
+        ip_seance_t: "Der Zähler der Lerneinheit",
+        ip_seance_p: "Die Karten, die du heute bewertet hast, gemessen an deinem Ziel. Eine Karte zählt erst mit einer Antwort – „Nochmal“ oder „✓“.",
+        ip_vocab_t: "Der Fortschritt im Wortschatz",
+        ip_vocab_p: "Wo du im angezeigten Niveau stehst. Tippe auf den Pfeil, um die fünf Niveaus zu sehen.",
+        ip_partie_tableau: "Das Gemälde",
+        ip_tableau_1: "Ein Gemälde aus dem deutschsprachigen Raum beginnt als grobe Farbkacheln. Jede Karte, die du durchgehst, macht eine davon feiner – Wiederholungen zählen genauso viel wie neue Wörter.",
+        ip_tableau_carreaux: "Für ein ganzes Gemälde braucht es {n} Karten.",
+        ip_tableau_cartouche: "Das Schildchen zeigt sich in drei Schritten: das Jahr, dann der Maler, dann der Titel.",
+        ip_tableau_trophee: "Mit der letzten Karte wird das Mosaik zum Gemälde: Es bleibt {n} Tage auf dem Bildschirm, dann kommt es in deine Galerie – wo du es groß ansehen kannst – und ein neues Gemälde beginnt.",
+        info_partie_memoire: "Wie sich ein Wort festsetzt",
+        info_anneau_aria: "Angezeigtes Niveau wechseln",
+        search_launch_court: "Suchen",
+        flash_end_objectif_atteint: "Tagesziel erreicht – {n} Karten. Alles Weitere ist zum Vergnügen.",
+        flash_end_objectif_reste: "Noch {n} Karten bis zu deinem Tagesziel.",
+        mosaique_plafond: "Das Gemälde ist für heute so weit wie möglich vorangekommen. Morgen geht es weiter.",
+        flash_recto: "Zurück zur Vorderseite der Karte",
+        legende_seance_niveau: "Die Punkte A1 bis C1 bestimmen nur, woher die NEUEN Wörter kommen. Deine Wiederholungen kommen aus allen schon bearbeiteten Niveaus, egal welches gewählt ist.",
+        legende_objectif_quoi: "Heute – die Karten, die du bewertet hast („Nochmal“ oder „✓“).",
+        legende_mosaique: "Das Gemälde – es beginnt als grobe Farbkacheln, und jede Karte verfeinert eine, Wiederholung eingeschlossen. Maler, Jahr und Titel erscheinen nach und nach. Tippe darauf, um es zu vergrößern.",
+        legende_jours: "Lerntage – die Summe der Tage, an denen du etwas gemacht hast. Sie sinkt nie, auch nicht nach Ferien.",
+        legende_serie: "🔥 Tage – die Zahl der Tage in Folge, an denen du gelernt hast, Wortschatz oder Grammatik. Ein ausgelassener Tag setzt sie auf null.",
+        combo_info: "⚡ Richtige Antworten in Folge, in dieser Lerneinheit. Eine falsche Antwort setzt den Zähler auf null. (Die 🔥 auf der Startseite zählt dagegen die Tage in Folge.)",
+        legende_cercle: "◯ der Kreis oben – wo du in einem ganzen Niveau stehst. Er rückt pro Wort um einen Bruchteil eines Prozents vor und bewegt sich vor dem 11. Tag nicht: Das ist normal, und deshalb steht er hier und nicht auf der Startseite. Tippe darauf, um das Niveau zu wechseln.",
+        legende_semaine: "📈 diese Woche – die Wörter, die in den letzten sieben Tagen sicher geworden sind. Das ist dein aktuelles Tempo, keine Gesamtsumme.",
+        legende_objectif: "Die Leiste „Heute“ – die seit heute Morgen gemachten Karten, gemessen an deinem Ziel. Sie fängt jeden Tag bei null an. Die Zielzahl änderst du in den Einstellungen, und sie bestimmt auch die Größe deiner Lerneinheit.",
+        progress_info_titre: "Was diesen Prozentsatz bewegt",
+        progress_info_compte: "Der Prozentsatz zählt deine sicheren Wörter, gemessen an allen Wörtern des angezeigten Niveaus: die Wörter der Themen, die Verben und die Adjektive zusammen.",
+        progress_info_deja: "Bei einem neuen Wort überspringt „Kenne ich schon“ die ganze Leiter und markiert es sofort als sicher.",
+        progress_info_apres: "„Wusste ich nicht“ nimmt ihm die Sicherheit, und der Prozentsatz sinkt.\n\nEin sicheres Wort kommt nach 16 Tagen zur Kontrolle wieder, dann immer seltener, ohne aus der Zählung zu fallen.",
+        search_launch: "Wörterbuch – ein Wort suchen",
+        search_pill: "Ein Wort suchen",
+        tableau_tuile: "Dein Gemälde",
+        tableau_pct: "{p} %",
+        search_kicker: "Karten und Wörterbuch",
+        search_title: "Ein deutsches oder französisches Wort suchen",
+        search_placeholder: "Deutsch oder Französisch …",
+        search_hint: "Tippe mindestens zwei Buchstaben, <strong>auf Deutsch oder auf Französisch</strong> – beides geht. Die Suche durchsucht deine {n} Karten und dann das Wörterbuch – über 250 000 Wörter.",
+        search_count: "{n} Karten",
+        search_count_one: "1 Karte",
+        search_count_none: "Keine Karte",
+        search_count_total: "{n} Karten",
+        search_more: "Nur die ersten {n} Treffer werden angezeigt – grenze deine Suche ein.",
+        search_none_title: "„{q}“ gehört nicht zu deinen Karten.",
+        search_none_scope: "Der Kurs umfasst {n} Karten, von Niveau {debut} bis {fin}. Dieses Wort liegt außerhalb des Programms – schau dir den Wörterbucheintrag oben an und tippe auf das +, um es zu deinen Karten hinzuzufügen.",
+        search_none_suggest: "Meintest du vielleicht:",
+        search_exact: "Genauer Treffer",
+        adverbien_vocab_title: "Wortschatz: Karten",
+        adverbien_vocab_desc: "Wähle zuerst ein Niveau: Die Liste der Familien direkt darunter passt sich dem gewählten Niveau an.",
+        adverbien_level_all: "Alle",
+        adverbien_cat_title: "Nach Familie wiederholen",
+        adverbien_cat_all: "Alle Familien",
+        adverbien_level_title: "Niveau wählen",
+        adverbien_cat_desc: "Adverbien lernt man, indem man die Wörter einer Familie einander gegenüberstellt: immer, oft, manchmal, selten, nie.",
+        search_card_kicker: "Aus der Suche",
+        search_kind_noun: "Nomen",
+        search_kind_verb: "Verb",
+        search_kind_adj: "Adjektiv",
+        search_kind_prep: "Präposition",
+        search_kind_adverb: "Adverb",
+        search_kind_conj: "Konjunktion",
+        search_kind_particle: "Partikel",
+        search_src_praep: "Präpositionen",
+        search_src_adverb: "Adverbien",
+        search_src_conj: "Konjunktionen",
+        search_src_particle: "Partikeln",
+        search_src_kasus: "Verben mit festem Kasus",
+        search_src_position: "Positionsverben",
+        search_plural: "Plural",
+        home_daily_goal_label: "🎯 Tagesziel",
+        home_week_zero: "Diese Woche: 0",
+        home_week_positive: "+{n} diese Woche",
+        qual_0: "Du fängst an!",
+        qual_1: "Auf dem richtigen Weg!",
+        qual_20: "Es geht voran!",
+        qual_50: "Schon weit gekommen!",
+        qual_80: "Fast am Ziel!",
+        qual_100: "Alles sicher!",
+        orb_verben_title: "Verben",
+        orb_verben_sub: "wiederholen · die Zeiten",
+        orb_zuinf_title: "Zu + Infinitiv",
+        orb_zuinf_sub: "versuchen zu · ohne zu",
+        orb_en_nomen_title: "Wortschatz",
+        orb_en_nomen_sub: "Themen & Wörter im Kontext",
+        orb_en_verben_title: "Verben",
+        orb_en_verben_sub: "Unregelmäßige Verben",
+        orb_en_adjektive_title: "Adjektive",
+        orb_en_adjektive_sub: "good · bigger · the biggest",
+        orb_en_artikel_title: "Artikel",
+        orb_en_zeiten_title: "Zeiten",
+        orb_en_zeiten_sub: "Present, Past, Perfect…",
+        orb_en_modal_title: "Modalverben",
+        orb_en_praep_title: "Präpositionen",
+        orb_en_satzbau_title: "Satzbau & Fragen",
+        orb_en_satzbau_sub: "do / does · Wortstellung",
+        orb_en_vergleich_title: "Vergleich",
+        kicker_english_vocab: "Integrierter englischer Wortschatz",
+        nomen_title_en: "Wortschatz & Themen",
+        verbenniveau_title_en: "Verben nach Niveau",
+        orb_nomen_title: "Nomen",
+        orb_nomen_sub: "Diktat · Artikel · Genus",
+        orb_kasus_title: "Kasus & Artikel",
+        orb_kasus_sub: "der · den · dem · ein · kein",
+        orb_adjektive_title: "Adjektive",
+        orb_adjektive_sub: "wiederholen · Deklination",
+        orb_praep_title: "Präpositionen",
+        orb_praep_sub: "Dativ · Akkusativ",
+        orb_wortstellung_title: "Wortstellung",
+        orb_wortstellung_sub: "Satzbau",
+        orb_possessiv_title: "Possessivbegleiter",
+        orb_possessiv_sub: "mein · dein",
+        orb_relativ_title: "Relativpronomen",
+        orb_relativ_sub: "der · den · dem",
+        orb_partikeln_title: "Partikeln",
+        orb_partikeln_sub: "doch · ja · mal",
+        orb_revision_title: "Wiederholung",
+        orb_revision_sub: "Fortschritt · Zurücksetzen",
+        back_button: "‹ Zurück",
+        flip_direction_fr: "🔁 Richtung: FR → DE",
+        flip_direction_de: "🔁 Richtung: DE → FR",
+        flip_direction_de_to_en: "🔁 Richtung: DE → EN",
+        flip_direction_en_to_de: "🔁 Richtung: EN → DE",
+        kicker_grammar_vocab: "Grammatik & Wortschatz",
+        verbenniveau_title: "Verben nach Niveau",
+        levels_label: "Niveaus",
+        grammar_exercises_title: "Grammatikübungen",
+        exos_indisponibles: "Übungen nicht verfügbar – prüfe deine Verbindung und versuch es dann noch einmal.",
+        cours_indisponible: "Erklärungen nicht verfügbar – prüfe deine Verbindung und versuch es dann noch einmal.",
+        verbenniveau_exercises_desc: "Gezielte Übungen zur Konjugation im Präsens.",
+        verbenniveau_rektion_desc: "Teste dein Wissen über den Kasus, den die schon gesehenen Verben verlangen (Akkusativ, Dativ …).",
+        verbenniveau_rektion_btn: "ÜBUNGEN: WELCHER KASUS NACH DIESEM VERB? →",
+        kicker_verb_rektion: "Der vom Verb verlangte Kasus",
+        alert_no_rektion_available: "Im Moment ist kein Verb mit festem Kasus geladen. Versuch es gleich noch einmal.",
+        verbenniveau_exercises_btn: "ÜBUNGEN PRÄSENS →",
+        kicker_integrated_vocab: "Integrierter Wortschatz",
+        nomen_title: "Nomen & Themen",
+        loading_label: "Wird geladen …",
+        all_levels: "Alle Niveaus",
+        all_themes: "Alle Themen",
+        praeteritum_ecrit: "Vor allem schriftlich – mündlich benutzt man bei diesem Verb das Perfekt.",
+        perfekt_haben_sein: "Korrekt, aber wenig gebräuchlich: Bei haben und sein sagt man fast immer das Präteritum, auch mündlich („Ich hatte Hunger“ statt „Ich habe Hunger gehabt“).",
+        kicker_zahlen_vocab: "Zahlen · Wortschatz",
+        level_a1: "Niveau A1",
+        level_a2: "Niveau A2",
+        level_b1: "Niveau B1",
+        orb_ausdruecke_title: "Redewendungen & Wendungen",
+        orb_ausdruecke_sub: "Nach Situation",
+        grp_meinung: "Meinung & Zustimmung",
+        grp_diskussion: "Diskussion & Abwägung",
+        grp_ton: "Nuancen & Ton",
+        grp_ton_adv: "Adverbien des Tons",
+        grp_verbindungen: "Feste Wendungen",
+        grp_gefuehle: "Gefühle & Reaktionen",
+        grp_alltag: "Alltag & Organisation",
+        grp_smalltalk: "Grüßen & Smalltalk",
+        grp_ideen: "Verbindungen zwischen Gedanken",
+        grp_praep: "Verben & Präpositionen",
+        level_b2: "Niveau B2",
+        usage_autriche: "vor allem in Österreich",
+        usage_suisse: "vor allem in der Schweiz",
+        usage_ecrit: "vor allem schriftlich",
+        usage_familier: "umgangssprachlich – schriftlich vermeiden",
+        usage_plus_formel: "förmlicher als {mot}",
+        usage_plus_familier: "umgangssprachlicher als {mot}",
+        level_c1: "Niveau C1",
+        loading_themes: "Themen werden geladen …",
+        nomenniveau_title: "Nomen nach Niveau",
+        adjektive_title: "Adjektive nach Niveau",
+        adjektive_title_en: "Adjektive nach Niveau",
+        flash_tap_hint: "Tippe auf die Karte, um die Antwort zu sehen",
+        flash_skip_hint: "Eine übersprungene Karte zählt nicht für deinen Fortschritt.",
+        review_tomorrow: "Morgen wiederholen",
+        review_mastered: "Sicher ✓",
+        review_retry_unmastered: "Die unsicheren Karten wiederholen",
+        review_retry_mastered: "Die sicheren Karten wiederholen",
+        answer_placeholder: "Deine Antwort …",
+        options_choisis: "Wähle eine Kachel.",
+        verify_button: "PRÜFEN",
+        next_exercise_button: "NÄCHSTE ÜBUNG →",
+        session_ended: "Runde beendet",
+        to_review: "Zu wiederholen",
+        review_based_on_errors: "Wiederholung auf Grundlage deiner Fehler.",
+        restart_button: "NEU BEGINNEN",
+        exo_erreurs_faites: "Deine Fehler sind noch einmal gemacht.",
+        exo_kicker_erreurs: "meine Fehler",
+        exo_revoir_erreurs: "MEINE FEHLER WIEDERHOLEN ({n})",
+        exo_reprendre_debut: "VON VORN BEGINNEN →",
+        exo_serie_faite: "Serie {n} von {total} abgeschlossen.",
+        exo_serie_suivante: "NÄCHSTE SERIE →",
+        dashboard_button: "START",
+        kicker_progress: "Deine App",
+        settings_account_title: "Konto",
+        titre_determinants: "Begleiter",
+        theme_changer: "Thema wechseln",
+        mdp_afficher: "Passwort anzeigen/verbergen",
+        ecouter_pluriel: "Plural anhören",
+        ecouter_phrase: "Satz anhören",
+        ecoute_precedent: "Zurück",
+        ecoute_lecture: "Abspielen",
+        ecoute_suivant: "Weiter",
+        radar_noms: "Nomen",
+        radar_verbes: "Verben",
+        radar_adjectifs: "Adjektive",
+        radar_cas: "Kasus",
+        radar_preps: "Präp.",
+        radar_particules: "Partikeln",
+        radar_marqueurs: "Marker",
+        voice_title: "Vorlesestimme",
+        voice_desc: "Dein Gerät bietet für dieselbe Sprache manchmal mehrere Stimmen an: eine kompakte, mechanische und eine verbesserte, viel natürlichere. Der Stern markiert die besten.",
+        voice_lang_de: "Deutsch",
+        voice_lang_en: "Englisch",
+        voice_test: "Anhören",
+        voice_none: "Auf diesem Gerät ist für diese Sprache keine Stimme installiert. Die Sätze werden mit der Standardstimme gelesen, also mit schlechtem Akzent. Füge sie in den Einstellungen deines Handys hinzu (Bedienungshilfen › Gesprochene Inhalte › Stimmen).",
+        voice_only_one: "Nur eine Stimme installiert. Du kannst in den Einstellungen deines Handys eine verbesserte hinzufügen und sie dann hier auswählen.",
+        retour_titre: "Sag uns, was dir helfen würde",
+        retour_desc: "Ein Wort, das schief klingt, ein Knopf, der nicht reagiert, eine Idee: Schreib es hier. Die Version der App und der Bildschirm, auf dem du warst, werden automatisch mitgeschickt – du musst nichts notieren.",
+        retour_envoyer: "SENDEN",
+        retour_vide: "Schreib erst etwas.",
+        retour_merci: "Danke – ist notiert ✓",
+        carte_dire_titre: "Was die Karte vorliest",
+        carte_dire_desc: "Auf der Rückseite einer Karte wird das Deutsche von selbst vorgelesen. Wähle, was du hören willst. Was du abwählst, bleibt angezeigt, und sein Lautsprecher funktioniert weiter – du kannst es anhören, wann du willst.",
+        musique_titre: "Musik aus einer anderen App",
+        musique_desc: "Standardmäßig nimmt die App den Ton für sich: Deine Musik stoppt, wenn du eine Lerneinheit beginnst, aber du hörst die Aussprache auch dann, wenn der Stummschalter deines Handys umgelegt ist.",
+        musique_avert: "⚠️ Wenn du die Musik weiterlaufen lässt, gibt die App bei umgelegtem Stummschalter KEINEN Ton mehr aus.",
+        musique_bouton: "Musik weiterlaufen lassen",
+        carte_dire_mot: "Das Wort mit Artikel",
+        carte_dire_pluriel: "Der Plural",
+        carte_dire_phrase: "Der Beispielsatz",
+        carte_dire_non: "nein",
+        carte_phrase_titre: "Auch den Beispielsatz vorlesen",
+        carte_phrase_desc: "Auf der Rückseite einer Karte wird das Deutsche von selbst vorgelesen: das Wort mit Artikel, dann sein Plural. Mit dieser Einstellung wird anschließend der Beispielsatz gelesen. Er lehrt das Wort im Zusammenhang, verlängert aber jede Karte um zwei bis drei Sekunden, bevor du dich bewerten kannst. Ohne diese Einstellung bleibt der Satz angezeigt, und sein Lautsprecher funktioniert wie bisher.",
+        carte_phrase_oui: "Ja – der Satz wird gelesen",
+        carte_phrase_non: "Nein – nur Wort und Plural",
+        voice_unsupported: "Dieser Browser bietet keine Sprachausgabe.",
+        settings_title: "Einstellungen",
+        settings_global_progress: "Gesamtfortschritt",
+        settings_zero_title: "Von null anfangen",
+        settings_zero_desc: "Zähler zurücksetzen, vom sanftesten bis zum endgültigen. Jeder fragt nach.",
+        settings_view_themes: "THEMEN ANSEHEN",
+        settings_reset_theme: "AKTUELLES THEMA ZURÜCKSETZEN",
+        settings_reset_all: "GESAMTEN FORTSCHRITT ZURÜCKSETZEN",
+        settings_badges_title: "Abzeichen",
+        badge_unlocked_prefix: "Abzeichen freigeschaltet:",
+        badge_locked_hint: "Noch nicht freigeschaltet",
+        badge_first_word_title: "Erster Schritt",
+        badge_first_word_desc: "Dein erster gespeicherter Erfolg.",
+        badge_xp_500_title: "Auf dem richtigen Weg",
+        badge_xp_500_desc: "50 Erfahrungspunkte erreicht.",
+        badge_xp_2000_title: "Wörtermaschine",
+        badge_xp_2000_desc: "200 Erfahrungspunkte erreicht.",
+        badge_xp_5000_title: "Sprachtalent",
+        badge_xp_5000_desc: "500 Erfahrungspunkte erreicht.",
+        badges_points_explication: "Deine Punkte: {n}. Du bekommst 1 Punkt pro richtige Antwort (Karte, Übung, Sprechen) und 5 dazu, jedes Mal, wenn du dein Tagesziel erreichst. Das sind keine sicheren Wörter, und sie zählen nur für diese Sprache.",
+        fete_tableau_titre: "Gemälde fertig!",
+        fete_tableau_numero: "Gemälde Nr. {n}",
+        badge_streak_3_title: "3 Tage in Folge",
+        badge_streak_3_desc: "Drei aufeinanderfolgende Tage aktiv.",
+        badge_streak_7_title: "Eine ganze Woche",
+        badge_streak_7_desc: "Sieben aufeinanderfolgende Tage aktiv.",
+        badge_streak_30_title: "Ein Monat Disziplin",
+        badge_streak_30_desc: "Dreißig aufeinanderfolgende Tage aktiv.",
+        dictation_start_btn: "🎧 ÜBEN: DIKTAT",
+        op_nomen_o5_t: "Diktat",
+        op_nomen_o5_d: "Hören und schreiben – {n} Wörter",
+        op_nomen_o6_t: "Welcher Artikel?",
+        op_nomen_o7_t: "Die Endungen, die das Genus verraten",
+        op_nomen_o7_d: "21 Regeln, mit gemessener Trefferquote",
+        op_nomen_o8_t: "An der Endung erraten",
+        op_nomen_o8_d: "der · die · das – zu gleichen Teilen",
+        kicker_quiz_terminaisons: "An der Endung erraten",
+        regles_kicker: "Das Genus der Nomen",
+        regles_intro: "Das Genus lässt sich nicht erraten … außer wenn das Wortende es verrät. Diese einundzwanzig Endungen wurden an unseren 4 199 Nomen gemessen – der Prozentsatz ist der, den du in der App wirklich antreffen wirst, nicht der einer Grammatik.",
+        regles_piege: "⚠️ Achtung, trügerische Ähnlichkeit: „der Kuchen“ trägt nicht die Endung -chen, „der Sprung“ nicht -ung. Die Regel der Endung stimmt; das sind Wörter, die auf dieselben Buchstaben enden, ohne so gebildet zu sein.",
+        regle_sauf: "außer",
+        flash_repondre: "Beantworte die Karte, um weiterzumachen.",
+        regle_sans_exception: "keine Ausnahme in unseren Wörtern",
+        regle_explication: "Nomen auf {fin} sind in {taux} % unserer Wörter {genre}",
+        op_nomen_o6_d: "der · die · das – gleich viele von jedem",
+        kicker_quiz_article: "Welcher Artikel?",
+        dictation_replay_btn: "NOCHMAL HÖREN",
+        exercice_ecouter_btn: "SATZ ANHÖREN",
+        dictation_instruction: "Hör zu und schreib, was du hörst.",
+        dictation_hint: "Den Artikel (der/die/das) musst du nicht schreiben.",
+        dictation_explanation_prefix: "Das Wort war:",
+        kicker_dictation_exercise: "Diktat",
+        alert_no_dictation_available: "Öffne zuerst eine Wortschatzserie, um das Diktat zu üben.",
+        notif_title: "Tägliche Erinnerungen",
+        notif_desc: "Erhalte eine Benachrichtigung, wenn du dein Tagesziel noch nicht erreicht hast.",
+        notif_btn_enable: "ERINNERUNGEN EINSCHALTEN",
+        notif_btn_disable: "ERINNERUNGEN AUSSCHALTEN",
+        notif_not_configured: "Diese Funktion ist vom Administrator noch nicht eingerichtet. Versuch es später noch einmal.",
+        notif_unsupported: "Dein Browser unterstützt keine Push-Benachrichtigungen.",
+        notif_denied: "Erlaubnis verweigert. Du kannst sie in den Einstellungen deines Browsers erteilen.",
+        notif_token_failed: "Die Erinnerungen lassen sich gerade nicht einschalten. Versuch es später noch einmal.",
+        notif_enabled_success: "Erinnerungen eingeschaltet! Du bekommst eine Benachrichtigung, wenn du dein Tagesziel nicht erreicht hast.",
+        notif_disabled_success: "Erinnerungen ausgeschaltet.",
+        rappel_heure: "Uhrzeit der Erinnerung",
+        rappel_regle: "Erinnerung eingestellt: jeden Tag um {h}, solange dein Tagesziel nicht erreicht ist.",
+        rappel_refuse: "Benachrichtigungen abgelehnt. Du kannst sie in den Einstellungen deines Handys erlauben.",
+        rappel_notif_titre: "Deine Lerneinheit wartet",
+        rappel_notif_texte: "Ein paar Minuten reichen, um deine Tage in Folge zu halten.",
+        rappel_propose_titre: "Jeden Tag eine Erinnerung?",
+        rappel_propose_texte: "Glückwunsch zu dieser Stufe! Soll Wortando dich jeden Tag um {h} an deine Lerneinheit erinnern, nur an Tagen, an denen du dein Ziel noch nicht erreicht hast? Die Uhrzeit änderst du in den Einstellungen.",
+        rappel_propose_oui: "Ja, erinnere mich",
+        vibrations_titre: "Vibrationen",
+        vibrations_desc: "Eine kurze Vibration bei jeder Stufe deines Tagesziels: +30, +60, +90 …",
+        vibrations_bouton: "Bei den Stufen des Ziels vibrieren",
+        hl_titre: "Kein Netz – deine Lerneinheit ist offline bereit",
+        hl_sous: "{n} Karten, mit ihren Stimmen. Deine Antworten zählen, sobald das Netz wieder da ist.",
+        hl_commencer: "STARTEN",
+        hl_en_ligne: "Online noch einmal versuchen",
+        hl_fin_titre: "Lerneinheit beendet",
+        hl_fin_texte: "Weiter geht es, sobald das Netz wieder da ist. Deine Antworten werden dann gezählt.",
+        hl_recommencer: "KARTEN NOCH EINMAL ANSEHEN",
+        hl_encore_sous: "kommt in ein paar Karten wieder",
+        hl_dispo: "✓ offline verfügbar",
+        notif_error_prefix: "Fehler: ",
+        settings_invite_title: "Jemanden einladen",
+        settings_invite_desc: "Du lernst mit Wortando? Teile es mit jemandem, der Deutsch oder Englisch lernen möchte.",
+        settings_invite_btn: "WORTANDO TEILEN",
+        invite_share_text: "Ich übe Deutsch (und Englisch) mit Wortando – frag mich nach einem Einladungscode, um es auszuprobieren!",
+        invite_share_copied: "Nachricht kopiert – füge sie ein, wo du willst, um sie zu schicken!",
+        greeting_morning: "Guten Morgen",
+        greeting_afternoon: "Guten Tag",
+        greeting_evening: "Guten Abend",
+        reflexiv_badge_label: "reflexiv (sich)",
+        intransitiv_badge_label: "ohne Objekt",
+        next_badge_progress: "{current} von {threshold} {unit}",
+        next_badge_unit_days: "Tagen",
+        next_badge_unit_xp: "Punkten",
+        streak_freeze_used: "Serien-Schutz eingesetzt! Deine Serie geht trotz des ausgelassenen Tages weiter.",
+        streak_freeze_earned: "Serien-Schutz verdient! Er schützt deine Serie an einem Tag, den du auslässt.",
+        streak_freeze_hint: "Serien-Schutz verfügbar: schützt deine Serie an einem ausgelassenen Tag.",
+        settings_daily_goal: "Tagesziel",
+        seance_cartes_par_jour: "Karten pro Tag",
+        settings_daily_goal_desc: "Anzahl der Karten, die du täglich wiederholen willst, um die Leiste „Tagesziel“ auf der Startseite zu füllen.",
+        settings_reset_daily: "TAGESZÄHLER ZURÜCKSETZEN (TESTS)",
+        settings_progress_by_category: "Fortschritt nach Kategorie",
+        auth_kicker: "Willkommen",
+        auth_title: "Lerne eine Sprache, ein Wort nach dem anderen",
+        auth_apprendre_es: "Du lernst Deutsch · zu Spanisch wechseln ›",
+        auth_apprendre_de: "Du lernst Spanisch · zu Deutsch wechseln ›",
+        auth_desc: "Melde dich an oder erstelle dein Konto mit deinem Einladungscode.",
+        auth_value_1: "Wortschatz und Grammatik nach Niveau geordnet, von A1 bis C1.",
+        auth_value_2: "Tagesziele, Serien, XP und Abzeichen, um motiviert zu bleiben.",
+        auth_value_3: "Verteiltes Wiederholen: Jedes Wort kommt zur rechten Zeit wieder, damit es im Gedächtnis bleibt.",
+        auth_mode_login: "Anmelden",
+        auth_mode_signup: "Konto erstellen",
+        auth_first_name_placeholder: "Vorname",
+        auth_gender_placeholder: "Geschlecht",
+        auth_gender_female: "Weiblich",
+        auth_gender_male: "Männlich",
+        auth_email_placeholder: "E-Mail",
+        auth_password_placeholder: "Passwort",
+        auth_signup_password_placeholder: "Passwort (mindestens 6 Zeichen)",
+        auth_signup_password_confirm_placeholder: "Passwort bestätigen",
+        auth_password_match_ok: "✓ Die Passwörter stimmen überein",
+        auth_password_match_fail: "✕ Die Passwörter stimmen nicht überein",
+        auth_login: "ANMELDEN",
+        auth_forgot: "Passwort vergessen?",
+        auth_forgot_sent: "Wenn es ein Konto zu dieser Adresse gibt, ist gerade eine E-Mail unterwegs. Schau auch in deinen Spam-Ordner.",
+        auth_forgot_need_email: "Gib zuerst deine Adresse ein und tippe dann auf „Passwort vergessen“.",
+        auth_forgot_bad_email: "Diese Adresse scheint nicht gültig zu sein.",
+        reset_kicker: "Wortando",
+        reset_title: "Wähle ein neues Passwort",
+        reset_checking: "Link wird geprüft …",
+        reset_for: "Für das Konto:",
+        reset_submit: "SPEICHERN",
+        reset_back: "ZURÜCK ZUR ANMELDUNG",
+        reset_link_dead: "Dieser Link gilt nicht mehr. Er ist nur eine Stunde und nur ein einziges Mal gültig. Geh zurück zur Anmeldung und fordere „Passwort vergessen“ neu an.",
+        reset_done: "Dein Passwort ist geändert. Melde dich mit dem neuen an.",
+        reset_too_short: "Das Passwort muss mindestens 6 Zeichen haben.",
+        auth_login_loading: "ANMELDUNG …",
+        auth_signup: "KONTO ERSTELLEN",
+        setup_kicker: "Willkommen",
+        setup_title: "Richten wir dein Lernen ein",
+        setup_learning_label: "Was lernst du?",
+        setup_learning_de: "Deutsch",
+        setup_learning_en: "Englisch",
+        setup_learning_autre: "Spanisch",
+        passage_vers_es: "Wechsel zu Spanisch …",
+        passage_vers_de: "Wechsel zu Deutsch …",
+        passage_vers_en: "Wechsel zu Englisch …",
+        passage_vers_ja: "Wechsel zu Japanisch …",
+        passage_vers_pt: "Wechsel zu Portugiesisch …",
+        setup_uilang_label: "In welcher Sprache möchtest du die Erklärungen?",
+        setup_continue: "WEITER",
+        setup_niveau_label: "Kannst du schon ein bisschen Deutsch?",
+        setup_niveau_zero: "Ich fange bei null an",
+        setup_niveau_peu: "Ich kenne ein paar Wörter",
+        setup_niveau_a2: "Ich komme zurecht (A2)",
+        setup_niveau_b1: "Ich habe ein gutes Niveau (B1)",
+        setup_niveau_b2: "Fortgeschritten (B2)",
+        setup_niveau_c1: "Sehr fortgeschritten (C1)",
+        setup_niveau_note: "Du kannst das Niveau jederzeit ändern, aus deiner Lerneinheit heraus.",
+        setup_voyage_note: "Optional: Wir sagen dir jeden Tag das Tempo, um rechtzeitig bereit zu sein.",
+        profil_q1: "Warum lernst du Deutsch?",
+        profil_q1_sous: "Damit deine Lerneinheit bei dem anfängt, was für dich zählt.",
+        profil_r_voyager: "Zum Reisen",
+        profil_r_voyager_sous: "Vor Ort zurechtkommen, von Anfang an",
+        profil_r_vivre: "Um in Deutschland zu leben",
+        profil_r_vivre_sous: "Der Alltag: Termine, Einkäufe, Behördengänge",
+        profil_r_cours: "Für meinen Kurs oder mein Studium",
+        profil_r_cours_sous: "Der Lehrplan, Niveau für Niveau",
+        profil_r_plaisir: "Aus Freude",
+        profil_r_plaisir_sous: "Von allem etwas, in deinem Tempo",
+        profil_pied1: "Du kannst es dir jederzeit anders überlegen, aus deiner Lerneinheit heraus.",
+        profil_q2: "Was passt am besten zu dir?",
+        profil_q2_sous: "Danach stimmen wir deine Lerneinheit ab. Von allem etwas bekommst du immer.",
+        profil_f_images: "Ich merke mir besser, was ich sehe",
+        profil_f_oreille: "Ich merke mir besser, was ich höre und nachspreche",
+        profil_f_regles: "Ich will verstehen, wie es funktioniert",
+        profil_f_tout: "Von allem etwas, ich weiß es noch nicht",
+        profil_pied2: "Nur eine Wahl · jederzeit änderbar",
+        profil_ok_images: "Notiert: mehr Bilder in deiner Lerneinheit.",
+        profil_ok_oreille: "Notiert: mehr Hören und Sprechen in deiner Lerneinheit.",
+        profil_ok_regles: "Notiert: mehr Grammatik in deiner Lerneinheit.",
+        profil_ok_tout: "Notiert: von allem etwas in deiner Lerneinheit.",
+        profil_lien: "Wie ich lerne ›",
+        dec_passer: "Überspringen",
+        dec_progression_aria: "Schritt {n} von {total}",
+        dec_kicker: "Entdecke Wortando",
+        dec_t0_titre: "Willkommen bei Wortando!",
+        dec_t0_texte: "Hier ein kleiner Rundgang durch die App, in zwei Minuten. Jeden Tag warten drei Dinge auf der Startseite auf dich: deine Lerneinheit, die Szenen zum Entdecken und das Hören. Wir sehen sie uns zusammen an, mit deinen ersten Wörtern und deinem Gemälde.",
+        dec_t0_bouton: "RUNDGANG STARTEN",
+        dec_ecouter: "Noch einmal hören",
+        dec_ts_titre: "Szenen entdecken",
+        dec_ts_texte: "Direkt unter deiner Lerneinheit: fast vierzig Szenen aus dem Leben von Mark und Anna. Tippe auf die Gegenstände und Personen: Du hörst ihren Namen, mit Artikel. Probier es hier aus.",
+        dec_te_titre: "Hören, nachsprechen",
+        dec_te_texte: "Darunter das Hören: Die App spricht die Wörter deines Niveaus und lässt dir Zeit, sie laut nachzusprechen. Ideal beim Gehen oder Kochen. Probier es mit deinen ersten Wörtern.",
+        dec_te_essai: "▶ Meine ersten Wörter hören",
+        dec_te_repete: "Jetzt du: Sprich nach!",
+        dec_t5_titre: "Deine Lerneinheit heute",
+        dec_t5_texte: "Das ist das Herz der App. Jeden Tag eine Lerneinheit: neue Wörter, die Wiederholungen, die zur rechten Zeit wiederkommen, etwas Grammatik, Sprechen und die Szene des Tages. Sie hat ihr Tagesziel, und du kannst sie verlängern, so viel du willst. Alles bringt dein Gemälde voran. Auf der Startseite startet sie der Pfeil. Dein Niveau änderst du hier. Du fängst bei null an? Der kleine Keimling ist „Erste Schritte“: die wichtigsten Sätze fürs Reisen.",
+        dec_t6_titre: "Der Rundgang ist zu Ende!",
+        dec_t6_texte: "Auf der Startseite ist alles da: zuerst deine Lerneinheit, dann die Szenen und das Hören, wann du willst. Ein paar Minuten am Tag reichen. Viel Spaß beim Lernen!",
+        dec_t6_bouton: "STARTEN",
+        dec_t1_titre: "Dein erstes Wort",
+        dec_t1_titre_plusieurs: "Deine ersten Wörter",
+        dec_t1_texte: "Hör es dir an, schau auf die Farbe des Artikels und sag dann, ob du es wusstest.",
+        dec_t1_texte_plusieurs: "Jedes deutsche Nomen hat ein Genus, oft anders als in anderen Sprachen: der (maskulin), die (feminin) oder das (neutrum). Lern es zusammen mit dem Wort.",
+        dec_t1_texte_peu: "Zur Erinnerung: Das kleine Wort vor dem Nomen, der Artikel, verrät sein Genus: der (maskulin), die (feminin) oder das (neutrum). Die Farbe zeigt es. Hör dir das Wort an und sag dann, ob du es wusstest.",
+        dec_t1_bravo: "Super! Jedes Wort kommt zur rechten Zeit wieder, damit es bleibt.",
+        dec_t2_titre: "Ein Verb, seine ganze Konjugation",
+        dec_t2_texte_praesens: "Auf der Rückseite jedes Verbs: seine Konjugation im Präsens und Sätze zum Anhören.",
+        dec_t2_texte_perfekt: "Auf der Rückseite: das Präsens, dann das Perfekt, die gesprochene Vergangenheit.",
+        dec_t2_texte_konjunktiv2: "Auf der Rückseite: die ganze Konjugation, bis zum Konjunktiv II, dem der höflichen Bitten und der unwirklichen Bedingungen.",
+        dec_t2_bravo: "Jedes Verb hat eine Karte wie diese.",
+        dec_t3_titre: "Ein bisschen Grammatik",
+        dec_t3_texte: "Eine oder zwei Fragen, wie in den Übungen der App. Jede Antwort wird erklärt.",
+        dec_t4_titre: "Dein Gemälde beginnt",
+        dec_t4_texte: "Jede bearbeitete Karte öffnet eine Kachel. Unter den Kacheln versteckt sich das Werk eines großen Malers deutscher Sprache: Welches, erfährst du erst, wenn du es enthüllst. Jedes fertige Gemälde kommt in deine Galerie.",
+        dec_t4_d1: "Beispiel: 30 Karten, deine ersten Lerneinheiten.",
+        dec_t4_d2: "100 Karten.",
+        dec_t4_d3: "250 Karten.",
+        dec_t4_d4: "450 Karten.",
+        dec_t4_d5: "700 Karten: das ganze Gemälde! Ajaccio, von Anton Faistauer, 1926.",
+        dec_t4_pretour: "Mehr als sechzig Gemälde warten auf dich. Deins beginnt heute.",
+        dec_admin_titre: "Geführte Entdeckung",
+        dec_admin_desc: "Die fünf Schritte, die ein neues Konto nach dem Willkommensbildschirm sieht. Die Antworten zählen wie echte Antworten.",
+        dec_admin_btn: "GEFÜHRTE ENTDECKUNG WIEDERHOLEN →",
+        dec_admin_btn_zero: "WIE JEMAND OHNE VORKENNTNISSE (NULL) →",
+        dec_admin_btn_peu: "WIE JEMAND MIT EIN PAAR VORKENNTNISSEN →",
+        abo_plus_tard: "Später",
+        setup_settings_title: "Einrichtung",
+        abo_titre: "Lerne Deutsch ohne Grenzen",
+        abo_sous_titre: "7 Tage gratis, dann entscheidest du",
+        abo_av_mots: "7 700 Wörter von A1 bis C1",
+        abo_av_grammaire: "Die Grammatik und die Übungen",
+        abo_av_voix: "Die deutsche Stimme auf jeder Karte",
+        abo_av_examens: "Die Vorbereitung auf die Prüfungen A2, B1 und DTZ",
+        abo_annuel: "Jährlich",
+        abo_mensuel: "Monatlich",
+        abo_par_an: "{prix} pro Jahr",
+        abo_par_mois: "pro Monat",
+        abo_economie: "Spare {n} %",
+        abo_aujourdhui: "Heute",
+        abo_aujourdhui_texte: "alles ist offen, nichts ist bezahlt",
+        abo_jour5: "Tag 5",
+        abo_jour5_texte: "eine Erinnerung vor dem Ende der Testphase",
+        abo_jour7: "Tag 7",
+        abo_jour7_texte: "das Abo beginnt, außer du kündigst",
+        abo_bouton: "Meine 7 Gratis-Tage starten",
+        abo_annulation: "Jederzeit in den Einstellungen deines Handys kündbar.",
+        abo_restaurer: "Kauf wiederherstellen",
+        abo_conditions: "Nutzungsbedingungen",
+        abo_confidentialite: "Datenschutz",
+        abo_apercu: "Vorschau: Die Zahlung ist noch nicht angeschlossen.",
+        abo_fermer: "Schließen",
+        ep_tuile: "Meine Folgen",
+        ep_surprise_titre: "Überraschung!",
+        ep_debloque: "Folge {n} von „{serie}“ ist freigeschaltet: {titre}.",
+        ep_regarder: "Ansehen",
+        ep_plus_tard: "Später",
+        ep_bientot_1: "In 1 Lerntag",
+        ep_bientot_n: "In {n} Lerntagen, ob aufeinanderfolgend oder nicht",
+        ep_plus_loin: "Bald",
+        ep_fin_titre: "Fortsetzung folgt …",
+        ep_fin_bientot: "Die nächste Folge kommt bald.",
+        ep_revoir: "Folge noch einmal ansehen",
+        ep_fin_ok: "Weiter",
+        ep_regle: "Ein Lerntag = mindestens 10 Übungen an einem Tag. Die Tage müssen nicht aufeinanderfolgen.",
+        ep_prochain: "Nächste Folge: {titre}",
+        ep_nouveau: "Neu",
+        accueil_tout_titre: "Alle Inhalte",
+        accueil_tout_sous: "Wörter, Grammatik, Anwenden",
+        accueil_gardes_0: "Noch leer",
+        accueil_gardes_1: "1 Wort zu wiederholen",
+        accueil_gardes_n: "{n} Wörter zu wiederholen",
+        gardes_compteur: "{n} zurückgelegt",
+        ep_ligne_episode: "Folge {n} · {titre}",
+        ep_ligne_prochain_1: "Nächste: in 1 Lerntag",
+        ep_ligne_prochain_n: "Nächste: in {n} Lerntagen",
+        ep_ligne_revoir_serie: "Serie noch einmal ansehen",
+        ep_admin_reset: "Überraschung zurücksetzen (Admin)",
+        ep_admin_reset_fait: "Überraschung zurückgesetzt: Sie kommt bei der 10. Übung des Tages wieder.",
+        settings_progress_texte: "{n} sicher von {total} ({pct} %).",
+        settings_langue_titre: "Sprache",
+        settings_groupe_son: "Ton",
+        settings_groupe_progression: "Mein Fortschritt",
+        settings_groupe_compte: "Konto, Hilfe und Rückmeldung",
+        auth_signup_loading: "WIRD ERSTELLT …",
+        auth_logged_in_as: "Angemeldet als: ",
+        auth_logout: "ABMELDEN",
+        delete_account_btn: "MEIN KONTO LÖSCHEN",
+        delete_account_intro: "Löscht endgültig dein Konto, deinen Fortschritt und deine Rückmeldungen, auf diesem Gerät wie in der Cloud. Danach lässt sich nichts wiederherstellen, und dein Einladungscode wird nicht wieder gültig. Gib zur Bestätigung dein Passwort noch einmal ein.",
+        delete_account_pwd_ph: "Dein Passwort",
+        delete_account_go: "ENDGÜLTIG LÖSCHEN",
+        delete_account_cancel: "ABBRECHEN",
+        delete_account_confirm: "Letzte Prüfung: Dein Konto und dein gesamter Fortschritt werden endgültig gelöscht. Weiter?",
+        delete_account_done: "Konto gelöscht.",
+        delete_account_error: "Das Löschen hat nicht geklappt. Prüfe deine Verbindung und versuch es noch einmal.",
+        delete_account_wrong_pwd: "Falsches Passwort.",
+        op_due_desc: "Eine Lerneinheit mit {n} Karten · {r} zu wiederholen",
+        op_due_desc_neufs: "Eine Lerneinheit mit {n} Karten",
+        op_due_desc_zero: "Im Moment nichts zu wiederholen",
+        op_due_desc_attente: "Einen Moment, ich zähle …",
+        op_by_level: "Nach Niveau durchgehen",
+        op_by_theme: "Nach Thema durchgehen",
+        op_words_random: "Zufällige Wörter",
+        op_all_levels_mix: "Mischung aus allen Niveaus",
+        op_vocab: "Wortschatz",
+        op_coming_soon: "Bald verfügbar",
+        op_under_construction: "Im Aufbau",
+        op_under_construction_desc: "Diese Kategorie kommt demnächst",
+        op_verben_title: "Verben",
+        op_verben_sub: "Konjugation & Gebrauch",
+        op_verben_o1_t: "Meine Verben wiederholen",
+        op_zuinf_title: "Zu + Infinitiv",
+        op_zuinf_sub: "Mit „zu“ oder ohne?",
+        op_zuinf_o1_t: "Die Regel verstehen",
+        op_zuinf_o2_t: "Üben",
+        op_zuinf_o2_d: "Zu oder nicht zu?",
+        op_wortstellung_o1_t: "Die Regeln",
+        op_wortstellung_o2_t: "Üben",
+        op_wortstellung_o2_d: "Wohin kommt das Verb?",
+        op_possessiv_o2_t: "Üben",
+        op_possessiv_o2_d: "mein, deine, seinem…",
+        op_english_title: "Englisch",
+        op_english_sub: "Englisch lernen (für Deutschsprachige)",
+        op_english_o1_t: "Wortschatz",
+        op_english_o1_d: "Themen & Wortschatz",
+        op_english_o2_t: "Verben",
+        op_english_o2_d: "Unregelmäßige Verben",
+        op_english_o3_t: "Artikel",
+        op_english_o4_t: "Zeiten",
+        op_english_o4_d: "Present, Past, Perfect…",
+        op_english_o5_t: "Modalverben",
+        op_english_o5_d: "can · must · should",
+        op_english_o6_t: "Präpositionen",
+        op_english_o6_d: "in · on · at",
+        op_english_o7_t: "Satzbau & Fragen",
+        op_english_o7_d: "do / does · Wortstellung",
+        op_english_o8_t: "Vergleich",
+        op_english_o8_d: "bigger · the biggest",
+        op_english_o9_t: "Phrasal Verbs",
+        op_english_o9_d: "give up · look for",
+        op_verben_o3_t: "Zufällige Verben",
+        op_verben_o4_t: "Nach Zeitform üben",
+        op_verben_o4_d: "Präsens · Präteritum · Perfekt · Konjunktiv II · Infinitiv",
+        op_nomen_title: "Nomen",
+        op_nomen_sub: "Nomen & Themen",
+        op_nomen_o1_t: "Meine Wörter wiederholen",
+        op_nomen_o3_d: "Alle verfügbaren Themen ansehen",
+        op_nomen_o4_d: "Mischung aus allen Themen",
+        op_adjektive_title: "Adjektive",
+        op_adjektive_sub: "Endungen & Wortschatz",
+        op_adjektive_o1_t: "Meine Adjektive wiederholen",
+        op_adjektive_o4_t: "Deklination der Adjektive",
+        op_adjektive_o4_d: "Endungen je nach Artikel & Kasus",
+        op_kasus_title: "Kasus & Artikel",
+        op_kasus_sub: "der · den · dem · des · ein · kein",
+        op_kasus_o1_t: "Die Fälle verstehen",
+        op_kasus_o1_d: "Funktionen & Deklinationstabelle",
+        op_kasus_o2_t: "Den Kasus erkennen",
+        op_kasus_o2_d: "Den Kasus in einem Satz bestimmen",
+        op_kasus_art_nom_t: "Artikel · Nominativ",
+        op_kasus_art_nom_d: "der · ein · kein – das Subjekt",
+        op_kasus_art_akk_t: "Artikel · Akkusativ",
+        op_kasus_art_akk_d: "den · einen · keinen – das direkte Objekt",
+        op_kasus_art_dat_t: "Artikel · Dativ",
+        op_kasus_art_dat_d: "dem · einem · keinem – das indirekte Objekt",
+        op_kasus_art_gen_t: "Artikel · Genitiv",
+        op_kasus_art_gen_d: "des · eines · keines – der Besitz",
+        op_kasus_art_mix_t: "Artikel · gemischt",
+        op_kasus_art_mix_d: "Die 4 Fälle, ohne dass dir gesagt wird, welcher",
+        op_kasus_o4_t: "Verben mit festem Kasus",
+        op_relativ_title: "Relativpronomen",
+        op_relativ_sub: "der · den · dem · dessen",
+        op_relativ_o1_t: "Nominativ, Akkusativ, Dativ",
+        op_relativ_o1_d: "Fast wie die bestimmten Artikel",
+        op_relativ_o2_t: "Genitiv",
+        op_relativ_o2_d: "dessen · deren – der Besitz im Relativsatz",
+        op_praep_title: "Präpositionen",
+        op_praep_sub: "Fester Kasus & Wechselpräpositionen",
+        op_praep_o1_t: "Die Präpositionen verstehen",
+        op_praep_o1_d: "Gruppen mit festem Kasus & Wo/Wohin",
+        op_praep_o2_t: "Welcher Kasus?",
+        op_praep_o2_d: "Den verlangten Kasus bestimmen",
+        op_praep_o3_t: "Wo oder Wohin?",
+        op_praep_o3_d: "Lage oder Bewegung (Wechselpräpositionen)",
+        op_praep_o5_t: "Positionsverben",
+        op_partikeln_title: "Partikeln",
+        op_partikeln_sub: "Nuancen des Tons",
+        op_partikeln_o1_t: "Die Partikeln verstehen",
+        op_partikeln_o2_t: "Die Nuance erkennen",
+        op_partikeln_o2_d: "Den Ton bestimmen, den die Partikel einbringt",
+        op_partikeln_o3_d: "Jede Partikel mit ihrer Nuance & einem Beispiel",
+        grammar_kicker: "Grammatik",
+        table_header_gender_number: "<td style=\"padding:8px 4px;\"></td><td style=\"padding:8px 4px;\">mask.</td><td style=\"padding:8px 4px;\">fem.</td><td style=\"padding:8px 4px;\">neutr.</td><td style=\"padding:8px 4px;\">Plural</td>",
+        adj_decl_title: "Deklination der Adjektive",
+        adj_decl_intro: "Die Endung des Adjektivs hängt davon ab, was davor steht: ein bestimmter Artikel, ein unbestimmter Artikel oder gar nichts.",
+        adj_decl_definite_title: "Nach bestimmtem Artikel (der/die/das …)",
+        adj_decl_definite_tip: "Z. B.: der kleine Hund · den kleinen Hund",
+        adj_decl_indefinite_title: "Nach unbestimmtem Artikel (ein/kein/mein …)",
+        adj_decl_indefinite_tip: "Z. B.: ein guter Wein · einen guten Wein · ein neues Auto",
+        adj_decl_noarticle_title: "Ohne Artikel",
+        adj_decl_noarticle_tip: "Z. B.: kaltes Wasser · mit heißem Tee · frische Milch",
+        adj_decl_btn: "ÜBEN: DIE ENDUNG WÄHLEN →",
+        kicker_zuinf_exercise: "Zu + Infinitiv · Übung",
+        wortstellung_btn_exercise: "ÜBEN: WORTSTELLUNG →",
+        kicker_wortstellung_v2: "Satzbau · Verb an 2. Stelle",
+        kicker_wortstellung_sub: "Satzbau · Verb am Ende des Nebensatzes",
+        kicker_wortstellung_frage: "Satzbau · Eine Frage bilden",
+        kicker_wortstellung_tekamolo: "Satzbau · TeKaMoLo",
+        kicker_wortstellung_nicht: "Satzbau · Stellung von „nicht“",
+        kicker_wortstellung_exercise: "Satzbau · Wortstellung",
+        possessiv_base_title: "Die Possessivbegleiter",
+        kicker_possessiv_exercise: "Possessivbegleiter · Übung",
+        question_translation_label: "Übersetzung: {translation}",
+        feedback_correct_title: "✓ Richtig!",
+        feedback_wrong_title: "✗ Nicht ganz",
+        correct_answer_label: "Richtige Antwort:",
+        score_result_text: "{n} Übung(en) geschafft.",
+        kicker_verben_praesens: "Verben · Präsens",
+        kicker_verben_praeteritum: "Verben · Präteritum",
+        kicker_verben_perfekt: "Verben · Perfekt",
+        kicker_verben_konjunktiv2: "Verben · Konjunktiv II",
+        kicker_verben_infinitiv: "Verben · Infinitiv",
+        kicker_kasus_reconnaissance: "Kasus · Den Kasus erkennen",
+        kicker_kasus_art_nom: "Artikel · Nominativ",
+        kicker_kasus_art_akk: "Artikel · Akkusativ",
+        kicker_kasus_art_dat: "Artikel · Dativ",
+        kicker_kasus_art_gen: "Artikel · Genitiv",
+        kicker_kasus_art_mix: "Artikel · die 4 Fälle gemischt",
+        kicker_adjektive_deklination: "Adjektive · Deklination",
+        kicker_praep_reconnaissance: "Präpositionen · Welcher Kasus?",
+        kicker_praep_wowohin: "Präpositionen · Wo oder Wohin?",
+        kicker_praep_wahl: "Präpositionen · Welche?",
+        kicker_verben_praep: "Verben mit Präposition",
+        op_praep_o7_t: "Welche?",
+        op_praep_o7_d: "nach Berlin, zum Arzt, aus Kanada, seit… (A1-A2)",
+        op_praep_o8_t: "Verben mit Präposition",
+        op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
+        praep_btn_wahl: "ÜBEN: WELCHE? →",
+        praep_btn_verben: "ÜBEN: VERBEN MIT PRÄPOSITION →",
+        kicker_partikeln_nuance: "Partikeln · Nuance",
+        label_level_singular: "Niveau",
+        label_level_plural: "Niveaus",
+        label_theme_singular: "Thema",
+        label_theme_plural: "Themen",
+        mastered_suffix: "% sicher",
+        random_verbs_label: "Zufällige Verben",
+        random_words_label: "Zufällige Wörter",
+        random_nouns_label: "Zufällige Nomen",
+        level_n_label: "Niveau {lvl}",
+        random_verbs_desc: "Mischung der Verben aus allen verfügbaren Niveaus.",
+        random_adj_desc: "Mischung der Adjektive aus allen Niveaus.",
+        random_nouns_by_level_desc: "Mischung der Nomen aus allen verfügbaren Niveaus.",
+        label_plural: "Plural:",
+        label_synonyme: "Synonym",
+        label_synonymes: "Synonyme",
+        label_feminine: "Feminin:",
+        label_masculine: "Maskulin:",
+        label_case_word: "Kasus",
+        label_nuance_word: "Nuance",
+        label_word_category: "Kategorie",
+        random_words_by_theme_desc: "Mischung der Wörter aus allen Themen des gewählten Niveaus.",
+        kicker_verben_revision: "Verben · Wiederholung",
+        kicker_verben_flashcards: "Verben · Karten",
+        kicker_english_artikel_exercise: "Englisch · Artikel",
+        kicker_verben_aleatoire: "Verben · Zufall",
+        kicker_adj_revision: "Adjektive · Wiederholung",
+        kicker_adj_flashcards: "Adjektive · Karten",
+        kicker_adj_aleatoire: "Adjektive · Zufall",
+        kicker_kasus_verben: "Kasus · Verben mit festem Kasus",
+        kicker_relativ_reconnaissance_nomakk: "Relativpronomen · Nominativ + Akkusativ",
+        kicker_relativ_reconnaissance_dativ: "Relativpronomen · Dativ",
+        kicker_relativ_reconnaissance_mixed: "Relativpronomen · Akkusativ + Dativ",
+        kicker_relativ_order: "Relativpronomen · Wortstellung",
+        kicker_relativ_gen_reconnaissance: "Relativpronomen · Genitiv · Erkennen",
+        kicker_relativ_gen_order: "Relativpronomen · Genitiv · Wortstellung",
+        orb_adverbien_title: "Adverbien",
+        orb_redewendungen_title: "Redewendungen",
+        orb_pronomen_title: "Pronomen",
+        orb_schreiben_title: "Schreiben",
+        orb_schreiben_sub: "einen Satz übersetzen",
+        op_schreiben_title: "Auf Deutsch schreiben",
+        op_schreiben_sub: "selbst bilden, nicht nur erkennen",
+        op_schreiben_all_t: "Alle Niveaus",
+        op_schreiben_all_d: "{t} Sätze aus dem ganzen Wortschatz",
+        op_schreiben_level_d: "{t} Sätze aus Niveau {n}",
+        kicker_schreiben: "Schreiben · Übersetzung",
+        schreiben_hint: "Schreib den Satz auf Deutsch. Akzente und Satzzeichen zählen nicht.",
+        orb_pronomen_sub: "ich · mich · mir",
+        orb_zahlen_title: "Zahlen",
+        orb_prononciation: "Aussprache",
+        pron_kicker: "Deutsch lesen",
+        pron_intro: "Deutsch liest man fast immer so, wie es geschrieben wird: Diese Regeln reichen, um jedes Wort zu lesen. Tippe auf ein Wort, um es zu hören.",
+        pron_voyelles: "Die Vokale",
+        pron_consonnes: "Die Konsonanten",
+        pron_fins: "Die Wortenden",
+        pron_vitesse: "Tempo",
+        pron_v_normale: "Normal",
+        pron_v_lente: "Langsam",
+        pron_v_tres_lente: "Sehr langsam",
+        vitesse_voix_titre: "Sprechtempo",
+        vitesse_voix_desc: "Für die ganze App: Karten, Sätze, Szenen und Aussprache. Die Stimme wird langsamer, ohne tiefer zu werden. Der Hörmodus behält seine eigene Einstellung.",
+        orb_zahlen_sub: "einundzwanzig · dritte",
+        op_pronomen_title: "Pronomen",
+        op_pronomen_sub: "ich · mich · mir",
+        op_pronomen_o1_t: "Personal- und Reflexivpronomen",
+        op_pronomen_o1_d: "ich, mich, mir · sich waschen",
+        op_pronomen_o2_t: "Demonstrativ- und Indefinitpronomen",
+        op_pronomen_o2_d: "dieser, man, jemand, jeder",
+        op_pronomen_o3_t: "Possessivbegleiter",
+        op_pronomen_o3_d: "mein, dein, unser",
+        op_pronomen_o4_t: "Relativpronomen",
+        op_pronomen_o5_t: "Wortschatz · Pronomen",
+        op_pronomen_o6_t: "Wortschatz · Begleiter",
+        kicker_pronomen_vokabular: "Pronomen · Wortschatz",
+        kicker_artikelwoerter_vokabular: "Begleiter · Wortschatz",
+        op_pronomen_o4_d: "der, die, das, dessen",
+        op_zahlen_title: "Zahlen",
+        op_zahlen_sub: "zählen, datieren, beziffern",
+        op_zahlen_o1_t: "Die Zahlen verstehen",
+        op_zahlen_o1_d: "Grundzahlen, Ordnungszahlen, Brüche",
+        zahlen_info_title: "Die Zahlen",
+        orb_pruefung_title: "Prüfungsvorbereitung",
+        orb_pruefung_sub: "A2 · B1 · C1",
+        op_pruefung_title: "Prüfungsvorbereitung",
+        op_pruefung_sub: "Nach Niveau · Goethe · telc · DTZ",
+        op_pruefung_hoeren_t: "Hören",
+        op_pruefung_hoeren_d: "Eine Durchsage, eine Nachricht – dann die Frage",
+        op_pruefung_lesen_t: "Lesen",
+        op_pruefung_lesen_d: "Anzeige, E-Mail, Formular – und was von dir verlangt wird",
+        op_pruefung_schreiben_t: "Schreiben",
+        op_pruefung_schreiben_d: "Der offizielle Brief, in die richtige Reihenfolge gebracht",
+        op_pruefung_sprechen_t: "Sprechen",
+        op_pruefung_sprechen_d: "Die Fragen der Prüfer, und was man antwortet",
+        kicker_pruefung_hoeren: "Prüfung · Hören",
+        kicker_pruefung_lesen: "Prüfung · Lesen",
+        kicker_pruefung_schreiben: "Prüfung · Schreiben",
+        kicker_pruefung_sprechen: "Prüfung · Sprechen",
+        pruefung_pas_encore: "Der Inhalt der Prüfung ist noch nicht geladen. Versuch es gleich noch einmal.",
+        pruefung_niveau_vide: "Dieser Teil hat auf diesem Niveau nichts. Wähle über den Knöpfen ein anderes Niveau.",
+        op_pruefung_noyau_t: "Der Kern",
+        op_pruefung_noyau_d: "Die Wörter, die alle drei Listen nennen",
+        op_pruefung_a2_t: "Niveau A2",
+        op_pruefung_a2_d: "Die offizielle Liste des Goethe-Zertifikats A2",
+        op_pruefung_b1_t: "Niveau B1",
+        op_pruefung_b1_d: "Goethe B1 und DTZ zusammen – dasselbe Niveau",
+        op_pruefung_c1_t: "Niveau C1",
+        op_pruefung_c1_d: "Ohne offizielle Liste – der C1-Wortschatz des Kurses",
+        op_pruefung_tout_t: "Der ganze Wortschatz",
+        op_pruefung_tout_d: "Die drei Listen vereint",
+        pruefung_kicker: "Prüfungsvorbereitung",
+        pruefung_noyau_t: "Der Kern",
+        pruefung_a2_t: "Niveau A2",
+        pruefung_b1_t: "Niveau B1",
+        pruefung_c1_t: "Niveau C1",
+        pruefung_null_t: "Prüfungswortschatz",
+        pruefung_aucun: "Es ist noch keine Prüfungskarte geladen.",
+        op_pruefung_info_t: "Die Prüfung verstehen",
+        op_pruefung_info_d: "Die vier Teile, die Dauer, was Punkte kostet",
+        orb_redewendungen_sub: "keine Ahnung · auf jeden Fall",
+        op_redewendungen_title: "Redewendungen",
+        op_redewendungen_sub: "keine Ahnung · es kommt darauf an",
+        op_redewendungen_o1_t: "Die Redewendungen verstehen",
+        op_redewendungen_o1_d: "6 Familien: grüßen, abwägen, reagieren …",
+        op_redewendungen_o2_t: "Wortschatz",
+        op_redewendungen_o2_d: "{n} Redewendungen · {f} Familien",
+        redewendungen_vocab_title: "Wortschatz: Karten",
+        redewendungen_vocab_desc: "Wähle zuerst ein Niveau: Die Liste der Familien direkt darunter passt sich dem gewählten Niveau an.",
+        redewendungen_cat_title: "Nach Familie wiederholen",
+        redewendungen_cat_desc: "Redewendungen merkt man sich nach Situation: grüßen, die Meinung sagen, abwägen.",
+        kicker_redewendungen_vocab: "Redewendungen · Wortschatz",
+        search_kind_expr: "Redewendung",
+        search_src_redewendungen: "Redewendungen",
+        orb_adverbien_sub: "heute · hier · sehr",
+        orb_konjunktionen_title: "Konnektoren",
+        orb_konjunktionen_sub: "weil · deshalb · obwohl",
+        orb_ecouter_title: "Hören",
+        orb_ecouter_sub: "freihändig · A1 → C1",
+        orb_scenes_title: "Szenen",
+        op_scenes_title: "Die Szenen",
+        op_scenes_sub: "Ein Bild, fünf Niveaus: tippen, hören, antworten",
+        op_scenes_classe_d: "Die Schule und die Dinge im Klassenzimmer",
+        op_scenes_examen_d: "Der menschliche Körper, von vorn und von hinten",
+        op_scenes_marche_d: "Obst und Gemüse, vier Stände",
+        op_scenes_blessure_d: "Die Gesundheit, bei der Ärztin",
+        op_scenes_salon_d: "Die Wohnung und die Präpositionen",
+        op_scenes_carrefour_d: "Die Stadt und den Weg beschreiben",
+        op_scenes_cafe_d: "Essen und Trinken im Café",
+        op_scenes_boutique_d: "Die Kleidung und die Farben",
+        op_scenes_cuisine_d: "Die Küche und die Lebensmittel",
+        op_scenes_parc_d: "Die Natur und die Freizeit",
+        op_scenes_fete_d: "Das Fest und die Geschenke",
+        op_scenes_valise_d: "Das Schlafzimmer und die Reise",
+        op_scenes_plage_d: "Der Strand und die Ferien",
+        op_scenes_train_d: "Die Zugreise, das Land",
+        op_scenes_hiver_d: "Der Winter und das Wetter",
+        op_scenes_bureau_d: "Die Arbeit und das Büro",
+        op_scenes_courses_d: "Das Einkaufen und das Geld",
+        op_scenes_biblio_d: "Die Universität und das Studium",
+        op_scenes_foot_d: "Der Sport und der Fußball",
+        op_scenes_bricolage_d: "Heimwerken und die Werkzeuge",
+        op_scenes_poste_d: "Die Post, die Briefe und die Pakete",
+        op_scenes_famille_d: "Die Familie und das Essen",
+        op_scenes_camping_d: "Die Natur und das Camping",
+        op_scenes_musique_d: "Die Musik und die Instrumente",
+        op_scenes_pharmacie_d: "Die Gesundheit und die Medikamente",
+        op_scenes_boulangerie_d: "Das Brot, die Kuchen und die Geschäfte",
+        op_scenes_ferme_d: "Der Bauernhof und die Tiere",
+        op_scenes_mairie_d: "Die Behörden und die Formulare",
+        op_scenes_aeroport_d: "Die Flugreise",
+        op_scenes_hotel_d: "Das Hotel und der Aufenthalt",
+        op_scenes_laverie_d: "Die Wäsche und die Hausarbeit",
+        op_scenes_restaurant_d: "Essen und Trinken im Restaurant",
+        op_scenes_marche_noel_d: "Die Feiertage zum Jahresende und der Winter",
+        op_scenes_atelier_velo_d: "Das Fahrrad und die Reparaturen",
+        op_scenes_coiffeur_d: "Der Friseur, die Haare und der Körper",
+        op_scenes_demenagement_d: "Die Wohnung, die Möbel und der Umzug",
+        op_scenes_place_d: "Die Stadt und die Orte im Viertel",
+        op_scenes_musee_d: "Die Kunst und kulturelle Ausflüge",
+        op_scenes_metro_d: "Die Verkehrsmittel und unterwegs in der Stadt",
+        ecoute_menu_title: "Hören und nachsprechen",
+        ecoute_menu_desc: "Eine Lerneinheit ohne Hände: Die App sagt das Wort, lässt eine Pause, damit du es laut nachsprichst, und liest dann den Beispielsatz. Lass den Bildschirm an – die Stimme verstummt, wenn sich das Handy sperrt.",
+        ecoute_sens_title: "Reihenfolge der Sprachen",
+        ecoute_sens_connu_cible: "Übersetzung zuerst",
+        ecoute_sens_connu_cible_d: "du bildest das Deutsche aus dem Gedächtnis",
+        ecoute_sens_cible_connu: "Deutsch zuerst",
+        ecoute_sens_cible_connu_d: "du erkennst, dann prüfst du",
+        ecoute_level_title: "Niveau wählen",
+        ecoute_phrase_title: "Hörverstehen",
+        ecoute_phrase_desc: "Ein Satz wird gesagt, nie geschrieben: Wähle, was er bedeutet. Danach wird er angezeigt, zum Nachlesen beim erneuten Hören. Diese Übung zählt für deinen Fortschritt.",
+        ecoute_phrase_topic: "Hören",
+        ecoute_phrase_question: "Was hast du gerade gehört?",
+        parler_kicker: "Sprechen",
+        parler_title: "Sich selbst hören",
+        parler_desc: "Das Modell, dann du, nacheinander. Erst wenn man sich selbst hört, hört man den Unterschied – beim Nachsprechen zuzuhören reicht nicht. Nichts wird bewertet und nichts gesendet: Die Aufnahme bleibt auf dem Gerät und verschwindet mit dem nächsten Satz.",
+        parler_modele_btn: "DAS MODELL",
+        parler_rec_btn: "🎙 AUFNEHMEN",
+        parler_stop_btn: "⏹ STOPP",
+        parler_essai_btn: "▶ MEIN VERSUCH",
+        parler_suivant_btn: "NÄCHSTER SATZ →",
+        parler_en_cours: "Ich höre zu … tippe auf STOPP, wenn du fertig bist.",
+        parler_pret: "Aufgenommen. Hör dir das Modell an, dann deinen Versuch.",
+        parler_rien_entendu: "Es wurde nichts aufgenommen. Versuch es noch einmal und sprich etwas lauter.",
+        parler_micro_refuse: "Das Mikrofon wurde nicht erlaubt. Du kannst es in den Einstellungen des Browsers erlauben.",
+        parler_sans_micro: "Dieses Gerät erlaubt hier keine Aufnahme. Hör dir das Modell an und sprich laut nach.",
+        ecoute_level_all: "Alle",
+        ecoute_title: "Hören und nachsprechen",
+        ecoute_reglages_title: "Einstellungen",
+        ecoute_vitesse_label: "Sprechtempo",
+        ecoute_pause_label: "Zeit zum Nachsprechen",
+        ecoute_vitesse_lente: "Langsam",
+        ecoute_vitesse_normale: "Normal",
+        ecoute_vitesse_rapide: "Schnell",
+        ecoute_pause_courte: "Kurz",
+        ecoute_pause_moyenne: "Mittel",
+        ecoute_pause_longue: "Lang",
+        ecoute_etat_repete: "Jetzt du – sprich laut nach",
+        ecoute_etat_pause: "Pause",
+        ecoute_etat_fin: "Lerneinheit beendet",
+        ecoute_terminee: "Höreinheit beendet.",
+        ecoute_note: "Das Hören ändert deinen Fortschritt nicht: Es ist eine passive Wiederholung, kein Test.",
+        ecoute_aucune_voix: "Auf diesem Gerät ist für diese Sprache keine Stimme installiert.",
+        op_tuiles_t: "Den Satz bilden",
+        op_tuiles_d: "auf die Wörter tippen, ohne Tastatur",
+        tuiles_menu_title: "Den Satz bilden",
+        tuiles_menu_desc: "Du bekommst den Satz in deiner Sprache und die deutschen Wörter durcheinander. Tippe sie in der richtigen Reihenfolge an – ohne Tastatur. Die Leiste enthält ein oder zwei Wörter zu viel, aus derselben Familie wie die des Satzes: Genau da entscheidet sich die Übung.",
+        tuiles_level_title: "Niveau wählen",
+        tuiles_level_all: "Alle Niveaus",
+        tuiles_hint: "Tippe die Wörter in der richtigen Reihenfolge an. Ein falsch gesetztes Wort: Tippe darauf, um es zurückzuschicken.",
+        kicker_tuiles: "Schreiben · den Satz bilden",
+        rattrapage_intro: "Bilde ihn mit den Wörtern unten nach.",
+        rattrapage_hint: "Tippe die Wörter in der richtigen Reihenfolge an. Ein falsch gesetztes Wort: Tippe darauf, um es zurückzuschicken.",
+        rattrapage_reussi: "Gut nachgebildet. Der Satz bleibt als verfehlt gezählt – bewertet wird das Tippen.",
+        voice_lang_fr: "Deutsche Stimme (Übersetzungen im Hörmodus)",
+        tuiles_level_sub: "{n} Sätze von {total}",
+        chunks_manque_un: "Es fehlt noch ein Wort.",
+        chunks_manque_n: "Es fehlen noch {n} Wörter.",
+        op_adverbien_title: "Adverbien",
+        op_adverbien_sub: "heute · hier · sehr",
+        op_adverbien_o1_t: "Die Adverbien verstehen",
+        op_adverbien_o1_d: "8 Familien: Zeit, Ort, Häufigkeit, Art und Weise …",
+        op_adverbien_o2_t: "Die Familie erkennen",
+        op_adverbien_o2_d: "Die Familie finden, unter den {f} des Kurses",
+        op_adverbien_o3_d: "{n} Wörter · {f} Familien",
+        op_adverbien_o3_t: "Wortschatz",
+        op_konjunktionen_title: "Konnektoren",
+        op_konjunktionen_sub: "weil · deshalb · obwohl",
+        op_konjunktionen_o1_t: "Die Konjunktionen verstehen",
+        op_konjunktionen_o1_d: "Nebenordnung vs. Unterordnung",
+        op_konjunktionen_o2_t: "Nebenordnung oder Unterordnung?",
+        op_konjunktionen_o2_d: "Die Folgen für die Wortstellung",
+        op_konjunktionen_o3_t: "Wortschatz",
+        kicker_adverbien_nuance: "Adverbien · Familie",
+        kicker_adverbien_vocab: "Adverbien · Wortschatz",
+        kicker_konnektoren: "Konnektoren · Stellung des Verbs",
+        kicker_als_wenn: "als oder wenn?",
+        kicker_obwohl_trotzdem: "obwohl oder trotzdem?",
+        kicker_weil_obwohl: "weil oder obwohl?",
+        kicker_deshalb_trotzdem: "deshalb oder trotzdem?",
+        kicker_wenn_ob: "wenn oder ob?",
+        kicker_wenn_wann: "wenn oder wann?",
+        kicker_aber_sondern: "aber oder sondern?",
+        kicker_premiere_place: "Die erste Stelle",
+        kicker_blocs_connecteurs: "Bilden · Konnektoren",
+        kicker_transformation_connecteurs: "Umformen · Konnektoren",
+        kicker_ordre_inverse: "Umstellen · Konnektoren",
+        op_verben_o5_t: "wissen oder kennen?",
+        op_verben_o5_d: "Ein Verb im Französischen, zwei im Deutschen",
+        op_praep_o6_t: "legen oder liegen?",
+        op_praep_o6_d: "Wohin → Akkusativ · Wo → Dativ",
+        op_pronomen_o7_t: "der-Wörter oder ein-Wörter?",
+        op_pronomen_o7_d: "dieser folgt der · kein folgt ein",
+        kicker_der_ein: "der-Wörter oder ein-Wörter?",
+        kicker_wissen_kennen: "wissen oder kennen?",
+        kicker_positionsverben: "legen oder liegen?",
+        op_konjunktionen_o4_t: "Wohin kommt das Verb?",
+        op_konjunktionen_o4_d: "weil · denn · deshalb: drei Begründungen, drei Wortstellungen",
+        op_konjunktionen_o5_t: "als oder wenn?",
+        op_konjunktionen_o5_d: "Beide meinen „quand“ – ein einziges Mal, oder jedes Mal",
+        op_konjunktionen_o6_t: "obwohl oder trotzdem?",
+        op_konjunktionen_o6_d: "Beide drücken „trotz“ aus – aber nicht auf derselben Seite",
+        op_konjunktionen_o7_t: "weil oder obwohl?",
+        op_konjunktionen_o7_d: "Gleiche Stellung des Verbs – nur der Sinn entscheidet",
+        op_konjunktionen_o8_t: "deshalb oder trotzdem?",
+        op_konjunktionen_o8_d: "Die Folge, oder das überwundene Hindernis",
+        op_konjunktionen_o9_t: "wenn oder ob?",
+        op_konjunktionen_o9_d: "Ein einziges „si“ im Französischen – zwei Wörter im Deutschen",
+        op_konjunktionen_o10_t: "wenn oder wann?",
+        op_konjunktionen_o10_d: "Ein einziges „quand“ im Französischen – zwei Wörter im Deutschen",
+        op_konjunktionen_o11_t: "aber oder sondern?",
+        op_konjunktionen_o11_d: "Ein einziges „mais“ im Französischen – und zwei Bedingungen zu prüfen",
+        op_konjunktionen_o12_t: "Seitdem ich hier wohne, …",
+        op_konjunktionen_o12_d: "Was nach vorn rückt, schiebt das Verb – und das Subjekt dahinter",
+        op_konjunktionen_o13_t: "Den Satz bilden",
+        op_konjunktionen_o13_d: "Die Bausteine zusammensetzen – Subjekt, Verb, Ergänzungen",
+        op_konjunktionen_o14_t: "Dasselbe anders sagen",
+        op_konjunktionen_o14_d: "weil ↔ deshalb, obwohl ↔ trotzdem – die beiden Hälften wechseln die Seite",
+        op_konjunktionen_o15_t: "Den Satz umstellen",
+        op_konjunktionen_o15_d: "Derselbe Satz, mit der anderen Hälfte am Anfang",
+        kicker_konjunktionen_nuance: "Konjunktionen · Typ",
+        kicker_konjunktionen_vocab: "Konjunktionen · Wortschatz",
+        vhs_kapitel_tile_title: "VHS-Kapitel",
+        vhs_kapitel_tile_sub: "Kurs B1",
+        vhs_kapitel_tile_desc: "Der Wortschatz jedes Kapitels deines Kurses, gesondert zusammengestellt.",
+        vhs_kapitel_liste_title: "VHS-Kapitel",
+        vhs_kapitel_row_label: "Kapitel {n}",
+        vhs_kapitel_none_yet: "Im Moment ist kein Kapitel hinzugefügt.",
+        vhs_kapitel_pill_noms: "Nomen",
+        vhs_kapitel_pill_verben: "Verben",
+        vhs_kapitel_pill_adjektive: "Adjektive",
+        kicker_praep_vocab: "Präpositionen · Wortschatz",
+        kicker_position_vocab: "Positionsverben · Wortschatz",
+        kicker_partikeln_vocab: "Partikeln · Wortschatz",
+        kicker_nomen_revision: "Nomen · Wiederholung",
+        kicker_nomen_flashcards: "Nomen · Karten",
+        kicker_vhs_verben_flashcards: "Verben · Karten",
+        kicker_vhs_adjektive_flashcards: "Adjektive · Karten",
+        kicker_nomen_aleatoire: "Nomen · Zufall",
+        title_adjektive_allemands: "Deutsche Adjektive",
+        theme_name_verb_due_review: "Wiederholung des Tages · Verben",
+        theme_name_adj_due_review: "Wiederholung des Tages · Adjektive",
+        theme_name_due_review: "Wiederholung des Tages",
+        theme_name_random_words: "Zufällige Wörter · {level}",
+        label_verb_singular: "Verb",
+        label_verb_plural: "Verben",
+        label_word_singular: "Wort",
+        label_word_plural: "Wörter",
+        alert_valid_email: "Bitte gib eine gültige E-Mail-Adresse ein.",
+        alert_enter_password: "Bitte gib ein Passwort ein.",
+        alert_login_error_prefix: "Fehler bei der Anmeldung: ",
+        alert_password_min_length: "Das Passwort muss mindestens 6 Zeichen haben.",
+        alert_password_mismatch: "Die beiden Passwörter stimmen nicht überein.",
+        alert_signup_error_prefix: "Fehler bei der Registrierung: ",
+        alert_logout_error: "Fehler beim Abmelden.",
+        alert_no_verbs_due: "Im Moment kein Verb zu wiederholen. Weiter so!",
+        alert_all_verbs_mastered: "Alle Verben dieses Niveaus sind sicher!",
+        dose_du_jour_faite: "Deine Portion neuer Wörter ist für heute geschafft. In diesem Stapel bleiben noch {n} – sie warten morgen auf dich.",
+        gratuit_rien_aujourdhui: "Heute nichts zu wiederholen: Deine Wörter kommen zur rechten Zeit wieder. Bis morgen!",
+        gratuit_echantillon_fini: "Du hast alle Wörter der Gratisversion gelernt. Um weitere zu entdecken, gibt es das Abo.",
+        gratuit_sur: "{n} von {total} · Gratisversion",
+        gratuit_fin_titre: "Ende der kostenlosen Vorschau",
+        gratuit_fin_mots: "Du hast die {n} kostenlosen Wörter dieses Stapels entdeckt. Die anderen sind im Abo.",
+        gratuit_fin_exos: "Du hast die {n} kostenlosen Übungen dieser Serie gemacht, von {total}. Die anderen sind im Abo.",
+        gratuit_fin_bouton: "Das Abo ansehen",
+        alert_no_verbs_available: "Kein Verb verfügbar.",
+        alert_no_adj_due: "Im Moment kein Adjektiv zu wiederholen. Weiter so!",
+        alert_all_adj_mastered: "Alle Adjektive dieses Niveaus sind sicher!",
+        alert_no_adj_available: "Kein Adjektiv verfügbar.",
+        alert_coming_soon: "„{label}“ kommt bald!",
+        alert_no_words_due: "Im Moment kein Wort zu wiederholen. Weiter so!",
+        alert_level_unavailable: "Dieses Niveau ist nicht verfügbar.",
+        alert_all_theme_words_mastered: "Alle Wörter dieses Themas/Niveaus sind sicher!",
+        alert_no_words_available: "Kein Wort verfügbar.",
+        alert_session_ended_saved: "Runde beendet! Dein Fortschritt wurde gespeichert.",
+        alert_session_ended: "Runde beendet!",
+        alert_all_series_mastered: "Alle Elemente dieser Serie sind sicher!",
+        alert_no_mastered_in_series: "In dieser Serie ist noch keine Karte sicher.",
+        alert_open_series_first: "Öffne zuerst eine Serie.",
+        alert_series_reset: "Die Serie wurde zurückgesetzt.",
+        alert_all_progress_reset: "Der gesamte Fortschritt wurde zurückgesetzt.",
+        no_themes_found: "Kein Thema zu diesen Kriterien gefunden.",
+        confirm_reset_daily_goal: "Den Zähler des Tagesziels auf 0 zurücksetzen?",
+        confirm_reset_theme_progress: "Den Fortschritt von „{name}“ zurücksetzen?",
+        confirm_reset_all_progress: "ACHTUNG: Dein gesamter Fortschritt wird gelöscht. Weiter?",
+        auth_signup_desc: "Du hast einen Einladungscode bekommen? Erstelle hier dein Konto.",
+        auth_invite_code_placeholder: "Einladungscode",
+        alert_first_name_required: "Bitte gib deinen Vornamen ein.",
+        alert_gender_required: "Bitte gib dein Geschlecht an.",
+        alert_invite_code_required: "Bitte gib deinen Einladungscode ein.",
+        alert_invite_check_failed: "Der Code lässt sich gerade nicht prüfen. Versuch es noch einmal.",
+        alert_invalid_invite_code: "Dieser Einladungscode ist ungültig oder wurde schon benutzt.",
+        settings_trademark: "Wortando™ ist eine Marke.",
+        settings_admin_title: "Administration",
+        settings_admin_desc: "Nur für dein Konto sichtbar: Einladungscodes verwalten und den Fortschritt der Testpersonen sehen.",
+        settings_admin_btn: "ÜBERSICHT →",
+        admin_kicker: "Administration",
+        admin_title: "Übersicht",
+        admin_deploy_title: "Bereitstellung",
+        admin_deploy_desc: "deutsch-gemini.pages.dev (Cloudflare) und jacquesagrenier-star.github.io spiegeln main (Produktion); jeder Branch hat seine Vorschau unter [branch].deutsch-gemini.pages.dev.",
+        admin_codes_title: "Einladungscodes",
+        admin_codes_desc: "Gib jeder Person, die du zulässt, einen Code. Jeder Code gilt nur ein einziges Mal.",
+        admin_generate_code_btn: "NEUEN CODE ERZEUGEN →",
+        admin_users_title: "Testpersonen",
+        admin_requests_title: "Gewünschte Wörter",
+        admin_requests_desc: "Die Wörter, die deine Testpersonen gesucht und dann zurückgelegt haben. Die meistgewünschten verdienen eine richtige Karte im Kurs.",
+        admin_requests_none: "Im Moment kein gewünschtes Wort.",
+        admin_requests_more: "und {n} weitere.",
+        admin_code_generated: "Neuer Code erstellt: {code}",
+        admin_action_failed: "Die Aktion ist fehlgeschlagen. Prüfe, ob Firestore aktiviert ist, und versuch es noch einmal.",
+        admin_confirm_delete_code: "Den Code „{code}“ löschen?",
+        admin_no_codes: "Im Moment kein Code erstellt.",
+        admin_retry_btn: "NOCH EINMAL",
+        admin_code_used: "Schon benutzt",
+        admin_code_available: "Verfügbar",
+        admin_code_note_placeholder: "An wen vergeben?",
+        admin_delete_code_btn: "LÖSCHEN",
+        admin_load_failed: "Die Daten konnten nicht geladen werden. Prüfe, ob Firestore aktiviert ist.",
+        admin_no_users: "Im Moment keine Testperson.",
+        admin_vhs_access_on: "✓ VHS-Kapitel aktiviert",
+        admin_vhs_access_off: "VHS-Kapitel aktivieren",
+        admin_user_stats: "{vus} Wörter gesehen · {mastered} sicher · Serie von {streak} Tag(en)"
     }
 };
 
@@ -28500,6 +30121,150 @@ const I18N_ESPAGNOL = {
         "vhs_kapitel_tile_title": "دروسي",
         "vhs_kapitel_liste_title": "دروسي في الإسبانية"
     },
+    "de": {
+        "abo_av_mots": "3 700 Wörter von A1 bis B2",
+        "abo_av_examens": "Der Akzent aus Spanien oder Lateinamerika",
+        "carte_genre_el": "maskulin",
+        "carte_genre_la": "feminin",
+        "home_title_1": "Lerne Spanisch",
+        "home_subtitle": "Dein persönlicher Tutor für spanische Grammatik und Wortschatz.",
+        "auth_title": "Lerne Spanisch, ein Wort nach dem anderen",
+        "setup_niveau_label": "Kannst du schon ein bisschen Spanisch?",
+        "profil_q1": "Warum lernst du Spanisch?",
+        "profil_r_vivre": "Um in einem spanischsprachigen Land zu leben",
+        "abo_titre": "Lerne Spanisch ohne Grenzen",
+        "abo_av_voix": "Die spanische Stimme auf jeder Karte",
+        "search_title": "Ein spanisches oder deutsches Wort suchen",
+        "search_placeholder": "Spanisch oder Deutsch …",
+        "search_hint": "Tippe mindestens zwei Buchstaben, <strong>auf Spanisch oder auf Deutsch</strong> – beides geht. Die Suche durchsucht deine {n} Karten und dann das Wörterbuch – fast 150 000 Wörter.",
+        "orb_zuinf_title": "Subjuntivo",
+        "orb_zuinf_sub": "quiero que · espero que",
+        "verbenniveau_title_en": "Verben nach Niveau",
+        "orb_kasus_title": "Ser vs. estar",
+        "orb_kasus_sub": "zwei Verben für „sein“",
+        "orb_adjektive_sub": "wiederholen · Angleichung",
+        "orb_praep_title": "Por vs. para",
+        "orb_praep_sub": "zwei Wörter für „für“",
+        "orb_wortstellung_title": "Die zwei Vergangenheiten",
+        "orb_wortstellung_sub": "hablaba · hablé",
+        "orb_partikeln_title": "Die Angleichung",
+        "orb_partikeln_sub": "alto · alta · altos",
+        "flip_direction_fr": "🔁 Richtung: DE → ES",
+        "flip_direction_de": "🔁 Richtung: ES → DE",
+        "verbenniveau_exercises_btn": "ÜBUNGEN PRESENTE →",
+        "grp_meinung": "Nuancen und Meinung",
+        "grp_diskussion": "Gedanken verbinden",
+        "grp_ton": "Diskursmarker",
+        "grp_ton_adv": "Adverbien der Nuance",
+        "grp_verbindungen": "Verben und ihre Wendungen",
+        "grp_gefuehle": "Reaktionen und Ausrufe",
+        "grp_alltag": "Alltag",
+        "grp_smalltalk": "Grüßen und Höflichkeit",
+        "grp_ideen": "Konjunktionen",
+        "grp_praep": "Präpositionen",
+        "grp_modismos": "Bildhafte Redewendungen",
+        "voice_lang_de": "Spanisch",
+        "carte_dire_desc": "Auf der Rückseite einer Karte wird das Spanische von selbst vorgelesen. Wähle, was du hören willst. Was du abwählst, bleibt angezeigt, und sein Lautsprecher funktioniert weiter – du kannst es anhören, wann du willst.",
+        "carte_phrase_desc": "Auf der Rückseite einer Karte wird das Spanische von selbst vorgelesen: das Wort mit Artikel, dann sein Plural. Mit dieser Einstellung wird anschließend der Beispielsatz gelesen. Er lehrt das Wort im Zusammenhang, verlängert aber jede Karte um zwei bis drei Sekunden, bevor du dich bewerten kannst. Ohne diese Einstellung bleibt der Satz angezeigt, und sein Lautsprecher funktioniert wie bisher.",
+        "op_nomen_o6_d": "el · la – zwei Genera",
+        "dictation_hint": "Den Artikel (el/la) musst du nicht schreiben.",
+        "settings_invite_desc": "Du lernst mit Wortando? Teile es mit jemandem, der Spanisch lernen möchte.",
+        "invite_share_text": "Ich lerne Spanisch mit Wortando – frag mich nach einem Einladungscode, um es auszuprobieren!",
+        "reflexiv_badge_label": "reflexiv (-se)",
+        "auth_value_1": "Spanischer Wortschatz und Grammatik nach Niveau geordnet, von A1 bis B2.",
+        "setup_learning_de": "Spanisch",
+        "op_verben_o4_d": "presente · pretérito · imperfecto · subjuntivo",
+        "op_adjektive_sub": "Angleichung & Wortschatz",
+        "label_case_word": "Gebrauch",
+        "op_schreiben_title": "Auf Spanisch schreiben",
+        "schreiben_hint": "Schreib den Satz auf Spanisch. Akzente und Satzzeichen zählen nicht.",
+        "orb_pronomen_sub": "lo · la · le · se",
+        "orb_zahlen_title": "Das Genus",
+        "orb_zahlen_sub": "el · la · -ción · -ma",
+        "op_pronomen_sub": "lo · la · le · se",
+        "op_pronomen_o1_d": "lo, la, le · lavarse",
+        "orb_redewendungen_sub": "ni idea · por supuesto",
+        "orb_adverbien_sub": "hoy · aquí · muy",
+        "ecoute_sens_connu_cible_d": "du bildest das Spanische aus dem Gedächtnis",
+        "ecoute_sens_cible_connu": "Spanisch zuerst",
+        "tuiles_menu_desc": "Du bekommst den Satz auf Deutsch und die spanischen Wörter durcheinander. Tippe sie in der richtigen Reihenfolge an – ohne Tastatur. Die Leiste enthält ein oder zwei Wörter zu viel, aus derselben Familie wie die des Satzes: Genau da entscheidet sich die Übung.",
+        "op_adverbien_sub": "hoy · aquí · muy",
+        "op_adverbien_o1_d": "8 Familien: Zeit, Ort, Häufigkeit, Art und Weise …",
+        "kicker_partikeln_vocab": "Diskursmarker · Wortschatz",
+        "title_adjektive_allemands": "Spanische Adjektive",
+        "setup_learning_autre": "Deutsch",
+        "temps_es_preterito": "eine abgeschlossene Handlung – <em>ayer, una vez, de repente</em>",
+        "temps_es_imperfecto": "Hintergrund, Gewohnheit, Alter – <em>antes, siempre, mientras</em>",
+        "temps_es_subjuntivo": "nach <em>quiero que</em>, <em>espero que</em>, <em>ojalá</em>",
+        "verbe_es_exemple": "Im Kontext:",
+        "temps_es_perfecto": "eine Vergangenheit, die noch mit der Gegenwart verbunden ist – <em>hoy, esta semana, ya, todavía no</em>",
+        "temps_es_futuro": "Zukunft, Versprechen, Vermutung – <em>mañana, el año que viene</em>",
+        "temps_es_condicional": "Höflichkeit, Rat, Annahme – <em>podrías, me gustaría, yo que tú</em>",
+        "temps_es_imperativo": "tú: die Form von él; usted, ustedes: der subjuntivo",
+        "op_kasus_sub": "ser · estar",
+        "variante_titre": "Welches Spanisch?",
+        "variante_choix_espagne": "Spanien",
+        "variante_choix_amerique": "Lateinamerika",
+        "variante_amerique": "in Lateinamerika: {mot}",
+        "variante_espagne": "in Spanien: {mot}",
+        "adverbien_cat_desc": "Adverbien lernt man, indem man die Wörter einer Familie einander gegenüberstellt: siempre, a menudo, a veces, rara vez, nunca.",
+        "kicker_verben_infinitiv": "Verben · Infinitivo",
+        "kicker_verben_konjunktiv2": "Verben · Subjuntivo",
+        "kicker_verben_perfekt": "Verben · Imperfecto",
+        "kicker_verben_praesens": "Verben · Presente",
+        "kicker_verben_praeteritum": "Verben · Pretérito",
+        "op_adjektive_o4_d": "alto · alta · altos · altas",
+        "op_adjektive_o4_t": "Angleichung des Adjektivs",
+        "gram_attention": "Achtung",
+        "kicker_ser_estar": "ser oder estar?",
+        "kicker_por_para": "por oder para?",
+        "fiche_entrainer": "ÜBEN →",
+        "kicker_falsos_amigos": "Falsche Freunde",
+        "kicker_gustar": "Verben wie gustar",
+        "kicker_acentos": "Der Akzent, der die Bedeutung ändert",
+        "op_es_falsos_t": "Die falschen Freunde",
+        "op_es_falsos_d": "la carta, el regalo, el gimnasio, embarazada … das Wort, das vertraut klingt, ist oft die Falle.",
+        "op_es_gustar_t": "Verben wie gustar",
+        "op_es_gustar_d": "me gusta el chocolate = die Schokolade schmeckt mir: eine Sache → gusta, mehrere → gustan.",
+        "op_es_acentos_t": "Der Akzent, der die Bedeutung ändert",
+        "op_es_acentos_d": "tú / tu, sí / si, habló / hablo: ein kleines Zeichen, ein anderes Wort.",
+        "orb_es_presente": "Das presente",
+        "orb_es_hay": "hay und die Fragen",
+        "orb_es_pronominales": "Reflexive Verben",
+        "orb_es_accord": "Die Angleichung",
+        "verbentemps_es_futuro_title": "Futuro – das Futur",
+        "verbentemps_es_futuro": "Für die Zukunft, ein Versprechen, eine Vorhersage – und eine Vermutung über die Gegenwart. Der ganze Infinitiv + <b>-é, -ás, -á, -emos, -éis, -án</b>.<br><em>Mañana lloverá. ¿Dónde estará Juan?</em> (Morgen wird es regnen. Wo mag Juan wohl sein?)",
+        "verbentemps_es_condicional_title": "Condicional – der Konditional",
+        "verbentemps_es_condicional": "Für Höflichkeit, Rat, Annahme – und die Zukunft aus der Sicht der Vergangenheit. Der ganze Infinitiv + <b>-ía, -ías, -ía, -íamos, -íais, -ían</b>.<br><em>¿Podrías ayudarme? Dijo que vendría.</em> (Könntest du mir helfen? Er sagte, er würde kommen.)",
+        "kicker_es_futuro": "Verben · Futuro",
+        "kicker_es_condicional": "Verben · Condicional",
+        "orb_es_indice": "Alle Übersichten",
+        "gram_indice_kicker": "Grammatik",
+        "gram_indice_titre": "Alle Übersichten",
+        "verbentemps_es_imperativo_title": "Imperativo – der Imperativ",
+        "verbentemps_es_imperativo": "Einen Befehl, einen Rat, eine Wegbeschreibung geben. Mit <b>tú</b>: die Form von él (habla); mit <b>usted</b> und in der <b>Verneinung</b>: der subjuntivo (hable, no hables).<br><em>Gira a la derecha. No hables tan alto.</em> (Bieg rechts ab. Sprich nicht so laut.)",
+        "kicker_es_imperativo": "Verben · Imperativo",
+        "kicker_perifrasis": "Die Verbalperiphrasen",
+        "kicker_numeros": "Zahlen und Uhrzeit",
+        "kicker_demostrativos": "Demonstrativ- und Possessivbegleiter",
+        "kicker_preposiciones": "a, en, de und das persönliche a",
+        "kicker_preposiciones_viaje": "Präpositionen · De viaje",
+        "kicker_verbos_preposicion": "Verben mit Präposition",
+        "fiche_entrainer_x": "ÜBEN: {x} →",
+        "pron_kicker": "Spanisch lesen",
+        "pron_intro": "Spanisch liest man fast immer so, wie es geschrieben wird: Diese Regeln reichen, um jedes Wort zu lesen. Tippe auf ein Wort, um es zu hören.",
+        "pron_accent": "Die Betonung",
+        "dec_t1_texte_plusieurs": "Im Spanischen ist jedes Nomen maskulin oder feminin, und der Artikel verrät es: el oder la. Nicht immer wie im Deutschen: el sol, die Sonne.",
+        "dec_t1_texte_peu": "Zur Erinnerung: Das kleine Wort vor dem Nomen, der Artikel, verrät sein Genus: el (maskulin) oder la (feminin). Die Farbe zeigt es. Hör dir das Wort an und sag dann, ob du es wusstest.",
+        "dec_t4_texte": "Jede bearbeitete Karte öffnet eine Kachel. Unter den Kacheln versteckt sich das Werk eines großen Malers: Welches, erfährst du erst, wenn du es enthüllst. Jedes fertige Gemälde kommt in deine Galerie.",
+        "dec_t4_d5": "700 Karten: das ganze Gemälde! Los pescadores valencianos, von Joaquín Sorolla, 1895.",
+        "seance_choix_allemand": "Spanisch",
+        "mosaique_reste": "noch {n} Karten bis zum ganzen Gemälde eines Malers aus der spanischsprachigen Welt",
+        "mosaique_intro_texte": "Jede Karte, die du durchgehst, macht das Bild ein wenig schärfer. Am Ende erscheint das ganze Werk eines Malers aus der spanischsprachigen Welt, mit Namen und Geschichte, und es kommt in deine Galerie.",
+        "ip_tableau_1": "Ein Gemälde aus der spanischsprachigen Welt beginnt als grobe Farbkacheln. Jede Karte, die du durchgehst, macht eine davon feiner – Wiederholungen zählen genauso viel wie neue Wörter.",
+        "vhs_kapitel_tile_title": "Mein Kurs",
+        "vhs_kapitel_liste_title": "Mein Spanischkurs"
+    },
     "tr": {
         "profil_q1": "Neden İspanyolca öğreniyorsun?",
         "profil_r_vivre": "İspanyolca konuşulan bir ülkede yaşamak için",
@@ -28836,10 +30601,17 @@ function appliquerLangueDocument(lang){
 // Une ternaire ne se met pas a trois langues : d'ou ces deux fonctions, seuls
 // endroits qui connaissent les suffixes. Ajouter une langue, c'est desormais
 // l'ajouter a UI_LANGS et a REPLI_LANGUE -- plus une seule ternaire a reecrire.
-const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr", uk: "_uk", fa: "_fa", ar: "_ar", pt: "_pt", pl: "_pl", ru: "_ru" };
+// "de" (1er nov. 2026) : l'allemand comme langue d'INTERFACE, pour l'espagnol
+// seulement. Ne pas confondre avec le "de" de la voix et de l'ecoute, qui
+// designe la langue APPRISE (voir VOIX_ALLEMAND_CONNU).
+const SUFFIXE_LANGUE = { fr: "_fr", en: "_en", tr: "_tr", uk: "_uk", fa: "_fa", ar: "_ar", pt: "_pt", pl: "_pl", ru: "_ru", de: "_de" };
+// La voix de l'allemand CONNU (la langue de l'usager, pas celle qu'il apprend) :
+// pickVoice("de") donnerait la voix espagnole. Un code a part, lu par
+// voicesForLang() et LANGUE_TAG.
+const VOIX_ALLEMAND_CONNU = "de-connu";
 
 // Le drapeau affiche dans l'en-tete. Ce sont des emoji, donc rien a heberger.
-const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷", uk: "🇺🇦", fa: "🇮🇷", ar: "🇸🇦", pt: "🇧🇷", pl: "🇵🇱", ru: "🌐" };
+const DRAPEAUX_LANGUE = { fr: "🇫🇷", en: "🇬🇧", tr: "🇹🇷", uk: "🇺🇦", fa: "🇮🇷", ar: "🇸🇦", pt: "🇧🇷", pl: "🇵🇱", ru: "🌐", de: "🇩🇪" };
 
 // Ordre de repli quand la traduction manque. Le turc arrive en dernier et son
 // corpus se remplira progressivement : sans repli, chaque mot pas encore
@@ -28853,7 +30625,9 @@ const REPLI_LANGUE = { fr: ["fr"], en: ["en", "fr"], tr: ["tr", "en", "fr"],
                        // Le polonais : meme repli que les autres langues d'interface.
                        pl: ["pl", "en", "fr"],
                        // Le russe : meme repli que les autres langues.
-                       ru: ["ru", "en", "fr"] };
+                       ru: ["ru", "en", "fr"],
+                       // L'allemand (interface de l'espagnol, 1er nov. 2026).
+                       de: ["de", "en", "fr"] };
 
 function langueEtRepli(lang){
     return REPLI_LANGUE[lang || getUiLang()] || REPLI_LANGUE[DEFAULT_UI_LANG];
@@ -28886,7 +30660,7 @@ function texteTraduit(obj, base, lang){
 // options / optionsEn, correct / correctEn. Meme logique de repli, autre
 // convention -- et ils ne portent pas toujours du texte (options est un
 // tableau), d'ou une fonction distincte de texteTraduit.
-const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr", uk: "Uk", fa: "Fa", pt: "Pt", ar: "Ar", pl: "Pl", ru: "Ru" };
+const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr", uk: "Uk", fa: "Fa", pt: "Pt", ar: "Ar", pl: "Pl", ru: "Ru", de: "De" };
 
 // ============ Ou se trouve chaque langue dans une carte ============
 // Les cartes de vocabulaire sont des TABLEAUX : le rang encode le sens, et il
@@ -28897,12 +30671,14 @@ const SUFFIXE_CHAMEAU = { fr: "", en: "En", tr: "Tr", uk: "Uk", fa: "Fa", pt: "P
 // donc aucun des lecteurs positionnels du fichier n'est affecte. Ajouter une
 // langue de plus se fera pareil -- une paire de rangs au bout, une ligne ici.
 const RANGS_CARTE = {
-    nomen:         { traduction: { fr:3, en:4, tr:12, uk:15, fa:17, pt:19, ar:21, pl:23, ru:25 }, exemple: { fr:6, en:7, tr:13, uk:16, fa:18, pt:20, ar:22, pl:24, ru:26 } },
-    adjektive:     { traduction: { fr:1, en:5, tr:7,  uk:11, fa:13, pt:17, ar:19, pl:21, ru:23 }, exemple: { fr:4, en:6, tr:8,  uk:12, fa:14, pt:18, ar:20, pl:22, ru:24 } },
-    funktionswort: { traduction: { fr:1, en:5, tr:9,  uk:14, fa:17, pt:20, ar:23, pl:26, ru:29 }, exemple: { fr:4, en:6, tr:10, uk:15, fa:18, pt:21, ar:24, pl:27, ru:30 },
-                     categorie:  { fr:2, en:7, tr:11, uk:16, fa:19, pt:22, ar:25, pl:28, ru:31 } },
-    expression:    { traduction: { fr:1, en:5, tr:10, uk:15, fa:18, pt:21, ar:24, pl:27, ru:30 }, exemple: { fr:4, en:6, tr:11, uk:16, fa:19, pt:22, ar:25, pl:28, ru:31 },
-                     categorie:  { fr:2, en:7, tr:12, uk:17, fa:20, pt:23, ar:26, pl:29, ru:32 } }
+    // de (1er nov. 2026) : l'allemand, langue d'interface de l'espagnol -- ses
+    // rangs n'existent que dans les cartes de l'espagnol.
+    nomen:         { traduction: { fr:3, en:4, tr:12, uk:15, fa:17, pt:19, ar:21, pl:23, ru:25, de:27 }, exemple: { fr:6, en:7, tr:13, uk:16, fa:18, pt:20, ar:22, pl:24, ru:26, de:28 } },
+    adjektive:     { traduction: { fr:1, en:5, tr:7,  uk:11, fa:13, pt:17, ar:19, pl:21, ru:23, de:25 }, exemple: { fr:4, en:6, tr:8,  uk:12, fa:14, pt:18, ar:20, pl:22, ru:24, de:26 } },
+    funktionswort: { traduction: { fr:1, en:5, tr:9,  uk:14, fa:17, pt:20, ar:23, pl:26, ru:29, de:32 }, exemple: { fr:4, en:6, tr:10, uk:15, fa:18, pt:21, ar:24, pl:27, ru:30, de:33 },
+                     categorie:  { fr:2, en:7, tr:11, uk:16, fa:19, pt:22, ar:25, pl:28, ru:31, de:34 } },
+    expression:    { traduction: { fr:1, en:5, tr:10, uk:15, fa:18, pt:21, ar:24, pl:27, ru:30, de:33 }, exemple: { fr:4, en:6, tr:11, uk:16, fa:19, pt:22, ar:25, pl:28, ru:31, de:34 },
+                     categorie:  { fr:2, en:7, tr:12, uk:17, fa:20, pt:23, ar:26, pl:29, ru:32, de:35 } }
 };
 
 // Lit un texte de carte dans la langue voulue, avec le meme repli que
@@ -29151,7 +30927,8 @@ const ANGLAIS_EN_RETRAIT = true;
 // Ajouter ici une langue le jour ou le contenu espagnol y est traduit :
 // le portugais du Bresil (v784, 13 oct. 2026), puis l'arabe (15 oct. 2026).
 // Sans effet pour qui est DEJA en espagnol : il garde le bouton de retour.
-const LANGUES_UI_AVEC_ESPAGNOL = ["fr", "en", "pt", "ar"];
+// et l'allemand (1er nov. 2026) : seule l'app espagnole le propose en interface.
+const LANGUES_UI_AVEC_ESPAGNOL = ["fr", "en", "pt", "ar", "de"];
 // v871 : SUR L'ECRAN DE CONNEXION, LA BASCULE AVANT DE SE CONNECTER. Une
 // testeuse d'espagnol lisait « Apprends l'allemand » en entrant son mot de
 // passe : la langue apprise se decide avant la connexion (l'adresse, ou le
@@ -29161,11 +30938,24 @@ function majLienAutreLangueAuth(){
     const b = document.getElementById("authAutreLangue");
     if(!b) return;
     b.textContent = t(LANGUE_APPRISE !== "de" ? "auth_apprendre_de" : "auth_apprendre_es");
-    b.classList.toggle("hidden", LANGUE_APPRISE !== "es" && !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang()));
+    b.classList.toggle("hidden", (LANGUE_APPRISE !== "es" && !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang()))
+        || germanophoneEnEspagnol());
+}
+// Un germanophone qui apprend l'espagnol (interface allemande, 1er nov. 2026) :
+// lui proposer « apprendre l'allemand » n'a pas de sens, et l'app allemande ne
+// parle pas allemand -- il y retomberait en anglais.
+function germanophoneEnEspagnol(){
+    return LANGUE_APPRISE === "es" && getUiLang() === "de";
 }
 function masquerEspagnolSelonLangueUi(){
     try{ majLienAutreLangueAuth(); }catch(e){}
-    if(LANGUE_APPRISE === "es") return;
+    if(LANGUE_APPRISE === "es"){
+        document.querySelectorAll('.setup-choice[onclick*="ouvrirAutreLangueApprise"]').forEach(btn => {
+            if(germanophoneEnEspagnol()){ btn.classList.add("hidden"); btn.dataset.cacheDe = "1"; }
+            else if(btn.dataset.cacheDe){ btn.classList.remove("hidden"); delete btn.dataset.cacheDe; }
+        });
+        return;
+    }
     const cache = !LANGUES_UI_AVEC_ESPAGNOL.includes(getUiLang());
     document.querySelectorAll('.setup-choice[onclick*="ouvrirAutreLangueApprise"]')
         .forEach(btn => btn.classList.toggle("hidden", cache));
@@ -29346,6 +31136,8 @@ function adapterChoixALaLangueApprise(){
     document.querySelectorAll('.setup-choice[onclick*="selectUiLangChoice"]').forEach(btn => {
         const m = btn.getAttribute("onclick").match(/'([a-z]{2})'/);
         if(m && !UI_LANGS.includes(m[1])) btn.classList.add("hidden");
+        // L'allemand (cache par defaut dans la page) : montre ici seulement.
+        if(m && m[1] === "de" && UI_LANGS.includes("de")) btn.classList.remove("hidden");
     });
 }
 
@@ -32539,6 +34331,12 @@ async function loadVerbeJson() {
                     exemple_futuro: v.exemple_futuro || "", exemple_futuro_fr: v.exemple_futuro_fr || "", exemple_futuro_en: v.exemple_futuro_en || "", exemple_futuro_pt: v.exemple_futuro_pt || "", exemple_futuro_ar: v.exemple_futuro_ar || "",
                     exemple_condicional: v.exemple_condicional || "", exemple_condicional_fr: v.exemple_condicional_fr || "", exemple_condicional_en: v.exemple_condicional_en || "", exemple_condicional_pt: v.exemple_condicional_pt || "", exemple_condicional_ar: v.exemple_condicional_ar || "",
                     exemple_subjuntivo: v.exemple_subjuntivo || "", exemple_subjuntivo_fr: v.exemple_subjuntivo_fr || "", exemple_subjuntivo_en: v.exemple_subjuntivo_en || "", exemple_subjuntivo_pt: v.exemple_subjuntivo_pt || "", exemple_subjuntivo_ar: v.exemple_subjuntivo_ar || "",
+                    // L'allemand, langue d'interface de l'espagnol (1er nov. 2026) :
+                    // seulement en espagnol, l'objet allemand reste le meme.
+                    ...(LANGUE_APPRISE === "es" ? { traduction_de: v.traduction_de || "", exemple_de: v.exemple_de || "",
+                        exemple_preterito_de: v.exemple_preterito_de || "", exemple_imperfecto_de: v.exemple_imperfecto_de || "",
+                        exemple_perfecto_de: v.exemple_perfecto_de || "", exemple_futuro_de: v.exemple_futuro_de || "",
+                        exemple_condicional_de: v.exemple_condicional_de || "", exemple_subjuntivo_de: v.exemple_subjuntivo_de || "" } : {}),
                     praeteritumHighlight: v.praeteritumHighlight || "", konjunktiv2Highlight: v.konjunktiv2Highlight || "",
                     // Les examens ou ce verbe figure, ["a2","b1","dtz"]. Ce
                     // chargeur recopie champ par champ : sans cette ligne, la
@@ -32633,7 +34431,10 @@ async function loadAdjektiveJson() {
                     w.traduction_pl || "",   // rang 21 (polonais)
                     w.exemple_pl || "",      // rang 22
                     w.traduction_ru || "",   // rang 23 (russe)
-                    w.exemple_ru || ""       // rang 24
+                    w.exemple_ru || "",      // rang 24
+                    // Rangs 25-26 : l'allemand, langue d'interface de l'espagnol
+                    // (1er nov. 2026) ; seulement en espagnol.
+                    ...(LANGUE_APPRISE === "es" ? [w.traduction_de || "", w.exemple_de || ""] : [])
                 ]);
                 // Le japonais : lecture, furigana et formes (い / な), en
                 // proprietes nommees comme pour les noms.
@@ -32689,14 +34490,14 @@ function hideGlobalLoadingBar(){
 // celle d'avant, inchangee.
 const ADVERB_CATEGORIES = LANGUE_APPRISE === "es"
     ? {
-    "tiempo":        { fr: "Tiempo \u2014 temps", en: "Tiempo \u2014 time", pt: "Tiempo — tempo", ar: "Tiempo — الزمان" },
-    "lugar":         { fr: "Lugar \u2014 lieu, direction", en: "Lugar \u2014 place, direction", pt: "Lugar — lugar, direção", ar: "Lugar — المكان والاتجاه" },
-    "frecuencia":    { fr: "Frecuencia \u2014 fr\u00e9quence", en: "Frecuencia \u2014 frequency", pt: "Frecuencia — frequência", ar: "Frecuencia — التكرار" },
-    "modo":          { fr: "Modo \u2014 mani\u00e8re", en: "Modo \u2014 manner", pt: "Modo — modo", ar: "Modo — الكيفية" },
-    "cantidad":      { fr: "Cantidad \u2014 degr\u00e9, quantit\u00e9", en: "Cantidad \u2014 degree, quantity", pt: "Cantidad — grau, quantidade", ar: "Cantidad — الدرجة والكمية" },
-    "duda":          { fr: "Duda \u2014 doute, probabilit\u00e9", en: "Duda \u2014 doubt, likelihood", pt: "Duda — dúvida, probabilidade", ar: "Duda — الشك والاحتمال" },
-    "afirmacion":    { fr: "Afirmaci\u00f3n \u2014 affirmer, nier", en: "Afirmaci\u00f3n \u2014 affirming, denying", pt: "Afirmación — afirmar, negar", ar: "Afirmación — الإثبات والنفي" },
-    "discurso":      { fr: "Discurso \u2014 organiser le propos", en: "Discurso \u2014 structuring speech", pt: "Discurso — organizar o discurso", ar: "Discurso — تنظيم الكلام" }
+    "tiempo":        { fr: "Tiempo \u2014 temps", en: "Tiempo \u2014 time", pt: "Tiempo — tempo", ar: "Tiempo — الزمان", de: "Tiempo — Zeit" },
+    "lugar":         { fr: "Lugar \u2014 lieu, direction", en: "Lugar \u2014 place, direction", pt: "Lugar — lugar, direção", ar: "Lugar — المكان والاتجاه", de: "Lugar — Ort, Richtung" },
+    "frecuencia":    { fr: "Frecuencia \u2014 fr\u00e9quence", en: "Frecuencia \u2014 frequency", pt: "Frecuencia — frequência", ar: "Frecuencia — التكرار", de: "Frecuencia — Häufigkeit" },
+    "modo":          { fr: "Modo \u2014 mani\u00e8re", en: "Modo \u2014 manner", pt: "Modo — modo", ar: "Modo — الكيفية", de: "Modo — Art und Weise" },
+    "cantidad":      { fr: "Cantidad \u2014 degr\u00e9, quantit\u00e9", en: "Cantidad \u2014 degree, quantity", pt: "Cantidad — grau, quantidade", ar: "Cantidad — الدرجة والكمية", de: "Cantidad — Grad, Menge" },
+    "duda":          { fr: "Duda \u2014 doute, probabilit\u00e9", en: "Duda \u2014 doubt, likelihood", pt: "Duda — dúvida, probabilidade", ar: "Duda — الشك والاحتمال", de: "Duda — Zweifel, Wahrscheinlichkeit" },
+    "afirmacion":    { fr: "Afirmaci\u00f3n \u2014 affirmer, nier", en: "Afirmaci\u00f3n \u2014 affirming, denying", pt: "Afirmación — afirmar, negar", ar: "Afirmación — الإثبات والنفي", de: "Afirmación — bejahen, verneinen" },
+    "discurso":      { fr: "Discurso \u2014 organiser le propos", en: "Discurso \u2014 structuring speech", pt: "Discurso — organizar o discurso", ar: "Discurso — تنظيم الكلام", de: "Discurso — die Rede gliedern" }
 }
     : {
     "Zeit":             { fr: "Zeit \u2014 temps",                  en: "Zeit \u2014 time", tr: "Zeit \u2014 zaman", uk: "Zeit \u2014 час" , fa: "Zeit \u2014 زمان", pt: "Zeit \u2014 tempo", ar: "Zeit \u2014 زمان", pl: "Zeit \u2014 czas", ru: "Zeit \u2014 время" },
@@ -32728,23 +34529,23 @@ const ADVERB_CATEGORIES = LANGUE_APPRISE === "es"
 // celle d'avant, inchangee.
 const REDEWENDUNG_CATEGORIES = LANGUE_APPRISE === "es"
     ? {
-    "saludo":        { fr: "Saludos \u2014 saluer, prendre cong\u00e9", en: "Saludos \u2014 greetings, goodbyes", pt: "Saludos — cumprimentar, despedir-se", ar: "Saludos — التحية والوداع" },
-    "cortesia":      { fr: "Cortes\u00eda \u2014 remercier, s'excuser", en: "Cortes\u00eda \u2014 thanking, apologising", pt: "Cortesía — agradecer, desculpar-se", ar: "Cortesía — الشكر والاعتذار" },
-    "cotidiano":     { fr: "Vida diaria \u2014 la vie pratique", en: "Vida diaria \u2014 everyday life", pt: "Vida diaria — a vida prática", ar: "Vida diaria — الحياة العملية" },
-    "matiz":         { fr: "Matizar \u2014 nuancer, prendre position", en: "Matizar \u2014 hedging, taking a stance", pt: "Matizar — nuançar, posicionar-se", ar: "Matizar — التلطيف واتخاذ الموقف" },
-    "conectar":      { fr: "Conectar \u2014 relier ses id\u00e9es", en: "Conectar \u2014 linking ideas", pt: "Conectar — ligar as ideias", ar: "Conectar — ربط الأفكار" },
-    "reaccion":      { fr: "Reacciones \u2014 r\u00e9agir", en: "Reacciones \u2014 reacting", pt: "Reacciones — reagir", ar: "Reacciones — ردّ الفعل" },
-    "interjeccion":  { fr: "Interjecciones \u2014 s'exclamer", en: "Interjecciones \u2014 exclamations", pt: "Interjecciones — exclamar", ar: "Interjecciones — التعجّب" },
-    "modismo":       { fr: "Modismos \u2014 expressions imag\u00e9es", en: "Modismos \u2014 idioms", pt: "Modismos — expressões idiomáticas", ar: "Modismos — تعابير اصطلاحية" },
-    "tener":         { fr: "Con tener \u2014 tener ganas, tener prisa", en: "Con tener \u2014 tener ganas, tener prisa", pt: "Con tener — tener ganas, tener prisa", ar: "Con tener — tener ganas, tener prisa" },
-    "dar":           { fr: "Con dar \u2014 dar igual, dar miedo", en: "Con dar \u2014 dar igual, dar miedo", pt: "Con dar — dar igual, dar miedo", ar: "Con dar — dar igual, dar miedo" },
-    "hacer":         { fr: "Con hacer \u2014 hacer cola, hacer caso", en: "Con hacer \u2014 hacer cola, hacer caso", pt: "Con hacer — hacer cola, hacer caso", ar: "Con hacer — hacer cola, hacer caso" },
-    "poner":         { fr: "Con poner \u2014 poner al d\u00eda, ponerse las pilas", en: "Con poner \u2014 poner al d\u00eda, ponerse las pilas", pt: "Con poner — poner al día, ponerse las pilas", ar: "Con poner — poner al día, ponerse las pilas" },
-    "echar":         { fr: "Con echar \u2014 echar de menos, echar una mano", en: "Con echar \u2014 echar de menos, echar una mano", pt: "Con echar — echar de menos, echar una mano", ar: "Con echar — echar de menos, echar una mano" },
-    "llevar":        { fr: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n", en: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n", pt: "Con llevar — llevarse bien, llevar razón", ar: "Con llevar — llevarse bien, llevar razón" },
-    "quedar":        { fr: "Con quedar \u2014 quedar claro, quedarse corto", en: "Con quedar \u2014 quedar claro, quedarse corto", pt: "Con quedar — quedar claro, quedarse corto", ar: "Con quedar — quedar claro, quedarse corto" },
-    "estar":         { fr: "Con estar \u2014 estar de acuerdo, estar al tanto", en: "Con estar \u2014 estar de acuerdo, estar al tanto", pt: "Con estar — estar de acuerdo, estar al tanto", ar: "Con estar — estar de acuerdo, estar al tanto" },
-    "ser":           { fr: "Con ser \u2014 ser capaz, ser un rollo", en: "Con ser \u2014 ser capaz, ser un rollo", pt: "Con ser — ser capaz, ser un rollo", ar: "Con ser — ser capaz, ser un rollo" }
+    "saludo":        { fr: "Saludos \u2014 saluer, prendre cong\u00e9", en: "Saludos \u2014 greetings, goodbyes", pt: "Saludos — cumprimentar, despedir-se", ar: "Saludos — التحية والوداع", de: "Saludos — grüßen, sich verabschieden" },
+    "cortesia":      { fr: "Cortes\u00eda \u2014 remercier, s'excuser", en: "Cortes\u00eda \u2014 thanking, apologising", pt: "Cortesía — agradecer, desculpar-se", ar: "Cortesía — الشكر والاعتذار", de: "Cortesía — danken, sich entschuldigen" },
+    "cotidiano":     { fr: "Vida diaria \u2014 la vie pratique", en: "Vida diaria \u2014 everyday life", pt: "Vida diaria — a vida prática", ar: "Vida diaria — الحياة العملية", de: "Vida diaria — der praktische Alltag" },
+    "matiz":         { fr: "Matizar \u2014 nuancer, prendre position", en: "Matizar \u2014 hedging, taking a stance", pt: "Matizar — nuançar, posicionar-se", ar: "Matizar — التلطيف واتخاذ الموقف", de: "Matizar — abwägen, Stellung nehmen" },
+    "conectar":      { fr: "Conectar \u2014 relier ses id\u00e9es", en: "Conectar \u2014 linking ideas", pt: "Conectar — ligar as ideias", ar: "Conectar — ربط الأفكار", de: "Conectar — Gedanken verbinden" },
+    "reaccion":      { fr: "Reacciones \u2014 r\u00e9agir", en: "Reacciones \u2014 reacting", pt: "Reacciones — reagir", ar: "Reacciones — ردّ الفعل", de: "Reacciones — reagieren" },
+    "interjeccion":  { fr: "Interjecciones \u2014 s'exclamer", en: "Interjecciones \u2014 exclamations", pt: "Interjecciones — exclamar", ar: "Interjecciones — التعجّب", de: "Interjecciones — ausrufen" },
+    "modismo":       { fr: "Modismos \u2014 expressions imag\u00e9es", en: "Modismos \u2014 idioms", pt: "Modismos — expressões idiomáticas", ar: "Modismos — تعابير اصطلاحية", de: "Modismos — bildhafte Redewendungen" },
+    "tener":         { fr: "Con tener \u2014 tener ganas, tener prisa", en: "Con tener \u2014 tener ganas, tener prisa", pt: "Con tener — tener ganas, tener prisa", ar: "Con tener — tener ganas, tener prisa", de: "Con tener — tener ganas, tener prisa" },
+    "dar":           { fr: "Con dar \u2014 dar igual, dar miedo", en: "Con dar \u2014 dar igual, dar miedo", pt: "Con dar — dar igual, dar miedo", ar: "Con dar — dar igual, dar miedo", de: "Con dar — dar igual, dar miedo" },
+    "hacer":         { fr: "Con hacer \u2014 hacer cola, hacer caso", en: "Con hacer \u2014 hacer cola, hacer caso", pt: "Con hacer — hacer cola, hacer caso", ar: "Con hacer — hacer cola, hacer caso", de: "Con hacer — hacer cola, hacer caso" },
+    "poner":         { fr: "Con poner \u2014 poner al d\u00eda, ponerse las pilas", en: "Con poner \u2014 poner al d\u00eda, ponerse las pilas", pt: "Con poner — poner al día, ponerse las pilas", ar: "Con poner — poner al día, ponerse las pilas", de: "Con poner — poner al día, ponerse las pilas" },
+    "echar":         { fr: "Con echar \u2014 echar de menos, echar una mano", en: "Con echar \u2014 echar de menos, echar una mano", pt: "Con echar — echar de menos, echar una mano", ar: "Con echar — echar de menos, echar una mano", de: "Con echar — echar de menos, echar una mano" },
+    "llevar":        { fr: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n", en: "Con llevar \u2014 llevarse bien, llevar raz\u00f3n", pt: "Con llevar — llevarse bien, llevar razón", ar: "Con llevar — llevarse bien, llevar razón", de: "Con llevar — llevarse bien, llevar razón" },
+    "quedar":        { fr: "Con quedar \u2014 quedar claro, quedarse corto", en: "Con quedar \u2014 quedar claro, quedarse corto", pt: "Con quedar — quedar claro, quedarse corto", ar: "Con quedar — quedar claro, quedarse corto", de: "Con quedar — quedar claro, quedarse corto" },
+    "estar":         { fr: "Con estar \u2014 estar de acuerdo, estar al tanto", en: "Con estar \u2014 estar de acuerdo, estar al tanto", pt: "Con estar — estar de acuerdo, estar al tanto", ar: "Con estar — estar de acuerdo, estar al tanto", de: "Con estar — estar de acuerdo, estar al tanto" },
+    "ser":           { fr: "Con ser \u2014 ser capaz, ser un rollo", en: "Con ser \u2014 ser capaz, ser un rollo", pt: "Con ser — ser capaz, ser un rollo", ar: "Con ser — ser capaz, ser un rollo", de: "Con ser — ser capaz, ser un rollo" }
 }
     : {
     "Begrüßung/Small Talk": { fr: "Begrüßung \u2014 saluer, bavarder",       en: "Begrüßung \u2014 greetings, small talk", tr: "Begrüßung \u2014 selamlaşma, sohbet", uk: "Begrüßung \u2014 вітання, світська бесіда" , fa: "Begrüßung \u2014 سلام و احوال‌پرسی", pt: "Begrüßung \u2014 cumprimentar, bater papo", ar: "Begrüßung \u2014 تحية، دردشة", pl: "Begrüßung \u2014 powitania, pogawędka", ru: "Begrüßung \u2014 приветствие, светская беседа" },
@@ -32801,7 +34602,9 @@ async function loadFunktionswoerterJson() {
                 w.traduction_pl || "", w.exemple_pl || "",  // rangs 26 et 27 (polonais)
                 w.kategorie_pl || "",                       // rang 28
                 w.traduction_ru || "", w.exemple_ru || "",  // rangs 29 et 30 (russe)
-                w.kategorie_ru || ""                        // rang 31
+                w.kategorie_ru || "",                       // rang 31
+                // Rangs 32-34 : l'allemand (interface de l'espagnol, 1er nov. 2026).
+                ...(LANGUE_APPRISE === "es" ? [w.traduction_de || "", w.exemple_de || "", w.kategorie_de || ""] : [])
             ]);
         });
     } catch (e) {
@@ -32838,7 +34641,9 @@ async function loadRedewendungenJson() {
                     r.traduction_pl || "", r.exemple_pl || "",  // rangs 27 et 28 (polonais)
                     cat.pl || "",                               // rang 29
                     r.traduction_ru || "", r.exemple_ru || "",  // rangs 30 et 31 (russe)
-                    cat.ru || ""                                // rang 32
+                    cat.ru || "",                               // rang 32
+                    // Rangs 33-35 : l'allemand (interface de l'espagnol, 1er nov. 2026).
+                    ...(LANGUE_APPRISE === "es" ? [r.traduction_de || "", r.exemple_de || "", cat.de || ""] : [])
                 ]);
             });
         });
@@ -32877,7 +34682,9 @@ async function loadAdverbienJson() {
                     a.traduction_pl || "", a.exemple_pl || "",  // rangs 27 et 28 (polonais)
                     cat.pl || "",                               // rang 29
                     a.traduction_ru || "", a.exemple_ru || "",  // rangs 30 et 31 (russe)
-                    cat.ru || ""                                // rang 32
+                    cat.ru || "",                               // rang 32
+                    // Rangs 33-35 : l'allemand (interface de l'espagnol, 1er nov. 2026).
+                    ...(LANGUE_APPRISE === "es" ? [a.traduction_de || "", a.exemple_de || "", cat.de || ""] : [])
                 ]);
                 if(LANGUE_APPRISE === "ja") words[words.length - 1].ja = lectureJaponaise(a);
             });
@@ -33091,7 +34898,9 @@ async function loadThemesJson() {
                     w.traduction_pl || "",   // rang 23 (polonais)
                     w.exemple_pl || "",      // rang 24
                     w.traduction_ru || "",   // rang 25 (russe)
-                    w.exemple_ru || ""       // rang 26
+                    w.exemple_ru || "",      // rang 26
+                    // Rangs 27-28 : l'allemand (interface de l'espagnol, 1er nov. 2026).
+                    ...(LANGUE_APPRISE === "es" ? [w.traduction_de || "", w.exemple_de || ""] : [])
                 ];
             });
             if(variantesEspagnol) words.forEach(w => appliquerVarianteEspagnol(w, variantesEspagnol, phrasesLatam));
@@ -35780,6 +37589,386 @@ const MOTS_OUTILS_ES_AR = {
     ]
   }
 };
+// L'ALLEMAND DES MOTS-OUTILS ESPAGNOLS (1er nov. 2026), aux rangs 32-34 de
+// RANGS_CARTE.funktionswort (le polonais et le russe tiennent 26-31).
+const MOTS_OUTILS_ES_DE = {
+  "praep": {
+    "a": [
+      "nach, zu, an",
+      "Ich fahre am Montag nach Madrid.",
+      "Richtung, Empfänger, Uhrzeit"
+    ],
+    "de": [
+      "von, aus",
+      "Das ist das Auto meiner Schwester.",
+      "Herkunft, Besitz, Material"
+    ],
+    "en": [
+      "in, an, auf",
+      "Ich wohne seit zwei Jahren in Sevilla.",
+      "Ort, an dem man ist, Verkehrsmittel"
+    ],
+    "con": [
+      "mit",
+      "Ich gehe mit meinen Eltern.",
+      "Begleitung, Mittel"
+    ],
+    "sin": [
+      "ohne",
+      "Ich trinke den Kaffee ohne Zucker.",
+      "Fehlen"
+    ],
+    "por": [
+      "durch, wegen, für (Tausch)",
+      "Danke für deine Hilfe.",
+      "Grund, Weg, Dauer, Tausch"
+    ],
+    "para": [
+      "für (Zweck, Empfänger)",
+      "Dieses Geschenk ist für dich.",
+      "Zweck, Empfänger, Frist"
+    ],
+    "sobre": [
+      "auf, über",
+      "Das Buch liegt auf dem Tisch.",
+      "Lage, Thema"
+    ],
+    "bajo": [
+      "unter",
+      "Er arbeitet unter großem Druck.",
+      "Lage, Unterordnung"
+    ],
+    "entre": [
+      "zwischen, unter",
+      "Das Dorf liegt zwischen zwei Bergen.",
+      "Lage dazwischen"
+    ],
+    "hasta": [
+      "bis",
+      "Wir sind bis zum Strand gelaufen.",
+      "Grenze in Raum oder Zeit"
+    ],
+    "desde": [
+      "von, seit",
+      "Von hier sieht man das Meer.",
+      "Ausgangspunkt"
+    ],
+    "hacia": [
+      "in Richtung, gegen",
+      "Er ging Richtung Norden.",
+      "ungefähre Richtung"
+    ],
+    "contra": [
+      "gegen",
+      "Niemand hat gegen den Vorschlag gestimmt.",
+      "Gegensatz"
+    ],
+    "según": [
+      "laut, nach",
+      "Laut Bericht ist alles in Ordnung.",
+      "Quelle, Standpunkt"
+    ],
+    "durante": [
+      "während",
+      "Es hat die ganze Nacht geregnet.",
+      "Dauer"
+    ],
+    "ante": [
+      "vor, angesichts",
+      "Er erschien vor dem Richter.",
+      "Lage, Gegenüberstellung"
+    ],
+    "tras": [
+      "nach, hinter",
+      "Nach der Besprechung haben wir geredet.",
+      "Abfolge"
+    ],
+    "mediante": [
+      "mittels, durch",
+      "Es wurde durch eine Vereinbarung gelöst.",
+      "Mittel (gehobene Sprache)"
+    ],
+    "salvo": [
+      "außer",
+      "Wir haben jeden Tag außer montags geöffnet.",
+      "Ausnahme"
+    ],
+    "encima de": [
+      "auf, oberhalb von",
+      "Die Schlüssel liegen auf dem Tisch.",
+      "Ort (Wendung)"
+    ],
+    "debajo de": [
+      "unter",
+      "Die Katze schläft unter dem Bett.",
+      "Ort (Wendung)"
+    ],
+    "delante de": [
+      "vor",
+      "Ich warte vor dem Kino auf dich.",
+      "Ort (Wendung)"
+    ],
+    "detrás de": [
+      "hinter",
+      "Der Garten liegt hinter dem Haus.",
+      "Ort (Wendung)"
+    ],
+    "al lado de": [
+      "neben",
+      "Ich setze mich neben Ana.",
+      "Ort (Wendung)"
+    ],
+    "enfrente de": [
+      "gegenüber von",
+      "Die Apotheke ist gegenüber der Bank.",
+      "Ort (Wendung)"
+    ],
+    "cerca de": [
+      "in der Nähe von",
+      "Ich wohne in der Nähe des Strands.",
+      "Ort (Wendung)"
+    ],
+    "lejos de": [
+      "weit von",
+      "Der Flughafen ist weit vom Zentrum entfernt.",
+      "Ort (Wendung)"
+    ],
+    "antes de": [
+      "vor, bevor",
+      "Wasch dir vor dem Essen die Hände.",
+      "Zeit (Wendung)"
+    ],
+    "después de": [
+      "nach",
+      "Nach dem Unterricht gehen wir in den Park.",
+      "Zeit (Wendung)"
+    ],
+    "a través de": [
+      "durch, über",
+      "Ich habe es über eine Freundin erfahren.",
+      "Mittel (Wendung)"
+    ]
+  },
+  "konjunktionen": {
+    "y": [
+      "und",
+      "Ich koche und du deckst den Tisch.",
+      "nebenordnende Konjunktion"
+    ],
+    "e": [
+      "und (vor i-/hi-)",
+      "Vater und Sohn arbeiten zusammen.",
+      "nebenordnende Konjunktion"
+    ],
+    "o": [
+      "oder",
+      "Kommst du oder bleibst du?",
+      "nebenordnende Konjunktion"
+    ],
+    "u": [
+      "oder (vor o-/ho-)",
+      "Sieben oder acht Personen.",
+      "nebenordnende Konjunktion"
+    ],
+    "pero": [
+      "aber",
+      "Es ist teuer, aber es lohnt sich.",
+      "nebenordnende Konjunktion"
+    ],
+    "sino": [
+      "sondern",
+      "Es ist nicht blau, sondern grün.",
+      "nebenordnende Konjunktion"
+    ],
+    "ni": [
+      "noch, auch nicht",
+      "Er isst weder Fleisch noch Fisch.",
+      "nebenordnende Konjunktion"
+    ],
+    "porque": [
+      "weil",
+      "Ich gehe nicht raus, weil es regnet.",
+      "unterordnende Konjunktion"
+    ],
+    "como": [
+      "da, weil (am Satzanfang)",
+      "Da es regnete, sind wir geblieben.",
+      "unterordnende Konjunktion"
+    ],
+    "que": [
+      "dass",
+      "Ich glaube, dass er recht hat.",
+      "unterordnende Konjunktion"
+    ],
+    "si": [
+      "wenn, falls",
+      "Wenn es regnet, gehen wir nicht.",
+      "unterordnende Konjunktion"
+    ],
+    "aunque": [
+      "obwohl, auch wenn",
+      "Obwohl es spät ist, arbeite ich weiter.",
+      "Unterordnung – Indikativ für eine Tatsache, subjuntivo für eine Annahme"
+    ],
+    "mientras": [
+      "während, solange",
+      "Während ich koche, höre ich Radio.",
+      "Unterordnung – subjuntivo, wenn es noch bevorsteht"
+    ],
+    "cuando": [
+      "wenn, als",
+      "Wenn du ankommst, ruf mich an.",
+      "Unterordnung – subjuntivo, wenn es noch bevorsteht"
+    ],
+    "antes de que": [
+      "bevor",
+      "Gehen wir, bevor es anfängt zu regnen.",
+      "Unterordnung – immer mit subjuntivo"
+    ],
+    "después de que": [
+      "nachdem",
+      "Nachdem er gegangen war, änderte sich alles.",
+      "Unterordnung – subjuntivo, wenn es noch bevorsteht"
+    ],
+    "hasta que": [
+      "bis",
+      "Warte, bis ich zurückkomme.",
+      "Unterordnung – subjuntivo, wenn es noch bevorsteht"
+    ],
+    "para que": [
+      "damit",
+      "Ich erkläre es dir, damit du es verstehst.",
+      "Unterordnung – immer mit subjuntivo"
+    ],
+    "así que": [
+      "also, sodass",
+      "Es war spät, also sind wir gegangen.",
+      "Konjunktion der Folge"
+    ],
+    "pues": [
+      "denn, also",
+      "Dräng nicht weiter, denn er wird seine Meinung nicht ändern.",
+      "Konjunktion der Folge"
+    ],
+    "ya que": [
+      "da, weil",
+      "Da du schon hier bist, hilf mir.",
+      "Konjunktion des Grundes"
+    ],
+    "a menos que": [
+      "es sei denn, außer wenn",
+      "Ich gehe hin, es sei denn, es regnet.",
+      "Konjunktion der Bedingung (+ subjuntivo)"
+    ],
+    "siempre que": [
+      "vorausgesetzt, dass; sofern",
+      "Ich leihe es dir, sofern du es mir zurückgibst.",
+      "Konjunktion der Bedingung (+ subjuntivo)"
+    ],
+    "sin embargo": [
+      "jedoch, trotzdem",
+      "Es ist teuer; trotzdem lohnt es sich.",
+      "Konnektor des Gegensatzes"
+    ],
+    "en cambio": [
+      "dagegen, hingegen",
+      "Ich mag lieber das Meer; mein Bruder dagegen die Berge.",
+      "Konnektor des Gegensatzes"
+    ],
+    "además": [
+      "außerdem, zudem",
+      "Das Haus ist groß und außerdem günstig.",
+      "Konnektor der Ergänzung"
+    ],
+    "por lo tanto": [
+      "deshalb, folglich",
+      "Er hat nicht gelernt; folglich hat er die Prüfung nicht bestanden.",
+      "Konnektor der Folge"
+    ],
+    "por un lado": [
+      "einerseits",
+      "Einerseits gefällt es mir; andererseits ist es teuer.",
+      "Konnektor der Gliederung"
+    ],
+    "a pesar de que": [
+      "obwohl, auch wenn",
+      "Wir sind rausgegangen, obwohl es regnete.",
+      "Konjunktion der Einräumung (Indikativ: eine Tatsache; subjuntivo: eine Annahme)"
+    ]
+  },
+  "partikeln": {
+    "pues": [
+      "na ja, also",
+      "Na ja, ich weiß nicht, was ich sagen soll.",
+      "Diskursmarker"
+    ],
+    "bueno": [
+      "gut, na gut",
+      "Na gut, mal sehen.",
+      "Diskursmarker"
+    ],
+    "o sea": [
+      "das heißt, also",
+      "Er kommt zu spät, also wie immer.",
+      "Diskursmarker"
+    ],
+    "a ver": [
+      "mal sehen, also",
+      "Mal sehen, was ist hier passiert?",
+      "Diskursmarker"
+    ],
+    "oye": [
+      "hör mal, du",
+      "Hör mal, hast du einen Moment?",
+      "Diskursmarker"
+    ],
+    "mira": [
+      "schau, hör zu",
+      "Schau, so einfach ist das nicht.",
+      "Diskursmarker"
+    ],
+    "hombre": [
+      "Mensch, na klar",
+      "Mensch, natürlich doch!",
+      "Diskursmarker"
+    ],
+    "vaya": [
+      "na so was, oh",
+      "Na so was, was für eine Überraschung!",
+      "Diskursmarker"
+    ],
+    "venga": [
+      "los, komm schon",
+      "Los, wir kommen zu spät!",
+      "Diskursmarker"
+    ],
+    "anda": [
+      "ach komm, na",
+      "Ach komm, sag das nicht.",
+      "Diskursmarker"
+    ],
+    "claro": [
+      "klar, natürlich",
+      "Klar helfe ich dir.",
+      "Diskursmarker"
+    ],
+    "en fin": [
+      "kurz gesagt, na ja",
+      "Na ja, wir sehen morgen weiter.",
+      "Diskursmarker"
+    ],
+    "total": [
+      "kurzum, jedenfalls",
+      "Kurzum, es ist niemand gekommen.",
+      "Diskursmarker"
+    ],
+    "ya": [
+      "schon, ja ja",
+      "Ich weiß es schon, du musst es nicht wiederholen.",
+      "Diskursmarker"
+    ]
+  }
+};
 if(LANGUE_APPRISE === "es"){
     [[praepTheme, "praep"], [konjunktionenTheme, "konjunktionen"], [partikelnTheme, "partikeln"]].forEach(([theme, cle]) => {
         theme.words.forEach(w => {
@@ -35787,6 +37976,8 @@ if(LANGUE_APPRISE === "es"){
             if(p){ w[20] = p[0]; w[21] = p[1]; w[22] = p[2]; }
             const a = MOTS_OUTILS_ES_AR[cle][w[0]];
             if(a){ w[23] = a[0]; w[24] = a[1]; w[25] = a[2]; }
+            const d = MOTS_OUTILS_ES_DE[cle][w[0]];
+            if(d){ w[32] = d[0]; w[33] = d[1]; w[34] = d[2]; }
         });
     });
 }
@@ -40731,6 +42922,17 @@ function searchSenseTokens(str){
         .filter(Boolean);
 }
 
+// Le sens affiche d'un resultat. ⚠️ L'ALLEMAND CONNU (interface allemande de
+// l'espagnol, 1er nov. 2026) : dans une entree, « de » est le mot APPRIS, et
+// libelle() le renvoyait comme sa propre traduction. On relit donc la carte.
+function tradRecherche(entry){
+    if(getUiLang() !== "de") return libelle(entry);
+    const c = entry.card;
+    if(c && !Array.isArray(c)) return texteTraduit(c, "traduction", "de");
+    const type = TYPE_CARTE_PAR_MODE[entry.mode];
+    return type ? texteCarte(c, type, "traduction", "de") : (entry.en || entry.fr || "");
+}
+
 function pushSearchEntry(list, entry){
     // On ne cherche QUE dans l'allemand et dans la langue de l'interface. Avant
     // la v254 la traduction anglaise etait fouillee aussi : en francais, taper
@@ -40739,7 +42941,7 @@ function pushSearchEntry(list, entry){
     // resultats qui semblaient tires au hasard, puisque le mot qui les avait
     // fait remonter n'etait nulle part a l'ecran. Symetriquement, en anglais on
     // ne fouille plus le francais.
-    const trad = libelle(entry);
+    const trad = tradRecherche(entry);
     entry.haystack = normalizeSearch([entry.de, trad, entry.alt].filter(Boolean).join(" ~ "));
     entry.deNorm = normalizeSearch(entry.de);
     // Traduction affichee, normalisee : c'est elle qui compte pour une
@@ -41413,7 +43615,7 @@ function findSearchSuggestions(q){
 // de progression : sur une liste de resultats, c'est du bruit.
 function searchResultHtml(entry, i, exact){
     const useEn = getUiLang() === 'en';
-    const trad = libelle(entry);
+    const trad = tradRecherche(entry);
     // Mot, traduction et nature sur UNE seule ligne ; la pastille "correspondance
     // exacte" est placee au-dessus plutot qu'a la suite, pour ne pas repousser la
     // nature du mot sur une deuxieme ligne et garder toutes les lignes alignees.
@@ -42630,7 +44832,7 @@ function openSettings(){
 // l'ecran pour un choix qu'on fait une fois : la ligne dit la langue actuelle,
 // les boutons s'ouvrent au toucher. Les noms dans leur propre langue -- c'est
 // sous cette forme qu'on reconnait la sienne.
-const NOM_LANGUE_NATIF = { fr: "Français", en: "English", tr: "Türkçe", uk: "Українська", fa: "فارسی", ar: "العربية", pt: "Português (Brasil)", pl: "Polski", ru: "Русский" };
+const NOM_LANGUE_NATIF = { fr: "Français", en: "English", tr: "Türkçe", uk: "Українська", fa: "فارسی", ar: "العربية", pt: "Português (Brasil)", pl: "Polski", ru: "Русский", de: "Deutsch" };
 function afficherLangueActuelle(){
     const el = document.getElementById("reglageLangueActuelle");
     if(el) el.textContent = NOM_LANGUE_NATIF[getUiLang()] || "";
@@ -42728,7 +44930,7 @@ const ABONNEMENT = { mensuel: 6.99, annuel: 49.99, devise: "EUR", essaiJours: 7 
 let aboPlan = "annuel";
 let ecranAvantAbonnement = "adminDashboard";
 
-const LOCALES_ABO = { fr: "fr-FR", en: "en-IE", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU" };
+const LOCALES_ABO = { fr: "fr-FR", en: "en-IE", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU", de: "de-DE" };
 function prixAbo(v){
     try{
         return new Intl.NumberFormat(LOCALES_ABO[getUiLang()] || "fr-FR",
@@ -43973,7 +46175,7 @@ async function renderAdminUsersList(){
         // Les lignes ouvertes le restent : le bouton VHS redessine la liste,
         // et la refermer sous le doigt donnait l'impression d'un clic perdu.
         const ouverts = new Set(Array.from(container.querySelectorAll("details[data-uid][open]")).map(d => d.dataset.uid));
-        const NOMS_LANGUE = { fr: "français", en: "anglais", tr: "turc", uk: "ukrainien", fa: "persan", ar: "arabe", pt: "portugais (Brésil)", pl: "polonais", ru: "russe" };
+        const NOMS_LANGUE = { fr: "français", en: "anglais", tr: "turc", uk: "ukrainien", fa: "persan", ar: "arabe", pt: "portugais (Brésil)", pl: "polonais", ru: "russe", de: "allemand" };
         const chiffre = (n, libelle) => `<div class="admin-chiffre"><small>${libelle}</small><strong>${n}</strong></div>`;
         container.innerHTML = alerteSync
             + `<div class="admin-chiffres">${chiffre(compte.actif, "Actifs 7 j")}${chiffre(compte.relancer, "À relancer")}${chiffre(compte.jamais, "Jamais commencé")}</div>`
@@ -46929,6 +49131,14 @@ function scoreVoixAnglaise(v){
 }
 
 function voicesForLang(prefix){
+    // L'allemand CONNU (interface allemande de l'espagnol, 1er nov. 2026) : les
+    // voix allemandes, sans passer par la conversion de "de" en langue apprise.
+    if(prefix === VOIX_ALLEMAND_CONNU){
+        if(!('speechSynthesis' in window)) return [];
+        return window.speechSynthesis.getVoices()
+            .filter(v => v.lang && v.lang.toLowerCase().startsWith("de"))
+            .sort((a, b) => voiceQualityScore(b) - voiceQualityScore(a) || a.name.localeCompare(b.name));
+    }
     // L'anglais appris (28 oct. 2026) : sa variante seule, les meilleures
     // voix d'abord. A defaut d'une voix de la variante, toute voix anglaise.
     if(prefix === "de" && LANGUE_APPRISE === "en"){
@@ -46978,7 +49188,8 @@ const VOICE_PREFEREES = { en: ["moira"], de: [], fr: [], tr: [], uk: [], fa: [],
 // eventuellement fausse chez qui n'a pas de voix ukrainienne installee.
 // C'est exactement le piege deja nomme pour le turc : poser la donnee sans
 // mettre a jour les tables qui la lisent.
-const LANGUE_TAG = { de: LANGUE_ENSEIGNEE.voix, en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar-SA", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU" };
+const LANGUE_TAG = { de: LANGUE_ENSEIGNEE.voix, en: "en-GB", fr: "fr-FR", tr: "tr-TR", uk: "uk-UA", fa: "fa-IR", ar: "ar-SA", pt: "pt-BR", pl: "pl-PL", ru: "ru-RU",
+                     [VOIX_ALLEMAND_CONNU]: "de-DE" };
 
 // Le choix fait dans les reglages est memorise PAR VARIANTE en anglais appris
 // (28 oct. 2026) : choisir une voix britannique ne doit pas effacer la voix
@@ -47084,6 +49295,8 @@ function renderVoiceSettings(){
     const langues = (LANGUE_APPRISE === "en" || LANGUE_APPRISE === "pt") ? [['de', t('voice_lang_de')]]
                   : [['de', t('voice_lang_de')], ['en', t('voice_lang_en')]];
     if(connu !== 'de' && connu !== 'en') langues.push([connu, t('voice_lang_fr')]);
+    // L'allemand connu (interface allemande de l'espagnol) : sa propre ligne.
+    if(connu === 'de' && LANGUE_APPRISE === "es") langues.push([VOIX_ALLEMAND_CONNU, t('voice_lang_fr')]);
     box.innerHTML = langues.map(([prefix, libelle]) => {
         const dispo = voicesForLang(prefix);
         if(!dispo.length){
@@ -47536,19 +49749,26 @@ function contenuEcoute(item){
         : texteCarte(c, type, "exemple", lang);
     const mot = (lang) => lang === "de" ? de : connu(lang);
     const phrase = (lang) => lang === "de" ? pDe : connuPhrase(lang);
+    // L'ALLEMAND CONNU (1er nov. 2026) : un germanophone qui apprend l'espagnol.
+    // Ici "de" designe la langue APPRISE : cible et connu valent tous deux
+    // "de", et mot("de") rendait le mot espagnol a la place de sa traduction.
+    // Le texte connu passe donc par connu("de") (les champs *_de), et sa voix
+    // par VOIX_ALLEMAND_CONNU (une voix allemande, pas la voix espagnole).
+    const connuAllemand = L.connu === "de" && L.cible === "de";
     // La voix de la langue connue est celle que le repli a servie, pas celle
     // demandee : en turc sans corpus turc, le texte est anglais, donc la voix
     // doit etre anglaise.
     const langServie = (q) => {
-        if(L.connu === "de") return "de";
+        if(L.connu === "de" && !connuAllemand) return "de";
         const code = item.type === "verben"
             ? langueTraduite(c, q === "mot" ? "traduction" : "exemple", L.connu)
             : langueCarte(c, type, q === "mot" ? "traduction" : "exemple", L.connu);
-        return code || L.connu;
+        const servie = code || L.connu;
+        return (connuAllemand && servie === "de") ? VOIX_ALLEMAND_CONNU : servie;
     };
     return {
-        cibleMot: mot(L.cible), connuMot: mot(L.connu),
-        ciblePhrase: phrase(L.cible), connuPhrase: phrase(L.connu),
+        cibleMot: mot(L.cible), connuMot: connuAllemand ? connu("de") : mot(L.connu),
+        ciblePhrase: phrase(L.cible), connuPhrase: connuAllemand ? connuPhrase("de") : phrase(L.connu),
         langCible: L.cible, langConnu: langServie("mot"),
         langConnuPhrase: langServie("phrase")
     };
@@ -50433,7 +52653,7 @@ function buildDictationExercises(cartes, mode){
             question_en: I18N.en.dictation_instruction,
             // v974 : la consigne dans les sept autres langues aussi -- sans
             // elles, texteTraduit() s'arretait a l'anglais.
-            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru"].map(c =>
+            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].map(c =>
                 ["question" + SUFFIXE_LANGUE[c], I18N[c] && I18N[c].dictation_instruction])),
             translation: knownWord,
             translation_en: knownWord,
@@ -50443,13 +52663,17 @@ function buildDictationExercises(cartes, mode){
             // ecrire.
             hint: nomsSeuls ? I18N.fr.dictation_hint : "",
             hint_en: nomsSeuls ? I18N.en.dictation_hint : "",
-            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru"].map(c =>
+            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].map(c =>
                 ["hint" + SUFFIXE_LANGUE[c], nomsSeuls ? (I18N[c] && I18N[c].dictation_hint) : ""])),
             answers: [targetWord],
             correct: targetWord,
             correctEn: targetWord,
             explanation: `${I18N.fr.dictation_explanation_prefix} ${targetWord}`,
             explanation_en: `${I18N.en.dictation_explanation_prefix} ${targetWord}`,
+            // 1er nov. 2026 : « Das Wort war: … » -- comme la consigne et l'indice,
+            // la correction dans chaque langue (elle restait en anglais).
+            ...Object.fromEntries(["tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].map(c =>
+                ["explanation" + SUFFIXE_LANGUE[c], `${(I18N[c] && I18N[c].dictation_explanation_prefix) || I18N.en.dictation_explanation_prefix} ${targetWord}`])),
             dictation: true,
             dictationText: targetWord,
             dictationLang: learningEnglish ? "en" : "de"
@@ -53026,7 +55250,8 @@ const SCENES_COURTS = {
     ar: ["في الصف", "الفحص", "في السوق", "الطبيب", "غرفة الجلوس", "في المدينة", "في المقهى", "المتجر", "المطبخ", "في الحديقة", "عيد الميلاد", "الحقيبة", "على الشاطئ", "القطار", "الثلج", "المكتب", "التسوّق", "المكتبة", "كرة القدم", "الرفّ", "البريد", "العائلة", "البحيرة", "الغيتار", "الصيدلية", "المخبز", "المزرعة", "البلدية", "المطار", "الفندق", "المغسلة", "المطعم", "سوق الميلاد", "الدرّاجات", "الحلّاق", "الانتقال", "الساحة", "المتحف", "المترو"],
     pt: ["Na aula", "O exame", "Na feira", "O médico", "A sala", "Na cidade", "No café", "A loja", "A cozinha", "No parque", "O aniversário", "A mala", "Na praia", "O trem", "A neve", "O escritório", "As compras", "A biblioteca", "O futebol", "A estante", "Os correios", "Em família", "O lago", "O violão", "A farmácia", "A padaria", "A fazenda", "A prefeitura", "O aeroporto", "O hotel", "A lavanderia", "O restaurante", "Feira de Natal", "A bicicletaria", "O cabeleireiro", "A mudança", "A praça", "O museu", "O metrô"],
     pl: ["W klasie", "Badanie", "Na targu", "Lekarz", "Salon", "W mieście", "W kawiarni", "Sklep", "Kuchnia", "W parku", "Urodziny", "Walizka", "Na plaży", "Pociąg", "Śnieg", "Biuro", "Zakupy", "Biblioteka", "Piłka nożna", "Regał", "Poczta", "Rodzina", "Jezioro", "Gitara", "Apteka", "Piekarnia", "Farma", "Urząd", "Lotnisko", "Hotel", "Pralnia", "Restauracja", "Jarmark", "Rowery", "Fryzjer", "Przeprowadzka", "Plac", "Muzeum", "Metro"],
-    ru: ["В классе", "Осмотр", "На рынке", "Врач", "Гостиная", "В городе", "В кафе", "Магазин", "Кухня", "В парке", "День рождения", "Чемодан", "На пляже", "Поезд", "Снег", "Офис", "Покупки", "Библиотека", "Футбол", "Стеллаж", "Почта", "Семья", "Озеро", "Гитара", "Аптека", "Булочная", "Ферма", "Мэрия", "Аэропорт", "Отель", "Прачечная", "Ресторан", "Ярмарка", "Велосипеды", "Парикмахерская", "Переезд", "Площадь", "Музей", "Метро"]
+    ru: ["В классе", "Осмотр", "На рынке", "Врач", "Гостиная", "В городе", "В кафе", "Магазин", "Кухня", "В парке", "День рождения", "Чемодан", "На пляже", "Поезд", "Снег", "Офис", "Покупки", "Библиотека", "Футбол", "Стеллаж", "Почта", "Семья", "Озеро", "Гитара", "Аптека", "Булочная", "Ферма", "Мэрия", "Аэропорт", "Отель", "Прачечная", "Ресторан", "Ярмарка", "Велосипеды", "Парикмахерская", "Переезд", "Площадь", "Музей", "Метро"],
+    de: ["Im Unterricht", "Die Untersuchung", "Auf dem Markt", "Beim Arzt", "Das Wohnzimmer", "In der Stadt", "Im Café", "Die Boutique", "Die Küche", "Im Park", "Der Geburtstag", "Der Koffer", "Am Strand", "Der Zug", "Der Schnee", "Das Büro", "Einkaufen", "Bibliothek", "Fußball", "Das Regal", "Die Post", "Mit der Familie", "Der See", "Die Gitarre", "Die Apotheke", "Die Bäckerei", "Der Bauernhof", "Das Bürgeramt", "Der Flughafen", "Das Hotel", "Der Waschsalon", "Das Restaurant", "Weihnachtsmarkt", "Die Fahrräder", "Der Friseur", "Der Umzug", "Der Platz", "Das Museum", "Die U-Bahn"]
 };
 const SCENES_ORDRE_COURT = ["klassenzimmer", "untersuchung", "markt-obst-heimisch", "arztpraxis", "wohnzimmer", "kreuzung",
                             "fruehstueck", "kleidergeschaeft", "kueche", "park", "geburtstag", "schlafzimmer",
@@ -56385,12 +58610,14 @@ function themePremiersPas(){ return "premiers_pas2_" + (LANGUE_APPRISE === "es" 
 // Les flashcards, au format d'une carte d'expression (RANGS_CARTE.expression) :
 // le sens et l'exemple dans les neuf langues, la situation comme categorie.
 const RANGS_PP = { fr: [1, 4, 2], en: [5, 6, 7], tr: [10, 11, 12], uk: [15, 16, 17], fa: [18, 19, 20],
-                   pt: [21, 22, 23], ar: [24, 25, 26], pl: [27, 28, 29], ru: [30, 31, 32] };
+                   pt: [21, 22, 23], ar: [24, 25, 26], pl: [27, 28, 29], ru: [30, 31, 32],
+                   // L'allemand, interface de l'espagnol (1er nov. 2026) : en espagnol seulement.
+                   ...(LANGUE_APPRISE === "es" ? { de: [33, 34, 35] } : {}) };
 function toutesCartesPremiersPas(){
     const out = [];
     let k = 0;
     joursPremiersPas().forEach((jour, d) => (jour.cartes || []).forEach(c => {
-        const w = new Array(33).fill("");
+        const w = new Array(RANGS_PP.de ? 36 : 33).fill("");
         w[0] = c[0]; w[3] = c[2] || ""; w[8] = "A1";
         Object.keys(RANGS_PP).forEach(l => {
             const r = RANGS_PP[l];
@@ -60836,9 +63063,9 @@ function phrasesTraduisibles(niveau){
         if(de && fr && de.length > 6) sorties.push({ de, fr, en: en || fr, source, trad: trad || null });
     };
     const bonNiveau = (n) => niveau === "ALL" || n === niveau;
-    const rangs = (w, r) => ({ tr: w[r.tr], uk: w[r.uk], fa: w[r.fa], pt: w[r.pt], ar: w[r.ar], pl: w[r.pl], ru: w[r.ru] });
+    const rangs = (w, r) => ({ tr: w[r.tr], uk: w[r.uk], fa: w[r.fa], pt: w[r.pt], ar: w[r.ar], pl: w[r.pl], ru: w[r.ru], de: w[r.de] });
     const champs = (v, base) => ({ tr: v[base + "_tr"], uk: v[base + "_uk"], fa: v[base + "_fa"], pt: v[base + "_pt"],
-                                   ar: v[base + "_ar"], pl: v[base + "_pl"], ru: v[base + "_ru"] });
+                                   ar: v[base + "_ar"], pl: v[base + "_pl"], ru: v[base + "_ru"], de: v[base + "_de"] });
 
     themesComptes().forEach(theme => {
         Object.keys(theme.levels || {}).forEach(lvl => {
@@ -60931,7 +63158,7 @@ function phrasesEcoutables(niveau){
         sorties.push({ de: de, trad: trad, source: source });
     };
     const bonNiveau = (n) => niveau === "ALL" || n === niveau;
-    const rangs = (w, r) => ({ fr: w[r.fr], en: w[r.en], tr: w[r.tr], uk: w[r.uk], fa: w[r.fa], pt: w[r.pt], ar: w[r.ar], pl: w[r.pl], ru: w[r.ru] });
+    const rangs = (w, r) => ({ fr: w[r.fr], en: w[r.en], tr: w[r.tr], uk: w[r.uk], fa: w[r.fa], pt: w[r.pt], ar: w[r.ar], pl: w[r.pl], ru: w[r.ru], de: w[r.de] });
 
     themesComptes().forEach(theme => {
         Object.keys(theme.levels || {}).forEach(lvl => {
@@ -60941,14 +63168,14 @@ function phrasesEcoutables(niveau){
                 ajouter(w[5], rangs(w, RANGS_CARTE.nomen.exemple), theme.name));
             (lv.verben || []).forEach(v => ajouter(v.exemple, {
                 fr: v.exemple_fr, en: v.exemple_en,
-                tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa, pt: v.exemple_pt, ar: v.exemple_ar, pl: v.exemple_pl, ru: v.exemple_ru }, theme.name));
+                tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa, pt: v.exemple_pt, ar: v.exemple_ar, pl: v.exemple_pl, ru: v.exemple_ru, de: v.exemple_de }, theme.name));
         });
     });
 
     (verbeTheme.words || []).forEach(v => {
         if(!bonNiveau(v.niveau)) return;
         ajouter(v.exemple, { fr: v.exemple_fr, en: v.exemple_en,
-                             tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa, pt: v.exemple_pt, ar: v.exemple_ar, pl: v.exemple_pl, ru: v.exemple_ru },
+                             tr: v.exemple_tr, uk: v.exemple_uk, fa: v.exemple_fa, pt: v.exemple_pt, ar: v.exemple_ar, pl: v.exemple_pl, ru: v.exemple_ru, de: v.exemple_de },
                 t('orb_verben_title'));
     });
 
