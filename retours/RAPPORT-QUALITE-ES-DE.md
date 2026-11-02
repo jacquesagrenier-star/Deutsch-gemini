@@ -130,21 +130,15 @@ Ce que la relecture a rapporté de plus, que les contrôles mécaniques ne voyai
 | Relevé au 2 nov., 10 h | 225 lots sur 1 309 (noms allemands A1-C1, chapitres VHS, verbes A1-A2) ; 240 signalements : 214 à appliquer, 16 écartés, 9 à trancher |
 | Publié, lot 1 (2 nov., ≈ 10 h 15) | 254 champs corrigés dans `themes.json` et `verbe.json`, traductions seulement (une forme féminine fautive retirée : das Zeug → « Zeugin ») ; vérificateur 46 171 OK, parcours de-v1055 0 écart. Détail : `retours/qualite-es-de/corrections-relecture.json` |
 | Publié, lot 2 (2 nov.) | lots 226 à 353 (verbes B1-C1, adjectifs A1-C1, adverbes A1-B2) ; 138 champs corrigés dans `verbe.json`, `adjectif.json` et `adverbe.json`, traductions seulement (persan 50, russe 16, polonais 13, turc 17, ukrainien 18, arabe 10, portugais 8, français 6) ; vérificateur 47 963 OK, parcours de-v1055 0 écart |
-| Défaut systématique trouvé | « Perfekt » au passif Präteritum dans environ 90 verbes C1 (« Die Formel wurde sauber hergeleitet ») : correction mécanique (« ist … worden »), voix à refaire, soumis à Jacques comme un seul groupe |
+| Publié, lot 3 (2 nov.) | lots 354 à 407 (adverbes B2-C1, expressions A1-C1, mots-outils, exercices jusqu'au Konjunktiv II) : 64 champs corrigés, traductions et deux distracteurs d'exercice, « du aßt » et « du last », qui sont aussi justes (remplacés par isst et liest) ; et les **phrases allemandes à voix**, accord de Jacques du 2 nov. (« Oui, jusqu'à 5 000 ») : 92 « Perfekt » de B2-C1 refaits (86 passifs au Präteritum en « ist … worden », 5 passifs d'état, hochfahren avec sein), 16 phrases isolées (dont le Plusquamperfekt d’einkalkulieren) et leurs traductions quand le sens change, le pluriel Geburtsurkunden, deux formes fautives d'übersehen (übersehet), erschrecken aligné sur ses phrases (verbe faible, « effrayer »), krankmelden réfléchi. **110 voix Aurora v2, 4 723 crédits** (dont 43 pour une prise refaite) ; `controler_sons.py` sans défaut (un clic d'attaque réparé par 80 ms de silence et un fondu de 8 ms) ; déposées. Détail : `corrections-phrases-voix.json` ; scripts `phrases_relecture.py`, `voix_relecture.py` |
 | Ordre restant | verbes B1-C1, adjectifs, adverbes, expressions, mots-outils, exercices, examen, fiches, conjugaison, Premiers pas, A1 voyage, repères, prononciation, scènes allemandes (8 langues) ; puis tout l'espagnol |
 | Reprise après une interruption | refaire les lots (`lots_complets.py <dossier>`, même découpage) ; relancer les relecteurs sur les lots sans `verdict-NNN.json` ; les verdicts et `triage.json` sont gardés |
 
-### Phrases allemandes à trancher (voix à refaire)
+### Phrases allemandes à voix
 
-| Où | Phrase | Défaut | Proposition |
-|---|---|---|---|
-| politik_gesellschaft_b1 / vhs_kapitel16 — EU-Bürgerin | Die EU-Bürgerin braucht für die Reise **keinen** Visum. | das Visum : faute d'accord | … **kein** Visum. |
-| obst_gemuese_a1 — Zwiebel | Die Zwiebel **macht mich weinen**. | machen + infinitif, calque | Die Zwiebel **bringt mich zum Weinen**. |
-| vhs_kapitel8 — sich vorstellen (KII) | Ohne Handy **würde** ich mir den Alltag kaum vorstellen. | bancal ; les traductions disent « pourrais » | … **könnte** ich mir … |
-| vhs_kapitel16 — besitzen (Perfekt) | Sie hat die Staatsbürgerschaft **seit einem Jahr** besessen. | seit + Perfekt d'un état | … **ein Jahr lang** besessen. (et fr « a eu … pendant un an ») |
-| verbe A2 — decken (Präteritum) | Sie deckte das Kind mit einer Decke **zu**. | zudecken, pas decken | Sie deckte den Tisch für das Kind. |
-| verbe A2 — stecken (Präteritum) | Wir steckten eine Stunde im Aufzug **fest**. | feststecken, pas stecken | Der Schlüssel steckte noch im Schloss. |
-| politik_gesellschaft_b1 — Geburtsurkunde | pluriel « — » | le nom a un pluriel : Geburtsurkunden (sa voix est à faire) | Geburtsurkunden |
+Faites le 2 nov. (lot 3 ci-dessus), avec l'accord de Jacques et dans son plafond de 5 000 crédits : il en reste **277** pour les phrases que la suite de la relecture trouvera. Une phrase allemande signalée par la suite passe par `phrases_relecture.py` (liste ISOLEES, avec ses traductions), puis `audio/manifest.py --ecrire`, `voix_relecture.py <manifeste-avant> --a-blanc` pour le compte, la génération, `controler_sons.py` et `deposer.py`.
+
+Restent à trancher par Jacques, sans voix : l'arabe de « Ich habe zwei Geschwister » (« un frère et une sœur » précise les sexes ; l'arabe n'a pas de mot neutre).
 
 ## Contrôles avant publication
 
