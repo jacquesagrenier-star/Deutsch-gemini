@@ -21,7 +21,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "tafel",
@@ -42,7 +43,9 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el pizarrón, la pizarra",
+   "esp": "la pizarra"
   },
   {
    "id": "lehrer",
@@ -58,28 +61,33 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     },
     {
      "mot": "glasses",
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "lunettes"
+     "fr": "lunettes",
+     "es": "los lentes, las gafas",
+     "esp": "las gafas"
     },
     {
      "mot": "beard",
      "genre": "",
      "niveau": "A2",
      "theme": "clothes_a2",
-     "fr": "barbe"
+     "fr": "barbe",
+     "es": "la barba"
     },
     {
      "mot": "shirt",
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "chemise"
+     "fr": "chemise",
+     "es": "la camisa"
     }
    ],
    "sur": null,
@@ -98,7 +106,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "enseignant"
+   "fr": "enseignant",
+   "es": "el profesor, la profesora"
   },
   {
    "id": "brille",
@@ -118,7 +127,9 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "bart",
@@ -139,7 +150,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "barbe"
+   "fr": "barbe",
+   "es": "la barba"
   },
   {
    "id": "kreide",
@@ -160,7 +172,8 @@ window.SCENE = {
      1.4
     ]
    ],
-   "fr": "craie"
+   "fr": "craie",
+   "es": "la tiza"
   },
   {
    "id": "tuer",
@@ -181,7 +194,8 @@ window.SCENE = {
      28.8
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "haken",
@@ -202,7 +216,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "crochet"
+   "fr": "crochet",
+   "es": "el gancho"
   },
   {
    "id": "mantel",
@@ -223,7 +238,8 @@ window.SCENE = {
      15.3
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "jacke",
@@ -244,7 +260,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "bild",
@@ -265,7 +282,8 @@ window.SCENE = {
      5.7
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "lampe",
@@ -286,7 +304,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "fenster",
@@ -307,7 +326,8 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "regal",
@@ -328,7 +348,9 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "pflanze",
@@ -349,7 +371,8 @@ window.SCENE = {
      5.6
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "mark",
@@ -365,7 +388,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     },
     {
      "mot": "sweater",
@@ -373,6 +397,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "pull",
+     "es": "el suéter",
+     "esp": "el jersey",
      "gb": {
       "mot": "jumper",
       "pluriel": "jumpers"
@@ -383,14 +409,17 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "school_a1",
-     "fr": "étudiant"
+     "fr": "étudiant",
+     "es": "el estudiante, la estudiante; el alumno"
     },
     {
      "mot": "pen",
      "genre": "",
      "niveau": "A1",
      "theme": "school_a1",
-     "fr": "stylo"
+     "fr": "stylo",
+     "es": "el bolígrafo, la pluma",
+     "esp": "el bolígrafo, el boli"
     }
    ],
    "sur": null,
@@ -415,7 +444,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "participant"
+   "fr": "participant",
+   "es": "el participante"
   },
   {
    "id": "pullover",
@@ -437,6 +467,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -456,7 +488,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "es": "la mujer"
     },
     {
      "mot": "sweater",
@@ -464,6 +497,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "pull",
+     "es": "el suéter",
+     "esp": "el jersey",
      "gb": {
       "mot": "jumper",
       "pluriel": "jumpers"
@@ -474,21 +509,25 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "jupe"
+     "fr": "jupe",
+     "es": "la falda"
     },
     {
      "mot": "pen",
      "genre": "",
      "niveau": "A1",
      "theme": "school_a1",
-     "fr": "stylo"
+     "fr": "stylo",
+     "es": "el bolígrafo, la pluma",
+     "esp": "el bolígrafo, el boli"
     },
     {
      "mot": "student",
      "genre": "",
      "niveau": "A1",
      "theme": "school_a1",
-     "fr": "étudiante"
+     "fr": "étudiante",
+     "es": "el estudiante, la estudiante; el alumno"
     }
    ],
    "sur": null,
@@ -513,7 +552,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "participante"
+   "fr": "participante",
+   "es": "la participante"
   },
   {
    "id": "rock",
@@ -534,7 +574,8 @@ window.SCENE = {
      8.8
     ]
    ],
-   "fr": "jupe"
+   "fr": "jupe",
+   "es": "la falda"
   },
   {
    "id": "heft",
@@ -555,7 +596,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "cahier"
+   "fr": "cahier",
+   "es": "el cuaderno"
   },
   {
    "id": "heft-mark",
@@ -576,7 +618,8 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "cahier"
+   "fr": "cahier",
+   "es": "el cuaderno"
   },
   {
    "id": "heft-noir",
@@ -597,7 +640,8 @@ window.SCENE = {
      1.7
     ]
    ],
-   "fr": "cahier"
+   "fr": "cahier",
+   "es": "el cuaderno"
   },
   {
    "id": "heft-studentin",
@@ -618,7 +662,8 @@ window.SCENE = {
      1.9
     ]
    ],
-   "fr": "cahier"
+   "fr": "cahier",
+   "es": "el cuaderno"
   },
   {
    "id": "stift",
@@ -639,7 +684,9 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "stylo"
+   "fr": "stylo",
+   "es": "el bolígrafo, la pluma",
+   "esp": "el bolígrafo, el boli"
   },
   {
    "id": "stift-mark",
@@ -660,7 +707,9 @@ window.SCENE = {
      2.0
     ]
    ],
-   "fr": "stylo"
+   "fr": "stylo",
+   "es": "el bolígrafo, la pluma",
+   "esp": "el bolígrafo, el boli"
   },
   {
    "id": "stift-noir",
@@ -681,7 +730,9 @@ window.SCENE = {
      1.0
     ]
    ],
-   "fr": "stylo"
+   "fr": "stylo",
+   "es": "el bolígrafo, la pluma",
+   "esp": "el bolígrafo, el boli"
   },
   {
    "id": "stift-studentin",
@@ -702,7 +753,9 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "stylo"
+   "fr": "stylo",
+   "es": "el bolígrafo, la pluma",
+   "esp": "el bolígrafo, el boli"
   },
   {
    "id": "stift-bureau",
@@ -723,7 +776,9 @@ window.SCENE = {
      1.4
     ]
    ],
-   "fr": "stylo"
+   "fr": "stylo",
+   "es": "el bolígrafo, la pluma",
+   "esp": "el bolígrafo, el boli"
   },
   {
    "id": "heft-bureau",
@@ -744,7 +799,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "cahier"
+   "fr": "cahier",
+   "es": "el cuaderno"
   },
   {
    "id": "tisch",
@@ -765,7 +821,8 @@ window.SCENE = {
      6.3
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "stuhl",
@@ -786,7 +843,8 @@ window.SCENE = {
      17.5
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "stuhl-bureau",
@@ -807,7 +865,8 @@ window.SCENE = {
      23.5
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "rucksack",
@@ -828,7 +887,8 @@ window.SCENE = {
      12.6
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "mann",
@@ -844,28 +904,32 @@ window.SCENE = {
      "genre": "",
      "niveau": "A2",
      "theme": "education_a2",
-     "fr": "participant"
+     "fr": "participant",
+     "es": "el participante"
     },
     {
      "mot": "beard",
      "genre": "",
      "niveau": "A2",
      "theme": "clothes_a2",
-     "fr": "barbe"
+     "fr": "barbe",
+     "es": "la barba"
     },
     {
      "mot": "shirt",
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "chemise"
+     "fr": "chemise",
+     "es": "la camisa"
     },
     {
      "mot": "student",
      "genre": "",
      "niveau": "A1",
      "theme": "school_a1",
-     "fr": "étudiant"
+     "fr": "étudiant",
+     "es": "el estudiante, la estudiante; el alumno"
     }
    ],
    "sur": null,
@@ -884,7 +948,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "studentin",
@@ -900,14 +965,16 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "es": "la mujer"
     },
     {
      "mot": "participant",
      "genre": "",
      "niveau": "A2",
      "theme": "education_a2",
-     "fr": "participante"
+     "fr": "participante",
+     "es": "la participante"
     },
     {
      "mot": "sweater",
@@ -915,6 +982,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "pull",
+     "es": "el suéter",
+     "esp": "el jersey",
      "gb": {
       "mot": "jumper",
       "pluriel": "jumpers"
@@ -931,7 +1000,8 @@ window.SCENE = {
      10.1
     ]
    ],
-   "fr": "étudiante"
+   "fr": "étudiante",
+   "es": "el estudiante, la estudiante; el alumno"
   },
   {
    "id": "frau",
@@ -947,28 +1017,33 @@ window.SCENE = {
      "genre": "",
      "niveau": "A2",
      "theme": "education_a2",
-     "fr": "participante"
+     "fr": "participante",
+     "es": "la participante"
     },
     {
      "mot": "glasses",
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "lunettes"
+     "fr": "lunettes",
+     "es": "los lentes, las gafas",
+     "esp": "las gafas"
     },
     {
      "mot": "dress",
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "robe"
+     "fr": "robe",
+     "es": "el vestido"
     },
     {
      "mot": "student",
      "genre": "",
      "niveau": "A1",
      "theme": "school_a1",
-     "fr": "étudiante"
+     "fr": "étudiante",
+     "es": "el estudiante, la estudiante; el alumno"
     }
    ],
    "sur": null,
@@ -981,7 +1056,8 @@ window.SCENE = {
      46
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "brille-frau",
@@ -1001,7 +1077,9 @@ window.SCENE = {
      2.4
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "kleid",
@@ -1022,7 +1100,8 @@ window.SCENE = {
      33
     ]
    ],
-   "fr": "robe"
+   "fr": "robe",
+   "es": "el vestido"
   },
   {
    "id": "schuhe",
@@ -1043,7 +1122,8 @@ window.SCENE = {
      6.9
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "laptop",
@@ -1064,7 +1144,9 @@ window.SCENE = {
      12.6
     ]
    ],
-   "fr": "ordinateur portable"
+   "fr": "ordinateur portable",
+   "es": "la computadora portátil, la laptop",
+   "esp": "el portátil"
   },
   {
    "id": "handy",
@@ -1086,6 +1168,8 @@ window.SCENE = {
     ]
    ],
    "fr": "téléphone portable",
+   "es": "el celular",
+   "esp": "el móvil",
    "gb": {
     "mot": "mobile phone",
     "pluriel": "mobile phones"
@@ -1110,7 +1194,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "kabel",
@@ -1131,7 +1216,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "câble"
+   "fr": "câble",
+   "es": "el cable"
   },
   {
    "id": "schreibtisch",
@@ -1152,7 +1238,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "es": "el escritorio"
   },
   {
    "id": "wand",
@@ -1173,7 +1260,8 @@ window.SCENE = {
      55
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -1194,7 +1282,9 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [
@@ -1591,5 +1681,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Una clase de idiomas por la noche en Boston: el profesor frente a la pizarra, Mark y Anna sentados uno al lado del otro, otros tres alumnos.",
+    "consigne": "Toca un objeto o a una persona. Toca la cara del profesor para ver de cerca sus lentes y su barba."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

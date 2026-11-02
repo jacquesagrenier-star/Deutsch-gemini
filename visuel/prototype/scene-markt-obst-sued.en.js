@@ -15,14 +15,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -35,7 +38,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "pastèque, melon d'eau"
+   "fr": "pastèque, melon d'eau",
+   "es": "la sandía"
   },
   {
    "id": "ananas",
@@ -50,14 +54,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -70,7 +77,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "ananas"
+   "fr": "ananas",
+   "es": "la piña"
   },
   {
    "id": "kokosnuss",
@@ -85,14 +93,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -105,7 +116,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "noix de coco"
+   "fr": "noix de coco",
+   "es": "el coco"
   },
   {
    "id": "melone",
@@ -120,14 +132,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -140,7 +155,8 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "melon"
+   "fr": "melon",
+   "es": "el melón"
   },
   {
    "id": "orange",
@@ -155,14 +171,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -175,7 +194,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "orange"
+   "fr": "orange",
+   "es": "la naranja"
   },
   {
    "id": "avocado",
@@ -190,14 +210,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -210,7 +233,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "avocat"
+   "fr": "avocat",
+   "es": "el aguacate"
   },
   {
    "id": "papaya",
@@ -225,14 +249,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -245,7 +272,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "papaye"
+   "fr": "papaye",
+   "es": "la papaya"
   },
   {
    "id": "zitrone",
@@ -260,14 +288,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -280,7 +311,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "citron"
+   "fr": "citron",
+   "es": "el limón"
   },
   {
    "id": "kiwi",
@@ -295,14 +327,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -315,7 +350,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "kiwi"
+   "fr": "kiwi",
+   "es": "el kiwi"
   },
   {
    "id": "mandarine",
@@ -330,14 +366,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -350,7 +389,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "mandarine"
+   "fr": "mandarine",
+   "es": "la mandarina"
   },
   {
    "id": "feige",
@@ -365,14 +405,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -385,7 +428,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "figue"
+   "fr": "figue",
+   "es": "el higo"
   },
   {
    "id": "limette",
@@ -400,14 +444,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -420,7 +467,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "citron vert, lime"
+   "fr": "citron vert, lime",
+   "es": "la lima"
   },
   {
    "id": "grapefruit",
@@ -435,14 +483,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -455,7 +506,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "pamplemousse"
+   "fr": "pamplemousse",
+   "es": "el pomelo"
   },
   {
    "id": "mango",
@@ -470,14 +522,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -490,7 +545,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "mangue"
+   "fr": "mangue",
+   "es": "el mango"
   },
   {
    "id": "banane",
@@ -505,14 +561,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -525,7 +584,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "banane"
+   "fr": "banane",
+   "es": "el plátano, la banana"
   },
   {
    "id": "granatapfel",
@@ -540,14 +600,17 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "fruit",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "fruits"
+     "fr": "fruits",
+     "es": "la fruta",
+     "esp": "la fruta"
     }
    ],
    "sur": null,
@@ -560,7 +623,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "grenade"
+   "fr": "grenade",
+   "es": "la granada"
   },
   {
    "id": "anna",
@@ -587,7 +651,8 @@ window.SCENE = {
      29
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   }
  ],
  "grosPlans": [],
@@ -877,5 +942,15 @@ window.SCENE = {
   "markt-gemuese-frucht"
  ],
  "nom_vue": "Les fruits du Sud",
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna toma unos plátanos en el puesto de frutas tropicales: sandías, piñas, cocos, melones, naranjas, aguacates, papayas, limones, kiwis, mandarinas, higos, limas, toronjas, mangos, plátanos y granadas.",
+    "consigne": "Toca una fruta, una verdura o una caja."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

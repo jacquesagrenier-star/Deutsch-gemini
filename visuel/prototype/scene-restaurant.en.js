@@ -21,7 +21,9 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "lampe",
@@ -60,7 +62,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "wand",
@@ -87,7 +90,8 @@ window.SCENE = {
      24
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "flasche-2",
@@ -103,14 +107,16 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "vin"
+     "fr": "vin",
+     "es": "el vino"
     },
     {
      "mot": "beer",
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "bière"
+     "fr": "bière",
+     "es": "la cerveza"
     }
    ],
    "sur": "regal",
@@ -123,7 +129,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "regal",
@@ -144,7 +151,9 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "glas-2",
@@ -165,7 +174,8 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "tafel",
@@ -186,7 +196,9 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el pizarrón, la pizarra",
+   "esp": "la pizarra"
   },
   {
    "id": "tasse",
@@ -207,7 +219,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "kaffeemaschine",
@@ -228,7 +241,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "machine à café"
+   "fr": "machine à café",
+   "es": "la cafetera"
   },
   {
    "id": "kuchen",
@@ -249,7 +263,9 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "gâteau"
+   "fr": "gâteau",
+   "es": "el pastel",
+   "esp": "la tarta"
   },
   {
    "id": "pizza",
@@ -276,7 +292,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "pizza"
+   "fr": "pizza",
+   "es": "la pizza"
   },
   {
    "id": "flasche-3",
@@ -292,7 +309,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "vin"
+     "fr": "vin",
+     "es": "el vino"
     }
    ],
    "sur": null,
@@ -305,7 +323,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "kellner",
@@ -321,7 +340,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -334,7 +354,9 @@ window.SCENE = {
      19.5
     ]
    ],
-   "fr": "serveur"
+   "fr": "serveur",
+   "es": "el mesero",
+   "esp": "el camarero"
   },
   {
    "id": "hemd-2",
@@ -355,7 +377,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "theke",
@@ -376,7 +399,8 @@ window.SCENE = {
      43
     ]
    ],
-   "fr": "comptoir"
+   "fr": "comptoir",
+   "es": "la barra"
   },
   {
    "id": "fenster",
@@ -397,7 +421,8 @@ window.SCENE = {
      31
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "himmel",
@@ -418,7 +443,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "ciel"
+   "fr": "ciel",
+   "es": "el cielo"
   },
   {
    "id": "laterne",
@@ -440,6 +466,7 @@ window.SCENE = {
     ]
    ],
    "fr": "réverbère",
+   "es": "la farola",
    "gb": {
     "mot": "street lamp",
     "pluriel": "street lamps"
@@ -464,7 +491,8 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "rideau"
+   "fr": "rideau",
+   "es": "la cortina"
   },
   {
    "id": "uhr",
@@ -485,7 +513,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "bild",
@@ -501,7 +530,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "freetime_a1",
-     "fr": "peinture/tableau"
+     "fr": "peinture/tableau",
+     "es": "la pintura, el cuadro"
     }
    ],
    "sur": null,
@@ -514,7 +544,8 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "pflanze",
@@ -535,7 +566,8 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "tuer",
@@ -556,7 +588,8 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "stuhl",
@@ -577,7 +610,8 @@ window.SCENE = {
      37
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "mann",
@@ -598,7 +632,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "brille",
@@ -624,7 +659,9 @@ window.SCENE = {
      1.1
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "hemd-3",
@@ -645,7 +682,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "jacke",
@@ -666,7 +704,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "frau",
@@ -687,7 +726,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "pullover-2",
@@ -703,7 +743,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "veste"
+     "fr": "veste",
+     "es": "la chaqueta"
     }
    ],
    "sur": null,
@@ -717,6 +758,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -741,7 +784,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "fleisch",
@@ -756,7 +800,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "pomme de terre"
+     "fr": "pomme de terre",
+     "es": "la papa",
+     "esp": "la patata"
     }
    ],
    "sur": "teller-3",
@@ -769,7 +815,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "viande"
+   "fr": "viande",
+   "es": "la carne"
   },
   {
    "id": "suppe",
@@ -785,7 +832,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "assiette"
+     "fr": "assiette",
+     "es": "el plato"
     }
    ],
    "sur": "tisch-2",
@@ -798,7 +846,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "soupe"
+   "fr": "soupe",
+   "es": "la sopa"
   },
   {
    "id": "glas-3",
@@ -814,7 +863,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "vin"
+     "fr": "vin",
+     "es": "el vino"
     }
    ],
    "sur": "tisch-2",
@@ -827,7 +877,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "glas-4",
@@ -843,7 +894,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "vin"
+     "fr": "vin",
+     "es": "el vino"
     }
    ],
    "sur": "tisch-2",
@@ -856,7 +908,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "salz-2",
@@ -871,7 +924,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "poivre"
+     "fr": "poivre",
+     "es": "la pimienta"
     }
    ],
    "sur": "tisch-2",
@@ -884,7 +938,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "sel"
+   "fr": "sel",
+   "es": "la sal"
   },
   {
    "id": "kerze-2",
@@ -905,7 +960,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "bougie"
+   "fr": "bougie",
+   "es": "la vela"
   },
   {
    "id": "salat",
@@ -924,7 +980,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "salade"
+   "fr": "salade",
+   "es": "la lechuga"
   },
   {
    "id": "tisch-2",
@@ -945,7 +1002,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "kellnerin",
@@ -961,7 +1019,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "es": "la mujer"
     }
    ],
    "sur": null,
@@ -974,7 +1033,9 @@ window.SCENE = {
      55
     ]
    ],
-   "fr": "serveuse"
+   "fr": "serveuse",
+   "es": "la mesera",
+   "esp": "la camarera"
   },
   {
    "id": "hemd-4",
@@ -995,7 +1056,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "zettel",
@@ -1011,7 +1073,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "school_a1",
-     "fr": "le papier"
+     "fr": "le papier",
+     "es": "el papel"
     }
    ],
    "sur": null,
@@ -1024,7 +1087,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "bout de papier, mot"
+   "fr": "bout de papier, mot",
+   "es": "la nota"
   },
   {
    "id": "kugelschreiber",
@@ -1045,7 +1109,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "stylo à bille"
+   "fr": "stylo à bille",
+   "es": "el bolígrafo"
   },
   {
    "id": "schuh-2",
@@ -1066,7 +1131,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "mark",
@@ -1087,7 +1153,8 @@ window.SCENE = {
      55
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "hemd",
@@ -1108,7 +1175,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "pullover",
@@ -1130,6 +1198,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -1154,6 +1224,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -1178,7 +1249,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "mantel",
@@ -1199,7 +1271,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "stuhl-2",
@@ -1226,7 +1299,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "rucksack",
@@ -1247,7 +1321,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "speisekarte",
@@ -1268,7 +1343,9 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "menu (carte)"
+   "fr": "menu (carte)",
+   "es": "el menú, la carta",
+   "esp": "la carta"
   },
   {
    "id": "serviette",
@@ -1289,7 +1366,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la servilleta"
   },
   {
    "id": "teller",
@@ -1310,7 +1388,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "loeffel",
@@ -1331,7 +1410,8 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "cuillère"
+   "fr": "cuillère",
+   "es": "la cuchara"
   },
   {
    "id": "messer",
@@ -1352,7 +1432,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "couteau"
+   "fr": "couteau",
+   "es": "el cuchillo"
   },
   {
    "id": "broetchen",
@@ -1367,7 +1448,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "pain"
+     "fr": "pain",
+     "es": "el pan"
     }
    ],
    "sur": "korb",
@@ -1380,7 +1462,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "petit pain"
+   "fr": "petit pain",
+   "es": "el pan"
   },
   {
    "id": "korb",
@@ -1401,7 +1484,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "salz",
@@ -1416,7 +1500,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "poivre"
+     "fr": "poivre",
+     "es": "la pimienta"
     }
    ],
    "sur": "tisch",
@@ -1429,7 +1514,8 @@ window.SCENE = {
      4.7
     ]
    ],
-   "fr": "sel"
+   "fr": "sel",
+   "es": "la sal"
   },
   {
    "id": "blume",
@@ -1450,7 +1536,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "fleur"
+   "fr": "fleur",
+   "es": "la flor"
   },
   {
    "id": "kerze",
@@ -1471,7 +1558,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "bougie"
+   "fr": "bougie",
+   "es": "la vela"
   },
   {
    "id": "glas",
@@ -1487,7 +1575,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -1500,7 +1589,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "flasche",
@@ -1516,7 +1606,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -1529,7 +1620,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "messer-2",
@@ -1550,7 +1642,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "couteau"
+   "fr": "couteau",
+   "es": "el cuchillo"
   },
   {
    "id": "serviette-2",
@@ -1571,7 +1664,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la servilleta"
   },
   {
    "id": "teller-2",
@@ -1592,7 +1686,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "gabel",
@@ -1613,7 +1708,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "fourchette"
+   "fr": "fourchette",
+   "es": "el tenedor"
   },
   {
    "id": "tisch",
@@ -1634,7 +1730,8 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "boden",
@@ -1661,7 +1758,9 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -2026,5 +2125,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark en el restaurante, una noche de otoño en Boston: sentado en una mesa con mantel blanco, con el menú abierto en una mano, le señala un plato a la mesera, que anota el pedido en su libreta; sobre la mesa, una cesta de panecillos, un plato con una servilleta, un cuchillo, una cuchara, un tenedor, un vaso y una botella de agua, una vela, una flor amarilla, la sal y la pimienta; su abrigo gris está en el respaldo de la silla, su mochila en el suelo; en la mesa de al lado, un señor mayor con lentes corta su carne y una señora de chaleco rojo come una sopa, frente a dos copas de vino; al fondo, la barra con su máquina de café, sus tazas y un pastel bajo una campana de cristal, las botellas y las copas colgadas, un mesero que trae dos pizzas, una ventana a la calle con su farol, un reloj, un cuadro y una planta.",
+    "consigne": "Mark pide su comida en el restaurante. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

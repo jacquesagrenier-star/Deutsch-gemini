@@ -15,13 +15,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -34,7 +36,8 @@ window.SCENE = {
      13.3
     ]
    ],
-   "fr": "petit pois"
+   "fr": "petit pois",
+   "es": "el guisante"
   },
   {
    "id": "salat",
@@ -47,13 +50,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -66,7 +71,8 @@ window.SCENE = {
      13.8
     ]
    ],
-   "fr": "salade"
+   "fr": "salade",
+   "es": "la lechuga"
   },
   {
    "id": "spargel",
@@ -80,13 +86,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -99,7 +107,8 @@ window.SCENE = {
      13.3
     ]
    ],
-   "fr": "asperge"
+   "fr": "asperge",
+   "es": "el espárrago"
   },
   {
    "id": "kuerbis",
@@ -114,13 +123,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -133,7 +144,8 @@ window.SCENE = {
      13.3
     ]
    ],
-   "fr": "citrouille"
+   "fr": "citrouille",
+   "es": "la calabaza"
   },
   {
    "id": "paprika",
@@ -148,13 +160,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -168,6 +182,8 @@ window.SCENE = {
     ]
    ],
    "fr": "poivron",
+   "es": "el pimiento, el pimentón",
+   "esp": "el pimiento",
    "gb": {
     "mot": "pepper",
     "pluriel": "peppers"
@@ -185,13 +201,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -205,6 +223,7 @@ window.SCENE = {
     ]
    ],
    "fr": "le maïs",
+   "es": "el maíz",
    "gb": {
     "mot": "sweetcorn",
     "pluriel": null
@@ -223,13 +242,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -242,7 +263,9 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "champignon"
+   "fr": "champignon",
+   "es": "el hongo, el champiñón",
+   "esp": "la seta, el champiñón"
   },
   {
    "id": "bohne",
@@ -257,13 +280,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -276,7 +301,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "haricot"
+   "fr": "haricot",
+   "es": "la judía"
   },
   {
    "id": "mangold",
@@ -291,13 +317,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -310,7 +338,8 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "blette"
+   "fr": "blette",
+   "es": "la acelga"
   },
   {
    "id": "artischocke",
@@ -325,13 +354,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -344,7 +375,8 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "artichaut"
+   "fr": "artichaut",
+   "es": "la alcachofa"
   },
   {
    "id": "aubergine",
@@ -359,13 +391,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -379,6 +413,7 @@ window.SCENE = {
     ]
    ],
    "fr": "aubergine",
+   "es": "la berenjena",
    "gb": {
     "mot": "aubergine",
     "pluriel": "aubergines"
@@ -397,13 +432,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -416,7 +453,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "concombre"
+   "fr": "concombre",
+   "es": "el pepino"
   },
   {
    "id": "zucchini",
@@ -431,13 +469,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -451,6 +491,7 @@ window.SCENE = {
     ]
    ],
    "fr": "courgette",
+   "es": "el calabacín",
    "gb": {
     "mot": "courgette",
     "pluriel": "courgettes"
@@ -469,13 +510,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -488,7 +531,8 @@ window.SCENE = {
      23.5
     ]
    ],
-   "fr": "tomate"
+   "fr": "tomate",
+   "es": "el tomate"
   },
   {
    "id": "spinat",
@@ -502,13 +546,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -521,7 +567,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "épinard"
+   "fr": "épinard",
+   "es": "la espinaca"
   },
   {
    "id": "anna",
@@ -554,7 +601,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "tomate-main",
@@ -575,7 +623,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "tomate"
+   "fr": "tomate",
+   "es": "el tomate"
   }
  ],
  "grosPlans": [],
@@ -867,5 +916,15 @@ window.SCENE = {
   "markt-gemuese-frucht"
  ],
  "nom_vue": "Les légumes-fruits et les feuilles",
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna toma un racimo de tomates en el puesto de verduras: arvejas, lechugas, espárragos, calabazas, pimientos, maíz, champiñones, frijoles, acelgas, alcachofas, berenjenas, pepinos, calabacines, tomates y espinacas.",
+    "consigne": "Toca una fruta, una verdura o una caja."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

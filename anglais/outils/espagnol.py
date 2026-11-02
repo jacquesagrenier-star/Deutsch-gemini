@@ -12,7 +12,8 @@ de traduction, anglais/es/traductions/, que ce module pose :
   - en ligne de commande, il la pose dans les fichiers deja construits, sans
     rien reconstruire (l'anglais ne bouge pas).
 
-corpus.json      {cle: {"ex": phrase anglaise temoin, "t": traduction_es, "e": exemple_es}}
+corpus.json      {cle: {"ex": phrase anglaise temoin, "t": traduction_es, "e": exemple_es,
+                        ["tE", "eE" : l'Espagne, quand elle dit autrement -> traduction_esp, exemple_esp]}}
 categories.json  {categorie francaise: categorie espagnole}
 
 La cle d'une carte : fichier|groupe|mot anglais|traduction francaise. Une phrase
@@ -25,6 +26,8 @@ import io
 import json
 import os
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ICI = os.path.dirname(os.path.abspath(__file__))
 RACINE = os.path.dirname(os.path.dirname(ICI))
@@ -71,15 +74,24 @@ def poser(us, gb):
                     t += 1
                     for c in cibles:
                         c["traduction_es"] = e["t"]
+                    if e.get("tE"):
+                        for c in cibles:
+                            c["traduction_esp"] = e["tE"]
                     if e.get("e") and e.get("ex") == m.get("exemple"):
                         for c in cibles:
                             c["exemple_es"] = e["e"]
+                            if e.get("eE"):
+                                c["exemple_esp"] = e["eE"]
                     elif e.get("e"):
                         perime += 1
                 if m.get("kategorie") and cats.get(m["kategorie"]):
                     for c in cibles:
                         c["kategorie_es"] = cats[m["kategorie"]]
         stats[f] = (n, t, perime)
+    # Les textes hors corpus (fiches, exercices, Premiers pas...) : espagnol_textes.py.
+    import espagnol_textes
+    for nom, (n, t) in espagnol_textes.poser(us, gb).items():
+        stats[nom] = (n, t, 0)
     return stats
 
 
@@ -99,16 +111,18 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
     except Exception:
         pass
-    noms = [f + ".json" for f in CORPUS]
-    us = {n: charger("anglais/datos", n) for n in noms}
+    import espagnol_textes
+    noms = [f + ".json" for f in CORPUS + espagnol_textes.OBJETS] + ["grammaire.json", "exercices.json"]
+    us = {n: charger("anglais/datos", n) for n in noms if os.path.exists(os.path.join(RACINE, "anglais/datos", n))}
     gb = {n: charger("anglais/datos-gb", n) for n in noms if os.path.exists(os.path.join(RACINE, "anglais/datos-gb", n))}
     stats = poser(us, gb)
     for f, (n, t, perime) in stats.items():
-        print("%-13s %5d cartes, %5d en espagnol, %d phrase(s) perimee(s)" % (f, n, t, perime))
+        print("%-13s %5d textes, %5d en espagnol, %d phrase(s) perimee(s)" % (f, n, t, perime))
     if "--etat" in sys.argv:
         return
     for n in noms:
-        ecrire("anglais/datos", n, us[n])
+        if n in us:
+            ecrire("anglais/datos", n, us[n])
         if n in gb:
             ecrire("anglais/datos-gb", n, gb[n])
     print("Ecrit : anglais/datos et anglais/datos-gb")

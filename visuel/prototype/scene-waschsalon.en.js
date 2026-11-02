@@ -27,7 +27,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "wand",
@@ -48,7 +49,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "uhr",
@@ -69,7 +71,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "flasche",
@@ -90,7 +93,8 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "handtuch",
@@ -111,7 +115,9 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la toalla",
+   "esp": "la toalla"
   },
   {
    "id": "regal",
@@ -132,7 +138,9 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "spiegel",
@@ -153,7 +161,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "miroir"
+   "fr": "miroir",
+   "es": "el espejo"
   },
   {
    "id": "heizkoerper",
@@ -174,7 +183,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "radiateur"
+   "fr": "radiateur",
+   "es": "el radiador"
   },
   {
    "id": "tuer",
@@ -195,7 +205,8 @@ window.SCENE = {
      33
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "fenster",
@@ -212,6 +223,7 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "money_b1",
      "fr": "vitrine",
+     "es": "el escaparate",
      "gb": {
       "mot": "shop window",
       "pluriel": "shop windows"
@@ -228,7 +240,8 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "schild",
@@ -244,7 +257,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "B1",
      "theme": "travel_b1_2",
-     "fr": "panneau de signalisation"
+     "fr": "panneau de signalisation",
+     "es": "la señal"
     }
    ],
    "sur": null,
@@ -257,7 +271,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "le panneau"
+   "fr": "le panneau",
+   "es": "la señal"
   },
   {
    "id": "fussgaenger",
@@ -273,7 +288,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -286,7 +302,8 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "piéton"
+   "fr": "piéton",
+   "es": "el peatón"
   },
   {
    "id": "fahrrad",
@@ -307,7 +324,9 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "strasse",
@@ -328,7 +347,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "rue"
+   "fr": "rue",
+   "es": "la calle"
   },
   {
    "id": "pflanze",
@@ -349,7 +369,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "waschmaschine-3",
@@ -370,7 +391,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "machine à laver"
+   "fr": "machine à laver",
+   "es": "la lavadora"
   },
   {
    "id": "waschmittel",
@@ -386,7 +408,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "bouteille"
+     "fr": "bouteille",
+     "es": "la botella"
     }
    ],
    "sur": null,
@@ -400,6 +423,7 @@ window.SCENE = {
     ]
    ],
    "fr": "lessive, détergent",
+   "es": "el detergente",
    "gb": {
     "mot": "washing powder",
     "pluriel": null
@@ -424,7 +448,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "savon"
+   "fr": "savon",
+   "es": "el jabón"
   },
   {
    "id": "muenze",
@@ -440,7 +465,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "shopping_a1",
-     "fr": "argent"
+     "fr": "argent",
+     "es": "el dinero"
     }
    ],
    "sur": null,
@@ -453,7 +479,8 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "pièce de monnaie"
+   "fr": "pièce de monnaie",
+   "es": "la moneda"
   },
   {
    "id": "waschmaschine-2",
@@ -474,7 +501,8 @@ window.SCENE = {
      42
     ]
    ],
-   "fr": "machine à laver"
+   "fr": "machine à laver",
+   "es": "la lavadora"
   },
   {
    "id": "waschmaschine",
@@ -495,7 +523,8 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "machine à laver"
+   "fr": "machine à laver",
+   "es": "la lavadora"
   },
   {
    "id": "hemd",
@@ -516,7 +545,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "anna",
@@ -537,7 +567,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "pullover",
@@ -559,6 +590,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -583,7 +616,9 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la toalla",
+   "esp": "la toalla"
   },
   {
    "id": "hose",
@@ -604,6 +639,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -624,6 +660,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "basket",
+     "es": "el tenis, la zapatilla deportiva",
+     "esp": "la zapatilla deportiva",
      "gb": {
       "mot": "trainer",
       "pluriel": "trainers"
@@ -640,7 +678,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "korb",
@@ -661,7 +700,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "jeans",
@@ -677,6 +717,7 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "pantalon",
+     "es": "el pantalón, los pantalones",
      "gb": {
       "mot": "trousers",
       "pluriel": null
@@ -693,7 +734,9 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "jean"
+   "fr": "jean",
+   "es": "los jeans",
+   "esp": "los vaqueros"
   },
   {
    "id": "t-shirt",
@@ -714,7 +757,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "es": "la camiseta"
   },
   {
    "id": "kleid",
@@ -735,7 +779,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "robe"
+   "fr": "robe",
+   "es": "el vestido"
   },
   {
    "id": "socke",
@@ -756,7 +801,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "chaussette"
+   "fr": "chaussette",
+   "es": "el calcetín, la media"
   },
   {
    "id": "buegeleisen",
@@ -776,7 +822,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "fer à repasser"
+   "fr": "fer à repasser",
+   "es": "la plancha"
   },
   {
    "id": "decke",
@@ -797,7 +844,9 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "pullover-2",
@@ -819,6 +868,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -849,7 +900,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "muelleimer",
@@ -871,6 +923,7 @@ window.SCENE = {
     ]
    ],
    "fr": "poubelle",
+   "es": "la papelera",
    "gb": {
     "mot": "bin",
     "pluriel": "bins"
@@ -895,7 +948,8 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "jacke",
@@ -916,7 +970,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "zeitung",
@@ -937,7 +992,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "journal"
+   "fr": "journal",
+   "es": "el periódico, el diario"
   },
   {
    "id": "tasse",
@@ -953,7 +1009,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "café"
+     "fr": "café",
+     "es": "el café"
     }
    ],
    "sur": "bank",
@@ -966,7 +1023,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "maedchen",
@@ -982,7 +1040,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "family_a1",
-     "fr": "enfant"
+     "fr": "enfant",
+     "es": "el niño, la niña"
     }
    ],
    "sur": null,
@@ -995,7 +1054,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "fille (enfant)"
+   "fr": "fille (enfant)",
+   "es": "la niña, la chica"
   },
   {
    "id": "pullover-3",
@@ -1017,6 +1077,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -1042,6 +1104,8 @@ window.SCENE = {
     ]
    ],
    "fr": "téléphone portable",
+   "es": "el celular",
+   "esp": "el móvil",
    "gb": {
     "mot": "mobile phone",
     "pluriel": "mobile phones"
@@ -1060,7 +1124,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "jean"
+     "fr": "jean",
+     "es": "los jeans",
+     "esp": "los vaqueros"
     }
    ],
    "sur": null,
@@ -1074,6 +1140,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -1098,7 +1165,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "bank",
@@ -1119,7 +1187,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "la banque"
+   "fr": "la banque",
+   "es": "el banco"
   },
   {
    "id": "boden",
@@ -1146,7 +1215,9 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1509,5 +1580,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en la lavandería de su barrio: en cuclillas frente a la lavadora abierta, mete una camisa azul, con una toalla blanca en la otra mano; a su lado, una cesta roja llena de ropa (unos jeans, una camiseta amarilla, un vestido rojo, calcetines); sobre la lavadora, una botella de detergente, un jabón y monedas; sobre la mesa de madera, una plancha, una manta azul y un suéter verde doblados; una papelera; en la banca junto a la vitrina, una señora mayor lee el periódico frente a una taza de café y una niña juega con un teléfono; en la pared, un reloj, un estante con botellas y toallas, un radiador y un espejo; afuera, un peatón y una bicicleta.",
+    "consigne": "Anna lava su ropa en la lavandería de su barrio. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

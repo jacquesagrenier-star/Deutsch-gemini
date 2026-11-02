@@ -27,7 +27,8 @@ window.SCENE = {
      45
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "lampe",
@@ -48,7 +49,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "lampe-2",
@@ -69,7 +71,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "uhr",
@@ -90,7 +93,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "tafel",
@@ -111,7 +115,9 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el pizarrón, la pizarra",
+   "esp": "la pizarra"
   },
   {
    "id": "ordner",
@@ -132,7 +138,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "dossier, classeur"
+   "fr": "dossier, classeur",
+   "es": "la carpeta"
   },
   {
    "id": "ordner-2",
@@ -153,7 +160,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "dossier, classeur"
+   "fr": "dossier, classeur",
+   "es": "la carpeta"
   },
   {
    "id": "regal",
@@ -174,7 +182,9 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "pflanze",
@@ -195,7 +205,8 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "drucker",
@@ -216,7 +227,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "imprimante"
+   "fr": "imprimante",
+   "es": "la impresora"
   },
   {
    "id": "frau",
@@ -237,7 +249,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "mark",
@@ -258,7 +271,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "telefon",
@@ -279,7 +293,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "le téléphone"
+   "fr": "le téléphone",
+   "es": "el teléfono"
   },
   {
    "id": "bildschirm",
@@ -300,7 +315,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "es": "la pantalla"
   },
   {
    "id": "tastatur",
@@ -321,7 +337,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "clavier"
+   "fr": "clavier",
+   "es": "el teclado"
   },
   {
    "id": "maus",
@@ -342,7 +359,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "souris"
+   "fr": "souris",
+   "es": "el ratón"
   },
   {
    "id": "tasse",
@@ -363,7 +381,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "kugelschreiber",
@@ -384,7 +403,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "stylo à bille"
+   "fr": "stylo à bille",
+   "es": "el bolígrafo"
   },
   {
    "id": "papier",
@@ -404,7 +424,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "le papier"
+   "fr": "le papier",
+   "es": "el papel"
   },
   {
    "id": "heft",
@@ -425,7 +446,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "cahier"
+   "fr": "cahier",
+   "es": "el cuaderno"
   },
   {
    "id": "schere",
@@ -445,7 +467,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "ciseaux"
+   "fr": "ciseaux",
+   "es": "las tijeras"
   },
   {
    "id": "pflanze-2",
@@ -466,7 +489,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "lampe-tisch",
@@ -487,7 +511,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "muelleimer",
@@ -509,6 +534,7 @@ window.SCENE = {
     ]
    ],
    "fr": "poubelle",
+   "es": "la papelera",
    "gb": {
     "mot": "bin",
     "pluriel": "bins"
@@ -533,7 +559,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "es": "el escritorio"
   },
   {
    "id": "wand",
@@ -554,7 +581,8 @@ window.SCENE = {
      48
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -575,7 +603,9 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "schrank",
@@ -597,6 +627,8 @@ window.SCENE = {
     ]
    ],
    "fr": "armoire",
+   "es": "el clóset, el armario",
+   "esp": "el armario",
    "gb": {
     "mot": "wardrobe",
     "pluriel": "wardrobes"
@@ -619,7 +651,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "ruban adhésif"
+   "fr": "ruban adhésif",
+   "es": "la cinta adhesiva"
   },
   {
    "id": "tuer",
@@ -640,7 +673,8 @@ window.SCENE = {
      100
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   }
  ],
  "grosPlans": [],
@@ -1001,5 +1035,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark hace una pasantía en una oficina de Boston: al teléfono, toma notas en un cuaderno; sobre el escritorio, una pantalla, un teclado, un ratón, una taza, papel y un bolígrafo; detrás de él, una colega lee unos papeles, una impresora, archivadores y una pizarra blanca.",
+    "consigne": "Mark hace una pasantía en una oficina. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

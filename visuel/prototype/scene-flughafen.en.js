@@ -33,7 +33,8 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "decke",
@@ -54,7 +55,9 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "wand",
@@ -75,7 +78,8 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "uhr",
@@ -96,7 +100,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "schild",
@@ -117,7 +122,8 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "le panneau"
+   "fr": "le panneau",
+   "es": "la señal"
   },
   {
    "id": "treppe",
@@ -137,7 +143,8 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "escalier"
+   "fr": "escalier",
+   "es": "la escalera"
   },
   {
    "id": "fenster",
@@ -158,7 +165,8 @@ window.SCENE = {
      37
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "himmel",
@@ -179,7 +187,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "ciel"
+   "fr": "ciel",
+   "es": "el cielo"
   },
   {
    "id": "wolke",
@@ -206,7 +215,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "nuage"
+   "fr": "nuage",
+   "es": "la nube"
   },
   {
    "id": "flugzeug",
@@ -227,7 +237,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "avion"
+   "fr": "avion",
+   "es": "el avión"
   },
   {
    "id": "pilot",
@@ -243,7 +254,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -256,7 +268,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "pilote"
+   "fr": "pilote",
+   "es": "el piloto"
   },
   {
    "id": "koffer-2",
@@ -277,7 +290,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "valise"
+   "fr": "valise",
+   "es": "la maleta"
   },
   {
    "id": "stuhl",
@@ -298,7 +312,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "muelleimer",
@@ -320,6 +335,7 @@ window.SCENE = {
     ]
    ],
    "fr": "poubelle",
+   "es": "la papelera",
    "gb": {
     "mot": "bin",
     "pluriel": "bins"
@@ -344,7 +360,8 @@ window.SCENE = {
      17.5
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "pflanze",
@@ -365,7 +382,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "stuhl-2",
@@ -386,7 +404,8 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "zeitung",
@@ -407,7 +426,8 @@ window.SCENE = {
      2.7
     ]
    ],
-   "fr": "journal"
+   "fr": "journal",
+   "es": "el periódico, el diario"
   },
   {
    "id": "frau",
@@ -428,7 +448,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "jacke",
@@ -449,7 +470,8 @@ window.SCENE = {
      24
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "bildschirm",
@@ -465,7 +487,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "work_a1",
-     "fr": "ordinateur"
+     "fr": "ordinateur",
+     "es": "la computadora",
+     "esp": "el ordenador"
     }
    ],
    "sur": null,
@@ -478,7 +502,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "es": "la pantalla"
   },
   {
    "id": "pflanze-2",
@@ -499,7 +524,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "tastatur",
@@ -520,7 +546,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "clavier"
+   "fr": "clavier",
+   "es": "el teclado"
   },
   {
    "id": "telefon",
@@ -541,7 +568,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "le téléphone"
+   "fr": "le téléphone",
+   "es": "el teléfono"
   },
   {
    "id": "ticket",
@@ -562,7 +590,9 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "billet"
+   "fr": "billet",
+   "es": "el boleto",
+   "esp": "el billete"
   },
   {
    "id": "pass",
@@ -583,7 +613,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "passeport"
+   "fr": "passeport",
+   "es": "el pasaporte"
   },
   {
    "id": "anna",
@@ -604,7 +635,8 @@ window.SCENE = {
      43
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "schal",
@@ -625,7 +657,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "écharpe"
+   "fr": "écharpe",
+   "es": "la bufanda"
   },
   {
    "id": "mantel",
@@ -646,7 +679,8 @@ window.SCENE = {
      31
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "pullover",
@@ -668,6 +702,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -692,7 +728,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "sac"
+   "fr": "sac",
+   "es": "la bolsa"
   },
   {
    "id": "hose",
@@ -707,7 +744,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "jean"
+     "fr": "jean",
+     "es": "los jeans",
+     "esp": "los vaqueros"
     }
    ],
    "sur": null,
@@ -721,6 +760,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -741,6 +781,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "basket",
+     "es": "el tenis, la zapatilla deportiva",
+     "esp": "la zapatilla deportiva",
      "gb": {
       "mot": "trainer",
       "pluriel": "trainers"
@@ -757,7 +799,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "koffer",
@@ -778,7 +821,8 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "valise"
+   "fr": "valise",
+   "es": "la maleta"
   },
   {
    "id": "koffer-3",
@@ -794,7 +838,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "travel_a1",
-     "fr": "bagages"
+     "fr": "bagages",
+     "es": "el equipaje"
     }
    ],
    "sur": "waage",
@@ -807,7 +852,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "valise"
+   "fr": "valise",
+   "es": "la maleta"
   },
   {
    "id": "waage",
@@ -829,6 +875,7 @@ window.SCENE = {
     ]
    ],
    "fr": "balance",
+   "es": "la báscula",
    "gb": {
     "mot": "scales",
     "pluriel": "scales"
@@ -853,7 +900,8 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "guichet ; interrupteur"
+   "fr": "guichet ; interrupteur",
+   "es": "la ventanilla"
   },
   {
    "id": "rucksack",
@@ -874,7 +922,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "flasche",
@@ -890,7 +939,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": null,
@@ -903,7 +953,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "boden",
@@ -924,7 +975,9 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1291,5 +1344,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en el aeropuerto Logan de Boston: le entrega su pasaporte a la empleada del mostrador de check-in; su maleta grande gris está en la báscula, su maleta pequeña roja a su lado, el bolso al hombro; sobre el mostrador, una pantalla, un teclado, un teléfono, un boleto y una planta; detrás del ventanal, un avión blanco bajo el cielo azul; un piloto pasa con su maleta, cerca de una escalera, un reloj y una fila de asientos.",
+    "consigne": "Anna se va de viaje: entrega su maleta en el aeropuerto. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

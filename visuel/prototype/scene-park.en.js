@@ -21,7 +21,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "ciel"
+   "fr": "ciel",
+   "es": "el cielo"
   },
   {
    "id": "wolke",
@@ -42,7 +43,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "nuage"
+   "fr": "nuage",
+   "es": "la nube"
   },
   {
    "id": "baum",
@@ -63,7 +65,8 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "brunnen",
@@ -84,7 +87,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "fontaine"
+   "fr": "fontaine",
+   "es": "la fuente"
   },
   {
    "id": "see",
@@ -105,7 +109,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "lac"
+   "fr": "lac",
+   "es": "el lago"
   },
   {
    "id": "boot",
@@ -126,7 +131,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "bateau, barque"
+   "fr": "bateau, barque",
+   "es": "el barco, el bote"
   },
   {
    "id": "bruecke",
@@ -147,7 +153,8 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "pont"
+   "fr": "pont",
+   "es": "el puente"
   },
   {
    "id": "stein",
@@ -168,7 +175,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "pierre"
+   "fr": "pierre",
+   "es": "la piedra"
   },
   {
    "id": "laterne",
@@ -190,6 +198,7 @@ window.SCENE = {
     ]
    ],
    "fr": "réverbère",
+   "es": "la farola",
    "gb": {
     "mot": "street lamp",
     "pluriel": "street lamps"
@@ -215,6 +224,7 @@ window.SCENE = {
     ]
    ],
    "fr": "poubelle",
+   "es": "la papelera",
    "gb": {
     "mot": "bin",
     "pluriel": "bins"
@@ -239,7 +249,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "la banque"
+   "fr": "la banque",
+   "es": "el banco"
   },
   {
    "id": "monsieur",
@@ -260,7 +271,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "vogel",
@@ -281,7 +293,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "oiseau"
+   "fr": "oiseau",
+   "es": "el pájaro"
   },
   {
    "id": "junge",
@@ -302,7 +315,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "garçon"
+   "fr": "garçon",
+   "es": "el niño, el chico"
   },
   {
    "id": "helm",
@@ -323,7 +337,8 @@ window.SCENE = {
      2.2
     ]
    ],
-   "fr": "casque"
+   "fr": "casque",
+   "es": "el casco"
   },
   {
    "id": "fahrrad",
@@ -344,7 +359,9 @@ window.SCENE = {
      9.2
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "blume",
@@ -365,7 +382,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "fleur"
+   "fr": "fleur",
+   "es": "la flor"
   },
   {
    "id": "blume-droite",
@@ -386,7 +404,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "fleur"
+   "fr": "fleur",
+   "es": "la flor"
   },
   {
    "id": "weg",
@@ -406,7 +425,8 @@ window.SCENE = {
      4.7
     ]
    ],
-   "fr": "le chemin"
+   "fr": "le chemin",
+   "es": "el camino"
   },
   {
    "id": "gras",
@@ -426,7 +446,9 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "herbe"
+   "fr": "herbe",
+   "es": "el pasto, la hierba",
+   "esp": "la hierba, el césped"
   },
   {
    "id": "hund",
@@ -447,7 +469,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "es": "el perro"
   },
   {
    "id": "ball",
@@ -468,7 +491,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "ballon"
+   "fr": "ballon",
+   "es": "la pelota, el balón"
   },
   {
    "id": "anna",
@@ -489,7 +513,8 @@ window.SCENE = {
      28.5
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "korb",
@@ -510,7 +535,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "flasche",
@@ -526,7 +552,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "decke",
@@ -539,7 +566,8 @@ window.SCENE = {
      10.2
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "apfel",
@@ -560,7 +588,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "pomme"
+   "fr": "pomme",
+   "es": "la manzana"
   },
   {
    "id": "kuchen",
@@ -581,7 +610,9 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "gâteau"
+   "fr": "gâteau",
+   "es": "el pastel",
+   "esp": "la tarta"
   },
   {
    "id": "teller",
@@ -602,7 +633,8 @@ window.SCENE = {
      2.4
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "buch",
@@ -623,7 +655,8 @@ window.SCENE = {
      5.7
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "decke",
@@ -644,7 +677,9 @@ window.SCENE = {
      17.5
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "rucksack",
@@ -665,7 +700,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "handy",
@@ -687,6 +723,8 @@ window.SCENE = {
     ]
    ],
    "fr": "téléphone portable",
+   "es": "el celular",
+   "esp": "el móvil",
    "gb": {
     "mot": "mobile phone",
     "pluriel": "mobile phones"
@@ -717,7 +755,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "baum-2",
@@ -744,7 +783,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "rasen",
@@ -783,7 +823,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "pelouse, gazon"
+   "fr": "pelouse, gazon",
+   "es": "el césped"
   }
  ],
  "grosPlans": [],
@@ -1153,5 +1194,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Un domingo en el parque Boston Common: Anna, sentada sobre una manta de picnic, le lanza una pelota a un perro; detrás de ella, un niño en bicicleta por el camino, un señor que lee en una banca, un lago con un bote, un puente y una fuente.",
+    "consigne": "Anna hace un picnic en el parque. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

@@ -21,7 +21,8 @@ window.SCENE = {
      50
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -42,7 +43,9 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "fenster",
@@ -69,7 +72,8 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "vorhang",
@@ -90,7 +94,8 @@ window.SCENE = {
      41
     ]
    ],
-   "fr": "rideau"
+   "fr": "rideau",
+   "es": "la cortina"
   },
   {
    "id": "lampe",
@@ -111,7 +116,8 @@ window.SCENE = {
      7.4
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "lampe-haut",
@@ -132,7 +138,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "lampe-bas",
@@ -153,7 +160,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "tuer",
@@ -174,7 +182,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "schal",
@@ -195,7 +204,8 @@ window.SCENE = {
      17.5
     ]
    ],
-   "fr": "écharpe"
+   "fr": "écharpe",
+   "es": "la bufanda"
   },
   {
    "id": "pflanze",
@@ -216,7 +226,8 @@ window.SCENE = {
      21.5
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "kuchen",
@@ -237,7 +248,9 @@ window.SCENE = {
      4.7
     ]
    ],
-   "fr": "gâteau"
+   "fr": "gâteau",
+   "es": "el pastel",
+   "esp": "la tarta"
   },
   {
    "id": "kuchen-assiette",
@@ -258,7 +271,9 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "gâteau"
+   "fr": "gâteau",
+   "es": "el pastel",
+   "esp": "la tarta"
   },
   {
    "id": "kuchen-mark",
@@ -279,7 +294,9 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "gâteau"
+   "fr": "gâteau",
+   "es": "el pastel",
+   "esp": "la tarta"
   },
   {
    "id": "tasse",
@@ -295,7 +312,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "café"
+     "fr": "café",
+     "es": "el café"
     }
    ],
    "sur": null,
@@ -308,7 +326,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "tasse-devant",
@@ -324,7 +343,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "café"
+     "fr": "café",
+     "es": "el café"
     }
    ],
    "sur": "tisch",
@@ -337,7 +357,8 @@ window.SCENE = {
      7.2
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "tasses-machine",
@@ -358,7 +379,8 @@ window.SCENE = {
      3.1
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "mark",
@@ -374,7 +396,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "invité"
+     "fr": "invité",
+     "es": "el invitado, la invitada; el huésped"
     }
    ],
    "sur": null,
@@ -387,7 +410,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "pullover",
@@ -409,6 +433,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -428,7 +454,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "eatingout_a1",
-     "fr": "serveuse"
+     "fr": "serveuse",
+     "es": "la mesera",
+     "esp": "la camarera"
     }
    ],
    "sur": null,
@@ -447,7 +475,8 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "monsieur",
@@ -463,7 +492,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "invité"
+     "fr": "invité",
+     "es": "el invitado, la invitada; el huésped"
     }
    ],
    "sur": null,
@@ -476,7 +506,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "rucksack",
@@ -497,7 +528,8 @@ window.SCENE = {
      17.3
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "blume",
@@ -518,7 +550,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "fleur"
+   "fr": "fleur",
+   "es": "la flor"
   },
   {
    "id": "salz",
@@ -538,7 +571,8 @@ window.SCENE = {
      4.6
     ]
    ],
-   "fr": "sel"
+   "fr": "sel",
+   "es": "la sal"
   },
   {
    "id": "pfeffer",
@@ -558,7 +592,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "poivre"
+   "fr": "poivre",
+   "es": "la pimienta"
   },
   {
    "id": "handy",
@@ -580,6 +615,8 @@ window.SCENE = {
     ]
    ],
    "fr": "téléphone portable",
+   "es": "el celular",
+   "esp": "el móvil",
    "gb": {
     "mot": "mobile phone",
     "pluriel": "mobile phones"
@@ -599,7 +636,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -612,7 +650,8 @@ window.SCENE = {
      5.3
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "kanne",
@@ -627,7 +666,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "lait"
+     "fr": "lait",
+     "es": "la leche"
     }
    ],
    "sur": "tisch",
@@ -641,6 +681,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pot, cafetière",
+   "es": "la jarra",
    "gb": {
     "mot": "jug",
     "pluriel": "jugs"
@@ -664,7 +705,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "sucre"
+   "fr": "sucre",
+   "es": "el azúcar"
   },
   {
    "id": "saft",
@@ -679,7 +721,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "verre"
+     "fr": "verre",
+     "es": "el vaso, la copa"
     }
    ],
    "sur": "tisch",
@@ -692,7 +735,9 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "es": "el jugo",
+   "esp": "el zumo"
   },
   {
    "id": "ei",
@@ -713,7 +758,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "œuf"
+   "fr": "œuf",
+   "es": "el huevo"
   },
   {
    "id": "teller",
@@ -746,7 +792,8 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "broetchen",
@@ -761,7 +808,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "pain"
+     "fr": "pain",
+     "es": "el pan"
     }
    ],
    "sur": "teller",
@@ -774,7 +822,8 @@ window.SCENE = {
      5.4
     ]
    ],
-   "fr": "petit pain"
+   "fr": "petit pain",
+   "es": "el pan"
   },
   {
    "id": "kaese",
@@ -794,7 +843,8 @@ window.SCENE = {
      2.3
     ]
    ],
-   "fr": "fromage"
+   "fr": "fromage",
+   "es": "el queso"
   },
   {
    "id": "schinken",
@@ -814,7 +864,9 @@ window.SCENE = {
      2.3
     ]
    ],
-   "fr": "jambon"
+   "fr": "jambon",
+   "es": "el jamón",
+   "esp": "el jamón"
   },
   {
    "id": "messer",
@@ -835,7 +887,8 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "couteau"
+   "fr": "couteau",
+   "es": "el cuchillo"
   },
   {
    "id": "gabel",
@@ -856,7 +909,8 @@ window.SCENE = {
      2.9
     ]
    ],
-   "fr": "fourchette"
+   "fr": "fourchette",
+   "es": "el tenedor"
   },
   {
    "id": "loeffel",
@@ -877,7 +931,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "cuillère"
+   "fr": "cuillère",
+   "es": "la cuchara"
   },
   {
    "id": "serviette",
@@ -898,7 +953,8 @@ window.SCENE = {
      7.9
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la servilleta"
   },
   {
    "id": "speisekarte",
@@ -919,7 +975,9 @@ window.SCENE = {
      8.6
     ]
    ],
-   "fr": "menu (carte)"
+   "fr": "menu (carte)",
+   "es": "el menú, la carta",
+   "esp": "la carta"
   },
   {
    "id": "tisch",
@@ -940,7 +998,8 @@ window.SCENE = {
      41
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "stuhl",
@@ -967,7 +1026,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "jacke",
@@ -988,7 +1048,8 @@ window.SCENE = {
      36.5
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "schuh",
@@ -1015,7 +1076,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "kaffeemaschine",
@@ -1036,7 +1098,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "machine à café"
+   "fr": "machine à café",
+   "es": "la cafetera"
   },
   {
    "id": "theke",
@@ -1057,7 +1120,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "comptoir"
+   "fr": "comptoir",
+   "es": "la barra"
   }
  ],
  "grosPlans": [],
@@ -1426,5 +1490,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark desayuna en un café de barrio en Boston: sobre la mesa, una taza de café, un panecillo, queso, jamón, un huevo, un jugo de naranja, un vaso de agua; la mesera le trae una porción de pastel de manzana.",
+    "consigne": "Mark desayuna en el café de la esquina. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

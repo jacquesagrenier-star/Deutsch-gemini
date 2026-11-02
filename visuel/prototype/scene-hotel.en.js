@@ -21,7 +21,9 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "wand",
@@ -54,7 +56,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "uhr",
@@ -75,7 +78,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "schluessel",
@@ -114,7 +118,9 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "clé"
+   "fr": "clé",
+   "es": "la llave",
+   "esp": "la llave"
   },
   {
    "id": "regal",
@@ -135,7 +141,9 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "aufzug",
@@ -157,6 +165,8 @@ window.SCENE = {
     ]
    ],
    "fr": "ascenseur",
+   "es": "el ascensor, el elevador",
+   "esp": "el ascensor",
    "gb": {
     "mot": "lift",
     "pluriel": "lifts"
@@ -181,7 +191,8 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "vorhang",
@@ -202,7 +213,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "rideau"
+   "fr": "rideau",
+   "es": "la cortina"
   },
   {
    "id": "pflanze",
@@ -223,7 +235,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "pflanze-2",
@@ -244,7 +257,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "treppe",
@@ -264,7 +278,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "escalier"
+   "fr": "escalier",
+   "es": "la escalera"
   },
   {
    "id": "bild-2",
@@ -285,7 +300,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "bild",
@@ -301,7 +317,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "freetime_a1",
-     "fr": "peinture/tableau"
+     "fr": "peinture/tableau",
+     "es": "la pintura, el cuadro"
     }
    ],
    "sur": null,
@@ -314,7 +331,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "spiegel",
@@ -335,7 +353,8 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "miroir"
+   "fr": "miroir",
+   "es": "el espejo"
   },
   {
    "id": "lampe",
@@ -351,7 +370,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A2",
      "theme": "home_a2",
-     "fr": "lampadaire"
+     "fr": "lampadaire",
+     "es": "la lámpara de pie"
     }
    ],
    "sur": null,
@@ -370,7 +390,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "regenschirm",
@@ -391,7 +412,9 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "parapluie"
+   "fr": "parapluie",
+   "es": "el paraguas",
+   "esp": "el paraguas"
   },
   {
    "id": "mann",
@@ -412,7 +435,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "hemd",
@@ -433,7 +457,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "krawatte",
@@ -454,7 +479,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "cravate"
+   "fr": "cravate",
+   "es": "la corbata"
   },
   {
    "id": "anzug",
@@ -475,7 +501,8 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "costume"
+   "fr": "costume",
+   "es": "el traje"
   },
   {
    "id": "bildschirm",
@@ -491,7 +518,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "work_a1",
-     "fr": "ordinateur"
+     "fr": "ordinateur",
+     "es": "la computadora",
+     "esp": "el ordenador"
     }
    ],
    "sur": null,
@@ -504,7 +533,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "es": "la pantalla"
   },
   {
    "id": "tastatur",
@@ -525,7 +555,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "clavier"
+   "fr": "clavier",
+   "es": "el teclado"
   },
   {
    "id": "maus",
@@ -546,7 +577,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "souris"
+   "fr": "souris",
+   "es": "el ratón"
   },
   {
    "id": "schluessel-2",
@@ -567,7 +599,9 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "clé"
+   "fr": "clé",
+   "es": "la llave",
+   "esp": "la llave"
   },
   {
    "id": "mark",
@@ -588,7 +622,8 @@ window.SCENE = {
      46
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "pullover",
@@ -610,6 +645,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -634,7 +671,8 @@ window.SCENE = {
      34.5
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "pass",
@@ -655,7 +693,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "passeport"
+   "fr": "passeport",
+   "es": "el pasaporte"
   },
   {
    "id": "hose",
@@ -670,7 +709,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "jean"
+     "fr": "jean",
+     "es": "los jeans",
+     "esp": "los vaqueros"
     }
    ],
    "sur": null,
@@ -684,6 +725,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -708,7 +750,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "rucksack",
@@ -729,7 +772,8 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "koffer",
@@ -750,7 +794,8 @@ window.SCENE = {
      19.5
     ]
    ],
-   "fr": "valise"
+   "fr": "valise",
+   "es": "la maleta"
   },
   {
    "id": "koffer-2",
@@ -771,7 +816,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "valise"
+   "fr": "valise",
+   "es": "la maleta"
   },
   {
    "id": "sofa",
@@ -792,7 +838,8 @@ window.SCENE = {
      17.5
     ]
    ],
-   "fr": "canapé"
+   "fr": "canapé",
+   "es": "el sofá"
   },
   {
    "id": "kissen",
@@ -813,7 +860,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "coussin"
+   "fr": "coussin",
+   "es": "el cojín"
   },
   {
    "id": "frau",
@@ -834,7 +882,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "brille",
@@ -854,7 +903,9 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "zeitung",
@@ -875,7 +926,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "journal"
+   "fr": "journal",
+   "es": "el periódico, el diario"
   },
   {
    "id": "mantel-2",
@@ -896,7 +948,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "blume",
@@ -917,7 +970,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "fleur"
+   "fr": "fleur",
+   "es": "la flor"
   },
   {
    "id": "glas",
@@ -938,7 +992,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "tasse",
@@ -954,7 +1009,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "café"
+     "fr": "café",
+     "es": "el café"
     }
    ],
    "sur": "couchtisch",
@@ -967,7 +1023,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "couchtisch",
@@ -983,7 +1040,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "table"
+     "fr": "table",
+     "es": "la mesa"
     }
    ],
    "sur": null,
@@ -996,7 +1054,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "table basse"
+   "fr": "table basse",
+   "es": "la mesa baja"
   },
   {
    "id": "klingel",
@@ -1017,7 +1076,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "sonnette"
+   "fr": "sonnette",
+   "es": "el timbre"
   },
   {
    "id": "telefon",
@@ -1038,7 +1098,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "le téléphone"
+   "fr": "le téléphone",
+   "es": "el teléfono"
   },
   {
    "id": "prospekt",
@@ -1059,7 +1120,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "prospectus, brochure"
+   "fr": "prospectus, brochure",
+   "es": "el folleto"
   },
   {
    "id": "papier",
@@ -1074,7 +1136,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A2",
      "theme": "city_a2",
-     "fr": "formulaire"
+     "fr": "formulaire",
+     "es": "el formulario"
     }
    ],
    "sur": "rezeption",
@@ -1087,7 +1150,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "le papier"
+   "fr": "le papier",
+   "es": "el papel"
   },
   {
    "id": "kugelschreiber",
@@ -1108,7 +1172,8 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "stylo à bille"
+   "fr": "stylo à bille",
+   "es": "el bolígrafo"
   },
   {
    "id": "pflanze-3",
@@ -1129,7 +1194,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "rezeption",
@@ -1150,6 +1216,7 @@ window.SCENE = {
     ]
    ],
    "fr": "réception (hôtel)",
+   "es": "la recepción",
    "gb": {
     "mot": "reception",
     "pluriel": "receptions"
@@ -1169,7 +1236,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "tapis"
+     "fr": "tapis",
+     "es": "la alfombra, la moqueta",
+     "esp": "la moqueta"
     }
    ],
    "sur": null,
@@ -1188,7 +1257,9 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1548,5 +1619,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark llega a su hotel, un viernes por la noche: el recepcionista, de traje, le pasa la llave de su habitación por encima del mostrador y Mark la toma, con el pasaporte en la otra mano; su maleta gris y su mochila están a su lado; sobre el mostrador, una pantalla, un teléfono, un timbre, folletos, una ficha y un bolígrafo, una planta; en la pared, un tablero de llaves, un reloj, el ascensor; al fondo, la escalera con alfombra roja, una ventana con cortina verde, un paraguas; en el rincón de estar, una señora mayor lee el periódico en el sofá verde, cerca de una mesa de centro con un café y flores, una lámpara de pie, un espejo, un cuadro de un velero y una maletita marrón.",
+    "consigne": "Mark pasa el fin de semana fuera de la ciudad: llega a su hotel. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

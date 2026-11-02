@@ -58,6 +58,26 @@ Langue → « ¿Qué español? » (visible quand l'interface est « Español »)
 
 Stockage du choix : `wortandoEn_varianteEs` (« latam » par défaut, « es »).
 
+### Palier 2 : l'A1 d'abord (consigne du chef, 2 nov. 2026)
+
+**Journal de reprise** (à tenir à jour, une ligne par étape) :
+
+| Étape | État |
+|---|---|
+| Outils du contenu : `anglais/outils/espagnol.py` (cartes) et `espagnol_textes.py` (fiches, tuiles, temps, exercices, Premiers pas, A1 voyage, repères, prononciation, conjugaison), appelés par `construire.py` ; `NIVEAUX = ["A1"]` dans `espagnol_textes.py` borne le palier | fait |
+| Extraction A1 : `python anglais/es/extraire.py a1-textes a1-exercices a1-corpus-<fichier>` → 1 662 textes, 387 questions, 1 073 cartes | fait |
+| Poseurs : `poser.py` (cartes, colonnes d'Espagne en option → `traduction_esp` / `exemple_esp`), `poser_textes.py` (textes, exercices) → mémoire `anglais/es/traductions/` | fait |
+| `index.html` : `champEs()` (la carte d'Espagne quand elle existe), tuiles et séries par temps par `texteDeFiche` ; page des scènes : `es` dans `LANGUE` / `REPLI` / `TEXTES`, `varianteEs` | fait, non publié |
+| Traduction des cartes A1 (agent Fable) → `lots/corpus-*` | en cours |
+| Traduction des textes A1 (agent Fable) → `lots/textes-*` | en cours |
+| Exercices A1 → `lots/exercices-*` ; textes des scènes (titres, descriptions, consignes) | à lancer |
+| `scenes.py` : le mot espagnol de chaque zone (carte du corpus, sinon `visuel/prototype/espanol/mots.json`) et `traductions.es` | à faire |
+| Pose, `espagnol.py`, contrôle à l'écran, parcours, version (numéro à demander au chef) | à faire |
+
+Pour reprendre : `python anglais/es/poser.py etat`, `poser_textes.py controle`, `anglais/outils/espagnol.py --etat`.
+Les textes longs sont en espagnol **neutre** (pas de table d'Espagne) ; seules les cartes portent
+une forme d'Espagne quand le mot diffère.
+
 **Reste au palier 2** (relevé par `francais_ailleurs.py`) : tout ce qui vient des **données**
 anglaises reste en français — traductions des cartes, prononciation, titres et contenu des
 fiches, tuiles, feuilles de conjugaison, Premiers pas, A1 voyage, repères — et la page des

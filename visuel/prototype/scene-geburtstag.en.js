@@ -21,7 +21,8 @@ window.SCENE = {
      52
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "fenster",
@@ -42,7 +43,8 @@ window.SCENE = {
      34
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "lampe",
@@ -63,7 +65,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "bild",
@@ -84,7 +87,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "regal",
@@ -105,7 +109,9 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "buch",
@@ -126,7 +132,8 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "luftballon",
@@ -147,7 +154,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "ballon de baudruche"
+   "fr": "ballon de baudruche",
+   "es": "el globo"
   },
   {
    "id": "gitarre",
@@ -168,7 +176,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "es": "la guitarra"
   },
   {
    "id": "mark",
@@ -189,7 +198,8 @@ window.SCENE = {
      33
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "anna",
@@ -210,7 +220,8 @@ window.SCENE = {
      35
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "geschenk",
@@ -231,7 +242,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "cadeau"
+   "fr": "cadeau",
+   "es": "el regalo"
   },
   {
    "id": "freund",
@@ -247,7 +259,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "ami"
+     "fr": "ami",
+     "es": "el amigo, la amiga"
     }
    ],
    "sur": null,
@@ -260,7 +273,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "handy",
@@ -282,6 +296,8 @@ window.SCENE = {
     ]
    ],
    "fr": "téléphone portable",
+   "es": "el celular",
+   "esp": "el móvil",
    "gb": {
     "mot": "mobile phone",
     "pluriel": "mobile phones"
@@ -306,7 +322,8 @@ window.SCENE = {
      33
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "sofa",
@@ -327,7 +344,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "canapé"
+   "fr": "canapé",
+   "es": "el sofá"
   },
   {
    "id": "flasche",
@@ -343,7 +361,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -362,7 +381,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "saft",
@@ -382,7 +402,9 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "es": "el jugo",
+   "esp": "el zumo"
   },
   {
    "id": "glas",
@@ -403,7 +425,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "glas-2",
@@ -424,7 +447,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "glas-3",
@@ -445,7 +469,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "kerze",
@@ -466,7 +491,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "bougie"
+   "fr": "bougie",
+   "es": "la vela"
   },
   {
    "id": "torte",
@@ -487,6 +513,7 @@ window.SCENE = {
     ]
    ],
    "fr": "gâteau (à étages)",
+   "es": "la tarta",
    "gb": {
     "mot": "gateau",
     "pluriel": "gateaus"
@@ -511,7 +538,8 @@ window.SCENE = {
      6.3
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "teller-2",
@@ -532,7 +560,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "pizza",
@@ -553,7 +582,8 @@ window.SCENE = {
      6.8
     ]
    ],
-   "fr": "pizza"
+   "fr": "pizza",
+   "es": "la pizza"
   },
   {
    "id": "erdbeere",
@@ -574,7 +604,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "fraise"
+   "fr": "fraise",
+   "es": "la fresa"
   },
   {
    "id": "geschenk-2",
@@ -595,7 +626,8 @@ window.SCENE = {
      8.8
     ]
    ],
-   "fr": "cadeau"
+   "fr": "cadeau",
+   "es": "el regalo"
   },
   {
    "id": "karte",
@@ -615,7 +647,8 @@ window.SCENE = {
      7.7
     ]
    ],
-   "fr": "carte, billet"
+   "fr": "carte, billet",
+   "es": "la tarjeta"
   },
   {
    "id": "tisch",
@@ -636,7 +669,8 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   }
  ],
  "grosPlans": [],
@@ -1000,5 +1034,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "El cumpleaños de Mark en la sala de su apartamento compartido: Anna le da un regalo, un amigo le toma una foto, una amiga aplaude; sobre la mesa, un pastel de chocolate con sus velas, una pizza, fresas, jugo de naranja, un gran regalo rojo y una tarjeta.",
+    "consigne": "Es el cumpleaños de Mark. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

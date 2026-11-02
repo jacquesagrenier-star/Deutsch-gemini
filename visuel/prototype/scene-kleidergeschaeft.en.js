@@ -21,7 +21,8 @@ window.SCENE = {
      60
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -42,7 +43,9 @@ window.SCENE = {
      38
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "fenster",
@@ -63,7 +66,8 @@ window.SCENE = {
      44
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "lampe",
@@ -84,7 +88,8 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "lampe-2",
@@ -105,7 +110,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "hut",
@@ -126,7 +132,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "chapeau"
+   "fr": "chapeau",
+   "es": "el sombrero"
   },
   {
    "id": "muetze",
@@ -147,6 +154,7 @@ window.SCENE = {
     ]
    ],
    "fr": "bonnet",
+   "es": "el gorro",
    "gb": {
     "mot": "woolly hat",
     "pluriel": "woolly hats"
@@ -171,7 +179,8 @@ window.SCENE = {
      4.6
     ]
    ],
-   "fr": "sac"
+   "fr": "sac",
+   "es": "la bolsa"
   },
   {
    "id": "tasche-brune",
@@ -192,7 +201,8 @@ window.SCENE = {
      4.4
     ]
    ],
-   "fr": "sac"
+   "fr": "sac",
+   "es": "la bolsa"
   },
   {
    "id": "regal",
@@ -237,7 +247,9 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "pullover-stapel",
@@ -271,6 +283,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -290,6 +304,7 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "pantalon",
+     "es": "el pantalón, los pantalones",
      "gb": {
       "mot": "trousers",
       "pluriel": null
@@ -306,7 +321,9 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "jean"
+   "fr": "jean",
+   "es": "los jeans",
+   "esp": "los vaqueros"
   },
   {
    "id": "kleid",
@@ -327,7 +344,8 @@ window.SCENE = {
      20.5
     ]
    ],
-   "fr": "robe"
+   "fr": "robe",
+   "es": "el vestido"
   },
   {
    "id": "rock",
@@ -348,7 +366,8 @@ window.SCENE = {
      18.5
     ]
    ],
-   "fr": "jupe"
+   "fr": "jupe",
+   "es": "la falda"
   },
   {
    "id": "hemd",
@@ -369,7 +388,8 @@ window.SCENE = {
      15.3
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "bluse",
@@ -390,7 +410,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "chemisier"
+   "fr": "chemisier",
+   "es": "la blusa"
   },
   {
    "id": "anzug",
@@ -411,7 +432,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "costume"
+   "fr": "costume",
+   "es": "el traje"
   },
   {
    "id": "anzug-hose",
@@ -432,6 +454,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -456,7 +479,8 @@ window.SCENE = {
      21.5
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "jacke",
@@ -477,7 +501,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "kabine",
@@ -493,7 +518,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "rideau"
+     "fr": "rideau",
+     "es": "la cortina"
     }
    ],
    "sur": null,
@@ -506,7 +532,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "cabine d'essayage"
+   "fr": "cabine d'essayage",
+   "es": "el probador, el vestidor"
   },
   {
    "id": "spiegel",
@@ -527,7 +554,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "miroir"
+   "fr": "miroir",
+   "es": "el espejo"
   },
   {
    "id": "hocker",
@@ -548,7 +576,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "tabouret"
+   "fr": "tabouret",
+   "es": "el taburete"
   },
   {
    "id": "guertel",
@@ -569,7 +598,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "ceinture"
+   "fr": "ceinture",
+   "es": "el cinturón"
   },
   {
    "id": "krawatte",
@@ -590,7 +620,8 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "cravate"
+   "fr": "cravate",
+   "es": "la corbata"
   },
   {
    "id": "pflanze",
@@ -611,7 +642,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "anna",
@@ -632,7 +664,8 @@ window.SCENE = {
      38
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "pullover",
@@ -654,6 +687,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -678,7 +713,8 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "sac"
+   "fr": "sac",
+   "es": "la bolsa"
   },
   {
    "id": "hose-anna",
@@ -694,6 +730,7 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "pantalon",
+     "es": "el pantalón, los pantalones",
      "gb": {
       "mot": "trousers",
       "pluriel": null
@@ -710,7 +747,9 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "jean"
+   "fr": "jean",
+   "es": "los jeans",
+   "esp": "los vaqueros"
   },
   {
    "id": "schuhe-anna",
@@ -737,7 +776,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "stiefel",
@@ -758,7 +798,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "botte"
+   "fr": "botte",
+   "es": "la bota"
   },
   {
    "id": "turnschuh",
@@ -780,6 +821,8 @@ window.SCENE = {
     ]
    ],
    "fr": "basket",
+   "es": "el tenis, la zapatilla deportiva",
+   "esp": "la zapatilla deportiva",
    "gb": {
     "mot": "trainer",
     "pluriel": "trainers"
@@ -804,7 +847,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "sandale"
+   "fr": "sandale",
+   "es": "la sandalia"
   },
   {
    "id": "schuhe-regal",
@@ -825,7 +869,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "verkaeuferin",
@@ -842,6 +887,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "shopping_a1",
      "fr": "vendeuse",
+     "es": "el vendedor, la vendedora",
+     "esp": "el dependiente, la dependienta",
      "gb": {
       "mot": "shop assistant",
       "pluriel": "shop assistants"
@@ -858,7 +905,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "schal",
@@ -879,7 +927,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "écharpe"
+   "fr": "écharpe",
+   "es": "la bufanda"
   },
   {
    "id": "korb",
@@ -900,7 +949,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "socken",
@@ -921,7 +971,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "chaussette"
+   "fr": "chaussette",
+   "es": "el calcetín, la media"
   },
   {
    "id": "handschuh",
@@ -942,7 +993,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "gant"
+   "fr": "gant",
+   "es": "el guante"
   },
   {
    "id": "monsieur",
@@ -958,7 +1010,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "shopping_a1",
-     "fr": "client"
+     "fr": "client",
+     "es": "el cliente, la clienta"
     }
    ],
    "sur": null,
@@ -971,7 +1024,8 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "schuh-main",
@@ -992,7 +1046,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "schuh-sol",
@@ -1013,7 +1068,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "bank",
@@ -1034,7 +1090,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "la banque"
+   "fr": "la banque",
+   "es": "el banco"
   },
   {
    "id": "theke",
@@ -1055,7 +1112,8 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "comptoir"
+   "fr": "comptoir",
+   "es": "la barra"
   }
  ],
  "grosPlans": [],
@@ -1425,5 +1483,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en una tienda de ropa en Boston: sostiene un suéter amarillo frente a ella; a su alrededor, vestidos, camisas, abrigos, zapatos, un probador, y la vendedora que dobla una bufanda en el mostrador.",
+    "consigne": "Anna va de compras. Toca una prenda o un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

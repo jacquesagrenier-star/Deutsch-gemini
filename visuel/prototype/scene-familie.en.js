@@ -21,7 +21,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "fenster",
@@ -37,7 +38,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "rideau"
+     "fr": "rideau",
+     "es": "la cortina"
     }
    ],
    "sur": null,
@@ -50,7 +52,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "uhr",
@@ -71,7 +74,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "teller",
@@ -92,7 +96,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "schrank",
@@ -114,6 +119,8 @@ window.SCENE = {
     ]
    ],
    "fr": "armoire",
+   "es": "el clóset, el armario",
+   "esp": "el armario",
    "gb": {
     "mot": "wardrobe",
     "pluriel": "wardrobes"
@@ -138,7 +145,8 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "chat"
+   "fr": "chat",
+   "es": "el gato"
   },
   {
    "id": "stuhl",
@@ -159,7 +167,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "opa",
@@ -175,7 +184,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "family_a1",
-     "fr": "grand-père"
+     "fr": "grand-père",
+     "es": "el abuelo"
     }
    ],
    "sur": null,
@@ -188,7 +198,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "papi, grand-père"
+   "fr": "papi, grand-père",
+   "es": "el abuelo"
   },
   {
    "id": "oma",
@@ -204,7 +215,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "family_a1",
-     "fr": "grand-mère"
+     "fr": "grand-mère",
+     "es": "la abuela",
+     "esp": "la abuela"
     }
    ],
    "sur": null,
@@ -217,7 +230,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "mamie, grand-mère"
+   "fr": "mamie, grand-mère",
+   "es": "la abuela"
   },
   {
    "id": "vater",
@@ -238,7 +252,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "père"
+   "fr": "père",
+   "es": "el padre"
   },
   {
    "id": "mutter",
@@ -259,7 +274,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "mère"
+   "fr": "mère",
+   "es": "la madre"
   },
   {
    "id": "baby",
@@ -280,7 +296,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "bébé"
+   "fr": "bébé",
+   "es": "el bebé"
   },
   {
    "id": "anna",
@@ -296,7 +313,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "family_a1",
-     "fr": "sœur"
+     "fr": "sœur",
+     "es": "la hermana"
     }
    ],
    "sur": null,
@@ -309,7 +327,8 @@ window.SCENE = {
      27
     ]
    ],
-   "fr": "fille"
+   "fr": "fille",
+   "es": "la hija"
   },
   {
    "id": "bruder",
@@ -342,7 +361,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "frère"
+   "fr": "frère",
+   "es": "el hermano"
   },
   {
    "id": "blume",
@@ -363,7 +383,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "fleur"
+   "fr": "fleur",
+   "es": "la flor"
   },
   {
    "id": "kartoffel",
@@ -390,7 +411,9 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "pomme de terre"
+   "fr": "pomme de terre",
+   "es": "la papa",
+   "esp": "la patata"
   },
   {
    "id": "suppe",
@@ -417,7 +440,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "soupe"
+   "fr": "soupe",
+   "es": "la sopa"
   },
   {
    "id": "salat",
@@ -436,7 +460,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "salade"
+   "fr": "salade",
+   "es": "la lechuga"
   },
   {
    "id": "wasser",
@@ -462,7 +487,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "eau"
+   "fr": "eau",
+   "es": "el agua"
   },
   {
    "id": "brot",
@@ -482,7 +508,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "pain"
+   "fr": "pain",
+   "es": "el pan"
   },
   {
    "id": "korb",
@@ -503,7 +530,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "saft",
@@ -518,7 +546,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "bouteille"
+     "fr": "bouteille",
+     "es": "la botella"
     }
    ],
    "sur": null,
@@ -531,7 +560,9 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "es": "el jugo",
+   "esp": "el zumo"
   },
   {
    "id": "glas",
@@ -552,7 +583,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "teller-2",
@@ -573,7 +605,8 @@ window.SCENE = {
      17.5
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "gabel",
@@ -594,7 +627,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "fourchette"
+   "fr": "fourchette",
+   "es": "el tenedor"
   },
   {
    "id": "messer",
@@ -615,7 +649,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "couteau"
+   "fr": "couteau",
+   "es": "el cuchillo"
   },
   {
    "id": "loeffel",
@@ -636,7 +671,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "cuillère"
+   "fr": "cuillère",
+   "es": "la cuchara"
   },
   {
    "id": "serviette",
@@ -657,7 +693,8 @@ window.SCENE = {
      18.5
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la servilleta"
   },
   {
    "id": "tisch",
@@ -678,7 +715,8 @@ window.SCENE = {
      48
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "wand",
@@ -699,7 +737,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "stuhl-2",
@@ -720,7 +759,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   }
  ],
  "grosPlans": [],
@@ -1080,5 +1120,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "La comida familiar del domingo: Anna se ríe con la cuchara en la mano; su padre sirve las papas, su hermanito sirve agua, su madre sostiene al bebé, la abuela escucha y el abuelo cuenta una historia con el dedo levantado; sobre la mesa, una sopera, una ensalada, pan, jugo de naranja y tulipanes amarillos; un gato duerme en una silla.",
+    "consigne": "Toda la familia de Anna está en la mesa. Toca un objeto o a una persona."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

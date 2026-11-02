@@ -27,7 +27,8 @@ window.SCENE = {
      35
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "treppe",
@@ -47,7 +48,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "escalier"
+   "fr": "escalier",
+   "es": "la escalera"
   },
   {
    "id": "uhr",
@@ -68,7 +70,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "regal",
@@ -101,7 +104,9 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "pflanze",
@@ -122,7 +127,8 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "leiter",
@@ -143,7 +149,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "échelle"
+   "fr": "échelle",
+   "es": "la escalera"
   },
   {
    "id": "lampe",
@@ -164,7 +171,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "lampe-2",
@@ -185,7 +193,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "student",
@@ -206,7 +215,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "étudiant"
+   "fr": "étudiant",
+   "es": "el estudiante, la estudiante; el alumno"
   },
   {
    "id": "anna",
@@ -227,7 +237,8 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "étudiante"
+   "fr": "étudiante",
+   "es": "el estudiante, la estudiante; el alumno"
   },
   {
    "id": "buch",
@@ -248,7 +259,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "buch-2",
@@ -269,7 +281,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "buch-3",
@@ -290,7 +303,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "laptop",
@@ -311,7 +325,9 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "ordinateur portable"
+   "fr": "ordinateur portable",
+   "es": "la computadora portátil, la laptop",
+   "esp": "el portátil"
   },
   {
    "id": "brille",
@@ -331,7 +347,9 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "flasche",
@@ -347,7 +365,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -360,7 +379,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "heft",
@@ -381,7 +401,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "cahier"
+   "fr": "cahier",
+   "es": "el cuaderno"
   },
   {
    "id": "bleistift",
@@ -402,7 +423,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "crayon à papier"
+   "fr": "crayon à papier",
+   "es": "el lápiz"
   },
   {
    "id": "zettel",
@@ -423,7 +445,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "bout de papier, mot"
+   "fr": "bout de papier, mot",
+   "es": "la nota"
   },
   {
    "id": "tisch",
@@ -444,7 +467,8 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "rucksack",
@@ -465,7 +489,8 @@ window.SCENE = {
      26
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "stuhl",
@@ -486,7 +511,8 @@ window.SCENE = {
      24
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "globus",
@@ -507,7 +533,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "globe"
+   "fr": "globe",
+   "es": "el globo terráqueo"
   },
   {
    "id": "kopfhoerer",
@@ -527,7 +554,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "écouteurs"
+   "fr": "écouteurs",
+   "es": "los auriculares"
   },
   {
    "id": "heizung",
@@ -547,7 +575,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "chauffage"
+   "fr": "chauffage",
+   "es": "la calefacción"
   },
   {
    "id": "stuhl-2",
@@ -574,7 +603,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "wand",
@@ -595,7 +625,8 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   }
  ],
  "grosPlans": [],
@@ -952,5 +983,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna estudia en la sala de lectura de una biblioteca universitaria, un día de invierno: pasa la página de un libro grueso, con la barbilla apoyada en la mano; sobre la mesa, una pila de libros, una computadora portátil, un cuaderno y un lápiz, una botella de agua y unos lentes; al fondo, un estudiante lee, bajo un reloj y una escalera.",
+    "consigne": "Anna estudia en la biblioteca de la universidad. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

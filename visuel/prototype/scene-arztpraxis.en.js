@@ -21,7 +21,8 @@ window.SCENE = {
      6.8
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "poster",
@@ -42,7 +43,8 @@ window.SCENE = {
      16.4
     ]
    ],
-   "fr": "poster"
+   "fr": "poster",
+   "es": "el póster"
   },
   {
    "id": "fenster",
@@ -63,7 +65,8 @@ window.SCENE = {
      37
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "pflanze",
@@ -84,7 +87,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "tuer",
@@ -105,7 +109,8 @@ window.SCENE = {
      57
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "jacke",
@@ -126,7 +131,8 @@ window.SCENE = {
      18.8
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "mark",
@@ -142,7 +148,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -167,7 +174,8 @@ window.SCENE = {
      21.5
     ]
    ],
-   "fr": "un patient (un malade)"
+   "fr": "un patient (un malade)",
+   "es": "el paciente"
   },
   {
    "id": "tshirt",
@@ -188,7 +196,8 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "es": "la camiseta"
   },
   {
    "id": "hose",
@@ -209,6 +218,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -234,6 +244,8 @@ window.SCENE = {
     ]
    ],
    "fr": "sparadrap",
+   "es": "la curita",
+   "esp": "la tirita",
    "gb": {
     "mot": "plaster",
     "pluriel": "plasters"
@@ -264,7 +276,9 @@ window.SCENE = {
      4.0
     ]
    ],
-   "fr": "genou"
+   "fr": "genou",
+   "es": "la rodilla",
+   "esp": "la rodilla"
   },
   {
    "id": "schulter",
@@ -291,7 +305,8 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "épaule"
+   "fr": "épaule",
+   "es": "el hombro"
   },
   {
    "id": "ellbogen",
@@ -318,7 +333,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "coude"
+   "fr": "coude",
+   "es": "el codo"
   },
   {
    "id": "brust",
@@ -339,7 +355,8 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "la poitrine"
+   "fr": "la poitrine",
+   "es": "el pecho"
   },
   {
    "id": "bauch",
@@ -360,7 +377,8 @@ window.SCENE = {
      5.6
     ]
    ],
-   "fr": "ventre"
+   "fr": "ventre",
+   "es": "la barriga"
   },
   {
    "id": "arm-l",
@@ -387,7 +405,8 @@ window.SCENE = {
      8.6
     ]
    ],
-   "fr": "bras"
+   "fr": "bras",
+   "es": "el brazo"
   },
   {
    "id": "arm-r",
@@ -414,7 +433,8 @@ window.SCENE = {
      7.2
     ]
    ],
-   "fr": "bras"
+   "fr": "bras",
+   "es": "el brazo"
   },
   {
    "id": "hand-l",
@@ -435,7 +455,8 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "hand-r",
@@ -456,7 +477,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "bein-l",
@@ -477,7 +499,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "jambe"
+   "fr": "jambe",
+   "es": "la pierna"
   },
   {
    "id": "bein-r",
@@ -498,7 +521,8 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "jambe"
+   "fr": "jambe",
+   "es": "la pierna"
   },
   {
    "id": "fuss-l",
@@ -519,7 +543,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "pied"
+   "fr": "pied",
+   "es": "el pie"
   },
   {
    "id": "fuss-r",
@@ -540,7 +565,8 @@ window.SCENE = {
      6.6
     ]
    ],
-   "fr": "pied"
+   "fr": "pied",
+   "es": "el pie"
   },
   {
    "id": "aerztin",
@@ -556,7 +582,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "es": "la mujer"
     }
    ],
    "sur": null,
@@ -587,7 +614,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "médecin (fém.)"
+   "fr": "médecin (fém.)",
+   "es": "el médico, la médica"
   },
   {
    "id": "hose-aerztin",
@@ -608,6 +636,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -632,7 +661,8 @@ window.SCENE = {
      7.2
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "verband",
@@ -653,7 +683,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "pansement ; fédération"
+   "fr": "pansement ; fédération",
+   "es": "el vendaje"
   },
   {
    "id": "stethoskop",
@@ -686,7 +717,8 @@ window.SCENE = {
      4.0
     ]
    ],
-   "fr": "stéthoscope"
+   "fr": "stéthoscope",
+   "es": "el estetoscopio"
   },
   {
    "id": "hand-aerztin-haut",
@@ -707,7 +739,8 @@ window.SCENE = {
      1.9
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "hand-aerztin-bas",
@@ -728,7 +761,8 @@ window.SCENE = {
      2.2
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "hocker",
@@ -749,7 +783,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "tabouret"
+   "fr": "tabouret",
+   "es": "el taburete"
   },
   {
    "id": "spritze",
@@ -770,7 +805,8 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "piqûre, seringue"
+   "fr": "piqûre, seringue",
+   "es": "la jeringa"
   },
   {
    "id": "medikament-wagen",
@@ -791,7 +827,8 @@ window.SCENE = {
      3.4
     ]
    ],
-   "fr": "médicament"
+   "fr": "médicament",
+   "es": "el medicamento, la medicina"
   },
   {
    "id": "schachtel",
@@ -812,7 +849,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "la boîte"
+   "fr": "la boîte",
+   "es": "la caja"
   },
   {
    "id": "handschuh",
@@ -833,7 +871,8 @@ window.SCENE = {
      2.1
     ]
    ],
-   "fr": "gant"
+   "fr": "gant",
+   "es": "el guante"
   },
   {
    "id": "schreibtisch",
@@ -854,7 +893,8 @@ window.SCENE = {
      37.5
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "es": "el escritorio"
   },
   {
    "id": "bildschirm",
@@ -870,7 +910,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "work_a1",
-     "fr": "ordinateur"
+     "fr": "ordinateur",
+     "es": "la computadora",
+     "esp": "el ordenador"
     }
    ],
    "sur": "schreibtisch",
@@ -883,7 +925,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "es": "la pantalla"
   },
   {
    "id": "taschentuch",
@@ -903,7 +946,8 @@ window.SCENE = {
      6.3
     ]
    ],
-   "fr": "mouchoir"
+   "fr": "mouchoir",
+   "es": "el pañuelo"
   },
   {
    "id": "glas",
@@ -919,7 +963,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "schreibtisch",
@@ -932,7 +977,8 @@ window.SCENE = {
      4.7
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "tastatur",
@@ -953,7 +999,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "clavier"
+   "fr": "clavier",
+   "es": "el teclado"
   },
   {
    "id": "maus",
@@ -974,7 +1021,8 @@ window.SCENE = {
      1.5
     ]
    ],
-   "fr": "souris"
+   "fr": "souris",
+   "es": "el ratón"
   },
   {
    "id": "medikament",
@@ -995,7 +1043,8 @@ window.SCENE = {
      3.4
     ]
    ],
-   "fr": "médicament"
+   "fr": "médicament",
+   "es": "el medicamento, la medicina"
   },
   {
    "id": "tablette",
@@ -1016,7 +1065,8 @@ window.SCENE = {
      1.7
     ]
    ],
-   "fr": "comprimé"
+   "fr": "comprimé",
+   "es": "la pastilla"
   },
   {
    "id": "stift",
@@ -1037,7 +1087,9 @@ window.SCENE = {
      1.5
     ]
    ],
-   "fr": "stylo"
+   "fr": "stylo",
+   "es": "el bolígrafo, la pluma",
+   "esp": "el bolígrafo, el boli"
   },
   {
    "id": "karte",
@@ -1051,7 +1103,8 @@ window.SCENE = {
      "mot": "card",
      "genre": "",
      "niveau": "A2",
-     "fr": "carte, billet"
+     "fr": "carte, billet",
+     "es": "la tarjeta"
     }
    ],
    "sur": "schreibtisch",
@@ -1064,7 +1117,8 @@ window.SCENE = {
      1.3
     ]
    ],
-   "fr": "carte d'assurance maladie"
+   "fr": "carte d'assurance maladie",
+   "es": "la tarjeta sanitaria"
   },
   {
    "id": "muelleimer",
@@ -1086,6 +1140,7 @@ window.SCENE = {
     ]
    ],
    "fr": "poubelle",
+   "es": "la papelera",
    "gb": {
     "mot": "bin",
     "pluriel": "bins"
@@ -1105,7 +1160,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A2",
      "theme": "sports_a2",
-     "fr": "sac de sport"
+     "fr": "sac de sport",
+     "es": "la bolsa de deporte"
     }
    ],
    "sur": null,
@@ -1118,7 +1174,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "sac"
+   "fr": "sac",
+   "es": "la bolsa"
   },
   {
    "id": "ball",
@@ -1134,6 +1191,7 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "fr": "football",
+     "es": "el balón",
      "gb": {
       "mot": "football",
       "pluriel": "footballs"
@@ -1150,7 +1208,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "ballon"
+   "fr": "ballon",
+   "es": "la pelota, el balón"
   },
   {
    "id": "schuh",
@@ -1171,7 +1230,8 @@ window.SCENE = {
      8.3
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "socke",
@@ -1192,7 +1252,8 @@ window.SCENE = {
      9.2
     ]
    ],
-   "fr": "chaussette"
+   "fr": "chaussette",
+   "es": "el calcetín, la media"
   },
   {
    "id": "wand",
@@ -1213,7 +1274,8 @@ window.SCENE = {
      55
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -1234,7 +1296,9 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "liege",
@@ -1256,6 +1320,7 @@ window.SCENE = {
     ]
    ],
    "fr": "table d'examen",
+   "es": "la camilla",
    "gb": {
     "mot": "examination couch",
     "pluriel": "examination couches"
@@ -1281,7 +1346,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "côte"
+   "fr": "côte",
+   "es": "la costilla"
   },
   {
    "id": "rippe-dos",
@@ -1303,7 +1369,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "côte"
+   "fr": "côte",
+   "es": "la costilla"
   },
   {
    "id": "wirbelsaeule",
@@ -1325,7 +1392,8 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "colonne vertébrale"
+   "fr": "colonne vertébrale",
+   "es": "la columna vertebral"
   },
   {
    "id": "lunge",
@@ -1347,7 +1415,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "poumon"
+   "fr": "poumon",
+   "es": "el pulmón"
   },
   {
    "id": "knochen",
@@ -1369,7 +1438,8 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "os"
+   "fr": "os",
+   "es": "el hueso"
   }
  ],
  "grosPlans": [
@@ -1796,5 +1866,15 @@ window.SCENE = {
   }
  },
  "corps": "mark",
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark en el consultorio médico, sentado descalzo en la camilla, con un apósito en la rodilla; la médica, sentada a su lado, sostiene una venda.",
+    "consigne": "Toca un objeto, a Mark o a la médica. Toca el cartel para verlo de cerca."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

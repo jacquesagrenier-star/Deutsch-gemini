@@ -21,7 +21,8 @@ window.SCENE = {
      27
     ]
    ],
-   "fr": "ciel"
+   "fr": "ciel",
+   "es": "el cielo"
   },
   {
    "id": "mond",
@@ -42,7 +43,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "la lune"
+   "fr": "la lune",
+   "es": "la luna"
   },
   {
    "id": "baum",
@@ -63,7 +65,8 @@ window.SCENE = {
      35
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "wald",
@@ -84,7 +87,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "forêt"
+   "fr": "forêt",
+   "es": "el bosque"
   },
   {
    "id": "see",
@@ -105,7 +109,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "lac"
+   "fr": "lac",
+   "es": "el lago"
   },
   {
    "id": "boot",
@@ -126,7 +131,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "bateau, barque"
+   "fr": "bateau, barque",
+   "es": "el barco, el bote"
   },
   {
    "id": "zelt",
@@ -147,7 +153,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "tente"
+   "fr": "tente",
+   "es": "la tienda"
   },
   {
    "id": "pilz",
@@ -168,7 +175,9 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "champignon"
+   "fr": "champignon",
+   "es": "el hongo, el champiñón",
+   "esp": "la seta, el champiñón"
   },
   {
    "id": "rucksack",
@@ -189,7 +198,8 @@ window.SCENE = {
      12.5
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "gitarre",
@@ -210,7 +220,8 @@ window.SCENE = {
      12.5
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "es": "la guitarra"
   },
   {
    "id": "anna",
@@ -231,7 +242,8 @@ window.SCENE = {
      36.5
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "schuh",
@@ -252,7 +264,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "mann",
@@ -273,7 +286,8 @@ window.SCENE = {
      34
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "topf",
@@ -294,7 +308,9 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "casserole"
+   "fr": "casserole",
+   "es": "la olla",
+   "esp": "la olla"
   },
   {
    "id": "feuer",
@@ -315,7 +331,8 @@ window.SCENE = {
      17.5
     ]
    ],
-   "fr": "feu"
+   "fr": "feu",
+   "es": "el fuego"
   },
   {
    "id": "stein",
@@ -342,7 +359,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "pierre"
+   "fr": "pierre",
+   "es": "la piedra"
   },
   {
    "id": "holz",
@@ -362,7 +380,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "le bois"
+   "fr": "le bois",
+   "es": "la madera"
   },
   {
    "id": "holz-2",
@@ -382,7 +401,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "le bois"
+   "fr": "le bois",
+   "es": "la madera"
   },
   {
    "id": "lampe",
@@ -403,7 +423,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "tasse",
@@ -424,7 +445,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "gras",
@@ -450,7 +472,9 @@ window.SCENE = {
      44
     ]
    ],
-   "fr": "herbe"
+   "fr": "herbe",
+   "es": "el pasto, la hierba",
+   "esp": "la hierba, el césped"
   },
   {
    "id": "isomatte",
@@ -472,6 +496,7 @@ window.SCENE = {
     ]
    ],
    "fr": "tapis de sol",
+   "es": "la esterilla",
    "gb": {
     "mot": "sleeping mat",
     "pluriel": "sleeping mats"
@@ -832,5 +857,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Una noche de verano a la orilla de un lago, en el bosque: Anna toca la guitarra, sentada en un tronco junto a la fogata; un amigo asa una salchicha; una olla sobre el fuego, leña, una linterna, una taza roja; detrás de ellos, la tienda de campaña, una mochila, un bote, el lago, los pinos y la luna.",
+    "consigne": "Anna acampa a la orilla de un lago. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

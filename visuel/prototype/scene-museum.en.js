@@ -21,7 +21,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "decke",
@@ -42,7 +43,9 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "lampe-2",
@@ -81,7 +84,8 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "gemaelde",
@@ -97,7 +101,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "tableau"
+     "fr": "tableau",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -110,7 +115,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "peinture/tableau"
+   "fr": "peinture/tableau",
+   "es": "la pintura, el cuadro"
   },
   {
    "id": "gemaelde-2",
@@ -126,7 +132,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "tableau"
+     "fr": "tableau",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -139,7 +146,8 @@ window.SCENE = {
      15.3
     ]
    ],
-   "fr": "peinture/tableau"
+   "fr": "peinture/tableau",
+   "es": "la pintura, el cuadro"
   },
   {
    "id": "gemaelde-3",
@@ -155,7 +163,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "tableau"
+     "fr": "tableau",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -168,7 +177,8 @@ window.SCENE = {
      11.9
     ]
    ],
-   "fr": "peinture/tableau"
+   "fr": "peinture/tableau",
+   "es": "la pintura, el cuadro"
   },
   {
    "id": "gemaelde-4",
@@ -184,7 +194,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "tableau"
+     "fr": "tableau",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -197,7 +208,8 @@ window.SCENE = {
      8.3
     ]
    ],
-   "fr": "peinture/tableau"
+   "fr": "peinture/tableau",
+   "es": "la pintura, el cuadro"
   },
   {
    "id": "gemaelde-5",
@@ -213,7 +225,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "tableau"
+     "fr": "tableau",
+     "es": "el cuadro, la imagen"
     }
    ],
    "sur": null,
@@ -226,7 +239,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "peinture/tableau"
+   "fr": "peinture/tableau",
+   "es": "la pintura, el cuadro"
   },
   {
    "id": "gemaelde-6",
@@ -242,14 +256,16 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "tableau"
+     "fr": "tableau",
+     "es": "el cuadro, la imagen"
     },
     {
      "mot": "horse",
      "genre": "",
      "niveau": "A1",
      "theme": "animals_a1",
-     "fr": "cheval"
+     "fr": "cheval",
+     "es": "el caballo"
     }
    ],
    "sur": null,
@@ -262,7 +278,8 @@ window.SCENE = {
      7.2
     ]
    ],
-   "fr": "peinture/tableau"
+   "fr": "peinture/tableau",
+   "es": "la pintura, el cuadro"
   },
   {
    "id": "vorhang",
@@ -289,7 +306,8 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "rideau"
+   "fr": "rideau",
+   "es": "la cortina"
   },
   {
    "id": "fenster",
@@ -310,7 +328,8 @@ window.SCENE = {
      34
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "tuer",
@@ -331,7 +350,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "wand",
@@ -352,7 +372,8 @@ window.SCENE = {
      47
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "skulptur",
@@ -368,7 +389,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "animals_a1",
-     "fr": "chien"
+     "fr": "chien",
+     "es": "el perro"
     }
    ],
    "sur": null,
@@ -381,7 +403,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "sculpture"
+   "fr": "sculpture",
+   "es": "la escultura"
   },
   {
    "id": "mann",
@@ -402,7 +425,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "krawatte",
@@ -423,7 +447,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "cravate"
+   "fr": "cravate",
+   "es": "la corbata"
   },
   {
    "id": "jacke",
@@ -444,7 +469,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "hose-2",
@@ -465,6 +491,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -489,7 +516,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "student",
@@ -505,7 +533,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -518,7 +547,8 @@ window.SCENE = {
      26
     ]
    ],
-   "fr": "étudiant"
+   "fr": "étudiant",
+   "es": "el estudiante, la estudiante; el alumno"
   },
   {
    "id": "kopfhoerer",
@@ -538,7 +568,8 @@ window.SCENE = {
      3.3
     ]
    ],
-   "fr": "écouteurs"
+   "fr": "écouteurs",
+   "es": "los auriculares"
   },
   {
    "id": "jacke-2",
@@ -559,7 +590,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "hose-3",
@@ -580,6 +612,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -604,7 +637,8 @@ window.SCENE = {
      7.8
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "heizkoerper",
@@ -625,7 +659,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "radiateur"
+   "fr": "radiateur",
+   "es": "el radiador"
   },
   {
    "id": "pflanze",
@@ -646,7 +681,8 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "anna",
@@ -667,7 +703,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "pullover",
@@ -689,6 +726,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -713,7 +752,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "jupe"
+   "fr": "jupe",
+   "es": "la falda"
   },
   {
    "id": "bleistift",
@@ -734,7 +774,8 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "crayon à papier"
+   "fr": "crayon à papier",
+   "es": "el lápiz"
   },
   {
    "id": "heft",
@@ -755,7 +796,8 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "cahier"
+   "fr": "cahier",
+   "es": "el cuaderno"
   },
   {
    "id": "stiefel",
@@ -782,7 +824,8 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "botte"
+   "fr": "botte",
+   "es": "la bota"
   },
   {
    "id": "mantel",
@@ -803,7 +846,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "bank",
@@ -824,7 +868,8 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "la banque"
+   "fr": "la banque",
+   "es": "el banco"
   },
   {
    "id": "rucksack",
@@ -845,7 +890,8 @@ window.SCENE = {
      12.5
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "boden",
@@ -866,7 +912,9 @@ window.SCENE = {
      38
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1228,5 +1276,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en el museo, un domingo de lluvia en Boston: sentada en un largo banco de terciopelo verde, con el cuaderno abierto sobre las rodillas y un lápiz en la mano, levanta la vista hacia la escultura de mármol blanco de un perro sentado en su pedestal; su abrigo gris doblado está a su lado, su mochila negra en el suelo; en las paredes verde oscuro, cuadros con pesados marcos dorados, cada uno bajo una pequeña lámpara: montañas nevadas sobre un lago, el retrato de una señora mayor vestida de negro, un bodegón de manzanas y flores amarillas, un gran velero en la tormenta y un caballo; un viejo guardia de uniforme está sentado en una silla cerca de la puerta abierta hacia la sala siguiente; a la derecha, un joven con audífonos y mochila mira el caballo, frente a la alta ventana con cortinas rojas, un radiador y una gran planta en maceta; en el techo, un candelabro; en el suelo, un parqué en espiga.",
+    "consigne": "Anna dibuja una escultura en el museo. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

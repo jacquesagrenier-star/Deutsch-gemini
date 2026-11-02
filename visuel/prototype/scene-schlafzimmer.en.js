@@ -21,7 +21,8 @@ window.SCENE = {
      45
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -42,7 +43,9 @@ window.SCENE = {
      37
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "fenster",
@@ -63,7 +66,8 @@ window.SCENE = {
      31
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "vorhang",
@@ -84,7 +88,8 @@ window.SCENE = {
      34
     ]
    ],
-   "fr": "rideau"
+   "fr": "rideau",
+   "es": "la cortina"
   },
   {
    "id": "bild",
@@ -100,7 +105,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A2",
      "theme": "home_a2_2",
-     "fr": "poster"
+     "fr": "poster",
+     "es": "el póster"
     }
    ],
    "sur": null,
@@ -113,7 +119,8 @@ window.SCENE = {
      20.5
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "schrank",
@@ -135,6 +142,8 @@ window.SCENE = {
     ]
    ],
    "fr": "armoire",
+   "es": "el clóset, el armario",
+   "esp": "el armario",
    "gb": {
     "mot": "wardrobe",
     "pluriel": "wardrobes"
@@ -159,7 +168,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "wecker",
@@ -180,7 +190,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "réveil"
+   "fr": "réveil",
+   "es": "el despertador"
   },
   {
    "id": "laptop",
@@ -201,7 +212,9 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "ordinateur portable"
+   "fr": "ordinateur portable",
+   "es": "la computadora portátil, la laptop",
+   "esp": "el portátil"
   },
   {
    "id": "schreibtisch",
@@ -222,7 +235,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "bureau (meuble)"
+   "fr": "bureau (meuble)",
+   "es": "el escritorio"
   },
   {
    "id": "kissen",
@@ -243,7 +257,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "coussin"
+   "fr": "coussin",
+   "es": "el cojín"
   },
   {
    "id": "koffer",
@@ -264,7 +279,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "valise"
+   "fr": "valise",
+   "es": "la maleta"
   },
   {
    "id": "hut",
@@ -285,7 +301,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "chapeau"
+   "fr": "chapeau",
+   "es": "el sombrero"
   },
   {
    "id": "kamera",
@@ -306,7 +323,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "caméra"
+   "fr": "caméra",
+   "es": "la cámara"
   },
   {
    "id": "handy",
@@ -328,6 +346,8 @@ window.SCENE = {
     ]
    ],
    "fr": "téléphone portable",
+   "es": "el celular",
+   "esp": "el móvil",
    "gb": {
     "mot": "mobile phone",
     "pluriel": "mobile phones"
@@ -352,7 +372,8 @@ window.SCENE = {
      2.3
     ]
    ],
-   "fr": "passeport"
+   "fr": "passeport",
+   "es": "el pasaporte"
   },
   {
    "id": "portemonnaie",
@@ -373,7 +394,8 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "porte-monnaie"
+   "fr": "porte-monnaie",
+   "es": "la cartera"
   },
   {
    "id": "landkarte",
@@ -394,7 +416,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "carte"
+   "fr": "carte",
+   "es": "el mapa, el plano"
   },
   {
    "id": "ladegeraet",
@@ -415,7 +438,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "chargeur"
+   "fr": "chargeur",
+   "es": "el cargador"
   },
   {
    "id": "bett",
@@ -436,7 +460,8 @@ window.SCENE = {
      46
     ]
    ],
-   "fr": "lit"
+   "fr": "lit",
+   "es": "la cama"
   },
   {
    "id": "anna",
@@ -457,7 +482,8 @@ window.SCENE = {
      49
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "pullover",
@@ -479,6 +505,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -503,6 +531,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -527,7 +556,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "chaussette"
+   "fr": "chaussette",
+   "es": "el calcetín, la media"
   },
   {
    "id": "teppich",
@@ -548,7 +578,9 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "tapis"
+   "fr": "tapis",
+   "es": "la alfombra, la moqueta",
+   "esp": "la moqueta"
   },
   {
    "id": "tuer",
@@ -575,7 +607,8 @@ window.SCENE = {
      55
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "nachttisch",
@@ -597,6 +630,7 @@ window.SCENE = {
     ]
    ],
    "fr": "table de chevet",
+   "es": "la mesilla",
    "gb": {
     "mot": "bedside table",
     "pluriel": "bedside tables"
@@ -966,5 +1000,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en su habitación, una mañana: sostiene un suéter verde y mira su maleta abierta sobre la cama; sobre la cama, un sombrero de paja, una cámara, un teléfono, un pasaporte, una cartera, un mapa y un cargador.",
+    "consigne": "Anna hace la maleta para irse de viaje. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

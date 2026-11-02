@@ -21,7 +21,8 @@ window.SCENE = {
      20.3
     ]
    ],
-   "fr": "ciel"
+   "fr": "ciel",
+   "es": "el cielo"
   },
   {
    "id": "wolke",
@@ -48,7 +49,8 @@ window.SCENE = {
      2.4
     ]
    ],
-   "fr": "nuage"
+   "fr": "nuage",
+   "es": "la nube"
   },
   {
    "id": "vogel",
@@ -69,7 +71,8 @@ window.SCENE = {
      1.7
     ]
    ],
-   "fr": "oiseau"
+   "fr": "oiseau",
+   "es": "el pájaro"
   },
   {
    "id": "wald",
@@ -90,7 +93,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "forêt"
+   "fr": "forêt",
+   "es": "el bosque"
   },
   {
    "id": "baum-2",
@@ -111,7 +115,8 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "feld",
@@ -132,7 +137,8 @@ window.SCENE = {
      4.1
     ]
    ],
-   "fr": "champ"
+   "fr": "champ",
+   "es": "el campo"
   },
   {
    "id": "wiese",
@@ -153,7 +159,8 @@ window.SCENE = {
      6.8
     ]
    ],
-   "fr": "prairie"
+   "fr": "prairie",
+   "es": "el prado, la pradera"
   },
   {
    "id": "schaf",
@@ -192,7 +199,8 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "mouton"
+   "fr": "mouton",
+   "es": "la oveja"
   },
   {
    "id": "baum",
@@ -213,7 +221,8 @@ window.SCENE = {
      37
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "dach",
@@ -234,7 +243,8 @@ window.SCENE = {
      15.2
     ]
    ],
-   "fr": "toit"
+   "fr": "toit",
+   "es": "el tejado, el techo"
   },
   {
    "id": "haus",
@@ -255,7 +265,8 @@ window.SCENE = {
      26.5
     ]
    ],
-   "fr": "maison"
+   "fr": "maison",
+   "es": "la casa"
   },
   {
    "id": "fenster",
@@ -282,7 +293,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "tuer",
@@ -303,7 +315,8 @@ window.SCENE = {
      8.4
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "holz",
@@ -323,7 +336,8 @@ window.SCENE = {
      6.8
     ]
    ],
-   "fr": "le bois"
+   "fr": "le bois",
+   "es": "la madera"
   },
   {
    "id": "leiter",
@@ -344,7 +358,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "échelle"
+   "fr": "échelle",
+   "es": "la escalera"
   },
   {
    "id": "kuerbis",
@@ -365,7 +380,8 @@ window.SCENE = {
      2.4
     ]
    ],
-   "fr": "citrouille"
+   "fr": "citrouille",
+   "es": "la calabaza"
   },
   {
    "id": "katze",
@@ -386,7 +402,8 @@ window.SCENE = {
      2.4
     ]
    ],
-   "fr": "chat"
+   "fr": "chat",
+   "es": "el gato"
   },
   {
    "id": "mauer",
@@ -406,7 +423,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "le mur"
+   "fr": "le mur",
+   "es": "el muro"
   },
   {
    "id": "bank",
@@ -427,7 +445,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "la banque"
+   "fr": "la banque",
+   "es": "el banco"
   },
   {
    "id": "brunnen",
@@ -448,7 +467,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "fontaine"
+   "fr": "fontaine",
+   "es": "la fuente"
   },
   {
    "id": "eimer",
@@ -469,7 +489,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "le seau"
+   "fr": "le seau",
+   "es": "el cubo"
   },
   {
    "id": "onkel",
@@ -485,7 +506,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -498,7 +520,8 @@ window.SCENE = {
      20.4
     ]
    ],
-   "fr": "oncle"
+   "fr": "oncle",
+   "es": "el tío"
   },
   {
    "id": "muetze",
@@ -519,6 +542,7 @@ window.SCENE = {
     ]
    ],
    "fr": "bonnet",
+   "es": "el gorro",
    "gb": {
     "mot": "woolly hat",
     "pluriel": "woolly hats"
@@ -543,7 +567,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "hose-2",
@@ -558,7 +583,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "jean"
+     "fr": "jean",
+     "es": "los jeans",
+     "esp": "los vaqueros"
     }
    ],
    "sur": null,
@@ -572,6 +599,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -596,7 +624,8 @@ window.SCENE = {
      4.7
     ]
    ],
-   "fr": "botte"
+   "fr": "botte",
+   "es": "la bota"
   },
   {
    "id": "kuh",
@@ -617,7 +646,8 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "vache"
+   "fr": "vache",
+   "es": "la vaca"
   },
   {
    "id": "gras",
@@ -643,7 +673,9 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "herbe"
+   "fr": "herbe",
+   "es": "el pasto, la hierba",
+   "esp": "la hierba, el césped"
   },
   {
    "id": "pferd",
@@ -664,7 +696,8 @@ window.SCENE = {
      34
     ]
    ],
-   "fr": "cheval"
+   "fr": "cheval",
+   "es": "el caballo"
   },
   {
    "id": "schwein",
@@ -685,7 +718,8 @@ window.SCENE = {
      8.8
     ]
    ],
-   "fr": "cochon"
+   "fr": "cochon",
+   "es": "el cerdo"
   },
   {
    "id": "cousin",
@@ -701,14 +735,16 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "garçon"
+     "fr": "garçon",
+     "es": "el niño, el chico"
     },
     {
      "mot": "child",
      "genre": "",
      "niveau": "A1",
      "theme": "family_a1",
-     "fr": "enfant"
+     "fr": "enfant",
+     "es": "el niño, la niña"
     }
    ],
    "sur": null,
@@ -721,7 +757,8 @@ window.SCENE = {
      10.8
     ]
    ],
-   "fr": "cousin"
+   "fr": "cousin",
+   "es": "el primo, la prima"
   },
   {
    "id": "hut",
@@ -742,7 +779,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "chapeau"
+   "fr": "chapeau",
+   "es": "el sombrero"
   },
   {
    "id": "hemd-3",
@@ -763,7 +801,8 @@ window.SCENE = {
      5.3
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "huhn",
@@ -784,7 +823,8 @@ window.SCENE = {
      6.4
     ]
    ],
-   "fr": "poule"
+   "fr": "poule",
+   "es": "el pollo"
   },
   {
    "id": "anna",
@@ -805,7 +845,8 @@ window.SCENE = {
      39
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "hemd-2",
@@ -826,7 +867,8 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "t-shirt",
@@ -847,7 +889,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "es": "la camiseta"
   },
   {
    "id": "hose",
@@ -862,7 +905,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "jean"
+     "fr": "jean",
+     "es": "los jeans",
+     "esp": "los vaqueros"
     }
    ],
    "sur": null,
@@ -876,6 +921,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -900,7 +946,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "botte"
+   "fr": "botte",
+   "es": "la bota"
   },
   {
    "id": "apfel",
@@ -921,7 +968,8 @@ window.SCENE = {
      1.7
     ]
    ],
-   "fr": "pomme"
+   "fr": "pomme",
+   "es": "la manzana"
   },
   {
    "id": "apfel-2",
@@ -942,7 +990,8 @@ window.SCENE = {
      1.9
     ]
    ],
-   "fr": "pomme"
+   "fr": "pomme",
+   "es": "la manzana"
   },
   {
    "id": "apfel-3",
@@ -963,7 +1012,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "pomme"
+   "fr": "pomme",
+   "es": "la manzana"
   },
   {
    "id": "kiste",
@@ -983,7 +1033,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "la caisse"
+   "fr": "la caisse",
+   "es": "la caja"
   },
   {
    "id": "kanne",
@@ -998,7 +1049,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "lait"
+     "fr": "lait",
+     "es": "la leche"
     }
    ],
    "sur": null,
@@ -1012,6 +1064,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pot, cafetière",
+   "es": "la jarra",
    "gb": {
     "mot": "jug",
     "pluriel": "jugs"
@@ -1036,7 +1089,8 @@ window.SCENE = {
      14.6
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "ei",
@@ -1057,7 +1111,8 @@ window.SCENE = {
      4.6
     ]
    ],
-   "fr": "œuf"
+   "fr": "œuf",
+   "es": "el huevo"
   },
   {
    "id": "huhn-2",
@@ -1078,7 +1133,8 @@ window.SCENE = {
      12.5
     ]
    ],
-   "fr": "poule"
+   "fr": "poule",
+   "es": "el pollo"
   },
   {
    "id": "huhn-3",
@@ -1099,7 +1155,8 @@ window.SCENE = {
      12.1
     ]
    ],
-   "fr": "poule"
+   "fr": "poule",
+   "es": "el pollo"
   },
   {
    "id": "huhn-4",
@@ -1120,7 +1177,8 @@ window.SCENE = {
      12.6
     ]
    ],
-   "fr": "poule"
+   "fr": "poule",
+   "es": "el pollo"
   },
   {
    "id": "hund",
@@ -1141,7 +1199,8 @@ window.SCENE = {
      14.6
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "es": "el perro"
   },
   {
    "id": "boden",
@@ -1174,7 +1233,9 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1534,5 +1595,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en el patio de la granja de su tío, una mañana de otoño: le da una manzana al caballo por encima de la cerca y se ríe; una vaca está en el prado, un cerdo en su corral, ovejas en la colina, un gato sobre el muro bajo, un perro echado en el patio; su tío carga un fardo de paja, su primito con sombrero de paja le da grano a una gallina; en el suelo, una cesta de huevos, una caja de manzanas, un bidón de leche y gallinas; detrás, la casa de ladrillo, el granero con su escalera y su leña, un pozo y un manzano.",
+    "consigne": "Anna pasa la mañana en la granja de su tío, en el campo. Toca un objeto o un animal."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

@@ -16,14 +16,16 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     },
     {
      "mot": "body",
      "genre": "",
      "niveau": "A1",
      "theme": "body_a1",
-     "fr": "le corps"
+     "fr": "le corps",
+     "es": "el cuerpo"
     }
    ],
    "sur": null,
@@ -48,7 +50,8 @@ window.SCENE = {
      35
     ]
    ],
-   "fr": "un patient (un malade)"
+   "fr": "un patient (un malade)",
+   "es": "el paciente"
   },
   {
    "id": "kopf",
@@ -69,7 +72,8 @@ window.SCENE = {
      14.8
     ]
    ],
-   "fr": "tête"
+   "fr": "tête",
+   "es": "la cabeza"
   },
   {
    "id": "hals",
@@ -90,7 +94,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "cou"
+   "fr": "cou",
+   "es": "el cuello"
   },
   {
    "id": "schulter",
@@ -117,7 +122,8 @@ window.SCENE = {
      4.4
     ]
    ],
-   "fr": "épaule"
+   "fr": "épaule",
+   "es": "el hombro"
   },
   {
    "id": "brust",
@@ -138,7 +144,8 @@ window.SCENE = {
      7.6
     ]
    ],
-   "fr": "la poitrine"
+   "fr": "la poitrine",
+   "es": "el pecho"
   },
   {
    "id": "bauch",
@@ -159,7 +166,8 @@ window.SCENE = {
      8.8
     ]
    ],
-   "fr": "ventre"
+   "fr": "ventre",
+   "es": "la barriga"
   },
   {
    "id": "bauchnabel",
@@ -180,7 +188,8 @@ window.SCENE = {
      1.4
     ]
    ],
-   "fr": "nombril"
+   "fr": "nombril",
+   "es": "el ombligo"
   },
   {
    "id": "arm-l",
@@ -207,7 +216,8 @@ window.SCENE = {
      13.0
     ]
    ],
-   "fr": "bras"
+   "fr": "bras",
+   "es": "el brazo"
   },
   {
    "id": "arm-r",
@@ -234,7 +244,8 @@ window.SCENE = {
      11.0
     ]
    ],
-   "fr": "bras"
+   "fr": "bras",
+   "es": "el brazo"
   },
   {
    "id": "ellbogen",
@@ -261,7 +272,8 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "coude"
+   "fr": "coude",
+   "es": "el codo"
   },
   {
    "id": "handgelenk",
@@ -288,7 +300,8 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "poignet"
+   "fr": "poignet",
+   "es": "la muñeca"
   },
   {
    "id": "hand-l",
@@ -309,7 +322,8 @@ window.SCENE = {
      8.2
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "hand-r",
@@ -330,7 +344,8 @@ window.SCENE = {
      6.0
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "oberschenkel",
@@ -357,7 +372,8 @@ window.SCENE = {
      7.6
     ]
    ],
-   "fr": "cuisse"
+   "fr": "cuisse",
+   "es": "el muslo"
   },
   {
    "id": "unterhose",
@@ -395,7 +411,8 @@ window.SCENE = {
      5.6
     ]
    ],
-   "fr": "caleçon, slip"
+   "fr": "caleçon, slip",
+   "es": "los calzoncillos"
   },
   {
    "id": "knie",
@@ -422,7 +439,9 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "genou"
+   "fr": "genou",
+   "es": "la rodilla",
+   "esp": "la rodilla"
   },
   {
    "id": "bein-l",
@@ -443,7 +462,8 @@ window.SCENE = {
      25.5
     ]
    ],
-   "fr": "jambe"
+   "fr": "jambe",
+   "es": "la pierna"
   },
   {
    "id": "bein-r",
@@ -464,7 +484,8 @@ window.SCENE = {
      24.5
     ]
    ],
-   "fr": "jambe"
+   "fr": "jambe",
+   "es": "la pierna"
   },
   {
    "id": "fuss-l",
@@ -485,7 +506,8 @@ window.SCENE = {
      8.1
     ]
    ],
-   "fr": "pied"
+   "fr": "pied",
+   "es": "el pie"
   },
   {
    "id": "fuss-r",
@@ -506,7 +528,8 @@ window.SCENE = {
      5.7
     ]
    ],
-   "fr": "pied"
+   "fr": "pied",
+   "es": "el pie"
   },
   {
    "id": "aerztin",
@@ -522,7 +545,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "es": "la mujer"
     }
    ],
    "sur": null,
@@ -547,7 +571,8 @@ window.SCENE = {
      62
     ]
    ],
-   "fr": "médecin (fém.)"
+   "fr": "médecin (fém.)",
+   "es": "el médico, la médica"
   },
   {
    "id": "hand-aerztin-haut",
@@ -568,7 +593,8 @@ window.SCENE = {
      4.4
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "hand-aerztin-bas",
@@ -589,7 +615,8 @@ window.SCENE = {
      5.0
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "stethoskop",
@@ -616,7 +643,8 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "stéthoscope"
+   "fr": "stéthoscope",
+   "es": "el estetoscopio"
   },
   {
    "id": "waage",
@@ -650,6 +678,7 @@ window.SCENE = {
     ]
    ],
    "fr": "balance",
+   "es": "la báscula",
    "gb": {
     "mot": "scales",
     "pluriel": "scales"
@@ -674,7 +703,8 @@ window.SCENE = {
      72
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -695,7 +725,9 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "haar",
@@ -716,7 +748,8 @@ window.SCENE = {
      6.8
     ]
    ],
-   "fr": "cheveu"
+   "fr": "cheveu",
+   "es": "el pelo, el cabello"
   },
   {
    "id": "haar-l",
@@ -737,7 +770,8 @@ window.SCENE = {
      4.0
     ]
    ],
-   "fr": "cheveu"
+   "fr": "cheveu",
+   "es": "el pelo, el cabello"
   },
   {
    "id": "gesicht",
@@ -759,7 +793,8 @@ window.SCENE = {
      10.0
     ]
    ],
-   "fr": "visage"
+   "fr": "visage",
+   "es": "la cara"
   },
   {
    "id": "stirn",
@@ -781,7 +816,8 @@ window.SCENE = {
      2.2
     ]
    ],
-   "fr": "front"
+   "fr": "front",
+   "es": "la frente"
   },
   {
    "id": "augenbraue-l",
@@ -803,7 +839,8 @@ window.SCENE = {
      0.7
     ]
    ],
-   "fr": "sourcil"
+   "fr": "sourcil",
+   "es": "la ceja"
   },
   {
    "id": "augenbraue-r",
@@ -825,7 +862,8 @@ window.SCENE = {
      0.7
     ]
    ],
-   "fr": "sourcil"
+   "fr": "sourcil",
+   "es": "la ceja"
   },
   {
    "id": "auge-l",
@@ -847,7 +885,8 @@ window.SCENE = {
      0.8
     ]
    ],
-   "fr": "œil"
+   "fr": "œil",
+   "es": "el ojo"
   },
   {
    "id": "auge-r",
@@ -869,7 +908,8 @@ window.SCENE = {
      0.8
     ]
    ],
-   "fr": "œil"
+   "fr": "œil",
+   "es": "el ojo"
   },
   {
    "id": "ohr",
@@ -891,7 +931,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "oreille"
+   "fr": "oreille",
+   "es": "la oreja, el oído"
   },
   {
    "id": "nase",
@@ -913,7 +954,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "nez"
+   "fr": "nez",
+   "es": "la nariz"
   },
   {
    "id": "wange-l",
@@ -935,7 +977,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "joue"
+   "fr": "joue",
+   "es": "la mejilla"
   },
   {
    "id": "wange-r",
@@ -957,7 +1000,8 @@ window.SCENE = {
      2.0
     ]
    ],
-   "fr": "joue"
+   "fr": "joue",
+   "es": "la mejilla"
   },
   {
    "id": "mund",
@@ -979,7 +1023,8 @@ window.SCENE = {
      1.2
     ]
    ],
-   "fr": "bouche"
+   "fr": "bouche",
+   "es": "la boca"
   },
   {
    "id": "zahn",
@@ -1001,7 +1046,8 @@ window.SCENE = {
      0.4
     ]
    ],
-   "fr": "dent"
+   "fr": "dent",
+   "es": "el diente"
   },
   {
    "id": "lippe",
@@ -1023,7 +1069,8 @@ window.SCENE = {
      0.5
     ]
    ],
-   "fr": "lèvre"
+   "fr": "lèvre",
+   "es": "el labio"
   },
   {
    "id": "kinn",
@@ -1045,7 +1092,8 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "menton"
+   "fr": "menton",
+   "es": "la barbilla"
   },
   {
    "id": "finger-main",
@@ -1067,7 +1115,9 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "doigt"
+   "fr": "doigt",
+   "es": "el dedo",
+   "esp": "el dedo"
   },
   {
    "id": "finger-daumen",
@@ -1089,7 +1139,9 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "doigt"
+   "fr": "doigt",
+   "es": "el dedo",
+   "esp": "el dedo"
   },
   {
    "id": "nagel-daumen",
@@ -1111,7 +1163,8 @@ window.SCENE = {
      0.7
     ]
    ],
-   "fr": "ongle"
+   "fr": "ongle",
+   "es": "la uña"
   },
   {
    "id": "knoechel-l",
@@ -1133,7 +1186,8 @@ window.SCENE = {
      2.4
     ]
    ],
-   "fr": "cheville"
+   "fr": "cheville",
+   "es": "el tobillo"
   },
   {
    "id": "knoechel-r",
@@ -1155,7 +1209,8 @@ window.SCENE = {
      2.0
     ]
    ],
-   "fr": "cheville"
+   "fr": "cheville",
+   "es": "el tobillo"
   },
   {
    "id": "zehe-l",
@@ -1177,7 +1232,8 @@ window.SCENE = {
      2.2
     ]
    ],
-   "fr": "orteil"
+   "fr": "orteil",
+   "es": "el dedo del pie"
   },
   {
    "id": "zehe-r",
@@ -1199,7 +1255,8 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "orteil"
+   "fr": "orteil",
+   "es": "el dedo del pie"
   },
   {
    "id": "fussnagel-l",
@@ -1221,7 +1278,8 @@ window.SCENE = {
      0.9
     ]
    ],
-   "fr": "ongle"
+   "fr": "ongle",
+   "es": "la uña"
   },
   {
    "id": "fussnagel-r",
@@ -1243,7 +1301,8 @@ window.SCENE = {
      1.0
     ]
    ],
-   "fr": "ongle"
+   "fr": "ongle",
+   "es": "la uña"
   }
  ],
  "grosPlans": [
@@ -1840,5 +1899,15 @@ window.SCENE = {
   "untersuchung-dos"
  ],
  "nom_vue": "Mark, de face",
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark, de pie en bóxer azul marino, descalzo, mientras su médica le ausculta el pecho; una báscula con medidor de altura contra la pared verde.",
+    "consigne": "Toca una parte del cuerpo de Mark. Toca su cara, su mano o sus pies para verlos de cerca."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

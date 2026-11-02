@@ -21,7 +21,8 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "fenster",
@@ -42,7 +43,8 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "dach",
@@ -63,7 +65,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "toit"
+   "fr": "toit",
+   "es": "el tejado, el techo"
   },
   {
    "id": "lampe",
@@ -84,7 +87,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "lampe-2",
@@ -105,7 +109,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "buch",
@@ -126,7 +131,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "regal",
@@ -147,7 +153,9 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "pflanze",
@@ -168,7 +176,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "klavier",
@@ -189,7 +198,8 @@ window.SCENE = {
      29
     ]
    ],
-   "fr": "piano"
+   "fr": "piano",
+   "es": "el piano"
   },
   {
    "id": "geige",
@@ -210,7 +220,8 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "violon"
+   "fr": "violon",
+   "es": "el violín"
   },
   {
    "id": "schrank",
@@ -232,6 +243,8 @@ window.SCENE = {
     ]
    ],
    "fr": "armoire",
+   "es": "el clóset, el armario",
+   "esp": "el armario",
    "gb": {
     "mot": "wardrobe",
     "pluriel": "wardrobes"
@@ -256,7 +269,8 @@ window.SCENE = {
      52
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "gitarre",
@@ -277,7 +291,8 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "es": "la guitarra"
   },
   {
    "id": "gitarre-2",
@@ -298,7 +313,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "es": "la guitarra"
   },
   {
    "id": "note",
@@ -320,6 +336,7 @@ window.SCENE = {
     ]
    ],
    "fr": "note",
+   "es": "la nota, la calificación",
    "gb": {
     "mot": "mark",
     "pluriel": "marks"
@@ -344,7 +361,8 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "brille",
@@ -364,7 +382,9 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "schal",
@@ -385,7 +405,8 @@ window.SCENE = {
      29
     ]
    ],
-   "fr": "écharpe"
+   "fr": "écharpe",
+   "es": "la bufanda"
   },
   {
    "id": "frau",
@@ -406,7 +427,8 @@ window.SCENE = {
      42
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "flasche",
@@ -422,7 +444,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": null,
@@ -435,7 +458,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "stuhl",
@@ -462,7 +486,8 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "schuh",
@@ -489,7 +514,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "boden",
@@ -510,7 +536,9 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "wand",
@@ -531,7 +559,8 @@ window.SCENE = {
      55
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "trommel",
@@ -552,7 +581,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "tambour"
+   "fr": "tambour",
+   "es": "el tambor"
   },
   {
    "id": "heizung",
@@ -572,7 +602,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "chauffage"
+   "fr": "chauffage",
+   "es": "la calefacción"
   },
   {
    "id": "lautsprecher",
@@ -593,7 +624,8 @@ window.SCENE = {
      4.6
     ]
    ],
-   "fr": "haut-parleur"
+   "fr": "haut-parleur",
+   "es": "el altavoz"
   },
   {
    "id": "gitarrenkoffer",
@@ -614,7 +646,8 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "étui à guitare"
+   "fr": "étui à guitare",
+   "es": "el estuche de guitarra"
   }
  ],
  "grosPlans": [],
@@ -973,5 +1006,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "La clase de guitarra: en una pequeña sala de una escuela de música, Mark toca, concentrado, con la vista en la partitura; su profesora, de pelo blanco y bufanda morada, le muestra un acorde; a su alrededor, un piano, un violín en su estuche, un atril, una botella de agua, un cartel de una trompeta, una lámpara y una gran planta; por la ventana, los tejados de Boston.",
+    "consigne": "Mark toma una clase de guitarra. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

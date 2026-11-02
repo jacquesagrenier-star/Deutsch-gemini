@@ -6,7 +6,9 @@
     python anglais/es/poser.py pose [fichier ...]         # ecrit anglais/es/traductions/
 
 Sources : anglais/es/sources/corpus-<fichier>.json (extraire.py). Lots :
-anglais/es/lots/corpus-<fichier>-NN.es.json = {cle: [traduction_es, exemple_es]}.
+anglais/es/lots/corpus-<fichier>-NN.es.json = {cle: [traduction_es, exemple_es]} ; quand
+l'Espagne dit autrement (coche / carro), deux colonnes de plus : [.., .., traduction
+d'Espagne, phrase d'Espagne] (vide = comme l'Amerique latine).
 Memoire : anglais/es/traductions/corpus.json = {cle: {"ex", "t", "e"}} (ex = la
 phrase anglaise traduite, temoin). Puis `python anglais/outils/espagnol.py`
 pose la memoire dans anglais/datos et datos-gb (construire.py le fait aussi).
@@ -68,10 +70,12 @@ def controler(f):
         e = src.get(k)
         if not e:
             continue
-        if not isinstance(v, list) or len(v) != 2:
-            fautes.append("%s %s : [traduction, phrase] attendus" % (f, k))
+        if not isinstance(v, list) or len(v) not in (2, 4):
+            fautes.append("%s %s : [traduction, phrase] ou [.., .., Espagne, Espagne] attendus" % (f, k))
             continue
-        t, ex = v
+        t, ex = v[0], v[1]
+        if len(v) == 4 and not (v[2] or v[3]):
+            avis.append("%s %s : colonnes d'Espagne vides" % (f, k))
         if not (t or "").strip():
             fautes.append("%s %s : traduction vide" % (f, k))
         if e["ex"] and not (ex or "").strip():
@@ -124,8 +128,10 @@ def main():
     if total:
         raise SystemExit("Des fautes : rien n'est ecrit.")
     for f, (src, trad) in resultats.items():
-        for k, (t, ex) in trad.items():
-            mem[k] = {"ex": src[k]["ex"], "t": t.strip(), "e": (ex or "").strip()}
+        for k, v in trad.items():
+            mem[k] = {"ex": src[k]["ex"], "t": v[0].strip(), "e": (v[1] or "").strip()}
+            if len(v) == 4 and (v[2] or v[3]):
+                mem[k]["tE"], mem[k]["eE"] = (v[2] or v[0]).strip(), (v[3] or v[1] or "").strip()
     os.makedirs(os.path.dirname(MEMOIRE), exist_ok=True)
     with io.open(MEMOIRE, "w", encoding="utf-8", newline="\n") as fh:
         json.dump(dict(sorted(mem.items())), fh, ensure_ascii=False, indent=1)

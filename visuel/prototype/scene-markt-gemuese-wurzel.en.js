@@ -15,13 +15,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -35,6 +37,7 @@ window.SCENE = {
     ]
    ],
    "fr": "betterave",
+   "es": "la remolacha",
    "gb": {
     "mot": "beetroot",
     "pluriel": "beetroots"
@@ -52,13 +55,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -71,7 +76,8 @@ window.SCENE = {
      11.4
     ]
    ],
-   "fr": "chou-fleur"
+   "fr": "chou-fleur",
+   "es": "la coliflor"
   },
   {
    "id": "sellerie",
@@ -85,13 +91,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -104,7 +112,8 @@ window.SCENE = {
      15.4
     ]
    ],
-   "fr": "céleri"
+   "fr": "céleri",
+   "es": "el apio"
   },
   {
    "id": "kartoffel",
@@ -119,13 +128,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -138,7 +149,9 @@ window.SCENE = {
      11.4
     ]
    ],
-   "fr": "pomme de terre"
+   "fr": "pomme de terre",
+   "es": "la papa",
+   "esp": "la patata"
   },
   {
    "id": "kohlrabi",
@@ -153,13 +166,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -172,7 +187,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "chou-rave"
+   "fr": "chou-rave",
+   "es": "el colinabo"
   },
   {
    "id": "zwiebel",
@@ -187,13 +203,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -206,7 +224,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "oignon"
+   "fr": "oignon",
+   "es": "la cebolla"
   },
   {
    "id": "kohl",
@@ -220,13 +239,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -239,7 +260,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "le chou"
+   "fr": "le chou",
+   "es": "la col"
   },
   {
    "id": "lauch",
@@ -254,13 +276,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -273,7 +297,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "poireau"
+   "fr": "poireau",
+   "es": "el puerro"
   },
   {
    "id": "karotte",
@@ -288,13 +313,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -307,7 +334,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "carotte"
+   "fr": "carotte",
+   "es": "la zanahoria"
   },
   {
    "id": "rosenkohl",
@@ -322,13 +350,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -341,7 +371,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "chou de Bruxelles"
+   "fr": "chou de Bruxelles",
+   "es": "la col de Bruselas"
   },
   {
    "id": "fenchel",
@@ -356,13 +387,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -375,7 +408,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "fenouil"
+   "fr": "fenouil",
+   "es": "el hinojo"
   },
   {
    "id": "brokkoli",
@@ -389,13 +423,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -408,7 +444,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "brocoli"
+   "fr": "brocoli",
+   "es": "el brócoli"
   },
   {
    "id": "knoblauch",
@@ -422,13 +459,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -441,7 +480,8 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "ail"
+   "fr": "ail",
+   "es": "el ajo"
   },
   {
    "id": "radieschen",
@@ -456,13 +496,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -475,7 +517,8 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "radis"
+   "fr": "radis",
+   "es": "el rábano"
   },
   {
    "id": "suesskartoffel",
@@ -490,13 +533,15 @@ window.SCENE = {
      "mot": "crate",
      "genre": "",
      "niveau": "A2",
-     "fr": "la caisse"
+     "fr": "la caisse",
+     "es": "la caja"
     },
     {
      "mot": "vegetables",
      "genre": "",
      "niveau": "A2",
-     "fr": "légumes"
+     "fr": "légumes",
+     "es": "la verdura"
     }
    ],
    "sur": null,
@@ -509,7 +554,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "patate douce"
+   "fr": "patate douce",
+   "es": "el boniato"
   },
   {
    "id": "anna",
@@ -542,7 +588,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "radieschen-main",
@@ -563,7 +610,8 @@ window.SCENE = {
      5.0
     ]
    ],
-   "fr": "radis"
+   "fr": "radis",
+   "es": "el rábano"
   }
  ],
  "grosPlans": [],
@@ -854,5 +902,15 @@ window.SCENE = {
   "markt-gemuese-frucht"
  ],
  "nom_vue": "Les racines et les choux",
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna toma un manojo de rábanos en el puesto de verduras: remolachas, coliflores, apio, papas, colinabos, cebollas, repollos, puerros, zanahorias, coles de Bruselas, hinojo, brócolis, ajo, rábanos y batatas.",
+    "consigne": "Toca una fruta, una verdura o una caja."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

@@ -33,7 +33,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "decke",
@@ -54,7 +55,9 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "wand",
@@ -75,7 +78,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "uhr",
@@ -96,7 +100,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "glas",
@@ -112,7 +117,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "thé"
+     "fr": "thé",
+     "es": "el té"
     }
    ],
    "sur": "regal",
@@ -125,7 +131,8 @@ window.SCENE = {
      6.3
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "vitamin",
@@ -146,7 +153,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "vitamine"
+   "fr": "vitamine",
+   "es": "la vitamina"
   },
   {
    "id": "seife",
@@ -167,7 +175,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "savon"
+   "fr": "savon",
+   "es": "el jabón"
   },
   {
    "id": "verband",
@@ -188,7 +197,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "pansement ; fédération"
+   "fr": "pansement ; fédération",
+   "es": "el vendaje"
   },
   {
    "id": "pflaster",
@@ -210,6 +220,8 @@ window.SCENE = {
     ]
    ],
    "fr": "sparadrap",
+   "es": "la curita",
+   "esp": "la tirita",
    "gb": {
     "mot": "plaster",
     "pluriel": "plasters"
@@ -234,7 +246,9 @@ window.SCENE = {
      29
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "medikament",
@@ -250,7 +264,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "everyday_a1",
-     "fr": "la boîte"
+     "fr": "la boîte",
+     "es": "la caja"
     }
    ],
    "sur": "regal",
@@ -263,7 +278,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "médicament"
+   "fr": "médicament",
+   "es": "el medicamento, la medicina"
   },
   {
    "id": "flasche",
@@ -284,7 +300,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "flasche-2",
@@ -305,7 +322,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "medikament-2",
@@ -321,7 +339,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "everyday_a1",
-     "fr": "la boîte"
+     "fr": "la boîte",
+     "es": "la caja"
     }
    ],
    "sur": "regal",
@@ -334,7 +353,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "médicament"
+   "fr": "médicament",
+   "es": "el medicamento, la medicina"
   },
   {
    "id": "medikament-3",
@@ -350,7 +370,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "everyday_a1",
-     "fr": "la boîte"
+     "fr": "la boîte",
+     "es": "la caja"
     }
    ],
    "sur": "regal",
@@ -363,7 +384,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "médicament"
+   "fr": "médicament",
+   "es": "el medicamento, la medicina"
   },
   {
    "id": "flasche-3",
@@ -384,7 +406,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "medikament-4",
@@ -400,7 +423,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "everyday_a1",
-     "fr": "la boîte"
+     "fr": "la boîte",
+     "es": "la caja"
     }
    ],
    "sur": "regal",
@@ -413,7 +437,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "médicament"
+   "fr": "médicament",
+   "es": "el medicamento, la medicina"
   },
   {
    "id": "medikament-5",
@@ -429,7 +454,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "everyday_a1",
-     "fr": "la boîte"
+     "fr": "la boîte",
+     "es": "la caja"
     }
    ],
    "sur": "regal",
@@ -442,7 +468,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "médicament"
+   "fr": "médicament",
+   "es": "el medicamento, la medicina"
   },
   {
    "id": "flasche-4",
@@ -463,7 +490,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "frau",
@@ -484,7 +512,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "brille",
@@ -504,7 +533,9 @@ window.SCENE = {
      2.2
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "bluse",
@@ -525,7 +556,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "chemisier"
+   "fr": "chemisier",
+   "es": "la blusa"
   },
   {
    "id": "jacke",
@@ -546,7 +578,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "rezept",
@@ -567,7 +600,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "recette"
+   "fr": "recette",
+   "es": "la receta"
   },
   {
    "id": "mark",
@@ -588,7 +622,8 @@ window.SCENE = {
      50
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "schal",
@@ -609,7 +644,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "écharpe"
+   "fr": "écharpe",
+   "es": "la bufanda"
   },
   {
    "id": "taschentuch",
@@ -629,7 +665,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "mouchoir"
+   "fr": "mouchoir",
+   "es": "el pañuelo"
   },
   {
    "id": "jacke-2",
@@ -650,7 +687,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "pullover",
@@ -678,6 +716,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -696,7 +736,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "jean"
+     "fr": "jean",
+     "es": "los jeans",
+     "esp": "los vaqueros"
     }
    ],
    "sur": null,
@@ -710,6 +752,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -730,6 +773,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "basket",
+     "es": "el tenis, la zapatilla deportiva",
+     "esp": "la zapatilla deportiva",
      "gb": {
       "mot": "trainer",
       "pluriel": "trainers"
@@ -746,7 +791,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "bildschirm",
@@ -762,7 +808,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "work_a1",
-     "fr": "ordinateur"
+     "fr": "ordinateur",
+     "es": "la computadora",
+     "esp": "el ordenador"
     }
    ],
    "sur": null,
@@ -775,7 +823,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "écran"
+   "fr": "écran",
+   "es": "la pantalla"
   },
   {
    "id": "tastatur",
@@ -796,7 +845,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "clavier"
+   "fr": "clavier",
+   "es": "el teclado"
   },
   {
    "id": "kasse",
@@ -818,6 +868,7 @@ window.SCENE = {
     ]
    ],
    "fr": "caisse",
+   "es": "la caja registradora",
    "gb": {
     "mot": "till",
     "pluriel": "tills"
@@ -841,7 +892,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "le sac (en papier, en plastique)"
+   "fr": "le sac (en papier, en plastique)",
+   "es": "la bolsa"
   },
   {
    "id": "medikament-6",
@@ -857,14 +909,16 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "body_a1",
-     "fr": "comprimé"
+     "fr": "comprimé",
+     "es": "la pastilla"
     },
     {
      "mot": "box",
      "genre": "",
      "niveau": "A1",
      "theme": "everyday_a1",
-     "fr": "la boîte"
+     "fr": "la boîte",
+     "es": "la caja"
     }
    ],
    "sur": "schalter",
@@ -877,7 +931,8 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "médicament"
+   "fr": "médicament",
+   "es": "el medicamento, la medicina"
   },
   {
    "id": "flasche-5",
@@ -898,7 +953,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "taschentuch-2",
@@ -918,7 +974,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "mouchoir"
+   "fr": "mouchoir",
+   "es": "el pañuelo"
   },
   {
    "id": "karte",
@@ -932,7 +989,8 @@ window.SCENE = {
      "mot": "insurance card",
      "genre": "",
      "niveau": "B1",
-     "fr": "carte d'assurance maladie"
+     "fr": "carte d'assurance maladie",
+     "es": "la tarjeta sanitaria"
     }
    ],
    "sur": "schalter",
@@ -945,7 +1003,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "carte, billet"
+   "fr": "carte, billet",
+   "es": "la tarjeta"
   },
   {
    "id": "pflanze",
@@ -966,7 +1025,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "schalter",
@@ -987,7 +1047,8 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "guichet ; interrupteur"
+   "fr": "guichet ; interrupteur",
+   "es": "la ventanilla"
   },
   {
    "id": "karton",
@@ -1008,7 +1069,8 @@ window.SCENE = {
      23
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "tuer",
@@ -1029,7 +1091,8 @@ window.SCENE = {
      43
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "muelleimer",
@@ -1051,6 +1114,7 @@ window.SCENE = {
     ]
    ],
    "fr": "poubelle",
+   "es": "la papelera",
    "gb": {
     "mot": "bin",
     "pluriel": "bins"
@@ -1071,6 +1135,7 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "money_b1",
      "fr": "vitrine",
+     "es": "el escaparate",
      "gb": {
       "mot": "shop window",
       "pluriel": "shop windows"
@@ -1087,7 +1152,8 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "baum",
@@ -1108,7 +1174,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "auto",
@@ -1129,7 +1196,9 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "voiture"
+   "fr": "voiture",
+   "es": "el carro, el auto",
+   "esp": "el coche"
   },
   {
    "id": "strasse",
@@ -1150,7 +1219,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "rue"
+   "fr": "rue",
+   "es": "la calle"
   },
   {
    "id": "mann",
@@ -1171,7 +1241,8 @@ window.SCENE = {
      26
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "muetze",
@@ -1192,6 +1263,7 @@ window.SCENE = {
     ]
    ],
    "fr": "bonnet",
+   "es": "el gorro",
    "gb": {
     "mot": "woolly hat",
     "pluriel": "woolly hats"
@@ -1216,7 +1288,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "stock",
@@ -1237,7 +1310,8 @@ window.SCENE = {
      18.5
     ]
    ],
-   "fr": "le bâton"
+   "fr": "le bâton",
+   "es": "el bastón"
   },
   {
    "id": "hose-2",
@@ -1258,6 +1332,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -1282,7 +1357,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "stuhl",
@@ -1303,7 +1379,8 @@ window.SCENE = {
      17.5
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "waage",
@@ -1325,6 +1402,7 @@ window.SCENE = {
     ]
    ],
    "fr": "balance",
+   "es": "la báscula",
    "gb": {
     "mot": "scales",
     "pluriel": "scales"
@@ -1349,7 +1427,9 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1711,5 +1791,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark, resfriado, en la farmacia de su barrio: con un pañuelo en la nariz, le entrega su receta rosa a la farmacéutica de bata blanca; sobre el mostrador, una pantalla, un teclado, la caja, una bolsa blanca, una caja de pastillas, un frasco de jarabe, pañuelos de papel, su tarjeta del seguro y una planta; en los estantes, cajas de medicamentos, frascos, un tarro de té de hierbas, un frasco de vitaminas, jabón, vendas y curitas, bajo un reloj; cerca de la vitrina, un señor mayor con gorra espera en una silla, con las manos sobre su bastón, junto a una báscula y una papelera; afuera, un auto rojo; en primer plano, una caja de reparto.",
+    "consigne": "Mark está resfriado: va a la farmacia de su barrio. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

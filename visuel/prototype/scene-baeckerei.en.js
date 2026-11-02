@@ -27,7 +27,8 @@ window.SCENE = {
      6.9
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "wand",
@@ -54,7 +55,8 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "uhr",
@@ -75,7 +77,8 @@ window.SCENE = {
      8.8
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "vorhang",
@@ -96,7 +99,8 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "rideau"
+   "fr": "rideau",
+   "es": "la cortina"
   },
   {
    "id": "fenster",
@@ -113,6 +117,7 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "money_b1",
      "fr": "vitrine",
+     "es": "el escaparate",
      "gb": {
       "mot": "shop window",
       "pluriel": "shop windows"
@@ -129,7 +134,8 @@ window.SCENE = {
      28.2
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "laterne",
@@ -151,6 +157,7 @@ window.SCENE = {
     ]
    ],
    "fr": "réverbère",
+   "es": "la farola",
    "gb": {
     "mot": "street lamp",
     "pluriel": "street lamps"
@@ -175,7 +182,9 @@ window.SCENE = {
      6.7
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "strasse",
@@ -196,7 +205,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "rue"
+   "fr": "rue",
+   "es": "la calle"
   },
   {
    "id": "backofen",
@@ -217,7 +227,9 @@ window.SCENE = {
      34
     ]
    ],
-   "fr": "four"
+   "fr": "four",
+   "es": "el horno",
+   "esp": "el horno"
   },
   {
    "id": "regal",
@@ -268,7 +280,9 @@ window.SCENE = {
      1.3
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "saft",
@@ -283,7 +297,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "bouteille"
+     "fr": "bouteille",
+     "es": "la botella"
     }
    ],
    "sur": "regal",
@@ -296,7 +311,9 @@ window.SCENE = {
      5.6
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "es": "el jugo",
+   "esp": "el zumo"
   },
   {
    "id": "milch",
@@ -311,7 +328,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "bouteille"
+     "fr": "bouteille",
+     "es": "la botella"
     }
    ],
    "sur": "regal",
@@ -324,7 +342,8 @@ window.SCENE = {
      5.6
     ]
    ],
-   "fr": "lait"
+   "fr": "lait",
+   "es": "la leche"
   },
   {
    "id": "mehl",
@@ -344,7 +363,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "farine"
+   "fr": "farine",
+   "es": "la harina"
   },
   {
    "id": "zucker",
@@ -359,7 +379,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "verre"
+     "fr": "verre",
+     "es": "el vaso, la copa"
     }
    ],
    "sur": "regal",
@@ -372,7 +393,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "sucre"
+   "fr": "sucre",
+   "es": "el azúcar"
   },
   {
    "id": "kanne",
@@ -393,6 +415,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pot, cafetière",
+   "es": "la jarra",
    "gb": {
     "mot": "jug",
     "pluriel": "jugs"
@@ -429,7 +452,8 @@ window.SCENE = {
      1.7
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "brot",
@@ -461,7 +485,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "pain"
+   "fr": "pain",
+   "es": "el pan"
   },
   {
    "id": "frau",
@@ -478,6 +503,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "shopping_a1",
      "fr": "vendeuse",
+     "es": "el vendedor, la vendedora",
+     "esp": "el dependiente, la dependienta",
      "gb": {
       "mot": "shop assistant",
       "pluriel": "shop assistants"
@@ -494,7 +521,8 @@ window.SCENE = {
      22.2
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "muetze",
@@ -515,6 +543,7 @@ window.SCENE = {
     ]
    ],
    "fr": "bonnet",
+   "es": "el gorro",
    "gb": {
     "mot": "woolly hat",
     "pluriel": "woolly hats"
@@ -539,7 +568,8 @@ window.SCENE = {
      14.2
     ]
    ],
-   "fr": "chemisier"
+   "fr": "chemisier",
+   "es": "la blusa"
   },
   {
    "id": "broetchen-2",
@@ -559,7 +589,8 @@ window.SCENE = {
      2.7
     ]
    ],
-   "fr": "petit pain"
+   "fr": "petit pain",
+   "es": "el pan"
   },
   {
    "id": "tuete",
@@ -579,7 +610,8 @@ window.SCENE = {
      7.2
     ]
    ],
-   "fr": "le sac (en papier, en plastique)"
+   "fr": "le sac (en papier, en plastique)",
+   "es": "la bolsa"
   },
   {
    "id": "muenze",
@@ -595,7 +627,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "shopping_a1",
-     "fr": "argent"
+     "fr": "argent",
+     "es": "el dinero"
     }
    ],
    "sur": null,
@@ -608,7 +641,8 @@ window.SCENE = {
      0.9
     ]
    ],
-   "fr": "pièce de monnaie"
+   "fr": "pièce de monnaie",
+   "es": "la moneda"
   },
   {
    "id": "anna",
@@ -629,7 +663,8 @@ window.SCENE = {
      51.9
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "mantel",
@@ -650,7 +685,8 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "pullover",
@@ -672,6 +708,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -696,7 +734,8 @@ window.SCENE = {
      12.6
     ]
    ],
-   "fr": "sac"
+   "fr": "sac",
+   "es": "la bolsa"
   },
   {
    "id": "hose",
@@ -711,7 +750,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "jean"
+     "fr": "jean",
+     "es": "los jeans",
+     "esp": "los vaqueros"
     }
    ],
    "sur": null,
@@ -725,6 +766,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -744,7 +786,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "chaussure"
+     "fr": "chaussure",
+     "es": "el zapato"
     }
    ],
    "sur": null,
@@ -757,7 +800,8 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "botte"
+   "fr": "botte",
+   "es": "la bota"
   },
   {
    "id": "nachbar",
@@ -773,7 +817,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -787,6 +832,7 @@ window.SCENE = {
     ]
    ],
    "fr": "voisin",
+   "es": "el vecino, la vecina",
    "gb": {
     "mot": "neighbour",
     "pluriel": "neighbours"
@@ -816,7 +862,9 @@ window.SCENE = {
      1.2
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "jacke",
@@ -837,7 +885,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "zeitung",
@@ -858,7 +907,8 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "journal"
+   "fr": "journal",
+   "es": "el periódico, el diario"
   },
   {
    "id": "hose-2",
@@ -879,6 +929,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -898,7 +949,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "café"
+     "fr": "café",
+     "es": "el café"
     }
    ],
    "sur": "tisch",
@@ -911,7 +963,8 @@ window.SCENE = {
      2.7
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "teller",
@@ -932,7 +985,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "kuchen-4",
@@ -953,7 +1007,9 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "gâteau"
+   "fr": "gâteau",
+   "es": "el pastel",
+   "esp": "la tarta"
   },
   {
    "id": "pflanze-2",
@@ -974,7 +1030,8 @@ window.SCENE = {
      11.3
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "tisch",
@@ -1001,7 +1058,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "stock",
@@ -1094,7 +1152,8 @@ window.SCENE = {
      1.3
     ]
    ],
-   "fr": "le bâton"
+   "fr": "le bâton",
+   "es": "el bastón"
   },
   {
    "id": "stuhl",
@@ -1115,7 +1174,8 @@ window.SCENE = {
      11.8
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "hund",
@@ -1136,7 +1196,8 @@ window.SCENE = {
      7.8
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "es": "el perro"
   },
   {
    "id": "kasse",
@@ -1158,6 +1219,7 @@ window.SCENE = {
     ]
    ],
    "fr": "caisse",
+   "es": "la caja registradora",
    "gb": {
     "mot": "till",
     "pluriel": "tills"
@@ -1183,6 +1245,7 @@ window.SCENE = {
     ]
    ],
    "fr": "balance",
+   "es": "la báscula",
    "gb": {
     "mot": "scales",
     "pluriel": "scales"
@@ -1207,7 +1270,8 @@ window.SCENE = {
      2.2
     ]
    ],
-   "fr": "couteau"
+   "fr": "couteau",
+   "es": "el cuchillo"
   },
   {
    "id": "karton",
@@ -1228,7 +1292,8 @@ window.SCENE = {
      5.3
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "korb",
@@ -1249,7 +1314,8 @@ window.SCENE = {
      5.4
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "broetchen",
@@ -1269,7 +1335,8 @@ window.SCENE = {
      4.2
     ]
    ],
-   "fr": "petit pain"
+   "fr": "petit pain",
+   "es": "el pan"
   },
   {
    "id": "brezel",
@@ -1289,7 +1356,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "bretzel"
+   "fr": "bretzel",
+   "es": "el pretzel"
   },
   {
    "id": "torte",
@@ -1304,7 +1372,9 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "gâteau"
+     "fr": "gâteau",
+     "es": "el pastel",
+     "esp": "la tarta"
     }
    ],
    "sur": null,
@@ -1318,6 +1388,7 @@ window.SCENE = {
     ]
    ],
    "fr": "gâteau (à étages)",
+   "es": "la tarta",
    "gb": {
     "mot": "gateau",
     "pluriel": "gateaus"
@@ -1342,7 +1413,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "fraise"
+   "fr": "fraise",
+   "es": "la fresa"
   },
   {
    "id": "kuchen",
@@ -1363,7 +1435,9 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "gâteau"
+   "fr": "gâteau",
+   "es": "el pastel",
+   "esp": "la tarta"
   },
   {
    "id": "kuchen-2",
@@ -1384,7 +1458,9 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "gâteau"
+   "fr": "gâteau",
+   "es": "el pastel",
+   "esp": "la tarta"
   },
   {
    "id": "schalter",
@@ -1417,7 +1493,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "guichet ; interrupteur"
+   "fr": "guichet ; interrupteur",
+   "es": "la ventanilla"
   },
   {
    "id": "pflanze",
@@ -1438,7 +1515,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "boden",
@@ -1465,7 +1543,9 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1830,5 +1910,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en la panadería de su barrio, una mañana: la vendedora, con gorro blanco, le pasa una bolsa de panecillos por encima del mostrador y Anna le da una moneda; en la vitrina, una tarta de fresas, una porción de pastel de manzana y un pastel de nueces; sobre el mostrador, la caja, una balanza, un cuchillo, una caja para pastel, una cesta de panecillos y pretzels; en los estantes, panes, botellas de jugo y de leche, harina, azúcar, una cafetera y tazas; en la mesita junto a la vitrina, su vecino lee el periódico frente a un café y una porción de pastel, con el bastón apoyado en la mesa y su perro echado a sus pies; una planta en el borde de la ventana, otra en el suelo en primer plano, una bicicleta en la calle.",
+    "consigne": "Anna compra panecillos en la panadería de su barrio. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

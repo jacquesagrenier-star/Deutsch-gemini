@@ -84,6 +84,9 @@ MOTS = {
 }
 
 # Les noms qui ne se comptent pas : pas de pluriel, si le corpus ne le dit pas.
+MOTS_ES = {k: v.split("#")[0].strip() for k, v in json.load(io.open(os.path.join(PROTO, "espanol", "mots.json"), encoding="utf-8")).items()
+           if not k.startswith("_")}
+
 INDENOMBRABLES = {"bread", "butter", "cheese", "meat", "milk", "rice", "salt", "sugar", "water", "coffee", "tea",
                   "juice", "beer", "wine", "oil", "ham", "flour", "sand", "smoke", "steam", "snow", "grass", "hair",
                   "money", "luggage", "paper", "wood", "fire", "tape", "chalk", "laundry detergent", "washing powder",
@@ -107,6 +110,8 @@ def corpus():
             idx.setdefault(mu["mot"].lower(), {
                 "mot": mu["mot"], "pluriel": None if mu["pluriel"] == "—" else mu["pluriel"],
                 "niveau": tu["niveau"], "theme": tu["id"], "fr": mu["traduction"],
+                # L'espagnol (interface des hispanophones, 2 nov. 2026), pose par espagnol.py.
+                "es": mu.get("traduction_es"), "esp": mu.get("traduction_esp"),
                 "gb": mg["mot"] if mg["mot"] != mu["mot"] else None,
                 "plgb": None if mg["pluriel"] == "—" else mg["pluriel"]})
     return idx
@@ -139,11 +144,14 @@ def anglais_de(point, idx):
     c = idx.get(mot.lower())
     if c:
         return {"mot": c["mot"], "genre": "", "pluriel": c["pluriel"], "niveau": c["niveau"], "theme": c["theme"],
-                "fr": point.get("fr") or c["fr"],
+                "fr": point.get("fr") or c["fr"], "es": c.get("es") or MOTS_ES.get(point["mot"]), "esp": c.get("esp"),
                 "gb": ({"mot": c["gb"], "pluriel": c["plgb"]} if c["gb"] else
                        ({"mot": gb, "pluriel": None if gb in INDENOMBRABLES else pluriel(gb)} if gb else None))}
     return {"mot": mot, "genre": "", "pluriel": None if mot in INDENOMBRABLES else pluriel(mot),
             "niveau": point.get("niveau") or "A2", "theme": None, "fr": point.get("fr"),
+            # Hors du corpus : le mot espagnol des scenes (visuel/prototype/espanol/mots.json,
+            # espagnol d'Espagne, commun aux scenes) -- a relire pour l'Amerique latine.
+            "es": MOTS_ES.get(point["mot"]),
             "gb": {"mot": gb, "pluriel": None if gb in INDENOMBRABLES else pluriel(gb)} if gb else None}
 
 
@@ -164,7 +172,7 @@ def construire_scene(nom, idx):
             ra = anglais_de(a, idx)
             if ra and ra["mot"] not in vus:
                 vus.add(ra["mot"])
-                aussi.append(nettoyer({k: ra.get(k) for k in ("mot", "genre", "niveau", "theme", "fr", "gb")}))
+                aussi.append(nettoyer({k: ra.get(k) for k in ("mot", "genre", "niveau", "theme", "fr", "es", "esp", "gb")}))
         q = {k: v for k, v in p.items() if k not in ("tr", "uk", "fa", "pt", "ar", "pl", "ru", "en")}
         q.update(nettoyer(r))
         if not r.get("gb"):
@@ -189,8 +197,19 @@ def construire_scene(nom, idx):
         for niv, couche in json.load(io.open(p_en, encoding="utf-8")).get("couches", {}).items():
             scene["couches"][niv] = dict(couche, qs=[{k: v for k, v in q.items() if not k.startswith("_")}
                                                     for q in couche.get("qs", [])])
-    # L'interface de l'anglais est en francais : pas de traductions d'interface.
+    # L'interface espagnole (2 nov. 2026) : description, consigne et titre de la couche A1,
+    # depuis la memoire anglais/es/traductions/textes.json (temoin francais verifie).
     scene["traductions"] = {}
+    import espagnol_textes
+    mem = espagnol_textes.memoire("textes")
+    def es(cle, fr):
+        e = mem.get(cle)
+        return e["es"] if e and e.get("fr") == fr and e.get("es") else None
+    champs = {k: es("scenes|%s|%s" % (nom, k), scene.get(k)) for k in ("alt", "consigne") if scene.get(k)}
+    champs = {k: v for k, v in champs.items() if v}
+    t_a1 = es("scenes|*|A1|" + a1["titre"], a1["titre"])
+    if champs or t_a1:
+        scene["traductions"]["es"] = {"champs": champs, "couches": {"A1": t_a1} if t_a1 else {}}
     js = ("// GENERE par anglais/outils/scenes.py (depuis scene-%s.js) -- ne pas modifier a la main.\n" % nom
           + "window.SCENE = " + json.dumps(scene, ensure_ascii=False, indent=1) + ";\n")
     io.open(os.path.join(PROTO, "scene-%s.en.js" % nom), "w", encoding="utf-8", newline="\n").write(js)

@@ -33,7 +33,8 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "lampe",
@@ -54,7 +55,8 @@ window.SCENE = {
      7.6
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "uhr",
@@ -75,7 +77,8 @@ window.SCENE = {
      5.3
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "bild",
@@ -91,7 +94,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "freetime_a1",
-     "fr": "peinture/tableau"
+     "fr": "peinture/tableau",
+     "es": "la pintura, el cuadro"
     }
    ],
    "sur": null,
@@ -104,7 +108,8 @@ window.SCENE = {
      8.8
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "haken",
@@ -125,7 +130,8 @@ window.SCENE = {
      2.4
     ]
    ],
-   "fr": "crochet"
+   "fr": "crochet",
+   "es": "el gancho"
   },
   {
    "id": "tasche",
@@ -146,7 +152,8 @@ window.SCENE = {
      12.5
     ]
    ],
-   "fr": "sac"
+   "fr": "sac",
+   "es": "la bolsa"
   },
   {
    "id": "schal",
@@ -167,7 +174,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "écharpe"
+   "fr": "écharpe",
+   "es": "la bufanda"
   },
   {
    "id": "mantel",
@@ -188,7 +196,8 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "regal",
@@ -209,7 +218,9 @@ window.SCENE = {
      31.5
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "handtuch",
@@ -242,7 +253,9 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la toalla",
+   "esp": "la toalla"
   },
   {
    "id": "flasche",
@@ -269,7 +282,8 @@ window.SCENE = {
      4.1
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "besen",
@@ -290,7 +304,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "balai"
+   "fr": "balai",
+   "es": "la escoba"
   },
   {
    "id": "spiegel",
@@ -311,7 +326,8 @@ window.SCENE = {
      44
     ]
    ],
-   "fr": "miroir"
+   "fr": "miroir",
+   "es": "el espejo"
   },
   {
    "id": "buerste",
@@ -331,7 +347,8 @@ window.SCENE = {
      3.9
     ]
    ],
-   "fr": "brosse"
+   "fr": "brosse",
+   "es": "el cepillo"
   },
   {
    "id": "flasche-2",
@@ -352,7 +369,8 @@ window.SCENE = {
      8.8
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "regal-2",
@@ -373,7 +391,9 @@ window.SCENE = {
      17.2
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "kasse",
@@ -395,6 +415,7 @@ window.SCENE = {
     ]
    ],
    "fr": "caisse",
+   "es": "la caja registradora",
    "gb": {
     "mot": "till",
     "pluriel": "tills"
@@ -419,7 +440,8 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "tasse",
@@ -435,7 +457,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "café"
+     "fr": "café",
+     "es": "el café"
     }
    ],
    "sur": "theke",
@@ -448,7 +471,8 @@ window.SCENE = {
      2.3
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "theke",
@@ -469,7 +493,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "comptoir"
+   "fr": "comptoir",
+   "es": "la barra"
   },
   {
    "id": "pflanze-2",
@@ -490,7 +515,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "laterne",
@@ -512,6 +538,7 @@ window.SCENE = {
     ]
    ],
    "fr": "réverbère",
+   "es": "la farola",
    "gb": {
     "mot": "street lamp",
     "pluriel": "street lamps"
@@ -536,7 +563,8 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "fahrrad",
@@ -557,7 +585,9 @@ window.SCENE = {
      9.3
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "fenster",
@@ -574,6 +604,7 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "money_b1",
      "fr": "vitrine",
+     "es": "el escaparate",
      "gb": {
       "mot": "shop window",
       "pluriel": "shop windows"
@@ -590,7 +621,8 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "mann",
@@ -611,7 +643,8 @@ window.SCENE = {
      43
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "brille",
@@ -637,7 +670,9 @@ window.SCENE = {
      1.16
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "schere",
@@ -657,7 +692,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "ciseaux"
+   "fr": "ciseaux",
+   "es": "las tijeras"
   },
   {
    "id": "hemd",
@@ -678,7 +714,8 @@ window.SCENE = {
      15.2
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "hose-2",
@@ -699,6 +736,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -723,7 +761,8 @@ window.SCENE = {
      4.8
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "frau",
@@ -744,7 +783,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "pullover",
@@ -760,7 +800,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "veste"
+     "fr": "veste",
+     "es": "la chaqueta"
     }
    ],
    "sur": null,
@@ -774,6 +815,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -798,7 +841,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "magazine, revue"
+   "fr": "magazine, revue",
+   "es": "la revista"
   },
   {
    "id": "sofa",
@@ -819,7 +863,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "canapé"
+   "fr": "canapé",
+   "es": "el sofá"
   },
   {
    "id": "glas",
@@ -835,7 +880,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -848,7 +894,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "zeitschrift-2",
@@ -869,7 +916,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "magazine, revue"
+   "fr": "magazine, revue",
+   "es": "la revista"
   },
   {
    "id": "tisch",
@@ -890,7 +938,8 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "anna",
@@ -911,7 +960,8 @@ window.SCENE = {
      43.5
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "haar",
@@ -931,7 +981,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "cheveu"
+   "fr": "cheveu",
+   "es": "el pelo, el cabello"
   },
   {
    "id": "handtuch-2",
@@ -952,7 +1003,9 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la toalla",
+   "esp": "la toalla"
   },
   {
    "id": "bluse",
@@ -973,7 +1026,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "chemisier"
+   "fr": "chemisier",
+   "es": "la blusa"
   },
   {
    "id": "zeitschrift-3",
@@ -994,7 +1048,8 @@ window.SCENE = {
      4.9
     ]
    ],
-   "fr": "magazine, revue"
+   "fr": "magazine, revue",
+   "es": "la revista"
   },
   {
    "id": "hose",
@@ -1015,6 +1070,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -1045,7 +1101,8 @@ window.SCENE = {
      5.4
     ]
    ],
-   "fr": "botte"
+   "fr": "botte",
+   "es": "la bota"
   },
   {
    "id": "stuhl",
@@ -1066,7 +1123,8 @@ window.SCENE = {
      27.5
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "haar-2",
@@ -1110,7 +1168,8 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "cheveu"
+   "fr": "cheveu",
+   "es": "el pelo, el cabello"
   },
   {
    "id": "boden",
@@ -1137,7 +1196,9 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1496,5 +1557,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en la peluquería, un sábado por la mañana en Boston: sentada en un sillón de cuero negro, con una toalla blanca sobre los hombros y una revista cerrada sobre las rodillas, sonríe mientras el peluquero de lentes sostiene un mechón de su pelo y las tijeras abiertas; en el suelo, pelo cortado; a la izquierda, un gran espejo, un estante alto con toallas y frascos, una escoba y una consola con un cepillo redondo y tres frascos; al fondo, un pequeño mostrador con una vieja caja registradora, una taza de café y una maceta de albahaca, un reloj, un cuadro de girasoles, una lámpara colgante y unos ganchos de los que cuelgan el abrigo, la bufanda roja y el bolso de Anna; a la derecha, una señora mayor lee una revista en un sofá gris, frente a una mesa de centro con una pila de revistas y un vaso de agua, una planta grande y la vitrina que da a la calle, con un farol, un árbol y una bicicleta.",
+    "consigne": "Anna se corta el pelo. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

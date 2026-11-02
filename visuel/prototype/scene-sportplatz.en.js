@@ -21,7 +21,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "ciel"
+   "fr": "ciel",
+   "es": "el cielo"
   },
   {
    "id": "wolke",
@@ -42,7 +43,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "nuage"
+   "fr": "nuage",
+   "es": "la nube"
   },
   {
    "id": "baum",
@@ -75,7 +77,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "uhr",
@@ -96,7 +99,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "netz",
@@ -117,7 +121,8 @@ window.SCENE = {
      26
     ]
    ],
-   "fr": "le réseau, le filet"
+   "fr": "le réseau, le filet",
+   "es": "la red"
   },
   {
    "id": "ball",
@@ -138,7 +143,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "ballon"
+   "fr": "ballon",
+   "es": "la pelota, el balón"
   },
   {
    "id": "bank",
@@ -159,7 +165,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "la banque"
+   "fr": "la banque",
+   "es": "el banco"
   },
   {
    "id": "mann",
@@ -180,7 +187,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "frau",
@@ -201,7 +209,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "fahrrad",
@@ -222,7 +231,9 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "weg",
@@ -248,7 +259,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "le chemin"
+   "fr": "le chemin",
+   "es": "el camino"
   },
   {
    "id": "torwart",
@@ -269,7 +281,8 @@ window.SCENE = {
      12.5
     ]
    ],
-   "fr": "joueur"
+   "fr": "joueur",
+   "es": "el jugador, la jugadora"
   },
   {
    "id": "handschuh",
@@ -290,7 +303,8 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "gant"
+   "fr": "gant",
+   "es": "el guante"
   },
   {
    "id": "trikot",
@@ -312,6 +326,7 @@ window.SCENE = {
     ]
    ],
    "fr": "maillot (sportif)",
+   "es": "la camiseta",
    "gb": {
     "mot": "shirt",
     "pluriel": "shirts"
@@ -336,6 +351,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -360,7 +376,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "chaussette"
+   "fr": "chaussette",
+   "es": "el calcetín, la media"
   },
   {
    "id": "schuh",
@@ -381,7 +398,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "mark",
@@ -397,7 +415,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -410,7 +429,8 @@ window.SCENE = {
      50
     ]
    ],
-   "fr": "joueur"
+   "fr": "joueur",
+   "es": "el jugador, la jugadora"
   },
   {
    "id": "pfeife",
@@ -431,7 +451,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "la pipe, le sifflet"
+   "fr": "la pipe, le sifflet",
+   "es": "el silbato"
   },
   {
    "id": "trainerin",
@@ -452,7 +473,8 @@ window.SCENE = {
      19.5
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "mannschaft",
@@ -473,7 +495,8 @@ window.SCENE = {
      24
     ]
    ],
-   "fr": "équipe"
+   "fr": "équipe",
+   "es": "el equipo"
   },
   {
    "id": "ball-2",
@@ -494,7 +517,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "ballon"
+   "fr": "ballon",
+   "es": "la pelota, el balón"
   },
   {
    "id": "handtuch",
@@ -515,7 +539,9 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la toalla",
+   "esp": "la toalla"
   },
   {
    "id": "flasche",
@@ -531,7 +557,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "tasche",
@@ -544,7 +571,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "tasche",
@@ -565,7 +593,8 @@ window.SCENE = {
      17.5
     ]
    ],
-   "fr": "sac"
+   "fr": "sac",
+   "es": "la bolsa"
   },
   {
    "id": "turnschuh",
@@ -587,6 +616,8 @@ window.SCENE = {
     ]
    ],
    "fr": "basket",
+   "es": "el tenis, la zapatilla deportiva",
+   "esp": "la zapatilla deportiva",
    "gb": {
     "mot": "trainer",
     "pluriel": "trainers"
@@ -606,6 +637,7 @@ window.SCENE = {
      "niveau": "A2",
      "theme": "sports_a2",
      "fr": "terrain de sport",
+     "es": "el campo",
      "gb": {
       "mot": "football pitch",
       "pluriel": "football pitches"
@@ -628,7 +660,9 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "herbe"
+   "fr": "herbe",
+   "es": "el pasto, la hierba",
+   "esp": "la hierba, el césped"
   }
  ],
  "grosPlans": [],
@@ -986,5 +1020,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark en un campo de fútbol, en un parque de Boston: acaba de marcar, el balón está en el fondo de la red y él se da la vuelta con el puño en alto; el portero se ríe, sentado en el césped, dos compañeros corren hacia él, la entrenadora aplaude; al fondo, dos espectadores en una banca y una bicicleta; en primer plano, un balón, una bolsa deportiva, una toalla, una botella y unos zapatos deportivos.",
+    "consigne": "Mark juega al fútbol con su equipo. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

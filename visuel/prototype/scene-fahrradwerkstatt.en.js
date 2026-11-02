@@ -21,7 +21,9 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "lampe",
@@ -42,7 +44,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "wand",
@@ -75,7 +78,8 @@ window.SCENE = {
      55
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "karton",
@@ -102,7 +106,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "kiste",
@@ -122,7 +127,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "la caisse"
+   "fr": "la caisse",
+   "es": "la caja"
   },
   {
    "id": "regal",
@@ -143,7 +149,9 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "kabel",
@@ -164,7 +172,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "câble"
+   "fr": "câble",
+   "es": "el cable"
   },
   {
    "id": "lampe-2",
@@ -185,7 +194,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "leiter",
@@ -206,7 +216,8 @@ window.SCENE = {
      29
     ]
    ],
-   "fr": "échelle"
+   "fr": "échelle",
+   "es": "la escalera"
   },
   {
    "id": "fahrrad-2",
@@ -227,7 +238,9 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "korb",
@@ -248,7 +261,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "rad-2",
@@ -274,7 +288,8 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "la roue, le vélo"
+   "fr": "la roue, le vélo",
+   "es": "la rueda"
   },
   {
    "id": "uhr",
@@ -295,7 +310,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "plakat",
@@ -316,7 +332,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "affiche"
+   "fr": "affiche",
+   "es": "el cartel"
   },
   {
    "id": "kalender",
@@ -337,7 +354,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "calendrier"
+   "fr": "calendrier",
+   "es": "el calendario"
   },
   {
    "id": "plakat-2",
@@ -358,7 +376,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "affiche"
+   "fr": "affiche",
+   "es": "el cartel"
   },
   {
    "id": "steckdose",
@@ -386,6 +405,7 @@ window.SCENE = {
     ]
    ],
    "fr": "prise électrique (murale)",
+   "es": "el enchufe",
    "gb": {
     "mot": "socket",
     "pluriel": "sockets"
@@ -410,7 +430,8 @@ window.SCENE = {
      33
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "hocker",
@@ -431,7 +452,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "tabouret"
+   "fr": "tabouret",
+   "es": "el taburete"
   },
   {
    "id": "mark",
@@ -452,7 +474,8 @@ window.SCENE = {
      42
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "jacke",
@@ -473,7 +496,8 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "t-shirt",
@@ -494,7 +518,8 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "es": "la camiseta"
   },
   {
    "id": "hose",
@@ -515,6 +540,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -535,6 +561,8 @@ window.SCENE = {
      "niveau": "A1",
      "theme": "clothes_a1",
      "fr": "basket",
+     "es": "el tenis, la zapatilla deportiva",
+     "esp": "la zapatilla deportiva",
      "gb": {
       "mot": "trainer",
       "pluriel": "trainers"
@@ -557,7 +585,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "rucksack",
@@ -578,7 +607,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "sac à dos"
+   "fr": "sac à dos",
+   "es": "la mochila"
   },
   {
    "id": "rad",
@@ -598,7 +628,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "la roue, le vélo"
+   "fr": "la roue, le vélo",
+   "es": "la rueda"
   },
   {
    "id": "fahrrad",
@@ -619,7 +650,9 @@ window.SCENE = {
      31
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "kette",
@@ -640,7 +673,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "la chaîne"
+   "fr": "la chaîne",
+   "es": "la cadena"
   },
   {
    "id": "zange",
@@ -660,7 +694,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "pince"
+   "fr": "pince",
+   "es": "los alicates"
   },
   {
    "id": "mann",
@@ -681,7 +716,8 @@ window.SCENE = {
      29
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "muetze",
@@ -702,6 +738,7 @@ window.SCENE = {
     ]
    ],
    "fr": "bonnet",
+   "es": "el gorro",
    "gb": {
     "mot": "woolly hat",
     "pluriel": "woolly hats"
@@ -731,7 +768,9 @@ window.SCENE = {
      1.3
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "jacke-2",
@@ -752,7 +791,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "hose-2",
@@ -773,6 +813,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -803,7 +844,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "heizkoerper",
@@ -824,7 +866,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "radiateur"
+   "fr": "radiateur",
+   "es": "el radiador"
   },
   {
    "id": "haus",
@@ -840,7 +883,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "city_a1",
-     "fr": "bâtiment"
+     "fr": "bâtiment",
+     "es": "el edificio"
     }
    ],
    "sur": null,
@@ -853,7 +897,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "maison"
+   "fr": "maison",
+   "es": "la casa"
   },
   {
    "id": "baum",
@@ -874,7 +919,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "auto",
@@ -895,7 +941,9 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "voiture"
+   "fr": "voiture",
+   "es": "el carro, el auto",
+   "esp": "el coche"
   },
   {
    "id": "helm",
@@ -916,7 +964,8 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "casque"
+   "fr": "casque",
+   "es": "el casco"
   },
   {
    "id": "radfahrer",
@@ -932,7 +981,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -945,7 +995,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "cycliste"
+   "fr": "cycliste",
+   "es": "el ciclista"
   },
   {
    "id": "fahrrad-3",
@@ -966,7 +1017,9 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "strasse",
@@ -987,7 +1040,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "rue"
+   "fr": "rue",
+   "es": "la calle"
   },
   {
    "id": "fenster",
@@ -1004,6 +1058,7 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "money_b1",
      "fr": "vitrine",
+     "es": "el escaparate",
      "gb": {
       "mot": "shop window",
       "pluriel": "shop windows"
@@ -1020,7 +1075,8 @@ window.SCENE = {
      47
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "hund",
@@ -1041,7 +1097,8 @@ window.SCENE = {
      9.5
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "es": "el perro"
   },
   {
    "id": "kasse",
@@ -1063,6 +1120,7 @@ window.SCENE = {
     ]
    ],
    "fr": "caisse",
+   "es": "la caja registradora",
    "gb": {
     "mot": "till",
     "pluriel": "tills"
@@ -1087,7 +1145,8 @@ window.SCENE = {
      34
     ]
    ],
-   "fr": "comptoir"
+   "fr": "comptoir",
+   "es": "la barra"
   },
   {
    "id": "flasche",
@@ -1103,7 +1162,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "tisch",
@@ -1116,7 +1176,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "tasse",
@@ -1132,7 +1193,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "café"
+     "fr": "café",
+     "es": "el café"
     }
    ],
    "sur": "tisch",
@@ -1145,7 +1207,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "klingel",
@@ -1166,7 +1229,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "sonnette"
+   "fr": "sonnette",
+   "es": "el timbre"
   },
   {
    "id": "zollstock",
@@ -1187,7 +1251,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "mètre pliant"
+   "fr": "mètre pliant",
+   "es": "el metro"
   },
   {
    "id": "handschuh",
@@ -1208,7 +1273,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "gant"
+   "fr": "gant",
+   "es": "el guante"
   },
   {
    "id": "zollstock-2",
@@ -1229,7 +1295,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "mètre pliant"
+   "fr": "mètre pliant",
+   "es": "el metro"
   },
   {
    "id": "tisch",
@@ -1250,7 +1317,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "karton-2",
@@ -1277,7 +1345,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "rad-3",
@@ -1297,7 +1366,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "la roue, le vélo"
+   "fr": "la roue, le vélo",
+   "es": "la rueda"
   },
   {
    "id": "werkzeug",
@@ -1318,7 +1388,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "outil"
+   "fr": "outil",
+   "es": "la herramienta"
   },
   {
    "id": "hammer",
@@ -1339,7 +1410,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "le marteau"
+   "fr": "le marteau",
+   "es": "el martillo"
   },
   {
    "id": "oel",
@@ -1359,7 +1431,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "huile"
+   "fr": "huile",
+   "es": "el aceite"
   },
   {
    "id": "eimer",
@@ -1380,7 +1453,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "le seau"
+   "fr": "le seau",
+   "es": "el cubo"
   },
   {
    "id": "boden",
@@ -1407,7 +1481,9 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1766,5 +1842,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark en el taller de bicicletas de su barrio, una tarde: sostiene la rueda delantera, ya desmontada, de su bicicleta verde, puesta al revés sobre el sillín, y mira al mecánico, en cuclillas, que sujeta la cadena con unos alicates; en el suelo, una caja de herramientas roja con un martillo, una lata de aceite y un balde; a la izquierda, el banco de trabajo con guantes de trabajo, dos metros plegables, un timbre, una botella y un café, una escalera, un estante con cajas de cartón y una caja, un cable y una bombilla; en la pared de ladrillos blancos, una bicicleta roja con canasta, dos ruedas, un reloj, un cartel de una bicicleta, un calendario, una puerta de madera y un taburete; a la derecha, la vitrina que da a la calle, con un ciclista con casco y un auto azul, un radiador, una vieja caja registradora sobre el mostrador y un perro echado en el borde de la ventana.",
+    "consigne": "Mark lleva su bicicleta a reparar al taller del barrio. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

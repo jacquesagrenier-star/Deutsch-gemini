@@ -21,7 +21,8 @@ window.SCENE = {
      12.3
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "farbe",
@@ -43,6 +44,7 @@ window.SCENE = {
     ]
    ],
    "fr": "couleur",
+   "es": "el color",
    "gb": {
     "mot": "colour",
     "pluriel": "colours"
@@ -67,7 +69,8 @@ window.SCENE = {
      52
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "fenster",
@@ -88,7 +91,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "katze",
@@ -109,7 +113,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "chat"
+   "fr": "chat",
+   "es": "el gato"
   },
   {
    "id": "steckdose",
@@ -131,6 +136,7 @@ window.SCENE = {
     ]
    ],
    "fr": "prise électrique (murale)",
+   "es": "el enchufe",
    "gb": {
     "mot": "socket",
     "pluriel": "sockets"
@@ -155,7 +161,8 @@ window.SCENE = {
      16.5
     ]
    ],
-   "fr": "câble"
+   "fr": "câble",
+   "es": "el cable"
   },
   {
    "id": "schrank",
@@ -177,6 +184,8 @@ window.SCENE = {
     ]
    ],
    "fr": "armoire",
+   "es": "el clóset, el armario",
+   "esp": "el armario",
    "gb": {
     "mot": "wardrobe",
     "pluriel": "wardrobes"
@@ -201,7 +210,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "leiter",
@@ -234,7 +244,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "échelle"
+   "fr": "échelle",
+   "es": "la escalera"
   },
   {
    "id": "regal",
@@ -255,7 +266,9 @@ window.SCENE = {
      34
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "eimer",
@@ -276,7 +289,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "le seau"
+   "fr": "le seau",
+   "es": "el cubo"
   },
   {
    "id": "pinsel",
@@ -297,7 +311,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "pinceau"
+   "fr": "pinceau",
+   "es": "el pincel"
   },
   {
    "id": "t-shirt",
@@ -318,7 +333,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "es": "la camiseta"
   },
   {
    "id": "hose",
@@ -339,6 +355,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -363,7 +380,8 @@ window.SCENE = {
      38
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "schuh",
@@ -384,7 +402,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "holz",
@@ -404,7 +423,8 @@ window.SCENE = {
      21.5
     ]
    ],
-   "fr": "le bois"
+   "fr": "le bois",
+   "es": "la madera"
   },
   {
    "id": "handschuh",
@@ -425,7 +445,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "gant"
+   "fr": "gant",
+   "es": "el guante"
   },
   {
    "id": "werkzeug",
@@ -446,7 +467,8 @@ window.SCENE = {
      27
     ]
    ],
-   "fr": "outil"
+   "fr": "outil",
+   "es": "la herramienta"
   },
   {
    "id": "hammer",
@@ -467,7 +489,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "le marteau"
+   "fr": "le marteau",
+   "es": "el martillo"
   },
   {
    "id": "papier",
@@ -487,7 +510,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "le papier"
+   "fr": "le papier",
+   "es": "el papel"
   },
   {
    "id": "nagel",
@@ -508,7 +532,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "ongle"
+   "fr": "ongle",
+   "es": "la uña"
   },
   {
    "id": "zollstock",
@@ -529,7 +554,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "mètre pliant"
+   "fr": "mètre pliant",
+   "es": "el metro"
   },
   {
    "id": "holz-2",
@@ -549,7 +575,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "le bois"
+   "fr": "le bois",
+   "es": "la madera"
   },
   {
    "id": "karton-2",
@@ -570,7 +597,8 @@ window.SCENE = {
      22
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "boden",
@@ -591,7 +619,9 @@ window.SCENE = {
      43
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "bohrmaschine",
@@ -612,7 +642,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "perceuse"
+   "fr": "perceuse",
+   "es": "el taladro"
   },
   {
    "id": "zange",
@@ -632,7 +663,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "pince"
+   "fr": "pince",
+   "es": "los alicates"
   }
  ],
  "grosPlans": [],
@@ -990,5 +1022,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark acaba de mudarse: de rodillas sobre el parqué, con una tabla en una mano y un destornillador en la otra, mira las instrucciones de una estantería con cara de desconcierto; a su alrededor, una caja de herramientas roja, un taladro, clavos, un metro plegable, cajas de cartón; una pared pintada de azul a medias, una escalera, un armario y el gato en el borde de la ventana.",
+    "consigne": "Mark monta una estantería en su nuevo apartamento. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

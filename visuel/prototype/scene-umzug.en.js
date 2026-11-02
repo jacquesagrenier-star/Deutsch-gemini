@@ -21,7 +21,9 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "lampe",
@@ -42,7 +44,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "gluehbirne",
@@ -63,7 +66,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "ampoule"
+   "fr": "ampoule",
+   "es": "la bombilla"
   },
   {
    "id": "tuer",
@@ -90,7 +94,8 @@ window.SCENE = {
      100
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "wand",
@@ -117,7 +122,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "baum",
@@ -138,7 +144,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "fenster",
@@ -159,7 +166,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "bruder",
@@ -175,7 +183,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     }
    ],
    "sur": null,
@@ -188,7 +197,8 @@ window.SCENE = {
      37
     ]
    ],
-   "fr": "frère"
+   "fr": "frère",
+   "es": "el hermano"
   },
   {
    "id": "pullover",
@@ -210,6 +220,8 @@ window.SCENE = {
     ]
    ],
    "fr": "pull",
+   "es": "el suéter",
+   "esp": "el jersey",
    "gb": {
     "mot": "jumper",
     "pluriel": "jumpers"
@@ -234,6 +246,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -258,7 +271,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "leiter",
@@ -279,7 +293,8 @@ window.SCENE = {
      35
     ]
    ],
-   "fr": "échelle"
+   "fr": "échelle",
+   "es": "la escalera"
   },
   {
    "id": "regal",
@@ -300,7 +315,9 @@ window.SCENE = {
      18.5
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "bild",
@@ -316,7 +333,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "freetime_a1",
-     "fr": "peinture/tableau"
+     "fr": "peinture/tableau",
+     "es": "la pintura, el cuadro"
     }
    ],
    "sur": null,
@@ -329,7 +347,8 @@ window.SCENE = {
      5.6
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "pflanze",
@@ -350,7 +369,8 @@ window.SCENE = {
      6.2
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "karton",
@@ -371,7 +391,8 @@ window.SCENE = {
      7.6
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "anna",
@@ -392,7 +413,8 @@ window.SCENE = {
      38
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "hemd",
@@ -413,7 +435,8 @@ window.SCENE = {
      14.8
     ]
    ],
-   "fr": "chemise"
+   "fr": "chemise",
+   "es": "la camisa"
   },
   {
    "id": "t-shirt",
@@ -434,7 +457,8 @@ window.SCENE = {
      2.7
     ]
    ],
-   "fr": "t-shirt"
+   "fr": "t-shirt",
+   "es": "la camiseta"
   },
   {
    "id": "schluessel",
@@ -455,7 +479,9 @@ window.SCENE = {
      3.3
     ]
    ],
-   "fr": "clé"
+   "fr": "clé",
+   "es": "la llave",
+   "esp": "la llave"
   },
   {
    "id": "hose",
@@ -476,6 +502,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -495,7 +522,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "chaussure"
+     "fr": "chaussure",
+     "es": "el zapato"
     }
    ],
    "sur": null,
@@ -515,6 +543,8 @@ window.SCENE = {
     ]
    ],
    "fr": "basket",
+   "es": "el tenis, la zapatilla deportiva",
+   "esp": "la zapatilla deportiva",
    "gb": {
     "mot": "trainer",
     "pluriel": "trainers"
@@ -539,7 +569,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "miroir"
+   "fr": "miroir",
+   "es": "el espejo"
   },
   {
    "id": "lampe-2",
@@ -560,7 +591,8 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "gitarre",
@@ -581,7 +613,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "es": "la guitarra"
   },
   {
    "id": "kissen",
@@ -608,7 +641,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "coussin"
+   "fr": "coussin",
+   "es": "el cojín"
   },
   {
    "id": "sofa",
@@ -629,7 +663,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "canapé"
+   "fr": "canapé",
+   "es": "el sofá"
   },
   {
    "id": "heizkoerper",
@@ -656,7 +691,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "radiateur"
+   "fr": "radiateur",
+   "es": "el radiador"
   },
   {
    "id": "uhr",
@@ -677,7 +713,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "stuhl",
@@ -698,7 +735,8 @@ window.SCENE = {
      14
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "tisch",
@@ -719,7 +757,8 @@ window.SCENE = {
      13.5
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "dose",
@@ -741,6 +780,7 @@ window.SCENE = {
     ]
    ],
    "fr": "boîte de conserve",
+   "es": "la lata",
    "gb": {
     "mot": "tin",
     "pluriel": "tins"
@@ -765,7 +805,8 @@ window.SCENE = {
      11.3
     ]
    ],
-   "fr": "outil"
+   "fr": "outil",
+   "es": "la herramienta"
   },
   {
    "id": "hammer",
@@ -786,7 +827,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "le marteau"
+   "fr": "le marteau",
+   "es": "el martillo"
   },
   {
    "id": "bohrmaschine",
@@ -807,7 +849,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "perceuse"
+   "fr": "perceuse",
+   "es": "el taladro"
   },
   {
    "id": "pizza",
@@ -828,7 +871,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "pizza"
+   "fr": "pizza",
+   "es": "la pizza"
   },
   {
    "id": "karton-3",
@@ -849,7 +893,8 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "karton-4",
@@ -876,7 +921,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "karton-2",
@@ -903,7 +949,8 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "teppich",
@@ -924,7 +971,9 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "tapis"
+   "fr": "tapis",
+   "es": "la alfombra, la moqueta",
+   "esp": "la moqueta"
   },
   {
    "id": "klebeband",
@@ -943,7 +992,8 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "ruban adhésif"
+   "fr": "ruban adhésif",
+   "es": "la cinta adhesiva"
   },
   {
    "id": "schere",
@@ -963,7 +1013,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "ciseaux"
+   "fr": "ciseaux",
+   "es": "las tijeras"
   },
   {
    "id": "buch",
@@ -984,7 +1035,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "koffer",
@@ -1005,7 +1057,8 @@ window.SCENE = {
      21.5
     ]
    ],
-   "fr": "valise"
+   "fr": "valise",
+   "es": "la maleta"
   },
   {
    "id": "boden",
@@ -1032,7 +1085,9 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   }
  ],
  "grosPlans": [],
@@ -1384,5 +1439,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna se muda a un apartamento antiguo de Boston, un sábado por la tarde: carga una gran caja de cartón de la que asoma una planta verde y le sonríe a su hermanito, de pie sobre una escalerita, que enrosca una bombilla en la lámpara del techo; sus llaves cuelgan del cinturón; en el suelo, una pila de cajas, un rollo de cinta adhesiva, tijeras, una alfombra roja enrollada, una pila de libros, una maleta roja, una caja de herramientas roja con un martillo y un taladro, una pizza en su caja y dos latas rojas; a la izquierda, el sofá todavía envuelto en plástico con sus cojines amarillos, un gran espejo apoyado contra la pared, una guitarra y una lámpara de pie; al fondo, una alta ventana en arco que da a un árbol, un radiador, una estantería blanca vacía con un cuadro del mar, una mesa de madera con una silla volteada encima y un reloj puesto en el suelo.",
+    "consigne": "Anna se muda a su nuevo apartamento. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

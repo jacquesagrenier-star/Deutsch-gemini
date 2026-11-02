@@ -21,7 +21,8 @@ window.SCENE = {
      60
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -42,7 +43,9 @@ window.SCENE = {
      32
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "fenster",
@@ -63,7 +66,8 @@ window.SCENE = {
      31
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "lampe",
@@ -84,7 +88,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "uhr",
@@ -105,7 +110,8 @@ window.SCENE = {
      6.3
     ]
    ],
-   "fr": "horloge"
+   "fr": "horloge",
+   "es": "el reloj de pared"
   },
   {
    "id": "pflanze",
@@ -126,7 +132,8 @@ window.SCENE = {
      8.8
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "pflanze-fenster",
@@ -147,7 +154,8 @@ window.SCENE = {
      6.3
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "kuehlschrank",
@@ -168,7 +176,9 @@ window.SCENE = {
      39
     ]
    ],
-   "fr": "réfrigérateur"
+   "fr": "réfrigérateur",
+   "es": "el refrigerador",
+   "esp": "la nevera"
   },
   {
    "id": "teller",
@@ -189,7 +199,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "assiette"
+   "fr": "assiette",
+   "es": "el plato"
   },
   {
    "id": "glas",
@@ -210,7 +221,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "verre"
+   "fr": "verre",
+   "es": "el vaso, la copa"
   },
   {
    "id": "tasse",
@@ -231,7 +243,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "regal",
@@ -252,7 +265,9 @@ window.SCENE = {
      1.4
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "topf",
@@ -273,7 +288,9 @@ window.SCENE = {
      4.4
     ]
    ],
-   "fr": "casserole"
+   "fr": "casserole",
+   "es": "la olla",
+   "esp": "la olla"
   },
   {
    "id": "deckel",
@@ -294,7 +311,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "couvercle"
+   "fr": "couvercle",
+   "es": "la tapa"
   },
   {
    "id": "pfanne",
@@ -315,7 +333,8 @@ window.SCENE = {
      2.4
     ]
    ],
-   "fr": "poêle"
+   "fr": "poêle",
+   "es": "la sartén"
   },
   {
    "id": "ei",
@@ -336,7 +355,8 @@ window.SCENE = {
      1.4
     ]
    ],
-   "fr": "œuf"
+   "fr": "œuf",
+   "es": "el huevo"
   },
   {
    "id": "backofen",
@@ -357,7 +377,9 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "four"
+   "fr": "four",
+   "es": "el horno",
+   "esp": "el horno"
   },
   {
    "id": "handtuch",
@@ -378,7 +400,9 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la toalla",
+   "esp": "la toalla"
   },
   {
    "id": "spuelmaschine",
@@ -399,7 +423,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "lave-vaisselle"
+   "fr": "lave-vaisselle",
+   "es": "el lavavajillas, el lavaplatos"
   },
   {
    "id": "mark",
@@ -420,7 +445,8 @@ window.SCENE = {
      33
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "messer",
@@ -441,7 +467,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "couteau"
+   "fr": "couteau",
+   "es": "el cuchillo"
   },
   {
    "id": "karotte",
@@ -462,7 +489,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "carotte"
+   "fr": "carotte",
+   "es": "la zanahoria"
   },
   {
    "id": "zwiebel",
@@ -483,7 +511,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "oignon"
+   "fr": "oignon",
+   "es": "la cebolla"
   },
   {
    "id": "oel",
@@ -498,7 +527,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "bouteille"
+     "fr": "bouteille",
+     "es": "la botella"
     }
    ],
    "sur": "tisch",
@@ -511,7 +541,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "huile"
+   "fr": "huile",
+   "es": "el aceite"
   },
   {
    "id": "loeffel",
@@ -532,7 +563,8 @@ window.SCENE = {
      2.5
     ]
    ],
-   "fr": "cuillère"
+   "fr": "cuillère",
+   "es": "la cuchara"
   },
   {
    "id": "milch",
@@ -547,7 +579,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "bouteille"
+     "fr": "bouteille",
+     "es": "la botella"
     }
    ],
    "sur": "tisch",
@@ -560,7 +593,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "lait"
+   "fr": "lait",
+   "es": "la leche"
   },
   {
    "id": "brot",
@@ -580,7 +614,8 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "pain"
+   "fr": "pain",
+   "es": "el pan"
   },
   {
    "id": "salz",
@@ -600,7 +635,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "sel"
+   "fr": "sel",
+   "es": "la sal"
   },
   {
    "id": "pfeffer",
@@ -620,7 +656,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "poivre"
+   "fr": "poivre",
+   "es": "la pimienta"
   },
   {
    "id": "kartoffel",
@@ -641,7 +678,9 @@ window.SCENE = {
      4.6
     ]
    ],
-   "fr": "pomme de terre"
+   "fr": "pomme de terre",
+   "es": "la papa",
+   "esp": "la patata"
   },
   {
    "id": "tomate",
@@ -662,7 +701,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "tomate"
+   "fr": "tomate",
+   "es": "el tomate"
   },
   {
    "id": "butter",
@@ -682,7 +722,9 @@ window.SCENE = {
      3.3
     ]
    ],
-   "fr": "beurre"
+   "fr": "beurre",
+   "es": "la mantequilla",
+   "esp": "la mantequilla"
   },
   {
    "id": "apfel",
@@ -703,7 +745,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "pomme"
+   "fr": "pomme",
+   "es": "la manzana"
   },
   {
    "id": "banane",
@@ -724,7 +767,8 @@ window.SCENE = {
      3.8
     ]
    ],
-   "fr": "banane"
+   "fr": "banane",
+   "es": "el plátano, la banana"
   },
   {
    "id": "buch",
@@ -745,7 +789,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "tisch",
@@ -766,7 +811,8 @@ window.SCENE = {
      39
     ]
    ],
-   "fr": "table"
+   "fr": "table",
+   "es": "la mesa"
   },
   {
    "id": "muelleimer",
@@ -788,6 +834,7 @@ window.SCENE = {
     ]
    ],
    "fr": "poubelle",
+   "es": "la papelera",
    "gb": {
     "mot": "bin",
     "pluriel": "bins"
@@ -812,7 +859,8 @@ window.SCENE = {
      27
     ]
    ],
-   "fr": "chat"
+   "fr": "chat",
+   "es": "el gato"
   },
   {
    "id": "stuhl",
@@ -833,7 +881,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "stuhl-2",
@@ -854,7 +903,8 @@ window.SCENE = {
      26
     ]
    ],
-   "fr": "chaise"
+   "fr": "chaise",
+   "es": "la silla"
   },
   {
    "id": "handtuch-stuhl",
@@ -875,7 +925,9 @@ window.SCENE = {
      16
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la toalla",
+   "esp": "la toalla"
   },
   {
    "id": "schuh",
@@ -896,7 +948,8 @@ window.SCENE = {
      3.5
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "tuer",
@@ -917,7 +970,8 @@ window.SCENE = {
      60
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "spuele",
@@ -938,7 +992,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "évier"
+   "fr": "évier",
+   "es": "el fregadero, el lavabo"
   },
   {
    "id": "wasserhahn",
@@ -960,6 +1015,8 @@ window.SCENE = {
     ]
    ],
    "fr": "robinet",
+   "es": "la llave del agua, el grifo",
+   "esp": "el grifo",
    "gb": {
     "mot": "tap",
     "pluriel": "taps"
@@ -984,7 +1041,8 @@ window.SCENE = {
      21
     ]
    ],
-   "fr": "tablier"
+   "fr": "tablier",
+   "es": "el delantal"
   },
   {
    "id": "dampf",
@@ -1004,7 +1062,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "vapeur"
+   "fr": "vapeur",
+   "es": "el vapor"
   },
   {
    "id": "flasche",
@@ -1025,7 +1084,8 @@ window.SCENE = {
      3.3
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   }
  ],
  "grosPlans": [],
@@ -1394,5 +1454,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark en la cocina de su apartamento compartido en Boston: corta una zanahoria sobre la mesa, una olla roja humea sobre el fuego, al lado una sartén con dos huevos; sobre la mesa, papas, tomates, manzanas, plátanos, pan, leche, y un gato gris sentado en una silla.",
+    "consigne": "Mark prepara una sopa. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

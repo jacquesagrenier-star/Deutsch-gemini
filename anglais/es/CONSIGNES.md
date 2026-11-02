@@ -121,3 +121,95 @@ Quand ta part est faite, écris un compte rendu court dans `anglais/es/lots/RAPP
 ce qui est fait (chiffres), ce dont tu doutes (liste précise d'id), toute source qui te semblait
 fautive, et la section **« À trancher »** (ids où l'Espagne et l'Amérique latine diffèrent,
 avec les deux formes).
+
+---
+
+# Palier 2 : le contenu (2 nov. 2026)
+
+**Décision de Jacques (2 nov.) : deux espagnols.** L'**Amérique latine** est la base (le
+défaut) : c'est elle que tu écris partout. L'**Espagne** n'est qu'une table de différences :
+pour une **carte** dont le mot ou la phrase se dit autrement en Espagne (el carro / el coche,
+la computadora / el ordenador, el celular / el móvil, el jugo / el zumo, manejar / conducir,
+la cuadra / la manzana, el departamento / el piso, rentar / alquilar, la papa / la patata,
+el boleto / el billete, ustedes / vosotros dans une phrase qui s'adresse à plusieurs), tu
+donnes aussi la forme d'Espagne (format ci-dessous). Les textes longs (fiches, explications)
+s'écrivent en espagnol **neutre**, sans régionalisme : ils servent aux deux.
+
+## Écrire CONTRE l'espagnol (pas traduire le français)
+
+Les explications françaises comparent l'anglais au français (« comme en français »,
+« contrairement au français »). **Réécris-les pour un hispanophone** : retire la comparaison
+avec le français ; ajoute celle avec l'espagnol quand elle aide vraiment. Une comparaison
+fausse est pire que pas de comparaison. Les pièges d'un hispanophone :
+
+- **le sujet obligatoire** : *It's raining*, *It is important* (*Llueve*, *Es importante*) —
+  erreur n° 1 : « Is raining » ; *there is / there are* = *hay* ;
+- **l'adjectif avant le nom, invariable** : *a red car*, *two red cars* (jamais « reds ») ;
+- **do / does / did** pour la question et la négation (*¿Hablas inglés?* = *Do you speak
+  English?*, *No trabaja* = *She doesn't work*) ; le **-s** de la 3ᵉ personne ;
+- **to be** pour l'âge et les sensations : *I'm 20*, *I'm hungry* (*tengo 20 años, tengo
+  hambre*) ; un seul *to be* pour *ser* et *estar* ;
+- le **possessif selon le possesseur** : *his / her* (*su* ne le dit pas) ;
+- **pas d'article pour les généralités** : *Dogs are loyal*, *I like music* ;
+- **like ≠ gustar** : *I like dogs* (la personne est le sujet ; *me gustan los perros*) ;
+- **present perfect** ≠ *pretérito perfecto* dans l'usage ; *for / since* ≠ *desde hace / desde* ;
+  *I've lived here for ten years* = *Vivo aquí desde hace diez años* ;
+- **faux amis** : *actually* (en realidad), *embarrassed* (avergonzado ≠ embarazada),
+  *library* (biblioteca ≠ librería), *carpet* (alfombra), *exit* (salida ≠ éxito), *realize*
+  (darse cuenta), *assist* (ayudar), *attend* (asistir), *sensible* (sensato), *large* (grande),
+  *argument* (discusión), *fabric* (tela), *constipated* (estreñido). Un faux ami **français**
+  de la source qui ne trompe pas un hispanophone : remplace-le par le piège espagnol s'il
+  existe, sinon dis simplement le sens.
+
+## La prononciation, expliquée à un hispanophone
+
+Les transcriptions « à la française » de la source (« ZI-rô », « OUANN », « gôou ») ne valent
+rien pour un hispanophone : **refais-les avec l'orthographe espagnole** (*zero* « SÍ-rou »,
+*one* « UAN », *two* « TU », *five* « FAIV », *go* « GÓU ») ; une lettre que l'espagnol n'a pas
+se garde entre crochets API ([θ], [ð], [ʃ], [z], [v], [ʌ], [ə]). Repères :
+- voyelles **longues et courtes** (*ship / sheep*, *full / fool*) : l'espagnol n'en a qu'une ;
+- le **e ajouté** devant s + consonne : *speak*, pas « espeak » ; *school*, pas « escul » ;
+- **v ≠ b** : *very*, la lèvre du bas sur les dents ; *b* les deux lèvres ;
+- **h aspiré**, léger, plus doux que la *j* espagnole ; jamais muet (*house*, *happy*) ;
+- **th** : [θ] comme la *z* d'Espagne (*think*) ; [ð] sonore (*the*) — en Amérique latine, pas
+  d'équivalent : la langue entre les dents ;
+- **z** et le **s** sonore de *is*, *roses* : une abeille, la gorge vibre ;
+- **sh** [ʃ] (*she*) ≠ **ch** (*cheese*) ; **j** = [dʒ] (*job*), jamais la *j* de *jamón* ;
+- le **r** américain ne roule pas : la langue recule, ne touche rien ;
+- finales **-ed** ([t], [d], [ɪd]) et **-s** ([s], [z], [ɪz]) ; le **schwa** et l'accent tonique.
+
+## Formats
+
+### Cartes → `lots/corpus-<fichier>-NN.es.json`
+
+Sources : `sources/a1-corpus-<fichier>.json` (entrées `id`, `mot`, `fr` = le sens français,
+`ex` = la phrase anglaise, `ex_fr` = sa traduction, parfois `es_existant` = une phrase de
+NOTRE corpus espagnol dont la phrase anglaise est la traduction : reprends-la si elle est
+juste et neutre, adapte-la sinon). Rends `{id: [traduction, phrase]}`, ou
+`{id: [traduction, phrase, traduction d'Espagne, phrase d'Espagne]}` quand l'Espagne dit
+autrement (une colonne d'Espagne vide = comme l'Amérique latine).
+- `traduction` : le sens espagnol du mot anglais ; un **nom** avec son article (*el perro*,
+  *la casa*) ; un **verbe** à l'infinitif (*trabajar*) ; un **adjectif** au masculin
+  (*cansado*). Deux sens : séparés par « , » comme le français.
+- `phrase` : la traduction **de la phrase anglaise** (le français n'est qu'une aide).
+- **Deux cartes d'un même groupe ne reçoivent pas la même traduction** quand leurs mots anglais
+  diffèrent : départage par une précision entre parenthèses (*grande (big)* …) ou un synonyme.
+- Contrôle : `PYTHONIOENCODING=utf-8 python anglais/es/poser.py controle <fichier>` → 0 faute.
+
+### Textes → `lots/textes-NN.es.json`
+
+Source : `sources/a1-textes.json` (`id`, `fr`, `contexte`). Rends `{id: texte espagnol}`, tous
+les id, dans l'ordre ; en morceaux de 250 à 400 entrées. Les mots et phrases **anglais** restent
+en anglais ; balises et `{marques}` intactes. Contrôle :
+`PYTHONIOENCODING=utf-8 python anglais/es/poser_textes.py controle textes` → 0 faute.
+
+### Exercices → `lots/exercices-NN.es.json`
+
+Source : `sources/a1-exercices.json` (`id`, `question` anglaise, `options`, `correct`,
+`translation` = la phrase en français, `explanation` = l'explication française). Rends
+`{id: [traduction espagnole de la phrase, explication espagnole]}`. L'explication est
+**réécrite contre l'espagnol** (voir plus haut), courte comme la source. Contrôle :
+`PYTHONIOENCODING=utf-8 python anglais/es/poser_textes.py controle exercices` → 0 faute.
+
+Interdits de la page précédente inchangés : n'écris que dans `anglais/es/lots/`, aucune
+commande `pose`, aucun git qui écrit, aucun autre agent, aucun service en ligne.

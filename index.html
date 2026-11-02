@@ -13107,6 +13107,12 @@ const VARIANTE_INTERFACE_ES = (() => {
     try{ return localStorage.getItem(PREFIXE_STOCKAGE + "varianteEs") === "es" ? "es" : "latam"; }
     catch(e){ return "latam"; }
 })();
+// Le champ espagnol d'une carte de l'anglais : l'Espagne a le sien quand elle dit
+// autrement (traduction_esp, exemple_esp -- anglais/outils/espagnol.py), sinon
+// celui de l'Amerique latine.
+function champEs(o, base){
+    return (VARIANTE_INTERFACE_ES === "es" && o[base + "_esp"]) || o[base + "_es"] || "";
+}
 function choisirVarianteInterfaceEs(v){
     if(v !== "es" && v !== "latam") return;
     try{ localStorage.setItem(PREFIXE_STOCKAGE + "varianteEs", v); }catch(e){}
@@ -36153,7 +36159,7 @@ async function loadVerbeJson() {
                         exemple_perfecto_de: v.exemple_perfecto_de || "", exemple_futuro_de: v.exemple_futuro_de || "",
                         exemple_condicional_de: v.exemple_condicional_de || "", exemple_subjuntivo_de: v.exemple_subjuntivo_de || "" } : {}),
                     // L'espagnol, langue d'interface de l'anglais (2 nov. 2026) : en anglais seulement.
-                    ...(LANGUE_APPRISE === "en" ? { traduction_es: v.traduction_es || "", exemple_es: v.exemple_es || "" } : {}),
+                    ...(LANGUE_APPRISE === "en" ? { traduction_es: champEs(v, "traduction"), exemple_es: champEs(v, "exemple") } : {}),
                     praeteritumHighlight: v.praeteritumHighlight || "", konjunktiv2Highlight: v.konjunktiv2Highlight || "",
                     // Les examens ou ce verbe figure, ["a2","b1","dtz"]. Ce
                     // chargeur recopie champ par champ : sans cette ligne, la
@@ -36254,7 +36260,7 @@ async function loadAdjektiveJson() {
                     ...(LANGUE_APPRISE === "es" ? [w.traduction_de || "", w.exemple_de || ""]
                     // Rangs 27-28 : l'espagnol, langue d'interface de l'anglais
                     // (2 nov. 2026) ; 25-26 vides. Seulement en anglais.
-                      : LANGUE_APPRISE === "en" ? ["", "", w.traduction_es || "", w.exemple_es || ""] : [])
+                      : LANGUE_APPRISE === "en" ? ["", "", champEs(w, "traduction"), champEs(w, "exemple")] : [])
                 ]);
                 // Le japonais : lecture, furigana et formes (い / な), en
                 // proprietes nommees comme pour les noms.
@@ -36426,7 +36432,7 @@ async function loadFunktionswoerterJson() {
                 // Rangs 32-34 : l'allemand (interface de l'espagnol, 1er nov. 2026).
                 ...(LANGUE_APPRISE === "es" ? [w.traduction_de || "", w.exemple_de || "", w.kategorie_de || ""]
                 // Rangs 35-37 : l'espagnol (interface de l'anglais, 2 nov. 2026).
-                  : LANGUE_APPRISE === "en" ? ["", "", "", w.traduction_es || "", w.exemple_es || "", w.kategorie_es || ""] : [])
+                  : LANGUE_APPRISE === "en" ? ["", "", "", champEs(w, "traduction"), champEs(w, "exemple"), w.kategorie_es || ""] : [])
             ]);
         });
     } catch (e) {
@@ -36467,7 +36473,7 @@ async function loadRedewendungenJson() {
                     // Rangs 33-35 : l'allemand (interface de l'espagnol, 1er nov. 2026).
                     ...(LANGUE_APPRISE === "es" ? [r.traduction_de || "", r.exemple_de || "", cat.de || ""]
                     // Rangs 36-38 : l'espagnol (interface de l'anglais, 2 nov. 2026).
-                      : LANGUE_APPRISE === "en" ? ["", "", "", r.traduction_es || "", r.exemple_es || "", cat.es || r.kategorie_es || ""] : [])
+                      : LANGUE_APPRISE === "en" ? ["", "", "", champEs(r, "traduction"), champEs(r, "exemple"), cat.es || r.kategorie_es || ""] : [])
                 ]);
             });
         });
@@ -36510,7 +36516,7 @@ async function loadAdverbienJson() {
                     // Rangs 33-35 : l'allemand (interface de l'espagnol, 1er nov. 2026).
                     ...(LANGUE_APPRISE === "es" ? [a.traduction_de || "", a.exemple_de || "", cat.de || ""]
                     // Rangs 36-38 : l'espagnol (interface de l'anglais, 2 nov. 2026).
-                      : LANGUE_APPRISE === "en" ? ["", "", "", a.traduction_es || "", a.exemple_es || "", cat.es || a.kategorie_es || ""] : [])
+                      : LANGUE_APPRISE === "en" ? ["", "", "", champEs(a, "traduction"), champEs(a, "exemple"), cat.es || a.kategorie_es || ""] : [])
                 ]);
                 if(LANGUE_APPRISE === "ja") words[words.length - 1].ja = lectureJaponaise(a);
             });
@@ -36728,7 +36734,7 @@ async function loadThemesJson() {
                     // Rangs 27-28 : l'allemand (interface de l'espagnol, 1er nov. 2026).
                     ...(LANGUE_APPRISE === "es" ? [w.traduction_de || "", w.exemple_de || ""]
                     // Rangs 29-30 : l'espagnol (interface de l'anglais, 2 nov. 2026).
-                      : LANGUE_APPRISE === "en" ? ["", "", w.traduction_es || "", w.exemple_es || ""] : [])
+                      : LANGUE_APPRISE === "en" ? ["", "", champEs(w, "traduction"), champEs(w, "exemple")] : [])
                 ];
             });
             if(variantesEspagnol) words.forEach(w => appliquerVarianteEspagnol(w, variantesEspagnol, phrasesLatam));
@@ -38346,7 +38352,8 @@ function panneauTuileAnglaise(id){
         icon:"dossier", title:t("orb_" + id + "_title"), sub:d.sous_titre,
         options:(d.options || []).map((o, i) => ({
             icon: o.type === "serie" ? "exercice" : (o.type === "vocab" ? "carte" : "dossier"),
-            title: o.titre, desc: o.desc, primary: i === 0,
+            // {fr, es} depuis l'interface espagnole (2 nov. 2026) : texteDeFiche lit les deux.
+            title: texteDeFiche(o.titre), desc: texteDeFiche(o.desc), primary: i === 0,
             action: nomOptionTuileEn(id, i), section: sections[o.type] || "pratique"
         }))
     };
@@ -57723,7 +57730,9 @@ function langueDeScene(){
 function langueSeuleDeScene(){
     if(LANGUE_APPRISE === "ja") return "&apprendre=ja";
     // L'anglais (essai) : scene-<nom>.en.js, americain ou britannique.
-    if(LANGUE_APPRISE === "en") return "&apprendre=en&variante=" + VARIANTE_ANGLAIS;
+    // L'interface espagnole (2 nov. 2026) : la page des scenes suit sa variante (Espagne : m.esp).
+    if(LANGUE_APPRISE === "en") return "&apprendre=en&variante=" + VARIANTE_ANGLAIS
+        + (getUiLang() === "es" ? "&varianteEs=" + VARIANTE_INTERFACE_ES : "");
     // Le portugais (essai) : scene-<nom>.pt.js, a Lisbonne.
     if(LANGUE_APPRISE === "pt") return "&apprendre=pt" + (VARIANTE_PORTUGAIS === "br" ? "&variante=br" : "");
     if(LANGUE_APPRISE !== "es") return "";
@@ -64819,8 +64828,8 @@ async function ouvrirTempsAnglais(){
                 ? '<div class="gram-palier" style="margin:18px 4px 6px; font-size:12px; font-weight:800; letter-spacing:.08em; color:#64748B;">' + x.niveau + '</div>'
                 : "";
             palier = x.niveau;
-            return titre + '<div class="card"><strong>' + echapperFiche(x.titre) + '</strong>'
-                + '<div class="info-box">' + x.texte + '</div><div class="spacer"></div>'
+            return titre + '<div class="card"><strong>' + echapperFiche(texteDeFiche(x.titre)) + '</strong>'
+                + '<div class="info-box">' + texteDeFiche(x.texte) + '</div><div class="spacer"></div>'
                 + '<button class="secondary" onclick="serieTempsEn(\'' + x.id + '\')">' + t("fiche_entrainer") + '</button></div>';
         }).join("");
     }

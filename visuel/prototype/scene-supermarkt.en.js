@@ -27,7 +27,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "saft",
@@ -42,7 +43,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "bouteille"
+     "fr": "bouteille",
+     "es": "la botella"
     }
    ],
    "sur": null,
@@ -55,7 +57,9 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "jus"
+   "fr": "jus",
+   "es": "el jugo",
+   "esp": "el zumo"
   },
   {
    "id": "fenster",
@@ -76,7 +80,8 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "fahrrad",
@@ -97,7 +102,9 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "dose",
@@ -119,6 +126,7 @@ window.SCENE = {
     ]
    ],
    "fr": "boîte de conserve",
+   "es": "la lata",
    "gb": {
     "mot": "tin",
     "pluriel": "tins"
@@ -142,7 +150,8 @@ window.SCENE = {
      13
     ]
    ],
-   "fr": "riz"
+   "fr": "riz",
+   "es": "el arroz"
   },
   {
    "id": "milch",
@@ -157,7 +166,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "bouteille"
+     "fr": "bouteille",
+     "es": "la botella"
     }
    ],
    "sur": null,
@@ -170,7 +180,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "lait"
+   "fr": "lait",
+   "es": "la leche"
   },
   {
    "id": "kaese",
@@ -190,7 +201,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "fromage"
+   "fr": "fromage",
+   "es": "el queso"
   },
   {
    "id": "tasche",
@@ -211,7 +223,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "sac"
+   "fr": "sac",
+   "es": "la bolsa"
   },
   {
    "id": "jacke",
@@ -232,7 +245,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "veste"
+   "fr": "veste",
+   "es": "la chaqueta"
   },
   {
    "id": "anna",
@@ -253,7 +267,8 @@ window.SCENE = {
      53
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "hose",
@@ -274,6 +289,7 @@ window.SCENE = {
     ]
    ],
    "fr": "pantalon",
+   "es": "el pantalón, los pantalones",
    "gb": {
     "mot": "trousers",
     "pluriel": null
@@ -298,7 +314,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "chaussure"
+   "fr": "chaussure",
+   "es": "el zapato"
   },
   {
    "id": "maedchen",
@@ -319,7 +336,8 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "fille (enfant)"
+   "fr": "fille (enfant)",
+   "es": "la niña, la chica"
   },
   {
    "id": "mann",
@@ -340,7 +358,8 @@ window.SCENE = {
      17
     ]
    ],
-   "fr": "homme/mari"
+   "fr": "homme/mari",
+   "es": "el hombre"
   },
   {
    "id": "kasse",
@@ -362,6 +381,7 @@ window.SCENE = {
     ]
    ],
    "fr": "caisse",
+   "es": "la caja registradora",
    "gb": {
     "mot": "till",
     "pluriel": "tills"
@@ -385,7 +405,9 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "beurre"
+   "fr": "beurre",
+   "es": "la mantequilla",
+   "esp": "la mantequilla"
   },
   {
    "id": "kuehlschrank",
@@ -406,7 +428,9 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "réfrigérateur"
+   "fr": "réfrigérateur",
+   "es": "el refrigerador",
+   "esp": "la nevera"
   },
   {
    "id": "regal",
@@ -427,7 +451,9 @@ window.SCENE = {
      60
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "tuete",
@@ -447,7 +473,8 @@ window.SCENE = {
      28
     ]
    ],
-   "fr": "le sac (en papier, en plastique)"
+   "fr": "le sac (en papier, en plastique)",
+   "es": "la bolsa"
   },
   {
    "id": "flasche",
@@ -463,7 +490,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": null,
@@ -476,7 +504,8 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "korb",
@@ -497,7 +526,8 @@ window.SCENE = {
      20.5
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "brot",
@@ -517,7 +547,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "pain"
+   "fr": "pain",
+   "es": "el pan"
   },
   {
    "id": "ei",
@@ -538,7 +569,8 @@ window.SCENE = {
      8.5
     ]
    ],
-   "fr": "œuf"
+   "fr": "œuf",
+   "es": "el huevo"
   },
   {
    "id": "banane",
@@ -559,7 +591,8 @@ window.SCENE = {
      7.5
     ]
    ],
-   "fr": "banane"
+   "fr": "banane",
+   "es": "el plátano, la banana"
   },
   {
    "id": "boden",
@@ -580,7 +613,9 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "einkaufswagen",
@@ -602,6 +637,7 @@ window.SCENE = {
     ]
    ],
    "fr": "caddie",
+   "es": "el carrito",
    "gb": {
     "mot": "shopping trolley",
     "pluriel": "shopping trolleys"
@@ -969,5 +1005,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en el supermercado: duda entre una botella de leche y un queso pequeño; en su cesta roja, pan, huevos y plátanos; una niña con impermeable amarillo señala el chocolate, el cajero espera en la caja, un carrito de compras en primer plano.",
+    "consigne": "Anna hace las compras en el supermercado. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

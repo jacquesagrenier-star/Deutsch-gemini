@@ -21,7 +21,8 @@ window.SCENE = {
      20
     ]
    ],
-   "fr": "ciel"
+   "fr": "ciel",
+   "es": "el cielo"
   },
   {
    "id": "sonne",
@@ -42,7 +43,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "soleil"
+   "fr": "soleil",
+   "es": "el sol"
   },
   {
    "id": "wolke",
@@ -63,7 +65,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "nuage"
+   "fr": "nuage",
+   "es": "la nube"
   },
   {
    "id": "vogel",
@@ -84,7 +87,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "oiseau"
+   "fr": "oiseau",
+   "es": "el pájaro"
   },
   {
    "id": "vogel-2",
@@ -105,7 +109,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "oiseau"
+   "fr": "oiseau",
+   "es": "el pájaro"
   },
   {
    "id": "stein",
@@ -126,7 +131,8 @@ window.SCENE = {
      18
     ]
    ],
-   "fr": "pierre"
+   "fr": "pierre",
+   "es": "la piedra"
   },
   {
    "id": "boot",
@@ -147,7 +153,8 @@ window.SCENE = {
      5.6
     ]
    ],
-   "fr": "bateau, barque"
+   "fr": "bateau, barque",
+   "es": "el barco, el bote"
   },
   {
    "id": "leuchtturm",
@@ -168,7 +175,8 @@ window.SCENE = {
      4.3
     ]
    ],
-   "fr": "phare"
+   "fr": "phare",
+   "es": "el faro"
   },
   {
    "id": "insel",
@@ -189,7 +197,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "île"
+   "fr": "île",
+   "es": "la isla"
   },
   {
    "id": "meer",
@@ -210,7 +219,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "mer"
+   "fr": "mer",
+   "es": "el mar"
   },
   {
    "id": "junge",
@@ -231,7 +241,8 @@ window.SCENE = {
      11.5
     ]
    ],
-   "fr": "garçon"
+   "fr": "garçon",
+   "es": "el niño, el chico"
   },
   {
    "id": "ball",
@@ -252,7 +263,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "ballon"
+   "fr": "ballon",
+   "es": "la pelota, el balón"
   },
   {
    "id": "welle",
@@ -273,7 +285,8 @@ window.SCENE = {
      2.8
     ]
    ],
-   "fr": "la vague"
+   "fr": "la vague",
+   "es": "la ola"
   },
   {
    "id": "hund",
@@ -294,7 +307,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "es": "el perro"
   },
   {
    "id": "anna",
@@ -315,7 +329,8 @@ window.SCENE = {
      30.5
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "eis",
@@ -335,7 +350,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "la glace"
+   "fr": "la glace",
+   "es": "el hielo"
   },
   {
    "id": "eimer",
@@ -356,7 +372,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "le seau"
+   "fr": "le seau",
+   "es": "el cubo"
   },
   {
    "id": "handtuch-gelb",
@@ -377,7 +394,9 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la toalla",
+   "esp": "la toalla"
   },
   {
    "id": "korb",
@@ -398,7 +417,8 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "le panier"
+   "fr": "le panier",
+   "es": "la cesta"
   },
   {
    "id": "handtuch",
@@ -419,7 +439,9 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "serviette"
+   "fr": "serviette",
+   "es": "la toalla",
+   "esp": "la toalla"
   },
   {
    "id": "buch",
@@ -440,7 +462,8 @@ window.SCENE = {
      7
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "brille",
@@ -460,7 +483,9 @@ window.SCENE = {
      3.4
     ]
    ],
-   "fr": "lunettes"
+   "fr": "lunettes",
+   "es": "los lentes, las gafas",
+   "esp": "las gafas"
   },
   {
    "id": "flasche",
@@ -476,7 +501,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "eau"
+     "fr": "eau",
+     "es": "el agua"
     }
    ],
    "sur": "handtuch",
@@ -489,7 +515,8 @@ window.SCENE = {
      10.5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "hut",
@@ -510,7 +537,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "chapeau"
+   "fr": "chapeau",
+   "es": "el sombrero"
   },
   {
    "id": "stein-2",
@@ -531,7 +559,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "pierre"
+   "fr": "pierre",
+   "es": "la piedra"
   },
   {
    "id": "sand",
@@ -546,7 +575,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "weather_a1",
-     "fr": "plage"
+     "fr": "plage",
+     "es": "la playa"
     }
    ],
    "sur": null,
@@ -559,7 +589,8 @@ window.SCENE = {
      4.5
     ]
    ],
-   "fr": "sable"
+   "fr": "sable",
+   "es": "la arena"
   },
   {
    "id": "sonnenschirm",
@@ -581,6 +612,7 @@ window.SCENE = {
     ]
    ],
    "fr": "parasol",
+   "es": "la sombrilla",
    "gb": {
     "mot": "parasol",
     "pluriel": "parasols"
@@ -617,7 +649,8 @@ window.SCENE = {
      3
     ]
    ],
-   "fr": "coquillage"
+   "fr": "coquillage",
+   "es": "la concha"
   },
   {
    "id": "schaufel",
@@ -638,7 +671,8 @@ window.SCENE = {
      6
     ]
    ],
-   "fr": "pelle"
+   "fr": "pelle",
+   "es": "la pala"
   }
  ],
  "grosPlans": [],
@@ -1002,5 +1036,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Anna en la playa: sentada sobre una gran toalla de rayas, come un helado; un niño juega con una pelota entre las olas, un perro duerme a la sombra de una sombrilla; a lo lejos, un velero, una isla y su faro.",
+    "consigne": "Anna está de vacaciones junto al mar. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

@@ -16,14 +16,16 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "homme/mari"
+     "fr": "homme/mari",
+     "es": "el hombre"
     },
     {
      "mot": "body",
      "genre": "",
      "niveau": "A1",
      "theme": "body_a1",
-     "fr": "le corps"
+     "fr": "le corps",
+     "es": "el cuerpo"
     }
    ],
    "sur": null,
@@ -48,7 +50,8 @@ window.SCENE = {
      36
     ]
    ],
-   "fr": "un patient (un malade)"
+   "fr": "un patient (un malade)",
+   "es": "el paciente"
   },
   {
    "id": "kopf",
@@ -69,7 +72,8 @@ window.SCENE = {
      11.8
     ]
    ],
-   "fr": "tête"
+   "fr": "tête",
+   "es": "la cabeza"
   },
   {
    "id": "haar",
@@ -89,7 +93,8 @@ window.SCENE = {
      10.0
     ]
    ],
-   "fr": "cheveu"
+   "fr": "cheveu",
+   "es": "el pelo, el cabello"
   },
   {
    "id": "ohr",
@@ -116,7 +121,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "oreille"
+   "fr": "oreille",
+   "es": "la oreja, el oído"
   },
   {
    "id": "nacken",
@@ -130,7 +136,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "body_a1",
-     "fr": "cou"
+     "fr": "cou",
+     "es": "el cuello"
     }
    ],
    "sur": "mark",
@@ -143,7 +150,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "nuque"
+   "fr": "nuque",
+   "es": "la nuca"
   },
   {
    "id": "schulter",
@@ -170,7 +178,8 @@ window.SCENE = {
      5.2
     ]
    ],
-   "fr": "épaule"
+   "fr": "épaule",
+   "es": "el hombro"
   },
   {
    "id": "schulterblatt",
@@ -197,7 +206,8 @@ window.SCENE = {
      8.0
     ]
    ],
-   "fr": "omoplate"
+   "fr": "omoplate",
+   "es": "el omóplato"
   },
   {
    "id": "wirbelsaeule",
@@ -218,7 +228,8 @@ window.SCENE = {
      24.4
     ]
    ],
-   "fr": "colonne vertébrale"
+   "fr": "colonne vertébrale",
+   "es": "la columna vertebral"
   },
   {
    "id": "ruecken",
@@ -239,7 +250,8 @@ window.SCENE = {
      24.4
     ]
    ],
-   "fr": "dos"
+   "fr": "dos",
+   "es": "la espalda"
   },
   {
    "id": "po",
@@ -255,7 +267,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A2",
      "theme": "clothes_a2",
-     "fr": "caleçon, slip"
+     "fr": "caleçon, slip",
+     "es": "los calzoncillos"
     }
    ],
    "sur": "mark",
@@ -268,7 +281,8 @@ window.SCENE = {
      15.0
     ]
    ],
-   "fr": "fesses"
+   "fr": "fesses",
+   "es": "el trasero"
   },
   {
    "id": "arm-l",
@@ -295,7 +309,8 @@ window.SCENE = {
      11.6
     ]
    ],
-   "fr": "bras"
+   "fr": "bras",
+   "es": "el brazo"
   },
   {
    "id": "arm-r",
@@ -322,7 +337,8 @@ window.SCENE = {
      11.6
     ]
    ],
-   "fr": "bras"
+   "fr": "bras",
+   "es": "el brazo"
   },
   {
    "id": "ellbogen",
@@ -349,7 +365,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "coude"
+   "fr": "coude",
+   "es": "el codo"
   },
   {
    "id": "hand-l",
@@ -370,7 +387,8 @@ window.SCENE = {
      7.3
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "hand-r",
@@ -391,7 +409,8 @@ window.SCENE = {
      7.3
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "handflaeche-r",
@@ -412,7 +431,8 @@ window.SCENE = {
      3.4
     ]
    ],
-   "fr": "paume"
+   "fr": "paume",
+   "es": "la palma"
   },
   {
    "id": "oberschenkel",
@@ -439,7 +459,8 @@ window.SCENE = {
      8.4
     ]
    ],
-   "fr": "cuisse"
+   "fr": "cuisse",
+   "es": "el muslo"
   },
   {
    "id": "kniekehle",
@@ -466,7 +487,8 @@ window.SCENE = {
      3.4
     ]
    ],
-   "fr": "creux du genou"
+   "fr": "creux du genou",
+   "es": "la corva"
   },
   {
    "id": "wade",
@@ -493,7 +515,8 @@ window.SCENE = {
      9.8
     ]
    ],
-   "fr": "mollet"
+   "fr": "mollet",
+   "es": "la pantorrilla"
   },
   {
    "id": "bein-l",
@@ -514,7 +537,8 @@ window.SCENE = {
      28.5
     ]
    ],
-   "fr": "jambe"
+   "fr": "jambe",
+   "es": "la pierna"
   },
   {
    "id": "bein-r",
@@ -535,7 +559,8 @@ window.SCENE = {
      27.5
     ]
    ],
-   "fr": "jambe"
+   "fr": "jambe",
+   "es": "la pierna"
   },
   {
    "id": "ferse",
@@ -562,7 +587,8 @@ window.SCENE = {
      3.2
     ]
    ],
-   "fr": "talon"
+   "fr": "talon",
+   "es": "el talón"
   },
   {
    "id": "fuss-l",
@@ -583,7 +609,8 @@ window.SCENE = {
      6.5
     ]
    ],
-   "fr": "pied"
+   "fr": "pied",
+   "es": "el pie"
   },
   {
    "id": "fuss-r",
@@ -604,7 +631,8 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "pied"
+   "fr": "pied",
+   "es": "el pie"
   },
   {
    "id": "aerztin",
@@ -620,7 +648,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "people_a1",
-     "fr": "femme/épouse"
+     "fr": "femme/épouse",
+     "es": "la mujer"
     }
    ],
    "sur": null,
@@ -645,7 +674,8 @@ window.SCENE = {
      62
     ]
    ],
-   "fr": "médecin (fém.)"
+   "fr": "médecin (fém.)",
+   "es": "el médico, la médica"
   },
   {
    "id": "hand-aerztin-haut",
@@ -666,7 +696,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "hand-aerztin-bas",
@@ -687,7 +718,8 @@ window.SCENE = {
      5.0
     ]
    ],
-   "fr": "main"
+   "fr": "main",
+   "es": "la mano"
   },
   {
    "id": "stethoskop",
@@ -714,7 +746,8 @@ window.SCENE = {
      5.0
     ]
    ],
-   "fr": "stéthoscope"
+   "fr": "stéthoscope",
+   "es": "el estetoscopio"
   },
   {
    "id": "waage",
@@ -748,6 +781,7 @@ window.SCENE = {
     ]
    ],
    "fr": "balance",
+   "es": "la báscula",
    "gb": {
     "mot": "scales",
     "pluriel": "scales"
@@ -772,7 +806,8 @@ window.SCENE = {
      72
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -793,7 +828,9 @@ window.SCENE = {
      25
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "handflaeche-l",
@@ -815,7 +852,8 @@ window.SCENE = {
      3.4
     ]
    ],
-   "fr": "paume"
+   "fr": "paume",
+   "es": "la palma"
   },
   {
    "id": "finger-dos",
@@ -837,7 +875,9 @@ window.SCENE = {
      1.8
     ]
    ],
-   "fr": "doigt"
+   "fr": "doigt",
+   "es": "el dedo",
+   "esp": "el dedo"
   }
  ],
  "grosPlans": [
@@ -1220,5 +1260,15 @@ window.SCENE = {
   "untersuchung-dos"
  ],
  "nom_vue": "Mark, de dos",
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Mark, de espaldas, en bóxer azul marino, descalzo, con las palmas hacia nosotros; su médica le ausculta la espalda con el estetoscopio.",
+    "consigne": "Toca una parte del cuerpo de Mark, visto de espaldas. Toca su mano izquierda para verla de cerca."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

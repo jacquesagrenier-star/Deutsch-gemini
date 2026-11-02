@@ -21,7 +21,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "ciel"
+   "fr": "ciel",
+   "es": "el cielo"
   },
   {
    "id": "rauch",
@@ -42,7 +43,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "la fumée"
+   "fr": "la fumée",
+   "es": "el humo"
   },
   {
    "id": "dach",
@@ -63,7 +65,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "toit"
+   "fr": "toit",
+   "es": "el tejado, el techo"
   },
   {
    "id": "fenster",
@@ -84,7 +87,8 @@ window.SCENE = {
      7.3
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "fenster-2",
@@ -105,7 +109,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "kerze",
@@ -126,7 +131,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "bougie"
+   "fr": "bougie",
+   "es": "la vela"
   },
   {
    "id": "tuer",
@@ -147,7 +153,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "haus",
@@ -168,7 +175,8 @@ window.SCENE = {
      40
     ]
    ],
-   "fr": "maison"
+   "fr": "maison",
+   "es": "la casa"
   },
   {
    "id": "vogel",
@@ -189,7 +197,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "oiseau"
+   "fr": "oiseau",
+   "es": "el pájaro"
   },
   {
    "id": "vogel-2",
@@ -210,7 +219,8 @@ window.SCENE = {
      2
     ]
    ],
-   "fr": "oiseau"
+   "fr": "oiseau",
+   "es": "el pájaro"
   },
   {
    "id": "baum",
@@ -231,7 +241,8 @@ window.SCENE = {
      48
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "baum-2",
@@ -252,7 +263,8 @@ window.SCENE = {
      42
     ]
    ],
-   "fr": "arbre"
+   "fr": "arbre",
+   "es": "el árbol"
   },
   {
    "id": "laterne",
@@ -274,6 +286,7 @@ window.SCENE = {
     ]
    ],
    "fr": "réverbère",
+   "es": "la farola",
    "gb": {
     "mot": "street lamp",
     "pluriel": "street lamps"
@@ -298,7 +311,9 @@ window.SCENE = {
      7.3
     ]
    ],
-   "fr": "voiture"
+   "fr": "voiture",
+   "es": "el carro, el auto",
+   "esp": "el coche"
   },
   {
    "id": "fahrrad",
@@ -319,7 +334,9 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "bank",
@@ -340,7 +357,8 @@ window.SCENE = {
      18.5
     ]
    ],
-   "fr": "la banque"
+   "fr": "la banque",
+   "es": "el banco"
   },
   {
    "id": "hut",
@@ -361,7 +379,8 @@ window.SCENE = {
      4
     ]
    ],
-   "fr": "chapeau"
+   "fr": "chapeau",
+   "es": "el sombrero"
   },
   {
    "id": "karotte",
@@ -382,7 +401,8 @@ window.SCENE = {
      1.6
     ]
    ],
-   "fr": "carotte"
+   "fr": "carotte",
+   "es": "la zanahoria"
   },
   {
    "id": "schal",
@@ -403,7 +423,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "écharpe"
+   "fr": "écharpe",
+   "es": "la bufanda"
   },
   {
    "id": "knopf",
@@ -424,7 +445,8 @@ window.SCENE = {
      5.5
     ]
    ],
-   "fr": "bouton"
+   "fr": "bouton",
+   "es": "el botón"
   },
   {
    "id": "schneemann",
@@ -445,7 +467,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "bonhomme de neige"
+   "fr": "bonhomme de neige",
+   "es": "el muñeco de nieve"
   },
   {
    "id": "besen",
@@ -472,7 +495,8 @@ window.SCENE = {
      30
     ]
    ],
-   "fr": "balai"
+   "fr": "balai",
+   "es": "la escoba"
   },
   {
    "id": "muetze",
@@ -493,6 +517,7 @@ window.SCENE = {
     ]
    ],
    "fr": "bonnet",
+   "es": "el gorro",
    "gb": {
     "mot": "woolly hat",
     "pluriel": "woolly hats"
@@ -517,7 +542,8 @@ window.SCENE = {
      10
     ]
    ],
-   "fr": "écharpe"
+   "fr": "écharpe",
+   "es": "la bufanda"
   },
   {
    "id": "handschuh",
@@ -538,7 +564,8 @@ window.SCENE = {
      8.3
     ]
    ],
-   "fr": "gant"
+   "fr": "gant",
+   "es": "el guante"
   },
   {
    "id": "stiefel",
@@ -559,7 +586,8 @@ window.SCENE = {
      9
     ]
    ],
-   "fr": "botte"
+   "fr": "botte",
+   "es": "la bota"
   },
   {
    "id": "mantel",
@@ -580,7 +608,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "manteau"
+   "fr": "manteau",
+   "es": "el abrigo"
   },
   {
    "id": "anna",
@@ -601,7 +630,8 @@ window.SCENE = {
      25.5
     ]
    ],
-   "fr": "femme/épouse"
+   "fr": "femme/épouse",
+   "es": "la mujer"
   },
   {
    "id": "hund",
@@ -622,7 +652,8 @@ window.SCENE = {
      11
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "es": "el perro"
   },
   {
    "id": "schnee",
@@ -642,7 +673,8 @@ window.SCENE = {
      12
     ]
    ],
-   "fr": "neige"
+   "fr": "neige",
+   "es": "la nieve"
   }
  ],
  "grosPlans": [],
@@ -1003,5 +1035,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "Una mañana de nieve en Boston: Anna, con abrigo, gorro, bufanda y guantes, termina un muñeco de nieve frente a una casa amarilla; un perrito con abrigo rojo olfatea la nieve; una bicicleta, una banca y un auto rojo están cubiertos de nieve.",
+    "consigne": "Anoche nevó. Anna hace un muñeco de nieve. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };

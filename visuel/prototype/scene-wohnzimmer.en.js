@@ -21,7 +21,9 @@ window.SCENE = {
      15.5
     ]
    ],
-   "fr": "couverture"
+   "fr": "couverture",
+   "es": "la cobija, la manta",
+   "esp": "la manta"
   },
   {
    "id": "wand",
@@ -42,7 +44,8 @@ window.SCENE = {
      38
     ]
    ],
-   "fr": "mur"
+   "fr": "mur",
+   "es": "la pared"
   },
   {
    "id": "boden",
@@ -63,7 +66,9 @@ window.SCENE = {
      34
     ]
    ],
-   "fr": "le sol"
+   "fr": "le sol",
+   "es": "el piso, el suelo",
+   "esp": "la planta, el suelo"
   },
   {
    "id": "lampe",
@@ -79,7 +84,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A2",
      "theme": "home_a2",
-     "fr": "abat-jour"
+     "fr": "abat-jour",
+     "es": "la pantalla"
     }
    ],
    "sur": null,
@@ -92,7 +98,8 @@ window.SCENE = {
      9.6
     ]
    ],
-   "fr": "lampe"
+   "fr": "lampe",
+   "es": "la lámpara"
   },
   {
    "id": "regenschirm",
@@ -113,7 +120,9 @@ window.SCENE = {
      14.5
     ]
    ],
-   "fr": "parapluie"
+   "fr": "parapluie",
+   "es": "el paraguas",
+   "esp": "el paraguas"
   },
   {
    "id": "schrank",
@@ -135,6 +144,8 @@ window.SCENE = {
     ]
    ],
    "fr": "armoire",
+   "es": "el clóset, el armario",
+   "esp": "el armario",
    "gb": {
     "mot": "wardrobe",
     "pluriel": "wardrobes"
@@ -154,6 +165,7 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "fr": "football",
+     "es": "el balón",
      "gb": {
       "mot": "football",
       "pluriel": "footballs"
@@ -170,7 +182,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "ballon"
+   "fr": "ballon",
+   "es": "la pelota, el balón"
   },
   {
    "id": "bild",
@@ -186,7 +199,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "freetime_a1",
-     "fr": "peinture/tableau"
+     "fr": "peinture/tableau",
+     "es": "la pintura, el cuadro"
     }
    ],
    "sur": "wand",
@@ -199,7 +213,8 @@ window.SCENE = {
      9.8
     ]
    ],
-   "fr": "tableau"
+   "fr": "tableau",
+   "es": "el cuadro, la imagen"
   },
   {
    "id": "fenster",
@@ -220,7 +235,8 @@ window.SCENE = {
      29.5
     ]
    ],
-   "fr": "fenêtre"
+   "fr": "fenêtre",
+   "es": "la ventana"
   },
   {
    "id": "heizkoerper",
@@ -241,7 +257,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "radiateur"
+   "fr": "radiateur",
+   "es": "el radiador"
   },
   {
    "id": "pflanze",
@@ -258,6 +275,7 @@ window.SCENE = {
      "niveau": "B1",
      "theme": "home_b1_2",
      "fr": "guirlande lumineuse",
+     "es": "la guirnalda de luces",
      "gb": {
       "mot": "fairy lights",
       "pluriel": null
@@ -274,7 +292,8 @@ window.SCENE = {
      23.4
     ]
    ],
-   "fr": "la plante"
+   "fr": "la plante",
+   "es": "la planta"
   },
   {
    "id": "stehlampe",
@@ -290,14 +309,16 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "lampe"
+     "fr": "lampe",
+     "es": "la lámpara"
     },
     {
      "mot": "lampshade",
      "genre": "",
      "niveau": "A2",
      "theme": "home_a2",
-     "fr": "abat-jour"
+     "fr": "abat-jour",
+     "es": "la pantalla"
     }
    ],
    "sur": null,
@@ -310,7 +331,8 @@ window.SCENE = {
      24
     ]
    ],
-   "fr": "lampadaire"
+   "fr": "lampadaire",
+   "es": "la lámpara de pie"
   },
   {
    "id": "socke",
@@ -331,7 +353,8 @@ window.SCENE = {
      4.9
     ]
    ],
-   "fr": "chaussette"
+   "fr": "chaussette",
+   "es": "el calcetín, la media"
   },
   {
    "id": "regal",
@@ -352,7 +375,9 @@ window.SCENE = {
      26
     ]
    ],
-   "fr": "étagère"
+   "fr": "étagère",
+   "es": "el estante, la repisa",
+   "esp": "la estantería, el estante"
   },
   {
    "id": "goldfisch",
@@ -368,7 +393,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "poisson"
+     "fr": "poisson",
+     "es": "el pescado (comida), el pez (animal)"
     }
    ],
    "sur": "regal",
@@ -381,7 +407,8 @@ window.SCENE = {
      3.6
     ]
    ],
-   "fr": "poisson rouge"
+   "fr": "poisson rouge",
+   "es": "el pez de colores"
   },
   {
    "id": "fahrrad",
@@ -402,7 +429,9 @@ window.SCENE = {
      17.2
     ]
    ],
-   "fr": "vélo"
+   "fr": "vélo",
+   "es": "la bicicleta, la bici",
+   "esp": "la bicicleta, la bici"
   },
   {
    "id": "tuer",
@@ -423,7 +452,8 @@ window.SCENE = {
      89.2
     ]
    ],
-   "fr": "porte"
+   "fr": "porte",
+   "es": "la puerta"
   },
   {
    "id": "sofa",
@@ -444,7 +474,8 @@ window.SCENE = {
      15
     ]
    ],
-   "fr": "canapé"
+   "fr": "canapé",
+   "es": "el sofá"
   },
   {
    "id": "buch",
@@ -465,7 +496,8 @@ window.SCENE = {
      2.6
     ]
    ],
-   "fr": "livre"
+   "fr": "livre",
+   "es": "el libro"
   },
   {
    "id": "gitarre",
@@ -486,7 +518,8 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "guitare"
+   "fr": "guitare",
+   "es": "la guitarra"
   },
   {
    "id": "turnschuh",
@@ -502,7 +535,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "clothes_a1",
-     "fr": "chaussure"
+     "fr": "chaussure",
+     "es": "el zapato"
     }
    ],
    "sur": null,
@@ -516,6 +550,8 @@ window.SCENE = {
     ]
    ],
    "fr": "basket",
+   "es": "el tenis, la zapatilla deportiva",
+   "esp": "la zapatilla deportiva",
    "gb": {
     "mot": "trainer",
     "pluriel": "trainers"
@@ -540,7 +576,8 @@ window.SCENE = {
      14.8
     ]
    ],
-   "fr": "télévision"
+   "fr": "télévision",
+   "es": "la televisión"
   },
   {
    "id": "pizza",
@@ -556,7 +593,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "assiette"
+     "fr": "assiette",
+     "es": "el plato"
     }
    ],
    "sur": null,
@@ -569,7 +607,8 @@ window.SCENE = {
      2.2
     ]
    ],
-   "fr": "pizza"
+   "fr": "pizza",
+   "es": "la pizza"
   },
   {
    "id": "couchtisch",
@@ -585,7 +624,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "home_a1",
-     "fr": "table"
+     "fr": "table",
+     "es": "la mesa"
     }
    ],
    "sur": null,
@@ -598,7 +638,8 @@ window.SCENE = {
      12.4
     ]
    ],
-   "fr": "table basse"
+   "fr": "table basse",
+   "es": "la mesa baja"
   },
   {
    "id": "tasse",
@@ -619,7 +660,8 @@ window.SCENE = {
      2.3
     ]
    ],
-   "fr": "tasse"
+   "fr": "tasse",
+   "es": "la taza"
   },
   {
    "id": "pizzakarton",
@@ -635,7 +677,8 @@ window.SCENE = {
      "genre": "",
      "niveau": "A1",
      "theme": "food_a1",
-     "fr": "pizza"
+     "fr": "pizza",
+     "es": "la pizza"
     }
    ],
    "sur": "couchtisch",
@@ -648,7 +691,8 @@ window.SCENE = {
      8
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "hund",
@@ -669,7 +713,8 @@ window.SCENE = {
      7.4
     ]
    ],
-   "fr": "chien"
+   "fr": "chien",
+   "es": "el perro"
   },
   {
    "id": "eimer",
@@ -690,7 +735,8 @@ window.SCENE = {
      10.6
     ]
    ],
-   "fr": "le seau"
+   "fr": "le seau",
+   "es": "el cubo"
   },
   {
    "id": "flasche",
@@ -711,7 +757,8 @@ window.SCENE = {
      5
     ]
    ],
-   "fr": "bouteille"
+   "fr": "bouteille",
+   "es": "la botella"
   },
   {
    "id": "karton",
@@ -732,7 +779,8 @@ window.SCENE = {
      12.6
     ]
    ],
-   "fr": "carton"
+   "fr": "carton",
+   "es": "la caja de cartón"
   },
   {
    "id": "katze",
@@ -753,7 +801,8 @@ window.SCENE = {
      5.8
     ]
    ],
-   "fr": "chat"
+   "fr": "chat",
+   "es": "el gato"
   },
   {
    "id": "luftballon",
@@ -774,7 +823,8 @@ window.SCENE = {
      7.6
     ]
    ],
-   "fr": "ballon de baudruche"
+   "fr": "ballon de baudruche",
+   "es": "el globo"
   },
   {
    "id": "luftballon-links",
@@ -795,7 +845,8 @@ window.SCENE = {
      12.8
     ]
    ],
-   "fr": "ballon de baudruche"
+   "fr": "ballon de baudruche",
+   "es": "el globo"
   },
   {
    "id": "koffer",
@@ -816,7 +867,8 @@ window.SCENE = {
      19
     ]
    ],
-   "fr": "valise"
+   "fr": "valise",
+   "es": "la maleta"
   }
  ],
  "grosPlans": [],
@@ -1235,5 +1287,15 @@ window.SCENE = {
    ]
   }
  },
- "traductions": {}
+ "traductions": {
+  "es": {
+   "champs": {
+    "alt": "La sala del apartamento compartido de Mark, al día siguiente de una fiesta: un globo sobre el armario, un paraguas colgado de la lámpara, un calcetín en la lámpara de pie, un gato en una caja de cartón, un perro bajo la mesa de centro y la maleta de Mark en el umbral.",
+    "consigne": "Mark vuelve de viaje… y sus compañeros de apartamento hicieron una fiesta. Toca un objeto."
+   },
+   "couches": {
+    "A1": "Los sustantivos"
+   }
+  }
+ }
 };
