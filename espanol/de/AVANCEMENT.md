@@ -47,6 +47,41 @@ hors de l'espagnol), `UI_LANGS` et `LANGUES_UI_AVEC_ESPAGNOL`. Données : bloc `
 `SCENES_COURTS`. Page des scènes : `TEXTES.de`, `LANGUE`, `REPLI`. `construire.py` porte
 l'allemand dans les `scene-*.es.js` (les `scene-*.js` allemands ne bougent pas).
 
+## Fait (1er nov. 2026)
+
+| Où | Quoi | Compte |
+|---|---|---|
+| `index.html` | `I18N.de` (toute l'interface), `I18N_ESPAGNOL.de`, catégories, mots-outils, vignettes | 1 607 + 142 + 25 + 74 + 39 |
+| corpus `espanol/datos/` | `traduction_de` + `exemple_de` (temas, verbos, adjetivos, adverbios, expresiones, funcionales), **0 collision** | 3 898 (+ 51 adjectifs de « Mon cours ») |
+| `verbos.json` | `exemple_<temps>_de` | 873 × 6 |
+| `ejercicios.json` | `translation_de`, `hint_de`, `explanation_de`, `question_de`, `optionsDe`, `correctDe` | 1 343 |
+| `grammaire.json` | `textes.de` + `de` dans les 17 fiches, **réécrites contre l'allemand** | 43 + 278 |
+| prononciation | `DE` de `tests/prononciation_es.py` (puis `--ecrire`) | 20 règles |
+| conjugaison, Premiers pas, A1 voyage, repères, variantes | clé `de` après `ar` | 224 + 667 + 746 + 98 + 1 |
+| scènes | `titre_de`, `n_de`, `sens_de`, `alt_de`, `consigne_de` dans `visuel/prototype/espanol/*.json`, puis `construire.py` | 2 430 |
+| mosaïque | `de` dans `espanol/mosaique/peintres.json` | 22 |
+
+Contrôles : `poser.py etat` 6 114 / 6 114, `poser_autres.py controle` 0 faute partout,
+`tests/verifier.py` (nouveau : `verifier_allemand_espagnol`, l'allemand partout où l'arabe
+existe), `tests/francais_ailleurs.py --app es --langues de` (et `--reference en`, nouveau,
+pour l'anglais resté : le repli de l'allemand), parcours `de` et `es-moteur` à 0 écart.
+
 ## Reste
 
-Voir la fin de ce fichier, mise à jour à la fin du chantier.
+- **Relecture par un germanophone** : `retours/A-RELIRE-INTERFACE-DE.md` ; doutes par id dans
+  `espanol/de/lots/RAPPORT-*.md`.
+- Restent en anglais pour un germanophone : le **dictionnaire** (pas de paire WikDict es-de
+  câblée), les **épisodes** (fr/en), la **voix de la visite guidée** (comme pt et ar).
+- **Arriver jusqu'à l'espagnol** : un téléphone en allemand qui ouvre `wortando.com` tombe sur
+  l'allemand appris (interface anglaise) ; l'espagnol s'ouvre par `?apprendre=es`. Décision
+  produit à prendre (porte d'entrée pour les germanophones).
+- Les adjectifs de « Mon cours » (admin) ont leur allemand dans les données, mais leur
+  chargeur ne lit que fr/en (comme pour pt et ar).
+
+## Reprendre
+
+Un texte espagnol ajouté plus tard (nouvelle clé, nouvelle fiche, nouvelle scène) : relancer
+`python espanol/de/extraire.py`, puis `poser_autres.py controle <nom>` liste ce qui manque ;
+`poser.py etat` pour le corpus et les exercices ; `tests/verifier.py` le signale aussi.
+⚠️ `tests/fusion_langue.py` et `tests/dico_interface.py` ne savent pas poser « de » : ils
+cherchent `de: {` dans tout le fichier et tombent sur une autre table (`de: { A1: [...] }`).
