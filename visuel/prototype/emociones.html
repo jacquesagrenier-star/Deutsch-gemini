@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Emociones y carácter</title>
+<!--
+  LES EMOTIONS ET LE CARACTERE (theme illustre, 3 nov. 2026). Troisieme theme illustre apres « Decrire une personne »
+  et la famille ; Jacques : « une session pour les emotions, le test, la colere, puis etc. », accord du 3 nov. :
+  « Oui, les trois » (48 images, 9 mots au corpus, leurs voix). La suite de Descripcion fisica, son cours d'espagnol.
+  UNE EMOTION SE LIT SUR UN VISAGE : six personnes deja faites (Anna, Carmen, Gisela, Mark, Diego, Ben), 36
+  portraits, chaque emotion sur trois visages. UN TRAIT DE CARACTERE DEMANDE UNE SITUATION : douze petites
+  scenes, en paires de contraires. Images et mots : visuel/emociones/emociones.py -> emociones/emociones.json.
+  L'axe : ser / estar en espagnol (esta triste, es timido, tiene miedo) ; en allemand tout se dit avec sein, sauf
+  la peur (hat Angst), d'ou « ist oder hat? » et « Gefuehl oder Charakter? ».
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
+  a chaque reponse (objectif du jour, carreaux), « fini » et « fermer » a la fin.
+  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=latam (enojado, la voix de Monica), r=<AUDIO_REVISION> (la voix de la decouverte).
+  A chaque reponse, « reponse » {mot, genre, cat, juste} : le mot teste avance dans la progression commune aux cartes.
+  A FAIRE : le tirage par mots (visuel/prototype/themes/tirage.js, session « Themes illustres ») des qu'il est sur main.
+  Les phrases sont FABRIQUEES depuis emociones.json : une image ne dit que ce qu'elle montre.
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:64px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* une image : le portrait carre ou la situation en 4:3, jamais plus haute que l'ecran ne le permet */
+.photo{display:block;width:100%;max-width:340px;margin:0 auto;height:auto;border-radius:16px;background:var(--carte)}
+.photo.scene{max-width:none;aspect-ratio:4/3;object-fit:cover}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.duo figure{margin:0;text-align:center;font-weight:800;color:var(--gris);font-size:13px}
+.duo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;margin-bottom:4px;background:var(--carte)}
+/* quatre visages a toucher */
+.visages{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.visages button{border:3px solid transparent;border-radius:16px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block}
+.visages img{display:block;width:100%;height:auto;aspect-ratio:1}
+.visages .nom{display:block;font-size:13px;font-weight:800;color:var(--gris);padding:3px 0 5px}
+.visages button.juste{border-color:var(--vert)} .visages button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+/* la decouverte : deux onglets, une planche de vignettes, la fiche de celle qu'on touche */
+.onglets{display:flex;gap:6px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{flex:1;border:0;border-radius:999px;background:none;color:var(--gris);font:800 15px var(--police);padding:8px 6px;cursor:pointer}
+.onglets button[aria-selected="true"]{background:var(--ambre);color:#1C2430}
+.planche{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.planche.scenes{grid-template-columns:repeat(3,1fr)}
+.planche button{border:3px solid transparent;border-radius:12px;padding:0;background:var(--carte);cursor:pointer;overflow:hidden;display:block}
+.planche img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover}
+.planche.scenes img{aspect-ratio:4/3}
+.planche button.choisi{border-color:var(--ambre)}
+.fiche{background:var(--carte);border-radius:14px;padding:10px;display:grid;grid-template-columns:minmax(110px,44%) 1fr;gap:12px;align-items:center}
+.fiche img{width:100%;height:auto;border-radius:10px;display:block}
+.fiche .mot{font-weight:900;font-size:24px;color:var(--ambre-f);line-height:1.15}
+.fiche .dit{font-weight:800;font-size:17px;line-height:1.4;margin-top:6px}
+.fiche .ecoute{margin-top:10px;width:44px;height:44px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.fiche .ecoute svg{width:22px;height:22px}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite[hidden]{display:none}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+.fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? 6 : 20;
+
+const TEXTES = {
+  titre:     {fr:"Émotions et caractère", en:"Feelings and personality", tr:"Duygular ve karakter", uk:"Емоції та характер", fa:"احساسات و منش", ar:"المشاعر والطباع", pt:"Emoções e personalidade", pl:"Emocje i charakter", ru:"Эмоции и характер", de:"Gefühle und Charakter"},
+  ongletEmo: {fr:"Les émotions", en:"Feelings", tr:"Duygular", uk:"Емоції", fa:"احساس‌ها", ar:"المشاعر", pt:"As emoções", pl:"Emocje", ru:"Эмоции", de:"Gefühle"},
+  ongletCar: {fr:"Le caractère", en:"Personality", tr:"Karakter", uk:"Характер", fa:"منش", ar:"الطباع", pt:"A personalidade", pl:"Charakter", ru:"Характер", de:"Charakter"},
+  introEmo:  {fr:"Touche un visage : tu vois comment la personne se sent, et tu l'entends.", en:"Tap a face to see and hear how the person feels.", tr:"Bir yüze dokun: kişinin nasıl hissettiğini gör ve dinle.", uk:"Торкнися обличчя: побачиш і почуєш, як почувається людина.", fa:"روی یک چهره بزن تا ببینی و بشنوی آن شخص چه حسی دارد.", ar:"المس وجهًا لترى وتسمع ما يشعر به الشخص.", pt:"Toque em um rosto para ver e ouvir como a pessoa se sente.", pl:"Dotknij twarzy, aby zobaczyć i usłyszeć, jak czuje się ta osoba.", ru:"Нажми на лицо, чтобы увидеть и услышать, что чувствует человек.", de:"Tippe auf ein Gesicht: Du siehst und hörst, wie sich die Person fühlt."},
+  introCar:  {fr:"Touche une image : tu vois comment est la personne, et tu l'entends.", en:"Tap a picture to see and hear what the person is like.", tr:"Bir resme dokun: kişinin nasıl biri olduğunu gör ve dinle.", uk:"Торкнися зображення: побачиш і почуєш, яка це людина.", fa:"روی یک تصویر بزن تا ببینی و بشنوی آن شخص چه منشی دارد.", ar:"المس صورة لترى وتسمع كيف هو طبع الشخص.", pt:"Toque em uma imagem para ver e ouvir como a pessoa é.", pl:"Dotknij obrazka, aby zobaczyć i usłyszeć, jaka jest ta osoba.", ru:"Нажми на картинку, чтобы увидеть и услышать, какой это человек.", de:"Tippe auf ein Bild: Du siehst und hörst, wie die Person ist."},
+  regleEs:   {fr:"Une émotion passe : estar (está triste). Le caractère reste : ser (es tímido). La peur se dit avec tener : tiene miedo.", en:"A feeling passes: estar (está triste). Personality stays: ser (es tímido). Fear takes tener: tiene miedo.", tr:"Duygu geçicidir: estar (está triste). Karakter kalıcıdır: ser (es tímido). Korku tener ile söylenir: tiene miedo.", uk:"Емоція минає: estar (está triste). Характер лишається: ser (es tímido). Страх кажуть із tener: tiene miedo.", fa:"احساس گذراست: estar (está triste). منش می‌ماند: ser (es tímido). ترس را با tener می‌گویند: tiene miedo.", ar:"الشعور عابر: estar (está triste). الطبع ثابت: ser (es tímido). والخوف يُقال مع tener: tiene miedo.", pt:"Uma emoção passa: estar (está triste). A personalidade fica: ser (es tímido). O medo se diz com tener: tiene miedo.", pl:"Emocja mija: estar (está triste). Charakter zostaje: ser (es tímido). Strach mówi się z tener: tiene miedo.", ru:"Эмоция проходит: estar (está triste). Характер остаётся: ser (es tímido). Страх говорят с tener: tiene miedo.", de:"Ein Gefühl vergeht: estar (está triste). Der Charakter bleibt: ser (es tímido). Angst sagt man mit tener: tiene miedo."},
+  regleDe:   {fr:"En allemand, une émotion comme un trait de caractère se dit avec sein : ist traurig, ist schüchtern. La peur, elle, se dit avec haben : hat Angst.", en:"In German, a feeling and a personality trait both take sein: ist traurig, ist schüchtern. Fear takes haben: hat Angst.", tr:"Almancada duygu da karakter de sein ile söylenir: ist traurig, ist schüchtern. Korku ise haben ile: hat Angst.", uk:"У німецькій і емоцію, і рису характеру кажуть із sein: ist traurig, ist schüchtern. А страх — із haben: hat Angst.", fa:"در آلمانی، هم احساس و هم منش با sein گفته می‌شود: ist traurig، ist schüchtern. اما ترس با haben: hat Angst.", ar:"في الألمانية يُقال الشعور والطبع كلاهما مع sein: ‏ist traurig، ‏ist schüchtern. أما الخوف فمع haben: ‏hat Angst.", pt:"Em alemão, uma emoção e um traço de personalidade se dizem com sein: ist traurig, ist schüchtern. Já o medo se diz com haben: hat Angst.", pl:"Po niemiecku i emocję, i cechę charakteru mówi się z sein: ist traurig, ist schüchtern. Strach natomiast z haben: hat Angst.", ru:"По-немецки и эмоцию, и черту характера говорят с sein: ist traurig, ist schüchtern. А страх — с haben: hat Angst.", de:"Gefühle und Charaktereigenschaften sagt man mit sein: ist traurig, ist schüchtern. Angst sagt man mit haben: hat Angst."},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  commentEst:{fr:"Regarde le visage : comment se sent cette personne ?", en:"Look at the face: how does this person feel?", tr:"Yüze bak: bu kişi nasıl hissediyor?", uk:"Подивися на обличчя: як почувається ця людина?", fa:"به چهره نگاه کن: این شخص چه حسی دارد؟", ar:"انظر إلى الوجه: بماذا يشعر هذا الشخص؟", pt:"Olhe o rosto: como esta pessoa se sente?", pl:"Spójrz na twarz: jak czuje się ta osoba?", ru:"Посмотри на лицо: что чувствует этот человек?", de:"Sieh dir das Gesicht an: Wie fühlt sich diese Person?"},
+  quien:     {fr:"Lis la question et touche le bon visage.", en:"Read the question and tap the right face.", tr:"Soruyu oku ve doğru yüze dokun.", uk:"Прочитай запитання й торкнися потрібного обличчя.", fa:"سؤال را بخوان و روی چهرهٔ درست بزن.", ar:"اقرأ السؤال والمس الوجه الصحيح.", pt:"Leia a pergunta e toque no rosto certo.", pl:"Przeczytaj pytanie i dotknij właściwej twarzy.", ru:"Прочитай вопрос и нажми на нужное лицо.", de:"Lies die Frage und tippe auf das richtige Gesicht."},
+  serEstar:  {fr:"Choisis le bon verbe : es, está ou tiene ?", en:"Choose the right verb: es, está or tiene?", tr:"Doğru fiili seç: es, está mı tiene mi?", uk:"Обери правильне дієслово: es, está чи tiene?", fa:"فعل درست را انتخاب کن: es، está یا tiene؟", ar:"اختر الفعل الصحيح: es أم está أم tiene؟", pt:"Escolha o verbo certo: es, está ou tiene?", pl:"Wybierz właściwy czasownik: es, está czy tiene?", ru:"Выбери правильный глагол: es, está или tiene?", de:"Wähle das richtige Verb: es, está oder tiene?"},
+  istHat:    {fr:"Choisis le bon verbe : ist ou hat ?", en:"Choose the right verb: ist or hat?", tr:"Doğru fiili seç: ist mi hat mı?", uk:"Обери правильне дієслово: ist чи hat?", fa:"فعل درست را انتخاب کن: ist یا hat؟", ar:"اختر الفعل الصحيح: ist أم hat؟", pt:"Escolha o verbo certo: ist ou hat?", pl:"Wybierz właściwy czasownik: ist czy hat?", ru:"Выбери правильный глагол: ist или hat?", de:"Wähle das richtige Verb: ist oder hat?"},
+  accord:    {fr:"Choisis la bonne forme : l'adjectif s'accorde avec la personne.", en:"Choose the right form: the adjective agrees with the person.", tr:"Doğru biçimi seç: sıfat kişiye uyar.", uk:"Обери правильну форму: прикметник узгоджується з людиною.", fa:"شکل درست را انتخاب کن: صفت با شخص هماهنگ می‌شود.", ar:"اختر الصيغة الصحيحة: تتوافق الصفة مع الشخص.", pt:"Escolha a forma certa: o adjetivo concorda com a pessoa.", pl:"Wybierz właściwą formę: przymiotnik zgadza się z osobą.", ru:"Выбери правильную форму: прилагательное согласуется с человеком.", de:"Wähle die richtige Form: Das Adjektiv richtet sich nach der Person."},
+  commentCar:{fr:"Regarde la scène : comment est cette personne ?", en:"Look at the scene: what is this person like?", tr:"Sahneye bak: bu kişi nasıl biri?", uk:"Подивися на сцену: яка це людина?", fa:"به صحنه نگاه کن: این شخص چه منشی دارد؟", ar:"انظر إلى المشهد: كيف هو طبع هذا الشخص؟", pt:"Olhe a cena: como é esta pessoa?", pl:"Spójrz na scenę: jaka jest ta osoba?", ru:"Посмотри на сцену: какой это человек?", de:"Sieh dir die Szene an: Wie ist diese Person?"},
+  contraire: {fr:"Regarde les deux scènes et trouve le contraire.", en:"Look at both scenes and find the opposite.", tr:"İki sahneye bak ve zıttını bul.", uk:"Подивися на обидві сцени й знайди протилежне.", fa:"به هر دو صحنه نگاه کن و متضاد را پیدا کن.", ar:"انظر إلى المشهدين وجد العكس.", pt:"Olhe as duas cenas e encontre o contrário.", pl:"Spójrz na obie sceny i znajdź przeciwieństwo.", ru:"Посмотри на обе сцены и найди противоположность.", de:"Sieh dir beide Szenen an und finde das Gegenteil."},
+  vraifaux:  {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
+  gefuehl:   {fr:"Une émotion du moment, ou un trait de caractère ?", en:"A passing feeling, or a personality trait?", tr:"Geçici bir duygu mu, yoksa bir karakter özelliği mi?", uk:"Миттєва емоція чи риса характеру?", fa:"احساسی گذرا، یا یک ویژگی منش؟", ar:"شعور عابر أم صفة من صفات الطبع؟", pt:"Uma emoção do momento ou um traço de personalidade?", pl:"Chwilowa emocja czy cecha charakteru?", ru:"Мимолётная эмоция или черта характера?", de:"Ein Gefühl im Moment oder eine Charaktereigenschaft?"},
+  suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  encore:    {fr:"Encore une fois", en:"Once more", tr:"Bir kez daha", uk:"Ще раз", fa:"یک بار دیگر", ar:"مرة أخرى", pt:"Mais uma vez", pl:"Jeszcze raz", ru:"Ещё раз", de:"Noch einmal"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (emociones.json) ----------
+let D = null, PORTRAITS = [];               // PORTRAITS : [personne, emotion], les 36 visages
+const nom = p => (D.noms || {})[p] || p;
+const fem = p => D.sexe[p] === "f";
+const EMOS = () => Object.keys(D.emotions), TRAITS = () => Object.keys(D.caracteres);
+// Les emotions trop proches pour servir de leurre l'une a l'autre : un visage triste peut sembler inquiet, un visage
+// fatigue s'ennuyer. Une question n'a qu'une bonne reponse, ou elle n'est pas posee.
+const VOISINS = {triste:["preocupado"], preocupado:["triste", "nervioso", "miedo"], nervioso:["preocupado", "miedo"], miedo:["nervioso", "preocupado", "sorprendido"],
+                 sorprendido:["miedo"], cansado:["aburrido", "enfermo"], aburrido:["cansado"], enfermo:["cansado"]};
+// Les traits que la meme scene pourrait aussi montrer : Pablo qui tourne le dos est antipathique ET grossier, Lucas
+// sur le canape paresseux ET desordonne, Anna qui aide le touriste sympathique ET polie.
+const VOISINS_T = {antipatico:["grosero"], grosero:["antipatico"], simpatico:["educado", "generoso"], educado:["simpatico"], generoso:["simpatico"],
+                   perezoso:["desordenado"], desordenado:["perezoso"]};
+const loin = (a, b, v) => a !== b && !(v[a] || []).includes(b) && !(v[b] || []).includes(a);
+
+// ---------- la langue apprise : les phrases, fabriquees comme celles de la decouverte (emociones.py, phrase()) ----------
+const ES = {
+  bravo: "¡Muy bien!", vrai: "Verdadero", faux: "Falso",
+  forme(m, p){ const f = (LATAM && m.latam) || m.es; return f[fem(p) ? 1 : 0]; },
+  verbe: (m, emotion) => m.tener ? "tiene" : (emotion ? "está" : "es"),
+  // « está contenta », « tiene miedo », « es generosa » : ce qui suit le nom
+  predicat(m, p, emotion){ return this.verbe(m, emotion) + " " + this.forme(m, p); },
+  phrase(p, m, emotion){ return nom(p) + " " + this.predicat(m, p, emotion) + "."; },
+  commentEst: p => "¿Cómo está " + nom(p) + "?",
+  quien: m => m.tener ? "¿Quién tiene miedo?" : "¿Quién está " + ((LATAM && m.latam) || m.es)[0] + "?",
+  commentEs: p => "¿Cómo es " + nom(p) + "?",
+  contraire: (a, ma, b) => nom(a) + " es " + ES.forme(ma, a) + ". " + nom(b) + ", al contrario, es ___.",
+  // le piege d'aburrido : ce qui ennuie (ser) n'est pas celui qui s'ennuie (estar)
+  pieges: [["Esta película ___ aburrida.", "es"], ["La clase de hoy ___ muy aburrida.", "es"], ["Ben ___ aburrido: no tiene nada que hacer.", "está"]]
+};
+const DE = {
+  bravo: "Sehr gut!", vrai: "Richtig", faux: "Falsch",
+  pron: p => fem(p) ? "Sie" : "Er",
+  predicat: (m, p) => (m.tener ? "hat " : "ist ") + m.de,
+  phrase(p, m){ return nom(p) + " " + this.predicat(m, p) + "."; },
+  commentEst: p => "Wie geht es " + nom(p) + "?",
+  quien: m => m.tener ? "Wer hat Angst?" : "Wer ist " + m.de + "?",
+  commentEs: p => "Wie ist " + nom(p) + "?",
+  contraire: (a, ma, b) => nom(a) + " ist " + ma.de + ". " + nom(b) + " ist das Gegenteil: " + (fem(b) ? "Sie" : "Er") + " ist ___.",
+  gefuehl: "Gefühl", charakter: "Charakter"
+};
+const L = APPRENDRE === "de" ? DE : ES;
+const pred = (p, e) => APPRENDRE === "de" ? DE.predicat(D.emotions[e], p) : ES.predicat(D.emotions[e], p, true);
+const predT = (p, t) => APPRENDRE === "de" ? "ist " + D.caracteres[t].de : ES.predicat(D.caracteres[t], p, false);
+const phraseE = (p, e) => nom(p) + " " + pred(p, e) + ".";
+const phraseT = (p, t) => nom(p) + " " + predT(p, t) + ".";
+
+// ---------- les images et les sons ----------
+const imgP = (p, e) => "emociones/" + p + "-" + e + ".webp";
+const imgT = t => "emociones/trait-" + t + ".webp";
+// Les memes fichiers que l'app (sha1 du texte, audio/manifest.py) : Aurora pour l'allemand, Lolita (Espagne) et
+// Monica (Amerique latine) pour l'espagnol. Sans son (hors ligne, fichier absent) : la voix du telephone.
+const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : LATAM ? "es-419/" : "es-es/");
+let son = null;
+function dire(texte, id){
+  try { if (son) son.pause(); } catch(e){}
+  const parlerTel = () => { try {
+    const u = new SpeechSynthesisUtterance(texte); u.lang = APPRENDRE === "de" ? "de-DE" : LATAM ? "es-MX" : "es-ES"; u.rate = 0.9;
+    speechSynthesis.cancel(); speechSynthesis.speak(u); } catch(e){} };
+  if (!id){ parlerTel(); return; }
+  son = new Audio(AUDIO + id + ".mp3" + (Q.get("r") ? "?r=" + Q.get("r") : ""));   // r : AUDIO_REVISION de l'app
+  son.addEventListener("error", parlerTel, {once: true});
+  son.play().catch(parlerTel);
+}
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+// en persan et en arabe, chaque passage en lettres latines (« ist traurig », « tiene miedo ») s'isole : sinon
+// l'algorithme bidi en retourne les mots
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ]+(?:[ ()]+[A-Za-zÀ-ÿñÑßäöüÄÖÜ]+)*\)?/g, m => '<span dir="ltr">' + m + '</span>');
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3 de Jacques, 3 nov. : « un mot appris compte partout ») : juger() l'envoie comme une
+// scene et comme Decrire (« reponse » {mot, genre, cat, juste}), l'app fait avancer sa carte (revisionDeScene).
+// L'adjectif au masculin, tel que le corpus le range (enfadado aussi en Amerique latine : le corpus n'a pas
+// enojado) ; la peur est un nom (el miedo, die Angst), comme la mauvaise humeur et le rhume en allemand.
+let motQ = null;
+const MOT_NOM = {es: {miedo: {mot: "miedo", genre: "el"}}, de: {miedo: {mot: "Angst", genre: "die"}, enfadado: {mot: "Laune", genre: "die"}, enfermo: {mot: "Erkältung", genre: "die"}}};
+const motE = (e, haben) => (haben || D.emotions[e].tener) ? MOT_NOM[APPRENDRE][e] : {mot: APPRENDRE === "de" ? D.emotions[e].de : D.emotions[e].es[0], cat: "adjectif"};
+const motT = t => ({mot: APPRENDRE === "de" ? D.caracteres[t].de : D.caracteres[t].es[0], cat: "adjectif"});
+
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
+  const s = $("suite"); s.textContent = rang + 1 >= NB ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre){
+  const z = $("zone");
+  z.innerHTML = '<p class="consigne">' + T(consigne) + '</p>' + (image || "")
+              + '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div><div class="choix' + (centre ? " centre" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => s.replace("___", trou());
+const portrait = (p, e) => '<img class="photo" alt="" src="' + imgP(p, e) + '">';
+const scene = t => '<img class="photo scene" alt="" src="' + imgT(t) + '">';
+// trois autres emotions pour un visage : ni la sienne ni une voisine, et jamais une que ce visage montre aussi
+function leurresE(e, n){ return melanger(EMOS().filter(x => loin(x, e, VOISINS))).slice(0, n); }
+function leurresT(t, n){ return melanger(TRAITS().filter(x => loin(x, t, VOISINS_T))).slice(0, n); }
+
+// ---------- les exercices ----------
+const EX = {
+  // « ¿Cómo está Carmen? » / « Wie geht es Carmen? » : un visage, quatre etats a la bonne forme
+  commentEst(){
+    const [p, e] = hasard(PORTRAITS), rep = pred(p, e); motQ = motE(e);
+    ecran("commentEst", portrait(p, e), L.commentEst(p), true);
+    const opts = melanger([rep, ...leurresE(e, 3).map(x => pred(p, x))]);
+    boutons($("choix"), opts, rep, ok => juger(ok, rep, phraseE(p, e)));
+  },
+  // « ¿Quién está triste? » : quatre visages, un seul montre l'emotion (ni elle ni une voisine chez les autres)
+  quien(){
+    const [p, e] = hasard(PORTRAITS); motQ = motE(e);
+    const autres = melanger(PORTRAITS.filter(([q, x]) => q !== p && loin(x, e, VOISINS)));
+    const pris = [[p, e]];
+    for (const a of autres){ if (pris.length >= 4) break; if (!pris.some(([q]) => q === a[0])) pris.push(a); }
+    const z = $("zone");
+    z.innerHTML = '<p class="consigne">' + T("quien") + '</p><div class="enonce centre">' + cible(L.quien(D.emotions[e])) + '</div><div class="visages" id="choix"></div><p class="retourMsg" id="msg"></p>';
+    const ch = $("choix"); let bon;
+    melanger(pris).forEach(([q, x]) => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.q = q;
+      b.innerHTML = '<img alt="' + nom(q) + '" src="' + imgP(q, x) + '"><span class="nom">' + nom(q) + '</span>';
+      if (q === p) bon = b;
+      b.addEventListener("click", () => {
+        ch.querySelectorAll("button").forEach(y => { y.disabled = true; if (y === bon) y.classList.add("juste"); });
+        if (b !== bon) b.classList.add("faux");
+        juger(q === p, nom(p), phraseE(p, e));
+      });
+      ch.appendChild(b);
+    });
+  },
+  // « Carmen ___ triste. » es / está / tiene ; et le piege d'aburrido, sans image
+  serEstar(){
+    let image, phrase, rep;
+    const r = Math.random();
+    if (r < 0.1){ const [s, v] = hasard(ES.pieges); motQ = {mot: "aburrido", cat: "adjectif"}; image = ""; phrase = s; rep = v; }
+    else if (r < 0.4){ const t = hasard(TRAITS()), p = D.traits[t]; motQ = motT(t); image = scene(t); rep = "es"; phrase = nom(p) + " ___ " + ES.forme(D.caracteres[t], p) + "."; }
+    else { const [p, e] = hasard(PORTRAITS), m = D.emotions[e]; motQ = motE(e); image = portrait(p, e); rep = ES.verbe(m, true); phrase = nom(p) + " ___ " + ES.forme(m, p) + "."; }
+    ecran("serEstar", image, avecTrou(phrase));
+    boutons($("choix"), ["es", "está", "tiene"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
+  },
+  // « Ben ___ Angst. » ist / hat -- un tiers des questions sur haben (Angst, schlechte Laune, eine Erkaeltung)
+  istHat(){
+    let image, phrase, rep;
+    const r = Math.random();
+    if (r < 0.35){
+      const avecHaben = PORTRAITS.filter(([, e]) => D.emotions[e].tener || D.haben[e]);
+      const [p, e] = hasard(avecHaben); motQ = motE(e, true); image = portrait(p, e); rep = "hat";
+      phrase = nom(p) + " ___ " + (D.emotions[e].tener ? D.emotions[e].de : D.haben[e]) + ".";
+    } else if (r < 0.6){ const t = hasard(TRAITS()), p = D.traits[t]; motQ = motT(t); image = scene(t); rep = "ist"; phrase = nom(p) + " ___ " + D.caracteres[t].de + "."; }
+    else { const [p, e] = hasard(PORTRAITS.filter(([, e]) => !D.emotions[e].tener)); motQ = motE(e); image = portrait(p, e); rep = "ist"; phrase = nom(p) + " ___ " + D.emotions[e].de + "."; }
+    ecran("istHat", image, avecTrou(phrase));
+    boutons($("choix"), ["ist", "hat"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
+  },
+  // « Gisela está ___. » orgullosa / orgulloso -- seulement les mots qui changent (pas triste, pas miedo)
+  accord(){
+    const cand = PORTRAITS.filter(([, e]) => !D.emotions[e].tener && D.emotions[e].es[0] !== D.emotions[e].es[1]).map(([p, e]) => ["e", p, e])
+                 .concat(TRAITS().map(t => ["t", D.traits[t], t]));
+    const [k, p, x] = hasard(cand), m = k === "e" ? D.emotions[x] : D.caracteres[x], formes = (LATAM && m.latam) || m.es;
+    const rep = formes[fem(p) ? 1 : 0], verbe = k === "e" ? "está" : "es"; motQ = k === "e" ? motE(x) : motT(x);
+    ecran("accord", k === "e" ? portrait(p, x) : scene(x), avecTrou(nom(p) + " " + verbe + " ___."));
+    boutons($("choix"), melanger([formes[0], formes[1]]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, nom(p) + " " + verbe + " " + rep + "."); });
+  },
+  // « ¿Cómo es Javier? » / « Wie ist Javier? » : une scene, quatre traits
+  commentEs(){
+    const t = hasard(TRAITS()), p = D.traits[t], rep = predT(p, t); motQ = motT(t);
+    ecran("commentCar", scene(t), L.commentEs(p), true);
+    boutons($("choix"), melanger([rep, ...leurresT(t, 3).map(x => predT(p, x))]), rep, ok => juger(ok, rep, phraseT(p, t)));
+  },
+  // « Javier es tacaño. Marta, al contrario, es ___. » : la paire d'images ; les leurres a la forme de Marta
+  contraire(){
+    const t = hasard(TRAITS()), c = D.caracteres[t].contraire, a = D.traits[t], b = D.traits[c];
+    const forme = (x, p) => APPRENDRE === "de" ? D.caracteres[x].de : ES.forme(D.caracteres[x], p);
+    const rep = forme(c, b); motQ = motT(c);
+    const leurres = melanger(TRAITS().filter(x => x !== c && x !== t && loin(x, c, VOISINS_T))).slice(0, 3).map(x => forme(x, b));
+    const duo = '<div class="duo"><figure><img alt="" src="' + imgT(t) + '">' + nom(a) + '</figure><figure><img alt="" src="' + imgT(c) + '">' + nom(b) + '</figure></div>';
+    const phrase = L.contraire(a, D.caracteres[t], b);
+    ecran("contraire", duo, avecTrou(phrase));
+    boutons($("choix"), melanger([rep, ...leurres]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
+  },
+  // « Diego está contento. » vrai ou faux -- le faux n'est jamais une emotion voisine (sinon il serait discutable)
+  vraifaux(){
+    const [p, e] = hasard(PORTRAITS), vrai = Math.random() < 0.5; motQ = motE(e);
+    const dite = vrai ? e : hasard(EMOS().filter(x => loin(x, e, VOISINS)));
+    const phrase = phraseE(p, dite);
+    ecran("vraifaux", portrait(p, e), phrase, true);
+    const rep = vrai ? L.vrai : L.faux;
+    boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, vrai ? phrase : phraseE(p, e)));
+  },
+  // « Ben ist müde. » : ein Gefühl (jetzt) oder der Charakter (immer) ? -- la question que l'espagnol pose par ser / estar
+  gefuehl(){
+    const emotion = Math.random() < 0.5;
+    let image, phrase;
+    if (emotion){ const [p, e] = hasard(PORTRAITS); motQ = motE(e); image = portrait(p, e); phrase = phraseE(p, e); }
+    else { const t = hasard(TRAITS()), p = D.traits[t]; motQ = motT(t); image = scene(t); phrase = phraseT(p, t); }
+    ecran("gefuehl", image, phrase, true);
+    const rep = emotion ? DE.gefuehl : DE.charakter;
+    boutons($("choix"), [DE.gefuehl, DE.charakter], rep, ok => juger(ok, rep, phrase));
+  }
+};
+
+// ---------- la decouverte : deux planches a toucher, le mot se voit et s'entend ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone"), dec = D.decouverte, phrases = dec.phrases[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  z.innerHTML = '<div class="onglets" role="tablist"><button type="button" role="tab" id="oE">' + T("ongletEmo") + '</button><button type="button" role="tab" id="oC">' + T("ongletCar") + '</button></div>'
+              + '<p class="consigne" id="intro"></p><div class="planche" id="planche"></div><div class="fiche" id="fiche"></div>'
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : "regleEs")) + '</p>';
+  const montrer = (cle, emotion) => {
+    const p = emotion ? dec.visages[cle] : D.traits[cle], m = emotion ? D.emotions[cle] : D.caracteres[cle];
+    const motVu = APPRENDRE === "de" ? (emotion ? pred(p, cle) : "ist " + m.de).replace(/^ist /, "") : (emotion ? pred(p, cle) : predT(p, cle)).replace(/^(está|es) /, "");
+    const ph = phrases[cle];
+    $("planche").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.cle === cle));
+    $("fiche").innerHTML = '<img alt="" src="' + (emotion ? imgP(p, cle) : imgT(cle)) + '"><div><div class="mot">' + cible(motVu) + '</div><div class="dit">' + cible(ph.texte) + '</div>'
+                         + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>';
+    $("ecoute").addEventListener("click", () => dire(ph.texte, ph.son));
+    dire(ph.texte, ph.son);
+  };
+  const onglet = emotion => {
+    $("oE").setAttribute("aria-selected", emotion); $("oC").setAttribute("aria-selected", !emotion);
+    $("intro").textContent = T(emotion ? "introEmo" : "introCar");
+    const pl = $("planche"); pl.className = "planche" + (emotion ? "" : " scenes"); pl.innerHTML = "";
+    (emotion ? EMOS() : TRAITS()).forEach(cle => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.cle = cle;
+      const p = emotion ? dec.visages[cle] : D.traits[cle];
+      b.setAttribute("aria-label", nom(p));
+      b.innerHTML = '<img alt="" src="' + (emotion ? imgP(p, cle) : imgT(cle)) + '">';
+      b.addEventListener("click", () => montrer(cle, emotion));
+      pl.appendChild(b);
+    });
+    // la fiche s'ouvre sur la premiere, sans parler : le son ne vient que d'un geste
+    const premiere = emotion ? EMOS()[0] : TRAITS()[0];
+    const garde = dire; dire = () => {}; montrer(premiere, emotion); dire = garde;
+  };
+  $("oE").addEventListener("click", () => onglet(true));
+  $("oC").addEventListener("click", () => onglet(false));
+  onglet(true);
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; try { if (son) son.pause(); speechSynthesis.cancel(); } catch(e){} demarrer(); };
+}
+
+// une sorte a la fois, jamais deux fois de suite, en tirant d'abord parmi celles qui restent le plus
+function ranger(types){
+  const reste = {}; types.forEach(t => reste[t] = (reste[t] || 0) + 1);
+  const out = [];
+  while (out.length < types.length){
+    const c = Object.keys(reste).filter(t => reste[t] > 0 && t !== out[out.length - 1]);
+    const pris = c.length ? c : Object.keys(reste).filter(t => reste[t] > 0);
+    // on ne prend t que si la suite reste faisable : apres lui, aucune sorte ne doit depasser la moitie de ce qui reste
+    const total = Object.values(reste).reduce((x, y) => x + y, 0) - 1;
+    const tenable = pris.filter(t => Object.keys(reste).every(u => (reste[u] - (u === t ? 1 : 0)) <= (u === t ? Math.floor(total / 2) : Math.ceil(total / 2))));
+    const t = hasard(tenable.length ? tenable : pris);
+    out.push(t); reste[t]--;
+  }
+  return out;
+}
+function composer(){
+  // vingt questions, chaque sorte deux fois au moins ; la seance en prend les six premieres
+  const types = APPRENDRE === "es"
+    ? ["commentEst", "commentEst", "commentEst", "quien", "quien", "quien", "serEstar", "serEstar", "serEstar", "serEstar",
+       "accord", "accord", "accord", "commentEs", "commentEs", "contraire", "contraire", "vraifaux", "vraifaux", "vraifaux"]
+    : ["commentEst", "commentEst", "commentEst", "quien", "quien", "quien", "istHat", "istHat", "istHat", "istHat",
+       "gefuehl", "gefuehl", "gefuehl", "commentEs", "commentEs", "contraire", "contraire", "vraifaux", "vraifaux", "vraifaux"];
+  return ranger(types).slice(0, NB);
+}
+// aucune question deux fois dans une serie : la meme consigne, le meme enonce et les memes images font la meme
+// question, et on en tire une autre
+let vus = new Set();
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  return file[rang] + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + NB;
+  $("barre").style.width = (rang / NB * 100) + "%";
+  let n = 0;
+  do { motQ = null; EX[file[rang]](); n++; } while (vus.has(cleQuestion()) && n < 40);
+  vus.add(cleQuestion());
+  window.scrollTo(0, 0);
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = NB + " / " + NB; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: NB}) + '</div><button type="button" id="encore">' + T("encore") + '</button><button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  $("encore").addEventListener("click", demarrer);
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: NB}));
+}
+function demarrer(){ file = composer(); rang = 0; bons = 0; vus = new Set(); montrer(); }
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= NB) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("emociones/emociones.json?v=1").then(r => r.json()).then(d => {
+  D = d; PORTRAITS = Object.entries(d.portraits).flatMap(([p, es]) => es.map(e => [p, e]));
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>
