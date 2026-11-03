@@ -58266,8 +58266,24 @@ let sceneCompteExercices = false;
 function exerciceDeScene(){
     try{
         if(getLearningDirection() !== "de") return;
-        recordDailyActivity();
+        const palier = recordDailyActivity();
+        // 3 nov. 2026 : DANS UN THEME ILLUSTRE, LE PALIER A SA FETE, comme une carte. Jacques : « il n'y a pas
+        // d'affichage de la mosaique, avec le cercle de progression », « dans un theme illustre ». Le palier etait
+        // compte ici sans rien montrer : la regle des scenes (pas de fete par-dessus l'image au milieu d'une
+        // question). Un theme envoie « exercice » APRES la reponse, quand le retour s'affiche : rien a cacher. Le
+        // carreau de la reponse (« bonne ») arrive juste apres, et montrerMosaiquePalier attend 450 ms -- le meme
+        // ordre que pour une carte. Les scenes, elles, gardent leur regle.
+        if(palier > 0 && themeIllustreOuvert()) triggerDailyGoalCelebration(palier);
     }catch(e){}
+}
+// La page du cadre est-elle celle d'un theme illustre (depuis Tout le contenu, l'accueil ou la seance, ou il
+// s'ouvre comme un arret, « arret », sous le meme nom qu'une scene) ?
+function themeIllustreOuvert(){
+    try{
+        const cadre = document.getElementById("sceneCadre");
+        const page = cadre ? new URL(cadre.src, location.href).pathname.split("/").pop() : "";
+        return Object.values(THEMES_ILLUSTRES).some(th => th.page === page);
+    }catch(e){ return false; }
 }
 
 // ============ LA SEANCE MELANGEE (essai « phrases », v810-v812) ============
