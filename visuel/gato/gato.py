@@ -451,6 +451,7 @@ def construire():
         if id in SAUTS: e["saut"] = SAUTS[id][0]
         d["images"][id] = e
     gloses(d)
+    groupes(d)
     return d
 
 
@@ -502,6 +503,87 @@ def gloses(d):
     manque += [m for m in PREP_ES + [n[1][1] for n in NOMS.values()] + ["estar"] if m not in d["gloses"]["es"]]
     if manque:
         raise SystemExit("gloses absentes du corpus : %s" % manque)
+
+
+# LE MAUVAIS CHOIX TRADUIT (decision de Jacques du 3 nov., regle commune des themes) : apres une erreur, le retour
+# montre aussi la traduction de ce que l'eleve a CHOISI (« unter dem Sofa = sous le canape »). Chaque groupe que la
+# page peut proposer (une preposition et un nom, au datif et a l'accusatif ; en espagnol, chaque forme et « a la
+# mesa ») recoit sa traduction en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol), faite
+# par composition ; ailleurs, la page montre la glose de sa preposition (« prep »).
+FR_NOM = {"tisch": ("la", "table"), "stuhl": ("la", "chaise", "chaises"), "sofa": ("le", "canapé"), "schrank": ("l'", "armoire"),
+          "regal": ("l'", "étagère"), "korb": ("le", "panier"), "karton": ("le", "carton"), "fenster": ("la", "fenêtre"),
+          "tuer": ("la", "porte"), "pflanze": ("la", "plante"), "vorhang": ("le", "rideau"), "tasche": ("le", "sac"),
+          "lampe": ("la", "lampe"), "bild": ("le", "tableau"), "wand": ("le", "mur"), "kissen": ("le", "coussin", "coussins")}
+EN_NOM = {"tisch": "table", "stuhl": ("chair", "chairs"), "sofa": "sofa", "schrank": "wardrobe", "regal": "bookcase", "korb": "basket",
+          "karton": "box", "fenster": "window", "tuer": "door", "pflanze": "plant", "vorhang": "curtain", "tasche": "bag",
+          "lampe": "lamp", "bild": "picture", "wand": "wall", "kissen": ("cushion", "cushions")}
+PT_NOM = {"tisch": ("a", "mesa"), "stuhl": ("a", "cadeira", "cadeiras"), "sofa": ("o", "sofá"), "schrank": ("o", "armário"),
+          "regal": ("a", "estante"), "korb": ("a", "cesta"), "karton": ("a", "caixa"), "fenster": ("a", "janela"), "tuer": ("a", "porta"),
+          "pflanze": ("a", "planta"), "vorhang": ("a", "cortina"), "tasche": ("a", "bolsa"), "lampe": ("a", "luminária"),
+          "bild": ("o", "quadro"), "wand": ("a", "parede"), "kissen": ("a", "almofada", "almofadas")}
+FR_PREP = {"auf": "sur", "unter": "sous", "in": "dans", "vor": "devant", "hinter": "derrière", "neben": "à côté de", "zwischen": "entre",
+           "über": "au-dessus de", "an": "à"}
+EN_PREP = {"auf": "on", "unter": "under", "in": "in", "vor": "in front of", "hinter": "behind", "neben": "next to", "zwischen": "between",
+           "über": "above", "an": "at"}
+PT_PREP = {"auf": "em cima de", "unter": "embaixo de", "in": "dentro de", "vor": "na frente de", "hinter": "atrás de", "neben": "ao lado de",
+           "zwischen": "entre", "über": "acima de", "an": "em"}
+ES_DE = {"encima de": "auf", "sobre": "auf", "debajo de": "unter", "dentro de": "in", "en": "in", "delante de": "vor", "detrás de": "hinter",
+         "al lado de": "neben", "entre": "zwischen"}
+
+
+def lieu_fr(prep, nom, pl=False):
+    a, m = FR_NOM[nom][0], FR_NOM[nom][1]
+    if pl: a, m = "les", FR_NOM[nom][2]
+    p = FR_PREP[prep]
+    if prep == "an" and nom == "wand": p = "à"
+    if p.endswith(" de") or p == "à":
+        base = p[:-3] if p.endswith(" de") else ""
+        lien = {"le": "du", "les": "des"} if p.endswith(" de") else {"le": "au", "les": "aux"}
+        if a in lien: return (base + " " if base else "") + lien[a] + " " + m
+        return (base + " de " if base else "à ") + (a + m if a == "l'" else a + " " + m)
+    return p + " " + (a + m if a == "l'" else a + " " + m)
+
+
+def lieu_en(prep, nom, pl=False):
+    m = EN_NOM[nom][1] if pl else (EN_NOM[nom] if isinstance(EN_NOM[nom], str) else EN_NOM[nom][0])
+    p = "on" if (prep == "an" and nom == "wand") else EN_PREP[prep]
+    return p + " the " + m
+
+
+def lieu_pt(prep, nom, pl=False):
+    a, m = PT_NOM[nom][0], PT_NOM[nom][1]
+    if pl: a, m = a + "s", PT_NOM[nom][2]
+    p = PT_PREP[prep]
+    if p.endswith(" de"): return p[:-3] + " d" + a + " " + m
+    if p == "em": return "n" + a + " " + m
+    if p == "na frente de": return "na frente d" + a + " " + m
+    return p + " " + a + " " + m
+
+
+def groupes(d):
+    g = {"de": {}, "es": {}}
+    pluriels = ("stuhl", "kissen")
+    for nom in NOMS:
+        for pl in ((False, True) if nom in pluriels else (False,)):
+            for prep in PREP_DE:
+                t = {"fr": lieu_fr(prep, nom, pl), "en": lieu_en(prep, nom, pl), "pt": lieu_pt(prep, nom, pl), "prep": prep}
+                for cas in ("dat", "akk"):
+                    g["de"][groupe_de(prep, nom, cas, pl)] = dict(t, cas=cas)
+                # les formes entieres que les choix proposent aussi (« auf dem Sofa » est deja la ; « auf das Sofa »)
+            for prep in PREP_ES:
+                pd = "an" if (prep == "en" and nom in ("wand", "fenster")) else ES_DE[prep]
+                g["es"][groupe_es(prep, nom, pl)] = {"fr": lieu_fr(pd, nom, pl), "en": lieu_en(pd, nom, pl), "pt": lieu_pt(pd, nom, pl),
+                                                     "de": groupe_de(pd, nom, "dat", pl), "prep": prep}
+    for id, p in d["places"].items():
+        es = p["es"]
+        if es["mvPrep"] == "a":                     # « a la mesa », « al sofa » : la ou il saute
+            g["es"][es["mvLieu"]] = {"fr": P[id]["fr"], "en": P[id]["en"], "pt": P[id]["pt"], "de": p["de"]["wohin"], "prep": es["preps"][0]}
+    g["de"]["zwischen Ben und Mia"] = {"fr": "entre Ben et Mia", "en": "between Ben and Mia", "pt": "entre Ben e Mia", "prep": "zwischen"}
+    g["de"]["neben Mia"] = {"fr": "à côté de Mia", "en": "next to Mia", "pt": "ao lado da Mia", "prep": "neben"}
+    g["es"]["entre Ben y Mia"] = {"fr": "entre Ben et Mia", "en": "between Ben and Mia", "pt": "entre Ben e Mia", "de": "zwischen Ben und Mia", "prep": "entre"}
+    g["es"]["al lado de Mia"] = {"fr": "à côté de Mia", "en": "next to Mia", "pt": "ao lado da Mia", "de": "neben Mia", "prep": "al lado de"}
+    g["es"]["por encima de la caja"] = {"fr": "par-dessus le carton", "en": "over the box", "pt": "por cima da caixa", "de": "über den Karton", "prep": "encima de"}
+    d["groupes"] = g
 
 
 def ecrire_voix(d):
