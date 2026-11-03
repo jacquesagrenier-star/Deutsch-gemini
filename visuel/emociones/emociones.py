@@ -114,7 +114,6 @@ TRAITS = {
                      ("Peter", "On the doorstep of his house, he warmly welcomes a new young neighbour, shaking her hand with a big friendly smile and chatting cheerfully."),
                      ("Felix", "In a cafe, he laughs warmly with an elderly lady at the next table who is showing him photos on her phone; both smile, a friendly chat.")],
     "antipatico":   [("Pablo", "On a city street, a young woman asks him a question politely; he turns his back on her with a cold, unfriendly face and his arms crossed."),
-                     ("Marta", "At the reception desk of an office, a visitor asks her something politely; she does not look up from her screen, with a cold, bored, unfriendly face, and raises one hand to say 'not now'."),
                      ("Carmen", "In the stairwell of an apartment building, a smiling neighbour waves and says hello to her; she frowns, rolls her eyes and turns her head away from him with a cold, sour, unfriendly face, refusing to answer.")],
     # 3 nov., « go » (Jacques) : les adjectifs de personne de sa liste de cours « Adjetivos comunes », deux personnes
     # par mot. Une scene a plusieurs personnes porte la liste des autres (leurs images vont aussi en reference).
@@ -168,6 +167,10 @@ def verifier_regles():
     """Jamais un trait et son contraire, ni deux traits voisins, pour la meme personne ; rien de negatif pour la famille."""
     voisins = {("simpatico", "educado"), ("simpatico", "generoso"), ("antipatico", "grosero"), ("perezoso", "desordenado"),
                ("estudioso", "trabajador"), ("carinoso", "simpatico"), ("feliz", "simpatico")}
+    # 3 nov. (relecture qualite : Marta etait genereuse ET antipathique) : des traits qui, sans etre contraires, se
+    # contredisent chez une meme personne -- l'un servirait de leurre trompeur sur l'image de l'autre.
+    incompatibles = {("antipatico", "generoso"), ("antipatico", "carinoso"), ("antipatico", "educado"), ("antipatico", "feliz"),
+                     ("grosero", "carinoso"), ("grosero", "simpatico"), ("tacano", "carinoso"), ("perezoso", "estudioso")}
     famille = {"Heinz", "Gisela", "Peter", "Monika", "Sabine", "Frank", "Jan", "Katrin", "Lena", "Felix", "Sophie", "Ben"}
     negatifs = {"tacano", "perezoso", "grosero", "desordenado", "antipatico"}
     par = {}
@@ -182,6 +185,7 @@ def verifier_regles():
             if p in famille and t in negatifs:
                 fautes.append("%s (famille) : %s" % (p, t))
         fautes += ["%s : %s et %s, voisins" % (p, a, b) for a, b in voisins if a in ts and b in ts]
+        fautes += ["%s : %s et %s, incompatibles" % (p, a, b) for a, b in incompatibles if a in ts and b in ts]
     for t, scenes in TRAITS.items():
         if len({x[0] for x in scenes}) != len(scenes):
             fautes.append("%s : deux fois la meme personne" % t)
