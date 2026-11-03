@@ -111,7 +111,46 @@ def emotions_photomaton():
     return c
 
 
-VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton}
+def manger_ardoise():
+    """L'ardoise du cafe : la carte a la craie et ses prix (des dessins, aucun mot : la meme vignette sert a l'espagnol
+    et a l'allemand), et, posees devant, la tasse de the et la part de gateau des quantites. Le sujet est la commande et
+    le gout, pas une rangee de personnes."""
+    c = Image.new("RGB", (W, H), (236, 226, 208))
+    d = ImageDraw.Draw(c)
+    # l'ardoise et son cadre de bois
+    x0, y0, x1, y1 = 30, 26, 318, 484
+    d.rounded_rectangle((x0 - 14, y0 - 14, x1 + 14, y1 + 14), 22, fill=(150, 108, 70))
+    d.rounded_rectangle((x0, y0, x1, y1), 12, fill=(36, 56, 47))
+    craie, pale = (244, 241, 230), (190, 200, 190)
+    # le titre, une guirlande a la craie (pas de mot)
+    for k in range(9):
+        cx = x0 + 58 + k * 23
+        d.ellipse((cx - 5, y0 + 40 - 5 + (k % 2) * 8, cx + 5, y0 + 40 + 5 + (k % 2) * 8), fill=pale)
+    # trois lignes : un dessin a la craie (tasse, verre, part de gateau) et un prix
+    for k, (dessin, prix) in enumerate([("tasse", "1,50 €"), ("verre", "2,50 €"), ("part", "3,50 €"), ("tasse", "1,80 €")]):
+        y = y0 + 120 + k * 88
+        cx = x0 + 62
+        if dessin == "tasse":
+            d.rounded_rectangle((cx - 26, y - 18, cx + 18, y + 20), 8, outline=craie, width=5)
+            d.arc((cx + 8, y - 10, cx + 34, y + 12), -90, 90, fill=craie, width=5)
+        elif dessin == "verre":
+            d.polygon([(cx - 20, y - 24), (cx + 20, y - 24), (cx + 14, y + 24), (cx - 14, y + 24)], outline=craie, width=5)
+            d.line([(cx - 17, y - 4), (cx + 17, y - 4)], fill=craie, width=4)
+        else:
+            d.polygon([(cx - 28, y + 20), (cx + 28, y + 20), (cx + 28, y - 4), (cx - 28, y - 22)], outline=craie, width=5)
+            d.line([(cx - 28, y - 2), (cx + 28, y + 6)], fill=craie, width=4)
+        for px in range(cx + 46, x1 - 150, 15):
+            d.ellipse((px, y + 4, px + 5, y + 9), fill=pale)
+        d.text((x1 - 18, y), prix, font=F(36), fill=craie, anchor="rm")
+    # devant l'ardoise : la tasse de the et la part de gateau, en ronds
+    for nom, (x, y), dia in (("qte-taza-te", (466, 145), 196), ("qte-trozo-tarta", (466, 368), 196)):
+        im = Image.open(os.path.join(P, "manger", nom + ".webp")).convert("RGB")
+        r = rond(im, dia, 7)
+        c.paste(r, (x - r.size[0] // 2, y - r.size[1] // 2), r)
+    return c
+
+
+VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "manger": manger_ardoise}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
