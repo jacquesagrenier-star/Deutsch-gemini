@@ -152,6 +152,10 @@ def main():
     # de conjugaison) ne couvre pas le reste du niveau.
     p.add_argument("--sources", default="",
                    help="ne produire que ces sources (prefixes, ex. conjugaison,a1_voyage)")
+    # 3 nov. 2026 : l'accord de Jacques couvre cinq mots precis (nieta, prima, sobrina,
+    # cuñada, suegra) et leurs exemples, pas les autres textes qui manquent au meme niveau.
+    p.add_argument("--textes", default="",
+                   help="ne produire que ces textes exacts, separes par |")
     a = p.parse_args()
 
     voix, dossier = VOIX[a.variante]
@@ -169,6 +173,9 @@ def main():
     if a.sources:
         prefixes = tuple(s.strip() for s in a.sources.split(","))
         a_faire = [e for e in a_faire if e["source"].startswith(prefixes)]
+    if a.textes:
+        voulus = {t.strip() for t in a.textes.split("|") if t.strip()}
+        a_faire = [e for e in a_faire if e["texte"] in voulus]
     if a.reprendre_refus:
         a_faire = [e for e in a_faire if e["id"] in refus]
         for e in a_faire:

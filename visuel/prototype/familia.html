@@ -84,6 +84,7 @@ button:disabled{cursor:default}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
+<script src="themes/tirage.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -91,8 +92,9 @@ const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
-// dans la seance du jour (seance=1) : six questions et pas de decouverte -- regle proposee, pas encore branchee
-const NB = Q.get("seance") === "1" ? 6 : 10;
+// vingt questions seule (Jacques, 3 nov.) ; dans la seance du jour (seance=1), un jour sur trois a la place de la scene :
+// six questions et pas de decouverte (themeDuJour() dans index.html)
+const NB = Q.get("seance") === "1" ? 6 : 20;
 
 const TEXTES = {
   titre:     {fr:"La famille", en:"Family", tr:"Aile", uk:"Родина", fa:"خانواده", ar:"العائلة", pt:"A família", pl:"Rodzina", ru:"Семья", de:"Die Familie"},
@@ -225,6 +227,11 @@ const hasard = a => a[Math.floor(Math.random() * a.length)];
 const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
 function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
 let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (3 nov. 2026, regle 3 de Jacques : « un mot appris compte partout ») : [lien, sexe] du mot
+// que la question teste. juger() l'envoie comme une scene (« reponse ») et l'app fait avancer sa carte
+// (revisionDeScene) : un mot neuf entre, une erreur le fait revenir. null pour les questions de groupe ou de compte.
+let motQ = null;
+const articleNu = s => APPRENDRE === "de" ? (s === "f" ? "die" : "der") : (s === "f" ? "la" : "el");
 
 // toutes les paires (e, o, lien) que l'arbre nomme ; les liens par alliance tires moins souvent
 function paires(filtre){
@@ -289,9 +296,11 @@ function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
   parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  if (motQ) parler("reponse", Array.isArray(motQ) ? {mot: mot(motQ[0], motQ[1]), genre: articleNu(motQ[1]), juste: ok} : {mot: motQ.mot, genre: motQ.genre, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
-  const s = $("suite"); s.textContent = rang + 1 >= NB ? T("terminer") : T("suivant"); s.hidden = false;
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 function boutons(conteneur, options, bonne, apres){
   let bon;
@@ -323,19 +332,29 @@ function distracteurs(k, s, piege){
 }
 
 // ---------- les exercices ----------
+// Chaque sorte peut VISER UN MOT (w : le lien k au sexe s, ou en allemand un nom de groupe du corpus, w.pl :
+// Eltern, Geschwister, Grosseltern) et rend false si l'arbre ne lui donne rien pour ce mot. Sans w, elle tire au
+// hasard, comme avant (les controles, la page ouverte seule).
+const vise = (w, k, s) => !w || (!w.pl && w.k === k && w.s === s);
 const EX = {
   // « Peter es ___ de Anna. »
-  lien(){
-    const [e, o, k] = tirer(paires());
+  lien(w){
+    const cand = paires((e, o, k) => vise(w, k, sexe(o)));
+    if (!cand.length) return false;
+    const [e, o, k] = tirer(cand);
     const rep = avecArt(k, sexe(o)), phrase = L.lien(o, rep, e);
+    motQ = [k, sexe(o)];
     ecran("lien", cible(L.lien(o, trou(), e)), {ego: e, cibles: [o]});
     const opts = melanger([rep, ...distracteurs(k, sexe(o), relation(o, e))]);
     boutons($("choix"), opts, rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
   },
   // « ¿Quién es la abuela de Mia? » : on touche la personne dans l'arbre (une seule reponse possible)
-  toucher(){
-    const cand = paires((e, o, k) => lies(e, k).filter(x => sexe(x) === sexe(o)).length === 1);
+  toucher(w){
+    const cand = paires((e, o, k) => lies(e, k).filter(x => sexe(x) === sexe(o)).length === 1 && vise(w, k, sexe(o)));
+    if (!cand.length) return false;
     const [e, o, k] = tirer(cand), groupe = avecArt(k, sexe(o));
+    motQ = [k, sexe(o)];
     const z = $("zone");
     z.innerHTML = '<p class="consigne">' + T("toucher") + '</p><div class="enonce" style="text-align:center">' + cible(L.qui(groupe, e)) + '</div>';
     const a = dessinerArbre({ego: e, touchable: (g, id) => {
@@ -346,107 +365,139 @@ const EX = {
       juger(id === o, o, L.lien(o, groupe, e));
     }});
     z.appendChild(a); z.insertAdjacentHTML("beforeend", '<p class="retourMsg" id="msg"></p>');
+    return true;
   },
-  // « Heinz es el abuelo de Anna. Anna es ___ de Heinz. »
-  inverse(){
-    const [e, o, k] = tirer(paires((e, o, k) => relation(o, e)));
+  // « Heinz es el abuelo de Anna. Anna es ___ de Heinz. » (le mot vise est celui de la reponse)
+  inverse(w){
+    const cand = paires((e, o, k) => relation(o, e) && vise(w, relation(o, e), sexe(e)));
+    if (!cand.length) return false;
+    const [e, o, k] = tirer(cand);
     const k2 = relation(o, e), rep = avecArt(k2, sexe(e)), phrase = L.lien(e, rep, o);
+    motQ = [k2, sexe(e)];
     ecran("inverse", '<span class="avant">' + cible(L.lien(o, avecArt(k, sexe(o)), e)) + '</span>' + cible(L.lien(e, trou(), o)), {ego: o, cibles: [e]});
     // le piege : le meme lien que la phrase donnee, au sexe de e (« Anna es la abuela de Heinz »)
     const opts = melanger([rep, ...distracteurs(k2, sexe(e), k)]);
     boutons($("choix"), opts, rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
   },
   // mi / tu / su / nuestro -- mein / dein / sein / ihr / unser
-  possessif(){
-    const forme = hasard(["je", "je", "tu", "il", "nous", "pluriel"]);
-    let enonce, rep, opts, phrase, ego, cibles;
+  possessif(w){
+    // un nom de groupe (Eltern, Geschwister) : le possessif au pluriel, « Peter und Monika sind meine Eltern »
+    let forme = w && w.pl ? "pluriel" : hasard(w ? ["je", "je", "tu", "il", "nous"] : ["je", "je", "tu", "il", "nous", "pluriel"]);
+    let enonce, rep, opts, phrase;
     const idx = s => s === "f" ? 1 : 0;
+    const lienVoulu = (k, o) => w ? vise(w, k, sexe(o)) : COEUR.includes(k);
     if (forme === "nous"){
       // deux personnes qui ont le meme lien avec o (deux freres et soeurs, deux enfants)
       const cand = [];
-      IDS.forEach(a => IDS.forEach(b => { if (a < b && freres(a).includes(b)) IDS.forEach(o => { const k = relation(a, o); if (k && COEUR.includes(k) && k === relation(b, o)) cand.push([a, b, o, k]); }); }));
-      const [a, b, o, k] = hasard(cand), w = mot(k, sexe(o));
-      rep = L.poss.nous[idx(sexe(o))];
-      enonce = L.disent(a, b, L.estPoss(o, trou(), w)); phrase = L.disent(a, b, L.estPoss(o, rep, w));
-      opts = APPRENDRE === "de" ? ["unser", "unsere", "mein", "meine"] : ["nuestro", "nuestra", "mi", "su"];
-      ego = a; cibles = [o];
-      ecran("possessif", cible(enonce), {ego, cibles: [b, o]});
-    } else if (forme === "pluriel"){
+      IDS.forEach(a => IDS.forEach(b => { if (a < b && freres(a).includes(b)) IDS.forEach(o => { const k = relation(a, o); if (k && lienVoulu(k, o) && k === relation(b, o)) cand.push([a, b, o, k]); }); }));
+      if (cand.length){
+        const [a, b, o, k] = hasard(cand), mo = mot(k, sexe(o));
+        motQ = [k, sexe(o)];
+        rep = L.poss.nous[idx(sexe(o))];
+        enonce = L.disent(a, b, L.estPoss(o, trou(), mo)); phrase = L.disent(a, b, L.estPoss(o, rep, mo));
+        opts = APPRENDRE === "de" ? ["unser", "unsere", "mein", "meine"] : ["nuestro", "nuestra", "mi", "su"];
+        ecran("possessif", cible(enonce), {ego: a, cibles: [b, o]});
+      } else forme = "je";
+    }
+    if (forme === "pluriel"){
       const cand = [];
-      IDS.forEach(e => Object.keys(L.pluriels).forEach(k => { const g = lies(e, k); if (g.length >= 2 && g.length <= 3 && (APPRENDRE === "es" ? (k !== "parent" || g.length === 2) : true)) cand.push([e, k, g]); }));
+      IDS.forEach(e => Object.keys(L.pluriels).forEach(k => { const g = lies(e, k); if (g.length >= 2 && g.length <= 3 && (APPRENDRE === "es" ? (k !== "parent" || g.length === 2) : true) && (!w || w.k === k)) cand.push([e, k, g]); }));
+      if (!cand.length) return false;
       const [e, k, g] = hasard(cand), fem = g.every(x => sexe(x) === "f");
-      const w = L.pluriels[k][fem && L.pluriels[k][1] ? 1 : 0];
+      if (w) motQ = {mot: w.mot, genre: w.genre};
+      const mo = L.pluriels[k][fem && L.pluriels[k][1] ? 1 : 0];
       rep = L.poss.je[2];
-      enonce = L.dit(e, L.sontPoss(g, trou(), w)); phrase = L.dit(e, L.sontPoss(g, rep, w));
+      enonce = L.dit(e, L.sontPoss(g, trou(), mo)); phrase = L.dit(e, L.sontPoss(g, rep, mo));
       opts = APPRENDRE === "de" ? ["meine", "mein", "deine", "seine"] : ["mis", "mi", "tus", "sus"];
       ecran("possessif", cible(enonce), {ego: e, cibles: g});
-    } else {
-      const [e, o, k] = tirer(paires((e, o, k) => COEUR.includes(k)));
-      const w = mot(k, sexe(o)), i = idx(sexe(o));
+    } else if (forme !== "nous"){
+      const cand = paires((e, o, k) => lienVoulu(k, o));
+      if (!cand.length) return false;
+      const [e, o, k] = tirer(cand);
+      const mo = mot(k, sexe(o)), i = idx(sexe(o));
+      motQ = [k, sexe(o)];
+      // quelqu'un d'autre demande a e : « ¿Mia es tu hija? » ; celui qui demande n'a pas lui-meme ce lien avec o
+      // (Ben ne demande pas a Mia si Katrin est sa mere)
+      const qui = IDS.filter(x => x !== e && x !== o && relation(x, e) && relation(e, x) && relation(x, o) !== k);
+      if (forme === "tu" && !qui.length) forme = "je";
       if (forme === "je"){
         rep = L.poss.je[i];
-        enonce = L.dit(e, L.estPoss(o, trou(), w)); phrase = L.dit(e, L.estPoss(o, rep, w));
+        enonce = L.dit(e, L.estPoss(o, trou(), mo)); phrase = L.dit(e, L.estPoss(o, rep, mo));
         opts = APPRENDRE === "de" ? ["mein", "meine", "dein", "deine"] : ["mi", "tu", "su", "mis"];
         ecran("possessif", cible(enonce), {ego: e, cibles: [o]});
       } else if (forme === "tu"){
-        // quelqu'un d'autre demande a e : « ¿Mia es tu hija? »
-        // celui qui demande n'a pas lui-meme ce lien avec o (Ben ne demande pas a Mia si Katrin est sa mere)
-        const qui = IDS.filter(x => x !== e && x !== o && relation(x, e) && relation(e, x) && relation(x, o) !== k);
-        if (!qui.length) return EX.possessif();
         const s = hasard(qui);
         rep = L.poss.tu[i];
-        enonce = L.demande(s, e, L.estPossQ(o, trou(), w)); phrase = L.demande(s, e, L.estPossQ(o, rep, w));
+        enonce = L.demande(s, e, L.estPossQ(o, trou(), mo)); phrase = L.demande(s, e, L.estPossQ(o, rep, mo));
         opts = APPRENDRE === "de" ? ["dein", "deine", "mein", "meine"] : ["tu", "mi", "su", "tus"];
         ecran("possessif", cible(enonce), {ego: e, cibles: [o]});
       } else {
         // « Peter ist der Vater von Anna. → Peter ist ihr Vater. »
-        const p = sexe(e) === "f" ? "elle" : "il";
-        rep = L.poss[p][i];
-        enonce = '<span class="avant">' + cible(L.lien(o, avecArt(k, sexe(o)), e)) + '</span>' + cible(L.estPoss(o, trou(), w));
-        phrase = L.estPoss(o, rep, w);
+        const pr = sexe(e) === "f" ? "elle" : "il";
+        rep = L.poss[pr][i];
+        enonce = '<span class="avant">' + cible(L.lien(o, avecArt(k, sexe(o)), e)) + '</span>' + cible(L.estPoss(o, trou(), mo));
+        phrase = L.estPoss(o, rep, mo);
         opts = APPRENDRE === "de" ? ["sein", "seine", "ihr", "ihre"] : ["su", "sus", "mi", "tu"];
         ecran("possessif", enonce, {ego: e, cibles: [o]});
       }
     }
     boutons($("choix"), melanger(opts), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
   },
-  // « Peter y Monika son los padres de Anna. »
-  collectif(){
+  // « Peter y Monika son los padres de Anna. » -- en espagnol, il vise le masculin (los tios) ou, pour un groupe de
+  // femmes, le feminin (las tias) ; en allemand, les noms de groupe du corpus (Eltern, Geschwister, Grosseltern)
+  collectif(w){
     const cand = [];
-    IDS.forEach(e => Object.keys(L.pluriels).forEach(k => { const g = lies(e, k); if (g.length >= 2 && g.length <= 3) cand.push([e, k, g]); }));
+    IDS.forEach(e => Object.keys(L.pluriels).forEach(k => {
+      const g = lies(e, k); if (g.length < 2 || g.length > 3) return;
+      const fem = g.every(x => sexe(x) === "f");
+      if (w && (APPRENDRE === "es" ? (w.pl || w.k !== k || k === "parent" || w.s !== (fem ? "f" : "m")) : (!w.pl || w.k !== k))) return;
+      cand.push([e, k, g]);
+    }));
+    if (!cand.length) return false;
     const [e, k, g] = hasard(cand), fem = g.every(x => sexe(x) === "f");
-    const forme = kk => { const p = L.pluriels[kk]; return L.artPl(fem && p[1], fem && p[1] ? p[1] : p[0]); };
+    if (w) motQ = w.pl ? {mot: w.mot, genre: w.genre} : [k, w.s];
+    const forme = kk => { const pl = L.pluriels[kk]; return L.artPl(fem && pl[1], fem && pl[1] ? pl[1] : pl[0]); };
     const rep = forme(k), phrase = L.lienPl(g, rep, e);
     const autres = melanger(Object.keys(L.pluriels).filter(x => x !== k)).slice(0, 3).map(forme);
     ecran("collectif", cible(L.lienPl(g, trou(), e)), {ego: e, cibles: g});
     boutons($("choix"), melanger([rep, ...autres]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase); });
+    return true;
   },
   // une phrase vraie ou fausse : le faux echange le lien contre un autre du meme sexe
-  vraifaux(){
-    const [e, o, k] = tirer(paires());
+  vraifaux(w){
+    const cand = paires((e, o, k) => vise(w, k, sexe(o)));
+    if (!cand.length) return false;
+    const [e, o, k] = tirer(cand);
     const vrai = Math.random() < 0.5;
     const k2 = vrai ? k : hasard(COEUR.filter(x => x !== k));
     const dite = L.lien(o, avecArt(k2, sexe(o)), e), juste = L.lien(o, avecArt(k, sexe(o)), e);
+    motQ = [k, sexe(o)];
     ecran("vraifaux", cible(dite), {ego: e, cibles: [o]});
     const rep = vrai ? L.vrai : L.faux;
     $("choix").style.justifyContent = "center";
     boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
+    return true;
   },
-  // « ¿Cuántos nietos tienen Heinz y Gisela? »
-  combien(){
+  // « ¿Cuántos nietos tienen Heinz y Gisela? » -- il habille un mot (nieto, hermano ; Geschwister), jamais seul
+  combien(w){
     const cand = [];
+    const garder = (k, fem) => !w || (APPRENDRE === "es" ? (!w.pl && w.k === k && w.s === (fem ? "f" : "m")) : (w.pl && w.k === k));
     IDS.forEach(e => ["frere", "cousin", "neveu", "oncle"].forEach(k => {
       const g = lies(e, k); if (g.length < 2 || g.length > 5) return;
       if (APPRENDRE === "de" && MIXTE_DE.includes(k) && new Set(g.map(sexe)).size < 2) return;
-      cand.push([L.combien[k](e), g, [e]]);
+      if (garder(k, g.every(x => sexe(x) === "f"))) cand.push([L.combien[k](e), g, [e], k]);
     }));
     const vus = new Set();
     IDS.forEach(a => { const b = conjoint(a); if (!b || vus.has(b)) return; vus.add(a);
       const kids = enfants(a), petits = IDS.filter(x => relation(a, x) === "petitenfant");
-      if (kids.length >= 2) cand.push([L.combien.enfantCouple(a, b), kids, [a, b]]);
-      if (petits.length >= 2) cand.push([L.combien.petitCouple(a, b), petits, [a, b]]);
+      if (kids.length >= 2 && garder("enfant", kids.every(x => sexe(x) === "f"))) cand.push([L.combien.enfantCouple(a, b), kids, [a, b], "enfant"]);
+      if (petits.length >= 2 && garder("petitenfant", petits.every(x => sexe(x) === "f"))) cand.push([L.combien.petitCouple(a, b), petits, [a, b], "petitenfant"]);
     });
-    const [[question, reponse], g, ego] = hasard(cand), n = g.length, fem = g.every(x => sexe(x) === "f");
+    if (!cand.length) return false;
+    const [[question, reponse], g, ego, k] = hasard(cand), n = g.length, fem = g.every(x => sexe(x) === "f");
+    if (w) motQ = w.pl ? {mot: w.mot, genre: w.genre} : [k, w.s];
     const rep = L.nombres[n];
     ecran("combien", cible(question), {ego: ego[0], cibles: ego.slice(1)});
     $("choix").style.justifyContent = "center";
@@ -454,12 +505,15 @@ const EX = {
       document.querySelectorAll(".arbre g.p").forEach(x => { if (g.includes(x.dataset.id)) x.classList.add("juste"); });
       juger(ok, rep, reponse(n, fem));
     });
+    return true;
   },
-  // el abuelo → la abuela ; die Nichte → der Neffe
-  paires(){
-    const k = hasard(COEUR.filter(x => x !== "conjoint").concat(PAR_ALLIANCE)), versF = Math.random() < 0.6;
-    const [s1, s2] = versF ? ["m", "f"] : ["f", "m"];
+  // el abuelo → la abuela ; die Nichte → der Neffe (le mot vise est celui de la reponse)
+  paires(w){
+    if (w && (w.pl || w.k === "conjoint")) return false;
+    const k = w ? w.k : hasard(COEUR.filter(x => x !== "conjoint").concat(PAR_ALLIANCE));
+    const s2 = w ? w.s : (Math.random() < 0.6 ? "f" : "m"), s1 = s2 === "f" ? "m" : "f";
     const rep = avecArt(k, s2);
+    motQ = [k, s2];
     // deux visages de l'arbre qui portent ce lien, quand l'arbre en a (« Frank · Sabine »)
     let duo = null;
     for (const e of melanger(IDS.slice())){ const a = lies(e, k).find(x => sexe(x) === s1), b = lies(e, k).find(x => sexe(x) === s2); if (a && b){ duo = [a, b]; break; } }
@@ -467,8 +521,18 @@ const EX = {
     ecran("paires", '<div style="text-align:center;font-size:21px">' + cible(avecArt(k, s1) + " → " + trou()) + '</div>', null, avant);
     const autres = melanger(COEUR.concat(PAR_ALLIANCE).filter(x => x !== k && x !== "conjoint")).slice(0, 3).map(x => avecArt(x, s2));
     boutons($("choix"), melanger([rep, ...autres]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, avecArt(k, s1) + " → " + rep); });
+    return true;
   }
 };
+const SORTES = Object.keys(EX);
+// LES MOTS DU THEME : chaque lien aux deux sexes (el tio, la tia ; der Onkel, die Tante), et en allemand les trois
+// noms de groupe du corpus. Ceux qui manquent au corpus sont rendus « hors jeu » par l'app et ne sont pas demandes.
+function motsDuTheme(){
+  const out = [];
+  COEUR.concat(PAR_ALLIANCE).forEach(k => ["m", "f"].forEach(sx => out.push({k, s: sx, mot: mot(k, sx), genre: articleNu(sx)})));
+  if (APPRENDRE === "de") [["parent", "Eltern"], ["frere", "Geschwister"], ["grandparent", "Großeltern"]].forEach(([k, m]) => out.push({k, pl: true, mot: m, genre: "die"}));
+  return out;
+}
 
 // ---------- la decouverte : l'arbre d'Anna, on touche pour savoir qui est qui ----------
 function decouvrir(){
@@ -491,28 +555,70 @@ function decouvrir(){
   s.onclick = () => { s.onclick = null; demarrer(); };
 }
 
-function composer(){
-  const types = ["lien", "lien", "toucher", "toucher", "inverse", "possessif", "possessif", "collectif", "vraifaux", hasard(["combien", "paires"])];
-  // pas deux fois de suite le meme type
-  let f, n = 0;
-  do { f = melanger(types); n++; } while (n < 50 && f.some((t, i) => i && t === f[i - 1]));
-  return f.slice(0, NB);
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
+// les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
+// jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
   repondu = false; $("suite").hidden = true;
-  $("compte").textContent = (rang + 1) + " / " + NB;
-  $("barre").style.width = (rang / NB * 100) + "%";
-  EX[file[rang]]();
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  // un mot qu'une seule sorte sait habiller (Eltern : les mots de groupe) et c'etait la sorte d'avant : on avance
+  // d'abord un mot qui en prend une autre, pour ne jamais donner deux fois la meme sorte de suite
+  const possibles = x => SORTES.filter(so => { motQ = null; sorteCourante = so; return EX[so](x); });
+  if (derniereSorte){
+    const ps = possibles(file[rang]);
+    if (ps.length && ps.every(x => x === derniereSorte)){
+      for (let j = rang + 1; j < file.length; j++){
+        if (possibles(file[j]).some(x => x !== derniereSorte)){ [file[rang], file[j]] = [file[j], file[rang]]; break; }
+      }
+    }
+  }
+  const w = file[rang];
+  const sortes = melanger(SORTES.filter(x => x !== derniereSorte)).concat(derniereSorte ? [derniereSorte] : []);
+  let fait = null;
+  for (const so of sortes){
+    for (let n = 0; n < 25 && !fait; n++){                // une autre sorte avant tout, et une question pas encore vue
+      motQ = null; sorteCourante = so;
+      if (!EX[so](w)) break;
+      if (!vus.has(cleQuestion())) fait = so;
+    }
+    if (fait) break;
+  }
+  if (!fait){                                   // toutes ses questions deja vues : on en reprend une
+    for (const so of sortes){ motQ = null; sorteCourante = so; if (EX[so](w)){ fait = so; break; } }
+  }
+  vus.add(cleQuestion()); derniereSorte = fait;
   window.scrollTo(0, 0);
 }
 function fin(){
-  $("barre").style.width = "100%"; $("compte").textContent = NB + " / " + NB; $("suite").hidden = true;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: NB}) + '</div><button type="button" id="encore">' + T("encore") + '</button><button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div><button type="button" id="encore">' + T("encore") + '</button><button type="button" id="terminer">' + T("terminer") + '</button></div>';
   $("encore").addEventListener("click", demarrer);
-  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: NB}));
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
 }
-function demarrer(){ file = composer(); rang = 0; bons = 0; montrer(); }
-$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= NB) fin(); else montrer(); });
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
 $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");
