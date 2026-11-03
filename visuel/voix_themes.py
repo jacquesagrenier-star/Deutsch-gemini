@@ -21,8 +21,13 @@ sys.path.insert(0, os.path.join(RACINE, "audio"))
 import lectures                                   # noqa : les nombres en lettres
 PORT = int(os.environ.get("THEMES_PORT", "8808"))
 THEMES = ["familia", "descripcion"]
-CAS = {"es": ("es", "es"), "latam": ("es", "latam"), "de": ("de", "")}       # cle de voix.json -> (apprendre, variante)
-DOSSIER = {"es": "es-es", "latam": "es-419", "de": ""}
+THEMES_EN = ["contrarios"]      # ses voix es et de sont dans contrarios.json ; l'anglais passe par themes/voix.js
+CAS = {"es": ("es", "es"), "latam": ("es", "latam"), "de": ("de", ""), "en": ("en", "us")}       # cle de voix.json -> (apprendre, variante)
+DOSSIER = {"es": "es-es", "latam": "es-419", "de": "", "en": "en-us"}
+# l'anglais (3 nov. 2026) : Sarah, americaine, A1-A2 ; le britannique n'a pas de voix enregistree. Rien ne s'enregistre
+# sans l'accord de Jacques (une ecoute a l'aveugle Sarah / Google / Azure d'abord) : ce qui manque est seulement liste.
+# AUDIO_RACINE : le dossier ou vit audio/mp3 (le dossier principal ; un worktree ne l'a pas).
+AUDIO = os.environ.get("AUDIO_RACINE", RACINE)
 
 
 def ident(t):
@@ -40,16 +45,21 @@ def textes_des_pages():
     out = {}
     with sync_playwright() as p:
         nav = p.chromium.launch()
-        for th in THEMES:
+        for th in THEMES + THEMES_EN:
             out[th] = {}
             for cle, (app, var) in CAS.items():
+                if th in THEMES_EN and cle != "en":
+                    continue
                 page = nav.new_page()
                 page.goto("http://127.0.0.1:%d/visuel/prototype/%s.html?apprendre=%s&variante=%s&lang=fr" % (PORT, th, app, var))
-                page.wait_for_function("() => typeof textesAVoix === 'function' && (typeof IDS === 'undefined' || IDS.length > 0)")
+                page.wait_for_function("() => typeof textesAVoix === 'function' && (typeof IDS === 'undefined' || IDS.length > 0) && (typeof D === 'undefined' || D)")
                 page.wait_for_timeout(300)
                 out[th][cle] = sorted(set(t for t in page.evaluate("() => textesAVoix()") if t))
                 page.close()
-        nav.close()
+        try:
+            nav.close()
+        except Exception:
+            pass                                  # un navigateur qui ferme mal n'enleve rien aux textes lus
     srv.shutdown()
     return out
 
@@ -73,8 +83,8 @@ def main():
     total = 0
     print("\n  CE QUI MANQUE (multilingual v2)")
     for cle, dos in DOSSIER.items():
-        langue = "de" if cle == "de" else "es"
-        dossier = os.path.join(RACINE, "audio", "mp3", dos)
+        langue = "de" if cle == "de" else "en" if cle == "en" else "es"
+        dossier = os.path.join(AUDIO, "audio", "mp3", dos)
         ids = set()
         for th, d in textes.items():
             manque, credits = [], 0
@@ -84,7 +94,7 @@ def main():
                     ids.add(i)
                 elif th != "emociones":
                     dit = lectures.lecture(langue, t)
-                    credits += len(("Palabra: %s." % dit) if (" " not in t and langue == "es") else dit)
+                    credits += len(((("Word: %s." if langue == "en" else "Palabra: %s.") % dit)) if (" " not in t and langue in ("es", "en")) else dit)
                     manque.append(t)
             if th != "emociones":
                 total += credits

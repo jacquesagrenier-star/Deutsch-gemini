@@ -100,6 +100,7 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/zoom.js?v=1"></script>
+<script src="themes/voix.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : les memes images, ses phrases a lui ; variante=gb
@@ -255,22 +256,16 @@ const forme = (k, i) => L.forme1(k, i);
 // Les memes fichiers que l'app (sha1 du texte, audio/manifest.py) : Aurora pour l'allemand, Lolita (Espagne) et
 // Monica (Amerique latine) pour l'espagnol ; les identifiants sont dans contrarios.json (sons). Sans fichier (hors
 // ligne, texte jamais enregistre) : la voix du telephone.
-const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : APPRENDRE === "en" ? "en-us/" : LATAM ? "es-419/" : "es-es/");
-// l'anglais : les empreintes se calculent au chargement (sha1 du texte, seize caracteres), comme dans Decrire ; le
-// britannique n'a pas de voix enregistree, il parle toujours avec le telephone
-const SONS_EN = {};
-async function preparerSonsEn(textes){
-  for (const t of textes){
-    try{ const h = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(t)); SONS_EN[t] = Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, "0")).join("").slice(0, 16); }catch(e){}
-  }
-}
+const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : LATAM ? "es-419/" : "es-es/");
 let son = null;
 function dire(texte){
+  // l'anglais : la voix commune (themes/voix.js), Sarah quand themes/sons.json connait le texte, sinon le telephone
+  if (APPRENDRE === "en") return Voix.dire(texte);
   try { if (son) son.pause(); } catch(e){}
   const parlerTel = () => { try {
-    const u = new SpeechSynthesisUtterance(texte); u.lang = APPRENDRE === "de" ? "de-DE" : APPRENDRE === "en" ? (GB ? "en-GB" : "en-US") : LATAM ? "es-MX" : "es-ES"; u.rate = 0.9;
+    const u = new SpeechSynthesisUtterance(texte); u.lang = APPRENDRE === "de" ? "de-DE" : LATAM ? "es-MX" : "es-ES"; u.rate = 0.9;
     speechSynthesis.cancel(); speechSynthesis.speak(u); } catch(e){} };
-  const id = APPRENDRE === "en" ? (GB ? null : SONS_EN[texte]) : ((D && D.sons[APPRENDRE]) || {})[texte];
+  const id = ((D && D.sons[APPRENDRE]) || {})[texte];
   if (!id){ parlerTel(); return; }
   son = new Audio(AUDIO + id + ".mp3" + (Q.get("r") ? "?r=" + Q.get("r") : ""));   // r : AUDIO_REVISION de l'app
   son.addEventListener("error", parlerTel, {once: true});
@@ -354,6 +349,8 @@ function leurres(i, n){
   return (f.includes(c) ? [c] : []).concat(melanger(f.filter(x => x !== c))).slice(0, n);
 }
 
+// tout ce que la page dit en anglais : l'inventaire des voix (visuel/voix_themes.py, cle « en »)
+function textesAVoix(){ return APPRENDRE === "en" && D ? Object.values(EN_MOTS).concat(Object.values(D.dit.en || {})) : []; }
 // LES MOTS DU THEME (le tirage suit les mots), a la forme du corpus : les dix-huit adjectifs
 let MOTS = null;
 function motsDuTheme(){
@@ -652,7 +649,6 @@ fetch("contrarios/contrarios.json?v=1").then(r => r.json()).then(d => {
       trEn[EN.phrase(i)] = tr[ES.phrase(i)];
     });
     D.dit.en = dit; D.phrasesTrad.en = trEn; D.trad.en = D.trad.es;   // le sens du mot : celui du mot espagnol de la meme image
-    preparerSonsEn(Object.values(EN_MOTS).concat(Object.values(dit)));
   }
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });

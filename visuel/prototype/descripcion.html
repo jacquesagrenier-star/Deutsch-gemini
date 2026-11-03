@@ -585,7 +585,7 @@ const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
 const motCle = q => !q ? null : LATAM && /^gafas/.test(q.mot) ? "los " + V(q.mot) : (q.genre ? q.genre + " " : "") + q.mot;
 // tout ce que la page peut dire : l'inventaire des voix a enregistrer (visuel/voix_themes.py)
 function textesAVoix(){
-  const es = APPRENDRE === "es";
+  const es = APPRENDRE !== "de";   // l'anglais a pris les colonnes de l'espagnol
   return DECOUVERTE.map(d => es ? (d[4] || d[2]) : (d[7] || d[5])).concat(TAILLES.map(t => es ? (t[3] || t[1]) : (t[6] || t[4])), motsDuTheme().map(motCle));
 }
 
@@ -707,7 +707,7 @@ const TAILLES = [["Carmen", "baja", "Carmen es baja.", "baja", "klein", "Carmen 
                  ["Anna", "de estatura mediana", "Anna es de estatura mediana.", null, "mittelgroß", "Anna ist mittelgroß.", null],
                  ["Tomas", "alto", "Tomás es alto.", "alto", "groß", "Tomás ist groß.", "groß"]];
 // L'ANGLAIS prend les colonnes de l'espagnol [mot, phrase, voix], case par case dans le meme ordre. La voix : Sarah
-// quand le mot a son fichier (americain, A1-A2), sinon celle du telephone (direAnglais) -- aucune voix nouvelle.
+// quand le mot a son fichier (americain, A1-A2), sinon celle du telephone (themes/voix.js) -- aucune voix nouvelle.
 if (APPRENDRE === "en"){
   [["blue", "blue eyes", "blue"], ["green", "green eyes", "green"], ["brown", "brown eyes", "brown"], [GRIS, GRIS + " eyes", GRIS], ["dark", "dark eyes", "dark"],
    ["blond", "blond hair", "blond"], ["brown", "brown hair", "brown"], ["light brown", "light brown hair", "light brown"], ["red", "red hair", "red"],
@@ -718,32 +718,10 @@ if (APPRENDRE === "en"){
   [["short", "Carmen is short.", "short"], ["of medium height", "Anna is of medium height.", "of medium height"], ["tall", "Tomás is tall.", "tall"]]
     .forEach((e, i) => { TAILLES[i][1] = e[0]; TAILLES[i][2] = e[1]; TAILLES[i][3] = e[2]; });
 }
-// LA VOIX : les memes fichiers que l'app (sha1 du texte, seize caracteres), Lolita ou Monica en espagnol selon la
-// variante, Aurora en allemand. Les empreintes se calculent AU CHARGEMENT : sur iPhone, play() doit partir dans
-// le geste meme, sans attendre un calcul.
-const VOIX = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "es" ? (Q.get("variante") === "latam" ? "es-419/" : "es-es/") : APPRENDRE === "en" ? "en-us/" : "");
-const REVISION = Q.get("r") || "14";
-const EMPREINTES = {};
-async function preparerVoix(){
-  const textes = DECOUVERTE.map(d => APPRENDRE !== "de" ? d[4] : d[7]).concat(TAILLES.map(d => APPRENDRE !== "de" ? d[3] : d[6])).filter(Boolean);
-  for (const t of textes){
-    try{
-      const h = await crypto.subtle.digest("SHA-1", new TextEncoder().encode(t));
-      EMPREINTES[t] = Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2, "0")).join("").slice(0, 16);
-    }catch(e){}
-  }
-}
-const lecteur = new Audio();
-// l'anglais : Sarah quand le fichier existe (americain), sinon la voix du telephone, en-US ou en-GB
-function direAnglais(t){
-  const tel = () => { try{ const u = new SpeechSynthesisUtterance(t); u.lang = GB ? "en-GB" : "en-US"; u.rate = 0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); }catch(e){} };
-  if (GB || !EMPREINTES[t]) return tel();
-  try{ lecteur.pause(); lecteur.onerror = tel; lecteur.src = VOIX + EMPREINTES[t] + ".mp3?r=" + REVISION; lecteur.play().catch(tel); }catch(e){ tel(); }
-}
 // LA VOIX : la fonction commune des themes (themes/voix.js) -- le fichier enregistre s'il existe, sinon la voix du
 // telephone (3 nov. 2026 : « Pour le moment, on va mettre les voix du téléphone. Quand il n'y a pas de voix. »).
-const dire = t => APPRENDRE === "en" ? direAnglais(t) : Voix.dire(t);
-if (APPRENDRE === "en") preparerVoix();
+// En anglais : Sarah (americain) quand themes/sons.json connait le texte, sinon le telephone en-US ou en-GB.
+const dire = t => Voix.dire(t);
 const HP = '<svg class="hp" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16 9a4 4 0 0 1 0 6"/></svg>';
 function eteindre(){ document.querySelectorAll(".case.actif, .rangee button.juste").forEach(x => x.classList.remove("actif", "juste")); }
 function caseDecouverte(img, mot, phrase, voix, classe, cleTrad){
