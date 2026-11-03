@@ -67,6 +67,9 @@ button:disabled{cursor:default}
 .trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
 .retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
 .retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
+/* apres une erreur : le mot choisi, barre, en rouge, avec sa traduction ; le bon mot dessous, en vert */
+.retourMsg .mot.choisi{color:var(--rouge);min-height:38px} .retourMsg .mot.choisi s{text-decoration-thickness:2px}
+.retourMsg .mot.bon{color:var(--vert)}
 /* la decouverte : la fiche de l'image touchee, puis la planche des paires */
 .fiche{background:var(--carte);border-radius:14px;padding:10px;display:grid;grid-template-columns:minmax(120px,48%) 1fr;gap:12px;align-items:center}
 .fiche img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;background:var(--verre)}
@@ -295,7 +298,10 @@ let file = [], rang = 0, bons = 0, repondu = false;
 // LE MOT DE LA QUESTION (regle 3 de Jacques, 3 nov. : « un mot appris compte partout ») : juger() l'envoie
 // (« reponse » {mot, genre, cat, juste}), l'app fait avancer sa carte (revisionDeScene). L'adjectif a la forme du
 // corpus : le masculin en espagnol (abierto), la forme sans terminaison en allemand (offen).
-let motQ = null, cleQ = null, tradQ = null;      // cleQ : la cle du mot (« pequeno »), pour sa traduction et sa voix ;
+let motQ = null, cleQ = null, tradQ = null;
+// LE MOT CHOISI, quand il est faux (Jacques, 3 nov. : « quand je dis le mauvais, on devrait avoir l'affichage traduit
+// aussi. Pour le mauvais mot. ») : le bouton ou l'image touchee, et pour « vrai ou faux » le mot faux de la phrase
+let choixTexte = null, choixImage = null, fauxQ = null;      // cleQ : la cle du mot (« pequeno »), pour sa traduction et sa voix ;
                                                  // tradQ : la traduction de la phrase juste, quand ce n'est pas une phrase seule
 const motDe = k => ({mot: APPRENDRE === "de" ? D.mots[k].de : APPRENDRE === "en" ? EN_MOTS[k] : D.mots[k].es[0], cat: "adjectif"});
 function viser(w, k){ cleQ = k; motQ = w || motDe(k); }
@@ -310,11 +316,26 @@ function juger(ok, bonneTexte, phrase, motDit){
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   const dit = motDit || (cleQ ? L.forme(cleQ, "m") : "");
+  const choisi = ok ? null : motChoisi();
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
     + traduction(tradQ || tradPhrase(phrase || bonneTexte))
-    + (cleQ ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(dit) + ' · <span>' + sens(cleQ) + '</span></span>' : "");
+    + (choisi ? '<span class="mot choisi"><s>' + cible(choisi.texte) + '</s> · <span>' + sens(choisi.k) + '</span></span>' : "")
+    + (cleQ ? '<span class="mot' + (choisi ? " bon" : "") + '"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(dit) + ' · <span>' + sens(cleQ) + '</span></span>' : "");
   if (cleQ){ $("redire").addEventListener("click", () => dire(dit)); dire(dit); }
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+// le mot de base d'une forme proposee : « estrecha » -> estrecho, « großer » -> groß ; null pour es / está, Verdadero...
+function cleDeForme(f){
+  const ks = Object.keys(D.mots);
+  if (APPRENDRE === "es") return ks.find(k => D.mots[k].es.includes(f)) || null;
+  const bons = ks.filter(k => f.startsWith(D.mots[k].de) && ["", "er", "e", "es"].includes(f.slice(D.mots[k].de.length)));
+  return bons.sort((a, b) => D.mots[b].de.length - D.mots[a].de.length)[0] || null;
+}
+function motChoisi(){
+  if (choixImage) return {texte: forme(im(choixImage).mot, choixImage), k: im(choixImage).mot};
+  if (fauxQ) return fauxQ;                                         // « vrai ou faux » : il a cru vraie une phrase fausse
+  const k = choixTexte ? cleDeForme(choixTexte) : null;
+  return k ? {texte: choixTexte, k} : null;
 }
 function boutons(conteneur, options, bonne, apres){
   let bon;
@@ -323,6 +344,7 @@ function boutons(conteneur, options, bonne, apres){
     b.addEventListener("click", () => {
       conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
       if (b !== bon) b.classList.add("faux");
+      choixTexte = o;
       apres(o === bonne);
     });
     conteneur.appendChild(b);
@@ -338,6 +360,7 @@ function images(conteneur, ids, bonne, apres){
     b.addEventListener("click", () => {
       conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
       if (b !== bon) b.classList.add("faux");
+      choixImage = i;
       apres(i === bonne);
     });
     conteneur.appendChild(b);
@@ -461,11 +484,11 @@ const EX = {
   // « La puerta está cerrada. » vrai ou faux -- le faux n'est jamais qu'un mot clairement faux pour l'image
   vraifaux(w){
     const i = w ? imageDe(w.k) : hasard(IMG()), k = im(i).mot; viser(w, k);
-    const vrai = Math.random() < 0.5, juste = L.phrase(i);
-    const phrase = vrai ? juste : L.phrase(i, hasard(im(i).faux));
+    const vrai = Math.random() < 0.5, juste = L.phrase(i), x = vrai ? null : hasard(im(i).faux);
+    const phrase = vrai ? juste : L.phrase(i, x);
     ecran("vraifaux", photo(i), phrase, true);
     const rep = vrai ? L.vrai : L.faux;
-    boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste, forme(k, i)));
+    boutons($("choix"), [L.vrai, L.faux], rep, ok => { fauxQ = x ? {texte: forme(x, i), k: x} : null; juger(ok, rep, juste, forme(k, i)); });
     return true;
   },
   // L'ANGLAIS SEULEMENT : le comparatif. Deux images d'une paire (« The suitcase on the left is ___ than the one on the
@@ -581,19 +604,19 @@ function montrer(){
     const autres = melanger(SORTES.filter(x => x !== derniereSorte));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
-        motQ = null; cleQ = null; tradQ = null; sorteCourante = so;
+        motQ = null; cleQ = null; tradQ = null; choixTexte = choixImage = fauxQ = null; sorteCourante = so;
         if (!EX[so](w)) break;
         if (!vus.has(cleQuestion())) return so;
       }
     }
     if (strict) return null;
     if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
-      motQ = null; cleQ = null; tradQ = null; sorteCourante = derniereSorte;
+      motQ = null; cleQ = null; tradQ = null; choixTexte = choixImage = fauxQ = null; sorteCourante = derniereSorte;
       if (!EX[derniereSorte](w)) break;
       if (!vus.has(cleQuestion())) return derniereSorte;
     }
     for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
-      motQ = null; cleQ = null; tradQ = null; sorteCourante = so;
+      motQ = null; cleQ = null; tradQ = null; choixTexte = choixImage = fauxQ = null; sorteCourante = so;
       if (EX[so](w)) return so;
     }
     return null;
