@@ -1,11 +1,12 @@
-"""Fabrique dtz/RELECTURE-DE.md : les textes allemands du DTZ (Hoeren, Lesen) pour une relectrice ou un relecteur
+"""Fabrique visuel/prototype/dtz/RELECTURE-DE.md : les textes allemands du DTZ (Hoeren, Lesen, puis Sprechen et
+Schreiben par outils/relecture_oral.py) pour une relectrice ou un relecteur
 germanophone qui ne connait pas l'app.
 
-    python dtz/outils/relecture.py
+    python visuel/prototype/dtz/outils/relecture.py
 
 Demande du chef d'orchestre (3 nov. 2026) : « que la personne puisse relire sans connaitre l'app : le texte, le
 niveau, la question posee, et une case ok ou correction ». Chaque texte porte un identifiant (H-S1-T3-10 = Hoeren,
-serie 1, Teil 3, question 10) : la correction revient avec cet identifiant et se reporte dans dtz/donnees/*.json,
+serie 1, Teil 3, question 10) : la correction revient avec cet identifiant et se reporte dans donnees/*.json,
 JAMAIS dans ce fichier, qui est refait a chaque fois.
 
 Les explications en francais n'y sont pas : elles ne sont pas a relire par un germanophone. Le niveau vise est
@@ -13,10 +14,12 @@ A2-B1 (DTZ) pour tout le fichier.
 """
 import json
 import os
+import sys
 
-RACINE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DONNEES = os.path.join(RACINE, "dtz", "donnees")
-SORTIE = os.path.join(RACINE, "dtz", "RELECTURE-DE.md")
+DTZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+RACINE = os.path.dirname(os.path.dirname(os.path.dirname(DTZ)))
+DONNEES = os.path.join(DTZ, "donnees")
+SORTIE = os.path.join(DTZ, "RELECTURE-DE.md")
 ABC = "abc"
 CASE = "\n> ☐ OK   ☐ Korrektur: …………………………………………………………\n"
 
@@ -55,7 +58,7 @@ def main():
     o = []
     o.append("# DTZ-Vorbereitung „Mit Mark und Anna“ – Texte zum Korrekturlesen")
     o.append("")
-    o.append("*Datei erstellt mit `python dtz/outils/relecture.py` – bitte nicht von Hand ändern.*")
+    o.append("*Datei erstellt mit `python visuel/prototype/dtz/outils/relecture.py` – bitte nicht von Hand ändern.*")
     o.append("")
     o.append("## Worum es geht")
     o.append("")
@@ -220,6 +223,17 @@ def main():
             o.append("- **(%s)%s** – %s" % (n, " Beispiel" if lu.get("beispiel") else "",
                      " / ".join("%s) %s%s" % (ABC[i], x, " ✅" if i == lu["bon"] else "") for i, x in enumerate(lu["optionen"]))))
         o.append(CASE)
+
+    # LES AUTRES EPREUVES (Sprechen, Schreiben) ecrivent leurs sections dans LE MEME fichier : un seul envoi au
+    # germanophone. Leur module, outils/relecture_oral.py (session de l'oral et de l'ecrit), expose sections(o, CASE)
+    # et ajoute ses lignes a la liste o. Absent : le fichier ne porte que Hoeren et Lesen.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    try:
+        import relecture_oral
+    except ImportError:
+        relecture_oral = None
+    if relecture_oral:
+        relecture_oral.sections(o, CASE)
 
     o.append("---")
     o.append("")

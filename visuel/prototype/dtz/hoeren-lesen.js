@@ -1,213 +1,20 @@
-<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Le DTZ avec Mark et Anna</title>
-<!--
-  LE DTZ AVEC MARK ET ANNA (3 nov. 2026, decision de Jacques : « une preparation vivante », l'eleve aide Mark a
-  passer l'examen). Cette page porte ECOUTER (Hoeren) et LIRE (Lesen) ; l'oral et l'ecrit viennent de la session
-  « Preparation au DTZ avec Mark et Anna » et s'ajoutent ici (structure commune : dtz/LISEZ-MOI.md).
-
-  LE FORMAT EST CELUI DU DTZ, JAMAIS SON CONTENU (Pruefungshandbuch 2009) : Hoeren 25 min, 20 items en 4 Teile ;
-  Lesen 45 min, 25 items en 5 Teile ; verdict sur 45 (A2 des 20, B1 des 33). Tous les textes sont les notres,
-  dans la vie de Mark (dtz/donnees/*.json, controles par tests/dtz.py).
-
-  DEUX MODES :
-    Entrainement -- un Teil a la fois ; apres CHAQUE reponse, l'explication, la traduction et un mot de Mark ;
-                    la transcription apres la derniere question d'un texte ; on peut reecouter. Les mots cles de
-                    chaque question entrent dans la repetition espacee de l'app (message « reponse », comme les
-                    themes illustres) ;
-    Examen blanc -- sobre et minute ; le son passe UNE fois, avec ses pauses, comme l'enregistrement de
-                    l'examen ; feuille de reponses ; verdict puis corrige, transcriptions comprises.
-
-  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene (source « wortando-scene ») :
-  « exercice » {juste} et « bonne » a chaque reponse d'entrainement, « reponse » {mot, genre, cat, juste} pour
-  chaque mot cle, « etats » pour savoir quels mots sont dus, « resultat » a la fin d'un examen blanc, « fini »
-  et « fermer ». Parametres : lang, nuit=1, rapide=1 (pauses raccourcies, pour les essais seulement).
-
-  LA VOIX : en attendant les enregistrements (ElevenLabs v2, a approuver par Jacques), la voix du telephone.
-  jouerRepliques() prendra le fichier quand il existera ; rien d'autre ne changera.
--->
-<style>
-:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--trait:#8A94A6;--ambre:#E8A23A;--ambre-f:#A86A0E;--bleu:#2F62D6;--vert:#2F9E6A;--rouge:#C8473A;
-  --verre:rgba(255,255,255,.9);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--papier:#FFFDF8;--papier-trait:#E4DCCB;--tableau:#1F2B38;--tableau-encre:#F2F5F7;
-  --police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif;--serif:Georgia,"Times New Roman",serif}
-html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--trait:#6E8396;--ambre-f:#E8A23A;--bleu:#7FA6FF;--vert:#5CC98F;--rouge:#F07F72;
-  --verre:rgba(20,36,50,.9);--bord:rgba(255,255,255,.14);--carte:#22384A;--papier:#263C4C;--papier-trait:#3A5366;--tableau:#0B141C;--tableau-encre:#E6ECF0}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%}
-body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
-  padding:calc(env(safe-area-inset-top,0px) + 10px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 96px) max(12px,env(safe-area-inset-left,0px))}
-.haut{display:flex;align-items:center;gap:10px;max-width:640px;margin:0 auto 10px}
-.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
-.titre{flex:1;font-weight:900;font-size:18px;line-height:1.2}
-.chrono{font-weight:900;font-size:15px;color:var(--encre);background:var(--verre);border:1px solid var(--bord);border-radius:999px;padding:6px 12px;font-variant-numeric:tabular-nums}
-.chrono[hidden]{display:none}
-.chrono.court{color:#fff;background:var(--rouge);border-color:var(--rouge)}
-main{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
-.bloc{background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:12px}
-h2{margin:0;font-size:17px;font-weight:900}
-p{margin:0;line-height:1.45}
-.petit{font-size:13px;color:var(--gris);font-weight:700}
-button{font-family:var(--police)}
-button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
-
-/* l'entree : Mark, puis les deux modes */
-.mark{display:flex;gap:12px;align-items:center}
-.mark img{width:64px;height:64px;border-radius:50%;object-fit:cover;background:var(--carte);flex:0 0 auto}
-.bulle{background:var(--carte);border-radius:16px;padding:10px 12px;font-weight:700;line-height:1.45;position:relative}
-.mode{border:0;text-align:left;border-radius:18px;padding:14px;cursor:pointer;color:var(--encre);background:var(--carte);display:flex;flex-direction:column;gap:4px}
-.mode b{font-size:16px;font-weight:900}
-.mode span{font-size:13px;font-weight:700;color:var(--gris)}
-.tuiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.tuile{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:16px;padding:10px;font:800 14px var(--police);cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:2px}
-.tuile small{font-weight:700;color:var(--gris);font-size:12px}
-.tuile:disabled{border-color:var(--trait);opacity:.55;cursor:default}
-.teils{display:flex;flex-direction:column;gap:8px}
-.teil{border:0;border-radius:14px;padding:11px 12px;background:var(--carte);color:var(--encre);text-align:left;cursor:pointer;font:800 15px var(--police);display:flex;justify-content:space-between;gap:10px;align-items:center}
-.teil small{font-weight:700;color:var(--gris);font-size:12px;white-space:nowrap}
-.dernier{font-size:13px;font-weight:800;color:var(--gris)}
-
-/* la consigne et les questions */
-.consigne{direction:ltr;text-align:left;font-weight:700;color:var(--gris);font-size:14px;line-height:1.45}
-.consigne .fr{display:block;font-style:italic;font-weight:600;margin-top:3px}
-.q{background:var(--carte);border-radius:16px;padding:11px 12px;display:flex;flex-direction:column;gap:8px;scroll-margin-top:70px}
-.q.joue{box-shadow:0 0 0 3px var(--ambre)}
-.q .tete{display:flex;gap:8px;align-items:baseline}
-.q .num{font-weight:900;color:var(--ambre-f);min-width:22px}
-.q .frage{direction:ltr;text-align:left;font-weight:800;line-height:1.45;flex:1}
-.q.ex .num{color:var(--gris)}
-.choix{display:flex;flex-direction:column;gap:6px;direction:ltr}
-.choix.ligne{flex-direction:row;flex-wrap:wrap}
-.opt{border:2px solid var(--trait);background:var(--verre);color:var(--encre);border-radius:12px;padding:8px 11px;font:700 15px var(--police);cursor:pointer;text-align:left;display:flex;gap:8px;align-items:baseline}
-.opt b{font-weight:900;min-width:14px}
-.choix.ligne .opt{padding:7px 12px;min-width:44px;justify-content:center}
-.opt.pris{border-color:var(--ambre);background:rgba(232,162,58,.18)}
-.opt.juste{border-color:var(--vert);background:var(--vert);color:#fff}
-.opt.faux{border-color:var(--rouge);background:var(--rouge);color:#fff}
-.opt:disabled{cursor:default}
-.aide{display:flex;flex-direction:column;gap:6px;border-top:1px dashed var(--trait);padding-top:8px}
-.aide .verdict{font-weight:900}
-.aide .verdict.ok{color:var(--vert)} .aide .verdict.ko{color:var(--rouge)}
-.aide .trad{font-size:13px;font-style:italic;color:var(--gris);font-weight:600}
-.aide .erkl{font-weight:600;line-height:1.5}
-.aide .dit{display:flex;gap:8px;align-items:flex-start;font-weight:700;font-size:14px}
-.aide .dit img{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:0 0 auto}
-
-/* le son */
-.lecteur{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.jouer{border:0;border-radius:999px;padding:10px 16px;background:var(--bleu);color:#fff;font:800 15px var(--police);cursor:pointer;display:flex;gap:8px;align-items:center}
-.jouer svg{width:18px;height:18px;fill:currentColor}
-.jouer:disabled{opacity:.6;cursor:default}
-.transcription{direction:ltr;text-align:left;background:var(--papier);border:1px solid var(--papier-trait);border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.55;display:flex;flex-direction:column;gap:4px}
-.transcription .wer{font-weight:900;color:var(--gris);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
-.ecoute{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--gris);font-size:14px}
-.ecoute i{width:10px;height:10px;border-radius:50%;background:var(--rouge);animation:clignote 1s infinite}
-@keyframes clignote{50%{opacity:.25}}
-
-/* LES DOCUMENTS, MIS EN PAGE EN HTML (jamais en image : un texte dans une image ne se relit pas) */
-.doc{direction:ltr;text-align:left}
-.wegweiser{background:var(--tableau);color:var(--tableau-encre);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:0}
-.wegweiser .t{font-weight:900;letter-spacing:.04em;text-transform:uppercase;font-size:13px;padding-bottom:8px;border-bottom:2px solid var(--ambre)}
-.wegweiser .z{display:grid;grid-template-columns:104px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:14px;line-height:1.4}
-.wegweiser .z b{color:var(--ambre)}
-.annonces{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-@media (max-width:520px){.annonces{grid-template-columns:1fr}}
-.annonce{background:var(--papier);border:1px solid var(--papier-trait);border-radius:10px;padding:10px;font-size:14px;line-height:1.45;position:relative}
-.annonce .l{position:absolute;top:8px;right:8px;width:24px;height:24px;border-radius:50%;background:var(--encre);color:var(--papier);font-weight:900;font-size:13px;display:flex;align-items:center;justify-content:center}
-.annonce .t{font-weight:900;padding-right:28px;margin-bottom:3px}
-.journal{background:var(--papier);border:1px solid var(--papier-trait);border-radius:10px;padding:12px;font-family:var(--serif);line-height:1.55;font-size:15px}
-.journal .k{font-family:var(--police);font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--gris);border-bottom:2px solid var(--encre);padding-bottom:4px;margin-bottom:8px}
-.journal h3{margin:0 0 6px;font-size:19px;line-height:1.25}
-.journal p+p{margin-top:8px}
-.aushang{background:var(--papier);border:1px solid var(--papier-trait);border-radius:4px;padding:14px 14px 12px;font-size:14px;line-height:1.55;box-shadow:0 6px 14px rgba(0,0,0,.08);position:relative}
-.aushang:before{content:"";position:absolute;top:-6px;left:50%;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--rouge)}
-.aushang .k{font-size:12px;font-weight:800;color:var(--gris)}
-.aushang h3{margin:6px 0 8px;font-size:17px}
-.aushang p+p{margin-top:8px}
-.lettre{background:var(--papier);border:1px solid var(--papier-trait);border-radius:4px;padding:14px;font-size:14px;line-height:1.55;white-space:normal}
-.lettre .k{font-weight:900;color:var(--bleu);font-size:13px;letter-spacing:.03em;margin-bottom:6px}
-.lettre h3{margin:0 0 8px;font-size:16px}
-.lettre p+p{margin-top:8px}
-.lettre .adr{white-space:pre-line;font-size:13px}
-.lettre .entete{display:flex;justify-content:space-between;gap:12px;margin-bottom:12px}
-.lettre .date{text-align:right;margin-bottom:10px;font-size:13px}
-.lettre .objet{font-weight:900;margin-bottom:10px}
-.trou{display:inline-block;min-width:52px;border-bottom:2px solid var(--ambre);text-align:center;font-weight:900;color:var(--ambre-f);padding:0 4px}
-.trou.ex{color:var(--gris);border-color:var(--trait)}
-.brochure{background:var(--papier);border:1px solid var(--papier-trait);border-radius:12px;overflow:hidden;font-size:14px;line-height:1.5}
-.brochure .k{background:#14807A;color:#fff;padding:10px 12px;font-weight:900}
-.brochure .k small{display:block;font-weight:700;opacity:.85;font-size:12px}
-.brochure .s{padding:9px 12px;border-top:1px solid var(--papier-trait)}
-.brochure .s b{display:block;margin-bottom:2px;color:#14807A}
-html.nuit .brochure .s b{color:#5FD1C6}
-
-/* l'examen : la feuille de reponses et les onglets */
-.onglets{display:flex;gap:6px;flex-wrap:wrap}
-.onglet{border:2px solid var(--trait);background:var(--verre);color:var(--encre);border-radius:999px;padding:6px 12px;font:800 14px var(--police);cursor:pointer}
-.onglet.actif{border-color:var(--encre);background:var(--encre);color:var(--verre)}
-.onglet .n{font-weight:700;color:var(--gris)}
-.onglet.actif .n{color:inherit;opacity:.8}
-.feuille{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
-.case{border:1px solid var(--trait);border-radius:10px;padding:6px 4px;text-align:center;font-weight:800;font-size:13px;background:var(--carte);color:var(--encre);cursor:pointer}
-.case span{display:block;font-size:16px;font-weight:900;color:var(--ambre-f);min-height:1.2em}
-.case.vide span{color:var(--trait)}
-.case.juste{border-color:var(--vert)} .case.juste span{color:var(--vert)}
-.case.faux{border-color:var(--rouge)} .case.faux span{color:var(--rouge)}
-
-/* le verdict */
-.score{font-size:40px;font-weight:900;text-align:center;line-height:1}
-.niveau{align-self:center;border-radius:999px;padding:6px 16px;font-weight:900;font-size:18px;color:#fff;background:var(--trait)}
-.niveau.a2{background:var(--ambre-f)} .niveau.b1{background:var(--vert)}
-.jauge{position:relative;height:14px;border-radius:7px;background:rgba(28,36,48,.12);overflow:visible;margin:18px 0 10px}
-.jauge i{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:linear-gradient(90deg,#2BB5AA,#14807A)}
-.jauge s{position:absolute;top:-16px;width:2px;height:30px;background:var(--encre);text-decoration:none}
-.jauge s em{position:absolute;top:-16px;left:-14px;font-size:11px;font-style:normal;font-weight:900;white-space:nowrap}
-.detail{display:grid;grid-template-columns:1fr auto;gap:4px 12px;font-weight:700;font-size:14px}
-.detail b{font-weight:900;text-align:right}
-
-.suite{position:fixed;left:max(16px,calc(50% - 228px));right:max(16px,calc(50% - 228px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
-  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.96),rgba(52,140,90,.98));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
-.suite[hidden]{display:none}
-.secondaire{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 16px;font:800 15px var(--police);cursor:pointer;align-self:flex-start}
-.voile{position:fixed;inset:0;background:rgba(10,18,26,.5);display:flex;align-items:flex-end;justify-content:center;z-index:5}
-.voile[hidden]{display:none}
-.panneau{background:var(--verre);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);width:100%;max-width:640px;border-radius:22px 22px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:12px;max-height:85vh;overflow:auto}
-[lang="de"]{unicode-bidi:isolate}
-</style>
-</head>
-<body>
-<div class="haut">
-  <button class="retour" id="retour" type="button" aria-label="Retour">‹</button>
-  <div class="titre" id="titre">Le DTZ avec Mark et Anna</div>
-  <div class="chrono" id="chrono" dir="ltr" hidden></div>
-</div>
-<main id="zone"></main>
-<button class="suite" id="suite" type="button" hidden></button>
-<div class="voile" id="voile" hidden><div class="panneau" id="panneau"></div></div>
-<script src="../visuel/prototype/themes/tirage.js?v=1"></script>
-<script>
 "use strict";
-const Q = new URLSearchParams(location.search);
-const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
-if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
-document.documentElement.lang = LANGUE;
-document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
-const RAPIDE = Q.get("rapide") === "1";
-const SERIES_EXAMEN = 3;   // les series 1-3 sont gardees pour l'examen blanc
-const MARK_IMG = "../visuel/prototype/descripcion/Mark-visage.webp";
+// LE DTZ AVEC MARK ET ANNA -- ECOUTER (HOEREN) ET LIRE (LESEN), et l'examen blanc qui les regroupe (3 nov. 2026).
+//
+// LE FORMAT EST CELUI DU DTZ, JAMAIS SON CONTENU (Pruefungshandbuch 2009) : Hoeren 25 min, 20 items en 4 Teile ;
+// Lesen 45 min, 25 items en 5 Teile ; verdict sur 45 (A2 des 20, B1 des 33). Tous les textes sont les notres,
+// dans la vie de Mark a Berlin (donnees/hoeren.json, lesen.json, controles par tests/dtz.py).
+//
+// DEUX MODES :
+//   Entrainement -- un Teil a la fois ; apres CHAQUE reponse, l'explication, la traduction et un mot de Mark ;
+//                   la transcription apres la derniere question d'un texte ; on peut reecouter. Les mots cles de
+//                   chaque question entrent dans la repetition espacee de l'app (message « reponse », comme les
+//                   themes illustres) ;
+//   Examen blanc -- sobre et minute ; le son passe UNE fois, avec ses pauses, comme l'enregistrement de
+//                   l'examen ; feuille de reponses ; verdict puis corrige, transcriptions comprises.
+// Les outils communs (voix, minuterie, panneau, tirage, verdict global) sont dans commun.js.
 
-// L'INTERFACE : le francais d'abord (maquette du 3 nov. 2026) ; les huit autres langues avant l'ouverture aux
-// eleves, dans cet objet, comme TEXTES des themes illustres. Une cle sans traduction retombe sur le francais.
-const TXT = {
-  titre: "Le DTZ avec Mark et Anna",
-  intro: "Je dois passer le DTZ pour mon titre de séjour. Je parle allemand, mais le format de l'examen, lui, je ne le connais pas. Tu m'aides ?",
-  entrainement: "Entraînement avec Mark et Anna",
-  entrainement_s: "Une partie à la fois, avec une explication après chaque réponse.",
-  examen: "Examen blanc",
-  examen_s: "Comme le jour de l'examen : minuté, le son une seule fois, sans aide.",
-  ecouter: "Écouter", lire: "Lire", ecrire: "Écrire", parler: "Parler", bientot: "bientôt",
+Object.assign(TXT, {
   hoeren_s: "Hören · 4 parties · 25 min", lesen_s: "Lesen · 5 parties · 45 min",
   choisir_teil: "Quelle partie ?",
   H_T1: "Annonces au téléphone et par haut-parleur", H_T2: "Informations à la radio", H_T3: "Conversations", H_T4: "Avis à la radio",
@@ -217,40 +24,26 @@ const TXT = {
   ex_hoeren: "Écouter seulement", ex_hoeren_s: "Hören, 25 min. Sur 20.",
   ex_lesen: "Lire seulement", ex_lesen_s: "Lesen, 45 min. Sur 25.",
   ex_regles: "Le son passe une seule fois, avec les pauses de l'enregistrement. Pas de traduction, pas d'explication : le corrigé vient après le verdict.",
-  dernier: "Dernier examen blanc : {s} — {n}",
-  commencer: "Commencer", suivant: "Suivant", terminer: "Terminer", recommencer: "Recommencer", accueil: "Retour au DTZ",
+  ecouter_titre: "Écouter", lire_titre: "Lire",
   ecouter_btn: "Écouter", reecouter: "Réécouter", en_cours: "Écoute…",
   exemple: "Exemple", juste: "Juste !", faux: "Pas tout à fait.", bonne: "La bonne réponse : {r}",
   transcription: "Ce qu'on entendait", trad: "En français : {t}",
   fin_teil: "{b} bonnes réponses sur {n}",
-  mark_bien: "Merci ! Avec toi, cette partie me fait moins peur.", mark_moyen: "On progresse. On la refait bientôt ?", mark_dur: "Celle-là est difficile. Relisons les explications ensemble.",
-  feuille: "Feuille de réponses", fermer: "Fermer", rendre: "Rendre ma copie",
+  mark_bien: "Bien joué ! Cette partie, tu la tiens.", mark_moyen: "On progresse. On la refait bientôt ?", mark_dur: "Celle-là est difficile. Relisons les explications ensemble.",
+  rendre: "Rendre ma copie",
   rendre_q: "Rendre maintenant ? Il reste du temps, et {n} question(s) sans réponse.",
   oui_rendre: "Oui, rendre", continuer: "Continuer",
   pause: "Pause de 5 minutes avant Lesen.", pause_passer: "Passer la pause",
   hoeren_fin: "Fin de l'écoute. Tes réponses sont gardées.",
   joue: "Écoute en cours — le son ne passe qu'une fois.", lecture_t: "Temps de lecture",
-  verdict: "Verdict", sur: "sur {n}",
-  niv_b1: "B1", niv_a2: "A2", niv_moins: "sous A2",
   v_b1: "Le B1 est atteint en Écouter et Lire.", v_a2: "Le A2 est atteint ; il manque {n} point(s) pour le B1.", v_moins: "Il manque {n} point(s) pour le A2.",
   v_regle: "Au DTZ, Hören et Lesen comptent ensemble : A2 dès 20 sur 45, B1 dès 33. Pour le B1 de l'examen entier, il faut aussi le B1 à l'oral.",
   v_tendance: "Tendance : {n}, si l'autre partie va aussi bien.",
   v_seul: "Partie seule : le seuil officiel porte sur Hören et Lesen ensemble ; ce résultat donne une tendance.",
   corrige: "Voir le corrigé", ta_reponse: "Ta réponse : {r}", sans_reponse: "Pas de réponse",
-  mark_v_b1: "B1 ! Je n'en reviens pas. Merci d'avoir été là.", mark_v_a2: "A2, c'est un début. Le B1 n'est pas loin : on s'entraîne encore ?", mark_v_moins: "Ouf, c'est dur. Reprenons les parties une par une.",
-  voix_tel: "Voix du téléphone (maquette) : les voix enregistrées viendront ensuite.",
-  maquette: "Maquette : une seule série pour l'instant (série 1), utilisée aussi en entraînement.",
-  quitter_q: "Quitter l'examen blanc ? Il ne sera pas compté.", quitter: "Quitter"
-};
-function T(cle, v){ let s = TXT[cle] || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
-
-const $ = id => document.getElementById(id);
-const esc = s => String(s).replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+  mark_v_b1: "B1 ! Bravo : Écouter et Lire, c'est gagné.", mark_v_a2: "A2, c'est un début. Le B1 n'est pas loin : on s'entraîne encore ?", mark_v_moins: "Ouf, c'est dur. Reprenons les parties une par une."
+});
 const de = s => '<span lang="de" dir="ltr">' + esc(s) + '</span>';
-const ABC = "abcdefghx";
-function parler(type, extra){ try{ if (window.parent !== window) parent.postMessage(Object.assign({source: "wortando-scene", type}, extra || {}), "*"); }catch(e){} }
-function lire(cle, defaut){ try{ const v = localStorage.getItem("wortando_dtz_" + cle); return v ? JSON.parse(v) : defaut; }catch(e){ return defaut; } }
-function ecrire(cle, v){ try{ localStorage.setItem("wortando_dtz_" + cle, JSON.stringify(v)); }catch(e){} }
 
 let H = null, L = null;
 // les reponses en cours : celles de l'examen s'il y en a un, sinon celles de l'entrainement
@@ -310,37 +103,6 @@ function phraseDuTrou(b, nr){
 const unites = (part, s, teil) => part === "H" ? unitesHoeren(s, teil) : unitesLesen(s, teil);
 const TEILE = {H: ["T1", "T2", "T3", "T4"], L: ["T1", "T2", "T3", "T4", "T5"]};
 const consigneLesen = (s, teil) => s[teil].aufgabe;
-
-// ============ LA VOIX ============
-// La voix du telephone, en attendant les fichiers : une voix allemande, et pour les dialogues une hauteur par
-// personne, pour qu'on entende qui parle. Les fichiers ElevenLabs prendront la place sans rien changer d'autre.
-let VOIX_DE = [];
-function chargerVoix(){ try{ VOIX_DE = speechSynthesis.getVoices().filter(v => /^de(-|_|$)/i.test(v.lang)); }catch(e){ VOIX_DE = []; } }
-try{ chargerVoix(); speechSynthesis.onvoiceschanged = chargerVoix; }catch(e){}
-const HAUTEUR = {aurora: 1, mark: 0.92, beamter: 0.8, nachbar: 0.86, dame: 1.12, baeckerin: 1.05, radio_m: 0.95, radio_f: 1.08};
-let parole = null;
-function dire(texte, wer){
-  return new Promise(fin => {
-    try{
-      const u = new SpeechSynthesisUtterance(texte);
-      u.lang = "de-DE";
-      const sexe = ((H && H.voix[wer]) || {}).sexe;
-      const fem = VOIX_DE.filter(v => /female|frau|anna|petra|helena|katja|marlene|vicki|hedda|sabine/i.test(v.name));
-      const mas = VOIX_DE.filter(v => /male|mann|markus|yannick|stefan|hans|conrad|klaus|daniel/i.test(v.name) && !/female/i.test(v.name));
-      u.voice = (sexe === "m" ? mas[0] : fem[0]) || VOIX_DE[0] || null;
-      u.pitch = HAUTEUR[wer] || 1; u.rate = 0.95;
-      // un filet : sans voix allemande, ou si le navigateur refuse de parler hors d'un geste, « onend » ne vient
-      // jamais et l'examen resterait fige ; on passe apres la duree qu'aurait prise la phrase
-      let fait = false; const finir = () => { if (!fait){ fait = true; fin(); } };
-      u.onend = u.onerror = finir;
-      setTimeout(() => { if (!fait && RAPIDE) silence(); finir(); }, RAPIDE ? 1500 : 2000 + texte.length * 90);
-      parole = u; speechSynthesis.speak(u);
-    }catch(e){ setTimeout(fin, 50); }
-  });
-}
-function silence(){ try{ speechSynthesis.cancel(); }catch(e){} }
-async function jouerRepliques(lignes){ for (const l of lignes || []) await dire(l.text, l.wer); }
-const attendre = s => new Promise(r => setTimeout(r, RAPIDE ? Math.min(400, s * 1000) : s * 1000));
 
 // ============ LE RENDU DES DOCUMENTS ET DES QUESTIONS ============
 function rendreDoc(u){
@@ -420,32 +182,10 @@ const qui = (wer, rollen) => (rollen && rollen[wer]) || (wer === "mark" ? "Mark"
 function rendreTranscription(lignes, rollen){
   return '<div class="transcription" lang="de">' + lignes.map(l => '<div><span class="wer">' + esc(qui(l.wer, rollen)) + '</span><br>' + esc(l.text) + '</div>').join("") + '</div>';
 }
-const ICONE_SON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4zm12.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>';
 
-// ============ L'ACCUEIL ============
-function accueil(){
-  silence(); arreterChrono(); $("titre").textContent = T("titre"); $("suite").hidden = true; etatRetour = "fermer";
-  const der = lire("dernier", null);
-  $("zone").innerHTML =
-    '<div class="bloc"><div class="mark"><img src="' + MARK_IMG + '" alt="Mark"><div class="bulle">' + esc(T("intro")) + '</div></div></div>' +
-    '<div class="bloc"><h2>' + T("entrainement") + '</h2><p class="petit">' + T("entrainement_s") + '</p><div class="tuiles">' +
-      '<button class="tuile" data-ent="H">' + T("ecouter") + '<small>' + T("hoeren_s") + '</small></button>' +
-      '<button class="tuile" data-ent="L">' + T("lire") + '<small>' + T("lesen_s") + '</small></button>' +
-      '<button class="tuile" disabled>' + T("ecrire") + '<small>' + T("bientot") + '</small></button>' +
-      '<button class="tuile" disabled>' + T("parler") + '<small>' + T("bientot") + '</small></button></div></div>' +
-    '<div class="bloc"><h2>' + T("examen") + '</h2><p class="petit">' + T("examen_s") + '</p>' +
-      '<button class="mode" data-ex="HL"><b>' + T("ex_complet") + '</b><span>' + T("ex_complet_s") + '</span></button>' +
-      '<button class="mode" data-ex="H"><b>' + T("ex_hoeren") + '</b><span>' + T("ex_hoeren_s") + '</span></button>' +
-      '<button class="mode" data-ex="L"><b>' + T("ex_lesen") + '</b><span>' + T("ex_lesen_s") + '</span></button>' +
-      (der ? '<p class="dernier">' + T("dernier", {s: esc(der.date), n: esc(der.texte)}) + '</p>' : "") + '</div>' +
-    '<p class="petit" style="text-align:center">' + T("maquette") + '<br>' + T("voix_tel") + '</p>';
-  document.querySelectorAll("[data-ent]").forEach(b => b.onclick = () => choisirTeil(b.dataset.ent));
-  document.querySelectorAll("[data-ex]").forEach(b => b.onclick = () => lancerExamen(b.dataset.ex));
-  window.scrollTo(0, 0);
-}
 function choisirTeil(part){
-  etatRetour = "accueil";
-  $("titre").textContent = part === "H" ? T("ecouter") + " · Hören" : T("lire") + " · Lesen";
+  DTZ.surRetour(null);
+  $("titre").textContent = part === "H" ? T("ecouter_titre") + " · Hören" : T("lire_titre") + " · Lesen";
   const s0 = (part === "H" ? H : L).series[0];
   $("zone").innerHTML = '<div class="bloc"><h2>' + T("choisir_teil") + '</h2><div class="teils">' + TEILE[part].map(t => {
     const n = unites(part, s0, t).reduce((a, u) => a + u.questions.filter(q => !q.beispiel).length, 0);
@@ -456,27 +196,13 @@ function choisirTeil(part){
 }
 
 // ============ L'ENTRAINEMENT ============
-// LA SERIE SUIT LES MOTS (comme tirage.js des themes) : parmi les series d'entrainement, celle dont les mots cles
-// de ce Teil sont le plus dus ou neufs ; a egalite, la moins recemment faite. Les series 1-3 sont gardees pour
-// l'examen blanc, sauf tant qu'il n'y en a pas d'autres (la maquette n'a que la serie 1).
-async function choisirSerie(part, teil){
-  const toutes = (part === "H" ? H : L).series;
-  const pool = toutes.length > SERIES_EXAMEN ? toutes.slice(SERIES_EXAMEN) : toutes;
-  if (pool.length === 1) return pool[0];
-  const faits = lire("faits", {});
-  const notes = await Promise.all(pool.map(async s => {
-    const mots = [].concat(...unites(part, s, teil).map(u => [].concat(...u.questions.map(q => q.mots))));
-    const etats = await Tirage.demander(mots);
-    const utiles = etats ? etats.filter(e => e && (e.e === "d" || e.e === "n")).length : mots.length;
-    return {s, utiles, quand: faits[part + teil + s.id] || 0};
-  }));
-  notes.sort((a, b) => b.utiles - a.utiles || a.quand - b.quand);
-  return notes[0].s;
-}
+// la serie : celle dont les mots cles de ce Teil sont le plus dus (choisirSerie() de commun.js)
+const motsDuTeil = (part, teil) => s => [].concat(...unites(part, s, teil).map(u => [].concat(...u.questions.map(q => q.mots))));
 let ENT = null;
 async function entrainement(part, teil){
-  silence(); etatRetour = "teils"; EX = null;
-  const s = await choisirSerie(part, teil);
+  silence(); EX = null;
+  const s = await choisirSerie((part === "H" ? H : L).series, motsDuTeil(part, teil), part + teil);
+  DTZ.surRetour(() => { silence(); choisirTeil(part); return true; });
   ENT = {part, teil, s, us: unites(part, s, teil), rang: 0, rep: {}, bons: 0, faits: 0};
   $("titre").textContent = "Teil " + teil.slice(1) + " · " + T(part + "_" + teil);
   montrerUnite();
@@ -531,7 +257,8 @@ function repondreEntrainement(id, v){
   const el = $("q-" + id); if (el && el.getBoundingClientRect().bottom > innerHeight - 80) el.scrollIntoView({behavior: "smooth", block: "center"});
 }
 function finEntrainement(){
-  const e = ENT, faits = lire("faits", {}); faits[e.part + e.teil + e.s.id] = Date.now(); ecrire("faits", faits);
+  const e = ENT; marquerFait(e.part + e.teil, e.s);
+  DTZ.surRetour(() => { choisirTeil(e.part); return true; });
   parler("fini", {bons: e.bons, faits: e.faits});
   const r = e.faits ? e.bons / e.faits : 0;
   $("suite").hidden = true;
@@ -543,21 +270,9 @@ function finEntrainement(){
   window.scrollTo(0, 0);
 }
 
-// ============ L'EXAMEN BLANC ============
-let EX = null, chronoId = null;
-function arreterChrono(){ if (chronoId) clearInterval(chronoId); chronoId = null; $("chrono").hidden = true; }
-function chrono(secondes, sens, fin){
-  arreterChrono();
-  const debut = Date.now(); $("chrono").hidden = false;
-  const tic = () => {
-    const ecoule = Math.floor((Date.now() - debut) / 1000), reste = Math.max(0, secondes - ecoule);
-    const v = sens === "bas" ? reste : ecoule;
-    $("chrono").textContent = Math.floor(v / 60) + ":" + String(v % 60).padStart(2, "0");
-    $("chrono").classList.toggle("court", sens === "bas" && reste <= 300);
-    if (sens === "bas" && reste <= 0){ arreterChrono(); fin && fin(); }
-  };
-  tic(); chronoId = setInterval(tic, 1000);
-}
+
+let EX = null;
+
 function serieExamen(){
   // la prochaine serie d'examen pas encore faite ; toutes faites : on recommence par la plus ancienne
   const faits = lire("examens", {}), n = Math.min(SERIES_EXAMEN, H.series.length, L.series.length);
@@ -568,7 +283,7 @@ function serieExamen(){
 function lancerExamen(quoi){
   const i = serieExamen(); ENT = null;
   EX = {quoi, sH: H.series[i], sL: L.series[i], rep: {}, etape: null, teilL: "T1", fin: false};
-  etatRetour = "quitter";
+  DTZ.surRetour(() => { if (!EX || EX.fin) return false; confirmer(T("quitter_q"), () => { silence(); EX = null; accueil(); }, T("quitter")); return true; });
   if (quoi === "L") examenLesen(); else examenHoeren();
 }
 function questionsDe(part, s){ return [].concat(...TEILE[part].map(t => [].concat(...unites(part, s, t).map(u => u.questions)))).filter(q => !q.beispiel); }
@@ -663,10 +378,8 @@ function afficherTeilLesen(){
   $("suite").onclick = () => { if (i < 4){ EX.teilL = TEILE.L[i + 1]; afficherTeilLesen(); window.scrollTo(0, 0); } else confirmerRendre(); };
 }
 function confirmerRendre(){
-  const vides = questionsDe("L", EX.sL).filter(q => EX.rep[q.id] === undefined).length + (EX.quoi === "HL" ? 0 : 0);
-  ouvrir('<p><b>' + T("rendre_q", {n: vides}) + '</b></p><button class="secondaire" id="oui">' + T("oui_rendre") + '</button><button class="secondaire" id="non">' + T("continuer") + '</button>');
-  $("oui").onclick = () => { fermerPanneau(); rendreCopie(); };
-  $("non").onclick = fermerPanneau;
+  const vides = questionsDe("L", EX.sL).filter(q => EX.rep[q.id] === undefined).length;
+  confirmer(T("rendre_q", {n: vides}), rendreCopie, T("oui_rendre"));
 }
 
 // LA FEUILLE DE REPONSES : la grille de l'examen, 1-20 et 1-25 ; toucher une case y mene.
@@ -693,13 +406,11 @@ function feuilleReponses(corrige){
     const el = $("q-" + id); if (el) el.scrollIntoView({behavior: "smooth", block: "center"});
   });
 }
-function ouvrir(h){ $("panneau").innerHTML = h; $("voile").hidden = false; }
-function fermerPanneau(){ $("voile").hidden = true; }
-$("voile").onclick = ev => { if (ev.target === $("voile")) fermerPanneau(); };
+
 
 // LE VERDICT : Hoeren et Lesen ensemble, sur 45 ; A2 des 20, B1 des 33 (Pruefungshandbuch, ch. 1).
 function rendreCopie(){
-  silence(); arreterChrono(); EX.fin = true; etatRetour = "accueil";
+  silence(); arreterChrono(); EX.fin = true; DTZ.surRetour(null);
   const parts = EX.quoi === "HL" ? ["H", "L"] : [EX.quoi];
   const res = {};
   parts.forEach(p => {
@@ -714,10 +425,11 @@ function rendreCopie(){
   const total = parts.reduce((a, p) => a + res[p].total, 0), bons = parts.reduce((a, p) => a + res[p].bons, 0);
   // une partie seule : la tendance, ramenee a 45 pour la comparer aux seuils
   const sur45 = EX.quoi === "HL" ? bons : Math.round(bons * 45 / total);
-  const niv = sur45 >= 33 ? "b1" : sur45 >= 20 ? "a2" : "moins";
+  const niv = niveauHL(sur45);
   const texte = bons + "/" + total + " → " + T("niv_" + niv);
   const faits = lire("examens", {}); faits[EX.sH.id] = Date.now(); ecrire("examens", faits);
   ecrire("dernier", {date: new Date().toLocaleDateString("fr-FR", {day: "numeric", month: "long"}), texte});
+  if (EX.quoi === "HL") resultat("HL", {points: bons, niveau: niv, serie: EX.sH.id});
   parler("resultat", {mode: "examen", serie: EX.sH.id, hoeren: res.H ? res.H.bons : null, lesen: res.L ? res.L.bons : null, niveau: niv});
   parler("fini", {bons, faits: total});
   $("titre").textContent = T("verdict");
@@ -757,23 +469,12 @@ function corrige(){
   window.scrollTo(0, 0);
 }
 
-// ============ LE RETOUR ============
-let etatRetour = "fermer";
-$("retour").onclick = () => {
-  if (etatRetour === "quitter" && EX && !EX.fin){
-    ouvrir('<p><b>' + T("quitter_q") + '</b></p><button class="secondaire" id="oui">' + T("quitter") + '</button><button class="secondaire" id="non">' + T("continuer") + '</button>');
-    $("oui").onclick = () => { fermerPanneau(); EX = null; accueil(); };
-    $("non").onclick = fermerPanneau; return;
-  }
-  if (etatRetour === "teils" && ENT){ silence(); choisirTeil(ENT.part); return; }
-  if (etatRetour === "accueil"){ EX = null; accueil(); return; }
-  silence(); parler("fermer");
-  if (window.parent === window) history.back();
-};
 
-Promise.all([fetch("donnees/hoeren.json").then(r => r.json()), fetch("donnees/lesen.json").then(r => r.json())])
-  .then(([h, l]) => { H = h; L = l; accueil(); })
-  .catch(() => { $("zone").innerHTML = '<div class="bloc"><p>Les données du DTZ ne se chargent pas.</p></div>'; });
-</script>
-</body>
-</html>
+// ============ LES INSCRIPTIONS ============
+DTZ.partie({id: "H", ordre: 1, titre: T("ecouter_titre"), sous: T("hoeren_s"), ouvrir: () => choisirTeil("H")});
+DTZ.partie({id: "L", ordre: 2, titre: T("lire_titre"), sous: T("lesen_s"), ouvrir: () => choisirTeil("L")});
+DTZ.examen({id: "HL", ordre: 1, titre: T("ex_complet"), sous: T("ex_complet_s"), lancer: () => lancerExamen("HL")});
+DTZ.examen({id: "H", ordre: 2, titre: T("ex_hoeren"), sous: T("ex_hoeren_s"), lancer: () => lancerExamen("H")});
+DTZ.examen({id: "L", ordre: 3, titre: T("ex_lesen"), sous: T("ex_lesen_s"), lancer: () => lancerExamen("L")});
+DTZ.charger(Promise.all([fetch("donnees/hoeren.json").then(r => r.json()), fetch("donnees/lesen.json").then(r => r.json())])
+  .then(([h, l]) => { H = h; L = l; Object.assign(DTZ_VOIX, h.voix); }));

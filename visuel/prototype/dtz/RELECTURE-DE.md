@@ -1,6 +1,6 @@
 # DTZ-Vorbereitung „Mit Mark und Anna“ – Texte zum Korrekturlesen
 
-*Datei erstellt mit `python dtz/outils/relecture.py` – bitte nicht von Hand ändern.*
+*Datei erstellt mit `python visuel/prototype/dtz/outils/relecture.py` – bitte nicht von Hand ändern.*
 
 ## Worum es geht
 

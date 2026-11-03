@@ -1,4 +1,4 @@
-"""Controle des donnees du DTZ (Hoeren et Lesen) : dtz/donnees/hoeren.json et lesen.json.
+"""Controle des donnees du DTZ (Hoeren et Lesen) : visuel/prototype/dtz/donnees/hoeren.json et lesen.json.
 
     python tests/dtz.py            -> les defauts, et le bilan par serie
     python tests/dtz.py --mots     -> en plus, la liste des mots cles absents du corpus
@@ -20,7 +20,7 @@ import sys
 from collections import Counter
 
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DONNEES = os.path.join(RACINE, "dtz", "donnees")
+DONNEES = os.path.join(RACINE, "visuel", "prototype", "dtz", "donnees")
 
 ATTENDU_H = {"T1": 4, "T2": 5, "T3": 8, "T4": 3}
 ATTENDU_L = {"T1": 5, "T2": 5, "T3": 6, "T4": 3, "T5": 6}
