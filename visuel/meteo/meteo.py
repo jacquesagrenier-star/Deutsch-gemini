@@ -203,9 +203,9 @@ SAISON_PHRASE = {"primavera": ("Es primavera.", "Es ist Frühling.", "C'est le p
                  "invierno": ("Es invierno.", "Es ist Winter.", "C'est l'hiver.", "It's winter.", "É inverno.")}
 # les enonces dans la langue apprise ({q} : la personne ; ___ : le trou)
 ENONCES = {"es": {"temps": "¿Qué tiempo hace?", "degres": "¿Cuántos grados hace?", "saison": "¿Qué estación es?",
-                  "act": "¿Qué pasa en la foto?", "dit": "{q} dice: «___»", "vrai": "Verdadero", "faux": "Falso", "bravo": "¡Muy bien!"},
+                  "act": "¿Qué pasa en la foto?", "mois": "¿En qué mes estamos?", "dit": "{q} dice: «___»", "vrai": "Verdadero", "faux": "Falso", "bravo": "¡Muy bien!"},
            "de": {"temps": "Wie ist das Wetter?", "degres": "Wie warm ist es?", "saison": "Welche Jahreszeit ist das?",
-                  "act": "Was passiert auf dem Bild?", "dit": "{q} sagt: „___“", "vrai": "Richtig", "faux": "Falsch", "bravo": "Sehr gut!"}}
+                  "act": "Was passiert auf dem Bild?", "mois": "Welcher Monat ist es?", "dit": "{q} sagt: „___“", "vrai": "Richtig", "faux": "Falsch", "bravo": "Sehr gut!"}}
 TRAD_SAISON = {"primavera": ("le printemps", "spring", "primavera", "Frühling"), "verano": ("l'été", "summer", "verão", "Sommer"),
                "otono": ("l'automne", "autumn", "outono", "Herbst"), "invierno": ("l'hiver", "winter", "inverno", "Winter")}
 

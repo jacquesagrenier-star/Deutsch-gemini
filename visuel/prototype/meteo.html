@@ -52,6 +52,8 @@ main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(
 .rangee.trois{grid-template-columns:1fr 1fr 1fr}
 .rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block;position:relative;aspect-ratio:4/3}
 .rangee button img{display:block;width:100%;height:100%;object-fit:cover}
+.rangee button.th{aspect-ratio:auto;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;font:900 17px var(--police);color:var(--encre)}
+.rangee button.th svg{width:46px;height:110px}
 .rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
 .choix{display:flex;flex-wrap:wrap;gap:8px}
 .choix.centre{justify-content:center}
@@ -116,7 +118,7 @@ if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // agrandir (themes/zoom.js) : un toucher sur la photo de la question ou de la decouverte, la loupe sur les images a choisir
-Zoom.init({direct: ".cadre img", loupe: ".rangee button", langue: LANGUE});
+Zoom.init({direct: ".cadre img", loupe: ".rangee button:not(.th)", langue: LANGUE});
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
 const NB = Q.get("seance") === "1" ? 6 : 20;
 
@@ -189,6 +191,7 @@ const TEXTES = {
   dehorsChaud:{fr:"{q} parle du temps : il fait chaud dehors. Que dit {q} ?", en:"{q} is talking about the weather: it's hot outside. What does {q} say?", tr:"{q} havadan söz ediyor: dışarısı sıcak. {q} ne der?", uk:"{q} говорить про погоду: надворі жарко. Що каже {q}?", fa:"{q} دربارهٔ هوا حرف می‌زند: بیرون گرم است. {q} چه می‌گوید؟", ar:"{q} يتحدث عن الطقس: الجو حار في الخارج. ماذا يقول {q}؟", pt:"{q} fala do tempo: está calor lá fora. O que {q} diz?", pl:"{q} mówi o pogodzie: na dworze jest gorąco. Co mówi {q}?", ru:"{q} говорит о погоде: на улице жарко. Что говорит {q}?", de:"{q} spricht über das Wetter: Draußen ist es heiß. Was sagt {q}?"},
   saison:     {fr:"Regarde l'image : quelle saison est-ce ?", en:"Look at the picture: which season is it?", tr:"Resme bak: hangi mevsim?", uk:"Подивися на зображення: яка це пора року?", fa:"به تصویر نگاه کن: کدام فصل است؟", ar:"انظر إلى الصورة: أيّ فصل هذا؟", pt:"Olhe a imagem: que estação é?", pl:"Spójrz na obrazek: jaka to pora roku?", ru:"Посмотри на картинку: какое это время года?", de:"Sieh dir das Bild an: Welche Jahreszeit ist das?"},
   moisSaison: {fr:"Choisis la bonne saison.", en:"Choose the right season.", tr:"Doğru mevsimi seç.", uk:"Обери правильну пору року.", fa:"فصل درست را انتخاب کن.", ar:"اختر الفصل الصحيح.", pt:"Escolha a estação certa.", pl:"Wybierz właściwą porę roku.", ru:"Выбери правильное время года.", de:"Wähle die richtige Jahreszeit."},
+  moisPhoto:  {fr:"Regarde l'image : quel mois peut-il être ?", en:"Look at the picture: which month could it be?", tr:"Resme bak: hangi ay olabilir?", uk:"Подивися на зображення: який це може бути місяць?", fa:"به تصویر نگاه کن: کدام ماه می‌تواند باشد؟", ar:"انظر إلى الصورة: أيّ شهر يمكن أن يكون؟", pt:"Olhe a imagem: que mês pode ser?", pl:"Spójrz na obrazek: jaki to może być miesiąc?", ru:"Посмотри на картинку: какой это может быть месяц?", de:"Sieh dir das Bild an: Welcher Monat kann das sein?"},
   moisMois:   {fr:"Choisis le bon mois.", en:"Choose the right month.", tr:"Doğru ayı seç.", uk:"Обери правильний місяць.", fa:"ماه درست را انتخاب کن.", ar:"اختر الشهر الصحيح.", pt:"Escolha o mês certo.", pl:"Wybierz właściwy miesiąc.", ru:"Выбери правильный месяц.", de:"Wähle den richtigen Monat."},
   act:        {fr:"Regarde l'image : que se passe-t-il ?", en:"Look at the picture: what's happening?", tr:"Resme bak: ne oluyor?", uk:"Подивися на зображення: що відбувається?", fa:"به تصویر نگاه کن: چه خبر است؟", ar:"انظر إلى الصورة: ماذا يحدث؟", pt:"Olhe a imagem: o que está acontecendo?", pl:"Spójrz na obrazek: co się dzieje?", ru:"Посмотри на картинку: что происходит?", de:"Sieh dir das Bild an: Was passiert?"},
   actVerbe:   {fr:"Choisis la bonne forme du verbe.", en:"Choose the right form of the verb.", tr:"Fiilin doğru biçimini seç.", uk:"Обери правильну форму дієслова.", fa:"شکل درست فعل را انتخاب کن.", ar:"اختر الصيغة الصحيحة للفعل.", pt:"Escolha a forma certa do verbo.", pl:"Wybierz właściwą formę czasownika.", ru:"Выбери правильную форму глагола.", de:"Wähle die richtige Form des Verbs."},
@@ -397,6 +400,38 @@ function itemsFaits(){
   IMG().forEach(i => D.images[i].vrais.forEach(f => phrasesFait(f).forEach(([p, k]) => out.push({img: i, f, p, k}))));
   return out;
 }
+// LES PHRASES A RETROUVER PARMI DES PHOTOS (« la bonne image », l'ecoute) : les faits, les phrases de la famille du
+// mot (sur leur photo), les moments de saison. autres : les photos ou la phrase est clairement fausse.
+let A_IMAGES = null;
+function itemsAImages(){
+  if (A_IMAGES) return A_IMAGES;
+  const acts = IMG().filter(i => D.images[i].act);
+  A_IMAGES = itemsFaits().map(it => ({img: it.img, p: it.p, ks: [it.k], autres: IMG().filter(j => faux(j, it.f))}))
+    .concat(D.familles[L].map(([t, rep, , k, img, f]) => ({img, p: t.replace("___", rep), ks: [k], autres: IMG().filter(j => faux(j, f))})))
+    .concat(acts.map(i => { const x = D.activites[D.images[i].act][L]; return {img: i, p: x.phrase, ks: x.mots, autres: acts.filter(j => j !== i)}; }));
+  return A_IMAGES;
+}
+// des degres qu'on confond avec t : le signe, trece / treinta (dreizehn / dreissig), les chiffres inverses, +-10
+function leurresDegres(t){
+  const ok = n => n !== null && D.leurresNombres.includes(n) && n !== t;
+  const s = String(Math.abs(t)), inv = s.length === 2 ? Math.sign(t || 1) * Number(s[1] + s[0]) : null;
+  return melanger(uniques([-t, t >= 13 && t <= 19 ? (t - 10) * 10 : null, t >= 30 && t % 10 === 0 ? t / 10 + 10 : null, inv, t + 10, t - 10].filter(ok))).slice(0, 2);
+}
+// des thermometres a toucher (l'ecoute des degres) ; data-id « t<degres> » pour les controles
+function thermometres(conteneur, liste, bonne, apres){
+  let bon;
+  conteneur.className = "rangee trois";
+  liste.forEach(t => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = "t" + t; b.className = "th";
+    b.innerHTML = thermometre(t) + '<span>' + degresTxt(t) + '</span>'; if (t === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = D.degres[L][t]; apres(t === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
 // des phrases FAUSSES pour l'image i, une par fait (sa forme au hasard)
 const leurresFaits = (i, n, sauf) => melanger(Object.keys(D.faits).filter(f => faux(i, f) && f !== sauf)).slice(0, n).map(f => hasard(phrasesFait(f))[0]);
 
@@ -416,25 +451,30 @@ const EX = {
   },
   // la phrase, et quatre photos : une seule la montre (les autres la contredisent)
   cual(w){
-    const c = itemsFaits().filter(it => accepte(w, [it.k]) && IMG().filter(j => faux(j, it.f)).length >= 3);
+    const c = itemsAImages().filter(it => accepte(w, it.ks) && it.autres.length >= 3);
     if (!c.length) return false;
     const it = hasard(c);
-    viser(w, it.k);
-    const ids = melanger([it.img, ...melanger(IMG().filter(j => faux(j, it.f))).slice(0, 3)]);
+    viser(w, it.ks[0]);
+    const ids = melanger([it.img, ...melanger(it.autres).slice(0, 3)]);
     $("zone").innerHTML = '<p class="consigne">' + T("cual") + '</p><div class="enonce centre">' + cible(it.p) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
     images($("rang"), ids, it.img, ok => juger(ok, it.p, it.p));
     return true;
   },
-  // l'ecoute : la phrase dite, trois photos
+  // l'ecoute : la phrase dite, trois photos -- ou des degres dits, trois thermometres
   entendre(w){
-    const c = itemsFaits().filter(it => accepte(w, [it.k]) && IMG().filter(j => faux(j, it.f)).length >= 2);
+    const G = DE_APP ? "Grad" : "grado";
+    const c = itemsAImages().filter(it => accepte(w, it.ks) && it.autres.length >= 2)
+      .concat(accepte(w, [G]) ? D.temperatures.map(t => ({t, p: D.degres[L][t], ks: [G]})) : []);
     if (!c.length) return false;
     const it = hasard(c);
-    viser(w, it.k);
+    let lr = [];
+    if (it.t !== undefined){ lr = leurresDegres(it.t); if (lr.length < 2) return false; }
+    viser(w, it.ks[0]);
     $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
       + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
     $("ecoute").addEventListener("click", () => dire(it.p));
-    images($("rang"), melanger([it.img, ...melanger(IMG().filter(j => faux(j, it.f))).slice(0, 2)]), it.img, ok => juger(ok, it.p, it.p));
+    if (it.t !== undefined) thermometres($("rang"), melanger([it.t, ...lr]), it.t, ok => juger(ok, it.p, it.p));
+    else images($("rang"), melanger([it.img, ...melanger(it.autres).slice(0, 2)]), it.img, ok => juger(ok, it.p, it.p));
     dire(it.p);
     return true;
   },
@@ -497,11 +537,7 @@ const EX = {
   degres(w){
     const k = DE_APP ? "Grad" : "grado";
     if (!accepte(w, [k])) return false;
-    const t = hasard(D.temperatures), ok = n => D.leurresNombres.includes(n) && n !== t;
-    const s = String(Math.abs(t)), inv = s.length === 2 ? Math.sign(t || 1) * Number(s[1] + s[0]) : null;
-    const proches = uniques([-t, t % 10 === 0 && t > 0 ? t / 10 + 10 : null, t >= 13 && t <= 19 ? (t - 10) * 10 : null,
-                             t >= 30 && t % 10 === 0 ? t / 10 + 10 : null, inv, t + 10, t - 10].filter(n => n !== null && ok(n)));
-    const lr = melanger(proches).slice(0, 2);
+    const t = hasard(D.temperatures), lr = leurresDegres(t);
     if (lr.length < 2) return false;
     viser(w, k);
     ecran(T("degres"), boiteThermo(t), E("degres"), true, true);
@@ -538,11 +574,20 @@ const EX = {
   },
   // la saison d'une photo
   saison(w){
-    const c = [];
-    IMG().forEach(i => { const s = D.images[i].saison; if (s && accepte(w, [D.saisons[s][DE_APP ? 1 : 0]])) c.push({i, s}); });
+    // la saison de la photo ; ou le mois qu'elle peut etre (un seul mois de sa saison parmi les choix)
+    const c = [], M = D.mois[L], sw = s => D.saisons[s][DE_APP ? 1 : 0];
+    IMG().forEach(i => { const s = D.images[i].saison; if (!s) return;
+      if (accepte(w, [sw(s)])) c.push({i, s, k: sw(s)});
+      Object.keys(M).filter(m => M[m].saison === s && accepte(w, [m])).forEach(m => c.push({i, s, k: m, m})); });
     if (!c.length) return false;
-    const it = hasard(c), k = D.saisons[it.s][DE_APP ? 1 : 0];
-    viser(w, k);
+    const it = hasard(c);
+    viser(w, it.k);
+    if (it.m){
+      const autres = melanger(Object.keys(M).filter(m => M[m].saison !== it.s)).slice(0, 2);
+      ecran(T("moisPhoto"), photo(it.i), E("mois"), true);
+      boutons($("choix"), melanger([it.m, ...autres]), it.m, ok => juger(ok, it.m, M[it.m].phrase));
+      return true;
+    }
     ecran(T("saison"), photo(it.i), E("saison"), true, true);
     const juste = D.saisonPhrase[it.s][L], autres = melanger(Object.keys(D.saisons).filter(s => s !== it.s)).slice(0, 2).map(s => D.saisonPhrase[s][L]);
     boutons($("choix"), melanger([juste, ...autres]), juste, ok => juger(ok, juste, juste));
