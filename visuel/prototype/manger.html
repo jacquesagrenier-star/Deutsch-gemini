@@ -26,7 +26,7 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
-  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 96px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
 .retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
 html[dir="rtl"] .retour{transform:scaleX(-1)}
@@ -89,11 +89,18 @@ button:disabled{cursor:default}
 .fiche .ecoute svg{width:22px;height:22px}
 .regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
 .suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
-  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer;z-index:5000}
 .suite[hidden]{display:none}
+/* LES BOUTONS D'ACTION TOUJOURS TOUT EN BAS (regle de Jacques, 3 nov. 2026, comme dans les scenes : « commencer les
+   exercices ou continuer soit toujours en bas completement de l'ecran ») : la fin de partie et « Tout est revu »
+   posent les leurs ici, jamais dans le flux ; le padding du body leur laisse la place (54 + 24 + la zone de securite) */
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;min-height:54px;border:0;border-radius:27px;padding:4px 12px;color:#fff;font:800 16px/1.15 var(--police);
+  background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.bas button.second{background:var(--verre);color:var(--encre);border:2px solid rgba(52,140,90,.9)}
 .fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
 .fin .score{font-size:22px;font-weight:900}
-.fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
 [lang]{unicode-bidi:isolate}
 /* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
 .trad{display:block;font-size:13px;font-weight:600;color:var(--gris);line-height:1.35;margin-top:2px}
@@ -104,6 +111,7 @@ button:disabled{cursor:default}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/voix.js?v=1"></script>
 <script>
@@ -779,7 +787,7 @@ const SORTES = Object.keys(EX).filter(x => APPRENDRE === "de" || x !== "mogen");
 
 // ---------- la decouverte : trois planches a toucher, chaque element se voit, s'entend et se traduit ----------
 function decouvrir(){
-  $("compte").textContent = ""; $("barre").style.width = "0%";
+  $("bas").hidden = true; $("compte").textContent = ""; $("barre").style.width = "0%";
   const z = $("zone"), phrases = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
   z.innerHTML = '<div class="onglets" role="tablist"><button type="button" role="tab" id="oG">' + T("ongletG") + '</button><button type="button" role="tab" id="oQ">' + T("ongletQ")
               + '</button><button type="button" role="tab" id="oC">' + T("ongletC") + '</button></div>'
@@ -835,7 +843,7 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
-  repondu = false; $("suite").hidden = true;
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
   // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
@@ -873,9 +881,8 @@ function montrer(){
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div>' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
-  brancherEncore();
-  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  boutonsBas(() => parler("fini", {bons, faits: file.length}));
 }
 // plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
 function toutRevu(prochaine){
@@ -883,13 +890,19 @@ function toutRevu(prochaine){
   const quand = Tirage.revu(prochaine, LANGUE);
   $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
     + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
-    + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
-  brancherEncore();
-  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+    + '</div>';
+  boutonsBas(() => parler("fini", {bons: 0, faits: 0}));
 }
 // « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
-const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
-function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
+// Les deux, cote a cote, fixes tout en bas ; « Terminer » est le geste principal (vert plein).
+function boutonsBas(terminer){
+  const b = $("bas");
+  b.innerHTML = (Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>')
+              + '<button type="button" id="terminer">' + T("terminer") + '</button>';
+  b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", encoreDesQuestions);
+  $("terminer").addEventListener("click", terminer);
+}
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
   file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
