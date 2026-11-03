@@ -73,11 +73,20 @@ button:disabled{cursor:default}
 .suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
   color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
 .suite[hidden]{display:none}
+/* LES BOUTONS DU BAS (Jacques, 3 nov. 2026, la regle des scenes depuis la v1059 : « commencer les exercices ou
+   continuer soit toujours en bas completement de l'ecran ») : « Commencer », « Continuer » (.suite) et ceux de la fin
+   (« Encore des questions », « Terminer ») sont tous fixes en bas, au-dessus de tout (5000, comme les scenes), dans
+   le meme verre vert ; deux boutons cote a cote. Le body garde 90 px + la zone sure en bas pour que rien n'y passe dessous. */
+.suite{z-index:5000}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas button{flex:1 1 0;min-width:0;height:54px;border:0;border-radius:27px;padding:0 12px;color:#fff;font:800 16px/1.15 var(--police);
+  background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
 .fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
 .fin .score{font-size:22px;font-weight:900}
 .fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
 [lang]{unicode-bidi:isolate}
 /* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
+.trad.faux{color:var(--rouge);font-style:italic}
 .trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
 </style>
 </head>
@@ -87,6 +96,8 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=1"></script>
+<script src="themes/zoom.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : le meme arbre, ses phrases a lui ; variante=gb, le britannique
@@ -99,6 +110,8 @@ document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "l
 // vingt questions seule (Jacques, 3 nov.) ; dans la seance du jour (seance=1), un jour sur trois a la place de la scene :
 // six questions et pas de decouverte (themeDuJour() dans index.html)
 const NB = Q.get("seance") === "1" ? 6 : 20;
+// agrandir (themes/zoom.js) : un toucher sur un visage ou une fiche, la loupe sur l'arbre qu'on touche pour repondre
+Zoom.init({direct: ".duo img, .fiche img", loupe: ".arbre", langue: LANGUE});
 
 const TEXTES = {
   titre:     {fr:"La famille", en:"Family", tr:"Aile", uk:"Родина", fa:"خانواده", ar:"العائلة", pt:"A família", pl:"Rodzina", ru:"Семья", de:"Die Familie"},
@@ -115,6 +128,7 @@ const TEXTES = {
   suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
   encore:    {fr:"Encore une fois", en:"Once more", tr:"Bir kez daha", uk:"Ще раз", fa:"یک بار دیگر", ar:"مرة أخرى", pt:"Mais uma vez", pl:"Jeszcze raz", ru:"Ещё раз", de:"Noch einmal"},
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
   // l'anglais seulement (son interface est en francais) : le genitif en 's, et les mots de la maison
@@ -475,6 +489,14 @@ function glose(q){
   return g ? cle + " — " + g : null;
 }
 const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
+// LA VOIX (themes/voix.js, 3 nov. 2026 : « il manquait aussi des paroles ») : apres une reponse, le MOT CLE avec son
+// article (« la tía », « die Tante ») ; dans la decouverte, la fiche (« Gisela es la abuela de Anna. Tiene 79 años. »).
+const motCle = q => !q ? null : Array.isArray(q) ? avecArt(q[0], q[1]) : ((q.genre ? q.genre + " " : "") + q.mot);
+const ficheDite = id => id === "Anna" ? L.soi(id, F[id].age) : L.lien(id, avecArt(relation("Anna", id), sexe(id)), "Anna") + " " + L.age(id, F[id].age);
+// tout ce que la page peut dire : l'inventaire des voix a enregistrer (visuel/voix_themes.py)
+function textesAVoix(){
+  return IDS.map(ficheDite).concat(motsDuTheme().map(m => motCle(m.pl ? m : [m.k, m.s])));
+}
 
 // ---------- utilitaires ----------
 const $ = id => document.getElementById(id);
@@ -558,7 +580,25 @@ function juger(ok, bonneTexte, phrase){
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
   const tl = trad || (TR ? null : glose(motQ));
   if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  // LE MOT CHOISI, quand il est faux (Jacques, 3 nov. 2026 : « quand je dis le mauvais, on devrait avoir l'affichage
+  // traduit aussi. Pour le mauvais mot. ») : sa traduction dans la langue d'interface, sous la bonne reponse
+  if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + (choixFaux.texte ? T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad : T("choix", {r: choixFaux.trad})) + '</span>');
+  Voix.dire(motCle(motQ));
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+// la traduction d'un lien choisi (« la tía », « mi tía », « der Onkel ») : le mot du corpus relu (gloses.json), dans
+// la langue d'interface ; null pour ce qui n'est pas un lien (vrai / faux, un nombre, un pluriel)
+let choixFaux = null;
+const DETERMINANTS = /^(el|la|los|las|mi|tu|su|mis|tus|sus|der|die|das|den|dem|des|mein|meine|meinen|meinem|meiner|dein|deine|sein|seine|seinen|ihr|ihre|ihren|ein|eine|einen)\s+/i;
+function tradDuChoix(o){
+  if (typeof o !== "string") return null;
+  const nu = o.trim().replace(DETERMINANTS, "");
+  for (const k of COEUR.concat(PAR_ALLIANCE)) for (const sx of ["m", "f"]){
+    if (mot(k, sx) !== nu) continue;
+    const g = (GLOSES[(articleNu(sx) + " " + mot(k, sx)).trim()] || {})[LANGUE];
+    return g || null;
+  }
+  return null;
 }
 function boutons(conteneur, options, bonne, apres){
   let bon;
@@ -567,6 +607,7 @@ function boutons(conteneur, options, bonne, apres){
     b.addEventListener("click", () => {
       conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
       if (b !== bon) b.classList.add("faux");
+      choixFaux = o === bonne ? null : {texte: String(o), trad: tradDuChoix(o)};
       apres(o === bonne);
     });
     conteneur.appendChild(b);
@@ -846,7 +887,7 @@ function decouvrir(){
     fiche.innerHTML = '<img alt="" src="familia/' + id + '.webp"><div><div class="qui">' + id + '</div><div class="dit">' + cible(dit) + '</div>'
                     + (id === "Anna" ? "" : '<div class="age">' + cible(L.age(id, F[id].age)) + '</div>') + (tdit ? traduction(tdit) : "") + '</div>';
   };
-  const a = dessinerArbre({ego: "Anna", touchable: (g, id) => montrer(id)});
+  const a = dessinerArbre({ego: "Anna", touchable: (g, id) => { montrer(id); Voix.dire(ficheDite(id)); }});
   z.appendChild(a); z.appendChild(fiche);
   montrer("Anna");
   const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
@@ -863,7 +904,7 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
-  repondu = false; $("suite").hidden = true;
+  repondu = false; $("suite").hidden = true; choixFaux = null;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
   // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
@@ -901,7 +942,8 @@ function montrer(){
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div>' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>'
+    + '<div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
   brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
 }
@@ -911,7 +953,7 @@ function toutRevu(prochaine){
   const quand = Tirage.revu(prochaine, LANGUE);
   $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
     + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
-    + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+    + '</div><div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
   brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
 }
