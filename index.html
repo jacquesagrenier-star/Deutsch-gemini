@@ -7899,9 +7899,16 @@ body:not([data-ecran]) #fondMonde .fm-lettres, body[data-ecran="home"] #fondMond
    derriere le verre, a .34 ils disparaissaient. */
 body:not([data-ecran]) #fondMonde .fm-lettres span, body[data-ecran="home"] #fondMonde .fm-lettres span{opacity:.62; color:#8DA3B4;}
 body[data-theme="dark"]:not([data-ecran]) #fondMonde .fm-lettres span, body[data-theme="dark"][data-ecran="home"] #fondMonde .fm-lettres span{opacity:.75; color:#4A6378;}
-body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 170s linear infinite;}   /* v1004 : plus lent (Jacques) */
+body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 340s linear infinite;}   /* v1004 : plus lent (Jacques) ; v1084 : deux tours en 340 s, la meme vitesse */
 body:not([data-ecran]) #fondMonde .fm-lettres-piste, body[data-ecran="home"] #fondMonde .fm-lettres-piste{animation:fmLettres 130s linear infinite;}
-@keyframes fmDefile{from{transform:translateX(-338px);} to{transform:translateX(-1298px);}}
+/* v1084 : DEUX TOURS DE CARTE PAR BOUCLE, pas un (Jacques, 3 nov. 2026, iPhone : « Lorsque j'ouvre l'application allemande,
+   on voit la map se deplacer vers la gauche. Mais apres 5 ou 6 secondes, il y a un petit flash »). Le defilement part du pays
+   de la langue apprise (poserPaysCarte, un delai negatif) : pour l'allemand, ce point tombait a 165,6 s d'une boucle de 170 s,
+   et la boucle recommencait 4,4 s apres l'arrivee sur l'accueil -- en espagnol apres 11 s, en japonais apres pres de 2 min.
+   Le saut de 960 px est invisible sur l'ordinateur (la carte se repete), mais l'iPhone redessine la couche a ce moment-la.
+   Avec deux tours (-338 -> -2258 px en 340 s, la meme vitesse ; la piste de 2880 px couvre encore l'ecran), le depart tombe
+   toujours dans le premier : aucune boucle avant 170 s, quelle que soit la langue. Controle : tests/carte_accueil.py. */
+@keyframes fmDefile{from{transform:translateX(-338px);} to{transform:translateX(-2258px);}}
 /* v1036 : la carte et les lettres defilent de nouveau sur l'accueil. L'essai de la v1035 (les arreter)
    n'a rien change a la bande bleue de l'iPhone : elles n'y sont pour rien. */
 @keyframes fmLettres{from{transform:translateX(0);} to{transform:translateX(-390px);}}
@@ -8629,7 +8636,7 @@ body[data-theme="dark"] .spf-piste{opacity:.32;}
 .spf-lettres-piste{position:absolute; top:0; left:0; width:780px; height:100%;}
 .spf-lettres span::before{content:attr(data-l);}
 .spf-lettres span{position:absolute; font-family:Georgia, "Noto Serif", "Yu Mincho", "Hiragino Mincho ProN", serif; font-weight:600; font-size:104px; line-height:1; color:var(--fil-lettres);}
-body:not([data-ecran]) .spf-piste, body[data-ecran="home"] .spf-piste{animation:fmDefile 170s linear infinite;}
+body:not([data-ecran]) .spf-piste, body[data-ecran="home"] .spf-piste{animation:fmDefile 340s linear infinite;}
 body:not([data-ecran]) .spf-lettres-piste, body[data-ecran="home"] .spf-lettres-piste{animation:fmLettres 130s linear infinite;}
 @media (prefers-reduced-motion: reduce){ .spf-piste, .spf-lettres-piste{animation:none !important;} }
 /* v1050 : LE FOND SUIT LA BARRE D'ETAT (Jacques, 31 oct. 2026 : « les caracteres sont encore sur ma seance du jour.
@@ -46884,11 +46891,12 @@ function poserPaysCarte(){
         const code = drapeauLangueApprise();
         const fm = document.getElementById("fondMonde");
         const largeur = (fm && fm.getBoundingClientRect().width) || window.innerWidth || 375;
-        // la piste : 960 px pour 360 degres, defilement de -338 a -1298 px en 170 s (fmDefile)
+        // la piste : 960 px pour 360 degres, defilement de -338 a -2258 px en 340 s (fmDefile, deux tours depuis la v1084) ;
+        // le depart se cale dans le PREMIER tour, d'ou au moins 170 s avant la boucle
         let t = largeur / 2 - (LONGITUDE_PAYS[code] + 180) / 360 * 960;
         while(t >= -338) t -= 960;
         while(t < -1298) t += 960;
-        const delai = -((-338 - t) / 960 * 170).toFixed(2) + "s";
+        const delai = -((-338 - t) / 1920 * 340).toFixed(2) + "s";
         [["#fondMonde .fm-piste", "fm-pays", ""], [".spf-piste", "spf-pays", "-fili"]].forEach(([sel, classe, suffixe]) => {
             document.querySelectorAll(sel).forEach(piste => {
                 let calque = piste.querySelector(":scope > ." + classe);
