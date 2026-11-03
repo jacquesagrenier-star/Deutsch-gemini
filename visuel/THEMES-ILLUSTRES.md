@@ -349,3 +349,11 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
     bike*, *an ugly vase*). Le britannique change les noms des phrases sans image (flat, film, jumper, High Street).
     Le sens du mot et la traduction des phrases de l'image viennent de l'espagnol de la même image.
 - **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).
+
+Deux ajouts de « La journée » (3 nov. 2026), utiles aux thèmes suivants :
+- **un adverbe compte aussi** : `carteDeScene()` accepte `{mot, cat: "adverbe"}` (la carte d'`adverbienTheme`,
+  siempre / immer, zuerst) ; un mot que le corpus n'a pas reste « hors jeu », la page n'a rien à prévoir ;
+- **une question en plusieurs gestes** (remettre quatre étapes dans l'ordre) : la page définit `testerOrdre()`, qui
+  la résout et rend la réponse ; le contrôle l'appelle quand la question a un `.ordre`.
+- **chaque mot a au moins deux sortes** : un mot qu'une seule sorte sait viser (les adverbes de fréquence, les moments
+  de la journée) fait se suivre deux fois la même sorte dès que deux de ces mots se suivent dans la file.

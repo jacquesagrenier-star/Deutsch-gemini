@@ -143,6 +143,28 @@ def main():
                 adjectifs += 1
         ecrire(chemin, d)
 
+    # LES ADVERBES (3 nov. 2026, le theme « La journee » : primero) : ranges par
+    # niveau dans adverbios.json. Ligne : [mot, kategorie, theme_source,
+    # traduction fr, traduction en, exemple, exemple fr, exemple en, {autres
+    # langues}]. Un adverbe deja present a n'importe quel niveau n'est pas rajoute.
+    if "adverbios" in aj:
+        chemin = os.path.join(DATOS, "adverbios.json")
+        d = lire(chemin)
+        deja = {x["mot"] for v in d.values() if isinstance(v, list) for x in v}
+        for niv, lignes in aj["adverbios"].items():
+            for ligne in lignes:
+                mot, kat, source, fr, en, ex, ex_fr, ex_en = ligne[:8]
+                if mot in deja:
+                    continue
+                e = {"traduction": fr, "traduction_en": en, "exemple": ex, "exemple_fr": ex_fr,
+                     "exemple_en": ex_en, "theme_source": source, "mot": mot, "kategorie": kat}
+                if len(ligne) > 8:
+                    e.update(ligne[8])
+                d.setdefault(niv, []).append(e)
+                deja.add(mot)
+                autres += 1
+        ecrire(chemin, d)
+
     ecrire(temas_chemin, temas)
     ecrire(var_chemin, var)
     print("themes crees : %d   mots ajoutes : %d   variantes posees : %d   expressions et mots-outils : %d   adjectifs : %d"

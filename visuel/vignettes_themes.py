@@ -239,8 +239,35 @@ def corps_carte():
     return c
 
 
+def journee_horloge():
+    """L'horloge de la journee : un grand cadran (sept heures et demie) et, autour, quatre moments du lundi d'Anna
+    en ronds -- le reveil, le petit-dejeuner, le metro, le coucher. Le sujet, c'est le temps qui passe."""
+    import math
+    c = Image.new("RGB", (W, H), (236, 230, 246))
+    d = ImageDraw.Draw(c)
+    cx, cy, r = W // 2, H // 2, 150
+    d.ellipse((cx - r - 10, cy - r - 10, cx + r + 10, cy + r + 10), fill=(28, 36, 48))
+    d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=(255, 255, 255))
+    for i in range(12):
+        a = math.radians(i * 30)
+        r1 = r - (34 if i % 3 == 0 else 22)
+        d.line([(cx + r1 * math.sin(a), cy - r1 * math.cos(a)), (cx + (r - 10) * math.sin(a), cy - (r - 10) * math.cos(a))],
+               fill=(28, 36, 48), width=10 if i % 3 == 0 else 5)
+    for angle, longueur, largeur in ((7.5 * 30, 78, 16), (30 * 6, 118, 10)):
+        a = math.radians(angle)
+        d.line([(cx, cy), (cx + longueur * math.sin(a), cy - longueur * math.cos(a))], fill=(28, 36, 48), width=largeur)
+    d.ellipse((cx - 13, cy - 13, cx + 13, cy + 13), fill=(232, 162, 58))
+    for (x, y), cle in zip(((92, 92), (W - 92, 92), (W - 92, H - 92), (92, H - 92)), ("anna-1", "anna-5", "anna-6", "anna-10")):
+        im = Image.open(os.path.join(P, "journee", cle + ".webp")).convert("RGB")
+        w, h = im.size
+        im = im.crop(((w - h) // 2, 0, (w + h) // 2, h))
+        o = rond(im, 150, 7)
+        c.paste(o, (x - o.size[0] // 2, y - o.size[1] // 2), o)
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
-             "cuerpo": corps_carte}
+             "cuerpo": corps_carte, "journee": journee_horloge}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

@@ -9697,6 +9697,13 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="4.5" r="2.3"/><path d="M9 7.5v7.5M5 10.5h8M9 15l-3 5.5M9 15l3 5.5"/><path d="M18.5 8.5v6M15.5 11.5h6"/></svg></div>
             <div><strong data-i18n="cue_tuile">Le corps et la santé</strong></div>
         </div>
+        <!-- La journee (3 nov. 2026, vague 1) : un lundi d'Anna, le samedi de Mark, un jour d'ecole chez Jan et Katrin ;
+             les verbes pronominaux et separables, l'heure (une horloge sur chaque image), l'ordre et la frequence :
+             visuel/prototype/journee.html. es et de. -->
+        <div class="orb hidden" data-orbid="journee" id="tuileJournee" onclick="ouvrirThemeIllustre('journee')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7v5l3.2 2"/></svg></div>
+            <div><strong data-i18n="jour_tuile">La journée</strong></div>
+        </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -14432,6 +14439,8 @@ const I18N = {
         cue_tuile: "Le corps et la santé",
         cue_court: "Le corps",
         ropa_court: "Vêtements",
+        jour_tuile: "La journée",
+        jour_court: "Journée",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -15959,6 +15968,8 @@ const I18N = {
         cue_tuile: "Body and health",
         cue_court: "Body",
         ropa_court: "Clothes",
+        jour_tuile: "Daily routine",
+        jour_court: "Routine",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17488,6 +17499,8 @@ const I18N = {
         cue_tuile: "Vücut ve sağlık",
         cue_court: "Vücut",
         ropa_court: "Giysiler",
+        jour_tuile: "Günlük rutin",
+        jour_court: "Rutin",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19429,6 +19442,8 @@ const I18N = {
         cue_tuile: "Тіло і здоров'я",
         cue_court: "Тіло",
         ropa_court: "Одяг",
+        jour_tuile: "Розпорядок дня",
+        jour_court: "День",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21684,6 +21699,8 @@ const I18N = {
         cue_tuile: "بدن و سلامتی",
         cue_court: "بدن",
         ropa_court: "لباس",
+        jour_tuile: "کارهای روزانه",
+        jour_court: "روزانه",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23382,6 +23399,8 @@ const I18N = {
         cue_tuile: "الجسم والصحة",
         cue_court: "الجسم",
         ropa_court: "الملابس",
+        jour_tuile: "الروتين اليومي",
+        jour_court: "اليوم",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23760,6 +23779,8 @@ const I18N = {
         cue_tuile: "O corpo e a saúde",
         cue_court: "O corpo",
         ropa_court: "Roupas",
+        jour_tuile: "A rotina do dia",
+        jour_court: "Rotina",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25348,6 +25369,8 @@ const I18N = {
         cue_tuile: "Ciało i zdrowie",
         cue_court: "Ciało",
         ropa_court: "Ubrania",
+        jour_tuile: "Plan dnia",
+        jour_court: "Dzień",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -26936,6 +26959,8 @@ const I18N = {
         cue_tuile: "Тело и здоровье",
         cue_court: "Тело",
         ropa_court: "Одежда",
+        jour_tuile: "Распорядок дня",
+        jour_court: "День",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28526,6 +28551,8 @@ const I18N = {
         cue_tuile: "Körper und Gesundheit",
         cue_court: "Körper",
         ropa_court: "Kleidung",
+        jour_tuile: "Der Tagesablauf",
+        jour_court: "Tagesablauf",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30151,6 +30178,8 @@ const I18N = {
         cue_tuile: "El cuerpo y la salud",
         cue_court: "El cuerpo",
         ropa_court: "Ropa",
+        jour_tuile: "La rutina diaria",
+        jour_court: "Rutina",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47042,7 +47071,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios", en: true},
                           gato: {page: "gato.html", titre: "gato_tuile", tuile: "tuileGato"},
                           ropa: {page: "ropa.html", titre: "ropa_tuile", court: "ropa_court", tuile: "tuileRopa"},
-                          cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo"}};
+                          cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo"}},
+                          journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
@@ -58307,6 +58337,11 @@ function carteDeScene(d){
     if(d.cat === "adjectif"){
         const i = (adjektiveTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
         return i < 0 ? null : { word: adjektiveTheme.words[i], index: i, themeId: adjektiveTheme.id, mode: "adjektive" };
+    }
+    // 3 nov. 2026, le theme « La journee » : siempre, a veces, nunca, primero / immer, manchmal, nie, zuerst
+    if(d.cat === "adverbe"){
+        const i = (adverbienTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        return i < 0 ? null : { word: adverbienTheme.words[i], index: i, themeId: adverbienTheme.id, mode: "adverbien" };
     }
     let premier = null, nomme = null;
     themesComptes().forEach(th => {

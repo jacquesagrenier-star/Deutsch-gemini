@@ -1,0 +1,809 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>La journée</title>
+<!--
+  LA JOURNEE (theme illustre, 3 nov. 2026, vague 1 de Jacques : « la journee (verbes pronominaux, l'heure) »).
+  On suit des PERSONNES et le TEMPS QUI PASSE : un lundi d'Anna, le samedi de Mark, un jour d'ecole chez Jan et
+  Katrin. Pas les scenes fruehstueck et schlafzimmer, qui sont des lieux et leurs objets (regle 2 de Jacques).
+  Ce qu'on y apprend : les verbes pronominaux (me levanto / ich ziehe mich an), les verbes separables (Anna steht
+  um sieben Uhr auf), L'HEURE (a las siete y media / um halb acht : une horloge dessinee sur chaque image, a
+  l'heure exacte), l'ordre de la journee (primero, despues / zuerst, dann, danach) et la frequence (siempre, a
+  veces, nunca / immer, manchmal, nie). Les heures s'ecrivent en lettres : aucune phrase dite n'a de chiffre.
+  Toute la donnee vient de journee/journee.json (visuel/journee/journee.py) : aucune phrase ecrite a la main.
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
+  a chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
+  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=latam (la computadora, la escuela, la voix de Monica), r=<AUDIO_REVISION>.
+  Le tirage suit les mots (themes/tirage.js) ; la voix : le fichier enregistre, sinon le telephone (themes/voix.js).
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:56px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* une etape : la photo en 4:3 et, dans son coin, l'horloge a l'heure exacte (dessinee ici, jamais generee) */
+.photo{position:relative;width:100%;max-width:480px;margin:0 auto;border-radius:16px;overflow:hidden;background:var(--carte)}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.cadran{position:absolute;right:8px;bottom:8px;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.92);border-radius:999px;padding:4px 8px 4px 5px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.cadran svg.horloge{width:62px;height:62px;display:block}
+.cadran svg.moment{width:20px;height:20px;display:block}
+.photo.petite .cadran svg.horloge{width:34px;height:34px}
+.photo.petite .cadran{right:4px;bottom:4px;padding:2px 4px 2px 3px}
+.photo.petite .cadran svg.moment{width:12px;height:12px}
+/* la semaine de la frequence : sept jours, coche ou non */
+.semaine{direction:ltr;display:grid;grid-template-columns:repeat(7,1fr);gap:4px;background:var(--carte);border-radius:14px;padding:8px}
+.semaine div{text-align:center;font-weight:800;font-size:13px;color:var(--gris)}
+.semaine b{display:flex;align-items:center;justify-content:center;margin:4px auto 0;width:30px;height:30px;border-radius:50%;font-size:17px}
+.semaine b.oui{background:var(--vert);color:#fff} .semaine b.non{background:rgba(120,130,150,.18);color:var(--gris)}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.choix button .semaine{padding:4px;gap:2px}
+.choix button .semaine b{width:22px;height:22px;font-size:13px}
+.visages{display:flex;gap:8px;justify-content:center}
+.visages img{width:96px;height:96px;border-radius:50%;object-fit:cover;display:block;background:var(--carte)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix.liste{flex-direction:column}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer;text-align:left}
+.choix.liste button{border-radius:14px}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+/* remettre dans l'ordre : quatre etapes a toucher de la premiere a la derniere */
+.ordre{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ordre button{position:relative;border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0 0 6px;cursor:pointer;overflow:hidden;text-align:left;color:var(--encre);font:700 13px/1.35 var(--police)}
+.ordre button img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;margin-bottom:5px}
+.ordre button span.t{display:block;padding:0 7px;direction:ltr;text-align:left}
+.ordre button i{position:absolute;top:6px;left:6px;width:30px;height:30px;border-radius:50%;background:var(--ambre);color:#1C2430;font:900 17px/30px var(--police);font-style:normal;text-align:center;display:none}
+.ordre button.pris i{display:block}
+.ordre button.juste{border-color:var(--vert)} .ordre button.juste i{background:var(--vert);color:#fff;display:block}
+.ordre button.faux{border-color:var(--rouge)}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+/* la decouverte : trois journees, la frise des etapes, la fiche de celle qu'on touche */
+.onglets{display:flex;gap:6px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{flex:1;border:0;border-radius:999px;background:none;color:var(--gris);font:800 14px var(--police);padding:8px 4px;cursor:pointer}
+.onglets button[aria-selected="true"]{background:var(--ambre);color:#1C2430}
+.frise{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.frise button{border:3px solid transparent;border-radius:12px;padding:0;background:var(--carte);cursor:pointer;overflow:hidden;display:block}
+.frise button .photo{border-radius:0}
+.frise button.choisi{border-color:var(--ambre)}
+.fiche{background:var(--carte);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.fiche .dit{font-weight:800;font-size:18px;line-height:1.4}
+.fiche .ligne{display:flex;align-items:flex-start;gap:10px}
+.fiche .ligne > div{flex:1}
+.fiche .ecoute{width:44px;height:44px;flex:0 0 auto;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center}
+.fiche .ecoute svg{width:22px;height:22px}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite[hidden]{display:none}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+.fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
+[lang]{unicode-bidi:isolate}
+/* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
+.trad{display:block;font-size:13px;font-weight:600;color:var(--gris);line-height:1.35;margin-top:2px}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=1"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? 6 : 20;
+
+const TEXTES = {
+  titre:     {fr:"La journée", en:"Daily routine", tr:"Günlük rutin", uk:"Розпорядок дня", fa:"کارهای روزانه", ar:"الروتين اليومي", pt:"A rotina do dia", pl:"Plan dnia", ru:"Распорядок дня", de:"Der Tagesablauf"},
+  intro:     {fr:"Touche un moment de la journée : tu le vois, tu lis l'heure et tu l'entends.", en:"Tap a moment of the day: you see it, read the time and hear it.", tr:"Günün bir anına dokun: onu gör, saati oku ve dinle.", uk:"Торкнися моменту дня: побачиш його, прочитаєш час і почуєш.", fa:"روی یکی از لحظه‌های روز بزن: آن را می‌بینی، ساعت را می‌خوانی و می‌شنوی.", ar:"المس لحظة من اليوم: تراها وتقرأ الساعة وتسمعها.", pt:"Toque em um momento do dia: você vê, lê a hora e ouve.", pl:"Dotknij chwili dnia: zobaczysz ją, odczytasz godzinę i usłyszysz.", ru:"Нажми на момент дня: увидишь его, прочитаешь время и услышишь.", de:"Tippe auf einen Moment des Tages: Du siehst ihn, liest die Uhrzeit und hörst ihn."},
+  regleEs:   {fr:"Les verbes pronominaux ont un pronom qui suit la personne : me levanto, te levantas, se levanta, nos levantamos, se levantan. L'heure : a las siete y media (7 h 30), a las ocho menos cuarto (7 h 45).", en:"Reflexive verbs take a pronoun that matches the person: me levanto, te levantas, se levanta, nos levantamos, se levantan. Time: a las siete y media (7:30), a las ocho menos cuarto (7:45).", tr:"Dönüşlü fiiller kişiye uyan bir zamir alır: me levanto, te levantas, se levanta, nos levantamos, se levantan. Saat: a las siete y media (7.30), a las ocho menos cuarto (7.45).", uk:"Зворотні дієслова мають займенник, що відповідає особі: me levanto, te levantas, se levanta, nos levantamos, se levantan. Час: a las siete y media (7:30), a las ocho menos cuarto (7:45).", fa:"فعل‌های بازتابی ضمیری دارند که با شخص هماهنگ است: me levanto، te levantas، se levanta، nos levantamos، se levantan. ساعت: a las siete y media (7:30)، a las ocho menos cuarto (7:45).", ar:"للأفعال الانعكاسية ضمير يوافق الشخص: me levanto، te levantas، se levanta، nos levantamos، se levantan. الساعة: a las siete y media (7:30)، a las ocho menos cuarto (7:45).", pt:"Os verbos reflexivos têm um pronome que acompanha a pessoa: me levanto, te levantas, se levanta, nos levantamos, se levantan. As horas: a las siete y media (7h30), a las ocho menos cuarto (7h45).", pl:"Czasowniki zwrotne mają zaimek zgodny z osobą: me levanto, te levantas, se levanta, nos levantamos, se levantan. Godzina: a las siete y media (7:30), a las ocho menos cuarto (7:45).", ru:"У возвратных глаголов есть местоимение, которое согласуется с лицом: me levanto, te levantas, se levanta, nos levantamos, se levantan. Время: a las siete y media (7:30), a las ocho menos cuarto (7:45).", de:"Reflexive Verben haben ein Pronomen, das zur Person passt: me levanto, te levantas, se levanta, nos levantamos, se levantan. Die Uhrzeit: a las siete y media (7.30 Uhr), a las ocho menos cuarto (7.45 Uhr)."},
+  regleDe:   {fr:"Le verbe séparable se coupe en deux, sa particule va à la fin : aufstehen, Anna steht um sieben Uhr auf. Et attention : halb acht, c'est 7 h 30, la demi-heure AVANT huit heures.", en:"A separable verb splits in two and its particle goes to the end: aufstehen, Anna steht um sieben Uhr auf. And watch out: halb acht is 7:30, half an hour BEFORE eight.", tr:"Ayrılabilen fiil ikiye bölünür, öneki sona gider: aufstehen, Anna steht um sieben Uhr auf. Dikkat: halb acht 7.30 demektir, sekizden yarım saat ÖNCE.", uk:"Відокремлюване дієслово розпадається на дві частини, префікс іде в кінець: aufstehen, Anna steht um sieben Uhr auf. І увага: halb acht — це 7:30, пів години ДО восьмої.", fa:"فعل جداشدنی دو تکه می‌شود و پیشوندش به آخر جمله می‌رود: aufstehen، Anna steht um sieben Uhr auf. و دقت کن: halb acht یعنی 7:30، نیم ساعت پیش از هشت.", ar:"ينقسم الفعل القابل للفصل إلى جزأين وتذهب سابقته إلى آخر الجملة: aufstehen، Anna steht um sieben Uhr auf. وانتبه: halb acht تعني 7:30، أي نصف ساعة قبل الثامنة.", pt:"O verbo separável se divide em dois e a partícula vai para o fim: aufstehen, Anna steht um sieben Uhr auf. E atenção: halb acht é 7h30, meia hora ANTES das oito.", pl:"Czasownik rozdzielnie złożony dzieli się na dwie części, a przedrostek idzie na koniec: aufstehen, Anna steht um sieben Uhr auf. Uwaga: halb acht to 7:30, pół godziny PRZED ósmą.", ru:"Отделяемый глагол делится на две части, приставка уходит в конец: aufstehen, Anna steht um sieben Uhr auf. И внимание: halb acht — это 7:30, полчаса ДО восьми.", de:"Trennbare Verben teilen sich, die Vorsilbe steht am Ende: aufstehen, Anna steht um sieben Uhr auf. Und: halb acht ist 7.30 Uhr."},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  queHace:   {fr:"Regarde l'image : que se passe-t-il ?", en:"Look at the picture: what is happening?", tr:"Resme bak: ne oluyor?", uk:"Подивися на зображення: що відбувається?", fa:"به تصویر نگاه کن: چه اتفاقی می‌افتد؟", ar:"انظر إلى الصورة: ماذا يحدث؟", pt:"Olhe a imagem: o que está acontecendo?", pl:"Spójrz na obrazek: co się dzieje?", ru:"Посмотри на картинку: что происходит?", de:"Sieh dir das Bild an: Was passiert?"},
+  aQueHora:  {fr:"Lis l'heure sur l'horloge et choisis la bonne réponse.", en:"Read the time on the clock and choose the right answer.", tr:"Saatteki zamanı oku ve doğru cevabı seç.", uk:"Прочитай час на годиннику й обери правильну відповідь.", fa:"ساعت را از روی ساعت بخوان و پاسخ درست را انتخاب کن.", ar:"اقرأ الوقت على الساعة واختر الإجابة الصحيحة.", pt:"Leia a hora no relógio e escolha a resposta certa.", pl:"Odczytaj godzinę z zegara i wybierz właściwą odpowiedź.", ru:"Посмотри на часы и выбери правильный ответ.", de:"Lies die Uhrzeit auf der Uhr und wähle die richtige Antwort."},
+  vraifaux:  {fr:"Regarde l'image et l'horloge : vrai ou faux ?", en:"Look at the picture and the clock: true or false?", tr:"Resme ve saate bak: doğru mu, yanlış mı?", uk:"Подивися на зображення й годинник: правда чи ні?", fa:"به تصویر و ساعت نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة والساعة: صحيح أم خطأ؟", pt:"Olhe a imagem e o relógio: verdadeiro ou falso?", pl:"Spójrz na obrazek i zegar: prawda czy fałsz?", ru:"Посмотри на картинку и часы: правда или нет?", de:"Sieh dir das Bild und die Uhr an: richtig oder falsch?"},
+  ordre:     {fr:"Remets la journée dans l'ordre : touche d'abord ce qui vient en premier.", en:"Put the day in order: tap what comes first, then the next.", tr:"Günü sıraya koy: önce ilk olana dokun.", uk:"Розстав день по порядку: спершу торкнися того, що відбувається першим.", fa:"روز را مرتب کن: اول روی چیزی بزن که اول اتفاق می‌افتد.", ar:"رتّب اليوم: المس أولًا ما يحدث أولًا.", pt:"Coloque o dia em ordem: toque primeiro no que vem primeiro.", pl:"Ułóż dzień w kolejności: najpierw dotknij tego, co jest pierwsze.", ru:"Расставь день по порядку: сначала нажми на то, что идёт первым.", de:"Bring den Tag in die richtige Reihenfolge: Tippe zuerst auf das, was zuerst kommt."},
+  apres:     {fr:"Qu'est-ce qui vient juste après ?", en:"What comes right after?", tr:"Hemen sonra ne geliyor?", uk:"Що відбувається одразу після цього?", fa:"درست بعد از آن چه می‌آید؟", ar:"ماذا يأتي بعد ذلك مباشرة؟", pt:"O que vem logo depois?", pl:"Co jest zaraz potem?", ru:"Что идёт сразу после этого?", de:"Was kommt direkt danach?"},
+  avant:     {fr:"Qu'est-ce qui vient juste avant ?", en:"What comes right before?", tr:"Hemen önce ne geliyor?", uk:"Що відбувається безпосередньо перед цим?", fa:"درست قبل از آن چه می‌آید؟", ar:"ماذا يأتي قبل ذلك مباشرة؟", pt:"O que vem logo antes?", pl:"Co jest tuż przedtem?", ru:"Что идёт прямо перед этим?", de:"Was kommt direkt davor?"},
+  pronombre: {fr:"Choisis le bon pronom : me, te, se ou nos ?", en:"Choose the right pronoun: me, te, se or nos?", tr:"Doğru zamiri seç: me, te, se mi nos mu?", uk:"Обери правильний займенник: me, te, se чи nos?", fa:"ضمیر درست را انتخاب کن: me، te، se یا nos؟", ar:"اختر الضمير الصحيح: me أم te أم se أم nos؟", pt:"Escolha o pronome certo: me, te, se ou nos?", pl:"Wybierz właściwy zaimek: me, te, se czy nos?", ru:"Выбери правильное местоимение: me, te, se или nos?", de:"Wähle das richtige Pronomen: me, te, se oder nos?"},
+  forma:     {fr:"Choisis la bonne forme du verbe.", en:"Choose the right form of the verb.", tr:"Fiilin doğru biçimini seç.", uk:"Обери правильну форму дієслова.", fa:"شکل درست فعل را انتخاب کن.", ar:"اختر الصيغة الصحيحة للفعل.", pt:"Escolha a forma certa do verbo.", pl:"Wybierz właściwą formę czasownika.", ru:"Выбери правильную форму глагола.", de:"Wähle die richtige Form des Verbs."},
+  reflexiv:  {fr:"Choisis le bon pronom réfléchi : mich, dich, sich… ?", en:"Choose the right reflexive pronoun: mich, dich, sich…?", tr:"Doğru dönüşlü zamiri seç: mich, dich, sich…?", uk:"Обери правильний зворотний займенник: mich, dich, sich…?", fa:"ضمیر بازتابی درست را انتخاب کن: mich، dich، sich…؟", ar:"اختر الضمير الانعكاسي الصحيح: mich أم dich أم sich…؟", pt:"Escolha o pronome reflexivo certo: mich, dich, sich…?", pl:"Wybierz właściwy zaimek zwrotny: mich, dich, sich…?", ru:"Выбери правильное возвратное местоимение: mich, dich, sich…?", de:"Wähle das richtige Reflexivpronomen: mich, dich, sich …?"},
+  trennbar:  {fr:"Le verbe séparable : choisis la phrase correcte.", en:"The separable verb: choose the correct sentence.", tr:"Ayrılabilen fiil: doğru cümleyi seç.", uk:"Відокремлюване дієслово: обери правильне речення.", fa:"فعل جداشدنی: جملهٔ درست را انتخاب کن.", ar:"الفعل القابل للفصل: اختر الجملة الصحيحة.", pt:"O verbo separável: escolha a frase correta.", pl:"Czasownik rozdzielny: wybierz poprawne zdanie.", ru:"Отделяемый глагол: выбери правильное предложение.", de:"Das trennbare Verb: Wähle den richtigen Satz."},
+  satzbau:   {fr:"Le verbe vient en deuxième position : choisis la phrase correcte.", en:"The verb comes second: choose the correct sentence.", tr:"Fiil ikinci sırada gelir: doğru cümleyi seç.", uk:"Дієслово стоїть на другому місці: обери правильне речення.", fa:"فعل در جایگاه دوم می‌آید: جملهٔ درست را انتخاب کن.", ar:"يأتي الفعل في المرتبة الثانية: اختر الجملة الصحيحة.", pt:"O verbo vem em segundo lugar: escolha a frase correta.", pl:"Czasownik stoi na drugim miejscu: wybierz poprawne zdanie.", ru:"Глагол стоит на втором месте: выбери правильное предложение.", de:"Das Verb steht an zweiter Stelle: Wähle den richtigen Satz."},
+  frecuencia:{fr:"Regarde la semaine : toujours, parfois ou jamais ?", en:"Look at the week: always, sometimes or never?", tr:"Haftaya bak: her zaman mı, bazen mi, hiç mi?", uk:"Подивися на тиждень: завжди, іноді чи ніколи?", fa:"به هفته نگاه کن: همیشه، گاهی یا هرگز؟", ar:"انظر إلى الأسبوع: دائمًا أم أحيانًا أم أبدًا؟", pt:"Olhe a semana: sempre, às vezes ou nunca?", pl:"Spójrz na tydzień: zawsze, czasem czy nigdy?", ru:"Посмотри на неделю: всегда, иногда или никогда?", de:"Sieh dir die Woche an: immer, manchmal oder nie?"},
+  momentEs:  {fr:"Regarde l'horloge : le matin, l'après-midi ou le soir ?", en:"Look at the clock: in the morning, the afternoon or the evening?", tr:"Saate bak: sabah mı, öğleden sonra mı, akşam mı?", uk:"Подивися на годинник: уранці, удень чи ввечері?", fa:"به ساعت نگاه کن: صبح، بعدازظهر یا شب؟", ar:"انظر إلى الساعة: في الصباح أم بعد الظهر أم في المساء؟", pt:"Olhe o relógio: de manhã, à tarde ou à noite?", pl:"Spójrz na zegar: rano, po południu czy wieczorem?", ru:"Посмотри на часы: утром, днём или вечером?", de:"Sieh auf die Uhr: am Morgen, am Nachmittag oder am Abend?"},
+  momentDe:  {fr:"Regarde l'horloge : le matin, à midi ou le soir ?", en:"Look at the clock: in the morning, at noon or in the evening?", tr:"Saate bak: sabah mı, öğlen mi, akşam mı?", uk:"Подивися на годинник: уранці, опівдні чи ввечері?", fa:"به ساعت نگاه کن: صبح، ظهر یا شب؟", ar:"انظر إلى الساعة: في الصباح أم الظهر أم المساء؟", pt:"Olhe o relógio: de manhã, ao meio-dia ou à noite?", pl:"Spójrz na zegar: rano, w południe czy wieczorem?", ru:"Посмотри на часы: утром, в полдень или вечером?", de:"Sieh auf die Uhr: am Morgen, am Mittag oder am Abend?"},
+  suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (journee.json) ----------
+let D = null, ETAPES = [];                  // ETAPES : {cle, jour, rang, verbe, sujet, h, m}, dans l'ordre des journees
+const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+const n = s => D.sujets[s].n;               // l'indice des formes : 2 (il, elle), 4 (ils)
+const etapesDu = j => ETAPES.filter(e => e.jour === j);
+
+// ---------- l'heure en lettres : la meme regle que journee.py (heure_es, heure_de) ----------
+const NOMBRES_ES = ["doce", "una", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce"];
+const NOMBRES_DE = ["zwölf", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf"];
+function heureEs(h, m){
+  const k = (m > 30 ? h + 1 : h) % 12;
+  let s = (k === 1 ? "a la una" : "a las " + NOMBRES_ES[k]) + ({0: "", 15: " y cuarto", 30: " y media", 45: " menos cuarto"})[m];
+  if (h >= 12 && h < 20) s += " de la tarde"; else if (h >= 20) s += " de la noche";
+  return s;
+}
+function heureDe(h, m, soir){
+  const k = h % 12 || 12, s = k < 12 ? k + 1 : 1, nom = x => x === 1 ? "ein" : NOMBRES_DE[x];
+  const t = ({0: "um " + nom(k) + " Uhr", 15: "um Viertel nach " + NOMBRES_DE[k], 30: "um halb " + NOMBRES_DE[s], 45: "um Viertel vor " + NOMBRES_DE[s]})[m];
+  return t + (h >= 18 && soir !== false ? " abends" : "");
+}
+// dans la traduction, l'heure s'ecrit en chiffres (elle n'est pas dite) ; en allemand pour qui apprend l'espagnol
+function heureTrad(h, m){
+  if (LANGUE === "fr") return "à " + h + " h" + (m ? " " + String(m).padStart(2, "0") : "");
+  if (LANGUE === "en") return "at " + (h % 12 || 12) + ":" + String(m).padStart(2, "0") + (h < 12 ? " a.m." : " p.m.");
+  if (LANGUE === "pt") return "às " + h + "h" + (m ? String(m).padStart(2, "0") : "");
+  return heureDe(h, m);
+}
+
+// ---------- la langue apprise : les phrases, fabriquees comme celles de la decouverte (journee.py) ----------
+const ES = {
+  bravo: "¡Muy bien!", vrai: "Verdadero", faux: "Falso",
+  sujet: (s, debut) => debut ? D.sujets[s].es : D.sujets[s].es.replace(/^La /, "la "),
+  // {pr, v, c} : le pronom reflechi, le verbe et ce qui suit, a la personne k
+  formes(vb, k){ const v = D.verbes[vb].es, c = (LATAM && v.latam && v.latam.c) || v.c || ""; return {pr: v.pr ? v.pr[k] : "", v: v.v[k], c}; },
+  pred(vb, k){ const f = ES.formes(vb, k); return [f.pr, f.v, f.c].filter(Boolean).join(" "); },
+  heure: (vb, h, m) => heureEs(h, m),
+  // « Anna se levanta a las siete menos cuarto. » ; S : le sujet ecrit (« Yo », « Anna »)
+  phrase: (vb, S, k, h, m) => [S, ES.pred(vb, k), h == null ? "" : heureEs(h, m)].filter(Boolean).join(" ") + ".",
+  etape: e => ES.phrase(e.verbe, ES.sujet(e.sujet, true), n(e.sujet), e.h, e.m),
+  queHace: s => (n(s) === 4 ? "¿Qué hacen " : "¿Qué hace ") + ES.sujet(s) + "?",
+  // « ¿A qué hora se levanta Anna? », « ¿A qué hora va Anna al trabajo en metro? »
+  aQueHora(e){ const f = ES.formes(e.verbe, n(e.sujet)); return "¿A qué hora " + [f.pr, f.v, ES.sujet(e.sujet), f.c].filter(Boolean).join(" ") + "?"; },
+  reponseHeure: (vb, h, m) => cap(heureEs(h, m)),
+  liens: ["Primero", "Después", "Luego", "Al final"],
+  jours: ["L", "M", "X", "J", "V", "S", "D"],
+  moments: {manana: "por la mañana", tarde: "por la tarde", noche: "por la noche"}
+};
+const DE = {
+  bravo: "Sehr gut!", vrai: "Richtig", faux: "Falsch",
+  sujet: (s, debut) => debut ? D.sujets[s].de : D.sujets[s].de.replace(/^Die /, "die "),
+  formes(vb, k){ const v = D.verbes[vb].de; return {v: v.v[k], r: v.r ? v.r[k] : "", o: v.o || "", c: v.c || "", p: v.p || ""}; },
+  // « abends » se tait devant « zu Abend » (journee.py, phrase_de)
+  heure: (vb, h, m) => heureDe(h, m, !/Abend/.test(D.verbes[vb].de.c || "")),
+  // « Anna zieht sich um Viertel nach sieben an. » : S v r o HEURE c p
+  phrase(vb, S, k, h, m){ const f = DE.formes(vb, k); return [S, f.v, f.r, f.o, h == null ? "" : DE.heure(vb, h, m), f.c, f.p].filter(Boolean).join(" ") + "."; },
+  // le verbe en deuxieme position : « Um halb sieben steht Anna auf. », « Dann zieht sich Anna an. »
+  // un pronom sujet passe AVANT le reflechi (« Dann zieht sie sich an »), un nom apres (« Dann zieht sich Anna an »)
+  v2(debut, vb, S, k, h, m){ const f = DE.formes(vb, k), pron = /^(ich|du|er|sie|es|wir|ihr)$/.test(S);
+    return [debut, f.v, pron ? S : "", f.r, pron ? "" : S, f.o, h == null ? "" : DE.heure(vb, h, m), f.c, f.p].filter(Boolean).join(" ") + "."; },
+  etape: e => DE.phrase(e.verbe, DE.sujet(e.sujet, true), n(e.sujet), e.h, e.m),
+  // « Sie zieht sich an. » : le pronom du sujet et le geste, sans l'heure
+  pred(vb, s){ const f = DE.formes(vb, n(s)); return [cap(D.sujets[s].pron), f.v, f.r, f.o, f.c, f.p].filter(Boolean).join(" ") + "."; },
+  queHace: s => (n(s) === 4 ? "Was machen " : "Was macht ") + DE.sujet(s) + "?",
+  aQueHora(e){ const f = DE.formes(e.verbe, n(e.sujet)); return "Um wie viel Uhr " + [f.v, f.r, DE.sujet(e.sujet), f.o, f.c, f.p].filter(Boolean).join(" ") + "?"; },
+  reponseHeure: (vb, h, m) => cap(DE.heure(vb, h, m)),
+  liens: ["Zuerst", "Dann", "Danach", "Schließlich"],
+  jours: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
+  moments: {morgen: "am Morgen", mittag: "am Mittag", abend: "am Abend"}
+};
+const L = APPRENDRE === "de" ? DE : ES;
+
+// ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
+// Sous la phrase de la decouverte, et APRES la reponse, sous la phrase juste -- jamais avant. En francais, anglais,
+// portugais (et en allemand pour qui apprend l'espagnol), la phrase entiere, fabriquee avec les MEMES choix que la
+// question (le meme verbe, la meme personne, la meme heure) ; ailleurs, le mot et sa traduction du corpus (gloses.json).
+const TR = (LANGUE === APPRENDRE) ? null : (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es")) ? LANGUE : null;
+const POSS = {Anna: "her", Katrin: "her", Mia: "her", Mark: "his", Jan: "his", BenMia: "their", familia: "its"};
+// la phrase d'une etape (ou d'un verbe a une personne) traduite ; s : la cle du sujet, ou null (je, tu, nous)
+function traduire(vb, k, s, h, m){
+  if (!TR) return null;
+  if (TR === "de") return DE.phrase(vb, s ? D.sujets[s].de : D.personnes.de[k], k, h, m);
+  let t = D.verbes[vb][TR][k].replace("{S}", s ? D.sujets[s][TR] : "").replace("{H}", h == null ? "" : heureTrad(h, m)).replace("{P}", POSS[s] || "their");
+  return cap(t.trim()) + ".";
+}
+const tradEtape = e => traduire(e.verbe, n(e.sujet), e.sujet, e.h, e.m);
+const LIENS_TR = {fr: ["D'abord", "Ensuite", "Puis", "Enfin"], en: ["First", "Then", "After that", "Finally"], pt: ["Primeiro", "Depois", "Em seguida", "Por fim"]};
+const minus = (t, s) => s === "familia" ? t.charAt(0).toLowerCase() + t.slice(1) : t;
+function tradSuite(etapes){
+  if (!TR) return null;
+  if (TR === "de") return etapes.map((e, i) => DE.v2(DE.liens[i], e.verbe, D.sujets[e.sujet].de, n(e.sujet), e.h, e.m)).join(" ");
+  return etapes.map((e, i) => LIENS_TR[TR][i] + ", " + minus(tradEtape(e), e.sujet)).join(" ");
+}
+let GLOSES = {};
+fetch("journee/gloses.json?v=1").then(r => r.json()).then(d => { GLOSES = d[APPRENDRE] || {}; }).catch(() => {});
+function glose(m){
+  if (!m) return null;
+  const cle = ((m.genre || "") + " " + m.mot).trim(), g = (GLOSES[cle] || {})[LANGUE];
+  return g ? cle + " — " + g : null;
+}
+const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
+
+// ---------- l'horloge, dessinee a l'heure exacte ----------
+// Un cadran a douze heures, et a cote le soleil (le jour) ou la lune (le soir) : sept heures du matin et sept heures
+// du soir ne se confondent pas. Le cadran reste blanc de nuit : c'est un objet, pas l'interface.
+function horloge(h, m){
+  const ah = ((h % 12) + m / 60) * 30 * Math.PI / 180, am = m * 6 * Math.PI / 180;
+  let traits = "";
+  for (let i = 0; i < 12; i++){
+    const a = i * 30 * Math.PI / 180, r1 = i % 3 ? 39 : 34;
+    traits += '<line x1="' + (50 + r1 * Math.sin(a)).toFixed(1) + '" y1="' + (50 - r1 * Math.cos(a)).toFixed(1) + '" x2="' + (50 + 43 * Math.sin(a)).toFixed(1) + '" y2="' + (50 - 43 * Math.cos(a)).toFixed(1) + '" stroke="#1C2430" stroke-width="' + (i % 3 ? 2 : 4) + '" stroke-linecap="round"/>';
+  }
+  const aiguille = (a, l, w) => '<line x1="50" y1="50" x2="' + (50 + l * Math.sin(a)).toFixed(1) + '" y2="' + (50 - l * Math.cos(a)).toFixed(1) + '" stroke="#1C2430" stroke-width="' + w + '" stroke-linecap="round"/>';
+  const soir = h >= 18 || h < 6;
+  const icone = soir ? '<svg class="moment" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4a8.5 8.5 0 1 0 11.5 11.5z" fill="#3D4F8F"/></svg>'
+                     : '<svg class="moment" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="#E8A23A"/><g stroke="#E8A23A" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></g></svg>';
+  return '<div class="cadran" dir="ltr">' + icone + '<svg class="horloge" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="46" fill="#fff" stroke="#1C2430" stroke-width="4"/>' + traits
+    + aiguille(ah, 24, 6) + aiguille(am, 36, 4) + '<circle cx="50" cy="50" r="4" fill="#E8A23A"/></svg></div>';
+}
+const img = e => "journee/" + e.cle + ".webp";
+const photo = (e, avecHeure, petite) => '<div class="photo' + (petite ? " petite" : "") + '"><img alt="" src="' + img(e) + '">' + (avecHeure === false ? "" : horloge(e.h, e.m)) + '</div>';
+const VISAGE = p => (p === "Mark" ? "descripcion/" : "familia/") + p + "-visage.webp";
+
+// ---------- les sons : themes/voix.js (le fichier enregistre, sinon le telephone) ----------
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+let dire = texte => { try { Voix.dire(texte); } catch(e){} };
+
+// pour visuel/voix_themes.py : ce que la page dit avec un fichier enregistre -- les phrases de la decouverte, qui
+// sont aussi les phrases justes des questions sur une etape ; le reste passe par la voix du telephone
+function textesAVoix(){
+  const dec = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  return ETAPES.map(e => dec[e.cle].texte);
+}
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+// en persan et en arabe, chaque passage en lettres latines s'isole : sinon l'algorithme bidi en retourne les mots
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ][A-Za-zÀ-ÿñÑßäöüÄÖÜ0-9:.,()' ]*[A-Za-zÀ-ÿñÑßäöüÄÖÜ0-9)]/g, m => '<span dir="ltr">' + m + '</span>');
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3 de Jacques : « un mot appris compte partout ») : juger() l'envoie (« reponse »)
+let motQ = null, tradQ = null;
+const unique = a => Array.from(new Set(a));
+
+function juger(ok, bonneTexte, phrase){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
+  const tl = tradQ || (TR ? null : glose(motQ));
+  if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  // la phrase juste se dit (comme le mot cle de la famille) : l'etape enregistree, sinon la voix du telephone ;
+  // pas la suite entiere de « remettre dans l'ordre », trop longue
+  if (sorteCourante !== "ordre") dire(phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre, liste){
+  $("zone").innerHTML = '<p class="consigne">' + isoler(T(consigne)) + '</p>' + (image || "")
+    + '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div><div class="choix' + (centre ? " centre" : "") + (liste ? " liste" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => s.replace("___", trou());
+const remplir = (t, rep) => { const x = $("trou"); if (x) x.textContent = rep; };
+
+// ---------- les mots du theme (le tirage suit les mots, 3 nov. 2026) ----------
+// A la forme du CORPUS, cles de la progression commune : chaque verbe (par son infinitif : « levantarse », « sich
+// anziehen », « aufstehen »), les adverbes de la frequence et de l'ordre (siempre, primero / immer, zuerst), et les
+// moments de la journee (la manana / der Morgen). Un mot que le corpus n'a pas encore est « hors jeu » dans l'app.
+const ADV = {es: [["siempre", "f"], ["a veces", "f"], ["nunca", "f"], ["primero", "ordre"], ["después", "apres"], ["luego", "apres"], ["antes", "avant"]],
+             de: [["immer", "f"], ["manchmal", "f"], ["nie", "f"], ["zuerst", "ordre"], ["dann", "apres"], ["danach", "apres"]]};
+const MOMENTS = {es: [["la", "mañana", "manana"], ["la", "tarde", "tarde"], ["la", "noche", "noche"]], de: [["der", "Morgen", "morgen"], ["der", "Abend", "abend"]]};
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  MOTS = []; const vus = {};
+  ETAPES.forEach(e => {
+    // le mot que l'etape fait avancer : son verbe, ou un nom du corpus (« ins Bett gehen » -> das Bett)
+    const v = D.verbes[e.verbe][APPRENDRE], mot = v.mot;
+    if (!vus[mot]){ vus[mot] = v.genre ? {mot, genre: v.genre, verbes: []} : {mot, cat: "verbe", verbes: []}; MOTS.push(vus[mot]); }
+    if (!vus[mot].verbes.includes(e.verbe)) vus[mot].verbes.push(e.verbe);
+  });
+  ADV[APPRENDRE].forEach(([mot, role]) => MOTS.push({mot, cat: "adverbe", role}));
+  MOTS.push(...MOTS_MOMENTS());
+  return MOTS;
+}
+const MOTS_MOMENTS = () => MOMENTS[APPRENDRE].map(([genre, mot, moment]) => ({mot, genre, moment}));
+const motDuVerbe = vb => motsDuTheme().find(w => w.verbes && w.verbes.includes(vb));
+const motAdv = role => motsDuTheme().filter(w => w.cat === "adverbe" && w.role === role);
+// les etapes d'un verbe-mot ; sans mot, toutes
+const etapesDe = w => w ? ETAPES.filter(e => w.verbes && w.verbes.includes(e.verbe)) : ETAPES;
+const estVerbe = w => !w || !!w.verbes;
+// deux etapes qui se ressemblent a l'image (le lit, la table...) ne sont jamais leurres l'une de l'autre
+const groupe = vb => D.verbes[vb].groupe;
+// un verbe va-t-il a ce sujet ? (afeitarse : un homme ; les verbes a objet, « despierta a Mia », jamais en leurre)
+const vaA = (vb, s) => D.verbes[vb].leurre !== false && (!D.verbes[vb].masculin || ["Mark", "Jan"].includes(s));
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  // « ¿Qué hace Anna? » / « Was macht Anna? » : la photo et l'heure, quatre gestes au bon sujet
+  queHace(w){
+    if (!estVerbe(w)) return false;
+    const e = hasard(etapesDe(w)); motQ = w || motDuVerbe(e.verbe); tradQ = tradEtape(e);
+    const dire = vb => APPRENDRE === "de" ? DE.pred(vb, e.sujet) : cap(ES.pred(vb, n(e.sujet))) + ".";
+    const rep = dire(e.verbe);
+    const autres = melanger(unique(Object.keys(D.verbes).filter(vb => groupe(vb) !== groupe(e.verbe) && vaA(vb, e.sujet))
+                     .map(dire).filter(t => t !== rep))).slice(0, 3);
+    ecran("queHace", photo(e), L.queHace(e.sujet), true);
+    boutons($("choix"), melanger([rep, ...autres]), rep, ok => juger(ok, rep, L.etape(e)));
+    return true;
+  },
+  // « ¿A qué hora se levanta Anna? » / « Um wie viel Uhr steht Anna auf? » -- le piege allemand : halb acht = 7 h 30
+  aQueHora(w){
+    if (!estVerbe(w)) return false;
+    const e = hasard(etapesDe(w)); motQ = w || motDuVerbe(e.verbe); tradQ = tradEtape(e);
+    const h = e.h, m = e.m, t = (hh, mm) => L.reponseHeure(e.verbe, (hh + 24) % 24, (mm + 60) % 60);
+    const rep = t(h, m);
+    const voisins = [[h, m + 15], [h, m - 15], [h + 1, m], [h - 1, m], [h, m + 30], [h, m - 30]]
+      .map(([hh, mm]) => mm >= 60 ? [hh + 1, mm - 60] : mm < 0 ? [hh - 1, mm + 60] : [hh, mm])
+      .filter(([hh]) => periode(hh) === periode(h));   // jamais un leurre que le soleil, la lune ou « de la tarde » trahit
+    const autres = melanger(unique(voisins.map(([hh, mm]) => t(hh, mm)).filter(x => x !== rep))).slice(0, 3);
+    ecran("aQueHora", photo(e), L.aQueHora(e), true);
+    boutons($("choix"), melanger([rep, ...autres]), rep, ok => juger(ok, rep, L.etape(e)));
+    return true;
+  },
+  // « Anna se ducha a las siete. » vrai ou faux -- le faux change l'heure ou le geste (jamais un geste voisin)
+  vraifaux(w){
+    if (w && w.moment) return momentVraiFaux(w);
+    if (!estVerbe(w)) return false;
+    const e = hasard(etapesDe(w)); motQ = w || motDuVerbe(e.verbe); tradQ = tradEtape(e);
+    const juste = L.etape(e), vrai = Math.random() < 0.5;
+    let phrase = juste;
+    if (!vrai){
+      const autres = ETAPES.filter(x => x.verbe !== e.verbe && groupe(x.verbe) !== groupe(e.verbe) && vaA(x.verbe, e.sujet));
+      if (Math.random() < 0.5 || !autres.length){
+        const [hh, mm] = hasard([[e.h + 1, e.m], [e.h - 1, e.m], [e.h, (e.m + 30) % 60]]);
+        const f = {verbe: e.verbe, sujet: e.sujet, h: hh, m: mm}; phrase = L.etape(f);
+      } else { const x = hasard(autres); phrase = L.etape({verbe: x.verbe, sujet: e.sujet, h: e.h, m: e.m}); }
+      if (phrase === juste) phrase = L.etape({verbe: e.verbe, sujet: e.sujet, h: e.h + 2, m: e.m});
+    }
+    ecran("vraifaux", photo(e), phrase, true);
+    const rep = vrai ? L.vrai : L.faux;
+    boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
+    return true;
+  },
+  // REMETTRE LA JOURNEE DANS L'ORDRE : quatre etapes d'une journee, sans horloge -- c'est l'heure ECRITE qu'on lit
+  // (« a las siete menos cuarto » avant « a las siete »). Le mot vise : un verbe de l'une, ou primero / zuerst.
+  ordre(w){
+    // le mot vise : un verbe, primero / zuerst, ou un lien de la suite dite (despues / dann, danach)
+    if (w && !(w.verbes || w.role === "ordre" || (w.role === "apres" && L.liens.includes(cap(w.mot))))) return false;
+    const jours = Object.keys(D.jours).filter(j => !w || !w.verbes || etapesDu(j).some(e => w.verbes.includes(e.verbe)));
+    const j = hasard(jours), toutes = etapesDu(j);
+    let pris = melanger(toutes).slice(0, 4);
+    if (w && w.verbes && !pris.some(e => w.verbes.includes(e.verbe))) pris[0] = hasard(toutes.filter(e => w.verbes.includes(e.verbe)));
+    pris = unique(pris);
+    while (pris.length < 4){ const x = hasard(toutes); if (!pris.includes(x)) pris.push(x); }
+    const ordre = pris.slice().sort((a, b) => a.rang - b.rang);
+    motQ = w || (Math.random() < 0.3 ? motAdv("ordre")[0] : motDuVerbe(hasard(pris).verbe));
+    const suite = ordre.map((e, i) => APPRENDRE === "de" ? DE.v2(DE.liens[i], e.verbe, DE.sujet(e.sujet, false), n(e.sujet), e.h, e.m)
+                                                          : L.liens[i] + ", " + minus(ES.etape(e), e.sujet));
+    tradQ = tradSuite(ordre);
+    $("zone").innerHTML = '<p class="consigne">' + isoler(T("ordre")) + '</p><div class="enonce centre">' + cible(D.jours[j].titre[APPRENDRE]) + '</div><div class="ordre" id="ordre"></div><p class="retourMsg" id="msg"></p>';
+    const z = $("ordre"); let k = 0;
+    melanger(pris).forEach(e => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.rang = ordre.indexOf(e);
+      b.innerHTML = '<i></i><img alt="" src="' + img(e) + '"><span class="t" lang="' + APPRENDRE + '">' + L.etape(e) + '</span>';
+      b.addEventListener("click", () => {
+        if (repondu || b.classList.contains("pris")) return;
+        if (+b.dataset.rang === k){
+          b.classList.add("pris"); b.querySelector("i").textContent = ++k;
+          if (k === 4){ z.querySelectorAll("button").forEach(x => { x.classList.add("juste"); x.disabled = true; }); juger(true, "", suite.join(" ")); }   // la suite dite avec ses liens, meme quand c'est juste
+        } else {
+          b.classList.add("faux");
+          z.querySelectorAll("button").forEach(x => { x.disabled = true; x.querySelector("i").textContent = +x.dataset.rang + 1; x.classList.add("pris"); });
+          juger(false, suite.join(" "));
+        }
+      });
+      z.appendChild(b);
+    });
+    return true;
+  },
+  // « Anna se ducha. ¿Y después? » : l'etape qui suit ; les leurres viennent d'AVANT (rien d'autre n'est « apres ») ;
+  // et a l'envers, « ¿Y antes? ». En allemand : « Und dann? », « Und danach? » (« Dann zieht sie sich an. »)
+  suite(w){
+    if (w && !w.verbes && !["apres", "avant"].includes(w.role)) return false;
+    const avant = w && !w.verbes ? w.role === "avant" : APPRENDRE === "es" && Math.random() < 0.35;
+    // l'etape demandee (la reponse) et celle qu'on montre
+    // au moins deux leurres du bon cote : la reponse a deux etapes avant elle (apres), ou deux apres (avant)
+    const cand = (w && w.verbes ? etapesDe(w) : ETAPES).filter(e => avant ? etapesDu(e.jour).length - e.rang - 1 >= 2 : e.rang >= 2);
+    if (!cand.length) return false;
+    const r = hasard(cand), d = etapesDu(r.jour), montree = avant ? d[r.rang + 1] : d[r.rang - 1];
+    const leurres = melanger(avant ? d.slice(r.rang + 1) : d.slice(0, r.rang)).slice(0, 3);
+    // le lien de la question : celui du mot vise (danach, luego...), sinon l'un ou l'autre
+    const liensApres = APPRENDRE === "de" ? ["dann", "danach"] : ["después", "luego"];
+    const lien = avant ? "antes" : w && liensApres.includes(w.mot) ? w.mot : hasard(liensApres);
+    // un sujet qui n'est pas celui de l'etape montree se nomme (« Dann weckt Katrin Mia »), sinon son pronom
+    const dit = e => APPRENDRE === "de" ? DE.v2(cap(lien), e.verbe, e.sujet === montree.sujet ? D.sujets[e.sujet].pron : DE.sujet(e.sujet, false), n(e.sujet))
+                                         : cap(ES.phrase(e.verbe, ES.sujet(e.sujet, true), n(e.sujet)));
+    const rep = dit(r), opts = unique([rep, ...leurres.map(dit)]);
+    if (opts.length < 3) return false;
+    motQ = w || motsDuTheme().find(x => x.mot === lien);
+    tradQ = tradEtape(r);
+    const enonce = (APPRENDRE === "de" ? DE.phrase(montree.verbe, DE.sujet(montree.sujet, true), n(montree.sujet)) : ES.phrase(montree.verbe, ES.sujet(montree.sujet, true), n(montree.sujet)))
+                 + " " + (APPRENDRE === "de" ? "Und " + lien + "?" : "¿Y " + lien + "?");
+    ecran(avant ? "avant" : "apres", photo(montree, false), enonce, true, true);
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, L.etape(r)));
+    return true;
+  },
+  // « Yo ___ levanto a las siete menos cuarto. » me / te / se / nos -- avec yo, tu, Anna, nosotros, Ben y Mia
+  pronombre(w){
+    if (!estVerbe(w)) return false;
+    const cand = etapesDe(w).filter(e => D.verbes[e.verbe].es.pr);
+    if (!cand.length) return false;
+    const e = hasard(cand), q = personne(e), f = ES.formes(e.verbe, q.k);
+    motQ = w || motDuVerbe(e.verbe); tradQ = traduire(e.verbe, q.k, q.s, e.h, e.m);
+    const phrase = [q.S, "___", f.v, f.c, heureEs(e.h, e.m)].filter(Boolean).join(" ") + ".";
+    ecran("pronombre", q.s ? photo(e) : "", avecTrou(phrase));
+    boutons($("choix"), ["me", "te", "se", "nos"], f.pr, ok => { remplir(0, f.pr); juger(ok, f.pr, phrase.replace("___", f.pr)); });
+    return true;
+  },
+  // « Yo ___ a las once. » me acuesto / me acosto / acuesto / me acuestas -- la diphtongue, le pronom, la personne
+  forma(w){
+    if (!estVerbe(w)) return false;
+    const cand = etapesDe(w).filter(e => D.verbes[e.verbe].es.pr || D.verbes[e.verbe].es.piege);
+    if (!cand.length) return false;
+    const e = hasard(cand), q = personne(e), v = D.verbes[e.verbe].es, f = ES.formes(e.verbe, q.k);
+    const forme = (pr, x) => [pr, x].filter(Boolean).join(" ");
+    const rep = forme(f.pr, f.v);
+    const autres = [];
+    if (v.piege && v.piege[q.k] !== v.v[q.k]) autres.push(forme(f.pr, v.piege[q.k]));
+    if (v.pr) autres.push(v.v[q.k]);
+    melanger([0, 1, 2, 3, 4].filter(k => v.v[k] !== v.v[q.k])).forEach(k => autres.push(forme(f.pr, v.v[k])));
+    const opts = unique([rep, ...unique(autres).filter(x => x !== rep).slice(0, 3)]);
+    motQ = w || motDuVerbe(e.verbe); tradQ = traduire(e.verbe, q.k, q.s, e.h, e.m);
+    const phrase = [q.S, "___", f.c, heureEs(e.h, e.m)].filter(Boolean).join(" ") + ".";
+    ecran("forma", q.s ? photo(e) : "", avecTrou(phrase));
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(0, rep); juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
+  },
+  // « Ich ziehe ___ um Viertel nach sieben an. » mich / dich / sich / uns -- et le datif de « sich die Zaehne putzen »
+  reflexiv(w){
+    if (!estVerbe(w)) return false;
+    const cand = etapesDe(w).filter(e => D.verbes[e.verbe].de.r);
+    if (!cand.length) return false;
+    const e = hasard(cand), q = personne(e), f = DE.formes(e.verbe, q.k), dat = D.verbes[e.verbe].de.datif;
+    motQ = w || motDuVerbe(e.verbe); tradQ = traduire(e.verbe, q.k, q.s, e.h, e.m);
+    const phrase = [q.S, f.v, "___", f.o, DE.heure(e.verbe, e.h, e.m), f.c, f.p].filter(Boolean).join(" ") + ".";
+    const jeu = dat ? ["mir", "dir", "sich", "uns", "mich", "dich"] : ["mich", "dich", "sich", "uns"];
+    const opts = unique([f.r, ...melanger(jeu.filter(x => x !== f.r)).slice(0, 3)]);
+    ecran("reflexiv", q.s ? photo(e) : "", avecTrou(phrase));
+    boutons($("choix"), melanger(opts), f.r, ok => { remplir(0, f.r); juger(ok, f.r, phrase.replace("___", f.r)); });
+    return true;
+  },
+  // « Anna steht um halb sieben auf. » / « Anna aufsteht um halb sieben. » / « Anna steht auf um halb sieben. »
+  trennbar(w){
+    if (!estVerbe(w)) return false;
+    const cand = etapesDe(w).filter(e => D.verbes[e.verbe].de.p);
+    if (!cand.length) return false;
+    const e = hasard(cand), q = personne(e), f = DE.formes(e.verbe, q.k), H = DE.heure(e.verbe, e.h, e.m);
+    motQ = w || motDuVerbe(e.verbe); tradQ = traduire(e.verbe, q.k, q.s, e.h, e.m);
+    const rep = [q.S, f.v, f.r, f.o, H, f.c, f.p].filter(Boolean).join(" ") + ".";
+    const colle = [q.S, f.p + f.v, f.r, f.o, H, f.c].filter(Boolean).join(" ") + ".";
+    const tot = [q.S, f.v, f.r, f.p, f.o, H, f.c].filter(Boolean).join(" ") + ".";
+    ecran("trennbar", q.s ? photo(e) : "", "", true, true);
+    $("zone").querySelector(".enonce").remove();
+    boutons($("choix"), melanger(unique([rep, colle, tot])), rep, ok => juger(ok, rep));
+    return true;
+  },
+  // le verbe en DEUXIEME position : « Um halb sieben steht Anna auf. » / « Dann zieht sich Anna an. »
+  satzbau(w){
+    if (w && !w.verbes && !["ordre", "apres"].includes(w.role)) return false;
+    let cand = w && w.verbes ? etapesDe(w) : ETAPES;
+    if (w && w.role === "ordre") cand = ETAPES.filter(e => e.rang === 0);
+    if (w && w.role === "apres") cand = ETAPES.filter(e => e.rang > 0);
+    const e = hasard(cand);
+    const debut = w && w.role ? cap(w.mot) : e.rang === 0 && Math.random() < 0.3 ? "Zuerst" : e.rang > 0 && Math.random() < 0.4 ? hasard(["Dann", "Danach"]) : null;
+    const f = DE.formes(e.verbe, n(e.sujet)), S = DE.sujet(e.sujet, false), H = DE.heure(e.verbe, e.h, e.m);
+    const tete = debut || cap(H), corps = debut ? H : "";
+    const rep = [tete, f.v, f.r, S, f.o, corps, f.c, f.p].filter(Boolean).join(" ") + ".";
+    const v3 = [tete, S, f.v, f.r, f.o, corps, f.c, f.p].filter(Boolean).join(" ") + ".";
+    const fin = [tete, S, f.r, f.o, corps, f.c, (f.p || "") + f.v].filter(Boolean).join(" ") + ".";
+    const opts = unique([rep, v3, fin]);
+    motQ = w || (debut ? motsDuTheme().find(x => x.mot === debut.toLowerCase()) : motDuVerbe(e.verbe)) || motDuVerbe(e.verbe);
+    tradQ = tradEtape(e);
+    ecran("satzbau", photo(e), "", true, true);
+    $("zone").querySelector(".enonce").remove();
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep));
+    return true;
+  },
+  // « Mark ___ sale a correr. » siempre / a veces / nunca : la semaine le montre (lundi -> dimanche)
+  frecuencia(w){
+    if (w && w.role !== "f") return false;
+    const cles = Object.keys(D.adverbes), cle = w ? cles.find(c => D.adverbes[c][APPRENDRE] === w.mot) : null;
+    const fa = hasard(D.frequences.filter(x => !cle || x.f === cle));
+    const rep = D.adverbes[fa.f][APPRENDRE];
+    motQ = w || motsDuTheme().find(x => x.mot === rep);
+    tradQ = TR ? (TR === "de" ? fa.dei : fa[TR]) : null;
+    const modele = (LATAM && fa.es_latam) || fa[APPRENDRE];
+    const phrase = modele.replace("{A}", "___");
+    const qui = fa.qui === "BenMia" ? ["Ben", "Mia"] : [fa.qui];
+    const image = '<div class="visages">' + qui.map(p => '<img alt="" src="' + VISAGE(p) + '">').join("") + '</div>' + semaineHTML(coches(fa.f, fa));
+    ecran("frecuencia", image, avecTrou(phrase));
+    const opts = cles.map(c => D.adverbes[c][APPRENDRE]);
+    boutons($("choix"), opts, rep, ok => { remplir(0, rep); juger(ok, rep, modele.replace("{A}", rep)); });
+    return true;
+  },
+  // « Mark siempre sale a correr. » : laquelle des trois semaines ? (l'envers de « frecuencia »)
+  semaine(w){
+    if (w && w.role !== "f") return false;
+    const cles = Object.keys(D.adverbes), cle = w ? cles.find(c => D.adverbes[c][APPRENDRE] === w.mot) : null;
+    const fa = hasard(D.frequences.filter(x => !cle || x.f === cle)), mot = D.adverbes[fa.f][APPRENDRE];
+    motQ = w || motsDuTheme().find(x => x.mot === mot);
+    tradQ = TR ? (TR === "de" ? fa.dei : fa[TR]) : null;
+    const phrase = ((LATAM && fa.es_latam) || fa[APPRENDRE]).replace("{A}", mot);
+    const qui = fa.qui === "BenMia" ? ["Ben", "Mia"] : [fa.qui];
+    ecran("frecuencia", '<div class="visages">' + qui.map(p => '<img alt="" src="' + VISAGE(p) + '">').join("") + '</div>', phrase, true, true);
+    const ch = $("choix"); let bon;
+    melanger(cles).forEach(c => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.f = c;
+      b.innerHTML = semaineHTML(coches(c, c === fa.f ? fa : null));
+      if (c === fa.f) bon = b;
+      b.addEventListener("click", () => {
+        ch.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+        if (b !== bon) b.classList.add("faux");
+        juger(c === fa.f, mot, phrase);
+      });
+      ch.appendChild(b);
+    });
+    return true;
+  },
+  // « Anna se ducha antes de vestirse. » vrai ou faux -- les deux photos et leurs horloges (espagnol)
+  avantApres(w){
+    if (w && !w.verbes && !["después", "antes"].includes(w.mot)) return false;
+    // deux etapes du meme jour et du meme sujet : l'infinitif (« antes de vestirse ») a le sujet du verbe
+    const paires = [];
+    ETAPES.forEach(a => ETAPES.forEach(b => { if (a.jour === b.jour && a.sujet === b.sujet && a.rang !== b.rang && a.verbe !== b.verbe
+      && (!w || !w.verbes || w.verbes.includes(a.verbe) || w.verbes.includes(b.verbe))) paires.push([a, b]); }));
+    if (!paires.length) return false;
+    const [a, b] = hasard(paires), lien = w && !w.verbes ? w.mot : hasard(["antes", "después"]);
+    const vrai = lien === "antes" ? a.rang < b.rang : a.rang > b.rang;
+    const inf = vb => { const v = D.verbes[vb].es, c = (LATAM && v.latam && v.latam.c) || v.c; return vb === "correr" ? "salir a correr" : [v.mot, c].filter(Boolean).join(" "); };
+    const phrase = cap(ES.phrase(a.verbe, ES.sujet(a.sujet, true), n(a.sujet))).replace(/\.$/, " " + lien + " de " + inf(b.verbe) + ".");
+    const juste = vrai ? phrase : phrase.replace(" " + lien + " de ", " " + (lien === "antes" ? "después" : "antes") + " de ");
+    motQ = w || (Math.random() < 0.5 ? motsDuTheme().find(x => x.mot === lien) : motDuVerbe(a.verbe));
+    const [p1, p2] = a.rang < b.rang ? [a, b] : [b, a];
+    tradQ = TR ? tradEtape(p1) + " " + tradEtape(p2) : null;
+    ecran("vraifaux", '<div class="duo">' + photo(p1, true, true) + photo(p2, true, true) + '</div>', phrase, true);
+    const rep = vrai ? ES.vrai : ES.faux;
+    boutons($("choix"), [ES.vrai, ES.faux], rep, ok => juger(ok, rep, juste));
+    return true;
+  },
+  // « Anna se ducha ___. » por la manana / por la tarde / por la noche -- l'horloge et son soleil ou sa lune
+  momento(w){
+    if (w && !w.moment) return false;
+    const cand = ETAPES.filter(e => quand(e) && (!w || quand(e) === w.moment));
+    if (!cand.length) return false;
+    const e = hasard(cand), k = quand(e), rep = L.moments[k];
+    motQ = w || MOTS_MOMENTS().find(x => x.moment === k);
+    tradQ = tradEtape(e);
+    const S = APPRENDRE === "de" ? DE.sujet(e.sujet, true) : ES.sujet(e.sujet, true);
+    let phrase;
+    if (APPRENDRE === "de"){ const f = DE.formes(e.verbe, n(e.sujet)); phrase = [S, f.v, f.r, f.o, "___", f.c, f.p].filter(Boolean).join(" ") + "."; }
+    else phrase = [S, ES.pred(e.verbe, n(e.sujet)), "___"].join(" ") + ".";
+    ecran(APPRENDRE === "de" ? "momentDe" : "momentEs", photo(e), avecTrou(phrase));
+    boutons($("choix"), Object.values(L.moments), rep, ok => { remplir(0, rep); juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
+  }
+};
+// le moment que trahissent l'icone du cadran et la fin de l'heure ecrite (« de la tarde », « abends »)
+const periode = h => (h >= 18 || h < 6 ? "lune" : "soleil") + (APPRENDRE === "es" ? (h < 12 ? 0 : h < 20 ? 1 : 2) : (h < 18 ? 0 : 1));
+// la semaine d'une frequence : tout coche (siempre), rien (nunca), les jours du fait (a veces) ; pour « laquelle
+// des trois semaines ? », un « a veces » quelconque si le fait n'en est pas un
+const coches = (f, fa) => f === "siempre" ? [1, 1, 1, 1, 1, 1, 1] : f === "nunca" ? [0, 0, 0, 0, 0, 0, 0] : (fa && fa.jours) || [1, 0, 0, 1, 0, 1, 0];
+const semaineHTML = c => '<div class="semaine">' + L.jours.map((j, i) => '<div>' + j + '<b class="' + (c[i] ? "oui" : "non") + '">' + (c[i] ? "✓" : "·") + '</b></div>').join("") + '</div>';
+// le moment de la journee d'une etape, quand il ne fait aucun doute (19 h 30 n'est ni franchement « tarde » ni « noche »)
+function quand(e){
+  const t = e.h * 60 + e.m;
+  if (APPRENDRE === "es") return t < 12 * 60 ? "manana" : t >= 13 * 60 && t <= 18 * 60 + 30 ? "tarde" : t >= 21 * 60 ? "noche" : null;
+  if (/Abend/.test(D.verbes[e.verbe].de.c || "")) return null;          // pas « am Abend zu Abend »
+  return t <= 9 * 60 ? "morgen" : t >= 18 * 60 && t <= 22 * 60 + 30 ? "abend" : null;
+}
+// « Anna se ducha por la mañana. » vrai ou faux : la photo, l'horloge ; le faux change le moment
+function momentVraiFaux(w){
+  const cand = ETAPES.filter(e => quand(e) === w.moment);
+  if (!cand.length) return false;
+  const e = hasard(cand), vrai = Math.random() < 0.5, autre = hasard(Object.keys(L.moments).filter(k => k !== w.moment));
+  const dit = k => APPRENDRE === "de" ? (f => [DE.sujet(e.sujet, true), f.v, f.r, f.o, L.moments[k], f.c, f.p].filter(Boolean).join(" ") + ".")(DE.formes(e.verbe, n(e.sujet)))
+                                       : [ES.sujet(e.sujet, true), ES.pred(e.verbe, n(e.sujet)), L.moments[k]].join(" ") + ".";
+  motQ = w; tradQ = tradEtape(e);
+  const juste = dit(w.moment), phrase = vrai ? juste : dit(autre);
+  ecran("vraifaux", photo(e), phrase, true);
+  const rep = vrai ? L.vrai : L.faux;
+  boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
+  return true;
+}
+// la personne d'un exercice de conjugaison : yo / tu / nosotros (sans image), ou le sujet de l'etape (avec son image)
+function personne(e){
+  const k = hasard([0, 1, 3, n(e.sujet), n(e.sujet)]);
+  if (k === n(e.sujet)) return {k, s: e.sujet, S: APPRENDRE === "de" ? DE.sujet(e.sujet, true) : ES.sujet(e.sujet, true)};
+  return {k, s: null, S: D.personnes[APPRENDRE][k]};
+}
+// les sortes de la langue apprise
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? !["reflexiv", "trennbar", "satzbau"].includes(x) : !["pronombre", "forma", "avantApres"].includes(x));
+// pour tests/themes_illustres.py : remettre dans l'ordre se resout en quatre gestes, pas en un
+function testerOrdre(){
+  const z = $("ordre"); if (!z) return "";
+  const bs = Array.from(z.querySelectorAll("button")).sort((a, b) => a.dataset.rang - b.dataset.rang);
+  bs.forEach(b => b.click());
+  return bs.map(b => b.querySelector(".t").textContent).join(" | ");
+}
+
+// ---------- la decouverte : les trois journees, on touche un moment, on le voit et on l'entend ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone"), dec = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  z.innerHTML = '<div class="onglets" role="tablist">' + Object.keys(D.jours).map(j => '<button type="button" role="tab" data-j="' + j + '" lang="' + APPRENDRE + '" dir="ltr">' + D.jours[j].titre[APPRENDRE] + '</button>').join("") + '</div>'
+              + '<p class="consigne">' + isoler(T("intro")) + '</p><div class="fiche" id="fiche"></div><div class="frise" id="frise"></div>'
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : "regleEs")) + '</p>';
+  const montrer = e => {
+    const ph = dec[e.cle], t = tradEtape(e) || (TR ? null : glose(motDuVerbe(e.verbe)));
+    $("frise").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.cle === e.cle));
+    $("fiche").innerHTML = photo(e) + '<div class="ligne"><div><div class="dit">' + cible(ph.texte) + '</div>' + (t ? traduction(t) : "") + '</div>'
+                         + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>';
+    $("ecoute").addEventListener("click", () => dire(ph.texte));
+    dire(ph.texte);
+  };
+  const onglet = j => {
+    z.querySelectorAll(".onglets button").forEach(b => b.setAttribute("aria-selected", b.dataset.j === j));
+    const fr = $("frise"); fr.innerHTML = "";
+    etapesDu(j).forEach(e => {
+      const b = document.createElement("button"); b.type = "button"; b.dataset.cle = e.cle;
+      b.setAttribute("aria-label", dec[e.cle].texte);
+      b.innerHTML = photo(e, true, true);
+      b.addEventListener("click", () => montrer(e));
+      fr.appendChild(b);
+    });
+    // la fiche s'ouvre sur la premiere etape, sans parler : le son ne vient que d'un geste
+    const garde = dire; dire = () => {}; montrer(etapesDu(j)[0]); dire = garde;
+  };
+  z.querySelectorAll(".onglets button").forEach(b => b.addEventListener("click", () => onglet(b.dataset.j)));
+  onglet(Object.keys(D.jours)[0]);
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; try { Voix.arreter(); } catch(e){} demarrer(); };
+}
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
+// les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
+// jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
+// Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  // sans enonce (le verbe separable, la place du verbe, l'ordre), ce sont les phrases a choisir qui font la question
+  const sans = en ? "" : Array.from(z.querySelectorAll("#choix button, .ordre button .t")).map(b => b.textContent).sort().join(",");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + sans + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let k = 0; k < 25; k++){
+        motQ = null; tradQ = null; sorteCourante = so;
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let k = 0; k < 25; k++){           // la meme sorte, avec une question fraiche
+      motQ = null; tradQ = null; sorteCourante = derniereSorte;
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      motQ = null; tradQ = null; sorteCourante = so;
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0);
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div>' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("journee/journee.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  ETAPES = Object.keys(d.jours).flatMap(j => d.jours[j].etapes.map(([verbe, sujet, h, m], rang) => ({cle: j + "-" + (rang + 1), jour: j, rang, verbe, sujet, h, m})));
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>
