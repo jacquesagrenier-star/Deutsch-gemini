@@ -1,0 +1,136 @@
+==============================================================
+DTZ -- L'ORAL EN REPETITION (Mark t'aide a preparer le DTZ)
+Anna joue l'examinatrice, Mark l'autre candidat ; l'eleve est la camera
+3 nov. 2026 -- decision de Jacques : « B : video » (DECISIONS.md)
+==============================================================
+
+Repliques : scenes/dtz-oral.json, FABRIQUEE depuis visuel/prototype/dtz-oral.html
+            (video/episode-dtz-oral/construire_scene.py). Voix : audio/scenes/dtz-oral/.
+Clips     : video/omnihuman.py --scene dtz-oral --modele kling (paniers dans _a-televerser/,
+            prompts dans _essai-avatar/prompts/, fabriques par preparer_clips.py).
+Budget approuve : images 1 $, voix 5 000 credits, Kling 13 $.
+
+POURQUOI CE N'EST PAS UNE SCENE DE LA SERIE. Mark parle allemand depuis l'enfance (personnages.json) :
+il ne passe pas le DTZ. C'est une repetition (Jacques, 3 nov. : « Oui, une repetition »). Anna et Mark
+ne sont JAMAIS sur la meme image : chacun son portrait, dans la meme salle.
+
+--------------------------------------------------------------
+LA GEOGRAPHIE -- ECRITE AVANT TOUT, ET CHAQUE IMAGE LA SERT
+--------------------------------------------------------------
+   UNE SALLE DE SEMINAIRE DE LA VOLKSHOCHSCHULE, petite, l'apres-midi. Ce n'est PAS le kurs-raum de
+   l'episode 05 (deux rangees de tables, tableau blanc) : une seule table de bois clair, quatre chaises.
+
+   LA CAMERA EST L'ELEVE, assis du cote des candidats.
+   - Devant lui, de l'autre cote de la table : la chaise de l'examinatrice (Anna, plan 82).
+     Derriere elle, un mur blanc casse ; la FENETRE est a DROITE de l'image, la lumiere du jour vient
+     de la DROITE ; a GAUCHE, le mur nu. Le dessus de table traverse le bas de l'image.
+   - A sa GAUCHE, du meme cote de la table : Mark (plan 83). Quand la camera tourne vers lui, on voit
+     derriere Mark le mur de gauche de la salle (blanc casse) et une porte de bois clair fermee ; la
+     fenetre est alors DERRIERE la camera, a droite : la lumiere vient de la DROITE de l'image, comme
+     sur Anna.
+   - Rien d'ecrit nulle part : ni affiche, ni horloge, ni panneau. Les feuilles de l'examen sont dans
+     l'app, pas sur la table.
+
+   TENUES (dites en entier dans le texte) :
+   - Anna : un gilet de laine uni gris-bleu, ouvert, sur un chemisier blanc uni, col rond. Cheveux blond
+     fonce attaches. (Garde-robe « administration » de sa fiche.)
+   - Mark : un pull ras du cou uni vert fonce en maille fine, sur un t-shirt blanc dont le col depasse a
+     peine. (Garde-robe « quotidien ».)
+
+--------------------------------------------------------------
+
+PLAN 81   La salle, vide -- LE DECOR MAITRE (ne se monte pas)
+INTENTION
+   A quoi sert ce plan : tenir la salle pour les deux portraits. Vue de la chaise de l'eleve.
+   Ce qui doit etre lisible : la table de bois clair au premier plan, la chaise vide de l'examinatrice
+   en face, le mur blanc casse, la fenetre a DROITE et sa lumiere.
+   Ce qui a deja rate : affiche-qui-ecrit, horloge-a-l-heure -- on ne demande aucun objet a texte.
+
+PROMPT D'IMAGE (Framing)
+A real photograph, vertical frame, taken from a chair at one side of a single light wooden table in a
+small, quiet seminar room of an adult education centre in Berlin, on a bright afternoon, empty of
+people.
+
+The light wooden table top runs across the bottom of the picture, bare and clean. On the far side of
+the table, facing the camera, stands one empty grey upholstered chair with a light wooden frame. Behind
+it, an off-white wall. On the right of the picture, a tall window with a white frame lets in soft
+daylight from the right, which falls across the table top and the chair; through the glass, the pale
+leaves of a tree. On the left, the off-white wall runs on, bare. The floor is pale grey linoleum.
+
+The textures of real wood, fabric, painted plaster and glass, as a visitor would take it with a good
+phone camera.
+
+Visage neuf : non
+Position neuve : non
+Image a nommer : salle-dtz
+
+
+PLAN 82   Anna, l'examinatrice (image maitresse de ses 13 clips)
+INTENTION
+   A quoi sert ce plan : le visage d'Anna pour l'avatar, de FACE, qui s'adresse a l'eleve (la camera).
+   Ce qui doit etre lisible : C'EST ELLE (le visage de sa fiche), assise de l'autre cote de la table de
+   la salle, en gilet gris-bleu et chemisier blanc, les avant-bras poses sur la table.
+   Ce qui a deja rate : personne-sans-reference (elle entre par ses portraits) ; pose-pour-la-camera --
+   ici le regard vers l'objectif EST le sujet (elle parle a l'eleve), mais rien n'est tendu vers nous ;
+   objet-qui-se-materialise -- les mains sont dites, et ce qu'elles tiennent : rien ; repere-hors-champ.
+
+PROMPT D'IMAGE (Framing)
+The woman of the first and second reference pictures, with exactly her face, her grey-blue eyes, her
+freckles and her dark blonde hair pulled back, sits on the grey chair on the far side of the light
+wooden table of the seminar room of the third reference picture, facing the camera across the table,
+in the soft daylight from the window on the right. Use the first two pictures for her face and hair
+only. She wears a plain grey-blue wool cardigan, open, over a plain white round-necked blouse.
+
+She is seen from the waist up, in the middle of a vertical frame. The table top crosses the bottom of
+the picture just below her forearms, which rest on it; her hands lie loosely one over the other on the
+bare wood, empty. The top of her head sits a hand's width under the top edge, so that her face is one
+of the largest things in the picture. She looks straight into the lens with a calm, friendly, attentive
+expression, a slight closed-lip smile, as an examiner who is about to begin. Behind her, the off-white
+wall, and on the right the window with its white frame and the pale leaves outside.
+
+The textures of real wool, cotton, wood, skin and painted plaster, as a visitor would take it with a
+good phone camera.
+
+Reference : personnages/anna-20260908-0439.png (LE VISAGE ET LES CHEVEUX SEULEMENT)
+            personnages/Anna-troisquarts.png (LE VISAGE ET LES CHEVEUX SEULEMENT)
+            video/episode-dtz-oral/01-images/salle-dtz.png (POUR LE LIEU)
+Visage neuf : non
+Position neuve : non
+Image a nommer : anna-dtz
+
+
+PLAN 83   Mark, l'autre candidat (image maitresse de ses 10 clips)
+INTENTION
+   A quoi sert ce plan : le visage de Mark pour l'avatar, assis a COTE de l'eleve, tourne vers lui (la
+   camera), pour la planification.
+   Ce qui doit etre lisible : C'EST LUI (sa fiche), assis du meme cote de la table, le buste tourne vers
+   la camera, en pull vert fonce ; derriere lui le mur de gauche et la porte de bois fermee ; la lumiere
+   vient de la DROITE de l'image.
+   Ce qui a deja rate : personne-sans-reference ; tete-calee-sur-le-fond ; une reference de MATIERE
+   n'est pas une reference de DISPOSITION (la salle est donnee pour sa matiere, pas pour son cadre).
+
+PROMPT D'IMAGE (Framing)
+The man of the first and second reference pictures, with exactly his face, his warm brown eyes and his
+thick dark brown wavy hair, sits at a light wooden table in the seminar room of the third reference
+picture. Use the first two pictures for his face and hair only, and the third for the materials of the
+room only: the same light wood, the same off-white walls, the same grey chairs. He wears a plain dark
+green fine-knit crew-neck sweater over a plain white T-shirt whose collar barely shows.
+
+He sits on the same side of the table as the camera, a little to its left, his chest and his face
+turned towards the camera, as if towards the person sitting next to him. He is seen from the waist up,
+in the middle of a vertical frame; the edge of the table top runs along the bottom of the picture and
+his forearms rest on it, his hands loosely joined on the bare wood, empty. The top of his head sits a
+hand's width under the top edge, so that his face is one of the largest things in the picture. He looks
+into the lens with a warm, open smile, as a fellow candidate who is glad to plan something together.
+Behind him, the off-white wall and a closed light wooden door. The soft daylight comes from the right of
+the picture.
+
+The textures of real wool, cotton, wood, skin and painted plaster, as a visitor would take it with a
+good phone camera.
+
+Reference : personnages/Mark.png (LE VISAGE ET LES CHEVEUX SEULEMENT)
+            personnages/Mark-troisquarts.png (LE VISAGE ET LES CHEVEUX SEULEMENT)
+            video/episode-dtz-oral/01-images/salle-dtz.png (POUR LA MATIERE SEULEMENT)
+Visage neuf : non
+Position neuve : non
+Image a nommer : mark-dtz

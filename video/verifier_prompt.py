@@ -128,6 +128,18 @@ REGLES = [
      u"Un plan de quatre secondes montre UN etat, et il le tient jusqu'a la "
      u"derniere image. Ce qui est tendu reste tendu."),
 
+    ("geste-vers-le-bord", "faute",
+     r"(?i)(point(s|ing)?|reach(es|ing)?|gestur(es?|ing))\s+(out\s+)?(towards|to)\s+the\s+(left|right)\s+edge",
+     u"Une main qui montre un BORD du cadre : le modele pose une main fantome sur ce bord",
+     u"3 nov. 2026, DTZ oral plan 01 (Kling, 0,69 $) : << palm open and turned up, "
+     u"pointing towards the left edge of the picture >>. Des la 3e image, une main seule "
+     u"est apparue AU bord gauche, tenue jusqu'a la fin, pendant que les deux mains "
+     u"d'Anna restaient sur la table. Meme mecanique qu'<< interlocuteur-fantome >> : un "
+     u"bord nomme comme but devient un lieu ou poser quelque chose.",
+     u"Situer le geste DEVANT le personnage, jamais vers un bord : << her hand opens, "
+     u"palm up, a few centimetres above the table in front of her >>. Le sens du geste "
+     u"(inviter l'autre) se lit dans la voix et le regard, pas dans la direction de la main."),
+
     ("trop-de-temps", "doute",
      None,   # compte les marqueurs, voir plus bas
      u"Plus de trois temps dans un plan de quatre secondes",
