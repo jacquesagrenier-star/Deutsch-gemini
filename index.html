@@ -9719,6 +9719,14 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div><strong data-i18n="met_tuile">Les métiers</strong></div>
         </div>
 
+        <!-- Les transports (3 nov. 2026, vague 2) : se deplacer -- mit dem Bus (mit + datif), zu Fuss ; en autobus, a pie ;
+             einsteigen / aussteigen / umsteigen sur un plan de metro, subir al / bajar del ; le tableau des departs et
+             l'heure en mots ; le billet (einfach oder hin und zurueck ?) et son prix. visuel/prototype/transportes.html. es et de. -->
+        <div class="orb hidden" data-orbid="transportes" id="tuileTransportes" onclick="ouvrirThemeIllustre('transportes')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="2.5"/><path d="M5 11h14M8 20l1.5-3M16 20l-1.5-3"/><path d="M8.5 14h.01M15.5 14h.01"/></svg></div>
+            <div><strong data-i18n="trans_tuile">Les transports</strong></div>
+        </div>
+
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
         <h2 class="orb-section orb-de" data-section="phrase">
@@ -14458,6 +14466,7 @@ const I18N = {
         man_tuile: "Manger et goûter",
         met_tuile: "Les métiers",
         man_court: "Manger",
+        trans_tuile: "Les transports",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -15990,6 +15999,7 @@ const I18N = {
         man_tuile: "Food and taste",
         met_tuile: "Jobs",
         man_court: "Food",
+        trans_tuile: "Transport",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -17524,6 +17534,7 @@ const I18N = {
         man_tuile: "Yemek ve tat",
         met_tuile: "Meslekler",
         man_court: "Yemek",
+        trans_tuile: "Ulaşım",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -19470,6 +19481,7 @@ const I18N = {
         man_tuile: "Їжа і смак",
         met_tuile: "Професії",
         man_court: "Їжа",
+        trans_tuile: "Транспорт",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -21730,6 +21742,7 @@ const I18N = {
         man_tuile: "خوردن و چشیدن",
         met_tuile: "شغل‌ها",
         man_court: "خوردن",
+        trans_tuile: "وسایل نقلیه",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -23433,6 +23446,7 @@ const I18N = {
         man_tuile: "الأكل والتذوق",
         met_tuile: "المهن",
         man_court: "الأكل",
+        trans_tuile: "وسائل النقل",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23816,6 +23830,7 @@ const I18N = {
         man_tuile: "Comer e provar",
         met_tuile: "As profissões",
         man_court: "Comer",
+        trans_tuile: "Os transportes",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -25409,6 +25424,7 @@ const I18N = {
         man_tuile: "Jedzenie i smak",
         met_tuile: "Zawody",
         man_court: "Jedzenie",
+        trans_tuile: "Transport",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -27002,6 +27018,7 @@ const I18N = {
         man_tuile: "Еда и вкус",
         met_tuile: "Профессии",
         man_court: "Еда",
+        trans_tuile: "Транспорт",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -28597,6 +28614,7 @@ const I18N = {
         man_tuile: "Essen und Geschmack",
         met_tuile: "Berufe",
         man_court: "Essen",
+        trans_tuile: "Verkehrsmittel",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -30227,6 +30245,7 @@ const I18N = {
         man_tuile: "Comer y probar",
         met_tuile: "Las profesiones",
         man_court: "Comer",
+        trans_tuile: "Los transportes",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -47121,7 +47140,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           cuerpo: {page: "cuerpo.html", titre: "cue_tuile", court: "cue_court", tuile: "tuileCuerpo"},
                           journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee"},
                           manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"},
-                          metiers: {page: "metiers.html", titre: "met_tuile", tuile: "tuileMetiers"}};
+                          metiers: {page: "metiers.html", titre: "met_tuile", tuile: "tuileMetiers"},
+                          transportes: {page: "transportes.html", titre: "trans_tuile", tuile: "tuileTransportes"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);

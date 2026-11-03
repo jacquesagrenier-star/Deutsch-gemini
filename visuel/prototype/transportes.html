@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Les transports</title>
+<!--
+  « LES TRANSPORTS » (theme illustre, 3 nov. 2026, vague 2) : se deplacer, en espagnol et en allemand. Des personnes de
+  l'histoire (Mark ; Anna, sa soeur Lena, son cousin Felix) dans les transports de Berlin, et quatre gestes :
+    - comment on y va : « mit dem Bus » -- mit + DATIF, le point cle (der Bus -> mit dem Bus, die U-Bahn -> mit der
+      U-Bahn), « zu Fuss » ; en espagnol « en autobus » sans article, mais « a pie » ;
+    - monter, descendre, changer : einsteigen in + accusatif, aussteigen aus + datif, le verbe separable ; umsteigen sur
+      un plan de metro ; subir al / bajar del, cambiar de linea ;
+    - l'heure du depart : un tableau des departs (Wann? Von welchem Gleis? Verspaetung), l'heure dite en mots (halb neun
+      = 8 h 30 ; las nueve menos cuarto) ;
+    - acheter un billet : einfach oder hin und zurueck ? de ida o de ida y vuelta ? et le prix en toutes lettres.
+  Ce que font deja les scenes (U-Bahn, Zug, Kreuzung, Flughafen : nommer leurs objets, « Wo? ») ne se refait pas ici.
+  Le tableau, le plan et les billets sont DESSINES depuis la donnee ; toute la donnee vient de
+  visuel/transportes/transportes.py -> transportes/transportes.json : aucune phrase n'est ecrite ici.
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne » a
+  chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin. Parametres :
+  apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte), variante=latam (carro, boleto ;
+  la voix), r=<AUDIO_REVISION>. Le tirage suit les mots (themes/tirage.js).
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --dat:#A86A0E;--akk:#1E7F86;--verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;
+  --panneau:#16324F;--panneau-l:#21466C;--panneau-t:#FFFFFF;--panneau-j:#FFD35C;--billet:#FFFDF5;--billet-b:#D9C9A3;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --dat:#F0B45A;--akk:#5FD0D6;--verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A;
+  --panneau:#0B1B2B;--panneau-l:#163049;--billet:#2A3A48;--billet-b:#5B6B78}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:18px}
+.enonce .situation{display:block;font-weight:700;font-size:16px;margin-bottom:4px}
+.trou{display:inline-block;min-width:56px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+.cas-dat{color:var(--dat);font-weight:900} .cas-akk{color:var(--akk);font-weight:900}
+/* la photo : 4:3 ; la gauche reste a gauche en arabe et en persan */
+.cadre{position:relative;width:100%;max-width:560px;margin:0 auto;direction:ltr;border-radius:16px;overflow:hidden;background:var(--carte);aspect-ratio:4/3}
+.cadre img{display:block;width:100%;height:100%;object-fit:cover}
+/* des images a toucher (« touche la bonne image », l'ecoute) */
+.rangee{display:grid;grid-template-columns:1fr 1fr;gap:8px;direction:ltr}
+.rangee.trois{grid-template-columns:1fr 1fr 1fr}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block;position:relative;aspect-ratio:4/3}
+.rangee button img{display:block;width:100%;height:100%;object-fit:cover}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:48px;height:48px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ecoute svg{width:24px;height:24px}
+.ecoute.grand{width:64px;height:64px;margin:0 auto} .ecoute.grand svg{width:32px;height:32px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+.trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
+.retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
+.trad.faux{color:var(--rouge);font-style:italic}
+/* LE TABLEAU DES DEPARTS (dessine : lisible a 375 px) */
+.tableau{direction:ltr;background:var(--panneau);color:var(--panneau-t);border-radius:14px;padding:10px 10px 8px;font-variant-numeric:tabular-nums}
+.tableau .tete{font-weight:900;font-size:15px;letter-spacing:.04em;margin:0 0 6px 2px;display:flex;justify-content:space-between}
+.tableau table{width:100%;border-collapse:collapse;font-size:15px}
+.tableau th{font-size:11px;font-weight:800;opacity:.75;text-align:left;padding:2px 4px;text-transform:uppercase;letter-spacing:.05em}
+.tableau td{padding:6px 4px;border-top:1px solid var(--panneau-l);font-weight:800}
+.tableau td.voie{text-align:center} .tableau th.voie{text-align:center}
+.tableau td.retard{color:var(--panneau-j);font-size:13px;white-space:nowrap}
+.tableau tr.vise td{background:var(--panneau-l)}
+.tableau tr[data-i]{cursor:pointer}
+/* LE PLAN DU METRO */
+.plan{direction:ltr;background:#FFFFFF;border-radius:14px;padding:6px}
+html.nuit .plan{background:#F4F6F8}
+.plan svg{display:block;width:100%;height:auto}
+.legende{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:4px}
+.legende span{color:#fff;font:900 13px var(--police);border-radius:6px;padding:2px 8px}
+/* LE BILLET */
+.billet{direction:ltr;background:var(--billet);border:2px dashed var(--billet-b);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;max-width:360px;margin:0 auto;width:100%}
+.billet .trajet{font-weight:900;font-size:18px}
+.billet .type{font-weight:800;color:var(--gris);min-height:1.3em}
+.billet .prix{font-weight:900;font-size:22px;text-align:right;color:var(--ambre-f)}
+/* la decouverte : trois onglets, des puces a toucher */
+.onglets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;background:var(--carte);border-radius:999px;padding:4px}
+.onglets button{border:0;border-radius:999px;background:none;color:var(--gris);font:800 13px var(--police);padding:9px 4px;cursor:pointer;line-height:1.15}
+.onglets button.actif{background:var(--verre);color:var(--encre);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.dit{display:flex;align-items:center;gap:10px;background:var(--carte);border-radius:14px;padding:10px 12px}
+.dit .texte{flex:1;font-weight:800;font-size:17px;line-height:1.4}
+.puces{display:flex;flex-wrap:wrap;gap:7px;direction:ltr}
+.puces button{border:2px solid var(--bord);background:var(--carte);color:var(--encre);border-radius:12px;padding:7px 11px;font:700 14px var(--police);cursor:pointer}
+.puces button.choisi{border-color:var(--ambre);background:var(--verre)}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.5;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.regle b{color:var(--encre)}
+.regle .exemples{display:block;margin-top:6px;color:var(--encre);font-weight:700;text-align:left}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite{z-index:5000}
+.suite[hidden]{display:none}
+/* la fin de partie : « Encore des questions » et « Terminer », fixes en bas comme .suite (regle des scenes, 3 nov.) */
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));
+  display:flex;gap:10px;z-index:5000}
+.bas[hidden]{display:none}
+.bas button{flex:1;height:54px;border-radius:27px;font:800 16px var(--police);cursor:pointer;padding:0 10px}
+.bas .principal{border:0;color:#fff;background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28)}
+.bas .second{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<div class="bas" id="bas" hidden></div>
+<script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=1"></script>
+<script src="themes/zoom.js?v=3"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// agrandir (themes/zoom.js) : un toucher sur la photo, le plan ou le tableau de la question ; la loupe sur les images a choisir
+Zoom.init({direct: ".cadre img, .plan svg", loupe: ".rangee button", langue: LANGUE});
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? 6 : 20;
+const DE_APP = APPRENDRE === "de";
+// LA VARIANTE : en Amerique latine, « el carro » et « el boleto » (espanol/datos/variantes.json). La donnee garde la
+// forme du corpus (el coche, el billete : la cle de la progression), l'ecran et la voix disent celle de la variante.
+const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
+const V = t => LATAM && typeof t === "string" ? t.replace(/\bcoche\b/g, "carro").replace(/\bbilletes\b/g, "boletos").replace(/\bbillete\b/g, "boleto") : t;
+
+const TEXTES = {
+  titre:     {fr:"Les transports", en:"Transport", tr:"Ulaşım", uk:"Транспорт", fa:"وسایل نقلیه", ar:"وسائل النقل", pt:"Os transportes", pl:"Transport", ru:"Транспорт", de:"Verkehrsmittel"},
+  intro:     {fr:"Touche une puce : tu vois l'image, tu lis la phrase et tu l'entends.", en:"Tap a button: you see the picture, read the sentence and hear it.", tr:"Bir düğmeye dokun: resmi görür, cümleyi okur ve duyarsın.", uk:"Торкнися кнопки: побачиш зображення, прочитаєш речення й почуєш його.", fa:"روی یک دکمه بزن: تصویر را می‌بینی، جمله را می‌خوانی و می‌شنوی.", ar:"المس زرًّا: ترى الصورة وتقرأ الجملة وتسمعها.", pt:"Toque em um botão: você vê a imagem, lê a frase e a ouve.", pl:"Dotknij przycisku: zobaczysz obrazek, przeczytasz zdanie i je usłyszysz.", ru:"Нажми на кнопку: увидишь картинку, прочитаешь фразу и услышишь её.", de:"Tippe auf einen Knopf: Du siehst das Bild, liest den Satz und hörst ihn."},
+  ongletMoyens:{fr:"Comment y aller", en:"How to get there", tr:"Nasıl gidilir", uk:"Як дістатися", fa:"چطور برویم", ar:"كيف نذهب", pt:"Como ir", pl:"Jak dojechać", ru:"Как добраться", de:"Wie man hinkommt"},
+  ongletGestes:{fr:"Monter, descendre", en:"Getting on and off", tr:"Binmek, inmek", uk:"Сісти, вийти", fa:"سوار و پیاده شدن", ar:"الركوب والنزول", pt:"Entrar, descer", pl:"Wsiadać, wysiadać", ru:"Сесть, выйти", de:"Ein- und aussteigen"},
+  ongletDepart:{fr:"Départs et billets", en:"Departures and tickets", tr:"Kalkışlar ve biletler", uk:"Відправлення й квитки", fa:"حرکت‌ها و بلیت‌ها", ar:"المغادرة والتذاكر", pt:"Partidas e passagens", pl:"Odjazdy i bilety", ru:"Отправления и билеты", de:"Abfahrten und Fahrkarten"},
+  regleMit:  {fr:"Après <b>mit</b>, toujours le <b>datif</b> : der → <b>dem</b>, die → <b>der</b>, das → <b>dem</b>. À pied : <b>zu Fuß</b>.",
+              en:"After <b>mit</b>, always the <b>dative</b>: der → <b>dem</b>, die → <b>der</b>, das → <b>dem</b>. On foot: <b>zu Fuß</b>.",
+              tr:"<b>mit</b>'ten sonra her zaman <b>Dativ</b>: der → <b>dem</b>, die → <b>der</b>, das → <b>dem</b>. Yürüyerek: <b>zu Fuß</b>.",
+              uk:"Після <b>mit</b> завжди <b>давальний (Dativ)</b>: der → <b>dem</b>, die → <b>der</b>, das → <b>dem</b>. Пішки: <b>zu Fuß</b>.",
+              fa:"بعد از <b>mit</b> همیشه <b>Dativ</b>: der → <b>dem</b>، die → <b>der</b>، das → <b>dem</b>. پیاده: <b>zu Fuß</b>.",
+              ar:"بعد <b>mit</b> دائمًا حالة <b>Dativ</b>: der → <b>dem</b>، die → <b>der</b>، das → <b>dem</b>. سيرًا على الأقدام: <b>zu Fuß</b>.",
+              pt:"Depois de <b>mit</b>, sempre o <b>dativo</b>: der → <b>dem</b>, die → <b>der</b>, das → <b>dem</b>. A pé: <b>zu Fuß</b>.",
+              pl:"Po <b>mit</b> zawsze <b>celownik (Dativ)</b>: der → <b>dem</b>, die → <b>der</b>, das → <b>dem</b>. Pieszo: <b>zu Fuß</b>.",
+              ru:"После <b>mit</b> всегда <b>дательный (Dativ)</b>: der → <b>dem</b>, die → <b>der</b>, das → <b>dem</b>. Пешком: <b>zu Fuß</b>.",
+              de:"Nach <b>mit</b> immer der <b>Dativ</b>: der → <b>dem</b>, die → <b>der</b>, das → <b>dem</b>. Ohne Fahrzeug: <b>zu Fuß</b>."},
+  regleEn:   {fr:"En espagnol, <b>en</b> + le moyen de transport, <b>sans article</b> (comme « en bus »). Mais à pied : <b>a pie</b>.",
+              en:"In Spanish, <b>en</b> + the means of transport, <b>with no article</b>. But on foot: <b>a pie</b>.",
+              tr:"İspanyolcada <b>en</b> + ulaşım aracı, <b>artikelsiz</b>. Ama yürüyerek: <b>a pie</b>.",
+              uk:"В іспанській — <b>en</b> + вид транспорту, <b>без артикля</b>. Але пішки: <b>a pie</b>.",
+              fa:"در اسپانیایی، <b>en</b> + وسیلهٔ نقلیه، <b>بدون حرف تعریف</b>. اما پیاده: <b>a pie</b>.",
+              ar:"في الإسبانية: <b>en</b> + وسيلة النقل، <b>دون أداة تعريف</b>. أمّا سيرًا على الأقدام: <b>a pie</b>.",
+              pt:"Em espanhol, <b>en</b> + o meio de transporte, <b>sem artigo</b>. Mas a pé: <b>a pie</b>.",
+              pl:"Po hiszpańsku: <b>en</b> + środek transportu, <b>bez rodzajnika</b>. Ale pieszo: <b>a pie</b>.",
+              ru:"По-испански: <b>en</b> + вид транспорта, <b>без артикля</b>. Но пешком: <b>a pie</b>.",
+              de:"Im Spanischen <b>en</b> + Verkehrsmittel, <b>ohne Artikel</b> (nicht wie „mit dem Bus“). Aber zu Fuß: <b>a pie</b>."},
+  regleSteigen:{fr:"<b>einsteigen</b> (monter) : in + <b>accusatif</b>. <b>aussteigen</b> (descendre) : aus + <b>datif</b>. Le verbe se coupe : la particule va à la fin.",
+              en:"<b>einsteigen</b> (get on): in + <b>accusative</b>. <b>aussteigen</b> (get off): aus + <b>dative</b>. The verb splits: the particle goes to the end.",
+              tr:"<b>einsteigen</b> (binmek): in + <b>Akkusativ</b>. <b>aussteigen</b> (inmek): aus + <b>Dativ</b>. Fiil ayrılır: ek sona gider.",
+              uk:"<b>einsteigen</b> (сідати): in + <b>знахідний (Akkusativ)</b>. <b>aussteigen</b> (виходити): aus + <b>давальний (Dativ)</b>. Дієслово розпадається: частка йде в кінець.",
+              fa:"<b>einsteigen</b> (سوار شدن): in + <b>Akkusativ</b>. <b>aussteigen</b> (پیاده شدن): aus + <b>Dativ</b>. فعل جدا می‌شود: پیشوند به آخر جمله می‌رود.",
+              ar:"<b>einsteigen</b> (يركب): in + <b>Akkusativ</b>. <b>aussteigen</b> (ينزل): aus + <b>Dativ</b>. الفعل ينفصل: تذهب البادئة إلى آخر الجملة.",
+              pt:"<b>einsteigen</b> (entrar): in + <b>acusativo</b>. <b>aussteigen</b> (descer): aus + <b>dativo</b>. O verbo se separa: a partícula vai para o fim.",
+              pl:"<b>einsteigen</b> (wsiadać): in + <b>biernik (Akkusativ)</b>. <b>aussteigen</b> (wysiadać): aus + <b>celownik (Dativ)</b>. Czasownik się rozdziela: cząstka idzie na koniec.",
+              ru:"<b>einsteigen</b> (садиться): in + <b>винительный (Akkusativ)</b>. <b>aussteigen</b> (выходить): aus + <b>дательный (Dativ)</b>. Глагол разделяется: приставка уходит в конец.",
+              de:"<b>einsteigen</b>: in + <b>Akkusativ</b>. <b>aussteigen</b>: aus + <b>Dativ</b>. Das Verb ist trennbar: Die Vorsilbe steht am Ende."},
+  regleSubir:{fr:"<b>subir a</b> (monter dans) et <b>bajar de</b> (descendre de) : a + el = <b>al</b>, de + el = <b>del</b>. Changer de ligne : <b>cambiar de línea</b>.",
+              en:"<b>subir a</b> (get on) and <b>bajar de</b> (get off): a + el = <b>al</b>, de + el = <b>del</b>. To change lines: <b>cambiar de línea</b>.",
+              tr:"<b>subir a</b> (binmek) ve <b>bajar de</b> (inmek): a + el = <b>al</b>, de + el = <b>del</b>. Hat değiştirmek: <b>cambiar de línea</b>.",
+              uk:"<b>subir a</b> (сідати в) і <b>bajar de</b> (виходити з): a + el = <b>al</b>, de + el = <b>del</b>. Пересісти на іншу лінію: <b>cambiar de línea</b>.",
+              fa:"<b>subir a</b> (سوار شدن) و <b>bajar de</b> (پیاده شدن): a + el = <b>al</b>، de + el = <b>del</b>. عوض کردن خط: <b>cambiar de línea</b>.",
+              ar:"<b>subir a</b> (يركب) و<b>bajar de</b> (ينزل من): a + el = <b>al</b>، de + el = <b>del</b>. تغيير الخط: <b>cambiar de línea</b>.",
+              pt:"<b>subir a</b> (entrar em) e <b>bajar de</b> (descer de): a + el = <b>al</b>, de + el = <b>del</b>. Trocar de linha: <b>cambiar de línea</b>.",
+              pl:"<b>subir a</b> (wsiadać do) i <b>bajar de</b> (wysiadać z): a + el = <b>al</b>, de + el = <b>del</b>. Przesiąść się na inną linię: <b>cambiar de línea</b>.",
+              ru:"<b>subir a</b> (садиться в) и <b>bajar de</b> (выходить из): a + el = <b>al</b>, de + el = <b>del</b>. Пересесть на другую линию: <b>cambiar de línea</b>.",
+              de:"<b>subir a</b> (einsteigen) und <b>bajar de</b> (aussteigen): a + el = <b>al</b>, de + el = <b>del</b>. Umsteigen: <b>cambiar de línea</b>."},
+  regleUhr:  {fr:"<b>halb neun</b> = 8 h 30 : la demi-heure <b>avant</b> neuf heures (pas « huit et demie » mot à mot). <b>Viertel nach</b> : et quart ; <b>Viertel vor</b> : moins le quart.",
+              en:"<b>halb neun</b> = 8:30: half an hour <b>before</b> nine. <b>Viertel nach</b>: a quarter past; <b>Viertel vor</b>: a quarter to.",
+              tr:"<b>halb neun</b> = 8.30: dokuzdan yarım saat <b>önce</b>. <b>Viertel nach</b>: çeyrek geçiyor; <b>Viertel vor</b>: çeyrek var.",
+              uk:"<b>halb neun</b> = 8:30: пів години <b>до</b> дев'ятої (пів на дев'яту). <b>Viertel nach</b> — чверть після; <b>Viertel vor</b> — за чверть.",
+              fa:"<b>halb neun</b> = ۸:۳۰: نیم ساعت <b>قبل از</b> نُه. <b>Viertel nach</b>: و ربع؛ <b>Viertel vor</b>: یک ربع مانده به.",
+              ar:"<b>halb neun</b> = ٨:٣٠: نصف ساعة <b>قبل</b> التاسعة. <b>Viertel nach</b>: والربع؛ <b>Viertel vor</b>: إلا ربعًا.",
+              pt:"<b>halb neun</b> = 8h30: meia hora <b>antes</b> das nove. <b>Viertel nach</b>: e quinze; <b>Viertel vor</b>: quinze para.",
+              pl:"<b>halb neun</b> = 8:30: pół godziny <b>przed</b> dziewiątą (wpół do dziewiątej). <b>Viertel nach</b>: kwadrans po; <b>Viertel vor</b>: za kwadrans.",
+              ru:"<b>halb neun</b> = 8:30: полчаса <b>до</b> девяти (половина девятого). <b>Viertel nach</b> — четверть; <b>Viertel vor</b> — без четверти.",
+              de:"<b>halb neun</b> = 8:30 Uhr. <b>Viertel nach</b> acht = 8:15 Uhr, <b>Viertel vor</b> neun = 8:45 Uhr."},
+  regleHora: {fr:"<b>las nueve menos cuarto</b> = 8 h 45 (neuf heures moins le quart). <b>y cuarto</b> : et quart ; <b>y media</b> : et demie. L'heure prend <b>las</b> : a las ocho.",
+              en:"<b>las nueve menos cuarto</b> = 8:45 (a quarter to nine). <b>y cuarto</b>: a quarter past; <b>y media</b>: half past. The hour takes <b>las</b>: a las ocho.",
+              tr:"<b>las nueve menos cuarto</b> = 8.45 (dokuza çeyrek var). <b>y cuarto</b>: çeyrek geçiyor; <b>y media</b>: buçuk. Saatin önüne <b>las</b> gelir: a las ocho.",
+              uk:"<b>las nueve menos cuarto</b> = 8:45 (за чверть дев'ята). <b>y cuarto</b> — чверть після; <b>y media</b> — пів. Перед годиною — <b>las</b>: a las ocho.",
+              fa:"<b>las nueve menos cuarto</b> = ۸:۴۵ (یک ربع به نُه). <b>y cuarto</b>: و ربع؛ <b>y media</b>: و نیم. ساعت با <b>las</b> می‌آید: a las ocho.",
+              ar:"<b>las nueve menos cuarto</b> = ٨:٤٥ (التاسعة إلا ربعًا). <b>y cuarto</b>: والربع؛ <b>y media</b>: والنصف. وتسبق الساعةَ <b>las</b>: a las ocho.",
+              pt:"<b>las nueve menos cuarto</b> = 8h45 (quinze para as nove). <b>y cuarto</b>: e quinze; <b>y media</b>: e meia. A hora leva <b>las</b>: a las ocho.",
+              pl:"<b>las nueve menos cuarto</b> = 8:45 (za kwadrans dziewiąta). <b>y cuarto</b>: kwadrans po; <b>y media</b>: wpół do. Przed godziną stoi <b>las</b>: a las ocho.",
+              ru:"<b>las nueve menos cuarto</b> = 8:45 (без четверти девять). <b>y cuarto</b> — четверть; <b>y media</b> — половина. Перед часом — <b>las</b>: a las ocho.",
+              de:"<b>las nueve menos cuarto</b> = 8:45 Uhr (Viertel vor neun). <b>y cuarto</b>: Viertel nach; <b>y media</b>: halb (las ocho y media = halb neun!)."},
+  regleBillet:{fr:"Au guichet, on te demande : aller simple ou aller-retour ?", en:"At the ticket office they ask you: one way or return?", tr:"Gişede sana sorarlar: tek yön mü, gidiş-dönüş mü?", uk:"У касі тебе запитають: в один бік чи туди й назад?", fa:"در باجه از تو می‌پرسند: یک‌طرفه یا رفت‌وبرگشت؟", ar:"في شبّاك التذاكر يسألونك: ذهاب فقط أم ذهاب وعودة؟", pt:"No guichê, perguntam: só ida ou ida e volta?", pl:"W kasie zapytają cię: w jedną stronę czy tam i z powrotem?", ru:"В кассе тебя спросят: в одну сторону или туда и обратно?", de:"Am Schalter fragt man dich: einfach oder hin und zurück?"},
+  umsteigenPuce:{fr:"changer de ligne", en:"changing lines", tr:"hat değiştirmek", uk:"пересадка", fa:"عوض کردن خط", ar:"تغيير الخط", pt:"trocar de linha", pl:"przesiadka", ru:"пересадка", de:"umsteigen"},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  wie:       {fr:"Regarde l'image et choisis le bon moyen de transport.", en:"Look at the picture and choose the right means of transport.", tr:"Resme bak ve doğru ulaşım aracını seç.", uk:"Подивися на зображення й обери правильний вид транспорту.", fa:"به تصویر نگاه کن و وسیلهٔ نقلیهٔ درست را انتخاب کن.", ar:"انظر إلى الصورة واختر وسيلة النقل الصحيحة.", pt:"Olhe a imagem e escolha o meio de transporte certo.", pl:"Spójrz na obrazek i wybierz właściwy środek transportu.", ru:"Посмотри на картинку и выбери правильный вид транспорта.", de:"Sieh dir das Bild an und wähle das richtige Verkehrsmittel."},
+  mit:       {fr:"Après mit : choisis l'article (datif).", en:"After mit: choose the article (dative).", tr:"mit'ten sonra: artikeli seç (Dativ).", uk:"Після mit: обери артикль (Dativ).", fa:"بعد از mit: حرف تعریف را انتخاب کن (Dativ).", ar:"بعد mit: اختر أداة التعريف (Dativ).", pt:"Depois de mit: escolha o artigo (dativo).", pl:"Po mit: wybierz rodzajnik (Dativ).", ru:"После mit: выбери артикль (Dativ).", de:"Nach mit: Wähle den Artikel (Dativ)."},
+  en:        {fr:"Choisis la bonne préposition.", en:"Choose the right preposition.", tr:"Doğru edatı seç.", uk:"Обери правильний прийменник.", fa:"حرف اضافهٔ درست را انتخاب کن.", ar:"اختر حرف الجرّ الصحيح.", pt:"Escolha a preposição certa.", pl:"Wybierz właściwy przyimek.", ru:"Выбери правильный предлог.", de:"Wähle die richtige Präposition."},
+  verbe:     {fr:"Choisis la bonne forme du verbe.", en:"Choose the right form of the verb.", tr:"Fiilin doğru biçimini seç.", uk:"Обери правильну форму дієслова.", fa:"شکل درست فعل را انتخاب کن.", ar:"اختر الصيغة الصحيحة للفعل.", pt:"Escolha a forma certa do verbo.", pl:"Wybierz właściwą formę czasownika.", ru:"Выбери правильную форму глагола.", de:"Wähle die richtige Verbform."},
+  steigen:   {fr:"Regarde l'image : monte-t-on ou descend-on ? Complète la phrase.", en:"Look at the picture: getting on or off? Complete the sentence.", tr:"Resme bak: biniyor mu, iniyor mu? Cümleyi tamamla.", uk:"Подивися на зображення: сідають чи виходять? Доповни речення.", fa:"به تصویر نگاه کن: سوار می‌شود یا پیاده؟ جمله را کامل کن.", ar:"انظر إلى الصورة: يركب أم ينزل؟ أكمل الجملة.", pt:"Olhe a imagem: entra ou desce? Complete a frase.", pl:"Spójrz na obrazek: wsiada czy wysiada? Uzupełnij zdanie.", ru:"Посмотри на картинку: садится или выходит? Дополни фразу.", de:"Sieh dir das Bild an: Steigt die Person ein oder aus? Ergänze den Satz."},
+  cas:       {fr:"Complète avec la bonne forme.", en:"Complete with the right form.", tr:"Doğru biçimle tamamla.", uk:"Доповни правильною формою.", fa:"با شکل درست کامل کن.", ar:"أكمل بالصيغة الصحيحة.", pt:"Complete com a forma certa.", pl:"Uzupełnij właściwą formą.", ru:"Дополни правильной формой.", de:"Ergänze die richtige Form."},
+  plan:      {fr:"Regarde le plan : où faut-il changer ?", en:"Look at the map: where do you change?", tr:"Haritaya bak: nerede aktarma yapılır?", uk:"Подивися на схему: де треба пересісти?", fa:"به نقشه نگاه کن: کجا باید خط را عوض کرد؟", ar:"انظر إلى الخريطة: أين يجب تغيير الخط؟", pt:"Olhe o mapa: onde é preciso trocar?", pl:"Spójrz na plan: gdzie trzeba się przesiąść?", ru:"Посмотри на схему: где нужно пересесть?", de:"Sieh dir den Plan an: Wo muss man umsteigen?"},
+  planLigne: {fr:"Regarde le plan : quelle ligne prendre ensuite ?", en:"Look at the map: which line next?", tr:"Haritaya bak: sonra hangi hat?", uk:"Подивися на схему: на яку лінію далі?", fa:"به نقشه نگاه کن: بعد کدام خط؟", ar:"انظر إلى الخريطة: أيّ خط بعد ذلك؟", pt:"Olhe o mapa: qual linha depois?", pl:"Spójrz na plan: która linia potem?", ru:"Посмотри на схему: какая линия дальше?", de:"Sieh dir den Plan an: Welche Linie dann?"},
+  tableau:   {fr:"Regarde le tableau des départs.", en:"Look at the departure board.", tr:"Kalkış panosuna bak.", uk:"Подивися на табло відправлень.", fa:"به تابلوی حرکت نگاه کن.", ar:"انظر إلى لوحة المغادرة.", pt:"Olhe o painel de partidas.", pl:"Spójrz na tablicę odjazdów.", ru:"Посмотри на табло отправлений.", de:"Sieh dir die Abfahrtstafel an."},
+  uhrzeit:   {fr:"Comment dit-on cette heure ?", en:"How do you say this time?", tr:"Bu saat nasıl söylenir?", uk:"Як сказати цей час?", fa:"این ساعت را چطور می‌گویند؟", ar:"كيف نقول هذا الوقت؟", pt:"Como se diz este horário?", pl:"Jak powiedzieć tę godzinę?", ru:"Как сказать это время?", de:"Wie sagt man diese Uhrzeit?"},
+  billet:    {fr:"Aller simple ou aller-retour ? Réponds au guichet.", en:"One way or return? Answer at the ticket office.", tr:"Tek yön mü, gidiş-dönüş mü? Gişede cevap ver.", uk:"В один бік чи туди й назад? Відповідай у касі.", fa:"یک‌طرفه یا رفت‌وبرگشت؟ در باجه جواب بده.", ar:"ذهاب فقط أم ذهاب وعودة؟ أجب في شبّاك التذاكر.", pt:"Só ida ou ida e volta? Responda no guichê.", pl:"W jedną stronę czy tam i z powrotem? Odpowiedz w kasie.", ru:"В одну сторону или туда и обратно? Ответь в кассе.", de:"Einfach oder hin und zurück? Antworte am Schalter."},
+  prix:      {fr:"Regarde le billet : combien coûte-t-il ? Choisis le prix en toutes lettres.", en:"Look at the ticket: how much is it? Choose the price in words.", tr:"Bilete bak: kaç para? Fiyatı yazıyla seç.", uk:"Подивися на квиток: скільки він коштує? Обери ціну словами.", fa:"به بلیت نگاه کن: قیمتش چند است؟ قیمت را با حروف انتخاب کن.", ar:"انظر إلى التذكرة: كم ثمنها؟ اختر السعر بالحروف.", pt:"Olhe a passagem: quanto custa? Escolha o preço por extenso.", pl:"Spójrz na bilet: ile kosztuje? Wybierz cenę zapisaną słownie.", ru:"Посмотри на билет: сколько он стоит? Выбери цену словами.", de:"Sieh dir die Fahrkarte an: Was kostet sie? Wähle den Preis in Worten."},
+  cual:      {fr:"Lis la phrase et touche la bonne image.", en:"Read the sentence and tap the right picture.", tr:"Cümleyi oku ve doğru resme dokun.", uk:"Прочитай речення й торкнися потрібного зображення.", fa:"جمله را بخوان و روی تصویر درست بزن.", ar:"اقرأ الجملة والمس الصورة الصحيحة.", pt:"Leia a frase e toque na imagem certa.", pl:"Przeczytaj zdanie i dotknij właściwego obrazka.", ru:"Прочитай фразу и нажми на нужную картинку.", de:"Lies den Satz und tippe auf das richtige Bild."},
+  entendre:  {fr:"Écoute la phrase et touche la bonne image.", en:"Listen to the sentence and tap the right picture.", tr:"Cümleyi dinle ve doğru resme dokun.", uk:"Послухай речення й торкнися потрібного зображення.", fa:"جمله را گوش کن و روی تصویر درست بزن.", ar:"استمع إلى الجملة والمس الصورة الصحيحة.", pt:"Ouça a frase e toque na imagem certa.", pl:"Posłuchaj zdania i dotknij właściwego obrazka.", ru:"Послушай фразу и нажми на нужную картинку.", de:"Hör dir den Satz an und tippe auf das richtige Bild."},
+  vraifaux:  {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
+  reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
+  // « Continuer », jamais « Suivant » : le nom des scenes, dans toute l'app (decision de Jacques du 3 nov.)
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam et", uk:"Продовжити", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Kontynuuj", ru:"Продолжить", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+};
+// les exemples des regles, dans la langue apprise : une ligne de gauche a droite, la meme pour toutes les langues
+const EXEMPLES = {
+  regleMit: "der Bus → mit <b>dem</b> Bus · die U-Bahn → mit <b>der</b> U-Bahn · das Auto → mit <b>dem</b> Auto · <b>zu</b> Fuß",
+  regleEn: "en autobús · en metro · en tren · en bicicleta · <b>a</b> pie",
+  regleSteigen: "Mark steigt in <b>den</b> Bus <b>ein</b>. · Anna steigt aus <b>dem</b> Zug <b>aus</b>. · Er steigt am Marktplatz in die U2 <b>um</b>.",
+  regleSubir: "Mark sube <b>al</b> autobús. · Anna baja <b>del</b> tren. · Cambia de línea en Plaza Mayor.",
+  regleUhr: "8:15 → Viertel nach acht · 8:30 → <b>halb neun</b> · 8:45 → Viertel vor neun",
+  regleHora: "8:15 → las ocho y cuarto · 8:30 → las ocho y media · 8:45 → <b>las nueve menos cuarto</b>",
+  regleBillet: DE_APP ? "„Einfach oder hin und zurück?“ – „<b>Hin und zurück</b>, bitte.“" : "«¿De ida o de ida y vuelta?» – «<b>De ida y vuelta</b>, por favor.»"
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (transportes.json, fabrique par visuel/transportes/transportes.py) ----------
+let D = null;
+const APP = () => D.trad[APPRENDRE];
+// la phrase entiere traduite en francais, anglais, portugais (et en allemand pour qui apprend l'espagnol), comme la
+// famille ; ailleurs, le mot teste et sa traduction tiree du corpus (gloses)
+const PHRASE_TRADUITE = LANGUE !== APPRENDRE && (["fr", "en", "pt"].includes(LANGUE) || (LANGUE === "de" && APPRENDRE === "es"));
+const tradPhrase = p => PHRASE_TRADUITE ? ((APP()[p] || {})[LANGUE] || null) : null;
+const traduction = t => t ? '<span class="trad" dir="auto">' + t + '</span>' : "";
+
+// ---------- la voix : le fichier enregistre s'il existe, sinon le telephone (themes/voix.js) ----------
+// Le telephone recoit la LECTURE en lettres (« acht Uhr fünfzehn ») : la regle des nombres de l'app
+let dire = t => { if (!t) return; const v = V(t); if (Voix.aUnFichier(v)) Voix.dire(v); else Voix.dire(V((D && D.lectures[APPRENDRE][t]) || t)); };
+const taire = () => Voix.arreter();
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const uniques = a => a.filter((x, i) => a.indexOf(x) === i);
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + V(t) + '</span>';
+const maj = s => s.charAt(0).toUpperCase() + s.slice(1);
+// en persan et en arabe, chaque passage en lettres latines s'isole, sinon l'algorithme bidi en retourne les mots
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.split(/(<[^>]+>)/).map(x => x.charAt(0) === "<" ? x
+  : x.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ0-9?:,.→+()·–„“«»¿]+(?:[ +=]+[A-Za-zÀ-ÿñÑßäöüÄÖÜ0-9?:,.→+()·–„“«»¿]+)*/g, m => '<span dir="ltr">' + m + '</span>')).join("");
+const regle = cle => isoler(T(cle)) + '<span class="exemples" lang="' + APPRENDRE + '" dir="ltr">' + EXEMPLES[cle] + '</span>';
+const imgSrc = i => "transportes/" + i + ".webp";
+const photo = i => '<div class="cadre"><img id="photo" alt="" src="' + imgSrc(i) + '"></div>';
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3, 3 nov. : « un mot appris compte partout ») : juger() l'envoie (« reponse »), l'app
+// fait avancer sa carte (revisionDeScene). Un nom : {mot: "Bus", genre: "der"} ; un verbe : {mot: "einsteigen", cat: "verbe"}.
+let motQ = null, choixQ = null, apresQ = null;      // apresQ : ce qui se montre une fois la reponse donnee (le billet)
+
+// ---------- les mots du theme, a la forme du corpus ----------
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  const M = D.mots[APPRENDRE];
+  MOTS = M.noms.map(([g, m]) => ({k: "n:" + m, mot: m, genre: g})).concat(M.verbes.map(v => ({k: "v:" + v, mot: v, cat: "verbe"})));
+  return MOTS;
+}
+// le moyen de transport d'un mot (« Bus » -> bus), s'il en est un
+const moyenDe = w => w && !w.cat ? (Object.keys(D.moyens).find(m => D.moyens[m][APPRENDRE].mot === w.mot) || null) : null;
+const estVerbe = (w, ...v) => w && w.cat === "verbe" && (!v.length || v.includes(w.mot));
+const estNom = (w, ...n) => w && !w.cat && (!n.length || n.includes(w.mot));
+const motNom = mot => { const x = D.mots[APPRENDRE].noms.find(([g, m]) => m === mot); return {mot, genre: x ? x[0] : null}; };
+const motVerbe = v => ({mot: v, cat: "verbe"});
+const motMoyen = m => motNom(D.moyens[m][APPRENDRE].mot);
+function viser(w, defaut){ motQ = w ? {mot: w.mot, genre: w.genre || null, cat: w.cat || null} : defaut; }
+// les images d'un moyen ; l'image « type » d'un moyen pour la decouverte
+const imagesDe = m => Object.keys(D.images).filter(id => D.images[id].moyen === m);
+const IMAGE_TYPE = {bus: "bus-ein", zug: "zug-aus", tram: "tram-ein", taxi: "taxi-aus"};
+const imageType = m => IMAGE_TYPE[m] || imagesDe(m)[0];
+// le mot montre sous la reponse (« der Bus », « einsteigen ») et sa traduction (le corpus)
+function montreDe(m){
+  if (!m) return null;
+  const aff = (m.genre ? m.genre + " " : "") + m.mot;
+  const g = (D.gloses[APPRENDRE] || {})[m.mot] || {};
+  return {aff, sens: LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || "")};
+}
+// LE MAUVAIS CHOIX TRADUIT (regle commune des themes, 3 nov.) : « Tu as choisi : Zu Fuß. — À pied. ». Une phrase (une
+// image touchee) : sa traduction ; une reponse courte que la donnee connait (D.choix) : la sienne, en fr, en, pt (et de
+// pour l'espagnol) ; ailleurs, la glose du moyen choisi. Un article, une heure, un prix, un nombre : rien.
+function choixTraduit(c){
+  if (!c || LANGUE === APPRENDRE) return null;
+  if (D.images[c]){ const ph = D.images[c][APPRENDRE].phrase; return {aff: ph, sens: tradPhrase(ph) || ""}; }
+  const ch = (D.choix[APPRENDRE] || {})[c];
+  if (ch && PHRASE_TRADUITE) return {aff: c, sens: ch[LANGUE] || ""};
+  const m = Object.keys(D.moyens).find(k => maj(DE_APP ? D.moyens[k].de.mit : D.moyens[k].es.en) + "." === c);
+  if (m){ const g = D.gloses[APPRENDRE][D.moyens[m][APPRENDRE].mot] || {}; return {aff: c, sens: g[LANGUE] || g.fr || ""}; }
+  return null;
+}
+
+// apres la reponse : la phrase juste et sa traduction, le mot teste et sa voix (la phrase affichee en entier, ou
+// « dit » quand la voix doit dire davantage : la situation du guichet et la reponse)
+function juger(ok, bonneTexte, phrase, dit){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  if (apresQ) apresQ();
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  const mt = montreDe(motQ);
+  m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
+    // la phrase juste, toujours affichee apres une bonne reponse aussi (regle des contraires, 3 nov.)
+    + (phrase && (ok || phrase !== bonneTexte) ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+    + traduction(tradPhrase(phrase || bonneTexte))
+    + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
+    + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
+  if (mt) $("redire").addEventListener("click", () => dire(dit || phrase || bonneTexte));
+  dire(dit || phrase || bonneTexte);
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = V(o); if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = o; apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// des images a toucher : la bonne est i ; data-id pour les controles (tests/themes_illustres.py)
+function images(conteneur, ids, bonne, apres){
+  let bon;
+  conteneur.className = "rangee" + (ids.length === 3 ? " trois" : "");
+  ids.forEach(i => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = i;
+    b.innerHTML = '<img alt="" src="' + imgSrc(i) + '">'; if (i === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      choixQ = i; apres(i === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// l'ecran d'une question : la consigne, une image (ou un dessin), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre){
+  $("zone").innerHTML = '<p class="consigne">' + T(consigne) + '</p>' + (image || "")
+    + '<div class="enonce' + (centre ? " centre" : "") + '">' + enonce + '</div><div class="choix' + (centre ? " centre" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = n => '<span class="trou" id="trou' + (n || "") + '">?</span>';
+// « Mark steigt ___ Bus ___. » : un ou deux trous, le texte dans la langue apprise
+const avecTrous = s => { let n = 0; return '<span lang="' + APPRENDRE + '" dir="ltr">' + V(s).split("___").map((x, i, a) => x + (i < a.length - 1 ? trou(++n) : "")).join("") + '</span>'; };
+const remplir = (...reps) => reps.forEach((r, i) => { const t = $("trou" + (i + 1)); if (t) t.textContent = V(r); });
+
+// ---------- les dessins : le tableau des departs, le plan du metro, le billet ----------
+const TETE = DE_APP ? {titre: "Abfahrt", zeit: "Zeit", nach: "Nach", voie: "Gleis", info: "Hinweis", min: "Min."}
+                    : {titre: "Salidas", zeit: "Hora", nach: "Destino", voie: "Andén", info: "Aviso", min: "min"};
+function tableau(lignes, vise){
+  return '<div class="tableau" lang="' + APPRENDRE + '"><div class="tete"><span>' + TETE.titre + '</span><span aria-hidden="true">🚆</span></div><table><thead><tr><th>' + TETE.zeit + '</th><th>' + TETE.nach
+    + '</th><th class="voie">' + TETE.voie + '</th><th>' + TETE.info + '</th></tr></thead><tbody>'
+    + lignes.map((r, i) => '<tr data-i="' + i + '"' + (i === vise ? ' class="vise"' : "") + '><td>' + r.heure + '</td><td>' + r.ville + '</td><td class="voie">' + r.voie
+      + '</td><td class="retard">' + (r.retard ? "+" + r.retard + " " + TETE.min : "") + '</td></tr>').join("") + '</tbody></table></div>';
+}
+// le plan : trois lignes, les stations ; un trajet se marque par son depart (vert) et son arrivee (rouge), jamais par
+// la correspondance (c'est la question)
+const ETIQ = {zoo: [0, 7, "start"], goethe: [0, -4, "middle"], markt: [-3, -4, "end"], rathaus: [2, 7, "start"], ost: [0, -4, "middle"],
+              uni: [3.5, 1.4, "start"], linden: [3.5, 1.4, "start"], schiller: [3.5, 1.4, "start"], stadion: [3.5, 1.4, "start"],
+              flughafen: [0, -4, "middle"], museum: [3, 4.5, "start"], hafen: [3.5, 1.4, "start"]};
+function plan(t){
+  const S = D.stations, nom = s => DE_APP ? S[s].de : S[s].es;
+  const inter = new Set(Object.keys(S).filter(s => Object.values(D.lignes).filter(l => l.stations.includes(s)).length > 1));
+  let svg = '<svg viewBox="-2 -2 112 110" role="img" aria-label="plan">';
+  Object.values(D.lignes).forEach(l => {
+    svg += '<polyline points="' + l.stations.map(s => S[s].x + "," + S[s].y).join(" ") + '" fill="none" stroke="' + l.couleur + '" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>';
+  });
+  Object.keys(S).forEach(s => {
+    const x = S[s].x, y = S[s].y, e = ETIQ[s];
+    const marque = t && (s === t.de ? "#2F9E6A" : s === t.vers ? "#C8473A" : null);
+    if (marque) svg += '<circle cx="' + x + '" cy="' + y + '" r="4.2" fill="' + marque + '" opacity=".28"/>';
+    svg += '<circle cx="' + x + '" cy="' + y + '" r="' + (inter.has(s) ? 2.3 : 1.6) + '" fill="#fff" stroke="' + (marque || "#1C2430") + '" stroke-width="' + (inter.has(s) ? 1.1 : .8) + '"/>';
+    svg += '<text x="' + (x + e[0]) + '" y="' + (y + e[1]) + '" text-anchor="' + e[2] + '" font-family="Nunito,system-ui,sans-serif" font-size="3.7" font-weight="' + (marque ? 900 : 700) + '" fill="' + (marque || "#1C2430") + '">' + nom(s) + '</text>';
+  });
+  svg += '</svg>';
+  const leg = Object.keys(D.lignes).map(k => '<span style="background:' + D.lignes[k].couleur + '">' + (DE_APP ? D.lignes[k].de : k) + '</span>').join("");
+  return '<div class="plan" lang="' + APPRENDRE + '">' + svg + '<div class="legende">' + leg + '</div></div>';
+}
+const DEPART = DE_APP ? "Berlin" : "Madrid";
+const TYPE_BILLET = DE_APP ? {simple: "Einfache Fahrt", ar: "Hin- und Rückfahrt"} : {simple: "Ida", ar: "Ida y vuelta"};
+function billet(ville, type, prix){
+  return '<div class="billet" lang="' + APPRENDRE + '" id="billet"><div class="trajet">' + DEPART + ' → ' + ville + '</div><div class="type" id="typeBillet">' + (type || "") + '</div>'
+    + (prix ? '<div class="prix">' + prix + '</div>' : "") + '</div>';
+}
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const PH = () => D.phrases[APPRENDRE];
+// une phrase « personne + moyen + destination » montrable : une image de ce moyen avec cette personne
+function phrasePour(m, filtre){
+  const c = PH().filter(p => (!m || p.moyen === m) && imagesDe(p.moyen).some(id => D.images[id].qui === p.qui) && (!filtre || filtre(p)));
+  if (!c.length) return null;
+  const p = hasard(c);
+  return {p, img: hasard(imagesDe(p.moyen).filter(id => D.images[id].qui === p.qui))};
+}
+const repMoyen = m => maj(DE_APP ? D.moyens[m].de.mit : D.moyens[m].es.en) + ".";
+const EX = {
+  // « Wie kommt Mark zur Arbeit? » — « Mit dem Bus. » / « ¿Cómo va Mark al trabajo? » — « En autobús. »
+  wie(w){
+    const m = moyenDe(w); if (w && !m) return false;
+    const x = phrasePour(m); if (!x) return false;
+    viser(w, motMoyen(x.p.moyen));
+    // jamais l'avion pour aller au travail, jamais a pied jusqu'a Munich : des leurres faux mais pas absurdes
+    const autres = Object.keys(D.moyens).filter(k => k !== x.p.moyen && k !== (x.p.moyen === "flugzeug" ? "fuss" : "flugzeug"));
+    // a pied d'abord pour un vehicule (zu Fuß, a pie : la forme a part)
+    const fuss = x.p.moyen !== "fuss" && x.p.moyen !== "flugzeug" ? ["fuss"] : [];
+    const leurres = uniques(fuss.concat(melanger(autres))).slice(0, 2);
+    ecran("wie", photo(x.img), cible(x.p.q), true);
+    const rep = repMoyen(x.p.moyen);
+    boutons($("choix"), melanger([rep].concat(leurres.map(repMoyen))), rep, ok => juger(ok, rep, x.p.phrase));
+    return true;
+  },
+  // « Mark fährt mit ___ Bus zur Arbeit. » dem / der / den / das ; « Anna geht ___ Fuß. » zu ; en espagnol en / a / con
+  mit(w){
+    const m = moyenDe(w); if (w && !m) return false;
+    const x = phrasePour(m); if (!x) return false;
+    viser(w, motMoyen(x.p.moyen));
+    let rep, opts;
+    if (DE_APP){ rep = x.p.moyen === "fuss" ? "zu" : ({der: "dem", die: "der", das: "dem"})[D.moyens[x.p.moyen].de.genre];
+                 opts = x.p.moyen === "fuss" ? ["zu", "mit dem", "mit"] : ["dem", "der", "den", "das"]; }
+    else { rep = x.p.moyen === "fuss" ? "a" : "en"; opts = x.p.moyen === "fuss" ? ["a", "en", "con"] : ["en", "a", "con"]; }
+    ecran(DE_APP ? "mit" : "en", photo(x.img), avecTrous(x.p.trouMit));
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, x.p.phrase); });
+    return true;
+  },
+  // « Mark ___ mit dem Bus zur Arbeit. » fährt / fahrt / geht ; « Mark sagt: „Ich ___ …“ » fahre ; en espagnol va / voy / vas
+  verbe(w){
+    if (w && !estVerbe(w, "fahren", "gehen", "fliegen", "ir")) return false;
+    const x = phrasePour(null, p => !w || p.verbe === w.mot); if (!x) return false;
+    const v = x.p.verbe, ich = Math.random() < 0.4;
+    viser(w, motVerbe(v));
+    const OPTS = DE_APP ? {fahren: [["fährt", "fahrt", "geht"], ["fahre", "fährt", "gehe"]], gehen: [["geht", "fährt", "gehst"], ["gehe", "geht", "fahre"]],
+                           fliegen: [["fliegt", "fährt", "fliegst"], ["fliege", "fliegt", "fahre"]]}
+                        : {ir: [["va", "vas", "voy"], ["Voy", "Va", "Vas"]]};
+    const opts = OPTS[v][ich ? 1 : 0], rep = opts[0];
+    ecran("verbe", photo(x.img), avecTrous(ich ? x.p.trouIch : x.p.trou));
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(rep); juger(ok, rep, ich ? x.p.ich : x.p.phrase); });
+    return true;
+  },
+  // le geste de l'image : « Mark steigt ___ Bus ___. » in den … ein / aus dem … aus ; ou l'article seul ;
+  // en espagnol « Mark ___ autobús. » sube al / baja del ; ou « sube ___ tren » al / a el / del
+  steigen(w){
+    const VERBES = DE_APP ? ["einsteigen", "aussteigen"] : ["subir", "bajar"];
+    const m = moyenDe(w);
+    if (w && !estVerbe(w, ...VERBES) && !m) return false;
+    const c = Object.keys(D.images).filter(id => D.images[id].geste && (!m || D.images[id].moyen === m)
+      && (!estVerbe(w) || VERBES[D.images[id].geste === "ein" ? 0 : 1] === w.mot));
+    if (!c.length) return false;
+    const id = hasard(c), im = D.images[id], ein = im.geste === "ein", g = D.moyens[im.moyen][APPRENDRE];
+    viser(w, motVerbe(VERBES[ein ? 0 : 1]));
+    const paire = Math.random() < 0.5;
+    let enonce, opts, rep, reps;
+    if (DE_APP){
+      const akk = ({der: "den", die: "die", das: "das"})[g.genre], dat = ({der: "dem", die: "der", das: "dem"})[g.genre];
+      if (paire){
+        rep = ein ? "in " + akk + " … ein" : "aus " + dat + " … aus";
+        opts = ein ? [rep, "aus " + dat + " … aus", "in " + dat + " … ein"] : [rep, "in " + akk + " … ein", "aus " + akk + " … aus"];
+        enonce = im.qui + " steigt ___ " + g.mot + " ___.";
+        reps = rep.split(" … ");
+      } else {
+        rep = ein ? akk : dat;
+        opts = uniques([rep, ein ? dat : akk, g.genre === "die" ? "den" : "der"]);
+        enonce = im.qui + " steigt " + (ein ? "in" : "aus") + " ___ " + g.mot + (ein ? " ein." : " aus.");
+        reps = [rep];
+      }
+    } else {
+      if (paire){ rep = ein ? "sube al" : "baja del"; opts = ein ? [rep, "baja del", "sube del"] : [rep, "sube al", "baja al"]; enonce = im.qui + " ___ " + g.mot + "."; }
+      else { rep = ein ? "al" : "del"; opts = ein ? ["al", "a el", "del"] : ["del", "de el", "al"]; enonce = im.qui + (ein ? " sube" : " baja") + " ___ " + g.mot + "."; }
+      reps = [rep];
+    }
+    ecran(paire ? "steigen" : "cas", photo(id), avecTrous(enonce));
+    boutons($("choix"), melanger(opts), rep, ok => { remplir(...reps); juger(ok, rep, im[APPRENDRE].phrase); });
+    return true;
+  },
+  // le plan : « Mark fährt vom Zoo zum Stadion. Wo steigt er um? » — « Am Marktplatz. » ; ou la ligne suivante
+  plan(w){
+    const VERBE = DE_APP ? "umsteigen" : "cambiar", NOM = DE_APP ? "U-Bahn" : "metro";
+    if (w && !estVerbe(w, VERBE) && !estNom(w, NOM)) return false;
+    const t = hasard(D.trajets), x = t[DE_APP ? "de_" : "es"], ligne = Math.random() < 0.4;
+    viser(w, motVerbe(VERBE));
+    const inter = uniques(D.trajets.map(y => y.change));
+    let rep, opts, q, phrase;
+    if (ligne){
+      q = x.qL; phrase = x.phraseL;
+      opts = Object.keys(D.lignes).map(k => DE_APP ? "In die " + D.lignes[k].de + "." : "A la " + D.lignes[k].es + ".");
+      rep = DE_APP ? "In die " + D.lignes[t.l2].de + "." : "A la " + D.lignes[t.l2].es + ".";
+    } else {
+      q = x.q; phrase = x.phrase;
+      opts = inter.map(s => DE_APP ? maj(D.stations[s].an) + "." : "En " + D.stations[s].es + ".");
+      rep = DE_APP ? maj(D.stations[t.change].an) + "." : "En " + D.stations[t.change].es + ".";
+    }
+    ecran(ligne ? "planLigne" : "plan", plan(t), cible(q));
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
+    return true;
+  },
+  // le tableau des departs : l'heure, la voie, la destination, le retard
+  tableau(w){
+    const V_ = DE_APP ? {heure: "abfahren", voie: "Gleis", retard: "Verspätung", ville: "Zug"} : {heure: "salir", voie: "andén", retard: "retraso", ville: "tren"};
+    const sortes = Object.keys(V_).filter(k => !w || V_[k] === w.mot);
+    if (w && !sortes.length) return false;
+    const tabs = D.tableaux[APPRENDRE], ti = Math.floor(Math.random() * tabs.length), lignes = tabs[ti];
+    const cand = [];
+    lignes.forEach((r, i) => sortes.forEach(k => { if (k !== "retard" || r.retard) cand.push([i, k]); }));
+    if (!cand.length) return false;
+    const [i, k] = hasard(cand), r = lignes[i];
+    viser(w, k === "heure" ? motVerbe(V_.heure) : motNom(V_[k]));
+    let q, rep, opts, phrase;
+    if (k === "heure"){ q = r.qHeure; rep = r.repHeure; opts = lignes.map(x => x.repHeure); phrase = r.phraseHeure; }
+    else if (k === "voie"){ q = r.qVoie; rep = r.repVoie; opts = lignes.map(x => x.repVoie); phrase = r.phraseVoie; }
+    else if (k === "ville"){ q = r.qVille; rep = r.repVille; opts = lignes.map(x => x.repVille); phrase = r.phraseHeure; }
+    else { q = r.qRetard; rep = r.repRetard; opts = [r.retard].concat(melanger([5, 10, 15, 20].filter(n => n !== r.retard))).map(n => n + (DE_APP ? " Minuten." : " minutos.")); phrase = r.phraseRetard; }
+    opts = uniques([rep].concat(melanger(opts.filter(o => o !== rep)))).slice(0, 3);
+    ecran("tableau", tableau(lignes, null), cible(q), true);
+    boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, phrase));
+    return true;
+  },
+  // l'heure en mots : « Der Zug fährt um 8:30 Uhr ab. Man sagt auch: um ___. » halb neun / halb acht
+  uhrzeit(w){
+    const VERBE = DE_APP ? "abfahren" : "salir", NOM = DE_APP ? "Zug" : "tren";
+    if (w && !estVerbe(w, VERBE) && !estNom(w, NOM)) return false;
+    const c = [];
+    D.tableaux[APPRENDRE].forEach((l, ti) => l.forEach((r, i) => { if (r.mots) c.push([ti, i]); }));
+    const [ti, i] = hasard(c), lignes = D.tableaux[APPRENDRE][ti], r = lignes[i];
+    viser(w, motVerbe(VERBE));
+    ecran("uhrzeit", tableau(lignes, i), avecTrous(r.trouMots));
+    boutons($("choix"), melanger([r.mots].concat(melanger(r.leurresMots).slice(0, 2))), r.mots, ok => { remplir(r.mots); juger(ok, r.mots, r.phraseMots); });
+    return true;
+  },
+  // au guichet : « Anna fährt nach Hamburg und kommt am Sonntag zurück. „Einfach oder hin und zurück?“ »
+  billet(w){
+    const NOM = DE_APP ? "Fahrkarte" : "billete";
+    if (w && !estNom(w, NOM)) return false;
+    const b = hasard(D.billets[APPRENDRE]);
+    viser(w, motNom(NOM));
+    const q = DE_APP ? "„Einfach oder hin und zurück?“" : "«¿De ida o de ida y vuelta?»";
+    const opts = DE_APP ? ["Einfach, bitte.", "Hin und zurück, bitte."] : ["Solo de ida, por favor.", "De ida y vuelta, por favor."];
+    ecran("billet", billet(b.ville, "", ""), '<span class="situation">' + cible(b.situation) + '</span>' + cible(q), false);
+    apresQ = () => { const t = $("typeBillet"); if (t) t.textContent = b.retour ? TYPE_BILLET.ar : TYPE_BILLET.simple; };
+    // la voix dit la situation ET la reponse au guichet
+    boutons($("choix"), opts, b.rep, ok => juger(ok, b.rep, b.situation, b.situation + " " + b.rep));
+    return true;
+  },
+  // le prix en toutes lettres : « 29,90 € » — neunundzwanzig Euro neunzig (et pas zweiundneunzig)
+  prix(w){
+    const VERBE = DE_APP ? "kosten" : "costar", NOM = DE_APP ? "Fahrkarte" : "billete";
+    if (w && !estVerbe(w, VERBE) && !estNom(w, NOM)) return false;
+    const p = hasard(D.prix[APPRENDRE]);
+    viser(w, estNom(w) ? motNom(NOM) : motVerbe(VERBE));
+    ecran("prix", billet(p.ville, p.ar ? TYPE_BILLET.ar : TYPE_BILLET.simple, p.ecrit), cible(p.q), true);
+    const opts = [p.mots].concat(melanger(p.leurres).slice(0, 2));
+    boutons($("choix"), melanger(opts), p.mots, ok => juger(ok, p.mots, p.phrase));
+    return true;
+  },
+  // la phrase, et trois images : une seule la montre
+  cual(w){ return toucher(w, false); },
+  // l'ecoute : la phrase dite, trois images
+  entendre(w){ return toucher(w, true); },
+  // vrai ou faux : la phrase de l'image, ou une phrase fausse pour elle (l'autre geste, un autre moyen)
+  vraifaux(w){
+    const id = imageVisee(w, i => D.images[i].moyen); if (!id) return false;
+    const im = D.images[id], vrai = Math.random() < 0.5;
+    viserImage(w, id);
+    let faux;
+    if (im.geste) faux = im[APPRENDRE].faux;
+    else {
+      // un autre moyen, jamais absurde : pas l'avion en ville, pas a pied en avion
+      const autre = hasard(Object.keys(D.moyens).filter(k => k !== im.moyen && k !== (im.moyen === "flugzeug" ? "fuss" : "flugzeug")));
+      faux = DE_APP ? im.qui + " " + ({fuss: "geht", flugzeug: "fliegt"}[autre] || "fährt") + " " + D.moyens[autre].de.mit + "." : im.qui + " va " + D.moyens[autre].es.en + ".";
+    }
+    const phrase = vrai ? im[APPRENDRE].phrase : faux;
+    ecran("vraifaux", photo(id), cible(phrase), true);
+    const Vr = DE_APP ? "Richtig" : "Verdadero", F = DE_APP ? "Falsch" : "Falso", rep = vrai ? Vr : F;
+    boutons($("choix"), [Vr, F], rep, ok => juger(ok, rep, im[APPRENDRE].phrase));
+    return true;
+  }
+};
+// une image pour le mot vise : son moyen, son geste (einsteigen / subir), l'achat (kaufen / comprar)
+function imageVisee(w, filtre){
+  const VERBES = DE_APP ? {einsteigen: "ein", aussteigen: "aus"} : {subir: "ein", bajar: "aus"};
+  const ACHAT = DE_APP ? "kaufen" : "comprar";
+  const m = moyenDe(w);
+  if (w && !m && !(estVerbe(w) && (VERBES[w.mot] || w.mot === ACHAT))) return null;
+  const c = Object.keys(D.images).filter(id => (!filtre || filtre(id)) && (!w || (m && D.images[id].moyen === m)
+    || (estVerbe(w) && VERBES[w.mot] && D.images[id].geste === VERBES[w.mot]) || (estVerbe(w, ACHAT) && D.images[id].action === "kaufen")));
+  return c.length ? hasard(c) : null;
+}
+function viserImage(w, id){
+  const im = D.images[id];
+  const VERBES = DE_APP ? {ein: "einsteigen", aus: "aussteigen"} : {ein: "subir", aus: "bajar"};
+  viser(w, im.action === "kaufen" ? motVerbe(DE_APP ? "kaufen" : "comprar") : im.geste ? motVerbe(VERBES[im.geste]) : motMoyen(im.moyen));
+}
+// la phrase d'une image, et trois images ou elle n'est vraie que pour une : le geste contraire en premier leurre
+function toucher(w, oreille){
+  const id = imageVisee(w); if (!id) return false;
+  const im = D.images[id];
+  viserImage(w, id);
+  // les images ou la phrase est FAUSSE : un geste, sur une autre image que la sienne (l'autre geste du meme vehicule
+  // compris) ; un moyen, sur une image d'un autre moyen ; l'achat, sur toute autre image
+  const faux = Object.keys(D.images).filter(j => j !== id && (im.geste ? !(D.images[j].moyen === im.moyen && D.images[j].geste === im.geste)
+    : im.moyen ? D.images[j].moyen !== im.moyen : D.images[j].action !== im.action));
+  const proches = faux.filter(j => (im.geste && D.images[j].moyen === im.moyen) || D.images[j].qui === im.qui);
+  const ids = melanger([id].concat(uniques(melanger(proches).concat(melanger(faux))).slice(0, 2)));
+  const phrase = im[APPRENDRE].phrase;
+  if (oreille){
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(phrase));
+    dire(phrase);
+  } else {
+    $("zone").innerHTML = '<p class="consigne">' + T("cual") + '</p><div class="enonce centre">' + cible(phrase) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+  }
+  images($("rang"), ids, id, ok => juger(ok, phrase, phrase));
+  return true;
+}
+// les sortes de la langue apprise
+const SORTES = ["wie", "mit", "verbe", "steigen", "plan", "tableau", "uhrzeit", "billet", "prix", "cual", "entendre", "vraifaux"];
+
+// LES TEXTES QUE LA PAGE PEUT DIRE DANS LA DECOUVERTE (visuel/voix_themes.py) : les phrases des puces
+function textesAVoix(){
+  if (!D) return [];
+  const t = Object.keys(D.images).map(id => D.images[id][APPRENDRE].phrase);
+  Object.keys(D.moyens).forEach(m => { const p = phraseDecouverte(m); if (p) t.push(p.phrase); });
+  D.tableaux[APPRENDRE][0].forEach(r => t.push(r.phraseHeure));
+  return uniques(t);
+}
+const phraseDecouverte = m => PH().find(p => p.moyen === m && imagesDe(m).some(id => D.images[id].qui === p.qui));
+
+// ---------- la decouverte : trois onglets ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone");
+  z.innerHTML = '<p class="consigne">' + T("intro") + '</p>'
+    + '<div class="onglets" role="tablist"><button type="button" id="o1" role="tab">' + T("ongletMoyens") + '</button><button type="button" id="o2" role="tab">' + T("ongletGestes")
+    + '</button><button type="button" id="o3" role="tab">' + T("ongletDepart") + '</button></div>'
+    + '<div id="vue"></div><div class="dit"><div class="texte" id="dit"></div><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>'
+    + '<div class="puces" id="puces"></div><p class="regle" id="regle"></p><p class="regle" id="regle2" hidden></p>';
+  let phraseDite = "";
+  // la phrase, son groupe en couleur (« mit dem Bus » : le datif en ambre, « in den Bus » : l'accusatif en bleu-vert)
+  const montrerPhrase = (phrase, groupe, cas, plus) => {
+    phraseDite = phrase;
+    const t = V(phrase), g = groupe ? V(groupe) : null, i = g ? t.indexOf(g) : -1;
+    const html = i < 0 ? t : t.slice(0, i) + '<span class="cas-' + (cas || "dat") + '">' + g + '</span>' + t.slice(i + g.length);
+    $("dit").innerHTML = '<span lang="' + APPRENDRE + '" dir="ltr">' + html + '</span>' + traduction(tradPhrase(phrase)) + (plus || "");
+  };
+  $("ecoute").addEventListener("click", () => dire(phraseDite));
+  const onglet = n => ["o1", "o2", "o3"].forEach((o, i) => $(o).classList.toggle("actif", i === n));
+  const puces = (liste, montrer) => {
+    const pu = $("puces"); pu.innerHTML = "";
+    liste.forEach((it, i) => {
+      const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.innerHTML = cible(it.label);
+      b.addEventListener("click", () => { pu.querySelectorAll("button").forEach(x => x.classList.toggle("choisi", x === b)); montrer(it, true); });
+      pu.appendChild(b);
+      if (i === 0){ b.classList.add("choisi"); montrer(it, false); }
+    });
+  };
+  const regles = (a, b) => { $("regle").innerHTML = regle(a); const r2 = $("regle2"); r2.hidden = !b; if (b) r2.innerHTML = regle(b); };
+  // 1. comment y aller : la photo du moyen, « Mark fährt mit dem Bus zur Arbeit. », mit + datif en couleur
+  const moyens = () => {
+    onglet(0); regles(DE_APP ? "regleMit" : "regleEn");
+    puces(Object.keys(D.moyens).map(m => ({m, label: DE_APP ? D.moyens[m].de.mit : D.moyens[m].es.en})), (it, son) => {
+      const p = phraseDecouverte(it.m); if (!p) return;
+      const img = imagesDe(it.m).find(id => D.images[id].qui === p.qui && id === imageType(it.m)) || imagesDe(it.m).find(id => D.images[id].qui === p.qui);
+      $("vue").innerHTML = photo(img);
+      montrerPhrase(p.phrase, DE_APP ? D.moyens[it.m].de.mit : D.moyens[it.m].es.en, "dat");
+      if (son) dire(p.phrase);
+    });
+  };
+  // 2. monter, descendre, changer : les six gestes, et le plan pour « umsteigen »
+  const gestes = () => {
+    onglet(1); regles(DE_APP ? "regleSteigen" : "regleSubir");
+    const liste = Object.keys(D.images).filter(id => D.images[id].geste).map(id => ({id, label: D.images[id][APPRENDRE].phrase.replace(/\.$/, "")}))
+      .concat(Object.keys(D.images).filter(id => D.images[id].action === "kaufen").map(id => ({id, label: D.images[id][APPRENDRE].phrase.replace(/\.$/, "")})))
+      .concat([{plan: true, label: T("umsteigenPuce")}]);
+    puces(liste, (it, son) => {
+      if (it.plan){
+        const t = D.trajets.find(x => x.qui === "Mark" && x.de === "zoo" && x.vers === "stadion") || D.trajets[0], x = t[DE_APP ? "de_" : "es"];
+        $("vue").innerHTML = plan(t); montrerPhrase(x.phraseL); if (son) dire(x.phraseL); return;
+      }
+      const im = D.images[it.id];
+      $("vue").innerHTML = photo(it.id);
+      const ph = im[APPRENDRE].phrase;
+      const g = im.geste ? (DE_APP ? (im.geste === "ein" ? "in " + im.de.art : "aus " + im.de.art) : (im.geste === "ein" ? "sube al" : "baja del")) : null;
+      montrerPhrase(ph, g, im.geste === "ein" && DE_APP ? "akk" : "dat");
+      if (son) dire(ph);
+    });
+  };
+  // 3. les departs et les billets : le tableau (une ligne touchee se dit), l'heure en mots, aller simple / aller-retour
+  const depart = () => {
+    onglet(2); regles(DE_APP ? "regleUhr" : "regleHora", "regleBillet");
+    const lignes = D.tableaux[APPRENDRE][0];
+    const liste = lignes.map((r, i) => ({i, label: r.heure + " · " + r.ville}))
+      .concat(D.billets[APPRENDRE].filter(b => b.qui === "Anna").slice(0, 6).filter((b, i, a) => a.findIndex(x => x.retour === b.retour) === i)
+        .map(b => ({b, label: b.retour ? TYPE_BILLET.ar : TYPE_BILLET.simple})));
+    puces(liste, (it, son) => {
+      if (it.b){
+        $("vue").innerHTML = billet(it.b.ville, it.b.retour ? TYPE_BILLET.ar : TYPE_BILLET.simple, "");
+        montrerPhrase(it.b.situation, null, null, '<span class="trad">' + cible(it.b.rep) + '</span>');
+        if (son) dire(it.b.situation + " " + it.b.rep); return;
+      }
+      const r = lignes[it.i];
+      $("vue").innerHTML = tableau(lignes, it.i);
+      montrerPhrase(r.phraseHeure, null, null, r.mots ? '<span class="trad">' + cible(r.phraseMots) + '</span>' : "");
+      if (son) dire(r.phraseHeure);
+    });
+  };
+  $("o1").addEventListener("click", moyens); $("o2").addEventListener("click", gestes); $("o3").addEventListener("click", depart);
+  moyens();
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; taire(); demarrer(); };
+}
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
+// les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
+// jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
+// Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
+  // Si ce mot ne le permet pas, un mot plus loin dans la file passe devant ;
+  // en dernier recours seulement, la meme sorte, puis une question deja vue.
+  // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
+  const garde = dire; dire = () => {};
+  const raz = so => { motQ = null; apresQ = null; choixQ = null; sorteCourante = so; };
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        raz(so);
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
+      raz(derniereSorte);
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      raz(so);
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  dire = garde;
+  if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0);
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + '</div>';
+  basDePartie();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function basDePartie(){
+  const b = $("bas"); b.innerHTML = boutonEncore() + '<button type="button" class="principal" id="terminer">' + T("terminer") + '</button>'; b.hidden = false;
+  const e = $("encore"); if (e) e.addEventListener("click", () => { b.hidden = true; encoreDesQuestions(); });
+}
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("transportes/transportes.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>

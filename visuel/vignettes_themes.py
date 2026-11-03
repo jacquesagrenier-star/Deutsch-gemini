@@ -328,9 +328,35 @@ def metiers_polaroids():
     return c
 
 
+
+def transports_plan():
+    """Les transports : le plan du metro de la page (trois lignes, rouge, bleue, verte, qui se croisent deux a deux),
+    en traits epais pour se lire a 66 px, et Mark a la porte de la rame jaune (la scene U-Bahn) dans un rond."""
+    c = Image.new("RGB", (W, H), (244, 246, 248))
+    d = ImageDraw.Draw(c)
+    D = json.load(open(os.path.join(P, "transportes", "transportes.json"), encoding="utf-8"))
+    S = D["stations"]
+    pos = lambda s: (40 + S[s]["x"] * 4.4, 20 + S[s]["y"] * 4.4)
+    for l in D["lignes"].values():
+        coul = tuple(int(l["couleur"][i:i + 2], 16) for i in (1, 3, 5))
+        d.line([pos(s) for s in l["stations"]], fill=coul, width=26, joint="curve")
+        for s in (l["stations"][0], l["stations"][-1]):
+            x, y = pos(s); d.ellipse((x - 13, y - 13, x + 13, y + 13), fill=coul)
+    inter = {s for s in S if sum(s in l["stations"] for l in D["lignes"].values()) > 1}
+    for s in S:
+        x, y = pos(s); r = 19 if s in inter else 8
+        d.ellipse((x - r, y - r, x + r, y + r), fill=(255, 255, 255), outline=(28, 36, 48), width=6 if s in inter else 0)
+    m = Image.open(os.path.join(P, "transportes", "ubahn-ein.webp")).convert("RGB")
+    m = m.crop((640, 120, 1120, 600))                # la tete et les epaules de Mark, la porte de la rame
+    b = rond(m, 170, bord=7)
+    c.paste(b, (W - b.width - 22, H - b.height - 22), b)
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
-             "metiers": metiers_polaroids}
+             "metiers": metiers_polaroids,
+             "transportes": transports_plan}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

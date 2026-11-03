@@ -244,6 +244,27 @@ Les prépositions de lieu (`gato.html`, `visuel/gato/gato.py`, la seule source).
   pour leurre de l'autre ; en espagnol, toutes les formes justes d'une place (encima de / sobre / en la mesa) ;
 - les voix à enregistrer : `visuel/gato/voix.json` (fait par `gato.py`).
 
+## Un thème de gestes et de documents : « Les transports » (3 nov. 2026, vague 2)
+
+Se déplacer (`transportes.html`, `visuel/transportes/transportes.py`, la seule source). Ce qu'il apprend aux thèmes suivants :
+- **l'angle** (règle 2) : les scènes U-Bahn, Zug, Kreuzung et Flughafen font nommer leurs objets ; ici, des personnes
+  qui se déplacent et les gestes du voyage (mit dem Bus / en autobús, ein-, aus-, umsteigen / subir al, bajar del,
+  cambiar de línea, l'heure du départ, le billet) ;
+- **ce qui a du texte se DESSINE**, jamais ne se demande à un modèle d'image : le tableau des départs, le plan du
+  métro (trois lignes qui se croisent deux à deux une seule fois, d'où une seule correspondance par trajet) et les
+  billets sont tracés par la page depuis la donnée, lisibles à 375 px, et gratuits ;
+- **les lieux des scènes** (décision du 3 nov. sur la continuité) : une photo prise à l'arrêt de bus ou dans la station
+  reçoit l'image de la scène « pour le lieu » (`LIEUX`, `LIEU_TXT`), et une image de scène qui montre déjà le geste se
+  **recadre** au lieu de se payer (`ubahn-ein` : Mark à la porte de la rame) ; les lieux neufs sont dans `video/LIEUX.md` ;
+- **les nombres** : chaque texte à chiffres a sa lecture en lettres dans `transportes.json` (`lectures`), que la page
+  donne à la voix du téléphone (« acht Uhr fünfzehn », « veintinueve euros con noventa ») ; à recopier dans
+  `audio/lectures/<langue>.json` le jour où l'on enregistre. La sorte `prix` fait choisir le prix écrit en lettres, avec
+  des leurres qui ressemblent (29 / 92, 16 / 60, sesenta / setenta ; « sesenta y un euros », jamais « y uno ») ;
+- **l'heure en mots** : les leurres sont toujours faux pour l'heure montrée (halb acht pour 8 h 30, jamais « drei
+  Viertel neun », régional mais juste) ; ni midi ni 13 h (halb eins, la una) ;
+- le relevé exhaustif des phrases (`visuel/transportes/toutes-les-phrases.json`, ~61 000 caractères en allemand) est un
+  plafond ; ce qui s'enregistre est l'inventaire de `visuel/voix_themes.py` (`voix.json`).
+
 ## La séance
 
 Un jour sur trois (`themeDuJour()`), le thème illustré prend la place de l'arrêt de scène (même place : la séance

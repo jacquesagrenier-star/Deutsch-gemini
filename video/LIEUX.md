@@ -76,6 +76,21 @@ tournée dans ce lieu, dans **tous** les épisodes.
     noires du soir à GAUCHE. Anna au 2e rang côté fenêtres ; **la chaise de Mark à sa droite,
     chaque semaine**. Aucun poster, aucune horloge.
 
+### Les lieux du thème « Les transports » (thème illustré, 3 nov. 2026)
+Source : `visuel/transportes/transportes.py` (`LIEUX`, `LIEU_TXT`, `IMAGES`).
+- **Le carrefour du Kiez** = la scène Kreuzung (`visuel/prototype/kreuzung.webp`), donnée « pour le lieu » : l'arrêt
+  de bus (abri vitré, panneau rond jaune), le bus BLANC, le tram JAUNE, le taxi CRÈME, la piste cyclable ROUGE, les
+  immeubles crème et beige, les pavés gris mouillés, un jour d'automne couvert. Mark y monte dans le bus et en
+  descend, Lena y prend le tram, Mark y sort du taxi, Mark y passe à vélo, Anna y marche.
+- **La station de U-Bahn** = la scène U-Bahn (`visuel/prototype/ubahn.webp`) : carrelage vert pâle, sol de granit
+  gris et sa bande podotactile sombre, rame jaune, horloge suspendue. Mark y monte dans la rame (l'image de la scène,
+  recadrée), y achète son billet au distributeur contre le mur carrelé ; Anna est assise dans la rame.
+- **NOUVEAU — le quai de la grande gare** (Hauptbahnhof de Berlin, verrière) : quai de béton gris, ligne blanche
+  au bord, piliers d'acier, train grandes lignes blanc à bande rouge. Anna y descend du train avec sa petite valise
+  rouge foncé, puis y remonte (même cadrage : `zug-ein` est une retouche de `zug-aus`).
+- **NOUVEAU — une rue résidentielle arborée** (Felix au volant d'une petite voiture grise) et **l'intérieur d'un
+  avion** (Felix au hublot, l'aile et les nuages).
+
 ### Les lieux d'un seul épisode (gardés pour mémoire)
 - L'aéroport (épisode 1), le Bürgeramt (épisode 2), la piste cyclable (épisode 3) : voir leurs
   `A-TOURNER.txt`. S'ils reviennent, leur maître est dans `01-images/` de l'épisode.
