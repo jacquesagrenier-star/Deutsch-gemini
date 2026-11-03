@@ -25,6 +25,10 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
   --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A;--ardoise:#13211B;--craie:#EDE8D8;--papier:#2A3A48;--ligne:#3E5468}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (3 nov. 2026, regle commune, modele familia.html) : le contenu
+   defile DANS le body, et un bouton fixe tombe bien au bas de l'ecran, aussi sur iPhone */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 96px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
@@ -112,7 +116,7 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=1"></script>
+<script src="themes/voix.js?v=2"></script>
 <script src="themes/zoom.js?v=3"></script>
 <script>
 const Q = new URLSearchParams(location.search);
@@ -142,7 +146,7 @@ const TEXTES = {
   regleCes:  {fr:"Pour commander, « Quisiera… » (je voudrais) est plus poli que « Quiero… ». Pour finir : « La cuenta, por favor ».", en:"To order, « Quisiera… » (I would like) is more polite than « Quiero… ». To finish: « La cuenta, por favor ».", tr:"Sipariş verirken « Quisiera… » (isterdim), « Quiero… »'dan daha kibardır. Sonunda: « La cuenta, por favor ».", uk:"Щоб замовити, « Quisiera… » (я хотів би) ввічливіше, ніж « Quiero… ». Наприкінці: « La cuenta, por favor ».", fa:"برای سفارش، « Quisiera… » (می‌خواستم) مؤدبانه‌تر از « Quiero… » است. در پایان: « La cuenta, por favor ».", ar:"عند الطلب، « Quisiera… » (أودّ) أكثر تهذيبًا من « Quiero… ». وفي النهاية: « La cuenta, por favor ».", pt:"Para pedir, « Quisiera… » (eu queria) é mais educado que « Quiero… ». Para terminar: « La cuenta, por favor ».", pl:"Zamawiając, « Quisiera… » (chciałbym) jest grzeczniejsze niż « Quiero… ». Na koniec: « La cuenta, por favor ».", ru:"При заказе « Quisiera… » (я бы хотел) вежливее, чем « Quiero… ». В конце: « La cuenta, por favor ».", de:"Zum Bestellen ist « Quisiera… » (ich hätte gern) höflicher als « Quiero… ». Zum Schluss: « La cuenta, por favor »."},
   regleCde:  {fr:"Pour commander, « Ich hätte gern… » ou « Ich möchte… » : plus poli que « Ich will… ». Pour finir : « Die Rechnung, bitte ». En laissant le pourboire : « Stimmt so ».", en:"To order, « Ich hätte gern… » or « Ich möchte… »: more polite than « Ich will… ». To finish: « Die Rechnung, bitte ». Leaving the tip: « Stimmt so ».", tr:"Sipariş için « Ich hätte gern… » ya da « Ich möchte… », « Ich will… »'den daha kibardır. Sonunda: « Die Rechnung, bitte ». Bahşiş bırakırken: « Stimmt so ».", uk:"Щоб замовити: « Ich hätte gern… » або « Ich möchte… », ввічливіше, ніж « Ich will… ». Наприкінці: « Die Rechnung, bitte ». Залишаючи чайові: « Stimmt so ».", fa:"برای سفارش: « Ich hätte gern… » یا « Ich möchte… »، مؤدبانه‌تر از « Ich will… ». در پایان: « Die Rechnung, bitte ». هنگام انعام دادن: « Stimmt so ».", ar:"للطلب: « Ich hätte gern… » أو « Ich möchte… »، وهما أكثر تهذيبًا من « Ich will… ». وفي النهاية: « Die Rechnung, bitte ». وعند ترك البقشيش: « Stimmt so ».", pt:"Para pedir: « Ich hätte gern… » ou « Ich möchte… », mais educado que « Ich will… ». Para terminar: « Die Rechnung, bitte ». Ao deixar a gorjeta: « Stimmt so ».", pl:"Zamawiając: « Ich hätte gern… » albo « Ich möchte… », grzeczniej niż « Ich will… ». Na koniec: « Die Rechnung, bitte ». Zostawiając napiwek: « Stimmt so ».", ru:"Для заказа: « Ich hätte gern… » или « Ich möchte… », вежливее, чем « Ich will… ». В конце: « Die Rechnung, bitte ». Оставляя чаевые: « Stimmt so ».", de:"Höflich bestellen: « Ich hätte gern… ». Zum Schluss: « Die Rechnung, bitte »."},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
-  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   aime:      {fr:"Regarde le visage et choisis la bonne forme.", en:"Look at the face and choose the right form.", tr:"Yüze bak ve doğru biçimi seç.", uk:"Подивися на обличчя й обери правильну форму.", fa:"به چهره نگاه کن و شکل درست را انتخاب کن.", ar:"انظر إلى الوجه واختر الصيغة الصحيحة.", pt:"Olhe o rosto e escolha a forma certa.", pl:"Spójrz na twarz i wybierz właściwą formę.", ru:"Посмотри на лицо и выбери правильную форму.", de:"Sieh dir das Gesicht an und wähle die richtige Form."},
   mogen:     {fr:"Regarde le visage et choisis le bon mot.", en:"Look at the face and choose the right word.", tr:"Yüze bak ve doğru kelimeyi seç.", uk:"Подивися на обличчя й обери правильне слово.", fa:"به چهره نگاه کن و کلمهٔ درست را انتخاب کن.", ar:"انظر إلى الوجه واختر الكلمة الصحيحة.", pt:"Olhe o rosto e escolha a palavra certa.", pl:"Spójrz na twarz i wybierz właściwe słowo.", ru:"Посмотри на лицо и выбери правильное слово.", de:"Sieh dir das Gesicht an und wähle das richtige Wort."},
   quien:     {fr:"Lis la question et touche le bon visage.", en:"Read the question and tap the right face.", tr:"Soruyu oku ve doğru yüze dokun.", uk:"Прочитай запитання й торкнися потрібного обличчя.", fa:"سؤال را بخوان و روی چهرهٔ درست بزن.", ar:"اقرأ السؤال والمس الوجه الصحيح.", pt:"Leia a pergunta e toque no rosto certo.", pl:"Przeczytaj pytanie i dotknij właściwej twarzy.", ru:"Прочитай вопрос и нажми на нужное лицо.", de:"Lies die Frage und tippe auf das richtige Gesicht."},
@@ -156,7 +160,7 @@ const TEXTES = {
   cafeQui:   {fr:"Au café : qui est-ce ?", en:"At the café: who is it?", tr:"Kafede: bu kim?", uk:"У кав'ярні: хто це?", fa:"در کافه: این کیست؟", ar:"في المقهى: من هذا؟", pt:"No café: quem é?", pl:"W kawiarni: kto to jest?", ru:"В кафе: кто это?", de:"Im Café: Wer ist das?"},
   cuenta:    {fr:"Lis la carte et calcule.", en:"Read the menu and work it out.", tr:"Menüyü oku ve hesapla.", uk:"Прочитай меню й порахуй.", fa:"منو را بخوان و حساب کن.", ar:"اقرأ قائمة الطعام واحسب.", pt:"Leia o cardápio e calcule.", pl:"Przeczytaj menu i policz.", ru:"Прочитай меню и посчитай.", de:"Lies die Karte und rechne."},
   vraifaux:  {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
-  suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
@@ -363,6 +367,10 @@ const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-
 // Decrire depuis la v1087) : « A Carmen no le gusta el limón. », « Una botella de agua. », « La cuenta, por favor. ».
 // Une phrase a prix se dit en lettres (« Son cuatro euros con noventa. ») : le telephone hacherait « 4,90 € ».
 let dire = texte => { if (texte) Voix.dire(latam(texte)); };
+// Les phrases a prix (« Son cuatro euros con noventa. ») passent par la voix prise AU CHARGEMENT : l'inventaire des voix
+// (visuel/voix_themes.py) n'ecoute que Voix.dire, et ces phrases-la, des centaines de totaux, ne s'enregistrent pas --
+// le telephone les dit en lettres. Voulu, pas un oubli.
+const direPrix = (d => texte => { if (texte) d(latam(texte)); })(Voix.dire);
 const motCle = m => !m ? null : (m.genre ? m.genre + " " : "") + m.mot;
 // TOUT CE QUE LA PAGE PEUT DIRE, pour l'inventaire des voix a enregistrer (visuel/voix_themes.py) : la decouverte et
 // chaque phrase juste qu'une question peut afficher. Sauf les phrases a prix (la carte, l'addition) : des centaines
@@ -400,7 +408,7 @@ let motQ = null;
 function juger(ok, bonneTexte, phrase, lu){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, sens: motQ.sens || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
@@ -410,7 +418,7 @@ function juger(ok, bonneTexte, phrase, lu){
   // LE MOT CHOISI, quand il est faux (Jacques, 3 nov. : « quand je dis le mauvais, on devrait avoir l'affichage
   // traduit aussi ») : sa traduction, seulement quand elle est sure (TRAD_CHOIX, posee par la sorte)
   if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
-  dire(lu || phrase || bonneTexte);
+  if (lu) direPrix(lu); else dire(phrase || bonneTexte);
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 // TRAD_CHOIX : {option: sa traduction dans la langue d'interface}, pose par la sorte quand la traduction est sure (une
@@ -954,7 +962,7 @@ function montrer(){
   }
   if (!fait) fait = essai(file[rang], false);
   vus.add(cleQuestion()); derniereSorte = fait; retenir();
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
