@@ -2093,7 +2093,7 @@ window.SCENE = {
      "c": [
       "deben de",
       "pueden",
-      "quieren"
+      "tienen de"
      ],
      "f": "anna",
      "r": "mark",

@@ -2086,8 +2086,8 @@ window.SCENE = {
     "B2 | Los suéteres de la estantería están doblados.": "Os suéteres da prateleira estão dobrados.",
     "B2 | Los jerséis de la estantería están doblados.": "Os suéteres da prateleira estão dobrados.",
     "B2 | En esta tienda se vende ropa de calidad.": "Nesta loja se vende roupa de qualidade.",
-    "C1 | El suéter debe de gustarle.": "Ela deve ter gostado do suéter.",
-    "C1 | El jersey debe de gustarle.": "Ela deve ter gostado do suéter.",
+    "C1 | El suéter debe de gustarle.": "Ela deve gostar do suéter.",
+    "C1 | El jersey debe de gustarle.": "Ela deve gostar do suéter.",
     "C1 | Puede que se lo pruebe enseguida en el probador.": "Pode ser que ela o experimente agora mesmo no provador.",
     "C1 | Tendrá una boda pronto.": "Ele deve ter um casamento em breve.",
     "C1 | Dicen que la mujer del mostrador trabaja aquí desde hace treinta años.": "Dizem que a mulher do balcão trabalha aqui há trinta anos."

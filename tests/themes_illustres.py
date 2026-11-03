@@ -20,6 +20,9 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # allow_reuse_address, deux serveurs sur le meme port se lisent l'un l'autre sous Windows -- vecu).
 PORT = int(os.environ.get("THEMES_PORT", "8798"))
 THEMES = ["familia", "descripcion", "emociones", "contrarios", "manger"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
+# L'ANGLAIS (3 nov. 2026) : les themes qui ont deja leurs phrases anglaises, a mesure qu'ils les recoivent ; et le
+# britannique, la variante (« en&variante=gb »)
+ANGLAIS = ["familia", "descripcion"]
 PLANCHER = 100
 
 COMPTER = """(n) => {
@@ -85,7 +88,7 @@ def main():
     with sync_playwright() as p:
         nav = p.chromium.launch()
         for th in themes:
-            for app in ("es", "de"):
+            for app in ("es", "de") + (("en", "en&variante=gb") if th in ANGLAIS else ()):
                 for seance in ("", "&seance=1"):
                     ctx = nav.new_context(viewport={"width": 390, "height": 844})
                     page = ctx.new_page()

@@ -1159,10 +1159,16 @@ window.SCENE = {
    "devant": 0,
    "boites": [
     [
-     92,
-     44,
-     4.5,
-     1.6
+     89.9,
+     45.35,
+     2.0,
+     1.0
+    ],
+    [
+     92.25,
+     45.25,
+     1.7,
+     0.9
     ]
    ],
    "fr": "lunettes",
@@ -2527,7 +2533,7 @@ window.SCENE = {
     "B2 | Der Mann lächelt, während er Mark den Schlüssel gibt.": "Mężczyzna uśmiecha się, dając Markowi klucz.",
     "B2 | Sobald das Zimmer fertig ist, ruft die Rezeption an.": "Gdy tylko pokój będzie gotowy, recepcja zadzwoni.",
     "B2 | Solange der Aufzug kaputt ist, nehmen die Gäste die Treppe.": "Dopóki winda jest zepsuta, goście chodzą schodami.",
-    "C1 | Er muss sich auf das Wochenende freuen.": "Musi cieszyć się na weekend.",
+    "C1 | Er muss sich auf das Wochenende freuen.": "Na pewno cieszy się na weekend.",
     "C1 | Die alte Dame könnte Stammgast sein.": "Starsza pani być może jest stałym gościem.",
     "C1 | Das Zimmer dürfte im zweiten Stock liegen.": "Pokój jest zapewne na drugim piętrze.",
     "C1 | Dieses Hotel soll das älteste in Hamburg sein.": "Podobno ten hotel jest najstarszy w Hamburgu."

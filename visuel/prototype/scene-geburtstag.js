@@ -1357,7 +1357,7 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Mark'ın doğum günü, ortak evinin oturma odasında: Anna ona bir hediye uzatıyor, bir arkadaşı fotoğrafını çekiyor, bir kız arkadaşı alkışlıyor; masada mumlu bir çikolatalı pasta, bir pizza, çilekler, portakal suyu, büyük kırmızı bir hediye ve bir kart var.",
+    "alt": "Mark'ın doğum günü, ortak evinin oturma odasında: Anna ona bir hediye uzatıyor, bir arkadaşı fotoğrafını çekiyor, bir kadın arkadaşı alkışlıyor; masada mumlu bir çikolatalı pasta, bir pizza, çilekler, portakal suyu, büyük kırmızı bir hediye ve bir kart var.",
     "consigne": "Bugün Mark'ın doğum günü. Bir nesneye dokun."
    },
    "couches": {

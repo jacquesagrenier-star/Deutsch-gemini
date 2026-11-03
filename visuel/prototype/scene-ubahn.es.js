@@ -1301,7 +1301,7 @@ window.SCENE = {
      "q": "El músico no canta, ___ toca la guitarra.",
      "c": [
       "sino que",
-      "pero",
+      "sino",
       "o"
      ],
      "f": "mann",

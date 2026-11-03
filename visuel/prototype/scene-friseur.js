@@ -2369,7 +2369,7 @@ window.SCENE = {
   "pl": {
    "champs": {
     "alt": "Anna u fryzjera w sobotni poranek w Berlinie: siedząc w czarnym skórzanym fotelu, z białym ręcznikiem na ramionach i zamkniętym czasopismem na kolanach, uśmiecha się, gdy fryzjer w okularach trzyma kosmyk jej włosów i rozwarte nożyczki; na podłodze ścięte włosy; po lewej duże lustro, wysoki regał z ręcznikami i butelkami, miotła i półka z okrągłą szczotką i trzema butelkami; w głębi mała lada ze starą kasą, filiżanką kawy i doniczką bazylii, zegar, obraz ze słonecznikami, wisząca lampa i haczyki, na których wiszą płaszcz, czerwony szal i torebka Anny; po prawej starsza pani czyta czasopismo na szarej kanapie, przed niskim stolikiem ze stosem czasopism i szklanką wody, duża roślina i witryna na ulicę z latarnią, drzewem i rowerem.",
-    "consigne": "Anna obcina włosy. Dotknij przedmiotu."
+    "consigne": "Anna strzyże się u fryzjera. Dotknij przedmiotu."
    },
    "couches": {
     "A1": "Rzeczowniki i rodzajniki",
@@ -2415,7 +2415,7 @@ window.SCENE = {
     "A2 | Das Glas steht auf dem Tisch.": "Szklanka stoi na stole.",
     "A2 | Die Frau sitzt auf dem Sofa.": "Pani siedzi na kanapie.",
     "A2 | Der Mann steht hinter dem Stuhl.": "Mężczyzna stoi za fotelem.",
-    "B1 | Anna lässt sich die Haare schneiden.": "Anna obcina włosy.",
+    "B1 | Anna lässt sich die Haare schneiden.": "Anna strzyże się u fryzjera.",
     "B1 | Ich wasche mir jeden Morgen die Haare.": "Myję włosy każdego ranka.",
     "B1 | Ich kämme mich schnell.": "Szybko się czeszę.",
     "B1 | Nach der Arbeit wäscht der Mann sich die Hände.": "Po pracy mężczyzna myje ręce.",

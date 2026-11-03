@@ -1970,7 +1970,7 @@ window.SCENE = {
     "A2 | Der Regenschirm hängt an der Lampe.": "المظلّة معلّقة على المصباح.",
     "A2 | Das Fahrrad steht vor dem Regal.": "الدراجة أمام الرفّ.",
     "A2 | Die Gitarre steht zwischen dem Schrank und dem Sofa.": "الغيتار بين الخزانة والأريكة.",
-    "A2 | Die Turnschuhe liegen unter dem Sofa.": "الحذاء الرياضي تحت الأريكة.",
+    "A2 | Die Turnschuhe liegen unter dem Sofa.": "الأحذية الرياضية تحت الأريكة.",
     "A2 | Das Glas mit dem Goldfisch steht auf dem Regal.": "الحوض الذي فيه السمكة الذهبية على الرفّ.",
     "A2 | Die Socke hängt an der Stehlampe.": "الجورب معلّق على المصباح الأرضي.",
     "A2 | Der Heizkörper ist unter dem Fenster.": "المدفأة تحت النافذة.",
@@ -2101,7 +2101,7 @@ window.SCENE = {
     "B1 | Die Tasse steht auf dem Couchtisch.": "Stan → <b>stehen</b> + Dativ: auf <b>dem</b> Couchtisch.",
     "B1 | Mark stellt die Tasse auf das Regal.": "<b>stellen</b> = postawić, ruch (Wohin?) → Akkusativ: das Regal → auf <b>das</b> Regal (aufs Regal).",
     "B1 | Noch hängt der Regenschirm an der Lampe.": "<b>hängen</b> jako stan (Wo?) → Dativ: an <b>der</b> Lampe.",
-    "B1 | Mark hängt den Regenschirm an die Tür.": "Ten sam czasownik <b>hängen</b>, ale ruch (Wohin?) → Akkusativ: an <b>die</b> Tür. To przypadek mówi, czy jest ruch — jak w polskim „na drzwiach” / „na drzwi”.",
+    "B1 | Mark hängt den Regenschirm an die Tür.": "Ten sam czasownik <b>hängen</b>, ale ruch (Wohin?) → Akkusativ: an <b>die</b> Tür. To przypadek mówi, czy jest ruch (po polsku w obu przypadkach: „na drzwiach”).",
     "B1 | Mark legt das Buch ins Regal.": "Wohin? → Akkusativ: in + das = <b>ins</b>. <b>im</b> (in dem) odpowiadałoby na Wo?",
     "B1 | Die Flaschen stehen im Eimer.": "Stan (<b>stehen</b>) → Dativ: in dem = <b>im</b> Eimer.",
     "B1 | Die Katze springt gleich auf das Sofa.": "Ruch w stronę miejsca (Wohin?) → Akkusativ: auf <b>das</b> Sofa (aufs Sofa).",
@@ -2223,7 +2223,7 @@ window.SCENE = {
     "B2 | Die Lichterkette ist um die Pflanze gewickelt.": "Гирлянда обмотана вокруг растения.",
     "C1 | Die Party muss sehr lang gewesen sein.": "Вечеринка, должно быть, была очень долгой.",
     "C1 | Das dürfte einer der Gäste gewesen sein.": "Это, вероятно, был один из гостей.",
-    "C1 | Sie könnte einem Gast gehören.": "Он, возможно, принадлежит кому-то из гостей.",
+    "C1 | Sie könnte einem Gast gehören.": "Она, возможно, принадлежит кому-то из гостей.",
     "C1 | Hätte Mark die Party nicht verpasst, wäre er jetzt auch müde.": "Если бы Марк не пропустил вечеринку, он тоже сейчас был бы уставшим."
    }
   }

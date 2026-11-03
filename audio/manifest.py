@@ -329,6 +329,12 @@ def recolter():
     for texte in contrarios_textes("de"):
         prendre(texte, "A1", "phrase" if " " in texte else "mot", "contrarios")
 
+    # LA FAMILLE ET DECRIRE UNE PERSONNE (themes illustres, 3 nov. 2026) : les fiches de la decouverte et les mots
+    # cles dits apres une reponse, tels que les pages les disent (visuel/voix_themes.py -> visuel/<theme>/voix.json).
+    for theme in ("familia", "descripcion"):
+        for texte in themes_textes(theme, "de"):
+            prendre(texte, "A1", "phrase" if " " in texte else "mot", theme)
+
     return out
 
 
@@ -336,6 +342,13 @@ def contrarios_textes(langue):
     """Ce que dit le theme illustre des contraires (de ; es et latam disent les memes textes)."""
     d = charger(os.path.join("visuel", "contrarios", "contrarios.json"))
     return list(d["sons"]["de" if langue == "de" else "es"])
+
+def themes_textes(theme, langue):
+    """Ce que la page d'un theme illustre peut dire (de, es, latam) : visuel/<theme>/voix.json."""
+    chemin = os.path.join(RACINE, "visuel", theme, "voix.json")
+    if not os.path.exists(chemin):
+        return []
+    return json.load(io.open(chemin, encoding="utf-8")).get(langue, [])
 
 
 def emociones_textes(langue):

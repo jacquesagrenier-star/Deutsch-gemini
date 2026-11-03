@@ -1081,7 +1081,7 @@ window.SCENE = {
      "c": [
       "la que",
       "el que",
-      "que"
+      "lo que"
      ],
      "f": "regal",
      "r": "leiter",

@@ -1083,7 +1083,7 @@ window.SCENE = {
      "q": "¿Me ___ mañana, por favor?",
      "c": [
       "llamas",
-      "llama",
+      "llamar",
       "llamo"
      ],
      "f": "telefon",
@@ -1163,7 +1163,7 @@ window.SCENE = {
      "c": [
       "la que",
       "el que",
-      "que"
+      "lo que"
      ],
      "f": "regal",
      "r": "ordner",
@@ -1621,7 +1621,7 @@ window.SCENE = {
     "B2 | La compañera, cuyo pelo es gris, lee una carta.": "Die Kollegin, deren Haar grau ist, liest einen Brief.",
     "B2 | La estantería en la que están las carpetas es de metal.": "Das Regal, in dem die Ordner stehen, ist aus Metall.",
     "B2 | Las carpetas están ordenadas por colores.": "Die Ordner sind nach Farben geordnet.",
-    "B2 | Aquí se trabaja mucho por teléfono.": "Hier wird viel telefoniert.",
+    "B2 | Aquí se trabaja mucho por teléfono.": "Hier wird viel am Telefon gearbeitet.",
     "B2 | El cuaderno ya está medio escrito.": "Das Heft ist schon halb vollgeschrieben.",
     "C1 | La llamada debe de ser importante.": "Der Anruf muss wichtig sein.",
     "C1 | Puede que la compañera sea su jefa.": "Vielleicht ist die Kollegin seine Chefin.",

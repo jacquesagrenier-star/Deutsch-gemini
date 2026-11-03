@@ -73,11 +73,20 @@ button:disabled{cursor:default}
 .suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
   color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
 .suite[hidden]{display:none}
+/* LES BOUTONS DU BAS (Jacques, 3 nov. 2026, la regle des scenes depuis la v1059 : « commencer les exercices ou
+   continuer soit toujours en bas completement de l'ecran ») : « Commencer », « Continuer » (.suite) et ceux de la fin
+   (« Encore des questions », « Terminer ») sont tous fixes en bas, au-dessus de tout (5000, comme les scenes), dans
+   le meme verre vert ; deux boutons cote a cote. Le body garde 90 px + la zone sure en bas pour que rien n'y passe dessous. */
+.suite{z-index:5000}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas button{flex:1 1 0;min-width:0;height:54px;border:0;border-radius:27px;padding:0 12px;color:#fff;font:800 16px/1.15 var(--police);
+  background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
 .fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
 .fin .score{font-size:22px;font-weight:900}
 .fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
 [lang]{unicode-bidi:isolate}
 /* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
+.trad.faux{color:var(--rouge);font-style:italic}
 .trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
 </style>
 </head>
@@ -87,9 +96,13 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=1"></script>
+<script src="themes/zoom.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+// l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : le meme arbre, ses phrases a lui ; variante=gb, le britannique
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const BRITANNIQUE = APPRENDRE === "en" && Q.get("variante") === "gb";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
@@ -97,6 +110,8 @@ document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "l
 // vingt questions seule (Jacques, 3 nov.) ; dans la seance du jour (seance=1), un jour sur trois a la place de la scene :
 // six questions et pas de decouverte (themeDuJour() dans index.html)
 const NB = Q.get("seance") === "1" ? 6 : 20;
+// agrandir (themes/zoom.js) : un toucher sur un visage ou une fiche, la loupe sur l'arbre qu'on touche pour repondre
+Zoom.init({direct: ".duo img, .fiche img", loupe: ".arbre", langue: LANGUE});
 
 const TEXTES = {
   titre:     {fr:"La famille", en:"Family", tr:"Aile", uk:"Родина", fa:"خانواده", ar:"العائلة", pt:"A família", pl:"Rodzina", ru:"Семья", de:"Die Familie"},
@@ -113,8 +128,13 @@ const TEXTES = {
   suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
   encore:    {fr:"Encore une fois", en:"Once more", tr:"Bir kez daha", uk:"Ще раз", fa:"یک بار دیگر", ar:"مرة أخرى", pt:"Mais uma vez", pl:"Jeszcze raz", ru:"Ещё раз", de:"Noch einmal"},
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  // l'anglais seulement (son interface est en francais) : le genitif en 's, et les mots de la maison
+  genitif:   {fr:"Choisis la bonne forme.", en:"Choose the right form."},
+  bonASavoir:{fr:"Bon à savoir : on présente quelqu'un avec <b>father</b> et <b>mother</b> ; en famille, on dit <b>Dad</b> et <b>{mom}</b> ({ailleurs}). Le lien se dit avec <b>'s</b> : <b>Anna's father</b>, le père d'Anna.",
+              en:"Good to know: <b>father</b> and <b>mother</b> introduce someone; at home, people say <b>Dad</b> and <b>{mom}</b>. The link uses <b>'s</b>: <b>Anna's father</b>."},
   retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -216,11 +236,57 @@ const DE = {
     petitCouple: (a, b) => ["Wie viele Enkel haben " + a + " und " + b + "?", n => "Sie haben " + DE.nombres[n] + " Enkel."]
   }
 };
-const L = APPRENDRE === "de" ? DE : ES;
+// L'ANGLAIS (3 nov. 2026). Ce que la page enseigne : le genitif (« Peter is Anna's father », pas « the father of
+// Anna »), his / her selon celui qui possede et non selon la chose possedee (a l'inverse de son / sa), our et their,
+// et, comme en allemand, les noms de groupe du corpus : parents, siblings, grandparents. « cousin » est le meme mot pour
+// les deux sexes : un seul mot du theme, et « Who is Mia's cousin? » ne se pose que si l'arbre n'en donne qu'un.
+const genitif = n => n + (/s$/i.test(n) ? "'" : "'s");
+const EN = {
+  bravo: "Well done!", vrai: "True", faux: "False",
+  mots: {parent:["father","mother"], enfant:["son","daughter"], conjoint:["husband","wife"], frere:["brother","sister"], grandparent:["grandfather","grandmother"],
+         petitenfant:["grandson","granddaughter"], oncle:["uncle","aunt"], neveu:["nephew","niece"], cousin:["cousin","cousin"],
+         beauparent:["father-in-law","mother-in-law"], gendre:["son-in-law","daughter-in-law"], beaufrere:["brother-in-law","sister-in-law"]},
+  // les noms de groupe, qui ne disent pas le sexe (siblings : des freres, des soeurs, ou les deux)
+  pluriels: {parent:["parents","parents"], enfant:["children","children"], frere:["siblings","siblings"], grandparent:["grandparents","grandparents"], petitenfant:["grandchildren","grandchildren"]},
+  nombres: {2:"two", 3:"three", 4:"four", 5:"five"},
+  art: (s, w) => w,
+  artPl: (fem, w) => w,
+  et: a => a.length > 1 ? a.slice(0, -1).join(", ") + " and " + a[a.length - 1] : a[0],
+  lien: (o, groupe, e) => o + " is " + genitif(e) + " " + groupe + ".",
+  lienPl: (os, groupe, e) => EN.et(os) + " are " + genitif(e) + " " + groupe + ".",
+  qui: (groupe, e) => "Who is " + genitif(e) + " " + groupe + "?",
+  soi: (o, age) => "This is " + o + ". She is " + age + " years old.",
+  age: (o, age) => (sexe(o) === "f" ? "She" : "He") + " is " + age + " years old.",
+  // his / her : le sexe de celui qui possede ; la forme ne change ni au feminin ni au pluriel de la chose
+  poss: {je:["my","my","my"], tu:["your","your","your"], il:["his","his","his"], elle:["her","her","her"], nous:["our","our","our"]},
+  dit: (s, phrase) => s + " says: “" + phrase + "”",
+  disent: (s1, s2, phrase) => s1 + " and " + s2 + " say: “" + phrase + "”",
+  demande: (s, a, phrase) => s + " asks " + a + ": “" + phrase + "”",
+  estPoss: (o, trou, w) => o + " is " + trou + " " + w + ".",
+  sontPoss: (os, trou, w) => EN.et(os) + " are " + trou + " " + w + ".",
+  estPossQ: (o, trou, w) => "Is " + o + " " + trou + " " + w + "?",
+  combien: {
+    frere: e => ["How many siblings does " + e + " have?", n => e + " has " + EN.nombres[n] + " siblings."],
+    cousin: e => ["How many cousins does " + e + " have?", n => e + " has " + EN.nombres[n] + " cousins."],
+    neveu: e => ["How many nephews and nieces does " + e + " have?", n => e + " has " + EN.nombres[n] + " nephews and nieces."],
+    oncle: e => ["How many aunts and uncles does " + e + " have?", n => e + " has " + EN.nombres[n] + " aunts and uncles."],
+    enfantCouple: (a, b) => ["How many children do " + a + " and " + b + " have?", n => "They have " + EN.nombres[n] + " children."],
+    petitCouple: (a, b) => ["How many grandchildren do " + a + " and " + b + " have?", n => "They have " + EN.nombres[n] + " grandchildren."]
+  }
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
+// les choix des possessifs, par forme ; en anglais, his et her sont toujours la : c'est la lecon
+const OPTS_POSS = {
+  es: {nous:["nuestro", "nuestra", "mi", "su"], pluriel:["mis", "mi", "tus", "sus"], je:["mi", "tu", "su", "mis"], tu:["tu", "mi", "su", "tus"], il:["su", "sus", "mi", "tu"]},
+  de: {nous:["unser", "unsere", "mein", "meine"], pluriel:["meine", "mein", "deine", "seine"], je:["mein", "meine", "dein", "deine"], tu:["dein", "deine", "mein", "meine"], il:["sein", "seine", "ihr", "ihre"]},
+  en: {nous:["our", "my", "their", "your"], pluriel:["my", "your", "his", "their"], je:["my", "your", "his", "her"], tu:["your", "my", "his", "her"], il:["his", "her", "my", "your"]}
+}[APPRENDRE];
 const mot = (k, s) => L.mots[k][s === "f" ? 1 : 0];
 const avecArt = (k, s) => L.art(s, mot(k, s));
 // Cousins, Neffen und Nichten, Onkel und Tanten : en allemand, ces comptes ne se posent que sur un groupe mixte
 const MIXTE_DE = ["cousin", "neveu", "oncle"];
+// en anglais, « cousins » vaut pour tous ; « nephews and nieces », « aunts and uncles » demandent un groupe mixte
+const MIXTE = APPRENDRE === "de" ? MIXTE_DE : APPRENDRE === "en" ? ["neveu", "oncle"] : [];
 
 // ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
 // « Il n'y a pas la traduction française. Qui serait importante. » Sous le mot dans la decouverte, et APRES la
@@ -423,6 +489,14 @@ function glose(q){
   return g ? cle + " — " + g : null;
 }
 const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
+// LA VOIX (themes/voix.js, 3 nov. 2026 : « il manquait aussi des paroles ») : apres une reponse, le MOT CLE avec son
+// article (« la tía », « die Tante ») ; dans la decouverte, la fiche (« Gisela es la abuela de Anna. Tiene 79 años. »).
+const motCle = q => !q ? null : Array.isArray(q) ? avecArt(q[0], q[1]) : ((q.genre ? q.genre + " " : "") + q.mot);
+const ficheDite = id => id === "Anna" ? L.soi(id, F[id].age) : L.lien(id, avecArt(relation("Anna", id), sexe(id)), "Anna") + " " + L.age(id, F[id].age);
+// tout ce que la page peut dire : l'inventaire des voix a enregistrer (visuel/voix_themes.py)
+function textesAVoix(){
+  return IDS.map(ficheDite).concat(motsDuTheme().map(m => motCle(m.pl ? m : [m.k, m.s])));
+}
 
 // ---------- utilitaires ----------
 const $ = id => document.getElementById(id);
@@ -435,7 +509,7 @@ let file = [], rang = 0, bons = 0, repondu = false;
 // que la question teste. juger() l'envoie comme une scene (« reponse ») et l'app fait avancer sa carte
 // (revisionDeScene) : un mot neuf entre, une erreur le fait revenir. null pour les questions de groupe ou de compte.
 let motQ = null;
-const articleNu = s => APPRENDRE === "de" ? (s === "f" ? "die" : "der") : (s === "f" ? "la" : "el");
+const articleNu = s => APPRENDRE === "de" ? (s === "f" ? "die" : "der") : APPRENDRE === "en" ? "" : (s === "f" ? "la" : "el");
 
 // toutes les paires (e, o, lien) que l'arbre nomme ; les liens par alliance tires moins souvent
 function paires(filtre){
@@ -506,7 +580,25 @@ function juger(ok, bonneTexte, phrase){
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
   const tl = trad || (TR ? null : glose(motQ));
   if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  // LE MOT CHOISI, quand il est faux (Jacques, 3 nov. 2026 : « quand je dis le mauvais, on devrait avoir l'affichage
+  // traduit aussi. Pour le mauvais mot. ») : sa traduction dans la langue d'interface, sous la bonne reponse
+  if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + (choixFaux.texte ? T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad : T("choix", {r: choixFaux.trad})) + '</span>');
+  Voix.dire(motCle(motQ));
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+// la traduction d'un lien choisi (« la tía », « mi tía », « der Onkel ») : le mot du corpus relu (gloses.json), dans
+// la langue d'interface ; null pour ce qui n'est pas un lien (vrai / faux, un nombre, un pluriel)
+let choixFaux = null;
+const DETERMINANTS = /^(el|la|los|las|mi|tu|su|mis|tus|sus|der|die|das|den|dem|des|mein|meine|meinen|meinem|meiner|dein|deine|sein|seine|seinen|ihr|ihre|ihren|ein|eine|einen)\s+/i;
+function tradDuChoix(o){
+  if (typeof o !== "string") return null;
+  const nu = o.trim().replace(DETERMINANTS, "");
+  for (const k of COEUR.concat(PAR_ALLIANCE)) for (const sx of ["m", "f"]){
+    if (mot(k, sx) !== nu) continue;
+    const g = (GLOSES[(articleNu(sx) + " " + mot(k, sx)).trim()] || {})[LANGUE];
+    return g || null;
+  }
+  return null;
 }
 function boutons(conteneur, options, bonne, apres){
   let bon;
@@ -515,6 +607,7 @@ function boutons(conteneur, options, bonne, apres){
     b.addEventListener("click", () => {
       conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
       if (b !== bon) b.classList.add("faux");
+      choixFaux = o === bonne ? null : {texte: String(o), trad: tradDuChoix(o)};
       apres(o === bonne);
     });
     conteneur.appendChild(b);
@@ -541,7 +634,8 @@ function distracteurs(k, s, piege){
 // Chaque sorte peut VISER UN MOT (w : le lien k au sexe s, ou en allemand un nom de groupe du corpus, w.pl :
 // Eltern, Geschwister, Grosseltern) et rend false si l'arbre ne lui donne rien pour ce mot. Sans w, elle tire au
 // hasard, comme avant (les controles, la page ouverte seule).
-const vise = (w, k, s) => !w || (!w.pl && w.k === k && w.s === s);
+// s "*" : un mot qui ne dit pas le sexe (cousin en anglais), vise aux deux
+const vise = (w, k, s) => !w || (!w.pl && w.k === k && (w.s === s || w.s === "*"));
 const EX = {
   // « Peter es ___ de Anna. »
   lien(w){
@@ -558,7 +652,7 @@ const EX = {
   },
   // « ¿Quién es la abuela de Mia? » : on touche la personne dans l'arbre (une seule reponse possible)
   toucher(w){
-    const cand = paires((e, o, k) => lies(e, k).filter(x => sexe(x) === sexe(o)).length === 1 && vise(w, k, sexe(o)));
+    const cand = paires((e, o, k) => lies(e, k).filter(x => mot(k, sexe(x)) === mot(k, sexe(o))).length === 1 && vise(w, k, sexe(o)));
     if (!cand.length) return false;
     const [e, o, k] = tirer(cand), groupe = avecArt(k, sexe(o));
     motQ = [k, sexe(o)];
@@ -606,7 +700,7 @@ const EX = {
         rep = L.poss.nous[idx(sexe(o))];
         enonce = L.disent(a, b, L.estPoss(o, trou(), mo)); phrase = L.disent(a, b, L.estPoss(o, rep, mo));
         trad = TR ? TR.disent(a, b, TR.estPoss(o, TR.possN("nous", k, sexe(o)))) : null;
-        opts = APPRENDRE === "de" ? ["unser", "unsere", "mein", "meine"] : ["nuestro", "nuestra", "mi", "su"];
+        opts = OPTS_POSS.nous;
         ecran("possessif", cible(enonce), {ego: a, cibles: [b, o]});
       } else forme = "je";
     }
@@ -620,7 +714,7 @@ const EX = {
       rep = L.poss.je[2];
       enonce = L.dit(e, L.sontPoss(g, trou(), mo)); phrase = L.dit(e, L.sontPoss(g, rep, mo));
       trad = TR ? TR.dit(e, TR.sontPoss(g, TR.groupe(k, g, "je"))) : null;
-      opts = APPRENDRE === "de" ? ["meine", "mein", "deine", "seine"] : ["mis", "mi", "tus", "sus"];
+      opts = OPTS_POSS.pluriel;
       ecran("possessif", cible(enonce), {ego: e, cibles: g});
     } else if (forme !== "nous"){
       const cand = paires((e, o, k) => lienVoulu(k, o));
@@ -636,14 +730,14 @@ const EX = {
         rep = L.poss.je[i];
         enonce = L.dit(e, L.estPoss(o, trou(), mo)); phrase = L.dit(e, L.estPoss(o, rep, mo));
         trad = TR ? TR.dit(e, TR.estPoss(o, TR.possN("je", k, sexe(o)))) : null;
-        opts = APPRENDRE === "de" ? ["mein", "meine", "dein", "deine"] : ["mi", "tu", "su", "mis"];
+        opts = OPTS_POSS.je;
         ecran("possessif", cible(enonce), {ego: e, cibles: [o]});
       } else if (forme === "tu"){
         const s = hasard(qui);
         rep = L.poss.tu[i];
         enonce = L.demande(s, e, L.estPossQ(o, trou(), mo)); phrase = L.demande(s, e, L.estPossQ(o, rep, mo));
         trad = TR ? TR.demande(s, e, TR.estPossQ(o, TR.possN("tu", k, sexe(o)))) : null;
-        opts = APPRENDRE === "de" ? ["dein", "deine", "mein", "meine"] : ["tu", "mi", "su", "tus"];
+        opts = OPTS_POSS.tu;
         ecran("possessif", cible(enonce), {ego: e, cibles: [o]});
       } else {
         // « Peter ist der Vater von Anna. → Peter ist ihr Vater. »
@@ -652,7 +746,7 @@ const EX = {
         enonce = '<span class="avant">' + cible(L.lien(o, avecArt(k, sexe(o)), e)) + '</span>' + cible(L.estPoss(o, trou(), mo));
         phrase = L.estPoss(o, rep, mo);
         trad = TR ? TR.estPoss3(o, k, sexe(o), sexe(e)) : null;
-        opts = APPRENDRE === "de" ? ["sein", "seine", "ihr", "ihre"] : ["su", "sus", "mi", "tu"];
+        opts = OPTS_POSS.il;
         ecran("possessif", enonce, {ego: e, cibles: [o]});
       }
     }
@@ -699,10 +793,10 @@ const EX = {
   // « ¿Cuántos nietos tienen Heinz y Gisela? » -- il habille un mot (nieto, hermano ; Geschwister), jamais seul
   combien(w){
     const cand = [];
-    const garder = (k, fem) => !w || (APPRENDRE === "es" ? (!w.pl && w.k === k && w.s === (fem ? "f" : "m")) : (w.pl && w.k === k));
+    const garder = (k, fem) => !w || (APPRENDRE === "es" ? (!w.pl && w.k === k && w.s === (fem ? "f" : "m")) : (w.pl && w.k === k) || (APPRENDRE === "en" && k === "cousin" && w.k === k));
     IDS.forEach(e => ["frere", "cousin", "neveu", "oncle"].forEach(k => {
       const g = lies(e, k); if (g.length < 2 || g.length > 5) return;
-      if (APPRENDRE === "de" && MIXTE_DE.includes(k) && new Set(g.map(sexe)).size < 2) return;
+      if (MIXTE.includes(k) && new Set(g.map(sexe)).size < 2) return;
       if (garder(k, g.every(x => sexe(x) === "f"))) cand.push([L.combien[k](e), g, [e], k, () => TR.combien[k](e)[1](g)]);
     }));
     const vus = new Set();
@@ -726,8 +820,8 @@ const EX = {
   },
   // el abuelo → la abuela ; die Nichte → der Neffe (le mot vise est celui de la reponse)
   paires(w){
-    if (w && (w.pl || w.k === "conjoint")) return false;
-    const k = w ? w.k : hasard(COEUR.filter(x => x !== "conjoint").concat(PAR_ALLIANCE));
+    if (w && (w.pl || w.k === "conjoint" || w.s === "*")) return false;
+    const k = w ? w.k : hasard(COEUR.filter(x => x !== "conjoint").concat(PAR_ALLIANCE).filter(x => mot(x, "m") !== mot(x, "f")));
     const s2 = w ? w.s : (Math.random() < 0.6 ? "f" : "m"), s1 = s2 === "f" ? "m" : "f";
     const rep = avecArt(k, s2);
     motQ = [k, s2];
@@ -737,18 +831,41 @@ const EX = {
     for (const e of melanger(IDS.slice())){ const a = lies(e, k).find(x => sexe(x) === s1), b = lies(e, k).find(x => sexe(x) === s2); if (a && b){ duo = [a, b]; break; } }
     const avant = duo ? '<div class="duo">' + duo.map(n => '<figure><img alt="" src="familia/' + n + '-visage.webp">' + n + '</figure>').join("") + '</div>' : "";
     ecran("paires", '<div style="text-align:center;font-size:21px">' + cible(avecArt(k, s1) + " → " + trou()) + '</div>', null, avant);
-    const autres = melanger(COEUR.concat(PAR_ALLIANCE).filter(x => x !== k && x !== "conjoint")).slice(0, 3).map(x => avecArt(x, s2));
+    const autres = melanger(COEUR.concat(PAR_ALLIANCE).filter(x => x !== k && x !== "conjoint" && mot(x, "m") !== mot(x, "f"))).slice(0, 3).map(x => avecArt(x, s2));
     boutons($("choix"), melanger([rep, ...autres]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, avecArt(k, s1) + " → " + rep); });
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : le genitif. « Peter is ___. » -> Anna's father / Annas father / father's Anna ; et, pour un
+  // couple, le 's sur le second nom seulement : « Anna is Peter and Monika's daughter ».
+  genitif(w){
+    if (APPRENDRE !== "en") return false;
+    const cand = paires((e, o, k) => vise(w, k, sexe(o)));
+    if (!cand.length) return false;
+    const [e, o, k] = tirer(cand);
+    const m = mot(k, sexe(o));
+    // le couple, la moitie du temps quand o est leur enfant ou leur petit-enfant a tous les deux
+    const ps = (k === "enfant" || k === "petitenfant") && conjoint(e) && relation(conjoint(e), o) === k && Math.random() < 0.5 ? [e, conjoint(e)] : null;
+    const qui = ps ? ps[0] + " and " + ps[1] : e;
+    motQ = [k, sexe(o)];
+    const rep = genitif(qui) + " " + m;
+    trad = TR ? TR.lien(o, TR.rel(k, sexe(o)), ps ? TR.et(ps) : e) : null;
+    ecran("genitif", cible(o + " is " + trou() + "."), {ego: ps ? ps[0] : e, cibles: ps ? [ps[1], o] : [o]});
+    const opts = [rep, qui + "s " + m, m + "'s " + qui];
+    boutons($("choix"), melanger(opts), rep, ok => { $("trou").textContent = rep; juger(ok, rep, o + " is " + rep + "."); });
     return true;
   }
 };
-const SORTES = Object.keys(EX);
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "en" || x !== "genitif");
 // LES MOTS DU THEME : chaque lien aux deux sexes (el tio, la tia ; der Onkel, die Tante), et en allemand les trois
 // noms de groupe du corpus. Ceux qui manquent au corpus sont rendus « hors jeu » par l'app et ne sont pas demandes.
 function motsDuTheme(){
   const out = [];
-  COEUR.concat(PAR_ALLIANCE).forEach(k => ["m", "f"].forEach(sx => out.push({k, s: sx, mot: mot(k, sx), genre: articleNu(sx)})));
+  COEUR.concat(PAR_ALLIANCE).forEach(k => {
+    if (mot(k, "m") === mot(k, "f")) out.push({k, s: "*", mot: mot(k, "m"), genre: articleNu("m")});
+    else ["m", "f"].forEach(sx => out.push({k, s: sx, mot: mot(k, sx), genre: articleNu(sx)}));
+  });
   if (APPRENDRE === "de") [["parent", "Eltern"], ["frere", "Geschwister"], ["grandparent", "Großeltern"]].forEach(([k, m]) => out.push({k, pl: true, mot: m, genre: "die"}));
+  if (APPRENDRE === "en") [["parent", "parents"], ["frere", "siblings"], ["grandparent", "grandparents"]].forEach(([k, m]) => out.push({k, pl: true, mot: m, genre: ""}));
   return out;
 }
 
@@ -757,6 +874,8 @@ function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
   const z = $("zone");
   z.innerHTML = '<p class="consigne">' + T("intro") + '</p>';
+  // Mom aux Etats-Unis, Mum en Grande-Bretagne (VARIANTE_ANGLAIS de l'app)
+  if (APPRENDRE === "en") z.insertAdjacentHTML("beforeend", '<p class="consigne">' + T("bonASavoir", {mom: BRITANNIQUE ? "Mum" : "Mom", ailleurs: BRITANNIQUE ? "Mom aux États-Unis" : "Mum en Grande-Bretagne"}) + '</p>');
   const fiche = document.createElement("div");
   const montrer = id => {
     a.querySelectorAll("g.p").forEach(x => x.classList.toggle("choisi", x.dataset.id === id && id !== "Anna"));
@@ -768,7 +887,7 @@ function decouvrir(){
     fiche.innerHTML = '<img alt="" src="familia/' + id + '.webp"><div><div class="qui">' + id + '</div><div class="dit">' + cible(dit) + '</div>'
                     + (id === "Anna" ? "" : '<div class="age">' + cible(L.age(id, F[id].age)) + '</div>') + (tdit ? traduction(tdit) : "") + '</div>';
   };
-  const a = dessinerArbre({ego: "Anna", touchable: (g, id) => montrer(id)});
+  const a = dessinerArbre({ego: "Anna", touchable: (g, id) => { montrer(id); Voix.dire(ficheDite(id)); }});
   z.appendChild(a); z.appendChild(fiche);
   montrer("Anna");
   const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
@@ -785,7 +904,7 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
-  repondu = false; $("suite").hidden = true;
+  repondu = false; $("suite").hidden = true; choixFaux = null;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
   // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
@@ -823,7 +942,8 @@ function montrer(){
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div>' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>'
+    + '<div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
   brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
 }
@@ -833,7 +953,7 @@ function toutRevu(prochaine){
   const quand = Tirage.revu(prochaine, LANGUE);
   $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
     + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
-    + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+    + '</div><div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
   brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
 }

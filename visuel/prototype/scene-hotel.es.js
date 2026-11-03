@@ -2282,7 +2282,7 @@ window.SCENE = {
     "A2 | La lámpara está al lado del espejo.": "<b>de + el = del</b>, immer.",
     "B1 | ¿A qué hora cierra la recepción?": "<b>¿a qué hora?</b> = um wie viel Uhr?",
     "B1 | La recepción cierra a las once de la noche.": "Die Uhrzeit einer Handlung → <b>a las</b> + Stunde.",
-    "B1 | Son las ocho y media.": "Die Stunden stehen im Plural: <b>las</b> ocho (außer la una). Und „halb neun“ heißt wörtlich „acht und halb“.",
+    "B1 | Son las ocho y media.": "Die Stunden stehen im Plural: <b>las</b> ocho (außer la una). Und „ocho y media“ heißt wörtlich „acht und halb“ — das Deutsche zählt dagegen zur nächsten Stunde: „halb neun“.",
     "B1 | Es la una y cuarto.": "<b>la una</b>: die einzige Stunde im Singular.",
     "B1 | Mark llega el viernes por la noche.": "Der Tag → <b>el</b> viernes, ohne Präposition — kein „am“.",
     "B1 | El desayuno se sirve por la mañana.": "<b>por la mañana</b> = morgens (ungefähre Zeit).",

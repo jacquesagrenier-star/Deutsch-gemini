@@ -99,6 +99,7 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
+<script src="themes/zoom.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -109,6 +110,8 @@ document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
 const NB = Q.get("seance") === "1" ? 6 : 20;
+// agrandir (themes/zoom.js) : un toucher sur une photo, une paire ou la fiche, la loupe sur les images a choisir
+Zoom.init({direct: "img.photo, .duo img, .fiche img", loupe: ".rangee button", langue: LANGUE});
 
 const TEXTES = {
   titre:     {fr:"Les contraires", en:"Opposites", tr:"Zıt anlamlılar", uk:"Протилежності", fa:"متضادها", ar:"الأضداد", pt:"Os contrários", pl:"Przeciwieństwa", ru:"Противоположности", de:"Gegensätze"},

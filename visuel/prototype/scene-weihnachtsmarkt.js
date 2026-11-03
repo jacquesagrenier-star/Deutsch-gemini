@@ -2160,7 +2160,7 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Mark bir aralık akşamı Berlin'de bir Noel pazarında: bir elinde dumanı tüten bir bardak, diğer elini kırmızı bereli satıcının tezgâhın üzerinden ona uzattığı tahta yıldıza doğru uzatıyor; kar serpilmiş ahşap tezgâhta üç kırmızı mum, bakır bir sürahi ve bir tencere, paketlenmiş hediyeler, kırmızı bardaklar, iki bozuk para, bir kasa elma ve portakal ve cevizler; yukarıda bir sallanan at, bir bez bebek ve bir ışık zincirinin altında tahta yıldızlar; arkada ışıklı büyük bir çam, tuğla kilise ve kulesi, bir sokak lambası, ay ve bir annenin çocuğunu elinden tuttuğu bir simit tezgâhı; önde yanan bir mangal, odunlar ve karda oturan bir köpek.",
+    "alt": "Mark bir aralık akşamı Berlin'de bir Noel pazarında: bir elinde dumanı tüten bir bardak, diğer elini kırmızı bereli satıcının tezgâhın üzerinden ona uzattığı tahta yıldıza doğru uzatıyor; kar serpilmiş ahşap tezgâhta üç kırmızı mum, bakır bir sürahi ve bir tencere, paketlenmiş hediyeler, kırmızı bardaklar, iki bozuk para, bir kasa elma ve portakal ve cevizler; yukarıda bir sallanan at, bir bez bebek ve bir ışık zincirinin altında tahta yıldızlar; arkada ışıklı büyük bir çam, tuğla kilise ve kulesi, bir sokak lambası, ay ve bir annenin çocuğunu elinden tuttuğu bir pretzel tezgâhı; önde yanan bir mangal, odunlar ve karda oturan bir köpek.",
     "consigne": "Mark Berlin'deki ilk Noel pazarını keşfediyor. Bir nesneye dokun."
    },
    "couches": {
@@ -2213,7 +2213,7 @@ window.SCENE = {
     "B1 | Die Mutter hat sie gekauft.": "Anne onu satın aldı.",
     "B1 | Sie gibt ihm die Hand.": "Ona elini veriyor.",
     "B1 | Der Hund sieht ihn an.": "Köpek ona bakıyor.",
-    "B1 | Die Brezeln schmecken ihr.": "Simitler onun hoşuna gidiyor.",
+    "B1 | Die Brezeln schmecken ihr.": "Pretzel'ler onun hoşuna gidiyor.",
     "B1 | Mark kauft sie für seine Mutter.": "Mark onları annesi için satın alıyor.",
     "B2 | Der Markt zu Weihnachten ist der Weihnachtsmarkt.": "Noel pazarı “Weihnachtsmarkt”tır.",
     "B2 | Eine Kette aus Lichtern ist eine Lichterkette.": "Bir ışık zinciri “Lichterkette”dir.",
@@ -2327,7 +2327,7 @@ window.SCENE = {
     "B1 | Mark kauft sie für seine Mutter.": "<span lang=\"de\">die Kerzen</span> (جمع) ← در <span lang=\"de\">Akkusativ</span>، <b>sie</b>.",
     "B2 | Der Markt zu Weihnachten ist der Weihnachtsmarkt.": "واژهٔ توصیف‌کننده اول می‌آید و واژهٔ آخر جنس را تعیین می‌کند: <span lang=\"de\">der Markt → <b>der</b> Weihnachts<b>markt</b></span>؛ <b>-s-</b> دو بخش را به هم می‌پیوندد.",
     "B2 | Eine Kette aus Lichtern ist eine Lichterkette.": "جمعِ <b>Lichter</b> واژهٔ اول است؛ جنس از <span lang=\"de\">die Kette</span> می‌آید ← <span lang=\"de\"><b>die</b> Lichter<b>kette</b></span>.",
-    "B2 | Ein Stern aus Holz ist ein Holzstern.": "اول جنس ماده: <span lang=\"de\">Holz + Stern → <b>der</b> Holz<b>stern</b></span> (<span lang=\"de\">das Sternholz</span> چوبِ یک ستاره می‌شد).",
+    "B2 | Ein Stern aus Holz ist ein Holzstern.": "اول مادهٔ ساخت (جنس چیز): <span lang=\"de\">Holz + Stern → <b>der</b> Holz<b>stern</b></span> (<span lang=\"de\">das Sternholz</span> چوبِ یک ستاره می‌شد).",
     "B2 | Der Baum zu Weihnachten heißt Weihnachtsbaum.": "<span lang=\"de\">Weihnacht<b>s</b>baum</span>: <b>-s-</b> پیوندی, مانند <span lang=\"de\">Weihnachtsmarkt</span>.",
     "B2 | Ein Handschuh für den Winter ist ein Winterhandschuh.": "جنس و شمار از واژهٔ آخر می‌آیند: <span lang=\"de\">der Handschuh → <b>der</b> Winterhand<b>schuh</b></span>.",
     "B2 | Die Uhr an der Kirche ist eine Kirchturmuhr.": "سه واژه: <span lang=\"de\">Kirche + Turm + Uhr → <b>die</b> Kirchturm<b>uhr</b></span>، ساعت برج کلیسا؛ <span lang=\"de\">-e</span> واژهٔ <span lang=\"de\">Kirche</span> می‌افتد.",

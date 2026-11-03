@@ -2255,7 +2255,7 @@ window.SCENE = {
     "A2 | Die Frau im roten Mantel wartet an der Haltestelle.": "زن پالتوقرمز در ایستگاه منتظر است.",
     "A2 | Der Radfahrer fährt auf dem Radweg.": "دوچرخه‌سوار در مسیر دوچرخه می‌راند.",
     "A2 | Anna steht zwischen der Laterne und der Ampel.": "آنا بین تیر چراغ‌برق و چراغ راهنمایی ایستاده است.",
-    "A2 | Die Fahrräder stehen am Fahrradständer.": "دوچرخه‌ها کنار جادوچرخه‌ای هستند.",
+    "A2 | Die Fahrräder stehen am Fahrradständer.": "دوچرخه‌ها کنار جای دوچرخه (جاچرخی) هستند.",
     "A2 | Die Fußgänger sind auf dem Zebrastreifen.": "عابران روی خط عابر پیاده هستند.",
     "A2 | Der Kiosk steht auf dem Bürgersteig.": "کیوسک روی پیاده‌رو است.",
     "B1 | Entschuldigung, wie komme ich zur Apotheke?": "ببخشید، چطور به داروخانه بروم؟",

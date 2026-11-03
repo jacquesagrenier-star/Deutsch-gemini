@@ -1735,7 +1735,7 @@ window.SCENE = {
     "B2 | Das Baby sitzt auf dem Schoß der Mutter.": "الرضيع جالس في حضن الأمّ.",
     "B2 | Die Geschichte des Großvaters ist lustig.": "حكاية الجدّ مضحكة.",
     "B2 | Trotz der Sonne essen sie drinnen.": "رغم الشمس، يأكلون في الداخل.",
-    "B2 | Die Farbe der Tulpen ist gelb.": "لون الزنبق أصفر.",
+    "B2 | Die Farbe der Tulpen ist gelb.": "لون زهور التوليب أصفر.",
     "B2 | Das Fenster des Esszimmers ist groß.": "نافذة غرفة الطعام كبيرة.",
     "C1 | Der Opa muss eine lustige Geschichte erzählen.": "لا بدّ أن الجدّ يحكي حكاية مضحكة.",
     "C1 | Die Katze könnte der Oma gehören.": "ربما تكون القطة للجدّة.",

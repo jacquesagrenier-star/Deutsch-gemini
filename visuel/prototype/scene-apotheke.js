@@ -2610,7 +2610,7 @@ window.SCENE = {
     "B2 | Sie sagt, er solle die Tabletten dreimal täglich nehmen.": "تقول إن عليه أن يأخذ الأقراص ثلاث مرات في اليوم.",
     "B2 | Der Arzt hat gesagt, Mark sei nicht ansteckend.": "قال الطبيب إن مارك ليس معدياً.",
     "B2 | Mark sagt, er habe seit drei Tagen Husten.": "يقول مارك إنه يسعل منذ ثلاثة أيام.",
-    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "تشرح الصيدلانية أن الشراب يساعد على السعال.",
+    "B2 | Die Apothekerin erklärt, der Saft helfe gegen den Husten.": "تشرح الصيدلانية أن الشراب يساعد في علاج السعال.",
     "B2 | Der alte Mann sagt, er warte schon lange hier.": "يقول الرجل العجوز إنه ينتظر هنا منذ وقت طويل.",
     "C1 | Er muss erkältet sein.": "لا بدّ أنه مصاب بالزكام.",
     "C1 | Der alte Mann könnte auf sein Medikament warten.": "ربما ينتظر الرجل العجوز دواءه.",

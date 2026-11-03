@@ -3464,7 +3464,7 @@ html[data-apprendre="en"] #episodeLigne,
 html[data-apprendre="en"] [data-seulement-de],
 html[data-apprendre="en"] [data-seulement-es],
 html[data-apprendre="en"] [data-seulement-ja],
-html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]){ display:none !important; }
+html[data-apprendre="en"] [data-orbid]:not([data-orbid="themes"]):not([data-orbid="nomen"]):not([data-orbid="verben"]):not([data-orbid="adjektive"]):not([data-orbid="adverbien"]):not([data-orbid="gardes"]):not([data-orbid="seance"]):not([data-orbid="en-grammaire"]):not([data-orbid="feuilles"]):not([data-orbid="prononciation"]):not([data-orbid="ecouter"]):not([data-orbid="schreiben"]):not([data-orbid="ausdruecke"]):not([data-orbid="monvocab"]):not([data-orbid="pronomen"]):not([data-orbid="zahlen"]):not([data-orbid="praep"]):not([data-orbid="konjunktionen"]):not([data-orbid="wortstellung"]):not([onclick^="ouvrirThemeIllustre"]){ display:none !important; }
 /* Les options des panneaux qui marchent avec l'anglais (27 oct. 2026) : les
    dictees, Ecrire, Construire la phrase, les familles d'expressions, les faux
    amis. Une regle a part, ancree sur #orbPanel pour passer devant la liste
@@ -3475,7 +3475,11 @@ html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="ouvrirTuilesMenu"],
 html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="ausdrueckeEn"],
 html[data-apprendre="en"] #orbPanel .orb-opt[onclick*="exercicesFicheEn"]{ display:flex !important; }
 html:not([data-apprendre="en"]) [data-seulement-en]{ display:none !important; }
-html[data-apprendre="en"] h2.orb-section[data-section="illustres"],
+/* Les themes illustres en anglais (3 nov. 2026) : la section et ses tuiles (chacune reste .hidden tant que son theme
+   n'a pas ses phrases anglaises, themesIllustresOuverts()), placees EN DERNIER : les sections cachees de l'anglais
+   laissent leurs tuiles (Grammaire, Prepositions...) couler sous l'en-tete visible qui les precede. */
+html[data-apprendre="en"] #orbGrid > h2.orb-section[data-section="illustres"],
+html[data-apprendre="en"] #orbGrid > [onclick^="ouvrirThemeIllustre"]{ order: 1; }
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_pratique"]),
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_parcours"]),
 html[data-apprendre="en"] h2.orb-section:has([data-i18n="sec_phrase"]){ display:none !important; }
@@ -8714,7 +8718,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1083</span>
+        <span class="subtitle-version">v1086</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -46928,13 +46932,21 @@ poserPaysCarte();
 
 // LES THEMES ILLUSTRES (v1076 « Decrire une personne », puis la famille, 2 nov. 2026) : une page d'exercices par
 // theme, dans le cadre des scenes ; elle parle comme une scene (exercice, bonne, fini, fermer -- voir le message
-// « wortando-scene ») et revient a « Tout le contenu ». Espagnol et allemand seulement.
+// « wortando-scene ») et revient a « Tout le contenu ». Espagnol et allemand ; l'anglais (essai admin) a mesure
+// que chaque theme recoit ses phrases anglaises (en: true, 3 nov. 2026 : « Pour que l'anglais suive aussi »).
 // L'ordre est celui du ruban de l'accueil et du tour de role de la seance : la famille d'abord (maquette A).
-const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tuile: "tuileFamilia"},
-                          descripcion: {page: "descripcion.html", titre: "desc_tuile", court: "desc_court", tuile: "tuileDescripcion"},
+const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tuile: "tuileFamilia", en: true},
+                          descripcion: {page: "descripcion.html", titre: "desc_tuile", court: "desc_court", tuile: "tuileDescripcion", en: true},
                           emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones"},
                           contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios"},
                           manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"}};
+// Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
+function themesIllustresOuverts(){
+    if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
+    if(LANGUE_APPRISE === "en") return Object.keys(THEMES_ILLUSTRES).filter(nom => THEMES_ILLUSTRES[nom].en);
+    return [];
+}
+const apprendreThemeIllustre = () => LANGUE_APPRISE === "es" ? "es" : LANGUE_APPRISE === "en" ? "en" : "de";
 function ouvrirThemeIllustre(nom, depuis){
     const th = THEMES_ILLUSTRES[nom];
     if(!th) return;
@@ -46942,7 +46954,7 @@ function ouvrirThemeIllustre(nom, depuis){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
-        cadre.src = baseScenes() + th.page + "?apprendre=" + (LANGUE_APPRISE === "es" ? "es" : "de")
+        cadre.src = baseScenes() + th.page + "?apprendre=" + apprendreThemeIllustre()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + voixThemeIllustre() + "&t=" + Date.now();
@@ -47007,14 +47019,15 @@ async function microPourCadre(d, e){
     }
 }
 
-// La voix de la page (decouverte) : Lolita ou Monica selon la variante, et la revision des fichiers.
+// La voix de la page (decouverte) : Lolita ou Monica selon la variante, et la revision des fichiers ; en anglais,
+// l'americain (Sarah, A1-A2) ou le britannique (la voix du telephone), qui change aussi des mots (Mom / Mum).
 function voixThemeIllustre(){
-    return (LANGUE_APPRISE === "es" ? "&variante=" + (VARIANTE_ESPAGNOL === "latam" ? "latam" : "es") : "") + "&r=" + AUDIO_REVISION;
+    return (LANGUE_APPRISE === "es" ? "&variante=" + (VARIANTE_ESPAGNOL === "latam" ? "latam" : "es") : "")
+         + (LANGUE_APPRISE === "en" ? "&variante=" + (VARIANTE_ANGLAIS === "gb" ? "gb" : "us") : "") + "&r=" + AUDIO_REVISION;
 }
 function ouvrirDescripcion(){ ouvrirThemeIllustre("descripcion"); }
 try{
-    if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de")
-        Object.values(THEMES_ILLUSTRES).forEach(th => { const el = document.getElementById(th.tuile); if(el) el.classList.remove("hidden"); });
+    themesIllustresOuverts().forEach(nom => { const el = document.getElementById(THEMES_ILLUSTRES[nom].tuile); if(el) el.classList.remove("hidden"); });
 }catch(e){}
 
 // Ouvre un groupe replie des reglages et l'amene a l'ecran : pour les liens
@@ -53016,7 +53029,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1083;
+const APP_VERSION = 1086;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
@@ -53331,7 +53344,7 @@ const AUDIO_BASE = LANGUE_ENSEIGNEE.audio;
 //  14  Les nombres dits en lettres (v994, 28 oct.) : 82 sons allemands (prix,
 //      heures, dates de l'examen surtout) et 62 x 2 espagnols (annees). La voix
 //      recevait « 3,90 € » et le hachait. audio/lectures/, audio/refaire_lectures.py.
-const AUDIO_REVISION = "14";
+const AUDIO_REVISION = "15";
 
 const audioEmpreintes = new Map();   // texte -> empreinte, calculee une fois
 const audioAbsents = new Set();      // empreintes deja vues manquantes
@@ -57599,10 +57612,10 @@ function pagesExplorer(ruban, n, zoneId){
 function majExplorerThemes(){
     const bloc = document.getElementById("explorerThemes"), ruban = document.getElementById("explorerThemesRuban");
     if(!bloc || !ruban) return;
-    const ouvert = LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de";
+    const noms = themesIllustresOuverts();
+    const ouvert = noms.length > 0;
     bloc.classList.toggle("hidden", !ouvert);
     if(!ouvert) return;
-    const noms = Object.keys(THEMES_ILLUSTRES);
     const nb = document.getElementById("explorerThemesNb");
     if(nb) nb.textContent = noms.length;
     // Rebati seulement si quelque chose a change : refaites a chaque retour a l'accueil, les vignettes se
@@ -62437,14 +62450,14 @@ function ouvrirArretScene(item){
 // semaine d'un vrai debutant (la rampe de l'objectif, v882) ; six questions, sans la decouverte (?seance=1) ;
 // les themes a tour de role, au numero du jour, donc le meme toute la journee.
 function themeDuJour(){
-    if(LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "de") return null;
+    if(LANGUE_APPRISE !== "es" && LANGUE_APPRISE !== "de" && LANGUE_APPRISE !== "en") return null;
     const jour = Math.floor(Date.now() / 86400000);
     if(jour % 3 !== 0) return null;
     try{ if(premiersPasEnCours()) return null; }catch(e){}
     try{ if(jourDApprentissage() <= 7 && nbMotsVus() < 100) return null; }catch(e){}
     const niv = niveauSeance();
     if(niv !== "A1" && niv !== "A2") return null;
-    const noms = Object.keys(THEMES_ILLUSTRES);
+    const noms = themesIllustresOuverts();
     return noms.length ? noms[Math.floor(jour / 3) % noms.length] : null;
 }
 function insererThemeIllustre(seance){
@@ -62465,7 +62478,7 @@ function ouvrirArretTheme(item){
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
         cadre.title = t(th.titre);
-        cadre.src = baseScenes() + th.page + "?seance=1&apprendre=" + (LANGUE_APPRISE === "es" ? "es" : "de")
+        cadre.src = baseScenes() + th.page + "?seance=1&apprendre=" + apprendreThemeIllustre()
                   + "&lang=" + encodeURIComponent(getUiLang())
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + voixThemeIllustre() + "&t=" + Date.now();

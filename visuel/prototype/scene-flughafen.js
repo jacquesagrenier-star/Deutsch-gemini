@@ -1885,7 +1885,7 @@ window.SCENE = {
     "B1 | Anna versucht, den Rucksack nicht zu vergessen.": "Анна намагається не забути рюкзак.",
     "B1 | Anna hofft, pünktlich anzukommen.": "Анна сподівається прибути вчасно.",
     "B1 | Anna muss der Frau den Pass zeigen.": "Анна має показати жінці паспорт.",
-    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Анна запитує жінку, чи літак прибуде вчасно.",
+    "B2 | Anna fragt die Frau, ob das Flugzeug pünktlich ist.": "Анна запитує жінку, чи літак вчасно.",
     "B2 | Sie weiß nicht, wie viel der Koffer wiegt.": "Вона не знає, скільки важить валіза.",
     "B2 | Der Pilot weiß, wo das Flugzeug steht.": "Пілот знає, де стоїть літак.",
     "B2 | Die Frau fragt, ob Anna Handgepäck hat.": "Жінка запитує, чи має Анна ручну поклажу.",
@@ -2031,7 +2031,7 @@ window.SCENE = {
     "B2 | Weißt du, wem die Zeitung gehört?": "هل تعرف لمن هذه الجريدة؟",
     "C1 | Sie muss sich auf die Reise freuen.": "لا بدّ أنها متشوّقة إلى الرحلة.",
     "C1 | Der Pilot könnte ihr Flugzeug fliegen.": "ربما يقود الطيّار طائرتها.",
-    "C1 | Der große Koffer dürfte zu schwer sein.": "على الأرجح الحقيبة الكبيرة ثقيلة جداً.",
+    "C1 | Der große Koffer dürfte zu schwer sein.": "على الأرجح أن الحقيبة الكبيرة ثقيلة أكثر من اللازم.",
     "C1 | Dieser Flughafen soll der modernste in Deutschland sein.": "يُقال إن هذا المطار هو الأحدث في ألمانيا."
    }
   },

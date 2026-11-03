@@ -2519,7 +2519,7 @@ window.SCENE = {
     "B1 | Anna grüßt ihren Nachbarn.": "Anna komşusunu selamlıyor.",
     "B1 | Der Nachbar liest die Zeitung.": "Komşu gazete okuyor.",
     "B1 | Die Verkäuferin kennt jeden Kunden im Kiez.": "Satıcı kadın mahalledeki her müşteriyi tanıyor.",
-    "B1 | Der Hund gehört dem Herrn am Tisch.": "Köpek masadaki beyin.",
+    "B1 | Der Hund gehört dem Herrn am Tisch.": "Köpek masadaki beye ait.",
     "B1 | Anna kauft Brötchen für ihren Kollegen.": "Anna iş arkadaşı için ekmek alıyor.",
     "B1 | Kennst du den Namen der Verkäuferin?": "Satıcı kadının adını biliyor musun?",
     "B1 | Der Hund wartet auf seinen Herrn.": "Köpek sahibini bekliyor.",
@@ -2924,7 +2924,7 @@ window.SCENE = {
    "sens": {
     "A2 | Die Uhr hängt an der Wand.": "Часы висят на стене.",
     "A2 | Die Milch steht im Regal.": "Молоко стоит на полке.",
-    "A2 | Der Hund liegt auf dem Boden.": "Собака лежит на земле.",
+    "A2 | Der Hund liegt auf dem Boden.": "Собака лежит на полу.",
     "A2 | Das Fahrrad steht vor dem Fenster.": "Велосипед стоит перед окном.",
     "A2 | Die Kasse steht auf dem Schalter.": "Касса стоит на прилавке.",
     "A2 | Der Kuchen liegt auf dem Teller.": "Пирог лежит на тарелке.",

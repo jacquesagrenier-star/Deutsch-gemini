@@ -1503,13 +1503,13 @@ window.SCENE = {
      "q": "Nadie sabe de quién es el calcetín. ___ ser de uno de los invitados.",
      "c": [
       "Podría",
-      "Debe",
+      "Sabe",
       "Quiere"
      ],
      "f": "socke",
      "phrase": "Podría ser de uno de los invitados.",
      "sens": "Il pourrait être à l'un des invités.",
-     "n": "<b>podría</b> = c'est possible, sans preuve. <b>debe</b> serait une certitude."
+     "n": "<b>podría</b> = c'est possible, sans preuve."
     },
     {
      "q": "Si Mark no hubiera viajado, ahora ___ tan cansado como sus compañeros.",
@@ -1588,7 +1588,7 @@ window.SCENE = {
     "B2 | Los globos fueron inflados por los invitados.": "Passive with <b>ser</b>: ser + agreeing participle (los globos → inflad<b>os</b>).",
     "B2 | La puerta está abierta desde anoche.": "Stative passive: <b>estar</b> + agreeing participle. The result lasts.",
     "C1 | La fiesta debió de terminar muy tarde.": "<b>deber de</b> + infinitive = a deduction: it's almost certain, given the balloons.",
-    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = it's possible, with no proof. <b>debe</b> would be a certainty.",
+    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = it's possible, with no proof.",
     "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "Unreal past condition (hubiera viajado), present result → conditional: <b>estaría</b>.",
     "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "A prediction → future: <b>se enfadará</b>. And <b>cuando</b> + future takes the subjunctive: vea.",
     "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "A prediction → future: <b>se enfadará</b>. And <b>cuando</b> + future takes the subjunctive: vea."
@@ -1710,7 +1710,7 @@ window.SCENE = {
     "B2 | Los globos fueron inflados por los invitados.": "مبني للمجهول بـ <b>ser</b>: ser + اسم المفعول بالمطابقة (los globos → inflad<b>os</b>).",
     "B2 | La puerta está abierta desde anoche.": "مبني للمجهول للحالة: <b>estar</b> + اسم المفعول بالمطابقة. النتيجة تدوم.",
     "C1 | La fiesta debió de terminar muy tarde.": "<b>deber de</b> + مصدر = استنتاج: شبه مؤكَّد، بالنظر إلى البالونات.",
-    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = ممكن، بلا دليل. أما <b>debe</b> فتكون يقيناً.",
+    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = ممكن، بلا دليل.",
     "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "شرط غير واقعي في الماضي (hubiera viajado)، ونتيجة في الحاضر ← condicional: <b>estaría</b>.",
     "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "توقّع ← المستقبل: <b>se enfadará</b>. و<b>cuando</b> + مستقبل تأخذ subjuntivo: vea.",
     "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "توقّع ← المستقبل: <b>se enfadará</b>. و<b>cuando</b> + مستقبل تأخذ subjuntivo: vea."
@@ -1799,7 +1799,7 @@ window.SCENE = {
     "B2 | Los globos fueron inflados por los invitados.": "Passiva com <b>ser</b>: ser + particípio concordado (los globos → inflad<b>os</b>).",
     "B2 | La puerta está abierta desde anoche.": "Passiva de estado: <b>estar</b> + particípio concordado. O resultado dura.",
     "C1 | La fiesta debió de terminar muy tarde.": "<b>deber de</b> + infinitivo = uma dedução: é quase certo, pelos balões.",
-    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = é possível, sem prova. <b>debe</b> seria uma certeza.",
+    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = é possível, sem prova.",
     "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "Condição irreal no passado (hubiera viajado), consequência no presente → condicional: <b>estaría</b>.",
     "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "Uma previsão → futuro: <b>se enfadará</b>. E <b>cuando</b> + futuro leva o subjuntivo: vea.",
     "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "Uma previsão → futuro: <b>se enfadará</b>. E <b>cuando</b> + futuro leva o subjuntivo: vea."
@@ -1910,7 +1910,7 @@ window.SCENE = {
     "B2 | Los globos fueron inflados por los invitados.": "Passiv mit <b>ser</b>: ser + angepasstes Partizip (los globos → inflad<b>os</b>).",
     "B2 | La puerta está abierta desde anoche.": "Zustandspassiv: <b>estar</b> + angepasstes Partizip. Das Ergebnis dauert an.",
     "C1 | La fiesta debió de terminar muy tarde.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung: fast sicher, bei all den Ballons.",
-    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = möglich, ohne Beweis. <b>debe</b> wäre eine Gewissheit.",
+    "C1 | Podría ser de uno de los invitados.": "<b>podría</b> = möglich, ohne Beweis.",
     "C1 | Si Mark no hubiera viajado, ahora estaría tan cansado como sus compañeros.": "Irreale Bedingung in der Vergangenheit (hubiera viajado), Folge in der Gegenwart → condicional: <b>estaría</b>.",
     "C1 | Cuando Mark vea la sala, seguramente se enfadará un poco.": "Eine Vorhersage → Futur: <b>se enfadará</b>. Und <b>cuando</b> + Zukünftiges nimmt den subjuntivo: vea.",
     "C1 | Cuando Mark vea el salón, seguramente se enfadará un poco.": "Eine Vorhersage → Futur: <b>se enfadará</b>. Und <b>cuando</b> + Zukünftiges nimmt den subjuntivo: vea."

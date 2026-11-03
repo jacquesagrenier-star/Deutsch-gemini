@@ -1550,7 +1550,7 @@ window.SCENE = {
     "B2 | Die Kokosnuss ist schon geöffnet.": "نارگیل باز شده است.",
     "C1 | Trotz ihres langen Transportweges sind Mangos hier recht günstig.": "با وجود مسیر طولانی حمل، انبه‌ها اینجا نسبتاً ارزان‌اند.",
     "C1 | Je dunkler die Feigen sind, desto süßer schmecken sie.": "هرچه انجیرها تیره‌تر باشند، شیرین‌ترند.",
-    "C1 | Hätte Anna mehr Zeit, würde sie eine Ananas kaufen und schälen.": "اگر آنا وقت بیشتری داشت، یک آناناس می‌خرید و پوست می‌کند.",
+    "C1 | Hätte Anna mehr Zeit, würde sie eine Ananas kaufen und schälen.": "اگر آنا وقت بیشتری داشت، یک آناناس می‌خرید و آن را پوست می‌کرد.",
     "C1 | Avocados sollte man nicht im Kühlschrank aufbewahren.": "آووکادو را نباید در یخچال نگه داشت.",
     "C1 | Die Kokosnuss muss mit einem Hammer geöffnet worden sein.": "نارگیل حتماً با چکش باز شده است."
    }
@@ -1595,7 +1595,7 @@ window.SCENE = {
     "A2 | Die Avocados liegen zwischen den Orangen und den Papayas.": "الأفوكادو بين البرتقال والبابايا.",
     "A2 | Anna nimmt ein paar Bananen.": "تأخذ آنا بعض الموز.",
     "A2 | Die Limetten liegen neben den Feigen.": "الليمون الأخضر بجانب التين.",
-    "A2 | Die Mangos liegen zwischen den Grapefruits und den Bananen.": "المانجو بين الغريب فروت والموز.",
+    "A2 | Die Mangos liegen zwischen den Grapefruits und den Bananen.": "المانجو بين الجريب فروت والموز.",
     "A2 | Die halbe Wassermelone liegt auf den anderen Wassermelonen.": "نصف البطّيخة فوق البطّيخ الآخر.",
     "B1 | Was kostet eine Ananas?": "بكم الأناناس؟",
     "B1 | Ich nehme ein Stück Wassermelone, bitte.": "سآخذ قطعة بطّيخ، من فضلك.",
@@ -1605,7 +1605,7 @@ window.SCENE = {
     "B2 | Südfrüchte werden meistens mit dem Schiff importiert.": "تُستورد الفواكه الاستوائية غالباً بالسفن.",
     "B2 | Die Mango, deren Schale rot und grün ist, ist schon reif.": "المانجو ذات القشرة الحمراء والخضراء ناضجة بالفعل.",
     "B2 | Eine aufgeschnittene Papaya liegt oben auf den anderen.": "بابايا مقطوعة موضوعة فوق الأخريات.",
-    "B2 | Die Bananen, die Anna nimmt, kommen aus Ecuador.": "الموز الذي تأخذه آنا من الإكوادور.",
+    "B2 | Die Bananen, die Anna nimmt, kommen aus Ecuador.": "الموز الذي تأخذه آنا يأتي من الإكوادور.",
     "B2 | Die Kokosnuss ist schon geöffnet.": "جوزة الهند مفتوحة بالفعل.",
     "C1 | Trotz ihres langen Transportweges sind Mangos hier recht günstig.": "رغم طول طريق نقلها، المانجو رخيصة نسبياً هنا.",
     "C1 | Je dunkler die Feigen sind, desto süßer schmecken sie.": "كلّما كان التين أغمق، كان طعمه أحلى.",

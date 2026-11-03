@@ -86,6 +86,65 @@ réponse, sous la phrase juste** — jamais avant, elle donnerait la réponse. C
 - les **cases de la découverte**, de courtes expressions (« los ojos azules »), sont traduites à la main dans les
   dix langues (`TRAD_DECOUVERTE`), les prénoms restant écrits comme à l'écran.
 
+**La voix** (Jacques, 3 nov. : « il manquait aussi des paroles » ; « Pour le moment, on va mettre les voix du
+téléphone. Quand il n'y a pas de voix. ») : une seule fonction pour tous les thèmes, `Voix.dire(texte)`
+(`visuel/prototype/themes/voix.js`) :
+- le **fichier enregistré** s'il existe (sha1 du texte écrit ; Aurora, Lolita ou Monica selon la langue et la
+  variante), sinon **la voix du téléphone**, choisie comme dans l'app (la meilleure voix locale de la langue et de la
+  variante, jamais une voix fantaisie de `VOIX_A_FUIR`) ;
+- la page sait **avant de jouer** quels textes ont un fichier (`themes/sons.json`) : sur iPhone, `play()` et
+  `speak()` doivent partir dans le geste ; attendre l'échec d'un fichier ferait taire la page ;
+- ce qu'on dit : dans la découverte, la fiche ou le mot touché ; **après une réponse, le mot clé** à la forme du
+  corpus (« la tía », « die Tante », « alto ») — jamais toute la phrase fabriquée, qui ne s'enregistre pas (des
+  milliers de combinaisons), et qu'on ne fait pas dire au téléphone pour ne pas mêler deux voix ;
+- chaque page expose `textesAVoix()` : tout ce qu'elle peut dire. `python visuel/voix_themes.py` le relève
+  (→ `visuel/<thème>/voix.json`, que lisent `audio/manifest.py` et `audio/manifest_es.py`, source `<thème>`),
+  écrit `themes/sons.json` et chiffre ce qui manque. Un texte à chiffres demande sa lecture en lettres dans
+  `audio/lectures/<langue>.json` (« Tiene setenta y nueve años. »).
+- Enregistrer (accord de Jacques, v2 seulement) : `python audio/manifest.py --ecrire`, puis `generer_es.py --variante
+  es|latam --niveaux A1 --sources <thème>` et `generer.py --niveaux A1 --sources <thème>`, la normalisation
+  (`generer_es.py --normaliser`, `normaliser.py --niveaux A1`), `controler_sons.py` (aucun SATURE, CLIC, TRAINE sur les
+  fichiers neufs), **`python visuel/voix_themes.py` pour refaire `sons.json`**, `audio/deposer.py`, et
+  `AUDIO_REVISION` + 1.
+
+**Agrandir les images** (Jacques, 3 nov. : « dans les thèmes, on devrait faire comme dans les scènes, donc avoir la
+possibilité d'agrandir les images [...] c'est un peu loin pour voir la couleur des yeux ») : **toute page de thème
+charge `themes/zoom.js`** et appelle `Zoom.init({direct, loupe, langue})`. Une visionneuse plein écran, fond
+sombre, bouton « × » : dedans, le zoom des scènes (deux doigts jusqu'à ×4 autour du point entre les doigts, un doigt
+pour se déplacer, double toucher ×2,5 et retour, molette à l'ordinateur), et l'indice « Écarte deux doigts » de la
+v1068, deux fois au plus, plus jamais après un premier agrandissement (même clé que les scènes,
+`wortando_pinceZoome`). Ce qui l'ouvre :
+- **deux doigts** sur n'importe quelle image de l'exercice (`main img`, `main svg`) : le geste des scènes, il ouvre
+  la visionneuse et continue dedans ;
+- `direct` : les images qui ne sont **pas** des réponses (un visage, une photo, une fiche) s'ouvrent au toucher ;
+- `loupe` : ce qu'on touche **pour répondre** (une personne de la rangée, l'arbre, une case de la découverte) porte
+  une petite loupe, pour ne jamais répondre en voulant regarder. Un élément qui n'est pas une image (l'arbre en SVG)
+  est copié dans la visionneuse ; `data-zoom="<image>"` y montre une autre image (une personne en pied s'agrandit en
+  son visage, faute de pixels dans l'image en pied).
+- **Les yeux se lisent à 375 px** : une question sur les yeux d'une personne montre son gros plan à toute la largeur
+  (`<Nom>-yeux.webp`, fait par `visuel/descripcion/yeux_personnes.py`, la place des yeux relevée à l'œil), jamais le
+  petit visage ; les yeux de la découverte sont en deux colonnes. Une image neuve où l'on doit voir un détail : la
+  regarder au format du téléphone avant de la publier.
+
+**Le mot choisi, quand il est faux** (Jacques, 3 nov. : « quand je dis le mauvais, on devrait avoir l'affichage
+traduit aussi. Pour le mauvais mot. ») : sous la bonne réponse et sa traduction, une ligne de plus, « Tu as choisi :
+<le mot> — <sa traduction> » (`.trad.faux`, clé `choix` des `TEXTES`), dans la langue d'interface. La page pose
+`choixFaux = {texte, trad}` au clic, avant `juger()`, qui l'affiche ; `montrer()` le remet à `null`. La traduction
+vient du **corpus relu** (`<thème>/gloses.json`), sinon d'une traduction **écrite à la main** de la page (les cases
+de la découverte : « les yeux marron », jamais « châtain » pour des yeux) ; une description choisie se traduit
+entière par `TRADS`. **Rien de plus** quand le choix n'a pas de traduction sûre : un prénom, une personne touchée,
+un nombre, vrai / faux, un possessif seul (mi / su), un accord (alto / alta). Modèle : `familia.html`
+(`tradDuChoix`), `descripcion.html` (`tradTrait`).
+
+**Les boutons du bas** (Jacques, 3 nov., la règle des scènes depuis la v1059 : « commencer les exercices ou
+continuer soit toujours en bas complètement de l'écran ») : **tout bouton qui fait avancer est fixé en bas de
+l'écran**, au-dessus de tout (`z-index: 5000`, comme les scènes), dans le même verre vert : « Commencer les
+exercices », « Suivant » (`.suite`) et ceux de la fin, « Encore des questions » et « Terminer », côte à côte dans
+`<div class="bas">` (fin de partie et « Tout est revu »). Le contenu garde en bas la place du bouton : `padding-bottom`
+du `body` d'au moins 54 px + 24 px + 12 px + la zone sûre (`calc(env(safe-area-inset-bottom,0px) + 90px)`), pour
+qu'aucune réponse ne passe dessous. À vérifier à 375 px sur la question la plus longue, défilée jusqu'en bas
+(Décrire : « elige », la description à choisir), de jour et de nuit. Modèle : `familia.html`, `descripcion.html`.
+
 **Toutes les phrases sont fabriquées depuis les données** (`personnages.json`, `familia.json`), jamais écrites à la
 main : une image ne dit que ce qu'elle montre, et aucune question ne la contredit. Les questions validées par
 Jacques (« Ça me convient », 3 nov.) : 8 sortes pour la famille, 7 pour Décrire.
@@ -146,6 +205,9 @@ ramène aux cartes (`revenirDeLArret()`).
 | `visuel/vignettes_themes.py` → `visuel/prototype/themes/` | les vignettes de l'accueil |
 | `index.html` : `THEMES_ILLUSTRES`, `ouvrirThemeIllustre()`, `majExplorerThemes()`, `themeDuJour()`, `insererThemeIllustre()`, `ouvrirArretTheme()` | l'app |
 | `visuel/prototype/themes/tirage.js` | le tirage par mots, commun à tous les thèmes |
+| `visuel/prototype/themes/voix.js`, `themes/sons.json`, `visuel/voix_themes.py` | la voix commune, les fichiers qui existent, l'inventaire |
+| `visuel/prototype/themes/zoom.js` | agrandir les images, commun à tous les thèmes |
+| `visuel/descripcion/yeux_personnes.py` | les gros plans des yeux de Décrire |
 | `tests/themes_illustres.py` | la réserve de questions et les parties |
 
 ## Le branchement : le modèle à suivre pour un thème neuf
@@ -179,7 +241,9 @@ et du portugais : le bloc de l'accueil et la section y sont déjà cachés, et u
 les montre au même gabarit, trois par page (Jacques : « la même hauteur que ce qu'on a pour les scènes »). Le dessin
 est composé pour ce format, rien n'y est coupé.
 
-**4. La page `visuel/prototype/<thème>.html`**, qui charge `themes/tirage.js` et fournit au tirage :
+**4. La page `visuel/prototype/<thème>.html`**, qui charge `themes/tirage.js`, `themes/voix.js` et `themes/zoom.js`
+(avec son `Zoom.init({direct: "...", loupe: "...", langue: LANGUE})`, voir « Agrandir les images ») et fournit au
+tirage :
 
 | ce que la page définit | à quoi ça sert |
 |---|---|
@@ -193,3 +257,34 @@ Le protocole avec l'app : `etats` (la page demande, l'app répond avec l'état d
 `exercice`, `bonne`, `reponse` (le mot testé), `fini`, `fermer`.
 
 **Contrôle** : ajouter le thème à `THEMES` dans `tests/themes_illustres.py`, puis le lancer.
+
+## L'anglais (essai admin, 3 nov. 2026)
+
+Jacques : « Pour que l'anglais suive aussi. Les thèmes qu'on implémente, les thèmes dans l'apprentissage de
+l'anglais. » **La même page, les mêmes images, la même mécanique** (tirage, progression, traduction) : chaque page
+accepte `apprendre=en` et a son objet `EN`, à côté de `ES` et `DE`. **Les phrases et les questions sont écrites pour
+l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire anglaise.
+
+- **Le branchement** : `en: true` sur la ligne du thème dans `THEMES_ILLUSTRES` (index.html). Sans lui, le thème
+  reste caché en anglais (accueil, Tout le contenu, séance : `themesIllustresOuverts()`). La liste blanche CSS de
+  l'anglais laisse passer toute tuile `onclick="ouvrirThemeIllustre(…)"` et la place **en dernier** dans Tout le
+  contenu (`order: 1`) : les sections cachées de l'anglais y laissent couler leurs tuiles.
+- **L'interface est en français** : `TRADS.fr` traduit les phrases anglaises, `T()` retombe sur le français.
+- **Américain ou britannique** : l'app passe `variante=us|gb` (`voixThemeIllustre()`). La page change les mots qui
+  diffèrent (Mom / Mum, gray / grey, mustache / moustache, color / colour) et le dit dans une note.
+- **Les mots** : `genre: ""` (le corpus anglais n'a pas d'article) ; un mot qui manque au corpus s'ajoute dans
+  `anglais/outils/mots_<niv>.py` ou `noms_<niv>.py`, puis `python anglais/outils/construire.py` (plus de 5 minutes),
+  `frequence.py --ecrire` et `voisins.py --ecrire`. Ajoutés le 3 nov. : chubby, slim, wavy (A2), earring (A2).
+- **La voix** : aucune voix nouvelle (décision du 3 nov., écoute à l'aveugle Sarah / Google / Azure d'abord). Ce qui
+  a un fichier `en-us/` se dit avec Sarah (américain), le reste avec la voix du téléphone (`en-US`, `en-GB`). Le
+  britannique : toujours le téléphone. Il manque à Sarah, dans « Décrire » : *light brown*, *wavy*, *of medium
+  height*. La famille n'a pas de voix (comme en espagnol et en allemand).
+- **Ce que chaque thème enseigne en anglais** :
+  - **La famille** : le génitif (« Peter is Anna's father », et pour un couple « Peter and Monika's daughter ») —
+    une sorte de plus, `genitif` ; his / her selon celui qui possède ; our et their ; les noms de groupe du corpus,
+    comme en allemand (parents, siblings, grandparents) ; les beaux-parents en -in-law. « cousin » ne dit pas le
+    sexe : un seul mot du thème (`s: "*"`), pas de paire cousin → cousin.
+  - **Décrire une personne** : is / has / wears ; l'ordre des adjectifs devant *hair* (longueur, forme, couleur,
+    sans virgule) — la sorte `ordre`, à la place de l'accord espagnol ; *chubby* plutôt que *fat*, *dark eyes* et
+    jamais *black eyes* (deux notes dans la découverte) ; le superlatif à trois (« Who is the tallest? »).
+- **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).

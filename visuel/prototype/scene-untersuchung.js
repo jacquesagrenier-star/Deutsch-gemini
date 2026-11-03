@@ -2547,7 +2547,7 @@ window.SCENE = {
     "A2 | Seine Füße sind auf dem Boden.": "پاهایش روی زمین است.",
     "B1 | Die Ärztin hört seine Lunge ab.": "پزشک ریه‌هایش را معاینه می‌کند.",
     "B1 | Bitte atmen Sie tief ein!": "لطفاً نفس عمیق بکشید!",
-    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "مارک تا زیرپوش لباسش را درآورده است.",
+    "B1 | Mark hat sich bis auf die Unterhose ausgezogen.": "مارک تا زیرشلواری لباسش را درآورده است.",
     "B1 | Die Ärztin setzt ihm das Stethoskop auf die Brust.": "پزشک گوشی پزشکی را روی سینه‌اش می‌گذارد.",
     "B1 | Gleich stellt sich Mark auf die Waage.": "مارک همین حالا روی ترازو می‌رود.",
     "B1 | Danach steht er still auf der Waage.": "بعد از آن بی‌حرکت روی ترازو می‌ایستد.",
