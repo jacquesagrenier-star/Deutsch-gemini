@@ -142,12 +142,32 @@ un nombre, vrai / faux, un possessif seul (mi / su), un accord (alto / alta). Mo
 
 **Les boutons du bas** (Jacques, 3 nov., la règle des scènes depuis la v1059 : « commencer les exercices ou
 continuer soit toujours en bas complètement de l'écran ») : **tout bouton qui fait avancer est fixé en bas de
-l'écran**, au-dessus de tout (`z-index: 5000`, comme les scènes), dans le même verre vert : « Commencer les
-exercices », « Suivant » (`.suite`) et ceux de la fin, « Encore des questions » et « Terminer », côte à côte dans
+l'écran**, au-dessus de tout (`z-index: 5000`, comme les scènes), dans le même verre vert : « Commencer »,
+« Continuer » (`.suite`) et ceux de la fin, « Encore des questions » et « Terminer », côte à côte dans
 `<div class="bas">` (fin de partie et « Tout est revu »). Le contenu garde en bas la place du bouton : `padding-bottom`
 du `body` d'au moins 54 px + 24 px + 12 px + la zone sûre (`calc(env(safe-area-inset-bottom,0px) + 90px)`), pour
 qu'aucune réponse ne passe dessous. À vérifier à 375 px sur la question la plus longue, défilée jusqu'en bas
 (Décrire : « elige », la description à choisir), de jour et de nuit. Modèle : `familia.html`, `descripcion.html`.
+
+**La page a la hauteur de l'écran, comme une scène** (Jacques, iPhone, 3 nov. : « Commencer » « pas complètement
+en bas », alors que le navigateur le montrait au bon endroit). Le document d'une scène ne dépasse jamais son cadre ;
+celui d'un thème défilait (Décrire : 2 500 px), et sur iPhone un bouton fixe dans un cadre dont le document déborde
+ne tombe pas au bas de l'écran. Donc `html{height:100%;overflow:hidden}` et `body{height:100%;overflow-y:auto}` :
+le contenu défile DANS le body, `document.documentElement.scrollHeight` reste celui du cadre (le mesurer : il doit
+valoir `innerHeight`), et la remise en haut d'une question fait aussi `document.body.scrollTop = 0`. Rappel : un
+cadre ne reçoit jamais `env(safe-area-inset-*)` (c'est l'app qui pose la marge, `#sceneSeance`) ; le bouton tombe
+donc à 12 px du bas du cadre, exactement comme le « Continuer » des scènes.
+
+**Les noms des boutons, fixes, partout** (Jacques, 3 nov. : « les noms des contrôles doivent être identiques
+partout ») : on ne dit jamais « Suivant ». Les clés des `TEXTES` d'une page, et les textes communs de `tirage.js` :
+
+| clé | fr | en | de | les autres langues |
+|---|---|---|---|---|
+| `commencer` | Commencer | Start | Starten | tr Başla, uk Почати, fa شروع, ar ابدأ, pt Começar, pl Zacznij, ru Начать |
+| `suivant` (le bouton qui avance) | Continuer | Continue | Weiter | le mot des scènes (`suite` de `visuel/prototype/index.html`) : tr Devam, uk Далі, fa ادامه, ar متابعة, pt Continuar, pl Dalej, ru Дальше |
+| `terminer` | Terminer | Finish | Beenden | tr Bitir, uk Завершити, fa پایان, ar إنهاء, pt Terminar, pl Zakończ, ru Завершить |
+| `TIRAGE_TEXTES.encore` | Encore des questions | More questions | Weitere Fragen | dans `themes/tirage.js` |
+| `TIRAGE_TEXTES.revu` | Tout est revu pour aujourd'hui. | Everything is reviewed for today. | — | dans `themes/tirage.js` |
 
 **Toutes les phrases sont fabriquées depuis les données** (`personnages.json`, `familia.json`), jamais écrites à la
 main : une image ne dit que ce qu'elle montre, et aucune question ne la contredit. Les questions validées par
@@ -174,19 +194,23 @@ où un seul verbe est juste (la taille, la largeur ; ouvert, fermé, plein, vide
    `adjetivos.json`, `adjectif.json`). Un mot qui manque : le proposer (allemand : JSON racine ; espagnol :
    `espanol/ajouter_mots.py espanol/ajouts/<fichier>.json`, mêmes clés que ses voisins, fr en pt ar de) — ses voix
    demandent l'accord de Jacques.
-2. **Les personnes** : réutiliser d'abord celles qui existent. Une personne neuve : un script comme
+2. **Les lieux, AVANT toute image** (Jacques, 3 nov. : la continuité des lieux) : une image de thème qui montre un
+   lieu connu (l'appartement de Mark, celui d'Anna, une pièce des scènes ou des vidéos) reprend les mêmes meubles,
+   couleurs et disposition que les scènes et `video/LIEUX.md` ; un lieu nouveau s'ajoute à `video/LIEUX.md`. Se
+   vérifie avant de lancer la génération, pas après.
+3. **Les personnes** : réutiliser d'abord celles qui existent. Une personne neuve : un script comme
    `visuel/familia/familia.py` (fal, `fal-ai/nano-banana-pro`, **0,15 $ l'image** ; `--montrer` est gratuit).
    **Annoncer le coût du lot avant de le lancer**, puis **vérifier chaque image contre sa description** ; une image
    ratée se refait. Mark et Anna ne se régénèrent pas : leur image sert de référence (retouche
    `nano-banana-pro/edit`). Puis `detourer.py` (BiRefNet, quelques centimes) et `web.py` (les webp : en pied
    900 px, visage carré pris sur la silhouette détourée — la tête d'un enfant n'est pas celle d'un adulte). Les
    originaux restent hors du dépôt (`visuel/<thème>/img/`, dans `.gitignore`).
-3. **La page** : copier `familia.html` ou `descripcion.html`, garder le protocole, les textes `TEXTES` dans les
+4. **La page** : copier `familia.html` ou `descripcion.html`, garder le protocole, les textes `TEXTES` dans les
    **10 langues d'interface** (fr en tr uk fa ar pt pl ru de), `dir="ltr"` sur tout texte de la langue apprise et sur
    le compteur (sinon « 10 / 5 » en arabe), les couleurs en variables avec leur version `html.nuit`.
-4. **L'app** (`index.html`) : voir « Le branchement » ci-dessous.
-5. **La vignette** : une fonction de plus dans `visuel/vignettes_themes.py` (4:3,4), qui dise le sujet autrement.
-6. **Contrôler** : `python tests/themes_illustres.py` (≥ 100 questions, séries propres), `node tests/syntaxe.js`,
+5. **L'app** (`index.html`) : voir « Le branchement » ci-dessous.
+6. **La vignette** : une fonction de plus dans `visuel/vignettes_themes.py` (4:3,4), qui dise le sujet autrement.
+7. **Contrôler** : `python tests/themes_illustres.py` (≥ 100 questions, séries propres), `node tests/syntaxe.js`,
    `python tests/verifier.py`, les deux parcours (`fusion-espagnol/parcours.py --app de` et `--app es-moteur`),
    chaque écart vérifié ligne à ligne et la nouvelle référence écrite dans CLAUDE.md ; à l'écran, au format du
    téléphone, de jour, de nuit, en arabe ou en persan.

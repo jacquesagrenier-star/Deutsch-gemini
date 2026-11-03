@@ -26,6 +26,12 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
   --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (3 nov. 2026, Jacques sur iPhone : « Commencer » « pas
+   completement en bas »). Le document d'une scene ne depasse jamais son cadre ; celui d'un theme defilait (Decrire :
+   2 500 px), et sur iPhone un bouton fixe dans un cadre dont le document deborde ne tombe pas au bas de l'ecran.
+   Le contenu defile donc DANS le body, et le document garde la hauteur du cadre. */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 156px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
@@ -134,7 +140,7 @@ const TEXTES = {
   contraireDe:{fr:"Le contraire :", en:"Opposite:", tr:"Zıttı:", uk:"Протилежне:", fa:"متضاد:", ar:"الضد:", pt:"O contrário:", pl:"Przeciwieństwo:", ru:"Противоположность:", de:"Gegenteil:"},
   presque:   {fr:"Presque le même sens :", en:"Almost the same:", tr:"Neredeyse aynı anlamda:", uk:"Майже те саме:", fa:"تقریباً هم‌معنی:", ar:"بالمعنى نفسه تقريبًا:", pt:"Quase o mesmo:", pl:"Prawie to samo:", ru:"Почти то же самое:", de:"Fast dasselbe:"},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
-  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   comment:   {fr:"Regarde l'image et choisis le bon mot.", en:"Look at the picture and choose the right word.", tr:"Resme bak ve doğru kelimeyi seç.", uk:"Подивися на зображення й обери правильне слово.", fa:"به تصویر نگاه کن و واژهٔ درست را انتخاب کن.", ar:"انظر إلى الصورة واختر الكلمة الصحيحة.", pt:"Olhe a imagem e escolha a palavra certa.", pl:"Spójrz na obrazek i wybierz właściwe słowo.", ru:"Посмотри на картинку и выбери правильное слово.", de:"Sieh dir das Bild an und wähle das richtige Wort."},
   cual:      {fr:"Lis la question et touche la bonne image.", en:"Read the question and tap the right picture.", tr:"Soruyu oku ve doğru resme dokun.", uk:"Прочитай запитання й торкнися потрібного зображення.", fa:"سؤال را بخوان و روی تصویر درست بزن.", ar:"اقرأ السؤال والمس الصورة الصحيحة.", pt:"Leia a pergunta e toque na imagem certa.", pl:"Przeczytaj pytanie i dotknij właściwego obrazka.", ru:"Прочитай вопрос и нажми на нужную картинку.", de:"Lies die Frage und tippe auf das richtige Bild."},
   contraire: {fr:"Regarde les deux images et trouve le contraire.", en:"Look at both pictures and find the opposite.", tr:"İki resme bak ve zıttını bul.", uk:"Подивися на обидва зображення й знайди протилежне.", fa:"به هر دو تصویر نگاه کن و متضاد را پیدا کن.", ar:"انظر إلى الصورتين وجد العكس.", pt:"Olhe as duas imagens e encontre o contrário.", pl:"Spójrz na oba obrazki i znajdź przeciwieństwo.", ru:"Посмотри на обе картинки и найди противоположность.", de:"Sieh dir beide Bilder an und finde das Gegenteil."},
@@ -144,7 +150,7 @@ const TEXTES = {
   vraifaux:  {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
   entendre:  {fr:"Écoute le mot et touche la bonne image.", en:"Listen to the word and tap the right picture.", tr:"Kelimeyi dinle ve doğru resme dokun.", uk:"Послухай слово й торкнися потрібного зображення.", fa:"واژه را گوش کن و روی تصویر درست بزن.", ar:"استمع إلى الكلمة والمس الصورة الصحيحة.", pt:"Ouça a palavra e toque na imagem certa.", pl:"Posłuchaj słowa i dotknij właściwego obrazka.", ru:"Послушай слово и нажми на нужную картинку.", de:"Hör dir das Wort an und tippe auf das richtige Bild."},
   reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
-  suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
@@ -629,7 +635,7 @@ function montrer(){
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
   vus.add(cleQuestion()); derniereSorte = fait;
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;

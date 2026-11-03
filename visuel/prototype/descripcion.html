@@ -20,6 +20,12 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
   --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (3 nov. 2026, Jacques sur iPhone : « Commencer » « pas
+   completement en bas »). Le document d'une scene ne depasse jamais son cadre ; celui d'un theme defilait (Decrire :
+   2 500 px), et sur iPhone un bouton fixe dans un cadre dont le document deborde ne tombe pas au bas de l'ecran.
+   Le contenu defile donc DANS le body, et le document garde la hauteur du cadre. */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(12px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
@@ -122,7 +128,7 @@ const TEXTES = {
   elige:    {fr:"Quelle description correspond à cette personne ?", en:"Which description matches this person?", tr:"Hangi tarif bu kişiye uyuyor?", uk:"Який опис підходить цій людині?", fa:"کدام توضیح با این شخص جور است؟", ar:"أي وصف يطابق هذا الشخص؟", pt:"Qual descrição corresponde a esta pessoa?", pl:"Który opis pasuje do tej osoby?", ru:"Какое описание подходит этому человеку?", de:"Welche Beschreibung passt zu dieser Person?"},
   taille:   {fr:"Compare leur taille et touche la bonne personne.", en:"Compare their height and tap the right person.", tr:"Boylarını karşılaştır ve doğru kişiye dokun.", uk:"Порівняй їхній зріст і торкнися потрібної людини.", fa:"قدشان را مقایسه کن و روی شخص درست بزن.", ar:"قارن أطوالهم والمس الشخص الصحيح.", pt:"Compare a altura e toque na pessoa certa.", pl:"Porównaj ich wzrost i dotknij właściwej osoby.", ru:"Сравни их рост и нажми на нужного человека.", de:"Vergleiche ihre Größe und tippe auf die richtige Person."},
   yeux:     {fr:"De quelle couleur sont ces yeux ?", en:"What colour are these eyes?", tr:"Bu gözler ne renk?", uk:"Якого кольору ці очі?", fa:"این چشم‌ها چه رنگی‌اند؟", ar:"ما لون هاتين العينين؟", pt:"De que cor são estes olhos?", pl:"Jakiego koloru są te oczy?", ru:"Какого цвета эти глаза?", de:"Welche Farbe haben diese Augen?"},
-  suivant:  {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  suivant:  {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
   encore:   {fr:"Encore une fois", en:"Once more", tr:"Bir kez daha", uk:"Ще раз", fa:"یک بار دیگر", ar:"مرة أخرى", pt:"Mais uma vez", pl:"Jeszcze raz", ru:"Ещё раз", de:"Noch einmal"},
   terminer: {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   choix:    {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
@@ -144,7 +150,7 @@ const TEXTES = {
     pl:"Warto wiedzieć: «{brut}» istnieje, ale brzmi ostro. «{doux}» jest łagodniejsze – tak mówi się o kimś.",
     ru:"Полезно знать: «{brut}» существует, но звучит грубо. «{doux}» мягче — так говорят о человеке.",
     de:"Gut zu wissen: „{brut}“ gibt es, aber es klingt hart. „{doux}“ ist freundlicher: So spricht man über einen Menschen."},
-  commencer:{fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  commencer:{fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   // l'anglais seulement (son interface est en francais) : l'ordre des adjectifs, et trois choses bonnes a savoir
   ordre:    {fr:"Choisis le bon ordre : la longueur, puis la forme, puis la couleur.", en:"Choose the right order: length, then type, then colour."},
   bonOrdre: {fr:"Bon à savoir : devant <b>hair</b>, les adjectifs se suivent dans un ordre fixe, la longueur, la forme, puis la couleur, sans virgule : <b>long curly red hair</b>. Et <b>hair</b> reste au singulier : <b>Her hair is long.</b>"},
@@ -983,7 +989,7 @@ function montrer(){
   }
   if (!fait) fait = essai(file[rang], false);
   vus.add(cleQuestion()); derniereSorte = fait;
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
