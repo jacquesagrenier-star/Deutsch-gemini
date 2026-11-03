@@ -90,6 +90,19 @@ Source : `visuel/transportes/transportes.py` (`LIEUX`, `LIEU_TXT`, `IMAGES`).
   rouge foncé, puis y remonte (même cadrage : `zug-ein` est une retouche de `zug-aus`).
 - **NOUVEAU — une rue résidentielle arborée** (Felix au volant d'une petite voiture grise) et **l'intérieur d'un
   avion** (Felix au hublot, l'aile et les nuages).
+### Le salon de Jan et Katrin (chez Ben et Mia) — thèmes « Où est le chat ? » et « La météo »
+- Maître : `visuel/gato/img/piece.png` (la pièce vide du chat Moritz ; copie dans
+  `~/.wortando/meteo/ref/salon-jan-katrin.png`), webp publié `visuel/prototype/gato/piece.webp`. Toute image qui y
+  revient est une **retouche** de cette pièce (mêmes meubles, mêmes couleurs, même fenêtre), jamais une description.
+- La météo y met Anna (la tante) qui lit un livre à Mia sur le canapé, la pluie à la fenêtre.
+
+### La place du Kiez (Prenzlauer Berg) — thème « La météo et les saisons » (3 nov. 2026)
+- Lieu **nouveau**, extérieur : une petite place pavée, maisons anciennes de cinq étages aux couleurs pastel (jaune
+  pâle, vert clair, rose) avec balcons, un grand tilleul au milieu et son banc rond en bois, à droite un petit café
+  (trois tables rondes, deux grands parasols blancs), à gauche un réverbère en fonte vert foncé et un range-vélos.
+  Vue à hauteur de piéton, le ciel au tiers supérieur.
+- Maître : `~/.wortando/meteo/img/sommer.png` (l'été, texte → image) ; les sept autres temps en sont des
+  **retouches** (`visuel/meteo/meteo.py`, `GARDE`). Une vidéo qui passe sur une place du quartier repart de lui.
 
 ### La ferme de l'oncle d'Anna (Brandebourg) — la scène `bauernhof`, le thème « Les animaux »
 - Maître : `visuel/scenes/bauernhof.png` (la scène de l'app, une photo, un matin d'automne). Les

@@ -33,7 +33,10 @@ TEXTE, EDIT, PRIX, PLAFOND = "fal-ai/nano-banana-pro", "fal-ai/nano-banana-pro/e
 DOSSIER = os.path.join(os.path.expanduser("~"), ".wortando", "meteo", "img")
 PRINCIPAL = "C:/Users/jacqu/OneDrive/Desktop/Mes Projets/DeutschAI"
 FAMILLE = "C:/Users/jacqu/.wortando/wt-themes/visuel/familia/img"
-PERSONNES = {"Anna": FAMILLE + "/Anna-quotidien.png", "Ben": FAMILLE + "/Ben.png", "Mia": FAMILLE + "/Mia.png"}
+PERSONNES = {"Anna": FAMILLE + "/Anna-quotidien.png", "Ben": FAMILLE + "/Ben.png", "Mia": FAMILLE + "/Mia.png",
+             # un lieu deja connu se reprend de son image maitresse (video/LIEUX.md), jamais d'une description
+             "salon": os.path.join(os.path.expanduser("~"), ".wortando", "meteo", "ref", "salon-jan-katrin.png")}
+NOMS_REFS = {"salon": "the living room of Jan and Katrin"}
 
 # ---------------------------------------------------------------------------------------------------------------
 # LES FAITS : ce qu'une image peut montrer du temps. Chaque fait a ses phrases dans chaque langue, et chaque phrase
@@ -183,10 +186,13 @@ IMAGES = {
         "prompt": "In a Berlin park in WINTER, a cold sunny day after a heavy snowfall, everything covered in white snow, a "
                   "blue sky: the boy of the first picture and the girl of the second picture play in the snow, throw snow "
                   "in the air and laugh, in warm winter clothes. No snowman, no sledge. Seen from the front."},
-    "lesen":     {"saison": None, "temp": 13, "act": "lesen", "vrais": ["lluvia", "malo"], "douteux": ["nublado", "fresco", "frio", "viento"], "source": ["Anna", "Mia"],
-        "prompt": "Inside a cosy living room on a RAINY day: heavy rain runs down the big window behind them, the sky "
-                  "outside is dark grey; the woman of the first picture sits on a sofa and reads a picture book to the "
-                  "girl of the second picture, who sits next to her and smiles; a warm lamp is lit. Seen from the front."},
+    "lesen":     {"saison": None, "temp": 13, "act": "lesen", "vrais": ["lluvia", "malo"], "douteux": ["nublado", "fresco", "frio", "viento"], "source": ["Anna", "Mia", "salon"],
+        # la continuite des lieux (Jacques, 3 nov.) : le salon de Jan et Katrin, celui de « Ou est le chat ? » (video/LIEUX.md)
+        "prompt": "EXACTLY the living room of the third picture: the same sofa, the same table and chairs, the same "
+                  "shelves, the same colours, the same window and curtains, the same layout, seen from the same side. It "
+                  "is a RAINY day: heavy rain runs down that window, the sky outside is dark grey, a lamp is lit. The "
+                  "woman of the first picture sits on the sofa and reads a picture book to the girl of the second "
+                  "picture, who sits next to her and smiles. No cat. Both faces clearly visible."},
 }
 ESSAI = ["sommer", "regen", "winter", "herbst", "see", "lesen"]        # la planche d'essai (0,90 $)
 SAISONS = {"primavera": ("primavera", "Frühling"), "verano": ("verano", "Sommer"), "otono": ("otoño", "Herbst"), "invierno": ("invierno", "Winter")}
@@ -574,7 +580,7 @@ def prompts():
     for i, im in IMAGES.items():
         src = im.get("source")
         if isinstance(src, list):
-            refs = ", ".join("the %s picture: %s" % (("first", "second", "third")[n], q) for n, q in enumerate(src))
+            refs = ", ".join("the %s picture: %s" % (("first", "second", "third")[n], NOMS_REFS.get(q, q)) for n, q in enumerate(src))
             out[i] = (src, MEME + "(" + refs + ") " + im["prompt"] + PHOTO)
         elif src:
             out[i] = (src, GARDE + im["prompt"] + PHOTO)
