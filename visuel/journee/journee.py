@@ -31,7 +31,9 @@ FAMILLE = "C:/Users/jacqu/.wortando/wt-themes/visuel/familia/img"
 SOURCES = {"Mark": PRINCIPAL + "/personnages/Mark.png", "Anna": FAMILLE + "/Anna-quotidien.png",
            "Jan": FAMILLE + "/Jan.png", "Katrin": FAMILLE + "/Katrin.png", "Ben": FAMILLE + "/Ben.png", "Mia": FAMILLE + "/Mia.png",
            # les lieux deja photographies : la cuisine vert sauge et le salon de la colocation de Mark (video/LIEUX.md)
-           "cuisine-mark": RACINE + "/visuel/prototype/kueche.webp", "salon-mark": RACINE + "/visuel/prototype/wohnzimmer.webp"}
+           "cuisine-mark": RACINE + "/visuel/prototype/kueche.webp", "salon-mark": RACINE + "/visuel/prototype/wohnzimmer.webp",
+           # 3 nov., reprise d'anna-5 : la tenue qu'elle vient de mettre (anna-4), la cuisine de la premiere prise
+           "anna-habillee": os.path.join(os.path.expanduser("~"), ".wortando", "journee", "img", "anna-4.png")}
 SEXE = {"Anna": "f", "Mark": "m", "Jan": "m", "Katrin": "f", "Ben": "m", "Mia": "f"}
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -325,9 +327,10 @@ IMAGES = {
     "anna-2": (["Anna"], "anna-1", "The same bedroom as in the last reference picture, same bed, same bedside lamp: Anna, in pyjamas, sits up on the edge of the bed and puts her feet on the floor, about to stand up, stretching and yawning."),
     "anna-3": (["Anna"], None, "In a small bathroom with white tiles, Anna is in the shower behind a clear glass door, seen from the shoulders up only, eyes closed, warm water running over her wet hair; steam on the glass. Nothing below the shoulders is visible."),
     "anna-4": (["Anna"], "anna-1", "The same bedroom as in the last reference picture: Anna, her hair done, stands in front of an open wooden wardrobe and puts on a dark-blue cardigan over a white blouse, getting dressed for work."),
-    "anna-5": (["Anna"], None, "Early morning, dark outside the window: Anna, dressed for work, has breakfast alone at a small round kitchen table in a bright, simple kitchen with light-blue cupboards: a cup of coffee and a bread roll with jam; she drinks her coffee."),
+    # 3 nov. : la premiere prise (anna-5-rate1) lui mettait un pull noir, un quart d'heure apres le chemisier et le gilet
+    "anna-5": (["Anna", "anna-habillee"], "anna-5-rate1", "The same kitchen as in the last reference picture, same light-blue cupboards and round table. Anna wears exactly the clothes of the second reference picture: a white blouse and a dark-blue cardigan. Early morning, dark outside the window: Anna has breakfast alone at a small round kitchen table in a bright, simple kitchen with light-blue cupboards: a cup of coffee and a bread roll with jam; she drinks her coffee."),
     "anna-6": (["Anna"], None, "On a Berlin U-Bahn platform in the morning, among a few commuters, Anna in a warm coat with a scarf and a handbag steps into a yellow U-Bahn train whose doors are open."),
-    "anna-7": (["Anna"], None, "At the information counter of Berlin airport, Anna in her work clothes (a plain uniform-style shirt and a name badge on a lanyard) helps a traveller with a suitcase, smiling, pointing at a screen on the counter (the screen faces away from the camera)."),
+    "anna-7": (["Anna"], None, "At the information counter of Berlin airport, Anna in her work clothes (a plain uniform-style shirt and a name badge on a lanyard) helps an elderly grey-haired man with a suitcase (only Anna is blonde in the picture), smiling, pointing at a screen on the counter (the screen faces away from the camera)."),
     "anna-8": (["Anna"], None, "In the evening, dark outside, Anna in her warm coat with a shopping bag unlocks the front door of an old Berlin apartment building with a key, coming home after work; a warm light above the door."),
     "anna-9": (["Anna"], "anna-5", "The same kitchen as in the last reference picture, same light-blue cupboards and round table, in the evening with the warm ceiling light on and the window dark: Anna, in a comfortable sweater, eats a plate of pasta and a salad alone at the table."),
     "anna-10": (["Anna"], "anna-1", "The same bedroom as in the last reference picture, at night, only the bedside lamp on: Anna in pyjamas gets into bed, pulling up the light-grey duvet, a book on the bedside table, about to switch off the lamp."),

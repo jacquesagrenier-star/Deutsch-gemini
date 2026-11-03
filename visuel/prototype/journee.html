@@ -27,7 +27,7 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
-  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 150px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
 .retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
 html[dir="rtl"] .retour{transform:scaleX(-1)}
@@ -46,9 +46,10 @@ main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(
 .cadran{position:absolute;right:8px;bottom:8px;display:flex;align-items:center;gap:4px;background:rgba(255,255,255,.92);border-radius:999px;padding:4px 8px 4px 5px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 .cadran svg.horloge{width:62px;height:62px;display:block}
 .cadran svg.moment{width:20px;height:20px;display:block}
-.photo.petite .cadran svg.horloge{width:34px;height:34px}
-.photo.petite .cadran{right:4px;bottom:4px;padding:2px 4px 2px 3px}
-.photo.petite .cadran svg.moment{width:12px;height:12px}
+/* dans la frise et les vignettes, l'horloge reste petite : la photo doit se voir */
+.photo.petite .cadran svg.horloge{width:24px;height:24px}
+.photo.petite .cadran{right:3px;bottom:3px;padding:2px}
+.photo.petite .cadran svg.moment{display:none}
 /* la semaine de la frequence : sept jours, coche ou non */
 .semaine{direction:ltr;display:grid;grid-template-columns:repeat(7,1fr);gap:4px;background:var(--carte);border-radius:14px;padding:8px}
 .semaine div{text-align:center;font-weight:800;font-size:13px;color:var(--gris)}
@@ -98,9 +99,15 @@ button:disabled{cursor:default}
 .suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
   color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
 .suite[hidden]{display:none}
+/* Jacques, 3 nov. 2026, comme dans les scenes : « commencer les exercices ou continuer soit toujours en bas
+   completement de l'ecran ». Tous les boutons d'action sont fixes en bas, jamais dans le flux : la suite (Commencer,
+   Suivant, Terminer) et, a la fin, « Encore des questions » juste au-dessus de « Terminer ». */
+.suite{z-index:5000}
+.basFin{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:5000;display:flex;flex-direction:column;gap:8px}
+.basFin button{height:54px;border:0;border-radius:27px;color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.basFin button.second{height:48px;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);box-shadow:0 6px 16px rgba(0,0,0,.12)}
 .fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
 .fin .score{font-size:22px;font-weight:900}
-.fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
 [lang]{unicode-bidi:isolate}
 /* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
 .trad{display:block;font-size:13px;font-weight:600;color:var(--gris);line-height:1.35;margin-top:2px}
@@ -764,7 +771,7 @@ function montrer(){
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div>' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div></div>' + boutonsFin();
   brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
 }
@@ -774,12 +781,14 @@ function toutRevu(prochaine){
   const quand = Tirage.revu(prochaine, LANGUE);
   $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
     + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
-    + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+    + '</div>' + boutonsFin();
   brancherEncore();
   $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
 }
 // « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
-const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+// les deux boutons de la fin, fixes en bas de l'ecran (.basFin)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+const boutonsFin = () => '<div class="basFin">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
 function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
