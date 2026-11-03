@@ -44,6 +44,5 @@ La page s'essaie servie par HTTP (pas en `file://`, à cause du `fetch` des JSON
 - **La voix** : en attendant les enregistrements (ElevenLabs multilingual v2, qui demandent l'accord de Jacques),
   c'est la voix du téléphone. Les nombres s'écrivent en chiffres, et la voix en recevra la lecture en lettres
   (`audio/lectures/de.json`).
-- **Mark s'appelle Mark Gagnon** dans les documents et habite Gartenstraße 12. Ce nom est proposé et n'est pas
-  encore validé par Jacques. Les textes d'Écouter et Lire viennent de sa vie à Berlin (son répondeur, son
+- **Mark s'appelle Mark Garnier** dans les documents et habite Gartenstraße 12. Nom décidé par Jacques le 3 nov. 2026. Les textes d'Écouter et Lire viennent de sa vie à Berlin (son répondeur, son
   courrier) : il ne passe pas le DTZ, il aide l'élève à le préparer.

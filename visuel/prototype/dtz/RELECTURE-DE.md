@@ -27,9 +27,9 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 
 ### H-S1-T1-Bsp · Anrufbeantworter
 
-> **Sprecherin:** Guten Tag, Herr Gagnon, hier spricht Frau Brandt von der Hausverwaltung Kern. Es geht um Ihren Briefkasten: Das Namensschild ist jetzt fertig. Sie können es ab morgen bei uns im Büro abholen, montags bis freitags von 9 bis 15 Uhr. Bringen Sie bitte Ihren Mietvertrag mit. Vielen Dank und auf Wiederhören.  
+> **Sprecherin:** Guten Tag, Herr Garnier, hier spricht Frau Brandt von der Hausverwaltung Kern. Es geht um Ihren Briefkasten: Das Namensschild ist jetzt fertig. Sie können es ab morgen bei uns im Büro abholen, montags bis freitags von 9 bis 15 Uhr. Bringen Sie bitte Ihren Mietvertrag mit. Vielen Dank und auf Wiederhören.  
 
-- **Beispiel** – Was soll Herr Gagnon mitbringen?
+- **Beispiel** – Was soll Herr Garnier mitbringen?
   - a) Seinen Mietvertrag.  ✅
   - b) Seinen Pass.
   - c) Das Namensschild.
@@ -38,9 +38,9 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 
 ### H-S1-T1-1 · Anrufbeantworter
 
-> **Sprecherin:** Guten Tag, hier ist die Praxis Dr. Yilmaz, eine Nachricht für Herrn Gagnon. Ihre Blutwerte sind da, und es ist alles in Ordnung. Sie müssen also nicht noch einmal zu uns kommen. Ihr Rezept für die Tabletten liegt bei uns an der Anmeldung. Sie können es ab Mittwoch abholen. Einen schönen Tag noch!  
+> **Sprecherin:** Guten Tag, hier ist die Praxis Dr. Yilmaz, eine Nachricht für Herrn Garnier. Ihre Blutwerte sind da, und es ist alles in Ordnung. Sie müssen also nicht noch einmal zu uns kommen. Ihr Rezept für die Tabletten liegt bei uns an der Anmeldung. Sie können es ab Mittwoch abholen. Einen schönen Tag noch!  
 
-- **Aufgabe 1** – Was soll Herr Gagnon machen?
+- **Aufgabe 1** – Was soll Herr Garnier machen?
   - a) Noch einmal Blut abnehmen lassen.
   - b) Ein Rezept in der Praxis abholen.  ✅
   - c) Am Mittwoch die Ärztin anrufen.
@@ -149,19 +149,19 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 
 ### H-S1-T3-Bsp · Treppenhaus
 
-> **Nachbar:** Ach, Herr Gagnon, gut, dass ich Sie sehe! Ich habe heute Mittag ein Paket für Sie angenommen.  
+> **Nachbar:** Ach, Herr Garnier, gut, dass ich Sie sehe! Ich habe heute Mittag ein Paket für Sie angenommen.  
 > **Mark:** Oh, vielen Dank! Das sind bestimmt meine neuen Schuhe.  
 > **Nachbar:** Gern. Ich muss aber gleich los, zum Sport. Können Sie es heute Abend um acht bei mir holen?  
 > **Mark:** Um acht? Ja, das passt. Dann klingle ich bei Ihnen.  
 
-- **Beispiel** – *Richtig oder falsch?* Herr Gagnon und der Mann sind Nachbarn. → **Richtig**
+- **Beispiel** – *Richtig oder falsch?* Herr Garnier und der Mann sind Nachbarn. → **Richtig**
 
 > ☐ OK   ☐ Korrektur: …………………………………………………………
 
 ### H-S1-T3-10-11 · Telefonat Hausverwaltung
 
 > **Frau Brandt:** Hausverwaltung Kern, Brandt, guten Tag.  
-> **Mark:** Guten Tag, Frau Brandt, hier ist Mark Gagnon aus der Gartenstraße 12. Bei mir ist die Heizung kalt, schon seit gestern Abend.  
+> **Mark:** Guten Tag, Frau Brandt, hier ist Mark Garnier aus der Gartenstraße 12. Bei mir ist die Heizung kalt, schon seit gestern Abend.  
 > **Frau Brandt:** Oh, das tut mir leid. Ist es nur im Wohnzimmer oder in der ganzen Wohnung?  
 > **Mark:** In der ganzen Wohnung. Und das Wasser in der Dusche ist auch nur lauwarm.  
 > **Frau Brandt:** Dann ist es wahrscheinlich die Anlage im Keller. Ich schicke Ihnen einen Techniker. Er kann morgen früh kommen, zwischen acht und zehn. Geht das?  
@@ -169,7 +169,7 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 > **Frau Brandt:** Moment … Ja, um 15 Uhr. Dann notiere ich das so.  
 > **Mark:** Super, vielen Dank!  
 
-- **Aufgabe 10** – *Richtig oder falsch?* In Herrn Gagnons Wohnung funktioniert die Heizung nicht. → **Richtig**
+- **Aufgabe 10** – *Richtig oder falsch?* In Herrn Garniers Wohnung funktioniert die Heizung nicht. → **Richtig**
 - **Aufgabe 11** – Wann kommt der Techniker?
   - a) Morgen zwischen acht und zehn.
   - b) Morgen um 15 Uhr.  ✅
@@ -187,8 +187,8 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 > **Mark:** Mit Karte? Prima. Und bekomme ich sie gleich?  
 > **Beamter:** Ja, ich drucke sie sofort aus. Einen Moment noch.  
 
-- **Aufgabe 12** – *Richtig oder falsch?* Herr Gagnon muss später noch einmal wiederkommen. → **Falsch**
-- **Aufgabe 13** – Warum braucht Herr Gagnon die Bescheinigung?
+- **Aufgabe 12** – *Richtig oder falsch?* Herr Garnier muss später noch einmal wiederkommen. → **Falsch**
+- **Aufgabe 13** – Warum braucht Herr Garnier die Bescheinigung?
   - a) Für seinen Arbeitgeber.
   - b) Für seinen Vermieter.
   - c) Für seine Bank.  ✅
@@ -204,7 +204,7 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 > **Kursteilnehmerin:** Fünf Sätze, oje. Dann schreibe ich sie schnell noch unten im Café.  
 > **Mark:** Viel Glück! Bis gleich oben.  
 
-- **Aufgabe 14** – *Richtig oder falsch?* Die Frau und Herr Gagnon besuchen denselben Kurs. → **Richtig**
+- **Aufgabe 14** – *Richtig oder falsch?* Die Frau und Herr Garnier besuchen denselben Kurs. → **Richtig**
 - **Aufgabe 15** – Was muss die Frau noch machen?
   - a) Eine E-Mail an die Kursleiterin schreiben.
   - b) Ein paar Sätze über ihre Familie schreiben.  ✅
@@ -215,7 +215,7 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 ### H-S1-T3-16-17 · Telefonat Arztpraxis
 
 > **Frau Ott:** Praxis Dr. Hoffmann, Orthopädie, Sie sprechen mit Frau Ott.  
-> **Mark:** Guten Tag, Gagnon ist mein Name. Ich habe seit drei Tagen starke Rückenschmerzen und hätte gern einen Termin.  
+> **Mark:** Guten Tag, Garnier ist mein Name. Ich habe seit drei Tagen starke Rückenschmerzen und hätte gern einen Termin.  
 > **Frau Ott:** Waren Sie schon einmal bei uns?  
 > **Mark:** Nein, das ist das erste Mal.  
 > **Frau Ott:** Gut. Morgen ist leider alles voll. Am Donnerstag um halb neun hätte ich noch etwas frei.  
@@ -223,8 +223,8 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 > **Frau Ott:** Bringen Sie bitte Ihre Versichertenkarte mit und kommen Sie zehn Minuten früher. Sie müssen noch einen Fragebogen ausfüllen.  
 > **Mark:** Mache ich. Vielen Dank, auf Wiederhören.  
 
-- **Aufgabe 16** – *Richtig oder falsch?* Herr Gagnon ist schon Patient in dieser Praxis. → **Falsch**
-- **Aufgabe 17** – Warum soll Herr Gagnon früher kommen?
+- **Aufgabe 16** – *Richtig oder falsch?* Herr Garnier ist schon Patient in dieser Praxis. → **Falsch**
+- **Aufgabe 17** – Warum soll Herr Garnier früher kommen?
   - a) Weil er einen Fragebogen ausfüllen muss.  ✅
   - b) Weil die Ärztin um halb neun weggeht.
   - c) Weil er seine Karte abholen muss.
@@ -485,7 +485,7 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 
 ### L-S1-T5 · Brief
 
-> Mark Gagnon  
+> Mark Garnier  
 > Gartenstraße 12  
 > 10439 Berlin
 >
@@ -508,7 +508,7 @@ Hinweis: Die **Hörtexte** werden später von Sprecherinnen und Sprechern aufgen
 >
 > **(25) ___** freundlichen Grüßen
 >
-> Mark Gagnon
+> Mark Garnier
 
 - **(0) Beispiel** – a) des ✅ / b) dem / c) die
 - **(20)** – a) kann / b) lässt ✅ / c) geht
