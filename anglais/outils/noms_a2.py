@@ -321,6 +321,7 @@ bracelet | le bracelet
 button | le bouton
 clothing | les vêtements, habillement | u
 cotton | le coton | u
+earring | la boucle d'oreille | ex=She always wears silver earrings. # Elle porte toujours des boucles d'oreilles en argent.
 fashion | la mode
 garment | le vêtement
 hairstyle | la coiffure

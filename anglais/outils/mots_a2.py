@@ -352,6 +352,7 @@ central | central
 cheeky | insolent, effronté
 chic | chic
 Chinese | chinois
+chubby | potelé, rondelet | ex=My little brother is a bit chubby. # Mon petit frère est un peu rondelet.
 classical | classique
 clear | clair, net
 comfortable | confortable
@@ -478,6 +479,7 @@ silent | silencieux
 simple | simple
 sincere | sincère | ex=Please accept my sincere apologies. # Veuillez accepter mes excuses sincères.
 skillful | habile | ex=He's a skillful carpenter. # C'est un menuisier habile.
+slim | mince | ex=She is tall and slim. # Elle est grande et mince.
 smart | intelligent
 sociable | sociable
 sporty | sportif | ex=My sister is very sporty. # Ma sœur est très sportive.
@@ -511,6 +513,7 @@ useful | utile
 useless | inutile
 usual | habituel, ordinaire
 varied | varié
+wavy | ondulé | ex=He has short wavy hair. # Il a les cheveux courts et ondulés.
 weak | faible
 welcome | bienvenu
 well-behaved | sage, obéissant

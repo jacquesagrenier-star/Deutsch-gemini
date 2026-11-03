@@ -192,3 +192,34 @@ Le protocole avec l'app : `etats` (la page demande, l'app répond avec l'état d
 `exercice`, `bonne`, `reponse` (le mot testé), `fini`, `fermer`.
 
 **Contrôle** : ajouter le thème à `THEMES` dans `tests/themes_illustres.py`, puis le lancer.
+
+## L'anglais (essai admin, 3 nov. 2026)
+
+Jacques : « Pour que l'anglais suive aussi. Les thèmes qu'on implémente, les thèmes dans l'apprentissage de
+l'anglais. » **La même page, les mêmes images, la même mécanique** (tirage, progression, traduction) : chaque page
+accepte `apprendre=en` et a son objet `EN`, à côté de `ES` et `DE`. **Les phrases et les questions sont écrites pour
+l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire anglaise.
+
+- **Le branchement** : `en: true` sur la ligne du thème dans `THEMES_ILLUSTRES` (index.html). Sans lui, le thème
+  reste caché en anglais (accueil, Tout le contenu, séance : `themesIllustresOuverts()`). La liste blanche CSS de
+  l'anglais laisse passer toute tuile `onclick="ouvrirThemeIllustre(…)"` et la place **en dernier** dans Tout le
+  contenu (`order: 1`) : les sections cachées de l'anglais y laissent couler leurs tuiles.
+- **L'interface est en français** : `TRADS.fr` traduit les phrases anglaises, `T()` retombe sur le français.
+- **Américain ou britannique** : l'app passe `variante=us|gb` (`voixThemeIllustre()`). La page change les mots qui
+  diffèrent (Mom / Mum, gray / grey, mustache / moustache, color / colour) et le dit dans une note.
+- **Les mots** : `genre: ""` (le corpus anglais n'a pas d'article) ; un mot qui manque au corpus s'ajoute dans
+  `anglais/outils/mots_<niv>.py` ou `noms_<niv>.py`, puis `python anglais/outils/construire.py` (plus de 5 minutes),
+  `frequence.py --ecrire` et `voisins.py --ecrire`. Ajoutés le 3 nov. : chubby, slim, wavy (A2), earring (A2).
+- **La voix** : aucune voix nouvelle (décision du 3 nov., écoute à l'aveugle Sarah / Google / Azure d'abord). Ce qui
+  a un fichier `en-us/` se dit avec Sarah (américain), le reste avec la voix du téléphone (`en-US`, `en-GB`). Le
+  britannique : toujours le téléphone. Il manque à Sarah, dans « Décrire » : *light brown*, *wavy*, *of medium
+  height*. La famille n'a pas de voix (comme en espagnol et en allemand).
+- **Ce que chaque thème enseigne en anglais** :
+  - **La famille** : le génitif (« Peter is Anna's father », et pour un couple « Peter and Monika's daughter ») —
+    une sorte de plus, `genitif` ; his / her selon celui qui possède ; our et their ; les noms de groupe du corpus,
+    comme en allemand (parents, siblings, grandparents) ; les beaux-parents en -in-law. « cousin » ne dit pas le
+    sexe : un seul mot du thème (`s: "*"`), pas de paire cousin → cousin.
+  - **Décrire une personne** : is / has / wears ; l'ordre des adjectifs devant *hair* (longueur, forme, couleur,
+    sans virgule) — la sorte `ordre`, à la place de l'accord espagnol ; *chubby* plutôt que *fat*, *dark eyes* et
+    jamais *black eyes* (deux notes dans la découverte) ; le superlatif à trois (« Who is the tallest? »).
+- **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).
