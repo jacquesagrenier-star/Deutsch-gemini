@@ -324,9 +324,9 @@ function juger(ok, bonneTexte, phrase){
   const tl = tradQ || (TR ? null : glose(motQ));
   if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
   if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
-  // la phrase juste se dit (comme le mot cle de la famille) : l'etape enregistree, sinon la voix du telephone ;
-  // pas la suite entiere de « remettre dans l'ordre », trop longue
-  if (sorteCourante !== "ordre") dire(phrase || bonneTexte);
+  // la phrase affichee se dit EN ENTIER apres chaque reponse (Jacques, « Oui, partout », de45e4d) : l'etape
+  // enregistree, sinon la voix du telephone ; pour « remettre dans l'ordre », la suite avec ses liens
+  dire(phrase || bonneTexte);
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 // LE MOT CHOISI, QUAND IL EST FAUX (Jacques, 3 nov. : « on devrait avoir l'affichage traduit aussi. Pour le mauvais
