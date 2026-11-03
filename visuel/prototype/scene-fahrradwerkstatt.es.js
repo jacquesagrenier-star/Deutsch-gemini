@@ -2297,7 +2297,7 @@ window.SCENE = {
      "r": "mann",
      "phrase": "La reparación durará una hora.",
      "sens": "La réparation durera sans doute une heure.",
-     "n": "Le <b>futur</b> exprime une supposition sur le présent."
+     "n": "Ici, le <b>futur</b> annonce ce qui va se passer, avec une idée de probabilité."
     },
     {
      "q": "Dicen que este taller ___ el mejor del barrio.",
@@ -2354,7 +2354,7 @@ window.SCENE = {
     "B2 | Mark no sabe arreglar la rueda, así que pregunta al mecánico.": "<b>así que</b> introduces the consequence.",
     "C1 | Debe de estar rota.": "<b>deber de</b> + infinitive = a deduction.",
     "C1 | Puede que el perro sea del mecánico.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
-    "C1 | La reparación durará una hora.": "The <b>future</b> expresses a guess about the present.",
+    "C1 | La reparación durará una hora.": "Here the <b>future</b> says what is going to happen, with a sense of probability.",
     "C1 | Dicen que este taller es el mejor del barrio.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
    },
    "sens": {
@@ -2460,7 +2460,7 @@ window.SCENE = {
     "B2 | Mark no sabe arreglar la rueda, así que pregunta al mecánico.": "<b>así que</b> يقدّم النتيجة.",
     "C1 | Debe de estar rota.": "<b>deber de</b> + مصدر = استنتاج.",
     "C1 | Puede que el perro sea del mecánico.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
-    "C1 | La reparación durará una hora.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | La reparación durará una hora.": "هنا يعلن <b>المستقبل</b> ما سيحدث، مع معنى الاحتمال.",
     "C1 | Dicen que este taller es el mejor del barrio.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
    },
    "sens": {
@@ -2533,7 +2533,7 @@ window.SCENE = {
     "B2 | Mark no sabe arreglar la rueda, así que pregunta al mecánico.": "<b>así que</b> introduz a consequência.",
     "C1 | Debe de estar rota.": "<b>deber de</b> + infinitivo = uma dedução.",
     "C1 | Puede que el perro sea del mecánico.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
-    "C1 | La reparación durará una hora.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
+    "C1 | La reparación durará una hora.": "Aqui o <b>futuro</b> anuncia o que vai acontecer, com uma ideia de probabilidade.",
     "C1 | Dicen que este taller es el mejor del barrio.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
    },
    "sens": {
@@ -2628,7 +2628,7 @@ window.SCENE = {
     "B2 | Mark no sabe arreglar la rueda, así que pregunta al mecánico.": "<b>así que</b> leitet die Folge ein.",
     "C1 | Debe de estar rota.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
     "C1 | Puede que el perro sea del mecánico.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
-    "C1 | La reparación durará una hora.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | La reparación durará una hora.": "Hier kündigt das <b>futuro</b> an, was geschehen wird — mit einer Vermutung, wie „wird wohl …“ im Deutschen.",
     "C1 | Dicen que este taller es el mejor del barrio.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
    },
    "sens": {

@@ -1395,7 +1395,7 @@ window.SCENE = {
     "C1 | Anna debe de haber comprado los rábanos para una ensalada.": "<b>deber de</b> + infinitivo composto = uma dedução sobre o passado."
    },
    "sens": {
-    "A2 | Las cebollas están entre los colinabos y la col.": "As cebolas estão entre os couves-rábano e o repolho.",
+    "A2 | Las cebollas están entre los colinabos y la col.": "As cebolas estão entre as couves-rábano e o repolho.",
     "A2 | Anna tiene un manojo de rábanos en la mano.": "Anna tem um maço de rabanetes na mão.",
     "A2 | El ajo está al lado de los rábanos.": "O alho está ao lado dos rabanetes.",
     "A2 | Las papas están al lado del apio.": "As batatas estão ao lado do aipo.",

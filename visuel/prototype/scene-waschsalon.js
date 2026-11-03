@@ -2236,7 +2236,7 @@ window.SCENE = {
     "B1 | Lass mich dir helfen!": "بگذار کمکت کنم!",
     "B1 | Ich lasse meine Jacke zu Hause.": "من کاپشنم را خانه می‌گذارم.",
     "B1 | Anna hat die Jeans im Korb gelassen.": "آنا شلوار جین را در سبد گذاشته است.",
-    "B1 | Sie hat die Wäsche waschen lassen.": "او لباس‌ها را داده شسته‌اند.",
+    "B1 | Sie hat die Wäsche waschen lassen.": "او لباس‌ها را به دیگری داده است تا بشوید. / او لباس‌ها را شستن سپرده است → mieux : او لباس‌ها را داده است بشویند.",
     "B1 | Lasst uns nach Hause gehen!": "بیایید برویم خانه!",
     "B2 | Die laufende Waschmaschine ist laut.": "ماشین لباسشویی در حال کار پر سر و صداست.",
     "B2 | Der gefaltete Pullover liegt auf dem Tisch.": "پلیور تاشده روی میز است.",

@@ -1683,7 +1683,7 @@ window.SCENE = {
     "C1 | Angenommen, sie hörte ein Geräusch, würde sie ihn röntgen lassen.": "Diyelim ki bir ses duydu, onu röntgene gönderirdi.",
     "C1 | Mark soll nie ernsthaft krank gewesen sein.": "Mark'ın hiç ciddi şekilde hasta olmadığı söyleniyor.",
     "C1 | Seine gerade Haltung dürfte vom vielen Sport kommen.": "Dik duruşu çok spor yapmasından olsa gerek.",
-    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Bir şey duymasaydı çoktan bırakmıştı."
+    "C1 | Hätte sie nichts gehört, hätte sie längst aufgehört.": "Bir şey duymasaydı çoktan bırakırdı."
    }
   },
   "uk": {

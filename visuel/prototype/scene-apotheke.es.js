@@ -2199,7 +2199,7 @@ window.SCENE = {
      "r": "flasche-5",
      "phrase": "Mark estará mejor en dos días.",
      "sens": "Mark ira sans doute mieux dans deux jours.",
-     "n": "Le <b>futur</b> exprime une supposition sur le présent."
+     "n": "Ici, le <b>futur</b> annonce ce qui va se passer, avec une idée de probabilité."
     },
     {
      "q": "Dicen que esta farmacia ___ la más antigua del barrio.",
@@ -2256,7 +2256,7 @@ window.SCENE = {
     "B2 | Si tienes tos, toma este jarabe.": "Main clause in the imperative (tú): <b>toma</b>.",
     "C1 | Debe de estar resfriado.": "<b>deber de</b> + infinitive = a deduction.",
     "C1 | Puede que el señor esté esperando sus medicamentos.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
-    "C1 | Mark estará mejor en dos días.": "The <b>future</b> expresses a guess about the present.",
+    "C1 | Mark estará mejor en dos días.": "Here the <b>future</b> says what is going to happen, with a sense of probability.",
     "C1 | Dicen que esta farmacia es la más antigua del barrio.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
    },
    "sens": {
@@ -2362,7 +2362,7 @@ window.SCENE = {
     "B2 | Si tienes tos, toma este jarabe.": "جواب الشرط في صيغة الأمر (tú): <b>toma</b>.",
     "C1 | Debe de estar resfriado.": "<b>deber de</b> + مصدر = استنتاج.",
     "C1 | Puede que el señor esté esperando sus medicamentos.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
-    "C1 | Mark estará mejor en dos días.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Mark estará mejor en dos días.": "هنا يعلن <b>المستقبل</b> ما سيحدث، مع معنى الاحتمال.",
     "C1 | Dicen que esta farmacia es la más antigua del barrio.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
    },
    "sens": {
@@ -2435,7 +2435,7 @@ window.SCENE = {
     "B2 | Si tienes tos, toma este jarabe.": "Oração principal no imperativo (tú): <b>toma</b>.",
     "C1 | Debe de estar resfriado.": "<b>deber de</b> + infinitivo = uma dedução.",
     "C1 | Puede que el señor esté esperando sus medicamentos.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
-    "C1 | Mark estará mejor en dos días.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
+    "C1 | Mark estará mejor en dos días.": "Aqui o <b>futuro</b> anuncia o que vai acontecer, com uma ideia de probabilidade.",
     "C1 | Dicen que esta farmacia es la más antigua del barrio.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
    },
    "sens": {
@@ -2530,7 +2530,7 @@ window.SCENE = {
     "B2 | Si tienes tos, toma este jarabe.": "Hauptsatz im Imperativ (tú): <b>toma</b>.",
     "C1 | Debe de estar resfriado.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
     "C1 | Puede que el señor esté esperando sus medicamentos.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
-    "C1 | Mark estará mejor en dos días.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „er wird wohl …“ im Deutschen.",
+    "C1 | Mark estará mejor en dos días.": "Hier kündigt das <b>futuro</b> an, was geschehen wird — mit einer Vermutung, wie „wird wohl …“ im Deutschen.",
     "C1 | Dicen que esta farmacia es la más antigua del barrio.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>, kein Konjunktiv wie im Deutschen."
    },
    "sens": {

@@ -2148,7 +2148,7 @@ window.SCENE = {
     "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "تطوي البائعة الوشاح الآن.",
     "C1 | Der Pullover muss ihr gefallen.": "لا بدّ أن الكنزة تعجبها.",
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "ربما تجرّبها حالاً في غرفة القياس.",
-    "C1 | Der Mann dürfte die Schuhe kaufen.": "على الأرجح يشتري الرجل الحذاء.",
+    "C1 | Der Mann dürfte die Schuhe kaufen.": "على الأرجح يشتري الرجل الأحذية.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "يُقال إن البائعة تعمل هنا منذ ثلاثين سنة."
    }
   },
@@ -2215,7 +2215,7 @@ window.SCENE = {
     "B2 | Die Socken, die im Korb liegen, sind bunt.": "As meias que estão na cesta são coloridas.",
     "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "Os suéteres na prateleira estão bem dobrados.",
     "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "O cachecol está sendo dobrado pela vendedora.",
-    "C1 | Der Pullover muss ihr gefallen.": "Ela deve ter gostado do suéter.",
+    "C1 | Der Pullover muss ihr gefallen.": "Ela deve gostar do suéter.",
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "Ela talvez o experimente agora mesmo no provador.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "O homem provavelmente vai comprar os sapatos.",
     "C1 | Die Verkäuferin soll seit dreißig Jahren hier arbeiten.": "Dizem que a vendedora trabalha aqui há trinta anos."
@@ -2255,7 +2255,7 @@ window.SCENE = {
     "B2 | Der Spiegel, vor dem der Hocker steht, hat einen Holzrahmen.": "<b>vor</b> + Wo? → Dativ: der Spiegel → vor <b>dem</b>.",
     "B2 | Die Socken, die im Korb liegen, sind bunt.": "Podmiot zdania względnego, liczba mnoga → <b>die</b>. <b>denen</b> to Dativ liczby mnogiej.",
     "B2 | Die Pullover im Regal sind ordentlich gefaltet.": "<b>sein</b> + imiesłów = strona bierna stanu: wynik. <b>falten</b> jest regularny → gefaltet.",
-    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "Czynność w toku → strona bierna z <b>werden</b>. Wynik to byłoby <b>ist</b> gefaltet.",
+    "B2 | Der Schal wird gerade von der Verkäuferin gefaltet.": "Czynność w toku → strona bierna z <b>werden</b>. Wynikiem byłoby <b>ist</b> gefaltet.",
     "C1 | Der Pullover muss ihr gefallen.": "<b>müssen</b> = prawie pewny wniosek: ona się uśmiecha.",
     "C1 | Sie könnte ihn gleich in der Umkleidekabine anprobieren.": "<b>könnte</b> = jedna z możliwości.",
     "C1 | Der Mann dürfte die Schuhe kaufen.": "<b>dürfte</b> = prawdopodobne, ale niepewne.",

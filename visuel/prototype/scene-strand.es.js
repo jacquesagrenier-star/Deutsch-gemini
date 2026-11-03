@@ -1153,7 +1153,7 @@ window.SCENE = {
      "c": [
       "la que",
       "el que",
-      "que"
+      "lo que"
      ],
      "f": "insel",
      "r": "leuchtturm",

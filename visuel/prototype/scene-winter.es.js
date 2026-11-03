@@ -1248,7 +1248,7 @@ window.SCENE = {
      "f": "schnee",
      "phrase": "La nieve durará hasta mañana.",
      "sens": "La neige tiendra sans doute jusqu'à demain.",
-     "n": "Le <b>futur</b> exprime une supposition sur le présent."
+     "n": "Ici, le <b>futur</b> annonce ce qui va se passer, avec une idée de probabilité."
     },
     {
      "q": "Dicen en la radio que ___ el invierno más frío en diez años.",
@@ -1307,7 +1307,7 @@ window.SCENE = {
     "B2 | La vela está encendida en la ventana.": "<b>estar</b> + participle, agreeing: la vela → encendid<b>a</b>.",
     "C1 | El muñeco debe de gustarle mucho.": "<b>deber de</b> + infinitive = a deduction.",
     "C1 | Puede que la bicicleta esté ahí desde anoche.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
-    "C1 | La nieve durará hasta mañana.": "The <b>future</b> expresses a guess about the present.",
+    "C1 | La nieve durará hasta mañana.": "Here the <b>future</b> says what is going to happen, with a sense of probability.",
     "C1 | Dicen en la radio que será el invierno más frío en diez años.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
    },
    "sens": {
@@ -1417,7 +1417,7 @@ window.SCENE = {
     "B2 | La vela está encendida en la ventana.": "<b>estar</b> + اسم المفعول، بالمطابقة: la vela → encendid<b>a</b>.",
     "C1 | El muñeco debe de gustarle mucho.": "<b>deber de</b> + مصدر = استنتاج.",
     "C1 | Puede que la bicicleta esté ahí desde anoche.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
-    "C1 | La nieve durará hasta mañana.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | La nieve durará hasta mañana.": "هنا يعلن <b>المستقبل</b> ما سيحدث، مع معنى الاحتمال.",
     "C1 | Dicen en la radio que será el invierno más frío en diez años.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
    },
    "sens": {
@@ -1494,7 +1494,7 @@ window.SCENE = {
     "B2 | La vela está encendida en la ventana.": "<b>estar</b> + particípio, concordando: la vela → encendid<b>a</b>.",
     "C1 | El muñeco debe de gustarle mucho.": "<b>deber de</b> + infinitivo = uma dedução.",
     "C1 | Puede que la bicicleta esté ahí desde anoche.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
-    "C1 | La nieve durará hasta mañana.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
+    "C1 | La nieve durará hasta mañana.": "Aqui o <b>futuro</b> anuncia o que vai acontecer, com uma ideia de probabilidade.",
     "C1 | Dicen en la radio que será el invierno más frío en diez años.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
    },
    "sens": {
@@ -1593,7 +1593,7 @@ window.SCENE = {
     "B2 | La vela está encendida en la ventana.": "<b>estar</b> + Partizip, angepasst: la vela → encendid<b>a</b>.",
     "C1 | El muñeco debe de gustarle mucho.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
     "C1 | Puede que la bicicleta esté ahí desde anoche.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
-    "C1 | La nieve durará hasta mañana.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | La nieve durará hasta mañana.": "Hier kündigt das <b>futuro</b> an, was geschehen wird — mit einer Vermutung, wie „wird wohl …“ im Deutschen.",
     "C1 | Dicen en la radio que será el invierno más frío en diez años.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
    },
    "sens": {

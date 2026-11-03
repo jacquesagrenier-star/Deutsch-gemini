@@ -1840,7 +1840,7 @@ window.SCENE = {
      "q": "Si el semáforo estuviera en verde, Anna ya ___ la calle.",
      "c": [
       "habría cruzado",
-      "cruzaría",
+      "habrá cruzado",
       "cruzó"
      ],
      "f": "ampel-vorne",

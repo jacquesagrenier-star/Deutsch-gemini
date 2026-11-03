@@ -1234,7 +1234,7 @@ window.SCENE = {
      "f": "mark",
      "phrase": "La fiesta durará hasta medianoche.",
      "sens": "La fête durera sans doute jusqu'à minuit.",
-     "n": "Le <b>futur</b> exprime une supposition sur le présent."
+     "n": "Ici, le <b>futur</b> annonce ce qui va se passer, avec une idée de probabilité."
     },
     {
      "q": "Dicen que Anna ___ la tarta ella misma.",
@@ -1297,7 +1297,7 @@ window.SCENE = {
     "B2 | La amiga cuyo pelo es rojo aplaude.": "<b>cuyo</b> agrees with what is owned: el pelo → <b>cuyo</b>, even though the friend is female.",
     "C1 | El regalo debe de ser una sorpresa.": "<b>deber de</b> + infinitive = a deduction.",
     "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
-    "C1 | La fiesta durará hasta medianoche.": "The <b>future</b> expresses a guess about the present.",
+    "C1 | La fiesta durará hasta medianoche.": "Here the <b>future</b> says what is going to happen, with a sense of probability.",
     "C1 | Dicen que Anna hizo la tarta ella misma.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
    },
    "sens": {
@@ -1334,7 +1334,7 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Mark'ın doğum günü, ortak evinin oturma odasında: Anna ona bir hediye uzatıyor, bir arkadaşı fotoğrafını çekiyor, bir kız arkadaşı alkışlıyor; masada mumlu bir çikolatalı pasta, bir pizza, çilekler, portakal suyu, büyük kırmızı bir hediye ve bir kart var.",
+    "alt": "Mark'ın doğum günü, ortak evinin oturma odasında: Anna ona bir hediye uzatıyor, bir arkadaşı fotoğrafını çekiyor, bir kadın arkadaşı alkışlıyor; masada mumlu bir çikolatalı pasta, bir pizza, çilekler, portakal suyu, büyük kırmızı bir hediye ve bir kart var.",
     "consigne": "Bugün Mark'ın doğum günü. Bir nesneye dokun."
    },
    "couches": {
@@ -1405,7 +1405,7 @@ window.SCENE = {
     "B2 | La amiga cuyo pelo es rojo aplaude.": "<b>cuyo</b> يطابق الشيء المملوك: el pelo → <b>cuyo</b>، وإن كانت الصديقة مؤنثاً.",
     "C1 | El regalo debe de ser una sorpresa.": "<b>deber de</b> + مصدر = استنتاج.",
     "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
-    "C1 | La fiesta durará hasta medianoche.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | La fiesta durará hasta medianoche.": "هنا يعلن <b>المستقبل</b> ما سيحدث، مع معنى الاحتمال.",
     "C1 | Dicen que Anna hizo la tarta ella misma.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
    },
    "sens": {
@@ -1480,7 +1480,7 @@ window.SCENE = {
     "B2 | La amiga cuyo pelo es rojo aplaude.": "<b>cuyo</b> concorda com o que é possuído: el pelo → <b>cuyo</b>, mesmo sendo a amiga mulher.",
     "C1 | El regalo debe de ser una sorpresa.": "<b>deber de</b> + infinitivo = uma dedução.",
     "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
-    "C1 | La fiesta durará hasta medianoche.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
+    "C1 | La fiesta durará hasta medianoche.": "Aqui o <b>futuro</b> anuncia o que vai acontecer, com uma ideia de probabilidade.",
     "C1 | Dicen que Anna hizo la tarta ella misma.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
    },
    "sens": {
@@ -1577,7 +1577,7 @@ window.SCENE = {
     "B2 | La amiga cuyo pelo es rojo aplaude.": "<b>cuyo</b> richtet sich nach dem Besessenen: el pelo → <b>cuyo</b>, auch wenn die Freundin weiblich ist.",
     "C1 | El regalo debe de ser una sorpresa.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
     "C1 | Puede que el regalo rojo sea de sus padres.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
-    "C1 | La fiesta durará hasta medianoche.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | La fiesta durará hasta medianoche.": "Hier kündigt das <b>futuro</b> an, was geschehen wird — mit einer Vermutung, wie „wird wohl …“ im Deutschen.",
     "C1 | Dicen que Anna hizo la tarta ella misma.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
    },
    "sens": {

@@ -854,7 +854,7 @@ window.SCENE = {
      "q": "¿___ a apagar el fuego luego?",
      "c": [
       "Vas",
-      "Va",
+      "Vaya",
       "Ir"
      ],
      "f": "feuer",

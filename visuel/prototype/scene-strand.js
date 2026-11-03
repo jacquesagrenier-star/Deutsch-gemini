@@ -1757,7 +1757,7 @@ window.SCENE = {
     "B2 | Der Junge, dessen Ball bunt ist, spielt im Wasser.": "Chłopiec, którego piłka jest kolorowa, bawi się w wodzie.",
     "B2 | Die Insel, auf der ein Leuchtturm steht, ist klein.": "Wyspa, na której stoi latarnia morska, jest mała.",
     "B2 | Der schlafende Hund liegt im Schatten.": "Śpiący pies leży w cieniu.",
-    "B2 | Das Eis ist schon halb gegessen.": "Lód jest już w połowie zjedzony.",
+    "B2 | Das Eis ist schon halb gegessen.": "Lody są już w połowie zjedzone.",
     "B2 | Hier wird im Sommer viel geschwommen.": "Latem dużo się tu pływa.",
     "C1 | Sie muss sich im Urlaub sehr wohlfühlen.": "Musi czuć się świetnie na wakacjach.",
     "C1 | Der Hund könnte dem Jungen gehören.": "Pies być może należy do chłopca.",

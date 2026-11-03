@@ -1178,7 +1178,7 @@ window.SCENE = {
      "f": "maedchen",
      "r": "regal",
      "phrase": "Es muss Schokolade haben wollen.",
-     "sens": "Elle a dû vouloir du chocolat.",
+     "sens": "Elle doit vouloir du chocolat.",
      "n": "<b>müssen</b> = déduction presque certaine."
     },
     {
@@ -1285,7 +1285,7 @@ window.SCENE = {
     "B2 | Ich würde gern mit Karte bezahlen.": "I would like to pay by card.",
     "B2 | Dürfte ich Sie etwas fragen?": "May I ask you something?",
     "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "If I were you, I would take the fresh milk.",
-    "C1 | Es muss Schokolade haben wollen.": "She must have wanted chocolate.",
+    "C1 | Es muss Schokolade haben wollen.": "She must want chocolate.",
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "The man at the till might be the boss.",
     "C1 | Der Laden dürfte gleich schließen.": "The shop is probably about to close.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "The bread here is said to be the best in the neighbourhood."
@@ -1354,7 +1354,7 @@ window.SCENE = {
     "B2 | Ich würde gern mit Karte bezahlen.": "Kartla ödemek istiyorum.",
     "B2 | Dürfte ich Sie etwas fragen?": "Size bir şey sorabilir miyim?",
     "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "Yerinizde olsam taze sütü alırdım.",
-    "C1 | Es muss Schokolade haben wollen.": "Çikolata istemiş olmalı.",
+    "C1 | Es muss Schokolade haben wollen.": "Çikolata istiyor olmalı.",
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "Kasadaki adam patron olabilir.",
     "C1 | Der Laden dürfte gleich schließen.": "Dükkân birazdan kapanır herhalde.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "Buranın ekmeğinin mahallenin en iyisi olduğu söyleniyor."
@@ -1423,7 +1423,7 @@ window.SCENE = {
     "B2 | Ich würde gern mit Karte bezahlen.": "Я хотів би заплатити карткою.",
     "B2 | Dürfte ich Sie etwas fragen?": "Можна вас дещо запитати?",
     "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "На вашому місці я взяв би свіже молоко.",
-    "C1 | Es muss Schokolade haben wollen.": "Вона, мабуть, хотіла шоколаду.",
+    "C1 | Es muss Schokolade haben wollen.": "Вона, мабуть, хоче шоколаду.",
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "Чоловік за касою, можливо, господар.",
     "C1 | Der Laden dürfte gleich schließen.": "Магазин, напевно, зараз зачиниться.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "Кажуть, хліб тут — найкращий у районі."
@@ -1492,7 +1492,7 @@ window.SCENE = {
     "B2 | Ich würde gern mit Karte bezahlen.": "می‌خواهم با کارت پرداخت کنم.",
     "B2 | Dürfte ich Sie etwas fragen?": "می‌توانم چیزی از شما بپرسم؟",
     "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "اگر جای شما بودم، شیر تازه را برمی‌داشتم.",
-    "C1 | Es muss Schokolade haben wollen.": "او حتماً شکلات می‌خواسته است.",
+    "C1 | Es muss Schokolade haben wollen.": "او حتماً شکلات می‌خواهد.",
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "مرد پشت صندوق شاید رئیس باشد.",
     "C1 | Der Laden dürfte gleich schließen.": "مغازه احتمالاً به‌زودی بسته می‌شود.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "می‌گویند نان اینجا بهترین نان محله است."
@@ -1561,7 +1561,7 @@ window.SCENE = {
     "B2 | Ich würde gern mit Karte bezahlen.": "أودّ أن أدفع بالبطاقة.",
     "B2 | Dürfte ich Sie etwas fragen?": "هل لي أن أسألك شيئاً؟",
     "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "لو كنت مكانك، لأخذت الحليب الطازج.",
-    "C1 | Es muss Schokolade haben wollen.": "لا بدّ أنها أرادت شوكولاتة.",
+    "C1 | Es muss Schokolade haben wollen.": "لا بدّ أنها تريد شوكولاتة.",
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "ربما يكون الرجل عند الصندوق هو صاحب المحل.",
     "C1 | Der Laden dürfte gleich schließen.": "على الأرجح يُغلق المحل حالاً.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "يُقال إن الخبز هنا هو الأفضل في الحيّ."
@@ -1630,7 +1630,7 @@ window.SCENE = {
     "B2 | Ich würde gern mit Karte bezahlen.": "Eu gostaria de pagar com cartão.",
     "B2 | Dürfte ich Sie etwas fragen?": "Posso lhe perguntar uma coisa?",
     "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "No seu lugar, eu levaria o leite fresco.",
-    "C1 | Es muss Schokolade haben wollen.": "Ela deve ter querido chocolate.",
+    "C1 | Es muss Schokolade haben wollen.": "Ela deve querer chocolate.",
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "O homem do caixa talvez seja o dono.",
     "C1 | Der Laden dürfte gleich schließen.": "A loja provavelmente vai fechar logo.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "Dizem que o pão daqui é o melhor do bairro."
@@ -1699,7 +1699,7 @@ window.SCENE = {
     "B2 | Ich würde gern mit Karte bezahlen.": "Chciałbym zapłacić kartą.",
     "B2 | Dürfte ich Sie etwas fragen?": "Czy mógłbym pana o coś zapytać?",
     "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "Na pana miejscu wziąłbym świeże mleko.",
-    "C1 | Es muss Schokolade haben wollen.": "Musiała chcieć czekolady.",
+    "C1 | Es muss Schokolade haben wollen.": "Ona na pewno chce czekolady.",
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "Mężczyzna przy kasie być może jest szefem.",
     "C1 | Der Laden dürfte gleich schließen.": "Sklep zapewne zaraz się zamyka.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "Podobno tutejszy chleb jest najlepszy w dzielnicy."
@@ -1768,7 +1768,7 @@ window.SCENE = {
     "B2 | Ich würde gern mit Karte bezahlen.": "Я хотел бы заплатить картой.",
     "B2 | Dürfte ich Sie etwas fragen?": "Можно вас кое о чём спросить?",
     "B2 | An Ihrer Stelle würde ich die frische Milch nehmen.": "На вашем месте я взял бы свежее молоко.",
-    "C1 | Es muss Schokolade haben wollen.": "Она, должно быть, хотела шоколада.",
+    "C1 | Es muss Schokolade haben wollen.": "Она, должно быть, хочет шоколада.",
     "C1 | Der Mann an der Kasse könnte der Chef sein.": "Мужчина на кассе, возможно, хозяин.",
     "C1 | Der Laden dürfte gleich schließen.": "Магазин, вероятно, сейчас закроется.",
     "C1 | Das Brot hier soll das beste im Viertel sein.": "Говорят, хлеб здесь — лучший в районе."

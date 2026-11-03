@@ -1638,7 +1638,7 @@ window.SCENE = {
     "C1 | Anna dürfte die Radieschen für einen Salat gekauft haben.": "<b>dürfte</b> + infinitivo passado = é provável (suposição)."
    },
    "sens": {
-    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "As cebolas estão entre o couve-rábano e o repolho.",
+    "A2 | Die Zwiebeln liegen zwischen dem Kohlrabi und dem Kohl.": "As cebolas estão entre a couve-rábano e o repolho.",
     "A2 | Anna hält ein Bund Radieschen in der Hand.": "Anna segura um maço de rabanetes na mão.",
     "A2 | Der Knoblauch liegt neben den Radieschen.": "O alho está ao lado dos rabanetes.",
     "A2 | Die Kartoffeln liegen neben dem Sellerie.": "As batatas estão ao lado do aipo.",

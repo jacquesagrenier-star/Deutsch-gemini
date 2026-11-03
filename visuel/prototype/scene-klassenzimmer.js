@@ -2591,7 +2591,7 @@ window.SCENE = {
     "C1": "Przypuszczenia"
    },
    "questions": {
-    "A2 | Der Rucksack ist unter dem Tisch.": "<b>Wo?</b> → Dativ (po polsku miejscownik: „pod stołem”): der Tisch → unter <b>dem</b> Tisch.",
+    "A2 | Der Rucksack ist unter dem Tisch.": "<b>Wo?</b> → Dativ (po polsku narzędnik: „pod stołem”): der Tisch → unter <b>dem</b> Tisch.",
     "A2 | Die Uhr hängt über der Tafel.": "<b>Wo?</b> → Dativ: die Tafel → über <b>der</b> Tafel.",
     "A2 | Die Pflanze steht auf dem Regal.": "<b>Wo?</b> → Dativ: das Regal → auf <b>dem</b> Regal.",
     "A2 | Der Mantel hängt an der Tür.": "<b>Wo?</b> → Dativ: die Tür → an <b>der</b> Tür.",

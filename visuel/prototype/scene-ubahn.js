@@ -1650,7 +1650,7 @@ window.SCENE = {
     "A2 | Die Brezeln liegen im Kiosk.": "Simitler büfede.",
     "A2 | Die Münzen liegen im Koffer.": "Bozuk paralar kutunun içinde.",
     "A2 | Der Hund sitzt neben der Bank.": "Köpek bankın yanında oturuyor.",
-    "A2 | Die U-Bahn steht am Bahnsteig.": "Metro perondan bekliyor.",
+    "A2 | Die U-Bahn steht am Bahnsteig.": "Metro peronda bekliyor.",
     "A2 | Die Fahrgäste sitzen in der U-Bahn.": "Yolcular metroda oturuyor.",
     "B1 | Mark hat eine Fahrkarte und einen Kaffee.": "Mark'ın bir bileti ve bir kahvesi var.",
     "B1 | Mark beeilt sich, denn die U-Bahn fährt gleich ab.": "Mark acele ediyor, çünkü metro birazdan kalkacak.",

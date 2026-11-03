@@ -1715,8 +1715,8 @@ window.SCENE = {
      "q": "Quizás Anna ___ la plancha después.",
      "c": [
       "use",
-      "usa",
-      "usará"
+      "usando",
+      "usado"
      ],
      "f": "buegeleisen",
      "r": "anna",
@@ -1908,8 +1908,8 @@ window.SCENE = {
      ],
      "f": "waschmaschine",
      "phrase": "Estará lista en una hora.",
-     "sens": "Il doit être prêt dans une heure.",
-     "n": "Le <b>futur</b> exprime une supposition sur le présent."
+     "sens": "Elle sera sans doute prête dans une heure.",
+     "n": "Ici, le <b>futur</b> annonce ce qui va se passer, avec une idée de probabilité."
     },
     {
      "q": "Dicen que esta lavandería ___ pronto.",
@@ -1965,7 +1965,7 @@ window.SCENE = {
     "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "<b>tan pronto como</b> + future action → subjunctive.",
     "C1 | Debe de llevar tiempo sin lavar.": "<b>deber de</b> + infinitive = a deduction.",
     "C1 | Puede que la niña sea la nieta de la señora.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
-    "C1 | Estará lista en una hora.": "The <b>future</b> expresses a guess about the present.",
+    "C1 | Estará lista en una hora.": "Here the <b>future</b> says what is going to happen, with a sense of probability.",
     "C1 | Dicen que esta lavandería cierra pronto.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
    },
    "sens": {
@@ -2069,7 +2069,7 @@ window.SCENE = {
     "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "<b>tan pronto como</b> + فعل مقبل ← subjuntivo.",
     "C1 | Debe de llevar tiempo sin lavar.": "<b>deber de</b> + مصدر = استنتاج.",
     "C1 | Puede que la niña sea la nieta de la señora.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
-    "C1 | Estará lista en una hora.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | Estará lista en una hora.": "هنا يعلن <b>المستقبل</b> ما سيحدث، مع معنى الاحتمال.",
     "C1 | Dicen que esta lavandería cierra pronto.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
    },
    "sens": {
@@ -2098,7 +2098,7 @@ window.SCENE = {
     "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "حالما تطوي المناشف، ستضعها على الرفّ.",
     "C1 | Debe de llevar tiempo sin lavar.": "لا بدّ أنها لم تغسل منذ وقت.",
     "C1 | Puede que la niña sea la nieta de la señora.": "ربما تكون الفتاة حفيدة السيّدة.",
-    "C1 | Estará lista en una hora.": "على الأرجح يجهز خلال ساعة.",
+    "C1 | Estará lista en una hora.": "على الأرجح ستكون جاهزة خلال ساعة.",
     "C1 | Dicen que esta lavandería cierra pronto.": "يُقال إن هذه المغسلة ستُغلق قريباً."
    }
   },
@@ -2140,7 +2140,7 @@ window.SCENE = {
     "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "<b>tan pronto como</b> + ação futura → subjuntivo.",
     "C1 | Debe de llevar tiempo sin lavar.": "<b>deber de</b> + infinitivo = uma dedução.",
     "C1 | Puede que la niña sea la nieta de la señora.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
-    "C1 | Estará lista en una hora.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
+    "C1 | Estará lista en una hora.": "Aqui o <b>futuro</b> anuncia o que vai acontecer, com uma ideia de probabilidade.",
     "C1 | Dicen que esta lavandería cierra pronto.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
    },
    "sens": {
@@ -2233,7 +2233,7 @@ window.SCENE = {
     "B2 | Tan pronto como doble las toallas, las pondrá en la estantería.": "<b>tan pronto como</b> + künftige Handlung → subjuntivo.",
     "C1 | Debe de llevar tiempo sin lavar.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
     "C1 | Puede que la niña sea la nieta de la señora.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
-    "C1 | Estará lista en una hora.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | Estará lista en una hora.": "Hier kündigt das <b>futuro</b> an, was geschehen wird — mit einer Vermutung, wie „wird wohl …“ im Deutschen.",
     "C1 | Dicen que esta lavandería cierra pronto.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
    },
    "sens": {

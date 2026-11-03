@@ -1843,14 +1843,14 @@ window.SCENE = {
      "q": "La señora del bebé ___ antes que Mark.",
      "c": [
       "había llegado",
-      "llegó",
+      "llegara",
       "llegaba"
      ],
      "f": "frau-2",
      "r": "mark",
      "phrase": "La señora del bebé había llegado antes que Mark.",
      "sens": "La dame au bébé était arrivée avant Mark.",
-     "n": "Antériorité (<b>antes que</b>) → pluscuamperfecto.",
+     "n": "Arrivée avant un autre moment du passé → <b>pluscuamperfecto</b> : había llegado.",
      "revise": {
       "mot": "llegar",
       "cat": "verbe"
@@ -1946,7 +1946,7 @@ window.SCENE = {
      "f": "uhr",
      "phrase": "La cita terminará en diez minutos.",
      "sens": "Le rendez-vous sera sans doute fini dans dix minutes.",
-     "n": "Le <b>futur</b> exprime une supposition sur le présent."
+     "n": "Ici, le <b>futur</b> annonce ce qui va se passer, avec une idée de probabilité."
     },
     {
      "q": "Dicen que en esta oficina ___ que esperar mucho.",
@@ -1998,13 +1998,13 @@ window.SCENE = {
     "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "Pluscuamperfecto: <b>había</b> + participle, the action before a past action.",
     "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "Pluscuamperfecto: <b>había</b> + participle, the action before a past action.",
     "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "<b>nunca … antes</b> → pluscuamperfecto.",
-    "B2 | La señora del bebé había llegado antes que Mark.": "Anteriority (<b>antes que</b>) → pluscuamperfecto.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "Arrived before another point in the past → <b>pluscuamperfecto</b>: había llegado.",
     "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "Pluscuamperfecto: <b>había</b> + participle, the action before a past action.",
     "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "Pluscuamperfecto: <b>había</b> + participle, the action before a past action.",
     "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "<b>hasta entonces</b> → pluscuamperfecto.",
     "C1 | El formulario debe de ser importante.": "<b>deber de</b> + infinitive = a deduction.",
     "C1 | Puede que la joven también sea nueva en Berlín.": "<b>puede que</b> = it may be that → always the <b>subjunctive</b>.",
-    "C1 | La cita terminará en diez minutos.": "The <b>future</b> expresses a guess about the present.",
+    "C1 | La cita terminará en diez minutos.": "Here the <b>future</b> says what is going to happen, with a sense of probability.",
     "C1 | Dicen que en esta oficina hay que esperar mucho.": "<b>dicen que</b> reports a statement → <b>indicative</b>."
    },
    "sens": {
@@ -2106,13 +2106,13 @@ window.SCENE = {
     "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "Pluscuamperfecto: <b>había</b> + اسم المفعول، الفعل الذي سبق فعلاً ماضياً آخر.",
     "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "Pluscuamperfecto: <b>había</b> + اسم المفعول، الفعل الذي سبق فعلاً ماضياً آخر.",
     "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "<b>nunca … antes</b> → pluscuamperfecto.",
-    "B2 | La señora del bebé había llegado antes que Mark.": "الأسبقية (<b>antes que</b>) → pluscuamperfecto.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "وصول قبل لحظة أخرى في الماضي → <b>pluscuamperfecto</b>: había llegado.",
     "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "Pluscuamperfecto: <b>había</b> + اسم المفعول، الفعل الذي سبق فعلاً ماضياً آخر.",
     "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "Pluscuamperfecto: <b>había</b> + اسم المفعول، الفعل الذي سبق فعلاً ماضياً آخر.",
     "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "<b>hasta entonces</b> → pluscuamperfecto.",
     "C1 | El formulario debe de ser importante.": "<b>deber de</b> + مصدر = استنتاج.",
     "C1 | Puede que la joven también sea nueva en Berlín.": "<b>puede que</b> = ربما، قد ← دائماً <b>subjuntivo</b>.",
-    "C1 | La cita terminará en diez minutos.": "<b>المستقبل</b> يعبّر عن افتراض بشأن الحاضر.",
+    "C1 | La cita terminará en diez minutos.": "هنا يعلن <b>المستقبل</b> ما سيحدث، مع معنى الاحتمال.",
     "C1 | Dicen que en esta oficina hay que esperar mucho.": "<b>dicen que</b> ينقل قولاً مؤكَّداً ← <b>indicativo</b>."
    },
    "sens": {
@@ -2181,13 +2181,13 @@ window.SCENE = {
     "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "Pluscuamperfecto: <b>había</b> + particípio, a ação anterior a uma ação passada.",
     "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "Pluscuamperfecto: <b>había</b> + particípio, a ação anterior a uma ação passada.",
     "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "<b>nunca … antes</b> → pluscuamperfecto.",
-    "B2 | La señora del bebé había llegado antes que Mark.": "Anterioridade (<b>antes que</b>) → pluscuamperfecto.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "Chegada antes de outro momento do passado → <b>pluscuamperfecto</b>: había llegado.",
     "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "Pluscuamperfecto: <b>había</b> + particípio, a ação anterior a uma ação passada.",
     "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "Pluscuamperfecto: <b>había</b> + particípio, a ação anterior a uma ação passada.",
     "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "<b>hasta entonces</b> → pluscuamperfecto.",
     "C1 | El formulario debe de ser importante.": "<b>deber de</b> + infinitivo = uma dedução.",
     "C1 | Puede que la joven también sea nueva en Berlín.": "<b>puede que</b> = pode ser que → sempre o <b>subjuntivo</b>.",
-    "C1 | La cita terminará en diez minutos.": "O <b>futuro</b> expressa uma suposição sobre o presente.",
+    "C1 | La cita terminará en diez minutos.": "Aqui o <b>futuro</b> anuncia o que vai acontecer, com uma ideia de probabilidade.",
     "C1 | Dicen que en esta oficina hay que esperar mucho.": "<b>dicen que</b> relata uma afirmação → <b>indicativo</b>."
    },
    "sens": {
@@ -2278,13 +2278,13 @@ window.SCENE = {
     "B2 | Cuando llegó Mark, la funcionaria ya había encendido la computadora.": "Pluscuamperfecto: <b>había</b> + Partizip, die Handlung vor einer vergangenen Handlung — wie das Plusquamperfekt.",
     "B2 | Cuando llegó Mark, la funcionaria ya había encendido el ordenador.": "Pluscuamperfecto: <b>había</b> + Partizip, die Handlung vor einer vergangenen Handlung — wie das Plusquamperfekt.",
     "B2 | Mark no había rellenado nunca un formulario alemán antes de hoy.": "<b>nunca … antes</b> → pluscuamperfecto.",
-    "B2 | La señora del bebé había llegado antes que Mark.": "Vorzeitigkeit (<b>antes que</b>) → pluscuamperfecto.",
+    "B2 | La señora del bebé había llegado antes que Mark.": "Ankunft vor einem anderen Zeitpunkt der Vergangenheit → <b>pluscuamperfecto</b>: había llegado.",
     "B2 | Mark ya había sacado su pasaporte cuando la funcionaria se lo pidió.": "Pluscuamperfecto: <b>había</b> + Partizip, die Handlung vor einer vergangenen Handlung — wie das Plusquamperfekt.",
     "B2 | Cuando Mark firmó, la funcionaria ya había preparado el sello.": "Pluscuamperfecto: <b>había</b> + Partizip, die Handlung vor einer vergangenen Handlung — wie das Plusquamperfekt.",
     "B2 | Hasta entonces, Mark nunca había estado en una oficina alemana.": "<b>hasta entonces</b> → pluscuamperfecto. Immer mit haber, auch wo das Deutsche „war gewesen“ sagt.",
     "C1 | El formulario debe de ser importante.": "<b>deber de</b> + Infinitiv = eine Schlussfolgerung („muss wohl“).",
     "C1 | Puede que la joven también sea nueva en Berlín.": "<b>puede que</b> = es kann sein, dass → immer der <b>subjuntivo</b>.",
-    "C1 | La cita terminará en diez minutos.": "Das <b>futuro</b> drückt eine Vermutung über die Gegenwart aus — wie „wird wohl …“ im Deutschen.",
+    "C1 | La cita terminará en diez minutos.": "Hier kündigt das <b>futuro</b> an, was geschehen wird — mit einer Vermutung, wie „wird wohl …“ im Deutschen.",
     "C1 | Dicen que en esta oficina hay que esperar mucho.": "<b>dicen que</b> gibt eine Behauptung wieder → <b>Indikativ</b>."
    },
    "sens": {

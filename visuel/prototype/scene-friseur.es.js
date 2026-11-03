@@ -1684,8 +1684,8 @@ window.SCENE = {
      "q": "Al salir, Anna se pone ___ abrigo.",
      "c": [
       "el",
-      "su",
-      "un"
+      "la",
+      "lo"
      ],
      "f": "mantel",
      "r": "anna",
@@ -2102,7 +2102,7 @@ window.SCENE = {
    "sens": {
     "A2 | El reloj está en la pared.": "O relógio está na parede.",
     "A2 | Las toallas están en la estantería.": "As toalhas estão na estante.",
-    "A2 | La caja está en la barra.": "O caixa está no balcão.",
+    "A2 | La caja está en la barra.": "A caixa registradora está no balcão.",
     "A2 | El pelo está en el piso.": "O cabelo está no chão.",
     "A2 | El pelo está en el suelo.": "O cabelo está no chão.",
     "A2 | El vaso está en la mesa.": "O copo está na mesa.",
@@ -2131,7 +2131,7 @@ window.SCENE = {
   "pl": {
    "champs": {
     "alt": "Anna u fryzjera w sobotni poranek w Berlinie: siedząc w czarnym skórzanym fotelu, z białym ręcznikiem na ramionach i zamkniętym czasopismem na kolanach, uśmiecha się, gdy fryzjer w okularach trzyma kosmyk jej włosów i rozwarte nożyczki; na podłodze ścięte włosy; po lewej duże lustro, wysoki regał z ręcznikami i butelkami, miotła i półka z okrągłą szczotką i trzema butelkami; w głębi mała lada ze starą kasą, filiżanką kawy i doniczką bazylii, zegar, obraz ze słonecznikami, wisząca lampa i haczyki, na których wiszą płaszcz, czerwony szal i torebka Anny; po prawej starsza pani czyta czasopismo na szarej kanapie, przed niskim stolikiem ze stosem czasopism i szklanką wody, duża roślina i witryna na ulicę z latarnią, drzewem i rowerem.",
-    "consigne": "Anna obcina włosy. Dotknij przedmiotu."
+    "consigne": "Anna strzyże się u fryzjera. Dotknij przedmiotu."
    },
    "couches": {
     "A1": "Rzeczowniki i rodzajniki"

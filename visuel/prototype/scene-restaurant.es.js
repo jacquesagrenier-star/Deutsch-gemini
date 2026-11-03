@@ -2521,7 +2521,7 @@ window.SCENE = {
      "q": "A Mark le gusta ___ dulce.",
      "c": [
       "lo",
-      "el",
+      "los",
       "la"
      ],
      "f": "mark",

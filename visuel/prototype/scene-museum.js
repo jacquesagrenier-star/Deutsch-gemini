@@ -1682,7 +1682,7 @@ window.SCENE = {
     "B1 | In welchem Saal hängt das Pferd? — Im ersten Saal.": "In which room is the horse? — In the first room.",
     "B1 | Was für ein Bild ist das? — Ein Porträt.": "What kind of painting is it? — A portrait.",
     "B1 | Was für eine Jacke trägt der Student? — Eine braune Jacke.": "What kind of jacket is the student wearing? — A brown jacket.",
-    "B1 | Mit was für einem Stift zeichnet Anna? — Mit einem Bleistift.": "What kind of pen is Anna drawing with? — With a pencil.",
+    "B1 | Mit was für einem Stift zeichnet Anna? — Mit einem Bleistift.": "What kind of pencil is Anna drawing with? — With a pencil.",
     "B1 | Welcher Mann sitzt an der Tür? — Der Mann in der Uniform.": "Which man is sitting by the door? — The man in uniform.",
     "B1 | Welcher Mantel gehört Anna? — Der graue Mantel auf der Bank.": "Which coat is Anna's? — The grey coat on the bench.",
     "B2 | Anna lernt, indem sie die Skulptur zeichnet.": "Anna learns by drawing the sculpture.",
@@ -1768,7 +1768,7 @@ window.SCENE = {
   },
   "uk": {
    "champs": {
-    "alt": "Анна в музеї дощової неділі в Берліні: сидячи на довгій лаві з зеленого оксамиту, з розгорнутим альбомом на колінах і олівцем у руці, вона дивиться на мармурову скульптуру собаки, що сидить на постаменті; її складене сіре пальто лежить поруч, чорний рюкзак на підлозі; на темно-зелених стінах картини у важких позолочених рамах, кожна під маленькою лампою: засніжені гори над озером, портрет літньої пані в чорному, натюрморт з яблук і жовтих квітів, великий вітрильник у бурю та кінь; старий наглядач у формі сидить на стільці біля дверей, відчинених у наступну залу; праворуч юнак у навушниках і з рюкзаком дивиться на коня, перед високим вікном із червоними шторами, радіатор і велика рослина в горщику; на стелі люстра; на підлозі паркет ялинкою.",
+    "alt": "Анна в музеї в Берліні в дощову неділю: сидячи на довгій лаві з зеленого оксамиту, з розгорнутим альбомом на колінах і олівцем у руці, вона дивиться на мармурову скульптуру собаки, що сидить на постаменті; її складене сіре пальто лежить поруч, чорний рюкзак на підлозі; на темно-зелених стінах картини у важких позолочених рамах, кожна під маленькою лампою: засніжені гори над озером, портрет літньої пані в чорному, натюрморт з яблук і жовтих квітів, великий вітрильник у бурю та кінь; старий наглядач у формі сидить на стільці біля дверей, відчинених у наступну залу; праворуч юнак у навушниках і з рюкзаком дивиться на коня, перед високим вікном із червоними шторами, радіатор і велика рослина в горщику; на стелі люстра; на підлозі паркет ялинкою.",
     "consigne": "Анна малює скульптуру в музеї. Торкнися предмета."
    },
    "couches": {

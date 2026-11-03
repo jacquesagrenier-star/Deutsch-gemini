@@ -2119,7 +2119,7 @@ window.SCENE = {
   },
   "tr": {
    "champs": {
-    "alt": "Mark bir aralık akşamı Berlin'de bir Noel pazarında: bir elinde dumanı tüten bir bardak, diğer elini kırmızı bereli satıcının tezgâhın üzerinden ona uzattığı tahta yıldıza doğru uzatıyor; kar serpilmiş ahşap tezgâhta üç kırmızı mum, bakır bir sürahi ve bir tencere, paketlenmiş hediyeler, kırmızı bardaklar, iki bozuk para, bir kasa elma ve portakal ve cevizler; yukarıda bir sallanan at, bir bez bebek ve bir ışık zincirinin altında tahta yıldızlar; arkada ışıklı büyük bir çam, tuğla kilise ve kulesi, bir sokak lambası, ay ve bir annenin çocuğunu elinden tuttuğu bir simit tezgâhı; önde yanan bir mangal, odunlar ve karda oturan bir köpek.",
+    "alt": "Mark bir aralık akşamı Berlin'de bir Noel pazarında: bir elinde dumanı tüten bir bardak, diğer elini kırmızı bereli satıcının tezgâhın üzerinden ona uzattığı tahta yıldıza doğru uzatıyor; kar serpilmiş ahşap tezgâhta üç kırmızı mum, bakır bir sürahi ve bir tencere, paketlenmiş hediyeler, kırmızı bardaklar, iki bozuk para, bir kasa elma ve portakal ve cevizler; yukarıda bir sallanan at, bir bez bebek ve bir ışık zincirinin altında tahta yıldızlar; arkada ışıklı büyük bir çam, tuğla kilise ve kulesi, bir sokak lambası, ay ve bir annenin çocuğunu elinden tuttuğu bir pretzel tezgâhı; önde yanan bir mangal, odunlar ve karda oturan bir köpek.",
     "consigne": "Mark Berlin'deki ilk Noel pazarını keşfediyor. Bir nesneye dokun."
    },
    "couches": {
