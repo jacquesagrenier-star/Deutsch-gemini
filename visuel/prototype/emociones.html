@@ -284,13 +284,13 @@ const phraseT = (p, t) => nom(p) + " " + predT(p, t) + ".";
 // ---------- les images et les sons ----------
 const imgP = (p, e) => "emociones/" + p + "-" + e + ".webp";
 const imgT = (t, p) => "emociones/trait-" + t + "-" + p + ".webp";
-// Les memes fichiers que l'app (sha1 du texte, audio/manifest.py) : Aurora pour l'allemand, Lolita (Espagne) et
-// Monica (Amerique latine) pour l'espagnol. Sans son (hors ligne, fichier absent) : la voix du telephone.
-const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : LATAM ? "es-419/" : "es-es/");
-let son = null;
-// la voix commune (themes/voix.js, 3 nov. 2026) : le fichier enregistre s'il existe pour ce texte (themes/sons.json),
-// sinon le telephone ; et la phrase attend la fin du son de reussite. L'id n'est plus utile : voix.js le calcule.
-function dire(texte){ Voix.dire(texte); }
+// LA VOIX : la fonction commune des themes (themes/voix.js) -- le fichier enregistre s'il existe (Aurora, Lolita,
+// Monica ; themes/sons.json le sait avant de jouer), sinon la voix du telephone (3 nov. 2026 : « Pour le moment, on
+// va mettre les voix du téléphone. Quand il n'y a pas de voix. »). « let » : la decouverte la fait taire un instant.
+let dire = t => Voix.dire(t);
+// tout ce que la page peut dire et qui s'enregistre : les fiches de la decouverte (audio/manifest.py, source
+// « emociones », les lit dans emociones.json) ; les phrases d'apres la reponse passent par le telephone
+function textesAVoix(){ return Object.values(D.decouverte.phrases[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"]).map(x => x.texte); }
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
 // ---------- utilitaires ----------
@@ -325,6 +325,9 @@ function juger(ok, bonneTexte, phrase){
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
   const tl = traduire(sensQ) || (TR ? null : glose(motQ));
   if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  // LA PHRASE ENTIERE, dite apres chaque reponse (Jacques, 3 nov. 2026, « Oui, partout » : comme Decrire depuis la
+  // v1087) -- celle qu'affiche le message, la bonne, jamais le choix fait
+  dire(phrase || bonneTexte);
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 function boutons(conteneur, options, bonne, apres){
@@ -516,8 +519,8 @@ function decouvrir(){
     $("fiche").innerHTML = '<img alt="" src="' + (emotion ? imgP(p, cle) : imgT(cle, p)) + '"><div><div class="mot">' + cible(motVu) + '</div><div class="dit">' + cible(ph.texte) + '</div>'
                          + ((t => t ? traduction(t) : "")(traduire(emotion ? {p, e: cle} : {p, t: cle}) || (TR ? null : glose(emotion ? motE(cle) : motT(cle)))))
                          + '<button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button></div>';
-    $("ecoute").addEventListener("click", () => dire(ph.texte, ph.son));
-    dire(ph.texte, ph.son);
+    $("ecoute").addEventListener("click", () => dire(ph.texte));
+    dire(ph.texte);
   };
   const onglet = emotion => {
     $("oE").setAttribute("aria-selected", emotion); $("oC").setAttribute("aria-selected", !emotion);
