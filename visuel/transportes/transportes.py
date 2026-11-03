@@ -129,7 +129,7 @@ IMAGES = {
     "zug-aus":  {"qui": "Anna", "moyen": "zug", "geste": "aus", "essai": True,
                  "prompt": "In a large Berlin main station with a glass roof (the platform of a long-distance train, a NEW place: grey "
                            "concrete platform, white line along the edge, steel pillars), Anna is GETTING OFF a white long-distance train "
-                           "with a red stripe: she steps down from the open train door with a small dark-red suitcase, one foot already on "
+                           "with a red stripe (the train of the scene Zug: through its windows, the same dark blue seats and light grey interior): she steps down from the open train door with a small dark-red suitcase, one foot already on "
                            "the platform, her body facing away from the train."},
     "automat":  {"qui": "Mark", "action": "kaufen", "essai": True, "lieu": "ubahn",
                  "prompt": "Mark is BUYING a ticket at a ticket machine standing against the green tiled wall of the platform of the "
