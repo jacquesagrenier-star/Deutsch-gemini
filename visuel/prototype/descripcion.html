@@ -638,7 +638,9 @@ function rangee(ids, h, rappel){
   });
   return div;
 }
-function juger(ok, bonneTexte){
+// dit : la phrase affichee, dite en entier apres la reponse (Jacques, 3 nov. 2026, sur iPhone : le portrait s'affichait
+// et seul « glasses » etait dit) ; sans elle (une personne, la taille), le mot cle de la question
+function juger(ok, bonneTexte, dit){
   if (repondu) return; repondu = true;
   if (ok) bons++;
   parler("exercice", {juste: ok}); if (ok) parler("bonne");
@@ -651,7 +653,7 @@ function juger(ok, bonneTexte){
   // LE MOT CHOISI, quand il est faux (Jacques, 3 nov. 2026 : « quand je dis le mauvais, on devrait avoir l'affichage
   // traduit aussi. Pour le mauvais mot. ») : sa traduction dans la langue d'interface, sous la bonne reponse
   if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + (choixFaux.texte ? T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad : T("choix", {r: choixFaux.trad})) + '</span>');
-  dire(motCle(motQ));
+  dire(dit || motCle(motQ));
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 // le mot choisi quand il est faux : chaque sorte de question le pose avant juger() (choixFaux = {texte, trad}) ;
@@ -815,7 +817,7 @@ const EX = {
     motQ = motCourant(w);
     trad = TR ? TR.decrire(P[c], cles) : null;
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("quien") + '</p><div class="enonce">' + cible(texte) + '</div>';
-    const r = rangee(ids, 190, (b, id) => { const bon = r.querySelector('[data-id="' + c + '"]'); marquer(r, b, bon); juger(id === c, nom(c)); });
+    const r = rangee(ids, 190, (b, id) => { const bon = r.querySelector('[data-id="' + c + '"]'); marquer(r, b, bon); juger(id === c, nom(c), texte); });
     z.appendChild(r); z.insertAdjacentHTML("beforeend", '<p class="retourMsg" id="msg"></p>');
     return true;
   },
@@ -836,7 +838,7 @@ const EX = {
     const ch = $("choix"); let bon;
     opts.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = o; if (o === tr.rep) bon = b;
       b.addEventListener("click", () => { marquer(ch, b, bon); if (o !== tr.rep) faux(o, tradTrait(tr.k, valeurDe(tr.k, o)));
-        $("trou").textContent = tr.rep; juger(o === tr.rep, tr.rep); }); ch.appendChild(b); });
+        $("trou").textContent = tr.rep; juger(o === tr.rep, tr.rep, tr.phrase.replace("___", tr.rep)); }); ch.appendChild(b); });
     return true;
   },
   // es / tiene / lleva -- ist / hat / traegt, sur une expression qui contient le mot (« el pelo rizado », « blaue Augen »)
@@ -859,7 +861,7 @@ const EX = {
     const ch = $("choix"); let bon;
     L.verbes.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = o; if (o === v) bon = b;
       b.addEventListener("click", () => { const ok = justes.includes(o), r = ok ? o : v; if (!ok) faux(o, (VERBE_SEUL[o] || {})[LANGUE]);
-        marquer(ch, b, ok ? b : bon); $("trou").textContent = r; juger(ok, r + " " + mot); }); ch.appendChild(b); });
+        marquer(ch, b, ok ? b : bon); $("trou").textContent = r; juger(ok, r + " " + mot, r + " " + mot); }); ch.appendChild(b); });
     return true;
   },
   accord(w){
@@ -876,7 +878,7 @@ const EX = {
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("accord") + '</p><div class="vue"><img alt="" src="descripcion/' + id + '.webp"><div class="enonce">' + cible(nom(id) + ' es <span class="trou" id="trou">?</span>.') + '</div></div><div class="choix" id="choix"></div><p class="retourMsg" id="msg"></p>';
     const ch = $("choix"); let bon;
     [masc, fem].forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = "es"; b.textContent = o; if (o === rep) bon = b;
-      b.addEventListener("click", () => { marquer(ch, b, bon); $("trou").textContent = rep; juger(o === rep, nom(id) + " es " + rep + "."); }); ch.appendChild(b); });
+      b.addEventListener("click", () => { marquer(ch, b, bon); $("trou").textContent = rep; juger(o === rep, nom(id) + " es " + rep + ".", nom(id) + " es " + rep + "."); }); ch.appendChild(b); });
     return true;
   },
   // L'ANGLAIS SEULEMENT : l'ordre des adjectifs devant « hair », longueur, forme, couleur (« long curly red hair »)
@@ -892,7 +894,7 @@ const EX = {
     const z = $("zone"); z.innerHTML = '<p class="consigne">' + T("ordre") + '</p><div class="vue"><img alt="" src="descripcion/' + id + '.webp"><img class="visage" alt="" src="descripcion/' + id + '-visage.webp"></div><div class="enonce">' + cible(nom(id) + ' has <span class="trou" id="trou">?</span> hair.') + '</div><div class="choix" id="choix"></div><p class="retourMsg" id="msg"></p>';
     const ch = $("choix"); let bon;
     melanger([rep, ...melanger(autres).slice(0, 3)]).forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = "en"; b.textContent = o; if (o === rep) bon = b;
-      b.addEventListener("click", () => { marquer(ch, b, bon); $("trou").textContent = rep; juger(o === rep, nom(id) + " has " + rep + " hair."); }); ch.appendChild(b); });
+      b.addEventListener("click", () => { marquer(ch, b, bon); $("trou").textContent = rep; juger(o === rep, nom(id) + " has " + rep + " hair.", nom(id) + " has " + rep + " hair."); }); ch.appendChild(b); });
     return true;
   },
   elige(w){
@@ -905,7 +907,7 @@ const EX = {
     const ch = $("choix"); let bon;
     ids.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = L.phrases(P[o]); if (o === id) bon = b;
       b.addEventListener("click", () => { marquer(ch, b, bon); if (o !== id) faux("", TR ? TR.decrire(P[o], tousTraits(P[o])) : null);
-        juger(o === id, L.phrases(P[id])); }); ch.appendChild(b); });
+        juger(o === id, L.phrases(P[id]), L.phrases(P[id])); }); ch.appendChild(b); });
     return true;
   },
   // ¿Quien es mas alto? -- il vise alto ou bajo (gross ou klein)
@@ -933,7 +935,7 @@ const EX = {
     const ch = $("choix"); let bon;
     opts.forEach(o => { const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.textContent = OPTS_YEUX[o]; if (o === c) bon = b;
       b.addEventListener("click", () => { marquer(ch, b, bon); if (o !== c) faux(OPTS_YEUX[o], tradTrait("ojos", o));
-        juger(o === c, L.yeuxRep(c)); }); ch.appendChild(b); });
+        juger(o === c, L.yeuxRep(c), L.yeuxRep(c)); }); ch.appendChild(b); });
     return true;
   }
 };
