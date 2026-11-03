@@ -69,8 +69,7 @@ button:disabled{cursor:default}
 .trad{display:block;font-size:13px;font-weight:600;font-style:italic;color:var(--gris);line-height:1.35;margin-top:2px}
 .retourMsg .mot{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
 .retourMsg .mot .ecoute{width:38px;height:38px} .retourMsg .mot .ecoute svg{width:19px;height:19px}
-.retourMsg .choisi{display:block;margin-top:6px;color:var(--gris);font-weight:700}
-.retourMsg .choisi b{color:var(--rouge)}
+.trad.faux{color:var(--rouge);font-style:italic}
 /* la decouverte : la piece, la phrase, deux onglets (ou il est / ou il va) et les prepositions a toucher */
 .onglets{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:var(--carte);border-radius:999px;padding:4px}
 .onglets button{border:0;border-radius:999px;background:none;color:var(--gris);font:800 14px var(--police);padding:9px 6px;cursor:pointer}
@@ -107,6 +106,7 @@ button:disabled{cursor:default}
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/voix.js?v=1"></script>
+<script src="themes/zoom.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -114,6 +114,9 @@ const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// agrandir (themes/zoom.js) : un toucher sur la piece (la photo de la question ou de la decouverte : l'image entiere,
+// pas le cadrage), la loupe sur les images a choisir
+Zoom.init({direct: ".cadre img", loupe: ".rangee button", langue: LANGUE});
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
 const NB = Q.get("seance") === "1" ? 6 : 20;
 
@@ -160,6 +163,7 @@ const TEXTES = {
   del:       {fr:"del, de la ou de el ? Choisis la bonne forme.", en:"del, de la or de el? Choose the right form.", tr:"del mi, de la mı, de el mi? Doğru biçimi seç.", uk:"del, de la чи de el? Обери правильну форму.", fa:"del، de la یا de el؟ شکل درست را انتخاب کن.", ar:"del أم de la أم de el؟ اختر الصيغة الصحيحة.", pt:"del, de la ou de el? Escolha a forma certa.", pl:"del, de la czy de el? Wybierz właściwą formę.", ru:"del, de la или de el? Выбери правильную форму.", de:"del, de la oder de el? Wähle die richtige Form."},
   al:        {fr:"Suis la flèche : al, a la ou a el ?", en:"Follow the arrow: al, a la or a el?", tr:"Oku takip et: al mı, a la mı, a el mi?", uk:"Стеж за стрілкою: al, a la чи a el?", fa:"فلش را دنبال کن: al، a la یا a el؟", ar:"اتبع السهم: al أم a la أم a el؟", pt:"Siga a seta: al, a la ou a el?", pl:"Podążaj za strzałką: al, a la czy a el?", ru:"Следи за стрелкой: al, a la или a el?", de:"Folge dem Pfeil: al, a la oder a el?"},
   hayEsta:   {fr:"hay ou está ? Regarde l'image.", en:"hay or está? Look at the picture.", tr:"hay mı, está mı? Resme bak.", uk:"hay чи está? Подивися на зображення.", fa:"hay یا está؟ به تصویر نگاه کن.", ar:"hay أم está؟ انظر إلى الصورة.", pt:"hay ou está? Olhe a imagem.", pl:"hay czy está? Spójrz na obrazek.", ru:"hay или está? Посмотри на картинку.", de:"hay oder está? Sieh dir das Bild an."},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
   reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
   suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
@@ -286,8 +290,8 @@ function montreDe(m){
   return {aff, sens: LANGUE === APPRENDRE ? "" : (g[LANGUE] || g.fr || "")};
 }
 
-// LE MAUVAIS CHOIX TRADUIT (decision de Jacques du 3 nov., regle commune des themes) : apres une erreur, ce que
-// l'eleve a choisi et ce que ca veut dire -- « ✗ unter dem Sofa · sous le canape ». Une image touchee : sa phrase. Un
+// LE MAUVAIS CHOIX TRADUIT (decision de Jacques du 3 nov., regle commune des themes, format de familia.html) : apres
+// une erreur, ce que l'eleve a choisi et ce que ca veut dire -- « Tu as choisi : unter dem Sofa — sous le canape ». Une image touchee : sa phrase. Un
 // groupe (preposition + nom) : sa traduction (gato.json, groupes) en fr, en, pt (et de pour l'espagnol), ailleurs la
 // glose de sa preposition. Un verbe : son sens (le corpus). Un article, hay, Richtig : rien a traduire.
 function choixTraduit(c){
@@ -317,7 +321,7 @@ function juger(ok, bonneTexte, phrase){
   m.innerHTML = (ok ? cible(DE_APP ? "Sehr gut!" : "¡Muy bien!") : T("bonne", {r: cible(bonneTexte)}))
     + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
     + traduction(tradQ || tradPhrase(phrase || bonneTexte))
-    + (!ok && (c => c && c.sens ? '<span class="choisi">✗ <b>' + cible(c.aff) + '</b> · <span dir="auto">' + c.sens + '</span></span>' : "")(choixTraduit(choixQ)) || "")
+    + (!ok && (c => c && c.sens ? '<span class="trad faux" dir="auto">' + T("choix", {r: cible(c.aff)}) + " — " + c.sens + '</span>' : "")(choixTraduit(choixQ)) || "")
     + (mt ? '<span class="mot"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(mt.aff) + (mt.sens ? ' · <span dir="auto">' + mt.sens + '</span>' : "") + '</span>' : "");
   if (mt) $("redire").addEventListener("click", () => dire(phrase || bonneTexte));
   dire(phrase || bonneTexte);
