@@ -9675,6 +9675,11 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <div class="orb hidden" data-orbid="contrarios" id="tuileContrarios" onclick="ouvrirThemeIllustre('contrarios')" role="button" tabindex="0">
             <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M6 4h5l-.8 15.2a1 1 0 0 1-1 .8H7.8a1 1 0 0 1-1-.8z"/><path d="M6.4 10h4.2"/><path d="M13 4h5l-.8 15.2a1 1 0 0 1-1 .8h-1.4a1 1 0 0 1-1-.8z"/></svg></div>
             <div><strong data-i18n="con_tuile">Les contraires</strong></div>
+        <!-- « Ou est le chat ? » (3 nov. 2026) : les prepositions de lieu en images, un chat et une piece (le salon de Ben
+             et Mia) ; Wo? datif / Wohin? accusatif, del / al. visuel/prototype/gato.html. es et de. -->
+        <div class="orb hidden" data-orbid="gato" id="tuileGato" onclick="ouvrirThemeIllustre('gato')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20v-7h14v7"/><path d="M9 13V9.5L7.5 6.5l2.7 1.6h3.6l2.7-1.6L15 9.5V13"/><path d="M10.6 10.6h.01M13.4 10.6h.01"/></svg></div>
+            <div><strong data-i18n="gato_tuile">Où est le chat ?</strong></div>
         </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
@@ -10714,6 +10719,8 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
     <button class="secondary" onclick="startPraepWahl()" data-i18n="praep_btn_wahl">M'ENTRAÎNER : LAQUELLE ? →</button>
     <div class="spacer"></div>
     <button class="secondary" onclick="startVerbenMitPraep()" data-i18n="praep_btn_verben">M'ENTRAÎNER : VERBES À PRÉPOSITION →</button>
+    <div class="spacer"></div>
+    <button class="secondary" onclick="ouvrirThemeGato()" data-i18n="praep_btn_gato">M'ENTRAÎNER : OÙ EST LE CHAT ? →</button>
     <div class="spacer"></div>
     <button class="secondary vocab-tuile" onclick="startPraepVokabular()" data-i18n="praep_btn_vocab">VOCABULAIRE : PRÉPOSITIONS →</button>
     <div id="praepNiveauBar" class="filters-bar"></div>
@@ -14404,6 +14411,7 @@ const I18N = {
         emo_tuile: "Émotions et caractère",
         emo_court: "Émotions",
         con_tuile: "Les contraires",
+        gato_tuile: "Où est le chat ?",
         seance_commencer: "Commencer",
         seance_ou_theme: "par thème",
         garder_action: "Mettre de côté",
@@ -15316,6 +15324,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "M'ENTRAÎNER : LAQUELLE ? →",
         praep_btn_verben: "M'ENTRAÎNER : VERBES À PRÉPOSITION →",
+        praep_btn_gato: "M'ENTRAÎNER : OÙ EST LE CHAT ? →",
         kicker_partikeln_nuance: "Particules · Nuance",
 
         label_level_singular: "niveau",
@@ -15925,6 +15934,7 @@ const I18N = {
         emo_tuile: "Feelings and personality",
         emo_court: "Feelings",
         con_tuile: "Opposites",
+        gato_tuile: "Where's the cat?",
         seance_commencer: "Start",
         seance_ou_theme: "by theme",
         garder_action: "Set aside",
@@ -16835,6 +16845,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "PRACTICE: WHICH ONE? →",
         praep_btn_verben: "PRACTICE: VERBS WITH PREPOSITIONS →",
+        praep_btn_gato: "PRACTICE: WHERE'S THE CAT? →",
         kicker_partikeln_nuance: "Particles · Nuance",
 
         label_level_singular: "level",
@@ -17448,6 +17459,7 @@ const I18N = {
         emo_tuile: "Duygular ve karakter",
         emo_court: "Duygular",
         con_tuile: "Zıt anlamlılar",
+        gato_tuile: "Kedi nerede?",
         seance_commencer: "Başla",
         seance_ou_theme: "temaya göre",
         garder_action: "Kenara ayır",
@@ -18354,6 +18366,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ALIŞTIRMA: HANGİSİ? →",
         praep_btn_verben: "ALIŞTIRMA: EDATLI FİİLLER →",
+        praep_btn_gato: "ALIŞTIRMA: KEDİ NEREDE? →",
         kicker_partikeln_nuance: "Partikeller · Nüans",
 
         label_level_singular: "seviye",
@@ -19383,6 +19396,7 @@ const I18N = {
         emo_tuile: "Емоції та характер",
         emo_court: "Емоції",
         con_tuile: "Протилежності",
+        gato_tuile: "Де кіт?",
         seance_commencer: "Почати",
         seance_ou_theme: "за темою",
         garder_action: "Відкласти",
@@ -19709,6 +19723,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ТРЕНУВАТИСЯ: ЯКИЙ САМЕ? →",
         praep_btn_verben: "ТРЕНУВАТИСЯ: ДІЄСЛОВА З ПРИЙМЕННИКАМИ →",
+        praep_btn_gato: "ТРЕНУВАТИСЯ: ДЕ КІТ? →",
         kicker_partikeln_nuance: "Частки · Відтінок",
         kicker_verben_revision: "Дієслова · Повторення",
         kicker_verben_flashcards: "Дієслова · Картки",
@@ -20575,6 +20590,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "تمرین: کدام‌یک؟ ←",
         praep_btn_verben: "تمرین: فعل‌های حرف‌اضافه‌دار ←",
+        praep_btn_gato: "تمرین: گربه کجاست؟ ←",
         kicker_partikeln_nuance: "ادات · ظرافت",
         label_level_singular: "سطح",
         label_level_plural: "سطح",
@@ -21631,6 +21647,7 @@ const I18N = {
         emo_tuile: "احساسات و منش",
         emo_court: "احساسات",
         con_tuile: "متضادها",
+        gato_tuile: "گربه کجاست؟",
         seance_commencer: "شروع",
         seance_ou_theme: "بر پایهٔ موضوع",
         garder_action: "کنار گذاشتن",
@@ -22160,6 +22177,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "تدرّب: أيّها؟ ←",
         praep_btn_verben: "تدرّب: أفعال بحروف جرّ ←",
+        praep_btn_gato: "تدرّب: أين القطّ؟ ←",
         kicker_partikeln_nuance: "الأدوات · الفرق",
         label_level_singular: "مستوى",
         label_level_plural: "مستويات",
@@ -23323,6 +23341,7 @@ const I18N = {
         emo_tuile: "المشاعر والطباع",
         emo_court: "المشاعر",
         con_tuile: "الأضداد",
+        gato_tuile: "أين القطّ؟",
         seance_commencer: "ابدأ",
         seance_ou_theme: "حسب الموضوع",
         garder_action: "ضعها جانبًا",
@@ -23696,6 +23715,7 @@ const I18N = {
         emo_tuile: "Emoções e personalidade",
         emo_court: "Emoções",
         con_tuile: "Os contrários",
+        gato_tuile: "Onde está o gato?",
         seance_commencer: "Começar",
         seance_ou_theme: "por tema",
         garder_action: "Separar",
@@ -24615,6 +24635,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "PRATICAR: QUAL DELAS? →",
         praep_btn_verben: "PRATICAR: VERBOS COM PREPOSIÇÃO →",
+        praep_btn_gato: "PRATICAR: ONDE ESTÁ O GATO? →",
         kicker_partikeln_nuance: "Partículas · Nuance",
         label_level_singular: "nível",
         label_level_plural: "níveis",
@@ -25278,6 +25299,7 @@ const I18N = {
         emo_tuile: "Emocje i charakter",
         emo_court: "Emocje",
         con_tuile: "Przeciwieństwa",
+        gato_tuile: "Gdzie jest kot?",
         seance_commencer: "Zacznij",
         seance_ou_theme: "według tematu",
         garder_action: "Odłóż",
@@ -26197,6 +26219,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ĆWICZĘ: KTÓRY? →",
         praep_btn_verben: "ĆWICZĘ: CZASOWNIKI Z PRZYIMKAMI →",
+        praep_btn_gato: "ĆWICZĘ: GDZIE JEST KOT? →",
         kicker_partikeln_nuance: "Partykuły · Niuans",
         label_level_singular: "poziom",
         label_level_plural: "poziomy",
@@ -26860,6 +26883,7 @@ const I18N = {
         emo_tuile: "Эмоции и характер",
         emo_court: "Эмоции",
         con_tuile: "Противоположности",
+        gato_tuile: "Где кот?",
         seance_commencer: "Начать",
         seance_ou_theme: "по темам",
         garder_action: "Отложить",
@@ -27782,6 +27806,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ТРЕНИРОВАТЬСЯ: КАКОЙ? →",
         praep_btn_verben: "ТРЕНИРОВАТЬСЯ: ГЛАГОЛЫ С ПРЕДЛОГАМИ →",
+        praep_btn_gato: "ТРЕНИРОВАТЬСЯ: ГДЕ КОТ? →",
         kicker_partikeln_nuance: "Частицы · Оттенок",
         label_level_singular: "уровень",
         label_level_plural: "уровни",
@@ -28444,6 +28469,7 @@ const I18N = {
         emo_tuile: "Gefühle und Charakter",
         emo_court: "Gefühle",
         con_tuile: "Gegensätze",
+        gato_tuile: "Wo ist die Katze?",
         seance_commencer: "Starten",
         seance_ou_theme: "nach Thema",
         garder_action: "Zurücklegen",
@@ -29366,6 +29392,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "ÜBEN: WELCHE? →",
         praep_btn_verben: "ÜBEN: VERBEN MIT PRÄPOSITION →",
+        praep_btn_gato: "ÜBEN: WO IST DIE KATZE? →",
         kicker_partikeln_nuance: "Partikeln · Nuance",
         label_level_singular: "Niveau",
         label_level_plural: "Niveaus",
@@ -30063,6 +30090,7 @@ const I18N = {
         emo_tuile: "Emociones y carácter",
         emo_court: "Emociones",
         con_tuile: "Los contrarios",
+        gato_tuile: "¿Dónde está el gato?",
         seance_commencer: "Empezar",
         seance_ou_theme: "por tema",
         garder_action: "Apartar",
@@ -30985,6 +31013,7 @@ const I18N = {
         op_praep_o8_d: "warten auf, denken an, sich freuen auf… (B1)",
         praep_btn_wahl: "PRACTICAR: ¿CUÁL? →",
         praep_btn_verben: "PRACTICAR: VERBOS CON PREPOSICIÓN →",
+        praep_btn_gato: "PRACTICAR: ¿DÓNDE ESTÁ EL GATO? →",
         kicker_partikeln_nuance: "Partículas · Matiz",
         label_level_singular: "nivel",
         label_level_plural: "niveles",
@@ -37910,7 +37939,10 @@ const praepTheme = LANGUE_APPRISE === "es"
     ["lejos de", "loin de", "lieu (locution)", "El aeropuerto está lejos del centro.", "L'aéroport est loin du centre.", "far from", "The airport is far from the centre.", "place (phrase)"],
     ["antes de", "avant (de)", "temps (locution)", "Lávate las manos antes de comer.", "Lave-toi les mains avant de manger.", "before", "Wash your hands before eating.", "time (phrase)"],
     ["después de", "après", "temps (locution)", "Después de clase vamos al parque.", "Après les cours, nous allons au parc.", "after", "After class we go to the park.", "time (phrase)"],
-    ["a través de", "à travers, par l'intermédiaire de", "moyen (locution)", "Lo supe a través de una amiga.", "Je l'ai appris par une amie.", "through", "I found out through a friend.", "means (phrase)"]
+    ["a través de", "à travers, par l'intermédiaire de", "moyen (locution)", "Lo supe a través de una amiga.", "Je l'ai appris par une amie.", "through", "I found out through a friend.", "means (phrase)"],
+    // 3 nov. 2026 : le theme illustre « Ou est le chat ? » (accord de Jacques, « go »). En fin de liste, pour ne
+    // decaler l'index d'aucune carte deja apprise.
+    ["dentro de", "dans, à l'intérieur de", "lieu (locution)", "El gato está dentro de la caja.", "Le chat est dans le carton.", "inside", "The cat is inside the box.", "place (phrase)"]
   ]
 }
     : {
@@ -38987,6 +39019,11 @@ const MOTS_OUTILS_ES_PT = {
       "através de, por meio de",
       "Fiquei sabendo por meio de uma amiga.",
       "meio (locução)"
+    ],
+    "dentro de": [
+      "dentro de",
+      "O gato está dentro da caixa.",
+      "lugar (locução)"
     ]
   },
   "konjunktionen": {
@@ -39367,6 +39404,11 @@ const MOTS_OUTILS_ES_AR = {
       "عبر، من خلال، بواسطة",
       "عرفت ذلك عن طريق صديقة.",
       "الوسيلة (تركيب)"
+    ],
+    "dentro de": [
+      "داخل، في",
+      "القطّ داخل الصندوق.",
+      "المكان (تركيب)"
     ]
   },
   "konjunktionen": {
@@ -39747,6 +39789,11 @@ const MOTS_OUTILS_ES_DE = {
       "durch, über",
       "Ich habe es über eine Freundin erfahren.",
       "Mittel (Wendung)"
+    ],
+    "dentro de": [
+      "in, innerhalb von",
+      "Die Katze ist im Karton.",
+      "Ort (Wendung)"
     ]
   },
   "konjunktionen": {
@@ -44018,6 +44065,8 @@ function orbPanelData(id){
                 // a preposition (B1) -- les deux series qui manquaient au cours.
                 { icon:"exercice", title:t("op_praep_o7_t"), desc:t("op_praep_o7_d"), action:"startPraepWahl", section:"pratique" },
                 { icon:"exercice", title:t("op_praep_o8_t"), desc:t("op_praep_o8_d"), action:"startVerbenMitPraep", section:"pratique" },
+                // 3 nov. 2026 : le theme illustre « Ou est le chat ? », Wo / Wohin en images (le chat change de place)
+                { icon:"exercice", title:t("gato_tuile"), desc:"auf dem Tisch · auf den Tisch", action:"ouvrirThemeGato", section:"pratique" },
                 { icon:"carte", title:t("op_vocab"), desc:"für, mit, wegen, auf…", action:"startPraepVokabular", section:"mots" },
                 { icon:"carte", title:t("op_praep_o5_t"), desc:"stehen/stellen, liegen/legen, sitzen/setzen, hängen…", action:"startPositionsverbenVokabular", section:"mots" },
                 // Le cours avait le vocabulaire de ces verbes et l'exercice
@@ -46918,7 +46967,8 @@ poserPaysCarte();
 const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tuile: "tuileFamilia", en: true},
                           descripcion: {page: "descripcion.html", titre: "desc_tuile", court: "desc_court", tuile: "tuileDescripcion", en: true},
                           emociones: {page: "emociones.html", titre: "emo_tuile", court: "emo_court", tuile: "tuileEmociones"},
-                          contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios", en: true}};
+                          contrarios: {page: "contrarios.html", titre: "con_tuile", tuile: "tuileContrarios", en: true},
+                          gato: {page: "gato.html", titre: "gato_tuile", tuile: "tuileGato"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
@@ -47005,6 +47055,8 @@ function voixThemeIllustre(){
          + (LANGUE_APPRISE === "en" ? "&variante=" + (VARIANTE_ANGLAIS === "gb" ? "gb" : "us") : "") + "&r=" + AUDIO_REVISION;
 }
 function ouvrirDescripcion(){ ouvrirThemeIllustre("descripcion"); }
+// le bouton M'ENTRAINER de « Comprendre les prepositions » (de), de la fiche « a, en, de » (es) et du panneau Prepositions
+function ouvrirThemeGato(){ ouvrirThemeIllustre("gato"); }
 try{
     themesIllustresOuverts().forEach(nom => { const el = document.getElementById(THEMES_ILLUSTRES[nom].tuile); if(el) el.classList.remove("hidden"); });
 }catch(e){}
@@ -58164,6 +58216,12 @@ function carteDeScene(d){
     if(d.cat === "verbe"){
         const i = (verbeTheme.words || []).findIndex(w => w && w.infinitif === mot);
         return i < 0 ? null : { word: verbeTheme.words[i], index: i, themeId: verbeTheme.id, mode: "verben" };
+    }
+    // 3 nov. 2026, « Ou est le chat ? » : une question sur « hinter » ou « debajo de » fait avancer la carte de la
+    // preposition (le paquet Prepositions, praepTheme) -- la regle 3 des themes, un mot appris compte partout
+    if(d.cat === "praep"){
+        const i = (praepTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        return i < 0 ? null : { word: praepTheme.words[i], index: i, themeId: praepTheme.id, mode: "praep" };
     }
     if(d.cat === "adjectif"){
         const i = (adjektiveTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
