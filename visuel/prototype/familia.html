@@ -97,7 +97,7 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/voix.js?v=1"></script>
-<script src="themes/zoom.js?v=1"></script>
+<script src="themes/zoom.js?v=3"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : le meme arbre, ses phrases a lui ; variante=gb, le britannique
@@ -583,7 +583,10 @@ function juger(ok, bonneTexte, phrase){
   // LE MOT CHOISI, quand il est faux (Jacques, 3 nov. 2026 : « quand je dis le mauvais, on devrait avoir l'affichage
   // traduit aussi. Pour le mauvais mot. ») : sa traduction dans la langue d'interface, sous la bonne reponse
   if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + (choixFaux.texte ? T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad : T("choix", {r: choixFaux.trad})) + '</span>');
-  Voix.dire(motCle(motQ));
+  // LA PHRASE AFFICHEE, DITE EN ENTIER (Jacques, 3 nov. 2026, « Oui, partout » : comme Decrire depuis la v1087) :
+  // la phrase juste de la question, sinon le mot cle ; la fleche des paires (« el tío → la tía ») se dit comme une
+  // virgule. Le fichier enregistre s'il existe pour ce texte exact, sinon la voix du telephone (themes/voix.js).
+  Voix.dire(phrase ? phrase.replace(/\s*→\s*/g, ", ") : motCle(motQ));
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 // la traduction d'un lien choisi (« la tía », « mi tía », « der Onkel ») : le mot du corpus relu (gloses.json), dans

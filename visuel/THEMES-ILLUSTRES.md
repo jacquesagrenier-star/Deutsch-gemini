@@ -94,10 +94,14 @@ téléphone. Quand il n'y a pas de voix. ») : une seule fonction pour tous les 
   variante, jamais une voix fantaisie de `VOIX_A_FUIR`) ;
 - la page sait **avant de jouer** quels textes ont un fichier (`themes/sons.json`) : sur iPhone, `play()` et
   `speak()` doivent partir dans le geste ; attendre l'échec d'un fichier ferait taire la page ;
-- ce qu'on dit : dans la découverte, la fiche ou le mot touché ; **après une réponse, le mot clé** à la forme du
-  corpus (« la tía », « die Tante », « alto ») — jamais toute la phrase fabriquée, qui ne s'enregistre pas (des
-  milliers de combinaisons), et qu'on ne fait pas dire au téléphone pour ne pas mêler deux voix ;
-- chaque page expose `textesAVoix()` : tout ce qu'elle peut dire. `python visuel/voix_themes.py` le relève
+- ce qu'on dit : dans la découverte, la fiche ou le mot touché ; **après une réponse, la phrase affichée EN
+  ENTIER** (Jacques, 3 nov. : « Oui, partout », règle de TOUS les thèmes) — la phrase juste de la question
+  (`juger(ok, bonne, phrase)` la reçoit et la dit), sinon le mot clé à la forme du corpus (« la tía », « alto ») ;
+  une flèche de paire (« el tío → la tía ») se dit comme une virgule. Le fichier enregistré s'il existe pour ce
+  texte exact, sinon la voix du téléphone : ces phrases se fabriquent depuis les données, beaucoup n'ont pas encore
+  de fichier, et leur enregistrement attend l'accord de Jacques ;
+- chaque page expose `textesAVoix()` : les fiches et les mots ; `python visuel/voix_themes.py` les relève, **joue
+  des parties** (`PARTIES_VOIX`, 150) pour relever les phrases dites après les réponses, et le tout
   (→ `visuel/<thème>/voix.json`, que lisent `audio/manifest.py` et `audio/manifest_es.py`, source `<thème>`),
   écrit `themes/sons.json` et chiffre ce qui manque. Un texte à chiffres demande sa lecture en lettres dans
   `audio/lectures/<langue>.json` (« Tiene setenta y nueve años. »).
@@ -151,7 +155,8 @@ Jacques (« Ça me convient », 3 nov.) : 8 sortes pour la famille, 7 pour Décr
 
 **La réserve : au moins 100 questions différentes par thème et par langue** (« J'irais une centaine de questions
 par thème »), mesurées, jamais supposées : `python tests/themes_illustres.py`. Au 3 nov. : famille ≈ 2 400 (es et
-de) ; Décrire ≈ 650 (es), 625 (de) ; les contraires 215 (es), 200 (de). On élargit par de nouvelles combinaisons dans les sortes validées, jamais par du
+de) ; Décrire ≈ 650 (es), 625 (de) ; les contraires 215 (es), 200 (de) ; « Où est le chat ? » 606 (es), 582 (de), dont 235 et 212 sans compter les
+départs des questions de mouvement. On élargit par de nouvelles combinaisons dans les sortes validées, jamais par du
 remplissage ni des quasi-doublons : la même question avec d'autres leurres n'en est pas une nouvelle (c'est pourquoi
 « completa » avec le visage ne s'ajoute pas à « yeux »). Une description partielle doit désigner **une seule**
 personne parmi celles montrées ; un trait inconnu (les yeux d'Anna) n'exclut jamais personne.
@@ -185,6 +190,23 @@ où un seul verbe est juste (la taille, la largeur ; ouvert, fermé, plein, vide
    `python tests/verifier.py`, les deux parcours (`fusion-espagnol/parcours.py --app de` et `--app es-moteur`),
    chaque écart vérifié ligne à ligne et la nouvelle référence écrite dans CLAUDE.md ; à l'écran, au format du
    téléphone, de jour, de nuit, en arabe ou en persan.
+
+## Un thème d'objets dans une pièce : « Où est le chat ? » (3 nov. 2026)
+
+Les prépositions de lieu (`gato.html`, `visuel/gato/gato.py`, la seule source). Ce qu'il apprend aux thèmes suivants :
+- **une pièce vide, puis des retouches** (`nano-banana-pro/edit`, la pièce + la première image du chat en références) :
+  même cadrage, mêmes meubles, seule la place du chat change. Sur 31 retouches, 9 ont montré autre chose que le prompt :
+  4 sont devenues ce qu'elles montrent (le chat sur le panier au lieu de la fenêtre, à côté de la table au lieu d'entre
+  les chaises…), 2 places ont été abandonnées après trois essais (sur la chaise, sous la table : le modèle met le chat
+  sur la table, ajoute une deuxième table ou change de cadrage). **Vérifier chaque image agrandie**, pas sur une planche ;
+- **où est le chat** se mesure (`--mesurer` : la différence avec la pièce vide) : la flèche du mouvement va d'une place
+  à l'autre, et la page **recadre** chaque image autour du chat (à 375 px, la pièce entière montre un chat de 15 px) ;
+- **le mouvement** (Wohin + accusatif) : l'image d'AVANT et une flèche dans la question, l'image d'APRÈS dans la réponse ;
+- une préposition est un mot du thème : `{mot: "hinter", cat: "praep"}` fait avancer la carte des Prépositions
+  (`carteDeScene()`, cat « praep ») ;
+- deux places vraies sur une même image (le sac d'Anna est devant le canapé) : `AUSSI` dans `gato.py`, jamais l'une
+  pour leurre de l'autre ; en espagnol, toutes les formes justes d'une place (encima de / sobre / en la mesa) ;
+- les voix à enregistrer : `visuel/gato/voix.json` (fait par `gato.py`).
 
 ## La séance
 
