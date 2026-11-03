@@ -372,6 +372,7 @@ dense | dense
 digital | numérique
 direct | direct, directement
 discreet | discret
+disgusting | dégoûtant, répugnant | ex=This soup is disgusting! # Cette soupe est dégoûtante !
 distant | lointain, éloigné
 divorced | divorcé
 double | double

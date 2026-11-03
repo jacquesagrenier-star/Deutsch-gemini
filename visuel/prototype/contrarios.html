@@ -100,9 +100,12 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/zoom.js?v=1"></script>
+<script src="themes/voix.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
-const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+// l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : les memes images, ses phrases a lui ; variante=gb
+const APPRENDRE = ["de", "en"].includes(Q.get("apprendre")) ? Q.get("apprendre") : "es";
+const GB = APPRENDRE === "en" && Q.get("variante") === "gb";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
@@ -135,6 +138,10 @@ const TEXTES = {
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  // l'anglais seulement (son interface est en francais)
+  regleEn:   {fr:"En anglais, l'adjectif ne change jamais : the big suitcase, the big suitcases. Il se met devant le nom (an open door) ou après be (the door is open). Pour comparer : -er pour les mots courts (bigger, wider), more pour les longs (more beautiful), et deux irréguliers, good → better, bad → worse."},
+  comparatif:{fr:"Choisis le comparatif : -er, more, ou une forme irrégulière ?"},
+  article:   {fr:"a ou an ? Écoute le son qui suit : an devant une voyelle (an old bike)."},
   retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -182,7 +189,66 @@ const DE = {
   contraire: (g, d) => DE.nom(g, true) + " links ist " + D.mots[im(g).mot].de + ". " + DE.nom(d, true) + " rechts ist ___.",
   forme1: k => D.mots[k].de
 };
-const L = APPRENDRE === "de" ? DE : ES;
+// L'ANGLAIS (3 nov. 2026). Les phrases enseignent l'anglais : l'adjectif invariable (« The door is open. »), the one
+// (« The one on the right is ___. »), les comparatifs (-er, more, better / worse) et a / an devant l'adjectif. Le
+// britannique change quelques noms des phrases sans image (flat, film, jumper, High Street).
+const EN_MOTS = {ancho:"wide", estrecho:"narrow", abierto:"open", cerrado:"closed", grande:"big", pequeno:"small", nuevo:"new", viejo:"old",
+                 lleno:"full", vacio:"empty", bonito:"pretty", feo:"ugly", bueno:"good", malo:"bad", raro:"odd", extrano:"strange",
+                 precioso:"beautiful", asqueroso:"disgusting"};
+const EN_NOMS = {"calle-ancha":"street", "calle-estrecha":"street", "puerta-abierta":"door", "puerta-cerrada":"door", "jarron-bonito":"vase", "jarron-feo":"vase",
+                 "pastel-bueno":"cake", "comida-asquerosa":"food", "manzana-mala":"apple", "tetera-rara":"teapot", "silla-extrana":"chair", "vista-preciosa":"view",
+                 "maleta-grande":"suitcase", "maleta-pequena":"suitcase", "bici-nueva":"bike", "bici-vieja":"bike", "vaso-lleno":"glass", "vaso-vacio":"glass"};
+// le comparatif et le superlatif ; les mots qui ne se comparent pas bien ici (open, closed, full, empty, odd, strange) n'en ont pas
+const EN_COMP = {ancho:["wider", "widest"], estrecho:["narrower", "narrowest"], grande:["bigger", "biggest"], pequeno:["smaller", "smallest"], nuevo:["newer", "newest"],
+                 viejo:["older", "oldest"], bonito:["prettier", "prettiest"], feo:["uglier", "ugliest"], bueno:["better", "best"], malo:["worse", "worst"],
+                 precioso:["more beautiful", "most beautiful"], asqueroso:["more disgusting", "most disgusting"]};
+const NOM_GB = n => !GB ? n : ({apartment:"flat", movie:"film", sweater:"jumper", "Main Street":"High Street"})[n] || n;
+// des phrases sans image, pour comparer : [mot, phrase, traduction francaise] -- « ___ » prend le comparatif
+const EN_COMPARER = [
+  ["bueno", "This restaurant is good, but the one next door is even ___.", "Ce restaurant est bon, mais celui d'à côté est encore meilleur."],
+  ["malo", "The weather was bad yesterday, but today it is even ___.", "Il faisait mauvais hier, mais aujourd'hui c'est encore pire."],
+  ["grande", "Boston is ___ than Cambridge.", "Boston est plus grande que Cambridge."],
+  ["pequeno", "My " + NOM_GB("apartment") + " is ___ than yours.", "Mon appartement est plus petit que le tien."],
+  ["nuevo", "My bike is ___ than my brother's.", "Mon vélo est plus neuf que celui de mon frère."],
+  ["viejo", "Gisela is ___ than Anna.", "Gisela est plus âgée qu'Anna."],
+  ["ancho", "The river is ___ here than in the mountains.", "La rivière est plus large ici que dans les montagnes."],
+  ["estrecho", "This street is ___ than " + NOM_GB("Main Street") + ".", "Cette rue est plus étroite que la rue principale."],
+  ["bonito", "The blue dress is ___ than the gray one.".replace("gray", GB ? "grey" : "gray"), "La robe bleue est plus jolie que la grise."],
+  ["feo", "This " + NOM_GB("sweater") + " is even ___ than last year's.", "Ce pull est encore plus laid que celui de l'an dernier."],
+  ["precioso", "The view from the hill is ___ than the view from the street.", "La vue depuis la colline est plus belle que la vue depuis la rue."],
+  ["asqueroso", "This soup is even ___ than yesterday's.", "Cette soupe est encore plus dégoûtante que celle d'hier."]
+];
+// a / an : [mot, nom, traduction francaise], deux par mot ; « an » devant le son d'une voyelle
+const EN_ARTICLE = [
+  ["ancho", "river", "une rivière large"], ["ancho", "road", "une route large"], ["estrecho", "bridge", "un pont étroit"], ["estrecho", "path", "un chemin étroit"],
+  ["abierto", "window", "une fenêtre ouverte"], ["abierto", "box", "une boîte ouverte"], ["cerrado", "door", "une porte fermée"], ["cerrado", "box", "une boîte fermée"],
+  ["grande", "house", "une grande maison"], ["grande", "park", "un grand parc"], ["pequeno", "kitchen", "une petite cuisine"], ["pequeno", "room", "une petite pièce"],
+  ["nuevo", "phone", "un nouveau téléphone"], ["nuevo", "car", "une voiture neuve"], ["viejo", "church", "une vieille église"], ["viejo", "house", "une vieille maison"],
+  ["lleno", "bus", "un bus plein"], ["lleno", "bottle", "une bouteille pleine"], ["vacio", "room", "une pièce vide"], ["vacio", "bottle", "une bouteille vide"],
+  ["bonito", "garden", "un joli jardin"], ["bonito", "dress", "une jolie robe"], ["feo", NOM_GB("sweater"), "un pull laid"], ["feo", "building", "un bâtiment laid"],
+  ["bueno", "restaurant", "un bon restaurant"], ["bueno", "idea", "une bonne idée"], ["malo", NOM_GB("movie"), "un mauvais film"], ["malo", "idea", "une mauvaise idée"],
+  ["raro", "noise", "un bruit bizarre"], ["raro", "question", "une question bizarre"], ["extrano", "smell", "une odeur étrange"], ["extrano", "dream", "un rêve étrange"],
+  ["precioso", "evening", "une belle soirée"], ["precioso", "view", "une vue magnifique"], ["asqueroso", "smell", "une odeur dégoûtante"], ["asqueroso", "soup", "une soupe dégoûtante"]
+];
+// la traduction des comparatifs en images (la meme chose a gauche et a droite)
+const FR_COMP = {"calle-ancha": "La rue de gauche est plus large que celle de droite.", "calle-estrecha": "La rue de gauche est plus étroite que celle de droite.",
+                 "maleta-grande": "La valise de gauche est plus grande que celle de droite.", "maleta-pequena": "La valise de gauche est plus petite que celle de droite.",
+                 "bici-nueva": "Le vélo de gauche est plus neuf que celui de droite.", "bici-vieja": "Le vélo de gauche est plus vieux que celui de droite.",
+                 "jarron-bonito": "Le vase de gauche est plus joli que celui de droite.", "jarron-feo": "Le vase de gauche est plus laid que celui de droite."};
+const anA = w => /^[aeiou]/i.test(w) ? "an" : "a";
+const EN = {
+  bravo: "Well done!", vrai: "True", faux: "False",
+  forme: k => EN_MOTS[k],
+  nom: (i, maj) => (maj ? "The " : "the ") + EN_NOMS[i],
+  phrase(i, k){ return this.nom(i, true) + " is " + EN_MOTS[k || im(i).mot] + "."; },
+  comment: i => EN.nom(i, true) + " is …",
+  cual: (i, k) => "Which " + EN_NOMS[i] + " is " + EN_MOTS[k] + "?",
+  // « The glass on the left is full. The one on the right is ___. »
+  contraire: (g, d) => EN.nom(g, true) + " on the left is " + EN_MOTS[im(g).mot] + ". "
+                     + (EN_NOMS[g] === EN_NOMS[d] ? "The one" : EN.nom(d, true)) + " on the right is ___.",
+  forme1: k => EN_MOTS[k]
+};
+const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
 // le mot a sa forme pour cette image (« abierta » sous la porte, « groß » en allemand)
 const forme = (k, i) => L.forme1(k, i);
 
@@ -193,6 +259,8 @@ const forme = (k, i) => L.forme1(k, i);
 const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : LATAM ? "es-419/" : "es-es/");
 let son = null;
 function dire(texte){
+  // l'anglais : la voix commune (themes/voix.js), Sarah quand themes/sons.json connait le texte, sinon le telephone
+  if (APPRENDRE === "en") return Voix.dire(texte);
   try { if (son) son.pause(); } catch(e){}
   const parlerTel = () => { try {
     const u = new SpeechSynthesisUtterance(texte); u.lang = APPRENDRE === "de" ? "de-DE" : LATAM ? "es-MX" : "es-ES"; u.rate = 0.9;
@@ -222,7 +290,7 @@ let file = [], rang = 0, bons = 0, repondu = false;
 // corpus : le masculin en espagnol (abierto), la forme sans terminaison en allemand (offen).
 let motQ = null, cleQ = null, tradQ = null;      // cleQ : la cle du mot (« pequeno »), pour sa traduction et sa voix ;
                                                  // tradQ : la traduction de la phrase juste, quand ce n'est pas une phrase seule
-const motDe = k => ({mot: APPRENDRE === "de" ? D.mots[k].de : D.mots[k].es[0], cat: "adjectif"});
+const motDe = k => ({mot: APPRENDRE === "de" ? D.mots[k].de : APPRENDRE === "en" ? EN_MOTS[k] : D.mots[k].es[0], cat: "adjectif"});
 function viser(w, k){ cleQ = k; motQ = w || motDe(k); }
 
 // apres la reponse : la phrase juste, puis le mot cle, sa traduction et sa voix (Jacques, 3 nov. : la traduction
@@ -281,6 +349,8 @@ function leurres(i, n){
   return (f.includes(c) ? [c] : []).concat(melanger(f.filter(x => x !== c))).slice(0, n);
 }
 
+// tout ce que la page dit en anglais : l'inventaire des voix (visuel/voix_themes.py, cle « en »)
+function textesAVoix(){ return APPRENDRE === "en" && D ? Object.values(EN_MOTS).concat(Object.values(D.dit.en || {})) : []; }
 // LES MOTS DU THEME (le tirage suit les mots), a la forme du corpus : les dix-huit adjectifs
 let MOTS = null;
 function motsDuTheme(){
@@ -391,6 +461,42 @@ const EX = {
     boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste, forme(k, i)));
     return true;
   },
+  // L'ANGLAIS SEULEMENT : le comparatif. Deux images d'une paire (« The suitcase on the left is ___ than the one on the
+  // right. ») ou une phrase sans image ; les leurres : le comparatif du contraire, le double comparatif (more bigger) ou
+  // -er sur un mot long (beautifuller), le superlatif
+  comparatif(w){
+    if (APPRENDRE !== "en" || (w && !EN_COMP[w.k])) return false;
+    const paires = D.planche.filter(([a, b]) => EN_COMP[im(a).mot] && EN_COMP[im(b).mot] && EN_NOMS[a] === EN_NOMS[b]).flatMap(([a, b]) => [[a, b], [b, a]])
+                     .filter(([g]) => !w || im(g).mot === w.k).map(p => ["i", p]);
+    const phr = EN_COMPARER.filter(([k]) => !w || k === w.k).map(p => ["p", p]);
+    const [t, x] = hasard(paires.concat(phr));
+    let k, image = "", phrase;
+    if (t === "i"){ const [g, d] = x; k = im(g).mot; image = '<div class="duo"><img alt="" src="' + imgSrc(g) + '"><img alt="" src="' + imgSrc(d) + '"></div>';
+                    phrase = EN.nom(g, true) + " on the left is ___ than the one on the right."; tradQ = PHRASE_TRADUITE && LANGUE === "fr" ? FR_COMP[g] || null : null; }
+    else { k = x[0]; phrase = x[1]; tradQ = PHRASE_TRADUITE && LANGUE === "fr" ? x[2] : null; }
+    viser(w, k);
+    const [c, s] = EN_COMP[k], contraire = D.mots[k].contraire;
+    const faux = c.indexOf("more ") === 0 ? EN_MOTS[k] + "er" : "more " + c;
+    const opts = melanger([c, faux, "the " + s].concat(contraire && EN_COMP[contraire] ? [EN_COMP[contraire][0]] : []));
+    ecran("comparatif", image, avecTrou(phrase));
+    boutons($("choix"), opts, c, ok => { $("trou").textContent = c; juger(ok, c, phrase.replace("___", c), EN_MOTS[k]); });
+    return true;
+  },
+  // L'ANGLAIS SEULEMENT : a ou an devant l'adjectif (« This is an old bike. »), sur l'image ou sur une phrase sans image
+  article(w){
+    if (APPRENDRE !== "en") return false;
+    // pas « a disgusting food » : food ne se compte pas
+    const imgs = IMG().filter(i => i !== "comida-asquerosa" && (!w || im(i).mot === w.k)).map(i => ["i", i]);
+    const phr = EN_ARTICLE.filter(([k]) => !w || k === w.k).map(p => ["p", p]);
+    const [t, x] = hasard(imgs.concat(phr));
+    const k = t === "i" ? im(x).mot : x[0], nom = t === "i" ? EN_NOMS[x] : x[1];
+    viser(w, k);
+    const rep = anA(EN_MOTS[k]), phrase = "This is ___ " + EN_MOTS[k] + " " + nom + ".";
+    tradQ = t === "p" && PHRASE_TRADUITE && LANGUE === "fr" ? "C'est " + x[2] + "." : null;
+    ecran("article", t === "i" ? photo(x) : "", avecTrou(phrase), true);
+    boutons($("choix"), ["a", "an"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep), EN_MOTS[k]); });
+    return true;
+  },
   // l'ecoute : le mot dit (« estrecha »), deux ou trois images dont une seule le montre (les autres l'ont en « faux »)
   entendre(w){
     const cand = IMG().filter(i => (!w || im(i).mot === w.k) && IMG().some(j => im(j).faux.includes(im(i).mot)));
@@ -406,14 +512,15 @@ const EX = {
   }
 };
 // les sortes de la langue apprise : ser / estar et l'accord en espagnol ; la terminaison en allemand
-const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? x !== "endung" : !["serEstar", "accord"].includes(x));
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? !["endung", "comparatif", "article"].includes(x)
+                                          : APPRENDRE === "de" ? !["serEstar", "accord", "comparatif", "article"].includes(x) : !["serEstar", "accord", "endung"].includes(x));
 
 // ---------- la decouverte : la planche des paires, chaque image se voit et s'entend ----------
 function decouvrir(){
   $("compte").textContent = ""; $("barre").style.width = "0%";
   const z = $("zone"), dit = D.dit[APPRENDRE];
   z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div class="fiche" id="fiche"></div><div class="planche" id="planche"></div>'
-              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : "regleEs")) + '</p>';
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : APPRENDRE === "en" ? "regleEn" : "regleEs")) + '</p>';
   const montrer = i => {
     const k = im(i).mot, m = D.mots[k], autre = m.contraire ? imageDe(m.contraire) : (m.voisins || []).map(imageDe).find(Boolean);
     $("planche").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.id === i));
@@ -534,6 +641,15 @@ $("titre").textContent = T("titre");
 document.title = T("titre");
 fetch("contrarios/contrarios.json?v=1").then(r => r.json()).then(d => {
   D = d;
+  if (APPRENDRE === "en"){
+    const tr = D.phrasesTrad.es || {}, dit = {}, trEn = {};
+    IMG().forEach(i => {
+      dit[i] = (im(i).mot === "estrecho" ? EN.nom(i, true) + " is very narrow." : EN.phrase(i));
+      trEn[dit[i]] = tr[D.dit.es[i]] || tr[ES.phrase(i)];
+      trEn[EN.phrase(i)] = tr[ES.phrase(i)];
+    });
+    D.dit.en = dit; D.phrasesTrad.en = trEn; D.trad.en = D.trad.es;   // le sens du mot : celui du mot espagnol de la meme image
+  }
   if (Q.get("seance") === "1") demarrer(); else decouvrir();
 });
 </script>

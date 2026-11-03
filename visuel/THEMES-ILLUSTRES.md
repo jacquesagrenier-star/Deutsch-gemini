@@ -273,7 +273,7 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
   diffèrent (Mom / Mum, gray / grey, mustache / moustache, color / colour) et le dit dans une note.
 - **Les mots** : `genre: ""` (le corpus anglais n'a pas d'article) ; un mot qui manque au corpus s'ajoute dans
   `anglais/outils/mots_<niv>.py` ou `noms_<niv>.py`, puis `python anglais/outils/construire.py` (plus de 5 minutes),
-  `frequence.py --ecrire` et `voisins.py --ecrire`. Ajoutés le 3 nov. : chubby, slim, wavy (A2), earring (A2).
+  `frequence.py --ecrire` et `voisins.py --ecrire`. Ajoutés le 3 nov. : chubby, slim, wavy (A2), earring (A2) ; open (A1), disgusting (A2). ⚠️ Un `construire.py` complet change aussi des phrases d'exemple d'autres mots (les sources ont bougé depuis la dernière construction) : on ne pose alors que les mots ajoutés, pris dans la reconstruction, dans la version du dépôt.
 - **La voix** : aucune voix nouvelle (décision du 3 nov., écoute à l'aveugle Sarah / Google / Azure d'abord). Ce qui
   a un fichier `en-us/` se dit avec Sarah (américain), le reste avec la voix du téléphone (`en-US`, `en-GB`). Le
   britannique : toujours le téléphone. Il manque à Sarah, dans « Décrire » : *light brown*, *wavy*, *of medium
@@ -286,4 +286,9 @@ l'anglais**, jamais traduites de l'espagnol : elles enseignent la grammaire angl
   - **Décrire une personne** : is / has / wears ; l'ordre des adjectifs devant *hair* (longueur, forme, couleur,
     sans virgule) — la sorte `ordre`, à la place de l'accord espagnol ; *chubby* plutôt que *fat*, *dark eyes* et
     jamais *black eyes* (deux notes dans la découverte) ; le superlatif à trois (« Who is the tallest? »).
+  - **Les contraires** : l'adjectif invariable après *be* (« The door is open. »), *the one* (« The one on the right
+    is ___. »), et deux sortes de plus : `comparatif` (-er, more, good → better, bad → worse ; les pièges : le double
+    comparatif *more bigger*, *beautifuler*, le superlatif) et `article` (*a* ou *an* devant l'adjectif : *an old
+    bike*, *an ugly vase*). Le britannique change les noms des phrases sans image (flat, film, jumper, High Street).
+    Le sens du mot et la traduction des phrases de l'image viennent de l'espagnol de la même image.
 - **Contrôle** : `ANGLAIS` dans `tests/themes_illustres.py` (le thème y passe en `en` et en `en&variante=gb`).
