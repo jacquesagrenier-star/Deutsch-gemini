@@ -18,7 +18,7 @@
   Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
   variante=latam (enojado, la voix de Monica), r=<AUDIO_REVISION> (la voix de la decouverte).
   A chaque reponse, « reponse » {mot, genre, cat, juste} : le mot teste avance dans la progression commune aux cartes.
-  A FAIRE : le tirage par mots (visuel/prototype/themes/tirage.js, session « Themes illustres ») des qu'il est sur main.
+  Le tirage suit les mots (themes/tirage.js, commun aux themes) : les dus, les rates, puis les nouveaux.
   Les phrases sont FABRIQUEES depuis emociones.json : une image ne dit que ce qu'elle montre.
 -->
 <style>
@@ -95,6 +95,7 @@ button:disabled{cursor:default}
 <div class="barre"><i id="barre"></i></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
+<script src="themes/tirage.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -224,9 +225,10 @@ function juger(ok, bonneTexte, phrase){
   if (ok) bons++;
   parler("exercice", {juste: ok}); if (ok) parler("bonne");
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
-  const s = $("suite"); s.textContent = rang + 1 >= NB ? T("terminer") : T("suivant"); s.hidden = false;
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
 function boutons(conteneur, options, bonne, apres){
   let bon;
@@ -254,18 +256,35 @@ const scene = t => '<img class="photo scene" alt="" src="' + imgT(t) + '">';
 function leurresE(e, n){ return melanger(EMOS().filter(x => loin(x, e, VOISINS))).slice(0, n); }
 function leurresT(t, n){ return melanger(TRAITS().filter(x => loin(x, t, VOISINS_T))).slice(0, n); }
 
+// LES MOTS DU THEME (le tirage suit les mots, 3 nov. 2026), a la forme du corpus, cles de la progression commune :
+// chaque emotion et chaque trait ; la peur est un nom (el miedo, die Angst) ; en allemand aussi la mauvaise humeur et
+// le rhume, que seule « ist oder hat? » demande (« Diego hat schlechte Laune »).
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  MOTS = EMOS().map(e => Object.assign({e}, motE(e))).concat(TRAITS().map(t => Object.assign({t}, motT(t))));
+  if (APPRENDRE === "de") Object.keys(D.haben).forEach(h => MOTS.push(Object.assign({h}, motE(h, true))));
+  return MOTS;
+}
+// un visage qui montre cette emotion (ou n'importe lequel, sans mot vise)
+const unPortrait = e => hasard(PORTRAITS.filter(([, x]) => !e || x === e));
+
 // ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
 const EX = {
   // « ¿Cómo está Carmen? » / « Wie geht es Carmen? » : un visage, quatre etats a la bonne forme
-  commentEst(){
-    const [p, e] = hasard(PORTRAITS), rep = pred(p, e); motQ = motE(e);
+  commentEst(w){
+    if (w && !w.e && !w.h) return false;
+    const [p, e] = unPortrait(w && (w.e || w.h)), rep = w && w.h ? "hat " + D.haben[e] : pred(p, e); motQ = w || motE(e);
     ecran("commentEst", portrait(p, e), L.commentEst(p), true);
     const opts = melanger([rep, ...leurresE(e, 3).map(x => pred(p, x))]);
-    boutons($("choix"), opts, rep, ok => juger(ok, rep, phraseE(p, e)));
+    boutons($("choix"), opts, rep, ok => juger(ok, rep, w && w.h ? nom(p) + " " + rep + "." : phraseE(p, e)));
+    return true;
   },
   // « ¿Quién está triste? » : quatre visages, un seul montre l'emotion (ni elle ni une voisine chez les autres)
-  quien(){
-    const [p, e] = hasard(PORTRAITS); motQ = motE(e);
+  quien(w){
+    if (w && !w.e) return false;
+    const [p, e] = unPortrait(w && w.e); motQ = w || motE(e);
     const autres = melanger(PORTRAITS.filter(([q, x]) => q !== p && loin(x, e, VOISINS)));
     const pris = [[p, e]];
     for (const a of autres){ if (pris.length >= 4) break; if (!pris.some(([q]) => q === a[0])) pris.push(a); }
@@ -283,76 +302,93 @@ const EX = {
       });
       ch.appendChild(b);
     });
+    return true;
   },
   // « Carmen ___ triste. » es / está / tiene ; et le piege d'aburrido, sans image
-  serEstar(){
+  serEstar(w){
     let image, phrase, rep;
     const r = Math.random();
-    if (r < 0.1){ const [s, v] = hasard(ES.pieges); motQ = {mot: "aburrido", cat: "adjectif"}; image = ""; phrase = s; rep = v; }
-    else if (r < 0.4){ const t = hasard(TRAITS()), p = D.traits[t]; motQ = motT(t); image = scene(t); rep = "es"; phrase = nom(p) + " ___ " + ES.forme(D.caracteres[t], p) + "."; }
-    else { const [p, e] = hasard(PORTRAITS), m = D.emotions[e]; motQ = motE(e); image = portrait(p, e); rep = ES.verbe(m, true); phrase = nom(p) + " ___ " + ES.forme(m, p) + "."; }
+    if (w ? w.e === "aburrido" && r < 0.25 : r < 0.1){ const [s, v] = hasard(ES.pieges); motQ = w || {mot: "aburrido", cat: "adjectif"}; image = ""; phrase = s; rep = v; }
+    else if (w ? w.t : r < 0.4){ const t = w ? w.t : hasard(TRAITS()), p = D.traits[t]; motQ = w || motT(t); image = scene(t); rep = "es"; phrase = nom(p) + " ___ " + ES.forme(D.caracteres[t], p) + "."; }
+    else { const [p, e] = unPortrait(w && w.e), m = D.emotions[e]; motQ = w || motE(e); image = portrait(p, e); rep = ES.verbe(m, true); phrase = nom(p) + " ___ " + ES.forme(m, p) + "."; }
     ecran("serEstar", image, avecTrou(phrase));
     boutons($("choix"), ["es", "está", "tiene"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
   },
   // « Ben ___ Angst. » ist / hat -- un tiers des questions sur haben (Angst, schlechte Laune, eine Erkaeltung)
-  istHat(){
+  istHat(w){
     let image, phrase, rep;
     const r = Math.random();
-    if (r < 0.35){
-      const avecHaben = PORTRAITS.filter(([, e]) => D.emotions[e].tener || D.haben[e]);
-      const [p, e] = hasard(avecHaben); motQ = motE(e, true); image = portrait(p, e); rep = "hat";
+    if (w ? (w.h || w.e === "miedo") : r < 0.35){
+      const [p, e] = w ? unPortrait(w.h || w.e) : hasard(PORTRAITS.filter(([, e]) => D.emotions[e].tener || D.haben[e]));
+      motQ = w || motE(e, true); image = portrait(p, e); rep = "hat";
       phrase = nom(p) + " ___ " + (D.emotions[e].tener ? D.emotions[e].de : D.haben[e]) + ".";
-    } else if (r < 0.6){ const t = hasard(TRAITS()), p = D.traits[t]; motQ = motT(t); image = scene(t); rep = "ist"; phrase = nom(p) + " ___ " + D.caracteres[t].de + "."; }
-    else { const [p, e] = hasard(PORTRAITS.filter(([, e]) => !D.emotions[e].tener)); motQ = motE(e); image = portrait(p, e); rep = "ist"; phrase = nom(p) + " ___ " + D.emotions[e].de + "."; }
+    } else if (w ? w.t : r < 0.6){ const t = w ? w.t : hasard(TRAITS()), p = D.traits[t]; motQ = w || motT(t); image = scene(t); rep = "ist"; phrase = nom(p) + " ___ " + D.caracteres[t].de + "."; }
+    else { const [p, e] = w ? unPortrait(w.e) : hasard(PORTRAITS.filter(([, e]) => !D.emotions[e].tener)); motQ = w || motE(e); image = portrait(p, e); rep = "ist"; phrase = nom(p) + " ___ " + D.emotions[e].de + "."; }
     ecran("istHat", image, avecTrou(phrase));
     boutons($("choix"), ["ist", "hat"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
   },
   // « Gisela está ___. » orgullosa / orgulloso -- seulement les mots qui changent (pas triste, pas miedo)
-  accord(){
-    const cand = PORTRAITS.filter(([, e]) => !D.emotions[e].tener && D.emotions[e].es[0] !== D.emotions[e].es[1]).map(([p, e]) => ["e", p, e])
-                 .concat(TRAITS().map(t => ["t", D.traits[t], t]));
+  accord(w){
+    const variable = e => !D.emotions[e].tener && D.emotions[e].es[0] !== D.emotions[e].es[1];
+    if (w && w.e && !variable(w.e)) return false;
+    const cand = PORTRAITS.filter(([, e]) => variable(e) && (!w || e === w.e)).map(([p, e]) => ["e", p, e])
+                 .concat(TRAITS().filter(t => !w || t === w.t).map(t => ["t", D.traits[t], t]));
+    if (!cand.length) return false;
     const [k, p, x] = hasard(cand), m = k === "e" ? D.emotions[x] : D.caracteres[x], formes = (LATAM && m.latam) || m.es;
-    const rep = formes[fem(p) ? 1 : 0], verbe = k === "e" ? "está" : "es"; motQ = k === "e" ? motE(x) : motT(x);
+    const rep = formes[fem(p) ? 1 : 0], verbe = k === "e" ? "está" : "es"; motQ = w || (k === "e" ? motE(x) : motT(x));
     ecran("accord", k === "e" ? portrait(p, x) : scene(x), avecTrou(nom(p) + " " + verbe + " ___."));
     boutons($("choix"), melanger([formes[0], formes[1]]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, nom(p) + " " + verbe + " " + rep + "."); });
+    return true;
   },
   // « ¿Cómo es Javier? » / « Wie ist Javier? » : une scene, quatre traits
-  commentEs(){
-    const t = hasard(TRAITS()), p = D.traits[t], rep = predT(p, t); motQ = motT(t);
+  commentEs(w){
+    if (w && !w.t) return false;
+    const t = w ? w.t : hasard(TRAITS()), p = D.traits[t], rep = predT(p, t); motQ = w || motT(t);
     ecran("commentCar", scene(t), L.commentEs(p), true);
     boutons($("choix"), melanger([rep, ...leurresT(t, 3).map(x => predT(p, x))]), rep, ok => juger(ok, rep, phraseT(p, t)));
+    return true;
   },
-  // « Javier es tacaño. Marta, al contrario, es ___. » : la paire d'images ; les leurres a la forme de Marta
-  contraire(){
-    const t = hasard(TRAITS()), c = D.caracteres[t].contraire, a = D.traits[t], b = D.traits[c];
+  // « Javier es tacaño. Marta, al contrario, es ___. » : la paire d'images ; le mot vise est celui de la reponse
+  contraire(w){
+    if (w && !w.t) return false;
+    const c = w ? w.t : hasard(TRAITS()), t = D.caracteres[c].contraire, a = D.traits[t], b = D.traits[c];
     const forme = (x, p) => APPRENDRE === "de" ? D.caracteres[x].de : ES.forme(D.caracteres[x], p);
-    const rep = forme(c, b); motQ = motT(c);
+    const rep = forme(c, b); motQ = w || motT(c);
     const leurres = melanger(TRAITS().filter(x => x !== c && x !== t && loin(x, c, VOISINS_T))).slice(0, 3).map(x => forme(x, b));
     const duo = '<div class="duo"><figure><img alt="" src="' + imgT(t) + '">' + nom(a) + '</figure><figure><img alt="" src="' + imgT(c) + '">' + nom(b) + '</figure></div>';
     const phrase = L.contraire(a, D.caracteres[t], b);
     ecran("contraire", duo, avecTrou(phrase));
     boutons($("choix"), melanger([rep, ...leurres]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep)); });
+    return true;
   },
   // « Diego está contento. » vrai ou faux -- le faux n'est jamais une emotion voisine (sinon il serait discutable)
-  vraifaux(){
-    const [p, e] = hasard(PORTRAITS), vrai = Math.random() < 0.5; motQ = motE(e);
-    const dite = vrai ? e : hasard(EMOS().filter(x => loin(x, e, VOISINS)));
-    const phrase = phraseE(p, dite);
+  vraifaux(w){
+    if (w && !w.e && !w.h) return false;
+    const [p, e] = unPortrait(w && (w.e || w.h)), vrai = Math.random() < 0.5; motQ = w || motE(e);
+    const juste = w && w.h ? nom(p) + " hat " + D.haben[e] + "." : phraseE(p, e);
+    const phrase = vrai ? juste : phraseE(p, hasard(EMOS().filter(x => loin(x, e, VOISINS))));
     ecran("vraifaux", portrait(p, e), phrase, true);
     const rep = vrai ? L.vrai : L.faux;
-    boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, vrai ? phrase : phraseE(p, e)));
+    boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste));
+    return true;
   },
   // « Ben ist müde. » : ein Gefühl (jetzt) oder der Charakter (immer) ? -- la question que l'espagnol pose par ser / estar
-  gefuehl(){
-    const emotion = Math.random() < 0.5;
+  gefuehl(w){
+    if (w && w.h) return false;
+    const emotion = w ? !!w.e : Math.random() < 0.5;
     let image, phrase;
-    if (emotion){ const [p, e] = hasard(PORTRAITS); motQ = motE(e); image = portrait(p, e); phrase = phraseE(p, e); }
-    else { const t = hasard(TRAITS()), p = D.traits[t]; motQ = motT(t); image = scene(t); phrase = phraseT(p, t); }
+    if (emotion){ const [p, e] = unPortrait(w && w.e); motQ = w || motE(e); image = portrait(p, e); phrase = phraseE(p, e); }
+    else { const t = w ? w.t : hasard(TRAITS()), p = D.traits[t]; motQ = w || motT(t); image = scene(t); phrase = phraseT(p, t); }
     ecran("gefuehl", image, phrase, true);
     const rep = emotion ? DE.gefuehl : DE.charakter;
     boutons($("choix"), [DE.gefuehl, DE.charakter], rep, ok => juger(ok, rep, phrase));
+    return true;
   }
 };
+// les sortes de la langue apprise : ser / estar et l'accord en espagnol ; ist / hat et Gefuehl / Charakter en allemand
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? !["istHat", "gefuehl"].includes(x) : !["serEstar", "accord"].includes(x));
 
 // ---------- la decouverte : deux planches a toucher, le mot se voit et s'entend ----------
 function decouvrir(){
@@ -394,54 +430,86 @@ function decouvrir(){
   s.onclick = () => { s.onclick = null; try { if (son) son.pause(); speechSynthesis.cancel(); } catch(e){} demarrer(); };
 }
 
-// une sorte a la fois, jamais deux fois de suite, en tirant d'abord parmi celles qui restent le plus
-function ranger(types){
-  const reste = {}; types.forEach(t => reste[t] = (reste[t] || 0) + 1);
-  const out = [];
-  while (out.length < types.length){
-    const c = Object.keys(reste).filter(t => reste[t] > 0 && t !== out[out.length - 1]);
-    const pris = c.length ? c : Object.keys(reste).filter(t => reste[t] > 0);
-    // on ne prend t que si la suite reste faisable : apres lui, aucune sorte ne doit depasser la moitie de ce qui reste
-    const total = Object.values(reste).reduce((x, y) => x + y, 0) - 1;
-    const tenable = pris.filter(t => Object.keys(reste).every(u => (reste[u] - (u === t ? 1 : 0)) <= (u === t ? Math.floor(total / 2) : Math.ceil(total / 2))));
-    const t = hasard(tenable.length ? tenable : pris);
-    out.push(t); reste[t]--;
-  }
-  return out;
-}
-function composer(){
-  // vingt questions, chaque sorte deux fois au moins ; la seance en prend les six premieres
-  const types = APPRENDRE === "es"
-    ? ["commentEst", "commentEst", "commentEst", "quien", "quien", "quien", "serEstar", "serEstar", "serEstar", "serEstar",
-       "accord", "accord", "accord", "commentEs", "commentEs", "contraire", "contraire", "vraifaux", "vraifaux", "vraifaux"]
-    : ["commentEst", "commentEst", "commentEst", "quien", "quien", "quien", "istHat", "istHat", "istHat", "istHat",
-       "gefuehl", "gefuehl", "gefuehl", "commentEs", "commentEs", "contraire", "contraire", "vraifaux", "vraifaux", "vraifaux"];
-  return ranger(types).slice(0, NB);
-}
-// aucune question deux fois dans une serie : la meme consigne, le meme enonce et les memes images font la meme
-// question, et on en tire une autre
-let vus = new Set();
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
+// les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
+// jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
+// Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
 function cleQuestion(){
   const z = $("zone"), en = z.querySelector(".enonce");
-  return file[rang] + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
   repondu = false; $("suite").hidden = true;
-  $("compte").textContent = (rang + 1) + " / " + NB;
-  $("barre").style.width = (rang / NB * 100) + "%";
-  let n = 0;
-  do { motQ = null; EX[file[rang]](); n++; } while (vus.has(cleQuestion()) && n < 40);
-  vus.add(cleQuestion());
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
+  // Si ce mot ne le permet pas, un mot plus loin dans la file passe devant ;
+  // en dernier recours seulement, la meme sorte, puis une question deja vue.
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        motQ = null; sorteCourante = so;
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
+      motQ = null; sorteCourante = derniereSorte;
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      motQ = null; sorteCourante = so;
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  vus.add(cleQuestion()); derniereSorte = fait;
   window.scrollTo(0, 0);
 }
 function fin(){
-  $("barre").style.width = "100%"; $("compte").textContent = NB + " / " + NB; $("suite").hidden = true;
-  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: NB}) + '</div><button type="button" id="encore">' + T("encore") + '</button><button type="button" id="terminer">' + T("terminer") + '</button></div>';
-  $("encore").addEventListener("click", demarrer);
-  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: NB}));
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div>' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
 }
-function demarrer(){ file = composer(); rang = 0; bons = 0; vus = new Set(); montrer(); }
-$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= NB) fin(); else montrer(); });
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
 $("retour").addEventListener("click", () => parler("fermer"));
 $("retour").setAttribute("aria-label", T("retourAria"));
 $("titre").textContent = T("titre");

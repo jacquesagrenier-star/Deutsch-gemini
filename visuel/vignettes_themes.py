@@ -8,7 +8,8 @@ familles »). Chaque vignette dit son sujet AUTREMENT qu'une rangee de personnes
 ronds relies par des branches ; Decrire une personne, la toise et trois tailles tres differentes (Carmen, Mark,
 Tomas) sur des graduations en metres. Dessins du chef d'orchestre (couvertures.py, famille_arbre et
 decrire_toise), repris ici. Faites des webp DEJA PUBLIES (visuel/prototype/<theme>/) : sans les originaux et sans
-rien payer. Un theme futur : une fonction de plus dans VIGNETTES, qui dise le sujet autrement.
+rien payer. Les emotions et le caractere : une planche de photomaton d'Anna, quatre visages (3 nov.).
+Un theme futur : une fonction de plus dans VIGNETTES, qui dise le sujet autrement.
 """
 import json, os, sys
 from PIL import Image, ImageDraw, ImageFont
@@ -86,7 +87,27 @@ def decrire_toise():
     return c
 
 
-VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise}
+def emotions_photomaton():
+    """La planche de photomaton : Anna quatre fois, contente, surprise, fachee, triste. Une seule personne et quatre
+    visages, deux par deux, comme les photos d'identite d'une cabine ; serre sur la tete (le ruban montre 66 px)."""
+    M = 17
+    pw, ph = (W - 3 * M) // 2, (H - 3 * M) // 2
+    c = Image.new("RGB", (W, H), (250, 249, 246))
+    d = ImageDraw.Draw(c)
+    for k, e in enumerate(["contento", "sorprendido", "enfadado", "triste"]):
+        im = Image.open(os.path.join(P, "emociones", "Anna-" + e + ".webp")).convert("RGB")
+        w, h = im.size
+        ch = round(h * 0.62)
+        cw = round(ch * pw / ph)
+        y0 = round(h * 0.03)
+        im = im.crop(((w - cw) // 2, y0, (w + cw) // 2, y0 + ch)).resize((pw, ph), Image.LANCZOS)
+        x, y = M + (k % 2) * (pw + M), M + (k // 2) * (ph + M)
+        c.paste(im, (x, y))
+        d.rectangle((x - 1, y - 1, x + pw, y + ph), outline=(214, 210, 202), width=2)
+    return c
+
+
+VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

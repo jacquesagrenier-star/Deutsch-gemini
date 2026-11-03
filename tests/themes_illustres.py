@@ -17,7 +17,7 @@ import functools, http.server, json, os, socketserver, sys, threading
 sys.stdout.reconfigure(encoding="utf-8")
 RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PORT = 8798
-THEMES = ["familia", "descripcion"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
+THEMES = ["familia", "descripcion", "emociones"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
 PLANCHER = 100
 
 COMPTER = """(n) => {
