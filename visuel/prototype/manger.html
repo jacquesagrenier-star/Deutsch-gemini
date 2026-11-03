@@ -15,7 +15,7 @@
   a chaque reponse (objectif du jour, carreaux), « reponse » {mot, genre, cat, sens, juste} pour le mot teste,
   « fini » et « fermer » a la fin. Le tirage suit les mots (themes/tirage.js) ; la voix : themes/voix.js.
   Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, sans decouverte),
-  variante=latam (jugo, mesero, sandwich ; la voix de Monica), r=<AUDIO_REVISION>.
+  variante=latam (jugo, mesero, sandwich ; la voix de Monica), r=<AUDIO_REVISION> ; textesAVoix() pour visuel/voix_themes.py.
 -->
 <style>
 :root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
@@ -58,8 +58,6 @@ button:disabled{cursor:default}
 .retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
 .retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
 .retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
-.redire{vertical-align:middle;margin-inline-start:6px;width:32px;height:32px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
-.redire svg{width:17px;height:17px}
 /* la carte du cafe : une ardoise a la craie */
 .carteCafe{direction:ltr;background:var(--ardoise);color:var(--craie);border-radius:14px;padding:12px 16px;font-weight:700;font-size:15px;box-shadow:inset 0 0 0 4px rgba(255,255,255,.06)}
 .carteCafe .t{font-weight:900;font-size:18px;text-align:center;letter-spacing:.04em;margin-bottom:6px}
@@ -104,6 +102,7 @@ button:disabled{cursor:default}
 [lang]{unicode-bidi:isolate}
 /* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
 .trad{display:block;font-size:13px;font-weight:600;color:var(--gris);line-height:1.35;margin-top:2px}
+.trad.faux{color:var(--rouge);font-style:italic}
 </style>
 </head>
 <body>
@@ -114,6 +113,7 @@ button:disabled{cursor:default}
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/voix.js?v=1"></script>
+<script src="themes/zoom.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
@@ -124,6 +124,8 @@ document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
 const NB = Q.get("seance") === "1" ? 6 : 20;
+// agrandir (themes/zoom.js) : un toucher sur une photo ou une fiche ; la loupe sur ce qu'on touche pour repondre
+Zoom.init({direct: ".photo, .fiche img", loupe: ".visages button, .planche button", langue: LANGUE});
 
 const TEXTES = {
   titre:     {fr:"Manger et goûter", en:"Food and taste", tr:"Yemek ve tat", uk:"Їжа і смак", fa:"خوردن و چشیدن", ar:"الأكل والتذوق", pt:"Comer e provar", pl:"Jedzenie i smak", ru:"Еда и вкус", de:"Essen und Geschmack"},
@@ -157,6 +159,7 @@ const TEXTES = {
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
   retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -208,7 +211,6 @@ const ES = {
     return cuenta ? s + " " + (qui.length > 1 ? "piden" : "pide") + " la cuenta: " + liste(items, "es") + ". ¿Cuánto es?" : s + " " + v + " " + liste(items, "es") + ". ¿Cuánto es?"; },
   cuesta: it => "¿Cuánto cuesta " + it.un + "?",
   total: p => "Son " + prix(p) + ".", seul: (it, p) => maj(it.un) + " cuesta " + prix(p) + ".",
-  totalDit: p => "Son " + prixEnLettres(p) + ".", seulDit: (it, p) => maj(it.un) + " cuesta " + prixEnLettres(p) + ".",
   et: " y "
 };
 const DE = {
@@ -243,7 +245,6 @@ const DE = {
     return cuenta ? s + " " + (qui.length > 1 ? "möchten" : "möchte") + " die Rechnung: " + liste(items, "de") + ". Was macht das?" : s + " " + (qui.length > 1 ? "nehmen" : "nimmt") + " " + liste(items, "de") + ". Was macht das?"; },
   cuesta: it => "Was kostet " + it.nom + "?",
   total: p => "Das macht " + prix(p) + ".", seul: (it, p) => maj(it.nom) + " kostet " + prix(p) + ".",
-  totalDit: p => "Das macht " + prixEnLettres(p) + ".", seulDit: (it, p) => maj(it.nom) + " kostet " + prixEnLettres(p) + ".",
   et: " und "
 };
 const L = APPRENDRE === "de" ? DE : ES;
@@ -253,25 +254,8 @@ function liste(items, l){
   return t.length < 2 ? t[0] : t.slice(0, -1).join(", ") + (l === "de" ? " und " : " y ") + t[t.length - 1];
 }
 
-// ---------- les prix : « 4,90 € » a l'ecran, en lettres dans la voix (regle du 28 oct. : les nombres se disent) ----------
+// ---------- les prix : « 4,90 € » ----------
 const prix = c => Math.floor(c / 100) + "," + String(c % 100).padStart(2, "0") + " €";
-const ES_N = ["cero", "un", "dos", "tres", "cuatro", "cinco", "seis", "siete", "ocho", "nueve", "diez", "once", "doce", "trece", "catorce", "quince",
-              "dieciséis", "diecisiete", "dieciocho", "diecinueve", "veinte", "veintiún", "veintidós", "veintitrés", "veinticuatro", "veinticinco",
-              "veintiséis", "veintisiete", "veintiocho", "veintinueve"];
-const ES_D = {3: "treinta", 4: "cuarenta", 5: "cincuenta", 6: "sesenta", 7: "setenta", 8: "ochenta", 9: "noventa"};
-const DE_N = ["null", "ein", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht", "neun", "zehn", "elf", "zwölf", "dreizehn", "vierzehn",
-              "fünfzehn", "sechzehn", "siebzehn", "achtzehn", "neunzehn"];
-const DE_D = {2: "zwanzig", 3: "dreißig", 4: "vierzig", 5: "fünfzig", 6: "sechzig", 7: "siebzig", 8: "achtzig", 9: "neunzig"};
-function nombre(n, l){
-  if (l === "es"){ if (n < 30) return ES_N[n]; const d = Math.floor(n / 10), u = n % 10; return ES_D[d] + (u ? " y " + (u === 1 ? "un" : ES_N[u]) : ""); }
-  if (n < 20) return DE_N[n]; const d = Math.floor(n / 10), u = n % 10; return (u ? (u === 1 ? "ein" : DE_N[u]) + "und" : "") + DE_D[d];
-}
-// es : « cuatro euros con noventa », « un euro con veinte » ; de : « vier Euro neunzig », « ein Euro zwanzig »
-function prixEnLettres(c){
-  const e = Math.floor(c / 100), ct = c % 100;
-  if (APPRENDRE === "es") return nombre(e, "es") + (e === 1 ? " euro" : " euros") + (ct ? " con " + nombre(ct, "es").replace(/ un$/, " uno").replace(/^un$/, "uno") : "");
-  return nombre(e, "de") + " Euro" + (ct ? " " + nombre(ct, "de").replace(/^ein$/, "eins") : "");
-}
 
 // ---------- la traduction dans la langue d'interface (Jacques, 3 nov. 2026) ----------
 // Sous la phrase de la decouverte, et APRES la reponse, sous la phrase juste -- jamais avant, elle donnerait la
@@ -354,12 +338,16 @@ const traduction = t => '<span class="trad" dir="auto">' + t + '</span>';
 // ---------- les images et la voix ----------
 const img = id => "manger/" + id + ".webp";
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-// le fichier enregistre s'il existe (sha1 du texte ecrit), sinon la voix du telephone (themes/voix.js) ; un texte a
-// chiffres sans fichier se dit par sa lecture en lettres (« 4,90 € » -> « cuatro euros con noventa »)
-function dire(texte, lu){
-  if (!texte) return;
-  if (lu && lu !== texte && !Voix.aUnFichier(texte)) return Voix.dire(lu);
-  Voix.dire(texte);
+// LA VOIX (themes/voix.js) : le fichier enregistre s'il existe, sinon la voix du telephone. Dans la decouverte, la
+// fiche touchee ; apres une reponse, le MOT CLE a la forme du corpus (« la cuenta », « das Kilo », « ácido ») --
+// jamais la phrase fabriquee (des milliers de combinaisons : elle ne s'enregistre pas, et le telephone ne la dit pas
+// pour ne pas meler deux voix).
+let dire = texte => { if (texte) Voix.dire(latam(texte)); };
+const motCle = m => !m ? null : (m.genre ? m.genre + " " : "") + m.mot;
+// tout ce que la page peut dire : l'inventaire des voix a enregistrer (visuel/voix_themes.py)
+function textesAVoix(){
+  const ph = D.decouverte[APPRENDRE === "de" ? "de" : LATAM ? "latam" : "es"];
+  return Object.values(ph).map(x => x.texte).concat(motsDuTheme().map(motCle));
 }
 
 // ---------- utilitaires ----------
@@ -375,23 +363,27 @@ function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wor
 let file = [], rang = 0, bons = 0, repondu = false;
 // LE MOT DE LA QUESTION (regle 3 : « un mot appris compte partout ») : juger() l'envoie, l'app fait avancer sa carte.
 // « sens » : rico est « delicieux » ici, pas « riche » (visuel/THEMES-ILLUSTRES.md).
-let motQ = null, aDire = null;
-function juger(ok, bonneTexte, phrase, lu){
+let motQ = null;
+function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
   parler("exercice", {juste: ok}); if (ok) parler("bonne");
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, sens: motQ.sens || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
-  const dite = phrase || bonneTexte;
-  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
-              + '<button type="button" class="redire" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>';
-  aDire = [dite, lu];
-  $("redire").addEventListener("click", () => dire(aDire[0], aDire[1]));
+  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
   const tl = traduire(sensQ) || (TR ? null : glose(motQ));
   if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  // LE MOT CHOISI, quand il est faux (Jacques, 3 nov. : « quand je dis le mauvais, on devrait avoir l'affichage
+  // traduit aussi ») : sa traduction, seulement quand elle est sure (TRAD_CHOIX, posee par la sorte)
+  if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
+  Voix.dire(latam(motCle(motQ)));
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
+// TRAD_CHOIX : {option: sa traduction dans la langue d'interface}, pose par la sorte quand la traduction est sure (une
+// saveur, un contenant, une replique du cafe, ce que dit la personne) ; rien pour un prenom, un prix, vrai / faux,
+// une forme de gustar ou de mögen
+let choixFaux = null, TRAD_CHOIX = null;
 function boutons(conteneur, options, bonne, apres){
   let bon;
   options.forEach(o => {
@@ -399,6 +391,7 @@ function boutons(conteneur, options, bonne, apres){
     b.addEventListener("click", () => {
       conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
       if (b !== bon) b.classList.add("faux");
+      choixFaux = o === bonne ? null : {texte: String(o), trad: TRAD_CHOIX && TRAD_CHOIX[o]};
       apres(o === bonne);
     });
     conteneur.appendChild(b);
@@ -498,6 +491,25 @@ const genreUnite = u => APPRENDRE === "es" ? "el" : ({Liter: "der", Packung: "di
 // la carte du cafe, une ardoise a la craie
 const ardoise = () => '<div class="carteCafe"><div class="t">' + L.carte + '</div>' + CARTE().map(it => '<div class="l"><span>' + latam(it.carte) + '</span><span class="p">' + prix(it.prix) + '</span></div>').join("") + '</div>';
 
+// LES TRADUCTIONS SURES D'UN CHOIX FAUX (dans la langue d'interface) : la saveur, le contenant, la replique.
+// fr / en / pt (et de pour qui apprend l'espagnol) ecrits ici ; ailleurs, le mot du corpus relu (gloses.json).
+const tradSaveur = s => SAV_TR[LANGUE] ? SAV_TR[LANGUE][s] : LANGUE === "de" ? D.saveurs[s].de : ((GLOSES[motSaveur(s)] || {})[LANGUE] || null);
+const tradContenant = c => { const t = D.tradContenants[c][LANGUE];
+  if (t) return t.trim().replace(/ d'$/, " de");
+  if (LANGUE === "de") return D.contenants[c].de.art;
+  const k = D.contenants[c][APPRENDRE]; return k.mot ? ((GLOSES[k.genre + " " + k.mot] || {})[LANGUE] || null) : null; };
+const DIT_TR = {fr: {pos: "C'est délicieux !", bon: "C'est très bon !", asco: "C'est dégoûtant !", trop: s => "C'est trop " + SAV_TR.fr[s] + " !"},
+                en: {pos: "Delicious!", bon: "It's very good!", asco: "Disgusting!", trop: s => "It's too " + SAV_TR.en[s] + "!"},
+                pt: {pos: "Que delícia!", bon: "Está muito bom!", asco: "Que nojo!", trop: s => "Está " + SAV_TR.pt[s] + " demais!"},
+                de: {pos: "Lecker!", bon: "Sehr gut!", asco: "Igitt, das ist eklig!", trop: s => "Das ist zu " + D.saveurs[s].de + "!"}};
+// ce que dit la personne : la liste des leurres avec leur traduction (rien hors fr, en, pt, de)
+function tradLeurresDit(g){
+  const T_ = DIT_TR[LANGUE]; if (!T_ || LANGUE === APPRENDRE) return null;
+  const out = {}; out[L.dit(g.a, "gusta")] = T_.pos; out[L.bueno] = T_.bon; out[L.asco(g.a)] = T_.asco;
+  Object.keys(D.saveurs).forEach(s => { out[L.trop(g.a, s)] = T_.trop(s); });
+  return out;
+}
+
 // ---------- les exercices ----------
 // Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
 const EX = {
@@ -585,6 +597,7 @@ const EX = {
     const juste = L.saveur(g.a), sujet = APPRENDRE === "de" ? maj(g.a === "picante" ? "das Essen" : al(g.a).nom) + " " + (al(g.a).pl ? "sind" : "ist") : maj(al(g.a).court || al(g.a).vu) + " " + ES.copule(g.a);
     ecran("sabor", portrait(g.id), avecTrou(sujet + " ___."));
     const rep = forme(s);
+    TRAD_CHOIX = {}; Object.keys(D.saveurs).forEach(x => { TRAD_CHOIX[forme(x)] = tradSaveur(x); });
     boutons($("choix"), options(rep, Object.keys(D.saveurs).filter(x => x !== s).map(forme), 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
     return true;
   },
@@ -595,6 +608,7 @@ const EX = {
     const rep = L.dit(g.a, g.r);
     motQ = w || motDit(g); sensQ = {dit: {a: g.a, r: g.r}};
     ecran("dice", portrait(g.id), L.dice(g.p), true);
+    TRAD_CHOIX = tradLeurresDit(g);
     boutons($("choix"), options(rep, leurresDit(g), 3), rep, ok => juger(ok, rep, null));
     return true;
   },
@@ -609,6 +623,7 @@ const EX = {
     const juste = maj(L.np(q.c, q.d)) + ".";
     if (Math.random() < 0.5){
       const art = c => D.contenants[c][APPRENDRE].art, rep = art(q.c);
+      TRAD_CHOIX = {}; Object.keys(D.contenants).forEach(c => { TRAD_CHOIX[art(c)] = tradContenant(c); });
       ecran("cantidad", large(q.id), avecTrou(L.cantidad(q.d)));
       boutons($("choix"), options(rep, autresC.map(art), 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, juste); });
     } else {
@@ -617,6 +632,7 @@ const EX = {
       const autresD = Object.keys(D.contenus).filter(d => d !== q.d && (COMPAT[d] || []).includes(q.c) && !QTES().some(x => x.c === q.c && x.d === d));
       const rep = L.np(q.c, q.d);
       const leurres = melanger(autresC).slice(0, 2).map(c => L.np(c, q.d)).concat(autresD.length ? [L.np(q.c, hasard(autresD))] : []);
+      if (TR) { TRAD_CHOIX = {}; Object.keys(D.contenus).forEach(d => (COMPAT[d] || []).forEach(c => { TRAD_CHOIX[L.np(c, d)] = trQte(c, d).replace(/\.$/, ""); })); }
       ecran("cantidad", large(q.id), L.queEs, true);
       boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, juste));
     }
@@ -643,6 +659,8 @@ const EX = {
       const m = hasard(CAFE().filter(x => x.gens.includes(p)));
       motQ = w || {mot: r.mot, genre: r.genre}; sensQ = {role: {p, mot: r.mot}}; vuQ = null;
       const rep = latam(r.genre + " " + r.mot), tous = D.rolesChoix[APPRENDRE][D.sexe[p]];
+      const ROLE_DE = {"el camarero": "camarero", "la camarera": "camarera", "el cliente": "cliente", "la cliente": "cliente", "der Kellner": "Kellner", "die Kellnerin": "Kellnerin"};
+      if (TR) { TRAD_CHOIX = {}; tous.forEach(x => { const k = ROLE_DE[x]; if (k && ROLES_TR[k] && ROLES_TR[k][LANGUE]) TRAD_CHOIX[latam(x)] = ROLES_TR[k][LANGUE]; }); }
       ecran("cafeQui", large("cafe-" + m.id), avecTrou(L.rol(p)));
       boutons($("choix"), options(rep, tous.map(latam), 3), rep, ok => { $("trou").textContent = rep; juger(ok, rep, L.rol(p).replace("___", rep)); });
       return true;
@@ -653,11 +671,13 @@ const EX = {
     if (Math.random() < 0.55){
       sensQ = {cafe: {id: m.id}};
       const rep = latam(m[APPRENDRE].dit);
+      TRAD_CHOIX = {}; CAFE().forEach(x => { if (x.tr[LANGUE] && LANGUE !== APPRENDRE) TRAD_CHOIX[latam(x[APPRENDRE].dit)] = x.tr[LANGUE][0]; });
       ecran("cafeDit", large("cafe-" + m.id), L.dice(m.qui), true);
       boutons($("choix"), options(rep, autres.map(x => latam(x[APPRENDRE].dit)), 3), rep, ok => juger(ok, rep, null));
     } else {
       sensQ = {cafe: {id: m.id, fait: true}};
       const rep = latam(m[APPRENDRE].fait);
+      TRAD_CHOIX = {}; CAFE().forEach(x => { if (x.tr[LANGUE] && LANGUE !== APPRENDRE) TRAD_CHOIX[latam(x[APPRENDRE].fait)] = x.tr[LANGUE][1]; });
       ecran("cafeFait", large("cafe-" + m.id), APPRENDRE === "es" ? "¿Qué pasa?" : "Was passiert?", true);
       boutons($("choix"), options(rep, autres.map(x => latam(x[APPRENDRE].fait)), 3), rep, ok => juger(ok, rep, null));
     }
@@ -674,7 +694,7 @@ const EX = {
       motQ = w || {mot: it.mot, genre: it.genre}; sensQ = {cuesta: {cle: it.cle, p: it.prix}};
       ecran("cuenta", ardoise(), latam(L.cuesta(it)), true);
       const rep = prix(it.prix);
-      boutons($("choix"), options(rep, carte.filter(x => x.prix !== it.prix).map(x => prix(x.prix)), 3), rep, ok => juger(ok, rep, latam(L.seul(it, it.prix)), latam(L.seulDit(it, it.prix))));
+      boutons($("choix"), options(rep, carte.filter(x => x.prix !== it.prix).map(x => prix(x.prix)), 3), rep, ok => juger(ok, rep, latam(L.seul(it, it.prix))));
       return true;
     }
     const nbGens = Math.random() < 0.4 ? 2 : 1, qui = melanger(GENS).slice(0, nbGens);
@@ -685,7 +705,7 @@ const EX = {
     ecran("cuenta", ardoise(), latam(L.commande(qui, items, cuenta)));
     const rep = prix(total);
     const leurres = [50, -50, 100, -100, 20, -20, 30].map(d => total + d).filter(c => c > 0).map(prix);
-    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, L.total(total), L.totalDit(total)));
+    boutons($("choix"), options(rep, leurres, 3), rep, ok => juger(ok, rep, L.total(total)));
     return true;
   },
   // VRAI OU FAUX, dans tous les domaines du theme : un gout (« A Marta le gusta el café. »), une saveur, ce qu'on
@@ -704,7 +724,7 @@ const EX = {
       if (!q) continue;
       if (q.ecran) q.ecran(); else ecran("vraifaux", q.image, q.phrase, true);
       const rep = q.vrai ? L.vrai : L.faux;
-      boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, q.juste, q.lu));
+      boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, q.juste));
       return true;
     }
     return false;
@@ -763,7 +783,7 @@ const VF = {
     const carte = CARTE(), it = w && w.m ? carte.find(x => x.cle === w.m) : hasard(carte); if (!it) return false;
     motQ = w || {mot: it.mot, genre: it.genre}; sensQ = {cuesta: {cle: it.cle, p: it.prix}}; vuQ = null;
     const p = vrai ? it.prix : hasard(carte.filter(x => x.prix !== it.prix)).prix;
-    return {ecran: () => ecran("vraifaux", ardoise(), latam(L.seul(it, p)), true), juste: latam(L.seul(it, it.prix)), lu: latam(L.seulDit(it, it.prix)), vrai};
+    return {ecran: () => ecran("vraifaux", ardoise(), latam(L.seul(it, p)), true), juste: latam(L.seul(it, it.prix)), vrai};
   },
   // un moment au cafe : « Tomás pide la cuenta. » -- le faux est un autre moment (jamais l'autre main levee)
   cafe(w, vrai){
@@ -843,7 +863,7 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
-  repondu = false; $("suite").hidden = true; $("bas").hidden = true;
+  repondu = false; $("suite").hidden = true; $("bas").hidden = true; choixFaux = null;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
   // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
@@ -853,19 +873,19 @@ function montrer(){
     const autres = melanger(SORTES.filter(x => x !== derniereSorte));
     for (const so of autres){
       for (let n = 0; n < 25; n++){
-        motQ = null; vuQ = null; sensQ = null; sorteCourante = so;
+        motQ = null; vuQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = so;
         if (!EX[so](w)) break;
         if (!vus.has(cleQuestion())) return so;
       }
     }
     if (strict) return null;
     if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
-      motQ = null; vuQ = null; sensQ = null; sorteCourante = derniereSorte;
+      motQ = null; vuQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = derniereSorte;
       if (!EX[derniereSorte](w)) break;
       if (!vus.has(cleQuestion())) return derniereSorte;
     }
     for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
-      motQ = null; vuQ = null; sensQ = null; sorteCourante = so;
+      motQ = null; vuQ = null; sensQ = null; TRAD_CHOIX = null; sorteCourante = so;
       if (EX[so](w)) return so;
     }
     return null;

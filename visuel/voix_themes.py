@@ -20,7 +20,7 @@ RACINE = os.path.dirname(ICI)
 sys.path.insert(0, os.path.join(RACINE, "audio"))
 import lectures                                   # noqa : les nombres en lettres
 PORT = int(os.environ.get("THEMES_PORT", "8808"))
-THEMES = ["familia", "descripcion"]
+THEMES = ["familia", "descripcion", "manger"]
 CAS = {"es": ("es", "es"), "latam": ("es", "latam"), "de": ("de", "")}       # cle de voix.json -> (apprendre, variante)
 DOSSIER = {"es": "es-es", "latam": "es-419", "de": ""}
 
@@ -45,7 +45,7 @@ def textes_des_pages():
             for cle, (app, var) in CAS.items():
                 page = nav.new_page()
                 page.goto("http://127.0.0.1:%d/visuel/prototype/%s.html?apprendre=%s&variante=%s&lang=fr" % (PORT, th, app, var))
-                page.wait_for_function("() => typeof textesAVoix === 'function' && (typeof IDS === 'undefined' || IDS.length > 0)")
+                page.wait_for_function("() => typeof textesAVoix === 'function' && (typeof IDS === 'undefined' || IDS.length > 0) && (typeof D === 'undefined' || D)")
                 page.wait_for_timeout(300)
                 out[th][cle] = sorted(set(t for t in page.evaluate("() => textesAVoix()") if t))
                 page.close()
