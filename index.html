@@ -43907,7 +43907,7 @@ function orbPanelData(id){
                   action:"startPruefungSprechen", section:"pratique" },
                 // Essai dtz_oral (admin, francais seulement) : l'oral du DTZ avec Anna et Mark.
                 ...(essaiActif("dtz_oral") && (LANGUE_APPRISE === "de" || !LANGUE_APPRISE) ? [
-                { icon:"exercice", title:"Mark prépare le DTZ : l’oral (essai)", desc:"Anna joue l’examinatrice, Mark l’autre candidat ; tu réponds à voix haute, verdict A2 / B1",
+                { icon:"exercice", title:"Mark t’aide à préparer le DTZ : l’oral (essai)", desc:"Anna joue l’examinatrice, Mark l’autre candidat ; tu réponds à voix haute, verdict A2 / B1",
                   action:"ouvrirDtzOral", section:"pratique" }] : [])
                 // AUCUN PAQUET DE VOCABULAIRE ICI, ET C'EST LE POINT (v471).
                 //
@@ -46908,7 +46908,7 @@ function ouvrirDtzOral(){
     sceneOuverteDepuis = "dtz";
     const cadre = document.getElementById("sceneCadre");
     if(cadre){
-        cadre.title = "Mark prépare le DTZ";
+        cadre.title = "Mark t’aide à préparer le DTZ";
         cadre.src = baseScenes() + "dtz-oral.html?apprendre=de"
                   + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
                   + "&t=" + Date.now();
@@ -47555,7 +47555,7 @@ const ESSAIS = {
     // et l'examen blanc. Voir ouvrirDtzOral() et visuel/prototype/dtz-oral.html.
     dtz_oral: {
         etat: "admin",
-        titre: "Mark prépare le DTZ : l'oral",
+        titre: "Mark t'aide à préparer le DTZ : l'oral",
         desc: "Dans « Préparation à l'examen » : l'oral du DTZ en répétition (se présenter, répondre, décrire une photo, raconter et comparer, planifier avec Mark). Anna joue l'examinatrice et annonce une estimation A2 / B1 ; voix du téléphone en attendant les voix enregistrées."
     },
     premiers_pas: {
