@@ -353,10 +353,43 @@ def transports_plan():
     return c
 
 
+def loisirs_agenda():
+    """Les loisirs : un calendrier de quatre semaines (la frequence, l'outil du theme), et par-dessus trois
+    activites en ronds -- la guitare, le ballon, le velo -- chacune avec son coeur (« j'aime »). Pas une rangee de
+    personnes : des gestes et des jours coches."""
+    c = Image.new("RGB", (W, H), (250, 249, 246))
+    d = ImageDraw.Draw(c)
+    # le calendrier, a gauche : 7 colonnes, 4 semaines, les jours « oft » coches en ambre
+    # (sans les initiales des jours : la meme vignette sert a l'espagnol et a l'allemand)
+    x0, y0, cote, ecart = 26, 70, 44, 8
+    d.rounded_rectangle((x0 - 14, y0 - 16, x0 + 7 * (cote + ecart) + 6, y0 + 4 * (cote + ecart) + 8), radius=22, fill=(255, 255, 255), outline=(222, 218, 210), width=2)
+    oft = [[0, 2, 4, 5], [1, 2, 4, 6], [0, 2, 3, 5], [1, 3, 4, 6]]
+    for s in range(4):
+        for i in range(7):
+            x, y = x0 + i * (cote + ecart), y0 + s * (cote + ecart)
+            on = i in oft[s]
+            d.rounded_rectangle((x, y, x + cote, y + cote), radius=9, fill=(232, 162, 58) if on else (228, 232, 238))
+            if on:
+                d.line([(x + 12, y + 23), (x + 19, y + 31), (x + 33, y + 14)], fill=(255, 255, 255), width=5)
+    # les trois activites, en ronds qui debordent du calendrier, avec un coeur
+    coeur = lambda cx, cy, r: (d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=(255, 255, 255)),
+                               d.text((cx, cy + 2), "♥", font=ImageFont.truetype("C:/Windows/Fonts/seguisym.ttf", int(r * 1.5)), fill=(210, 72, 106), anchor="mm"))
+    # le carre de chaque photo, toute sa largeur, a la hauteur ou tiennent le visage ET l'objet (y0, en fraction)
+    for nom, (cx, cy, dia, y0) in [("guitarra", (468, 128, 190, .06)), ("futbol", (430, 318, 170, .04)), ("bici", (250, 420, 150, .1))]:
+        im = Image.open(os.path.join(P, "loisirs", nom + ".webp")).convert("RGB")
+        w, h = im.size
+        im = im.crop((0, int(h * y0), w, int(h * y0) + w))
+        r = rond(im, dia, bord=7)
+        c.paste(r, (cx - r.width // 2, cy - r.height // 2), r)
+        coeur(cx + dia // 2 - 14, cy - dia // 2 + 18, 24)
+    return c
+
+
 VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo,
              "cuerpo": corps_carte, "journee": journee_horloge, "manger": manger_ardoise,
              "metiers": metiers_polaroids,
-             "transportes": transports_plan}
+             "transportes": transports_plan,
+             "loisirs": loisirs_agenda}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)

@@ -22,7 +22,7 @@ RACINE = os.path.dirname(ICI)
 sys.path.insert(0, os.path.join(RACINE, "audio"))
 import lectures                                   # noqa : les nombres en lettres
 PORT = int(os.environ.get("THEMES_PORT", "8808"))
-THEMES = ["familia", "descripcion", "ropa", "cuerpo", "manger", "transportes"]
+THEMES = ["familia", "descripcion", "ropa", "cuerpo", "manger", "transportes", "loisirs"]
 # les themes sans page anglaise (pas de `en: true` dans THEMES_ILLUSTRES) : jamais ouverts en anglais
 SANS_EN = ["manger", "transportes"]
 THEMES_EN = ["contrarios"]      # ses voix es et de sont dans contrarios.json ; l'anglais passe par themes/voix.js

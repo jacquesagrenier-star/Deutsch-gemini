@@ -9726,6 +9726,13 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
             <div class="orb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="2.5"/><path d="M5 11h14M8 20l1.5-3M16 20l-1.5-3"/><path d="M8.5 14h.01M15.5 14h.01"/></svg></div>
             <div><strong data-i18n="trans_tuile">Les transports</strong></div>
         </div>
+        <!-- Les loisirs (3 nov. 2026, vague 2) : quinze activites photographiees avec des personnes connues ; me gusta /
+             gern, jugar ou tocar / spielen, machen, fahren, la frequence (un calendrier de quatre semaines) et proposer
+             une sortie. visuel/prototype/loisirs.html. es et de. -->
+        <div class="orb hidden" data-orbid="loisirs" id="tuileLoisirs" onclick="ouvrirThemeIllustre('loisirs')" role="button" tabindex="0">
+            <div class="orb-icon"><svg viewBox="0 0 24 24"><circle cx="8" cy="15" r="5"/><path d="M8 10v10M3 15h10"/><path d="M15 4v10.5"/><circle cx="13" cy="15" r="2"/><path d="M15 4l5 1.5v3L15 7"/></svg></div>
+            <div><strong data-i18n="loi_tuile">Les loisirs</strong></div>
+        </div>
 
         <!-- Section « La phrase ». Voir le commentaire de .orb-section : les
              quatre sections restent DEPLIEES, et l'en-tete est collant. -->
@@ -14457,6 +14464,7 @@ const I18N = {
         emo_court: "Émotions",
         con_tuile: "Les contraires",
         gato_tuile: "Où est le chat ?",
+        loi_tuile: "Les loisirs",
         ropa_tuile: "Les vêtements",
         cue_tuile: "Le corps et la santé",
         cue_court: "Le corps",
@@ -15990,6 +15998,7 @@ const I18N = {
         emo_court: "Feelings",
         con_tuile: "Opposites",
         gato_tuile: "Where's the cat?",
+        loi_tuile: "Free time",
         ropa_tuile: "Clothes",
         cue_tuile: "Body and health",
         cue_court: "Body",
@@ -17525,6 +17534,7 @@ const I18N = {
         emo_court: "Duygular",
         con_tuile: "Zıt anlamlılar",
         gato_tuile: "Kedi nerede?",
+        loi_tuile: "Boş zaman",
         ropa_tuile: "Giysiler",
         cue_tuile: "Vücut ve sağlık",
         cue_court: "Vücut",
@@ -19472,6 +19482,7 @@ const I18N = {
         emo_court: "Емоції",
         con_tuile: "Протилежності",
         gato_tuile: "Де кіт?",
+        loi_tuile: "Дозвілля",
         ropa_tuile: "Одяг",
         cue_tuile: "Тіло і здоров'я",
         cue_court: "Тіло",
@@ -21733,6 +21744,7 @@ const I18N = {
         emo_court: "احساسات",
         con_tuile: "متضادها",
         gato_tuile: "گربه کجاست؟",
+        loi_tuile: "اوقات فراغت",
         ropa_tuile: "لباس‌ها",
         cue_tuile: "بدن و سلامتی",
         cue_court: "بدن",
@@ -23437,6 +23449,7 @@ const I18N = {
         emo_court: "المشاعر",
         con_tuile: "الأضداد",
         gato_tuile: "أين القطّ؟",
+        loi_tuile: "أوقات الفراغ",
         ropa_tuile: "الملابس",
         cue_tuile: "الجسم والصحة",
         cue_court: "الجسم",
@@ -23821,6 +23834,7 @@ const I18N = {
         emo_court: "Emoções",
         con_tuile: "Os contrários",
         gato_tuile: "Onde está o gato?",
+        loi_tuile: "Lazer",
         ropa_tuile: "As roupas",
         cue_tuile: "O corpo e a saúde",
         cue_court: "O corpo",
@@ -25415,6 +25429,7 @@ const I18N = {
         emo_court: "Emocje",
         con_tuile: "Przeciwieństwa",
         gato_tuile: "Gdzie jest kot?",
+        loi_tuile: "Czas wolny",
         ropa_tuile: "Ubrania",
         cue_tuile: "Ciało i zdrowie",
         cue_court: "Ciało",
@@ -27009,6 +27024,7 @@ const I18N = {
         emo_court: "Эмоции",
         con_tuile: "Противоположности",
         gato_tuile: "Где кот?",
+        loi_tuile: "Досуг",
         ropa_tuile: "Одежда",
         cue_tuile: "Тело и здоровье",
         cue_court: "Тело",
@@ -28605,6 +28621,7 @@ const I18N = {
         emo_court: "Gefühle",
         con_tuile: "Gegensätze",
         gato_tuile: "Wo ist die Katze?",
+        loi_tuile: "Freizeit",
         ropa_tuile: "Kleidung",
         cue_tuile: "Körper und Gesundheit",
         cue_court: "Körper",
@@ -30236,6 +30253,7 @@ const I18N = {
         emo_court: "Emociones",
         con_tuile: "Los contrarios",
         gato_tuile: "¿Dónde está el gato?",
+        loi_tuile: "El tiempo libre",
         ropa_tuile: "La ropa",
         cue_tuile: "El cuerpo y la salud",
         cue_court: "El cuerpo",
@@ -43902,7 +43920,9 @@ function orbPanelData(id){
                 { icon:"ale", title:t("op_verben_o3_t"), desc:t("op_all_levels_mix"), action:"startVerbeRandomMix", section:"pratique" },
                 { icon:"exercice", title:t("op_verben_o4_t"), desc:t("op_verben_o4_d"), action:"openVerbenTempsInfo", section:"pratique" }
             ].concat(LANGUE_APPRISE === "es" ? [
-                { icon:"exercice", title:t("op_es_gustar_t"), desc:t("op_es_gustar_d"), action:"startGustarUebung", section:"pratique" }
+                { icon:"exercice", title:t("op_es_gustar_t"), desc:t("op_es_gustar_d"), action:"startGustarUebung", section:"pratique" },
+                // 3 nov. 2026 : le theme illustre « Les loisirs » (me gusta + infinitif, en images)
+                { icon:"exercice", title:t("loi_tuile"), desc:"me gusta bailar · ¿Quieres jugar al tenis?", action:"ouvrirThemeLoisirs", section:"pratique" }
             ] : [
                 // Le francais n'a qu'un verbe la ou l'allemand en a deux, et
                 // la frontiere est nette : kennen une personne ou un lieu,
@@ -44001,7 +44021,10 @@ function orbPanelData(id){
                 { icon:"exercice", title:t("op_adverbien_o2_t"), desc:tf("op_adverbien_o2_d", { f: famillesAdverbes() }), action:"startAdverbienNuance", section:"pratique" },
                 { icon:"carte", title:t("op_adverbien_o3_t"), desc:tf("op_adverbien_o3_d", { n:(adverbienTheme.words || []).length, f: famillesAdverbes() }), action:"openAdverbienVokabular", section:"mots" },
                 { icon:"casque", title:t("op_nomen_o5_t"), desc:tf("op_nomen_o5_d", { n: DICTEE_NOMS }), action:"startDicteeAdverbes", section:"pratique" }
-            ]
+            // 3 nov. 2026 : le theme illustre « Les loisirs », la frequence en images (un calendrier de quatre semaines)
+            ].concat(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de" ? [
+                { icon:"exercice", title:t("loi_tuile"), desc:LANGUE_APPRISE === "es" ? "siempre · a menudo · a veces · nunca" : "immer · oft · manchmal · nie · gern", action:"ouvrirThemeLoisirs", section:"pratique" }
+            ] : [])
         };
     }
     if(id === "schreiben"){
@@ -47141,7 +47164,8 @@ const THEMES_ILLUSTRES = {familia: {page: "familia.html", titre: "fam_tuile", tu
                           journee: {page: "journee.html", titre: "jour_tuile", court: "jour_court", tuile: "tuileJournee"},
                           manger: {page: "manger.html", titre: "man_tuile", court: "man_court", tuile: "tuileManger"},
                           metiers: {page: "metiers.html", titre: "met_tuile", tuile: "tuileMetiers"},
-                          transportes: {page: "transportes.html", titre: "trans_tuile", tuile: "tuileTransportes"}};
+                          transportes: {page: "transportes.html", titre: "trans_tuile", tuile: "tuileTransportes"},
+                          loisirs: {page: "loisirs.html", titre: "loi_tuile", tuile: "tuileLoisirs"}};
 // Les themes de la langue apprise : tous en espagnol et en allemand, ceux qui ont leurs phrases en anglais.
 function themesIllustresOuverts(){
     if(LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de") return Object.keys(THEMES_ILLUSTRES);
@@ -47230,6 +47254,8 @@ function voixThemeIllustre(){
 function ouvrirDescripcion(){ ouvrirThemeIllustre("descripcion"); }
 // le bouton M'ENTRAINER de « Comprendre les prepositions » (de), de la fiche « a, en, de » (es) et du panneau Prepositions
 function ouvrirThemeGato(){ ouvrirThemeIllustre("gato"); }
+// les lignes « Les loisirs » des panneaux Adverbes (de, es) et Verbes (es, a cote de gustar)
+function ouvrirThemeLoisirs(){ ouvrirThemeIllustre("loisirs"); }
 try{
     themesIllustresOuverts().forEach(nom => { const el = document.getElementById(THEMES_ILLUSTRES[nom].tuile); if(el) el.classList.remove("hidden"); });
 }catch(e){}

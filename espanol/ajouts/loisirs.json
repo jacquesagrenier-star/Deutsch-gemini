@@ -1,0 +1,37 @@
+{
+ "_lisez_moi": [
+  "Les mots du thème illustré « Les loisirs » (visuel/prototype/loisirs.html) qui manquent au corpus espagnol : el fútbol, el tenis, el baloncesto (leur ligne allemande existe déjà : der Fußball, das Tennis, der Basketball) et l'adverbe a menudo (oft existe en allemand). Sans eux, le thème marche, mais ces mots n'entrent pas dans les cartes.",
+  "PROPOSÉ, PAS APPLIQUÉ (3 nov. 2026) : accord de Jacques d'abord. Puis : python espanol/ajouter_mots.py espanol/ajouts/loisirs.json (idempotent). « a menudo » demande le bloc « adverbios » d'ajouter_mots.py, qui arrive avec le thème « La journée ». Leurs voix (Lolita et Monica, ElevenLabs v2) : avec l'accord de Jacques.",
+  "Noms : [mot, article, pluriel, fr, en, exemple, exemple fr, exemple en, {pt, ar, de}] ; adverbes (par niveau) : [mot, kategorie, theme_source, fr, en, exemple, exemple fr, exemple en, {pt, ar, de}]."
+ ],
+ "ajouts": {
+  "el_ocio": [
+   ["fútbol", "el", null, "le football", "soccer",
+    "Los sábados juego al fútbol con mis amigos.", "Le samedi, je joue au football avec mes amis.", "On Saturdays I play soccer with my friends.",
+    {"traduction_pt": "o futebol", "exemple_pt": "Aos sábados eu jogo futebol com meus amigos.",
+     "traduction_ar": "كرة القدم", "exemple_ar": "أيام السبت ألعب كرة القدم مع أصدقائي.",
+     "traduction_de": "der Fußball", "exemple_de": "Samstags spiele ich mit meinen Freunden Fußball."}],
+   ["tenis", "el", null, "le tennis", "tennis",
+    "Mi hermana juega al tenis dos veces por semana.", "Ma sœur joue au tennis deux fois par semaine.", "My sister plays tennis twice a week.",
+    {"traduction_pt": "o tênis", "exemple_pt": "Minha irmã joga tênis duas vezes por semana.",
+     "traduction_ar": "التنس", "exemple_ar": "تلعب أختي التنس مرتين في الأسبوع.",
+     "traduction_de": "das Tennis", "exemple_de": "Meine Schwester spielt zweimal pro Woche Tennis."}]
+  ],
+  "el_deporte": [
+   ["baloncesto", "el", null, "le basket", "basketball",
+    "Diego juega al baloncesto en el equipo del barrio.", "Diego joue au basket dans l'équipe du quartier.", "Diego plays basketball on the neighborhood team.",
+    {"traduction_pt": "o basquete", "exemple_pt": "O Diego joga basquete no time do bairro.",
+     "traduction_ar": "كرة السلة", "exemple_ar": "يلعب دييغو كرة السلة في فريق الحيّ.",
+     "traduction_de": "der Basketball", "exemple_de": "Diego spielt im Team aus dem Viertel Basketball."}]
+  ]
+ },
+ "adverbios": {
+  "A1": [
+   ["a menudo", "frecuencia", "palabras_utiles", "souvent", "often",
+    "Vamos a menudo al cine.", "Nous allons souvent au cinéma.", "We often go to the cinema.",
+    {"traduction_pt": "com frequência", "exemple_pt": "Vamos ao cinema com frequência.",
+     "traduction_ar": "غالبًا، كثيرًا", "exemple_ar": "نذهب إلى السينما كثيرًا.",
+     "traduction_de": "oft", "exemple_de": "Wir gehen oft ins Kino."}]
+  ]
+ }
+}
