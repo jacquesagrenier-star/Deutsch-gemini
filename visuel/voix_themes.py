@@ -97,8 +97,9 @@ def main():
         print("  (emotions non lues : %s)" % e)
     # les contraires (3 nov. 2026) : la decouverte et les mots cles, tels que contrarios.json les donne
     # (audio/manifest.py, contrarios_textes ; l'Amerique latine dit les memes textes que l'Espagne)
+    # -- en COMPLETANT l'anglais lu dans la page (THEMES_EN), jamais en le remplacant
     import manifest
-    textes["contrarios"] = {"es": manifest.contrarios_textes("es"), "latam": manifest.contrarios_textes("latam"), "de": manifest.contrarios_textes("de")}
+    textes.setdefault("contrarios", {}).update({"es": manifest.contrarios_textes("es"), "latam": manifest.contrarios_textes("latam"), "de": manifest.contrarios_textes("de")})
     sons = {}
     total = 0
     print("\n  CE QUI MANQUE (multilingual v2)")

@@ -7899,9 +7899,9 @@ body:not([data-ecran]) #fondMonde .fm-lettres, body[data-ecran="home"] #fondMond
    derriere le verre, a .34 ils disparaissaient. */
 body:not([data-ecran]) #fondMonde .fm-lettres span, body[data-ecran="home"] #fondMonde .fm-lettres span{opacity:.62; color:#8DA3B4;}
 body[data-theme="dark"]:not([data-ecran]) #fondMonde .fm-lettres span, body[data-theme="dark"][data-ecran="home"] #fondMonde .fm-lettres span{opacity:.75; color:#4A6378;}
-body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 340s linear infinite;}   /* v1004 : plus lent (Jacques) ; v1084 : deux tours en 340 s, la meme vitesse */
+body:not([data-ecran]) #fondMonde .fm-piste, body[data-ecran="home"] #fondMonde .fm-piste{animation:fmDefile 340s linear infinite;}   /* v1004 : plus lent (Jacques) ; v1089 : deux tours en 340 s, la meme vitesse */
 body:not([data-ecran]) #fondMonde .fm-lettres-piste, body[data-ecran="home"] #fondMonde .fm-lettres-piste{animation:fmLettres 130s linear infinite;}
-/* v1084 : DEUX TOURS DE CARTE PAR BOUCLE, pas un (Jacques, 3 nov. 2026, iPhone : « Lorsque j'ouvre l'application allemande,
+/* v1089 : DEUX TOURS DE CARTE PAR BOUCLE, pas un (Jacques, 3 nov. 2026, iPhone : « Lorsque j'ouvre l'application allemande,
    on voit la map se deplacer vers la gauche. Mais apres 5 ou 6 secondes, il y a un petit flash »). Le defilement part du pays
    de la langue apprise (poserPaysCarte, un delai negatif) : pour l'allemand, ce point tombait a 165,6 s d'une boucle de 170 s,
    et la boucle recommencait 4,4 s apres l'arrivee sur l'accueil -- en espagnol apres 11 s, en japonais apres pres de 2 min.
@@ -8725,7 +8725,7 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <!-- LA VERSION A COTE DU LOGO (v1001). Elle etait en pied d'accueil -- et avant,
              calee sur la carte, ou elle a fini par recouvrir le tableau. Ici elle ne coute
              aucune hauteur, et on y verifie toujours qu'une mise a jour est arrivee. -->
-        <span class="subtitle-version">v1088</span>
+        <span class="subtitle-version">v1089</span>
     </div>
     <div class="theme-toggle">
         <button id="uiLangToggleBtn" class="theme-icon-btn" style="font-size:15px;" onclick="toggleUiLang()" title="Change language / Changer de langue" aria-label="Change language">
@@ -46891,7 +46891,7 @@ function poserPaysCarte(){
         const code = drapeauLangueApprise();
         const fm = document.getElementById("fondMonde");
         const largeur = (fm && fm.getBoundingClientRect().width) || window.innerWidth || 375;
-        // la piste : 960 px pour 360 degres, defilement de -338 a -2258 px en 340 s (fmDefile, deux tours depuis la v1084) ;
+        // la piste : 960 px pour 360 degres, defilement de -338 a -2258 px en 340 s (fmDefile, deux tours depuis la v1089) ;
         // le depart se cale dans le PREMIER tour, d'ou au moins 170 s avant la boucle
         let t = largeur / 2 - (LONGITUDE_PAYS[code] + 180) / 360 * 960;
         while(t >= -338) t -= 960;
@@ -53008,7 +53008,7 @@ document.addEventListener("visibilitychange", () => {
 
 
 // Le numero de version est affiche a cote du titre. Il n'y a volontairement
-const APP_VERSION = 1088;
+const APP_VERSION = 1089;
 
 function afficherNumeroVersion(){
     const el = document.querySelector(".subtitle-version");
