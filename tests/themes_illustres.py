@@ -19,7 +19,7 @@ RACINE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # 8798 par defaut ; THEMES_PORT=<n> quand une autre session en lance en meme temps (3 nov. 2026 : avec
 # allow_reuse_address, deux serveurs sur le meme port se lisent l'un l'autre sous Windows -- vecu).
 PORT = int(os.environ.get("THEMES_PORT", "8798"))
-THEMES = ["familia", "descripcion", "emociones"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
+THEMES = ["familia", "descripcion", "emociones", "contrarios"]          # un theme qui s'ajoute s'ajoute ici et dans THEMES_ILLUSTRES (index.html)
 PLANCHER = 100
 
 COMPTER = """(n) => {

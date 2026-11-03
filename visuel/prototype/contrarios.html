@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Los contrarios</title>
+<!--
+  LES CONTRAIRES (theme illustre, 3 nov. 2026). Des CHOSES et des lieux, pas des personnes : la fin de la liste
+  « Adjetivos comunes » du cours d'espagnol de Jacques (accord du 3 nov. : « go ») -- ancho / estrecho, abierto /
+  cerrado, bueno / malo, raro, extrano, precioso, asqueroso, bonito / feo ; et grande / pequeno, nuevo / viejo,
+  lleno / vacio. Une image par mot, les paires cote a cote (la meme porte ouverte puis fermee). Feo ne va jamais
+  sous un vrai visage : un vase. Images et mots : visuel/contrarios/contrarios.py -> contrarios/contrarios.json.
+  L'axe : le contraire, l'accord (la puerta abierta, el vaso lleno) et ser / estar (la calle ES estrecha, la puerta
+  ESTA abierta) en espagnol ; en allemand, la terminaison (der Koffer ist gross / ein grosser Koffer).
+  Ouverte par l'app dans le cadre des scenes (sceneCadre), elle parle comme une scene : « exercice » et « bonne »
+  a chaque reponse, « reponse » {mot, genre, cat, juste} pour le mot teste, « fini » et « fermer » a la fin.
+  Parametres : apprendre=es|de, lang=<interface>, nuit=1, seance=1 (six questions, pas de decouverte),
+  variante=latam (la voix de Monica), r=<AUDIO_REVISION>.
+  Le tirage suit les mots (themes/tirage.js). Les phrases sont FABRIQUEES depuis contrarios.json, et un leurre n'est
+  jamais qu'un mot clairement faux pour l'image (le champ « faux ») : une image ne dit que ce qu'elle montre.
+-->
+<style>
+:root{--fond1:#82AFDB;--fond3:#C0D6EA;--encre:#1C2430;--gris:#4C566B;--ambre:#E8A23A;--ambre-f:#A86A0E;--vert:#2F9E6A;--rouge:#C8473A;
+  --verre:rgba(255,255,255,.88);--bord:rgba(255,255,255,.95);--carte:#F7F8FA;--police:Nunito,system-ui,-apple-system,"Segoe UI",sans-serif}
+html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre-f:#E8A23A;--vert:#5CC98F;--rouge:#F07F72;
+  --verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
+.haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
+.retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
+html[dir="rtl"] .retour{transform:scaleX(-1)}
+.titre{flex:1;font-weight:900;font-size:18px}
+.compte{font-weight:800;font-size:14px;color:var(--gris)}
+.barre{max-width:560px;margin:0 auto 12px;height:6px;border-radius:3px;background:rgba(28,36,48,.12);overflow:hidden}
+.barre i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2BB5AA,#14807A);transition:width .3s}
+main{max-width:560px;margin:0 auto;background:var(--verre);border:1px solid var(--bord);border-radius:22px;padding:12px;display:flex;flex-direction:column;gap:12px}
+.consigne{font-size:14px;font-weight:700;color:var(--gris);margin:0}
+.enonce{direction:ltr;text-align:left;background:var(--carte);border-radius:14px;padding:12px 14px;font-weight:800;line-height:1.5;font-size:17px}
+.enonce.centre{text-align:center;font-size:19px}
+.trou{display:inline-block;min-width:64px;border-bottom:2px solid var(--ambre);text-align:center;color:var(--ambre-f)}
+/* les images sont en 4:3 ; jamais plus hautes que l'ecran ne le permet */
+.photo{display:block;width:100%;max-width:420px;margin:0 auto;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:16px;background:var(--carte)}
+/* deux images cote a cote : la gauche reste a gauche en arabe et en persan (« de la izquierda », « links ») */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:8px;direction:ltr}
+.duo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;background:var(--carte)}
+/* des images a toucher (« ¿Qué puerta está abierta? », l'ecoute) */
+.rangee{display:grid;grid-template-columns:1fr 1fr;gap:8px;direction:ltr}
+.rangee.trois{grid-template-columns:1fr 1fr 1fr}
+.rangee button{border:3px solid transparent;border-radius:14px;background:var(--carte);padding:0;cursor:pointer;overflow:hidden;display:block}
+.rangee img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.rangee button.juste{border-color:var(--vert)} .rangee button.faux{border-color:var(--rouge)}
+.choix{display:flex;flex-wrap:wrap;gap:8px}
+.choix.centre{justify-content:center}
+.choix button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:9px 15px;font:800 15px var(--police);cursor:pointer}
+.choix button.juste{background:var(--vert);border-color:var(--vert);color:#fff}
+.choix button.faux{background:var(--rouge);border-color:var(--rouge);color:#fff}
+button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
+button:disabled{cursor:default}
+.ecoute{width:48px;height:48px;border-radius:50%;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);cursor:pointer;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.ecoute svg{width:24px;height:24px}
+.ecoute.grand{width:64px;height:64px;margin:0 auto} .ecoute.grand svg{width:32px;height:32px}
+.retourMsg{min-height:1.4em;font-weight:800;font-size:15px;margin:0;line-height:1.45}
+.retourMsg.ok{color:var(--vert)} .retourMsg.ko{color:var(--rouge)}
+.retourMsg .phrase{display:block;color:var(--encre);font-weight:700}
+.retourMsg .trad{display:flex;align-items:center;gap:8px;margin-top:6px;color:var(--gris);font-weight:700}
+.retourMsg .trad .ecoute{width:38px;height:38px} .retourMsg .trad .ecoute svg{width:19px;height:19px}
+/* la decouverte : la fiche de l'image touchee, puis la planche des paires */
+.fiche{background:var(--carte);border-radius:14px;padding:10px;display:grid;grid-template-columns:minmax(120px,48%) 1fr;gap:12px;align-items:center}
+.fiche img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:10px;display:block;background:var(--verre)}
+.fiche .mot{font-weight:900;font-size:24px;color:var(--ambre-f);line-height:1.15}
+.fiche .sens{font-weight:700;font-size:14px;color:var(--gris);margin-top:2px}
+.fiche .dit{font-weight:800;font-size:16px;line-height:1.4;margin-top:6px}
+.fiche .ligne{display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}
+.fiche .vers{border:0;background:none;color:var(--gris);font:700 14px var(--police);cursor:pointer;padding:4px 0;text-align:start}
+.fiche .vers b{color:var(--encre)}
+.planche{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.paire{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:3px;background:var(--carte);border-radius:12px;padding:3px;direction:ltr}
+.paire button{border:3px solid transparent;border-radius:10px;padding:0;background:none;cursor:pointer;overflow:hidden;display:block}
+.paire img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;background:var(--verre)}
+.paire button.choisi{border-color:var(--ambre)}
+.paire .signe{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;background:var(--ambre);color:#1C2430;
+  font:900 14px/24px var(--police);text-align:center;pointer-events:none;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.regle{margin:0;font-size:14px;font-weight:700;line-height:1.45;color:var(--gris);background:var(--carte);border-radius:12px;padding:10px 12px}
+.suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
+  color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
+.suite[hidden]{display:none}
+.fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
+.fin .score{font-size:22px;font-weight:900}
+.fin button{border:2px solid var(--ambre);background:var(--verre);color:var(--encre);border-radius:999px;padding:10px 18px;font:800 16px var(--police);cursor:pointer}
+[lang]{unicode-bidi:isolate}
+</style>
+</head>
+<body>
+<div class="haut"><button class="retour" id="retour" type="button">‹</button><div class="titre" id="titre"></div><div class="compte" id="compte" dir="ltr"></div></div>
+<div class="barre"><i id="barre"></i></div>
+<main id="zone"></main>
+<button class="suite" id="suite" type="button" hidden></button>
+<script src="themes/tirage.js?v=1"></script>
+<script>
+const Q = new URLSearchParams(location.search);
+const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
+const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
+const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
+if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+document.documentElement.lang = LANGUE;
+document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
+// vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
+const NB = Q.get("seance") === "1" ? 6 : 20;
+
+const TEXTES = {
+  titre:     {fr:"Les contraires", en:"Opposites", tr:"Zıt anlamlılar", uk:"Протилежності", fa:"متضادها", ar:"الأضداد", pt:"Os contrários", pl:"Przeciwieństwa", ru:"Противоположности", de:"Gegensätze"},
+  intro:     {fr:"Touche une image : tu vois le mot, tu l'entends, et son contraire est juste à côté.", en:"Tap a picture to see and hear the word; its opposite is right next to it.", tr:"Bir resme dokun: kelimeyi gör ve dinle; zıttı hemen yanında.", uk:"Торкнися зображення: побачиш і почуєш слово, а поруч — його протилежність.", fa:"روی یک تصویر بزن تا واژه را ببینی و بشنوی؛ متضادش درست کنارش است.", ar:"المس صورة لترى الكلمة وتسمعها، وضدّها بجانبها مباشرة.", pt:"Toque em uma imagem para ver e ouvir a palavra; o contrário está logo ao lado.", pl:"Dotknij obrazka, aby zobaczyć i usłyszeć słowo; jego przeciwieństwo jest tuż obok.", ru:"Нажми на картинку, чтобы увидеть и услышать слово; рядом — его противоположность.", de:"Tippe auf ein Bild: Du siehst und hörst das Wort, sein Gegenteil steht gleich daneben."},
+  regleEs:   {fr:"Ce qu'est une chose, sa forme, sa taille : ser (la calle es estrecha). Comment elle se trouve en ce moment : estar (la puerta está abierta, el vaso está vacío). L'adjectif s'accorde avec le nom : el vaso lleno, la botella llena.", en:"What a thing is like, its shape and size: ser (la calle es estrecha). How it is right now: estar (la puerta está abierta, el vaso está vacío). The adjective agrees with the noun: el vaso lleno, la botella llena.", tr:"Bir şeyin nasıl olduğu, biçimi, boyutu: ser (la calle es estrecha). Şu anki durumu: estar (la puerta está abierta, el vaso está vacío). Sıfat isme uyar: el vaso lleno, la botella llena.", uk:"Якою є річ, її форма й розмір: ser (la calle es estrecha). Який її стан зараз: estar (la puerta está abierta, el vaso está vacío). Прикметник узгоджується з іменником: el vaso lleno, la botella llena.", fa:"اینکه چیزی چگونه است، شکل و اندازه‌اش: ser (la calle es estrecha). حالِ اکنونش: estar (la puerta está abierta، el vaso está vacío). صفت با اسم هماهنگ می‌شود: el vaso lleno، la botella llena.", ar:"ما هو الشيء، شكله وحجمه: ser ‏(la calle es estrecha). حاله الآن: estar ‏(la puerta está abierta، el vaso está vacío). تتوافق الصفة مع الاسم: el vaso lleno، la botella llena.", pt:"O que uma coisa é, sua forma, seu tamanho: ser (la calle es estrecha). Como ela está agora: estar (la puerta está abierta, el vaso está vacío). O adjetivo concorda com o substantivo: el vaso lleno, la botella llena.", pl:"Jaka jest rzecz, jej kształt i rozmiar: ser (la calle es estrecha). W jakim jest stanie teraz: estar (la puerta está abierta, el vaso está vacío). Przymiotnik zgadza się z rzeczownikiem: el vaso lleno, la botella llena.", ru:"Какая вещь, её форма и размер: ser (la calle es estrecha). В каком она состоянии сейчас: estar (la puerta está abierta, el vaso está vacío). Прилагательное согласуется с существительным: el vaso lleno, la botella llena.", de:"Wie eine Sache ist, ihre Form, ihre Größe: ser (la calle es estrecha). Wie sie gerade ist: estar (la puerta está abierta, el vaso está vacío). Das Adjektiv richtet sich nach dem Nomen: el vaso lleno, la botella llena."},
+  regleDe:   {fr:"Après sein, l'adjectif ne change pas : der Koffer ist groß. Devant le nom, il prend une terminaison : ein großer Koffer, eine große Tür, ein großes Glas.", en:"After sein, the adjective does not change: der Koffer ist groß. Before the noun, it takes an ending: ein großer Koffer, eine große Tür, ein großes Glas.", tr:"sein'dan sonra sıfat değişmez: der Koffer ist groß. İsmin önünde ek alır: ein großer Koffer, eine große Tür, ein großes Glas.", uk:"Після sein прикметник не змінюється: der Koffer ist groß. Перед іменником він має закінчення: ein großer Koffer, eine große Tür, ein großes Glas.", fa:"بعد از sein صفت تغییر نمی‌کند: der Koffer ist groß. پیش از اسم، پسوند می‌گیرد: ein großer Koffer، eine große Tür، ein großes Glas.", ar:"بعد sein لا تتغيّر الصفة: der Koffer ist groß. وقبل الاسم تأخذ نهاية: ein großer Koffer، eine große Tür، ein großes Glas.", pt:"Depois de sein, o adjetivo não muda: der Koffer ist groß. Antes do substantivo, ele ganha uma terminação: ein großer Koffer, eine große Tür, ein großes Glas.", pl:"Po sein przymiotnik się nie zmienia: der Koffer ist groß. Przed rzeczownikiem dostaje końcówkę: ein großer Koffer, eine große Tür, ein großes Glas.", ru:"После sein прилагательное не меняется: der Koffer ist groß. Перед существительным оно получает окончание: ein großer Koffer, eine große Tür, ein großes Glas.", de:"Nach sein bleibt das Adjektiv gleich: der Koffer ist groß. Vor dem Nomen bekommt es eine Endung: ein großer Koffer, eine große Tür, ein großes Glas."},
+  contraireDe:{fr:"Le contraire :", en:"Opposite:", tr:"Zıttı:", uk:"Протилежне:", fa:"متضاد:", ar:"الضد:", pt:"O contrário:", pl:"Przeciwieństwo:", ru:"Противоположность:", de:"Gegenteil:"},
+  presque:   {fr:"Presque le même sens :", en:"Almost the same:", tr:"Neredeyse aynı anlamda:", uk:"Майже те саме:", fa:"تقریباً هم‌معنی:", ar:"بالمعنى نفسه تقريبًا:", pt:"Quase o mesmo:", pl:"Prawie to samo:", ru:"Почти то же самое:", de:"Fast dasselbe:"},
+  ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
+  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  comment:   {fr:"Regarde l'image et choisis le bon mot.", en:"Look at the picture and choose the right word.", tr:"Resme bak ve doğru kelimeyi seç.", uk:"Подивися на зображення й обери правильне слово.", fa:"به تصویر نگاه کن و واژهٔ درست را انتخاب کن.", ar:"انظر إلى الصورة واختر الكلمة الصحيحة.", pt:"Olhe a imagem e escolha a palavra certa.", pl:"Spójrz na obrazek i wybierz właściwe słowo.", ru:"Посмотри на картинку и выбери правильное слово.", de:"Sieh dir das Bild an und wähle das richtige Wort."},
+  cual:      {fr:"Lis la question et touche la bonne image.", en:"Read the question and tap the right picture.", tr:"Soruyu oku ve doğru resme dokun.", uk:"Прочитай запитання й торкнися потрібного зображення.", fa:"سؤال را بخوان و روی تصویر درست بزن.", ar:"اقرأ السؤال والمس الصورة الصحيحة.", pt:"Leia a pergunta e toque na imagem certa.", pl:"Przeczytaj pytanie i dotknij właściwego obrazka.", ru:"Прочитай вопрос и нажми на нужную картинку.", de:"Lies die Frage und tippe auf das richtige Bild."},
+  contraire: {fr:"Regarde les deux images et trouve le contraire.", en:"Look at both pictures and find the opposite.", tr:"İki resme bak ve zıttını bul.", uk:"Подивися на обидва зображення й знайди протилежне.", fa:"به هر دو تصویر نگاه کن و متضاد را پیدا کن.", ar:"انظر إلى الصورتين وجد العكس.", pt:"Olhe as duas imagens e encontre o contrário.", pl:"Spójrz na oba obrazki i znajdź przeciwieństwo.", ru:"Посмотри на обе картинки и найди противоположность.", de:"Sieh dir beide Bilder an und finde das Gegenteil."},
+  serEstar:  {fr:"Choisis le bon verbe : es ou está ?", en:"Choose the right verb: es or está?", tr:"Doğru fiili seç: es mi está mı?", uk:"Обери правильне дієслово: es чи está?", fa:"فعل درست را انتخاب کن: es یا está؟", ar:"اختر الفعل الصحيح: es أم está؟", pt:"Escolha o verbo certo: es ou está?", pl:"Wybierz właściwy czasownik: es czy está?", ru:"Выбери правильный глагол: es или está?", de:"Wähle das richtige Verb: es oder está?"},
+  accord:    {fr:"Choisis la bonne forme : l'adjectif s'accorde avec le nom.", en:"Choose the right form: the adjective agrees with the noun.", tr:"Doğru biçimi seç: sıfat isme uyar.", uk:"Обери правильну форму: прикметник узгоджується з іменником.", fa:"شکل درست را انتخاب کن: صفت با اسم هماهنگ می‌شود.", ar:"اختر الصيغة الصحيحة: تتوافق الصفة مع الاسم.", pt:"Escolha a forma certa: o adjetivo concorda com o substantivo.", pl:"Wybierz właściwą formę: przymiotnik zgadza się z rzeczownikiem.", ru:"Выбери правильную форму: прилагательное согласуется с существительным.", de:"Wähle die richtige Form: Das Adjektiv richtet sich nach dem Nomen."},
+  endung:    {fr:"Choisis la bonne forme : avec ou sans terminaison ?", en:"Choose the right form: with or without an ending?", tr:"Doğru biçimi seç: ekli mi, eksiz mi?", uk:"Обери правильну форму: із закінченням чи без?", fa:"شکل درست را انتخاب کن: با پسوند یا بی‌پسوند؟", ar:"اختر الصيغة الصحيحة: بنهاية أم بدونها؟", pt:"Escolha a forma certa: com ou sem terminação?", pl:"Wybierz właściwą formę: z końcówką czy bez?", ru:"Выбери правильную форму: с окончанием или без?", de:"Wähle die richtige Form: mit oder ohne Endung?"},
+  vraifaux:  {fr:"Regarde l'image : vrai ou faux ?", en:"Look at the picture: true or false?", tr:"Resme bak: doğru mu, yanlış mı?", uk:"Подивися на зображення: правда чи ні?", fa:"به تصویر نگاه کن: درست یا نادرست؟", ar:"انظر إلى الصورة: صحيح أم خطأ؟", pt:"Olhe a imagem: verdadeiro ou falso?", pl:"Spójrz na obrazek: prawda czy fałsz?", ru:"Посмотри на картинку: правда или нет?", de:"Sieh dir das Bild an: richtig oder falsch?"},
+  entendre:  {fr:"Écoute le mot et touche la bonne image.", en:"Listen to the word and tap the right picture.", tr:"Kelimeyi dinle ve doğru resme dokun.", uk:"Послухай слово й торкнися потрібного зображення.", fa:"واژه را گوش کن و روی تصویر درست بزن.", ar:"استمع إلى الكلمة والمس الصورة الصحيحة.", pt:"Ouça a palavra e toque na imagem certa.", pl:"Posłuchaj słowa i dotknij właściwego obrazka.", ru:"Послушай слово и нажми на нужную картинку.", de:"Hör dir das Wort an und tippe auf das richtige Bild."},
+  reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
+  suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
+  bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
+  score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
+};
+function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
+
+// ---------- la donnee (contrarios.json) ----------
+let D = null;
+const IMG = () => Object.keys(D.images);
+const imageDe = k => IMG().find(i => D.images[i].mot === k);               // une image par mot
+const im = i => D.images[i];
+// la traduction d'un mot dans la langue d'interface (le corpus), montree dans la decouverte et APRES la reponse
+const sens = k => { const t = (D.trad[APPRENDRE] || {})[k] || {}; return t[LANGUE] || t.fr || ""; };
+
+// ---------- la langue apprise : les phrases, fabriquees comme dans contrarios.py ----------
+const ES = {
+  bravo: "¡Muy bien!", vrai: "Verdadero", faux: "Falso",
+  forme: (k, art) => D.mots[k].es[art === "la" || art === "f" ? 1 : 0],
+  // le verbe d'une phrase : l'etat avec estar (ouvert, plein, et la nourriture : el pastel esta bueno), le reste avec ser
+  verbe: k => D.estar.includes(k) || ["bueno", "malo", "asqueroso"].includes(k) ? "está" : "es",
+  nom: (i, maj) => { const [a, n] = im(i).es; return (maj ? a.charAt(0).toUpperCase() + a.slice(1) : a) + " " + n; },
+  phrase(i, k){ k = k || im(i).mot; return this.nom(i, true) + " " + this.verbe(k) + " " + this.forme(k, im(i).es[0]) + "."; },
+  comment: i => "¿Cómo " + im(i).verbe + " " + ES.nom(i) + "?",
+  cual: (i, k) => "¿Qué " + im(i).es[1] + " " + ES.verbe(k) + " " + ES.forme(k, im(i).es[0]) + "?",
+  // « El vaso de la izquierda está lleno. El de la derecha está ___. »
+  contraire(g, d){
+    const memeNom = im(g).es[1] === im(d).es[1];
+    return ES.nom(g, true) + " de la izquierda " + ES.verbe(im(g).mot) + " " + ES.forme(im(g).mot, im(g).es[0]) + ". "
+         + (memeNom ? (im(d).es[0] === "la" ? "La" : "El") : ES.nom(d, true)) + " de la derecha " + ES.verbe(im(d).mot) + " ___.";
+  },
+  forme1: (k, i) => ES.forme(k, im(i).es[0])
+};
+const ARTDE = {der: "ein", die: "eine", das: "ein"}, ENDUNG = {der: "er", die: "e", das: "es", m: "er", f: "e", n: "es"};
+const DE = {
+  bravo: "Sehr gut!", vrai: "Richtig", faux: "Falsch",
+  forme: k => D.mots[k].de,
+  nom: (i, maj) => { const [a, n] = im(i).de; return (maj ? a.charAt(0).toUpperCase() + a.slice(1) : a) + " " + n; },
+  phrase(i, k){ return this.nom(i, true) + " ist " + D.mots[k || im(i).mot].de + "."; },
+  comment: i => "Wie ist " + DE.nom(i) + "?",
+  cual: (i, k) => ({der: "Welcher", die: "Welche", das: "Welches"})[im(i).de[0]] + " " + im(i).de[1] + " ist " + D.mots[k].de + "?",
+  // « Das Glas links ist voll. Das Glas rechts ist ___. »
+  contraire: (g, d) => DE.nom(g, true) + " links ist " + D.mots[im(g).mot].de + ". " + DE.nom(d, true) + " rechts ist ___.",
+  forme1: k => D.mots[k].de
+};
+const L = APPRENDRE === "de" ? DE : ES;
+// le mot a sa forme pour cette image (« abierta » sous la porte, « groß » en allemand)
+const forme = (k, i) => L.forme1(k, i);
+
+// ---------- les sons ----------
+// Les memes fichiers que l'app (sha1 du texte, audio/manifest.py) : Aurora pour l'allemand, Lolita (Espagne) et
+// Monica (Amerique latine) pour l'espagnol ; les identifiants sont dans contrarios.json (sons). Sans fichier (hors
+// ligne, texte jamais enregistre) : la voix du telephone.
+const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : LATAM ? "es-419/" : "es-es/");
+let son = null;
+function dire(texte){
+  try { if (son) son.pause(); } catch(e){}
+  const parlerTel = () => { try {
+    const u = new SpeechSynthesisUtterance(texte); u.lang = APPRENDRE === "de" ? "de-DE" : LATAM ? "es-MX" : "es-ES"; u.rate = 0.9;
+    speechSynthesis.cancel(); speechSynthesis.speak(u); } catch(e){} };
+  const id = ((D && D.sons[APPRENDRE]) || {})[texte];
+  if (!id){ parlerTel(); return; }
+  son = new Audio(AUDIO + id + ".mp3" + (Q.get("r") ? "?r=" + Q.get("r") : ""));   // r : AUDIO_REVISION de l'app
+  son.addEventListener("error", parlerTel, {once: true});
+  son.play().catch(parlerTel);
+}
+const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+
+// ---------- utilitaires ----------
+const $ = id => document.getElementById(id);
+const melanger = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0]).map(v => v[1]);
+const hasard = a => a[Math.floor(Math.random() * a.length)];
+const cible = t => '<span lang="' + APPRENDRE + '" dir="ltr">' + t + '</span>';
+// en persan et en arabe, chaque passage en lettres latines (« la calle es estrecha ») s'isole : sinon l'algorithme
+// bidi en retourne les mots
+const isoler = s => document.documentElement.dir !== "rtl" ? s : s.replace(/[A-Za-zÀ-ÿñÑßäöüÄÖÜ]+(?:[ ()]+[A-Za-zÀ-ÿñÑßäöüÄÖÜ]+)*\)?/g, m => '<span dir="ltr">' + m + '</span>');
+const imgSrc = i => "contrarios/" + i + ".webp";
+const photo = i => '<img class="photo" alt="" src="' + imgSrc(i) + '">';
+function parler(type, extra){ try{ parent.postMessage(Object.assign({source:"wortando-scene", type}, extra || {}), "*"); }catch(e){} }
+let file = [], rang = 0, bons = 0, repondu = false;
+// LE MOT DE LA QUESTION (regle 3 de Jacques, 3 nov. : « un mot appris compte partout ») : juger() l'envoie
+// (« reponse » {mot, genre, cat, juste}), l'app fait avancer sa carte (revisionDeScene). L'adjectif a la forme du
+// corpus : le masculin en espagnol (abierto), la forme sans terminaison en allemand (offen).
+let motQ = null, cleQ = null;                    // cleQ : la cle du mot (« pequeno »), pour sa traduction et sa voix
+const motDe = k => ({mot: APPRENDRE === "de" ? D.mots[k].de : D.mots[k].es[0], cat: "adjectif"});
+function viser(w, k){ cleQ = k; motQ = w || motDe(k); }
+
+// apres la reponse : la phrase juste, puis le mot cle, sa traduction et sa voix (Jacques, 3 nov. : la traduction
+// « dans le retour apres la reponse », jamais avant ; la voix dit le mot, comme la decouverte)
+function juger(ok, bonneTexte, phrase, motDit){
+  if (repondu) return; repondu = true;
+  if (ok) bons++;
+  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
+  const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
+  const dit = motDit || (cleQ ? L.forme(cleQ, "m") : "");
+  m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "")
+    + (cleQ ? '<span class="trad"><button type="button" class="ecoute" id="redire" aria-label="' + T("ecouter") + '">' + HP + '</button>' + cible(dit) + ' · <span>' + sens(cleQ) + '</span></span>' : "");
+  if (cleQ){ $("redire").addEventListener("click", () => dire(dit)); dire(dit); }
+  const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
+}
+function boutons(conteneur, options, bonne, apres){
+  let bon;
+  options.forEach(o => {
+    const b = document.createElement("button"); b.type = "button"; b.lang = APPRENDRE; b.dir = "ltr"; b.textContent = o; if (o === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      apres(o === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// des images a toucher : la bonne est i ; data-id pour les controles (tests/themes_illustres.py)
+function images(conteneur, ids, bonne, apres){
+  let bon;
+  conteneur.className = "rangee" + (ids.length === 3 ? " trois" : "");
+  ids.forEach(i => {
+    const b = document.createElement("button"); b.type = "button"; b.dataset.id = i;
+    b.innerHTML = '<img alt="" src="' + imgSrc(i) + '">'; if (i === bonne) bon = b;
+    b.addEventListener("click", () => {
+      conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
+      if (b !== bon) b.classList.add("faux");
+      apres(i === bonne);
+    });
+    conteneur.appendChild(b);
+  });
+}
+// l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
+function ecran(consigne, image, enonce, centre){
+  $("zone").innerHTML = '<p class="consigne">' + T(consigne) + '</p>' + (image || "")
+    + '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div><div class="choix' + (centre ? " centre" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
+}
+const trou = () => '<span class="trou" id="trou">?</span>';
+const avecTrou = s => s.replace("___", trou());
+// les leurres d'une image : seulement des mots clairement faux pour elle (contrarios.py, « faux »), le contraire d'abord
+function leurres(i, n){
+  const f = im(i).faux, c = D.mots[im(i).mot].contraire;
+  return (f.includes(c) ? [c] : []).concat(melanger(f.filter(x => x !== c))).slice(0, n);
+}
+
+// LES MOTS DU THEME (le tirage suit les mots), a la forme du corpus : les dix-huit adjectifs
+let MOTS = null;
+function motsDuTheme(){
+  if (MOTS) return MOTS;
+  MOTS = Object.keys(D.mots).map(k => Object.assign({k}, motDe(k)));
+  return MOTS;
+}
+const cleDe = w => w ? w.k : null;
+// les paires d'images du meme nom (la porte ouverte et la porte fermee) : pour « ¿Qué puerta está abierta? »
+const memeNom = i => IMG().filter(j => j !== i && im(j).es[1] === im(i).es[1]);
+
+// ---------- les exercices ----------
+// Chaque sorte sait viser un mot w (false si elle ne le peut pas) ; sans w, une question au hasard (les controles).
+const EX = {
+  // « ¿Cómo está la puerta? » / « Wie ist die Tür? » : une image, le mot et ses leurres a la bonne forme
+  comment(w){
+    const i = w ? imageDe(w.k) : hasard(IMG()), k = im(i).mot; viser(w, k);
+    const rep = forme(k, i);
+    ecran("comment", photo(i), L.comment(i), true);
+    boutons($("choix"), melanger([rep, ...leurres(i, 3).map(x => forme(x, i))]), rep, ok => juger(ok, rep, L.phrase(i), rep));
+    return true;
+  },
+  // « ¿Qué puerta está abierta? » : les deux images du meme nom, une seule est juste
+  cual(w){
+    const cand = IMG().filter(i => memeNom(i).length && (!w || im(i).mot === w.k));
+    if (!cand.length) return false;
+    const i = hasard(cand), j = memeNom(i)[0], k = im(i).mot; viser(w, k);
+    $("zone").innerHTML = '<p class="consigne">' + T("cual") + '</p><div class="enonce centre">' + cible(L.cual(i, k)) + '</div><div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    images($("rang"), melanger([i, j]), i, ok => juger(ok, L.phrase(i), L.phrase(i), forme(k, i)));
+    return true;
+  },
+  // « El vaso de la izquierda está lleno. El de la derecha está ___. » : le mot vise est celui de la reponse
+  contraire(w){
+    const cand = IMG().filter(i => D.mots[im(i).mot].contraire && (!w || im(i).mot === w.k));
+    if (!cand.length) return false;
+    const d = hasard(cand), k = im(d).mot, g = imageDe(D.mots[k].contraire); viser(w, k);
+    const rep = forme(k, d);
+    // les leurres : le mot de gauche (le piege), puis d'autres mots clairement faux pour l'image de droite
+    const autres = [forme(im(g).mot, d)].concat(melanger(im(d).faux.filter(x => x !== im(g).mot)).map(x => forme(x, d)));
+    const opts = melanger([rep, ...autres.filter((x, n) => x !== rep && autres.indexOf(x) === n).slice(0, 3)]);
+    const duo = '<div class="duo"><img alt="" src="' + imgSrc(g) + '"><img alt="" src="' + imgSrc(d) + '"></div>';
+    const phrase = L.contraire(g, d);
+    ecran("contraire", duo, avecTrou(phrase));
+    boutons($("choix"), opts, rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep), rep); });
+    return true;
+  },
+  // « La calle ___ estrecha. » es / está -- seulement les mots ou un seul verbe est juste (contrarios.py, SER, ESTAR)
+  serEstar(w){
+    const surs = D.ser.concat(D.estar);
+    if (w && !surs.includes(w.k)) return false;
+    const imgs = IMG().filter(i => surs.includes(im(i).mot) && (!w || im(i).mot === w.k)).map(i => ["i", i]);
+    const phr = D.phrasesEs.filter(([k, s]) => s.includes("{v}") && surs.includes(k) && (!w || k === w.k)).map(p => ["p", p]);
+    const [t, x] = hasard(imgs.concat(phr));
+    let k, image, phrase;
+    if (t === "i"){ k = im(x).mot; image = photo(x); phrase = ES.nom(x, true) + " ___ " + forme(k, x) + "."; }
+    else { k = x[0]; image = ""; phrase = x[1].replace(/___\.$/, ES.forme(k, x[2]) + ".").replace("{v}", "___"); }   // « Este río ___ muy ancho. »
+    viser(w, k);
+    const rep = D.ser.includes(k) ? "es" : "está";
+    ecran("serEstar", image, avecTrou(phrase));
+    boutons($("choix"), ["es", "está"], rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep), ES.forme(k, t === "i" ? im(x).es[0] : x[2])); });
+    return true;
+  },
+  // « La puerta está ___. » abierta / abierto -- pas grande (la meme forme), une image ou une phrase sans image
+  accord(w){
+    const variable = k => D.mots[k].es[0] !== D.mots[k].es[1];
+    if (w && !variable(w.k)) return false;
+    const imgs = IMG().filter(i => variable(im(i).mot) && (!w || im(i).mot === w.k)).map(i => ["i", i]);
+    const phr = D.phrasesEs.filter(([k]) => variable(k) && (!w || k === w.k)).map(p => ["p", p]);
+    const [t, x] = hasard(imgs.concat(phr));
+    let k, image, phrase, genre;
+    if (t === "i"){ k = im(x).mot; genre = im(x).es[0]; image = photo(x); phrase = ES.nom(x, true) + " " + ES.verbe(k) + " ___."; }
+    else { k = x[0]; genre = x[2]; image = ""; phrase = x[1].replace("{v}", ES.verbe(k)); }
+    viser(w, k);
+    const rep = ES.forme(k, genre), f = D.mots[k].es;
+    ecran("accord", image, avecTrou(phrase));
+    boutons($("choix"), melanger([f[0], f[1]]), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep), rep); });
+    return true;
+  },
+  // « Das ist ein ___ Koffer. » / « Der Koffer ist ___. » : la terminaison devant le nom, aucune apres sein
+  endung(w){
+    const imgs = IMG().filter(i => !w || im(i).mot === w.k).flatMap(i => [["a", i], ["p", i]]);
+    const phr = D.phrasesDe.filter(([m]) => !w || m === D.mots[w.k].de).map(p => ["d", p]);
+    const [t, x] = hasard(imgs.concat(phr));
+    let k, image = "", phrase, rep;
+    if (t === "d"){ k = Object.keys(D.mots).find(c => D.mots[c].de === x[0]); phrase = "Das ist " + x[1] + " ___ " + x[2] + "."; rep = x[0] + ENDUNG[x[3]]; }
+    else {
+      k = im(x).mot; image = photo(x);
+      const [a, n] = im(x).de;
+      if (t === "a"){ phrase = "Das ist " + ARTDE[a] + " ___ " + n + "."; rep = D.mots[k].de + ENDUNG[a]; }
+      else { phrase = DE.nom(x, true) + " ist ___."; rep = D.mots[k].de; }
+    }
+    viser(w, k);
+    const b = D.mots[k].de;
+    // apres sein, pas de forme en -er : « Der Koffer ist kleiner » serait juste aussi (le comparatif)
+    const opts = t === "p" ? [b, b + "e", b + "es"] : [b, b + "er", b + "e", b + "es"];
+    ecran("endung", image, avecTrou(phrase));
+    boutons($("choix"), melanger(opts), rep, ok => { $("trou").textContent = rep; juger(ok, rep, phrase.replace("___", rep), b); });
+    return true;
+  },
+  // « La puerta está cerrada. » vrai ou faux -- le faux n'est jamais qu'un mot clairement faux pour l'image
+  vraifaux(w){
+    const i = w ? imageDe(w.k) : hasard(IMG()), k = im(i).mot; viser(w, k);
+    const vrai = Math.random() < 0.5, juste = L.phrase(i);
+    const phrase = vrai ? juste : L.phrase(i, hasard(im(i).faux));
+    ecran("vraifaux", photo(i), phrase, true);
+    const rep = vrai ? L.vrai : L.faux;
+    boutons($("choix"), [L.vrai, L.faux], rep, ok => juger(ok, rep, juste, forme(k, i)));
+    return true;
+  },
+  // l'ecoute : le mot dit (« estrecha »), deux ou trois images dont une seule le montre (les autres l'ont en « faux »)
+  entendre(w){
+    const cand = IMG().filter(i => (!w || im(i).mot === w.k) && IMG().some(j => im(j).faux.includes(im(i).mot)));
+    if (!cand.length) return false;
+    const i = hasard(cand), k = im(i).mot; viser(w, k);
+    const autres = melanger(IMG().filter(j => im(j).faux.includes(k))).slice(0, 2), dit = forme(k, i);
+    $("zone").innerHTML = '<p class="consigne">' + T("entendre") + '</p><button type="button" class="ecoute grand" id="ecoute" aria-label="' + T("reecouter") + '">' + HP + '</button>'
+      + '<div id="rang"></div><p class="retourMsg" id="msg"></p>';
+    $("ecoute").addEventListener("click", () => dire(dit));
+    images($("rang"), melanger([i, ...autres]), i, ok => juger(ok, L.phrase(i), L.phrase(i), dit));
+    dire(dit);
+    return true;
+  }
+};
+// les sortes de la langue apprise : ser / estar et l'accord en espagnol ; la terminaison en allemand
+const SORTES = Object.keys(EX).filter(x => APPRENDRE === "es" ? x !== "endung" : !["serEstar", "accord"].includes(x));
+
+// ---------- la decouverte : la planche des paires, chaque image se voit et s'entend ----------
+function decouvrir(){
+  $("compte").textContent = ""; $("barre").style.width = "0%";
+  const z = $("zone"), dit = D.dit[APPRENDRE];
+  z.innerHTML = '<p class="consigne">' + T("intro") + '</p><div class="fiche" id="fiche"></div><div class="planche" id="planche"></div>'
+              + '<p class="regle">' + isoler(T(APPRENDRE === "de" ? "regleDe" : "regleEs")) + '</p>';
+  const montrer = i => {
+    const k = im(i).mot, m = D.mots[k], autre = m.contraire ? imageDe(m.contraire) : (m.voisins || []).map(imageDe).find(Boolean);
+    $("planche").querySelectorAll("button").forEach(b => b.classList.toggle("choisi", b.dataset.id === i));
+    $("fiche").innerHTML = '<img alt="" src="' + imgSrc(i) + '"><div><div class="mot">' + cible(forme(k, i)) + '</div><div class="sens">' + sens(k) + '</div>'
+      + '<div class="dit">' + cible(dit[i]) + '</div><div class="ligne"><button type="button" class="ecoute" id="ecoute" aria-label="' + T("ecouter") + '">' + HP + '</button>'
+      + (autre ? '<button type="button" class="vers" id="vers">' + T(m.contraire ? "contraireDe" : "presque") + ' <b>' + cible(forme(im(autre).mot, autre)) + '</b></button>' : "") + '</div></div>';
+    $("ecoute").addEventListener("click", () => dire(dit[i]));
+    if (autre) $("vers").addEventListener("click", () => montrer(autre));
+    dire(dit[i]);
+  };
+  const pl = $("planche");
+  D.planche.forEach(([a, b]) => {
+    const p = document.createElement("div"); p.className = "paire";
+    const lien = D.mots[im(a).mot].contraire === im(b).mot ? "↔" : (D.mots[im(a).mot].voisins || []).includes(im(b).mot) ? "≈" : "";
+    [a, b].forEach(i => {
+      const bt = document.createElement("button"); bt.type = "button"; bt.dataset.id = i;
+      bt.setAttribute("aria-label", forme(im(i).mot, i));
+      bt.innerHTML = '<img alt="" src="' + imgSrc(i) + '">';
+      bt.addEventListener("click", () => montrer(i));
+      p.appendChild(bt);
+    });
+    if (lien) p.insertAdjacentHTML("beforeend", '<span class="signe" aria-hidden="true">' + lien + '</span>');
+    pl.appendChild(p);
+  });
+  // la fiche s'ouvre sur la premiere, sans parler : le son ne vient que d'un geste
+  const garde = dire; dire = () => {}; montrer(D.planche[0][0]); dire = garde;
+  const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
+  s.onclick = () => { s.onclick = null; try { if (son) son.pause(); speechSynthesis.cancel(); } catch(e){} demarrer(); };
+}
+
+// LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
+// les rates recents, puis au plus NEUFS_MAX nouveaux) ; chaque mot recoit une question d'une sorte qui le vise,
+// jamais la meme sorte deux fois de suite, jamais deux fois la meme question. Rate, il revient plus loin.
+// Recopie de familia.html (visuel/THEMES-ILLUSTRES.md : ces fonctions sont identiques d'un theme a l'autre).
+const NEUFS_MAX = Q.get("seance") === "1" ? 3 : 10;
+let vus = new Set(), sorteCourante = null, derniereSorte = null;
+function cleQuestion(){
+  const z = $("zone"), en = z.querySelector(".enonce");
+  return sorteCourante + "|" + (en ? en.textContent : "") + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
+}
+function montrer(){
+  repondu = false; $("suite").hidden = true;
+  $("compte").textContent = (rang + 1) + " / " + file.length;
+  $("barre").style.width = (rang / file.length * 100) + "%";
+  // une question pour le mot du rang : d'une AUTRE sorte que la precedente et jamais deja vue dans la partie.
+  // Si ce mot ne le permet pas, un mot plus loin dans la file passe devant ;
+  // en dernier recours seulement, la meme sorte, puis une question deja vue.
+  // (l'ecoute parle a chaque essai : on la fait taire pendant qu'on cherche, elle parle une fois choisie)
+  const garde = dire; dire = () => {};
+  const essai = (w, strict) => {
+    const autres = melanger(SORTES.filter(x => x !== derniereSorte));
+    for (const so of autres){
+      for (let n = 0; n < 25; n++){
+        motQ = null; cleQ = null; sorteCourante = so;
+        if (!EX[so](w)) break;
+        if (!vus.has(cleQuestion())) return so;
+      }
+    }
+    if (strict) return null;
+    if (derniereSorte) for (let n = 0; n < 25; n++){           // la meme sorte, avec une question fraiche
+      motQ = null; cleQ = null; sorteCourante = derniereSorte;
+      if (!EX[derniereSorte](w)) break;
+      if (!vus.has(cleQuestion())) return derniereSorte;
+    }
+    for (const so of autres.concat(derniereSorte ? [derniereSorte] : [])){   // tout est deja vu : n'importe laquelle
+      motQ = null; cleQ = null; sorteCourante = so;
+      if (EX[so](w)) return so;
+    }
+    return null;
+  };
+  let fait = essai(file[rang], true);
+  for (let j = rang + 1; !fait && j < file.length; j++){
+    fait = essai(file[j], true);
+    if (fait) [file[rang], file[j]] = [file[j], file[rang]];
+  }
+  if (!fait) fait = essai(file[rang], false);
+  dire = garde;
+  if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
+  vus.add(cleQuestion()); derniereSorte = fait;
+  window.scrollTo(0, 0);
+}
+function fin(){
+  $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + T("score", {b: bons, n: file.length}) + '</div>' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons, faits: file.length}));
+}
+// plus rien de du ni de nouveau : la partie le dit, et ne repose pas des mots deja sus
+function toutRevu(prochaine){
+  $("barre").style.width = "100%"; $("compte").textContent = ""; $("suite").hidden = true;
+  const quand = Tirage.revu(prochaine, LANGUE);
+  $("zone").innerHTML = '<div class="fin"><div class="score">' + (TIRAGE_TEXTES.revu[LANGUE] || TIRAGE_TEXTES.revu.fr) + '</div>'
+    + (quand ? '<p class="consigne">' + (TIRAGE_TEXTES.prochaine[LANGUE] || TIRAGE_TEXTES.prochaine.fr).replace("{d}", quand) + '</p>' : "")
+    + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+  brancherEncore();
+  $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
+}
+// « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
+async function encoreDesQuestions(){
+  const mots = motsDuTheme();
+  file = Tirage.supplement(mots, await Tirage.demander(mots), NB); rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(null);
+  montrer();
+}
+async function demarrer(){
+  const mots = motsDuTheme();
+  const plan = Tirage.plan(mots, await Tirage.demander(mots), NB, NEUFS_MAX);
+  file = plan.file; rang = 0; bons = 0; vus = new Set(); derniereSorte = null;
+  if (!file.length) return toutRevu(plan.prochaine);
+  montrer();
+}
+$("suite").addEventListener("click", () => { if (!file.length) return; rang++; if (rang >= file.length) fin(); else montrer(); });
+$("retour").addEventListener("click", () => parler("fermer"));
+$("retour").setAttribute("aria-label", T("retourAria"));
+$("titre").textContent = T("titre");
+document.title = T("titre");
+fetch("contrarios/contrarios.json?v=1").then(r => r.json()).then(d => {
+  D = d;
+  if (Q.get("seance") === "1") demarrer(); else decouvrir();
+});
+</script>
+</body>
+</html>
