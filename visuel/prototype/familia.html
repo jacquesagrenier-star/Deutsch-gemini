@@ -102,7 +102,7 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=1"></script>
+<script src="themes/voix.js?v=2"></script>
 <script src="themes/zoom.js?v=3"></script>
 <script>
 const Q = new URLSearchParams(location.search);
@@ -579,7 +579,7 @@ function dessinerArbre(opts){
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", Array.isArray(motQ) ? {mot: mot(motQ[0], motQ[1]), genre: articleNu(motQ[1]), juste: ok} : {mot: motQ.mot, genre: motQ.genre, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");

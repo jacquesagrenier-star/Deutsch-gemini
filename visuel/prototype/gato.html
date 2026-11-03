@@ -26,6 +26,12 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
   --dat:#F0B45A;--akk:#5FD0D6;--verre:rgba(20,36,50,.88);--bord:rgba(255,255,255,.14);--carte:#22384A}
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
+/* LA PAGE A LA HAUTEUR DE L'ECRAN, COMME UNE SCENE (3 nov. 2026, Jacques sur iPhone : « Commencer » « pas
+   completement en bas »). Le document d'une scene ne depasse jamais son cadre ; celui d'un theme defilait (Decrire :
+   2 500 px), et sur iPhone un bouton fixe dans un cadre dont le document deborde ne tombe pas au bas de l'ecran.
+   Le contenu defile donc DANS le body, et le document garde la hauteur du cadre. */
+html{height:100%;overflow:hidden}
+body{height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:none;box-sizing:border-box}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
   padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
@@ -105,7 +111,7 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <div class="bas" id="bas" hidden></div>
 <script src="themes/tirage.js?v=1"></script>
-<script src="themes/voix.js?v=1"></script>
+<script src="themes/voix.js?v=2"></script>
 <script src="themes/zoom.js?v=3"></script>
 <script>
 const Q = new URLSearchParams(location.search);
@@ -150,7 +156,7 @@ const TEXTES = {
   contrEs:   {fr:"Jamais « de el » ni « a el » :", en:"Never “de el” or “a el”:", tr:"Asla “de el” ya da “a el” değil:", uk:"Ніколи не «de el» і не «a el»:", fa:"هرگز «de el» یا «a el» نه:", ar:"لا تقل أبدًا «de el» ولا «a el»:", pt:"Nunca “de el” nem “a el”:", pl:"Nigdy „de el” ani „a el”:", ru:"Никогда не «de el» и не «a el»:", de:"Nie „de el“ oder „a el“:"},
   aussi:     {fr:"On dit aussi :", en:"You can also say:", tr:"Şöyle de denir:", uk:"Також кажуть:", fa:"این را هم می‌گویند:", ar:"ويُقال أيضًا:", pt:"Também se diz:", pl:"Mówi się też:", ru:"Также говорят:", de:"Man sagt auch:"},
   ecouter:   {fr:"Écouter", en:"Listen", tr:"Dinle", uk:"Слухати", fa:"گوش بده", ar:"استمع", pt:"Ouvir", pl:"Posłuchaj", ru:"Слушать", de:"Anhören"},
-  commencer: {fr:"Commencer les exercices", en:"Start the exercises", tr:"Alıştırmalara başla", uk:"Почати вправи", fa:"شروع تمرین‌ها", ar:"ابدأ التمارين", pt:"Começar os exercícios", pl:"Zacznij ćwiczenia", ru:"Начать упражнения", de:"Übungen starten"},
+  commencer: {fr:"Commencer", en:"Start", tr:"Başla", uk:"Почати", fa:"شروع", ar:"ابدأ", pt:"Começar", pl:"Zacznij", ru:"Начать", de:"Starten"},
   wo:        {fr:"Regarde l'image et choisis la bonne place.", en:"Look at the picture and choose the right place.", tr:"Resme bak ve doğru yeri seç.", uk:"Подивися на зображення й обери правильне місце.", fa:"به تصویر نگاه کن و جای درست را انتخاب کن.", ar:"انظر إلى الصورة واختر المكان الصحيح.", pt:"Olhe a imagem e escolha o lugar certo.", pl:"Spójrz na obrazek i wybierz właściwe miejsce.", ru:"Посмотри на картинку и выбери правильное место.", de:"Sieh dir das Bild an und wähle den richtigen Ort."},
   dativ:     {fr:"Il est là, sans bouger : choisis l'article (datif).", en:"It is there, not moving: choose the article (dative).", tr:"Orada duruyor, hareket etmiyor: artikeli seç (Dativ).", uk:"Він там, не рухається: обери артикль (Dativ).", fa:"آنجاست و حرکت نمی‌کند: حرف تعریف را انتخاب کن (Dativ).", ar:"إنه هناك ولا يتحرك: اختر أداة التعريف (Dativ).", pt:"Ele está ali, parado: escolha o artigo (dativo).", pl:"Jest tam, nie rusza się: wybierz rodzajnik (Dativ).", ru:"Он там и не двигается: выбери артикль (Dativ).", de:"Er ist dort und bewegt sich nicht: Wähle den Artikel (Dativ)."},
   wohin:     {fr:"Suis la flèche : où va-t-il ?", en:"Follow the arrow: where is it going?", tr:"Oku takip et: nereye gidiyor?", uk:"Стеж за стрілкою: куди він іде?", fa:"فلش را دنبال کن: کجا می‌رود؟", ar:"اتبع السهم: إلى أين يذهب؟", pt:"Siga a seta: para onde ele vai?", pl:"Podążaj za strzałką: dokąd idzie?", ru:"Следи за стрелкой: куда он идёт?", de:"Folge dem Pfeil: Wohin geht er?"},
@@ -165,7 +171,7 @@ const TEXTES = {
   hayEsta:   {fr:"hay ou está ? Regarde l'image.", en:"hay or está? Look at the picture.", tr:"hay mı, está mı? Resme bak.", uk:"hay чи está? Подивися на зображення.", fa:"hay یا está؟ به تصویر نگاه کن.", ar:"hay أم está؟ انظر إلى الصورة.", pt:"hay ou está? Olhe a imagem.", pl:"hay czy está? Spójrz na obrazek.", ru:"hay или está? Посмотри на картинку.", de:"hay oder está? Sieh dir das Bild an."},
   choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
   reecouter: {fr:"Réécouter", en:"Listen again", tr:"Tekrar dinle", uk:"Послухати ще раз", fa:"دوباره گوش بده", ar:"استمع مرة أخرى", pt:"Ouvir de novo", pl:"Posłuchaj jeszcze raz", ru:"Послушать ещё раз", de:"Noch einmal anhören"},
-  suivant:   {fr:"Suivant", en:"Next", tr:"Devam", uk:"Далі", fa:"بعدی", ar:"التالي", pt:"Próximo", pl:"Dalej", ru:"Дальше", de:"Weiter"},
+  suivant:   {fr:"Continuer", en:"Continue", tr:"Devam", uk:"Далі", fa:"ادامه", ar:"متابعة", pt:"Continuar", pl:"Dalej", ru:"Дальше", de:"Weiter"},
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
@@ -309,7 +315,7 @@ function choixTraduit(c){
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   if (apresQ && $("photo")){
@@ -782,7 +788,7 @@ function montrer(){
   dire = garde;
   if (fait === "entendre"){ const e = $("ecoute"); if (e) e.click(); }
   vus.add(cleQuestion()); derniereSorte = fait;
-  window.scrollTo(0, 0);
+  window.scrollTo(0, 0); document.body.scrollTop = 0;
 }
 function fin(){
   $("barre").style.width = "100%"; $("compte").textContent = file.length + " / " + file.length; $("suite").hidden = true;

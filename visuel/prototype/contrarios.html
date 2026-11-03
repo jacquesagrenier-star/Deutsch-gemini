@@ -116,7 +116,7 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/zoom.js?v=3"></script>
-<script src="themes/voix.js?v=1"></script>
+<script src="themes/voix.js?v=2"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 // l'anglais (3 nov. 2026, « pour que l'anglais suive aussi ») : les memes images, ses phrases a lui ; variante=gb
@@ -305,7 +305,7 @@ function viser(w, k){ cleQ = k; motQ = w || motDe(k); }
 function juger(ok, bonneTexte, phrase, motDit){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");

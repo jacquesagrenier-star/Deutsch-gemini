@@ -107,6 +107,7 @@ button:disabled{cursor:default}
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
+<script src="themes/voix.js?v=2"></script>
 <script src="themes/zoom.js?v=3"></script>
 <script>
 const Q = new URLSearchParams(location.search);
@@ -277,16 +278,9 @@ const imgT = (t, p) => "emociones/trait-" + t + "-" + p + ".webp";
 // Monica (Amerique latine) pour l'espagnol. Sans son (hors ligne, fichier absent) : la voix du telephone.
 const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : LATAM ? "es-419/" : "es-es/");
 let son = null;
-function dire(texte, id){
-  try { if (son) son.pause(); } catch(e){}
-  const parlerTel = () => { try {
-    const u = new SpeechSynthesisUtterance(texte); u.lang = APPRENDRE === "de" ? "de-DE" : LATAM ? "es-MX" : "es-ES"; u.rate = 0.9;
-    speechSynthesis.cancel(); speechSynthesis.speak(u); } catch(e){} };
-  if (!id){ parlerTel(); return; }
-  son = new Audio(AUDIO + id + ".mp3" + (Q.get("r") ? "?r=" + Q.get("r") : ""));   // r : AUDIO_REVISION de l'app
-  son.addEventListener("error", parlerTel, {once: true});
-  son.play().catch(parlerTel);
-}
+// la voix commune (themes/voix.js, 3 nov. 2026) : le fichier enregistre s'il existe pour ce texte (themes/sons.json),
+// sinon le telephone ; et la phrase attend la fin du son de reussite. L'id n'est plus utile : voix.js le calcule.
+function dire(texte){ Voix.dire(texte); }
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
 // ---------- utilitaires ----------
@@ -311,7 +305,7 @@ const motT = t => ({mot: APPRENDRE === "de" ? D.caracteres[t].de : D.caracteres[
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
-  parler("exercice", {juste: ok}); if (ok) parler("bonne");
+  parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
   if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
@@ -532,7 +526,7 @@ function decouvrir(){
   $("oC").addEventListener("click", () => onglet(false));
   onglet(true);
   const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
-  s.onclick = () => { s.onclick = null; try { if (son) son.pause(); speechSynthesis.cancel(); } catch(e){} demarrer(); };
+  s.onclick = () => { s.onclick = null; try { Voix.arreter(); } catch(e){} demarrer(); };
 }
 
 // LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
