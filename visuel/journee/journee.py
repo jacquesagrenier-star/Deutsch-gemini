@@ -419,8 +419,10 @@ def ecrire_gloses():
             for v in o.values(): walk(v, acc, cle)
         elif isinstance(o, list):
             for v in o: walk(v, acc, cle)
-    LDE = {"tr": "traduction_tr", "uk": "traduction_uk", "fa": "traduction_fa", "ar": "traduction_ar", "pl": "traduction_pl", "ru": "traduction_ru"}
-    LES = {"ar": "traduction_ar"}
+    # toutes les langues d'interface : la glose traduit aussi le mot CHOISI quand il est faux (v1086, « Tu as choisi »)
+    LDE = {"fr": "traduction", "en": "traduction_en", "tr": "traduction_tr", "uk": "traduction_uk", "fa": "traduction_fa",
+           "ar": "traduction_ar", "pt": "traduction_pt", "pl": "traduction_pl", "ru": "traduction_ru"}
+    LES = {"fr": "traduction", "en": "traduction_en", "pt": "traduction_pt", "ar": "traduction_ar", "de": "traduction_de"}
     out = {"es": {}, "de": {}}
     for langue, fichiers, champs in (("es", ["espanol/datos/verbos.json", "espanol/datos/adverbios.json"], LES),
                                      ("de", ["verbe.json", "adverbe.json"], LDE)):

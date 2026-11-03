@@ -27,7 +27,7 @@ html.nuit{--fond1:#0E1C26;--fond3:#18303F;--encre:#EEF2F5;--gris:#A9B8C4;--ambre
 *{box-sizing:border-box}
 html,body{margin:0;min-height:100%}
 body{background:linear-gradient(180deg,var(--fond1),var(--fond3));background-attachment:fixed;color:var(--encre);font-family:var(--police);
-  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 150px) max(10px,env(safe-area-inset-left,0px))}
+  padding:calc(env(safe-area-inset-top,0px) + 10px) max(10px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 90px) max(10px,env(safe-area-inset-left,0px))}
 .haut{display:flex;align-items:center;gap:10px;max-width:560px;margin:0 auto 10px}
 .retour{width:42px;height:42px;border-radius:50%;border:1px solid var(--bord);background:var(--verre);color:var(--encre);font:800 22px var(--police);cursor:pointer;flex:0 0 auto}
 html[dir="rtl"] .retour{transform:scaleX(-1)}
@@ -101,15 +101,16 @@ button:disabled{cursor:default}
 .suite[hidden]{display:none}
 /* Jacques, 3 nov. 2026, comme dans les scenes : « commencer les exercices ou continuer soit toujours en bas
    completement de l'ecran ». Tous les boutons d'action sont fixes en bas, jamais dans le flux : la suite (Commencer,
-   Suivant, Terminer) et, a la fin, « Encore des questions » juste au-dessus de « Terminer ». */
+   Suivant, Terminer) et, a la fin, « Encore des questions » et « Terminer » cote a cote (.bas, comme familia.html). */
 .suite{z-index:5000}
-.basFin{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:5000;display:flex;flex-direction:column;gap:8px}
-.basFin button{height:54px;border:0;border-radius:27px;color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
-.basFin button.second{height:48px;border:2px solid var(--ambre);background:var(--verre);color:var(--encre);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.bas{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:5000}
+.bas button{flex:1 1 0;min-width:0;height:54px;border:0;border-radius:27px;padding:0 12px;color:#fff;font:800 16px/1.15 var(--police);
+  background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
 .fin{text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;padding:10px 0}
 .fin .score{font-size:22px;font-weight:900}
 [lang]{unicode-bidi:isolate}
 /* la traduction dans la langue d'interface : une ligne, plus petite, en gris (3 nov. 2026) */
+.trad.faux{color:var(--rouge);font-style:italic}
 .trad{display:block;font-size:13px;font-weight:600;color:var(--gris);line-height:1.35;margin-top:2px}
 </style>
 </head>
@@ -120,12 +121,16 @@ button:disabled{cursor:default}
 <button class="suite" id="suite" type="button" hidden></button>
 <script src="themes/tirage.js?v=1"></script>
 <script src="themes/voix.js?v=1"></script>
+<script src="themes/zoom.js?v=1"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 const APPRENDRE = Q.get("apprendre") === "de" ? "de" : "es";
 const LATAM = APPRENDRE === "es" && Q.get("variante") === "latam";
 const LANGUE = (l => ["fr", "en", "tr", "uk", "fa", "ar", "pt", "pl", "ru", "de"].includes(l) ? l : "fr")(((Q.get("lang") || "fr").toLowerCase().split(/[-_]/)[0]));
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
+// agrandir (themes/zoom.js) : un toucher sur une photo d'etape, une fiche ou un visage ; la loupe sur ce qu'on touche
+// pour repondre (les quatre etapes a remettre dans l'ordre) et sur les cases de la frise
+Zoom.init({direct: ".photo img, .duo img, .visages img", loupe: ".ordre button, .frise button", langue: LANGUE});
 document.documentElement.lang = LANGUE;
 document.documentElement.dir = (LANGUE === "fa" || LANGUE === "ar") ? "rtl" : "ltr";
 // vingt questions seul (Jacques, 3 nov.), six dans la seance du jour, sans la decouverte
@@ -157,6 +162,7 @@ const TEXTES = {
   terminer:  {fr:"Terminer", en:"Finish", tr:"Bitir", uk:"Завершити", fa:"پایان", ar:"إنهاء", pt:"Terminar", pl:"Zakończ", ru:"Завершить", de:"Beenden"},
   bonne:     {fr:"La bonne réponse : {r}", en:"The right answer: {r}", tr:"Doğru cevap: {r}", uk:"Правильна відповідь: {r}", fa:"پاسخ درست: {r}", ar:"الإجابة الصحيحة: {r}", pt:"A resposta certa: {r}", pl:"Prawidłowa odpowiedź: {r}", ru:"Правильный ответ: {r}", de:"Die richtige Antwort: {r}"},
   score:     {fr:"{b} bonnes réponses sur {n}", en:"{b} correct answers out of {n}", tr:"{n} sorudan {b} doğru", uk:"{b} правильних відповідей із {n}", fa:"{b} پاسخ درست از {n}", ar:"{b} إجابات صحيحة من {n}", pt:"{b} respostas certas de {n}", pl:"{b} poprawnych odpowiedzi na {n}", ru:"{b} правильных ответов из {n}", de:"{b} von {n} richtig"},
+  choix:     {fr:"Tu as choisi : {r}", en:"You chose: {r}", tr:"Senin seçimin: {r}", uk:"Твій вибір: {r}", fa:"انتخاب تو: {r}", ar:"اختيارك: {r}", pt:"Você escolheu: {r}", pl:"Twój wybór: {r}", ru:"Твой выбор: {r}", de:"Du hast gewählt: {r}"},
   retourAria:{fr:"Retour", en:"Back", tr:"Geri", uk:"Назад", fa:"بازگشت", ar:"رجوع", pt:"Voltar", pl:"Wstecz", ru:"Назад", de:"Zurück"}
 };
 function T(cle, v){ let s = (TEXTES[cle] || {})[LANGUE] || (TEXTES[cle] || {}).fr || cle; for (const k in (v || {})) s = s.split("{" + k + "}").join(v[k]); return s; }
@@ -317,11 +323,19 @@ function juger(ok, bonneTexte, phrase){
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
   const tl = tradQ || (TR ? null : glose(motQ));
   if (tl) m.insertAdjacentHTML("beforeend", traduction(tl));
+  if (!ok && choixFaux && choixFaux.trad) m.insertAdjacentHTML("beforeend", '<span class="trad faux" dir="auto">' + T("choix", {r: cible(choixFaux.texte)}) + " — " + choixFaux.trad + '</span>');
   // la phrase juste se dit (comme le mot cle de la famille) : l'etape enregistree, sinon la voix du telephone ;
   // pas la suite entiere de « remettre dans l'ordre », trop longue
   if (sorteCourante !== "ordre") dire(phrase || bonneTexte);
   const s = $("suite"); s.textContent = rang + 1 >= file.length ? T("terminer") : T("suivant"); s.hidden = false;
 }
+// LE MOT CHOISI, QUAND IL EST FAUX (Jacques, 3 nov. : « on devrait avoir l'affichage traduit aussi. Pour le mauvais
+// mot. ») : chaque sorte qui le peut pose tradsChoix {option: traduction} avant ses boutons -- un geste (« Se viste. »
+// -> « Anna s'habille. », par TRADS), un adverbe ou un moment (le corpus relu, gloses.json). Rien pour une heure, un
+// pronom, une forme du verbe, un ordre des mots, vrai / faux : pas de traduction sure. ecran() le remet a null.
+let tradsChoix = null, choixFaux = null;
+const tradMot = w => w ? ((GLOSES[((w.genre || "") + " " + w.mot).trim()] || {})[LANGUE] || null) : null;
+const tradGeste = (vb, s) => TR ? traduire(vb, n(s), s, null) : tradMot(motDuVerbe(vb));
 function boutons(conteneur, options, bonne, apres){
   let bon;
   options.forEach(o => {
@@ -329,6 +343,7 @@ function boutons(conteneur, options, bonne, apres){
     b.addEventListener("click", () => {
       conteneur.querySelectorAll("button").forEach(x => { x.disabled = true; if (x === bon) x.classList.add("juste"); });
       if (b !== bon) b.classList.add("faux");
+      choixFaux = o === bonne || !tradsChoix || !tradsChoix[o] ? null : {texte: String(o), trad: tradsChoix[o]};
       apres(o === bonne);
     });
     conteneur.appendChild(b);
@@ -336,6 +351,7 @@ function boutons(conteneur, options, bonne, apres){
 }
 // l'ecran d'une question : la consigne, une image (ou rien), l'enonce, les choix, le message
 function ecran(consigne, image, enonce, centre, liste){
+  tradsChoix = null;
   $("zone").innerHTML = '<p class="consigne">' + isoler(T(consigne)) + '</p>' + (image || "")
     + '<div class="enonce' + (centre ? " centre" : "") + '">' + cible(enonce) + '</div><div class="choix' + (centre ? " centre" : "") + (liste ? " liste" : "") + '" id="choix"></div><p class="retourMsg" id="msg"></p>';
 }
@@ -387,6 +403,7 @@ const EX = {
     const autres = melanger(unique(Object.keys(D.verbes).filter(vb => groupe(vb) !== groupe(e.verbe) && vaA(vb, e.sujet))
                      .map(dire).filter(t => t !== rep))).slice(0, 3);
     ecran("queHace", photo(e), L.queHace(e.sujet), true);
+    tradsChoix = {}; Object.keys(D.verbes).forEach(vb => { tradsChoix[dire(vb)] = tradGeste(vb, e.sujet); });
     boutons($("choix"), melanger([rep, ...autres]), rep, ok => juger(ok, rep, L.etape(e)));
     return true;
   },
@@ -485,6 +502,7 @@ const EX = {
     const enonce = (APPRENDRE === "de" ? DE.phrase(montree.verbe, DE.sujet(montree.sujet, true), n(montree.sujet)) : ES.phrase(montree.verbe, ES.sujet(montree.sujet, true), n(montree.sujet)))
                  + " " + (APPRENDRE === "de" ? "Und " + lien + "?" : "¿Y " + lien + "?");
     ecran(avant ? "avant" : "apres", photo(montree, false), enonce, true, true);
+    tradsChoix = {}; [r, ...leurres].forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, e.sujet); });
     boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, L.etape(r)));
     return true;
   },
@@ -583,6 +601,7 @@ const EX = {
     const image = '<div class="visages">' + qui.map(p => '<img alt="" src="' + VISAGE(p) + '">').join("") + '</div>' + semaineHTML(coches(fa.f, fa));
     ecran("frecuencia", image, avecTrou(phrase));
     const opts = cles.map(c => D.adverbes[c][APPRENDRE]);
+    tradsChoix = {}; opts.forEach(a => { tradsChoix[a] = tradMot({mot: a}); });
     boutons($("choix"), opts, rep, ok => { remplir(0, rep); juger(ok, rep, modele.replace("{A}", rep)); });
     return true;
   },
@@ -644,6 +663,7 @@ const EX = {
     if (APPRENDRE === "de"){ const f = DE.formes(e.verbe, n(e.sujet)); phrase = [S, f.v, f.r, f.o, "___", f.c, f.p].filter(Boolean).join(" ") + "."; }
     else phrase = [S, ES.pred(e.verbe, n(e.sujet)), "___"].join(" ") + ".";
     ecran(APPRENDRE === "de" ? "momentDe" : "momentEs", photo(e), avecTrou(phrase));
+    tradsChoix = {}; Object.keys(L.moments).forEach(c => { tradsChoix[L.moments[c]] = tradMot(MOTS_MOMENTS().find(x => x.moment === c)); });
     boutons($("choix"), Object.values(L.moments), rep, ok => { remplir(0, rep); juger(ok, rep, phrase.replace("___", rep)); });
     return true;
   }
@@ -683,6 +703,7 @@ function premier(w){
   const rep = dit(d[0]), opts = unique([rep, ...melanger(d.slice(2)).map(dit)]).slice(0, 4);
   motQ = w; tradQ = tradEtape(d[0]);
   ecran("premier", "", APPRENDRE === "de" ? "Was macht " + DE.sujet(s) + " zuerst?" : "¿Qué hace " + ES.sujet(s) + " primero?", true, true);
+  tradsChoix = {}; d.forEach(e => { tradsChoix[dit(e)] = tradGeste(e.verbe, s); });
   boutons($("choix"), melanger(opts), rep, ok => juger(ok, rep, L.etape(d[0])));
   return true;
 }
@@ -749,7 +770,7 @@ function cleQuestion(){
   return sorteCourante + "|" + (en ? en.textContent : "") + "|" + sans + "|" + Array.from(z.querySelectorAll("img")).map(i => i.getAttribute("src")).sort().join(",");
 }
 function montrer(){
-  repondu = false; $("suite").hidden = true;
+  repondu = false; $("suite").hidden = true; choixFaux = null;
   $("compte").textContent = (rang + 1) + " / " + file.length;
   $("barre").style.width = (rang / file.length * 100) + "%";
   const essai = (w, strict) => {
@@ -799,9 +820,9 @@ function toutRevu(prochaine){
   $("terminer").addEventListener("click", () => parler("fini", {bons: 0, faits: 0}));
 }
 // « Encore des questions » : en fin de partie et quand tout est revu, jamais dans la seance (elle a sa longueur)
-// les deux boutons de la fin, fixes en bas de l'ecran (.basFin)
-const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" class="second" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
-const boutonsFin = () => '<div class="basFin">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
+// les deux boutons de la fin, fixes en bas de l'ecran (.bas)
+const boutonEncore = () => Q.get("seance") === "1" ? "" : '<button type="button" id="encore">' + (TIRAGE_TEXTES.encore[LANGUE] || TIRAGE_TEXTES.encore.fr) + '</button>';
+const boutonsFin = () => '<div class="bas">' + boutonEncore() + '<button type="button" id="terminer">' + T("terminer") + '</button></div>';
 function brancherEncore(){ const b = $("encore"); if (b) b.addEventListener("click", encoreDesQuestions); }
 async function encoreDesQuestions(){
   const mots = motsDuTheme();
