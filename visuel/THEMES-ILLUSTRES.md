@@ -313,6 +313,22 @@ tirage :
 Le protocole avec l'app : `etats` (la page demande, l'app répond avec l'état de chaque mot, `etatsDesMots()`),
 `exercice`, `bonne`, `reponse` (le mot testé), `fini`, `fermer`.
 
+**Un mot à deux sens : `sens`** (3 nov. 2026, v1082). Quand le corpus a deux entrées pour le même mot, chacune a sa
+carte : « rico » est « délicieux » (la comida está rica) ET « riche » (es rico). Sans précaution, une réponse sur
+« es rico » ferait avancer la carte « délicieux ». Le même piège existait pour « sauer » (acide / fâché) et pour
+« aburrido » (ennuyeux / qui s'ennuie). La règle, générale :
+- le mot porte **`sens`**, la traduction française EXACTE de l'entrée du corpus que le thème enseigne
+  (`{mot: "rico", cat: "adjectif", sens: "riche"}`) ; la page l'envoie dans `reponse`, et `tirage.js` dans `etats` ;
+- `carteDeScene()` (`index.html`) prend alors la carte qui porte cette traduction (rang 1 d'un adjectif, rang 3 d'un nom,
+  `traduction` d'un verbe) ; **sans `sens`, ou si aucune carte ne le porte, rien ne change** : la première, comme
+  avant, pour les scènes comme pour les autres thèmes ;
+- au corpus espagnol, un second sens d'un adjectif entre par `espanol/ajouter_mots.py` avec `"_second_sens": true`
+  sur sa ligne (sans cette marque, un mot déjà présent n'est jamais rajouté) ;
+- dans `emociones.html`, `sens` vient d'`emociones.json` (clé `sens`, tirée du corpus par `visuel/emociones/emociones.py`,
+  `SENS_VOULU` pour les mots dont le thème ne prend pas la première entrée) ; les gloses suivent la même entrée.
+Vérifié sur un profil vierge : une bonne réponse sur « rico » (riche) fait avancer la carte riche et laisse
+« délicieux » neuve, et l'inverse ; sans sens, la carte rendue est celle d'avant.
+
 **Contrôle** : ajouter le thème à `THEMES` dans `tests/themes_illustres.py`, puis le lancer.
 
 ## L'anglais (essai admin, 3 nov. 2026)

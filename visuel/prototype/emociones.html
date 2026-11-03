@@ -161,8 +161,9 @@ const VOISINS = {triste:["preocupado"], preocupado:["triste", "nervioso", "miedo
                  sorprendido:["miedo"], cansado:["aburrido", "enfermo"], aburrido:["cansado"], enfermo:["cansado"]};
 // Les traits que la meme scene pourrait aussi montrer : Pablo qui tourne le dos est antipathique ET grossier, Lucas
 // sur le canape paresseux ET desordonne, Anna qui aide le touriste sympathique ET polie.
-const VOISINS_T = {antipatico:["grosero"], grosero:["antipatico"], simpatico:["educado", "generoso"], educado:["simpatico"], generoso:["simpatico"],
-                   perezoso:["desordenado"], desordenado:["perezoso"]};
+const VOISINS_T = {antipatico:["grosero"], grosero:["antipatico"], simpatico:["educado", "generoso", "carinoso", "feliz"], educado:["simpatico"], generoso:["simpatico", "carinoso"],
+                   perezoso:["desordenado"], desordenado:["perezoso"], estudioso:["trabajador", "inteligente"], trabajador:["estudioso"], inteligente:["estudioso"],
+                   carinoso:["simpatico", "generoso"], feliz:["simpatico"]};
 const loin = (a, b, v) => a !== b && !(v[a] || []).includes(b) && !(v[b] || []).includes(a);
 
 // ---------- la langue apprise : les phrases, fabriquees comme celles de la decouverte (emociones.py, phrase()) ----------
@@ -206,7 +207,8 @@ const TRADS = {
         preocupado:["est inquiet","est inquiète"], orgulloso:["est fier","est fière"], avergonzado:["est gêné","est gênée"], enfermo:["est malade","est malade"]},
     t: {generoso:["est généreux","est généreuse"], tacano:["est radin","est radine"], trabajador:["est travailleur","est travailleuse"], perezoso:["est paresseux","est paresseuse"],
         extrovertido:["est extraverti","est extravertie"], timido:["est timide","est timide"], educado:["est poli","est polie"], grosero:["est grossier","est grossière"],
-        ordenado:["est ordonné","est ordonnée"], desordenado:["est désordonné","est désordonnée"], simpatico:["est sympathique","est sympathique"], antipatico:["est antipathique","est antipathique"]},
+        ordenado:["est ordonné","est ordonnée"], desordenado:["est désordonné","est désordonnée"], simpatico:["est sympathique","est sympathique"], antipatico:["est antipathique","est antipathique"], feliz:["est heureux","est heureuse"], carinoso:["est affectueux","est affectueuse"], estricto:["est strict","est stricte"], estudioso:["est studieux","est studieuse"],
+        inteligente:["est intelligent","est intelligente"], independiente:["est indépendant","est indépendante"], rico:["est riche"], pobre:["est pauvre"]},
     h: {enfadado:["est de mauvaise humeur","est de mauvaise humeur"], enfermo:["a un rhume","a un rhume"]},
     contraire: (a, pa, b, pb) => a + " " + pa + ". " + b + ", au contraire, " + pb + ".",
     pieges: {"Esta película ___ aburrida.":"Ce film est ennuyeux.", "La clase de hoy ___ muy aburrida.":"Le cours d'aujourd'hui est très ennuyeux.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben s'ennuie : il n'a rien à faire."}
@@ -215,7 +217,8 @@ const TRADS = {
     e: {contento:["is happy"], triste:["is sad"], enfadado:["is angry"], miedo:["is afraid"], sorprendido:["is surprised"], cansado:["is tired"], aburrido:["is bored"],
         nervioso:["is nervous"], preocupado:["is worried"], orgulloso:["is proud"], avergonzado:["is embarrassed"], enfermo:["is sick"]},
     t: {generoso:["is generous"], tacano:["is stingy"], trabajador:["is hard-working"], perezoso:["is lazy"], extrovertido:["is outgoing"], timido:["is shy"],
-        educado:["is polite"], grosero:["is rude"], ordenado:["is tidy"], desordenado:["is messy"], simpatico:["is nice"], antipatico:["is unfriendly"]},
+        educado:["is polite"], grosero:["is rude"], ordenado:["is tidy"], desordenado:["is messy"], simpatico:["is nice"], antipatico:["is unfriendly"], feliz:["is happy"], carinoso:["is affectionate"], estricto:["is strict"], estudioso:["is studious"], inteligente:["is intelligent"],
+        independiente:["is independent"], rico:["is rich"], pobre:["is poor"]},
     h: {enfadado:["is in a bad mood"], enfermo:["has a cold"]},
     contraire: (a, pa, b, pb) => a + " " + pa + ". " + b + ", on the other hand, " + pb + ".",
     pieges: {"Esta película ___ aburrida.":"This film is boring.", "La clase de hoy ___ muy aburrida.":"Today's class is very boring.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben is bored: he has nothing to do."}
@@ -226,17 +229,19 @@ const TRADS = {
         orgulloso:["está orgulhoso","está orgulhosa"], avergonzado:["está envergonhado","está envergonhada"], enfermo:["está doente"]},
     t: {generoso:["é generoso","é generosa"], tacano:["é pão-duro","é pão-dura"], trabajador:["é trabalhador","é trabalhadora"], perezoso:["é preguiçoso","é preguiçosa"],
         extrovertido:["é extrovertido","é extrovertida"], timido:["é tímido","é tímida"], educado:["é educado","é educada"], grosero:["é grosseiro","é grosseira"],
-        ordenado:["é organizado","é organizada"], desordenado:["é bagunceiro","é bagunceira"], simpatico:["é simpático","é simpática"], antipatico:["é antipático","é antipática"]},
+        ordenado:["é organizado","é organizada"], desordenado:["é bagunceiro","é bagunceira"], simpatico:["é simpático","é simpática"], antipatico:["é antipático","é antipática"], feliz:["é feliz"], carinoso:["é carinhoso","é carinhosa"], estricto:["é rigoroso","é rigorosa"], estudioso:["é estudioso","é estudiosa"],
+        inteligente:["é inteligente"], independiente:["é independente"], rico:["é rico","é rica"], pobre:["é pobre"]},
     h: {enfadado:["está de mau humor"], enfermo:["está resfriado","está resfriada"]},
     contraire: (a, pa, b, pb) => a + " " + pa + ". " + b + ", ao contrário, " + pb + ".",
     pieges: {"Esta película ___ aburrida.":"Este filme é chato.", "La clase de hoy ___ muy aburrida.":"A aula de hoje é muito chata.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben está entediado: não tem nada para fazer."}
   },
   // l'allemand, langue d'interface de l'espagnol seulement (jamais pour qui apprend l'allemand)
   de: {
-    e: {contento:["ist glücklich"], triste:["ist traurig"], enfadado:["ist wütend"], miedo:["hat Angst"], sorprendido:["ist überrascht"], cansado:["ist müde"],
+    e: {contento:["ist froh"], triste:["ist traurig"], enfadado:["ist wütend"], miedo:["hat Angst"], sorprendido:["ist überrascht"], cansado:["ist müde"],
         aburrido:["langweilt sich"], nervioso:["ist nervös"], preocupado:["ist besorgt"], orgulloso:["ist stolz"], avergonzado:["ist verlegen"], enfermo:["ist krank"]},
     t: {generoso:["ist großzügig"], tacano:["ist geizig"], trabajador:["ist fleißig"], perezoso:["ist faul"], extrovertido:["ist kontaktfreudig"], timido:["ist schüchtern"],
-        educado:["ist höflich"], grosero:["ist unhöflich"], ordenado:["ist ordentlich"], desordenado:["ist unordentlich"], simpatico:["ist sympathisch"], antipatico:["ist unsympathisch"]},
+        educado:["ist höflich"], grosero:["ist unhöflich"], ordenado:["ist ordentlich"], desordenado:["ist unordentlich"], simpatico:["ist sympathisch"], antipatico:["ist unsympathisch"], feliz:["ist glücklich"], carinoso:["ist liebevoll"], estricto:["ist streng"], estudioso:["ist lerneifrig"], inteligente:["ist intelligent"],
+        independiente:["ist selbstständig"], rico:["ist reich"], pobre:["ist arm"]},
     h: {},
     contraire: (a, pa, b, pb, fb) => a + " " + pa + ". " + b + " ist das Gegenteil: " + (fb ? "Sie " : "Er ") + pb + ".",
     pieges: {"Esta película ___ aburrida.":"Dieser Film ist langweilig.", "La clase de hoy ___ muy aburrida.":"Der Unterricht heute ist sehr langweilig.", "Ben ___ aburrido: no tiene nada que hacer.":"Ben langweilt sich: Er hat nichts zu tun."}
@@ -299,14 +304,17 @@ let file = [], rang = 0, bons = 0, repondu = false;
 // enojado) ; la peur est un nom (el miedo, die Angst), comme la mauvaise humeur et le rhume en allemand.
 let motQ = null;
 const MOT_NOM = {es: {miedo: {mot: "miedo", genre: "el"}}, de: {miedo: {mot: "Angst", genre: "die"}, enfadado: {mot: "Laune", genre: "die"}, enfermo: {mot: "Erkältung", genre: "die"}}};
-const motE = (e, haben) => (haben || D.emotions[e].tener) ? MOT_NOM[APPRENDRE][e] : {mot: APPRENDRE === "de" ? D.emotions[e].de : D.emotions[e].es[0], cat: "adjectif"};
-const motT = t => ({mot: APPRENDRE === "de" ? D.caracteres[t].de : D.caracteres[t].es[0], cat: "adjectif"});
+// LE SENS (3 nov. 2026) : la traduction francaise de l'entree du corpus que le theme enseigne (emociones.json, « sens »).
+// Un mot a deux entrees (rico : delicieux / riche) a deux cartes : l'app fait avancer celle de ce sens (carteDeScene).
+const avecSens = m => { const s = ((D.sens || {})[APPRENDRE] || {})[((m.genre || "") + " " + m.mot).trim()]; return s ? Object.assign({}, m, {sens: s}) : m; };
+const motE = (e, haben) => avecSens((haben || D.emotions[e].tener) ? MOT_NOM[APPRENDRE][e] : {mot: APPRENDRE === "de" ? D.emotions[e].de : D.emotions[e].es[0], cat: "adjectif"});
+const motT = t => avecSens({mot: APPRENDRE === "de" ? D.caracteres[t].de : D.caracteres[t].es[0], cat: "adjectif"});
 
 function juger(ok, bonneTexte, phrase){
   if (repondu) return; repondu = true;
   if (ok) bons++;
   parler("exercice", {juste: ok}); if (ok){ parler("bonne"); Voix.bravo(); }   // le son des cartes et des scenes
-  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, juste: ok});
+  if (motQ) parler("reponse", {mot: motQ.mot, genre: motQ.genre || null, cat: motQ.cat || null, sens: motQ.sens || null, juste: ok});
   if (!ok && file[rang]) Tirage.remettre(file, rang, file[rang], NB);   // rate : il revient dans la partie
   const m = $("msg"); m.className = "retourMsg " + (ok ? "ok" : "ko");
   m.innerHTML = (ok ? cible(L.bravo) : T("bonne", {r: cible(bonneTexte)})) + (phrase && phrase !== bonneTexte ? '<span class="phrase">' + cible(phrase) + '</span>' : "");
@@ -432,7 +440,7 @@ const EX = {
     const variable = e => !D.emotions[e].tener && D.emotions[e].es[0] !== D.emotions[e].es[1];
     if (w && w.e && !variable(w.e)) return false;
     const cand = PORTRAITS.filter(([, e]) => variable(e) && (!w || e === w.e)).map(([p, e]) => ["e", p, e])
-                 .concat(TRAITS().filter(t => !w || t === w.t).map(t => ["t", null, t]));
+                 .concat(TRAITS().filter(t => (!w || t === w.t) && D.caracteres[t].es[0] !== D.caracteres[t].es[1]).map(t => ["t", null, t]));   // pas feliz, inteligente, pobre...
     if (!cand.length) return false;
     const [k, , x] = hasard(cand), p = k === "t" ? unePersonne(x) : unPortrait(x)[0], m = k === "e" ? D.emotions[x] : D.caracteres[x], formes = (LATAM && m.latam) || m.es;
     const rep = formes[fem(p) ? 1 : 0], verbe = k === "e" ? "está" : "es"; motQ = w || (k === "e" ? motE(x) : motT(x)); sensQ = k === "e" ? {p, e: x} : {p, t: x};
@@ -450,8 +458,8 @@ const EX = {
   },
   // « Javier es tacaño. Marta, al contrario, es ___. » : la paire d'images ; le mot vise est celui de la reponse
   contraire(w){
-    if (w && !w.t) return false;
-    const c = w ? w.t : hasard(TRAITS()), t = D.caracteres[c].contraire, a = unePersonne(t), b = unePersonne(c);   // b en dernier : la rotation retient le mot vise
+    if (w && !(w.t && D.caracteres[w.t].contraire)) return false;
+    const c = w ? w.t : hasard(TRAITS().filter(x => D.caracteres[x].contraire)), t = D.caracteres[c].contraire, a = unePersonne(t), b = unePersonne(c);   // b en dernier : la rotation retient le mot vise
     const forme = (x, p) => APPRENDRE === "de" ? D.caracteres[x].de : ES.forme(D.caracteres[x], p);
     const rep = forme(c, b); motQ = w || motT(c); sensQ = {a, t, b, c};
     const leurres = melanger(TRAITS().filter(x => x !== c && x !== t && loin(x, c, VOISINS_T))).slice(0, 3).map(x => forme(x, b));

@@ -58351,11 +58351,23 @@ window.addEventListener("message", (e) => {
 // homographes (der See / die See). Trois reponses par scene, donc trois
 // parcours du corpus -- jamais de boucle sur la progression (le piege de la
 // v100) : getWordState() ne lit qu'un mot.
+// LE SENS (3 nov. 2026). Un mot qui a deux entrees au corpus a deux cartes : rico
+// (« delicieux » et « riche »), comme sauer (acide / fache) ou aburrido (ennuyeux /
+// qui s'ennuie) le seraient. La page peut envoyer avec le mot la traduction
+// francaise de l'entree qu'elle enseigne (d.sens) : la carte qui porte cette
+// traduction l'emporte. Sans sens, ou si aucune carte ne le porte, rien ne change :
+// la premiere, comme avant (les scenes et les autres themes n'en envoient pas).
 function carteDeScene(d){
     const mot = (d && typeof d.mot === "string") ? d.mot : "";
     if(!mot) return null;
+    const sens = (typeof d.sens === "string" && d.sens) ? d.sens : null;
+    // le premier index qui convient, d'abord avec le sens demande, sinon sans
+    const chercher = (liste, ok, trad) => {
+        if(sens){ const j = liste.findIndex(w => ok(w) && trad(w) === sens); if(j >= 0) return j; }
+        return liste.findIndex(ok);
+    };
     if(d.cat === "verbe"){
-        const i = (verbeTheme.words || []).findIndex(w => w && w.infinitif === mot);
+        const i = chercher(verbeTheme.words || [], w => w && w.infinitif === mot, w => w.traduction);
         return i < 0 ? null : { word: verbeTheme.words[i], index: i, themeId: verbeTheme.id, mode: "verben" };
     }
     // 3 nov. 2026, « Ou est le chat ? » : une question sur « hinter » ou « debajo de » fait avancer la carte de la
@@ -58365,7 +58377,7 @@ function carteDeScene(d){
         return i < 0 ? null : { word: praepTheme.words[i], index: i, themeId: praepTheme.id, mode: "praep" };
     }
     if(d.cat === "adjectif"){
-        const i = (adjektiveTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
+        const i = chercher(adjektiveTheme.words || [], w => Array.isArray(w) && w[0] === mot, w => w[1]);
         return i < 0 ? null : { word: adjektiveTheme.words[i], index: i, themeId: adjektiveTheme.id, mode: "adjektive" };
     }
     // 3 nov. 2026, le theme « La journee » : siempre, a veces, nunca, primero / immer, manchmal, nie, zuerst
@@ -58373,20 +58385,25 @@ function carteDeScene(d){
         const i = (adverbienTheme.words || []).findIndex(w => Array.isArray(w) && w[0] === mot);
         return i < 0 ? null : { word: adverbienTheme.words[i], index: i, themeId: adverbienTheme.id, mode: "adverbien" };
     }
-    let premier = null, nomme = null;
+    let premier = null, nomme = null, duSens = null;
     themesComptes().forEach(th => {
         Object.keys(th.levels || {}).forEach(niv => {
             const lv = th.levels[niv];
             if(!lv || !Array.isArray(lv.words)) return;
-            const i = lv.words.findIndex(w => Array.isArray(w) && w[0] === mot
-                                              && (!d.genre || w[1] === d.genre));
+            const ok = w => Array.isArray(w) && w[0] === mot && (!d.genre || w[1] === d.genre);
+            const i = lv.words.findIndex(ok);
             if(i < 0) return;
             const it = { word: lv.words[i], index: i, themeId: lv.id, mode: "nomen" };
             if(!premier) premier = it;
             if(d.theme && lv.id === d.theme) nomme = it;
+            // le sens : rang 3, la traduction francaise d'un nom
+            if(sens && !duSens){
+                const j = lv.words.findIndex(w => ok(w) && w[3] === sens);
+                if(j >= 0) duSens = { word: lv.words[j], index: j, themeId: lv.id, mode: "nomen" };
+            }
         });
     });
-    return nomme || premier;
+    return duSens || nomme || premier;
 }
 
 // CE QUE VAUT UNE REPONSE : EXACTEMENT CE QUE VAUT UNE CARTE.
