@@ -131,6 +131,11 @@ v1068, deux fois au plus, plus jamais après un premier agrandissement (même cl
   une petite loupe, pour ne jamais répondre en voulant regarder. Un élément qui n'est pas une image (l'arbre en SVG)
   est copié dans la visionneuse ; `data-zoom="<image>"` y montre une autre image (une personne en pied s'agrandit en
   son visage, faute de pixels dans l'image en pied).
+- **L'app s'en sert aussi** pour les tableaux de la galerie (Jacques, 3 nov., « Oui, les deux ») : `index.html`
+  charge `visuel/prototype/themes/zoom.js`, **une seule source** ; l'option `pincer` dit ce que deux doigts
+  agrandissent (sinon toute image de `main`), une toile (canvas) s'ouvre copiée en image (un tableau en cours tel
+  qu'il est peint, rien de plus), `data-zoom` donne l'image entière d'un tableau gagné, et `langue` peut être une
+  fonction. Un changement de `zoom.js` vaut pour l'app ET les thèmes : essayer les deux.
 - **Les yeux se lisent à 375 px** : une question sur les yeux d'une personne montre son gros plan à toute la largeur
   (`<Nom>-yeux.webp`, fait par `visuel/descripcion/yeux_personnes.py`, la place des yeux relevée à l'œil), jamais le
   petit visage ; les yeux de la découverte sont en deux colonnes. Une image neuve où l'on doit voir un détail : la

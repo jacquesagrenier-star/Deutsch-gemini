@@ -56883,6 +56883,9 @@ function ouvrirMosaiquePleinEcran(rang){
             }
         };
         img.src = urlImageMosaique(m);
+        // AGRANDIR (themes/zoom.js, 3 nov. 2026) -- gagne, l'image entiere ; en cours, la toile telle qu'elle est
+        // peinte, sans rien devoiler de plus (data-zoom absent : zoom.js copie la toile)
+        if(gagnee) toile.dataset.zoom = urlImageMosaique(m); else delete toile.dataset.zoom;
         vue.classList.remove("hidden");
         synchroniserHistorique();
     });
@@ -66948,5 +66951,18 @@ function showResults(){
 })();
 </script>
 
+<!-- AGRANDIR LES TABLEAUX DE LA GALERIE (Jacques, 3 nov. 2026, « Oui, les deux »), avec le module des
+     themes illustres -- UNE seule source, visuel/prototype/themes/zoom.js : un toucher sur le tableau en plein ecran
+     ouvre la visionneuse (au lieu de refermer le plein ecran), deux doigts sur le tableau ou sur une vignette de la
+     galerie aussi ; dedans, deux doigts jusqu'a x4, double toucher, la molette, le bouton x. -->
+<script src="visuel/prototype/themes/zoom.js?v=4"></script>
+<script>
+if(typeof Zoom !== "undefined"){
+    try{
+        Zoom.init({direct: "#mosaiquePleinToile", pincer: "#mosaiquePleinToile, #galerieMosaiques .galerie-item img",
+                   langue: () => { try{ return langueEtRepli()[0]; }catch(e){ return "fr"; } }});
+    }catch(e){}
+}
+</script>
 </body>
 </html>
