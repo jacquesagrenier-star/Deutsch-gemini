@@ -56,6 +56,7 @@ def main():
                 for trophee in (False, True):
                     for contexte in ("cartes", "theme", "scene"):
                         ctx = nav.new_context(locale="fr-FR", viewport={"width": 390, "height": 844}, service_workers="block")
+                        ctx.set_default_timeout(120000)   # machine chargee (3 nov.) : 30 s ne suffisent pas toujours a charger la page
                         page = ctx.new_page()
                         erreurs = []
                         page.on("pageerror", lambda e: erreurs.append(str(e).split("\n")[0]))
