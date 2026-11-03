@@ -71,6 +71,12 @@ Le déroulé, dans la page :
    (`cleQuestion()`). Dans la séance : 6. Moins quand il y a moins de mots à revoir : c'est voulu.
 3. Un écran de fin (score, « Encore des questions » hors séance, « Terminer »).
 
+**Les boutons d'action toujours tout en bas** (Jacques, 3 nov. 2026, la règle des scènes : « commencer les exercices
+ou continuer soit toujours en bas complètement de l'écran ») : Commencer, Suivant, Terminer, « Encore des questions »
+sont des boutons fixes (`.suite`, `position:fixed`, `bottom: calc(12px + env(safe-area-inset-bottom))`, `z-index:5000`),
+jamais dans le flux ; le second (« Encore des questions ») juste au-dessus du premier ; le contenu garde assez de place
+en bas (`padding-bottom` ≥ deux boutons + 24 px + la zone de sécurité). Modèle : `ropa.html` (`boutonsDeFin()`).
+
 **La traduction dans la langue d'interface** (Jacques, 3 nov. : « Il n'y a pas la traduction française. Qui serait
 importante ») : une ligne plus petite, grise, en italique (`.trad`), **sous le mot dans la découverte** et **après la
 réponse, sous la phrase juste** — jamais avant, elle donnerait la réponse. Comment, dans `familia.html` et

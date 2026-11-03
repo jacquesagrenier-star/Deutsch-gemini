@@ -164,7 +164,53 @@ def chat_quatre_places():
     return c
 
 
-VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places}
+def vetements_meteo():
+    """Le bulletin meteo : quatre personnes sous quatre pictogrammes dessines (la pluie, la neige, le soleil, les
+    alliances du mariage), chacune habillee pour son temps -- Anna au parapluie, Mark en manteau, Ines au chapeau,
+    Javier en costume (3 nov. 2026). Tant que leurs tenues de situation ne sont pas faites, leur tenue de tous les jours."""
+    c = Image.new("RGB", (W, H), (226, 238, 248))
+    d = ImageDraw.Draw(c)
+    bleu, ambre = (47, 111, 168), (232, 162, 58)
+    d.rectangle((0, 0, W, 112), fill=(205, 225, 243))
+    gens = [("Anna", "lluvia"), ("Mark", "frio"), ("Ines", "calor"), ("Javier", "boda")]
+    case = W // 4
+    for k, (n, sit) in enumerate(gens):
+        x0, cx, cy = k * case, k * case + case // 2, 56
+        if k:
+            d.line((x0, 14, x0, H - 14), fill=(196, 214, 232), width=2)
+        if sit == "lluvia":
+            for (ex, ey, r) in [(-16, 4, 18), (6, -6, 22), (24, 6, 15)]:
+                d.ellipse((cx + ex - r, cy + ey - r, cx + ex + r, cy + ey + r), fill=bleu)
+            d.rectangle((cx - 30, cy + 4, cx + 36, cy + 20), fill=bleu)
+            for dx in (-18, 2, 22):
+                d.line((cx + dx, cy + 28, cx + dx - 6, cy + 42), fill=bleu, width=5)
+        elif sit == "frio":
+            import math
+            for a in range(3):
+                t = math.pi / 3 * a
+                dx, dy = 34 * math.cos(t), 34 * math.sin(t)
+                d.line((cx - dx, cy - dy, cx + dx, cy + dy), fill=bleu, width=6)
+        elif sit == "calor":
+            d.ellipse((cx - 20, cy - 20, cx + 20, cy + 20), fill=ambre)
+            import math
+            for a in range(8):
+                t = math.pi / 4 * a
+                d.line((cx + 27 * math.cos(t), cy + 27 * math.sin(t), cx + 38 * math.cos(t), cy + 38 * math.sin(t)), fill=ambre, width=6)
+        else:
+            for ex in (-12, 12):
+                d.ellipse((cx + ex - 22, cy - 18, cx + ex + 22, cy + 26), outline=ambre, width=7)
+        chemin = os.path.join(P, "ropa", n + "-" + sit + ".webp")
+        p = Image.open(chemin if os.path.exists(chemin) else os.path.join(P, "descripcion", n + ".webp")).convert("RGBA")
+        p = p.crop(p.getbbox())
+        h = H - 130
+        p = p.resize((round(p.size[0] * h / p.size[1]), h), Image.LANCZOS)
+        if p.size[0] > case - 8:
+            p = p.resize((case - 8, round(p.size[1] * (case - 8) / p.size[0])), Image.LANCZOS)
+        c.paste(p, (cx - p.size[0] // 2, H - 8 - p.size[1]), p)
+    return c
+
+
+VIGNETTES = {"familia": famille_arbre, "descripcion": decrire_toise, "emociones": emotions_photomaton, "contrarios": contraires_verres, "gato": chat_quatre_places, "ropa": vetements_meteo}
 
 if __name__ == "__main__":
     os.makedirs(SORTIE, exist_ok=True)
