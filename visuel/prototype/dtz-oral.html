@@ -96,6 +96,9 @@ textarea{width:100%;min-height:90px;border-radius:12px;border:1px solid rgba(76,
 .suite{position:fixed;left:max(16px,calc(50% - 199px));right:max(16px,calc(50% - 199px));bottom:calc(12px + env(safe-area-inset-bottom,0px));height:54px;border:0;border-radius:27px;
   color:#fff;font:800 17px var(--police);background:linear-gradient(180deg,rgba(120,200,150,.94),rgba(52,140,90,.96));box-shadow:0 10px 24px rgba(30,90,60,.28);cursor:pointer}
 .suite[hidden]{display:none}
+/* « Suivant », « Commencer » tout en bas ET au-dessus de tout (Jacques, 3 nov. 2026, la regle des scenes) : sans
+   z-index, une image ou une loupe (z-index 2) qui defile passait devant le bouton fixe */
+.suite{z-index:5000}
 .suite:disabled{opacity:.45;cursor:default}
 button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 [lang="de"]{unicode-bidi:isolate}
@@ -107,7 +110,7 @@ button:focus-visible{outline:3px solid var(--encre);outline-offset:2px}
 <div class="etapes" id="etapes"></div>
 <main id="zone"></main>
 <button class="suite" id="suite" type="button" hidden></button>
-<script src="themes/zoom.js?v=1"></script>
+<script src="themes/zoom.js?v=3"></script>
 <script>
 const Q = new URLSearchParams(location.search);
 if (Q.get("nuit") === "1") document.documentElement.classList.add("nuit");
