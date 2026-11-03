@@ -11102,6 +11102,15 @@ body[data-theme="dark"] #home #seancePilule .pa-anneau b, body[data-theme="dark"
         <div class="info-box" data-i18n-html="pruefung_info_sprechen"></div>
     </div>
 
+    <!-- LE RESULTAT, CHIFFRES DU MANUEL DU DTZ (2009) : 20/45 pour l'A2,
+         33/45 pour le B1, et le B1 global qui exige l'oral. C'est la regle
+         qui change la facon de se preparer : un ecrit parfait ne rattrape
+         pas un oral A2. La note du bas reste vraie -- le centre fait foi. -->
+    <div class="card">
+        <strong data-i18n="pruefung_info_resultat_t">Le résultat, au DTZ</strong>
+        <div class="info-box" data-i18n-html="pruefung_info_resultat"></div>
+    </div>
+
     <!-- LES DEUX EXAMENS NE SE RESSEMBLENT PAS SUR TOUT, et l'ecran le dit
          maintenant qu'il contient les deux formes. Un candidat au Goethe B1
          qui ne se serait entraine que sur le DTZ decouvrirait l'expose le jour
@@ -43786,7 +43795,11 @@ function orbPanelData(id){
                 { icon:"exercice", title:t("op_pruefung_schreiben_t"), desc:t("op_pruefung_schreiben_d"),
                   action:"startPruefungSchreiben", section:"pratique" },
                 { icon:"exercice", title:t("op_pruefung_sprechen_t"), desc:t("op_pruefung_sprechen_d"),
-                  action:"startPruefungSprechen", section:"pratique" }
+                  action:"startPruefungSprechen", section:"pratique" },
+                // Essai dtz_oral (admin, francais seulement) : l'oral du DTZ avec Anna et Mark.
+                ...(essaiActif("dtz_oral") && (LANGUE_APPRISE === "de" || !LANGUE_APPRISE) ? [
+                { icon:"exercice", title:"Mark prépare le DTZ : l’oral (essai)", desc:"Anna joue l’examinatrice, Mark l’autre candidat ; tu réponds à voix haute, verdict A2 / B1",
+                  action:"ouvrirDtzOral", section:"pratique" }] : [])
                 // AUCUN PAQUET DE VOCABULAIRE ICI, ET C'EST LE POINT (v471).
                 //
                 // Il y en avait cinq, puis un. Jacques : « ca donne
@@ -46772,6 +46785,64 @@ function ouvrirDescripcion(){
     }
     showScreen("sceneSeance");
 }
+// MARK PREPARE LE DTZ, L'ORAL (essai dtz_oral, 3 nov. 2026) : la page visuel/prototype/dtz-oral.html, dans le
+// cadre des scenes. Jacques : « est-ce qu'on peut faire poser des questions par Anna ou Marc ». Anna joue
+// l'examinatrice, Mark l'autre candidat ; l'eleve repond a voix haute. Allemand seulement.
+function ouvrirDtzOral(){
+    sceneOuverteDepuis = "dtz";
+    const cadre = document.getElementById("sceneCadre");
+    if(cadre){
+        cadre.title = "Mark prépare le DTZ";
+        cadre.src = baseScenes() + "dtz-oral.html?apprendre=de"
+                  + (document.body && document.body.getAttribute("data-theme") === "dark" ? "&nuit=1" : "")
+                  + "&t=" + Date.now();
+    }
+    showScreen("sceneSeance");
+}
+// LE MICRO POUR LA PAGE DU CADRE. Dans les apps, la page n'a pas la reconnaissance du navigateur et ne voit pas le
+// module natif : elle le demande ici (« micro », start / stop) et recoit le texte (« wortando-app », texte / fin /
+// indisponible). Memes precautions que la carte d'oral : arreter avant de demarrer (v883), garder le dernier
+// resultat non vide (v888). Hors des apps, la page ecoute elle-meme.
+let microCadre = null;
+async function microPourCadre(d, e){
+    const repondre = (etat, texte) => { try{ e.source.postMessage({ source: "wortando-app", type: "micro", etat: etat, texte: texte || "" }, e.origin); }catch(err){} };
+    const Natif = (() => {
+        try{
+            const C = window.Capacitor;
+            return (C && C.isNativePlatform && C.isNativePlatform() && C.Plugins && C.Plugins.SpeechRecognition) || null;
+        }catch(err){ return null; }
+    })();
+    if(d.action === "stop"){
+        const ici = microCadre;
+        if(!ici) return;
+        try{ await Natif.stop(); }catch(err){}
+        setTimeout(() => { if(microCadre !== ici) return; microCadre = null; (ici.ecouteurs || []).forEach(h => { try{ h.remove(); }catch(err){} }); repondre("fin", ici.texte); }, 1200);
+        return;
+    }
+    if(d.action !== "start") return;
+    if(!Natif){ repondre("indisponible"); return; }
+    const ici = { texte: "", ecouteurs: [] };
+    microCadre = ici;
+    try{
+        const dispo = await Natif.available();
+        if(!dispo || !dispo.available){ microCadre = null; repondre("indisponible"); return; }
+        const perm = await Natif.requestPermissions();
+        if(perm && perm.speechRecognition && perm.speechRecognition !== "granted"){ microCadre = null; repondre("indisponible"); return; }
+        try{ await Natif.stop(); }catch(err){}
+        ici.ecouteurs.push(await Natif.addListener("partialResults", ev => {
+            const t = ((ev && ev.matches) || []).map(x => String(x || "").trim()).filter(Boolean)[0];
+            if(t && microCadre === ici){ ici.texte = t; repondre("texte", t); }
+        }));
+        const r = await Natif.start({ language: "de-DE", maxResults: 1, partialResults: true, popup: false });
+        const t = ((r && r.matches) || []).map(x => String(x || "").trim()).filter(Boolean)[0];
+        if(t) ici.texte = t;
+        try{ noterAudio("natif", "DTZ", "start rendu, " + (ici.texte || "").length + " car."); }catch(err){}
+    }catch(err){
+        try{ noterAudio("natif", "DTZ", "erreur " + String(err && err.message).slice(0, 80)); }catch(x){}
+        if(microCadre === ici){ microCadre = null; (ici.ecouteurs || []).forEach(h => { try{ h.remove(); }catch(x){} }); repondre(ici.texte ? "fin" : "indisponible", ici.texte); }
+    }
+}
+
 try{
     const tuileDesc = document.getElementById("tuileDescripcion");
     if(tuileDesc && (LANGUE_APPRISE === "es" || LANGUE_APPRISE === "de")) tuileDesc.classList.remove("hidden");
@@ -47357,6 +47428,14 @@ const ESSAIS = {
         etat: "tous",
         titre: "Deux questions à l'inscription",
         desc: "Après l'écran de bienvenue : pourquoi tu apprends (la scène du jour, un jour sur deux, vient des lieux qui comptent pour toi) et ce qui te ressemble (images : deux scènes par séance ; écouter : plus d'écoute et d'oral ; règles : plus de grammaire ; un peu de tout : comme aujourd'hui). Se change par « Ma façon d'apprendre › » sous la pilule."
+    },
+    // EN ESSAI le 3 nov. 2026, admin seul. Jacques : « est-ce qu'on peut faire poser des
+    // questions par Anna ou Marc ». La maquette de l'oral du DTZ, avant les autres parties
+    // et l'examen blanc. Voir ouvrirDtzOral() et visuel/prototype/dtz-oral.html.
+    dtz_oral: {
+        etat: "admin",
+        titre: "Mark prépare le DTZ : l'oral",
+        desc: "Dans « Préparation à l'examen » : l'oral du DTZ en répétition (se présenter, répondre, décrire une photo, raconter et comparer, planifier avec Mark). Anna joue l'examinatrice et annonce une estimation A2 / B1 ; voix du téléphone en attendant les voix enregistrées."
     },
     premiers_pas: {
         etat: "tous",
@@ -57810,6 +57889,12 @@ window.addEventListener("message", (e) => {
         // plus 1. Mais sans le son. » Comme « Encore » sur une carte (v857) : le carreau
         // recompense la question traversee, pas la question sue. La bonne passe par « bonne ».
         if(d.juste === false && sceneOuverteDepuis !== "admin"){ try{ if(essaiActif("carreau_partout")) poserCarreau(true); }catch(err){} }
+        return;
+    }
+    // Essai dtz_oral : le micro demande par la page, et le retour au panneau « Preparation ».
+    if(d.type === "micro"){ microPourCadre(d, e); return; }
+    if(sceneOuverteDepuis === "dtz" && (d.type === "fini" || d.type === "fermer")){
+        try{ openOrbPanel("pruefung"); }catch(err){ goHome(); }
         return;
     }
     // v1076 : « Decrire une personne » revient a « Tout le contenu », d'ou on l'a ouverte.
