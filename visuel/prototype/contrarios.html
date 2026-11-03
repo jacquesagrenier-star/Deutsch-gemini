@@ -263,24 +263,10 @@ const L = APPRENDRE === "de" ? DE : APPRENDRE === "en" ? EN : ES;
 const forme = (k, i) => L.forme1(k, i);
 
 // ---------- les sons ----------
-// Les memes fichiers que l'app (sha1 du texte, audio/manifest.py) : Aurora pour l'allemand, Lolita (Espagne) et
-// Monica (Amerique latine) pour l'espagnol ; les identifiants sont dans contrarios.json (sons). Sans fichier (hors
-// ligne, texte jamais enregistre) : la voix du telephone.
-const AUDIO = "https://deutschai-b6fbb.web.app/" + (APPRENDRE === "de" ? "" : LATAM ? "es-419/" : "es-es/");
-let son = null;
-function dire(texte){
-  // l'anglais : la voix commune (themes/voix.js), Sarah quand themes/sons.json connait le texte, sinon le telephone
-  if (APPRENDRE === "en") return Voix.dire(texte);
-  try { if (son) son.pause(); } catch(e){}
-  const parlerTel = () => { try {
-    const u = new SpeechSynthesisUtterance(texte); u.lang = APPRENDRE === "de" ? "de-DE" : LATAM ? "es-MX" : "es-ES"; u.rate = 0.9;
-    speechSynthesis.cancel(); speechSynthesis.speak(u); } catch(e){} };
-  const id = ((D && D.sons[APPRENDRE]) || {})[texte];
-  if (!id){ parlerTel(); return; }
-  son = new Audio(AUDIO + id + ".mp3" + (Q.get("r") ? "?r=" + Q.get("r") : ""));   // r : AUDIO_REVISION de l'app
-  son.addEventListener("error", parlerTel, {once: true});
-  son.play().catch(parlerTel);
-}
+// La voix commune des themes (themes/voix.js) : le fichier enregistre s'il existe (themes/sons.json, fait par
+// visuel/voix_themes.py), sinon la voix du telephone. dire() reste une fonction de la page : montrer() la fait taire
+// pendant qu'il cherche une question.
+function dire(texte){ Voix.dire(texte); }
 const HP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 
 // ---------- utilitaires ----------
@@ -578,7 +564,7 @@ function decouvrir(){
   // la fiche s'ouvre sur la premiere, sans parler : le son ne vient que d'un geste
   const garde = dire; dire = () => {}; montrer(D.planche[0][0]); dire = garde;
   const s = $("suite"); s.textContent = T("commencer"); s.hidden = false;
-  s.onclick = () => { s.onclick = null; try { if (son) son.pause(); speechSynthesis.cancel(); } catch(e){} demarrer(); };
+  s.onclick = () => { s.onclick = null; Voix.arreter(); demarrer(); };
 }
 
 // LA PARTIE (3 nov. 2026, « le tirage suit les mots ») : la file des MOTS vient de l'app (Tirage.plan : les dus,
